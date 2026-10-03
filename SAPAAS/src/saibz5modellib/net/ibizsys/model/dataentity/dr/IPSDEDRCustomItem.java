@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.dr;
 
-import net.ibizsys.model.dataentity.dr.IPSDEDRItem;
 
-public interface IPSDEDRCustomItem
-extends IPSDEDRItem {
+
+/**
+ * 实体关系项(自定义)接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEDRCustomItem extends IPSDEDRItem
+{
+	
+	
+	
 }
-

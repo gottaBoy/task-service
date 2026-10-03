@@ -2346,7 +2346,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -2372,7 +2372,7 @@ implements Serializable {
                 PSDEDataQuery pSDEDataQuery = new PSDEDataQuery();
                 pSDEDataQuery.setPSDEDataQueryId(this.getPSDEDataQueryId());
                 PSDEDataQueryService pSDEDataQueryService = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataQueryService.autoGet((IEntity)pSDEDataQuery);
+                pSDEDataQueryService.autoGet(pSDEDataQuery);
                 this.psdedataquery = pSDEDataQuery;
             }
             return this.psdedataquery;
@@ -2398,7 +2398,7 @@ implements Serializable {
                 PSDEDataSet pSDEDataSet = new PSDEDataSet();
                 pSDEDataSet.setPSDEDataSetId(this.getPSDEDataSetId());
                 PSDEDataSetService pSDEDataSetService = (PSDEDataSetService)ServiceGlobal.getService(PSDEDataSetService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataSetService.autoGet((IEntity)pSDEDataSet);
+                pSDEDataSetService.autoGet(pSDEDataSet);
                 this.psdedataset = pSDEDataSet;
             }
             return this.psdedataset;
@@ -2424,7 +2424,7 @@ implements Serializable {
                 PSSysBICube pSSysBICube = new PSSysBICube();
                 pSSysBICube.setPSSysBICubeId(this.getPSSysBICubeId());
                 PSSysBICubeService pSSysBICubeService = (PSSysBICubeService)ServiceGlobal.getService(PSSysBICubeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBICubeService.autoGet((IEntity)pSSysBICube);
+                pSSysBICubeService.autoGet(pSSysBICube);
                 this.pssysbicube = pSSysBICube;
             }
             return this.pssysbicube;
@@ -2450,7 +2450,7 @@ implements Serializable {
                 PSSysBIScheme pSSysBIScheme = new PSSysBIScheme();
                 pSSysBIScheme.setPSSysBISchemeId(this.getPSSysBISchemeId());
                 PSSysBISchemeService pSSysBISchemeService = (PSSysBISchemeService)ServiceGlobal.getService(PSSysBISchemeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBISchemeService.autoGet((IEntity)pSSysBIScheme);
+                pSSysBISchemeService.autoGet(pSSysBIScheme);
                 this.pssysbischeme = pSSysBIScheme;
             }
             return this.pssysbischeme;
@@ -2472,7 +2472,7 @@ implements Serializable {
         Integer n = this.objPSSysBIAggColumnsLock;
         synchronized (n) {
             if (this.pssysbiaggcolumns == null) {
-                this.pssysbiaggcolumns = pSSysBIAggTableService.isTempData((IEntity)this) ? pSSysBIAggColumnService.selectTempByPSSysBIAggTable(this) : pSSysBIAggColumnService.selectByPSSysBIAggTable(this);
+                this.pssysbiaggcolumns = pSSysBIAggTableService.isTempData(this) ? pSSysBIAggColumnService.selectTempByPSSysBIAggTable(this) : pSSysBIAggColumnService.selectByPSSysBIAggTable(this);
             }
             return this.pssysbiaggcolumns;
         }

@@ -1,16 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFTimeoutLinkModel
- */
 package net.ibizsys.model.wf;
 
-import net.ibizsys.model.wf.IPSWFLink;
 import net.ibizsys.pswf.core.IWFTimeoutLinkModel;
 
-public interface IPSWFTimeoutLink
-extends IPSWFLink,
-IWFTimeoutLinkModel {
-}
+/**
+ * 工作流处理超时路由连接对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSWFTimeoutLink extends IPSWFLink,IWFTimeoutLinkModel
+{
 
+}

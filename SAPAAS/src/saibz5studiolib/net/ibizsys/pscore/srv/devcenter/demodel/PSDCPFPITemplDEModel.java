@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.devcenter.demodel.PSDCPFPITemplDEModelBase;
 
 public class PSDCPFPITemplDEModel
 extends PSDCPFPITemplDEModelBase {
+
+    public PSDCPFPITemplDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

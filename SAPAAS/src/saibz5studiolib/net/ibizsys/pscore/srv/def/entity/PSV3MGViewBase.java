@@ -771,7 +771,7 @@ implements Serializable {
                 PSV3Migrate pSV3Migrate = new PSV3Migrate();
                 pSV3Migrate.setPSV3MigrateId(this.getPSV3MigrateId());
                 PSV3MigrateService pSV3MigrateService = (PSV3MigrateService)ServiceGlobal.getService(PSV3MigrateService.class, (SessionFactory)this.getSessionFactory());
-                pSV3MigrateService.autoGet((IEntity)pSV3Migrate);
+                pSV3MigrateService.autoGet(pSV3Migrate);
                 this.psv3migrate = pSV3Migrate;
             }
             return this.psv3migrate;

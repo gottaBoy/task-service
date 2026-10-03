@@ -1,54 +1,132 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.control.IControl
- */
 package net.ibizsys.model.control;
 
 import net.ibizsys.model.IPSModelJsonExporter;
 import net.ibizsys.model.app.view.IPSAppView;
-import net.ibizsys.model.control.IPSControlContainer;
-import net.ibizsys.model.control.IPSControlParam;
-import net.ibizsys.model.control.IPSControlType;
-import net.ibizsys.model.control.IPSControlXDataContainer;
 import net.ibizsys.model.core.IPSModelObject;
 import net.ibizsys.model.dataentity.IPSDataEntity;
 import net.ibizsys.model.res.IPSSysCss;
 import net.ibizsys.paas.control.IControl;
 
-public interface IPSControl
-extends IControl,
-IPSModelObject,
-IPSModelJsonExporter {
-    public boolean hasCtrlModel();
+/**
+ * 视图部件对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSControl extends IControl,IPSModelObject,IPSModelJsonExporter{
 
-    public IPSControlParam getPSControlParam();
+	/**
+	 * 是否拥有部件模型
+	 * 
+	 * @return
+	 */
+	boolean hasCtrlModel();
+	
+	
+	
+	/**
+	 * 获取控件参数对象
+	 * @return
+	 */
+	IPSControlParam getPSControlParam(); 
+	
+	
+	/**
+	 * 获取部件绑定实体对象
+	 * @return
+	 */
+	IPSDataEntity getPSDataEntity();
+	
+	
+	
+	/**
+	 * 获取部件所在的应用视图对象
+	 * 
+	 * @return
+	 */
+	IPSAppView getPSAppView();
 
-    public IPSDataEntity getPSDataEntity();
+	/**
+	 * 获取部件类型
+	 * 
+	 * @return
+	 */
+	IPSControlType getPSControlType();
+	
+	
+	
+	/**
+	 * 获取控件容器对象
+	 * @return
+	 */
+	IPSControlContainer getPSControlContainer();
+	
+	
+	
 
-    public IPSAppView getPSAppView();
+	/**
+	 * 获取控件容器对象
+	 * @return
+	 */
+	IPSControlXDataContainer getPSControlXDataContainer();
+	
+	
+	
+	/**
+	 * 获取控件宽度
+	 * 
+	 * @return
+	 */
+	double getWidth();
 
-    public IPSControlType getPSControlType();
+	/**
+	 * 获取控件高度
+	 * 
+	 * @return
+	 */
+	double getHeight();
+	
+	
+	
+	/**
+	 * 获取部件样式
+	 * @return
+	 */
+	IPSSysCss getPSSysCss();
+	
+	
+	
+	
+	/**
+	 * 获取部件子类型
+	 * @return
+	 */
+	String getControlSubType();
+	
+	
+	/**
+	 * 是否为视图默认部件
+	 * @return
+	 */
+	boolean isDefaultCtrl();
 
-    public IPSControlContainer getPSControlContainer();
-
-    public IPSControlXDataContainer getPSControlXDataContainer();
-
-    public double getWidth();
-
-    public double getHeight();
-
-    public IPSSysCss getPSSysCss();
-
-    public String getControlSubType();
-
-    public boolean isDefaultCtrl();
-
-    public boolean isDynamicCtrl();
-
-    public String getDynaViewContent() throws Exception;
-
-    public String getDynaModelContent() throws Exception;
+	/**
+	 * 是否为用户扩展动态部件
+	 * @return
+	 */
+	boolean isDynamicCtrl();
+	
+	
+	/**
+	 * 获取动态视图内容
+	 * @return
+	 */
+	String getDynaViewContent() throws Exception;
+	
+	
+	
+	/**
+	 * 获取动态模型内容
+	 * @return
+	 */
+	String getDynaModelContent() throws Exception;
 }
-

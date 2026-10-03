@@ -913,7 +913,7 @@ implements Serializable {
                 PSDBSysProcTempl pSDBSysProcTempl = new PSDBSysProcTempl();
                 pSDBSysProcTempl.setPSDBSysProcTemplId(this.getPSDBSysProcTemplId());
                 PSDBSysProcTemplService pSDBSysProcTemplService = (PSDBSysProcTemplService)ServiceGlobal.getService(PSDBSysProcTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSDBSysProcTemplService.autoGet((IEntity)pSDBSysProcTempl);
+                pSDBSysProcTemplService.autoGet(pSDBSysProcTempl);
                 this.psdbsysproctempl = pSDBSysProcTempl;
             }
             return this.psdbsysproctempl;

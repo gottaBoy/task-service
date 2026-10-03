@@ -75,7 +75,7 @@ implements IPSDEDataQueryService {
     @Override
     protected List<PSDEDataQuery> onListAll() throws Exception {
         ArrayList<PSDEDataQuery> list = new ArrayList<PSDEDataQuery>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEDataQuery> items = this.listByPSDataEntity(parent);

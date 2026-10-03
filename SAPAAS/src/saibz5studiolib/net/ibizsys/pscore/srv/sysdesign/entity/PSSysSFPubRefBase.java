@@ -1122,7 +1122,7 @@ implements Serializable {
                 PSSysSFPub pSSysSFPub = new PSSysSFPub();
                 pSSysSFPub.setPSSysSFPubId(this.getPSSysSFPubId());
                 PSSysSFPubService pSSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPubService.autoGet((IEntity)pSSysSFPub);
+                pSSysSFPubService.autoGet(pSSysSFPub);
                 this.pssyssfpub = pSSysSFPub;
             }
             return this.pssyssfpub;
@@ -1148,7 +1148,7 @@ implements Serializable {
                 PSSysSFPub pSSysSFPub = new PSSysSFPub();
                 pSSysSFPub.setPSSysSFPubId(this.getRefPSSysSFPubId());
                 PSSysSFPubService pSSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPubService.autoGet((IEntity)pSSysSFPub);
+                pSSysSFPubService.autoGet(pSSysSFPub);
                 this.refpssyssfpub = pSSysSFPub;
             }
             return this.refpssyssfpub;

@@ -19,7 +19,6 @@ package net.ibizsys.pscore.srv.devcenter.service;
 
 import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.entity.EntityBase;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.KeyValueHelper;
 import net.ibizsys.paas.util.StringHelper;
@@ -44,7 +43,7 @@ extends PSDevUserServiceBase {
     private static final Log log = LogFactory.getLog(PSDevUserService.class);
 
     protected void onAfterGet(PSDevUser pSDevUser) throws Exception {
-        super.onAfterGet((IEntity)pSDevUser);
+        super.onAfterGet(pSDevUser);
         pSDevUser.setLoginPwd(_PASSWORD_);
     }
 
@@ -60,8 +59,6 @@ extends PSDevUserServiceBase {
     protected void onAfterCreate(PSDevUser pSDevUser) throws Exception {
         super.onAfterCreate(pSDevUser);
         if (StringHelper.isNullOrEmpty((String)pSDevUser.getFromPSDevUserId()) && !DataObject.getBoolValue((Integer)pSDevUser.getFromUserMode(), (boolean)false)) {
-            String string;
-            String string2;
             String string3;
             String string4 = pSDevUser.getLoginPwd();
             if (StringHelper.isNullOrEmpty((String)string4)) {
@@ -76,14 +73,14 @@ extends PSDevUserServiceBase {
                 string3 = bl ? pSDevUser.getLoginName() : (!StringHelper.isNullOrEmpty((String)pSDevCenter.getFullDomainName()) ? StringHelper.format((String)"%1$s@%2$s", (Object)pSDevUser.getLoginName(), (Object)pSDevCenter.getFullDomainName()) : StringHelper.format((String)"%1$s@%2$s", (Object)pSDevUser.getLoginName(), (Object)pSDevCenter.getDomainName()));
             }
             if (!PSDevUserService.isCloudMode()) {
-                string2 = new LoginAccount();
-                string2.setPwd(KeyValueHelper.genUniqueId((String)string3, (String)string4));
-                string2.setLoginAccountName(string3);
-                string2.setUserId(pSDevUser.getPSDevUserId());
-                string2.setUserName(pSDevUser.getPSDevUserName());
-                string2.setIsEnable(Integer.valueOf(1));
-                string = (LoginAccountService)ServiceGlobal.getService(LoginAccountService.class, (SessionFactory)this.getSessionFactory());
-                string.create((IEntity)string2);
+                LoginAccount loginAccount = new LoginAccount();
+                loginAccount.setPwd(KeyValueHelper.genUniqueId((String)string3, (String)string4));
+                loginAccount.setLoginAccountName(string3);
+                loginAccount.setUserId(pSDevUser.getPSDevUserId());
+                loginAccount.setUserName(pSDevUser.getPSDevUserName());
+                loginAccount.setIsEnable(Integer.valueOf(1));
+                LoginAccountService loginAccountService = (LoginAccountService)ServiceGlobal.getService(LoginAccountService.class, (SessionFactory)this.getSessionFactory());
+                loginAccountService.create(loginAccount);
                 Object object = new PSUAWizard2();
                 ((PSUAWizard2Base)object).set("loginname", string3);
                 ((PSUAWizard2Base)object).set("oripassword", string4);
@@ -94,13 +91,13 @@ extends PSDevUserServiceBase {
                 ((PSUAWizard2Service)object2).doCreateUser((PSUAWizard2)object);
                 object = pSDevUser.getFullLoginName2();
                 if (!StringHelper.isNullOrEmpty((String)object)) {
-                    string2.reset();
-                    string2.setPwd(KeyValueHelper.genUniqueId((String)object, (String)string4));
-                    string2.setLoginAccountName((String)object);
-                    string2.setUserId(pSDevUser.getPSDevUserId());
-                    string2.setUserName(pSDevUser.getPSDevUserName());
-                    string2.setIsEnable(Integer.valueOf(1));
-                    string.create((IEntity)string2);
+                    loginAccount.reset();
+                    loginAccount.setPwd(KeyValueHelper.genUniqueId((String)object, (String)string4));
+                    loginAccount.setLoginAccountName((String)object);
+                    loginAccount.setUserId(pSDevUser.getPSDevUserId());
+                    loginAccount.setUserName(pSDevUser.getPSDevUserName());
+                    loginAccount.setIsEnable(Integer.valueOf(1));
+                    loginAccountService.create(loginAccount);
                     object2 = new PSUAWizard2();
                     ((PSUAWizard2Base)object2).set("loginname", object);
                     ((PSUAWizard2Base)object2).set("oripassword", string4);
@@ -124,11 +121,11 @@ extends PSDevUserServiceBase {
                     }
                 }
             }
-            string2 = pSDevUser.getPSDevUserId();
-            string = pSDevUser.getPSDevCenterId();
+            String devUserId = pSDevUser.getPSDevUserId();
+            String devCenterId = pSDevUser.getPSDevCenterId();
             pSDevUser.reset();
-            pSDevUser.setPSDevUserId(string2);
-            pSDevUser.setPSDevCenterId(string);
+            pSDevUser.setPSDevUserId(devUserId);
+            pSDevUser.setPSDevCenterId(devCenterId);
             pSDevUser.setFullLoginName(string3);
             pSDevUser.setLoginPwd(_PASSWORD_);
             this.update(pSDevUser);
@@ -142,7 +139,7 @@ extends PSDevUserServiceBase {
     protected void onBeforeUpdate(PSDevUser pSDevUser) throws Exception {
         PSDevUser pSDevUser2 = new PSDevUser();
         pSDevUser2.setPSDevUserId(pSDevUser.getPSDevUserId());
-        this.get((IEntity)pSDevUser2);
+        this.get(pSDevUser2);
         if (this.isMajorSessionFactory()) {
             boolean bl = false;
             bl = pSDevUser.getDefaultFlag() != null ? DataObject.getBoolValue((Integer)pSDevUser.getDefaultFlag(), (boolean)false) : DataObject.getBoolValue((Integer)pSDevUser2.getDefaultFlag(), (boolean)false);
@@ -166,7 +163,7 @@ extends PSDevUserServiceBase {
                 if (!StringHelper.isNullOrEmpty((String)pSDevUser.getFullLoginName())) {
                     LoginAccount loginAccount = new LoginAccount();
                     loginAccount.setLoginAccountName(pSDevUser.getFullLoginName());
-                    loginAccountService.select((IEntity)loginAccount, false);
+                    loginAccountService.select(loginAccount, false);
                     boolean bl2 = false;
                     if (DataObject.getBoolValue((Integer)pSDevUser.getValidFlag(), (boolean)true) != DataObject.getBoolValue((Integer)loginAccount.getIsEnable(), (boolean)true)) {
                         bl2 = true;
@@ -174,7 +171,7 @@ extends PSDevUserServiceBase {
                     }
                     if (StringHelper.compare((String)pSDevUser.getLoginPwd(), (String)_PASSWORD_, (boolean)true) != 0) {
                         loginAccount.setPwd(KeyValueHelper.genUniqueId((String)pSDevUser.getFullLoginName(), (String)pSDevUser.getLoginPwd()));
-                        loginAccountService.update((IEntity)loginAccount, false);
+                        loginAccountService.update(loginAccount, false);
                         pSUAWizard2 = new PSUAWizard2();
                         pSUAWizard2.set("loginname", pSDevUser.getFullLoginName());
                         pSUAWizard2.set("oripassword", pSDevUser.getLoginPwd());
@@ -185,21 +182,21 @@ extends PSDevUserServiceBase {
                         pSUAWizard2Service = (PSUAWizard2Service)ServiceGlobal.getService(PSUAWizard2Service.class, (SessionFactory)this.getSessionFactory());
                         pSUAWizard2Service.doChangePwd(pSUAWizard2);
                     } else if (bl2) {
-                        loginAccountService.update((IEntity)loginAccount, false);
+                        loginAccountService.update(loginAccount, false);
                     }
                 }
                 if (!StringHelper.isNullOrEmpty((String)pSDevUser.getFullLoginName2())) {
                     boolean bl3 = false;
                     LoginAccount loginAccount = new LoginAccount();
                     loginAccount.setLoginAccountName(pSDevUser.getFullLoginName2());
-                    if (loginAccountService.select((IEntity)loginAccount, true) && DataObject.getBoolValue((Integer)pSDevUser.getValidFlag(), (boolean)true) != DataObject.getBoolValue((Integer)loginAccount.getIsEnable(), (boolean)true)) {
+                    if (loginAccountService.select(loginAccount, true) && DataObject.getBoolValue((Integer)pSDevUser.getValidFlag(), (boolean)true) != DataObject.getBoolValue((Integer)loginAccount.getIsEnable(), (boolean)true)) {
                         bl3 = true;
                         loginAccount.setIsEnable(pSDevUser.getValidFlag());
                     }
                     if (StringHelper.compare((String)pSDevUser.getLoginPwd(), (String)_PASSWORD_, (boolean)true) != 0) {
                         if (StringHelper.compare((String)pSDevUser2.getFullLoginName2(), (String)pSDevUser.getFullLoginName2(), (boolean)true) == 0) {
                             loginAccount.setPwd(KeyValueHelper.genUniqueId((String)pSDevUser.getFullLoginName2(), (String)pSDevUser.getLoginPwd()));
-                            loginAccountService.update((IEntity)loginAccount, false);
+                            loginAccountService.update(loginAccount, false);
                             pSUAWizard2 = new PSUAWizard2();
                             pSUAWizard2.set("loginname", pSDevUser.getFullLoginName2());
                             pSUAWizard2.set("oripassword", pSDevUser.getLoginPwd());
@@ -213,10 +210,10 @@ extends PSDevUserServiceBase {
                             if (!StringHelper.isNullOrEmpty((String)pSDevUser2.getFullLoginName2())) {
                                 loginAccount.reset();
                                 loginAccount.setLoginAccountName(pSDevUser2.getFullLoginName2());
-                                loginAccountService.select((IEntity)loginAccount, false);
+                                loginAccountService.select(loginAccount, false);
                                 loginAccount.setIsEnable(Integer.valueOf(0));
                                 loginAccount.setLoginAccountName(pSDevUser2.getFullLoginName2() + "@old_" + KeyValueHelper.genGuidEx());
-                                loginAccountService.update((IEntity)loginAccount, false);
+                                loginAccountService.update(loginAccount, false);
                             }
                             loginAccount.reset();
                             loginAccount.setPwd(KeyValueHelper.genUniqueId((String)pSDevUser.getFullLoginName2(), (String)pSDevUser.getLoginPwd()));
@@ -224,7 +221,7 @@ extends PSDevUserServiceBase {
                             loginAccount.setUserId(pSDevUser2.getPSDevUserId());
                             loginAccount.setUserName(pSDevUser2.getPSDevUserName());
                             loginAccount.setIsEnable(pSDevUser.getValidFlag());
-                            loginAccountService.create((IEntity)loginAccount);
+                            loginAccountService.create(loginAccount);
                             pSUAWizard2 = new PSUAWizard2();
                             pSUAWizard2.set("loginname", pSDevUser.getFullLoginName2());
                             pSUAWizard2.set("oripassword", pSDevUser.getLoginPwd());
@@ -235,7 +232,7 @@ extends PSDevUserServiceBase {
                             pSUAWizard2Service.doCreateUser(pSUAWizard2);
                         }
                     } else if (bl3) {
-                        loginAccountService.update((IEntity)loginAccount, false);
+                        loginAccountService.update(loginAccount, false);
                     }
                 }
             }
@@ -267,7 +264,7 @@ extends PSDevUserServiceBase {
     protected void onBeforeRemove(PSDevUser pSDevUser) throws Exception {
         if (this.isMajorSessionFactory()) {
             PSDevCenter pSDevCenter;
-            this.get((IEntity)pSDevUser);
+            this.get(pSDevUser);
             if (DataObject.getBoolValue((Integer)pSDevUser.getDefaultFlag(), (boolean)false)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u5220\u9664\u4e2d\u5fc3\u9ed8\u8ba4\u7528\u6237"));
             }
@@ -300,7 +297,7 @@ extends PSDevUserServiceBase {
 
     @Override
     protected void onInitAliasUser(PSDevUser pSDevUser) throws Exception {
-        this.get((IEntity)pSDevUser);
+        this.get(pSDevUser);
         if (DataObject.getBoolValue((Integer)pSDevUser.getFromUserMode(), (boolean)false)) {
             return;
         }
@@ -333,7 +330,7 @@ extends PSDevUserServiceBase {
     @Override
     protected void onAfterRemove(PSDevUser pSDevUser) throws Exception {
         if (this.isMajorSessionFactory()) {
-            PSDevUser pSDevUser2 = (PSDevUser)this.getLast((IEntity)pSDevUser);
+            PSDevUser pSDevUser2 = (PSDevUser)this.getLast(pSDevUser);
             PSDevCenterHelper.updatetPSDCResRep(pSDevUser2.getPSDevCenter(), "USERCNT");
         }
         super.onAfterRemove(pSDevUser);
@@ -346,4 +343,3 @@ extends PSDevUserServiceBase {
         }
     }
 }
-

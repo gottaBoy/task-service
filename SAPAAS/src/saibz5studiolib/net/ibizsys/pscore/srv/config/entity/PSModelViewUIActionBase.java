@@ -1408,7 +1408,7 @@ implements Serializable {
                 PSModelUIAction pSModelUIAction = new PSModelUIAction();
                 pSModelUIAction.setPSModelUIActionId(this.getPSModelUIActionId());
                 PSModelUIActionService pSModelUIActionService = (PSModelUIActionService)ServiceGlobal.getService(PSModelUIActionService.class, (SessionFactory)this.getSessionFactory());
-                pSModelUIActionService.autoGet((IEntity)pSModelUIAction);
+                pSModelUIActionService.autoGet(pSModelUIAction);
                 this.psmodeluiaction = pSModelUIAction;
             }
             return this.psmodeluiaction;
@@ -1434,7 +1434,7 @@ implements Serializable {
                 PSModelView pSModelView = new PSModelView();
                 pSModelView.setPSModelViewId(this.getPSModelViewId());
                 PSModelViewService pSModelViewService = (PSModelViewService)ServiceGlobal.getService(PSModelViewService.class, (SessionFactory)this.getSessionFactory());
-                pSModelViewService.autoGet((IEntity)pSModelView);
+                pSModelViewService.autoGet(pSModelView);
                 this.psmodelview = pSModelView;
             }
             return this.psmodelview;

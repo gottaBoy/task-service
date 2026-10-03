@@ -3608,7 +3608,7 @@ implements Serializable {
                 PSLanguageRes pSLanguageRes = new PSLanguageRes();
                 pSLanguageRes.setPSLanguageResId(this.getRIPSLanResId());
                 PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
-                pSLanguageResService.autoGet((IEntity)pSLanguageRes);
+                pSLanguageResService.autoGet(pSLanguageRes);
                 this.ripslanres = pSLanguageRes;
             }
             return this.ripslanres;
@@ -3634,7 +3634,7 @@ implements Serializable {
                 PSModule pSModule = new PSModule();
                 pSModule.setPSModuleId(this.getPSModuleId());
                 PSModuleService pSModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSModuleService.autoGet((IEntity)pSModule);
+                pSModuleService.autoGet(pSModule);
                 this.psmodule = pSModule;
             }
             return this.psmodule;
@@ -3660,7 +3660,7 @@ implements Serializable {
                 PSSysDynaModel pSSysDynaModel = new PSSysDynaModel();
                 pSSysDynaModel.setPSSysDynaModelId(this.getPSSysDynaModelId());
                 PSSysDynaModelService pSSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDynaModelService.autoGet((IEntity)pSSysDynaModel);
+                pSSysDynaModelService.autoGet(pSSysDynaModel);
                 this.pssysdynamodel = pSSysDynaModel;
             }
             return this.pssysdynamodel;
@@ -3686,7 +3686,7 @@ implements Serializable {
                 PSSysPFPlugin pSSysPFPlugin = new PSSysPFPlugin();
                 pSSysPFPlugin.setPSSysPFPluginId(this.getPSSysPFPluginId());
                 PSSysPFPluginService pSSysPFPluginService = (PSSysPFPluginService)ServiceGlobal.getService(PSSysPFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysPFPluginService.autoGet((IEntity)pSSysPFPlugin);
+                pSSysPFPluginService.autoGet(pSSysPFPlugin);
                 this.pssyspfplugin = pSSysPFPlugin;
             }
             return this.pssyspfplugin;
@@ -3712,7 +3712,7 @@ implements Serializable {
                 PSSysSFPlugin pSSysSFPlugin = new PSSysSFPlugin();
                 pSSysSFPlugin.setPSSysSFPluginId(this.getPSSysSFPluginId());
                 PSSysSFPluginService pSSysSFPluginService = (PSSysSFPluginService)ServiceGlobal.getService(PSSysSFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPluginService.autoGet((IEntity)pSSysSFPlugin);
+                pSSysSFPluginService.autoGet(pSSysSFPlugin);
                 this.pssyssfplugin = pSSysSFPlugin;
             }
             return this.pssyssfplugin;
@@ -3738,7 +3738,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;
@@ -3764,7 +3764,7 @@ implements Serializable {
                 PSValueRule pSValueRule = new PSValueRule();
                 pSValueRule.setPSValueRuleId(this.getPSValueRuleId());
                 PSValueRuleService pSValueRuleService = (PSValueRuleService)ServiceGlobal.getService(PSValueRuleService.class, (SessionFactory)this.getSessionFactory());
-                pSValueRuleService.autoGet((IEntity)pSValueRule);
+                pSValueRuleService.autoGet(pSValueRule);
                 this.psvaluerule = pSValueRule;
             }
             return this.psvaluerule;

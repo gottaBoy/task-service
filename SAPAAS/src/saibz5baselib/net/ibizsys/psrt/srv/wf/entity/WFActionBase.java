@@ -1,60 +1,107 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.persistence.Column
- *  net.sf.json.JSONObject
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.entity;
 
+
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import javax.persistence.Column;
-import net.ibizsys.paas.data.DataObject;
+
+import java.sql.Timestamp;
 import net.ibizsys.paas.data.IDataObject;
-import net.ibizsys.paas.entity.EntityBase;
-import net.ibizsys.paas.entity.IEntityActionHelper;
-import net.ibizsys.paas.service.ServiceGlobal;
-import net.ibizsys.paas.util.DataTypeHelper;
-import net.ibizsys.paas.util.JSONObjectHelper;
+import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.paas.xml.XmlNode;
-import net.ibizsys.psrt.srv.wf.entity.WFWorkflow;
-import net.ibizsys.psrt.srv.wf.service.WFWorkflowService;
 import net.sf.json.JSONObject;
+import net.ibizsys.paas.util.JSONObjectHelper;
+import net.ibizsys.paas.xml.XmlNode;
+import net.ibizsys.paas.service.ServiceGlobal;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public abstract class WFActionBase
-extends EntityBase
-implements Serializable {
+
+/**
+ * 实体[WFAction] 数据对象基类
+ */
+public abstract class WFActionBase extends net.ibizsys.paas.entity.EntityBase implements Serializable {
+
     private static final long serialVersionUID = -1L;
     private static final Log log = LogFactory.getLog(WFActionBase.class);
-    public static final String FIELD_ACTIONCODE = "ACTIONCODE";
-    public static final String FIELD_CREATEDATE = "CREATEDATE";
-    public static final String FIELD_CREATEMAN = "CREATEMAN";
-    public static final String FIELD_MEMO = "MEMO";
-    public static final String FIELD_UPDATEDATE = "UPDATEDATE";
-    public static final String FIELD_UPDATEMAN = "UPDATEMAN";
-    public static final String FIELD_WFACTIONID = "WFACTIONID";
-    public static final String FIELD_WFACTIONNAME = "WFACTIONNAME";
-    public static final String FIELD_WFWORKFLOWID = "WFWORKFLOWID";
-    public static final String FIELD_WFWORKFLOWNAME = "WFWORKFLOWNAME";
-    private static final int INDEX_ACTIONCODE = 0;
-    private static final int INDEX_CREATEDATE = 1;
-    private static final int INDEX_CREATEMAN = 2;
-    private static final int INDEX_MEMO = 3;
-    private static final int INDEX_UPDATEDATE = 4;
-    private static final int INDEX_UPDATEMAN = 5;
-    private static final int INDEX_WFACTIONID = 6;
-    private static final int INDEX_WFACTIONNAME = 7;
-    private static final int INDEX_WFWORKFLOWID = 8;
-    private static final int INDEX_WFWORKFLOWNAME = 9;
-    private static final HashMap<String, Integer> fieldIndexMap = new HashMap();
+    /**
+     * 属性[行为代码]
+     */
+    public final static String FIELD_ACTIONCODE = "ACTIONCODE";
+    /**
+     * 属性[建立时间]
+     */
+    public final static String FIELD_CREATEDATE = "CREATEDATE";
+    /**
+     * 属性[建立人]
+     */
+    public final static String FIELD_CREATEMAN = "CREATEMAN";
+    /**
+     * 属性[备注]
+     */
+    public final static String FIELD_MEMO = "MEMO";
+    /**
+     * 属性[更新时间]
+     */
+    public final static String FIELD_UPDATEDATE = "UPDATEDATE";
+    /**
+     * 属性[更新人]
+     */
+    public final static String FIELD_UPDATEMAN = "UPDATEMAN";
+    /**
+     * 属性[工作流用户操作标识]
+     */
+    public final static String FIELD_WFACTIONID = "WFACTIONID";
+    /**
+     * 属性[工作流用户操作名称]
+     */
+    public final static String FIELD_WFACTIONNAME = "WFACTIONNAME";
+    /**
+     * 属性[工作流配置]
+     */
+    public final static String FIELD_WFWORKFLOWID = "WFWORKFLOWID";
+    /**
+     * 属性[工作流配置]
+     */
+    public final static String FIELD_WFWORKFLOWNAME = "WFWORKFLOWNAME";
+
+    private final static int INDEX_ACTIONCODE = 0;
+    private final static int INDEX_CREATEDATE = 1;
+    private final static int INDEX_CREATEMAN = 2;
+    private final static int INDEX_MEMO = 3;
+    private final static int INDEX_UPDATEDATE = 4;
+    private final static int INDEX_UPDATEMAN = 5;
+    private final static int INDEX_WFACTIONID = 6;
+    private final static int INDEX_WFACTIONNAME = 7;
+    private final static int INDEX_WFWORKFLOWID = 8;
+    private final static int INDEX_WFWORKFLOWNAME = 9;
+
+    private final static HashMap<String, Integer> fieldIndexMap = new HashMap<String, Integer>();
+    static {
+        fieldIndexMap.put( FIELD_ACTIONCODE, INDEX_ACTIONCODE);
+        fieldIndexMap.put( FIELD_CREATEDATE, INDEX_CREATEDATE);
+        fieldIndexMap.put( FIELD_CREATEMAN, INDEX_CREATEMAN);
+        fieldIndexMap.put( FIELD_MEMO, INDEX_MEMO);
+        fieldIndexMap.put( FIELD_UPDATEDATE, INDEX_UPDATEDATE);
+        fieldIndexMap.put( FIELD_UPDATEMAN, INDEX_UPDATEMAN);
+        fieldIndexMap.put( FIELD_WFACTIONID, INDEX_WFACTIONID);
+        fieldIndexMap.put( FIELD_WFACTIONNAME, INDEX_WFACTIONNAME);
+        fieldIndexMap.put( FIELD_WFWORKFLOWID, INDEX_WFWORKFLOWID);
+        fieldIndexMap.put( FIELD_WFWORKFLOWNAME, INDEX_WFWORKFLOWNAME);
+    }
+
     private WFActionBase proxyWFActionBase = null;
+    public WFActionBase() {
+        super();
+    }
     private boolean actioncodeDirtyFlag = false;
     private boolean createdateDirtyFlag = false;
     private boolean createmanDirtyFlag = false;
@@ -65,6 +112,7 @@ implements Serializable {
     private boolean wfactionnameDirtyFlag = false;
     private boolean wfworkflowidDirtyFlag = false;
     private boolean wfworkflownameDirtyFlag = false;
+
     @Column(name="actioncode")
     private String actioncode;
     @Column(name="createdate")
@@ -85,372 +133,540 @@ implements Serializable {
     private String wfworkflowid;
     @Column(name="wfworkflowname")
     private String wfworkflowname;
-    private Integer objWFWorkflowLock = new Integer(1);
-    private WFWorkflow wfworkflow = null;
 
-    static {
-        fieldIndexMap.put(FIELD_ACTIONCODE, 0);
-        fieldIndexMap.put(FIELD_CREATEDATE, 1);
-        fieldIndexMap.put(FIELD_CREATEMAN, 2);
-        fieldIndexMap.put(FIELD_MEMO, 3);
-        fieldIndexMap.put(FIELD_UPDATEDATE, 4);
-        fieldIndexMap.put(FIELD_UPDATEMAN, 5);
-        fieldIndexMap.put(FIELD_WFACTIONID, 6);
-        fieldIndexMap.put(FIELD_WFACTIONNAME, 7);
-        fieldIndexMap.put(FIELD_WFWORKFLOWID, 8);
-        fieldIndexMap.put(FIELD_WFWORKFLOWNAME, 9);
-    }
 
+    /**
+     *  设置属性值[行为代码]
+     *  @param actioncode
+     */
     public void setActionCode(String actioncode) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setActionCode(actioncode);
             return;
         }
-        if (actioncode != null && (actioncode = StringHelper.trimRight(actioncode)).length() == 0) {
-            actioncode = null;
+        if(actioncode!=null) {
+            actioncode = StringHelper.trimRight(actioncode);
+            if(actioncode.length()==0) {
+                actioncode = null;
+            }
         }
         this.actioncode = actioncode;
-        this.actioncodeDirtyFlag = true;
+        this.actioncodeDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[行为代码]
+     */
     public String getActionCode() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getActionCode();
         }
         return this.actioncode;
     }
 
+    /**
+     *  获取属性值[行为代码]是否修改
+     */
     public boolean isActionCodeDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isActionCodeDirty();
         }
         return this.actioncodeDirtyFlag;
     }
 
+    /**
+     *  重置属性值[行为代码]
+     */
     public void resetActionCode() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetActionCode();
             return;
         }
+
         this.actioncodeDirtyFlag = false;
         this.actioncode = null;
     }
-
+    /**
+     *  设置属性值[建立时间]
+     *  @param createdate
+     */
     public void setCreateDate(Timestamp createdate) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setCreateDate(createdate);
             return;
         }
         this.createdate = createdate;
-        this.createdateDirtyFlag = true;
+        this.createdateDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[建立时间]
+     */
     public Timestamp getCreateDate() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getCreateDate();
         }
         return this.createdate;
     }
 
+    /**
+     *  获取属性值[建立时间]是否修改
+     */
     public boolean isCreateDateDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isCreateDateDirty();
         }
         return this.createdateDirtyFlag;
     }
 
+    /**
+     *  重置属性值[建立时间]
+     */
     public void resetCreateDate() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetCreateDate();
             return;
         }
+
         this.createdateDirtyFlag = false;
         this.createdate = null;
     }
-
+    /**
+     *  设置属性值[建立人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     *  @param createman
+     */
     public void setCreateMan(String createman) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setCreateMan(createman);
             return;
         }
-        if (createman != null && (createman = StringHelper.trimRight(createman)).length() == 0) {
-            createman = null;
+        if(createman!=null) {
+            createman = StringHelper.trimRight(createman);
+            if(createman.length()==0) {
+                createman = null;
+            }
         }
         this.createman = createman;
-        this.createmanDirtyFlag = true;
+        this.createmanDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[建立人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     */
     public String getCreateMan() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getCreateMan();
         }
         return this.createman;
     }
 
+    /**
+     *  获取属性值[建立人]是否修改
+     */
     public boolean isCreateManDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isCreateManDirty();
         }
         return this.createmanDirtyFlag;
     }
 
+    /**
+     *  重置属性值[建立人]
+     */
     public void resetCreateMan() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetCreateMan();
             return;
         }
+
         this.createmanDirtyFlag = false;
         this.createman = null;
     }
-
+    /**
+     *  设置属性值[备注]
+     *  @param memo
+     */
     public void setMemo(String memo) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setMemo(memo);
             return;
         }
-        if (memo != null && (memo = StringHelper.trimRight(memo)).length() == 0) {
-            memo = null;
+        if(memo!=null) {
+            memo = StringHelper.trimRight(memo);
+            if(memo.length()==0) {
+                memo = null;
+            }
         }
         this.memo = memo;
-        this.memoDirtyFlag = true;
+        this.memoDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[备注]
+     */
     public String getMemo() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getMemo();
         }
         return this.memo;
     }
 
+    /**
+     *  获取属性值[备注]是否修改
+     */
     public boolean isMemoDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isMemoDirty();
         }
         return this.memoDirtyFlag;
     }
 
+    /**
+     *  重置属性值[备注]
+     */
     public void resetMemo() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetMemo();
             return;
         }
+
         this.memoDirtyFlag = false;
         this.memo = null;
     }
-
+    /**
+     *  设置属性值[更新时间]
+     *  @param updatedate
+     */
     public void setUpdateDate(Timestamp updatedate) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setUpdateDate(updatedate);
             return;
         }
         this.updatedate = updatedate;
-        this.updatedateDirtyFlag = true;
+        this.updatedateDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[更新时间]
+     */
     public Timestamp getUpdateDate() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getUpdateDate();
         }
         return this.updatedate;
     }
 
+    /**
+     *  获取属性值[更新时间]是否修改
+     */
     public boolean isUpdateDateDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isUpdateDateDirty();
         }
         return this.updatedateDirtyFlag;
     }
 
+    /**
+     *  重置属性值[更新时间]
+     */
     public void resetUpdateDate() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetUpdateDate();
             return;
         }
+
         this.updatedateDirtyFlag = false;
         this.updatedate = null;
     }
-
+    /**
+     *  设置属性值[更新人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     *  @param updateman
+     */
     public void setUpdateMan(String updateman) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setUpdateMan(updateman);
             return;
         }
-        if (updateman != null && (updateman = StringHelper.trimRight(updateman)).length() == 0) {
-            updateman = null;
+        if(updateman!=null) {
+            updateman = StringHelper.trimRight(updateman);
+            if(updateman.length()==0) {
+                updateman = null;
+            }
         }
         this.updateman = updateman;
-        this.updatemanDirtyFlag = true;
+        this.updatemanDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[更新人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     */
     public String getUpdateMan() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getUpdateMan();
         }
         return this.updateman;
     }
 
+    /**
+     *  获取属性值[更新人]是否修改
+     */
     public boolean isUpdateManDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isUpdateManDirty();
         }
         return this.updatemanDirtyFlag;
     }
 
+    /**
+     *  重置属性值[更新人]
+     */
     public void resetUpdateMan() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetUpdateMan();
             return;
         }
+
         this.updatemanDirtyFlag = false;
         this.updateman = null;
     }
-
+    /**
+     *  设置属性值[工作流用户操作标识]
+     *  @param wfactionid
+     */
     public void setWFActionId(String wfactionid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setWFActionId(wfactionid);
             return;
         }
-        if (wfactionid != null && (wfactionid = StringHelper.trimRight(wfactionid)).length() == 0) {
-            wfactionid = null;
+        if(wfactionid!=null) {
+            wfactionid = StringHelper.trimRight(wfactionid);
+            if(wfactionid.length()==0) {
+                wfactionid = null;
+            }
         }
         this.wfactionid = wfactionid;
-        this.wfactionidDirtyFlag = true;
+        this.wfactionidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[工作流用户操作标识]
+     */
     public String getWFActionId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getWFActionId();
         }
         return this.wfactionid;
     }
 
+    /**
+     *  获取属性值[工作流用户操作标识]是否修改
+     */
     public boolean isWFActionIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isWFActionIdDirty();
         }
         return this.wfactionidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[工作流用户操作标识]
+     */
     public void resetWFActionId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetWFActionId();
             return;
         }
+
         this.wfactionidDirtyFlag = false;
         this.wfactionid = null;
     }
-
+    /**
+     *  设置属性值[工作流用户操作名称]
+     *  @param wfactionname
+     */
     public void setWFActionName(String wfactionname) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setWFActionName(wfactionname);
             return;
         }
-        if (wfactionname != null && (wfactionname = StringHelper.trimRight(wfactionname)).length() == 0) {
-            wfactionname = null;
+        if(wfactionname!=null) {
+            wfactionname = StringHelper.trimRight(wfactionname);
+            if(wfactionname.length()==0) {
+                wfactionname = null;
+            }
         }
         this.wfactionname = wfactionname;
-        this.wfactionnameDirtyFlag = true;
+        this.wfactionnameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[工作流用户操作名称]
+     */
     public String getWFActionName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getWFActionName();
         }
         return this.wfactionname;
     }
 
+    /**
+     *  获取属性值[工作流用户操作名称]是否修改
+     */
     public boolean isWFActionNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isWFActionNameDirty();
         }
         return this.wfactionnameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[工作流用户操作名称]
+     */
     public void resetWFActionName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetWFActionName();
             return;
         }
+
         this.wfactionnameDirtyFlag = false;
         this.wfactionname = null;
     }
-
+    /**
+     *  设置属性值[工作流配置]
+     *  @param wfworkflowid
+     */
     public void setWFWorkflowId(String wfworkflowid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setWFWorkflowId(wfworkflowid);
             return;
         }
-        if (wfworkflowid != null && (wfworkflowid = StringHelper.trimRight(wfworkflowid)).length() == 0) {
-            wfworkflowid = null;
+        if(wfworkflowid!=null) {
+            wfworkflowid = StringHelper.trimRight(wfworkflowid);
+            if(wfworkflowid.length()==0) {
+                wfworkflowid = null;
+            }
         }
         this.wfworkflowid = wfworkflowid;
-        this.wfworkflowidDirtyFlag = true;
+        this.wfworkflowidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[工作流配置]
+     */
     public String getWFWorkflowId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getWFWorkflowId();
         }
         return this.wfworkflowid;
     }
 
+    /**
+     *  获取属性值[工作流配置]是否修改
+     */
     public boolean isWFWorkflowIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isWFWorkflowIdDirty();
         }
         return this.wfworkflowidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[工作流配置]
+     */
     public void resetWFWorkflowId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetWFWorkflowId();
             return;
         }
+
         this.wfworkflowidDirtyFlag = false;
         this.wfworkflowid = null;
     }
-
+    /**
+     *  设置属性值[工作流配置]
+     *  @param wfworkflowname
+     */
     public void setWFWorkflowName(String wfworkflowname) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setWFWorkflowName(wfworkflowname);
             return;
         }
-        if (wfworkflowname != null && (wfworkflowname = StringHelper.trimRight(wfworkflowname)).length() == 0) {
-            wfworkflowname = null;
+        if(wfworkflowname!=null) {
+            wfworkflowname = StringHelper.trimRight(wfworkflowname);
+            if(wfworkflowname.length()==0) {
+                wfworkflowname = null;
+            }
         }
         this.wfworkflowname = wfworkflowname;
-        this.wfworkflownameDirtyFlag = true;
+        this.wfworkflownameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[工作流配置]
+     */
     public String getWFWorkflowName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getWFWorkflowName();
         }
         return this.wfworkflowname;
     }
 
+    /**
+     *  获取属性值[工作流配置]是否修改
+     */
     public boolean isWFWorkflowNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isWFWorkflowNameDirty();
         }
         return this.wfworkflownameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[工作流配置]
+     */
     public void resetWFWorkflowName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetWFWorkflowName();
             return;
         }
+
         this.wfworkflownameDirtyFlag = false;
         this.wfworkflowname = null;
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.entity.EntityBase#onReset()
+     */
     @Override
     protected void onReset() {
         WFActionBase.resetAll(this);
         super.onReset();
     }
 
+    /**
+     * 重置当前数据对象属性值
+     * @param entity
+     */
     private static void resetAll(WFActionBase et) {
         et.resetActionCode();
         et.resetCreateDate();
@@ -464,465 +680,512 @@ implements Serializable {
         et.resetWFWorkflowName();
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.entity.EntityBase#onFillMap(java.util.HashMap, boolean)
+     */
     @Override
     protected void onFillMap(HashMap<String, Object> params, boolean bDirtyOnly) {
-        if (!bDirtyOnly || this.isActionCodeDirty()) {
-            params.put(FIELD_ACTIONCODE, this.getActionCode());
+        if(!bDirtyOnly || isActionCodeDirty()) {
+            params.put(FIELD_ACTIONCODE,getActionCode());
         }
-        if (!bDirtyOnly || this.isCreateDateDirty()) {
-            params.put(FIELD_CREATEDATE, this.getCreateDate());
+        if(!bDirtyOnly || isCreateDateDirty()) {
+            params.put(FIELD_CREATEDATE,getCreateDate());
         }
-        if (!bDirtyOnly || this.isCreateManDirty()) {
-            params.put(FIELD_CREATEMAN, this.getCreateMan());
+        if(!bDirtyOnly || isCreateManDirty()) {
+            params.put(FIELD_CREATEMAN,getCreateMan());
         }
-        if (!bDirtyOnly || this.isMemoDirty()) {
-            params.put(FIELD_MEMO, this.getMemo());
+        if(!bDirtyOnly || isMemoDirty()) {
+            params.put(FIELD_MEMO,getMemo());
         }
-        if (!bDirtyOnly || this.isUpdateDateDirty()) {
-            params.put(FIELD_UPDATEDATE, this.getUpdateDate());
+        if(!bDirtyOnly || isUpdateDateDirty()) {
+            params.put(FIELD_UPDATEDATE,getUpdateDate());
         }
-        if (!bDirtyOnly || this.isUpdateManDirty()) {
-            params.put(FIELD_UPDATEMAN, this.getUpdateMan());
+        if(!bDirtyOnly || isUpdateManDirty()) {
+            params.put(FIELD_UPDATEMAN,getUpdateMan());
         }
-        if (!bDirtyOnly || this.isWFActionIdDirty()) {
-            params.put(FIELD_WFACTIONID, this.getWFActionId());
+        if(!bDirtyOnly || isWFActionIdDirty()) {
+            params.put(FIELD_WFACTIONID,getWFActionId());
         }
-        if (!bDirtyOnly || this.isWFActionNameDirty()) {
-            params.put(FIELD_WFACTIONNAME, this.getWFActionName());
+        if(!bDirtyOnly || isWFActionNameDirty()) {
+            params.put(FIELD_WFACTIONNAME,getWFActionName());
         }
-        if (!bDirtyOnly || this.isWFWorkflowIdDirty()) {
-            params.put(FIELD_WFWORKFLOWID, this.getWFWorkflowId());
+        if(!bDirtyOnly || isWFWorkflowIdDirty()) {
+            params.put(FIELD_WFWORKFLOWID,getWFWorkflowId());
         }
-        if (!bDirtyOnly || this.isWFWorkflowNameDirty()) {
-            params.put(FIELD_WFWORKFLOWNAME, this.getWFWorkflowName());
+        if(!bDirtyOnly || isWFWorkflowNameDirty()) {
+            params.put(FIELD_WFWORKFLOWNAME,getWFWorkflowName());
         }
         super.onFillMap(params, bDirtyOnly);
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#get(java.lang.String)
+     */
     @Override
     public Object get(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().get(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.get(strParamName);
-        }
-        return WFActionBase.get(this, index);
+
+        return  WFActionBase.get(this, index);
     }
 
-    private static Object get(WFActionBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                return et.getActionCode();
-            }
-            case 1: {
-                return et.getCreateDate();
-            }
-            case 2: {
-                return et.getCreateMan();
-            }
-            case 3: {
-                return et.getMemo();
-            }
-            case 4: {
-                return et.getUpdateDate();
-            }
-            case 5: {
-                return et.getUpdateMan();
-            }
-            case 6: {
-                return et.getWFActionId();
-            }
-            case 7: {
-                return et.getWFActionName();
-            }
-            case 8: {
-                return et.getWFWorkflowId();
-            }
-            case 9: {
-                return et.getWFWorkflowName();
-            }
+    /**
+     * 通过属性标识获取属性值
+     * @param et 数据对象
+     * @param index 属性标识
+     * @return
+     * @throws Exception
+     */
+    private static Object get(WFActionBase et,int index) throws Exception {
+
+        switch(index) {
+        case INDEX_ACTIONCODE:
+            return et.getActionCode();
+        case INDEX_CREATEDATE:
+            return et.getCreateDate();
+        case INDEX_CREATEMAN:
+            return et.getCreateMan();
+        case INDEX_MEMO:
+            return et.getMemo();
+        case INDEX_UPDATEDATE:
+            return et.getUpdateDate();
+        case INDEX_UPDATEMAN:
+            return et.getUpdateMan();
+        case INDEX_WFACTIONID:
+            return et.getWFActionId();
+        case INDEX_WFACTIONNAME:
+            return et.getWFActionName();
+        case INDEX_WFWORKFLOWID:
+            return et.getWFWorkflowId();
+        case INDEX_WFWORKFLOWNAME:
+            return et.getWFWorkflowName();
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#set(java.lang.String, java.lang.Object)
+     */
     @Override
-    public void set(String strParamName, Object objValue) throws Exception {
-        if (this.getProxyEntity() != null) {
-            this.getProxyEntity().set(strParamName, objValue);
+    public void set(String strParamName,Object objValue) throws Exception {
+        if(this.getProxyEntity()!=null) {
+            this.getProxyEntity().set(strParamName,objValue);
             return;
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
-            super.set(strParamName, objValue);
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null) {
+            super.set(strParamName,objValue);
             return;
         }
-        WFActionBase.set(this, index, objValue);
+
+        WFActionBase.set(this,index,objValue);
     }
 
-    private static void set(WFActionBase et, int index, Object obj) throws Exception {
-        switch (index) {
-            case 0: {
-                et.setActionCode(DataObject.getStringValue(obj));
-                return;
-            }
-            case 1: {
-                et.setCreateDate(DataObject.getTimestampValue(obj));
-                return;
-            }
-            case 2: {
-                et.setCreateMan(DataObject.getStringValue(obj));
-                return;
-            }
-            case 3: {
-                et.setMemo(DataObject.getStringValue(obj));
-                return;
-            }
-            case 4: {
-                et.setUpdateDate(DataObject.getTimestampValue(obj));
-                return;
-            }
-            case 5: {
-                et.setUpdateMan(DataObject.getStringValue(obj));
-                return;
-            }
-            case 6: {
-                et.setWFActionId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 7: {
-                et.setWFActionName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 8: {
-                et.setWFWorkflowId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 9: {
-                et.setWFWorkflowName(DataObject.getStringValue(obj));
-                return;
-            }
+    /**
+     * 通过属性标识设定属性值
+     * @param et 数据对象
+     * @param index 属性标识
+     * @param obj 值
+     * @throws Exception
+     */
+    private static void set(WFActionBase et,int index,Object obj) throws Exception {
+        switch(index) {
+        case INDEX_ACTIONCODE:
+            et.setActionCode(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_CREATEDATE:
+            et.setCreateDate(DataObject.getTimestampValue(obj));
+            return ;
+        case INDEX_CREATEMAN:
+            et.setCreateMan(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_MEMO:
+            et.setMemo(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_UPDATEDATE:
+            et.setUpdateDate(DataObject.getTimestampValue(obj));
+            return ;
+        case INDEX_UPDATEMAN:
+            et.setUpdateMan(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_WFACTIONID:
+            et.setWFActionId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_WFACTIONNAME:
+            et.setWFActionName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_WFWORKFLOWID:
+            et.setWFWorkflowId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_WFWORKFLOWNAME:
+            et.setWFWorkflowName(DataObject.getStringValue(obj));
+            return ;
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#isNull(java.lang.String)
+     */
     @Override
     public boolean isNull(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isNull(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.isNull(strParamName);
-        }
-        return WFActionBase.isNull(this, index);
+
+        return  WFActionBase.isNull(this, index);
     }
 
-    private static boolean isNull(WFActionBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                return et.getActionCode() == null;
-            }
-            case 1: {
-                return et.getCreateDate() == null;
-            }
-            case 2: {
-                return et.getCreateMan() == null;
-            }
-            case 3: {
-                return et.getMemo() == null;
-            }
-            case 4: {
-                return et.getUpdateDate() == null;
-            }
-            case 5: {
-                return et.getUpdateMan() == null;
-            }
-            case 6: {
-                return et.getWFActionId() == null;
-            }
-            case 7: {
-                return et.getWFActionName() == null;
-            }
-            case 8: {
-                return et.getWFWorkflowId() == null;
-            }
-            case 9: {
-                return et.getWFWorkflowName() == null;
-            }
+    /**
+     * 判断指定属性值是否为空值
+     * @param et
+     * @param index
+     * @return
+     * @throws Exception
+     */
+    private static boolean isNull(WFActionBase et,int index) throws Exception {
+
+        switch(index) {
+        case INDEX_ACTIONCODE:
+            return et.getActionCode()==null;
+        case INDEX_CREATEDATE:
+            return et.getCreateDate()==null;
+        case INDEX_CREATEMAN:
+            return et.getCreateMan()==null;
+        case INDEX_MEMO:
+            return et.getMemo()==null;
+        case INDEX_UPDATEDATE:
+            return et.getUpdateDate()==null;
+        case INDEX_UPDATEMAN:
+            return et.getUpdateMan()==null;
+        case INDEX_WFACTIONID:
+            return et.getWFActionId()==null;
+        case INDEX_WFACTIONNAME:
+            return et.getWFActionName()==null;
+        case INDEX_WFWORKFLOWID:
+            return et.getWFWorkflowId()==null;
+        case INDEX_WFWORKFLOWNAME:
+            return et.getWFWorkflowName()==null;
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#contains(java.lang.String)
+     */
     @Override
     public boolean contains(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().contains(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.contains(strParamName);
-        }
-        return WFActionBase.contains(this, index);
+        return  WFActionBase.contains(this, index);
     }
 
-    private static boolean contains(WFActionBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                return et.isActionCodeDirty();
-            }
-            case 1: {
-                return et.isCreateDateDirty();
-            }
-            case 2: {
-                return et.isCreateManDirty();
-            }
-            case 3: {
-                return et.isMemoDirty();
-            }
-            case 4: {
-                return et.isUpdateDateDirty();
-            }
-            case 5: {
-                return et.isUpdateManDirty();
-            }
-            case 6: {
-                return et.isWFActionIdDirty();
-            }
-            case 7: {
-                return et.isWFActionNameDirty();
-            }
-            case 8: {
-                return et.isWFWorkflowIdDirty();
-            }
-            case 9: {
-                return et.isWFWorkflowNameDirty();
-            }
+    /**
+     * 获取判断对象是否存在指定属性值
+     * @param et
+     * @param index
+     * @return
+     * @throws Exception
+     */
+    private static boolean contains(WFActionBase et,int index) throws Exception {
+
+        switch(index) {
+        case INDEX_ACTIONCODE:
+            return et.isActionCodeDirty();
+        case INDEX_CREATEDATE:
+            return et.isCreateDateDirty();
+        case INDEX_CREATEMAN:
+            return et.isCreateManDirty();
+        case INDEX_MEMO:
+            return et.isMemoDirty();
+        case INDEX_UPDATEDATE:
+            return et.isUpdateDateDirty();
+        case INDEX_UPDATEMAN:
+            return et.isUpdateManDirty();
+        case INDEX_WFACTIONID:
+            return et.isWFActionIdDirty();
+        case INDEX_WFACTIONNAME:
+            return et.isWFActionNameDirty();
+        case INDEX_WFWORKFLOWID:
+            return et.isWFWorkflowIdDirty();
+        case INDEX_WFWORKFLOWNAME:
+            return et.isWFWorkflowNameDirty();
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#onFillJSONObject(net.sf.json.JSONObject, boolean)
+     */
     @Override
     protected void onFillJSONObject(JSONObject objJSON, boolean bIncludeEmpty) throws Exception {
-        WFActionBase.fillJSONObject(this, objJSON, bIncludeEmpty);
+        fillJSONObject(this,objJSON,bIncludeEmpty);
         super.onFillJSONObject(objJSON, bIncludeEmpty);
     }
 
-    private static void fillJSONObject(WFActionBase et, JSONObject json, boolean bIncEmpty) throws Exception {
-        if (bIncEmpty || et.getActionCode() != null) {
-            JSONObjectHelper.put(json, "actioncode", WFActionBase.getJSONValue(et.getActionCode()), false);
+    /**
+     * 填充当前对象到JSON
+     * @param et 当前数据对象
+     * @param json JSON对象
+     * @param bIncEmpty 是否包括空值
+     * @throws Exception
+     */
+    private static  void fillJSONObject(WFActionBase et,JSONObject json, boolean bIncEmpty) throws Exception {
+        if(bIncEmpty||et.getActionCode()!=null) {
+            JSONObjectHelper.put(json,"actioncode",getJSONValue(et.getActionCode()),false);
         }
-        if (bIncEmpty || et.getCreateDate() != null) {
-            JSONObjectHelper.put(json, "createdate", WFActionBase.getJSONValue(et.getCreateDate()), false);
+        if(bIncEmpty||et.getCreateDate()!=null) {
+            JSONObjectHelper.put(json,"createdate",getJSONValue(et.getCreateDate()),false);
         }
-        if (bIncEmpty || et.getCreateMan() != null) {
-            JSONObjectHelper.put(json, "createman", WFActionBase.getJSONValue(et.getCreateMan()), false);
+        if(bIncEmpty||et.getCreateMan()!=null) {
+            JSONObjectHelper.put(json,"createman",getJSONValue(et.getCreateMan()),false);
         }
-        if (bIncEmpty || et.getMemo() != null) {
-            JSONObjectHelper.put(json, "memo", WFActionBase.getJSONValue(et.getMemo()), false);
+        if(bIncEmpty||et.getMemo()!=null) {
+            JSONObjectHelper.put(json,"memo",getJSONValue(et.getMemo()),false);
         }
-        if (bIncEmpty || et.getUpdateDate() != null) {
-            JSONObjectHelper.put(json, "updatedate", WFActionBase.getJSONValue(et.getUpdateDate()), false);
+        if(bIncEmpty||et.getUpdateDate()!=null) {
+            JSONObjectHelper.put(json,"updatedate",getJSONValue(et.getUpdateDate()),false);
         }
-        if (bIncEmpty || et.getUpdateMan() != null) {
-            JSONObjectHelper.put(json, "updateman", WFActionBase.getJSONValue(et.getUpdateMan()), false);
+        if(bIncEmpty||et.getUpdateMan()!=null) {
+            JSONObjectHelper.put(json,"updateman",getJSONValue(et.getUpdateMan()),false);
         }
-        if (bIncEmpty || et.getWFActionId() != null) {
-            JSONObjectHelper.put(json, "wfactionid", WFActionBase.getJSONValue(et.getWFActionId()), false);
+        if(bIncEmpty||et.getWFActionId()!=null) {
+            JSONObjectHelper.put(json,"wfactionid",getJSONValue(et.getWFActionId()),false);
         }
-        if (bIncEmpty || et.getWFActionName() != null) {
-            JSONObjectHelper.put(json, "wfactionname", WFActionBase.getJSONValue(et.getWFActionName()), false);
+        if(bIncEmpty||et.getWFActionName()!=null) {
+            JSONObjectHelper.put(json,"wfactionname",getJSONValue(et.getWFActionName()),false);
         }
-        if (bIncEmpty || et.getWFWorkflowId() != null) {
-            JSONObjectHelper.put(json, "wfworkflowid", WFActionBase.getJSONValue(et.getWFWorkflowId()), false);
+        if(bIncEmpty||et.getWFWorkflowId()!=null) {
+            JSONObjectHelper.put(json,"wfworkflowid",getJSONValue(et.getWFWorkflowId()),false);
         }
-        if (bIncEmpty || et.getWFWorkflowName() != null) {
-            JSONObjectHelper.put(json, "wfworkflowname", WFActionBase.getJSONValue(et.getWFWorkflowName()), false);
+        if(bIncEmpty||et.getWFWorkflowName()!=null) {
+            JSONObjectHelper.put(json,"wfworkflowname",getJSONValue(et.getWFWorkflowName()),false);
         }
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#onFillXmlNode(net.ibizsys.paas.xml.XmlNode, boolean)
+     */
     @Override
-    protected void onFillXmlNode(XmlNode xmlNode, boolean bIncludeEmpty) throws Exception {
-        WFActionBase.fillXmlNode(this, xmlNode, bIncludeEmpty);
+    protected void onFillXmlNode(XmlNode xmlNode,boolean bIncludeEmpty) throws Exception {
+        fillXmlNode(this,xmlNode,bIncludeEmpty);
         super.onFillXmlNode(xmlNode, bIncludeEmpty);
     }
 
-    private static void fillXmlNode(WFActionBase et, XmlNode node, boolean bIncEmpty) throws Exception {
-        Object obj;
-        if (bIncEmpty || et.getActionCode() != null) {
-            obj = et.getActionCode();
-            node.setAttribute(FIELD_ACTIONCODE, obj == null ? "" : (String)obj);
+    /**
+     * 填充当前对象到Xml节点中
+     * @param et 当前数据对象
+     * @param node Xml节点
+     * @param bIncEmpty 是否包括空值
+     * @throws Exception
+     */
+    private static void fillXmlNode(WFActionBase et,XmlNode node,boolean bIncEmpty) throws Exception {
+        if(bIncEmpty||et.getActionCode()!=null) {
+            Object obj = et.getActionCode();
+            node.setAttribute("ACTIONCODE",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getCreateDate() != null) {
-            obj = et.getCreateDate();
-            node.setAttribute(FIELD_CREATEDATE, obj == null ? "" : StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", obj));
+        if(bIncEmpty||et.getCreateDate()!=null) {
+            Object obj = et.getCreateDate();
+            node.setAttribute("CREATEDATE",(obj==null)?"":StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS",obj));
         }
-        if (bIncEmpty || et.getCreateMan() != null) {
-            obj = et.getCreateMan();
-            node.setAttribute(FIELD_CREATEMAN, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getCreateMan()!=null) {
+            Object obj = et.getCreateMan();
+            node.setAttribute("CREATEMAN",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getMemo() != null) {
-            obj = et.getMemo();
-            node.setAttribute(FIELD_MEMO, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getMemo()!=null) {
+            Object obj = et.getMemo();
+            node.setAttribute("MEMO",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getUpdateDate() != null) {
-            obj = et.getUpdateDate();
-            node.setAttribute(FIELD_UPDATEDATE, obj == null ? "" : StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", obj));
+        if(bIncEmpty||et.getUpdateDate()!=null) {
+            Object obj = et.getUpdateDate();
+            node.setAttribute("UPDATEDATE",(obj==null)?"":StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS",obj));
         }
-        if (bIncEmpty || et.getUpdateMan() != null) {
-            obj = et.getUpdateMan();
-            node.setAttribute(FIELD_UPDATEMAN, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getUpdateMan()!=null) {
+            Object obj = et.getUpdateMan();
+            node.setAttribute("UPDATEMAN",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getWFActionId() != null) {
-            obj = et.getWFActionId();
-            node.setAttribute(FIELD_WFACTIONID, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getWFActionId()!=null) {
+            Object obj = et.getWFActionId();
+            node.setAttribute("WFACTIONID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getWFActionName() != null) {
-            obj = et.getWFActionName();
-            node.setAttribute(FIELD_WFACTIONNAME, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getWFActionName()!=null) {
+            Object obj = et.getWFActionName();
+            node.setAttribute("WFACTIONNAME",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getWFWorkflowId() != null) {
-            obj = et.getWFWorkflowId();
-            node.setAttribute(FIELD_WFWORKFLOWID, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getWFWorkflowId()!=null) {
+            Object obj = et.getWFWorkflowId();
+            node.setAttribute("WFWORKFLOWID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getWFWorkflowName() != null) {
-            obj = et.getWFWorkflowName();
-            node.setAttribute(FIELD_WFWORKFLOWNAME, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getWFWorkflowName()!=null) {
+            Object obj = et.getWFWorkflowName();
+            node.setAttribute("WFWORKFLOWNAME",(obj==null)?"":(String)obj);
         }
+
+
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.entity.EntityBase#onCopyTo(net.ibizsys.paas.data.IDataObject, boolean)
+     */
     @Override
     protected void onCopyTo(IDataObject dataEntity, boolean bIncludeEmtpy) throws Exception {
-        WFActionBase.copyTo(this, dataEntity, bIncludeEmtpy);
-        super.onCopyTo(dataEntity, bIncludeEmtpy);
+        WFActionBase.copyTo(this,dataEntity,bIncludeEmtpy);
+        super.onCopyTo(dataEntity,bIncludeEmtpy);
     }
 
-    private static void copyTo(WFActionBase et, IDataObject dst, boolean bIncEmpty) throws Exception {
-        if (et.isActionCodeDirty() && (bIncEmpty || et.getActionCode() != null)) {
-            dst.set(FIELD_ACTIONCODE, et.getActionCode());
+    /**
+     * 复制当前对象数据到目标对象
+     * @param et 当前数据对象
+     * @param dst 目标数据对象
+     * @param bIncEmpty 是否包括空值
+     * @throws Exception
+     */
+    private static void copyTo(WFActionBase et,IDataObject dst,boolean bIncEmpty) throws Exception {
+        if(et.isActionCodeDirty() && (bIncEmpty||et.getActionCode()!=null)) {
+            dst.set(FIELD_ACTIONCODE,et.getActionCode());
         }
-        if (et.isCreateDateDirty() && (bIncEmpty || et.getCreateDate() != null)) {
-            dst.set(FIELD_CREATEDATE, et.getCreateDate());
+        if(et.isCreateDateDirty() && (bIncEmpty||et.getCreateDate()!=null)) {
+            dst.set(FIELD_CREATEDATE,et.getCreateDate());
         }
-        if (et.isCreateManDirty() && (bIncEmpty || et.getCreateMan() != null)) {
-            dst.set(FIELD_CREATEMAN, et.getCreateMan());
+        if(et.isCreateManDirty() && (bIncEmpty||et.getCreateMan()!=null)) {
+            dst.set(FIELD_CREATEMAN,et.getCreateMan());
         }
-        if (et.isMemoDirty() && (bIncEmpty || et.getMemo() != null)) {
-            dst.set(FIELD_MEMO, et.getMemo());
+        if(et.isMemoDirty() && (bIncEmpty||et.getMemo()!=null)) {
+            dst.set(FIELD_MEMO,et.getMemo());
         }
-        if (et.isUpdateDateDirty() && (bIncEmpty || et.getUpdateDate() != null)) {
-            dst.set(FIELD_UPDATEDATE, et.getUpdateDate());
+        if(et.isUpdateDateDirty() && (bIncEmpty||et.getUpdateDate()!=null)) {
+            dst.set(FIELD_UPDATEDATE,et.getUpdateDate());
         }
-        if (et.isUpdateManDirty() && (bIncEmpty || et.getUpdateMan() != null)) {
-            dst.set(FIELD_UPDATEMAN, et.getUpdateMan());
+        if(et.isUpdateManDirty() && (bIncEmpty||et.getUpdateMan()!=null)) {
+            dst.set(FIELD_UPDATEMAN,et.getUpdateMan());
         }
-        if (et.isWFActionIdDirty() && (bIncEmpty || et.getWFActionId() != null)) {
-            dst.set(FIELD_WFACTIONID, et.getWFActionId());
+        if(et.isWFActionIdDirty() && (bIncEmpty||et.getWFActionId()!=null)) {
+            dst.set(FIELD_WFACTIONID,et.getWFActionId());
         }
-        if (et.isWFActionNameDirty() && (bIncEmpty || et.getWFActionName() != null)) {
-            dst.set(FIELD_WFACTIONNAME, et.getWFActionName());
+        if(et.isWFActionNameDirty() && (bIncEmpty||et.getWFActionName()!=null)) {
+            dst.set(FIELD_WFACTIONNAME,et.getWFActionName());
         }
-        if (et.isWFWorkflowIdDirty() && (bIncEmpty || et.getWFWorkflowId() != null)) {
-            dst.set(FIELD_WFWORKFLOWID, et.getWFWorkflowId());
+        if(et.isWFWorkflowIdDirty() && (bIncEmpty||et.getWFWorkflowId()!=null)) {
+            dst.set(FIELD_WFWORKFLOWID,et.getWFWorkflowId());
         }
-        if (et.isWFWorkflowNameDirty() && (bIncEmpty || et.getWFWorkflowName() != null)) {
-            dst.set(FIELD_WFWORKFLOWNAME, et.getWFWorkflowName());
+        if(et.isWFWorkflowNameDirty() && (bIncEmpty||et.getWFWorkflowName()!=null)) {
+            dst.set(FIELD_WFWORKFLOWNAME,et.getWFWorkflowName());
         }
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#remove(java.lang.String)
+     */
     @Override
     public boolean remove(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().remove(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.remove(strParamName);
-        }
-        return WFActionBase.remove(this, index);
+        return  WFActionBase.remove(this, index);
     }
 
-    private static boolean remove(WFActionBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                et.resetActionCode();
-                return true;
-            }
-            case 1: {
-                et.resetCreateDate();
-                return true;
-            }
-            case 2: {
-                et.resetCreateMan();
-                return true;
-            }
-            case 3: {
-                et.resetMemo();
-                return true;
-            }
-            case 4: {
-                et.resetUpdateDate();
-                return true;
-            }
-            case 5: {
-                et.resetUpdateMan();
-                return true;
-            }
-            case 6: {
-                et.resetWFActionId();
-                return true;
-            }
-            case 7: {
-                et.resetWFActionName();
-                return true;
-            }
-            case 8: {
-                et.resetWFWorkflowId();
-                return true;
-            }
-            case 9: {
-                et.resetWFWorkflowName();
-                return true;
-            }
-        }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
-    }
-
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
+    /**
+     * 通过属性标识删除属性值
+     * @param entity
+     * @param index
+     * @return
+     * @throws Exception
      */
-    public WFWorkflow getWFWorkflow() throws Exception {
-        if (this.getProxyEntity() != null) {
+    private static boolean remove(WFActionBase et,int index) throws Exception {
+        switch(index) {
+        case INDEX_ACTIONCODE:
+            et.resetActionCode();
+            return true;
+        case INDEX_CREATEDATE:
+            et.resetCreateDate();
+            return true;
+        case INDEX_CREATEMAN:
+            et.resetCreateMan();
+            return true;
+        case INDEX_MEMO:
+            et.resetMemo();
+            return true;
+        case INDEX_UPDATEDATE:
+            et.resetUpdateDate();
+            return true;
+        case INDEX_UPDATEMAN:
+            et.resetUpdateMan();
+            return true;
+        case INDEX_WFACTIONID:
+            et.resetWFActionId();
+            return true;
+        case INDEX_WFACTIONNAME:
+            et.resetWFActionName();
+            return true;
+        case INDEX_WFWORKFLOWID:
+            et.resetWFWorkflowId();
+            return true;
+        case INDEX_WFWORKFLOWNAME:
+            et.resetWFWorkflowName();
+            return true;
+        default:
+            throw new Exception("不明属性标识");
+        }
+    }
+
+
+    private Integer objWFWorkflowLock = new Integer(1);
+    private net.ibizsys.psrt.srv.wf.entity.WFWorkflow wfworkflow = null;
+    /**
+    * 获取父数据 工作流配置
+     * @throws Exception
+    */
+    public net.ibizsys.psrt.srv.wf.entity.WFWorkflow getWFWorkflow() throws Exception {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getWFWorkflow();
         }
-        if (this.getWFWorkflowId() == null) {
+
+        if(this.getWFWorkflowId()==null)
             return null;
-        }
-        Integer n = this.objWFWorkflowLock;
-        synchronized (n) {
-            if (this.wfworkflow != null && DataTypeHelper.compare(25, (Object)this.getWFWorkflowId(), (Object)this.wfworkflow.getWFWorkflowId()) != 0L) {
-                this.wfworkflow = null;
+        synchronized(this.objWFWorkflowLock) {
+            if(this.wfworkflow!=null) {
+                if(net.ibizsys.paas.util.DataTypeHelper.compare(25,this.getWFWorkflowId(),wfworkflow.getWFWorkflowId())!=0) {
+                    this.wfworkflow = null;
+                }
             }
-            if (this.wfworkflow == null) {
-                WFWorkflow wfworkflow = new WFWorkflow();
+
+
+            if(this.wfworkflow==null) {
+                net.ibizsys.psrt.srv.wf.entity.WFWorkflow wfworkflow = new net.ibizsys.psrt.srv.wf.entity.WFWorkflow();
                 wfworkflow.setWFWorkflowId(this.getWFWorkflowId());
-                WFWorkflowService service = (WFWorkflowService)ServiceGlobal.getService(WFWorkflowService.class, this.getSessionFactory());
+                net.ibizsys.psrt.srv.wf.service.WFWorkflowService service = (net.ibizsys.psrt.srv.wf.service.WFWorkflowService)ServiceGlobal.getService(net.ibizsys.psrt.srv.wf.service.WFWorkflowService.class,this.getSessionFactory());
                 service.autoGet(wfworkflow);
                 this.wfworkflow = wfworkflow;
             }
@@ -930,28 +1193,38 @@ implements Serializable {
         }
     }
 
+
+
+    /**
+     *  获取代理的数据对象
+     */
     private WFActionBase getProxyEntity() {
         return this.proxyWFActionBase;
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#onProxy(net.ibizsys.paas.data.IDataObject)
+     */
     @Override
     protected void onProxy(IDataObject proxyDataObject) {
         this.proxyWFActionBase = null;
-        if (proxyDataObject != null && proxyDataObject instanceof WFActionBase) {
+        if(proxyDataObject!=null && proxyDataObject instanceof WFActionBase) {
             this.proxyWFActionBase = (WFActionBase)proxyDataObject;
         }
         super.onProxy(proxyDataObject);
     }
 
-    @Override
-    protected IEntityActionHelper getActionHelper(boolean bMust) throws Exception {
-        IEntityActionHelper iEntityActionHelper = super.getActionHelper(false);
-        if (!bMust || iEntityActionHelper != null) {
+
+    /**
+    * 重写获取行为操作辅助对象
+    */
+    protected net.ibizsys.paas.entity.IEntityActionHelper getActionHelper(boolean bMust) throws Exception {
+        net.ibizsys.paas.entity.IEntityActionHelper iEntityActionHelper = super.getActionHelper(false);
+        if(!bMust || iEntityActionHelper!=null)
             return iEntityActionHelper;
-        }
-        iEntityActionHelper = ServiceGlobal.getService("net.ibizsys.psrt.srv.wf.service.WFActionService", this.getSessionFactory()).getServiceActionHelper();
+        iEntityActionHelper = net.ibizsys.paas.service.ServiceGlobal.getService("net.ibizsys.psrt.srv.wf.service.WFActionService", this.getSessionFactory()).getServiceActionHelper();
         this.setActionHelper(iEntityActionHelper);
         return iEntityActionHelper;
     }
-}
 
+}

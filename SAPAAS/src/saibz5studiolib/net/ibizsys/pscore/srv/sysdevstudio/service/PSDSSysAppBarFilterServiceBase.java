@@ -107,7 +107,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBarFilter> {
     }
 
     protected void onFillParentInfo(PSDSSysAppBarFilter pSDSSysAppBarFilter, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDSSysAppBarFilter, string, string2, string3);
+        super.onFillParentInfo(pSDSSysAppBarFilter, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -118,11 +118,11 @@ extends PSCoreSysServiceBase<PSDSSysAppBarFilter> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDSSysAppBarFilter, bl);
+        super.onFillEntityFullInfo(pSDSSysAppBarFilter, bl);
     }
 
     protected void onWriteBackParent(PSDSSysAppBarFilter pSDSSysAppBarFilter, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDSSysAppBarFilter, bl);
+        super.onWriteBackParent(pSDSSysAppBarFilter, bl);
     }
 
     @Override
@@ -131,7 +131,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBarFilter> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDSSysAppBarFilter pSDSSysAppBarFilter, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDSSysAppBarFilter, bl);
+        super.onRemoveEntityUncopyValues(pSDSSysAppBarFilter, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDSSysAppBarFilter pSDSSysAppBarFilter, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -146,7 +146,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBarFilter> {
         if ((entityFieldError = this.onCheckField_PSDSSysAppBarId(bl, pSDSSysAppBarFilter, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDSSysAppBarFilter, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDSSysAppBarFilter, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDSSysAppBarFilterId(boolean bl, PSDSSysAppBarFilter pSDSSysAppBarFilter, boolean bl2, boolean bl3) throws Exception {
@@ -162,7 +162,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBarFilter> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSSysAppBarFilterId_Default((IEntity)pSDSSysAppBarFilter, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSSysAppBarFilterId_Default(pSDSSysAppBarFilter, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSSYSAPPBARFILTERID");
@@ -187,7 +187,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBarFilter> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSSysAppBarFilterName_Default((IEntity)pSDSSysAppBarFilter, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSSysAppBarFilterName_Default(pSDSSysAppBarFilter, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSSYSAPPBARFILTERNAME");
@@ -212,7 +212,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBarFilter> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSSysAppBarId_Default((IEntity)pSDSSysAppBarFilter, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSSysAppBarId_Default(pSDSSysAppBarFilter, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSSYSAPPBARID");
@@ -225,11 +225,11 @@ extends PSCoreSysServiceBase<PSDSSysAppBarFilter> {
     }
 
     protected void onSyncEntity(PSDSSysAppBarFilter pSDSSysAppBarFilter, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDSSysAppBarFilter, bl);
+        super.onSyncEntity(pSDSSysAppBarFilter, bl);
     }
 
     protected void onSyncIndexEntities(PSDSSysAppBarFilter pSDSSysAppBarFilter, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDSSysAppBarFilter, bl);
+        super.onSyncIndexEntities(pSDSSysAppBarFilter, bl);
     }
 
     public Object getDataContextValue(PSDSSysAppBarFilter pSDSSysAppBarFilter, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -237,14 +237,14 @@ extends PSCoreSysServiceBase<PSDSSysAppBarFilter> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDSSysAppBarFilter, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDSSysAppBarFilter, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDSSysAppBarFilter pSDSSysAppBarFilter, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDSSysAppBarFilter, arrayList, n);
+        super.onExportMajorModel(pSDSSysAppBarFilter, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -342,14 +342,14 @@ extends PSCoreSysServiceBase<PSDSSysAppBarFilter> {
 
     protected boolean onMergeChild(String string, String string2, PSDSSysAppBarFilter pSDSSysAppBarFilter) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDSSysAppBarFilter)) {
+        if (super.onMergeChild(string, string2, pSDSSysAppBarFilter)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDSSysAppBarFilter pSDSSysAppBarFilter) throws Exception {
-        super.onUpdateParent((IEntity)pSDSSysAppBarFilter);
+        super.onUpdateParent(pSDSSysAppBarFilter);
     }
 
     @Override

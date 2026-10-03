@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psrt.srv.codelist;
 
-import net.ibizsys.psrt.srv.codelist.CodeList88CodeListModelBase;
 
-public class CodeList88CodeListModel
-extends CodeList88CodeListModelBase {
+
+
+//@Component
+/**
+ * 实体属性访问控制代码表模型
+ */
+public class CodeList88CodeListModel extends CodeList88CodeListModelBase {
+
+
+   public CodeList88CodeListModel(){
+        super();
+   }
+ 
 }
-

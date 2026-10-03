@@ -1,37 +1,92 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSDEChart
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.vue;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.vue.PSVueCtrlCodePublisherImpl;
 
-public class PSVueDEChartViewCodePublisherImpl
-extends PSVueCtrlCodePublisherImpl {
-    protected IPSDEChart iPSDEChart;
-    public static final String CTRLPART_STORE = "STORE";
-    public static final String CTRLPART_AXES = "AXES";
-    public static final String CTRLPART_SERIES = "SERIES";
+import SA.SRFDA.PS.Core.Control.Chart.IPSDEChart;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
 
-    public PSVueDEChartViewCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSVueDEChartViewCodePublisherImpl is inconsistent\n\tIPSDEChart cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSVueDEChartViewCodePublisherImpl must override or implement a supertype method\n\tIPSDEChart cannot be resolved to a type\n\tIPSDEChart cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSVueCtrlCodePublisherImpl\n\tIPSDEChart cannot be resolved to a type\n\tIPSDEChart cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onClose() of type PSVueDEChartViewCodePublisherImpl must override or implement a supertype method\n\tIPSDEChart cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSVueCtrlCodePublisherImpl\n");
-    }
+/**
+ * 实体图表
+ * @author hebao
+ *
+ */
+public class PSVueDEChartViewCodePublisherImpl extends PSVueCtrlCodePublisherImpl
+{
+	protected IPSDEChart iPSDEChart = null;
+	public final static String CTRLPART_STORE = "STORE";
+	public final static String CTRLPART_AXES = "AXES";
+	public final static String CTRLPART_SERIES = "SERIES";
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSDEChart = (IPSDEChart)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSVueDEChartViewCodePublisherImpl must override or implement a supertype method\n\tIPSDEChart cannot be resolved to a type\n\tIPSDEChart cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSVueCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		this.iPSDEChart = (IPSDEChart)this.iPSControl;
+		super.onFillGenerateCodeParams(params);
+		
+		//输出结果集合代码
+//		if(true)
+//		{
+//			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_STORE).getPSPFCtrlPartCodePublisher();
+//			IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext,iPSDEChart, null);
+//			iPSPFCtrlPartCodePublisher.close();
+//			params.put("store", iPSGenerateCodeResult);
+//		}
+//		
+//		if(true)
+//		{
+//			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(CTRLPART_AXES).getPSPFCtrlPartCodePublisher();
+//			ArrayList<IPSGenerateCodeResult> gridRecordList = new ArrayList<IPSGenerateCodeResult> ();
+//			java.util.Iterator<IPSDEChartAxes> psDEChartAxeses = 	iPSDEChart.getPSDEChartAxeses();
+//			while(psDEChartAxeses.hasNext())
+//			{
+//				IPSDEChartAxes iPSDEChartAxes = psDEChartAxeses.next();
+//					IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext,iPSDEChart, iPSDEChartAxes);
+//				gridRecordList.add(iPSGenerateCodeResult);
+//			}
+//			iPSPFCtrlPartCodePublisher.close();
+//			params.put("axeses", gridRecordList);
+//		}
+//		
+//		if(true)
+//		{
+//			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(CTRLPART_SERIES).getPSPFCtrlPartCodePublisher();
+//			ArrayList<IPSGenerateCodeResult> gridRecordList = new ArrayList<IPSGenerateCodeResult> ();
+//			java.util.Iterator<IPSDEChartSeries> psDEChartSerieses = 	iPSDEChart.getPSDEChartSerieses();
+//			while(psDEChartSerieses.hasNext())
+//			{
+//				IPSDEChartSeries iPSDEChartSeries = psDEChartSerieses.next();
+//				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext,iPSDEChart, iPSDEChartSeries);
+//				gridRecordList.add(iPSGenerateCodeResult);
+//			}
+//			iPSPFCtrlPartCodePublisher.close();
+//			params.put("serieses", gridRecordList);
+//		}
+		
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDEChart cannot be resolved to a type\n\tIPSDEChart cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n");
-    }
-
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSVueDEChartViewCodePublisherImpl must override or implement a supertype method\n\tIPSDEChart cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSVueCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSDEChart = null;
+		super.onClose();
+	}
+	
 }
-

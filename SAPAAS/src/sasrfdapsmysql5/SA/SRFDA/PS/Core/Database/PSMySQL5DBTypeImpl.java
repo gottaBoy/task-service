@@ -140,7 +140,7 @@ IPSDBType3 {
     }
 
     protected ArrayList<String> getTableColumns(IPSDatabase iPSDatabase, String strTableName2, boolean bTempMode) throws Exception {
-        Vector list;
+        Vector<BaseDataEntity> list;
         String strSQL;
         CallResult callResult;
         String strTableName = strTableName2;
@@ -277,7 +277,7 @@ IPSDBType3 {
     }
 
     public SqlParamList getDBProcParamList(IPSDatabase iPSDatabase, String strProcName) throws Exception {
-        Vector dataEntities;
+        Vector<BaseDataEntity> dataEntities;
         String strSQL = StringHelper.Format((String)"SELECT PARAMETER_MODE,PARAMETER_NAME,DATA_TYPE FROM  information_schema.PARAMETERS WHERE UPPER(SPECIFIC_SCHEMA)='%1$s' AND UPPER(SPECIFIC_NAME)='%2$s' ORDER BY ORDINAL_POSITION", (Object)iPSDatabase.getDBName().toUpperCase(), (Object)strProcName.toUpperCase());
         CallResult callResult = this.selectMulti(iPSDatabase, strSQL, null, dataEntities = new Vector());
         if (callResult.isError()) {
@@ -296,7 +296,7 @@ IPSDBType3 {
                 sqlParam.setDirection(3);
             }
             sqlParam.setDataType(DataTypeHelper.FromString((String)baseDataEntity.getParamStringValue("DATA_TYPE", "")));
-            sqlParamList.add((Object)sqlParam);
+            sqlParamList.add(sqlParam);
         }
         return sqlParamList;
     }
@@ -365,7 +365,7 @@ IPSDBType3 {
     }
 
     public CallResult clearLocks(IPSDatabase iPSDatabase, int nTimeout) throws Exception {
-        Vector list;
+        Vector<BaseDataEntity> list;
         String strSQL = StringHelper.Format((String)"select trx_mysql_thread_id from information_schema.innodb_trx");
         CallResult callResult = this.selectMulti(iPSDatabase, strSQL, null, list = new Vector());
         if (callResult.isError()) {
@@ -378,7 +378,7 @@ IPSDBType3 {
         for (BaseDataEntity BaseDataEntity2 : list) {
             threadIdMap.put(BaseDataEntity2.GetParamIntValue("trx_mysql_thread_id", 0), "");
         }
-        Vector list2 = new Vector();
+        Vector<BaseDataEntity> list2 = new Vector();
         callResult = this.selectMulti(iPSDatabase, "show  processlist", null, list2);
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u6570\u636e\u8868\u4f5c\u4e1a\u6e05\u5355\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));

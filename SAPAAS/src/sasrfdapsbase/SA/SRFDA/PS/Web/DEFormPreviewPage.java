@@ -79,7 +79,7 @@ extends DECtrlPreviewPage {
                 throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u5b9e\u4f53[%1$s]", (Object)psDEForm.getPSDEID()));
             }
             String strPFType = psDEForm.getPSPFID();
-            IPSModelObject iPSApplication = null;
+            IPSApplication iPSApplication = null;
             Iterator<IPSApplication> apps = iPSSystem.getAllPSApps();
             while (apps.hasNext()) {
                 iPSApplication2 = apps.next();

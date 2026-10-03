@@ -66,33 +66,33 @@ extends PSAppUIStyleServiceBase {
         PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)this.getSessionFactory());
         PSPFStyle pSPFStyle = new PSPFStyle();
         pSPFStyle.setPSPFStyleId(pSAppUIStyle.getPSPFStyleId());
-        if (pSPFStyleService.get((IEntity)pSPFStyle, true)) {
+        if (pSPFStyleService.get(pSPFStyle, true)) {
             return;
         }
         PSPFStyleService pSPFStyleService2 = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSPFStyle pSPFStyle2 = new PSPFStyle();
         pSPFStyle2.setPSPFStyleId(pSAppUIStyle.getPSPFStyleId());
-        if (!pSPFStyleService2.get((IEntity)pSPFStyle2, true)) {
+        if (!pSPFStyleService2.get(pSPFStyle2, true)) {
             throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u524d\u53f0\u6a21\u677f\u6837\u5f0f[%1$s]", (Object)pSAppUIStyle.getPSPFStyleId()));
         }
         PSPFService pSPFService = (PSPFService)ServiceGlobal.getService(PSPFService.class, (SessionFactory)this.getSessionFactory());
         PSPF pSPF = new PSPF();
         pSPF.setPSPFId(pSPFStyle2.getPSPFId());
-        if (!pSPFService.get((IEntity)pSPF, true)) {
+        if (!pSPFService.get(pSPF, true)) {
             PSPFService pSPFService2 = (PSPFService)ServiceGlobal.getService(PSPFService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSPF pSPF2 = new PSPF();
             pSPF2.setPSPFId(pSPFStyle2.getPSPFId());
-            if (!pSPFService2.get((IEntity)pSPF2, true)) {
+            if (!pSPFService2.get(pSPF2, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u524d\u53f0\u6a21\u677f[%1$s]", (Object)pSPFStyle2.getPSPFId()));
             }
             PSAppTypeService pSAppTypeService = (PSAppTypeService)ServiceGlobal.getService(PSAppTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSAppType pSAppType = new PSAppType();
             pSAppType.setPSAppTypeId(pSPF2.getPSAppTypeId());
-            if (!pSAppTypeService.get((IEntity)pSAppType, true)) {
+            if (!pSAppTypeService.get(pSAppType, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u524d\u53f0\u6a21\u677f[%1$s]", (Object)pSPFStyle2.getPSPFId()));
             }
             PSAppTypeService pSAppTypeService2 = (PSAppTypeService)ServiceGlobal.getService(PSAppTypeService.class, (SessionFactory)this.getSessionFactory());
-            pSAppTypeService2.save((IEntity)pSAppType, false);
+            pSAppTypeService2.save(pSAppType, false);
             pSPF.setPSAppTypeId(pSAppType.getPSAppTypeId());
             pSPF.setPSAppTypeName(pSAppType.getPSAppTypeName());
             pSPF.setPSPFId(pSPF2.getPSPFId());

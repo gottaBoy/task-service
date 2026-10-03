@@ -139,9 +139,9 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
             PSDCDETempl pSDCDETempl = (PSDCDETempl)iService.getDEModel().createEntity();
             pSDCDETempl.set("PSDCDETEMPLID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDCDETempl);
+                iService.getTemp(pSDCDETempl);
             } else {
-                iService.get((IEntity)pSDCDETempl);
+                iService.get(pSDCDETempl);
             }
             this.onFillParentInfo_PSDCDETempl(pSDCDETemplField, pSDCDETempl);
             return;
@@ -151,14 +151,14 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
             PSDEFDataType pSDEFDataType = (PSDEFDataType)iService.getDEModel().createEntity();
             pSDEFDataType.set("PSDEFDATATYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEFDataType);
+                iService.getTemp(pSDEFDataType);
             } else {
-                iService.get((IEntity)pSDEFDataType);
+                iService.get(pSDEFDataType);
             }
             this.onFillParentInfo_PSDataType(pSDCDETemplField, pSDEFDataType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCDETemplField, string, string2, string3);
+        super.onFillParentInfo(pSDCDETemplField, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCDETemplField, bl);
+        super.onFillEntityFullInfo(pSDCDETemplField, bl);
         this.onFillEntityFullInfo_PSDCDETempl(pSDCDETemplField, bl);
         this.onFillEntityFullInfo_PSDataType(pSDCDETemplField, bl);
     }
@@ -211,7 +211,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
     }
 
     protected void onWriteBackParent(PSDCDETemplField pSDCDETemplField, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCDETemplField, bl);
+        super.onWriteBackParent(pSDCDETemplField, bl);
     }
 
     public ArrayList<PSDCDETemplField> selectByPSDCDETempl(PSDCDETemplBase pSDCDETemplBase) throws Exception {
@@ -294,7 +294,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
         ArrayList<PSDCDETemplField> arrayList = this.selectByPSDCDETempl(pSDCDETempl);
         this.onBeforeRemoveByPSDCDETempl(pSDCDETempl, arrayList);
         for (PSDCDETemplField pSDCDETemplField : arrayList) {
-            this.remove((IEntity)pSDCDETemplField);
+            this.remove(pSDCDETemplField);
         }
         this.onAfterRemoveByPSDCDETempl(pSDCDETempl, arrayList);
     }
@@ -312,8 +312,8 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
         ArrayList<PSDCDETemplField> arrayList = this.selectByPSDataType(pSDEFDataType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFDATATYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEFDataType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCDETEMPLFIELD_PSDEFDATATYPE_PSDATATYPEID", "", iDataEntityModel.getName(), "PSDCDETEMPLFIELD", iDataEntityModel.getDataInfo((IEntity)pSDEFDataType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEFDataType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCDETEMPLFIELD_PSDEFDATATYPE_PSDATATYPEID", "", iDataEntityModel.getName(), "PSDCDETEMPLFIELD", iDataEntityModel.getDataInfo(pSDEFDataType), arrayList.get(0)));
         }
     }
 
@@ -346,7 +346,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
         ArrayList<PSDCDETemplField> arrayList = this.selectByPSDataType(pSDEFDataType);
         this.onBeforeRemoveByPSDataType(pSDEFDataType, arrayList);
         for (PSDCDETemplField pSDCDETemplField : arrayList) {
-            this.remove((IEntity)pSDCDETemplField);
+            this.remove(pSDCDETemplField);
         }
         this.onAfterRemoveByPSDataType(pSDEFDataType, arrayList);
     }
@@ -367,7 +367,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
 
     protected void replaceParentInfo(PSDCDETemplField pSDCDETemplField, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCDETemplField, cloneSession);
+        super.replaceParentInfo(pSDCDETemplField, cloneSession);
         if (pSDCDETemplField.getPSDCDETemplId() != null && (iEntity = cloneSession.getEntity("PSDCDETEMPL", (Object)pSDCDETemplField.getPSDCDETemplId())) != null) {
             this.onFillParentInfo_PSDCDETempl(pSDCDETemplField, (PSDCDETempl)iEntity);
         }
@@ -377,7 +377,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCDETemplField pSDCDETemplField, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCDETemplField, bl);
+        super.onRemoveEntityUncopyValues(pSDCDETemplField, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCDETemplField pSDCDETemplField, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -428,7 +428,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDCDETemplField, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCDETemplField, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCDETemplField, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AllowEmpty(boolean bl, PSDCDETemplField pSDCDETemplField, boolean bl2, boolean bl3) throws Exception {
@@ -444,7 +444,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_AllowEmpty_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string = this.onTestValueRule_AllowEmpty_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALLOWEMPTY");
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -508,7 +508,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_DEFType_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string = this.onTestValueRule_DEFType_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFTYPE");
@@ -530,7 +530,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Length_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string = this.onTestValueRule_Length_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LENGTH");
@@ -555,7 +555,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -577,7 +577,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -599,7 +599,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Precision2_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string = this.onTestValueRule_Precision2_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PRECISION2");
@@ -621,7 +621,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PreDefineType_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string2 = this.onTestValueRule_PreDefineType_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PREDEFINETYPE");
@@ -643,7 +643,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDataTypeId_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string2 = this.onTestValueRule_PSDataTypeId_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDATATYPEID");
@@ -665,7 +665,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDataTypeName_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string2 = this.onTestValueRule_PSDataTypeName_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDATATYPENAME");
@@ -690,7 +690,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCDETemplFieldId_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCDETemplFieldId_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCDETEMPLFIELDID");
@@ -715,7 +715,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCDETemplFieldName_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCDETemplFieldName_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCDETEMPLFIELDNAME");
@@ -757,7 +757,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCDETemplId_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCDETemplId_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCDETEMPLID");
@@ -779,7 +779,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCDETemplName_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCDETemplName_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCDETEMPLNAME");
@@ -804,7 +804,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDCDETemplField, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDCDETemplField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -817,11 +817,11 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
     }
 
     protected void onSyncEntity(PSDCDETemplField pSDCDETemplField, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCDETemplField, bl);
+        super.onSyncEntity(pSDCDETemplField, bl);
     }
 
     protected void onSyncIndexEntities(PSDCDETemplField pSDCDETemplField, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCDETemplField, bl);
+        super.onSyncIndexEntities(pSDCDETemplField, bl);
     }
 
     public Object getDataContextValue(PSDCDETemplField pSDCDETemplField, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -829,7 +829,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCDETemplField, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCDETemplField, string, iDataContextParam)) != null) {
             return object;
         }
         PSDCDETempl pSDCDETempl = pSDCDETemplField.getPSDCDETempl();
@@ -840,7 +840,7 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
     }
 
     protected void onExportMajorModel(PSDCDETemplField pSDCDETemplField, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCDETemplField, arrayList, n);
+        super.onExportMajorModel(pSDCDETemplField, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1083,14 +1083,14 @@ extends PSCoreSysServiceBase<PSDCDETemplField> {
 
     protected boolean onMergeChild(String string, String string2, PSDCDETemplField pSDCDETemplField) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCDETemplField)) {
+        if (super.onMergeChild(string, string2, pSDCDETemplField)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCDETemplField pSDCDETemplField) throws Exception {
-        super.onUpdateParent((IEntity)pSDCDETemplField);
+        super.onUpdateParent(pSDCDETemplField);
     }
 
     @Override

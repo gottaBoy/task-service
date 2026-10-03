@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSDevPrdSubVerDEModelBase;
 
 public class PSDevPrdSubVerDEModel
 extends PSDevPrdSubVerDEModelBase {
+
+    public PSDevPrdSubVerDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

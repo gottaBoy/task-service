@@ -1,43 +1,69 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDEDataChangeDispatchParam;
-import net.ibizsys.paas.core.IDEDataChangeDispatcher;
-import net.ibizsys.psrt.srv.common.entity.DEDataChgDisp;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public abstract class DEDataChangeDispatcherBase
-implements IDEDataChangeDispatcher {
-    private static final Log log = LogFactory.getLog(DEDataChangeDispatcherBase.class);
-    protected DEDataChgDisp deDataChgDisp = null;
+import net.ibizsys.psrt.srv.common.entity.DEDataChgDisp;
 
-    @Override
-    public void init(DEDataChgDisp deDataChgDisp) throws Exception {
-        this.deDataChgDisp = deDataChgDisp;
-        this.onInit();
-    }
+/**
+ * 实体数据变更派送者基类
+ * 
+ * @author LionLau
+ *
+ */
+public abstract class DEDataChangeDispatcherBase implements IDEDataChangeDispatcher {
+	private static final Log log = LogFactory.getLog(DEDataChangeDispatcherBase.class);
 
-    protected void onInit() throws Exception {
-    }
+	protected DEDataChgDisp deDataChgDisp = null;
 
-    @Override
-    public String getName() {
-        return this.deDataChgDisp.getDEDataChgDispName();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataChangeDispatcher#init(net.ibizsys.psrt.srv.common.entity.DEDataChgDisp)
+	 */
+	public void init(DEDataChgDisp deDataChgDisp) throws Exception {
+		this.deDataChgDisp = deDataChgDisp;
 
-    @Override
-    public void dispatch(IDEDataChangeDispatchParam iDEDataChangeDispatchParam) throws Exception {
-        this.onDispatch(iDEDataChangeDispatchParam);
-    }
+		onInit();
+	}
 
-    protected void onDispatch(IDEDataChangeDispatchParam iDEDataChangeDispatchParam) throws Exception {
-    }
+	/**
+	 * 初始化触发
+	 * 
+	 * @throws Exception
+	 */
+	protected void onInit() throws Exception {
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataChangeDispatcher#getName()
+	 */
+	@Override
+	public String getName() {
+		return deDataChgDisp.getDEDataChgDispName();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataChangeDispatcher#dispatch(net.ibizsys.paas.core.IDEDataChangeDispatchParam)
+	 */
+	@Override
+	public void dispatch(IDEDataChangeDispatchParam iDEDataChangeDispatchParam) throws Exception {
+		onDispatch(iDEDataChangeDispatchParam);
+	}
+
+	/**
+	 * 数据派发时触发
+	 * 
+	 * @param iDEDataChangeDispatchParam
+	 * @throws Exception
+	 */
+	protected void onDispatch(IDEDataChangeDispatchParam iDEDataChangeDispatchParam) throws Exception {
+
+	}
+
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.wfplatform.demodel.PSWPDCAppInstDEModelBase;
 
 public class PSWPDCAppInstDEModel
 extends PSWPDCAppInstDEModelBase {
+
+    public PSWPDCAppInstDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

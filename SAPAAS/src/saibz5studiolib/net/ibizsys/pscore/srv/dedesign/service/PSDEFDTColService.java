@@ -55,7 +55,7 @@ implements IPSModelService<PSDEFDTCol> {
                 pSDEFDTCol.setPSDEFName(pSDEField.getPSDEFieldName());
                 pSDEFDTCol.setPSDEFDTColName(pSDEField.getPSDEFieldName().toUpperCase());
                 pSDEFDTCol.setDBType(pSSystemDBCfg.getPSSystemDBCfgName());
-                this.fillEntityKeyValue((IEntity)pSDEFDTCol);
+                this.fillEntityKeyValue(pSDEFDTCol);
                 if (this.checkKey(pSDEFDTCol) != 0) continue;
                 this.create(pSDEFDTCol, false);
             }

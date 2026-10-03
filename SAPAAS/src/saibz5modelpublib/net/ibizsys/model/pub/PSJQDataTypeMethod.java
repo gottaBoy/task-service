@@ -1,53 +1,93 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  freemarker.template.TemplateMethodModel
- *  freemarker.template.TemplateModelException
- *  net.ibizsys.paas.util.DataTypeHelper
- *  net.ibizsys.paas.util.StringHelper
- */
 package net.ibizsys.model.pub;
 
-import freemarker.template.TemplateMethodModel;
-import freemarker.template.TemplateModelException;
 import java.util.List;
+
 import net.ibizsys.paas.util.DataTypeHelper;
 import net.ibizsys.paas.util.StringHelper;
+import freemarker.template.TemplateMethodModel;
+import freemarker.template.TemplateModelException;
 
-public class PSJQDataTypeMethod
-implements TemplateMethodModel {
-    public Object exec(List arg0) throws TemplateModelException {
-        int nDataType;
-        block11: {
-            block10: {
-                block9: {
-                    block8: {
-                        if (arg0.size() == 0) {
-                            return StringHelper.format((String)"/*%1$s*/", (Object)"\u6ca1\u6709\u6307\u5b9a\u6570\u636e\u7c7b\u578b");
-                        }
-                        try {
-                            nDataType = Integer.parseInt((String)arg0.get(0));
-                            if (!DataTypeHelper.isStringType((int)nDataType)) break block8;
-                            return "string";
-                        }
-                        catch (Exception e) {
-                            throw new TemplateModelException(e);
-                        }
-                    }
-                    if (!DataTypeHelper.isLongStringType((int)nDataType)) break block9;
-                    return "string";
-                }
-                if (!DataTypeHelper.isDateTimeType((int)nDataType)) break block10;
-                return "date";
-            }
-            if (!DataTypeHelper.isIntType((int)nDataType)) break block11;
-            return "int";
-        }
-        if (DataTypeHelper.isDoubleType((int)nDataType)) {
-            return "number";
-        }
-        return "auto";
-    }
+/**
+ * 属性宏变量，属性名，格式化，默认值
+ * auto (Default, implies no conversion)
+	string
+	int
+	number
+	boolean
+	date
+ * @author Administrator
+ *
+ */
+public class PSJQDataTypeMethod implements TemplateMethodModel
+{
+	public PSJQDataTypeMethod()
+	{
+		super();
+	}
+
+
+	public Object exec(List arg0) throws TemplateModelException
+	{
+		if(arg0.size()==0)
+			return StringHelper.format("/*%1$s*/","没有指定数据类型");
+		
+		try
+		{
+			int nDataType = Integer.parseInt((String) arg0.get(0));
+			
+			/**
+			 * 判断是否为字符串类型
+			 * 
+			 * @param dataType
+			 * @return
+			 */
+			if(DataTypeHelper.isStringType(nDataType))
+				return "string";
+			
+			/**
+			 * 是否为长字符串类型
+			 * @param dataType
+			 * @return
+			 */
+			if(DataTypeHelper.isLongStringType(nDataType))
+				return "string";
+			
+			
+			/**
+			 * 是否为长字符串类型
+			 * @param dataType
+			 * @return
+			 */
+			if(DataTypeHelper.isDateTimeType(nDataType))
+				return "date";
+			
+			/**
+			 * 是否为长字符串类型
+			 * @param dataType
+			 * @return
+			 */
+			if(DataTypeHelper.isIntType(nDataType))
+				return "int";
+			
+			
+			/**
+			 * 是否为长字符串类型
+			 * @param dataType
+			 * @return
+			 */
+			if(DataTypeHelper.isDoubleType(nDataType))
+				return "number";
+			
+			
+			return "auto";
+		}
+		catch (Exception e)
+		{
+			throw new TemplateModelException(e);
+		}
+		
+	}
+
+
+
 }
-

@@ -1,137 +1,311 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import net.ibizsys.paas.control.chart.IChart;
 import net.ibizsys.paas.core.ModelBaseImpl;
-import net.ibizsys.paas.ctrlmodel.IChartSeriesModel;
 
-public class ChartSeriesModel
-extends ModelBaseImpl
-implements IChartSeriesModel {
-    private String strCaption = null;
-    private String strSeriesType = null;
-    private String strTimeGroupMode = null;
-    private String strCatalogField = null;
-    private String strCatalogFieldCodeListId = null;
-    private String strValueField = null;
-    private String strValue2Field = null;
-    private String strValue3Field = null;
-    private String strValue4Field = null;
-    private String strSeriesField = null;
-    private String strSeriesFieldCodeListId = null;
-    private IChart iChart = null;
+/**
+ * 图表序列模型基类
+ * 
+ * @author Administrator
+ *
+ */
+public class ChartSeriesModel extends ModelBaseImpl implements IChartSeriesModel {
+	private String strCaption = null;
+	private String strSeriesType = null;
+	private String strTimeGroupMode = null;
 
-    public void init(IChart iChart) {
-        this.iChart = iChart;
-    }
+	/**
+	 * 获取X值属性
+	 * 
+	 * @return
+	 */
+	private String strCatalogField = null;
+	
+	/**
+	 * 获取X值属性代码表标识
+	 * 
+	 * @return
+	 */
+	private String strCatalogFieldCodeListId = null;
 
-    public void setId(String strId) {
-        this.strId = strId;
-    }
+	/**
+	 * 获取Y值属性
+	 * 
+	 * @return
+	 */
+	private String strValueField = null;
 
-    public void setName(String strName) {
-        this.strName = strName;
-    }
+	/**
+	 * 获取Z值属性
+	 * 
+	 * @return
+	 */
+	private String strValue2Field = null;
+	
+	/**
+	 * 获取值3属性
+	 * 
+	 * @return
+	 */
+	private String strValue3Field = null;
 
-    @Override
-    public String getCaption() {
-        return this.strCaption;
-    }
+	/**
+	 * 获取值4属性
+	 * 
+	 * @return
+	 */
+	private String strValue4Field = null;
+	
+	/**
+	 * 获取Z值属性
+	 * 
+	 * @return
+	 */
+	private String strSeriesField = null;
+	
+	/**
+	 * 获取Z值属性代码表标识
+	 * 
+	 * @return
+	 */
+	private String strSeriesFieldCodeListId = null;
 
-    public void setCaption(String strCaption) {
-        this.strCaption = strCaption;
-    }
+	private IChart iChart = null;
 
-    @Override
-    public String getSeriesType() {
-        return this.strSeriesType;
-    }
+	/**
+	 * 初始化
+	 * 
+	 * @param iChart
+	 */
+	public void init(IChart iChart) {
+		this.iChart = iChart;
+	}
 
-    public void setSeriesType(String strSeriesType) {
-        this.strSeriesType = strSeriesType;
-    }
+	/**
+	 * 设置标识
+	 * 
+	 * @param strId
+	 */
+	public void setId(String strId) {
+		this.strId = strId;
+	}
 
-    @Override
-    public String getCatalogField() {
-        return this.strCatalogField;
-    }
+	/**
+	 * 设置名称
+	 * 
+	 * @param strName
+	 */
+	public void setName(String strName) {
+		this.strName = strName;
+	}
 
-    public void setCatalogField(String strCatalogField) {
-        this.strCatalogField = strCatalogField;
-    }
+	/**
+	 * 获取标题
+	 * 
+	 * @return the strCaption
+	 */
+	@Override
+	public String getCaption() {
+		return strCaption;
+	}
 
-    @Override
-    public String getCatalogFieldCodeListId() {
-        return this.strCatalogFieldCodeListId;
-    }
+	/**
+	 * 设置标题
+	 * 
+	 * @param strCaption the strCaption to set
+	 */
+	public void setCaption(String strCaption) {
+		this.strCaption = strCaption;
+	}
 
-    public void setCatalogFieldCodeListId(String strCatalogFieldCodeListId) {
-        this.strCatalogFieldCodeListId = strCatalogFieldCodeListId;
-    }
+	/**
+	 * 获取图表序列类型
+	 * 
+	 * @return the strSeriesType
+	 */
+	@Override
+	public String getSeriesType() {
+		return strSeriesType;
+	}
 
-    @Override
-    public String getValueField() {
-        return this.strValueField;
-    }
+	/**
+	 * 设置图表序列类型
+	 * 
+	 * @param strSeriesType the strSeriesType to set
+	 */
+	public void setSeriesType(String strSeriesType) {
+		this.strSeriesType = strSeriesType;
+	}
 
-    public void setValueField(String strValueField) {
-        this.strValueField = strValueField;
-    }
+	/**
+	 * 获取分类属性
+	 * 
+	 * @return the strCatalogField
+	 */
+	@Override
+	public String getCatalogField() {
+		return strCatalogField;
+	}
 
-    @Override
-    public String getValue2Field() {
-        return this.strValue2Field;
-    }
+	/**
+	 * 设置分类属性
+	 * 
+	 * @param strCatalogField the strCatalogField to set
+	 */
+	public void setCatalogField(String strCatalogField) {
+		this.strCatalogField = strCatalogField;
+	}
+	
+	/**
+	 * 获取分类属性代码表标识
+	 * 
+	 * @return the strCatalogFieldCodeListId
+	 */
+	@Override
+	public String getCatalogFieldCodeListId() {
+		return strCatalogFieldCodeListId;
+	}
 
-    public void setValue2Field(String strValue2Field) {
-        this.strValue2Field = strValue2Field;
-    }
+	/**
+	 * 设置分类属性代码表标识
+	 * 
+	 * @param strCatalogFieldCodeListId the strCatalogFieldCodeListId to set
+	 */
+	public void setCatalogFieldCodeListId(String strCatalogFieldCodeListId) {
+		this.strCatalogFieldCodeListId = strCatalogFieldCodeListId;
+	}
 
-    @Override
-    public String getValue3Field() {
-        return this.strValue3Field;
-    }
+	/**
+	 * 获取值属性
+	 * 
+	 * @return the strValueField
+	 */
+	@Override
+	public String getValueField() {
+		return strValueField;
+	}
 
-    public void setValue3Field(String strValue3Field) {
-        this.strValue3Field = strValue3Field;
-    }
+	/**
+	 * 设置值属性
+	 * 
+	 * @param strValueField the strValueField to set
+	 */
+	public void setValueField(String strValueField) {
+		this.strValueField = strValueField;
+	}
 
-    @Override
-    public String getValue4Field() {
-        return this.strValue4Field;
-    }
+	/**
+	 * 获取值2属性
+	 * 
+	 * @return the strValue2Field
+	 */
+	@Override
+	public String getValue2Field() {
+		return strValue2Field;
+	}
 
-    public void setValue4Field(String strValue4Field) {
-        this.strValue4Field = strValue4Field;
-    }
+	/**
+	 * 设置值2属性
+	 * 
+	 * @param strValue2Field the strValue2Field to set
+	 */
+	public void setValue2Field(String strValue2Field) {
+		this.strValue2Field = strValue2Field;
+	}
 
-    @Override
-    public String getSeriesField() {
-        return this.strSeriesField;
-    }
+	/**
+	 * 获取值3属性
+	 * 
+	 * @return the strValue2Field
+	 */
+	@Override
+	public String getValue3Field() {
+		return strValue3Field;
+	}
 
-    public void setSeriesField(String strSeriesField) {
-        this.strSeriesField = strSeriesField;
-    }
+	/**
+	 * 设置值3属性
+	 * 
+	 * @param strValue2Field the strValue2Field to set
+	 */
+	public void setValue3Field(String strValue3Field) {
+		this.strValue3Field = strValue3Field;
+	}
 
-    @Override
-    public String getSeriesFieldCodeListId() {
-        return this.strSeriesFieldCodeListId;
-    }
+	/**
+	 * 获取值4属性
+	 * 
+	 * @return the strValue2Field
+	 */
+	@Override
+	public String getValue4Field() {
+		return strValue4Field;
+	}
 
-    public void setSeriesFieldCodeListId(String strSeriesFieldCodeListId) {
-        this.strSeriesFieldCodeListId = strSeriesFieldCodeListId;
-    }
+	/**
+	 * 设置值4属性
+	 * 
+	 * @param strValue2Field the strValue2Field to set
+	 */
+	public void setValue4Field(String strValue4Field) {
+		this.strValue4Field = strValue4Field;
+	}
 
-    @Override
-    public String getTimeGroupMode() {
-        return this.strTimeGroupMode;
-    }
+	/**
+	 * 获取多序列识别属性
+	 * 
+	 * @return the strSeriesField
+	 */
+	@Override
+	public String getSeriesField() {
+		return strSeriesField;
+	}
 
-    public void setTimeGroupMode(String strTimeGroupMode) {
-        this.strTimeGroupMode = strTimeGroupMode;
-    }
+	/**
+	 * 设置多序列识别属性
+	 * 
+	 * @param strSeriesField the strSeriesField to set
+	 */
+	public void setSeriesField(String strSeriesField) {
+		this.strSeriesField = strSeriesField;
+	}
+	
+	/**
+	 * 获取多序列识别属性代码表 
+	 * 
+	 * @return the strSeriesFieldCodeListId
+	 */
+	@Override
+	public String getSeriesFieldCodeListId() {
+		return strSeriesFieldCodeListId;
+	}
+
+	/**
+	 * 设置多序列识别属性代码表 
+	 * 
+	 * @param strSeriesFieldCodeListId the strSeriesFieldCodeListId to set
+	 */
+	public void setSeriesFieldCodeListId(String strSeriesFieldCodeListId) {
+		this.strSeriesFieldCodeListId = strSeriesFieldCodeListId;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlmodel.IChartSeriesModel#getTimeGroupMode()
+	 */
+	@Override
+	public String getTimeGroupMode() {
+		return this.strTimeGroupMode;
+	}
+
+	/**
+	 * 设置时间分组模式
+	 * 
+	 * @param strTimeGroupMode
+	 */
+	public void setTimeGroupMode(String strTimeGroupMode) {
+		this.strTimeGroupMode = strTimeGroupMode;
+	}
+
 }
-

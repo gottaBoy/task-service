@@ -153,7 +153,7 @@ implements IPSDEFDLogicService {
     @Override
     protected List<PSDEFDLogic> onListAll() throws Exception {
         ArrayList<PSDEFDLogic> list = new ArrayList<PSDEFDLogic>();
-        List psdeformdetails = PSModelServiceUtil.getInstance().getPSDEFormDetailService().listAll();
+        List<PSDEFormDetail> psdeformdetails = PSModelServiceUtil.getInstance().getPSDEFormDetailService().listAll();
         if (psdeformdetails != null) {
             for (PSDEFormDetail parent : psdeformdetails) {
                 List<PSDEFDLogic> items = this.listByPSDEFormDetail(parent);

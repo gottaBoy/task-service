@@ -78,7 +78,7 @@ implements IPSAppMenuService {
     @Override
     protected List<PSAppMenu> onListAll() throws Exception {
         ArrayList<PSAppMenu> list = new ArrayList<PSAppMenu>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSAppMenu> items = this.listByPSSysApp(parent);
@@ -261,18 +261,19 @@ implements IPSAppMenuService {
         } else {
             dto.setPSSysPFPluginName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSAppMenuItemService().listByPSAppMenu(t);
-        if (list != null && list.size() > 0) {
+        List<PSAppMenuItem> pSAppMenuItemList = PSModelServiceUtil.getInstance().getPSAppMenuItemService().listByPSAppMenu(t);
+        if (pSAppMenuItemList != null && pSAppMenuItemList.size() > 0) {
             ArrayList<PSAppMenuItemDTO> psappmenuitems = new ArrayList<PSAppMenuItemDTO>();
-            for (PSAppMenuItem pSAppMenuItem : list) {
+            for (PSAppMenuItem pSAppMenuItem : pSAppMenuItemList) {
                 dstItem = (PSAppMenuItemDTO)PSModelServiceUtil.getInstance().getPSAppMenuItemService().toDTO(pSAppMenuItem);
                 psappmenuitems.add((PSAppMenuItemDTO)dstItem);
             }
             dto.setPsappmenuitems(psappmenuitems);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSAppMenuLogicService().listByPSAppMenu(t)) != null && list.size() > 0) {
+        List<PSAppMenuLogic> pSAppMenuLogicList = PSModelServiceUtil.getInstance().getPSAppMenuLogicService().listByPSAppMenu(t);
+        if (pSAppMenuLogicList != null && pSAppMenuLogicList.size() > 0) {
             ArrayList<PSAppMenuLogicDTO> psappmenulogics = new ArrayList<PSAppMenuLogicDTO>();
-            for (PSAppMenuLogic pSAppMenuLogic : list) {
+            for (PSAppMenuLogic pSAppMenuLogic : pSAppMenuLogicList) {
                 dstItem = (PSAppMenuLogicDTO)PSModelServiceUtil.getInstance().getPSAppMenuLogicService().toDTO(pSAppMenuLogic);
                 psappmenulogics.add((PSAppMenuLogicDTO)dstItem);
             }

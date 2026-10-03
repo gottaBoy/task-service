@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
 
-import net.ibizsys.psrt.srv.codelist.DETableSpaceCodeListModelBase;
 
-public class DETableSpaceCodeListModel
-extends DETableSpaceCodeListModelBase {
+/**
+ * 静态代码表[数据表空间]模型对象
+ */
+public class DETableSpaceCodeListModel extends DETableSpaceCodeListModelBase {
+
+    public DETableSpaceCodeListModel() {
+        super();
+    }
+
 }
-

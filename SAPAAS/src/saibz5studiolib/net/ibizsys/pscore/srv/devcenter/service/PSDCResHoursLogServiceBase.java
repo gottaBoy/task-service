@@ -138,9 +138,9 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
             PSDCResHours pSDCResHours = (PSDCResHours)iService.getDEModel().createEntity();
             pSDCResHours.set("PSDCRESHOURSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDCResHours);
+                iService.getTemp(pSDCResHours);
             } else {
-                iService.get((IEntity)pSDCResHours);
+                iService.get(pSDCResHours);
             }
             this.onFillParentInfo_PSDCResHours(pSDCResHoursLog, pSDCResHours);
             return;
@@ -150,14 +150,14 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDCResHoursLog, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCResHoursLog, string, string2, string3);
+        super.onFillParentInfo(pSDCResHoursLog, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -178,7 +178,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCResHoursLog, bl);
+        super.onFillEntityFullInfo(pSDCResHoursLog, bl);
         this.onFillEntityFullInfo_PSDCResHours(pSDCResHoursLog, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDCResHoursLog, bl);
     }
@@ -210,7 +210,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
     }
 
     protected void onWriteBackParent(PSDCResHoursLog pSDCResHoursLog, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCResHoursLog, bl);
+        super.onWriteBackParent(pSDCResHoursLog, bl);
     }
 
     public ArrayList<PSDCResHoursLog> selectByPSDCResHours(PSDCResHoursBase pSDCResHoursBase) throws Exception {
@@ -293,7 +293,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
         ArrayList<PSDCResHoursLog> arrayList = this.selectByPSDCResHours(pSDCResHours);
         this.onBeforeRemoveByPSDCResHours(pSDCResHours, arrayList);
         for (PSDCResHoursLog pSDCResHoursLog : arrayList) {
-            this.remove((IEntity)pSDCResHoursLog);
+            this.remove(pSDCResHoursLog);
         }
         this.onAfterRemoveByPSDCResHours(pSDCResHours, arrayList);
     }
@@ -339,7 +339,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
         ArrayList<PSDCResHoursLog> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCResHoursLog pSDCResHoursLog : arrayList) {
-            this.remove((IEntity)pSDCResHoursLog);
+            this.remove(pSDCResHoursLog);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -360,7 +360,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
 
     protected void replaceParentInfo(PSDCResHoursLog pSDCResHoursLog, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCResHoursLog, cloneSession);
+        super.replaceParentInfo(pSDCResHoursLog, cloneSession);
         if (pSDCResHoursLog.getPSDCResHoursId() != null && (iEntity = cloneSession.getEntity("PSDCRESHOURS", (Object)pSDCResHoursLog.getPSDCResHoursId())) != null) {
             this.onFillParentInfo_PSDCResHours(pSDCResHoursLog, (PSDCResHours)iEntity);
         }
@@ -370,7 +370,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCResHoursLog pSDCResHoursLog, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCResHoursLog, bl);
+        super.onRemoveEntityUncopyValues(pSDCResHoursLog, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCResHoursLog pSDCResHoursLog, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -430,7 +430,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
         if ((entityFieldError = this.onCheckField_ResType(bl, pSDCResHoursLog, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCResHoursLog, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCResHoursLog, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BeginTime(boolean bl, PSDCResHoursLog pSDCResHoursLog, boolean bl2, boolean bl3) throws Exception {
@@ -446,7 +446,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_BeginTime_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string = this.onTestValueRule_BeginTime_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BEGINTIME");
@@ -468,7 +468,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CancelFlag_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string = this.onTestValueRule_CancelFlag_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANCELFLAG");
@@ -493,7 +493,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_EndTime_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string = this.onTestValueRule_EndTime_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENDTIME");
@@ -518,7 +518,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_Hours_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string = this.onTestValueRule_Hours_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HOURS");
@@ -540,7 +540,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogInfo_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_LogInfo_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGINFO");
@@ -562,7 +562,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LogLevel2_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string = this.onTestValueRule_LogLevel2_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGLEVEL2");
@@ -584,7 +584,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCResHoursId_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCResHoursId_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCRESHOURSID");
@@ -609,7 +609,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCResHoursLogId_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCResHoursLogId_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCRESHOURSLOGID");
@@ -634,7 +634,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCResHoursLogName_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCResHoursLogName_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCRESHOURSLOGNAME");
@@ -656,7 +656,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCResHoursName_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCResHoursName_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCRESHOURSNAME");
@@ -678,7 +678,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCResId_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCResId_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCRESID");
@@ -700,7 +700,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCResName_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCResName_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCRESNAME");
@@ -722,7 +722,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -744,7 +744,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -766,7 +766,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSResId_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSResId_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSRESID");
@@ -788,7 +788,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSResName_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSResName_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSRESNAME");
@@ -813,7 +813,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ResSpec_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_ResSpec_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESSPEC");
@@ -838,7 +838,7 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ResType_Default((IEntity)pSDCResHoursLog, bl2, bl3);
+            string2 = this.onTestValueRule_ResType_Default(pSDCResHoursLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESTYPE");
@@ -851,11 +851,11 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
     }
 
     protected void onSyncEntity(PSDCResHoursLog pSDCResHoursLog, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCResHoursLog, bl);
+        super.onSyncEntity(pSDCResHoursLog, bl);
     }
 
     protected void onSyncIndexEntities(PSDCResHoursLog pSDCResHoursLog, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCResHoursLog, bl);
+        super.onSyncIndexEntities(pSDCResHoursLog, bl);
     }
 
     public Object getDataContextValue(PSDCResHoursLog pSDCResHoursLog, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -863,14 +863,14 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCResHoursLog, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCResHoursLog, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCResHoursLog pSDCResHoursLog, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCResHoursLog, arrayList, n);
+        super.onExportMajorModel(pSDCResHoursLog, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1153,14 +1153,14 @@ extends PSCoreSysServiceBase<PSDCResHoursLog> {
 
     protected boolean onMergeChild(String string, String string2, PSDCResHoursLog pSDCResHoursLog) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCResHoursLog)) {
+        if (super.onMergeChild(string, string2, pSDCResHoursLog)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCResHoursLog pSDCResHoursLog) throws Exception {
-        super.onUpdateParent((IEntity)pSDCResHoursLog);
+        super.onUpdateParent(pSDCResHoursLog);
     }
 
     @Override

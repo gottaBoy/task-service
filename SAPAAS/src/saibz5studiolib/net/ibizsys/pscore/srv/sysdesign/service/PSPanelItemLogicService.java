@@ -84,9 +84,9 @@ extends PSPanelItemLogicServiceBase {
         boolean bl2 = bl = xmlNode == null;
         if (!bl && !pSPanelItemLogic.isFullEntity()) {
             if (pSPanelItemLogic.getPSPanelItemLogicId().indexOf("SRFTEMPKEY:") == 0) {
-                this.getTemp((IEntity)pSPanelItemLogic);
+                this.getTemp(pSPanelItemLogic);
             } else {
-                this.get((IEntity)pSPanelItemLogic);
+                this.get(pSPanelItemLogic);
             }
         }
         if (StringHelper.isNullOrEmpty((String)pSPanelItemLogic.getLogicCat())) {

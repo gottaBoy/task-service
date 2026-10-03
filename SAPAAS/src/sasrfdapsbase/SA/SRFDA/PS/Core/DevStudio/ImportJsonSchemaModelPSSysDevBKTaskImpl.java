@@ -86,7 +86,7 @@ extends ImportSysDynaModelPSSysDevBKTaskImplBase {
         }
         ObjectMapper MAPPER = new ObjectMapper();
         MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        Map map = (Map)MAPPER.readValue(strDynaModel, JsonSchemaMapType);
+        Map<String, ObjectSchema> map = MAPPER.readValue(strDynaModel, JsonSchemaMapType);
         StringBuilder sb = new StringBuilder();
         PSSysModelInstGlobal.active((String)this.getPSSysModelInstId());
         for (Map.Entry entry : map.entrySet()) {
@@ -114,7 +114,7 @@ extends ImportSysDynaModelPSSysDevBKTaskImplBase {
         if (psDataEntityList != null && psDataEntityList.size() > 0) {
             psDataEntity = (PSDataEntity)psDataEntityList.get(0);
         }
-        ArrayList psDEFieldList = null;
+        ArrayList<PSDEField> psDEFieldList = null;
         if (psDataEntity == null) {
             sb.append(String.format("\u5b9e\u4f53[%1$s]\u4e0d\u5b58\u5728\uff0c\u6267\u884c\u65b0\u5efa\u64cd\u4f5c\r\n", strName));
             psDataEntity = new PSDataEntity();
@@ -133,8 +133,8 @@ extends ImportSysDynaModelPSSysDevBKTaskImplBase {
             psDataEntity.setPSModuleId(psModule.getPSModuleId());
             psDataEntity.setPSModuleName(psModule.getPSModuleName());
             psDataEntity.setPSDataEntityName(strName);
-            psDataEntityService.create((IEntity)psDataEntity);
-            psDEFieldList = new ArrayList();
+            psDataEntityService.create(psDataEntity);
+            psDEFieldList = new ArrayList<PSDEField>();
         } else {
             sb.append(String.format("\u5b9e\u4f53[%1$s]\u5df2\u5b58\u5728\uff0c\u6267\u884c\u66f4\u65b0\u64cd\u4f5c\r\n", strName));
             psDEFieldList = psDataEntity.getPSDEFields();
@@ -143,7 +143,7 @@ extends ImportSysDynaModelPSSysDevBKTaskImplBase {
         for (PSDEField psDEField : psDEFieldList) {
             psDEFieldMap.put(psDEField.getPSDEFieldName(), psDEField);
         }
-        Map propertits = objectSchema.getProperties();
+        Map<String, Schema> propertits = objectSchema.getProperties();
         if (propertits != null) {
             for (Map.Entry entry : propertits.entrySet()) {
                 Map fieldExtensions;
@@ -178,7 +178,7 @@ extends ImportSysDynaModelPSSysDevBKTaskImplBase {
                 }
                 psDEField.setPSDEFieldName(strFieldName);
                 psDEField.setPSDEId(psDataEntity.getPSDataEntityId());
-                psDEFieldService.create((IEntity)psDEField);
+                psDEFieldService.create(psDEField);
             }
         }
         return sb.toString();
@@ -226,4 +226,3 @@ extends ImportSysDynaModelPSSysDevBKTaskImplBase {
         }
     }
 }
-

@@ -97,7 +97,7 @@ implements IPSDEGridService {
     @Override
     protected List<PSDEGrid> onListAll() throws Exception {
         ArrayList<PSDEGrid> list = new ArrayList<PSDEGrid>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEGrid> items = this.listByPSDataEntity(parent);
@@ -764,34 +764,37 @@ implements IPSDEGridService {
         } else {
             dto.setUserPSDEActionName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEGridColService().listByPSDEGrid(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEGridCol> pSDEGridColList = PSModelServiceUtil.getInstance().getPSDEGridColService().listByPSDEGrid(t);
+        if (pSDEGridColList != null && pSDEGridColList.size() > 0) {
             ArrayList<PSDEGridColDTO> psdegridcols = new ArrayList<PSDEGridColDTO>();
-            for (PSDEGridCol pSDEGridCol : list) {
+            for (PSDEGridCol pSDEGridCol : pSDEGridColList) {
                 dstItem = (PSDEGridColDTO)PSModelServiceUtil.getInstance().getPSDEGridColService().toDTO(pSDEGridCol);
                 psdegridcols.add((PSDEGridColDTO)dstItem);
             }
             dto.setPsdegridcols(psdegridcols);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEGEIUpdateService().listByPSDEGrid(t)) != null && list.size() > 0) {
+        List<PSDEGEIUpdate> pSDEGEIUpdateList = PSModelServiceUtil.getInstance().getPSDEGEIUpdateService().listByPSDEGrid(t);
+        if (pSDEGEIUpdateList != null && pSDEGEIUpdateList.size() > 0) {
             ArrayList<PSDEGEIUpdateDTO> psdegeiupdates = new ArrayList<PSDEGEIUpdateDTO>();
-            for (PSDEGEIUpdate pSDEGEIUpdate : list) {
+            for (PSDEGEIUpdate pSDEGEIUpdate : pSDEGEIUpdateList) {
                 dstItem = (PSDEGEIUpdateDTO)PSModelServiceUtil.getInstance().getPSDEGEIUpdateService().toDTO(pSDEGEIUpdate);
                 psdegeiupdates.add((PSDEGEIUpdateDTO)dstItem);
             }
             dto.setPsdegeiupdates(psdegeiupdates);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEGEIVRService().listByPSDEGrid(t)) != null && list.size() > 0) {
+        List<PSDEGEIVR> pSDEGEIVRList = PSModelServiceUtil.getInstance().getPSDEGEIVRService().listByPSDEGrid(t);
+        if (pSDEGEIVRList != null && pSDEGEIVRList.size() > 0) {
             ArrayList<PSDEGEIVRDTO> psdegeivrs = new ArrayList<PSDEGEIVRDTO>();
-            for (PSDEGEIVR pSDEGEIVR : list) {
+            for (PSDEGEIVR pSDEGEIVR : pSDEGEIVRList) {
                 dstItem = (PSDEGEIVRDTO)PSModelServiceUtil.getInstance().getPSDEGEIVRService().toDTO(pSDEGEIVR);
                 psdegeivrs.add((PSDEGEIVRDTO)dstItem);
             }
             dto.setPsdegeivrs(psdegeivrs);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEGridLogicService().listByPSDEGrid(t)) != null && list.size() > 0) {
+        List<PSDEGridLogic> pSDEGridLogicList = PSModelServiceUtil.getInstance().getPSDEGridLogicService().listByPSDEGrid(t);
+        if (pSDEGridLogicList != null && pSDEGridLogicList.size() > 0) {
             ArrayList<PSDEGridLogicDTO> psdegridlogics = new ArrayList<PSDEGridLogicDTO>();
-            for (PSDEGridLogic pSDEGridLogic : list) {
+            for (PSDEGridLogic pSDEGridLogic : pSDEGridLogicList) {
                 dstItem = (PSDEGridLogicDTO)PSModelServiceUtil.getInstance().getPSDEGridLogicService().toDTO(pSDEGridLogic);
                 psdegridlogics.add((PSDEGridLogicDTO)dstItem);
             }

@@ -2335,7 +2335,7 @@ implements Serializable {
                 PSViewEngine pSViewEngine = new PSViewEngine();
                 pSViewEngine.setPSViewEngineId(this.getPSViewEngineId());
                 PSViewEngineService pSViewEngineService = (PSViewEngineService)ServiceGlobal.getService(PSViewEngineService.class, (SessionFactory)this.getSessionFactory());
-                pSViewEngineService.autoGet((IEntity)pSViewEngine);
+                pSViewEngineService.autoGet(pSViewEngine);
                 this.psviewengine = pSViewEngine;
             }
             return this.psviewengine;

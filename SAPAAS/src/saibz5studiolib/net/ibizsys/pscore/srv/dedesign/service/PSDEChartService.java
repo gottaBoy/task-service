@@ -20,8 +20,6 @@ package net.ibizsys.pscore.srv.dedesign.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import net.ibizsys.paas.entity.EntityBase;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.IServiceWork;
 import net.ibizsys.paas.service.ITransaction;
 import net.ibizsys.paas.service.ServiceGlobal;
@@ -49,7 +47,7 @@ extends PSDEChartServiceBase {
 
     @Override
     public void getDraftWithModel(PSDEChart pSDEChart) throws Exception {
-        this.getDraftTempMajor((IEntity)pSDEChart);
+        this.getDraftTempMajor(pSDEChart);
         pSDEChart.setChartModel(this.getChartModel(pSDEChart));
     }
 
@@ -58,7 +56,7 @@ extends PSDEChartServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSDEChart.getPSDEChartId())) {
             this.getTempMajor(pSDEChart);
         } else {
-            this.getTemp((IEntity)pSDEChart);
+            this.getTemp(pSDEChart);
         }
         pSDEChart.setChartModel(this.getChartModel(pSDEChart));
     }
@@ -96,7 +94,6 @@ extends PSDEChartServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEChartParam pSDEChartParam2;
                 PSDEChartAxesService pSDEChartAxesService = (PSDEChartAxesService)ServiceGlobal.getService((String)PSDEChartAxesService.class.getCanonicalName(), (SessionFactory)PSDEChartService.this.getSessionFactory());
                 ArrayList<PSDEChartAxes> arrayList = pSDEChartAxesService.selectTempByPSDEChart(pSDEChart2);
                 HashMap<String, PSDEChartAxes> hashMap = new HashMap<String, PSDEChartAxes>();
@@ -110,26 +107,26 @@ extends PSDEChartServiceBase {
                     hashMap2.put(pSDEChartParam2.getPSDEChartParamId(), pSDEChartParam2);
                 }
                 String string = pSDEChart2.getChartModel();
-                pSDEChartParam2 = XmlNode.loadFromXML((String)string);
-                if (pSDEChartParam2 != null) {
-                    pSDEChartParam2.setAttribute("PSDEID", pSDEChart2.getPSDEId());
-                    pSDEChartParam2.setAttribute("PSDECHARTID", pSDEChart2.getPSDEChartId());
-                    PSDEChartService.this.updatePSDEChartModel(pSDEChart2, (XmlNode)pSDEChartParam2, hashMap, hashMap2);
-                    pSDEChart2.setChartModel(XmlNode.export((XmlNode)pSDEChartParam2));
+                XmlNode chartModel = XmlNode.loadFromXML(string);
+                if (chartModel != null) {
+                    chartModel.setAttribute("PSDEID", pSDEChart2.getPSDEId());
+                    chartModel.setAttribute("PSDECHARTID", pSDEChart2.getPSDEChartId());
+                    PSDEChartService.this.updatePSDEChartModel(pSDEChart2, chartModel, hashMap, hashMap2);
+                    pSDEChart2.setChartModel(XmlNode.export(chartModel));
                 } else {
                     pSDEChart2.setChartModel(null);
                 }
                 if (hashMap2.size() > 0) {
-                    for (EntityBase entityBase : hashMap2.values()) {
-                        pSDEChartParamService.removeTemp((IEntity)entityBase);
+                    for (PSDEChartParam chartParam : hashMap2.values()) {
+                        pSDEChartParamService.removeTemp(chartParam);
                     }
                 }
                 if (hashMap.size() > 0) {
-                    for (EntityBase entityBase : hashMap.values()) {
-                        pSDEChartAxesService.removeTemp((IEntity)entityBase);
+                    for (PSDEChartAxes chartAxes : hashMap.values()) {
+                        pSDEChartAxesService.removeTemp(chartAxes);
                     }
                 }
-                PSDEChartService.this.createTempMajor((IEntity)pSDEChart2);
+                PSDEChartService.this.createTempMajor(pSDEChart2);
             }
         });
     }
@@ -142,8 +139,6 @@ extends PSDEChartServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEChartParam pSDEChartParam;
-                Object object = null;
                 PSDEChartAxesService pSDEChartAxesService = (PSDEChartAxesService)ServiceGlobal.getService((String)PSDEChartAxesService.class.getCanonicalName(), (SessionFactory)PSDEChartService.this.getSessionFactory());
                 ArrayList<PSDEChartAxes> arrayList = pSDEChartAxesService.selectTempByPSDEChart(pSDEChart2);
                 HashMap<String, PSDEChartAxes> hashMap = new HashMap<String, PSDEChartAxes>();
@@ -153,31 +148,28 @@ extends PSDEChartServiceBase {
                 PSDEChartParamService pSDEChartParamService = (PSDEChartParamService)ServiceGlobal.getService((String)PSDEChartParamService.class.getCanonicalName(), (SessionFactory)PSDEChartService.this.getSessionFactory());
                 ArrayList<PSDEChartParam> arrayList2 = pSDEChartParamService.selectTempByPSDEChart(pSDEChart2);
                 HashMap<String, PSDEChartParam> hashMap2 = new HashMap<String, PSDEChartParam>();
-                Object object2 = arrayList2.iterator();
-                while (object2.hasNext()) {
-                    pSDEChartParam = object2.next();
+                for (PSDEChartParam pSDEChartParam : arrayList2) {
                     hashMap2.put(pSDEChartParam.getPSDEChartParamId(), pSDEChartParam);
                 }
-                object = object2 = pSDEChart2.getChartModel();
-                pSDEChartParam = XmlNode.loadFromXML((String)object2);
-                if (pSDEChartParam != null) {
-                    pSDEChartParam.setAttribute("PSDEID", pSDEChart2.getPSDEId());
-                    pSDEChartParam.setAttribute("PSDECHARTID", pSDEChart2.getPSDEChartId());
-                    PSDEChartService.this.updatePSDEChartModel(pSDEChart2, (XmlNode)pSDEChartParam, hashMap, hashMap2);
-                    pSDEChart2.setChartModel(XmlNode.export((XmlNode)pSDEChartParam));
+                XmlNode chartModel = XmlNode.loadFromXML(pSDEChart2.getChartModel());
+                if (chartModel != null) {
+                    chartModel.setAttribute("PSDEID", pSDEChart2.getPSDEId());
+                    chartModel.setAttribute("PSDECHARTID", pSDEChart2.getPSDEChartId());
+                    PSDEChartService.this.updatePSDEChartModel(pSDEChart2, chartModel, hashMap, hashMap2);
+                    pSDEChart2.setChartModel(XmlNode.export(chartModel));
                 } else {
                     pSDEChart2.setChartModel(null);
                 }
                 boolean bl = false;
                 if (hashMap2.size() > 0) {
-                    for (EntityBase entityBase : hashMap2.values()) {
-                        pSDEChartParamService.removeTemp((IEntity)entityBase);
+                    for (PSDEChartParam chartParam : hashMap2.values()) {
+                        pSDEChartParamService.removeTemp(chartParam);
                         bl = true;
                     }
                 }
                 if (hashMap.size() > 0) {
-                    for (EntityBase entityBase : hashMap.values()) {
-                        pSDEChartAxesService.removeTemp((IEntity)entityBase);
+                    for (PSDEChartAxes chartAxes : hashMap.values()) {
+                        pSDEChartAxesService.removeTemp(chartAxes);
                         bl = true;
                     }
                 }
@@ -189,8 +181,8 @@ extends PSDEChartServiceBase {
     protected void updatePSDEChartModel(PSDEChart pSDEChart, XmlNode xmlNode, HashMap<String, PSDEChartAxes> hashMap, HashMap<String, PSDEChartParam> hashMap2) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
-            ArrayList<Object> arrayList2 = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
+            ArrayList<XmlNode> arrayList2 = new ArrayList<XmlNode>();
             PSDEChartAxesService pSDEChartAxesService = (PSDEChartAxesService)ServiceGlobal.getService((String)PSDEChartAxesService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             PSDEChartParamService pSDEChartParamService = (PSDEChartParamService)ServiceGlobal.getService((String)PSDEChartParamService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             HashMap<String, Integer> hashMap3 = new HashMap<String, Integer>();
@@ -198,18 +190,19 @@ extends PSDEChartServiceBase {
                 String string;
                 Integer n;
                 boolean bl;
-                EntityBase entityBase;
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_DECHARTAXES, (boolean)true) == 0) {
                     String string2 = xmlNode2.getAttribute("PSDECHARTAXESID", "");
-                    if (StringHelper.isNullOrEmpty((String)string2) || (entityBase = hashMap.remove(string2)) == null) continue;
+                    if (StringHelper.isNullOrEmpty((String)string2)) continue;
+                    PSDEChartAxes chartAxes = hashMap.remove(string2);
+                    if (chartAxes == null) continue;
                     bl = false;
-                    if (StringHelper.compare((String)entityBase.getPSDEChartId(), (String)pSDEChart.getPSDEChartId(), (boolean)false) != 0) {
-                        entityBase.setPSDEChartId(pSDEChart.getPSDEChartId());
+                    if (StringHelper.compare((String)chartAxes.getPSDEChartId(), (String)pSDEChart.getPSDEChartId(), (boolean)false) != 0) {
+                        chartAxes.setPSDEChartId(pSDEChart.getPSDEChartId());
                         bl = true;
                     }
-                    if (StringHelper.compare((String)entityBase.getPSDEChartName(), (String)pSDEChart.getPSDEChartName(), (boolean)false) != 0) {
-                        entityBase.setPSDEChartName(pSDEChart.getPSDEChartName());
+                    if (StringHelper.compare((String)chartAxes.getPSDEChartName(), (String)pSDEChart.getPSDEChartName(), (boolean)false) != 0) {
+                        chartAxes.setPSDEChartName(pSDEChart.getPSDEChartName());
                         bl = true;
                     }
                     if ((n = (Integer)hashMap3.get("PSDECHARTAXES")) == null) {
@@ -217,26 +210,28 @@ extends PSDEChartServiceBase {
                     }
                     n = n + 10;
                     hashMap3.put("PSDECHARTAXES", n);
-                    if (entityBase.getOrderValue() == null || entityBase.getOrderValue() != n) {
-                        entityBase.setOrderValue(n);
+                    if (chartAxes.getOrderValue() == null || !chartAxes.getOrderValue().equals(n)) {
+                        chartAxes.setOrderValue(n);
                         bl = true;
                     }
                     if (bl) {
-                        pSDEChartAxesService.updateTemp((IEntity)entityBase);
+                        pSDEChartAxesService.updateTemp(chartAxes);
                     }
                     xmlNode2.resetAttributes();
-                    entityBase.fillXmlNode(xmlNode2, false);
+                    chartAxes.fillXmlNode(xmlNode2, false);
                     arrayList.add(xmlNode2);
                     continue;
                 }
-                if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_DECHARTPARAM, (boolean)true) != 0 || StringHelper.isNullOrEmpty((String)(string = xmlNode2.getAttribute("PSDECHARTPARAMID", ""))) || (entityBase = hashMap2.remove(string)) == null) continue;
+                if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_DECHARTPARAM, (boolean)true) != 0 || StringHelper.isNullOrEmpty((String)(string = xmlNode2.getAttribute("PSDECHARTPARAMID", "")))) continue;
+                PSDEChartParam chartParam = hashMap2.remove(string);
+                if (chartParam == null) continue;
                 bl = false;
-                if (StringHelper.compare((String)entityBase.getPSDEChartId(), (String)pSDEChart.getPSDEChartId(), (boolean)false) != 0) {
-                    entityBase.setPSDEChartId(pSDEChart.getPSDEChartId());
+                if (StringHelper.compare((String)chartParam.getPSDEChartId(), (String)pSDEChart.getPSDEChartId(), (boolean)false) != 0) {
+                    chartParam.setPSDEChartId(pSDEChart.getPSDEChartId());
                     bl = true;
                 }
-                if (StringHelper.compare((String)entityBase.getPSDEChartName(), (String)pSDEChart.getPSDEChartName(), (boolean)false) != 0) {
-                    entityBase.setPSDEChartName(pSDEChart.getPSDEChartName());
+                if (StringHelper.compare((String)chartParam.getPSDEChartName(), (String)pSDEChart.getPSDEChartName(), (boolean)false) != 0) {
+                    chartParam.setPSDEChartName(pSDEChart.getPSDEChartName());
                     bl = true;
                 }
                 if ((n = (Integer)hashMap3.get("PSDECHARTPARAM")) == null) {
@@ -244,15 +239,15 @@ extends PSDEChartServiceBase {
                 }
                 n = n + 10;
                 hashMap3.put("PSDECHARTPARAM", n);
-                if (entityBase.getOrderValue() == null || entityBase.getOrderValue() != n) {
-                    entityBase.setOrderValue(n);
+                if (chartParam.getOrderValue() == null || !chartParam.getOrderValue().equals(n)) {
+                    chartParam.setOrderValue(n);
                     bl = true;
                 }
                 if (bl) {
-                    pSDEChartParamService.updateTemp((IEntity)entityBase);
+                    pSDEChartParamService.updateTemp(chartParam);
                 }
                 xmlNode2.resetAttributes();
-                entityBase.fillXmlNode(xmlNode2, false);
+                chartParam.fillXmlNode(xmlNode2, false);
                 arrayList2.add(xmlNode2);
             }
             xmlNode.resetChildNodes();
@@ -271,4 +266,3 @@ extends PSDEChartServiceBase {
         pSDEChart.setChartModel(this.getChartModel(pSDEChart));
     }
 }
-

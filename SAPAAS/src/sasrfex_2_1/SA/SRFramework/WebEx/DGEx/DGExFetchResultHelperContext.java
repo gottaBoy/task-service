@@ -98,7 +98,7 @@ public class DGExFetchResultHelperContext {
 
     public Vector<DataTable> GetDataGroupGroupDataTables(DataTable dataTable, String strGroupId, Vector<DataTable> dataTables, DGExDataGroupConfig parentDataGroupConfig) throws Exception {
         DGExDataGroupConfig activeDataGroupConfig = parentDataGroupConfig;
-        Vector<Object> lastTables = new Vector<Object>();
+        Vector<DataTable> lastTables = new Vector<DataTable>();
         lastTables.add(dataTable);
         String[] groupIds = strGroupId.split("[.]");
         int i = 0;

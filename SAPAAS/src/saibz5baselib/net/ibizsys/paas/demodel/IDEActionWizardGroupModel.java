@@ -1,17 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
 import net.ibizsys.paas.core.IDEActionWizardGroup;
 import net.ibizsys.paas.core.IModelBase3;
-import net.ibizsys.paas.demodel.IDEActionWizardModel;
 import net.ibizsys.paas.view.IViewWizardGroupModel;
 
-public interface IDEActionWizardGroupModel
-extends IDEActionWizardGroup,
-IViewWizardGroupModel,
-IModelBase3 {
-    public void registerDEActionWizardModel(IDEActionWizardModel var1) throws Exception;
+/**
+ * 实体操作向导组模型接口
+ * @author Administrator
+ *
+ */
+public interface IDEActionWizardGroupModel extends IDEActionWizardGroup,IViewWizardGroupModel,IModelBase3 {
+	
+	/**
+	 * 注册实体操作向导模型
+	 * @param iDEActionWizardModel
+	 * @throws Exception
+	 */
+	void registerDEActionWizardModel(IDEActionWizardModel iDEActionWizardModel) throws Exception;
+	
+	
+	
+	
 }
-

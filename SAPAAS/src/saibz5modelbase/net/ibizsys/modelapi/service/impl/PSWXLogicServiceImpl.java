@@ -75,7 +75,7 @@ implements IPSWXLogicService {
     @Override
     protected List<PSWXLogic> onListAll() throws Exception {
         ArrayList<PSWXLogic> list = new ArrayList<PSWXLogic>();
-        List pswxaccounts = PSModelServiceUtil.getInstance().getPSWXAccountService().listAll();
+        List<PSWXAccount> pswxaccounts = PSModelServiceUtil.getInstance().getPSWXAccountService().listAll();
         if (pswxaccounts != null) {
             for (PSWXAccount parent : pswxaccounts) {
                 List<PSWXLogic> items = this.listByPSWXAccount(parent);

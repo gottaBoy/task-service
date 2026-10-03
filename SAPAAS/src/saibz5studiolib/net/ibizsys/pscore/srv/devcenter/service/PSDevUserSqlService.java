@@ -74,17 +74,17 @@ extends PSDevUserSqlServiceBase {
         pSDevCenterDBInst.setPSDevCenterDBInstId(string2);
         if (string2.indexOf("JITDBINST:") == 0) {
             string = string2.substring("JITDBINST:".length());
-            object = (PSDBDevInstService)ServiceGlobal.getService(PSDBDevInstService.class);
+            PSDBDevInstService dbDevInstService = (PSDBDevInstService)ServiceGlobal.getService(PSDBDevInstService.class);
             pSDBDevInst = new PSDBDevInst();
             pSDBDevInst.setPSDBDevInstId(string);
-            if (!object.get((IEntity)pSDBDevInst, true)) {
+            if (!dbDevInstService.get(pSDBDevInst, true)) {
                 throw new Exception("\u6307\u5b9a\u5e73\u53f0\u6570\u636e\u5e93\u4e0d\u5b58\u5728");
             }
             if (StringHelper.compare((String)pSDBDevInst.getPSDevCenterId(), (String)this.getWebContext().getCurOrgId(), (boolean)false) != 0) {
                 throw new Exception("\u5f53\u524d\u7528\u6237\u8eab\u4efd\u4e0d\u6b63\u786e");
             }
         } else {
-            if (!pSDevCenterDBInstService.get((IEntity)pSDevCenterDBInst, true)) {
+            if (!pSDevCenterDBInstService.get(pSDevCenterDBInst, true)) {
                 throw new Exception("\u6307\u5b9a\u5e94\u7528\u4e2d\u5fc3\u6570\u636e\u5e93\u4e0d\u5b58\u5728");
             }
             if (StringHelper.compare((String)pSDevCenterDBInst.getPSDevCenterId(), (String)this.getWebContext().getCurOrgId(), (boolean)false) != 0) {
@@ -92,24 +92,23 @@ extends PSDevUserSqlServiceBase {
             }
         }
         pSDevCenterDBInst.set("SRFSQL", string3);
-        pSDevCenterDBInstService.executeAction("X2G_EXECUTESQL", (IEntity)pSDevCenterDBInst);
+        pSDevCenterDBInstService.executeAction("X2G_EXECUTESQL", pSDevCenterDBInst);
         string = DataObject.getStringValue((IDataObject)pSDevCenterDBInst, (String)"SRFSQLERROR", null);
         if (!StringHelper.isNullOrEmpty((String)string)) {
             this.getWebContext().getCurAjaxActionResult().setExtAttr("sqlerror", (Object)string);
             return;
         }
-        object = DataObject.getStringValue((IDataObject)pSDevCenterDBInst, (String)"SRFMODELLIST", null);
-        if (!StringHelper.isNullOrEmpty((String)object)) {
-            pSDBDevInst = JSONArray.fromString((String)new String(Base64Helper.decode((String)object), "GBK"));
-            this.getWebContext().getCurAjaxActionResult().setExtAttr("results", (Object)pSDBDevInst);
+        String modelList = DataObject.getStringValue((IDataObject)pSDevCenterDBInst, (String)"SRFMODELLIST", null);
+        if (!StringHelper.isNullOrEmpty(modelList)) {
+            JSONArray results = JSONArray.fromString(new String(Base64Helper.decode(modelList), "GBK"));
+            this.getWebContext().getCurAjaxActionResult().setExtAttr("results", (Object)results);
             String string4 = DataObject.getStringValue((IDataObject)pSDevCenterDBInst, (String)"SRFCOLUMNS", null);
             if (!StringHelper.isNullOrEmpty((String)string4)) {
-                pSDBDevInst = JSONArray.fromString((String)new String(Base64Helper.decode((String)string4), "GBK"));
-                this.getWebContext().getCurAjaxActionResult().setExtAttr("columns", (Object)pSDBDevInst);
+                JSONArray columns = JSONArray.fromString(new String(Base64Helper.decode(string4), "GBK"));
+                this.getWebContext().getCurAjaxActionResult().setExtAttr("columns", (Object)columns);
             }
         }
         int n = DataObject.getIntegerValue((IDataObject)pSDevCenterDBInst, (String)"SRFUPDATECOUNT", (int)-1);
         this.getWebContext().getCurAjaxActionResult().setExtAttr("updatecount", (Object)n);
     }
 }
-

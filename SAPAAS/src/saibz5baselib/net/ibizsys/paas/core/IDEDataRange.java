@@ -1,40 +1,134 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
+/**
+ * 实体数据范围接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IDEDataRange {
-    public static final int ORG_CURRENT = 1;
-    public static final int ORG_PARENT = 2;
-    public static final int ORG_CHILD = 4;
-    public static final int ORG_NULL = 8;
-    public static final int SECTOR_CURRENT = 1;
-    public static final int SECTOR_PARENT = 2;
-    public static final int SECTOR_CHILD = 4;
-    public static final int SECTOR_NULL = 8;
+	/**
+	 * 当前组织
+	 */
+	public final static int ORG_CURRENT = 1;
 
-    public boolean isEnableOrgDR();
+	/**
+	 * 上级组织
+	 */
+	public final static int ORG_PARENT = 2;
 
-    public boolean isEnableSecDR();
+	/**
+	 * 下级组织
+	 */
+	public final static int ORG_CHILD = 4;
+	
+	/**
+	 * 无组织值
+	 */
+	public final static int ORG_NULL = 8;
+	
 
-    public boolean isEnableSecBC();
+	/**
+	 * 当前部门
+	 */
+	public final static int SECTOR_CURRENT = 1;
 
-    public long getOrgDR();
+	/**
+	 * 上级部门
+	 */
+	public final static int SECTOR_PARENT = 2;
 
-    public long getSecDR();
+	/**
+	 * 下级部门
+	 */
+	public final static int SECTOR_CHILD = 4;
+	
+	/**
+	 * 无部门值
+	 */
+	public final static int SECTOR_NULL = 8;
 
-    public String getSecBC();
+	/**
+	 * 是否启用机构数据范围
+	 * 
+	 * @return
+	 */
+	boolean isEnableOrgDR();
 
-    public boolean isEnableUserDR();
+	/**
+	 * 是否启用部门数据范围
+	 * 
+	 * @return
+	 */
+	boolean isEnableSecDR();
 
-    public String getUserDRAction();
+	/**
+	 * 是否启用部门业务代码
+	 * 
+	 * @return
+	 */
+	boolean isEnableSecBC();
 
-    public String getCustomDRMode();
+	/**
+	 * 获取机构数据范围
+	 * 
+	 * @return
+	 */
+	long getOrgDR();
 
-    public String getCustomDRMode2();
+	/**
+	 * 获取部门数据范围
+	 * 
+	 * @return
+	 */
+	long getSecDR();
 
-    public String getCustomDRModeParam();
+	/**
+	 * 获取部门业务代码，多个使用 [;]间隔
+	 * 
+	 * @return
+	 */
+	String getSecBC();
 
-    public String getCustomDRMode2Param();
+	/**
+	 * 是否启用用户数据范围
+	 * 
+	 * @return
+	 */
+	boolean isEnableUserDR();
+
+	/**
+	 * 获取用户数据范围对应的操作
+	 * 
+	 * @return
+	 */
+	String getUserDRAction();
+
+	/**
+	 * 获取自定义数据范围模式
+	 * 
+	 * @return
+	 */
+	String getCustomDRMode();
+
+	/**
+	 * 获取自定义数据范围模式2
+	 * 
+	 * @return
+	 */
+	String getCustomDRMode2();
+
+	/**
+	 * 获取自定义数据范围模式参数
+	 * 
+	 * @return
+	 */
+	String getCustomDRModeParam();
+
+	/**
+	 * 获取自定义数据范围模式2参数
+	 * 
+	 * @return
+	 */
+	String getCustomDRMode2Param();
 }
-

@@ -57,7 +57,7 @@ extends PSDEWizardFormServiceBase {
         pSDEWizardStep.setStepTag(pSDEWizardForm.getFormTag());
         pSDEWizardStep.setSessionFactory(this.getSessionFactory());
         boolean bl2 = false;
-        bl2 = bl ? pSDEWizardStepService.selectTempOne((IEntity)pSDEWizardStep, true) : pSDEWizardStepService.selectOne((IEntity)pSDEWizardStep, true);
+        bl2 = bl ? pSDEWizardStepService.selectTempOne(pSDEWizardStep, true) : pSDEWizardStepService.selectOne(pSDEWizardStep, true);
         if (!bl2) {
             block10: {
                 PSDEWizardStep pSDEWizardStep2;
@@ -83,11 +83,11 @@ extends PSDEWizardFormServiceBase {
                     pSDEWizardStep2.setPSDEWizardStepName(StringHelper.format((String)"%1$s%2$s", (Object)string, (Object)(++n2 == 1 ? "" : Integer.valueOf(n2))));
                     pSDEWizardStep2.setSessionFactory(this.getSessionFactory());
                     if (bl) {
-                        if (pSDEWizardStepService.selectTempOne((IEntity)pSDEWizardStep2, true)) continue;
+                        if (pSDEWizardStepService.selectTempOne(pSDEWizardStep2, true)) continue;
                         pSDEWizardStep.setPSDEWizardStepName(pSDEWizardStep2.getPSDEWizardStepName());
                         break block10;
                     }
-                    if (!pSDEWizardStepService.selectOne((IEntity)pSDEWizardStep2, true)) break;
+                    if (!pSDEWizardStepService.selectOne(pSDEWizardStep2, true)) break;
                 }
                 pSDEWizardStep.setPSDEWizardStepName(pSDEWizardStep2.getPSDEWizardStepName());
             }

@@ -168,8 +168,8 @@ extends SRFExWebHttpModule {
             accKeyList.add(Math.abs(random.nextInt(10000000)));
             ++i2;
         }
-        for (int i2 : accKeyList) {
-            accKeyMap.put(i2, 0);
+        for (int key : accKeyList) {
+            accKeyMap.put(key, 0);
         }
     }
 
@@ -495,8 +495,7 @@ extends SRFExWebHttpModule {
                             // empty catch block
                         }
                     }
-                    removeSession = userSessionMap;
-                    synchronized (removeSession) {
+                    synchronized (userSessionMap) {
                         userSessionMap.put(strSessionId, request.getSession());
                     }
                 }

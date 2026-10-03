@@ -135,10 +135,10 @@ implements IPSModelInitDataCtrl {
     }
 
     protected void onFixDBConfig(PSDEDBConfig psDEDBConfig) throws Exception {
-        Vector psDESysProcCodeList;
-        Vector psDEFDTColumnList;
+        Vector<PSDEDBSysProcCode> psDESysProcCodeList;
+        Vector<PSDEFDTColumnV3> psDEFDTColumnList;
         String srSQL = StringHelper.Format((String)" select t1.psdefieldid as PSDEFID,t1.psdefieldname as PSDEFNAME  from t_srfpsdefield t1 left join t_srfpsdefdtcol  t2 on (t1.PSDEFIELDID = t2.PSDEFID and t2.DBTYPE='%1$s' ) where t1.PSDEID='%2$s' AND t2.PSDEFDTCOLID is  null", (Object)psDEDBConfig.getPSDEDBCFGNAME(), (Object)psDEDBConfig.getPSDEID());
-        CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.globalHelperEx, (String)srSQL, psDEFDTColumnList = new Vector(), (String)PSDEFDTColumn.class.getName());
+        CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.globalHelperEx, (String)srSQL, psDEFDTColumnList = new Vector<PSDEFDTColumnV3>(), (String)PSDEFDTColumnV3.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5c5e\u6027\u6570\u636e\u5217\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
         }
@@ -165,4 +165,3 @@ implements IPSModelInitDataCtrl {
         }
     }
 }
-

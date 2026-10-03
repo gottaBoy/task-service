@@ -49,7 +49,7 @@ extends XMLCollectionExConfig<WFBaseProcessConfig> {
 
     protected boolean OnChildNodeLoaded(WFBaseProcessConfig childNode) {
         childNode.setParentProcessConfig(this.processConfig);
-        return super.OnChildNodeLoaded((Object)childNode);
+        return super.OnChildNodeLoaded(childNode);
     }
 
     public void OnLoadNode(String strName, Node xmlNode) {
@@ -58,7 +58,7 @@ extends XMLCollectionExConfig<WFBaseProcessConfig> {
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = WFProcessesConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
             if (this.OnChildNodeLoaded((WFBaseProcessConfig)childNode)) {
-                this.add((Object)((WFBaseProcessConfig)childNode));
+                this.add((WFBaseProcessConfig)childNode);
                 return;
             }
         }

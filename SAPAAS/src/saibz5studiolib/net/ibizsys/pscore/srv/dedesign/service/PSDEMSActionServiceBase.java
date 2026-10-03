@@ -168,9 +168,9 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
             PSDEAction pSDEAction = (PSDEAction)iService.getDEModel().createEntity();
             pSDEAction.set("PSDEACTIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEAction);
+                iService.getTemp(pSDEAction);
             } else {
-                iService.get((IEntity)pSDEAction);
+                iService.get(pSDEAction);
             }
             this.onFillParentInfo_PSDEAction(pSDEMSAction, pSDEAction);
             return;
@@ -180,14 +180,14 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
             PSDEMainState pSDEMainState = (PSDEMainState)iService.getDEModel().createEntity();
             pSDEMainState.set("PSDEMAINSTATEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEMainState);
+                iService.getTemp(pSDEMainState);
             } else {
-                iService.get((IEntity)pSDEMainState);
+                iService.get(pSDEMainState);
             }
             this.onFillParentInfo_PSDEMS(pSDEMSAction, pSDEMainState);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEMSAction, string, string2, string3);
+        super.onFillParentInfo(pSDEMSAction, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -233,7 +233,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
                 pSDEMSAction.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDEMSAction, bl);
+        super.onFillEntityFullInfo(pSDEMSAction, bl);
         this.onFillEntityFullInfo_PSDEAction(pSDEMSAction, bl);
         this.onFillEntityFullInfo_PSDEMS(pSDEMSAction, bl);
     }
@@ -245,7 +245,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
     }
 
     protected void onWriteBackParent(PSDEMSAction pSDEMSAction, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEMSAction, bl);
+        super.onWriteBackParent(pSDEMSAction, bl);
     }
 
     public ArrayList<PSDEMSAction> selectByPSDEAction(PSDEActionBase pSDEActionBase) throws Exception {
@@ -315,8 +315,8 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
         ArrayList<PSDEMSAction> arrayList = this.selectByPSDEAction(pSDEAction, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEACTION");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEAction);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMSACTION_PSDEACTION_PSDEACTIONID", "", iDataEntityModel.getName(), "PSDEMSACTION", iDataEntityModel.getDataInfo((IEntity)pSDEAction), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEAction);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMSACTION_PSDEACTION_PSDEACTIONID", "", iDataEntityModel.getName(), "PSDEMSACTION", iDataEntityModel.getDataInfo(pSDEAction), arrayList.get(0)));
         }
     }
 
@@ -349,7 +349,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
         ArrayList<PSDEMSAction> arrayList = this.selectByPSDEAction(pSDEAction);
         this.onBeforeRemoveByPSDEAction(pSDEAction, arrayList);
         for (PSDEMSAction pSDEMSAction : arrayList) {
-            this.remove((IEntity)pSDEMSAction);
+            this.remove(pSDEMSAction);
         }
         this.onAfterRemoveByPSDEAction(pSDEAction, arrayList);
     }
@@ -382,7 +382,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
             PSDEMSAction pSDEMSAction2 = (PSDEMSAction)this.getDEModel().createEntity();
             pSDEMSAction2.setPSDEMSActionId(pSDEMSAction.getPSDEMSActionId());
             pSDEMSAction2.setPSDEMSId(null);
-            this.updateTemp((IEntity)pSDEMSAction2);
+            this.updateTemp(pSDEMSAction2);
         }
     }
 
@@ -405,7 +405,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
         ArrayList<PSDEMSAction> arrayList = this.selectByPSDEMS(pSDEMainState);
         this.onBeforeRemoveByPSDEMS(pSDEMainState, arrayList);
         for (PSDEMSAction pSDEMSAction : arrayList) {
-            this.remove((IEntity)pSDEMSAction);
+            this.remove(pSDEMSAction);
         }
         this.onAfterRemoveByPSDEMS(pSDEMainState, arrayList);
     }
@@ -443,7 +443,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
         ArrayList<PSDEMSAction> arrayList = this.selectTempByPSDEMS(pSDEMainState);
         this.onBeforeRemoveTempByPSDEMS(pSDEMainState, arrayList);
         for (PSDEMSAction pSDEMSAction : arrayList) {
-            this.removeTemp((IEntity)pSDEMSAction);
+            this.removeTemp(pSDEMSAction);
         }
         this.onAfterRemoveTempByPSDEMS(pSDEMainState, arrayList);
     }
@@ -459,7 +459,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
 
     protected void replaceParentInfo(PSDEMSAction pSDEMSAction, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEMSAction, cloneSession);
+        super.replaceParentInfo(pSDEMSAction, cloneSession);
         if (pSDEMSAction.getPSDEActionId() != null && (iEntity = cloneSession.getEntity("PSDEACTION", (Object)pSDEMSAction.getPSDEActionId())) != null) {
             this.onFillParentInfo_PSDEAction(pSDEMSAction, (PSDEAction)iEntity);
         }
@@ -469,7 +469,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEMSAction pSDEMSAction, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEMSAction, bl);
+        super.onRemoveEntityUncopyValues(pSDEMSAction, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEMSAction pSDEMSAction, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -508,7 +508,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDEMSAction, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEMSAction, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEMSAction, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSDEMSAction pSDEMSAction, boolean bl2, boolean bl3) throws Exception {
@@ -521,7 +521,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEMSAction, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEMSAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -546,7 +546,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEActionId_Default((IEntity)pSDEMSAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEActionId_Default(pSDEMSAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEACTIONID");
@@ -571,7 +571,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEMSActionId_Default((IEntity)pSDEMSAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEMSActionId_Default(pSDEMSAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMSACTIONID");
@@ -596,7 +596,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEMSActionName_Default((IEntity)pSDEMSAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEMSActionName_Default(pSDEMSAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMSACTIONNAME");
@@ -621,7 +621,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEMSId_Default((IEntity)pSDEMSAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEMSId_Default(pSDEMSAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMSID");
@@ -643,7 +643,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSDEMSAction, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSDEMSAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -665,7 +665,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDEMSAction, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDEMSAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -687,7 +687,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDEMSAction, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDEMSAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -709,7 +709,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDEMSAction, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDEMSAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -731,7 +731,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDEMSAction, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDEMSAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -753,7 +753,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDEMSAction, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDEMSAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -766,11 +766,11 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
     }
 
     protected void onSyncEntity(PSDEMSAction pSDEMSAction, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEMSAction, bl);
+        super.onSyncEntity(pSDEMSAction, bl);
     }
 
     protected void onSyncIndexEntities(PSDEMSAction pSDEMSAction, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEMSAction, bl);
+        super.onSyncIndexEntities(pSDEMSAction, bl);
     }
 
     public Object getDataContextValue(PSDEMSAction pSDEMSAction, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -778,7 +778,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEMSAction, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEMSAction, string, iDataContextParam)) != null) {
             return object;
         }
         PSDEAction pSDEAction = pSDEMSAction.getPSDEAction();
@@ -793,7 +793,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
     }
 
     protected void onExportMajorModel(PSDEMSAction pSDEMSAction, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEMSAction, arrayList, n);
+        super.onExportMajorModel(pSDEMSAction, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1063,7 +1063,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
 
     protected boolean onMergeChild(String string, String string2, PSDEMSAction pSDEMSAction) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEMSAction)) {
+        if (super.onMergeChild(string, string2, pSDEMSAction)) {
             bl = true;
         }
         return bl;
@@ -1075,7 +1075,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEActionService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSDEMSACTION_PSDEACTION_PSDEACTIONID", object);
         }
-        super.onUpdateParent((IEntity)pSDEMSAction);
+        super.onUpdateParent(pSDEMSAction);
     }
 
     protected boolean isNeedUpdateParent() {
@@ -1099,7 +1099,7 @@ extends PSCoreSysServiceBase<PSDEMSAction> {
         PSDEMSAction pSDEMSAction2 = new PSDEMSAction();
         pSDEMSAction2.setPSDEMSId(pSDEMSAction.getPSDEMSId());
         pSDEMSAction2.setPSDEActionId(pSDEMSAction.getPSDEActionId());
-        if (this.selectOne((IEntity)pSDEMSAction2, true)) {
+        if (this.selectOne(pSDEMSAction2, true)) {
             return pSDEMSAction2.getPSDEMSActionId();
         }
         return super.getEntityFolderKeyValue(pSDEMSAction, pSSystem);

@@ -56,7 +56,7 @@ extends PSDevSlnSysDynaInstRefServiceBase {
 
     @Override
     protected void onAfterRemove(PSDevSlnSysDynaInstRef pSDevSlnSysDynaInstRef) throws Exception {
-        PSDevSlnSysDynaInstRef pSDevSlnSysDynaInstRef2 = (PSDevSlnSysDynaInstRef)this.getLast((IEntity)pSDevSlnSysDynaInstRef);
+        PSDevSlnSysDynaInstRef pSDevSlnSysDynaInstRef2 = (PSDevSlnSysDynaInstRef)this.getLast(pSDevSlnSysDynaInstRef);
         if (!StringHelper.isNullOrEmpty((String)pSDevSlnSysDynaInstRef2.getPSDevSlnSysDynaInstId())) {
             PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)this.getSessionFactory());
             PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();

@@ -74,7 +74,7 @@ implements IPSDEGEIVRService {
     @Override
     protected List<PSDEGEIVR> onListAll() throws Exception {
         ArrayList<PSDEGEIVR> list = new ArrayList<PSDEGEIVR>();
-        List psdegrids = PSModelServiceUtil.getInstance().getPSDEGridService().listAll();
+        List<PSDEGrid> psdegrids = PSModelServiceUtil.getInstance().getPSDEGridService().listAll();
         if (psdegrids != null) {
             for (PSDEGrid parent : psdegrids) {
                 List<PSDEGEIVR> items = this.listByPSDEGrid(parent);

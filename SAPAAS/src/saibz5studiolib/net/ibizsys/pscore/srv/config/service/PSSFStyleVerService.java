@@ -1,340 +1,342 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IDEDataSetFetchContext
- *  net.ibizsys.paas.data.DataObject
- *  net.ibizsys.paas.db.DBFetchResult
- *  net.ibizsys.paas.db.ISelectCond
- *  net.ibizsys.paas.db.SelectCond
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.paas.service.ServiceGlobal
- *  net.ibizsys.paas.util.StringHelper
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.hibernate.SessionFactory
- *  org.springframework.stereotype.Component
- */
 package net.ibizsys.pscore.srv.config.service;
 
 import java.io.File;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Map.Entry;
 import net.ibizsys.paas.core.IDEDataSetFetchContext;
 import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.db.DBFetchResult;
-import net.ibizsys.paas.db.ISelectCond;
 import net.ibizsys.paas.db.SelectCond;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
-import net.ibizsys.pscore.srv.PSCoreSysServiceBaseBase;
 import net.ibizsys.pscore.srv.config.entity.PSSFCodeFolder;
 import net.ibizsys.pscore.srv.config.entity.PSSFCodeTempl;
 import net.ibizsys.pscore.srv.config.entity.PSSFCodeType;
-import net.ibizsys.pscore.srv.config.entity.PSSFCodeTypeBase;
-import net.ibizsys.pscore.srv.config.entity.PSSFStyleBase;
+import net.ibizsys.pscore.srv.config.entity.PSSFStyle;
 import net.ibizsys.pscore.srv.config.entity.PSSFStyleVer;
 import net.ibizsys.pscore.srv.config.entity.PSSFVerCode;
-import net.ibizsys.pscore.srv.config.entity.PSSFVerCodeBase;
 import net.ibizsys.pscore.srv.config.entity.PSSFVerCodeItem;
-import net.ibizsys.pscore.srv.config.entity.PSSFVerCodeItemBase;
-import net.ibizsys.pscore.srv.config.service.PSPFStyleService;
-import net.ibizsys.pscore.srv.config.service.PSSFCodeTypeService;
-import net.ibizsys.pscore.srv.config.service.PSSFStyleVerServiceBase;
-import net.ibizsys.pscore.srv.config.service.PSSFVerCodeItemService;
-import net.ibizsys.pscore.srv.config.service.PSSFVerCodeService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PSSFStyleVerService
-extends PSSFStyleVerServiceBase {
-    private static final Log log = LogFactory.getLog(PSSFStyleVerService.class);
-    public static final String PARAM_PRJFOLDER = "SRFPRJFOLDER";
+public class PSSFStyleVerService extends PSSFStyleVerServiceBase {
+   private static final Log log = LogFactory.getLog(PSSFStyleVerService.class);
+   public static final String PARAM_PRJFOLDER = "SRFPRJFOLDER";
 
-    @Override
-    protected void onPublish(PSSFStyleVer pSSFStyleVer) throws Exception {
-        this.executeRemoteCall2All("PUBLISHSTYLE", (IEntity)pSSFStyleVer);
-    }
+   @Override
+   protected void onPublish(PSSFStyleVer var1) throws Exception {
+      this.executeRemoteCall2All("PUBLISHSTYLE", var1);
+   }
 
-    /*
-     * WARNING - void declaration
-     */
-    @Override
-    protected void onImpStyleVer(PSSFStyleVer pSSFStyleVer) throws Exception {
-        Serializable serializable;
-        Object object;
-        Serializable serializable222;
-        String string = DataObject.getStringValue((Object)pSSFStyleVer.get(PARAM_PRJFOLDER));
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception("\u5f53\u524d\u6ca1\u6709\u6307\u5b9a\u9879\u76ee\u76ee\u5f55");
-        }
-        this.get((IEntity)pSSFStyleVer);
-        SelectCond selectCond = new SelectCond();
-        selectCond.set("PSSFSTYLEID", (Object)pSSFStyleVer.getPSSFStyleId());
-        PSSFCodeTypeService pSSFCodeTypeService = (PSSFCodeTypeService)ServiceGlobal.getService(PSSFCodeTypeService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList arrayList = pSSFCodeTypeService.select((ISelectCond)selectCond);
-        HashMap<String, Serializable> hashMap = new HashMap<String, Serializable>();
-        for (Serializable serializable222 : arrayList) {
-            if (!DataObject.getBoolValue((Integer)((PSSFCodeTypeBase)serializable222).getValidFlag(), (boolean)true)) continue;
-            hashMap.put(((PSSFCodeTypeBase)serializable222).getTypeCode().toUpperCase(), serializable222);
-            hashMap.put(((PSSFCodeTypeBase)serializable222).getPSSFCodeTypeId(), serializable222);
-        }
-        HashMap hashMap2 = new HashMap();
-        serializable222 = pSSFStyleVer.getPSSFVerCodes();
-        Object object2 = ((ArrayList)serializable222).iterator();
-        while (object2.hasNext()) {
-            object = (PSSFVerCode)object2.next();
-            serializable = (PSSFCodeType)hashMap.get(((PSSFVerCodeBase)object).getPSSFCodeTypeId());
-            if (serializable == null) {
-                throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u670d\u52a1\u4ee3\u7801\u6a21\u677f[%1$s][%2$s]", (Object)((PSSFVerCodeBase)object).getPSSFCodeTypeId(), (Object)((PSSFVerCodeBase)object).getPSSFCodeTypeName()));
+   @Override
+   protected void onImpStyleVer(PSSFStyleVer var1) throws Exception {
+      String var2 = DataObject.getStringValue(var1.get("SRFPRJFOLDER"));
+      if (StringHelper.isNullOrEmpty(var2)) {
+         throw new Exception("当前没有指定项目目录");
+      }
+
+      this.get(var1);
+      SelectCond var3 = new SelectCond();
+      var3.set("PSSFSTYLEID", var1.getPSSFStyleId());
+      PSSFCodeTypeService var4 = (PSSFCodeTypeService)ServiceGlobal.getService(PSSFCodeTypeService.class, this.getSessionFactory());
+      ArrayList<PSSFCodeType> var5 = var4.select(var3);
+      HashMap<String, PSSFCodeType> var6 = new HashMap<String, PSSFCodeType>();
+
+      for (PSSFCodeType var8 : var5) {
+         if (DataObject.getBoolValue(var8.getValidFlag(), true)) {
+            var6.put(var8.getTypeCode().toUpperCase(), var8);
+            var6.put(var8.getPSSFCodeTypeId(), var8);
+         }
+      }
+
+      HashMap<String, PSSFVerCode> var31 = new HashMap<String, PSSFVerCode>();
+
+      for (PSSFVerCode var10 : var1.getPSSFVerCodes()) {
+         PSSFCodeType var11 = (PSSFCodeType)var6.get(var10.getPSSFCodeTypeId());
+         if (var11 == null) {
+            throw new Exception(StringHelper.format("无法获取服务代码模板[%1$s][%2$s]", var10.getPSSFCodeTypeId(), var10.getPSSFCodeTypeName()));
+         }
+
+         var31.put(var11.getTypeCode().toUpperCase(), var10);
+      }
+
+      PSSFVerCodeService var33 = (PSSFVerCodeService)ServiceGlobal.getService(PSSFVerCodeService.class, this.getSessionFactory());
+      PSSFVerCodeItemService var34 = (PSSFVerCodeItemService)ServiceGlobal.getService(PSSFVerCodeItemService.class, this.getSessionFactory());
+      File var35 = new File(var2);
+      if (!var35.exists()) {
+         var35.mkdirs();
+      }
+
+      try {
+         File[] var12 = var35.listFiles();
+
+         for (File var16 : var12) {
+            if (var16.isDirectory()) {
+               String var17 = var16.getName();
+               PSSFCodeType var18 = (PSSFCodeType)var6.get(var17.toUpperCase());
+               if (var18 == null) {
+                  throw new Exception(StringHelper.format("当前服务代码框架[%1$s]不存在代码类型[%2$s]", var1.getPSSFStyleName(), var17.toUpperCase()));
+               }
+
+               HashMap<String, File> var19 = new HashMap<String, File>();
+
+               for (File var23 : var16.listFiles()) {
+                  if (var23.isFile()) {
+                     var19.put(var23.getName().toUpperCase(), var23);
+                  }
+               }
+
+               String var40 = "";
+               if (!StringHelper.isNullOrEmpty(var18.getFileExt())) {
+                  var40 = "." + var18.getFileExt();
+               }
+
+               File var41 = null;
+               if (StringHelper.isNullOrEmpty(var40)) {
+                  var41 = (File)var19.remove("MAIN");
+               } else {
+                  var41 = (File)var19.remove("MAIN" + var40.toUpperCase());
+               }
+
+               if (var41 == null) {
+                  continue;
+               }
+
+               boolean var43 = false;
+               PSSFVerCode var45 = (PSSFVerCode)var31.remove(var18.getTypeCode().toUpperCase());
+               HashMap<String, PSSFVerCodeItem> var24 = new HashMap<String, PSSFVerCodeItem>();
+               if (var45 == null) {
+                  var43 = true;
+                  var45 = new PSSFVerCode();
+                  var45.setPSSFVerCodeName(var18.getPSSFCodeTypeName());
+                  var45.setPSSFStyleVerId(var1.getPSSFStyleVerId());
+                  var45.setPSSFStyleVerName(var1.getPSSFStyleVerName());
+                  var45.setPSSFCodeTypeId(var18.getPSSFCodeTypeId());
+                  var45.setPSSFCodeTypeName(var18.getPSSFCodeTypeName());
+               }
+
+               String var25 = PSPFStyleService.readFile(var41.getAbsolutePath());
+               var45.setCodeTempl(var25);
+               var45.setTemplCode2(var25);
+               if (var43) {
+                  var33.create(var45);
+               } else {
+                  var33.update(var45);
+
+                  for (PSSFVerCodeItem var28 : var45.getPSSFVerCodeItems()) {
+                     var24.put(var28.getPSSFVerCodeItemName().toUpperCase(), var28);
+                  }
+               }
+
+               for (Entry<String, File> var49 : var19.entrySet()) {
+                  String var51 = (String)var49.getKey();
+                  if (!StringHelper.isNullOrEmpty(var40)) {
+                     if (var51.indexOf(var40.toUpperCase()) != var51.length() - var40.length()) {
+                        continue;
+                     }
+
+                     var51 = var51.substring(0, var51.length() - var40.length());
+                  }
+
+                  var43 = false;
+                  PSSFVerCodeItem var29 = (PSSFVerCodeItem)var24.remove(var51);
+                  if (var29 == null) {
+                     var43 = true;
+                     var29 = new PSSFVerCodeItem();
+                     var29.setPSSFStyleVerId(var1.getPSSFStyleVerId());
+                     var29.setPSSFVerCodeId(var45.getPSSFVerCodeId());
+                     var29.setPSSFVerCodeItemName(var51);
+                  }
+
+                  var25 = PSPFStyleService.readFile(((File)var49.getValue()).getAbsolutePath());
+                  var29.setTemplCode2(var25);
+                  var29.setTemplCode(var25);
+                  if (var43) {
+                     var34.create(var29);
+                  } else {
+                     var34.update(var29);
+                  }
+               }
+
+               for (Entry<String, PSSFVerCodeItem> var50 : var24.entrySet()) {
+                  var34.remove(var50.getValue());
+               }
             }
-            hashMap2.put(((PSSFCodeTypeBase)serializable).getTypeCode().toUpperCase(), object);
-        }
-        object2 = (PSSFVerCodeService)ServiceGlobal.getService(PSSFVerCodeService.class, (SessionFactory)this.getSessionFactory());
-        object = (PSSFVerCodeItemService)ServiceGlobal.getService(PSSFVerCodeItemService.class, (SessionFactory)this.getSessionFactory());
-        serializable = new File(string);
-        if (!((File)serializable).exists()) {
-            ((File)serializable).mkdirs();
-        }
-        try {
-            File[] fileArray;
-            for (File file : fileArray = ((File)serializable).listFiles()) {
-                if (file.isDirectory()) {
-                    Object object3;
-                    void var23_33;
-                    String string2 = file.getName();
-                    PSSFCodeType pSSFCodeType = (PSSFCodeType)hashMap.get(string2.toUpperCase());
-                    if (pSSFCodeType == null) {
-                        throw new Exception(StringHelper.format((String)"\u5f53\u524d\u670d\u52a1\u4ee3\u7801\u6846\u67b6[%1$s]\u4e0d\u5b58\u5728\u4ee3\u7801\u7c7b\u578b[%2$s]", (Object)pSSFStyleVer.getPSSFStyleName(), (Object)string2.toUpperCase()));
-                    }
-                    HashMap<String, File> hashMap3 = new HashMap<String, File>();
-                    for (File file2 : file.listFiles()) {
-                        if (!file2.isFile()) continue;
-                        hashMap3.put(file2.getName().toUpperCase(), file2);
-                    }
-                    Object object4 = "";
-                    if (!StringHelper.isNullOrEmpty((String)pSSFCodeType.getFileExt())) {
-                        object4 = "." + pSSFCodeType.getFileExt();
-                    }
-                    File file3 = null;
-                    file3 = StringHelper.isNullOrEmpty((String)object4) ? (File)hashMap3.remove("MAIN") : (File)hashMap3.remove("MAIN" + ((String)object4).toUpperCase());
-                    if (file3 == null) continue;
-                    int n = 0;
-                    PSSFVerCode pSSFVerCode = (PSSFVerCode)hashMap2.remove(pSSFCodeType.getTypeCode().toUpperCase());
-                    HashMap<String, Object> hashMap4 = new HashMap<String, Object>();
-                    if (pSSFVerCode == null) {
-                        n = 1;
-                        PSSFVerCode pSSFVerCode2 = new PSSFVerCode();
-                        pSSFVerCode2.setPSSFVerCodeName(pSSFCodeType.getPSSFCodeTypeName());
-                        pSSFVerCode2.setPSSFStyleVerId(pSSFStyleVer.getPSSFStyleVerId());
-                        pSSFVerCode2.setPSSFStyleVerName(pSSFStyleVer.getPSSFStyleVerName());
-                        pSSFVerCode2.setPSSFCodeTypeId(pSSFCodeType.getPSSFCodeTypeId());
-                        pSSFVerCode2.setPSSFCodeTypeName(pSSFCodeType.getPSSFCodeTypeName());
-                    }
-                    String string3 = PSPFStyleService.readFile(file3.getAbsolutePath());
-                    var23_33.setCodeTempl(string3);
-                    var23_33.setTemplCode2(string3);
-                    if (n != 0) {
-                        ((PSCoreSysServiceBaseBase)((Object)object2)).create(var23_33);
-                    } else {
-                        ((PSCoreSysServiceBaseBase)((Object)object2)).update(var23_33);
-                        Iterator iterator = var23_33.getPSSFVerCodeItems();
-                        Map.Entry entry = ((ArrayList)((Object)iterator)).iterator();
-                        while (entry.hasNext()) {
-                            object3 = entry.next();
-                            hashMap4.put(((PSSFVerCodeItemBase)object3).getPSSFVerCodeItemName().toUpperCase(), object3);
+
+            for (Entry<String, PSSFVerCode> var39 : var31.entrySet()) {
+               var33.remove(var39.getValue());
+            }
+         }
+
+         String var37 = var1.getPSSFStyleVerId();
+         var1.reset();
+         var1.setPSSFStyleVerId(var37);
+         var1.setLastImpTime(new Timestamp(System.currentTimeMillis()));
+         var1.setTemplState(30);
+         var1.setTemplInfo(null);
+         this.update(var1);
+      } catch (Exception var30) {
+         String var13 = var1.getPSSFStyleVerId();
+         var1.reset();
+         var1.setPSSFStyleVerId(var13);
+         var1.setTemplInfo(var30.getMessage());
+         var1.setTemplState(40);
+         this.update(var1);
+      }
+   }
+
+   @Override
+   protected void onExpStyleVer(PSSFStyleVer var1) throws Exception {
+      String var2 = DataObject.getStringValue(var1.get("SRFPRJFOLDER"));
+      if (StringHelper.isNullOrEmpty(var2)) {
+         throw new Exception("当前没有指定项目目录");
+      }
+
+      this.get(var1);
+      File var3 = new File(var2);
+      if (!var3.exists()) {
+         var3.mkdirs();
+      }
+
+      SelectCond var4 = new SelectCond();
+      var4.set("PSSFSTYLEVERID", var1.getPSSFStyleVerId());
+      PSSFVerCodeService var5 = (PSSFVerCodeService)ServiceGlobal.getService(PSSFVerCodeService.class, this.getSessionFactory());
+
+      for (PSSFVerCode var8 : var5.select(var4)) {
+         PSSFCodeType var9 = var8.getPSSFCodeType();
+         String var10 = StringHelper.format("%1$s%2$s%3$s", var2, File.separator, var9.getTypeCode());
+         var3 = new File(var10);
+         if (!var3.exists()) {
+            var3.mkdirs();
+         }
+
+         Object var11 = null;
+         if (StringHelper.isNullOrEmpty(var9.getFileExt())) {
+            var11 = StringHelper.format("%1$s", "MAIN");
+         } else {
+            var11 = StringHelper.format("%1$s.%2$s", "MAIN", var9.getFileExt());
+         }
+
+         String var12 = StringHelper.format("%1$s%2$s%3$s", var10, File.separator, var11);
+         PSPFStyleService.writeFile(var12, var8.getTemplCode2());
+
+         for (PSSFVerCodeItem var15 : var8.getPSSFVerCodeItems()) {
+            var11 = null;
+            if (StringHelper.isNullOrEmpty(var9.getFileExt())) {
+               var11 = StringHelper.format("%1$s", var15.getPSSFVerCodeItemName());
+            } else {
+               var11 = StringHelper.format("%1$s.%2$s", var15.getPSSFVerCodeItemName(), var9.getFileExt());
+            }
+
+            var12 = StringHelper.format("%1$s%2$s%3$s", var10, File.separator, var11);
+            PSPFStyleService.writeFile(var12, var15.getTemplCode2());
+         }
+      }
+   }
+
+   @Override
+   protected void onFixStyleVer(PSSFStyleVer var1) throws Exception {
+      this.get(var1);
+      ArrayList<PSSFVerCode> var2 = var1.getPSSFVerCodes();
+      HashMap<String, PSSFVerCode> var3 = new HashMap<String, PSSFVerCode>();
+
+      for (PSSFVerCode var5 : var2) {
+         String var6 = var5.getTypeCode();
+         if (DataObject.getBoolValue(var5.getEnableCustomTypeCode(), false)) {
+            var6 = var5.getCustomTypeCode();
+         }
+
+         var3.put(var6, var5);
+      }
+
+      for (PSSFStyle var17 = var1.getPSSFStyle(); var17 != null; var17 = var17.getPPSSFStyle()) {
+         for (PSSFCodeFolder var7 : var17.getPSSFCodeFolders()) {
+            if (DataObject.getBoolValue(var7.getPubFlag(), false)) {
+               for (PSSFCodeType var10 : var7.getPSSFCodeTypes()) {
+                  if (!var3.containsKey(var10.getTypeCode()) && DataObject.getBoolValue(var10.getValidFlag(), true)) {
+                     PSSFVerCode var11 = new PSSFVerCode();
+                     var11.setSessionFactory(this.getSessionFactory());
+                     var11.setPSSFStyleVerId(var1.getPSSFStyleVerId());
+                     var11.setPSSFStyleVerName(var1.getPSSFStyleVerName());
+                     var11.setPSSFVerCodeName(var10.getPSSFCodeTypeName());
+                     var11.setPSSFCodeTypeId(var10.getPSSFCodeTypeId());
+                     var11.setPSSFCodeTypeName(var10.getPSSFCodeTypeName());
+                     var11.setRealPSSFStyleId(var17.getPSSFStyleId());
+                     var11.setCustomTypeCode(var10.getTypeCode());
+                     var11.setValidFlag(1);
+                     var11.setCodeTempl(var10.getCodeTempl());
+                     var11.setTemplCode2(var10.getTemplCode2());
+
+                     try {
+                        var11.create();
+
+                        for (PSSFCodeTempl var14 : var10.getPSSFCodeTempls()) {
+                           if (DataObject.getBoolValue(var14.getValidFlag(), true)) {
+                              PSSFVerCodeItem var15 = new PSSFVerCodeItem();
+                              var15.setSessionFactory(this.getSessionFactory());
+                              var15.setPSSFVerCodeId(var11.getPSSFVerCodeId());
+                              var15.setPSSFVerCodeName(var11.getPSSFVerCodeName());
+                              var15.setTemplCode(var14.getTemplCode());
+                              var15.setTemplCode2(var14.getTemplCode2());
+                              var15.setPSSFVerCodeItemName(var14.getPSSFCodeTemplName());
+                              var15.create();
+                           }
                         }
-                    }
-                    for (Map.Entry entry : hashMap3.entrySet()) {
-                        object3 = (String)entry.getKey();
-                        if (!StringHelper.isNullOrEmpty((String)object4)) {
-                            if (((String)object3).indexOf(((String)object4).toUpperCase()) != ((String)object3).length() - ((String)object4).length()) continue;
-                            object3 = ((String)object3).substring(0, ((String)object3).length() - ((String)object4).length());
-                        }
-                        n = 0;
-                        PSSFVerCodeItem pSSFVerCodeItem = (PSSFVerCodeItem)hashMap4.remove(object3);
-                        if (pSSFVerCodeItem == null) {
-                            n = 1;
-                            pSSFVerCodeItem = new PSSFVerCodeItem();
-                            pSSFVerCodeItem.setPSSFStyleVerId(pSSFStyleVer.getPSSFStyleVerId());
-                            pSSFVerCodeItem.setPSSFVerCodeId(var23_33.getPSSFVerCodeId());
-                            pSSFVerCodeItem.setPSSFVerCodeItemName((String)object3);
-                        }
-                        string3 = PSPFStyleService.readFile(((File)entry.getValue()).getAbsolutePath());
-                        pSSFVerCodeItem.setTemplCode2(string3);
-                        pSSFVerCodeItem.setTemplCode(string3);
-                        if (n != 0) {
-                            ((PSCoreSysServiceBaseBase)((Object)object)).create(pSSFVerCodeItem);
-                            continue;
-                        }
-                        ((PSCoreSysServiceBaseBase)((Object)object)).update(pSSFVerCodeItem);
-                    }
-                    for (Map.Entry entry : hashMap4.entrySet()) {
-                        object.remove((IEntity)entry.getValue());
-                    }
-                }
-                for (Map.Entry entry : hashMap2.entrySet()) {
-                    object2.remove((IEntity)entry.getValue());
-                }
+
+                        var3.put(var10.getTypeCode(), var11);
+                     } catch (Exception var16) {
+                        throw new Exception(StringHelper.format("建立系统服务扩展代码模板发生异常，%1$s", var16.getMessage()), var16);
+                     }
+                  }
+               }
             }
-            String string4 = pSSFStyleVer.getPSSFStyleVerId();
-            pSSFStyleVer.reset();
-            pSSFStyleVer.setPSSFStyleVerId(string4);
-            pSSFStyleVer.setLastImpTime(new Timestamp(System.currentTimeMillis()));
-            pSSFStyleVer.setTemplState(30);
-            pSSFStyleVer.setTemplInfo(null);
-            this.update(pSSFStyleVer);
-        }
-        catch (Exception exception) {
-            String string4 = pSSFStyleVer.getPSSFStyleVerId();
-            pSSFStyleVer.reset();
-            pSSFStyleVer.setPSSFStyleVerId(string4);
-            pSSFStyleVer.setTemplInfo(exception.getMessage());
-            pSSFStyleVer.setTemplState(40);
-            this.update(pSSFStyleVer);
-        }
-    }
+         }
+      }
+   }
 
-    @Override
-    protected void onExpStyleVer(PSSFStyleVer pSSFStyleVer) throws Exception {
-        String string = DataObject.getStringValue((Object)pSSFStyleVer.get(PARAM_PRJFOLDER));
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception("\u5f53\u524d\u6ca1\u6709\u6307\u5b9a\u9879\u76ee\u76ee\u5f55");
-        }
-        this.get((IEntity)pSSFStyleVer);
-        File file = new File(string);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        SelectCond selectCond = new SelectCond();
-        selectCond.set("PSSFSTYLEVERID", (Object)pSSFStyleVer.getPSSFStyleVerId());
-        PSSFVerCodeService pSSFVerCodeService = (PSSFVerCodeService)ServiceGlobal.getService(PSSFVerCodeService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList arrayList = pSSFVerCodeService.select((ISelectCond)selectCond);
-        for (PSSFVerCode pSSFVerCode : arrayList) {
-            PSSFCodeType pSSFCodeType = pSSFVerCode.getPSSFCodeType();
-            String string2 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string, (Object)File.separator, (Object)pSSFCodeType.getTypeCode());
-            file = new File(string2);
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-            String string3 = null;
-            string3 = StringHelper.isNullOrEmpty((String)pSSFCodeType.getFileExt()) ? StringHelper.format((String)"%1$s", (Object)"MAIN") : StringHelper.format((String)"%1$s.%2$s", (Object)"MAIN", (Object)pSSFCodeType.getFileExt());
-            String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            PSPFStyleService.writeFile(string4, pSSFVerCode.getTemplCode2());
-            ArrayList<PSSFVerCodeItem> arrayList2 = pSSFVerCode.getPSSFVerCodeItems();
-            for (PSSFVerCodeItem pSSFVerCodeItem : arrayList2) {
-                string3 = null;
-                string3 = StringHelper.isNullOrEmpty((String)pSSFCodeType.getFileExt()) ? StringHelper.format((String)"%1$s", (Object)pSSFVerCodeItem.getPSSFVerCodeItemName()) : StringHelper.format((String)"%1$s.%2$s", (Object)pSSFVerCodeItem.getPSSFVerCodeItemName(), (Object)pSSFCodeType.getFileExt());
-                string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                PSPFStyleService.writeFile(string4, pSSFVerCodeItem.getTemplCode2());
-            }
-        }
-    }
+   @Override
+   public DBFetchResult fetchDefault(IDEDataSetFetchContext var1) throws Exception {
+      if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
+         PSSFStyleVerService var2 = (PSSFStyleVerService)ServiceGlobal.getService(PSSFStyleVerService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+         return var2.fetchDefault(var1);
+      } else {
+         return super.fetchDefault(var1);
+      }
+   }
 
-    @Override
-    protected void onFixStyleVer(PSSFStyleVer pSSFStyleVer) throws Exception {
-        Object object;
-        Serializable serializable;
-        this.get((IEntity)pSSFStyleVer);
-        ArrayList<PSSFVerCode> arrayList = pSSFStyleVer.getPSSFVerCodes();
-        HashMap<Object, Serializable> hashMap = new HashMap<Object, Serializable>();
-        Object object2 = arrayList.iterator();
-        while (object2.hasNext()) {
-            serializable = object2.next();
-            object = ((PSSFVerCodeBase)serializable).getTypeCode();
-            if (DataObject.getBoolValue((Integer)((PSSFVerCodeBase)serializable).getEnableCustomTypeCode(), (boolean)false)) {
-                object = ((PSSFVerCodeBase)serializable).getCustomTypeCode();
-            }
-            hashMap.put(object, serializable);
-        }
-        for (object2 = pSSFStyleVer.getPSSFStyle(); object2 != null; object2 = ((PSSFStyleBase)object2).getPPSSFStyle()) {
-            serializable = ((PSSFStyleBase)object2).getPSSFCodeFolders();
-            object = ((ArrayList)serializable).iterator();
-            while (object.hasNext()) {
-                PSSFCodeFolder pSSFCodeFolder = (PSSFCodeFolder)object.next();
-                if (!DataObject.getBoolValue((Integer)pSSFCodeFolder.getPubFlag(), (boolean)false)) continue;
-                ArrayList<PSSFCodeType> arrayList2 = pSSFCodeFolder.getPSSFCodeTypes();
-                for (PSSFCodeType pSSFCodeType : arrayList2) {
-                    if (hashMap.containsKey(pSSFCodeType.getTypeCode()) || !DataObject.getBoolValue((Integer)pSSFCodeType.getValidFlag(), (boolean)true)) continue;
-                    PSSFVerCode pSSFVerCode = new PSSFVerCode();
-                    pSSFVerCode.setSessionFactory(this.getSessionFactory());
-                    pSSFVerCode.setPSSFStyleVerId(pSSFStyleVer.getPSSFStyleVerId());
-                    pSSFVerCode.setPSSFStyleVerName(pSSFStyleVer.getPSSFStyleVerName());
-                    pSSFVerCode.setPSSFVerCodeName(pSSFCodeType.getPSSFCodeTypeName());
-                    pSSFVerCode.setPSSFCodeTypeId(pSSFCodeType.getPSSFCodeTypeId());
-                    pSSFVerCode.setPSSFCodeTypeName(pSSFCodeType.getPSSFCodeTypeName());
-                    pSSFVerCode.setRealPSSFStyleId(((PSSFStyleBase)object2).getPSSFStyleId());
-                    pSSFVerCode.setCustomTypeCode(pSSFCodeType.getTypeCode());
-                    pSSFVerCode.setValidFlag(1);
-                    pSSFVerCode.setCodeTempl(pSSFCodeType.getCodeTempl());
-                    pSSFVerCode.setTemplCode2(pSSFCodeType.getTemplCode2());
-                    try {
-                        pSSFVerCode.create();
-                        ArrayList<PSSFCodeTempl> arrayList3 = pSSFCodeType.getPSSFCodeTempls();
-                        for (PSSFCodeTempl pSSFCodeTempl : arrayList3) {
-                            if (!DataObject.getBoolValue((Integer)pSSFCodeTempl.getValidFlag(), (boolean)true)) continue;
-                            PSSFVerCodeItem pSSFVerCodeItem = new PSSFVerCodeItem();
-                            pSSFVerCodeItem.setSessionFactory(this.getSessionFactory());
-                            pSSFVerCodeItem.setPSSFVerCodeId(pSSFVerCode.getPSSFVerCodeId());
-                            pSSFVerCodeItem.setPSSFVerCodeName(pSSFVerCode.getPSSFVerCodeName());
-                            pSSFVerCodeItem.setTemplCode(pSSFCodeTempl.getTemplCode());
-                            pSSFVerCodeItem.setTemplCode2(pSSFCodeTempl.getTemplCode2());
-                            pSSFVerCodeItem.setPSSFVerCodeItemName(pSSFCodeTempl.getPSSFCodeTemplName());
-                            pSSFVerCodeItem.create();
-                        }
-                        hashMap.put(pSSFCodeType.getTypeCode(), pSSFVerCode);
-                    }
-                    catch (Exception exception) {
-                        throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u7cfb\u7edf\u670d\u52a1\u6269\u5c55\u4ee3\u7801\u6a21\u677f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-                    }
-                }
-            }
-        }
-    }
+   @Override
+   public DBFetchResult fetchCurDCAndStyle(IDEDataSetFetchContext var1) throws Exception {
+      if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
+         PSSFStyleVerService var2 = (PSSFStyleVerService)ServiceGlobal.getService(PSSFStyleVerService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+         return var2.fetchCurDCAndStyle(var1);
+      } else {
+         return super.fetchCurDCAndStyle(var1);
+      }
+   }
 
-    @Override
-    public DBFetchResult fetchDefault(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            PSSFStyleVerService pSSFStyleVerService = (PSSFStyleVerService)ServiceGlobal.getService(PSSFStyleVerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            return pSSFStyleVerService.fetchDefault(iDEDataSetFetchContext);
-        }
-        return super.fetchDefault(iDEDataSetFetchContext);
-    }
+   @Override
+   public DBFetchResult fetchCurDC(IDEDataSetFetchContext var1) throws Exception {
+      if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
+         PSSFStyleVerService var2 = (PSSFStyleVerService)ServiceGlobal.getService(PSSFStyleVerService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+         return var2.fetchCurDC(var1);
+      } else {
+         return super.fetchCurDC(var1);
+      }
+   }
 
-    @Override
-    public DBFetchResult fetchCurDCAndStyle(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            PSSFStyleVerService pSSFStyleVerService = (PSSFStyleVerService)ServiceGlobal.getService(PSSFStyleVerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            return pSSFStyleVerService.fetchCurDCAndStyle(iDEDataSetFetchContext);
-        }
-        return super.fetchCurDCAndStyle(iDEDataSetFetchContext);
-    }
-
-    @Override
-    public DBFetchResult fetchCurDC(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            PSSFStyleVerService pSSFStyleVerService = (PSSFStyleVerService)ServiceGlobal.getService(PSSFStyleVerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            return pSSFStyleVerService.fetchCurDC(iDEDataSetFetchContext);
-        }
-        return super.fetchCurDC(iDEDataSetFetchContext);
-    }
-
-    @Override
-    public DBFetchResult fetchCurStyle(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            PSSFStyleVerService pSSFStyleVerService = (PSSFStyleVerService)ServiceGlobal.getService(PSSFStyleVerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            return pSSFStyleVerService.fetchCurStyle(iDEDataSetFetchContext);
-        }
-        return super.fetchCurStyle(iDEDataSetFetchContext);
-    }
+   @Override
+   public DBFetchResult fetchCurStyle(IDEDataSetFetchContext var1) throws Exception {
+      if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
+         PSSFStyleVerService var2 = (PSSFStyleVerService)ServiceGlobal.getService(PSSFStyleVerService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+         return var2.fetchCurStyle(var1);
+      } else {
+         return super.fetchCurStyle(var1);
+      }
+   }
 }
-

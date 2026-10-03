@@ -139,9 +139,9 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
             PSDevSlnPipeline pSDevSlnPipeline = (PSDevSlnPipeline)iService.getDEModel().createEntity();
             pSDevSlnPipeline.set("PSDEVSLNPIPELINEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevSlnPipeline);
+                iService.getTemp(pSDevSlnPipeline);
             } else {
-                iService.get((IEntity)pSDevSlnPipeline);
+                iService.get(pSDevSlnPipeline);
             }
             this.onFillParentInfo_PSDevSlnPipeline(pSDevSlnPipelineRef, pSDevSlnPipeline);
             return;
@@ -151,9 +151,9 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
             PSDevSlnPipeline pSDevSlnPipeline = (PSDevSlnPipeline)iService.getDEModel().createEntity();
             pSDevSlnPipeline.set("PSDEVSLNPIPELINEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevSlnPipeline);
+                iService.getTemp(pSDevSlnPipeline);
             } else {
-                iService.get((IEntity)pSDevSlnPipeline);
+                iService.get(pSDevSlnPipeline);
             }
             this.onFillParentInfo_RefPSDevSlnPipeline(pSDevSlnPipelineRef, pSDevSlnPipeline);
             return;
@@ -163,14 +163,14 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
             PSDevSln pSDevSln = (PSDevSln)iService.getDEModel().createEntity();
             pSDevSln.set("PSDEVSLNID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevSln);
+                iService.getTemp(pSDevSln);
             } else {
-                iService.get((IEntity)pSDevSln);
+                iService.get(pSDevSln);
             }
             this.onFillParentInfo_PSDevSln(pSDevSlnPipelineRef, pSDevSln);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDevSlnPipelineRef, string, string2, string3);
+        super.onFillParentInfo(pSDevSlnPipelineRef, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 pSDevSlnPipelineRef.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDevSlnPipelineRef, bl);
+        super.onFillEntityFullInfo(pSDevSlnPipelineRef, bl);
         this.onFillEntityFullInfo_PSDevSlnPipeline(pSDevSlnPipelineRef, bl);
         this.onFillEntityFullInfo_RefPSDevSlnPipeline(pSDevSlnPipelineRef, bl);
         this.onFillEntityFullInfo_PSDevSln(pSDevSlnPipelineRef, bl);
@@ -218,7 +218,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
     }
 
     protected void onWriteBackParent(PSDevSlnPipelineRef pSDevSlnPipelineRef, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDevSlnPipelineRef, bl);
+        super.onWriteBackParent(pSDevSlnPipelineRef, bl);
     }
 
     public ArrayList<PSDevSlnPipelineRef> selectByPSDevSlnPipeline(PSDevSlnPipelineBase pSDevSlnPipelineBase) throws Exception {
@@ -325,7 +325,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
         ArrayList<PSDevSlnPipelineRef> arrayList = this.selectByPSDevSlnPipeline(pSDevSlnPipeline);
         this.onBeforeRemoveByPSDevSlnPipeline(pSDevSlnPipeline, arrayList);
         for (PSDevSlnPipelineRef pSDevSlnPipelineRef : arrayList) {
-            this.remove((IEntity)pSDevSlnPipelineRef);
+            this.remove(pSDevSlnPipelineRef);
         }
         this.onAfterRemoveByPSDevSlnPipeline(pSDevSlnPipeline, arrayList);
     }
@@ -343,8 +343,8 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
         ArrayList<PSDevSlnPipelineRef> arrayList = this.selectByRefPSDevSlnPipeline(pSDevSlnPipeline, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVSLNPIPELINE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevSlnPipeline);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEVSLNPIPELINEREF_PSDEVSLNPIPELINE_REFPSDEVSLNPIPELINEID", "", iDataEntityModel.getName(), "PSDEVSLNPIPELINEREF", iDataEntityModel.getDataInfo((IEntity)pSDevSlnPipeline), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevSlnPipeline);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEVSLNPIPELINEREF_PSDEVSLNPIPELINE_REFPSDEVSLNPIPELINEID", "", iDataEntityModel.getName(), "PSDEVSLNPIPELINEREF", iDataEntityModel.getDataInfo(pSDevSlnPipeline), arrayList.get(0)));
         }
     }
 
@@ -377,7 +377,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
         ArrayList<PSDevSlnPipelineRef> arrayList = this.selectByRefPSDevSlnPipeline(pSDevSlnPipeline);
         this.onBeforeRemoveByRefPSDevSlnPipeline(pSDevSlnPipeline, arrayList);
         for (PSDevSlnPipelineRef pSDevSlnPipelineRef : arrayList) {
-            this.remove((IEntity)pSDevSlnPipelineRef);
+            this.remove(pSDevSlnPipelineRef);
         }
         this.onAfterRemoveByRefPSDevSlnPipeline(pSDevSlnPipeline, arrayList);
     }
@@ -423,7 +423,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
         ArrayList<PSDevSlnPipelineRef> arrayList = this.selectByPSDevSln(pSDevSln);
         this.onBeforeRemoveByPSDevSln(pSDevSln, arrayList);
         for (PSDevSlnPipelineRef pSDevSlnPipelineRef : arrayList) {
-            this.remove((IEntity)pSDevSlnPipelineRef);
+            this.remove(pSDevSlnPipelineRef);
         }
         this.onAfterRemoveByPSDevSln(pSDevSln, arrayList);
     }
@@ -444,7 +444,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
 
     protected void replaceParentInfo(PSDevSlnPipelineRef pSDevSlnPipelineRef, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDevSlnPipelineRef, cloneSession);
+        super.replaceParentInfo(pSDevSlnPipelineRef, cloneSession);
         if (pSDevSlnPipelineRef.getPSDevSlnPipelineId() != null && (iEntity = cloneSession.getEntity("PSDEVSLNPIPELINE", (Object)pSDevSlnPipelineRef.getPSDevSlnPipelineId())) != null) {
             this.onFillParentInfo_PSDevSlnPipeline(pSDevSlnPipelineRef, (PSDevSlnPipeline)iEntity);
         }
@@ -457,7 +457,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDevSlnPipelineRef pSDevSlnPipelineRef, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDevSlnPipelineRef, bl);
+        super.onRemoveEntityUncopyValues(pSDevSlnPipelineRef, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDevSlnPipelineRef pSDevSlnPipelineRef, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -526,7 +526,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDevSlnPipelineRef, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDevSlnPipelineRef, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDevSlnPipelineRef, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CondModel(boolean bl, PSDevSlnPipelineRef pSDevSlnPipelineRef, boolean bl2, boolean bl3) throws Exception {
@@ -539,7 +539,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CondModel_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_CondModel_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONDMODEL");
@@ -564,7 +564,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_CondModelFlag_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string = this.onTestValueRule_CondModelFlag_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONDMODELFLAG");
@@ -586,7 +586,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -608,7 +608,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -630,7 +630,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnId_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnId_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNID");
@@ -652,7 +652,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnPipelineId_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnPipelineId_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNPIPELINEID");
@@ -677,7 +677,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnPipelineRefId_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnPipelineRefId_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNPIPELINEREFID");
@@ -702,7 +702,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnPipelineRefName_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnPipelineRefName_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNPIPELINEREFNAME");
@@ -727,7 +727,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefMode_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_RefMode_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFMODE");
@@ -749,7 +749,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefParams_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_RefParams_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFPARAMS");
@@ -774,7 +774,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefPSDevSlnPipelineId_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_RefPSDevSlnPipelineId_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFPSDEVSLNPIPELINEID");
@@ -796,7 +796,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefTag_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_RefTag_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFTAG");
@@ -818,7 +818,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefTag2_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_RefTag2_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFTAG2");
@@ -840,7 +840,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefTag3_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_RefTag3_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFTAG3");
@@ -862,7 +862,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefTag4_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_RefTag4_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFTAG4");
@@ -884,7 +884,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -906,7 +906,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -928,7 +928,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -950,7 +950,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -972,7 +972,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -997,7 +997,7 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDevSlnPipelineRef, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDevSlnPipelineRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1010,11 +1010,11 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
     }
 
     protected void onSyncEntity(PSDevSlnPipelineRef pSDevSlnPipelineRef, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDevSlnPipelineRef, bl);
+        super.onSyncEntity(pSDevSlnPipelineRef, bl);
     }
 
     protected void onSyncIndexEntities(PSDevSlnPipelineRef pSDevSlnPipelineRef, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDevSlnPipelineRef, bl);
+        super.onSyncIndexEntities(pSDevSlnPipelineRef, bl);
     }
 
     public Object getDataContextValue(PSDevSlnPipelineRef pSDevSlnPipelineRef, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1022,14 +1022,14 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDevSlnPipelineRef, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDevSlnPipelineRef, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDevSlnPipelineRef pSDevSlnPipelineRef, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDevSlnPipelineRef, arrayList, n);
+        super.onExportMajorModel(pSDevSlnPipelineRef, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1433,14 +1433,14 @@ extends PSCoreSysServiceBase<PSDevSlnPipelineRef> {
 
     protected boolean onMergeChild(String string, String string2, PSDevSlnPipelineRef pSDevSlnPipelineRef) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDevSlnPipelineRef)) {
+        if (super.onMergeChild(string, string2, pSDevSlnPipelineRef)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDevSlnPipelineRef pSDevSlnPipelineRef) throws Exception {
-        super.onUpdateParent((IEntity)pSDevSlnPipelineRef);
+        super.onUpdateParent(pSDevSlnPipelineRef);
     }
 
     @Override

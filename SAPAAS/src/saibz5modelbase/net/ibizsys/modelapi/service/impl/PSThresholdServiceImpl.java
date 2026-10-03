@@ -74,7 +74,7 @@ implements IPSThresholdService {
     @Override
     protected List<PSThreshold> onListAll() throws Exception {
         ArrayList<PSThreshold> list = new ArrayList<PSThreshold>();
-        List psthresholdgroups = PSModelServiceUtil.getInstance().getPSThresholdGroupService().listAll();
+        List<PSThresholdGroup> psthresholdgroups = PSModelServiceUtil.getInstance().getPSThresholdGroupService().listAll();
         if (psthresholdgroups != null) {
             for (PSThresholdGroup parent : psthresholdgroups) {
                 List<PSThreshold> items = this.listByPSThresholdGroup(parent);

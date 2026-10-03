@@ -1,18 +1,40 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IModelBase;
+/**
+ * 值规则接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IValueRule extends IModelBase {
+	/**
+	 * 正则式规则
+	 */
+	public final static String RULETYPE_REGEX = "REGEX";
 
-public interface IValueRule
-extends IModelBase {
-    public static final String RULETYPE_REGEX = "REGEX";
-    public static final String RULETYPE_SCRIPT = "SCRIPT";
-    public static final String RULETYPE_CUSTOM = "CUSTOM";
+	/**
+	 * 脚本规则
+	 */
+	public final static String RULETYPE_SCRIPT = "SCRIPT";
 
-    public String getRuleType();
+	/**
+	 * 自定义
+	 */
+	public final static String RULETYPE_CUSTOM = "CUSTOM";
 
-    public String getRuleInfo();
+	/**
+	 * 获取规则类型
+	 * 
+	 * @return
+	 */
+	String getRuleType();
+	
+	
+	
+	
+	/**
+	 * 获取规则信息
+	 * @return
+	 */
+	String getRuleInfo(); 
 }
-

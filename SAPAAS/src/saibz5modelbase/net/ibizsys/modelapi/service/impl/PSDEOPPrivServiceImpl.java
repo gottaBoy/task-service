@@ -198,11 +198,11 @@ implements IPSDEOPPrivService {
 
     @Override
     protected List<PSDEOPPriv> onListAll() throws Exception {
-        List pssystems;
-        List psmodules;
-        List psdataentities;
+        List<PSSystem> pssystems;
+        List<PSModule> psmodules;
+        List<PSDataEntity> psdataentities;
         ArrayList<PSDEOPPriv> list = new ArrayList<PSDEOPPriv>();
-        List psders = PSModelServiceUtil.getInstance().getPSDERService().listAll();
+        List<PSDER> psders = PSModelServiceUtil.getInstance().getPSDERService().listAll();
         if (psders != null) {
             for (PSDER parent : psders) {
                 List<PSDEOPPriv> items = this.listByPSDER(parent);

@@ -138,7 +138,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
     }
 
     protected void onFillParentInfo(PSUIEngineType pSUIEngineType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSUIEngineType, string, string2, string3);
+        super.onFillParentInfo(pSUIEngineType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -149,11 +149,11 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSUIEngineType, bl);
+        super.onFillEntityFullInfo(pSUIEngineType, bl);
     }
 
     protected void onWriteBackParent(PSUIEngineType pSUIEngineType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUIEngineType, bl);
+        super.onWriteBackParent(pSUIEngineType, bl);
     }
 
     @Override
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSUIEngineType pSUIEngineType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUIEngineType, bl);
+        super.onRemoveEntityUncopyValues(pSUIEngineType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUIEngineType pSUIEngineType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -315,7 +315,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSUIEngineType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUIEngineType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUIEngineType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_EngineCat(boolean bl, PSUIEngineType pSUIEngineType, boolean bl2, boolean bl3) throws Exception {
@@ -331,7 +331,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineCat_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_EngineCat_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINECAT");
@@ -353,7 +353,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineObj_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_EngineObj_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEOBJ");
@@ -375,7 +375,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EngineParam10Flag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_EngineParam10Flag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM10FLAG");
@@ -397,7 +397,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineParam10Label_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_EngineParam10Label_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM10LABEL");
@@ -419,7 +419,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EngineParam2Flag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_EngineParam2Flag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM2FLAG");
@@ -441,7 +441,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineParam2Label_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_EngineParam2Label_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM2LABEL");
@@ -463,7 +463,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EngineParam3Flag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_EngineParam3Flag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM3FLAG");
@@ -485,7 +485,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineParam3Label_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_EngineParam3Label_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM3LABEL");
@@ -507,7 +507,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EngineParam4Flag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_EngineParam4Flag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM4FLAG");
@@ -529,7 +529,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineParam4Label_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_EngineParam4Label_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM4LABEL");
@@ -551,7 +551,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EngineParam5Flag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_EngineParam5Flag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM5FLAG");
@@ -573,7 +573,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineParam5Label_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_EngineParam5Label_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM5LABEL");
@@ -595,7 +595,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EngineParam6Flag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_EngineParam6Flag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM6FLAG");
@@ -617,7 +617,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineParam6Label_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_EngineParam6Label_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM6LABEL");
@@ -639,7 +639,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EngineParam7Flag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_EngineParam7Flag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM7FLAG");
@@ -661,7 +661,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineParam7Label_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_EngineParam7Label_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM7LABEL");
@@ -683,7 +683,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EngineParam8Flag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_EngineParam8Flag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM8FLAG");
@@ -705,7 +705,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineParam8Label_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_EngineParam8Label_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM8LABEL");
@@ -727,7 +727,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EngineParam9Flag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_EngineParam9Flag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM9FLAG");
@@ -749,7 +749,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineParam9Label_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_EngineParam9Label_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAM9LABEL");
@@ -771,7 +771,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EngineParamFlag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_EngineParamFlag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAMFLAG");
@@ -793,7 +793,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineParamLabel_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_EngineParamLabel_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAMLABEL");
@@ -815,7 +815,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -837,7 +837,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -859,7 +859,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_No2UICtrlFlag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_No2UICtrlFlag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO2UICTRLFLAG");
@@ -881,7 +881,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No2UICtrlLabel_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_No2UICtrlLabel_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO2UICTRLLABEL");
@@ -903,7 +903,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_No2UILogicFlag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_No2UILogicFlag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO2UILOGICFLAG");
@@ -925,7 +925,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No2UILogicLabel_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_No2UILogicLabel_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO2UILOGICLABEL");
@@ -947,7 +947,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_No3UICtrlFlag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_No3UICtrlFlag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO3UICTRLFLAG");
@@ -969,7 +969,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No3UICtrlLabel_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_No3UICtrlLabel_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO3UICTRLLABEL");
@@ -991,7 +991,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_No3UILogicFlag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_No3UILogicFlag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO3UILOGICFLAG");
@@ -1013,7 +1013,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No3UILogicLabel_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_No3UILogicLabel_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO3UILOGICLABEL");
@@ -1035,7 +1035,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_No4UICtrlFlag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_No4UICtrlFlag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO4UICTRLFLAG");
@@ -1057,7 +1057,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No4UICtrlLabel_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_No4UICtrlLabel_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO4UICTRLLABEL");
@@ -1079,7 +1079,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_No4UILogicFlag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_No4UILogicFlag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO4UILOGICFLAG");
@@ -1101,7 +1101,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No4UILogicLabel_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_No4UILogicLabel_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO4UILOGICLABEL");
@@ -1123,7 +1123,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PanelEngineObj_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_PanelEngineObj_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PANELENGINEOBJ");
@@ -1148,7 +1148,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUIEngineTypeId_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_PSUIEngineTypeId_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUIENGINETYPEID");
@@ -1173,7 +1173,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUIEngineTypeName_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_PSUIEngineTypeName_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUIENGINETYPENAME");
@@ -1198,7 +1198,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeCode_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeCode_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPECODE");
@@ -1220,7 +1220,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeObj_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeObj_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEOBJ");
@@ -1242,7 +1242,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UICtrlFlag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_UICtrlFlag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UICTRLFLAG");
@@ -1264,7 +1264,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UICtrlLabel_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_UICtrlLabel_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UICTRLLABEL");
@@ -1286,7 +1286,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UILogicFlag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_UILogicFlag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UILOGICFLAG");
@@ -1308,7 +1308,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UILogicLabel_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_UILogicLabel_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UILOGICLABEL");
@@ -1330,7 +1330,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UtilParams_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_UtilParams_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UTILPARAMS");
@@ -1355,7 +1355,7 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSUIEngineType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSUIEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1368,11 +1368,11 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
     }
 
     protected void onSyncEntity(PSUIEngineType pSUIEngineType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUIEngineType, bl);
+        super.onSyncEntity(pSUIEngineType, bl);
     }
 
     protected void onSyncIndexEntities(PSUIEngineType pSUIEngineType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUIEngineType, bl);
+        super.onSyncIndexEntities(pSUIEngineType, bl);
     }
 
     public Object getDataContextValue(PSUIEngineType pSUIEngineType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1380,14 +1380,14 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUIEngineType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUIEngineType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUIEngineType pSUIEngineType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUIEngineType, arrayList, n);
+        super.onExportMajorModel(pSUIEngineType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1993,14 +1993,14 @@ extends PSCoreSysServiceBase<PSUIEngineType> {
 
     protected boolean onMergeChild(String string, String string2, PSUIEngineType pSUIEngineType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUIEngineType)) {
+        if (super.onMergeChild(string, string2, pSUIEngineType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUIEngineType pSUIEngineType) throws Exception {
-        super.onUpdateParent((IEntity)pSUIEngineType);
+        super.onUpdateParent(pSUIEngineType);
     }
 
     @Override

@@ -119,7 +119,7 @@ implements ITMTaskResArrangeEngine {
         StringBuilderEx sb = new StringBuilderEx();
         sb.Append(" select t1.TMRESCDID,t1.TMRESBASEID,t1.PRIORITY,t2.TMTASKRESID,t2.TMTASKBASEID,t2.TASKRESTYPE from SRFT_TMRESCD_BASE t1  INNER JOIN SRFT_TMTASKRES_BASE t2 on t2.TMRESCATALOGID = t1.TMRESCATALOGID where not exists ( select  * from  SRFT_TMRESBOOKING_BASE t10 where t10.BEGINTIME<t2.ENDTIME AND t10.ENDTIME>t2.BEGINTIME AND t1.TMRESBASEID= t10.TMRESBASEID  ) AND  t2.TMTASKRESID=? order by t1.PRIORITY desc ");
         callParamList.Add((Object)tmTaskRes.getTMTASKRESID());
-        Vector tmResCDs = new Vector();
+        Vector<TMResCD> tmResCDs = new Vector<TMResCD>();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.iDAGlobalHelper, (Connection)iTMActionContext.getDBConnection(this.strDBStorage), (String)this.strDBStorage, (String)sb.toString(), (Vector)callParamList.GetList(), tmResCDs, (String)TMResCD.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4efb\u52a1\u8d44\u6e90\u53ef\u7528\u8d44\u6e90\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -210,7 +210,7 @@ implements ITMTaskResArrangeEngine {
             callParamList.AddDateTime((Object)tmBTPlanTaskRes.getBEGINTIME());
             callParamList.Add((Object)tmBTTaskRes.getTMBTTASKRESID());
         }
-        Vector tmResCDs = new Vector();
+        Vector<TMResCD> tmResCDs = new Vector<TMResCD>();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.iDAGlobalHelper, (Connection)iTMActionContext.getDBConnection(this.strDBStorage), (String)this.strDBStorage, (String)sb.toString(), (Vector)callParamList.GetList(), tmResCDs, (String)TMResCD.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4efb\u52a1\u8d44\u6e90\u53ef\u7528\u8d44\u6e90\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -324,4 +324,3 @@ implements ITMTaskResArrangeEngine {
     protected void OnCalcResCDScoreParam(ITMActionContext iTMActionContext, TMBTTaskRes tmBTTaskRes, TMBTPlanTaskRes tmBTPlanTaskRes, Vector<TMResCD> validResCDs, Hashtable<String, BaseDataEntity> tmResCDScoreParamMap) throws Exception {
     }
 }
-

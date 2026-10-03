@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSPanelLLCondType> {
     }
 
     protected void onFillParentInfo(PSPanelLLCondType pSPanelLLCondType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSPanelLLCondType, string, string2, string3);
+        super.onFillParentInfo(pSPanelLLCondType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSPanelLLCondType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSPanelLLCondType, bl);
+        super.onFillEntityFullInfo(pSPanelLLCondType, bl);
     }
 
     protected void onWriteBackParent(PSPanelLLCondType pSPanelLLCondType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPanelLLCondType, bl);
+        super.onWriteBackParent(pSPanelLLCondType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSPanelLLCondType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSPanelLLCondType pSPanelLLCondType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPanelLLCondType, bl);
+        super.onRemoveEntityUncopyValues(pSPanelLLCondType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPanelLLCondType pSPanelLLCondType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSPanelLLCondType> {
         if ((entityFieldError = this.onCheckField_PSPanelLLCondTypeName(bl, pSPanelLLCondType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPanelLLCondType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPanelLLCondType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ItemObj(boolean bl, PSPanelLLCondType pSPanelLLCondType, boolean bl2, boolean bl3) throws Exception {
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSPanelLLCondType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj_Default((IEntity)pSPanelLLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj_Default(pSPanelLLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSPanelLLCondType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPanelLLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPanelLLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSPanelLLCondType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPanelLLCondTypeId_Default((IEntity)pSPanelLLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPanelLLCondTypeId_Default(pSPanelLLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPANELLLCONDTYPEID");
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSPanelLLCondType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPanelLLCondTypeName_Default((IEntity)pSPanelLLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPanelLLCondTypeName_Default(pSPanelLLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPANELLLCONDTYPENAME");
@@ -259,11 +259,11 @@ extends PSCoreSysServiceBase<PSPanelLLCondType> {
     }
 
     protected void onSyncEntity(PSPanelLLCondType pSPanelLLCondType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPanelLLCondType, bl);
+        super.onSyncEntity(pSPanelLLCondType, bl);
     }
 
     protected void onSyncIndexEntities(PSPanelLLCondType pSPanelLLCondType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPanelLLCondType, bl);
+        super.onSyncIndexEntities(pSPanelLLCondType, bl);
     }
 
     public Object getDataContextValue(PSPanelLLCondType pSPanelLLCondType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -271,14 +271,14 @@ extends PSCoreSysServiceBase<PSPanelLLCondType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPanelLLCondType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPanelLLCondType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPanelLLCondType pSPanelLLCondType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPanelLLCondType, arrayList, n);
+        super.onExportMajorModel(pSPanelLLCondType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -391,14 +391,14 @@ extends PSCoreSysServiceBase<PSPanelLLCondType> {
 
     protected boolean onMergeChild(String string, String string2, PSPanelLLCondType pSPanelLLCondType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPanelLLCondType)) {
+        if (super.onMergeChild(string, string2, pSPanelLLCondType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPanelLLCondType pSPanelLLCondType) throws Exception {
-        super.onUpdateParent((IEntity)pSPanelLLCondType);
+        super.onUpdateParent(pSPanelLLCondType);
     }
 
     @Override

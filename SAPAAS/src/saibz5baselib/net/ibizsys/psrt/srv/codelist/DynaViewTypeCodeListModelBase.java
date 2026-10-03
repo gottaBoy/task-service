@@ -1,94 +1,375 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
-import net.ibizsys.paas.codelist.ICodeList;
-import net.ibizsys.paas.sysmodel.CodeListGlobal;
 import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
+import net.ibizsys.paas.sysmodel.CodeListGlobal;
 
-@CodeList(id="d3220274deae2f484dfb18e927885909", name="\u52a8\u6001\u89c6\u56fe\u7c7b\u578b", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="APPINDEXVIEW", text="\u5e94\u7528\u9996\u9875\u89c6\u56fe", realtext="\u5e94\u7528\u9996\u9875\u89c6\u56fe"), @CodeItem(value="APPPORTALVIEW", text="\u5e94\u7528\u95e8\u6237\u89c6\u56fe", realtext="\u5e94\u7528\u95e8\u6237\u89c6\u56fe"), @CodeItem(value="DECHARTVIEW", text="\u5b9e\u4f53\u56fe\u8868\u89c6\u56fe", realtext="\u5b9e\u4f53\u56fe\u8868\u89c6\u56fe"), @CodeItem(value="DECUSTOMVIEW", text="\u5b9e\u4f53\u81ea\u5b9a\u4e49\u89c6\u56fe", realtext="\u5b9e\u4f53\u81ea\u5b9a\u4e49\u89c6\u56fe"), @CodeItem(value="DEDATAVIEW", text="\u5b9e\u4f53\u6570\u636e\u89c6\u56fe", realtext="\u5b9e\u4f53\u6570\u636e\u89c6\u56fe"), @CodeItem(value="DEEDITVIEW", text="\u5b9e\u4f53\u7f16\u8f91\u89c6\u56fe", realtext="\u5b9e\u4f53\u7f16\u8f91\u89c6\u56fe"), @CodeItem(value="DEEDITVIEW2", text="\u5b9e\u4f53\u7f16\u8f91\u89c6\u56fe\uff08\u5de6\u53f3\u5173\u7cfb\uff09", realtext="\u5b9e\u4f53\u7f16\u8f91\u89c6\u56fe\uff08\u5de6\u53f3\u5173\u7cfb\uff09"), @CodeItem(value="DEEDITVIEW3", text="\u5b9e\u4f53\u7f16\u8f91\u89c6\u56fe\uff08\u5206\u9875\u5173\u7cfb\uff09", realtext="\u5b9e\u4f53\u7f16\u8f91\u89c6\u56fe\uff08\u5206\u9875\u5173\u7cfb\uff09"), @CodeItem(value="DEEDITVIEW4", text="\u5b9e\u4f53\u7f16\u8f91\u89c6\u56fe\uff08\u4e0a\u4e0b\u5173\u7cfb\uff09", realtext="\u5b9e\u4f53\u7f16\u8f91\u89c6\u56fe\uff08\u4e0a\u4e0b\u5173\u7cfb\uff09"), @CodeItem(value="DEEDITVIEW9", text="\u5b9e\u4f53\u7f16\u8f91\u89c6\u56fe\uff08\u5d4c\u5165\uff09", realtext="\u5b9e\u4f53\u7f16\u8f91\u89c6\u56fe\uff08\u5d4c\u5165\uff09"), @CodeItem(value="DEFORMPICKUPDATAVIEW", text="\u5b9e\u4f53\u8868\u5355\u9009\u62e9\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09", realtext="\u5b9e\u4f53\u8868\u5355\u9009\u62e9\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09"), @CodeItem(value="DEGRIDVIEW", text="\u5b9e\u4f53\u8868\u683c\u89c6\u56fe", realtext="\u5b9e\u4f53\u8868\u683c\u89c6\u56fe"), @CodeItem(value="DEGRIDVIEW2", text="\u5b9e\u4f53\u8868\u683c\u89c6\u56fe\uff08\u5de6\u53f3\u5173\u7cfb\uff09", realtext="\u5b9e\u4f53\u8868\u683c\u89c6\u56fe\uff08\u5de6\u53f3\u5173\u7cfb\uff09"), @CodeItem(value="DEGRIDVIEW4", text="\u5b9e\u4f53\u8868\u683c\u89c6\u56fe\uff08\u4e0a\u4e0b\u5173\u7cfb\uff09", realtext="\u5b9e\u4f53\u8868\u683c\u89c6\u56fe\uff08\u4e0a\u4e0b\u5173\u7cfb\uff09"), @CodeItem(value="DEGRIDVIEW8", text="\u5b9e\u4f53\u5173\u7cfb\u6570\u636e\u8868\u683c\u89c6\u56fe\uff08\u5d4c\u5165\uff09", realtext="\u5b9e\u4f53\u5173\u7cfb\u6570\u636e\u8868\u683c\u89c6\u56fe\uff08\u5d4c\u5165\uff09"), @CodeItem(value="DEGRIDVIEW9", text="\u5b9e\u4f53\u8868\u683c\u89c6\u56fe\uff08\u5d4c\u5165\uff09", realtext="\u5b9e\u4f53\u8868\u683c\u89c6\u56fe\uff08\u5d4c\u5165\uff09"), @CodeItem(value="DEHTMLVIEW", text="\u5b9e\u4f53HTML\u89c6\u56fe", realtext="\u5b9e\u4f53HTML\u89c6\u56fe"), @CodeItem(value="DEINDEXPICKUPDATAVIEW", text="\u5b9e\u4f53\u7d22\u5f15\u5173\u7cfb\u9009\u62e9\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09", realtext="\u5b9e\u4f53\u7d22\u5f15\u5173\u7cfb\u9009\u62e9\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09"), @CodeItem(value="DEINDEXVIEW", text="\u5b9e\u4f53\u9996\u9875\u89c6\u56fe", realtext="\u5b9e\u4f53\u9996\u9875\u89c6\u56fe"), @CodeItem(value="DEMDCUSTOMVIEW", text="\u5b9e\u4f53\u591a\u6570\u636e\u81ea\u5b9a\u4e49\u89c6\u56fe", realtext="\u5b9e\u4f53\u591a\u6570\u636e\u81ea\u5b9a\u4e49\u89c6\u56fe"), @CodeItem(value="DEMEDITVIEW9", text="\u5b9e\u4f53\u591a\u8868\u5355\u7f16\u8f91\u89c6\u56fe\uff08\u5d4c\u5165\uff09", realtext="\u5b9e\u4f53\u591a\u8868\u5355\u7f16\u8f91\u89c6\u56fe\uff08\u5d4c\u5165\uff09"), @CodeItem(value="DEMOBCUSTOMVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u81ea\u5b9a\u4e49\u89c6\u56fe", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u81ea\u5b9a\u4e49\u89c6\u56fe"), @CodeItem(value="DEMOBEDITVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u7f16\u8f91\u89c6\u56fe", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u7f16\u8f91\u89c6\u56fe"), @CodeItem(value="DEMOBFORMPICKUPMDVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u8868\u5355\u7c7b\u578b\u9009\u62e9\u591a\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u8868\u5355\u7c7b\u578b\u9009\u62e9\u591a\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09"), @CodeItem(value="DEMOBINDEXPICKUPMDVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u7d22\u5f15\u7c7b\u578b\u9009\u62e9\u591a\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u7d22\u5f15\u7c7b\u578b\u9009\u62e9\u591a\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09"), @CodeItem(value="DEMOBLISTVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5217\u8868\u89c6\u56fe", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5217\u8868\u89c6\u56fe"), @CodeItem(value="DEMOBMDVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u591a\u6570\u636e\u89c6\u56fe", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u591a\u6570\u636e\u89c6\u56fe"), @CodeItem(value="DEMOBMDVIEW9", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u591a\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u591a\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09"), @CodeItem(value="DEMOBMPICKUPVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u591a\u6570\u636e\u9009\u62e9\u89c6\u56fe", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u591a\u6570\u636e\u9009\u62e9\u89c6\u56fe"), @CodeItem(value="DEMOBPICKUPLISTVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u9009\u62e9\u5217\u8868\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u9009\u62e9\u5217\u8868\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09"), @CodeItem(value="DEMOBPICKUPMDVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u9009\u62e9\u591a\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u9009\u62e9\u591a\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09"), @CodeItem(value="DEMOBPICKUPTREEVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u9009\u62e9\u6811\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u9009\u62e9\u6811\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09"), @CodeItem(value="DEMOBPICKUPVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u6570\u636e\u9009\u62e9\u89c6\u56fe", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u6570\u636e\u9009\u62e9\u89c6\u56fe"), @CodeItem(value="DEMOBTABEXPVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5206\u9875\u5bfc\u822a\u89c6\u56fe", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5206\u9875\u5bfc\u822a\u89c6\u56fe"), @CodeItem(value="DEMOBTREEVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u6811\u89c6\u56fe", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u6811\u89c6\u56fe"), @CodeItem(value="DEMOBWFACTIONVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5de5\u4f5c\u6d41\u64cd\u4f5c\u89c6\u56fe", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5de5\u4f5c\u6d41\u64cd\u4f5c\u89c6\u56fe"), @CodeItem(value="DEMOBWFEDITVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5de5\u4f5c\u6d41\u7f16\u8f91\u89c6\u56fe", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5de5\u4f5c\u6d41\u7f16\u8f91\u89c6\u56fe"), @CodeItem(value="DEMOBWFEDITVIEW3", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5de5\u4f5c\u6d41\u7f16\u8f91\u89c6\u56fe\uff08\u5206\u9875\u5173\u7cfb\uff09", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5de5\u4f5c\u6d41\u7f16\u8f91\u89c6\u56fe\uff08\u5206\u9875\u5173\u7cfb\uff09"), @CodeItem(value="DEMOBWFMDVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5de5\u4f5c\u6d41\u591a\u6570\u636e\u89c6\u56fe", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5de5\u4f5c\u6d41\u591a\u6570\u636e\u89c6\u56fe"), @CodeItem(value="DEMOBWFSTARTVIEW", text="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5de5\u4f5c\u6d41\u542f\u52a8\u89c6\u56fe", realtext="\u5b9e\u4f53\u79fb\u52a8\u7aef\u5de5\u4f5c\u6d41\u542f\u52a8\u89c6\u56fe"), @CodeItem(value="DEMPICKUPVIEW", text="\u5b9e\u4f53\u6570\u636e\u591a\u9879\u9009\u62e9\u89c6\u56fe", realtext="\u5b9e\u4f53\u6570\u636e\u591a\u9879\u9009\u62e9\u89c6\u56fe"), @CodeItem(value="DEMPICKUPVIEW2", text="\u5b9e\u4f53\u591a\u9879\u6570\u636e\u9009\u62e9\u89c6\u56fe\uff08\u5de6\u53f3\u5173\u7cfb\uff09", realtext="\u5b9e\u4f53\u591a\u9879\u6570\u636e\u9009\u62e9\u89c6\u56fe\uff08\u5de6\u53f3\u5173\u7cfb\uff09"), @CodeItem(value="DEOPTVIEW", text="\u5b9e\u4f53\u9009\u9879\u64cd\u4f5c\u89c6\u56fe", realtext="\u5b9e\u4f53\u9009\u9879\u64cd\u4f5c\u89c6\u56fe"), @CodeItem(value="DEPICKUPDATAVIEW", text="\u5b9e\u4f53\u9009\u62e9\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09", realtext="\u5b9e\u4f53\u9009\u62e9\u6570\u636e\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09"), @CodeItem(value="DEPICKUPGRIDVIEW", text="\u5b9e\u4f53\u9009\u62e9\u8868\u683c\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09", realtext="\u5b9e\u4f53\u9009\u62e9\u8868\u683c\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09"), @CodeItem(value="DEPICKUPTREEVIEW", text="\u5b9e\u4f53\u9009\u62e9\u6811\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09", realtext="\u5b9e\u4f53\u9009\u62e9\u6811\u89c6\u56fe\uff08\u90e8\u4ef6\u89c6\u56fe\uff09"), @CodeItem(value="DEPICKUPVIEW", text="\u5b9e\u4f53\u6570\u636e\u9009\u62e9\u89c6\u56fe", realtext="\u5b9e\u4f53\u6570\u636e\u9009\u62e9\u89c6\u56fe"), @CodeItem(value="DEPICKUPVIEW2", text="\u5b9e\u4f53\u6570\u636e\u9009\u62e9\u89c6\u56fe\uff08\u5de6\u53f3\u5173\u7cfb\uff09", realtext="\u5b9e\u4f53\u6570\u636e\u9009\u62e9\u89c6\u56fe\uff08\u5de6\u53f3\u5173\u7cfb\uff09"), @CodeItem(value="DEPORTALVIEW", text="\u5b9e\u4f53\u6570\u636e\u770b\u677f\u89c6\u56fe", realtext="\u5b9e\u4f53\u6570\u636e\u770b\u677f\u89c6\u56fe"), @CodeItem(value="DEREDIRECTVIEW", text="\u5b9e\u4f53\u6570\u636e\u91cd\u5b9a\u5411\u89c6\u56fe", realtext="\u5b9e\u4f53\u6570\u636e\u91cd\u5b9a\u5411\u89c6\u56fe"), @CodeItem(value="DEREPORTVIEW", text="\u5b9e\u4f53\u62a5\u8868\u89c6\u56fe", realtext="\u5b9e\u4f53\u62a5\u8868\u89c6\u56fe"), @CodeItem(value="DETABEXPVIEW", text="\u5b9e\u4f53\u5206\u9875\u5bfc\u822a\u89c6\u56fe", realtext="\u5b9e\u4f53\u5206\u9875\u5bfc\u822a\u89c6\u56fe"), @CodeItem(value="DETREEEXPVIEW", text="\u5b9e\u4f53\u6811\u5bfc\u822a\u89c6\u56fe", realtext="\u5b9e\u4f53\u6811\u5bfc\u822a\u89c6\u56fe"), @CodeItem(value="DETREEEXPVIEW2", text="\u5b9e\u4f53\u6811\u5bfc\u822a\u89c6\u56fe\uff08IFrame\uff09", realtext="\u5b9e\u4f53\u6811\u5bfc\u822a\u89c6\u56fe\uff08IFrame\uff09"), @CodeItem(value="DETREEEXPVIEW3", text="\u5b9e\u4f53\u6811\u5bfc\u822a\u89c6\u56fe\uff08\u83dc\u5355\u6a21\u5f0f\uff09", realtext="\u5b9e\u4f53\u6811\u5bfc\u822a\u89c6\u56fe\uff08\u83dc\u5355\u6a21\u5f0f\uff09"), @CodeItem(value="DETREEGRIDVIEW9", text="\u5b9e\u4f53\u6811\u8868\u683c\u89c6\u56fe\uff08\u5d4c\u5165\uff09", realtext="\u5b9e\u4f53\u6811\u8868\u683c\u89c6\u56fe\uff08\u5d4c\u5165\uff09"), @CodeItem(value="DETREEVIEW", text="\u5b9e\u4f53\u6811\u89c6\u56fe", realtext="\u5b9e\u4f53\u6811\u89c6\u56fe"), @CodeItem(value="DETREEVIEW9", text="\u5b9e\u4f53\u6811\u89c6\u56fe\uff08\u5d4c\u5165\uff09", realtext="\u5b9e\u4f53\u6811\u89c6\u56fe\uff08\u5d4c\u5165\uff09"), @CodeItem(value="DEWFACTIONVIEW", text="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u64cd\u4f5c\u89c6\u56fe", realtext="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u64cd\u4f5c\u89c6\u56fe"), @CodeItem(value="DEWFDATAREDIRECTVIEW", text="\u5b9e\u4f53\u5168\u5c40\u6d41\u7a0b\u6570\u636e\u91cd\u5b9a\u5411\u89c6\u56fe", realtext="\u5b9e\u4f53\u5168\u5c40\u6d41\u7a0b\u6570\u636e\u91cd\u5b9a\u5411\u89c6\u56fe"), @CodeItem(value="DEWFEDITVIEW", text="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u7f16\u8f91\u89c6\u56fe", realtext="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u7f16\u8f91\u89c6\u56fe"), @CodeItem(value="DEWFEDITVIEW2", text="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u7f16\u8f91\u89c6\u56fe\uff08\u5de6\u53f3\u5173\u7cfb\uff09", realtext="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u7f16\u8f91\u89c6\u56fe\uff08\u5de6\u53f3\u5173\u7cfb\uff09"), @CodeItem(value="DEWFEDITVIEW3", text="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u89c6\u56fe\uff08\u5206\u9875\u5173\u7cfb\uff09", realtext="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u89c6\u56fe\uff08\u5206\u9875\u5173\u7cfb\uff09"), @CodeItem(value="DEWFEXPVIEW", text="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u5bfc\u822a\u89c6\u56fe", realtext="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u5bfc\u822a\u89c6\u56fe"), @CodeItem(value="DEWFGRIDVIEW", text="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u8868\u683c\u89c6\u56fe", realtext="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u8868\u683c\u89c6\u56fe"), @CodeItem(value="DEWFSTARTVIEW", text="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u542f\u52a8\u89c6\u56fe", realtext="\u5b9e\u4f53\u5de5\u4f5c\u6d41\u542f\u52a8\u89c6\u56fe"), @CodeItem(value="DEWIZARDVIEW", text="\u5b9e\u4f53\u5411\u5bfc\u89c6\u56fe", realtext="\u5b9e\u4f53\u5411\u5bfc\u89c6\u56fe")})
-public abstract class DynaViewTypeCodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String APPINDEXVIEW = "APPINDEXVIEW";
-    public static final String APPPORTALVIEW = "APPPORTALVIEW";
-    public static final String DECHARTVIEW = "DECHARTVIEW";
-    public static final String DECUSTOMVIEW = "DECUSTOMVIEW";
-    public static final String DEDATAVIEW = "DEDATAVIEW";
-    public static final String DEEDITVIEW = "DEEDITVIEW";
-    public static final String DEEDITVIEW2 = "DEEDITVIEW2";
-    public static final String DEEDITVIEW3 = "DEEDITVIEW3";
-    public static final String DEEDITVIEW4 = "DEEDITVIEW4";
-    public static final String DEEDITVIEW9 = "DEEDITVIEW9";
-    public static final String DEFORMPICKUPDATAVIEW = "DEFORMPICKUPDATAVIEW";
-    public static final String DEGRIDVIEW = "DEGRIDVIEW";
-    public static final String DEGRIDVIEW2 = "DEGRIDVIEW2";
-    public static final String DEGRIDVIEW4 = "DEGRIDVIEW4";
-    public static final String DEGRIDVIEW8 = "DEGRIDVIEW8";
-    public static final String DEGRIDVIEW9 = "DEGRIDVIEW9";
-    public static final String DEHTMLVIEW = "DEHTMLVIEW";
-    public static final String DEINDEXPICKUPDATAVIEW = "DEINDEXPICKUPDATAVIEW";
-    public static final String DEINDEXVIEW = "DEINDEXVIEW";
-    public static final String DEMDCUSTOMVIEW = "DEMDCUSTOMVIEW";
-    public static final String DEMEDITVIEW9 = "DEMEDITVIEW9";
-    public static final String DEMOBCUSTOMVIEW = "DEMOBCUSTOMVIEW";
-    public static final String DEMOBEDITVIEW = "DEMOBEDITVIEW";
-    public static final String DEMOBFORMPICKUPMDVIEW = "DEMOBFORMPICKUPMDVIEW";
-    public static final String DEMOBINDEXPICKUPMDVIEW = "DEMOBINDEXPICKUPMDVIEW";
-    public static final String DEMOBLISTVIEW = "DEMOBLISTVIEW";
-    public static final String DEMOBMDVIEW = "DEMOBMDVIEW";
-    public static final String DEMOBMDVIEW9 = "DEMOBMDVIEW9";
-    public static final String DEMOBMPICKUPVIEW = "DEMOBMPICKUPVIEW";
-    public static final String DEMOBPICKUPLISTVIEW = "DEMOBPICKUPLISTVIEW";
-    public static final String DEMOBPICKUPMDVIEW = "DEMOBPICKUPMDVIEW";
-    public static final String DEMOBPICKUPTREEVIEW = "DEMOBPICKUPTREEVIEW";
-    public static final String DEMOBPICKUPVIEW = "DEMOBPICKUPVIEW";
-    public static final String DEMOBTABEXPVIEW = "DEMOBTABEXPVIEW";
-    public static final String DEMOBTREEVIEW = "DEMOBTREEVIEW";
-    public static final String DEMOBWFACTIONVIEW = "DEMOBWFACTIONVIEW";
-    public static final String DEMOBWFEDITVIEW = "DEMOBWFEDITVIEW";
-    public static final String DEMOBWFEDITVIEW3 = "DEMOBWFEDITVIEW3";
-    public static final String DEMOBWFMDVIEW = "DEMOBWFMDVIEW";
-    public static final String DEMOBWFSTARTVIEW = "DEMOBWFSTARTVIEW";
-    public static final String DEMPICKUPVIEW = "DEMPICKUPVIEW";
-    public static final String DEMPICKUPVIEW2 = "DEMPICKUPVIEW2";
-    public static final String DEOPTVIEW = "DEOPTVIEW";
-    public static final String DEPICKUPDATAVIEW = "DEPICKUPDATAVIEW";
-    public static final String DEPICKUPGRIDVIEW = "DEPICKUPGRIDVIEW";
-    public static final String DEPICKUPTREEVIEW = "DEPICKUPTREEVIEW";
-    public static final String DEPICKUPVIEW = "DEPICKUPVIEW";
-    public static final String DEPICKUPVIEW2 = "DEPICKUPVIEW2";
-    public static final String DEPORTALVIEW = "DEPORTALVIEW";
-    public static final String DEREDIRECTVIEW = "DEREDIRECTVIEW";
-    public static final String DEREPORTVIEW = "DEREPORTVIEW";
-    public static final String DETABEXPVIEW = "DETABEXPVIEW";
-    public static final String DETREEEXPVIEW = "DETREEEXPVIEW";
-    public static final String DETREEEXPVIEW2 = "DETREEEXPVIEW2";
-    public static final String DETREEEXPVIEW3 = "DETREEEXPVIEW3";
-    public static final String DETREEGRIDVIEW9 = "DETREEGRIDVIEW9";
-    public static final String DETREEVIEW = "DETREEVIEW";
-    public static final String DETREEVIEW9 = "DETREEVIEW9";
-    public static final String DEWFACTIONVIEW = "DEWFACTIONVIEW";
-    public static final String DEWFDATAREDIRECTVIEW = "DEWFDATAREDIRECTVIEW";
-    public static final String DEWFEDITVIEW = "DEWFEDITVIEW";
-    public static final String DEWFEDITVIEW2 = "DEWFEDITVIEW2";
-    public static final String DEWFEDITVIEW3 = "DEWFEDITVIEW3";
-    public static final String DEWFEXPVIEW = "DEWFEXPVIEW";
-    public static final String DEWFGRIDVIEW = "DEWFGRIDVIEW";
-    public static final String DEWFSTARTVIEW = "DEWFSTARTVIEW";
-    public static final String DEWIZARDVIEW = "DEWIZARDVIEW";
+
+@CodeList(id="d3220274deae2f484dfb18e927885909",name="动态视图类型",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="APPINDEXVIEW",text="应用首页视图",realtext="应用首页视图")
+    ,@CodeItem(value="APPPORTALVIEW",text="应用门户视图",realtext="应用门户视图")
+    ,@CodeItem(value="DECHARTVIEW",text="实体图表视图",realtext="实体图表视图")
+    ,@CodeItem(value="DECUSTOMVIEW",text="实体自定义视图",realtext="实体自定义视图")
+    ,@CodeItem(value="DEDATAVIEW",text="实体数据视图",realtext="实体数据视图")
+    ,@CodeItem(value="DEEDITVIEW",text="实体编辑视图",realtext="实体编辑视图")
+    ,@CodeItem(value="DEEDITVIEW2",text="实体编辑视图（左右关系）",realtext="实体编辑视图（左右关系）")
+    ,@CodeItem(value="DEEDITVIEW3",text="实体编辑视图（分页关系）",realtext="实体编辑视图（分页关系）")
+    ,@CodeItem(value="DEEDITVIEW4",text="实体编辑视图（上下关系）",realtext="实体编辑视图（上下关系）")
+    ,@CodeItem(value="DEEDITVIEW9",text="实体编辑视图（嵌入）",realtext="实体编辑视图（嵌入）")
+    ,@CodeItem(value="DEFORMPICKUPDATAVIEW",text="实体表单选择数据视图（部件视图）",realtext="实体表单选择数据视图（部件视图）")
+    ,@CodeItem(value="DEGRIDVIEW",text="实体表格视图",realtext="实体表格视图")
+    ,@CodeItem(value="DEGRIDVIEW2",text="实体表格视图（左右关系）",realtext="实体表格视图（左右关系）")
+    ,@CodeItem(value="DEGRIDVIEW4",text="实体表格视图（上下关系）",realtext="实体表格视图（上下关系）")
+    ,@CodeItem(value="DEGRIDVIEW8",text="实体关系数据表格视图（嵌入）",realtext="实体关系数据表格视图（嵌入）")
+    ,@CodeItem(value="DEGRIDVIEW9",text="实体表格视图（嵌入）",realtext="实体表格视图（嵌入）")
+    ,@CodeItem(value="DEHTMLVIEW",text="实体HTML视图",realtext="实体HTML视图")
+    ,@CodeItem(value="DEINDEXPICKUPDATAVIEW",text="实体索引关系选择数据视图（部件视图）",realtext="实体索引关系选择数据视图（部件视图）")
+    ,@CodeItem(value="DEINDEXVIEW",text="实体首页视图",realtext="实体首页视图")
+    ,@CodeItem(value="DEMDCUSTOMVIEW",text="实体多数据自定义视图",realtext="实体多数据自定义视图")
+    ,@CodeItem(value="DEMEDITVIEW9",text="实体多表单编辑视图（嵌入）",realtext="实体多表单编辑视图（嵌入）")
+    ,@CodeItem(value="DEMOBCUSTOMVIEW",text="实体移动端自定义视图",realtext="实体移动端自定义视图")
+    ,@CodeItem(value="DEMOBEDITVIEW",text="实体移动端编辑视图",realtext="实体移动端编辑视图")
+    ,@CodeItem(value="DEMOBFORMPICKUPMDVIEW",text="实体移动端表单类型选择多数据视图（部件视图）",realtext="实体移动端表单类型选择多数据视图（部件视图）")
+    ,@CodeItem(value="DEMOBINDEXPICKUPMDVIEW",text="实体移动端索引类型选择多数据视图（部件视图）",realtext="实体移动端索引类型选择多数据视图（部件视图）")
+    ,@CodeItem(value="DEMOBLISTVIEW",text="实体移动端列表视图",realtext="实体移动端列表视图")
+    ,@CodeItem(value="DEMOBMDVIEW",text="实体移动端多数据视图",realtext="实体移动端多数据视图")
+    ,@CodeItem(value="DEMOBMDVIEW9",text="实体移动端多数据视图（部件视图）",realtext="实体移动端多数据视图（部件视图）")
+    ,@CodeItem(value="DEMOBMPICKUPVIEW",text="实体移动端多数据选择视图",realtext="实体移动端多数据选择视图")
+    ,@CodeItem(value="DEMOBPICKUPLISTVIEW",text="实体移动端选择列表视图（部件视图）",realtext="实体移动端选择列表视图（部件视图）")
+    ,@CodeItem(value="DEMOBPICKUPMDVIEW",text="实体移动端选择多数据视图（部件视图）",realtext="实体移动端选择多数据视图（部件视图）")
+    ,@CodeItem(value="DEMOBPICKUPTREEVIEW",text="实体移动端选择树视图（部件视图）",realtext="实体移动端选择树视图（部件视图）")
+    ,@CodeItem(value="DEMOBPICKUPVIEW",text="实体移动端数据选择视图",realtext="实体移动端数据选择视图")
+    ,@CodeItem(value="DEMOBTABEXPVIEW",text="实体移动端分页导航视图",realtext="实体移动端分页导航视图")
+    ,@CodeItem(value="DEMOBTREEVIEW",text="实体移动端树视图",realtext="实体移动端树视图")
+    ,@CodeItem(value="DEMOBWFACTIONVIEW",text="实体移动端工作流操作视图",realtext="实体移动端工作流操作视图")
+    ,@CodeItem(value="DEMOBWFEDITVIEW",text="实体移动端工作流编辑视图",realtext="实体移动端工作流编辑视图")
+    ,@CodeItem(value="DEMOBWFEDITVIEW3",text="实体移动端工作流编辑视图（分页关系）",realtext="实体移动端工作流编辑视图（分页关系）")
+    ,@CodeItem(value="DEMOBWFMDVIEW",text="实体移动端工作流多数据视图",realtext="实体移动端工作流多数据视图")
+    ,@CodeItem(value="DEMOBWFSTARTVIEW",text="实体移动端工作流启动视图",realtext="实体移动端工作流启动视图")
+    ,@CodeItem(value="DEMPICKUPVIEW",text="实体数据多项选择视图",realtext="实体数据多项选择视图")
+    ,@CodeItem(value="DEMPICKUPVIEW2",text="实体多项数据选择视图（左右关系）",realtext="实体多项数据选择视图（左右关系）")
+    ,@CodeItem(value="DEOPTVIEW",text="实体选项操作视图",realtext="实体选项操作视图")
+    ,@CodeItem(value="DEPICKUPDATAVIEW",text="实体选择数据视图（部件视图）",realtext="实体选择数据视图（部件视图）")
+    ,@CodeItem(value="DEPICKUPGRIDVIEW",text="实体选择表格视图（部件视图）",realtext="实体选择表格视图（部件视图）")
+    ,@CodeItem(value="DEPICKUPTREEVIEW",text="实体选择树视图（部件视图）",realtext="实体选择树视图（部件视图）")
+    ,@CodeItem(value="DEPICKUPVIEW",text="实体数据选择视图",realtext="实体数据选择视图")
+    ,@CodeItem(value="DEPICKUPVIEW2",text="实体数据选择视图（左右关系）",realtext="实体数据选择视图（左右关系）")
+    ,@CodeItem(value="DEPORTALVIEW",text="实体数据看板视图",realtext="实体数据看板视图")
+    ,@CodeItem(value="DEREDIRECTVIEW",text="实体数据重定向视图",realtext="实体数据重定向视图")
+    ,@CodeItem(value="DEREPORTVIEW",text="实体报表视图",realtext="实体报表视图")
+    ,@CodeItem(value="DETABEXPVIEW",text="实体分页导航视图",realtext="实体分页导航视图")
+    ,@CodeItem(value="DETREEEXPVIEW",text="实体树导航视图",realtext="实体树导航视图")
+    ,@CodeItem(value="DETREEEXPVIEW2",text="实体树导航视图（IFrame）",realtext="实体树导航视图（IFrame）")
+    ,@CodeItem(value="DETREEEXPVIEW3",text="实体树导航视图（菜单模式）",realtext="实体树导航视图（菜单模式）")
+    ,@CodeItem(value="DETREEGRIDVIEW9",text="实体树表格视图（嵌入）",realtext="实体树表格视图（嵌入）")
+    ,@CodeItem(value="DETREEVIEW",text="实体树视图",realtext="实体树视图")
+    ,@CodeItem(value="DETREEVIEW9",text="实体树视图（嵌入）",realtext="实体树视图（嵌入）")
+    ,@CodeItem(value="DEWFACTIONVIEW",text="实体工作流操作视图",realtext="实体工作流操作视图")
+    ,@CodeItem(value="DEWFDATAREDIRECTVIEW",text="实体全局流程数据重定向视图",realtext="实体全局流程数据重定向视图")
+    ,@CodeItem(value="DEWFEDITVIEW",text="实体工作流编辑视图",realtext="实体工作流编辑视图")
+    ,@CodeItem(value="DEWFEDITVIEW2",text="实体工作流编辑视图（左右关系）",realtext="实体工作流编辑视图（左右关系）")
+    ,@CodeItem(value="DEWFEDITVIEW3",text="实体工作流视图（分页关系）",realtext="实体工作流视图（分页关系）")
+    ,@CodeItem(value="DEWFEXPVIEW",text="实体工作流导航视图",realtext="实体工作流导航视图")
+    ,@CodeItem(value="DEWFGRIDVIEW",text="实体工作流表格视图",realtext="实体工作流表格视图")
+    ,@CodeItem(value="DEWFSTARTVIEW",text="实体工作流启动视图",realtext="实体工作流启动视图")
+    ,@CodeItem(value="DEWIZARDVIEW",text="实体向导视图",realtext="实体向导视图")
+})
+
+
+/**
+ * 静态代码表[动态视图类型]模型基类
+ */
+public abstract class DynaViewTypeCodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  应用首页视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String APPINDEXVIEW = "APPINDEXVIEW";
+    /**
+     *  应用门户视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String APPPORTALVIEW = "APPPORTALVIEW";
+    /**
+     *  实体图表视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DECHARTVIEW = "DECHARTVIEW";
+    /**
+     *  实体自定义视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DECUSTOMVIEW = "DECUSTOMVIEW";
+    /**
+     *  实体数据视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEDATAVIEW = "DEDATAVIEW";
+    /**
+     *  实体编辑视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEEDITVIEW = "DEEDITVIEW";
+    /**
+     *  实体编辑视图（左右关系），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEEDITVIEW2 = "DEEDITVIEW2";
+    /**
+     *  实体编辑视图（分页关系），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEEDITVIEW3 = "DEEDITVIEW3";
+    /**
+     *  实体编辑视图（上下关系），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEEDITVIEW4 = "DEEDITVIEW4";
+    /**
+     *  实体编辑视图（嵌入），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEEDITVIEW9 = "DEEDITVIEW9";
+    /**
+     *  实体表单选择数据视图（部件视图），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEFORMPICKUPDATAVIEW = "DEFORMPICKUPDATAVIEW";
+    /**
+     *  实体表格视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEGRIDVIEW = "DEGRIDVIEW";
+    /**
+     *  实体表格视图（左右关系），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEGRIDVIEW2 = "DEGRIDVIEW2";
+    /**
+     *  实体表格视图（上下关系），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEGRIDVIEW4 = "DEGRIDVIEW4";
+    /**
+     *  实体关系数据表格视图（嵌入），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEGRIDVIEW8 = "DEGRIDVIEW8";
+    /**
+     *  实体表格视图（嵌入），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEGRIDVIEW9 = "DEGRIDVIEW9";
+    /**
+     *  实体HTML视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEHTMLVIEW = "DEHTMLVIEW";
+    /**
+     *  实体索引关系选择数据视图（部件视图），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEINDEXPICKUPDATAVIEW = "DEINDEXPICKUPDATAVIEW";
+    /**
+     *  实体首页视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEINDEXVIEW = "DEINDEXVIEW";
+    /**
+     *  实体多数据自定义视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMDCUSTOMVIEW = "DEMDCUSTOMVIEW";
+    /**
+     *  实体多表单编辑视图（嵌入），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMEDITVIEW9 = "DEMEDITVIEW9";
+    /**
+     *  实体移动端自定义视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBCUSTOMVIEW = "DEMOBCUSTOMVIEW";
+    /**
+     *  实体移动端编辑视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBEDITVIEW = "DEMOBEDITVIEW";
+    /**
+     *  实体移动端表单类型选择多数据视图（部件视图），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBFORMPICKUPMDVIEW = "DEMOBFORMPICKUPMDVIEW";
+    /**
+     *  实体移动端索引类型选择多数据视图（部件视图），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBINDEXPICKUPMDVIEW = "DEMOBINDEXPICKUPMDVIEW";
+    /**
+     *  实体移动端列表视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBLISTVIEW = "DEMOBLISTVIEW";
+    /**
+     *  实体移动端多数据视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBMDVIEW = "DEMOBMDVIEW";
+    /**
+     *  实体移动端多数据视图（部件视图），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBMDVIEW9 = "DEMOBMDVIEW9";
+    /**
+     *  实体移动端多数据选择视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBMPICKUPVIEW = "DEMOBMPICKUPVIEW";
+    /**
+     *  实体移动端选择列表视图（部件视图），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBPICKUPLISTVIEW = "DEMOBPICKUPLISTVIEW";
+    /**
+     *  实体移动端选择多数据视图（部件视图），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBPICKUPMDVIEW = "DEMOBPICKUPMDVIEW";
+    /**
+     *  实体移动端选择树视图（部件视图），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBPICKUPTREEVIEW = "DEMOBPICKUPTREEVIEW";
+    /**
+     *  实体移动端数据选择视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBPICKUPVIEW = "DEMOBPICKUPVIEW";
+    /**
+     *  实体移动端分页导航视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBTABEXPVIEW = "DEMOBTABEXPVIEW";
+    /**
+     *  实体移动端树视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBTREEVIEW = "DEMOBTREEVIEW";
+    /**
+     *  实体移动端工作流操作视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBWFACTIONVIEW = "DEMOBWFACTIONVIEW";
+    /**
+     *  实体移动端工作流编辑视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBWFEDITVIEW = "DEMOBWFEDITVIEW";
+    /**
+     *  实体移动端工作流编辑视图（分页关系），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBWFEDITVIEW3 = "DEMOBWFEDITVIEW3";
+    /**
+     *  实体移动端工作流多数据视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBWFMDVIEW = "DEMOBWFMDVIEW";
+    /**
+     *  实体移动端工作流启动视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMOBWFSTARTVIEW = "DEMOBWFSTARTVIEW";
+    /**
+     *  实体数据多项选择视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMPICKUPVIEW = "DEMPICKUPVIEW";
+    /**
+     *  实体多项数据选择视图（左右关系），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEMPICKUPVIEW2 = "DEMPICKUPVIEW2";
+    /**
+     *  实体选项操作视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEOPTVIEW = "DEOPTVIEW";
+    /**
+     *  实体选择数据视图（部件视图），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEPICKUPDATAVIEW = "DEPICKUPDATAVIEW";
+    /**
+     *  实体选择表格视图（部件视图），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEPICKUPGRIDVIEW = "DEPICKUPGRIDVIEW";
+    /**
+     *  实体选择树视图（部件视图），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEPICKUPTREEVIEW = "DEPICKUPTREEVIEW";
+    /**
+     *  实体数据选择视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEPICKUPVIEW = "DEPICKUPVIEW";
+    /**
+     *  实体数据选择视图（左右关系），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEPICKUPVIEW2 = "DEPICKUPVIEW2";
+    /**
+     *  实体数据看板视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEPORTALVIEW = "DEPORTALVIEW";
+    /**
+     *  实体数据重定向视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEREDIRECTVIEW = "DEREDIRECTVIEW";
+    /**
+     *  实体报表视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEREPORTVIEW = "DEREPORTVIEW";
+    /**
+     *  实体分页导航视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DETABEXPVIEW = "DETABEXPVIEW";
+    /**
+     *  实体树导航视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DETREEEXPVIEW = "DETREEEXPVIEW";
+    /**
+     *  实体树导航视图（IFrame），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DETREEEXPVIEW2 = "DETREEEXPVIEW2";
+    /**
+     *  实体树导航视图（菜单模式），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DETREEEXPVIEW3 = "DETREEEXPVIEW3";
+    /**
+     *  实体树表格视图（嵌入），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DETREEGRIDVIEW9 = "DETREEGRIDVIEW9";
+    /**
+     *  实体树视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DETREEVIEW = "DETREEVIEW";
+    /**
+     *  实体树视图（嵌入），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DETREEVIEW9 = "DETREEVIEW9";
+    /**
+     *  实体工作流操作视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEWFACTIONVIEW = "DEWFACTIONVIEW";
+    /**
+     *  实体全局流程数据重定向视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEWFDATAREDIRECTVIEW = "DEWFDATAREDIRECTVIEW";
+    /**
+     *  实体工作流编辑视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEWFEDITVIEW = "DEWFEDITVIEW";
+    /**
+     *  实体工作流编辑视图（左右关系），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEWFEDITVIEW2 = "DEWFEDITVIEW2";
+    /**
+     *  实体工作流视图（分页关系），注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEWFEDITVIEW3 = "DEWFEDITVIEW3";
+    /**
+     *  实体工作流导航视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEWFEXPVIEW = "DEWFEXPVIEW";
+    /**
+     *  实体工作流表格视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEWFGRIDVIEW = "DEWFGRIDVIEW";
+    /**
+     *  实体工作流启动视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEWFSTARTVIEW = "DEWFSTARTVIEW";
+    /**
+     *  实体向导视图，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String DEWIZARDVIEW = "DEWIZARDVIEW";
 
     public DynaViewTypeCodeListModelBase() {
+        super();
         this.initAnnotation(DynaViewTypeCodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.DynaViewTypeCodeListModel", this);
     }
 
-    public static ICodeList getInstance() throws Exception {
+    /**
+     * 获取当前代码表对象实例
+     */
+    public static net.ibizsys.paas.codelist.ICodeList getInstance() throws Exception {
         return CodeListGlobal.getCodeList("net.ibizsys.psrt.srv.codelist.DynaViewTypeCodeListModel");
     }
-}
 
+}

@@ -2848,7 +2848,7 @@ implements Serializable {
                 PSDEAction pSDEAction = new PSDEAction();
                 pSDEAction.setPSDEActionId(this.getInitPSDEActionId());
                 PSDEActionService pSDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionService.autoGet((IEntity)pSDEAction);
+                pSDEActionService.autoGet(pSDEAction);
                 this.initpsdeaction = pSDEAction;
             }
             return this.initpsdeaction;
@@ -2874,7 +2874,7 @@ implements Serializable {
                 PSDEAction pSDEAction = new PSDEAction();
                 pSDEAction.setPSDEActionId(this.getNextPSDEActionId());
                 PSDEActionService pSDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionService.autoGet((IEntity)pSDEAction);
+                pSDEActionService.autoGet(pSDEAction);
                 this.nextpsdeaction = pSDEAction;
             }
             return this.nextpsdeaction;
@@ -2900,7 +2900,7 @@ implements Serializable {
                 PSDEForm pSDEForm = new PSDEForm();
                 pSDEForm.setPSDEFormId(this.getPSDEFormId());
                 PSDEFormService pSDEFormService = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFormService.autoGet((IEntity)pSDEForm);
+                pSDEFormService.autoGet(pSDEForm);
                 this.psdeform = pSDEForm;
             }
             return this.psdeform;
@@ -2926,7 +2926,7 @@ implements Serializable {
                 PSDEWizard pSDEWizard = new PSDEWizard();
                 pSDEWizard.setPSDEWizardId(this.getPSDEWizardId());
                 PSDEWizardService pSDEWizardService = (PSDEWizardService)ServiceGlobal.getService(PSDEWizardService.class, (SessionFactory)this.getSessionFactory());
-                pSDEWizardService.autoGet((IEntity)pSDEWizard);
+                pSDEWizardService.autoGet(pSDEWizard);
                 this.psdewizard = pSDEWizard;
             }
             return this.psdewizard;
@@ -2952,7 +2952,7 @@ implements Serializable {
                 PSLanguageRes pSLanguageRes = new PSLanguageRes();
                 pSLanguageRes.setPSLanguageResId(this.getLNPSLanResId());
                 PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
-                pSLanguageResService.autoGet((IEntity)pSLanguageRes);
+                pSLanguageResService.autoGet(pSLanguageRes);
                 this.lnpslanres = pSLanguageRes;
             }
             return this.lnpslanres;
@@ -2978,7 +2978,7 @@ implements Serializable {
                 PSLanguageRes pSLanguageRes = new PSLanguageRes();
                 pSLanguageRes.setPSLanguageResId(this.getSubTitlePSLanResId());
                 PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
-                pSLanguageResService.autoGet((IEntity)pSLanguageRes);
+                pSLanguageResService.autoGet(pSLanguageRes);
                 this.subtitlepslanres = pSLanguageRes;
             }
             return this.subtitlepslanres;
@@ -3004,7 +3004,7 @@ implements Serializable {
                 PSSysCss pSSysCss = new PSSysCss();
                 pSSysCss.setPSSysCssId(this.getPSSysCssId());
                 PSSysCssService pSSysCssService = (PSSysCssService)ServiceGlobal.getService(PSSysCssService.class, (SessionFactory)this.getSessionFactory());
-                pSSysCssService.autoGet((IEntity)pSSysCss);
+                pSSysCssService.autoGet(pSSysCss);
                 this.pssyscss = pSSysCss;
             }
             return this.pssyscss;
@@ -3030,7 +3030,7 @@ implements Serializable {
                 PSSysImage pSSysImage = new PSSysImage();
                 pSSysImage.setPSSysImageId(this.getPSSysImageId());
                 PSSysImageService pSSysImageService = (PSSysImageService)ServiceGlobal.getService(PSSysImageService.class, (SessionFactory)this.getSessionFactory());
-                pSSysImageService.autoGet((IEntity)pSSysImage);
+                pSSysImageService.autoGet(pSSysImage);
                 this.pssysimage = pSSysImage;
             }
             return this.pssysimage;

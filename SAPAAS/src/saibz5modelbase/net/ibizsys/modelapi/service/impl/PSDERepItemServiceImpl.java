@@ -70,7 +70,7 @@ implements IPSDERepItemService {
     @Override
     protected List<PSDERepItem> onListAll() throws Exception {
         ArrayList<PSDERepItem> list = new ArrayList<PSDERepItem>();
-        List psdereports = PSModelServiceUtil.getInstance().getPSDEReportService().listAll();
+        List<PSDEReport> psdereports = PSModelServiceUtil.getInstance().getPSDEReportService().listAll();
         if (psdereports != null) {
             for (PSDEReport parent : psdereports) {
                 List<PSDERepItem> items = this.listByPSDEReport(parent);

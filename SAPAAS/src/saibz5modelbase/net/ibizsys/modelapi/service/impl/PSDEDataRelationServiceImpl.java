@@ -79,7 +79,7 @@ implements IPSDEDataRelationService {
     @Override
     protected List<PSDEDataRelation> onListAll() throws Exception {
         ArrayList<PSDEDataRelation> list = new ArrayList<PSDEDataRelation>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEDataRelation> items = this.listByPSDataEntity(parent);

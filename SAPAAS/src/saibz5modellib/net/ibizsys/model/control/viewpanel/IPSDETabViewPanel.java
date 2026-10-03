@@ -1,15 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.viewpanel;
 
 import net.ibizsys.model.control.counter.IPSSysCounterRef;
-import net.ibizsys.model.control.viewpanel.IPSDEViewPanel;
 
-public interface IPSDETabViewPanel
-extends IPSDEViewPanel {
-    public IPSSysCounterRef getPSSysCounterRef();
+/**
+ * 实体分页视图面板对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDETabViewPanel extends IPSDEViewPanel {
 
-    public String getCounterId();
+	/**
+	 * 获取系统计数器引用
+	 * @return
+	 */
+	IPSSysCounterRef getPSSysCounterRef();
+	
+	
+	
+	/**
+	 * 获取计数标识
+	 * @return
+	 */
+	String getCounterId();
 }
-

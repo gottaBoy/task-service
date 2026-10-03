@@ -46,12 +46,11 @@ extends XMLCollectionExConfig<BaseToolbarItemConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = ToolbarItemsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((BaseToolbarItemConfig)childNode))) {
-                this.add((Object)((BaseToolbarItemConfig)childNode));
+            if (this.OnChildNodeLoaded((BaseToolbarItemConfig)childNode)) {
+                this.add((BaseToolbarItemConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

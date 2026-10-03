@@ -2728,7 +2728,7 @@ implements Serializable {
                 PSSysACHandler pSSysACHandler = new PSSysACHandler();
                 pSSysACHandler.setPSSysACHandlerId(this.getPSSysACHandlerId());
                 PSSysACHandlerService pSSysACHandlerService = (PSSysACHandlerService)ServiceGlobal.getService(PSSysACHandlerService.class, (SessionFactory)this.getSessionFactory());
-                pSSysACHandlerService.autoGet((IEntity)pSSysACHandler);
+                pSSysACHandlerService.autoGet(pSSysACHandler);
                 this.pssysachandler = pSSysACHandler;
             }
             return this.pssysachandler;
@@ -2754,7 +2754,7 @@ implements Serializable {
                 PSSysToolbar pSSysToolbar = new PSSysToolbar();
                 pSSysToolbar.setPSSysToolbarId(this.getPSSysToolbarId());
                 PSSysToolbarService pSSysToolbarService = (PSSysToolbarService)ServiceGlobal.getService(PSSysToolbarService.class, (SessionFactory)this.getSessionFactory());
-                pSSysToolbarService.autoGet((IEntity)pSSysToolbar);
+                pSSysToolbarService.autoGet(pSSysToolbar);
                 this.pssystoolbar = pSSysToolbar;
             }
             return this.pssystoolbar;
@@ -2780,7 +2780,7 @@ implements Serializable {
                 PSViewType pSViewType = new PSViewType();
                 pSViewType.setPSViewTypeId(this.getPSViewTypeId());
                 PSViewTypeService pSViewTypeService = (PSViewTypeService)ServiceGlobal.getService(PSViewTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSViewTypeService.autoGet((IEntity)pSViewType);
+                pSViewTypeService.autoGet(pSViewType);
                 this.psviewtype = pSViewType;
             }
             return this.psviewtype;

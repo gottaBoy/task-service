@@ -1,33 +1,86 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswx.core;
 
 import net.ibizsys.paas.core.IModelBase;
-import net.ibizsys.pswx.core.IWXAccount;
-import net.ibizsys.pswx.core.IWXMenu;
 
-public interface IWXEntApp
-extends IModelBase {
-    public static final String APPTYPE_H5 = "H5";
-    public static final String APPTYPE_MSG = "MSG";
+/**
+ * 微信公众号企业应用对象接口
+ * 
+ * @author Administrator
+ * 
+ */
+public interface IWXEntApp extends IModelBase {
 
-    public IWXAccount getWXAccount();
+	/**
+	 * H5主页型
+	 */
+	public final static String APPTYPE_H5 = "H5";
 
-    public String getAppURL();
+	/**
+	 * 消息响应型
+	 */
+	public final static String APPTYPE_MSG = "MSG";
 
-    public String getAppType();
+	/**
+	 * 获取微信公众号
+	 * 
+	 * @return
+	 */
+	IWXAccount getWXAccount();
 
-    public boolean isReportLocation();
+	/**
+	 * 获取应用的访问路径
+	 * 
+	 * @return
+	 */
+	String getAppURL();
 
-    public boolean isReportEnter();
+	/**
+	 * 获取应用程序类型
+	 * 
+	 * @return
+	 */
+	String getAppType();
 
-    public String getAppSecret();
+	/**
+	 * 是否报告位置
+	 * 
+	 * @return
+	 */
+	boolean isReportLocation();
 
-    public String getToken();
+	/**
+	 * 是否报告进入程序
+	 * 
+	 * @return
+	 */
+	boolean isReportEnter();
 
-    public String getEncodingAESKey();
+	/**
+	 * 获取应用密钥
+	 * 
+	 * @return
+	 */
+	String getAppSecret();
 
-    public IWXMenu getDefaultWXMenu();
+	/**
+	 * 获取票据
+	 * 
+	 * @return
+	 */
+	String getToken();
+
+	/**
+	 * 获取回调密钥
+	 * 
+	 * @return
+	 */
+	String getEncodingAESKey();
+
+	/**
+	 * 获取默认的微信菜单
+	 * 
+	 * @return
+	 */
+	IWXMenu getDefaultWXMenu();
+
 }
-

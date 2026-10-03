@@ -162,9 +162,9 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
             PSAppView pSAppView = (PSAppView)iService.getDEModel().createEntity();
             pSAppView.set("PSAPPVIEWID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppView);
+                iService.getTemp(pSAppView);
             } else {
-                iService.get((IEntity)pSAppView);
+                iService.get(pSAppView);
             }
             this.onFillParentInfo_PSAppView(pSMobAppStartPage, pSAppView);
             return;
@@ -174,9 +174,9 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSMobAppStartPage, pSSysApp);
             return;
@@ -186,14 +186,14 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
             PSSysImage pSSysImage = (PSSysImage)iService.getDEModel().createEntity();
             pSSysImage.set("PSSYSIMAGEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysImage);
+                iService.getTemp(pSSysImage);
             } else {
-                iService.get((IEntity)pSSysImage);
+                iService.get(pSSysImage);
             }
             this.onFillParentInfo_PSSysImage(pSMobAppStartPage, pSSysImage);
             return;
         }
-        super.onFillParentInfo((IEntity)pSMobAppStartPage, string, string2, string3);
+        super.onFillParentInfo(pSMobAppStartPage, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -222,7 +222,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
         if (bl && pSMobAppStartPage.getValidFlag() == null) {
             pSMobAppStartPage.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSMobAppStartPage, bl);
+        super.onFillEntityFullInfo(pSMobAppStartPage, bl);
         this.onFillEntityFullInfo_PSAppView(pSMobAppStartPage, bl);
         this.onFillEntityFullInfo_PSSysApp(pSMobAppStartPage, bl);
         this.onFillEntityFullInfo_PSSysImage(pSMobAppStartPage, bl);
@@ -238,7 +238,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
     }
 
     protected void onWriteBackParent(PSMobAppStartPage pSMobAppStartPage, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSMobAppStartPage, bl);
+        super.onWriteBackParent(pSMobAppStartPage, bl);
     }
 
     public ArrayList<PSMobAppStartPage> selectByPSAppView(PSAppViewBase pSAppViewBase) throws Exception {
@@ -345,7 +345,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
         ArrayList<PSMobAppStartPage> arrayList = this.selectByPSAppView(pSAppView);
         this.onBeforeRemoveByPSAppView(pSAppView, arrayList);
         for (PSMobAppStartPage pSMobAppStartPage : arrayList) {
-            this.remove((IEntity)pSMobAppStartPage);
+            this.remove(pSMobAppStartPage);
         }
         this.onAfterRemoveByPSAppView(pSAppView, arrayList);
     }
@@ -363,8 +363,8 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
         ArrayList<PSMobAppStartPage> arrayList = this.selectByPSSysApp(pSSysApp, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSAPP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysApp);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMOBAPPSTARTPAGE_PSSYSAPP_PSSYSAPPID", "", iDataEntityModel.getName(), "PSMOBAPPSTARTPAGE", iDataEntityModel.getDataInfo((IEntity)pSSysApp), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysApp);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMOBAPPSTARTPAGE_PSSYSAPP_PSSYSAPPID", "", iDataEntityModel.getName(), "PSMOBAPPSTARTPAGE", iDataEntityModel.getDataInfo(pSSysApp), arrayList.get(0)));
         }
     }
 
@@ -397,7 +397,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
         ArrayList<PSMobAppStartPage> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSMobAppStartPage pSMobAppStartPage : arrayList) {
-            this.remove((IEntity)pSMobAppStartPage);
+            this.remove(pSMobAppStartPage);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -415,8 +415,8 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
         ArrayList<PSMobAppStartPage> arrayList = this.selectByPSSysImage(pSSysImage, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSIMAGE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysImage);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMOBAPPSTARTPAGE_PSSYSIMAGE_PSSYSIMAGEID", "", iDataEntityModel.getName(), "PSMOBAPPSTARTPAGE", iDataEntityModel.getDataInfo((IEntity)pSSysImage), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysImage);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMOBAPPSTARTPAGE_PSSYSIMAGE_PSSYSIMAGEID", "", iDataEntityModel.getName(), "PSMOBAPPSTARTPAGE", iDataEntityModel.getDataInfo(pSSysImage), arrayList.get(0)));
         }
     }
 
@@ -449,7 +449,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
         ArrayList<PSMobAppStartPage> arrayList = this.selectByPSSysImage(pSSysImage);
         this.onBeforeRemoveByPSSysImage(pSSysImage, arrayList);
         for (PSMobAppStartPage pSMobAppStartPage : arrayList) {
-            this.remove((IEntity)pSMobAppStartPage);
+            this.remove(pSMobAppStartPage);
         }
         this.onAfterRemoveByPSSysImage(pSSysImage, arrayList);
     }
@@ -470,7 +470,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
 
     protected void replaceParentInfo(PSMobAppStartPage pSMobAppStartPage, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSMobAppStartPage, cloneSession);
+        super.replaceParentInfo(pSMobAppStartPage, cloneSession);
         if (pSMobAppStartPage.getPSAppViewId() != null && (iEntity = cloneSession.getEntity("PSAPPVIEW", (Object)pSMobAppStartPage.getPSAppViewId())) != null) {
             this.onFillParentInfo_PSAppView(pSMobAppStartPage, (PSAppView)iEntity);
         }
@@ -483,7 +483,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
     }
 
     protected void onRemoveEntityUncopyValues(PSMobAppStartPage pSMobAppStartPage, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSMobAppStartPage, bl);
+        super.onRemoveEntityUncopyValues(pSMobAppStartPage, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSMobAppStartPage pSMobAppStartPage, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -522,7 +522,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSMobAppStartPage, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSMobAppStartPage, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSMobAppStartPage, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSMobAppStartPage pSMobAppStartPage, boolean bl2, boolean bl3) throws Exception {
@@ -535,7 +535,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSMobAppStartPage, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSMobAppStartPage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -574,7 +574,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSMobAppStartPage, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSMobAppStartPage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -596,7 +596,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppViewId_Default((IEntity)pSMobAppStartPage, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppViewId_Default(pSMobAppStartPage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPVIEWID");
@@ -621,7 +621,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMobAppStartPageId_Default((IEntity)pSMobAppStartPage, bl2, bl3);
+            string2 = this.onTestValueRule_PSMobAppStartPageId_Default(pSMobAppStartPage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMOBAPPSTARTPAGEID");
@@ -646,7 +646,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMobAppStartPageName_Default((IEntity)pSMobAppStartPage, bl2, bl3);
+            string2 = this.onTestValueRule_PSMobAppStartPageName_Default(pSMobAppStartPage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMOBAPPSTARTPAGENAME");
@@ -671,7 +671,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSMobAppStartPage, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSMobAppStartPage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -693,7 +693,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysImageId_Default((IEntity)pSMobAppStartPage, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysImageId_Default(pSMobAppStartPage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSIMAGEID");
@@ -715,7 +715,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ResSpec_Default((IEntity)pSMobAppStartPage, bl2, bl3);
+            string2 = this.onTestValueRule_ResSpec_Default(pSMobAppStartPage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESSPEC");
@@ -740,7 +740,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ResType_Default((IEntity)pSMobAppStartPage, bl2, bl3);
+            string2 = this.onTestValueRule_ResType_Default(pSMobAppStartPage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESTYPE");
@@ -765,7 +765,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StartPageFile_Default((IEntity)pSMobAppStartPage, bl2, bl3);
+            string2 = this.onTestValueRule_StartPageFile_Default(pSMobAppStartPage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STARTPAGEFILE");
@@ -790,7 +790,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSMobAppStartPage, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSMobAppStartPage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -803,11 +803,11 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
     }
 
     protected void onSyncEntity(PSMobAppStartPage pSMobAppStartPage, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSMobAppStartPage, bl);
+        super.onSyncEntity(pSMobAppStartPage, bl);
     }
 
     protected void onSyncIndexEntities(PSMobAppStartPage pSMobAppStartPage, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSMobAppStartPage, bl);
+        super.onSyncIndexEntities(pSMobAppStartPage, bl);
     }
 
     public Object getDataContextValue(PSMobAppStartPage pSMobAppStartPage, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -815,7 +815,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSMobAppStartPage, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSMobAppStartPage, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysApp pSSysApp = pSMobAppStartPage.getPSSysApp();
@@ -826,7 +826,7 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
     }
 
     protected void onExportMajorModel(PSMobAppStartPage pSMobAppStartPage, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSMobAppStartPage, arrayList, n);
+        super.onExportMajorModel(pSMobAppStartPage, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1086,14 +1086,14 @@ extends PSCoreSysServiceBase<PSMobAppStartPage> {
 
     protected boolean onMergeChild(String string, String string2, PSMobAppStartPage pSMobAppStartPage) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSMobAppStartPage)) {
+        if (super.onMergeChild(string, string2, pSMobAppStartPage)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSMobAppStartPage pSMobAppStartPage) throws Exception {
-        super.onUpdateParent((IEntity)pSMobAppStartPage);
+        super.onUpdateParent(pSMobAppStartPage);
     }
 
     @Override

@@ -73,7 +73,7 @@ implements IPSDENotifyTargetService {
     @Override
     protected List<PSDENotifyTarget> onListAll() throws Exception {
         ArrayList<PSDENotifyTarget> list = new ArrayList<PSDENotifyTarget>();
-        List psdenotifies = PSModelServiceUtil.getInstance().getPSDENotifyService().listAll();
+        List<PSDENotify> psdenotifies = PSModelServiceUtil.getInstance().getPSDENotifyService().listAll();
         if (psdenotifies != null) {
             for (PSDENotify parent : psdenotifies) {
                 List<PSDENotifyTarget> items = this.listByPSDENotify(parent);

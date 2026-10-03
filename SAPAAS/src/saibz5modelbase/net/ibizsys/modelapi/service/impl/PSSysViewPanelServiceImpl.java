@@ -169,10 +169,10 @@ implements IPSSysViewPanelService {
 
     @Override
     protected List<PSSysViewPanel> onListAll() throws Exception {
-        List pssystems;
-        List psmodules;
+        List<PSSystem> pssystems;
+        List<PSModule> psmodules;
         ArrayList<PSSysViewPanel> list = new ArrayList<PSSysViewPanel>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSSysViewPanel> items = this.listByPSDataEntity(parent);
@@ -517,34 +517,37 @@ implements IPSSysViewPanelService {
         } else {
             dto.setPSSystemName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSSysViewPanelLogicService().listByPSSysViewPanel(t);
-        if (list != null && list.size() > 0) {
+        List<PSSysViewPanelLogic> pSSysViewPanelLogicList = PSModelServiceUtil.getInstance().getPSSysViewPanelLogicService().listByPSSysViewPanel(t);
+        if (pSSysViewPanelLogicList != null && pSSysViewPanelLogicList.size() > 0) {
             ArrayList<PSSysViewPanelLogicDTO> pssysviewpanellogics = new ArrayList<PSSysViewPanelLogicDTO>();
-            for (PSSysViewPanelLogic pSSysViewPanelLogic : list) {
+            for (PSSysViewPanelLogic pSSysViewPanelLogic : pSSysViewPanelLogicList) {
                 dstItem = (PSSysViewPanelLogicDTO)PSModelServiceUtil.getInstance().getPSSysViewPanelLogicService().toDTO(pSSysViewPanelLogic);
                 pssysviewpanellogics.add((PSSysViewPanelLogicDTO)dstItem);
             }
             dto.setPssysviewpanellogics(pssysviewpanellogics);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSSysViewPanelModelService().listByPSSysViewPanel(t)) != null && list.size() > 0) {
+        List<PSSysViewPanelModel> pSSysViewPanelModelList = PSModelServiceUtil.getInstance().getPSSysViewPanelModelService().listByPSSysViewPanel(t);
+        if (pSSysViewPanelModelList != null && pSSysViewPanelModelList.size() > 0) {
             ArrayList<PSSysViewPanelModelDTO> pssysviewpanelmodels = new ArrayList<PSSysViewPanelModelDTO>();
-            for (PSSysViewPanelModel pSSysViewPanelModel : list) {
+            for (PSSysViewPanelModel pSSysViewPanelModel : pSSysViewPanelModelList) {
                 dstItem = (PSSysViewPanelModelDTO)PSModelServiceUtil.getInstance().getPSSysViewPanelModelService().toDTO(pSSysViewPanelModel);
                 pssysviewpanelmodels.add((PSSysViewPanelModelDTO)dstItem);
             }
             dto.setPssysviewpanelmodels(pssysviewpanelmodels);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSPanelEngineService().listByPSSysViewPanel(t)) != null && list.size() > 0) {
+        List<PSPanelEngine> pSPanelEngineList = PSModelServiceUtil.getInstance().getPSPanelEngineService().listByPSSysViewPanel(t);
+        if (pSPanelEngineList != null && pSPanelEngineList.size() > 0) {
             ArrayList<PSPanelEngineDTO> pspanelengines = new ArrayList<PSPanelEngineDTO>();
-            for (PSPanelEngine pSPanelEngine : list) {
+            for (PSPanelEngine pSPanelEngine : pSPanelEngineList) {
                 dstItem = (PSPanelEngineDTO)PSModelServiceUtil.getInstance().getPSPanelEngineService().toDTO(pSPanelEngine);
                 pspanelengines.add((PSPanelEngineDTO)dstItem);
             }
             dto.setPspanelengines(pspanelengines);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSSysViewPanelItemService().listByPSSysViewPanel(t)) != null && list.size() > 0) {
+        List<PSSysViewPanelItem> pSSysViewPanelItemList = PSModelServiceUtil.getInstance().getPSSysViewPanelItemService().listByPSSysViewPanel(t);
+        if (pSSysViewPanelItemList != null && pSSysViewPanelItemList.size() > 0) {
             ArrayList<PSSysViewPanelItemDTO> pssysviewpanelitems = new ArrayList<PSSysViewPanelItemDTO>();
-            for (PSSysViewPanelItem pSSysViewPanelItem : list) {
+            for (PSSysViewPanelItem pSSysViewPanelItem : pSSysViewPanelItemList) {
                 dstItem = (PSSysViewPanelItemDTO)PSModelServiceUtil.getInstance().getPSSysViewPanelItemService().toDTO(pSSysViewPanelItem);
                 pssysviewpanelitems.add((PSSysViewPanelItemDTO)dstItem);
             }

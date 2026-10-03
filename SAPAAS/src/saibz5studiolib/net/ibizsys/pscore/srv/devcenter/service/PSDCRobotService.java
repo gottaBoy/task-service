@@ -70,7 +70,7 @@ extends PSDCRobotServiceBase {
         if (arrayList.size() == 0) {
             return false;
         }
-        this.get((IEntity)pSDCRobot);
+        this.get(pSDCRobot);
         int n3 = 0;
         for (PSDCRobotLog entityBase2 : arrayList) {
             n3 += entityBase2.getEnergy().intValue();
@@ -78,7 +78,7 @@ extends PSDCRobotServiceBase {
         int n4 = DataObject.getIntegerValue((Object)pSDCRobot.getTotalEnergy(), (Integer)0);
         PSDCRobot pSDCRobot2 = new PSDCRobot();
         pSDCRobot2.setPSDCRobotId(pSDCRobot.getPSDCRobotId());
-        EntityBase.setLastUpdateDate((IEntity)pSDCRobot2, (Timestamp)pSDCRobot.getUpdateDate());
+        EntityBase.setLastUpdateDate(pSDCRobot2, (Timestamp)pSDCRobot.getUpdateDate());
         if (n3 < 0) {
             n3 = -n3;
             n5 = new Timestamp(System.currentTimeMillis());
@@ -141,7 +141,7 @@ extends PSDCRobotServiceBase {
 
     protected void onCancelPSDCRobotActions(PSDCRobot pSDCRobot, ArrayList<PSDCRobotLog> arrayList) throws Exception {
         int n;
-        this.get((IEntity)pSDCRobot);
+        this.get(pSDCRobot);
         int n2 = 0;
         for (PSDCRobotLog pSDCRobotLog : arrayList) {
             n2 += pSDCRobotLog.getEnergy().intValue();
@@ -166,12 +166,12 @@ extends PSDCRobotServiceBase {
             n = 0;
         }
         pSDCRobot2.setTotalEnergy(n);
-        EntityBase.setLastUpdateDate((IEntity)pSDCRobot2, (Timestamp)pSDCRobot.getUpdateDate());
+        EntityBase.setLastUpdateDate(pSDCRobot2, (Timestamp)pSDCRobot.getUpdateDate());
         PSDCRobotLogService pSDCRobotLogService = (PSDCRobotLogService)ServiceGlobal.getService(PSDCRobotLogService.class, (SessionFactory)this.getSessionFactory());
         for (PSDCRobotLog pSDCRobotLog : arrayList) {
             PSDCRobotLog pSDCRobotLog2 = new PSDCRobotLog();
             pSDCRobotLog2.setPSDCRobotLogId(pSDCRobotLog.getPSDCRobotLogId());
-            if (!pSDCRobotLogService.get((IEntity)pSDCRobotLog2, true)) continue;
+            if (!pSDCRobotLogService.get(pSDCRobotLog2, true)) continue;
             pSDCRobotLog2.setEnergy(pSDCRobotLog2.getEnergy() + pSDCRobotLog.getEnergy());
             pSDCRobotLog2.setCancelFlag(1);
             pSDCRobotLogService.update(pSDCRobotLog2);
@@ -224,7 +224,7 @@ extends PSDCRobotServiceBase {
 
     @Override
     protected void onAfterRemove(PSDCRobot pSDCRobot) throws Exception {
-        PSDCRobot pSDCRobot2 = (PSDCRobot)this.getLast((IEntity)pSDCRobot);
+        PSDCRobot pSDCRobot2 = (PSDCRobot)this.getLast(pSDCRobot);
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
             PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
             PSDevCenter pSDevCenter = new PSDevCenter();

@@ -1,11 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app.view;
 
-import net.ibizsys.model.app.view.IPSAppDEView;
 
-public interface IPSAppDECustomView
-extends IPSAppDEView {
+/**
+ * 应用实体自定义视图对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSAppDECustomView extends IPSAppDEView
+{
+
 }
-

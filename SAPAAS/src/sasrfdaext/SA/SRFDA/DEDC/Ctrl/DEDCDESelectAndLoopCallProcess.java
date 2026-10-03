@@ -48,7 +48,7 @@ extends DEDCProcess {
             return callResult;
         }
         dedcContext.DebugOutput((Object)this, StringHelper.Format((String)"\u67e5\u8be2\u83b7\u53d6\u6570\u636e\u8bb0\u5f55[%1$s]", (Object)list.size()));
-        Vector dedcs = dedcContext.GetDEHelper().GetDEDC("INTERNALCALL", processConfig.getDEDCProcess().getPARAM3());
+        Vector<DEDataCtrl> dedcs = dedcContext.GetDEHelper().GetDEDC("INTERNALCALL", processConfig.getDEDCProcess().getPARAM3());
         if (dedcs == null) {
             callResult.setRetCode(1);
             callResult.setErrorInfo(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u64cd\u4f5c\u914d\u7f6e[%1$s]", (Object)processConfig.getDEDCProcess().getPARAM3()));

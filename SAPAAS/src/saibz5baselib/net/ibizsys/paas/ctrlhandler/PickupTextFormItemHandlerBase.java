@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ACFormItemHandlerBase;
+/**
+ * 拾取文本表单项后台处理对象
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class PickupTextFormItemHandlerBase extends ACFormItemHandlerBase {
 
-public abstract class PickupTextFormItemHandlerBase
-extends ACFormItemHandlerBase {
 }
-

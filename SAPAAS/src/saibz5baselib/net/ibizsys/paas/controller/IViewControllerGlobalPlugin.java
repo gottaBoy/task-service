@@ -1,18 +1,43 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.IViewController;
-import net.ibizsys.paas.controller.IViewControllerPlugin;
 
+/**
+ * 视图控制器全局对象插件
+ * @author Administrator
+ *
+ */
 public interface IViewControllerGlobalPlugin {
-    public void registerViewController(String var1, IViewController var2) throws Exception;
+	/**
+	 * 注册视图控制器
+	 * 
+	 * @param strViewControllerClsType
+	 * @param iViewController
+	 */
+	  void registerViewController(String strViewControllerClsType, IViewController iViewController) throws Exception;
 
-    public void registerViewControllerPlugin(String var1, IViewControllerPlugin var2) throws Exception;
+	/**
+	 * 注册视图控制器插件
+	 * 
+	 * @param strViewControllerClsType
+	 * @param iViewControllerPlugin
+	 */
+	  void registerViewControllerPlugin(String strViewControllerClsType, IViewControllerPlugin iViewControllerPlugin)  throws Exception ;
+		  
+	/**
+	 * 获取视图控制器
+	 * 
+	 * @param strViewControllerClsType
+	 * @return
+	 * @throws Exception
+	 */
+	  IViewController getViewController(Class cls) throws Exception ;
 
-    public IViewController getViewController(Class var1) throws Exception;
-
-    public IViewController getViewController(String var1) throws Exception;
+	/**
+	 * 获取视图控制器
+	 * 
+	 * @param strViewControllerClsType
+	 * @return
+	 * @throws Exception
+	 */
+	IViewController getViewController(String strViewControllerClsType) throws Exception;
 }
-

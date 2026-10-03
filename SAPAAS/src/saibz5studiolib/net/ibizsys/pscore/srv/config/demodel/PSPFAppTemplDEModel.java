@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSPFAppTemplDEModelBase;
 
 public class PSPFAppTemplDEModel
 extends PSPFAppTemplDEModelBase {
+
+    public PSPFAppTemplDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

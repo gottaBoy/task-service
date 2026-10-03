@@ -1,25 +1,51 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.view;
 
 import java.util.ArrayList;
+
 import net.ibizsys.paas.controller.IViewController;
 import net.ibizsys.paas.sysmodel.ISystemModel;
 import net.ibizsys.paas.sysmodel.ISystemModelObject;
-import net.ibizsys.paas.view.IViewMessage;
-import net.ibizsys.paas.view.IViewMsgGroup;
-import net.ibizsys.paas.view.IViewMsgModel;
 
-public interface IViewMsgGroupModel
-extends IViewMsgGroup,
-ISystemModelObject {
-    public void init(ISystemModel var1) throws Exception;
 
-    public String getUniqueTag();
+/**
+ * 视图消息组模型
+ * 
+ * @author Administrator
+ *
+ */
+public interface IViewMsgGroupModel extends IViewMsgGroup,ISystemModelObject {
 
-    public void registerViewMsgModel(IViewMsgModel var1) throws Exception;
+	/**
+	 * 初始化
+	 * @param iSystemModel
+	 */
+	void init(ISystemModel iSystemModel)  throws Exception;
+	
+	/**
+	 * 获取唯一标记
+	 * @return
+	 */
+	String getUniqueTag();
+	
+	
+	/**
+	 * 注册视图消息模型
+	 * 
+	 * @param iViewMsgModel
+	 * @throws Exception
+	 */
+	void registerViewMsgModel(IViewMsgModel iViewMsgModel) throws Exception;
 
-    public void fillViewMessages(IViewController var1, ArrayList<IViewMessage> var2) throws Exception;
+
+	
+	
+	/**
+	 * 填充视图消息集合
+	 * 
+	 * @param viewMessageList
+	 * @param iViewController 
+	 * @throws Exception
+	 */
+	void fillViewMessages(IViewController iViewController,ArrayList<IViewMessage> viewMessageList) throws Exception;
+
 }
-

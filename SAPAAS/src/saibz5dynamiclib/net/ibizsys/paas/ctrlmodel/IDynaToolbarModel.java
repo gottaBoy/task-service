@@ -1,26 +1,30 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.ctrlmodel.IDynaCtrlModel
- *  net.ibizsys.paas.ctrlmodel.IToolbarModel
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import java.util.Iterator;
 import net.ibizsys.paas.core.IDynaModelJsonExporter;
 import net.ibizsys.paas.core.IDynaModelJsonLoader;
-import net.ibizsys.paas.ctrlmodel.IDynaCtrlModel;
-import net.ibizsys.paas.ctrlmodel.IToolbarModel;
 import net.ibizsys.paas.ctrlmodel.toolbar.IDynaToolbarItemModel;
 
-public interface IDynaToolbarModel
-extends IDynaCtrlModel,
-IToolbarModel,
-IDynaModelJsonExporter,
-IDynaModelJsonLoader {
-    public Iterator<IDynaToolbarItemModel> getItemModels();
+/**
+ * 动态工具栏模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaToolbarModel extends IDynaCtrlModel,IToolbarModel,IDynaModelJsonExporter,IDynaModelJsonLoader {
 
-    public IDynaToolbarItemModel createDynaToolbarItemModel(String var1) throws Exception;
+	/**
+	 * 获取成员对象集合
+	 * @return
+	 */
+	java.util.Iterator<IDynaToolbarItemModel> getItemModels();
+	
+	
+	
+	
+	/**
+	 * 根据工具栏项类型建立项对象
+	 * @param strType
+	 * @return
+	 * @throws Exception
+	 */
+	IDynaToolbarItemModel createDynaToolbarItemModel(String strType)throws Exception;
 }
-

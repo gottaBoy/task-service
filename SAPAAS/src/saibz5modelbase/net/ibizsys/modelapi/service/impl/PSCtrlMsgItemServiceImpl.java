@@ -72,7 +72,7 @@ implements IPSCtrlMsgItemService {
     @Override
     protected List<PSCtrlMsgItem> onListAll() throws Exception {
         ArrayList<PSCtrlMsgItem> list = new ArrayList<PSCtrlMsgItem>();
-        List psctrlmsgs = PSModelServiceUtil.getInstance().getPSCtrlMsgService().listAll();
+        List<PSCtrlMsg> psctrlmsgs = PSModelServiceUtil.getInstance().getPSCtrlMsgService().listAll();
         if (psctrlmsgs != null) {
             for (PSCtrlMsg parent : psctrlmsgs) {
                 List<PSCtrlMsgItem> items = this.listByPSCtrlMsg(parent);

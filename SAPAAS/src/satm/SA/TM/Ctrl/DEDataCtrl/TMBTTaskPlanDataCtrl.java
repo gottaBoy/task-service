@@ -71,7 +71,7 @@ implements ITMBTTaskDataCtrl {
                         BaseDataEntity cond = new BaseDataEntity();
                         cond.SetParamValue("TMTASKBASEID", (Object)tmTaskBase.GetParamStringValue(this.GetDEHelper().GetKeyDEFHelper().getName(), ""));
                         IDEDataCtrl tmTaskResDataCtrl = this.GetRelatedDataCtrl("TM0115");
-                        Vector tmTaskResList = new Vector();
+                        Vector<BaseDataEntity> tmTaskResList = new Vector<BaseDataEntity>();
                         callResult = tmTaskResDataCtrl.Select(cond, tmTaskResList);
                         if (callResult.IsError()) {
                             return callResult;
@@ -131,7 +131,7 @@ implements ITMBTTaskDataCtrl {
         CallParamList callParamList = new CallParamList();
         callParamList.Add((Object)strPTMTaskId);
         callParamList.Add((Object)strPTMTaskId);
-        Vector list = new Vector();
+        Vector<TMTaskBase> list = new Vector<TMTaskBase>();
         CallResult callResult = TMBTTaskPlanDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.globalHelperEx, (Connection)this.getConnection(), (String)this.GetDEHelper().GetDBStorage(), (String)strSQL, (Vector)callParamList.GetList(), list, (String)TMTaskBase.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -191,7 +191,7 @@ implements ITMBTTaskDataCtrl {
         callParamList.Add((Object)strTMTaskBaseId);
         callParamList.Add((Object)strTMTaskBaseId);
         String strSQL = " select REQUIREMODE, count(*) AS CNT ,sum(cnt) AS CNT2 from (  select REQUIREMODE, 1 as CNT  from SRFT_TMTASKRES_BASE where TMRESCDID IS NOT NULL AND TMTASKBASEID = ?  union all select REQUIREMODE, 0 as CNT  from SRFT_TMTASKRES_BASE where TMRESCDID IS  NULL  AND TMTASKBASEID = ?  ) a group by REQUIREMODE";
-        Vector list = new Vector();
+        Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
         CallResult callResult = TMBTTaskPlanDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.globalHelperEx, (Connection)this.getConnection(), (String)this.GetDEHelper().GetDBStorage(), (String)strSQL, (Vector)callParamList.GetList(), list, null);
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4efb\u52a1\u8d44\u6e90\u6570\u636e\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -225,4 +225,3 @@ implements ITMBTTaskDataCtrl {
         return this.Save(false, UPDATEMODE_TASKRESSTATE, tmTaskBase);
     }
 }
-

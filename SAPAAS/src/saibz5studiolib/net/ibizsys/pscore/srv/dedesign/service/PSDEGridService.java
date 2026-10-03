@@ -63,7 +63,7 @@ implements IPSModelService<PSDEGrid> {
         if (!KeyValueHelper.isTempKey((String)pSDEGrid.getPSDEGridId())) {
             this.getTempMajor(pSDEGrid);
         } else {
-            this.getTemp((IEntity)pSDEGrid);
+            this.getTemp(pSDEGrid);
         }
         pSDEGrid.setGridModel(this.getGridModel(pSDEGrid));
     }
@@ -74,10 +74,10 @@ implements IPSModelService<PSDEGrid> {
         ArrayList<PSDEGridCol> arrayList = pSDEGridColService.selectTempByPSDEGrid(pSDEGrid, "ORDER BY ORDERVALUE");
         HashMap<String, XmlNode> hashMap = new HashMap<String, XmlNode>();
         for (PSDEGridCol entityBase2 : arrayList) {
-            object = new XmlNode();
-            object.setNodeName(entityBase2.getGridColType());
-            entityBase2.fillXmlNode((XmlNode)object, true);
-            hashMap.put(entityBase2.getPSDEGridColId(), (XmlNode)object);
+            XmlNode gridColNode = new XmlNode();
+            gridColNode.setNodeName(entityBase2.getGridColType());
+            entityBase2.fillXmlNode(gridColNode, true);
+            hashMap.put(entityBase2.getPSDEGridColId(), gridColNode);
         }
         XmlNode xmlNode = new XmlNode();
         xmlNode.setNodeName(XMLNODE_DEGRID);
@@ -129,7 +129,6 @@ implements IPSModelService<PSDEGrid> {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEGridCol pSDEGridCol2;
                 PSDEGridColService pSDEGridColService = (PSDEGridColService)ServiceGlobal.getService((String)PSDEGridColService.class.getCanonicalName(), (SessionFactory)PSDEGridService.this.getSessionFactory());
                 ArrayList<PSDEGridCol> arrayList = pSDEGridColService.selectTempByPSDEGrid(pSDEGrid2);
                 HashMap<String, PSDEGridCol> hashMap = new HashMap<String, PSDEGridCol>();
@@ -137,18 +136,18 @@ implements IPSModelService<PSDEGrid> {
                     hashMap.put(pSDEGridCol2.getPSDEGridColId(), pSDEGridCol2);
                 }
                 String string = pSDEGrid2.getGridModel();
-                pSDEGridCol2 = XmlNode.loadFromXML((String)string);
-                if (pSDEGridCol2 != null) {
-                    pSDEGridCol2.setAttribute("PSDEID", pSDEGrid2.getPSDEId());
-                    pSDEGridCol2.setAttribute("PSDEGRIDID", pSDEGrid2.getPSDEGridId());
-                    PSDEGridService.this.updatePSDEGridCols(pSDEGrid2, null, (XmlNode)pSDEGridCol2, hashMap);
-                    pSDEGrid2.setGridModel(XmlNode.export((XmlNode)pSDEGridCol2));
+                XmlNode gridModel = XmlNode.loadFromXML(string);
+                if (gridModel != null) {
+                    gridModel.setAttribute("PSDEID", pSDEGrid2.getPSDEId());
+                    gridModel.setAttribute("PSDEGRIDID", pSDEGrid2.getPSDEGridId());
+                    PSDEGridService.this.updatePSDEGridCols(pSDEGrid2, null, gridModel, hashMap);
+                    pSDEGrid2.setGridModel(XmlNode.export(gridModel));
                 } else {
                     pSDEGrid2.setGridModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEGridCol pSDEGridCol3 : hashMap.values()) {
-                        pSDEGridColService.removeTemp((IEntity)pSDEGridCol3);
+                        pSDEGridColService.removeTemp(pSDEGridCol3);
                     }
                 }
                 PSDEGridService.this.updateTempMajor(pSDEGrid2);
@@ -159,7 +158,7 @@ implements IPSModelService<PSDEGrid> {
     protected void updatePSDEGridCols(PSDEGrid pSDEGrid, PSDEGridCol pSDEGridCol, XmlNode xmlNode, HashMap<String, PSDEGridCol> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSDEGridColService pSDEGridColService = (PSDEGridColService)ServiceGlobal.getService((String)PSDEGridColService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -192,7 +191,7 @@ implements IPSModelService<PSDEGrid> {
                     bl = true;
                 }
                 if (bl) {
-                    pSDEGridColService.updateTemp((IEntity)pSDEGridCol2);
+                    pSDEGridColService.updateTemp(pSDEGridCol2);
                 }
                 xmlNode2.resetAttributes();
                 pSDEGridCol2.fillXmlNode(xmlNode2, false);
@@ -213,7 +212,6 @@ implements IPSModelService<PSDEGrid> {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEGridCol pSDEGridCol2;
                 PSDEGridColService pSDEGridColService = (PSDEGridColService)ServiceGlobal.getService((String)PSDEGridColService.class.getCanonicalName(), (SessionFactory)PSDEGridService.this.getSessionFactory());
                 ArrayList<PSDEGridCol> arrayList = pSDEGridColService.selectTempByPSDEGrid(pSDEGrid2);
                 HashMap<String, PSDEGridCol> hashMap = new HashMap<String, PSDEGridCol>();
@@ -221,21 +219,21 @@ implements IPSModelService<PSDEGrid> {
                     hashMap.put(pSDEGridCol2.getPSDEGridColId(), pSDEGridCol2);
                 }
                 String string = pSDEGrid2.getGridModel();
-                pSDEGridCol2 = XmlNode.loadFromXML((String)string);
-                if (pSDEGridCol2 != null) {
-                    pSDEGridCol2.setAttribute("PSDEID", pSDEGrid2.getPSDEId());
-                    pSDEGridCol2.setAttribute("PSDEGRIDID", pSDEGrid2.getPSDEGridId());
-                    PSDEGridService.this.updatePSDEGridCols(pSDEGrid2, null, (XmlNode)pSDEGridCol2, hashMap);
-                    pSDEGrid2.setGridModel(XmlNode.export((XmlNode)pSDEGridCol2));
+                XmlNode gridModel = XmlNode.loadFromXML(string);
+                if (gridModel != null) {
+                    gridModel.setAttribute("PSDEID", pSDEGrid2.getPSDEId());
+                    gridModel.setAttribute("PSDEGRIDID", pSDEGrid2.getPSDEGridId());
+                    PSDEGridService.this.updatePSDEGridCols(pSDEGrid2, null, gridModel, hashMap);
+                    pSDEGrid2.setGridModel(XmlNode.export(gridModel));
                 } else {
                     pSDEGrid2.setGridModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEGridCol pSDEGridCol3 : hashMap.values()) {
-                        pSDEGridColService.removeTemp((IEntity)pSDEGridCol3);
+                        pSDEGridColService.removeTemp(pSDEGridCol3);
                     }
                 }
-                PSDEGridService.this.createTempMajor((IEntity)pSDEGrid2);
+                PSDEGridService.this.createTempMajor(pSDEGrid2);
             }
         });
     }
@@ -247,7 +245,6 @@ implements IPSModelService<PSDEGrid> {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEGridCol pSDEGridCol2;
                 PSDEGridColService pSDEGridColService = (PSDEGridColService)ServiceGlobal.getService((String)PSDEGridColService.class.getCanonicalName(), (SessionFactory)PSDEGridService.this.getSessionFactory());
                 ArrayList<PSDEGridCol> arrayList = pSDEGridColService.selectTempByPSDEGrid(pSDEGrid2);
                 HashMap<String, PSDEGridCol> hashMap = new HashMap<String, PSDEGridCol>();
@@ -258,15 +255,16 @@ implements IPSModelService<PSDEGrid> {
                 if (StringHelper.isNullOrEmpty((String)object)) {
                     object = WebContext.getCurrent().getPostValue("formmodel");
                 }
-                if ((pSDEGridCol2 = XmlNode.loadFromXML((String)object)) != null) {
-                    PSDEGridService.this.updatePSDEGridCols(pSDEGrid2, null, (XmlNode)pSDEGridCol2, hashMap);
-                    pSDEGrid2.setGridModel(XmlNode.export((XmlNode)pSDEGridCol2));
+                XmlNode gridModel = XmlNode.loadFromXML((String)object);
+                if (gridModel != null) {
+                    PSDEGridService.this.updatePSDEGridCols(pSDEGrid2, null, gridModel, hashMap);
+                    pSDEGrid2.setGridModel(XmlNode.export(gridModel));
                 } else {
                     pSDEGrid2.setGridModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEGridCol pSDEGridCol3 : hashMap.values()) {
-                        pSDEGridColService.removeTemp((IEntity)pSDEGridCol3);
+                        pSDEGridColService.removeTemp(pSDEGridCol3);
                     }
                 }
             }
@@ -275,7 +273,7 @@ implements IPSModelService<PSDEGrid> {
 
     @Override
     public void getDraftWithModel(PSDEGrid pSDEGrid) throws Exception {
-        this.getDraftTempMajor((IEntity)pSDEGrid);
+        this.getDraftTempMajor(pSDEGrid);
         pSDEGrid.setGridModel(this.getGridModel(pSDEGrid));
     }
 
@@ -313,7 +311,7 @@ implements IPSModelService<PSDEGrid> {
 
     protected void initDefaultGrid(PSDataEntity pSDataEntity) throws Exception {
         String string = null;
-        string = this.isEnableFolderKey((IEntity)pSDataEntity) ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_DEFAULT) : pSDataEntity.getPSDataEntityId();
+        string = this.isEnableFolderKey(pSDataEntity) ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_DEFAULT) : pSDataEntity.getPSDataEntityId();
         PSDEGrid pSDEGrid = new PSDEGrid();
         pSDEGrid.setPSDEGridId(string);
         if (this.checkKey(pSDEGrid) == 0) {
@@ -323,7 +321,7 @@ implements IPSModelService<PSDEGrid> {
             pSDEGrid.reset();
             pSDEGrid.setPSDEId(pSDataEntity.getPSDataEntityId());
             pSDEGrid.setCodeName("Main");
-            if (this.selectOne((IEntity)pSDEGrid, true)) {
+            if (this.selectOne(pSDEGrid, true)) {
                 return;
             }
             pSDEGrid.reset();
@@ -387,7 +385,7 @@ implements IPSModelService<PSDEGrid> {
 
     @Override
     public void getDraftTempMajorFrom(PSDEGrid pSDEGrid) throws Exception {
-        Object object = EntityBase.getOriginKey((IEntity)pSDEGrid);
+        Object object = EntityBase.getOriginKey(pSDEGrid);
         if (StringHelper.isNullOrEmpty((Object)object)) {
             object = pSDEGrid.getPSDEGridId();
         }
@@ -425,4 +423,3 @@ implements IPSModelService<PSDEGrid> {
         }
     }
 }
-

@@ -2065,7 +2065,7 @@ implements Serializable {
                 PSModule pSModule = new PSModule();
                 pSModule.setPSModuleId(this.getPSModuleId());
                 PSModuleService pSModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSModuleService.autoGet((IEntity)pSModule);
+                pSModuleService.autoGet(pSModule);
                 this.psmodule = pSModule;
             }
             return this.psmodule;
@@ -2091,7 +2091,7 @@ implements Serializable {
                 PSSysContentCat pSSysContentCat = new PSSysContentCat();
                 pSSysContentCat.setPSSysContentCatId(this.getPPSSysContentCatId());
                 PSSysContentCatService pSSysContentCatService = (PSSysContentCatService)ServiceGlobal.getService(PSSysContentCatService.class, (SessionFactory)this.getSessionFactory());
-                pSSysContentCatService.autoGet((IEntity)pSSysContentCat);
+                pSSysContentCatService.autoGet(pSSysContentCat);
                 this.ppssyscontentcat = pSSysContentCat;
             }
             return this.ppssyscontentcat;
@@ -2117,7 +2117,7 @@ implements Serializable {
                 PSSysDynaModel pSSysDynaModel = new PSSysDynaModel();
                 pSSysDynaModel.setPSSysDynaModelId(this.getPSSysDynaModelId());
                 PSSysDynaModelService pSSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDynaModelService.autoGet((IEntity)pSSysDynaModel);
+                pSSysDynaModelService.autoGet(pSSysDynaModel);
                 this.pssysdynamodel = pSSysDynaModel;
             }
             return this.pssysdynamodel;
@@ -2143,7 +2143,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

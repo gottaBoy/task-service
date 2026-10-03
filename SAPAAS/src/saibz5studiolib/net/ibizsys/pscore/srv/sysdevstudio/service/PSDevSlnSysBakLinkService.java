@@ -35,7 +35,7 @@ extends PSDevSlnSysBakLinkServiceBase {
     protected void onUpdateLinkState(PSDevSlnSysBakLink pSDevSlnSysBakLink) throws Exception {
         PSDevSlnSysBakLink pSDevSlnSysBakLink2 = new PSDevSlnSysBakLink();
         pSDevSlnSysBakLink2.setPSDevSlnSysBakLinkId(pSDevSlnSysBakLink.getPSDevSlnSysBakLinkId());
-        this.get((IEntity)pSDevSlnSysBakLink2);
+        this.get(pSDevSlnSysBakLink2);
         PSDevSlnSysBak pSDevSlnSysBak = new PSDevSlnSysBak();
         pSDevSlnSysBak.setPSDevSlnSysBakId(pSDevSlnSysBakLink.getPSDevSlnSysBakLinkId());
         pSDevSlnSysBak.setSessionFactory(this.getSessionFactory());

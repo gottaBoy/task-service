@@ -1478,7 +1478,7 @@ implements Serializable {
                 PSSysReqItem pSSysReqItem = new PSSysReqItem();
                 pSSysReqItem.setPSSysReqItemId(this.getPSSysReqItemId());
                 PSSysReqItemService pSSysReqItemService = (PSSysReqItemService)ServiceGlobal.getService(PSSysReqItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysReqItemService.autoGet((IEntity)pSSysReqItem);
+                pSSysReqItemService.autoGet(pSSysReqItem);
                 this.pssysreqitem = pSSysReqItem;
             }
             return this.pssysreqitem;

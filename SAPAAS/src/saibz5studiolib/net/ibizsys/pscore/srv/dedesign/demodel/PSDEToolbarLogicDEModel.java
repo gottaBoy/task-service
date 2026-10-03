@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEToolbarLogicDEModelBase;
 
 public class PSDEToolbarLogicDEModel
 extends PSDEToolbarLogicDEModelBase {
+
+    public PSDEToolbarLogicDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.DynaEditViewControllerBase;
+public abstract class DynaEditView2ControllerBase extends DynaEditViewControllerBase {
 
-public abstract class DynaEditView2ControllerBase
-extends DynaEditViewControllerBase {
+	public DynaEditView2ControllerBase() throws Exception {
+		super();
+	}
+
+
 }
-

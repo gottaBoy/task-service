@@ -80,7 +80,7 @@ extends PSDEDataCtrl {
                 cond.setParamValue("PSSVRDOMAINID", (Object)psSysModelQuery.getPSSVRDOMAINID());
             }
             cond.setParamValue("INSTSTATE", (Object)"30");
-            Vector psSysModelInstList = new Vector();
+            Vector<BaseDataEntity> psSysModelInstList = new Vector<BaseDataEntity>();
             callResult = psSysModelInstDataCtrl.Select(cond, psSysModelInstList);
             if (callResult.isError()) {
                 return callResult;
@@ -125,4 +125,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

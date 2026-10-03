@@ -83,7 +83,7 @@ implements IPSDEMapService {
     @Override
     protected List<PSDEMap> onListAll() throws Exception {
         ArrayList<PSDEMap> list = new ArrayList<PSDEMap>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEMap> items = this.listByPSDataEntity(parent);
@@ -293,34 +293,37 @@ implements IPSDEMapService {
         } else {
             dto.setPSSysSFPluginName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEMapActionService().listByPSDEMap(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEMapAction> pSDEMapActionList = PSModelServiceUtil.getInstance().getPSDEMapActionService().listByPSDEMap(t);
+        if (pSDEMapActionList != null && pSDEMapActionList.size() > 0) {
             ArrayList<PSDEMapActionDTO> psdemapactions = new ArrayList<PSDEMapActionDTO>();
-            for (PSDEMapAction pSDEMapAction : list) {
+            for (PSDEMapAction pSDEMapAction : pSDEMapActionList) {
                 dstItem = (PSDEMapActionDTO)PSModelServiceUtil.getInstance().getPSDEMapActionService().toDTO(pSDEMapAction);
                 psdemapactions.add((PSDEMapActionDTO)dstItem);
             }
             dto.setPsdemapactions(psdemapactions);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEMapDetailService().listByPSDEMap(t)) != null && list.size() > 0) {
+        List<PSDEMapDetail> pSDEMapDetailList = PSModelServiceUtil.getInstance().getPSDEMapDetailService().listByPSDEMap(t);
+        if (pSDEMapDetailList != null && pSDEMapDetailList.size() > 0) {
             ArrayList<PSDEMapDetailDTO> psdemapdetails = new ArrayList<PSDEMapDetailDTO>();
-            for (PSDEMapDetail pSDEMapDetail : list) {
+            for (PSDEMapDetail pSDEMapDetail : pSDEMapDetailList) {
                 dstItem = (PSDEMapDetailDTO)PSModelServiceUtil.getInstance().getPSDEMapDetailService().toDTO(pSDEMapDetail);
                 psdemapdetails.add((PSDEMapDetailDTO)dstItem);
             }
             dto.setPsdemapdetails(psdemapdetails);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEMapDQService().listByPSDEMap(t)) != null && list.size() > 0) {
+        List<PSDEMapDQ> pSDEMapDQList = PSModelServiceUtil.getInstance().getPSDEMapDQService().listByPSDEMap(t);
+        if (pSDEMapDQList != null && pSDEMapDQList.size() > 0) {
             ArrayList<PSDEMapDQDTO> psdemapdqs = new ArrayList<PSDEMapDQDTO>();
-            for (PSDEMapDQ pSDEMapDQ : list) {
+            for (PSDEMapDQ pSDEMapDQ : pSDEMapDQList) {
                 dstItem = (PSDEMapDQDTO)PSModelServiceUtil.getInstance().getPSDEMapDQService().toDTO(pSDEMapDQ);
                 psdemapdqs.add((PSDEMapDQDTO)dstItem);
             }
             dto.setPsdemapdqs(psdemapdqs);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEMapDSService().listByPSDEMap(t)) != null && list.size() > 0) {
+        List<PSDEMapDS> pSDEMapDSList = PSModelServiceUtil.getInstance().getPSDEMapDSService().listByPSDEMap(t);
+        if (pSDEMapDSList != null && pSDEMapDSList.size() > 0) {
             ArrayList<PSDEMapDSDTO> psdemapds = new ArrayList<PSDEMapDSDTO>();
-            for (PSDEMapDS pSDEMapDS : list) {
+            for (PSDEMapDS pSDEMapDS : pSDEMapDSList) {
                 dstItem = (PSDEMapDSDTO)PSModelServiceUtil.getInstance().getPSDEMapDSService().toDTO(pSDEMapDS);
                 psdemapds.add((PSDEMapDSDTO)dstItem);
             }

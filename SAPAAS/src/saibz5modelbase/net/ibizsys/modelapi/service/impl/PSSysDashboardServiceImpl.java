@@ -163,7 +163,7 @@ implements IPSSysDashboardService {
     @Override
     protected List<PSSysDashboard> onListAll() throws Exception {
         ArrayList<PSSysDashboard> list = new ArrayList<PSSysDashboard>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSSysDashboard> items = this.listByPSDataEntity(parent);
@@ -361,18 +361,19 @@ implements IPSSysDashboardService {
         } else {
             dto.setPSSystemName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSSysDashboardLogicService().listByPSSysDashboard(t);
-        if (list != null && list.size() > 0) {
+        List<PSSysDashboardLogic> pSSysDashboardLogicList = PSModelServiceUtil.getInstance().getPSSysDashboardLogicService().listByPSSysDashboard(t);
+        if (pSSysDashboardLogicList != null && pSSysDashboardLogicList.size() > 0) {
             ArrayList<PSSysDashboardLogicDTO> pssysdashboardlogics = new ArrayList<PSSysDashboardLogicDTO>();
-            for (PSSysDashboardLogic pSSysDashboardLogic : list) {
+            for (PSSysDashboardLogic pSSysDashboardLogic : pSSysDashboardLogicList) {
                 dstItem = (PSSysDashboardLogicDTO)PSModelServiceUtil.getInstance().getPSSysDashboardLogicService().toDTO(pSSysDashboardLogic);
                 pssysdashboardlogics.add((PSSysDashboardLogicDTO)dstItem);
             }
             dto.setPssysdashboardlogics(pssysdashboardlogics);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSSysDBPartService().listByPSSysDashboard(t)) != null && list.size() > 0) {
+        List<PSSysDBPart> pSSysDBPartList = PSModelServiceUtil.getInstance().getPSSysDBPartService().listByPSSysDashboard(t);
+        if (pSSysDBPartList != null && pSSysDBPartList.size() > 0) {
             ArrayList<PSSysDBPartDTO> pssysdbparts = new ArrayList<PSSysDBPartDTO>();
-            for (PSSysDBPart pSSysDBPart : list) {
+            for (PSSysDBPart pSSysDBPart : pSSysDBPartList) {
                 dstItem = (PSSysDBPartDTO)PSModelServiceUtil.getInstance().getPSSysDBPartService().toDTO(pSSysDBPart);
                 pssysdbparts.add((PSSysDBPartDTO)dstItem);
             }

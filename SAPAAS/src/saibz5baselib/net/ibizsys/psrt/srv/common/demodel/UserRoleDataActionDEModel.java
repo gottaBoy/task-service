@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel;
 
-import net.ibizsys.psrt.srv.common.demodel.UserRoleDataActionDEModelBase;
 
-public class UserRoleDataActionDEModel
-extends UserRoleDataActionDEModelBase {
+/**
+ * 实体[USERROLEDATAACTION]模型对象
+ */
+public class UserRoleDataActionDEModel extends UserRoleDataActionDEModelBase {
+
     private static final long serialVersionUID = -1L;
-}
 
+    public UserRoleDataActionDEModel() throws Exception {
+        super();
+    }
+
+}

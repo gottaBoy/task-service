@@ -72,7 +72,7 @@ implements IPSSysUserRoleResService {
     @Override
     protected List<PSSysUserRoleRes> onListAll() throws Exception {
         ArrayList<PSSysUserRoleRes> list = new ArrayList<PSSysUserRoleRes>();
-        List pssysopprivs = PSModelServiceUtil.getInstance().getPSSysOPPrivService().listAll();
+        List<PSSysOPPriv> pssysopprivs = PSModelServiceUtil.getInstance().getPSSysOPPrivService().listAll();
         if (pssysopprivs != null) {
             for (PSSysOPPriv parent : pssysopprivs) {
                 List<PSSysUserRoleRes> items = this.listByPSSysOPPriv(parent);

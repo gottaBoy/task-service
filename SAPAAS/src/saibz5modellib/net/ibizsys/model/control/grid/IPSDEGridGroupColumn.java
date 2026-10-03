@@ -1,13 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.grid;
 
-import java.util.Iterator;
-import net.ibizsys.model.control.grid.IPSDEGridColumn;
 
-public interface IPSDEGridGroupColumn
-extends IPSDEGridColumn {
-    public Iterator<IPSDEGridColumn> getPSDEGridColumns();
+/**
+ * 实体表格组合列对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDEGridGroupColumn extends IPSDEGridColumn
+{
+	/**
+	 * 获取组合列中列集合
+	 * @return
+	 */
+	java.util.Iterator<IPSDEGridColumn> getPSDEGridColumns();
+
 }
-

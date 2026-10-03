@@ -1,47 +1,159 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.list;
 
 import net.ibizsys.model.codelist.IPSCodeList;
-import net.ibizsys.model.control.list.IPSList;
 import net.ibizsys.model.core.IPSModelObject;
 
-public interface IPSListItem
-extends IPSModelObject {
-    public static final String CLCONVERTMODE_FRONT = "FRONT";
-    public static final String CLCONVERTMODE_BACKEND = "BACKEND";
-    public static final String ITEMTYPE_TEXTITEM = "TEXTITEM";
-    public static final String ITEMTYPE_ACTIONITEM = "ACTIONITEM";
-    public static final String ITEMTYPE_DATAITEM = "DATAITEM";
-    public static final String ALIGN_LEFT = "LEFT";
-    public static final String ALIGN_CENTER = "CENTER";
-    public static final String ALIGN_RIGHT = "RIGHT";
+/**
+ * 列表项对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSListItem extends IPSModelObject {
+	
+	/**
+	 * 列表项代码表数据转换模式：前台，直接送代码值至应用前端，由应用自行处理
+	 */
+	public final static String CLCONVERTMODE_FRONT = "FRONT";
 
-    public String getCaption();
+	/**
+	 * 列表项代码表数据转换模式：后台，由后台处理将代码值转换为文本直接送至前台。
+	 */
+	public final static String CLCONVERTMODE_BACKEND = "BACKEND";
 
-    public String getItemType();
+	/**
+	 * 定义列表项类型：文本项
+	 */
+	public final static String ITEMTYPE_TEXTITEM = "TEXTITEM";
 
-    public int getItemPos();
+	/**
+	 * 定义列表项类型：操作项
+	 */
+	public final static String ITEMTYPE_ACTIONITEM = "ACTIONITEM";
 
-    public IPSList getPSList();
+	/**
+	 * 定义列表项类型：数据项
+	 */
+	public final static String ITEMTYPE_DATAITEM = "DATAITEM";
 
-    public String[] getFields();
+	/**
+	 * 定义水平对齐：左对齐
+	 */
+	public final static String ALIGN_LEFT = "LEFT";
 
-    public boolean isEnableSort();
+	/**
+	 * 定义水平对齐：居中
+	 */
+	public final static String ALIGN_CENTER = "CENTER";
 
-    public IPSCodeList getPSCodeList();
+	/**
+	 * 定义水平对齐：右对齐
+	 */
+	public final static String ALIGN_RIGHT = "RIGHT";
 
-    public String getWidthString();
+	/**
+	 * 获取标题
+	 * 
+	 * @return
+	 */
+	String getCaption();
 
-    public boolean isHiddenDataItem();
+//	/**
+//	 * 获取标题语言资源对象
+//	 * 
+//	 * @return
+//	 */
+//	IPSLanguageRes getCapPSLanguageRes();
 
-    public String getAlign();
+	/**
+	 * 获取项类型，值参考 SA.SRFDA.PS.Core.Control.List.IPSListItem.ITEMTYPE_XXX 定义
+	 * 
+	 * @return
+	 */
+	String getItemType();
 
-    public String getCLConvertMode();
+	/**
+	 * 获取项位置
+	 * 
+	 * @return
+	 */
+	int getItemPos();
 
-    public boolean isEnableItemPriv();
+	/**
+	 * 获取列表对象
+	 * 
+	 * @return
+	 */
+	IPSList getPSList();
 
-    public String getItemPrivId();
+	/**
+	 * 获取数据字段集合
+	 * 
+	 * @return
+	 */
+	String[] getFields();
+
+	/**
+	 * 是否支持排序
+	 * 
+	 * @return
+	 */
+	boolean isEnableSort();
+
+	/**
+	 * 获取代码表
+	 * 
+	 * @return
+	 */
+	IPSCodeList getPSCodeList();
+
+//	/**
+//	 * 获取绘制插件
+//	 * 
+//	 * @return
+//	 */
+//	IPSSysPFPlugin getRenderPSSysPFPlugin();
+
+	/**
+	 * 获取宽度字符串
+	 * 
+	 * @return
+	 */
+	String getWidthString();
+
+	/**
+	 * 是否为隐藏数据项
+	 * 
+	 * @return
+	 */
+	boolean isHiddenDataItem();
+
+	/**
+	 * 获取水平对齐方式，值参考 SA.SRFDA.PS.Core.Control.List.IPSListItem.ALIGN_XXX 定义
+	 * 
+	 * @return
+	 */
+	String getAlign();
+
+	/**
+	 * 获取代码表转换模式，值参考 SA.SRFDA.PS.Core.Control.List.IPSListItem.CLCONVERTMODE_XXX
+	 * 定义
+	 * 
+	 * @return
+	 */
+	String getCLConvertMode();
+
+	/**
+	 * 是否启用项权限控制
+	 * 
+	 * @return
+	 */
+	boolean isEnableItemPriv();
+
+	/**
+	 * 获取项权限标识
+	 * 
+	 * @return
+	 */
+	String getItemPrivId();
 }
-

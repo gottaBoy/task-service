@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDEDBObjSql> {
     }
 
     protected void onFillParentInfo(PSDEDBObjSql pSDEDBObjSql, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDEDBObjSql, string, string2, string3);
+        super.onFillParentInfo(pSDEDBObjSql, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDEDBObjSql> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEDBObjSql, bl);
+        super.onFillEntityFullInfo(pSDEDBObjSql, bl);
     }
 
     protected void onWriteBackParent(PSDEDBObjSql pSDEDBObjSql, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEDBObjSql, bl);
+        super.onWriteBackParent(pSDEDBObjSql, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDEDBObjSql> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEDBObjSql pSDEDBObjSql, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEDBObjSql, bl);
+        super.onRemoveEntityUncopyValues(pSDEDBObjSql, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEDBObjSql pSDEDBObjSql, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -152,7 +152,7 @@ extends PSCoreSysServiceBase<PSDEDBObjSql> {
         if ((entityFieldError = this.onCheckField_PSDEDBObjSqlName(bl, pSDEDBObjSql, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEDBObjSql, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEDBObjSql, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDEDBObjSqlId(boolean bl, PSDEDBObjSql pSDEDBObjSql, boolean bl2, boolean bl3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSDEDBObjSql> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDBObjSqlId_Default((IEntity)pSDEDBObjSql, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDBObjSqlId_Default(pSDEDBObjSql, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDBOBJSQLID");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSDEDBObjSql> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDBObjSqlName_Default((IEntity)pSDEDBObjSql, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDBObjSqlName_Default(pSDEDBObjSql, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDBOBJSQLNAME");
@@ -206,11 +206,11 @@ extends PSCoreSysServiceBase<PSDEDBObjSql> {
     }
 
     protected void onSyncEntity(PSDEDBObjSql pSDEDBObjSql, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEDBObjSql, bl);
+        super.onSyncEntity(pSDEDBObjSql, bl);
     }
 
     protected void onSyncIndexEntities(PSDEDBObjSql pSDEDBObjSql, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEDBObjSql, bl);
+        super.onSyncIndexEntities(pSDEDBObjSql, bl);
     }
 
     public Object getDataContextValue(PSDEDBObjSql pSDEDBObjSql, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -218,14 +218,14 @@ extends PSCoreSysServiceBase<PSDEDBObjSql> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEDBObjSql, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEDBObjSql, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEDBObjSql pSDEDBObjSql, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEDBObjSql, arrayList, n);
+        super.onExportMajorModel(pSDEDBObjSql, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -308,14 +308,14 @@ extends PSCoreSysServiceBase<PSDEDBObjSql> {
 
     protected boolean onMergeChild(String string, String string2, PSDEDBObjSql pSDEDBObjSql) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEDBObjSql)) {
+        if (super.onMergeChild(string, string2, pSDEDBObjSql)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEDBObjSql pSDEDBObjSql) throws Exception {
-        super.onUpdateParent((IEntity)pSDEDBObjSql);
+        super.onUpdateParent(pSDEDBObjSql);
     }
 
     @Override

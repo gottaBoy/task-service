@@ -76,9 +76,9 @@ extends PSDEFDLogicServiceBase {
         boolean bl2 = bl = xmlNode == null;
         if (!bl && !pSDEFDLogic.isFullEntity()) {
             if (pSDEFDLogic.getPSDEFDLogicId().indexOf("SRFTEMPKEY:") == 0) {
-                this.getTemp((IEntity)pSDEFDLogic);
+                this.getTemp(pSDEFDLogic);
             } else {
-                this.get((IEntity)pSDEFDLogic);
+                this.get(pSDEFDLogic);
             }
         }
         if (StringHelper.isNullOrEmpty((String)pSDEFDLogic.getLogicCat())) {

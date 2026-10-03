@@ -1,70 +1,223 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import net.ibizsys.paas.control.tree.ITreeNode;
 import net.ibizsys.paas.control.tree.ITreeNodeDataItem;
 import net.ibizsys.paas.core.IModelBase;
 import net.ibizsys.paas.ctrlhandler.ITreeNodeFetchContext;
-import net.ibizsys.paas.ctrlmodel.ITreeModel;
-import net.ibizsys.paas.ctrlmodel.ITreeNodeRSModel;
 import net.ibizsys.paas.db.IDataTable;
 
-public interface ITreeNodeModel
-extends IModelBase {
-    public static final int COUNTERMODE_NONE = 0;
-    public static final int COUNTERMODE_HIDEZERO = 1;
-    public static final String TREENODE_SEPARATOR = ";";
-    public static final String ROOTNODEID = "root";
-    public static final String TREENODETYPE_STATIC = "STATIC";
-    public static final String TREENODETYPE_DE = "DE";
-    public static final String TREENODETYPE_CODELIST = "CODELIST";
-    public static final String NODEACTION_PAGELINK = "PAGELINK";
-    public static final String NODEACTION_JAVASCRIPT = "JAVASCRIPT";
+/**
+ * 树节点类型模型接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface ITreeNodeModel extends IModelBase {
+	
+	
+	/**
+	 * 计数器模式：无模式
+	 */
+	final static int COUNTERMODE_NONE = 0;
 
-    public ITreeModel getTreeModel();
+	/**
+	 * 计数器模式：0 值时隐藏
+	 */
+	final static int COUNTERMODE_HIDEZERO = 1;
+	
+	
+	/**
+	 * 节点分隔符号
+	 */
+	static final String TREENODE_SEPARATOR = ";";
 
-    public String getDEName();
+	/**
+	 * 根节点标识
+	 */
+	static String ROOTNODEID = "root";
 
-    public Iterator<ITreeNodeRSModel> getTreeNodeRSModels();
+	/**
+	 * 静态
+	 */
+	final static String TREENODETYPE_STATIC = "STATIC";
 
-    public String getTreeNodeType();
+	/**
+	 * 动态（实体）
+	 */
+	final static String TREENODETYPE_DE = "DE";
 
-    public void fillFetchResult(ITreeNodeFetchContext var1, ArrayList<ITreeNode> var2) throws Exception;
+	/**
+	 * 动态（代码表）
+	 */
+	final static String TREENODETYPE_CODELIST = "CODELIST";
 
-    public void fillFetchResult(ITreeNodeFetchContext var1, ArrayList<ITreeNode> var2, IDataTable var3) throws Exception;
+	// 定义节点选择处理代码表
 
-    public boolean isAppendPNodeId();
+	/**
+	 * 页面链接
+	 */
+	final static String NODEACTION_PAGELINK = "PAGELINK";
 
-    public String getIconCls();
+	/**
+	 * 脚本执行
+	 */
+	final static String NODEACTION_JAVASCRIPT = "JAVASCRIPT";
 
-    public String getIconPath();
+	
+	/**
+	 * 获取树模型
+	 * @return
+	 */
+	ITreeModel getTreeModel();
+	
+	/**
+	 * 获取实体名称
+	 * 
+	 * @return
+	 */
+	String getDEName();
+	
+	/**
+	 * 获取树节点关系关系
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<ITreeNodeRSModel> getTreeNodeRSModels();
 
-    public boolean isExpanded();
+	/**
+	 * 获取节点类型
+	 * 
+	 * @return
+	 */
+	String getTreeNodeType();
 
-    public boolean isEnableCheck();
+	/**
+	 * 填充数据返回结果
+	 * 
+	 * @param iTreeNodeFetchContext
+	 * @param treeNodeList
+	 * @throws Exception
+	 */
+	void fillFetchResult(ITreeNodeFetchContext iTreeNodeFetchContext, ArrayList<ITreeNode> treeNodeList) throws Exception;
 
-    public String getNodeType();
+	/**
+	 * 填充结果
+	 * 
+	 * @param iTreeNodeFetchContext
+	 * @param treeNodeList
+	 * @param dt
+	 * @throws Exception
+	 */
+	void fillFetchResult(ITreeNodeFetchContext iTreeNodeFetchContext, ArrayList<ITreeNode> treeNodeList, IDataTable dt) throws Exception;
 
-    public boolean isChecked();
+	/**
+	 * 是否附加父节点标识
+	 * 
+	 * @return
+	 */
+	boolean isAppendPNodeId();
 
-    public boolean isRootNode();
+	/**
+	 * 获取图标样式
+	 * 
+	 * @return
+	 */
+	String getIconCls();
+	
+	
+	/**
+	 * 获取图标路径
+	 * @return
+	 */
+	String getIconPath();
+	
 
-    public boolean hasTreeNodeRSModel();
+	/**
+	 * 节点是否展开
+	 * 
+	 * @return
+	 */
+	boolean isExpanded();
 
-    public int getCounterMode();
+	/**
+	 * 是否支持选中
+	 * 
+	 * @return
+	 */
+	boolean isEnableCheck();
 
-    public String getCounterId();
+	/**
+	 * 获取节点类型
+	 * 
+	 * @return
+	 */
+	String getNodeType();
 
-    public String getNodeDataType();
+	/**
+	 * 是否被选中
+	 * 
+	 * @return
+	 */
+	boolean isChecked();
 
-    public boolean isEnableQuickSearch();
+	/**
+	 * 是否为根节点
+	 * 
+	 * @return
+	 */
+	boolean isRootNode();
 
-    public ITreeNodeDataItem getTreeNodeDataItem(String var1) throws Exception;
-
-    public Iterator<ITreeNodeDataItem> getTreeNodeDataItems();
+	/**
+	 * 拥有关系模型
+	 * 
+	 * @return
+	 */
+	boolean hasTreeNodeRSModel();
+	
+	
+	/**
+	 * 获取计数器模式
+	 * @return
+	 */
+	int getCounterMode();
+	
+	
+	/**
+	 * 获取计算器标识
+	 * @return
+	 */
+	String getCounterId();
+	
+	
+	/**
+	 * 获取节点数据的类型
+	 * @return
+	 */
+	String getNodeDataType();
+	
+	
+	
+	/**
+	 * 是否支持快速搜索
+	 * @return
+	 */
+	boolean isEnableQuickSearch();
+	
+	/**
+	 * 获取指定树节点数据项
+	 * @param strName
+	 * @return
+	 * @throws Exception
+	 */
+	ITreeNodeDataItem getTreeNodeDataItem(String strName) throws Exception;
+	
+	
+	/**
+	 * 获取树节点数据项集合
+	 * @return
+	 */
+	Iterator<ITreeNodeDataItem> getTreeNodeDataItems();
 }
-

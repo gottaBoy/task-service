@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdevstudio.demodel.PSSysDevBKTaskDEModelBase;
 
 public class PSSysDevBKTaskDEModel
 extends PSSysDevBKTaskDEModelBase {
+
+    public PSSysDevBKTaskDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

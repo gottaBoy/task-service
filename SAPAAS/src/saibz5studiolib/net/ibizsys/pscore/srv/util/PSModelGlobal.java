@@ -23,8 +23,6 @@ import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.data.IDataObject;
 import net.ibizsys.paas.db.ISelectCond;
 import net.ibizsys.paas.db.SelectCond;
-import net.ibizsys.paas.entity.EntityBase;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ActionSession;
 import net.ibizsys.paas.service.ActionSessionManager;
 import net.ibizsys.paas.service.ServiceGlobal;
@@ -32,9 +30,11 @@ import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
 import net.ibizsys.pscore.srv.config.entity.PSDEFType;
 import net.ibizsys.pscore.srv.config.entity.PSMIDetail;
+import net.ibizsys.pscore.srv.config.entity.PSModelInit;
 import net.ibizsys.pscore.srv.config.entity.PSModelInitStruct;
 import net.ibizsys.pscore.srv.config.entity.PSVTCtrl;
 import net.ibizsys.pscore.srv.config.entity.PSVTRV;
+import net.ibizsys.pscore.srv.config.entity.PSViewType;
 import net.ibizsys.pscore.srv.config.entity.PSViewTypeStruct;
 import net.ibizsys.pscore.srv.config.service.PSDEFTypeService;
 import net.ibizsys.pscore.srv.config.service.PSMIDetailService;
@@ -96,16 +96,16 @@ public class PSModelGlobal {
                 HashMap<String, PSModelInitStruct> hashMap = new HashMap<String, PSModelInitStruct>();
                 PSModelInitService pSModelInitService = (PSModelInitService)ServiceGlobal.getService(PSModelInitService.class);
                 PSMIDetailService pSMIDetailService = (PSMIDetailService)ServiceGlobal.getService(PSMIDetailService.class);
-                ArrayList arrayList = pSModelInitService.select((ISelectCond)new SelectCond());
+                ArrayList<PSModelInit> arrayList = pSModelInitService.select((ISelectCond)new SelectCond());
                 SelectCond selectCond = new SelectCond();
                 selectCond.setOrderInfo("ORDER BY ORDERVALUE");
-                ArrayList arrayList2 = pSMIDetailService.select((ISelectCond)selectCond);
-                for (EntityBase entityBase : arrayList) {
+                ArrayList<PSMIDetail> arrayList2 = pSMIDetailService.select((ISelectCond)selectCond);
+                for (PSModelInit entityBase : arrayList) {
                     pSModelInitStruct = new PSModelInitStruct();
                     entityBase.copyTo((IDataObject)pSModelInitStruct, true);
                     hashMap.put(pSModelInitStruct.getPSModelInitName(), pSModelInitStruct);
                 }
-                for (EntityBase entityBase : arrayList2) {
+                for (PSMIDetail entityBase : arrayList2) {
                     pSModelInitStruct = (PSModelInitStruct)hashMap.get(entityBase.getPSModelInitName());
                     pSModelInitStruct.getPSModelInitDetails().add((PSMIDetail)entityBase);
                 }
@@ -140,20 +140,20 @@ public class PSModelGlobal {
                 PSViewTypeService pSViewTypeService = (PSViewTypeService)ServiceGlobal.getService(PSViewTypeService.class);
                 PSVTCtrlService pSVTCtrlService = (PSVTCtrlService)ServiceGlobal.getService(PSVTCtrlService.class);
                 PSVTRVService pSVTRVService = (PSVTRVService)ServiceGlobal.getService(PSVTRVService.class);
-                ArrayList arrayList = pSViewTypeService.select((ISelectCond)new SelectCond());
+                ArrayList<PSViewType> arrayList = pSViewTypeService.select((ISelectCond)new SelectCond());
                 SelectCond selectCond = new SelectCond();
-                ArrayList arrayList2 = pSVTCtrlService.select((ISelectCond)selectCond);
-                ArrayList arrayList3 = pSVTRVService.select((ISelectCond)selectCond);
-                for (EntityBase entityBase : arrayList) {
+                ArrayList<PSVTCtrl> arrayList2 = pSVTCtrlService.select((ISelectCond)selectCond);
+                ArrayList<PSVTRV> arrayList3 = pSVTRVService.select((ISelectCond)selectCond);
+                for (PSViewType entityBase : arrayList) {
                     pSViewTypeStruct = new PSViewTypeStruct();
                     entityBase.copyTo((IDataObject)pSViewTypeStruct, true);
                     hashMap.put(pSViewTypeStruct.getPSViewTypeId(), pSViewTypeStruct);
                 }
-                for (EntityBase entityBase : arrayList2) {
+                for (PSVTCtrl entityBase : arrayList2) {
                     pSViewTypeStruct = (PSViewTypeStruct)hashMap.get(entityBase.getPSViewTypeId());
                     pSViewTypeStruct.getPSVTCtrls().add((PSVTCtrl)entityBase);
                 }
-                for (EntityBase entityBase : arrayList3) {
+                for (PSVTRV entityBase : arrayList3) {
                     pSViewTypeStruct = (PSViewTypeStruct)hashMap.get(entityBase.getPSViewTypeId());
                     pSViewTypeStruct.getPSVTRVs().add((PSVTRV)entityBase);
                 }
@@ -185,7 +185,7 @@ public class PSModelGlobal {
             PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
             pSDevSlnSys.setPSDevSlnSysId(string);
             PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class);
-            pSDevSlnSysService.get((IEntity)pSDevSlnSys);
+            pSDevSlnSysService.get(pSDevSlnSys);
             if (!StringHelper.isNullOrEmpty((String)pSDevSlnSys.getPSDCModelTemplId()) && !PSDCMODELTEMPL_UPPER_UNDERSCORE.equalsIgnoreCase(pSDevSlnSys.getPSDCModelTemplId())) {
                 pSDCModelTempl = pSDevSlnSys.getPSDCModelTempl();
             }
@@ -213,7 +213,7 @@ public class PSModelGlobal {
             PSDEInitCfgService pSDEInitCfgService = (PSDEInitCfgService)ServiceGlobal.getService(PSDEInitCfgService.class, (SessionFactory)sessionFactory);
             PSDEInitCfg pSDEInitCfg = new PSDEInitCfg();
             pSDEInitCfg.setPSDEInitCfgId(string);
-            if (!pSDEInitCfgService.get((IEntity)pSDEInitCfg, true)) {
+            if (!pSDEInitCfgService.get(pSDEInitCfg, true)) {
                 if (actionSession != null) {
                     actionSession.setActionParam(string2, DataObject.EMPTY);
                 }
@@ -234,83 +234,76 @@ public class PSModelGlobal {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     public static PSDEFType getPSDEFType(PSDEField pSDEField, Map<String, PSDEFType> map) throws Exception {
-        Object object;
-        Object object2;
-        Object object3;
-        Object object4 = psDEFTypeMapLock;
-        synchronized (object4) {
+        synchronized (psDEFTypeMapLock) {
             if (psDEFTypeMap == null) {
-                object3 = new HashMap();
+                HashMap<String, PSDEFType> types = new HashMap<String, PSDEFType>();
                 PSDEFTypeService pSDEFTypeService = (PSDEFTypeService)ServiceGlobal.getService(PSDEFTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                object2 = pSDEFTypeService.select((ISelectCond)new SelectCond());
-                object = ((ArrayList)object2).iterator();
-                while (object.hasNext()) {
-                    PSDEFType pSDEFType = (PSDEFType)object.next();
+                for (PSDEFType pSDEFType : pSDEFTypeService.select((ISelectCond)new SelectCond())) {
                     String string = pSDEFType.getFields();
                     if (!StringHelper.isNullOrEmpty((String)string)) {
                         String[] stringArray;
                         string = string.toUpperCase();
                         string = string.replace(',', ';');
                         for (String string2 : stringArray = string.split("[;]")) {
-                            ((HashMap)object3).put(string2.trim(), pSDEFType);
+                            types.put(string2.trim(), pSDEFType);
                         }
                     }
-                    ((HashMap)object3).put(pSDEFType.getPSDEFTypeId(), pSDEFType);
+                    types.put(pSDEFType.getPSDEFTypeId(), pSDEFType);
                 }
-                psDEFTypeMap = object3;
+                psDEFTypeMap = types;
             }
         }
-        object4 = pSDEField.getPSDataTypeId();
-        object3 = PSModelGlobal.toDEFTypeString(pSDEField.getDEFType());
+        String dataType = pSDEField.getPSDataTypeId();
+        String defType = PSModelGlobal.toDEFTypeString(pSDEField.getDEFType());
         boolean bl = true;
-        if (StringHelper.compare((String)object4, (String)"PICKUP", (boolean)true) == 0 || StringHelper.compare((String)object4, (String)"PICKUPDATA", (boolean)true) == 0 || StringHelper.compare((String)object4, (String)"PICKUPTEXT", (boolean)true) == 0) {
+        if (StringHelper.compare(dataType, "PICKUP", true) == 0 || StringHelper.compare(dataType, "PICKUPDATA", true) == 0 || StringHelper.compare(dataType, "PICKUPTEXT", true) == 0) {
             bl = false;
         }
         if (bl && (pSDEField.getDEFType() == 2 || pSDEField.getDEFType() == 3)) {
             bl = false;
         }
-        object2 = StringHelper.format((String)"[*:%1$s]", (Object)pSDEField.getPSDEFieldName()).toUpperCase();
-        object = null;
+        String key = StringHelper.format((String)"[*:%1$s]", (Object)pSDEField.getPSDEFieldName()).toUpperCase();
+        PSDEFType match;
         if (bl) {
-            if (map != null && (object = map.get(object2)) != null) {
-                return object;
+            if (map != null && (match = map.get(key)) != null) {
+                return match;
             }
-            object = psDEFTypeMap.get(object2);
-            if (object != null) {
-                return object;
+            match = psDEFTypeMap.get(key);
+            if (match != null) {
+                return match;
             }
         }
-        object2 = StringHelper.format((String)"%1$s:%2$s", (Object)object3, (Object)object4).toUpperCase();
-        if (map != null && (object = map.get(object2)) != null) {
-            return object;
+        key = StringHelper.format((String)"%1$s:%2$s", (Object)defType, (Object)dataType).toUpperCase();
+        if (map != null && (match = map.get(key)) != null) {
+            return match;
         }
-        object = psDEFTypeMap.get(object2);
-        if (object != null) {
-            return object;
+        match = psDEFTypeMap.get(key);
+        if (match != null) {
+            return match;
         }
-        object2 = StringHelper.format((String)"%1$s:*", (Object)object3).toUpperCase();
-        if (map != null && (object = map.get(object2)) != null) {
-            return object;
+        key = StringHelper.format((String)"%1$s:*", (Object)defType).toUpperCase();
+        if (map != null && (match = map.get(key)) != null) {
+            return match;
         }
-        object = psDEFTypeMap.get(object2);
-        if (object != null) {
-            return object;
+        match = psDEFTypeMap.get(key);
+        if (match != null) {
+            return match;
         }
-        object2 = StringHelper.format((String)"*:%1$s", (Object)object4).toUpperCase();
-        if (map != null && (object = map.get(object2)) != null) {
-            return object;
+        key = StringHelper.format((String)"*:%1$s", (Object)dataType).toUpperCase();
+        if (map != null && (match = map.get(key)) != null) {
+            return match;
         }
-        object = psDEFTypeMap.get(object2);
-        if (object != null) {
-            return object;
+        match = psDEFTypeMap.get(key);
+        if (match != null) {
+            return match;
         }
-        object2 = StringHelper.format((String)"*");
-        if (map != null && (object = map.get(object2)) != null) {
-            return object;
+        key = StringHelper.format((String)"*");
+        if (map != null && (match = map.get(key)) != null) {
+            return match;
         }
-        object = psDEFTypeMap.get(object2);
-        if (object != null) {
-            return object;
+        match = psDEFTypeMap.get(key);
+        if (match != null) {
+            return match;
         }
         return null;
     }
@@ -343,4 +336,3 @@ public class PSModelGlobal {
         return "";
     }
 }
-

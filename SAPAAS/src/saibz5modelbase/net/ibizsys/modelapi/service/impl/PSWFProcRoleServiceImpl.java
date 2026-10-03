@@ -74,7 +74,7 @@ implements IPSWFProcRoleService {
     @Override
     protected List<PSWFProcRole> onListAll() throws Exception {
         ArrayList<PSWFProcRole> list = new ArrayList<PSWFProcRole>();
-        List pswfprocesses = PSModelServiceUtil.getInstance().getPSWFProcessService().listAll();
+        List<PSWFProcess> pswfprocesses = PSModelServiceUtil.getInstance().getPSWFProcessService().listAll();
         if (pswfprocesses != null) {
             for (PSWFProcess parent : pswfprocesses) {
                 List<PSWFProcRole> items = this.listByPSWFProcess(parent);

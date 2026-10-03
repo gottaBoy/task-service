@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.Vector;
 import org.apache.commons.logging.Log;
@@ -143,7 +144,8 @@ public class EAIServiceMgr {
         if (callResult.IsError()) {
             return callResult;
         }
-        String strServiceConfigFile = String.valueOf(this.strConfigPath) + eaiService.getEAISERVICEID().toLowerCase() + ".xml";
+        String strServiceConfigFile = new File(this.strConfigPath,
+                eaiService.getEAISERVICEID().toLowerCase(Locale.ROOT) + ".xml").getPath();
         if (!EAIServiceMgr.ExportConfigFile(sb, strServiceConfigFile)) {
             callResult.setRetCode(1);
             callResult.setErrorInfo(StringHelper.Format((String)"\u5bfc\u51fa\u670d\u52a1\u914d\u7f6e\u6587\u4ef6\u5931\u8d25[%1$s]", (Object)strServiceConfigFile));
@@ -155,6 +157,10 @@ public class EAIServiceMgr {
 
     public static boolean ExportConfigFile(StringBuilder sb, String strConfigPath) {
         try {
+            File parent = new File(strConfigPath).getParentFile();
+            if (parent != null && !parent.isDirectory() && !parent.mkdirs()) {
+                return false;
+            }
             OutputStreamWriter out = new OutputStreamWriter((OutputStream)new FileOutputStream(strConfigPath), "UTF-8");
             out.write(sb.toString());
             out.flush();
@@ -190,10 +196,8 @@ public class EAIServiceMgr {
     }
 
     public boolean IsServiceStart(String strServiceId) {
-        String strRunFile = String.valueOf(this.strConfigPath) + strServiceId.toLowerCase() + ".run";
         try {
-            File file = new File(strRunFile);
-            return file.exists();
+            return this.runFile(strServiceId).isFile();
         }
         catch (Exception ex) {
             return false;
@@ -202,11 +206,11 @@ public class EAIServiceMgr {
 
     public CallResult StopService(String strServiceId) {
         CallResult callResult = new CallResult();
-        String strRunFile = String.valueOf(this.strConfigPath) + strServiceId.toLowerCase() + ".run";
         try {
-            File file = new File(strRunFile);
-            if (file.exists()) {
-                file.delete();
+            File file = this.runFile(strServiceId);
+            if (file.exists() && !file.delete()) {
+                callResult.setRetCode(1);
+                callResult.setErrorInfo("Cannot remove EAI run marker: " + file);
             }
             return callResult;
         }
@@ -215,6 +219,10 @@ public class EAIServiceMgr {
             callResult.setErrorInfo(ex.getMessage());
             return callResult;
         }
+    }
+
+    private File runFile(String serviceId) {
+        return new File(this.strConfigPath, serviceId.toLowerCase(Locale.ROOT) + ".run");
     }
 
     public String getEAIDataCtrl() {
@@ -249,4 +257,3 @@ public class EAIServiceMgr {
         this.serviceParams = serviceParams;
     }
 }
-

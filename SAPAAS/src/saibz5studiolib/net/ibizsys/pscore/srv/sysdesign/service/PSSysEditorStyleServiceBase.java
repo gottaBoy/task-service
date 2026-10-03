@@ -204,9 +204,9 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
             PSACHandler pSACHandler = (PSACHandler)iService.getDEModel().createEntity();
             pSACHandler.set("PSACHANDLERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSACHandler);
+                iService.getTemp(pSACHandler);
             } else {
-                iService.get((IEntity)pSACHandler);
+                iService.get(pSACHandler);
             }
             this.onFillParentInfo_PSACHandler(pSSysEditorStyle, pSACHandler);
             return;
@@ -216,9 +216,9 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
             PSEditorStyle pSEditorStyle = (PSEditorStyle)iService.getDEModel().createEntity();
             pSEditorStyle.set("PSEDITORSTYLEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSEditorStyle);
+                iService.getTemp(pSEditorStyle);
             } else {
-                iService.get((IEntity)pSEditorStyle);
+                iService.get(pSEditorStyle);
             }
             this.onFillParentInfo_PSEditorStyle(pSSysEditorStyle, pSEditorStyle);
             return;
@@ -228,9 +228,9 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
             PSEditorType pSEditorType = (PSEditorType)iService.getDEModel().createEntity();
             pSEditorType.set("PSEDITORTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSEditorType);
+                iService.getTemp(pSEditorType);
             } else {
-                iService.get((IEntity)pSEditorType);
+                iService.get(pSEditorType);
             }
             this.onFillParentInfo_PSEditorType(pSSysEditorStyle, pSEditorType);
             return;
@@ -240,9 +240,9 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSSysEditorStyle, pSModule);
             return;
@@ -252,9 +252,9 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_PSSysCss(pSSysEditorStyle, pSSysCss);
             return;
@@ -264,9 +264,9 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_PSSysPFPlugin(pSSysEditorStyle, pSSysPFPlugin);
             return;
@@ -276,14 +276,14 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysEditorStyle, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysEditorStyle, string, string2, string3);
+        super.onFillParentInfo(pSSysEditorStyle, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -334,7 +334,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 pSSysEditorStyle.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysEditorStyle, bl);
+        super.onFillEntityFullInfo(pSSysEditorStyle, bl);
         this.onFillEntityFullInfo_PSACHandler(pSSysEditorStyle, bl);
         this.onFillEntityFullInfo_PSEditorStyle(pSSysEditorStyle, bl);
         this.onFillEntityFullInfo_PSEditorType(pSSysEditorStyle, bl);
@@ -366,7 +366,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
     }
 
     protected void onWriteBackParent(PSSysEditorStyle pSSysEditorStyle, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysEditorStyle, bl);
+        super.onWriteBackParent(pSSysEditorStyle, bl);
     }
 
     public ArrayList<PSSysEditorStyle> selectByPSACHandler(PSACHandlerBase pSACHandlerBase) throws Exception {
@@ -541,8 +541,8 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSACHandler(pSACHandler, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSACHANDLER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSACHandler);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEDITORSTYLE_PSACHANDLER_PSACHANDLERID", "", iDataEntityModel.getName(), "PSSYSEDITORSTYLE", iDataEntityModel.getDataInfo((IEntity)pSACHandler), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSACHandler);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEDITORSTYLE_PSACHANDLER_PSACHANDLERID", "", iDataEntityModel.getName(), "PSSYSEDITORSTYLE", iDataEntityModel.getDataInfo(pSACHandler), arrayList.get(0)));
         }
     }
 
@@ -575,7 +575,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSACHandler(pSACHandler);
         this.onBeforeRemoveByPSACHandler(pSACHandler, arrayList);
         for (PSSysEditorStyle pSSysEditorStyle : arrayList) {
-            this.remove((IEntity)pSSysEditorStyle);
+            this.remove(pSSysEditorStyle);
         }
         this.onAfterRemoveByPSACHandler(pSACHandler, arrayList);
     }
@@ -593,8 +593,8 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSEditorStyle(pSEditorStyle, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSEDITORSTYLE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSEditorStyle);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEDITORSTYLE_PSEDITORSTYLE_PSEDITORSTYLEID", "", iDataEntityModel.getName(), "PSSYSEDITORSTYLE", iDataEntityModel.getDataInfo((IEntity)pSEditorStyle), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSEditorStyle);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEDITORSTYLE_PSEDITORSTYLE_PSEDITORSTYLEID", "", iDataEntityModel.getName(), "PSSYSEDITORSTYLE", iDataEntityModel.getDataInfo(pSEditorStyle), arrayList.get(0)));
         }
     }
 
@@ -627,7 +627,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSEditorStyle(pSEditorStyle);
         this.onBeforeRemoveByPSEditorStyle(pSEditorStyle, arrayList);
         for (PSSysEditorStyle pSSysEditorStyle : arrayList) {
-            this.remove((IEntity)pSSysEditorStyle);
+            this.remove(pSSysEditorStyle);
         }
         this.onAfterRemoveByPSEditorStyle(pSEditorStyle, arrayList);
     }
@@ -645,8 +645,8 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSEditorType(pSEditorType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSEDITORTYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSEditorType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEDITORSTYLE_PSEDITORTYPE_PSEDITORTYPEID", "", iDataEntityModel.getName(), "PSSYSEDITORSTYLE", iDataEntityModel.getDataInfo((IEntity)pSEditorType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSEditorType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEDITORSTYLE_PSEDITORTYPE_PSEDITORTYPEID", "", iDataEntityModel.getName(), "PSSYSEDITORSTYLE", iDataEntityModel.getDataInfo(pSEditorType), arrayList.get(0)));
         }
     }
 
@@ -679,7 +679,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSEditorType(pSEditorType);
         this.onBeforeRemoveByPSEditorType(pSEditorType, arrayList);
         for (PSSysEditorStyle pSSysEditorStyle : arrayList) {
-            this.remove((IEntity)pSSysEditorStyle);
+            this.remove(pSSysEditorStyle);
         }
         this.onAfterRemoveByPSEditorType(pSEditorType, arrayList);
     }
@@ -697,8 +697,8 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEDITORSTYLE_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSEDITORSTYLE", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEDITORSTYLE_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSEDITORSTYLE", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -731,7 +731,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSSysEditorStyle pSSysEditorStyle : arrayList) {
-            this.remove((IEntity)pSSysEditorStyle);
+            this.remove(pSSysEditorStyle);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -749,8 +749,8 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEDITORSTYLE_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSEDITORSTYLE", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEDITORSTYLE_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSEDITORSTYLE", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -783,7 +783,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSSysCss(pSSysCss);
         this.onBeforeRemoveByPSSysCss(pSSysCss, arrayList);
         for (PSSysEditorStyle pSSysEditorStyle : arrayList) {
-            this.remove((IEntity)pSSysEditorStyle);
+            this.remove(pSSysEditorStyle);
         }
         this.onAfterRemoveByPSSysCss(pSSysCss, arrayList);
     }
@@ -801,8 +801,8 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEDITORSTYLE_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSEDITORSTYLE", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEDITORSTYLE_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSEDITORSTYLE", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -835,7 +835,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSSysEditorStyle pSSysEditorStyle : arrayList) {
-            this.remove((IEntity)pSSysEditorStyle);
+            this.remove(pSSysEditorStyle);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -881,7 +881,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         ArrayList<PSSysEditorStyle> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysEditorStyle pSSysEditorStyle : arrayList) {
-            this.remove((IEntity)pSSysEditorStyle);
+            this.remove(pSSysEditorStyle);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -918,7 +918,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
 
     protected void replaceParentInfo(PSSysEditorStyle pSSysEditorStyle, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysEditorStyle, cloneSession);
+        super.replaceParentInfo(pSSysEditorStyle, cloneSession);
         if (pSSysEditorStyle.getPSACHandlerId() != null && (iEntity = cloneSession.getEntity("PSACHANDLER", (Object)pSSysEditorStyle.getPSACHandlerId())) != null) {
             this.onFillParentInfo_PSACHandler(pSSysEditorStyle, (PSACHandler)iEntity);
         }
@@ -943,7 +943,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysEditorStyle pSSysEditorStyle, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysEditorStyle, bl);
+        super.onRemoveEntityUncopyValues(pSSysEditorStyle, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysEditorStyle pSSysEditorStyle, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1078,7 +1078,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         if ((entityFieldError = this.onCheckField_Width(bl, pSSysEditorStyle, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysEditorStyle, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysEditorStyle, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AjaxHandler(boolean bl, PSSysEditorStyle pSSysEditorStyle, boolean bl2, boolean bl3) throws Exception {
@@ -1091,7 +1091,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AjaxHandler_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_AjaxHandler_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AJAXHANDLER");
@@ -1113,7 +1113,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1152,7 +1152,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ContainerType_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_ContainerType_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTAINERTYPE");
@@ -1174,7 +1174,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParam_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParam_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM");
@@ -1196,7 +1196,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam10_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam10_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM10");
@@ -1218,7 +1218,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam11_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam11_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM11");
@@ -1240,7 +1240,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam12_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam12_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM12");
@@ -1262,7 +1262,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParam2_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParam2_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM2");
@@ -1284,7 +1284,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParam3_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParam3_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM3");
@@ -1306,7 +1306,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParam4_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParam4_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM4");
@@ -1328,7 +1328,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam5_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam5_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM5");
@@ -1350,7 +1350,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam6_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam6_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM6");
@@ -1372,7 +1372,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam7_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam7_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM7");
@@ -1394,7 +1394,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam8_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam8_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM8");
@@ -1416,7 +1416,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam9_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam9_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM9");
@@ -1438,7 +1438,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParams_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParams_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAMS");
@@ -1460,7 +1460,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DynaModelFlag_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_DynaModelFlag_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNAMODELFLAG");
@@ -1482,7 +1482,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExtendStyleOnly_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_ExtendStyleOnly_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXTENDSTYLEONLY");
@@ -1504,7 +1504,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Height_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_Height_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HEIGHT");
@@ -1526,7 +1526,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LinkViewShowMode_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_LinkViewShowMode_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LINKVIEWSHOWMODE");
@@ -1548,7 +1548,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -1570,7 +1570,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1592,7 +1592,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PreviewHtml_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PreviewHtml_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PREVIEWHTML");
@@ -1614,7 +1614,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSACHandlerId_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSACHandlerId_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSACHANDLERID");
@@ -1636,7 +1636,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -1658,7 +1658,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSEditorStyleId_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSEditorStyleId_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSEDITORSTYLEID");
@@ -1683,7 +1683,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSEditorTypeId_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSEditorTypeId_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSEDITORTYPEID");
@@ -1705,7 +1705,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -1727,7 +1727,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCssId_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCssId_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCSSID");
@@ -1752,7 +1752,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysEditorStyleId_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysEditorStyleId_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSEDITORSTYLEID");
@@ -1777,7 +1777,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysEditorStyleName_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysEditorStyleName_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSEDITORSTYLENAME");
@@ -1799,7 +1799,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPluginId_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPluginId_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPLUGINID");
@@ -1824,7 +1824,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -1846,7 +1846,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefViewShowMode_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_RefViewShowMode_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFVIEWSHOWMODE");
@@ -1868,7 +1868,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RepDefault_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_RepDefault_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REPDEFAULT");
@@ -1907,7 +1907,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StudioIcon_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_StudioIcon_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STUDIOICON");
@@ -1929,7 +1929,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1951,7 +1951,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1973,7 +1973,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1995,7 +1995,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -2017,7 +2017,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -2042,7 +2042,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -2064,7 +2064,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Width_Default((IEntity)pSSysEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_Width_Default(pSSysEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIDTH");
@@ -2077,11 +2077,11 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
     }
 
     protected void onSyncEntity(PSSysEditorStyle pSSysEditorStyle, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysEditorStyle, bl);
+        super.onSyncEntity(pSSysEditorStyle, bl);
     }
 
     protected void onSyncIndexEntities(PSSysEditorStyle pSSysEditorStyle, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysEditorStyle, bl);
+        super.onSyncIndexEntities(pSSysEditorStyle, bl);
     }
 
     public Object getDataContextValue(PSSysEditorStyle pSSysEditorStyle, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -2089,7 +2089,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysEditorStyle, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysEditorStyle, string, iDataContextParam)) != null) {
             return object;
         }
         PSSystem pSSystem = pSSysEditorStyle.getPSSystem();
@@ -2100,7 +2100,7 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
     }
 
     protected void onExportMajorModel(PSSysEditorStyle pSSysEditorStyle, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysEditorStyle, arrayList, n);
+        super.onExportMajorModel(pSSysEditorStyle, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2788,14 +2788,14 @@ extends PSCoreSysServiceBase<PSSysEditorStyle> {
 
     protected boolean onMergeChild(String string, String string2, PSSysEditorStyle pSSysEditorStyle) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysEditorStyle)) {
+        if (super.onMergeChild(string, string2, pSSysEditorStyle)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysEditorStyle pSSysEditorStyle) throws Exception {
-        super.onUpdateParent((IEntity)pSSysEditorStyle);
+        super.onUpdateParent(pSSysEditorStyle);
     }
 
     @Override

@@ -1,21 +1,53 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.data;
 
 import net.ibizsys.paas.core.IDEField;
 
+/**
+ * 实体属性值差异项接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IDEFieldDiffItem {
-    public IDEField getDEField();
+	/**
+	 * 获取属性对象
+	 * 
+	 * @return
+	 */
+	IDEField getDEField();
 
-    public Object getNewValue();
+	/**
+	 * 获取新值
+	 * 
+	 * @return
+	 */
+	Object getNewValue();
 
-    public Object getOldValue();
+	/**
+	 * 获取旧值
+	 * 
+	 * @return
+	 */
+	Object getOldValue();
 
-    public String getDiffInfo();
+	/**
+	 * 获取值变化差异信息
+	 * 
+	 * @return
+	 */
+	String getDiffInfo();
 
-    public String getNewText();
+	/**
+	 * 获取新值文本
+	 * 
+	 * @return
+	 */
+	String getNewText();
 
-    public String getOldText();
+	/**
+	 * 获取旧值文本
+	 * 
+	 * @return
+	 */
+	String getOldText();
 }
-

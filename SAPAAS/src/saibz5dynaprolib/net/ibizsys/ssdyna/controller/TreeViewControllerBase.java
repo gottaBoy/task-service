@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.ViewControllerBase;
+/**
+ * 实体树视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class TreeViewControllerBase extends ViewControllerBase {
+	public TreeViewControllerBase() throws Exception {
+		super();
+	}
 
-public abstract class TreeViewControllerBase
-extends ViewControllerBase {
 }
-

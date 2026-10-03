@@ -123,7 +123,7 @@ extends PSUWCreateDEServiceBase {
 
                 public void commit() {
                     try {
-                        PSUWCreateDEService.this.executeAction("X_ADDCLONEDEMODELTASK", (IEntity)pSUWCreateDE2);
+                        PSUWCreateDEService.this.executeAction("X_ADDCLONEDEMODELTASK", pSUWCreateDE2);
                     }
                     catch (Exception exception) {
                         log.error((Object)exception);

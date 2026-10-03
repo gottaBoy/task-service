@@ -1,43 +1,20 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.DEDataSetCond
- *  net.ibizsys.paas.core.DEDataSetFetchContext
- *  net.ibizsys.paas.core.IDEDataSetCond
- *  net.ibizsys.paas.core.IDEField
- *  net.ibizsys.paas.core.IDEWF
- *  net.ibizsys.paas.ctrlhandler.GridHandlerBase
- *  net.ibizsys.paas.data.DataObject
- *  net.ibizsys.paas.data.IDataObject
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.paas.util.StringBuilderEx
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.paas.web.AjaxActionResult
- *  net.ibizsys.paas.web.IWebContext
- *  net.ibizsys.paas.web.WebContext
- *  net.ibizsys.pswf.core.IWFModel
- *  net.ibizsys.pswf.core.IWFProcessModel
- *  net.ibizsys.pswf.core.IWFService
- *  net.ibizsys.pswf.core.IWFVersionModel
- *  net.ibizsys.pswf.core.WFActionParam
- */
 package net.ibizsys.pswf.ctrlhandler;
 
 import java.util.ArrayList;
+
 import net.ibizsys.paas.core.DEDataSetCond;
 import net.ibizsys.paas.core.DEDataSetFetchContext;
+import net.ibizsys.paas.core.Errors;
 import net.ibizsys.paas.core.IDEDataSetCond;
 import net.ibizsys.paas.core.IDEField;
 import net.ibizsys.paas.core.IDEWF;
 import net.ibizsys.paas.ctrlhandler.GridHandlerBase;
 import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.data.IDataObject;
 import net.ibizsys.paas.entity.IEntity;
+import net.ibizsys.paas.logic.ICondition;
 import net.ibizsys.paas.util.StringBuilderEx;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.web.AjaxActionResult;
-import net.ibizsys.paas.web.IWebContext;
 import net.ibizsys.paas.web.WebContext;
 import net.ibizsys.pswf.controller.IWFDEViewController;
 import net.ibizsys.pswf.controller.IWFViewController;
@@ -47,172 +24,332 @@ import net.ibizsys.pswf.core.IWFService;
 import net.ibizsys.pswf.core.IWFVersionModel;
 import net.ibizsys.pswf.core.WFActionParam;
 
-public abstract class WFGridHandlerBase
-extends GridHandlerBase {
-    protected IDEWF getDEWF() {
-        if (this.getViewController() instanceof IWFDEViewController) {
-            return ((IWFDEViewController)this.getViewController()).getDEWF();
-        }
-        return null;
-    }
+/**
+ * 流程表格后台处理对象
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class WFGridHandlerBase extends GridHandlerBase {
+	/**
+	 * 获取实体工作流模型
+	 * 
+	 * @return
+	 */
+	protected IDEWF getDEWF() {
+		if (this.getViewController() instanceof IWFDEViewController) {
+			return ((IWFDEViewController) this.getViewController()).getDEWF();
+		}
 
-    protected boolean isWFIAMode() {
-        if (this.getViewController() instanceof IWFViewController) {
-            return ((IWFViewController)this.getViewController()).isWFIAMode();
-        }
-        return false;
-    }
+		return null;
+	}
 
-    protected String getWFStepValue() {
-        if (this.getViewController() instanceof IWFViewController) {
-            return ((IWFViewController)this.getViewController()).getWFStepValue();
-        }
-        return "";
-    }
+	/**
+	 * 是否为流程交互模式
+	 * 
+	 * @return
+	 */
+	protected boolean isWFIAMode() {
+		if (this.getViewController() instanceof IWFViewController) {
+			return ((IWFViewController) this.getViewController()).isWFIAMode();
+		}
 
-    protected IWFModel getWFModel() {
-        if (this.getViewController() instanceof IWFViewController) {
-            return ((IWFViewController)this.getViewController()).getWFModel();
-        }
-        return null;
-    }
+		return false;
+	}
 
-    protected IWFVersionModel getWFVersionModel() {
-        return this.getWFModel().getLastWFVersionModel();
-    }
+	/**
+	 * 获取当前的流程步骤值
+	 * 
+	 * @return
+	 */
+	protected String getWFStepValue() {
+		if (this.getViewController() instanceof IWFViewController) {
+			return ((IWFViewController) this.getViewController()).getWFStepValue();
+		}
+		return "";
+	}
 
-    protected void onFillDEDataSetFetchContext(DEDataSetFetchContext deDataSetFetchContextImpl) throws Exception {
-        String strWFInstFieldExp;
-        super.onFillDEDataSetFetchContext(deDataSetFetchContextImpl);
-        if (this.isWFIAMode() && !StringHelper.isNullOrEmpty((String)(strWFInstFieldExp = this.getDEWF().getWFInstField()))) {
-            StringBuilderEx script = new StringBuilderEx();
-            if (StringHelper.compare((String)this.getWFModel().getWFEngineCat(), (String)"ACTIVITI", (boolean)true) == 0) {
-                script.append(" INNER JOIN T_SRFWFWORKLIST wf1 ON ${srfdefieldexp('%1$s')} = wf1.WFINSTANCEID AND wf1.CANCELFLAG=0 ", (Object)strWFInstFieldExp);
-            } else {
-                script.append(" INNER JOIN T_SRFWFINSTANCE wf1 ON ${srfdefieldexp('%1$s')} = wf1.WFINSTANCEID ", (Object)strWFInstFieldExp);
-                script.append(" INNER JOIN T_SRFWFSTEPACTOR wf2 ON wf1.ACTIVESTEPID = wf2.WFSTEPID ");
-                script.append(" LEFT JOIN T_SRFWFSTEPDATA wf3 ON wf2.WFSTEPID = wf3.WFSTEPID AND wf2.ACTORID=wf3.ACTORID AND wf3.CONNECTIONNAME<>'SRFWFRESUBMIT' AND wf3.CONNECTIONNAME<>'SRFWFTIMEOUT'", (Object)strWFInstFieldExp);
-            }
-            deDataSetFetchContextImpl.setJoinScript(script.toString());
-        }
-    }
+	/**
+	 * 获取流程模型
+	 * 
+	 * @return the iWFModel
+	 */
+	protected IWFModel getWFModel() {
+		if (this.getViewController() instanceof IWFViewController) {
+			return ((IWFViewController) this.getViewController()).getWFModel();
+		}
+		return null;
+	}
 
-    protected void onFillFetchURLConditions(ArrayList<IDEDataSetCond> userConditions) throws Exception {
-        super.onFillFetchURLConditions(userConditions);
-        this.onFillFetchWFConditions(userConditions);
-    }
+	/**
+	 * 获取流程版本模型对象
+	 * 
+	 * @return
+	 */
+	protected IWFVersionModel getWFVersionModel() {
+		return this.getWFModel().getLastWFVersionModel();
+	}
 
-    protected void onFillFetchWFConditions(ArrayList<IDEDataSetCond> userConditions) throws Exception {
-        String strUDStateValue;
-        DEDataSetCond deDataSetCondImpl;
-        String strWFStateValue;
-        String strWFStepValue = WebContext.getWFStep((IWebContext)this.getWebContext());
-        if (this.isWFIAMode() && !StringHelper.isNullOrEmpty((String)this.getWFStepValue())) {
-            strWFStepValue = this.getWFStepValue();
-        }
-        if (!StringHelper.isNullOrEmpty((String)strWFStepValue) && !StringHelper.isNullOrEmpty((String)this.getDEWF().getWFStepField())) {
-            IDEField iDEFieldModel = this.getDEModel().getDEField(this.getDEWF().getWFStepField(), false);
-            DEDataSetCond deDataSetCondImpl2 = new DEDataSetCond();
-            deDataSetCondImpl2.setCondType("DEFIELD");
-            deDataSetCondImpl2.setCondOp("EQ");
-            deDataSetCondImpl2.setDEFName(iDEFieldModel.getName());
-            deDataSetCondImpl2.setCondValue(strWFStepValue);
-            userConditions.add((IDEDataSetCond)deDataSetCondImpl2);
-        }
-        if (!StringHelper.isNullOrEmpty((String)(strWFStateValue = WebContext.getWFState((IWebContext)this.getWebContext()))) && !StringHelper.isNullOrEmpty((String)this.getDEWF().getWFStateField())) {
-            IDEField iDEFieldModel = this.getDEModel().getDEField(this.getDEWF().getWFStateField(), false);
-            deDataSetCondImpl = new DEDataSetCond();
-            deDataSetCondImpl.setCondType("DEFIELD");
-            deDataSetCondImpl.setCondOp("EQ");
-            deDataSetCondImpl.setDEFName(iDEFieldModel.getName());
-            deDataSetCondImpl.setCondValue(strWFStateValue);
-            userConditions.add((IDEDataSetCond)deDataSetCondImpl);
-        }
-        if (!StringHelper.isNullOrEmpty((String)(strUDStateValue = WebContext.getWFUDState((IWebContext)this.getWebContext()))) && !StringHelper.isNullOrEmpty((String)this.getDEWF().getUDStateField())) {
-            IDEField iDEFieldModel = this.getDEModel().getDEField(this.getDEWF().getUDStateField(), false);
-            DEDataSetCond deDataSetCondImpl3 = new DEDataSetCond();
-            deDataSetCondImpl3.setCondType("DEFIELD");
-            deDataSetCondImpl3.setCondOp("EQ");
-            deDataSetCondImpl3.setDEFName(iDEFieldModel.getName());
-            deDataSetCondImpl3.setCondValue(strUDStateValue);
-            userConditions.add((IDEDataSetCond)deDataSetCondImpl3);
-        }
-        if (this.isWFIAMode()) {
-            if (StringHelper.compare((String)this.getWFModel().getWFEngineCat(), (String)"ACTIVITI", (boolean)true) == 0) {
-                deDataSetCondImpl = new DEDataSetCond();
-                deDataSetCondImpl.setCondType("CUSTOM");
-                deDataSetCondImpl.setCustomCond(StringHelper.format((String)"wf1.WFWORKFLOWID='%1$s'", (Object)this.getDEWF().getWorkflowId()));
-                userConditions.add((IDEDataSetCond)deDataSetCondImpl);
-                deDataSetCondImpl = new DEDataSetCond();
-                deDataSetCondImpl.setCondType("CUSTOM");
-                deDataSetCondImpl.setCustomCond(StringHelper.format((String)"wf1.WFACTORID='%1$s'", (Object)this.getWebContext().getCurUserId()));
-                userConditions.add((IDEDataSetCond)deDataSetCondImpl);
-            } else {
-                deDataSetCondImpl = new DEDataSetCond();
-                deDataSetCondImpl.setCondType("CUSTOM");
-                deDataSetCondImpl.setCustomCond(StringHelper.format((String)"wf1.WFWORKFLOWID='%1$s'", (Object)this.getDEWF().getWorkflowId()));
-                userConditions.add((IDEDataSetCond)deDataSetCondImpl);
-                deDataSetCondImpl = new DEDataSetCond();
-                deDataSetCondImpl.setCondType("CUSTOM");
-                deDataSetCondImpl.setCustomCond(StringHelper.format((String)"wf2.ACTORID='%1$s'", (Object)this.getWebContext().getCurUserId()));
-                userConditions.add((IDEDataSetCond)deDataSetCondImpl);
-                deDataSetCondImpl = new DEDataSetCond();
-                deDataSetCondImpl.setCondType("CUSTOM");
-                deDataSetCondImpl.setCustomCond(StringHelper.format((String)"wf3.ACTORID IS NULL"));
-                userConditions.add((IDEDataSetCond)deDataSetCondImpl);
-            }
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.MDCtrlHandlerBase#onFillDEDataSetFetchContext(net.ibizsys.paas.core.DEDataSetFetchContext)
+	 */
+	@Override
+	protected void onFillDEDataSetFetchContext(DEDataSetFetchContext deDataSetFetchContextImpl) throws Exception {
+		super.onFillDEDataSetFetchContext(deDataSetFetchContextImpl);
+		if (this.isWFIAMode()) {
+			// //是否为流程交互模式
+			// String strDESubWFId = SRFDAWebCTXHelper.GetDESubWFId(getWebContext());
+			// String strWFInstDEFId = "";
+			// if(StringHelper.IsNullOrEmpty(strDESubWFId))
+			// {
+			// DEWF dewf = this.getPage().getDEHelper().GetDEWF();
+			// strWFInstDEFId = dewf.getWFINSTDEFID();
+			// }
+			// else
+			// {
+			// DESubWF deSubWF = this.getPage().getDEHelper().GetDESubWF(strDESubWFId);
+			// if(deSubWF == null)
+			// {
+			// this.getPage().PageLog(this,LogLevels.ERROR,StringHelper.Format("无法获取实体子流程[%1$s]",strDESubWFId));
+			// return "";
+			// }
+			//
+			// strWFInstDEFId = deSubWF.getWFINSTDEFID();
+			// }
+			//
+			// //附加权限代码
+			// IDEFHelper wfInstDEFHelper = this.getPage().getDEHelper().GetDEFHelper(strWFInstDEFId);
+			// if(wfInstDEFHelper == null)
+			// {
+			// this.getPage().PageLog(this,LogLevels.ERROR, StringHelper.Format("获取实体属性[%1$s]失败",strWFInstDEFId));
+			// return "";
+			// }
+			//
+			// CallResult callResult = daQueryModelHelper.GetDEFieldExp(wfInstDEFHelper);
+			// if(callResult.getRetCode()!=Errors.OK)
+			// {
+			// this.getPage().PageLog(this,LogLevels.ERROR, StringHelper.Format("获取实体属性[%1$s]查询表达式失败，%2$s",strWFInstDEFId,callResult.getErrorInfo()));
+			// return "";
+			// }
+			// String strWFInstFieldExp = (String)callResult.getUserObject();
+			//
+			// StringBuilderEx script = new StringBuilderEx();
+			// script.Append(strSql);
+			//
+			// if(StringHelper.IsNullOrEmpty(this.getDEHelper().GetDBStorage()))
+			// {
+			// script.Append(" INNER JOIN T_SRFWFINSTANCE wf1 ON %1$s = wf1.WFINSTANCEID ",strWFInstFieldExp);
+			// script.Append(" INNER JOIN T_SRFWFSTEPACTOR wf2 ON wf1.ACTIVESTEPID = wf2.WFSTEPID ");
+			// script.Append(" LEFT JOIN T_SRFWFSTEPDATA wf3 ON wf2.WFSTEPID = wf3.WFSTEPID AND wf2.ACTORID=wf3.ACTORID AND wf3.CONNECTIONNAME<>'SRFWFRESUBMIT' AND wf3.CONNECTIONNAME<>'SRFWFTIMEOUT'",strWFInstFieldExp);
+			//
+			// }
+			// else
+			// {
+			// IDEHelper wfDEHelper = this.getPage().getDAModelStorage().FindDEHelper(SRFDAGlobal.DEID_WFINSTANCE);
+			//
+			// script.Append(" INNER JOIN %2$s.T_SRFWFINSTANCE wf1 ON %1$s = wf1.WFINSTANCEID ",strWFInstFieldExp,wfDEHelper.GetDBSchema());
+			// script.Append(" INNER JOIN %1$s.T_SRFWFSTEPACTOR wf2 ON wf1.ACTIVESTEPID = wf2.WFSTEPID ",wfDEHelper.GetDBSchema());
+			// script.Append(" LEFT JOIN %2$s.T_SRFWFSTEPDATA wf3 ON wf2.WFSTEPID = wf3.WFSTEPID AND wf2.ACTORID=wf3.ACTORID AND wf3.CONNECTIONNAME<>'SRFWFRESUBMIT' AND wf3.CONNECTIONNAME<>'SRFWFTIMEOUT'",strWFInstFieldExp,wfDEHelper.GetDBSchema());
+			//
+			// }
+			//
+			//
+			// return script.toString();
 
-    protected AjaxActionResult onProcessAction(String strAction) throws Exception {
-        if (StringHelper.compare((String)strAction, (String)"wfsubmit", (boolean)true) == 0) {
-            return this.onWFSubmit();
-        }
-        return super.onProcessAction(strAction);
-    }
+			String strWFInstFieldExp = this.getDEWF().getWFInstField();
+			if (!StringHelper.isNullOrEmpty(strWFInstFieldExp)) {
+				StringBuilderEx script = new StringBuilderEx();
+				if(StringHelper.compare(this.getWFModel().getWFEngineCat() , IWFModel.WFENGINETYPE_ACTIVITI, true) == 0)
+				{
+					//Activiti引擎仅需要与T_SRFWFWORKLIST关联进行查询
+					script.append(" INNER JOIN T_SRFWFWORKLIST wf1 ON ${srfdefieldexp('%1$s')} = wf1.WFINSTANCEID AND wf1.CANCELFLAG=0 ", strWFInstFieldExp);
+				}else{
+					script.append(" INNER JOIN T_SRFWFINSTANCE wf1 ON ${srfdefieldexp('%1$s')} = wf1.WFINSTANCEID ", strWFInstFieldExp);
+					script.append(" INNER JOIN T_SRFWFSTEPACTOR wf2 ON wf1.ACTIVESTEPID = wf2.WFSTEPID ");
+					script.append(" LEFT JOIN T_SRFWFSTEPDATA wf3 ON wf2.WFSTEPID = wf3.WFSTEPID AND wf2.ACTORID=wf3.ACTORID AND wf3.CONNECTIONNAME<>'SRFWFRESUBMIT' AND wf3.CONNECTIONNAME<>'SRFWFTIMEOUT'", strWFInstFieldExp);
+				}
 
-    protected AjaxActionResult onWFSubmit() throws Exception {
-        AjaxActionResult ajaxActionResult = new AjaxActionResult();
-        String strKeys = WebContext.getKeys((IWebContext)this.getWebContext());
-        if (StringHelper.isNullOrEmpty((String)strKeys)) {
-            strKeys = WebContext.getKey((IWebContext)this.getWebContext());
-        }
-        if (StringHelper.isNullOrEmpty((String)strKeys)) {
-            ajaxActionResult.setRetCode(4);
-            return ajaxActionResult;
-        }
-        String strIATag = WebContext.getWFIATag((IWebContext)this.getWebContext());
-        String[] keys = strKeys.split("[;]");
-        IWFService iWFService = this.getWFModel().getWFService();
-        String[] stringArray = keys;
-        int n = keys.length;
-        int n2 = 0;
-        while (n2 < n) {
-            String strKey = stringArray[n2];
-            IEntity iEntity = this.getSimpleEntity(strKey);
-            int nVer = -1;
-            if (!StringHelper.isNullOrEmpty((String)this.getDEWF().getWFVerField())) {
-                nVer = DataObject.getIntegerValue((IDataObject)iEntity, (String)this.getDEWF().getWFVerField(), (int)1);
-            }
-            IWFProcessModel iWFProcessModel = this.getWFModel().getWFVersionModelByWFVersion(nVer).getWFProcessModelByWFStepValue(this.getWFStepValue(), false);
-            WFActionParam wfActionParam = new WFActionParam();
-            wfActionParam.setUserData(strKey);
-            wfActionParam.setUserData4(this.getDEModel().getId());
-            wfActionParam.setOpPersonId(this.getWebContext().getCurUserId());
-            wfActionParam.setStepId(iWFProcessModel.getId());
-            wfActionParam.setConnection(strIATag);
-            wfActionParam.setWFMode(this.getWebContext().getWFMode());
-            iWFService.submit(wfActionParam);
-            ++n2;
-        }
-        return ajaxActionResult;
-    }
+				deDataSetFetchContextImpl.setJoinScript(script.toString());
+			}
+		}
+	}
 
-    protected void fillDEDataSetFetchDataRange(DEDataSetFetchContext deDataSetFetchContextImpl) throws Exception {
-        if (this.isWFIAMode()) {
-            return;
-        }
-        super.fillDEDataSetFetchDataRange(deDataSetFetchContextImpl);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.MDCtrlHandlerBase#onFillFetchURLConditions(java.util.ArrayList)
+	 */
+	@Override
+	protected void onFillFetchURLConditions(ArrayList<IDEDataSetCond> userConditions) throws Exception {
+		super.onFillFetchURLConditions(userConditions);
+		onFillFetchWFConditions(userConditions);
+	}
+
+	/**
+	 * 填充流程预置条件
+	 * 
+	 * @param userConditions
+	 * @throws Exception
+	 */
+	protected void onFillFetchWFConditions(ArrayList<IDEDataSetCond> userConditions) throws Exception {
+		
+		
+		
+		String strWFStepValue = WebContext.getWFStep(this.getWebContext());
+		if (this.isWFIAMode() && !StringHelper.isNullOrEmpty(getWFStepValue())) {
+			strWFStepValue = getWFStepValue();
+		}
+		
+		if (!StringHelper.isNullOrEmpty(strWFStepValue) && !StringHelper.isNullOrEmpty(this.getDEWF().getWFStepField())) {
+			IDEField iDEFieldModel = this.getDEModel().getDEField(this.getDEWF().getWFStepField(), false);
+
+			DEDataSetCond deDataSetCondImpl = new DEDataSetCond();
+			deDataSetCondImpl.setCondType(IDEDataSetCond.CONDTYPE_DEFIELD);
+			deDataSetCondImpl.setCondOp(ICondition.CONDOP_EQ);
+			deDataSetCondImpl.setDEFName(iDEFieldModel.getName());
+			deDataSetCondImpl.setCondValue(strWFStepValue);
+			userConditions.add(deDataSetCondImpl);
+		}
+
+		String strWFStateValue = WebContext.getWFState(this.getWebContext());
+		if (!StringHelper.isNullOrEmpty(strWFStateValue) && !StringHelper.isNullOrEmpty(this.getDEWF().getWFStateField())) {
+			IDEField iDEFieldModel = this.getDEModel().getDEField(this.getDEWF().getWFStateField(), false);
+
+			DEDataSetCond deDataSetCondImpl = new DEDataSetCond();
+			deDataSetCondImpl.setCondType(IDEDataSetCond.CONDTYPE_DEFIELD);
+			deDataSetCondImpl.setCondOp(ICondition.CONDOP_EQ);
+			deDataSetCondImpl.setDEFName(iDEFieldModel.getName());
+			deDataSetCondImpl.setCondValue(strWFStateValue);
+			userConditions.add(deDataSetCondImpl);
+		}
+
+		String strUDStateValue = WebContext.getWFUDState(this.getWebContext());
+		if (!StringHelper.isNullOrEmpty(strUDStateValue) && !StringHelper.isNullOrEmpty(this.getDEWF().getUDStateField())) {
+			IDEField iDEFieldModel = this.getDEModel().getDEField(this.getDEWF().getUDStateField(), false);
+			DEDataSetCond deDataSetCondImpl = new DEDataSetCond();
+			deDataSetCondImpl.setCondType(IDEDataSetCond.CONDTYPE_DEFIELD);
+			deDataSetCondImpl.setCondOp(ICondition.CONDOP_EQ);
+			deDataSetCondImpl.setDEFName(iDEFieldModel.getName());
+			deDataSetCondImpl.setCondValue(strUDStateValue);
+			userConditions.add(deDataSetCondImpl);
+		}
+
+		if (this.isWFIAMode()) {
+			
+			if(StringHelper.compare(this.getWFModel().getWFEngineCat() , IWFModel.WFENGINETYPE_ACTIVITI, true) == 0)
+			{
+				//Activiti引擎时，根据WFWORKFLOWID、WFACTORID关联进行查询当前用户待办数据
+				if(true){
+					DEDataSetCond deDataSetCondImpl = new DEDataSetCond();
+					deDataSetCondImpl.setCondType(IDEDataSetCond.CONDTYPE_CUSTOM);
+					deDataSetCondImpl.setCustomCond(StringHelper.format("wf1.WFWORKFLOWID='%1$s'",getDEWF().getWorkflowId()));
+					userConditions.add(deDataSetCondImpl);
+				}
+				
+				if (true) {
+					DEDataSetCond deDataSetCondImpl = new DEDataSetCond();
+					deDataSetCondImpl.setCondType(IDEDataSetCond.CONDTYPE_CUSTOM);
+					deDataSetCondImpl.setCustomCond(StringHelper.format("wf1.WFACTORID='%1$s'", this.getWebContext().getCurUserId()));
+					userConditions.add(deDataSetCondImpl);
+				}
+			}else{
+				/**
+				 * 20171221修改，附加工作流标识
+				 */
+				if(true){
+					DEDataSetCond deDataSetCondImpl = new DEDataSetCond();
+					deDataSetCondImpl.setCondType(IDEDataSetCond.CONDTYPE_CUSTOM);
+					deDataSetCondImpl.setCustomCond(StringHelper.format("wf1.WFWORKFLOWID='%1$s'",getDEWF().getWorkflowId()));
+					userConditions.add(deDataSetCondImpl);
+				}
+				
+				if (true) {
+					DEDataSetCond deDataSetCondImpl = new DEDataSetCond();
+					deDataSetCondImpl.setCondType(IDEDataSetCond.CONDTYPE_CUSTOM);
+					deDataSetCondImpl.setCustomCond(StringHelper.format("wf2.ACTORID='%1$s'", this.getWebContext().getCurUserId()));
+					userConditions.add(deDataSetCondImpl);
+				}
+				
+				if (true) {
+					DEDataSetCond deDataSetCondImpl = new DEDataSetCond();
+					deDataSetCondImpl.setCondType(IDEDataSetCond.CONDTYPE_CUSTOM);
+					deDataSetCondImpl.setCustomCond(StringHelper.format("wf3.ACTORID IS NULL"));
+					userConditions.add(deDataSetCondImpl);
+				}
+			}
+
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.MDCtrlHandlerBase#onProcessAction(java.lang.String)
+	 */
+	@Override
+	protected AjaxActionResult onProcessAction(String strAction) throws Exception {
+		if (StringHelper.compare(strAction, IWFCtrlHandler.ACTION_WFSUBMIT, true) == 0) {
+			return onWFSubmit();
+		}
+		return super.onProcessAction(strAction);
+	}
+
+	/**
+	 * 流程交互
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	protected AjaxActionResult onWFSubmit() throws Exception {
+		AjaxActionResult ajaxActionResult = new AjaxActionResult();
+		String strKeys = WebContext.getKeys(this.getWebContext());
+		if (StringHelper.isNullOrEmpty(strKeys)) {
+			strKeys = WebContext.getKey(this.getWebContext());
+		}
+
+		if (StringHelper.isNullOrEmpty(strKeys)) {
+			ajaxActionResult.setRetCode(Errors.INVALIDDATAKEYS);
+			return ajaxActionResult;
+		}
+
+		String strIATag = WebContext.getWFIATag(this.getWebContext());
+		String[] keys = strKeys.split("[;]");
+		IWFService iWFService = getWFModel().getWFService();
+
+		// IWFProcessModel iWFProcessModel = this.getWFModel().getLastWFVersionModel().getWFProcessModelByWFStepValue(this.getWFStepValue(), false);
+
+		for (String strKey : keys) {
+			// 根据版本处理
+			IEntity iEntity = getSimpleEntity(strKey);
+			int nVer = -1;
+			if (!StringHelper.isNullOrEmpty(this.getDEWF().getWFVerField())) {
+				nVer = DataObject.getIntegerValue(iEntity, this.getDEWF().getWFVerField(), 1);
+			}
+			IWFProcessModel iWFProcessModel = this.getWFModel().getWFVersionModelByWFVersion(nVer).getWFProcessModelByWFStepValue(this.getWFStepValue(), false);
+
+			WFActionParam wfActionParam = new WFActionParam();
+			wfActionParam.setUserData(strKey);
+			wfActionParam.setUserData4(this.getDEModel().getId());
+			wfActionParam.setOpPersonId(this.getWebContext().getCurUserId());
+			wfActionParam.setStepId(iWFProcessModel.getId());
+			wfActionParam.setConnection(strIATag);
+			wfActionParam.setWFMode(this.getWebContext().getWFMode());
+			iWFService.submit(wfActionParam);
+		}
+		return ajaxActionResult;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.MDCtrlHandlerBase#fillDEDataSetFetchDataRange(net.ibizsys.paas.core.DEDataSetFetchContext)
+	 */
+	@Override
+	protected void fillDEDataSetFetchDataRange(DEDataSetFetchContext deDataSetFetchContextImpl) throws Exception {
+		if (this.isWFIAMode()) return;
+		super.fillDEDataSetFetchDataRange(deDataSetFetchContextImpl);
+	}
+
 }
-

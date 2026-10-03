@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSNDFileLinkDEModelBase;
 
 public class PSNDFileLinkDEModel
 extends PSNDFileLinkDEModelBase {
+
+    public PSNDFileLinkDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

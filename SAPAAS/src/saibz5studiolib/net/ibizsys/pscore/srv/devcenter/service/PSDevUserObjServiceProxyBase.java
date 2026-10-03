@@ -50,34 +50,34 @@ implements IInheritDEServiceProxy<PSDevUserObj> {
 
     public void remove(PSDevUserObj pSDevUserObj) throws Exception {
         if (pSDevUserObj.getPSDevUserObjType() == null) {
-            this.get((IEntity)pSDevUserObj);
+            this.get(pSDevUserObj);
         }
         if (StringHelper.compare((String)pSDevUserObj.getPSDevUserObjType(), (String)"USERGROUP", (boolean)true) == 0) {
             PSDevUserGroupService pSDevUserGroupService = (PSDevUserGroupService)ServiceGlobal.getService(PSDevUserGroupService.class, (SessionFactory)this.getSessionFactory());
             PSDevUserGroup pSDevUserGroup = new PSDevUserGroup();
             pSDevUserGroup.setPSDevUserGroupId(pSDevUserObj.getPSDevUserObjectId());
-            pSDevUserGroupService.remove((IEntity)pSDevUserGroup);
+            pSDevUserGroupService.remove(pSDevUserGroup);
             return;
         }
         if (StringHelper.compare((String)pSDevUserObj.getPSDevUserObjType(), (String)"USER", (boolean)true) == 0) {
             PSDevUserService pSDevUserService = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class, (SessionFactory)this.getSessionFactory());
             PSDevUser pSDevUser = new PSDevUser();
             pSDevUser.setPSDevUserId(pSDevUserObj.getPSDevUserObjectId());
-            pSDevUserService.remove((IEntity)pSDevUser);
+            pSDevUserService.remove(pSDevUser);
             return;
         }
         throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u7ee7\u627f\u7c7b\u578b[%1$s]", (Object)pSDevUserObj.getPSDevUserObjType()));
     }
 
     public PSDevUserObj getReal(PSDevUserObj pSDevUserObj, boolean bl) throws Exception {
-        if (pSDevUserObj.getPSDevUserObjType() == null && !this.get((IEntity)pSDevUserObj, bl)) {
+        if (pSDevUserObj.getPSDevUserObjType() == null && !this.get(pSDevUserObj, bl)) {
             return null;
         }
         if (StringHelper.compare((String)pSDevUserObj.getPSDevUserObjType(), (String)"USERGROUP", (boolean)true) == 0) {
             PSDevUserGroupService pSDevUserGroupService = (PSDevUserGroupService)ServiceGlobal.getService(PSDevUserGroupService.class, (SessionFactory)this.getSessionFactory());
             PSDevUserGroup pSDevUserGroup = new PSDevUserGroup();
             pSDevUserGroup.setPSDevUserGroupId(pSDevUserObj.getPSDevUserObjectId());
-            if (!pSDevUserGroupService.get((IEntity)pSDevUserGroup, bl)) {
+            if (!pSDevUserGroupService.get(pSDevUserGroup, bl)) {
                 return null;
             }
             return pSDevUserGroup;
@@ -86,7 +86,7 @@ implements IInheritDEServiceProxy<PSDevUserObj> {
             PSDevUserService pSDevUserService = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class, (SessionFactory)this.getSessionFactory());
             PSDevUser pSDevUser = new PSDevUser();
             pSDevUser.setPSDevUserId(pSDevUserObj.getPSDevUserObjectId());
-            if (!pSDevUserService.get((IEntity)pSDevUser, bl)) {
+            if (!pSDevUserService.get(pSDevUser, bl)) {
                 return null;
             }
             return pSDevUser;
@@ -96,7 +96,7 @@ implements IInheritDEServiceProxy<PSDevUserObj> {
 
     public IService getRealService(PSDevUserObj pSDevUserObj) throws Exception {
         if (pSDevUserObj.getPSDevUserObjType() == null) {
-            this.get((IEntity)pSDevUserObj);
+            this.get(pSDevUserObj);
         }
         if (StringHelper.compare((String)pSDevUserObj.getPSDevUserObjType(), (String)"USERGROUP", (boolean)true) == 0) {
             PSDevUserGroupService pSDevUserGroupService = (PSDevUserGroupService)ServiceGlobal.getService(PSDevUserGroupService.class, (SessionFactory)this.getSessionFactory());
@@ -114,14 +114,14 @@ implements IInheritDEServiceProxy<PSDevUserObj> {
             PSDevUserGroupService pSDevUserGroupService = (PSDevUserGroupService)ServiceGlobal.getService(PSDevUserGroupService.class, (SessionFactory)this.getSessionFactory());
             PSDevUserGroup pSDevUserGroup = new PSDevUserGroup();
             pSDevUserGroup.setPSDevUserGroupId(pSDevUserObj.getPSDevUserObjectId());
-            pSDevUserGroupService.exportModel((IEntity)pSDevUserGroup, arrayList);
+            pSDevUserGroupService.exportModel(pSDevUserGroup, arrayList);
             return;
         }
         if (StringHelper.compare((String)pSDevUserObj.getPSDevUserObjType(), (String)"USER", (boolean)true) == 0) {
             PSDevUserService pSDevUserService = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class, (SessionFactory)this.getSessionFactory());
             PSDevUser pSDevUser = new PSDevUser();
             pSDevUser.setPSDevUserId(pSDevUserObj.getPSDevUserObjectId());
-            pSDevUserService.exportModel((IEntity)pSDevUser, arrayList);
+            pSDevUserService.exportModel(pSDevUser, arrayList);
             return;
         }
         throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u7ee7\u627f\u7c7b\u578b[%1$s]", (Object)pSDevUserObj.getPSDevUserObjType()));

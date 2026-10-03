@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.sysmodel.util;
 
-import net.ibizsys.paas.sysmodel.util.AppCustomizeUtilBase;
+/**
+ * 默认系统应用功能组件
+ * @author Administrator
+ *
+ */
+public class DefaultAppCustomizeUtil extends AppCustomizeUtilBase {
 
-public class DefaultAppCustomizeUtil
-extends AppCustomizeUtilBase {
 }
-

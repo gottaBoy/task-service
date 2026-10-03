@@ -1614,7 +1614,7 @@ implements Serializable {
                 PSDESADetail pSDESADetail = new PSDESADetail();
                 pSDESADetail.setPSDESADetailId(this.getPSDESADetailId());
                 PSDESADetailService pSDESADetailService = (PSDESADetailService)ServiceGlobal.getService(PSDESADetailService.class, (SessionFactory)this.getSessionFactory());
-                pSDESADetailService.autoGet((IEntity)pSDESADetail);
+                pSDESADetailService.autoGet(pSDESADetail);
                 this.psdesadetail = pSDESADetail;
             }
             return this.psdesadetail;

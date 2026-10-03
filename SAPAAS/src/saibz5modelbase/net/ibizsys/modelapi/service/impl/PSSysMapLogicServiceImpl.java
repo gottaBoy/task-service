@@ -76,7 +76,7 @@ implements IPSSysMapLogicService {
     @Override
     protected List<PSSysMapLogic> onListAll() throws Exception {
         ArrayList<PSSysMapLogic> list = new ArrayList<PSSysMapLogic>();
-        List pssysmapviews = PSModelServiceUtil.getInstance().getPSSysMapViewService().listAll();
+        List<PSSysMapView> pssysmapviews = PSModelServiceUtil.getInstance().getPSSysMapViewService().listAll();
         if (pssysmapviews != null) {
             for (PSSysMapView parent : pssysmapviews) {
                 List<PSSysMapLogic> items = this.listByPSSysMapView(parent);

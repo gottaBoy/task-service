@@ -48,7 +48,7 @@ implements IPSModelService<PSDEACMode> {
                 return;
             }
             PSDEACMode pSDEACMode = new PSDEACMode();
-            if (this.isEnableFolderKey((IEntity)pSDataEntity)) {
+            if (this.isEnableFolderKey(pSDataEntity)) {
                 pSDEACMode.setPSDEACModeId(StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_DEFAULT));
             } else {
                 pSDEACMode.setPSDEACModeId(pSDataEntity.getPSDataEntityId());
@@ -62,7 +62,7 @@ implements IPSModelService<PSDEACMode> {
                 SelectCond selectCond = new SelectCond();
                 selectCond.setFetchFirst(true);
                 selectCond.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-                ArrayList arrayList = this.select((ISelectCond)selectCond);
+                ArrayList<PSDEACMode> arrayList = this.select((ISelectCond)selectCond);
                 for (PSDEACMode pSDEACMode2 : arrayList) {
                     if (StringHelper.compare((String)pSDEACMode2.getCodeName(), (String)"Default", (boolean)true) == 0) {
                         return;
@@ -81,4 +81,3 @@ implements IPSModelService<PSDEACMode> {
         }
     }
 }
-

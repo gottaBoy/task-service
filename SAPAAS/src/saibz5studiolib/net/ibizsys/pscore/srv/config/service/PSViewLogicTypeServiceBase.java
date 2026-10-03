@@ -122,7 +122,7 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
     }
 
     protected void onFillParentInfo(PSViewLogicType pSViewLogicType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSViewLogicType, string, string2, string3);
+        super.onFillParentInfo(pSViewLogicType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -133,11 +133,11 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSViewLogicType, bl);
+        super.onFillEntityFullInfo(pSViewLogicType, bl);
     }
 
     protected void onWriteBackParent(PSViewLogicType pSViewLogicType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSViewLogicType, bl);
+        super.onWriteBackParent(pSViewLogicType, bl);
     }
 
     @Override
@@ -153,7 +153,7 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSViewLogicType pSViewLogicType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSViewLogicType, bl);
+        super.onRemoveEntityUncopyValues(pSViewLogicType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSViewLogicType pSViewLogicType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSViewLogicType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSViewLogicType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSViewLogicType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_APPViewLogicOBJ(boolean bl, PSViewLogicType pSViewLogicType, boolean bl2, boolean bl3) throws Exception {
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_APPViewLogicOBJ_Default((IEntity)pSViewLogicType, bl2, bl3);
+            string2 = this.onTestValueRule_APPViewLogicOBJ_Default(pSViewLogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APPVIEWLOGICOBJ");
@@ -215,7 +215,7 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSViewLogicType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSViewLogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -240,7 +240,7 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ProcessName_Default((IEntity)pSViewLogicType, bl2, bl3);
+            string2 = this.onTestValueRule_ProcessName_Default(pSViewLogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PROCESSNAME");
@@ -265,7 +265,7 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewLogicTypeId_Default((IEntity)pSViewLogicType, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewLogicTypeId_Default(pSViewLogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWLOGICTYPEID");
@@ -290,7 +290,7 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewLogicTypeName_Default((IEntity)pSViewLogicType, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewLogicTypeName_Default(pSViewLogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWLOGICTYPENAME");
@@ -312,7 +312,7 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSViewLogicType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSViewLogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -325,11 +325,11 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
     }
 
     protected void onSyncEntity(PSViewLogicType pSViewLogicType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSViewLogicType, bl);
+        super.onSyncEntity(pSViewLogicType, bl);
     }
 
     protected void onSyncIndexEntities(PSViewLogicType pSViewLogicType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSViewLogicType, bl);
+        super.onSyncIndexEntities(pSViewLogicType, bl);
     }
 
     public Object getDataContextValue(PSViewLogicType pSViewLogicType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -337,14 +337,14 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSViewLogicType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSViewLogicType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSViewLogicType pSViewLogicType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSViewLogicType, arrayList, n);
+        super.onExportMajorModel(pSViewLogicType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -479,14 +479,14 @@ extends PSCoreSysServiceBase<PSViewLogicType> {
 
     protected boolean onMergeChild(String string, String string2, PSViewLogicType pSViewLogicType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSViewLogicType)) {
+        if (super.onMergeChild(string, string2, pSViewLogicType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSViewLogicType pSViewLogicType) throws Exception {
-        super.onUpdateParent((IEntity)pSViewLogicType);
+        super.onUpdateParent(pSViewLogicType);
     }
 
     @Override

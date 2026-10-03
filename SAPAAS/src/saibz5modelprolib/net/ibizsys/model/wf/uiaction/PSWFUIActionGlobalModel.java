@@ -43,7 +43,7 @@ extends PSGlobalModelBase<String, PSDEUIAction, IPSWFUIAction> {
 
     @Override
     protected IPSWFUIAction onCreateModelHelper(PSDEUIAction vt) throws Exception {
-        PSWFUIActionImpl iPSWFUIAction = null;
+        IPSWFUIAction iPSWFUIAction = null;
         String strItemObj = vt.getITEMOBJ();
         if (StringHelper.isNullOrEmpty((String)strItemObj)) {
             strItemObj = vt.getSYSITEMOBJ();
@@ -107,4 +107,3 @@ extends PSGlobalModelBase<String, PSDEUIAction, IPSWFUIAction> {
         return super.getPSDynaInstId();
     }
 }
-

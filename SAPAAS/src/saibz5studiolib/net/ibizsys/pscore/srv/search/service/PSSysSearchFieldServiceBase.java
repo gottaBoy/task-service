@@ -159,14 +159,14 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
             PSSysSearchDoc pSSysSearchDoc = (PSSysSearchDoc)iService.getDEModel().createEntity();
             pSSysSearchDoc.set("PSSYSSEARCHDOCID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSearchDoc);
+                iService.getTemp(pSSysSearchDoc);
             } else {
-                iService.get((IEntity)pSSysSearchDoc);
+                iService.get(pSSysSearchDoc);
             }
             this.onFillParentInfo_PSSysSearchDoc(pSSysSearchField, pSSysSearchDoc);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysSearchField, string, string2, string3);
+        super.onFillParentInfo(pSSysSearchField, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -182,7 +182,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
         if (bl && pSSysSearchField.getValidFlag() == null) {
             pSSysSearchField.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysSearchField, bl);
+        super.onFillEntityFullInfo(pSSysSearchField, bl);
         this.onFillEntityFullInfo_PSSysSearchDoc(pSSysSearchField, bl);
     }
 
@@ -190,7 +190,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
     }
 
     protected void onWriteBackParent(PSSysSearchField pSSysSearchField, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysSearchField, bl);
+        super.onWriteBackParent(pSSysSearchField, bl);
     }
 
     public ArrayList<PSSysSearchField> selectByPSSysSearchDoc(PSSysSearchDocBase pSSysSearchDocBase) throws Exception {
@@ -221,8 +221,8 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
         ArrayList<PSSysSearchField> arrayList = this.selectByPSSysSearchDoc(pSSysSearchDoc, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSEARCHDOC");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSearchDoc);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHFIELD_PSSYSSEARCHDOC_PSSYSSEARCHDOCID", "", iDataEntityModel.getName(), "PSSYSSEARCHFIELD", iDataEntityModel.getDataInfo((IEntity)pSSysSearchDoc), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSearchDoc);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHFIELD_PSSYSSEARCHDOC_PSSYSSEARCHDOCID", "", iDataEntityModel.getName(), "PSSYSSEARCHFIELD", iDataEntityModel.getDataInfo(pSSysSearchDoc), arrayList.get(0)));
         }
     }
 
@@ -255,7 +255,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
         ArrayList<PSSysSearchField> arrayList = this.selectByPSSysSearchDoc(pSSysSearchDoc);
         this.onBeforeRemoveByPSSysSearchDoc(pSSysSearchDoc, arrayList);
         for (PSSysSearchField pSSysSearchField : arrayList) {
-            this.remove((IEntity)pSSysSearchField);
+            this.remove(pSSysSearchField);
         }
         this.onAfterRemoveByPSSysSearchDoc(pSSysSearchDoc, arrayList);
     }
@@ -278,14 +278,14 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
 
     protected void replaceParentInfo(PSSysSearchField pSSysSearchField, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysSearchField, cloneSession);
+        super.replaceParentInfo(pSSysSearchField, cloneSession);
         if (pSSysSearchField.getPSSysSearchDocId() != null && (iEntity = cloneSession.getEntity("PSSYSSEARCHDOC", (Object)pSSysSearchField.getPSSysSearchDocId())) != null) {
             this.onFillParentInfo_PSSysSearchDoc(pSSysSearchField, (PSSysSearchDoc)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSysSearchField pSSysSearchField, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysSearchField, bl);
+        super.onRemoveEntityUncopyValues(pSSysSearchField, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysSearchField pSSysSearchField, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -375,7 +375,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysSearchField, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysSearchField, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysSearchField, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Analyzer(boolean bl, PSSysSearchField pSSysSearchField, boolean bl2, boolean bl3) throws Exception {
@@ -388,7 +388,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Analyzer_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_Analyzer_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ANALYZER");
@@ -413,7 +413,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -452,7 +452,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DateFormat_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_DateFormat_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DATEFORMAT");
@@ -474,7 +474,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_FieldDataFlag_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string = this.onTestValueRule_FieldDataFlag_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FIELDDATAFLAG");
@@ -496,7 +496,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FieldParams_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_FieldParams_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FIELDPARAMS");
@@ -518,7 +518,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FieldTag_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_FieldTag_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FIELDTAG");
@@ -540,7 +540,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FieldTag2_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_FieldTag2_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FIELDTAG2");
@@ -562,7 +562,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FieldType_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_FieldType_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FIELDTYPE");
@@ -584,7 +584,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IgnoreFields_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_IgnoreFields_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IGNOREFIELDS");
@@ -606,7 +606,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IncInParentFlag_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string = this.onTestValueRule_IncInParentFlag_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INCINPARENTFLAG");
@@ -628,7 +628,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IndexFlag_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string = this.onTestValueRule_IndexFlag_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INDEXFLAG");
@@ -650,7 +650,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -672,7 +672,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -694,7 +694,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -716,7 +716,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Pattern_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_Pattern_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PATTERN");
@@ -738,7 +738,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PKey_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string = this.onTestValueRule_PKey_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PKEY");
@@ -778,7 +778,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchDocId_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchDocId_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHDOCID");
@@ -803,7 +803,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchFieldId_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchFieldId_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHFIELDID");
@@ -828,7 +828,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchFieldName_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchFieldName_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHFIELDNAME");
@@ -867,7 +867,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SearchAnalyzer_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_SearchAnalyzer_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SEARCHANALYZER");
@@ -889,7 +889,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_StdDataType_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string = this.onTestValueRule_StdDataType_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STDDATATYPE");
@@ -911,7 +911,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_StoreFlag_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string = this.onTestValueRule_StoreFlag_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STOREFLAG");
@@ -933,7 +933,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -955,7 +955,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -977,7 +977,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -999,7 +999,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1021,7 +1021,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1046,7 +1046,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysSearchField, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysSearchField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1059,11 +1059,11 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
     }
 
     protected void onSyncEntity(PSSysSearchField pSSysSearchField, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysSearchField, bl);
+        super.onSyncEntity(pSSysSearchField, bl);
     }
 
     protected void onSyncIndexEntities(PSSysSearchField pSSysSearchField, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysSearchField, bl);
+        super.onSyncIndexEntities(pSSysSearchField, bl);
     }
 
     public Object getDataContextValue(PSSysSearchField pSSysSearchField, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1071,7 +1071,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysSearchField, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysSearchField, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysSearchDoc pSSysSearchDoc = pSSysSearchField.getPSSysSearchDoc();
@@ -1082,7 +1082,7 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
     }
 
     protected void onExportMajorModel(PSSysSearchField pSSysSearchField, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysSearchField, arrayList, n);
+        super.onExportMajorModel(pSSysSearchField, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1511,14 +1511,14 @@ extends PSCoreSysServiceBase<PSSysSearchField> {
 
     protected boolean onMergeChild(String string, String string2, PSSysSearchField pSSysSearchField) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysSearchField)) {
+        if (super.onMergeChild(string, string2, pSSysSearchField)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysSearchField pSSysSearchField) throws Exception {
-        super.onUpdateParent((IEntity)pSSysSearchField);
+        super.onUpdateParent(pSSysSearchField);
     }
 
     @Override

@@ -112,9 +112,9 @@ implements IPSSysWFModeService {
 
     @Override
     protected List<PSSysWFMode> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysWFMode> list = new ArrayList<PSSysWFMode>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysWFMode> items = this.listByPSModule(parent);

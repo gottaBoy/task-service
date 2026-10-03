@@ -68,7 +68,7 @@ extends PSDepSlnSysDynaInstServiceBase {
         }
         pSDynaInst.setPSDynaSysId(pSDepSlnSysDynaInst.getPSDepSlnSys().getPSSystemId());
         pSDynaInst.setPSDynaSysName(pSDepSlnSysDynaInst.getPSDepSlnSys().getPSDepSlnSysName());
-        pSDynaInstService.save((IEntity)pSDynaInst);
+        pSDynaInstService.save(pSDynaInst);
     }
 }
 

@@ -1,14 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.DynaPortletModelBase;
-
-public abstract class DynaChartPortletModelBase
-extends DynaPortletModelBase {
-    public String getPortletType() {
-        return "CHART";
-    }
+/**
+ * 动态图表门户部件模型
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class DynaChartPortletModelBase extends DynaPortletModelBase {
+	@Override
+	public String getPortletType() {
+		return PORTLETTYPE_CHART;
+	}
 }
-

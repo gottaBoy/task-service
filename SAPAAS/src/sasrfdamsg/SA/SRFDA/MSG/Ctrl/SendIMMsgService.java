@@ -161,7 +161,7 @@ extends BaseService {
         }
         CallParamList cancelParamList = new CallParamList();
         cancelParamList.Add((Object)TAG_WFCANCEL);
-        Vector sendIMQueueList2 = new Vector();
+        Vector<MsgSendQueue> sendIMQueueList2 = new Vector();
         CallResult callResult2 = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.strCancelQuerySQL, null, sendIMQueueList2, (String)MsgSendQueue.class.getName());
         if (callResult2.IsOk()) {
             for (MsgSendQueue msg : sendIMQueueList2) {
@@ -181,7 +181,7 @@ extends BaseService {
                 BaseDEDataCtrl.ExecuteWithoutResult((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.strCancelQuerySQL2, vector);
                 CallParamList cancelParamList2 = new CallParamList();
                 cancelParamList2.Add((Object)msg.getUSERDATA());
-                Vector cancelHisList3 = new Vector();
+                Vector<MsgSendQueue> cancelHisList3 = new Vector();
                 CallResult callResult3 = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.strCancelQueryHisSQL, (Vector)cancelParamList2.GetList(), cancelHisList3, (String)MsgSendQueue.class.getName());
                 for (MsgSendQueue hmsg : cancelHisList3) {
                     hmsg.setUSERDATA2(TAG_CANCELED);
@@ -201,7 +201,7 @@ extends BaseService {
             Timestamp sendTime = new Timestamp(date.getTime() + 30000L);
             callParamList.AddDateTime((Object)sendTime);
         }
-        Vector sendIMQueueList = new Vector();
+        Vector<MsgSendQueue> sendIMQueueList = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.strQuerySQL, (Vector)callParamList.GetList(), sendIMQueueList, (String)MsgSendQueue.class.getName());
         if (callResult.IsError()) {
             log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u672a\u53d1\u9001IM\u6d88\u606f\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));

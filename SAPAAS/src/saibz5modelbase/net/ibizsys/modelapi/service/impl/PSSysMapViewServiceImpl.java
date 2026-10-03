@@ -82,7 +82,7 @@ implements IPSSysMapViewService {
     @Override
     protected List<PSSysMapView> onListAll() throws Exception {
         ArrayList<PSSysMapView> list = new ArrayList<PSSysMapView>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSSysMapView> items = this.listByPSDataEntity(parent);
@@ -269,18 +269,19 @@ implements IPSSysMapViewService {
         } else {
             dto.setPSSystemName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSSysMapItemService().listByPSSysMapView(t);
-        if (list != null && list.size() > 0) {
+        List<PSSysMapItem> pSSysMapItemList = PSModelServiceUtil.getInstance().getPSSysMapItemService().listByPSSysMapView(t);
+        if (pSSysMapItemList != null && pSSysMapItemList.size() > 0) {
             ArrayList<PSSysMapItemDTO> pssysmapitems = new ArrayList<PSSysMapItemDTO>();
-            for (PSSysMapItem pSSysMapItem : list) {
+            for (PSSysMapItem pSSysMapItem : pSSysMapItemList) {
                 dstItem = (PSSysMapItemDTO)PSModelServiceUtil.getInstance().getPSSysMapItemService().toDTO(pSSysMapItem);
                 pssysmapitems.add((PSSysMapItemDTO)dstItem);
             }
             dto.setPssysmapitems(pssysmapitems);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSSysMapLogicService().listByPSSysMapView(t)) != null && list.size() > 0) {
+        List<PSSysMapLogic> pSSysMapLogicList = PSModelServiceUtil.getInstance().getPSSysMapLogicService().listByPSSysMapView(t);
+        if (pSSysMapLogicList != null && pSSysMapLogicList.size() > 0) {
             ArrayList<PSSysMapLogicDTO> pssysmaplogics = new ArrayList<PSSysMapLogicDTO>();
-            for (PSSysMapLogic pSSysMapLogic : list) {
+            for (PSSysMapLogic pSSysMapLogic : pSSysMapLogicList) {
                 dstItem = (PSSysMapLogicDTO)PSModelServiceUtil.getInstance().getPSSysMapLogicService().toDTO(pSSysMapLogic);
                 pssysmaplogics.add((PSSysMapLogicDTO)dstItem);
             }

@@ -4130,7 +4130,7 @@ implements Serializable {
                 PSDevPrdSpec pSDevPrdSpec = new PSDevPrdSpec();
                 pSDevPrdSpec.setPSDevPrdSpecId(this.getPSDevPrdSpecId());
                 PSDevPrdSpecService pSDevPrdSpecService = (PSDevPrdSpecService)ServiceGlobal.getService(PSDevPrdSpecService.class, (SessionFactory)this.getSessionFactory());
-                pSDevPrdSpecService.autoGet((IEntity)pSDevPrdSpec);
+                pSDevPrdSpecService.autoGet(pSDevPrdSpec);
                 this.psdevprdspec = pSDevPrdSpec;
             }
             return this.psdevprdspec;
@@ -4156,7 +4156,7 @@ implements Serializable {
                 PSDevPrdVer pSDevPrdVer = new PSDevPrdVer();
                 pSDevPrdVer.setPSDevPrdVerId(this.getPSDevPrdVerId());
                 PSDevPrdVerService pSDevPrdVerService = (PSDevPrdVerService)ServiceGlobal.getService(PSDevPrdVerService.class, (SessionFactory)this.getSessionFactory());
-                pSDevPrdVerService.autoGet((IEntity)pSDevPrdVer);
+                pSDevPrdVerService.autoGet(pSDevPrdVer);
                 this.psdevprdver = pSDevPrdVer;
             }
             return this.psdevprdver;
@@ -4182,7 +4182,7 @@ implements Serializable {
                 PSDevPrd pSDevPrd = new PSDevPrd();
                 pSDevPrd.setPSDevPrdId(this.getPSDevPrdId());
                 PSDevPrdService pSDevPrdService = (PSDevPrdService)ServiceGlobal.getService(PSDevPrdService.class, (SessionFactory)this.getSessionFactory());
-                pSDevPrdService.autoGet((IEntity)pSDevPrd);
+                pSDevPrdService.autoGet(pSDevPrd);
                 this.psdevprd = pSDevPrd;
             }
             return this.psdevprd;
@@ -4208,7 +4208,7 @@ implements Serializable {
                 PSModule pSModule = new PSModule();
                 pSModule.setPSModuleId(this.getPSModuleId());
                 PSModuleService pSModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSModuleService.autoGet((IEntity)pSModule);
+                pSModuleService.autoGet(pSModule);
                 this.psmodule = pSModule;
             }
             return this.psmodule;
@@ -4234,7 +4234,7 @@ implements Serializable {
                 PSSysReqItem pSSysReqItem = new PSSysReqItem();
                 pSSysReqItem.setPSSysReqItemId(this.getPPSSysReqItemId());
                 PSSysReqItemService pSSysReqItemService = (PSSysReqItemService)ServiceGlobal.getService(PSSysReqItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysReqItemService.autoGet((IEntity)pSSysReqItem);
+                pSSysReqItemService.autoGet(pSSysReqItem);
                 this.ppsysreqitem = pSSysReqItem;
             }
             return this.ppsysreqitem;
@@ -4260,7 +4260,7 @@ implements Serializable {
                 PSSysReqModule pSSysReqModule = new PSSysReqModule();
                 pSSysReqModule.setPSSysReqModuleId(this.getPSSysReqModuleId());
                 PSSysReqModuleService pSSysReqModuleService = (PSSysReqModuleService)ServiceGlobal.getService(PSSysReqModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSSysReqModuleService.autoGet((IEntity)pSSysReqModule);
+                pSSysReqModuleService.autoGet(pSSysReqModule);
                 this.pssysreqmodule = pSSysReqModule;
             }
             return this.pssysreqmodule;
@@ -4286,7 +4286,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;
@@ -4312,7 +4312,7 @@ implements Serializable {
                 PSSysUserCase pSSysUserCase = new PSSysUserCase();
                 pSSysUserCase.setPSSysUserCaseId(this.getPSSysUserCaseId());
                 PSSysUserCaseService pSSysUserCaseService = (PSSysUserCaseService)ServiceGlobal.getService(PSSysUserCaseService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUserCaseService.autoGet((IEntity)pSSysUserCase);
+                pSSysUserCaseService.autoGet(pSSysUserCase);
                 this.pssysusercase = pSSysUserCase;
             }
             return this.pssysusercase;

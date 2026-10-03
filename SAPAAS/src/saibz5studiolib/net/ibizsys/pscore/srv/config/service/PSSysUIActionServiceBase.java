@@ -145,9 +145,9 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
             PSImageTempl pSImageTempl = (PSImageTempl)iService.getDEModel().createEntity();
             pSImageTempl.set("PSIMAGETEMPLID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSImageTempl);
+                iService.getTemp(pSImageTempl);
             } else {
-                iService.get((IEntity)pSImageTempl);
+                iService.get(pSImageTempl);
             }
             this.onFillParentInfo_PSImageTempl(pSSysUIAction, pSImageTempl);
             return;
@@ -157,9 +157,9 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
             PSSysLanRes pSSysLanRes = (PSSysLanRes)iService.getDEModel().createEntity();
             pSSysLanRes.set("PSSYSLANRESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysLanRes);
+                iService.getTemp(pSSysLanRes);
             } else {
-                iService.get((IEntity)pSSysLanRes);
+                iService.get(pSSysLanRes);
             }
             this.onFillParentInfo_CapPSSysLanRes(pSSysUIAction, pSSysLanRes);
             return;
@@ -169,14 +169,14 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
             PSSysLanRes pSSysLanRes = (PSSysLanRes)iService.getDEModel().createEntity();
             pSSysLanRes.set("PSSYSLANRESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysLanRes);
+                iService.getTemp(pSSysLanRes);
             } else {
-                iService.get((IEntity)pSSysLanRes);
+                iService.get(pSSysLanRes);
             }
             this.onFillParentInfo_TipPSSysLanRes(pSSysUIAction, pSSysLanRes);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysUIAction, string, string2, string3);
+        super.onFillParentInfo(pSSysUIAction, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysUIAction, bl);
+        super.onFillEntityFullInfo(pSSysUIAction, bl);
         this.onFillEntityFullInfo_PSImageTempl(pSSysUIAction, bl);
         this.onFillEntityFullInfo_CapPSSysLanRes(pSSysUIAction, bl);
         this.onFillEntityFullInfo_TipPSSysLanRes(pSSysUIAction, bl);
@@ -218,7 +218,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
     }
 
     protected void onWriteBackParent(PSSysUIAction pSSysUIAction, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysUIAction, bl);
+        super.onWriteBackParent(pSSysUIAction, bl);
     }
 
     public ArrayList<PSSysUIAction> selectByPSImageTempl(PSImageTemplBase pSImageTemplBase) throws Exception {
@@ -297,8 +297,8 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
         ArrayList<PSSysUIAction> arrayList = this.selectByPSImageTempl(pSImageTempl, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSIMAGETEMPL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSImageTempl);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUIACTION_PSIMAGETEMPL_PSIMAGETEMPLID", "", iDataEntityModel.getName(), "PSSYSUIACTION", iDataEntityModel.getDataInfo((IEntity)pSImageTempl), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSImageTempl);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUIACTION_PSIMAGETEMPL_PSIMAGETEMPLID", "", iDataEntityModel.getName(), "PSSYSUIACTION", iDataEntityModel.getDataInfo(pSImageTempl), arrayList.get(0)));
         }
     }
 
@@ -331,7 +331,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
         ArrayList<PSSysUIAction> arrayList = this.selectByPSImageTempl(pSImageTempl);
         this.onBeforeRemoveByPSImageTempl(pSImageTempl, arrayList);
         for (PSSysUIAction pSSysUIAction : arrayList) {
-            this.remove((IEntity)pSSysUIAction);
+            this.remove(pSSysUIAction);
         }
         this.onAfterRemoveByPSImageTempl(pSImageTempl, arrayList);
     }
@@ -349,8 +349,8 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
         ArrayList<PSSysUIAction> arrayList = this.selectByCapPSSysLanRes(pSSysLanRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSLANRES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysLanRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUIACTION_PSSYSLANRES_CAPPSSYSLANRESID", "", iDataEntityModel.getName(), "PSSYSUIACTION", iDataEntityModel.getDataInfo((IEntity)pSSysLanRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysLanRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUIACTION_PSSYSLANRES_CAPPSSYSLANRESID", "", iDataEntityModel.getName(), "PSSYSUIACTION", iDataEntityModel.getDataInfo(pSSysLanRes), arrayList.get(0)));
         }
     }
 
@@ -383,7 +383,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
         ArrayList<PSSysUIAction> arrayList = this.selectByCapPSSysLanRes(pSSysLanRes);
         this.onBeforeRemoveByCapPSSysLanRes(pSSysLanRes, arrayList);
         for (PSSysUIAction pSSysUIAction : arrayList) {
-            this.remove((IEntity)pSSysUIAction);
+            this.remove(pSSysUIAction);
         }
         this.onAfterRemoveByCapPSSysLanRes(pSSysLanRes, arrayList);
     }
@@ -401,8 +401,8 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
         ArrayList<PSSysUIAction> arrayList = this.selectByTipPSSysLanRes(pSSysLanRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSLANRES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysLanRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUIACTION_PSSYSLANRES_TIPPSSYSLANRESID", "", iDataEntityModel.getName(), "PSSYSUIACTION", iDataEntityModel.getDataInfo((IEntity)pSSysLanRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysLanRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUIACTION_PSSYSLANRES_TIPPSSYSLANRESID", "", iDataEntityModel.getName(), "PSSYSUIACTION", iDataEntityModel.getDataInfo(pSSysLanRes), arrayList.get(0)));
         }
     }
 
@@ -435,7 +435,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
         ArrayList<PSSysUIAction> arrayList = this.selectByTipPSSysLanRes(pSSysLanRes);
         this.onBeforeRemoveByTipPSSysLanRes(pSSysLanRes, arrayList);
         for (PSSysUIAction pSSysUIAction : arrayList) {
-            this.remove((IEntity)pSSysUIAction);
+            this.remove(pSSysUIAction);
         }
         this.onAfterRemoveByTipPSSysLanRes(pSSysLanRes, arrayList);
     }
@@ -464,7 +464,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
 
     protected void replaceParentInfo(PSSysUIAction pSSysUIAction, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysUIAction, cloneSession);
+        super.replaceParentInfo(pSSysUIAction, cloneSession);
         if (pSSysUIAction.getPSImageTemplId() != null && (iEntity = cloneSession.getEntity("PSIMAGETEMPL", (Object)pSSysUIAction.getPSImageTemplId())) != null) {
             this.onFillParentInfo_PSImageTempl(pSSysUIAction, (PSImageTempl)iEntity);
         }
@@ -477,7 +477,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysUIAction pSSysUIAction, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysUIAction, bl);
+        super.onRemoveEntityUncopyValues(pSSysUIAction, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysUIAction pSSysUIAction, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -519,7 +519,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
         if ((entityFieldError = this.onCheckField_ToggleMode(bl, pSSysUIAction, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysUIAction, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysUIAction, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ActionTarget(boolean bl, PSSysUIAction pSSysUIAction, boolean bl2, boolean bl3) throws Exception {
@@ -532,7 +532,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionTarget_Default((IEntity)pSSysUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionTarget_Default(pSSysUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONTARGET");
@@ -554,7 +554,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CapPSSysLanResId_Default((IEntity)pSSysUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_CapPSSysLanResId_Default(pSSysUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CAPPSSYSLANRESID");
@@ -579,7 +579,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Caption_Default((IEntity)pSSysUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_Caption_Default(pSSysUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CAPTION");
@@ -601,7 +601,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -623,7 +623,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEOPPriv_Default((IEntity)pSSysUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_DEOPPriv_Default(pSSysUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEOPPRIV");
@@ -645,7 +645,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj_Default((IEntity)pSSysUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj_Default(pSSysUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ");
@@ -667,7 +667,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -689,7 +689,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSImageTemplId_Default((IEntity)pSSysUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSImageTemplId_Default(pSSysUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSIMAGETEMPLID");
@@ -714,7 +714,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUIActionId_Default((IEntity)pSSysUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUIActionId_Default(pSSysUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUIACTIONID");
@@ -739,7 +739,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUIActionName_Default((IEntity)pSSysUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUIActionName_Default(pSSysUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUIACTIONNAME");
@@ -761,7 +761,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TipPSSysLanResId_Default((IEntity)pSSysUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_TipPSSysLanResId_Default(pSSysUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TIPPSSYSLANRESID");
@@ -783,7 +783,7 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ToggleMode_Default((IEntity)pSSysUIAction, bl2, bl3);
+            string = this.onTestValueRule_ToggleMode_Default(pSSysUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TOGGLEMODE");
@@ -796,11 +796,11 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
     }
 
     protected void onSyncEntity(PSSysUIAction pSSysUIAction, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysUIAction, bl);
+        super.onSyncEntity(pSSysUIAction, bl);
     }
 
     protected void onSyncIndexEntities(PSSysUIAction pSSysUIAction, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysUIAction, bl);
+        super.onSyncIndexEntities(pSSysUIAction, bl);
     }
 
     public Object getDataContextValue(PSSysUIAction pSSysUIAction, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -808,14 +808,14 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysUIAction, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysUIAction, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysUIAction pSSysUIAction, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysUIAction, arrayList, n);
+        super.onExportMajorModel(pSSysUIAction, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1085,14 +1085,14 @@ extends PSCoreSysServiceBase<PSSysUIAction> {
 
     protected boolean onMergeChild(String string, String string2, PSSysUIAction pSSysUIAction) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysUIAction)) {
+        if (super.onMergeChild(string, string2, pSSysUIAction)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysUIAction pSSysUIAction) throws Exception {
-        super.onUpdateParent((IEntity)pSSysUIAction);
+        super.onUpdateParent(pSSysUIAction);
     }
 
     @Override

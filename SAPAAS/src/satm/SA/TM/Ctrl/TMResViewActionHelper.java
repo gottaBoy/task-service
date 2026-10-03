@@ -153,7 +153,7 @@ extends BaseTMResViewActionHelper {
         CallParamList callParamList = new CallParamList();
         callParamList.AddDateTime((Object)tmResViewFilter.getBeginTime());
         callParamList.AddDateTime((Object)tmResViewFilter.getEndTime());
-        Vector tmResBookings = new Vector();
+        Vector<TMResBooking> tmResBookings = new Vector<TMResBooking>();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), null, (String)tmResBookingDEHelper.GetDBStorage(), (String)strSQL, (Vector)callParamList.GetList(), tmResBookings, (String)TMResBooking.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8d44\u6e90\u9884\u7ea6\u6570\u636e\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -194,7 +194,7 @@ extends BaseTMResViewActionHelper {
             IDEDataCtrl tmResViewDetailDataCtrl = tmResViewDataCtrl.GetRelatedDataCtrl("TM0201");
             BaseDataEntity cond = new BaseDataEntity();
             cond.SetParamValue("TMRESVIEWID", (Object)this.getTMResView().getId());
-            Vector tmResViewDetails = new Vector();
+            Vector<TMResViewDetail> tmResViewDetails = new Vector<TMResViewDetail>();
             CallResult callResult = tmResViewDetailDataCtrl.Select(cond, tmResViewDetails, TMResViewDetail.class.getName());
             if (callResult.IsError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8d44\u6e90\u89c6\u56fe\u660e\u7ec6\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -229,4 +229,3 @@ extends BaseTMResViewActionHelper {
         return tmActionResult;
     }
 }
-

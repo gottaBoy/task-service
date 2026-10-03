@@ -842,7 +842,7 @@ implements Serializable {
                 PSSysTask pSSysTask = new PSSysTask();
                 pSSysTask.setPSSysTaskId(this.getPSSysTaskId());
                 PSSysTaskService pSSysTaskService = (PSSysTaskService)ServiceGlobal.getService(PSSysTaskService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTaskService.autoGet((IEntity)pSSysTask);
+                pSSysTaskService.autoGet(pSSysTask);
                 this.pssystask = pSSysTask;
             }
             return this.pssystask;

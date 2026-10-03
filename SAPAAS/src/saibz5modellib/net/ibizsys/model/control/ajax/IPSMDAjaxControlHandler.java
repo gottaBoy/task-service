@@ -1,38 +1,113 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IDEDataRange
- */
 package net.ibizsys.model.control.ajax;
 
-import net.ibizsys.model.control.ajax.IPSAjaxControlHandler;
 import net.ibizsys.model.dataentity.dataexport.IPSDEDataExport;
 import net.ibizsys.model.dataentity.ds.IPSDEDataSet;
 import net.ibizsys.model.dataentity.logic.IPSDELogic;
 import net.ibizsys.paas.core.IDEDataRange;
 
-public interface IPSMDAjaxControlHandler
-extends IPSAjaxControlHandler,
-IDEDataRange {
-    public static final String ACTION_ADDBATCH = "addbatch";
-    public static final String ACTION_UIACTION = "uiaction";
-    public static final String ACTION_EXPORTMODEL = "exportmodel";
-    public static final String ACTION_EXPORTIMPTEMPL = "exportimptempl";
-    public static final String ACTION_EXPORTDATA = "exportdata";
+/**
+ * 多数据部件处理对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSMDAjaxControlHandler extends IPSAjaxControlHandler,IDEDataRange
+{
+	/**
+	 * 批添加数据
+	 */
+	final static String ACTION_ADDBATCH = "addbatch";
 
-    public String getPSDEDataSetId();
+	/**
+	 * 用户界面行为
+	 */
+	final static String ACTION_UIACTION = "uiaction";
 
-    public IPSDEDataSet getPSDEDataSet() throws Exception;
+	/**
+	 * 导出数据模型
+	 */
+	final static String ACTION_EXPORTMODEL = "exportmodel";
 
-    public String getPSDEDataExportId();
+	/**
+	 * 导出导入模板
+	 */
+	final static String ACTION_EXPORTIMPTEMPL = "exportimptempl";
 
-    public IPSDEDataExport getPSDEDataExport() throws Exception;
+	/**
+	 * 导出数据
+	 */
+	final static String ACTION_EXPORTDATA = "exportdata";
+	
+	
+	/**
+	 * 获取数据集合编号
+	 * @return
+	 */
+	String getPSDEDataSetId();
+	
+	
+	
+	/**
+	 * 获取数据实体对象
+	 * @return
+	 * @throws Exception
+	 */
+	IPSDEDataSet getPSDEDataSet() throws Exception;
+	
+	
+	
+	/**
+	 * 获取数据导出编号
+	 * @return
+	 */
+	String getPSDEDataExportId();
+	
+	
+	
+	/**
+	 * 获取数据导出对象
+	 * @return
+	 * @throws Exception
+	 */
+	IPSDEDataExport getPSDEDataExport() throws Exception;
+//	
+//	
+//	
+//	
+//	/**
+//	 * 获取系统自定义权限数据范围
+//	 * @return
+//	 */
+//	IPSSysUserDR getPSSysUserDR();
+//	
+//	
+//	
+//	/**
+//	 * 获取系统自定义权限数据范围2
+//	 * @return
+//	 */
+//	IPSSysUserDR getPSSysUserDR2();
+	
+	
+	/**
+	 * 获取数据查询超时时间
+	 * @return
+	 */
+	int getFetchTimeout();
+	
+	
+	/**
+	 * 获取上下文数据转换逻辑标识
+	 * @return
+	 */
+	String getActiveDataPSDELogicId();
+	
 
-    public int getFetchTimeout();
-
-    public String getActiveDataPSDELogicId();
-
-    public IPSDELogic getActiveDataPSDELogic() throws Exception;
+	
+	
+	/**
+	 * 获取上下文数据转换逻辑
+	 * @return
+	 * @throws Exception
+	 */
+	IPSDELogic getActiveDataPSDELogic() throws Exception;
 }
-

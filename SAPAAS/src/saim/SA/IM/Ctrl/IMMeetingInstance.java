@@ -749,6 +749,9 @@ IIMMeetingContext {
             IMRemoteAction imRemoteAction = (IMRemoteAction)iIMRemoteActionContext;
             imRemoteAction.setParam("IMMEETINGID", this.getMeetingId());
             IMMessagePackage imMsgPackage = this.imMeetingServerContext.SendRemoteAction((IMRemoteAction)iIMRemoteActionContext);
+            if (imMsgPackage.getRetCode() != 0 || StringHelper.IsNullOrEmpty((String)imMsgPackage.getExtInfo("PASSWORD", ""))) {
+                throw new Exception("Remote FTP upload credentials could not be issued");
+            }
             IMFile imFile = new IMFile();
             String strFileId = imMsgPackage.getExtInfo("FILEID", "");
             imFile.setIMFILEID(strFileId);
@@ -767,6 +770,7 @@ IIMMeetingContext {
         imFile.setIMUSERID(strUserId);
         imFile.setIMMTSERVERID(this.imMeetingServerContext.getServerId());
         this.OnCreateFile(imFile);
+        String uploadPassword = IMMTFtpUserManager.issueConfiguredUploadPassword(imFile.getIMFILEID());
         Hashtable<String, String> hashtable3 = this.fileNameMap;
         synchronized (hashtable3) {
             this.fileNameMap.put(imFile.getIMFILEID(), strFileName);
@@ -775,6 +779,7 @@ IIMMeetingContext {
         imMessagePackage.setExtInfo("FILEID", imFile.getIMFILEID());
         imMessagePackage.setExtInfo("SERVERPATH", this.imMeetingServerContext.getFtpServerPath());
         imMessagePackage.setExtInfo("LOGINNAME", imFile.getIMFILEID());
+        imMessagePackage.setExtInfo("PASSWORD", uploadPassword);
         return imMessagePackage;
     }
 
@@ -805,6 +810,14 @@ IIMMeetingContext {
         imFile.setUPLOADFINISH(true);
         imFile.SetParamValue("SENDTIME", new Timestamp(date.getTime()));
         this.OnUpdateFile(imFile);
+        if (this.imMeetingServerContext.isLocalMode()) {
+            IMMTFtpUserManager.revokeConfiguredUploadPassword(strFileId);
+        } else {
+            IMMessagePackage revokeResult = this.imMeetingServerContext.SendRemoteAction((IMRemoteAction)iIMRemoteActionContext);
+            if (revokeResult.getRetCode() != 0) {
+                throw new Exception("Remote FTP upload credentials could not be revoked");
+            }
+        }
         Vector<IMFile> vector = this.imFileLast;
         synchronized (vector) {
             if (this.imFileLast.size() > 100) {
@@ -1357,62 +1370,57 @@ IIMMeetingContext {
         }
     }
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     * Unable to fully structure code
-     */
     protected void OnDispatchMessage() {
-        imParticipantInstanceList = new Vector<Object>();
-        block14: while (true) {
-            imMessageBase = null;
-            var3_3 = this.imMessageList;
-            synchronized (var3_3) {
+        Vector<IIMParticipantInstance> imParticipantInstanceList = new Vector<IIMParticipantInstance>();
+        while (true) {
+            IMMessageBase imMessageBase = null;
+            synchronized (this.imMessageList) {
                 if (this.imMessageList.size() > 0) {
                     imMessageBase = this.imMessageList.remove(0);
                 }
             }
-            if (imMessageBase == null) break;
+
+            if (imMessageBase == null) {
+                return;
+            }
+
             imParticipantInstanceList.clear();
             if (imMessageBase.getMsgTargetType() == 2) {
-                imParticipantInstance = null;
-                var4_4 = this.imParticipantMap;
-                synchronized (var4_4) {
+                IIMParticipantInstance imParticipantInstance = null;
+                synchronized (this.imParticipantMap) {
                     imParticipantInstance = this.imParticipantMap.get(imMessageBase.getMsgTarget());
                 }
                 if (imParticipantInstance != null) {
                     imParticipantInstanceList.add(imParticipantInstance);
                 }
             } else if (imMessageBase.getMsgTargetType() == 1) {
-                imParticipantInstance = this.imParticipantMap;
-                synchronized (imParticipantInstance) {
-                    for (IIMParticipantInstance imParticipantInstance : this.imParticipantMap.values()) {
-                        imParticipantInstanceList.add(imParticipantInstance);
+                synchronized (this.imParticipantMap) {
+                    for (IIMParticipantInstance item : this.imParticipantMap.values()) {
+                        imParticipantInstanceList.add(item);
                     }
                 }
             } else if (imMessageBase.getMsgTargetType() == 3) {
-                imParticipantInstance = this.imParticipantMap;
-                synchronized (imParticipantInstance) {
-                    for (IIMParticipantInstance imParticipantInstance : this.imParticipantMap.values()) {
-                        if (StringHelper.Compare((String)imParticipantInstance.getUserId(), (String)imMessageBase.getMsgTarget(), (boolean)true) == 0) continue;
-                        imParticipantInstanceList.add(imParticipantInstance);
+                synchronized (this.imParticipantMap) {
+                    for (IIMParticipantInstance item : this.imParticipantMap.values()) {
+                        if (StringHelper.Compare((String)item.getUserId(), (String)imMessageBase.getMsgTarget(), (boolean)true) != 0) {
+                            imParticipantInstanceList.add(item);
+                        }
                     }
                 }
             } else {
                 IMMeetingInstance.log.error((Object)StringHelper.Format((String)"\u672a\u77e5\u7684\u6d88\u606f\u76ee\u6807\u7c7b\u578b[%1$s]", (Object)imMessageBase.getMsgTargetType()));
                 continue;
             }
-            imMeetingMessage = null;
+
+            IMMeetingMessage imMeetingMessage = null;
             if (imMessageBase instanceof IMMeetingMessage) {
                 imMeetingMessage = (IMMeetingMessage)imMessageBase;
             }
-            var5_5 = imParticipantInstanceList.iterator();
-            while (true) {
-                if (var5_5.hasNext()) ** break;
-                continue block14;
-                imParticipantInstance = var5_5.next();
+
+            for (IIMParticipantInstance imParticipantInstance : imParticipantInstanceList) {
                 if (imMeetingMessage != null) {
                     if (imMeetingMessage.getMessageType() == 1000 && !StringHelper.IsNullOrEmpty((String)imMeetingMessage.getMessageId())) {
-                        imUserMessage = new IMUserMessage();
+                        IMUserMessage imUserMessage = new IMUserMessage();
                         imUserMessage.setIMUSERMESSAGEID(StringHelper.Format((String)"%1$s_%2$s", (Object)imMeetingMessage.getMessageId(), (Object)imParticipantInstance.getUserId()));
                         imUserMessage.setSENDERFLAG(false);
                         imUserMessage.setIMMESSAGELOGID(imMeetingMessage.getMessageId());
@@ -1420,13 +1428,13 @@ IIMMeetingContext {
                         this.AsyncSaveData(true, imUserMessage);
                     }
                     if (imMeetingMessage.getMessageType() == 1001 && !StringHelper.IsNullOrEmpty((String)imMeetingMessage.getFileId())) {
-                        imUserFile = new IMUserFile();
+                        IMUserFile imUserFile = new IMUserFile();
                         imUserFile.setIMUSERFILEID(StringHelper.Format((String)"%1$s_%2$s", (Object)imMeetingMessage.getFileId(), (Object)imParticipantInstance.getUserId()));
                         imUserFile.setSENDERFLAG(false);
                         imUserFile.setIMFILEID(imMeetingMessage.getFileId());
                         imUserFile.setIMUSERID(imParticipantInstance.getUserId());
                         this.AsyncSaveData(true, imUserFile);
-                        imUserMessage = new IMUserMessage();
+                        IMUserMessage imUserMessage = new IMUserMessage();
                         imUserMessage.setIMUSERMESSAGEID(StringHelper.Format((String)"%1$s_%2$s", (Object)imMeetingMessage.getFileId(), (Object)imParticipantInstance.getUserId()));
                         imUserMessage.setSENDERFLAG(false);
                         imUserMessage.setRECVFLAG(true);
@@ -1445,44 +1453,35 @@ IIMMeetingContext {
                     IMMeetingInstance.log.error((Object)StringHelper.Format((String)"\u53d1\u9001\u4f1a\u8bae\u9080\u8bf7\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
                 }
             }
-            break;
         }
     }
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     * Enabled aggressive block sorting
-     * Enabled unnecessary exception pruning
-     * Enabled aggressive exception aggregation
-     */
     @Override
     public boolean isTimeout() {
-        boolean bl;
-        Integer n = this.nTalkState;
-        synchronized (n) {
+        synchronized (this.nTalkState) {
             if (this.nTalkState != 0) {
                 return false;
             }
         }
-        Vector<BaseDataEntity> vector = this.saveDataList;
-        synchronized (vector) {
+        synchronized (this.saveDataList) {
             if (this.saveDataList.size() > 0) {
                 return false;
             }
         }
-        boolean bl2 = false;
+
+        boolean bSendCloseNotify = false;
         Date curDate = new Date();
-        Date date = this.activeDate;
-        synchronized (date) {
+        synchronized (this.activeDate) {
             if (curDate.getTime() - this.activeDate.getTime() >= 900000L) {
                 return true;
             }
             if (curDate.getTime() - this.activeDate.getTime() >= 600000L && !this.bNotifyClose) {
                 this.bNotifyClose = true;
-                bl = true;
+                bSendCloseNotify = true;
             }
         }
-        if (bl) {
+
+        if (bSendCloseNotify) {
             log.debug((Object)StringHelper.Format((String)"\u4f1a\u8bae[%1$s]\u53d1\u9001\u4f1a\u8bae\u5173\u95ed\u901a\u77e5", (Object)this.getMeetingId()));
             IMMeetingMessage imMeetingMessage = new IMMeetingMessage();
             imMeetingMessage.setMessageType(1101);
@@ -1493,12 +1492,8 @@ IIMMeetingContext {
         return false;
     }
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
     protected void Active() {
-        Date date = this.activeDate;
-        synchronized (date) {
+        synchronized (this.activeDate) {
             this.activeDate = new Date();
             this.bNotifyClose = false;
         }
@@ -1567,4 +1562,3 @@ IIMMeetingContext {
         }
     }
 }
-

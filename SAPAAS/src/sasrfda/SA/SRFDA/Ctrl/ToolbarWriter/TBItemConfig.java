@@ -48,7 +48,7 @@ extends XMLConfig {
         if (StringHelper.Compare((String)strName, (String)TAG_TBITEM, (boolean)true) == 0) {
             TBItemConfig tbItemConfig = new TBItemConfig();
             tbItemConfig.LoadConfig(xmlNode);
-            this.items.add((Object)tbItemConfig);
+            this.items.add(tbItemConfig);
             return;
         }
         super.OnLoadNode(strName, xmlNode);
@@ -193,4 +193,3 @@ extends XMLConfig {
         this.strSeperator = strSeperator;
     }
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSPFQuickTemplDEModelBase;
 
 public class PSPFQuickTemplDEModel
 extends PSPFQuickTemplDEModelBase {
+
+    public PSPFQuickTemplDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

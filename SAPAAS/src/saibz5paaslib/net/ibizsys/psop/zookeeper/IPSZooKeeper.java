@@ -1,21 +1,48 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.zookeeper.ZooKeeper
- */
 package net.ibizsys.psop.zookeeper;
 
-import net.ibizsys.psop.zookeeper.IPSObjectKeeper;
 import org.apache.zookeeper.ZooKeeper;
 
-public interface IPSZooKeeper {
-    public ZooKeeper getZooKeeper();
+/**
+ * ZooKeeper对象接口
+ * @author Administrator
+ *
+ */
+public  interface IPSZooKeeper
+{
+	
+	/**
+	 * 获取ZooKeeper对象
+	 * @return
+	 */
+	ZooKeeper getZooKeeper();
+	
+	
+	
+	/**
+	 * 获取域名称
+	 * @return
+	 */
+	String getDomain();
+	
+	
 
-    public String getDomain();
-
-    public boolean dealException(IPSObjectKeeper var1, Exception var2) throws Exception;
-
-    public boolean isConnected();
+	
+	
+	
+	/**
+	 * 处理异常
+	 * @param iPSObjectKeeper
+	 * @param ex
+	 * @return
+	 * @throws Exception
+	 */
+	boolean dealException(IPSObjectKeeper iPSObjectKeeper,Exception ex) throws Exception;
+	
+	
+	/**
+	 * 是否已经连接 
+	 * @return
+	 */
+	boolean isConnected();
+	
 }
-

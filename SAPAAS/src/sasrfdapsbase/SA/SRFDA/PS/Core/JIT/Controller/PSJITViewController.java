@@ -45,6 +45,10 @@ import org.hibernate.SessionFactory;
 public class PSJITViewController
 extends ViewControllerBase
 implements IPSJITViewController {
+
+    public PSJITViewController() throws Exception {
+        super();
+    }
     private IPSAppView iPSAppView = null;
     private IPSJITAppModel iPSJITAppModel = null;
 

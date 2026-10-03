@@ -114,9 +114,9 @@ implements IPSSysERMapService {
 
     @Override
     protected List<PSSysERMap> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysERMap> list = new ArrayList<PSSysERMap>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysERMap> items = this.listByPSModule(parent);

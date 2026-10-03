@@ -1680,7 +1680,7 @@ implements Serializable {
                 PSASGroup pSASGroup = new PSASGroup();
                 pSASGroup.setPSASGroupId(this.getPSASGroupId());
                 PSASGroupService pSASGroupService = (PSASGroupService)ServiceGlobal.getService(PSASGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSASGroupService.autoGet((IEntity)pSASGroup);
+                pSASGroupService.autoGet(pSASGroup);
                 this.psasgroup = pSASGroup;
             }
             return this.psasgroup;
@@ -1706,7 +1706,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;

@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.DynaSingleDataViewControllerInstBase;
 
-public abstract class DynaEditViewControllerInstBase
-extends DynaSingleDataViewControllerInstBase {
+/**
+ * 动态编辑视图控制器实例对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class DynaEditViewControllerInstBase extends DynaSingleDataViewControllerInstBase {
+
+	public DynaEditViewControllerInstBase() throws Exception {
+		super();
+	}
+
+	
 }
-

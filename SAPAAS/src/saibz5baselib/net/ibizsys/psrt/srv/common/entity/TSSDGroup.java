@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.entity;
 
-import net.ibizsys.psrt.srv.common.entity.TSSDGroupBase;
+/**
+ * 实体[TSSDGroup] 数据对象
+ */
+//@Entity
+public class TSSDGroup extends TSSDGroupBase {
 
-public class TSSDGroup
-extends TSSDGroupBase {
+    public TSSDGroup() {
+        super();
+    }
+
 }
-

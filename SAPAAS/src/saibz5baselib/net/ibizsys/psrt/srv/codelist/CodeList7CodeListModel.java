@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
 
-import net.ibizsys.psrt.srv.codelist.CodeList7CodeListModelBase;
 
-public class CodeList7CodeListModel
-extends CodeList7CodeListModelBase {
+/**
+ * 静态代码表[缩略界面类型]模型对象
+ */
+public class CodeList7CodeListModel extends CodeList7CodeListModelBase {
+
+    public CodeList7CodeListModel() {
+        super();
+    }
+
 }
-

@@ -1,20 +1,34 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswx.core;
 
-import java.util.Iterator;
 import net.ibizsys.paas.core.IModelBase;
-import net.ibizsys.pswx.core.IWXAccount;
-import net.ibizsys.pswx.core.IWXEntApp;
-import net.ibizsys.pswx.core.IWXMenuItem;
 
-public interface IWXMenu
-extends IModelBase {
-    public IWXAccount getWXAccount();
+/**
+ * 微信菜单模型接口
+ * 
+ * @author Administrator
+ * 
+ */
+public interface IWXMenu extends IModelBase {
 
-    public IWXEntApp getWXEntApp();
+	/**
+	 * 获取微信公众号对象
+	 * 
+	 * @return
+	 */
+	IWXAccount getWXAccount();
 
-    public Iterator<IWXMenuItem> getWXMenuItems();
+	/**
+	 * 获取微信企业应用对象
+	 * 
+	 * @return
+	 */
+	IWXEntApp getWXEntApp();
+
+	/**
+	 * 获取菜单项模型
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IWXMenuItem> getWXMenuItems();
+
 }
-

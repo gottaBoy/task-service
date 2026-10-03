@@ -1,21 +1,34 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import java.util.Iterator;
-import net.ibizsys.paas.core.IDEActionWizardItem;
-import net.ibizsys.paas.core.IDataEntityObject;
 import net.ibizsys.paas.view.IViewWizard;
 
-public interface IDEActionWizard
-extends IViewWizard,
-IDataEntityObject {
-    public static final int DYNAMICMODE_STATIC = 0;
-    public static final int DYNAMICMODE_DEDATASET = 1;
+/**
+ * 实体操作向导接口
+ * @author Administrator
+ *
+ */
+public interface IDEActionWizard extends IViewWizard,IDataEntityObject{
+	
+	/**
+	 * 动态模式（静态）
+	 */
+	final static int DYNAMICMODE_STATIC = 0;
 
-    public Iterator<IDEActionWizardItem> getDEActionWizardItems();
-
-    public String getKeywords();
+	/**
+	 * 动态模式（实体数据集合）
+	 */
+	final static int DYNAMICMODE_DEDATASET = 1;
+	
+	/**
+	 * 获取实体操作向导项集合
+	 * @return
+	 */
+	java.util.Iterator<IDEActionWizardItem> getDEActionWizardItems();
+	
+	
+	/**
+	 * 关键字
+	 * @return
+	 */
+	String getKeywords();
 }
-

@@ -8728,7 +8728,7 @@ implements Serializable {
                 PSCodeList pSCodeList = new PSCodeList();
                 pSCodeList.setPSCodeListId(this.getPSCodeListId());
                 PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.getSessionFactory());
-                pSCodeListService.autoGet((IEntity)pSCodeList);
+                pSCodeListService.autoGet(pSCodeList);
                 this.pscodelist = pSCodeList;
             }
             return this.pscodelist;
@@ -8754,7 +8754,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -8780,7 +8780,7 @@ implements Serializable {
                 PSDEDataImp pSDEDataImp = new PSDEDataImp();
                 pSDEDataImp.setPSDEDataImpId(this.getPSDEDataImpId());
                 PSDEDataImpService pSDEDataImpService = (PSDEDataImpService)ServiceGlobal.getService(PSDEDataImpService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataImpService.autoGet((IEntity)pSDEDataImp);
+                pSDEDataImpService.autoGet(pSDEDataImp);
                 this.psdedataimp = pSDEDataImp;
             }
             return this.psdedataimp;
@@ -8806,7 +8806,7 @@ implements Serializable {
                 PSDEFGroup pSDEFGroup = new PSDEFGroup();
                 pSDEFGroup.setPSDEFGroupId(this.getInPSDEFGroupId());
                 PSDEFGroupService pSDEFGroupService = (PSDEFGroupService)ServiceGlobal.getService(PSDEFGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFGroupService.autoGet((IEntity)pSDEFGroup);
+                pSDEFGroupService.autoGet(pSDEFGroup);
                 this.inpsdefgroup = pSDEFGroup;
             }
             return this.inpsdefgroup;
@@ -8832,7 +8832,7 @@ implements Serializable {
                 PSDEFGroup pSDEFGroup = new PSDEFGroup();
                 pSDEFGroup.setPSDEFGroupId(this.getOutPSDEFGroupId());
                 PSDEFGroupService pSDEFGroupService = (PSDEFGroupService)ServiceGlobal.getService(PSDEFGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFGroupService.autoGet((IEntity)pSDEFGroup);
+                pSDEFGroupService.autoGet(pSDEFGroup);
                 this.outpsdefgroup = pSDEFGroup;
             }
             return this.outpsdefgroup;
@@ -8858,7 +8858,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getMajorPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.majorpsdef = pSDEField;
             }
             return this.majorpsdef;
@@ -8884,7 +8884,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getMinorPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.minorpsdef = pSDEField;
             }
             return this.minorpsdef;
@@ -8910,7 +8910,7 @@ implements Serializable {
                 PSDELogic pSDELogic = new PSDELogic();
                 pSDELogic.setPSDELogicId(this.getADPSDELogicId());
                 PSDELogicService pSDELogicService = (PSDELogicService)ServiceGlobal.getService(PSDELogicService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicService.autoGet((IEntity)pSDELogic);
+                pSDELogicService.autoGet(pSDELogic);
                 this.adpsdelogic = pSDELogic;
             }
             return this.adpsdelogic;
@@ -8936,7 +8936,7 @@ implements Serializable {
                 PSDELogic pSDELogic = new PSDELogic();
                 pSDELogic.setPSDELogicId(this.getCacheStatePSDELogicId());
                 PSDELogicService pSDELogicService = (PSDELogicService)ServiceGlobal.getService(PSDELogicService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicService.autoGet((IEntity)pSDELogic);
+                pSDELogicService.autoGet(pSDELogic);
                 this.cachestatepsdelogic = pSDELogic;
             }
             return this.cachestatepsdelogic;
@@ -8962,7 +8962,7 @@ implements Serializable {
                 PSDELogic pSDELogic = new PSDELogic();
                 pSDELogic.setPSDELogicId(this.getPSDELogicId());
                 PSDELogicService pSDELogicService = (PSDELogicService)ServiceGlobal.getService(PSDELogicService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicService.autoGet((IEntity)pSDELogic);
+                pSDELogicService.autoGet(pSDELogic);
                 this.psdelogic = pSDELogic;
             }
             return this.psdelogic;
@@ -8988,7 +8988,7 @@ implements Serializable {
                 PSDEOPPriv pSDEOPPriv = new PSDEOPPriv();
                 pSDEOPPriv.setPSDEOPPrivId(this.getPSDEOPPrivId());
                 PSDEOPPrivService pSDEOPPrivService = (PSDEOPPrivService)ServiceGlobal.getService(PSDEOPPrivService.class, (SessionFactory)this.getSessionFactory());
-                pSDEOPPrivService.autoGet((IEntity)pSDEOPPriv);
+                pSDEOPPrivService.autoGet(pSDEOPPriv);
                 this.psdeoppriv = pSDEOPPriv;
             }
             return this.psdeoppriv;
@@ -9014,7 +9014,7 @@ implements Serializable {
                 PSDER pSDER = new PSDER();
                 pSDER.setPSDERId(this.getAggDataPSDERId());
                 PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
-                pSDERService.autoGet((IEntity)pSDER);
+                pSDERService.autoGet(pSDER);
                 this.aggdatapsder = pSDER;
             }
             return this.aggdatapsder;
@@ -9040,7 +9040,7 @@ implements Serializable {
                 PSDESampleData pSDESampleData = new PSDESampleData();
                 pSDESampleData.setPSDESampleDataId(this.getInPSDESampleDataId());
                 PSDESampleDataService pSDESampleDataService = (PSDESampleDataService)ServiceGlobal.getService(PSDESampleDataService.class, (SessionFactory)this.getSessionFactory());
-                pSDESampleDataService.autoGet((IEntity)pSDESampleData);
+                pSDESampleDataService.autoGet(pSDESampleData);
                 this.inpsdesampledata = pSDESampleData;
             }
             return this.inpsdesampledata;
@@ -9066,7 +9066,7 @@ implements Serializable {
                 PSDESampleData pSDESampleData = new PSDESampleData();
                 pSDESampleData.setPSDESampleDataId(this.getOutPSDESampleDataId());
                 PSDESampleDataService pSDESampleDataService = (PSDESampleDataService)ServiceGlobal.getService(PSDESampleDataService.class, (SessionFactory)this.getSessionFactory());
-                pSDESampleDataService.autoGet((IEntity)pSDESampleData);
+                pSDESampleDataService.autoGet(pSDESampleData);
                 this.outpsdesampledata = pSDESampleData;
             }
             return this.outpsdesampledata;
@@ -9092,7 +9092,7 @@ implements Serializable {
                 PSSubSysSADetail pSSubSysSADetail = new PSSubSysSADetail();
                 pSSubSysSADetail.setPSSubSysSADetailId(this.getPSSubSysSADetailId());
                 PSSubSysSADetailService pSSubSysSADetailService = (PSSubSysSADetailService)ServiceGlobal.getService(PSSubSysSADetailService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysSADetailService.autoGet((IEntity)pSSubSysSADetail);
+                pSSubSysSADetailService.autoGet(pSSubSysSADetail);
                 this.pssubsyssadetail = pSSubSysSADetail;
             }
             return this.pssubsyssadetail;
@@ -9118,7 +9118,7 @@ implements Serializable {
                 PSSysDynaModel pSSysDynaModel = new PSSysDynaModel();
                 pSSysDynaModel.setPSSysDynaModelId(this.getInPSSysDynaModelId());
                 PSSysDynaModelService pSSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDynaModelService.autoGet((IEntity)pSSysDynaModel);
+                pSSysDynaModelService.autoGet(pSSysDynaModel);
                 this.inpssysdynamodel = pSSysDynaModel;
             }
             return this.inpssysdynamodel;
@@ -9144,7 +9144,7 @@ implements Serializable {
                 PSSysPFPlugin pSSysPFPlugin = new PSSysPFPlugin();
                 pSSysPFPlugin.setPSSysPFPluginId(this.getPSSysPFPluginId());
                 PSSysPFPluginService pSSysPFPluginService = (PSSysPFPluginService)ServiceGlobal.getService(PSSysPFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysPFPluginService.autoGet((IEntity)pSSysPFPlugin);
+                pSSysPFPluginService.autoGet(pSSysPFPlugin);
                 this.pssyspfplugin = pSSysPFPlugin;
             }
             return this.pssyspfplugin;
@@ -9170,7 +9170,7 @@ implements Serializable {
                 PSSysReqItem pSSysReqItem = new PSSysReqItem();
                 pSSysReqItem.setPSSysReqItemId(this.getPSSysReqItemId());
                 PSSysReqItemService pSSysReqItemService = (PSSysReqItemService)ServiceGlobal.getService(PSSysReqItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysReqItemService.autoGet((IEntity)pSSysReqItem);
+                pSSysReqItemService.autoGet(pSSysReqItem);
                 this.pssysreqitem = pSSysReqItem;
             }
             return this.pssysreqitem;
@@ -9196,7 +9196,7 @@ implements Serializable {
                 PSSysSFPlugin pSSysSFPlugin = new PSSysSFPlugin();
                 pSSysSFPlugin.setPSSysSFPluginId(this.getPSSysSFPluginId());
                 PSSysSFPluginService pSSysSFPluginService = (PSSysSFPluginService)ServiceGlobal.getService(PSSysSFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPluginService.autoGet((IEntity)pSSysSFPlugin);
+                pSSysSFPluginService.autoGet(pSSysSFPlugin);
                 this.pssyssfplugin = pSSysSFPlugin;
             }
             return this.pssyssfplugin;
@@ -9222,7 +9222,7 @@ implements Serializable {
                 PSSysTask pSSysTask = new PSSysTask();
                 pSSysTask.setPSSysTaskId(this.getPSSysTaskId());
                 PSSysTaskService pSSysTaskService = (PSSysTaskService)ServiceGlobal.getService(PSSysTaskService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTaskService.autoGet((IEntity)pSSysTask);
+                pSSysTaskService.autoGet(pSSysTask);
                 this.pssystask = pSSysTask;
             }
             return this.pssystask;
@@ -9248,7 +9248,7 @@ implements Serializable {
                 PSSysUniState pSSysUniState = new PSSysUniState();
                 pSSysUniState.setPSSysUniStateId(this.getPSSysUniStateId());
                 PSSysUniStateService pSSysUniStateService = (PSSysUniStateService)ServiceGlobal.getService(PSSysUniStateService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUniStateService.autoGet((IEntity)pSSysUniState);
+                pSSysUniStateService.autoGet(pSSysUniState);
                 this.pssysunistate = pSSysUniState;
             }
             return this.pssysunistate;
@@ -9274,7 +9274,7 @@ implements Serializable {
                 PSSysUserDR pSSysUserDR = new PSSysUserDR();
                 pSSysUserDR.setPSSysUserDRId(this.getPSSysUserDRId());
                 PSSysUserDRService pSSysUserDRService = (PSSysUserDRService)ServiceGlobal.getService(PSSysUserDRService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUserDRService.autoGet((IEntity)pSSysUserDR);
+                pSSysUserDRService.autoGet(pSSysUserDR);
                 this.pssysuserdr = pSSysUserDR;
             }
             return this.pssysuserdr;
@@ -9300,7 +9300,7 @@ implements Serializable {
                 PSSysUserDR pSSysUserDR = new PSSysUserDR();
                 pSSysUserDR.setPSSysUserDRId(this.getPSSysUserDRId2());
                 PSSysUserDRService pSSysUserDRService = (PSSysUserDRService)ServiceGlobal.getService(PSSysUserDRService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUserDRService.autoGet((IEntity)pSSysUserDR);
+                pSSysUserDRService.autoGet(pSSysUserDR);
                 this.pssysuserdr2 = pSSysUserDR;
             }
             return this.pssysuserdr2;
@@ -9322,7 +9322,7 @@ implements Serializable {
         Integer n = this.objPSDEDSDQsLock;
         synchronized (n) {
             if (this.psdedsdqs == null) {
-                this.psdedsdqs = pSDEDataSetService.isTempData((IEntity)this) ? pSDEDSDQService.selectTempByPSDEDataSet(this) : pSDEDSDQService.selectByPSDEDataSet(this);
+                this.psdedsdqs = pSDEDataSetService.isTempData(this) ? pSDEDSDQService.selectTempByPSDEDataSet(this) : pSDEDSDQService.selectByPSDEDataSet(this);
             }
             return this.psdedsdqs;
         }
@@ -9343,7 +9343,7 @@ implements Serializable {
         Integer n = this.objPSDEDSParamsLock;
         synchronized (n) {
             if (this.psdedsparams == null) {
-                this.psdedsparams = pSDEDataSetService.isTempData((IEntity)this) ? pSDEDSParamService.selectTempByPSDEDS(this) : pSDEDSParamService.selectByPSDEDS(this);
+                this.psdedsparams = pSDEDataSetService.isTempData(this) ? pSDEDSParamService.selectTempByPSDEDS(this) : pSDEDSParamService.selectByPSDEDS(this);
             }
             return this.psdedsparams;
         }

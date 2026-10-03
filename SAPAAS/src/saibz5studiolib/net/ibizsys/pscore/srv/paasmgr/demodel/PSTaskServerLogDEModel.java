@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSTaskServerLogDEModelBase;
 
 public class PSTaskServerLogDEModel
 extends PSTaskServerLogDEModelBase {
+
+    public PSTaskServerLogDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

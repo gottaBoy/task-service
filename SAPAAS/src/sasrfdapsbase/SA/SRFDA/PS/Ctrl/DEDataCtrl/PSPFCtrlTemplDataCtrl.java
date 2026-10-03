@@ -74,11 +74,10 @@ extends PSPFTemplDataCtrlBase {
         IDEDataCtrl iPSPFCtrlTemplDetailDataCtrl = this.GetRelatedDataCtrl("DE1803");
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSPFCTRLTEMPLID", (Object)strPSPFCtrlTemplId);
-        Vector psPFCtrlTemplDetailList = new Vector();
+        Vector<BaseDataEntity> psPFCtrlTemplDetailList = new Vector<BaseDataEntity>();
         iPSPFCtrlTemplDetailDataCtrl.Select(cond, psPFCtrlTemplDetailList);
         for (BaseDataEntity baseDataEntity : psPFCtrlTemplDetailList) {
             iPSPFCtrlTemplDetailDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
         }
     }
 }
-

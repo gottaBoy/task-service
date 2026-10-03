@@ -3516,7 +3516,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -3542,7 +3542,7 @@ implements Serializable {
                 PSDEFGroup pSDEFGroup = new PSDEFGroup();
                 pSDEFGroup.setPSDEFGroupId(this.getPSDEFGroupId());
                 PSDEFGroupService pSDEFGroupService = (PSDEFGroupService)ServiceGlobal.getService(PSDEFGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFGroupService.autoGet((IEntity)pSDEFGroup);
+                pSDEFGroupService.autoGet(pSDEFGroup);
                 this.psdefgroup = pSDEFGroup;
             }
             return this.psdefgroup;
@@ -3568,7 +3568,7 @@ implements Serializable {
                 PSDEMainState pSDEMainState = new PSDEMainState();
                 pSDEMainState.setPSDEMainStateId(this.getPSDEMainStateId());
                 PSDEMainStateService pSDEMainStateService = (PSDEMainStateService)ServiceGlobal.getService(PSDEMainStateService.class, (SessionFactory)this.getSessionFactory());
-                pSDEMainStateService.autoGet((IEntity)pSDEMainState);
+                pSDEMainStateService.autoGet(pSDEMainState);
                 this.psdemainstate = pSDEMainState;
             }
             return this.psdemainstate;
@@ -3590,7 +3590,7 @@ implements Serializable {
         Integer n = this.objPSDEDQCondsLock;
         synchronized (n) {
             if (this.psdedqconds == null) {
-                this.psdedqconds = pSDEDataQueryService.isTempData((IEntity)this) ? pSDEDQCondService.selectTempByPSDEDQ(this) : pSDEDQCondService.selectByPSDEDQ(this);
+                this.psdedqconds = pSDEDataQueryService.isTempData(this) ? pSDEDQCondService.selectTempByPSDEDQ(this) : pSDEDQCondService.selectByPSDEDQ(this);
             }
             return this.psdedqconds;
         }

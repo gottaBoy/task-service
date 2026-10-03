@@ -1,20 +1,29 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IDEDataSetGroupParam
- */
 package net.ibizsys.model.dataentity.ds;
 
 import net.ibizsys.model.core.IPSModelObject;
-import net.ibizsys.model.dataentity.ds.IPSDEDataSet;
 import net.ibizsys.paas.core.IDEDataSetGroupParam;
 
-public interface IPSDEDataSetGroupParam
-extends IPSModelObject,
-IDEDataSetGroupParam {
-    public IPSDEDataSet getPSDEDataSet();
+/**
+ * 实体数据集合分组参数对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDEDataSetGroupParam extends IPSModelObject,IDEDataSetGroupParam
+{
 
-    public int getStdDataType();
+	/**
+	 * 
+	 * 获取实体数据集合
+	 * @return
+	 */
+	IPSDEDataSet getPSDEDataSet();
+	
+	
+	
+	/**
+	 * 获取标准数据类型
+	 * @return
+	 */
+	int getStdDataType(); 
+	
 }
-

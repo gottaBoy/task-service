@@ -1,13 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core.valuerule;
 
-import net.ibizsys.paas.core.valuerule.IDEFVRCondition;
 import net.ibizsys.paas.logic.IGroupCondition;
 
-public interface IDEFVRGroupCondition
-extends IDEFVRCondition,
-IGroupCondition<IDEFVRCondition> {
-}
+/**
+ * 属性值规则组条件接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDEFVRGroupCondition extends IDEFVRCondition, IGroupCondition<IDEFVRCondition> {
 
+}

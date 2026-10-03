@@ -36,8 +36,8 @@ extends XMLCollectionExConfig<DGColRenderConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = DGColRenderMgr.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((DGColRenderConfig)childNode))) {
-                this.add((Object)((DGColRenderConfig)childNode));
+            if (this.OnChildNodeLoaded((DGColRenderConfig)childNode)) {
+                this.add((DGColRenderConfig)childNode);
                 return;
             }
         }

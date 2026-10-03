@@ -1,13 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.view;
 
 import net.ibizsys.paas.view.IDynaView;
-import net.ibizsys.pswf.view.IWFView;
 
-public interface IDynaWFView
-extends IWFView,
-IDynaView {
+/**
+ * 动态流程视图对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaWFView extends IWFView,IDynaView {
+
 }
-

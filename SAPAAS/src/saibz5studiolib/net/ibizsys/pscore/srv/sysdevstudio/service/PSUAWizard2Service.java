@@ -95,6 +95,7 @@ import net.ibizsys.pscore.srv.sysdesign.service.PSSysDMItemService;
 import net.ibizsys.pscore.srv.sysdevstudio.entity.PSUAWizard2;
 import net.ibizsys.pscore.srv.sysdevstudio.service.PSUAWizard2ServiceBase;
 import net.ibizsys.pscore.srv.util.PSSysDevUserUserGlobal;
+import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
@@ -222,7 +223,7 @@ extends PSUAWizard2ServiceBase {
     }
 
     protected void getSysDevInfoDraft(PSUAWizard2 pSUAWizard2) throws Exception {
-        Object object;
+        RemoteCallResult object;
         String string;
         String string2;
         StringBuilderEx stringBuilderEx;
@@ -231,11 +232,12 @@ extends PSUAWizard2ServiceBase {
             if (DataObject.getBoolValue((Object)pSUAWizard2.get("V6MODE"), (boolean)false)) {
                 bl = false;
             } else {
-                stringBuilderEx = WebContext.getAppData();
-                if (stringBuilderEx != null) {
-                    string2 = stringBuilderEx.optString("pssystemid");
-                    string = stringBuilderEx.optString("psdevslnsysid");
-                    if (!(StringHelper.isNullOrEmpty((String)string2) && StringHelper.isNullOrEmpty((String)string) || (object = PSSysDevUserUserGlobal.getPSSysDevUser(this.getWebContext(), string, string2)).getAccMode() == 5)) {
+                JSONObject appData = WebContext.getAppData();
+                if (appData != null) {
+                    string2 = appData.optString("pssystemid");
+                    string = appData.optString("psdevslnsysid");
+                    if (!(StringHelper.isNullOrEmpty((String)string2) && StringHelper.isNullOrEmpty((String)string)
+                            || PSSysDevUserUserGlobal.getPSSysDevUser(this.getWebContext(), string, string2).getAccMode() == 5)) {
                         bl = false;
                     }
                 }
@@ -249,7 +251,7 @@ extends PSUAWizard2ServiceBase {
                 string = WebContext.getCurrent().getAppDataValue("psdevslnsysid");
                 pSUAWizard2.set("psdevslnsysid", string);
             }
-            if (!StringHelper.isNullOrEmpty((String)string) && (object = this.executeRemoteCall3("GETSYSDEVENVINFO", (IEntity)pSUAWizard2)).getContent() != null) {
+            if (!StringHelper.isNullOrEmpty((String)string) && (object = this.executeRemoteCall3("GETSYSDEVENVINFO", pSUAWizard2)).getContent() != null) {
                 stringBuilderEx.append((String)object.getContent());
             }
         } else {
@@ -310,16 +312,16 @@ extends PSUAWizard2ServiceBase {
 
     protected void doSysInit(PSUAWizard2 pSUAWizard2) throws Exception {
         if (DataObject.getBoolValue((Integer)pSUAWizard2.getWizardParam10(), (boolean)false)) {
-            this.executeAction("X_ADDINITSYSMODELTASK", (IEntity)pSUAWizard2);
+            this.executeAction("X_ADDINITSYSMODELTASK", pSUAWizard2);
         }
         if (DataObject.getBoolValue((Integer)pSUAWizard2.getWizardParam11(), (boolean)false)) {
-            this.executeAction("X_ADDINITSYSDEDBMODELTASK", (IEntity)pSUAWizard2);
+            this.executeAction("X_ADDINITSYSDEDBMODELTASK", pSUAWizard2);
         }
         if (DataObject.getBoolValue((Integer)pSUAWizard2.getWizardParam12(), (boolean)false)) {
-            this.executeAction("X_ADDIMPSUBSYSMODELTASK", (IEntity)pSUAWizard2);
+            this.executeAction("X_ADDIMPSUBSYSMODELTASK", pSUAWizard2);
         }
         if (DataObject.getBoolValue((Integer)pSUAWizard2.getWizardParam13(), (boolean)false)) {
-            this.executeAction("X_ADDSYNCSUBSYSDBMODELTASK", (IEntity)pSUAWizard2);
+            this.executeAction("X_ADDSYNCSUBSYSDBMODELTASK", pSUAWizard2);
         }
     }
 
@@ -341,19 +343,19 @@ extends PSUAWizard2ServiceBase {
             throw new EntityException(entityError);
         }
         pSUAWizard2.set("loginname", WebContext.getCurrent().getCurLoginName());
-        this.executeRemoteCall2(WIZARD_CHANGEPWD, (IEntity)pSUAWizard2);
+        this.executeRemoteCall2(WIZARD_CHANGEPWD, pSUAWizard2);
     }
 
     public void doChangePwd(PSUAWizard2 pSUAWizard2) throws Exception {
-        this.executeRemoteCall2(WIZARD_CHANGEPWD, (IEntity)pSUAWizard2);
+        this.executeRemoteCall2(WIZARD_CHANGEPWD, pSUAWizard2);
     }
 
     protected void doAppInit(PSUAWizard2 pSUAWizard2) throws Exception {
-        this.executeAction("X_ADDINITAPPMODELTASK", (IEntity)pSUAWizard2);
+        this.executeAction("X_ADDINITAPPMODELTASK", pSUAWizard2);
     }
 
     public void doCreateUser(PSUAWizard2 pSUAWizard2) throws Exception {
-        this.executeRemoteCall2("CREATEUSER", (IEntity)pSUAWizard2);
+        this.executeRemoteCall2("CREATEUSER", pSUAWizard2);
     }
 
     public void doUpdateSVNAuthZ(PSUAWizard2 pSUAWizard2) throws Exception {
@@ -364,15 +366,15 @@ extends PSUAWizard2ServiceBase {
         PSSVNServerService pSSVNServerService = (PSSVNServerService)ServiceGlobal.getService(PSSVNServerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSSVNServer pSSVNServer = new PSSVNServer();
         pSSVNServer.setPSSVNServerId(string);
-        pSSVNServerService.get((IEntity)pSSVNServer);
+        pSSVNServerService.get(pSSVNServer);
         if ("GIT".equals(pSSVNServer.getSVNType())) {
             return;
         }
-        this.executeRemoteCall2("UPDATESVNAUTHZ", (IEntity)pSUAWizard2);
+        this.executeRemoteCall2("UPDATESVNAUTHZ", pSUAWizard2);
     }
 
     public void listPSDevSln(PSUAWizard2 pSUAWizard2) throws Exception {
-        RemoteCallResult remoteCallResult = this.executeRemoteCall2("LISTDEVSLNSYS", (IEntity)pSUAWizard2);
+        RemoteCallResult remoteCallResult = this.executeRemoteCall2("LISTDEVSLNSYS", pSUAWizard2);
         if (remoteCallResult.getJAContent() != null) {
             pSUAWizard2.setParam5(remoteCallResult.getJAContent().toString());
         }
@@ -450,7 +452,7 @@ extends PSUAWizard2ServiceBase {
         PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevCenter pSDevCenter = new PSDevCenter();
         pSDevCenter.setPSDevCenterId(pSUAWizard2.getActionData());
-        pSDevCenterService.get((IEntity)pSDevCenter);
+        pSDevCenterService.get(pSDevCenter);
         int n = DataObject.getIntegerValue((Object)pSUAWizard2.getWizardParam10(), (Integer)1);
         int n2 = DataObject.getIntegerValue((Object)pSUAWizard2.getWizardParam11(), (Integer)365);
         PSWorkspaceService pSWorkspaceService = (PSWorkspaceService)ServiceGlobal.getService(PSWorkspaceService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
@@ -483,7 +485,7 @@ extends PSUAWizard2ServiceBase {
         PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevCenter pSDevCenter = new PSDevCenter();
         pSDevCenter.setPSDevCenterId(PSUAWizard2Service.getCurrentPSDCId());
-        pSDevCenterService.get((IEntity)pSDevCenter);
+        pSDevCenterService.get(pSDevCenter);
         String string2 = pSUAWizard2.getWizardParam();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             log.error((Object)"1");
@@ -524,7 +526,7 @@ extends PSUAWizard2ServiceBase {
         PSWorkspaceService pSWorkspaceService = (PSWorkspaceService)ServiceGlobal.getService(PSWorkspaceService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSWorkspace pSWorkspace = new PSWorkspace();
         pSWorkspace.setPSWorkspaceId(KeyValueHelper.genUniqueId((String)"CLOUD", (String)string, (String)"CLOUD"));
-        if (pSWorkspaceService.get((IEntity)pSWorkspace, true)) {
+        if (pSWorkspaceService.get(pSWorkspace, true)) {
             throw new Exception("\u751f\u4ea7\u7ebf\u6388\u6743\u7801\u5df2\u4f7f\u7528");
         }
         try {
@@ -559,7 +561,7 @@ extends PSUAWizard2ServiceBase {
         PSDCWorkspaceService pSDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDCWorkspace pSDCWorkspace = new PSDCWorkspace();
         pSDCWorkspace.setPSDCWorkspaceId(pSUAWizard2.getActionData());
-        pSDCWorkspaceService.get((IEntity)pSDCWorkspace);
+        pSDCWorkspaceService.get(pSDCWorkspace);
         pSUAWizard2.setParam7(pSDCWorkspace.getPSDevSlnId());
     }
 
@@ -576,7 +578,7 @@ extends PSUAWizard2ServiceBase {
         PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
         pSDevSlnSys.setPSDevSlnSysId(pSUAWizard2.getActionData());
-        pSDevSlnSysService.get((IEntity)pSDevSlnSys);
+        pSDevSlnSysService.get(pSDevSlnSys);
         if (DataObject.getIntegerValue((Object)pSDevSlnSys.getDevSysState(), (Integer)DevSysStateCodeListModel.ONLINE) != DevSysStateCodeListModel.OFFLINE) {
             throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u7cfb\u7edf\u672a\u5904\u4e8e\u79bb\u7ebf\u72b6\u6001"));
         }
@@ -589,7 +591,7 @@ extends PSUAWizard2ServiceBase {
         PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
         pSDevSlnSys.setPSDevSlnSysId(pSUAWizard2.getActionData());
-        pSDevSlnSysService.get((IEntity)pSDevSlnSys);
+        pSDevSlnSysService.get(pSDevSlnSys);
         if (DataObject.getIntegerValue((Object)pSDevSlnSys.getDevSysState(), (Integer)DevSysStateCodeListModel.ONLINE) != DevSysStateCodeListModel.OFFLINE) {
             throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u7cfb\u7edf\u672a\u5904\u4e8e\u79bb\u7ebf\u72b6\u6001"));
         }
@@ -597,12 +599,12 @@ extends PSUAWizard2ServiceBase {
         if (StringHelper.isNullOrEmpty((String)string)) {
             if (PSUAWizard2Service.isCloudMode()) {
                 pSDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                pSDCWorkspace = new SelectContext();
-                pSDCWorkspace.set("PSDEVCENTERID", pSDevSlnSys.getPSDevCenterId());
-                pSDCWorkspace.set("RESSTATE", 20);
-                pSDCWorkspace.set("WORKSPACESTATE", 30);
-                pSDCWorkspace.setIsNull("PSDEVSLNSYSID");
-                ArrayList arrayList = pSDCWorkspaceService.select((ISelectCond)pSDCWorkspace);
+                SelectContext selectContext = new SelectContext();
+                selectContext.set("PSDEVCENTERID", pSDevSlnSys.getPSDevCenterId());
+                selectContext.set("RESSTATE", 20);
+                selectContext.set("WORKSPACESTATE", 30);
+                selectContext.setIsNull("PSDEVSLNSYSID");
+                ArrayList<PSDCWorkspace> arrayList = pSDCWorkspaceService.select((ISelectCond)selectContext);
                 if (arrayList != null && arrayList.size() != 0) {
                     for (PSDCWorkspace pSDCWorkspace2 : arrayList) {
                         if (StringHelper.compare((String)pSDevSlnSys.getPSDevSlnId(), (String)pSDCWorkspace2.getPSDevSlnId(), (boolean)false) != 0 || pSDCWorkspace2.getExpiredTime() != null && pSDCWorkspace2.getExpiredTime().getTime() <= System.currentTimeMillis()) continue;
@@ -638,4 +640,3 @@ extends PSUAWizard2ServiceBase {
         pSSubSysServiceAPIService.importSchema(pSSubSysServiceAPI);
     }
 }
-

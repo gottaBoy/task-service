@@ -123,15 +123,14 @@ extends PSCoreSysModelBase {
         jSONObject.remove("lockflag");
         jSONObject.remove("modelstate");
         if ((n & 0x40) == 64 && iDataEntityModel != null) {
-            Object object;
             Iterator iterator = iDataEntityModel.getDEFields();
             while (iterator.hasNext()) {
-                object = (IDEField)iterator.next();
-                if (object.isPhisicalDEField()) continue;
-                jSONObject.remove(object.getName().toLowerCase());
+                IDEField deField = (IDEField)iterator.next();
+                if (deField.isPhisicalDEField()) continue;
+                jSONObject.remove(deField.getName().toLowerCase());
             }
             if (jSONObject.has("validflag")) {
-                object = jSONObject.opt("validflag");
+                Object object = jSONObject.opt("validflag");
                 if (object != null) {
                     if (StringHelper.compare((String)object.toString(), (String)"1", (boolean)true) == 0) {
                         jSONObject.remove("validflag");
@@ -309,4 +308,3 @@ extends PSCoreSysModelBase {
         globalModelInstMap.put("PSCREDENTIAL", "");
     }
 }
-

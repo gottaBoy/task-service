@@ -112,9 +112,9 @@ implements IPSDEActionTemplService {
 
     @Override
     protected List<PSDEActionTempl> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSDEActionTempl> list = new ArrayList<PSDEActionTempl>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSDEActionTempl> items = this.listByPSModule(parent);

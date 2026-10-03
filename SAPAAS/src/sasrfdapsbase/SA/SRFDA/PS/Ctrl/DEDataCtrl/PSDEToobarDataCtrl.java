@@ -55,7 +55,7 @@ extends PSDEDataCtrl {
                         this.modifyLayoutFromXML(xmlNode, psDEToolbar, validMap);
                         BaseDataEntity cond = new BaseDataEntity();
                         cond.setParamValue("PSDETOOLBARID", (Object)psDEToolbar.getPSDETOOLBARID());
-                        Vector psDEToolbarItemList = new Vector();
+                        Vector<PSDEToolbarItem> psDEToolbarItemList = new Vector<>();
                         IDEDataCtrl psDEToolbarItemDataCtrl = this.GetRelatedDataCtrl("DE2207");
                         callResult = psDEToolbarItemDataCtrl.Select(cond, psDEToolbarItemList, PSDEToolbarItem.class.getName());
                         if (callResult.isError()) {
@@ -85,7 +85,7 @@ extends PSDEDataCtrl {
     }
 
     protected void modifyLayoutFromXML(XMLNode xmlNode, PSDEToolbar psDEToolbar, HashMap<String, PSDEToolbarItem> validMap) throws Exception {
-        ArrayList xmlNodes = xmlNode.getChildNodes();
+        ArrayList<XMLNode> xmlNodes = xmlNode.getChildNodes();
         if (xmlNodes == null) {
             return;
         }
@@ -127,7 +127,7 @@ extends PSDEDataCtrl {
         }
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSDETOOLBARID", (Object)psDEToolbar.getPSDETOOLBARID());
-        Vector psDEToolbarItemList = new Vector();
+        Vector<PSDEToolbarItem> psDEToolbarItemList = new Vector<>();
         IDEDataCtrl psDEToolbarItemDataCtrl = this.GetRelatedDataCtrl("DE2207");
         CallResult callResult = psDEToolbarItemDataCtrl.Select(cond, psDEToolbarItemList, PSDEToolbarItem.class.getName(), "ORDER BY ORDERVALUE");
         if (callResult.isError()) {
@@ -320,4 +320,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

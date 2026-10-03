@@ -31,7 +31,7 @@ extends Cas20ServiceTicketValidator {
 
     @Override
     protected void customParseResponse(String response, Assertion assertion) throws TicketValidationException {
-        List proxies = XmlUtils.getTextForElements(response, "proxy");
+        List<String> proxies = XmlUtils.getTextForElements(response, "proxy");
         String[] proxiedList = proxies.toArray(new String[proxies.size()]);
         if (proxies == null || proxies.isEmpty() || this.acceptAnyProxy) {
             return;

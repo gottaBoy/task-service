@@ -2049,7 +2049,7 @@ implements Serializable {
                 PSCorePrdCat pSCorePrdCat = new PSCorePrdCat();
                 pSCorePrdCat.setPSCorePrdCatId(this.getPSCorePrdCatId());
                 PSCorePrdCatService pSCorePrdCatService = (PSCorePrdCatService)ServiceGlobal.getService(PSCorePrdCatService.class, (SessionFactory)this.getSessionFactory());
-                pSCorePrdCatService.autoGet((IEntity)pSCorePrdCat);
+                pSCorePrdCatService.autoGet(pSCorePrdCat);
                 this.pscoreprdcat = pSCorePrdCat;
             }
             return this.pscoreprdcat;

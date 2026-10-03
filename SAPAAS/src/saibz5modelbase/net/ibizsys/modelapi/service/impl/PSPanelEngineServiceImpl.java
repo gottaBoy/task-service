@@ -74,7 +74,7 @@ implements IPSPanelEngineService {
     @Override
     protected List<PSPanelEngine> onListAll() throws Exception {
         ArrayList<PSPanelEngine> list = new ArrayList<PSPanelEngine>();
-        List pssysviewpanels = PSModelServiceUtil.getInstance().getPSSysViewPanelService().listAll();
+        List<PSSysViewPanel> pssysviewpanels = PSModelServiceUtil.getInstance().getPSSysViewPanelService().listAll();
         if (pssysviewpanels != null) {
             for (PSSysViewPanel parent : pssysviewpanels) {
                 List<PSPanelEngine> items = this.listByPSSysViewPanel(parent);

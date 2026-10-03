@@ -1,11 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.appmodel;
 
 import net.ibizsys.paas.controller.IViewControllerPlugin;
 
-public interface IAppViewControllerPlugin
-extends IViewControllerPlugin {
-}
+/**
+ * 应用视图插件对象接口
+ * @author Administrator
+ *
+ */
+public interface IAppViewControllerPlugin extends IViewControllerPlugin {
 
+}

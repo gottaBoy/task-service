@@ -1,14 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFProcessModel
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFProcessModel;
+/**
+ * 流程网关处理模型对象基接口
+ * @author Administrator
+ *
+ */
+public interface IWFGatewayProcessModelBase extends IWFProcessModel {
 
-public interface IWFGatewayProcessModelBase
-extends IWFProcessModel {
 }
-

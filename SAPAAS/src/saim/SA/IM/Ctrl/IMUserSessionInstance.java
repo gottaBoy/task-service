@@ -125,17 +125,16 @@ implements IIMUserSessionInstance {
                 if (this.cometEvent == null) {
                     return;
                 }
-                Vector<Object> sendList = null;
+                Vector<IMMessageBase> sendList = null;
                 int nCount = 0;
                 Vector<IMMessageBase> vector = this.imMessageList2;
                 synchronized (vector) {
                     if (this.imMessageList2.size() > 0) {
                         if (sendList == null) {
-                            sendList = new Vector<Object>();
+                            sendList = new Vector<IMMessageBase>();
                         }
                         while (this.imMessageList2.size() > 0 && nCount < 200) {
-                            imMessageBase = this.imMessageList2.remove(0);
-                            sendList.add(imMessageBase);
+                            sendList.add(this.imMessageList2.remove(0));
                             ++nCount;
                         }
                     }
@@ -145,7 +144,7 @@ implements IIMUserSessionInstance {
                 synchronized (imMessageBase) {
                     if (this.imMessageList.size() > 0) {
                         if (sendList == null) {
-                            sendList = new Vector();
+                            sendList = new Vector<IMMessageBase>();
                         }
                         while (this.imMessageList.size() > 0 && nCount < 200) {
                             IMUserInformMessage imUserInformMessage;
@@ -184,8 +183,8 @@ implements IIMUserSessionInstance {
                             ++i;
                         }
                     }
+                    log.error((Object)StringHelper.Format((String)"\u53d1\u751f\u6d88\u606f\u5230\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
                 }
-                log.error((Object)StringHelper.Format((String)"\u53d1\u751f\u6d88\u606f\u5230\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
             }
             try {
                 this.cometEvent.close();
@@ -335,18 +334,16 @@ implements IIMUserSessionInstance {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     protected IMMessagePackage OnUserSessionLogin(IIMRemoteAction iIMRemoteActionContext) throws Exception {
-        IMUserGroup imUserGroup2;
         JSONObject joUserGroup;
-        IMRemoteDEDataCtrl imUserDataCtrl;
         IMMessagePackage imMessagePackage = new IMMessagePackage();
         IMUser imUser = new IMUser();
         imUser.setIMUSERID(this.getUserId());
         CallResult callResult = null;
         if (this.imStateServerContext.isLocalMode()) {
-            imUserDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0070", "SYSTEM", null);
+            IDEDataCtrl imUserDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0070", "SYSTEM", null);
             callResult = imUserDataCtrl.Get(imUser);
         } else {
-            imUserDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imUserDataCtrl = new IMRemoteDEDataCtrl();
             imUserDataCtrl.Init("", "IM0070", "SYSTEM");
             callResult = imUserDataCtrl.Get(imUser);
         }
@@ -400,17 +397,17 @@ implements IIMUserSessionInstance {
                 if (callResult.IsError()) {
                     throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u4f1a\u8bae\u53c2\u4e0e\u4eba\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                 }
-                Iterator<IMUserGroup> strName = "";
+                String strName = "";
                 Iterator<IMParticipant> iterator = imParticipants.iterator();
                 while (iterator.hasNext()) {
                     IMParticipant imParticipant = iterator.next();
                     if (StringHelper.Compare((String)imParticipant.getIMUSERID(), (String)this.getUserId(), (boolean)false) == 0) continue;
-                    if (!StringHelper.IsNullOrEmpty((String)((Object)strName))) {
+                    if (!StringHelper.IsNullOrEmpty(strName)) {
                         strName = String.valueOf(strName) + ",";
                     }
                     strName = String.valueOf(strName) + imParticipant.getIMUSERNAME();
                 }
-                if (StringHelper.IsNullOrEmpty((String)((Object)strName))) continue;
+                if (StringHelper.IsNullOrEmpty(strName)) continue;
                 joUserGroup.put("name", (Object)strName);
             }
             joUserGroup.put("type", imMeeting.getMEETINGTYPE());
@@ -436,17 +433,16 @@ implements IIMUserSessionInstance {
             systemGroup.put(imUserGroup2.getUGTYPE(), imUserGroup2);
         }
         if (!systemGroup.containsKey("FAVOUR")) {
-            IMRemoteDEDataCtrl imUserGroupDataCtrl;
-            imUserGroup2 = new IMUserGroup();
+            IMUserGroup imUserGroup2 = new IMUserGroup();
             imUserGroup2.setIMUSERID(this.getUserId());
             imUserGroup2.setIMUSERGROUPID(StringHelper.Format((String)"UG_%1$s_%2$s", (Object)this.getUserId(), (Object)"FAVOUR"));
             imUserGroup2.setIMUSERGROUPNAME("\u5e38\u7528\u8054\u7cfb\u4eba");
             imUserGroup2.setUGTYPE("FAVOUR");
             if (this.imStateServerContext.isLocalMode()) {
-                imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
+                IDEDataCtrl imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
                 callResult = imUserGroupDataCtrl.Save(true, imUserGroup2);
             } else {
-                imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
+                IMRemoteDEDataCtrl imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
                 imUserGroupDataCtrl.Init("", "IM0095", "SYSTEM");
                 callResult = imUserGroupDataCtrl.Save(true, imUserGroup2);
             }
@@ -456,7 +452,7 @@ implements IIMUserSessionInstance {
             systemGroup.put("FAVOUR", imUserGroup2);
             imUserGroups.add(0, imUserGroup2);
         } else {
-            imUserGroup2 = (IMUserGroup)((Object)systemGroup.get("FAVOUR"));
+            IMUserGroup imUserGroup2 = systemGroup.get("FAVOUR");
             imUserGroups.remove((Object)imUserGroup2);
             imUserGroups.add(0, imUserGroup2);
         }
@@ -605,7 +601,6 @@ implements IIMUserSessionInstance {
     }
 
     protected IMMessagePackage OnUserGroupCreate(IIMRemoteAction iIMRemoteActionContext) throws Exception {
-        IMRemoteDEDataCtrl imUserGroupDataCtrl;
         String strOrgId;
         String strUserGroupName = iIMRemoteActionContext.getParam("USERGROUPNAME", "");
         IMUserGroup imUserGroup = new IMUserGroup();
@@ -620,10 +615,10 @@ implements IIMUserSessionInstance {
         }
         CallResult callResult = null;
         if (this.imStateServerContext.isLocalMode()) {
-            imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
+            IDEDataCtrl imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
             callResult = imUserGroupDataCtrl.Save(true, imUserGroup);
         } else {
-            imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
             imUserGroupDataCtrl.Init("", "IM0095", "SYSTEM");
             callResult = imUserGroupDataCtrl.Save(true, imUserGroup);
         }
@@ -642,7 +637,6 @@ implements IIMUserSessionInstance {
     }
 
     protected IMMessagePackage OnUserGroupRename(IIMRemoteAction iIMRemoteActionContext) throws Exception {
-        IMRemoteDEDataCtrl imUserGroupDataCtrl;
         String strUserGroupId = iIMRemoteActionContext.getParam("USERGROUPID", "");
         if (StringHelper.IsNullOrEmpty((String)strUserGroupId)) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u8054\u7cfb\u4eba\u7ec4\u6807\u8bc6");
@@ -655,10 +649,10 @@ implements IIMUserSessionInstance {
         imUserGroup.setIMUSERGROUPID(strUserGroupId);
         CallResult callResult = null;
         if (this.imStateServerContext.isLocalMode()) {
-            imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
+            IDEDataCtrl imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
             callResult = imUserGroupDataCtrl.Get(imUserGroup);
         } else {
-            imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
             imUserGroupDataCtrl.Init("", "IM0095", "SYSTEM");
             callResult = imUserGroupDataCtrl.Get(imUserGroup);
         }
@@ -672,10 +666,10 @@ implements IIMUserSessionInstance {
         imUserGroup.setIMUSERGROUPID(strUserGroupId);
         imUserGroup.setIMUSERGROUPNAME(strUserGroupName);
         if (this.imStateServerContext.isLocalMode()) {
-            imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
+            IDEDataCtrl imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
             callResult = imUserGroupDataCtrl.Save(false, imUserGroup);
         } else {
-            imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
             imUserGroupDataCtrl.Init("", "IM0095", "SYSTEM");
             callResult = imUserGroupDataCtrl.Save(false, imUserGroup);
         }
@@ -692,7 +686,6 @@ implements IIMUserSessionInstance {
     }
 
     protected IMMessagePackage OnUserGroupReset(IIMRemoteAction iIMRemoteActionContext) throws Exception {
-        IMRemoteDEDataCtrl imUserGroupDetailDataCtrl;
         String strUserGroupId = iIMRemoteActionContext.getParam("USERGROUPID", "");
         if (StringHelper.IsNullOrEmpty((String)strUserGroupId)) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u8054\u7cfb\u4eba\u7ec4\u6807\u8bc6");
@@ -705,14 +698,14 @@ implements IIMUserSessionInstance {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7528\u6237\u7ec4\u6210\u5458\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
         }
         if (this.imStateServerContext.isLocalMode()) {
-            imUserGroupDetailDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0096", "SYSTEM", null);
+            IDEDataCtrl imUserGroupDetailDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0096", "SYSTEM", null);
             for (IMUGDetail imUGDetail : imUGDetails) {
                 callResult = imUserGroupDetailDataCtrl.Remove(imUGDetail);
                 if (!callResult.IsError()) continue;
                 throw new Exception(StringHelper.Format((String)"\u5220\u9664\u7528\u6237\u7ec4\u6210\u5458\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
             }
         } else {
-            imUserGroupDetailDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imUserGroupDetailDataCtrl = new IMRemoteDEDataCtrl();
             imUserGroupDetailDataCtrl.Init("", "IM0096", "SYSTEM");
             for (IMUGDetail imUGDetail : imUGDetails) {
                 callResult = imUserGroupDetailDataCtrl.Remove(imUGDetail);
@@ -725,7 +718,6 @@ implements IIMUserSessionInstance {
     }
 
     protected IMMessagePackage OnUserGroupRemove(IIMRemoteAction iIMRemoteActionContext) throws Exception {
-        IMRemoteDEDataCtrl imUserGroupDataCtrl;
         String strUserGroupId = iIMRemoteActionContext.getParam("USERGROUPID", "");
         if (StringHelper.IsNullOrEmpty((String)strUserGroupId)) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u8054\u7cfb\u4eba\u7ec4\u6807\u8bc6");
@@ -734,10 +726,10 @@ implements IIMUserSessionInstance {
         imUserGroup.setIMUSERGROUPID(strUserGroupId);
         CallResult callResult = null;
         if (this.imStateServerContext.isLocalMode()) {
-            imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
+            IDEDataCtrl imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
             callResult = imUserGroupDataCtrl.Get(imUserGroup);
         } else {
-            imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
             imUserGroupDataCtrl.Init("", "IM0095", "SYSTEM");
             callResult = imUserGroupDataCtrl.Get(imUserGroup);
         }
@@ -751,10 +743,10 @@ implements IIMUserSessionInstance {
             throw new Exception(StringHelper.Format((String)"\u6307\u5b9a\u8054\u7cfb\u4eba\u7ec4\u4e3a\u7cfb\u7edf\u4fdd\u7559\uff0c\u4e0d\u80fd\u5220\u9664"));
         }
         if (this.imStateServerContext.isLocalMode()) {
-            imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
+            IDEDataCtrl imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
             callResult = imUserGroupDataCtrl.Remove(imUserGroup);
         } else {
-            imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
             imUserGroupDataCtrl.Init("", "IM0095", "SYSTEM");
             callResult = imUserGroupDataCtrl.Remove(imUserGroup);
         }
@@ -835,8 +827,6 @@ implements IIMUserSessionInstance {
     }
 
     protected IMMessagePackage OnUserGroupDetailCreate(IIMRemoteAction iIMRemoteActionContext) throws Exception {
-        IMRemoteDEDataCtrl imUserGroupDetailDataCtrl;
-        IMRemoteDEDataCtrl imUserGroupDataCtrl;
         String strUserGroupId = iIMRemoteActionContext.getParam("USERGROUPID", "");
         if (StringHelper.IsNullOrEmpty((String)strUserGroupId)) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u8054\u7cfb\u4eba\u7ec4\u6807\u8bc6");
@@ -849,10 +839,10 @@ implements IIMUserSessionInstance {
         imUserGroup.setIMUSERGROUPID(strUserGroupId);
         CallResult callResult = null;
         if (this.imStateServerContext.isLocalMode()) {
-            imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
+            IDEDataCtrl imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
             callResult = imUserGroupDataCtrl.Get(imUserGroup);
         } else {
-            imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
             imUserGroupDataCtrl.Init("", "IM0095", "SYSTEM");
             callResult = imUserGroupDataCtrl.Get(imUserGroup);
         }
@@ -866,7 +856,7 @@ implements IIMUserSessionInstance {
         String strUGDetailId = StringHelper.Format((String)"%1$s_%2$s", (Object)strUserGroupId, (Object)strUserId);
         imUGDetail.setIMUGDETAILID(strUGDetailId);
         if (this.imStateServerContext.isLocalMode()) {
-            imUserGroupDetailDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0096", "SYSTEM", null);
+            IDEDataCtrl imUserGroupDetailDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0096", "SYSTEM", null);
             if (imUserGroupDetailDataCtrl.CheckKeyState2(imUGDetail) == 0) {
                 imUGDetail.setIMUSERGROUPID(strUserGroupId);
                 imUGDetail.setIMUSERID(strUserId);
@@ -881,7 +871,7 @@ implements IIMUserSessionInstance {
                 }
             }
         } else {
-            imUserGroupDetailDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imUserGroupDetailDataCtrl = new IMRemoteDEDataCtrl();
             imUserGroupDetailDataCtrl.Init("", "IM0096", "SYSTEM");
             imUGDetail.setIMUSERGROUPID(strUserGroupId);
             imUGDetail.setIMUSERID(strUserId);
@@ -900,8 +890,6 @@ implements IIMUserSessionInstance {
     }
 
     protected IMMessagePackage OnUserGroupDetailRemove(IIMRemoteAction iIMRemoteActionContext) throws Exception {
-        IMRemoteDEDataCtrl imUserGroupDetailDataCtrl;
-        IMRemoteDEDataCtrl imUserGroupDataCtrl;
         String strUserGroupId = iIMRemoteActionContext.getParam("USERGROUPID", "");
         if (StringHelper.IsNullOrEmpty((String)strUserGroupId)) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u8054\u7cfb\u4eba\u7ec4\u6807\u8bc6");
@@ -914,10 +902,10 @@ implements IIMUserSessionInstance {
         imUserGroup.setIMUSERGROUPID(strUserGroupId);
         CallResult callResult = null;
         if (this.imStateServerContext.isLocalMode()) {
-            imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
+            IDEDataCtrl imUserGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0095", "SYSTEM", null);
             callResult = imUserGroupDataCtrl.Get(imUserGroup);
         } else {
-            imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imUserGroupDataCtrl = new IMRemoteDEDataCtrl();
             imUserGroupDataCtrl.Init("", "IM0095", "SYSTEM");
             callResult = imUserGroupDataCtrl.Get(imUserGroup);
         }
@@ -931,7 +919,7 @@ implements IIMUserSessionInstance {
         String strUGDetailId = StringHelper.Format((String)"%1$s_%2$s", (Object)strUserGroupId, (Object)strUserId);
         imUGDetail.setIMUGDETAILID(strUGDetailId);
         if (this.imStateServerContext.isLocalMode()) {
-            imUserGroupDetailDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0096", "SYSTEM", null);
+            IDEDataCtrl imUserGroupDetailDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0096", "SYSTEM", null);
             if (imUserGroupDetailDataCtrl.CheckKeyState2(imUGDetail) == 1) {
                 imUGDetail.setIMUSERGROUPID(strUserGroupId);
                 imUGDetail.setIMUSERID(strUserId);
@@ -941,7 +929,7 @@ implements IIMUserSessionInstance {
                 }
             }
         } else {
-            imUserGroupDetailDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imUserGroupDetailDataCtrl = new IMRemoteDEDataCtrl();
             imUserGroupDetailDataCtrl.Init("", "IM0096", "SYSTEM");
             imUGDetail.setIMUSERGROUPID(strUserGroupId);
             imUGDetail.setIMUSERID(strUserId);
@@ -955,8 +943,6 @@ implements IIMUserSessionInstance {
     }
 
     protected IMMessagePackage OnDisGroupCreate(IIMRemoteAction iIMRemoteActionContext) throws Exception {
-        IMRemoteDEDataCtrl imDisGroupDetailDataCtrl;
-        IMRemoteDEDataCtrl imDisGroupDataCtrl;
         String strDisGroupName = iIMRemoteActionContext.getParam("DISGROUPNAME", "");
         IMDisGroup imDisGroup = new IMDisGroup();
         imDisGroup.setIMUSERID(this.getUserId());
@@ -964,10 +950,10 @@ implements IIMUserSessionInstance {
         imDisGroup.setDISGROUPTYPE("PRIVATE");
         CallResult callResult = null;
         if (this.imStateServerContext.isLocalMode()) {
-            imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
+            IDEDataCtrl imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
             callResult = imDisGroupDataCtrl.Save(true, imDisGroup);
         } else {
-            imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
             imDisGroupDataCtrl.Init("", "IM0097", "SYSTEM");
             callResult = imDisGroupDataCtrl.Save(true, imDisGroup);
         }
@@ -979,10 +965,10 @@ implements IIMUserSessionInstance {
         imDisGroupDetail.setIMDISGROUPID(imDisGroup.getIMDISGROUPID());
         imDisGroupDetail.setADMINFLAG(true);
         if (this.imStateServerContext.isLocalMode()) {
-            imDisGroupDetailDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0098", "SYSTEM", null);
+            IDEDataCtrl imDisGroupDetailDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0098", "SYSTEM", null);
             callResult = imDisGroupDetailDataCtrl.Save(true, imDisGroupDetail);
         } else {
-            imDisGroupDetailDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imDisGroupDetailDataCtrl = new IMRemoteDEDataCtrl();
             imDisGroupDetailDataCtrl.Init("", "IM0098", "SYSTEM");
             callResult = imDisGroupDetailDataCtrl.Save(true, imDisGroupDetail);
         }
@@ -1002,7 +988,6 @@ implements IIMUserSessionInstance {
     }
 
     protected IMMessagePackage OnDisGroupRename(IIMRemoteAction iIMRemoteActionContext) throws Exception {
-        IMRemoteDEDataCtrl imDisGroupDataCtrl;
         String strDisGroupId = iIMRemoteActionContext.getParam("DISGROUPID", "");
         if (StringHelper.IsNullOrEmpty((String)strDisGroupId)) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u8ba8\u8bba\u7ec4\u6807\u8bc6");
@@ -1015,10 +1000,10 @@ implements IIMUserSessionInstance {
         imDisGroup.setIMDISGROUPID(strDisGroupId);
         CallResult callResult = null;
         if (this.imStateServerContext.isLocalMode()) {
-            imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
+            IDEDataCtrl imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
             callResult = imDisGroupDataCtrl.Get(imDisGroup);
         } else {
-            imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
             imDisGroupDataCtrl.Init("", "IM0097", "SYSTEM");
             callResult = imDisGroupDataCtrl.Get(imDisGroup);
         }
@@ -1032,10 +1017,10 @@ implements IIMUserSessionInstance {
         imDisGroup.setIMDISGROUPID(strDisGroupId);
         imDisGroup.setIMDISGROUPNAME(strDisGroupName);
         if (this.imStateServerContext.isLocalMode()) {
-            imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
+            IDEDataCtrl imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
             callResult = imDisGroupDataCtrl.Save(false, imDisGroup);
         } else {
-            imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
             imDisGroupDataCtrl.Init("", "IM0097", "SYSTEM");
             callResult = imDisGroupDataCtrl.Save(false, imDisGroup);
         }
@@ -1052,7 +1037,6 @@ implements IIMUserSessionInstance {
     }
 
     protected IMMessagePackage OnDisGroupRemove(IIMRemoteAction iIMRemoteActionContext) throws Exception {
-        IMRemoteDEDataCtrl imDisGroupDataCtrl;
         String strDisGroupId = iIMRemoteActionContext.getParam("DISGROUPID", "");
         if (StringHelper.IsNullOrEmpty((String)strDisGroupId)) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u8ba8\u8bba\u7ec4\u6807\u8bc6");
@@ -1061,10 +1045,10 @@ implements IIMUserSessionInstance {
         imDisGroup.setIMDISGROUPID(strDisGroupId);
         CallResult callResult = null;
         if (this.imStateServerContext.isLocalMode()) {
-            imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
+            IDEDataCtrl imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
             callResult = imDisGroupDataCtrl.Get(imDisGroup);
         } else {
-            imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
             imDisGroupDataCtrl.Init("", "IM0097", "SYSTEM");
             callResult = imDisGroupDataCtrl.Get(imDisGroup);
         }
@@ -1075,10 +1059,10 @@ implements IIMUserSessionInstance {
             throw new Exception(StringHelper.Format((String)"\u5f53\u524d\u7528\u6237\u4e0d\u662f\u6307\u5b9a\u8ba8\u8bba\u7ec4\u6240\u6709\u8005"));
         }
         if (this.imStateServerContext.isLocalMode()) {
-            imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
+            IDEDataCtrl imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
             callResult = imDisGroupDataCtrl.Remove(imDisGroup);
         } else {
-            imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
             imDisGroupDataCtrl.Init("", "IM0097", "SYSTEM");
             callResult = imDisGroupDataCtrl.Remove(imDisGroup);
         }
@@ -1159,8 +1143,6 @@ implements IIMUserSessionInstance {
     }
 
     protected IMMessagePackage OnDisGroupDetailCreate(IIMRemoteAction iIMRemoteActionContext) throws Exception {
-        IMRemoteDEDataCtrl imDisGroupDetailDataCtrl;
-        IMRemoteDEDataCtrl imDisGroupDataCtrl;
         String strDisGroupId = iIMRemoteActionContext.getParam("DISGROUPID", "");
         if (StringHelper.IsNullOrEmpty((String)strDisGroupId)) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u8ba8\u8bba\u7ec4\u6807\u8bc6");
@@ -1173,10 +1155,10 @@ implements IIMUserSessionInstance {
         imDisGroup.setIMDISGROUPID(strDisGroupId);
         CallResult callResult = null;
         if (this.imStateServerContext.isLocalMode()) {
-            imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
+            IDEDataCtrl imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
             callResult = imDisGroupDataCtrl.Get(imDisGroup);
         } else {
-            imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
             imDisGroupDataCtrl.Init("", "IM0097", "SYSTEM");
             callResult = imDisGroupDataCtrl.Get(imDisGroup);
         }
@@ -1190,7 +1172,7 @@ implements IIMUserSessionInstance {
         String strDGDetailId = StringHelper.Format((String)"%1$s_%2$s", (Object)strDisGroupId, (Object)strUserId);
         imDGDetail.setIMDISGRPDETAILID(strDGDetailId);
         if (this.imStateServerContext.isLocalMode()) {
-            imDisGroupDetailDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0096", "SYSTEM", null);
+            IDEDataCtrl imDisGroupDetailDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0096", "SYSTEM", null);
             if (imDisGroupDetailDataCtrl.CheckKeyState2(imDGDetail) == 0) {
                 imDGDetail.setIMDISGROUPID(strDisGroupId);
                 imDGDetail.setIMUSERID(strUserId);
@@ -1205,7 +1187,7 @@ implements IIMUserSessionInstance {
                 }
             }
         } else {
-            imDisGroupDetailDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imDisGroupDetailDataCtrl = new IMRemoteDEDataCtrl();
             imDisGroupDetailDataCtrl.Init("", "IM0096", "SYSTEM");
             imDGDetail.setIMDISGROUPID(strDisGroupId);
             imDGDetail.setIMUSERID(strUserId);
@@ -1224,8 +1206,6 @@ implements IIMUserSessionInstance {
     }
 
     protected IMMessagePackage OnDisGroupDetailRemove(IIMRemoteAction iIMRemoteActionContext) throws Exception {
-        IMRemoteDEDataCtrl imDisGroupDetailDataCtrl;
-        IMRemoteDEDataCtrl imDisGroupDataCtrl;
         String strDisGroupId = iIMRemoteActionContext.getParam("DISGROUPID", "");
         if (StringHelper.IsNullOrEmpty((String)strDisGroupId)) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u8ba8\u8bba\u7ec4\u6807\u8bc6");
@@ -1238,10 +1218,10 @@ implements IIMUserSessionInstance {
         imDisGroup.setIMDISGROUPID(strDisGroupId);
         CallResult callResult = null;
         if (this.imStateServerContext.isLocalMode()) {
-            imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
+            IDEDataCtrl imDisGroupDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0097", "SYSTEM", null);
             callResult = imDisGroupDataCtrl.Get(imDisGroup);
         } else {
-            imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imDisGroupDataCtrl = new IMRemoteDEDataCtrl();
             imDisGroupDataCtrl.Init("", "IM0097", "SYSTEM");
             callResult = imDisGroupDataCtrl.Get(imDisGroup);
         }
@@ -1255,7 +1235,7 @@ implements IIMUserSessionInstance {
         String strDGDetailId = StringHelper.Format((String)"%1$s_%2$s", (Object)strDisGroupId, (Object)strUserId);
         imDGDetail.setIMDISGRPDETAILID(strDGDetailId);
         if (this.imStateServerContext.isLocalMode()) {
-            imDisGroupDetailDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0096", "SYSTEM", null);
+            IDEDataCtrl imDisGroupDetailDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl("IM0096", "SYSTEM", null);
             if (imDisGroupDetailDataCtrl.CheckKeyState2(imDGDetail) == 1) {
                 imDGDetail.setIMDISGROUPID(strDisGroupId);
                 imDGDetail.setIMUSERID(strUserId);
@@ -1265,7 +1245,7 @@ implements IIMUserSessionInstance {
                 }
             }
         } else {
-            imDisGroupDetailDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imDisGroupDetailDataCtrl = new IMRemoteDEDataCtrl();
             imDisGroupDetailDataCtrl.Init("", "IM0096", "SYSTEM");
             imDGDetail.setIMDISGROUPID(strDisGroupId);
             imDGDetail.setIMUSERID(strUserId);
@@ -1343,4 +1323,3 @@ implements IIMUserSessionInstance {
         }
     }
 }
-

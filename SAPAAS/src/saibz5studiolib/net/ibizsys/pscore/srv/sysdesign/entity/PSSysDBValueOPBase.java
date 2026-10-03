@@ -1127,7 +1127,7 @@ implements Serializable {
                 PSDBValueOP pSDBValueOP = new PSDBValueOP();
                 pSDBValueOP.setPSDBValueOPId(this.getPSDBValueOPId());
                 PSDBValueOPService pSDBValueOPService = (PSDBValueOPService)ServiceGlobal.getService(PSDBValueOPService.class, (SessionFactory)this.getSessionFactory());
-                pSDBValueOPService.autoGet((IEntity)pSDBValueOP);
+                pSDBValueOPService.autoGet(pSDBValueOP);
                 this.psdbvalueop = pSDBValueOP;
             }
             return this.psdbvalueop;
@@ -1153,7 +1153,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

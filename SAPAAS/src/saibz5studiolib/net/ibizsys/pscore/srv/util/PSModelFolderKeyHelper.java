@@ -90,7 +90,7 @@ public class PSModelFolderKeyHelper {
                 DBCallResult dBCallResult;
                 do {
                     boolean bl;
-                    if (!(bl = pSModelSeqService.get((IEntity)pSModelSeq, true))) {
+                    if (!(bl = pSModelSeqService.get(pSModelSeq, true))) {
                         pSModelSeq.setPSModelSeqName(string);
                         pSModelSeq.setUserTag(pSSystem.getPSSystemId());
                         pSModelSeq.setSysRowKey(pSSystem.getSysRowKey());
@@ -98,11 +98,11 @@ public class PSModelFolderKeyHelper {
                         pSModelSeqService.create(pSModelSeq);
                         return pSModelSeq.getCurVal();
                     }
-                    errorException = new SqlParamList();
-                    errorException.add((Object)(pSModelSeq.getCurVal() + 1), 9);
-                    errorException.add((Object)string2, 25);
-                    errorException.add((Object)pSModelSeq.getCurVal(), 9);
-                    dBCallResult = pSModelSeqService.executeRaw(strSql, (SqlParamList)errorException);
+                    SqlParamList params = new SqlParamList();
+                    params.add((Object)(pSModelSeq.getCurVal() + 1), 9);
+                    params.add((Object)string2, 25);
+                    params.add((Object)pSModelSeq.getCurVal(), 9);
+                    dBCallResult = pSModelSeqService.executeRaw(strSql, params);
                     if (dBCallResult.isOk()) continue;
                     throw new Exception(StringHelper.format((String)"\u6267\u884cSQL\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)dBCallResult.getErrorInfo()));
                 } while (dBCallResult.getUpdateCount() == 0);
@@ -112,7 +112,6 @@ public class PSModelFolderKeyHelper {
                 if (exception instanceof ErrorException && (errorException = (ErrorException)((Object)exception)).getErrorCode() == 6) continue;
                 throw exception;
             }
-            break;
         }
     }
 
@@ -583,4 +582,3 @@ public class PSModelFolderKeyHelper {
         sysModelCatMap.put("PSWXACCOUNT", "UW");
     }
 }
-

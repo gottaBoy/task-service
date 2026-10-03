@@ -313,7 +313,13 @@ implements IPSLinkDEField {
                 return super.isDynaStorageDEField();
             }
         }
-        return this.getRealPSDEField().isDynaStorageDEField();
+        try {
+            return this.getRealPSDEField().isDynaStorageDEField();
+        }
+        catch (Exception ex) {
+            log.error((Object)ex);
+            return super.isDynaStorageDEField();
+        }
     }
 
     @Override
@@ -329,7 +335,13 @@ implements IPSLinkDEField {
                 return super.isUIAssistDEField();
             }
         }
-        return this.getRealPSDEField().isUIAssistDEField();
+        try {
+            return this.getRealPSDEField().isUIAssistDEField();
+        }
+        catch (Exception ex) {
+            log.error((Object)ex);
+            return super.isUIAssistDEField();
+        }
     }
 
     @Override

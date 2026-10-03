@@ -25,6 +25,7 @@ package net.ibizsys.pscore.srv.dedesign.demodel.psdeuawizard.dataset;
 
 import net.ibizsys.paas.core.DEDataSetCond;
 import net.ibizsys.paas.core.DEDataSetFetchContext;
+import net.ibizsys.paas.core.IDEDataSetCond;
 import net.ibizsys.paas.core.IDEDataSetFetchContext;
 import net.ibizsys.paas.db.DBFetchResult;
 import net.ibizsys.paas.db.IDataRow;
@@ -51,6 +52,7 @@ extends PSDEUAWizardValueFmtDSModelBase {
 
     public DBFetchResult fetchDEDataSet(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
         DEDataSetCond dEDataSetCond;
+        IDEDataSetCond quickSearchCondition;
         JSONObject jSONObject;
         if (WebContext.getCurrent() == null) {
             throw new Exception(StringHelper.format((String)"\u5f53\u524d\u8bf7\u6c42\u73af\u5883\u65e0\u6548"));
@@ -71,8 +73,8 @@ extends PSDEUAWizardValueFmtDSModelBase {
         PSVarSampleValueService pSVarSampleValueService = (PSVarSampleValueService)ServiceGlobal.getService(PSVarSampleValueService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         DEDataSetFetchContext dEDataSetFetchContext = new DEDataSetFetchContext();
         String string = WebContext.getFetchQuickSearch((IWebContext)WebContext.getCurrent());
-        if (!StringHelper.isNullOrEmpty((String)string) && (dEDataSetCond = pSVarSampleValueService.getDEModel().getFetchQuickSearchCondition(string)) != null) {
-            dEDataSetFetchContext.getConditionList().add(dEDataSetCond);
+        if (!StringHelper.isNullOrEmpty((String)string) && (quickSearchCondition = pSVarSampleValueService.getDEModel().getFetchQuickSearchCondition(string)) != null) {
+            dEDataSetFetchContext.getConditionList().add(quickSearchCondition);
         }
         dEDataSetCond = new DEDataSetCond();
         dEDataSetCond.setCondType("DEFIELD");
@@ -86,11 +88,11 @@ extends PSDEUAWizardValueFmtDSModelBase {
         dEDataSetCond.setDEFName("VARCAT");
         dEDataSetCond.setCondValue("FMT_JAVA");
         dEDataSetFetchContext.getConditionList().add(dEDataSetCond);
-        dEDataSetCond = pSVarSampleValueService.fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
-        if (dEDataSetCond.isError()) {
-            return dEDataSetCond;
+        DBFetchResult fetchResult = pSVarSampleValueService.fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
+        if (fetchResult.isError()) {
+            return fetchResult;
         }
-        IDataTable iDataTable = dEDataSetCond.getDataSet().getDataTable(0);
+        IDataTable iDataTable = fetchResult.getDataSet().getDataTable(0);
         int n = iDataTable.getCachedRowCount();
         if (n > 0) {
             simpleDataTableImpl.reset();
@@ -107,4 +109,3 @@ extends PSDEUAWizardValueFmtDSModelBase {
         return dBFetchResult;
     }
 }
-

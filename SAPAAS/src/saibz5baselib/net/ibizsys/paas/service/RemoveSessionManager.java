@@ -1,29 +1,44 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.service;
 
-import net.ibizsys.paas.service.RemoveSession;
-
+/**
+ * 删除会话管理类
+ * 
+ * @author lionlau
+ *
+ */
 @Deprecated
 public class RemoveSessionManager {
-    static ThreadLocal<RemoveSession> removeSession = new ThreadLocal();
+	static ThreadLocal<RemoveSession> removeSession = new ThreadLocal<RemoveSession>();
 
-    public static RemoveSession openSession() {
-        RemoveSession curentSession = removeSession.get();
-        if (curentSession == null) {
-            curentSession = new RemoveSession();
-            removeSession.set(curentSession);
-        }
-        return curentSession;
-    }
+	/**
+	 * 打开新会话
+	 * 
+	 * @return
+	 */
+	static public RemoveSession openSession() {
+		RemoveSession curentSession = removeSession.get();
+		if (curentSession == null) {
+			curentSession = new RemoveSession();
+			removeSession.set(curentSession);
+		}
+		return curentSession;
+	}
 
-    public static void closeSession() {
-        removeSession.set(null);
-    }
+	/**
+	 * 关闭当前会话
+	 * 
+	 * @return
+	 */
+	static public void closeSession() {
+		removeSession.set(null);
+	}
 
-    public static RemoveSession getCurrentSession() {
-        return removeSession.get();
-    }
+	/**
+	 * 获取当前会话
+	 * 
+	 * @return
+	 */
+	static public RemoveSession getCurrentSession() {
+		return removeSession.get();
+	}
 }
-

@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSFDLogicType> {
     }
 
     protected void onFillParentInfo(PSFDLogicType pSFDLogicType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSFDLogicType, string, string2, string3);
+        super.onFillParentInfo(pSFDLogicType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSFDLogicType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSFDLogicType, bl);
+        super.onFillEntityFullInfo(pSFDLogicType, bl);
     }
 
     protected void onWriteBackParent(PSFDLogicType pSFDLogicType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSFDLogicType, bl);
+        super.onWriteBackParent(pSFDLogicType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSFDLogicType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSFDLogicType pSFDLogicType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSFDLogicType, bl);
+        super.onRemoveEntityUncopyValues(pSFDLogicType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSFDLogicType pSFDLogicType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSFDLogicType> {
         if ((entityFieldError = this.onCheckField_PSFDLogicTypeName(bl, pSFDLogicType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSFDLogicType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSFDLogicType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ItemObj(boolean bl, PSFDLogicType pSFDLogicType, boolean bl2, boolean bl3) throws Exception {
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSFDLogicType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj_Default((IEntity)pSFDLogicType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj_Default(pSFDLogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSFDLogicType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSFDLogicType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSFDLogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSFDLogicType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSFDLogicTypeId_Default((IEntity)pSFDLogicType, bl2, bl3);
+            string2 = this.onTestValueRule_PSFDLogicTypeId_Default(pSFDLogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSFDLOGICTYPEID");
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSFDLogicType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSFDLogicTypeName_Default((IEntity)pSFDLogicType, bl2, bl3);
+            string2 = this.onTestValueRule_PSFDLogicTypeName_Default(pSFDLogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSFDLOGICTYPENAME");
@@ -259,11 +259,11 @@ extends PSCoreSysServiceBase<PSFDLogicType> {
     }
 
     protected void onSyncEntity(PSFDLogicType pSFDLogicType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSFDLogicType, bl);
+        super.onSyncEntity(pSFDLogicType, bl);
     }
 
     protected void onSyncIndexEntities(PSFDLogicType pSFDLogicType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSFDLogicType, bl);
+        super.onSyncIndexEntities(pSFDLogicType, bl);
     }
 
     public Object getDataContextValue(PSFDLogicType pSFDLogicType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -271,14 +271,14 @@ extends PSCoreSysServiceBase<PSFDLogicType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSFDLogicType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSFDLogicType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSFDLogicType pSFDLogicType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSFDLogicType, arrayList, n);
+        super.onExportMajorModel(pSFDLogicType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -391,14 +391,14 @@ extends PSCoreSysServiceBase<PSFDLogicType> {
 
     protected boolean onMergeChild(String string, String string2, PSFDLogicType pSFDLogicType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSFDLogicType)) {
+        if (super.onMergeChild(string, string2, pSFDLogicType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSFDLogicType pSFDLogicType) throws Exception {
-        super.onUpdateParent((IEntity)pSFDLogicType);
+        super.onUpdateParent(pSFDLogicType);
     }
 
     @Override

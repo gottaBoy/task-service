@@ -2546,7 +2546,7 @@ implements Serializable {
                 PSDEDataSet pSDEDataSet = new PSDEDataSet();
                 pSDEDataSet.setPSDEDataSetId(this.getPSDEDSId());
                 PSDEDataSetService pSDEDataSetService = (PSDEDataSetService)ServiceGlobal.getService(PSDEDataSetService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataSetService.autoGet((IEntity)pSDEDataSet);
+                pSDEDataSetService.autoGet(pSDEDataSet);
                 this.psdeds = pSDEDataSet;
             }
             return this.psdeds;
@@ -2572,7 +2572,7 @@ implements Serializable {
                 PSDEFSFItem pSDEFSFItem = new PSDEFSFItem();
                 pSDEFSFItem.setPSDEFSFItemId(this.getPSDEFSFItemId());
                 PSDEFSFItemService pSDEFSFItemService = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFSFItemService.autoGet((IEntity)pSDEFSFItem);
+                pSDEFSFItemService.autoGet(pSDEFSFItem);
                 this.psdefsfitem = pSDEFSFItem;
             }
             return this.psdefsfitem;
@@ -2598,7 +2598,7 @@ implements Serializable {
                 PSDEFValueRule pSDEFValueRule = new PSDEFValueRule();
                 pSDEFValueRule.setPSDEFValueRuleId(this.getPSDEFValueRuleId());
                 PSDEFValueRuleService pSDEFValueRuleService = (PSDEFValueRuleService)ServiceGlobal.getService(PSDEFValueRuleService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFValueRuleService.autoGet((IEntity)pSDEFValueRule);
+                pSDEFValueRuleService.autoGet(pSDEFValueRule);
                 this.psdefvaluerule = pSDEFValueRule;
             }
             return this.psdefvaluerule;
@@ -2624,7 +2624,7 @@ implements Serializable {
                 PSSysValueRule pSSysValueRule = new PSSysValueRule();
                 pSSysValueRule.setPSSysValueRuleId(this.getPSSysValueRuleId());
                 PSSysValueRuleService pSSysValueRuleService = (PSSysValueRuleService)ServiceGlobal.getService(PSSysValueRuleService.class, (SessionFactory)this.getSessionFactory());
-                pSSysValueRuleService.autoGet((IEntity)pSSysValueRule);
+                pSSysValueRuleService.autoGet(pSSysValueRule);
                 this.pssysvaluerule = pSSysValueRule;
             }
             return this.pssysvaluerule;

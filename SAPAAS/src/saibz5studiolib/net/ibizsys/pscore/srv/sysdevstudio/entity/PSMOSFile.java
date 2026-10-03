@@ -44,11 +44,11 @@ extends PSMOSFileBase {
     }
 
     public Map<String, Object> toDTOMap() throws Exception {
-        HashMap hashMap = new HashMap();
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
         this.fillMap(hashMap, true);
         HashMap<String, Object> hashMap2 = new HashMap<String, Object>();
-        for (Map.Entry object : hashMap.entrySet()) {
-            hashMap2.put(((String)object.getKey()).toLowerCase(), object.getValue());
+        for (Map.Entry<String, Object> entry : hashMap.entrySet()) {
+            hashMap2.put(entry.getKey().toLowerCase(), entry.getValue());
         }
         if (this.getPSMOSFiles() != null) {
             ArrayList arrayList = new ArrayList();

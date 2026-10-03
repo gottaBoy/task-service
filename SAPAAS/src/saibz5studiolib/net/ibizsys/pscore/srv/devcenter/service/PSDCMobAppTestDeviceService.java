@@ -43,7 +43,7 @@ extends PSDCMobAppTestDeviceServiceBase {
 
     @Override
     protected void onAfterUpdate(PSDCMobAppTestDevice pSDCMobAppTestDevice) throws Exception {
-        PSDCMobAppTestDevice pSDCMobAppTestDevice2 = (PSDCMobAppTestDevice)this.getLast((IEntity)pSDCMobAppTestDevice);
+        PSDCMobAppTestDevice pSDCMobAppTestDevice2 = (PSDCMobAppTestDevice)this.getLast(pSDCMobAppTestDevice);
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
             PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
             PSDevCenter pSDevCenter = new PSDevCenter();
@@ -56,7 +56,7 @@ extends PSDCMobAppTestDeviceServiceBase {
 
     @Override
     protected void onAfterRemove(PSDCMobAppTestDevice pSDCMobAppTestDevice) throws Exception {
-        PSDCMobAppTestDevice pSDCMobAppTestDevice2 = (PSDCMobAppTestDevice)this.getLast((IEntity)pSDCMobAppTestDevice);
+        PSDCMobAppTestDevice pSDCMobAppTestDevice2 = (PSDCMobAppTestDevice)this.getLast(pSDCMobAppTestDevice);
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
             PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
             PSDevCenter pSDevCenter = new PSDevCenter();

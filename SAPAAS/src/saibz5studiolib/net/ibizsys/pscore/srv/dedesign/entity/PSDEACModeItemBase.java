@@ -2330,7 +2330,7 @@ implements Serializable {
                 PSCodeList pSCodeList = new PSCodeList();
                 pSCodeList.setPSCodeListId(this.getPSCodeListId());
                 PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.getSessionFactory());
-                pSCodeListService.autoGet((IEntity)pSCodeList);
+                pSCodeListService.autoGet(pSCodeList);
                 this.pscodelist = pSCodeList;
             }
             return this.pscodelist;
@@ -2356,7 +2356,7 @@ implements Serializable {
                 PSDEACMode pSDEACMode = new PSDEACMode();
                 pSDEACMode.setPSDEACModeId(this.getPSDEACModeId());
                 PSDEACModeService pSDEACModeService = (PSDEACModeService)ServiceGlobal.getService(PSDEACModeService.class, (SessionFactory)this.getSessionFactory());
-                pSDEACModeService.autoGet((IEntity)pSDEACMode);
+                pSDEACModeService.autoGet(pSDEACMode);
                 this.psdeacmode = pSDEACMode;
             }
             return this.psdeacmode;
@@ -2382,7 +2382,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.psdef = pSDEField;
             }
             return this.psdef;
@@ -2408,7 +2408,7 @@ implements Serializable {
                 PSLanguageRes pSLanguageRes = new PSLanguageRes();
                 pSLanguageRes.setPSLanguageResId(this.getCapPSLanResId());
                 PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
-                pSLanguageResService.autoGet((IEntity)pSLanguageRes);
+                pSLanguageResService.autoGet(pSLanguageRes);
                 this.cappslanres = pSLanguageRes;
             }
             return this.cappslanres;

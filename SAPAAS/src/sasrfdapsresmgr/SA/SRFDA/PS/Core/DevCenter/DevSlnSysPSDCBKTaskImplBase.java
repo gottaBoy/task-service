@@ -43,7 +43,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
 import net.ibizsys.pscore.srv.Version;
@@ -128,7 +127,7 @@ extends PSSysRunSessionDCBKTaskImplBase {
             psSysModelVer.setDBType(psSysModelInst.getDBType());
             psSysModelVer.setSysType("DEVSYS");
             psSysModelVer.setModelVer(Integer.valueOf(nTargetVer));
-            if (!psSysModelVerService.select((IEntity)psSysModelVer, true)) {
+            if (!psSysModelVerService.select(psSysModelVer, true)) {
                 throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e\u5e93\u6a21\u578b\u7248\u672c[%1$s]", (Object)nTargetVer));
             }
             int nCurModelVer = DataObject.getIntegerValue((Object)nCurVersion, (Integer)psSysModelInst.getModelVer());
@@ -142,7 +141,7 @@ extends PSSysRunSessionDCBKTaskImplBase {
             curPSSysModelVer.setDBType(psSysModelInst.getDBType());
             curPSSysModelVer.setModelVer(Integer.valueOf(nCurModelVer));
             curPSSysModelVer.setSysType("DEVSYS");
-            if (!psSysModelVerService.select((IEntity)curPSSysModelVer, true)) {
+            if (!psSysModelVerService.select(curPSSysModelVer, true)) {
                 log.warn((Object)StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b\u7248\u672c[%1$s][%2$s]", (Object)psSysModelInst.getDBType(), (Object)nCurModelVer));
                 curPSSysModelVer = null;
             }
@@ -234,7 +233,7 @@ extends PSSysRunSessionDCBKTaskImplBase {
         PSSysModelInst psSysModelInst3 = new PSSysModelInst();
         psSysModelInst3.setPSSysModelInstId(psSysModelInst.getPSSysModelInstId());
         psSysModelInst3.setModelVer(psSysModelVer.getModelVer());
-        psSysModelInstService.update((IEntity)psSysModelInst3, false);
+        psSysModelInstService.update(psSysModelInst3, false);
         this.sendStudioConsole(null, "INFO", StringHelper.Format((String)"\u6a21\u578b\u4ed3\u5e93\u5f53\u524d\u7248\u672c[%1$s]\uff0c\u5347\u7ea7\u5b8c\u6210", (Object)psSysModelVer.getModelVer()));
     }
 
@@ -366,4 +365,3 @@ extends PSSysRunSessionDCBKTaskImplBase {
         return file;
     }
 }
-

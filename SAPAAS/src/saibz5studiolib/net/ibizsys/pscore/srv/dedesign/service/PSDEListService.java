@@ -84,7 +84,7 @@ implements IPSModelService<PSDEList> {
     protected void initDefaultMobList(PSDataEntity pSDataEntity) throws Exception {
         PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
         String string = null;
-        boolean bl = this.isEnableFolderKey((IEntity)pSDataEntity);
+        boolean bl = this.isEnableFolderKey(pSDataEntity);
         string = bl ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_MOBDEFAULT) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"MOB");
         PSDEList pSDEList = new PSDEList();
         pSDEList.setPSDEListId(string);
@@ -92,7 +92,7 @@ implements IPSModelService<PSDEList> {
             pSDEList.reset();
             pSDEList.setPSDEId(pSDataEntity.getPSDataEntityId());
             pSDEList.setCodeName("Mob");
-            if (this.selectOne((IEntity)pSDEList, true)) {
+            if (this.selectOne(pSDEList, true)) {
                 return;
             }
             pSDEList.reset();
@@ -114,7 +114,7 @@ implements IPSModelService<PSDEList> {
     protected void initMobIndexDEList(PSDataEntity pSDataEntity) throws Exception {
         PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
         String string = null;
-        boolean bl = this.isEnableFolderKey((IEntity)pSDataEntity);
+        boolean bl = this.isEnableFolderKey(pSDataEntity);
         string = bl ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_MOBINDEXTYPE) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"INDEXDETYPE", (String)pSDataEntity.getIndexDEType(), (String)"MOB");
         PSDEList pSDEList = new PSDEList();
         pSDEList.setPSDEListId(string);
@@ -122,7 +122,7 @@ implements IPSModelService<PSDEList> {
             pSDEList.reset();
             pSDEList.setPSDEId(pSDataEntity.getPSDataEntityId());
             pSDEList.setCodeName("MobIndexType");
-            if (this.selectOne((IEntity)pSDEList, true)) {
+            if (this.selectOne(pSDEList, true)) {
                 return;
             }
             pSDEList.reset();
@@ -145,7 +145,7 @@ implements IPSModelService<PSDEList> {
     protected void initMobMultiFormList(PSDataEntity pSDataEntity) throws Exception {
         PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
         String string = null;
-        boolean bl = this.isEnableFolderKey((IEntity)pSDataEntity);
+        boolean bl = this.isEnableFolderKey(pSDataEntity);
         string = bl ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_MOBFORMTYPE) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"FORMTYPE", (String)"", (String)"MOB");
         PSDEList pSDEList = new PSDEList();
         pSDEList.setPSDEListId(string);
@@ -153,7 +153,7 @@ implements IPSModelService<PSDEList> {
             pSDEList.reset();
             pSDEList.setPSDEId(pSDataEntity.getPSDataEntityId());
             pSDEList.setCodeName("MobFormType");
-            if (this.selectOne((IEntity)pSDEList, true)) {
+            if (this.selectOne(pSDEList, true)) {
                 return;
             }
             pSDEList.reset();
@@ -222,7 +222,7 @@ implements IPSModelService<PSDEList> {
 
     @Override
     public void getDraftWithModel(PSDEList pSDEList) throws Exception {
-        this.getDraftTempMajor((IEntity)pSDEList);
+        this.getDraftTempMajor(pSDEList);
         pSDEList.setListModel(this.getListModel(pSDEList));
     }
 
@@ -231,7 +231,7 @@ implements IPSModelService<PSDEList> {
         if (!KeyValueHelper.isTempKey((String)pSDEList.getPSDEListId())) {
             this.getTempMajor(pSDEList);
         } else {
-            this.getTemp((IEntity)pSDEList);
+            this.getTemp(pSDEList);
         }
         pSDEList.setListModel(this.getListModel(pSDEList));
     }
@@ -260,7 +260,6 @@ implements IPSModelService<PSDEList> {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEListItem pSDEListItem2;
                 PSDEListItemService pSDEListItemService = (PSDEListItemService)ServiceGlobal.getService((String)PSDEListItemService.class.getCanonicalName(), (SessionFactory)PSDEListService.this.getSessionFactory());
                 ArrayList<PSDEListItem> arrayList = pSDEListItemService.selectTempByPSDEList(pSDEList2);
                 HashMap<String, PSDEListItem> hashMap = new HashMap<String, PSDEListItem>();
@@ -268,21 +267,21 @@ implements IPSModelService<PSDEList> {
                     hashMap.put(pSDEListItem2.getPSDEListItemId(), pSDEListItem2);
                 }
                 String string = pSDEList2.getListModel();
-                pSDEListItem2 = XmlNode.loadFromXML((String)string);
-                if (pSDEListItem2 != null) {
-                    pSDEListItem2.setAttribute("PSDEID", pSDEList2.getPSDEId());
-                    pSDEListItem2.setAttribute("PSDELISTID", pSDEList2.getPSDEListId());
-                    PSDEListService.this.updatePSDEListModel(pSDEList2, (XmlNode)pSDEListItem2, hashMap);
-                    pSDEList2.setListModel(XmlNode.export((XmlNode)pSDEListItem2));
+                XmlNode listModel = XmlNode.loadFromXML(string);
+                if (listModel != null) {
+                    listModel.setAttribute("PSDEID", pSDEList2.getPSDEId());
+                    listModel.setAttribute("PSDELISTID", pSDEList2.getPSDEListId());
+                    PSDEListService.this.updatePSDEListModel(pSDEList2, listModel, hashMap);
+                    pSDEList2.setListModel(XmlNode.export(listModel));
                 } else {
                     pSDEList2.setListModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEListItem pSDEListItem3 : hashMap.values()) {
-                        pSDEListItemService.removeTemp((IEntity)pSDEListItem3);
+                        pSDEListItemService.removeTemp(pSDEListItem3);
                     }
                 }
-                PSDEListService.this.createTempMajor((IEntity)pSDEList2);
+                PSDEListService.this.createTempMajor(pSDEList2);
             }
         });
     }
@@ -295,30 +294,25 @@ implements IPSModelService<PSDEList> {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEListItem pSDEListItem;
-                Object object = null;
                 PSDEListItemService pSDEListItemService = (PSDEListItemService)ServiceGlobal.getService((String)PSDEListItemService.class.getCanonicalName(), (SessionFactory)PSDEListService.this.getSessionFactory());
                 ArrayList<PSDEListItem> arrayList = pSDEListItemService.selectTempByPSDEList(pSDEList2, "ORDER BY ORDERVALUE");
                 HashMap<String, PSDEListItem> hashMap = new HashMap<String, PSDEListItem>();
-                Object object2 = arrayList.iterator();
-                while (object2.hasNext()) {
-                    pSDEListItem = object2.next();
+                for (PSDEListItem pSDEListItem : arrayList) {
                     hashMap.put(pSDEListItem.getPSDEListItemId(), pSDEListItem);
                 }
-                object = object2 = pSDEList2.getListModel();
-                pSDEListItem = XmlNode.loadFromXML((String)object2);
-                if (pSDEListItem != null) {
-                    pSDEListItem.setAttribute("PSDEID", pSDEList2.getPSDEId());
-                    pSDEListItem.setAttribute("PSDELISTID", pSDEList2.getPSDEListId());
-                    PSDEListService.this.updatePSDEListModel(pSDEList2, (XmlNode)pSDEListItem, hashMap);
-                    pSDEList2.setListModel(XmlNode.export((XmlNode)pSDEListItem));
+                XmlNode listModel = XmlNode.loadFromXML(pSDEList2.getListModel());
+                if (listModel != null) {
+                    listModel.setAttribute("PSDEID", pSDEList2.getPSDEId());
+                    listModel.setAttribute("PSDELISTID", pSDEList2.getPSDEListId());
+                    PSDEListService.this.updatePSDEListModel(pSDEList2, listModel, hashMap);
+                    pSDEList2.setListModel(XmlNode.export(listModel));
                 } else {
                     pSDEList2.setListModel(null);
                 }
                 boolean bl = false;
                 if (hashMap.size() > 0) {
                     for (PSDEListItem pSDEListItem2 : hashMap.values()) {
-                        pSDEListItemService.removeTemp((IEntity)pSDEListItem2);
+                        pSDEListItemService.removeTemp(pSDEListItem2);
                         bl = true;
                     }
                 }
@@ -330,7 +324,7 @@ implements IPSModelService<PSDEList> {
     protected void updatePSDEListModel(PSDEList pSDEList, XmlNode xmlNode, HashMap<String, PSDEListItem> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSDEListItemService pSDEListItemService = (PSDEListItemService)ServiceGlobal.getService((String)PSDEListItemService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             HashMap<String, Integer> hashMap2 = new HashMap<String, Integer>();
             while (iterator.hasNext()) {
@@ -358,7 +352,7 @@ implements IPSModelService<PSDEList> {
                     bl = true;
                 }
                 if (bl) {
-                    pSDEListItemService.updateTemp((IEntity)pSDEListItem);
+                    pSDEListItemService.updateTemp(pSDEListItem);
                 }
                 xmlNode2.resetAttributes();
                 pSDEListItem.fillXmlNode(xmlNode2, false);
@@ -377,4 +371,3 @@ implements IPSModelService<PSDEList> {
         pSDEList.setListModel(this.getListModel(pSDEList));
     }
 }
-

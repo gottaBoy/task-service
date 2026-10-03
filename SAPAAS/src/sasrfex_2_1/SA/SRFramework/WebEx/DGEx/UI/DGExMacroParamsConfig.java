@@ -29,12 +29,11 @@ extends XMLCollectionExConfig<DGExMacroParamConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = DGExMacroParamsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((DGExMacroParamConfig)childNode))) {
-                this.add((Object)((DGExMacroParamConfig)childNode));
+            if (this.OnChildNodeLoaded((DGExMacroParamConfig)childNode)) {
+                this.add((DGExMacroParamConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

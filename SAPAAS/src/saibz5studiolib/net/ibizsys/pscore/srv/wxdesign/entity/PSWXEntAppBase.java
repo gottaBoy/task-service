@@ -2408,7 +2408,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;
@@ -2434,7 +2434,7 @@ implements Serializable {
                 PSSysResource pSSysResource = new PSSysResource();
                 pSSysResource.setPSSysResourceId(this.getPSSysResourceId());
                 PSSysResourceService pSSysResourceService = (PSSysResourceService)ServiceGlobal.getService(PSSysResourceService.class, (SessionFactory)this.getSessionFactory());
-                pSSysResourceService.autoGet((IEntity)pSSysResource);
+                pSSysResourceService.autoGet(pSSysResource);
                 this.pssysresource = pSSysResource;
             }
             return this.pssysresource;
@@ -2460,7 +2460,7 @@ implements Serializable {
                 PSSysSFPlugin pSSysSFPlugin = new PSSysSFPlugin();
                 pSSysSFPlugin.setPSSysSFPluginId(this.getPSSysSFPluginId());
                 PSSysSFPluginService pSSysSFPluginService = (PSSysSFPluginService)ServiceGlobal.getService(PSSysSFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPluginService.autoGet((IEntity)pSSysSFPlugin);
+                pSSysSFPluginService.autoGet(pSSysSFPlugin);
                 this.pssyssfplugin = pSSysSFPlugin;
             }
             return this.pssyssfplugin;
@@ -2486,7 +2486,7 @@ implements Serializable {
                 PSWXAccount pSWXAccount = new PSWXAccount();
                 pSWXAccount.setPSWXAccountId(this.getPSWXAccountId());
                 PSWXAccountService pSWXAccountService = (PSWXAccountService)ServiceGlobal.getService(PSWXAccountService.class, (SessionFactory)this.getSessionFactory());
-                pSWXAccountService.autoGet((IEntity)pSWXAccount);
+                pSWXAccountService.autoGet(pSWXAccount);
                 this.pswxaccount = pSWXAccount;
             }
             return this.pswxaccount;

@@ -121,7 +121,7 @@ implements IPSAppPVPartService {
     @Override
     protected List<PSAppPVPart> onListAll() throws Exception {
         ArrayList<PSAppPVPart> list = new ArrayList<PSAppPVPart>();
-        List psappportalviews = PSModelServiceUtil.getInstance().getPSAppPortalViewService().listAll();
+        List<PSAppPortalView> psappportalviews = PSModelServiceUtil.getInstance().getPSAppPortalViewService().listAll();
         if (psappportalviews != null) {
             for (PSAppPortalView parent : psappportalviews) {
                 List<PSAppPVPart> items = this.listByPSAppPortalView(parent);

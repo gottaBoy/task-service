@@ -1,26 +1,53 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="87f5acf6e2c3b136d0280133a42f2890", name="\u8868\u5355\u5d4c\u5165\u8868\u683c\u5de5\u5177\u680f\u80fd\u529b", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="INSERT", text="\u65b0\u5efa", realtext="\u65b0\u5efa"), @CodeItem(value="UPDATE", text="\u66f4\u65b0", realtext="\u66f4\u65b0"), @CodeItem(value="DELETE", text="\u5220\u9664", realtext="\u5220\u9664"), @CodeItem(value="ROWEDIT", text="\u542f\u7528\u884c\u7f16\u8f91", realtext="\u542f\u7528\u884c\u7f16\u8f91")})
-public abstract class CodeList77CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String INSERT = "INSERT";
-    public static final String UPDATE = "UPDATE";
-    public static final String DELETE = "DELETE";
-    public static final String ROWEDIT = "ROWEDIT";
+
+@CodeList(id="87f5acf6e2c3b136d0280133a42f2890",name="表单嵌入表格工具栏能力",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="INSERT",text="新建",realtext="新建" )
+    ,@CodeItem(value="UPDATE",text="更新",realtext="更新" )
+    ,@CodeItem(value="DELETE",text="删除",realtext="删除" )
+    ,@CodeItem(value="ROWEDIT",text="启用行编辑",realtext="启用行编辑" )
+})
+
+
+/**
+ * 静态代码表[表单嵌入表格工具栏能力]模型基类
+ */
+public abstract class CodeList77CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  新建
+     */
+    public final static String INSERT = "INSERT";
+    /**
+     *  更新
+     */
+    public final static String UPDATE = "UPDATE";
+    /**
+     *  删除
+     */
+    public final static String DELETE = "DELETE";
+    /**
+     *  启用行编辑
+     */
+    public final static String ROWEDIT = "ROWEDIT";
+
 
     public CodeList77CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList77CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList77CodeListModel", this);
     }
-}
 
+}

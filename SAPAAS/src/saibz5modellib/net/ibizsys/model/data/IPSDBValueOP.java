@@ -1,14 +1,32 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.data;
 
 import net.ibizsys.model.core.IPSModelObject;
 
-public interface IPSDBValueOP
-extends IPSModelObject {
-    public String getCaption(boolean var1, String var2);
 
-    public String getSimpleName();
+/**
+ * 数据库值操作符号对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDBValueOP extends IPSModelObject
+{
+	
+	
+	
+	/**
+	 * 获取标题
+	 * @param bSimpleMode
+	 * @param strLanguage
+	 * @return
+	 */
+	String getCaption(boolean bSimpleMode,String strLanguage);
+	
+	
+	
+	/**
+	 * 获取简单名称
+	 * @return
+	 */
+	String getSimpleName();
+
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDESysProcDEModelBase;
 
 public class PSDESysProcDEModel
 extends PSDESysProcDEModelBase {
+
+    public PSDESysProcDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

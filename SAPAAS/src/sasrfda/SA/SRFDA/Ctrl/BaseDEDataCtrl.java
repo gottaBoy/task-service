@@ -630,7 +630,7 @@ implements IDEDataCtrl {
     public CallResult Remove(String strActionMode, BaseDataEntity dataEntity, TreeMap<String, Boolean> deleteMap) {
         TreeMap<String, Boolean> deleteMap2;
         String strNewActionMode;
-        Object iDEDCEngine;
+        IDEDataCtrlEngine iDEDCEngine;
         Vector<DEDataCtrl> dedcs;
         TreeMap<String, Boolean> deleteMap22;
         String strNewActionMode2;
@@ -688,7 +688,7 @@ implements IDEDataCtrl {
                         return callResult;
                     }
                     callResult = iDEDCEngine.BeforeRemove(dedc, dataEntity, strActionMode);
-                    this.ReleaseDEDataCtrlEngine(dedc.getDEDCOBJECT(), (IDEDataCtrlEngine)iDEDCEngine);
+                    this.ReleaseDEDataCtrlEngine(dedc.getDEDCOBJECT(), iDEDCEngine);
                     if (!callResult.IsError()) continue;
                     return callResult;
                 }
@@ -801,7 +801,7 @@ implements IDEDataCtrl {
                         return callResult;
                     }
                     callResult = iDEDCEngine.AfterRemove(dedc, dataEntity, strActionMode);
-                    this.ReleaseDEDataCtrlEngine(dedc.getDEDCOBJECT(), (IDEDataCtrlEngine)iDEDCEngine);
+                    this.ReleaseDEDataCtrlEngine(dedc.getDEDCOBJECT(), iDEDCEngine);
                     if (!callResult.IsError()) continue;
                     return callResult;
                 }
@@ -4104,4 +4104,3 @@ implements IDEDataCtrl {
     void RemoveUnsafeContent(BaseDataEntity baseDataEntity) throws Exception {
     }
 }
-

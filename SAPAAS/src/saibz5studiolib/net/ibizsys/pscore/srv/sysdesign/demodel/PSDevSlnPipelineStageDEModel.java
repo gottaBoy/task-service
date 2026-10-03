@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSDevSlnPipelineStageDEModelBase
 
 public class PSDevSlnPipelineStageDEModel
 extends PSDevSlnPipelineStageDEModelBase {
+
+    public PSDevSlnPipelineStageDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

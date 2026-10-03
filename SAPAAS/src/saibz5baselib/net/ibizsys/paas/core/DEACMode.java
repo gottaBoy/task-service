@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import java.lang.annotation.Documented;
@@ -8,18 +5,44 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
 import net.ibizsys.paas.data.DataItem;
 
-@Target(value={ElementType.TYPE})
-@Retention(value=RetentionPolicy.RUNTIME)
+/**
+ * 实体自填模式注解
+ * 
+ * @author Administrator
+ *
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DEACMode {
-    public String id() default "";
+	/**
+	 * 实体自动填充标识
+	 * 
+	 * @return
+	 */
+	String id() default "";
 
-    public String name() default "";
+	/**
+	 * 实体自动填充名称
+	 * 
+	 * @return
+	 */
+	String name() default "";
 
-    public DataItem[] dataitems();
+	/**
+	 * 数据项集合
+	 * 
+	 * @return
+	 */
+	DataItem[] dataitems();
 
-    public boolean defaultmode() default false;
+	/**
+	 * 默认模式
+	 * 
+	 * @return
+	 */
+	boolean defaultmode() default false;
 }
-

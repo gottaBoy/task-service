@@ -137,14 +137,14 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_PSDEF(pSDEFGridCol, pSDEField);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEFGridCol, string, string2, string3);
+        super.onFillParentInfo(pSDEFGridCol, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -160,7 +160,7 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEFGridCol, bl);
+        super.onFillEntityFullInfo(pSDEFGridCol, bl);
         this.onFillEntityFullInfo_PSDEF(pSDEFGridCol, bl);
     }
 
@@ -178,7 +178,7 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
     }
 
     protected void onWriteBackParent(PSDEFGridCol pSDEFGridCol, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEFGridCol, bl);
+        super.onWriteBackParent(pSDEFGridCol, bl);
     }
 
     public ArrayList<PSDEFGridCol> selectByPSDEF(PSDEFieldBase pSDEFieldBase) throws Exception {
@@ -209,8 +209,8 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
         ArrayList<PSDEFGridCol> arrayList = this.selectByPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFGRIDCOL_PSDEFIELD_PSDEFID", "", iDataEntityModel.getName(), "PSDEFGRIDCOL", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFGRIDCOL_PSDEFIELD_PSDEFID", "", iDataEntityModel.getName(), "PSDEFGRIDCOL", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -243,7 +243,7 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
         ArrayList<PSDEFGridCol> arrayList = this.selectByPSDEF(pSDEField);
         this.onBeforeRemoveByPSDEF(pSDEField, arrayList);
         for (PSDEFGridCol pSDEFGridCol : arrayList) {
-            this.remove((IEntity)pSDEFGridCol);
+            this.remove(pSDEFGridCol);
         }
         this.onAfterRemoveByPSDEF(pSDEField, arrayList);
     }
@@ -264,14 +264,14 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
 
     protected void replaceParentInfo(PSDEFGridCol pSDEFGridCol, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEFGridCol, cloneSession);
+        super.replaceParentInfo(pSDEFGridCol, cloneSession);
         if (pSDEFGridCol.getPSDEFId() != null && (iEntity = cloneSession.getEntity("PSDEFIELD", (Object)pSDEFGridCol.getPSDEFId())) != null) {
             this.onFillParentInfo_PSDEF(pSDEFGridCol, (PSDEField)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDEFGridCol pSDEFGridCol, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEFGridCol, bl);
+        super.onRemoveEntityUncopyValues(pSDEFGridCol, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEFGridCol pSDEFGridCol, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -301,7 +301,7 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
         if ((entityFieldError = this.onCheckField_Width(bl, pSDEFGridCol, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEFGridCol, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEFGridCol, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_GCMode(boolean bl, PSDEFGridCol pSDEFGridCol, boolean bl2, boolean bl3) throws Exception {
@@ -317,7 +317,7 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GCMode_Default((IEntity)pSDEFGridCol, bl2, bl3);
+            string2 = this.onTestValueRule_GCMode_Default(pSDEFGridCol, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GCMODE");
@@ -339,7 +339,7 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEFGridCol, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEFGridCol, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -364,7 +364,7 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFGridColId_Default((IEntity)pSDEFGridCol, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFGridColId_Default(pSDEFGridCol, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFGRIDCOLID");
@@ -389,7 +389,7 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFGridColName_Default((IEntity)pSDEFGridCol, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFGridColName_Default(pSDEFGridCol, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFGRIDCOLNAME");
@@ -414,7 +414,7 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFId_Default((IEntity)pSDEFGridCol, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFId_Default(pSDEFGridCol, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFID");
@@ -439,7 +439,7 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFName_Default((IEntity)pSDEFGridCol, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFName_Default(pSDEFGridCol, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFNAME");
@@ -461,7 +461,7 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserParams_Default((IEntity)pSDEFGridCol, bl2, bl3);
+            string2 = this.onTestValueRule_UserParams_Default(pSDEFGridCol, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERPARAMS");
@@ -486,7 +486,7 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_Width_Default((IEntity)pSDEFGridCol, bl2, bl3);
+            string = this.onTestValueRule_Width_Default(pSDEFGridCol, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIDTH");
@@ -499,11 +499,11 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
     }
 
     protected void onSyncEntity(PSDEFGridCol pSDEFGridCol, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEFGridCol, bl);
+        super.onSyncEntity(pSDEFGridCol, bl);
     }
 
     protected void onSyncIndexEntities(PSDEFGridCol pSDEFGridCol, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEFGridCol, bl);
+        super.onSyncIndexEntities(pSDEFGridCol, bl);
     }
 
     public Object getDataContextValue(PSDEFGridCol pSDEFGridCol, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -511,14 +511,14 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEFGridCol, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEFGridCol, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEFGridCol pSDEFGridCol, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEFGridCol, arrayList, n);
+        super.onExportMajorModel(pSDEFGridCol, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -683,14 +683,14 @@ extends PSCoreSysServiceBase<PSDEFGridCol> {
 
     protected boolean onMergeChild(String string, String string2, PSDEFGridCol pSDEFGridCol) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEFGridCol)) {
+        if (super.onMergeChild(string, string2, pSDEFGridCol)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEFGridCol pSDEFGridCol) throws Exception {
-        super.onUpdateParent((IEntity)pSDEFGridCol);
+        super.onUpdateParent(pSDEFGridCol);
     }
 
     @Override

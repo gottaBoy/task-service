@@ -30,7 +30,7 @@ extends PSDELogicParamServiceBase {
             pSDELogicParam.setPSDELogicParamId(pSDELogicParam.getPSDELogicId());
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)pSDELogicParam, bl);
+        return super.onFillEntityKeyValue(pSDELogicParam, bl);
     }
 
     @Override

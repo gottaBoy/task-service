@@ -4119,7 +4119,7 @@ implements Serializable {
                 PSSubSysSADE pSSubSysSADE = new PSSubSysSADE();
                 pSSubSysSADE.setPSSubSysSADEId(this.getInPSSubSysSADEId());
                 PSSubSysSADEService pSSubSysSADEService = (PSSubSysSADEService)ServiceGlobal.getService(PSSubSysSADEService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysSADEService.autoGet((IEntity)pSSubSysSADE);
+                pSSubSysSADEService.autoGet(pSSubSysSADE);
                 this.inpssubsyssade = pSSubSysSADE;
             }
             return this.inpssubsyssade;
@@ -4145,7 +4145,7 @@ implements Serializable {
                 PSSubSysSADE pSSubSysSADE = new PSSubSysSADE();
                 pSSubSysSADE.setPSSubSysSADEId(this.getOutPSSubSysSADEId());
                 PSSubSysSADEService pSSubSysSADEService = (PSSubSysSADEService)ServiceGlobal.getService(PSSubSysSADEService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysSADEService.autoGet((IEntity)pSSubSysSADE);
+                pSSubSysSADEService.autoGet(pSSubSysSADE);
                 this.outpssubsyssade = pSSubSysSADE;
             }
             return this.outpssubsyssade;
@@ -4171,7 +4171,7 @@ implements Serializable {
                 PSSubSysSADE pSSubSysSADE = new PSSubSysSADE();
                 pSSubSysSADE.setPSSubSysSADEId(this.getPSSubSysSADEId());
                 PSSubSysSADEService pSSubSysSADEService = (PSSubSysSADEService)ServiceGlobal.getService(PSSubSysSADEService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysSADEService.autoGet((IEntity)pSSubSysSADE);
+                pSSubSysSADEService.autoGet(pSSubSysSADE);
                 this.pssubsyssade = pSSubSysSADE;
             }
             return this.pssubsyssade;
@@ -4197,7 +4197,7 @@ implements Serializable {
                 PSSubSysSADE pSSubSysSADE = new PSSubSysSADE();
                 pSSubSysSADE.setPSSubSysSADEId(this.getRetPSSubSysSADEId());
                 PSSubSysSADEService pSSubSysSADEService = (PSSubSysSADEService)ServiceGlobal.getService(PSSubSysSADEService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysSADEService.autoGet((IEntity)pSSubSysSADE);
+                pSSubSysSADEService.autoGet(pSSubSysSADE);
                 this.retpssubsyssade = pSSubSysSADE;
             }
             return this.retpssubsyssade;
@@ -4223,7 +4223,7 @@ implements Serializable {
                 PSSubSysServiceAPI pSSubSysServiceAPI = new PSSubSysServiceAPI();
                 pSSubSysServiceAPI.setPSSubSysServiceAPIId(this.getPSSubSysServiceAPIId());
                 PSSubSysServiceAPIService pSSubSysServiceAPIService = (PSSubSysServiceAPIService)ServiceGlobal.getService(PSSubSysServiceAPIService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysServiceAPIService.autoGet((IEntity)pSSubSysServiceAPI);
+                pSSubSysServiceAPIService.autoGet(pSSubSysServiceAPI);
                 this.pssubsysserviceapi = pSSubSysServiceAPI;
             }
             return this.pssubsysserviceapi;
@@ -4249,7 +4249,7 @@ implements Serializable {
                 PSSysDynaModel pSSysDynaModel = new PSSysDynaModel();
                 pSSysDynaModel.setPSSysDynaModelId(this.getInPSSysDynaModelId());
                 PSSysDynaModelService pSSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDynaModelService.autoGet((IEntity)pSSysDynaModel);
+                pSSysDynaModelService.autoGet(pSSysDynaModel);
                 this.inpssysdynamodel = pSSysDynaModel;
             }
             return this.inpssysdynamodel;
@@ -4275,7 +4275,7 @@ implements Serializable {
                 PSSysDynaModel pSSysDynaModel = new PSSysDynaModel();
                 pSSysDynaModel.setPSSysDynaModelId(this.getOutPSSysDynaModelId());
                 PSSysDynaModelService pSSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDynaModelService.autoGet((IEntity)pSSysDynaModel);
+                pSSysDynaModelService.autoGet(pSSysDynaModel);
                 this.outpssysdynamodel = pSSysDynaModel;
             }
             return this.outpssysdynamodel;
@@ -4301,7 +4301,7 @@ implements Serializable {
                 PSSysSFPlugin pSSysSFPlugin = new PSSysSFPlugin();
                 pSSysSFPlugin.setPSSysSFPluginId(this.getPSSysSFPluginId());
                 PSSysSFPluginService pSSysSFPluginService = (PSSysSFPluginService)ServiceGlobal.getService(PSSysSFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPluginService.autoGet((IEntity)pSSysSFPlugin);
+                pSSysSFPluginService.autoGet(pSSysSFPlugin);
                 this.pssyssfplugin = pSSysSFPlugin;
             }
             return this.pssyssfplugin;
@@ -4323,7 +4323,7 @@ implements Serializable {
         Integer n = this.objPSSubSysSADetailParamsLock;
         synchronized (n) {
             if (this.pssubsyssadetailparams == null) {
-                this.pssubsyssadetailparams = pSSubSysSADetailService.isTempData((IEntity)this) ? pSSubSysSADetailParamService.selectTempByPSSubSysSADetail(this) : pSSubSysSADetailParamService.selectByPSSubSysSADetail(this);
+                this.pssubsyssadetailparams = pSSubSysSADetailService.isTempData(this) ? pSSubSysSADetailParamService.selectTempByPSSubSysSADetail(this) : pSSubSysSADetailParamService.selectByPSSubSysSADetail(this);
             }
             return this.pssubsyssadetailparams;
         }

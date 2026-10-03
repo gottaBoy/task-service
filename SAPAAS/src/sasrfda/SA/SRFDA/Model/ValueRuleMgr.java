@@ -50,8 +50,8 @@ extends XMLCollectionExConfig<ValueRuleConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = ValueRuleMgr.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((ValueRuleConfig)childNode))) {
-                this.add((Object)((ValueRuleConfig)childNode));
+            if (this.OnChildNodeLoaded((ValueRuleConfig)childNode)) {
+                this.add((ValueRuleConfig)childNode);
                 return;
             }
         }

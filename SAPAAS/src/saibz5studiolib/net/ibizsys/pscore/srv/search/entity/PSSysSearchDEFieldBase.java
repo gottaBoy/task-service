@@ -2410,7 +2410,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.psdef = pSDEField;
             }
             return this.psdef;
@@ -2436,7 +2436,7 @@ implements Serializable {
                 PSSysSearchDE pSSysSearchDE = new PSSysSearchDE();
                 pSSysSearchDE.setPSSysSearchDEId(this.getPSSysSearchDEId());
                 PSSysSearchDEService pSSysSearchDEService = (PSSysSearchDEService)ServiceGlobal.getService(PSSysSearchDEService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSearchDEService.autoGet((IEntity)pSSysSearchDE);
+                pSSysSearchDEService.autoGet(pSSysSearchDE);
                 this.pssyssearchde = pSSysSearchDE;
             }
             return this.pssyssearchde;
@@ -2462,7 +2462,7 @@ implements Serializable {
                 PSSysSearchField pSSysSearchField = new PSSysSearchField();
                 pSSysSearchField.setPSSysSearchFieldId(this.getPSSysSearchFieldId());
                 PSSysSearchFieldService pSSysSearchFieldService = (PSSysSearchFieldService)ServiceGlobal.getService(PSSysSearchFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSearchFieldService.autoGet((IEntity)pSSysSearchField);
+                pSSysSearchFieldService.autoGet(pSSysSearchField);
                 this.pssyssearchfield = pSSysSearchField;
             }
             return this.pssyssearchfield;
@@ -2488,7 +2488,7 @@ implements Serializable {
                 PSSysTranslator pSSysTranslator = new PSSysTranslator();
                 pSSysTranslator.setPSSysTranslatorId(this.getPSSysTranslatorId());
                 PSSysTranslatorService pSSysTranslatorService = (PSSysTranslatorService)ServiceGlobal.getService(PSSysTranslatorService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTranslatorService.autoGet((IEntity)pSSysTranslator);
+                pSSysTranslatorService.autoGet(pSSysTranslator);
                 this.pssystranslator = pSSysTranslator;
             }
             return this.pssystranslator;

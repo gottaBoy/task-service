@@ -72,7 +72,7 @@ implements IPSDETreeNodeRVService {
     @Override
     protected List<PSDETreeNodeRV> onListAll() throws Exception {
         ArrayList<PSDETreeNodeRV> list = new ArrayList<PSDETreeNodeRV>();
-        List psdetreenodes = PSModelServiceUtil.getInstance().getPSDETreeNodeService().listAll();
+        List<PSDETreeNode> psdetreenodes = PSModelServiceUtil.getInstance().getPSDETreeNodeService().listAll();
         if (psdetreenodes != null) {
             for (PSDETreeNode parent : psdetreenodes) {
                 List<PSDETreeNodeRV> items = this.listByPSDETreeNode(parent);

@@ -35,6 +35,10 @@ import net.sf.json.JSONObject;
 public class PSJITRedirectViewController
 extends PSJITViewController
 implements IPSJITRedirectViewController {
+
+    public PSJITRedirectViewController() throws Exception {
+        super();
+    }
     public static final String VIEWACTION_GETRDVIEW = "GETRDVIEW";
     private boolean bEnableWorkflow = false;
     private HashMap<String, String> rdViewMap = new HashMap();

@@ -1,16 +1,6 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import java.util.Iterator;
 import net.ibizsys.paas.control.grid.IGridEditItem;
-import net.ibizsys.paas.ctrlhandler.CtrlItemHandlerBase;
-import net.ibizsys.paas.ctrlhandler.ICtrlHandler;
-import net.ibizsys.paas.ctrlhandler.IGridEditItemUpdateHandler;
 import net.ibizsys.paas.ctrlmodel.IGridEditItemModel;
 import net.ibizsys.paas.ctrlmodel.IGridModel;
 import net.ibizsys.paas.data.IDataObject;
@@ -21,96 +11,183 @@ import net.ibizsys.paas.web.GridRowAjaxActionResult;
 import net.ibizsys.paas.web.WebContext;
 import net.sf.json.JSONObject;
 
-public abstract class GridEditItemUpdateHandlerBase
-extends CtrlItemHandlerBase
-implements IGridEditItemUpdateHandler {
-    private IGridModel iGridModel = null;
+/**
+ * 表格编辑项更新处理对象基类
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class GridEditItemUpdateHandlerBase extends CtrlItemHandlerBase implements IGridEditItemUpdateHandler {
+	private IGridModel iGridModel = null;
 
-    @Override
-    public void init(IGridModel iGridModel, ICtrlHandler iCtrlHandler) throws Exception {
-        this.setGridModel(iGridModel);
-        super.init(iCtrlHandler);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.IGridEditItemUpdateHandler#init(net.ibizsys.paas.ctrlmodel.IGridModel, net.ibizsys.paas.ctrlhandler.ICtrlHandler)
+	 */
+	public void init(IGridModel iGridModel, ICtrlHandler iCtrlHandler) throws Exception {
+		this.setGridModel(iGridModel);
+		super.init(iCtrlHandler);
+	}
 
-    public IGridModel getGridModel() {
-        return this.iGridModel;
-    }
+	/**
+	 * 获取表单模型
+	 * 
+	 * @return
+	 */
+	public IGridModel getGridModel() {
+		return iGridModel;
+	}
 
-    protected void setGridModel(IGridModel iGridModel) {
-        this.iGridModel = iGridModel;
-    }
+	/**
+	 * 设置表单模型
+	 * 
+	 * @param iGridModel
+	 */
+	protected void setGridModel(IGridModel iGridModel) {
+		this.iGridModel = iGridModel;
+	}
 
-    @Override
-    protected AjaxActionResult onProcessAction(String strAction) throws Exception {
-        if (StringHelper.compare(strAction, "updategridedititem", true) == 0) {
-            return this.onGridEditItemUpdate();
-        }
-        return super.onProcessAction(strAction);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.CtrlHandlerBase#onProcessAction(java.lang .String)
+	 */
+	@Override
+	protected AjaxActionResult onProcessAction(String strAction) throws Exception {
+		if (StringHelper.compare(strAction, IGridEditItemUpdateHandler.ACTION_UPDATEGRIDEDITITEM, true) == 0) {
+			return onGridEditItemUpdate();
+		}
 
-    protected AjaxActionResult onGridEditItemUpdate() throws Exception {
-        GridRowAjaxActionResult gridRowAjaxActionResult = new GridRowAjaxActionResult();
-        this.getWebContext().setCurAjaxActionResult(gridRowAjaxActionResult);
-        boolean bUpdateFlag = false;
-        JSONObject activeDataJsonObject = WebContext.getActiveData(this.getWebContext());
-        Object objUFFlag = activeDataJsonObject.opt("srfuf");
-        if (objUFFlag != null) {
-            bUpdateFlag = StringHelper.compare(objUFFlag.toString(), "1", false) == 0;
-        }
-        Object iEntity = this.getViewController().getDEModel().createEntity();
-        this.fillRowInputValues((IDataObject)iEntity, bUpdateFlag, activeDataJsonObject);
-        this.executeAction((IEntity)iEntity);
-        this.fillRowOutputDatas((IDataObject)iEntity, gridRowAjaxActionResult);
-        return gridRowAjaxActionResult;
-    }
+		return super.onProcessAction(strAction);
+	}
 
-    protected void fillRowOutputDatas(IDataObject iDataObject, GridRowAjaxActionResult gridRowAjaxActionResult) throws Exception {
-        JSONObject outputData2 = new JSONObject();
-        JSONObject outputState2 = new JSONObject();
-        JSONObject outputConfig2 = new JSONObject();
-        this.getGridModel().fillRowOutputDatas(iDataObject, true, outputData2, outputState2, outputConfig2);
-        this.fillRowOutputDatas(iDataObject, outputData2, outputState2, outputConfig2, gridRowAjaxActionResult);
-    }
+	/**
+	 * 表格编辑项更新
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	protected AjaxActionResult onGridEditItemUpdate() throws Exception {
+		GridRowAjaxActionResult gridRowAjaxActionResult = new GridRowAjaxActionResult();
+		this.getWebContext().setCurAjaxActionResult(gridRowAjaxActionResult);
 
-    protected void fillRowInputValues(IDataObject iDataObject, boolean bUpdate, JSONObject activeDataJsonObject) throws Exception {
-        this.onFillRowInputValues(iDataObject, bUpdate, activeDataJsonObject);
-        Iterator<IGridEditItem> formItems = this.getGridModel().getGridEditItems();
-        while (formItems.hasNext()) {
-            IGridEditItem iGridEditItem = formItems.next();
-            if (bUpdate) {
-                if ((iGridEditItem.getIgnoreInput() & 2) <= 0) continue;
-                iDataObject.remove(iGridEditItem.getName());
-                continue;
-            }
-            if ((iGridEditItem.getIgnoreInput() & 1) <= 0) continue;
-            iDataObject.remove(iGridEditItem.getName());
-        }
-    }
+		// 获取当前数据对象
+		boolean bUpdateFlag = false;
+		JSONObject activeDataJsonObject = WebContext.getActiveData(this.getWebContext());
+		Object objUFFlag = activeDataJsonObject.opt(IGridEditItem.UF);
+		if (objUFFlag != null) {
+			bUpdateFlag = (StringHelper.compare(objUFFlag.toString(), "1", false) == 0);
+		}
 
-    protected void onFillRowInputValues(IDataObject iDataObject, boolean bUpdate, JSONObject activeDataJsonObject) throws Exception {
-        Iterator<IGridEditItem> formItems = this.getGridModel().getGridEditItems();
-        while (formItems.hasNext()) {
-            IGridEditItemModel iGridEditItem = (IGridEditItemModel)formItems.next();
-            try {
-                String strValue;
-                Object objValue = iGridEditItem.getInputValue(activeDataJsonObject);
-                if (objValue != null && objValue instanceof String && StringHelper.isNullOrEmpty(strValue = (String)objValue)) {
-                    objValue = null;
-                }
-                iDataObject.set(iGridEditItem.getName(), objValue);
-            }
-            catch (Exception exception) {
-                // empty catch block
-            }
-        }
-    }
+		IEntity iEntity = this.getViewController().getDEModel().createEntity();
+		this.fillRowInputValues(iEntity, bUpdateFlag, activeDataJsonObject);
 
-    protected abstract void fillRowOutputDatas(IDataObject var1, JSONObject var2, JSONObject var3, JSONObject var4, GridRowAjaxActionResult var5) throws Exception;
+		executeAction(iEntity);
 
-    protected abstract void executeAction(IEntity var1) throws Exception;
+		// 输出
+		this.fillRowOutputDatas(iEntity, gridRowAjaxActionResult);
+		return gridRowAjaxActionResult;
+	}
 
-    protected boolean isEnableTempData() {
-        return false;
-    }
+	/**
+	 * 填充行输出数据
+	 * 
+	 * @param iDataObject 数据实体对象
+	 * @param gridRowAjaxActionResult 请求结果
+	 * @throws Exception
+	 */
+	protected void fillRowOutputDatas(IDataObject iDataObject, GridRowAjaxActionResult gridRowAjaxActionResult) throws Exception {
+		JSONObject outputData2 = new JSONObject();
+		JSONObject outputState2 = new JSONObject();
+		JSONObject outputConfig2 = new JSONObject();
+
+		this.getGridModel().fillRowOutputDatas(iDataObject, true, outputData2, outputState2, outputConfig2);
+
+		fillRowOutputDatas(iDataObject, outputData2, outputState2, outputConfig2, gridRowAjaxActionResult);
+	}
+
+	/**
+	 * 填充行输出数据
+	 * 
+	 * @param iDataObject 数据实体对象
+	 * @param bUpdate 是否更新
+	 * @param activeDataJsonObject
+	 * @throws Exception
+	 */
+	protected void fillRowInputValues(IDataObject iDataObject, boolean bUpdate, JSONObject activeDataJsonObject) throws Exception {
+		onFillRowInputValues(iDataObject, bUpdate, activeDataJsonObject);
+		// 移除忽略输入的值
+		java.util.Iterator<IGridEditItem> formItems = this.getGridModel().getGridEditItems();
+		while (formItems.hasNext()) {
+			IGridEditItem iGridEditItem = formItems.next();
+			if (bUpdate) {
+				if ((iGridEditItem.getIgnoreInput() & IGridEditItem.IGNOREINPUT_UPDATE) > 0) {
+					iDataObject.remove(iGridEditItem.getName());
+				}
+			} else {
+				if ((iGridEditItem.getIgnoreInput() & IGridEditItem.ENABLECOND_CREATE) > 0) {
+					iDataObject.remove(iGridEditItem.getName());
+				}
+			}
+		}
+	}
+
+	/**
+	 * 填充行输入数据
+	 * 
+	 * @param iDataObject 实体数据
+	 * @param bUpdate 是否更新
+	 * @param activeDataJsonObject 修改的值
+	 * @throws Exception
+	 */
+	protected void onFillRowInputValues(IDataObject iDataObject, boolean bUpdate, JSONObject activeDataJsonObject) throws Exception {
+		java.util.Iterator<IGridEditItem> formItems = this.getGridModel().getGridEditItems();
+
+		// 值预处理
+		while (formItems.hasNext()) {
+			IGridEditItemModel iGridEditItem = (IGridEditItemModel) formItems.next();
+			try {
+				Object objValue = iGridEditItem.getInputValue(activeDataJsonObject);
+				if (objValue != null && (objValue instanceof String)) {
+					String strValue = (String) objValue;
+					if (StringHelper.isNullOrEmpty(strValue)) objValue = null;
+				}
+
+				iDataObject.set(iGridEditItem.getName(), objValue);
+			} catch (Exception ex) {
+				// formError.register(iGridEditItem.getName(), iGridEditItem.getCaption(), iGridEditItem.getCapLanId(), GridEditItemError.ERROR_DATATYPE,getGridEditItemErrorInfo(iGridEditItem, GridEditItemError.ERROR_DATATYPE));
+			}
+		}
+	}
+
+	/**
+	 * 填充行输出数据
+	 * 
+	 * @param iDataObject 实体数据
+	 * @param outputData 输出数据
+	 * @param outputState 输出状态
+	 * @param outputConfig 输出控制
+	 * @param gridRowAjaxActionResult 请求结果
+	 * @throws Exception
+	 */
+	protected abstract void fillRowOutputDatas(IDataObject iDataObject, JSONObject outputData, JSONObject outputState, JSONObject outputConfig, GridRowAjaxActionResult gridRowAjaxActionResult) throws Exception;
+
+	/**
+	 * 执行行为
+	 * 
+	 * @param iEntity
+	 * @return
+	 * @throws Exception
+	 */
+	protected abstract void executeAction(IEntity iEntity) throws Exception;
+
+	/**
+	 * 是否支持临时数据
+	 * 
+	 * @return
+	 */
+	protected boolean isEnableTempData() {
+		return false;
+	}
 }
-

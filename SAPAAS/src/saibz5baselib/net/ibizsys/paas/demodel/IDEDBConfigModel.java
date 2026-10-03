@@ -1,12 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
 import net.ibizsys.paas.core.IDEDBConfig;
 
-public interface IDEDBConfigModel
-extends IDEDBConfig {
-    public String getDBType();
+/**
+ * 实体数据库配置模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IDEDBConfigModel extends IDEDBConfig {
+	
+	/**
+	 * 获取数据库类型
+	 * @return
+	 */
+	String getDBType();
 }
-

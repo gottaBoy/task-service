@@ -92,7 +92,7 @@ implements IDataFilterConfigPublisherContext {
                 dataFilterItemNode.SetValue("PRIVILEGEID", strPrivilegeId);
             }
             String strConditions = "";
-            Vector conditions = ConditionHelper.GetDataTypeSupportConditions((String)iDEFHelper.GetStdDataType());
+            Vector<String> conditions = ConditionHelper.GetDataTypeSupportConditions((String)iDEFHelper.GetStdDataType());
             for (String strCondition : conditions) {
                 if (this.ignoreConditionMap.containsKey(strCondition) || !StringHelper.IsNullOrEmpty((String)iDEFHelper.GetCodeList()) && this.ignoreConditionMap2.containsKey(strCondition)) continue;
                 if (!StringHelper.IsNullOrEmpty((String)strConditions)) {
@@ -144,4 +144,3 @@ implements IDataFilterConfigPublisherContext {
         }
     }
 }
-

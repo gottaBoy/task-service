@@ -143,9 +143,9 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
             PSSVNServer pSSVNServer = (PSSVNServer)iService.getDEModel().createEntity();
             pSSVNServer.set("PSSVNSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSVNServer);
+                iService.getTemp(pSSVNServer);
             } else {
-                iService.get((IEntity)pSSVNServer);
+                iService.get(pSSVNServer);
             }
             this.onFillParentInfo_PSSvnServer(pSWorkshopServer, pSSVNServer);
             return;
@@ -155,14 +155,14 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_PSSvrDomain(pSWorkshopServer, pSSvrDomain);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWorkshopServer, string, string2, string3);
+        super.onFillParentInfo(pSWorkshopServer, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -183,7 +183,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
         if (bl && pSWorkshopServer.getValidFlag() == null) {
             pSWorkshopServer.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSWorkshopServer, bl);
+        super.onFillEntityFullInfo(pSWorkshopServer, bl);
         this.onFillEntityFullInfo_PSSvnServer(pSWorkshopServer, bl);
         this.onFillEntityFullInfo_PSSvrDomain(pSWorkshopServer, bl);
     }
@@ -195,7 +195,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
     }
 
     protected void onWriteBackParent(PSWorkshopServer pSWorkshopServer, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWorkshopServer, bl);
+        super.onWriteBackParent(pSWorkshopServer, bl);
     }
 
     public ArrayList<PSWorkshopServer> selectByPSSvnServer(PSSVNServerBase pSSVNServerBase) throws Exception {
@@ -250,8 +250,8 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
         ArrayList<PSWorkshopServer> arrayList = this.selectByPSSvnServer(pSSVNServer, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVNSERVER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSVNServer);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKSHOPSERVER_PSSVNSERVER_PSSVNSERVERID", "", iDataEntityModel.getName(), "PSWORKSHOPSERVER", iDataEntityModel.getDataInfo((IEntity)pSSVNServer), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSVNServer);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKSHOPSERVER_PSSVNSERVER_PSSVNSERVERID", "", iDataEntityModel.getName(), "PSWORKSHOPSERVER", iDataEntityModel.getDataInfo(pSSVNServer), arrayList.get(0)));
         }
     }
 
@@ -284,7 +284,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
         ArrayList<PSWorkshopServer> arrayList = this.selectByPSSvnServer(pSSVNServer);
         this.onBeforeRemoveByPSSvnServer(pSSVNServer, arrayList);
         for (PSWorkshopServer pSWorkshopServer : arrayList) {
-            this.remove((IEntity)pSWorkshopServer);
+            this.remove(pSWorkshopServer);
         }
         this.onAfterRemoveByPSSvnServer(pSSVNServer, arrayList);
     }
@@ -302,8 +302,8 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
         ArrayList<PSWorkshopServer> arrayList = this.selectByPSSvrDomain(pSSvrDomain, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRDOMAIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrDomain);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKSHOPSERVER_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSWORKSHOPSERVER", iDataEntityModel.getDataInfo((IEntity)pSSvrDomain), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrDomain);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKSHOPSERVER_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSWORKSHOPSERVER", iDataEntityModel.getDataInfo(pSSvrDomain), arrayList.get(0)));
         }
     }
 
@@ -336,7 +336,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
         ArrayList<PSWorkshopServer> arrayList = this.selectByPSSvrDomain(pSSvrDomain);
         this.onBeforeRemoveByPSSvrDomain(pSSvrDomain, arrayList);
         for (PSWorkshopServer pSWorkshopServer : arrayList) {
-            this.remove((IEntity)pSWorkshopServer);
+            this.remove(pSWorkshopServer);
         }
         this.onAfterRemoveByPSSvrDomain(pSSvrDomain, arrayList);
     }
@@ -361,7 +361,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
 
     protected void replaceParentInfo(PSWorkshopServer pSWorkshopServer, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWorkshopServer, cloneSession);
+        super.replaceParentInfo(pSWorkshopServer, cloneSession);
         if (pSWorkshopServer.getPSSVNServerId() != null && (iEntity = cloneSession.getEntity("PSSVNSERVER", (Object)pSWorkshopServer.getPSSVNServerId())) != null) {
             this.onFillParentInfo_PSSvnServer(pSWorkshopServer, (PSSVNServer)iEntity);
         }
@@ -371,7 +371,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWorkshopServer pSWorkshopServer, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWorkshopServer, bl);
+        super.onRemoveEntityUncopyValues(pSWorkshopServer, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWorkshopServer pSWorkshopServer, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -440,7 +440,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
         if ((entityFieldError = this.onCheckField_WorkshopPath(bl, pSWorkshopServer, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWorkshopServer, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWorkshopServer, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AdminPasswd(boolean bl, PSWorkshopServer pSWorkshopServer, boolean bl2, boolean bl3) throws Exception {
@@ -453,7 +453,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AdminPasswd_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_AdminPasswd_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ADMINPASSWD");
@@ -475,7 +475,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AdminUserName_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_AdminUserName_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ADMINUSERNAME");
@@ -497,7 +497,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -519,7 +519,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr2_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr2_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR2");
@@ -541,7 +541,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LocalRes_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_LocalRes_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCALRES");
@@ -563,7 +563,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -585,7 +585,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -607,7 +607,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Port_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_Port_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PORT");
@@ -629,7 +629,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSVNServerId_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSSVNServerId_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVNSERVERID");
@@ -651,7 +651,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -676,7 +676,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkshopServerId_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkshopServerId_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKSHOPSERVERID");
@@ -701,7 +701,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkshopServerName_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkshopServerName_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKSHOPSERVERNAME");
@@ -723,7 +723,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResState_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_ResState_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESSTATE");
@@ -745,7 +745,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SSHIPAddr_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_SSHIPAddr_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHIPADDR");
@@ -767,7 +767,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SSHPort_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_SSHPort_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHPORT");
@@ -789,7 +789,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadFileMode_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_UploadFileMode_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADFILEMODE");
@@ -811,7 +811,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadPath_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_UploadPath_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADPATH");
@@ -833,7 +833,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -858,7 +858,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -880,7 +880,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WebConsolePath_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_WebConsolePath_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WEBCONSOLEPATH");
@@ -902,7 +902,7 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WorkshopPath_Default((IEntity)pSWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_WorkshopPath_Default(pSWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WORKSHOPPATH");
@@ -915,11 +915,11 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
     }
 
     protected void onSyncEntity(PSWorkshopServer pSWorkshopServer, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWorkshopServer, bl);
+        super.onSyncEntity(pSWorkshopServer, bl);
     }
 
     protected void onSyncIndexEntities(PSWorkshopServer pSWorkshopServer, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWorkshopServer, bl);
+        super.onSyncIndexEntities(pSWorkshopServer, bl);
     }
 
     public Object getDataContextValue(PSWorkshopServer pSWorkshopServer, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -927,14 +927,14 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWorkshopServer, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWorkshopServer, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWorkshopServer pSWorkshopServer, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWorkshopServer, arrayList, n);
+        super.onExportMajorModel(pSWorkshopServer, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1292,14 +1292,14 @@ extends PSCoreSysServiceBase<PSWorkshopServer> {
 
     protected boolean onMergeChild(String string, String string2, PSWorkshopServer pSWorkshopServer) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWorkshopServer)) {
+        if (super.onMergeChild(string, string2, pSWorkshopServer)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWorkshopServer pSWorkshopServer) throws Exception {
-        super.onUpdateParent((IEntity)pSWorkshopServer);
+        super.onUpdateParent(pSWorkshopServer);
     }
 
     @Override

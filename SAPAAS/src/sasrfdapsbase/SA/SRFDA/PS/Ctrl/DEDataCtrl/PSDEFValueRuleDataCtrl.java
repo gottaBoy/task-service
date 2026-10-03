@@ -54,7 +54,7 @@ extends PSDEDataCtrl {
                         this.modifyLayoutFromXML(xmlNode, psDEFValueRule, validMap);
                         BaseDataEntity cond = new BaseDataEntity();
                         cond.setParamValue("PSDEFVRID", (Object)psDEFValueRule.getPSDEFVALUERULEID());
-                        Vector psDEFValueRuleCondList = new Vector();
+                        Vector<PSDEFValueRuleCond> psDEFValueRuleCondList = new Vector<>();
                         IDEDataCtrl psDEFValueRuleCondDataCtrl = this.GetRelatedDataCtrl("DE2071");
                         callResult = psDEFValueRuleCondDataCtrl.Select(cond, psDEFValueRuleCondList, PSDEFValueRuleCond.class.getName());
                         if (callResult.isError()) {
@@ -84,7 +84,7 @@ extends PSDEDataCtrl {
     }
 
     protected void modifyLayoutFromXML(XMLNode xmlNode, PSDEFValueRule psDEFValueRule, HashMap<String, PSDEFValueRuleCond> validMap) throws Exception {
-        ArrayList xmlNodes = xmlNode.getChildNodes();
+        ArrayList<XMLNode> xmlNodes = xmlNode.getChildNodes();
         if (xmlNodes == null) {
             return;
         }
@@ -122,7 +122,7 @@ extends PSDEDataCtrl {
         }
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSDEFVRID", (Object)psDEFValueRule.getPSDEFVALUERULEID());
-        Vector psDEFValueRuleCondList = new Vector();
+        Vector<PSDEFValueRuleCond> psDEFValueRuleCondList = new Vector<>();
         IDEDataCtrl psDEFValueRuleCondDataCtrl = this.GetRelatedDataCtrl("DE2071");
         CallResult callResult = psDEFValueRuleCondDataCtrl.Select(cond, psDEFValueRuleCondList, PSDEFValueRuleCond.class.getName(), "ORDER BY ORDERVALUE");
         if (callResult.isError()) {
@@ -211,4 +211,3 @@ extends PSDEDataCtrl {
         return callResult;
     }
 }
-

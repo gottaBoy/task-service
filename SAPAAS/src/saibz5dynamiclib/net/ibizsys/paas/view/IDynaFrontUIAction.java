@@ -1,22 +1,47 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.view.IUIAction
- */
 package net.ibizsys.paas.view;
 
-import net.ibizsys.paas.view.IUIAction;
+/**
+ * 前端界面行为对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaFrontUIAction extends IUIAction {
+	
+	//定义前台处理模式代码表
 
-public interface IDynaFrontUIAction
-extends IUIAction {
-    public static final String FRONTPROCESSTYPE_WIZARD = "WIZARD";
-    public static final String FRONTPROCESSTYPE_SHOWPAGE = "SHOWPAGE";
-    public static final String FRONTPROCESSTYPE_OPENHTMLPAGE = "OPENHTMLPAGE";
-    public static final String FRONTPROCESSTYPE_OTHER = "OTHER";
+	/**
+	*向导处理
+	*/
+	public final static String FRONTPROCESSTYPE_WIZARD = "WIZARD" ;
 
-    public String getFrontProcessType();
+	/**
+	*打开页面
+	*/
+	public final static String FRONTPROCESSTYPE_SHOWPAGE = "SHOWPAGE" ;
 
-    public String getFrontViewId();
+	/**
+	*打开HTML页面
+	*/
+	public final static String FRONTPROCESSTYPE_OPENHTMLPAGE = "OPENHTMLPAGE" ;
+	
+	/**
+	*其它
+	*/
+	public final static String FRONTPROCESSTYPE_OTHER = "OTHER" ;
+	
+	
+	/**
+	 * 获取前端处理类型，值参考 net.ibizsys.paas.view.IDynaFrontUIAction.FRONTPROCESSTYPE_XXX 定义
+	 * @return
+	 */
+	String getFrontProcessType();
+	
+	
+	
+	
+	/**
+	 * 获取前端视图标识
+	 * @return
+	 */
+	String getFrontViewId();
 }
-

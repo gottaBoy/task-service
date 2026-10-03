@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysDynaModelCatDEModelBase;
 
 public class PSSysDynaModelCatDEModel
 extends PSSysDynaModelCatDEModelBase {
+
+    public PSSysDynaModelCatDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

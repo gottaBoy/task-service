@@ -49,7 +49,7 @@ extends PSDEUIActionServiceBase {
 
     @Override
     protected void onBeforeUpdate(PSDEUIAction pSDEUIAction) throws Exception {
-        PSDEUIAction pSDEUIAction2 = (PSDEUIAction)this.getLast((IEntity)pSDEUIAction);
+        PSDEUIAction pSDEUIAction2 = (PSDEUIAction)this.getLast(pSDEUIAction);
         String string = null;
         String string2 = null;
         string = pSDEUIAction.isPSDEIdDirty() ? pSDEUIAction.getPSDEId() : pSDEUIAction2.getPSDEId();
@@ -70,7 +70,7 @@ extends PSDEUIActionServiceBase {
     @Override
     protected String getEntityFolderKeyValue(PSDEUIAction pSDEUIAction, PSSystem pSSystem) throws Exception {
         if (StringHelper.isNullOrEmpty((String)pSDEUIAction.getPSDEId())) {
-            return PSModelFolderKeyHelper.getModelKey((IEntity)pSDEUIAction, pSSystem, "PSDEUIACTION_SYS", "", this.getSessionFactory());
+            return PSModelFolderKeyHelper.getModelKey(pSDEUIAction, pSSystem, "PSDEUIACTION_SYS", "", this.getSessionFactory());
         }
         return super.getEntityFolderKeyValue(pSDEUIAction, pSSystem);
     }

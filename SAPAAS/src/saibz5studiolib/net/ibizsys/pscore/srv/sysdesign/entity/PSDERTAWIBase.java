@@ -1540,7 +1540,7 @@ implements Serializable {
                 PSDERTAW pSDERTAW = new PSDERTAW();
                 pSDERTAW.setPSDERTAWId(this.getPSDERTAWId());
                 PSDERTAWService pSDERTAWService = (PSDERTAWService)ServiceGlobal.getService(PSDERTAWService.class, (SessionFactory)this.getSessionFactory());
-                pSDERTAWService.autoGet((IEntity)pSDERTAW);
+                pSDERTAWService.autoGet(pSDERTAW);
                 this.psdertaw = pSDERTAW;
             }
             return this.psdertaw;

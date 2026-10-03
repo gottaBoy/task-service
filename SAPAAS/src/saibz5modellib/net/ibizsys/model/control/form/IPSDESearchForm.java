@@ -1,12 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.form;
 
-import net.ibizsys.model.control.form.IPSDEForm;
-
-public interface IPSDESearchForm
-extends IPSDEForm {
-    public boolean isEnableAdvanceSearch();
+/**
+ * 实体搜索表单对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDESearchForm extends IPSDEForm
+{
+	/**
+	 * 是否支持高级搜索
+	 * @return
+	 */
+	boolean isEnableAdvanceSearch();
 }
-

@@ -1,14 +1,18 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFService;
-import net.ibizsys.pswf.core.WFActionParam;
-import net.ibizsys.pswf.core.WFActionResult;
+/**
+ * 工作流引擎接口3，提供使用代理流程系统能力
+ * @author Administrator
+ *
+ */
+public interface IWFService3 extends IWFService{
 
-public interface IWFService3
-extends IWFService {
-    public WFActionResult getInstance(WFActionParam var1) throws Exception;
+	/**
+	 * 获取指定流程实例信息
+	 * @param wfParam
+	 * @return
+	 * @throws Exception
+	 */
+	WFActionResult getInstance(WFActionParam wfParam)throws Exception;
+	
 }
-

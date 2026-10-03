@@ -235,21 +235,21 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
 
     public void addSyncModelTask(PSAppStoryBoard pSAppStoryBoard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_X_ADDSYNCMODELTASK, 0, (IEntity)pSAppStoryBoard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_X_ADDSYNCMODELTASK, 0, pSAppStoryBoard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppStoryBoard, ACTION_X_ADDSYNCMODELTASK);
+        this.testDEMainStateAction(pSAppStoryBoard, ACTION_X_ADDSYNCMODELTASK);
         final PSAppStoryBoard pSAppStoryBoard2 = pSAppStoryBoard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppStoryBoardServiceBase.this.getService(), PSAppStoryBoardServiceBase.ACTION_X_ADDSYNCMODELTASK, 40, (IEntity)pSAppStoryBoard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppStoryBoardServiceBase.this.getService(), PSAppStoryBoardServiceBase.ACTION_X_ADDSYNCMODELTASK, 40, pSAppStoryBoard2, null).getResult() != 1) {
                     PSAppStoryBoardServiceBase.this.onAddSyncModelTask(pSAppStoryBoard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_X_ADDSYNCMODELTASK, 99, (IEntity)pSAppStoryBoard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_X_ADDSYNCMODELTASK, 99, pSAppStoryBoard, null);
         }
     }
 
@@ -259,21 +259,21 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
 
     public void createWithModel(PSAppStoryBoard pSAppStoryBoard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, (IEntity)pSAppStoryBoard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, pSAppStoryBoard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppStoryBoard, ACTION_CREATEWITHMODEL);
+        this.testDEMainStateAction(pSAppStoryBoard, ACTION_CREATEWITHMODEL);
         final PSAppStoryBoard pSAppStoryBoard2 = pSAppStoryBoard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppStoryBoardServiceBase.this.getService(), PSAppStoryBoardServiceBase.ACTION_CREATEWITHMODEL, 40, (IEntity)pSAppStoryBoard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppStoryBoardServiceBase.this.getService(), PSAppStoryBoardServiceBase.ACTION_CREATEWITHMODEL, 40, pSAppStoryBoard2, null).getResult() != 1) {
                     PSAppStoryBoardServiceBase.this.onCreateWithModel(pSAppStoryBoard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, (IEntity)pSAppStoryBoard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, pSAppStoryBoard, null);
         }
     }
 
@@ -283,21 +283,21 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
 
     public void getDraftFromWithModel(PSAppStoryBoard pSAppStoryBoard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, (IEntity)pSAppStoryBoard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, pSAppStoryBoard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppStoryBoard, ACTION_GETDRAFTFROMWITHMODEL);
+        this.testDEMainStateAction(pSAppStoryBoard, ACTION_GETDRAFTFROMWITHMODEL);
         final PSAppStoryBoard pSAppStoryBoard2 = pSAppStoryBoard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppStoryBoardServiceBase.this.getService(), PSAppStoryBoardServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, (IEntity)pSAppStoryBoard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppStoryBoardServiceBase.this.getService(), PSAppStoryBoardServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, pSAppStoryBoard2, null).getResult() != 1) {
                     PSAppStoryBoardServiceBase.this.onGetDraftFromWithModel(pSAppStoryBoard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, (IEntity)pSAppStoryBoard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, pSAppStoryBoard, null);
         }
     }
 
@@ -307,21 +307,21 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
 
     public void getDraftWithModel(PSAppStoryBoard pSAppStoryBoard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, (IEntity)pSAppStoryBoard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, pSAppStoryBoard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppStoryBoard, ACTION_GETDRAFTWITHMODEL);
+        this.testDEMainStateAction(pSAppStoryBoard, ACTION_GETDRAFTWITHMODEL);
         final PSAppStoryBoard pSAppStoryBoard2 = pSAppStoryBoard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppStoryBoardServiceBase.this.getService(), PSAppStoryBoardServiceBase.ACTION_GETDRAFTWITHMODEL, 40, (IEntity)pSAppStoryBoard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppStoryBoardServiceBase.this.getService(), PSAppStoryBoardServiceBase.ACTION_GETDRAFTWITHMODEL, 40, pSAppStoryBoard2, null).getResult() != 1) {
                     PSAppStoryBoardServiceBase.this.onGetDraftWithModel(pSAppStoryBoard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, (IEntity)pSAppStoryBoard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, pSAppStoryBoard, null);
         }
     }
 
@@ -331,21 +331,21 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
 
     public void getWithModel(PSAppStoryBoard pSAppStoryBoard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, (IEntity)pSAppStoryBoard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, pSAppStoryBoard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppStoryBoard, ACTION_GETWITHMODEL);
+        this.testDEMainStateAction(pSAppStoryBoard, ACTION_GETWITHMODEL);
         final PSAppStoryBoard pSAppStoryBoard2 = pSAppStoryBoard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppStoryBoardServiceBase.this.getService(), PSAppStoryBoardServiceBase.ACTION_GETWITHMODEL, 40, (IEntity)pSAppStoryBoard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppStoryBoardServiceBase.this.getService(), PSAppStoryBoardServiceBase.ACTION_GETWITHMODEL, 40, pSAppStoryBoard2, null).getResult() != 1) {
                     PSAppStoryBoardServiceBase.this.onGetWithModel(pSAppStoryBoard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, (IEntity)pSAppStoryBoard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, pSAppStoryBoard, null);
         }
     }
 
@@ -355,21 +355,21 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
 
     public void updateWithModel(PSAppStoryBoard pSAppStoryBoard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, (IEntity)pSAppStoryBoard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, pSAppStoryBoard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppStoryBoard, ACTION_UPDATEWITHMODEL);
+        this.testDEMainStateAction(pSAppStoryBoard, ACTION_UPDATEWITHMODEL);
         final PSAppStoryBoard pSAppStoryBoard2 = pSAppStoryBoard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppStoryBoardServiceBase.this.getService(), PSAppStoryBoardServiceBase.ACTION_UPDATEWITHMODEL, 40, (IEntity)pSAppStoryBoard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppStoryBoardServiceBase.this.getService(), PSAppStoryBoardServiceBase.ACTION_UPDATEWITHMODEL, 40, pSAppStoryBoard2, null).getResult() != 1) {
                     PSAppStoryBoardServiceBase.this.onUpdateWithModel(pSAppStoryBoard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, (IEntity)pSAppStoryBoard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, pSAppStoryBoard, null);
         }
     }
 
@@ -383,14 +383,14 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSAppStoryBoard, pSSysApp);
             return;
         }
-        super.onFillParentInfo((IEntity)pSAppStoryBoard, string, string2, string3);
+        super.onFillParentInfo(pSAppStoryBoard, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -417,7 +417,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 pSAppStoryBoard.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSAppStoryBoard, bl);
+        super.onFillEntityFullInfo(pSAppStoryBoard, bl);
         this.onFillEntityFullInfo_PSSysApp(pSAppStoryBoard, bl);
     }
 
@@ -425,7 +425,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
     }
 
     protected void onWriteBackParent(PSAppStoryBoard pSAppStoryBoard, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSAppStoryBoard, bl);
+        super.onWriteBackParent(pSAppStoryBoard, bl);
     }
 
     public ArrayList<PSAppStoryBoard> selectByPSSysApp(PSSysAppBase pSSysAppBase) throws Exception {
@@ -456,8 +456,8 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
         ArrayList<PSAppStoryBoard> arrayList = this.selectByPSSysApp(pSSysApp, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSAPP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysApp);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPSTORYBOARD_PSSYSAPP_PSSYSAPPID", "", iDataEntityModel.getName(), "PSAPPSTORYBOARD", iDataEntityModel.getDataInfo((IEntity)pSSysApp), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysApp);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPSTORYBOARD_PSSYSAPP_PSSYSAPPID", "", iDataEntityModel.getName(), "PSAPPSTORYBOARD", iDataEntityModel.getDataInfo(pSSysApp), arrayList.get(0)));
         }
     }
 
@@ -490,7 +490,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
         ArrayList<PSAppStoryBoard> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSAppStoryBoard pSAppStoryBoard : arrayList) {
-            this.remove((IEntity)pSAppStoryBoard);
+            this.remove(pSAppStoryBoard);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -520,13 +520,13 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
         ((PSAppSBItemRSServiceBase)pSCoreSysServiceBase).removeTempByPSAppStoryBoard(pSAppStoryBoard);
         pSCoreSysServiceBase = (PSAppSBItemService)ServiceGlobal.getService(PSAppSBItemService.class, (SessionFactory)this.getSessionFactory());
         ((PSAppSBItemServiceBase)pSCoreSysServiceBase).removeTempByPSAppStoryBoard(pSAppStoryBoard);
-        super.onBeforeRemoveTemp((IEntity)pSAppStoryBoard);
+        super.onBeforeRemoveTemp(pSAppStoryBoard);
     }
 
     protected void getRelatedDataTempMajor(PSAppStoryBoard pSAppStoryBoard) throws Exception {
         this.getRelatedDataTempMajor_PSAppSBItem(pSAppStoryBoard);
         this.getRelatedDataTempMajor_PSAppSBItemRS(pSAppStoryBoard);
-        super.getRelatedDataTempMajor((IEntity)pSAppStoryBoard);
+        super.getRelatedDataTempMajor(pSAppStoryBoard);
     }
 
     protected void getRelatedDataTempMajor_PSAppSBItem(PSAppStoryBoard pSAppStoryBoard) throws Exception {
@@ -554,7 +554,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
         ArrayList<PSAppSBItem> arrayList2 = this.updateRelatedDataTempMajor_removePSAppSBItem(pSAppStoryBoard, pSAppStoryBoard2);
         this.updateRelatedDataTempMajor_updatePSAppSBItem(pSAppStoryBoard, pSAppStoryBoard2, arrayList2);
         this.updateRelatedDataTempMajor_updatePSAppSBItemRS(pSAppStoryBoard, pSAppStoryBoard2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSAppStoryBoard, (IEntity)pSAppStoryBoard2);
+        super.updateRelatedDataTempMajor(pSAppStoryBoard, pSAppStoryBoard2);
     }
 
     protected ArrayList<PSAppSBItem> updateRelatedDataTempMajor_removePSAppSBItem(PSAppStoryBoard pSAppStoryBoard, PSAppStoryBoard pSAppStoryBoard2) throws Exception {
@@ -570,7 +570,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
             hashMap.remove(object);
         }
         for (PSAppSBItem pSAppSBItem : hashMap.values()) {
-            pSAppSBItemService.remove((IEntity)pSAppSBItem);
+            pSAppSBItemService.remove(pSAppSBItem);
         }
         return arrayList;
     }
@@ -598,7 +598,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
             hashMap.remove(object);
         }
         for (PSAppSBItemRS pSAppSBItemRS : hashMap.values()) {
-            pSAppSBItemRSService.remove((IEntity)pSAppSBItemRS);
+            pSAppSBItemRSService.remove(pSAppSBItemRS);
         }
         return arrayList;
     }
@@ -615,14 +615,14 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
 
     protected void replaceParentInfo(PSAppStoryBoard pSAppStoryBoard, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSAppStoryBoard, cloneSession);
+        super.replaceParentInfo(pSAppStoryBoard, cloneSession);
         if (pSAppStoryBoard.getPSSysAppId() != null && (iEntity = cloneSession.getEntity("PSSYSAPP", (Object)pSAppStoryBoard.getPSSysAppId())) != null) {
             this.onFillParentInfo_PSSysApp(pSAppStoryBoard, (PSSysApp)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSAppStoryBoard pSAppStoryBoard, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSAppStoryBoard, bl);
+        super.onRemoveEntityUncopyValues(pSAppStoryBoard, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSAppStoryBoard pSAppStoryBoard, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -676,7 +676,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSAppStoryBoard, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSAppStoryBoard, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSAppStoryBoard, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSAppStoryBoard pSAppStoryBoard, boolean bl2, boolean bl3) throws Exception {
@@ -692,7 +692,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -734,7 +734,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -771,7 +771,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -796,7 +796,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppStoryBoardId_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppStoryBoardId_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPSTORYBOARDID");
@@ -821,7 +821,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppStoryBoardName_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppStoryBoardName_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPSTORYBOARDNAME");
@@ -843,7 +843,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -868,7 +868,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -890,7 +890,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SBModel_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_SBModel_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SBMODEL");
@@ -912,7 +912,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SBTag_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_SBTag_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SBTAG");
@@ -934,7 +934,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SBTag2_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_SBTag2_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SBTAG2");
@@ -956,7 +956,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -978,7 +978,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1000,7 +1000,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1022,7 +1022,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1044,7 +1044,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1069,7 +1069,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSAppStoryBoard, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSAppStoryBoard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1082,11 +1082,11 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
     }
 
     protected void onSyncEntity(PSAppStoryBoard pSAppStoryBoard, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSAppStoryBoard, bl);
+        super.onSyncEntity(pSAppStoryBoard, bl);
     }
 
     protected void onSyncIndexEntities(PSAppStoryBoard pSAppStoryBoard, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSAppStoryBoard, bl);
+        super.onSyncIndexEntities(pSAppStoryBoard, bl);
     }
 
     public Object getDataContextValue(PSAppStoryBoard pSAppStoryBoard, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1094,7 +1094,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSAppStoryBoard, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSAppStoryBoard, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysApp pSSysApp = pSAppStoryBoard.getPSSysApp();
@@ -1105,7 +1105,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
     }
 
     protected void onExportMajorModel(PSAppStoryBoard pSAppStoryBoard, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSAppStoryBoard, arrayList, n);
+        super.onExportMajorModel(pSAppStoryBoard, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1402,14 +1402,14 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
 
     protected boolean onMergeChild(String string, String string2, PSAppStoryBoard pSAppStoryBoard) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSAppStoryBoard)) {
+        if (super.onMergeChild(string, string2, pSAppStoryBoard)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSAppStoryBoard pSAppStoryBoard) throws Exception {
-        super.onUpdateParent((IEntity)pSAppStoryBoard);
+        super.onUpdateParent(pSAppStoryBoard);
     }
 
     @Override
@@ -1488,7 +1488,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSAppSBItem pSAppSBItem = new PSAppSBItem();
-                pSAppSBItemService.fillParentInfo((IEntity)pSAppSBItem, "DER1N", "DER1N_PSAPPSBITEM_PSAPPSTORYBOARD_PSAPPSTORYBOARDID", pSAppStoryBoard.getPSAppStoryBoardId());
+                pSAppSBItemService.fillParentInfo(pSAppSBItem, "DER1N", "DER1N_PSAPPSBITEM_PSAPPSTORYBOARD_PSAPPSTORYBOARDID", pSAppStoryBoard.getPSAppStoryBoardId());
                 pSAppSBItemService.importXmlModel(pSAppSBItem, xmlNode2);
             }
         }
@@ -1513,7 +1513,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                 PSAppSBItemRS pSAppSBItemRS = new PSAppSBItemRS();
                 pSAppSBItemRS.setOrderValue(n);
                 n += 100;
-                pSAppSBItemRSService.fillParentInfo((IEntity)pSAppSBItemRS, "DER1N", "DER1N_PSAPPSBITEMRS_PSAPPSTORYBOARD_PSAPPSTORYBOARDID", pSAppStoryBoard.getPSAppStoryBoardId());
+                pSAppSBItemRSService.fillParentInfo(pSAppSBItemRS, "DER1N", "DER1N_PSAPPSBITEMRS_PSAPPSTORYBOARD_PSAPPSTORYBOARDID", pSAppStoryBoard.getPSAppStoryBoardId());
                 pSAppSBItemRSService.importXmlModel(pSAppSBItemRS, xmlNode2);
             }
         }
@@ -1630,12 +1630,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
 
     @Override
     protected void onExportCurModelV2(PSAppStoryBoard pSAppStoryBoard, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        ArrayNode arrayNode;
-        Object object3;
-        ArrayList<PSAppSBItem> arrayList;
+        ArrayList<ObjectNode> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSAPPSBITEM_PSAPPSTORYBOARD_PSAPPSTORYBOARDID")) {
@@ -1644,31 +1639,23 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSAPPSTORYBOARD#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSAPPSBITEM", (Object)pSAppStoryBoard.getPSAppStoryBoardId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add((PSAppSBItem)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSAppSBItem>();
-                object3 = ((PSAppSBItemServiceBase)pSCoreSysServiceBase).selectByPSAppStoryBoard(pSAppStoryBoard);
-                arrayNode = StringHelper.format((String)"PSAPPSTORYBOARD#%1$s", (Object)pSAppStoryBoard.getPSAppStoryBoardId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSAppSBItem)object2.next();
-                    object = ((PSAppSBItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSAppSBItem)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSAPPSTORYBOARD#%1$s", (Object)pSAppStoryBoard.getPSAppStoryBoardId());
+                for (PSAppSBItem item : ((PSAppSBItemServiceBase)pSCoreSysServiceBase).selectByPSAppStoryBoard(pSAppStoryBoard)) {
+                    String itemScope = ((PSAppSBItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope(item);
+                    if (StringHelper.compare(scope, itemScope, false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(item, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
+                ArrayNode arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -1696,10 +1683,10 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSAppSBItem();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode json : arrayList) {
+                    PSAppSBItem item = new PSAppSBItem();
+                    PSModelV2Helper.fromJSONObject(item, json, false);
+                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(item, string));
                 }
             }
         }
@@ -1709,31 +1696,23 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSAPPSTORYBOARD#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSAPPSBITEMRS", (Object)pSAppStoryBoard.getPSAppStoryBoardId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSAppSBItem)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object3 = ((PSAppSBItemRSServiceBase)pSCoreSysServiceBase).selectByPSAppStoryBoard(pSAppStoryBoard);
-                arrayNode = StringHelper.format((String)"PSAPPSTORYBOARD#%1$s", (Object)pSAppStoryBoard.getPSAppStoryBoardId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSAppSBItemRS)object2.next();
-                    object = ((PSAppSBItemRSServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSAppSBItem)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSAPPSTORYBOARD#%1$s", (Object)pSAppStoryBoard.getPSAppStoryBoardId());
+                for (PSAppSBItemRS relation : ((PSAppSBItemRSServiceBase)pSCoreSysServiceBase).selectByPSAppStoryBoard(pSAppStoryBoard)) {
+                    String itemScope = ((PSAppSBItemRSServiceBase)pSCoreSysServiceBase).getModelV2ResScope(relation);
+                    if (StringHelper.compare(scope, itemScope, false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(relation, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
+                ArrayNode arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -1761,10 +1740,10 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSAppSBItemRS();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode json : arrayList) {
+                    PSAppSBItemRS relation = new PSAppSBItemRS();
+                    PSModelV2Helper.fromJSONObject(relation, json, false);
+                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(relation, string));
                 }
             }
         }
@@ -1775,29 +1754,29 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
     protected void onEmptyModelV2(PSAppStoryBoard pSAppStoryBoard) throws Exception {
         String string;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSAppSBItemService)ServiceGlobal.getService(PSAppSBItemService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<EntityBase> arrayList = ((PSAppSBItemServiceBase)pSCoreSysServiceBase).selectByPSAppStoryBoard(pSAppStoryBoard);
+        ArrayList<PSAppSBItem> items = ((PSAppSBItemServiceBase)pSCoreSysServiceBase).selectByPSAppStoryBoard(pSAppStoryBoard);
         String string2 = StringHelper.format((String)"PSAPPSTORYBOARD#%1$s", (Object)pSAppStoryBoard.getPSAppStoryBoardId());
-        for (PSAppSBItem entityBase : arrayList) {
-            string = ((PSAppSBItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase);
+        for (PSAppSBItem entityBase : items) {
+            string = ((PSAppSBItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entityBase);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(entityBase);
         }
-        Object object = new SqlParamList();
-        object.addString(pSAppStoryBoard.getPSAppStoryBoardId());
+        SqlParamList params = new SqlParamList();
+        params.addString(pSAppStoryBoard.getPSAppStoryBoardId());
         ((PSAppSBItemServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSAppSBItemServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSAPPSBITEM WHERE PSAPPSTORYBOARDID = ?", (SqlParamList)object);
+        ((PSAppSBItemServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSAPPSBITEM WHERE PSAPPSTORYBOARDID = ?", params);
         pSCoreSysServiceBase = (PSAppSBItemRSService)ServiceGlobal.getService(PSAppSBItemRSService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSAppSBItemRSServiceBase)pSCoreSysServiceBase).selectByPSAppStoryBoard(pSAppStoryBoard);
+        ArrayList<PSAppSBItemRS> relations = ((PSAppSBItemRSServiceBase)pSCoreSysServiceBase).selectByPSAppStoryBoard(pSAppStoryBoard);
         string2 = StringHelper.format((String)"PSAPPSTORYBOARD#%1$s", (Object)pSAppStoryBoard.getPSAppStoryBoardId());
-        for (PSAppSBItemRS pSAppSBItemRS : arrayList) {
-            string = ((PSAppSBItemRSServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSAppSBItemRS);
+        for (PSAppSBItemRS pSAppSBItemRS : relations) {
+            string = ((PSAppSBItemRSServiceBase)pSCoreSysServiceBase).getModelV2ResScope(pSAppSBItemRS);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(pSAppSBItemRS);
         }
-        object = new SqlParamList();
-        object.addString(pSAppStoryBoard.getPSAppStoryBoardId());
+        params = new SqlParamList();
+        params.addString(pSAppStoryBoard.getPSAppStoryBoardId());
         ((PSAppSBItemRSServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSAppSBItemRSServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSAPPSBITEMRS WHERE PSAPPSTORYBOARDID = ?", (SqlParamList)object);
+        ((PSAppSBItemRSServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSAPPSBITEMRS WHERE PSAPPSTORYBOARDID = ?", params);
         super.onEmptyModelV2(pSAppStoryBoard);
     }
 
@@ -1836,9 +1815,6 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
 
     @Override
     protected void onCompileRelatedModelV2(PSAppStoryBoard pSAppStoryBoard, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
         int n2;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSAppSBItemService)ServiceGlobal.getService(PSAppSBItemService.class, (SessionFactory)this.getSessionFactory());
         ArrayNode arrayNode = null;
@@ -1848,25 +1824,23 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
         }
         if (arrayNode != null) {
             for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSAppSBItem();
-                ((PSAppSBItemBase)object).setPSAppStoryBoardId(pSAppStoryBoard.getPSAppStoryBoardId());
-                ((PSAppSBItemBase)object).setPSAppStoryBoardName(pSAppStoryBoard.getPSAppStoryBoardName());
-                ((PSAppSBItemBase)object).setPSSysAppId(pSAppStoryBoard.getPSSysAppId());
-                ((PSAppSBItemService)pSCoreSysServiceBase).compileModelV2((PSAppSBItem)object, (ObjectNode)object2, string, (String)null, n);
+                PSAppSBItem item = new PSAppSBItem();
+                item.setPSAppStoryBoardId(pSAppStoryBoard.getPSAppStoryBoardId());
+                item.setPSAppStoryBoardName(pSAppStoryBoard.getPSAppStoryBoardName());
+                item.setPSSysAppId(pSAppStoryBoard.getPSSysAppId());
+                ((PSAppSBItemService)pSCoreSysServiceBase).compileModelV2(item, (ObjectNode)arrayNode.get(n2), string, null, n);
             }
         } else {
             String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string4);
-            if (((File)object2).exists()) {
-                object = ((File)object2).listFiles();
-                for (Object object3 : object) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSAppSBItem();
-                    entityBase.setPSAppStoryBoardId(pSAppStoryBoard.getPSAppStoryBoardId());
-                    entityBase.setPSAppStoryBoardName(pSAppStoryBoard.getPSAppStoryBoardName());
-                    entityBase.setPSSysAppId(pSAppStoryBoard.getPSSysAppId());
-                    ((PSAppSBItemService)pSCoreSysServiceBase).compileModelV2((PSAppSBItem)entityBase, (ObjectNode)null, string, ((File)object3).getCanonicalPath(), n);
+            File dir = new File(string4);
+            if (dir.exists()) {
+                for (File folder : dir.listFiles()) {
+                    if (!folder.isDirectory()) continue;
+                    PSAppSBItem item = new PSAppSBItem();
+                    item.setPSAppStoryBoardId(pSAppStoryBoard.getPSAppStoryBoardId());
+                    item.setPSAppStoryBoardName(pSAppStoryBoard.getPSAppStoryBoardName());
+                    item.setPSSysAppId(pSAppStoryBoard.getPSSysAppId());
+                    ((PSAppSBItemService)pSCoreSysServiceBase).compileModelV2(item, null, string, folder.getCanonicalPath(), n);
                 }
             }
         }
@@ -1878,24 +1852,23 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
         }
         if (arrayNode != null) {
             for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSAppSBItemRS();
-                ((PSAppSBItemRSBase)object).setPSAppStoryBoardId(pSAppStoryBoard.getPSAppStoryBoardId());
-                ((PSAppSBItemRSBase)object).setPSAppStoryBoardName(pSAppStoryBoard.getPSAppStoryBoardName());
-                ((PSAppSBItemRSBase)object).setPSSysAppId(pSAppStoryBoard.getPSSysAppId());
-                ((PSAppSBItemRSService)pSCoreSysServiceBase).compileModelV2((PSAppSBItemRS)object, (ObjectNode)object2, string, (String)null, n);
+                PSAppSBItemRS relation = new PSAppSBItemRS();
+                relation.setPSAppStoryBoardId(pSAppStoryBoard.getPSAppStoryBoardId());
+                relation.setPSAppStoryBoardName(pSAppStoryBoard.getPSAppStoryBoardName());
+                relation.setPSSysAppId(pSAppStoryBoard.getPSSysAppId());
+                ((PSAppSBItemRSService)pSCoreSysServiceBase).compileModelV2(relation, (ObjectNode)arrayNode.get(n2), string, null, n);
             }
         } else {
             String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string5);
-            if (((File)object2).exists()) {
-                for (Object object3 : object = ((File)object2).listFiles()) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSAppSBItemRS();
-                    entityBase.setPSAppStoryBoardId(pSAppStoryBoard.getPSAppStoryBoardId());
-                    entityBase.setPSAppStoryBoardName(pSAppStoryBoard.getPSAppStoryBoardName());
-                    entityBase.setPSSysAppId(pSAppStoryBoard.getPSSysAppId());
-                    ((PSAppSBItemRSService)pSCoreSysServiceBase).compileModelV2((PSAppSBItemRS)entityBase, (ObjectNode)null, string, ((File)object3).getCanonicalPath(), n);
+            File dir = new File(string5);
+            if (dir.exists()) {
+                for (File folder : dir.listFiles()) {
+                    if (!folder.isDirectory()) continue;
+                    PSAppSBItemRS relation = new PSAppSBItemRS();
+                    relation.setPSAppStoryBoardId(pSAppStoryBoard.getPSAppStoryBoardId());
+                    relation.setPSAppStoryBoardName(pSAppStoryBoard.getPSAppStoryBoardName());
+                    relation.setPSSysAppId(pSAppStoryBoard.getPSSysAppId());
+                    ((PSAppSBItemRSService)pSCoreSysServiceBase).compileModelV2(relation, null, string, folder.getCanonicalPath(), n);
                 }
             }
         }
@@ -1919,7 +1892,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
             PSAppSBItemService pSAppSBItemService = (PSAppSBItemService)ServiceGlobal.getService(PSAppSBItemService.class, (SessionFactory)this.getSessionFactory());
             PSAppSBItem pSAppSBItem = new PSAppSBItem();
             pSAppSBItem.setPSAppSBItemId(pSMOSFile.getPSModelId());
-            if (!pSAppSBItemService.get((IEntity)pSAppSBItem, true)) {
+            if (!pSAppSBItemService.get(pSAppSBItem, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSAppSBItem.getPSAppStoryBoardId(), (String)pSAppStoryBoard.getPSAppStoryBoardId(), (boolean)false) == 0) {
@@ -1927,12 +1900,12 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
             }
             ObjectNode objectNode = pSAppSBItemService.exportModelV2(pSAppSBItem);
             pSAppSBItem.reset();
-            if (!pSAppSBItemService.setModelV2ResScope((IEntity)pSAppSBItem, "PSAPPSTORYBOARD", pSAppStoryBoard.getPSAppStoryBoardId())) {
+            if (!pSAppSBItemService.setModelV2ResScope(pSAppSBItem, "PSAPPSTORYBOARD", pSAppStoryBoard.getPSAppStoryBoardId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSAppSBItemService.importModelV2(pSAppSBItem, objectNode);
             SessionFactoryManager.commit();
-            return pSAppSBItemService.getFile((IEntity)pSAppSBItem);
+            return pSAppSBItemService.getFile(pSAppSBItem);
         }
         return null;
     }
@@ -1942,7 +1915,7 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
             PSAppSBItemRSService pSAppSBItemRSService = (PSAppSBItemRSService)ServiceGlobal.getService(PSAppSBItemRSService.class, (SessionFactory)this.getSessionFactory());
             PSAppSBItemRS pSAppSBItemRS = new PSAppSBItemRS();
             pSAppSBItemRS.setPSAppSBItemRSId(pSMOSFile.getPSModelId());
-            if (!pSAppSBItemRSService.get((IEntity)pSAppSBItemRS, true)) {
+            if (!pSAppSBItemRSService.get(pSAppSBItemRS, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSAppSBItemRS.getPSAppStoryBoardId(), (String)pSAppStoryBoard.getPSAppStoryBoardId(), (boolean)false) == 0) {
@@ -1950,12 +1923,12 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
             }
             ObjectNode objectNode = pSAppSBItemRSService.exportModelV2(pSAppSBItemRS);
             pSAppSBItemRS.reset();
-            if (!pSAppSBItemRSService.setModelV2ResScope((IEntity)pSAppSBItemRS, "PSAPPSTORYBOARD", pSAppStoryBoard.getPSAppStoryBoardId())) {
+            if (!pSAppSBItemRSService.setModelV2ResScope(pSAppSBItemRS, "PSAPPSTORYBOARD", pSAppStoryBoard.getPSAppStoryBoardId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSAppSBItemRSService.importModelV2(pSAppSBItemRS, objectNode);
             SessionFactoryManager.commit();
-            return pSAppSBItemRSService.getFile((IEntity)pSAppSBItemRS);
+            return pSAppSBItemRSService.getFile(pSAppSBItemRS);
         }
         return null;
     }
@@ -1995,4 +1968,3 @@ extends PSCoreSysServiceBase<PSAppStoryBoard> {
         defaultValueMap.put("PSAPPSTORYBOARDNAME", "\u6545\u4e8b\u677f");
     }
 }
-

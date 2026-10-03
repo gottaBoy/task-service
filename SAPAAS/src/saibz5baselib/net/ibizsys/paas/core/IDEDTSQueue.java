@@ -1,13 +1,20 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDataEntity;
-import net.ibizsys.paas.core.IDataEntityObject;
 
-public interface IDEDTSQueue
-extends IDataEntityObject {
-    public void init(IDataEntity var1) throws Exception;
+/**
+ * 实体分布事务队列接口对象
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDEDTSQueue extends IDataEntityObject {
+	/**
+	 * 初始化
+	 * 
+	 * @param iDataEntity
+	 * @throws Exception
+	 */
+	void init(IDataEntity iDataEntity) throws Exception;
+
+
 }
-

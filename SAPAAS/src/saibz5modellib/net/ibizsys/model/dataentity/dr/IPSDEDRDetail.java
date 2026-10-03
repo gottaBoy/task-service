@@ -1,50 +1,142 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.dr;
 
 import net.ibizsys.model.core.IPSModelObject;
 import net.ibizsys.model.dataentity.action.IPSDEAction;
-import net.ibizsys.model.dataentity.dr.IPSDEDRItem;
-import net.ibizsys.model.dataentity.dr.IPSDEDataRelation;
 import net.ibizsys.model.dataentity.priv.IPSDEOPPriv;
 import net.ibizsys.model.res.IPSLanguageRes;
 import net.ibizsys.model.res.IPSSysImage;
 import net.ibizsys.model.res.IPSSysPDTView;
 
-public interface IPSDEDRDetail
-extends IPSModelObject {
-    public static final String DETAILTYPE_DRITEM = "DRITEM";
-    public static final String DETAILTYPE_PDTVIEW = "PDTVIEW";
 
-    public IPSDEDataRelation getPSDEDR();
+/**
+ * 数据关系界面组成员接口对象
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSDEDRDetail extends IPSModelObject {
 
-    public String getCaption();
+	/**
+	 * 关系成员类型：关系界面
+	 */
+	static String DETAILTYPE_DRITEM = "DRITEM";
 
-    public String getCaption(String var1);
+	/**
+	 * 关系成员类型：预置视图
+	 */
+	static String DETAILTYPE_PDTVIEW = "PDTVIEW";
 
-    public String getDetailType();
 
-    public String getPSDEDRGroupId();
+	
+	/**
+	 * 获取实体关系组对象
+	 * @return
+	 */
+	IPSDEDataRelation getPSDEDR();
+	
+	
+	/**
+	 * 获取标题
+	 * 
+	 * @return
+	 */
+	String getCaption();
+	
+	/**
+	 * 获取标题
+	 * 
+	 * @return
+	 */
+	String getCaption(String strLanguage);
 
-    public String getPSDEViewId();
+	/**
+	 * 获取分类类型，值参考 SA.SRFDA.PS.Core.DataEntity.DR.IPSDEDRDetail.DETAILTYPE_XXX 定义
+	 * 
+	 * @return
+	 */
+	String getDetailType();
 
-    public String getPSDEDRItemId();
+	/**
+	 * 获取数据关系分组标识
+	 * 
+	 * @return
+	 */
+	String getPSDEDRGroupId();
 
-    public IPSDEDRItem getPSDEDRItem();
+	/**
+	 * 获取关系视图编号
+	 * 
+	 * @return
+	 */
+	String getPSDEViewId();
 
-    public IPSSysPDTView getPSSysPDTView();
+	/**
+	 * 获取关系界面
+	 * 
+	 * @return
+	 */
+	String getPSDEDRItemId();
 
-    public IPSSysImage getPSSysImage();
+	/**
+	 * 获取关系界面项
+	 * 
+	 * @return
+	 */
+	IPSDEDRItem getPSDEDRItem();
 
-    public String getEnableMode();
+	/**
+	 * 获取系统预置视图
+	 * 
+	 * @return
+	 */
+	IPSSysPDTView getPSSysPDTView();
 
-    public String getCounterId();
+	/**
+	 * 获取系统图片资源
+	 * 
+	 * @return
+	 */
+	IPSSysImage getPSSysImage();
 
-    public IPSDEAction getTestPSDEAction();
+	/**
+	 * 获取启用模式
+	 * 
+	 * @return
+	 */
+	String getEnableMode();
 
-    public IPSDEOPPriv getTestPSDEOPPriv();
+	/**
+	 * 获取计数器标识
+	 * 
+	 * @return
+	 */
+	String getCounterId();
 
-    public IPSLanguageRes getCapPSLanguageRes();
+	/**
+	 * 判断启用判断实体行为
+	 * 
+	 * @return
+	 */
+	IPSDEAction getTestPSDEAction();
+
+	/**
+	 * 获取实体操作标示
+	 * 
+	 * @return
+	 */
+	IPSDEOPPriv getTestPSDEOPPriv();
+
+	/**
+	 * 获取标题语言资源对象
+	 * 
+	 * @return
+	 */
+	IPSLanguageRes getCapPSLanguageRes();
+
+//	/**
+//	 * 获取实体树视图标识
+//	 * 
+//	 * @return
+//	 */
+//	String getPSDETreeId();
 }
-

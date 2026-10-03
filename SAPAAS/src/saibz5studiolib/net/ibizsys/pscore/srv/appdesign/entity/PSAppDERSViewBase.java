@@ -1127,7 +1127,7 @@ implements Serializable {
                 PSAppDERS pSAppDERS = new PSAppDERS();
                 pSAppDERS.setPSAppDERSId(this.getPSAppDERSId());
                 PSAppDERSService pSAppDERSService = (PSAppDERSService)ServiceGlobal.getService(PSAppDERSService.class, (SessionFactory)this.getSessionFactory());
-                pSAppDERSService.autoGet((IEntity)pSAppDERS);
+                pSAppDERSService.autoGet(pSAppDERS);
                 this.psappders = pSAppDERS;
             }
             return this.psappders;
@@ -1153,7 +1153,7 @@ implements Serializable {
                 PSAppDEView pSAppDEView = new PSAppDEView();
                 pSAppDEView.setPSAppDEViewId(this.getPSAppDEViewId());
                 PSAppDEViewService pSAppDEViewService = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, (SessionFactory)this.getSessionFactory());
-                pSAppDEViewService.autoGet((IEntity)pSAppDEView);
+                pSAppDEViewService.autoGet(pSAppDEView);
                 this.psappdeview = pSAppDEView;
             }
             return this.psappdeview;

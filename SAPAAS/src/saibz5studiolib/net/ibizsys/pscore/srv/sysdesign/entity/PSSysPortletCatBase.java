@@ -1852,7 +1852,7 @@ implements Serializable {
                 PSLanguageRes pSLanguageRes = new PSLanguageRes();
                 pSLanguageRes.setPSLanguageResId(this.getNamePSLanResId());
                 PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
-                pSLanguageResService.autoGet((IEntity)pSLanguageRes);
+                pSLanguageResService.autoGet(pSLanguageRes);
                 this.namepslanres = pSLanguageRes;
             }
             return this.namepslanres;
@@ -1878,7 +1878,7 @@ implements Serializable {
                 PSModule pSModule = new PSModule();
                 pSModule.setPSModuleId(this.getPSModuleId());
                 PSModuleService pSModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSModuleService.autoGet((IEntity)pSModule);
+                pSModuleService.autoGet(pSModule);
                 this.psmodule = pSModule;
             }
             return this.psmodule;
@@ -1904,7 +1904,7 @@ implements Serializable {
                 PSSysCss pSSysCss = new PSSysCss();
                 pSSysCss.setPSSysCssId(this.getPSSysCssId());
                 PSSysCssService pSSysCssService = (PSSysCssService)ServiceGlobal.getService(PSSysCssService.class, (SessionFactory)this.getSessionFactory());
-                pSSysCssService.autoGet((IEntity)pSSysCss);
+                pSSysCssService.autoGet(pSSysCss);
                 this.pssyscss = pSSysCss;
             }
             return this.pssyscss;
@@ -1930,7 +1930,7 @@ implements Serializable {
                 PSSysImage pSSysImage = new PSSysImage();
                 pSSysImage.setPSSysImageId(this.getPSSysImageId());
                 PSSysImageService pSSysImageService = (PSSysImageService)ServiceGlobal.getService(PSSysImageService.class, (SessionFactory)this.getSessionFactory());
-                pSSysImageService.autoGet((IEntity)pSSysImage);
+                pSSysImageService.autoGet(pSSysImage);
                 this.pssysimage = pSSysImage;
             }
             return this.pssysimage;
@@ -1956,7 +1956,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

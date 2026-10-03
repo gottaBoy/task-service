@@ -1,13 +1,30 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
+/**
+ * 数据导入结果
+ * @author Administrator
+ *
+ */
 public interface IDEDataImportResult {
-    public String getRetInfo();
 
-    public int getRetCode();
+	/**
+	 * 获取结果信息
+	 * @return
+	 */
+	String getRetInfo();
 
-    public int getRowSN();
+	
+	/**
+	 * 获取错误代码
+	 * @return
+	 */
+	int getRetCode();
+	
+	
+	
+	/**
+	 * 获取行号
+	 * @return
+	 */
+	int getRowSN();
 }
-

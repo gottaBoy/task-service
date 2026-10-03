@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdeploy.demodel.PSDepSlnWFEngineInstDEModelBase;
 
 public class PSDepSlnWFEngineInstDEModel
 extends PSDepSlnWFEngineInstDEModelBase {
+
+    public PSDepSlnWFEngineInstDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

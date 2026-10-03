@@ -131,7 +131,7 @@ extends PSDEDQCondServiceBase {
         PSVarSampleValueService pSVarSampleValueService = (PSVarSampleValueService)ServiceGlobal.getService(PSVarSampleValueService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSVarSampleValue pSVarSampleValue = new PSVarSampleValue();
         pSVarSampleValue.setPSVarSampleValueId(string2);
-        if (pSVarSampleValueService.get((IEntity)pSVarSampleValue, true)) {
+        if (pSVarSampleValueService.get(pSVarSampleValue, true)) {
             PSVarType2CodeListModel pSVarType2CodeListModel = (PSVarType2CodeListModel)CodeListGlobal.getCodeList(PSVarType2CodeListModel.class);
             pSDEDQCond.setPSVARTypeId(pSVarSampleValue.getVarType());
             pSDEDQCond.setPSVARTypeName(pSVarType2CodeListModel.getCodeListText(pSVarSampleValue.getVarType(), false));

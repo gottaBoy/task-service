@@ -1,15 +1,43 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
+/**
+ * 大数据体系数据源接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IBADataSource {
-    public Object getConnection() throws Exception;
 
-    public void closeConnection(Object var1) throws Exception;
+	/**
+	 * 获取连接对象
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	Object getConnection() throws Exception;
 
-    public String getNamespace();
-
-    public int getMaxVersions();
+	/**
+	 * 关闭连接对象
+	 * 
+	 * @param connection
+	 * @throws Exception
+	 */
+	void closeConnection(Object connection) throws Exception;
+	
+	
+	
+	
+	/**
+	 * 获取命名空间
+	 * @return
+	 */
+	String getNamespace();
+	
+	
+	
+	/**
+	 * 获取最大版本号
+	 * @return
+	 */
+	int getMaxVersions();
 }
-

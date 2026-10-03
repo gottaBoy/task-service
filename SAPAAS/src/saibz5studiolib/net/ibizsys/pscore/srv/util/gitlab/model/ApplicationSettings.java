@@ -116,32 +116,31 @@ public class ApplicationSettings {
     }
 
     private Object jsonNodeToValue(JsonNode jsonNode) {
-        String[] stringArray = jsonNode;
+        Object value = jsonNode;
         if (jsonNode instanceof NullNode) {
-            stringArray = null;
+            value = null;
         } else if (jsonNode instanceof TextNode) {
-            stringArray = jsonNode.asText();
+            value = jsonNode.asText();
         } else if (jsonNode instanceof BooleanNode) {
-            stringArray = jsonNode.asBoolean();
+            value = jsonNode.asBoolean();
         } else if (jsonNode instanceof IntNode) {
-            stringArray = jsonNode.asInt();
+            value = jsonNode.asInt();
         } else if (jsonNode instanceof FloatNode) {
-            stringArray = Float.valueOf((float)((FloatNode)jsonNode).asDouble());
+            value = Float.valueOf((float)((FloatNode)jsonNode).asDouble());
         } else if (jsonNode instanceof DoubleNode) {
-            stringArray = Float.valueOf((float)((DoubleNode)jsonNode).asDouble());
+            value = Float.valueOf((float)((DoubleNode)jsonNode).asDouble());
         } else if (jsonNode instanceof ArrayNode) {
             int n = jsonNode.size();
             String[] stringArray2 = new String[n];
             for (int i = 0; i < n; ++i) {
                 stringArray2[i] = jsonNode.path(i).asText();
             }
-            stringArray = stringArray2;
+            value = stringArray2;
         }
-        return stringArray;
+        return value;
     }
 
     public String toString() {
         return JacksonJson.toJsonString(this);
     }
 }
-

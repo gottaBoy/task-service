@@ -3279,7 +3279,7 @@ implements Serializable {
                 PSCredential pSCredential = new PSCredential();
                 pSCredential.setPSCredentialId(this.getPSCredentialId());
                 PSCredentialService pSCredentialService = (PSCredentialService)ServiceGlobal.getService(PSCredentialService.class, (SessionFactory)this.getSessionFactory());
-                pSCredentialService.autoGet((IEntity)pSCredential);
+                pSCredentialService.autoGet(pSCredential);
                 this.pscredential = pSCredential;
             }
             return this.pscredential;
@@ -3305,7 +3305,7 @@ implements Serializable {
                 PSCredential pSCredential = new PSCredential();
                 pSCredential.setPSCredentialId(this.getROPSCredentialId());
                 PSCredentialService pSCredentialService = (PSCredentialService)ServiceGlobal.getService(PSCredentialService.class, (SessionFactory)this.getSessionFactory());
-                pSCredentialService.autoGet((IEntity)pSCredential);
+                pSCredentialService.autoGet(pSCredential);
                 this.ropscredential = pSCredential;
             }
             return this.ropscredential;
@@ -3331,7 +3331,7 @@ implements Serializable {
                 PSDCCluster pSDCCluster = new PSDCCluster();
                 pSDCCluster.setPSDCClusterId(this.getPSDCClusterId());
                 PSDCClusterService pSDCClusterService = (PSDCClusterService)ServiceGlobal.getService(PSDCClusterService.class, (SessionFactory)this.getSessionFactory());
-                pSDCClusterService.autoGet((IEntity)pSDCCluster);
+                pSDCClusterService.autoGet(pSDCCluster);
                 this.psdccluster = pSDCCluster;
             }
             return this.psdccluster;
@@ -3357,7 +3357,7 @@ implements Serializable {
                 PSDCContainerSpec pSDCContainerSpec = new PSDCContainerSpec();
                 pSDCContainerSpec.setPSDCContainerSpecId(this.getPSDCContainerSpecId());
                 PSDCContainerSpecService pSDCContainerSpecService = (PSDCContainerSpecService)ServiceGlobal.getService(PSDCContainerSpecService.class, (SessionFactory)this.getSessionFactory());
-                pSDCContainerSpecService.autoGet((IEntity)pSDCContainerSpec);
+                pSDCContainerSpecService.autoGet(pSDCContainerSpec);
                 this.psdccontainerspec = pSDCContainerSpec;
             }
             return this.psdccontainerspec;
@@ -3383,7 +3383,7 @@ implements Serializable {
                 PSDCFile pSDCFile = new PSDCFile();
                 pSDCFile.setPSDCFileId(this.getPSDCFileId());
                 PSDCFileService pSDCFileService = (PSDCFileService)ServiceGlobal.getService(PSDCFileService.class, (SessionFactory)this.getSessionFactory());
-                pSDCFileService.autoGet((IEntity)pSDCFile);
+                pSDCFileService.autoGet(pSDCFile);
                 this.psdcfile = pSDCFile;
             }
             return this.psdcfile;
@@ -3409,7 +3409,7 @@ implements Serializable {
                 PSDCRegistryServer pSDCRegistryServer = new PSDCRegistryServer();
                 pSDCRegistryServer.setPSDCRegistryServerId(this.getPSDCRegistryServerId());
                 PSDCRegistryServerService pSDCRegistryServerService = (PSDCRegistryServerService)ServiceGlobal.getService(PSDCRegistryServerService.class, (SessionFactory)this.getSessionFactory());
-                pSDCRegistryServerService.autoGet((IEntity)pSDCRegistryServer);
+                pSDCRegistryServerService.autoGet(pSDCRegistryServer);
                 this.psdcregistryserver = pSDCRegistryServer;
             }
             return this.psdcregistryserver;
@@ -3435,7 +3435,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -3461,7 +3461,7 @@ implements Serializable {
                 PSDevSln pSDevSln = new PSDevSln();
                 pSDevSln.setPSDevSlnId(this.getPSDevSlnId());
                 PSDevSlnService pSDevSlnService = (PSDevSlnService)ServiceGlobal.getService(PSDevSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnService.autoGet((IEntity)pSDevSln);
+                pSDevSlnService.autoGet(pSDevSln);
                 this.psdevsln = pSDevSln;
             }
             return this.psdevsln;
@@ -3487,7 +3487,7 @@ implements Serializable {
                 PSRegistryRepo pSRegistryRepo = new PSRegistryRepo();
                 pSRegistryRepo.setPSRegistryRepoId(this.getPSRegistryRepoId());
                 PSRegistryRepoService pSRegistryRepoService = (PSRegistryRepoService)ServiceGlobal.getService(PSRegistryRepoService.class, (SessionFactory)this.getSessionFactory());
-                pSRegistryRepoService.autoGet((IEntity)pSRegistryRepo);
+                pSRegistryRepoService.autoGet(pSRegistryRepo);
                 this.psregistryrepo = pSRegistryRepo;
             }
             return this.psregistryrepo;

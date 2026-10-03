@@ -96,7 +96,7 @@ extends PSDEDataCtrl {
         PSCodeServerActionService psCodeServerActionService = (PSCodeServerActionService)ServiceGlobal.getService(PSCodeServerActionService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSCodeServerAction psCodeServerAction = new PSCodeServerAction();
         PSDEDataCtrl.convertEntity2(dataEntity, (IEntity)psCodeServerAction);
-        psCodeServerActionService.get((IEntity)psCodeServerAction);
+        psCodeServerActionService.get(psCodeServerAction);
         PSCodeServerAction psCodeServerAction2 = new PSCodeServerAction();
         String strPSCodeServerActionId = psCodeServerAction.getPSCodeServerActionId();
         String strPSDevSlnId = psCodeServerAction.getPSDevSlnId();
@@ -108,19 +108,19 @@ extends PSDEDataCtrl {
             PSDevSlnTemplService psDevSlnTemplService = (PSDevSlnTemplService)ServiceGlobal.getService(PSDevSlnTemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDevSlnTempl psDevSlnTempl = new PSDevSlnTempl();
             psDevSlnTempl.setPSDevSlnTemplId(psCodeServerAction.getPSObjId());
-            psDevSlnTemplService.get((IEntity)psDevSlnTempl);
+            psDevSlnTemplService.get(psDevSlnTempl);
             String strGitPath = "";
             if (StringHelper.Compare((String)psDevSlnTempl.getTemplType(), (String)"PSPF", (boolean)true) == 0) {
                 PSPFStyleService psPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                 PSPFStyle psPFStyle = new PSPFStyle();
                 psPFStyle.setPSPFStyleId(psDevSlnTempl.getPSPFStyleId());
-                psPFStyleService.get((IEntity)psPFStyle);
+                psPFStyleService.get(psPFStyle);
                 strGitPath = psPFStyle.getTemplRootUrl();
             } else if (StringHelper.Compare((String)psDevSlnTempl.getTemplType(), (String)"PSSF", (boolean)true) == 0) {
                 PSSFStyleService psSFStyleService = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                 PSSFStyle psSFStyle = new PSSFStyle();
                 psSFStyle.setPSSFStyleId(psDevSlnTempl.getPSSFStyleId());
-                psSFStyleService.get((IEntity)psSFStyle);
+                psSFStyleService.get(psSFStyle);
                 strGitPath = psSFStyle.getTemplRootUrl();
             }
             psCodeServerAction2.reset();
@@ -133,7 +133,7 @@ extends PSDEDataCtrl {
                 psCodeServerAction2.setCodeServerUrl(strGitPath);
             }
             psCodeServerAction2.setPSDSConsoleId(strPSDSConsoleId);
-            psCodeServerActionService.update((IEntity)psCodeServerAction2, false);
+            psCodeServerActionService.update(psCodeServerAction2, false);
             return;
         }
         PSDevSlnUserCSService psDevSlnUserCSService = (PSDevSlnUserCSService)ServiceGlobal.getService(PSDevSlnUserCSService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
@@ -154,13 +154,13 @@ extends PSDEDataCtrl {
             psCodeServerAction2.setActionState(Integer.valueOf(40));
             psCodeServerAction2.setActionResult(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u7528\u6237\u5f00\u53d1\u4e3b\u673a\u4fe1\u606f\uff0c\u65e0\u6548\u7684\u76ee\u6807"));
             psCodeServerAction2.setPSDSConsoleId(strPSDSConsoleId);
-            psCodeServerActionService.update((IEntity)psCodeServerAction2, false);
+            psCodeServerActionService.update(psCodeServerAction2, false);
             return;
         }
-        if (!psDevSlnUserCSService.select((IEntity)psDevSlnUserCS, true)) {
+        if (!psDevSlnUserCSService.select(psDevSlnUserCS, true)) {
             psDevSlnUserCS.resetPSDevUserId();
             psDevSlnUserCS.setAllUserFlag(Integer.valueOf(1));
-            if (!psDevSlnUserCSService.select((IEntity)psDevSlnUserCS, true)) {
+            if (!psDevSlnUserCSService.select(psDevSlnUserCS, true)) {
                 psDevSlnUserCS = null;
             }
         }
@@ -170,7 +170,7 @@ extends PSDEDataCtrl {
             psDevSlnCSSession = new PSDevSlnCSSession();
             psDevSlnCSSession.setPSDevSlnUserCSId(psDevSlnUserCS.getPSDevSlnUserCSId());
             psDevSlnCSSession.setResState(Integer.valueOf(20));
-            if (!psDevSlnCSSessionService.select((IEntity)psDevSlnCSSession, true)) {
+            if (!psDevSlnCSSessionService.select(psDevSlnCSSession, true)) {
                 psDevSlnCSSession = null;
             }
         }
@@ -181,7 +181,7 @@ extends PSDEDataCtrl {
             psCodeServerAction2.setActionState(Integer.valueOf(40));
             psCodeServerAction2.setActionResult(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u7528\u6237\u5f00\u53d1\u4e3b\u673a\u4fe1\u606f"));
             psCodeServerAction2.setPSDSConsoleId(strPSDSConsoleId);
-            psCodeServerActionService.update((IEntity)psCodeServerAction2, false);
+            psCodeServerActionService.update(psCodeServerAction2, false);
             return;
         }
         psCodeServerActionService = (PSCodeServerActionService)ServiceGlobal.getService(PSCodeServerActionService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
@@ -192,7 +192,6 @@ extends PSDEDataCtrl {
         psCodeServerAction2.setActionResult("");
         psCodeServerAction2.setCodeServerUrl(psDevSlnCSSession.getCSParam());
         psCodeServerAction2.setPSDSConsoleId(strPSDSConsoleId);
-        psCodeServerActionService.update((IEntity)psCodeServerAction2, false);
+        psCodeServerActionService.update(psCodeServerAction2, false);
     }
 }
-

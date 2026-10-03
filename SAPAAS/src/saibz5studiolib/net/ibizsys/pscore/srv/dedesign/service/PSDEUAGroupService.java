@@ -44,7 +44,7 @@ extends PSDEUAGroupServiceBase {
 
     @Override
     protected void onBeforeUpdate(PSDEUAGroup pSDEUAGroup) throws Exception {
-        PSDEUAGroup pSDEUAGroup2 = (PSDEUAGroup)this.getLast((IEntity)pSDEUAGroup);
+        PSDEUAGroup pSDEUAGroup2 = (PSDEUAGroup)this.getLast(pSDEUAGroup);
         String string = null;
         String string2 = null;
         string = pSDEUAGroup.isPSDEIdDirty() ? pSDEUAGroup.getPSDEId() : pSDEUAGroup2.getPSDEId();
@@ -66,7 +66,7 @@ extends PSDEUAGroupServiceBase {
     @Override
     protected String getEntityFolderKeyValue(PSDEUAGroup pSDEUAGroup, PSSystem pSSystem) throws Exception {
         if (StringHelper.isNullOrEmpty((String)pSDEUAGroup.getPSDEId())) {
-            return PSModelFolderKeyHelper.getModelKey((IEntity)pSDEUAGroup, pSSystem, "PSDEUAGROUP_SYS", "", this.getSessionFactory());
+            return PSModelFolderKeyHelper.getModelKey(pSDEUAGroup, pSSystem, "PSDEUAGROUP_SYS", "", this.getSessionFactory());
         }
         return super.getEntityFolderKeyValue(pSDEUAGroup, pSSystem);
     }

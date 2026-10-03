@@ -22,7 +22,6 @@
  */
 package net.ibizsys.pscore.srv.sysdesign.service;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -39,6 +38,7 @@ import net.ibizsys.paas.web.MDAjaxActionResult;
 import net.ibizsys.paas.web.WebContext;
 import net.ibizsys.paas.xml.XmlNode;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEField;
+import net.ibizsys.pscore.srv.dedesign.entity.PSDER;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDERBase;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDataEntity;
 import net.ibizsys.pscore.srv.dedesign.service.PSDataEntityService;
@@ -65,7 +65,7 @@ extends PSSysERMapServiceBase {
 
     @Override
     protected void onAddDataEntities(PSSysERMap pSSysERMap) throws Exception {
-        this.get((IEntity)pSSysERMap);
+        this.get(pSSysERMap);
         if (!DataObject.getBoolValue((Integer)pSSysERMap.getAllEntityFlag(), (boolean)true)) {
             throw new Exception("ER\u56fe\u6ca1\u6709\u8bbe\u7f6e\u4e3a\u5168\u90e8\u5b9e\u4f53\uff0c\u65e0\u6cd5\u6dfb\u52a0");
         }
@@ -104,14 +104,14 @@ extends PSSysERMapServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSSysERMap.getPSSysERMapId())) {
             this.getTempMajor(pSSysERMap);
         } else {
-            this.getTemp((IEntity)pSSysERMap);
+            this.getTemp(pSSysERMap);
         }
         pSSysERMap.setERModel(this.getERModel(pSSysERMap));
     }
 
     @Override
     public void getWithModel2(PSSysERMap pSSysERMap) throws Exception {
-        this.get((IEntity)pSSysERMap);
+        this.get(pSSysERMap);
         pSSysERMap.setERModel(this.getERModel(pSSysERMap));
     }
 
@@ -131,7 +131,7 @@ extends PSSysERMapServiceBase {
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
             XmlNode xmlNode2 = new XmlNode();
             xmlNode2.setNodeName(XMLNODE_ERNODE);
-            this.fillXmlNode((IEntity)pSSysERMapNode, xmlNode2, false);
+            this.fillXmlNode(pSSysERMapNode, xmlNode2, false);
             xmlNode.addNode(xmlNode2);
         }
         return XmlNode.export((XmlNode)xmlNode);
@@ -144,7 +144,6 @@ extends PSSysERMapServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysERMapNode pSSysERMapNode2;
                 PSSysERMapNodeService pSSysERMapNodeService = (PSSysERMapNodeService)ServiceGlobal.getService((String)PSSysERMapNodeService.class.getCanonicalName(), (SessionFactory)PSSysERMapService.this.getSessionFactory());
                 ArrayList<PSSysERMapNode> arrayList = pSSysERMapNodeService.selectTempByPSSysERMap(pSSysERMap2);
                 HashMap<String, PSSysERMapNode> hashMap = new HashMap<String, PSSysERMapNode>();
@@ -152,20 +151,20 @@ extends PSSysERMapServiceBase {
                     hashMap.put(pSSysERMapNode2.getPSSysERMapNodeId(), pSSysERMapNode2);
                 }
                 String string = pSSysERMap2.getERModel();
-                pSSysERMapNode2 = XmlNode.loadFromXML((String)string);
-                if (pSSysERMapNode2 != null) {
-                    pSSysERMap2.setDefViewMode(pSSysERMapNode2.getAttribute("DEFVIEWMODE", "PV"));
-                    pSSysERMapNode2.setAttribute("PSSYSERMAPID", pSSysERMap2.getPSSysERMapId());
-                    pSSysERMapNode2.setAttribute("PSSYSTEMID", pSSysERMap2.getPSSystemId());
-                    pSSysERMapNode2.setAttribute("DEFVIEWMODE", pSSysERMap2.getDefViewMode());
-                    PSSysERMapService.this.updatePSSysERMapModel(pSSysERMap2, (XmlNode)pSSysERMapNode2, hashMap);
-                    pSSysERMap2.setERModel(XmlNode.export((XmlNode)pSSysERMapNode2));
+                XmlNode modelNode = XmlNode.loadFromXML((String)string);
+                if (modelNode != null) {
+                    pSSysERMap2.setDefViewMode(modelNode.getAttribute("DEFVIEWMODE", "PV"));
+                    modelNode.setAttribute("PSSYSERMAPID", pSSysERMap2.getPSSysERMapId());
+                    modelNode.setAttribute("PSSYSTEMID", pSSysERMap2.getPSSystemId());
+                    modelNode.setAttribute("DEFVIEWMODE", pSSysERMap2.getDefViewMode());
+                    PSSysERMapService.this.updatePSSysERMapModel(pSSysERMap2, modelNode, hashMap);
+                    pSSysERMap2.setERModel(XmlNode.export(modelNode));
                 } else {
                     pSSysERMap2.setERModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSSysERMapNode pSSysERMapNode3 : hashMap.values()) {
-                        pSSysERMapNodeService.removeTemp((IEntity)pSSysERMapNode3);
+                        pSSysERMapNodeService.removeTemp(pSSysERMapNode3);
                     }
                 }
                 PSSysERMapService.this.updateTempMajor(pSSysERMap2);
@@ -176,7 +175,7 @@ extends PSSysERMapServiceBase {
     protected void updatePSSysERMapModel(PSSysERMap pSSysERMap, XmlNode xmlNode, HashMap<String, PSSysERMapNode> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSSysERMapNodeService pSSysERMapNodeService = (PSSysERMapNodeService)ServiceGlobal.getService((String)PSSysERMapNodeService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             while (iterator.hasNext()) {
                 int n;
@@ -210,7 +209,7 @@ extends PSSysERMapServiceBase {
                     }
                 }
                 if (bl) {
-                    pSSysERMapNodeService.updateTemp((IEntity)pSSysERMapNode);
+                    pSSysERMapNodeService.updateTemp(pSSysERMapNode);
                 }
                 xmlNode2.resetAttributes();
                 pSSysERMapNode.fillXmlNode(xmlNode2, false);
@@ -230,7 +229,6 @@ extends PSSysERMapServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysERMapNode pSSysERMapNode2;
                 PSSysERMapNodeService pSSysERMapNodeService = (PSSysERMapNodeService)ServiceGlobal.getService((String)PSSysERMapNodeService.class.getCanonicalName(), (SessionFactory)PSSysERMapService.this.getSessionFactory());
                 ArrayList<PSSysERMapNode> arrayList = pSSysERMapNodeService.selectTempByPSSysERMap(pSSysERMap2);
                 HashMap<String, PSSysERMapNode> hashMap = new HashMap<String, PSSysERMapNode>();
@@ -238,30 +236,30 @@ extends PSSysERMapServiceBase {
                     hashMap.put(pSSysERMapNode2.getPSSysERMapNodeId(), pSSysERMapNode2);
                 }
                 String string = pSSysERMap2.getERModel();
-                pSSysERMapNode2 = XmlNode.loadFromXML((String)string);
-                if (pSSysERMapNode2 != null) {
-                    pSSysERMap2.setDefViewMode(pSSysERMapNode2.getAttribute("DEFVIEWMODE", "PV"));
-                    pSSysERMapNode2.setAttribute("PSSYSTEMID", pSSysERMap2.getPSSystemId());
-                    pSSysERMapNode2.setAttribute("PSSYSERMAPID", pSSysERMap2.getPSSysERMapId());
-                    pSSysERMapNode2.setAttribute("DEFVIEWMODE", pSSysERMap2.getDefViewMode());
-                    PSSysERMapService.this.updatePSSysERMapModel(pSSysERMap2, (XmlNode)pSSysERMapNode2, hashMap);
-                    pSSysERMap2.setERModel(XmlNode.export((XmlNode)pSSysERMapNode2));
+                XmlNode modelNode = XmlNode.loadFromXML((String)string);
+                if (modelNode != null) {
+                    pSSysERMap2.setDefViewMode(modelNode.getAttribute("DEFVIEWMODE", "PV"));
+                    modelNode.setAttribute("PSSYSTEMID", pSSysERMap2.getPSSystemId());
+                    modelNode.setAttribute("PSSYSERMAPID", pSSysERMap2.getPSSysERMapId());
+                    modelNode.setAttribute("DEFVIEWMODE", pSSysERMap2.getDefViewMode());
+                    PSSysERMapService.this.updatePSSysERMapModel(pSSysERMap2, modelNode, hashMap);
+                    pSSysERMap2.setERModel(XmlNode.export(modelNode));
                 } else {
                     pSSysERMap2.setERModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSSysERMapNode pSSysERMapNode3 : hashMap.values()) {
-                        pSSysERMapNodeService.removeTemp((IEntity)pSSysERMapNode3);
+                        pSSysERMapNodeService.removeTemp(pSSysERMapNode3);
                     }
                 }
-                PSSysERMapService.this.createTempMajor((IEntity)pSSysERMap2);
+                PSSysERMapService.this.createTempMajor(pSSysERMap2);
             }
         });
     }
 
     @Override
     public void getDraftWithModel(PSSysERMap pSSysERMap) throws Exception {
-        this.getDraftTempMajor((IEntity)pSSysERMap);
+        this.getDraftTempMajor(pSSysERMap);
         pSSysERMap.setERModel(this.getERModel(pSSysERMap));
     }
 
@@ -306,7 +304,6 @@ extends PSSysERMapServiceBase {
 
     @Override
     protected void onCalcConnection(PSSysERMap pSSysERMap) throws Exception {
-        Object object;
         if (WebContext.getCurrent() == null || WebContext.getCurrent().getCurAjaxActionResult() == null) {
             throw new Exception("\u8bf7\u6c42\u73af\u5883\u4e0d\u6b63\u786e");
         }
@@ -318,24 +315,17 @@ extends PSSysERMapServiceBase {
         for (PSSysERMapNode object22 : arrayList) {
             hashMap.put(object22.getPSDEName(), object22);
         }
-        HashMap hashMap2 = new HashMap();
-        for (Object object2 : hashMap.values()) {
-            Object object3;
-            Serializable serializable = ((PSSysERMapNodeBase)object2).getPSDE().getMinorPSDERs();
-            object = ((ArrayList)serializable).iterator();
-            while (object.hasNext()) {
-                object3 = object.next();
-                if (!hashMap.containsKey(((PSDERBase)object3).getMajorPSDEName())) continue;
-                hashMap2.put(((PSDERBase)object3).getPSDERId(), object3);
+        HashMap<String, PSDER> hashMap2 = new HashMap<String, PSDER>();
+        for (PSSysERMapNode node : hashMap.values()) {
+            for (PSDER relation : node.getPSDE().getMinorPSDERs()) {
+                if (!hashMap.containsKey(relation.getMajorPSDEName())) continue;
+                hashMap2.put(relation.getPSDERId(), relation);
             }
-            object = ((PSSysERMapNodeBase)object2).getPSDE().getPSDEFields();
-            object3 = ((ArrayList)object).iterator();
-            while (object3.hasNext()) {
-                PSDEField pSDEField = (PSDEField)object3.next();
+            for (PSDEField pSDEField : node.getPSDE().getPSDEFields()) {
                 if (!DataObject.getBoolValue((Integer)pSDEField.getPKey(), (boolean)false) && StringHelper.compare((String)pSDEField.getPSDataTypeId(), (String)"PICKUP", (boolean)true) != 0) continue;
                 JSONObject jSONObject = new JSONObject();
                 jSONObject.put("type", (Object)"defield");
-                jSONObject.put("pssysermapnodeid", (Object)((PSSysERMapNodeBase)object2).getPSSysERMapNodeId());
+                jSONObject.put("pssysermapnodeid", (Object)node.getPSSysERMapNodeId());
                 jSONObject.put("psdefieldid", (Object)pSDEField.getPSDEFieldId());
                 jSONObject.put("psdefieldname", (Object)pSDEField.getPSDEFieldName());
                 jSONObject.put("logicname", (Object)pSDEField.getLogicName());
@@ -349,23 +339,22 @@ extends PSSysERMapServiceBase {
             }
         }
         ICodeList iCodeList = CodeListGlobal.getCodeList((String)"net.ibizsys.pscore.srv.codelist.DERTypeCodeListModel");
-        for (Serializable serializable : hashMap2.values()) {
-            object = new JSONObject();
-            object.put("type", (Object)"link");
-            object.put("psderid", (Object)((PSDERBase)serializable).getPSDERId());
-            object.put("psdername", (Object)((PSDERBase)serializable).getPSDERName());
-            object.put("logicname", (Object)((PSDERBase)serializable).getLogicName());
-            object.put("majorpsdename", (Object)((PSDERBase)serializable).getMajorPSDEName());
-            object.put("minorpsdename", (Object)((PSDERBase)serializable).getMinorPSDEName());
-            object.put("majorpsdeid", (Object)((PSDERBase)serializable).getMajorPSDEId());
-            object.put("minorpsdeid", (Object)((PSDERBase)serializable).getMinorPSDEId());
-            object.put("derfieldname", (Object)((PSDERBase)serializable).getDERFieldName());
-            object.put("dertype", (Object)((PSDERBase)serializable).getDERType());
-            object.put("dertypename", (Object)iCodeList.getCodeListText(((PSDERBase)serializable).getDERType(), true));
-            object.put("frompsernodeid", (Object)((PSSysERMapNode)hashMap.get(((PSDERBase)serializable).getMinorPSDEName())).getPSSysERMapNodeId());
-            object.put("topsernodeid", (Object)((PSSysERMapNode)hashMap.get(((PSDERBase)serializable).getMajorPSDEName())).getPSSysERMapNodeId());
-            mDAjaxActionResult.getRows().add(object);
+        for (PSDER relation : hashMap2.values()) {
+            JSONObject link = new JSONObject();
+            link.put("type", (Object)"link");
+            link.put("psderid", (Object)relation.getPSDERId());
+            link.put("psdername", (Object)relation.getPSDERName());
+            link.put("logicname", (Object)relation.getLogicName());
+            link.put("majorpsdename", (Object)relation.getMajorPSDEName());
+            link.put("minorpsdename", (Object)relation.getMinorPSDEName());
+            link.put("majorpsdeid", (Object)relation.getMajorPSDEId());
+            link.put("minorpsdeid", (Object)relation.getMinorPSDEId());
+            link.put("derfieldname", (Object)relation.getDERFieldName());
+            link.put("dertype", (Object)relation.getDERType());
+            link.put("dertypename", (Object)iCodeList.getCodeListText(relation.getDERType(), true));
+            link.put("frompsernodeid", (Object)hashMap.get(relation.getMinorPSDEName()).getPSSysERMapNodeId());
+            link.put("topsernodeid", (Object)hashMap.get(relation.getMajorPSDEName()).getPSSysERMapNodeId());
+            mDAjaxActionResult.getRows().add(link);
         }
     }
 }
-

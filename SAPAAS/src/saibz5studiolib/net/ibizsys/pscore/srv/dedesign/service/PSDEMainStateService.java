@@ -89,7 +89,7 @@ extends PSDEMainStateServiceBase {
 
     @Override
     protected void onInitDEMSViews(PSDEMainState pSDEMainState) throws Exception {
-        this.get((IEntity)pSDEMainState);
+        this.get(pSDEMainState);
         PSDEViewBaseService pSDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)this.getSessionFactory());
         pSDEViewBaseService.initDEMSViews(pSDEMainState, pSDEMainState.getPSDE());
     }

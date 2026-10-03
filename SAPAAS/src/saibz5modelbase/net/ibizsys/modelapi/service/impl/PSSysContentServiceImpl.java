@@ -74,7 +74,7 @@ implements IPSSysContentService {
     @Override
     protected List<PSSysContent> onListAll() throws Exception {
         ArrayList<PSSysContent> list = new ArrayList<PSSysContent>();
-        List pssyscontentcats = PSModelServiceUtil.getInstance().getPSSysContentCatService().listAll();
+        List<PSSysContentCat> pssyscontentcats = PSModelServiceUtil.getInstance().getPSSysContentCatService().listAll();
         if (pssyscontentcats != null) {
             for (PSSysContentCat parent : pssyscontentcats) {
                 List<PSSysContent> items = this.listByPSSysContentCat(parent);

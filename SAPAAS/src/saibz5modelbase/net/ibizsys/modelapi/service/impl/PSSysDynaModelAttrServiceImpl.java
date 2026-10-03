@@ -75,7 +75,7 @@ implements IPSSysDynaModelAttrService {
     @Override
     protected List<PSSysDynaModelAttr> onListAll() throws Exception {
         ArrayList<PSSysDynaModelAttr> list = new ArrayList<PSSysDynaModelAttr>();
-        List pssysdynamodels = PSModelServiceUtil.getInstance().getPSSysDynaModelService().listAll();
+        List<PSSysDynaModel> pssysdynamodels = PSModelServiceUtil.getInstance().getPSSysDynaModelService().listAll();
         if (pssysdynamodels != null) {
             for (PSSysDynaModel parent : pssysdynamodels) {
                 List<PSSysDynaModelAttr> items = this.listByPSSysDynaModel(parent);

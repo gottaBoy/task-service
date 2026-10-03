@@ -233,21 +233,21 @@ extends PSAppViewService<PSAppPortalView> {
 
     public void createWithModel(PSAppPortalView pSAppPortalView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, (IEntity)pSAppPortalView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, pSAppPortalView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppPortalView, ACTION_CREATEWITHMODEL);
+        this.testDEMainStateAction(pSAppPortalView, ACTION_CREATEWITHMODEL);
         final PSAppPortalView pSAppPortalView2 = pSAppPortalView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPortalViewServiceBase.this.getService(), PSAppPortalViewServiceBase.ACTION_CREATEWITHMODEL, 40, (IEntity)pSAppPortalView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPortalViewServiceBase.this.getService(), PSAppPortalViewServiceBase.ACTION_CREATEWITHMODEL, 40, pSAppPortalView2, null).getResult() != 1) {
                     PSAppPortalViewServiceBase.this.onCreateWithModel(pSAppPortalView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, (IEntity)pSAppPortalView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, pSAppPortalView, null);
         }
     }
 
@@ -257,21 +257,21 @@ extends PSAppViewService<PSAppPortalView> {
 
     public void getDraftFromWithModel(PSAppPortalView pSAppPortalView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, (IEntity)pSAppPortalView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, pSAppPortalView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppPortalView, ACTION_GETDRAFTFROMWITHMODEL);
+        this.testDEMainStateAction(pSAppPortalView, ACTION_GETDRAFTFROMWITHMODEL);
         final PSAppPortalView pSAppPortalView2 = pSAppPortalView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPortalViewServiceBase.this.getService(), PSAppPortalViewServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, (IEntity)pSAppPortalView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPortalViewServiceBase.this.getService(), PSAppPortalViewServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, pSAppPortalView2, null).getResult() != 1) {
                     PSAppPortalViewServiceBase.this.onGetDraftFromWithModel(pSAppPortalView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, (IEntity)pSAppPortalView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, pSAppPortalView, null);
         }
     }
 
@@ -281,21 +281,21 @@ extends PSAppViewService<PSAppPortalView> {
 
     public void getDraftWithModel(PSAppPortalView pSAppPortalView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, (IEntity)pSAppPortalView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, pSAppPortalView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppPortalView, ACTION_GETDRAFTWITHMODEL);
+        this.testDEMainStateAction(pSAppPortalView, ACTION_GETDRAFTWITHMODEL);
         final PSAppPortalView pSAppPortalView2 = pSAppPortalView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPortalViewServiceBase.this.getService(), PSAppPortalViewServiceBase.ACTION_GETDRAFTWITHMODEL, 40, (IEntity)pSAppPortalView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPortalViewServiceBase.this.getService(), PSAppPortalViewServiceBase.ACTION_GETDRAFTWITHMODEL, 40, pSAppPortalView2, null).getResult() != 1) {
                     PSAppPortalViewServiceBase.this.onGetDraftWithModel(pSAppPortalView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, (IEntity)pSAppPortalView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, pSAppPortalView, null);
         }
     }
 
@@ -305,21 +305,21 @@ extends PSAppViewService<PSAppPortalView> {
 
     public void getWithModel(PSAppPortalView pSAppPortalView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, (IEntity)pSAppPortalView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, pSAppPortalView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppPortalView, ACTION_GETWITHMODEL);
+        this.testDEMainStateAction(pSAppPortalView, ACTION_GETWITHMODEL);
         final PSAppPortalView pSAppPortalView2 = pSAppPortalView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPortalViewServiceBase.this.getService(), PSAppPortalViewServiceBase.ACTION_GETWITHMODEL, 40, (IEntity)pSAppPortalView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPortalViewServiceBase.this.getService(), PSAppPortalViewServiceBase.ACTION_GETWITHMODEL, 40, pSAppPortalView2, null).getResult() != 1) {
                     PSAppPortalViewServiceBase.this.onGetWithModel(pSAppPortalView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, (IEntity)pSAppPortalView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, pSAppPortalView, null);
         }
     }
 
@@ -329,21 +329,21 @@ extends PSAppViewService<PSAppPortalView> {
 
     public void previewSave(PSAppPortalView pSAppPortalView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 0, (IEntity)pSAppPortalView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 0, pSAppPortalView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppPortalView, ACTION_PREVIEWSAVE);
+        this.testDEMainStateAction(pSAppPortalView, ACTION_PREVIEWSAVE);
         final PSAppPortalView pSAppPortalView2 = pSAppPortalView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPortalViewServiceBase.this.getService(), PSAppPortalViewServiceBase.ACTION_PREVIEWSAVE, 40, (IEntity)pSAppPortalView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPortalViewServiceBase.this.getService(), PSAppPortalViewServiceBase.ACTION_PREVIEWSAVE, 40, pSAppPortalView2, null).getResult() != 1) {
                     PSAppPortalViewServiceBase.this.onPreviewSave(pSAppPortalView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 99, (IEntity)pSAppPortalView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 99, pSAppPortalView, null);
         }
     }
 
@@ -353,21 +353,21 @@ extends PSAppViewService<PSAppPortalView> {
 
     public void updateWithModel(PSAppPortalView pSAppPortalView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, (IEntity)pSAppPortalView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, pSAppPortalView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppPortalView, ACTION_UPDATEWITHMODEL);
+        this.testDEMainStateAction(pSAppPortalView, ACTION_UPDATEWITHMODEL);
         final PSAppPortalView pSAppPortalView2 = pSAppPortalView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPortalViewServiceBase.this.getService(), PSAppPortalViewServiceBase.ACTION_UPDATEWITHMODEL, 40, (IEntity)pSAppPortalView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPortalViewServiceBase.this.getService(), PSAppPortalViewServiceBase.ACTION_UPDATEWITHMODEL, 40, pSAppPortalView2, null).getResult() != 1) {
                     PSAppPortalViewServiceBase.this.onUpdateWithModel(pSAppPortalView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, (IEntity)pSAppPortalView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, pSAppPortalView, null);
         }
     }
 
@@ -409,12 +409,12 @@ extends PSAppViewService<PSAppPortalView> {
     protected void onBeforeRemoveTemp(PSAppPortalView pSAppPortalView) throws Exception {
         PSAppPVPartService pSAppPVPartService = (PSAppPVPartService)ServiceGlobal.getService(PSAppPVPartService.class, (SessionFactory)this.getSessionFactory());
         pSAppPVPartService.removeTempByPSAppPortalView(pSAppPortalView);
-        super.onBeforeRemoveTemp((IEntity)pSAppPortalView);
+        super.onBeforeRemoveTemp(pSAppPortalView);
     }
 
     protected void getRelatedDataTempMajor(PSAppPortalView pSAppPortalView) throws Exception {
         this.getRelatedDataTempMajor_PSAppPVPart(pSAppPortalView);
-        super.getRelatedDataTempMajor((IEntity)pSAppPortalView);
+        super.getRelatedDataTempMajor(pSAppPortalView);
     }
 
     protected void getRelatedDataTempMajor_PSAppPVPart(PSAppPortalView pSAppPortalView) throws Exception {
@@ -431,7 +431,7 @@ extends PSAppViewService<PSAppPortalView> {
     protected void updateRelatedDataTempMajor(PSAppPortalView pSAppPortalView, PSAppPortalView pSAppPortalView2) throws Exception {
         ArrayList<PSAppPVPart> arrayList = this.updateRelatedDataTempMajor_removePSAppPVPart(pSAppPortalView, pSAppPortalView2);
         this.updateRelatedDataTempMajor_updatePSAppPVPart(pSAppPortalView, pSAppPortalView2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSAppPortalView, (IEntity)pSAppPortalView2);
+        super.updateRelatedDataTempMajor(pSAppPortalView, pSAppPortalView2);
     }
 
     protected ArrayList<PSAppPVPart> updateRelatedDataTempMajor_removePSAppPVPart(PSAppPortalView pSAppPortalView, PSAppPortalView pSAppPortalView2) throws Exception {
@@ -448,7 +448,7 @@ extends PSAppViewService<PSAppPortalView> {
             hashMap.remove(object);
         }
         for (PSAppPVPart pSAppPVPart : hashMap.values()) {
-            pSAppPVPartService.remove((IEntity)pSAppPVPart);
+            pSAppPVPartService.remove(pSAppPVPart);
         }
         return arrayList;
     }
@@ -542,7 +542,7 @@ extends PSAppViewService<PSAppPortalView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ColModel_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_ColModel_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("COLMODEL");
@@ -564,7 +564,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DashboardNavBar_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string = this.onTestValueRule_DashboardNavBar_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DASHBOARDNAVBAR");
@@ -586,7 +586,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DashboardStyle_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_DashboardStyle_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DASHBOARDSTYLE");
@@ -608,7 +608,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DashboardTag_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_DashboardTag_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DASHBOARDTAG");
@@ -630,7 +630,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DashboardTag2_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_DashboardTag2_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DASHBOARDTAG2");
@@ -652,7 +652,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DBModel_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_DBModel_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DBMODEL");
@@ -674,7 +674,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DefaultPage_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string = this.onTestValueRule_DefaultPage_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTPAGE");
@@ -696,7 +696,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableCustomize_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string = this.onTestValueRule_EnableCustomize_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLECUSTOMIZE");
@@ -718,7 +718,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FlexAlign_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_FlexAlign_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FLEXALIGN");
@@ -740,7 +740,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FlexDir_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_FlexDir_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FLEXDIR");
@@ -762,7 +762,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FlexVAlign_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_FlexVAlign_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FLEXVALIGN");
@@ -784,7 +784,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LayoutMode_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_LayoutMode_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LAYOUTMODE");
@@ -806,7 +806,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NavBarHeight_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string = this.onTestValueRule_NavBarHeight_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVBARHEIGHT");
@@ -828,7 +828,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NavBarPos_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_NavBarPos_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVBARPOS");
@@ -850,7 +850,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NavBarStyle_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_NavBarStyle_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVBARSTYLE");
@@ -872,7 +872,7 @@ extends PSAppViewService<PSAppPortalView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NavBarWidth_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string = this.onTestValueRule_NavBarWidth_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVBARWIDTH");
@@ -897,7 +897,7 @@ extends PSAppViewService<PSAppPortalView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppPortalViewId_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppPortalViewId_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPPORTALVIEWID");
@@ -922,7 +922,7 @@ extends PSAppViewService<PSAppPortalView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppPortalViewName_Default((IEntity)pSAppPortalView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppPortalViewName_Default(pSAppPortalView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPPORTALVIEWNAME");
@@ -2462,7 +2462,7 @@ extends PSAppViewService<PSAppPortalView> {
         PSAppPortalView pSAppPortalView2 = new PSAppPortalView();
         pSAppPortalView2.set("PSAPPPORTALVIEWID", object);
         String string = DataObject.getStringValue((Object)pSAppPortalView.get("PSAPPPORTALVIEWID"));
-        super.onCopyDetails((IEntity)pSAppPortalView, object);
+        super.onCopyDetails(pSAppPortalView, object);
     }
 
     @Override
@@ -2504,41 +2504,28 @@ extends PSAppViewService<PSAppPortalView> {
     protected void onExportCurModelV2(PSAppPortalView pSAppPortalView, ObjectNode objectNode, String string, boolean bl) throws Exception {
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSAPPPVPART_PSAPPPORTALVIEW_PSAPPPORTALVIEWID")) {
-            Object object;
-            PSAppPVPart pSAppPVPart2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSAppPVPartService pSAppPVPartService = (PSAppPVPartService)ServiceGlobal.getService(PSAppPVPartService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSAppPVPart> arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSAPPPORTALVIEW#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSAPPPVPART", (Object)pSAppPortalView.getPSAppPortalViewId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSAppPVPart2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSAppPVPart2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSAppPVPart>();
-                object4 = pSAppPVPartService.selectByPSAppPortalView(pSAppPortalView);
-                object3 = StringHelper.format((String)"PSAPPPORTALVIEW#%1$s", (Object)pSAppPortalView.getPSAppPortalViewId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSAppPVPart2 = object2.next();
-                    object = pSAppPVPartService.getModelV2ResScope((IEntity)pSAppPVPart2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSAppPVPart)PSModelV2Helper.toJSONObject((IEntity)pSAppPVPart2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSAPPPORTALVIEW#%1$s", (Object)pSAppPortalView.getPSAppPortalViewId());
+                for (PSAppPVPart part : pSAppPVPartService.selectByPSAppPortalView(pSAppPortalView)) {
+                    String partScope = pSAppPVPartService.getModelV2ResScope(part);
+                    if (StringHelper.compare(scope, partScope, false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(part, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSAppPVPartService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSAppPVPartService.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2566,11 +2553,11 @@ extends PSAppViewService<PSAppPortalView> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSAppPVPart pSAppPVPart2 : arrayList) {
-                    object = new PSAppPVPart();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSAppPVPart2, false);
-                    ((PSAppPVPartBase)object).remove("ordervalue");
-                    object3.add((JsonNode)pSAppPVPartService.exportModelV2(object, string));
+                for (ObjectNode json : arrayList) {
+                    PSAppPVPart part = new PSAppPVPart();
+                    PSModelV2Helper.fromJSONObject(part, json, false);
+                    part.remove("ordervalue");
+                    children.add((JsonNode)pSAppPVPartService.exportModelV2(part, string));
                 }
             }
         }
@@ -2583,7 +2570,7 @@ extends PSAppViewService<PSAppPortalView> {
         ArrayList<PSAppPVPart> arrayList = pSAppPVPartService.selectByPSAppPortalView(pSAppPortalView);
         String string = StringHelper.format((String)"PSAPPPORTALVIEW#%1$s", (Object)pSAppPortalView.getPSAppPortalViewId());
         for (PSAppPVPart pSAppPVPart : arrayList) {
-            String string2 = pSAppPVPartService.getModelV2ResScope((IEntity)pSAppPVPart);
+            String string2 = pSAppPVPartService.getModelV2ResScope(pSAppPVPart);
             if (StringHelper.compare((String)string, (String)string2, (boolean)false) != 0) continue;
             pSAppPVPartService.emptyModelV2(pSAppPVPart);
         }
@@ -2664,4 +2651,3 @@ extends PSAppViewService<PSAppPortalView> {
         super.onFillPasteHelps(pSAppPortalView, list);
     }
 }
-

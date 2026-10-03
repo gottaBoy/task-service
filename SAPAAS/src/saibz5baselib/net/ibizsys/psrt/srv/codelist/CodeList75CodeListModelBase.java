@@ -1,25 +1,48 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="2381396a56c91424cc5724a02cef9f66", name="\u6269\u5c55\u8868\u683c\u5355\u5143\u683c\u5782\u76f4\u5bf9\u9f50\u65b9\u5f0f", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="TOP", text="\u4e0a\u5bf9\u9f50", realtext="\u4e0a\u5bf9\u9f50"), @CodeItem(value="MIDDLE", text="\u5c45\u4e2d\u5bf9\u9f50", realtext="\u5c45\u4e2d\u5bf9\u9f50"), @CodeItem(value="BOTTOM", text="\u4e0b\u5bf9\u9f50", realtext="\u4e0b\u5bf9\u9f50")})
-public abstract class CodeList75CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String TOP = "TOP";
-    public static final String MIDDLE = "MIDDLE";
-    public static final String BOTTOM = "BOTTOM";
+
+@CodeList(id="2381396a56c91424cc5724a02cef9f66",name="扩展表格单元格垂直对齐方式",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="TOP",text="上对齐",realtext="上对齐" )
+    ,@CodeItem(value="MIDDLE",text="居中对齐",realtext="居中对齐" )
+    ,@CodeItem(value="BOTTOM",text="下对齐",realtext="下对齐" )
+})
+
+
+/**
+ * 静态代码表[扩展表格单元格垂直对齐方式]模型基类
+ */
+public abstract class CodeList75CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  上对齐
+     */
+    public final static String TOP = "TOP";
+    /**
+     *  居中对齐
+     */
+    public final static String MIDDLE = "MIDDLE";
+    /**
+     *  下对齐
+     */
+    public final static String BOTTOM = "BOTTOM";
+
 
     public CodeList75CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList75CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList75CodeListModel", this);
     }
-}
 
+}

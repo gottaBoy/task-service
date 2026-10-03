@@ -76,7 +76,7 @@ implements IPSDEFormLogicService {
     @Override
     protected List<PSDEFormLogic> onListAll() throws Exception {
         ArrayList<PSDEFormLogic> list = new ArrayList<PSDEFormLogic>();
-        List psdeforms = PSModelServiceUtil.getInstance().getPSDEFormService().listAll();
+        List<PSDEForm> psdeforms = PSModelServiceUtil.getInstance().getPSDEFormService().listAll();
         if (psdeforms != null) {
             for (PSDEForm parent : psdeforms) {
                 List<PSDEFormLogic> items = this.listByPSDEForm(parent);

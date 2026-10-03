@@ -842,7 +842,7 @@ implements Serializable {
                 PSSFStyle pSSFStyle = new PSSFStyle();
                 pSSFStyle.setPSSFStyleId(this.getPSSFStyleId());
                 PSSFStyleService pSSFStyleService = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.getSessionFactory());
-                pSSFStyleService.autoGet((IEntity)pSSFStyle);
+                pSSFStyleService.autoGet(pSSFStyle);
                 this.pssfstyle = pSSFStyle;
             }
             return this.pssfstyle;

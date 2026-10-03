@@ -1,39 +1,106 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import java.util.Iterator;
 import net.ibizsys.paas.control.tree.ITreeNode;
 import net.ibizsys.paas.ctrlhandler.ITreeNodeFetchContext;
-import net.ibizsys.paas.ctrlmodel.ICtrlModel;
-import net.ibizsys.paas.ctrlmodel.ITreeNodeModel;
-import net.ibizsys.paas.ctrlmodel.ITreeNodeRSModel;
 import net.ibizsys.paas.web.MDAjaxActionResult;
 
-public interface ITreeModel
-extends ICtrlModel {
-    public static final String NODE_SEPARATOR = ";";
-    public static final String NODE_ROOTID = "root";
+/**
+ * 树部件模型接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface ITreeModel extends ICtrlModel {
+	/**
+	 * 节点分隔符号
+	 */
+	static final String NODE_SEPARATOR = ";";
 
-    public ITreeNodeModel getRootTreeNodeModel();
+	/**
+	 * 根节点标识
+	 */
+	final static String NODE_ROOTID = "root";
 
-    public ITreeNodeModel getTreeNodeModel(String var1) throws Exception;
+	/**
+	 * 获取根节点模型
+	 * 
+	 * @return
+	 */
+	ITreeNodeModel getRootTreeNodeModel();
 
-    public Iterator<ITreeNodeModel> getTreeNodeModels();
+	/**
+	 * 获取指定树节点模型
+	 * 
+	 * @param strTreeNodeModelId
+	 * @return
+	 * @throws Exception
+	 */
+	ITreeNodeModel getTreeNodeModel(String strTreeNodeModelId) throws Exception;
+	
+	
+	/**
+	 * 获取树视图节点模型集合
+	 * @return
+	 */
+	java.util.Iterator<ITreeNodeModel> getTreeNodeModels();
 
-    public boolean isEnableRootSelect();
+	/**
+	 * 是否支持根节点选择
+	 * 
+	 * @return
+	 */
+	boolean isEnableRootSelect();
 
-    public boolean isRootVisible();
+	/**
+	 * 是否显示根节点
+	 * 
+	 * @return
+	 */
+	boolean isRootVisible();
 
-    public String getCatCodeListId();
+	/**
+	 * 获取树分类代码表标识
+	 * 
+	 * @return
+	 */
+	String getCatCodeListId();
 
-    public void fillCatFetchResult(MDAjaxActionResult var1) throws Exception;
+	/**
+	 * 填充分类数据结果对象
+	 * 
+	 * @param fetchResult
+	 * @throws Exception
+	 */
+	void fillCatFetchResult(MDAjaxActionResult fetchResult) throws Exception;
 
-    public boolean isOutputTreeNodeRS(ITreeNodeFetchContext var1, ITreeNodeRSModel var2) throws Exception;
+	/**
+	 * 判断是否输出指定树节点关系
+	 * 
+	 * @param iTreeNodeFetchContext
+	 * @param iTreeNodeRSModel
+	 * @return
+	 * @throws Exception
+	 */
+	boolean isOutputTreeNodeRS(ITreeNodeFetchContext iTreeNodeFetchContext, ITreeNodeRSModel iTreeNodeRSModel) throws Exception;
 
-    public boolean isOutputTreeNode(ITreeNodeFetchContext var1, ITreeNode var2) throws Exception;
+	/**
+	 * 判断是否输出指定树节点
+	 * 
+	 * @param iTreeNodeFetchContext
+	 * @param iTreeNode
+	 * @return
+	 * @throws Exception
+	 */
+	boolean isOutputTreeNode(ITreeNodeFetchContext iTreeNodeFetchContext, ITreeNode iTreeNode) throws Exception;
+	
+	
+	
+	
+	/**
+	 * 获取计数器对象标识
+	 * 
+	 * @return
+	 */
+	String getCounterId();
 
-    public String getCounterId();
 }
-

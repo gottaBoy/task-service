@@ -123,8 +123,8 @@ public class SystemDumpHelper {
                                     list3.add(objItem2);
                                 }
                             } else if (objValue instanceof ArrayList) {
-                                for (Object objItem2 : (ArrayList)objValue) {
-                                    list3.add(objItem2);
+                                for (Object objItem : (ArrayList)objValue) {
+                                    list3.add(objItem);
                                 }
                             } else if (objValue.getClass().isArray()) {
                                 Object[] list2;

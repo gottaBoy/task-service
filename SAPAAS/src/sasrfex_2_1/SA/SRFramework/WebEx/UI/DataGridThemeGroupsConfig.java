@@ -20,7 +20,7 @@ extends XMLCollectionConfig<DataGridThemeGroupConfig> {
         if (StringHelper.Compare((String)strName, (String)"DATAGRIDTHEMEGROUP", (boolean)true) == 0) {
             DataGridThemeGroupConfig dataGridThemeGroupConfig = new DataGridThemeGroupConfig();
             if (dataGridThemeGroupConfig.LoadConfig(xmlNode)) {
-                this.add((Object)dataGridThemeGroupConfig);
+                this.add(dataGridThemeGroupConfig);
             }
             return;
         }

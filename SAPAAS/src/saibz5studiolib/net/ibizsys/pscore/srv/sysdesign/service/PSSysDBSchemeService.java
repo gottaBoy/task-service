@@ -44,7 +44,7 @@ extends PSSysDBSchemeServiceBase {
 
     @Override
     protected void onRebuildScheme(PSSysDBScheme pSSysDBScheme) throws Exception {
-        this.get((IEntity)pSSysDBScheme);
+        this.get(pSSysDBScheme);
         boolean bl = true;
         PSSystem pSSystem = new PSSystem();
         pSSystem.setPSSystemId(pSSysDBScheme.getPSSystemId());
@@ -69,7 +69,7 @@ extends PSSysDBSchemeServiceBase {
                 } else {
                     pSSysDBTable.setPSSysDBTableName(string);
                 }
-                pSSysDBTableService.fillEntityKeyValue((IEntity)pSSysDBTable);
+                pSSysDBTableService.fillEntityKeyValue(pSSysDBTable);
                 pSSysDBTable.setLogicName(pSDataEntity.getLogicName());
                 if (pSSysDBTableService.checkKey(pSSysDBTable) == 0) {
                     pSSysDBTable.setTableType("TABLE");
@@ -78,7 +78,7 @@ extends PSSysDBSchemeServiceBase {
                     pSSysDBTable.setPSSystemName(pSSysDBScheme.getPSSystemName());
                     pSSysDBTableService.create(pSSysDBTable);
                 } else {
-                    pSSysDBTableService.get((IEntity)pSSysDBTable);
+                    pSSysDBTableService.get(pSSysDBTable);
                 }
                 this.rebuildPSDETable(pSSysDBTable, pSDataEntity, "MAIN", bl);
                 this.rebuildPSSysDBColumns(pSSysDBTable, pSDataEntity, "MAIN", bl);
@@ -92,7 +92,7 @@ extends PSSysDBSchemeServiceBase {
         pSDETable.setPSSysDBTableId(pSSysDBTable.getPSSysDBTableId());
         pSDETable.setPSDEId(pSDataEntity.getPSDataEntityId());
         pSDETable.setTableType(string);
-        pSDETableService.fillEntityKeyValue((IEntity)pSDETable);
+        pSDETableService.fillEntityKeyValue(pSDETable);
         if (pSDETableService.checkKey(pSDETable) == 0) {
             pSDETable.setPSDEName(pSDataEntity.getPSDataEntityName());
             pSDETable.setPSSysDBTableName(pSSysDBTable.getPSSysDBTableName());
@@ -120,7 +120,7 @@ extends PSSysDBSchemeServiceBase {
             } else {
                 pSSysDBColumn.setPSSysDBColumnName(pSDEField.getPSDEFieldName());
             }
-            pSSysDBColumnService.fillEntityKeyValue((IEntity)pSSysDBColumn);
+            pSSysDBColumnService.fillEntityKeyValue(pSSysDBColumn);
             if (pSSysDBColumnService.checkKey(pSSysDBColumn) != 0) continue;
             pSSysDBColumn.setCodeName(pSDEField.getCodeName());
             if (StringHelper.isNullOrEmpty((String)pSSysDBColumn.getCodeName())) {

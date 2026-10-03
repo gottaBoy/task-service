@@ -669,7 +669,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
             this.onFillParentInfo_PSSysUserDR2(pSDEDataSet, pSSysUserDR);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEDataSet, string, string2, string3);
+        super.onFillParentInfo(pSDEDataSet, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -805,7 +805,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
                 pSDEDataSet.setPSDEDataSetName((String)this.getDefaultValue(this.getWebContext(), "USER", "DATASET", 25));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDEDataSet, bl);
+        super.onFillEntityFullInfo(pSDEDataSet, bl);
         this.onFillEntityFullInfo_PSCodeList(pSDEDataSet, bl);
         this.onFillEntityFullInfo_PSDE(pSDEDataSet, bl);
         this.onFillEntityFullInfo_PSDEDataImp(pSDEDataSet, bl);
@@ -933,7 +933,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
     }
 
     protected void onWriteBackParent(PSDEDataSet pSDEDataSet, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEDataSet, bl);
+        super.onWriteBackParent(pSDEDataSet, bl);
     }
 
     public ArrayList<PSDEDataSet> selectByPSCodeList(PSCodeListBase pSCodeListBase) throws Exception {
@@ -1526,7 +1526,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSCodeList(pSCodeList);
         this.onBeforeRemoveByPSCodeList(pSCodeList, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSCodeList(pSCodeList, arrayList);
     }
@@ -1572,7 +1572,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -1624,7 +1624,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSDEDataImp(pSDEDataImp);
         this.onBeforeRemoveByPSDEDataImp(pSDEDataImp, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSDEDataImp(pSDEDataImp, arrayList);
     }
@@ -1676,7 +1676,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByInPSDEFGroup(pSDEFGroup);
         this.onBeforeRemoveByInPSDEFGroup(pSDEFGroup, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByInPSDEFGroup(pSDEFGroup, arrayList);
     }
@@ -1728,7 +1728,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByOutPSDEFGroup(pSDEFGroup);
         this.onBeforeRemoveByOutPSDEFGroup(pSDEFGroup, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByOutPSDEFGroup(pSDEFGroup, arrayList);
     }
@@ -1780,7 +1780,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByMajorPSDEF(pSDEField);
         this.onBeforeRemoveByMajorPSDEF(pSDEField, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByMajorPSDEF(pSDEField, arrayList);
     }
@@ -1832,7 +1832,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByMinorPSDEF(pSDEField);
         this.onBeforeRemoveByMinorPSDEF(pSDEField, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByMinorPSDEF(pSDEField, arrayList);
     }
@@ -1884,7 +1884,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByADPSDELogic(pSDELogic);
         this.onBeforeRemoveByADPSDELogic(pSDELogic, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByADPSDELogic(pSDELogic, arrayList);
     }
@@ -1936,7 +1936,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByCacheStatePSDELogic(pSDELogic);
         this.onBeforeRemoveByCacheStatePSDELogic(pSDELogic, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByCacheStatePSDELogic(pSDELogic, arrayList);
     }
@@ -1988,7 +1988,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSDELogic(pSDELogic);
         this.onBeforeRemoveByPSDELogic(pSDELogic, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSDELogic(pSDELogic, arrayList);
     }
@@ -2040,7 +2040,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSDEOPPriv(pSDEOPPriv);
         this.onBeforeRemoveByPSDEOPPriv(pSDEOPPriv, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSDEOPPriv(pSDEOPPriv, arrayList);
     }
@@ -2092,7 +2092,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByAggDataPSDER(pSDER);
         this.onBeforeRemoveByAggDataPSDER(pSDER, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByAggDataPSDER(pSDER, arrayList);
     }
@@ -2144,7 +2144,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByInPSDESampleData(pSDESampleData);
         this.onBeforeRemoveByInPSDESampleData(pSDESampleData, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByInPSDESampleData(pSDESampleData, arrayList);
     }
@@ -2196,7 +2196,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByOutPSDESampleData(pSDESampleData);
         this.onBeforeRemoveByOutPSDESampleData(pSDESampleData, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByOutPSDESampleData(pSDESampleData, arrayList);
     }
@@ -2248,7 +2248,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSSubSysSADetail(pSSubSysSADetail);
         this.onBeforeRemoveByPSSubSysSADetail(pSSubSysSADetail, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSSubSysSADetail(pSSubSysSADetail, arrayList);
     }
@@ -2300,7 +2300,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByInPSSysDynaModel(pSSysDynaModel);
         this.onBeforeRemoveByInPSSysDynaModel(pSSysDynaModel, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByInPSSysDynaModel(pSSysDynaModel, arrayList);
     }
@@ -2352,7 +2352,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -2404,7 +2404,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSSysReqItem(pSSysReqItem);
         this.onBeforeRemoveByPSSysReqItem(pSSysReqItem, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSSysReqItem(pSSysReqItem, arrayList);
     }
@@ -2456,7 +2456,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin);
         this.onBeforeRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
     }
@@ -2508,7 +2508,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSSysTask(pSSysTask);
         this.onBeforeRemoveByPSSysTask(pSSysTask, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSSysTask(pSSysTask, arrayList);
     }
@@ -2560,7 +2560,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSSysUniState(pSSysUniState);
         this.onBeforeRemoveByPSSysUniState(pSSysUniState, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSSysUniState(pSSysUniState, arrayList);
     }
@@ -2612,7 +2612,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSSysUserDR(pSSysUserDR);
         this.onBeforeRemoveByPSSysUserDR(pSSysUserDR, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSSysUserDR(pSSysUserDR, arrayList);
     }
@@ -2664,7 +2664,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ArrayList<PSDEDataSet> arrayList = this.selectByPSSysUserDR2(pSSysUserDR);
         this.onBeforeRemoveByPSSysUserDR2(pSSysUserDR, arrayList);
         for (PSDEDataSet pSDEDataSet : arrayList) {
-            this.remove((IEntity)pSDEDataSet);
+            this.remove(pSDEDataSet);
         }
         this.onAfterRemoveByPSSysUserDR2(pSSysUserDR, arrayList);
     }
@@ -2841,14 +2841,14 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         ((PSDEDSDQServiceBase)pSCoreSysServiceBase).removeTempByPSDEDataSet(pSDEDataSet);
         pSCoreSysServiceBase = (PSDEDSParamService)ServiceGlobal.getService(PSDEDSParamService.class, (SessionFactory)this.getSessionFactory());
         ((PSDEDSParamServiceBase)pSCoreSysServiceBase).removeTempByPSDEDS(pSDEDataSet);
-        super.onBeforeRemoveTemp((IEntity)pSDEDataSet);
+        super.onBeforeRemoveTemp(pSDEDataSet);
     }
 
     protected void getRelatedDataTempMajor(PSDEDataSet pSDEDataSet) throws Exception {
         this.getRelatedDataTempMajor_PSDEDSParam(pSDEDataSet);
         this.getRelatedDataTempMajor_PSDEDSDQ(pSDEDataSet);
         this.getRelatedDataTempMajor_PSDEDSGrpParam(pSDEDataSet);
-        super.getRelatedDataTempMajor((IEntity)pSDEDataSet);
+        super.getRelatedDataTempMajor(pSDEDataSet);
     }
 
     protected void getRelatedDataTempMajor_PSDEDSParam(PSDEDataSet pSDEDataSet) throws Exception {
@@ -2888,7 +2888,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         this.updateRelatedDataTempMajor_updatePSDEDSParam(pSDEDataSet, pSDEDataSet2, arrayList3);
         this.updateRelatedDataTempMajor_updatePSDEDSDQ(pSDEDataSet, pSDEDataSet2, arrayList2);
         this.updateRelatedDataTempMajor_updatePSDEDSGrpParam(pSDEDataSet, pSDEDataSet2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSDEDataSet, (IEntity)pSDEDataSet2);
+        super.updateRelatedDataTempMajor(pSDEDataSet, pSDEDataSet2);
     }
 
     protected ArrayList<PSDEDSParam> updateRelatedDataTempMajor_removePSDEDSParam(PSDEDataSet pSDEDataSet, PSDEDataSet pSDEDataSet2) throws Exception {
@@ -2904,7 +2904,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
             hashMap.remove(object);
         }
         for (PSDEDSParam pSDEDSParam : hashMap.values()) {
-            pSDEDSParamService.remove((IEntity)pSDEDSParam);
+            pSDEDSParamService.remove(pSDEDSParam);
         }
         return arrayList;
     }
@@ -2932,7 +2932,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
             hashMap.remove(object);
         }
         for (PSDEDSDQ pSDEDSDQ : hashMap.values()) {
-            pSDEDSDQService.remove((IEntity)pSDEDSDQ);
+            pSDEDSDQService.remove(pSDEDSDQ);
         }
         return arrayList;
     }
@@ -2960,7 +2960,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
             hashMap.remove(object);
         }
         for (PSDEDSGrpParam pSDEDSGrpParam : hashMap.values()) {
-            pSDEDSGrpParamService.remove((IEntity)pSDEDSGrpParam);
+            pSDEDSGrpParamService.remove(pSDEDSGrpParam);
         }
         return arrayList;
     }
@@ -2977,7 +2977,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
 
     protected void replaceParentInfo(PSDEDataSet pSDEDataSet, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEDataSet, cloneSession);
+        super.replaceParentInfo(pSDEDataSet, cloneSession);
         if (pSDEDataSet.getPSCodeListId() != null && (iEntity = cloneSession.getEntity("PSCODELIST", (Object)pSDEDataSet.getPSCodeListId())) != null) {
             this.onFillParentInfo_PSCodeList(pSDEDataSet, (PSCodeList)iEntity);
         }
@@ -3050,7 +3050,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEDataSet pSDEDataSet, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEDataSet, bl);
+        super.onRemoveEntityUncopyValues(pSDEDataSet, bl);
         pSDEDataSet.resetDSTag();
         pSDEDataSet.resetDSTag2();
         pSDEDataSet.resetDSTag3();
@@ -3339,7 +3339,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         if ((entityFieldError = this.onCheckField_ViewColLevel(bl, pSDEDataSet, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEDataSet, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEDataSet, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ActionHolder(boolean bl, PSDEDataSet pSDEDataSet, boolean bl2, boolean bl3) throws Exception {
@@ -5447,19 +5447,19 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
     }
 
     protected void onSyncEntity(PSDEDataSet pSDEDataSet, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEDataSet, bl);
+        super.onSyncEntity(pSDEDataSet, bl);
     }
 
     protected void onSyncIndexEntities(PSDEDataSet pSDEDataSet, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEDataSet, bl);
+        super.onSyncIndexEntities(pSDEDataSet, bl);
     }
 
     public Object getDataContextValue(PSDEDataSet pSDEDataSet, String string, IDataContextParam iDataContextParam) throws Exception {
         Object object = null;
-        if (iDataContextParam != null && StringHelper.compare((String)iDataContextParam.getDEName(), (String)"PSDER", (boolean)true) == 0 && StringHelper.compare((String)iDataContextParam.getDEFName(), (String)"MAJORPSDEID", (boolean)true) == 0 && (StringHelper.isNullOrEmpty((String)iDataContextParam.getReferItem()) || StringHelper.compare((String)iDataContextParam.getReferItem(), (String)"AGGDATAPSDERID", (boolean)true) == 0 || StringHelper.compare((String)iDataContextParam.getReferItem(), (String)"AGGDATAPSDERNAME", (boolean)true) == 0) && (object = super.getDataContextValue((IEntity)pSDEDataSet, "psdeid", iDataContextParam)) != null) {
+        if (iDataContextParam != null && StringHelper.compare((String)iDataContextParam.getDEName(), (String)"PSDER", (boolean)true) == 0 && StringHelper.compare((String)iDataContextParam.getDEFName(), (String)"MAJORPSDEID", (boolean)true) == 0 && (StringHelper.isNullOrEmpty((String)iDataContextParam.getReferItem()) || StringHelper.compare((String)iDataContextParam.getReferItem(), (String)"AGGDATAPSDERID", (boolean)true) == 0 || StringHelper.compare((String)iDataContextParam.getReferItem(), (String)"AGGDATAPSDERNAME", (boolean)true) == 0) && (object = super.getDataContextValue(pSDEDataSet, "psdeid", iDataContextParam)) != null) {
             return object;
         }
-        object = super.getDataContextValue((IEntity)pSDEDataSet, string, iDataContextParam);
+        object = super.getDataContextValue(pSDEDataSet, string, iDataContextParam);
         if (object != null) {
             return object;
         }
@@ -5474,7 +5474,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         this.onExportRelatedModel_PSDEDSParam_PSDEDS(pSDEDataSet, arrayList, n);
         this.onExportRelatedModel_PSDEDSDQ_PSDEDataSet(pSDEDataSet, arrayList, n);
         this.onExportRelatedModel_PSDEDSGrpParam_PSDEDS(pSDEDataSet, arrayList, n);
-        super.onExportRelatedModel((IEntity)pSDEDataSet, arrayList, n);
+        super.onExportRelatedModel(pSDEDataSet, arrayList, n);
     }
 
     protected void onExportRelatedModel_PSDEDSParam_PSDEDS(PSDEDataSet pSDEDataSet, ArrayList<JSONObject> arrayList, int n) throws Exception {
@@ -5535,7 +5535,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
     }
 
     protected void onExportMajorModel(PSDEDataSet pSDEDataSet, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEDataSet, arrayList, n);
+        super.onExportMajorModel(pSDEDataSet, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -7117,7 +7117,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
 
     protected boolean onMergeChild(String string, String string2, PSDEDataSet pSDEDataSet) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEDataSet)) {
+        if (super.onMergeChild(string, string2, pSDEDataSet)) {
             bl = true;
         }
         return bl;
@@ -7129,7 +7129,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDataEntityService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSDEDATASET_PSDATAENTITY_PSDEID", object);
         }
-        super.onUpdateParent((IEntity)pSDEDataSet);
+        super.onUpdateParent(pSDEDataSet);
     }
 
     protected boolean isNeedUpdateParent() {
@@ -7217,7 +7217,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
                 PSDEDSParam pSDEDSParam = new PSDEDSParam();
                 pSDEDSParam.setOrderValue(n);
                 n += 100;
-                pSDEDSParamService.fillParentInfo((IEntity)pSDEDSParam, "DER1N", "DER1N_PSDEDSPARAM_PSDEDATASET_PSDEDSID", pSDEDataSet.getPSDEDataSetId());
+                pSDEDSParamService.fillParentInfo(pSDEDSParam, "DER1N", "DER1N_PSDEDSPARAM_PSDEDATASET_PSDEDSID", pSDEDataSet.getPSDEDataSetId());
                 pSDEDSParamService.importXmlModel(pSDEDSParam, xmlNode2);
             }
         }
@@ -7242,7 +7242,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
                 PSDEDSDQ pSDEDSDQ = new PSDEDSDQ();
                 pSDEDSDQ.setOrderValue(n);
                 n += 100;
-                pSDEDSDQService.fillParentInfo((IEntity)pSDEDSDQ, "DER1N", "DER1N_PSDEDSDQ_PSDEDATASET_PSDEDATASETID", pSDEDataSet.getPSDEDataSetId());
+                pSDEDSDQService.fillParentInfo(pSDEDSDQ, "DER1N", "DER1N_PSDEDSDQ_PSDEDATASET_PSDEDATASETID", pSDEDataSet.getPSDEDataSetId());
                 pSDEDSDQService.importXmlModel(pSDEDSDQ, xmlNode2);
             }
         }
@@ -7396,271 +7396,155 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
 
     @Override
     protected void onExportCurModelV2(PSDEDataSet pSDEDataSet, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        Object object3;
-        Object object4;
-        ArrayList<PSDEDSParam> arrayList;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEDSPARAM_PSDEDATASET_PSDEDSID")) {
-            pSCoreSysServiceBase = (PSDEDSParamService)ServiceGlobal.getService(PSDEDSParamService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSCoreSysServiceBase service = (PSDEDSParamService)ServiceGlobal.getService(PSDEDSParamService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<PSDEDSParam> entities = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDATASET#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDSPARAM", (Object)pSDEDataSet.getPSDEDataSetId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDATASET#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDSPARAM", (Object)pSDEDataSet.getPSDEDataSetId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEDSParam)entityBase2);
+                    entities = new ArrayList<PSDEDSParam>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        PSDEDSParam entity = new PSDEDSParam();
+                        PSModelV2Helper.fromJSONObject((IDataObject)entity, (ObjectNode)JsonNodeHelper.fromString((String)line), false);
+                        entities.add(entity);
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSDEDSParam>();
-                object4 = ((PSDEDSParamServiceBase)pSCoreSysServiceBase).selectByPSDEDS(pSDEDataSet);
-                object3 = StringHelper.format((String)"PSDEDATASET#%1$s", (Object)pSDEDataSet.getPSDEDataSetId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEDSParam)object2.next();
-                    object = ((PSDEDSParamServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEDSParam)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                entities = ((PSDEDSParamServiceBase)service).selectByPSDEDS(pSDEDataSet);
+                String scope = StringHelper.format((String)"PSDEDATASET#%1$s", (Object)pSDEDataSet.getPSDEDataSetId());
+                for (Iterator<PSDEDSParam> iterator = entities.iterator(); iterator.hasNext();) {
+                    PSDEDSParam entity = iterator.next();
+                    if (StringHelper.compare(scope, ((PSDEDSParamServiceBase)service).getModelV2ResScope(entity), false) != 0) {
+                        iterator.remove();
+                    }
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
-
+            if (entities != null && entities.size() > 0) {
+                ArrayNode output = objectNode.putArray(service.getModelV2Name(false).toLowerCase());
+                Collections.sort(entities, new Comparator<PSDEDSParam>() {
                     @Override
-                    public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
-                        int n;
-                        int n2 = 1000;
-                        int n3 = 1000;
-                        if (objectNode.has("ordervalue")) {
-                            n2 = objectNode.get("ordervalue").asInt();
-                        }
-                        if (objectNode2.has("ordervalue")) {
-                            n3 = objectNode2.get("ordervalue").asInt();
-                        }
-                        if ((n = n2 - n3) != 0) {
-                            return n;
-                        }
-                        String string = null;
-                        String string2 = null;
-                        if (objectNode.has("psdedsparamname")) {
-                            string = objectNode.get("psdedsparamname").asText();
-                        }
-                        if (objectNode2.has("psdedsparamname")) {
-                            string2 = objectNode2.get("psdedsparamname").asText();
-                        }
-                        return StringHelper.compare((String)string, string2, (boolean)false);
+                    public int compare(PSDEDSParam left, PSDEDSParam right) {
+                        int result = (left.getOrderValue() == null ? 1000 : left.getOrderValue()) - (right.getOrderValue() == null ? 1000 : right.getOrderValue());
+                        if (result != 0) return result;
+                        return StringHelper.compare(left.getPSDEDSParamName(), right.getPSDEDSParamName(), false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEDSParam();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (PSDEDSParam entity : entities) {
+                    output.add((JsonNode)service.exportModelV2(entity, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEDSCODE_PSDEDATASET_PSDEDATASETID")) {
-            pSCoreSysServiceBase = (PSDEDSCodeService)ServiceGlobal.getService(PSDEDSCodeService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSCoreSysServiceBase service = (PSDEDSCodeService)ServiceGlobal.getService(PSDEDSCodeService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<PSDEDSCode> entities = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDATASET#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDSCODE", (Object)pSDEDataSet.getPSDEDataSetId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDATASET#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDSCODE", (Object)pSDEDataSet.getPSDEDataSetId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEDSParam)entityBase2);
+                    entities = new ArrayList<PSDEDSCode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        PSDEDSCode entity = new PSDEDSCode();
+                        PSModelV2Helper.fromJSONObject((IDataObject)entity, (ObjectNode)JsonNodeHelper.fromString((String)line), false);
+                        entities.add(entity);
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEDSCodeServiceBase)pSCoreSysServiceBase).selectByPSDEDataSet(pSDEDataSet);
-                object3 = StringHelper.format((String)"PSDEDATASET#%1$s", (Object)pSDEDataSet.getPSDEDataSetId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEDSCode)object2.next();
-                    object = ((PSDEDSCodeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEDSParam)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                entities = ((PSDEDSCodeServiceBase)service).selectByPSDEDataSet(pSDEDataSet);
+                String scope = StringHelper.format((String)"PSDEDATASET#%1$s", (Object)pSDEDataSet.getPSDEDataSetId());
+                for (Iterator<PSDEDSCode> iterator = entities.iterator(); iterator.hasNext();) {
+                    PSDEDSCode entity = iterator.next();
+                    if (StringHelper.compare(scope, ((PSDEDSCodeServiceBase)service).getModelV2ResScope(entity), false) != 0) {
+                        iterator.remove();
+                    }
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
-
+            if (entities != null && entities.size() > 0) {
+                ArrayNode output = objectNode.putArray(service.getModelV2Name(false).toLowerCase());
+                Collections.sort(entities, new Comparator<PSDEDSCode>() {
                     @Override
-                    public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
-                        int n;
-                        int n2 = 1000;
-                        int n3 = 1000;
-                        if (objectNode.has("ordervalue")) {
-                            n2 = objectNode.get("ordervalue").asInt();
-                        }
-                        if (objectNode2.has("ordervalue")) {
-                            n3 = objectNode2.get("ordervalue").asInt();
-                        }
-                        if ((n = n2 - n3) != 0) {
-                            return n;
-                        }
-                        String string = null;
-                        String string2 = null;
-                        if (objectNode.has("psdedscodename")) {
-                            string = objectNode.get("psdedscodename").asText();
-                        }
-                        if (objectNode2.has("psdedscodename")) {
-                            string2 = objectNode2.get("psdedscodename").asText();
-                        }
-                        return StringHelper.compare((String)string, string2, (boolean)false);
+                    public int compare(PSDEDSCode left, PSDEDSCode right) {
+                        return StringHelper.compare(left.getPSDEDSCodeName(), right.getPSDEDSCodeName(), false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEDSCode();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (PSDEDSCode entity : entities) {
+                    output.add((JsonNode)service.exportModelV2(entity, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEDSDQ_PSDEDATASET_PSDEDATASETID")) {
-            pSCoreSysServiceBase = (PSDEDSDQService)ServiceGlobal.getService(PSDEDSDQService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSCoreSysServiceBase service = (PSDEDSDQService)ServiceGlobal.getService(PSDEDSDQService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<PSDEDSDQ> entities = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDATASET#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDSDQ", (Object)pSDEDataSet.getPSDEDataSetId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDATASET#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDSDQ", (Object)pSDEDataSet.getPSDEDataSetId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEDSParam)entityBase2);
+                    entities = new ArrayList<PSDEDSDQ>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        PSDEDSDQ entity = new PSDEDSDQ();
+                        PSModelV2Helper.fromJSONObject((IDataObject)entity, (ObjectNode)JsonNodeHelper.fromString((String)line), false);
+                        entities.add(entity);
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEDSDQServiceBase)pSCoreSysServiceBase).selectByPSDEDataSet(pSDEDataSet);
-                object3 = StringHelper.format((String)"PSDEDATASET#%1$s", (Object)pSDEDataSet.getPSDEDataSetId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEDSDQ)object2.next();
-                    object = ((PSDEDSDQServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEDSParam)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                entities = ((PSDEDSDQServiceBase)service).selectByPSDEDataSet(pSDEDataSet);
+                String scope = StringHelper.format((String)"PSDEDATASET#%1$s", (Object)pSDEDataSet.getPSDEDataSetId());
+                for (Iterator<PSDEDSDQ> iterator = entities.iterator(); iterator.hasNext();) {
+                    PSDEDSDQ entity = iterator.next();
+                    if (StringHelper.compare(scope, ((PSDEDSDQServiceBase)service).getModelV2ResScope(entity), false) != 0) {
+                        iterator.remove();
+                    }
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
-
+            if (entities != null && entities.size() > 0) {
+                ArrayNode output = objectNode.putArray(service.getModelV2Name(false).toLowerCase());
+                Collections.sort(entities, new Comparator<PSDEDSDQ>() {
                     @Override
-                    public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
-                        int n;
-                        int n2 = 1000;
-                        int n3 = 1000;
-                        if (objectNode.has("ordervalue")) {
-                            n2 = objectNode.get("ordervalue").asInt();
-                        }
-                        if (objectNode2.has("ordervalue")) {
-                            n3 = objectNode2.get("ordervalue").asInt();
-                        }
-                        if ((n = n2 - n3) != 0) {
-                            return n;
-                        }
-                        String string = null;
-                        String string2 = null;
-                        if (objectNode.has("psdedsdqname")) {
-                            string = objectNode.get("psdedsdqname").asText();
-                        }
-                        if (objectNode2.has("psdedsdqname")) {
-                            string2 = objectNode2.get("psdedsdqname").asText();
-                        }
-                        return StringHelper.compare((String)string, string2, (boolean)false);
+                    public int compare(PSDEDSDQ left, PSDEDSDQ right) {
+                        int result = (left.getOrderValue() == null ? 1000 : left.getOrderValue()) - (right.getOrderValue() == null ? 1000 : right.getOrderValue());
+                        if (result != 0) return result;
+                        return StringHelper.compare(left.getPSDEDSDQName(), right.getPSDEDSDQName(), false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEDSDQ();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (PSDEDSDQ entity : entities) {
+                    output.add((JsonNode)service.exportModelV2(entity, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEDSGRPPARAM_PSDEDATASET_PSDEDSID")) {
-            pSCoreSysServiceBase = (PSDEDSGrpParamService)ServiceGlobal.getService(PSDEDSGrpParamService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSCoreSysServiceBase service = (PSDEDSGrpParamService)ServiceGlobal.getService(PSDEDSGrpParamService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<PSDEDSGrpParam> entities = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDATASET#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDSGRPPARAM", (Object)pSDEDataSet.getPSDEDataSetId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDATASET#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDSGRPPARAM", (Object)pSDEDataSet.getPSDEDataSetId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEDSParam)entityBase2);
+                    entities = new ArrayList<PSDEDSGrpParam>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        PSDEDSGrpParam entity = new PSDEDSGrpParam();
+                        PSModelV2Helper.fromJSONObject((IDataObject)entity, (ObjectNode)JsonNodeHelper.fromString((String)line), false);
+                        entities.add(entity);
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEDSGrpParamServiceBase)pSCoreSysServiceBase).selectByPSDEDS(pSDEDataSet);
-                object3 = StringHelper.format((String)"PSDEDATASET#%1$s", (Object)pSDEDataSet.getPSDEDataSetId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEDSGrpParam)object2.next();
-                    object = ((PSDEDSGrpParamServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEDSParam)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                entities = ((PSDEDSGrpParamServiceBase)service).selectByPSDEDS(pSDEDataSet);
+                String scope = StringHelper.format((String)"PSDEDATASET#%1$s", (Object)pSDEDataSet.getPSDEDataSetId());
+                for (Iterator<PSDEDSGrpParam> iterator = entities.iterator(); iterator.hasNext();) {
+                    PSDEDSGrpParam entity = iterator.next();
+                    if (StringHelper.compare(scope, ((PSDEDSGrpParamServiceBase)service).getModelV2ResScope(entity), false) != 0) {
+                        iterator.remove();
+                    }
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
-
+            if (entities != null && entities.size() > 0) {
+                ArrayNode output = objectNode.putArray(service.getModelV2Name(false).toLowerCase());
+                Collections.sort(entities, new Comparator<PSDEDSGrpParam>() {
                     @Override
-                    public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
-                        int n;
-                        int n2 = 1000;
-                        int n3 = 1000;
-                        if (objectNode.has("ordervalue")) {
-                            n2 = objectNode.get("ordervalue").asInt();
-                        }
-                        if (objectNode2.has("ordervalue")) {
-                            n3 = objectNode2.get("ordervalue").asInt();
-                        }
-                        if ((n = n2 - n3) != 0) {
-                            return n;
-                        }
-                        String string = null;
-                        String string2 = null;
-                        if (objectNode.has("psdedsgrpparamname")) {
-                            string = objectNode.get("psdedsgrpparamname").asText();
-                        }
-                        if (objectNode2.has("psdedsgrpparamname")) {
-                            string2 = objectNode2.get("psdedsgrpparamname").asText();
-                        }
-                        return StringHelper.compare((String)string, string2, (boolean)false);
+                    public int compare(PSDEDSGrpParam left, PSDEDSGrpParam right) {
+                        return StringHelper.compare(left.getPSDEDSGrpParamName(), right.getPSDEDSGrpParamName(), false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEDSGrpParam();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (PSDEDSGrpParam entity : entities) {
+                    output.add((JsonNode)service.exportModelV2(entity, string));
                 }
             }
         }
@@ -7670,42 +7554,42 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
     @Override
     protected void onEmptyModelV2(PSDEDataSet pSDEDataSet) throws Exception {
         String string;
-        PSCoreSysServiceBase pSCoreSysServiceBase = (PSDEDSParamService)ServiceGlobal.getService(PSDEDSParamService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<EntityBase> arrayList = ((PSDEDSParamServiceBase)pSCoreSysServiceBase).selectByPSDEDS(pSDEDataSet);
+        PSDEDSParamService pSDEDSParamService = (PSDEDSParamService)ServiceGlobal.getService(PSDEDSParamService.class, (SessionFactory)this.getSessionFactory());
+        ArrayList<PSDEDSParam> params = pSDEDSParamService.selectByPSDEDS(pSDEDataSet);
         String string2 = StringHelper.format((String)"PSDEDATASET#%1$s", (Object)pSDEDataSet.getPSDEDataSetId());
-        for (PSDEDSParam entityBase : arrayList) {
-            string = ((PSDEDSParamServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase);
+        for (PSDEDSParam param : params) {
+            string = pSDEDSParamService.getModelV2ResScope(param);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
-            pSCoreSysServiceBase.emptyModelV2(entityBase);
+            pSDEDSParamService.emptyModelV2(param);
         }
-        Object object = new SqlParamList();
-        object.addString(pSDEDataSet.getPSDEDataSetId());
-        ((PSDEDSParamServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSDEDSParamServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEDSPARAM WHERE PSDEDSID = ?", (SqlParamList)object);
-        pSCoreSysServiceBase = (PSDEDSDQService)ServiceGlobal.getService(PSDEDSDQService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSDEDSDQServiceBase)pSCoreSysServiceBase).selectByPSDEDataSet(pSDEDataSet);
+        SqlParamList sqlParams = new SqlParamList();
+        sqlParams.addString(pSDEDataSet.getPSDEDataSetId());
+        pSDEDSParamService.getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
+        pSDEDSParamService.getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEDSPARAM WHERE PSDEDSID = ?", sqlParams);
+        PSDEDSDQService pSDEDSDQService = (PSDEDSDQService)ServiceGlobal.getService(PSDEDSDQService.class, (SessionFactory)this.getSessionFactory());
+        ArrayList<PSDEDSDQ> queries = pSDEDSDQService.selectByPSDEDataSet(pSDEDataSet);
         string2 = StringHelper.format((String)"PSDEDATASET#%1$s", (Object)pSDEDataSet.getPSDEDataSetId());
-        for (PSDEDSDQ pSDEDSDQ : arrayList) {
-            string = ((PSDEDSDQServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSDEDSDQ);
+        for (PSDEDSDQ pSDEDSDQ : queries) {
+            string = pSDEDSDQService.getModelV2ResScope(pSDEDSDQ);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
-            pSCoreSysServiceBase.emptyModelV2(pSDEDSDQ);
+            pSDEDSDQService.emptyModelV2(pSDEDSDQ);
         }
-        object = new SqlParamList();
-        object.addString(pSDEDataSet.getPSDEDataSetId());
-        ((PSDEDSDQServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSDEDSDQServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEDSDQ WHERE PSDEDATASETID = ?", (SqlParamList)object);
-        pSCoreSysServiceBase = (PSDEDSGrpParamService)ServiceGlobal.getService(PSDEDSGrpParamService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSDEDSGrpParamServiceBase)pSCoreSysServiceBase).selectByPSDEDS(pSDEDataSet);
+        sqlParams = new SqlParamList();
+        sqlParams.addString(pSDEDataSet.getPSDEDataSetId());
+        pSDEDSDQService.getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
+        pSDEDSDQService.getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEDSDQ WHERE PSDEDATASETID = ?", sqlParams);
+        PSDEDSGrpParamService pSDEDSGrpParamService = (PSDEDSGrpParamService)ServiceGlobal.getService(PSDEDSGrpParamService.class, (SessionFactory)this.getSessionFactory());
+        ArrayList<PSDEDSGrpParam> groupParams = pSDEDSGrpParamService.selectByPSDEDS(pSDEDataSet);
         string2 = StringHelper.format((String)"PSDEDATASET#%1$s", (Object)pSDEDataSet.getPSDEDataSetId());
-        for (PSDEDSGrpParam pSDEDSGrpParam : arrayList) {
-            string = ((PSDEDSGrpParamServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSDEDSGrpParam);
+        for (PSDEDSGrpParam pSDEDSGrpParam : groupParams) {
+            string = pSDEDSGrpParamService.getModelV2ResScope(pSDEDSGrpParam);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
-            pSCoreSysServiceBase.emptyModelV2(pSDEDSGrpParam);
+            pSDEDSGrpParamService.emptyModelV2(pSDEDSGrpParam);
         }
-        object = new SqlParamList();
-        object.addString(pSDEDataSet.getPSDEDataSetId());
-        ((PSDEDSGrpParamServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSDEDSGrpParamServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEDSGRPPARAM WHERE PSDEDSID = ?", (SqlParamList)object);
+        sqlParams = new SqlParamList();
+        sqlParams.addString(pSDEDataSet.getPSDEDataSetId());
+        pSDEDSGrpParamService.getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
+        pSDEDSGrpParamService.getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEDSGRPPARAM WHERE PSDEDSID = ?", sqlParams);
         super.onEmptyModelV2(pSDEDataSet);
     }
 
@@ -7766,124 +7650,103 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
 
     @Override
     protected void onCompileRelatedModelV2(PSDEDataSet pSDEDataSet, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
-        int n2;
-        PSCoreSysServiceBase pSCoreSysServiceBase = (PSDEDSParamService)ServiceGlobal.getService(PSDEDSParamService.class, (SessionFactory)this.getSessionFactory());
-        ArrayNode arrayNode = null;
-        String string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-        if (objectNode != null) {
-            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
-        }
-        if (arrayNode != null) {
-            for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSDEDSParam();
-                ((PSDEDSParamBase)object).setPSDEDSId(pSDEDataSet.getPSDEDataSetId());
-                ((PSDEDSParamBase)object).setPSDEDSName(pSDEDataSet.getPSDEDataSetName());
-                ((PSDEDSParamBase)object).setPSDEId(pSDEDataSet.getPSDEId());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+        PSDEDSParamService paramService = (PSDEDSParamService)ServiceGlobal.getService(PSDEDSParamService.class, (SessionFactory)this.getSessionFactory());
+        String modelName = paramService.getModelV2Name(null, false);
+        ArrayNode models = objectNode == null ? null : JsonNodeHelper.getArray(objectNode, modelName.toLowerCase());
+        if (models != null) {
+            for (int i = 0; i < models.size(); ++i) {
+                PSDEDSParam param = new PSDEDSParam();
+                param.setPSDEDSId(pSDEDataSet.getPSDEDataSetId());
+                param.setPSDEDSName(pSDEDataSet.getPSDEDataSetName());
+                param.setPSDEId(pSDEDataSet.getPSDEId());
+                paramService.compileModelV2(param, (ObjectNode)models.get(i), string, null, n);
             }
         } else {
-            String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string4);
-            if (((File)object2).exists()) {
-                object = ((File)object2).listFiles();
-                for (Object object3 : object) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSDEDSParam();
-                    entityBase.setPSDEDSId(pSDEDataSet.getPSDEDataSetId());
-                    entityBase.setPSDEDSName(pSDEDataSet.getPSDEDataSetName());
-                    entityBase.setPSDEId(pSDEDataSet.getPSDEId());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+            File folder = new File(StringHelper.format("%1$s%2$s%3$s", string2, File.separator, modelName));
+            File[] files = folder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (!file.isDirectory()) continue;
+                    PSDEDSParam param = new PSDEDSParam();
+                    param.setPSDEDSId(pSDEDataSet.getPSDEDataSetId());
+                    param.setPSDEDSName(pSDEDataSet.getPSDEDataSetName());
+                    param.setPSDEId(pSDEDataSet.getPSDEId());
+                    paramService.compileModelV2(param, null, string, file.getCanonicalPath(), n);
                 }
             }
         }
         if (!PSDEDataSetServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSDEDSCodeService)ServiceGlobal.getService(PSDEDSCodeService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-            if (objectNode != null) {
-                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
-            }
-            if (arrayNode != null) {
-                for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSDEDSCode();
-                    ((PSDEDSCodeBase)object).setPSDEDataSetId(pSDEDataSet.getPSDEDataSetId());
-                    ((PSDEDSCodeBase)object).setPSDEDataSetName(pSDEDataSet.getPSDEDataSetName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+            PSDEDSCodeService codeService = (PSDEDSCodeService)ServiceGlobal.getService(PSDEDSCodeService.class, (SessionFactory)this.getSessionFactory());
+            modelName = codeService.getModelV2Name(null, false);
+            models = objectNode == null ? null : JsonNodeHelper.getArray(objectNode, modelName.toLowerCase());
+            if (models != null) {
+                for (int i = 0; i < models.size(); ++i) {
+                    PSDEDSCode code = new PSDEDSCode();
+                    code.setPSDEDataSetId(pSDEDataSet.getPSDEDataSetId());
+                    code.setPSDEDataSetName(pSDEDataSet.getPSDEDataSetName());
+                    codeService.compileModelV2(code, (ObjectNode)models.get(i), string, null, n);
                 }
             } else {
-                String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string5);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEDSCode();
-                        entityBase.setPSDEDataSetId(pSDEDataSet.getPSDEDataSetId());
-                        entityBase.setPSDEDataSetName(pSDEDataSet.getPSDEDataSetName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File folder = new File(StringHelper.format("%1$s%2$s%3$s", string2, File.separator, modelName));
+                File[] files = folder.listFiles();
+                if (files != null) {
+                    for (File file : files) {
+                        if (!file.isDirectory()) continue;
+                        PSDEDSCode code = new PSDEDSCode();
+                        code.setPSDEDataSetId(pSDEDataSet.getPSDEDataSetId());
+                        code.setPSDEDataSetName(pSDEDataSet.getPSDEDataSetName());
+                        codeService.compileModelV2(code, null, string, file.getCanonicalPath(), n);
                     }
                 }
             }
         }
-        pSCoreSysServiceBase = (PSDEDSDQService)ServiceGlobal.getService(PSDEDSDQService.class, (SessionFactory)this.getSessionFactory());
-        arrayNode = null;
-        string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-        if (objectNode != null) {
-            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
-        }
-        if (arrayNode != null) {
-            for (int i = 0; i < arrayNode.size(); ++i) {
-                object2 = (ObjectNode)arrayNode.get(i);
-                object = new PSDEDSDQ();
-                ((PSDEDSDQBase)object).setPSDEDataSetId(pSDEDataSet.getPSDEDataSetId());
-                ((PSDEDSDQBase)object).setPSDEDataSetName(pSDEDataSet.getPSDEDataSetName());
-                ((PSDEDSDQBase)object).setPSDEId(pSDEDataSet.getPSDEId());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+        PSDEDSDQService dqService = (PSDEDSDQService)ServiceGlobal.getService(PSDEDSDQService.class, (SessionFactory)this.getSessionFactory());
+        modelName = dqService.getModelV2Name(null, false);
+        models = objectNode == null ? null : JsonNodeHelper.getArray(objectNode, modelName.toLowerCase());
+        if (models != null) {
+            for (int i = 0; i < models.size(); ++i) {
+                PSDEDSDQ dq = new PSDEDSDQ();
+                dq.setPSDEDataSetId(pSDEDataSet.getPSDEDataSetId());
+                dq.setPSDEDataSetName(pSDEDataSet.getPSDEDataSetName());
+                dq.setPSDEId(pSDEDataSet.getPSDEId());
+                dqService.compileModelV2(dq, (ObjectNode)models.get(i), string, null, n);
             }
         } else {
-            String string6 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string6);
-            if (((File)object2).exists()) {
-                for (Object object3 : object = ((File)object2).listFiles()) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSDEDSDQ();
-                    entityBase.setPSDEDataSetId(pSDEDataSet.getPSDEDataSetId());
-                    entityBase.setPSDEDataSetName(pSDEDataSet.getPSDEDataSetName());
-                    entityBase.setPSDEId(pSDEDataSet.getPSDEId());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+            File folder = new File(StringHelper.format("%1$s%2$s%3$s", string2, File.separator, modelName));
+            File[] files = folder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (!file.isDirectory()) continue;
+                    PSDEDSDQ dq = new PSDEDSDQ();
+                    dq.setPSDEDataSetId(pSDEDataSet.getPSDEDataSetId());
+                    dq.setPSDEDataSetName(pSDEDataSet.getPSDEDataSetName());
+                    dq.setPSDEId(pSDEDataSet.getPSDEId());
+                    dqService.compileModelV2(dq, null, string, file.getCanonicalPath(), n);
                 }
             }
         }
-        pSCoreSysServiceBase = (PSDEDSGrpParamService)ServiceGlobal.getService(PSDEDSGrpParamService.class, (SessionFactory)this.getSessionFactory());
-        arrayNode = null;
-        string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-        if (objectNode != null) {
-            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
-        }
-        if (arrayNode != null) {
-            for (int i = 0; i < arrayNode.size(); ++i) {
-                object2 = (ObjectNode)arrayNode.get(i);
-                object = new PSDEDSGrpParam();
-                ((PSDEDSGrpParamBase)object).setPSDEDSId(pSDEDataSet.getPSDEDataSetId());
-                ((PSDEDSGrpParamBase)object).setPSDEDSName(pSDEDataSet.getPSDEDataSetName());
-                ((PSDEDSGrpParamBase)object).setPSDEId(pSDEDataSet.getPSDEId());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+        PSDEDSGrpParamService groupParamService = (PSDEDSGrpParamService)ServiceGlobal.getService(PSDEDSGrpParamService.class, (SessionFactory)this.getSessionFactory());
+        modelName = groupParamService.getModelV2Name(null, false);
+        models = objectNode == null ? null : JsonNodeHelper.getArray(objectNode, modelName.toLowerCase());
+        if (models != null) {
+            for (int i = 0; i < models.size(); ++i) {
+                PSDEDSGrpParam groupParam = new PSDEDSGrpParam();
+                groupParam.setPSDEDSId(pSDEDataSet.getPSDEDataSetId());
+                groupParam.setPSDEDSName(pSDEDataSet.getPSDEDataSetName());
+                groupParam.setPSDEId(pSDEDataSet.getPSDEId());
+                groupParamService.compileModelV2(groupParam, (ObjectNode)models.get(i), string, null, n);
             }
         } else {
-            String string7 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string7);
-            if (((File)object2).exists()) {
-                for (Object object3 : object = ((File)object2).listFiles()) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSDEDSGrpParam();
-                    entityBase.setPSDEDSId(pSDEDataSet.getPSDEDataSetId());
-                    entityBase.setPSDEDSName(pSDEDataSet.getPSDEDataSetName());
-                    entityBase.setPSDEId(pSDEDataSet.getPSDEId());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+            File folder = new File(StringHelper.format("%1$s%2$s%3$s", string2, File.separator, modelName));
+            File[] files = folder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (!file.isDirectory()) continue;
+                    PSDEDSGrpParam groupParam = new PSDEDSGrpParam();
+                    groupParam.setPSDEDSId(pSDEDataSet.getPSDEDataSetId());
+                    groupParam.setPSDEDSName(pSDEDataSet.getPSDEDataSetName());
+                    groupParam.setPSDEId(pSDEDataSet.getPSDEId());
+                    groupParamService.compileModelV2(groupParam, null, string, file.getCanonicalPath(), n);
                 }
             }
         }
@@ -7907,7 +7770,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
             PSDEDSParamService pSDEDSParamService = (PSDEDSParamService)ServiceGlobal.getService(PSDEDSParamService.class, (SessionFactory)this.getSessionFactory());
             PSDEDSParam pSDEDSParam = new PSDEDSParam();
             pSDEDSParam.setPSDEDSParamId(pSMOSFile.getPSModelId());
-            if (!pSDEDSParamService.get((IEntity)pSDEDSParam, true)) {
+            if (!pSDEDSParamService.get(pSDEDSParam, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEDSParam.getPSDEDSId(), (String)pSDEDataSet.getPSDEDataSetId(), (boolean)false) == 0) {
@@ -7930,7 +7793,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
             PSDEDSDQService pSDEDSDQService = (PSDEDSDQService)ServiceGlobal.getService(PSDEDSDQService.class, (SessionFactory)this.getSessionFactory());
             PSDEDSDQ pSDEDSDQ = new PSDEDSDQ();
             pSDEDSDQ.setPSDEDSDQId(pSMOSFile.getPSModelId());
-            if (!pSDEDSDQService.get((IEntity)pSDEDSDQ, true)) {
+            if (!pSDEDSDQService.get(pSDEDSDQ, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEDSDQ.getPSDEDataSetId(), (String)pSDEDataSet.getPSDEDataSetId(), (boolean)false) == 0) {
@@ -7949,7 +7812,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
             PSDEDataQueryService pSDEDataQueryService = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)this.getSessionFactory());
             PSDEDataQuery pSDEDataQuery = new PSDEDataQuery();
             pSDEDataQuery.setPSDEDataQueryId(pSMOSFile.getPSModelId());
-            if (!pSDEDataQueryService.get((IEntity)pSDEDataQuery, true)) {
+            if (!pSDEDataQueryService.get(pSDEDataQuery, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             PSDEDSDQService pSDEDSDQService = (PSDEDSDQService)ServiceGlobal.getService(PSDEDSDQService.class, (SessionFactory)this.getSessionFactory());
@@ -8043,7 +7906,7 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         if (PSDEDataSetServiceBase.getMOSVer() == 1 && StringHelper.isNullOrEmpty((String)string) && StringHelper.compare((String)string2, (String)"<\u67e5\u8be2\u9879>", (boolean)false) == 0 || PSDEDataSetServiceBase.getMOSVer() == 2 && StringHelper.compare((String)string2, (String)"PSDEDSDQs", (boolean)true) == 0) {
             PSDEDSDQService pSDEDSDQService = (PSDEDSDQService)ServiceGlobal.getService(PSDEDSDQService.class, (SessionFactory)this.getSessionFactory());
             SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEDSDQService, "DER1N_PSDEDSDQ_PSDEDATASET_PSDEDATASETID", "PSDEDATASETID", pSMOSFile.getPSModelId(), "", "");
-            ArrayList arrayList2 = pSDEDSDQService.selectEx((ISelectContext)selectContext);
+            ArrayList<PSDEDSDQ> arrayList2 = pSDEDSDQService.selectEx((ISelectContext)selectContext);
             for (PSDEDSDQ pSDEDSDQ : arrayList2) {
                 PSMOSFile pSMOSFile2 = pSDEDSDQService.getFile(pSMOSFile, (IEntity)pSDEDSDQ, bl);
                 if (pSMOSFile2 == null) continue;
@@ -8085,4 +7948,3 @@ extends PSCoreSysServiceBase<PSDEDataSet> {
         defaultValueMap.put("PSDEDATASETNAME", "DATASET");
     }
 }
-

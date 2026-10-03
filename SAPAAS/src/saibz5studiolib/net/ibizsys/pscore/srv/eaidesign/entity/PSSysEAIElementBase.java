@@ -1630,7 +1630,7 @@ implements Serializable {
                 PSSysEAIScheme pSSysEAIScheme = new PSSysEAIScheme();
                 pSSysEAIScheme.setPSSysEAISchemeId(this.getPSSysEAISchemeId());
                 PSSysEAISchemeService pSSysEAISchemeService = (PSSysEAISchemeService)ServiceGlobal.getService(PSSysEAISchemeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysEAISchemeService.autoGet((IEntity)pSSysEAIScheme);
+                pSSysEAISchemeService.autoGet(pSSysEAIScheme);
                 this.pssyseaischeme = pSSysEAIScheme;
             }
             return this.pssyseaischeme;
@@ -1652,7 +1652,7 @@ implements Serializable {
         Integer n = this.objPSSysEAIElementAttrsLock;
         synchronized (n) {
             if (this.pssyseaielementattrs == null) {
-                this.pssyseaielementattrs = pSSysEAIElementService.isTempData((IEntity)this) ? pSSysEAIElementAttrService.selectTempByPSSysEAIElement(this) : pSSysEAIElementAttrService.selectByPSSysEAIElement(this);
+                this.pssyseaielementattrs = pSSysEAIElementService.isTempData(this) ? pSSysEAIElementAttrService.selectTempByPSSysEAIElement(this) : pSSysEAIElementAttrService.selectByPSSysEAIElement(this);
             }
             return this.pssyseaielementattrs;
         }
@@ -1673,7 +1673,7 @@ implements Serializable {
         Integer n = this.objPSSysEAIElementREsLock;
         synchronized (n) {
             if (this.pssyseaielementres == null) {
-                this.pssyseaielementres = pSSysEAIElementService.isTempData((IEntity)this) ? pSSysEAIElementREService.selectTempByPSSysEAIElement(this) : pSSysEAIElementREService.selectByPSSysEAIElement(this);
+                this.pssyseaielementres = pSSysEAIElementService.isTempData(this) ? pSSysEAIElementREService.selectTempByPSSysEAIElement(this) : pSSysEAIElementREService.selectByPSSysEAIElement(this);
             }
             return this.pssyseaielementres;
         }

@@ -2099,7 +2099,7 @@ implements Serializable {
                 PSDevSlnUserCS pSDevSlnUserCS = new PSDevSlnUserCS();
                 pSDevSlnUserCS.setPSDevSlnUserCSId(this.getPSDevSlnUserCSId());
                 PSDevSlnUserCSService pSDevSlnUserCSService = (PSDevSlnUserCSService)ServiceGlobal.getService(PSDevSlnUserCSService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnUserCSService.autoGet((IEntity)pSDevSlnUserCS);
+                pSDevSlnUserCSService.autoGet(pSDevSlnUserCS);
                 this.psdevslnusercs = pSDevSlnUserCS;
             }
             return this.psdevslnusercs;

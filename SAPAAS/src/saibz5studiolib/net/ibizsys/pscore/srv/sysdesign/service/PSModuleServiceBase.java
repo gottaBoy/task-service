@@ -602,9 +602,9 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysModelGroup pSSysModelGroup = (PSSysModelGroup)iService.getDEModel().createEntity();
             pSSysModelGroup.set("PSSYSMODELGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysModelGroup);
+                iService.getTemp(pSSysModelGroup);
             } else {
-                iService.get((IEntity)pSSysModelGroup);
+                iService.get(pSSysModelGroup);
             }
             this.onFillParentInfo_PSSysModelGroup(pSModule, pSSysModelGroup);
             return;
@@ -614,9 +614,9 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysRef pSSysRef = (PSSysRef)iService.getDEModel().createEntity();
             pSSysRef.set("PSSYSREFID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysRef);
+                iService.getTemp(pSSysRef);
             } else {
-                iService.get((IEntity)pSSysRef);
+                iService.get(pSSysRef);
             }
             this.onFillParentInfo_PSSysRef(pSModule, pSSysRef);
             return;
@@ -626,9 +626,9 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysSFPub pSSysSFPub = (PSSysSFPub)iService.getDEModel().createEntity();
             pSSysSFPub.set("PSSYSSFPUBID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPub);
+                iService.getTemp(pSSysSFPub);
             } else {
-                iService.get((IEntity)pSSysSFPub);
+                iService.get(pSSysSFPub);
             }
             this.onFillParentInfo_PSSysSFPub(pSModule, pSSysSFPub);
             return;
@@ -638,14 +638,14 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSModule, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSModule, string, string2, string3);
+        super.onFillParentInfo(pSModule, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -687,7 +687,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 pSModule.setSubSysModule((Integer)this.getDefaultValue(this.getWebContext(), "", "0", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSModule, bl);
+        super.onFillEntityFullInfo(pSModule, bl);
         this.onFillEntityFullInfo_PSSysModelGroup(pSModule, bl);
         this.onFillEntityFullInfo_PSSysRef(pSModule, bl);
         this.onFillEntityFullInfo_PSSysSFPub(pSModule, bl);
@@ -707,7 +707,7 @@ extends PSCoreSysServiceBase<PSModule> {
     }
 
     protected void onWriteBackParent(PSModule pSModule, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSModule, bl);
+        super.onWriteBackParent(pSModule, bl);
     }
 
     public ArrayList<PSModule> selectByPSSysModelGroup(PSSysModelGroupBase pSSysModelGroupBase) throws Exception {
@@ -810,8 +810,8 @@ extends PSCoreSysServiceBase<PSModule> {
         ArrayList<PSModule> arrayList = this.selectByPSSysModelGroup(pSSysModelGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSMODELGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysModelGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODULE_PSSYSMODELGROUP_PSSYSMODELGROUPID", "", iDataEntityModel.getName(), "PSMODULE", iDataEntityModel.getDataInfo((IEntity)pSSysModelGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysModelGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODULE_PSSYSMODELGROUP_PSSYSMODELGROUPID", "", iDataEntityModel.getName(), "PSMODULE", iDataEntityModel.getDataInfo(pSSysModelGroup), arrayList.get(0)));
         }
     }
 
@@ -844,7 +844,7 @@ extends PSCoreSysServiceBase<PSModule> {
         ArrayList<PSModule> arrayList = this.selectByPSSysModelGroup(pSSysModelGroup);
         this.onBeforeRemoveByPSSysModelGroup(pSSysModelGroup, arrayList);
         for (PSModule pSModule : arrayList) {
-            this.remove((IEntity)pSModule);
+            this.remove(pSModule);
         }
         this.onAfterRemoveByPSSysModelGroup(pSSysModelGroup, arrayList);
     }
@@ -862,8 +862,8 @@ extends PSCoreSysServiceBase<PSModule> {
         ArrayList<PSModule> arrayList = this.selectByPSSysRef(pSSysRef, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSREF");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysRef);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODULE_PSSYSREF_PSSYSREFID", "", iDataEntityModel.getName(), "PSMODULE", iDataEntityModel.getDataInfo((IEntity)pSSysRef), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysRef);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODULE_PSSYSREF_PSSYSREFID", "", iDataEntityModel.getName(), "PSMODULE", iDataEntityModel.getDataInfo(pSSysRef), arrayList.get(0)));
         }
     }
 
@@ -896,7 +896,7 @@ extends PSCoreSysServiceBase<PSModule> {
         ArrayList<PSModule> arrayList = this.selectByPSSysRef(pSSysRef);
         this.onBeforeRemoveByPSSysRef(pSSysRef, arrayList);
         for (PSModule pSModule : arrayList) {
-            this.remove((IEntity)pSModule);
+            this.remove(pSModule);
         }
         this.onAfterRemoveByPSSysRef(pSSysRef, arrayList);
     }
@@ -914,8 +914,8 @@ extends PSCoreSysServiceBase<PSModule> {
         ArrayList<PSModule> arrayList = this.selectByPSSysSFPub(pSSysSFPub, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPUB");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPub);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODULE_PSSYSSFPUB_PSSYSSFPUBID", "", iDataEntityModel.getName(), "PSMODULE", iDataEntityModel.getDataInfo((IEntity)pSSysSFPub), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPub);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODULE_PSSYSSFPUB_PSSYSSFPUBID", "", iDataEntityModel.getName(), "PSMODULE", iDataEntityModel.getDataInfo(pSSysSFPub), arrayList.get(0)));
         }
     }
 
@@ -948,7 +948,7 @@ extends PSCoreSysServiceBase<PSModule> {
         ArrayList<PSModule> arrayList = this.selectByPSSysSFPub(pSSysSFPub);
         this.onBeforeRemoveByPSSysSFPub(pSSysSFPub, arrayList);
         for (PSModule pSModule : arrayList) {
-            this.remove((IEntity)pSModule);
+            this.remove(pSModule);
         }
         this.onAfterRemoveByPSSysSFPub(pSSysSFPub, arrayList);
     }
@@ -966,8 +966,8 @@ extends PSCoreSysServiceBase<PSModule> {
         ArrayList<PSModule> arrayList = this.selectByPSSystem(pSSystem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSTEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSystem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODULE_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSMODULE", iDataEntityModel.getDataInfo((IEntity)pSSystem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSystem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODULE_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSMODULE", iDataEntityModel.getDataInfo(pSSystem), arrayList.get(0)));
         }
     }
 
@@ -1000,7 +1000,7 @@ extends PSCoreSysServiceBase<PSModule> {
         ArrayList<PSModule> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSModule pSModule : arrayList) {
-            this.remove((IEntity)pSModule);
+            this.remove(pSModule);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -1219,7 +1219,7 @@ extends PSCoreSysServiceBase<PSModule> {
 
     protected void replaceParentInfo(PSModule pSModule, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSModule, cloneSession);
+        super.replaceParentInfo(pSModule, cloneSession);
         if (pSModule.getPSSysModelGroupId() != null && (iEntity = cloneSession.getEntity("PSSYSMODELGROUP", (Object)pSModule.getPSSysModelGroupId())) != null) {
             this.onFillParentInfo_PSSysModelGroup(pSModule, (PSSysModelGroup)iEntity);
         }
@@ -1235,7 +1235,7 @@ extends PSCoreSysServiceBase<PSModule> {
     }
 
     protected void onRemoveEntityUncopyValues(PSModule pSModule, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSModule, bl);
+        super.onRemoveEntityUncopyValues(pSModule, bl);
         pSModule.resetModTag();
         pSModule.resetModTag2();
         pSModule.resetModTag3();
@@ -1377,7 +1377,7 @@ extends PSCoreSysServiceBase<PSModule> {
         if ((entityFieldError = this.onCheckField_UtilType(bl, pSModule, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSModule, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSModule, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ClsPkgParams(boolean bl, PSModule pSModule, boolean bl2, boolean bl3) throws Exception {
@@ -1390,7 +1390,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ClsPkgParams_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_ClsPkgParams_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CLSPKGPARAMS");
@@ -1415,7 +1415,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1458,7 +1458,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeNameMode_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_CodeNameMode_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAMEMODE");
@@ -1480,7 +1480,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Color_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_Color_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("COLOR");
@@ -1502,7 +1502,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)pSModule, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -1524,7 +1524,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DSLink_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_DSLink_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DSLINK");
@@ -1546,7 +1546,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DTOFormat_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_DTOFormat_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DTOFORMAT");
@@ -1568,7 +1568,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DynaInstMode_Default((IEntity)pSModule, bl2, bl3);
+            string = this.onTestValueRule_DynaInstMode_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNAINSTMODE");
@@ -1590,7 +1590,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DynaInstTag_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_DynaInstTag_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNAINSTTAG");
@@ -1612,7 +1612,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DynaInstTag2_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_DynaInstTag2_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNAINSTTAG2");
@@ -1634,7 +1634,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnablePQL_Default((IEntity)pSModule, bl2, bl3);
+            string = this.onTestValueRule_EnablePQL_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLEPQL");
@@ -1656,7 +1656,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LanResTag_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_LanResTag_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LANRESTAG");
@@ -1678,7 +1678,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSModule, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -1700,7 +1700,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1722,7 +1722,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModTag_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_ModTag_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODTAG");
@@ -1744,7 +1744,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModTag2_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_ModTag2_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODTAG2");
@@ -1766,7 +1766,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModTag3_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_ModTag3_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODTAG3");
@@ -1788,7 +1788,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModTag4_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_ModTag4_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODTAG4");
@@ -1810,7 +1810,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModuleSN_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_ModuleSN_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODULESN");
@@ -1832,7 +1832,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NoViewMode_Default((IEntity)pSModule, bl2, bl3);
+            string = this.onTestValueRule_NoViewMode_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NOVIEWMODE");
@@ -1854,7 +1854,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSModule, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -1876,7 +1876,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PKGCodeName_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_PKGCodeName_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PKGCODENAME");
@@ -1901,7 +1901,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -1926,7 +1926,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleName_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleName_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULENAME");
@@ -1948,7 +1948,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelGroupId_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelGroupId_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELGROUPID");
@@ -1970,7 +1970,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysRefId_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysRefId_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSREFID");
@@ -1992,7 +1992,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPubId_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPubId_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPUBID");
@@ -2017,7 +2017,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -2039,7 +2039,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ReqModule_Default((IEntity)pSModule, bl2, bl3);
+            string = this.onTestValueRule_ReqModule_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REQMODULE");
@@ -2061,7 +2061,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RuntimeType_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_RuntimeType_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RUNTIMETYPE");
@@ -2083,7 +2083,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ServiceAPIFlag_Default((IEntity)pSModule, bl2, bl3);
+            string = this.onTestValueRule_ServiceAPIFlag_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SERVICEAPIFLAG");
@@ -2105,7 +2105,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ShortTag_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_ShortTag_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SHORTTAG");
@@ -2127,7 +2127,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SubSysModule_Default((IEntity)pSModule, bl2, bl3);
+            string = this.onTestValueRule_SubSysModule_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SUBSYSMODULE");
@@ -2149,7 +2149,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SysRefType_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_SysRefType_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYSREFTYPE");
@@ -2171,7 +2171,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -2193,7 +2193,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserParams_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_UserParams_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERPARAMS");
@@ -2215,7 +2215,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -2237,7 +2237,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -2259,7 +2259,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -2281,7 +2281,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -2303,7 +2303,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UtilParams_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_UtilParams_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UTILPARAMS");
@@ -2325,7 +2325,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UtilTag_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_UtilTag_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UTILTAG");
@@ -2347,7 +2347,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UtilType_Default((IEntity)pSModule, bl2, bl3);
+            string2 = this.onTestValueRule_UtilType_Default(pSModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UTILTYPE");
@@ -2360,11 +2360,11 @@ extends PSCoreSysServiceBase<PSModule> {
     }
 
     protected void onSyncEntity(PSModule pSModule, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSModule, bl);
+        super.onSyncEntity(pSModule, bl);
     }
 
     protected void onSyncIndexEntities(PSModule pSModule, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSModule, bl);
+        super.onSyncIndexEntities(pSModule, bl);
     }
 
     public Object getDataContextValue(PSModule pSModule, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -2372,7 +2372,7 @@ extends PSCoreSysServiceBase<PSModule> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSModule, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSModule, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysRef pSSysRef = pSModule.getPSSysRef();
@@ -2383,7 +2383,7 @@ extends PSCoreSysServiceBase<PSModule> {
     }
 
     protected void onExportMajorModel(PSModule pSModule, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSModule, arrayList, n);
+        super.onExportMajorModel(pSModule, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -3112,14 +3112,14 @@ extends PSCoreSysServiceBase<PSModule> {
 
     protected boolean onMergeChild(String string, String string2, PSModule pSModule) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSModule)) {
+        if (super.onMergeChild(string, string2, pSModule)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSModule pSModule) throws Exception {
-        super.onUpdateParent((IEntity)pSModule);
+        super.onUpdateParent(pSModule);
     }
 
     @Override
@@ -3579,7 +3579,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSCodeListServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSCodeList)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSCODELIST", (Object)entityBase.getPSCodeListId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSCODELIST", (Object)((PSCodeList)entityBase).getPSCodeListId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3605,7 +3605,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDataEntityServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSDataEntity)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDATAENTITY", (Object)entityBase.getPSDataEntityId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDATAENTITY", (Object)((PSDataEntity)entityBase).getPSDataEntityId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3631,7 +3631,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDEActionTemplServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSDEActionTempl)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEACTIONTEMPL", (Object)entityBase.getPSDEActionTemplId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEACTIONTEMPL", (Object)((PSDEActionTempl)entityBase).getPSDEActionTemplId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3657,7 +3657,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDEFInputTipServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSDEFInputTip)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEFINPUTTIP", (Object)entityBase.getPSDEFInputTipId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEFINPUTTIP", (Object)((PSDEFInputTip)entityBase).getPSDEFInputTipId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3683,7 +3683,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSubSysServiceAPIServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSubSysServiceAPI)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSUBSYSSERVICEAPI", (Object)entityBase.getPSSubSysServiceAPIId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSUBSYSSERVICEAPI", (Object)((PSSubSysServiceAPI)entityBase).getPSSubSysServiceAPIId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3709,7 +3709,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSubViewTypeServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSubViewType)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSUBVIEWTYPE", (Object)entityBase.getPSSubViewTypeId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSUBVIEWTYPE", (Object)((PSSubViewType)entityBase).getPSSubViewTypeId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3735,7 +3735,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysActorServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysActor)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSACTOR", (Object)entityBase.getPSSysActorId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSACTOR", (Object)((PSSysActor)entityBase).getPSSysActorId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3761,7 +3761,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysAppServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysApp)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSAPP", (Object)entityBase.getPSSysAppId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSAPP", (Object)((PSSysApp)entityBase).getPSSysAppId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3787,7 +3787,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysBackServiceServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysBackService)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSBACKSERVICE", (Object)entityBase.getPSSysBackServiceId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSBACKSERVICE", (Object)((PSSysBackService)entityBase).getPSSysBackServiceId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3813,7 +3813,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysBDSchemeServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysBDScheme)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSBDSCHEME", (Object)entityBase.getPSSysBDSchemeId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSBDSCHEME", (Object)((PSSysBDScheme)entityBase).getPSSysBDSchemeId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3839,7 +3839,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysCanvasServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysCanvas)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCANVAS", (Object)entityBase.getPSSysCanvasId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCANVAS", (Object)((PSSysCanvas)entityBase).getPSSysCanvasId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3865,7 +3865,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysChartThemeServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysChartTheme)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCHARTTHEME", (Object)entityBase.getPSSysChartThemeId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCHARTTHEME", (Object)((PSSysChartTheme)entityBase).getPSSysChartThemeId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3891,7 +3891,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysCssCatServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysCssCat)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCSSCAT", (Object)entityBase.getPSSysCssCatId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCSSCAT", (Object)((PSSysCssCat)entityBase).getPSSysCssCatId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3917,7 +3917,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysCssServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysCss)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCSS", (Object)entityBase.getPSSysCssId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCSS", (Object)((PSSysCss)entityBase).getPSSysCssId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3943,7 +3943,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysDataSyncAgentServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysDataSyncAgent)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDATASYNCAGENT", (Object)entityBase.getPSSysDataSyncAgentId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDATASYNCAGENT", (Object)((PSSysDataSyncAgent)entityBase).getPSSysDataSyncAgentId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3969,7 +3969,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysDBSchemeServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysDBScheme)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDBSCHEME", (Object)entityBase.getPSSysDBSchemeId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDBSCHEME", (Object)((PSSysDBScheme)entityBase).getPSSysDBSchemeId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -3995,7 +3995,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysDBVFServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysDBVF)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDBVF", (Object)entityBase.getPSSysDBVFId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDBVF", (Object)((PSSysDBVF)entityBase).getPSSysDBVFId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4021,7 +4021,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysDELogicNodeServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysDELogicNode)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDELOGICNODE", (Object)entityBase.getPSSysDELogicNodeId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDELOGICNODE", (Object)((PSSysDELogicNode)entityBase).getPSSysDELogicNodeId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4047,7 +4047,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysDictCatServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysDictCat)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDICTCAT", (Object)entityBase.getPSSysDictCatId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDICTCAT", (Object)((PSSysDictCat)entityBase).getPSSysDictCatId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4073,7 +4073,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysDynaModelCatServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysDynaModelCat)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDYNAMODELCAT", (Object)entityBase.getPSSysDynaModelCatId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDYNAMODELCAT", (Object)((PSSysDynaModelCat)entityBase).getPSSysDynaModelCatId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4099,7 +4099,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysDynaModelServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysDynaModel)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDYNAMODEL", (Object)entityBase.getPSSysDynaModelId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDYNAMODEL", (Object)((PSSysDynaModel)entityBase).getPSSysDynaModelId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4125,7 +4125,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysEAISchemeServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysEAIScheme)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSEAISCHEME", (Object)entityBase.getPSSysEAISchemeId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSEAISCHEME", (Object)((PSSysEAIScheme)entityBase).getPSSysEAISchemeId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4151,7 +4151,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysEditorStyleService)pSCoreSysServiceBase).getModelV2Tag((PSSysEditorStyle)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSEDITORSTYLE", (Object)entityBase.getPSSysEditorStyleId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSEDITORSTYLE", (Object)((PSSysEditorStyle)entityBase).getPSSysEditorStyleId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4177,7 +4177,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysERMapServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysERMap)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSERMAP", (Object)entityBase.getPSSysERMapId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSERMAP", (Object)((PSSysERMap)entityBase).getPSSysERMapId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4203,7 +4203,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysFileServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysFile)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSFILE", (Object)entityBase.getPSSysFileId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSFILE", (Object)((PSSysFile)entityBase).getPSSysFileId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4229,7 +4229,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysImageServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysImage)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSIMAGE", (Object)entityBase.getPSSysImageId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSIMAGE", (Object)((PSSysImage)entityBase).getPSSysImageId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4255,7 +4255,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysMsgQueueServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysMsgQueue)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSMSGQUEUE", (Object)entityBase.getPSSysMsgQueueId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSMSGQUEUE", (Object)((PSSysMsgQueue)entityBase).getPSSysMsgQueueId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4281,7 +4281,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysMsgTargetServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysMsgTarget)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSMSGTARGET", (Object)entityBase.getPSSysMsgTargetId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSMSGTARGET", (Object)((PSSysMsgTarget)entityBase).getPSSysMsgTargetId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4307,7 +4307,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysMsgTemplServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysMsgTempl)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSMSGTEMPL", (Object)entityBase.getPSSysMsgTemplId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSMSGTEMPL", (Object)((PSSysMsgTempl)entityBase).getPSSysMsgTemplId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4333,7 +4333,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysOPPrivServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysOPPriv)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSOPPRIV", (Object)entityBase.getPSSysOPPrivId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSOPPRIV", (Object)((PSSysOPPriv)entityBase).getPSSysOPPrivId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4359,7 +4359,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysPDTViewServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysPDTView)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSPDTVIEW", (Object)entityBase.getPSSysPDTViewId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSPDTVIEW", (Object)((PSSysPDTView)entityBase).getPSSysPDTViewId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4385,7 +4385,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysPFPluginServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysPFPlugin)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSPFPLUGIN", (Object)entityBase.getPSSysPFPluginId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSPFPLUGIN", (Object)((PSSysPFPlugin)entityBase).getPSSysPFPluginId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4411,7 +4411,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysPortletCatServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysPortletCat)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSPORTLETCAT", (Object)entityBase.getPSSysPortletCatId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSPORTLETCAT", (Object)((PSSysPortletCat)entityBase).getPSSysPortletCatId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4437,7 +4437,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysResourceServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysResource)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSRESOURCE", (Object)entityBase.getPSSysResourceId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSRESOURCE", (Object)((PSSysResource)entityBase).getPSSysResourceId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4463,7 +4463,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysSAHandlerServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysSAHandler)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSAHANDLER", (Object)entityBase.getPSSysSAHandlerId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSAHANDLER", (Object)((PSSysSAHandler)entityBase).getPSSysSAHandlerId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4489,7 +4489,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysSampleValueServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysSampleValue)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSAMPLEVALUE", (Object)entityBase.getPSSysSampleValueId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSAMPLEVALUE", (Object)((PSSysSampleValue)entityBase).getPSSysSampleValueId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4515,7 +4515,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysSearchSchemeServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysSearchScheme)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSEARCHSCHEME", (Object)entityBase.getPSSysSearchSchemeId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSEARCHSCHEME", (Object)((PSSysSearchScheme)entityBase).getPSSysSearchSchemeId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4541,7 +4541,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysServiceAPIServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysServiceAPI)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSERVICEAPI", (Object)entityBase.getPSSysServiceAPIId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSERVICEAPI", (Object)((PSSysServiceAPI)entityBase).getPSSysServiceAPIId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4567,7 +4567,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysSFPluginServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysSFPlugin)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSFPLUGIN", (Object)entityBase.getPSSysSFPluginId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSFPLUGIN", (Object)((PSSysSFPlugin)entityBase).getPSSysSFPluginId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4593,7 +4593,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysSQLCmdServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysSQLCmd)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSQLCMD", (Object)entityBase.getPSSysSQLCmdId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSQLCMD", (Object)((PSSysSQLCmd)entityBase).getPSSysSQLCmdId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4619,7 +4619,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysUniResServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysUniRes)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUNIRES", (Object)entityBase.getPSSysUniResId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUNIRES", (Object)((PSSysUniRes)entityBase).getPSSysUniResId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4645,7 +4645,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysUseCaseCatServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysUseCaseCat)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUSECASECAT", (Object)entityBase.getPSSysUseCaseCatId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUSECASECAT", (Object)((PSSysUseCaseCat)entityBase).getPSSysUseCaseCatId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4671,7 +4671,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysUserDRServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysUserDR)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUSERDR", (Object)entityBase.getPSSysUserDRId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUSERDR", (Object)((PSSysUserDR)entityBase).getPSSysUserDRId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4697,7 +4697,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysUserModeServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysUserMode)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUSERMODE", (Object)entityBase.getPSSysUserModeId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUSERMODE", (Object)((PSSysUserMode)entityBase).getPSSysUserModeId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4723,7 +4723,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysUtilDEService)pSCoreSysServiceBase).getModelV2Tag((PSSysUtilDE)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUTILDE", (Object)entityBase.getPSSysUtilDEId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUTILDE", (Object)((PSSysUtilDE)entityBase).getPSSysUtilDEId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4749,7 +4749,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysValueRuleServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysValueRule)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSVALUERULE", (Object)entityBase.getPSSysValueRuleId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSVALUERULE", (Object)((PSSysValueRule)entityBase).getPSSysValueRuleId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4775,7 +4775,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysWFCatServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysWFCat)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSWFCAT", (Object)entityBase.getPSSysWFCatId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSWFCAT", (Object)((PSSysWFCat)entityBase).getPSSysWFCatId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4801,7 +4801,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysWFModeServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysWFMode)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSWFMODE", (Object)entityBase.getPSSysWFModeId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSWFMODE", (Object)((PSSysWFMode)entityBase).getPSSysWFModeId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4827,7 +4827,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSThresholdGroupServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSThresholdGroup)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSTHRESHOLDGROUP", (Object)entityBase.getPSThresholdGroupId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSTHRESHOLDGROUP", (Object)((PSThresholdGroup)entityBase).getPSThresholdGroupId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4853,7 +4853,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSViewMsgGroupServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSViewMsgGroup)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSVIEWMSGGROUP", (Object)entityBase.getPSViewMsgGroupId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSVIEWMSGGROUP", (Object)((PSViewMsgGroup)entityBase).getPSViewMsgGroupId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4879,7 +4879,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSViewMsgServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSViewMsg)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSVIEWMSG", (Object)entityBase.getPSViewMsgId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSVIEWMSG", (Object)((PSViewMsg)entityBase).getPSViewMsgId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4905,7 +4905,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSViewWizardGroupServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSViewWizardGroup)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSVIEWWIZARDGROUP", (Object)entityBase.getPSViewWizardGroupId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSVIEWWIZARDGROUP", (Object)((PSViewWizardGroup)entityBase).getPSViewWizardGroupId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4931,7 +4931,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSWFRoleServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSWFRole)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFROLE", (Object)entityBase.getPSWFRoleId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFROLE", (Object)((PSWFRole)entityBase).getPSWFRoleId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4957,7 +4957,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSWFWorkTimeServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSWFWorkTime)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFWORKTIME", (Object)entityBase.getPSWFWorkTimeId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFWORKTIME", (Object)((PSWFWorkTime)entityBase).getPSWFWorkTimeId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4983,7 +4983,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSWorkflowServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSWorkflow)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWORKFLOW", (Object)entityBase.getPSWorkflowId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWORKFLOW", (Object)((PSWorkflow)entityBase).getPSWorkflowId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5009,7 +5009,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSWXAccountServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSWXAccount)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWXACCOUNT", (Object)entityBase.getPSWXAccountId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWXACCOUNT", (Object)((PSWXAccount)entityBase).getPSWXAccountId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5035,7 +5035,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSACHandlerServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSACHandler)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSACHANDLER", (Object)entityBase.getPSACHandlerId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSACHANDLER", (Object)((PSACHandler)entityBase).getPSACHandlerId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5061,7 +5061,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSCtrlLogicGroupServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSCtrlLogicGroup)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSCTRLLOGICGROUP", (Object)entityBase.getPSCtrlLogicGroupId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSCTRLLOGICGROUP", (Object)((PSCtrlLogicGroup)entityBase).getPSCtrlLogicGroupId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5087,7 +5087,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSCtrlMsgServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSCtrlMsg)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSCTRLMSG", (Object)entityBase.getPSCtrlMsgId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSCTRLMSG", (Object)((PSCtrlMsg)entityBase).getPSCtrlMsgId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5113,7 +5113,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDEFInputTipSetServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSDEFInputTipSet)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEFINPUTTIPSET", (Object)entityBase.getPSDEFInputTipSetId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEFINPUTTIPSET", (Object)((PSDEFInputTipSet)entityBase).getPSDEFInputTipSetId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5139,7 +5139,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDEGroupServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSDEGroup)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEGROUP", (Object)entityBase.getPSDEGroupId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEGROUP", (Object)((PSDEGroup)entityBase).getPSDEGroupId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5165,7 +5165,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDELogicService)pSCoreSysServiceBase).getModelV2Tag((PSDELogic)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDELOGIC", (Object)entityBase.getPSDELogicId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDELOGIC", (Object)((PSDELogic)entityBase).getPSDELogicId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5191,7 +5191,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDERGroupServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSDERGroup)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDERGROUP", (Object)entityBase.getPSDERGroupId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDERGROUP", (Object)((PSDERGroup)entityBase).getPSDERGroupId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5217,7 +5217,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDEToolbarServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSDEToolbar)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDETOOLBAR", (Object)entityBase.getPSDEToolbarId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDETOOLBAR", (Object)((PSDEToolbar)entityBase).getPSDEToolbarId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5243,7 +5243,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSHelpArticleServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSHelpArticle)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSHELPARTICLE", (Object)entityBase.getPSHelpArticleId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSHELPARTICLE", (Object)((PSHelpArticle)entityBase).getPSHelpArticleId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5269,7 +5269,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSHelpPrjServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSHelpPrj)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSHELPPRJ", (Object)entityBase.getPSHelpPrjId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSHELPPRJ", (Object)((PSHelpPrj)entityBase).getPSHelpPrjId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5295,7 +5295,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSHelpResourceServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSHelpResource)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSHELPRESOURCE", (Object)entityBase.getPSHelpResourceId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSHELPRESOURCE", (Object)((PSHelpResource)entityBase).getPSHelpResourceId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5321,7 +5321,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysAIFactoryServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysAIFactory)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSAIFACTORY", (Object)entityBase.getPSSysAIFactoryId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSAIFACTORY", (Object)((PSSysAIFactory)entityBase).getPSSysAIFactoryId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5347,7 +5347,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysBISchemeServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysBIScheme)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSBISCHEME", (Object)entityBase.getPSSysBISchemeId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSBISCHEME", (Object)((PSSysBIScheme)entityBase).getPSSysBISchemeId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5373,7 +5373,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysCalendarServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysCalendar)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCALENDAR", (Object)entityBase.getPSSysCalendarId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCALENDAR", (Object)((PSSysCalendar)entityBase).getPSSysCalendarId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5399,7 +5399,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysContentCatServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysContentCat)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCONTENTCAT", (Object)entityBase.getPSSysContentCatId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCONTENTCAT", (Object)((PSSysContentCat)entityBase).getPSSysContentCatId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5425,7 +5425,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysCounterServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysCounter)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCOUNTER", (Object)entityBase.getPSSysCounterId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSCOUNTER", (Object)((PSSysCounter)entityBase).getPSSysCounterId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5451,7 +5451,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysDashboardServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysDashboard)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDASHBOARD", (Object)entityBase.getPSSysDashboardId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSDASHBOARD", (Object)((PSSysDashboard)entityBase).getPSSysDashboardId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5477,7 +5477,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysPortletServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysPortlet)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSPORTLET", (Object)entityBase.getPSSysPortletId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSPORTLET", (Object)((PSSysPortlet)entityBase).getPSSysPortletId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5503,7 +5503,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysReqItemServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysReqItem)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSREQITEM", (Object)entityBase.getPSSysReqItemId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSREQITEM", (Object)((PSSysReqItem)entityBase).getPSSysReqItemId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5529,7 +5529,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysReqModuleServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysReqModule)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSREQMODULE", (Object)entityBase.getPSSysReqModuleId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSREQMODULE", (Object)((PSSysReqModule)entityBase).getPSSysReqModuleId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5555,7 +5555,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysSearchBarServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysSearchBar)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSEARCHBAR", (Object)entityBase.getPSSysSearchBarId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSEARCHBAR", (Object)((PSSysSearchBar)entityBase).getPSSysSearchBarId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5581,7 +5581,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysSequenceServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysSequence)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSEQUENCE", (Object)entityBase.getPSSysSequenceId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSSEQUENCE", (Object)((PSSysSequence)entityBase).getPSSysSequenceId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5607,7 +5607,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysTestPrjServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysTestPrj)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSTESTPRJ", (Object)entityBase.getPSSysTestPrjId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSTESTPRJ", (Object)((PSSysTestPrj)entityBase).getPSSysTestPrjId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5633,7 +5633,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysTranslatorServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysTranslator)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSTRANSLATOR", (Object)entityBase.getPSSysTranslatorId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSTRANSLATOR", (Object)((PSSysTranslator)entityBase).getPSSysTranslatorId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5659,7 +5659,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysUCMapServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysUCMap)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUCMAP", (Object)entityBase.getPSSysUCMapId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUCMAP", (Object)((PSSysUCMap)entityBase).getPSSysUCMapId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5685,7 +5685,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysUniStateServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysUniState)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUNISTATE", (Object)entityBase.getPSSysUniStateId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUNISTATE", (Object)((PSSysUniState)entityBase).getPSSysUniStateId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5711,7 +5711,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysUnitServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysUnit)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUNIT", (Object)entityBase.getPSSysUnitId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUNIT", (Object)((PSSysUnit)entityBase).getPSSysUnitId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5737,7 +5737,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysUserCaseRSServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysUserCaseRS)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUSERCASERS", (Object)entityBase.getPSSysUserCaseRSId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUSERCASERS", (Object)((PSSysUserCaseRS)entityBase).getPSSysUserCaseRSId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5763,7 +5763,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysUserCaseServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysUserCase)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUSERCASE", (Object)entityBase.getPSSysUserCaseId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSUSERCASE", (Object)((PSSysUserCase)entityBase).getPSSysUserCaseId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5789,7 +5789,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysViewLogicServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysViewLogic)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSVIEWLOGIC", (Object)entityBase.getPSSysViewLogicId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSVIEWLOGIC", (Object)((PSSysViewLogic)entityBase).getPSSysViewLogicId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5815,7 +5815,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysViewPanelServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysViewPanel)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSVIEWPANEL", (Object)entityBase.getPSSysViewPanelId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSVIEWPANEL", (Object)((PSSysViewPanel)entityBase).getPSSysViewPanelId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5841,7 +5841,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDEUAGroupService)pSCoreSysServiceBase).getModelV2Tag((PSDEUAGroup)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEUAGROUP", (Object)entityBase.getPSDEUAGroupId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEUAGROUP", (Object)((PSDEUAGroup)entityBase).getPSDEUAGroupId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5867,7 +5867,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDEUIActionService)pSCoreSysServiceBase).getModelV2Tag((PSDEUIAction)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEUIACTION", (Object)entityBase.getPSDEUIActionId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEUIACTION", (Object)((PSDEUIAction)entityBase).getPSDEUIActionId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5893,7 +5893,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysTestDataServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysTestData)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSTESTDATA", (Object)entityBase.getPSSysTestDataId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSTESTDATA", (Object)((PSSysTestData)entityBase).getPSSysTestDataId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5919,7 +5919,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSLanguageItemServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSLanguageItem)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSLANGUAGEITEM", (Object)entityBase.getPSLanguageItemId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSLANGUAGEITEM", (Object)((PSLanguageItem)entityBase).getPSLanguageItemId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5945,7 +5945,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSLanguageResService)pSCoreSysServiceBase).getModelV2Tag((PSLanguageRes)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSLANGUAGERES", (Object)entityBase.getPSLanguageResId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSLANGUAGERES", (Object)((PSLanguageRes)entityBase).getPSLanguageResId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5971,7 +5971,7 @@ extends PSCoreSysServiceBase<PSModule> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDEOPPrivServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSDEOPPriv)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEOPPRIV", (Object)entityBase.getPSDEOPPrivId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEOPPRIV", (Object)((PSDEOPPriv)entityBase).getPSDEOPPrivId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -5989,12 +5989,7 @@ extends PSCoreSysServiceBase<PSModule> {
      */
     @Override
     protected void onExportCurModelV2(PSModule pSModule, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        Object object3;
-        Object object4;
-        ArrayList<PSCodeList> arrayList;
+        ArrayList<ObjectNode> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSCODELIST_PSMODULE_PSMODULEID")) {
@@ -6003,31 +5998,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSCODELIST", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSCodeList>();
-                object4 = ((PSCodeListServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSCodeList)object2.next();
-                    object = ((PSCodeListServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSCodeList entity : ((PSCodeListServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSCodeListServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6055,10 +6042,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSCodeList();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSCodeList entity = new PSCodeList();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6068,31 +6055,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDATAENTITY", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDataEntityServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDataEntity)object2.next();
-                    object = ((PSDataEntityServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSDataEntity entity : ((PSDataEntityServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSDataEntityServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6120,10 +6099,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDataEntity();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSDataEntity entity = new PSDataEntity();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6133,31 +6112,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEACTIONTEMPL", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEActionTemplServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEActionTempl)object2.next();
-                    object = ((PSDEActionTemplServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSDEActionTempl entity : ((PSDEActionTemplServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSDEActionTemplServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6185,10 +6156,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEActionTempl();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSDEActionTempl entity = new PSDEActionTempl();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6198,31 +6169,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEFINPUTTIP", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEFInputTipServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEFInputTip)object2.next();
-                    object = ((PSDEFInputTipServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSDEFInputTip entity : ((PSDEFInputTipServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSDEFInputTipServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6250,10 +6213,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEFInputTip();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSDEFInputTip entity = new PSDEFInputTip();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6263,31 +6226,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSUBSYSSERVICEAPI", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSubSysServiceAPIServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSubSysServiceAPI)object2.next();
-                    object = ((PSSubSysServiceAPIServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSubSysServiceAPI entity : ((PSSubSysServiceAPIServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSubSysServiceAPIServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6315,10 +6270,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSubSysServiceAPI();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSubSysServiceAPI entity = new PSSubSysServiceAPI();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6328,31 +6283,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSUBVIEWTYPE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSubViewTypeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSubViewType)object2.next();
-                    object = ((PSSubViewTypeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSubViewType entity : ((PSSubViewTypeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSubViewTypeServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6380,10 +6327,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSubViewType();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSubViewType entity = new PSSubViewType();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6393,31 +6340,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSACTOR", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysActorServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysActor)object2.next();
-                    object = ((PSSysActorServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysActor entity : ((PSSysActorServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysActorServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6445,10 +6384,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysActor();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysActor entity = new PSSysActor();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6458,31 +6397,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSAPP", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysAppServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysApp)object2.next();
-                    object = ((PSSysAppServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysApp entity : ((PSSysAppServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysAppServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6510,10 +6441,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysApp();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysApp entity = new PSSysApp();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6523,31 +6454,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBACKSERVICE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysBackServiceServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysBackService)object2.next();
-                    object = ((PSSysBackServiceServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysBackService entity : ((PSSysBackServiceServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysBackServiceServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6575,10 +6498,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysBackService();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysBackService entity = new PSSysBackService();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6588,31 +6511,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBDSCHEME", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysBDSchemeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysBDScheme)object2.next();
-                    object = ((PSSysBDSchemeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysBDScheme entity : ((PSSysBDSchemeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysBDSchemeServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6640,10 +6555,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysBDScheme();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysBDScheme entity = new PSSysBDScheme();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6653,31 +6568,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSCANVAS", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysCanvasServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysCanvas)object2.next();
-                    object = ((PSSysCanvasServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysCanvas entity : ((PSSysCanvasServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysCanvasServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6705,10 +6612,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysCanvas();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysCanvas entity = new PSSysCanvas();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6718,31 +6625,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSCHARTTHEME", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysChartThemeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysChartTheme)object2.next();
-                    object = ((PSSysChartThemeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysChartTheme entity : ((PSSysChartThemeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysChartThemeServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6770,10 +6669,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysChartTheme();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysChartTheme entity = new PSSysChartTheme();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6783,31 +6682,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSCSSCAT", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysCssCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysCssCat)object2.next();
-                    object = ((PSSysCssCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysCssCat entity : ((PSSysCssCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysCssCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6835,10 +6726,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysCssCat();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysCssCat entity = new PSSysCssCat();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6848,31 +6739,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSCSS", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysCssServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysCss)object2.next();
-                    object = ((PSSysCssServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysCss entity : ((PSSysCssServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysCssServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6900,10 +6783,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysCss();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysCss entity = new PSSysCss();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6913,31 +6796,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSDATASYNCAGENT", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysDataSyncAgentServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysDataSyncAgent)object2.next();
-                    object = ((PSSysDataSyncAgentServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysDataSyncAgent entity : ((PSSysDataSyncAgentServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysDataSyncAgentServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -6965,10 +6840,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysDataSyncAgent();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysDataSyncAgent entity = new PSSysDataSyncAgent();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -6978,31 +6853,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSDBSCHEME", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysDBSchemeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysDBScheme)object2.next();
-                    object = ((PSSysDBSchemeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysDBScheme entity : ((PSSysDBSchemeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysDBSchemeServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7030,10 +6897,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysDBScheme();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysDBScheme entity = new PSSysDBScheme();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7043,31 +6910,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSDBVF", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysDBVFServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysDBVF)object2.next();
-                    object = ((PSSysDBVFServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysDBVF entity : ((PSSysDBVFServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysDBVFServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7095,10 +6954,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysDBVF();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysDBVF entity = new PSSysDBVF();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7108,31 +6967,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSDELOGICNODE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysDELogicNodeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysDELogicNode)object2.next();
-                    object = ((PSSysDELogicNodeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysDELogicNode entity : ((PSSysDELogicNodeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysDELogicNodeServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7160,10 +7011,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysDELogicNode();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysDELogicNode entity = new PSSysDELogicNode();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7173,31 +7024,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSDICTCAT", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysDictCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysDictCat)object2.next();
-                    object = ((PSSysDictCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysDictCat entity : ((PSSysDictCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysDictCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7225,10 +7068,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysDictCat();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysDictCat entity = new PSSysDictCat();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7238,31 +7081,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSDYNAMODELCAT", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysDynaModelCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysDynaModelCat)object2.next();
-                    object = ((PSSysDynaModelCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysDynaModelCat entity : ((PSSysDynaModelCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysDynaModelCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7290,10 +7125,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysDynaModelCat();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysDynaModelCat entity = new PSSysDynaModelCat();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7303,31 +7138,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSDYNAMODEL", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysDynaModelServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysDynaModel)object2.next();
-                    object = ((PSSysDynaModelServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysDynaModel entity : ((PSSysDynaModelServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysDynaModelServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7355,10 +7182,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysDynaModel();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysDynaModel entity = new PSSysDynaModel();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7368,31 +7195,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSEAISCHEME", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysEAISchemeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysEAIScheme)object2.next();
-                    object = ((PSSysEAISchemeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysEAIScheme entity : ((PSSysEAISchemeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysEAISchemeServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7420,10 +7239,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysEAIScheme();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysEAIScheme entity = new PSSysEAIScheme();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7433,31 +7252,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSEDITORSTYLE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysEditorStyleServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysEditorStyle)object2.next();
-                    object = ((PSSysEditorStyleServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysEditorStyle entity : ((PSSysEditorStyleServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysEditorStyleServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7485,10 +7296,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysEditorStyle();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysEditorStyle entity = new PSSysEditorStyle();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7498,31 +7309,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSERMAP", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysERMapServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysERMap)object2.next();
-                    object = ((PSSysERMapServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysERMap entity : ((PSSysERMapServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysERMapServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7550,10 +7353,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysERMap();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysERMap entity = new PSSysERMap();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7563,31 +7366,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSFILE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysFileServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysFile)object2.next();
-                    object = ((PSSysFileServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysFile entity : ((PSSysFileServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysFileServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7615,10 +7410,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysFile();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysFile entity = new PSSysFile();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7628,31 +7423,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSIMAGE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysImageServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysImage)object2.next();
-                    object = ((PSSysImageServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysImage entity : ((PSSysImageServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysImageServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7680,10 +7467,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysImage();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysImage entity = new PSSysImage();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7693,31 +7480,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSMSGQUEUE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysMsgQueueServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysMsgQueue)object2.next();
-                    object = ((PSSysMsgQueueServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysMsgQueue entity : ((PSSysMsgQueueServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysMsgQueueServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7745,10 +7524,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysMsgQueue();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysMsgQueue entity = new PSSysMsgQueue();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7758,31 +7537,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSMSGTARGET", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysMsgTargetServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysMsgTarget)object2.next();
-                    object = ((PSSysMsgTargetServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysMsgTarget entity : ((PSSysMsgTargetServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysMsgTargetServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7810,10 +7581,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysMsgTarget();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysMsgTarget entity = new PSSysMsgTarget();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7823,31 +7594,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSMSGTEMPL", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysMsgTemplServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysMsgTempl)object2.next();
-                    object = ((PSSysMsgTemplServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysMsgTempl entity : ((PSSysMsgTemplServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysMsgTemplServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7875,10 +7638,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysMsgTempl();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysMsgTempl entity = new PSSysMsgTempl();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7888,31 +7651,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSOPPRIV", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysOPPrivServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysOPPriv)object2.next();
-                    object = ((PSSysOPPrivServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysOPPriv entity : ((PSSysOPPrivServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysOPPrivServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -7940,10 +7695,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysOPPriv();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysOPPriv entity = new PSSysOPPriv();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -7953,31 +7708,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSPDTVIEW", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysPDTViewServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysPDTView)object2.next();
-                    object = ((PSSysPDTViewServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysPDTView entity : ((PSSysPDTViewServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysPDTViewServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8005,10 +7752,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysPDTView();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysPDTView entity = new PSSysPDTView();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8018,31 +7765,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSPFPLUGIN", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysPFPluginServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysPFPlugin)object2.next();
-                    object = ((PSSysPFPluginServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysPFPlugin entity : ((PSSysPFPluginServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysPFPluginServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8070,10 +7809,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysPFPlugin();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysPFPlugin entity = new PSSysPFPlugin();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8083,31 +7822,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSPORTLETCAT", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysPortletCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysPortletCat)object2.next();
-                    object = ((PSSysPortletCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysPortletCat entity : ((PSSysPortletCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysPortletCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8135,10 +7866,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysPortletCat();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysPortletCat entity = new PSSysPortletCat();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8148,31 +7879,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSRESOURCE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysResourceServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysResource)object2.next();
-                    object = ((PSSysResourceServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysResource entity : ((PSSysResourceServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysResourceServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8200,10 +7923,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysResource();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysResource entity = new PSSysResource();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8213,31 +7936,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSSAHANDLER", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysSAHandlerServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysSAHandler)object2.next();
-                    object = ((PSSysSAHandlerServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysSAHandler entity : ((PSSysSAHandlerServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysSAHandlerServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8265,10 +7980,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysSAHandler();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysSAHandler entity = new PSSysSAHandler();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8278,31 +7993,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSSAMPLEVALUE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysSampleValueServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysSampleValue)object2.next();
-                    object = ((PSSysSampleValueServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysSampleValue entity : ((PSSysSampleValueServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysSampleValueServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8330,10 +8037,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysSampleValue();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysSampleValue entity = new PSSysSampleValue();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8343,31 +8050,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSSEARCHSCHEME", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysSearchSchemeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysSearchScheme)object2.next();
-                    object = ((PSSysSearchSchemeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysSearchScheme entity : ((PSSysSearchSchemeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysSearchSchemeServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8395,10 +8094,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysSearchScheme();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysSearchScheme entity = new PSSysSearchScheme();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8408,31 +8107,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSSERVICEAPI", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysServiceAPIServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysServiceAPI)object2.next();
-                    object = ((PSSysServiceAPIServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysServiceAPI entity : ((PSSysServiceAPIServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysServiceAPIServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8460,10 +8151,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysServiceAPI();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysServiceAPI entity = new PSSysServiceAPI();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8473,31 +8164,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSSFPLUGIN", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysSFPluginServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysSFPlugin)object2.next();
-                    object = ((PSSysSFPluginServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysSFPlugin entity : ((PSSysSFPluginServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysSFPluginServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8525,10 +8208,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysSFPlugin();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysSFPlugin entity = new PSSysSFPlugin();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8538,31 +8221,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSSQLCMD", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysSQLCmdServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysSQLCmd)object2.next();
-                    object = ((PSSysSQLCmdServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysSQLCmd entity : ((PSSysSQLCmdServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysSQLCmdServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8590,10 +8265,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysSQLCmd();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysSQLCmd entity = new PSSysSQLCmd();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8603,31 +8278,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUNIRES", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysUniResServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysUniRes)object2.next();
-                    object = ((PSSysUniResServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysUniRes entity : ((PSSysUniResServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysUniResServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8655,10 +8322,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysUniRes();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysUniRes entity = new PSSysUniRes();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8668,31 +8335,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUSECASECAT", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysUseCaseCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysUseCaseCat)object2.next();
-                    object = ((PSSysUseCaseCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysUseCaseCat entity : ((PSSysUseCaseCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysUseCaseCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8720,10 +8379,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysUseCaseCat();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysUseCaseCat entity = new PSSysUseCaseCat();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8733,31 +8392,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUSERDR", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysUserDRServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysUserDR)object2.next();
-                    object = ((PSSysUserDRServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysUserDR entity : ((PSSysUserDRServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysUserDRServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8785,10 +8436,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysUserDR();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysUserDR entity = new PSSysUserDR();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8798,31 +8449,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUSERMODE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysUserModeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysUserMode)object2.next();
-                    object = ((PSSysUserModeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysUserMode entity : ((PSSysUserModeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysUserModeServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8850,10 +8493,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysUserMode();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysUserMode entity = new PSSysUserMode();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8863,31 +8506,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUTILDE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysUtilDEServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysUtilDE)object2.next();
-                    object = ((PSSysUtilDEServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysUtilDE entity : ((PSSysUtilDEServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysUtilDEServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8915,10 +8550,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysUtilDE();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysUtilDE entity = new PSSysUtilDE();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8928,31 +8563,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSVALUERULE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysValueRuleServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysValueRule)object2.next();
-                    object = ((PSSysValueRuleServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysValueRule entity : ((PSSysValueRuleServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysValueRuleServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -8980,10 +8607,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysValueRule();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysValueRule entity = new PSSysValueRule();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -8993,31 +8620,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSWFCAT", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysWFCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysWFCat)object2.next();
-                    object = ((PSSysWFCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysWFCat entity : ((PSSysWFCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysWFCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9045,10 +8664,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysWFCat();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysWFCat entity = new PSSysWFCat();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9058,31 +8677,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSWFMODE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysWFModeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysWFMode)object2.next();
-                    object = ((PSSysWFModeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysWFMode entity : ((PSSysWFModeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysWFModeServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9110,10 +8721,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysWFMode();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysWFMode entity = new PSSysWFMode();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9123,31 +8734,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSTHRESHOLDGROUP", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSThresholdGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSThresholdGroup)object2.next();
-                    object = ((PSThresholdGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSThresholdGroup entity : ((PSThresholdGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSThresholdGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9175,10 +8778,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSThresholdGroup();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSThresholdGroup entity = new PSThresholdGroup();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9188,31 +8791,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSVIEWMSGGROUP", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSViewMsgGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSViewMsgGroup)object2.next();
-                    object = ((PSViewMsgGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSViewMsgGroup entity : ((PSViewMsgGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSViewMsgGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9240,10 +8835,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSViewMsgGroup();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSViewMsgGroup entity = new PSViewMsgGroup();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9253,31 +8848,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSVIEWMSG", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSViewMsgServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSViewMsg)object2.next();
-                    object = ((PSViewMsgServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSViewMsg entity : ((PSViewMsgServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSViewMsgServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9305,10 +8892,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSViewMsg();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSViewMsg entity = new PSViewMsg();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9318,31 +8905,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSVIEWWIZARDGROUP", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSViewWizardGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSViewWizardGroup)object2.next();
-                    object = ((PSViewWizardGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSViewWizardGroup entity : ((PSViewWizardGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSViewWizardGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9370,10 +8949,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSViewWizardGroup();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSViewWizardGroup entity = new PSViewWizardGroup();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9383,31 +8962,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFROLE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWFRoleServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWFRole)object2.next();
-                    object = ((PSWFRoleServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSWFRole entity : ((PSWFRoleServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSWFRoleServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9435,10 +9006,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWFRole();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSWFRole entity = new PSWFRole();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9448,31 +9019,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFWORKTIME", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWFWorkTimeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWFWorkTime)object2.next();
-                    object = ((PSWFWorkTimeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSWFWorkTime entity : ((PSWFWorkTimeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSWFWorkTimeServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9500,10 +9063,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWFWorkTime();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSWFWorkTime entity = new PSWFWorkTime();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9513,31 +9076,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWORKFLOW", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWorkflowServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWorkflow)object2.next();
-                    object = ((PSWorkflowServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSWorkflow entity : ((PSWorkflowServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSWorkflowServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9565,10 +9120,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWorkflow();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSWorkflow entity = new PSWorkflow();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9578,31 +9133,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWXACCOUNT", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWXAccountServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWXAccount)object2.next();
-                    object = ((PSWXAccountServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSWXAccount entity : ((PSWXAccountServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSWXAccountServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9630,10 +9177,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWXAccount();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSWXAccount entity = new PSWXAccount();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9643,31 +9190,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSACHANDLER", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSACHandlerServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSACHandler)object2.next();
-                    object = ((PSACHandlerServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSACHandler entity : ((PSACHandlerServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSACHandlerServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9695,10 +9234,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSACHandler();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSACHandler entity = new PSACHandler();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9708,31 +9247,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSCTRLLOGICGROUP", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSCtrlLogicGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSCtrlLogicGroup)object2.next();
-                    object = ((PSCtrlLogicGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSCtrlLogicGroup entity : ((PSCtrlLogicGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSCtrlLogicGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9760,10 +9291,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSCtrlLogicGroup();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSCtrlLogicGroup entity = new PSCtrlLogicGroup();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9773,31 +9304,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSCTRLMSG", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSCtrlMsgServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSCtrlMsg)object2.next();
-                    object = ((PSCtrlMsgServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSCtrlMsg entity : ((PSCtrlMsgServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSCtrlMsgServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9825,10 +9348,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSCtrlMsg();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSCtrlMsg entity = new PSCtrlMsg();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9838,31 +9361,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEFINPUTTIPSET", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEFInputTipSetServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEFInputTipSet)object2.next();
-                    object = ((PSDEFInputTipSetServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSDEFInputTipSet entity : ((PSDEFInputTipSetServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSDEFInputTipSetServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9890,10 +9405,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEFInputTipSet();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSDEFInputTipSet entity = new PSDEFInputTipSet();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9903,31 +9418,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEGROUP", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEGroup)object2.next();
-                    object = ((PSDEGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSDEGroup entity : ((PSDEGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSDEGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9955,10 +9462,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEGroup();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSDEGroup entity = new PSDEGroup();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -9968,31 +9475,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDELOGIC", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDELogicServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDELogic)object2.next();
-                    object = ((PSDELogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSDELogic entity : ((PSDELogicServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSDELogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10020,10 +9519,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDELogic();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSDELogic entity = new PSDELogic();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10033,31 +9532,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDERGROUP", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDERGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDERGroup)object2.next();
-                    object = ((PSDERGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSDERGroup entity : ((PSDERGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSDERGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10085,10 +9576,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDERGroup();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSDERGroup entity = new PSDERGroup();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10098,31 +9589,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDETOOLBAR", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEToolbarServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEToolbar)object2.next();
-                    object = ((PSDEToolbarServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSDEToolbar entity : ((PSDEToolbarServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSDEToolbarServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10150,10 +9633,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEToolbar();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSDEToolbar entity = new PSDEToolbar();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10163,31 +9646,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSHELPARTICLE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSHelpArticleServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSHelpArticle)object2.next();
-                    object = ((PSHelpArticleServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSHelpArticle entity : ((PSHelpArticleServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSHelpArticleServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10215,10 +9690,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSHelpArticle();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSHelpArticle entity = new PSHelpArticle();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10228,31 +9703,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSHELPPRJ", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSHelpPrjServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSHelpPrj)object2.next();
-                    object = ((PSHelpPrjServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSHelpPrj entity : ((PSHelpPrjServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSHelpPrjServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10280,10 +9747,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSHelpPrj();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSHelpPrj entity = new PSHelpPrj();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10293,31 +9760,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSHELPRESOURCE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSHelpResourceServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSHelpResource)object2.next();
-                    object = ((PSHelpResourceServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSHelpResource entity : ((PSHelpResourceServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSHelpResourceServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10345,10 +9804,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSHelpResource();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSHelpResource entity = new PSHelpResource();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10358,31 +9817,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSAIFACTORY", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysAIFactoryServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysAIFactory)object2.next();
-                    object = ((PSSysAIFactoryServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysAIFactory entity : ((PSSysAIFactoryServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysAIFactoryServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10410,10 +9861,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysAIFactory();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysAIFactory entity = new PSSysAIFactory();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10423,31 +9874,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBISCHEME", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysBISchemeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysBIScheme)object2.next();
-                    object = ((PSSysBISchemeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysBIScheme entity : ((PSSysBISchemeServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysBISchemeServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10475,10 +9918,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysBIScheme();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysBIScheme entity = new PSSysBIScheme();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10488,31 +9931,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSCALENDAR", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysCalendarServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysCalendar)object2.next();
-                    object = ((PSSysCalendarServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysCalendar entity : ((PSSysCalendarServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysCalendarServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10540,10 +9975,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysCalendar();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysCalendar entity = new PSSysCalendar();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10553,31 +9988,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSCONTENTCAT", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysContentCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysContentCat)object2.next();
-                    object = ((PSSysContentCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysContentCat entity : ((PSSysContentCatServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysContentCatServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10605,10 +10032,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysContentCat();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysContentCat entity = new PSSysContentCat();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10618,31 +10045,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSCOUNTER", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysCounterServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysCounter)object2.next();
-                    object = ((PSSysCounterServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysCounter entity : ((PSSysCounterServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysCounterServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10670,10 +10089,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysCounter();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysCounter entity = new PSSysCounter();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10683,31 +10102,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSDASHBOARD", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysDashboardServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysDashboard)object2.next();
-                    object = ((PSSysDashboardServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysDashboard entity : ((PSSysDashboardServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysDashboardServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10735,10 +10146,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysDashboard();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysDashboard entity = new PSSysDashboard();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10748,31 +10159,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSPORTLET", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysPortletServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysPortlet)object2.next();
-                    object = ((PSSysPortletServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysPortlet entity : ((PSSysPortletServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysPortletServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10800,10 +10203,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysPortlet();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysPortlet entity = new PSSysPortlet();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10813,31 +10216,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSREQITEM", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysReqItemServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysReqItem)object2.next();
-                    object = ((PSSysReqItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysReqItem entity : ((PSSysReqItemServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysReqItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10865,10 +10260,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysReqItem();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysReqItem entity = new PSSysReqItem();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10878,31 +10273,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSREQMODULE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysReqModuleServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysReqModule)object2.next();
-                    object = ((PSSysReqModuleServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysReqModule entity : ((PSSysReqModuleServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysReqModuleServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10930,10 +10317,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysReqModule();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysReqModule entity = new PSSysReqModule();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -10943,31 +10330,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSSEARCHBAR", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysSearchBarServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysSearchBar)object2.next();
-                    object = ((PSSysSearchBarServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysSearchBar entity : ((PSSysSearchBarServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysSearchBarServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -10995,10 +10374,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysSearchBar();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysSearchBar entity = new PSSysSearchBar();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11008,31 +10387,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSSEQUENCE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysSequenceServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysSequence)object2.next();
-                    object = ((PSSysSequenceServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysSequence entity : ((PSSysSequenceServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysSequenceServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11060,10 +10431,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysSequence();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysSequence entity = new PSSysSequence();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11073,31 +10444,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSTESTPRJ", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysTestPrjServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysTestPrj)object2.next();
-                    object = ((PSSysTestPrjServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysTestPrj entity : ((PSSysTestPrjServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysTestPrjServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11125,10 +10488,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysTestPrj();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysTestPrj entity = new PSSysTestPrj();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11138,31 +10501,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSTRANSLATOR", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysTranslatorServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysTranslator)object2.next();
-                    object = ((PSSysTranslatorServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysTranslator entity : ((PSSysTranslatorServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysTranslatorServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11190,10 +10545,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysTranslator();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysTranslator entity = new PSSysTranslator();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11203,31 +10558,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUCMAP", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysUCMapServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysUCMap)object2.next();
-                    object = ((PSSysUCMapServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysUCMap entity : ((PSSysUCMapServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysUCMapServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11255,10 +10602,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysUCMap();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysUCMap entity = new PSSysUCMap();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11268,31 +10615,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUNISTATE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysUniStateServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysUniState)object2.next();
-                    object = ((PSSysUniStateServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysUniState entity : ((PSSysUniStateServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysUniStateServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11320,10 +10659,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysUniState();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysUniState entity = new PSSysUniState();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11333,31 +10672,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUNIT", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysUnitServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysUnit)object2.next();
-                    object = ((PSSysUnitServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysUnit entity : ((PSSysUnitServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysUnitServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11385,10 +10716,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysUnit();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysUnit entity = new PSSysUnit();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11398,31 +10729,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUSERCASERS", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysUserCaseRSServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysUserCaseRS)object2.next();
-                    object = ((PSSysUserCaseRSServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysUserCaseRS entity : ((PSSysUserCaseRSServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysUserCaseRSServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11450,10 +10773,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysUserCaseRS();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysUserCaseRS entity = new PSSysUserCaseRS();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11463,31 +10786,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUSERCASE", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysUserCaseServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysUserCase)object2.next();
-                    object = ((PSSysUserCaseServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysUserCase entity : ((PSSysUserCaseServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysUserCaseServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11515,10 +10830,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysUserCase();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysUserCase entity = new PSSysUserCase();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11528,31 +10843,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSVIEWLOGIC", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysViewLogicServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysViewLogic)object2.next();
-                    object = ((PSSysViewLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysViewLogic entity : ((PSSysViewLogicServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysViewLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11580,10 +10887,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysViewLogic();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysViewLogic entity = new PSSysViewLogic();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11593,31 +10900,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSVIEWPANEL", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysViewPanelServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysViewPanel)object2.next();
-                    object = ((PSSysViewPanelServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysViewPanel entity : ((PSSysViewPanelServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysViewPanelServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11645,10 +10944,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysViewPanel();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysViewPanel entity = new PSSysViewPanel();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11658,31 +10957,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEUAGROUP", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEUAGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEUAGroup)object2.next();
-                    object = ((PSDEUAGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSDEUAGroup entity : ((PSDEUAGroupServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSDEUAGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11710,10 +11001,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEUAGroup();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSDEUAGroup entity = new PSDEUAGroup();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11723,31 +11014,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEUIACTION", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEUIActionServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEUIAction)object2.next();
-                    object = ((PSDEUIActionServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSDEUIAction entity : ((PSDEUIActionServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSDEUIActionServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11775,10 +11058,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEUIAction();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSDEUIAction entity = new PSDEUIAction();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11788,31 +11071,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSTESTDATA", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysTestDataServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysTestData)object2.next();
-                    object = ((PSSysTestDataServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSSysTestData entity : ((PSSysTestDataServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSSysTestDataServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11840,10 +11115,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysTestData();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysTestData entity = new PSSysTestData();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11853,31 +11128,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSLANGUAGEITEM", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSLanguageItemServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSLanguageItem)object2.next();
-                    object = ((PSLanguageItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSLanguageItem entity : ((PSLanguageItemServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSLanguageItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11905,10 +11172,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSLanguageItem();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSLanguageItem entity = new PSLanguageItem();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11918,31 +11185,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSLANGUAGERES", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSLanguageResServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSLanguageRes)object2.next();
-                    object = ((PSLanguageResServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSLanguageRes entity : ((PSLanguageResServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSLanguageResServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -11970,10 +11229,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSLanguageRes();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSLanguageRes entity = new PSLanguageRes();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -11983,31 +11242,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSMODULE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEOPPRIV", (Object)pSModule.getPSModuleId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSCodeList)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEOPPrivServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule);
-                object3 = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEOPPriv)object2.next();
-                    object = ((PSDEOPPrivServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCodeList)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSMODULE#%1$s", (Object)pSModule.getPSModuleId());
+                for (PSDEOPPriv entity : ((PSDEOPPrivServiceBase)pSCoreSysServiceBase).selectByPSModule(pSModule)) {
+                    String entityScope = ((PSDEOPPrivServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -12035,10 +11286,10 @@ extends PSCoreSysServiceBase<PSModule> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEOPPriv();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSDEOPPriv entity = new PSDEOPPriv();
+                    PSModelV2Helper.fromJSONObject((IDataObject)entity, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -13086,8 +12337,6 @@ extends PSCoreSysServiceBase<PSModule> {
 
     @Override
     protected void onCompileRelatedModelV2(PSModule pSModule, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
         Object object2;
         int n2;
         String string3;
@@ -13103,24 +12352,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (n2 = 0; n2 < arrayNode.size(); ++n2) {
                     object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSCodeList();
-                    ((PSCodeListBase)object).setModColor(pSModule.getColor());
-                    ((PSCodeListBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSCodeListBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSCodeList entity = new PSCodeList();
+                    ((PSCodeListBase)entity).setModColor(pSModule.getColor());
+                    ((PSCodeListBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSCodeListBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string4);
                 if (((File)object2).exists()) {
-                    object = ((File)object2).listFiles();
-                    for (Object object3 : object) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSCodeList();
-                        entityBase.setModColor(pSModule.getColor());
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSCodeList entity = new PSCodeList();
+                        entity.setModColor(pSModule.getColor());
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13135,25 +12383,25 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (n2 = 0; n2 < arrayNode.size(); ++n2) {
                     object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSDataEntity();
-                    ((PSDataEntityBase)object).setModColor(pSModule.getColor());
-                    ((PSDataEntityBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSDataEntityBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    ((PSDataEntityBase)object).setSubSysModule(pSModule.getSubSysModule());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSDataEntity entity = new PSDataEntity();
+                    ((PSDataEntityBase)entity).setModColor(pSModule.getColor());
+                    ((PSDataEntityBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSDataEntityBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    ((PSDataEntityBase)entity).setSubSysModule(pSModule.getSubSysModule());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string5);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDataEntity();
-                        entityBase.setModColor(pSModule.getColor());
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        entityBase.setSubSysModule(pSModule.getSubSysModule());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSDataEntity entity = new PSDataEntity();
+                        entity.setModColor(pSModule.getColor());
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        entity.setSubSysModule(pSModule.getSubSysModule());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13168,21 +12416,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDEActionTempl();
-                    ((PSDEActionTemplBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSDEActionTemplBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSDEActionTempl entity = new PSDEActionTempl();
+                    ((PSDEActionTemplBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSDEActionTemplBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string6 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string6);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEActionTempl();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSDEActionTempl entity = new PSDEActionTempl();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13197,21 +12445,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDEFInputTip();
-                    ((PSDEFInputTipBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSDEFInputTipBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSDEFInputTip entity = new PSDEFInputTip();
+                    ((PSDEFInputTipBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSDEFInputTipBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string7 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string7);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEFInputTip();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSDEFInputTip entity = new PSDEFInputTip();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13226,21 +12474,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSubSysServiceAPI();
-                    ((PSSubSysServiceAPIBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSubSysServiceAPIBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSubSysServiceAPI entity = new PSSubSysServiceAPI();
+                    ((PSSubSysServiceAPIBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSubSysServiceAPIBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string8 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string8);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSubSysServiceAPI();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSubSysServiceAPI entity = new PSSubSysServiceAPI();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13255,21 +12503,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSubViewType();
-                    ((PSSubViewTypeBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSubViewTypeBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSubViewType entity = new PSSubViewType();
+                    ((PSSubViewTypeBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSubViewTypeBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string9 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string9);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSubViewType();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSubViewType entity = new PSSubViewType();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13284,21 +12532,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysActor();
-                    ((PSSysActorBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysActorBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysActor entity = new PSSysActor();
+                    ((PSSysActorBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysActorBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string10 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string10);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysActor();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysActor entity = new PSSysActor();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13313,21 +12561,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysApp();
-                    ((PSSysAppBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysAppBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysApp entity = new PSSysApp();
+                    ((PSSysAppBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysAppBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string11 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string11);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysApp();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysApp entity = new PSSysApp();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13342,21 +12590,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysBackService();
-                    ((PSSysBackServiceBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysBackServiceBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysBackService entity = new PSSysBackService();
+                    ((PSSysBackServiceBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysBackServiceBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string12 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string12);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysBackService();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysBackService entity = new PSSysBackService();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13371,21 +12619,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysBDScheme();
-                    ((PSSysBDSchemeBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysBDSchemeBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysBDScheme entity = new PSSysBDScheme();
+                    ((PSSysBDSchemeBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysBDSchemeBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string13 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string13);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysBDScheme();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysBDScheme entity = new PSSysBDScheme();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13400,21 +12648,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysCanvas();
-                    ((PSSysCanvasBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysCanvasBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysCanvas entity = new PSSysCanvas();
+                    ((PSSysCanvasBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysCanvasBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string14 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string14);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysCanvas();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysCanvas entity = new PSSysCanvas();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13429,21 +12677,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysChartTheme();
-                    ((PSSysChartThemeBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysChartThemeBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysChartTheme entity = new PSSysChartTheme();
+                    ((PSSysChartThemeBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysChartThemeBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string15 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string15);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysChartTheme();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysChartTheme entity = new PSSysChartTheme();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13458,21 +12706,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysCssCat();
-                    ((PSSysCssCatBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysCssCatBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysCssCat entity = new PSSysCssCat();
+                    ((PSSysCssCatBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysCssCatBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string16 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string16);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysCssCat();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysCssCat entity = new PSSysCssCat();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13487,21 +12735,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysCss();
-                    ((PSSysCssBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysCssBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysCss entity = new PSSysCss();
+                    ((PSSysCssBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysCssBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string17 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string17);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysCss();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysCss entity = new PSSysCss();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13516,21 +12764,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysDataSyncAgent();
-                    ((PSSysDataSyncAgentBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysDataSyncAgentBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysDataSyncAgent entity = new PSSysDataSyncAgent();
+                    ((PSSysDataSyncAgentBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysDataSyncAgentBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string18 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string18);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysDataSyncAgent();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysDataSyncAgent entity = new PSSysDataSyncAgent();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13545,21 +12793,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysDBScheme();
-                    ((PSSysDBSchemeBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysDBSchemeBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysDBScheme entity = new PSSysDBScheme();
+                    ((PSSysDBSchemeBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysDBSchemeBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string19 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string19);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysDBScheme();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysDBScheme entity = new PSSysDBScheme();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13574,21 +12822,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysDBVF();
-                    ((PSSysDBVFBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysDBVFBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysDBVF entity = new PSSysDBVF();
+                    ((PSSysDBVFBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysDBVFBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string20 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string20);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysDBVF();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysDBVF entity = new PSSysDBVF();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13603,21 +12851,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysDELogicNode();
-                    ((PSSysDELogicNodeBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysDELogicNodeBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysDELogicNode entity = new PSSysDELogicNode();
+                    ((PSSysDELogicNodeBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysDELogicNodeBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string21 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string21);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysDELogicNode();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysDELogicNode entity = new PSSysDELogicNode();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13632,21 +12880,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysDictCat();
-                    ((PSSysDictCatBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysDictCatBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysDictCat entity = new PSSysDictCat();
+                    ((PSSysDictCatBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysDictCatBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string22 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string22);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysDictCat();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysDictCat entity = new PSSysDictCat();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13661,21 +12909,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysDynaModelCat();
-                    ((PSSysDynaModelCatBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysDynaModelCatBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysDynaModelCat entity = new PSSysDynaModelCat();
+                    ((PSSysDynaModelCatBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysDynaModelCatBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string23 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string23);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysDynaModelCat();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysDynaModelCat entity = new PSSysDynaModelCat();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13690,21 +12938,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysDynaModel();
-                    ((PSSysDynaModelBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysDynaModelBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysDynaModel entity = new PSSysDynaModel();
+                    ((PSSysDynaModelBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysDynaModelBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string24 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string24);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysDynaModel();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysDynaModel entity = new PSSysDynaModel();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13719,21 +12967,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysEAIScheme();
-                    ((PSSysEAISchemeBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysEAISchemeBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysEAIScheme entity = new PSSysEAIScheme();
+                    ((PSSysEAISchemeBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysEAISchemeBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string25 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string25);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysEAIScheme();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysEAIScheme entity = new PSSysEAIScheme();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13748,21 +12996,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysEditorStyle();
-                    ((PSSysEditorStyleBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysEditorStyleBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysEditorStyle entity = new PSSysEditorStyle();
+                    ((PSSysEditorStyleBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysEditorStyleBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string26 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string26);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysEditorStyle();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysEditorStyle entity = new PSSysEditorStyle();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13777,21 +13025,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysERMap();
-                    ((PSSysERMapBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysERMapBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysERMap entity = new PSSysERMap();
+                    ((PSSysERMapBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysERMapBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string27 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string27);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysERMap();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysERMap entity = new PSSysERMap();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13806,21 +13054,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysFile();
-                    ((PSSysFileBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysFileBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysFile entity = new PSSysFile();
+                    ((PSSysFileBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysFileBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string28 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string28);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysFile();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysFile entity = new PSSysFile();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13835,21 +13083,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysImage();
-                    ((PSSysImageBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysImageBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysImage entity = new PSSysImage();
+                    ((PSSysImageBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysImageBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string29 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string29);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysImage();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysImage entity = new PSSysImage();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13864,21 +13112,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysMsgQueue();
-                    ((PSSysMsgQueueBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysMsgQueueBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysMsgQueue entity = new PSSysMsgQueue();
+                    ((PSSysMsgQueueBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysMsgQueueBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string30 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string30);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysMsgQueue();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysMsgQueue entity = new PSSysMsgQueue();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13893,21 +13141,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysMsgTarget();
-                    ((PSSysMsgTargetBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysMsgTargetBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysMsgTarget entity = new PSSysMsgTarget();
+                    ((PSSysMsgTargetBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysMsgTargetBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string31 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string31);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysMsgTarget();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysMsgTarget entity = new PSSysMsgTarget();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13922,21 +13170,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysMsgTempl();
-                    ((PSSysMsgTemplBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysMsgTemplBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysMsgTempl entity = new PSSysMsgTempl();
+                    ((PSSysMsgTemplBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysMsgTemplBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string32 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string32);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysMsgTempl();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysMsgTempl entity = new PSSysMsgTempl();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13951,10 +13199,10 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysOPPriv();
-                    ((PSSysOPPrivBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysOPPrivBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysOPPriv entity = new PSSysOPPriv();
+                    ((PSSysOPPrivBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysOPPrivBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string33 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
@@ -13964,12 +13212,12 @@ extends PSCoreSysServiceBase<PSModule> {
                     object2 = new File(string33);
                 }
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysOPPriv();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysOPPriv entity = new PSSysOPPriv();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -13984,21 +13232,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysPDTView();
-                    ((PSSysPDTViewBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysPDTViewBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysPDTView entity = new PSSysPDTView();
+                    ((PSSysPDTViewBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysPDTViewBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string34 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string34);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysPDTView();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysPDTView entity = new PSSysPDTView();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14013,21 +13261,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysPFPlugin();
-                    ((PSSysPFPluginBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysPFPluginBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysPFPlugin entity = new PSSysPFPlugin();
+                    ((PSSysPFPluginBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysPFPluginBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string35 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string35);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysPFPlugin();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysPFPlugin entity = new PSSysPFPlugin();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14042,21 +13290,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysPortletCat();
-                    ((PSSysPortletCatBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysPortletCatBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysPortletCat entity = new PSSysPortletCat();
+                    ((PSSysPortletCatBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysPortletCatBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string36 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string36);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysPortletCat();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysPortletCat entity = new PSSysPortletCat();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14071,21 +13319,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysResource();
-                    ((PSSysResourceBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysResourceBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysResource entity = new PSSysResource();
+                    ((PSSysResourceBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysResourceBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string37 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string37);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysResource();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysResource entity = new PSSysResource();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14100,21 +13348,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysSAHandler();
-                    ((PSSysSAHandlerBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysSAHandlerBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysSAHandler entity = new PSSysSAHandler();
+                    ((PSSysSAHandlerBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysSAHandlerBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string38 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string38);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysSAHandler();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysSAHandler entity = new PSSysSAHandler();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14129,21 +13377,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysSampleValue();
-                    ((PSSysSampleValueBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysSampleValueBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysSampleValue entity = new PSSysSampleValue();
+                    ((PSSysSampleValueBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysSampleValueBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string39 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string39);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysSampleValue();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysSampleValue entity = new PSSysSampleValue();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14158,21 +13406,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysSearchScheme();
-                    ((PSSysSearchSchemeBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysSearchSchemeBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysSearchScheme entity = new PSSysSearchScheme();
+                    ((PSSysSearchSchemeBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysSearchSchemeBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string40 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string40);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysSearchScheme();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysSearchScheme entity = new PSSysSearchScheme();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14187,21 +13435,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysServiceAPI();
-                    ((PSSysServiceAPIBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysServiceAPIBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysServiceAPI entity = new PSSysServiceAPI();
+                    ((PSSysServiceAPIBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysServiceAPIBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string41 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string41);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysServiceAPI();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysServiceAPI entity = new PSSysServiceAPI();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14216,21 +13464,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysSFPlugin();
-                    ((PSSysSFPluginBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysSFPluginBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysSFPlugin entity = new PSSysSFPlugin();
+                    ((PSSysSFPluginBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysSFPluginBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string42 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string42);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysSFPlugin();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysSFPlugin entity = new PSSysSFPlugin();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14245,21 +13493,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysSQLCmd();
-                    ((PSSysSQLCmdBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysSQLCmdBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysSQLCmd entity = new PSSysSQLCmd();
+                    ((PSSysSQLCmdBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysSQLCmdBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string43 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string43);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysSQLCmd();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysSQLCmd entity = new PSSysSQLCmd();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14274,21 +13522,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysUniRes();
-                    ((PSSysUniResBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysUniResBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysUniRes entity = new PSSysUniRes();
+                    ((PSSysUniResBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysUniResBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string44 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string44);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysUniRes();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysUniRes entity = new PSSysUniRes();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14303,21 +13551,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysUseCaseCat();
-                    ((PSSysUseCaseCatBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysUseCaseCatBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysUseCaseCat entity = new PSSysUseCaseCat();
+                    ((PSSysUseCaseCatBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysUseCaseCatBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string45 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string45);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysUseCaseCat();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysUseCaseCat entity = new PSSysUseCaseCat();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14332,21 +13580,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysUserDR();
-                    ((PSSysUserDRBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysUserDRBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysUserDR entity = new PSSysUserDR();
+                    ((PSSysUserDRBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysUserDRBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string46 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string46);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysUserDR();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysUserDR entity = new PSSysUserDR();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14361,21 +13609,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysUserMode();
-                    ((PSSysUserModeBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysUserModeBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysUserMode entity = new PSSysUserMode();
+                    ((PSSysUserModeBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysUserModeBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string47 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string47);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysUserMode();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysUserMode entity = new PSSysUserMode();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14390,10 +13638,10 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysUtilDE();
-                    ((PSSysUtilDEBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysUtilDEBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysUtilDE entity = new PSSysUtilDE();
+                    ((PSSysUtilDEBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysUtilDEBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string48 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
@@ -14403,12 +13651,12 @@ extends PSCoreSysServiceBase<PSModule> {
                     object2 = new File(string48);
                 }
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysUtilDE();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysUtilDE entity = new PSSysUtilDE();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14423,21 +13671,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysValueRule();
-                    ((PSSysValueRuleBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysValueRuleBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysValueRule entity = new PSSysValueRule();
+                    ((PSSysValueRuleBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysValueRuleBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string49 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string49);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysValueRule();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysValueRule entity = new PSSysValueRule();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14452,21 +13700,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysWFCat();
-                    ((PSSysWFCatBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysWFCatBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysWFCat entity = new PSSysWFCat();
+                    ((PSSysWFCatBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysWFCatBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string50 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string50);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysWFCat();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysWFCat entity = new PSSysWFCat();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14481,21 +13729,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysWFMode();
-                    ((PSSysWFModeBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysWFModeBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysWFMode entity = new PSSysWFMode();
+                    ((PSSysWFModeBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysWFModeBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string51 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string51);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysWFMode();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysWFMode entity = new PSSysWFMode();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14510,21 +13758,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSThresholdGroup();
-                    ((PSThresholdGroupBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSThresholdGroupBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSThresholdGroup entity = new PSThresholdGroup();
+                    ((PSThresholdGroupBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSThresholdGroupBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string52 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string52);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSThresholdGroup();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSThresholdGroup entity = new PSThresholdGroup();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14539,21 +13787,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSViewMsgGroup();
-                    ((PSViewMsgGroupBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSViewMsgGroupBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSViewMsgGroup entity = new PSViewMsgGroup();
+                    ((PSViewMsgGroupBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSViewMsgGroupBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string53 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string53);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSViewMsgGroup();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSViewMsgGroup entity = new PSViewMsgGroup();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14568,21 +13816,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSViewMsg();
-                    ((PSViewMsgBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSViewMsgBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSViewMsg entity = new PSViewMsg();
+                    ((PSViewMsgBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSViewMsgBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string54 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string54);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSViewMsg();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSViewMsg entity = new PSViewMsg();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14597,21 +13845,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSViewWizardGroup();
-                    ((PSViewWizardGroupBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSViewWizardGroupBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSViewWizardGroup entity = new PSViewWizardGroup();
+                    ((PSViewWizardGroupBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSViewWizardGroupBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string55 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string55);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSViewWizardGroup();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSViewWizardGroup entity = new PSViewWizardGroup();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14626,21 +13874,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSWFRole();
-                    ((PSWFRoleBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSWFRoleBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSWFRole entity = new PSWFRole();
+                    ((PSWFRoleBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSWFRoleBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string56 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string56);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSWFRole();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSWFRole entity = new PSWFRole();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14655,21 +13903,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSWFWorkTime();
-                    ((PSWFWorkTimeBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSWFWorkTimeBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSWFWorkTime entity = new PSWFWorkTime();
+                    ((PSWFWorkTimeBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSWFWorkTimeBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string57 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string57);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSWFWorkTime();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSWFWorkTime entity = new PSWFWorkTime();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14684,23 +13932,23 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSWorkflow();
-                    ((PSWorkflowBase)object).setModColor(pSModule.getColor());
-                    ((PSWorkflowBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSWorkflowBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSWorkflow entity = new PSWorkflow();
+                    ((PSWorkflowBase)entity).setModColor(pSModule.getColor());
+                    ((PSWorkflowBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSWorkflowBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string58 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string58);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSWorkflow();
-                        entityBase.setModColor(pSModule.getColor());
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSWorkflow entity = new PSWorkflow();
+                        entity.setModColor(pSModule.getColor());
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14715,21 +13963,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSWXAccount();
-                    ((PSWXAccountBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSWXAccountBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSWXAccount entity = new PSWXAccount();
+                    ((PSWXAccountBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSWXAccountBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string59 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string59);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSWXAccount();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSWXAccount entity = new PSWXAccount();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14744,21 +13992,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSACHandler();
-                    ((PSACHandlerBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSACHandlerBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSACHandler entity = new PSACHandler();
+                    ((PSACHandlerBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSACHandlerBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string60 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string60);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSACHandler();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSACHandler entity = new PSACHandler();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14773,21 +14021,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSCtrlLogicGroup();
-                    ((PSCtrlLogicGroupBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSCtrlLogicGroupBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSCtrlLogicGroup entity = new PSCtrlLogicGroup();
+                    ((PSCtrlLogicGroupBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSCtrlLogicGroupBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string61 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string61);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSCtrlLogicGroup();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSCtrlLogicGroup entity = new PSCtrlLogicGroup();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14802,21 +14050,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSCtrlMsg();
-                    ((PSCtrlMsgBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSCtrlMsgBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSCtrlMsg entity = new PSCtrlMsg();
+                    ((PSCtrlMsgBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSCtrlMsgBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string62 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string62);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSCtrlMsg();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSCtrlMsg entity = new PSCtrlMsg();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14831,21 +14079,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDEFInputTipSet();
-                    ((PSDEFInputTipSetBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSDEFInputTipSetBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSDEFInputTipSet entity = new PSDEFInputTipSet();
+                    ((PSDEFInputTipSetBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSDEFInputTipSetBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string63 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string63);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEFInputTipSet();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSDEFInputTipSet entity = new PSDEFInputTipSet();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14860,21 +14108,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDEGroup();
-                    ((PSDEGroupBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSDEGroupBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSDEGroup entity = new PSDEGroup();
+                    ((PSDEGroupBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSDEGroupBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string64 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string64);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEGroup();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSDEGroup entity = new PSDEGroup();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14889,21 +14137,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDELogic();
-                    ((PSDELogicBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSDELogicBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSDELogic entity = new PSDELogic();
+                    ((PSDELogicBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSDELogicBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string65 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string65);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDELogic();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSDELogic entity = new PSDELogic();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14918,21 +14166,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDERGroup();
-                    ((PSDERGroupBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSDERGroupBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSDERGroup entity = new PSDERGroup();
+                    ((PSDERGroupBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSDERGroupBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string66 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string66);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDERGroup();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSDERGroup entity = new PSDERGroup();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14947,21 +14195,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDEToolbar();
-                    ((PSDEToolbarBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSDEToolbarBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSDEToolbar entity = new PSDEToolbar();
+                    ((PSDEToolbarBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSDEToolbarBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string67 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string67);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEToolbar();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSDEToolbar entity = new PSDEToolbar();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -14976,21 +14224,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSHelpArticle();
-                    ((PSHelpArticleBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSHelpArticleBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSHelpArticle entity = new PSHelpArticle();
+                    ((PSHelpArticleBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSHelpArticleBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string68 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string68);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSHelpArticle();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSHelpArticle entity = new PSHelpArticle();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15005,21 +14253,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSHelpPrj();
-                    ((PSHelpPrjBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSHelpPrjBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSHelpPrj entity = new PSHelpPrj();
+                    ((PSHelpPrjBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSHelpPrjBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string69 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string69);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSHelpPrj();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSHelpPrj entity = new PSHelpPrj();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15034,21 +14282,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSHelpResource();
-                    ((PSHelpResourceBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSHelpResourceBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSHelpResource entity = new PSHelpResource();
+                    ((PSHelpResourceBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSHelpResourceBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string70 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string70);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSHelpResource();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSHelpResource entity = new PSHelpResource();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15063,21 +14311,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysAIFactory();
-                    ((PSSysAIFactoryBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysAIFactoryBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysAIFactory entity = new PSSysAIFactory();
+                    ((PSSysAIFactoryBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysAIFactoryBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string71 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string71);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysAIFactory();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysAIFactory entity = new PSSysAIFactory();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15092,21 +14340,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysBIScheme();
-                    ((PSSysBISchemeBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysBISchemeBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysBIScheme entity = new PSSysBIScheme();
+                    ((PSSysBISchemeBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysBISchemeBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string72 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string72);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysBIScheme();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysBIScheme entity = new PSSysBIScheme();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15121,21 +14369,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysCalendar();
-                    ((PSSysCalendarBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysCalendarBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysCalendar entity = new PSSysCalendar();
+                    ((PSSysCalendarBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysCalendarBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string73 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string73);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysCalendar();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysCalendar entity = new PSSysCalendar();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15150,21 +14398,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysContentCat();
-                    ((PSSysContentCatBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysContentCatBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysContentCat entity = new PSSysContentCat();
+                    ((PSSysContentCatBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysContentCatBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string74 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string74);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysContentCat();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysContentCat entity = new PSSysContentCat();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15179,21 +14427,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysCounter();
-                    ((PSSysCounterBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysCounterBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysCounter entity = new PSSysCounter();
+                    ((PSSysCounterBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysCounterBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string75 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string75);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysCounter();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysCounter entity = new PSSysCounter();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15208,21 +14456,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysDashboard();
-                    ((PSSysDashboardBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysDashboardBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysDashboard entity = new PSSysDashboard();
+                    ((PSSysDashboardBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysDashboardBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string76 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string76);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysDashboard();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysDashboard entity = new PSSysDashboard();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15237,21 +14485,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysPortlet();
-                    ((PSSysPortletBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysPortletBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysPortlet entity = new PSSysPortlet();
+                    ((PSSysPortletBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysPortletBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string77 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string77);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysPortlet();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysPortlet entity = new PSSysPortlet();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15266,21 +14514,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysReqItem();
-                    ((PSSysReqItemBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysReqItemBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysReqItem entity = new PSSysReqItem();
+                    ((PSSysReqItemBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysReqItemBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string78 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string78);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysReqItem();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysReqItem entity = new PSSysReqItem();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15295,21 +14543,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysReqModule();
-                    ((PSSysReqModuleBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysReqModuleBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysReqModule entity = new PSSysReqModule();
+                    ((PSSysReqModuleBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysReqModuleBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string79 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string79);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysReqModule();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysReqModule entity = new PSSysReqModule();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15324,21 +14572,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysSearchBar();
-                    ((PSSysSearchBarBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysSearchBarBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysSearchBar entity = new PSSysSearchBar();
+                    ((PSSysSearchBarBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysSearchBarBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string80 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string80);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysSearchBar();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysSearchBar entity = new PSSysSearchBar();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15353,21 +14601,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysSequence();
-                    ((PSSysSequenceBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysSequenceBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysSequence entity = new PSSysSequence();
+                    ((PSSysSequenceBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysSequenceBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string81 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string81);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysSequence();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysSequence entity = new PSSysSequence();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15382,21 +14630,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysTestPrj();
-                    ((PSSysTestPrjBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysTestPrjBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysTestPrj entity = new PSSysTestPrj();
+                    ((PSSysTestPrjBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysTestPrjBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string82 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string82);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysTestPrj();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysTestPrj entity = new PSSysTestPrj();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15411,21 +14659,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysTranslator();
-                    ((PSSysTranslatorBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysTranslatorBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysTranslator entity = new PSSysTranslator();
+                    ((PSSysTranslatorBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysTranslatorBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string83 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string83);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysTranslator();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysTranslator entity = new PSSysTranslator();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15440,21 +14688,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysUCMap();
-                    ((PSSysUCMapBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysUCMapBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysUCMap entity = new PSSysUCMap();
+                    ((PSSysUCMapBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysUCMapBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string84 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string84);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysUCMap();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysUCMap entity = new PSSysUCMap();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15469,21 +14717,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysUniState();
-                    ((PSSysUniStateBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysUniStateBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysUniState entity = new PSSysUniState();
+                    ((PSSysUniStateBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysUniStateBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string85 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string85);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysUniState();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysUniState entity = new PSSysUniState();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15498,21 +14746,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysUnit();
-                    ((PSSysUnitBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysUnitBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysUnit entity = new PSSysUnit();
+                    ((PSSysUnitBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysUnitBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string86 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string86);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysUnit();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysUnit entity = new PSSysUnit();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15527,10 +14775,10 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysUserCaseRS();
-                    ((PSSysUserCaseRSBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysUserCaseRSBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysUserCaseRS entity = new PSSysUserCaseRS();
+                    ((PSSysUserCaseRSBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysUserCaseRSBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string87 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
@@ -15540,12 +14788,12 @@ extends PSCoreSysServiceBase<PSModule> {
                     object2 = new File(string87);
                 }
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysUserCaseRS();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysUserCaseRS entity = new PSSysUserCaseRS();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15560,10 +14808,10 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysUserCase();
-                    ((PSSysUserCaseBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysUserCaseBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysUserCase entity = new PSSysUserCase();
+                    ((PSSysUserCaseBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysUserCaseBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string88 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
@@ -15573,12 +14821,12 @@ extends PSCoreSysServiceBase<PSModule> {
                     object2 = new File(string88);
                 }
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysUserCase();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysUserCase entity = new PSSysUserCase();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15593,21 +14841,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysViewLogic();
-                    ((PSSysViewLogicBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysViewLogicBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysViewLogic entity = new PSSysViewLogic();
+                    ((PSSysViewLogicBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysViewLogicBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string89 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string89);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysViewLogic();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysViewLogic entity = new PSSysViewLogic();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15622,21 +14870,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysViewPanel();
-                    ((PSSysViewPanelBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysViewPanelBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysViewPanel entity = new PSSysViewPanel();
+                    ((PSSysViewPanelBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysViewPanelBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string90 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string90);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysViewPanel();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysViewPanel entity = new PSSysViewPanel();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15651,21 +14899,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDEUAGroup();
-                    ((PSDEUAGroupBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSDEUAGroupBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSDEUAGroup entity = new PSDEUAGroup();
+                    ((PSDEUAGroupBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSDEUAGroupBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string91 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string91);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEUAGroup();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSDEUAGroup entity = new PSDEUAGroup();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15680,21 +14928,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDEUIAction();
-                    ((PSDEUIActionBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSDEUIActionBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSDEUIAction entity = new PSDEUIAction();
+                    ((PSDEUIActionBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSDEUIActionBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string92 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string92);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEUIAction();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSDEUIAction entity = new PSDEUIAction();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15709,21 +14957,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysTestData();
-                    ((PSSysTestDataBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSSysTestDataBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSSysTestData entity = new PSSysTestData();
+                    ((PSSysTestDataBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSSysTestDataBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string93 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string93);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysTestData();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysTestData entity = new PSSysTestData();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15738,21 +14986,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSLanguageItem();
-                    ((PSLanguageItemBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSLanguageItemBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSLanguageItem entity = new PSLanguageItem();
+                    ((PSLanguageItemBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSLanguageItemBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string94 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string94);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSLanguageItem();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSLanguageItem entity = new PSLanguageItem();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15767,21 +15015,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSLanguageRes();
-                    ((PSLanguageResBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSLanguageResBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSLanguageRes entity = new PSLanguageRes();
+                    ((PSLanguageResBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSLanguageResBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string95 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string95);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSLanguageRes();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSLanguageRes entity = new PSLanguageRes();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -15796,21 +15044,21 @@ extends PSCoreSysServiceBase<PSModule> {
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
                     object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDEOPPriv();
-                    ((PSDEOPPrivBase)object).setPSModuleId(pSModule.getPSModuleId());
-                    ((PSDEOPPrivBase)object).setPSModuleName(pSModule.getPSModuleName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    PSDEOPPriv entity = new PSDEOPPriv();
+                    ((PSDEOPPrivBase)entity).setPSModuleId(pSModule.getPSModuleId());
+                    ((PSDEOPPrivBase)entity).setPSModuleName(pSModule.getPSModuleName());
+                    pSCoreSysServiceBase.compileModelV2(entity, (ObjectNode)object2, string, null, n);
                 }
             } else {
                 String string96 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string96);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEOPPriv();
-                        entityBase.setPSModuleId(pSModule.getPSModuleId());
-                        entityBase.setPSModuleName(pSModule.getPSModuleName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    for (File child : ((File)object2).listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSDEOPPriv entity = new PSDEOPPriv();
+                        entity.setPSModuleId(pSModule.getPSModuleId());
+                        entity.setPSModuleName(pSModule.getPSModuleName());
+                        pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -16069,7 +15317,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.getSessionFactory());
             PSCodeList pSCodeList = new PSCodeList();
             pSCodeList.setPSCodeListId(pSMOSFile.getPSModelId());
-            if (!pSCodeListService.get((IEntity)pSCodeList, true)) {
+            if (!pSCodeListService.get(pSCodeList, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSCodeList.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16077,12 +15325,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSCodeListService.exportModelV2(pSCodeList);
             pSCodeList.reset();
-            if (!pSCodeListService.setModelV2ResScope((IEntity)pSCodeList, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSCodeListService.setModelV2ResScope(pSCodeList, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSCodeListService.importModelV2(pSCodeList, objectNode);
             SessionFactoryManager.commit();
-            return pSCodeListService.getFile((IEntity)pSCodeList);
+            return pSCodeListService.getFile(pSCodeList);
         }
         return null;
     }
@@ -16092,7 +15340,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
             PSDataEntity pSDataEntity = new PSDataEntity();
             pSDataEntity.setPSDataEntityId(pSMOSFile.getPSModelId());
-            if (!pSDataEntityService.get((IEntity)pSDataEntity, true)) {
+            if (!pSDataEntityService.get(pSDataEntity, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDataEntity.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16100,12 +15348,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSDataEntityService.exportModelV2(pSDataEntity);
             pSDataEntity.reset();
-            if (!pSDataEntityService.setModelV2ResScope((IEntity)pSDataEntity, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSDataEntityService.setModelV2ResScope(pSDataEntity, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDataEntityService.importModelV2(pSDataEntity, objectNode);
             SessionFactoryManager.commit();
-            return pSDataEntityService.getFile((IEntity)pSDataEntity);
+            return pSDataEntityService.getFile(pSDataEntity);
         }
         return null;
     }
@@ -16115,7 +15363,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSDEActionTemplService pSDEActionTemplService = (PSDEActionTemplService)ServiceGlobal.getService(PSDEActionTemplService.class, (SessionFactory)this.getSessionFactory());
             PSDEActionTempl pSDEActionTempl = new PSDEActionTempl();
             pSDEActionTempl.setPSDEActionTemplId(pSMOSFile.getPSModelId());
-            if (!pSDEActionTemplService.get((IEntity)pSDEActionTempl, true)) {
+            if (!pSDEActionTemplService.get(pSDEActionTempl, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEActionTempl.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16123,12 +15371,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSDEActionTemplService.exportModelV2(pSDEActionTempl);
             pSDEActionTempl.reset();
-            if (!pSDEActionTemplService.setModelV2ResScope((IEntity)pSDEActionTempl, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSDEActionTemplService.setModelV2ResScope(pSDEActionTempl, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEActionTemplService.importModelV2(pSDEActionTempl, objectNode);
             SessionFactoryManager.commit();
-            return pSDEActionTemplService.getFile((IEntity)pSDEActionTempl);
+            return pSDEActionTemplService.getFile(pSDEActionTempl);
         }
         return null;
     }
@@ -16138,7 +15386,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSDEFInputTipService pSDEFInputTipService = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
             PSDEFInputTip pSDEFInputTip = new PSDEFInputTip();
             pSDEFInputTip.setPSDEFInputTipId(pSMOSFile.getPSModelId());
-            if (!pSDEFInputTipService.get((IEntity)pSDEFInputTip, true)) {
+            if (!pSDEFInputTipService.get(pSDEFInputTip, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEFInputTip.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16146,12 +15394,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSDEFInputTipService.exportModelV2(pSDEFInputTip);
             pSDEFInputTip.reset();
-            if (!pSDEFInputTipService.setModelV2ResScope((IEntity)pSDEFInputTip, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSDEFInputTipService.setModelV2ResScope(pSDEFInputTip, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEFInputTipService.importModelV2(pSDEFInputTip, objectNode);
             SessionFactoryManager.commit();
-            return pSDEFInputTipService.getFile((IEntity)pSDEFInputTip);
+            return pSDEFInputTipService.getFile(pSDEFInputTip);
         }
         return null;
     }
@@ -16161,7 +15409,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSubSysServiceAPIService pSSubSysServiceAPIService = (PSSubSysServiceAPIService)ServiceGlobal.getService(PSSubSysServiceAPIService.class, (SessionFactory)this.getSessionFactory());
             PSSubSysServiceAPI pSSubSysServiceAPI = new PSSubSysServiceAPI();
             pSSubSysServiceAPI.setPSSubSysServiceAPIId(pSMOSFile.getPSModelId());
-            if (!pSSubSysServiceAPIService.get((IEntity)pSSubSysServiceAPI, true)) {
+            if (!pSSubSysServiceAPIService.get(pSSubSysServiceAPI, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSubSysServiceAPI.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16169,12 +15417,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSubSysServiceAPIService.exportModelV2(pSSubSysServiceAPI);
             pSSubSysServiceAPI.reset();
-            if (!pSSubSysServiceAPIService.setModelV2ResScope((IEntity)pSSubSysServiceAPI, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSubSysServiceAPIService.setModelV2ResScope(pSSubSysServiceAPI, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSubSysServiceAPIService.importModelV2(pSSubSysServiceAPI, objectNode);
             SessionFactoryManager.commit();
-            return pSSubSysServiceAPIService.getFile((IEntity)pSSubSysServiceAPI);
+            return pSSubSysServiceAPIService.getFile(pSSubSysServiceAPI);
         }
         return null;
     }
@@ -16184,7 +15432,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSubViewTypeService pSSubViewTypeService = (PSSubViewTypeService)ServiceGlobal.getService(PSSubViewTypeService.class, (SessionFactory)this.getSessionFactory());
             PSSubViewType pSSubViewType = new PSSubViewType();
             pSSubViewType.setPSSubViewTypeId(pSMOSFile.getPSModelId());
-            if (!pSSubViewTypeService.get((IEntity)pSSubViewType, true)) {
+            if (!pSSubViewTypeService.get(pSSubViewType, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSubViewType.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16192,12 +15440,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSubViewTypeService.exportModelV2(pSSubViewType);
             pSSubViewType.reset();
-            if (!pSSubViewTypeService.setModelV2ResScope((IEntity)pSSubViewType, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSubViewTypeService.setModelV2ResScope(pSSubViewType, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSubViewTypeService.importModelV2(pSSubViewType, objectNode);
             SessionFactoryManager.commit();
-            return pSSubViewTypeService.getFile((IEntity)pSSubViewType);
+            return pSSubViewTypeService.getFile(pSSubViewType);
         }
         return null;
     }
@@ -16207,7 +15455,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysActorService pSSysActorService = (PSSysActorService)ServiceGlobal.getService(PSSysActorService.class, (SessionFactory)this.getSessionFactory());
             PSSysActor pSSysActor = new PSSysActor();
             pSSysActor.setPSSysActorId(pSMOSFile.getPSModelId());
-            if (!pSSysActorService.get((IEntity)pSSysActor, true)) {
+            if (!pSSysActorService.get(pSSysActor, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysActor.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16215,12 +15463,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysActorService.exportModelV2(pSSysActor);
             pSSysActor.reset();
-            if (!pSSysActorService.setModelV2ResScope((IEntity)pSSysActor, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysActorService.setModelV2ResScope(pSSysActor, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysActorService.importModelV2(pSSysActor, objectNode);
             SessionFactoryManager.commit();
-            return pSSysActorService.getFile((IEntity)pSSysActor);
+            return pSSysActorService.getFile(pSSysActor);
         }
         return null;
     }
@@ -16230,7 +15478,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
             PSSysApp pSSysApp = new PSSysApp();
             pSSysApp.setPSSysAppId(pSMOSFile.getPSModelId());
-            if (!pSSysAppService.get((IEntity)pSSysApp, true)) {
+            if (!pSSysAppService.get(pSSysApp, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysApp.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16238,12 +15486,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysAppService.exportModelV2(pSSysApp);
             pSSysApp.reset();
-            if (!pSSysAppService.setModelV2ResScope((IEntity)pSSysApp, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysAppService.setModelV2ResScope(pSSysApp, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysAppService.importModelV2(pSSysApp, objectNode);
             SessionFactoryManager.commit();
-            return pSSysAppService.getFile((IEntity)pSSysApp);
+            return pSSysAppService.getFile(pSSysApp);
         }
         return null;
     }
@@ -16253,7 +15501,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysBDSchemeService pSSysBDSchemeService = (PSSysBDSchemeService)ServiceGlobal.getService(PSSysBDSchemeService.class, (SessionFactory)this.getSessionFactory());
             PSSysBDScheme pSSysBDScheme = new PSSysBDScheme();
             pSSysBDScheme.setPSSysBDSchemeId(pSMOSFile.getPSModelId());
-            if (!pSSysBDSchemeService.get((IEntity)pSSysBDScheme, true)) {
+            if (!pSSysBDSchemeService.get(pSSysBDScheme, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysBDScheme.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16261,12 +15509,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysBDSchemeService.exportModelV2(pSSysBDScheme);
             pSSysBDScheme.reset();
-            if (!pSSysBDSchemeService.setModelV2ResScope((IEntity)pSSysBDScheme, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysBDSchemeService.setModelV2ResScope(pSSysBDScheme, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysBDSchemeService.importModelV2(pSSysBDScheme, objectNode);
             SessionFactoryManager.commit();
-            return pSSysBDSchemeService.getFile((IEntity)pSSysBDScheme);
+            return pSSysBDSchemeService.getFile(pSSysBDScheme);
         }
         return null;
     }
@@ -16276,7 +15524,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysCanvasService pSSysCanvasService = (PSSysCanvasService)ServiceGlobal.getService(PSSysCanvasService.class, (SessionFactory)this.getSessionFactory());
             PSSysCanvas pSSysCanvas = new PSSysCanvas();
             pSSysCanvas.setPSSysCanvasId(pSMOSFile.getPSModelId());
-            if (!pSSysCanvasService.get((IEntity)pSSysCanvas, true)) {
+            if (!pSSysCanvasService.get(pSSysCanvas, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysCanvas.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16284,12 +15532,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysCanvasService.exportModelV2(pSSysCanvas);
             pSSysCanvas.reset();
-            if (!pSSysCanvasService.setModelV2ResScope((IEntity)pSSysCanvas, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysCanvasService.setModelV2ResScope(pSSysCanvas, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysCanvasService.importModelV2(pSSysCanvas, objectNode);
             SessionFactoryManager.commit();
-            return pSSysCanvasService.getFile((IEntity)pSSysCanvas);
+            return pSSysCanvasService.getFile(pSSysCanvas);
         }
         return null;
     }
@@ -16299,7 +15547,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysChartThemeService pSSysChartThemeService = (PSSysChartThemeService)ServiceGlobal.getService(PSSysChartThemeService.class, (SessionFactory)this.getSessionFactory());
             PSSysChartTheme pSSysChartTheme = new PSSysChartTheme();
             pSSysChartTheme.setPSSysChartThemeId(pSMOSFile.getPSModelId());
-            if (!pSSysChartThemeService.get((IEntity)pSSysChartTheme, true)) {
+            if (!pSSysChartThemeService.get(pSSysChartTheme, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysChartTheme.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16307,12 +15555,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysChartThemeService.exportModelV2(pSSysChartTheme);
             pSSysChartTheme.reset();
-            if (!pSSysChartThemeService.setModelV2ResScope((IEntity)pSSysChartTheme, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysChartThemeService.setModelV2ResScope(pSSysChartTheme, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysChartThemeService.importModelV2(pSSysChartTheme, objectNode);
             SessionFactoryManager.commit();
-            return pSSysChartThemeService.getFile((IEntity)pSSysChartTheme);
+            return pSSysChartThemeService.getFile(pSSysChartTheme);
         }
         return null;
     }
@@ -16322,7 +15570,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysCssCatService pSSysCssCatService = (PSSysCssCatService)ServiceGlobal.getService(PSSysCssCatService.class, (SessionFactory)this.getSessionFactory());
             PSSysCssCat pSSysCssCat = new PSSysCssCat();
             pSSysCssCat.setPSSysCssCatId(pSMOSFile.getPSModelId());
-            if (!pSSysCssCatService.get((IEntity)pSSysCssCat, true)) {
+            if (!pSSysCssCatService.get(pSSysCssCat, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysCssCat.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16330,12 +15578,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysCssCatService.exportModelV2(pSSysCssCat);
             pSSysCssCat.reset();
-            if (!pSSysCssCatService.setModelV2ResScope((IEntity)pSSysCssCat, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysCssCatService.setModelV2ResScope(pSSysCssCat, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysCssCatService.importModelV2(pSSysCssCat, objectNode);
             SessionFactoryManager.commit();
-            return pSSysCssCatService.getFile((IEntity)pSSysCssCat);
+            return pSSysCssCatService.getFile(pSSysCssCat);
         }
         return null;
     }
@@ -16345,7 +15593,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysCssService pSSysCssService = (PSSysCssService)ServiceGlobal.getService(PSSysCssService.class, (SessionFactory)this.getSessionFactory());
             PSSysCss pSSysCss = new PSSysCss();
             pSSysCss.setPSSysCssId(pSMOSFile.getPSModelId());
-            if (!pSSysCssService.get((IEntity)pSSysCss, true)) {
+            if (!pSSysCssService.get(pSSysCss, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysCss.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16353,12 +15601,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysCssService.exportModelV2(pSSysCss);
             pSSysCss.reset();
-            if (!pSSysCssService.setModelV2ResScope((IEntity)pSSysCss, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysCssService.setModelV2ResScope(pSSysCss, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysCssService.importModelV2(pSSysCss, objectNode);
             SessionFactoryManager.commit();
-            return pSSysCssService.getFile((IEntity)pSSysCss);
+            return pSSysCssService.getFile(pSSysCss);
         }
         return null;
     }
@@ -16368,7 +15616,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysDataSyncAgentService pSSysDataSyncAgentService = (PSSysDataSyncAgentService)ServiceGlobal.getService(PSSysDataSyncAgentService.class, (SessionFactory)this.getSessionFactory());
             PSSysDataSyncAgent pSSysDataSyncAgent = new PSSysDataSyncAgent();
             pSSysDataSyncAgent.setPSSysDataSyncAgentId(pSMOSFile.getPSModelId());
-            if (!pSSysDataSyncAgentService.get((IEntity)pSSysDataSyncAgent, true)) {
+            if (!pSSysDataSyncAgentService.get(pSSysDataSyncAgent, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysDataSyncAgent.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16376,12 +15624,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysDataSyncAgentService.exportModelV2(pSSysDataSyncAgent);
             pSSysDataSyncAgent.reset();
-            if (!pSSysDataSyncAgentService.setModelV2ResScope((IEntity)pSSysDataSyncAgent, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysDataSyncAgentService.setModelV2ResScope(pSSysDataSyncAgent, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysDataSyncAgentService.importModelV2(pSSysDataSyncAgent, objectNode);
             SessionFactoryManager.commit();
-            return pSSysDataSyncAgentService.getFile((IEntity)pSSysDataSyncAgent);
+            return pSSysDataSyncAgentService.getFile(pSSysDataSyncAgent);
         }
         return null;
     }
@@ -16391,7 +15639,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysDBVFService pSSysDBVFService = (PSSysDBVFService)ServiceGlobal.getService(PSSysDBVFService.class, (SessionFactory)this.getSessionFactory());
             PSSysDBVF pSSysDBVF = new PSSysDBVF();
             pSSysDBVF.setPSSysDBVFId(pSMOSFile.getPSModelId());
-            if (!pSSysDBVFService.get((IEntity)pSSysDBVF, true)) {
+            if (!pSSysDBVFService.get(pSSysDBVF, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysDBVF.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16399,12 +15647,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysDBVFService.exportModelV2(pSSysDBVF);
             pSSysDBVF.reset();
-            if (!pSSysDBVFService.setModelV2ResScope((IEntity)pSSysDBVF, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysDBVFService.setModelV2ResScope(pSSysDBVF, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysDBVFService.importModelV2(pSSysDBVF, objectNode);
             SessionFactoryManager.commit();
-            return pSSysDBVFService.getFile((IEntity)pSSysDBVF);
+            return pSSysDBVFService.getFile(pSSysDBVF);
         }
         return null;
     }
@@ -16414,7 +15662,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysDELogicNodeService pSSysDELogicNodeService = (PSSysDELogicNodeService)ServiceGlobal.getService(PSSysDELogicNodeService.class, (SessionFactory)this.getSessionFactory());
             PSSysDELogicNode pSSysDELogicNode = new PSSysDELogicNode();
             pSSysDELogicNode.setPSSysDELogicNodeId(pSMOSFile.getPSModelId());
-            if (!pSSysDELogicNodeService.get((IEntity)pSSysDELogicNode, true)) {
+            if (!pSSysDELogicNodeService.get(pSSysDELogicNode, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysDELogicNode.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16422,12 +15670,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysDELogicNodeService.exportModelV2(pSSysDELogicNode);
             pSSysDELogicNode.reset();
-            if (!pSSysDELogicNodeService.setModelV2ResScope((IEntity)pSSysDELogicNode, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysDELogicNodeService.setModelV2ResScope(pSSysDELogicNode, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysDELogicNodeService.importModelV2(pSSysDELogicNode, objectNode);
             SessionFactoryManager.commit();
-            return pSSysDELogicNodeService.getFile((IEntity)pSSysDELogicNode);
+            return pSSysDELogicNodeService.getFile(pSSysDELogicNode);
         }
         return null;
     }
@@ -16437,7 +15685,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysDictCatService pSSysDictCatService = (PSSysDictCatService)ServiceGlobal.getService(PSSysDictCatService.class, (SessionFactory)this.getSessionFactory());
             PSSysDictCat pSSysDictCat = new PSSysDictCat();
             pSSysDictCat.setPSSysDictCatId(pSMOSFile.getPSModelId());
-            if (!pSSysDictCatService.get((IEntity)pSSysDictCat, true)) {
+            if (!pSSysDictCatService.get(pSSysDictCat, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysDictCat.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16445,12 +15693,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysDictCatService.exportModelV2(pSSysDictCat);
             pSSysDictCat.reset();
-            if (!pSSysDictCatService.setModelV2ResScope((IEntity)pSSysDictCat, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysDictCatService.setModelV2ResScope(pSSysDictCat, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysDictCatService.importModelV2(pSSysDictCat, objectNode);
             SessionFactoryManager.commit();
-            return pSSysDictCatService.getFile((IEntity)pSSysDictCat);
+            return pSSysDictCatService.getFile(pSSysDictCat);
         }
         return null;
     }
@@ -16460,7 +15708,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysDynaModelService pSSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)this.getSessionFactory());
             PSSysDynaModel pSSysDynaModel = new PSSysDynaModel();
             pSSysDynaModel.setPSSysDynaModelId(pSMOSFile.getPSModelId());
-            if (!pSSysDynaModelService.get((IEntity)pSSysDynaModel, true)) {
+            if (!pSSysDynaModelService.get(pSSysDynaModel, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysDynaModel.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16468,12 +15716,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysDynaModelService.exportModelV2(pSSysDynaModel);
             pSSysDynaModel.reset();
-            if (!pSSysDynaModelService.setModelV2ResScope((IEntity)pSSysDynaModel, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysDynaModelService.setModelV2ResScope(pSSysDynaModel, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysDynaModelService.importModelV2(pSSysDynaModel, objectNode);
             SessionFactoryManager.commit();
-            return pSSysDynaModelService.getFile((IEntity)pSSysDynaModel);
+            return pSSysDynaModelService.getFile(pSSysDynaModel);
         }
         return null;
     }
@@ -16483,7 +15731,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysEAISchemeService pSSysEAISchemeService = (PSSysEAISchemeService)ServiceGlobal.getService(PSSysEAISchemeService.class, (SessionFactory)this.getSessionFactory());
             PSSysEAIScheme pSSysEAIScheme = new PSSysEAIScheme();
             pSSysEAIScheme.setPSSysEAISchemeId(pSMOSFile.getPSModelId());
-            if (!pSSysEAISchemeService.get((IEntity)pSSysEAIScheme, true)) {
+            if (!pSSysEAISchemeService.get(pSSysEAIScheme, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysEAIScheme.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16491,12 +15739,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysEAISchemeService.exportModelV2(pSSysEAIScheme);
             pSSysEAIScheme.reset();
-            if (!pSSysEAISchemeService.setModelV2ResScope((IEntity)pSSysEAIScheme, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysEAISchemeService.setModelV2ResScope(pSSysEAIScheme, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysEAISchemeService.importModelV2(pSSysEAIScheme, objectNode);
             SessionFactoryManager.commit();
-            return pSSysEAISchemeService.getFile((IEntity)pSSysEAIScheme);
+            return pSSysEAISchemeService.getFile(pSSysEAIScheme);
         }
         return null;
     }
@@ -16506,7 +15754,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysEditorStyleService pSSysEditorStyleService = (PSSysEditorStyleService)ServiceGlobal.getService(PSSysEditorStyleService.class, (SessionFactory)this.getSessionFactory());
             PSSysEditorStyle pSSysEditorStyle = new PSSysEditorStyle();
             pSSysEditorStyle.setPSSysEditorStyleId(pSMOSFile.getPSModelId());
-            if (!pSSysEditorStyleService.get((IEntity)pSSysEditorStyle, true)) {
+            if (!pSSysEditorStyleService.get(pSSysEditorStyle, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysEditorStyle.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16514,12 +15762,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysEditorStyleService.exportModelV2(pSSysEditorStyle);
             pSSysEditorStyle.reset();
-            if (!pSSysEditorStyleService.setModelV2ResScope((IEntity)pSSysEditorStyle, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysEditorStyleService.setModelV2ResScope(pSSysEditorStyle, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysEditorStyleService.importModelV2(pSSysEditorStyle, objectNode);
             SessionFactoryManager.commit();
-            return pSSysEditorStyleService.getFile((IEntity)pSSysEditorStyle);
+            return pSSysEditorStyleService.getFile(pSSysEditorStyle);
         }
         return null;
     }
@@ -16529,7 +15777,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysERMapService pSSysERMapService = (PSSysERMapService)ServiceGlobal.getService(PSSysERMapService.class, (SessionFactory)this.getSessionFactory());
             PSSysERMap pSSysERMap = new PSSysERMap();
             pSSysERMap.setPSSysERMapId(pSMOSFile.getPSModelId());
-            if (!pSSysERMapService.get((IEntity)pSSysERMap, true)) {
+            if (!pSSysERMapService.get(pSSysERMap, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysERMap.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16537,12 +15785,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysERMapService.exportModelV2(pSSysERMap);
             pSSysERMap.reset();
-            if (!pSSysERMapService.setModelV2ResScope((IEntity)pSSysERMap, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysERMapService.setModelV2ResScope(pSSysERMap, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysERMapService.importModelV2(pSSysERMap, objectNode);
             SessionFactoryManager.commit();
-            return pSSysERMapService.getFile((IEntity)pSSysERMap);
+            return pSSysERMapService.getFile(pSSysERMap);
         }
         return null;
     }
@@ -16552,7 +15800,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysFileService pSSysFileService = (PSSysFileService)ServiceGlobal.getService(PSSysFileService.class, (SessionFactory)this.getSessionFactory());
             PSSysFile pSSysFile = new PSSysFile();
             pSSysFile.setPSSysFileId(pSMOSFile.getPSModelId());
-            if (!pSSysFileService.get((IEntity)pSSysFile, true)) {
+            if (!pSSysFileService.get(pSSysFile, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysFile.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16560,12 +15808,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysFileService.exportModelV2(pSSysFile);
             pSSysFile.reset();
-            if (!pSSysFileService.setModelV2ResScope((IEntity)pSSysFile, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysFileService.setModelV2ResScope(pSSysFile, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysFileService.importModelV2(pSSysFile, objectNode);
             SessionFactoryManager.commit();
-            return pSSysFileService.getFile((IEntity)pSSysFile);
+            return pSSysFileService.getFile(pSSysFile);
         }
         return null;
     }
@@ -16575,7 +15823,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysImageService pSSysImageService = (PSSysImageService)ServiceGlobal.getService(PSSysImageService.class, (SessionFactory)this.getSessionFactory());
             PSSysImage pSSysImage = new PSSysImage();
             pSSysImage.setPSSysImageId(pSMOSFile.getPSModelId());
-            if (!pSSysImageService.get((IEntity)pSSysImage, true)) {
+            if (!pSSysImageService.get(pSSysImage, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysImage.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16583,12 +15831,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysImageService.exportModelV2(pSSysImage);
             pSSysImage.reset();
-            if (!pSSysImageService.setModelV2ResScope((IEntity)pSSysImage, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysImageService.setModelV2ResScope(pSSysImage, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysImageService.importModelV2(pSSysImage, objectNode);
             SessionFactoryManager.commit();
-            return pSSysImageService.getFile((IEntity)pSSysImage);
+            return pSSysImageService.getFile(pSSysImage);
         }
         return null;
     }
@@ -16598,7 +15846,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysMsgTemplService pSSysMsgTemplService = (PSSysMsgTemplService)ServiceGlobal.getService(PSSysMsgTemplService.class, (SessionFactory)this.getSessionFactory());
             PSSysMsgTempl pSSysMsgTempl = new PSSysMsgTempl();
             pSSysMsgTempl.setPSSysMsgTemplId(pSMOSFile.getPSModelId());
-            if (!pSSysMsgTemplService.get((IEntity)pSSysMsgTempl, true)) {
+            if (!pSSysMsgTemplService.get(pSSysMsgTempl, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysMsgTempl.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16606,12 +15854,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysMsgTemplService.exportModelV2(pSSysMsgTempl);
             pSSysMsgTempl.reset();
-            if (!pSSysMsgTemplService.setModelV2ResScope((IEntity)pSSysMsgTempl, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysMsgTemplService.setModelV2ResScope(pSSysMsgTempl, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysMsgTemplService.importModelV2(pSSysMsgTempl, objectNode);
             SessionFactoryManager.commit();
-            return pSSysMsgTemplService.getFile((IEntity)pSSysMsgTempl);
+            return pSSysMsgTemplService.getFile(pSSysMsgTempl);
         }
         return null;
     }
@@ -16621,7 +15869,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysOPPrivService pSSysOPPrivService = (PSSysOPPrivService)ServiceGlobal.getService(PSSysOPPrivService.class, (SessionFactory)this.getSessionFactory());
             PSSysOPPriv pSSysOPPriv = new PSSysOPPriv();
             pSSysOPPriv.setPSSysOPPrivId(pSMOSFile.getPSModelId());
-            if (!pSSysOPPrivService.get((IEntity)pSSysOPPriv, true)) {
+            if (!pSSysOPPrivService.get(pSSysOPPriv, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysOPPriv.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16629,12 +15877,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysOPPrivService.exportModelV2(pSSysOPPriv);
             pSSysOPPriv.reset();
-            if (!pSSysOPPrivService.setModelV2ResScope((IEntity)pSSysOPPriv, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysOPPrivService.setModelV2ResScope(pSSysOPPriv, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysOPPrivService.importModelV2(pSSysOPPriv, objectNode);
             SessionFactoryManager.commit();
-            return pSSysOPPrivService.getFile((IEntity)pSSysOPPriv);
+            return pSSysOPPrivService.getFile(pSSysOPPriv);
         }
         return null;
     }
@@ -16644,7 +15892,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysPDTViewService pSSysPDTViewService = (PSSysPDTViewService)ServiceGlobal.getService(PSSysPDTViewService.class, (SessionFactory)this.getSessionFactory());
             PSSysPDTView pSSysPDTView = new PSSysPDTView();
             pSSysPDTView.setPSSysPDTViewId(pSMOSFile.getPSModelId());
-            if (!pSSysPDTViewService.get((IEntity)pSSysPDTView, true)) {
+            if (!pSSysPDTViewService.get(pSSysPDTView, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysPDTView.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16652,12 +15900,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysPDTViewService.exportModelV2(pSSysPDTView);
             pSSysPDTView.reset();
-            if (!pSSysPDTViewService.setModelV2ResScope((IEntity)pSSysPDTView, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysPDTViewService.setModelV2ResScope(pSSysPDTView, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysPDTViewService.importModelV2(pSSysPDTView, objectNode);
             SessionFactoryManager.commit();
-            return pSSysPDTViewService.getFile((IEntity)pSSysPDTView);
+            return pSSysPDTViewService.getFile(pSSysPDTView);
         }
         return null;
     }
@@ -16667,7 +15915,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysPFPluginService pSSysPFPluginService = (PSSysPFPluginService)ServiceGlobal.getService(PSSysPFPluginService.class, (SessionFactory)this.getSessionFactory());
             PSSysPFPlugin pSSysPFPlugin = new PSSysPFPlugin();
             pSSysPFPlugin.setPSSysPFPluginId(pSMOSFile.getPSModelId());
-            if (!pSSysPFPluginService.get((IEntity)pSSysPFPlugin, true)) {
+            if (!pSSysPFPluginService.get(pSSysPFPlugin, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysPFPlugin.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16675,12 +15923,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysPFPluginService.exportModelV2(pSSysPFPlugin);
             pSSysPFPlugin.reset();
-            if (!pSSysPFPluginService.setModelV2ResScope((IEntity)pSSysPFPlugin, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysPFPluginService.setModelV2ResScope(pSSysPFPlugin, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysPFPluginService.importModelV2(pSSysPFPlugin, objectNode);
             SessionFactoryManager.commit();
-            return pSSysPFPluginService.getFile((IEntity)pSSysPFPlugin);
+            return pSSysPFPluginService.getFile(pSSysPFPlugin);
         }
         return null;
     }
@@ -16690,7 +15938,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysPortletCatService pSSysPortletCatService = (PSSysPortletCatService)ServiceGlobal.getService(PSSysPortletCatService.class, (SessionFactory)this.getSessionFactory());
             PSSysPortletCat pSSysPortletCat = new PSSysPortletCat();
             pSSysPortletCat.setPSSysPortletCatId(pSMOSFile.getPSModelId());
-            if (!pSSysPortletCatService.get((IEntity)pSSysPortletCat, true)) {
+            if (!pSSysPortletCatService.get(pSSysPortletCat, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysPortletCat.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16698,12 +15946,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysPortletCatService.exportModelV2(pSSysPortletCat);
             pSSysPortletCat.reset();
-            if (!pSSysPortletCatService.setModelV2ResScope((IEntity)pSSysPortletCat, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysPortletCatService.setModelV2ResScope(pSSysPortletCat, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysPortletCatService.importModelV2(pSSysPortletCat, objectNode);
             SessionFactoryManager.commit();
-            return pSSysPortletCatService.getFile((IEntity)pSSysPortletCat);
+            return pSSysPortletCatService.getFile(pSSysPortletCat);
         }
         return null;
     }
@@ -16713,7 +15961,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysResourceService pSSysResourceService = (PSSysResourceService)ServiceGlobal.getService(PSSysResourceService.class, (SessionFactory)this.getSessionFactory());
             PSSysResource pSSysResource = new PSSysResource();
             pSSysResource.setPSSysResourceId(pSMOSFile.getPSModelId());
-            if (!pSSysResourceService.get((IEntity)pSSysResource, true)) {
+            if (!pSSysResourceService.get(pSSysResource, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysResource.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16721,12 +15969,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysResourceService.exportModelV2(pSSysResource);
             pSSysResource.reset();
-            if (!pSSysResourceService.setModelV2ResScope((IEntity)pSSysResource, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysResourceService.setModelV2ResScope(pSSysResource, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysResourceService.importModelV2(pSSysResource, objectNode);
             SessionFactoryManager.commit();
-            return pSSysResourceService.getFile((IEntity)pSSysResource);
+            return pSSysResourceService.getFile(pSSysResource);
         }
         return null;
     }
@@ -16736,7 +15984,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysSampleValueService pSSysSampleValueService = (PSSysSampleValueService)ServiceGlobal.getService(PSSysSampleValueService.class, (SessionFactory)this.getSessionFactory());
             PSSysSampleValue pSSysSampleValue = new PSSysSampleValue();
             pSSysSampleValue.setPSSysSampleValueId(pSMOSFile.getPSModelId());
-            if (!pSSysSampleValueService.get((IEntity)pSSysSampleValue, true)) {
+            if (!pSSysSampleValueService.get(pSSysSampleValue, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysSampleValue.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16744,12 +15992,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysSampleValueService.exportModelV2(pSSysSampleValue);
             pSSysSampleValue.reset();
-            if (!pSSysSampleValueService.setModelV2ResScope((IEntity)pSSysSampleValue, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysSampleValueService.setModelV2ResScope(pSSysSampleValue, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysSampleValueService.importModelV2(pSSysSampleValue, objectNode);
             SessionFactoryManager.commit();
-            return pSSysSampleValueService.getFile((IEntity)pSSysSampleValue);
+            return pSSysSampleValueService.getFile(pSSysSampleValue);
         }
         return null;
     }
@@ -16759,7 +16007,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysSearchSchemeService pSSysSearchSchemeService = (PSSysSearchSchemeService)ServiceGlobal.getService(PSSysSearchSchemeService.class, (SessionFactory)this.getSessionFactory());
             PSSysSearchScheme pSSysSearchScheme = new PSSysSearchScheme();
             pSSysSearchScheme.setPSSysSearchSchemeId(pSMOSFile.getPSModelId());
-            if (!pSSysSearchSchemeService.get((IEntity)pSSysSearchScheme, true)) {
+            if (!pSSysSearchSchemeService.get(pSSysSearchScheme, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysSearchScheme.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16767,12 +16015,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysSearchSchemeService.exportModelV2(pSSysSearchScheme);
             pSSysSearchScheme.reset();
-            if (!pSSysSearchSchemeService.setModelV2ResScope((IEntity)pSSysSearchScheme, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysSearchSchemeService.setModelV2ResScope(pSSysSearchScheme, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysSearchSchemeService.importModelV2(pSSysSearchScheme, objectNode);
             SessionFactoryManager.commit();
-            return pSSysSearchSchemeService.getFile((IEntity)pSSysSearchScheme);
+            return pSSysSearchSchemeService.getFile(pSSysSearchScheme);
         }
         return null;
     }
@@ -16782,7 +16030,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysServiceAPIService pSSysServiceAPIService = (PSSysServiceAPIService)ServiceGlobal.getService(PSSysServiceAPIService.class, (SessionFactory)this.getSessionFactory());
             PSSysServiceAPI pSSysServiceAPI = new PSSysServiceAPI();
             pSSysServiceAPI.setPSSysServiceAPIId(pSMOSFile.getPSModelId());
-            if (!pSSysServiceAPIService.get((IEntity)pSSysServiceAPI, true)) {
+            if (!pSSysServiceAPIService.get(pSSysServiceAPI, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysServiceAPI.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16790,12 +16038,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysServiceAPIService.exportModelV2(pSSysServiceAPI);
             pSSysServiceAPI.reset();
-            if (!pSSysServiceAPIService.setModelV2ResScope((IEntity)pSSysServiceAPI, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysServiceAPIService.setModelV2ResScope(pSSysServiceAPI, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysServiceAPIService.importModelV2(pSSysServiceAPI, objectNode);
             SessionFactoryManager.commit();
-            return pSSysServiceAPIService.getFile((IEntity)pSSysServiceAPI);
+            return pSSysServiceAPIService.getFile(pSSysServiceAPI);
         }
         return null;
     }
@@ -16805,7 +16053,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysSFPluginService pSSysSFPluginService = (PSSysSFPluginService)ServiceGlobal.getService(PSSysSFPluginService.class, (SessionFactory)this.getSessionFactory());
             PSSysSFPlugin pSSysSFPlugin = new PSSysSFPlugin();
             pSSysSFPlugin.setPSSysSFPluginId(pSMOSFile.getPSModelId());
-            if (!pSSysSFPluginService.get((IEntity)pSSysSFPlugin, true)) {
+            if (!pSSysSFPluginService.get(pSSysSFPlugin, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysSFPlugin.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16813,12 +16061,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysSFPluginService.exportModelV2(pSSysSFPlugin);
             pSSysSFPlugin.reset();
-            if (!pSSysSFPluginService.setModelV2ResScope((IEntity)pSSysSFPlugin, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysSFPluginService.setModelV2ResScope(pSSysSFPlugin, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysSFPluginService.importModelV2(pSSysSFPlugin, objectNode);
             SessionFactoryManager.commit();
-            return pSSysSFPluginService.getFile((IEntity)pSSysSFPlugin);
+            return pSSysSFPluginService.getFile(pSSysSFPlugin);
         }
         return null;
     }
@@ -16828,7 +16076,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysUniResService pSSysUniResService = (PSSysUniResService)ServiceGlobal.getService(PSSysUniResService.class, (SessionFactory)this.getSessionFactory());
             PSSysUniRes pSSysUniRes = new PSSysUniRes();
             pSSysUniRes.setPSSysUniResId(pSMOSFile.getPSModelId());
-            if (!pSSysUniResService.get((IEntity)pSSysUniRes, true)) {
+            if (!pSSysUniResService.get(pSSysUniRes, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUniRes.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16836,12 +16084,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysUniResService.exportModelV2(pSSysUniRes);
             pSSysUniRes.reset();
-            if (!pSSysUniResService.setModelV2ResScope((IEntity)pSSysUniRes, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysUniResService.setModelV2ResScope(pSSysUniRes, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUniResService.importModelV2(pSSysUniRes, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUniResService.getFile((IEntity)pSSysUniRes);
+            return pSSysUniResService.getFile(pSSysUniRes);
         }
         return null;
     }
@@ -16851,7 +16099,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysUseCaseCatService pSSysUseCaseCatService = (PSSysUseCaseCatService)ServiceGlobal.getService(PSSysUseCaseCatService.class, (SessionFactory)this.getSessionFactory());
             PSSysUseCaseCat pSSysUseCaseCat = new PSSysUseCaseCat();
             pSSysUseCaseCat.setPSSysUseCaseCatId(pSMOSFile.getPSModelId());
-            if (!pSSysUseCaseCatService.get((IEntity)pSSysUseCaseCat, true)) {
+            if (!pSSysUseCaseCatService.get(pSSysUseCaseCat, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUseCaseCat.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16859,12 +16107,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysUseCaseCatService.exportModelV2(pSSysUseCaseCat);
             pSSysUseCaseCat.reset();
-            if (!pSSysUseCaseCatService.setModelV2ResScope((IEntity)pSSysUseCaseCat, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysUseCaseCatService.setModelV2ResScope(pSSysUseCaseCat, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUseCaseCatService.importModelV2(pSSysUseCaseCat, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUseCaseCatService.getFile((IEntity)pSSysUseCaseCat);
+            return pSSysUseCaseCatService.getFile(pSSysUseCaseCat);
         }
         return null;
     }
@@ -16874,7 +16122,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysUserDRService pSSysUserDRService = (PSSysUserDRService)ServiceGlobal.getService(PSSysUserDRService.class, (SessionFactory)this.getSessionFactory());
             PSSysUserDR pSSysUserDR = new PSSysUserDR();
             pSSysUserDR.setPSSysUserDRId(pSMOSFile.getPSModelId());
-            if (!pSSysUserDRService.get((IEntity)pSSysUserDR, true)) {
+            if (!pSSysUserDRService.get(pSSysUserDR, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUserDR.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16882,12 +16130,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysUserDRService.exportModelV2(pSSysUserDR);
             pSSysUserDR.reset();
-            if (!pSSysUserDRService.setModelV2ResScope((IEntity)pSSysUserDR, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysUserDRService.setModelV2ResScope(pSSysUserDR, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUserDRService.importModelV2(pSSysUserDR, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUserDRService.getFile((IEntity)pSSysUserDR);
+            return pSSysUserDRService.getFile(pSSysUserDR);
         }
         return null;
     }
@@ -16897,7 +16145,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysUserModeService pSSysUserModeService = (PSSysUserModeService)ServiceGlobal.getService(PSSysUserModeService.class, (SessionFactory)this.getSessionFactory());
             PSSysUserMode pSSysUserMode = new PSSysUserMode();
             pSSysUserMode.setPSSysUserModeId(pSMOSFile.getPSModelId());
-            if (!pSSysUserModeService.get((IEntity)pSSysUserMode, true)) {
+            if (!pSSysUserModeService.get(pSSysUserMode, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUserMode.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16905,12 +16153,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysUserModeService.exportModelV2(pSSysUserMode);
             pSSysUserMode.reset();
-            if (!pSSysUserModeService.setModelV2ResScope((IEntity)pSSysUserMode, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysUserModeService.setModelV2ResScope(pSSysUserMode, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUserModeService.importModelV2(pSSysUserMode, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUserModeService.getFile((IEntity)pSSysUserMode);
+            return pSSysUserModeService.getFile(pSSysUserMode);
         }
         return null;
     }
@@ -16920,7 +16168,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysUtilDEService pSSysUtilDEService = (PSSysUtilDEService)ServiceGlobal.getService(PSSysUtilDEService.class, (SessionFactory)this.getSessionFactory());
             PSSysUtilDE pSSysUtilDE = new PSSysUtilDE();
             pSSysUtilDE.setPSSysUtilDEId(pSMOSFile.getPSModelId());
-            if (!pSSysUtilDEService.get((IEntity)pSSysUtilDE, true)) {
+            if (!pSSysUtilDEService.get(pSSysUtilDE, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUtilDE.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16928,12 +16176,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysUtilDEService.exportModelV2(pSSysUtilDE);
             pSSysUtilDE.reset();
-            if (!pSSysUtilDEService.setModelV2ResScope((IEntity)pSSysUtilDE, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysUtilDEService.setModelV2ResScope(pSSysUtilDE, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUtilDEService.importModelV2(pSSysUtilDE, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUtilDEService.getFile((IEntity)pSSysUtilDE);
+            return pSSysUtilDEService.getFile(pSSysUtilDE);
         }
         return null;
     }
@@ -16943,7 +16191,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysValueRuleService pSSysValueRuleService = (PSSysValueRuleService)ServiceGlobal.getService(PSSysValueRuleService.class, (SessionFactory)this.getSessionFactory());
             PSSysValueRule pSSysValueRule = new PSSysValueRule();
             pSSysValueRule.setPSSysValueRuleId(pSMOSFile.getPSModelId());
-            if (!pSSysValueRuleService.get((IEntity)pSSysValueRule, true)) {
+            if (!pSSysValueRuleService.get(pSSysValueRule, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysValueRule.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16951,12 +16199,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysValueRuleService.exportModelV2(pSSysValueRule);
             pSSysValueRule.reset();
-            if (!pSSysValueRuleService.setModelV2ResScope((IEntity)pSSysValueRule, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysValueRuleService.setModelV2ResScope(pSSysValueRule, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysValueRuleService.importModelV2(pSSysValueRule, objectNode);
             SessionFactoryManager.commit();
-            return pSSysValueRuleService.getFile((IEntity)pSSysValueRule);
+            return pSSysValueRuleService.getFile(pSSysValueRule);
         }
         return null;
     }
@@ -16966,7 +16214,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysWFCatService pSSysWFCatService = (PSSysWFCatService)ServiceGlobal.getService(PSSysWFCatService.class, (SessionFactory)this.getSessionFactory());
             PSSysWFCat pSSysWFCat = new PSSysWFCat();
             pSSysWFCat.setPSSysWFCatId(pSMOSFile.getPSModelId());
-            if (!pSSysWFCatService.get((IEntity)pSSysWFCat, true)) {
+            if (!pSSysWFCatService.get(pSSysWFCat, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysWFCat.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16974,12 +16222,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysWFCatService.exportModelV2(pSSysWFCat);
             pSSysWFCat.reset();
-            if (!pSSysWFCatService.setModelV2ResScope((IEntity)pSSysWFCat, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysWFCatService.setModelV2ResScope(pSSysWFCat, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysWFCatService.importModelV2(pSSysWFCat, objectNode);
             SessionFactoryManager.commit();
-            return pSSysWFCatService.getFile((IEntity)pSSysWFCat);
+            return pSSysWFCatService.getFile(pSSysWFCat);
         }
         return null;
     }
@@ -16989,7 +16237,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysWFModeService pSSysWFModeService = (PSSysWFModeService)ServiceGlobal.getService(PSSysWFModeService.class, (SessionFactory)this.getSessionFactory());
             PSSysWFMode pSSysWFMode = new PSSysWFMode();
             pSSysWFMode.setPSSysWFModeId(pSMOSFile.getPSModelId());
-            if (!pSSysWFModeService.get((IEntity)pSSysWFMode, true)) {
+            if (!pSSysWFModeService.get(pSSysWFMode, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysWFMode.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -16997,12 +16245,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysWFModeService.exportModelV2(pSSysWFMode);
             pSSysWFMode.reset();
-            if (!pSSysWFModeService.setModelV2ResScope((IEntity)pSSysWFMode, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysWFModeService.setModelV2ResScope(pSSysWFMode, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysWFModeService.importModelV2(pSSysWFMode, objectNode);
             SessionFactoryManager.commit();
-            return pSSysWFModeService.getFile((IEntity)pSSysWFMode);
+            return pSSysWFModeService.getFile(pSSysWFMode);
         }
         return null;
     }
@@ -17012,7 +16260,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSThresholdGroupService pSThresholdGroupService = (PSThresholdGroupService)ServiceGlobal.getService(PSThresholdGroupService.class, (SessionFactory)this.getSessionFactory());
             PSThresholdGroup pSThresholdGroup = new PSThresholdGroup();
             pSThresholdGroup.setPSThresholdGroupId(pSMOSFile.getPSModelId());
-            if (!pSThresholdGroupService.get((IEntity)pSThresholdGroup, true)) {
+            if (!pSThresholdGroupService.get(pSThresholdGroup, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSThresholdGroup.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17020,12 +16268,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSThresholdGroupService.exportModelV2(pSThresholdGroup);
             pSThresholdGroup.reset();
-            if (!pSThresholdGroupService.setModelV2ResScope((IEntity)pSThresholdGroup, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSThresholdGroupService.setModelV2ResScope(pSThresholdGroup, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSThresholdGroupService.importModelV2(pSThresholdGroup, objectNode);
             SessionFactoryManager.commit();
-            return pSThresholdGroupService.getFile((IEntity)pSThresholdGroup);
+            return pSThresholdGroupService.getFile(pSThresholdGroup);
         }
         return null;
     }
@@ -17035,7 +16283,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSViewMsgGroupService pSViewMsgGroupService = (PSViewMsgGroupService)ServiceGlobal.getService(PSViewMsgGroupService.class, (SessionFactory)this.getSessionFactory());
             PSViewMsgGroup pSViewMsgGroup = new PSViewMsgGroup();
             pSViewMsgGroup.setPSViewMsgGroupId(pSMOSFile.getPSModelId());
-            if (!pSViewMsgGroupService.get((IEntity)pSViewMsgGroup, true)) {
+            if (!pSViewMsgGroupService.get(pSViewMsgGroup, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSViewMsgGroup.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17043,12 +16291,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSViewMsgGroupService.exportModelV2(pSViewMsgGroup);
             pSViewMsgGroup.reset();
-            if (!pSViewMsgGroupService.setModelV2ResScope((IEntity)pSViewMsgGroup, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSViewMsgGroupService.setModelV2ResScope(pSViewMsgGroup, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSViewMsgGroupService.importModelV2(pSViewMsgGroup, objectNode);
             SessionFactoryManager.commit();
-            return pSViewMsgGroupService.getFile((IEntity)pSViewMsgGroup);
+            return pSViewMsgGroupService.getFile(pSViewMsgGroup);
         }
         return null;
     }
@@ -17058,7 +16306,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSViewMsgService pSViewMsgService = (PSViewMsgService)ServiceGlobal.getService(PSViewMsgService.class, (SessionFactory)this.getSessionFactory());
             PSViewMsg pSViewMsg = new PSViewMsg();
             pSViewMsg.setPSViewMsgId(pSMOSFile.getPSModelId());
-            if (!pSViewMsgService.get((IEntity)pSViewMsg, true)) {
+            if (!pSViewMsgService.get(pSViewMsg, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSViewMsg.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17066,12 +16314,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSViewMsgService.exportModelV2(pSViewMsg);
             pSViewMsg.reset();
-            if (!pSViewMsgService.setModelV2ResScope((IEntity)pSViewMsg, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSViewMsgService.setModelV2ResScope(pSViewMsg, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSViewMsgService.importModelV2(pSViewMsg, objectNode);
             SessionFactoryManager.commit();
-            return pSViewMsgService.getFile((IEntity)pSViewMsg);
+            return pSViewMsgService.getFile(pSViewMsg);
         }
         return null;
     }
@@ -17081,7 +16329,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSViewWizardGroupService pSViewWizardGroupService = (PSViewWizardGroupService)ServiceGlobal.getService(PSViewWizardGroupService.class, (SessionFactory)this.getSessionFactory());
             PSViewWizardGroup pSViewWizardGroup = new PSViewWizardGroup();
             pSViewWizardGroup.setPSViewWizardGroupId(pSMOSFile.getPSModelId());
-            if (!pSViewWizardGroupService.get((IEntity)pSViewWizardGroup, true)) {
+            if (!pSViewWizardGroupService.get(pSViewWizardGroup, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSViewWizardGroup.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17089,12 +16337,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSViewWizardGroupService.exportModelV2(pSViewWizardGroup);
             pSViewWizardGroup.reset();
-            if (!pSViewWizardGroupService.setModelV2ResScope((IEntity)pSViewWizardGroup, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSViewWizardGroupService.setModelV2ResScope(pSViewWizardGroup, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSViewWizardGroupService.importModelV2(pSViewWizardGroup, objectNode);
             SessionFactoryManager.commit();
-            return pSViewWizardGroupService.getFile((IEntity)pSViewWizardGroup);
+            return pSViewWizardGroupService.getFile(pSViewWizardGroup);
         }
         return null;
     }
@@ -17104,7 +16352,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSWFRoleService pSWFRoleService = (PSWFRoleService)ServiceGlobal.getService(PSWFRoleService.class, (SessionFactory)this.getSessionFactory());
             PSWFRole pSWFRole = new PSWFRole();
             pSWFRole.setPSWFRoleId(pSMOSFile.getPSModelId());
-            if (!pSWFRoleService.get((IEntity)pSWFRole, true)) {
+            if (!pSWFRoleService.get(pSWFRole, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWFRole.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17112,12 +16360,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSWFRoleService.exportModelV2(pSWFRole);
             pSWFRole.reset();
-            if (!pSWFRoleService.setModelV2ResScope((IEntity)pSWFRole, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSWFRoleService.setModelV2ResScope(pSWFRole, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWFRoleService.importModelV2(pSWFRole, objectNode);
             SessionFactoryManager.commit();
-            return pSWFRoleService.getFile((IEntity)pSWFRole);
+            return pSWFRoleService.getFile(pSWFRole);
         }
         return null;
     }
@@ -17127,7 +16375,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSWFWorkTimeService pSWFWorkTimeService = (PSWFWorkTimeService)ServiceGlobal.getService(PSWFWorkTimeService.class, (SessionFactory)this.getSessionFactory());
             PSWFWorkTime pSWFWorkTime = new PSWFWorkTime();
             pSWFWorkTime.setPSWFWorkTimeId(pSMOSFile.getPSModelId());
-            if (!pSWFWorkTimeService.get((IEntity)pSWFWorkTime, true)) {
+            if (!pSWFWorkTimeService.get(pSWFWorkTime, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWFWorkTime.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17135,12 +16383,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSWFWorkTimeService.exportModelV2(pSWFWorkTime);
             pSWFWorkTime.reset();
-            if (!pSWFWorkTimeService.setModelV2ResScope((IEntity)pSWFWorkTime, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSWFWorkTimeService.setModelV2ResScope(pSWFWorkTime, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWFWorkTimeService.importModelV2(pSWFWorkTime, objectNode);
             SessionFactoryManager.commit();
-            return pSWFWorkTimeService.getFile((IEntity)pSWFWorkTime);
+            return pSWFWorkTimeService.getFile(pSWFWorkTime);
         }
         return null;
     }
@@ -17150,7 +16398,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSWorkflowService pSWorkflowService = (PSWorkflowService)ServiceGlobal.getService(PSWorkflowService.class, (SessionFactory)this.getSessionFactory());
             PSWorkflow pSWorkflow = new PSWorkflow();
             pSWorkflow.setPSWorkflowId(pSMOSFile.getPSModelId());
-            if (!pSWorkflowService.get((IEntity)pSWorkflow, true)) {
+            if (!pSWorkflowService.get(pSWorkflow, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWorkflow.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17158,12 +16406,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSWorkflowService.exportModelV2(pSWorkflow);
             pSWorkflow.reset();
-            if (!pSWorkflowService.setModelV2ResScope((IEntity)pSWorkflow, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSWorkflowService.setModelV2ResScope(pSWorkflow, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWorkflowService.importModelV2(pSWorkflow, objectNode);
             SessionFactoryManager.commit();
-            return pSWorkflowService.getFile((IEntity)pSWorkflow);
+            return pSWorkflowService.getFile(pSWorkflow);
         }
         return null;
     }
@@ -17173,7 +16421,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSWXAccountService pSWXAccountService = (PSWXAccountService)ServiceGlobal.getService(PSWXAccountService.class, (SessionFactory)this.getSessionFactory());
             PSWXAccount pSWXAccount = new PSWXAccount();
             pSWXAccount.setPSWXAccountId(pSMOSFile.getPSModelId());
-            if (!pSWXAccountService.get((IEntity)pSWXAccount, true)) {
+            if (!pSWXAccountService.get(pSWXAccount, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWXAccount.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17181,12 +16429,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSWXAccountService.exportModelV2(pSWXAccount);
             pSWXAccount.reset();
-            if (!pSWXAccountService.setModelV2ResScope((IEntity)pSWXAccount, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSWXAccountService.setModelV2ResScope(pSWXAccount, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWXAccountService.importModelV2(pSWXAccount, objectNode);
             SessionFactoryManager.commit();
-            return pSWXAccountService.getFile((IEntity)pSWXAccount);
+            return pSWXAccountService.getFile(pSWXAccount);
         }
         return null;
     }
@@ -17196,7 +16444,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSACHandlerService pSACHandlerService = (PSACHandlerService)ServiceGlobal.getService(PSACHandlerService.class, (SessionFactory)this.getSessionFactory());
             PSACHandler pSACHandler = new PSACHandler();
             pSACHandler.setPSACHandlerId(pSMOSFile.getPSModelId());
-            if (!pSACHandlerService.get((IEntity)pSACHandler, true)) {
+            if (!pSACHandlerService.get(pSACHandler, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSACHandler.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17204,12 +16452,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSACHandlerService.exportModelV2(pSACHandler);
             pSACHandler.reset();
-            if (!pSACHandlerService.setModelV2ResScope((IEntity)pSACHandler, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSACHandlerService.setModelV2ResScope(pSACHandler, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSACHandlerService.importModelV2(pSACHandler, objectNode);
             SessionFactoryManager.commit();
-            return pSACHandlerService.getFile((IEntity)pSACHandler);
+            return pSACHandlerService.getFile(pSACHandler);
         }
         return null;
     }
@@ -17219,7 +16467,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSCtrlLogicGroupService pSCtrlLogicGroupService = (PSCtrlLogicGroupService)ServiceGlobal.getService(PSCtrlLogicGroupService.class, (SessionFactory)this.getSessionFactory());
             PSCtrlLogicGroup pSCtrlLogicGroup = new PSCtrlLogicGroup();
             pSCtrlLogicGroup.setPSCtrlLogicGroupId(pSMOSFile.getPSModelId());
-            if (!pSCtrlLogicGroupService.get((IEntity)pSCtrlLogicGroup, true)) {
+            if (!pSCtrlLogicGroupService.get(pSCtrlLogicGroup, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSCtrlLogicGroup.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17227,12 +16475,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSCtrlLogicGroupService.exportModelV2(pSCtrlLogicGroup);
             pSCtrlLogicGroup.reset();
-            if (!pSCtrlLogicGroupService.setModelV2ResScope((IEntity)pSCtrlLogicGroup, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSCtrlLogicGroupService.setModelV2ResScope(pSCtrlLogicGroup, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSCtrlLogicGroupService.importModelV2(pSCtrlLogicGroup, objectNode);
             SessionFactoryManager.commit();
-            return pSCtrlLogicGroupService.getFile((IEntity)pSCtrlLogicGroup);
+            return pSCtrlLogicGroupService.getFile(pSCtrlLogicGroup);
         }
         return null;
     }
@@ -17242,7 +16490,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSCtrlMsgService pSCtrlMsgService = (PSCtrlMsgService)ServiceGlobal.getService(PSCtrlMsgService.class, (SessionFactory)this.getSessionFactory());
             PSCtrlMsg pSCtrlMsg = new PSCtrlMsg();
             pSCtrlMsg.setPSCtrlMsgId(pSMOSFile.getPSModelId());
-            if (!pSCtrlMsgService.get((IEntity)pSCtrlMsg, true)) {
+            if (!pSCtrlMsgService.get(pSCtrlMsg, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSCtrlMsg.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17250,12 +16498,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSCtrlMsgService.exportModelV2(pSCtrlMsg);
             pSCtrlMsg.reset();
-            if (!pSCtrlMsgService.setModelV2ResScope((IEntity)pSCtrlMsg, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSCtrlMsgService.setModelV2ResScope(pSCtrlMsg, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSCtrlMsgService.importModelV2(pSCtrlMsg, objectNode);
             SessionFactoryManager.commit();
-            return pSCtrlMsgService.getFile((IEntity)pSCtrlMsg);
+            return pSCtrlMsgService.getFile(pSCtrlMsg);
         }
         return null;
     }
@@ -17265,7 +16513,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSDEFInputTipSetService pSDEFInputTipSetService = (PSDEFInputTipSetService)ServiceGlobal.getService(PSDEFInputTipSetService.class, (SessionFactory)this.getSessionFactory());
             PSDEFInputTipSet pSDEFInputTipSet = new PSDEFInputTipSet();
             pSDEFInputTipSet.setPSDEFInputTipSetId(pSMOSFile.getPSModelId());
-            if (!pSDEFInputTipSetService.get((IEntity)pSDEFInputTipSet, true)) {
+            if (!pSDEFInputTipSetService.get(pSDEFInputTipSet, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEFInputTipSet.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17273,12 +16521,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSDEFInputTipSetService.exportModelV2(pSDEFInputTipSet);
             pSDEFInputTipSet.reset();
-            if (!pSDEFInputTipSetService.setModelV2ResScope((IEntity)pSDEFInputTipSet, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSDEFInputTipSetService.setModelV2ResScope(pSDEFInputTipSet, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEFInputTipSetService.importModelV2(pSDEFInputTipSet, objectNode);
             SessionFactoryManager.commit();
-            return pSDEFInputTipSetService.getFile((IEntity)pSDEFInputTipSet);
+            return pSDEFInputTipSetService.getFile(pSDEFInputTipSet);
         }
         return null;
     }
@@ -17288,7 +16536,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSDEGroupService pSDEGroupService = (PSDEGroupService)ServiceGlobal.getService(PSDEGroupService.class, (SessionFactory)this.getSessionFactory());
             PSDEGroup pSDEGroup = new PSDEGroup();
             pSDEGroup.setPSDEGroupId(pSMOSFile.getPSModelId());
-            if (!pSDEGroupService.get((IEntity)pSDEGroup, true)) {
+            if (!pSDEGroupService.get(pSDEGroup, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEGroup.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17296,12 +16544,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSDEGroupService.exportModelV2(pSDEGroup);
             pSDEGroup.reset();
-            if (!pSDEGroupService.setModelV2ResScope((IEntity)pSDEGroup, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSDEGroupService.setModelV2ResScope(pSDEGroup, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEGroupService.importModelV2(pSDEGroup, objectNode);
             SessionFactoryManager.commit();
-            return pSDEGroupService.getFile((IEntity)pSDEGroup);
+            return pSDEGroupService.getFile(pSDEGroup);
         }
         return null;
     }
@@ -17311,7 +16559,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSDERGroupService pSDERGroupService = (PSDERGroupService)ServiceGlobal.getService(PSDERGroupService.class, (SessionFactory)this.getSessionFactory());
             PSDERGroup pSDERGroup = new PSDERGroup();
             pSDERGroup.setPSDERGroupId(pSMOSFile.getPSModelId());
-            if (!pSDERGroupService.get((IEntity)pSDERGroup, true)) {
+            if (!pSDERGroupService.get(pSDERGroup, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDERGroup.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17319,12 +16567,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSDERGroupService.exportModelV2(pSDERGroup);
             pSDERGroup.reset();
-            if (!pSDERGroupService.setModelV2ResScope((IEntity)pSDERGroup, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSDERGroupService.setModelV2ResScope(pSDERGroup, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDERGroupService.importModelV2(pSDERGroup, objectNode);
             SessionFactoryManager.commit();
-            return pSDERGroupService.getFile((IEntity)pSDERGroup);
+            return pSDERGroupService.getFile(pSDERGroup);
         }
         return null;
     }
@@ -17334,7 +16582,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSDEToolbarService pSDEToolbarService = (PSDEToolbarService)ServiceGlobal.getService(PSDEToolbarService.class, (SessionFactory)this.getSessionFactory());
             PSDEToolbar pSDEToolbar = new PSDEToolbar();
             pSDEToolbar.setPSDEToolbarId(pSMOSFile.getPSModelId());
-            if (!pSDEToolbarService.get((IEntity)pSDEToolbar, true)) {
+            if (!pSDEToolbarService.get(pSDEToolbar, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEToolbar.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17342,12 +16590,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSDEToolbarService.exportModelV2(pSDEToolbar);
             pSDEToolbar.reset();
-            if (!pSDEToolbarService.setModelV2ResScope((IEntity)pSDEToolbar, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSDEToolbarService.setModelV2ResScope(pSDEToolbar, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEToolbarService.importModelV2(pSDEToolbar, objectNode);
             SessionFactoryManager.commit();
-            return pSDEToolbarService.getFile((IEntity)pSDEToolbar);
+            return pSDEToolbarService.getFile(pSDEToolbar);
         }
         return null;
     }
@@ -17357,7 +16605,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSHelpArticleService pSHelpArticleService = (PSHelpArticleService)ServiceGlobal.getService(PSHelpArticleService.class, (SessionFactory)this.getSessionFactory());
             PSHelpArticle pSHelpArticle = new PSHelpArticle();
             pSHelpArticle.setPSHelpArticleId(pSMOSFile.getPSModelId());
-            if (!pSHelpArticleService.get((IEntity)pSHelpArticle, true)) {
+            if (!pSHelpArticleService.get(pSHelpArticle, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSHelpArticle.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17365,12 +16613,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSHelpArticleService.exportModelV2(pSHelpArticle);
             pSHelpArticle.reset();
-            if (!pSHelpArticleService.setModelV2ResScope((IEntity)pSHelpArticle, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSHelpArticleService.setModelV2ResScope(pSHelpArticle, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSHelpArticleService.importModelV2(pSHelpArticle, objectNode);
             SessionFactoryManager.commit();
-            return pSHelpArticleService.getFile((IEntity)pSHelpArticle);
+            return pSHelpArticleService.getFile(pSHelpArticle);
         }
         return null;
     }
@@ -17380,7 +16628,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSHelpPrjService pSHelpPrjService = (PSHelpPrjService)ServiceGlobal.getService(PSHelpPrjService.class, (SessionFactory)this.getSessionFactory());
             PSHelpPrj pSHelpPrj = new PSHelpPrj();
             pSHelpPrj.setPSHelpPrjId(pSMOSFile.getPSModelId());
-            if (!pSHelpPrjService.get((IEntity)pSHelpPrj, true)) {
+            if (!pSHelpPrjService.get(pSHelpPrj, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSHelpPrj.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17388,12 +16636,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSHelpPrjService.exportModelV2(pSHelpPrj);
             pSHelpPrj.reset();
-            if (!pSHelpPrjService.setModelV2ResScope((IEntity)pSHelpPrj, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSHelpPrjService.setModelV2ResScope(pSHelpPrj, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSHelpPrjService.importModelV2(pSHelpPrj, objectNode);
             SessionFactoryManager.commit();
-            return pSHelpPrjService.getFile((IEntity)pSHelpPrj);
+            return pSHelpPrjService.getFile(pSHelpPrj);
         }
         return null;
     }
@@ -17403,7 +16651,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSHelpResourceService pSHelpResourceService = (PSHelpResourceService)ServiceGlobal.getService(PSHelpResourceService.class, (SessionFactory)this.getSessionFactory());
             PSHelpResource pSHelpResource = new PSHelpResource();
             pSHelpResource.setPSHelpResourceId(pSMOSFile.getPSModelId());
-            if (!pSHelpResourceService.get((IEntity)pSHelpResource, true)) {
+            if (!pSHelpResourceService.get(pSHelpResource, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSHelpResource.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17411,12 +16659,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSHelpResourceService.exportModelV2(pSHelpResource);
             pSHelpResource.reset();
-            if (!pSHelpResourceService.setModelV2ResScope((IEntity)pSHelpResource, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSHelpResourceService.setModelV2ResScope(pSHelpResource, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSHelpResourceService.importModelV2(pSHelpResource, objectNode);
             SessionFactoryManager.commit();
-            return pSHelpResourceService.getFile((IEntity)pSHelpResource);
+            return pSHelpResourceService.getFile(pSHelpResource);
         }
         return null;
     }
@@ -17426,7 +16674,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysAIFactoryService pSSysAIFactoryService = (PSSysAIFactoryService)ServiceGlobal.getService(PSSysAIFactoryService.class, (SessionFactory)this.getSessionFactory());
             PSSysAIFactory pSSysAIFactory = new PSSysAIFactory();
             pSSysAIFactory.setPSSysAIFactoryId(pSMOSFile.getPSModelId());
-            if (!pSSysAIFactoryService.get((IEntity)pSSysAIFactory, true)) {
+            if (!pSSysAIFactoryService.get(pSSysAIFactory, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysAIFactory.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17434,12 +16682,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysAIFactoryService.exportModelV2(pSSysAIFactory);
             pSSysAIFactory.reset();
-            if (!pSSysAIFactoryService.setModelV2ResScope((IEntity)pSSysAIFactory, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysAIFactoryService.setModelV2ResScope(pSSysAIFactory, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysAIFactoryService.importModelV2(pSSysAIFactory, objectNode);
             SessionFactoryManager.commit();
-            return pSSysAIFactoryService.getFile((IEntity)pSSysAIFactory);
+            return pSSysAIFactoryService.getFile(pSSysAIFactory);
         }
         return null;
     }
@@ -17449,7 +16697,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysBISchemeService pSSysBISchemeService = (PSSysBISchemeService)ServiceGlobal.getService(PSSysBISchemeService.class, (SessionFactory)this.getSessionFactory());
             PSSysBIScheme pSSysBIScheme = new PSSysBIScheme();
             pSSysBIScheme.setPSSysBISchemeId(pSMOSFile.getPSModelId());
-            if (!pSSysBISchemeService.get((IEntity)pSSysBIScheme, true)) {
+            if (!pSSysBISchemeService.get(pSSysBIScheme, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysBIScheme.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17457,12 +16705,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysBISchemeService.exportModelV2(pSSysBIScheme);
             pSSysBIScheme.reset();
-            if (!pSSysBISchemeService.setModelV2ResScope((IEntity)pSSysBIScheme, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysBISchemeService.setModelV2ResScope(pSSysBIScheme, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysBISchemeService.importModelV2(pSSysBIScheme, objectNode);
             SessionFactoryManager.commit();
-            return pSSysBISchemeService.getFile((IEntity)pSSysBIScheme);
+            return pSSysBISchemeService.getFile(pSSysBIScheme);
         }
         return null;
     }
@@ -17472,7 +16720,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysCounterService pSSysCounterService = (PSSysCounterService)ServiceGlobal.getService(PSSysCounterService.class, (SessionFactory)this.getSessionFactory());
             PSSysCounter pSSysCounter = new PSSysCounter();
             pSSysCounter.setPSSysCounterId(pSMOSFile.getPSModelId());
-            if (!pSSysCounterService.get((IEntity)pSSysCounter, true)) {
+            if (!pSSysCounterService.get(pSSysCounter, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysCounter.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17480,12 +16728,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysCounterService.exportModelV2(pSSysCounter);
             pSSysCounter.reset();
-            if (!pSSysCounterService.setModelV2ResScope((IEntity)pSSysCounter, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysCounterService.setModelV2ResScope(pSSysCounter, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysCounterService.importModelV2(pSSysCounter, objectNode);
             SessionFactoryManager.commit();
-            return pSSysCounterService.getFile((IEntity)pSSysCounter);
+            return pSSysCounterService.getFile(pSSysCounter);
         }
         return null;
     }
@@ -17495,7 +16743,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysDashboardService pSSysDashboardService = (PSSysDashboardService)ServiceGlobal.getService(PSSysDashboardService.class, (SessionFactory)this.getSessionFactory());
             PSSysDashboard pSSysDashboard = new PSSysDashboard();
             pSSysDashboard.setPSSysDashboardId(pSMOSFile.getPSModelId());
-            if (!pSSysDashboardService.get((IEntity)pSSysDashboard, true)) {
+            if (!pSSysDashboardService.get(pSSysDashboard, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysDashboard.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17503,12 +16751,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysDashboardService.exportModelV2(pSSysDashboard);
             pSSysDashboard.reset();
-            if (!pSSysDashboardService.setModelV2ResScope((IEntity)pSSysDashboard, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysDashboardService.setModelV2ResScope(pSSysDashboard, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysDashboardService.importModelV2(pSSysDashboard, objectNode);
             SessionFactoryManager.commit();
-            return pSSysDashboardService.getFile((IEntity)pSSysDashboard);
+            return pSSysDashboardService.getFile(pSSysDashboard);
         }
         return null;
     }
@@ -17518,7 +16766,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysPortletService pSSysPortletService = (PSSysPortletService)ServiceGlobal.getService(PSSysPortletService.class, (SessionFactory)this.getSessionFactory());
             PSSysPortlet pSSysPortlet = new PSSysPortlet();
             pSSysPortlet.setPSSysPortletId(pSMOSFile.getPSModelId());
-            if (!pSSysPortletService.get((IEntity)pSSysPortlet, true)) {
+            if (!pSSysPortletService.get(pSSysPortlet, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysPortlet.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17526,12 +16774,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysPortletService.exportModelV2(pSSysPortlet);
             pSSysPortlet.reset();
-            if (!pSSysPortletService.setModelV2ResScope((IEntity)pSSysPortlet, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysPortletService.setModelV2ResScope(pSSysPortlet, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysPortletService.importModelV2(pSSysPortlet, objectNode);
             SessionFactoryManager.commit();
-            return pSSysPortletService.getFile((IEntity)pSSysPortlet);
+            return pSSysPortletService.getFile(pSSysPortlet);
         }
         return null;
     }
@@ -17541,7 +16789,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysSearchBarService pSSysSearchBarService = (PSSysSearchBarService)ServiceGlobal.getService(PSSysSearchBarService.class, (SessionFactory)this.getSessionFactory());
             PSSysSearchBar pSSysSearchBar = new PSSysSearchBar();
             pSSysSearchBar.setPSSysSearchBarId(pSMOSFile.getPSModelId());
-            if (!pSSysSearchBarService.get((IEntity)pSSysSearchBar, true)) {
+            if (!pSSysSearchBarService.get(pSSysSearchBar, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysSearchBar.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17549,12 +16797,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysSearchBarService.exportModelV2(pSSysSearchBar);
             pSSysSearchBar.reset();
-            if (!pSSysSearchBarService.setModelV2ResScope((IEntity)pSSysSearchBar, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysSearchBarService.setModelV2ResScope(pSSysSearchBar, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysSearchBarService.importModelV2(pSSysSearchBar, objectNode);
             SessionFactoryManager.commit();
-            return pSSysSearchBarService.getFile((IEntity)pSSysSearchBar);
+            return pSSysSearchBarService.getFile(pSSysSearchBar);
         }
         return null;
     }
@@ -17564,7 +16812,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysSequenceService pSSysSequenceService = (PSSysSequenceService)ServiceGlobal.getService(PSSysSequenceService.class, (SessionFactory)this.getSessionFactory());
             PSSysSequence pSSysSequence = new PSSysSequence();
             pSSysSequence.setPSSysSequenceId(pSMOSFile.getPSModelId());
-            if (!pSSysSequenceService.get((IEntity)pSSysSequence, true)) {
+            if (!pSSysSequenceService.get(pSSysSequence, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysSequence.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17572,12 +16820,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysSequenceService.exportModelV2(pSSysSequence);
             pSSysSequence.reset();
-            if (!pSSysSequenceService.setModelV2ResScope((IEntity)pSSysSequence, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysSequenceService.setModelV2ResScope(pSSysSequence, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysSequenceService.importModelV2(pSSysSequence, objectNode);
             SessionFactoryManager.commit();
-            return pSSysSequenceService.getFile((IEntity)pSSysSequence);
+            return pSSysSequenceService.getFile(pSSysSequence);
         }
         return null;
     }
@@ -17587,7 +16835,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysTestPrjService pSSysTestPrjService = (PSSysTestPrjService)ServiceGlobal.getService(PSSysTestPrjService.class, (SessionFactory)this.getSessionFactory());
             PSSysTestPrj pSSysTestPrj = new PSSysTestPrj();
             pSSysTestPrj.setPSSysTestPrjId(pSMOSFile.getPSModelId());
-            if (!pSSysTestPrjService.get((IEntity)pSSysTestPrj, true)) {
+            if (!pSSysTestPrjService.get(pSSysTestPrj, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysTestPrj.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17595,12 +16843,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysTestPrjService.exportModelV2(pSSysTestPrj);
             pSSysTestPrj.reset();
-            if (!pSSysTestPrjService.setModelV2ResScope((IEntity)pSSysTestPrj, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysTestPrjService.setModelV2ResScope(pSSysTestPrj, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysTestPrjService.importModelV2(pSSysTestPrj, objectNode);
             SessionFactoryManager.commit();
-            return pSSysTestPrjService.getFile((IEntity)pSSysTestPrj);
+            return pSSysTestPrjService.getFile(pSSysTestPrj);
         }
         return null;
     }
@@ -17610,7 +16858,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysTranslatorService pSSysTranslatorService = (PSSysTranslatorService)ServiceGlobal.getService(PSSysTranslatorService.class, (SessionFactory)this.getSessionFactory());
             PSSysTranslator pSSysTranslator = new PSSysTranslator();
             pSSysTranslator.setPSSysTranslatorId(pSMOSFile.getPSModelId());
-            if (!pSSysTranslatorService.get((IEntity)pSSysTranslator, true)) {
+            if (!pSSysTranslatorService.get(pSSysTranslator, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysTranslator.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17618,12 +16866,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysTranslatorService.exportModelV2(pSSysTranslator);
             pSSysTranslator.reset();
-            if (!pSSysTranslatorService.setModelV2ResScope((IEntity)pSSysTranslator, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysTranslatorService.setModelV2ResScope(pSSysTranslator, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysTranslatorService.importModelV2(pSSysTranslator, objectNode);
             SessionFactoryManager.commit();
-            return pSSysTranslatorService.getFile((IEntity)pSSysTranslator);
+            return pSSysTranslatorService.getFile(pSSysTranslator);
         }
         return null;
     }
@@ -17633,7 +16881,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysUCMapService pSSysUCMapService = (PSSysUCMapService)ServiceGlobal.getService(PSSysUCMapService.class, (SessionFactory)this.getSessionFactory());
             PSSysUCMap pSSysUCMap = new PSSysUCMap();
             pSSysUCMap.setPSSysUCMapId(pSMOSFile.getPSModelId());
-            if (!pSSysUCMapService.get((IEntity)pSSysUCMap, true)) {
+            if (!pSSysUCMapService.get(pSSysUCMap, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUCMap.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17641,12 +16889,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysUCMapService.exportModelV2(pSSysUCMap);
             pSSysUCMap.reset();
-            if (!pSSysUCMapService.setModelV2ResScope((IEntity)pSSysUCMap, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysUCMapService.setModelV2ResScope(pSSysUCMap, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUCMapService.importModelV2(pSSysUCMap, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUCMapService.getFile((IEntity)pSSysUCMap);
+            return pSSysUCMapService.getFile(pSSysUCMap);
         }
         return null;
     }
@@ -17656,7 +16904,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysUniStateService pSSysUniStateService = (PSSysUniStateService)ServiceGlobal.getService(PSSysUniStateService.class, (SessionFactory)this.getSessionFactory());
             PSSysUniState pSSysUniState = new PSSysUniState();
             pSSysUniState.setPSSysUniStateId(pSMOSFile.getPSModelId());
-            if (!pSSysUniStateService.get((IEntity)pSSysUniState, true)) {
+            if (!pSSysUniStateService.get(pSSysUniState, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUniState.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17664,12 +16912,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysUniStateService.exportModelV2(pSSysUniState);
             pSSysUniState.reset();
-            if (!pSSysUniStateService.setModelV2ResScope((IEntity)pSSysUniState, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysUniStateService.setModelV2ResScope(pSSysUniState, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUniStateService.importModelV2(pSSysUniState, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUniStateService.getFile((IEntity)pSSysUniState);
+            return pSSysUniStateService.getFile(pSSysUniState);
         }
         return null;
     }
@@ -17679,7 +16927,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysUnitService pSSysUnitService = (PSSysUnitService)ServiceGlobal.getService(PSSysUnitService.class, (SessionFactory)this.getSessionFactory());
             PSSysUnit pSSysUnit = new PSSysUnit();
             pSSysUnit.setPSSysUnitId(pSMOSFile.getPSModelId());
-            if (!pSSysUnitService.get((IEntity)pSSysUnit, true)) {
+            if (!pSSysUnitService.get(pSSysUnit, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUnit.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17687,12 +16935,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysUnitService.exportModelV2(pSSysUnit);
             pSSysUnit.reset();
-            if (!pSSysUnitService.setModelV2ResScope((IEntity)pSSysUnit, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysUnitService.setModelV2ResScope(pSSysUnit, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUnitService.importModelV2(pSSysUnit, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUnitService.getFile((IEntity)pSSysUnit);
+            return pSSysUnitService.getFile(pSSysUnit);
         }
         return null;
     }
@@ -17702,7 +16950,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysUserCaseRSService pSSysUserCaseRSService = (PSSysUserCaseRSService)ServiceGlobal.getService(PSSysUserCaseRSService.class, (SessionFactory)this.getSessionFactory());
             PSSysUserCaseRS pSSysUserCaseRS = new PSSysUserCaseRS();
             pSSysUserCaseRS.setPSSysUserCaseRSId(pSMOSFile.getPSModelId());
-            if (!pSSysUserCaseRSService.get((IEntity)pSSysUserCaseRS, true)) {
+            if (!pSSysUserCaseRSService.get(pSSysUserCaseRS, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUserCaseRS.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17710,12 +16958,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysUserCaseRSService.exportModelV2(pSSysUserCaseRS);
             pSSysUserCaseRS.reset();
-            if (!pSSysUserCaseRSService.setModelV2ResScope((IEntity)pSSysUserCaseRS, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysUserCaseRSService.setModelV2ResScope(pSSysUserCaseRS, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUserCaseRSService.importModelV2(pSSysUserCaseRS, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUserCaseRSService.getFile((IEntity)pSSysUserCaseRS);
+            return pSSysUserCaseRSService.getFile(pSSysUserCaseRS);
         }
         return null;
     }
@@ -17725,7 +16973,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysUserCaseService pSSysUserCaseService = (PSSysUserCaseService)ServiceGlobal.getService(PSSysUserCaseService.class, (SessionFactory)this.getSessionFactory());
             PSSysUserCase pSSysUserCase = new PSSysUserCase();
             pSSysUserCase.setPSSysUserCaseId(pSMOSFile.getPSModelId());
-            if (!pSSysUserCaseService.get((IEntity)pSSysUserCase, true)) {
+            if (!pSSysUserCaseService.get(pSSysUserCase, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUserCase.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17733,12 +16981,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysUserCaseService.exportModelV2(pSSysUserCase);
             pSSysUserCase.reset();
-            if (!pSSysUserCaseService.setModelV2ResScope((IEntity)pSSysUserCase, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysUserCaseService.setModelV2ResScope(pSSysUserCase, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUserCaseService.importModelV2(pSSysUserCase, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUserCaseService.getFile((IEntity)pSSysUserCase);
+            return pSSysUserCaseService.getFile(pSSysUserCase);
         }
         return null;
     }
@@ -17748,7 +16996,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysViewLogicService pSSysViewLogicService = (PSSysViewLogicService)ServiceGlobal.getService(PSSysViewLogicService.class, (SessionFactory)this.getSessionFactory());
             PSSysViewLogic pSSysViewLogic = new PSSysViewLogic();
             pSSysViewLogic.setPSSysViewLogicId(pSMOSFile.getPSModelId());
-            if (!pSSysViewLogicService.get((IEntity)pSSysViewLogic, true)) {
+            if (!pSSysViewLogicService.get(pSSysViewLogic, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysViewLogic.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17756,12 +17004,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysViewLogicService.exportModelV2(pSSysViewLogic);
             pSSysViewLogic.reset();
-            if (!pSSysViewLogicService.setModelV2ResScope((IEntity)pSSysViewLogic, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysViewLogicService.setModelV2ResScope(pSSysViewLogic, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysViewLogicService.importModelV2(pSSysViewLogic, objectNode);
             SessionFactoryManager.commit();
-            return pSSysViewLogicService.getFile((IEntity)pSSysViewLogic);
+            return pSSysViewLogicService.getFile(pSSysViewLogic);
         }
         return null;
     }
@@ -17771,7 +17019,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysViewPanelService pSSysViewPanelService = (PSSysViewPanelService)ServiceGlobal.getService(PSSysViewPanelService.class, (SessionFactory)this.getSessionFactory());
             PSSysViewPanel pSSysViewPanel = new PSSysViewPanel();
             pSSysViewPanel.setPSSysViewPanelId(pSMOSFile.getPSModelId());
-            if (!pSSysViewPanelService.get((IEntity)pSSysViewPanel, true)) {
+            if (!pSSysViewPanelService.get(pSSysViewPanel, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysViewPanel.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17779,12 +17027,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysViewPanelService.exportModelV2(pSSysViewPanel);
             pSSysViewPanel.reset();
-            if (!pSSysViewPanelService.setModelV2ResScope((IEntity)pSSysViewPanel, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysViewPanelService.setModelV2ResScope(pSSysViewPanel, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysViewPanelService.importModelV2(pSSysViewPanel, objectNode);
             SessionFactoryManager.commit();
-            return pSSysViewPanelService.getFile((IEntity)pSSysViewPanel);
+            return pSSysViewPanelService.getFile(pSSysViewPanel);
         }
         return null;
     }
@@ -17794,7 +17042,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSDEUAGroupService pSDEUAGroupService = (PSDEUAGroupService)ServiceGlobal.getService(PSDEUAGroupService.class, (SessionFactory)this.getSessionFactory());
             PSDEUAGroup pSDEUAGroup = new PSDEUAGroup();
             pSDEUAGroup.setPSDEUAGroupId(pSMOSFile.getPSModelId());
-            if (!pSDEUAGroupService.get((IEntity)pSDEUAGroup, true)) {
+            if (!pSDEUAGroupService.get(pSDEUAGroup, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEUAGroup.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17802,12 +17050,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSDEUAGroupService.exportModelV2(pSDEUAGroup);
             pSDEUAGroup.reset();
-            if (!pSDEUAGroupService.setModelV2ResScope((IEntity)pSDEUAGroup, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSDEUAGroupService.setModelV2ResScope(pSDEUAGroup, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEUAGroupService.importModelV2(pSDEUAGroup, objectNode);
             SessionFactoryManager.commit();
-            return pSDEUAGroupService.getFile((IEntity)pSDEUAGroup);
+            return pSDEUAGroupService.getFile(pSDEUAGroup);
         }
         return null;
     }
@@ -17817,7 +17065,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSDEUIActionService pSDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
             PSDEUIAction pSDEUIAction = new PSDEUIAction();
             pSDEUIAction.setPSDEUIActionId(pSMOSFile.getPSModelId());
-            if (!pSDEUIActionService.get((IEntity)pSDEUIAction, true)) {
+            if (!pSDEUIActionService.get(pSDEUIAction, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEUIAction.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17825,12 +17073,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSDEUIActionService.exportModelV2(pSDEUIAction);
             pSDEUIAction.reset();
-            if (!pSDEUIActionService.setModelV2ResScope((IEntity)pSDEUIAction, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSDEUIActionService.setModelV2ResScope(pSDEUIAction, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEUIActionService.importModelV2(pSDEUIAction, objectNode);
             SessionFactoryManager.commit();
-            return pSDEUIActionService.getFile((IEntity)pSDEUIAction);
+            return pSDEUIActionService.getFile(pSDEUIAction);
         }
         return null;
     }
@@ -17840,7 +17088,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSSysTestDataService pSSysTestDataService = (PSSysTestDataService)ServiceGlobal.getService(PSSysTestDataService.class, (SessionFactory)this.getSessionFactory());
             PSSysTestData pSSysTestData = new PSSysTestData();
             pSSysTestData.setPSSysTestDataId(pSMOSFile.getPSModelId());
-            if (!pSSysTestDataService.get((IEntity)pSSysTestData, true)) {
+            if (!pSSysTestDataService.get(pSSysTestData, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysTestData.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17848,12 +17096,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSSysTestDataService.exportModelV2(pSSysTestData);
             pSSysTestData.reset();
-            if (!pSSysTestDataService.setModelV2ResScope((IEntity)pSSysTestData, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSSysTestDataService.setModelV2ResScope(pSSysTestData, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysTestDataService.importModelV2(pSSysTestData, objectNode);
             SessionFactoryManager.commit();
-            return pSSysTestDataService.getFile((IEntity)pSSysTestData);
+            return pSSysTestDataService.getFile(pSSysTestData);
         }
         return null;
     }
@@ -17863,7 +17111,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
             PSLanguageRes pSLanguageRes = new PSLanguageRes();
             pSLanguageRes.setPSLanguageResId(pSMOSFile.getPSModelId());
-            if (!pSLanguageResService.get((IEntity)pSLanguageRes, true)) {
+            if (!pSLanguageResService.get(pSLanguageRes, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSLanguageRes.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17871,12 +17119,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSLanguageResService.exportModelV2(pSLanguageRes);
             pSLanguageRes.reset();
-            if (!pSLanguageResService.setModelV2ResScope((IEntity)pSLanguageRes, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSLanguageResService.setModelV2ResScope(pSLanguageRes, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSLanguageResService.importModelV2(pSLanguageRes, objectNode);
             SessionFactoryManager.commit();
-            return pSLanguageResService.getFile((IEntity)pSLanguageRes);
+            return pSLanguageResService.getFile(pSLanguageRes);
         }
         return null;
     }
@@ -17886,7 +17134,7 @@ extends PSCoreSysServiceBase<PSModule> {
             PSDEOPPrivService pSDEOPPrivService = (PSDEOPPrivService)ServiceGlobal.getService(PSDEOPPrivService.class, (SessionFactory)this.getSessionFactory());
             PSDEOPPriv pSDEOPPriv = new PSDEOPPriv();
             pSDEOPPriv.setPSDEOPPrivId(pSMOSFile.getPSModelId());
-            if (!pSDEOPPrivService.get((IEntity)pSDEOPPriv, true)) {
+            if (!pSDEOPPrivService.get(pSDEOPPriv, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEOPPriv.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)false) == 0) {
@@ -17894,12 +17142,12 @@ extends PSCoreSysServiceBase<PSModule> {
             }
             ObjectNode objectNode = pSDEOPPrivService.exportModelV2(pSDEOPPriv);
             pSDEOPPriv.reset();
-            if (!pSDEOPPrivService.setModelV2ResScope((IEntity)pSDEOPPriv, "PSMODULE", pSModule.getPSModuleId())) {
+            if (!pSDEOPPrivService.setModelV2ResScope(pSDEOPPriv, "PSMODULE", pSModule.getPSModuleId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEOPPrivService.importModelV2(pSDEOPPriv, objectNode);
             SessionFactoryManager.commit();
-            return pSDEOPPrivService.getFile((IEntity)pSDEOPPriv);
+            return pSDEOPPrivService.getFile(pSDEOPPriv);
         }
         return null;
     }
@@ -20402,7 +19650,7 @@ extends PSCoreSysServiceBase<PSModule> {
     @Override
     protected PSMOSFile[] onListDRDataFolders(PSMOSFile pSMOSFile, String string, String string2, IPSMOSFileFilter iPSMOSFileFilter, boolean bl) throws Exception {
         PSMOSFile pSMOSFile2;
-        ArrayList arrayList;
+        ArrayList<EntityBase> arrayList;
         SelectContext selectContext;
         PSCoreSysServiceBase pSCoreSysServiceBase;
         ArrayList<PSMOSFile> arrayList2 = new ArrayList<PSMOSFile>();
@@ -20411,7 +19659,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDATAENTITY_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20421,7 +19669,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSCODELIST_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20431,7 +19679,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSERMAP_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20441,7 +19689,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSDBSCHEME_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20451,7 +19699,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSBDSCHEME_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20461,7 +19709,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSSEARCHSCHEME_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20471,7 +19719,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSUCMAP_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20481,7 +19729,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSCANVAS_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20491,7 +19739,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSUNIRES_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20501,7 +19749,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSUSERMODE_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20511,7 +19759,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSOPPRIV_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20521,7 +19769,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSUSERDR_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20531,7 +19779,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSAPP_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20541,7 +19789,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSSERVICEAPI_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20551,7 +19799,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSCSS_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20561,7 +19809,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSIMAGE_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20571,7 +19819,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEUIACTION_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "PSDEID:ISNULL;PSWFID:ISNULL", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20581,7 +19829,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEUAGROUP_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "PSDEID:ISNULL;PSWFID:ISNULL", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20591,7 +19839,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDETOOLBAR_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "PSDEID:ISNULL", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20601,7 +19849,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSPORTLET_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20611,7 +19859,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSACHANDLER_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "PSDEID:ISNULL", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20621,7 +19869,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSCOUNTER_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20631,7 +19879,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSVIEWPANEL_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "VIEWLAYOUTFLAG:1", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20641,7 +19889,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSVIEWMSG_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20651,7 +19899,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSVIEWMSGGROUP_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20661,7 +19909,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSWORKFLOW_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20671,7 +19919,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSWFROLE_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20681,7 +19929,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSWFWORKTIME_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20691,7 +19939,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSPFPLUGIN_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20701,7 +19949,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSSFPLUGIN_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20711,7 +19959,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSEDITORSTYLE_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20721,7 +19969,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSDELOGICNODE_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20731,7 +19979,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSDYNAMODEL_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20741,7 +19989,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSVALUERULE_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20751,7 +19999,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSUBSYSSERVICEAPI_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20761,7 +20009,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSCONTENTCAT_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20771,7 +20019,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSRESOURCE_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20781,7 +20029,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEGROUP_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20791,7 +20039,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDERGROUP_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20801,7 +20049,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSMSGTEMPL_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20811,7 +20059,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSBACKSERVICE_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20821,7 +20069,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSTESTPRJ_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -20831,7 +20079,7 @@ extends PSCoreSysServiceBase<PSModule> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSUNIT_PSMODULE_PSMODULEID", "PSMODULEID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -21206,4 +20454,3 @@ extends PSCoreSysServiceBase<PSModule> {
         defaultValueMap.put("PSMODULENAME", "\u6a21\u5757");
     }
 }
-

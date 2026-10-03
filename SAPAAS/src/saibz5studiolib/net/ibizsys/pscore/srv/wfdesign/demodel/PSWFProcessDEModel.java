@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.wfdesign.demodel.PSWFProcessDEModelBase;
 
 public class PSWFProcessDEModel
 extends PSWFProcessDEModelBase {
+
+    public PSWFProcessDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

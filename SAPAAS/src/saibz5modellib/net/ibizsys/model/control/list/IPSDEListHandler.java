@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.list;
 
 import net.ibizsys.model.control.ajax.IPSMDAjaxControlHandler;
 
-public interface IPSDEListHandler
-extends IPSMDAjaxControlHandler {
-}
+/**
+ * 实体列表后台处理对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDEListHandler extends IPSMDAjaxControlHandler
+{
 
+}

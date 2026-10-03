@@ -779,11 +779,11 @@ extends SRFExDataGridActionHelper {
                     curGroupLogicConfig.InitLogicsConfig();
                     curGroupLogicConfig.setCondition("AND");
                     groups.put(strGroupNo.toUpperCase(), curGroupLogicConfig);
-                    realGroupLogicConfig.getLogicsConfig().add((Object)curGroupLogicConfig);
+                    realGroupLogicConfig.getLogicsConfig().add(curGroupLogicConfig);
                 } else {
                     curGroupLogicConfig = (DGModelGroupLogicConfig)groups.get(strGroupNo.toUpperCase());
                 }
-                curGroupLogicConfig.getLogicsConfig().add((Object)dgModelBaseLogicConfig);
+                curGroupLogicConfig.getLogicsConfig().add(dgModelBaseLogicConfig);
             }
         }
         CallResult callResult = daQueryModelHelper.GetGroupCondition(realGroupLogicConfig);
@@ -961,7 +961,7 @@ extends SRFExDataGridActionHelper {
                 log.error((Object)fetchResult.getErrorInfo());
                 return;
             }
-            Vector list = new Vector();
+            Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
             CallResult callResult = iTempDataCtrl.Select(cond, list);
             if (callResult == null) {
                 fetchResult.setRetCode(1);
@@ -1172,7 +1172,7 @@ extends SRFExDataGridActionHelper {
             String strKeyParam = this.getDEHelper().GetKeyDEFHelper().getName();
             String strErrorInfo = "";
             boolean bIndexDEMode = false;
-            Vector derIndexList = null;
+            Vector<DERINDEX> derIndexList = null;
             TreeMap<String, DERINDEX> derIndexMap = null;
             TreeMap<String, IDEDataCtrl> deDataCtrlMap = null;
             if (this.getDEHelper().IsIndexDE()) {
@@ -1341,7 +1341,7 @@ extends SRFExDataGridActionHelper {
     }
 
     protected boolean OnExportXML() {
-        Vector exportXMLNodes = new Vector();
+        Vector<XMLNode> exportXMLNodes = new Vector<XMLNode>();
         SRFExDGAjaxActionResult customActionResult = new SRFExDGAjaxActionResult();
         String strKeys = this.getWebContext().GetPostValue("srfdakeys");
         String[] keys = strKeys.split("[,]");
@@ -1568,7 +1568,7 @@ extends SRFExDataGridActionHelper {
             this.getPage().Output(addBatchResult.ToJSONString());
             return true;
         }
-        Vector derList = this.getDEHelper().GetDER1Ns(false);
+        Vector<DER1N> derList = this.getDEHelper().GetDER1Ns(false);
         String strBatchDSTDERID = this.getWebContext().GetParamValue("SRFDSTDERID");
         for (DER1N der1n : derList) {
             if ((der1n.getDERSUBTYPE() & 8) == 0) continue;
@@ -1643,7 +1643,7 @@ extends SRFExDataGridActionHelper {
         TreeMap<String, DGModeDetail> dgModeDetailMap = new TreeMap<String, DGModeDetail>();
         String strDGMode = this.OnGetDGMode();
         if (!StringHelper.IsNullOrEmpty((String)strDGMode)) {
-            Vector dgModeDetails = new Vector();
+            Vector<DGModeDetail> dgModeDetails = new Vector<DGModeDetail>();
             CallResult callResult = this.getWebContext().getGlobalHelper().getDAModelHelper().GetDGModeDetails(strDGMode, dgModeDetails);
             if (callResult == null || callResult.getRetCode() != 0) {
                 addBatchResult.setRetCode(1);
@@ -1668,14 +1668,15 @@ extends SRFExDataGridActionHelper {
             String[] dstKeys = strDstDEFValue.split("[,]");
             int i = 0;
             while (i < dstKeys.length) {
-                Iterator objValue;
                 String strDstKey = dstKeys[i];
                 BaseDataEntity dataEntity = new BaseDataEntity();
                 this.OnNewActionBeforeFillDataEntity(dataEntity);
                 for (IDEFHelper iDEFHelper : this.getDEHelper().GetDEFHelpers()) {
                     String strParamValue;
-                    if (iDEFHelper.IsKeyDEField() || StringHelper.IsNullOrEmpty((String)(strParamValue = this.getWebContext().GetPostValue(iDEFHelper.getName()))) || (objValue = iDEFHelper.GetDEFValue(strParamValue)) == null) continue;
-                    dataEntity.SetParamValue(iDEFHelper.getName(), (Object)objValue);
+                    if (iDEFHelper.IsKeyDEField() || StringHelper.IsNullOrEmpty((String)(strParamValue = this.getWebContext().GetPostValue(iDEFHelper.getName())))) continue;
+                    Object fieldValue = iDEFHelper.GetDEFValue(strParamValue);
+                    if (fieldValue == null) continue;
+                    dataEntity.SetParamValue(iDEFHelper.getName(), fieldValue);
                 }
                 this.dgRowActionHelperEx.FillDataEntityDV(dataEntity);
                 CallResult callResult = this.getDEDataCtrl().GetDefault((ISRFDAWebContext)this.getWebContext(), dataEntity);
@@ -1693,9 +1694,7 @@ extends SRFExDataGridActionHelper {
                     return true;
                 }
                 dataEntity.SetParamValue(dstDER1N.getMAJORTEXTDEFNAME(), dstDataEntity.GetParamValue(dstDEDataCtrl.GetDEHelper().GetMajorDEFHelper().getName()));
-                objValue = this.getDEHelper().GetDEFHelpers().iterator();
-                while (objValue.hasNext()) {
-                    IDEFHelper iDEFHelper = (IDEFHelper)objValue.next();
+                for (IDEFHelper iDEFHelper : this.getDEHelper().GetDEFHelpers()) {
                     if (iDEFHelper.IsKeyDEField() || dataEntity.ContainesParam(iDEFHelper.getName())) continue;
                     DGModeDetail dgModeDetail = (DGModeDetail)dgModeDetailMap.get(iDEFHelper.getName());
                     String strDVT = iDEFHelper.getDGItem().GetDefaultValueType(dgModeDetail);
@@ -2028,8 +2027,10 @@ extends SRFExDataGridActionHelper {
             return null;
         }
         String strCode = BaseDataEntity.ToString((BaseDataEntity)realDataEntity, (boolean)true);
-        if (!StringHelper.IsNullOrEmpty((String)strCode)) int nCode;
-        return StringHelper.Format((String)"%1$s%2$s", (Object)((nCode = strCode.hashCode()) >= 0 ? "A" : "B"), (Object)Math.abs(nCode));
+        if (!StringHelper.IsNullOrEmpty((String)strCode)) {
+            int nCode = strCode.hashCode();
+            return StringHelper.Format((String)"%1$s%2$s", (Object)(nCode >= 0 ? "A" : "B"), (Object)Math.abs(nCode));
+        }
         return "";
     }
 
@@ -2109,7 +2110,7 @@ extends SRFExDataGridActionHelper {
             TreeMap<String, DGModeDetail> dgModeDetailMap = new TreeMap<String, DGModeDetail>();
             String strDGMode = this.OnGetDGMode();
             if (!StringHelper.IsNullOrEmpty((String)strDGMode)) {
-                Vector dgModeDetails = new Vector();
+                Vector<DGModeDetail> dgModeDetails = new Vector<DGModeDetail>();
                 callResult = this.getWebContext().getGlobalHelper().getDAModelHelper().GetDGModeDetails(strDGMode, dgModeDetails);
                 if (callResult == null || callResult.getRetCode() != 0) {
                     log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u8868\u683c\u6a21\u5f0f\u660e\u7ec6\u5931\u8d25\uff0c%1$s", (Object)(callResult == null ? "\u4e0d\u660e" : callResult.getErrorInfo())));
@@ -2318,7 +2319,7 @@ extends SRFExDataGridActionHelper {
     }
 
     protected boolean OnSaveActionAfterFillDataEntity(BaseDataEntity dataEntity, boolean bInsert, DataGridEditItemErrors dgEditItemErrors) {
-        Vector errors = new Vector();
+        Vector<ValueError> errors = new Vector<ValueError>();
         String strActionMode = "DEFAULT";
         strActionMode = bInsert ? this.OnGetDGInsertMode() : this.OnGetDGUpdateMode();
         CallResult callResult = this.getDEDataCtrl().TestSave(bInsert, strActionMode, dataEntity, errors);
@@ -2701,7 +2702,7 @@ extends SRFExDataGridActionHelper {
         String strKeyValue = dataEntity.GetParamStringValue(pickupDEFHelper.GetRelatedDEFHelper().getName(), "");
         if (StringHelper.IsNullOrEmpty((String)strKeyValue)) {
             if (!pickupDEFHelper.GetRealDEFHelper().getDEHelper().IsIndexDE()) return false;
-            Vector list = pickupDEFHelper.GetRealDEFHelper().getDEHelper().GetDERINDEXs(true);
+            Vector<DERINDEX> list = pickupDEFHelper.GetRealDEFHelper().getDEHelper().GetDERINDEXs(true);
             boolean bFind = false;
             for (DERINDEX dERINDEX : list) {
                 IDEHelper iDEHelper = this.getPage().getDAModelStorage().FindDEHelper(dERINDEX.getDEID());
@@ -2751,7 +2752,7 @@ extends SRFExDataGridActionHelper {
         transactionManager.Init((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper());
         String[] keys = strKeys.split("[,]");
         String strKeyParam = this.getDEHelper().GetKeyDEFHelper().getName();
-        ArrayList arrList = new ArrayList();
+        ArrayList<JSONObject> arrList = new ArrayList<JSONObject>();
         HashMap dataMap = new HashMap();
         int i = 0;
         while (i < keys.length) {
@@ -2791,7 +2792,7 @@ extends SRFExDataGridActionHelper {
         transactionManager.Init((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper());
         String[] keys = strKeys.split("[,]");
         String strKeyParam = this.getDEHelper().GetKeyDEFHelper().getName();
-        ArrayList arrList = new ArrayList();
+        ArrayList<JSONObject> arrList = new ArrayList<JSONObject>();
         HashMap dataMap = new HashMap();
         int i = 0;
         while (i < keys.length) {
@@ -2831,7 +2832,7 @@ extends SRFExDataGridActionHelper {
         transactionManager.Init((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper());
         String[] keys = strKeys.split("[,]");
         String strKeyParam = this.getDEHelper().GetKeyDEFHelper().getName();
-        ArrayList arrList = new ArrayList();
+        ArrayList<JSONObject> arrList = new ArrayList<JSONObject>();
         HashMap dataMap = new HashMap();
         int i = 0;
         while (i < keys.length) {
@@ -2872,7 +2873,8 @@ extends SRFExDataGridActionHelper {
             JSONArray ja = JSONArray.fromString((String)strCheckInData);
             IDEDataCtrl rootDataCtrl = this.getDEDataCtrl();
             transactionManager.Register(rootDataCtrl);
-            for (JSONObject item : ja) {
+            for (int i = 0; i < ja.length(); ++i) {
+                JSONObject item = ja.getJSONObject(i);
                 String strDEId = item.getString("srfdeid");
                 IDEDataCtrl iDEDataCtrl = rootDataCtrl.GetRelatedDataCtrl(strDEId);
                 CallResult callResult = iDEDataCtrl.CheckinData(item);
@@ -2892,4 +2894,3 @@ extends SRFExDataGridActionHelper {
         }
     }
 }
-

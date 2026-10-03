@@ -1,38 +1,64 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
 import net.ibizsys.paas.core.IDEField;
 import net.ibizsys.paas.core.IDataEntity;
 import net.ibizsys.paas.core.ModelBase3Impl;
-import net.ibizsys.paas.demodel.IDEFValueRuleModel;
 
-public abstract class DEFValueRuleModelBase
-extends ModelBase3Impl
-implements IDEFValueRuleModel {
-    private IDataEntity iDataEntity = null;
-    private IDEField iDEField = null;
+/**
+ * 属性值规则模型对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class DEFValueRuleModelBase extends ModelBase3Impl implements IDEFValueRuleModel {
+	private IDataEntity iDataEntity = null;
+	private IDEField iDEField = null;
 
-    public void init() throws Exception {
-    }
+	/**
+	 * 初始化
+	 * 
+	 * @throws Exception
+	 */
+	public void init() throws Exception {
 
-    public void setDataEntity(IDataEntity iDataEntity) {
-        this.iDataEntity = iDataEntity;
-    }
+	}
 
-    @Override
-    public IDataEntity getDataEntity() {
-        return this.iDataEntity;
-    }
+	/**
+	 * 设置实体模型对象
+	 * 
+	 * @param iDataEntity
+	 */
+	public void setDataEntity(IDataEntity iDataEntity) {
+		this.iDataEntity = iDataEntity;
+	}
 
-    @Override
-    public IDEField getDEField() {
-        return this.iDEField;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEField#getDataEntity()
+	 */
+	@Override
+	public IDataEntity getDataEntity() {
+		return this.iDataEntity;
+	}
 
-    public void setDEField(IDEField iDEField) {
-        this.iDEField = iDEField;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.valuerule.IDEFValueRule#getDEField()
+	 */
+	@Override
+	public IDEField getDEField() {
+		return this.iDEField;
+	}
+
+	/**
+	 * 设置属性
+	 * 
+	 * @param iDEField
+	 */
+	public void setDEField(IDEField iDEField) {
+		this.iDEField = iDEField;
+	}
+
 }
-

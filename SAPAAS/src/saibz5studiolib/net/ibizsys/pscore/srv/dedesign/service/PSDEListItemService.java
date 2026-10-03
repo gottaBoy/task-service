@@ -39,10 +39,10 @@ extends PSDEListItemServiceBase {
     @Override
     protected String getEntityFolderKeyValue(PSDEListItem pSDEListItem, PSSystem pSSystem) throws Exception {
         if (!StringHelper.isNullOrEmpty((String)pSDEListItem.getPSDEDataViewId())) {
-            return PSModelFolderKeyHelper.getModelKey((IEntity)pSDEListItem, pSSystem, "PSDEDATAVIEWITEM", "D", this.getSessionFactory());
+            return PSModelFolderKeyHelper.getModelKey(pSDEListItem, pSSystem, "PSDEDATAVIEWITEM", "D", this.getSessionFactory());
         }
         if (!StringHelper.isNullOrEmpty((String)pSDEListItem.getPSDEListId())) {
-            return PSModelFolderKeyHelper.getModelKey((IEntity)pSDEListItem, pSSystem, "PSDELISTITEM", "L", this.getSessionFactory());
+            return PSModelFolderKeyHelper.getModelKey(pSDEListItem, pSSystem, "PSDELISTITEM", "L", this.getSessionFactory());
         }
         return super.getEntityFolderKeyValue(pSDEListItem, pSSystem);
     }
@@ -78,18 +78,18 @@ extends PSDEListItemServiceBase {
             ((PSDEDataViewBase)serializable).setPSDEDataViewId(pSDEListItem.getPSDEDataViewId());
             arrayList = ((PSDEDataViewBase)serializable).getPSDEDataViewId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSDEDataView((PSDEDataViewBase)serializable) : this.selectByPSDEDataView((PSDEDataViewBase)serializable);
         }
-        serializable = new HashMap();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSDEListItem pSDEListItem2 = (PSDEListItem)object.next();
+        HashMap<String, PSDEListItem> existingNames = new HashMap<String, PSDEListItem>();
+        for (PSDEListItem pSDEListItem2 : arrayList) {
             if (StringHelper.isNullOrEmpty((String)pSDEListItem2.getPSDEListItemName())) continue;
-            ((HashMap)serializable).put(pSDEListItem2.getPSDEListItemName().toLowerCase(), pSDEListItem2);
+            existingNames.put(pSDEListItem2.getPSDEListItemName().toLowerCase(), pSDEListItem2);
         }
+        String listItemName;
         while (true) {
-            if (!((HashMap)serializable).containsKey(object = StringHelper.format((String)"%1$s%2$s", (Object)string, (Object)(n == 0 ? "" : Integer.valueOf(n))))) break;
+            listItemName = StringHelper.format((String)"%1$s%2$s", (Object)string, (Object)(n == 0 ? "" : Integer.valueOf(n)));
+            if (!existingNames.containsKey(listItemName)) break;
             ++n;
         }
-        pSDEListItem.setPSDEListItemName((String)object);
+        pSDEListItem.setPSDEListItemName(listItemName);
     }
 
     @Override
@@ -121,4 +121,3 @@ extends PSDEListItemServiceBase {
         return super.testCompileCurModelV2(pSDEListItem, objectNode, string, string2, n);
     }
 }
-

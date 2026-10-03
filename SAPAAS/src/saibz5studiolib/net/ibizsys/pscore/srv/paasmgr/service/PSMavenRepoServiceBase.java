@@ -141,9 +141,9 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSMavenRepo, pSDevCenter);
             return;
@@ -153,9 +153,9 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
             PSMavenServer pSMavenServer = (PSMavenServer)iService.getDEModel().createEntity();
             pSMavenServer.set("PSMAVENSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSMavenServer);
+                iService.getTemp(pSMavenServer);
             } else {
-                iService.get((IEntity)pSMavenServer);
+                iService.get(pSMavenServer);
             }
             this.onFillParentInfo_PSMavenServer(pSMavenRepo, pSMavenServer);
             return;
@@ -165,14 +165,14 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_PSSvrDomain(pSMavenRepo, pSSvrDomain);
             return;
         }
-        super.onFillParentInfo((IEntity)pSMavenRepo, string, string2, string3);
+        super.onFillParentInfo(pSMavenRepo, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -198,7 +198,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
         if (bl && pSMavenRepo.getValidFlag() == null) {
             pSMavenRepo.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSMavenRepo, bl);
+        super.onFillEntityFullInfo(pSMavenRepo, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSMavenRepo, bl);
         this.onFillEntityFullInfo_PSMavenServer(pSMavenRepo, bl);
         this.onFillEntityFullInfo_PSSvrDomain(pSMavenRepo, bl);
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
     }
 
     protected void onWriteBackParent(PSMavenRepo pSMavenRepo, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSMavenRepo, bl);
+        super.onWriteBackParent(pSMavenRepo, bl);
     }
 
     public ArrayList<PSMavenRepo> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -331,7 +331,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
         ArrayList<PSMavenRepo> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSMavenRepo pSMavenRepo : arrayList) {
-            this.remove((IEntity)pSMavenRepo);
+            this.remove(pSMavenRepo);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -349,8 +349,8 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
         ArrayList<PSMavenRepo> arrayList = this.selectByPSMavenServer(pSMavenServer, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMAVENSERVER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSMavenServer);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMAVENREPO_PSMAVENSERVER_PSMAVENSERVERID", "", iDataEntityModel.getName(), "PSMAVENREPO", iDataEntityModel.getDataInfo((IEntity)pSMavenServer), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSMavenServer);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMAVENREPO_PSMAVENSERVER_PSMAVENSERVERID", "", iDataEntityModel.getName(), "PSMAVENREPO", iDataEntityModel.getDataInfo(pSMavenServer), arrayList.get(0)));
         }
     }
 
@@ -383,7 +383,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
         ArrayList<PSMavenRepo> arrayList = this.selectByPSMavenServer(pSMavenServer);
         this.onBeforeRemoveByPSMavenServer(pSMavenServer, arrayList);
         for (PSMavenRepo pSMavenRepo : arrayList) {
-            this.remove((IEntity)pSMavenRepo);
+            this.remove(pSMavenRepo);
         }
         this.onAfterRemoveByPSMavenServer(pSMavenServer, arrayList);
     }
@@ -401,8 +401,8 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
         ArrayList<PSMavenRepo> arrayList = this.selectByPSSvrDomain(pSSvrDomain, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRDOMAIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrDomain);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMAVENREPO_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSMAVENREPO", iDataEntityModel.getDataInfo((IEntity)pSSvrDomain), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrDomain);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMAVENREPO_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSMAVENREPO", iDataEntityModel.getDataInfo(pSSvrDomain), arrayList.get(0)));
         }
     }
 
@@ -435,7 +435,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
         ArrayList<PSMavenRepo> arrayList = this.selectByPSSvrDomain(pSSvrDomain);
         this.onBeforeRemoveByPSSvrDomain(pSSvrDomain, arrayList);
         for (PSMavenRepo pSMavenRepo : arrayList) {
-            this.remove((IEntity)pSMavenRepo);
+            this.remove(pSMavenRepo);
         }
         this.onAfterRemoveByPSSvrDomain(pSSvrDomain, arrayList);
     }
@@ -456,7 +456,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
 
     protected void replaceParentInfo(PSMavenRepo pSMavenRepo, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSMavenRepo, cloneSession);
+        super.replaceParentInfo(pSMavenRepo, cloneSession);
         if (pSMavenRepo.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSMavenRepo.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSMavenRepo, (PSDevCenter)iEntity);
         }
@@ -469,7 +469,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
     }
 
     protected void onRemoveEntityUncopyValues(PSMavenRepo pSMavenRepo, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSMavenRepo, bl);
+        super.onRemoveEntityUncopyValues(pSMavenRepo, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSMavenRepo pSMavenRepo, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -562,7 +562,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSMavenRepo, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSMavenRepo, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSMavenRepo, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ConnStr(boolean bl, PSMavenRepo pSMavenRepo, boolean bl2, boolean bl3) throws Exception {
@@ -578,7 +578,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ConnStr_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_ConnStr_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONNSTR");
@@ -600,7 +600,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LocalRes_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string = this.onTestValueRule_LocalRes_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCALRES");
@@ -625,7 +625,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -647,7 +647,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MavenPasswd_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_MavenPasswd_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAVENPASSWD");
@@ -669,7 +669,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MavenUserName_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_MavenUserName_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAVENUSERNAME");
@@ -691,7 +691,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -713,7 +713,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_Param_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM");
@@ -735,7 +735,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param2_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_Param2_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM2");
@@ -757,7 +757,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param3_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_Param3_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM3");
@@ -779,7 +779,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param4_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_Param4_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM4");
@@ -801,7 +801,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Param5_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string = this.onTestValueRule_Param5_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM5");
@@ -823,7 +823,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Param6_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string = this.onTestValueRule_Param6_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM6");
@@ -845,7 +845,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Param7_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string = this.onTestValueRule_Param7_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM7");
@@ -867,7 +867,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Param8_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string = this.onTestValueRule_Param8_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM8");
@@ -889,7 +889,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -911,7 +911,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -936,7 +936,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMavenRepoId_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_PSMavenRepoId_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMAVENREPOID");
@@ -961,7 +961,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMavenRepoName_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_PSMavenRepoName_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMAVENREPONAME");
@@ -983,7 +983,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMavenServerId_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_PSMavenServerId_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMAVENSERVERID");
@@ -1005,7 +1005,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjId_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjId_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJID");
@@ -1027,7 +1027,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjName_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjName_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJNAME");
@@ -1049,7 +1049,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjType_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjType_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJTYPE");
@@ -1071,7 +1071,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -1093,7 +1093,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ReadOnlyMode_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string = this.onTestValueRule_ReadOnlyMode_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("READONLYMODE");
@@ -1115,7 +1115,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefInfo_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_RefInfo_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFINFO");
@@ -1140,7 +1140,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_RepoState_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string = this.onTestValueRule_RepoState_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REPOSTATE");
@@ -1162,7 +1162,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ROPasswd_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_ROPasswd_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ROPASSWD");
@@ -1184,7 +1184,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ROUserName_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string2 = this.onTestValueRule_ROUserName_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ROUSERNAME");
@@ -1209,7 +1209,7 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSMavenRepo, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSMavenRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1222,11 +1222,11 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
     }
 
     protected void onSyncEntity(PSMavenRepo pSMavenRepo, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSMavenRepo, bl);
+        super.onSyncEntity(pSMavenRepo, bl);
     }
 
     protected void onSyncIndexEntities(PSMavenRepo pSMavenRepo, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSMavenRepo, bl);
+        super.onSyncIndexEntities(pSMavenRepo, bl);
     }
 
     public Object getDataContextValue(PSMavenRepo pSMavenRepo, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1234,14 +1234,14 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSMavenRepo, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSMavenRepo, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSMavenRepo pSMavenRepo, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSMavenRepo, arrayList, n);
+        super.onExportMajorModel(pSMavenRepo, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1695,14 +1695,14 @@ extends PSCoreSysServiceBase<PSMavenRepo> {
 
     protected boolean onMergeChild(String string, String string2, PSMavenRepo pSMavenRepo) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSMavenRepo)) {
+        if (super.onMergeChild(string, string2, pSMavenRepo)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSMavenRepo pSMavenRepo) throws Exception {
-        super.onUpdateParent((IEntity)pSMavenRepo);
+        super.onUpdateParent(pSMavenRepo);
     }
 
     @Override

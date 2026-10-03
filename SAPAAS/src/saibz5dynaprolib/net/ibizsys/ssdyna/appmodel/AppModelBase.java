@@ -1,35 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.app.IPSApplication
- *  net.ibizsys.model.app.view.IPSAppView
- *  net.ibizsys.model.control.IPSAjaxControl
- *  net.ibizsys.model.control.IPSControl
- *  net.ibizsys.paas.appmodel.IAppDEViewModel
- *  net.ibizsys.paas.ctrlhandler.EditFormHandlerBase
- *  net.ibizsys.paas.ctrlhandler.EditFormHandlerBase2
- *  net.ibizsys.paas.ctrlhandler.EditFormHandlerBase3
- *  net.ibizsys.paas.ctrlhandler.GridHandlerBase
- *  net.ibizsys.paas.ctrlhandler.GridHandlerBase2
- *  net.ibizsys.paas.ctrlhandler.SearchFormHandlerBase
- *  net.ibizsys.paas.util.KeyValueHelper
- *  net.ibizsys.paas.util.ObjectHelper
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.pswf.ctrlhandler.WFActionFormHandlerBase
- *  net.ibizsys.pswf.ctrlhandler.WFEditFormHandlerBase
- *  net.ibizsys.saas.appmodel.AppModelBase
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package net.ibizsys.ssdyna.appmodel;
 
 import java.util.HashMap;
+
 import net.ibizsys.model.app.IPSApplication;
 import net.ibizsys.model.app.view.IPSAppView;
 import net.ibizsys.model.control.IPSAjaxControl;
 import net.ibizsys.model.control.IPSControl;
 import net.ibizsys.paas.appmodel.IAppDEViewModel;
+import net.ibizsys.paas.control.ControlTypes;
 import net.ibizsys.paas.ctrlhandler.EditFormHandlerBase;
 import net.ibizsys.paas.ctrlhandler.EditFormHandlerBase2;
 import net.ibizsys.paas.ctrlhandler.EditFormHandlerBase3;
@@ -41,8 +19,6 @@ import net.ibizsys.paas.util.ObjectHelper;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pswf.ctrlhandler.WFActionFormHandlerBase;
 import net.ibizsys.pswf.ctrlhandler.WFEditFormHandlerBase;
-import net.ibizsys.ssdyna.appmodel.DynaAppDEViewModel;
-import net.ibizsys.ssdyna.appmodel.IDynaAppModel;
 import net.ibizsys.ssdyna.ctrlhandler.DynaDRBarHandler;
 import net.ibizsys.ssdyna.ctrlhandler.DynaDRTabHandler;
 import net.ibizsys.ssdyna.ctrlhandler.DynaEditFormHandler;
@@ -65,114 +41,206 @@ import net.ibizsys.ssdyna.view.IDynaViewModel;
 import net.ibizsys.ssdyna.web.WebContext;
 import net.ibizsys.ssdynawf.ctrlhandler.DynaWFActionFormHandler;
 import net.ibizsys.ssdynawf.ctrlhandler.DynaWFEditFormHandler;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
-public abstract class AppModelBase
-extends net.ibizsys.saas.appmodel.AppModelBase
-implements IDynaAppModel {
-    private static final Log log = LogFactory.getLog(AppModelBase.class);
-    private static HashMap<String, String> dynaCtrlModelMap = new HashMap();
-    private static HashMap<String, String> dynaCtrlHandlerMap = new HashMap();
+/**
+ * 动态应用模型对象基类
+ * @author Administrator
+ *
+ */
+public abstract class AppModelBase extends net.ibizsys.saas.appmodel.AppModelBase implements IDynaAppModel {
 
-    static {
-        dynaCtrlModelMap.put("FORM", DynaEditFormModel.class.getCanonicalName());
-        dynaCtrlModelMap.put("SEARCHFORM", DynaSearchFormModel.class.getCanonicalName());
-        dynaCtrlModelMap.put("TOOLBAR", DynaToolbarModel.class.getCanonicalName());
-        dynaCtrlModelMap.put("GRID", DynaGridModel.class.getCanonicalName());
-        dynaCtrlModelMap.put("DRBAR", DynaDRBarModel.class.getCanonicalName());
-        dynaCtrlModelMap.put("DRTAB", DynaDRTabModel.class.getCanonicalName());
-        dynaCtrlHandlerMap.put(GridHandlerBase.class.getCanonicalName(), DynaGridHandler.class.getCanonicalName());
-        dynaCtrlHandlerMap.put(GridHandlerBase2.class.getCanonicalName(), DynaGridHandler2.class.getCanonicalName());
-        dynaCtrlHandlerMap.put(SearchFormHandlerBase.class.getCanonicalName(), DynaSearchFormHandler.class.getCanonicalName());
-        dynaCtrlHandlerMap.put(EditFormHandlerBase.class.getCanonicalName(), DynaEditFormHandler.class.getCanonicalName());
-        dynaCtrlHandlerMap.put(EditFormHandlerBase2.class.getCanonicalName(), DynaEditFormHandler2.class.getCanonicalName());
-        dynaCtrlHandlerMap.put(EditFormHandlerBase3.class.getCanonicalName(), DynaEditFormHandler3.class.getCanonicalName());
-        dynaCtrlHandlerMap.put(WFEditFormHandlerBase.class.getCanonicalName(), DynaWFEditFormHandler.class.getCanonicalName());
-        dynaCtrlHandlerMap.put(WFActionFormHandlerBase.class.getCanonicalName(), DynaWFActionFormHandler.class.getCanonicalName());
-        dynaCtrlHandlerMap.put("DRBAR", DynaDRBarHandler.class.getCanonicalName());
-        dynaCtrlHandlerMap.put("DRTAB", DynaDRTabHandler.class.getCanonicalName());
-    }
+	private static final org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(AppModelBase.class);
+	//private IPSApplication iPSApplication = null;
+	
+	private static HashMap<String, String> dynaCtrlModelMap = new HashMap<String, String>();
+	private static HashMap<String, String> dynaCtrlHandlerMap = new HashMap<String, String>();
+	
+	static{
+		dynaCtrlModelMap.put(ControlTypes.EditForm, DynaEditFormModel.class.getCanonicalName());
+		dynaCtrlModelMap.put(ControlTypes.SearchForm,DynaSearchFormModel.class.getCanonicalName());
+		dynaCtrlModelMap.put(ControlTypes.Toolbar,DynaToolbarModel.class.getCanonicalName());
+		dynaCtrlModelMap.put(ControlTypes.Grid,DynaGridModel.class.getCanonicalName());
+		dynaCtrlModelMap.put(ControlTypes.DRBar,DynaDRBarModel.class.getCanonicalName());
+		dynaCtrlModelMap.put(ControlTypes.DRTab,DynaDRTabModel.class.getCanonicalName());
+		
+		dynaCtrlHandlerMap.put(GridHandlerBase.class.getCanonicalName(),DynaGridHandler.class.getCanonicalName());
+		dynaCtrlHandlerMap.put(GridHandlerBase2.class.getCanonicalName(),DynaGridHandler2.class.getCanonicalName());
+		dynaCtrlHandlerMap.put(SearchFormHandlerBase.class.getCanonicalName(),DynaSearchFormHandler.class.getCanonicalName());
+		dynaCtrlHandlerMap.put(EditFormHandlerBase.class.getCanonicalName(),DynaEditFormHandler.class.getCanonicalName());
+		dynaCtrlHandlerMap.put(EditFormHandlerBase2.class.getCanonicalName(),DynaEditFormHandler2.class.getCanonicalName());
+		dynaCtrlHandlerMap.put(EditFormHandlerBase3.class.getCanonicalName(),DynaEditFormHandler3.class.getCanonicalName());
+		dynaCtrlHandlerMap.put(WFEditFormHandlerBase.class.getCanonicalName(),DynaWFEditFormHandler.class.getCanonicalName());
+		dynaCtrlHandlerMap.put(WFActionFormHandlerBase.class.getCanonicalName(),DynaWFActionFormHandler.class.getCanonicalName());
+		
+		dynaCtrlHandlerMap.put(ControlTypes.DRBar,DynaDRBarHandler.class.getCanonicalName());
+		dynaCtrlHandlerMap.put(ControlTypes.DRTab,DynaDRTabHandler.class.getCanonicalName());
+	}
+	
+	
 
-    @Override
-    public IPSApplication getPSApplication() throws Exception {
-        try {
-            return this.getDynaSysModel().getPSSystem().getPSApplication(this.getId());
-        }
-        catch (Exception ex) {
-            log.error((Object)StringHelper.format((String)"\u83b7\u53d6\u7cfb\u7edf\u5e94\u7528\u6a21\u578b\u5bf9\u8c61\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
-            throw new Exception(StringHelper.format((String)"\u83b7\u53d6\u52a8\u6001\u5e94\u7528\u53d1\u751f\u5f02\u5e38\uff0c%1$", (Object)ex.getMessage()), ex);
-        }
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.appmodel.IDynaAppModel#getPSApplication()
+	 */
+	@Override
+	public IPSApplication getPSApplication() throws Exception{
+		try{
+			return this.getDynaSysModel().getPSSystem().getPSApplication(this.getId());
+		}
+		catch(Exception ex){
+			log.error(StringHelper.format("获取系统应用模型对象发生异常，%1$s",ex.getMessage()),ex);
+			throw new Exception(StringHelper.format("获取动态应用发生异常，%1$",ex.getMessage()),ex);
+		}
+	}
 
-    @Override
-    public IDynaCtrlModel createDynaCtrlModel(IDynaViewModel iDynaViewModel, IPSControl iPSControl) throws Exception {
-        String strObject = dynaCtrlModelMap.get(iPSControl.getControlType());
-        if (StringHelper.isNullOrEmpty((String)strObject)) {
-            return null;
-        }
-        return (IDynaCtrlModel)ObjectHelper.create((String)strObject);
-    }
 
-    @Override
-    public IDynaCtrlHandler createDynaCtrlHandler(IDynaViewModel iDynaViewModel, IPSControl iPSControl) throws Exception {
-        String strObject;
-        String strHandler = null;
-        if (iPSControl instanceof IPSAjaxControl) {
-            strHandler = ((IPSAjaxControl)iPSControl).getHandler();
-        }
-        if (StringHelper.isNullOrEmpty(strHandler)) {
-            strHandler = iPSControl.getControlType();
-        }
-        if (StringHelper.isNullOrEmpty((String)(strObject = dynaCtrlHandlerMap.get(strHandler)))) {
-            throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u7c7b\u578b[%1$s]\u52a8\u6001\u90e8\u4ef6\u5904\u7406\u5bf9\u8c61", (Object)strHandler));
-        }
-        return (IDynaCtrlHandler)ObjectHelper.create((String)strObject);
-    }
+	//VUE_R3
 
-    @Override
-    public IDynaViewModel getDynaViewModel(String strAppViewId, boolean bTryMode) throws Exception {
-        return null;
-    }
+	@Override
+	public IDynaCtrlModel createDynaCtrlModel(IDynaViewModel iDynaViewModel, IPSControl iPSControl) throws Exception {
+		String strObject = dynaCtrlModelMap.get(iPSControl.getControlType());
+		if(StringHelper.isNullOrEmpty(strObject))
+			return null;
+//		if(StringHelper.isNullOrEmpty(strObject)){
+//			throw new Exception(StringHelper.format("无法获取指定类型[%1$s]动态部件模型对象",iPSControl.getControlType()));
+//		}
+		return (IDynaCtrlModel)ObjectHelper.create(strObject);
+	}
 
-    @Override
-    public IDynaSysModel getDynaSysModel() {
-        return (IDynaSysModel)super.getSystemModel();
-    }
 
-    public IAppDEViewModel getAppViewByDEViewId(String strDEViewId, boolean bTryMode) throws Exception {
-        String strDynaInstId = WebContext.getDynaSysInstId(true);
-        if (!StringHelper.isNullOrEmpty((String)strDynaInstId)) {
-            String strPSAppViewId;
-            IAppDEViewModel iAppDEViewModel = super.getAppViewByDEViewId(strDEViewId, true);
-            if (iAppDEViewModel != null) {
-                return iAppDEViewModel;
-            }
-            IDynaInstModel iDynaInstModel = this.getDynaSysModel().getDynaInstModel(strDynaInstId);
-            iAppDEViewModel = (IAppDEViewModel)iDynaInstModel.getDynaAppViewModel(strPSAppViewId = KeyValueHelper.genUniqueId((String)this.getId(), (String)strDEViewId), true);
-            if (iAppDEViewModel != null) {
-                return iAppDEViewModel;
-            }
-            IPSAppView iPSAppView = this.getPSApplication().getPSAppView(strPSAppViewId, true);
-            if (iPSAppView == null && !bTryMode) {
-                throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u5e94\u7528\u5b9e\u4f53\u89c6\u56fe[%1$s]", (Object)strDEViewId));
-            }
-            DynaAppDEViewModel appDEViewModel = new DynaAppDEViewModel();
-            appDEViewModel.setId(iPSAppView.getId());
-            appDEViewModel.setName(iPSAppView.getName());
-            appDEViewModel.setTitle(iPSAppView.getTitle());
-            appDEViewModel.setModuleName(iPSAppView.getPSAppModule().getCodeName());
-            appDEViewModel.setOpenMode(iPSAppView.getOpenMode());
-            if (iPSAppView.getHeight() > 0) {
-                appDEViewModel.setHeight(iPSAppView.getHeight());
-            }
-            if (iPSAppView.getWidth() > 0) {
-                appDEViewModel.setWidth(iPSAppView.getWidth());
-            }
-            iDynaInstModel.registerDynaAppViewModel(appDEViewModel);
-            return appDEViewModel;
-        }
-        return super.getAppViewByDEViewId(strDEViewId, bTryMode);
-    }
+	@Override
+	public IDynaCtrlHandler createDynaCtrlHandler(IDynaViewModel iDynaViewModel, IPSControl iPSControl) throws Exception {
+		String strHandler = null;
+		if(iPSControl instanceof IPSAjaxControl){
+			strHandler = ((IPSAjaxControl)iPSControl).getHandler();
+		} 
+		if(StringHelper.isNullOrEmpty(strHandler)){
+			strHandler = iPSControl.getControlType();
+		}
+		String	strObject = dynaCtrlHandlerMap.get(strHandler);
+		if(StringHelper.isNullOrEmpty(strObject)){
+			throw new Exception(StringHelper.format("无法获取指定类型[%1$s]动态部件处理对象",strHandler));
+		}
+		return (IDynaCtrlHandler)ObjectHelper.create(strObject);
+	}
+
+
+	@Override
+	public IDynaViewModel getDynaViewModel(String strAppViewId, boolean bTryMode) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IDynaSysModel getDynaSysModel() {
+		return (IDynaSysModel)super.getSystemModel();
+	}
+	
+	/**
+	 * 获取应用实体视图
+	 * 
+	 * @param strDEViewId 实体视图标识
+	 * @param bTryMode 尝试模式
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public IAppDEViewModel getAppViewByDEViewId(String strDEViewId, boolean bTryMode) throws Exception {
+		
+		String strDynaInstId = WebContext.getDynaSysInstId(true);
+		if(!StringHelper.isNullOrEmpty(strDynaInstId)) {
+			IAppDEViewModel iAppDEViewModel = super.getAppViewByDEViewId(strDEViewId, true);
+			if(iAppDEViewModel != null) {
+				return iAppDEViewModel;
+			}
+			//有动态实例
+			IDynaInstModel iDynaInstModel = this.getDynaSysModel().getDynaInstModel(strDynaInstId);
+			String strPSAppViewId = KeyValueHelper.genUniqueId(this.getId(),strDEViewId);
+			
+			iAppDEViewModel = (IAppDEViewModel)iDynaInstModel.getDynaAppViewModel(strPSAppViewId,true);
+			if(iAppDEViewModel!=null) {
+				return iAppDEViewModel;
+			}
+			IPSAppView iPSAppView = getPSApplication().getPSAppView(strPSAppViewId, true);
+			if(iPSAppView == null && !bTryMode) {
+				throw new Exception(StringHelper.format("无法获取指定应用实体视图[%1$s]", strDEViewId));
+			}
+			
+			//IPSAppDEView iPSAppDEView = (IPSAppDEView)iPSAppView;
+			DynaAppDEViewModel appDEViewModel = new DynaAppDEViewModel();
+			appDEViewModel.setId(iPSAppView.getId());
+			appDEViewModel.setName(iPSAppView.getName());
+			appDEViewModel.setTitle(iPSAppView.getTitle());
+			appDEViewModel.setModuleName(iPSAppView.getPSAppModule().getCodeName());
+			appDEViewModel.setOpenMode(iPSAppView.getOpenMode());
+			if(iPSAppView.getHeight()>0) {
+				appDEViewModel.setHeight(iPSAppView.getHeight());
+			}
+			if(iPSAppView.getWidth()>0) {
+				appDEViewModel.setWidth(iPSAppView.getWidth());
+			}
+			
+			iDynaInstModel.registerDynaAppViewModel(appDEViewModel);
+			return appDEViewModel;
+			
+		}
+		else {
+			return super.getAppViewByDEViewId(strDEViewId, bTryMode);
+		}
+		
+//		
+//		
+//		//获取指定
+//		
+//		
+//		String strPSAppViewId = KeyValueHelper.genUniqueId(this.getId(),strDEViewId);
+//		IPSAppView iPSAppView = getPSApplication().getPSAppView(strPSAppViewId, true);
+//		if(iPSAppView == null && !bTryMode) {
+//			throw new Exception(StringHelper.format("无法获取指定应用实体视图[%1$s]", strDEViewId));
+//		}
+//		
+//		IPSAppDEView iPSAppDEView = (IPSAppDEView)iPSAppView;
+//		DynaAppDEViewModel appDEViewModel = new DynaAppDEViewModel();
+//		appDEViewModel.setId(iPSAppView.getId());
+//		appDEViewModel.setName(iPSAppView.getName());
+//		appDEViewModel.setTitle(iPSAppView.getTitle());
+//		appDEViewModel.setModuleName(iPSAppView.getPSAppModule().getCodeName());
+//		appDEViewModel.setOpenMode(iPSAppView.getOpenMode());
+//		if(iPSAppView.getHeight()>0) {
+//			appDEViewModel.setHeight(iPSAppView.getHeight());
+//		}
+//		if(iPSAppView.getWidth()>0) {
+//			appDEViewModel.setWidth(iPSAppView.getWidth());
+//		}
+//		
+//		this.registerAppView(appDEViewModel);
+//		return appDEViewModel;
+		
+//		//注册视图 ${appview.name}
+//<#if appview.isPSDEView()>
+//	AppDEViewModel m${viewindex?c} = new AppDEViewModel();
+//			m${viewindex?c}.setDEViewId("${appview.getPSDEViewId()}");
+//<#else>
+//			AppViewModel m${viewindex?c} = new AppViewModel();
+//</#if>
+//			m${viewindex?c}.setId("${appview.id}");
+//			m${viewindex?c}.setName("${appview.codeName}");
+//			<#if appview.getTitle()??>
+//			m${viewindex?c}.setTitle("${appview.getTitle()}");
+//			</#if>
+//			<#if appview.getPSAppModule()??>
+//			m${viewindex?c}.setModuleName("${appview.getPSAppModule().codeName}");
+//			</#if>
+//			<#if (appview.getOpenMode()??) && (appview.getOpenMode()?length gt 0)>
+//			m${viewindex?c}.setOpenMode("${appview.getOpenMode()}");
+//			</#if>
+//			<#if appview.getHeight() gt 0>
+//			m${viewindex?c}.setHeight(${appview.getHeight()?c});
+//			</#if>
+//			<#if appview.getWidth() gt 0>
+//			m${viewindex?c}.setWidth(${appview.getWidth()?c});
+//			</#if>
+//			this.registerAppView(m${viewindex?c});
+	
+
+	}
 }
-

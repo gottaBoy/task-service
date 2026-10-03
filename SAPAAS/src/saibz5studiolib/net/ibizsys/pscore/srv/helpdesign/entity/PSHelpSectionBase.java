@@ -3414,7 +3414,7 @@ implements Serializable {
                 PSCodeList pSCodeList = new PSCodeList();
                 pSCodeList.setPSCodeListId(this.getPSCodeListId());
                 PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.getSessionFactory());
-                pSCodeListService.autoGet((IEntity)pSCodeList);
+                pSCodeListService.autoGet(pSCodeList);
                 this.pscodelist = pSCodeList;
             }
             return this.pscodelist;
@@ -3440,7 +3440,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getPSDEFieldId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.psdefield = pSDEField;
             }
             return this.psdefield;
@@ -3466,7 +3466,7 @@ implements Serializable {
                 PSDEUIAction pSDEUIAction = new PSDEUIAction();
                 pSDEUIAction.setPSDEUIActionId(this.getPSDEUIActionId());
                 PSDEUIActionService pSDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEUIActionService.autoGet((IEntity)pSDEUIAction);
+                pSDEUIActionService.autoGet(pSDEUIAction);
                 this.psdeuiaction = pSDEUIAction;
             }
             return this.psdeuiaction;
@@ -3492,7 +3492,7 @@ implements Serializable {
                 PSHelpArticle pSHelpArticle = new PSHelpArticle();
                 pSHelpArticle.setPSHelpArticleId(this.getPSHelpArticleId());
                 PSHelpArticleService pSHelpArticleService = (PSHelpArticleService)ServiceGlobal.getService(PSHelpArticleService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpArticleService.autoGet((IEntity)pSHelpArticle);
+                pSHelpArticleService.autoGet(pSHelpArticle);
                 this.pshelparticle = pSHelpArticle;
             }
             return this.pshelparticle;
@@ -3518,7 +3518,7 @@ implements Serializable {
                 PSHelpArticle pSHelpArticle = new PSHelpArticle();
                 pSHelpArticle.setPSHelpArticleId(this.getRefPSHelpArticleId());
                 PSHelpArticleService pSHelpArticleService = (PSHelpArticleService)ServiceGlobal.getService(PSHelpArticleService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpArticleService.autoGet((IEntity)pSHelpArticle);
+                pSHelpArticleService.autoGet(pSHelpArticle);
                 this.refpshelparticle = pSHelpArticle;
             }
             return this.refpshelparticle;
@@ -3544,7 +3544,7 @@ implements Serializable {
                 PSHelpResource pSHelpResource = new PSHelpResource();
                 pSHelpResource.setPSHelpResourceId(this.getLinkPSHelpResourceId());
                 PSHelpResourceService pSHelpResourceService = (PSHelpResourceService)ServiceGlobal.getService(PSHelpResourceService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpResourceService.autoGet((IEntity)pSHelpResource);
+                pSHelpResourceService.autoGet(pSHelpResource);
                 this.linkpshelpresource = pSHelpResource;
             }
             return this.linkpshelpresource;
@@ -3570,7 +3570,7 @@ implements Serializable {
                 PSHelpResource pSHelpResource = new PSHelpResource();
                 pSHelpResource.setPSHelpResourceId(this.getPSHelpResourceId());
                 PSHelpResourceService pSHelpResourceService = (PSHelpResourceService)ServiceGlobal.getService(PSHelpResourceService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpResourceService.autoGet((IEntity)pSHelpResource);
+                pSHelpResourceService.autoGet(pSHelpResource);
                 this.pshelpresource = pSHelpResource;
             }
             return this.pshelpresource;
@@ -3596,7 +3596,7 @@ implements Serializable {
                 PSHelpSectionTempl pSHelpSectionTempl = new PSHelpSectionTempl();
                 pSHelpSectionTempl.setPSHelpSectionTemplId(this.getPSHelpSectionTemplId());
                 PSHelpSectionTemplService pSHelpSectionTemplService = (PSHelpSectionTemplService)ServiceGlobal.getService(PSHelpSectionTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpSectionTemplService.autoGet((IEntity)pSHelpSectionTempl);
+                pSHelpSectionTemplService.autoGet(pSHelpSectionTempl);
                 this.pshelpsectiontempl = pSHelpSectionTempl;
             }
             return this.pshelpsectiontempl;
@@ -3622,7 +3622,7 @@ implements Serializable {
                 PSHelpSection pSHelpSection = new PSHelpSection();
                 pSHelpSection.setPSHelpSectionId(this.getPPSHelpSectorId());
                 PSHelpSectionService pSHelpSectionService = (PSHelpSectionService)ServiceGlobal.getService(PSHelpSectionService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpSectionService.autoGet((IEntity)pSHelpSection);
+                pSHelpSectionService.autoGet(pSHelpSection);
                 this.ppshelpsector = pSHelpSection;
             }
             return this.ppshelpsector;

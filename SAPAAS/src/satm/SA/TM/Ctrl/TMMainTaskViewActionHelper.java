@@ -73,7 +73,7 @@ extends BaseTMMainTaskViewActionHelper {
         IDEHelper tmTaskBaseDEHelper = this.getPage().getDAModelStorage().FindDEHelper2("TM0050");
         CallParamList callParamList = new CallParamList();
         callParamList.Add((Object)this.getTMMainTask().getId());
-        Vector tmTaskBases = new Vector();
+        Vector<TMTaskBase> tmTaskBases = new Vector<TMTaskBase>();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), null, (String)tmTaskBaseDEHelper.GetDBStorage(), (String)strSQL, (Vector)callParamList.GetList(), tmTaskBases, (String)TMTaskBase.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4efb\u52a1\u6570\u636e\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -94,4 +94,3 @@ extends BaseTMMainTaskViewActionHelper {
         return tmActionResult;
     }
 }
-

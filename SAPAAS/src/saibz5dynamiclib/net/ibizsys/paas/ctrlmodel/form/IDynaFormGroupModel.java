@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel.form;
 
-import net.ibizsys.paas.ctrlmodel.form.IDynaFormGroupModelBase;
+/**
+ * 表单分组对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaFormGroupModel extends IDynaFormGroupModelBase {
 
-public interface IDynaFormGroupModel
-extends IDynaFormGroupModelBase {
+
 }
-

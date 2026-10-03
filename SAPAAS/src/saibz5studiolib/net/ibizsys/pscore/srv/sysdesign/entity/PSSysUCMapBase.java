@@ -1850,7 +1850,7 @@ implements Serializable {
                 PSModule pSModule = new PSModule();
                 pSModule.setPSModuleId(this.getPSModuleId());
                 PSModuleService pSModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSModuleService.autoGet((IEntity)pSModule);
+                pSModuleService.autoGet(pSModule);
                 this.psmodule = pSModule;
             }
             return this.psmodule;
@@ -1876,7 +1876,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;
@@ -1902,7 +1902,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;
@@ -1924,7 +1924,7 @@ implements Serializable {
         Integer n = this.objPSSysUCMapNodesLock;
         synchronized (n) {
             if (this.pssysucmapnodes == null) {
-                this.pssysucmapnodes = pSSysUCMapService.isTempData((IEntity)this) ? pSSysUCMapNodeService.selectTempByPSSysUCMap(this) : pSSysUCMapNodeService.selectByPSSysUCMap(this);
+                this.pssysucmapnodes = pSSysUCMapService.isTempData(this) ? pSSysUCMapNodeService.selectTempByPSSysUCMap(this) : pSSysUCMapNodeService.selectByPSSysUCMap(this);
             }
             return this.pssysucmapnodes;
         }

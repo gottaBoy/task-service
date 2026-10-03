@@ -1,30 +1,64 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import net.ibizsys.psba.core.IBAColSet;
-import net.ibizsys.psba.core.IBAColumn;
-import net.ibizsys.psba.core.IBAModelBase;
-import net.ibizsys.psba.core.IBATable;
-import net.ibizsys.psba.core.IBATableDE;
-import net.ibizsys.psba.core.IBATableDER;
-import net.ibizsys.psba.core.IBATableRuntime;
 
-public interface IBATableModel
-extends IBAModelBase,
-IBATable,
-IBATableRuntime {
-    public void registerBAColSet(IBAColSet var1) throws Exception;
 
-    public void registerBAColumn(IBAColumn var1) throws Exception;
+/**
+ * 大数据库架构表架构
+ * 
+ * @author Administrator
+ *
+ */
+public interface IBATableModel extends IBAModelBase, IBATable,IBATableRuntime {
 
-    public void registerBATableDE(IBATableDE var1) throws Exception;
 
-    public void registerBATableDER(IBATableDER var1) throws Exception;
+	/**
+	 * 注册数据列族
+	 * 
+	 * @param iBAColSet
+	 */
+	void registerBAColSet(IBAColSet iBAColSet)throws Exception;
 
-    public int getBATableDERCount();
+	/**
+	 * 注册数据列
+	 * 
+	 * @param iBAColumn
+	 */
+	void registerBAColumn(IBAColumn iBAColumn)throws Exception;
 
-    public IBATableDER getBATableDERAt(int var1) throws Exception;
+	/**
+	 * 注册数据表实体
+	 * 
+	 * @param iBATableDE
+	 */
+	void registerBATableDE(IBATableDE iBATableDE)throws Exception;
+	
+	
+	/**
+	 * 注册数据表实体关系
+	 * 
+	 * @param iBATableDER
+	 */
+	void registerBATableDER(IBATableDER iBATableDER)throws Exception;
+	
+
+	
+	/**
+	 * 获取大数据表关系数量
+	 * @return
+	 */
+	int getBATableDERCount();
+	
+	
+	
+	/**
+	 * 获取大数据表关系对象（通过位置）
+	 * @param nPos
+	 * @return
+	 */
+	IBATableDER getBATableDERAt(int nPos)throws Exception;
+	
+	
+	
+	
+
 }
-

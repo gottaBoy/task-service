@@ -75,7 +75,7 @@ implements IPSDEGEIUpdateService {
     @Override
     protected List<PSDEGEIUpdate> onListAll() throws Exception {
         ArrayList<PSDEGEIUpdate> list = new ArrayList<PSDEGEIUpdate>();
-        List psdegrids = PSModelServiceUtil.getInstance().getPSDEGridService().listAll();
+        List<PSDEGrid> psdegrids = PSModelServiceUtil.getInstance().getPSDEGridService().listAll();
         if (psdegrids != null) {
             for (PSDEGrid parent : psdegrids) {
                 List<PSDEGEIUpdate> items = this.listByPSDEGrid(parent);

@@ -1629,7 +1629,7 @@ implements Serializable {
                 PSSysBIScheme pSSysBIScheme = new PSSysBIScheme();
                 pSSysBIScheme.setPSSysBISchemeId(this.getPSSysBISchemeId());
                 PSSysBISchemeService pSSysBISchemeService = (PSSysBISchemeService)ServiceGlobal.getService(PSSysBISchemeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBISchemeService.autoGet((IEntity)pSSysBIScheme);
+                pSSysBISchemeService.autoGet(pSSysBIScheme);
                 this.pssysbischeme = pSSysBIScheme;
             }
             return this.pssysbischeme;
@@ -1655,7 +1655,7 @@ implements Serializable {
                 PSSysSFPlugin pSSysSFPlugin = new PSSysSFPlugin();
                 pSSysSFPlugin.setPSSysSFPluginId(this.getPSSysSFPluginId());
                 PSSysSFPluginService pSSysSFPluginService = (PSSysSFPluginService)ServiceGlobal.getService(PSSysSFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPluginService.autoGet((IEntity)pSSysSFPlugin);
+                pSSysSFPluginService.autoGet(pSSysSFPlugin);
                 this.pssyssfplugin = pSSysSFPlugin;
             }
             return this.pssyssfplugin;

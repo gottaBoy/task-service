@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDataEntityObject;
+/**
+ * 实体数据操作标识接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDEOPPriv extends IDataEntityObject {
 
-public interface IDEOPPriv
-extends IDataEntityObject {
 }
-

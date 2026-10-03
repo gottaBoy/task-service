@@ -11,6 +11,7 @@ package net.ibizsys.pscore.srv.systest.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.systest.entity.PSSysTCInput;
 import net.ibizsys.pscore.srv.systest.entity.PSSysTestCase;
@@ -46,9 +47,10 @@ extends PSSysTCInputServiceBase {
         ArrayList<PSSysTCInput> arrayList = null;
         arrayList = pSSysTestCase.getPSSysTestCaseId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSSysTestCase(pSSysTestCase) : this.selectByPSSysTestCase(pSSysTestCase);
         HashMap<String, PSSysTCInput> hashMap = new HashMap<String, PSSysTCInput>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSSysTCInput pSSysTCInput2 = object.next();
+        String object;
+        Iterator<PSSysTCInput> objectIterator = arrayList.iterator();
+        while (objectIterator.hasNext()) {
+            PSSysTCInput pSSysTCInput2 = objectIterator.next();
             hashMap.put(pSSysTCInput2.getPSSysTCInputName().toLowerCase(), pSSysTCInput2);
         }
         while (true) {

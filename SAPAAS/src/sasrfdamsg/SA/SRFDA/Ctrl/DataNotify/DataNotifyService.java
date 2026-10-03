@@ -111,7 +111,7 @@ extends BaseService {
     }
 
     protected void InternalSend() {
-        Vector deDataLogs = new Vector();
+        Vector<DEDataLog> deDataLogs = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.strQuerySQL, null, deDataLogs, (String)DEDataLog.class.getName());
         if (callResult.IsError()) {
             log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u672a\u5904\u7406\u7684\u6570\u636e\u5f02\u6b65\u901a\u77e5\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -139,7 +139,7 @@ extends BaseService {
                         dataEntity = BaseDataEntity.FromString((String)deDataLog.getNEWDATA());
                     }
                     if (iDEHelper.HasDataNotify(deDataLog.getEVENTTYPE(), true)) {
-                        Vector list = new Vector();
+                        Vector<DataNotify> list = new Vector();
                         iDEHelper.ListDataNotifies(deDataLog.getEVENTTYPE(), true, list);
                         for (DataNotify dataNotify : list) {
                             iDEHelper.GetDataNotifyHelper(dataNotify).Notify(iDEDataCtrl, dataNotify, lastDataEntity, dataEntity);
@@ -147,7 +147,7 @@ extends BaseService {
                     }
                     if (deDataLog.getEVENTTYPE() == 4) {
                         String strDEData = dataEntity.GetParamStringValue(iDEHelper.GetKeyDEFHelper().getName(), "");
-                        Vector list = iDEHelper.GetDataNotifies();
+                        Vector<DataNotify> list = iDEHelper.GetDataNotifies();
                         for (DataNotify dataNotify : list) {
                             if (StringHelper.Compare((String)dataNotify.getNOTIFYTYPE(), (String)"TIME", (boolean)true) != 0) continue;
                             iDEHelper.GetDataNotifyHelper(null).RemoveTimeNotify(dataNotify.getDATANOTIFYID(), strDEData);

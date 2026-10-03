@@ -1,25 +1,57 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
-import java.util.Iterator;
-import net.ibizsys.paas.db.ISelectCond;
-import net.ibizsys.paas.db.ISelectField;
 import net.ibizsys.paas.web.IWebContext;
 
-public interface ISelectContext
-extends ISelectCond {
-    public String getDEDataQueryName();
+/**
+ * 数据选择上下文参数接口对象
+ * 
+ * @author Administrator
+ *
+ */
+public interface ISelectContext extends ISelectCond {
 
-    public Iterator<ISelectField> getSelectFields();
-
-    public IWebContext getWebContext();
-
-    public int getViewLevel();
-
-    public String getSort();
-
-    public String getSortDir();
+	/**
+	 * 获取实体数据查询名称
+	 * @return
+	 */
+	String getDEDataQueryName(); 
+	
+	/**
+	 * 获取查询字段集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<ISelectField> getSelectFields();
+	
+	
+	
+	/**
+	 * 获取网页上下文对象
+	 * 
+	 * @return
+	 */
+	IWebContext getWebContext();
+	
+	
+	
+	/**
+	 * 获取视图级别
+	 * @return
+	 */
+	int getViewLevel();
+	
+	
+	
+	/**
+	 * 获取排序属性
+	 * @return
+	 */
+	String getSort();
+	
+	
+	/**
+	 * 获取排序方向
+	 * @return
+	 */
+	String getSortDir();
 }
-

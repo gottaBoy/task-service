@@ -32,7 +32,7 @@ extends PSSystemGlobalModelBase<String, PSDEUIAction, IPSDEUIAction> {
 
     @Override
     protected IPSDEUIAction onCreateModelHelper(PSDEUIAction vt) throws Exception {
-        PSDEUIActionImpl iPSDEUIAction = null;
+        IPSDEUIAction iPSDEUIAction = null;
         String strItemObj = vt.getITEMOBJ();
         if (StringHelper.isNullOrEmpty((String)strItemObj)) {
             strItemObj = vt.getSYSITEMOBJ();
@@ -87,4 +87,3 @@ extends PSSystemGlobalModelBase<String, PSDEUIAction, IPSDEUIAction> {
         return vt.getPSDEUIACTIONID();
     }
 }
-

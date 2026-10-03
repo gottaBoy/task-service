@@ -58,7 +58,6 @@ import java.util.Random;
 import net.ibizsys.paas.data.IDataObject;
 import net.ibizsys.paas.db.ISelectCond;
 import net.ibizsys.paas.db.SelectCond;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ImportSessionManager;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.service.SessionFactoryManager;
@@ -133,7 +132,7 @@ extends PSDEDataCtrl {
                     psDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class);
                     psDevCenter = new PSDevCenter();
                     psDevCenter.setPSDevCenterId(psUAWizard3.getPSDEVCENTERID());
-                    psDevCenterService.get((IEntity)psDevCenter);
+                    psDevCenterService.get(psDevCenter);
                     if (psUAWizard3.getTOMCAT7ASCOUNT() > 0) {
                         sb.append("\r\n\u7533\u8bf7[Tomcat\u670d\u52a1\u5668] x %1$s\r\n", (Object)psUAWizard3.getTOMCAT7ASCOUNT());
                         selectCond = new SelectCond();
@@ -142,7 +141,7 @@ extends PSDEDataCtrl {
                         selectCond.set("ASTYPE", (Object)"TOMCAT7");
                         selectCond.setMaxRowCount(psUAWizard3.getTOMCAT7ASCOUNT());
                         PSAppServerService psAppServerService = (PSAppServerService)ServiceGlobal.getService(PSAppServerService.class);
-                        ArrayList psAppServerList = psAppServerService.select((ISelectCond)selectCond);
+                        ArrayList<PSAppServer> psAppServerList = psAppServerService.select((ISelectCond)selectCond);
                         if (psAppServerList.size() < psUAWizard3.getTOMCAT7ASCOUNT()) {
                             throw new Exception("\u7533\u8bf7[Tomcat\u670d\u52a1\u5668]\u5931\u8d25\uff0c\u6570\u91cf\u4e0d\u8db3!");
                         }
@@ -156,10 +155,10 @@ extends PSDEDataCtrl {
                             psDevCenterAS.setMemo(null);
                             psDevCenterAS.setRefFlag(Integer.valueOf(0));
                             psDevCenterAS.setASMode("PSAS");
-                            psDevCenterASService.create((IEntity)psDevCenterAS, false);
+                            psDevCenterASService.create(psDevCenterAS, false);
                             psAppServer.setASState(Integer.valueOf(30));
                             psAppServer.setRefInfo(psDevCenter.getPSDevCenterName());
-                            psAppServerService.update((IEntity)psAppServer, false);
+                            psAppServerService.update(psAppServer, false);
                             sb.append("\u5206\u914d[Tomcat\u670d\u52a1\u5668]%1$s\r\n", (Object)psAppServer.getPSAppServerName());
                         }
                     }
@@ -170,7 +169,7 @@ extends PSDEDataCtrl {
                         selectCond.set("DSSTATE", (Object)20);
                         selectCond.setMaxRowCount(psUAWizard3.getDEVSERVERCOUNT());
                         PSDevServerService psDevServerService = (PSDevServerService)ServiceGlobal.getService(PSDevServerService.class);
-                        ArrayList psDevServerList = psDevServerService.select((ISelectCond)selectCond);
+                        ArrayList<PSDevServer> psDevServerList = psDevServerService.select((ISelectCond)selectCond);
                         if (psDevServerList.size() < psUAWizard3.getDEVSERVERCOUNT()) {
                             throw new Exception("\u7533\u8bf7[\u4e91\u5f00\u53d1\u4e3b\u673a]\u5931\u8d25\uff0c\u6570\u91cf\u4e0d\u8db3!");
                         }
@@ -182,10 +181,10 @@ extends PSDEDataCtrl {
                             psDevCenterServer.setPSDevCenterId(psDevCenter.getPSDevCenterId());
                             psDevCenterServer.setPSDevCenterName(psDevCenter.getPSDevCenterName());
                             psDevCenterServer.setMemo(null);
-                            psDevCenterServerService.create((IEntity)psDevCenterServer, false);
+                            psDevCenterServerService.create(psDevCenterServer, false);
                             psDevServer.setDSState(Integer.valueOf(30));
                             psDevServer.setRefInfo(psDevCenter.getPSDevCenterName());
-                            psDevServerService.update((IEntity)psDevServer, false);
+                            psDevServerService.update(psDevServer, false);
                             sb.append("\u5206\u914d[\u4e91\u5f00\u53d1\u4e3b\u673a]%1$s\r\n", (Object)psDevServer.getPSDevServerName());
                         }
                     }
@@ -197,7 +196,7 @@ extends PSDEDataCtrl {
                         selectCond.set("DBTYPE", (Object)"MYSQL5");
                         selectCond.setMaxRowCount(psUAWizard3.getMYSQL5INSTCOUNT());
                         PSDBDevInstService psDBDevInstService = (PSDBDevInstService)ServiceGlobal.getService(PSDBDevInstService.class);
-                        ArrayList psDBDevInstList = psDBDevInstService.select((ISelectCond)selectCond);
+                        ArrayList<PSDBDevInst> psDBDevInstList = psDBDevInstService.select((ISelectCond)selectCond);
                         if (psDBDevInstList.size() < psUAWizard3.getMYSQL5INSTCOUNT()) {
                             throw new Exception("\u7533\u8bf7[\u4e91MYSQL\u5f00\u53d1\u5b9e\u4f8b]\u5931\u8d25\uff0c\u6570\u91cf\u4e0d\u8db3!");
                         }
@@ -210,10 +209,10 @@ extends PSDEDataCtrl {
                             psDevCenterDBInst.setPSDevCenterName(psDevCenter.getPSDevCenterName());
                             psDevCenterDBInst.setMemo(null);
                             psDevCenterDBInst.setRefCount(Integer.valueOf(0));
-                            psDevCenterDBInstService.create((IEntity)psDevCenterDBInst, false);
+                            psDevCenterDBInstService.create(psDevCenterDBInst, false);
                             psDBDevInst.setInstState(Integer.valueOf(30));
                             psDBDevInst.setRefInfo(psDevCenter.getPSDevCenterName());
-                            psDBDevInstService.update((IEntity)psDBDevInst, false);
+                            psDBDevInstService.update(psDBDevInst, false);
                             sb.append("\u5206\u914d[\u4e91MYSQL\u5f00\u53d1\u5b9e\u4f8b]%1$s\r\n", (Object)psDBDevInst.getPSDBDevInstName());
                         }
                     }
@@ -222,11 +221,11 @@ extends PSDEDataCtrl {
                     psDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class);
                     psDevCenter = new PSDevCenter();
                     psDevCenter.setPSDevCenterId(psUAWizard3.getPSDEVCENTERID());
-                    psDevCenterService.get((IEntity)psDevCenter);
+                    psDevCenterService.get(psDevCenter);
                     PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class);
                     PSDevSlnSys psDevSlnSysSrc = new PSDevSlnSys();
                     psDevSlnSysSrc.setPSDevSlnSysId(psUAWizard3.getPSDEVSLNSYSID());
-                    psDevSlnSysService.get((IEntity)psDevSlnSysSrc);
+                    psDevSlnSysService.get(psDevSlnSysSrc);
                     int nDevSlnCount = psUAWizard3.getDEVSLNCOUNT();
                     if (nDevSlnCount > 99) {
                         nDevSlnCount = 99;
@@ -237,7 +236,7 @@ extends PSDEDataCtrl {
                     selectCond.set("ASTYPE", (Object)"TOMCAT7");
                     selectCond.setMaxRowCount(nDevSlnCount);
                     PSDevCenterASService psDevCenterASService = (PSDevCenterASService)ServiceGlobal.getService(PSDevCenterASService.class);
-                    ArrayList psDevCenterASList = psDevCenterASService.select((ISelectCond)selectCond);
+                    ArrayList<PSDevCenterAS> psDevCenterASList = psDevCenterASService.select((ISelectCond)selectCond);
                     if (psDevCenterASList.size() < nDevSlnCount) {
                         throw new Exception("\u5e94\u7528\u4e2d\u5fc3\u670d\u52a1\u5668[Tomcat\u670d\u52a1\u5668]\u6570\u91cf\u4e0d\u8db3!");
                     }
@@ -247,7 +246,7 @@ extends PSDEDataCtrl {
                     selectCond.set("DBTYPE", (Object)"MYSQL5");
                     selectCond.setMaxRowCount(nDevSlnCount);
                     PSDevCenterDBInstService psDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class);
-                    ArrayList psDevCenterDBInstList = psDevCenterDBInstService.select((ISelectCond)selectCond);
+                    ArrayList<PSDevCenterDBInst> psDevCenterDBInstList = psDevCenterDBInstService.select((ISelectCond)selectCond);
                     if (psDevCenterDBInstList.size() < nDevSlnCount) {
                         throw new Exception("\u5e94\u7528\u4e2d\u5fc3\u6570\u636e\u5e93\u5b9e\u4f8b[MySQL5]\u6570\u91cf\u4e0d\u8db3!");
                     }
@@ -268,7 +267,7 @@ extends PSDEDataCtrl {
                         psDevSln.setLogicName(StringHelper.Format((String)"%1$s%2$02d", (Object)psUAWizard3.getDEVSLNNAME(), (Object)(i + 1)));
                         psDevSln.setPSDevCenterId(psDevCenter.getPSDevCenterId());
                         psDevSln.setPSDevCenterName(psDevCenter.getPSDevCenterName());
-                        psDevSlnService.create((IEntity)psDevSln);
+                        psDevSlnService.create(psDevSln);
                         psDevSlnList.add(psDevSln);
                         sb.append("\r\n\u5efa\u7acb\u5e94\u7528\u5f00\u53d1\u65b9\u6848[%1$s]\r\n", (Object)psDevSln.getPSDevSlnName());
                         PSDevCenterAS psDevCenterAS = (PSDevCenterAS)psDevCenterASList.get(i);
@@ -287,7 +286,7 @@ extends PSDEDataCtrl {
                         psDevSlnSys.setMySQLPSDCDBInstId(psDevCenterDBInst.getPSDevCenterDBInstId());
                         psDevSlnSys.setMySQLPSDCDBInstName(psDevCenterDBInst.getPSDevCenterDBInstName());
                         psDevSlnSys.set("srcpssysmodelinstid", (Object)psDevSlnSysSrc.getPSSysModelInstId());
-                        psDevSlnSysService.create((IEntity)psDevSlnSys);
+                        psDevSlnSysService.create(psDevSlnSys);
                         sb.append("\r\n\u5efa\u7acb\u5e94\u7528\u5f00\u53d1\u7cfb\u7edf[%1$s]\r\n", (Object)psDevSlnSys.getPSDevSlnSysName());
                         SessionFactoryManager.releaseAndAddRef((boolean)true);
                         ++i;
@@ -306,7 +305,7 @@ extends PSDEDataCtrl {
                             psDevUser.setLoginName(StringHelper.Format((String)"%1$s%2$02d%3$s", (Object)psUAWizard3.getUSERLOGINNAME(), (Object)(i + 1), (Object)(j + 1)));
                             String strPassword = this.calcPassword();
                             psDevUser.setLoginPwd(strPassword);
-                            psDevUserService.create((IEntity)psDevUser);
+                            psDevUserService.create(psDevUser);
                             sb.append("\r\n\u5efa\u7acb\u5e94\u7528\u4e2d\u5fc3\u7528\u6237[%1$s][%2$s][%3$s]\r\n", (Object)psDevUser.getPSDevUserName(), (Object)psDevUser.getFullLoginName(), (Object)strPassword);
                             SessionFactoryManager.releaseAndAddRef((boolean)true);
                             PSDevSln psDevSln = (PSDevSln)psDevSlnList.get(i);
@@ -317,7 +316,7 @@ extends PSDEDataCtrl {
                             psDevSlnUser.setPSDevSlnName(psDevSln.getPSDevSlnName());
                             psDevSlnUser.setPSDevUserObjId(psDevUser.getPSDevUserId());
                             psDevSlnUser.setPSDevUserObjName(psDevUser.getPSDevUserName());
-                            psDevSlnUserService.create((IEntity)psDevSlnUser);
+                            psDevSlnUserService.create(psDevSlnUser);
                             SessionFactoryManager.releaseAndAddRef((boolean)true);
                             sb.append("\r\n\u52a0\u5165\u5e94\u7528\u4e2d\u5fc3\u7528\u6237[%1$s]\u65b9\u6848[%2$s]\r\n", (Object)psDevUser.getPSDevUserName(), (Object)psDevSln.getPSDevSlnName());
                             ++j;

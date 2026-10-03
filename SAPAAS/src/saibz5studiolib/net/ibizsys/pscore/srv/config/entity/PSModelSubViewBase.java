@@ -1262,7 +1262,7 @@ implements Serializable {
                 PSModelView pSModelView = new PSModelView();
                 pSModelView.setPSModelViewId(this.getPSModelViewId());
                 PSModelViewService pSModelViewService = (PSModelViewService)ServiceGlobal.getService(PSModelViewService.class, (SessionFactory)this.getSessionFactory());
-                pSModelViewService.autoGet((IEntity)pSModelView);
+                pSModelViewService.autoGet(pSModelView);
                 this.psmodelview = pSModelView;
             }
             return this.psmodelview;

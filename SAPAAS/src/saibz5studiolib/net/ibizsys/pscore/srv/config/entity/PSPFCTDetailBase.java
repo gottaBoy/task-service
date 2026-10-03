@@ -1407,7 +1407,7 @@ implements Serializable {
                 PSPFCtrlTempl pSPFCtrlTempl = new PSPFCtrlTempl();
                 pSPFCtrlTempl.setPSPFCtrlTemplId(this.getPSPFCtrlTemplId());
                 PSPFCtrlTemplService pSPFCtrlTemplService = (PSPFCtrlTemplService)ServiceGlobal.getService(PSPFCtrlTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSPFCtrlTemplService.autoGet((IEntity)pSPFCtrlTempl);
+                pSPFCtrlTemplService.autoGet(pSPFCtrlTempl);
                 this.pspfctrltemp = pSPFCtrlTempl;
             }
             return this.pspfctrltemp;

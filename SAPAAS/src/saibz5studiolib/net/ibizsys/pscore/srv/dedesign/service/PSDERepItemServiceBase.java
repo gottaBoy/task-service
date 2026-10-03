@@ -161,9 +161,9 @@ extends PSCoreSysServiceBase<PSDERepItem> {
             PSDEReport pSDEReport = (PSDEReport)iService.getDEModel().createEntity();
             pSDEReport.set("PSDEREPORTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEReport);
+                iService.getTemp(pSDEReport);
             } else {
-                iService.get((IEntity)pSDEReport);
+                iService.get(pSDEReport);
             }
             this.onFillParentInfo_MajorPSDEReport(pSDERepItem, pSDEReport);
             return;
@@ -173,14 +173,14 @@ extends PSCoreSysServiceBase<PSDERepItem> {
             PSDEReport pSDEReport = (PSDEReport)iService.getDEModel().createEntity();
             pSDEReport.set("PSDEREPORTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEReport);
+                iService.getTemp(pSDEReport);
             } else {
-                iService.get((IEntity)pSDEReport);
+                iService.get(pSDEReport);
             }
             this.onFillParentInfo_MinorPSDEReport(pSDERepItem, pSDEReport);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDERepItem, string, string2, string3);
+        super.onFillParentInfo(pSDERepItem, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
         if (bl && pSDERepItem.getOrderValue() == null) {
             pSDERepItem.setOrderValue((Integer)this.getDefaultValue(this.getWebContext(), "", "1000", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDERepItem, bl);
+        super.onFillEntityFullInfo(pSDERepItem, bl);
         this.onFillEntityFullInfo_MajorPSDEReport(pSDERepItem, bl);
         this.onFillEntityFullInfo_MinorPSDEReport(pSDERepItem, bl);
     }
@@ -214,7 +214,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
     }
 
     protected void onWriteBackParent(PSDERepItem pSDERepItem, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDERepItem, bl);
+        super.onWriteBackParent(pSDERepItem, bl);
     }
 
     public ArrayList<PSDERepItem> selectByMajorPSDEReport(PSDEReportBase pSDEReportBase) throws Exception {
@@ -299,7 +299,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
             PSDERepItem pSDERepItem2 = (PSDERepItem)this.getDEModel().createEntity();
             pSDERepItem2.setPSDERepItemId(pSDERepItem.getPSDERepItemId());
             pSDERepItem2.setMajorPSDEReportId(null);
-            this.updateTemp((IEntity)pSDERepItem2);
+            this.updateTemp(pSDERepItem2);
         }
     }
 
@@ -322,7 +322,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
         ArrayList<PSDERepItem> arrayList = this.selectByMajorPSDEReport(pSDEReport);
         this.onBeforeRemoveByMajorPSDEReport(pSDEReport, arrayList);
         for (PSDERepItem pSDERepItem : arrayList) {
-            this.remove((IEntity)pSDERepItem);
+            this.remove(pSDERepItem);
         }
         this.onAfterRemoveByMajorPSDEReport(pSDEReport, arrayList);
     }
@@ -340,8 +340,8 @@ extends PSCoreSysServiceBase<PSDERepItem> {
         ArrayList<PSDERepItem> arrayList = this.selectByMinorPSDEReport(pSDEReport, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEREPORT");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEReport);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEREPITEM_PSDEREPORT_MINORPSDEREPORTID", "", iDataEntityModel.getName(), "PSDEREPITEM", iDataEntityModel.getDataInfo((IEntity)pSDEReport), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEReport);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEREPITEM_PSDEREPORT_MINORPSDEREPORTID", "", iDataEntityModel.getName(), "PSDEREPITEM", iDataEntityModel.getDataInfo(pSDEReport), arrayList.get(0)));
         }
     }
 
@@ -374,7 +374,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
         ArrayList<PSDERepItem> arrayList = this.selectByMinorPSDEReport(pSDEReport);
         this.onBeforeRemoveByMinorPSDEReport(pSDEReport, arrayList);
         for (PSDERepItem pSDERepItem : arrayList) {
-            this.remove((IEntity)pSDERepItem);
+            this.remove(pSDERepItem);
         }
         this.onAfterRemoveByMinorPSDEReport(pSDEReport, arrayList);
     }
@@ -412,7 +412,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
         ArrayList<PSDERepItem> arrayList = this.selectTempByMajorPSDEReport(pSDEReport);
         this.onBeforeRemoveTempByMajorPSDEReport(pSDEReport, arrayList);
         for (PSDERepItem pSDERepItem : arrayList) {
-            this.removeTemp((IEntity)pSDERepItem);
+            this.removeTemp(pSDERepItem);
         }
         this.onAfterRemoveTempByMajorPSDEReport(pSDEReport, arrayList);
     }
@@ -428,7 +428,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
 
     protected void replaceParentInfo(PSDERepItem pSDERepItem, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDERepItem, cloneSession);
+        super.replaceParentInfo(pSDERepItem, cloneSession);
         if (pSDERepItem.getMajorPSDEReportId() != null && (iEntity = cloneSession.getEntity("PSDEREPORT", (Object)pSDERepItem.getMajorPSDEReportId())) != null) {
             this.onFillParentInfo_MajorPSDEReport(pSDERepItem, (PSDEReport)iEntity);
         }
@@ -438,7 +438,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDERepItem pSDERepItem, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDERepItem, bl);
+        super.onRemoveEntityUncopyValues(pSDERepItem, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDERepItem pSDERepItem, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -477,7 +477,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSDERepItem, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDERepItem, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDERepItem, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_MajorPSDEReportId(boolean bl, PSDERepItem pSDERepItem, boolean bl2, boolean bl3) throws Exception {
@@ -493,7 +493,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MajorPSDEReportId_Default((IEntity)pSDERepItem, bl2, bl3);
+            string2 = this.onTestValueRule_MajorPSDEReportId_Default(pSDERepItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAJORPSDEREPORTID");
@@ -515,7 +515,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDERepItem, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDERepItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -540,7 +540,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MinorPSDEReportId_Default((IEntity)pSDERepItem, bl2, bl3);
+            string2 = this.onTestValueRule_MinorPSDEReportId_Default(pSDERepItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MINORPSDEREPORTID");
@@ -582,7 +582,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSDERepItem, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSDERepItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -607,7 +607,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDERepItemId_Default((IEntity)pSDERepItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDERepItemId_Default(pSDERepItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEREPITEMID");
@@ -632,7 +632,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDERepItemName_Default((IEntity)pSDERepItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDERepItemName_Default(pSDERepItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEREPITEMNAME");
@@ -668,7 +668,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSDERepItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSDERepItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -690,7 +690,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDERepItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDERepItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -712,7 +712,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDERepItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDERepItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -734,7 +734,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDERepItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDERepItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -756,7 +756,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDERepItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDERepItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -769,11 +769,11 @@ extends PSCoreSysServiceBase<PSDERepItem> {
     }
 
     protected void onSyncEntity(PSDERepItem pSDERepItem, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDERepItem, bl);
+        super.onSyncEntity(pSDERepItem, bl);
     }
 
     protected void onSyncIndexEntities(PSDERepItem pSDERepItem, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDERepItem, bl);
+        super.onSyncIndexEntities(pSDERepItem, bl);
     }
 
     public Object getDataContextValue(PSDERepItem pSDERepItem, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -781,7 +781,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDERepItem, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDERepItem, string, iDataContextParam)) != null) {
             return object;
         }
         PSDEReport pSDEReport = pSDERepItem.getMajorPSDEReport();
@@ -796,7 +796,7 @@ extends PSCoreSysServiceBase<PSDERepItem> {
     }
 
     protected void onExportMajorModel(PSDERepItem pSDERepItem, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDERepItem, arrayList, n);
+        super.onExportMajorModel(pSDERepItem, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1056,14 +1056,14 @@ extends PSCoreSysServiceBase<PSDERepItem> {
 
     protected boolean onMergeChild(String string, String string2, PSDERepItem pSDERepItem) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDERepItem)) {
+        if (super.onMergeChild(string, string2, pSDERepItem)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDERepItem pSDERepItem) throws Exception {
-        super.onUpdateParent((IEntity)pSDERepItem);
+        super.onUpdateParent(pSDERepItem);
     }
 
     @Override

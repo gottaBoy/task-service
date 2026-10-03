@@ -33,7 +33,7 @@ implements IPageDataCtrl {
         String strSQL = " select * from V_SRFPAGEPARAM where PAGEID = ?";
         CallParamList callParamList = new CallParamList();
         callParamList.Add((Object)strPageId);
-        Vector list = new Vector();
+        Vector<BaseDataEntity> list = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx(this.getGlobalHelper(), this.GetDEHelper().GetDBStorage(), strSQL, callParamList.GetList(), list, "");
         if (callResult.IsError()) {
             return callResult;

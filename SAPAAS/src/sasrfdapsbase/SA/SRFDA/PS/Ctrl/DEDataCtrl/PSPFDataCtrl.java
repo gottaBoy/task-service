@@ -73,7 +73,7 @@ extends PSPFTemplDataCtrlBase {
         IDEDataCtrl iPSPFStyleDataCtrl = this.GetRelatedDataCtrl("DE1595");
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSPFID", (Object)strPSPFId);
-        Vector psPFStyleList = new Vector();
+        Vector<BaseDataEntity> psPFStyleList = new Vector<BaseDataEntity>();
         iPSPFStyleDataCtrl.Select(cond, psPFStyleList);
         for (BaseDataEntity baseDataEntity : psPFStyleList) {
             iPSPFStyleDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
@@ -81,7 +81,7 @@ extends PSPFTemplDataCtrlBase {
         IDEDataCtrl iPSPFEditorTemplDataCtrl = this.GetRelatedDataCtrl("DE1804");
         cond = new BaseDataEntity();
         cond.setParamValue("PSPFID", (Object)strPSPFId);
-        Vector psPFEditorTemplList = new Vector();
+        Vector<BaseDataEntity> psPFEditorTemplList = new Vector<BaseDataEntity>();
         iPSPFEditorTemplDataCtrl.Select(cond, psPFEditorTemplList);
         for (BaseDataEntity baseDataEntity : psPFEditorTemplList) {
             String strPSPFStyleId = baseDataEntity.getParamStringValue("PSPFSTYLEID", "");
@@ -104,7 +104,7 @@ extends PSPFTemplDataCtrlBase {
             String strPSPFName = dataEntity.getParamStringValue("PSPFNAME", "");
             BaseDataEntity cond = new BaseDataEntity();
             cond.set("PSPFID", srcKey);
-            Vector psPFCodeFolderList = new Vector();
+            Vector<BaseDataEntity> psPFCodeFolderList = new Vector<BaseDataEntity>();
             callResult = psPFCodeFolderDataCtrl.Select(cond, psPFCodeFolderList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u4ee3\u7801\u76ee\u5f55\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -124,7 +124,7 @@ extends PSPFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSPFID", srcKey);
-            Vector psPFPubCodeList = new Vector();
+            Vector<BaseDataEntity> psPFPubCodeList = new Vector<BaseDataEntity>();
             callResult = psPFPubCodeDataCtrl.Select(cond, psPFPubCodeList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u4ee3\u7801\u7c7b\u578b\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -150,7 +150,7 @@ extends PSPFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSPFID", srcKey);
-            Vector psPFPkgCatList = new Vector();
+            Vector<BaseDataEntity> psPFPkgCatList = new Vector<BaseDataEntity>();
             callResult = psPFPkgCatDataCtrl.Select(cond, psPFPkgCatList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u7ec4\u4ef6\u5305\u5206\u7c7b\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -170,7 +170,7 @@ extends PSPFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSPFID", srcKey);
-            Vector psPFPkgList = new Vector();
+            Vector<BaseDataEntity> psPFPkgList = new Vector<BaseDataEntity>();
             callResult = psPFPkgDataCtrl.Select(cond, psPFPkgList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u7ec4\u4ef6\u5305\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -195,7 +195,7 @@ extends PSPFTemplDataCtrlBase {
                 clonePSPFPkgMap.put(psPFPkg.getParamStringValue("PSPFPKGID", ""), clonePSPFPkg);
                 cond.Reset();
                 cond.set("PSPFPKGID", (Object)psPFPkg.getParamStringValue("PSPFPKGID", ""));
-                Vector psPFPkgVerList = new Vector();
+                Vector<BaseDataEntity> psPFPkgVerList = new Vector<BaseDataEntity>();
                 callResult = psPFPkgVerDataCtrl.Select(cond, psPFPkgVerList);
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u7ec4\u4ef6\u5305\u7248\u672c\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -212,7 +212,7 @@ extends PSPFTemplDataCtrlBase {
                     }
                     cond.Reset();
                     cond.set("PSPFPKGVERID", (Object)psPFPkgVer.getParamStringValue("PSPFPKGVERID", ""));
-                    Vector psPFPkgVerCDNList = new Vector();
+                    Vector<BaseDataEntity> psPFPkgVerCDNList = new Vector<BaseDataEntity>();
                     callResult = psPFPkgVerCDNDataCtrl.Select(cond, psPFPkgVerCDNList);
                     if (callResult.isError()) {
                         throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u7ec4\u4ef6\u5305\u7248\u672cCDN\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -235,7 +235,7 @@ extends PSPFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSPFID", srcKey);
-            Vector psPFEditorTemplList = new Vector();
+            Vector<BaseDataEntity> psPFEditorTemplList = new Vector<BaseDataEntity>();
             callResult = psPFEditorTemplDataCtrl.Select(cond, psPFEditorTemplList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u7f16\u8f91\u5668\u6a21\u677f\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -287,4 +287,3 @@ extends PSPFTemplDataCtrlBase {
         psPF.proxy(dataEntity);
     }
 }
-

@@ -73,7 +73,7 @@ implements IPSSysSearchDEService {
     @Override
     protected List<PSSysSearchDE> onListAll() throws Exception {
         ArrayList<PSSysSearchDE> list = new ArrayList<PSSysSearchDE>();
-        List pssyssearchschemes = PSModelServiceUtil.getInstance().getPSSysSearchSchemeService().listAll();
+        List<PSSysSearchScheme> pssyssearchschemes = PSModelServiceUtil.getInstance().getPSSysSearchSchemeService().listAll();
         if (pssyssearchschemes != null) {
             for (PSSysSearchScheme parent : pssyssearchschemes) {
                 List<PSSysSearchDE> items = this.listByPSSysSearchScheme(parent);

@@ -1698,7 +1698,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;
@@ -1720,7 +1720,7 @@ implements Serializable {
         Integer n = this.objPSAppSBItemRSsLock;
         synchronized (n) {
             if (this.psappsbitemrss == null) {
-                this.psappsbitemrss = pSAppStoryBoardService.isTempData((IEntity)this) ? pSAppSBItemRSService.selectTempByPSAppStoryBoard(this) : pSAppSBItemRSService.selectByPSAppStoryBoard(this);
+                this.psappsbitemrss = pSAppStoryBoardService.isTempData(this) ? pSAppSBItemRSService.selectTempByPSAppStoryBoard(this) : pSAppSBItemRSService.selectByPSAppStoryBoard(this);
             }
             return this.psappsbitemrss;
         }
@@ -1741,7 +1741,7 @@ implements Serializable {
         Integer n = this.objPSAppSBItemsLock;
         synchronized (n) {
             if (this.psappsbitems == null) {
-                this.psappsbitems = pSAppStoryBoardService.isTempData((IEntity)this) ? pSAppSBItemService.selectTempByPSAppStoryBoard(this) : pSAppSBItemService.selectByPSAppStoryBoard(this);
+                this.psappsbitems = pSAppStoryBoardService.isTempData(this) ? pSAppSBItemService.selectTempByPSAppStoryBoard(this) : pSAppSBItemService.selectByPSAppStoryBoard(this);
             }
             return this.psappsbitems;
         }

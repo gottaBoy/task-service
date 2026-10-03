@@ -798,7 +798,7 @@ implements IPSModelStorage {
                         psDevSlnSysTS.setLoadTime(new Timestamp(new Date().getTime()));
                         psDevSlnSysTS.setPSDevSlnSysTSName("\u7cfb\u7edf\u52a0\u8f7d\u65e5\u5fd7");
                         PSDevSlnSysTSService psDevSlnSysTSService = (PSDevSlnSysTSService)ServiceGlobal.getService(PSDevSlnSysTSService.class);
-                        psDevSlnSysTSService.create((IEntity)psDevSlnSysTS);
+                        psDevSlnSysTSService.create(psDevSlnSysTS);
                         ((IPSObjectRuntime)((Object)iPSDevSlnSys)).setRTAttribute("PSDEVSLNSYSTS", psDevSlnSysTS);
                     }
                 });
@@ -865,7 +865,7 @@ implements IPSModelStorage {
                         psDevSlnSysTS.setPSDevSlnSysTSId(strPSDevSlnSysTSId);
                         psDevSlnSysTS.setUnloadTime(new Timestamp(new Date().getTime()));
                         PSDevSlnSysTSService psDevSlnSysTSService = (PSDevSlnSysTSService)ServiceGlobal.getService(PSDevSlnSysTSService.class);
-                        psDevSlnSysTSService.update((IEntity)psDevSlnSysTS, false);
+                        psDevSlnSysTSService.update(psDevSlnSysTS, false);
                     }
                 });
             }
@@ -973,7 +973,7 @@ implements IPSModelStorage {
                         psDevSlnSysTS.setPSDevSlnSysTSId(strPSDevSlnSysTSId);
                         psDevSlnSysTS.setUnloadTime(new Timestamp(new Date().getTime()));
                         PSDevSlnSysTSService psDevSlnSysTSService = (PSDevSlnSysTSService)ServiceGlobal.getService(PSDevSlnSysTSService.class);
-                        psDevSlnSysTSService.update((IEntity)psDevSlnSysTS, false);
+                        psDevSlnSysTSService.update(psDevSlnSysTS, false);
                     }
                 });
             }
@@ -1482,7 +1482,7 @@ implements IPSModelStorage {
         }
         PSSysModelInst psSysModelInst = this.getPSSysModelInst();
         SessionFactory SessionFactory2 = this.getSessionFactory(psSysModelInst);
-        MySQL5DialectImpl iDBDialect = null;
+        IDBDialect iDBDialect = null;
         if (this.isAPIOnly()) {
             iDBDialect = new MySQL5DialectImpl();
         } else {
@@ -1720,7 +1720,7 @@ implements IPSModelStorage {
         PSTaskServerService psTaskServerService = (PSTaskServerService)ServiceGlobal.getService(PSTaskServerService.class);
         this.psTaskServer = new net.ibizsys.pscore.srv.paasmgr.entity.PSTaskServer();
         this.psTaskServer.setPSTaskServerId(this.strPSTaskServerId);
-        psTaskServerService.get((IEntity)this.psTaskServer);
+        psTaskServerService.get(this.psTaskServer);
         PSTaskServer psTaskServer2 = new PSTaskServer();
         PSDEDataCtrl.convertEntity((IEntity)this.psTaskServer, psTaskServer2);
         PSTaskServerEnvImpl psTaskServerEnvImpl = new PSTaskServerEnvImpl();
@@ -2550,7 +2550,7 @@ implements IPSModelStorage {
             selectContext.setMaxRowCount(100);
             HashMap<String, PSDevSlnSys> psDevSlnSysMap = new HashMap<String, PSDevSlnSys>();
             String strCancelInfo = "\u4efb\u52a1\u670d\u52a1\u5668\u91cd\u65b0\u8c03\u5ea6\u53d6\u6d88\uff0c\u8bf7\u7a0d\u540e\u91cd\u8bd5";
-            ArrayList psBKTaskLogList = psBKTaskLogService.selectEx((ISelectContext)selectContext);
+            ArrayList<PSBKTaskLog> psBKTaskLogList = psBKTaskLogService.selectEx((ISelectContext)selectContext);
             for (PSBKTaskLog psBKTaskLog : psBKTaskLogList) {
                 try {
                     if (StringHelper.Compare((String)"PSSYSDEVBKTASK", (String)psBKTaskLog.getTaskCat(), (boolean)true) == 0) {
@@ -2604,12 +2604,12 @@ implements IPSModelStorage {
             this.psTaskServerLogService = (PSTaskServerLogService)ServiceGlobal.getService(PSTaskServerLogService.class);
             PSTaskServerLog psTaskServerLog = new PSTaskServerLog();
             psTaskServerLog.setPSTaskServerLogId(this.psTaskServer.getPSTaskServerId());
-            if (this.psTaskServerLogService.checkKey((IEntity)psTaskServerLog) == 0) {
+            if (this.psTaskServerLogService.checkKey(psTaskServerLog) == 0) {
                 psTaskServerLog.setDefaultFlag(Integer.valueOf(1));
                 psTaskServerLog.setPSTaskServerLogName(StringHelper.Format((String)"[%1$s]\u9ed8\u8ba4\u65e5\u5fd7", (Object)this.psTaskServer.getPSTaskServerName()));
                 psTaskServerLog.setPSTaskServerId(this.psTaskServer.getPSTaskServerId());
                 psTaskServerLog.setPSTaskServerName(this.psTaskServer.getPSTaskServerName());
-                this.psTaskServerLogService.create((IEntity)psTaskServerLog);
+                this.psTaskServerLogService.create(psTaskServerLog);
             }
         }
         catch (Exception ex) {
@@ -2691,7 +2691,7 @@ implements IPSModelStorage {
             int nThreadCount = threadMXBean.getThreadCount();
             psTaskServerLog.setThreadCnt(Integer.valueOf(nThreadCount));
             psTaskServerLog.setLogTime(new Timestamp(System.currentTimeMillis()));
-            this.psTaskServerLogService.create((IEntity)psTaskServerLog, false);
+            this.psTaskServerLogService.create(psTaskServerLog, false);
         }
         catch (Exception ex) {
             log.error((Object)StringHelper.Format((String)"\u5efa\u7acbTask\u670d\u52a1\u5668\u65e5\u5fd7\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
@@ -2925,4 +2925,3 @@ implements IPSModelStorage {
         this.psDCClusterGlobalModel.FindModelHelper("TEST", true);
     }
 }
-

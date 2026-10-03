@@ -113,7 +113,12 @@ ICodeListFiller2 {
                         if (this.InitSQL(codeListConfig)) break block8;
                         return false;
                     }
-                    selectResult = this.iDAGlobalHelper.getDBCaller(this.strDBStorage).CallRaw3(this.GetQueryTotalSQL(), null);
+                    try {
+                        selectResult = this.iDAGlobalHelper.getDBCaller(this.strDBStorage).CallRaw3(this.GetQueryTotalSQL(), null);
+                    }
+                    catch (Exception exception) {
+                        return false;
+                    }
                     if (selectResult != null) break block9;
                     log.error((Object)StringHelper.Format((String)"\u6570\u636e\u67e5\u8be2\u53d1\u751f\u9519\u8bef\uff0c\u8fd4\u56de\u7a7a\u5bf9\u8c61"));
                     return false;
@@ -170,7 +175,12 @@ ICodeListFiller2 {
             if (nRowCount != 0) break block9;
             return null;
         }
-        return this.GetCodeItemConfigFromDataRow(selectResult.getMainTable().GetRow(0));
+        try {
+            return this.GetCodeItemConfigFromDataRow(selectResult.getMainTable().GetRow(0));
+        }
+        catch (Exception exception) {
+            return null;
+        }
     }
 
     protected String GetQueryValueSQL(String strValue) {

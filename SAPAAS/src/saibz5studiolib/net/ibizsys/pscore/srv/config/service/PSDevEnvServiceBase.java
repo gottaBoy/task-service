@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDevEnv> {
     }
 
     protected void onFillParentInfo(PSDevEnv pSDevEnv, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDevEnv, string, string2, string3);
+        super.onFillParentInfo(pSDevEnv, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDevEnv> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDevEnv, bl);
+        super.onFillEntityFullInfo(pSDevEnv, bl);
     }
 
     protected void onWriteBackParent(PSDevEnv pSDevEnv, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDevEnv, bl);
+        super.onWriteBackParent(pSDevEnv, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDevEnv> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDevEnv pSDevEnv, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDevEnv, bl);
+        super.onRemoveEntityUncopyValues(pSDevEnv, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDevEnv pSDevEnv, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -152,7 +152,7 @@ extends PSCoreSysServiceBase<PSDevEnv> {
         if ((entityFieldError = this.onCheckField_PSDevEnvName(bl, pSDevEnv, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDevEnv, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDevEnv, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDevEnvId(boolean bl, PSDevEnv pSDevEnv, boolean bl2, boolean bl3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSDevEnv> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevEnvId_Default((IEntity)pSDevEnv, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevEnvId_Default(pSDevEnv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVENVID");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSDevEnv> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevEnvName_Default((IEntity)pSDevEnv, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevEnvName_Default(pSDevEnv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVENVNAME");
@@ -206,11 +206,11 @@ extends PSCoreSysServiceBase<PSDevEnv> {
     }
 
     protected void onSyncEntity(PSDevEnv pSDevEnv, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDevEnv, bl);
+        super.onSyncEntity(pSDevEnv, bl);
     }
 
     protected void onSyncIndexEntities(PSDevEnv pSDevEnv, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDevEnv, bl);
+        super.onSyncIndexEntities(pSDevEnv, bl);
     }
 
     public Object getDataContextValue(PSDevEnv pSDevEnv, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -218,14 +218,14 @@ extends PSCoreSysServiceBase<PSDevEnv> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDevEnv, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDevEnv, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDevEnv pSDevEnv, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDevEnv, arrayList, n);
+        super.onExportMajorModel(pSDevEnv, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -308,14 +308,14 @@ extends PSCoreSysServiceBase<PSDevEnv> {
 
     protected boolean onMergeChild(String string, String string2, PSDevEnv pSDevEnv) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDevEnv)) {
+        if (super.onMergeChild(string, string2, pSDevEnv)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDevEnv pSDevEnv) throws Exception {
-        super.onUpdateParent((IEntity)pSDevEnv);
+        super.onUpdateParent(pSDevEnv);
     }
 
     @Override

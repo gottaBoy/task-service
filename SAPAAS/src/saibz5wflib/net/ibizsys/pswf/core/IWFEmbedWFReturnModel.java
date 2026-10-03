@@ -1,17 +1,22 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFLinkModel
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFLinkModel;
-
-public interface IWFEmbedWFReturnModel
-extends IWFLinkModel {
-    public String getReturnValue();
-
-    public String getNextCondition();
+/**
+ * 嵌入流程返回连接模型接口
+ * @author Administrator
+ *
+ */
+public interface IWFEmbedWFReturnModel extends IWFLinkModel
+{
+	/**
+	 * 获取返回值
+	 * @return
+	 */
+	String getReturnValue();
+	
+	
+	/**
+	 * 获取下一步的条件
+	 * @return
+	 */
+	String getNextCondition();
 }
-

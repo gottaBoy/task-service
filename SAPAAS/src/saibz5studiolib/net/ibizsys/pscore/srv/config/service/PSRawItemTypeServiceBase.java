@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSRawItemType> {
     }
 
     protected void onFillParentInfo(PSRawItemType pSRawItemType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSRawItemType, string, string2, string3);
+        super.onFillParentInfo(pSRawItemType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSRawItemType> {
         if (bl && pSRawItemType.getValidFlag() == null) {
             pSRawItemType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSRawItemType, bl);
+        super.onFillEntityFullInfo(pSRawItemType, bl);
     }
 
     protected void onWriteBackParent(PSRawItemType pSRawItemType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSRawItemType, bl);
+        super.onWriteBackParent(pSRawItemType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSRawItemType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSRawItemType pSRawItemType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSRawItemType, bl);
+        super.onRemoveEntityUncopyValues(pSRawItemType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSRawItemType pSRawItemType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSRawItemType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSRawItemType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSRawItemType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSRawItemType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CtrlObj(boolean bl, PSRawItemType pSRawItemType, boolean bl2, boolean bl3) throws Exception {
@@ -183,7 +183,7 @@ extends PSCoreSysServiceBase<PSRawItemType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlObj_Default((IEntity)pSRawItemType, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlObj_Default(pSRawItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLOBJ");
@@ -205,7 +205,7 @@ extends PSCoreSysServiceBase<PSRawItemType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSRawItemType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSRawItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -227,7 +227,7 @@ extends PSCoreSysServiceBase<PSRawItemType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSRawItemType, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSRawItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -252,7 +252,7 @@ extends PSCoreSysServiceBase<PSRawItemType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRawItemTypeId_Default((IEntity)pSRawItemType, bl2, bl3);
+            string2 = this.onTestValueRule_PSRawItemTypeId_Default(pSRawItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSRAWITEMTYPEID");
@@ -277,7 +277,7 @@ extends PSCoreSysServiceBase<PSRawItemType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRawItemTypeName_Default((IEntity)pSRawItemType, bl2, bl3);
+            string2 = this.onTestValueRule_PSRawItemTypeName_Default(pSRawItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSRAWITEMTYPENAME");
@@ -299,7 +299,7 @@ extends PSCoreSysServiceBase<PSRawItemType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemParams_Default((IEntity)pSRawItemType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemParams_Default(pSRawItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RAWITEMPARAMS");
@@ -324,7 +324,7 @@ extends PSCoreSysServiceBase<PSRawItemType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSRawItemType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSRawItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -337,11 +337,11 @@ extends PSCoreSysServiceBase<PSRawItemType> {
     }
 
     protected void onSyncEntity(PSRawItemType pSRawItemType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSRawItemType, bl);
+        super.onSyncEntity(pSRawItemType, bl);
     }
 
     protected void onSyncIndexEntities(PSRawItemType pSRawItemType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSRawItemType, bl);
+        super.onSyncIndexEntities(pSRawItemType, bl);
     }
 
     public Object getDataContextValue(PSRawItemType pSRawItemType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -349,14 +349,14 @@ extends PSCoreSysServiceBase<PSRawItemType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSRawItemType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSRawItemType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSRawItemType pSRawItemType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSRawItemType, arrayList, n);
+        super.onExportMajorModel(pSRawItemType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -498,14 +498,14 @@ extends PSCoreSysServiceBase<PSRawItemType> {
 
     protected boolean onMergeChild(String string, String string2, PSRawItemType pSRawItemType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSRawItemType)) {
+        if (super.onMergeChild(string, string2, pSRawItemType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSRawItemType pSRawItemType) throws Exception {
-        super.onUpdateParent((IEntity)pSRawItemType);
+        super.onUpdateParent(pSRawItemType);
     }
 
     @Override

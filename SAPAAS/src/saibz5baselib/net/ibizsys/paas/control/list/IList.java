@@ -1,14 +1,18 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.list;
 
-import java.util.Iterator;
 import net.ibizsys.paas.control.IControl;
-import net.ibizsys.paas.control.list.IListDataItem;
 
-public interface IList
-extends IControl {
-    public Iterator<IListDataItem> getListDataItems();
+/**
+ * 列表控件接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IList extends IControl {
+	/**
+	 * 获取列表数据项集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IListDataItem> getListDataItems();
 }
-

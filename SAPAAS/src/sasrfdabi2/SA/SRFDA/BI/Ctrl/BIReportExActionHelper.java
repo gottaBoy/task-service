@@ -483,7 +483,7 @@ extends BaseBIReportExActionHelper {
                 while (i < nEndDMIndex) {
                     BaseDataEntity dmData = (BaseDataEntity)firstRowDMDatas.get(i);
                     BaseDataEntity rowData = new BaseDataEntity();
-                    Iterator strRowKey = firstBIHierarchyHelper.getDataKey(dmData);
+                    String strRowKey = firstBIHierarchyHelper.getDataKey(dmData);
                     rowData.SetParamValue(firstBIHierarchyHelper.getShortId(), (Object)firstBIHierarchyHelper.getDataCaption(dmData));
                     rowData.SetParamValue(String.valueOf(firstBIHierarchyHelper.getShortId()) + "K", strRowKey);
                     rowData.SetParamValue("SRFROWKEY", strRowKey);

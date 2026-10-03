@@ -130,7 +130,7 @@ implements IPSDEGridColService {
     @Override
     protected List<PSDEGridCol> onListAll() throws Exception {
         ArrayList<PSDEGridCol> list = new ArrayList<PSDEGridCol>();
-        List psdegrids = PSModelServiceUtil.getInstance().getPSDEGridService().listAll();
+        List<PSDEGrid> psdegrids = PSModelServiceUtil.getInstance().getPSDEGridService().listAll();
         if (psdegrids != null) {
             for (PSDEGrid parent : psdegrids) {
                 List<PSDEGridCol> items = this.listByPSDEGrid(parent);

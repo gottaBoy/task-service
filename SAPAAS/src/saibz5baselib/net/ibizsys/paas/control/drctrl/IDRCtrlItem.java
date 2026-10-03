@@ -1,65 +1,221 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.drctrl;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
+/**
+ * 数据部件数据项接口
+ * 
+ * @author lionlau
+ *
+ */
 public interface IDRCtrlItem {
-    public static final String ENABLEMODE_ALL = "ALL";
-    public static final String ENABLEMODE_ALLWF = "ALLWF";
-    public static final String ENABLEMODE_INWF = "INWF";
-    public static final String ENABLEMODE_EDIT = "EDIT";
-    public static final String ENABLEMODE_DEOPPRIV = "DEOPPRIV";
-    public static final String ENABLEMODE_CUSTOM = "CUSTOM";
+	/**
+	 * 启用模式，全部启用
+	 */
+	final static String ENABLEMODE_ALL = "ALL";
 
-    public String getId();
+	/**
+	 * 启用模式，全部流程状态（流程中，已完成，已取消）
+	 */
+	final static String ENABLEMODE_ALLWF = "ALLWF";
 
-    public String getPId();
+	/**
+	 * 启用模式，流程中
+	 */
+	final static String ENABLEMODE_INWF = "INWF";
 
-    public String getText();
+	/**
+	 * 启用模式，编辑
+	 */
+	final static String ENABLEMODE_EDIT = "EDIT";
 
-    public boolean isExpanded();
+	/**
+	 * 实体操作标识
+	 */
+	final static String ENABLEMODE_DEOPPRIV = "DEOPPRIV";
 
-    public ArrayList<IDRCtrlItem> getItems();
+	/**
+	 * 自定义
+	 */
+	final static String ENABLEMODE_CUSTOM = "CUSTOM";
 
-    public String getTextCls();
+	/**
+	 * 获取标识
+	 * 
+	 * @return
+	 */
+	String getId();
 
-    public String getIconCls();
+	/**
+	 * 获取父标识
+	 * 
+	 * @return
+	 */
+	String getPId();
 
-    public String getIconPath();
+	/**
+	 * 获取文本
+	 * 
+	 * @return
+	 */
+	String getText();
 
-    public String getIconClsX();
+	/**
+	 * 是否展开
+	 * 
+	 * @return
+	 */
+	boolean isExpanded();
 
-    public String getIconPathX();
+	/**
+	 * 获取项集合
+	 * 
+	 * @return
+	 */
+	java.util.ArrayList<IDRCtrlItem> getItems();
 
-    public String getCounterId();
+	/**
+	 * 获取文本样式
+	 * 
+	 * @return
+	 */
+	String getTextCls();
 
-    public void setAttribute(String var1, Object var2);
+	/**
+	 * 获取图标样式
+	 * 
+	 * @return
+	 */
+	String getIconCls();
 
-    public Object getAttribute(String var1);
+	/**
+	 * 获取图标路径
+	 * 
+	 * @return
+	 */
+	String getIconPath();
+	
+	/**
+	 * 获取图标样式（X）
+	 * 
+	 * @return
+	 */
+	String getIconClsX();
 
-    public String getDRViewId();
+	/**
+	 * 获取图标路径（X）
+	 * 
+	 * @return
+	 */
+	String getIconPathX();
+	
 
-    public void setViewParam(String var1, String var2);
+	/**
+	 * 获取计数器标识
+	 * 
+	 * @return
+	 */
+	String getCounterId();
+	
+//	/**
+//	 * 获取计数器模式
+//	 * 
+//	 * @return
+//	 */
+//	int getCounterMode();
+	
 
-    public String getViewParam(String var1);
+	/**
+	 * 设置属性
+	 * 
+	 * @param strName
+	 * @param objValue
+	 */
+	void setAttribute(String strName, Object objValue);
 
-    public Iterator<String> getViewParamNames();
+	/**
+	 * 获取属性
+	 * 
+	 * @param strName
+	 * @return
+	 */
+	Object getAttribute(String strName);
 
-    public int getAccUserMode();
+	/**
+	 * 获取导航视图标识
+	 * 
+	 * @return
+	 */
+	String getDRViewId();
 
-    public String getAccessKey();
+	/**
+	 * 设置视图参数
+	 * 
+	 * @param strKey
+	 * @param objValue
+	 */
+	void setViewParam(String strKey, String objValue);
 
-    public String getEnableMode();
+	/**
+	 * 设置视图参数
+	 * 
+	 * @param strKey
+	 * @return
+	 */
+	String getViewParam(String strKey);
 
-    public String getTestEnableDEActionName();
+	/**
+	 * 获取视图参数的名称集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<String> getViewParamNames();
 
-    public String getTestEnableDEOPPriv();
+	/**
+	 * 获取功能访问模式
+	 * 
+	 * @return
+	 */
+	int getAccUserMode();
 
-    public String getTextLanResTag();
+	/**
+	 * 获取功能访问资源标识
+	 * 
+	 * @return
+	 */
+	String getAccessKey();
 
-    public String getDataTreeId();
+	/**
+	 * 获取启用模式
+	 * 
+	 * @return
+	 */
+	String getEnableMode();
+
+	/**
+	 * 获取判断启用实体操作名称
+	 * 
+	 * @return
+	 */
+	String getTestEnableDEActionName();
+
+	/**
+	 * 获取判断启用实体操作标识
+	 * 
+	 * @return
+	 */
+	String getTestEnableDEOPPriv();
+	
+	/**
+	 * 获取文本语言资源标识
+	 * 
+	 * @return
+	 */
+	String getTextLanResTag();
+	
+	
+	
+	/**
+	 * 获取数据树标识
+	 * @return
+	 */
+	String getDataTreeId();
 }
-

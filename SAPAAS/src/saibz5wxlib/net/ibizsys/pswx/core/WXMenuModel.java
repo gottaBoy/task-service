@@ -1,76 +1,90 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.ModelBaseImpl
- *  net.ibizsys.pswx.core.IWXAccount
- *  net.ibizsys.pswx.core.IWXAccountModel
- *  net.ibizsys.pswx.core.IWXEntApp
- *  net.ibizsys.pswx.core.IWXEntAppModel
- *  net.ibizsys.pswx.core.IWXMenuItem
- *  net.ibizsys.pswx.core.IWXMenuModel
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.pswx.core;
 
 import java.util.Iterator;
+
 import net.ibizsys.paas.core.ModelBaseImpl;
-import net.ibizsys.pswx.core.IWXAccount;
-import net.ibizsys.pswx.core.IWXAccountModel;
-import net.ibizsys.pswx.core.IWXEntApp;
-import net.ibizsys.pswx.core.IWXEntAppModel;
-import net.ibizsys.pswx.core.IWXMenuItem;
-import net.ibizsys.pswx.core.IWXMenuModel;
-import net.ibizsys.pswx.core.WXMenuRootItem;
 import net.sf.json.JSONObject;
 
-public class WXMenuModel
-extends ModelBaseImpl
-implements IWXMenuModel {
-    private WXMenuRootItem wxMenuRootItem = new WXMenuRootItem();
-    private IWXAccountModel iWXAccountModel = null;
-    private IWXEntAppModel iWXEntAppModel = null;
+/**
+ * 应用菜单模型基类
+ * 
+ * @author lionlau
+ * 
+ */
+public class WXMenuModel extends ModelBaseImpl implements IWXMenuModel {
 
-    public void init(IWXAccountModel iWXAccountModel, IWXEntAppModel iWXEntAppModel) throws Exception {
-        this.iWXAccountModel = iWXAccountModel;
-        this.iWXEntAppModel = iWXEntAppModel;
-        this.onInit();
-    }
+	private WXMenuRootItem wxMenuRootItem = new WXMenuRootItem();
+	private IWXAccountModel iWXAccountModel = null;
+	private IWXEntAppModel iWXEntAppModel = null;
 
-    public void setId(String strId) {
-        this.strId = strId;
-    }
+	/**
+	 * 初始化
+	 * 
+	 * @param iWXAccountModel
+	 * @param iWXEntAppModel
+	 * @throws Exception
+	 */
+	public void init(IWXAccountModel iWXAccountModel, IWXEntAppModel iWXEntAppModel) throws Exception {
+		this.iWXAccountModel = iWXAccountModel;
+		this.iWXEntAppModel = iWXEntAppModel;
+		this.onInit();
+	}
 
-    public void setName(String strName) {
-        this.strName = strName;
-    }
+	/**
+	 * 设置菜单标识
+	 * 
+	 * @param strId
+	 */
+	public void setId(String strId) {
+		this.strId = strId;
+	}
 
-    public WXMenuRootItem getRootItem() {
-        return this.wxMenuRootItem;
-    }
+	/**
+	 * 设置菜单名称
+	 * 
+	 * @param strId
+	 */
+	public void setName(String strName) {
+		this.strName = strName;
+	}
 
-    public Iterator<IWXMenuItem> getWXMenuItems() {
-        return this.getRootItem().getItems().iterator();
-    }
+	/**
+	 * 获取菜单根节点
+	 * 
+	 * @return
+	 */
+	public WXMenuRootItem getRootItem() {
+		return this.wxMenuRootItem;
+	}
 
-    public IWXAccount getWXAccount() {
-        return this.getWXAccountModel();
-    }
+	@Override
+	public Iterator<IWXMenuItem> getWXMenuItems() {
+		return getRootItem().getItems().iterator();
+	}
 
-    public IWXEntApp getWXEntApp() {
-        return this.getWXEntAppModel();
-    }
+	@Override
+	public IWXAccount getWXAccount() {
+		return this.getWXAccountModel();
+	}
 
-    public IWXAccountModel getWXAccountModel() {
-        return this.iWXAccountModel;
-    }
+	@Override
+	public IWXEntApp getWXEntApp() {
+		return this.getWXEntAppModel();
+	}
 
-    public IWXEntAppModel getWXEntAppModel() {
-        return this.iWXEntAppModel;
-    }
+	@Override
+	public IWXAccountModel getWXAccountModel() {
+		return this.iWXAccountModel;
+	}
 
-    public JSONObject toJSON() {
-        return this.wxMenuRootItem.toJSON();
-    }
+	@Override
+	public IWXEntAppModel getWXEntAppModel() {
+		return this.iWXEntAppModel;
+	}
+
+	@Override
+	public JSONObject toJSON() {
+		return this.wxMenuRootItem.toJSON();
+	}
+
 }
-

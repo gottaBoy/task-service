@@ -116,9 +116,9 @@ implements IPSSysServiceAPIService {
 
     @Override
     protected List<PSSysServiceAPI> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysServiceAPI> list = new ArrayList<PSSysServiceAPI>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysServiceAPI> items = this.listByPSModule(parent);

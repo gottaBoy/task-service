@@ -114,7 +114,7 @@ implements IPSCodeItemService {
     @Override
     protected List<PSCodeItem> onListAll() throws Exception {
         ArrayList<PSCodeItem> list = new ArrayList<PSCodeItem>();
-        List pscodelists = PSModelServiceUtil.getInstance().getPSCodeListService().listAll();
+        List<PSCodeList> pscodelists = PSModelServiceUtil.getInstance().getPSCodeListService().listAll();
         if (pscodelists != null) {
             for (PSCodeList parent : pscodelists) {
                 List<PSCodeItem> items = this.listByPSCodeList(parent);

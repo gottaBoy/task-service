@@ -1,12 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.appmodel;
 
-import net.ibizsys.paas.appmodel.IAppViewModel;
-
-public interface IAppDEViewModel
-extends IAppViewModel {
-    public String getDEViewId();
+/**
+ * 实体应用视图模型接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IAppDEViewModel extends IAppViewModel {
+	/**
+	 * 获取实体视图标识
+	 * 
+	 * @return
+	 */
+	String getDEViewId();
 }
-

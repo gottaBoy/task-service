@@ -1,38 +1,104 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.action;
 
 import net.ibizsys.model.core.IPSModelObject;
 import net.ibizsys.model.dataentity.IPSDataEntity;
-import net.ibizsys.model.dataentity.action.IPSDEAction;
 import net.ibizsys.model.dataentity.logic.IPSDELogic;
 
-public interface IPSDEActionLogic
-extends IPSModelObject {
-    public static final String ATTACHMODE_BEFORE = "BEFORE";
-    public static final String ATTACHMODE_AFTER = "AFTER";
 
-    public IPSDEAction getPSDEAction();
+/**
+ * 实体行为附加逻辑对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSDEActionLogic extends IPSModelObject {
+	/**
+	 * 附加位置：执行之前
+	 */
+	public final static String ATTACHMODE_BEFORE = "BEFORE";
 
-    public String getAttachMode();
+	/**
+	 * 附加位置：执行之后
+	 */
+	public final static String ATTACHMODE_AFTER = "AFTER";
 
-    public String getPSDELogicId();
+	
+	
+	/**
+	 * 获取实体行为
+	 * @return
+	 */
+	IPSDEAction getPSDEAction();
+	
+	/**
+	 * 获取附加模式
+	 * 
+	 * @return
+	 */
+	String getAttachMode();
 
-    public String getPSDELogicName();
+	/**
+	 * 获取实体逻辑表标识
+	 * 
+	 * @return
+	 */
+	String getPSDELogicId();
 
-    public IPSDELogic getPSDELogic() throws Exception;
+	/**
+	 * 获取实体逻辑表名称
+	 * 
+	 * @return
+	 */
+	String getPSDELogicName();
 
-    public boolean isInternalLogic();
+	/**
+	 * 获取实体逻辑对象
+	 * 
+	 * @return
+	 */
+	IPSDELogic getPSDELogic() throws Exception;
 
-    public IPSDataEntity getDstPSDE() throws Exception;
+	/**
+	 * 是否为内部逻辑
+	 * 
+	 * @return
+	 */
+	boolean isInternalLogic();
 
-    public IPSDEAction getDstPSDEAction() throws Exception;
+	/**
+	 * 获取附加实体
+	 * 
+	 * @return
+	 */
+	IPSDataEntity getDstPSDE() throws Exception;
 
-    public boolean isValid();
+	/**
+	 * 获取附加实体行为
+	 * 
+	 * @return
+	 */
+	IPSDEAction getDstPSDEAction() throws Exception;
 
-    public boolean isCloneParam();
-
-    public boolean isIgnoreException();
+	/**
+	 * 是否启用
+	 * 
+	 * @return
+	 */
+	boolean isValid();
+	
+	
+	
+	/**
+	 * 是否克隆传入参数
+	 * @return
+	 */
+	boolean isCloneParam();
+	
+	
+	
+	/**
+	 * 是否忽略处理异常
+	 * @return
+	 */
+	boolean isIgnoreException();
 }
-

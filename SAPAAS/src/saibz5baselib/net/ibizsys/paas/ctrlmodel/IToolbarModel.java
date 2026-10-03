@@ -1,11 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import net.ibizsys.paas.control.toolbar.IToolbar;
 
-public interface IToolbarModel
-extends IToolbar {
-}
+/**
+ * 工具栏部件模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IToolbarModel extends IToolbar{
 
+}

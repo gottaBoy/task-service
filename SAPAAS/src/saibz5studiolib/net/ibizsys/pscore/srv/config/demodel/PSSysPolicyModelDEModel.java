@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSSysPolicyModelDEModelBase;
 
 public class PSSysPolicyModelDEModel
 extends PSSysPolicyModelDEModelBase {
+
+    public PSSysPolicyModelDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

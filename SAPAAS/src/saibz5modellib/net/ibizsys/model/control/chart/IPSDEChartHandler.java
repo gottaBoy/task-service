@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.chart;
 
 import net.ibizsys.model.control.ajax.IPSMDAjaxControlHandler;
 
-public interface IPSDEChartHandler
-extends IPSMDAjaxControlHandler {
-}
 
+/**
+ * 数据图表处理对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDEChartHandler extends IPSMDAjaxControlHandler
+{
+
+}

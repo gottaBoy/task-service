@@ -82,7 +82,7 @@ extends PSSysIssueServiceBase {
                 SqlParamList sqlParamList = new SqlParamList();
                 sqlParamList.addString(pSSystem2.getPSSystemId());
                 ArrayList arrayList = PSSysIssueService.this.getDAO().executeRawSelectSql(null, string, sqlParamList);
-                callResult.setUserObject((Object)DataObject.getIntegerValue((Object)((IEntity)arrayList.get(0)).get("CNT"), (Integer)0));
+                callResult.setUserObject((Object)DataObject.getIntegerValue((Object)((java.util.Map)arrayList.get(0)).get("CNT"), (Integer)0));
             }
         });
         return (Integer)callResult.getUserObject();
@@ -90,7 +90,7 @@ extends PSSysIssueServiceBase {
 
     public void logPSSysIssue(PSSysIssue pSSysIssue) throws Exception {
         pSSysIssue.setSessionFactory(this.getSessionFactory());
-        this.onTestCreate((IEntity)pSSysIssue);
+        this.onTestCreate(pSSysIssue);
         if (this.fillEntityKeyValue(pSSysIssue, false)) {
             int n = this.checkKey(pSSysIssue);
             switch (n) {
@@ -124,12 +124,12 @@ extends PSSysIssueServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysIssueService.this.setLast((IEntity)pSSysIssue2, (IEntity)EMPTYLAST, true);
-                PSSysIssueService.this.fillEntityFullInfo((IEntity)pSSysIssue2, true);
-                PSSysIssueService.this.onBeforeCreate((IEntity)pSSysIssue2);
-                PSSysIssueService.this.internalCreate((IEntity)pSSysIssue2);
-                PSSysIssueService.this.onAfterCreate((IEntity)pSSysIssue2);
-                PSSysIssueService.this.resetLast((IEntity)pSSysIssue2);
+                PSSysIssueService.this.setLast(pSSysIssue2, EMPTYLAST, true);
+                PSSysIssueService.this.fillEntityFullInfo(pSSysIssue2, true);
+                PSSysIssueService.this.onBeforeCreate(pSSysIssue2);
+                PSSysIssueService.this.internalCreate(pSSysIssue2);
+                PSSysIssueService.this.onAfterCreate(pSSysIssue2);
+                PSSysIssueService.this.resetLast(pSSysIssue2);
             }
         });
     }

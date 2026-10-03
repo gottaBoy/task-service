@@ -1,18 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.view.IBackendUIActionModel
- */
 package net.ibizsys.paas.view;
 
-import net.ibizsys.paas.view.IBackendUIActionModel;
-import net.ibizsys.paas.view.IDynaBackendUIAction;
-import net.ibizsys.paas.view.IDynaUIActionModel;
+/**
+ * 动态后台界面行为模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaBackendUIActionModel extends IDynaBackendUIAction,IDynaUIActionModel,IBackendUIActionModel{
 
-public interface IDynaBackendUIActionModel
-extends IDynaBackendUIAction,
-IDynaUIActionModel,
-IBackendUIActionModel {
+	
 }
-

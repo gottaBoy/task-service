@@ -75,7 +75,7 @@ implements IPSSysTCAssertService {
     @Override
     protected List<PSSysTCAssert> onListAll() throws Exception {
         ArrayList<PSSysTCAssert> list = new ArrayList<PSSysTCAssert>();
-        List pssystestcases = PSModelServiceUtil.getInstance().getPSSysTestCaseService().listAll();
+        List<PSSysTestCase> pssystestcases = PSModelServiceUtil.getInstance().getPSSysTestCaseService().listAll();
         if (pssystestcases != null) {
             for (PSSysTestCase parent : pssystestcases) {
                 List<PSSysTCAssert> items = this.listByPSSysTestCase(parent);

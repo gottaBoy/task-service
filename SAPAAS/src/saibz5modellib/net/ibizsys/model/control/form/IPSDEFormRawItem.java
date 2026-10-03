@@ -1,16 +1,30 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.form;
 
-import net.ibizsys.model.control.form.IPSDEFormDetail;
 
-public interface IPSDEFormRawItem
-extends IPSDEFormDetail {
-    public String getRawContent();
-
-    public double getRawContentHeight();
-
-    public double getRawContentWidth();
+/**
+ * 实体表单直接内容对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEFormRawItem extends IPSDEFormDetail
+{
+	/**
+	 * 获取直接内容
+	 * @return
+	 */
+	String getRawContent();
+	
+	
+	/**
+	 * 获取直接内容高度
+	 * @return
+	 */
+	double getRawContentHeight();
+	
+	
+	/**
+	 * 获取直接内容宽度
+	 * @return
+	 */
+	double getRawContentWidth();
 }
-

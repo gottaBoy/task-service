@@ -1,12 +1,21 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app;
 
-import net.ibizsys.model.app.IPSApplicationObject;
 
-public interface IPSAppUtilPage
-extends IPSApplicationObject {
-    public String getPageUrl();
+/**
+ * 应用功能页面对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSAppUtilPage extends IPSApplicationObject
+{
+	
+	
+	
+	
+	/**
+	 * 获取页面路径
+	 * @return
+	 */
+	String getPageUrl();
+
 }
-

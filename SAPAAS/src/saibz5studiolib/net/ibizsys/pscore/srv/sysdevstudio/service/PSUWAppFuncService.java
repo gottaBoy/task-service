@@ -20,8 +20,6 @@ package net.ibizsys.pscore.srv.sysdevstudio.service;
 import net.ibizsys.paas.data.IDataObject;
 import net.ibizsys.paas.demodel.DEModelGlobal;
 import net.ibizsys.paas.demodel.IDataEntityModel;
-import net.ibizsys.paas.entity.EntityBase;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.web.WebContext;
@@ -55,7 +53,7 @@ extends PSUWAppFuncServiceBase {
                 PSAppMenuItem pSAppMenuItem = new PSAppMenuItem();
                 pSAppMenuItem.setPSAppMenuItemId(string2);
                 PSAppMenuItemService pSAppMenuItemService = (PSAppMenuItemService)ServiceGlobal.getService(PSAppMenuItemService.class, (SessionFactory)this.getSessionFactory());
-                if (pSAppMenuItemService.autoGet((IEntity)pSAppMenuItem, true) && pSAppMenuItem.getPSAppMenu() != null) {
+                if (pSAppMenuItemService.autoGet(pSAppMenuItem, true) && pSAppMenuItem.getPSAppMenu() != null) {
                     pSUWAppFunc.setPSSysAppId(pSAppMenuItem.getPSAppMenu().getPSSysAppId());
                 }
             }
@@ -77,30 +75,29 @@ extends PSUWAppFuncServiceBase {
 
     @Override
     protected void onFinishStepSelectview(PSUWAppFunc pSUWAppFunc) throws Exception {
-        EntityBase entityBase;
         PSUWAppFunc pSUWAppFunc2 = new PSUWAppFunc();
         pSUWAppFunc2.setPSUWAppFuncId(pSUWAppFunc.getPSUWAppFuncId());
-        this.get((IEntity)pSUWAppFunc2);
+        this.get(pSUWAppFunc2);
         if (StringHelper.compare((String)pSUWAppFunc.getAppViewType(), (String)"APPDEVIEW", (boolean)true) == 0) {
-            entityBase = new PSAppDEView();
-            entityBase.setPSDEViewBaseId(pSUWAppFunc.getPSDEViewBaseId());
-            entityBase.setPSSysAppId(pSUWAppFunc.getPSSysAppId());
-            entityBase.setSessionFactory(this.getSessionFactory());
-            if (!entityBase.select(true)) {
+            PSAppDEView appDEView = new PSAppDEView();
+            appDEView.setPSDEViewBaseId(pSUWAppFunc.getPSDEViewBaseId());
+            appDEView.setPSSysAppId(pSUWAppFunc.getPSSysAppId());
+            appDEView.setSessionFactory(this.getSessionFactory());
+            if (!appDEView.select(true)) {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(pSUWAppFunc.getPSDEId());
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(pSUWAppFunc.getPSSysAppId());
                 PSAppModuleService pSAppModuleService = (PSAppModuleService)ServiceGlobal.getService(PSAppModuleService.class, (SessionFactory)this.getSessionFactory());
                 PSAppModule pSAppModule = pSAppModuleService.getDefaultByPSDataEntity(pSSysApp, pSDataEntity);
-                entityBase.setPSDEViewBaseName(pSUWAppFunc.getPSDEViewBaseName());
-                entityBase.setPSAppModuleId(pSAppModule.getPSAppModuleId());
-                entityBase.setPSAppModuleName(pSAppModule.getPSAppModuleName());
-                entityBase.setPSSysAppName(pSAppModule.getPSSysAppName());
-                entityBase.create();
+                appDEView.setPSDEViewBaseName(pSUWAppFunc.getPSDEViewBaseName());
+                appDEView.setPSAppModuleId(pSAppModule.getPSAppModuleId());
+                appDEView.setPSAppModuleName(pSAppModule.getPSAppModuleName());
+                appDEView.setPSSysAppName(pSAppModule.getPSSysAppName());
+                appDEView.create();
             }
-            pSUWAppFunc.setPSAppViewId(entityBase.getPSAppDEViewId());
-            pSUWAppFunc.setPSAppViewName(entityBase.getPSAppDEViewName());
+            pSUWAppFunc.setPSAppViewId(appDEView.getPSAppDEViewId());
+            pSUWAppFunc.setPSAppViewName(appDEView.getPSAppDEViewName());
         } else if (StringHelper.compare((String)pSUWAppFunc.getAppViewType(), (String)"APPINDEXVIEW", (boolean)true) == 0) {
             pSUWAppFunc.setPSAppViewId(pSUWAppFunc.getPSAppIndexViewId());
             pSUWAppFunc.setPSAppViewName(pSUWAppFunc.getPSAppIndexViewName());
@@ -108,17 +105,17 @@ extends PSUWAppFuncServiceBase {
             pSUWAppFunc.setPSAppViewId(pSUWAppFunc.getPSAppPortalViewId());
             pSUWAppFunc.setPSAppViewName(pSUWAppFunc.getPSAppPortalViewName());
         }
-        entityBase = new PSAppFunc();
-        entityBase.setSessionFactory(this.getSessionFactory());
-        entityBase.setAppFuncType(pSUWAppFunc2.getAppFuncType());
-        entityBase.setPSSysAppId(pSUWAppFunc.getPSSysAppId());
-        entityBase.setPSAppViewId(pSUWAppFunc.getPSAppViewId());
-        if (entityBase.select(true)) {
-            pSUWAppFunc.setPSAppFuncId(entityBase.getPSAppFuncId());
-            pSUWAppFunc.setPSAppFuncName(entityBase.getPSAppFuncName());
-            pSUWAppFunc.setPSUWAppFuncName(entityBase.getPSAppFuncName());
-            pSUWAppFunc.setTooltipInfo(entityBase.getTooltipInfo());
-            pSUWAppFunc.setMemo(entityBase.getMemo());
+        PSAppFunc appFunc = new PSAppFunc();
+        appFunc.setSessionFactory(this.getSessionFactory());
+        appFunc.setAppFuncType(pSUWAppFunc2.getAppFuncType());
+        appFunc.setPSSysAppId(pSUWAppFunc.getPSSysAppId());
+        appFunc.setPSAppViewId(pSUWAppFunc.getPSAppViewId());
+        if (appFunc.select(true)) {
+            pSUWAppFunc.setPSAppFuncId(appFunc.getPSAppFuncId());
+            pSUWAppFunc.setPSAppFuncName(appFunc.getPSAppFuncName());
+            pSUWAppFunc.setPSUWAppFuncName(appFunc.getPSAppFuncName());
+            pSUWAppFunc.setTooltipInfo(appFunc.getTooltipInfo());
+            pSUWAppFunc.setMemo(appFunc.getMemo());
         }
         pSUWAppFunc.setSRFNextForm("finish");
         this.update(pSUWAppFunc);
@@ -133,7 +130,7 @@ extends PSUWAppFuncServiceBase {
     protected void onFinishWizard(PSUWAppFunc pSUWAppFunc) throws Exception {
         PSUWAppFunc pSUWAppFunc2 = new PSUWAppFunc();
         pSUWAppFunc2.setPSUWAppFuncId(pSUWAppFunc.getPSUWAppFuncId());
-        this.get((IEntity)pSUWAppFunc2);
+        this.get(pSUWAppFunc2);
         PSAppFunc pSAppFunc = new PSAppFunc();
         pSUWAppFunc2.copyTo((IDataObject)pSAppFunc, false);
         pSAppFunc.setPSAppFuncName(pSUWAppFunc2.getPSUWAppFuncName());
@@ -155,4 +152,3 @@ extends PSUWAppFuncServiceBase {
         this.update(pSUWAppFunc);
     }
 }
-

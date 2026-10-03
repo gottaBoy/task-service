@@ -1127,7 +1127,7 @@ implements Serializable {
                 PSDEViewBase pSDEViewBase = new PSDEViewBase();
                 pSDEViewBase.setPSDEViewBaseId(this.getPSDEViewBaseId());
                 PSDEViewBaseService pSDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewBaseService.autoGet((IEntity)pSDEViewBase);
+                pSDEViewBaseService.autoGet(pSDEViewBase);
                 this.psdeviewbase = pSDEViewBase;
             }
             return this.psdeviewbase;
@@ -1153,7 +1153,7 @@ implements Serializable {
                 PSDEViewGroup pSDEViewGroup = new PSDEViewGroup();
                 pSDEViewGroup.setPSDEViewGroupId(this.getPSDEViewGroupId());
                 PSDEViewGroupService pSDEViewGroupService = (PSDEViewGroupService)ServiceGlobal.getService(PSDEViewGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewGroupService.autoGet((IEntity)pSDEViewGroup);
+                pSDEViewGroupService.autoGet(pSDEViewGroup);
                 this.psdeviewgroup = pSDEViewGroup;
             }
             return this.psdeviewgroup;

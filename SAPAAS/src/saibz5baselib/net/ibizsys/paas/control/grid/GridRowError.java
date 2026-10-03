@@ -1,56 +1,90 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONArray
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.control.grid;
 
 import java.util.ArrayList;
 import java.util.Vector;
-import net.ibizsys.paas.control.grid.GridEditItemError;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+/**
+ * 表格行错误对象
+ * 
+ * @author lionlau
+ *
+ */
 public class GridRowError {
-    private ArrayList<GridEditItemError> gridEditItemErrorList = new ArrayList();
-    private String strErrorInfo = "";
+	private ArrayList<GridEditItemError> gridEditItemErrorList = new ArrayList<GridEditItemError>();
+	private String strErrorInfo = "";
 
-    public void register(String strGridEditItemId, String strCaption, String strCapLanId, int nErrorType, String strErrorInfo) {
-        GridEditItemError gridEditItemError = new GridEditItemError();
-        gridEditItemError.setGridEditItemId(strGridEditItemId);
-        gridEditItemError.setErrorType(nErrorType);
-        gridEditItemError.setErrorInfo(strErrorInfo);
-        this.gridEditItemErrorList.add(gridEditItemError);
-    }
+	/**
+	 * 注册错误信息
+	 * 
+	 * @param strGridEditItemId 表格行项标识
+	 * @param strCaption 标题
+	 * @param strCapLanId 标题多语言标识<保留参数，暂时无效>
+	 * @param nErrorType 错误类型
+	 * @param strErrorInfo 错误信息
+	 */
+	public void register(String strGridEditItemId, String strCaption, String strCapLanId, int nErrorType, String strErrorInfo) {
+		GridEditItemError gridEditItemError = new GridEditItemError();
+		gridEditItemError.setGridEditItemId(strGridEditItemId);
+		gridEditItemError.setErrorType(nErrorType);
+		gridEditItemError.setErrorInfo(strErrorInfo);
+		gridEditItemErrorList.add(gridEditItemError);
+	}
 
-    public ArrayList<GridEditItemError> getGridEditItemErrorList() {
-        return this.gridEditItemErrorList;
-    }
+	/**
+	 * 获取表格行项错误清单
+	 * 
+	 * @return
+	 */
+	public ArrayList<GridEditItemError> getGridEditItemErrorList() {
+		return this.gridEditItemErrorList;
+	}
 
-    public boolean hasError() {
-        return this.gridEditItemErrorList.size() > 0;
-    }
+	/**
+	 * 表格行是否有错误
+	 * 
+	 * @return
+	 */
+	public boolean hasError() {
+		return this.gridEditItemErrorList.size() > 0;
+	}
 
-    public JSONObject toJSONObject(JSONObject jsonObject) throws Exception {
-        if (jsonObject == null) {
-            jsonObject = new JSONObject();
-        }
-        Vector<JSONObject> arr = new Vector<JSONObject>();
-        for (GridEditItemError gridEditItemError : this.gridEditItemErrorList) {
-            arr.add(gridEditItemError.toJSONObject());
-        }
-        jsonObject.put("items", (Object)JSONArray.fromArray((Object[])arr.toArray()));
-        return jsonObject;
-    }
+	/**
+	 * 导出到JSON对象
+	 * 
+	 * @param jsonObject
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject toJSONObject(JSONObject jsonObject) throws Exception {
+		if (jsonObject == null) jsonObject = new JSONObject();
+		Vector<JSONObject> arr = new Vector<JSONObject>();
+		for (GridEditItemError gridEditItemError : gridEditItemErrorList) {
+			arr.add(gridEditItemError.toJSONObject());
+		}
 
-    public String getErrorInfo() {
-        return this.strErrorInfo;
-    }
+		jsonObject.put("items", JSONArray.fromArray(arr.toArray()));
+		return jsonObject;
+	}
 
-    public void setErrorInfo(String strErrorInfo) {
-        this.strErrorInfo = strErrorInfo;
-    }
+	/**
+	 * 获取错误信息
+	 * 
+	 * @return
+	 */
+	public String getErrorInfo() {
+		return strErrorInfo;
+	}
+
+	/**
+	 * 设置错误信息
+	 * 
+	 * @param strErrorInfo
+	 */
+	public void setErrorInfo(String strErrorInfo) {
+		this.strErrorInfo = strErrorInfo;
+	}
+
 }
-

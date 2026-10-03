@@ -2208,7 +2208,7 @@ implements Serializable {
                 PSDCCodeSnippet pSDCCodeSnippet = new PSDCCodeSnippet();
                 pSDCCodeSnippet.setPSDCCodeSnippetId(this.getPSDCCodeSnippetId());
                 PSDCCodeSnippetService pSDCCodeSnippetService = (PSDCCodeSnippetService)ServiceGlobal.getService(PSDCCodeSnippetService.class, (SessionFactory)this.getSessionFactory());
-                pSDCCodeSnippetService.autoGet((IEntity)pSDCCodeSnippet);
+                pSDCCodeSnippetService.autoGet(pSDCCodeSnippet);
                 this.psdccodesnippet = pSDCCodeSnippet;
             }
             return this.psdccodesnippet;
@@ -2234,7 +2234,7 @@ implements Serializable {
                 PSPFStyle pSPFStyle = new PSPFStyle();
                 pSPFStyle.setPSPFStyleId(this.getPSPFStyleId());
                 PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)this.getSessionFactory());
-                pSPFStyleService.autoGet((IEntity)pSPFStyle);
+                pSPFStyleService.autoGet(pSPFStyle);
                 this.pspfstyle = pSPFStyle;
             }
             return this.pspfstyle;
@@ -2260,7 +2260,7 @@ implements Serializable {
                 PSPF pSPF = new PSPF();
                 pSPF.setPSPFId(this.getPSPFId());
                 PSPFService pSPFService = (PSPFService)ServiceGlobal.getService(PSPFService.class, (SessionFactory)this.getSessionFactory());
-                pSPFService.autoGet((IEntity)pSPF);
+                pSPFService.autoGet(pSPF);
                 this.pspf = pSPF;
             }
             return this.pspf;
@@ -2286,7 +2286,7 @@ implements Serializable {
                 PSSFStyle pSSFStyle = new PSSFStyle();
                 pSSFStyle.setPSSFStyleId(this.getPSSFStyleId());
                 PSSFStyleService pSSFStyleService = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.getSessionFactory());
-                pSSFStyleService.autoGet((IEntity)pSSFStyle);
+                pSSFStyleService.autoGet(pSSFStyle);
                 this.pssfstyle = pSSFStyle;
             }
             return this.pssfstyle;
@@ -2312,7 +2312,7 @@ implements Serializable {
                 PSSF pSSF = new PSSF();
                 pSSF.setPSSFId(this.getPSSFId());
                 PSSFService pSSFService = (PSSFService)ServiceGlobal.getService(PSSFService.class, (SessionFactory)this.getSessionFactory());
-                pSSFService.autoGet((IEntity)pSSF);
+                pSSFService.autoGet(pSSF);
                 this.pssf = pSSF;
             }
             return this.pssf;
@@ -2338,7 +2338,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

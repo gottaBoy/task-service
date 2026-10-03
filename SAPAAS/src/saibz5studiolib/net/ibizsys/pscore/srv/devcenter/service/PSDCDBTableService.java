@@ -71,7 +71,7 @@ extends PSDCDBTableServiceBase {
         pSDCDBTable2.set("psdevcenterid", this.getWebContext().getCurOrgId());
         pSDCDBTable2.setPSDCDBTableId(pSDCDBTable.getPSDCDBTableId());
         try {
-            this.executeAction("X2G_GETCODE", (IEntity)pSDCDBTable2);
+            this.executeAction("X2G_GETCODE", pSDCDBTable2);
         }
         catch (Exception exception) {
             log.error((Object)exception);

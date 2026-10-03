@@ -189,7 +189,7 @@ extends PSDCProductService<PSDCSysProduct> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCSysProductId_Default((IEntity)pSDCSysProduct, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCSysProductId_Default(pSDCSysProduct, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCSYSPRODUCTID");
@@ -214,7 +214,7 @@ extends PSDCProductService<PSDCSysProduct> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCSysProductName_Default((IEntity)pSDCSysProduct, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCSysProductName_Default(pSDCSysProduct, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCSYSPRODUCTNAME");

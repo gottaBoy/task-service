@@ -1,29 +1,50 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
-import net.ibizsys.paas.codelist.ICodeList;
-import net.ibizsys.paas.sysmodel.CodeListGlobal;
 import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
+import net.ibizsys.paas.sysmodel.CodeListGlobal;
 
-@CodeList(id="02e68ecd17390b6a576481dc2b7105fb", name="\u5de5\u4f5c\u6d41\u914d\u7f6e\u72b6\u6001", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="1", text="\u6b63\u5e38\u72b6\u6001", realtext="\u6b63\u5e38\u72b6\u6001"), @CodeItem(value="2", text="\u6682\u505c\u72b6\u6001", realtext="\u6682\u505c\u72b6\u6001")})
-public abstract class WFConfigStateCodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String ITEM_1 = "1";
-    public static final String ITEM_2 = "2";
+
+@CodeList(id="02e68ecd17390b6a576481dc2b7105fb",name="工作流配置状态",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="1",text="正常状态",realtext="正常状态")
+    ,@CodeItem(value="2",text="暂停状态",realtext="暂停状态")
+})
+
+
+/**
+ * 静态代码表[工作流配置状态]模型基类
+ */
+public abstract class WFConfigStateCodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  正常状态，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_1 = "1";
+    /**
+     *  暂停状态，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_2 = "2";
 
     public WFConfigStateCodeListModelBase() {
+        super();
         this.initAnnotation(WFConfigStateCodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.WFConfigStateCodeListModel", this);
     }
 
-    public static ICodeList getInstance() throws Exception {
+    /**
+     * 获取当前代码表对象实例
+     */
+    public static net.ibizsys.paas.codelist.ICodeList getInstance() throws Exception {
         return CodeListGlobal.getCodeList("net.ibizsys.psrt.srv.codelist.WFConfigStateCodeListModel");
     }
-}
 
+}

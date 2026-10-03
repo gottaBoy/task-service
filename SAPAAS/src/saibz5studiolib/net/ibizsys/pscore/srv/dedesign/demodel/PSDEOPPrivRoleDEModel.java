@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEOPPrivRoleDEModelBase;
 
 public class PSDEOPPrivRoleDEModel
 extends PSDEOPPrivRoleDEModelBase {
+
+    public PSDEOPPrivRoleDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

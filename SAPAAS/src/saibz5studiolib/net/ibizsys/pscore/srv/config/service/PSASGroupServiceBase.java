@@ -138,14 +138,14 @@ extends PSCoreSysServiceBase<PSASGroup> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_PSSvrDomain(pSASGroup, pSSvrDomain);
             return;
         }
-        super.onFillParentInfo((IEntity)pSASGroup, string, string2, string3);
+        super.onFillParentInfo(pSASGroup, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSASGroup, bl);
+        super.onFillEntityFullInfo(pSASGroup, bl);
         this.onFillEntityFullInfo_PSSvrDomain(pSASGroup, bl);
     }
 
@@ -169,7 +169,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
     }
 
     protected void onWriteBackParent(PSASGroup pSASGroup, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSASGroup, bl);
+        super.onWriteBackParent(pSASGroup, bl);
     }
 
     public ArrayList<PSASGroup> selectByPSSvrDomain(PSSvrDomainBase pSSvrDomainBase) throws Exception {
@@ -200,8 +200,8 @@ extends PSCoreSysServiceBase<PSASGroup> {
         ArrayList<PSASGroup> arrayList = this.selectByPSSvrDomain(pSSvrDomain, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRDOMAIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrDomain);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSASGROUP_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSASGROUP", iDataEntityModel.getDataInfo((IEntity)pSSvrDomain), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrDomain);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSASGROUP_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSASGROUP", iDataEntityModel.getDataInfo(pSSvrDomain), arrayList.get(0)));
         }
     }
 
@@ -234,7 +234,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
         ArrayList<PSASGroup> arrayList = this.selectByPSSvrDomain(pSSvrDomain);
         this.onBeforeRemoveByPSSvrDomain(pSSvrDomain, arrayList);
         for (PSASGroup pSASGroup : arrayList) {
-            this.remove((IEntity)pSASGroup);
+            this.remove(pSASGroup);
         }
         this.onAfterRemoveByPSSvrDomain(pSSvrDomain, arrayList);
     }
@@ -257,14 +257,14 @@ extends PSCoreSysServiceBase<PSASGroup> {
 
     protected void replaceParentInfo(PSASGroup pSASGroup, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSASGroup, cloneSession);
+        super.replaceParentInfo(pSASGroup, cloneSession);
         if (pSASGroup.getPSSvrDomainId() != null && (iEntity = cloneSession.getEntity("PSSVRDOMAIN", (Object)pSASGroup.getPSSvrDomainId())) != null) {
             this.onFillParentInfo_PSSvrDomain(pSASGroup, (PSSvrDomain)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSASGroup pSASGroup, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSASGroup, bl);
+        super.onRemoveEntityUncopyValues(pSASGroup, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSASGroup pSASGroup, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -324,7 +324,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
         if ((entityFieldError = this.onCheckField_UserName(bl, pSASGroup, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSASGroup, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSASGroup, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AppFolder(boolean bl, PSASGroup pSASGroup, boolean bl2, boolean bl3) throws Exception {
@@ -340,7 +340,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AppFolder_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_AppFolder_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APPFOLDER");
@@ -365,7 +365,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ASState_Default((IEntity)pSASGroup, bl2, bl3);
+            string = this.onTestValueRule_ASState_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ASSTATE");
@@ -390,7 +390,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ASType_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_ASType_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ASTYPE");
@@ -415,7 +415,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_HttpPort_Default((IEntity)pSASGroup, bl2, bl3);
+            string = this.onTestValueRule_HttpPort_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HTTPPORT");
@@ -437,7 +437,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_HttpsPort_Default((IEntity)pSASGroup, bl2, bl3);
+            string = this.onTestValueRule_HttpsPort_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HTTPSPORT");
@@ -462,7 +462,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IPAddr_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_IPAddr_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -484,7 +484,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -506,7 +506,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -531,7 +531,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSASGroupId_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSASGroupId_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSASGROUPID");
@@ -556,7 +556,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSASGroupName_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSASGroupName_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSASGROUPNAME");
@@ -578,7 +578,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -600,7 +600,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefInfo_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_RefInfo_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFINFO");
@@ -622,7 +622,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SSHIPAddr_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_SSHIPAddr_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHIPADDR");
@@ -644,7 +644,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SSHPort_Default((IEntity)pSASGroup, bl2, bl3);
+            string = this.onTestValueRule_SSHPort_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHPORT");
@@ -669,7 +669,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StartCmd_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_StartCmd_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STARTCMD");
@@ -694,7 +694,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StopCmd_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_StopCmd_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STOPCMD");
@@ -719,7 +719,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UsageMode_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_UsageMode_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USAGEMODE");
@@ -741,7 +741,7 @@ extends PSCoreSysServiceBase<PSASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -754,11 +754,11 @@ extends PSCoreSysServiceBase<PSASGroup> {
     }
 
     protected void onSyncEntity(PSASGroup pSASGroup, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSASGroup, bl);
+        super.onSyncEntity(pSASGroup, bl);
     }
 
     protected void onSyncIndexEntities(PSASGroup pSASGroup, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSASGroup, bl);
+        super.onSyncIndexEntities(pSASGroup, bl);
     }
 
     public Object getDataContextValue(PSASGroup pSASGroup, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -766,14 +766,14 @@ extends PSCoreSysServiceBase<PSASGroup> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSASGroup, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSASGroup, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSASGroup pSASGroup, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSASGroup, arrayList, n);
+        super.onExportMajorModel(pSASGroup, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1079,14 +1079,14 @@ extends PSCoreSysServiceBase<PSASGroup> {
 
     protected boolean onMergeChild(String string, String string2, PSASGroup pSASGroup) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSASGroup)) {
+        if (super.onMergeChild(string, string2, pSASGroup)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSASGroup pSASGroup) throws Exception {
-        super.onUpdateParent((IEntity)pSASGroup);
+        super.onUpdateParent(pSASGroup);
     }
 
     @Override

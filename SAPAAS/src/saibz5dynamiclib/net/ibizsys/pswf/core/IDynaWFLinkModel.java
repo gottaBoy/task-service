@@ -1,29 +1,61 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IDynaModel
- *  net.ibizsys.pswf.core.IWFLinkModel
- */
 package net.ibizsys.pswf.core;
 
 import net.ibizsys.paas.core.IDynaModel;
 import net.ibizsys.paas.core.IDynaModelJsonLoader;
-import net.ibizsys.pswf.core.IDynaWFVersionModel;
-import net.ibizsys.pswf.core.IWFLinkModel;
 
-public interface IDynaWFLinkModel
-extends IWFLinkModel,
-IDynaModel,
-IDynaModelJsonLoader {
-    public static final String ATTR_WFLINKCONDS = "wflinkconds";
-    public static final String ATTR_WFLINKROLES = "wflinkroles";
-    public static final String ATTR_FROMWFPROCID = "fromwfprocid";
-    public static final String ATTR_TOWFPROCID = "towfprocid";
-    public static final String ATTR_LOGICNAME = "logicname";
-    public static final String ATTR_NEXTCOND = "nextcond";
-    public static final String ATTR_MODELID = "modelid";
+/**
+ * 动态工作流连接模型接口对象
+ * @author Administrator
+ *
+ */
+public interface IDynaWFLinkModel  extends IWFLinkModel,IDynaModel,IDynaModelJsonLoader {
 
-    public void init(IDynaWFVersionModel var1, Object var2) throws Exception;
+	/**
+	 * 流程连接条件集合
+	 */
+	public final static String ATTR_WFLINKCONDS = "wflinkconds";
+	
+	/**
+	 * 流程连接角色集合
+	 */
+	public final static String ATTR_WFLINKROLES = "wflinkroles";
+	
+	
+	/**
+	 * 源处理标识
+	 */
+	public final static String ATTR_FROMWFPROCID = "fromwfprocid";
+	
+	/**
+	 * 源处理标识
+	 */
+	public final static String ATTR_TOWFPROCID = "towfprocid";
+	
+	
+	/**
+	 * 逻辑名称
+	 */
+	public final static String ATTR_LOGICNAME = "logicname";
+	
+	
+	/**
+	 * 下一步条件
+	 */
+	public final static String ATTR_NEXTCOND = "nextcond";
+	
+	
+	/**
+	 * 模型标识
+	 */
+	public final static String ATTR_MODELID = "modelid";
+	
+	
+	/**
+	 * 初始化
+	 * @param iDynaWFVersionModel
+	 * @param modelObject
+	 * @throws Exception
+	 */
+	void init(IDynaWFVersionModel iDynaWFVersionModel,Object modelObject) throws Exception;
+
 }
-

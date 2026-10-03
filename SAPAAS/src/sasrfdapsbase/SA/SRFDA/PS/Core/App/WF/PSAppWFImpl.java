@@ -233,7 +233,7 @@ implements IPSAppWF {
     @PSModelRTMeta(description="\u5e94\u7528\u5de5\u4f5c\u6d41\u5b9e\u4f53\u96c6\u5408", child=true)
     public Iterator<IPSAppWFDE> getPSAppWFDEs() throws Exception {
         if (this.psAppWFDEList == null) {
-            ArrayList<PSAppWFDEImpl> psAppWFDEList2 = new ArrayList<PSAppWFDEImpl>();
+            ArrayList<IPSAppWFDE> psAppWFDEList2 = new ArrayList<IPSAppWFDE>();
             Iterator<IPSWFDE> psWFDEs = this.getPSWorkflow().getPSWFDEs();
             if (psWFDEs != null) {
                 while (psWFDEs.hasNext()) {
@@ -255,4 +255,3 @@ implements IPSAppWF {
         return this.psAppWFDEList.iterator();
     }
 }
-

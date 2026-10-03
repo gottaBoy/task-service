@@ -4384,7 +4384,7 @@ implements Serializable {
                 PSACHandler pSACHandler = new PSACHandler();
                 pSACHandler.setPSACHandlerId(this.getPSACHandlerId());
                 PSACHandlerService pSACHandlerService = (PSACHandlerService)ServiceGlobal.getService(PSACHandlerService.class, (SessionFactory)this.getSessionFactory());
-                pSACHandlerService.autoGet((IEntity)pSACHandler);
+                pSACHandlerService.autoGet(pSACHandler);
                 this.psachandler = pSACHandler;
             }
             return this.psachandler;
@@ -4410,7 +4410,7 @@ implements Serializable {
                 PSCodeList pSCodeList = new PSCodeList();
                 pSCodeList.setPSCodeListId(this.getCatPSCodeListId());
                 PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.getSessionFactory());
-                pSCodeListService.autoGet((IEntity)pSCodeList);
+                pSCodeListService.autoGet(pSCodeList);
                 this.catpscodelist = pSCodeList;
             }
             return this.catpscodelist;
@@ -4436,7 +4436,7 @@ implements Serializable {
                 PSCtrlLogicGroup pSCtrlLogicGroup = new PSCtrlLogicGroup();
                 pSCtrlLogicGroup.setPSCtrlLogicGroupId(this.getPSCtrlLogicGroupId());
                 PSCtrlLogicGroupService pSCtrlLogicGroupService = (PSCtrlLogicGroupService)ServiceGlobal.getService(PSCtrlLogicGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSCtrlLogicGroupService.autoGet((IEntity)pSCtrlLogicGroup);
+                pSCtrlLogicGroupService.autoGet(pSCtrlLogicGroup);
                 this.psctrllogicgroup = pSCtrlLogicGroup;
             }
             return this.psctrllogicgroup;
@@ -4462,7 +4462,7 @@ implements Serializable {
                 PSCtrlMsg pSCtrlMsg = new PSCtrlMsg();
                 pSCtrlMsg.setPSCtrlMsgId(this.getPSCtrlMsgId());
                 PSCtrlMsgService pSCtrlMsgService = (PSCtrlMsgService)ServiceGlobal.getService(PSCtrlMsgService.class, (SessionFactory)this.getSessionFactory());
-                pSCtrlMsgService.autoGet((IEntity)pSCtrlMsg);
+                pSCtrlMsgService.autoGet(pSCtrlMsg);
                 this.psctrlmsg = pSCtrlMsg;
             }
             return this.psctrlmsg;
@@ -4488,7 +4488,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -4514,7 +4514,7 @@ implements Serializable {
                 PSDEGrid pSDEGrid = new PSDEGrid();
                 pSDEGrid.setPSDEGridId(this.getPSDEGridId());
                 PSDEGridService pSDEGridService = (PSDEGridService)ServiceGlobal.getService(PSDEGridService.class, (SessionFactory)this.getSessionFactory());
-                pSDEGridService.autoGet((IEntity)pSDEGrid);
+                pSDEGridService.autoGet(pSDEGrid);
                 this.psdegrid = pSDEGrid;
             }
             return this.psdegrid;
@@ -4540,7 +4540,7 @@ implements Serializable {
                 PSLanguageRes pSLanguageRes = new PSLanguageRes();
                 pSLanguageRes.setPSLanguageResId(this.getEmptyTextPSLanResId());
                 PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
-                pSLanguageResService.autoGet((IEntity)pSLanguageRes);
+                pSLanguageResService.autoGet(pSLanguageRes);
                 this.emptytextpslanres = pSLanguageRes;
             }
             return this.emptytextpslanres;
@@ -4566,7 +4566,7 @@ implements Serializable {
                 PSSysCounter pSSysCounter = new PSSysCounter();
                 pSSysCounter.setPSSysCounterId(this.getPSSysCounterId());
                 PSSysCounterService pSSysCounterService = (PSSysCounterService)ServiceGlobal.getService(PSSysCounterService.class, (SessionFactory)this.getSessionFactory());
-                pSSysCounterService.autoGet((IEntity)pSSysCounter);
+                pSSysCounterService.autoGet(pSSysCounter);
                 this.pssyscounter = pSSysCounter;
             }
             return this.pssyscounter;
@@ -4592,7 +4592,7 @@ implements Serializable {
                 PSSysCss pSSysCss = new PSSysCss();
                 pSSysCss.setPSSysCssId(this.getPSSysCssId());
                 PSSysCssService pSSysCssService = (PSSysCssService)ServiceGlobal.getService(PSSysCssService.class, (SessionFactory)this.getSessionFactory());
-                pSSysCssService.autoGet((IEntity)pSSysCss);
+                pSSysCssService.autoGet(pSSysCss);
                 this.pssyscss = pSSysCss;
             }
             return this.pssyscss;
@@ -4618,7 +4618,7 @@ implements Serializable {
                 PSSysPFPlugin pSSysPFPlugin = new PSSysPFPlugin();
                 pSSysPFPlugin.setPSSysPFPluginId(this.getPSSysPFPluginId());
                 PSSysPFPluginService pSSysPFPluginService = (PSSysPFPluginService)ServiceGlobal.getService(PSSysPFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysPFPluginService.autoGet((IEntity)pSSysPFPlugin);
+                pSSysPFPluginService.autoGet(pSSysPFPlugin);
                 this.pssyspfplugin = pSSysPFPlugin;
             }
             return this.pssyspfplugin;
@@ -4644,7 +4644,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;
@@ -4670,7 +4670,7 @@ implements Serializable {
                 PSViewMsgGroup pSViewMsgGroup = new PSViewMsgGroup();
                 pSViewMsgGroup.setPSViewMsgGroupId(this.getPSViewMsgGroupId());
                 PSViewMsgGroupService pSViewMsgGroupService = (PSViewMsgGroupService)ServiceGlobal.getService(PSViewMsgGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSViewMsgGroupService.autoGet((IEntity)pSViewMsgGroup);
+                pSViewMsgGroupService.autoGet(pSViewMsgGroup);
                 this.psviewmsggroup = pSViewMsgGroup;
             }
             return this.psviewmsggroup;
@@ -4692,7 +4692,7 @@ implements Serializable {
         Integer n = this.objPSDETreeColsLock;
         synchronized (n) {
             if (this.psdetreecols == null) {
-                this.psdetreecols = pSDETreeViewService.isTempData((IEntity)this) ? pSDETreeColService.selectTempByPSDETreeView(this) : pSDETreeColService.selectByPSDETreeView(this);
+                this.psdetreecols = pSDETreeViewService.isTempData(this) ? pSDETreeColService.selectTempByPSDETreeView(this) : pSDETreeColService.selectByPSDETreeView(this);
             }
             return this.psdetreecols;
         }
@@ -4713,7 +4713,7 @@ implements Serializable {
         Integer n = this.objPSDETreeLogicsLock;
         synchronized (n) {
             if (this.psdetreelogics == null) {
-                this.psdetreelogics = pSDETreeViewService.isTempData((IEntity)this) ? pSDETreeLogicService.selectTempByPSDETreeView(this) : pSDETreeLogicService.selectByPSDETreeView(this);
+                this.psdetreelogics = pSDETreeViewService.isTempData(this) ? pSDETreeLogicService.selectTempByPSDETreeView(this) : pSDETreeLogicService.selectByPSDETreeView(this);
             }
             return this.psdetreelogics;
         }
@@ -4734,7 +4734,7 @@ implements Serializable {
         Integer n = this.objPSDETreeNodesLock;
         synchronized (n) {
             if (this.psdetreenodes == null) {
-                this.psdetreenodes = pSDETreeViewService.isTempData((IEntity)this) ? pSDETreeNodeService.selectTempByPSDETreeView(this) : pSDETreeNodeService.selectByPSDETreeView(this);
+                this.psdetreenodes = pSDETreeViewService.isTempData(this) ? pSDETreeNodeService.selectTempByPSDETreeView(this) : pSDETreeNodeService.selectByPSDETreeView(this);
             }
             return this.psdetreenodes;
         }

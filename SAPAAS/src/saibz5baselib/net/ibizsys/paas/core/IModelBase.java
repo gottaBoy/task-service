@@ -1,11 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
+/**
+ * V 5.0 模型基类
+ * 
+ * @author lionlau
+ *
+ */
 public interface IModelBase {
-    public String getId();
+	
+	/**
+	 * 获取标识
+	 * 
+	 * @return
+	 */
+	String getId();
 
-    public String getName();
+	/**
+	 * 获取名称
+	 * 
+	 * @return
+	 */
+	String getName();
+
 }
-

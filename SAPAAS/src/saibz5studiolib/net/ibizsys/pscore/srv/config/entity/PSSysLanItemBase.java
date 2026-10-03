@@ -1130,7 +1130,7 @@ implements Serializable {
                 PSLanguage pSLanguage = new PSLanguage();
                 pSLanguage.setPSLanguageId(this.getPSLanguageId());
                 PSLanguageService pSLanguageService = (PSLanguageService)ServiceGlobal.getService(PSLanguageService.class, (SessionFactory)this.getSessionFactory());
-                pSLanguageService.autoGet((IEntity)pSLanguage);
+                pSLanguageService.autoGet(pSLanguage);
                 this.pslanguage = pSLanguage;
             }
             return this.pslanguage;
@@ -1156,7 +1156,7 @@ implements Serializable {
                 PSSysLanRes pSSysLanRes = new PSSysLanRes();
                 pSSysLanRes.setPSSysLanResId(this.getPSSysLanResId());
                 PSSysLanResService pSSysLanResService = (PSSysLanResService)ServiceGlobal.getService(PSSysLanResService.class, (SessionFactory)this.getSessionFactory());
-                pSSysLanResService.autoGet((IEntity)pSSysLanRes);
+                pSSysLanResService.autoGet(pSSysLanRes);
                 this.pssyslanres = pSSysLanRes;
             }
             return this.pssyslanres;

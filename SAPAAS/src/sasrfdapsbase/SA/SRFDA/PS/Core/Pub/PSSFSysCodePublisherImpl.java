@@ -191,6 +191,10 @@ IPSCodePublisherHelper {
     protected void onFillGenerateCodeParams(String strType, Object obj, HashMap<String, Object> params) throws Exception {
     }
 
+    protected void savePSSysSFCode(Object obj, PSSysSFCode psSysSFCodeSrc, Map<String, ?> params) throws Exception {
+        this.savePSSysSFCode(obj, psSysSFCodeSrc, params == null ? null : new HashMap<String, Object>(params));
+    }
+
     protected void savePSSysSFCode(Object obj, PSSysSFCode psSysSFCodeSrc, HashMap<String, Object> params2) throws Exception {
         boolean bV2 = false;
         if (StringHelper.Compare((String)((IPSSystemUtil)((Object)this.iPSSystem)).getTemplEngineVer(), (String)"V2", (boolean)true) == 0) {
@@ -523,4 +527,3 @@ IPSCodePublisherHelper {
         return this.bRemoveEmptyFile;
     }
 }
-

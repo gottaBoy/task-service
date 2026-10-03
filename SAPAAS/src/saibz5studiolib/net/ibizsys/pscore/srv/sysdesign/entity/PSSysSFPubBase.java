@@ -3417,7 +3417,7 @@ implements Serializable {
                 PSSFStyleParam pSSFStyleParam = new PSSFStyleParam();
                 pSSFStyleParam.setPSSFStyleParamId(this.getPSSFStyleParamId());
                 PSSFStyleParamService pSSFStyleParamService = (PSSFStyleParamService)ServiceGlobal.getService(PSSFStyleParamService.class, (SessionFactory)this.getSessionFactory());
-                pSSFStyleParamService.autoGet((IEntity)pSSFStyleParam);
+                pSSFStyleParamService.autoGet(pSSFStyleParam);
                 this.pssfstyleparam = pSSFStyleParam;
             }
             return this.pssfstyleparam;
@@ -3443,7 +3443,7 @@ implements Serializable {
                 PSSFStyleVer pSSFStyleVer = new PSSFStyleVer();
                 pSSFStyleVer.setPSSFStyleVerId(this.getPSSFStyleVerId());
                 PSSFStyleVerService pSSFStyleVerService = (PSSFStyleVerService)ServiceGlobal.getService(PSSFStyleVerService.class, (SessionFactory)this.getSessionFactory());
-                pSSFStyleVerService.autoGet((IEntity)pSSFStyleVer);
+                pSSFStyleVerService.autoGet(pSSFStyleVer);
                 this.pssfstylever = pSSFStyleVer;
             }
             return this.pssfstylever;
@@ -3469,7 +3469,7 @@ implements Serializable {
                 PSSFStyle pSSFStyle = new PSSFStyle();
                 pSSFStyle.setPSSFStyleId(this.getDocPSSFStyleId());
                 PSSFStyleService pSSFStyleService = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.getSessionFactory());
-                pSSFStyleService.autoGet((IEntity)pSSFStyle);
+                pSSFStyleService.autoGet(pSSFStyle);
                 this.docpssfstyle = pSSFStyle;
             }
             return this.docpssfstyle;
@@ -3495,7 +3495,7 @@ implements Serializable {
                 PSSFStyle pSSFStyle = new PSSFStyle();
                 pSSFStyle.setPSSFStyleId(this.getPSSFStyleId());
                 PSSFStyleService pSSFStyleService = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.getSessionFactory());
-                pSSFStyleService.autoGet((IEntity)pSSFStyle);
+                pSSFStyleService.autoGet(pSSFStyle);
                 this.pssfstyle = pSSFStyle;
             }
             return this.pssfstyle;
@@ -3521,7 +3521,7 @@ implements Serializable {
                 PSSysDynaModel pSSysDynaModel = new PSSysDynaModel();
                 pSSysDynaModel.setPSSysDynaModelId(this.getPSSysDynaModelId());
                 PSSysDynaModelService pSSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDynaModelService.autoGet((IEntity)pSSysDynaModel);
+                pSSysDynaModelService.autoGet(pSSysDynaModel);
                 this.pssysdynamodel = pSSysDynaModel;
             }
             return this.pssysdynamodel;
@@ -3547,7 +3547,7 @@ implements Serializable {
                 PSSysSFPub pSSysSFPub = new PSSysSFPub();
                 pSSysSFPub.setPSSysSFPubId(this.getPPSSysSFPubId());
                 PSSysSFPubService pSSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPubService.autoGet((IEntity)pSSysSFPub);
+                pSSysSFPubService.autoGet(pSSysSFPub);
                 this.ppssyssfpub = pSSysSFPub;
             }
             return this.ppssyssfpub;
@@ -3573,7 +3573,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

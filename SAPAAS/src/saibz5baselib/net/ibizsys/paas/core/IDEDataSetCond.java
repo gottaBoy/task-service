@@ -1,12 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDEDataQueryCodeCond;
-
-public interface IDEDataSetCond
-extends IDEDataQueryCodeCond {
-    public String getDEDataQueryName();
+/**
+ * 实体数据集合条件
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDEDataSetCond extends IDEDataQueryCodeCond {
+	/**
+	 * 获取数据查询名称
+	 * 
+	 * @return
+	 */
+	String getDEDataQueryName();
 }
-

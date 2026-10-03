@@ -1,11 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.ctrlmodel.IExpBarModel
- *  net.ibizsys.pswf.core.IWFModel
- *  net.ibizsys.pswf.core.IWFVersionModel
- */
 package net.ibizsys.pswf.ctrlmodel;
 
 import net.ibizsys.paas.ctrlmodel.IExpBarModel;
@@ -13,15 +5,40 @@ import net.ibizsys.pswf.control.expbar.IWFExpBar;
 import net.ibizsys.pswf.core.IWFModel;
 import net.ibizsys.pswf.core.IWFVersionModel;
 
-public interface IWFExpBarModel
-extends IExpBarModel,
-IWFExpBar {
-    public static final String ITEM_MYWFWORK = "MYWFWORK";
-    public static final String ITEM_MY = "MY";
-    public static final String ITEM_ALL = "ALL";
+/**
+ * 流程导航栏模型接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IWFExpBarModel extends IExpBarModel, IWFExpBar {
+	
+	/**
+	 * 导航项：我的工作
+	 */
+	public final static String ITEM_MYWFWORK = "MYWFWORK";
+	
+	/**
+	 * 导航项：我的数据
+	 */
+	public final static String ITEM_MY = "MY";
+	
+	/**
+	 * 导航项：全部数据
+	 */
+	public final static String ITEM_ALL = "ALL";
+	
+	/**
+	 * 获取流程模型对象
+	 * 
+	 * @return the IWFModel
+	 */
+	IWFModel getWFModel();
 
-    public IWFModel getWFModel();
-
-    public IWFVersionModel getWFVersionModel();
+	/**
+	 * 获取流程版本模型对象
+	 * 
+	 * @return the IWFVersionModel
+	 */
+	IWFVersionModel getWFVersionModel();
 }
-

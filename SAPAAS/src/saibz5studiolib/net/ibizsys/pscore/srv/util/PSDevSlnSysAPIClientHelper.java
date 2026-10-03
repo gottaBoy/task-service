@@ -66,7 +66,7 @@ public class PSDevSlnSysAPIClientHelper {
         this.srcSessionFactory = PSSysModelInstGlobal.getSessionFactory(pSDevSlnSysAPI.getPSDevSlnSys().getPSSysModelInstId());
         PSSysServiceAPIService pSSysServiceAPIService = (PSSysServiceAPIService)ServiceGlobal.getService(PSSysServiceAPIService.class, (SessionFactory)this.srcSessionFactory);
         this.srcPSSysServiceAPI.setPSSysServiceAPIId(pSDevSlnSysAPI.getPSSysServiceAPIId());
-        pSSysServiceAPIService.get((IEntity)this.srcPSSysServiceAPI);
+        pSSysServiceAPIService.get(this.srcPSSysServiceAPI);
         this.dstPSDevSlnSys = pSDevSlnSys;
         this.dstSessionFactory = PSSysModelInstGlobal.getSessionFactory(pSDevSlnSys.getPSSysModelInstId());
     }
@@ -78,7 +78,7 @@ public class PSDevSlnSysAPIClientHelper {
         PSModuleService pSModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.dstSessionFactory);
         PSModule pSModule = new PSModule();
         pSModule.setPSModuleId(this.psDevSlnSysAPI.getPSDevSlnSysAPIId());
-        if (!pSModuleService.get((IEntity)pSModule, true)) {
+        if (!pSModuleService.get(pSModule, true)) {
             object3 = StringHelper.format((String)"%1$s%2$s", (Object)this.srcPSSysServiceAPI.getServiceCodeName(), (Object)"Client");
             pSModule.setPSModuleName((String)object3);
             pSModule.setCodeName((String)object3);
@@ -89,7 +89,7 @@ public class PSDevSlnSysAPIClientHelper {
         object3 = (PSSysModelGroupService)ServiceGlobal.getService(PSSysModelGroupService.class, (SessionFactory)this.dstSessionFactory);
         PSSysModelGroup pSSysModelGroup = new PSSysModelGroup();
         pSSysModelGroup.setPSSysModelGroupId(this.psDevSlnSysAPI.getPSDevSlnSysAPIId());
-        if (!object3.get((IEntity)pSSysModelGroup, true)) {
+        if (!((PSSysModelGroupService)object3).get(pSSysModelGroup, true)) {
             object2 = StringHelper.format((String)"%1$s%2$s", (Object)this.srcPSSysServiceAPI.getServiceCodeName(), (Object)"Client");
             pSSysModelGroup.setPSSysModelGroupName((String)object2);
             pSSysModelGroup.setPSSystemId(this.dstPSDevSlnSys.getPSSystemId());
@@ -99,7 +99,7 @@ public class PSDevSlnSysAPIClientHelper {
         object2 = (PSSubSysServiceAPIService)ServiceGlobal.getService(PSSubSysServiceAPIService.class, (SessionFactory)this.dstSessionFactory);
         PSSubSysServiceAPI pSSubSysServiceAPI = new PSSubSysServiceAPI();
         pSSubSysServiceAPI.setPSSubSysServiceAPIId(this.psDevSlnSysAPI.getPSSysServiceAPIId());
-        if (!object2.get((IEntity)pSSubSysServiceAPI, true)) {
+        if (!((PSSubSysServiceAPIService)object2).get(pSSubSysServiceAPI, true)) {
             pSSubSysServiceAPI.setPSSubSysServiceAPIName(this.srcPSSysServiceAPI.getPSSysServiceAPIName());
             pSSubSysServiceAPI.setCodeName(this.srcPSSysServiceAPI.getCodeName());
             pSSubSysServiceAPI.setServiceCodeName(this.srcPSSysServiceAPI.getServiceCodeName());
@@ -168,7 +168,7 @@ public class PSDevSlnSysAPIClientHelper {
         pSDataEntity2.setExistingModel(1);
         pSDataEntity2.setPSSysModelGroupId(pSSysModelGroup.getPSSysModelGroupId());
         pSDataEntity2.setPSSysModelGroupName(pSSysModelGroup.getPSSysModelGroupName());
-        pSDataEntityService.save((IEntity)pSDataEntity2);
+        pSDataEntityService.save(pSDataEntity2);
         this.srcPSDataEntityMap.put(pSDataEntity.getPSDataEntityId(), pSDataEntity);
         this.dstPSDataEntityMap.put(pSDataEntity.getPSDataEntityId(), pSDataEntity2);
         this.syncPSDEFields(pSDataEntity, pSDataEntity2);
@@ -220,7 +220,7 @@ public class PSDevSlnSysAPIClientHelper {
                 }
             }
         }
-        pSDEFieldService.save((IEntity)pSDEField2);
+        pSDEFieldService.save(pSDEField2);
         this.srcPSDEFieldMap.put(pSDEField.getPSDEFieldId(), pSDEField);
         this.dstPSDEFieldMap.put(pSDEField.getPSDEFieldId(), pSDEField2);
     }
@@ -228,7 +228,7 @@ public class PSDevSlnSysAPIClientHelper {
     protected void syncPSDERs() throws Exception {
         PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.srcSessionFactory);
         PSDERService pSDERService2 = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.dstSessionFactory);
-        ArrayList arrayList = pSDERService.select((ISelectCond)new SelectCond());
+        ArrayList<PSDER> arrayList = pSDERService.select((ISelectCond)new SelectCond());
         for (PSDER pSDER : arrayList) {
             if (this.srcPSDataEntityMap.containsKey(pSDER.getMajorPSDEId()) && this.srcPSDataEntityMap.containsKey(pSDER.getMinorPSDEId())) {
                 PSDER pSDER2 = new PSDER();
@@ -249,7 +249,7 @@ public class PSDevSlnSysAPIClientHelper {
                 pSDER2.setPSSystemId(this.dstPSDevSlnSys.getPSSystemId());
                 pSDER2.setPSSystemName(this.dstPSDevSlnSys.getPSDevSlnSysName());
                 pSDER2.resetPSDERName();
-                pSDERService2.save((IEntity)pSDER2);
+                pSDERService2.save(pSDER2);
                 this.srcPSDERMap.put(pSDER.getPSDERId(), pSDER);
                 this.dstPSDERMap.put(pSDER.getPSDERId(), pSDER2);
             }
@@ -276,7 +276,7 @@ public class PSDevSlnSysAPIClientHelper {
             pSDEAction2.setRequestMethod(pSDEAction.getRequestMethod());
             pSDEAction2.setRequestParamType(pSDEAction.getRequestParamType());
             pSDEAction2.setRequestPath(pSDEAction.getRequestPath());
-            pSDEActionService.save((IEntity)pSDEAction2);
+            pSDEActionService.save(pSDEAction2);
         }
     }
 
@@ -298,7 +298,7 @@ public class PSDevSlnSysAPIClientHelper {
             pSDEDataSet2.setPubMode(pSDEDataSet.getPubMode());
             pSDEDataSet2.setRequestPath(pSDEDataSet.getRequestPath());
             pSDEDataSet2.setRequestMethod(pSDEDataSet.getRequestMethod());
-            pSDEDataSetService.save((IEntity)pSDEDataSet2);
+            pSDEDataSetService.save(pSDEDataSet2);
         }
     }
 
@@ -310,7 +310,7 @@ public class PSDevSlnSysAPIClientHelper {
         if (pSSysSFPubService.select(pSSysSFPub, true)) {
             PSSysSFPub pSSysSFPub2 = new PSSysSFPub();
             pSSysSFPub2.setPSSysSFPubId(KeyValueHelper.genUniqueId((String)this.psDevSlnSysAPI.getPSDevSlnSysAPIId(), (String)pSSysSFPub.getPSSysSFPubId()));
-            if (!pSSysSFPubService2.get((IEntity)pSSysSFPub2, true)) {
+            if (!pSSysSFPubService2.get(pSSysSFPub2, true)) {
                 pSSysSFPub2.setPSSysSFPubName(pSSysSFPub.getPSSysSFPubName());
                 pSSysSFPub2.setCodeName(StringHelper.format((String)"%1$s%2$s", (Object)this.srcPSSysServiceAPI.getServiceCodeName(), (Object)"Client"));
                 pSSysSFPub2.setPKGCodeName(pSSysSFPub.getPKGCodeName());
@@ -328,4 +328,3 @@ public class PSDevSlnSysAPIClientHelper {
         }
     }
 }
-

@@ -132,7 +132,7 @@ implements IPSDETreeViewService {
     @Override
     protected List<PSDETreeView> onListAll() throws Exception {
         ArrayList<PSDETreeView> list = new ArrayList<PSDETreeView>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDETreeView> items = this.listByPSDataEntity(parent);
@@ -389,42 +389,46 @@ implements IPSDETreeViewService {
         } else {
             dto.setPSSystemName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDETreeColService().listByPSDETreeView(t);
-        if (list != null && list.size() > 0) {
+        List<PSDETreeCol> pSDETreeColList = PSModelServiceUtil.getInstance().getPSDETreeColService().listByPSDETreeView(t);
+        if (pSDETreeColList != null && pSDETreeColList.size() > 0) {
             ArrayList<PSDETreeColDTO> psdetreecols = new ArrayList<PSDETreeColDTO>();
-            for (PSDETreeCol pSDETreeCol : list) {
+            for (PSDETreeCol pSDETreeCol : pSDETreeColList) {
                 dstItem = (PSDETreeColDTO)PSModelServiceUtil.getInstance().getPSDETreeColService().toDTO(pSDETreeCol);
                 psdetreecols.add((PSDETreeColDTO)dstItem);
             }
             dto.setPsdetreecols(psdetreecols);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDETreeNodeService().listByPSDETreeView(t)) != null && list.size() > 0) {
+        List<PSDETreeNode> pSDETreeNodeList = PSModelServiceUtil.getInstance().getPSDETreeNodeService().listByPSDETreeView(t);
+        if (pSDETreeNodeList != null && pSDETreeNodeList.size() > 0) {
             ArrayList<PSDETreeNodeDTO> psdetreenodes = new ArrayList<PSDETreeNodeDTO>();
-            for (PSDETreeNode pSDETreeNode : list) {
+            for (PSDETreeNode pSDETreeNode : pSDETreeNodeList) {
                 dstItem = (PSDETreeNodeDTO)PSModelServiceUtil.getInstance().getPSDETreeNodeService().toDTO(pSDETreeNode);
                 psdetreenodes.add((PSDETreeNodeDTO)dstItem);
             }
             dto.setPsdetreenodes(psdetreenodes);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDETreeNodeRSService().listByPSDETreeView(t)) != null && list.size() > 0) {
+        List<PSDETreeNodeRS> pSDETreeNodeRSList = PSModelServiceUtil.getInstance().getPSDETreeNodeRSService().listByPSDETreeView(t);
+        if (pSDETreeNodeRSList != null && pSDETreeNodeRSList.size() > 0) {
             ArrayList<PSDETreeNodeRSDTO> psdetreenoders = new ArrayList<PSDETreeNodeRSDTO>();
-            for (PSDETreeNodeRS pSDETreeNodeRS : list) {
+            for (PSDETreeNodeRS pSDETreeNodeRS : pSDETreeNodeRSList) {
                 dstItem = (PSDETreeNodeRSDTO)PSModelServiceUtil.getInstance().getPSDETreeNodeRSService().toDTO(pSDETreeNodeRS);
                 psdetreenoders.add((PSDETreeNodeRSDTO)dstItem);
             }
             dto.setPsdetreenoders(psdetreenoders);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDETreeLogicService().listByPSDETreeView(t)) != null && list.size() > 0) {
+        List<PSDETreeLogic> pSDETreeLogicList = PSModelServiceUtil.getInstance().getPSDETreeLogicService().listByPSDETreeView(t);
+        if (pSDETreeLogicList != null && pSDETreeLogicList.size() > 0) {
             ArrayList<PSDETreeLogicDTO> psdetreelogics = new ArrayList<PSDETreeLogicDTO>();
-            for (PSDETreeLogic pSDETreeLogic : list) {
+            for (PSDETreeLogic pSDETreeLogic : pSDETreeLogicList) {
                 dstItem = (PSDETreeLogicDTO)PSModelServiceUtil.getInstance().getPSDETreeLogicService().toDTO(pSDETreeLogic);
                 psdetreelogics.add((PSDETreeLogicDTO)dstItem);
             }
             dto.setPsdetreelogics(psdetreelogics);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDETreeNodeColService().listByPSDETreeView(t)) != null && list.size() > 0) {
+        List<PSDETreeNodeCol> pSDETreeNodeColList = PSModelServiceUtil.getInstance().getPSDETreeNodeColService().listByPSDETreeView(t);
+        if (pSDETreeNodeColList != null && pSDETreeNodeColList.size() > 0) {
             ArrayList<PSDETreeNodeColDTO> psdetreenodecols = new ArrayList<PSDETreeNodeColDTO>();
-            for (PSDETreeNodeCol pSDETreeNodeCol : list) {
+            for (PSDETreeNodeCol pSDETreeNodeCol : pSDETreeNodeColList) {
                 dstItem = (PSDETreeNodeColDTO)PSModelServiceUtil.getInstance().getPSDETreeNodeColService().toDTO(pSDETreeNodeCol);
                 psdetreenodecols.add((PSDETreeNodeColDTO)dstItem);
             }

@@ -163,9 +163,9 @@ extends PSCoreSysServiceBase<PSDEMSField> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_PSDEF(pSDEMSField, pSDEField);
             return;
@@ -175,14 +175,14 @@ extends PSCoreSysServiceBase<PSDEMSField> {
             PSDEMainState pSDEMainState = (PSDEMainState)iService.getDEModel().createEntity();
             pSDEMainState.set("PSDEMAINSTATEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEMainState);
+                iService.getTemp(pSDEMainState);
             } else {
-                iService.get((IEntity)pSDEMainState);
+                iService.get(pSDEMainState);
             }
             this.onFillParentInfo_PSDEMS(pSDEMSField, pSDEMainState);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEMSField, string, string2, string3);
+        super.onFillParentInfo(pSDEMSField, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -204,7 +204,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
         if (bl && pSDEMSField.getValidFlag() == null) {
             pSDEMSField.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDEMSField, bl);
+        super.onFillEntityFullInfo(pSDEMSField, bl);
         this.onFillEntityFullInfo_PSDEF(pSDEMSField, bl);
         this.onFillEntityFullInfo_PSDEMS(pSDEMSField, bl);
     }
@@ -226,7 +226,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
     }
 
     protected void onWriteBackParent(PSDEMSField pSDEMSField, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEMSField, bl);
+        super.onWriteBackParent(pSDEMSField, bl);
     }
 
     public ArrayList<PSDEMSField> selectByPSDEF(PSDEFieldBase pSDEFieldBase) throws Exception {
@@ -296,8 +296,8 @@ extends PSCoreSysServiceBase<PSDEMSField> {
         ArrayList<PSDEMSField> arrayList = this.selectByPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMSFIELD_PSDEFIELD_PSDEFID", "", iDataEntityModel.getName(), "PSDEMSFIELD", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMSFIELD_PSDEFIELD_PSDEFID", "", iDataEntityModel.getName(), "PSDEMSFIELD", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -330,7 +330,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
         ArrayList<PSDEMSField> arrayList = this.selectByPSDEF(pSDEField);
         this.onBeforeRemoveByPSDEF(pSDEField, arrayList);
         for (PSDEMSField pSDEMSField : arrayList) {
-            this.remove((IEntity)pSDEMSField);
+            this.remove(pSDEMSField);
         }
         this.onAfterRemoveByPSDEF(pSDEField, arrayList);
     }
@@ -363,7 +363,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
             PSDEMSField pSDEMSField2 = (PSDEMSField)this.getDEModel().createEntity();
             pSDEMSField2.setPSDEMSFieldId(pSDEMSField.getPSDEMSFieldId());
             pSDEMSField2.setPSDEMSId(null);
-            this.updateTemp((IEntity)pSDEMSField2);
+            this.updateTemp(pSDEMSField2);
         }
     }
 
@@ -386,7 +386,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
         ArrayList<PSDEMSField> arrayList = this.selectByPSDEMS(pSDEMainState);
         this.onBeforeRemoveByPSDEMS(pSDEMainState, arrayList);
         for (PSDEMSField pSDEMSField : arrayList) {
-            this.remove((IEntity)pSDEMSField);
+            this.remove(pSDEMSField);
         }
         this.onAfterRemoveByPSDEMS(pSDEMainState, arrayList);
     }
@@ -424,7 +424,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
         ArrayList<PSDEMSField> arrayList = this.selectTempByPSDEMS(pSDEMainState);
         this.onBeforeRemoveTempByPSDEMS(pSDEMainState, arrayList);
         for (PSDEMSField pSDEMSField : arrayList) {
-            this.removeTemp((IEntity)pSDEMSField);
+            this.removeTemp(pSDEMSField);
         }
         this.onAfterRemoveTempByPSDEMS(pSDEMainState, arrayList);
     }
@@ -440,7 +440,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
 
     protected void replaceParentInfo(PSDEMSField pSDEMSField, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEMSField, cloneSession);
+        super.replaceParentInfo(pSDEMSField, cloneSession);
         if (pSDEMSField.getPSDEFId() != null && (iEntity = cloneSession.getEntity("PSDEFIELD", (Object)pSDEMSField.getPSDEFId())) != null) {
             this.onFillParentInfo_PSDEF(pSDEMSField, (PSDEField)iEntity);
         }
@@ -450,7 +450,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEMSField pSDEMSField, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEMSField, bl);
+        super.onRemoveEntityUncopyValues(pSDEMSField, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEMSField pSDEMSField, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -498,7 +498,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDEMSField, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEMSField, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEMSField, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DefaultValue(boolean bl, PSDEMSField pSDEMSField, boolean bl2, boolean bl3) throws Exception {
@@ -511,7 +511,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DefaultValue_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_DefaultValue_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTVALUE");
@@ -533,7 +533,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DefaultValueType_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_DefaultValueType_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DVT");
@@ -555,7 +555,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -580,7 +580,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFId_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFId_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFID");
@@ -619,7 +619,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFName_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFName_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFNAME");
@@ -644,7 +644,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEMSFieldId_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEMSFieldId_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMSFIELDID");
@@ -669,7 +669,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEMSFieldName_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEMSFieldName_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMSFIELDNAME");
@@ -691,7 +691,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEMSId_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEMSId_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMSID");
@@ -713,7 +713,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -735,7 +735,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -757,7 +757,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -779,7 +779,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -801,7 +801,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDEMSField, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -826,7 +826,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDEMSField, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDEMSField, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -839,11 +839,11 @@ extends PSCoreSysServiceBase<PSDEMSField> {
     }
 
     protected void onSyncEntity(PSDEMSField pSDEMSField, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEMSField, bl);
+        super.onSyncEntity(pSDEMSField, bl);
     }
 
     protected void onSyncIndexEntities(PSDEMSField pSDEMSField, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEMSField, bl);
+        super.onSyncIndexEntities(pSDEMSField, bl);
     }
 
     public Object getDataContextValue(PSDEMSField pSDEMSField, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -851,7 +851,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEMSField, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEMSField, string, iDataContextParam)) != null) {
             return object;
         }
         PSDEField pSDEField = pSDEMSField.getPSDEF();
@@ -866,7 +866,7 @@ extends PSCoreSysServiceBase<PSDEMSField> {
     }
 
     protected void onExportMajorModel(PSDEMSField pSDEMSField, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEMSField, arrayList, n);
+        super.onExportMajorModel(pSDEMSField, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1156,14 +1156,14 @@ extends PSCoreSysServiceBase<PSDEMSField> {
 
     protected boolean onMergeChild(String string, String string2, PSDEMSField pSDEMSField) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEMSField)) {
+        if (super.onMergeChild(string, string2, pSDEMSField)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEMSField pSDEMSField) throws Exception {
-        super.onUpdateParent((IEntity)pSDEMSField);
+        super.onUpdateParent(pSDEMSField);
     }
 
     @Override

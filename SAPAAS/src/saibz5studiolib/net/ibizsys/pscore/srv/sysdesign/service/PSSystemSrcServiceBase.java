@@ -141,9 +141,9 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
             PSDevSlnSys pSDevSlnSys = (PSDevSlnSys)iService.getDEModel().createEntity();
             pSDevSlnSys.set("PSDEVSLNSYSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevSlnSys);
+                iService.getTemp(pSDevSlnSys);
             } else {
-                iService.get((IEntity)pSDevSlnSys);
+                iService.get(pSDevSlnSys);
             }
             this.onFillParentInfo_SrcPSDevSlnSys(pSSystemSrc, pSDevSlnSys);
             return;
@@ -153,14 +153,14 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSystemSrc, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSystemSrc, string, string2, string3);
+        super.onFillParentInfo(pSSystemSrc, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -199,7 +199,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
         if (bl && pSSystemSrc.getValidFlag() == null) {
             pSSystemSrc.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSystemSrc, bl);
+        super.onFillEntityFullInfo(pSSystemSrc, bl);
         this.onFillEntityFullInfo_SrcPSDevSlnSys(pSSystemSrc, bl);
         this.onFillEntityFullInfo_PSSystem(pSSystemSrc, bl);
     }
@@ -231,7 +231,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
     }
 
     protected void onWriteBackParent(PSSystemSrc pSSystemSrc, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSystemSrc, bl);
+        super.onWriteBackParent(pSSystemSrc, bl);
     }
 
     public ArrayList<PSSystemSrc> selectBySrcPSDevSlnSys(PSDevSlnSysBase pSDevSlnSysBase) throws Exception {
@@ -314,7 +314,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
         ArrayList<PSSystemSrc> arrayList = this.selectBySrcPSDevSlnSys(pSDevSlnSys);
         this.onBeforeRemoveBySrcPSDevSlnSys(pSDevSlnSys, arrayList);
         for (PSSystemSrc pSSystemSrc : arrayList) {
-            this.remove((IEntity)pSSystemSrc);
+            this.remove(pSSystemSrc);
         }
         this.onAfterRemoveBySrcPSDevSlnSys(pSDevSlnSys, arrayList);
     }
@@ -360,7 +360,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
         ArrayList<PSSystemSrc> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSystemSrc pSSystemSrc : arrayList) {
-            this.remove((IEntity)pSSystemSrc);
+            this.remove(pSSystemSrc);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -381,7 +381,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
 
     protected void replaceParentInfo(PSSystemSrc pSSystemSrc, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSystemSrc, cloneSession);
+        super.replaceParentInfo(pSSystemSrc, cloneSession);
         if (pSSystemSrc.getSrcPSDevSlnSysId() != null && (iEntity = cloneSession.getEntity("PSDEVSLNSYS", (Object)pSSystemSrc.getSrcPSDevSlnSysId())) != null) {
             this.onFillParentInfo_SrcPSDevSlnSys(pSSystemSrc, (PSDevSlnSys)iEntity);
         }
@@ -391,7 +391,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSystemSrc pSSystemSrc, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSystemSrc, bl);
+        super.onRemoveEntityUncopyValues(pSSystemSrc, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSystemSrc pSSystemSrc, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -424,7 +424,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSystemSrc, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSystemSrc, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSystemSrc, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSystemSrc pSSystemSrc, boolean bl2, boolean bl3) throws Exception {
@@ -437,7 +437,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSystemSrc, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSystemSrc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -462,7 +462,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSystemSrc, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSystemSrc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -487,7 +487,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSystemSrc, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSystemSrc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -512,7 +512,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemSrcId_Default((IEntity)pSSystemSrc, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemSrcId_Default(pSSystemSrc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMSRCID");
@@ -537,7 +537,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemSrcName_Default((IEntity)pSSystemSrc, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemSrcName_Default(pSSystemSrc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMSRCNAME");
@@ -562,7 +562,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SourceId_Default((IEntity)pSSystemSrc, bl2, bl3);
+            string2 = this.onTestValueRule_SourceId_Default(pSSystemSrc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SOURCEID");
@@ -598,7 +598,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SrcPSDevSlnSysId_Default((IEntity)pSSystemSrc, bl2, bl3);
+            string2 = this.onTestValueRule_SrcPSDevSlnSysId_Default(pSSystemSrc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRCPSDEVSLNSYSID");
@@ -620,7 +620,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SrcPSDevSlnSysName_Default((IEntity)pSSystemSrc, bl2, bl3);
+            string2 = this.onTestValueRule_SrcPSDevSlnSysName_Default(pSSystemSrc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRCPSDEVSLNSYSNAME");
@@ -645,7 +645,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSystemSrc, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSystemSrc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -658,11 +658,11 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
     }
 
     protected void onSyncEntity(PSSystemSrc pSSystemSrc, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSystemSrc, bl);
+        super.onSyncEntity(pSSystemSrc, bl);
     }
 
     protected void onSyncIndexEntities(PSSystemSrc pSSystemSrc, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSystemSrc, bl);
+        super.onSyncIndexEntities(pSSystemSrc, bl);
     }
 
     public Object getDataContextValue(PSSystemSrc pSSystemSrc, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -670,14 +670,14 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSystemSrc, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSystemSrc, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSystemSrc pSSystemSrc, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSystemSrc, arrayList, n);
+        super.onExportMajorModel(pSSystemSrc, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -862,14 +862,14 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
 
     protected boolean onMergeChild(String string, String string2, PSSystemSrc pSSystemSrc) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSystemSrc)) {
+        if (super.onMergeChild(string, string2, pSSystemSrc)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSystemSrc pSSystemSrc) throws Exception {
-        super.onUpdateParent((IEntity)pSSystemSrc);
+        super.onUpdateParent(pSSystemSrc);
     }
 
     @Override
@@ -894,7 +894,7 @@ extends PSCoreSysServiceBase<PSSystemSrc> {
         PSSystemSrc pSSystemSrc2 = new PSSystemSrc();
         pSSystemSrc2.setPSSystemId(pSSystemSrc.getPSSystemId());
         pSSystemSrc2.setSourceId(pSSystemSrc.getSourceId());
-        if (this.selectOne((IEntity)pSSystemSrc2, true)) {
+        if (this.selectOne(pSSystemSrc2, true)) {
             return pSSystemSrc2.getPSSystemSrcId();
         }
         return super.getEntityFolderKeyValue(pSSystemSrc, pSSystem);

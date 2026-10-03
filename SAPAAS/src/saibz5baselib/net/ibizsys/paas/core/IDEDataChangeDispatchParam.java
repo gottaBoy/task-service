@@ -1,20 +1,47 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import java.util.Iterator;
-import net.ibizsys.paas.core.IDataEntity;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.psrt.srv.common.entity.DEDataChg;
 
+/**
+ * 实体数据变更派发参数
+ * 
+ * @author LionLau
+ *
+ */
 public interface IDEDataChangeDispatchParam {
-    public DEDataChg getDEDataChg();
+	/**
+	 * 获取实体数据变更
+	 * 
+	 * @return
+	 */
+	DEDataChg getDEDataChg();
 
-    public IDataEntity getDataEntity();
+	// /**
+	// * 获取XML导出节点
+	// * @return
+	// */
+	// XMLNode getExportNode();
+	//
 
-    public IEntity getEntity();
+	/**
+	 * 获取实体模型对象
+	 * 
+	 * @return
+	 */
+	IDataEntity getDataEntity();
 
-    public Iterator<IEntity> getRelatedEntities();
+	/**
+	 * 获取当前数据对象
+	 * 
+	 * @return
+	 */
+	IEntity getEntity();
+
+	/**
+	 * 获取关联数据对象集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IEntity> getRelatedEntities();
 }
-

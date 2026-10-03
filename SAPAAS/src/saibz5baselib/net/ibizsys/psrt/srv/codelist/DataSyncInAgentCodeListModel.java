@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
 
-import net.ibizsys.psrt.srv.codelist.DataSyncInAgentCodeListModelBase;
 
-public class DataSyncInAgentCodeListModel
-extends DataSyncInAgentCodeListModelBase {
+/**
+ * 动态代码表[数据同步代理（输入）]模型对象
+ */
+public class DataSyncInAgentCodeListModel extends DataSyncInAgentCodeListModelBase {
+
+    public DataSyncInAgentCodeListModel() {
+        super();
+    }
+
 }
-

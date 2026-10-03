@@ -11,6 +11,7 @@ package net.ibizsys.pscore.srv.sysdesign.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSysDBPart;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSysDashboard;
@@ -45,9 +46,10 @@ extends PSSysDBPartServiceBase {
         ArrayList<PSSysDBPart> arrayList = null;
         arrayList = pSSysDashboard.getPSSysDashboardId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSSysDashboard(pSSysDashboard) : this.selectByPSSysDashboard(pSSysDashboard);
         HashMap<String, PSSysDBPart> hashMap = new HashMap<String, PSSysDBPart>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSSysDBPart pSSysDBPart2 = object.next();
+        String object;
+        Iterator<PSSysDBPart> objectIterator = arrayList.iterator();
+        while (objectIterator.hasNext()) {
+            PSSysDBPart pSSysDBPart2 = objectIterator.next();
             if (StringHelper.isNullOrEmpty((String)pSSysDBPart2.getPSSysDBPartName())) continue;
             hashMap.put(pSSysDBPart2.getPSSysDBPartName().toLowerCase(), pSSysDBPart2);
         }

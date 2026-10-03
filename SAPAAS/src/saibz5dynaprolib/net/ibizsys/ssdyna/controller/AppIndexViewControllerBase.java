@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.ViewControllerBase;
+/**
+ * 动态应用视图控制器基类
+ * @author Administrator
+ *
+ */
+public abstract class AppIndexViewControllerBase extends ViewControllerBase {
 
-public abstract class AppIndexViewControllerBase
-extends ViewControllerBase {
+	public AppIndexViewControllerBase() throws Exception {
+		super();
+	}
+
 }
-

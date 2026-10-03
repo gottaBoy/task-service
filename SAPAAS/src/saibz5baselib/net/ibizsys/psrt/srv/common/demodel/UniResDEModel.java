@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel;
 
-import net.ibizsys.psrt.srv.common.demodel.UniResDEModelBase;
 
-public class UniResDEModel
-extends UniResDEModelBase {
+/**
+ * 实体[UNIRES]模型对象
+ */
+public class UniResDEModel extends UniResDEModelBase {
+
     private static final long serialVersionUID = -1L;
-}
 
+    public UniResDEModel() throws Exception {
+        super();
+    }
+
+}

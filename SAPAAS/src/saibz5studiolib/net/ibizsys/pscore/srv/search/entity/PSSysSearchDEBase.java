@@ -1911,7 +1911,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -1937,7 +1937,7 @@ implements Serializable {
                 PSSysSearchDoc pSSysSearchDoc = new PSSysSearchDoc();
                 pSSysSearchDoc.setPSSysSearchDocId(this.getPSSysSearchDocId());
                 PSSysSearchDocService pSSysSearchDocService = (PSSysSearchDocService)ServiceGlobal.getService(PSSysSearchDocService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSearchDocService.autoGet((IEntity)pSSysSearchDoc);
+                pSSysSearchDocService.autoGet(pSSysSearchDoc);
                 this.pssyssearchdoc = pSSysSearchDoc;
             }
             return this.pssyssearchdoc;
@@ -1963,7 +1963,7 @@ implements Serializable {
                 PSSysSearchScheme pSSysSearchScheme = new PSSysSearchScheme();
                 pSSysSearchScheme.setPSSysSearchSchemeId(this.getPSSysSearchSchemeId());
                 PSSysSearchSchemeService pSSysSearchSchemeService = (PSSysSearchSchemeService)ServiceGlobal.getService(PSSysSearchSchemeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSearchSchemeService.autoGet((IEntity)pSSysSearchScheme);
+                pSSysSearchSchemeService.autoGet(pSSysSearchScheme);
                 this.pssyssearchscheme = pSSysSearchScheme;
             }
             return this.pssyssearchscheme;

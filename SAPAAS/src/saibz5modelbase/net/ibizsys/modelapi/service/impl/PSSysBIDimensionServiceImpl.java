@@ -72,7 +72,7 @@ implements IPSSysBIDimensionService {
     @Override
     protected List<PSSysBIDimension> onListAll() throws Exception {
         ArrayList<PSSysBIDimension> list = new ArrayList<PSSysBIDimension>();
-        List pssysbischemes = PSModelServiceUtil.getInstance().getPSSysBISchemeService().listAll();
+        List<PSSysBIScheme> pssysbischemes = PSModelServiceUtil.getInstance().getPSSysBISchemeService().listAll();
         if (pssysbischemes != null) {
             for (PSSysBIScheme parent : pssysbischemes) {
                 List<PSSysBIDimension> items = this.listByPSSysBIScheme(parent);

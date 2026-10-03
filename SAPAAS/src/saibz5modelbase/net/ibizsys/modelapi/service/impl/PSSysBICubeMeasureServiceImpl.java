@@ -73,7 +73,7 @@ implements IPSSysBICubeMeasureService {
     @Override
     protected List<PSSysBICubeMeasure> onListAll() throws Exception {
         ArrayList<PSSysBICubeMeasure> list = new ArrayList<PSSysBICubeMeasure>();
-        List pssysbicubes = PSModelServiceUtil.getInstance().getPSSysBICubeService().listAll();
+        List<PSSysBICube> pssysbicubes = PSModelServiceUtil.getInstance().getPSSysBICubeService().listAll();
         if (pssysbicubes != null) {
             for (PSSysBICube parent : pssysbicubes) {
                 List<PSSysBICubeMeasure> items = this.listByPSSysBICube(parent);

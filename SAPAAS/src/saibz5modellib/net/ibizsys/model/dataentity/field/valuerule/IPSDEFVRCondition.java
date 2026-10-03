@@ -1,31 +1,66 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.valuerule.IDEFVRCondition
- */
 package net.ibizsys.model.dataentity.field.valuerule;
 
 import net.ibizsys.model.core.IPSModelObject;
-import net.ibizsys.model.dataentity.field.valuerule.IPSDEFVRGroupCondition;
-import net.ibizsys.model.dataentity.field.valuerule.IPSDEFValueRule;
 import net.ibizsys.paas.core.valuerule.IDEFVRCondition;
 
-public interface IPSDEFVRCondition
-extends IDEFVRCondition,
-IPSModelObject {
-    public IPSDEFValueRule getPSDEFValueRule();
+/**
+ * 属性值规则条件对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IPSDEFVRCondition extends IDEFVRCondition, IPSModelObject {
+	
 
-    public IPSDEFVRGroupCondition getPSDEFVRGroupCondition();
+	/**
+	 * 获取值规则
+	 * 
+	 * @return
+	 */
+	IPSDEFValueRule getPSDEFValueRule();
 
-    public String getCondType();
+	/**
+	 * 获取条件组
+	 * 
+	 * @return
+	 */
+	IPSDEFVRGroupCondition getPSDEFVRGroupCondition();
 
-    public String getRuleInfo();
+	/**
+	 * 获取条件类型
+	 * 
+	 * @return
+	 */
+	String getCondType();
 
-    public boolean isNotMode();
+	/**
+	 * 获取规则信息
+	 * 
+	 * @return
+	 */
+	String getRuleInfo();
 
-    public boolean isTryMode();
+	
 
-    public boolean isKeyCond();
+	/**
+	 * 是否取反逻辑
+	 * 
+	 * @return
+	 */
+	boolean isNotMode();
+
+	/**
+	 * 是否为参数判断
+	 * 
+	 * @return
+	 */
+	boolean isTryMode();
+
+	/**
+	 * 是否为关键条件
+	 * 
+	 * @return
+	 */
+	boolean isKeyCond();
+
 }
-

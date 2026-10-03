@@ -109,13 +109,13 @@ implements IPSSysDevBKTaskSessionContext {
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSysDevBKTask psSysDevBKTask = new PSSysDevBKTask();
         psSysDevBKTask.setPSSysDevBKTaskId(strPSBKTaskId);
-        if (!psSysDevBKTaskService.get((IEntity)psSysDevBKTask, true)) {
+        if (!psSysDevBKTaskService.get(psSysDevBKTask, true)) {
             return false;
         }
         if (!StringHelper.isNullOrEmpty((String)psSysDevBKTask.getPPSSysDevBKTaskId())) {
             PSSysDevBKTask parentPSSysDevBKTask = new PSSysDevBKTask();
             parentPSSysDevBKTask.setPSSysDevBKTaskId(psSysDevBKTask.getPPSSysDevBKTaskId());
-            if (psSysDevBKTaskService.get((IEntity)parentPSSysDevBKTask, true) && (parentPSSysDevBKTask.getTaskState() == 10 || parentPSSysDevBKTask.getTaskState() == 20)) {
+            if (psSysDevBKTaskService.get(parentPSSysDevBKTask, true) && (parentPSSysDevBKTask.getTaskState() == 10 || parentPSSysDevBKTask.getTaskState() == 20)) {
                 this.cancelPSBKTask(psSysDevBKTask.getPPSSysDevBKTaskId());
                 return false;
             }
@@ -130,13 +130,13 @@ implements IPSSysDevBKTaskSessionContext {
                 PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
                 PSSysDevBKTask psSysDevBKTask = new PSSysDevBKTask();
                 psSysDevBKTask.setPSSysDevBKTaskId(strPSBKTaskId);
-                psSysDevBKTaskService.get((IEntity)psSysDevBKTask);
+                psSysDevBKTaskService.get(psSysDevBKTask);
                 if (psSysDevBKTask.getTaskState() == 10 || psSysDevBKTask.getTaskState() == 20) {
                     psSysDevBKTask.reset();
                     psSysDevBKTask.setPSSysDevBKTaskId(strPSBKTaskId);
                     psSysDevBKTask.setTaskState(SysDevBKTaskStateCodeListModel.CANCELLED);
                     psSysDevBKTask.setResultInfo(null);
-                    psSysDevBKTaskService.update((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.update(psSysDevBKTask, false);
                 }
             }
             catch (Exception ex) {
@@ -260,4 +260,3 @@ implements IPSSysDevBKTaskSessionContext {
         return this.iPSDevCenter;
     }
 }
-

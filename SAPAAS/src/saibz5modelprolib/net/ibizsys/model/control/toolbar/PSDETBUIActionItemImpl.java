@@ -32,6 +32,7 @@ import java.util.Iterator;
 import java.util.Properties;
 import net.ibizsys.model.IPSModelJsonExporter2;
 import net.ibizsys.model.IPSModelStorageContext;
+import net.ibizsys.model.IPSSysEngineConfig;
 import net.ibizsys.model.IPSSystemRuntime;
 import net.ibizsys.model.PSModelRTMeta;
 import net.ibizsys.model.app.view.IPSAppView;
@@ -48,10 +49,12 @@ import net.ibizsys.model.dataentity.uiaction.IPSDEUIActionRuntime;
 import net.ibizsys.model.entity.PSDEToolbarItem;
 import net.ibizsys.model.res.IPSSysImage;
 import net.ibizsys.model.view.IPSUIAction;
+import net.ibizsys.model.view.IPSUIActionGroup;
 import net.ibizsys.model.view.IPSUIActionGroupDetail;
 import net.ibizsys.model.wf.uiaction.IPSWFUIAction;
 import net.ibizsys.model.wf.uiaction.IPSWFUIActionRuntime;
 import net.ibizsys.paas.data.IDataObject;
+import net.ibizsys.paas.service.ActionSession;
 import net.ibizsys.paas.service.ActionSessionManager;
 import net.ibizsys.paas.util.JsonNodeHelper;
 import net.ibizsys.paas.util.PropertiesHelper;
@@ -120,12 +123,23 @@ IPSDECMUIActionItem {
         super.onInit();
     }
 
-    /*
-     * Unable to fully structure code
-     */
     @Override
     protected void onPreparePSDEToolbarItems() throws Exception {
-        psDEToolbarItemList = this.getPSDEToolbarItemList(false);
+        ArrayList<IPSDEToolbarItem> psDEToolbarItemList = this.getPSDEToolbarItemList(false);
+        int nViewUARegMode;
+        IPSSysEngineConfig iPSSysEngineConfig;
+        IPSUIActionGroup iPSUIActionGroup;
+        Iterator<IPSUIActionGroupDetail> psUIActionGroupDetails;
+        PSDETBGroupItemImpl psDETBGroupItemImpl;
+        PSDEToolbarItem psDEToolbarItem;
+        IPSUIActionGroupDetail iPSUIActionGroupDetail;
+        IPSUIAction iPSUIAction;
+        String strTBItemName;
+        PSDETBUIActionItemImpl psDETBUIActionItemImpl;
+        boolean bClose;
+        String strRecursionId = null;
+        ActionSession actionSession = null;
+
         if (psDEToolbarItemList != null) {
             psDEToolbarItemList.clear();
         }
@@ -164,7 +178,7 @@ IPSDECMUIActionItem {
             return;
         }
         if (this.psDEContextMenuItemList == null) {
-            this.psDEContextMenuItemList = new ArrayList<E>();
+            this.psDEContextMenuItemList = new ArrayList<IPSDEContextMenuItem>();
         }
         if (psDEToolbarItemList == null) {
             psDEToolbarItemList = this.getPSDEToolbarItemList(true);
@@ -182,25 +196,25 @@ IPSDECMUIActionItem {
             psDEToolbarItemList.add(psDETBGroupItemImpl);
         }
         bClose = false;
+        boolean bRegistered = false;
         try {
-            block22: {
-                strRecursionId = String.valueOf(this.getPSAppView().getId()) + "||" + this.getPSDEToolbar().getId() + "||" + this.iPSUIAction.getId();
-                actionSession = ActionSessionManager.getCurrentSession();
-                if (actionSession != null) break block22;
+            strRecursionId = String.valueOf(this.getPSAppView().getId()) + "||" + this.getPSDEToolbar().getId() + "||" + this.iPSUIAction.getId();
+            actionSession = ActionSessionManager.getCurrentSession();
+            if (actionSession == null) {
                 bClose = true;
                 actionSession = ActionSessionManager.openSession((String)"PSDETBUIActionItemImpl");
-                actionSession.registerRecursion("PSUIAction", (Object)strRecursionId);
-                ** GOTO lbl81
+                bRegistered = actionSession.registerRecursion("PSUIAction", (Object)strRecursionId);
+            } else if (!actionSession.registerRecursion("PSUIAction", (Object)strRecursionId)) {
+                throw new Exception(StringHelper.format((String)"\u754c\u9762\u884c\u4e3a[%1$s]\u5b58\u5728\u9012\u5f52\u5173\u7cfb", (Object)this.iPSUIAction.getName()));
+            } else {
+                bRegistered = true;
             }
-            if (actionSession.registerRecursion("PSUIAction", (Object)strRecursionId)) ** GOTO lbl81
-            throw new Exception(StringHelper.format((String)"\u754c\u9762\u884c\u4e3a[%1$s]\u5b58\u5728\u9012\u5f52\u5173\u7cfb", (Object)this.iPSUIAction.getName()));
-lbl-1000:
-            // 1 sources
-
-            {
+            while (psUIActionGroupDetails.hasNext()) {
                 iPSUIActionGroupDetail = (IPSUIActionGroupDetail)psUIActionGroupDetails.next();
                 iPSUIAction = iPSUIActionGroupDetail.getPSUIAction();
-                if (iPSUIAction == null) continue;
+                if (iPSUIAction == null) {
+                    continue;
+                }
                 psDEToolbarItem = new PSDEToolbarItem();
                 psDEToolbarItem.setTBITEMTYPE("DEUIACTION");
                 psDEToolbarItem.setPSDETBITEMID(iPSUIAction.getId());
@@ -220,26 +234,18 @@ lbl-1000:
                     continue;
                 }
                 psDEToolbarItemList.add(psDETBUIActionItemImpl);
-lbl81:
-                // 5 sources
-
-                ** while (psUIActionGroupDetails.hasNext())
             }
-lbl82:
-            // 2 sources
-
             for (IPSDEToolbarItem iPSDEToolbarItem : psDEToolbarItemList) {
                 this.psDEContextMenuItemList.add((IPSDEContextMenuItem)iPSDEToolbarItem);
             }
-            if (bClose) {
-                ActionSessionManager.closeSession();
-            }
         }
-        catch (Exception ex) {
+        finally {
+            if (bRegistered) {
+                actionSession.unregisterRecursion("PSUIAction", (Object)strRecursionId);
+            }
             if (bClose) {
                 ActionSessionManager.closeSession();
             }
-            throw ex;
         }
     }
 
@@ -422,4 +428,3 @@ lbl82:
         return null;
     }
 }
-

@@ -144,9 +144,9 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
             PSPF pSPF = (PSPF)iService.getDEModel().createEntity();
             pSPF.set("PSPFID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSPF);
+                iService.getTemp(pSPF);
             } else {
-                iService.get((IEntity)pSPF);
+                iService.get(pSPF);
             }
             this.onFillParentInfo_PSPF(pSPFPreviewNode, pSPF);
             return;
@@ -156,9 +156,9 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_PSSvrDomain(pSPFPreviewNode, pSSvrDomain);
             return;
@@ -168,9 +168,9 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
             PSSvrServer pSSvrServer = (PSSvrServer)iService.getDEModel().createEntity();
             pSSvrServer.set("PSSVRSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrServer);
+                iService.getTemp(pSSvrServer);
             } else {
-                iService.get((IEntity)pSSvrServer);
+                iService.get(pSSvrServer);
             }
             this.onFillParentInfo_PSSvrServer(pSPFPreviewNode, pSSvrServer);
             return;
@@ -180,14 +180,14 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
             PSTaskServer pSTaskServer = (PSTaskServer)iService.getDEModel().createEntity();
             pSTaskServer.set("PSTASKSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSTaskServer);
+                iService.getTemp(pSTaskServer);
             } else {
-                iService.get((IEntity)pSTaskServer);
+                iService.get(pSTaskServer);
             }
             this.onFillParentInfo_PSTaskServer(pSPFPreviewNode, pSTaskServer);
             return;
         }
-        super.onFillParentInfo((IEntity)pSPFPreviewNode, string, string2, string3);
+        super.onFillParentInfo(pSPFPreviewNode, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -218,7 +218,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSPFPreviewNode, bl);
+        super.onFillEntityFullInfo(pSPFPreviewNode, bl);
         this.onFillEntityFullInfo_PSPF(pSPFPreviewNode, bl);
         this.onFillEntityFullInfo_PSSvrDomain(pSPFPreviewNode, bl);
         this.onFillEntityFullInfo_PSSvrServer(pSPFPreviewNode, bl);
@@ -258,7 +258,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
     }
 
     protected void onWriteBackParent(PSPFPreviewNode pSPFPreviewNode, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPFPreviewNode, bl);
+        super.onWriteBackParent(pSPFPreviewNode, bl);
     }
 
     public ArrayList<PSPFPreviewNode> selectByPSPF(PSPFBase pSPFBase) throws Exception {
@@ -361,8 +361,8 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
         ArrayList<PSPFPreviewNode> arrayList = this.selectByPSPF(pSPF, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSPF");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSPF);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPFPREVIEWNODE_PSPF_PSPFID", "", iDataEntityModel.getName(), "PSPFPREVIEWNODE", iDataEntityModel.getDataInfo((IEntity)pSPF), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSPF);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPFPREVIEWNODE_PSPF_PSPFID", "", iDataEntityModel.getName(), "PSPFPREVIEWNODE", iDataEntityModel.getDataInfo(pSPF), arrayList.get(0)));
         }
     }
 
@@ -395,7 +395,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
         ArrayList<PSPFPreviewNode> arrayList = this.selectByPSPF(pSPF);
         this.onBeforeRemoveByPSPF(pSPF, arrayList);
         for (PSPFPreviewNode pSPFPreviewNode : arrayList) {
-            this.remove((IEntity)pSPFPreviewNode);
+            this.remove(pSPFPreviewNode);
         }
         this.onAfterRemoveByPSPF(pSPF, arrayList);
     }
@@ -413,8 +413,8 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
         ArrayList<PSPFPreviewNode> arrayList = this.selectByPSSvrDomain(pSSvrDomain, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRDOMAIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrDomain);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPFPREVIEWNODE_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSPFPREVIEWNODE", iDataEntityModel.getDataInfo((IEntity)pSSvrDomain), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrDomain);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPFPREVIEWNODE_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSPFPREVIEWNODE", iDataEntityModel.getDataInfo(pSSvrDomain), arrayList.get(0)));
         }
     }
 
@@ -447,7 +447,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
         ArrayList<PSPFPreviewNode> arrayList = this.selectByPSSvrDomain(pSSvrDomain);
         this.onBeforeRemoveByPSSvrDomain(pSSvrDomain, arrayList);
         for (PSPFPreviewNode pSPFPreviewNode : arrayList) {
-            this.remove((IEntity)pSPFPreviewNode);
+            this.remove(pSPFPreviewNode);
         }
         this.onAfterRemoveByPSSvrDomain(pSSvrDomain, arrayList);
     }
@@ -465,8 +465,8 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
         ArrayList<PSPFPreviewNode> arrayList = this.selectByPSSvrServer(pSSvrServer, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRSERVER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrServer);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPFPREVIEWNODE_PSSVRSERVER_PSSVRSERVERID", "", iDataEntityModel.getName(), "PSPFPREVIEWNODE", iDataEntityModel.getDataInfo((IEntity)pSSvrServer), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrServer);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPFPREVIEWNODE_PSSVRSERVER_PSSVRSERVERID", "", iDataEntityModel.getName(), "PSPFPREVIEWNODE", iDataEntityModel.getDataInfo(pSSvrServer), arrayList.get(0)));
         }
     }
 
@@ -499,7 +499,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
         ArrayList<PSPFPreviewNode> arrayList = this.selectByPSSvrServer(pSSvrServer);
         this.onBeforeRemoveByPSSvrServer(pSSvrServer, arrayList);
         for (PSPFPreviewNode pSPFPreviewNode : arrayList) {
-            this.remove((IEntity)pSPFPreviewNode);
+            this.remove(pSPFPreviewNode);
         }
         this.onAfterRemoveByPSSvrServer(pSSvrServer, arrayList);
     }
@@ -545,7 +545,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
         ArrayList<PSPFPreviewNode> arrayList = this.selectByPSTaskServer(pSTaskServer);
         this.onBeforeRemoveByPSTaskServer(pSTaskServer, arrayList);
         for (PSPFPreviewNode pSPFPreviewNode : arrayList) {
-            this.remove((IEntity)pSPFPreviewNode);
+            this.remove(pSPFPreviewNode);
         }
         this.onAfterRemoveByPSTaskServer(pSTaskServer, arrayList);
     }
@@ -566,7 +566,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
 
     protected void replaceParentInfo(PSPFPreviewNode pSPFPreviewNode, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSPFPreviewNode, cloneSession);
+        super.replaceParentInfo(pSPFPreviewNode, cloneSession);
         if (pSPFPreviewNode.getPSPFId() != null && (iEntity = cloneSession.getEntity("PSPF", (Object)pSPFPreviewNode.getPSPFId())) != null) {
             this.onFillParentInfo_PSPF(pSPFPreviewNode, (PSPF)iEntity);
         }
@@ -582,7 +582,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
     }
 
     protected void onRemoveEntityUncopyValues(PSPFPreviewNode pSPFPreviewNode, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPFPreviewNode, bl);
+        super.onRemoveEntityUncopyValues(pSPFPreviewNode, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPFPreviewNode pSPFPreviewNode, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -702,7 +702,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
         if ((entityFieldError = this.onCheckField_WaitTime(bl, pSPFPreviewNode, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPFPreviewNode, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPFPreviewNode, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AdminPasswd(boolean bl, PSPFPreviewNode pSPFPreviewNode, boolean bl2, boolean bl3) throws Exception {
@@ -715,7 +715,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AdminPasswd_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_AdminPasswd_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ADMINPASSWD");
@@ -737,7 +737,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AdminUserName_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_AdminUserName_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ADMINUSERNAME");
@@ -762,7 +762,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AppFolder_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_AppFolder_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APPFOLDER");
@@ -787,7 +787,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ASState_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string = this.onTestValueRule_ASState_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ASSTATE");
@@ -809,7 +809,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CfgFolder_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_CfgFolder_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CFGFOLDER");
@@ -831,7 +831,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_HttpAddress_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_HttpAddress_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HTTPADDRESS");
@@ -856,7 +856,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_HttpPort_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string = this.onTestValueRule_HttpPort_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HTTPPORT");
@@ -878,7 +878,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_HttpsPort_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string = this.onTestValueRule_HttpsPort_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HTTPSPORT");
@@ -903,7 +903,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -925,7 +925,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LastPreviewTime_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string = this.onTestValueRule_LastPreviewTime_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LASTPREVIEWTIME");
@@ -947,7 +947,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -969,7 +969,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_Param_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM");
@@ -991,7 +991,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param2_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_Param2_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM2");
@@ -1013,7 +1013,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param3_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_Param3_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM3");
@@ -1035,7 +1035,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param4_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_Param4_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM4");
@@ -1057,7 +1057,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Param5_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string = this.onTestValueRule_Param5_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM5");
@@ -1079,7 +1079,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Param6_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string = this.onTestValueRule_Param6_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM6");
@@ -1101,7 +1101,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Param7_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string = this.onTestValueRule_Param7_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM7");
@@ -1123,7 +1123,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Param8_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string = this.onTestValueRule_Param8_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM8");
@@ -1145,7 +1145,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -1167,7 +1167,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PreviewUrl_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_PreviewUrl_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PREVIEWURL");
@@ -1189,7 +1189,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFId_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFId_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFID");
@@ -1211,7 +1211,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFName_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFName_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFNAME");
@@ -1236,7 +1236,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPreviewNodeId_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPreviewNodeId_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPREVIEWNODEID");
@@ -1261,7 +1261,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPreviewNodeName_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPreviewNodeName_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPREVIEWNODENAME");
@@ -1283,7 +1283,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -1305,7 +1305,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrServerId_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrServerId_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRSERVERID");
@@ -1327,7 +1327,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -1349,7 +1349,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSTaskServerId_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSTaskServerId_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTASKSERVERID");
@@ -1371,7 +1371,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSTaskServerName_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSTaskServerName_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTASKSERVERNAME");
@@ -1393,7 +1393,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SSHIPAddr_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_SSHIPAddr_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHIPADDR");
@@ -1415,7 +1415,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SSHPort_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string = this.onTestValueRule_SSHPort_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHPORT");
@@ -1437,7 +1437,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StartCmd_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_StartCmd_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STARTCMD");
@@ -1459,7 +1459,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StopCmd_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_StopCmd_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STOPCMD");
@@ -1481,7 +1481,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadFileMode_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_UploadFileMode_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADFILEMODE");
@@ -1503,7 +1503,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadPath_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_UploadPath_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADPATH");
@@ -1525,7 +1525,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -1547,7 +1547,7 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WaitTime_Default((IEntity)pSPFPreviewNode, bl2, bl3);
+            string = this.onTestValueRule_WaitTime_Default(pSPFPreviewNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WAITTIME");
@@ -1560,11 +1560,11 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
     }
 
     protected void onSyncEntity(PSPFPreviewNode pSPFPreviewNode, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPFPreviewNode, bl);
+        super.onSyncEntity(pSPFPreviewNode, bl);
     }
 
     protected void onSyncIndexEntities(PSPFPreviewNode pSPFPreviewNode, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPFPreviewNode, bl);
+        super.onSyncIndexEntities(pSPFPreviewNode, bl);
     }
 
     public Object getDataContextValue(PSPFPreviewNode pSPFPreviewNode, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1572,14 +1572,14 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPFPreviewNode, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPFPreviewNode, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPFPreviewNode pSPFPreviewNode, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPFPreviewNode, arrayList, n);
+        super.onExportMajorModel(pSPFPreviewNode, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2152,14 +2152,14 @@ extends PSCoreSysServiceBase<PSPFPreviewNode> {
 
     protected boolean onMergeChild(String string, String string2, PSPFPreviewNode pSPFPreviewNode) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPFPreviewNode)) {
+        if (super.onMergeChild(string, string2, pSPFPreviewNode)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPFPreviewNode pSPFPreviewNode) throws Exception {
-        super.onUpdateParent((IEntity)pSPFPreviewNode);
+        super.onUpdateParent(pSPFPreviewNode);
     }
 
     @Override

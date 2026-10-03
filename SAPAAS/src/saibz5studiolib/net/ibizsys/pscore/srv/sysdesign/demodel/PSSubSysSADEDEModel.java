@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSubSysSADEDEModelBase;
 
 public class PSSubSysSADEDEModel
 extends PSSubSysSADEDEModelBase {
+
+    public PSSubSysSADEDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

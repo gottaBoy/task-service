@@ -527,7 +527,7 @@ extends BaseDEDataCtrl {
 
     private CallResult BuildWorkTimeDetailMap(TreeMap<Long, WorkTimeDetail> worktimeDetailMap, String strWorkTimeId, Timestamp startTime, Timestamp endTime) {
         String strSQL = "select * from T_SRFWORKTIMEDETAIL where UPPER(WorkTimeId)=? AND WORKTIME>=? AND WORKTIME<?";
-        Vector list = new Vector();
+        Vector<WorkTimeDetail> list = new Vector();
         CallParamList callParamList = new CallParamList();
         callParamList.Add((Object)strWorkTimeId.toUpperCase());
         callParamList.AddDateTime((Object)startTime);
@@ -555,7 +555,7 @@ extends BaseDEDataCtrl {
 
     private CallResult BuildWorkTimeDetailMap1(TreeMap<Long, WorkTimeDetail> worktimeDetailMap, String strWorkTimeId, Timestamp startTime, Timestamp endTime) {
         String strSQL = "select * from T_SRFWORKTIMEDETAIL where UPPER(WorkTimeId)=? AND ((WORKTIME>=? AND WORKTIME<?) OR (ENDTIME>=? AND ENDTIME<?) )";
-        Vector list = new Vector();
+        Vector<WorkTimeDetail> list = new Vector();
         CallParamList callParamList = new CallParamList();
         callParamList.Add((Object)strWorkTimeId.toUpperCase());
         callParamList.AddDateTime((Object)startTime);

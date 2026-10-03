@@ -141,9 +141,9 @@ extends PSCoreSysServiceBase<PSSFViewType> {
             PSSFStyle pSSFStyle = (PSSFStyle)iService.getDEModel().createEntity();
             pSSFStyle.set("PSSFSTYLEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSFStyle);
+                iService.getTemp(pSSFStyle);
             } else {
-                iService.get((IEntity)pSSFStyle);
+                iService.get(pSSFStyle);
             }
             this.onFillParentInfo_PSSFStyle(pSSFViewType, pSSFStyle);
             return;
@@ -153,9 +153,9 @@ extends PSCoreSysServiceBase<PSSFViewType> {
             PSSF pSSF = (PSSF)iService.getDEModel().createEntity();
             pSSF.set("PSSFID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSF);
+                iService.getTemp(pSSF);
             } else {
-                iService.get((IEntity)pSSF);
+                iService.get(pSSF);
             }
             this.onFillParentInfo_PSSF(pSSFViewType, pSSF);
             return;
@@ -165,14 +165,14 @@ extends PSCoreSysServiceBase<PSSFViewType> {
             PSViewType pSViewType = (PSViewType)iService.getDEModel().createEntity();
             pSViewType.set("PSVIEWTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSViewType);
+                iService.getTemp(pSViewType);
             } else {
-                iService.get((IEntity)pSViewType);
+                iService.get(pSViewType);
             }
             this.onFillParentInfo_PSViewType(pSSFViewType, pSViewType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSFViewType, string, string2, string3);
+        super.onFillParentInfo(pSSFViewType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -198,7 +198,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSFViewType, bl);
+        super.onFillEntityFullInfo(pSSFViewType, bl);
         this.onFillEntityFullInfo_PSSFStyle(pSSFViewType, bl);
         this.onFillEntityFullInfo_PSSF(pSSFViewType, bl);
         this.onFillEntityFullInfo_PSViewType(pSSFViewType, bl);
@@ -214,7 +214,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
     }
 
     protected void onWriteBackParent(PSSFViewType pSSFViewType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSFViewType, bl);
+        super.onWriteBackParent(pSSFViewType, bl);
     }
 
     public ArrayList<PSSFViewType> selectByPSSFStyle(PSSFStyleBase pSSFStyleBase) throws Exception {
@@ -293,8 +293,8 @@ extends PSCoreSysServiceBase<PSSFViewType> {
         ArrayList<PSSFViewType> arrayList = this.selectByPSSFStyle(pSSFStyle, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSFSTYLE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSFStyle);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSFVIEWTYPE_PSSFSTYLE_PSSFSTYLEID", "", iDataEntityModel.getName(), "PSSFVIEWTYPE", iDataEntityModel.getDataInfo((IEntity)pSSFStyle), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSFStyle);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSFVIEWTYPE_PSSFSTYLE_PSSFSTYLEID", "", iDataEntityModel.getName(), "PSSFVIEWTYPE", iDataEntityModel.getDataInfo(pSSFStyle), arrayList.get(0)));
         }
     }
 
@@ -327,7 +327,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
         ArrayList<PSSFViewType> arrayList = this.selectByPSSFStyle(pSSFStyle);
         this.onBeforeRemoveByPSSFStyle(pSSFStyle, arrayList);
         for (PSSFViewType pSSFViewType : arrayList) {
-            this.remove((IEntity)pSSFViewType);
+            this.remove(pSSFViewType);
         }
         this.onAfterRemoveByPSSFStyle(pSSFStyle, arrayList);
     }
@@ -345,8 +345,8 @@ extends PSCoreSysServiceBase<PSSFViewType> {
         ArrayList<PSSFViewType> arrayList = this.selectByPSSF(pSSF, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSF");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSF);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSFVIEWTYPE_PSSF_PSSFID", "", iDataEntityModel.getName(), "PSSFVIEWTYPE", iDataEntityModel.getDataInfo((IEntity)pSSF), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSF);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSFVIEWTYPE_PSSF_PSSFID", "", iDataEntityModel.getName(), "PSSFVIEWTYPE", iDataEntityModel.getDataInfo(pSSF), arrayList.get(0)));
         }
     }
 
@@ -379,7 +379,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
         ArrayList<PSSFViewType> arrayList = this.selectByPSSF(pSSF);
         this.onBeforeRemoveByPSSF(pSSF, arrayList);
         for (PSSFViewType pSSFViewType : arrayList) {
-            this.remove((IEntity)pSSFViewType);
+            this.remove(pSSFViewType);
         }
         this.onAfterRemoveByPSSF(pSSF, arrayList);
     }
@@ -397,8 +397,8 @@ extends PSCoreSysServiceBase<PSSFViewType> {
         ArrayList<PSSFViewType> arrayList = this.selectByPSViewType(pSViewType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSVIEWTYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSViewType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSFVIEWTYPE_PSVIEWTYPE_PSVIEWTYPEID", "", iDataEntityModel.getName(), "PSSFVIEWTYPE", iDataEntityModel.getDataInfo((IEntity)pSViewType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSViewType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSFVIEWTYPE_PSVIEWTYPE_PSVIEWTYPEID", "", iDataEntityModel.getName(), "PSSFVIEWTYPE", iDataEntityModel.getDataInfo(pSViewType), arrayList.get(0)));
         }
     }
 
@@ -431,7 +431,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
         ArrayList<PSSFViewType> arrayList = this.selectByPSViewType(pSViewType);
         this.onBeforeRemoveByPSViewType(pSViewType, arrayList);
         for (PSSFViewType pSSFViewType : arrayList) {
-            this.remove((IEntity)pSSFViewType);
+            this.remove(pSSFViewType);
         }
         this.onAfterRemoveByPSViewType(pSViewType, arrayList);
     }
@@ -452,7 +452,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
 
     protected void replaceParentInfo(PSSFViewType pSSFViewType, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSFViewType, cloneSession);
+        super.replaceParentInfo(pSSFViewType, cloneSession);
         if (pSSFViewType.getPSSFStyleId() != null && (iEntity = cloneSession.getEntity("PSSFSTYLE", (Object)pSSFViewType.getPSSFStyleId())) != null) {
             this.onFillParentInfo_PSSFStyle(pSSFViewType, (PSSFStyle)iEntity);
         }
@@ -465,7 +465,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSFViewType pSSFViewType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSFViewType, bl);
+        super.onRemoveEntityUncopyValues(pSSFViewType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSFViewType pSSFViewType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -501,7 +501,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
         if ((entityFieldError = this.onCheckField_ViewDesc(bl, pSSFViewType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSFViewType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSFViewType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ControllerClass(boolean bl, PSSFViewType pSSFViewType, boolean bl2, boolean bl3) throws Exception {
@@ -514,7 +514,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ControllerClass_Default((IEntity)pSSFViewType, bl2, bl3);
+            string2 = this.onTestValueRule_ControllerClass_Default(pSSFViewType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTROLLERCLASS");
@@ -536,7 +536,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSFViewType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSFViewType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -558,7 +558,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModelClass_Default((IEntity)pSSFViewType, bl2, bl3);
+            string2 = this.onTestValueRule_ModelClass_Default(pSSFViewType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODELCLASS");
@@ -580,7 +580,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFId_Default((IEntity)pSSFViewType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFId_Default(pSSFViewType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFID");
@@ -602,7 +602,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFStyleId_Default((IEntity)pSSFViewType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFStyleId_Default(pSSFViewType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFSTYLEID");
@@ -627,7 +627,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFViewTypeId_Default((IEntity)pSSFViewType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFViewTypeId_Default(pSSFViewType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFVIEWTYPEID");
@@ -652,7 +652,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFViewTypeName_Default((IEntity)pSSFViewType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFViewTypeName_Default(pSSFViewType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFVIEWTYPENAME");
@@ -674,7 +674,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewTypeId_Default((IEntity)pSSFViewType, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewTypeId_Default(pSSFViewType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWTYPEID");
@@ -696,7 +696,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ViewClass_Default((IEntity)pSSFViewType, bl2, bl3);
+            string2 = this.onTestValueRule_ViewClass_Default(pSSFViewType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWCLASS");
@@ -718,7 +718,7 @@ extends PSCoreSysServiceBase<PSSFViewType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ViewDesc_Default((IEntity)pSSFViewType, bl2, bl3);
+            string2 = this.onTestValueRule_ViewDesc_Default(pSSFViewType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWDESC");
@@ -731,11 +731,11 @@ extends PSCoreSysServiceBase<PSSFViewType> {
     }
 
     protected void onSyncEntity(PSSFViewType pSSFViewType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSFViewType, bl);
+        super.onSyncEntity(pSSFViewType, bl);
     }
 
     protected void onSyncIndexEntities(PSSFViewType pSSFViewType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSFViewType, bl);
+        super.onSyncIndexEntities(pSSFViewType, bl);
     }
 
     public Object getDataContextValue(PSSFViewType pSSFViewType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -743,14 +743,14 @@ extends PSCoreSysServiceBase<PSSFViewType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSFViewType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSFViewType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSFViewType pSSFViewType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSFViewType, arrayList, n);
+        super.onExportMajorModel(pSSFViewType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -998,14 +998,14 @@ extends PSCoreSysServiceBase<PSSFViewType> {
 
     protected boolean onMergeChild(String string, String string2, PSSFViewType pSSFViewType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSFViewType)) {
+        if (super.onMergeChild(string, string2, pSSFViewType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSFViewType pSSFViewType) throws Exception {
-        super.onUpdateParent((IEntity)pSSFViewType);
+        super.onUpdateParent(pSSFViewType);
     }
 
     @Override

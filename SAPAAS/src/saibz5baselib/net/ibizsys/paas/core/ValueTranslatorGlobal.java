@@ -1,49 +1,53 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package net.ibizsys.paas.core;
 
 import java.util.HashMap;
-import net.ibizsys.paas.core.IValueTranslator;
-import net.ibizsys.paas.core.valuetranslator.DateValueTranslator;
-import net.ibizsys.paas.util.StringHelper;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import net.ibizsys.paas.core.valuetranslator.DateValueTranslator;
+import net.ibizsys.paas.util.StringHelper;
+
+/**
+ * 值转换器全局对象
+ * 
+ * @author lionlau
+ *
+ */
 public class ValueTranslatorGlobal {
-    private static final Log log;
-    private static HashMap<String, IValueTranslator> valueTranslatorMap;
+	private static final Log log = LogFactory.getLog(ValueTranslatorGlobal.class);
+	private static HashMap<String, IValueTranslator> valueTranslatorMap = new HashMap<String, IValueTranslator>();
 
-    static {
-        String[] list;
-        log = LogFactory.getLog(ValueTranslatorGlobal.class);
-        valueTranslatorMap = new HashMap();
-        String[] stringArray = list = new String[]{"DATE|YYYY-MM-DD HH:mm:ss", "DATE|YYYY-MM-DD", "DATE|HH:mm:ss", "DATE|YYYY-MM-DD HH", "DATE|YYYY-MM-DD HH:mm", "DATE|HH:mm"};
-        int n = list.length;
-        int n2 = 0;
-        while (n2 < n) {
-            String strType = stringArray[n2];
-            DateValueTranslator dateValueTranslator = new DateValueTranslator();
-            dateValueTranslator.setParam(strType);
-            ValueTranslatorGlobal.registerValueTranslator(strType, dateValueTranslator);
-            ++n2;
-        }
-    }
+	static {
+		String[] list = new String[] { DateValueTranslator.DATETIME, DateValueTranslator.DATE, DateValueTranslator.TIME, DateValueTranslator.DATETIME_NOMINUTE, DateValueTranslator.DATETIME_NOSECOND, DateValueTranslator.TIME_NOSECOND };
+		for (String strType : list) {
+			DateValueTranslator dateValueTranslator = new DateValueTranslator();
+			dateValueTranslator.setParam(strType);
+			registerValueTranslator(strType, dateValueTranslator);
+		}
+	}
 
-    public static void registerValueTranslator(String strValueTranslator, IValueTranslator iValueTranslator) {
-        valueTranslatorMap.put(strValueTranslator, iValueTranslator);
-    }
+	/**
+	 * 注册值转换器
+	 * 
+	 * @param strValueTranslator
+	 * @param iValueTranslator
+	 */
+	public static void registerValueTranslator(String strValueTranslator, IValueTranslator iValueTranslator) {
+		valueTranslatorMap.put(strValueTranslator, iValueTranslator);
+	}
 
-    public static IValueTranslator getValueTranslator(String strValueTranslator) throws Exception {
-        IValueTranslator iValueTranslator = valueTranslatorMap.get(strValueTranslator);
-        if (iValueTranslator == null) {
-            throw new Exception(StringHelper.format("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u503c\u8f6c\u6362\u5668[%1$s]", strValueTranslator));
-        }
-        return iValueTranslator;
-    }
+	/**
+	 * 获取指定值转换器对象
+	 * 
+	 * @param strValueTranslator
+	 * @return
+	 * @throws Exception
+	 */
+	public static IValueTranslator getValueTranslator(String strValueTranslator) throws Exception {
+		IValueTranslator iValueTranslator = valueTranslatorMap.get(strValueTranslator);
+		if (iValueTranslator == null) throw new Exception(StringHelper.format("无法获取指定值转换器[%1$s]", strValueTranslator));
+		return iValueTranslator;
+	}
+
 }
-

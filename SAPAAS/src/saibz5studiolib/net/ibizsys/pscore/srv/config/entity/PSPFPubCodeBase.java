@@ -2184,7 +2184,7 @@ implements Serializable {
                 PSPFCodeFolder pSPFCodeFolder = new PSPFCodeFolder();
                 pSPFCodeFolder.setPSPFCodeFolderId(this.getPSPFCodeFolderId());
                 PSPFCodeFolderService pSPFCodeFolderService = (PSPFCodeFolderService)ServiceGlobal.getService(PSPFCodeFolderService.class, (SessionFactory)this.getSessionFactory());
-                pSPFCodeFolderService.autoGet((IEntity)pSPFCodeFolder);
+                pSPFCodeFolderService.autoGet(pSPFCodeFolder);
                 this.pspfcodefolder = pSPFCodeFolder;
             }
             return this.pspfcodefolder;
@@ -2210,7 +2210,7 @@ implements Serializable {
                 PSPFPubCode pSPFPubCode = new PSPFPubCode();
                 pSPFPubCode.setPSPFPubCodeId(this.getPPSPFPubCodeId());
                 PSPFPubCodeService pSPFPubCodeService = (PSPFPubCodeService)ServiceGlobal.getService(PSPFPubCodeService.class, (SessionFactory)this.getSessionFactory());
-                pSPFPubCodeService.autoGet((IEntity)pSPFPubCode);
+                pSPFPubCodeService.autoGet(pSPFPubCode);
                 this.ppspfpubcode = pSPFPubCode;
             }
             return this.ppspfpubcode;
@@ -2236,7 +2236,7 @@ implements Serializable {
                 PSPF pSPF = new PSPF();
                 pSPF.setPSPFId(this.getPSPFId());
                 PSPFService pSPFService = (PSPFService)ServiceGlobal.getService(PSPFService.class, (SessionFactory)this.getSessionFactory());
-                pSPFService.autoGet((IEntity)pSPF);
+                pSPFService.autoGet(pSPF);
                 this.pspf = pSPF;
             }
             return this.pspf;

@@ -73,7 +73,7 @@ implements IPSSysPFPITemplService {
     @Override
     protected List<PSSysPFPITempl> onListAll() throws Exception {
         ArrayList<PSSysPFPITempl> list = new ArrayList<PSSysPFPITempl>();
-        List pssyspfplugins = PSModelServiceUtil.getInstance().getPSSysPFPluginService().listAll();
+        List<PSSysPFPlugin> pssyspfplugins = PSModelServiceUtil.getInstance().getPSSysPFPluginService().listAll();
         if (pssyspfplugins != null) {
             for (PSSysPFPlugin parent : pssyspfplugins) {
                 List<PSSysPFPITempl> items = this.listByPSSysPFPlugin(parent);

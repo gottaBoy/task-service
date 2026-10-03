@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDataSyncAgentType> {
     }
 
     protected void onFillParentInfo(PSDataSyncAgentType pSDataSyncAgentType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDataSyncAgentType, string, string2, string3);
+        super.onFillParentInfo(pSDataSyncAgentType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDataSyncAgentType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDataSyncAgentType, bl);
+        super.onFillEntityFullInfo(pSDataSyncAgentType, bl);
     }
 
     protected void onWriteBackParent(PSDataSyncAgentType pSDataSyncAgentType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDataSyncAgentType, bl);
+        super.onWriteBackParent(pSDataSyncAgentType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDataSyncAgentType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDataSyncAgentType pSDataSyncAgentType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDataSyncAgentType, bl);
+        super.onRemoveEntityUncopyValues(pSDataSyncAgentType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDataSyncAgentType pSDataSyncAgentType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSDataSyncAgentType> {
         if ((entityFieldError = this.onCheckField_PSDataSyncAgentTypeName(bl, pSDataSyncAgentType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDataSyncAgentType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDataSyncAgentType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BaseClsParams(boolean bl, PSDataSyncAgentType pSDataSyncAgentType, boolean bl2, boolean bl3) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSDataSyncAgentType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BaseClsParams_Default((IEntity)pSDataSyncAgentType, bl2, bl3);
+            string2 = this.onTestValueRule_BaseClsParams_Default(pSDataSyncAgentType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BASECLSPARAMS");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSDataSyncAgentType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDataSyncAgentType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDataSyncAgentType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -218,7 +218,7 @@ extends PSCoreSysServiceBase<PSDataSyncAgentType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDataSyncAgentTypeId_Default((IEntity)pSDataSyncAgentType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDataSyncAgentTypeId_Default(pSDataSyncAgentType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDATASYNCAGENTTYPEID");
@@ -243,7 +243,7 @@ extends PSCoreSysServiceBase<PSDataSyncAgentType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDataSyncAgentTypeName_Default((IEntity)pSDataSyncAgentType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDataSyncAgentTypeName_Default(pSDataSyncAgentType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDATASYNCAGENTTYPENAME");
@@ -256,11 +256,11 @@ extends PSCoreSysServiceBase<PSDataSyncAgentType> {
     }
 
     protected void onSyncEntity(PSDataSyncAgentType pSDataSyncAgentType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDataSyncAgentType, bl);
+        super.onSyncEntity(pSDataSyncAgentType, bl);
     }
 
     protected void onSyncIndexEntities(PSDataSyncAgentType pSDataSyncAgentType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDataSyncAgentType, bl);
+        super.onSyncIndexEntities(pSDataSyncAgentType, bl);
     }
 
     public Object getDataContextValue(PSDataSyncAgentType pSDataSyncAgentType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -268,14 +268,14 @@ extends PSCoreSysServiceBase<PSDataSyncAgentType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDataSyncAgentType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDataSyncAgentType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDataSyncAgentType pSDataSyncAgentType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDataSyncAgentType, arrayList, n);
+        super.onExportMajorModel(pSDataSyncAgentType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -395,14 +395,14 @@ extends PSCoreSysServiceBase<PSDataSyncAgentType> {
 
     protected boolean onMergeChild(String string, String string2, PSDataSyncAgentType pSDataSyncAgentType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDataSyncAgentType)) {
+        if (super.onMergeChild(string, string2, pSDataSyncAgentType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDataSyncAgentType pSDataSyncAgentType) throws Exception {
-        super.onUpdateParent((IEntity)pSDataSyncAgentType);
+        super.onUpdateParent(pSDataSyncAgentType);
     }
 
     @Override

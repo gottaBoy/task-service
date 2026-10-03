@@ -119,9 +119,9 @@ implements IPSDESADetailService {
 
     @Override
     protected List<PSDESADetail> onListAll() throws Exception {
-        List psdeserviceapis;
+        List<PSDEServiceAPI> psdeserviceapis;
         ArrayList<PSDESADetail> list = new ArrayList<PSDESADetail>();
-        List psdesars = PSModelServiceUtil.getInstance().getPSDESARSService().listAll();
+        List<PSDESARS> psdesars = PSModelServiceUtil.getInstance().getPSDESARSService().listAll();
         if (psdesars != null) {
             for (PSDESARS parent : psdesars) {
                 List<PSDESADetail> items = this.listByPSDESARS(parent);

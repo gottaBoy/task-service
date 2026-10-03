@@ -1063,7 +1063,7 @@ implements Serializable {
                 PSDEGEIUpdate pSDEGEIUpdate = new PSDEGEIUpdate();
                 pSDEGEIUpdate.setPSDEGEIUpdateId(this.getPSDEGEIUpdateId());
                 PSDEGEIUpdateService pSDEGEIUpdateService = (PSDEGEIUpdateService)ServiceGlobal.getService(PSDEGEIUpdateService.class, (SessionFactory)this.getSessionFactory());
-                pSDEGEIUpdateService.autoGet((IEntity)pSDEGEIUpdate);
+                pSDEGEIUpdateService.autoGet(pSDEGEIUpdate);
                 this.psdegeiupdate = pSDEGEIUpdate;
             }
             return this.psdegeiupdate;
@@ -1089,7 +1089,7 @@ implements Serializable {
                 PSDEGridCol pSDEGridCol = new PSDEGridCol();
                 pSDEGridCol.setPSDEGridColId(this.getPSDEGridColId());
                 PSDEGridColService pSDEGridColService = (PSDEGridColService)ServiceGlobal.getService(PSDEGridColService.class, (SessionFactory)this.getSessionFactory());
-                pSDEGridColService.autoGet((IEntity)pSDEGridCol);
+                pSDEGridColService.autoGet(pSDEGridCol);
                 this.psdegridcol = pSDEGridCol;
             }
             return this.psdegridcol;
@@ -1115,7 +1115,7 @@ implements Serializable {
                 PSDEGrid pSDEGrid = new PSDEGrid();
                 pSDEGrid.setPSDEGridId(this.getPSDEGridId());
                 PSDEGridService pSDEGridService = (PSDEGridService)ServiceGlobal.getService(PSDEGridService.class, (SessionFactory)this.getSessionFactory());
-                pSDEGridService.autoGet((IEntity)pSDEGrid);
+                pSDEGridService.autoGet(pSDEGrid);
                 this.psdegrid = pSDEGrid;
             }
             return this.psdegrid;

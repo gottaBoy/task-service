@@ -59,7 +59,7 @@ extends PSDEDataCtrl {
                         this.modifyLayoutFromXML(xmlNode, psDEDataQueryJoin, validMap);
                         BaseDataEntity cond = new BaseDataEntity();
                         cond.setParamValue("PSDEDQJOINID", (Object)psDEDataQueryJoin.getPSDEDQJOINID());
-                        Vector psDEDataQueryCondList = new Vector();
+                        Vector<PSDEDataQueryCond> psDEDataQueryCondList = new Vector<>();
                         IDEDataCtrl psDEDataQueryCondDataCtrl = this.GetRelatedDataCtrl("DE2059");
                         callResult = psDEDataQueryCondDataCtrl.Select(cond, psDEDataQueryCondList, PSDEDataQueryCond.class.getName());
                         if (callResult.isError()) {
@@ -89,7 +89,7 @@ extends PSDEDataCtrl {
     }
 
     protected void modifyLayoutFromXML(XMLNode xmlNode, PSDEDataQueryJoin psDEDataQueryJoin, HashMap<String, PSDEDataQueryCond> validMap) throws Exception {
-        ArrayList xmlNodes = xmlNode.getChildNodes();
+        ArrayList<XMLNode> xmlNodes = xmlNode.getChildNodes();
         if (xmlNodes == null) {
             return;
         }
@@ -140,7 +140,7 @@ extends PSDEDataCtrl {
         }
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSDEDQJOINID", (Object)psDEDataQueryJoin.getPSDEDQJOINID());
-        Vector psDEDataQueryCondList = new Vector();
+        Vector<PSDEDataQueryCond> psDEDataQueryCondList = new Vector<>();
         IDEDataCtrl psDEDataQueryCondDataCtrl = this.GetRelatedDataCtrl("DE2059");
         CallResult callResult = psDEDataQueryCondDataCtrl.Select(cond, psDEDataQueryCondList, PSDEDataQueryCond.class.getName(), "ORDER BY ORDERVALUE");
         if (callResult.isError()) {
@@ -221,4 +221,3 @@ extends PSDEDataCtrl {
         return callResult;
     }
 }
-

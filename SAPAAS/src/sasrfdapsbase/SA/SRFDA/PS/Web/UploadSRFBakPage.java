@@ -183,7 +183,7 @@ extends BaseMainPage {
             PSObjectFactory.getPSModelStorage(this.getDAGlobalHelper());
             PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class);
             this.psDevSlnSys.setPSDevSlnSysId(strPSDevSlnSysId);
-            psDevSlnSysService.get((IEntity)this.psDevSlnSys);
+            psDevSlnSysService.get(this.psDevSlnSys);
             SimpleWebContext iWebContext = new SimpleWebContext();
             iWebContext.init(this.getRequest(), this.getResponse(), this.getRequest().getSession().getServletContext());
             WebContext.setCurrent((IWebContext)iWebContext);
@@ -322,7 +322,7 @@ extends BaseMainPage {
         PSDataEntity psDataEntity = new PSDataEntity();
         String strPSDATAENTITYNAME = dataEntity.getDENAME().toUpperCase();
         psDataEntity.setPSDataEntityId(Helper.GenUniqueId((String)this.psDevSlnSys.getPSSystemId(), (String)strPSDATAENTITYNAME));
-        if (psDataEntityService.checkKey((IEntity)psDataEntity) == 0) {
+        if (psDataEntityService.checkKey(psDataEntity) == 0) {
             String[] parts;
             PSModuleService psModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.sysSessionFactory);
             PSSystem psSystem = new PSSystem();
@@ -346,7 +346,7 @@ extends BaseMainPage {
             psDataEntity.setCodeName(dataEntity.getDENAME());
             psDataEntity.setMemo(dataEntity.getParamStringValue("DESCRIPTION", null));
             psDataEntity.setExistingModel(Integer.valueOf(dataEntity.isEXITINGMODEL() ? 1 : 0));
-            psDataEntityService.create((IEntity)psDataEntity);
+            psDataEntityService.create(psDataEntity);
         }
     }
 
@@ -355,7 +355,7 @@ extends BaseMainPage {
         PSDER psDER = new PSDER();
         psDER.setPSSystemId(this.psDevSlnSys.getPSSystemId());
         psDER.setPSDERId(Helper.GenUniqueId((String)this.psDevSlnSys.getPSSystemId(), (String)der1N.getDERID()));
-        if (!psDERService.get((IEntity)psDER, true)) {
+        if (!psDERService.get(psDER, true)) {
             psDER.setDERType("DER1N");
             PSDataEntity psDataEntity = this.getPSDataEntityByDEId(der1N.getMAJORDEID());
             psDER.setMajorPSDEId(psDataEntity.getPSDataEntityId());
@@ -369,7 +369,7 @@ extends BaseMainPage {
             if (der1N.getREMOVEACTIONTYPE() > 0) {
                 psDER.setRemoveActionType(Integer.valueOf(der1N.getREMOVEACTIONTYPE()));
             }
-            psDERService.create((IEntity)psDER);
+            psDERService.create(psDER);
         }
     }
 
@@ -378,7 +378,7 @@ extends BaseMainPage {
         PSDER psDER = new PSDER();
         psDER.setPSSystemId(this.psDevSlnSys.getPSSystemId());
         psDER.setPSDERId(Helper.GenUniqueId((String)this.psDevSlnSys.getPSSystemId(), (String)derINDEX.getDERINDEXID()));
-        if (!psDERService.get((IEntity)psDER, true)) {
+        if (!psDERService.get(psDER, true)) {
             if (derINDEX.isINHERITMODE()) {
                 psDER.setDERType("DERINHERIT");
             } else {
@@ -391,7 +391,7 @@ extends BaseMainPage {
             psDER.setMinorPSDEId(psDataEntity.getPSDataEntityId());
             psDER.setMinorPSDEName(psDataEntity.getPSDataEntityName());
             psDER.setIndexValue(derINDEX.getTYPEVALUE());
-            psDERService.create((IEntity)psDER);
+            psDERService.create(psDER);
         }
     }
 
@@ -400,7 +400,7 @@ extends BaseMainPage {
         PSCodeList psCodeList = new PSCodeList();
         psCodeList.setPSSystemId(this.psDevSlnSys.getPSSystemId());
         psCodeList.setPSCodeListId(Helper.GenUniqueId((String)this.psDevSlnSys.getPSSystemId(), (String)codeList.getCODELISTID()));
-        if (!psCodeListService.get((IEntity)psCodeList, true)) {
+        if (!psCodeListService.get(psCodeList, true)) {
             PSDEDataCtrl.convertEntity2((BaseDataEntity)codeList, (IEntity)psCodeList);
             String strDEId = codeList.getParamStringValue("DEID", "");
             if (!StringHelper.IsNullOrEmpty((String)strDEId)) {
@@ -427,7 +427,7 @@ extends BaseMainPage {
                 psCodeList.setCLType("DYNAMIC");
                 psCodeList.setMemo(codeList.getCLPARAM());
             }
-            psCodeListService.create((IEntity)psCodeList);
+            psCodeListService.create(psCodeList);
         }
         if (StringHelper.Compare((String)psCodeList.getCLType(), (String)"STATIC", (boolean)true) == 0) {
             PSCodeItemService psCodeItemService = (PSCodeItemService)ServiceGlobal.getService(PSCodeItemService.class, (SessionFactory)this.sysSessionFactory);
@@ -459,7 +459,7 @@ extends BaseMainPage {
         if (parentPSCodeItem != null) {
             psCodeItem.setPPSCodeItemId(parentPSCodeItem.getPSCodeItemId());
         }
-        psCodeItemService.create((IEntity)psCodeItem);
+        psCodeItemService.create(psCodeItem);
         if (codeItemConfig.getCodeItems() == null || codeItemConfig.getCodeItems().size() == 0) {
             return;
         }
@@ -478,7 +478,7 @@ extends BaseMainPage {
         PSDEForm psDEForm = new PSDEForm();
         PSDataEntity psDataEntity = this.getPSDataEntityByDEId(form.getDEID());
         psDEForm.setPSDEFormId(Helper.GenUniqueId((String)psDataEntity.getPSDataEntityId(), (String)form.getFORMID()));
-        if (!psDEFormService.get((IEntity)psDEForm, true)) {
+        if (!psDEFormService.get(psDEForm, true)) {
             psDEForm.setPSDEId(psDataEntity.getPSDataEntityId());
             psDEForm.setPSDEName(psDataEntity.getPSDataEntityName());
             psDEForm.setPSDEFormName(form.getFORMNAME());
@@ -489,7 +489,7 @@ extends BaseMainPage {
             } else {
                 psDEForm.setCodeName(StringHelper.Format((String)"F%1$s", (Object)random.nextInt(100)));
             }
-            psDEFormService.create((IEntity)psDEForm);
+            psDEFormService.create(psDEForm);
         }
         if ((psDEFormDetailList = (psDEFormDetailService = (PSDEFormDetailService)ServiceGlobal.getService(PSDEFormDetailService.class, (SessionFactory)this.sysSessionFactory)).selectByPSDEForm((PSDEFormBase)psDEForm)).size() > 0) {
             return;
@@ -607,7 +607,7 @@ extends BaseMainPage {
                 psDEFormDetail.setPSDEFormDetailName(StringHelper.Format((String)"%1$s%2$s", (Object)psDEFormDetail.getDetailType().toLowerCase(), (Object)nValue));
             }
         }
-        psDEFormDetailService.create((IEntity)psDEFormDetail);
+        psDEFormDetailService.create(psDEFormDetail);
         Iterator xmlNodes = xmlNode.getChildNodes();
         if (xmlNodes != null) {
             int nChildIndex = 0;
@@ -625,7 +625,7 @@ extends BaseMainPage {
         PSDEGrid psDEGrid = new PSDEGrid();
         PSDataEntity psDataEntity = this.getPSDataEntityByDEId(dataGrid.getDEID());
         psDEGrid.setPSDEGridId(Helper.GenUniqueId((String)psDataEntity.getPSDataEntityId(), (String)dataGrid.getDATAGRIDID()));
-        if (!psDEGridService.get((IEntity)psDEGrid, true)) {
+        if (!psDEGridService.get(psDEGrid, true)) {
             psDEGrid.setPSDEId(psDataEntity.getPSDataEntityId());
             psDEGrid.setPSDEName(psDataEntity.getPSDataEntityName());
             psDEGrid.setPSDEGridName(dataGrid.getDATAGRIDNAME());
@@ -637,7 +637,7 @@ extends BaseMainPage {
             } else {
                 psDEGrid.setCodeName(StringHelper.Format((String)"G%1$s", (Object)random.nextInt(100)));
             }
-            psDEGridService.create((IEntity)psDEGrid);
+            psDEGridService.create(psDEGrid);
         }
         if ((psDEGridColumnList = (psDEGridColService = (PSDEGridColService)ServiceGlobal.getService(PSDEGridColService.class, (SessionFactory)this.sysSessionFactory)).selectByPSDEGrid((PSDEGridBase)psDEGrid)).size() > 0) {
             return;
@@ -655,7 +655,7 @@ extends BaseMainPage {
             psDEGridColumn.setWidth(Integer.valueOf(columnConfig.getWidth()));
             psDEGridColumn.setPSDEFId(psDEField.getPSDEFieldId());
             psDEGridColumn.setGridColType("DEFGRIDCOLUMN");
-            psDEGridColService.create((IEntity)psDEGridColumn);
+            psDEGridColService.create(psDEGridColumn);
         }
     }
 
@@ -668,7 +668,7 @@ extends BaseMainPage {
         psDataEntity = new PSDataEntity();
         psDataEntity.setPSSystemId(this.psDevSlnSys.getPSSystemId());
         psDataEntity.setDESN(strDEId);
-        if (!psDataEntityService.select((IEntity)psDataEntity, true)) {
+        if (!psDataEntityService.select(psDataEntity, true)) {
             throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u6807\u793a\u4e3a[%1$s]\u7684\u5b9e\u4f53", (Object)strDEId));
         }
         this.psDataEntityMap.put(strDEId, psDataEntity);
@@ -679,11 +679,11 @@ extends BaseMainPage {
         PSDEField psDEField;
         PSDEFieldService psDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.sysSessionFactory);
         PSDataEntity psDataEntity = this.getPSDataEntityByDEId(strDEId);
-        HashMap<String, Object> psDEFieldMap = this.psDEFieldMap.get(strDEId);
+        HashMap<String, PSDEField> psDEFieldMap = this.psDEFieldMap.get(strDEId);
         if (psDEFieldMap == null) {
-            psDEFieldMap = new HashMap();
+            psDEFieldMap = new HashMap<String, PSDEField>();
             this.psDEFieldMap.put(strDEId, psDEFieldMap);
-            ArrayList psDEFieldList = psDEFieldService.selectByPSDE((PSDataEntityBase)psDataEntity);
+            ArrayList<PSDEField> psDEFieldList = psDEFieldService.selectByPSDE((PSDataEntityBase)psDataEntity);
             for (PSDEField psDEField2 : psDEFieldList) {
                 psDEFieldMap.put(psDEField2.getPSDEFieldName(), psDEField2);
                 psDEFieldMap.put(StringHelper.Format((String)"%1$s_%2$s", (Object)strDEId, (Object)psDEField2.getPSDEFieldName()), psDEField2);
@@ -695,10 +695,10 @@ extends BaseMainPage {
         psDEField = new PSDEField();
         psDEField.setPSDEId(psDataEntity.getPSDataEntityId());
         psDEField.setPSDEFieldName(strDEFName);
-        if (!psDEFieldService.select((IEntity)psDEField, true)) {
+        if (!psDEFieldService.select(psDEField, true)) {
             String strDEFName2 = strDEFName.replace(String.valueOf(strDEId) + "_", "");
             psDEField.setPSDEFieldName(strDEFName2);
-            if (!psDEFieldService.select((IEntity)psDEField, true)) {
+            if (!psDEFieldService.select(psDEField, true)) {
                 throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u540d\u79f0\u4e3a[%2$s]\u7684\u5c5e\u6027", (Object)strDEId, (Object)strDEFName));
             }
         }
@@ -716,7 +716,7 @@ extends BaseMainPage {
         psCodeList = new PSCodeList();
         psCodeList.setPSSystemId(this.psDevSlnSys.getPSSystemId());
         psCodeList.setCodeListSN(strCodeListId);
-        if (!psCodeListService.select((IEntity)psCodeList, true)) {
+        if (!psCodeListService.select(psCodeList, true)) {
             throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u6807\u793a\u4e3a[%1$s]\u7684\u4ee3\u7801\u8868", (Object)strCodeListId));
         }
         this.psCodeListMap.put(strCodeListId, psCodeList);
@@ -731,7 +731,7 @@ extends BaseMainPage {
         PSDERService psDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.sysSessionFactory);
         psDER = new PSDER();
         psDER.setPSDERId(Helper.GenUniqueId((String)this.psDevSlnSys.getPSSystemId(), (String)strDER1NId));
-        if (!psDERService.get((IEntity)psDER, true)) {
+        if (!psDERService.get(psDER, true)) {
             throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u6807\u793a\u4e3a[%1$s]\u7684DER1N", (Object)strDER1NId));
         }
         this.psDER1NMap.put(strDER1NId, psDER);
@@ -747,7 +747,7 @@ extends BaseMainPage {
         psDER = new PSDER();
         psDER.setMinorPSDEId(strPSDEId);
         psDER.setDERType("DERINHERIT");
-        if (!psDERService.select((IEntity)psDER, true)) {
+        if (!psDERService.select(psDER, true)) {
             throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u4ece\u5b9e\u4f53\u6807\u793a\u4e3a[%1$s]\u7684DERInherit", (Object)strPSDEId));
         }
         this.psDERIndexMap.put(strPSDEId, psDER);
@@ -760,7 +760,7 @@ extends BaseMainPage {
         if (StringHelper.Compare((String)deField.getDATATYPE(), (String)"PICKUP", (boolean)true) == 0 || StringHelper.Compare((String)deField.getDATATYPE(), (String)"PICKUPTEXT", (boolean)true) == 0 || StringHelper.Compare((String)deField.getDATATYPE(), (String)"PICKUPDATA", (boolean)true) == 0) {
             PSDEField psDEField = new PSDEField();
             psDEField.setPSDEFieldId(Helper.GenUniqueId((String)psDataEntity.getPSDataEntityId(), (String)deField.getDEFNAME().toUpperCase()));
-            if (!psDEFieldService.get((IEntity)psDEField, true)) {
+            if (!psDEFieldService.get(psDEField, true)) {
                 String[] parts;
                 String strDER1NId = deField.getDATATYPEPARAM4();
                 PSDER psDER = this.getPSDER1NByDER1NId(strDER1NId);
@@ -798,17 +798,17 @@ extends BaseMainPage {
                 PSDEField relatedDEField = new PSDEField();
                 relatedDEField.setPSDEId(psDER.getMajorPSDEId());
                 relatedDEField.setPSDEFieldName(deField.getRDEFNAME().toUpperCase());
-                if (!psDEFieldService.select((IEntity)relatedDEField, true)) {
+                if (!psDEFieldService.select(relatedDEField, true)) {
                     throw new Exception(StringHelper.Format((String)"\u5b9e\u4f53[%1%2]\u5c5e\u6027[%2$s]\u4e0d\u5b58\u5728", (Object)psDER.getMajorPSDE().getPSDataEntityName(), (Object)deField.getRDEFNAME()));
                 }
                 psDEField.setDERPSDEFId(relatedDEField.getPSDEFieldId());
                 psDEField.setDERPSDEFName(relatedDEField.getPSDEFieldName());
-                psDEFieldService.create((IEntity)psDEField);
+                psDEFieldService.create(psDEField);
             }
         } else if (StringHelper.Compare((String)deField.getDATATYPE(), (String)"INHERIT", (boolean)true) == 0) {
             PSDEField psDEField = new PSDEField();
             psDEField.setPSDEFieldId(Helper.GenUniqueId((String)psDataEntity.getPSDataEntityId(), (String)deField.getDEFNAME().toUpperCase()));
-            if (!psDEFieldService.get((IEntity)psDEField, true)) {
+            if (!psDEFieldService.get(psDEField, true)) {
                 PSDER psDER = this.getPSDERInheritByMinorPSDEId(psDataEntity.getPSDataEntityId());
                 psDEField.setPSDEId(psDataEntity.getPSDataEntityId());
                 psDEField.setDEFType(Integer.valueOf(deField.getDEFTYPE()));
@@ -837,17 +837,17 @@ extends BaseMainPage {
                 PSDEField relatedDEField = new PSDEField();
                 relatedDEField.setPSDEId(psDER.getMajorPSDEId());
                 relatedDEField.setPSDEFieldName(deField.getRDEFNAME().toUpperCase());
-                if (!psDEFieldService.select((IEntity)relatedDEField, true)) {
+                if (!psDEFieldService.select(relatedDEField, true)) {
                     throw new Exception(StringHelper.Format((String)"\u5b9e\u4f53[%1%2]\u5c5e\u6027[%2$s]\u4e0d\u5b58\u5728", (Object)psDER.getMajorPSDE().getPSDataEntityName(), (Object)deField.getRDEFNAME()));
                 }
                 psDEField.setDERPSDEFId(relatedDEField.getPSDEFieldId());
                 psDEField.setDERPSDEFName(relatedDEField.getPSDEFieldName());
-                psDEFieldService.create((IEntity)psDEField);
+                psDEFieldService.create(psDEField);
             }
         } else {
             PSDEField psDEField = new PSDEField();
             psDEField.setPSDEFieldId(Helper.GenUniqueId((String)psDataEntity.getPSDataEntityId(), (String)deField.getDEFNAME().toUpperCase()));
-            if (!psDEFieldService.get((IEntity)psDEField, true)) {
+            if (!psDEFieldService.get(psDEField, true)) {
                 psDEField.setPSDEId(psDataEntity.getPSDataEntityId());
                 psDEField.setDEFType(Integer.valueOf(deField.getDEFTYPE()));
                 psDEField.setPSDEName(psDataEntity.getPSDataEntityName());
@@ -880,7 +880,7 @@ extends BaseMainPage {
                 if (!StringHelper.IsNullOrEmpty((String)deField.getCODELISTID())) {
                     psDEField.setPSCodeListId(this.getPSCodeListByCLId(deField.getCODELISTID()).getPSCodeListId());
                 }
-                psDEFieldService.create((IEntity)psDEField);
+                psDEFieldService.create(psDEField);
             } else {
                 boolean bModify = false;
                 if (!StringHelper.IsNullOrEmpty((String)deField.getCODELISTID()) && StringHelper.IsNullOrEmpty((String)psDEField.getPSCodeListId())) {
@@ -888,7 +888,7 @@ extends BaseMainPage {
                     psDEField.setPSCodeListId(this.getPSCodeListByCLId(deField.getCODELISTID()).getPSCodeListId());
                 }
                 if (bModify) {
-                    psDEFieldService.update((IEntity)psDEField);
+                    psDEFieldService.update(psDEField);
                 }
             }
         }

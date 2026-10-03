@@ -63,7 +63,7 @@ extends SRFDAPage {
                 callParamList = new CallParamList();
                 callParamList.AddDateTime((Object)date);
                 strSQL = StringHelper.Compare((String)strDAModelDB, (String)"MSSQL", (boolean)true) == 0 ? StringHelper.Format((String)"select t1.*,t2.SQLPATCHITEMNAME,t2.DEID from t_SRFSQLPATCHDETAIL t1 INNER JOIN T_SRFSQLPATCHITEM t2 on t1.SQLPATCHITEMID = t2.SQLPATCHITEMID where t2.UPDATEDATE >= ? AND t2.VALIDFLAG=1 AND dbo.fu_srfbitand(t2.PATCHGROUP,%1$s)<>0 ORDER BY t2.PATCHORDER,t1.ORDERFLAG  ", (Object)strPatchGroup) : StringHelper.Format((String)"select t1.*,t2.SQLPATCHITEMNAME,t2.DEID from t_SRFSQLPATCHDETAIL t1 INNER JOIN T_SRFSQLPATCHITEM t2 on t1.SQLPATCHITEMID = t2.SQLPATCHITEMID where t2.UPDATEDATE >= ? AND t2.VALIDFLAG=1 AND fu_srfbitand(t2.PATCHGROUP,%1$s)<>0 ORDER BY t2.PATCHORDER,t1.ORDERFLAG ", (Object)strPatchGroup);
-                Vector sqlPatchDetails = new Vector();
+                Vector<SqlPatchDetail> sqlPatchDetails = new Vector<SqlPatchDetail>();
                 callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), (String)strSQL, (Vector)callParamList.GetList(), sqlPatchDetails, (String)SqlPatchDetail.class.getName());
                 if (callResult.IsError()) {
                     this.PageLog((Object)this, 1, StringHelper.Format((String)"\u67e5\u8be2\u6570\u636e\u5e93\u8865\u4e01\u9879\u660e\u7ec6\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -85,7 +85,7 @@ extends SRFDAPage {
                 callParamList = new CallParamList();
                 callParamList.AddDateTime((Object)date);
                 strSQL = StringHelper.Compare((String)strDAModelDB, (String)"MSSQL", (boolean)true) == 0 ? StringHelper.Format((String)"SELECT * FROM T_SRFPATCHREMOVEITEM WHERE UPDATEDATE >= ? AND VALIDFLAG=1 AND dbo.fu_srfbitand(PATCHGROUP,%1$s)<>0 ORDER BY UPDATEDATE ", (Object)strPatchGroup) : StringHelper.Format((String)"SELECT * FROM T_SRFPATCHREMOVEITEM WHERE UPDATEDATE >= ? AND  VALIDFLAG=1 AND fu_srfbitand(PATCHGROUP,%1$s)<>0 ORDER BY UPDATEDATE", (Object)strPatchGroup);
-                Vector patchRemoveItems = new Vector();
+                Vector<PatchRemoveItem> patchRemoveItems = new Vector<PatchRemoveItem>();
                 callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), (String)strSQL, (Vector)callParamList.GetList(), patchRemoveItems, (String)PatchRemoveItem.class.getName());
                 if (callResult.IsError()) {
                     this.PageLog((Object)this, 1, StringHelper.Format((String)"\u67e5\u8be2\u5220\u9664\u9879\u9879\u660e\u7ec6\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -100,7 +100,7 @@ extends SRFDAPage {
                 }
             }
             strSQL = StringHelper.Compare((String)strDAModelDB, (String)"MSSQL", (boolean)true) == 0 ? StringHelper.Format((String)"SELECT * FROM T_SRFPATCHITEM WHERE VALIDFLAG=1 AND dbo.fu_srfbitand(PATCHGROUP,%1$s)<>0 ORDER BY PATCHORDER", (Object)strPatchGroup) : StringHelper.Format((String)"SELECT * FROM T_SRFPATCHITEM WHERE VALIDFLAG=1 AND fu_srfbitand(PATCHGROUP,%1$s)<>0 ORDER BY PATCHORDER", (Object)strPatchGroup);
-            Vector patchItems = new Vector();
+            Vector<PatchItem> patchItems = new Vector<PatchItem>();
             CallResult callResult2 = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), (String)strSQL, null, patchItems, (String)PatchItem.class.getName());
             if (callResult2.IsError()) {
                 this.PageLog((Object)this, 1, StringHelper.Format((String)"\u67e5\u8be2\u66f4\u65b0\u9879\u660e\u7ec6\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult2.getErrorInfo()));
@@ -125,7 +125,7 @@ extends SRFDAPage {
                         strSQL2 = String.valueOf(strSQL2) + " WHERE ";
                         strSQL2 = String.valueOf(strSQL2) + "  UPDATEDATE >= ? ";
                     }
-                    Vector items = new Vector();
+                    Vector<BaseDataEntity> items = new Vector<BaseDataEntity>();
                     callResult2 = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), (String)iDataCtrl.GetDEHelper().GetDBStorage(), (String)strSQL2, (Vector)callParamList2.GetList(), items, (String)BaseDataEntity.class.getName());
                     if (callResult2.IsError()) {
                         this.PageLog((Object)this, 1, StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53[%1$s]SQL[%2$s]\u53d1\u751f\u9519\u8bef\uff0c%3$s", (Object)patchItem.getDEID(), (Object)strSQL2, (Object)callResult2.getErrorInfo()));
@@ -203,4 +203,3 @@ extends SRFDAPage {
         }
     }
 }
-

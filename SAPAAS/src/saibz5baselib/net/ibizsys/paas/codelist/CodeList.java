@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.codelist;
 
 import java.lang.annotation.Documented;
@@ -9,24 +6,69 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value={ElementType.TYPE})
-@Retention(value=RetentionPolicy.RUNTIME)
+/**
+ * 代码表注解
+ * 
+ * @author Administrator
+ *
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface CodeList {
-    public String id() default "";
+	/**
+	 * 代码表标识
+	 * 
+	 * @return
+	 */
+	String id() default "";
 
-    public String name() default "";
+	/**
+	 * 代码表名称
+	 * 
+	 * @return
+	 */
+	String name() default "";
 
-    public String type() default "";
+	/**
+	 * 代码表类型
+	 * 
+	 * @return
+	 */
+	String type() default "";
 
-    public boolean userscope();
+	/**
+	 * 用户范围
+	 * 
+	 * @return
+	 */
+	boolean userscope();
 
-    public String ormode() default "";
+	/**
+	 * 或模式
+	 * 
+	 * @return
+	 */
+	String ormode() default "";
 
-    public String valueseparator() default ";";
+	/**
+	 * 值分割符号
+	 * 
+	 * @return
+	 */
+	String valueseparator() default ";";
 
-    public String textseparator() default "\u3001";
+	/**
+	 * 文本分割符号
+	 * 
+	 * @return
+	 */
+	String textseparator() default "、";
 
-    public String emptytext() default "\u672a\u5b9a\u4e49";
+	/**
+	 * 空白显示文本
+	 * 
+	 * @return
+	 */
+	String emptytext() default "未定义";
 }
-

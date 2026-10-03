@@ -166,14 +166,14 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDCContainerSpec, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCContainerSpec, string, string2, string3);
+        super.onFillParentInfo(pSDCContainerSpec, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -189,7 +189,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
         if (bl && pSDCContainerSpec.getValidFlag() == null) {
             pSDCContainerSpec.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDCContainerSpec, bl);
+        super.onFillEntityFullInfo(pSDCContainerSpec, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDCContainerSpec, bl);
     }
 
@@ -207,7 +207,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
     }
 
     protected void onWriteBackParent(PSDCContainerSpec pSDCContainerSpec, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCContainerSpec, bl);
+        super.onWriteBackParent(pSDCContainerSpec, bl);
     }
 
     public ArrayList<PSDCContainerSpec> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -266,7 +266,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
         ArrayList<PSDCContainerSpec> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCContainerSpec pSDCContainerSpec : arrayList) {
-            this.remove((IEntity)pSDCContainerSpec);
+            this.remove(pSDCContainerSpec);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -309,14 +309,14 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
 
     protected void replaceParentInfo(PSDCContainerSpec pSDCContainerSpec, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCContainerSpec, cloneSession);
+        super.replaceParentInfo(pSDCContainerSpec, cloneSession);
         if (pSDCContainerSpec.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSDCContainerSpec.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSDCContainerSpec, (PSDevCenter)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDCContainerSpec pSDCContainerSpec, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCContainerSpec, bl);
+        super.onRemoveEntityUncopyValues(pSDCContainerSpec, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCContainerSpec pSDCContainerSpec, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -367,7 +367,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDCContainerSpec, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCContainerSpec, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCContainerSpec, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CfgType(boolean bl, PSDCContainerSpec pSDCContainerSpec, boolean bl2, boolean bl3) throws Exception {
@@ -380,7 +380,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CfgType_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string2 = this.onTestValueRule_CfgType_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CFGTYPE");
@@ -402,7 +402,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ClusterType_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string2 = this.onTestValueRule_ClusterType_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CLUSTERTYPE");
@@ -424,7 +424,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ContainerCfg_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string2 = this.onTestValueRule_ContainerCfg_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTAINERCFG");
@@ -446,7 +446,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CPULimit_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string = this.onTestValueRule_CPULimit_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CPULIMIT");
@@ -468,7 +468,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -490,7 +490,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MemoryLimit_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string = this.onTestValueRule_MemoryLimit_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMORYLIMIT");
@@ -515,7 +515,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCContainerSpecId_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCContainerSpecId_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCCONTAINERSPECID");
@@ -540,7 +540,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCContainerSpecName_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCContainerSpecName_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCCONTAINERSPECNAME");
@@ -562,7 +562,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -584,7 +584,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -606,7 +606,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SpecParams_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string2 = this.onTestValueRule_SpecParams_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SPECPARAMS");
@@ -628,7 +628,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SpecTag_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string2 = this.onTestValueRule_SpecTag_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SPECTAG");
@@ -650,7 +650,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SpecTag2_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string2 = this.onTestValueRule_SpecTag2_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SPECTAG2");
@@ -675,7 +675,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_SpecVer_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string = this.onTestValueRule_SpecVer_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SPECVER");
@@ -697,7 +697,7 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDCContainerSpec, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDCContainerSpec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -710,11 +710,11 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
     }
 
     protected void onSyncEntity(PSDCContainerSpec pSDCContainerSpec, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCContainerSpec, bl);
+        super.onSyncEntity(pSDCContainerSpec, bl);
     }
 
     protected void onSyncIndexEntities(PSDCContainerSpec pSDCContainerSpec, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCContainerSpec, bl);
+        super.onSyncIndexEntities(pSDCContainerSpec, bl);
     }
 
     public Object getDataContextValue(PSDCContainerSpec pSDCContainerSpec, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -722,14 +722,14 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCContainerSpec, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCContainerSpec, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCContainerSpec pSDCContainerSpec, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCContainerSpec, arrayList, n);
+        super.onExportMajorModel(pSDCContainerSpec, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -975,14 +975,14 @@ extends PSCoreSysServiceBase<PSDCContainerSpec> {
 
     protected boolean onMergeChild(String string, String string2, PSDCContainerSpec pSDCContainerSpec) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCContainerSpec)) {
+        if (super.onMergeChild(string, string2, pSDCContainerSpec)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCContainerSpec pSDCContainerSpec) throws Exception {
-        super.onUpdateParent((IEntity)pSDCContainerSpec);
+        super.onUpdateParent(pSDCContainerSpec);
     }
 
     @Override

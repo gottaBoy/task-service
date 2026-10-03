@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.controller;
 
-import net.ibizsys.pswf.controller.DynaWFExpViewControllerInstBase;
+/**
+ * 默认动态工作流导航视图控制器实例对象
+ * @author Administrator
+ *
+ */
+public class DefaultDynaWFExpViewControllerInst extends DynaWFExpViewControllerInstBase {
 
-public class DefaultDynaWFExpViewControllerInst
-extends DynaWFExpViewControllerInstBase {
+	public DefaultDynaWFExpViewControllerInst() throws Exception {
+		super();
+	}
+
+	
+	
 }
-

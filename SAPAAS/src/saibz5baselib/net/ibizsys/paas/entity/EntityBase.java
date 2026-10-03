@@ -1,295 +1,523 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.entity;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
-import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.data.IDataObject;
-import net.ibizsys.paas.entity.IEntity;
-import net.ibizsys.paas.entity.IEntityActionHelper;
-import net.ibizsys.paas.entity.IEntityActionSupporter;
-import net.ibizsys.paas.util.StringHelper;
+
 import org.hibernate.SessionFactory;
 
-public abstract class EntityBase
-extends DataObject
-implements IEntity,
-IEntityActionSupporter {
-    public static final String ORIGINKEY = "srforikey";
-    public static final String CALLRESULT = "srfret";
-    public static final String LASTENTITY = "SRFLASTENTITY";
-    public static final int BOOLEAN_TRUE = 1;
-    public static final int BOOLEAN_FALSE = 0;
-    private SessionFactory sessionFactory = null;
-    private boolean bMarkFullInfo = false;
-    private HashMap<String, Object> entityPropertyMap = null;
-    private IEntity proxyEntity = null;
-    private IEntityActionHelper iEntityActionHelper = null;
+import net.ibizsys.paas.data.DataObject;
+import net.ibizsys.paas.data.IDataObject;
+import net.ibizsys.paas.service.ServiceBase;
+import net.ibizsys.paas.util.StringHelper;
 
-    @Override
-    protected void onReset() {
-        this.markFullEntity(false);
-        this.setSessionFactory(null);
-        this.entityPropertyMap = null;
-        this.setActionHelper(null);
-        super.onReset();
-    }
+/**
+ * 基础数据对象
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class EntityBase extends DataObject implements IEntity, IEntityActionSupporter {
+	/**
+	 * 原来的键值
+	 */
+	public final static String ORIGINKEY = "srforikey";
 
-    @Override
-    public void fillMap(HashMap<String, Object> params, boolean bDirtyOnly) {
-        if (this.proxyEntity != null) {
-            this.proxyEntity.fillMap(params, bDirtyOnly);
-        } else {
-            this.fillMap(params);
-            this.onFillMap(params, bDirtyOnly);
-        }
-    }
+	/**
+	 * 调用结果
+	 */
+	public final static String CALLRESULT = "srfret";
 
-    protected void onFillMap(HashMap<String, Object> params, boolean bDirtyOnly) {
-    }
+	/**
+	 * 上一次的数据对象
+	 */
+	public final static String LASTENTITY = "SRFLASTENTITY";
 
-    @Override
-    public void markFullEntity(boolean bMarkFullInfo) {
-        if (this.proxyEntity != null) {
-            this.proxyEntity.markFullEntity(bMarkFullInfo);
-        } else {
-            this.bMarkFullInfo = bMarkFullInfo;
-        }
-    }
+	/**
+	 * Boolean 值，True
+	 */
+	public final static int BOOLEAN_TRUE = 1;
 
-    @Override
-    public boolean isFullEntity() {
-        if (this.proxyEntity != null) {
-            return this.proxyEntity.isFullEntity();
-        }
-        return this.bMarkFullInfo;
-    }
+	/**
+	 * Boolean 值，False
+	 */
+	public final static int BOOLEAN_FALSE = 0;
 
-    @Override
-    public void copyTo(IDataObject dataEntity, boolean bReset, boolean bIncludeEmpty) throws Exception {
-        if (this.proxyEntity != null) {
-            this.proxyEntity.copyTo(dataEntity, bReset, bIncludeEmpty);
-        } else {
-            super.copyTo(dataEntity, bReset, bIncludeEmpty);
-            this.onCopyTo(dataEntity, bIncludeEmpty);
-        }
-    }
+	private SessionFactory sessionFactory = null;
 
-    protected void onCopyTo(IDataObject dataEntity, boolean bIncludeEmtpy) throws Exception {
-        if (dataEntity instanceof IEntity) {
-            ((IEntity)dataEntity).setSessionFactory(this.getSessionFactory());
-            if (bIncludeEmtpy && this.isFullEntity()) {
-                ((IEntity)dataEntity).markFullEntity(true);
-            } else {
-                ((IEntity)dataEntity).markFullEntity(false);
-            }
-        }
-        if (dataEntity instanceof IEntityActionSupporter) {
-            ((IEntityActionSupporter)((Object)dataEntity)).setActionHelper(this.getActionHelper(false));
-        }
-    }
+	private boolean bMarkFullInfo = false;
 
-    public static boolean hasDraftFlag(IEntity iEntity) throws Exception {
-        Object objValue = iEntity.get("SRFDRAFTFLAG");
-        return objValue != null;
-    }
+	private HashMap<String, Object> entityPropertyMap = null;
 
-    public static boolean isDraft(IEntity iEntity) throws Exception {
-        Object objValue = iEntity.get("SRFDRAFTFLAG");
-        if (objValue == null) {
-            return false;
-        }
-        return StringHelper.compare(objValue.toString(), "1", true) == 0;
-    }
+	private IEntity proxyEntity = null;
 
-    public static void setDraft(IEntity iEntity, boolean bDraftFlag) throws Exception {
-        iEntity.set("SRFDRAFTFLAG", bDraftFlag ? 1 : 0);
-    }
+	private IEntityActionHelper iEntityActionHelper = null;
 
-    public static void setLastUpdateDate(IEntity iEntity, Timestamp timestamp) throws Exception {
-        String strLastDateStr = StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", timestamp);
-        iEntity.set("SRFUPDATEDATE", strLastDateStr);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.data.DataObject#onReset()
+	 */
+	protected void onReset() {
 
-    public static void setIgnoreCheck(IEntity iEntity, boolean bIgnoreCheck) throws Exception {
-        iEntity.set("SRFIGNORECHECK", bIgnoreCheck ? 1 : 0);
-    }
+		/**
+		 * 20171124 修改，重置相关变量
+		 */
+		this.markFullEntity(false);
+		this.setSessionFactory(null);
+		this.entityPropertyMap = null;
+		this.setActionHelper(null);
+		/**
+		 * 20171124 修改结束
+		 */
 
-    public static boolean isIgnoreCheck(IEntity iEntity) throws Exception {
-        return DataObject.getIntegerValue(iEntity.get("SRFIGNORECHECK"), 0) == 1;
-    }
+		super.onReset();
+	}
 
-    public static void setIgnoreCheckKey(IEntity iEntity, boolean bIgnoreCheckKey) throws Exception {
-        iEntity.set("SRFIGNORECHECKKEY", bIgnoreCheckKey ? 1 : 0);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntity#fillMap(java.util.HashMap, boolean)
+	 */
+	@Override
+	public void fillMap(HashMap<String, Object> params, boolean bDirtyOnly) {
+		if (this.proxyEntity != null) {
+			this.proxyEntity.fillMap(params, bDirtyOnly);
+		} else {
+			this.fillMap(params);
+			onFillMap(params, bDirtyOnly);
+		}
+	}
 
-    public static boolean isIgnoreCheckKey(IEntity iEntity) throws Exception {
-        return DataObject.getIntegerValue(iEntity.get("SRFIGNORECHECKKEY"), 0) == 1;
-    }
+	/**
+	 * 填充Map
+	 * 
+	 * @param params
+	 * @param bDirtyOnly
+	 */
+	protected void onFillMap(HashMap<String, Object> params, boolean bDirtyOnly) {
 
-    public static Object getOriginKey(IEntity iEntity) throws Exception {
-        return iEntity.get(ORIGINKEY);
-    }
+	}
 
-    @Override
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        if (this.proxyEntity != null) {
-            this.proxyEntity.setSessionFactory(sessionFactory);
-        } else {
-            this.sessionFactory = sessionFactory;
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntity#markFullEntity(boolean)
+	 */
+	@Override
+	public void markFullEntity(boolean bMarkFullInfo) {
+		if (this.proxyEntity != null) {
+			this.proxyEntity.markFullEntity(bMarkFullInfo);
+		} else {
+			this.bMarkFullInfo = bMarkFullInfo;
+		}
+	}
 
-    @Override
-    public SessionFactory getSessionFactory() {
-        if (this.proxyEntity != null) {
-            return this.proxyEntity.getSessionFactory();
-        }
-        return this.sessionFactory;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntity#isFullEntity()
+	 */
+	@Override
+	public boolean isFullEntity() {
+		if (this.proxyEntity != null) {
+			return this.proxyEntity.isFullEntity();
+		} else {
+			return this.bMarkFullInfo;
+		}
+	}
 
-    @Override
-    protected void onProxy(IDataObject proxyDataObject) {
-        this.proxyEntity = proxyDataObject == null ? null : (proxyDataObject instanceof IEntity ? (IEntity)proxyDataObject : null);
-        super.onProxy(proxyDataObject);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.data.DataObject#copyTo(net.ibizsys.paas.data.IDataObject, boolean, boolean)
+	 */
+	@Override
+	public void copyTo(IDataObject dataEntity, boolean bReset, boolean bIncludeEmpty) throws Exception {
+		if (this.proxyEntity != null) {
+			this.proxyEntity.copyTo(dataEntity, bReset, bIncludeEmpty);
+		} else {
+			super.copyTo(dataEntity, bReset, bIncludeEmpty);
+			onCopyTo(dataEntity, bIncludeEmpty);
+		}
+	}
 
-    @Override
-    public synchronized void setEntityProperty(String strName, Object objValue) {
-        if (this.proxyEntity != null) {
-            this.proxyEntity.setEntityProperty(strName, objValue);
-        } else if (objValue == null) {
-            if (this.entityPropertyMap != null) {
-                this.entityPropertyMap.remove(strName);
-            }
-        } else {
-            if (this.entityPropertyMap == null) {
-                this.entityPropertyMap = new HashMap();
-            }
-            this.entityPropertyMap.put(strName, objValue);
-        }
-    }
+	/**
+	 * 拷贝数据对目标对象
+	 * 
+	 * @param dataEntity
+	 * @param bIncludeEmtpy
+	 * @throws Exception
+	 */
+	protected void onCopyTo(IDataObject dataEntity, boolean bIncludeEmtpy) throws Exception {
+		if (dataEntity instanceof IEntity) {
+			((IEntity) dataEntity).setSessionFactory(this.getSessionFactory());
+			/**
+			 * 20170911 修改，设置目标数据对象为完整信息
+			 */
+			if (bIncludeEmtpy && this.isFullEntity()) {
+				((IEntity) dataEntity).markFullEntity(true);
+			} else {
+				((IEntity) dataEntity).markFullEntity(false);
+			}
+		}
+		if (dataEntity instanceof IEntityActionSupporter) {
+			((IEntityActionSupporter) dataEntity).setActionHelper(this.getActionHelper(false));
+		}
+	}
 
-    @Override
-    public synchronized Object getEntityProperty(String strName) {
-        if (this.proxyEntity != null) {
-            return this.proxyEntity.getEntityProperty(strName);
-        }
-        if (this.entityPropertyMap != null) {
-            return this.entityPropertyMap.get(strName);
-        }
-        return null;
-    }
+	/**
+	 * 是否有草稿标志
+	 * 
+	 * @param iEntity
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean hasDraftFlag(IEntity iEntity) throws Exception {
+		Object objValue = iEntity.get(ServiceBase.DRAFTFLAG);
+		if (objValue == null) return false;
+		return true;
+	}
 
-    @Override
-    public void setActionHelper(IEntityActionHelper iEntityActionHelper) {
-        this.iEntityActionHelper = iEntityActionHelper;
-    }
+	/**
+	 * 是否为草稿
+	 * 
+	 * @param iEntity
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean isDraft(IEntity iEntity) throws Exception {
+		Object objValue = iEntity.get(ServiceBase.DRAFTFLAG);
+		if (objValue == null) return false;
+		if (StringHelper.compare(objValue.toString(), "1", true) == 0) return true;
+		return false;
+	}
 
-    protected IEntityActionHelper getActionHelper(boolean bMust) throws Exception {
-        if (this.iEntityActionHelper == null && bMust) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u64cd\u4f5c\u8f85\u52a9\u5bf9\u8c61");
-        }
-        return this.iEntityActionHelper;
-    }
+	/**
+	 * 设置草稿状态
+	 * 
+	 * @param iEntity
+	 * @param bDraftFlag
+	 * @throws Exception
+	 */
+	public static void setDraft(IEntity iEntity, boolean bDraftFlag) throws Exception {
+		iEntity.set(ServiceBase.DRAFTFLAG, bDraftFlag ? 1 : 0);
 
-    @Override
-    public void create() throws Exception {
-        if (this.proxyEntity != null && this.proxyEntity instanceof IEntityActionSupporter) {
-            ((IEntityActionSupporter)((Object)this.proxyEntity)).create();
-            return;
-        }
-        this.getActionHelper(true).create(this);
-    }
+	}
 
-    @Override
-    public void update() throws Exception {
-        if (this.proxyEntity != null && this.proxyEntity instanceof IEntityActionSupporter) {
-            ((IEntityActionSupporter)((Object)this.proxyEntity)).update();
-            return;
-        }
-        this.getActionHelper(true).update(this);
-    }
+	/**
+	 * 设置最后更新时间
+	 * 
+	 * @param iEntity
+	 * @param timestamp
+	 * @throws Exception
+	 */
+	public static void setLastUpdateDate(IEntity iEntity, java.sql.Timestamp timestamp) throws Exception {
+		String strLastDateStr = StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", timestamp);
+		iEntity.set(ServiceBase.LASTUPDATEDATE, strLastDateStr);
+	}
 
-    @Override
-    public void remove() throws Exception {
-        if (this.proxyEntity != null && this.proxyEntity instanceof IEntityActionSupporter) {
-            ((IEntityActionSupporter)((Object)this.proxyEntity)).remove();
-            return;
-        }
-        this.getActionHelper(true).remove(this);
-    }
+	/**
+	 * 设置是否忽略检查
+	 * 
+	 * @param iEntity
+	 * @param bIgnoreCheck
+	 * @throws Exception
+	 */
+	public static void setIgnoreCheck(IEntity iEntity, boolean bIgnoreCheck) throws Exception {
+		iEntity.set(ServiceBase.IGNORECHECK, bIgnoreCheck ? 1 : 0);
+	}
 
-    @Override
-    public void save() throws Exception {
-        if (this.proxyEntity != null && this.proxyEntity instanceof IEntityActionSupporter) {
-            ((IEntityActionSupporter)((Object)this.proxyEntity)).save();
-            return;
-        }
-        this.getActionHelper(true).save(this);
-    }
+	/**
+	 * 获取是否忽略检查
+	 * 
+	 * @param iEntity
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean isIgnoreCheck(IEntity iEntity) throws Exception {
+		return DataObject.getIntegerValue(iEntity.get(ServiceBase.IGNORECHECK), 0) == 1;
+	}
 
-    @Override
-    public boolean get(boolean bTryMode) throws Exception {
-        if (this.proxyEntity != null && this.proxyEntity instanceof IEntityActionSupporter) {
-            return ((IEntityActionSupporter)((Object)this.proxyEntity)).get(bTryMode);
-        }
-        return this.getActionHelper(true).get(this, bTryMode);
-    }
+	/**
+	 * 设置是否忽略检查主键
+	 * 
+	 * @param iEntity
+	 * @param bIgnoreCheckKey
+	 * @throws Exception
+	 */
+	public static void setIgnoreCheckKey(IEntity iEntity, boolean bIgnoreCheckKey) throws Exception {
+		iEntity.set(ServiceBase.IGNORECHECKKEY, bIgnoreCheckKey ? 1 : 0);
+	}
 
-    @Override
-    public void get() throws Exception {
-        if (this.proxyEntity != null && this.proxyEntity instanceof IEntityActionSupporter) {
-            ((IEntityActionSupporter)((Object)this.proxyEntity)).get();
-            return;
-        }
-        this.getActionHelper(true).get(this, false);
-    }
+	/**
+	 * 获取是否忽略检查主键
+	 * 
+	 * @param iEntity
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean isIgnoreCheckKey(IEntity iEntity) throws Exception {
+		return DataObject.getIntegerValue(iEntity.get(ServiceBase.IGNORECHECKKEY), 0) == 1;
+	}
 
-    @Override
-    public boolean select(boolean bTryMode) throws Exception {
-        if (this.proxyEntity != null && this.proxyEntity instanceof IEntityActionSupporter) {
-            return ((IEntityActionSupporter)((Object)this.proxyEntity)).select(bTryMode);
-        }
-        return this.getActionHelper(true).select(this, bTryMode);
-    }
+	/**
+	 * 获取原来的数据主键
+	 * 
+	 * @param iEntity
+	 * @return
+	 * @throws Exception
+	 */
+	public static Object getOriginKey(IEntity iEntity) throws Exception {
+		return iEntity.get(ORIGINKEY);
+	}
 
-    @Override
-    public void select() throws Exception {
-        if (this.proxyEntity != null && this.proxyEntity instanceof IEntityActionSupporter) {
-            ((IEntityActionSupporter)((Object)this.proxyEntity)).select();
-            return;
-        }
-        this.getActionHelper(true).select(this, false);
-    }
+	/**
+	 * 设置会话工厂
+	 * 
+	 * @param sessionFactory
+	 */
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		if (this.proxyEntity != null) {
+			this.proxyEntity.setSessionFactory(sessionFactory);
+		} else {
+			this.sessionFactory = sessionFactory;
+		}
+	}
 
-    @Override
-    public IEntityActionHelper getActionHelper() {
-        return this.iEntityActionHelper;
-    }
+	/**
+	 * 设置会话工厂
+	 * 
+	 * @param sessionFactory
+	 */
+	public SessionFactory getSessionFactory() {
+		if (this.proxyEntity != null) {
+			return this.proxyEntity.getSessionFactory();
+		} else {
+			return this.sessionFactory;
+		}
+	}
 
-    public static IEntity getLast(IEntity iEntity) throws Exception {
-        Object objValue = iEntity.get(LASTENTITY);
-        if (objValue == null) {
-            return null;
-        }
-        if (objValue instanceof IEntity) {
-            return (IEntity)objValue;
-        }
-        return null;
-    }
+	/**
+	 * 代理数据对象
+	 * 
+	 * @param proxyDataObject
+	 */
+	@Override
+	protected void onProxy(IDataObject proxyDataObject) {
+		if (proxyDataObject == null) {
+			this.proxyEntity = null;
+		} else {
+			if (proxyDataObject instanceof IEntity) {
+				this.proxyEntity = (IEntity) proxyDataObject;
+			} else {
+				this.proxyEntity = null;
+			}
+		}
+		super.onProxy(proxyDataObject);
+	}
 
-    public static void setLast(IEntity iEntity, IEntity lastEntity) throws Exception {
-        if (lastEntity == null) {
-            iEntity.remove(LASTENTITY);
-        } else {
-            iEntity.set(LASTENTITY, lastEntity);
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntity#setEntityProperty(java.lang.String, java.lang.Object)
+	 */
+	@Override
+	public synchronized void setEntityProperty(String strName, Object objValue) {
+		if (this.proxyEntity != null) {
+			this.proxyEntity.setEntityProperty(strName, objValue);
+		} else {
+			if (objValue == null) {
+				if (this.entityPropertyMap != null) {
+					this.entityPropertyMap.remove(strName);
+				}
+			} else {
+				if (this.entityPropertyMap == null) {
+					this.entityPropertyMap = new HashMap<String, Object>();
+				}
+				this.entityPropertyMap.put(strName, objValue);
+			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntity#getEntityProperty(java.lang.String)
+	 */
+	@Override
+	public synchronized Object getEntityProperty(String strName) {
+		if (this.proxyEntity != null) {
+			return this.proxyEntity.getEntityProperty(strName);
+		} else {
+			if (this.entityPropertyMap != null) {
+				return this.entityPropertyMap.get(strName);
+			}
+			return null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.entity.IEntityActionSupporter#setActionHelper(net.ibizsys.paas.entity.IEntityActionHelper)
+	 */
+	@Override
+	public void setActionHelper(IEntityActionHelper iEntityActionHelper) {
+		this.iEntityActionHelper = iEntityActionHelper;
+	}
+
+	/**
+	 * 获取操作辅助对象
+	 * 
+	 * @param bMust 是否必须存在
+	 * @return
+	 */
+	protected IEntityActionHelper getActionHelper(boolean bMust) throws Exception {
+		if (this.iEntityActionHelper == null && bMust) {
+			throw new Exception("没有指定操作辅助对象");
+		}
+		return this.iEntityActionHelper;
+	}
+
+	@Override
+	public void create() throws Exception {
+		if (this.proxyEntity != null && (this.proxyEntity instanceof IEntityActionSupporter)) {
+			((IEntityActionSupporter) this.proxyEntity).create();
+			return;
+		}
+		getActionHelper(true).create(this);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntityActionSupporter#update()
+	 */
+	@Override
+	public void update() throws Exception {
+		if (this.proxyEntity != null && (this.proxyEntity instanceof IEntityActionSupporter)) {
+			((IEntityActionSupporter) this.proxyEntity).update();
+			return;
+		}
+		getActionHelper(true).update(this);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntityActionSupporter#remove()
+	 */
+	@Override
+	public void remove() throws Exception {
+		if (this.proxyEntity != null && (this.proxyEntity instanceof IEntityActionSupporter)) {
+			((IEntityActionSupporter) this.proxyEntity).remove();
+			return;
+		}
+		getActionHelper(true).remove(this);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntityActionSupporter#save()
+	 */
+	@Override
+	public void save() throws Exception {
+		if (this.proxyEntity != null && (this.proxyEntity instanceof IEntityActionSupporter)) {
+			((IEntityActionSupporter) this.proxyEntity).save();
+			return;
+		}
+		getActionHelper(true).save(this);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntityActionSupporter#get(boolean)
+	 */
+	@Override
+	public boolean get(boolean bTryMode) throws Exception {
+		if (this.proxyEntity != null && (this.proxyEntity instanceof IEntityActionSupporter)) {
+			return ((IEntityActionSupporter) this.proxyEntity).get(bTryMode);
+		}
+		return getActionHelper(true).get(this, bTryMode);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntityActionSupporter#get()
+	 */
+	@Override
+	public void get() throws Exception {
+		if (this.proxyEntity != null && (this.proxyEntity instanceof IEntityActionSupporter)) {
+			((IEntityActionSupporter) this.proxyEntity).get();
+			return;
+		}
+		getActionHelper(true).get(this, false);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntityActionSupporter#select(boolean)
+	 */
+	@Override
+	public boolean select(boolean bTryMode) throws Exception {
+		if (this.proxyEntity != null && (this.proxyEntity instanceof IEntityActionSupporter)) {
+			return ((IEntityActionSupporter) this.proxyEntity).select(bTryMode);
+		}
+		return getActionHelper(true).select(this, bTryMode);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntityActionSupporter#select()
+	 */
+	@Override
+	public void select() throws Exception {
+		if (this.proxyEntity != null && (this.proxyEntity instanceof IEntityActionSupporter)) {
+			((IEntityActionSupporter) this.proxyEntity).select();
+			return;
+		}
+		getActionHelper(true).select(this, false);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.entity.IEntityActionSupporter#getActionHelper()
+	 */
+	@Override
+	public IEntityActionHelper getActionHelper() {
+		return this.iEntityActionHelper;
+	}
+
+	/**
+	 * 获取上一次的数据对象
+	 * 
+	 * @param iEntity
+	 * @return
+	 * @throws Exception
+	 */
+	public static IEntity getLast(IEntity iEntity) throws Exception {
+		Object objValue = iEntity.get(LASTENTITY);
+		if (objValue == null) return null;
+		if (objValue instanceof IEntity) return (IEntity) objValue;
+		return null;
+	}
+
+	/**
+	 * 设置上一次的数据对象
+	 * 
+	 * @param iEntity
+	 * @param lastEntity
+	 * @throws Exception
+	 */
+	public static void setLast(IEntity iEntity, IEntity lastEntity) throws Exception {
+		if (lastEntity == null) {
+			iEntity.remove(LASTENTITY);
+		} else {
+			iEntity.set(LASTENTITY, lastEntity);
+		}
+	}
+
 }
-

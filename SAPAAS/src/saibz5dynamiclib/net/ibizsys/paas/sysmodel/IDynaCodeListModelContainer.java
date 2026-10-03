@@ -1,24 +1,42 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.paas.sysmodel.ICodeListModel
- */
 package net.ibizsys.paas.sysmodel;
 
 import net.ibizsys.paas.entity.IEntity;
-import net.ibizsys.paas.sysmodel.ICodeListModel;
-import net.ibizsys.paas.sysmodel.IDynaCodeListModel;
 
-public interface IDynaCodeListModelContainer
-extends ICodeListModel {
-    public void registerDynaCodeListModel(IDynaCodeListModel var1) throws Exception;
 
-    public void resetCurrentDynaSysInst();
+/**
+ * 动态代码表模型容器
+ * @author Administrator
+ *
+ */
+public interface IDynaCodeListModelContainer extends ICodeListModel {
 
-    public void resetAllDynaSysInst();
-
-    public IDynaCodeListModel createDynaCodeListModel(IEntity var1) throws Exception;
+	/**
+	 * 注册动态代码表模型
+	 * @param iDynaCodeListModel
+	 * @throws Exception
+	 */
+	void registerDynaCodeListModel(IDynaCodeListModel iDynaCodeListModel)throws Exception;
+	
+	
+	
+	/**
+	 * 重置当前动态系统实例
+	 */
+	void resetCurrentDynaSysInst();
+	
+	
+	/**
+	 * 重置全部动态系统实例
+	 */
+	void resetAllDynaSysInst();
+	
+	
+	
+	/**
+	 * 建立动态代码表模型对象
+	 * @param iEntity
+	 * @return
+	 * @throws Exception
+	 */
+	IDynaCodeListModel createDynaCodeListModel(IEntity iEntity)throws Exception;
 }
-

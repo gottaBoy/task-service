@@ -19,7 +19,6 @@ package net.ibizsys.pscore.srv.sysdesign.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.IServiceWork;
 import net.ibizsys.paas.service.ITransaction;
 import net.ibizsys.paas.service.ServiceGlobal;
@@ -44,7 +43,7 @@ extends PSSysViewLogicServiceBase {
 
     @Override
     public void getDraftWithModel(PSSysViewLogic pSSysViewLogic) throws Exception {
-        this.getDraftTempMajor((IEntity)pSSysViewLogic);
+        this.getDraftTempMajor(pSSysViewLogic);
         pSSysViewLogic.setLogicModel(this.getLogicModel(pSSysViewLogic));
     }
 
@@ -53,7 +52,7 @@ extends PSSysViewLogicServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSSysViewLogic.getPSSysViewLogicId())) {
             this.getTempMajor(pSSysViewLogic);
         } else {
-            this.getTemp((IEntity)pSSysViewLogic);
+            this.getTemp(pSSysViewLogic);
         }
         pSSysViewLogic.setLogicModel(this.getLogicModel(pSSysViewLogic));
     }
@@ -83,7 +82,6 @@ extends PSSysViewLogicServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysViewLogicParam pSSysViewLogicParam2;
                 PSSysViewLogicParamService pSSysViewLogicParamService = (PSSysViewLogicParamService)ServiceGlobal.getService((String)PSSysViewLogicParamService.class.getCanonicalName(), (SessionFactory)PSSysViewLogicService.this.getSessionFactory());
                 ArrayList<PSSysViewLogicParam> arrayList = pSSysViewLogicParamService.selectTempByPSSysViewLogic(pSSysViewLogic2);
                 HashMap<String, PSSysViewLogicParam> hashMap = new HashMap<String, PSSysViewLogicParam>();
@@ -91,22 +89,22 @@ extends PSSysViewLogicServiceBase {
                     hashMap.put(pSSysViewLogicParam2.getPSSysViewLogicParamId(), pSSysViewLogicParam2);
                 }
                 String string = pSSysViewLogic2.getLogicModel();
-                pSSysViewLogicParam2 = XmlNode.loadFromXML((String)string);
-                if (pSSysViewLogicParam2 != null) {
-                    pSSysViewLogicParam2.setAttribute("PSDEID", pSSysViewLogic2.getPSDEId());
-                    pSSysViewLogicParam2.setAttribute("PSSYSTEMID", pSSysViewLogic2.getPSSystemId());
-                    pSSysViewLogicParam2.setAttribute("PSSYSVIEWLOGICID", pSSysViewLogic2.getPSSysViewLogicId());
-                    PSSysViewLogicService.this.updatePSSysViewLogicModel(pSSysViewLogic2, (XmlNode)pSSysViewLogicParam2, hashMap);
-                    pSSysViewLogic2.setLogicModel(XmlNode.export((XmlNode)pSSysViewLogicParam2));
+                XmlNode xmlNode = XmlNode.loadFromXML(string);
+                if (xmlNode != null) {
+                    xmlNode.setAttribute("PSDEID", pSSysViewLogic2.getPSDEId());
+                    xmlNode.setAttribute("PSSYSTEMID", pSSysViewLogic2.getPSSystemId());
+                    xmlNode.setAttribute("PSSYSVIEWLOGICID", pSSysViewLogic2.getPSSysViewLogicId());
+                    PSSysViewLogicService.this.updatePSSysViewLogicModel(pSSysViewLogic2, xmlNode, hashMap);
+                    pSSysViewLogic2.setLogicModel(XmlNode.export(xmlNode));
                 } else {
                     pSSysViewLogic2.setLogicModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSSysViewLogicParam pSSysViewLogicParam3 : hashMap.values()) {
-                        pSSysViewLogicParamService.removeTemp((IEntity)pSSysViewLogicParam3);
+                        pSSysViewLogicParamService.removeTemp(pSSysViewLogicParam3);
                     }
                 }
-                PSSysViewLogicService.this.createTempMajor((IEntity)pSSysViewLogic2);
+                PSSysViewLogicService.this.createTempMajor(pSSysViewLogic2);
             }
         });
     }
@@ -119,31 +117,26 @@ extends PSSysViewLogicServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysViewLogicParam pSSysViewLogicParam;
-                Object object = null;
                 PSSysViewLogicParamService pSSysViewLogicParamService = (PSSysViewLogicParamService)ServiceGlobal.getService((String)PSSysViewLogicParamService.class.getCanonicalName(), (SessionFactory)PSSysViewLogicService.this.getSessionFactory());
                 ArrayList<PSSysViewLogicParam> arrayList = pSSysViewLogicParamService.selectTempByPSSysViewLogic(pSSysViewLogic2);
                 HashMap<String, PSSysViewLogicParam> hashMap = new HashMap<String, PSSysViewLogicParam>();
-                Object object2 = arrayList.iterator();
-                while (object2.hasNext()) {
-                    pSSysViewLogicParam = object2.next();
+                for (PSSysViewLogicParam pSSysViewLogicParam : arrayList) {
                     hashMap.put(pSSysViewLogicParam.getPSSysViewLogicParamId(), pSSysViewLogicParam);
                 }
-                object = object2 = pSSysViewLogic2.getLogicModel();
-                pSSysViewLogicParam = XmlNode.loadFromXML((String)object2);
-                if (pSSysViewLogicParam != null) {
-                    pSSysViewLogicParam.setAttribute("PSDEID", pSSysViewLogic2.getPSDEId());
-                    pSSysViewLogicParam.setAttribute("PSSYSVIEWLOGICID", pSSysViewLogic2.getPSSysViewLogicId());
-                    pSSysViewLogicParam.setAttribute("PSSYSTEMID", pSSysViewLogic2.getPSSystemId());
-                    PSSysViewLogicService.this.updatePSSysViewLogicModel(pSSysViewLogic2, (XmlNode)pSSysViewLogicParam, hashMap);
-                    pSSysViewLogic2.setLogicModel(XmlNode.export((XmlNode)pSSysViewLogicParam));
+                XmlNode xmlNode = XmlNode.loadFromXML(pSSysViewLogic2.getLogicModel());
+                if (xmlNode != null) {
+                    xmlNode.setAttribute("PSDEID", pSSysViewLogic2.getPSDEId());
+                    xmlNode.setAttribute("PSSYSVIEWLOGICID", pSSysViewLogic2.getPSSysViewLogicId());
+                    xmlNode.setAttribute("PSSYSTEMID", pSSysViewLogic2.getPSSystemId());
+                    PSSysViewLogicService.this.updatePSSysViewLogicModel(pSSysViewLogic2, xmlNode, hashMap);
+                    pSSysViewLogic2.setLogicModel(XmlNode.export(xmlNode));
                 } else {
                     pSSysViewLogic2.setLogicModel(null);
                 }
                 boolean bl = false;
                 if (hashMap.size() > 0) {
                     for (PSSysViewLogicParam pSSysViewLogicParam2 : hashMap.values()) {
-                        pSSysViewLogicParamService.removeTemp((IEntity)pSSysViewLogicParam2);
+                        pSSysViewLogicParamService.removeTemp(pSSysViewLogicParam2);
                         bl = true;
                     }
                 }
@@ -155,7 +148,7 @@ extends PSSysViewLogicServiceBase {
     protected void updatePSSysViewLogicModel(PSSysViewLogic pSSysViewLogic, XmlNode xmlNode, HashMap<String, PSSysViewLogicParam> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSSysViewLogicParamService pSSysViewLogicParamService = (PSSysViewLogicParamService)ServiceGlobal.getService((String)PSSysViewLogicParamService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             while (iterator.hasNext()) {
                 PSSysViewLogicParam pSSysViewLogicParam;
@@ -172,7 +165,7 @@ extends PSSysViewLogicServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSSysViewLogicParamService.updateTemp((IEntity)pSSysViewLogicParam);
+                    pSSysViewLogicParamService.updateTemp(pSSysViewLogicParam);
                 }
                 xmlNode2.resetAttributes();
                 pSSysViewLogicParam.fillXmlNode(xmlNode2, false);
@@ -191,4 +184,3 @@ extends PSSysViewLogicServiceBase {
         pSSysViewLogic.setLogicModel(this.getLogicModel(pSSysViewLogic));
     }
 }
-

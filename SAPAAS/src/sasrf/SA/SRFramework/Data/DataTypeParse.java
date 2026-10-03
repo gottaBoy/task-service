@@ -167,19 +167,16 @@ public class DataTypeParse {
     }
 
     public static Object TestDate(String strInput, TimeZone timeZone) {
-        block3: {
-            try {
-                if (!StringHelper.IsNullOrEmpty(strInput)) break block3;
+        try {
+            if (StringHelper.IsNullOrEmpty(strInput)) {
                 return null;
             }
-            catch (Exception ex) {
-                log.error((Object)StringHelper.Format("TestDate(%1$s) \u51fa\u73b0\u9519\u8bef", strInput), (Throwable)ex);
-                return null;
-            }
+            Date dtDate = DateParser.Parse(strInput, timeZone);
+            return new java.sql.Date(dtDate.getTime());
+        } catch (Exception ex) {
+            log.error((Object)StringHelper.Format("TestDate(%1$s) \u51fa\u73b0\u9519\u8bef", strInput), (Throwable)ex);
+            return null;
         }
-        Date dtDate = DateParser.Parse(strInput, timeZone);
-        java.sql.Date retDate = new java.sql.Date(dtDate.getTime());
-        return retDate;
     }
 
     public static Object TestDate(String strInput) {
@@ -191,19 +188,16 @@ public class DataTypeParse {
     }
 
     public static Object TestTime(String strInput, TimeZone timeZone) {
-        block3: {
-            try {
-                if (!StringHelper.IsNullOrEmpty(strInput)) break block3;
+        try {
+            if (StringHelper.IsNullOrEmpty(strInput)) {
                 return null;
             }
-            catch (Exception ex) {
-                log.error((Object)StringHelper.Format("TestTime(%1$s) \u51fa\u73b0\u9519\u8bef", strInput), (Throwable)ex);
-                return null;
-            }
+            Date dtDate = DateParser.Parse(strInput, timeZone);
+            return new Time(dtDate.getTime());
+        } catch (Exception ex) {
+            log.error((Object)StringHelper.Format("TestTime(%1$s) \u51fa\u73b0\u9519\u8bef", strInput), (Throwable)ex);
+            return null;
         }
-        Date dtDate = DateParser.Parse(strInput, timeZone);
-        Time retTime = new Time(dtDate.getTime());
-        return retTime;
     }
 
     public static Object TestDateTime(String strInput) {
@@ -211,19 +205,16 @@ public class DataTypeParse {
     }
 
     public static Object TestDateTime(String strInput, TimeZone timeZone) {
-        block3: {
-            try {
-                if (!StringHelper.IsNullOrEmpty(strInput)) break block3;
+        try {
+            if (StringHelper.IsNullOrEmpty(strInput)) {
                 return null;
             }
-            catch (Exception ex) {
-                log.error((Object)StringHelper.Format("TestDateTime(%1$s) \u51fa\u73b0\u9519\u8bef", strInput), (Throwable)ex);
-                return null;
-            }
+            Date dtDate = DateParser.Parse(strInput, timeZone);
+            return new Timestamp(dtDate.getTime());
+        } catch (Exception ex) {
+            log.error((Object)StringHelper.Format("TestDateTime(%1$s) \u51fa\u73b0\u9519\u8bef", strInput), (Throwable)ex);
+            return null;
         }
-        Date dtDate = DateParser.Parse(strInput, timeZone);
-        Timestamp retDate = new Timestamp(dtDate.getTime());
-        return retDate;
     }
 
     public static boolean CheckLen(int dataType, Object objValue, int nLen) {
@@ -333,4 +324,3 @@ public class DataTypeParse {
         return expressionHelper.GetValue(strExpression);
     }
 }
-

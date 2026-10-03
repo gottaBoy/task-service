@@ -1,15 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.web.jquery.render;
 
-import net.ibizsys.paas.web.jquery.render.TreeJSTreeRender;
+/**
+ * JQuery JSTree 树视图绘制器，不以数据形式下发结果
+ * 
+ * @author Administrator
+ *
+ */
+public class TreeJSTreeRender2 extends TreeJSTreeRender {
 
-public class TreeJSTreeRender2
-extends TreeJSTreeRender {
-    @Override
-    protected boolean isFetchResultArrayMode() {
-        return false;
-    }
+	@Override
+	protected boolean isFetchResultArrayMode() {
+		return false;
+	}
+
 }
-

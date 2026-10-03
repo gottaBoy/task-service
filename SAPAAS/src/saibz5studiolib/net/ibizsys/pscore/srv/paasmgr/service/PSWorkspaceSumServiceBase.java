@@ -131,14 +131,14 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
             PSWorkspace pSWorkspace = (PSWorkspace)iService.getDEModel().createEntity();
             pSWorkspace.set("PSWORKSPACEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWorkspace);
+                iService.getTemp(pSWorkspace);
             } else {
-                iService.get((IEntity)pSWorkspace);
+                iService.get(pSWorkspace);
             }
             this.onFillParentInfo_PSWorkspace(pSWorkspaceSum, pSWorkspace);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWorkspaceSum, string, string2, string3);
+        super.onFillParentInfo(pSWorkspaceSum, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -190,7 +190,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSWorkspaceSum, bl);
+        super.onFillEntityFullInfo(pSWorkspaceSum, bl);
         this.onFillEntityFullInfo_PSWorkspace(pSWorkspaceSum, bl);
     }
 
@@ -208,7 +208,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
     }
 
     protected void onWriteBackParent(PSWorkspaceSum pSWorkspaceSum, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWorkspaceSum, bl);
+        super.onWriteBackParent(pSWorkspaceSum, bl);
     }
 
     public ArrayList<PSWorkspaceSum> selectByPSWorkspace(PSWorkspaceBase pSWorkspaceBase) throws Exception {
@@ -267,7 +267,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
         ArrayList<PSWorkspaceSum> arrayList = this.selectByPSWorkspace(pSWorkspace);
         this.onBeforeRemoveByPSWorkspace(pSWorkspace, arrayList);
         for (PSWorkspaceSum pSWorkspaceSum : arrayList) {
-            this.remove((IEntity)pSWorkspaceSum);
+            this.remove(pSWorkspaceSum);
         }
         this.onAfterRemoveByPSWorkspace(pSWorkspace, arrayList);
     }
@@ -288,14 +288,14 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
 
     protected void replaceParentInfo(PSWorkspaceSum pSWorkspaceSum, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWorkspaceSum, cloneSession);
+        super.replaceParentInfo(pSWorkspaceSum, cloneSession);
         if (pSWorkspaceSum.getPSWorkspaceId() != null && (iEntity = cloneSession.getEntity("PSWORKSPACE", (Object)pSWorkspaceSum.getPSWorkspaceId())) != null) {
             this.onFillParentInfo_PSWorkspace(pSWorkspaceSum, (PSWorkspace)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSWorkspaceSum pSWorkspaceSum, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWorkspaceSum, bl);
+        super.onRemoveEntityUncopyValues(pSWorkspaceSum, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWorkspaceSum pSWorkspaceSum, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -337,7 +337,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
         if ((entityFieldError = this.onCheckField_Value4(bl, pSWorkspaceSum, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWorkspaceSum, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWorkspaceSum, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDCWorkspaceId(boolean bl, PSWorkspaceSum pSWorkspaceSum, boolean bl2, boolean bl3) throws Exception {
@@ -350,7 +350,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCWorkspaceId_Default((IEntity)pSWorkspaceSum, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCWorkspaceId_Default(pSWorkspaceSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCWORKSPACEID");
@@ -375,7 +375,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkspaceId_Default((IEntity)pSWorkspaceSum, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkspaceId_Default(pSWorkspaceSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKSPACEID");
@@ -397,7 +397,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkspaceName_Default((IEntity)pSWorkspaceSum, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkspaceName_Default(pSWorkspaceSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKSPACENAME");
@@ -422,7 +422,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkspaceSumId_Default((IEntity)pSWorkspaceSum, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkspaceSumId_Default(pSWorkspaceSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKSPACESUMID");
@@ -447,7 +447,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkspaceSumName_Default((IEntity)pSWorkspaceSum, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkspaceSumName_Default(pSWorkspaceSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKSPACESUMNAME");
@@ -472,7 +472,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SumTag_Default((IEntity)pSWorkspaceSum, bl2, bl3);
+            string2 = this.onTestValueRule_SumTag_Default(pSWorkspaceSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SUMTAG");
@@ -494,7 +494,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SumTag2_Default((IEntity)pSWorkspaceSum, bl2, bl3);
+            string2 = this.onTestValueRule_SumTag2_Default(pSWorkspaceSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SUMTAG2");
@@ -519,7 +519,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SumType_Default((IEntity)pSWorkspaceSum, bl2, bl3);
+            string2 = this.onTestValueRule_SumType_Default(pSWorkspaceSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SUMTYPE");
@@ -541,7 +541,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Value_Default((IEntity)pSWorkspaceSum, bl2, bl3);
+            string = this.onTestValueRule_Value_Default(pSWorkspaceSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALUE");
@@ -563,7 +563,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Value2_Default((IEntity)pSWorkspaceSum, bl2, bl3);
+            string = this.onTestValueRule_Value2_Default(pSWorkspaceSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALUE2");
@@ -585,7 +585,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Value3_Default((IEntity)pSWorkspaceSum, bl2, bl3);
+            string = this.onTestValueRule_Value3_Default(pSWorkspaceSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALUE3");
@@ -607,7 +607,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Value4_Default((IEntity)pSWorkspaceSum, bl2, bl3);
+            string = this.onTestValueRule_Value4_Default(pSWorkspaceSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALUE4");
@@ -620,11 +620,11 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
     }
 
     protected void onSyncEntity(PSWorkspaceSum pSWorkspaceSum, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWorkspaceSum, bl);
+        super.onSyncEntity(pSWorkspaceSum, bl);
     }
 
     protected void onSyncIndexEntities(PSWorkspaceSum pSWorkspaceSum, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWorkspaceSum, bl);
+        super.onSyncIndexEntities(pSWorkspaceSum, bl);
     }
 
     public Object getDataContextValue(PSWorkspaceSum pSWorkspaceSum, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -632,14 +632,14 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWorkspaceSum, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWorkspaceSum, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWorkspaceSum pSWorkspaceSum, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWorkspaceSum, arrayList, n);
+        super.onExportMajorModel(pSWorkspaceSum, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -840,14 +840,14 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
 
     protected boolean onMergeChild(String string, String string2, PSWorkspaceSum pSWorkspaceSum) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWorkspaceSum)) {
+        if (super.onMergeChild(string, string2, pSWorkspaceSum)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWorkspaceSum pSWorkspaceSum) throws Exception {
-        super.onUpdateParent((IEntity)pSWorkspaceSum);
+        super.onUpdateParent(pSWorkspaceSum);
     }
 
     @Override
@@ -871,7 +871,7 @@ extends PSCoreSysServiceBase<PSWorkspaceSum> {
         pSWorkspaceSum2.setSumTag(pSWorkspaceSum.getSumTag());
         pSWorkspaceSum2.setSumTag2(pSWorkspaceSum.getSumTag2());
         pSWorkspaceSum2.setPSDCWorkspaceId(pSWorkspaceSum.getPSDCWorkspaceId());
-        if (this.selectOne((IEntity)pSWorkspaceSum2, true)) {
+        if (this.selectOne(pSWorkspaceSum2, true)) {
             return pSWorkspaceSum2.getPSWorkspaceSumId();
         }
         return super.getEntityFolderKeyValue(pSWorkspaceSum, pSSystem);

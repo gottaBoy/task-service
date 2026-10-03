@@ -138,21 +138,21 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
 
     public void restoreVer(PSWFVerLog pSWFVerLog) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_RESTOREVER, 0, (IEntity)pSWFVerLog, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_RESTOREVER, 0, pSWFVerLog, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSWFVerLog, ACTION_RESTOREVER);
+        this.testDEMainStateAction(pSWFVerLog, ACTION_RESTOREVER);
         final PSWFVerLog pSWFVerLog2 = pSWFVerLog;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSWFVerLogServiceBase.this.getService(), PSWFVerLogServiceBase.ACTION_RESTOREVER, 40, (IEntity)pSWFVerLog2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSWFVerLogServiceBase.this.getService(), PSWFVerLogServiceBase.ACTION_RESTOREVER, 40, pSWFVerLog2, null).getResult() != 1) {
                     PSWFVerLogServiceBase.this.onRestoreVer(pSWFVerLog2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_RESTOREVER, 99, (IEntity)pSWFVerLog, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_RESTOREVER, 99, pSWFVerLog, null);
         }
     }
 
@@ -166,14 +166,14 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
             PSWFVersion pSWFVersion = (PSWFVersion)iService.getDEModel().createEntity();
             pSWFVersion.set("PSWFVERSIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWFVersion);
+                iService.getTemp(pSWFVersion);
             } else {
-                iService.get((IEntity)pSWFVersion);
+                iService.get(pSWFVersion);
             }
             this.onFillParentInfo_PSWFVersion(pSWFVerLog, pSWFVersion);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWFVerLog, string, string2, string3);
+        super.onFillParentInfo(pSWFVerLog, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -189,7 +189,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSWFVerLog, bl);
+        super.onFillEntityFullInfo(pSWFVerLog, bl);
         this.onFillEntityFullInfo_PSWFVersion(pSWFVerLog, bl);
     }
 
@@ -207,7 +207,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
     }
 
     protected void onWriteBackParent(PSWFVerLog pSWFVerLog, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWFVerLog, bl);
+        super.onWriteBackParent(pSWFVerLog, bl);
     }
 
     public ArrayList<PSWFVerLog> selectByPSWFVersion(PSWFVersionBase pSWFVersionBase) throws Exception {
@@ -266,7 +266,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
         ArrayList<PSWFVerLog> arrayList = this.selectByPSWFVersion(pSWFVersion);
         this.onBeforeRemoveByPSWFVersion(pSWFVersion, arrayList);
         for (PSWFVerLog pSWFVerLog : arrayList) {
-            this.remove((IEntity)pSWFVerLog);
+            this.remove(pSWFVerLog);
         }
         this.onAfterRemoveByPSWFVersion(pSWFVersion, arrayList);
     }
@@ -287,14 +287,14 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
 
     protected void replaceParentInfo(PSWFVerLog pSWFVerLog, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWFVerLog, cloneSession);
+        super.replaceParentInfo(pSWFVerLog, cloneSession);
         if (pSWFVerLog.getPSWFVersionId() != null && (iEntity = cloneSession.getEntity("PSWFVERSION", (Object)pSWFVerLog.getPSWFVersionId())) != null) {
             this.onFillParentInfo_PSWFVersion(pSWFVerLog, (PSWFVersion)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSWFVerLog pSWFVerLog, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWFVerLog, bl);
+        super.onRemoveEntityUncopyValues(pSWFVerLog, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWFVerLog pSWFVerLog, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -327,7 +327,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
         if ((entityFieldError = this.onCheckField_PSWFVersionName(bl, pSWFVerLog, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWFVerLog, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWFVerLog, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BackDataTag(boolean bl, PSWFVerLog pSWFVerLog, boolean bl2, boolean bl3) throws Exception {
@@ -340,7 +340,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BackDataTag_Default((IEntity)pSWFVerLog, bl2, bl3);
+            string2 = this.onTestValueRule_BackDataTag_Default(pSWFVerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BACKDATATAG");
@@ -362,7 +362,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BackupData_Default((IEntity)pSWFVerLog, bl2, bl3);
+            string2 = this.onTestValueRule_BackupData_Default(pSWFVerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BACKUPDATA");
@@ -384,7 +384,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DynaModelFlag_Default((IEntity)pSWFVerLog, bl2, bl3);
+            string = this.onTestValueRule_DynaModelFlag_Default(pSWFVerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNAMODELFLAG");
@@ -406,7 +406,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSWFVerLog, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSWFVerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -428,7 +428,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSWFVerLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSWFVerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -453,7 +453,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFVerLogId_Default((IEntity)pSWFVerLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFVerLogId_Default(pSWFVerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFVERLOGID");
@@ -478,7 +478,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFVerLogName_Default((IEntity)pSWFVerLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFVerLogName_Default(pSWFVerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFVERLOGNAME");
@@ -500,7 +500,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFVersionId_Default((IEntity)pSWFVerLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFVersionId_Default(pSWFVerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFVERSIONID");
@@ -522,7 +522,7 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFVersionName_Default((IEntity)pSWFVerLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFVersionName_Default(pSWFVerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFVERSIONNAME");
@@ -535,11 +535,11 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
     }
 
     protected void onSyncEntity(PSWFVerLog pSWFVerLog, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWFVerLog, bl);
+        super.onSyncEntity(pSWFVerLog, bl);
     }
 
     protected void onSyncIndexEntities(PSWFVerLog pSWFVerLog, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWFVerLog, bl);
+        super.onSyncIndexEntities(pSWFVerLog, bl);
     }
 
     public Object getDataContextValue(PSWFVerLog pSWFVerLog, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -547,14 +547,14 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWFVerLog, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWFVerLog, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWFVerLog pSWFVerLog, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWFVerLog, arrayList, n);
+        super.onExportMajorModel(pSWFVerLog, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -734,14 +734,14 @@ extends PSCoreSysServiceBase<PSWFVerLog> {
 
     protected boolean onMergeChild(String string, String string2, PSWFVerLog pSWFVerLog) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWFVerLog)) {
+        if (super.onMergeChild(string, string2, pSWFVerLog)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWFVerLog pSWFVerLog) throws Exception {
-        super.onUpdateParent((IEntity)pSWFVerLog);
+        super.onUpdateParent(pSWFVerLog);
     }
 
     @Override

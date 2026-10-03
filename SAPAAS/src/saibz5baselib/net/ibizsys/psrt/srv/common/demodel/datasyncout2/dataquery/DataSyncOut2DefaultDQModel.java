@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.datasyncout2.dataquery;
 
-import net.ibizsys.psrt.srv.common.demodel.datasyncout2.dataquery.DataSyncOut2DefaultDQModelBase;
+/**
+ *  实体数据查询 [DEFAULT]模型
+ */
+public class DataSyncOut2DefaultDQModel extends DataSyncOut2DefaultDQModelBase {
 
-public class DataSyncOut2DefaultDQModel
-extends DataSyncOut2DefaultDQModelBase {
+    public DataSyncOut2DefaultDQModel() {
+        super();
+    }
+
 }
-

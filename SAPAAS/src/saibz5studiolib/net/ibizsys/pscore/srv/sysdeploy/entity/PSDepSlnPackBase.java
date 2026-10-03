@@ -1198,7 +1198,7 @@ implements Serializable {
                 PSDepSln pSDepSln = new PSDepSln();
                 pSDepSln.setPSDepSlnId(this.getPSDepSlnId());
                 PSDepSlnService pSDepSlnService = (PSDepSlnService)ServiceGlobal.getService(PSDepSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnService.autoGet((IEntity)pSDepSln);
+                pSDepSlnService.autoGet(pSDepSln);
                 this.psdepsln = pSDepSln;
             }
             return this.psdepsln;
@@ -1224,7 +1224,7 @@ implements Serializable {
                 PSDevCenterFile pSDevCenterFile = new PSDevCenterFile();
                 pSDevCenterFile.setPSDevCenterFileId(this.getPSDevCenterFileId());
                 PSDevCenterFileService pSDevCenterFileService = (PSDevCenterFileService)ServiceGlobal.getService(PSDevCenterFileService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterFileService.autoGet((IEntity)pSDevCenterFile);
+                pSDevCenterFileService.autoGet(pSDevCenterFile);
                 this.psdevcenterfile = pSDevCenterFile;
             }
             return this.psdevcenterfile;

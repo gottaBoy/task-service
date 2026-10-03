@@ -1,13 +1,18 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.service;
 
 import net.ibizsys.paas.entity.IEntity;
-import net.ibizsys.paas.service.IServiceActionParam;
 
-public interface IServiceRemoveParam<ET extends IEntity>
-extends IServiceActionParam<ET> {
-    public boolean isPrepareLast();
+/**
+ * 服务删除操作参数
+ * @author Administrator
+ *
+ * @param <ET>
+ */
+public interface IServiceRemoveParam<ET extends IEntity> extends IServiceActionParam<ET> {
+
+	/**
+	 * 是否需要准备上一次的数据
+	 * @return
+	 */
+	boolean isPrepareLast();
 }
-

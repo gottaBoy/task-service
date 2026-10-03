@@ -72,7 +72,7 @@ implements IPSAppUIStyleService {
     @Override
     protected List<PSAppUIStyle> onListAll() throws Exception {
         ArrayList<PSAppUIStyle> list = new ArrayList<PSAppUIStyle>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSAppUIStyle> items = this.listByPSSysApp(parent);

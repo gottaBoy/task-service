@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDEUWMFCfg> {
     }
 
     protected void onFillParentInfo(PSDEUWMFCfg pSDEUWMFCfg, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDEUWMFCfg, string, string2, string3);
+        super.onFillParentInfo(pSDEUWMFCfg, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDEUWMFCfg> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEUWMFCfg, bl);
+        super.onFillEntityFullInfo(pSDEUWMFCfg, bl);
     }
 
     protected void onWriteBackParent(PSDEUWMFCfg pSDEUWMFCfg, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEUWMFCfg, bl);
+        super.onWriteBackParent(pSDEUWMFCfg, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDEUWMFCfg> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEUWMFCfg pSDEUWMFCfg, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEUWMFCfg, bl);
+        super.onRemoveEntityUncopyValues(pSDEUWMFCfg, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEUWMFCfg pSDEUWMFCfg, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSDEUWMFCfg> {
         if ((entityFieldError = this.onCheckField_UserTag(bl, pSDEUWMFCfg, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEUWMFCfg, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEUWMFCfg, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_EnaMultiForm(boolean bl, PSDEUWMFCfg pSDEUWMFCfg, boolean bl2, boolean bl3) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSDEUWMFCfg> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnaMultiForm_Default((IEntity)pSDEUWMFCfg, bl2, bl3);
+            string = this.onTestValueRule_EnaMultiForm_Default(pSDEUWMFCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENAMULTIFORM");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSDEUWMFCfg> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDataEntityId_Default((IEntity)pSDEUWMFCfg, bl2, bl3);
+            string2 = this.onTestValueRule_PSDataEntityId_Default(pSDEUWMFCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDATAENTITYID");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSDEUWMFCfg> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDataEntityName_Default((IEntity)pSDEUWMFCfg, bl2, bl3);
+            string2 = this.onTestValueRule_PSDataEntityName_Default(pSDEUWMFCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDATAENTITYNAME");
@@ -243,7 +243,7 @@ extends PSCoreSysServiceBase<PSDEUWMFCfg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDEUWMFCfg, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDEUWMFCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -256,11 +256,11 @@ extends PSCoreSysServiceBase<PSDEUWMFCfg> {
     }
 
     protected void onSyncEntity(PSDEUWMFCfg pSDEUWMFCfg, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEUWMFCfg, bl);
+        super.onSyncEntity(pSDEUWMFCfg, bl);
     }
 
     protected void onSyncIndexEntities(PSDEUWMFCfg pSDEUWMFCfg, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEUWMFCfg, bl);
+        super.onSyncIndexEntities(pSDEUWMFCfg, bl);
     }
 
     public Object getDataContextValue(PSDEUWMFCfg pSDEUWMFCfg, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -268,14 +268,14 @@ extends PSCoreSysServiceBase<PSDEUWMFCfg> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEUWMFCfg, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEUWMFCfg, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEUWMFCfg pSDEUWMFCfg, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEUWMFCfg, arrayList, n);
+        super.onExportMajorModel(pSDEUWMFCfg, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -358,14 +358,14 @@ extends PSCoreSysServiceBase<PSDEUWMFCfg> {
 
     protected boolean onMergeChild(String string, String string2, PSDEUWMFCfg pSDEUWMFCfg) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEUWMFCfg)) {
+        if (super.onMergeChild(string, string2, pSDEUWMFCfg)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEUWMFCfg pSDEUWMFCfg) throws Exception {
-        super.onUpdateParent((IEntity)pSDEUWMFCfg);
+        super.onUpdateParent(pSDEUWMFCfg);
     }
 
     @Override

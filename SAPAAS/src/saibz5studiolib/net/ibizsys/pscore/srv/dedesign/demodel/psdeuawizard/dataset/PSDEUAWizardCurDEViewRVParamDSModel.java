@@ -99,9 +99,9 @@ extends PSDEUAWizardCurDEViewRVParamDSModelBase {
         pSDEViewBase.setPSDEViewBaseId(string);
         try {
             if (KeyValueHelper.isTempKey((String)string)) {
-                pSDEViewBaseService.getTemp((IEntity)pSDEViewBase);
+                pSDEViewBaseService.getTemp(pSDEViewBase);
             } else {
-                pSDEViewBaseService.get((IEntity)pSDEViewBase);
+                pSDEViewBaseService.get(pSDEViewBase);
             }
         }
         catch (Exception exception) {
@@ -152,92 +152,75 @@ extends PSDEUAWizardCurDEViewRVParamDSModelBase {
                 ++n;
             }
         } else if (StringHelper.compare((String)string2, (String)"RDITEM", (boolean)true) == 0) {
-            SimpleDataRowImpl simpleDataRowImpl;
-            Object object;
-            Object object2;
-            Object object3;
-            Object object4;
-            Object object5 = new SimpleDataRowImpl();
-            object5.set("PSUAWIZARDID", (Object)"\u7f16\u8f91\u89c6\u56fe");
-            object5.set("PSUAWIZARDNAME", (Object)"EDITVIEW");
-            object5.set("WIZARDPARAM4", (Object)"\u7f16\u8f91\u89c6\u56fe");
-            simpleDataTableImpl.addCachedRow((IDataRow)object5);
+            SimpleDataRowImpl editViewRow = new SimpleDataRowImpl();
+            editViewRow.set("PSUAWIZARDID", (Object)"\u7f16\u8f91\u89c6\u56fe");
+            editViewRow.set("PSUAWIZARDNAME", (Object)"EDITVIEW");
+            editViewRow.set("WIZARDPARAM4", (Object)"\u7f16\u8f91\u89c6\u56fe");
+            simpleDataTableImpl.addCachedRow((IDataRow)editViewRow);
             ++n;
-            object5 = null;
+            PSCodeList codeList = null;
             PSDEField pSDEField = new PSDEField();
             pSDEField.setPSDEId(pSDataEntity.getPSDataEntityId());
             pSDEField.setSessionFactory(pSDataEntity.getSessionFactory());
             pSDEField.setMultiFormField(1);
             if (pSDEField.select(true)) {
-                object5 = pSDEField.getPSCodeList();
+                codeList = pSDEField.getPSCodeList();
             } else {
                 pSDEField.resetMultiFormField();
                 pSDEField.setIndexType(1);
                 if (pSDEField.select(true)) {
-                    object5 = pSDEField.getPSCodeList();
+                    codeList = pSDEField.getPSCodeList();
                 }
             }
-            if (object5 != null) {
-                object4 = ((PSCodeListBase)object5).getPSCodeItems();
-                object3 = ((ArrayList)object4).iterator();
-                while (object3.hasNext()) {
-                    object2 = (PSCodeItem)object3.next();
-                    if (!DataObject.getBoolValue((Integer)((PSCodeItemBase)object2).getValidFlag(), (boolean)true)) continue;
-                    object = new SimpleDataRowImpl();
-                    object.set("PSUAWIZARDID", (Object)StringHelper.format((String)"\u7f16\u8f91\u89c6\u56fe(%1$s)", (Object)((PSCodeItemBase)object2).getPSCodeItemName()));
-                    object.set("PSUAWIZARDNAME", (Object)StringHelper.format((String)"%1$s:%2$s", (Object)"EDITVIEW", (Object)((PSCodeItemBase)object2).getCodeItemValue()));
-                    object.set("WIZARDPARAM4", (Object)StringHelper.format((String)"\u7f16\u8f91\u89c6\u56fe(%1$s)", (Object)((PSCodeItemBase)object2).getPSCodeItemName()));
-                    simpleDataTableImpl.addCachedRow((IDataRow)object);
+            if (codeList != null) {
+                for (PSCodeItem codeItem : codeList.getPSCodeItems()) {
+                    if (!DataObject.getBoolValue((Integer)codeItem.getValidFlag(), (boolean)true)) continue;
+                    SimpleDataRowImpl itemRow = new SimpleDataRowImpl();
+                    itemRow.set("PSUAWIZARDID", (Object)StringHelper.format((String)"\u7f16\u8f91\u89c6\u56fe(%1$s)", (Object)codeItem.getPSCodeItemName()));
+                    itemRow.set("PSUAWIZARDNAME", (Object)StringHelper.format((String)"%1$s:%2$s", (Object)"EDITVIEW", (Object)codeItem.getCodeItemValue()));
+                    itemRow.set("WIZARDPARAM4", (Object)StringHelper.format((String)"\u7f16\u8f91\u89c6\u56fe(%1$s)", (Object)codeItem.getPSCodeItemName()));
+                    simpleDataTableImpl.addCachedRow((IDataRow)itemRow);
                     ++n;
                 }
             }
-            object4 = new SelectContext();
-            object4.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-            object4.set("PREDEFINEVIEWTYPE", (Object)"WFEDITVIEW");
-            object3 = pSDEViewBaseService.select((ISelectCond)object4);
-            object2 = ((ArrayList)object3).iterator();
-            while (object2.hasNext()) {
-                object = (PSDEViewBase)object2.next();
-                simpleDataRowImpl = new SimpleDataRowImpl();
-                simpleDataRowImpl.set("PSUAWIZARDID", (Object)((PSDEViewBaseBase)object).getPSDEViewBaseName());
-                simpleDataRowImpl.set("PSUAWIZARDNAME", (Object)StringHelper.format((String)"%1$s:%2$s", (Object)"WFEDITVIEW", (Object)((PSDEViewBaseBase)object).getPDVTParam()));
-                simpleDataRowImpl.set("WIZARDPARAM4", (Object)((PSDEViewBaseBase)object).getPSDEViewBaseName());
-                simpleDataTableImpl.addCachedRow((IDataRow)simpleDataRowImpl);
+            SelectContext wfViewContext = new SelectContext();
+            wfViewContext.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
+            wfViewContext.set("PREDEFINEVIEWTYPE", (Object)"WFEDITVIEW");
+            for (PSDEViewBase view : pSDEViewBaseService.select((ISelectCond)wfViewContext)) {
+                SimpleDataRowImpl viewRow = new SimpleDataRowImpl();
+                viewRow.set("PSUAWIZARDID", (Object)view.getPSDEViewBaseName());
+                viewRow.set("PSUAWIZARDNAME", (Object)StringHelper.format((String)"%1$s:%2$s", (Object)"WFEDITVIEW", (Object)view.getPDVTParam()));
+                viewRow.set("WIZARDPARAM4", (Object)view.getPSDEViewBaseName());
+                simpleDataTableImpl.addCachedRow((IDataRow)viewRow);
                 ++n;
             }
             if (DataObject.getBoolValue((Integer)pSDataEntity.getEnableMob(), (boolean)false)) {
-                object4 = new SimpleDataRowImpl();
-                object4.set("PSUAWIZARDID", (Object)"\u79fb\u52a8\u7aef\u7f16\u8f91\u89c6\u56fe");
-                object4.set("PSUAWIZARDNAME", (Object)"MOBEDITVIEW");
-                object4.set("WIZARDPARAM4", (Object)"\u79fb\u52a8\u7aef\u7f16\u8f91\u89c6\u56fe");
-                simpleDataTableImpl.addCachedRow((IDataRow)object4);
+                SimpleDataRowImpl mobileEditViewRow = new SimpleDataRowImpl();
+                mobileEditViewRow.set("PSUAWIZARDID", (Object)"\u79fb\u52a8\u7aef\u7f16\u8f91\u89c6\u56fe");
+                mobileEditViewRow.set("PSUAWIZARDNAME", (Object)"MOBEDITVIEW");
+                mobileEditViewRow.set("WIZARDPARAM4", (Object)"\u79fb\u52a8\u7aef\u7f16\u8f91\u89c6\u56fe");
+                simpleDataTableImpl.addCachedRow((IDataRow)mobileEditViewRow);
                 ++n;
-                if (object5 != null) {
-                    object4 = ((PSCodeListBase)object5).getPSCodeItems();
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (PSCodeItem)object3.next();
-                        if (!DataObject.getBoolValue((Integer)((PSCodeItemBase)object2).getValidFlag(), (boolean)true)) continue;
-                        object = new SimpleDataRowImpl();
-                        object.set("PSUAWIZARDID", (Object)StringHelper.format((String)"\u79fb\u52a8\u7aef\u7f16\u8f91\u89c6\u56fe(%1$s)", (Object)((PSCodeItemBase)object2).getPSCodeItemName()));
-                        object.set("PSUAWIZARDNAME", (Object)StringHelper.format((String)"%1$s:%2$s", (Object)"MOBEDITVIEW", (Object)((PSCodeItemBase)object2).getCodeItemValue()));
-                        object.set("WIZARDPARAM4", (Object)StringHelper.format((String)"\u79fb\u52a8\u7aef\u7f16\u8f91\u89c6\u56fe(%1$s)", (Object)((PSCodeItemBase)object2).getPSCodeItemName()));
-                        simpleDataTableImpl.addCachedRow((IDataRow)object);
+                if (codeList != null) {
+                    for (PSCodeItem codeItem : codeList.getPSCodeItems()) {
+                        if (!DataObject.getBoolValue((Integer)codeItem.getValidFlag(), (boolean)true)) continue;
+                        SimpleDataRowImpl itemRow = new SimpleDataRowImpl();
+                        itemRow.set("PSUAWIZARDID", (Object)StringHelper.format((String)"\u79fb\u52a8\u7aef\u7f16\u8f91\u89c6\u56fe(%1$s)", (Object)codeItem.getPSCodeItemName()));
+                        itemRow.set("PSUAWIZARDNAME", (Object)StringHelper.format((String)"%1$s:%2$s", (Object)"MOBEDITVIEW", (Object)codeItem.getCodeItemValue()));
+                        itemRow.set("WIZARDPARAM4", (Object)StringHelper.format((String)"\u79fb\u52a8\u7aef\u7f16\u8f91\u89c6\u56fe(%1$s)", (Object)codeItem.getPSCodeItemName()));
+                        simpleDataTableImpl.addCachedRow((IDataRow)itemRow);
                         ++n;
                     }
                 }
-                object4 = new SelectContext();
-                object4.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-                object4.set("PREDEFINEVIEWTYPE", (Object)"MOBWFEDITVIEW");
-                object3 = pSDEViewBaseService.select((ISelectCond)object4);
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    object = (PSDEViewBase)object2.next();
-                    simpleDataRowImpl = new SimpleDataRowImpl();
-                    simpleDataRowImpl.set("PSUAWIZARDID", (Object)((PSDEViewBaseBase)object).getPSDEViewBaseName());
-                    simpleDataRowImpl.set("PSUAWIZARDNAME", (Object)StringHelper.format((String)"%1$s:%2$s", (Object)"MOBWFEDITVIEW", (Object)((PSDEViewBaseBase)object).getPDVTParam()));
-                    simpleDataRowImpl.set("WIZARDPARAM4", (Object)((PSDEViewBaseBase)object).getPSDEViewBaseName());
-                    simpleDataTableImpl.addCachedRow((IDataRow)simpleDataRowImpl);
+                SelectContext mobileWfViewContext = new SelectContext();
+                mobileWfViewContext.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
+                mobileWfViewContext.set("PREDEFINEVIEWTYPE", (Object)"MOBWFEDITVIEW");
+                for (PSDEViewBase view : pSDEViewBaseService.select((ISelectCond)mobileWfViewContext)) {
+                    SimpleDataRowImpl viewRow = new SimpleDataRowImpl();
+                    viewRow.set("PSUAWIZARDID", (Object)view.getPSDEViewBaseName());
+                    viewRow.set("PSUAWIZARDNAME", (Object)StringHelper.format((String)"%1$s:%2$s", (Object)"MOBWFEDITVIEW", (Object)view.getPDVTParam()));
+                    viewRow.set("WIZARDPARAM4", (Object)view.getPSDEViewBaseName());
+                    simpleDataTableImpl.addCachedRow((IDataRow)viewRow);
                     ++n;
                 }
             }
@@ -246,4 +229,3 @@ extends PSDEUAWizardCurDEViewRVParamDSModelBase {
         return dBFetchResult;
     }
 }
-

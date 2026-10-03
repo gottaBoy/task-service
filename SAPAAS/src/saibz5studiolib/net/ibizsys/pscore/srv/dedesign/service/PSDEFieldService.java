@@ -1,38 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- *  net.ibizsys.paas.data.DataObject
- *  net.ibizsys.paas.data.IDataObject
- *  net.ibizsys.paas.db.ISelectCond
- *  net.ibizsys.paas.db.SelectCond
- *  net.ibizsys.paas.entity.EntityBase
- *  net.ibizsys.paas.entity.EntityError
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.paas.service.IDataContextParam
- *  net.ibizsys.paas.service.ServiceGlobal
- *  net.ibizsys.paas.util.KeyValueHelper
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.paas.util.freemarker.DataContextMethod
- *  net.sf.json.JSONObject
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.hibernate.SessionFactory
- *  org.springframework.stereotype.Component
- */
 package net.ibizsys.pscore.srv.dedesign.service;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.data.IDataObject;
-import net.ibizsys.paas.db.ISelectCond;
 import net.ibizsys.paas.db.SelectCond;
-import net.ibizsys.paas.entity.EntityBase;
 import net.ibizsys.paas.entity.EntityError;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.IDataContextParam;
@@ -50,1086 +22,1161 @@ import net.ibizsys.pscore.srv.config.service.PSVarSampleValueService;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEFInputTip;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEFValueRule;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEField;
-import net.ibizsys.pscore.srv.dedesign.entity.PSDEFieldBase;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDataEntity;
-import net.ibizsys.pscore.srv.dedesign.entity.PSDataEntityBase;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEFInputTipService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEFieldServiceBase;
-import net.ibizsys.pscore.srv.dedesign.service.PSDataEntityService;
 import net.ibizsys.pscore.srv.devcenter.entity.PSDCMTDEF;
-import net.ibizsys.pscore.srv.devcenter.entity.PSDCMTDEFBase;
-import net.ibizsys.pscore.srv.devcenter.entity.PSDCModelTemplBase;
+import net.ibizsys.pscore.srv.devcenter.entity.PSDCModelTempl;
 import net.ibizsys.pscore.srv.service.IPSModelService;
-import net.ibizsys.pscore.srv.sysdesign.entity.PSSystemBase;
+import net.ibizsys.pscore.srv.sysdesign.entity.PSSystem;
 import net.ibizsys.pscore.srv.sysdesign.service.PSSysDMItemService;
 import net.ibizsys.pscore.srv.util.PSModelGlobal;
 import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PSDEFieldService
-extends PSDEFieldServiceBase
-implements IPSModelService<PSDEField> {
-    private static final Log log = LogFactory.getLog(PSDEFieldService.class);
-    public static final String RESERVERTAG_KEY = "R1";
-    public static final String RESERVERTAG_MAJOR = "R2";
-    public static final String RESERVERTAG_LOGICVALID = "R3";
-    public static final String RESERVERTAG_CREATEMAN = "R4";
-    public static final String RESERVERTAG_CREATEDATE = "R5";
-    public static final String RESERVERTAG_UPDATEMAN = "R6";
-    public static final String RESERVERTAG_UPDATEDATE = "R7";
-    public static final String RESERVERTAG_CREATEMANNAME = "R8";
-    public static final String RESERVERTAG_UPDATEMANNAME = "R9";
-    public static final String RESERVERTAG_INDEXTYPE = "R30";
-    public static final String RESERVERTAG_ORGID = "R31";
+public class PSDEFieldService extends PSDEFieldServiceBase implements IPSModelService<PSDEField> {
+   private static final Log log = LogFactory.getLog(PSDEFieldService.class);
+   public static final String RESERVERTAG_KEY = "R1";
+   public static final String RESERVERTAG_MAJOR = "R2";
+   public static final String RESERVERTAG_LOGICVALID = "R3";
+   public static final String RESERVERTAG_CREATEMAN = "R4";
+   public static final String RESERVERTAG_CREATEDATE = "R5";
+   public static final String RESERVERTAG_UPDATEMAN = "R6";
+   public static final String RESERVERTAG_UPDATEDATE = "R7";
+   public static final String RESERVERTAG_CREATEMANNAME = "R8";
+   public static final String RESERVERTAG_UPDATEMANNAME = "R9";
+   public static final String RESERVERTAG_INDEXTYPE = "R30";
+   public static final String RESERVERTAG_ORGID = "R31";
 
-    public ArrayList<PSDEField> selectByDataEntity(String string) throws Exception {
-        SelectCond selectCond = new SelectCond();
-        selectCond.setConditon("PSDEID", (Object)string);
-        selectCond.setOrderInfo(" ORDER BY PSDEFIELDNAME ASC");
-        return this.select((ISelectCond)selectCond);
-    }
+   public ArrayList<PSDEField> selectByDataEntity(String var1) throws Exception {
+      SelectCond var2 = new SelectCond();
+      var2.setConditon("PSDEID", var1);
+      var2.setOrderInfo(" ORDER BY PSDEFIELDNAME ASC");
+      return this.select(var2);
+   }
 
-    /*
-     * Unable to fully structure code
-     */
-    @Override
-    public void getDraft(PSDEField var1_1) throws Exception {
-        block3: {
-            super.getDraft(var1_1);
-            if (StringHelper.isNullOrEmpty((String)var1_1.getPSDataTypeId())) {
-                var2_2 = new PSDEFDataType();
-                var2_2.setSessionFactory(this.getSessionFactory());
-                var2_2.setPSDEFDataTypeId("TEXT");
-                if (var2_2.get(true)) {
-                    var1_1.setPSDataTypeId(var2_2.getPSDEFDataTypeId());
-                    var1_1.setPSDataTypeName(var2_2.getPSDEFDataTypeName());
-                }
+   public void getDraft(PSDEField var1) throws Exception {
+      super.getDraft(var1);
+      if (StringHelper.isNullOrEmpty(var1.getPSDataTypeId())) {
+         PSDEFDataType var2 = new PSDEFDataType();
+         var2.setSessionFactory(this.getSessionFactory());
+         var2.setPSDEFDataTypeId("TEXT");
+         if (var2.get(true)) {
+            var1.setPSDataTypeId(var2.getPSDEFDataTypeId());
+            var1.setPSDataTypeName(var2.getPSDEFDataTypeName());
+         }
+      }
+
+      if (StringHelper.isNullOrEmpty(var1.getPSDEFieldName()) && !StringHelper.isNullOrEmpty(var1.getPSDEId())) {
+         int var4 = 0;
+
+         while (true) {
+            var4++;
+            PSDEField var3 = new PSDEField();
+            var3.setPSDEId(var1.getPSDEId());
+            var3.setPSDEFieldName(StringHelper.format("FIELD%1$s", var4 == 1 ? "" : var4));
+            if (!this.select(var3, true)) {
+               var1.setPSDEFieldName(var3.getPSDEFieldName());
+               var3.reset();
+               var3.setPSDEId(var1.getPSDEId());
+               var3.setLogicName(StringHelper.format("属性%1$s", var4 == 1 ? "" : var4));
+               if (!this.select(var3, true)) {
+                  var1.setLogicName(var3.getLogicName());
+                  break;
+               }
             }
-            if (!StringHelper.isNullOrEmpty((String)var1_1.getPSDEFieldName()) || StringHelper.isNullOrEmpty((String)var1_1.getPSDEId())) break block3;
-            var2_3 = 0;
-            do lbl-1000:
-            // 3 sources
+         }
+      }
+   }
 
-            {
-                var3_4 = new PSDEField();
-                var3_4.setPSDEId(var1_1.getPSDEId());
-                var3_4.setPSDEFieldName(StringHelper.format((String)"FIELD%1$s", (Object)(++var2_3 == 1 ? "" : Integer.valueOf(var2_3))));
-                if (this.select(var3_4, true)) ** GOTO lbl-1000
-                var1_1.setPSDEFieldName(var3_4.getPSDEFieldName());
-                var3_4.reset();
-                var3_4.setPSDEId(var1_1.getPSDEId());
-                var3_4.setLogicName(StringHelper.format((String)"\u5c5e\u6027%1$s", (Object)(var2_3 == 1 ? "" : Integer.valueOf(var2_3))));
-            } while (this.select(var3_4, true));
-            var1_1.setLogicName(var3_4.getLogicName());
-        }
-    }
+   protected void onBeforeCreate(PSDEField var1) throws Exception {
+      PSDCModelTempl var2 = null;
+      PSDataEntity var3 = var1.getPSDE();
+      boolean var4 = false;
+      if (DataObject.getBoolValue(var3.getExistingModel(), false)) {
+         var4 = true;
+      }
 
-    @Override
-    protected void onBeforeCreate(PSDEField pSDEField) throws Exception {
-        Object object;
-        PSDCModelTemplBase pSDCModelTemplBase = null;
-        Object object2 = pSDEField.getPSDE();
-        boolean bl = false;
-        if (DataObject.getBoolValue((Integer)((PSDataEntityBase)object2).getExistingModel(), (boolean)false)) {
-            bl = true;
-        }
-        if (!bl && ((PSDataEntityBase)object2).getPSModule() != null && DataObject.getBoolValue((Integer)((PSDataEntityBase)object2).getPSModule().getSubSysModule(), (boolean)false)) {
-            bl = true;
-        }
-        if (!bl && !StringHelper.isNullOrEmpty((String)((PSSystemBase)(object = ((PSDataEntityBase)object2).getPSSystem())).getPSDevSlnSysId())) {
-            pSDCModelTemplBase = PSModelGlobal.getPSDCModelTempl(((PSSystemBase)object).getPSDevSlnSysId());
-        }
-        if (pSDCModelTemplBase != null) {
-            object2 = pSDEField.getPSDEFieldName();
-            if (pSDCModelTemplBase.getDEFNameMaxLength() != null && pSDCModelTemplBase.getDEFNameMaxLength() > 0 && ((String)object2).length() > pSDCModelTemplBase.getDEFNameMaxLength()) {
-                throw new Exception(StringHelper.format((String)"\u6a21\u578b\u6a21\u677f[%1$s]\u5b9a\u4e49\u5c5e\u6027\u540d\u79f0\u957f\u5ea6\u4e0d\u80fd\u8d85\u8fc7[%2$s]", (Object)pSDCModelTemplBase.getPSDCModelTemplName(), (Object)pSDCModelTemplBase.getDEFNameMaxLength()));
+      if (!var4 && var3.getPSModule() != null && DataObject.getBoolValue(var3.getPSModule().getSubSysModule(), false)) {
+         var4 = true;
+      }
+
+      if (!var4) {
+         PSSystem var5 = var3.getPSSystem();
+         if (!StringHelper.isNullOrEmpty(var5.getPSDevSlnSysId())) {
+            var2 = PSModelGlobal.getPSDCModelTempl(var5.getPSDevSlnSysId());
+         }
+      }
+
+      if (var2 != null) {
+         String var6 = var1.getPSDEFieldName();
+         if (var2.getDEFNameMaxLength() != null && var2.getDEFNameMaxLength() > 0 && var6.length() > var2.getDEFNameMaxLength()) {
+            throw new Exception(StringHelper.format("模型模板[%1$s]定义属性名称长度不能超过[%2$s]", var2.getPSDCModelTemplName(), var2.getDEFNameMaxLength()));
+         }
+      }
+
+      if (StringHelper.isNullOrEmpty(var1.getCodeName())) {
+         String var7 = this.calcDEFieldCodeName(var1.getPSDEFieldName());
+         if (StringHelper.isNullOrEmpty(var7) && isEnableCodeNameUpperCamel()) {
+            var7 = toUpperCamel(var1.getPSDEFieldName());
+         }
+
+         if (StringHelper.isNullOrEmpty(var7)) {
+            if (StringHelper.length(var1.getPSDEFieldName()) > 1) {
+               var7 = var1.getPSDEFieldName().substring(0, 1).toUpperCase() + var1.getPSDEFieldName().substring(1).toLowerCase();
+            } else {
+               var7 = var1.getPSDEFieldName().toUpperCase();
             }
-        }
-        if (StringHelper.isNullOrEmpty((String)pSDEField.getCodeName())) {
-            object2 = this.calcDEFieldCodeName(pSDEField.getPSDEFieldName());
-            if (StringHelper.isNullOrEmpty((String)object2) && PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                object2 = PSDEFieldService.toUpperCamel(pSDEField.getPSDEFieldName());
+         }
+
+         if (!StringHelper.isNullOrEmpty(var7)) {
+            var1.setCodeName(var7);
+         }
+      }
+
+      if (var1.getDEFType() != null && var1.getDEFType() == 1) {
+         int var8 = DataObject.getIntegerValue(var1.getPSDE().getVirtualFlag(), 0);
+         if (var8 == 1 || var8 == 3 || var8 == 2) {
+            throw new Exception(StringHelper.format("虚拟实体不能建立物理属性"));
+         }
+
+         var1.setTableName(var1.getPSDE().getTableName());
+         if (StringHelper.isNullOrEmpty(var1.getTableName())) {
+            throw new Exception(StringHelper.format("物理属性表名无效"));
+         }
+
+         var1.setPhysicalField(1);
+         PSDEFDataType var9 = new PSDEFDataType();
+         var9.setPSDEFDataTypeId(var1.getPSDataTypeId());
+         PSDEFDataTypeService var10 = (PSDEFDataTypeService)ServiceGlobal.getService(PSDEFDataTypeService.class, this.getSessionFactory());
+         var10.get(var9);
+         if (var9.getLength() != null && var1.getLength() == null) {
+            var1.setLength(var9.getLength());
+         }
+
+         if (var9.getPrecision2() != null && var1.getPrecision2() == null) {
+            var1.setPrecision2(var9.getPrecision2());
+         }
+      } else {
+         var1.setPhysicalField(0);
+      }
+
+      super.onBeforeCreate(var1);
+   }
+
+   protected void onAfterCreate(PSDEField var1) throws Exception {
+      if (var1.isMajorFieldDirty() && DataObject.getBoolValue(var1.getMajorField(), false)) {
+         this.reCalcMajorDEField(var1);
+      }
+
+      super.onAfterCreate(var1);
+   }
+
+   protected void onBeforeUpdate(PSDEField var1) throws Exception {
+      super.onBeforeUpdate(var1);
+   }
+
+   protected void onAfterUpdate(PSDEField var1) throws Exception {
+      if (var1.isMajorFieldDirty() && DataObject.getBoolValue(var1.getMajorField(), false)) {
+         this.reCalcMajorDEField(var1);
+      }
+
+      super.onAfterUpdate(var1);
+   }
+
+   protected void reCalcMajorDEField(PSDEField var1) throws Exception {
+      PSDEField var2 = new PSDEField();
+      var2.setMajorField(1);
+      var2.setPSDEId(var1.getPSDEId());
+      if (this.select(var2, true)) {
+         if (StringHelper.compare(var1.getPSDEFieldId(), var2.getPSDEFieldId(), true) != 0) {
+            PSDEField var3 = new PSDEField();
+            var3.setPSDEFieldId(var2.getPSDEFieldId());
+            var3.setMajorField(0);
+            this.update(var3);
+         }
+      }
+   }
+
+   @Override
+   public void makeLinkMode(PSDEField var1) throws Exception {
+      this.get(var1);
+      if (DataObject.getBoolValue(var1.getPhysicalField(), false)) {
+         if (StringHelper.compare(var1.getPSDataTypeId(), "PICKUPDATA", true) != 0 && StringHelper.compare(var1.getPSDataTypeId(), "PICKUPTEXT", true) != 0) {
+            String var3 = DEFDataTypeCodeListModel.getInstance().getCodeListText(var1.getPSDataTypeId(), true);
+            this.sendStudioConsole(
+               true, "WARN", StringHelper.format("属性[%1$s]类型[%2$s]，无法设置为链接模式，链接模式仅支持类型[外键值文本]及[外键值附加数据]", var1.getPSDEFieldName(), var3), false
+            );
+         } else {
+            String var2 = var1.getPSDEFieldId();
+            var1.reset();
+            var1.setPSDEFieldId(var2);
+            var1.setPhysicalField(0);
+            var1.setDEFType(3);
+            var1.setTableName(null);
+            this.update(var1);
+         }
+      }
+   }
+
+   @Override
+   public void makeRealMode(PSDEField var1) throws Exception {
+      this.get(var1);
+      if (!DataObject.getBoolValue(var1.getPhysicalField(), false)) {
+         if (StringHelper.compare(var1.getPSDataTypeId(), "PICKUPDATA", true) != 0 && StringHelper.compare(var1.getPSDataTypeId(), "PICKUPTEXT", true) != 0) {
+            String var4 = DEFDataTypeCodeListModel.getInstance().getCodeListText(var1.getPSDataTypeId(), true);
+            this.sendStudioConsole(
+               true, "WARN", StringHelper.format("属性[%1$s]类型[%2$s]，无法设置为物理模式，物理模式仅支持类型[外键值文本]及[外键值附加数据]", var1.getPSDEFieldName(), var4), false
+            );
+         } else {
+            String var2 = var1.getPSDE().getTableName();
+            String var3 = var1.getPSDEFieldId();
+            var1.reset();
+            var1.setPSDEFieldId(var3);
+            var1.setPhysicalField(1);
+            var1.setDEFType(1);
+            var1.setTableName(var2);
+            this.update(var1);
+         }
+      }
+   }
+
+   @Override
+   public void initModel(String var1, IEntity var2, String var3) throws Exception {
+      if (StringHelper.compare(var1, "PSDATAENTITY", true) == 0) {
+         PSDataEntity var4 = new PSDataEntity();
+         var4.proxy(var2);
+         boolean var5 = false;
+         if (DataObject.getBoolValue(var4.getExistingModel(), false)) {
+            this.sendStudioConsole(true, "WARN", StringHelper.format("现有结构实体[%1$s]不会自动初始化默认属性", var4.getPSDataEntityName()), false);
+            var5 = true;
+         }
+
+         if (!var5 && DataObject.getIntegerValue(var4.getVirtualFlag(), 0) > 0) {
+            var5 = true;
+            this.sendStudioConsole(true, "WARN", StringHelper.format("虚拟实体[%1$s]不会自动初始化默认属性", var4.getPSDataEntityName()), false);
+         }
+
+         if (!var5 && !StringHelper.isNullOrEmpty(var4.getPSSubSysSADEId())) {
+            var5 = true;
+            this.sendStudioConsole(true, "WARN", StringHelper.format("外部接口实体[%1$s]不会自动初始化默认属性", var4.getPSDataEntityName()), false);
+         }
+
+         if (!var5 && var4.getPSModule() != null && DataObject.getBoolValue(var4.getPSModule().getSubSysModule(), false)) {
+            var5 = true;
+            this.sendStudioConsole(true, "WARN", StringHelper.format("子系统实体[%1$s]不会自动初始化默认属性", var4.getPSDataEntityName()), false);
+         }
+
+         if (!var5) {
+            PSSystem var6 = getCurrentPSSystem(var4, this.getSessionFactory());
+            boolean var7 = false;
+            if (PSCoreSysModel.isEnableFolderKey() && DataObject.getBoolValue(var6.getEnableFolderKey(), false)) {
+               var7 = true;
             }
-            if (StringHelper.isNullOrEmpty((String)object2)) {
-                object2 = StringHelper.length((String)pSDEField.getPSDEFieldName()) > 1 ? pSDEField.getPSDEFieldName().substring(0, 1).toUpperCase() + pSDEField.getPSDEFieldName().substring(1).toLowerCase() : pSDEField.getPSDEFieldName().toUpperCase();
+
+            PSDCModelTempl var8 = null;
+            if (!StringHelper.isNullOrEmpty(var6.getPSDevSlnSysId())) {
+               var8 = PSModelGlobal.getPSDCModelTempl(var6.getPSDevSlnSysId());
             }
-            if (!StringHelper.isNullOrEmpty((String)object2)) {
-                pSDEField.setCodeName((String)object2);
+
+            String var9 = var4.getPSDataEntityName();
+            String var10 = var4.getLogicName();
+            String var11 = var4.getCodeName();
+            ArrayList<PSDCMTDEF> var12 = new ArrayList<PSDCMTDEF>();
+            PSDCMTDEF var13 = null;
+            PSDCMTDEF var14 = null;
+            HashMap<String, PSDCMTDEF> var15 = new HashMap<String, PSDCMTDEF>();
+            if (var8 != null) {
+               for (PSDCMTDEF var18 : var8.getPSDCMTDEFs()) {
+                  if (DataObject.getBoolValue(var18.getPKey(), false)) {
+                     var13 = var18;
+                  } else if (DataObject.getBoolValue(var18.getMajorField(), false)) {
+                     var14 = var18;
+                  } else if (!StringHelper.isNullOrEmpty(var18.getPreDefinedType())) {
+                     var15.put(var18.getPreDefinedType(), var18);
+                  } else {
+                     var12.add(var18);
+                  }
+               }
             }
-        }
-        if (pSDEField.getDEFType() != null && pSDEField.getDEFType() == 1) {
-            int n = DataObject.getIntegerValue((Object)pSDEField.getPSDE().getVirtualFlag(), (Integer)0);
-            if (n == 1 || n == 3 || n == 2) {
-                throw new Exception(StringHelper.format((String)"\u865a\u62df\u5b9e\u4f53\u4e0d\u80fd\u5efa\u7acb\u7269\u7406\u5c5e\u6027"));
+
+            PSDEField var24 = new PSDEField();
+            var24.setPSDEId(var4.getPSDataEntityId());
+            var24.setPKey(1);
+            if (!this.select(var24, true)) {
+               if (var13 != null) {
+                  String var29 = var13.getPSDCMTDEFName().replace("_DENAME_", var9);
+                  if (!StringHelper.isNullOrEmpty(var29) && var29.indexOf("_") == 0 && var29.lastIndexOf("_") == var29.length() - 1) {
+                     var29 = var29.substring(1);
+                     if (!StringHelper.isNullOrEmpty(var29)) {
+                        var29 = var29.substring(0, var29.length() - 1);
+                     }
+                  }
+
+                  if (StringHelper.compare(var29, var13.getPSDCMTDEFName(), false) == 0) {
+                     var29 = var9 + var13.getPSDCMTDEFName();
+                  }
+
+                  var24.setPSDEFieldName(var29);
+                  var24.setLength(var13.getLength());
+                  if (!StringHelper.isNullOrEmpty(var13.getLogicName())) {
+                     String var40 = var13.getLogicName().replace("_DENAME_", var10);
+                     var24.setLogicName(var40);
+                  }
+
+                  if (!StringHelper.isNullOrEmpty(var13.getCodeName())) {
+                     String var41 = var13.getCodeName().replace("_DENAME_", var11);
+                     var24.setCodeName(var41);
+                  }
+
+                  if (var13.getOrderValue() != null) {
+                     var24.setOrderValue(var13.getOrderValue());
+                  }
+               } else {
+                  if (isEnableCodeNameUpperCamel()) {
+                     var24.setPSDEFieldName(StringHelper.format("%1$s_ID", var9));
+                  } else {
+                     var24.setPSDEFieldName(StringHelper.format("%1$sID", var9));
+                  }
+
+                  if (StringHelper.isNullOrEmpty(var24.getCodeName())) {
+                     var24.setCodeName(StringHelper.format("%1$sId", var11));
+                  }
+               }
+
+               if (StringHelper.isNullOrEmpty(var24.getLogicName())) {
+                  var24.setLogicName(StringHelper.format("%1$s标识", var10));
+               }
+
+               var24.setPSDataTypeId("GUID");
+               var24.setPSDEId(var4.getPSDataEntityId());
+               if (var7) {
+                  var24.setPSDEFieldId(StringHelper.format("%1$s-%2$s", var24.getPSDEId(), "R1"));
+               } else {
+                  var24.setPSDEFieldId(KeyValueHelper.genUniqueId(var24.getPSDEId(), var24.getPSDEFieldName()));
+               }
+
+               if (this.checkKey(var24) == 0) {
+                  var24.setTableName(var4.getTableName());
+                  var24.setDEFType(1);
+                  var24.setPhysicalField(1);
+                  var24.setAllowEmpty(0);
+                  var24.setLength(100);
+                  var24.setMajorField(0);
+                  var24.setPKey(1);
+                  var24.setFKey(0);
+                  this.create(var24, false);
+               }
             }
-            pSDEField.setTableName(pSDEField.getPSDE().getTableName());
-            if (StringHelper.isNullOrEmpty((String)pSDEField.getTableName())) {
-                throw new Exception(StringHelper.format((String)"\u7269\u7406\u5c5e\u6027\u8868\u540d\u65e0\u6548"));
+
+            var24 = new PSDEField();
+            var24.setPSDEId(var4.getPSDataEntityId());
+            var24.setMajorField(1);
+            if (!this.select(var24, true)) {
+               if (var14 != null) {
+                  String var30 = var14.getPSDCMTDEFName().replace("_DENAME_", var9);
+                  if (!StringHelper.isNullOrEmpty(var30) && var30.indexOf("_") == 0 && var30.lastIndexOf("_") == var30.length() - 1) {
+                     var30 = var30.substring(1);
+                     if (!StringHelper.isNullOrEmpty(var30)) {
+                        var30 = var30.substring(0, var30.length() - 1);
+                     }
+                  }
+
+                  if (StringHelper.compare(var30, var14.getPSDCMTDEFName(), false) == 0) {
+                     var30 = var9 + var14.getPSDCMTDEFName();
+                  }
+
+                  var24.setPSDEFieldName(var30);
+                  var24.setPSDataTypeId(var14.getDEFDataType());
+                  var24.setLength(var14.getLength());
+                  if (!StringHelper.isNullOrEmpty(var14.getLogicName())) {
+                     String var42 = var14.getLogicName().replace("_DENAME_", var10);
+                     var24.setLogicName(var42);
+                  }
+
+                  if (!StringHelper.isNullOrEmpty(var14.getCodeName())) {
+                     String var43 = var14.getCodeName().replace("_DENAME_", var11);
+                     var24.setCodeName(var43);
+                  }
+
+                  if (var14.getOrderValue() != null) {
+                     var24.setOrderValue(var14.getOrderValue());
+                  }
+               } else {
+                  if (isEnableCodeNameUpperCamel()) {
+                     var24.setPSDEFieldName(StringHelper.format("%1$s_NAME", var9));
+                  } else {
+                     var24.setPSDEFieldName(StringHelper.format("%1$sNAME", var9));
+                  }
+
+                  if (StringHelper.isNullOrEmpty(var24.getCodeName())) {
+                     var24.setCodeName(StringHelper.format("%1$sName", var11));
+                  }
+               }
+
+               if (StringHelper.isNullOrEmpty(var24.getDEFType())) {
+                  var24.setPSDataTypeId("TEXT");
+                  if (var24.getLength() == null || var24.getLength() <= 0) {
+                     var24.setLength(200);
+                  }
+               }
+
+               if (StringHelper.isNullOrEmpty(var24.getLogicName())) {
+                  var24.setLogicName(StringHelper.format("%1$s名称", var10));
+               }
+
+               var24.setTableName(var4.getTableName());
+               var24.setDEFType(1);
+               var24.setPhysicalField(1);
+               var24.setEnableUserInput(3);
+               var24.setAllowEmpty(1);
+               var24.setPSDEId(var4.getPSDataEntityId());
+               if (var7) {
+                  var24.setPSDEFieldId(StringHelper.format("%1$s-%2$s", var24.getPSDEId(), "R2"));
+               } else {
+                  var24.setPSDEFieldId(KeyValueHelper.genUniqueId(var24.getPSDEId(), var24.getPSDEFieldName()));
+               }
+
+               if (this.checkKey(var24) == 0) {
+                  var24.setMajorField(1);
+                  var24.setPKey(0);
+                  var24.setFKey(0);
+                  this.create(var24, false);
+               }
             }
-            pSDEField.setPhysicalField(1);
-            PSDEFDataType pSDEFDataType = new PSDEFDataType();
-            pSDEFDataType.setPSDEFDataTypeId(pSDEField.getPSDataTypeId());
-            object = (PSDEFDataTypeService)ServiceGlobal.getService(PSDEFDataTypeService.class, (SessionFactory)this.getSessionFactory());
-            object.get((IEntity)pSDEFDataType);
-            if (pSDEFDataType.getLength() != null && pSDEField.getLength() == null) {
-                pSDEField.setLength(pSDEFDataType.getLength());
+
+            if (DataObject.getBoolValue(var4.getLogicValid(), false)) {
+               var24 = new PSDEField();
+               var24.setPSDEId(var4.getPSDataEntityId());
+               var24.setPreDefineType("LOGICVALID");
+               if (!this.select(var24, true)) {
+                  PSDCMTDEF var31 = (PSDCMTDEF)var15.get("LOGICVALID");
+                  if (var31 != null) {
+                     var24.setPSDEFieldName(var31.getPSDCMTDEFName());
+                     var24.setCodeName(var31.getCodeName());
+                     var24.setLogicName(var31.getLogicName());
+                     var24.setPSDataTypeId(var31.getDEFDataType());
+                     var24.setLength(var31.getLength());
+                     var24.setPreDefineType("LOGICVALID");
+                     if (var31.getOrderValue() != null) {
+                        var24.setOrderValue(var31.getOrderValue());
+                     }
+                  } else {
+                     var24.setPSDEFieldName("ENABLE");
+                     var24.setCodeName("Enable");
+                     var24.setLogicName("逻辑有效标志");
+                     var24.setPSDataTypeId("YESNO");
+                     var24.setLength(8);
+                  }
+
+                  var24.setPSDEId(var4.getPSDataEntityId());
+                  var24.setTableName(var4.getTableName());
+                  var24.setDEFType(1);
+                  var24.setPhysicalField(1);
+                  var24.setAllowEmpty(0);
+                  var24.setMajorField(0);
+                  var24.setPKey(0);
+                  var24.setFKey(0);
+                  if (var7) {
+                     var24.setPSDEFieldId(StringHelper.format("%1$s-%2$s", var24.getPSDEId(), "R3"));
+                  } else {
+                     var24.setPSDEFieldId(KeyValueHelper.genUniqueId(var24.getPSDEId(), var24.getPSDEFieldName()));
+                  }
+
+                  if (this.checkKey(var24) == 0) {
+                     this.create(var24, false);
+                  }
+               }
             }
-            if (pSDEFDataType.getPrecision2() != null && pSDEField.getPrecision2() == null) {
-                pSDEField.setPrecision2(pSDEFDataType.getPrecision2());
+
+            if (!StringHelper.isNullOrEmpty(var4.getIndexDEType())) {
+               var24 = new PSDEField();
+               var24.setPSDEId(var4.getPSDataEntityId());
+               var24.setIndexType(1);
+               if (!this.select(var24, true)) {
+                  if (isEnableCodeNameUpperCamel()) {
+                     var24.setPSDEFieldName(StringHelper.format("%1$s_TYPE", var9));
+                  } else {
+                     var24.setPSDEFieldName(StringHelper.format("%1$sTYPE", var9));
+                  }
+
+                  var24.setPSDEId(var4.getPSDataEntityId());
+                  var24.setLogicName("分组类型");
+                  var24.setCodeName(StringHelper.format("%1$sType", var11));
+                  var24.setTableName(var4.getTableName());
+                  var24.setDEFType(1);
+                  var24.setAllowEmpty(0);
+                  var24.setPSDataTypeId("SSCODELIST");
+                  var24.setLength(100);
+                  var24.setPhysicalField(1);
+                  var24.setIndexType(1);
+                  var24.setMajorField(0);
+                  var24.setPKey(0);
+                  var24.setFKey(0);
+                  if (var7) {
+                     var24.setPSDEFieldId(StringHelper.format("%1$s-%2$s", var24.getPSDEId(), "R30"));
+                  } else {
+                     var24.setPSDEFieldId(KeyValueHelper.genUniqueId(var24.getPSDEId(), var24.getPSDEFieldName()));
+                  }
+
+                  if (this.checkKey(var24) == 0) {
+                     this.create(var24, false);
+                  }
+               }
             }
-        } else {
-            pSDEField.setPhysicalField(0);
-        }
-        super.onBeforeCreate(pSDEField);
-    }
 
-    @Override
-    protected void onAfterCreate(PSDEField pSDEField) throws Exception {
-        if (pSDEField.isMajorFieldDirty() && DataObject.getBoolValue((Integer)pSDEField.getMajorField(), (boolean)false)) {
-            this.reCalcMajorDEField(pSDEField);
-        }
-        super.onAfterCreate(pSDEField);
-    }
-
-    @Override
-    protected void onBeforeUpdate(PSDEField pSDEField) throws Exception {
-        super.onBeforeUpdate(pSDEField);
-    }
-
-    @Override
-    protected void onAfterUpdate(PSDEField pSDEField) throws Exception {
-        if (pSDEField.isMajorFieldDirty() && DataObject.getBoolValue((Integer)pSDEField.getMajorField(), (boolean)false)) {
-            this.reCalcMajorDEField(pSDEField);
-        }
-        super.onAfterUpdate(pSDEField);
-    }
-
-    protected void reCalcMajorDEField(PSDEField pSDEField) throws Exception {
-        PSDEField pSDEField2 = new PSDEField();
-        pSDEField2.setMajorField(1);
-        pSDEField2.setPSDEId(pSDEField.getPSDEId());
-        if (!this.select(pSDEField2, true)) {
-            return;
-        }
-        if (StringHelper.compare((String)pSDEField.getPSDEFieldId(), (String)pSDEField2.getPSDEFieldId(), (boolean)true) == 0) {
-            return;
-        }
-        PSDEField pSDEField3 = new PSDEField();
-        pSDEField3.setPSDEFieldId(pSDEField2.getPSDEFieldId());
-        pSDEField3.setMajorField(0);
-        this.update(pSDEField3);
-    }
-
-    @Override
-    public void makeLinkMode(PSDEField pSDEField) throws Exception {
-        this.get((IEntity)pSDEField);
-        if (!DataObject.getBoolValue((Integer)pSDEField.getPhysicalField(), (boolean)false)) {
-            return;
-        }
-        if (StringHelper.compare((String)pSDEField.getPSDataTypeId(), (String)"PICKUPDATA", (boolean)true) == 0 || StringHelper.compare((String)pSDEField.getPSDataTypeId(), (String)"PICKUPTEXT", (boolean)true) == 0) {
-            String string = pSDEField.getPSDEFieldId();
-            pSDEField.reset();
-            pSDEField.setPSDEFieldId(string);
-            pSDEField.setPhysicalField(0);
-            pSDEField.setDEFType(3);
-            pSDEField.setTableName(null);
-            this.update(pSDEField);
-        } else {
-            String string = DEFDataTypeCodeListModel.getInstance().getCodeListText(pSDEField.getPSDataTypeId(), true);
-            this.sendStudioConsole(true, "WARN", StringHelper.format((String)"\u5c5e\u6027[%1$s]\u7c7b\u578b[%2$s]\uff0c\u65e0\u6cd5\u8bbe\u7f6e\u4e3a\u94fe\u63a5\u6a21\u5f0f\uff0c\u94fe\u63a5\u6a21\u5f0f\u4ec5\u652f\u6301\u7c7b\u578b[\u5916\u952e\u503c\u6587\u672c]\u53ca[\u5916\u952e\u503c\u9644\u52a0\u6570\u636e]", (Object)pSDEField.getPSDEFieldName(), (Object)string), false);
-        }
-    }
-
-    @Override
-    public void makeRealMode(PSDEField pSDEField) throws Exception {
-        this.get((IEntity)pSDEField);
-        if (DataObject.getBoolValue((Integer)pSDEField.getPhysicalField(), (boolean)false)) {
-            return;
-        }
-        if (StringHelper.compare((String)pSDEField.getPSDataTypeId(), (String)"PICKUPDATA", (boolean)true) == 0 || StringHelper.compare((String)pSDEField.getPSDataTypeId(), (String)"PICKUPTEXT", (boolean)true) == 0) {
-            String string = pSDEField.getPSDE().getTableName();
-            String string2 = pSDEField.getPSDEFieldId();
-            pSDEField.reset();
-            pSDEField.setPSDEFieldId(string2);
-            pSDEField.setPhysicalField(1);
-            pSDEField.setDEFType(1);
-            pSDEField.setTableName(string);
-            this.update(pSDEField);
-        } else {
-            String string = DEFDataTypeCodeListModel.getInstance().getCodeListText(pSDEField.getPSDataTypeId(), true);
-            this.sendStudioConsole(true, "WARN", StringHelper.format((String)"\u5c5e\u6027[%1$s]\u7c7b\u578b[%2$s]\uff0c\u65e0\u6cd5\u8bbe\u7f6e\u4e3a\u7269\u7406\u6a21\u5f0f\uff0c\u7269\u7406\u6a21\u5f0f\u4ec5\u652f\u6301\u7c7b\u578b[\u5916\u952e\u503c\u6587\u672c]\u53ca[\u5916\u952e\u503c\u9644\u52a0\u6570\u636e]", (Object)pSDEField.getPSDEFieldName(), (Object)string), false);
-        }
-    }
-
-    @Override
-    public void initModel(String string, IEntity iEntity, String string2) throws Exception {
-        if (StringHelper.compare((String)string, (String)"PSDATAENTITY", (boolean)true) == 0) {
-            EntityBase entityBase;
-            Serializable serializable;
-            PSDataEntity pSDataEntity = new PSDataEntity();
-            pSDataEntity.proxy((IDataObject)iEntity);
-            boolean bl = false;
-            if (DataObject.getBoolValue((Integer)pSDataEntity.getExistingModel(), (boolean)false)) {
-                this.sendStudioConsole(true, "WARN", StringHelper.format((String)"\u73b0\u6709\u7ed3\u6784\u5b9e\u4f53[%1$s]\u4e0d\u4f1a\u81ea\u52a8\u521d\u59cb\u5316\u9ed8\u8ba4\u5c5e\u6027", (Object)pSDataEntity.getPSDataEntityName()), false);
-                bl = true;
+            boolean var28 = false;
+            if (var4.isEnableOPNameModelDirty()) {
+               var28 = DataObject.getBoolValue(var4.getEnableOPNameModel(), false);
+            } else if (var4.getPSSystem() != null) {
+               var28 = DataObject.getBoolValue(var4.getPSSystem().getEnableOPNameModel(), false);
             }
-            if (!bl && DataObject.getIntegerValue((Object)pSDataEntity.getVirtualFlag(), (Integer)0) > 0) {
-                bl = true;
-                this.sendStudioConsole(true, "WARN", StringHelper.format((String)"\u865a\u62df\u5b9e\u4f53[%1$s]\u4e0d\u4f1a\u81ea\u52a8\u521d\u59cb\u5316\u9ed8\u8ba4\u5c5e\u6027", (Object)pSDataEntity.getPSDataEntityName()), false);
+
+            PSDEField var32 = new PSDEField();
+            var32.setPSDEId(var4.getPSDataEntityId());
+            var32.setPreDefineType("CREATEMAN");
+            if (!this.select(var32, true)) {
+               PSDCMTDEF var44 = (PSDCMTDEF)var15.remove("CREATEMAN");
+               if (var44 != null) {
+                  var32.setPSDEFieldName(var44.getPSDCMTDEFName());
+                  var32.setCodeName(var44.getCodeName());
+                  var32.setLogicName(var44.getLogicName());
+                  var32.setPSDataTypeId(var44.getDEFDataType());
+                  var32.setLength(var44.getLength());
+                  var32.setPreDefineType("CREATEMAN");
+                  if (var44.getOrderValue() != null) {
+                     var32.setOrderValue(var44.getOrderValue());
+                  }
+               } else {
+                  var32.setLogicName("建立人");
+                  var32.setCodeName("CreateMan");
+                  if (isEnableCodeNameUpperCamel()) {
+                     var32.setPSDEFieldName(StringHelper.format("CREATE_MAN", var9));
+                  } else {
+                     var32.setPSDEFieldName(StringHelper.format("CREATEMAN", var9));
+                  }
+
+                  var32.setPSDataTypeId("TEXT");
+                  var32.setLength(60);
+               }
+
+               var32.setPSDEId(var4.getPSDataEntityId());
+               var32.setTableName(var4.getTableName());
+               var32.setDEFType(1);
+               var32.setPhysicalField(1);
+               var32.setAllowEmpty(0);
+               var32.setMajorField(0);
+               var32.setPKey(0);
+               var32.setFKey(0);
+               if (var7) {
+                  var32.setPSDEFieldId(StringHelper.format("%1$s-%2$s", var32.getPSDEId(), "R4"));
+               } else {
+                  var32.setPSDEFieldId(KeyValueHelper.genUniqueId(var32.getPSDEId(), var32.getPSDEFieldName()));
+               }
+
+               if (this.checkKey(var32) == 0) {
+                  this.create(var32, false);
+               }
             }
-            if (!bl && !StringHelper.isNullOrEmpty((String)pSDataEntity.getPSSubSysSADEId())) {
-                bl = true;
-                this.sendStudioConsole(true, "WARN", StringHelper.format((String)"\u5916\u90e8\u63a5\u53e3\u5b9e\u4f53[%1$s]\u4e0d\u4f1a\u81ea\u52a8\u521d\u59cb\u5316\u9ed8\u8ba4\u5c5e\u6027", (Object)pSDataEntity.getPSDataEntityName()), false);
+
+            if (var28) {
+               var32 = new PSDEField();
+               var32.setPSDEId(var4.getPSDataEntityId());
+               var32.setPreDefineType("CREATEMANNAME");
+               if (!this.select(var32, true)) {
+                  PSDCMTDEF var45 = (PSDCMTDEF)var15.remove("CREATEMANNAME");
+                  if (var45 != null) {
+                     var32.setPSDEFieldName(var45.getPSDCMTDEFName());
+                     var32.setCodeName(var45.getCodeName());
+                     var32.setLogicName(var45.getLogicName());
+                     var32.setPSDataTypeId(var45.getDEFDataType());
+                     var32.setLength(var45.getLength());
+                     var32.setPreDefineType("CREATEMANNAME");
+                     if (var45.getOrderValue() != null) {
+                        var32.setOrderValue(var45.getOrderValue());
+                     }
+                  } else {
+                     var32.setLogicName("建立人名称");
+                     var32.setCodeName("CreateManName");
+                     if (isEnableCodeNameUpperCamel()) {
+                        var32.setPSDEFieldName(StringHelper.format("CREATE_MAN_NAME", var9));
+                     } else {
+                        var32.setPSDEFieldName(StringHelper.format("CREATEMANNAME", var9));
+                     }
+
+                     var32.setPSDataTypeId("TEXT");
+                     var32.setLength(100);
+                  }
+
+                  var32.setPSDEId(var4.getPSDataEntityId());
+                  var32.setTableName(var4.getTableName());
+                  var32.setDEFType(1);
+                  var32.setPhysicalField(1);
+                  var32.setAllowEmpty(1);
+                  var32.setMajorField(0);
+                  var32.setPKey(0);
+                  var32.setFKey(0);
+                  if (var7) {
+                     var32.setPSDEFieldId(StringHelper.format("%1$s-%2$s", var32.getPSDEId(), "R8"));
+                  } else {
+                     var32.setPSDEFieldId(KeyValueHelper.genUniqueId(var32.getPSDEId(), var32.getPSDEFieldName()));
+                  }
+
+                  if (this.checkKey(var32) == 0) {
+                     this.create(var32, false);
+                  }
+               }
             }
-            if (!bl && pSDataEntity.getPSModule() != null && DataObject.getBoolValue((Integer)pSDataEntity.getPSModule().getSubSysModule(), (boolean)false)) {
-                bl = true;
-                this.sendStudioConsole(true, "WARN", StringHelper.format((String)"\u5b50\u7cfb\u7edf\u5b9e\u4f53[%1$s]\u4e0d\u4f1a\u81ea\u52a8\u521d\u59cb\u5316\u9ed8\u8ba4\u5c5e\u6027", (Object)pSDataEntity.getPSDataEntityName()), false);
+
+            var32 = new PSDEField();
+            var32.setPSDEId(var4.getPSDataEntityId());
+            var32.setPreDefineType("CREATEDATE");
+            if (!this.select(var32, true)) {
+               PSDCMTDEF var46 = (PSDCMTDEF)var15.remove("CREATEDATE");
+               if (var46 != null) {
+                  var32.setPSDEFieldName(var46.getPSDCMTDEFName());
+                  var32.setCodeName(var46.getCodeName());
+                  var32.setLogicName(var46.getLogicName());
+                  var32.setPSDataTypeId(var46.getDEFDataType());
+                  var32.setLength(var46.getLength());
+                  var32.setPreDefineType("CREATEDATE");
+                  if (var46.getOrderValue() != null) {
+                     var32.setOrderValue(var46.getOrderValue());
+                  }
+               } else {
+                  if (isEnableCodeNameUpperCamel()) {
+                     var32.setPSDEFieldName(StringHelper.format("CREATE_DATE", var9));
+                  } else {
+                     var32.setPSDEFieldName(StringHelper.format("CREATEDATE", var9));
+                  }
+
+                  var32.setLogicName("建立时间");
+                  var32.setCodeName("CreateDate");
+                  var32.setPSDataTypeId("DATETIME");
+                  var32.setLength(8);
+               }
+
+               var32.setPSDEId(var4.getPSDataEntityId());
+               var32.setTableName(var4.getTableName());
+               var32.setDEFType(1);
+               var32.setPhysicalField(1);
+               var32.setAllowEmpty(0);
+               var32.setMajorField(0);
+               var32.setPKey(0);
+               var32.setFKey(0);
+               if (var7) {
+                  var32.setPSDEFieldId(StringHelper.format("%1$s-%2$s", var32.getPSDEId(), "R5"));
+               } else {
+                  var32.setPSDEFieldId(KeyValueHelper.genUniqueId(var32.getPSDEId(), var32.getPSDEFieldName()));
+               }
+
+               if (this.checkKey(var32) == 0) {
+                  this.create(var32, false);
+               }
             }
-            if (!bl) {
-                Object object2;
-                Serializable serializable2;
-                serializable = PSDEFieldService.getCurrentPSSystem((IEntity)pSDataEntity, this.getSessionFactory());
-                boolean bl2 = false;
-                if (PSCoreSysModel.isEnableFolderKey() && DataObject.getBoolValue((Integer)((PSSystemBase)serializable).getEnableFolderKey(), (boolean)false)) {
-                    bl2 = true;
-                }
-                entityBase = null;
-                if (!StringHelper.isNullOrEmpty((String)((PSSystemBase)serializable).getPSDevSlnSysId())) {
-                    entityBase = PSModelGlobal.getPSDCModelTempl(((PSSystemBase)serializable).getPSDevSlnSysId());
-                }
-                String string3 = pSDataEntity.getPSDataEntityName();
-                String string4 = pSDataEntity.getLogicName();
-                String string5 = pSDataEntity.getCodeName();
-                ArrayList<PSDCMTDEF> arrayList = new ArrayList<PSDCMTDEF>();
-                PSDCMTDEF pSDCMTDEF = null;
-                PSDCMTDEF pSDCMTDEF2 = null;
-                HashMap<String, PSDCMTDEF> hashMap = new HashMap<String, PSDCMTDEF>();
-                if (entityBase != null) {
-                    serializable2 = entityBase.getPSDCMTDEFs();
-                    object2 = ((ArrayList)serializable2).iterator();
-                    while (object2.hasNext()) {
-                        PSDCMTDEF object3 = object2.next();
-                        if (DataObject.getBoolValue((Integer)object3.getPKey(), (boolean)false)) {
-                            pSDCMTDEF = object3;
-                            continue;
-                        }
-                        if (DataObject.getBoolValue((Integer)object3.getMajorField(), (boolean)false)) {
-                            pSDCMTDEF2 = object3;
-                            continue;
-                        }
-                        if (!StringHelper.isNullOrEmpty((String)object3.getPreDefinedType())) {
-                            hashMap.put(object3.getPreDefinedType(), object3);
-                            continue;
-                        }
-                        arrayList.add(object3);
-                    }
-                }
-                serializable2 = new PSDEField();
-                ((PSDEFieldBase)serializable2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEFieldBase)serializable2).setPKey(1);
-                if (!this.select(serializable2, true)) {
-                    if (pSDCMTDEF != null) {
-                        object2 = pSDCMTDEF.getPSDCMTDEFName().replace("_DENAME_", string3);
-                        if (!StringHelper.isNullOrEmpty((String)object2) && ((String)object2).indexOf("_") == 0 && ((String)object2).lastIndexOf("_") == ((String)object2).length() - 1 && !StringHelper.isNullOrEmpty((String)(object2 = ((String)object2).substring(1)))) {
-                            object2 = ((String)object2).substring(0, ((String)object2).length() - 1);
-                        }
-                        if (StringHelper.compare((String)object2, (String)pSDCMTDEF.getPSDCMTDEFName(), (boolean)false) == 0) {
-                            object2 = string3 + pSDCMTDEF.getPSDCMTDEFName();
-                        }
-                        ((PSDEFieldBase)serializable2).setPSDEFieldName((String)object2);
-                        ((PSDEFieldBase)serializable2).setLength(pSDCMTDEF.getLength());
-                        if (!StringHelper.isNullOrEmpty((String)pSDCMTDEF.getLogicName())) {
-                            String string6 = pSDCMTDEF.getLogicName().replace("_DENAME_", string4);
-                            ((PSDEFieldBase)serializable2).setLogicName(string6);
-                        }
-                        if (!StringHelper.isNullOrEmpty((String)pSDCMTDEF.getCodeName())) {
-                            String string7 = pSDCMTDEF.getCodeName().replace("_DENAME_", string5);
-                            ((PSDEFieldBase)serializable2).setCodeName(string7);
-                        }
-                        if (pSDCMTDEF.getOrderValue() != null) {
-                            ((PSDEFieldBase)serializable2).setOrderValue(pSDCMTDEF.getOrderValue());
-                        }
-                    } else {
-                        if (PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                            ((PSDEFieldBase)serializable2).setPSDEFieldName(StringHelper.format((String)"%1$s_ID", (Object)string3));
-                        } else {
-                            ((PSDEFieldBase)serializable2).setPSDEFieldName(StringHelper.format((String)"%1$sID", (Object)string3));
-                        }
-                        if (StringHelper.isNullOrEmpty((String)((PSDEFieldBase)serializable2).getCodeName())) {
-                            ((PSDEFieldBase)serializable2).setCodeName(StringHelper.format((String)"%1$sId", (Object)string5));
-                        }
-                    }
-                    if (StringHelper.isNullOrEmpty((String)((PSDEFieldBase)serializable2).getLogicName())) {
-                        ((PSDEFieldBase)serializable2).setLogicName(StringHelper.format((String)"%1$s\u6807\u8bc6", (Object)string4));
-                    }
-                    ((PSDEFieldBase)serializable2).setPSDataTypeId("GUID");
-                    ((PSDEFieldBase)serializable2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    if (bl2) {
-                        ((PSDEFieldBase)serializable2).setPSDEFieldId(StringHelper.format((String)"%1$s-%2$s", (Object)((PSDEFieldBase)serializable2).getPSDEId(), (Object)RESERVERTAG_KEY));
-                    } else {
-                        ((PSDEFieldBase)serializable2).setPSDEFieldId(KeyValueHelper.genUniqueId((String)((PSDEFieldBase)serializable2).getPSDEId(), (String)((PSDEFieldBase)serializable2).getPSDEFieldName()));
-                    }
-                    if (this.checkKey(serializable2) == 0) {
-                        ((PSDEFieldBase)serializable2).setTableName(pSDataEntity.getTableName());
-                        ((PSDEFieldBase)serializable2).setDEFType(1);
-                        ((PSDEFieldBase)serializable2).setPhysicalField(1);
-                        ((PSDEFieldBase)serializable2).setAllowEmpty(0);
-                        ((PSDEFieldBase)serializable2).setLength(100);
-                        ((PSDEFieldBase)serializable2).setMajorField(0);
-                        ((PSDEFieldBase)serializable2).setPKey(1);
-                        ((PSDEFieldBase)serializable2).setFKey(0);
-                        this.create(serializable2, false);
-                    }
-                }
-                serializable2 = new PSDEField();
-                ((PSDEFieldBase)serializable2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEFieldBase)serializable2).setMajorField(1);
-                if (!this.select(serializable2, true)) {
-                    if (pSDCMTDEF2 != null) {
-                        object2 = pSDCMTDEF2.getPSDCMTDEFName().replace("_DENAME_", string3);
-                        if (!StringHelper.isNullOrEmpty((String)object2) && ((String)object2).indexOf("_") == 0 && ((String)object2).lastIndexOf("_") == ((String)object2).length() - 1 && !StringHelper.isNullOrEmpty((String)(object2 = ((String)object2).substring(1)))) {
-                            object2 = ((String)object2).substring(0, ((String)object2).length() - 1);
-                        }
-                        if (StringHelper.compare((String)object2, (String)pSDCMTDEF2.getPSDCMTDEFName(), (boolean)false) == 0) {
-                            object2 = string3 + pSDCMTDEF2.getPSDCMTDEFName();
-                        }
-                        ((PSDEFieldBase)serializable2).setPSDEFieldName((String)object2);
-                        ((PSDEFieldBase)serializable2).setPSDataTypeId(pSDCMTDEF2.getDEFDataType());
-                        ((PSDEFieldBase)serializable2).setLength(pSDCMTDEF2.getLength());
-                        if (!StringHelper.isNullOrEmpty((String)pSDCMTDEF2.getLogicName())) {
-                            String string8 = pSDCMTDEF2.getLogicName().replace("_DENAME_", string4);
-                            ((PSDEFieldBase)serializable2).setLogicName(string8);
-                        }
-                        if (!StringHelper.isNullOrEmpty((String)pSDCMTDEF2.getCodeName())) {
-                            String string9 = pSDCMTDEF2.getCodeName().replace("_DENAME_", string5);
-                            ((PSDEFieldBase)serializable2).setCodeName(string9);
-                        }
-                        if (pSDCMTDEF2.getOrderValue() != null) {
-                            ((PSDEFieldBase)serializable2).setOrderValue(pSDCMTDEF2.getOrderValue());
-                        }
-                    } else {
-                        if (PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                            ((PSDEFieldBase)serializable2).setPSDEFieldName(StringHelper.format((String)"%1$s_NAME", (Object)string3));
-                        } else {
-                            ((PSDEFieldBase)serializable2).setPSDEFieldName(StringHelper.format((String)"%1$sNAME", (Object)string3));
-                        }
-                        if (StringHelper.isNullOrEmpty((String)((PSDEFieldBase)serializable2).getCodeName())) {
-                            ((PSDEFieldBase)serializable2).setCodeName(StringHelper.format((String)"%1$sName", (Object)string5));
-                        }
-                    }
-                    if (StringHelper.isNullOrEmpty((Object)((PSDEFieldBase)serializable2).getDEFType())) {
-                        ((PSDEFieldBase)serializable2).setPSDataTypeId("TEXT");
-                        if (((PSDEFieldBase)serializable2).getLength() == null || ((PSDEFieldBase)serializable2).getLength() <= 0) {
-                            ((PSDEFieldBase)serializable2).setLength(200);
-                        }
-                    }
-                    if (StringHelper.isNullOrEmpty((String)((PSDEFieldBase)serializable2).getLogicName())) {
-                        ((PSDEFieldBase)serializable2).setLogicName(StringHelper.format((String)"%1$s\u540d\u79f0", (Object)string4));
-                    }
-                    ((PSDEFieldBase)serializable2).setTableName(pSDataEntity.getTableName());
-                    ((PSDEFieldBase)serializable2).setDEFType(1);
-                    ((PSDEFieldBase)serializable2).setPhysicalField(1);
-                    ((PSDEFieldBase)serializable2).setEnableUserInput(3);
-                    ((PSDEFieldBase)serializable2).setAllowEmpty(1);
-                    ((PSDEFieldBase)serializable2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    if (bl2) {
-                        ((PSDEFieldBase)serializable2).setPSDEFieldId(StringHelper.format((String)"%1$s-%2$s", (Object)((PSDEFieldBase)serializable2).getPSDEId(), (Object)RESERVERTAG_MAJOR));
-                    } else {
-                        ((PSDEFieldBase)serializable2).setPSDEFieldId(KeyValueHelper.genUniqueId((String)((PSDEFieldBase)serializable2).getPSDEId(), (String)((PSDEFieldBase)serializable2).getPSDEFieldName()));
-                    }
-                    if (this.checkKey(serializable2) == 0) {
-                        ((PSDEFieldBase)serializable2).setMajorField(1);
-                        ((PSDEFieldBase)serializable2).setPKey(0);
-                        ((PSDEFieldBase)serializable2).setFKey(0);
-                        this.create(serializable2, false);
-                    }
-                }
-                if (DataObject.getBoolValue((Integer)pSDataEntity.getLogicValid(), (boolean)false)) {
-                    serializable2 = new PSDEField();
-                    ((PSDEFieldBase)serializable2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEFieldBase)serializable2).setPreDefineType("LOGICVALID");
-                    if (!this.select(serializable2, true)) {
-                        object2 = (PSDCMTDEF)hashMap.get("LOGICVALID");
-                        if (object2 != null) {
-                            ((PSDEFieldBase)serializable2).setPSDEFieldName(((PSDCMTDEFBase)object2).getPSDCMTDEFName());
-                            ((PSDEFieldBase)serializable2).setCodeName(((PSDCMTDEFBase)object2).getCodeName());
-                            ((PSDEFieldBase)serializable2).setLogicName(((PSDCMTDEFBase)object2).getLogicName());
-                            ((PSDEFieldBase)serializable2).setPSDataTypeId(((PSDCMTDEFBase)object2).getDEFDataType());
-                            ((PSDEFieldBase)serializable2).setLength(((PSDCMTDEFBase)object2).getLength());
-                            ((PSDEFieldBase)serializable2).setPreDefineType("LOGICVALID");
-                            if (((PSDCMTDEFBase)object2).getOrderValue() != null) {
-                                ((PSDEFieldBase)serializable2).setOrderValue(((PSDCMTDEFBase)object2).getOrderValue());
-                            }
-                        } else {
-                            ((PSDEFieldBase)serializable2).setPSDEFieldName("ENABLE");
-                            ((PSDEFieldBase)serializable2).setCodeName("Enable");
-                            ((PSDEFieldBase)serializable2).setLogicName("\u903b\u8f91\u6709\u6548\u6807\u5fd7");
-                            ((PSDEFieldBase)serializable2).setPSDataTypeId("YESNO");
-                            ((PSDEFieldBase)serializable2).setLength(8);
-                        }
-                        ((PSDEFieldBase)serializable2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                        ((PSDEFieldBase)serializable2).setTableName(pSDataEntity.getTableName());
-                        ((PSDEFieldBase)serializable2).setDEFType(1);
-                        ((PSDEFieldBase)serializable2).setPhysicalField(1);
-                        ((PSDEFieldBase)serializable2).setAllowEmpty(0);
-                        ((PSDEFieldBase)serializable2).setMajorField(0);
-                        ((PSDEFieldBase)serializable2).setPKey(0);
-                        ((PSDEFieldBase)serializable2).setFKey(0);
-                        if (bl2) {
-                            ((PSDEFieldBase)serializable2).setPSDEFieldId(StringHelper.format((String)"%1$s-%2$s", (Object)((PSDEFieldBase)serializable2).getPSDEId(), (Object)RESERVERTAG_LOGICVALID));
-                        } else {
-                            ((PSDEFieldBase)serializable2).setPSDEFieldId(KeyValueHelper.genUniqueId((String)((PSDEFieldBase)serializable2).getPSDEId(), (String)((PSDEFieldBase)serializable2).getPSDEFieldName()));
-                        }
-                        if (this.checkKey(serializable2) == 0) {
-                            this.create(serializable2, false);
-                        }
-                    }
-                }
-                if (!StringHelper.isNullOrEmpty((String)pSDataEntity.getIndexDEType())) {
-                    serializable2 = new PSDEField();
-                    ((PSDEFieldBase)serializable2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEFieldBase)serializable2).setIndexType(1);
-                    if (!this.select(serializable2, true)) {
-                        if (PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                            ((PSDEFieldBase)serializable2).setPSDEFieldName(StringHelper.format((String)"%1$s_TYPE", (Object)string3));
-                        } else {
-                            ((PSDEFieldBase)serializable2).setPSDEFieldName(StringHelper.format((String)"%1$sTYPE", (Object)string3));
-                        }
-                        ((PSDEFieldBase)serializable2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                        ((PSDEFieldBase)serializable2).setLogicName("\u5206\u7ec4\u7c7b\u578b");
-                        ((PSDEFieldBase)serializable2).setCodeName(StringHelper.format((String)"%1$sType", (Object)string5));
-                        ((PSDEFieldBase)serializable2).setTableName(pSDataEntity.getTableName());
-                        ((PSDEFieldBase)serializable2).setDEFType(1);
-                        ((PSDEFieldBase)serializable2).setAllowEmpty(0);
-                        ((PSDEFieldBase)serializable2).setPSDataTypeId("SSCODELIST");
-                        ((PSDEFieldBase)serializable2).setLength(100);
-                        ((PSDEFieldBase)serializable2).setPhysicalField(1);
-                        ((PSDEFieldBase)serializable2).setIndexType(1);
-                        ((PSDEFieldBase)serializable2).setMajorField(0);
-                        ((PSDEFieldBase)serializable2).setPKey(0);
-                        ((PSDEFieldBase)serializable2).setFKey(0);
-                        if (bl2) {
-                            ((PSDEFieldBase)serializable2).setPSDEFieldId(StringHelper.format((String)"%1$s-%2$s", (Object)((PSDEFieldBase)serializable2).getPSDEId(), (Object)RESERVERTAG_INDEXTYPE));
-                        } else {
-                            ((PSDEFieldBase)serializable2).setPSDEFieldId(KeyValueHelper.genUniqueId((String)((PSDEFieldBase)serializable2).getPSDEId(), (String)((PSDEFieldBase)serializable2).getPSDEFieldName()));
-                        }
-                        if (this.checkKey(serializable2) == 0) {
-                            this.create(serializable2, false);
-                        }
-                    }
-                }
-                boolean bl3 = false;
-                if (pSDataEntity.isEnableOPNameModelDirty()) {
-                    bl3 = DataObject.getBoolValue((Integer)pSDataEntity.getEnableOPNameModel(), (boolean)false);
-                } else if (pSDataEntity.getPSSystem() != null) {
-                    bl3 = DataObject.getBoolValue((Integer)pSDataEntity.getPSSystem().getEnableOPNameModel(), (boolean)false);
-                }
-                object2 = new PSDEField();
-                ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEFieldBase)object2).setPreDefineType("CREATEMAN");
-                if (!this.select(object2, true)) {
-                    PSDCMTDEF pSDCMTDEF3 = (PSDCMTDEF)hashMap.remove("CREATEMAN");
-                    if (pSDCMTDEF3 != null) {
-                        ((PSDEFieldBase)object2).setPSDEFieldName(pSDCMTDEF3.getPSDCMTDEFName());
-                        ((PSDEFieldBase)object2).setCodeName(pSDCMTDEF3.getCodeName());
-                        ((PSDEFieldBase)object2).setLogicName(pSDCMTDEF3.getLogicName());
-                        ((PSDEFieldBase)object2).setPSDataTypeId(pSDCMTDEF3.getDEFDataType());
-                        ((PSDEFieldBase)object2).setLength(pSDCMTDEF3.getLength());
-                        ((PSDEFieldBase)object2).setPreDefineType("CREATEMAN");
-                        if (pSDCMTDEF3.getOrderValue() != null) {
-                            ((PSDEFieldBase)object2).setOrderValue(pSDCMTDEF3.getOrderValue());
-                        }
-                    } else {
-                        ((PSDEFieldBase)object2).setLogicName("\u5efa\u7acb\u4eba");
-                        ((PSDEFieldBase)object2).setCodeName("CreateMan");
-                        if (PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                            ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"CREATE_MAN", (Object)string3));
-                        } else {
-                            ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"CREATEMAN", (Object)string3));
-                        }
-                        ((PSDEFieldBase)object2).setPSDataTypeId("TEXT");
-                        ((PSDEFieldBase)object2).setLength(60);
-                    }
-                    ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEFieldBase)object2).setTableName(pSDataEntity.getTableName());
-                    ((PSDEFieldBase)object2).setDEFType(1);
-                    ((PSDEFieldBase)object2).setPhysicalField(1);
-                    ((PSDEFieldBase)object2).setAllowEmpty(0);
-                    ((PSDEFieldBase)object2).setMajorField(0);
-                    ((PSDEFieldBase)object2).setPKey(0);
-                    ((PSDEFieldBase)object2).setFKey(0);
-                    if (bl2) {
-                        ((PSDEFieldBase)object2).setPSDEFieldId(StringHelper.format((String)"%1$s-%2$s", (Object)((PSDEFieldBase)object2).getPSDEId(), (Object)RESERVERTAG_CREATEMAN));
-                    } else {
-                        ((PSDEFieldBase)object2).setPSDEFieldId(KeyValueHelper.genUniqueId((String)((PSDEFieldBase)object2).getPSDEId(), (String)((PSDEFieldBase)object2).getPSDEFieldName()));
-                    }
-                    if (this.checkKey(object2) == 0) {
-                        this.create(object2, false);
-                    }
-                }
-                if (bl3) {
-                    object2 = new PSDEField();
-                    ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEFieldBase)object2).setPreDefineType("CREATEMANNAME");
-                    if (!this.select(object2, true)) {
-                        PSDCMTDEF pSDCMTDEF4 = (PSDCMTDEF)hashMap.remove("CREATEMANNAME");
-                        if (pSDCMTDEF4 != null) {
-                            ((PSDEFieldBase)object2).setPSDEFieldName(pSDCMTDEF4.getPSDCMTDEFName());
-                            ((PSDEFieldBase)object2).setCodeName(pSDCMTDEF4.getCodeName());
-                            ((PSDEFieldBase)object2).setLogicName(pSDCMTDEF4.getLogicName());
-                            ((PSDEFieldBase)object2).setPSDataTypeId(pSDCMTDEF4.getDEFDataType());
-                            ((PSDEFieldBase)object2).setLength(pSDCMTDEF4.getLength());
-                            ((PSDEFieldBase)object2).setPreDefineType("CREATEMANNAME");
-                            if (pSDCMTDEF4.getOrderValue() != null) {
-                                ((PSDEFieldBase)object2).setOrderValue(pSDCMTDEF4.getOrderValue());
-                            }
-                        } else {
-                            ((PSDEFieldBase)object2).setLogicName("\u5efa\u7acb\u4eba\u540d\u79f0");
-                            ((PSDEFieldBase)object2).setCodeName("CreateManName");
-                            if (PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                                ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"CREATE_MAN_NAME", (Object)string3));
-                            } else {
-                                ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"CREATEMANNAME", (Object)string3));
-                            }
-                            ((PSDEFieldBase)object2).setPSDataTypeId("TEXT");
-                            ((PSDEFieldBase)object2).setLength(100);
-                        }
-                        ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                        ((PSDEFieldBase)object2).setTableName(pSDataEntity.getTableName());
-                        ((PSDEFieldBase)object2).setDEFType(1);
-                        ((PSDEFieldBase)object2).setPhysicalField(1);
-                        ((PSDEFieldBase)object2).setAllowEmpty(1);
-                        ((PSDEFieldBase)object2).setMajorField(0);
-                        ((PSDEFieldBase)object2).setPKey(0);
-                        ((PSDEFieldBase)object2).setFKey(0);
-                        if (bl2) {
-                            ((PSDEFieldBase)object2).setPSDEFieldId(StringHelper.format((String)"%1$s-%2$s", (Object)((PSDEFieldBase)object2).getPSDEId(), (Object)RESERVERTAG_CREATEMANNAME));
-                        } else {
-                            ((PSDEFieldBase)object2).setPSDEFieldId(KeyValueHelper.genUniqueId((String)((PSDEFieldBase)object2).getPSDEId(), (String)((PSDEFieldBase)object2).getPSDEFieldName()));
-                        }
-                        if (this.checkKey(object2) == 0) {
-                            this.create(object2, false);
-                        }
-                    }
-                }
-                object2 = new PSDEField();
-                ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEFieldBase)object2).setPreDefineType("CREATEDATE");
-                if (!this.select(object2, true)) {
-                    PSDCMTDEF pSDCMTDEF5 = (PSDCMTDEF)hashMap.remove("CREATEDATE");
-                    if (pSDCMTDEF5 != null) {
-                        ((PSDEFieldBase)object2).setPSDEFieldName(pSDCMTDEF5.getPSDCMTDEFName());
-                        ((PSDEFieldBase)object2).setCodeName(pSDCMTDEF5.getCodeName());
-                        ((PSDEFieldBase)object2).setLogicName(pSDCMTDEF5.getLogicName());
-                        ((PSDEFieldBase)object2).setPSDataTypeId(pSDCMTDEF5.getDEFDataType());
-                        ((PSDEFieldBase)object2).setLength(pSDCMTDEF5.getLength());
-                        ((PSDEFieldBase)object2).setPreDefineType("CREATEDATE");
-                        if (pSDCMTDEF5.getOrderValue() != null) {
-                            ((PSDEFieldBase)object2).setOrderValue(pSDCMTDEF5.getOrderValue());
-                        }
-                    } else {
-                        if (PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                            ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"CREATE_DATE", (Object)string3));
-                        } else {
-                            ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"CREATEDATE", (Object)string3));
-                        }
-                        ((PSDEFieldBase)object2).setLogicName("\u5efa\u7acb\u65f6\u95f4");
-                        ((PSDEFieldBase)object2).setCodeName("CreateDate");
-                        ((PSDEFieldBase)object2).setPSDataTypeId("DATETIME");
-                        ((PSDEFieldBase)object2).setLength(8);
-                    }
-                    ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEFieldBase)object2).setTableName(pSDataEntity.getTableName());
-                    ((PSDEFieldBase)object2).setDEFType(1);
-                    ((PSDEFieldBase)object2).setPhysicalField(1);
-                    ((PSDEFieldBase)object2).setAllowEmpty(0);
-                    ((PSDEFieldBase)object2).setMajorField(0);
-                    ((PSDEFieldBase)object2).setPKey(0);
-                    ((PSDEFieldBase)object2).setFKey(0);
-                    if (bl2) {
-                        ((PSDEFieldBase)object2).setPSDEFieldId(StringHelper.format((String)"%1$s-%2$s", (Object)((PSDEFieldBase)object2).getPSDEId(), (Object)RESERVERTAG_CREATEDATE));
-                    } else {
-                        ((PSDEFieldBase)object2).setPSDEFieldId(KeyValueHelper.genUniqueId((String)((PSDEFieldBase)object2).getPSDEId(), (String)((PSDEFieldBase)object2).getPSDEFieldName()));
-                    }
-                    if (this.checkKey(object2) == 0) {
-                        this.create(object2, false);
-                    }
-                }
-                object2 = new PSDEField();
-                ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEFieldBase)object2).setPreDefineType("UPDATEMAN");
-                if (!this.select(object2, true)) {
-                    PSDCMTDEF pSDCMTDEF6 = (PSDCMTDEF)hashMap.remove("UPDATEMAN");
-                    if (pSDCMTDEF6 != null) {
-                        ((PSDEFieldBase)object2).setPSDEFieldName(pSDCMTDEF6.getPSDCMTDEFName());
-                        ((PSDEFieldBase)object2).setCodeName(pSDCMTDEF6.getCodeName());
-                        ((PSDEFieldBase)object2).setLogicName(pSDCMTDEF6.getLogicName());
-                        ((PSDEFieldBase)object2).setPSDataTypeId(pSDCMTDEF6.getDEFDataType());
-                        ((PSDEFieldBase)object2).setLength(pSDCMTDEF6.getLength());
-                        ((PSDEFieldBase)object2).setPreDefineType("UPDATEMAN");
-                        if (pSDCMTDEF6.getOrderValue() != null) {
-                            ((PSDEFieldBase)object2).setOrderValue(pSDCMTDEF6.getOrderValue());
-                        }
-                    } else {
-                        if (PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                            ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"UPDATE_MAN", (Object)string3));
-                        } else {
-                            ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"UPDATEMAN", (Object)string3));
-                        }
-                        ((PSDEFieldBase)object2).setLogicName("\u66f4\u65b0\u4eba");
-                        ((PSDEFieldBase)object2).setCodeName("UpdateMan");
-                        ((PSDEFieldBase)object2).setPSDataTypeId("TEXT");
-                        ((PSDEFieldBase)object2).setLength(60);
-                    }
-                    ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEFieldBase)object2).setTableName(pSDataEntity.getTableName());
-                    ((PSDEFieldBase)object2).setDEFType(1);
-                    ((PSDEFieldBase)object2).setAllowEmpty(0);
-                    ((PSDEFieldBase)object2).setMajorField(0);
-                    ((PSDEFieldBase)object2).setPKey(0);
-                    ((PSDEFieldBase)object2).setFKey(0);
-                    if (bl2) {
-                        ((PSDEFieldBase)object2).setPSDEFieldId(StringHelper.format((String)"%1$s-%2$s", (Object)((PSDEFieldBase)object2).getPSDEId(), (Object)RESERVERTAG_UPDATEMAN));
-                    } else {
-                        ((PSDEFieldBase)object2).setPSDEFieldId(KeyValueHelper.genUniqueId((String)((PSDEFieldBase)object2).getPSDEId(), (String)((PSDEFieldBase)object2).getPSDEFieldName()));
-                    }
-                    if (this.checkKey(object2) == 0) {
-                        this.create(object2, false);
-                    }
-                }
-                if (bl3) {
-                    object2 = new PSDEField();
-                    ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEFieldBase)object2).setPreDefineType("UPDATEMANNAME");
-                    if (!this.select(object2, true)) {
-                        PSDCMTDEF pSDCMTDEF7 = (PSDCMTDEF)hashMap.remove("UPDATEMANNAME");
-                        if (pSDCMTDEF7 != null) {
-                            ((PSDEFieldBase)object2).setPSDEFieldName(pSDCMTDEF7.getPSDCMTDEFName());
-                            ((PSDEFieldBase)object2).setCodeName(pSDCMTDEF7.getCodeName());
-                            ((PSDEFieldBase)object2).setLogicName(pSDCMTDEF7.getLogicName());
-                            ((PSDEFieldBase)object2).setPSDataTypeId(pSDCMTDEF7.getDEFDataType());
-                            ((PSDEFieldBase)object2).setLength(pSDCMTDEF7.getLength());
-                            ((PSDEFieldBase)object2).setPreDefineType("UPDATEMANNAME");
-                            if (pSDCMTDEF7.getOrderValue() != null) {
-                                ((PSDEFieldBase)object2).setOrderValue(pSDCMTDEF7.getOrderValue());
-                            }
-                        } else {
-                            ((PSDEFieldBase)object2).setLogicName("\u66f4\u65b0\u4eba\u540d\u79f0");
-                            ((PSDEFieldBase)object2).setCodeName("UpdateManName");
-                            if (PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                                ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"UPDATE_MAN_NAME", (Object)string3));
-                            } else {
-                                ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"UPDATEMANNAME", (Object)string3));
-                            }
-                            ((PSDEFieldBase)object2).setPSDataTypeId("TEXT");
-                            ((PSDEFieldBase)object2).setLength(100);
-                        }
-                        ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                        ((PSDEFieldBase)object2).setTableName(pSDataEntity.getTableName());
-                        ((PSDEFieldBase)object2).setDEFType(1);
-                        ((PSDEFieldBase)object2).setPhysicalField(1);
-                        ((PSDEFieldBase)object2).setAllowEmpty(1);
-                        ((PSDEFieldBase)object2).setMajorField(0);
-                        ((PSDEFieldBase)object2).setPKey(0);
-                        ((PSDEFieldBase)object2).setFKey(0);
-                        if (bl2) {
-                            ((PSDEFieldBase)object2).setPSDEFieldId(StringHelper.format((String)"%1$s-%2$s", (Object)((PSDEFieldBase)object2).getPSDEId(), (Object)RESERVERTAG_UPDATEMANNAME));
-                        } else {
-                            ((PSDEFieldBase)object2).setPSDEFieldId(KeyValueHelper.genUniqueId((String)((PSDEFieldBase)object2).getPSDEId(), (String)((PSDEFieldBase)object2).getPSDEFieldName()));
-                        }
-                        if (this.checkKey(object2) == 0) {
-                            this.create(object2, false);
-                        }
-                    }
-                }
-                object2 = new PSDEField();
-                ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEFieldBase)object2).setPreDefineType("UPDATEDATE");
-                if (!this.select(object2, true)) {
-                    PSDCMTDEF pSDCMTDEF8 = (PSDCMTDEF)hashMap.remove("UPDATEDATE");
-                    if (pSDCMTDEF8 != null) {
-                        ((PSDEFieldBase)object2).setPSDEFieldName(pSDCMTDEF8.getPSDCMTDEFName());
-                        ((PSDEFieldBase)object2).setCodeName(pSDCMTDEF8.getCodeName());
-                        ((PSDEFieldBase)object2).setLogicName(pSDCMTDEF8.getLogicName());
-                        ((PSDEFieldBase)object2).setPSDataTypeId(pSDCMTDEF8.getDEFDataType());
-                        ((PSDEFieldBase)object2).setLength(pSDCMTDEF8.getLength());
-                        ((PSDEFieldBase)object2).setPreDefineType("UPDATEDATE");
-                        if (pSDCMTDEF8.getOrderValue() != null) {
-                            ((PSDEFieldBase)object2).setOrderValue(pSDCMTDEF8.getOrderValue());
-                        }
-                    } else {
-                        if (PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                            ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"UPDATE_DATE", (Object)string3));
-                        } else {
-                            ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"UPDATEDATE", (Object)string3));
-                        }
-                        ((PSDEFieldBase)object2).setLogicName("\u66f4\u65b0\u65f6\u95f4");
-                        ((PSDEFieldBase)object2).setCodeName("UpdateDate");
-                        ((PSDEFieldBase)object2).setPSDataTypeId("DATETIME");
-                        ((PSDEFieldBase)object2).setLength(8);
-                    }
-                    ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEFieldBase)object2).setTableName(pSDataEntity.getTableName());
-                    ((PSDEFieldBase)object2).setDEFType(1);
-                    ((PSDEFieldBase)object2).setPhysicalField(1);
-                    ((PSDEFieldBase)object2).setAllowEmpty(0);
-                    ((PSDEFieldBase)object2).setMajorField(0);
-                    ((PSDEFieldBase)object2).setPKey(0);
-                    ((PSDEFieldBase)object2).setFKey(0);
-                    if (bl2) {
-                        ((PSDEFieldBase)object2).setPSDEFieldId(StringHelper.format((String)"%1$s-%2$s", (Object)((PSDEFieldBase)object2).getPSDEId(), (Object)RESERVERTAG_UPDATEDATE));
-                    } else {
-                        ((PSDEFieldBase)object2).setPSDEFieldId(KeyValueHelper.genUniqueId((String)((PSDEFieldBase)object2).getPSDEId(), (String)((PSDEFieldBase)object2).getPSDEFieldName()));
-                    }
-                    if (this.checkKey(object2) == 0) {
-                        this.create(object2, false);
-                    }
-                }
-                if (DataObject.getBoolValue((Integer)pSDataEntity.getEnableOrgModel(), (boolean)false)) {
-                    object2 = new PSDEField();
-                    ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEFieldBase)object2).setPreDefineType("ORGID");
-                    if (!this.select(object2, true)) {
-                        PSDCMTDEF pSDCMTDEF9 = (PSDCMTDEF)hashMap.remove("ORGID");
-                        if (pSDCMTDEF9 != null) {
-                            ((PSDEFieldBase)object2).setPSDEFieldName(pSDCMTDEF9.getPSDCMTDEFName());
-                            ((PSDEFieldBase)object2).setCodeName(pSDCMTDEF9.getCodeName());
-                            ((PSDEFieldBase)object2).setLogicName(pSDCMTDEF9.getLogicName());
-                            ((PSDEFieldBase)object2).setPSDataTypeId(pSDCMTDEF9.getDEFDataType());
-                            ((PSDEFieldBase)object2).setLength(pSDCMTDEF9.getLength());
-                            ((PSDEFieldBase)object2).setPreDefineType("ORGID");
-                            if (pSDCMTDEF9.getOrderValue() != null) {
-                                ((PSDEFieldBase)object2).setOrderValue(pSDCMTDEF9.getOrderValue());
-                            }
-                        } else {
-                            if (PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                                ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"ORG_ID"));
-                            } else {
-                                ((PSDEFieldBase)object2).setPSDEFieldName(StringHelper.format((String)"ORGID"));
-                            }
-                            ((PSDEFieldBase)object2).setLogicName("\u7ec4\u7ec7\u673a\u6784\u6807\u8bc6");
-                            ((PSDEFieldBase)object2).setCodeName("OrgId");
-                            ((PSDEFieldBase)object2).setPSDataTypeId("TEXT");
-                            ((PSDEFieldBase)object2).setLength(60);
-                        }
-                        ((PSDEFieldBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                        ((PSDEFieldBase)object2).setTableName(pSDataEntity.getTableName());
-                        ((PSDEFieldBase)object2).setDEFType(1);
-                        ((PSDEFieldBase)object2).setPhysicalField(1);
-                        ((PSDEFieldBase)object2).setAllowEmpty(0);
-                        ((PSDEFieldBase)object2).setMajorField(0);
-                        ((PSDEFieldBase)object2).setPKey(0);
-                        ((PSDEFieldBase)object2).setFKey(0);
-                        if (bl2) {
-                            ((PSDEFieldBase)object2).setPSDEFieldId(StringHelper.format((String)"%1$s-%2$s", (Object)((PSDEFieldBase)object2).getPSDEId(), (Object)RESERVERTAG_ORGID));
-                        } else {
-                            ((PSDEFieldBase)object2).setPSDEFieldId(KeyValueHelper.genUniqueId((String)((PSDEFieldBase)object2).getPSDEId(), (String)((PSDEFieldBase)object2).getPSDEFieldName()));
-                        }
-                        if (this.checkKey(object2) == 0) {
-                            this.create(object2, false);
-                        }
-                    }
-                }
-                arrayList.addAll(hashMap.values());
-                for (PSDCMTDEF pSDCMTDEF10 : arrayList) {
-                    PSDEField pSDEField = new PSDEField();
-                    pSDEField.setPSDEFieldName(pSDCMTDEF10.getPSDCMTDEFName());
-                    pSDEField.setCodeName(pSDCMTDEF10.getCodeName());
-                    pSDEField.setLogicName(pSDCMTDEF10.getLogicName());
-                    pSDEField.setPSDataTypeId(pSDCMTDEF10.getDEFDataType());
-                    pSDEField.setLength(pSDCMTDEF10.getLength());
-                    pSDEField.setPreDefineType(pSDCMTDEF10.getPreDefinedType());
-                    pSDEField.setPSDEId(pSDataEntity.getPSDataEntityId());
-                    pSDEField.setTableName(pSDataEntity.getTableName());
-                    pSDEField.setDEFType(1);
-                    pSDEField.setPhysicalField(1);
-                    pSDEField.setAllowEmpty(1);
-                    pSDEField.setMajorField(0);
-                    pSDEField.setPKey(0);
-                    pSDEField.setFKey(0);
-                    if (pSDCMTDEF10.getOrderValue() != null) {
-                        pSDEField.setOrderValue(pSDCMTDEF10.getOrderValue());
-                    }
-                    if (bl2) {
-                        PSDEField pSDEField2 = new PSDEField();
-                        pSDEField2.setPSDEId(pSDEField.getPSDEId());
-                        pSDEField2.setPSDEFieldName(pSDEField.getPSDEFieldName());
-                        if (this.selectOne((IEntity)pSDEField2, true)) continue;
-                        this.create(pSDEField, false);
-                        continue;
-                    }
-                    pSDEField.setPSDEFieldId(KeyValueHelper.genUniqueId((String)pSDEField.getPSDEId(), (String)pSDEField.getPSDEFieldName()));
-                    if (this.checkKey(pSDEField) != 0) continue;
-                    this.create(pSDEField, false);
-                }
+
+            var32 = new PSDEField();
+            var32.setPSDEId(var4.getPSDataEntityId());
+            var32.setPreDefineType("UPDATEMAN");
+            if (!this.select(var32, true)) {
+               PSDCMTDEF var47 = (PSDCMTDEF)var15.remove("UPDATEMAN");
+               if (var47 != null) {
+                  var32.setPSDEFieldName(var47.getPSDCMTDEFName());
+                  var32.setCodeName(var47.getCodeName());
+                  var32.setLogicName(var47.getLogicName());
+                  var32.setPSDataTypeId(var47.getDEFDataType());
+                  var32.setLength(var47.getLength());
+                  var32.setPreDefineType("UPDATEMAN");
+                  if (var47.getOrderValue() != null) {
+                     var32.setOrderValue(var47.getOrderValue());
+                  }
+               } else {
+                  if (isEnableCodeNameUpperCamel()) {
+                     var32.setPSDEFieldName(StringHelper.format("UPDATE_MAN", var9));
+                  } else {
+                     var32.setPSDEFieldName(StringHelper.format("UPDATEMAN", var9));
+                  }
+
+                  var32.setLogicName("更新人");
+                  var32.setCodeName("UpdateMan");
+                  var32.setPSDataTypeId("TEXT");
+                  var32.setLength(60);
+               }
+
+               var32.setPSDEId(var4.getPSDataEntityId());
+               var32.setTableName(var4.getTableName());
+               var32.setDEFType(1);
+               var32.setAllowEmpty(0);
+               var32.setMajorField(0);
+               var32.setPKey(0);
+               var32.setFKey(0);
+               if (var7) {
+                  var32.setPSDEFieldId(StringHelper.format("%1$s-%2$s", var32.getPSDEId(), "R6"));
+               } else {
+                  var32.setPSDEFieldId(KeyValueHelper.genUniqueId(var32.getPSDEId(), var32.getPSDEFieldName()));
+               }
+
+               if (this.checkKey(var32) == 0) {
+                  this.create(var32, false);
+               }
             }
-            serializable = this.selectByPSDE(pSDataEntity);
-            Iterator iterator = ((ArrayList)serializable).iterator();
-            while (iterator.hasNext()) {
-                entityBase = (PSDEField)iterator.next();
-                this.initModel(entityBase);
+
+            if (var28) {
+               var32 = new PSDEField();
+               var32.setPSDEId(var4.getPSDataEntityId());
+               var32.setPreDefineType("UPDATEMANNAME");
+               if (!this.select(var32, true)) {
+                  PSDCMTDEF var48 = (PSDCMTDEF)var15.remove("UPDATEMANNAME");
+                  if (var48 != null) {
+                     var32.setPSDEFieldName(var48.getPSDCMTDEFName());
+                     var32.setCodeName(var48.getCodeName());
+                     var32.setLogicName(var48.getLogicName());
+                     var32.setPSDataTypeId(var48.getDEFDataType());
+                     var32.setLength(var48.getLength());
+                     var32.setPreDefineType("UPDATEMANNAME");
+                     if (var48.getOrderValue() != null) {
+                        var32.setOrderValue(var48.getOrderValue());
+                     }
+                  } else {
+                     var32.setLogicName("更新人名称");
+                     var32.setCodeName("UpdateManName");
+                     if (isEnableCodeNameUpperCamel()) {
+                        var32.setPSDEFieldName(StringHelper.format("UPDATE_MAN_NAME", var9));
+                     } else {
+                        var32.setPSDEFieldName(StringHelper.format("UPDATEMANNAME", var9));
+                     }
+
+                     var32.setPSDataTypeId("TEXT");
+                     var32.setLength(100);
+                  }
+
+                  var32.setPSDEId(var4.getPSDataEntityId());
+                  var32.setTableName(var4.getTableName());
+                  var32.setDEFType(1);
+                  var32.setPhysicalField(1);
+                  var32.setAllowEmpty(1);
+                  var32.setMajorField(0);
+                  var32.setPKey(0);
+                  var32.setFKey(0);
+                  if (var7) {
+                     var32.setPSDEFieldId(StringHelper.format("%1$s-%2$s", var32.getPSDEId(), "R9"));
+                  } else {
+                     var32.setPSDEFieldId(KeyValueHelper.genUniqueId(var32.getPSDEId(), var32.getPSDEFieldName()));
+                  }
+
+                  if (this.checkKey(var32) == 0) {
+                     this.create(var32, false);
+                  }
+               }
             }
-        }
-    }
 
-    @Override
-    protected void onBeforeRemove(PSDEField pSDEField) throws Exception {
-        PSSysDMItemService pSSysDMItemService = (PSSysDMItemService)ServiceGlobal.getService(PSSysDMItemService.class, (SessionFactory)this.getSessionFactory());
-        SelectCond selectCond = new SelectCond();
-        selectCond.set("DBOBJTYPE", (Object)"COLUMN");
-        selectCond.set("PSOBJID", (Object)pSDEField.getPSDEFieldId());
-        pSSysDMItemService.remove((ISelectCond)selectCond, true);
-        selectCond.reset();
-        selectCond.set("DBOBJTYPE", (Object)"FKEY");
-        selectCond.set("PSOBJID", (Object)pSDEField.getPSDEFieldId());
-        pSSysDMItemService.remove((ISelectCond)selectCond, true);
-        super.onBeforeRemove(pSDEField);
-    }
+            var32 = new PSDEField();
+            var32.setPSDEId(var4.getPSDataEntityId());
+            var32.setPreDefineType("UPDATEDATE");
+            if (!this.select(var32, true)) {
+               PSDCMTDEF var49 = (PSDCMTDEF)var15.remove("UPDATEDATE");
+               if (var49 != null) {
+                  var32.setPSDEFieldName(var49.getPSDCMTDEFName());
+                  var32.setCodeName(var49.getCodeName());
+                  var32.setLogicName(var49.getLogicName());
+                  var32.setPSDataTypeId(var49.getDEFDataType());
+                  var32.setLength(var49.getLength());
+                  var32.setPreDefineType("UPDATEDATE");
+                  if (var49.getOrderValue() != null) {
+                     var32.setOrderValue(var49.getOrderValue());
+                  }
+               } else {
+                  if (isEnableCodeNameUpperCamel()) {
+                     var32.setPSDEFieldName(StringHelper.format("UPDATE_DATE", var9));
+                  } else {
+                     var32.setPSDEFieldName(StringHelper.format("UPDATEDATE", var9));
+                  }
 
-    @Override
-    protected void onResetRefs(PSDEField pSDEField) throws Exception {
-    }
+                  var32.setLogicName("更新时间");
+                  var32.setCodeName("UpdateDate");
+                  var32.setPSDataTypeId("DATETIME");
+                  var32.setLength(8);
+               }
 
-    @Override
-    protected void onCheckEntity(boolean bl, PSDEField pSDEField, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
-        if (!bl) {
-            String string;
-            PSDataEntity pSDataEntity = new PSDataEntity();
-            pSDataEntity.setPSDataEntityId(pSDEField.getPSDEId());
-            PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-            if (!StringHelper.isNullOrEmpty((String)pSDEField.getCodeName()) && !StringHelper.isNullOrEmpty((String)(string = pSDataEntityService.checkObjCodeName(pSDataEntity, pSDEField, pSDEField.getCodeName())))) {
-                entityError.register("CODENAME", "\u4ee3\u7801\u540d\u79f0", "", 3, StringHelper.format((String)"\u4ee3\u7801\u540d\u79f0[%1$s]\u5df2\u7ecf\u88ab%2$s\u4f7f\u7528", (Object)pSDEField.getCodeName(), (Object)string));
+               var32.setPSDEId(var4.getPSDataEntityId());
+               var32.setTableName(var4.getTableName());
+               var32.setDEFType(1);
+               var32.setPhysicalField(1);
+               var32.setAllowEmpty(0);
+               var32.setMajorField(0);
+               var32.setPKey(0);
+               var32.setFKey(0);
+               if (var7) {
+                  var32.setPSDEFieldId(StringHelper.format("%1$s-%2$s", var32.getPSDEId(), "R7"));
+               } else {
+                  var32.setPSDEFieldId(KeyValueHelper.genUniqueId(var32.getPSDEId(), var32.getPSDEFieldName()));
+               }
+
+               if (this.checkKey(var32) == 0) {
+                  this.create(var32, false);
+               }
             }
-        }
-        super.onCheckEntity(bl, pSDEField, bl2, bl3, entityError);
-    }
 
-    protected String calcDEFieldCodeName(String string) throws Exception {
-        Object object = DataContextMethod.getValue((String)"pssystemid", (SessionFactory)this.getSessionFactory());
-        if (StringHelper.isNullOrEmpty((Object)object)) {
-            object = "2C40DFCD-0DF5-47BF-91A5-C45F810B0001";
-        }
-        SelectCond selectCond = new SelectCond();
-        selectCond.set("PSSYSTEMID", object);
-        selectCond.set("PSDEFIELDNAME", (Object)string);
-        selectCond.set("CODENAME", SelectCond.ISNOTNULL);
-        selectCond.setOrderInfo(" ORDER BY UPDATEDATE DESC");
-        selectCond.setFetchFirst(true);
-        ArrayList arrayList = this.select((ISelectCond)selectCond);
-        if (arrayList.size() > 0) {
-            return ((PSDEField)arrayList.get(0)).getCodeName();
-        }
-        return null;
-    }
+            if (DataObject.getBoolValue(var4.getEnableOrgModel(), false)) {
+               var32 = new PSDEField();
+               var32.setPSDEId(var4.getPSDataEntityId());
+               var32.setPreDefineType("ORGID");
+               if (!this.select(var32, true)) {
+                  PSDCMTDEF var50 = (PSDCMTDEF)var15.remove("ORGID");
+                  if (var50 != null) {
+                     var32.setPSDEFieldName(var50.getPSDCMTDEFName());
+                     var32.setCodeName(var50.getCodeName());
+                     var32.setLogicName(var50.getLogicName());
+                     var32.setPSDataTypeId(var50.getDEFDataType());
+                     var32.setLength(var50.getLength());
+                     var32.setPreDefineType("ORGID");
+                     if (var50.getOrderValue() != null) {
+                        var32.setOrderValue(var50.getOrderValue());
+                     }
+                  } else {
+                     if (isEnableCodeNameUpperCamel()) {
+                        var32.setPSDEFieldName(StringHelper.format("ORG_ID"));
+                     } else {
+                        var32.setPSDEFieldName(StringHelper.format("ORGID"));
+                     }
 
-    protected void onExecuteAction(String string, ArrayList<IEntity> arrayList) throws Exception {
-        if (StringHelper.compare((String)string, (String)"AUTOCODENAME", (boolean)true) == 0) {
-            this.fillDEFieldsCodeName(arrayList);
-            return;
-        }
-        super.onExecuteAction(string, arrayList);
-    }
+                     var32.setLogicName("组织机构标识");
+                     var32.setCodeName("OrgId");
+                     var32.setPSDataTypeId("TEXT");
+                     var32.setLength(60);
+                  }
 
-    protected void fillDEFieldsCodeName(ArrayList<IEntity> arrayList) throws Exception {
-        HashMap<String, String> hashMap = new HashMap<String, String>();
-        for (IEntity iEntity : arrayList) {
-            PSDEField pSDEField = new PSDEField();
-            pSDEField.setPSDEFieldId(DataObject.getStringValue((Object)iEntity.get("PSDEFIELDID")));
-            this.get((IEntity)pSDEField);
-            if (!StringHelper.isNullOrEmpty((String)pSDEField.getCodeName())) continue;
-            String string = (String)hashMap.get(pSDEField.getPSDEFieldName());
-            if (string == null) {
-                string = this.calcDEFieldCodeName(pSDEField.getPSDEFieldName());
-                if (StringHelper.isNullOrEmpty((String)string) && PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                    string = PSDEFieldService.toUpperCamel(pSDEField.getPSDEFieldName());
-                }
-                if (StringHelper.isNullOrEmpty((String)string)) {
-                    string = "";
-                }
-                hashMap.put(pSDEField.getPSDEFieldName(), string);
+                  var32.setPSDEId(var4.getPSDataEntityId());
+                  var32.setTableName(var4.getTableName());
+                  var32.setDEFType(1);
+                  var32.setPhysicalField(1);
+                  var32.setAllowEmpty(0);
+                  var32.setMajorField(0);
+                  var32.setPKey(0);
+                  var32.setFKey(0);
+                  if (var7) {
+                     var32.setPSDEFieldId(StringHelper.format("%1$s-%2$s", var32.getPSDEId(), "R31"));
+                  } else {
+                     var32.setPSDEFieldId(KeyValueHelper.genUniqueId(var32.getPSDEId(), var32.getPSDEFieldName()));
+                  }
+
+                  if (this.checkKey(var32) == 0) {
+                     this.create(var32, false);
+                  }
+               }
             }
-            if (StringHelper.isNullOrEmpty((String)string)) continue;
-            pSDEField.reset();
-            pSDEField.setPSDEFieldId(DataObject.getStringValue((Object)iEntity.get("PSDEFIELDID")));
-            pSDEField.setCodeName(string);
-            this.update(pSDEField, false);
-        }
-    }
 
-    @Override
-    protected void onAutoCodeName(PSDEField pSDEField) throws Exception {
-        this.get((IEntity)pSDEField);
-        if (StringHelper.isNullOrEmpty((String)pSDEField.getCodeName())) {
-            String string = this.calcDEFieldCodeName(pSDEField.getPSDEFieldName());
-            if (StringHelper.isNullOrEmpty((String)string) && PSDEFieldService.isEnableCodeNameUpperCamel()) {
-                string = PSDEFieldService.toUpperCamel(pSDEField.getPSDEFieldName());
+            var12.addAll(var15.values());
+
+            for (PSDCMTDEF var51 : var12) {
+               PSDEField var19 = new PSDEField();
+               var19.setPSDEFieldName(var51.getPSDCMTDEFName());
+               var19.setCodeName(var51.getCodeName());
+               var19.setLogicName(var51.getLogicName());
+               var19.setPSDataTypeId(var51.getDEFDataType());
+               var19.setLength(var51.getLength());
+               var19.setPreDefineType(var51.getPreDefinedType());
+               var19.setPSDEId(var4.getPSDataEntityId());
+               var19.setTableName(var4.getTableName());
+               var19.setDEFType(1);
+               var19.setPhysicalField(1);
+               var19.setAllowEmpty(1);
+               var19.setMajorField(0);
+               var19.setPKey(0);
+               var19.setFKey(0);
+               if (var51.getOrderValue() != null) {
+                  var19.setOrderValue(var51.getOrderValue());
+               }
+
+               if (var7) {
+                  PSDEField var20 = new PSDEField();
+                  var20.setPSDEId(var19.getPSDEId());
+                  var20.setPSDEFieldName(var19.getPSDEFieldName());
+                  if (!this.selectOne(var20, true)) {
+                     this.create(var19, false);
+                  }
+               } else {
+                  var19.setPSDEFieldId(KeyValueHelper.genUniqueId(var19.getPSDEId(), var19.getPSDEFieldName()));
+                  if (this.checkKey(var19) == 0) {
+                     this.create(var19, false);
+                  }
+               }
             }
-            if (!StringHelper.isNullOrEmpty((String)string)) {
-                pSDEField.setCodeName(string);
-                this.update(pSDEField, false);
+         }
+
+         for (PSDEField var23 : this.selectByPSDE(var4)) {
+            this.initModel(var23);
+         }
+      }
+   }
+
+   @Override
+   protected void onBeforeRemove(PSDEField var1) throws Exception {
+      PSSysDMItemService var2 = (PSSysDMItemService)ServiceGlobal.getService(PSSysDMItemService.class, this.getSessionFactory());
+      SelectCond var3 = new SelectCond();
+      var3.set("DBOBJTYPE", "COLUMN");
+      var3.set("PSOBJID", var1.getPSDEFieldId());
+      var2.remove(var3, true);
+      var3.reset();
+      var3.set("DBOBJTYPE", "FKEY");
+      var3.set("PSOBJID", var1.getPSDEFieldId());
+      var2.remove(var3, true);
+      super.onBeforeRemove(var1);
+   }
+
+   @Override
+   protected void onResetRefs(PSDEField var1) throws Exception {
+   }
+
+   @Override
+   protected void onCheckEntity(boolean var1, PSDEField var2, boolean var3, boolean var4, EntityError var5) throws Exception {
+      if (!var1) {
+         PSDataEntity var6 = new PSDataEntity();
+         var6.setPSDataEntityId(var2.getPSDEId());
+         PSDataEntityService var7 = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, this.getSessionFactory());
+         if (!StringHelper.isNullOrEmpty(var2.getCodeName())) {
+            String var8 = var7.checkObjCodeName(var6, var2, var2.getCodeName());
+            if (!StringHelper.isNullOrEmpty(var8)) {
+               var5.register("CODENAME", "代码名称", "", 3, StringHelper.format("代码名称[%1$s]已经被%2$s使用", var2.getCodeName(), var8));
             }
-        }
-    }
+         }
+      }
 
-    @Override
-    protected void onCreateDefaultInputTip(PSDEField pSDEField) throws Exception {
-        this.get((IEntity)pSDEField);
-        PSDEFInputTipService pSDEFInputTipService = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
-        PSDEFInputTip pSDEFInputTip = new PSDEFInputTip();
-        pSDEFInputTip.setPSDEFId(pSDEField.getPSDEFieldId());
-        pSDEFInputTip.setDefaultFlag(1);
-        if (pSDEFInputTipService.select(pSDEFInputTip, true)) {
-            return;
-        }
-        PSDataEntity pSDataEntity = (PSDataEntity)this.getWebContextCacheEntity("PSDATAENTITY", pSDEField.getPSDEId());
-        pSDEFInputTip.reset();
-        pSDEFInputTip.setPSDEFInputTipName(StringHelper.format((String)"[%1$s]\u9ed8\u8ba4\u8f93\u5165\u63d0\u793a", (Object)pSDEField.getPSDEFieldName()));
-        pSDEFInputTip.setPSDEFId(pSDEField.getPSDEFieldId());
-        pSDEFInputTip.setPSDEFName(pSDEField.getPSDEFieldName());
-        pSDEFInputTip.setPSDEId(pSDEField.getPSDEId());
-        pSDEFInputTip.setPSDEName(pSDEField.getPSDEName());
-        pSDEFInputTip.setDefaultFlag(1);
-        if (!StringHelper.isNullOrEmpty((String)pSDataEntity.getPSDEFInputTipSetId())) {
-            pSDEFInputTip.setPSDEFInputTipSetId(pSDataEntity.getPSDEFInputTipSetId());
-            pSDEFInputTip.setUniqueTag(StringHelper.format((String)"%1$s__%2$s", (Object)pSDataEntity.getPSDataEntityName(), (Object)pSDEField.getPSDEFieldName()).toUpperCase());
-        }
-        pSDEFInputTipService.create(pSDEFInputTip);
-    }
+      super.onCheckEntity(var1, var2, var3, var4, var5);
+   }
 
-    @Override
-    protected void onCreateDefaultVR(PSDEField pSDEField) throws Exception {
-        this.get((IEntity)pSDEField);
-        PSDEFValueRule pSDEFValueRule = new PSDEFValueRule();
-        pSDEFValueRule.setDefaultMode(1);
-        pSDEFValueRule.setSessionFactory(this.getSessionFactory());
-        pSDEFValueRule.setPSDEFId(pSDEField.getPSDEFieldId());
-        if (pSDEFValueRule.select(true)) {
-            return;
-        }
-        String string = "";
-        for (int i = 1; i < 100; ++i) {
-            string = "Default";
-            if (i >= 2) {
-                string = string + Integer.toString(i);
+   protected String calcDEFieldCodeName(String var1) throws Exception {
+      Object var2 = DataContextMethod.getValue("pssystemid", this.getSessionFactory());
+      if (StringHelper.isNullOrEmpty(var2)) {
+         var2 = "2C40DFCD-0DF5-47BF-91A5-C45F810B0001";
+      }
+
+      SelectCond var3 = new SelectCond();
+      var3.set("PSSYSTEMID", var2);
+      var3.set("PSDEFIELDNAME", var1);
+      var3.set("CODENAME", SelectCond.ISNOTNULL);
+      var3.setOrderInfo(" ORDER BY UPDATEDATE DESC");
+      var3.setFetchFirst(true);
+      ArrayList var4 = this.select(var3);
+      return var4.size() > 0 ? ((PSDEField)var4.get(0)).getCodeName() : null;
+   }
+
+   @Override
+   protected void onExecuteAction(String var1, ArrayList<IEntity> var2) throws Exception {
+      if (StringHelper.compare(var1, "AUTOCODENAME", true) == 0) {
+         this.fillDEFieldsCodeName(var2);
+      } else {
+         super.onExecuteAction(var1, var2);
+      }
+   }
+
+   protected void fillDEFieldsCodeName(ArrayList<IEntity> var1) throws Exception {
+      HashMap var2 = new HashMap();
+
+      for (IEntity var4 : var1) {
+         PSDEField var5 = new PSDEField();
+         var5.setPSDEFieldId(DataObject.getStringValue(var4.get("PSDEFIELDID")));
+         this.get(var5);
+         if (StringHelper.isNullOrEmpty(var5.getCodeName())) {
+            String var6 = (String)var2.get(var5.getPSDEFieldName());
+            if (var6 == null) {
+               var6 = this.calcDEFieldCodeName(var5.getPSDEFieldName());
+               if (StringHelper.isNullOrEmpty(var6) && isEnableCodeNameUpperCamel()) {
+                  var6 = toUpperCamel(var5.getPSDEFieldName());
+               }
+
+               if (StringHelper.isNullOrEmpty(var6)) {
+                  var6 = "";
+               }
+
+               var2.put(var5.getPSDEFieldName(), var6);
             }
-            pSDEFValueRule.reset();
-            pSDEFValueRule.setSessionFactory(this.getSessionFactory());
-            pSDEFValueRule.setPSDEFId(pSDEField.getPSDEFieldId());
-            pSDEFValueRule.setCodeName(string);
-            if (!pSDEFValueRule.select(true)) break;
-        }
-        pSDEFValueRule.reset();
-        pSDEFValueRule.setDefaultMode(1);
-        pSDEFValueRule.setSessionFactory(this.getSessionFactory());
-        pSDEFValueRule.setPSDEId(pSDEField.getPSDEId());
-        pSDEFValueRule.setPSDEName(pSDEField.getPSDEName());
-        pSDEFValueRule.setPSDEFId(pSDEField.getPSDEFieldId());
-        pSDEFValueRule.setPSDEFName(pSDEField.getPSDEFieldName());
-        pSDEFValueRule.setCodeName(string);
-        pSDEFValueRule.setPSDEFValueRuleName(StringHelper.format((String)"\u9ed8\u8ba4\u89c4\u5219", (Object)pSDEField.getLogicName()));
-        pSDEFValueRule.setRuleInfo(StringHelper.format((String)"\u9ed8\u8ba4\u89c4\u5219", (Object)pSDEField.getLogicName()));
-        pSDEFValueRule.create();
-    }
 
-    @Override
-    protected void onAjaxFillDVT(PSDEField pSDEField) throws Exception {
-        if (this.getWebContext() == null || this.getWebContext().getCurAjaxActionResult() == null) {
-            throw new Exception("\u5f53\u524d\u8bf7\u6c42\u73af\u5883\u4e0d\u6b63\u786e");
-        }
-        String string = this.getWebContext().getPostValue("srfactionparam");
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            return;
-        }
-        JSONObject jSONObject = JSONObject.fromString((String)string);
-        String string2 = jSONObject.optString("srfkey");
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            return;
-        }
-        PSVarSampleValueService pSVarSampleValueService = (PSVarSampleValueService)ServiceGlobal.getService(PSVarSampleValueService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        PSVarSampleValue pSVarSampleValue = new PSVarSampleValue();
-        pSVarSampleValue.setPSVarSampleValueId(string2);
-        if (pSVarSampleValueService.get((IEntity)pSVarSampleValue, true)) {
-            pSDEField.setDefaultValueType(pSVarSampleValue.getVarType());
-            pSDEField.setDefaultValue(pSVarSampleValue.getValue());
-        }
-    }
+            if (!StringHelper.isNullOrEmpty(var6)) {
+               var5.reset();
+               var5.setPSDEFieldId(DataObject.getStringValue(var4.get("PSDEFIELDID")));
+               var5.setCodeName(var6);
+               this.update(var5, false);
+            }
+         }
+      }
+   }
 
-    @Override
-    protected void onAjaxFillDataType(PSDEField pSDEField) throws Exception {
-        if (this.getWebContext() == null || this.getWebContext().getCurAjaxActionResult() == null) {
-            throw new Exception("\u5f53\u524d\u8bf7\u6c42\u73af\u5883\u4e0d\u6b63\u786e");
-        }
-        String string = this.getWebContext().getPostValue("srfactionparam");
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            return;
-        }
-        JSONObject jSONObject = JSONObject.fromString((String)string);
-        String string2 = jSONObject.optString("srfkey");
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            return;
-        }
-        String string3 = jSONObject.optString("srfmajortext");
-        pSDEField.setPSDataTypeId(string2);
-        pSDEField.setPSDataTypeName(string3);
-    }
+   @Override
+   protected void onAutoCodeName(PSDEField var1) throws Exception {
+      this.get(var1);
+      if (StringHelper.isNullOrEmpty(var1.getCodeName())) {
+         String var2 = this.calcDEFieldCodeName(var1.getPSDEFieldName());
+         if (StringHelper.isNullOrEmpty(var2) && isEnableCodeNameUpperCamel()) {
+            var2 = toUpperCamel(var1.getPSDEFieldName());
+         }
 
-    protected void syncPSDEFDataType(PSDEField pSDEField) throws Exception {
-        if (StringHelper.isNullOrEmpty((String)pSDEField.getPSDataTypeId())) {
-            return;
-        }
-        if (this.getSessionFactory() == PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            return;
-        }
-        PSDEFDataTypeService pSDEFDataTypeService = (PSDEFDataTypeService)ServiceGlobal.getService(PSDEFDataTypeService.class, (SessionFactory)this.getSessionFactory());
-        PSDEFDataType pSDEFDataType = new PSDEFDataType();
-        pSDEFDataType.setPSDEFDataTypeId(pSDEField.getPSDataTypeId());
-        if (pSDEFDataTypeService.get((IEntity)pSDEFDataType, true)) {
-            return;
-        }
-        PSDEFDataTypeService pSDEFDataTypeService2 = (PSDEFDataTypeService)ServiceGlobal.getService(PSDEFDataTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        PSDEFDataType pSDEFDataType2 = new PSDEFDataType();
-        pSDEFDataType2.setPSDEFDataTypeId(pSDEField.getPSDataTypeId());
-        if (!pSDEFDataTypeService2.get((IEntity)pSDEFDataType2, true)) {
-            throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u5c5e\u6027\u6570\u636e\u7c7b\u578b[%1$s]", (Object)pSDEField.getPSDataTypeId()));
-        }
-        pSDEFDataType2.setPSUnitId(null);
-        pSDEFDataType2.setPSUnitName(null);
-        pSDEFDataType2.setPSValueRuleId(null);
-        pSDEFDataType2.setPSValueRuleName(null);
-        pSDEFDataTypeService.create(pSDEFDataType2);
-    }
+         if (!StringHelper.isNullOrEmpty(var2)) {
+            var1.setCodeName(var2);
+            this.update(var1, false);
+         }
+      }
+   }
 
-    @Override
-    public ObjectNode exportModelV2(PSDEField pSDEField) throws Exception {
-        ObjectNode objectNode = super.exportModelV2(pSDEField);
-        if (objectNode != null) {
-            objectNode.remove("tablename");
-            objectNode.remove("psdetableid");
-            objectNode.remove("pssysdbcolumnid");
-        }
-        return objectNode;
-    }
+   @Override
+   protected void onCreateDefaultInputTip(PSDEField var1) throws Exception {
+      this.get(var1);
+      PSDEFInputTipService var2 = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, this.getSessionFactory());
+      PSDEFInputTip var3 = new PSDEFInputTip();
+      var3.setPSDEFId(var1.getPSDEFieldId());
+      var3.setDefaultFlag(1);
+      if (!var2.select(var3, true)) {
+         PSDataEntity var4 = (PSDataEntity)this.getWebContextCacheEntity("PSDATAENTITY", var1.getPSDEId());
+         var3.reset();
+         var3.setPSDEFInputTipName(StringHelper.format("[%1$s]默认输入提示", var1.getPSDEFieldName()));
+         var3.setPSDEFId(var1.getPSDEFieldId());
+         var3.setPSDEFName(var1.getPSDEFieldName());
+         var3.setPSDEId(var1.getPSDEId());
+         var3.setPSDEName(var1.getPSDEName());
+         var3.setDefaultFlag(1);
+         if (!StringHelper.isNullOrEmpty(var4.getPSDEFInputTipSetId())) {
+            var3.setPSDEFInputTipSetId(var4.getPSDEFInputTipSetId());
+            var3.setUniqueTag(StringHelper.format("%1$s__%2$s", var4.getPSDataEntityName(), var1.getPSDEFieldName()).toUpperCase());
+         }
 
-    @Override
-    public String getModelV2ResScope(IEntity iEntity) throws Exception {
-        String string;
-        if (PSDEFieldService.isSimpleImportExportMode() && !StringHelper.isNullOrEmpty((String)(string = DataObject.getStringValue((IDataObject)iEntity, (String)"PSDERID", null)))) {
-            return StringHelper.format((String)"PSDER#%1$s", (Object)string);
-        }
-        return super.getModelV2ResScope(iEntity);
-    }
+         var2.create(var3);
+      }
+   }
 
-    @Override
-    public Object getDataContextValue(PSDEField pSDEField, String string, IDataContextParam iDataContextParam) throws Exception {
-        Object object = super.getDataContextValue(pSDEField, string, iDataContextParam);
-        if (object == null && StringHelper.compare((String)string, (String)"psdefid", (boolean)true) == 0) {
-            return pSDEField.getPSDEFieldId();
-        }
-        return object;
-    }
+   @Override
+   protected void onCreateDefaultVR(PSDEField var1) throws Exception {
+      this.get(var1);
+      PSDEFValueRule var2 = new PSDEFValueRule();
+      var2.setDefaultMode(1);
+      var2.setSessionFactory(this.getSessionFactory());
+      var2.setPSDEFId(var1.getPSDEFieldId());
+      if (!var2.select(true)) {
+         String var3 = "";
+
+         for (int var4 = 1; var4 < 100; var4++) {
+            var3 = "Default";
+            if (var4 >= 2) {
+               var3 = var3 + Integer.toString(var4);
+            }
+
+            var2.reset();
+            var2.setSessionFactory(this.getSessionFactory());
+            var2.setPSDEFId(var1.getPSDEFieldId());
+            var2.setCodeName(var3);
+            if (!var2.select(true)) {
+               break;
+            }
+         }
+
+         var2.reset();
+         var2.setDefaultMode(1);
+         var2.setSessionFactory(this.getSessionFactory());
+         var2.setPSDEId(var1.getPSDEId());
+         var2.setPSDEName(var1.getPSDEName());
+         var2.setPSDEFId(var1.getPSDEFieldId());
+         var2.setPSDEFName(var1.getPSDEFieldName());
+         var2.setCodeName(var3);
+         var2.setPSDEFValueRuleName(StringHelper.format("默认规则", var1.getLogicName()));
+         var2.setRuleInfo(StringHelper.format("默认规则", var1.getLogicName()));
+         var2.create();
+      }
+   }
+
+   @Override
+   protected void onAjaxFillDVT(PSDEField var1) throws Exception {
+      if (this.getWebContext() != null && this.getWebContext().getCurAjaxActionResult() != null) {
+         String var2 = this.getWebContext().getPostValue("srfactionparam");
+         if (!StringHelper.isNullOrEmpty(var2)) {
+            JSONObject var3 = JSONObject.fromString(var2);
+            String var4 = var3.optString("srfkey");
+            if (!StringHelper.isNullOrEmpty(var4)) {
+               PSVarSampleValueService var5 = (PSVarSampleValueService)ServiceGlobal.getService(
+                  PSVarSampleValueService.class, PSCoreSysServiceBase.getCurMajorSessionFactory()
+               );
+               PSVarSampleValue var6 = new PSVarSampleValue();
+               var6.setPSVarSampleValueId(var4);
+               if (var5.get(var6, true)) {
+                  var1.setDefaultValueType(var6.getVarType());
+                  var1.setDefaultValue(var6.getValue());
+               }
+            }
+         }
+      } else {
+         throw new Exception("当前请求环境不正确");
+      }
+   }
+
+   @Override
+   protected void onAjaxFillDataType(PSDEField var1) throws Exception {
+      if (this.getWebContext() != null && this.getWebContext().getCurAjaxActionResult() != null) {
+         String var2 = this.getWebContext().getPostValue("srfactionparam");
+         if (!StringHelper.isNullOrEmpty(var2)) {
+            JSONObject var3 = JSONObject.fromString(var2);
+            String var4 = var3.optString("srfkey");
+            if (!StringHelper.isNullOrEmpty(var4)) {
+               String var5 = var3.optString("srfmajortext");
+               var1.setPSDataTypeId(var4);
+               var1.setPSDataTypeName(var5);
+            }
+         }
+      } else {
+         throw new Exception("当前请求环境不正确");
+      }
+   }
+
+   protected void syncPSDEFDataType(PSDEField var1) throws Exception {
+      if (!StringHelper.isNullOrEmpty(var1.getPSDataTypeId())) {
+         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
+            PSDEFDataTypeService var2 = (PSDEFDataTypeService)ServiceGlobal.getService(PSDEFDataTypeService.class, this.getSessionFactory());
+            PSDEFDataType var3 = new PSDEFDataType();
+            var3.setPSDEFDataTypeId(var1.getPSDataTypeId());
+            if (!var2.get(var3, true)) {
+               PSDEFDataTypeService var4 = (PSDEFDataTypeService)ServiceGlobal.getService(
+                  PSDEFDataTypeService.class, PSCoreSysServiceBase.getCurMajorSessionFactory()
+               );
+               PSDEFDataType var5 = new PSDEFDataType();
+               var5.setPSDEFDataTypeId(var1.getPSDataTypeId());
+               if (!var4.get(var5, true)) {
+                  throw new Exception(StringHelper.format("无法获取指定属性数据类型[%1$s]", var1.getPSDataTypeId()));
+               }
+
+               var5.setPSUnitId(null);
+               var5.setPSUnitName(null);
+               var5.setPSValueRuleId(null);
+               var5.setPSValueRuleName(null);
+               var2.create(var5);
+            }
+         }
+      }
+   }
+
+   public ObjectNode exportModelV2(PSDEField var1) throws Exception {
+      ObjectNode var2 = super.exportModelV2(var1);
+      if (var2 != null) {
+         var2.remove("tablename");
+         var2.remove("psdetableid");
+         var2.remove("pssysdbcolumnid");
+      }
+
+      return var2;
+   }
+
+   @Override
+   public String getModelV2ResScope(IEntity var1) throws Exception {
+      if (isSimpleImportExportMode()) {
+         String var2 = DataObject.getStringValue(var1, "PSDERID", null);
+         if (!StringHelper.isNullOrEmpty(var2)) {
+            return StringHelper.format("PSDER#%1$s", var2);
+         }
+      }
+
+      return super.getModelV2ResScope(var1);
+   }
+
+   @Override
+   public Object getDataContextValue(PSDEField var1, String var2, IDataContextParam var3) throws Exception {
+      Object var4 = super.getDataContextValue(var1, var2, var3);
+      return var4 == null && StringHelper.compare(var2, "psdefid", true) == 0 ? var1.getPSDEFieldId() : var4;
+   }
 }
-

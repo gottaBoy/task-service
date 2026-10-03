@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
     }
 
     protected void onFillParentInfo(PSModelRTCfg pSModelRTCfg, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSModelRTCfg, string, string2, string3);
+        super.onFillParentInfo(pSModelRTCfg, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSModelRTCfg, bl);
+        super.onFillEntityFullInfo(pSModelRTCfg, bl);
     }
 
     protected void onWriteBackParent(PSModelRTCfg pSModelRTCfg, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSModelRTCfg, bl);
+        super.onWriteBackParent(pSModelRTCfg, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
     }
 
     protected void onRemoveEntityUncopyValues(PSModelRTCfg pSModelRTCfg, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSModelRTCfg, bl);
+        super.onRemoveEntityUncopyValues(pSModelRTCfg, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSModelRTCfg pSModelRTCfg, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -188,7 +188,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
         if ((entityFieldError = this.onCheckField_RTType(bl, pSModelRTCfg, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSModelRTCfg, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSModelRTCfg, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSModelRTCfg pSModelRTCfg, boolean bl2, boolean bl3) throws Exception {
@@ -201,7 +201,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -223,7 +223,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -245,7 +245,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -267,7 +267,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelId_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelId_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELID");
@@ -292,7 +292,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelRTCfgId_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelRTCfgId_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELRTCFGID");
@@ -317,7 +317,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelRTCfgName_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelRTCfgName_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELRTCFGNAME");
@@ -339,7 +339,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelType_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelType_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELTYPE");
@@ -361,7 +361,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -383,7 +383,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RTModel_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_RTModel_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RTMODEL");
@@ -405,7 +405,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RTModelId_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_RTModelId_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RTMODELID");
@@ -427,7 +427,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RTModelPath_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_RTModelPath_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RTMODELPATH");
@@ -449,7 +449,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RTTag_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_RTTag_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RTTAG");
@@ -471,7 +471,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RTTag2_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_RTTag2_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RTTAG2");
@@ -493,7 +493,7 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RTType_Default((IEntity)pSModelRTCfg, bl2, bl3);
+            string2 = this.onTestValueRule_RTType_Default(pSModelRTCfg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RTTYPE");
@@ -506,11 +506,11 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
     }
 
     protected void onSyncEntity(PSModelRTCfg pSModelRTCfg, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSModelRTCfg, bl);
+        super.onSyncEntity(pSModelRTCfg, bl);
     }
 
     protected void onSyncIndexEntities(PSModelRTCfg pSModelRTCfg, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSModelRTCfg, bl);
+        super.onSyncIndexEntities(pSModelRTCfg, bl);
     }
 
     public Object getDataContextValue(PSModelRTCfg pSModelRTCfg, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -518,14 +518,14 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSModelRTCfg, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSModelRTCfg, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSModelRTCfg pSModelRTCfg, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSModelRTCfg, arrayList, n);
+        super.onExportMajorModel(pSModelRTCfg, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -780,14 +780,14 @@ extends PSCoreSysServiceBase<PSModelRTCfg> {
 
     protected boolean onMergeChild(String string, String string2, PSModelRTCfg pSModelRTCfg) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSModelRTCfg)) {
+        if (super.onMergeChild(string, string2, pSModelRTCfg)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSModelRTCfg pSModelRTCfg) throws Exception {
-        super.onUpdateParent((IEntity)pSModelRTCfg);
+        super.onUpdateParent(pSModelRTCfg);
     }
 
     @Override

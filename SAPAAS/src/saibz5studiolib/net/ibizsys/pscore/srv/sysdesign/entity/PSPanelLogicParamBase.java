@@ -1557,7 +1557,7 @@ implements Serializable {
                 PSSysViewPanelLogic pSSysViewPanelLogic = new PSSysViewPanelLogic();
                 pSSysViewPanelLogic.setPSSysViewPanelLogicId(this.getPSSysViewPanelLogicId());
                 PSSysViewPanelLogicService pSSysViewPanelLogicService = (PSSysViewPanelLogicService)ServiceGlobal.getService(PSSysViewPanelLogicService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewPanelLogicService.autoGet((IEntity)pSSysViewPanelLogic);
+                pSSysViewPanelLogicService.autoGet(pSSysViewPanelLogic);
                 this.pssysviewpanellogic = pSSysViewPanelLogic;
             }
             return this.pssysviewpanellogic;
@@ -1583,7 +1583,7 @@ implements Serializable {
                 PSSysViewPanelModel pSSysViewPanelModel = new PSSysViewPanelModel();
                 pSSysViewPanelModel.setPSSysViewPanelModelId(this.getPSSysViewPanelModelId());
                 PSSysViewPanelModelService pSSysViewPanelModelService = (PSSysViewPanelModelService)ServiceGlobal.getService(PSSysViewPanelModelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewPanelModelService.autoGet((IEntity)pSSysViewPanelModel);
+                pSSysViewPanelModelService.autoGet(pSSysViewPanelModel);
                 this.pssysviewpanelmodel = pSSysViewPanelModel;
             }
             return this.pssysviewpanelmodel;
@@ -1609,7 +1609,7 @@ implements Serializable {
                 PSSysViewPanel pSSysViewPanel = new PSSysViewPanel();
                 pSSysViewPanel.setPSSysViewPanelId(this.getPSSysViewPanelId());
                 PSSysViewPanelService pSSysViewPanelService = (PSSysViewPanelService)ServiceGlobal.getService(PSSysViewPanelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewPanelService.autoGet((IEntity)pSSysViewPanel);
+                pSSysViewPanelService.autoGet(pSSysViewPanel);
                 this.pssysviewpanel = pSSysViewPanel;
             }
             return this.pssysviewpanel;

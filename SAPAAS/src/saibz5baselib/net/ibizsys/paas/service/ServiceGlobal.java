@@ -1,199 +1,301 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.service;
 
 import java.util.HashMap;
-import net.ibizsys.paas.service.IService;
-import net.ibizsys.paas.service.IServiceGlobalPlugin;
-import net.ibizsys.paas.sysmodel.ISystemRuntime;
-import net.ibizsys.paas.util.StringHelper;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
 
+import net.ibizsys.paas.sysmodel.ISystemRuntime;
+import net.ibizsys.paas.util.StringHelper;
+
+/**
+ * 服务全局存储对象
+ * 
+ * @author lionlau
+ *
+ */
 public class ServiceGlobal {
-    private static final Log log = LogFactory.getLog(ServiceGlobal.class);
-    private static HashMap<String, IService> serviceMap = new HashMap();
-    private static HashMap<SessionFactory, HashMap<String, IService>> sessionFactoryServiceMap = new HashMap();
-    private static IServiceGlobalPlugin iServiceGlobalPlugin = null;
+	private static final Log log = LogFactory.getLog(ServiceGlobal.class);
+	private static HashMap<String, IService> serviceMap = new HashMap<String, IService>(); 
+	private static HashMap<SessionFactory, HashMap<String, IService>> sessionFactoryServiceMap = new HashMap<SessionFactory, HashMap<String, IService>>();
+	private static IServiceGlobalPlugin iServiceGlobalPlugin = null;
+	
+	
+	/**
+	 * 注册服务对象
+	 * 
+	 * @param strServiceClsType
+	 * @param iService
+	 */
+	public static void registerService(String strServiceClsType, IService iService) {
+		if(getPlugin()!=null)
+		{
+			getPlugin().registerService(strServiceClsType, iService);
+			return;
+		}
+		
+		if (!serviceMap.containsKey(strServiceClsType)) {
+			// log.info(StringHelper.format("注册服务对象[%1$s][%2$s]",strServiceClsType,iService));
+			serviceMap.put(strServiceClsType, iService);
+			log.debug(StringHelper.format("注册服务对象[%1$s]，当前数量[%2$s]",strServiceClsType,serviceMap.size()));
+		}
+	}
 
-    public static void registerService(String strServiceClsType, IService iService) {
-        if (ServiceGlobal.getPlugin() != null) {
-            ServiceGlobal.getPlugin().registerService(strServiceClsType, iService);
-            return;
-        }
-        if (!serviceMap.containsKey(strServiceClsType)) {
-            serviceMap.put(strServiceClsType, iService);
-            log.debug((Object)StringHelper.format("\u6ce8\u518c\u670d\u52a1\u5bf9\u8c61[%1$s]\uff0c\u5f53\u524d\u6570\u91cf[%2$s]", strServiceClsType, serviceMap.size()));
-        }
-    }
+	/**
+	 * 获取服务对象
+	 * 
+	 * @param strServiceClsType
+	 * @return
+	 * @throws Exception
+	 */
+	public static IService getService(Class cls) throws Exception {
+		if(getPlugin()!=null)
+		{
+			return getPlugin().getService(cls);
+		}
+		return getService(cls.getCanonicalName());
+	}
 
-    public static IService getService(Class cls) throws Exception {
-        if (ServiceGlobal.getPlugin() != null) {
-            return ServiceGlobal.getPlugin().getService(cls);
-        }
-        return ServiceGlobal.getService(cls.getCanonicalName());
-    }
+	/**
+	 * 获取服务对象
+	 * 
+	 * @param strServiceClsType
+	 * @return
+	 * @throws Exception
+	 */
+	public static IService getService(String strServiceClsType) throws Exception {
+		if(getPlugin()!=null)
+		{
+			return getPlugin().getService(strServiceClsType);
+		}
+		
+		IService iService = serviceMap.get(strServiceClsType);
+		if (iService == null) throw new Exception(StringHelper.format("无法获取指定服务对象[%1$s]", strServiceClsType));
+		return iService;
+	}
 
-    public static IService getService(String strServiceClsType) throws Exception {
-        if (ServiceGlobal.getPlugin() != null) {
-            return ServiceGlobal.getPlugin().getService(strServiceClsType);
-        }
-        IService iService = serviceMap.get(strServiceClsType);
-        if (iService == null) {
-            throw new Exception(StringHelper.format("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u670d\u52a1\u5bf9\u8c61[%1$s]", strServiceClsType));
-        }
-        return iService;
-    }
+	/**
+	 * 注册服务对象
+	 * 
+	 * @param strServiceClsType
+	 * @param strDSLink
+	 * @param iService
+	 */
+	public static void registerService(String strServiceClsType, String strDSLink, IService iService) {
+		if(getPlugin()!=null)
+		{
+			getPlugin().registerService(strServiceClsType, strDSLink, iService);
+			return;
+		}
+		
+		if (StringHelper.isNullOrEmpty(strDSLink))
+			registerService(strServiceClsType, iService);
+		else {
+			String strFullKeyId = StringHelper.format("%1$s|%2$s", strServiceClsType, strDSLink);
+			registerService(strFullKeyId, iService);
+		}
+	}
 
-    public static void registerService(String strServiceClsType, String strDSLink, IService iService) {
-        if (ServiceGlobal.getPlugin() != null) {
-            ServiceGlobal.getPlugin().registerService(strServiceClsType, strDSLink, iService);
-            return;
-        }
-        if (StringHelper.isNullOrEmpty(strDSLink)) {
-            ServiceGlobal.registerService(strServiceClsType, iService);
-        } else {
-            String strFullKeyId = StringHelper.format("%1$s|%2$s", strServiceClsType, strDSLink);
-            ServiceGlobal.registerService(strFullKeyId, iService);
-        }
-    }
+	/**
+	 * 获取服务对象
+	 * 
+	 * @param cls
+	 * @param strDSLink
+	 * @return
+	 * @throws Exception
+	 */
+	public static IService getService(Class cls, String strDSLink) throws Exception {
+		
+		if(getPlugin()!=null)
+		{
+			return getPlugin().getService(cls, strDSLink);
+		}
+		
+		
+		if (StringHelper.isNullOrEmpty(strDSLink))
+			return getService(cls.getCanonicalName());
+		else {
+			return getService(cls.getCanonicalName(), strDSLink);
+		}
+	}
 
-    public static IService getService(Class cls, String strDSLink) throws Exception {
-        if (ServiceGlobal.getPlugin() != null) {
-            return ServiceGlobal.getPlugin().getService(cls, strDSLink);
-        }
-        if (StringHelper.isNullOrEmpty(strDSLink)) {
-            return ServiceGlobal.getService(cls.getCanonicalName());
-        }
-        return ServiceGlobal.getService(cls.getCanonicalName(), strDSLink);
-    }
+	/**
+	 * 获取服务对象
+	 * 
+	 * @param strServiceClsType
+	 * @param strDSLink
+	 * @return
+	 * @throws Exception
+	 */
+	public static IService getService(String strServiceClsType, String strDSLink) throws Exception {
+		if(getPlugin()!=null)
+		{
+			return getPlugin().getService(strServiceClsType, strDSLink);
+		}
+		
+		if (StringHelper.isNullOrEmpty(strDSLink))
+			return getService(strServiceClsType);
+		else {
+			String strFullKeyId = StringHelper.format("%1$s|%2$s", strServiceClsType, strDSLink);
+			return getService(strFullKeyId);
+		}
+	}
 
-    public static IService getService(String strServiceClsType, String strDSLink) throws Exception {
-        if (ServiceGlobal.getPlugin() != null) {
-            return ServiceGlobal.getPlugin().getService(strServiceClsType, strDSLink);
-        }
-        if (StringHelper.isNullOrEmpty(strDSLink)) {
-            return ServiceGlobal.getService(strServiceClsType);
-        }
-        String strFullKeyId = StringHelper.format("%1$s|%2$s", strServiceClsType, strDSLink);
-        return ServiceGlobal.getService(strFullKeyId);
-    }
+	/**
+	 * 获取服务对象
+	 * 
+	 * @param cls
+	 * @param sessionFactory
+	 * @return
+	 * @throws Exception
+	 */
+	public static IService getService(Class cls, SessionFactory sessionFactory) throws Exception {
+		if(getPlugin()!=null)
+		{
+			return getPlugin().getService(cls, sessionFactory);
+		}
+		
+		return getService(cls.getCanonicalName(), sessionFactory);
+	}
 
-    public static IService getService(Class cls, SessionFactory sessionFactory) throws Exception {
-        if (ServiceGlobal.getPlugin() != null) {
-            return ServiceGlobal.getPlugin().getService(cls, sessionFactory);
-        }
-        return ServiceGlobal.getService(cls.getCanonicalName(), sessionFactory);
-    }
+	/**
+	 * 获取服务对象
+	 * 
+	 * @param strServiceClsType
+	 * @param sessionFactory
+	 * @return
+	 * @throws Exception
+	 */
+	public static IService getService(String strServiceClsType, SessionFactory sessionFactory) throws Exception {
+		
+		if(getPlugin()!=null)
+		{
+			return getPlugin().getService(strServiceClsType, sessionFactory);
+		}
+		
+		if (sessionFactory == null) {
+			return getService(strServiceClsType);
+		}
+		//获取原始对象
+		IService iService = serviceMap.get(strServiceClsType);
+		if (iService == null){
+			throw new Exception(StringHelper.format("无法获取指定服务对象[%1$s]", strServiceClsType));
+		}
+		
+		sessionFactory =  ((ISystemRuntime)iService.getSystemModel()).getRealSessionFactory(iService.getDEModel(), sessionFactory);
+		if(sessionFactory == null)
+			return iService;
+		
+		HashMap<String, IService> sessionServiceMap = null;
+		synchronized (sessionFactoryServiceMap) {
+			sessionServiceMap = sessionFactoryServiceMap.get(sessionFactory);
+			if(sessionServiceMap == null){
+				sessionServiceMap = new HashMap<String, IService>();
+				sessionFactoryServiceMap.put(sessionFactory, sessionServiceMap);
+				if(log.isDebugEnabled()){
+					log.debug(StringHelper.format("注册[%1$s]服务对象映射，当前数量[%2$s]",sessionFactory.toString(),sessionFactoryServiceMap.size()));
+				}
+			}
+		}
+		
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    public static IService getService(String strServiceClsType, SessionFactory sessionFactory) throws Exception {
-        if (ServiceGlobal.getPlugin() != null) {
-            return ServiceGlobal.getPlugin().getService(strServiceClsType, sessionFactory);
-        }
-        if (sessionFactory == null) {
-            return ServiceGlobal.getService(strServiceClsType);
-        }
-        IService iService = serviceMap.get(strServiceClsType);
-        if (iService == null) {
-            throw new Exception(StringHelper.format("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u670d\u52a1\u5bf9\u8c61[%1$s]", strServiceClsType));
-        }
-        sessionFactory = ((ISystemRuntime)iService.getSystemModel()).getRealSessionFactory(iService.getDEModel(), sessionFactory);
-        if (sessionFactory == null) {
-            return iService;
-        }
-        HashMap<String, IService<Object>> sessionServiceMap = null;
-        HashMap<Object, Object> hashMap = sessionFactoryServiceMap;
-        synchronized (hashMap) {
-            sessionServiceMap = sessionFactoryServiceMap.get(sessionFactory);
-            if (sessionServiceMap == null) {
-                sessionServiceMap = new HashMap();
-                sessionFactoryServiceMap.put(sessionFactory, sessionServiceMap);
-                if (log.isDebugEnabled()) {
-                    log.debug((Object)StringHelper.format("\u6ce8\u518c[%1$s]\u670d\u52a1\u5bf9\u8c61\u6620\u5c04\uff0c\u5f53\u524d\u6570\u91cf[%2$s]", sessionFactory.toString(), sessionFactoryServiceMap.size()));
-                }
-            }
-        }
-        hashMap = sessionServiceMap;
-        synchronized (hashMap) {
-            IService sessionService = sessionServiceMap.get(strServiceClsType);
-            if (sessionService != null) {
-                return sessionService;
-            }
-            sessionService = (IService)iService.getClass().newInstance();
-            sessionService.setSessionFactory(sessionFactory);
-            sessionServiceMap.put(strServiceClsType, sessionService);
-            if (log.isDebugEnabled()) {
-                log.debug((Object)StringHelper.format("\u6ce8\u518c[%1$s]\u670d\u52a1\u5bf9\u8c61[%2$s]\uff0c\u5f53\u524d\u6570\u91cf[%3$s]", sessionFactory.toString(), strServiceClsType, sessionServiceMap.size()));
-            }
-            return sessionService;
-        }
-    }
+		synchronized(sessionServiceMap){
+			IService sessionService = sessionServiceMap.get(strServiceClsType);
+			if (sessionService != null){
+				return sessionService;
+			}
+			
+			// 建立新对象
+			sessionService = iService.getClass().newInstance();
+			sessionService.setSessionFactory(sessionFactory);
+			sessionServiceMap.put(strServiceClsType, sessionService);
+			if(log.isDebugEnabled()){
+				log.debug(StringHelper.format("注册[%1$s]服务对象[%2$s]，当前数量[%3$s]",sessionFactory.toString(),strServiceClsType,sessionServiceMap.size()));
+			}
+			return sessionService;
+		}
+	}
+	
+	
+	/**
+	 * 重置会话工厂的相关服务对象
+	 * @param sessionFactory
+	 * @return
+	 * @throws Exception
+	 */
+	public static void resetServices(SessionFactory sessionFactory) throws Exception {
+		
+		if(getPlugin()!=null)
+		{
+			getPlugin().resetServices(sessionFactory);
+			return;
+		}
+		
+		if (sessionFactory == null) {
+			return;
+		}
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    public static void resetServices(SessionFactory sessionFactory) throws Exception {
-        if (ServiceGlobal.getPlugin() != null) {
-            ServiceGlobal.getPlugin().resetServices(sessionFactory);
-            return;
-        }
-        if (sessionFactory == null) {
-            return;
-        }
-        HashMap<String, IService> sessionServiceMap = null;
-        HashMap<SessionFactory, HashMap<String, IService>> hashMap = sessionFactoryServiceMap;
-        synchronized (hashMap) {
-            sessionServiceMap = sessionFactoryServiceMap.remove(sessionFactory);
-        }
-        if (sessionServiceMap != null) {
-            log.debug((Object)StringHelper.format("\u6ce8\u9500[%1$s]\u670d\u52a1\u5bf9\u8c61\u6620\u5c04\uff0c\u5f53\u524d\u6570\u91cf[%2$s]", sessionFactory.toString(), sessionFactoryServiceMap.size()));
-        }
-    }
+		HashMap<String, IService> sessionServiceMap = null;
+		synchronized (sessionFactoryServiceMap) {
+			sessionServiceMap = sessionFactoryServiceMap.remove(sessionFactory);
+			
+		}
+		if(sessionServiceMap!=null){
+			log.debug(StringHelper.format("注销[%1$s]服务对象映射，当前数量[%2$s]",sessionFactory.toString(),sessionFactoryServiceMap.size()));
+		}
+	}
 
-    public static void setServiceGlobalPlugin(IServiceGlobalPlugin iServiceGlobalPlugin) {
-        ServiceGlobal.iServiceGlobalPlugin = iServiceGlobalPlugin;
-    }
-
-    public static IServiceGlobalPlugin getPlugin() {
-        return iServiceGlobalPlugin;
-    }
-
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    public static void resetServiceCache(SessionFactory sessionFactory) throws Exception {
-        block7: {
-            block6: {
-                if (ServiceGlobal.getPlugin() != null) {
-                    ServiceGlobal.getPlugin().resetServiceCache(sessionFactory);
-                    return;
-                }
-                if (sessionFactory != null) break block6;
-                for (IService iService : serviceMap.values()) {
-                    iService.resetCache();
-                }
-                break block7;
-            }
-            HashMap<String, IService> sessionServiceMap = null;
-            HashMap<SessionFactory, HashMap<String, IService>> hashMap = sessionFactoryServiceMap;
-            synchronized (hashMap) {
-                sessionServiceMap = sessionFactoryServiceMap.get(sessionFactory);
-            }
-            if (sessionServiceMap == null) break block7;
-            for (IService iService : sessionServiceMap.values()) {
-                iService.resetCache();
-            }
-        }
-    }
+	
+	
+	/**
+	 * 设置插件
+	 * @param iServiceGlobalPlugin
+	 */
+	public static void setServiceGlobalPlugin(IServiceGlobalPlugin iServiceGlobalPlugin){
+		ServiceGlobal.iServiceGlobalPlugin = iServiceGlobalPlugin;
+	}
+	
+	/**
+	 * 获取插件
+	 * @return
+	 */
+	public static IServiceGlobalPlugin getPlugin(){
+		return ServiceGlobal.iServiceGlobalPlugin; 
+	}
+	
+	
+	/**
+	 * 重置会话工厂的服务对象缓存
+	 * @param sessionFactory
+	 * @return
+	 * @throws Exception
+	 */
+	public static void resetServiceCache(SessionFactory sessionFactory) throws Exception {
+		
+		if(getPlugin()!=null)
+		{
+			getPlugin().resetServiceCache(sessionFactory);
+			return;
+		}
+		
+		if (sessionFactory == null) {
+			for(IService iService:serviceMap.values()){
+				iService.resetCache();
+			}
+		}
+		else{
+			HashMap<String, IService> sessionServiceMap = null;
+			synchronized (sessionFactoryServiceMap) {
+				sessionServiceMap = sessionFactoryServiceMap.get(sessionFactory);
+			}
+			if(sessionServiceMap!=null){
+				for(IService iService:sessionServiceMap.values()){
+					iService.resetCache();
+				}
+			}
+		}
+	}
+	
+	
 }
-

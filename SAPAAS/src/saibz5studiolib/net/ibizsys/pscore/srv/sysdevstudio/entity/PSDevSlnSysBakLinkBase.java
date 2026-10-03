@@ -1690,7 +1690,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getLinkPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.linkpsdevcenter = pSDevCenter;
             }
             return this.linkpsdevcenter;
@@ -1716,7 +1716,7 @@ implements Serializable {
                 PSDevSlnSysBak pSDevSlnSysBak = new PSDevSlnSysBak();
                 pSDevSlnSysBak.setPSDevSlnSysBakId(this.getPSDevSlnSysBakId());
                 PSDevSlnSysBakService pSDevSlnSysBakService = (PSDevSlnSysBakService)ServiceGlobal.getService(PSDevSlnSysBakService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysBakService.autoGet((IEntity)pSDevSlnSysBak);
+                pSDevSlnSysBakService.autoGet(pSDevSlnSysBak);
                 this.psdevslnsysbak = pSDevSlnSysBak;
             }
             return this.psdevslnsysbak;
@@ -1742,7 +1742,7 @@ implements Serializable {
                 PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
                 pSDevSlnSys.setPSDevSlnSysId(this.getPSDevSlnSysId());
                 PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysService.autoGet((IEntity)pSDevSlnSys);
+                pSDevSlnSysService.autoGet(pSDevSlnSys);
                 this.psdevslnsys = pSDevSlnSys;
             }
             return this.psdevslnsys;

@@ -3439,7 +3439,7 @@ implements Serializable {
                 PSAppFunc pSAppFunc = new PSAppFunc();
                 pSAppFunc.setPSAppFuncId(this.getPSAppFuncId());
                 PSAppFuncService pSAppFuncService = (PSAppFuncService)ServiceGlobal.getService(PSAppFuncService.class, (SessionFactory)this.getSessionFactory());
-                pSAppFuncService.autoGet((IEntity)pSAppFunc);
+                pSAppFuncService.autoGet(pSAppFunc);
                 this.psappfunc = pSAppFunc;
             }
             return this.psappfunc;
@@ -3465,7 +3465,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -3491,7 +3491,7 @@ implements Serializable {
                 PSDELogic pSDELogic = new PSDELogic();
                 pSDELogic.setPSDELogicId(this.getPSDELogicId());
                 PSDELogicService pSDELogicService = (PSDELogicService)ServiceGlobal.getService(PSDELogicService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicService.autoGet((IEntity)pSDELogic);
+                pSDELogicService.autoGet(pSDELogic);
                 this.psdelogic = pSDELogic;
             }
             return this.psdelogic;
@@ -3517,7 +3517,7 @@ implements Serializable {
                 PSDEUIAction pSDEUIAction = new PSDEUIAction();
                 pSDEUIAction.setPSDEUIActionId(this.getPSDEUIActionId());
                 PSDEUIActionService pSDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEUIActionService.autoGet((IEntity)pSDEUIAction);
+                pSDEUIActionService.autoGet(pSDEUIAction);
                 this.psdeuiaction = pSDEUIAction;
             }
             return this.psdeuiaction;
@@ -3543,7 +3543,7 @@ implements Serializable {
                 PSSysPFPlugin pSSysPFPlugin = new PSSysPFPlugin();
                 pSSysPFPlugin.setPSSysPFPluginId(this.getPSSysPFPluginId());
                 PSSysPFPluginService pSSysPFPluginService = (PSSysPFPluginService)ServiceGlobal.getService(PSSysPFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysPFPluginService.autoGet((IEntity)pSSysPFPlugin);
+                pSSysPFPluginService.autoGet(pSSysPFPlugin);
                 this.pssyspfplugin = pSSysPFPlugin;
             }
             return this.pssyspfplugin;
@@ -3569,7 +3569,7 @@ implements Serializable {
                 PSSysViewLogic pSSysViewLogic = new PSSysViewLogic();
                 pSSysViewLogic.setPSSysViewLogicId(this.getPSSysViewLogicId());
                 PSSysViewLogicService pSSysViewLogicService = (PSSysViewLogicService)ServiceGlobal.getService(PSSysViewLogicService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewLogicService.autoGet((IEntity)pSSysViewLogic);
+                pSSysViewLogicService.autoGet(pSSysViewLogic);
                 this.pssysviewlogic = pSSysViewLogic;
             }
             return this.pssysviewlogic;
@@ -3595,7 +3595,7 @@ implements Serializable {
                 PSSysViewPanelItem pSSysViewPanelItem = new PSSysViewPanelItem();
                 pSSysViewPanelItem.setPSSysViewPanelItemId(this.getParamPSPanelItemId());
                 PSSysViewPanelItemService pSSysViewPanelItemService = (PSSysViewPanelItemService)ServiceGlobal.getService(PSSysViewPanelItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewPanelItemService.autoGet((IEntity)pSSysViewPanelItem);
+                pSSysViewPanelItemService.autoGet(pSSysViewPanelItem);
                 this.parampspanelitem = pSSysViewPanelItem;
             }
             return this.parampspanelitem;
@@ -3621,7 +3621,7 @@ implements Serializable {
                 PSSysViewPanelItem pSSysViewPanelItem = new PSSysViewPanelItem();
                 pSSysViewPanelItem.setPSSysViewPanelItemId(this.getPSSysViewPanelItemId());
                 PSSysViewPanelItemService pSSysViewPanelItemService = (PSSysViewPanelItemService)ServiceGlobal.getService(PSSysViewPanelItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewPanelItemService.autoGet((IEntity)pSSysViewPanelItem);
+                pSSysViewPanelItemService.autoGet(pSSysViewPanelItem);
                 this.pssysviewpanelitem = pSSysViewPanelItem;
             }
             return this.pssysviewpanelitem;
@@ -3647,7 +3647,7 @@ implements Serializable {
                 PSSysViewPanelModel pSSysViewPanelModel = new PSSysViewPanelModel();
                 pSSysViewPanelModel.setPSSysViewPanelModelId(this.getPSSysViewPanelModelId());
                 PSSysViewPanelModelService pSSysViewPanelModelService = (PSSysViewPanelModelService)ServiceGlobal.getService(PSSysViewPanelModelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewPanelModelService.autoGet((IEntity)pSSysViewPanelModel);
+                pSSysViewPanelModelService.autoGet(pSSysViewPanelModel);
                 this.pssysviewpanelmodel = pSSysViewPanelModel;
             }
             return this.pssysviewpanelmodel;
@@ -3673,7 +3673,7 @@ implements Serializable {
                 PSSysViewPanel pSSysViewPanel = new PSSysViewPanel();
                 pSSysViewPanel.setPSSysViewPanelId(this.getLayoutPSSysViewPanelId());
                 PSSysViewPanelService pSSysViewPanelService = (PSSysViewPanelService)ServiceGlobal.getService(PSSysViewPanelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewPanelService.autoGet((IEntity)pSSysViewPanel);
+                pSSysViewPanelService.autoGet(pSSysViewPanel);
                 this.layoutpssysviewpanel = pSSysViewPanel;
             }
             return this.layoutpssysviewpanel;
@@ -3699,7 +3699,7 @@ implements Serializable {
                 PSSysViewPanel pSSysViewPanel = new PSSysViewPanel();
                 pSSysViewPanel.setPSSysViewPanelId(this.getPSSysViewPanelId());
                 PSSysViewPanelService pSSysViewPanelService = (PSSysViewPanelService)ServiceGlobal.getService(PSSysViewPanelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewPanelService.autoGet((IEntity)pSSysViewPanel);
+                pSSysViewPanelService.autoGet(pSSysViewPanel);
                 this.pssysviewpanel = pSSysViewPanel;
             }
             return this.pssysviewpanel;
@@ -3721,7 +3721,7 @@ implements Serializable {
         Integer n = this.objPSPanelLogicLinksLock;
         synchronized (n) {
             if (this.pspanellogiclinks == null) {
-                this.pspanellogiclinks = pSSysViewPanelLogicService.isTempData((IEntity)this) ? pSPanelLogicLinkService.selectTempByPSSysViewPanelLogic(this) : pSPanelLogicLinkService.selectByPSSysViewPanelLogic(this);
+                this.pspanellogiclinks = pSSysViewPanelLogicService.isTempData(this) ? pSPanelLogicLinkService.selectTempByPSSysViewPanelLogic(this) : pSPanelLogicLinkService.selectByPSSysViewPanelLogic(this);
             }
             return this.pspanellogiclinks;
         }
@@ -3742,7 +3742,7 @@ implements Serializable {
         Integer n = this.objPSPanelLogicNodesLock;
         synchronized (n) {
             if (this.pspanellogicnodes == null) {
-                this.pspanellogicnodes = pSSysViewPanelLogicService.isTempData((IEntity)this) ? pSPanelLogicNodeService.selectTempByPSSysViewPanelLogic(this) : pSPanelLogicNodeService.selectByPSSysViewPanelLogic(this);
+                this.pspanellogicnodes = pSSysViewPanelLogicService.isTempData(this) ? pSPanelLogicNodeService.selectTempByPSSysViewPanelLogic(this) : pSPanelLogicNodeService.selectByPSSysViewPanelLogic(this);
             }
             return this.pspanellogicnodes;
         }
@@ -3763,7 +3763,7 @@ implements Serializable {
         Integer n = this.objPSPanelLogicParamsLock;
         synchronized (n) {
             if (this.pspanellogicparams == null) {
-                this.pspanellogicparams = pSSysViewPanelLogicService.isTempData((IEntity)this) ? pSPanelLogicParamService.selectTempByPSSysViewPanelLogic(this) : pSPanelLogicParamService.selectByPSSysViewPanelLogic(this);
+                this.pspanellogicparams = pSSysViewPanelLogicService.isTempData(this) ? pSPanelLogicParamService.selectTempByPSSysViewPanelLogic(this) : pSPanelLogicParamService.selectByPSSysViewPanelLogic(this);
             }
             return this.pspanellogicparams;
         }

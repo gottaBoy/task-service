@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.ctrlmodel;
 
-import net.ibizsys.ssdyna.ctrlmodel.DynaGridModel;
+/**
+ * 多编辑视图面板部件模型
+ * @author Administrator
+ *
+ */
+public class DynaMultiEditViewPanelModel extends DynaGridModel {
 
-public class DynaMultiEditViewPanelModel
-extends DynaGridModel {
 }
-

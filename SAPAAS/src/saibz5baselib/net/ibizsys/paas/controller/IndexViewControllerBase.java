@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.ViewControllerBase;
+/**
+ * 首页视图控制器对象（实体范围）
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class IndexViewControllerBase extends ViewControllerBase {
+	public IndexViewControllerBase() throws Exception {
+		super();
+	}
 
-public abstract class IndexViewControllerBase
-extends ViewControllerBase {
 }
-

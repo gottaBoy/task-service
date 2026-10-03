@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.DynaMultiDataViewControllerInstBase;
+public abstract class DynaGridViewControllerInstBase extends DynaMultiDataViewControllerInstBase {
 
-public abstract class DynaGridViewControllerInstBase
-extends DynaMultiDataViewControllerInstBase {
+	public DynaGridViewControllerInstBase() throws Exception {
+		super();
+		
+	}
+
 }
-

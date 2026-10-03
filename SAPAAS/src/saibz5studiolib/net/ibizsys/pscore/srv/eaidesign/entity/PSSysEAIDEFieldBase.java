@@ -2129,7 +2129,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.psdef = pSDEField;
             }
             return this.psdef;
@@ -2155,7 +2155,7 @@ implements Serializable {
                 PSSysEAIDE pSSysEAIDE = new PSSysEAIDE();
                 pSSysEAIDE.setPSSysEAIDEId(this.getPSSysEAIDEId());
                 PSSysEAIDEService pSSysEAIDEService = (PSSysEAIDEService)ServiceGlobal.getService(PSSysEAIDEService.class, (SessionFactory)this.getSessionFactory());
-                pSSysEAIDEService.autoGet((IEntity)pSSysEAIDE);
+                pSSysEAIDEService.autoGet(pSSysEAIDE);
                 this.pssyseaide = pSSysEAIDE;
             }
             return this.pssyseaide;
@@ -2181,7 +2181,7 @@ implements Serializable {
                 PSSysEAIElementAttr pSSysEAIElementAttr = new PSSysEAIElementAttr();
                 pSSysEAIElementAttr.setPSSysEAIElementAttrId(this.getPSSysEAIElementAttrId());
                 PSSysEAIElementAttrService pSSysEAIElementAttrService = (PSSysEAIElementAttrService)ServiceGlobal.getService(PSSysEAIElementAttrService.class, (SessionFactory)this.getSessionFactory());
-                pSSysEAIElementAttrService.autoGet((IEntity)pSSysEAIElementAttr);
+                pSSysEAIElementAttrService.autoGet(pSSysEAIElementAttr);
                 this.pssyseaielementattr = pSSysEAIElementAttr;
             }
             return this.pssyseaielementattr;
@@ -2207,7 +2207,7 @@ implements Serializable {
                 PSSysEAIElementRE pSSysEAIElementRE = new PSSysEAIElementRE();
                 pSSysEAIElementRE.setPSSysEAIElementREId(this.getPSSysEAIElementREId());
                 PSSysEAIElementREService pSSysEAIElementREService = (PSSysEAIElementREService)ServiceGlobal.getService(PSSysEAIElementREService.class, (SessionFactory)this.getSessionFactory());
-                pSSysEAIElementREService.autoGet((IEntity)pSSysEAIElementRE);
+                pSSysEAIElementREService.autoGet(pSSysEAIElementRE);
                 this.pssyseaielementre = pSSysEAIElementRE;
             }
             return this.pssyseaielementre;

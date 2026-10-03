@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
     }
 
     protected void onFillParentInfo(PSUWDEUnionKey pSUWDEUnionKey, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSUWDEUnionKey, string, string2, string3);
+        super.onFillParentInfo(pSUWDEUnionKey, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
         if (bl && pSUWDEUnionKey.getPSUWDEUnionKeyName() == null) {
             pSUWDEUnionKey.setPSUWDEUnionKeyName((String)this.getDefaultValue(this.getWebContext(), "", "\u540d\u79f0", 25));
         }
-        super.onFillEntityFullInfo((IEntity)pSUWDEUnionKey, bl);
+        super.onFillEntityFullInfo(pSUWDEUnionKey, bl);
     }
 
     protected void onWriteBackParent(PSUWDEUnionKey pSUWDEUnionKey, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUWDEUnionKey, bl);
+        super.onWriteBackParent(pSUWDEUnionKey, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
     }
 
     protected void onRemoveEntityUncopyValues(PSUWDEUnionKey pSUWDEUnionKey, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUWDEUnionKey, bl);
+        super.onRemoveEntityUncopyValues(pSUWDEUnionKey, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUWDEUnionKey pSUWDEUnionKey, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -182,7 +182,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
         if ((entityFieldError = this.onCheckField_PSUWDEUnionKeyName(bl, pSUWDEUnionKey, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUWDEUnionKey, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUWDEUnionKey, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Key2PSDEFId(boolean bl, PSUWDEUnionKey pSUWDEUnionKey, boolean bl2, boolean bl3) throws Exception {
@@ -195,7 +195,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Key2PSDEFId_Default((IEntity)pSUWDEUnionKey, bl2, bl3);
+            string2 = this.onTestValueRule_Key2PSDEFId_Default(pSUWDEUnionKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("KEY2PSDEFID");
@@ -217,7 +217,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Key2PSDEFName_Default((IEntity)pSUWDEUnionKey, bl2, bl3);
+            string2 = this.onTestValueRule_Key2PSDEFName_Default(pSUWDEUnionKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("KEY2PSDEFNAME");
@@ -239,7 +239,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Key3PSDEFId_Default((IEntity)pSUWDEUnionKey, bl2, bl3);
+            string2 = this.onTestValueRule_Key3PSDEFId_Default(pSUWDEUnionKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("KEY3PSDEFID");
@@ -261,7 +261,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Key3PSDEFName_Default((IEntity)pSUWDEUnionKey, bl2, bl3);
+            string2 = this.onTestValueRule_Key3PSDEFName_Default(pSUWDEUnionKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("KEY3PSDEFNAME");
@@ -283,7 +283,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Key4PSDEFId_Default((IEntity)pSUWDEUnionKey, bl2, bl3);
+            string2 = this.onTestValueRule_Key4PSDEFId_Default(pSUWDEUnionKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("KEY4PSDEFID");
@@ -305,7 +305,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Key4PSDEFName_Default((IEntity)pSUWDEUnionKey, bl2, bl3);
+            string2 = this.onTestValueRule_Key4PSDEFName_Default(pSUWDEUnionKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("KEY4PSDEFNAME");
@@ -327,7 +327,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_KeyPSDEFId_Default((IEntity)pSUWDEUnionKey, bl2, bl3);
+            string2 = this.onTestValueRule_KeyPSDEFId_Default(pSUWDEUnionKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("KEYPSDEFID");
@@ -349,7 +349,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_KeyPSDEFName_Default((IEntity)pSUWDEUnionKey, bl2, bl3);
+            string2 = this.onTestValueRule_KeyPSDEFName_Default(pSUWDEUnionKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("KEYPSDEFNAME");
@@ -371,7 +371,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSUWDEUnionKey, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSUWDEUnionKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -393,7 +393,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSUWDEUnionKey, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSUWDEUnionKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -418,7 +418,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUWDEUnionKeyId_Default((IEntity)pSUWDEUnionKey, bl2, bl3);
+            string2 = this.onTestValueRule_PSUWDEUnionKeyId_Default(pSUWDEUnionKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUWDEUNIONKEYID");
@@ -443,7 +443,7 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUWDEUnionKeyName_Default((IEntity)pSUWDEUnionKey, bl2, bl3);
+            string2 = this.onTestValueRule_PSUWDEUnionKeyName_Default(pSUWDEUnionKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUWDEUNIONKEYNAME");
@@ -456,11 +456,11 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
     }
 
     protected void onSyncEntity(PSUWDEUnionKey pSUWDEUnionKey, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUWDEUnionKey, bl);
+        super.onSyncEntity(pSUWDEUnionKey, bl);
     }
 
     protected void onSyncIndexEntities(PSUWDEUnionKey pSUWDEUnionKey, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUWDEUnionKey, bl);
+        super.onSyncIndexEntities(pSUWDEUnionKey, bl);
     }
 
     public Object getDataContextValue(PSUWDEUnionKey pSUWDEUnionKey, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -468,14 +468,14 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUWDEUnionKey, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUWDEUnionKey, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUWDEUnionKey pSUWDEUnionKey, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUWDEUnionKey, arrayList, n);
+        super.onExportMajorModel(pSUWDEUnionKey, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -708,14 +708,14 @@ extends PSCoreSysServiceBase<PSUWDEUnionKey> {
 
     protected boolean onMergeChild(String string, String string2, PSUWDEUnionKey pSUWDEUnionKey) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUWDEUnionKey)) {
+        if (super.onMergeChild(string, string2, pSUWDEUnionKey)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUWDEUnionKey pSUWDEUnionKey) throws Exception {
-        super.onUpdateParent((IEntity)pSUWDEUnionKey);
+        super.onUpdateParent(pSUWDEUnionKey);
     }
 
     @Override

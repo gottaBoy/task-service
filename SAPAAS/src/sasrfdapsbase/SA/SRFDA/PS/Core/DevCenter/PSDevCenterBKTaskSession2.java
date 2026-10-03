@@ -146,8 +146,8 @@ implements IPSDevCenterBKTaskSessionContext {
             return;
         }
         this.setStarted(false);
-        ArrayList<IPSDevCenterBKTask> arrayList = this.objThreadPoolLock;
-        synchronized (arrayList) {
+        Object poolLock = this.objThreadPoolLock;
+        synchronized (poolLock) {
             List<Runnable> list = null;
             if (this.singleThreadExecutor != null && (list = this.singleThreadExecutor.shutdownNow()) != null) {
                 for (Runnable runnable : list) {
@@ -162,7 +162,7 @@ implements IPSDevCenterBKTaskSessionContext {
             this.threadPoolExecutor = null;
         }
         try {
-            arrayList = this.psDevCenterBKTaskList;
+            ArrayList<IPSDevCenterBKTask> arrayList = this.psDevCenterBKTaskList;
             synchronized (arrayList) {
                 for (IPSDevCenterBKTask iPSDevCenterBKTask : this.psDevCenterBKTaskList) {
                     iPSDevCenterBKTask.cancel(true, null);
@@ -216,13 +216,13 @@ implements IPSDevCenterBKTaskSessionContext {
                 PSDCBKTaskService psDCBKTaskService = (PSDCBKTaskService)ServiceGlobal.getService(PSDCBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
                 PSDCBKTask psDevCenterBKTask = new PSDCBKTask();
                 psDevCenterBKTask.setPSDCBKTaskId(strPSDevCenterBKTaskId);
-                psDCBKTaskService.get((IEntity)psDevCenterBKTask);
+                psDCBKTaskService.get(psDevCenterBKTask);
                 if (psDevCenterBKTask.getTaskState() == SysDevBKTaskStateCodeListModel.CREATED || psDevCenterBKTask.getTaskState() == SysDevBKTaskStateCodeListModel.EXECUTING) {
                     psDevCenterBKTask.reset();
                     psDevCenterBKTask.setPSDCBKTaskId(strPSDevCenterBKTaskId);
                     psDevCenterBKTask.setTaskState(SysDevBKTaskStateCodeListModel.CANCELLED);
                     psDevCenterBKTask.setResultInfo(null);
-                    psDCBKTaskService.update((IEntity)psDevCenterBKTask, false);
+                    psDCBKTaskService.update(psDevCenterBKTask, false);
                 }
             }
             catch (Exception ex) {
@@ -352,4 +352,3 @@ implements IPSDevCenterBKTaskSessionContext {
         return System.currentTimeMillis() - this.nLastTaskFinishTime;
     }
 }
-

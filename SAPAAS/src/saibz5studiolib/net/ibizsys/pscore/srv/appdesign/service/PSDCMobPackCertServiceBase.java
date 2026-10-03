@@ -159,9 +159,9 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDCMobPackCert, pSDevCenter);
             return;
@@ -171,14 +171,14 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSDCMobPackCert, pSSysApp);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCMobPackCert, string, string2, string3);
+        super.onFillParentInfo(pSDCMobPackCert, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -199,7 +199,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
         if (bl && pSDCMobPackCert.getValidFlag() == null) {
             pSDCMobPackCert.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDCMobPackCert, bl);
+        super.onFillEntityFullInfo(pSDCMobPackCert, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDCMobPackCert, bl);
         this.onFillEntityFullInfo_PSSysApp(pSDCMobPackCert, bl);
     }
@@ -231,7 +231,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
     }
 
     protected void onWriteBackParent(PSDCMobPackCert pSDCMobPackCert, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCMobPackCert, bl);
+        super.onWriteBackParent(pSDCMobPackCert, bl);
     }
 
     public ArrayList<PSDCMobPackCert> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -314,7 +314,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
         ArrayList<PSDCMobPackCert> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCMobPackCert pSDCMobPackCert : arrayList) {
-            this.remove((IEntity)pSDCMobPackCert);
+            this.remove(pSDCMobPackCert);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -360,7 +360,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
         ArrayList<PSDCMobPackCert> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSDCMobPackCert pSDCMobPackCert : arrayList) {
-            this.remove((IEntity)pSDCMobPackCert);
+            this.remove(pSDCMobPackCert);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -386,7 +386,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
 
     protected void replaceParentInfo(PSDCMobPackCert pSDCMobPackCert, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCMobPackCert, cloneSession);
+        super.replaceParentInfo(pSDCMobPackCert, cloneSession);
         if (pSDCMobPackCert.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSDCMobPackCert.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSDCMobPackCert, (PSDevCenter)iEntity);
         }
@@ -396,7 +396,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCMobPackCert pSDCMobPackCert, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCMobPackCert, bl);
+        super.onRemoveEntityUncopyValues(pSDCMobPackCert, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCMobPackCert pSDCMobPackCert, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -468,7 +468,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDCMobPackCert, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCMobPackCert, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCMobPackCert, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AndroidCertAlias(boolean bl, PSDCMobPackCert pSDCMobPackCert, boolean bl2, boolean bl3) throws Exception {
@@ -481,7 +481,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AndroidCertAlias_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_AndroidCertAlias_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ANDROIDCERTALIAS");
@@ -503,7 +503,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AndroidCertDomain_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_AndroidCertDomain_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ANDROIDCERTDOMAIN");
@@ -525,7 +525,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AndroidCertFile_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_AndroidCertFile_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ANDROIDCERTFILE");
@@ -547,7 +547,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AndroidCertInfo_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_AndroidCertInfo_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ANDROIDCERTINFO");
@@ -569,7 +569,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AndroidcertKey_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_AndroidcertKey_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ANDROIDCERTKEY");
@@ -591,7 +591,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AndroidCertStorePwd_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_AndroidCertStorePwd_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ANDROIDCERTSTOREPWD");
@@ -613,7 +613,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IOSAppIDS_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_IOSAppIDS_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IOSAPPIDS");
@@ -635,7 +635,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IOSCertInfo_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_IOSCertInfo_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IOSCERTINFO");
@@ -657,7 +657,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IOSCertPwd_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_IOSCertPwd_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IOSCERTPWD");
@@ -679,7 +679,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IOSDistMPCert_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_IOSDistMPCert_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IOSDISTMPCERT");
@@ -701,7 +701,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IOSDistP12Cert_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_IOSDistP12Cert_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IOSDISTP12CERT");
@@ -723,7 +723,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IOSWKAMPCert_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_IOSWKAMPCert_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IOSWKAMPCERT");
@@ -745,7 +745,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IOSWKEMPCert_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_IOSWKEMPCert_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IOSWKEMPCERT");
@@ -767,7 +767,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -789,7 +789,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PackType_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_PackType_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PACKTYPE");
@@ -814,7 +814,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCMobPackCertId_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCMobPackCertId_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCMOBPACKCERTID");
@@ -839,7 +839,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCMobPackCertName_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCMobPackCertName_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCMOBPACKCERTNAME");
@@ -861,7 +861,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -883,7 +883,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -908,7 +908,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -933,7 +933,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppName_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppName_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPNAME");
@@ -958,7 +958,7 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDCMobPackCert, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDCMobPackCert, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -971,11 +971,11 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
     }
 
     protected void onSyncEntity(PSDCMobPackCert pSDCMobPackCert, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCMobPackCert, bl);
+        super.onSyncEntity(pSDCMobPackCert, bl);
     }
 
     protected void onSyncIndexEntities(PSDCMobPackCert pSDCMobPackCert, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCMobPackCert, bl);
+        super.onSyncIndexEntities(pSDCMobPackCert, bl);
     }
 
     public Object getDataContextValue(PSDCMobPackCert pSDCMobPackCert, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -983,14 +983,14 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCMobPackCert, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCMobPackCert, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCMobPackCert pSDCMobPackCert, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCMobPackCert, arrayList, n);
+        super.onExportMajorModel(pSDCMobPackCert, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1365,14 +1365,14 @@ extends PSCoreSysServiceBase<PSDCMobPackCert> {
 
     protected boolean onMergeChild(String string, String string2, PSDCMobPackCert pSDCMobPackCert) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCMobPackCert)) {
+        if (super.onMergeChild(string, string2, pSDCMobPackCert)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCMobPackCert pSDCMobPackCert) throws Exception {
-        super.onUpdateParent((IEntity)pSDCMobPackCert);
+        super.onUpdateParent(pSDCMobPackCert);
     }
 
     @Override

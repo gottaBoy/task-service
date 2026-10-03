@@ -913,7 +913,7 @@ implements Serializable {
                 PSDevCenterDBInst pSDevCenterDBInst = new PSDevCenterDBInst();
                 pSDevCenterDBInst.setPSDevCenterDBInstId(this.getPSDCDBInstId());
                 PSDevCenterDBInstService pSDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterDBInstService.autoGet((IEntity)pSDevCenterDBInst);
+                pSDevCenterDBInstService.autoGet(pSDevCenterDBInst);
                 this.psdcdbinst = pSDevCenterDBInst;
             }
             return this.psdcdbinst;

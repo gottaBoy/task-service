@@ -23,7 +23,7 @@ import SA.SRFramework.UtilityEx.StringBuilderEx;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.Hashtable;
 
 public class SqlSearchCmdCaller
@@ -186,7 +186,7 @@ implements IDBSearchCmdCaller {
         SearchResult searchResult = new SearchResult();
         searchResult.setRetCode(1);
         searchResult.setDatabase(2);
-        Statement cstmt = null;
+        PreparedStatement cstmt = null;
         try {
             try {
                 cstmt = connection.prepareStatement(stringBuilder.toString());

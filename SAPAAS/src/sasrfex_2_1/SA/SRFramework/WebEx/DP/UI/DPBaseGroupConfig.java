@@ -102,7 +102,7 @@ extends DPItemConfig {
                 DPItemConfig itemConfig = (DPItemConfig)((Object)objConfig);
                 itemConfig.setParentGroupConfig(this);
                 if (itemConfig.LoadConfig(xmlNode)) {
-                    this.itemsConfig.add((Object)itemConfig);
+                    this.itemsConfig.add(itemConfig);
                 }
             }
             return;
@@ -236,4 +236,3 @@ extends DPItemConfig {
         this.strResourceId = strResourceId;
     }
 }
-

@@ -1,20 +1,31 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.pub.ionic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.ionic.PSIonicViewCodePublisherImpl;
 
-public class PSIonicViewServiceCodePublisherImpl
-extends PSIonicViewCodePublisherImpl {
-    public PSIonicViewServiceCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSIonicViewServiceCodePublisherImpl is inconsistent\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tStringHelper cannot be resolved\n");
-    }
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFramework.Utility.StringHelper;
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tStringHelper cannot be resolved\n");
-    }
+public class PSIonicViewServiceCodePublisherImpl extends PSIonicViewCodePublisherImpl
+{
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		ArrayList<IPSGenerateCodeResult> psGenerateCodeResultList = (ArrayList<IPSGenerateCodeResult>) params.get("ctrls");
+		ArrayList<String> strList = new ArrayList<String>();
+		for (IPSGenerateCodeResult ipsGenerateCodeResult : psGenerateCodeResultList) {
+			String strImport = ipsGenerateCodeResult.getCode2();
+			if(!StringHelper.IsNullOrEmpty(strImport)){
+				if(!strList.contains(strImport)){
+					strList.add(strImport);
+				}
+			}
+		}
+		params.put("imports", strList);
+	}
 }
-

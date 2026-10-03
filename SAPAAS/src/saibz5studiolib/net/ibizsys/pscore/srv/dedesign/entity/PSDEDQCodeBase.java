@@ -1197,7 +1197,7 @@ implements Serializable {
                 PSDEDataQuery pSDEDataQuery = new PSDEDataQuery();
                 pSDEDataQuery.setPSDEDataQueryId(this.getPSDEDQId());
                 PSDEDataQueryService pSDEDataQueryService = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataQueryService.autoGet((IEntity)pSDEDataQuery);
+                pSDEDataQueryService.autoGet(pSDEDataQuery);
                 this.psdedq = pSDEDataQuery;
             }
             return this.psdedq;

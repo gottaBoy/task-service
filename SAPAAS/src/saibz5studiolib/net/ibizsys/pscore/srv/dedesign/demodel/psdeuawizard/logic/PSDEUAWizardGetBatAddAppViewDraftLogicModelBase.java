@@ -99,7 +99,7 @@ extends DELogicModelBase<PSDEUAWizard> {
         SimpleEntity simpleEntity = (SimpleEntity)iActionContext.getParam("Temp");
         SessionFactory sessionFactory = iActionContext.getSessionFactory();
         IService iService = ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)sessionFactory);
-        iService.executeAction("GET", (IEntity)pSDataEntity);
+        iService.executeAction("GET", pSDataEntity);
         this.executePrepareParam2(iActionContext);
     }
 
@@ -148,7 +148,7 @@ extends DELogicModelBase<PSDEUAWizard> {
         SimpleEntity simpleEntity = (SimpleEntity)iActionContext.getParam("Temp");
         SessionFactory sessionFactory = iActionContext.getSessionFactory();
         IService iService = ServiceGlobal.getService(PSWFDEService.class, (SessionFactory)sessionFactory);
-        iService.executeAction("GET", (IEntity)pSWFDE);
+        iService.executeAction("GET", pSWFDE);
         this.executePrepareparam4(iActionContext);
     }
 }

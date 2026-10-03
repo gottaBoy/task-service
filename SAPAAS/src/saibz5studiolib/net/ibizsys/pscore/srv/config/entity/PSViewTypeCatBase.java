@@ -1475,7 +1475,7 @@ implements Serializable {
                 PSViewTypeCat pSViewTypeCat = new PSViewTypeCat();
                 pSViewTypeCat.setPSViewTypeCatId(this.getPPSViewTypeCatId());
                 PSViewTypeCatService pSViewTypeCatService = (PSViewTypeCatService)ServiceGlobal.getService(PSViewTypeCatService.class, (SessionFactory)this.getSessionFactory());
-                pSViewTypeCatService.autoGet((IEntity)pSViewTypeCat);
+                pSViewTypeCatService.autoGet(pSViewTypeCat);
                 this.ppsviewtypecat = pSViewTypeCat;
             }
             return this.ppsviewtypecat;

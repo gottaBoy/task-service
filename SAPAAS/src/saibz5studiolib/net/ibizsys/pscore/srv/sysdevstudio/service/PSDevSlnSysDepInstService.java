@@ -58,7 +58,7 @@ extends PSDevSlnSysDepInstServiceBase {
     protected void onCheckOutModel(PSDevSlnSysDepInst pSDevSlnSysDepInst) throws Exception {
         PSDevCenterSVN pSDevCenterSVN;
         if (!pSDevSlnSysDepInst.isFullEntity()) {
-            this.get((IEntity)pSDevSlnSysDepInst);
+            this.get(pSDevSlnSysDepInst);
         }
         if ((pSDevCenterSVN = pSDevSlnSysDepInst.getModelPSDevCenterSVN()) == null && pSDevSlnSysDepInst.getPSDevSlnSys() != null) {
             pSDevCenterSVN = pSDevSlnSysDepInst.getPSDevSlnSys().getModelPSDevCenterSVN();

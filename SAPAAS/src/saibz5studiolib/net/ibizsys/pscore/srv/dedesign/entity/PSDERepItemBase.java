@@ -1480,7 +1480,7 @@ implements Serializable {
                 PSDEReport pSDEReport = new PSDEReport();
                 pSDEReport.setPSDEReportId(this.getMajorPSDEReportId());
                 PSDEReportService pSDEReportService = (PSDEReportService)ServiceGlobal.getService(PSDEReportService.class, (SessionFactory)this.getSessionFactory());
-                pSDEReportService.autoGet((IEntity)pSDEReport);
+                pSDEReportService.autoGet(pSDEReport);
                 this.majorpsdereport = pSDEReport;
             }
             return this.majorpsdereport;
@@ -1506,7 +1506,7 @@ implements Serializable {
                 PSDEReport pSDEReport = new PSDEReport();
                 pSDEReport.setPSDEReportId(this.getMinorPSDEReportId());
                 PSDEReportService pSDEReportService = (PSDEReportService)ServiceGlobal.getService(PSDEReportService.class, (SessionFactory)this.getSessionFactory());
-                pSDEReportService.autoGet((IEntity)pSDEReport);
+                pSDEReportService.autoGet(pSDEReport);
                 this.minorpsdereport = pSDEReport;
             }
             return this.minorpsdereport;

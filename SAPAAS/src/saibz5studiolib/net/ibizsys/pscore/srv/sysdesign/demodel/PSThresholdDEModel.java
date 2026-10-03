@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSThresholdDEModelBase;
 
 public class PSThresholdDEModel
 extends PSThresholdDEModelBase {
+
+    public PSThresholdDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

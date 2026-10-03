@@ -1,12 +1,5 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.ctrlmodel.ITreeDEDataSetNodeModel
- */
 package net.ibizsys.model.control.tree;
 
-import net.ibizsys.model.control.tree.IPSDETreeNode;
 import net.ibizsys.model.dataentity.action.IPSDEAction;
 import net.ibizsys.model.dataentity.ds.IPSDEDataSet;
 import net.ibizsys.model.dataentity.field.IPSDEField;
@@ -14,33 +7,116 @@ import net.ibizsys.model.dataentity.logic.IPSDELogic;
 import net.ibizsys.model.dataentity.priv.IPSDEOPPriv;
 import net.ibizsys.paas.ctrlmodel.ITreeDEDataSetNodeModel;
 
-public interface IPSDETreeDataSetNode
-extends IPSDETreeNode,
-ITreeDEDataSetNodeModel {
-    public IPSDEDataSet getPSDEDataSet();
+/**
+ * 视图树实体数据集合节点对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDETreeDataSetNode extends IPSDETreeNode,ITreeDEDataSetNodeModel
+{
+	
+	/**
+	 * 获取数据集合
+	 * @return
+	 */
+	IPSDEDataSet getPSDEDataSet();
+	
+	
+	
+	/**
+	 * 获取过滤数据集合
+	 * @return
+	 */
+	IPSDEDataSet getFilterPSDEDataSet();
+	
+	
+	
+	/**
+	 * 获取删除实体行为
+	 * @return
+	 */
+	IPSDEAction getRemovePSDEAction();
+	
+	
+	
+	/**
+	 * 获取删除实体行为权限标识
+	 * @return
+	 */
+	IPSDEOPPriv getRemovePSDEOPPriv();
+	
+	
+	/**
+	 * 获取更新实体行为
+	 * @return
+	 */
+	IPSDEAction getUpdatePSDEAction();
+	
+	
+	
+	/**
+	 * 获取更新实体行为权限标识
+	 * @return
+	 */
+	IPSDEOPPriv getUpdatePSDEOPPriv();
+	
+	
+	
+	/**
+	 * 获取上下文数据转化逻辑
+	 * @return
+	 */
+	IPSDELogic getActiveDataPSDELogic();
+	
+	
+	
+	/**
+	 * 获取ID属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getIdPSDEField();
 
-    public IPSDEDataSet getFilterPSDEDataSet();
+	/**
+	 * 获取文本属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getTextPSDEField();
 
-    public IPSDEAction getRemovePSDEAction();
+	/**
+	 * 获取图标属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getIconPSDEField();
 
-    public IPSDEOPPriv getRemovePSDEOPPriv();
+	/**
+	 * 获取排序属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getSortPSDEField();
 
-    public IPSDEAction getUpdatePSDEAction();
 
-    public IPSDEOPPriv getUpdatePSDEOPPriv();
 
-    public IPSDELogic getActiveDataPSDELogic();
+	/**
+	 * 获取子节点数量属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getChildCntPSDEField();
 
-    public IPSDEField getIdPSDEField();
+		
+	
+	/**
+	 * 获取页节点标记属性对象
+	 * @return
+	 */
+	IPSDEField getLeafFlagPSDEField();
+	
+	
 
-    public IPSDEField getTextPSDEField();
-
-    public IPSDEField getIconPSDEField();
-
-    public IPSDEField getSortPSDEField();
-
-    public IPSDEField getChildCntPSDEField();
-
-    public IPSDEField getLeafFlagPSDEField();
+	
+	 
 }
-

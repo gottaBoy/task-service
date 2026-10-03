@@ -139,9 +139,9 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
             PSDEViewBase pSDEViewBase = (PSDEViewBase)iService.getDEModel().createEntity();
             pSDEViewBase.set("PSDEVIEWBASEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEViewBase);
+                iService.getTemp(pSDEViewBase);
             } else {
-                iService.get((IEntity)pSDEViewBase);
+                iService.get(pSDEViewBase);
             }
             this.onFillParentInfo_PSDEViewBase(pSDEViewGrpDetail, pSDEViewBase);
             return;
@@ -151,14 +151,14 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
             PSDEViewGroup pSDEViewGroup = (PSDEViewGroup)iService.getDEModel().createEntity();
             pSDEViewGroup.set("PSDEVIEWGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEViewGroup);
+                iService.getTemp(pSDEViewGroup);
             } else {
-                iService.get((IEntity)pSDEViewGroup);
+                iService.get(pSDEViewGroup);
             }
             this.onFillParentInfo_PSDEViewGroup(pSDEViewGrpDetail, pSDEViewGroup);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEViewGrpDetail, string, string2, string3);
+        super.onFillParentInfo(pSDEViewGrpDetail, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
         if (bl && pSDEViewGrpDetail.getValidFlag() == null) {
             pSDEViewGrpDetail.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDEViewGrpDetail, bl);
+        super.onFillEntityFullInfo(pSDEViewGrpDetail, bl);
         this.onFillEntityFullInfo_PSDEViewBase(pSDEViewGrpDetail, bl);
         this.onFillEntityFullInfo_PSDEViewGroup(pSDEViewGrpDetail, bl);
     }
@@ -191,7 +191,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
     }
 
     protected void onWriteBackParent(PSDEViewGrpDetail pSDEViewGrpDetail, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEViewGrpDetail, bl);
+        super.onWriteBackParent(pSDEViewGrpDetail, bl);
     }
 
     public ArrayList<PSDEViewGrpDetail> selectByPSDEViewBase(PSDEViewBaseBase pSDEViewBaseBase) throws Exception {
@@ -246,8 +246,8 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
         ArrayList<PSDEViewGrpDetail> arrayList = this.selectByPSDEViewBase(pSDEViewBase, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVIEWBASE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEViewBase);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEVIEWGRPDETAIL_PSDEVIEWBASE_PSDEVIEWBASEID", "", iDataEntityModel.getName(), "PSDEVIEWGRPDETAIL", iDataEntityModel.getDataInfo((IEntity)pSDEViewBase), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEViewBase);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEVIEWGRPDETAIL_PSDEVIEWBASE_PSDEVIEWBASEID", "", iDataEntityModel.getName(), "PSDEVIEWGRPDETAIL", iDataEntityModel.getDataInfo(pSDEViewBase), arrayList.get(0)));
         }
     }
 
@@ -280,7 +280,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
         ArrayList<PSDEViewGrpDetail> arrayList = this.selectByPSDEViewBase(pSDEViewBase);
         this.onBeforeRemoveByPSDEViewBase(pSDEViewBase, arrayList);
         for (PSDEViewGrpDetail pSDEViewGrpDetail : arrayList) {
-            this.remove((IEntity)pSDEViewGrpDetail);
+            this.remove(pSDEViewGrpDetail);
         }
         this.onAfterRemoveByPSDEViewBase(pSDEViewBase, arrayList);
     }
@@ -326,7 +326,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
         ArrayList<PSDEViewGrpDetail> arrayList = this.selectByPSDEViewGroup(pSDEViewGroup);
         this.onBeforeRemoveByPSDEViewGroup(pSDEViewGroup, arrayList);
         for (PSDEViewGrpDetail pSDEViewGrpDetail : arrayList) {
-            this.remove((IEntity)pSDEViewGrpDetail);
+            this.remove(pSDEViewGrpDetail);
         }
         this.onAfterRemoveByPSDEViewGroup(pSDEViewGroup, arrayList);
     }
@@ -347,7 +347,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
 
     protected void replaceParentInfo(PSDEViewGrpDetail pSDEViewGrpDetail, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEViewGrpDetail, cloneSession);
+        super.replaceParentInfo(pSDEViewGrpDetail, cloneSession);
         if (pSDEViewGrpDetail.getPSDEViewBaseId() != null && (iEntity = cloneSession.getEntity("PSDEVIEWBASE", (Object)pSDEViewGrpDetail.getPSDEViewBaseId())) != null) {
             this.onFillParentInfo_PSDEViewBase(pSDEViewGrpDetail, (PSDEViewBase)iEntity);
         }
@@ -357,7 +357,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEViewGrpDetail pSDEViewGrpDetail, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEViewGrpDetail, bl);
+        super.onRemoveEntityUncopyValues(pSDEViewGrpDetail, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEViewGrpDetail pSDEViewGrpDetail, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -384,7 +384,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDEViewGrpDetail, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEViewGrpDetail, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEViewGrpDetail, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSDEViewGrpDetail pSDEViewGrpDetail, boolean bl2, boolean bl3) throws Exception {
@@ -397,7 +397,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEViewGrpDetail, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEViewGrpDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -422,7 +422,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEViewBaseId_Default((IEntity)pSDEViewGrpDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEViewBaseId_Default(pSDEViewGrpDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVIEWBASEID");
@@ -447,7 +447,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEViewGroupId_Default((IEntity)pSDEViewGrpDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEViewGroupId_Default(pSDEViewGrpDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVIEWGROUPID");
@@ -472,7 +472,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEViewGrpDetailId_Default((IEntity)pSDEViewGrpDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEViewGrpDetailId_Default(pSDEViewGrpDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVIEWGRPDETAILID");
@@ -497,7 +497,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEViewGrpDetailName_Default((IEntity)pSDEViewGrpDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEViewGrpDetailName_Default(pSDEViewGrpDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVIEWGRPDETAILNAME");
@@ -519,7 +519,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefMode_Default((IEntity)pSDEViewGrpDetail, bl2, bl3);
+            string2 = this.onTestValueRule_RefMode_Default(pSDEViewGrpDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFMODE");
@@ -561,7 +561,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDEViewGrpDetail, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDEViewGrpDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -574,11 +574,11 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
     }
 
     protected void onSyncEntity(PSDEViewGrpDetail pSDEViewGrpDetail, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEViewGrpDetail, bl);
+        super.onSyncEntity(pSDEViewGrpDetail, bl);
     }
 
     protected void onSyncIndexEntities(PSDEViewGrpDetail pSDEViewGrpDetail, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEViewGrpDetail, bl);
+        super.onSyncIndexEntities(pSDEViewGrpDetail, bl);
     }
 
     public Object getDataContextValue(PSDEViewGrpDetail pSDEViewGrpDetail, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -586,7 +586,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEViewGrpDetail, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEViewGrpDetail, string, iDataContextParam)) != null) {
             return object;
         }
         PSDEViewGroup pSDEViewGroup = pSDEViewGrpDetail.getPSDEViewGroup();
@@ -597,7 +597,7 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
     }
 
     protected void onExportMajorModel(PSDEViewGrpDetail pSDEViewGrpDetail, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEViewGrpDetail, arrayList, n);
+        super.onExportMajorModel(pSDEViewGrpDetail, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -782,14 +782,14 @@ extends PSCoreSysServiceBase<PSDEViewGrpDetail> {
 
     protected boolean onMergeChild(String string, String string2, PSDEViewGrpDetail pSDEViewGrpDetail) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEViewGrpDetail)) {
+        if (super.onMergeChild(string, string2, pSDEViewGrpDetail)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEViewGrpDetail pSDEViewGrpDetail) throws Exception {
-        super.onUpdateParent((IEntity)pSDEViewGrpDetail);
+        super.onUpdateParent(pSDEViewGrpDetail);
     }
 
     @Override

@@ -52,7 +52,7 @@ extends BaseDADataGridActionHelper {
         SRFExDGAjaxActionResult resetCacheResult = new SRFExDGAjaxActionResult();
         resetCacheResult.setReload(false);
         try {
-            Iterator schemaIterator = RolapSchema.getRolapSchemas();
+            Iterator schemaIterator = RolapSchema.getRolapSchemas().iterator();
             while (schemaIterator.hasNext()) {
                 RolapSchema schema = (RolapSchema)schemaIterator.next();
                 CacheControl cacheControl = schema.getInternalConnection().getCacheControl(null);
@@ -152,10 +152,18 @@ extends BaseDADataGridActionHelper {
                 return true;
             }
         }
-        OutputStreamWriter out = new OutputStreamWriter((OutputStream)new FileOutputStream(strConfigPath), "UTF-8");
-        out.write(sb.toString());
-        out.flush();
-        out.close();
+        try {
+            OutputStreamWriter out = new OutputStreamWriter((OutputStream)new FileOutputStream(strConfigPath), "UTF-8");
+            out.write(sb.toString());
+            out.flush();
+            out.close();
+        }
+        catch (Exception exception) {
+            publishConfigResult.setRetCode(1);
+            publishConfigResult.setErrorInfo(exception.getMessage());
+            this.getPage().Output(publishConfigResult.ToJSONString());
+            return true;
+        }
         publishConfigResult.setRetCode(0);
         publishConfigResult.AppendJSCode("alert('\u66f4\u65b0\u591a\u7ef4\u5206\u6790\u7f16\u76ee\u6210\u529f!');");
         this.getPage().Output(publishConfigResult.ToJSONString());

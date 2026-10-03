@@ -1553,7 +1553,7 @@ implements Serializable {
                 PSDEAction pSDEAction = new PSDEAction();
                 pSDEAction.setPSDEActionId(this.getPSDEActionId());
                 PSDEActionService pSDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionService.autoGet((IEntity)pSDEAction);
+                pSDEActionService.autoGet(pSDEAction);
                 this.psdeaction = pSDEAction;
             }
             return this.psdeaction;
@@ -1579,7 +1579,7 @@ implements Serializable {
                 PSDEMainState pSDEMainState = new PSDEMainState();
                 pSDEMainState.setPSDEMainStateId(this.getPSDEMSId());
                 PSDEMainStateService pSDEMainStateService = (PSDEMainStateService)ServiceGlobal.getService(PSDEMainStateService.class, (SessionFactory)this.getSessionFactory());
-                pSDEMainStateService.autoGet((IEntity)pSDEMainState);
+                pSDEMainStateService.autoGet(pSDEMainState);
                 this.psdems = pSDEMainState;
             }
             return this.psdems;

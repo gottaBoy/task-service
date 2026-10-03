@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSASType> {
     }
 
     protected void onFillParentInfo(PSASType pSASType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSASType, string, string2, string3);
+        super.onFillParentInfo(pSASType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSASType> {
         if (bl && pSASType.getValidFlag() == null) {
             pSASType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSASType, bl);
+        super.onFillEntityFullInfo(pSASType, bl);
     }
 
     protected void onWriteBackParent(PSASType pSASType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSASType, bl);
+        super.onWriteBackParent(pSASType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSASType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSASType pSASType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSASType, bl);
+        super.onRemoveEntityUncopyValues(pSASType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSASType pSASType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSASType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSASType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSASType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSASType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_IconPath(boolean bl, PSASType pSASType, boolean bl2, boolean bl3) throws Exception {
@@ -192,7 +192,7 @@ extends PSCoreSysServiceBase<PSASType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconPath_Default((IEntity)pSASType, bl2, bl3);
+            string2 = this.onTestValueRule_IconPath_Default(pSASType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONPATH");
@@ -214,7 +214,7 @@ extends PSCoreSysServiceBase<PSASType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_InstallPath_Default((IEntity)pSASType, bl2, bl3);
+            string2 = this.onTestValueRule_InstallPath_Default(pSASType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INSTALLPATH");
@@ -236,7 +236,7 @@ extends PSCoreSysServiceBase<PSASType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSASType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSASType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -261,7 +261,7 @@ extends PSCoreSysServiceBase<PSASType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSASTypeId_Default((IEntity)pSASType, bl2, bl3);
+            string2 = this.onTestValueRule_PSASTypeId_Default(pSASType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSASTYPEID");
@@ -286,7 +286,7 @@ extends PSCoreSysServiceBase<PSASType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSASTypeName_Default((IEntity)pSASType, bl2, bl3);
+            string2 = this.onTestValueRule_PSASTypeName_Default(pSASType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSASTYPENAME");
@@ -308,7 +308,7 @@ extends PSCoreSysServiceBase<PSASType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StartCmd_Default((IEntity)pSASType, bl2, bl3);
+            string2 = this.onTestValueRule_StartCmd_Default(pSASType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STARTCMD");
@@ -330,7 +330,7 @@ extends PSCoreSysServiceBase<PSASType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StopCmd_Default((IEntity)pSASType, bl2, bl3);
+            string2 = this.onTestValueRule_StopCmd_Default(pSASType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STOPCMD");
@@ -352,7 +352,7 @@ extends PSCoreSysServiceBase<PSASType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeHelper_Default((IEntity)pSASType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeHelper_Default(pSASType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEHELPER");
@@ -374,7 +374,7 @@ extends PSCoreSysServiceBase<PSASType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSASType, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSASType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -396,7 +396,7 @@ extends PSCoreSysServiceBase<PSASType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSASType, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSASType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -421,7 +421,7 @@ extends PSCoreSysServiceBase<PSASType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSASType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSASType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -434,11 +434,11 @@ extends PSCoreSysServiceBase<PSASType> {
     }
 
     protected void onSyncEntity(PSASType pSASType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSASType, bl);
+        super.onSyncEntity(pSASType, bl);
     }
 
     protected void onSyncIndexEntities(PSASType pSASType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSASType, bl);
+        super.onSyncIndexEntities(pSASType, bl);
     }
 
     public Object getDataContextValue(PSASType pSASType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -446,14 +446,14 @@ extends PSCoreSysServiceBase<PSASType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSASType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSASType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSASType pSASType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSASType, arrayList, n);
+        super.onExportMajorModel(pSASType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -663,14 +663,14 @@ extends PSCoreSysServiceBase<PSASType> {
 
     protected boolean onMergeChild(String string, String string2, PSASType pSASType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSASType)) {
+        if (super.onMergeChild(string, string2, pSASType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSASType pSASType) throws Exception {
-        super.onUpdateParent((IEntity)pSASType);
+        super.onUpdateParent(pSASType);
     }
 
     @Override

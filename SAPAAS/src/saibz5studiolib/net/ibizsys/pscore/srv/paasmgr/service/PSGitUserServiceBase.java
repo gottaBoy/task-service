@@ -169,9 +169,9 @@ extends PSCoreSysServiceBase<PSGitUser> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSGitUser, pSDevCenter);
             return;
@@ -181,9 +181,9 @@ extends PSCoreSysServiceBase<PSGitUser> {
             PSSVNServer pSSVNServer = (PSSVNServer)iService.getDEModel().createEntity();
             pSSVNServer.set("PSSVNSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSVNServer);
+                iService.getTemp(pSSVNServer);
             } else {
-                iService.get((IEntity)pSSVNServer);
+                iService.get(pSSVNServer);
             }
             this.onFillParentInfo_Pssvnserver(pSGitUser, pSSVNServer);
             return;
@@ -193,14 +193,14 @@ extends PSCoreSysServiceBase<PSGitUser> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_PSSvrDomain(pSGitUser, pSSvrDomain);
             return;
         }
-        super.onFillParentInfo((IEntity)pSGitUser, string, string2, string3);
+        super.onFillParentInfo(pSGitUser, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -231,7 +231,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 pSGitUser.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSGitUser, bl);
+        super.onFillEntityFullInfo(pSGitUser, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSGitUser, bl);
         this.onFillEntityFullInfo_Pssvnserver(pSGitUser, bl);
         this.onFillEntityFullInfo_PSSvrDomain(pSGitUser, bl);
@@ -257,7 +257,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
     }
 
     protected void onWriteBackParent(PSGitUser pSGitUser, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSGitUser, bl);
+        super.onWriteBackParent(pSGitUser, bl);
     }
 
     public ArrayList<PSGitUser> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -364,7 +364,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
         ArrayList<PSGitUser> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSGitUser pSGitUser : arrayList) {
-            this.remove((IEntity)pSGitUser);
+            this.remove(pSGitUser);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -382,8 +382,8 @@ extends PSCoreSysServiceBase<PSGitUser> {
         ArrayList<PSGitUser> arrayList = this.selectByPssvnserver(pSSVNServer, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVNSERVER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSVNServer);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSGITUSER_PSSVNSERVER_PSSVNSERVERID", "", iDataEntityModel.getName(), "PSGITUSER", iDataEntityModel.getDataInfo((IEntity)pSSVNServer), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSVNServer);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSGITUSER_PSSVNSERVER_PSSVNSERVERID", "", iDataEntityModel.getName(), "PSGITUSER", iDataEntityModel.getDataInfo(pSSVNServer), arrayList.get(0)));
         }
     }
 
@@ -416,7 +416,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
         ArrayList<PSGitUser> arrayList = this.selectByPssvnserver(pSSVNServer);
         this.onBeforeRemoveByPssvnserver(pSSVNServer, arrayList);
         for (PSGitUser pSGitUser : arrayList) {
-            this.remove((IEntity)pSGitUser);
+            this.remove(pSGitUser);
         }
         this.onAfterRemoveByPssvnserver(pSSVNServer, arrayList);
     }
@@ -434,8 +434,8 @@ extends PSCoreSysServiceBase<PSGitUser> {
         ArrayList<PSGitUser> arrayList = this.selectByPSSvrDomain(pSSvrDomain, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRDOMAIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrDomain);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSGITUSER_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSGITUSER", iDataEntityModel.getDataInfo((IEntity)pSSvrDomain), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrDomain);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSGITUSER_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSGITUSER", iDataEntityModel.getDataInfo(pSSvrDomain), arrayList.get(0)));
         }
     }
 
@@ -468,7 +468,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
         ArrayList<PSGitUser> arrayList = this.selectByPSSvrDomain(pSSvrDomain);
         this.onBeforeRemoveByPSSvrDomain(pSSvrDomain, arrayList);
         for (PSGitUser pSGitUser : arrayList) {
-            this.remove((IEntity)pSGitUser);
+            this.remove(pSGitUser);
         }
         this.onAfterRemoveByPSSvrDomain(pSSvrDomain, arrayList);
     }
@@ -491,7 +491,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
 
     protected void replaceParentInfo(PSGitUser pSGitUser, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSGitUser, cloneSession);
+        super.replaceParentInfo(pSGitUser, cloneSession);
         if (pSGitUser.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSGitUser.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSGitUser, (PSDevCenter)iEntity);
         }
@@ -504,7 +504,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
     }
 
     protected void onRemoveEntityUncopyValues(PSGitUser pSGitUser, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSGitUser, bl);
+        super.onRemoveEntityUncopyValues(pSGitUser, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSGitUser pSGitUser, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -555,7 +555,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSGitUser, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSGitUser, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSGitUser, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AllDCFlag(boolean bl, PSGitUser pSGitUser, boolean bl2, boolean bl3) throws Exception {
@@ -568,7 +568,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AllDCFlag_Default((IEntity)pSGitUser, bl2, bl3);
+            string = this.onTestValueRule_AllDCFlag_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALLDCFLAG");
@@ -590,7 +590,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CredentialSyncMode_Default((IEntity)pSGitUser, bl2, bl3);
+            string = this.onTestValueRule_CredentialSyncMode_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CREDENTIALSYNCMODE");
@@ -612,7 +612,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)pSGitUser, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -651,7 +651,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Email_Default((IEntity)pSGitUser, bl2, bl3);
+            string2 = this.onTestValueRule_Email_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EMAIL");
@@ -676,7 +676,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GitPath_Default((IEntity)pSGitUser, bl2, bl3);
+            string2 = this.onTestValueRule_GitPath_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITPATH");
@@ -698,7 +698,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSGitUser, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -723,7 +723,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSGitUser, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -745,7 +745,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSGitUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -767,7 +767,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSGitUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -792,7 +792,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSGitUserId_Default((IEntity)pSGitUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSGitUserId_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSGITUSERID");
@@ -817,7 +817,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSGitUserName_Default((IEntity)pSGitUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSGitUserName_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSGITUSERNAME");
@@ -856,7 +856,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSVNServerId_Default((IEntity)pSGitUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSSVNServerId_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVNSERVERID");
@@ -878,7 +878,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSGitUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -903,7 +903,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSGitUser, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -928,7 +928,7 @@ extends PSCoreSysServiceBase<PSGitUser> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSGitUser, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSGitUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -941,11 +941,11 @@ extends PSCoreSysServiceBase<PSGitUser> {
     }
 
     protected void onSyncEntity(PSGitUser pSGitUser, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSGitUser, bl);
+        super.onSyncEntity(pSGitUser, bl);
     }
 
     protected void onSyncIndexEntities(PSGitUser pSGitUser, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSGitUser, bl);
+        super.onSyncIndexEntities(pSGitUser, bl);
     }
 
     public Object getDataContextValue(PSGitUser pSGitUser, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -953,14 +953,14 @@ extends PSCoreSysServiceBase<PSGitUser> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSGitUser, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSGitUser, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSGitUser pSGitUser, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSGitUser, arrayList, n);
+        super.onExportMajorModel(pSGitUser, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1241,14 +1241,14 @@ extends PSCoreSysServiceBase<PSGitUser> {
 
     protected boolean onMergeChild(String string, String string2, PSGitUser pSGitUser) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSGitUser)) {
+        if (super.onMergeChild(string, string2, pSGitUser)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSGitUser pSGitUser) throws Exception {
-        super.onUpdateParent((IEntity)pSGitUser);
+        super.onUpdateParent(pSGitUser);
     }
 
     @Override

@@ -35,7 +35,7 @@ extends PSIBiz5SysAppCodePublisherImpl {
     @Override
     protected void onGenerateCode(IPSApplication iPSApplication, ArrayList<PSSysSFCode> list) throws Exception {
         if (!StringHelper.IsNullOrEmpty((String)this.strDEFilter)) {
-            Vector psAppDEViewList = new Vector();
+            Vector<PSAppDEView> psAppDEViewList = new Vector();
             CallResult callResult = this.getPSModelHelper().getAllPSAppDEViews(iPSApplication.getId(), this.strDEFilter, psAppDEViewList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u5168\u90e8\u5e94\u7528\u89c6\u56fe\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));

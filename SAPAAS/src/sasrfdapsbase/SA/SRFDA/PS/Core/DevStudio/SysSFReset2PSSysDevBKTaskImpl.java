@@ -43,7 +43,7 @@ extends PSSysDevBKTaskImplBase {
         PSSysSFPubService psSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSysSFPub psSysSFPub = new PSSysSFPub();
         psSysSFPub.setPSSysSFPubId(this.psSysDevBKTask.getTASKPARAM());
-        psSysSFPubService.get((IEntity)psSysSFPub);
+        psSysSFPubService.get(psSysSFPub);
         String strRetString = this.generateCode(psSysSFPub);
         if (this.getPSSysPubRuntime() != null && this.getPSSysRunSession() != null) {
             this.getPSSysPubRuntime().resetSFPubCode(this.getPSSysRunSession().getPSSysSFPub());
@@ -73,4 +73,3 @@ extends PSSysDevBKTaskImplBase {
         return StringHelper.format((String)"\u91cd\u7f6e\u670d\u52a1\u5c42\u4ee3\u7801\uff08\u540e\uff09\u6210\u529f, \u8017\u65f6[%1$s]ms", (Object)nBeginTime);
     }
 }
-

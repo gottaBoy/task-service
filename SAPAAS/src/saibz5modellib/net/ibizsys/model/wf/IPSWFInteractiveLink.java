@@ -1,16 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFInteractiveLinkModel
- */
 package net.ibizsys.model.wf;
 
-import net.ibizsys.model.wf.IPSWFLink;
 import net.ibizsys.pswf.core.IWFInteractiveLinkModel;
+ 
+/**
+ * 流程交互链接对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSWFInteractiveLink extends IPSWFLink,IWFInteractiveLinkModel
+{
 
-public interface IPSWFInteractiveLink
-extends IPSWFLink,
-IWFInteractiveLinkModel {
 }
-

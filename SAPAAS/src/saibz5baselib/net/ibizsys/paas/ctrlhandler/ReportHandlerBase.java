@@ -1,41 +1,65 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.CtrlHandlerBase;
-import net.ibizsys.paas.ctrlhandler.IReportHandler;
 import net.ibizsys.paas.ctrlmodel.ICtrlModel;
 import net.ibizsys.paas.ctrlmodel.IReportModel;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.web.AjaxActionResult;
 import net.ibizsys.paas.web.MDAjaxActionResult;
 
-public abstract class ReportHandlerBase
-extends CtrlHandlerBase
-implements IReportHandler {
-    protected abstract IReportModel getReportModel();
+/**
+ * 报表部件后台处理对象基类
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class ReportHandlerBase extends CtrlHandlerBase implements IReportHandler {
+	/**
+	 * 获取报表部件模型
+	 * 
+	 * @return
+	 */
+	protected abstract IReportModel getReportModel();
 
-    @Override
-    public ICtrlModel getCtrlModel() {
-        return this.getReportModel();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.ICtrlHandler#getCtrlModel()
+	 */
+	@Override
+	public ICtrlModel getCtrlModel() {
+		return getReportModel();
+	}
 
-    @Override
-    protected AjaxActionResult onProcessAction(String strAction) throws Exception {
-        if (StringHelper.compare(strAction, "fetch", true) == 0) {
-            return this.onFetch();
-        }
-        return super.onProcessAction(strAction);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.CtrlHandlerBase#onProcessAction(java.lang .String)
+	 */
+	@Override
+	protected AjaxActionResult onProcessAction(String strAction) throws Exception {
+		if (StringHelper.compare(strAction, ACTION_FETCH, true) == 0) {
+			return onFetch();
+		}
 
-    protected MDAjaxActionResult createFetchActionResult() {
-        return new MDAjaxActionResult();
-    }
+		return super.onProcessAction(strAction);
+	}
 
-    protected AjaxActionResult onFetch() throws Exception {
-        MDAjaxActionResult mdAjaxActionResult = this.createFetchActionResult();
-        return mdAjaxActionResult;
-    }
+	/**
+	 * 建立获取行为结果
+	 * 
+	 * @return
+	 */
+	protected MDAjaxActionResult createFetchActionResult() {
+		return new MDAjaxActionResult();
+	}
+
+	/*
+	 * 后台处理
+	 */
+	protected AjaxActionResult onFetch() throws Exception {
+		MDAjaxActionResult mdAjaxActionResult = createFetchActionResult();
+		// fillFetchResult(mdAjaxActionResult);
+		return mdAjaxActionResult;
+	}
+
 }
-

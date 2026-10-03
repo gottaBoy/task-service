@@ -80,8 +80,8 @@ extends PSDEDataCtrl {
                     String strName;
                     BaseDataEntity cond = new BaseDataEntity();
                     cond.setParamValue("PSDEFORMID", (Object)strPSDEFormId);
-                    Vector psDEFormDetailList = new Vector();
-                    callResult = StringHelper.Compare((String)strDetailType, (String)"FORMITEM", (boolean)true) == 0 ? (StringHelper.Compare((String)strFormType, (String)"EDITFORM", (boolean)true) == 0 ? this.Select(cond, psDEFormDetailList, PSDEFormDetail.class.getName(), "UPPER(PSDEFORMDETAILNAME) LIKE '" + psDEFormDetail.getPSDEFNAME() + "%'", "") : this.Select(cond, psDEFormDetailList, PSDEFormDetail.class.getName(), "UPPER(PSDEFORMDETAILNAME) LIKE '" + psDEFormDetail.getPSDEFSFITEMNAME() + "%'", "")) : this.Select(cond, psDEFormDetailList, PSDEFormDetail.class.getName(), "UPPER(PSDEFORMDETAILNAME) LIKE '" + strDetailType + "%'", "");
+                    Vector<PSDEFormDetailV3> psDEFormDetailList = new Vector<>();
+                    callResult = StringHelper.Compare((String)strDetailType, (String)"FORMITEM", (boolean)true) == 0 ? (StringHelper.Compare((String)strFormType, (String)"EDITFORM", (boolean)true) == 0 ? this.Select(cond, psDEFormDetailList, PSDEFormDetailV3.class.getName(), "UPPER(PSDEFORMDETAILNAME) LIKE '" + psDEFormDetail.getPSDEFNAME() + "%'", "") : this.Select(cond, psDEFormDetailList, PSDEFormDetailV3.class.getName(), "UPPER(PSDEFORMDETAILNAME) LIKE '" + psDEFormDetail.getPSDEFSFITEMNAME() + "%'", "")) : this.Select(cond, psDEFormDetailList, PSDEFormDetailV3.class.getName(), "UPPER(PSDEFORMDETAILNAME) LIKE '" + strDetailType + "%'", "");
                     if (callResult.isError()) {
                         log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u540c\u7c7b\u8868\u5355\u6210\u5458\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                         return callResult;
@@ -161,4 +161,3 @@ extends PSDEDataCtrl {
         return callResult;
     }
 }
-

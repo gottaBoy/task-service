@@ -156,10 +156,10 @@ implements IPSWFUtilUIActionService {
 
     @Override
     protected List<PSWFUtilUIAction> onListAll() throws Exception {
-        List pssyswfsettings;
-        List psworkflows;
+        List<PSSysWFSetting> pssyswfsettings;
+        List<PSWorkflow> psworkflows;
         ArrayList<PSWFUtilUIAction> list = new ArrayList<PSWFUtilUIAction>();
-        List pswfversions = PSModelServiceUtil.getInstance().getPSWFVersionService().listAll();
+        List<PSWFVersion> pswfversions = PSModelServiceUtil.getInstance().getPSWFVersionService().listAll();
         if (pswfversions != null) {
             for (PSWFVersion parent : pswfversions) {
                 List<PSWFUtilUIAction> items = this.listByPSWFVersion(parent);

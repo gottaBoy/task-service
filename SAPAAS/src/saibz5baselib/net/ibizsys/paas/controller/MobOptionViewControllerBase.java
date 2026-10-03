@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.MobEditViewControllerBase;
+/**
+ * 移动端选项视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MobOptionViewControllerBase extends MobEditViewControllerBase {
+	public MobOptionViewControllerBase() throws Exception {
+		super();
+	}
 
-public abstract class MobOptionViewControllerBase
-extends MobEditViewControllerBase {
 }
-

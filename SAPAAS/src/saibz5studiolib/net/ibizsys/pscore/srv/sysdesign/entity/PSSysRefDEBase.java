@@ -1060,7 +1060,7 @@ implements Serializable {
                 PSSysRef pSSysRef = new PSSysRef();
                 pSSysRef.setPSSysRefId(this.getPSSysRefId());
                 PSSysRefService pSSysRefService = (PSSysRefService)ServiceGlobal.getService(PSSysRefService.class, (SessionFactory)this.getSessionFactory());
-                pSSysRefService.autoGet((IEntity)pSSysRef);
+                pSSysRefService.autoGet(pSSysRef);
                 this.pssysref = pSSysRef;
             }
             return this.pssysref;

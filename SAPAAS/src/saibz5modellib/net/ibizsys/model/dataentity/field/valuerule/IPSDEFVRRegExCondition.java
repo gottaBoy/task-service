@@ -1,12 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.field.valuerule;
 
-import net.ibizsys.model.dataentity.field.valuerule.IPSDEFVRSingleCondition;
-
-public interface IPSDEFVRRegExCondition
-extends IPSDEFVRSingleCondition {
-    public String getRegExCode();
+/**
+ * 属性值规则（正则式条件）对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEFVRRegExCondition extends IPSDEFVRSingleCondition
+{
+	
+	/**
+	 * 获取正则式代码
+	 * @return
+	 */
+	String getRegExCode();
 }
-

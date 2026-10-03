@@ -136,14 +136,14 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDevSlnSysPubLock, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDevSlnSysPubLock, string, string2, string3);
+        super.onFillParentInfo(pSDevSlnSysPubLock, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -159,7 +159,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
         if (bl && pSDevSlnSysPubLock.getValidFlag() == null) {
             pSDevSlnSysPubLock.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDevSlnSysPubLock, bl);
+        super.onFillEntityFullInfo(pSDevSlnSysPubLock, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDevSlnSysPubLock, bl);
     }
 
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
     }
 
     protected void onWriteBackParent(PSDevSlnSysPubLock pSDevSlnSysPubLock, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDevSlnSysPubLock, bl);
+        super.onWriteBackParent(pSDevSlnSysPubLock, bl);
     }
 
     public ArrayList<PSDevSlnSysPubLock> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -236,7 +236,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
         ArrayList<PSDevSlnSysPubLock> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDevSlnSysPubLock pSDevSlnSysPubLock : arrayList) {
-            this.remove((IEntity)pSDevSlnSysPubLock);
+            this.remove(pSDevSlnSysPubLock);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -257,14 +257,14 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
 
     protected void replaceParentInfo(PSDevSlnSysPubLock pSDevSlnSysPubLock, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDevSlnSysPubLock, cloneSession);
+        super.replaceParentInfo(pSDevSlnSysPubLock, cloneSession);
         if (pSDevSlnSysPubLock.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSDevSlnSysPubLock.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSDevSlnSysPubLock, (PSDevCenter)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDevSlnSysPubLock pSDevSlnSysPubLock, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDevSlnSysPubLock, bl);
+        super.onRemoveEntityUncopyValues(pSDevSlnSysPubLock, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDevSlnSysPubLock pSDevSlnSysPubLock, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -294,7 +294,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDevSlnSysPubLock, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDevSlnSysPubLock, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDevSlnSysPubLock, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_LockReason(boolean bl, PSDevSlnSysPubLock pSDevSlnSysPubLock, boolean bl2, boolean bl3) throws Exception {
@@ -307,7 +307,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LockReason_Default((IEntity)pSDevSlnSysPubLock, bl2, bl3);
+            string2 = this.onTestValueRule_LockReason_Default(pSDevSlnSysPubLock, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKREASON");
@@ -329,7 +329,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDevSlnSysPubLock, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDevSlnSysPubLock, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -351,7 +351,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDevSlnSysPubLock, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDevSlnSysPubLock, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -376,7 +376,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysPubLockId_Default((IEntity)pSDevSlnSysPubLock, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysPubLockId_Default(pSDevSlnSysPubLock, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSPUBLOCKID");
@@ -401,7 +401,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysPubLockName_Default((IEntity)pSDevSlnSysPubLock, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysPubLockName_Default(pSDevSlnSysPubLock, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSPUBLOCKNAME");
@@ -423,7 +423,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode_Default((IEntity)pSDevSlnSysPubLock, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode_Default(pSDevSlnSysPubLock, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE");
@@ -445,7 +445,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UnlockTime_Default((IEntity)pSDevSlnSysPubLock, bl2, bl3);
+            string = this.onTestValueRule_UnlockTime_Default(pSDevSlnSysPubLock, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UNLOCKTIME");
@@ -470,7 +470,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDevSlnSysPubLock, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDevSlnSysPubLock, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -483,11 +483,11 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
     }
 
     protected void onSyncEntity(PSDevSlnSysPubLock pSDevSlnSysPubLock, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDevSlnSysPubLock, bl);
+        super.onSyncEntity(pSDevSlnSysPubLock, bl);
     }
 
     protected void onSyncIndexEntities(PSDevSlnSysPubLock pSDevSlnSysPubLock, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDevSlnSysPubLock, bl);
+        super.onSyncIndexEntities(pSDevSlnSysPubLock, bl);
     }
 
     public Object getDataContextValue(PSDevSlnSysPubLock pSDevSlnSysPubLock, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -495,14 +495,14 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDevSlnSysPubLock, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDevSlnSysPubLock, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDevSlnSysPubLock pSDevSlnSysPubLock, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDevSlnSysPubLock, arrayList, n);
+        super.onExportMajorModel(pSDevSlnSysPubLock, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -659,14 +659,14 @@ extends PSCoreSysServiceBase<PSDevSlnSysPubLock> {
 
     protected boolean onMergeChild(String string, String string2, PSDevSlnSysPubLock pSDevSlnSysPubLock) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDevSlnSysPubLock)) {
+        if (super.onMergeChild(string, string2, pSDevSlnSysPubLock)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDevSlnSysPubLock pSDevSlnSysPubLock) throws Exception {
-        super.onUpdateParent((IEntity)pSDevSlnSysPubLock);
+        super.onUpdateParent(pSDevSlnSysPubLock);
     }
 
     @Override

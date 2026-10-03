@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.MultiDataViewControllerBase;
+/**
+ * 移动端列表视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MobMDViewControllerBase extends MultiDataViewControllerBase {
+	public MobMDViewControllerBase() throws Exception {
+		super();
+	}
 
-public abstract class MobMDViewControllerBase
-extends MultiDataViewControllerBase {
 }
-

@@ -1,21 +1,33 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFEmbedWFProcessModel;
-import net.ibizsys.pswf.core.WFEmbedWFProcessModelBaseBase;
 
-public abstract class WFEmbedWFProcessModelBase
-extends WFEmbedWFProcessModelBaseBase
-implements IWFEmbedWFProcessModel {
-    public String getWFProcessType() {
-        return "EMBED";
-    }
+/**
+ * 嵌套子流程处理模型 
+ * @author lionlau
+ *
+ */
+public abstract class WFEmbedWFProcessModelBase extends WFEmbedWFProcessModelBaseBase implements IWFEmbedWFProcessModel
+{
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.WFProcessModelBase#getWFProcessType()
+	 */
+	@Override
+	public String getWFProcessType()
+	{
+		return IWFProcessModel.Embed;
+	}
 
-    @Override
-    public boolean isSuspendProcess() {
-        return true;
-    }
+
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.WFEmbedWFProcessModelBaseBase#isSuspendProcess()
+	 */
+	@Override
+	public boolean isSuspendProcess()
+	{
+		return true;
+	}
+
+	
+	
 }
-

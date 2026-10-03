@@ -73,7 +73,7 @@ implements IPSAppWFVerService {
     @Override
     protected List<PSAppWFVer> onListAll() throws Exception {
         ArrayList<PSAppWFVer> list = new ArrayList<PSAppWFVer>();
-        List psappwfs = PSModelServiceUtil.getInstance().getPSAppWFService().listAll();
+        List<PSAppWF> psappwfs = PSModelServiceUtil.getInstance().getPSAppWFService().listAll();
         if (psappwfs != null) {
             for (PSAppWF parent : psappwfs) {
                 List<PSAppWFVer> items = this.listByPSAppWF(parent);

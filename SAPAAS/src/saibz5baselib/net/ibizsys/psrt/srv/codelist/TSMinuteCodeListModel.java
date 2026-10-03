@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
 
-import net.ibizsys.psrt.srv.codelist.TSMinuteCodeListModelBase;
 
-public class TSMinuteCodeListModel
-extends TSMinuteCodeListModelBase {
+/**
+ * 静态代码表[任务时刻分钟]模型对象
+ */
+public class TSMinuteCodeListModel extends TSMinuteCodeListModelBase {
+
+    public TSMinuteCodeListModel() {
+        super();
+    }
+
 }
-

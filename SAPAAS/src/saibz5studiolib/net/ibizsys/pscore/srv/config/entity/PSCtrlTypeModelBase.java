@@ -1195,7 +1195,7 @@ implements Serializable {
                 PSCtrlModel pSCtrlModel = new PSCtrlModel();
                 pSCtrlModel.setPSCtrlModelId(this.getPSCtrlModelId());
                 PSCtrlModelService pSCtrlModelService = (PSCtrlModelService)ServiceGlobal.getService(PSCtrlModelService.class, (SessionFactory)this.getSessionFactory());
-                pSCtrlModelService.autoGet((IEntity)pSCtrlModel);
+                pSCtrlModelService.autoGet(pSCtrlModel);
                 this.psctrlmodel = pSCtrlModel;
             }
             return this.psctrlmodel;
@@ -1221,7 +1221,7 @@ implements Serializable {
                 PSCtrlType pSCtrlType = new PSCtrlType();
                 pSCtrlType.setPSCtrlTypeId(this.getPSCtrlTypeId());
                 PSCtrlTypeService pSCtrlTypeService = (PSCtrlTypeService)ServiceGlobal.getService(PSCtrlTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSCtrlTypeService.autoGet((IEntity)pSCtrlType);
+                pSCtrlTypeService.autoGet(pSCtrlType);
                 this.psctrltype = pSCtrlType;
             }
             return this.psctrltype;

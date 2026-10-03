@@ -138,14 +138,14 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_PSSvrDomain(pSRTWXAccount, pSSvrDomain);
             return;
         }
-        super.onFillParentInfo((IEntity)pSRTWXAccount, string, string2, string3);
+        super.onFillParentInfo(pSRTWXAccount, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -169,7 +169,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
                 pSRTWXAccount.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSRTWXAccount, bl);
+        super.onFillEntityFullInfo(pSRTWXAccount, bl);
         this.onFillEntityFullInfo_PSSvrDomain(pSRTWXAccount, bl);
     }
 
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
     }
 
     protected void onWriteBackParent(PSRTWXAccount pSRTWXAccount, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSRTWXAccount, bl);
+        super.onWriteBackParent(pSRTWXAccount, bl);
     }
 
     public ArrayList<PSRTWXAccount> selectByPSSvrDomain(PSSvrDomainBase pSSvrDomainBase) throws Exception {
@@ -208,8 +208,8 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
         ArrayList<PSRTWXAccount> arrayList = this.selectByPSSvrDomain(pSSvrDomain, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRDOMAIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrDomain);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSRTWXACCOUNT_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSRTWXACCOUNT", iDataEntityModel.getDataInfo((IEntity)pSSvrDomain), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrDomain);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSRTWXACCOUNT_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSRTWXACCOUNT", iDataEntityModel.getDataInfo(pSSvrDomain), arrayList.get(0)));
         }
     }
 
@@ -242,7 +242,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
         ArrayList<PSRTWXAccount> arrayList = this.selectByPSSvrDomain(pSSvrDomain);
         this.onBeforeRemoveByPSSvrDomain(pSSvrDomain, arrayList);
         for (PSRTWXAccount pSRTWXAccount : arrayList) {
-            this.remove((IEntity)pSRTWXAccount);
+            this.remove(pSRTWXAccount);
         }
         this.onAfterRemoveByPSSvrDomain(pSSvrDomain, arrayList);
     }
@@ -265,14 +265,14 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
 
     protected void replaceParentInfo(PSRTWXAccount pSRTWXAccount, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSRTWXAccount, cloneSession);
+        super.replaceParentInfo(pSRTWXAccount, cloneSession);
         if (pSRTWXAccount.getPSSvrDomainId() != null && (iEntity = cloneSession.getEntity("PSSVRDOMAIN", (Object)pSRTWXAccount.getPSSvrDomainId())) != null) {
             this.onFillParentInfo_PSSvrDomain(pSRTWXAccount, (PSSvrDomain)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSRTWXAccount pSRTWXAccount, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSRTWXAccount, bl);
+        super.onRemoveEntityUncopyValues(pSRTWXAccount, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSRTWXAccount pSRTWXAccount, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -311,7 +311,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSRTWXAccount, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSRTWXAccount, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSRTWXAccount, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AppId(boolean bl, PSRTWXAccount pSRTWXAccount, boolean bl2, boolean bl3) throws Exception {
@@ -327,7 +327,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AppId_Default((IEntity)pSRTWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_AppId_Default(pSRTWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APIAPPID");
@@ -352,7 +352,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AppSecret_Default((IEntity)pSRTWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_AppSecret_Default(pSRTWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APIAPPSECRET");
@@ -377,7 +377,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_APIToken_Default((IEntity)pSRTWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_APIToken_Default(pSRTWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APITOKEN");
@@ -399,7 +399,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_APIUrl_Default((IEntity)pSRTWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_APIUrl_Default(pSRTWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APIURL");
@@ -421,7 +421,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CurUserCnt_Default((IEntity)pSRTWXAccount, bl2, bl3);
+            string = this.onTestValueRule_CurUserCnt_Default(pSRTWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CURUSERCNT");
@@ -443,7 +443,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxUserCnt_Default((IEntity)pSRTWXAccount, bl2, bl3);
+            string = this.onTestValueRule_MaxUserCnt_Default(pSRTWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXUSERCNT");
@@ -465,7 +465,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSRTWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSRTWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -490,7 +490,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRTWXAccountId_Default((IEntity)pSRTWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSRTWXAccountId_Default(pSRTWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSRTWXACCOUNTID");
@@ -515,7 +515,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRTWXAccountName_Default((IEntity)pSRTWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSRTWXAccountName_Default(pSRTWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSRTWXACCOUNTNAME");
@@ -540,7 +540,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSRTWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSRTWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -565,7 +565,7 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSRTWXAccount, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSRTWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -578,11 +578,11 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
     }
 
     protected void onSyncEntity(PSRTWXAccount pSRTWXAccount, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSRTWXAccount, bl);
+        super.onSyncEntity(pSRTWXAccount, bl);
     }
 
     protected void onSyncIndexEntities(PSRTWXAccount pSRTWXAccount, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSRTWXAccount, bl);
+        super.onSyncIndexEntities(pSRTWXAccount, bl);
     }
 
     public Object getDataContextValue(PSRTWXAccount pSRTWXAccount, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -590,14 +590,14 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSRTWXAccount, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSRTWXAccount, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSRTWXAccount pSRTWXAccount, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSRTWXAccount, arrayList, n);
+        super.onExportMajorModel(pSRTWXAccount, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -806,14 +806,14 @@ extends PSCoreSysServiceBase<PSRTWXAccount> {
 
     protected boolean onMergeChild(String string, String string2, PSRTWXAccount pSRTWXAccount) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSRTWXAccount)) {
+        if (super.onMergeChild(string, string2, pSRTWXAccount)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSRTWXAccount pSRTWXAccount) throws Exception {
-        super.onUpdateParent((IEntity)pSRTWXAccount);
+        super.onUpdateParent(pSRTWXAccount);
     }
 
     @Override

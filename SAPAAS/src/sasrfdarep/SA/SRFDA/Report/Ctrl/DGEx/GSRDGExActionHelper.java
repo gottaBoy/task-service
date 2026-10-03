@@ -196,7 +196,7 @@ extends SRFExDGExActionHelper {
                     queryGroupItemConfig.setOrder(0);
                     queryGroupItemConfig.setOrderDirection(strSortDirection);
                 }
-                queryGroupModelConfig.add((Object)queryGroupItemConfig);
+                queryGroupModelConfig.add(queryGroupItemConfig);
                 break;
             }
         }
@@ -209,7 +209,7 @@ extends SRFExDGExActionHelper {
                 queryGroupItemConfig.setOrder(0);
                 queryGroupItemConfig.setOrderDirection(strSortDirection);
             }
-            queryGroupModelConfig.add((Object)queryGroupItemConfig);
+            queryGroupModelConfig.add(queryGroupItemConfig);
         }
         Vector<CallParam> params = new Vector<CallParam>();
         daQueryModelHelper.FillQMDeclareParams(params, (ISRFDAWebContext)this.getWebContext(), (ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), "");
@@ -402,11 +402,11 @@ extends SRFExDGExActionHelper {
                 curGroupLogicConfig.InitLogicsConfig();
                 curGroupLogicConfig.setCondition("AND");
                 groups.put(strGroupNo.toUpperCase(), curGroupLogicConfig);
-                realGroupLogicConfig.getLogicsConfig().add((Object)curGroupLogicConfig);
+                realGroupLogicConfig.getLogicsConfig().add(curGroupLogicConfig);
             } else {
                 curGroupLogicConfig = (DGModelGroupLogicConfig)groups.get(strGroupNo.toUpperCase());
             }
-            curGroupLogicConfig.getLogicsConfig().add((Object)dgModelBaseLogicConfig);
+            curGroupLogicConfig.getLogicsConfig().add(dgModelBaseLogicConfig);
         }
         CallResult callResult = daQueryModelHelper.GetGroupCondition(realGroupLogicConfig);
         if (callResult.IsError()) {

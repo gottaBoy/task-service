@@ -70,7 +70,7 @@ implements IPSAppUIThemeService {
     @Override
     protected List<PSAppUITheme> onListAll() throws Exception {
         ArrayList<PSAppUITheme> list = new ArrayList<PSAppUITheme>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSAppUITheme> items = this.listByPSSysApp(parent);

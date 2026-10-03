@@ -51,7 +51,7 @@ implements IWizardSessionDataCtrl {
         }
         BaseDataEntity cond = new BaseDataEntity();
         cond.SetParamValue("WIZARDSESSIONID", (Object)strWizardSessionId);
-        Vector wizardSteps = new Vector();
+        Vector<WizardStep> wizardSteps = new Vector();
         IDEDataCtrl wizardStepDataCtrl = this.GetRelatedDataCtrl("DE0267");
         CallResult callResult = wizardStepDataCtrl.Select(cond, wizardSteps, WizardStep.class.getName(), "ORDER BY CREATEDATE ASC");
         if (callResult.IsError()) {
@@ -76,7 +76,7 @@ implements IWizardSessionDataCtrl {
             if (nextWizardStep != null) continue;
             throw new Exception(StringHelper.Format((String)"\u6ca1\u6709\u627e\u5230\u6307\u5b9a\u5411\u5bfc\u6b65\u9aa4[%1$s]", (Object)strNextStepId));
         }
-        Vector wizardStepDatas = new Vector();
+        Vector<WizardStepData> wizardStepDatas = new Vector();
         IDEDataCtrl wizardStepDataDataCtrl = this.GetRelatedDataCtrl("DE0266");
         callResult = wizardStepDataDataCtrl.Select(cond, wizardStepDatas, WizardStepData.class.getName(), "ORDER BY CREATEDATE ASC");
         if (callResult.IsError()) {

@@ -47,7 +47,7 @@ extends PSHelpSectionServiceBase {
 
     @Override
     protected void onToggleExpand(PSHelpSection pSHelpSection) throws Exception {
-        this.get((IEntity)pSHelpSection);
+        this.get(pSHelpSection);
         if (DataObject.getBoolValue((Integer)pSHelpSection.getExpandMode(), (boolean)false)) {
             pSHelpSection.setExpandMode(0);
         } else {
@@ -58,7 +58,7 @@ extends PSHelpSectionServiceBase {
 
     @Override
     protected void onToggleValid(PSHelpSection pSHelpSection) throws Exception {
-        this.get((IEntity)pSHelpSection);
+        this.get(pSHelpSection);
         if (DataObject.getBoolValue((Integer)pSHelpSection.getValidFlag(), (boolean)false)) {
             pSHelpSection.setValidFlag(0);
         } else {
@@ -70,7 +70,7 @@ extends PSHelpSectionServiceBase {
     @Override
     protected void onInitModel(PSHelpSection pSHelpSection) throws Exception {
         if (!pSHelpSection.isFullEntity()) {
-            this.get((IEntity)pSHelpSection);
+            this.get(pSHelpSection);
         }
         super.onInitModel(pSHelpSection);
         if (StringHelper.compare((String)pSHelpSection.getSectionType(), (String)"DECONCEPTS", (boolean)true) == 0) {

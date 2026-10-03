@@ -64,12 +64,11 @@ extends XMLCollectionExConfig<QueryGroupItemConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = QueryGroupModelConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((QueryGroupItemConfig)childNode))) {
-                this.add((Object)((QueryGroupItemConfig)childNode));
+            if (this.OnChildNodeLoaded((QueryGroupItemConfig)childNode)) {
+                this.add((QueryGroupItemConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

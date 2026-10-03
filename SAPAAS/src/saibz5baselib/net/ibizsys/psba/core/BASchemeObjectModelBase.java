@@ -1,29 +1,42 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import net.ibizsys.psba.core.BAModelBase;
-import net.ibizsys.psba.core.IBAScheme;
-import net.ibizsys.psba.core.IBASchemeModel;
-import net.ibizsys.psba.core.IBASchemeObject;
+/**
+ * 大数据架构相关相关模型对象基类
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class BASchemeObjectModelBase extends BAModelBase implements IBASchemeObject {
 
-public abstract class BASchemeObjectModelBase
-extends BAModelBase
-implements IBASchemeObject {
-    private IBAScheme iBAScheme = null;
+	private IBAScheme iBAScheme = null;
 
-    protected void setBAScheme(IBAScheme iBAScheme) {
-        this.iBAScheme = iBAScheme;
-    }
+	/**
+	 * 设置大数据架构
+	 * 
+	 * @param iBAScheme
+	 */
+	protected void setBAScheme(IBAScheme iBAScheme) {
+		this.iBAScheme = iBAScheme;
+	}
 
-    @Override
-    public IBAScheme getBAScheme() {
-        return this.iBAScheme;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.psba.core.IBASchemeObject#getBAScheme()
+	 */
+	@Override
+	public IBAScheme getBAScheme() {
+		return this.iBAScheme;
+	}
+	
+	
+	
+	/**
+	 * 获取大数据架构模型对象
+	 * @return
+	 */
+	public IBASchemeModel getBASchemeModel(){
+		return (IBASchemeModel)getBAScheme();
+	}
 
-    public IBASchemeModel getBASchemeModel() {
-        return (IBASchemeModel)this.getBAScheme();
-    }
 }
-

@@ -1838,7 +1838,7 @@ implements Serializable {
                 PSACHandler pSACHandler = new PSACHandler();
                 pSACHandler.setPSACHandlerId(this.getPSACHandlerId());
                 PSACHandlerService pSACHandlerService = (PSACHandlerService)ServiceGlobal.getService(PSACHandlerService.class, (SessionFactory)this.getSessionFactory());
-                pSACHandlerService.autoGet((IEntity)pSACHandler);
+                pSACHandlerService.autoGet(pSACHandler);
                 this.psachandler = pSACHandler;
             }
             return this.psachandler;
@@ -1864,7 +1864,7 @@ implements Serializable {
                 PSDEAction pSDEAction = new PSDEAction();
                 pSDEAction.setPSDEActionId(this.getPSDEActionId());
                 PSDEActionService pSDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionService.autoGet((IEntity)pSDEAction);
+                pSDEActionService.autoGet(pSDEAction);
                 this.psdeaction = pSDEAction;
             }
             return this.psdeaction;
@@ -1890,7 +1890,7 @@ implements Serializable {
                 PSDEForm pSDEForm = new PSDEForm();
                 pSDEForm.setPSDEFormId(this.getPSDEFormId());
                 PSDEFormService pSDEFormService = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFormService.autoGet((IEntity)pSDEForm);
+                pSDEFormService.autoGet(pSDEForm);
                 this.psdeform = pSDEForm;
             }
             return this.psdeform;
@@ -1912,7 +1912,7 @@ implements Serializable {
         Integer n = this.objPSDEFIDetailsLock;
         synchronized (n) {
             if (this.psdefidetails == null) {
-                this.psdefidetails = pSDEFIUpdateService.isTempData((IEntity)this) ? pSDEFIUDetailService.selectTempByPSDEFIUpdate(this) : pSDEFIUDetailService.selectByPSDEFIUpdate(this);
+                this.psdefidetails = pSDEFIUpdateService.isTempData(this) ? pSDEFIUDetailService.selectTempByPSDEFIUpdate(this) : pSDEFIUDetailService.selectByPSDEFIUpdate(this);
             }
             return this.psdefidetails;
         }

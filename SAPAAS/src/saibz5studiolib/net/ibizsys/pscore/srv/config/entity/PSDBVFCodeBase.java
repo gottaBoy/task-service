@@ -1059,7 +1059,7 @@ implements Serializable {
                 PSDBType pSDBType = new PSDBType();
                 pSDBType.setPSDBTypeId(this.getPSDBTypeId());
                 PSDBTypeService pSDBTypeService = (PSDBTypeService)ServiceGlobal.getService(PSDBTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSDBTypeService.autoGet((IEntity)pSDBType);
+                pSDBTypeService.autoGet(pSDBType);
                 this.psdbtype = pSDBType;
             }
             return this.psdbtype;
@@ -1085,7 +1085,7 @@ implements Serializable {
                 PSDBValueFunc pSDBValueFunc = new PSDBValueFunc();
                 pSDBValueFunc.setPSDBValueFuncId(this.getPSDBVFID());
                 PSDBValueFuncService pSDBValueFuncService = (PSDBValueFuncService)ServiceGlobal.getService(PSDBValueFuncService.class, (SessionFactory)this.getSessionFactory());
-                pSDBValueFuncService.autoGet((IEntity)pSDBValueFunc);
+                pSDBValueFuncService.autoGet(pSDBValueFunc);
                 this.psdbvf = pSDBValueFunc;
             }
             return this.psdbvf;

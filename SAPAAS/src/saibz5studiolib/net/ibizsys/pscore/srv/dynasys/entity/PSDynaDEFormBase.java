@@ -993,7 +993,7 @@ implements Serializable {
                 PSDEForm pSDEForm = new PSDEForm();
                 pSDEForm.setPSDEFormId(this.getPSDEFormId());
                 PSDEFormService pSDEFormService = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFormService.autoGet((IEntity)pSDEForm);
+                pSDEFormService.autoGet(pSDEForm);
                 this.psdeform = pSDEForm;
             }
             return this.psdeform;
@@ -1019,7 +1019,7 @@ implements Serializable {
                 PSDynaDE pSDynaDE = new PSDynaDE();
                 pSDynaDE.setPSDynaDEId(this.getPSDynaDEId());
                 PSDynaDEService pSDynaDEService = (PSDynaDEService)ServiceGlobal.getService(PSDynaDEService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaDEService.autoGet((IEntity)pSDynaDE);
+                pSDynaDEService.autoGet(pSDynaDE);
                 this.psdynade = pSDynaDE;
             }
             return this.psdynade;

@@ -76,7 +76,7 @@ implements IPSDEDataExpService {
     @Override
     protected List<PSDEDataExp> onListAll() throws Exception {
         ArrayList<PSDEDataExp> list = new ArrayList<PSDEDataExp>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEDataExp> items = this.listByPSDataEntity(parent);

@@ -155,21 +155,21 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
 
     public void executeSyncAction(PSDevSysDiffItem pSDevSysDiffItem) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_X_EXECUTESYNCACTION, 0, (IEntity)pSDevSysDiffItem, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_X_EXECUTESYNCACTION, 0, pSDevSysDiffItem, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDevSysDiffItem, ACTION_X_EXECUTESYNCACTION);
+        this.testDEMainStateAction(pSDevSysDiffItem, ACTION_X_EXECUTESYNCACTION);
         final PSDevSysDiffItem pSDevSysDiffItem2 = pSDevSysDiffItem;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevSysDiffItemServiceBase.this.getService(), PSDevSysDiffItemServiceBase.ACTION_X_EXECUTESYNCACTION, 40, (IEntity)pSDevSysDiffItem2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevSysDiffItemServiceBase.this.getService(), PSDevSysDiffItemServiceBase.ACTION_X_EXECUTESYNCACTION, 40, pSDevSysDiffItem2, null).getResult() != 1) {
                     PSDevSysDiffItemServiceBase.this.onExecuteSyncAction(pSDevSysDiffItem2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_X_EXECUTESYNCACTION, 99, (IEntity)pSDevSysDiffItem, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_X_EXECUTESYNCACTION, 99, pSDevSysDiffItem, null);
         }
     }
 
@@ -179,21 +179,21 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
 
     public void markUpdateDst(PSDevSysDiffItem pSDevSysDiffItem) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_MARKUPDATEDST, 0, (IEntity)pSDevSysDiffItem, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_MARKUPDATEDST, 0, pSDevSysDiffItem, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDevSysDiffItem, ACTION_MARKUPDATEDST);
+        this.testDEMainStateAction(pSDevSysDiffItem, ACTION_MARKUPDATEDST);
         final PSDevSysDiffItem pSDevSysDiffItem2 = pSDevSysDiffItem;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevSysDiffItemServiceBase.this.getService(), PSDevSysDiffItemServiceBase.ACTION_MARKUPDATEDST, 40, (IEntity)pSDevSysDiffItem2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevSysDiffItemServiceBase.this.getService(), PSDevSysDiffItemServiceBase.ACTION_MARKUPDATEDST, 40, pSDevSysDiffItem2, null).getResult() != 1) {
                     PSDevSysDiffItemServiceBase.this.onMarkUpdateDst(pSDevSysDiffItem2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_MARKUPDATEDST, 99, (IEntity)pSDevSysDiffItem, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_MARKUPDATEDST, 99, pSDevSysDiffItem, null);
         }
     }
 
@@ -203,21 +203,21 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
 
     public void markUpdateNone(PSDevSysDiffItem pSDevSysDiffItem) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_MARKUPDATENONE, 0, (IEntity)pSDevSysDiffItem, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_MARKUPDATENONE, 0, pSDevSysDiffItem, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDevSysDiffItem, ACTION_MARKUPDATENONE);
+        this.testDEMainStateAction(pSDevSysDiffItem, ACTION_MARKUPDATENONE);
         final PSDevSysDiffItem pSDevSysDiffItem2 = pSDevSysDiffItem;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevSysDiffItemServiceBase.this.getService(), PSDevSysDiffItemServiceBase.ACTION_MARKUPDATENONE, 40, (IEntity)pSDevSysDiffItem2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevSysDiffItemServiceBase.this.getService(), PSDevSysDiffItemServiceBase.ACTION_MARKUPDATENONE, 40, pSDevSysDiffItem2, null).getResult() != 1) {
                     PSDevSysDiffItemServiceBase.this.onMarkUpdateNone(pSDevSysDiffItem2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_MARKUPDATENONE, 99, (IEntity)pSDevSysDiffItem, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_MARKUPDATENONE, 99, pSDevSysDiffItem, null);
         }
     }
 
@@ -227,21 +227,21 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
 
     public void markUpdateSrc(PSDevSysDiffItem pSDevSysDiffItem) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_MARKUPDATESRC, 0, (IEntity)pSDevSysDiffItem, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_MARKUPDATESRC, 0, pSDevSysDiffItem, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDevSysDiffItem, ACTION_MARKUPDATESRC);
+        this.testDEMainStateAction(pSDevSysDiffItem, ACTION_MARKUPDATESRC);
         final PSDevSysDiffItem pSDevSysDiffItem2 = pSDevSysDiffItem;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevSysDiffItemServiceBase.this.getService(), PSDevSysDiffItemServiceBase.ACTION_MARKUPDATESRC, 40, (IEntity)pSDevSysDiffItem2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevSysDiffItemServiceBase.this.getService(), PSDevSysDiffItemServiceBase.ACTION_MARKUPDATESRC, 40, pSDevSysDiffItem2, null).getResult() != 1) {
                     PSDevSysDiffItemServiceBase.this.onMarkUpdateSrc(pSDevSysDiffItem2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_MARKUPDATESRC, 99, (IEntity)pSDevSysDiffItem, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_MARKUPDATESRC, 99, pSDevSysDiffItem, null);
         }
     }
 
@@ -255,9 +255,9 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
             PSDevSysDiffItem pSDevSysDiffItem2 = (PSDevSysDiffItem)iService.getDEModel().createEntity();
             pSDevSysDiffItem2.set("PSDEVSYSDIFFITEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevSysDiffItem2);
+                iService.getTemp(pSDevSysDiffItem2);
             } else {
-                iService.get((IEntity)pSDevSysDiffItem2);
+                iService.get(pSDevSysDiffItem2);
             }
             this.onFillParentInfo_PPSDevSysDiffItem(pSDevSysDiffItem, pSDevSysDiffItem2);
             return;
@@ -267,14 +267,14 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
             PSDevSysDiffRep pSDevSysDiffRep = (PSDevSysDiffRep)iService.getDEModel().createEntity();
             pSDevSysDiffRep.set("PSDEVSYSDIFFREPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevSysDiffRep);
+                iService.getTemp(pSDevSysDiffRep);
             } else {
-                iService.get((IEntity)pSDevSysDiffRep);
+                iService.get(pSDevSysDiffRep);
             }
             this.onFillParentInfo_PSDevSysDiffRep(pSDevSysDiffItem, pSDevSysDiffRep);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDevSysDiffItem, string, string2, string3);
+        super.onFillParentInfo(pSDevSysDiffItem, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -300,7 +300,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 pSDevSysDiffItem.setSyncResult((Integer)this.getDefaultValue(this.getWebContext(), "", "2", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDevSysDiffItem, bl);
+        super.onFillEntityFullInfo(pSDevSysDiffItem, bl);
         this.onFillEntityFullInfo_PPSDevSysDiffItem(pSDevSysDiffItem, bl);
         this.onFillEntityFullInfo_PSDevSysDiffRep(pSDevSysDiffItem, bl);
     }
@@ -332,7 +332,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
     }
 
     protected void onWriteBackParent(PSDevSysDiffItem pSDevSysDiffItem, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDevSysDiffItem, bl);
+        super.onWriteBackParent(pSDevSysDiffItem, bl);
     }
 
     public ArrayList<PSDevSysDiffItem> selectByPPSDevSysDiffItem(PSDevSysDiffItemBase pSDevSysDiffItemBase) throws Exception {
@@ -415,7 +415,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
         ArrayList<PSDevSysDiffItem> arrayList = this.selectByPPSDevSysDiffItem(pSDevSysDiffItem);
         this.onBeforeRemoveByPPSDevSysDiffItem(pSDevSysDiffItem, arrayList);
         for (PSDevSysDiffItem pSDevSysDiffItem2 : arrayList) {
-            this.remove((IEntity)pSDevSysDiffItem2);
+            this.remove(pSDevSysDiffItem2);
         }
         this.onAfterRemoveByPPSDevSysDiffItem(pSDevSysDiffItem, arrayList);
     }
@@ -461,7 +461,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
         ArrayList<PSDevSysDiffItem> arrayList = this.selectByPSDevSysDiffRep(pSDevSysDiffRep);
         this.onBeforeRemoveByPSDevSysDiffRep(pSDevSysDiffRep, arrayList);
         for (PSDevSysDiffItem pSDevSysDiffItem : arrayList) {
-            this.remove((IEntity)pSDevSysDiffItem);
+            this.remove(pSDevSysDiffItem);
         }
         this.onAfterRemoveByPSDevSysDiffRep(pSDevSysDiffRep, arrayList);
     }
@@ -485,7 +485,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
 
     protected void replaceParentInfo(PSDevSysDiffItem pSDevSysDiffItem, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDevSysDiffItem, cloneSession);
+        super.replaceParentInfo(pSDevSysDiffItem, cloneSession);
         if (pSDevSysDiffItem.getPPSDevSysDiffItemId() != null && (iEntity = cloneSession.getEntity("PSDEVSYSDIFFITEM", (Object)pSDevSysDiffItem.getPPSDevSysDiffItemId())) != null) {
             this.onFillParentInfo_PPSDevSysDiffItem(pSDevSysDiffItem, (PSDevSysDiffItem)iEntity);
         }
@@ -495,7 +495,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDevSysDiffItem pSDevSysDiffItem, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDevSysDiffItem, bl);
+        super.onRemoveEntityUncopyValues(pSDevSysDiffItem, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDevSysDiffItem pSDevSysDiffItem, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -555,7 +555,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
         if ((entityFieldError = this.onCheckField_SyncResultInfo(bl, pSDevSysDiffItem, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDevSysDiffItem, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDevSysDiffItem, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DiffType(boolean bl, PSDevSysDiffItem pSDevSysDiffItem, boolean bl2, boolean bl3) throws Exception {
@@ -571,7 +571,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DiffType_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_DiffType_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DIFFTYPE");
@@ -593,7 +593,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -615,7 +615,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ObjType_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_ObjType_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("OBJTYPE");
@@ -637,7 +637,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSDevSysDiffItemId_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_PPSDevSysDiffItemId_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSDEVSYSDIFFITEMID");
@@ -659,7 +659,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSDevSysDiffItemName_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_PPSDevSysDiffItemName_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSDEVSYSDIFFITEMNAME");
@@ -681,7 +681,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -703,7 +703,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -728,7 +728,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSysDiffItemId_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSysDiffItemId_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSYSDIFFITEMID");
@@ -753,7 +753,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSysDiffItemName_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSysDiffItemName_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSYSDIFFITEMNAME");
@@ -778,7 +778,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSysDiffRepId_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSysDiffRepId_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSYSDIFFREPID");
@@ -803,7 +803,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSysDiffRepName_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSysDiffRepName_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSYSDIFFREPNAME");
@@ -828,7 +828,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjId_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjId_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJID");
@@ -853,7 +853,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjName_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjName_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJNAME");
@@ -875,7 +875,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -897,7 +897,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppName_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppName_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPNAME");
@@ -922,7 +922,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SyncAction_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_SyncAction_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCACTION");
@@ -944,7 +944,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SyncResult_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string = this.onTestValueRule_SyncResult_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCRESULT");
@@ -966,7 +966,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SyncResultInfo_Default((IEntity)pSDevSysDiffItem, bl2, bl3);
+            string2 = this.onTestValueRule_SyncResultInfo_Default(pSDevSysDiffItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCRESULTINFO");
@@ -979,11 +979,11 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
     }
 
     protected void onSyncEntity(PSDevSysDiffItem pSDevSysDiffItem, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDevSysDiffItem, bl);
+        super.onSyncEntity(pSDevSysDiffItem, bl);
     }
 
     protected void onSyncIndexEntities(PSDevSysDiffItem pSDevSysDiffItem, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDevSysDiffItem, bl);
+        super.onSyncIndexEntities(pSDevSysDiffItem, bl);
     }
 
     public Object getDataContextValue(PSDevSysDiffItem pSDevSysDiffItem, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -991,7 +991,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDevSysDiffItem, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDevSysDiffItem, string, iDataContextParam)) != null) {
             return object;
         }
         PSDevSysDiffRep pSDevSysDiffRep = pSDevSysDiffItem.getPSDevSysDiffRep();
@@ -1002,7 +1002,7 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
     }
 
     protected void onExportMajorModel(PSDevSysDiffItem pSDevSysDiffItem, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDevSysDiffItem, arrayList, n);
+        super.onExportMajorModel(pSDevSysDiffItem, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1317,14 +1317,14 @@ extends PSCoreSysServiceBase<PSDevSysDiffItem> {
 
     protected boolean onMergeChild(String string, String string2, PSDevSysDiffItem pSDevSysDiffItem) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDevSysDiffItem)) {
+        if (super.onMergeChild(string, string2, pSDevSysDiffItem)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDevSysDiffItem pSDevSysDiffItem) throws Exception {
-        super.onUpdateParent((IEntity)pSDevSysDiffItem);
+        super.onUpdateParent(pSDevSysDiffItem);
     }
 
     @Override

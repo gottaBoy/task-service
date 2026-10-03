@@ -81,10 +81,10 @@ extends PSDELogicLinkServiceBase {
                 }
                 if (hashMap.size() > 0) {
                     for (PSDELLCond pSDELLCond : hashMap.values()) {
-                        pSDELLCondService.removeTemp((IEntity)pSDELLCond);
+                        pSDELLCondService.removeTemp(pSDELLCond);
                     }
                 }
-                PSDELogicLinkService.this.updateTemp((IEntity)pSDELogicLink2);
+                PSDELogicLinkService.this.updateTemp(pSDELogicLink2);
             }
         });
     }
@@ -92,7 +92,7 @@ extends PSDELogicLinkServiceBase {
     protected void updatePSDELLConds(PSDELogicLink pSDELogicLink, PSDELLCond pSDELLCond, XmlNode xmlNode, HashMap<String, PSDELLCond> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSDELLCondService pSDELLCondService = (PSDELLCondService)ServiceGlobal.getService((String)PSDELLCondService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -125,7 +125,7 @@ extends PSDELogicLinkServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSDELLCondService.updateTemp((IEntity)pSDELLCond2);
+                    pSDELLCondService.updateTemp(pSDELLCond2);
                 }
                 xmlNode2.resetAttributes();
                 pSDELLCond2.fillXmlNode(xmlNode2, false);
@@ -177,14 +177,14 @@ extends PSDELogicLinkServiceBase {
 
     @Override
     public void getWithModel(final PSDELogicLink pSDELogicLink) throws Exception {
-        this.getTemp((IEntity)pSDELogicLink);
+        this.getTemp(pSDELogicLink);
         if (StringHelper.isNullOrEmpty((String)pSDELogicLink.getCondModel())) {
             this.doServiceWork(new IServiceWork(){
 
                 public void execute(ITransaction iTransaction) throws Exception {
                     PSDELogicLinkService.this.setEnableStateInform(false);
                     PSDELogicLinkService.this.fillLogicLinkModel(pSDELogicLink);
-                    PSDELogicLinkService.this.updateTemp((IEntity)pSDELogicLink);
+                    PSDELogicLinkService.this.updateTemp(pSDELogicLink);
                 }
             });
         }
@@ -251,7 +251,7 @@ extends PSDELogicLinkServiceBase {
 
     @Override
     protected void onBeforeUpdateTemp(PSDELogicLink pSDELogicLink) throws Exception {
-        pSDELogicLink.setLinkInfo(this.calcPSDELogicLinkLabel(pSDELogicLink, (PSDELogicLink)this.getLast((IEntity)pSDELogicLink)));
+        pSDELogicLink.setLinkInfo(this.calcPSDELogicLinkLabel(pSDELogicLink, (PSDELogicLink)this.getLast(pSDELogicLink)));
         super.onBeforeUpdateTemp(pSDELogicLink);
     }
 
@@ -279,20 +279,20 @@ extends PSDELogicLinkServiceBase {
 
     @Override
     protected void importCurXmlModel(PSDELogicLink pSDELogicLink, XmlNode xmlNode) throws Exception {
-        Object object;
         PSDELogicNodeService pSDELogicNodeService = (PSDELogicNodeService)ServiceGlobal.getService(PSDELogicNodeService.class, (SessionFactory)this.getSessionFactory());
         String string = xmlNode.getAttribute("SRCPSDELOGICNODENAME", "");
         if (!StringHelper.isNullOrEmpty((String)string)) {
-            object = new PSDELogicNode();
-            ((PSDELogicNodeBase)object).setPSDELogicNodeName(string);
-            ((PSDELogicNodeBase)object).setPSDELogicId(pSDELogicLink.getPSDELogicId());
-            pSDELogicNodeService.selectTemp(object, false);
-            pSDELogicLink.setSrcPSDELogicNodeId(((PSDELogicNodeBase)object).getPSDELogicNodeId());
-            xmlNode.setAttribute("SRCPSDELOGICNODEID", ((PSDELogicNodeBase)object).getPSDELogicNodeId());
+            PSDELogicNode srcNode = new PSDELogicNode();
+            srcNode.setPSDELogicNodeName(string);
+            srcNode.setPSDELogicId(pSDELogicLink.getPSDELogicId());
+            pSDELogicNodeService.selectTemp(srcNode, false);
+            pSDELogicLink.setSrcPSDELogicNodeId(srcNode.getPSDELogicNodeId());
+            xmlNode.setAttribute("SRCPSDELOGICNODEID", srcNode.getPSDELogicNodeId());
         }
-        if (!StringHelper.isNullOrEmpty((String)(object = xmlNode.getAttribute("DSTPSDELOGICNODENAME", "")))) {
+        String dstName = xmlNode.getAttribute("DSTPSDELOGICNODENAME", "");
+        if (!StringHelper.isNullOrEmpty(dstName)) {
             PSDELogicNode pSDELogicNode = new PSDELogicNode();
-            pSDELogicNode.setPSDELogicNodeName((String)object);
+            pSDELogicNode.setPSDELogicNodeName(dstName);
             pSDELogicNode.setPSDELogicId(pSDELogicLink.getPSDELogicId());
             pSDELogicNodeService.selectTemp(pSDELogicNode, false);
             pSDELogicLink.setDstPSDELogicNodeId(pSDELogicNode.getPSDELogicNodeId());
@@ -313,4 +313,3 @@ extends PSDELogicLinkServiceBase {
         super.fillInformObject(pSDELogicLink, string, jSONObject);
     }
 }
-

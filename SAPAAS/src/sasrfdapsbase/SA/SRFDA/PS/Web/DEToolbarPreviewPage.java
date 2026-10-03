@@ -68,7 +68,7 @@ extends DECtrlPreviewPage {
                 }
             }
             String strPFType = "";
-            IPSModelObject iPSApplication = null;
+            IPSApplication iPSApplication = null;
             Iterator<IPSApplication> apps = iPSSystem.getAllPSApps();
             while (apps.hasNext()) {
                 IPSApplication iPSApplication2 = apps.next();

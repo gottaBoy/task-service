@@ -1065,7 +1065,7 @@ implements Serializable {
                 PSUSModule pSUSModule = new PSUSModule();
                 pSUSModule.setPSUSModuleId(this.getPSUSModuleId());
                 PSUSModuleService pSUSModuleService = (PSUSModuleService)ServiceGlobal.getService(PSUSModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSUSModuleService.autoGet((IEntity)pSUSModule);
+                pSUSModuleService.autoGet(pSUSModule);
                 this.psusmodule = pSUSModule;
             }
             return this.psusmodule;

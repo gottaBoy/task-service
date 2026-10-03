@@ -70,13 +70,13 @@ extends PSAppDEViewServiceBase {
         }
         if (StringHelper.isNullOrEmpty((String)pSAppDEView.getPSAppLocalDEId())) {
             pSDEViewBase = pSAppDEView.getPSDEViewBase();
-            object = new SelectCond();
-            object.set("PSSYSAPPID", (Object)pSAppDEView.getPSSysAppId());
-            object.set("PSDEID", (Object)pSDEViewBase.getPSDEId());
+            SelectCond viewCond = new SelectCond();
+            viewCond.set("PSSYSAPPID", (Object)pSAppDEView.getPSSysAppId());
+            viewCond.set("PSDEID", (Object)pSDEViewBase.getPSDEId());
             String string = KeyValueHelper.genUniqueId((String)pSAppDEView.getPSSysAppId(), (String)pSDEViewBase.getPSDEId());
-            PSAppLocalDEBase pSAppLocalDEBase = null;
+            PSAppLocalDE pSAppLocalDEBase = null;
             PSAppLocalDEService pSAppLocalDEService = (PSAppLocalDEService)ServiceGlobal.getService(PSAppLocalDEService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList arrayList = pSAppLocalDEService.select((ISelectCond)object);
+            ArrayList<PSAppLocalDE> arrayList = pSAppLocalDEService.select(viewCond);
             if (arrayList != null) {
                 for (PSAppLocalDE pSAppLocalDE : arrayList) {
                     if (!DataObject.getBoolValue((Integer)pSAppLocalDE.getDefaultFlag(), (boolean)true)) continue;
@@ -94,7 +94,7 @@ extends PSAppDEViewServiceBase {
             if (pSAppLocalDEBase == null) {
                 pSAppLocalDEBase = new PSAppLocalDE();
                 pSAppLocalDEBase.setPSAppLocalDEId(string);
-                if (!pSAppLocalDEService.get((IEntity)pSAppLocalDEBase, true)) {
+                if (!pSAppLocalDEService.get(pSAppLocalDEBase, true)) {
                     pSAppLocalDEBase.setPSSysAppId(pSAppDEView.getPSSysAppId());
                     pSAppLocalDEBase.setPSSysAppName(pSAppDEView.getPSSysAppName());
                     pSAppLocalDEBase.setPSDEId(pSDEViewBase.getPSDEId());
@@ -130,8 +130,6 @@ extends PSAppDEViewServiceBase {
 
     @Override
     protected void onInitDynaView(PSAppDEView pSAppDEView) throws Exception {
-        Iterator iterator;
-        Serializable serializable;
         if (!pSAppDEView.isDyncModeDirty() || pSAppDEView.getPSSysApp() == null || pSAppDEView.getPSDEViewBase() == null) {
             return;
         }
@@ -154,32 +152,26 @@ extends PSAppDEViewServiceBase {
         pSDynaAppView.setPSDynaAppName(pSAppDEView.getPSSysApp().getPSSysAppName());
         pSDynaAppView.setViewType(pSAppDEView.getPSDEViewType());
         if (pSAppDEView.getPSDEViewBase().getPSDE() != null) {
-            serializable = new PSDynaDE();
-            ((PSDynaDEBase)serializable).setPSDynaDEId(pSAppDEView.getPSDEViewBase().getPSDE().getPSDataEntityId());
-            ((PSDynaDEBase)serializable).setPSDynaDEName(pSAppDEView.getPSDEViewBase().getPSDE().getPSDataEntityName());
-            ((PSDynaDEBase)serializable).setLogicName(pSAppDEView.getPSDEViewBase().getPSDE().getLogicName());
-            ((PSDynaDEBase)serializable).setPSDynaSysId(pSAppDEView.getPSDEViewBase().getPSDE().getPSSystem().getPSSystemId());
-            ((PSDynaDEBase)serializable).setPSDynaSysName(pSAppDEView.getPSDEViewBase().getPSDE().getPSSystem().getPSSystemName());
-            pSDynaDEService.save((IEntity)serializable, false);
-            pSDynaAppView.setPSDynaDEId(((PSDynaDEBase)serializable).getPSDynaDEId());
-            pSDynaAppView.setPSDynaDEName(((PSDynaDEBase)serializable).getPSDynaDEName());
+            PSDynaDE dynaDE = new PSDynaDE();
+            dynaDE.setPSDynaDEId(pSAppDEView.getPSDEViewBase().getPSDE().getPSDataEntityId());
+            dynaDE.setPSDynaDEName(pSAppDEView.getPSDEViewBase().getPSDE().getPSDataEntityName());
+            dynaDE.setLogicName(pSAppDEView.getPSDEViewBase().getPSDE().getLogicName());
+            dynaDE.setPSDynaSysId(pSAppDEView.getPSDEViewBase().getPSDE().getPSSystem().getPSSystemId());
+            dynaDE.setPSDynaSysName(pSAppDEView.getPSDEViewBase().getPSDE().getPSSystem().getPSSystemName());
+            pSDynaDEService.save(dynaDE, false);
+            pSDynaAppView.setPSDynaDEId(dynaDE.getPSDynaDEId());
+            pSDynaAppView.setPSDynaDEName(dynaDE.getPSDynaDEName());
         }
         pSDynaAppView.setPSWFDEId(pSAppDEView.getPSDEViewBase().getPSWFDEId());
         pSDynaAppView.setPSWFDEName(pSAppDEView.getPSDEViewBase().getPSWFDEName());
         pSDynaAppView.setPredefinedViewType(pSAppDEView.getPSDEViewBase().getPredefinedViewType());
         pSDynaAppView.setPDVTParam(pSAppDEView.getPSDEViewBase().getPDVTParam());
-        pSDynaAppViewService.save((IEntity)pSDynaAppView, false);
-        serializable = pSDynaAppView.getPSDynaAppViewCtrls();
-        HashMap hashMap = new HashMap();
-        Object object = ((ArrayList)serializable).iterator();
-        while (object.hasNext()) {
-            iterator = (PSDynaAppViewCtrl)object.next();
-            hashMap.put(((PSDynaAppViewCtrlBase)((Object)iterator)).getPSDynaAppViewCtrlId(), iterator);
+        pSDynaAppViewService.save(pSDynaAppView, false);
+        HashMap<String, PSDynaAppViewCtrl> hashMap = new HashMap<String, PSDynaAppViewCtrl>();
+        for (PSDynaAppViewCtrl ctrl : pSDynaAppView.getPSDynaAppViewCtrls()) {
+            hashMap.put(ctrl.getPSDynaAppViewCtrlId(), ctrl);
         }
-        object = pSAppDEView.getPSDEViewBase().getPSDEViewCtrls();
-        iterator = ((ArrayList)object).iterator();
-        while (iterator.hasNext()) {
-            EntityBase entityBase = (PSDEViewCtrl)iterator.next();
+        for (PSDEViewCtrl entityBase : pSAppDEView.getPSDEViewBase().getPSDEViewCtrls()) {
             PSDynaAppViewCtrl pSDynaAppViewCtrl = new PSDynaAppViewCtrl();
             pSDynaAppViewCtrl.setPSDynaAppViewCtrlId(entityBase.getPSDEViewCtrlId());
             pSDynaAppViewCtrl.setPSDynaAppViewCtrlName(entityBase.getPSDEViewCtrlName());
@@ -194,7 +186,7 @@ extends PSAppDEViewServiceBase {
                 pSDynaDE.setLogicName(entityBase.getPSDEForm().getPSDE().getLogicName());
                 pSDynaDE.setPSDynaSysId(entityBase.getPSDEForm().getPSDE().getPSSystem().getPSSystemId());
                 pSDynaDE.setPSDynaSysName(entityBase.getPSDEForm().getPSDE().getPSSystem().getPSSystemName());
-                pSDynaDEService.save((IEntity)pSDynaDE, false);
+                pSDynaDEService.save(pSDynaDE, false);
                 PSDynaDEForm pSDynaDEForm = new PSDynaDEForm();
                 pSDynaDEForm.setPSDynaDEFormId(entityBase.getPSDEForm().getPSDEFormId());
                 pSDynaDEForm.setPSDynaDEFormName(entityBase.getPSDEForm().getPSDEFormName());
@@ -202,15 +194,15 @@ extends PSAppDEViewServiceBase {
                 pSDynaDEForm.setPSDynaDEName(pSDynaDE.getPSDynaDEName());
                 pSDynaDEForm.setPSDEFormId(entityBase.getPSDEForm().getPSDEFormId());
                 pSDynaDEForm.setPSDEFormName(entityBase.getPSDEForm().getPSDEFormName());
-                pSDynaDEFormService.save((IEntity)pSDynaDEForm, false);
+                pSDynaDEFormService.save(pSDynaDEForm, false);
                 pSDynaAppViewCtrl.setPSDynaDEFormId(pSDynaDEForm.getPSDynaDEFormId());
                 pSDynaAppViewCtrl.setPSDynaDEFormName(pSDynaDEForm.getPSDynaDEFormName());
             }
-            pSDynaAppViewCtrlService.save((IEntity)pSDynaAppViewCtrl, false);
+            pSDynaAppViewCtrlService.save(pSDynaAppViewCtrl, false);
             hashMap.remove(pSDynaAppViewCtrl.getPSDynaAppViewCtrlId());
         }
-        for (EntityBase entityBase : hashMap.values()) {
-            pSDynaAppViewCtrlService.remove((IEntity)entityBase);
+        for (PSDynaAppViewCtrl ctrl : hashMap.values()) {
+            pSDynaAppViewCtrlService.remove(ctrl);
         }
     }
 
@@ -219,4 +211,3 @@ extends PSAppDEViewServiceBase {
         super.onAfterCreate(pSAppDEView);
     }
 }
-

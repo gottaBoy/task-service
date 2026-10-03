@@ -1,13 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app.view;
 
-import net.ibizsys.model.app.view.IPSAppDEMobWFView;
-import net.ibizsys.model.app.view.IPSAppDEWFActionView;
+/**
+ * 应用实体移动端交换操作视图对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSAppDEMobWFActionView extends IPSAppDEWFActionView,IPSAppDEMobWFView {
 
-public interface IPSAppDEMobWFActionView
-extends IPSAppDEWFActionView,
-IPSAppDEMobWFView {
 }
-

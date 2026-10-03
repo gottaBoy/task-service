@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel.toolbar;
 
-import net.ibizsys.paas.ctrlmodel.toolbar.IDynaToolbarItemModel;
+/**
+ * 动态工具栏分隔栏模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaToolbarSeparatorModel extends IDynaToolbarItemModel {
 
-public interface IDynaToolbarSeparatorModel
-extends IDynaToolbarItemModel {
 }
-

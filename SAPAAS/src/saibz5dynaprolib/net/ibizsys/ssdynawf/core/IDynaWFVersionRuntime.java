@@ -1,15 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.wf.IPSWFVersion
- */
 package net.ibizsys.ssdynawf.core;
 
 import net.ibizsys.model.wf.IPSWFVersion;
-import net.ibizsys.ssdynawf.core.IDynaWFModel;
 
+/**
+ * 动态工作流版本运行时接口
+ * @author Administrator
+ *
+ */
 public interface IDynaWFVersionRuntime {
-    public void init(IDynaWFModel var1, IPSWFVersion var2) throws Exception;
-}
 
+	/**
+	 * 初始化
+	 * @param iDynaWFModel
+	 * @param iPSWFVersion
+	 * @throws Exception
+	 */
+	void init(IDynaWFModel iDynaWFModel, IPSWFVersion iPSWFVersion) throws Exception ;
+}

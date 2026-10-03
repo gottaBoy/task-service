@@ -12,7 +12,6 @@
  */
 package net.ibizsys.pscore.srv.util.gitlab;
 
-import net.ibizsys.paas.entity.EntityBase;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.StringHelper;
@@ -50,7 +49,7 @@ public class PSGitLabHelper {
         PSGitUserService pSGitUserService = (PSGitUserService)ServiceGlobal.getService(PSGitUserService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSGitUser pSGitUser = new PSGitUser();
         pSGitUser.setPSGitUserId(pSDevSln.getSlnTag());
-        if (!pSGitUserService.get((IEntity)pSGitUser, true)) {
+        if (!pSGitUserService.get(pSGitUser, true)) {
             log.warn((Object)StringHelper.format((String)"GIT\u670d\u52a1\u5668[%1$s]\u6ca1\u6709\u6307\u5b9a\u9ed8\u8ba4\u8bbf\u95ee\u7528\u6237", (Object)pSDevSln.getSlnTag()));
             pSGitUser = null;
         }
@@ -98,24 +97,22 @@ public class PSGitLabHelper {
     }
 
     public static void movePSDevCenterSVN(PSDevCenterSVN pSDevCenterSVN, Project project, PSDevSln pSDevSln) throws Exception {
-        PSCoreSysServiceBase pSCoreSysServiceBase;
-        EntityBase entityBase;
         if (!StringHelper.isNullOrEmpty((String)pSDevCenterSVN.getPSSVNInstRepoId())) {
-            entityBase = new PSSVNInstRepo();
-            entityBase.setPSSVNInstRepoId(pSDevCenterSVN.getPSSVNInstRepoId());
+            PSSVNInstRepo pSSVNInstRepo = new PSSVNInstRepo();
+            pSSVNInstRepo.setPSSVNInstRepoId(pSDevCenterSVN.getPSSVNInstRepoId());
             if (project != null) {
-                entityBase.setConnStr(project.getHttpUrlToRepo());
-                entityBase.setGitPath(project.getHttpUrlToRepo());
-                entityBase.setGitBranch(project.getDefaultBranch());
-                entityBase.setRepoTag2(Integer.toString(project.getId()));
+                pSSVNInstRepo.setConnStr(project.getHttpUrlToRepo());
+                pSSVNInstRepo.setGitPath(project.getHttpUrlToRepo());
+                pSSVNInstRepo.setGitBranch(project.getDefaultBranch());
+                pSSVNInstRepo.setRepoTag2(Integer.toString(project.getId()));
             }
             if (pSDevSln != null) {
-                entityBase.setPSDevCenterId(pSDevSln.getPSDevCenterId());
-                entityBase.setPSDevCenterName(pSDevSln.getPSDevCenterName());
+                pSSVNInstRepo.setPSDevCenterId(pSDevSln.getPSDevCenterId());
+                pSSVNInstRepo.setPSDevCenterName(pSDevSln.getPSDevCenterName());
             }
-            pSCoreSysServiceBase = (PSSVNInstRepoService)ServiceGlobal.getService(PSSVNInstRepoService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+            PSSVNInstRepoService pSSVNInstRepoService = (PSSVNInstRepoService)ServiceGlobal.getService(PSSVNInstRepoService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             try {
-                pSCoreSysServiceBase.update(entityBase);
+                pSSVNInstRepoService.update(pSSVNInstRepo);
             }
             catch (Exception exception) {
                 log.error((Object)StringHelper.format((String)"\u66f4\u65b0\u5e73\u53f0\u4ee3\u7801\u4ed3\u5e93\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
@@ -123,16 +120,16 @@ public class PSGitLabHelper {
             }
         }
         if (pSDevSln != null) {
-            entityBase = new PSDevCenterSVN();
-            entityBase.setPSDevCenterSVNId(pSDevCenterSVN.getPSDevCenterSVNId());
-            entityBase.setPSDevCenterId(pSDevSln.getPSDevCenterId());
-            entityBase.setPSDevCenterName(pSDevSln.getPSDevCenterName());
-            entityBase.setPSDevSlnId(pSDevSln.getPSDevSlnId());
-            entityBase.setPSDevSlnName(pSDevSln.getPSDevSlnName());
-            entityBase.setRefFlag(1);
-            pSCoreSysServiceBase = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+            PSDevCenterSVN updatedPSDevCenterSVN = new PSDevCenterSVN();
+            updatedPSDevCenterSVN.setPSDevCenterSVNId(pSDevCenterSVN.getPSDevCenterSVNId());
+            updatedPSDevCenterSVN.setPSDevCenterId(pSDevSln.getPSDevCenterId());
+            updatedPSDevCenterSVN.setPSDevCenterName(pSDevSln.getPSDevCenterName());
+            updatedPSDevCenterSVN.setPSDevSlnId(pSDevSln.getPSDevSlnId());
+            updatedPSDevCenterSVN.setPSDevSlnName(pSDevSln.getPSDevSlnName());
+            updatedPSDevCenterSVN.setRefFlag(1);
+            PSDevCenterSVNService pSDevCenterSVNService = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             try {
-                pSCoreSysServiceBase.update(entityBase);
+                pSDevCenterSVNService.update(updatedPSDevCenterSVN);
             }
             catch (Exception exception) {
                 log.error((Object)StringHelper.format((String)"\u66f4\u65b0\u4e2d\u5fc3\u4ee3\u7801\u4ed3\u5e93\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
@@ -156,7 +153,7 @@ public class PSGitLabHelper {
         PSGitUserService pSGitUserService = (PSGitUserService)ServiceGlobal.getService(PSGitUserService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSGitUser pSGitUser = new PSGitUser();
         pSGitUser.setPSGitUserId(pSDevSln.getSlnTag());
-        if (!pSGitUserService.get((IEntity)pSGitUser, true)) {
+        if (!pSGitUserService.get(pSGitUser, true)) {
             log.warn((Object)StringHelper.format((String)"GIT\u670d\u52a1\u5668[%1$s]\u6ca1\u6709\u6307\u5b9a\u9ed8\u8ba4\u8bbf\u95ee\u7528\u6237", (Object)pSDevSln.getSlnTag()));
             pSGitUser = null;
         }
@@ -200,4 +197,3 @@ public class PSGitLabHelper {
         return pSDevCenterSVN;
     }
 }
-

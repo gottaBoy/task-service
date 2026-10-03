@@ -40,7 +40,6 @@ import java.util.Map;
 import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.db.ISelectCond;
 import net.ibizsys.paas.db.SelectCond;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
@@ -76,12 +75,40 @@ extends PSStudioCLIHelperBase {
 
     @Override
     protected void registerDefault() {
-        this.registerSlnCmdDataItems(CMD_DEVSYS_CREATE, new PSStudioCLIHelperBase.CLIDataItem[]{new PSStudioCLIHelperBase.CLIDataItem(this, "codename", "CODENAME", true, null), new PSStudioCLIHelperBase.CLIDataItem(this, "unitag", "PSDEVSLNSYSNAME", true, null), new PSStudioCLIHelperBase.CLIDataItem(this, "name", "LOGICNAME", false, null), new PSStudioCLIHelperBase.CLIDataItem(this, "memo", "MEMO", false, null), new PSStudioCLIHelperBase.CLIDataItem(this, "sf", "PSSFID", false, null, "J2EE6"), new PSStudioCLIHelperBase.CLIDataItem(this, null, "TEMPLENGINE", false, null, "V2"), new PSStudioCLIHelperBase.CLIDataItem(this, null, "ENABLEDYNASYS", false, null, 1), new PSStudioCLIHelperBase.CLIDataItem(this, null, "ENABLEMYSQL5", false, null, 1)});
-        this.registerSysCmdDataItems(CMD_DEVSYS_UPDATECODEREPO, new PSStudioCLIHelperBase.CLIDataItem[]{new PSStudioCLIHelperBase.CLIDataItem(this, null, "SVNTYPE", false, null, "GIT"), new PSStudioCLIHelperBase.CLIDataItem(this, "repo", "GITREPO", false, null, "GITEE"), new PSStudioCLIHelperBase.CLIDataItem(this, "url", "GITPATH", true, null), new PSStudioCLIHelperBase.CLIDataItem(this, "memo", "MEMO", false, null)});
-        this.registerSysCmdDataItems(CMD_DEVSYS_UPDATEMODELREPO, new PSStudioCLIHelperBase.CLIDataItem[]{new PSStudioCLIHelperBase.CLIDataItem(this, null, "SVNTYPE", false, null, "GIT"), new PSStudioCLIHelperBase.CLIDataItem(this, "repo", "GITREPO", false, null, "GITEE"), new PSStudioCLIHelperBase.CLIDataItem(this, "url", "GITPATH", true, null), new PSStudioCLIHelperBase.CLIDataItem(this, "memo", "MEMO", false, null)});
-        this.registerSysCmdDataItems(CMD_DEVSYS_PUBCODE, new PSStudioCLIHelperBase.CLIDataItem[]{new PSStudioCLIHelperBase.CLIDataItem(this, "name", "PSSYSRUNSESSIONNAME", false, null), new PSStudioCLIHelperBase.CLIDataItem(this, "sysrun", "PSSYSTEMRUNID", false, null), new PSStudioCLIHelperBase.CLIDataItem(this, "sfpub", "PSSYSSFPUBID", false, null), new PSStudioCLIHelperBase.CLIDataItem(this, "pfpub", "PSSYSAPPID", false, null), new PSStudioCLIHelperBase.CLIDataItem(this, "dbpub", "PSSYSTEMDBCFGID", false, null), new PSStudioCLIHelperBase.CLIDataItem(this, "memo", "MEMO", false, null)});
+        this.registerSlnCmdDataItems(CMD_DEVSYS_CREATE, new CLIDataItem[]{
+            new CLIDataItem("codename", "CODENAME", true, null),
+            new CLIDataItem("unitag", "PSDEVSLNSYSNAME", true, null),
+            new CLIDataItem("name", "LOGICNAME", false, null),
+            new CLIDataItem("memo", "MEMO", false, null),
+            new CLIDataItem("sf", "PSSFID", false, null, "J2EE6"),
+            new CLIDataItem(null, "TEMPLENGINE", false, null, "V2"),
+            new CLIDataItem(null, "ENABLEDYNASYS", false, null, 1),
+            new CLIDataItem(null, "ENABLEMYSQL5", false, null, 1)
+        });
+        this.registerSysCmdDataItems(CMD_DEVSYS_UPDATECODEREPO, new CLIDataItem[]{
+            new CLIDataItem(null, "SVNTYPE", false, null, "GIT"),
+            new CLIDataItem("repo", "GITREPO", false, null, "GITEE"),
+            new CLIDataItem("url", "GITPATH", true, null),
+            new CLIDataItem("memo", "MEMO", false, null)
+        });
+        this.registerSysCmdDataItems(CMD_DEVSYS_UPDATEMODELREPO, new CLIDataItem[]{
+            new CLIDataItem(null, "SVNTYPE", false, null, "GIT"),
+            new CLIDataItem("repo", "GITREPO", false, null, "GITEE"),
+            new CLIDataItem("url", "GITPATH", true, null),
+            new CLIDataItem("memo", "MEMO", false, null)
+        });
+        this.registerSysCmdDataItems(CMD_DEVSYS_PUBCODE, new CLIDataItem[]{
+            new CLIDataItem("name", "PSSYSRUNSESSIONNAME", false, null),
+            new CLIDataItem("sysrun", "PSSYSTEMRUNID", false, null),
+            new CLIDataItem("sfpub", "PSSYSSFPUBID", false, null),
+            new CLIDataItem("pfpub", "PSSYSAPPID", false, null),
+            new CLIDataItem("dbpub", "PSSYSTEMDBCFGID", false, null),
+            new CLIDataItem("memo", "MEMO", false, null)
+        });
         this.registerSlnCmdDataItems(CMD_DEVSYS_OFFLINE, new PSStudioCLIHelperBase.CLIDataItem[0]);
-        this.registerSlnCmdDataItems(CMD_DEVSYS_ONLINE, new PSStudioCLIHelperBase.CLIDataItem[]{new PSStudioCLIHelperBase.CLIDataItem(this, "workspace", "PSDCWORKSPACEID", false, null)});
+        this.registerSlnCmdDataItems(CMD_DEVSYS_ONLINE, new CLIDataItem[]{
+            new CLIDataItem("workspace", "PSDCWORKSPACEID", false, null)
+        });
         super.registerDefault();
     }
 
@@ -98,7 +125,7 @@ extends PSStudioCLIHelperBase {
             psDevSlnSys.setPSDevSlnName(psTaskServerCmd.getPSDEVSLNNAME());
             PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             try {
-                psDevSlnSysService.create((IEntity)psDevSlnSys);
+                psDevSlnSysService.create(psDevSlnSys);
             }
             catch (Exception ex) {
                 throw new Exception(String.format("\u5efa\u7acb\u5f00\u53d1\u7cfb\u7edf\u53d1\u751f\u5f02\u5e38\uff0c%1$s", ex.getMessage()));
@@ -113,7 +140,7 @@ extends PSStudioCLIHelperBase {
             PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDevCenterSVNService psDevCenterSVNService = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             try {
-                psDevSlnSysService.get((IEntity)psDevSlnSys);
+                psDevSlnSysService.get(psDevSlnSys);
             }
             catch (Exception ex) {
                 throw new Exception(String.format("\u83b7\u53d6\u5f00\u53d1\u7cfb\u7edf\u53d1\u751f\u5f02\u5e38\uff0c%1$s", ex.getMessage()));
@@ -145,9 +172,9 @@ extends PSStudioCLIHelperBase {
             }
             try {
                 if (bNew) {
-                    psDevCenterSVNService.create((IEntity)psDevCenterSVN);
+                    psDevCenterSVNService.create(psDevCenterSVN);
                 } else {
-                    psDevCenterSVNService.update((IEntity)psDevCenterSVN);
+                    psDevCenterSVNService.update(psDevCenterSVN);
                 }
             }
             catch (Exception ex) {
@@ -162,7 +189,7 @@ extends PSStudioCLIHelperBase {
                     } else if (CMD_DEVSYS_UPDATEMODELREPO.equals(strCmd)) {
                         psDevSlnSys2.setModelPSDevCenterSVNId(psDevCenterSVN.getPSDevCenterSVNId());
                     }
-                    psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, false);
+                    psDevSlnSysService.sysUpdate(psDevSlnSys2, false);
                 }
             }
             catch (Exception ex) {
@@ -209,7 +236,7 @@ extends PSStudioCLIHelperBase {
             psDevSlnSys.setPSDevSlnSysId(psTaskServerCmd.getPSDEVSLNSYSID());
             PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             try {
-                psDevSlnSysService.get((IEntity)psDevSlnSys);
+                psDevSlnSysService.get(psDevSlnSys);
             }
             catch (Exception ex) {
                 throw new Exception(String.format("\u83b7\u53d6\u5f00\u53d1\u7cfb\u7edf\u53d1\u751f\u5f02\u5e38\uff0c%1$s", ex.getMessage()));
@@ -225,11 +252,11 @@ extends PSStudioCLIHelperBase {
                 try {
                     psDCWorkspace.setPSDevCenterId(psDevSlnSys.getPSDevCenterId());
                     psDCWorkspace.setPSDCWorkspaceId(strPSDCWorkspaceName);
-                    if (!psDCWorkspaceService.select((IEntity)psDCWorkspace, true)) {
+                    if (!psDCWorkspaceService.select(psDCWorkspace, true)) {
                         psDCWorkspace.reset();
                         psDCWorkspace.setPSDevCenterId(psDevSlnSys.getPSDevCenterId());
                         psDCWorkspace.setPSDCWorkspaceName(strPSDCWorkspaceName);
-                        if (!psDCWorkspaceService.select((IEntity)psDCWorkspace, true)) {
+                        if (!psDCWorkspaceService.select(psDCWorkspace, true)) {
                             throw new Exception("\u6570\u636e\u4e0d\u5b58\u5728");
                         }
                     }
@@ -245,7 +272,7 @@ extends PSStudioCLIHelperBase {
             SelectCond selectCond = new SelectCond();
             selectCond.set("PSDEVCENTERID", (Object)psDevSlnSys.getPSDevCenterId());
             selectCond.set("PSDEVSLNID", (Object)psDevSlnSys.getPSDevSlnId());
-            ArrayList psDCWorkspaceList = psDCWorkspaceService.select((ISelectCond)selectCond);
+            ArrayList<PSDCWorkspace> psDCWorkspaceList = psDCWorkspaceService.select((ISelectCond)selectCond);
             if (psDCWorkspaceList != null) {
                 for (PSDCWorkspace item : psDCWorkspaceList) {
                     if (!StringHelper.isNullOrEmpty((String)item.getPSDevSlnSysId()) || DataObject.getIntegerValue((Object)item.getResState(), (Integer)20) != 20) continue;
@@ -269,7 +296,7 @@ extends PSStudioCLIHelperBase {
         psDevSlnSys.setPSDevSlnSysId(psTaskServerCmd.getPSDEVSLNSYSID());
         PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         try {
-            psDevSlnSysService.get((IEntity)psDevSlnSys);
+            psDevSlnSysService.get(psDevSlnSys);
         }
         catch (Exception ex) {
             throw new Exception(String.format("\u83b7\u53d6\u5f00\u53d1\u7cfb\u7edf\u53d1\u751f\u5f02\u5e38\uff0c%1$s", ex.getMessage()));
@@ -293,7 +320,7 @@ extends PSStudioCLIHelperBase {
         psDevSlnSys.setPSDevSlnSysId(psTaskServerCmd.getPSDEVSLNSYSID());
         PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         try {
-            psDevSlnSysService.get((IEntity)psDevSlnSys);
+            psDevSlnSysService.get(psDevSlnSys);
         }
         catch (Exception ex) {
             throw new Exception(String.format("\u83b7\u53d6\u5f00\u53d1\u7cfb\u7edf\u53d1\u751f\u5f02\u5e38\uff0c%1$s", ex.getMessage()));
@@ -309,7 +336,7 @@ extends PSStudioCLIHelperBase {
             PSSystemRun psSystemRun = new PSSystemRun();
             try {
                 psSystemRun.setPSSystemRunName(strPSSystemRunName);
-                if (!psSystemRunService.select((IEntity)psSystemRun, true)) {
+                if (!psSystemRunService.select(psSystemRun, true)) {
                     throw new Exception("\u6570\u636e\u4e0d\u5b58\u5728");
                 }
             }
@@ -328,7 +355,7 @@ extends PSStudioCLIHelperBase {
             psSysRunSession.setPSSystemDBCfgId(psSystemRun.getPSSystemDBCfgId());
             psSysRunSession.setPSSystemDBCfgName(psSystemRun.getPSSystemDBCfgName());
             psSysRunSession.set("PSDEVSLNSYSID", (Object)psDevSlnSys.getPSDevSlnSysId());
-            psSysRunSessionService.create((IEntity)psSysRunSession);
+            psSysRunSessionService.create(psSysRunSession);
         } else {
             PSSystemDBCfg psSystemDBCfg;
             PSSysApp psSysApp;
@@ -343,10 +370,10 @@ extends PSStudioCLIHelperBase {
                             psSysSFPub = new PSSysSFPub();
                             try {
                                 psSysSFPub.setCodeName(strPSSysSFPubName);
-                                if (!psSysSFPubService.select((IEntity)psSysSFPub, true)) {
+                                if (!psSysSFPubService.select(psSysSFPub, true)) {
                                     psSysSFPub.reset();
                                     psSysSFPub.setPSSysSFPubName(strPSSysSFPubName);
-                                    if (!psSysSFPubService.select((IEntity)psSysSFPub, true)) {
+                                    if (!psSysSFPubService.select(psSysSFPub, true)) {
                                         throw new Exception("\u6570\u636e\u4e0d\u5b58\u5728");
                                     }
                                 }
@@ -359,7 +386,7 @@ extends PSStudioCLIHelperBase {
                         psSysSFPub = new PSSysSFPub();
                         try {
                             psSysSFPub.setDefaultPub(Integer.valueOf(1));
-                            if (!psSysSFPubService.select((IEntity)psSysSFPub, true)) {
+                            if (!psSysSFPubService.select(psSysSFPub, true)) {
                                 throw new Exception("\u6570\u636e\u4e0d\u5b58\u5728");
                             }
                         }
@@ -374,10 +401,10 @@ extends PSStudioCLIHelperBase {
                         psSysApp = new PSSysApp();
                         try {
                             psSysApp.setAppPKGName(strPSSysAppName);
-                            if (!psSysAppService.select((IEntity)psSysApp, true)) {
+                            if (!psSysAppService.select(psSysApp, true)) {
                                 psSysApp.reset();
                                 psSysApp.setPSSysAppName(strPSSysAppName);
-                                if (!psSysAppService.select((IEntity)psSysApp, true)) {
+                                if (!psSysAppService.select(psSysApp, true)) {
                                     throw new Exception("\u6570\u636e\u4e0d\u5b58\u5728");
                                 }
                             }
@@ -390,7 +417,7 @@ extends PSStudioCLIHelperBase {
                     psSysApp = new PSSysApp();
                     try {
                         psSysApp.setDefaultPub(Integer.valueOf(1));
-                        if (!psSysAppService.select((IEntity)psSysApp, true)) {
+                        if (!psSysAppService.select(psSysApp, true)) {
                             psSysApp = null;
                         }
                     }
@@ -405,7 +432,7 @@ extends PSStudioCLIHelperBase {
                     psSystemDBCfg = new PSSystemDBCfg();
                     try {
                         psSystemDBCfg.setPSSystemDBCfgName(strPSSystemDBCfgName);
-                        if (!psSystemDBCfgService.select((IEntity)psSystemDBCfg, true)) {
+                        if (!psSystemDBCfgService.select(psSystemDBCfg, true)) {
                             throw new Exception("\u6570\u636e\u4e0d\u5b58\u5728");
                         }
                         break block37;
@@ -417,7 +444,7 @@ extends PSStudioCLIHelperBase {
                 psSystemDBCfg = new PSSystemDBCfg();
                 try {
                     psSystemDBCfg.setDefaultFlag(Integer.valueOf(1));
-                    if (!psSystemDBCfgService.select((IEntity)psSystemDBCfg, true)) {
+                    if (!psSystemDBCfgService.select(psSystemDBCfg, true)) {
                         psSystemDBCfg = null;
                     }
                 }
@@ -441,8 +468,7 @@ extends PSStudioCLIHelperBase {
                 psSysRunSession.setPSSystemDBCfgName(psSystemDBCfg.getPSSystemDBCfgName());
             }
             psSysRunSession.set("PSDEVSLNSYSID", (Object)psDevSlnSys.getPSDevSlnSysId());
-            psSysRunSessionService.create((IEntity)psSysRunSession);
+            psSysRunSessionService.create(psSysRunSession);
         }
     }
 }
-

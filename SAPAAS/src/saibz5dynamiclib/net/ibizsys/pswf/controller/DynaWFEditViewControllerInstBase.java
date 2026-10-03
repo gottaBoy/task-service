@@ -1,93 +1,174 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- *  net.ibizsys.paas.core.IDEWF
- *  net.ibizsys.paas.util.JsonNodeHelper
- *  net.ibizsys.pswf.controller.IWFDEViewController
- *  net.ibizsys.pswf.core.IWFModel
- *  net.ibizsys.pswf.core.IWFVersionModel
- */
 package net.ibizsys.pswf.controller;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import net.ibizsys.paas.controller.DynaEditViewControllerInstBase;
 import net.ibizsys.paas.core.IDEWF;
 import net.ibizsys.paas.util.JsonNodeHelper;
-import net.ibizsys.pswf.controller.IDynaWFDEViewControllerInst;
-import net.ibizsys.pswf.controller.IWFDEViewController;
 import net.ibizsys.pswf.core.IWFModel;
 import net.ibizsys.pswf.core.IWFVersionModel;
 
-public abstract class DynaWFEditViewControllerInstBase
-extends DynaEditViewControllerInstBase
-implements IDynaWFDEViewControllerInst {
-    private IWFModel iWFModel = null;
-    private IDEWF iDEWF = null;
-    private boolean bWFIAMode = false;
-    private String strWFStepValue = "";
-    private int nWFVersion = -1;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-    @Override
-    protected void onInit() throws Exception {
-        if (this.getDynaViewController() instanceof IWFDEViewController) {
-            IWFDEViewController iWFDEViewController = (IWFDEViewController)this.getDynaViewController();
-            this.setWFModel(iWFDEViewController.getWFModel());
-            this.setDEWF(iWFDEViewController.getDEWF());
-        }
-        super.onInit();
-    }
+/**
+ * 动态流程编辑视图控制器实例基对象
+ * @author Administrator
+ *
+ */
+public abstract class DynaWFEditViewControllerInstBase extends DynaEditViewControllerInstBase implements IDynaWFDEViewControllerInst{
 
-    public IWFModel getWFModel() {
-        return this.iWFModel;
-    }
+	public DynaWFEditViewControllerInstBase() throws Exception {
+		super();
+	}
+	
+	
+	/**
+	 * 工作流模型
+	 */
+	private IWFModel iWFModel = null;
 
-    protected void setWFModel(IWFModel iWFModel) {
-        this.iWFModel = iWFModel;
-    }
+	/**
+	 * 实体工作流模型
+	 */
+	private IDEWF iDEWF = null;
 
-    public IWFVersionModel getWFVersionModel() {
-        return this.getWFModel().getLastWFVersionModel();
-    }
+	/**
+	 * 是否为工作模式
+	 */
+	private boolean bWFIAMode = false;
 
-    public boolean isWFIAMode() {
-        return this.bWFIAMode;
-    }
+	/**
+	 * 交互的流程步骤值
+	 */
+	private String strWFStepValue = "";
 
-    protected void setWFIAMode(boolean bWFIAMode) {
-        this.bWFIAMode = bWFIAMode;
-    }
+	/**
+	 * 流程版本
+	 */
+	private int nWFVersion = -1;
 
-    public IDEWF getDEWF() {
-        return this.iDEWF;
-    }
+	
+	@Override
+	protected void onInit() throws Exception {
+		if(this.getDynaViewController() instanceof IWFDEViewController){
+			IWFDEViewController iWFDEViewController = (IWFDEViewController)this.getDynaViewController();
+			this.setWFModel(iWFDEViewController.getWFModel());
+			this.setDEWF(iWFDEViewController.getDEWF());
+		}
+		super.onInit();
+	}
+	
+	
 
-    protected void setDEWF(IDEWF iDEWF) {
-        this.iDEWF = iDEWF;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#getWFModel()
+	 */
+	public IWFModel getWFModel() {
+		return iWFModel;
+	}
 
-    public String getWFStepValue() {
-        return this.strWFStepValue;
-    }
+	/**
+	 * 设置流程模型
+	 * 
+	 * @param iWFModel
+	 */
+	protected void setWFModel(IWFModel iWFModel) {
+		this.iWFModel = iWFModel;
+	}
 
-    public void setWFStepValue(String strWFStepValue) {
-        this.strWFStepValue = strWFStepValue;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#getWFVersionModel()
+	 */
+	@Override
+	public IWFVersionModel getWFVersionModel() {
+		return this.getWFModel().getLastWFVersionModel();
+	}
 
-    public int getWFVersion() {
-        return this.nWFVersion;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#isWFIAMode()
+	 */
+	@Override
+	public boolean isWFIAMode() {
+		return this.bWFIAMode;
+	}
 
-    public void setWFVersion(int nWFVersion) {
-        this.nWFVersion = nWFVersion;
-    }
+	/**
+	 * 设置是否为流程交互模式
+	 * 
+	 * @param bWFIAMode
+	 */
+	protected void setWFIAMode(boolean bWFIAMode) {
+		this.bWFIAMode = bWFIAMode;
+	}
 
-    @Override
-    protected void onLoadJsonObject(ObjectNode viewModelNode) throws Exception {
-        super.onLoadJsonObject(viewModelNode);
-        this.setWFIAMode(JsonNodeHelper.getBoolean((ObjectNode)viewModelNode, (String)"wfiamode", (boolean)this.isWFIAMode()));
-        this.setWFStepValue(JsonNodeHelper.getString((ObjectNode)viewModelNode, (String)"wfstepvalue", (String)this.getWFStepValue()));
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFDEViewController#getDEWF()
+	 */
+	@Override
+	public IDEWF getDEWF() {
+		return this.iDEWF;
+	}
+
+	/**
+	 * 设置流程实体对象
+	 * 
+	 * @param iDEWF
+	 */
+	protected void setDEWF(IDEWF iDEWF) {
+		this.iDEWF = iDEWF;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#getWFStepValue()
+	 */
+	@Override
+	public String getWFStepValue() {
+		return this.strWFStepValue;
+	}
+
+	/**
+	 * 设置当前的流程步骤值
+	 * 
+	 * @param strWFStepValue
+	 */
+	public void setWFStepValue(String strWFStepValue) {
+		this.strWFStepValue = strWFStepValue;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#getWFVersion()
+	 */
+	@Override
+	public int getWFVersion() {
+		return this.nWFVersion;
+	}
+
+	/**
+	 * 设置流程版本
+	 * 
+	 * @param nWFVersion
+	 */
+	public void setWFVersion(int nWFVersion) {
+		this.nWFVersion = nWFVersion;
+	}
+
+	
+	@Override
+	protected void onLoadJsonObject(ObjectNode viewModelNode) throws Exception {
+		super.onLoadJsonObject(viewModelNode);
+
+		this.setWFIAMode(JsonNodeHelper.getBoolean(viewModelNode, ATTR_WFIAMODE, this.isWFIAMode()));
+		this.setWFStepValue(JsonNodeHelper.getString(viewModelNode, ATTR_WFSTEPVALUE, this.getWFStepValue()));
+	}
+	
 }
-

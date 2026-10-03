@@ -73,14 +73,20 @@ extends BaseTMPage {
             this.PageLog((Object)this, 1, StringHelper.Format((String)"\u6ca1\u6709\u6307\u5b9a\u8bd5\u7b97\u8ba1\u5212"));
             return false;
         }
-        TMBTPlan tmBTPlan = new TMBTPlan();
-        tmBTPlan.setTMBTPLANID(strTMBTPlanId);
-        IDEDataCtrl tmBTPlanDataCtrl = this.getDAModelStorage().FindDEDataCtrl2("TM0160", (ISRFDAWebContext)this.getWebContext());
-        CallResult callResult = tmBTPlanDataCtrl.Get((BaseDataEntity)tmBTPlan);
-        if (callResult.IsError()) {
-            throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u8bd5\u7b97\u8ba1\u5212[%1$s]\u53d1\u751f\u9519\u8bef\uff0c%2$s", (Object)strTMBTPlanId, (Object)callResult.getErrorInfo()));
+        try {
+            TMBTPlan tmBTPlan = new TMBTPlan();
+            tmBTPlan.setTMBTPLANID(strTMBTPlanId);
+            IDEDataCtrl tmBTPlanDataCtrl = this.getDAModelStorage().FindDEDataCtrl2("TM0160", (ISRFDAWebContext)this.getWebContext());
+            CallResult callResult = tmBTPlanDataCtrl.Get((BaseDataEntity)tmBTPlan);
+            if (callResult.IsError()) {
+                throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u8bd5\u7b97\u8ba1\u5212[%1$s]\u53d1\u751f\u9519\u8bef\uff0c%2$s", (Object)strTMBTPlanId, (Object)callResult.getErrorInfo()));
+            }
+            this.iTMBTPlanHelper = TMObjectFactory.getCurrent().CreateBTPlanHelper((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), tmBTPlan);
         }
-        this.iTMBTPlanHelper = TMObjectFactory.getCurrent().CreateBTPlanHelper((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), tmBTPlan);
+        catch (Exception ex) {
+            this.PageLog((Object)this, 1, StringHelper.Format((String)"\u521d\u59cb\u5316\u9875\u9762\u73af\u5883\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), ex);
+            return false;
+        }
         return true;
     }
 

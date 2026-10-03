@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEFValueRuleDEModelBase;
 
 public class PSDEFValueRuleDEModel
 extends PSDEFValueRuleDEModelBase {
+
+    public PSDEFValueRuleDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

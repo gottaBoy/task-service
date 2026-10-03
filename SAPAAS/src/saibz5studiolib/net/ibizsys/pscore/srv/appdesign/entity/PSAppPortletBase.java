@@ -1628,7 +1628,7 @@ implements Serializable {
                 PSAppLocalDE pSAppLocalDE = new PSAppLocalDE();
                 pSAppLocalDE.setPSAppLocalDEId(this.getPSAppLocalDEId());
                 PSAppLocalDEService pSAppLocalDEService = (PSAppLocalDEService)ServiceGlobal.getService(PSAppLocalDEService.class, (SessionFactory)this.getSessionFactory());
-                pSAppLocalDEService.autoGet((IEntity)pSAppLocalDE);
+                pSAppLocalDEService.autoGet(pSAppLocalDE);
                 this.psapplocalde = pSAppLocalDE;
             }
             return this.psapplocalde;
@@ -1654,7 +1654,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;
@@ -1680,7 +1680,7 @@ implements Serializable {
                 PSSysPortlet pSSysPortlet = new PSSysPortlet();
                 pSSysPortlet.setPSSysPortletId(this.getPSSysPortletId());
                 PSSysPortletService pSSysPortletService = (PSSysPortletService)ServiceGlobal.getService(PSSysPortletService.class, (SessionFactory)this.getSessionFactory());
-                pSSysPortletService.autoGet((IEntity)pSSysPortlet);
+                pSSysPortletService.autoGet(pSSysPortlet);
                 this.pssysportlet = pSSysPortlet;
             }
             return this.pssysportlet;

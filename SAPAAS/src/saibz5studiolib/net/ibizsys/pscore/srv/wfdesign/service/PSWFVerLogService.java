@@ -28,7 +28,7 @@ extends PSWFVerLogServiceBase {
 
     @Override
     protected void onRestoreVer(PSWFVerLog pSWFVerLog) throws Exception {
-        this.get((IEntity)pSWFVerLog);
+        this.get(pSWFVerLog);
         PSWFVersionService pSWFVersionService = (PSWFVersionService)ServiceGlobal.getService(PSWFVersionService.class, (SessionFactory)this.getSessionFactory());
         pSWFVersionService.restorePSWFVerLog(pSWFVerLog);
     }

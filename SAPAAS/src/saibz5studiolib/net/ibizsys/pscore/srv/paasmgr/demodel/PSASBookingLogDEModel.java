@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSASBookingLogDEModelBase;
 
 public class PSASBookingLogDEModel
 extends PSASBookingLogDEModelBase {
+
+    public PSASBookingLogDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

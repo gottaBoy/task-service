@@ -32,6 +32,7 @@ import net.ibizsys.paas.ctrlmodel.ITreeNodeRSModel;
 import net.ibizsys.paas.ctrlmodel.TreeCodeListNodeModel;
 import net.ibizsys.paas.ctrlmodel.TreeDEDataSetNodeModel;
 import net.ibizsys.paas.ctrlmodel.TreeModelBase;
+import net.ibizsys.paas.ctrlmodel.TreeNodeModelBase;
 import net.ibizsys.paas.ctrlmodel.TreeNodeRSModel;
 import net.ibizsys.paas.ctrlmodel.TreeStaticNodeModel;
 import net.ibizsys.paas.demodel.IDataEntityModel;
@@ -87,23 +88,21 @@ implements IPSJITCtrlModel {
         IPSDETree iPSDETree = this.getPSDETree();
         Iterator<IPSDETreeNode> psDETreeNodes = iPSDETree.getPSDETreeNodes();
         while (psDETreeNodes.hasNext()) {
-            TreeStaticNodeModel node;
-            IPSDETreeNode treenode;
             IPSDETreeNode iPSDETreeNode = psDETreeNodes.next();
-            TreeStaticNodeModel baseNode = null;
+            TreeNodeModelBase baseNode = null;
             if (StringHelper.compare((String)iPSDETreeNode.getTreeNodeType(), (String)"STATIC", (boolean)true) == 0) {
-                treenode = (IPSDETreeStaticNode)iPSDETreeNode;
-                node = new TreeStaticNodeModel();
+                IPSDETreeStaticNode treenode = (IPSDETreeStaticNode)iPSDETreeNode;
+                TreeStaticNodeModel node = new TreeStaticNodeModel();
                 node.setNodeValue(treenode.getNodeValue());
                 baseNode = node;
             } else if (StringHelper.compare((String)iPSDETreeNode.getTreeNodeType(), (String)"CODELIST", (boolean)true) == 0) {
-                treenode = (IPSDETreeCodeListNode)iPSDETreeNode;
-                node = new TreeCodeListNodeModel();
+                IPSDETreeCodeListNode treenode = (IPSDETreeCodeListNode)iPSDETreeNode;
+                TreeCodeListNodeModel node = new TreeCodeListNodeModel();
                 node.setCodeListId(treenode.getCodeListId());
                 baseNode = node;
             } else if (StringHelper.compare((String)iPSDETreeNode.getTreeNodeType(), (String)"DE", (boolean)true) == 0) {
-                treenode = (IPSDETreeDataSetNode)iPSDETreeNode;
-                node = new TreeDEDataSetNodeModel();
+                IPSDETreeDataSetNode treenode = (IPSDETreeDataSetNode)iPSDETreeNode;
+                TreeDEDataSetNodeModel node = new TreeDEDataSetNodeModel();
                 node.setDEName(treenode.getPSDataEntity().getName());
                 node.setDEDataSetName(treenode.getDEDataSetName());
                 if (!StringHelper.isNullOrEmpty((String)treenode.getFilterDEDataSetName())) {
@@ -167,4 +166,3 @@ implements IPSJITCtrlModel {
         }
     }
 }
-

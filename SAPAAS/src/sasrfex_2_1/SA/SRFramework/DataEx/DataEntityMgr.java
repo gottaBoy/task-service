@@ -76,13 +76,19 @@ extends ConfigMgr {
             if (StringHelper.Length((String)strGlobalConfigId) != 0) {
                 String strGlobalConfigPath = this.GetConfigFilePath("dataentity" + this.strFolderSeperator + this.GetRealPath(strGlobalConfigId) + ".xml");
                 DOMParser parserGlobal = new DOMParser();
-                if (this.bEncrypt) {
-                    parserGlobal.parse(DataEntityMgr.getContent((String)strGlobalConfigPath, (byte[])this.key));
-                } else {
-                    parserGlobal.parse(strGlobalConfigPath);
+                try {
+                    if (this.bEncrypt) {
+                        parserGlobal.parse(DataEntityMgr.getContent((String)strGlobalConfigPath, (byte[])this.key));
+                    } else {
+                        parserGlobal.parse(strGlobalConfigPath);
+                    }
+                    Document docGlobal = parserGlobal.getDocument();
+                    dataEntityConfig.LoadConfig(docGlobal.getDocumentElement());
                 }
-                Document docGlobal = parserGlobal.getDocument();
-                dataEntityConfig.LoadConfig(docGlobal.getDocumentElement());
+                catch (Exception ex) {
+                    ex.printStackTrace(System.out);
+                    return null;
+                }
             }
             dataEntityConfig.LoadConfig(doc.getDocumentElement());
             Hashtable hashtable = this.fileList;
@@ -95,4 +101,3 @@ extends ConfigMgr {
         return null;
     }
 }
-

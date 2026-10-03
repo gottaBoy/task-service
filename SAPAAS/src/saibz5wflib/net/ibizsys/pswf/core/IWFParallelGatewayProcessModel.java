@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFGatewayProcessModelBase;
+/**
+ * 流程并行网关处理对象接口
+ * @author Administrator
+ *
+ */
+public interface IWFParallelGatewayProcessModel extends IWFGatewayProcessModelBase {
 
-public interface IWFParallelGatewayProcessModel
-extends IWFGatewayProcessModelBase {
 }
-

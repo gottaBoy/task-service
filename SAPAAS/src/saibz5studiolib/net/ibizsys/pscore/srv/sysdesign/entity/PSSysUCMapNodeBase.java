@@ -1696,7 +1696,7 @@ implements Serializable {
                 PSSysActor pSSysActor = new PSSysActor();
                 pSSysActor.setPSSysActorId(this.getPSSysActorId());
                 PSSysActorService pSSysActorService = (PSSysActorService)ServiceGlobal.getService(PSSysActorService.class, (SessionFactory)this.getSessionFactory());
-                pSSysActorService.autoGet((IEntity)pSSysActor);
+                pSSysActorService.autoGet(pSSysActor);
                 this.pssysactor = pSSysActor;
             }
             return this.pssysactor;
@@ -1722,7 +1722,7 @@ implements Serializable {
                 PSSysUCMap pSSysUCMap = new PSSysUCMap();
                 pSSysUCMap.setPSSysUCMapId(this.getPSSysUCMapId());
                 PSSysUCMapService pSSysUCMapService = (PSSysUCMapService)ServiceGlobal.getService(PSSysUCMapService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUCMapService.autoGet((IEntity)pSSysUCMap);
+                pSSysUCMapService.autoGet(pSSysUCMap);
                 this.pssysucmap = pSSysUCMap;
             }
             return this.pssysucmap;
@@ -1748,7 +1748,7 @@ implements Serializable {
                 PSSysUserCase pSSysUserCase = new PSSysUserCase();
                 pSSysUserCase.setPSSysUserCaseId(this.getPSSysUserCaseId());
                 PSSysUserCaseService pSSysUserCaseService = (PSSysUserCaseService)ServiceGlobal.getService(PSSysUserCaseService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUserCaseService.autoGet((IEntity)pSSysUserCase);
+                pSSysUserCaseService.autoGet(pSSysUserCase);
                 this.pssysusercase = pSSysUserCase;
             }
             return this.pssysusercase;

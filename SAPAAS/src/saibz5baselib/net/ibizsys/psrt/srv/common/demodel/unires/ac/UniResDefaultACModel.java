@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.unires.ac;
 
-import net.ibizsys.psrt.srv.common.demodel.unires.ac.UniResDefaultACModelBase;
+/**
+ *  实体自动填充 [DEFAULT]对象模型
+ */
+public class UniResDefaultACModel extends UniResDefaultACModelBase {
 
-public class UniResDefaultACModel
-extends UniResDefaultACModelBase {
+    public UniResDefaultACModel () {
+        super();
+    }
+
 }
-

@@ -1,15 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.api;
 
-import net.ibizsys.paas.api.ServiceAPIModelBase;
+/**
+ * Rest 服务API模型
+ * @author Administrator
+ *
+ */
+public abstract class RestServiceAPIModelBase extends ServiceAPIModelBase {
 
-public abstract class RestServiceAPIModelBase
-extends ServiceAPIModelBase {
-    @Override
-    public String getAPIType() {
-        return "RESTFUL";
-    }
+	@Override
+	public String getAPIType() {
+		return IServiceAPI.APITYPE_RESTFUL;
+	}
+
 }
-

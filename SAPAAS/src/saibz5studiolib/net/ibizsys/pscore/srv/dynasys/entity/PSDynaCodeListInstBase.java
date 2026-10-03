@@ -1195,7 +1195,7 @@ implements Serializable {
                 PSDynaCodeList pSDynaCodeList = new PSDynaCodeList();
                 pSDynaCodeList.setPSDynaCodeListId(this.getPSDynaCodeListId());
                 PSDynaCodeListService pSDynaCodeListService = (PSDynaCodeListService)ServiceGlobal.getService(PSDynaCodeListService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaCodeListService.autoGet((IEntity)pSDynaCodeList);
+                pSDynaCodeListService.autoGet(pSDynaCodeList);
                 this.psdynacodelist = pSDynaCodeList;
             }
             return this.psdynacodelist;
@@ -1221,7 +1221,7 @@ implements Serializable {
                 PSDynaInst pSDynaInst = new PSDynaInst();
                 pSDynaInst.setPSDynaInstId(this.getPSDynaInstId());
                 PSDynaInstService pSDynaInstService = (PSDynaInstService)ServiceGlobal.getService(PSDynaInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaInstService.autoGet((IEntity)pSDynaInst);
+                pSDynaInstService.autoGet(pSDynaInst);
                 this.psdynainst = pSDynaInst;
             }
             return this.psdynainst;

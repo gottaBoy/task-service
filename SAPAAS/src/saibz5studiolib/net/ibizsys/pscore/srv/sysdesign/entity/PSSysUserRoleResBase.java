@@ -1482,7 +1482,7 @@ implements Serializable {
                 PSSysOPPriv pSSysOPPriv = new PSSysOPPriv();
                 pSSysOPPriv.setPSSysOPPrivId(this.getPSSysOPPrivId());
                 PSSysOPPrivService pSSysOPPrivService = (PSSysOPPrivService)ServiceGlobal.getService(PSSysOPPrivService.class, (SessionFactory)this.getSessionFactory());
-                pSSysOPPrivService.autoGet((IEntity)pSSysOPPriv);
+                pSSysOPPrivService.autoGet(pSSysOPPriv);
                 this.pssysoppriv = pSSysOPPriv;
             }
             return this.pssysoppriv;
@@ -1508,7 +1508,7 @@ implements Serializable {
                 PSSysUniRes pSSysUniRes = new PSSysUniRes();
                 pSSysUniRes.setPSSysUniResId(this.getPSSysUniResId());
                 PSSysUniResService pSSysUniResService = (PSSysUniResService)ServiceGlobal.getService(PSSysUniResService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUniResService.autoGet((IEntity)pSSysUniRes);
+                pSSysUniResService.autoGet(pSSysUniRes);
                 this.pssysunires = pSSysUniRes;
             }
             return this.pssysunires;

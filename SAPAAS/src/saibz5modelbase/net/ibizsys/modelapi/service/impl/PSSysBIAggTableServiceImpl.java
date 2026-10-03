@@ -75,7 +75,7 @@ implements IPSSysBIAggTableService {
     @Override
     protected List<PSSysBIAggTable> onListAll() throws Exception {
         ArrayList<PSSysBIAggTable> list = new ArrayList<PSSysBIAggTable>();
-        List pssysbischemes = PSModelServiceUtil.getInstance().getPSSysBISchemeService().listAll();
+        List<PSSysBIScheme> pssysbischemes = PSModelServiceUtil.getInstance().getPSSysBISchemeService().listAll();
         if (pssysbischemes != null) {
             for (PSSysBIScheme parent : pssysbischemes) {
                 List<PSSysBIAggTable> items = this.listByPSSysBIScheme(parent);

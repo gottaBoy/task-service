@@ -1,29 +1,50 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
-import net.ibizsys.paas.codelist.ICodeList;
-import net.ibizsys.paas.sysmodel.CodeListGlobal;
 import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
+import net.ibizsys.paas.sysmodel.CodeListGlobal;
 
-@CodeList(id="1b748a0f68805f9d3a28ba163f4697ff", name="\u5fae\u4fe1\u4f01\u4e1a\u5e94\u7528\u7c7b\u578b", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="H5", text="H5\u4e3b\u9875\u578b", realtext="H5\u4e3b\u9875\u578b"), @CodeItem(value="MSG", text="\u6d88\u606f\u54cd\u5e94\u578b", realtext="\u6d88\u606f\u54cd\u5e94\u578b")})
-public abstract class WXEntAppTypeCodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String H5 = "H5";
-    public static final String MSG = "MSG";
+
+@CodeList(id="1b748a0f68805f9d3a28ba163f4697ff",name="微信企业应用类型",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="H5",text="H5主页型",realtext="H5主页型")
+    ,@CodeItem(value="MSG",text="消息响应型",realtext="消息响应型")
+})
+
+
+/**
+ * 静态代码表[微信企业应用类型]模型基类
+ */
+public abstract class WXEntAppTypeCodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  H5主页型，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String H5 = "H5";
+    /**
+     *  消息响应型，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String MSG = "MSG";
 
     public WXEntAppTypeCodeListModelBase() {
+        super();
         this.initAnnotation(WXEntAppTypeCodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.WXEntAppTypeCodeListModel", this);
     }
 
-    public static ICodeList getInstance() throws Exception {
+    /**
+     * 获取当前代码表对象实例
+     */
+    public static net.ibizsys.paas.codelist.ICodeList getInstance() throws Exception {
         return CodeListGlobal.getCodeList("net.ibizsys.psrt.srv.codelist.WXEntAppTypeCodeListModel");
     }
-}
 
+}

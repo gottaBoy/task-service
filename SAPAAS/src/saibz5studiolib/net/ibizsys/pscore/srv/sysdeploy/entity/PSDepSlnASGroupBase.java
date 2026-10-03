@@ -1548,7 +1548,7 @@ implements Serializable {
                 PSDCASGroup pSDCASGroup = new PSDCASGroup();
                 pSDCASGroup.setPSDCASGroupId(this.getPSDCASGroupId());
                 PSDCASGroupService pSDCASGroupService = (PSDCASGroupService)ServiceGlobal.getService(PSDCASGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSDCASGroupService.autoGet((IEntity)pSDCASGroup);
+                pSDCASGroupService.autoGet(pSDCASGroup);
                 this.psdcasgroup = pSDCASGroup;
             }
             return this.psdcasgroup;
@@ -1574,7 +1574,7 @@ implements Serializable {
                 PSDepSlnHost pSDepSlnHost = new PSDepSlnHost();
                 pSDepSlnHost.setPSDepSlnHostId(this.getPSDepSlnHostId());
                 PSDepSlnHostService pSDepSlnHostService = (PSDepSlnHostService)ServiceGlobal.getService(PSDepSlnHostService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnHostService.autoGet((IEntity)pSDepSlnHost);
+                pSDepSlnHostService.autoGet(pSDepSlnHost);
                 this.psdepslnhost = pSDepSlnHost;
             }
             return this.psdepslnhost;
@@ -1600,7 +1600,7 @@ implements Serializable {
                 PSDepSln pSDepSln = new PSDepSln();
                 pSDepSln.setPSDepSlnId(this.getPSDepSlnId());
                 PSDepSlnService pSDepSlnService = (PSDepSlnService)ServiceGlobal.getService(PSDepSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnService.autoGet((IEntity)pSDepSln);
+                pSDepSlnService.autoGet(pSDepSln);
                 this.psdepsln = pSDepSln;
             }
             return this.psdepsln;

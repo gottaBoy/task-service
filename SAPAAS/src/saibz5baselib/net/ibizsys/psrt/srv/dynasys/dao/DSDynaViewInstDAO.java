@@ -1,16 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.springframework.stereotype.Repository
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.dynasys.dao;
 
-import net.ibizsys.psrt.srv.dynasys.dao.DSDynaViewInstDAOBase;
 import org.springframework.stereotype.Repository;
 
+/**
+ * 实体[DSDynaViewInst] DAO对象
+ */
 @Repository
-public class DSDynaViewInstDAO
-extends DSDynaViewInstDAOBase {
-}
+public class DSDynaViewInstDAO extends DSDynaViewInstDAOBase {
 
+    public DSDynaViewInstDAO() {
+        super();
+    }
+
+}

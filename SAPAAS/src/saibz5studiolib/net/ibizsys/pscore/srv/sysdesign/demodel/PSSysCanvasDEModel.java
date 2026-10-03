@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysCanvasDEModelBase;
 
 public class PSSysCanvasDEModel
 extends PSSysCanvasDEModelBase {
+
+    public PSSysCanvasDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

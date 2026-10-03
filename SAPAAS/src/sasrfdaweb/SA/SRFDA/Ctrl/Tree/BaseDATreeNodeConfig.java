@@ -166,7 +166,7 @@ extends TreeNodeConfig {
             if (!dr.IsDBNull(this.getPage().getDEHelper().GetIndexTypeDEFHelper().getName())) {
                 strIndexType = dr.Get(this.getPage().getDEHelper().GetIndexTypeDEFHelper().getName()).toString();
             }
-            Vector list = this.getPage().getDEHelper().GetDERINDEXs(true);
+            Vector<DERINDEX> list = this.getPage().getDEHelper().GetDERINDEXs(true);
             for (DERINDEX dERINDEX : list) {
                 IDEHelper iDEHelper = this.getPage().getDAModelStorage().FindDEHelper(dERINDEX.getDEID());
                 if (StringHelper.Compare((String)dERINDEX.getTYPEVALUE(), (String)strIndexType, (boolean)true) != 0) continue;
@@ -190,4 +190,3 @@ extends TreeNodeConfig {
         return true;
     }
 }
-

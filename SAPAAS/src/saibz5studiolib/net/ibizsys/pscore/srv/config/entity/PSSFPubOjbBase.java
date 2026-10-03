@@ -1557,7 +1557,7 @@ implements Serializable {
                 PSSFPubOjb pSSFPubOjb = new PSSFPubOjb();
                 pSSFPubOjb.setPSSFPubObjId(this.getPPSSFPubObjId());
                 PSSFPubOjbService pSSFPubOjbService = (PSSFPubOjbService)ServiceGlobal.getService(PSSFPubOjbService.class, (SessionFactory)this.getSessionFactory());
-                pSSFPubOjbService.autoGet((IEntity)pSSFPubOjb);
+                pSSFPubOjbService.autoGet(pSSFPubOjb);
                 this.ppssfpubobj = pSSFPubOjb;
             }
             return this.ppssfpubobj;
@@ -1583,7 +1583,7 @@ implements Serializable {
                 PSSFStyle pSSFStyle = new PSSFStyle();
                 pSSFStyle.setPSSFStyleId(this.getPSSFStyleId());
                 PSSFStyleService pSSFStyleService = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.getSessionFactory());
-                pSSFStyleService.autoGet((IEntity)pSSFStyle);
+                pSSFStyleService.autoGet(pSSFStyle);
                 this.pssfstyle = pSSFStyle;
             }
             return this.pssfstyle;
@@ -1609,7 +1609,7 @@ implements Serializable {
                 PSSF pSSF = new PSSF();
                 pSSF.setPSSFId(this.getPSSFId());
                 PSSFService pSSFService = (PSSFService)ServiceGlobal.getService(PSSFService.class, (SessionFactory)this.getSessionFactory());
-                pSSFService.autoGet((IEntity)pSSF);
+                pSSFService.autoGet(pSSF);
                 this.pssf = pSSF;
             }
             return this.pssf;

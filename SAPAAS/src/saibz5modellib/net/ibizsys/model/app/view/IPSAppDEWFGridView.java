@@ -1,13 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app.view;
 
-import net.ibizsys.model.app.view.IPSAppDEGridView;
-import net.ibizsys.model.app.view.IPSAppDEWFView;
+/**
+ * 应用实体工作流表格界面对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSAppDEWFGridView extends IPSAppDEGridView,IPSAppDEWFView
+{
 
-public interface IPSAppDEWFGridView
-extends IPSAppDEGridView,
-IPSAppDEWFView {
 }
-

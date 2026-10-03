@@ -164,9 +164,9 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
             PSCssCatTempl pSCssCatTempl = (PSCssCatTempl)iService.getDEModel().createEntity();
             pSCssCatTempl.set("PSCSSCATTEMPLID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCssCatTempl);
+                iService.getTemp(pSCssCatTempl);
             } else {
-                iService.get((IEntity)pSCssCatTempl);
+                iService.get(pSCssCatTempl);
             }
             this.onFillParentInfo_PSCssCatTempl(pSSysCssCat, pSCssCatTempl);
             return;
@@ -176,9 +176,9 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSSysCssCat, pSModule);
             return;
@@ -188,14 +188,14 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysCssCat, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysCssCat, string, string2, string3);
+        super.onFillParentInfo(pSSysCssCat, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -226,7 +226,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 pSSysCssCat.setPSSysCssCatName((String)this.getDefaultValue(this.getWebContext(), "USER", "\u6837\u5f0f\u8868\u5206\u7c7b", 25));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysCssCat, bl);
+        super.onFillEntityFullInfo(pSSysCssCat, bl);
         this.onFillEntityFullInfo_PSCssCatTempl(pSSysCssCat, bl);
         this.onFillEntityFullInfo_PSModule(pSSysCssCat, bl);
         this.onFillEntityFullInfo_PSSystem(pSSysCssCat, bl);
@@ -262,7 +262,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
     }
 
     protected void onWriteBackParent(PSSysCssCat pSSysCssCat, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysCssCat, bl);
+        super.onWriteBackParent(pSSysCssCat, bl);
     }
 
     public ArrayList<PSSysCssCat> selectByPSCssCatTempl(PSCssCatTemplBase pSCssCatTemplBase) throws Exception {
@@ -341,8 +341,8 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
         ArrayList<PSSysCssCat> arrayList = this.selectByPSCssCatTempl(pSCssCatTempl, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCSSCATTEMPL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCssCatTempl);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCSSCAT_PSCSSCATTEMPL_PSCSSCATTEMPLID", "", iDataEntityModel.getName(), "PSSYSCSSCAT", iDataEntityModel.getDataInfo((IEntity)pSCssCatTempl), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCssCatTempl);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCSSCAT_PSCSSCATTEMPL_PSCSSCATTEMPLID", "", iDataEntityModel.getName(), "PSSYSCSSCAT", iDataEntityModel.getDataInfo(pSCssCatTempl), arrayList.get(0)));
         }
     }
 
@@ -375,7 +375,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
         ArrayList<PSSysCssCat> arrayList = this.selectByPSCssCatTempl(pSCssCatTempl);
         this.onBeforeRemoveByPSCssCatTempl(pSCssCatTempl, arrayList);
         for (PSSysCssCat pSSysCssCat : arrayList) {
-            this.remove((IEntity)pSSysCssCat);
+            this.remove(pSSysCssCat);
         }
         this.onAfterRemoveByPSCssCatTempl(pSCssCatTempl, arrayList);
     }
@@ -393,8 +393,8 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
         ArrayList<PSSysCssCat> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCSSCAT_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSCSSCAT", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCSSCAT_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSCSSCAT", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -427,7 +427,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
         ArrayList<PSSysCssCat> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSSysCssCat pSSysCssCat : arrayList) {
-            this.remove((IEntity)pSSysCssCat);
+            this.remove(pSSysCssCat);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -473,7 +473,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
         ArrayList<PSSysCssCat> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysCssCat pSSysCssCat : arrayList) {
-            this.remove((IEntity)pSSysCssCat);
+            this.remove(pSSysCssCat);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -496,7 +496,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
 
     protected void replaceParentInfo(PSSysCssCat pSSysCssCat, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysCssCat, cloneSession);
+        super.replaceParentInfo(pSSysCssCat, cloneSession);
         if (pSSysCssCat.getPSCssCatTemplId() != null && (iEntity = cloneSession.getEntity("PSCSSCATTEMPL", (Object)pSSysCssCat.getPSCssCatTemplId())) != null) {
             this.onFillParentInfo_PSCssCatTempl(pSSysCssCat, (PSCssCatTempl)iEntity);
         }
@@ -509,7 +509,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysCssCat pSSysCssCat, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysCssCat, bl);
+        super.onRemoveEntityUncopyValues(pSSysCssCat, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysCssCat pSSysCssCat, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -563,7 +563,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSSysCssCat, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysCssCat, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysCssCat, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSSysCssCat pSSysCssCat, boolean bl2, boolean bl3) throws Exception {
@@ -576,7 +576,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -617,7 +617,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CssCatName_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_CssCatName_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CSSCATNAME");
@@ -639,7 +639,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -661,7 +661,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -683,7 +683,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCssCatTemplId_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSCssCatTemplId_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCSSCATTEMPLID");
@@ -705,7 +705,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCssCatTemplName_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSCssCatTemplName_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCSSCATTEMPLNAME");
@@ -727,7 +727,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -752,7 +752,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCssCatId_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCssCatId_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCSSCATID");
@@ -777,7 +777,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCssCatName_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCssCatName_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCSSCATNAME");
@@ -821,7 +821,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -846,7 +846,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -868,7 +868,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -890,7 +890,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -912,7 +912,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -934,7 +934,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -956,7 +956,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysCssCat, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysCssCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -969,11 +969,11 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
     }
 
     protected void onSyncEntity(PSSysCssCat pSSysCssCat, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysCssCat, bl);
+        super.onSyncEntity(pSSysCssCat, bl);
     }
 
     protected void onSyncIndexEntities(PSSysCssCat pSSysCssCat, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysCssCat, bl);
+        super.onSyncIndexEntities(pSSysCssCat, bl);
     }
 
     public Object getDataContextValue(PSSysCssCat pSSysCssCat, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -981,7 +981,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysCssCat, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysCssCat, string, iDataContextParam)) != null) {
             return object;
         }
         PSSystem pSSystem = pSSysCssCat.getPSSystem();
@@ -992,7 +992,7 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
     }
 
     protected void onExportMajorModel(PSSysCssCat pSSysCssCat, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysCssCat, arrayList, n);
+        super.onExportMajorModel(pSSysCssCat, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1297,14 +1297,14 @@ extends PSCoreSysServiceBase<PSSysCssCat> {
 
     protected boolean onMergeChild(String string, String string2, PSSysCssCat pSSysCssCat) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysCssCat)) {
+        if (super.onMergeChild(string, string2, pSSysCssCat)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysCssCat pSSysCssCat) throws Exception {
-        super.onUpdateParent((IEntity)pSSysCssCat);
+        super.onUpdateParent(pSSysCssCat);
     }
 
     @Override

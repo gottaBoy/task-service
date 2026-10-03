@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSDevEnvDEModelBase;
 
 public class PSDevEnvDEModel
 extends PSDevEnvDEModelBase {
+
+    public PSDevEnvDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

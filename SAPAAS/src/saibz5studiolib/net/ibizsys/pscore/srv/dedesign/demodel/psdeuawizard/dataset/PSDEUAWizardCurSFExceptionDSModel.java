@@ -70,7 +70,7 @@ extends PSDEUAWizardCurSFExceptionDSModelBase {
         PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)ViewController.getCurrent().getSessionFactory());
         PSSystem pSSystem = new PSSystem();
         pSSystem.setPSSystemId(string);
-        pSSystemService.get((IEntity)pSSystem);
+        pSSystemService.get(pSSystem);
         PSSFExceptionService pSSFExceptionService = (PSSFExceptionService)ServiceGlobal.getService(PSSFExceptionService.class);
         DEDataSetFetchContext dEDataSetFetchContext = new DEDataSetFetchContext();
         String string2 = WebContext.getFetchQuickSearch((IWebContext)WebContext.getCurrent());
@@ -78,17 +78,17 @@ extends PSDEUAWizardCurSFExceptionDSModelBase {
             dEDataSetFetchContext.getConditionList().add(iDEDataSetCond);
         }
         if (!StringHelper.isNullOrEmpty((String)pSSystem.getPSSFId())) {
-            iDEDataSetCond = new DEDataSetCond();
-            iDEDataSetCond.setCondType("DEFIELD");
-            iDEDataSetCond.setCondOp("EQ");
-            iDEDataSetCond.setDEFName("PSSFID");
-            iDEDataSetCond.setCondValue(pSSystem.getPSSFId());
-            dEDataSetFetchContext.getConditionList().add(iDEDataSetCond);
+            DEDataSetCond dEDataSetCond = new DEDataSetCond();
+            dEDataSetCond.setCondType("DEFIELD");
+            dEDataSetCond.setCondOp("EQ");
+            dEDataSetCond.setDEFName("PSSFID");
+            dEDataSetCond.setCondValue(pSSystem.getPSSFId());
+            dEDataSetFetchContext.getConditionList().add(dEDataSetCond);
         }
         dEDataSetFetchContext.setSort("PSSFEXCEPTIONNAME");
-        iDEDataSetCond = pSSFExceptionService.fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
-        if (iDEDataSetCond.isError()) {
-            return iDEDataSetCond;
+        DBFetchResult fetchResult = pSSFExceptionService.fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
+        if (fetchResult.isError()) {
+            return fetchResult;
         }
         DBFetchResult dBFetchResult = new DBFetchResult();
         SimpleDataSetImpl simpleDataSetImpl = new SimpleDataSetImpl();
@@ -96,7 +96,7 @@ extends PSDEUAWizardCurSFExceptionDSModelBase {
         simpleDataSetImpl.addDataTable((IDataTable)simpleDataTableImpl);
         dBFetchResult.setDataSet((IDataSet)simpleDataSetImpl);
         dBFetchResult.setTotalRow(PSDEUAWizardDataSetUtil.appendEmptyDataRow(simpleDataTableImpl));
-        IDataTable iDataTable = iDEDataSetCond.getDataSet().getDataTable(0);
+        IDataTable iDataTable = fetchResult.getDataSet().getDataTable(0);
         int n = iDataTable.getCachedRowCount();
         if (n > 0) {
             simpleDataTableImpl.reset();
@@ -112,4 +112,3 @@ extends PSDEUAWizardCurSFExceptionDSModelBase {
         return dBFetchResult;
     }
 }
-

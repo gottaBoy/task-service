@@ -26,7 +26,6 @@ import SA.SRFDA.PS.Core.DevCenter.DevSlnSysPSDCBKTaskImplBase;
 import SA.SRFDA.PS.Core.PSTaskServerEnvImpl;
 import SA.SRFramework.Utility.StringHelper;
 import java.io.File;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.DateHelper;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
@@ -51,16 +50,16 @@ extends DevSlnSysPSDCBKTaskImplBase {
         PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
         psDevSlnSys.setPSDevSlnSysId(this.getTaskParam());
-        psDevSlnSysService.get((IEntity)psDevSlnSys);
+        psDevSlnSysService.get(psDevSlnSys);
         PSDevSlnSysBakService psDevSlnSysBakService = (PSDevSlnSysBakService)ServiceGlobal.getService(PSDevSlnSysBakService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSysBak psDevSlnSysBak = new PSDevSlnSysBak();
         psDevSlnSysBak.setPSDevSlnSysBakId(this.getTaskParam2());
-        psDevSlnSysBakService.get((IEntity)psDevSlnSysBak);
+        psDevSlnSysBakService.get(psDevSlnSysBak);
         PSDevSlnSysBak psDevSlnSysBak2 = new PSDevSlnSysBak();
         psDevSlnSysBak2.setPSDevSlnSysBakId(this.getTaskParam2());
         psDevSlnSysBak2.setBeginBackupTime(DateHelper.getCurTime());
         psDevSlnSysBak2.setBackupState(DBInstBStateCodeListModel.CREATING);
-        psDevSlnSysBakService.sysUpdate((IEntity)psDevSlnSysBak2, false);
+        psDevSlnSysBakService.sysUpdate(psDevSlnSysBak2, false);
         PSSysModelInst psSysModelInst = psDevSlnSys.getPSSysModelInst();
         PSDBServer psDBServer = psSysModelInst.getPSDBServer();
         String strOwnerId = StringHelper.Format((String)"%1$s|%2$s", (Object)psDevSlnSysBakService.getDEModel().getName(), (Object)psDevSlnSysBak.getPSDevSlnSysBakId());
@@ -96,11 +95,11 @@ extends DevSlnSysPSDCBKTaskImplBase {
             PSDevSlnSys psDevSlnSys2 = new PSDevSlnSys();
             psDevSlnSys2.setPSDevSlnSysId(this.getTaskParam());
             psDevSlnSys2.setDevSysState(Integer.valueOf(35));
-            psDevSlnSysService.update((IEntity)psDevSlnSys2);
+            psDevSlnSysService.update(psDevSlnSys2);
             PSSysModelInst psSysModelInst2 = new PSSysModelInst();
             psSysModelInst2.setPSSysModelInstId(psDevSlnSys2.getPSSysModelInstId());
             psSysModelInst2.setInstState("35");
-            psSysModelInstService.update((IEntity)psSysModelInst2);
+            psSysModelInstService.update(psSysModelInst2);
             if (PSTaskServerEnvImpl.getCurrent().isLinux()) {
                 throw new Exception(StringHelper.Format((String)"\u6ca1\u6709\u5b9e\u73b0"));
             }
@@ -112,13 +111,13 @@ extends DevSlnSysPSDCBKTaskImplBase {
             }
             this.runCreateMySQLDBCmd(psDBServer, psSysModelInst);
             psDevSlnSys.setPSDevSlnSysId(this.getTaskParam());
-            psDevSlnSysService.get((IEntity)psDevSlnSys);
+            psDevSlnSysService.get(psDevSlnSys);
             if (StringHelper.Compare((String)psDevSlnSys.getActionOwner(), (String)strOwnerId, (boolean)false) == 0) {
                 psDevSlnSys2 = new PSDevSlnSys();
                 psDevSlnSys2.setPSDevSlnSysId(this.getTaskParam());
                 psDevSlnSys2.setActionOwner(null);
                 psDevSlnSys2.setCurAction("NONE");
-                psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, false);
+                psDevSlnSysService.sysUpdate(psDevSlnSys2, false);
             }
             psDevSlnSysBak.reset();
             psDevSlnSysBak2.setPSDevSlnSysBakId(this.getTaskParam2());
@@ -126,20 +125,20 @@ extends DevSlnSysPSDCBKTaskImplBase {
             psDevSlnSysBak2.setBackupState(DBInstBStateCodeListModel.CREATED);
             psDevSlnSysBak2.setBackupFilePath(strNasFile2);
             psDevSlnSysBak2.setBackupSize(Integer.valueOf((int)file2.length()));
-            psDevSlnSysBakService.sysUpdate((IEntity)psDevSlnSysBak2, false);
+            psDevSlnSysBakService.sysUpdate(psDevSlnSysBak2, false);
             return "\u79bb\u7ebf\u6210\u529f";
         }
         catch (Exception ex) {
             log.error((Object)StringHelper.Format((String)"\u79bb\u7ebf\u5f00\u53d1\u7cfb\u7edf[%1$s]\u53d1\u751f\u5f02\u5e38\uff0c%2$s", (Object)this.getTaskParam(), (Object)ex.getMessage()), (Throwable)ex);
             try {
                 psDevSlnSys.setPSDevSlnSysId(this.getTaskParam());
-                psDevSlnSysService.get((IEntity)psDevSlnSys);
+                psDevSlnSysService.get(psDevSlnSys);
                 if (StringHelper.Compare((String)psDevSlnSys.getActionOwner(), (String)strOwnerId, (boolean)false) == 0) {
                     PSDevSlnSys psDevSlnSys2 = new PSDevSlnSys();
                     psDevSlnSys2.setPSDevSlnSysId(this.getTaskParam());
                     psDevSlnSys2.setActionOwner(null);
                     psDevSlnSys2.setCurAction("NONE");
-                    psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, false);
+                    psDevSlnSysService.sysUpdate(psDevSlnSys2, false);
                 }
             }
             catch (Exception e) {
@@ -150,7 +149,7 @@ extends DevSlnSysPSDCBKTaskImplBase {
                 psDevSlnSysBak2.setPSDevSlnSysBakId(this.getTaskParam2());
                 psDevSlnSysBak2.setEndBackupTime(DateHelper.getCurTime());
                 psDevSlnSysBak2.setBackupState(DBInstBStateCodeListModel.FAILED);
-                psDevSlnSysBakService.sysUpdate((IEntity)psDevSlnSysBak2, false);
+                psDevSlnSysBakService.sysUpdate(psDevSlnSysBak2, false);
             }
             catch (Exception e) {
                 log.error((Object)e);

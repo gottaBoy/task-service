@@ -2022,7 +2022,7 @@ implements Serializable {
                 PSEditorType pSEditorType = new PSEditorType();
                 pSEditorType.setPSEditorTypeId(this.getPSEditorTypeId());
                 PSEditorTypeService pSEditorTypeService = (PSEditorTypeService)ServiceGlobal.getService(PSEditorTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSEditorTypeService.autoGet((IEntity)pSEditorType);
+                pSEditorTypeService.autoGet(pSEditorType);
                 this.pseditortype = pSEditorType;
             }
             return this.pseditortype;

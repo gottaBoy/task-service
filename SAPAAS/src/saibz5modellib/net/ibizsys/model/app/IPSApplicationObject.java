@@ -1,13 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app;
 
 import net.ibizsys.model.IPSSystemObject;
-import net.ibizsys.model.app.IPSApplication;
 
-public interface IPSApplicationObject
-extends IPSSystemObject {
-    public IPSApplication getPSApplication();
+/**
+ * 系统应用模型相关对象
+ * @author Administrator
+ *
+ */
+public interface IPSApplicationObject extends IPSSystemObject{
+
+	/**
+	 * 获取系统应用对象
+	 * @return
+	 */
+	IPSApplication getPSApplication();
 }
-

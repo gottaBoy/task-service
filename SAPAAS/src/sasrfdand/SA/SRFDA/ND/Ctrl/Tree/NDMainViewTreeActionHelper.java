@@ -70,9 +70,20 @@ extends NDTreeActionHelperEx {
                 bAutoExpand = StringHelper.Compare((String)strAutoExpand, (String)"TRUE", (boolean)true) == 0;
             }
             ndDiskHelper = this.getPage().getDAModelStorage().FindDEHelper("ND0011");
-            iNDUserModelStorage = SRFDANDWebCTXHelper.GetNDUserModelStorage((ISRFDAWebContext)this.getWebContext());
+            try {
+                iNDUserModelStorage = SRFDANDWebCTXHelper.GetNDUserModelStorage((ISRFDAWebContext)this.getWebContext());
+            }
+            catch (Exception exception) {
+                return false;
+            }
             if (StringHelper.Compare((String)strRealNodeId, (String)TREENODETYPE_DEPTDISK, (boolean)false) != 0) break block31;
-            Iterator<NDDisk> ndDisks = iNDUserModelStorage.getDeptNDDisks();
+            Iterator<NDDisk> ndDisks;
+            try {
+                ndDisks = iNDUserModelStorage.getDeptNDDisks();
+            }
+            catch (Exception exception) {
+                return false;
+            }
             while (ndDisks.hasNext()) {
                 NDDisk ndDisk = ndDisks.next();
                 TreeNodeConfig treeNodeConfig = new TreeNodeConfig();
@@ -110,7 +121,7 @@ extends NDTreeActionHelperEx {
         try {
             if (StringHelper.Compare((String)strRealNodeId, (String)TREENODETYPE_ORGDISK, (boolean)false) == 0 || StringHelper.Compare((String)treeNodeRS.getPTREENODEID(), (String)TREENODETYPE_ORGDISKITEM, (boolean)false) == 0) {
                 IDEHelper orgTreeNodeHelper = this.getPage().getDAModelStorage().FindDEHelper("ORG0032");
-                Vector orgTreeNodes = new Vector();
+                Vector<ORGTreeNode> orgTreeNodes = new Vector();
                 CallResult callResult = null;
                 if (StringHelper.Compare((String)strRealNodeId, (String)TREENODETYPE_ORGDISK, (boolean)false) == 0) {
                     callResult = this.getWebContext().getGlobalHelper().getDAModelHelper().GetORGTreeRootNodes(iNDUserModelStorage.getNDORGTreeId(), orgTreeNodes);

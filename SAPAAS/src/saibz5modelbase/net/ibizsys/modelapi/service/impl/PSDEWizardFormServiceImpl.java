@@ -75,7 +75,7 @@ implements IPSDEWizardFormService {
     @Override
     protected List<PSDEWizardForm> onListAll() throws Exception {
         ArrayList<PSDEWizardForm> list = new ArrayList<PSDEWizardForm>();
-        List psdewizards = PSModelServiceUtil.getInstance().getPSDEWizardService().listAll();
+        List<PSDEWizard> psdewizards = PSModelServiceUtil.getInstance().getPSDEWizardService().listAll();
         if (psdewizards != null) {
             for (PSDEWizard parent : psdewizards) {
                 List<PSDEWizardForm> items = this.listByPSDEWizard(parent);

@@ -1,12 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.form;
 
-import net.ibizsys.paas.control.form.IForm;
+/**
+ * 搜索表单接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface ISearchForm extends IForm {
+	/**
+	 * 搜索
+	 */
+	final static String SearchAction = "search";
 
-public interface ISearchForm
-extends IForm {
-    public static final String SearchAction = "search";
 }
-

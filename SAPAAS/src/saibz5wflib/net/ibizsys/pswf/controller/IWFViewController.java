@@ -1,27 +1,48 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.controller.IViewController
- *  net.ibizsys.pswf.core.IWFModel
- *  net.ibizsys.pswf.core.IWFVersionModel
- */
 package net.ibizsys.pswf.controller;
 
 import net.ibizsys.paas.controller.IViewController;
 import net.ibizsys.pswf.core.IWFModel;
 import net.ibizsys.pswf.core.IWFVersionModel;
 
-public interface IWFViewController
-extends IViewController {
-    public boolean isWFIAMode();
+/**
+ * 流程视图控制器接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IWFViewController extends IViewController {
+	/**
+	 * 是否为流程交互模式
+	 * 
+	 * @return
+	 */
+	boolean isWFIAMode();
 
-    public IWFModel getWFModel();
+	/**
+	 * 获取流程模型
+	 * 
+	 * @return
+	 */
+	IWFModel getWFModel();
 
-    public IWFVersionModel getWFVersionModel();
+	/**
+	 * 获取流程版本模型
+	 * 
+	 * @return
+	 */
+	IWFVersionModel getWFVersionModel();
 
-    public String getWFStepValue();
+	/**
+	 * 获取流程步骤值
+	 * 
+	 * @return
+	 */
+	String getWFStepValue();
 
-    public int getWFVersion();
+	/**
+	 * 获取流程版本号，-1为最新
+	 * 
+	 * @return
+	 */
+	int getWFVersion();
 }
-

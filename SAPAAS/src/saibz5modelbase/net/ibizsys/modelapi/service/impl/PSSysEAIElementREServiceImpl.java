@@ -72,7 +72,7 @@ implements IPSSysEAIElementREService {
     @Override
     protected List<PSSysEAIElementRE> onListAll() throws Exception {
         ArrayList<PSSysEAIElementRE> list = new ArrayList<PSSysEAIElementRE>();
-        List pssyseaielements = PSModelServiceUtil.getInstance().getPSSysEAIElementService().listAll();
+        List<PSSysEAIElement> pssyseaielements = PSModelServiceUtil.getInstance().getPSSysEAIElementService().listAll();
         if (pssyseaielements != null) {
             for (PSSysEAIElement parent : pssyseaielements) {
                 List<PSSysEAIElementRE> items = this.listByPSSysEAIElement(parent);

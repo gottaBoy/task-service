@@ -2229,7 +2229,7 @@ extends PSAppView {
                 PSAppMenu pSAppMenu = new PSAppMenu();
                 pSAppMenu.setPSAppMenuId(this.getBottomSidePSAppMenuId());
                 PSAppMenuService pSAppMenuService = (PSAppMenuService)ServiceGlobal.getService(PSAppMenuService.class, (SessionFactory)this.getSessionFactory());
-                pSAppMenuService.autoGet((IEntity)pSAppMenu);
+                pSAppMenuService.autoGet(pSAppMenu);
                 this.bottomsidepsappmenu = pSAppMenu;
             }
             return this.bottomsidepsappmenu;
@@ -2255,7 +2255,7 @@ extends PSAppView {
                 PSAppMenu pSAppMenu = new PSAppMenu();
                 pSAppMenu.setPSAppMenuId(this.getLeftSidePSAppMenuId());
                 PSAppMenuService pSAppMenuService = (PSAppMenuService)ServiceGlobal.getService(PSAppMenuService.class, (SessionFactory)this.getSessionFactory());
-                pSAppMenuService.autoGet((IEntity)pSAppMenu);
+                pSAppMenuService.autoGet(pSAppMenu);
                 this.leftsidepsappmenu = pSAppMenu;
             }
             return this.leftsidepsappmenu;
@@ -2281,7 +2281,7 @@ extends PSAppView {
                 PSAppMenu pSAppMenu = new PSAppMenu();
                 pSAppMenu.setPSAppMenuId(this.getPSAppMenuId());
                 PSAppMenuService pSAppMenuService = (PSAppMenuService)ServiceGlobal.getService(PSAppMenuService.class, (SessionFactory)this.getSessionFactory());
-                pSAppMenuService.autoGet((IEntity)pSAppMenu);
+                pSAppMenuService.autoGet(pSAppMenu);
                 this.psappmenu = pSAppMenu;
             }
             return this.psappmenu;
@@ -2307,7 +2307,7 @@ extends PSAppView {
                 PSAppMenu pSAppMenu = new PSAppMenu();
                 pSAppMenu.setPSAppMenuId(this.getRightSidePSAppMenuId());
                 PSAppMenuService pSAppMenuService = (PSAppMenuService)ServiceGlobal.getService(PSAppMenuService.class, (SessionFactory)this.getSessionFactory());
-                pSAppMenuService.autoGet((IEntity)pSAppMenu);
+                pSAppMenuService.autoGet(pSAppMenu);
                 this.rightsidepsappmenu = pSAppMenu;
             }
             return this.rightsidepsappmenu;
@@ -2333,7 +2333,7 @@ extends PSAppView {
                 PSAppMenu pSAppMenu = new PSAppMenu();
                 pSAppMenu.setPSAppMenuId(this.getTopSidePSAppMenuId());
                 PSAppMenuService pSAppMenuService = (PSAppMenuService)ServiceGlobal.getService(PSAppMenuService.class, (SessionFactory)this.getSessionFactory());
-                pSAppMenuService.autoGet((IEntity)pSAppMenu);
+                pSAppMenuService.autoGet(pSAppMenu);
                 this.topsidepsappmenu = pSAppMenu;
             }
             return this.topsidepsappmenu;
@@ -2359,7 +2359,7 @@ extends PSAppView {
                 PSAppView pSAppView = new PSAppView();
                 pSAppView.setPSAppViewId(this.getDefPSAppViewId());
                 PSAppViewService pSAppViewService = (PSAppViewService)ServiceGlobal.getService(PSAppViewService.class, (SessionFactory)this.getSessionFactory());
-                pSAppViewService.autoGet((IEntity)pSAppView);
+                pSAppViewService.autoGet(pSAppView);
                 this.defpsappview = pSAppView;
             }
             return this.defpsappview;
@@ -2385,7 +2385,7 @@ extends PSAppView {
                 PSSysCounter pSSysCounter = new PSSysCounter();
                 pSSysCounter.setPSSysCounterId(this.getPSSysCounterId());
                 PSSysCounterService pSSysCounterService = (PSSysCounterService)ServiceGlobal.getService(PSSysCounterService.class, (SessionFactory)this.getSessionFactory());
-                pSSysCounterService.autoGet((IEntity)pSSysCounter);
+                pSSysCounterService.autoGet(pSSysCounter);
                 this.pssyscounter = pSSysCounter;
             }
             return this.pssyscounter;

@@ -1,27 +1,38 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.ctrlhandler.ExpBarHandlerBase
- *  net.ibizsys.paas.ctrlmodel.IExpBarModel
- */
 package net.ibizsys.pswf.ctrlhandler;
 
 import java.util.HashMap;
+
 import net.ibizsys.paas.ctrlhandler.ExpBarHandlerBase;
 import net.ibizsys.paas.ctrlmodel.IExpBarModel;
-import net.ibizsys.pswf.ctrlhandler.IWFExpBarHandler;
 import net.ibizsys.pswf.ctrlmodel.IWFExpBarModel;
 
-public abstract class WFExpBarHandlerBase
-extends ExpBarHandlerBase
-implements IWFExpBarHandler {
-    private HashMap<String, String> extCntStateMap = new HashMap();
+/**
+ * 流程导航栏后台处理对象基类
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class WFExpBarHandlerBase extends ExpBarHandlerBase implements IWFExpBarHandler {
 
-    protected abstract IWFExpBarModel getWFExpBarModel();
+	/**
+	 * 获取工作流导航栏模型
+	 * 
+	 * @return
+	 */
+	protected abstract IWFExpBarModel getWFExpBarModel();
 
-    protected IExpBarModel getExpBarModel() {
-        return this.getWFExpBarModel();
-    }
+	// private HashMap<String, String> wfStateMap = new HashMap<String, String>();
+
+	private HashMap<String, String> extCntStateMap = new HashMap<String, String>();
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.ExpBarHandlerBase#getExpBarModel()
+	 */
+	@Override
+	protected IExpBarModel getExpBarModel() {
+		return this.getWFExpBarModel();
+	}
+
 }
-

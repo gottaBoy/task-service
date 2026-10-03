@@ -150,7 +150,7 @@ implements IPSSysViewPanelItemService {
     @Override
     protected List<PSSysViewPanelItem> onListAll() throws Exception {
         ArrayList<PSSysViewPanelItem> list = new ArrayList<PSSysViewPanelItem>();
-        List pssysviewpanels = PSModelServiceUtil.getInstance().getPSSysViewPanelService().listAll();
+        List<PSSysViewPanel> pssysviewpanels = PSModelServiceUtil.getInstance().getPSSysViewPanelService().listAll();
         if (pssysviewpanels != null) {
             for (PSSysViewPanel parent : pssysviewpanels) {
                 List<PSSysViewPanelItem> items = this.listByPSSysViewPanel(parent);
@@ -1391,18 +1391,19 @@ implements IPSSysViewPanelItemService {
         } else {
             dto.setRefPSDEName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSSysViewPanelItemService().listByPSSysViewPanelItem(t);
-        if (list != null && list.size() > 0) {
+        List<PSSysViewPanelItem> pSSysViewPanelItemList = PSModelServiceUtil.getInstance().getPSSysViewPanelItemService().listByPSSysViewPanelItem(t);
+        if (pSSysViewPanelItemList != null && pSSysViewPanelItemList.size() > 0) {
             ArrayList<PSSysViewPanelItemDTO> pssysviewpanelitems = new ArrayList<PSSysViewPanelItemDTO>();
-            for (PSSysViewPanelItem pSSysViewPanelItem : list) {
+            for (PSSysViewPanelItem pSSysViewPanelItem : pSSysViewPanelItemList) {
                 dstItem = (PSSysViewPanelItemDTO)PSModelServiceUtil.getInstance().getPSSysViewPanelItemService().toDTO(pSSysViewPanelItem);
                 pssysviewpanelitems.add((PSSysViewPanelItemDTO)dstItem);
             }
             dto.setPssysviewpanelitems(pssysviewpanelitems);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSPanelItemLogicService().listByPSSysViewPanelItem(t)) != null && list.size() > 0) {
+        List<PSPanelItemLogic> pSPanelItemLogicList = PSModelServiceUtil.getInstance().getPSPanelItemLogicService().listByPSSysViewPanelItem(t);
+        if (pSPanelItemLogicList != null && pSPanelItemLogicList.size() > 0) {
             ArrayList<PSPanelItemLogicDTO> pspanelitemlogics = new ArrayList<PSPanelItemLogicDTO>();
-            for (PSPanelItemLogic pSPanelItemLogic : list) {
+            for (PSPanelItemLogic pSPanelItemLogic : pSPanelItemLogicList) {
                 dstItem = (PSPanelItemLogicDTO)PSModelServiceUtil.getInstance().getPSPanelItemLogicService().toDTO(pSPanelItemLogic);
                 pspanelitemlogics.add((PSPanelItemLogicDTO)dstItem);
             }

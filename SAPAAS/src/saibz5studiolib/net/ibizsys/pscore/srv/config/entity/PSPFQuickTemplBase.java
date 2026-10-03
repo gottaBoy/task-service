@@ -1052,7 +1052,7 @@ implements Serializable {
                 PSPF pSPF = new PSPF();
                 pSPF.setPSPFId(this.getPSPFId());
                 PSPFService pSPFService = (PSPFService)ServiceGlobal.getService(PSPFService.class, (SessionFactory)this.getSessionFactory());
-                pSPFService.autoGet((IEntity)pSPF);
+                pSPFService.autoGet(pSPF);
                 this.pspf = pSPF;
             }
             return this.pspf;

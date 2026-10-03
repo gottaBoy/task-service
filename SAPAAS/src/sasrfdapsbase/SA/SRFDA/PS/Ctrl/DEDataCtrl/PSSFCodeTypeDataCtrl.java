@@ -56,7 +56,7 @@ extends PSSFTemplDataCtrlBase {
         IDEDataCtrl iPSSFCodeTemplDataCtrl = this.GetRelatedDataCtrl("DE1516");
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSSFCODETYPEID", (Object)strPSSFCodeTypeId);
-        Vector psSFCodeTemplList = new Vector();
+        Vector<BaseDataEntity> psSFCodeTemplList = new Vector<BaseDataEntity>();
         iPSSFCodeTemplDataCtrl.Select(cond, psSFCodeTemplList);
         for (BaseDataEntity baseDataEntity : psSFCodeTemplList) {
             iPSSFCodeTemplDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
@@ -114,4 +114,3 @@ extends PSSFTemplDataCtrlBase {
         }
     }
 }
-

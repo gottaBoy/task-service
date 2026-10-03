@@ -138,9 +138,9 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDevSlnSysLockLog, pSDevCenter);
             return;
@@ -150,14 +150,14 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
             PSDevSlnSys pSDevSlnSys = (PSDevSlnSys)iService.getDEModel().createEntity();
             pSDevSlnSys.set("PSDEVSLNSYSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevSlnSys);
+                iService.getTemp(pSDevSlnSys);
             } else {
-                iService.get((IEntity)pSDevSlnSys);
+                iService.get(pSDevSlnSys);
             }
             this.onFillParentInfo_PSDevSlnSys(pSDevSlnSysLockLog, pSDevSlnSys);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDevSlnSysLockLog, string, string2, string3);
+        super.onFillParentInfo(pSDevSlnSysLockLog, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -178,7 +178,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDevSlnSysLockLog, bl);
+        super.onFillEntityFullInfo(pSDevSlnSysLockLog, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDevSlnSysLockLog, bl);
         this.onFillEntityFullInfo_PSDevSlnSys(pSDevSlnSysLockLog, bl);
     }
@@ -210,7 +210,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
     }
 
     protected void onWriteBackParent(PSDevSlnSysLockLog pSDevSlnSysLockLog, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDevSlnSysLockLog, bl);
+        super.onWriteBackParent(pSDevSlnSysLockLog, bl);
     }
 
     public ArrayList<PSDevSlnSysLockLog> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -293,7 +293,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
         ArrayList<PSDevSlnSysLockLog> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDevSlnSysLockLog pSDevSlnSysLockLog : arrayList) {
-            this.remove((IEntity)pSDevSlnSysLockLog);
+            this.remove(pSDevSlnSysLockLog);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -339,7 +339,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
         ArrayList<PSDevSlnSysLockLog> arrayList = this.selectByPSDevSlnSys(pSDevSlnSys);
         this.onBeforeRemoveByPSDevSlnSys(pSDevSlnSys, arrayList);
         for (PSDevSlnSysLockLog pSDevSlnSysLockLog : arrayList) {
-            this.remove((IEntity)pSDevSlnSysLockLog);
+            this.remove(pSDevSlnSysLockLog);
         }
         this.onAfterRemoveByPSDevSlnSys(pSDevSlnSys, arrayList);
     }
@@ -360,7 +360,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
 
     protected void replaceParentInfo(PSDevSlnSysLockLog pSDevSlnSysLockLog, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDevSlnSysLockLog, cloneSession);
+        super.replaceParentInfo(pSDevSlnSysLockLog, cloneSession);
         if (pSDevSlnSysLockLog.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSDevSlnSysLockLog.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSDevSlnSysLockLog, (PSDevCenter)iEntity);
         }
@@ -370,7 +370,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDevSlnSysLockLog pSDevSlnSysLockLog, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDevSlnSysLockLog, bl);
+        super.onRemoveEntityUncopyValues(pSDevSlnSysLockLog, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDevSlnSysLockLog pSDevSlnSysLockLog, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -406,7 +406,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
         if ((entityFieldError = this.onCheckField_UnlockTime(bl, pSDevSlnSysLockLog, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDevSlnSysLockLog, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDevSlnSysLockLog, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_LockReason(boolean bl, PSDevSlnSysLockLog pSDevSlnSysLockLog, boolean bl2, boolean bl3) throws Exception {
@@ -419,7 +419,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LockReason_Default((IEntity)pSDevSlnSysLockLog, bl2, bl3);
+            string2 = this.onTestValueRule_LockReason_Default(pSDevSlnSysLockLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKREASON");
@@ -444,7 +444,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LockType_Default((IEntity)pSDevSlnSysLockLog, bl2, bl3);
+            string2 = this.onTestValueRule_LockType_Default(pSDevSlnSysLockLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKTYPE");
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogParam_Default((IEntity)pSDevSlnSysLockLog, bl2, bl3);
+            string2 = this.onTestValueRule_LogParam_Default(pSDevSlnSysLockLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGPARAM");
@@ -488,7 +488,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDevSlnSysLockLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDevSlnSysLockLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -510,7 +510,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDevSlnSysLockLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDevSlnSysLockLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -532,7 +532,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysId_Default((IEntity)pSDevSlnSysLockLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysId_Default(pSDevSlnSysLockLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSID");
@@ -557,7 +557,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysLockLogId_Default((IEntity)pSDevSlnSysLockLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysLockLogId_Default(pSDevSlnSysLockLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSLOCKLOGID");
@@ -582,7 +582,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysLockLogName_Default((IEntity)pSDevSlnSysLockLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysLockLogName_Default(pSDevSlnSysLockLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSLOCKLOGNAME");
@@ -604,7 +604,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysName_Default((IEntity)pSDevSlnSysLockLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysName_Default(pSDevSlnSysLockLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSNAME");
@@ -626,7 +626,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UnlockTime_Default((IEntity)pSDevSlnSysLockLog, bl2, bl3);
+            string = this.onTestValueRule_UnlockTime_Default(pSDevSlnSysLockLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UNLOCKTIME");
@@ -639,11 +639,11 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
     }
 
     protected void onSyncEntity(PSDevSlnSysLockLog pSDevSlnSysLockLog, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDevSlnSysLockLog, bl);
+        super.onSyncEntity(pSDevSlnSysLockLog, bl);
     }
 
     protected void onSyncIndexEntities(PSDevSlnSysLockLog pSDevSlnSysLockLog, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDevSlnSysLockLog, bl);
+        super.onSyncIndexEntities(pSDevSlnSysLockLog, bl);
     }
 
     public Object getDataContextValue(PSDevSlnSysLockLog pSDevSlnSysLockLog, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -651,7 +651,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDevSlnSysLockLog, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDevSlnSysLockLog, string, iDataContextParam)) != null) {
             return object;
         }
         PSDevSlnSys pSDevSlnSys = pSDevSlnSysLockLog.getPSDevSlnSys();
@@ -662,7 +662,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
     }
 
     protected void onExportMajorModel(PSDevSlnSysLockLog pSDevSlnSysLockLog, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDevSlnSysLockLog, arrayList, n);
+        super.onExportMajorModel(pSDevSlnSysLockLog, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -857,14 +857,14 @@ extends PSCoreSysServiceBase<PSDevSlnSysLockLog> {
 
     protected boolean onMergeChild(String string, String string2, PSDevSlnSysLockLog pSDevSlnSysLockLog) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDevSlnSysLockLog)) {
+        if (super.onMergeChild(string, string2, pSDevSlnSysLockLog)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDevSlnSysLockLog pSDevSlnSysLockLog) throws Exception {
-        super.onUpdateParent((IEntity)pSDevSlnSysLockLog);
+        super.onUpdateParent(pSDevSlnSysLockLog);
     }
 
     @Override

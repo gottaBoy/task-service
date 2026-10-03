@@ -156,14 +156,14 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSAppUITheme, pSSysApp);
             return;
         }
-        super.onFillParentInfo((IEntity)pSAppUITheme, string, string2, string3);
+        super.onFillParentInfo(pSAppUITheme, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
         if (bl && pSAppUITheme.getValidFlag() == null) {
             pSAppUITheme.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSAppUITheme, bl);
+        super.onFillEntityFullInfo(pSAppUITheme, bl);
         this.onFillEntityFullInfo_PSSysApp(pSAppUITheme, bl);
     }
 
@@ -187,7 +187,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
     }
 
     protected void onWriteBackParent(PSAppUITheme pSAppUITheme, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSAppUITheme, bl);
+        super.onWriteBackParent(pSAppUITheme, bl);
     }
 
     public ArrayList<PSAppUITheme> selectByPSSysApp(PSSysAppBase pSSysAppBase) throws Exception {
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
         ArrayList<PSAppUITheme> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSAppUITheme pSAppUITheme : arrayList) {
-            this.remove((IEntity)pSAppUITheme);
+            this.remove(pSAppUITheme);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -267,14 +267,14 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
 
     protected void replaceParentInfo(PSAppUITheme pSAppUITheme, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSAppUITheme, cloneSession);
+        super.replaceParentInfo(pSAppUITheme, cloneSession);
         if (pSAppUITheme.getPSSysAppId() != null && (iEntity = cloneSession.getEntity("PSSYSAPP", (Object)pSAppUITheme.getPSSysAppId())) != null) {
             this.onFillParentInfo_PSSysApp(pSAppUITheme, (PSSysApp)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSAppUITheme pSAppUITheme, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSAppUITheme, bl);
+        super.onRemoveEntityUncopyValues(pSAppUITheme, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSAppUITheme pSAppUITheme, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -328,7 +328,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSAppUITheme, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSAppUITheme, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSAppUITheme, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CSSStyle(boolean bl, PSAppUITheme pSAppUITheme, boolean bl2, boolean bl3) throws Exception {
@@ -341,7 +341,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CSSStyle_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_CSSStyle_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CSSSTYLE");
@@ -363,7 +363,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -385,7 +385,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -410,7 +410,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppUIThemeId_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppUIThemeId_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPUITHEMEID");
@@ -435,7 +435,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppUIThemeName_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppUIThemeName_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPUITHEMENAME");
@@ -460,7 +460,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -482,7 +482,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThemeDesc_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_ThemeDesc_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THEMEDESC");
@@ -504,7 +504,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThemeParams_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_ThemeParams_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THEMEPARAMS");
@@ -529,7 +529,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThemeTag_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_ThemeTag_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THEMETAG");
@@ -565,7 +565,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThemeUrl_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_ThemeUrl_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THEMEURL");
@@ -587,7 +587,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -609,7 +609,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -631,7 +631,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -653,7 +653,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -675,7 +675,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -700,7 +700,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSAppUITheme, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSAppUITheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -713,11 +713,11 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
     }
 
     protected void onSyncEntity(PSAppUITheme pSAppUITheme, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSAppUITheme, bl);
+        super.onSyncEntity(pSAppUITheme, bl);
     }
 
     protected void onSyncIndexEntities(PSAppUITheme pSAppUITheme, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSAppUITheme, bl);
+        super.onSyncIndexEntities(pSAppUITheme, bl);
     }
 
     public Object getDataContextValue(PSAppUITheme pSAppUITheme, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -725,14 +725,14 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSAppUITheme, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSAppUITheme, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSAppUITheme pSAppUITheme, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSAppUITheme, arrayList, n);
+        super.onExportMajorModel(pSAppUITheme, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1029,7 +1029,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
 
     protected boolean onMergeChild(String string, String string2, PSAppUITheme pSAppUITheme) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSAppUITheme)) {
+        if (super.onMergeChild(string, string2, pSAppUITheme)) {
             bl = true;
         }
         return bl;
@@ -1041,7 +1041,7 @@ extends PSCoreSysServiceBase<PSAppUITheme> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.sysdesign.service.PSSysAppService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSAPPUITHEME_PSSYSAPP_PSSYSAPPID", object);
         }
-        super.onUpdateParent((IEntity)pSAppUITheme);
+        super.onUpdateParent(pSAppUITheme);
     }
 
     protected boolean isNeedUpdateParent() {

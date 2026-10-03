@@ -1,15 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
 import net.ibizsys.paas.core.IDER1N;
-import net.ibizsys.paas.demodel.IDataEntityModel;
 
-public interface IDER1NModel
-extends IDER1N {
-    public IDataEntityModel getMajorDEModel() throws Exception;
+/**
+ * 实体1：N关系模型对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDER1NModel extends IDER1N {
+	/**
+	 * 获取关系主实体
+	 * 
+	 * @return
+	 */
+	IDataEntityModel getMajorDEModel() throws Exception;
 
-    public IDataEntityModel getMinorDEModel() throws Exception;
+	/**
+	 * 获取关系从实体
+	 * 
+	 * @return
+	 */
+	IDataEntityModel getMinorDEModel() throws Exception;
 }
-

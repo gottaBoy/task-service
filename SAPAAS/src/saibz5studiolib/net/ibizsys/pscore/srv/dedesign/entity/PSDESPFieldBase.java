@@ -1192,7 +1192,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.psdef = pSDEField;
             }
             return this.psdef;
@@ -1218,7 +1218,7 @@ implements Serializable {
                 PSDESysProc pSDESysProc = new PSDESysProc();
                 pSDESysProc.setPSDESysProcId(this.getPSDESysProcId());
                 PSDESysProcService pSDESysProcService = (PSDESysProcService)ServiceGlobal.getService(PSDESysProcService.class, (SessionFactory)this.getSessionFactory());
-                pSDESysProcService.autoGet((IEntity)pSDESysProc);
+                pSDESysProcService.autoGet(pSDESysProc);
                 this.psdesysproc = pSDESysProc;
             }
             return this.psdesysproc;

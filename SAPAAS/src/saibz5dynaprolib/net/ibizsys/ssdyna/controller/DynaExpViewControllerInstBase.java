@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.DynaViewControllerInstBase;
+/**
+ * 动态导航界面视图控制器实例对象
+ * @author Administrator
+ *
+ */
+public abstract class DynaExpViewControllerInstBase extends DynaViewControllerInstBase {
 
-public abstract class DynaExpViewControllerInstBase
-extends DynaViewControllerInstBase {
+	public DynaExpViewControllerInstBase() throws Exception {
+		super();
+		
+	}
+
 }
-

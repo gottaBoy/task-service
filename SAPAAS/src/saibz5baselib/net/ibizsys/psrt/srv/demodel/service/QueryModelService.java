@@ -1,21 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.springframework.stereotype.Component
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.demodel.service;
 
-import net.ibizsys.psrt.srv.demodel.service.QueryModelServiceBase;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
-@Component
-public class QueryModelService
-extends QueryModelServiceBase {
-    private static final Log log = LogFactory.getLog(QueryModelService.class);
-}
 
+
+import net.ibizsys.paas.service.ServiceGlobal;
+
+/**
+ * 实体[QueryModel] 服务对象
+ */
+@Component
+public class QueryModelService extends QueryModelServiceBase {
+
+    private static final Log log = LogFactory.getLog(QueryModelService.class);
+    public QueryModelService () {
+        super();
+
+    }
+
+}

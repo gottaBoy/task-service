@@ -139,9 +139,9 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
             PSModelField pSModelField = (PSModelField)iService.getDEModel().createEntity();
             pSModelField.set("PSMODELFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModelField);
+                iService.getTemp(pSModelField);
             } else {
-                iService.get((IEntity)pSModelField);
+                iService.get(pSModelField);
             }
             this.onFillParentInfo_PSModelField(pSModelFieldValue, pSModelField);
             return;
@@ -151,14 +151,14 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
             PSModelValueGroup pSModelValueGroup = (PSModelValueGroup)iService.getDEModel().createEntity();
             pSModelValueGroup.set("PSMODELVALUEGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModelValueGroup);
+                iService.getTemp(pSModelValueGroup);
             } else {
-                iService.get((IEntity)pSModelValueGroup);
+                iService.get(pSModelValueGroup);
             }
             this.onFillParentInfo_PSModelValueGroup(pSModelFieldValue, pSModelValueGroup);
             return;
         }
-        super.onFillParentInfo((IEntity)pSModelFieldValue, string, string2, string3);
+        super.onFillParentInfo(pSModelFieldValue, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
         if (bl && pSModelFieldValue.getValidFlag() == null) {
             pSModelFieldValue.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSModelFieldValue, bl);
+        super.onFillEntityFullInfo(pSModelFieldValue, bl);
         this.onFillEntityFullInfo_PSModelField(pSModelFieldValue, bl);
         this.onFillEntityFullInfo_PSModelValueGroup(pSModelFieldValue, bl);
     }
@@ -201,7 +201,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
     }
 
     protected void onWriteBackParent(PSModelFieldValue pSModelFieldValue, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSModelFieldValue, bl);
+        super.onWriteBackParent(pSModelFieldValue, bl);
     }
 
     public ArrayList<PSModelFieldValue> selectByPSModelField(PSModelFieldBase pSModelFieldBase) throws Exception {
@@ -256,8 +256,8 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
         ArrayList<PSModelFieldValue> arrayList = this.selectByPSModelField(pSModelField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODELFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModelField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODELFIELDVALUE_PSMODELFIELD_PSMODELFIELDID", "", iDataEntityModel.getName(), "PSMODELFIELDVALUE", iDataEntityModel.getDataInfo((IEntity)pSModelField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModelField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODELFIELDVALUE_PSMODELFIELD_PSMODELFIELDID", "", iDataEntityModel.getName(), "PSMODELFIELDVALUE", iDataEntityModel.getDataInfo(pSModelField), arrayList.get(0)));
         }
     }
 
@@ -290,7 +290,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
         ArrayList<PSModelFieldValue> arrayList = this.selectByPSModelField(pSModelField);
         this.onBeforeRemoveByPSModelField(pSModelField, arrayList);
         for (PSModelFieldValue pSModelFieldValue : arrayList) {
-            this.remove((IEntity)pSModelFieldValue);
+            this.remove(pSModelFieldValue);
         }
         this.onAfterRemoveByPSModelField(pSModelField, arrayList);
     }
@@ -308,8 +308,8 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
         ArrayList<PSModelFieldValue> arrayList = this.selectByPSModelValueGroup(pSModelValueGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODELVALUEGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModelValueGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODELFIELDVALUE_PSMODELVALUEGROUP_PSMODELVALUEGROUPID", "", iDataEntityModel.getName(), "PSMODELFIELDVALUE", iDataEntityModel.getDataInfo((IEntity)pSModelValueGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModelValueGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODELFIELDVALUE_PSMODELVALUEGROUP_PSMODELVALUEGROUPID", "", iDataEntityModel.getName(), "PSMODELFIELDVALUE", iDataEntityModel.getDataInfo(pSModelValueGroup), arrayList.get(0)));
         }
     }
 
@@ -342,7 +342,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
         ArrayList<PSModelFieldValue> arrayList = this.selectByPSModelValueGroup(pSModelValueGroup);
         this.onBeforeRemoveByPSModelValueGroup(pSModelValueGroup, arrayList);
         for (PSModelFieldValue pSModelFieldValue : arrayList) {
-            this.remove((IEntity)pSModelFieldValue);
+            this.remove(pSModelFieldValue);
         }
         this.onAfterRemoveByPSModelValueGroup(pSModelValueGroup, arrayList);
     }
@@ -363,7 +363,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
 
     protected void replaceParentInfo(PSModelFieldValue pSModelFieldValue, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSModelFieldValue, cloneSession);
+        super.replaceParentInfo(pSModelFieldValue, cloneSession);
         if (pSModelFieldValue.getPSModelFieldId() != null && (iEntity = cloneSession.getEntity("PSMODELFIELD", (Object)pSModelFieldValue.getPSModelFieldId())) != null) {
             this.onFillParentInfo_PSModelField(pSModelFieldValue, (PSModelField)iEntity);
         }
@@ -373,7 +373,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
     }
 
     protected void onRemoveEntityUncopyValues(PSModelFieldValue pSModelFieldValue, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSModelFieldValue, bl);
+        super.onRemoveEntityUncopyValues(pSModelFieldValue, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSModelFieldValue pSModelFieldValue, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -427,7 +427,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
         if ((entityFieldError = this.onCheckField_ValueFlag(bl, pSModelFieldValue, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSModelFieldValue, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSModelFieldValue, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ConceptContent(boolean bl, PSModelFieldValue pSModelFieldValue, boolean bl2, boolean bl3) throws Exception {
@@ -440,7 +440,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ConceptContent_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string2 = this.onTestValueRule_ConceptContent_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONCEPTCONTENT");
@@ -462,7 +462,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ConceptFlag_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string = this.onTestValueRule_ConceptFlag_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONCEPTFLAG");
@@ -484,7 +484,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ConceptTitle_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string2 = this.onTestValueRule_ConceptTitle_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONCEPTTITLE");
@@ -506,7 +506,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ImageFlag_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string = this.onTestValueRule_ImageFlag_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IMAGEFLAG");
@@ -528,7 +528,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LinkFlag_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string = this.onTestValueRule_LinkFlag_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LINKFLAG");
@@ -550,7 +550,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -572,7 +572,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -594,7 +594,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelFieldId_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelFieldId_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELFIELDID");
@@ -616,7 +616,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelFieldName_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelFieldName_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELFIELDNAME");
@@ -641,7 +641,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelFieldValueId_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelFieldValueId_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELFIELDVALUEID");
@@ -666,7 +666,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelFieldValueName_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelFieldValueName_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELFIELDVALUENAME");
@@ -688,7 +688,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelValueGroupId_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelValueGroupId_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELVALUEGROUPID");
@@ -713,7 +713,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -735,7 +735,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Value_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string2 = this.onTestValueRule_Value_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALUE");
@@ -757,7 +757,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ValueDesc_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string2 = this.onTestValueRule_ValueDesc_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALUEDESC");
@@ -779,7 +779,7 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValueFlag_Default((IEntity)pSModelFieldValue, bl2, bl3);
+            string = this.onTestValueRule_ValueFlag_Default(pSModelFieldValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALUEFLAG");
@@ -792,11 +792,11 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
     }
 
     protected void onSyncEntity(PSModelFieldValue pSModelFieldValue, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSModelFieldValue, bl);
+        super.onSyncEntity(pSModelFieldValue, bl);
     }
 
     protected void onSyncIndexEntities(PSModelFieldValue pSModelFieldValue, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSModelFieldValue, bl);
+        super.onSyncIndexEntities(pSModelFieldValue, bl);
     }
 
     public Object getDataContextValue(PSModelFieldValue pSModelFieldValue, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -804,14 +804,14 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSModelFieldValue, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSModelFieldValue, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSModelFieldValue pSModelFieldValue, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSModelFieldValue, arrayList, n);
+        super.onExportMajorModel(pSModelFieldValue, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1071,14 +1071,14 @@ extends PSCoreSysServiceBase<PSModelFieldValue> {
 
     protected boolean onMergeChild(String string, String string2, PSModelFieldValue pSModelFieldValue) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSModelFieldValue)) {
+        if (super.onMergeChild(string, string2, pSModelFieldValue)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSModelFieldValue pSModelFieldValue) throws Exception {
-        super.onUpdateParent((IEntity)pSModelFieldValue);
+        super.onUpdateParent(pSModelFieldValue);
     }
 
     @Override

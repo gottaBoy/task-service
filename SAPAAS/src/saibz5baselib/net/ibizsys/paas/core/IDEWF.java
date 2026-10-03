@@ -1,44 +1,135 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDataEntity;
-import net.ibizsys.paas.core.IDataEntityObject;
 import net.ibizsys.paas.entity.IEntity;
 
-public interface IDEWF
-extends IDataEntityObject {
-    public void init(IDataEntity var1) throws Exception;
+/**
+ * 实体工作流接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDEWF extends IDataEntityObject {
+	/**
+	 * 初始化
+	 * 
+	 * @param iDataEntity
+	 * @throws Exception
+	 */
+	void init(IDataEntity iDataEntity) throws Exception;
 
-    public String getWorkflowId();
+	/**
+	 * 获取流程表标识
+	 * 
+	 * @return
+	 */
+	String getWorkflowId();
 
-    public String getWFStepField();
+	/**
+	 * 获取流程步骤实体属性
+	 * 
+	 * @return
+	 */
+	String getWFStepField();
 
-    public String getWFStateField();
+	/**
+	 * 获取流程状态实体属性
+	 * 
+	 * @return
+	 */
+	String getWFStateField();
 
-    public String getUDStateField();
+	/**
+	 * 获取用户状态实体属性
+	 * 
+	 * @return
+	 */
+	String getUDStateField();
 
-    public String getWFInstField();
+	/**
+	 * 获取流程实例名称
+	 * 
+	 * @return
+	 */
+	String getWFInstField();
 
-    public String getEntityWFState();
+	/**
+	 * 获取用户数据流程状态值
+	 * 
+	 * @return
+	 */
+	String getEntityWFState();
 
-    public String getWFActorsField();
+	/**
+	 * 获取流程操作者属性
+	 * 
+	 * @return
+	 */
+	String getWFActorsField();
 
-    public String getWFRetField();
+	/**
+	 * 获取流程返回值属性
+	 * 
+	 * @return
+	 */
+	String getWFRetField();
 
-    public boolean testDataInWF(IEntity var1) throws Exception;
+	/**
+	 * 判断数据是否在流程中
+	 * 
+	 * @param iEntity
+	 * @return
+	 * @throws Exception
+	 */
+	boolean testDataInWF(IEntity iEntity) throws Exception;
 
-    public String getWFEditViewPDTParam(IEntity var1, boolean var2) throws Exception;
+	/**
+	 * 获取指定数据的流程数据界面预置参数
+	 * 
+	 * @param iEntity
+	 * @param bWorkMode
+	 * @return
+	 * @throws Exception
+	 */
+	String getWFEditViewPDTParam(IEntity iEntity, boolean bWorkMode) throws Exception;
+	
+	
+	/**
+	 * 获取指定数据的流程数据界面预置参数
+	 * 
+	 * @param iEntity
+	 * @param bWorkMode
+	 * @param nAppType 应用类型
+	 * @return
+	 * @throws Exception
+	 */
+	String getWFEditViewPDTParam(IEntity iEntity, boolean bWorkMode, int nAppType) throws Exception;
+	
 
-    public String getWFEditViewPDTParam(IEntity var1, boolean var2, int var3) throws Exception;
+	/**
+	 * 获取启动流程名称
+	 * 
+	 * @return
+	 */
+	String getWFStartName();
 
-    public String getWFStartName();
+	/**
+	 * 获取流程版本属性
+	 * 
+	 * @return
+	 */
+	String getWFVerField();
 
-    public String getWFVerField();
+	/**
+	 * 获取流程标识存储属性
+	 * 
+	 * @return
+	 */
+	String getWorkflowField();
 
-    public String getWorkflowField();
-
-    public String getWFMode();
+	/**
+	 * 获取流程模式
+	 * 
+	 * @return
+	 */
+	String getWFMode();
 }
-

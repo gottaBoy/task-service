@@ -79,7 +79,7 @@ implements IPSDEDRItemService {
     @Override
     protected List<PSDEDRItem> onListAll() throws Exception {
         ArrayList<PSDEDRItem> list = new ArrayList<PSDEDRItem>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEDRItem> items = this.listByPSDataEntity(parent);

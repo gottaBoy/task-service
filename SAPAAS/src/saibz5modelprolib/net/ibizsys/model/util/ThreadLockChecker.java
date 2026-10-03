@@ -120,10 +120,10 @@ public class ThreadLockChecker {
                     }
                     threadEnterLockMap.put(entry.getValue().getLockObject(), lockWaitInfo);
                 }
-                for (Map.Entry<Object, LockInfo> entry : removeList) {
-                    LockInfo lockInfo = this.lockInfoMap.get(entry);
+                for (Object lock : removeList) {
+                    LockInfo lockInfo = this.lockInfoMap.get(lock);
                     if (lockInfo != null && !lockInfo.isIdle()) continue;
-                    this.lockInfoMap.remove(lockInfo);
+                    this.lockInfoMap.remove(lock);
                 }
             }
             long nMaxTime = 0L;
@@ -149,10 +149,10 @@ public class ThreadLockChecker {
                 }
             }
             sb.append("\r\n\u5176\u5b83\u7ebf\u7a0b\r\n");
-            for (Map.Entry<Object, Object> entry : threadWaitLockMap.entrySet()) {
+            for (Map.Entry<Long, LockWaitInfo> entry : threadWaitLockMap.entrySet()) {
                 LockWaitInfo lockWaitInfo;
-                Long nThreadId = (Long)entry.getKey();
-                if (hashMap2.containsKey(nThreadId) || (lockWaitInfo = (LockWaitInfo)entry.getValue()) == null) continue;
+                Long nThreadId = entry.getKey();
+                if (hashMap2.containsKey(nThreadId) || (lockWaitInfo = entry.getValue()) == null) continue;
                 sb.append("\u7ebf\u7a0b[%1$s][%2$s]\t\t\u7b49\u5f85[%3$s]\t\u65f6\u95f4[%4$s]\t[%5$s]\r\n", (Object)nThreadId, (Object)lockWaitInfo.strThreadName, (Object)StringHelper.format((String)"%1$s@%2$s==>%3$s", (Object)lockWaitInfo.objLock.getClass().getSimpleName(), (Object)lockWaitInfo.objLock.hashCode(), (Object)lockWaitInfo.objLock.toString()), (Object)(nCurTime - lockWaitInfo.nTime), (Object)lockWaitInfo.strWaitInfo);
             }
             sb.append("\r\n\u7ebf\u7a0b\u7b49\u5f85\u6700\u957f\u65f6\u95f4[%1$s]\r\n", (Object)nMaxTime);
@@ -350,4 +350,3 @@ public class ThreadLockChecker {
         }
     }
 }
-

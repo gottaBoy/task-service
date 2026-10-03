@@ -150,9 +150,9 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
             PSASGroup pSASGroup = (PSASGroup)iService.getDEModel().createEntity();
             pSASGroup.set("PSASGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSASGroup);
+                iService.getTemp(pSASGroup);
             } else {
-                iService.get((IEntity)pSASGroup);
+                iService.get(pSASGroup);
             }
             this.onFillParentInfo_PSASGroup(pSDCASGroup, pSASGroup);
             return;
@@ -162,14 +162,14 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDCASGroup, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCASGroup, string, string2, string3);
+        super.onFillParentInfo(pSDCASGroup, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -190,7 +190,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCASGroup, bl);
+        super.onFillEntityFullInfo(pSDCASGroup, bl);
         this.onFillEntityFullInfo_PSASGroup(pSDCASGroup, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDCASGroup, bl);
     }
@@ -222,7 +222,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
     }
 
     protected void onWriteBackParent(PSDCASGroup pSDCASGroup, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCASGroup, bl);
+        super.onWriteBackParent(pSDCASGroup, bl);
     }
 
     public ArrayList<PSDCASGroup> selectByPSASGroup(PSASGroupBase pSASGroupBase) throws Exception {
@@ -277,8 +277,8 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
         ArrayList<PSDCASGroup> arrayList = this.selectByPSASGroup(pSASGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSASGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSASGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCASGROUP_PSASGROUP_PSASGROUPID", "", iDataEntityModel.getName(), "PSDCASGROUP", iDataEntityModel.getDataInfo((IEntity)pSASGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSASGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCASGROUP_PSASGROUP_PSASGROUPID", "", iDataEntityModel.getName(), "PSDCASGROUP", iDataEntityModel.getDataInfo(pSASGroup), arrayList.get(0)));
         }
     }
 
@@ -311,7 +311,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
         ArrayList<PSDCASGroup> arrayList = this.selectByPSASGroup(pSASGroup);
         this.onBeforeRemoveByPSASGroup(pSASGroup, arrayList);
         for (PSDCASGroup pSDCASGroup : arrayList) {
-            this.remove((IEntity)pSDCASGroup);
+            this.remove(pSDCASGroup);
         }
         this.onAfterRemoveByPSASGroup(pSASGroup, arrayList);
     }
@@ -329,8 +329,8 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
         ArrayList<PSDCASGroup> arrayList = this.selectByPSDevCenter(pSDevCenter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVCENTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevCenter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCASGROUP_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSDCASGROUP", iDataEntityModel.getDataInfo((IEntity)pSDevCenter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevCenter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCASGROUP_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSDCASGROUP", iDataEntityModel.getDataInfo(pSDevCenter), arrayList.get(0)));
         }
     }
 
@@ -363,7 +363,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
         ArrayList<PSDCASGroup> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCASGroup pSDCASGroup : arrayList) {
-            this.remove((IEntity)pSDCASGroup);
+            this.remove(pSDCASGroup);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -386,7 +386,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
 
     protected void replaceParentInfo(PSDCASGroup pSDCASGroup, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCASGroup, cloneSession);
+        super.replaceParentInfo(pSDCASGroup, cloneSession);
         if (pSDCASGroup.getPSASGroupId() != null && (iEntity = cloneSession.getEntity("PSASGROUP", (Object)pSDCASGroup.getPSASGroupId())) != null) {
             this.onFillParentInfo_PSASGroup(pSDCASGroup, (PSASGroup)iEntity);
         }
@@ -396,7 +396,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCASGroup pSDCASGroup, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCASGroup, bl);
+        super.onRemoveEntityUncopyValues(pSDCASGroup, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCASGroup pSDCASGroup, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -453,7 +453,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
         if ((entityFieldError = this.onCheckField_UsageMode(bl, pSDCASGroup, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCASGroup, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCASGroup, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ASType(boolean bl, PSDCASGroup pSDCASGroup, boolean bl2, boolean bl3) throws Exception {
@@ -469,7 +469,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ASType_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_ASType_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ASTYPE");
@@ -491,7 +491,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpriedTime_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string = this.onTestValueRule_ExpriedTime_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPRIEDTIME");
@@ -516,7 +516,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_HttpPort_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string = this.onTestValueRule_HttpPort_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HTTPPORT");
@@ -538,7 +538,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_HttpsPort_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string = this.onTestValueRule_HttpsPort_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HTTPSPORT");
@@ -560,7 +560,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -582,7 +582,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSASGroupId_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSASGroupId_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSASGROUPID");
@@ -604,7 +604,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSASGroupName_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSASGroupName_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSASGROUPNAME");
@@ -629,7 +629,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCASGroupId_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCASGroupId_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCASGROUPID");
@@ -654,7 +654,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCASGroupName_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCASGroupName_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCASGROUPNAME");
@@ -676,7 +676,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -698,7 +698,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -723,7 +723,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_RefFlag_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string = this.onTestValueRule_RefFlag_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFFLAG");
@@ -745,7 +745,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefObjId_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_RefObjId_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFOBJID");
@@ -767,7 +767,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefObjName_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_RefObjName_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFOBJNAME");
@@ -789,7 +789,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResPos_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string = this.onTestValueRule_ResPos_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESPOS");
@@ -811,7 +811,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResState_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string = this.onTestValueRule_ResState_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESSTATE");
@@ -836,7 +836,7 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UsageMode_Default((IEntity)pSDCASGroup, bl2, bl3);
+            string2 = this.onTestValueRule_UsageMode_Default(pSDCASGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USAGEMODE");
@@ -849,11 +849,11 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
     }
 
     protected void onSyncEntity(PSDCASGroup pSDCASGroup, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCASGroup, bl);
+        super.onSyncEntity(pSDCASGroup, bl);
     }
 
     protected void onSyncIndexEntities(PSDCASGroup pSDCASGroup, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCASGroup, bl);
+        super.onSyncIndexEntities(pSDCASGroup, bl);
     }
 
     public Object getDataContextValue(PSDCASGroup pSDCASGroup, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -861,14 +861,14 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCASGroup, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCASGroup, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCASGroup pSDCASGroup, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCASGroup, arrayList, n);
+        super.onExportMajorModel(pSDCASGroup, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1128,14 +1128,14 @@ extends PSCoreSysServiceBase<PSDCASGroup> {
 
     protected boolean onMergeChild(String string, String string2, PSDCASGroup pSDCASGroup) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCASGroup)) {
+        if (super.onMergeChild(string, string2, pSDCASGroup)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCASGroup pSDCASGroup) throws Exception {
-        super.onUpdateParent((IEntity)pSDCASGroup);
+        super.onUpdateParent(pSDCASGroup);
     }
 
     @Override

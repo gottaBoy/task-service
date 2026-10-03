@@ -1,20 +1,98 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.pub.vue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.vue.PSVueViewCodePublisherImpl;
 
-public class PSVueIndexViewViewCodePublisherImpl
-extends PSVueViewCodePublisherImpl {
-    public PSVueIndexViewViewCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSVueIndexViewViewCodePublisherImpl is inconsistent\n\tiPSAppView cannot be resolved or is not a field\n\tIPSAppIndexView cannot be resolved to a type\n\tIPSAppIndexView cannot be resolved to a type\n\tIPSAppIndexView cannot be resolved to a type\n\tiPSAppView cannot be resolved or is not a field\n\tIPSAppMenu cannot be resolved to a type\n\tIPSAppMenuItem cannot be resolved to a type\n\tIPSAppMenuItem cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tPSPublishContextImpl cannot be resolved to a type\n\tPSPublishContextImpl cannot be resolved to a type\n\tThe method getDAGlobalHelper() is undefined for the type PSVueIndexViewViewCodePublisherImpl\n\tIPSPFViewTempl cannot be resolved to a type\n\tiPSPFStyle cannot be resolved\n\tIPSPFViewTempl cannot be resolved to a type\n\tStringHelper cannot be resolved\n\tThe method getPSPFPubCode() is undefined for the type PSVueIndexViewViewCodePublisherImpl\n\tIPSPFViewCodePublisher cannot be resolved to a type\n\tpsSubCodeMethod cannot be resolved to a variable\n\tpsSubCodeMethod cannot be resolved\n\tStringHelper cannot be resolved\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tiPSAppView cannot be resolved or is not a field\n\tiPSAppView cannot be resolved or is not a field\n\tiPSAppView cannot be resolved to a variable\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n");
-    }
+import SA.SRFDA.PS.Core.App.View.IPSAppIndexView;
+import SA.SRFDA.PS.Core.App.View.IPSAppView;
+import SA.SRFDA.PS.Core.Control.Menu.IPSAppMenu;
+import SA.SRFDA.PS.Core.Control.Menu.IPSAppMenuItem;
+import SA.SRFDA.PS.Core.PF.IPSPFViewTempl;
+import SA.SRFDA.PS.Core.Pub.IPSPFViewCodePublisher;
+import SA.SRFDA.PS.Core.Pub.PSPublishContextImpl;
+import SA.SRFramework.Utility.StringHelper;
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tiPSAppView cannot be resolved or is not a field\n\tIPSAppIndexView cannot be resolved to a type\n\tIPSAppIndexView cannot be resolved to a type\n\tIPSAppIndexView cannot be resolved to a type\n\tiPSAppView cannot be resolved or is not a field\n\tIPSAppMenu cannot be resolved to a type\n\tIPSAppMenuItem cannot be resolved to a type\n\tIPSAppMenuItem cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tPSPublishContextImpl cannot be resolved to a type\n\tPSPublishContextImpl cannot be resolved to a type\n\tThe method getDAGlobalHelper() is undefined for the type PSVueIndexViewViewCodePublisherImpl\n\tIPSPFViewTempl cannot be resolved to a type\n\tiPSPFStyle cannot be resolved\n\tIPSPFViewTempl cannot be resolved to a type\n\tStringHelper cannot be resolved\n\tThe method getPSPFPubCode() is undefined for the type PSVueIndexViewViewCodePublisherImpl\n\tIPSPFViewCodePublisher cannot be resolved to a type\n\tpsSubCodeMethod cannot be resolved to a variable\n\tpsSubCodeMethod cannot be resolved\n\tStringHelper cannot be resolved\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tiPSAppView cannot be resolved or is not a field\n\tiPSAppView cannot be resolved or is not a field\n\tiPSAppView cannot be resolved to a variable\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n");
-    }
+/**
+ * 首页视图
+ * @author Administrator
+ *
+ */
+public class PSVueIndexViewViewCodePublisherImpl extends PSVueViewCodePublisherImpl
+{
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		//获取主菜单
+		if(this.iPSAppView instanceof IPSAppIndexView)
+		{
+			IPSAppIndexView iPSAppIndexView =(IPSAppIndexView)this.iPSAppView;
+			IPSAppMenu iPSAppMenu = iPSAppIndexView.getPSAppMenu();
+			if(iPSAppMenu != null && iPSAppMenu.getPSAppMenuItems()!=null)
+			{
+				java.util.Iterator<IPSAppMenuItem> psAppMenuItems = iPSAppMenu.getPSAppMenuItems();
+				while(psAppMenuItems.hasNext())
+				{
+					IPSAppMenuItem psAppMenuItem = psAppMenuItems.next();
+					if(psAppMenuItem.getPSAppFunc()!=null && psAppMenuItem.getPSAppFunc().getPSAppView()!=null)
+					{
+						IPSAppView subPSAppView = psAppMenuItem.getPSAppFunc().getPSAppView();
+						//生成对应的代码
+						PSPublishContextImpl psPublishContextImpl = new PSPublishContextImpl(this.getDAGlobalHelper(),null);
+						//psPublishContextImpl.setPSSysModelInstId(this.iPSAppView.getPSDevSlnSysId());
+						//找到对应的发布器
+						java.util.Iterator<IPSPFViewTempl> psPFViewTempls= iPSPFStyle.getPSPFViewTempls(subPSAppView);
+						while(psPFViewTempls.hasNext())
+						{
+							IPSPFViewTempl iPSPFViewTempl = psPFViewTempls.next();
+							if(StringHelper.Compare(iPSPFViewTempl.getPSPFPubCode().getId(), this.getPSPFPubCode().getId(), true)==0)
+							{
+								IPSPFViewCodePublisher	iPSPFViewCodePublisher = iPSPFViewTempl.getPSPFViewCodePublisher();
+								String strCode = iPSPFViewCodePublisher.generateCode2(psPublishContextImpl, subPSAppView,null);
+								iPSPFViewCodePublisher.close();
+								
+								if(psSubCodeMethod!=null){
+									psSubCodeMethod.registerSubCode(StringHelper.Format("CODE_%1$s",subPSAppView.getId()),strCode);
+								}
+								else{
+									throw new Exception("子代码辅助方法无效");
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			
+			//合成require 
+			HashMap<String, IPSAppView> requireAppViewMap = new HashMap<String, IPSAppView>();
+			ArrayList<IPSAppView> requireViewList = new ArrayList<IPSAppView> ();
+			requireViewList.add(this.iPSAppView);
+			requireAppViewMap.put(this.iPSAppView.getId(), iPSAppView);
+			while(requireViewList.size()>0)
+			{
+				IPSAppView iPSAppView = requireViewList.remove(0);
+				ArrayList<IPSAppView> psAppViewList = new  ArrayList<IPSAppView>();
+				iPSAppView.fillRelatedPSAppViews(psAppViewList);
+				
+				for(IPSAppView iPSAppView2 :psAppViewList)
+				{
+					if(requireAppViewMap.containsKey(iPSAppView2.getId()))
+						continue;
+					
+					requireAppViewMap.put(iPSAppView2.getId(), iPSAppView2);
+					requireViewList.add(iPSAppView2);
+				}
+			}
+			
+			requireViewList.clear();
+			requireViewList.addAll(requireAppViewMap.values());
+			params.put("requireviews", requireViewList);
+		}
+		
+	}
 }
-

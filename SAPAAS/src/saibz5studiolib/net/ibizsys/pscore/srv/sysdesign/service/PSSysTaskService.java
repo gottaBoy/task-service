@@ -41,7 +41,7 @@ extends PSSysTaskServiceBase {
 
     @Override
     protected void onAfterRemove(PSSysTask pSSysTask) throws Exception {
-        PSSysTask pSSysTask2 = (PSSysTask)this.getLast((IEntity)pSSysTask);
+        PSSysTask pSSysTask2 = (PSSysTask)this.getLast(pSSysTask);
         if (!StringHelper.isNullOrEmpty((String)pSSysTask2.getModelTypeId())) {
             IDataEntityModel iDataEntityModel = DEModelGlobal.getDEModel((String)pSSysTask2.getModelTypeId());
             IService iService = iDataEntityModel.getService(this.getSessionFactory());

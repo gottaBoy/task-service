@@ -130,14 +130,14 @@ public class PSSubSysServiceAPIHelper {
                 System.out.println(String.format("\t\u5c5e\u6027[%1$s][%2$s][%3$s]", psSubSysSADEField.getPSSubSysSADEFieldName(), psSubSysSADEField.getStdDataType(), psSubSysSADEField.getMemo()));
             }
             System.out.println(String.format("\u5173\u7cfb\u96c6\u5408", new Object[0]));
-            for (Map.Entry<String, PSSubSysSADEField> entry3 : psSubSysSADERSMap.entrySet()) {
-                PSSubSysSADERS psSubSysSADERS = (PSSubSysSADERS)entry3.getValue();
+            for (Map.Entry<String, PSSubSysSADERS> entry3 : psSubSysSADERSMap.entrySet()) {
+                PSSubSysSADERS psSubSysSADERS = entry3.getValue();
                 if (StringHelper.compare((String)psSubSysSADERS.getPPSSubSysSADEId(), (String)psSubSysSADE.getPSSubSysSADEId(), (boolean)false) != 0) continue;
                 System.out.println(String.format("\t\u4ece\u5173\u7cfb[%1$s][%2$s]", psSubSysSADERS.getCPSSubSysSADEName(), psSubSysSADERS.getCodeName()));
             }
             System.out.println(String.format("\u65b9\u6cd5\u96c6\u5408", new Object[0]));
-            for (Map.Entry<String, PSSubSysSADEField> entry4 : psSubSysSADetailMap.entrySet()) {
-                psSubSysSADetail = (PSSubSysSADetail)entry4.getValue();
+            for (Map.Entry<String, PSSubSysSADetail> entry4 : psSubSysSADetailMap.entrySet()) {
+                psSubSysSADetail = entry4.getValue();
                 if (StringHelper.compare((String)psSubSysSADetail.getPSSubSysSADEId(), (String)psSubSysSADE.getPSSubSysSADEId(), (boolean)false) != 0) continue;
                 System.out.println(String.format("\t\u65b9\u6cd5[%1$s][%2$s]", psSubSysSADetail.getPSSubSysSADetailName(), psSubSysSADetail.getServiceUrl()));
             }
@@ -425,4 +425,3 @@ public class PSSubSysServiceAPIHelper {
         return psSubSysSADE;
     }
 }
-

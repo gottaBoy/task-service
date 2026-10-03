@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.eaidesign.demodel.PSSysEAIDataTypeDEModelBase;
 
 public class PSSysEAIDataTypeDEModel
 extends PSSysEAIDataTypeDEModelBase {
+
+    public PSSysEAIDataTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

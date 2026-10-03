@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
     }
 
     protected void onFillParentInfo(PSPanelLNType pSPanelLNType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSPanelLNType, string, string2, string3);
+        super.onFillParentInfo(pSPanelLNType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSPanelLNType, bl);
+        super.onFillEntityFullInfo(pSPanelLNType, bl);
     }
 
     protected void onWriteBackParent(PSPanelLNType pSPanelLNType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPanelLNType, bl);
+        super.onWriteBackParent(pSPanelLNType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSPanelLNType pSPanelLNType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPanelLNType, bl);
+        super.onRemoveEntityUncopyValues(pSPanelLNType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPanelLNType pSPanelLNType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
         if ((entityFieldError = this.onCheckField_PSPanelLNTypeName(bl, pSPanelLNType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPanelLNType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPanelLNType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSPanelLNType pSPanelLNType, boolean bl2, boolean bl3) throws Exception {
@@ -183,7 +183,7 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSPanelLNType, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSPanelLNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -205,7 +205,7 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconPath_Default((IEntity)pSPanelLNType, bl2, bl3);
+            string2 = this.onTestValueRule_IconPath_Default(pSPanelLNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONPATH");
@@ -230,7 +230,7 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj_Default((IEntity)pSPanelLNType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj_Default(pSPanelLNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ");
@@ -252,7 +252,7 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPanelLNType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPanelLNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSPanelLNType, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSPanelLNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -299,7 +299,7 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPanelLNTypeId_Default((IEntity)pSPanelLNType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPanelLNTypeId_Default(pSPanelLNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPANELLNTYPEID");
@@ -324,7 +324,7 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPanelLNTypeName_Default((IEntity)pSPanelLNType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPanelLNTypeName_Default(pSPanelLNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPANELLNTYPENAME");
@@ -337,11 +337,11 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
     }
 
     protected void onSyncEntity(PSPanelLNType pSPanelLNType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPanelLNType, bl);
+        super.onSyncEntity(pSPanelLNType, bl);
     }
 
     protected void onSyncIndexEntities(PSPanelLNType pSPanelLNType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPanelLNType, bl);
+        super.onSyncIndexEntities(pSPanelLNType, bl);
     }
 
     public Object getDataContextValue(PSPanelLNType pSPanelLNType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -349,14 +349,14 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPanelLNType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPanelLNType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPanelLNType pSPanelLNType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPanelLNType, arrayList, n);
+        super.onExportMajorModel(pSPanelLNType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -506,14 +506,14 @@ extends PSCoreSysServiceBase<PSPanelLNType> {
 
     protected boolean onMergeChild(String string, String string2, PSPanelLNType pSPanelLNType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPanelLNType)) {
+        if (super.onMergeChild(string, string2, pSPanelLNType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPanelLNType pSPanelLNType) throws Exception {
-        super.onUpdateParent((IEntity)pSPanelLNType);
+        super.onUpdateParent(pSPanelLNType);
     }
 
     @Override

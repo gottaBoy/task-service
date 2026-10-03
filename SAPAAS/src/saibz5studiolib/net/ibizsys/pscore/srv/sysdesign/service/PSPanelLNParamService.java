@@ -96,7 +96,7 @@ extends PSPanelLNParamServiceBase {
             object = new PSPanelLogicParam();
             ((PSPanelLogicParamBase)object).setPSPanelLogicParamName(string);
             ((PSPanelLogicParamBase)object).setPSSysViewPanelLogicId(pSPanelLNParam.getPSPanelLogicNode().getPSSysViewPanelLogicId());
-            pSPanelLogicParamService.selectTemp(object, false);
+            pSPanelLogicParamService.selectTemp((PSPanelLogicParam)object, false);
             pSPanelLNParam.setSrcPSPanelLPId(((PSPanelLogicParamBase)object).getPSPanelLogicParamId());
             xmlNode.setAttribute("SRCPSPANELLPID", ((PSPanelLogicParamBase)object).getPSPanelLogicParamId());
         }

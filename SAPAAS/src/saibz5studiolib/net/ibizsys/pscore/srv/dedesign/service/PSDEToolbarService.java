@@ -52,7 +52,7 @@ extends PSDEToolbarServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSDEToolbar.getPSDEToolbarId())) {
             this.getTempMajor(pSDEToolbar);
         } else {
-            this.getTemp((IEntity)pSDEToolbar);
+            this.getTemp(pSDEToolbar);
         }
         pSDEToolbar.setTBModel(this.getTBModel(pSDEToolbar));
     }
@@ -103,7 +103,6 @@ extends PSDEToolbarServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDETBItem pSDETBItem2;
                 PSDETBItemService pSDETBItemService = (PSDETBItemService)ServiceGlobal.getService((String)PSDETBItemService.class.getCanonicalName(), (SessionFactory)PSDEToolbarService.this.getSessionFactory());
                 ArrayList<PSDETBItem> arrayList = pSDETBItemService.selectTempByPSDEToolbar(pSDEToolbar2);
                 HashMap<String, PSDETBItem> hashMap = new HashMap<String, PSDETBItem>();
@@ -111,18 +110,18 @@ extends PSDEToolbarServiceBase {
                     hashMap.put(pSDETBItem2.getPSDETBItemId(), pSDETBItem2);
                 }
                 String string = pSDEToolbar2.getTBModel();
-                pSDETBItem2 = XmlNode.loadFromXML((String)string);
-                if (pSDETBItem2 != null) {
-                    pSDETBItem2.setAttribute("PSDEID", pSDEToolbar2.getPSDEId());
-                    pSDETBItem2.setAttribute("PSDETOOLBARID", pSDEToolbar2.getPSDEToolbarId());
-                    PSDEToolbarService.this.updatePSDETBItems(pSDEToolbar2, null, (XmlNode)pSDETBItem2, hashMap);
-                    pSDEToolbar2.setTBModel(XmlNode.export((XmlNode)pSDETBItem2));
+                XmlNode toolbarModel = XmlNode.loadFromXML(string);
+                if (toolbarModel != null) {
+                    toolbarModel.setAttribute("PSDEID", pSDEToolbar2.getPSDEId());
+                    toolbarModel.setAttribute("PSDETOOLBARID", pSDEToolbar2.getPSDEToolbarId());
+                    PSDEToolbarService.this.updatePSDETBItems(pSDEToolbar2, null, toolbarModel, hashMap);
+                    pSDEToolbar2.setTBModel(XmlNode.export(toolbarModel));
                 } else {
                     pSDEToolbar2.setTBModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDETBItem pSDETBItem3 : hashMap.values()) {
-                        pSDETBItemService.removeTemp((IEntity)pSDETBItem3);
+                        pSDETBItemService.removeTemp(pSDETBItem3);
                     }
                 }
                 PSDEToolbarService.this.updateTempMajor(pSDEToolbar2);
@@ -133,7 +132,7 @@ extends PSDEToolbarServiceBase {
     protected void updatePSDETBItems(PSDEToolbar pSDEToolbar, PSDETBItem pSDETBItem, XmlNode xmlNode, HashMap<String, PSDETBItem> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSDETBItemService pSDETBItemService = (PSDETBItemService)ServiceGlobal.getService((String)PSDETBItemService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -166,7 +165,7 @@ extends PSDEToolbarServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSDETBItemService.updateTemp((IEntity)pSDETBItem2);
+                    pSDETBItemService.updateTemp(pSDETBItem2);
                 }
                 xmlNode2.resetAttributes();
                 pSDETBItem2.fillXmlNode(xmlNode2, false);
@@ -187,7 +186,6 @@ extends PSDEToolbarServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDETBItem pSDETBItem2;
                 PSDETBItemService pSDETBItemService = (PSDETBItemService)ServiceGlobal.getService((String)PSDETBItemService.class.getCanonicalName(), (SessionFactory)PSDEToolbarService.this.getSessionFactory());
                 ArrayList<PSDETBItem> arrayList = pSDETBItemService.selectTempByPSDEToolbar(pSDEToolbar2);
                 HashMap<String, PSDETBItem> hashMap = new HashMap<String, PSDETBItem>();
@@ -195,21 +193,21 @@ extends PSDEToolbarServiceBase {
                     hashMap.put(pSDETBItem2.getPSDETBItemId(), pSDETBItem2);
                 }
                 String string = pSDEToolbar2.getTBModel();
-                pSDETBItem2 = XmlNode.loadFromXML((String)string);
-                if (pSDETBItem2 != null) {
-                    pSDETBItem2.setAttribute("PSDEID", pSDEToolbar2.getPSDEId());
-                    pSDETBItem2.setAttribute("PSDETOOLBARID", pSDEToolbar2.getPSDEToolbarId());
-                    PSDEToolbarService.this.updatePSDETBItems(pSDEToolbar2, null, (XmlNode)pSDETBItem2, hashMap);
-                    pSDEToolbar2.setTBModel(XmlNode.export((XmlNode)pSDETBItem2));
+                XmlNode toolbarModel = XmlNode.loadFromXML(string);
+                if (toolbarModel != null) {
+                    toolbarModel.setAttribute("PSDEID", pSDEToolbar2.getPSDEId());
+                    toolbarModel.setAttribute("PSDETOOLBARID", pSDEToolbar2.getPSDEToolbarId());
+                    PSDEToolbarService.this.updatePSDETBItems(pSDEToolbar2, null, toolbarModel, hashMap);
+                    pSDEToolbar2.setTBModel(XmlNode.export(toolbarModel));
                 } else {
                     pSDEToolbar2.setTBModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDETBItem pSDETBItem3 : hashMap.values()) {
-                        pSDETBItemService.removeTemp((IEntity)pSDETBItem3);
+                        pSDETBItemService.removeTemp(pSDETBItem3);
                     }
                 }
-                PSDEToolbarService.this.createTempMajor((IEntity)pSDEToolbar2);
+                PSDEToolbarService.this.createTempMajor(pSDEToolbar2);
             }
         });
     }
@@ -221,7 +219,6 @@ extends PSDEToolbarServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDETBItem pSDETBItem2;
                 PSDETBItemService pSDETBItemService = (PSDETBItemService)ServiceGlobal.getService((String)PSDETBItemService.class.getCanonicalName(), (SessionFactory)PSDEToolbarService.this.getSessionFactory());
                 ArrayList<PSDETBItem> arrayList = pSDETBItemService.selectTempByPSDEToolbar(pSDEToolbar2);
                 HashMap<String, PSDETBItem> hashMap = new HashMap<String, PSDETBItem>();
@@ -232,15 +229,16 @@ extends PSDEToolbarServiceBase {
                 if (StringHelper.isNullOrEmpty((String)object)) {
                     object = WebContext.getCurrent().getPostValue("tbmodel");
                 }
-                if ((pSDETBItem2 = XmlNode.loadFromXML((String)object)) != null) {
-                    PSDEToolbarService.this.updatePSDETBItems(pSDEToolbar2, null, (XmlNode)pSDETBItem2, hashMap);
-                    pSDEToolbar2.setTBModel(XmlNode.export((XmlNode)pSDETBItem2));
+                XmlNode toolbarModel = XmlNode.loadFromXML((String)object);
+                if (toolbarModel != null) {
+                    PSDEToolbarService.this.updatePSDETBItems(pSDEToolbar2, null, toolbarModel, hashMap);
+                    pSDEToolbar2.setTBModel(XmlNode.export(toolbarModel));
                 } else {
                     pSDEToolbar2.setTBModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDETBItem pSDETBItem3 : hashMap.values()) {
-                        pSDETBItemService.removeTemp((IEntity)pSDETBItem3);
+                        pSDETBItemService.removeTemp(pSDETBItem3);
                     }
                 }
             }
@@ -249,7 +247,7 @@ extends PSDEToolbarServiceBase {
 
     @Override
     public void getDraftWithModel(PSDEToolbar pSDEToolbar) throws Exception {
-        this.getDraftTempMajor((IEntity)pSDEToolbar);
+        this.getDraftTempMajor(pSDEToolbar);
         pSDEToolbar.setTBModel(this.getTBModel(pSDEToolbar));
     }
 
@@ -280,7 +278,7 @@ extends PSDEToolbarServiceBase {
 
     @Override
     public void getDraftTempMajorFrom(PSDEToolbar pSDEToolbar) throws Exception {
-        Object object = EntityBase.getOriginKey((IEntity)pSDEToolbar);
+        Object object = EntityBase.getOriginKey(pSDEToolbar);
         if (StringHelper.isNullOrEmpty((Object)object)) {
             object = pSDEToolbar.getPSDEToolbarId();
         }
@@ -312,9 +310,8 @@ extends PSDEToolbarServiceBase {
     @Override
     protected String getEntityFolderKeyValue(PSDEToolbar pSDEToolbar, PSSystem pSSystem) throws Exception {
         if (StringHelper.isNullOrEmpty((String)pSDEToolbar.getPSDEId())) {
-            return PSModelFolderKeyHelper.getModelKey((IEntity)pSDEToolbar, pSSystem, "PSDETOOLBAR_SYS", "", this.getSessionFactory());
+            return PSModelFolderKeyHelper.getModelKey(pSDEToolbar, pSSystem, "PSDETOOLBAR_SYS", "", this.getSessionFactory());
         }
         return super.getEntityFolderKeyValue(pSDEToolbar, pSSystem);
     }
 }
-

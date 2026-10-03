@@ -70,7 +70,7 @@ implements IPSSysCodeSnippetService {
     @Override
     protected List<PSSysCodeSnippet> onListAll() throws Exception {
         ArrayList<PSSysCodeSnippet> list = new ArrayList<PSSysCodeSnippet>();
-        List pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
+        List<PSSystem> pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
         if (pssystems != null) {
             for (PSSystem parent : pssystems) {
                 List<PSSysCodeSnippet> items = this.listByPSSystem(parent);

@@ -2267,7 +2267,7 @@ implements Serializable {
                 PSSysDynaModel pSSysDynaModel = new PSSysDynaModel();
                 pSSysDynaModel.setPSSysDynaModelId(this.getPSSysDynaModelId());
                 PSSysDynaModelService pSSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDynaModelService.autoGet((IEntity)pSSysDynaModel);
+                pSSysDynaModelService.autoGet(pSSysDynaModel);
                 this.pssysdynamodel = pSSysDynaModel;
             }
             return this.pssysdynamodel;
@@ -2293,7 +2293,7 @@ implements Serializable {
                 PSSysViewPanelItem pSSysViewPanelItem = new PSSysViewPanelItem();
                 pSSysViewPanelItem.setPSSysViewPanelItemId(this.getPSSysViewPanelItemId());
                 PSSysViewPanelItemService pSSysViewPanelItemService = (PSSysViewPanelItemService)ServiceGlobal.getService(PSSysViewPanelItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewPanelItemService.autoGet((IEntity)pSSysViewPanelItem);
+                pSSysViewPanelItemService.autoGet(pSSysViewPanelItem);
                 this.pssysviewpanelitem = pSSysViewPanelItem;
             }
             return this.pssysviewpanelitem;
@@ -2319,7 +2319,7 @@ implements Serializable {
                 PSSysViewPanel pSSysViewPanel = new PSSysViewPanel();
                 pSSysViewPanel.setPSSysViewPanelId(this.getPSSysViewPanelId());
                 PSSysViewPanelService pSSysViewPanelService = (PSSysViewPanelService)ServiceGlobal.getService(PSSysViewPanelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewPanelService.autoGet((IEntity)pSSysViewPanel);
+                pSSysViewPanelService.autoGet(pSSysViewPanel);
                 this.pssysviewpanel = pSSysViewPanel;
             }
             return this.pssysviewpanel;

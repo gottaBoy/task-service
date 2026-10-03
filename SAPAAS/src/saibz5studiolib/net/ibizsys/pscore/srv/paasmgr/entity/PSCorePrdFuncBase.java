@@ -2256,7 +2256,7 @@ implements Serializable {
                 PSCorePrd pSCorePrd = new PSCorePrd();
                 pSCorePrd.setPSCorePrdId(this.getPSCorePrdId());
                 PSCorePrdService pSCorePrdService = (PSCorePrdService)ServiceGlobal.getService(PSCorePrdService.class, (SessionFactory)this.getSessionFactory());
-                pSCorePrdService.autoGet((IEntity)pSCorePrd);
+                pSCorePrdService.autoGet(pSCorePrd);
                 this.pscoreprd = pSCorePrd;
             }
             return this.pscoreprd;

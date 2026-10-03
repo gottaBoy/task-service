@@ -1479,7 +1479,7 @@ implements Serializable {
                 PSPFPlugin pSPFPlugin = new PSPFPlugin();
                 pSPFPlugin.setPSPFPluginId(this.getPSPFPluginId());
                 PSPFPluginService pSPFPluginService = (PSPFPluginService)ServiceGlobal.getService(PSPFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSPFPluginService.autoGet((IEntity)pSPFPlugin);
+                pSPFPluginService.autoGet(pSPFPlugin);
                 this.pspfplugin = pSPFPlugin;
             }
             return this.pspfplugin;
@@ -1505,7 +1505,7 @@ implements Serializable {
                 PSSFPlugin pSSFPlugin = new PSSFPlugin();
                 pSSFPlugin.setPSSFPluginId(this.getPSSFPluginId());
                 PSSFPluginService pSSFPluginService = (PSSFPluginService)ServiceGlobal.getService(PSSFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSFPluginService.autoGet((IEntity)pSSFPlugin);
+                pSSFPluginService.autoGet(pSSFPlugin);
                 this.pssfplugin = pSSFPlugin;
             }
             return this.pssfplugin;

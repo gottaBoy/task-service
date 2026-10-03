@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.bidesign.demodel.PSSysBIAggTableDEModelBase;
 
 public class PSSysBIAggTableDEModel
 extends PSSysBIAggTableDEModelBase {
+
+    public PSSysBIAggTableDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

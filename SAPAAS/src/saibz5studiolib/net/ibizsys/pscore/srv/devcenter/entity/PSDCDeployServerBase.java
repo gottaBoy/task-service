@@ -2243,7 +2243,7 @@ implements Serializable {
                 PSDCDeployCenter pSDCDeployCenter = new PSDCDeployCenter();
                 pSDCDeployCenter.setPSDCDeployCenterId(this.getPSDCDeployCenterId());
                 PSDCDeployCenterService pSDCDeployCenterService = (PSDCDeployCenterService)ServiceGlobal.getService(PSDCDeployCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDCDeployCenterService.autoGet((IEntity)pSDCDeployCenter);
+                pSDCDeployCenterService.autoGet(pSDCDeployCenter);
                 this.psdcdeploycenter = pSDCDeployCenter;
             }
             return this.psdcdeploycenter;
@@ -2269,7 +2269,7 @@ implements Serializable {
                 PSDeployServer pSDeployServer = new PSDeployServer();
                 pSDeployServer.setPSDeployServerId(this.getPSDeployServerId());
                 PSDeployServerService pSDeployServerService = (PSDeployServerService)ServiceGlobal.getService(PSDeployServerService.class, (SessionFactory)this.getSessionFactory());
-                pSDeployServerService.autoGet((IEntity)pSDeployServer);
+                pSDeployServerService.autoGet(pSDeployServer);
                 this.psdeployserver = pSDeployServer;
             }
             return this.psdeployserver;
@@ -2295,7 +2295,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;

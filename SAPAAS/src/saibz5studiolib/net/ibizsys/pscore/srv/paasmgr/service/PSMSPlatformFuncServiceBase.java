@@ -145,14 +145,14 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
             PSMSPlatform pSMSPlatform = (PSMSPlatform)iService.getDEModel().createEntity();
             pSMSPlatform.set("PSMSPLATFORMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSMSPlatform);
+                iService.getTemp(pSMSPlatform);
             } else {
-                iService.get((IEntity)pSMSPlatform);
+                iService.get(pSMSPlatform);
             }
             this.onFillParentInfo_PSMSPlatform(pSMSPlatformFunc, pSMSPlatform);
             return;
         }
-        super.onFillParentInfo((IEntity)pSMSPlatformFunc, string, string2, string3);
+        super.onFillParentInfo(pSMSPlatformFunc, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
         if (bl && pSMSPlatformFunc.getValidFlag() == null) {
             pSMSPlatformFunc.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSMSPlatformFunc, bl);
+        super.onFillEntityFullInfo(pSMSPlatformFunc, bl);
         this.onFillEntityFullInfo_PSMSPlatform(pSMSPlatformFunc, bl);
     }
 
@@ -176,7 +176,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
     }
 
     protected void onWriteBackParent(PSMSPlatformFunc pSMSPlatformFunc, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSMSPlatformFunc, bl);
+        super.onWriteBackParent(pSMSPlatformFunc, bl);
     }
 
     public ArrayList<PSMSPlatformFunc> selectByPSMSPlatform(PSMSPlatformBase pSMSPlatformBase) throws Exception {
@@ -235,7 +235,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
         ArrayList<PSMSPlatformFunc> arrayList = this.selectByPSMSPlatform(pSMSPlatform);
         this.onBeforeRemoveByPSMSPlatform(pSMSPlatform, arrayList);
         for (PSMSPlatformFunc pSMSPlatformFunc : arrayList) {
-            this.remove((IEntity)pSMSPlatformFunc);
+            this.remove(pSMSPlatformFunc);
         }
         this.onAfterRemoveByPSMSPlatform(pSMSPlatform, arrayList);
     }
@@ -259,14 +259,14 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
 
     protected void replaceParentInfo(PSMSPlatformFunc pSMSPlatformFunc, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSMSPlatformFunc, cloneSession);
+        super.replaceParentInfo(pSMSPlatformFunc, cloneSession);
         if (pSMSPlatformFunc.getPSMSPlatformId() != null && (iEntity = cloneSession.getEntity("PSMSPLATFORM", (Object)pSMSPlatformFunc.getPSMSPlatformId())) != null) {
             this.onFillParentInfo_PSMSPlatform(pSMSPlatformFunc, (PSMSPlatform)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSMSPlatformFunc pSMSPlatformFunc, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSMSPlatformFunc, bl);
+        super.onRemoveEntityUncopyValues(pSMSPlatformFunc, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSMSPlatformFunc pSMSPlatformFunc, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -356,7 +356,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
         if ((entityFieldError = this.onCheckField_WorkshopPath(bl, pSMSPlatformFunc, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSMSPlatformFunc, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSMSPlatformFunc, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_FuncParam(boolean bl, PSMSPlatformFunc pSMSPlatformFunc, boolean bl2, boolean bl3) throws Exception {
@@ -369,7 +369,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FuncParam_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_FuncParam_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCPARAM");
@@ -391,7 +391,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FuncParam10_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_FuncParam10_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCPARAM10");
@@ -413,7 +413,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FuncParam2_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_FuncParam2_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCPARAM2");
@@ -435,7 +435,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FuncParam3_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_FuncParam3_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCPARAM3");
@@ -457,7 +457,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FuncParam4_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_FuncParam4_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCPARAM4");
@@ -479,7 +479,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_FuncParam5_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string = this.onTestValueRule_FuncParam5_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCPARAM5");
@@ -501,7 +501,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_FuncParam6_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string = this.onTestValueRule_FuncParam6_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCPARAM6");
@@ -523,7 +523,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_FuncParam7_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string = this.onTestValueRule_FuncParam7_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCPARAM7");
@@ -545,7 +545,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_FuncParam8_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string = this.onTestValueRule_FuncParam8_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCPARAM8");
@@ -567,7 +567,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FuncParam9_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_FuncParam9_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCPARAM9");
@@ -589,7 +589,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FuncParams_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_FuncParams_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCPARAMS");
@@ -611,7 +611,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -633,7 +633,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr2_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr2_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR2");
@@ -655,7 +655,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -680,7 +680,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MSFuncType_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_MSFuncType_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MSFUNCTYPE");
@@ -702,7 +702,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -724,7 +724,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Port_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string = this.onTestValueRule_Port_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PORT");
@@ -749,7 +749,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMSPlatformFuncId_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_PSMSPlatformFuncId_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMSPLATFORMFUNCID");
@@ -774,7 +774,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMSPlatformFuncName_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_PSMSPlatformFuncName_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMSPLATFORMFUNCNAME");
@@ -796,7 +796,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMSPlatformId_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_PSMSPlatformId_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMSPLATFORMID");
@@ -818,7 +818,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ServiceUrl_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_ServiceUrl_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SERVICEURL");
@@ -840,7 +840,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SSHIPAddr_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_SSHIPAddr_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHIPADDR");
@@ -862,7 +862,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SSHPort_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string = this.onTestValueRule_SSHPort_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHPORT");
@@ -884,7 +884,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadFileMode_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_UploadFileMode_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADFILEMODE");
@@ -906,7 +906,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadPath_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_UploadPath_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADPATH");
@@ -928,7 +928,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -953,7 +953,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -975,7 +975,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WorkshopPath_Default((IEntity)pSMSPlatformFunc, bl2, bl3);
+            string2 = this.onTestValueRule_WorkshopPath_Default(pSMSPlatformFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WORKSHOPPATH");
@@ -988,11 +988,11 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
     }
 
     protected void onSyncEntity(PSMSPlatformFunc pSMSPlatformFunc, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSMSPlatformFunc, bl);
+        super.onSyncEntity(pSMSPlatformFunc, bl);
     }
 
     protected void onSyncIndexEntities(PSMSPlatformFunc pSMSPlatformFunc, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSMSPlatformFunc, bl);
+        super.onSyncIndexEntities(pSMSPlatformFunc, bl);
     }
 
     public Object getDataContextValue(PSMSPlatformFunc pSMSPlatformFunc, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1000,7 +1000,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSMSPlatformFunc, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSMSPlatformFunc, string, iDataContextParam)) != null) {
             return object;
         }
         PSMSPlatform pSMSPlatform = pSMSPlatformFunc.getPSMSPlatform();
@@ -1011,7 +1011,7 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
     }
 
     protected void onExportMajorModel(PSMSPlatformFunc pSMSPlatformFunc, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSMSPlatformFunc, arrayList, n);
+        super.onExportMajorModel(pSMSPlatformFunc, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1443,14 +1443,14 @@ extends PSCoreSysServiceBase<PSMSPlatformFunc> {
 
     protected boolean onMergeChild(String string, String string2, PSMSPlatformFunc pSMSPlatformFunc) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSMSPlatformFunc)) {
+        if (super.onMergeChild(string, string2, pSMSPlatformFunc)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSMSPlatformFunc pSMSPlatformFunc) throws Exception {
-        super.onUpdateParent((IEntity)pSMSPlatformFunc);
+        super.onUpdateParent(pSMSPlatformFunc);
     }
 
     @Override

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysDashboardDEModelBase;
 
 public class PSSysDashboardDEModel
 extends PSSysDashboardDEModelBase {
+
+    public PSSysDashboardDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

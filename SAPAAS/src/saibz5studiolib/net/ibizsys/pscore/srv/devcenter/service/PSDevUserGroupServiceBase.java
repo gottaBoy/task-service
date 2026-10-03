@@ -179,7 +179,7 @@ extends PSDevUserObjService<PSDevUserGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupTag_Default((IEntity)pSDevUserGroup, bl2, bl3);
+            string2 = this.onTestValueRule_GroupTag_Default(pSDevUserGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPTAG");
@@ -201,7 +201,7 @@ extends PSDevUserObjService<PSDevUserGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupTag2_Default((IEntity)pSDevUserGroup, bl2, bl3);
+            string2 = this.onTestValueRule_GroupTag2_Default(pSDevUserGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPTAG2");
@@ -226,7 +226,7 @@ extends PSDevUserObjService<PSDevUserGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevUserGroupId_Default((IEntity)pSDevUserGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevUserGroupId_Default(pSDevUserGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVUSERGROUPID");
@@ -251,7 +251,7 @@ extends PSDevUserObjService<PSDevUserGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevUserGroupName_Default((IEntity)pSDevUserGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevUserGroupName_Default(pSDevUserGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVUSERGROUPNAME");

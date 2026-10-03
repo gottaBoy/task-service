@@ -1,27 +1,65 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.web.IWebContext;
 import org.hibernate.SessionFactory;
 
+import net.ibizsys.paas.web.IWebContext;
+
+/**
+ * 操作上下文对象
+ * 
+ * @author lionlau
+ *
+ */
 public interface IActionContext {
-    public IWebContext getWebContext();
+	/**
+	 * 获取网页上下文对象
+	 * 
+	 * @return
+	 */
+	IWebContext getWebContext();
 
-    public SessionFactory getSessionFactory();
+	/**
+	 * 获取会话对象
+	 * 
+	 * @return
+	 */
+	SessionFactory getSessionFactory();
 
-    public Object getParam(String var1);
+	/**
+	 * 获取参数
+	 * 
+	 * @param strParamName
+	 * @return
+	 * @throws Exception
+	 */
+	Object getParam(String strParamName);
 
-    public void setParam(String var1, Object var2);
+	/**
+	 * 设置参数
+	 * 
+	 * @param strParamName
+	 * @param objValue
+	 */
+	void setParam(String strParamName, Object objValue);
 
-    public String getOperator();
+	/**
+	 * 获取当前操作者标识
+	 * 
+	 * @return
+	 */
+	String getOperator();
 
-    public String getOperatorName();
+	/**
+	 * 获取当前操作者名称
+	 * 
+	 * @return
+	 */
+	String getOperatorName();
 
-    public String getRemoteAddr();
+	/**
+	 * 获取远端地址
+	 * 
+	 * @return
+	 */
+	String getRemoteAddr();
 }
-

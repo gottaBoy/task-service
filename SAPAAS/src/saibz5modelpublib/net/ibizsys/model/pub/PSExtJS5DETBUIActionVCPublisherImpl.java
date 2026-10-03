@@ -1,46 +1,58 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.control.IPSControl
- *  net.ibizsys.model.control.toolbar.IPSDETBUIActionItem
- *  net.ibizsys.model.control.toolbar.IPSDEToolbarItem
- *  net.ibizsys.model.pub.IPSGenerateCodeResult
- *  net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher
- */
 package net.ibizsys.model.pub;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+
 import net.ibizsys.model.control.IPSControl;
 import net.ibizsys.model.control.toolbar.IPSDETBUIActionItem;
 import net.ibizsys.model.control.toolbar.IPSDEToolbarItem;
-import net.ibizsys.model.pub.IPSGenerateCodeResult;
-import net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher;
-import net.ibizsys.model.pub.PSExtJS5CtrlPartCodePublisherImpl;
 
-public class PSExtJS5DETBUIActionVCPublisherImpl
-extends PSExtJS5CtrlPartCodePublisherImpl {
-    protected IPSDETBUIActionItem iPSDETBUIActionItem = null;
+public class PSExtJS5DETBUIActionVCPublisherImpl extends PSExtJS5CtrlPartCodePublisherImpl
+{
+	protected IPSDETBUIActionItem iPSDETBUIActionItem = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode( IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDETBUIActionItem = (IPSDETBUIActionItem)object;
+		
+//		//判断类型，进一步获取
+//		IPSUIAction iPSUIAction = iPSDETBUIActionItem.getPSUIAction();
+//		if(iPSUIAction.isUIActionGroup())
+//		{
+//			//行为组
+//		}
+//		
+		
+		return super.generateCode( iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		if(true)
+		{
+			ArrayList<IPSGenerateCodeResult> itemList = new ArrayList<IPSGenerateCodeResult> ();
+			java.util.Iterator<IPSDEToolbarItem> psDEToolbarItems = 	iPSDETBUIActionItem.getPSDEToolbarItems();
+			while(psDEToolbarItems.hasNext())
+			{
+				IPSDEToolbarItem iPSDEToolbarItem = psDEToolbarItems.next();
+				IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(iPSDEToolbarItem.getItemType()).getPSPFCtrlPartCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode( this.iPSControl,iPSDEToolbarItem);
+				itemList.add(iPSGenerateCodeResult);
+			}		
+			
+			params.put("items", itemList);
+		}
+		
+	}
 
-    public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception {
-        this.iPSDETBUIActionItem = (IPSDETBUIActionItem)object;
-        return super.generateCode(iPSControl, object);
-    }
-
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
-        super.onFillGenerateCodeParams(params);
-        ArrayList<IPSGenerateCodeResult> itemList = new ArrayList<IPSGenerateCodeResult>();
-        Iterator psDEToolbarItems = this.iPSDETBUIActionItem.getPSDEToolbarItems();
-        while (psDEToolbarItems.hasNext()) {
-            IPSDEToolbarItem iPSDEToolbarItem = (IPSDEToolbarItem)psDEToolbarItems.next();
-            IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(iPSDEToolbarItem.getItemType()).getPSPFCtrlPartCodePublisher();
-            IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(this.iPSControl, (Object)iPSDEToolbarItem);
-            itemList.add(iPSGenerateCodeResult);
-        }
-        params.put("items", itemList);
-    }
 }
-

@@ -49,7 +49,7 @@ extends PSAppPortalViewServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSAppPortalView.getPSAppPortalViewId())) {
             this.getTempMajor(pSAppPortalView);
         } else {
-            this.getTemp((IEntity)pSAppPortalView);
+            this.getTemp(pSAppPortalView);
         }
         pSAppPortalView.setDBModel(this.getDashboardModel(pSAppPortalView));
     }
@@ -99,7 +99,6 @@ extends PSAppPortalViewServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSAppPVPart pSAppPVPart2;
                 PSAppPVPartService pSAppPVPartService = (PSAppPVPartService)ServiceGlobal.getService((String)PSAppPVPartService.class.getCanonicalName(), (SessionFactory)PSAppPortalViewService.this.getSessionFactory());
                 ArrayList<PSAppPVPart> arrayList = pSAppPVPartService.selectTempByPSAppPortalView(pSAppPortalView2);
                 HashMap<String, PSAppPVPart> hashMap = new HashMap<String, PSAppPVPart>();
@@ -107,17 +106,17 @@ extends PSAppPortalViewServiceBase {
                     hashMap.put(pSAppPVPart2.getPSAppPVPartId(), pSAppPVPart2);
                 }
                 String string = pSAppPortalView2.getDBModel();
-                pSAppPVPart2 = XmlNode.loadFromXML((String)string);
-                if (pSAppPVPart2 != null) {
-                    pSAppPVPart2.setAttribute("PSAPPPORTALVIEWID", pSAppPortalView2.getPSAppPortalViewId());
-                    PSAppPortalViewService.this.updatePSAppPVParts(pSAppPortalView2, null, (XmlNode)pSAppPVPart2, hashMap);
-                    pSAppPortalView2.setDBModel(XmlNode.export((XmlNode)pSAppPVPart2));
+                XmlNode modelNode = XmlNode.loadFromXML(string);
+                if (modelNode != null) {
+                    modelNode.setAttribute("PSAPPPORTALVIEWID", pSAppPortalView2.getPSAppPortalViewId());
+                    PSAppPortalViewService.this.updatePSAppPVParts(pSAppPortalView2, null, modelNode, hashMap);
+                    pSAppPortalView2.setDBModel(XmlNode.export(modelNode));
                 } else {
                     pSAppPortalView2.setDBModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSAppPVPart pSAppPVPart3 : hashMap.values()) {
-                        pSAppPVPartService.removeTemp((IEntity)pSAppPVPart3);
+                        pSAppPVPartService.removeTemp(pSAppPVPart3);
                     }
                 }
                 PSAppPortalViewService.this.updateTempMajor(pSAppPortalView2);
@@ -128,7 +127,7 @@ extends PSAppPortalViewServiceBase {
     protected void updatePSAppPVParts(PSAppPortalView pSAppPortalView, PSAppPVPart pSAppPVPart, XmlNode xmlNode, HashMap<String, PSAppPVPart> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSAppPVPartService pSAppPVPartService = (PSAppPVPartService)ServiceGlobal.getService((String)PSAppPVPartService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -161,7 +160,7 @@ extends PSAppPortalViewServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSAppPVPartService.updateTemp((IEntity)pSAppPVPart2);
+                    pSAppPVPartService.updateTemp(pSAppPVPart2);
                 }
                 xmlNode2.resetAttributes();
                 pSAppPVPart2.fillXmlNode(xmlNode2, false);
@@ -182,7 +181,6 @@ extends PSAppPortalViewServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSAppPVPart pSAppPVPart2;
                 PSAppPVPartService pSAppPVPartService = (PSAppPVPartService)ServiceGlobal.getService((String)PSAppPVPartService.class.getCanonicalName(), (SessionFactory)PSAppPortalViewService.this.getSessionFactory());
                 ArrayList<PSAppPVPart> arrayList = pSAppPVPartService.selectTempByPSAppPortalView(pSAppPortalView2);
                 HashMap<String, PSAppPVPart> hashMap = new HashMap<String, PSAppPVPart>();
@@ -190,20 +188,20 @@ extends PSAppPortalViewServiceBase {
                     hashMap.put(pSAppPVPart2.getPSAppPVPartId(), pSAppPVPart2);
                 }
                 String string = pSAppPortalView2.getDBModel();
-                pSAppPVPart2 = XmlNode.loadFromXML((String)string);
-                if (pSAppPVPart2 != null) {
-                    pSAppPVPart2.setAttribute("PSAPPPORTALVIEWID", pSAppPortalView2.getPSAppPortalViewId());
-                    PSAppPortalViewService.this.updatePSAppPVParts(pSAppPortalView2, null, (XmlNode)pSAppPVPart2, hashMap);
-                    pSAppPortalView2.setDBModel(XmlNode.export((XmlNode)pSAppPVPart2));
+                XmlNode modelNode = XmlNode.loadFromXML(string);
+                if (modelNode != null) {
+                    modelNode.setAttribute("PSAPPPORTALVIEWID", pSAppPortalView2.getPSAppPortalViewId());
+                    PSAppPortalViewService.this.updatePSAppPVParts(pSAppPortalView2, null, modelNode, hashMap);
+                    pSAppPortalView2.setDBModel(XmlNode.export(modelNode));
                 } else {
                     pSAppPortalView2.setDBModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSAppPVPart pSAppPVPart3 : hashMap.values()) {
-                        pSAppPVPartService.removeTemp((IEntity)pSAppPVPart3);
+                        pSAppPVPartService.removeTemp(pSAppPVPart3);
                     }
                 }
-                PSAppPortalViewService.this.createTempMajor((IEntity)pSAppPortalView2);
+                PSAppPortalViewService.this.createTempMajor(pSAppPortalView2);
             }
         });
     }
@@ -215,7 +213,6 @@ extends PSAppPortalViewServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSAppPVPart pSAppPVPart2;
                 PSAppPVPartService pSAppPVPartService = (PSAppPVPartService)ServiceGlobal.getService((String)PSAppPVPartService.class.getCanonicalName(), (SessionFactory)PSAppPortalViewService.this.getSessionFactory());
                 ArrayList<PSAppPVPart> arrayList = pSAppPVPartService.selectTempByPSAppPortalView(pSAppPortalView2);
                 HashMap<String, PSAppPVPart> hashMap = new HashMap<String, PSAppPVPart>();
@@ -226,15 +223,16 @@ extends PSAppPortalViewServiceBase {
                 if (StringHelper.isNullOrEmpty((String)object)) {
                     object = WebContext.getCurrent().getPostValue("dbmodel");
                 }
-                if ((pSAppPVPart2 = XmlNode.loadFromXML((String)object)) != null) {
-                    PSAppPortalViewService.this.updatePSAppPVParts(pSAppPortalView2, null, (XmlNode)pSAppPVPart2, hashMap);
-                    pSAppPortalView2.setDBModel(XmlNode.export((XmlNode)pSAppPVPart2));
+                XmlNode modelNode = XmlNode.loadFromXML((String)object);
+                if (modelNode != null) {
+                    PSAppPortalViewService.this.updatePSAppPVParts(pSAppPortalView2, null, modelNode, hashMap);
+                    pSAppPortalView2.setDBModel(XmlNode.export(modelNode));
                 } else {
                     pSAppPortalView2.setDBModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSAppPVPart pSAppPVPart3 : hashMap.values()) {
-                        pSAppPVPartService.removeTemp((IEntity)pSAppPVPart3);
+                        pSAppPVPartService.removeTemp(pSAppPVPart3);
                     }
                 }
             }
@@ -243,7 +241,7 @@ extends PSAppPortalViewServiceBase {
 
     @Override
     public void getDraftWithModel(PSAppPortalView pSAppPortalView) throws Exception {
-        this.getDraftTempMajor((IEntity)pSAppPortalView);
+        this.getDraftTempMajor(pSAppPortalView);
         this.fillPSAppPortalViewDefaultName(pSAppPortalView);
         pSAppPortalView.setDBModel(this.getDashboardModel(pSAppPortalView));
     }
@@ -284,10 +282,9 @@ extends PSAppPortalViewServiceBase {
             pSAppPortalView2 = new PSAppPortalView();
             pSAppPortalView2.setPSSysAppId(pSAppPortalView.getPSSysAppId());
             pSAppPortalView2.setPSAppPortalViewName(StringHelper.format((String)"%1$s%2$s", (Object)string, (Object)(n == 0 ? "" : Integer.valueOf(n + 1))));
-            if (!this.selectOne((IEntity)pSAppPortalView2, true)) break;
+            if (!this.selectOne(pSAppPortalView2, true)) break;
             ++n;
         }
         pSAppPortalView.setPSAppPortalViewName(pSAppPortalView2.getPSAppPortalViewName());
     }
 }
-

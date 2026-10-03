@@ -15,7 +15,7 @@ import net.ibizsys.modelapi.util.PSModelServiceUtilEx;
 public class Test {
     public static void main(String[] args) {
         try {
-            List psSysSearchDEFieldDTOs;
+            List<PSSysSearchDEFieldDTO> psSysSearchDEFieldDTOs;
             PSWFLinkCondDTO psWFLinkCondDTO = new PSWFLinkCondDTO();
             PSWFLinkCondDTO psWFLinkCondDTO2 = new PSWFLinkCondDTO();
             System.out.println(String.format("%1$s-%2$s", psWFLinkCondDTO.hashCode(), psWFLinkCondDTO2.hashCode()));
@@ -26,7 +26,7 @@ public class Test {
             psModelServiceSession.setPSGlobalModelFolderPath("C:\\SRFEX_TEMP\\2019-09-14\\MODEL.global");
             psModelServiceSession.setPSDynaInstId("MODEL.d1");
             PSSystem psSystem = (PSSystem)PSModelServiceUtil.getInstance().getPSSystemService().get(null, false);
-            List psAppViewDTOs = PSModelServiceUtil.getInstance().getPSAppViewService().listAllDTO();
+            List<PSAppViewDTO> psAppViewDTOs = PSModelServiceUtil.getInstance().getPSAppViewService().listAllDTO();
             if (psAppViewDTOs != null) {
                 for (PSAppViewDTO psAppViewDTO : psAppViewDTOs) {
                     System.out.println(String.format("\u5e94\u7528\u89c6\u56fe[%1$s]-[%2$s]-[%3$s]", psAppViewDTO.getPSAppViewName(), psAppViewDTO.getPSAppModuleId(), psAppViewDTO.getPSSysAppId()));

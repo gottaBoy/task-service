@@ -113,9 +113,9 @@ implements IPSSysSAHandlerService {
 
     @Override
     protected List<PSSysSAHandler> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysSAHandler> list = new ArrayList<PSSysSAHandler>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysSAHandler> items = this.listByPSModule(parent);

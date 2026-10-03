@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSSysDevInfoType> {
     }
 
     protected void onFillParentInfo(PSSysDevInfoType pSSysDevInfoType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSysDevInfoType, string, string2, string3);
+        super.onFillParentInfo(pSSysDevInfoType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSSysDevInfoType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysDevInfoType, bl);
+        super.onFillEntityFullInfo(pSSysDevInfoType, bl);
     }
 
     protected void onWriteBackParent(PSSysDevInfoType pSSysDevInfoType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysDevInfoType, bl);
+        super.onWriteBackParent(pSSysDevInfoType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSSysDevInfoType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysDevInfoType pSSysDevInfoType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysDevInfoType, bl);
+        super.onRemoveEntityUncopyValues(pSSysDevInfoType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysDevInfoType pSSysDevInfoType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -152,7 +152,7 @@ extends PSCoreSysServiceBase<PSSysDevInfoType> {
         if ((entityFieldError = this.onCheckField_PSSysDevInfoTypeName(bl, pSSysDevInfoType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysDevInfoType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysDevInfoType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSSysDevInfoTypeId(boolean bl, PSSysDevInfoType pSSysDevInfoType, boolean bl2, boolean bl3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSSysDevInfoType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDevInfoTypeId_Default((IEntity)pSSysDevInfoType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDevInfoTypeId_Default(pSSysDevInfoType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDEVINFOTYPEID");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSSysDevInfoType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDevInfoTypeName_Default((IEntity)pSSysDevInfoType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDevInfoTypeName_Default(pSSysDevInfoType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDEVINFOTYPENAME");
@@ -206,11 +206,11 @@ extends PSCoreSysServiceBase<PSSysDevInfoType> {
     }
 
     protected void onSyncEntity(PSSysDevInfoType pSSysDevInfoType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysDevInfoType, bl);
+        super.onSyncEntity(pSSysDevInfoType, bl);
     }
 
     protected void onSyncIndexEntities(PSSysDevInfoType pSSysDevInfoType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysDevInfoType, bl);
+        super.onSyncIndexEntities(pSSysDevInfoType, bl);
     }
 
     public Object getDataContextValue(PSSysDevInfoType pSSysDevInfoType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -218,14 +218,14 @@ extends PSCoreSysServiceBase<PSSysDevInfoType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysDevInfoType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysDevInfoType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysDevInfoType pSSysDevInfoType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysDevInfoType, arrayList, n);
+        super.onExportMajorModel(pSSysDevInfoType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -308,14 +308,14 @@ extends PSCoreSysServiceBase<PSSysDevInfoType> {
 
     protected boolean onMergeChild(String string, String string2, PSSysDevInfoType pSSysDevInfoType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysDevInfoType)) {
+        if (super.onMergeChild(string, string2, pSSysDevInfoType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysDevInfoType pSSysDevInfoType) throws Exception {
-        super.onUpdateParent((IEntity)pSSysDevInfoType);
+        super.onUpdateParent(pSSysDevInfoType);
     }
 
     @Override

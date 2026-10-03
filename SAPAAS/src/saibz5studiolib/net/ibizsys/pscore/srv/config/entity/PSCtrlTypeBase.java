@@ -1914,7 +1914,7 @@ implements Serializable {
                 PSModel pSModel = new PSModel();
                 pSModel.setPSModelId(this.getPSModelId());
                 PSModelService pSModelService = (PSModelService)ServiceGlobal.getService(PSModelService.class, (SessionFactory)this.getSessionFactory());
-                pSModelService.autoGet((IEntity)pSModel);
+                pSModelService.autoGet(pSModel);
                 this.psmodel = pSModel;
             }
             return this.psmodel;

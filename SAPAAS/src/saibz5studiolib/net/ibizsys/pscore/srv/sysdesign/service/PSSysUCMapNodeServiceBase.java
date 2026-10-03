@@ -165,9 +165,9 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
             PSSysActor pSSysActor = (PSSysActor)iService.getDEModel().createEntity();
             pSSysActor.set("PSSYSACTORID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysActor);
+                iService.getTemp(pSSysActor);
             } else {
-                iService.get((IEntity)pSSysActor);
+                iService.get(pSSysActor);
             }
             this.onFillParentInfo_PSSysActor(pSSysUCMapNode, pSSysActor);
             return;
@@ -177,9 +177,9 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
             PSSysUCMap pSSysUCMap = (PSSysUCMap)iService.getDEModel().createEntity();
             pSSysUCMap.set("PSSYSUCMAPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysUCMap);
+                iService.getTemp(pSSysUCMap);
             } else {
-                iService.get((IEntity)pSSysUCMap);
+                iService.get(pSSysUCMap);
             }
             this.onFillParentInfo_PSSysUCMap(pSSysUCMapNode, pSSysUCMap);
             return;
@@ -189,14 +189,14 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
             PSSysUserCase pSSysUserCase = (PSSysUserCase)iService.getDEModel().createEntity();
             pSSysUserCase.set("PSSYSUSERCASEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysUserCase);
+                iService.getTemp(pSSysUserCase);
             } else {
-                iService.get((IEntity)pSSysUserCase);
+                iService.get(pSSysUserCase);
             }
             this.onFillParentInfo_PSSysUserCase(pSSysUCMapNode, pSSysUserCase);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysUCMapNode, string, string2, string3);
+        super.onFillParentInfo(pSSysUCMapNode, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -222,7 +222,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysUCMapNode, bl);
+        super.onFillEntityFullInfo(pSSysUCMapNode, bl);
         this.onFillEntityFullInfo_PSSysActor(pSSysUCMapNode, bl);
         this.onFillEntityFullInfo_PSSysUCMap(pSSysUCMapNode, bl);
         this.onFillEntityFullInfo_PSSysUserCase(pSSysUCMapNode, bl);
@@ -238,7 +238,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
     }
 
     protected void onWriteBackParent(PSSysUCMapNode pSSysUCMapNode, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysUCMapNode, bl);
+        super.onWriteBackParent(pSSysUCMapNode, bl);
     }
 
     public ArrayList<PSSysUCMapNode> selectByPSSysActor(PSSysActorBase pSSysActorBase) throws Exception {
@@ -332,8 +332,8 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
         ArrayList<PSSysUCMapNode> arrayList = this.selectByPSSysActor(pSSysActor, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSACTOR");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysActor);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUCMAPNODE_PSSYSACTOR_PSSYSACTORID", "", iDataEntityModel.getName(), "PSSYSUCMAPNODE", iDataEntityModel.getDataInfo((IEntity)pSSysActor), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysActor);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUCMAPNODE_PSSYSACTOR_PSSYSACTORID", "", iDataEntityModel.getName(), "PSSYSUCMAPNODE", iDataEntityModel.getDataInfo(pSSysActor), arrayList.get(0)));
         }
     }
 
@@ -366,7 +366,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
         ArrayList<PSSysUCMapNode> arrayList = this.selectByPSSysActor(pSSysActor);
         this.onBeforeRemoveByPSSysActor(pSSysActor, arrayList);
         for (PSSysUCMapNode pSSysUCMapNode : arrayList) {
-            this.remove((IEntity)pSSysUCMapNode);
+            this.remove(pSSysUCMapNode);
         }
         this.onAfterRemoveByPSSysActor(pSSysActor, arrayList);
     }
@@ -399,7 +399,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
             PSSysUCMapNode pSSysUCMapNode2 = (PSSysUCMapNode)this.getDEModel().createEntity();
             pSSysUCMapNode2.setPSSysUCMapNodeId(pSSysUCMapNode.getPSSysUCMapNodeId());
             pSSysUCMapNode2.setPSSysUCMapId(null);
-            this.updateTemp((IEntity)pSSysUCMapNode2);
+            this.updateTemp(pSSysUCMapNode2);
         }
     }
 
@@ -422,7 +422,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
         ArrayList<PSSysUCMapNode> arrayList = this.selectByPSSysUCMap(pSSysUCMap);
         this.onBeforeRemoveByPSSysUCMap(pSSysUCMap, arrayList);
         for (PSSysUCMapNode pSSysUCMapNode : arrayList) {
-            this.remove((IEntity)pSSysUCMapNode);
+            this.remove(pSSysUCMapNode);
         }
         this.onAfterRemoveByPSSysUCMap(pSSysUCMap, arrayList);
     }
@@ -440,8 +440,8 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
         ArrayList<PSSysUCMapNode> arrayList = this.selectByPSSysUserCase(pSSysUserCase, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSUSERCASE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysUserCase);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUCMAPNODE_PSSYSUSERCASE_PSSYSUSERCASEID", "", iDataEntityModel.getName(), "PSSYSUCMAPNODE", iDataEntityModel.getDataInfo((IEntity)pSSysUserCase), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysUserCase);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUCMAPNODE_PSSYSUSERCASE_PSSYSUSERCASEID", "", iDataEntityModel.getName(), "PSSYSUCMAPNODE", iDataEntityModel.getDataInfo(pSSysUserCase), arrayList.get(0)));
         }
     }
 
@@ -474,7 +474,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
         ArrayList<PSSysUCMapNode> arrayList = this.selectByPSSysUserCase(pSSysUserCase);
         this.onBeforeRemoveByPSSysUserCase(pSSysUserCase, arrayList);
         for (PSSysUCMapNode pSSysUCMapNode : arrayList) {
-            this.remove((IEntity)pSSysUCMapNode);
+            this.remove(pSSysUCMapNode);
         }
         this.onAfterRemoveByPSSysUserCase(pSSysUserCase, arrayList);
     }
@@ -512,7 +512,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
         ArrayList<PSSysUCMapNode> arrayList = this.selectTempByPSSysUCMap(pSSysUCMap);
         this.onBeforeRemoveTempByPSSysUCMap(pSSysUCMap, arrayList);
         for (PSSysUCMapNode pSSysUCMapNode : arrayList) {
-            this.removeTemp((IEntity)pSSysUCMapNode);
+            this.removeTemp(pSSysUCMapNode);
         }
         this.onAfterRemoveTempByPSSysUCMap(pSSysUCMap, arrayList);
     }
@@ -528,7 +528,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
 
     protected void replaceParentInfo(PSSysUCMapNode pSSysUCMapNode, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysUCMapNode, cloneSession);
+        super.replaceParentInfo(pSSysUCMapNode, cloneSession);
         if (pSSysUCMapNode.getPSSysActorId() != null && (iEntity = cloneSession.getEntity("PSSYSACTOR", (Object)pSSysUCMapNode.getPSSysActorId())) != null) {
             this.onFillParentInfo_PSSysActor(pSSysUCMapNode, (PSSysActor)iEntity);
         }
@@ -541,7 +541,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysUCMapNode pSSysUCMapNode, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysUCMapNode, bl);
+        super.onRemoveEntityUncopyValues(pSSysUCMapNode, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysUCMapNode pSSysUCMapNode, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -589,7 +589,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSSysUCMapNode, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysUCMapNode, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysUCMapNode, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_LeftPos(boolean bl, PSSysUCMapNode pSSysUCMapNode, boolean bl2, boolean bl3) throws Exception {
@@ -602,7 +602,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LeftPos_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string = this.onTestValueRule_LeftPos_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LEFTPOS");
@@ -624,7 +624,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -649,7 +649,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NodeType_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_NodeType_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NODETYPE");
@@ -671,7 +671,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysActorId_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysActorId_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSACTORID");
@@ -693,7 +693,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUCMapId_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUCMapId_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUCMAPID");
@@ -718,7 +718,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUCMapNodeId_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUCMapNodeId_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUCMAPNODEID");
@@ -743,7 +743,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUCMapNodeName_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUCMapNodeName_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUCMAPNODENAME");
@@ -765,7 +765,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUserCaseId_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUserCaseId_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUSERCASEID");
@@ -787,7 +787,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TopPos_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string = this.onTestValueRule_TopPos_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TOPPOS");
@@ -809,7 +809,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -831,7 +831,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -853,7 +853,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -875,7 +875,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -897,7 +897,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysUCMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysUCMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -910,11 +910,11 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
     }
 
     protected void onSyncEntity(PSSysUCMapNode pSSysUCMapNode, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysUCMapNode, bl);
+        super.onSyncEntity(pSSysUCMapNode, bl);
     }
 
     protected void onSyncIndexEntities(PSSysUCMapNode pSSysUCMapNode, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysUCMapNode, bl);
+        super.onSyncIndexEntities(pSSysUCMapNode, bl);
     }
 
     public Object getDataContextValue(PSSysUCMapNode pSSysUCMapNode, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -922,7 +922,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysUCMapNode, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysUCMapNode, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysUCMap pSSysUCMap = pSSysUCMapNode.getPSSysUCMap();
@@ -933,7 +933,7 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
     }
 
     protected void onExportMajorModel(PSSysUCMapNode pSSysUCMapNode, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysUCMapNode, arrayList, n);
+        super.onExportMajorModel(pSSysUCMapNode, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1225,14 +1225,14 @@ extends PSCoreSysServiceBase<PSSysUCMapNode> {
 
     protected boolean onMergeChild(String string, String string2, PSSysUCMapNode pSSysUCMapNode) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysUCMapNode)) {
+        if (super.onMergeChild(string, string2, pSSysUCMapNode)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysUCMapNode pSSysUCMapNode) throws Exception {
-        super.onUpdateParent((IEntity)pSSysUCMapNode);
+        super.onUpdateParent(pSSysUCMapNode);
     }
 
     @Override

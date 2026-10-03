@@ -28,7 +28,7 @@ extends BaseMainPage {
     }
 
     public String RenderIconView() {
-        Vector list = new Vector();
+        Vector<PrintForm> list = new Vector<PrintForm>();
         CallResult callResult = this.getDAModelHelper().GetDEPrintForms(this.strPageDataEntityId, list);
         if (callResult.getRetCode() != 0) {
             this.PageLog((Object)this, 1, StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53\u6253\u5370\u8868\u5355\u96c6\u5408\u5931\u8d25\uff0c%1$s", (Object)callResult.getErrorInfo()));

@@ -50,7 +50,7 @@ extends PSDEDBIndexServiceBase {
 
     protected void rebuildPSDEDBIdxFields(PSDEDBIndex pSDEDBIndex) throws Exception {
         String string;
-        Object object;
+        PSDEDBIdxField field;
         String string2;
         String string3;
         PSDEDBIdxFieldService pSDEDBIdxFieldService = (PSDEDBIdxFieldService)ServiceGlobal.getService(PSDEDBIdxFieldService.class, (SessionFactory)this.getSessionFactory());
@@ -67,33 +67,33 @@ extends PSDEDBIndexServiceBase {
                 JSONObject jSONObject = (JSONObject)jSONArray.get(i);
                 string3 = jSONObject.getString("srfkey");
                 string2 = jSONObject.getString("srfmajortext");
-                object = (PSDEDBIdxField)hashMap.remove(string3);
-                if (object != null) {
-                    if (DataObject.getBoolValue((Integer)((PSDEDBIdxFieldBase)object).getIncMode(), (boolean)false)) {
-                        ((PSDEDBIdxFieldBase)object).setIncMode(0);
-                        pSDEDBIdxFieldService.update(object);
+                field = hashMap.remove(string3);
+                if (field != null) {
+                    if (DataObject.getBoolValue((Integer)field.getIncMode(), (boolean)false)) {
+                        field.setIncMode(0);
+                        pSDEDBIdxFieldService.update(field);
                     }
                 } else {
-                    object = new PSDEDBIdxField();
-                    ((PSDEDBIdxFieldBase)object).setPSDEFId(string3);
-                    ((PSDEDBIdxFieldBase)object).setPSDEFName(string2);
-                    ((PSDEDBIdxFieldBase)object).setPSDEDBIndexId(pSDEDBIndex.getPSDEDBIndexId());
-                    ((PSDEDBIdxFieldBase)object).setPSDEDBIndexName(pSDEDBIndex.getPSDEDBIndexName());
-                    ((PSDEDBIdxFieldBase)object).setIncMode(0);
-                    ((PSDEDBIdxFieldBase)object).setPSDEDBIdxFieldName(string2);
-                    pSDEDBIdxFieldService.create(object);
+                    field = new PSDEDBIdxField();
+                    field.setPSDEFId(string3);
+                    field.setPSDEFName(string2);
+                    field.setPSDEDBIndexId(pSDEDBIndex.getPSDEDBIndexId());
+                    field.setPSDEDBIndexName(pSDEDBIndex.getPSDEDBIndexName());
+                    field.setIncMode(0);
+                    field.setPSDEDBIdxFieldName(string2);
+                    pSDEDBIdxFieldService.create(field);
                 }
-                hashMap2.put(((PSDEDBIdxFieldBase)object).getPSDEFId(), object);
+                hashMap2.put(field.getPSDEFId(), field);
             }
         }
         if (!StringHelper.isNullOrEmpty((String)(string = pSDEDBIndex.getIncFields()))) {
             JSONArray jSONArray = JSONArray.fromString((String)string);
             for (int i = 0; i < jSONArray.length(); ++i) {
-                string3 = (JSONObject)jSONArray.get(i);
-                string2 = string3.getString("srfkey");
-                object = string3.getString("srfmajortext");
+                JSONObject jSONObject = (JSONObject)jSONArray.get(i);
+                string2 = jSONObject.getString("srfkey");
+                String fieldName = jSONObject.getString("srfmajortext");
                 if (hashMap2.containsKey(string2)) {
-                    throw new Exception(StringHelper.format((String)"\u5305\u542b\u5c5e\u6027[%1$s]\u5df2\u5b58\u5728\u7d22\u5f15\u5c5e\u6027\u4e2d", (Object)object));
+                    throw new Exception(StringHelper.format((String)"\u5305\u542b\u5c5e\u6027[%1$s]\u5df2\u5b58\u5728\u7d22\u5f15\u5c5e\u6027\u4e2d", (Object)fieldName));
                 }
                 PSDEDBIdxField pSDEDBIdxField = (PSDEDBIdxField)hashMap.remove(string2);
                 if (pSDEDBIdxField != null) {
@@ -104,23 +104,23 @@ extends PSDEDBIndexServiceBase {
                 } else {
                     pSDEDBIdxField = new PSDEDBIdxField();
                     pSDEDBIdxField.setPSDEFId(string2);
-                    pSDEDBIdxField.setPSDEFName((String)object);
+                    pSDEDBIdxField.setPSDEFName(fieldName);
                     pSDEDBIdxField.setPSDEDBIndexId(pSDEDBIndex.getPSDEDBIndexId());
                     pSDEDBIdxField.setPSDEDBIndexName(pSDEDBIndex.getPSDEDBIndexName());
                     pSDEDBIdxField.setIncMode(1);
-                    pSDEDBIdxField.setPSDEDBIdxFieldName((String)object);
+                    pSDEDBIdxField.setPSDEDBIdxFieldName(fieldName);
                     pSDEDBIdxFieldService.create(pSDEDBIdxField);
                 }
                 hashMap2.put(pSDEDBIdxField.getPSDEFId(), pSDEDBIdxField);
             }
         }
         for (PSDEDBIdxField pSDEDBIdxField : hashMap.values()) {
-            pSDEDBIdxFieldService.remove((IEntity)pSDEDBIdxField);
+            pSDEDBIdxFieldService.remove(pSDEDBIdxField);
         }
     }
 
     protected void onAfterUpdateTempMajor(PSDEDBIndex pSDEDBIndex) throws Exception {
-        super.onAfterUpdateTempMajor((IEntity)pSDEDBIndex);
+        super.onAfterUpdateTempMajor(pSDEDBIndex);
         PSDEDBIdxFieldService pSDEDBIdxFieldService = (PSDEDBIdxFieldService)ServiceGlobal.getService(PSDEDBIdxFieldService.class, (SessionFactory)this.getSessionFactory());
         ArrayList<PSDEDBIdxField> arrayList = pSDEDBIdxFieldService.selectByPSDEDBIndex(pSDEDBIndex);
         String string = "";
@@ -132,7 +132,6 @@ extends PSDEDBIndexServiceBase {
         }
         pSDEDBIndex.setIndexFields(string);
         this.internalUpdate(pSDEDBIndex);
-        this.get((IEntity)pSDEDBIndex);
+        this.get(pSDEDBIndex);
     }
 }
-

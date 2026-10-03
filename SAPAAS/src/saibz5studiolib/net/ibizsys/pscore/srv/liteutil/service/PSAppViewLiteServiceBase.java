@@ -135,14 +135,14 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
             PSDEViewBase pSDEViewBase = (PSDEViewBase)iService.getDEModel().createEntity();
             pSDEViewBase.set("PSDEVIEWBASEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEViewBase);
+                iService.getTemp(pSDEViewBase);
             } else {
-                iService.get((IEntity)pSDEViewBase);
+                iService.get(pSDEViewBase);
             }
             this.onFillParentInfo_PSDEViewBase(pSAppViewLite, pSDEViewBase);
             return;
         }
-        super.onFillParentInfo((IEntity)pSAppViewLite, string, string2, string3);
+        super.onFillParentInfo(pSAppViewLite, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -159,7 +159,7 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSAppViewLite, bl);
+        super.onFillEntityFullInfo(pSAppViewLite, bl);
         this.onFillEntityFullInfo_PSDEViewBase(pSAppViewLite, bl);
     }
 
@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
     }
 
     protected void onWriteBackParent(PSAppViewLite pSAppViewLite, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSAppViewLite, bl);
+        super.onWriteBackParent(pSAppViewLite, bl);
     }
 
     public ArrayList<PSAppViewLite> selectByPSDEViewBase(PSDEViewBaseBase pSDEViewBaseBase) throws Exception {
@@ -226,7 +226,7 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
         ArrayList<PSAppViewLite> arrayList = this.selectByPSDEViewBase(pSDEViewBase);
         this.onBeforeRemoveByPSDEViewBase(pSDEViewBase, arrayList);
         for (PSAppViewLite pSAppViewLite : arrayList) {
-            this.remove((IEntity)pSAppViewLite);
+            this.remove(pSAppViewLite);
         }
         this.onAfterRemoveByPSDEViewBase(pSDEViewBase, arrayList);
     }
@@ -247,14 +247,14 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
 
     protected void replaceParentInfo(PSAppViewLite pSAppViewLite, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSAppViewLite, cloneSession);
+        super.replaceParentInfo(pSAppViewLite, cloneSession);
         if (pSAppViewLite.getPSDEViewBaseId() != null && (iEntity = cloneSession.getEntity("PSDEVIEWBASE", (Object)pSAppViewLite.getPSDEViewBaseId())) != null) {
             this.onFillParentInfo_PSDEViewBase(pSAppViewLite, (PSDEViewBase)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSAppViewLite pSAppViewLite, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSAppViewLite, bl);
+        super.onRemoveEntityUncopyValues(pSAppViewLite, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSAppViewLite pSAppViewLite, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -278,7 +278,7 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
         if ((entityFieldError = this.onCheckField_PSSysAppId(bl, pSAppViewLite, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSAppViewLite, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSAppViewLite, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSAppModuleId(boolean bl, PSAppViewLite pSAppViewLite, boolean bl2, boolean bl3) throws Exception {
@@ -291,7 +291,7 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppModuleId_Default((IEntity)pSAppViewLite, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppModuleId_Default(pSAppViewLite, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMODULEID");
@@ -313,7 +313,7 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppViewId_Default((IEntity)pSAppViewLite, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppViewId_Default(pSAppViewLite, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPVIEWID");
@@ -338,7 +338,7 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppViewName_Default((IEntity)pSAppViewLite, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppViewName_Default(pSAppViewLite, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPVIEWNAME");
@@ -379,7 +379,7 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppViewType_Default((IEntity)pSAppViewLite, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppViewType_Default(pSAppViewLite, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPVIEWTYPE");
@@ -401,7 +401,7 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEViewBaseId_Default((IEntity)pSAppViewLite, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEViewBaseId_Default(pSAppViewLite, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVIEWBASEID");
@@ -423,7 +423,7 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSAppViewLite, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSAppViewLite, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -436,11 +436,11 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
     }
 
     protected void onSyncEntity(PSAppViewLite pSAppViewLite, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSAppViewLite, bl);
+        super.onSyncEntity(pSAppViewLite, bl);
     }
 
     protected void onSyncIndexEntities(PSAppViewLite pSAppViewLite, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSAppViewLite, bl);
+        super.onSyncIndexEntities(pSAppViewLite, bl);
     }
 
     public Object getDataContextValue(PSAppViewLite pSAppViewLite, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -448,14 +448,14 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSAppViewLite, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSAppViewLite, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSAppViewLite pSAppViewLite, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSAppViewLite, arrayList, n);
+        super.onExportMajorModel(pSAppViewLite, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -589,14 +589,14 @@ extends PSCoreSysServiceBase<PSAppViewLite> {
 
     protected boolean onMergeChild(String string, String string2, PSAppViewLite pSAppViewLite) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSAppViewLite)) {
+        if (super.onMergeChild(string, string2, pSAppViewLite)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSAppViewLite pSAppViewLite) throws Exception {
-        super.onUpdateParent((IEntity)pSAppViewLite);
+        super.onUpdateParent(pSAppViewLite);
     }
 
     @Override

@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFLinkCondModel;
+/**
+ * 流程连接自定义条件模型接口
+ * @author Administrator
+ *
+ */
+public interface IWFLinkCustomCondModel extends IWFLinkCondModel
+{
 
-public interface IWFLinkCustomCondModel
-extends IWFLinkCondModel {
 }
-

@@ -88,7 +88,7 @@ extends PSSysDevBKTaskImplBase {
         PSSysAppService psSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSysApp psSysApp2 = new PSSysApp();
         psSysApp2.setPSSysAppId(this.psSysDevBKTask.getTASKPARAM());
-        psSysAppService.get((IEntity)psSysApp2);
+        psSysAppService.get(psSysApp2);
         try {
             PSCoreSysServiceBase.setCurrentPSSystemId((String)psSysApp2.getPSSystemId());
             PSCoreSysServiceBase.setCurrentPSDevSlnSysId((String)this.getPSDevSlnSysId());
@@ -125,7 +125,7 @@ extends PSSysDevBKTaskImplBase {
                 PSSysRefService psSysRefService = (PSSysRefService)ServiceGlobal.getService(PSSysRefService.class, (SessionFactory)curSessionFactory);
                 PSSysRef psSysRef = new PSSysRef();
                 psSysRef.setPSSysRefId(strPSSysRefId);
-                if (!psSysRefService.get((IEntity)psSysRef, true)) {
+                if (!psSysRefService.get(psSysRef, true)) {
                     throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u7cfb\u7edf\u5f15\u7528[%1$s]", (Object)strPSSysRefId));
                 }
                 if (StringHelper.compare((String)psSysRef.getSysRefType(), (String)"SUBSYS", (boolean)true) != 0) throw new Exception(StringHelper.format((String)"\u6ca1\u6709\u5b9e\u73b0"));
@@ -133,14 +133,14 @@ extends PSSysDevBKTaskImplBase {
                 PSSubSysService psSubSysService = (PSSubSysService)ServiceGlobal.getService(PSSubSysService.class);
                 PSSubSys psSubSys = new PSSubSys();
                 psSubSys.setPSSubSysId(strPSSubSysId);
-                if (!psSubSysService.get((IEntity)psSubSys, true)) {
+                if (!psSubSysService.get(psSubSys, true)) {
                     throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b50\u7cfb\u7edf[%1$s]", (Object)strPSSubSysId));
                 }
                 PSSubSysVerService psSubSysVerService = (PSSubSysVerService)ServiceGlobal.getService(PSSubSysVerService.class);
                 PSSubSysVer psSubSysVer = new PSSubSysVer();
                 psSubSysVer.setPSSubSysId(psSubSys.getPSSubSysId());
                 psSubSysVer.setVersion(psSubSys.getVersion());
-                if (!psSubSysVerService.select((IEntity)psSubSysVer, true)) {
+                if (!psSubSysVerService.select(psSubSysVer, true)) {
                     throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b50\u7cfb\u7edf[%1$s]\u7248\u672c[%2$s]", (Object)psSubSys.getPSSubSysName(), (Object)psSubSys.getVersion()));
                 }
                 srcSessionFactory = PSSysModelInstGlobal.getSessionFactory((String)psSubSysVer.getPSSysModelInstId());
@@ -158,7 +158,7 @@ extends PSSysDevBKTaskImplBase {
             HashMap<String, Object> psAppFuncMap = new HashMap<String, Object>();
             HashMap<String, PSAppMenu> psAppMenuMap = new HashMap<String, PSAppMenu>();
             PSAppModuleService psAppModuleService2 = (PSAppModuleService)ServiceGlobal.getService(PSAppModuleService.class, (SessionFactory)curSessionFactory);
-            ArrayList psAppModuleList2 = psAppModuleService2.selectByPSSysApp((PSSysAppBase)psSysApp2);
+            ArrayList<PSAppModule> psAppModuleList2 = psAppModuleService2.selectByPSSysApp((PSSysAppBase)psSysApp2);
             for (PSAppModule psAppModule : psAppModuleList2) {
                 if (StringHelper.isNullOrEmpty((String)psAppModule.getFromObjId())) continue;
                 psAppModuleMap.put(psAppModule.getFromObjId(), psAppModule);
@@ -173,12 +173,12 @@ extends PSSysDevBKTaskImplBase {
                 psAppModule.resetPSAppModuleId();
                 psAppModule.setPSSysAppId(psSysApp2.getPSSysAppId());
                 psAppModule.setPSSysAppName(psSysApp2.getPSSysAppName());
-                psAppModuleService2.create((IEntity)psAppModule);
+                psAppModuleService2.create(psAppModule);
                 psAppModuleMap.put(psAppModule.getFromObjId(), psAppModule);
                 sBuilderEx.append("[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)psAppModuleService2.getDEModel().getLogicName(), (Object)psAppModuleService2.getDEModel().getDataInfo((IEntity)psAppModule));
             }
             PSAppDEViewService psAppDEViewService2 = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, (SessionFactory)curSessionFactory);
-            ArrayList psAppDEViewList2 = psAppDEViewService2.selectByPSSysApp((PSSysAppBase)psSysApp2);
+            ArrayList<PSAppDEView> psAppDEViewList2 = psAppDEViewService2.selectByPSSysApp((PSSysAppBase)psSysApp2);
             for (PSAppDEView psAppDEView : psAppDEViewList2) {
                 psAppDEViewMap.put(KeyValueHelper.genUniqueId((String)psSysApp.getPSSysAppId(), (String)psAppDEView.getPSDEViewBaseId()), psAppDEView);
             }
@@ -196,19 +196,19 @@ extends PSSysDevBKTaskImplBase {
                     psAppDEView.setPSAppModuleId(psAppModule.getPSAppModuleId());
                     psAppDEView.setPSAppModuleName(psAppModule.getPSAppModuleName());
                 }
-                psAppDEViewService2.create((IEntity)psAppDEView);
+                psAppDEViewService2.create(psAppDEView);
                 psAppDEViewMap.put(KeyValueHelper.genUniqueId((String)psSysApp.getPSSysAppId(), (String)psAppDEView.getPSDEViewBaseId()), psAppDEView);
                 sBuilderEx.append("[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)psAppDEViewService2.getDEModel().getLogicName(), (Object)psAppDEViewService2.getDEModel().getDataInfo((IEntity)psAppDEView));
             }
             PSAppFuncService psAppFuncService2 = (PSAppFuncService)ServiceGlobal.getService(PSAppFuncService.class, (SessionFactory)curSessionFactory);
-            ArrayList psAppFuncList2 = psAppFuncService2.selectByPSSysApp((PSSysAppBase)psSysApp2);
+            ArrayList<PSAppFunc> psAppFuncList2 = psAppFuncService2.selectByPSSysApp((PSSysAppBase)psSysApp2);
             for (PSAppFunc psAppFunc : psAppFuncList2) {
                 if (StringHelper.isNullOrEmpty((String)psAppFunc.getFromObjId())) continue;
                 psAppFuncMap.put(psAppFunc.getFromObjId(), psAppFunc);
             }
             PSAppFuncService psAppFuncService = (PSAppFuncService)ServiceGlobal.getService(PSAppFuncService.class, (SessionFactory)srcSessionFactory);
-            ArrayList psAppFuncList = psAppFuncService.selectByPSSysApp((PSSysAppBase)psSysApp);
-            for (Object psAppFunc : psAppFuncList) {
+            ArrayList<PSAppFunc> psAppFuncList = psAppFuncService.selectByPSSysApp((PSSysAppBase)psSysApp);
+            for (PSAppFunc psAppFunc : psAppFuncList) {
                 PSAppDEView psAppView;
                 if (psAppFuncMap.containsKey(psAppFunc.getPSAppFuncId())) continue;
                 psAppFunc.setFromObjId(psAppFunc.getPSAppFuncId());
@@ -219,20 +219,20 @@ extends PSSysDevBKTaskImplBase {
                     psAppFunc.setPSAppViewId(psAppView.getPSAppDEViewId());
                     psAppFunc.setPSAppViewName(psAppView.getPSAppDEViewName());
                 }
-                psAppFuncService2.create((IEntity)psAppFunc);
+                psAppFuncService2.create(psAppFunc);
                 psAppFuncMap.put(psAppFunc.getFromObjId(), psAppFunc);
                 sBuilderEx.append("[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)psAppFuncService2.getDEModel().getLogicName(), (Object)psAppFuncService2.getDEModel().getDataInfo((IEntity)psAppFunc));
             }
             PSAppMenuService psAppMenuService2 = (PSAppMenuService)ServiceGlobal.getService(PSAppMenuService.class, (SessionFactory)curSessionFactory);
             PSAppMenuItemService psAppMenuItemService2 = (PSAppMenuItemService)ServiceGlobal.getService(PSAppMenuItemService.class, (SessionFactory)curSessionFactory);
-            ArrayList psAppMenuList2 = psAppMenuService2.selectByPSSysApp((PSSysAppBase)psSysApp2);
+            ArrayList<PSAppMenu> psAppMenuList2 = psAppMenuService2.selectByPSSysApp((PSSysAppBase)psSysApp2);
             for (PSAppMenu psAppMenu : psAppMenuList2) {
                 if (StringHelper.isNullOrEmpty((String)psAppMenu.getFromObjId())) continue;
                 psAppMenuMap.put(psAppMenu.getFromObjId(), psAppMenu);
             }
             PSAppMenuService psAppMenuService = (PSAppMenuService)ServiceGlobal.getService(PSAppMenuService.class, (SessionFactory)srcSessionFactory);
             PSAppMenuItemService psAppMenuItemService = (PSAppMenuItemService)ServiceGlobal.getService(PSAppMenuItemService.class, (SessionFactory)srcSessionFactory);
-            ArrayList psAppMenuList = psAppMenuService.selectByPSSysApp((PSSysAppBase)psSysApp);
+            ArrayList<PSAppMenu> psAppMenuList = psAppMenuService.selectByPSSysApp((PSSysAppBase)psSysApp);
             for (PSAppMenu psAppMenu : psAppMenuList) {
                 if (psAppMenuMap.containsKey(psAppMenu.getPSAppMenuId())) continue;
                 ArrayList psAppMenuItemList = psAppMenuItemService.selectByPSAppMenu((PSAppMenuBase)psAppMenu);
@@ -240,7 +240,7 @@ extends PSSysDevBKTaskImplBase {
                 psAppMenu.resetPSAppMenuId();
                 psAppMenu.setPSSysAppId(psSysApp2.getPSSysAppId());
                 psAppMenu.setPSSysAppName(psSysApp2.getPSSysAppName());
-                psAppMenuService2.create((IEntity)psAppMenu);
+                psAppMenuService2.create(psAppMenu);
                 psAppMenuMap.put(psAppMenu.getFromObjId(), psAppMenu);
                 HashMap<String, PSAppMenuItem> psAppMenuItemMap = new HashMap<String, PSAppMenuItem>();
                 while (psAppMenuItemList.size() > 0) {
@@ -255,7 +255,7 @@ extends PSSysDevBKTaskImplBase {
                         psAppMenuItem.setPSAppMenuName(psAppMenu.getPSAppMenuName());
                         String strOriginId = psAppMenuItem.getPSAppMenuItemId();
                         psAppMenuItem.resetPSAppMenuItemId();
-                        psAppMenuItemService2.create((IEntity)psAppMenuItem);
+                        psAppMenuItemService2.create(psAppMenuItem);
                         psAppMenuItemMap.put(strOriginId, psAppMenuItem);
                         continue;
                     }
@@ -272,7 +272,7 @@ extends PSSysDevBKTaskImplBase {
                         psAppMenuItem.setPSAppMenuName(psAppMenu.getPSAppMenuName());
                         String strOriginId = psAppMenuItem.getPSAppMenuItemId();
                         psAppMenuItem.resetPSAppMenuItemId();
-                        psAppMenuItemService2.create((IEntity)psAppMenuItem);
+                        psAppMenuItemService2.create(psAppMenuItem);
                         psAppMenuItemMap.put(strOriginId, psAppMenuItem);
                         continue;
                     }
@@ -290,4 +290,3 @@ extends PSSysDevBKTaskImplBase {
         }
     }
 }
-

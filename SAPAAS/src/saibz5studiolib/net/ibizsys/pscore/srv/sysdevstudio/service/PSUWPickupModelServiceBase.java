@@ -134,21 +134,21 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
 
     public void finishCtrlPickup(PSUWPickupModel pSUWPickupModel) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_FINISHCTRLPICKUP, 0, (IEntity)pSUWPickupModel, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_FINISHCTRLPICKUP, 0, pSUWPickupModel, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWPickupModel, ACTION_FINISHCTRLPICKUP);
+        this.testDEMainStateAction(pSUWPickupModel, ACTION_FINISHCTRLPICKUP);
         final PSUWPickupModel pSUWPickupModel2 = pSUWPickupModel;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWPickupModelServiceBase.this.getService(), PSUWPickupModelServiceBase.ACTION_FINISHCTRLPICKUP, 40, (IEntity)pSUWPickupModel2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWPickupModelServiceBase.this.getService(), PSUWPickupModelServiceBase.ACTION_FINISHCTRLPICKUP, 40, pSUWPickupModel2, null).getResult() != 1) {
                     PSUWPickupModelServiceBase.this.onFinishCtrlPickup(pSUWPickupModel2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_FINISHCTRLPICKUP, 99, (IEntity)pSUWPickupModel, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_FINISHCTRLPICKUP, 99, pSUWPickupModel, null);
         }
     }
 
@@ -158,21 +158,21 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
 
     public void initCtrlPickup(PSUWPickupModel pSUWPickupModel) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_INITCTRLPICKUP, 0, (IEntity)pSUWPickupModel, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_INITCTRLPICKUP, 0, pSUWPickupModel, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWPickupModel, ACTION_INITCTRLPICKUP);
+        this.testDEMainStateAction(pSUWPickupModel, ACTION_INITCTRLPICKUP);
         final PSUWPickupModel pSUWPickupModel2 = pSUWPickupModel;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWPickupModelServiceBase.this.getService(), PSUWPickupModelServiceBase.ACTION_INITCTRLPICKUP, 40, (IEntity)pSUWPickupModel2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWPickupModelServiceBase.this.getService(), PSUWPickupModelServiceBase.ACTION_INITCTRLPICKUP, 40, pSUWPickupModel2, null).getResult() != 1) {
                     PSUWPickupModelServiceBase.this.onInitCtrlPickup(pSUWPickupModel2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_INITCTRLPICKUP, 99, (IEntity)pSUWPickupModel, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_INITCTRLPICKUP, 99, pSUWPickupModel, null);
         }
     }
 
@@ -181,7 +181,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
     }
 
     protected void onFillParentInfo(PSUWPickupModel pSUWPickupModel, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSUWPickupModel, string, string2, string3);
+        super.onFillParentInfo(pSUWPickupModel, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -192,11 +192,11 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
         if (bl && pSUWPickupModel.getPSUWPickupModelName() == null) {
             pSUWPickupModel.setPSUWPickupModelName((String)this.getDefaultValue(this.getWebContext(), "", "\u540d\u79f0", 25));
         }
-        super.onFillEntityFullInfo((IEntity)pSUWPickupModel, bl);
+        super.onFillEntityFullInfo(pSUWPickupModel, bl);
     }
 
     protected void onWriteBackParent(PSUWPickupModel pSUWPickupModel, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUWPickupModel, bl);
+        super.onWriteBackParent(pSUWPickupModel, bl);
     }
 
     @Override
@@ -205,7 +205,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
     }
 
     protected void onRemoveEntityUncopyValues(PSUWPickupModel pSUWPickupModel, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUWPickupModel, bl);
+        super.onRemoveEntityUncopyValues(pSUWPickupModel, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUWPickupModel pSUWPickupModel, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -343,7 +343,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
         if ((entityFieldError = this.onCheckField_WizardParam9(bl, pSUWPickupModel, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUWPickupModel, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUWPickupModel, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSUWPickupModel pSUWPickupModel, boolean bl2, boolean bl3) throws Exception {
@@ -356,7 +356,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -378,7 +378,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DstPSObjId_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_DstPSObjId_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DSTPSOBJID");
@@ -400,7 +400,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DstPSObjName_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_DstPSObjName_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DSTPSOBJNAME");
@@ -422,7 +422,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DstPSObjType_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_DstPSObjType_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DSTPSOBJTYPE");
@@ -444,7 +444,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ErrorInfo_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_ErrorInfo_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ERRORINFO");
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -488,7 +488,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDataEntityName_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSDataEntityName_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDATAENTITYNAME");
@@ -510,7 +510,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -532,7 +532,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -554,7 +554,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -576,7 +576,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -598,7 +598,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleName_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleName_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULENAME");
@@ -620,7 +620,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjType_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjType_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJTYPE");
@@ -642,7 +642,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -664,7 +664,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppName_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppName_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPNAME");
@@ -686,7 +686,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -711,7 +711,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUWPickupModelId_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSUWPickupModelId_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUWPICKUPMODELID");
@@ -736,7 +736,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUWPickupModelName_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSUWPickupModelName_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUWPICKUPMODELNAME");
@@ -758,7 +758,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RetCode_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_RetCode_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RETCODE");
@@ -780,7 +780,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SrcPSObjId_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_SrcPSObjId_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRCPSOBJID");
@@ -802,7 +802,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SrcPSObjName_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_SrcPSObjName_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRCPSOBJNAME");
@@ -824,7 +824,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SRFNextForm_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_SRFNextForm_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRFNEXTFORM");
@@ -846,7 +846,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardData_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_WizardData_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDDATA");
@@ -868,7 +868,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardMode_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_WizardMode_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDMODE");
@@ -890,7 +890,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM");
@@ -912,7 +912,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam10_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam10_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM10");
@@ -934,7 +934,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam11_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_WizardParam11_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM11");
@@ -956,7 +956,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam12_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_WizardParam12_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM12");
@@ -978,7 +978,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam13_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_WizardParam13_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM13");
@@ -1000,7 +1000,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam14_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_WizardParam14_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM14");
@@ -1022,7 +1022,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam15_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_WizardParam15_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM15");
@@ -1044,7 +1044,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam16_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_WizardParam16_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM16");
@@ -1066,7 +1066,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam17_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_WizardParam17_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM17");
@@ -1088,7 +1088,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam18_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_WizardParam18_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM18");
@@ -1110,7 +1110,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam19_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_WizardParam19_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM19");
@@ -1132,7 +1132,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam2_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam2_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM2");
@@ -1154,7 +1154,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam20_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_WizardParam20_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM20");
@@ -1176,7 +1176,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam3_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_WizardParam3_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM3");
@@ -1198,7 +1198,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam4_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string = this.onTestValueRule_WizardParam4_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM4");
@@ -1220,7 +1220,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam5_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam5_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM5");
@@ -1242,7 +1242,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam6_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam6_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM6");
@@ -1264,7 +1264,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam7_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam7_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM7");
@@ -1286,7 +1286,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam8_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam8_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM8");
@@ -1308,7 +1308,7 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam9_Default((IEntity)pSUWPickupModel, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam9_Default(pSUWPickupModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM9");
@@ -1321,11 +1321,11 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
     }
 
     protected void onSyncEntity(PSUWPickupModel pSUWPickupModel, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUWPickupModel, bl);
+        super.onSyncEntity(pSUWPickupModel, bl);
     }
 
     protected void onSyncIndexEntities(PSUWPickupModel pSUWPickupModel, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUWPickupModel, bl);
+        super.onSyncIndexEntities(pSUWPickupModel, bl);
     }
 
     public Object getDataContextValue(PSUWPickupModel pSUWPickupModel, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1333,14 +1333,14 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUWPickupModel, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUWPickupModel, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUWPickupModel pSUWPickupModel, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUWPickupModel, arrayList, n);
+        super.onExportMajorModel(pSUWPickupModel, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1949,14 +1949,14 @@ extends PSCoreSysServiceBase<PSUWPickupModel> {
 
     protected boolean onMergeChild(String string, String string2, PSUWPickupModel pSUWPickupModel) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUWPickupModel)) {
+        if (super.onMergeChild(string, string2, pSUWPickupModel)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUWPickupModel pSUWPickupModel) throws Exception {
-        super.onUpdateParent((IEntity)pSUWPickupModel);
+        super.onUpdateParent(pSUWPickupModel);
     }
 
     @Override

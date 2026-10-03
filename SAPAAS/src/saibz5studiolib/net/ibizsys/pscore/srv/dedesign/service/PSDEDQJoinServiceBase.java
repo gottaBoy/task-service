@@ -208,21 +208,21 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
 
     public void calcJoinPSDEId(PSDEDQJoin pSDEDQJoin) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CALCJOINPSDEID, 0, (IEntity)pSDEDQJoin, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CALCJOINPSDEID, 0, pSDEDQJoin, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEDQJoin, ACTION_CALCJOINPSDEID);
+        this.testDEMainStateAction(pSDEDQJoin, ACTION_CALCJOINPSDEID);
         final PSDEDQJoin pSDEDQJoin2 = pSDEDQJoin;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDQJoinServiceBase.this.getService(), PSDEDQJoinServiceBase.ACTION_CALCJOINPSDEID, 40, (IEntity)pSDEDQJoin2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDQJoinServiceBase.this.getService(), PSDEDQJoinServiceBase.ACTION_CALCJOINPSDEID, 40, pSDEDQJoin2, null).getResult() != 1) {
                     PSDEDQJoinServiceBase.this.onCalcJoinPSDEId(pSDEDQJoin2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CALCJOINPSDEID, 99, (IEntity)pSDEDQJoin, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CALCJOINPSDEID, 99, pSDEDQJoin, null);
         }
     }
 
@@ -232,21 +232,21 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
 
     public void createWithModel(PSDEDQJoin pSDEDQJoin) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, (IEntity)pSDEDQJoin, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, pSDEDQJoin, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEDQJoin, ACTION_CREATEWITHMODEL);
+        this.testDEMainStateAction(pSDEDQJoin, ACTION_CREATEWITHMODEL);
         final PSDEDQJoin pSDEDQJoin2 = pSDEDQJoin;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDQJoinServiceBase.this.getService(), PSDEDQJoinServiceBase.ACTION_CREATEWITHMODEL, 40, (IEntity)pSDEDQJoin2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDQJoinServiceBase.this.getService(), PSDEDQJoinServiceBase.ACTION_CREATEWITHMODEL, 40, pSDEDQJoin2, null).getResult() != 1) {
                     PSDEDQJoinServiceBase.this.onCreateWithModel(pSDEDQJoin2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, (IEntity)pSDEDQJoin, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, pSDEDQJoin, null);
         }
     }
 
@@ -256,21 +256,21 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
 
     public void getWithModel(PSDEDQJoin pSDEDQJoin) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, (IEntity)pSDEDQJoin, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, pSDEDQJoin, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEDQJoin, ACTION_GETWITHMODEL);
+        this.testDEMainStateAction(pSDEDQJoin, ACTION_GETWITHMODEL);
         final PSDEDQJoin pSDEDQJoin2 = pSDEDQJoin;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDQJoinServiceBase.this.getService(), PSDEDQJoinServiceBase.ACTION_GETWITHMODEL, 40, (IEntity)pSDEDQJoin2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDQJoinServiceBase.this.getService(), PSDEDQJoinServiceBase.ACTION_GETWITHMODEL, 40, pSDEDQJoin2, null).getResult() != 1) {
                     PSDEDQJoinServiceBase.this.onGetWithModel(pSDEDQJoin2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, (IEntity)pSDEDQJoin, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, pSDEDQJoin, null);
         }
     }
 
@@ -280,21 +280,21 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
 
     public void updateWithModel(PSDEDQJoin pSDEDQJoin) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, (IEntity)pSDEDQJoin, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, pSDEDQJoin, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEDQJoin, ACTION_UPDATEWITHMODEL);
+        this.testDEMainStateAction(pSDEDQJoin, ACTION_UPDATEWITHMODEL);
         final PSDEDQJoin pSDEDQJoin2 = pSDEDQJoin;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDQJoinServiceBase.this.getService(), PSDEDQJoinServiceBase.ACTION_UPDATEWITHMODEL, 40, (IEntity)pSDEDQJoin2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDQJoinServiceBase.this.getService(), PSDEDQJoinServiceBase.ACTION_UPDATEWITHMODEL, 40, pSDEDQJoin2, null).getResult() != 1) {
                     PSDEDQJoinServiceBase.this.onUpdateWithModel(pSDEDQJoin2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, (IEntity)pSDEDQJoin, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, pSDEDQJoin, null);
         }
     }
 
@@ -308,9 +308,9 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_JoinPSDE(pSDEDQJoin, pSDataEntity);
             return;
@@ -320,9 +320,9 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
             PSDEDataQuery pSDEDataQuery = (PSDEDataQuery)iService.getDEModel().createEntity();
             pSDEDataQuery.set("PSDEDATAQUERYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEDataQuery);
+                iService.getTemp(pSDEDataQuery);
             } else {
-                iService.get((IEntity)pSDEDataQuery);
+                iService.get(pSDEDataQuery);
             }
             this.onFillParentInfo_PSDEDQ(pSDEDQJoin, pSDEDataQuery);
             return;
@@ -332,9 +332,9 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
             PSDEDQJoin pSDEDQJoin2 = (PSDEDQJoin)iService.getDEModel().createEntity();
             pSDEDQJoin2.set("PSDEDQJOINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEDQJoin2);
+                iService.getTemp(pSDEDQJoin2);
             } else {
-                iService.get((IEntity)pSDEDQJoin2);
+                iService.get(pSDEDQJoin2);
             }
             this.onFillParentInfo_PPSDEDQJoin(pSDEDQJoin, pSDEDQJoin2);
             return;
@@ -344,9 +344,9 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
             PSDEJoinType pSDEJoinType = (PSDEJoinType)iService.getDEModel().createEntity();
             pSDEJoinType.set("PSDEJOINTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEJoinType);
+                iService.getTemp(pSDEJoinType);
             } else {
-                iService.get((IEntity)pSDEJoinType);
+                iService.get(pSDEJoinType);
             }
             this.onFillParentInfo_PSDEJoinType(pSDEDQJoin, pSDEJoinType);
             return;
@@ -356,14 +356,14 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
             PSDER pSDER = (PSDER)iService.getDEModel().createEntity();
             pSDER.set("PSDERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDER);
+                iService.getTemp(pSDER);
             } else {
-                iService.get((IEntity)pSDER);
+                iService.get(pSDER);
             }
             this.onFillParentInfo_PSDER(pSDEDQJoin, pSDER);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEDQJoin, string, string2, string3);
+        super.onFillParentInfo(pSDEDQJoin, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -401,7 +401,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
             ArrayList<PSDEDQJoin> arrayList = this.selectByPSDEDQ(pSDEDataQuery);
             for (PSDEDQJoin pSDEDQJoin : arrayList) {
                 if (hashMap.containsKey(DataObject.getStringValue((IDataObject)pSDEDQJoin, (String)"PSDEDQJOINID", (String)""))) continue;
-                this.remove((IEntity)pSDEDQJoin);
+                this.remove(pSDEDQJoin);
             }
         }
         return null;
@@ -430,7 +430,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         if (bl && pSDEDQJoin.getModelState() == null) {
             pSDEDQJoin.setModelState((Integer)this.getDefaultValue(this.getWebContext(), "", "0", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDEDQJoin, bl);
+        super.onFillEntityFullInfo(pSDEDQJoin, bl);
         this.onFillEntityFullInfo_JoinPSDE(pSDEDQJoin, bl);
         this.onFillEntityFullInfo_PSDEDQ(pSDEDQJoin, bl);
         this.onFillEntityFullInfo_PPSDEDQJoin(pSDEDQJoin, bl);
@@ -474,7 +474,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
     }
 
     protected void onWriteBackParent(PSDEDQJoin pSDEDQJoin, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEDQJoin, bl);
+        super.onWriteBackParent(pSDEDQJoin, bl);
     }
 
     public ArrayList<PSDEDQJoin> selectByJoinPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -631,8 +631,8 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         ArrayList<PSDEDQJoin> arrayList = this.selectByJoinPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDQJOIN_PSDATAENTITY_JOINPSDEID", "", iDataEntityModel.getName(), "PSDEDQJOIN", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDQJOIN_PSDATAENTITY_JOINPSDEID", "", iDataEntityModel.getName(), "PSDEDQJOIN", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -665,7 +665,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         ArrayList<PSDEDQJoin> arrayList = this.selectByJoinPSDE(pSDataEntity);
         this.onBeforeRemoveByJoinPSDE(pSDataEntity, arrayList);
         for (PSDEDQJoin pSDEDQJoin : arrayList) {
-            this.remove((IEntity)pSDEDQJoin);
+            this.remove(pSDEDQJoin);
         }
         this.onAfterRemoveByJoinPSDE(pSDataEntity, arrayList);
     }
@@ -698,7 +698,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
             PSDEDQJoin pSDEDQJoin2 = (PSDEDQJoin)this.getDEModel().createEntity();
             pSDEDQJoin2.setPSDEDQJoinId(pSDEDQJoin.getPSDEDQJoinId());
             pSDEDQJoin2.setPSDEDQId(null);
-            this.updateTemp((IEntity)pSDEDQJoin2);
+            this.updateTemp(pSDEDQJoin2);
         }
     }
 
@@ -721,7 +721,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         ArrayList<PSDEDQJoin> arrayList = this.selectByPSDEDQ(pSDEDataQuery);
         this.onBeforeRemoveByPSDEDQ(pSDEDataQuery, arrayList);
         for (PSDEDQJoin pSDEDQJoin : arrayList) {
-            this.remove((IEntity)pSDEDQJoin);
+            this.remove(pSDEDQJoin);
         }
         this.onAfterRemoveByPSDEDQ(pSDEDataQuery, arrayList);
     }
@@ -754,7 +754,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
             PSDEDQJoin pSDEDQJoin3 = (PSDEDQJoin)this.getDEModel().createEntity();
             pSDEDQJoin3.setPSDEDQJoinId(pSDEDQJoin2.getPSDEDQJoinId());
             pSDEDQJoin3.setPPSDEDQJoinId(null);
-            this.updateTemp((IEntity)pSDEDQJoin3);
+            this.updateTemp(pSDEDQJoin3);
         }
     }
 
@@ -777,7 +777,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         ArrayList<PSDEDQJoin> arrayList = this.selectByPPSDEDQJoin(pSDEDQJoin);
         this.onBeforeRemoveByPPSDEDQJoin(pSDEDQJoin, arrayList);
         for (PSDEDQJoin pSDEDQJoin2 : arrayList) {
-            this.remove((IEntity)pSDEDQJoin2);
+            this.remove(pSDEDQJoin2);
         }
         this.onAfterRemoveByPPSDEDQJoin(pSDEDQJoin, arrayList);
     }
@@ -795,8 +795,8 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         ArrayList<PSDEDQJoin> arrayList = this.selectByPSDEJoinType(pSDEJoinType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEJOINTYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEJoinType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDQJOIN_PSDEJOINTYPE_PSDEJOINTYPEID", "", iDataEntityModel.getName(), "PSDEDQJOIN", iDataEntityModel.getDataInfo((IEntity)pSDEJoinType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEJoinType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDQJOIN_PSDEJOINTYPE_PSDEJOINTYPEID", "", iDataEntityModel.getName(), "PSDEDQJOIN", iDataEntityModel.getDataInfo(pSDEJoinType), arrayList.get(0)));
         }
     }
 
@@ -829,7 +829,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         ArrayList<PSDEDQJoin> arrayList = this.selectByPSDEJoinType(pSDEJoinType);
         this.onBeforeRemoveByPSDEJoinType(pSDEJoinType, arrayList);
         for (PSDEDQJoin pSDEDQJoin : arrayList) {
-            this.remove((IEntity)pSDEDQJoin);
+            this.remove(pSDEDQJoin);
         }
         this.onAfterRemoveByPSDEJoinType(pSDEJoinType, arrayList);
     }
@@ -847,8 +847,8 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         ArrayList<PSDEDQJoin> arrayList = this.selectByPSDER(pSDER, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDER);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDQJOIN_PSDER_PSDERID", "", iDataEntityModel.getName(), "PSDEDQJOIN", iDataEntityModel.getDataInfo((IEntity)pSDER), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDER);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDQJOIN_PSDER_PSDERID", "", iDataEntityModel.getName(), "PSDEDQJOIN", iDataEntityModel.getDataInfo(pSDER), arrayList.get(0)));
         }
     }
 
@@ -881,7 +881,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         ArrayList<PSDEDQJoin> arrayList = this.selectByPSDER(pSDER);
         this.onBeforeRemoveByPSDER(pSDER, arrayList);
         for (PSDEDQJoin pSDEDQJoin : arrayList) {
-            this.remove((IEntity)pSDEDQJoin);
+            this.remove(pSDEDQJoin);
         }
         this.onAfterRemoveByPSDER(pSDER, arrayList);
     }
@@ -911,7 +911,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         ((PSDEDQCondServiceBase)pSCoreSysServiceBase).removeTempByPSDEDQJoin(pSDEDQJoin);
         pSCoreSysServiceBase = (PSDEDQJoinService)ServiceGlobal.getService(PSDEDQJoinService.class, (SessionFactory)this.getSessionFactory());
         ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).resetTempPPSDEDQJoin(pSDEDQJoin);
-        super.onBeforeRemoveTemp((IEntity)pSDEDQJoin);
+        super.onBeforeRemoveTemp(pSDEDQJoin);
     }
 
     public void removeTempByPPSDEDQJoin(PSDEDQJoin pSDEDQJoin) throws Exception {
@@ -933,7 +933,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         ArrayList<PSDEDQJoin> arrayList = this.selectTempByPPSDEDQJoin(pSDEDQJoin);
         this.onBeforeRemoveTempByPPSDEDQJoin(pSDEDQJoin, arrayList);
         for (PSDEDQJoin pSDEDQJoin2 : arrayList) {
-            this.removeTemp((IEntity)pSDEDQJoin2);
+            this.removeTemp(pSDEDQJoin2);
         }
         this.onAfterRemoveTempByPPSDEDQJoin(pSDEDQJoin, arrayList);
     }
@@ -966,7 +966,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         ArrayList<PSDEDQJoin> arrayList = this.selectTempByPSDEDQ(pSDEDataQuery);
         this.onBeforeRemoveTempByPSDEDQ(pSDEDataQuery, arrayList);
         for (PSDEDQJoin pSDEDQJoin : arrayList) {
-            this.removeTemp((IEntity)pSDEDQJoin);
+            this.removeTemp(pSDEDQJoin);
         }
         this.onAfterRemoveTempByPSDEDQ(pSDEDataQuery, arrayList);
     }
@@ -982,7 +982,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
 
     protected void getRelatedDataTempMajor(PSDEDQJoin pSDEDQJoin) throws Exception {
         this.getRelatedDataTempMajor_PSDEDQCond(pSDEDQJoin);
-        super.getRelatedDataTempMajor((IEntity)pSDEDQJoin);
+        super.getRelatedDataTempMajor(pSDEDQJoin);
     }
 
     protected void getRelatedDataTempMajor_PSDEDQCond(PSDEDQJoin pSDEDQJoin) throws Exception {
@@ -999,7 +999,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
     protected void updateRelatedDataTempMajor(PSDEDQJoin pSDEDQJoin, PSDEDQJoin pSDEDQJoin2) throws Exception {
         ArrayList<PSDEDQCond> arrayList = this.updateRelatedDataTempMajor_removePSDEDQCond(pSDEDQJoin, pSDEDQJoin2);
         this.updateRelatedDataTempMajor_updatePSDEDQCond(pSDEDQJoin, pSDEDQJoin2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSDEDQJoin, (IEntity)pSDEDQJoin2);
+        super.updateRelatedDataTempMajor(pSDEDQJoin, pSDEDQJoin2);
     }
 
     protected ArrayList<PSDEDQCond> updateRelatedDataTempMajor_removePSDEDQCond(PSDEDQJoin pSDEDQJoin, PSDEDQJoin pSDEDQJoin2) throws Exception {
@@ -1016,7 +1016,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
             hashMap.remove(object);
         }
         for (PSDEDQCond pSDEDQCond : hashMap.values()) {
-            pSDEDQCondService.remove((IEntity)pSDEDQCond);
+            pSDEDQCondService.remove(pSDEDQCond);
         }
         return arrayList;
     }
@@ -1033,7 +1033,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
 
     protected void replaceParentInfo(PSDEDQJoin pSDEDQJoin, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEDQJoin, cloneSession);
+        super.replaceParentInfo(pSDEDQJoin, cloneSession);
         if (pSDEDQJoin.getJoinPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSDEDQJoin.getJoinPSDEId())) != null) {
             this.onFillParentInfo_JoinPSDE(pSDEDQJoin, (PSDataEntity)iEntity);
         }
@@ -1052,7 +1052,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEDQJoin pSDEDQJoin, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEDQJoin, bl);
+        super.onRemoveEntityUncopyValues(pSDEDQJoin, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEDQJoin pSDEDQJoin, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1139,7 +1139,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSDEDQJoin, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEDQJoin, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEDQJoin, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AliasName(boolean bl, PSDEDQJoin pSDEDQJoin, boolean bl2, boolean bl3) throws Exception {
@@ -1152,7 +1152,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AliasName_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_AliasName_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALIASNAME");
@@ -1174,7 +1174,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CondFlag_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string = this.onTestValueRule_CondFlag_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONDFLAG");
@@ -1196,7 +1196,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CondModel_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_CondModel_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONDMODEL");
@@ -1218,7 +1218,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ExtColumns_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_ExtColumns_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXTCOLUMNS");
@@ -1243,7 +1243,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JoinPSDEId_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_JoinPSDEId_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JOINPSDEID");
@@ -1268,7 +1268,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JoinPSDEName_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_JoinPSDEName_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JOINPSDENAME");
@@ -1290,7 +1290,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JoinTag_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_JoinTag_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JOINTAG");
@@ -1312,7 +1312,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JoinTag2_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_JoinTag2_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JOINTAG2");
@@ -1334,7 +1334,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LevelTag_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_LevelTag_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LEVELTAG");
@@ -1356,7 +1356,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LevelValue_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string = this.onTestValueRule_LevelValue_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LEVELVALUE");
@@ -1378,7 +1378,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MainFlag_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string = this.onTestValueRule_MainFlag_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAINFLAG");
@@ -1400,7 +1400,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1422,7 +1422,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ModelState_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string = this.onTestValueRule_ModelState_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODELSTATE");
@@ -1444,7 +1444,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -1466,7 +1466,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSDEDQJoinId_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PPSDEDQJoinId_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSDEDQJOINID");
@@ -1491,7 +1491,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDQId_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDQId_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDQID");
@@ -1516,7 +1516,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDQJoinId_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDQJoinId_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDQJOINID");
@@ -1541,7 +1541,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDQJoinName_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDQJoinName_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDQJOINNAME");
@@ -1566,7 +1566,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEJoinTypeId_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEJoinTypeId_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEJOINTYPEID");
@@ -1591,7 +1591,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEJoinTypeName_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEJoinTypeName_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEJOINTYPENAME");
@@ -1613,7 +1613,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDERId_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PSDERId_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDERID");
@@ -1635,7 +1635,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_QueryViewFlag_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string = this.onTestValueRule_QueryViewFlag_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("QUERYVIEWFLAG");
@@ -1657,7 +1657,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1679,7 +1679,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1701,7 +1701,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1723,7 +1723,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1745,7 +1745,7 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDEDQJoin, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDEDQJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1758,11 +1758,11 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
     }
 
     protected void onSyncEntity(PSDEDQJoin pSDEDQJoin, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEDQJoin, bl);
+        super.onSyncEntity(pSDEDQJoin, bl);
     }
 
     protected void onSyncIndexEntities(PSDEDQJoin pSDEDQJoin, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEDQJoin, bl);
+        super.onSyncIndexEntities(pSDEDQJoin, bl);
     }
 
     public Object getDataContextValue(PSDEDQJoin pSDEDQJoin, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1770,14 +1770,14 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEDQJoin, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEDQJoin, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEDQJoin pSDEDQJoin, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEDQJoin, arrayList, n);
+        super.onExportMajorModel(pSDEDQJoin, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2247,14 +2247,14 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
 
     protected boolean onMergeChild(String string, String string2, PSDEDQJoin pSDEDQJoin) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEDQJoin)) {
+        if (super.onMergeChild(string, string2, pSDEDQJoin)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEDQJoin pSDEDQJoin) throws Exception {
-        super.onUpdateParent((IEntity)pSDEDQJoin);
+        super.onUpdateParent(pSDEDQJoin);
     }
 
     @Override
@@ -2424,45 +2424,31 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
 
     @Override
     protected void onExportCurModelV2(PSDEDQJoin pSDEDQJoin, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        ArrayNode arrayNode;
-        Object object3;
-        ArrayList<PSDEDQJoin> arrayList;
+        ArrayList<ObjectNode> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEDQJOIN_PSDEDQJOIN_PPSDEDQJOINID")) {
             pSCoreSysServiceBase = (PSDEDQJoinService)ServiceGlobal.getService(PSDEDQJoinService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDQJOIN#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDQJOIN", (Object)pSDEDQJoin.getPSDEDQJoinId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDQJOIN#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDQJOIN", (Object)pSDEDQJoin.getPSDEDQJoinId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add((PSDEDQJoin)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSDEDQJoin>();
-                object3 = ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).selectByPPSDEDQJoin(pSDEDQJoin);
-                arrayNode = StringHelper.format((String)"PSDEDQJOIN#%1$s", (Object)pSDEDQJoin.getPSDEDQJoinId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEDQJoin)object2.next();
-                    object = ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEDQJoin)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSDEDQJOIN#%1$s", (Object)pSDEDQJoin.getPSDEDQJoinId());
+                for (PSDEDQJoin entity : ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).selectByPPSDEDQJoin(pSDEDQJoin)) {
+                    String entityScope = ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
+                ArrayNode arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2490,11 +2476,11 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEDQJoin();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    ((PSDEDQJoinBase)object).remove("ordervalue");
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode model : arrayList) {
+                    PSDEDQJoin entity = new PSDEDQJoin();
+                    PSModelV2Helper.fromJSONObject(entity, model, false);
+                    entity.remove("ordervalue");
+                    arrayNode.add(pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -2502,33 +2488,25 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
             pSCoreSysServiceBase = (PSDEDQCondService)ServiceGlobal.getService(PSDEDQCondService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDQJOIN#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDQCOND", (Object)pSDEDQJoin.getPSDEDQJoinId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDQJOIN#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDQCOND", (Object)pSDEDQJoin.getPSDEDQJoinId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEDQJoin)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object3 = ((PSDEDQCondServiceBase)pSCoreSysServiceBase).selectByPSDEDQJoin(pSDEDQJoin);
-                arrayNode = StringHelper.format((String)"PSDEDQJOIN#%1$s", (Object)pSDEDQJoin.getPSDEDQJoinId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEDQCond)object2.next();
-                    object = ((PSDEDQCondServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEDQJoin)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSDEDQJOIN#%1$s", (Object)pSDEDQJoin.getPSDEDQJoinId());
+                for (PSDEDQCond entity : ((PSDEDQCondServiceBase)pSCoreSysServiceBase).selectByPSDEDQJoin(pSDEDQJoin)) {
+                    String entityScope = ((PSDEDQCondServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entity);
+                    if (StringHelper.compare(scope, entityScope, false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(entity, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
+                ArrayNode arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2556,11 +2534,11 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEDQCond();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    ((PSDEDQCondBase)object).remove("ordervalue");
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode model : arrayList) {
+                    PSDEDQCond entity = new PSDEDQCond();
+                    PSModelV2Helper.fromJSONObject(entity, model, false);
+                    entity.remove("ordervalue");
+                    arrayNode.add(pSCoreSysServiceBase.exportModelV2(entity, string));
                 }
             }
         }
@@ -2571,29 +2549,27 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
     protected void onEmptyModelV2(PSDEDQJoin pSDEDQJoin) throws Exception {
         String string;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSDEDQJoinService)ServiceGlobal.getService(PSDEDQJoinService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<EntityBase> arrayList = ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).selectByPPSDEDQJoin(pSDEDQJoin);
         String string2 = StringHelper.format((String)"PSDEDQJOIN#%1$s", (Object)pSDEDQJoin.getPSDEDQJoinId());
-        for (PSDEDQJoin entityBase : arrayList) {
-            string = ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase);
+        for (PSDEDQJoin entityBase : ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).selectByPPSDEDQJoin(pSDEDQJoin)) {
+            string = ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entityBase);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(entityBase);
         }
-        Object object = new SqlParamList();
-        object.addString(pSDEDQJoin.getPSDEDQJoinId());
+        SqlParamList params = new SqlParamList();
+        params.addString(pSDEDQJoin.getPSDEDQJoinId());
         ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEDQJOIN WHERE PPSDEDQJOINID = ?", (SqlParamList)object);
+        ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEDQJOIN WHERE PPSDEDQJOINID = ?", params);
         pSCoreSysServiceBase = (PSDEDQCondService)ServiceGlobal.getService(PSDEDQCondService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSDEDQCondServiceBase)pSCoreSysServiceBase).selectByPSDEDQJoin(pSDEDQJoin);
         string2 = StringHelper.format((String)"PSDEDQJOIN#%1$s", (Object)pSDEDQJoin.getPSDEDQJoinId());
-        for (PSDEDQCond pSDEDQCond : arrayList) {
-            string = ((PSDEDQCondServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSDEDQCond);
+        for (PSDEDQCond pSDEDQCond : ((PSDEDQCondServiceBase)pSCoreSysServiceBase).selectByPSDEDQJoin(pSDEDQJoin)) {
+            string = ((PSDEDQCondServiceBase)pSCoreSysServiceBase).getModelV2ResScope(pSDEDQCond);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(pSDEDQCond);
         }
-        object = new SqlParamList();
-        object.addString(pSDEDQJoin.getPSDEDQJoinId());
+        params = new SqlParamList();
+        params.addString(pSDEDQJoin.getPSDEDQJoinId());
         ((PSDEDQCondServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSDEDQCondServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEDQCOND WHERE PSDEDQJOINID = ?", (SqlParamList)object);
+        ((PSDEDQCondServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEDQCOND WHERE PSDEDQJOINID = ?", params);
         super.onEmptyModelV2(pSDEDQJoin);
     }
 
@@ -2632,10 +2608,6 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
 
     @Override
     protected void onCompileRelatedModelV2(PSDEDQJoin pSDEDQJoin, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
-        int n2;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSDEDQJoinService)ServiceGlobal.getService(PSDEDQJoinService.class, (SessionFactory)this.getSessionFactory());
         ArrayNode arrayNode = null;
         String string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
@@ -2644,27 +2616,26 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
             arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
         }
         if (arrayNode != null) {
-            for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSDEDQJoin();
-                ((PSDEDQJoinBase)object).setPJoinPSDEId(pSDEDQJoin.getJoinPSDEId());
-                ((PSDEDQJoinBase)object).setPPSDEDQJoinId(pSDEDQJoin.getPSDEDQJoinId());
-                ((PSDEDQJoinBase)object).setPPSDEDQJoinName(pSDEDQJoin.getPSDEDQJoinName());
-                ((PSDEDQJoinBase)object).setOrderValue(n3 += 10);
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+            for (int i = 0; i < arrayNode.size(); ++i) {
+                ObjectNode model = (ObjectNode)arrayNode.get(i);
+                PSDEDQJoin entity = new PSDEDQJoin();
+                entity.setPJoinPSDEId(pSDEDQJoin.getJoinPSDEId());
+                entity.setPPSDEDQJoinId(pSDEDQJoin.getPSDEDQJoinId());
+                entity.setPPSDEDQJoinName(pSDEDQJoin.getPSDEDQJoinName());
+                entity.setOrderValue(n3 += 10);
+                pSCoreSysServiceBase.compileModelV2(entity, model, string, null, n);
             }
         } else {
             String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string4);
-            if (((File)object2).exists()) {
-                object = ((File)object2).listFiles();
-                for (Object object3 : object) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSDEDQJoin();
-                    entityBase.setPJoinPSDEId(pSDEDQJoin.getJoinPSDEId());
-                    entityBase.setPPSDEDQJoinId(pSDEDQJoin.getPSDEDQJoinId());
-                    entityBase.setPPSDEDQJoinName(pSDEDQJoin.getPSDEDQJoinName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+            File directory = new File(string4);
+            if (directory.exists()) {
+                for (File child : directory.listFiles()) {
+                    if (!child.isDirectory()) continue;
+                    PSDEDQJoin entity = new PSDEDQJoin();
+                    entity.setPJoinPSDEId(pSDEDQJoin.getJoinPSDEId());
+                    entity.setPPSDEDQJoinId(pSDEDQJoin.getPSDEDQJoinId());
+                    entity.setPPSDEDQJoinName(pSDEDQJoin.getPSDEDQJoinName());
+                    pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                 }
             }
         }
@@ -2676,24 +2647,24 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
             arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
         }
         if (arrayNode != null) {
-            for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSDEDQCond();
-                ((PSDEDQCondBase)object).setPSDEDQJoinId(pSDEDQJoin.getPSDEDQJoinId());
-                ((PSDEDQCondBase)object).setPSDEDQJoinName(pSDEDQJoin.getPSDEDQJoinName());
-                ((PSDEDQCondBase)object).setOrderValue(n3 += 10);
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+            for (int i = 0; i < arrayNode.size(); ++i) {
+                ObjectNode model = (ObjectNode)arrayNode.get(i);
+                PSDEDQCond entity = new PSDEDQCond();
+                entity.setPSDEDQJoinId(pSDEDQJoin.getPSDEDQJoinId());
+                entity.setPSDEDQJoinName(pSDEDQJoin.getPSDEDQJoinName());
+                entity.setOrderValue(n3 += 10);
+                pSCoreSysServiceBase.compileModelV2(entity, model, string, null, n);
             }
         } else {
             String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string5);
-            if (((File)object2).exists()) {
-                for (Object object3 : object = ((File)object2).listFiles()) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSDEDQCond();
-                    entityBase.setPSDEDQJoinId(pSDEDQJoin.getPSDEDQJoinId());
-                    entityBase.setPSDEDQJoinName(pSDEDQJoin.getPSDEDQJoinName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+            File directory = new File(string5);
+            if (directory.exists()) {
+                for (File child : directory.listFiles()) {
+                    if (!child.isDirectory()) continue;
+                    PSDEDQCond entity = new PSDEDQCond();
+                    entity.setPSDEDQJoinId(pSDEDQJoin.getPSDEDQJoinId());
+                    entity.setPSDEDQJoinName(pSDEDQJoin.getPSDEDQJoinName());
+                    pSCoreSysServiceBase.compileModelV2(entity, null, string, child.getCanonicalPath(), n);
                 }
             }
         }
@@ -2711,4 +2682,3 @@ extends PSCoreSysServiceBase<PSDEDQJoin> {
         super.onFillPasteHelps(pSDEDQJoin, list);
     }
 }
-

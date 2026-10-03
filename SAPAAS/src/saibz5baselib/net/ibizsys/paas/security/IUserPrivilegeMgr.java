@@ -1,28 +1,77 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.security;
 
-import java.io.Serializable;
 import net.ibizsys.paas.core.CallResult;
 import net.ibizsys.paas.demodel.IDataEntityModel;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.web.IWebContext;
 
-public interface IUserPrivilegeMgr
-extends Serializable {
-    public static final String TESTRESULT_CACHE = "CACHE";
+/**
+ * 用户权限管理器接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IUserPrivilegeMgr extends java.io.Serializable {
+	/**
+	 * 对测试结果进行缓冲
+	 */
+	final static String TESTRESULT_CACHE = "CACHE";
 
-    public void reset(IWebContext var1);
+	/**
+	 * 重置用户的权限
+	 * 
+	 * @param webContext
+	 */
+	void reset(IWebContext webContext);
 
-    public void reset();
+	/**
+	 * 重置用户的权限
+	 * 
+	 * @param webContext
+	 */
+	void reset();
 
-    public boolean test(IWebContext var1, String var2) throws Exception;
+	/**
+	 * 测试对指定资源是否具备能力
+	 * 
+	 * @param webContext 网页上下文对象
+	 * @param strResourceId 资源编号
+	 * @return
+	 */
+	boolean test(IWebContext webContext, String strResourceId) throws Exception;
 
-    public int testDEField(IWebContext var1, String var2) throws Exception;
+	/**
+	 * 测试属性权限
+	 * 
+	 * @param webContext
+	 * @param strResourceId
+	 * @return
+	 * @throws Exception
+	 */
+	int testDEField(IWebContext webContext, String strResourceId) throws Exception;
 
-    public CallResult testDataAccessAction(IWebContext var1, IDataEntityModel var2, IEntity var3, String var4) throws Exception;
+	/**
+	 * 测试数据权限
+	 * 
+	 * @param webContext
+	 * @param iDEModel
+	 * @param iEntity
+	 * @param strDataAccessAction
+	 * @return
+	 * @throws Exception
+	 */
+	CallResult testDataAccessAction(IWebContext webContext, IDataEntityModel iDEModel, IEntity iEntity, String strDataAccessAction) throws Exception;
 
-    public CallResult testDataAccessAction(IWebContext var1, IDataEntityModel var2, Object var3, String var4) throws Exception;
+	/**
+	 * 测试数据权限
+	 * 
+	 * @param webContext
+	 * @param iDEModel
+	 * @param objKey
+	 * @param strDataAccessAction
+	 * @return
+	 * @throws Exception
+	 */
+	CallResult testDataAccessAction(IWebContext webContext, IDataEntityModel iDEModel, Object objKey, String strDataAccessAction) throws Exception;
+
 }
-

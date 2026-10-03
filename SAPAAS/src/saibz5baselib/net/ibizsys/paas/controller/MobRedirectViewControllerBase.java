@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.RedirectViewControllerBase;
+/**
+ * 移动端从定向视图控制器对象基类
+ * @author Administrator
+ *
+ */
+public abstract class MobRedirectViewControllerBase extends RedirectViewControllerBase {
 
-public abstract class MobRedirectViewControllerBase
-extends RedirectViewControllerBase {
+	public MobRedirectViewControllerBase() throws Exception {
+		super();
+	}
+	
+	
+
 }
-

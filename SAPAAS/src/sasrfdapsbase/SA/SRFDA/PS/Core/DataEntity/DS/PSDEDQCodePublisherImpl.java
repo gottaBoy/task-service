@@ -43,7 +43,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import net.ibizsys.paas.core.IDEDataQueryCodeCond;
 import net.ibizsys.paas.core.IDEDataQueryCodeExp;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.service.SessionFactoryManager;
 import net.ibizsys.paas.web.IWebContext;
@@ -100,7 +99,7 @@ implements IPSDEDQCodePublisher {
                 psDEDQCode.setDBType(this.getPSDBType().getId());
                 psDEDQCode.setPSDEDQCodeName(this.getPSDBType().getName());
                 PSDEDQCodeService psDEDQCodeService = (PSDEDQCodeService)ServiceGlobal.getService(PSDEDQCodeService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-                psDEDQCodeService.save((IEntity)psDEDQCode, false);
+                psDEDQCodeService.save(psDEDQCode, false);
                 SessionFactoryManager.releaseRef((boolean)true);
             }
             catch (Exception ex) {
@@ -116,21 +115,21 @@ implements IPSDEDQCodePublisher {
             PSDEDQCode psDEDQCode = new PSDEDQCode();
             psDEDQCode.setPSDEDQId(this.iPSDEDataQuery.getId());
             psDEDQCode.setDBType(this.getPSDBType().getId());
-            psDEDQCodeService.fillEntityKeyValue((IEntity)psDEDQCode);
-            boolean bGet = psDEDQCodeService.get((IEntity)psDEDQCode, true);
+            psDEDQCodeService.fillEntityKeyValue(psDEDQCode);
+            boolean bGet = psDEDQCodeService.get(psDEDQCode, true);
             if (!bGet || StringHelper.Compare((String)psDEDQCode.getPSDEDQCodeName(), (String)this.getPSDBType().getName(), (boolean)false) != 0 || PSDBTypeImpl.compareSQL(psDEDQCode.getQueryCode(), iPSDEDQEngine.getQueryScript()) != 0 || PSDBTypeImpl.compareSQL(psDEDQCode.getQueryCodeTemp(), iPSDEDQEngine.getQueryScriptTemp()) != 0) {
-                Iterator<Object> aliasNames;
+                Iterator<String> aliasNames;
                 PSDEDQCodeExpService psDEDQCodeExpService = (PSDEDQCodeExpService)ServiceGlobal.getService(PSDEDQCodeExpService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
                 psDEDQCode.setDBType(this.getPSDBType().getId());
                 psDEDQCode.setPSDEDQCodeName(this.getPSDBType().getName());
                 psDEDQCode.setQueryCode(iPSDEDQEngine.getQueryScript());
                 psDEDQCode.setQueryCodeTemp(iPSDEDQEngine.getQueryScriptTemp());
                 if (bGet) {
-                    psDEDQCodeService.update((IEntity)psDEDQCode, false);
+                    psDEDQCodeService.update(psDEDQCode, false);
                 } else {
-                    psDEDQCodeService.create((IEntity)psDEDQCode, false);
+                    psDEDQCodeService.create(psDEDQCode, false);
                 }
-                ArrayList psDEDataQueryCodeExpList = psDEDQCodeExpService.selectByPSDEDQCode((PSDEDQCodeBase)psDEDQCode);
+                ArrayList<PSDEDQCodeExp> psDEDataQueryCodeExpList = psDEDQCodeExpService.selectByPSDEDQCode((PSDEDQCodeBase)psDEDQCode);
                 HashMap<String, PSDEDQCodeExp> psDEDataQueryCodeExpMap = new HashMap<String, PSDEDQCodeExp>();
                 for (PSDEDQCodeExp psDEDQCodeExp : psDEDataQueryCodeExpList) {
                     strKey = StringHelper.Format((String)"%1$s|%2$s", (Object)psDEDQCodeExp.getPSDEDQCodeId(), (Object)psDEDQCodeExp.getPSDEDQCodeExpName());
@@ -149,12 +148,12 @@ implements IPSDEDQCodePublisher {
                             String strKey2 = StringHelper.Format((String)"%1$s|%2$s", (Object)psDEDQCodeExp.getPSDEDQCodeId(), (Object)psDEDQCodeExp.getPSDEDQCodeExpName());
                             PSDEDQCodeExp psDEDQCodeExp2 = (PSDEDQCodeExp)psDEDataQueryCodeExpMap.remove(strKey2);
                             if (psDEDQCodeExp2 == null) {
-                                psDEDQCodeExpService.create((IEntity)psDEDQCodeExp, false);
+                                psDEDQCodeExpService.create(psDEDQCodeExp, false);
                                 continue;
                             }
                             if (StringHelper.Compare((String)psDEDQCodeExp.getExpCode(), (String)psDEDQCodeExp2.getExpCode(), (boolean)false) == 0 && psDEDQCodeExp.getOrderValue() == psDEDQCodeExp2.getOrderValue()) continue;
                             psDEDQCodeExp.setPSDEDQCodeExpId(psDEDQCodeExp2.getPSDEDQCodeExpId());
-                            psDEDQCodeExpService.update((IEntity)psDEDQCodeExp, false);
+                            psDEDQCodeExpService.update(psDEDQCodeExp, false);
                         }
                         catch (Exception ex) {
                             throw new Exception(StringHelper.Format((String)"\u63d2\u5165\u67e5\u8be2\u4ee3\u7801\u8868\u8fbe\u5f0f[%1$s]\u53d1\u751f\u5f02\u5e38\uff0c%2$s", (Object)iDEDQCodeExp.getName(), (Object)ex.getMessage()));
@@ -176,12 +175,12 @@ implements IPSDEDQCodePublisher {
                             String strKey3 = StringHelper.Format((String)"%1$s|%2$s", (Object)psDEDQCodeExp.getPSDEDQCodeId(), (Object)psDEDQCodeExp.getPSDEDQCodeExpName());
                             PSDEDQCodeExp psDEDQCodeExp2 = (PSDEDQCodeExp)psDEDataQueryCodeExpMap.remove(strKey3);
                             if (psDEDQCodeExp2 == null) {
-                                psDEDQCodeExpService.create((IEntity)psDEDQCodeExp, false);
+                                psDEDQCodeExpService.create(psDEDQCodeExp, false);
                                 continue;
                             }
                             if (StringHelper.Compare((String)psDEDQCodeExp.getExpCode(), (String)psDEDQCodeExp2.getExpCode(), (boolean)false) == 0 && psDEDQCodeExp.getOrderValue() == psDEDQCodeExp2.getOrderValue()) continue;
                             psDEDQCodeExp.setPSDEDQCodeExpId(psDEDQCodeExp2.getPSDEDQCodeExpId());
-                            psDEDQCodeExpService.update((IEntity)psDEDQCodeExp, false);
+                            psDEDQCodeExpService.update(psDEDQCodeExp, false);
                         }
                         catch (Exception ex) {
                             throw new Exception(StringHelper.Format((String)"\u63d2\u5165\u67e5\u8be2\u4ee3\u7801\u8868\u8fbe\u5f0f[%1$s]\u53d1\u751f\u5f02\u5e38\uff0c%2$s", (Object)strExpName, (Object)ex.getMessage()));
@@ -189,11 +188,11 @@ implements IPSDEDQCodePublisher {
                     }
                 }
                 for (PSDEDQCodeExp psDEDQCodeExp : psDEDataQueryCodeExpMap.values()) {
-                    psDEDQCodeExpService.remove((IEntity)psDEDQCodeExp);
+                    psDEDQCodeExpService.remove(psDEDQCodeExp);
                 }
             }
             PSDEDQCodeCondService psDEDQCodeCondService = (PSDEDQCodeCondService)ServiceGlobal.getService(PSDEDQCodeCondService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-            ArrayList psDEDataQueryCodeCondList = psDEDQCodeCondService.selectByPSDEDQCode((PSDEDQCodeBase)psDEDQCode);
+            ArrayList<PSDEDQCodeCond> psDEDataQueryCodeCondList = psDEDQCodeCondService.selectByPSDEDQCode((PSDEDQCodeBase)psDEDQCode);
             HashMap<String, PSDEDQCodeCond> psDEDataQueryCodeCondMap = new HashMap<String, PSDEDQCodeCond>();
             for (PSDEDQCodeCond psDEDataQueryCodeCond : psDEDataQueryCodeCondList) {
                 strKey = StringHelper.Format((String)"%1$s|%2$s", (Object)psDEDataQueryCodeCond.getCondCode(), (Object)psDEDataQueryCodeCond.getOrderValue());
@@ -211,11 +210,11 @@ implements IPSDEDQCodePublisher {
                     ++nOrder;
                     String strKey4 = StringHelper.Format((String)"%1$s|%2$s", (Object)psDEDQCodeCond.getCondCode(), (Object)psDEDQCodeCond.getOrderValue());
                     if (psDEDataQueryCodeCondMap.remove(strKey4) != null) continue;
-                    psDEDQCodeCondService.create((IEntity)psDEDQCodeCond, false);
+                    psDEDQCodeCondService.create(psDEDQCodeCond, false);
                 }
             }
             for (PSDEDQCodeCond psDEDQCodeCond : psDEDataQueryCodeCondMap.values()) {
-                psDEDQCodeCondService.remove((IEntity)psDEDQCodeCond);
+                psDEDQCodeCondService.remove(psDEDQCodeCond);
             }
             SessionFactoryManager.releaseRef((boolean)true);
         }
@@ -241,4 +240,3 @@ implements IPSDEDQCodePublisher {
         return null;
     }
 }
-

@@ -1,24 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.service;
 
 import net.ibizsys.paas.entity.IEntity;
-import net.ibizsys.paas.service.IServiceCreateParam;
-import net.ibizsys.paas.service.ServiceActionParamBase;
 
-public class ServiceCreateParam<ET extends IEntity>
-extends ServiceActionParamBase<ET>
-implements IServiceCreateParam<ET> {
-    private boolean bReturnData = true;
+/**
+ * 服务建立行为参数
+ * @author Administrator
+ *
+ * @param <ET>
+ */
+public class ServiceCreateParam <ET extends IEntity> extends ServiceActionParamBase<ET> implements IServiceCreateParam<ET>{
 
-    @Override
-    public boolean isReturnData() {
-        return this.bReturnData;
-    }
+	private boolean bReturnData = true;
+	
+	@Override
+	public boolean isReturnData() {
+		return this.bReturnData;
+	}
 
-    public void setReturnData(boolean bReturnData) {
-        this.bReturnData = bReturnData;
-    }
+
+	/**
+	 * 设置是否返回数据
+	 * @param bReturnData
+	 */
+	public void setReturnData(boolean bReturnData) {
+		this.bReturnData = bReturnData;
+	}
 }
-

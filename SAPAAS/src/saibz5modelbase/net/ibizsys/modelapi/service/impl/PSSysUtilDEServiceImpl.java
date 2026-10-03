@@ -160,10 +160,10 @@ implements IPSSysUtilDEService {
 
     @Override
     protected List<PSSysUtilDE> onListAll() throws Exception {
-        List pssystems;
-        List pssysmodelgroups;
+        List<PSSystem> pssystems;
+        List<PSSysModelGroup> pssysmodelgroups;
         ArrayList<PSSysUtilDE> list = new ArrayList<PSSysUtilDE>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysUtilDE> items = this.listByPSModule(parent);

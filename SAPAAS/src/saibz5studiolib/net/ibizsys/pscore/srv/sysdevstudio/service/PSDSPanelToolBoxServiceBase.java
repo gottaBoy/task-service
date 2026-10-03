@@ -170,7 +170,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
     }
 
     protected void onFillParentInfo(PSDSPanelToolBox pSDSPanelToolBox, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDSPanelToolBox, string, string2, string3);
+        super.onFillParentInfo(pSDSPanelToolBox, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -181,11 +181,11 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDSPanelToolBox, bl);
+        super.onFillEntityFullInfo(pSDSPanelToolBox, bl);
     }
 
     protected void onWriteBackParent(PSDSPanelToolBox pSDSPanelToolBox, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDSPanelToolBox, bl);
+        super.onWriteBackParent(pSDSPanelToolBox, bl);
     }
 
     @Override
@@ -194,7 +194,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDSPanelToolBox pSDSPanelToolBox, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDSPanelToolBox, bl);
+        super.onRemoveEntityUncopyValues(pSDSPanelToolBox, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDSPanelToolBox pSDSPanelToolBox, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -236,7 +236,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDSPanelToolBox, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDSPanelToolBox, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDSPanelToolBox, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Cat(boolean bl, PSDSPanelToolBox pSDSPanelToolBox, boolean bl2, boolean bl3) throws Exception {
@@ -252,7 +252,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Cat_Default((IEntity)pSDSPanelToolBox, bl2, bl3);
+            string2 = this.onTestValueRule_Cat_Default(pSDSPanelToolBox, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CAT");
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconCls_Default((IEntity)pSDSPanelToolBox, bl2, bl3);
+            string2 = this.onTestValueRule_IconCls_Default(pSDSPanelToolBox, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONCLS");
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_InitParams_Default((IEntity)pSDSPanelToolBox, bl2, bl3);
+            string2 = this.onTestValueRule_InitParams_Default(pSDSPanelToolBox, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INITPARAMS");
@@ -318,7 +318,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemType_Default((IEntity)pSDSPanelToolBox, bl2, bl3);
+            string2 = this.onTestValueRule_ItemType_Default(pSDSPanelToolBox, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMTYPE");
@@ -343,7 +343,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSDSPanelToolBox, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSDSPanelToolBox, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -368,7 +368,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSPanelToolBoxId_Default((IEntity)pSDSPanelToolBox, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSPanelToolBoxId_Default(pSDSPanelToolBox, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSPANELTOOLBOXID");
@@ -393,7 +393,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSPanelToolBoxName_Default((IEntity)pSDSPanelToolBox, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSPanelToolBoxName_Default(pSDSPanelToolBox, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSPANELTOOLBOXNAME");
@@ -418,7 +418,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ToolBoxType_Default((IEntity)pSDSPanelToolBox, bl2, bl3);
+            string2 = this.onTestValueRule_ToolBoxType_Default(pSDSPanelToolBox, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TOOLBOXTYPE");
@@ -440,7 +440,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ToolTip_Default((IEntity)pSDSPanelToolBox, bl2, bl3);
+            string2 = this.onTestValueRule_ToolTip_Default(pSDSPanelToolBox, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TOOLTIP");
@@ -462,7 +462,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDSPanelToolBox, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDSPanelToolBox, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -484,7 +484,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDSPanelToolBox, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDSPanelToolBox, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -509,7 +509,7 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDSPanelToolBox, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDSPanelToolBox, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -522,11 +522,11 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
     }
 
     protected void onSyncEntity(PSDSPanelToolBox pSDSPanelToolBox, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDSPanelToolBox, bl);
+        super.onSyncEntity(pSDSPanelToolBox, bl);
     }
 
     protected void onSyncIndexEntities(PSDSPanelToolBox pSDSPanelToolBox, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDSPanelToolBox, bl);
+        super.onSyncIndexEntities(pSDSPanelToolBox, bl);
     }
 
     public Object getDataContextValue(PSDSPanelToolBox pSDSPanelToolBox, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -534,14 +534,14 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDSPanelToolBox, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDSPanelToolBox, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDSPanelToolBox pSDSPanelToolBox, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDSPanelToolBox, arrayList, n);
+        super.onExportMajorModel(pSDSPanelToolBox, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -758,14 +758,14 @@ extends PSCoreSysServiceBase<PSDSPanelToolBox> {
 
     protected boolean onMergeChild(String string, String string2, PSDSPanelToolBox pSDSPanelToolBox) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDSPanelToolBox)) {
+        if (super.onMergeChild(string, string2, pSDSPanelToolBox)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDSPanelToolBox pSDSPanelToolBox) throws Exception {
-        super.onUpdateParent((IEntity)pSDSPanelToolBox);
+        super.onUpdateParent(pSDSPanelToolBox);
     }
 
     @Override

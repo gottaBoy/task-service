@@ -1,29 +1,39 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSAppView
- *  IPSControl
- *  org.apache.commons.logging.Log
- */
 package net.ibizsys.model.pub.ionic;
 
 import java.util.HashMap;
+
 import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
-public class PSIonicCtrlCodePublisherImpl {
-    private static final Log log;
+import SA.SRFDA.PS.Core.App.View.IPSAppView;
+import SA.SRFDA.PS.Core.Control.IPSControl;
+import SA.SRFDA.PS.Core.Pub.PSFR7TemplHelper;
+import SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl;
+import SA.SRFramework.Utility.StringHelper;
 
-    public PSIonicCtrlCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tPSPFCtrlCodePublisherImpl cannot be resolved to a type\n\tPSPFCtrlCodePublisherImpl cannot be resolved to a type\n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSIonicCtrlCodePublisherImpl must override or implement a supertype method\n\tPSPFCtrlCodePublisherImpl cannot be resolved to a type\n\tPSFR7TemplHelper cannot be resolved\n\tIPSAppView cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tStringHelper cannot be resolved\n");
-    }
+public class PSIonicCtrlCodePublisherImpl extends PSPFCtrlCodePublisherImpl
+{
+	private static final Log log = LogFactory.getLog(PSPFCtrlCodePublisherImpl.class);
 
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSIonicCtrlCodePublisherImpl must override or implement a supertype method\n\tPSPFCtrlCodePublisherImpl cannot be resolved to a type\n\tPSFR7TemplHelper cannot be resolved\n");
-    }
+	
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
 
-    protected String getPSControlCodeName(IPSAppView iPSAppView, IPSControl iPSControl) {
-        throw new Error("Unresolved compilation problems: \n\tIPSAppView cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tStringHelper cannot be resolved\n");
-    }
+		PSFR7TemplHelper.fillParams(params);
+
+	}
+
+	@Override
+	protected String getPSControlCodeName(IPSAppView iPSAppView,IPSControl iPSControl)
+	{
+		String strFullName = iPSAppView.getFullCodeName();;
+		int nPos = strFullName.lastIndexOf(".");
+		if(nPos != -1){
+			strFullName = StringHelper.Format("%1$s.%2$s",strFullName.substring(0, nPos).toLowerCase(),strFullName.substring(nPos+1));
+		}
+		
+		return strFullName+"_"+iPSControl.getName().toLowerCase();
+	}
 }
-

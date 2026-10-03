@@ -1,16 +1,6 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.control.grid;
 
-import java.util.Iterator;
 import net.ibizsys.paas.codelist.ICodeList;
-import net.ibizsys.paas.control.grid.IGEIDEACMode;
-import net.ibizsys.paas.control.grid.IGEIDEFValueRule;
-import net.ibizsys.paas.control.grid.IGrid;
 import net.ibizsys.paas.core.IDEField;
 import net.ibizsys.paas.core.IModelBase;
 import net.ibizsys.paas.data.IDataItem;
@@ -18,72 +8,269 @@ import net.ibizsys.paas.data.IDataObject;
 import net.ibizsys.paas.web.IWebContext;
 import net.sf.json.JSONObject;
 
-public interface IGridEditItem
-extends IModelBase {
-    public static final String KEY = "srfkey";
-    public static final String UF = "srfuf";
-    public static final String TEMPMODE = "srftempmode";
-    public static final String DEID = "srfdeid";
-    public static final String LASTUPDATEDATE = "srfupdatedate";
-    public static final int ENABLECOND_NONE = 0;
-    public static final int ENABLECOND_CREATE = 1;
-    public static final int ENABLECOND_UPDATE = 2;
-    public static final int IGNOREINPUT_NONE = 0;
-    public static final int IGNOREINPUT_CREATE = 1;
-    public static final int IGNOREINPUT_UPDATE = 2;
-    public static final int ENABLECOND_ALL = 3;
-    public static final int IGNOREINPUT_ALL = 3;
+/**
+ * 表格编辑项接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IGridEditItem extends IModelBase {
+	/**
+	 * 主键标记
+	 */
+	static String KEY = "srfkey";
 
-    public IDataItem getDataItem();
+	/**
+	 * 更新标志
+	 */
+	static String UF = "srfuf";
 
-    public Object getInputValue(IWebContext var1) throws Exception;
+	/**
+	 * 临时数据模式
+	 */
+	static String TEMPMODE = "srftempmode";
 
-    public Object getOutputValue(IWebContext var1, IDataObject var2, boolean var3) throws Exception;
+	/**
+	 * 实体编号
+	 */
+	static String DEID = "srfdeid";
 
-    public Object getDefaultValue(IWebContext var1, boolean var2) throws Exception;
+	/**
+	 * 最后更新时间
+	 */
+	static String LASTUPDATEDATE = "srfupdatedate";
 
-    public JSONObject getConfig(IWebContext var1, IDataObject var2, boolean var3) throws Exception;
+	/**
+	 * 启用条件（无）
+	 */
+	final static int ENABLECOND_NONE = 0;
 
-    public String getPrivilegeId();
+	/**
+	 * 启用条件（建立）
+	 */
+	final static int ENABLECOND_CREATE = 1;
 
-    public String getValueItemName();
+	/**
+	 * 启用条件（更新）
+	 */
+	final static int ENABLECOND_UPDATE = 2;
 
-    public Iterator<IGEIDEFValueRule> getGEIDEFValueRules();
+	/**
+	 * 输入忽略条件（无）
+	 */
+	final static int IGNOREINPUT_NONE = 0;
 
-    public String getDEFName();
+	/**
+	 * 输入忽略条件（建立）
+	 */
+	final static int IGNOREINPUT_CREATE = 1;
 
-    public IGrid getGrid();
+	/**
+	 * 输入忽略条件（更新）
+	 */
+	final static int IGNOREINPUT_UPDATE = 2;
 
-    public IDEField getDEField();
+	/**
+	 * 启用条件（建立及更新）
+	 */
+	final static int ENABLECOND_ALL = ENABLECOND_CREATE | ENABLECOND_UPDATE;
 
-    public IGEIDEACMode getGEIDEACMode();
+	/**
+	 * 输入忽略条件（建立及更新）
+	 */
+	final static int IGNOREINPUT_ALL = IGNOREINPUT_CREATE | IGNOREINPUT_UPDATE;
 
-    public int getEnableCond();
+	/**
+	 * 获取数据项
+	 * 
+	 * @return
+	 */
+	IDataItem getDataItem();
 
-    public String getCreateDVT();
+	/**
+	 * 获取表格编辑项输入的值
+	 * 
+	 * @param iWebContext
+	 * @return
+	 */
+	Object getInputValue(IWebContext iWebContext) throws Exception;
 
-    public String getCreateDV();
+	/**
+	 * 输出到客户端的值
+	 * 
+	 * @param iWebContext
+	 * @param iDataObject
+	 * @param bString 以字符串形式输出
+	 * @return
+	 * @throws Exception
+	 */
+	Object getOutputValue(IWebContext iWebContext, IDataObject iDataObject, boolean bString) throws Exception;
 
-    public String getUpdateDVT();
+	/**
+	 * 获取表格编辑项默认值
+	 * 
+	 * @param iWebContext
+	 * @param bUpdate 是否为更新模式，默认为新建
+	 * @return
+	 */
+	Object getDefaultValue(IWebContext iWebContext, boolean bUpdate) throws Exception;
 
-    public String getUpdateDV();
+	/**
+	 * 获取动态表格编辑项配置
+	 * 
+	 * @param iWebContext
+	 * @param iDataObject
+	 * @param bUpdate
+	 * @return
+	 * @throws Exception
+	 */
+	JSONObject getConfig(IWebContext iWebContext, IDataObject iDataObject, boolean bUpdate) throws Exception;
 
-    public ICodeList getCodeList() throws Exception;
+	/**
+	 * 获取权限标识
+	 * 
+	 * @return
+	 */
+	String getPrivilegeId();
 
-    public String getCaption();
+	/**
+	 * 获取值项名称
+	 * 
+	 * @return
+	 */
+	String getValueItemName();
 
-    public boolean isAllowEmpty();
+	/**
+	 * 获取表格编辑项的属性值规则
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IGEIDEFValueRule> getGEIDEFValueRules();
 
-    public String getCapLanId();
+	/**
+	 * 获取属性 名称
+	 * 
+	 * @return
+	 */
+	String getDEFName();
 
-    public String getCodeListId();
+	/**
+	 * 获取表格对象
+	 * 
+	 * @return
+	 */
+	IGrid getGrid();
 
-    public String getValueRuleId();
+	/**
+	 * 获取实体属性
+	 * 
+	 * @return
+	 */
+	IDEField getDEField();
 
-    public int getIgnoreInput();
+	/**
+	 * 获取表格编辑项自填模式接口
+	 * 
+	 * @return
+	 */
+	IGEIDEACMode getGEIDEACMode();
 
-    public String getValueTranslator();
+	/**
+	 * 获取启用的条件
+	 * 
+	 * @return
+	 */
+	int getEnableCond();
 
-    public String getUserDictCatId();
+	/**
+	 * 获取建立时默认值类型
+	 * 
+	 * @return
+	 */
+	String getCreateDVT();
+
+	/**
+	 * 获取建立时默认值
+	 * 
+	 * @return
+	 */
+	String getCreateDV();
+
+	/**
+	 * 获取更新时默认值类型
+	 * 
+	 * @return
+	 */
+	String getUpdateDVT();
+
+	/**
+	 * 获取更新时默认值
+	 * 
+	 * @return
+	 */
+	String getUpdateDV();
+
+	/**
+	 * 获取对应的代码表
+	 * 
+	 * @return
+	 */
+	ICodeList getCodeList() throws Exception;
+
+	/**
+	 * 获取标题
+	 * 
+	 * @return
+	 */
+	String getCaption();
+
+	/**
+	 * 是否允许为空
+	 * 
+	 * @return
+	 */
+	boolean isAllowEmpty();
+
+	/**
+	 * 获取标题语言标识
+	 * 
+	 * @return
+	 */
+	String getCapLanId();
+
+	/**
+	 * 获取代码表标识
+	 * 
+	 * @return
+	 */
+	String getCodeListId();
+
+	/**
+	 * 获取值规则标识
+	 * 
+	 * @return
+	 */
+	String getValueRuleId();
+
+	/**
+	 * 获取输入忽略
+	 * 
+	 * @return
+	 */
+	int getIgnoreInput();
+
+	/**
+	 * 获取值处理器
+	 * 
+	 * @return
+	 */
+	String getValueTranslator();
+
+	/**
+	 * 获取用户词条分类
+	 * 
+	 * @return
+	 */
+	String getUserDictCatId();
+
 }
-

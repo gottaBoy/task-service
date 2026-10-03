@@ -30,12 +30,24 @@ implements ISRFExDataGridDSItem {
             }
         }
         String strMsgTagName = objValue.toString();
-        Object objValue2 = dr.Get("MSGFOLDER");
+        Object objValue2;
+        try {
+            objValue2 = dr.Get("MSGFOLDER");
+        }
+        catch (Exception exception) {
+            return strMsgTagName;
+        }
         if (objValue2 == null) {
             return strMsgTagName;
         }
         String strMsgFolder = objValue2.toString();
-        Object objValue3 = dr.Get("ISREADFLAG");
+        Object objValue3;
+        try {
+            objValue3 = dr.Get("ISREADFLAG");
+        }
+        catch (Exception exception) {
+            return strMsgTagName;
+        }
         if (objValue3 == null) {
             return strMsgTagName;
         }

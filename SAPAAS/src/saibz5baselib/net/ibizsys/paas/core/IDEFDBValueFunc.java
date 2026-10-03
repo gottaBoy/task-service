@@ -1,14 +1,22 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IModelBase;
+/**
+ * 属性数据库值函数
+ * @author Administrator
+ *
+ */
+public interface IDEFDBValueFunc extends IModelBase {
 
-public interface IDEFDBValueFunc
-extends IModelBase {
-    public String getCodeFormat();
-
-    public String[] getFields();
+	/**
+	 * 获取代码格式化串
+	 * @return
+	 */
+	String getCodeFormat();
+	
+	
+	/**
+	 * 获取相关的字段集合
+	 * @return
+	 */
+	String[] getFields();
 }
-

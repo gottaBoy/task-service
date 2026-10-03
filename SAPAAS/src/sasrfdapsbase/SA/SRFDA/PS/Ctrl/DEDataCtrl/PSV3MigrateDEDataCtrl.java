@@ -175,7 +175,7 @@ extends PSDEDataCtrl {
                     }
                 }
                 strSQL = "SELECT t1.* FROM v_srfdefield t1 WHERE t1.DEID=?";
-                Vector deFieldList = new Vector();
+                Vector<DEField> deFieldList = new Vector<>();
                 callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getGlobalHelper(), (Connection)connection, (String)"", (String)strSQL, (Vector)callParamList.GetList(), deFieldList, (String)DEField.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u5c5e\u6027\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -286,19 +286,19 @@ extends PSDEDataCtrl {
                 BaseDataEntity relatedDEField;
                 int nUIAction;
                 PSDEField psDEField;
-                Vector deFieldList;
+                Vector<DEField> deFieldList;
                 PSDataEntity psDataEntity;
                 PSDER psDER;
                 CallParamList callParamList = new CallParamList();
                 callParamList.Add((Object)psV3MigrateDE.getDEID());
                 String strSQL = "select t1.* from V_SRFDER1N t1  where t1.MINORDEID=?";
-                Vector deDER1NList = new Vector();
+                Vector<DER1N> deDER1NList = new Vector<>();
                 CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getGlobalHelper(), (Connection)connection, (String)"", (String)strSQL, (Vector)callParamList.GetList(), deDER1NList, (String)DER1N.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u5173\u7cfb(1:N)\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                 }
                 strSQL = "select t1.* from V_SRFDERINDEX t1  where t1.DEID=?";
-                Vector derINDEXList = new Vector();
+                Vector<DERINDEX> derINDEXList = new Vector<>();
                 callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getGlobalHelper(), (Connection)connection, (String)"", (String)strSQL, (Vector)callParamList.GetList(), derINDEXList, (String)DERINDEX.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u5173\u7cfb(Index)\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -349,7 +349,7 @@ extends PSDEDataCtrl {
                     callParamList.Reset();
                     callParamList.Add((Object)psV3MigrateDE.getDEID());
                     callParamList.Add((Object)der1N.getDERID());
-                    deFieldList = new Vector();
+                    deFieldList = new Vector<>();
                     callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getGlobalHelper(), (Connection)connection, (String)"", (String)strSQL, (Vector)callParamList.GetList(), deFieldList, (String)DEField.class.getName());
                     if (callResult.isError()) {
                         throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u5c5e\u6027\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -442,7 +442,7 @@ extends PSDEDataCtrl {
                         strSQL = "SELECT t1.* FROM v_srfdefield t1 WHERE t1.DEID=? AND t1.DATATYPE='INHERIT'";
                         callParamList.Reset();
                         callParamList.Add((Object)psV3MigrateDE.getDEID());
-                        deFieldList = new Vector();
+                        deFieldList = new Vector<>();
                         callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getGlobalHelper(), (Connection)connection, (String)"", (String)strSQL, (Vector)callParamList.GetList(), deFieldList, (String)DEField.class.getName());
                         if (callResult.isError()) {
                             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u5c5e\u6027\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -536,7 +536,7 @@ extends PSDEDataCtrl {
                 CallParamList callParamList = new CallParamList();
                 callParamList.Add((Object)psV3MigrateDE.getDEID());
                 String strSQL = "select t1.* from V_SRFCODELIST t1  where t1.DEID=?";
-                Vector deCodeListList = new Vector();
+                Vector<CodeList> deCodeListList = new Vector<>();
                 CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getGlobalHelper(), (Connection)connection, (String)"", (String)strSQL, (Vector)callParamList.GetList(), deCodeListList, (String)CodeList.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u4ee3\u7801\u8868\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -673,7 +673,7 @@ extends PSDEDataCtrl {
                 String strSQL = "SELECT t1.* FROM V_SRFDATAGRID t1 WHERE DEID=?";
                 CallParamList callParamList = new CallParamList();
                 callParamList.Add((Object)psV3MigrateDE.getDEID());
-                Vector dataGridList = new Vector();
+                Vector<DataGrid> dataGridList = new Vector<>();
                 callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getGlobalHelper(), (Connection)connection, (String)"", (String)strSQL, (Vector)callParamList.GetList(), dataGridList, (String)DataGrid.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u8868\u683c\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -748,7 +748,7 @@ extends PSDEDataCtrl {
                 String strSQL = "SELECT t1.* FROM V_SRFFORM t1 WHERE DEID=?";
                 CallParamList callParamList = new CallParamList();
                 callParamList.Add((Object)psV3MigrateDE.getDEID());
-                Vector formList = new Vector();
+                Vector<Form> formList = new Vector<>();
                 callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getGlobalHelper(), (Connection)connection, (String)"", (String)strSQL, (Vector)callParamList.GetList(), formList, (String)Form.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u8868\u5355\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -782,4 +782,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

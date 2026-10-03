@@ -137,9 +137,9 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
             PSSysSFPub pSSysSFPub = (PSSysSFPub)iService.getDEModel().createEntity();
             pSSysSFPub.set("PSSYSSFPUBID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPub);
+                iService.getTemp(pSSysSFPub);
             } else {
-                iService.get((IEntity)pSSysSFPub);
+                iService.get(pSSysSFPub);
             }
             this.onFillParentInfo_PSSysSFPub(pSSysSFPubRef, pSSysSFPub);
             return;
@@ -149,14 +149,14 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
             PSSysSFPub pSSysSFPub = (PSSysSFPub)iService.getDEModel().createEntity();
             pSSysSFPub.set("PSSYSSFPUBID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPub);
+                iService.getTemp(pSSysSFPub);
             } else {
-                iService.get((IEntity)pSSysSFPub);
+                iService.get(pSSysSFPub);
             }
             this.onFillParentInfo_RefPSSysSFPub(pSSysSFPubRef, pSSysSFPub);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysSFPubRef, string, string2, string3);
+        super.onFillParentInfo(pSSysSFPubRef, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
         if (bl && pSSysSFPubRef.getValidFlag() == null) {
             pSSysSFPubRef.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysSFPubRef, bl);
+        super.onFillEntityFullInfo(pSSysSFPubRef, bl);
         this.onFillEntityFullInfo_PSSysSFPub(pSSysSFPubRef, bl);
         this.onFillEntityFullInfo_RefPSSysSFPub(pSSysSFPubRef, bl);
     }
@@ -189,7 +189,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
     }
 
     protected void onWriteBackParent(PSSysSFPubRef pSSysSFPubRef, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysSFPubRef, bl);
+        super.onWriteBackParent(pSSysSFPubRef, bl);
     }
 
     public ArrayList<PSSysSFPubRef> selectByPSSysSFPub(PSSysSFPubBase pSSysSFPubBase) throws Exception {
@@ -272,7 +272,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
         ArrayList<PSSysSFPubRef> arrayList = this.selectByPSSysSFPub(pSSysSFPub);
         this.onBeforeRemoveByPSSysSFPub(pSSysSFPub, arrayList);
         for (PSSysSFPubRef pSSysSFPubRef : arrayList) {
-            this.remove((IEntity)pSSysSFPubRef);
+            this.remove(pSSysSFPubRef);
         }
         this.onAfterRemoveByPSSysSFPub(pSSysSFPub, arrayList);
     }
@@ -290,8 +290,8 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
         ArrayList<PSSysSFPubRef> arrayList = this.selectByRefPSSysSFPub(pSSysSFPub, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPUB");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPub);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSFPUBREF_PSSYSSFPUB_REFPSSYSSFPUBID", "", iDataEntityModel.getName(), "PSSYSSFPUBREF", iDataEntityModel.getDataInfo((IEntity)pSSysSFPub), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPub);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSFPUBREF_PSSYSSFPUB_REFPSSYSSFPUBID", "", iDataEntityModel.getName(), "PSSYSSFPUBREF", iDataEntityModel.getDataInfo(pSSysSFPub), arrayList.get(0)));
         }
     }
 
@@ -324,7 +324,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
         ArrayList<PSSysSFPubRef> arrayList = this.selectByRefPSSysSFPub(pSSysSFPub);
         this.onBeforeRemoveByRefPSSysSFPub(pSSysSFPub, arrayList);
         for (PSSysSFPubRef pSSysSFPubRef : arrayList) {
-            this.remove((IEntity)pSSysSFPubRef);
+            this.remove(pSSysSFPubRef);
         }
         this.onAfterRemoveByRefPSSysSFPub(pSSysSFPub, arrayList);
     }
@@ -345,7 +345,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
 
     protected void replaceParentInfo(PSSysSFPubRef pSSysSFPubRef, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysSFPubRef, cloneSession);
+        super.replaceParentInfo(pSSysSFPubRef, cloneSession);
         if (pSSysSFPubRef.getPSSysSFPubId() != null && (iEntity = cloneSession.getEntity("PSSYSSFPUB", (Object)pSSysSFPubRef.getPSSysSFPubId())) != null) {
             this.onFillParentInfo_PSSysSFPub(pSSysSFPubRef, (PSSysSFPub)iEntity);
         }
@@ -355,7 +355,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysSFPubRef pSSysSFPubRef, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysSFPubRef, bl);
+        super.onRemoveEntityUncopyValues(pSSysSFPubRef, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysSFPubRef pSSysSFPubRef, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -382,7 +382,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysSFPubRef, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysSFPubRef, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysSFPubRef, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSysSFPubRef pSSysSFPubRef, boolean bl2, boolean bl3) throws Exception {
@@ -395,7 +395,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysSFPubRef, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysSFPubRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -417,7 +417,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysSFPubRef, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysSFPubRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -442,7 +442,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPubId_Default((IEntity)pSSysSFPubRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPubId_Default(pSSysSFPubRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPUBID");
@@ -467,7 +467,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPubRefId_Default((IEntity)pSSysSFPubRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPubRefId_Default(pSSysSFPubRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPUBREFID");
@@ -492,7 +492,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPubRefName_Default((IEntity)pSSysSFPubRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPubRefName_Default(pSSysSFPubRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPUBREFNAME");
@@ -517,7 +517,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefPSSysSFPubId_Default((IEntity)pSSysSFPubRef, bl2, bl3);
+            string2 = this.onTestValueRule_RefPSSysSFPubId_Default(pSSysSFPubRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFPSSYSSFPUBID");
@@ -559,7 +559,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysSFPubRef, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysSFPubRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -572,11 +572,11 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
     }
 
     protected void onSyncEntity(PSSysSFPubRef pSSysSFPubRef, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysSFPubRef, bl);
+        super.onSyncEntity(pSSysSFPubRef, bl);
     }
 
     protected void onSyncIndexEntities(PSSysSFPubRef pSSysSFPubRef, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysSFPubRef, bl);
+        super.onSyncIndexEntities(pSSysSFPubRef, bl);
     }
 
     public Object getDataContextValue(PSSysSFPubRef pSSysSFPubRef, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -584,7 +584,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysSFPubRef, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysSFPubRef, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysSFPub pSSysSFPub = pSSysSFPubRef.getPSSysSFPub();
@@ -595,7 +595,7 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
     }
 
     protected void onExportMajorModel(PSSysSFPubRef pSSysSFPubRef, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysSFPubRef, arrayList, n);
+        super.onExportMajorModel(pSSysSFPubRef, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -772,14 +772,14 @@ extends PSCoreSysServiceBase<PSSysSFPubRef> {
 
     protected boolean onMergeChild(String string, String string2, PSSysSFPubRef pSSysSFPubRef) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysSFPubRef)) {
+        if (super.onMergeChild(string, string2, pSSysSFPubRef)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysSFPubRef pSSysSFPubRef) throws Exception {
-        super.onUpdateParent((IEntity)pSSysSFPubRef);
+        super.onUpdateParent(pSSysSFPubRef);
     }
 
     @Override

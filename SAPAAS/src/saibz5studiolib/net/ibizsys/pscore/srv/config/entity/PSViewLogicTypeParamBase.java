@@ -1611,7 +1611,7 @@ implements Serializable {
                 PSViewLogicType pSViewLogicType = new PSViewLogicType();
                 pSViewLogicType.setPSViewLogicTypeId(this.getPSViewLogicTypeId());
                 PSViewLogicTypeService pSViewLogicTypeService = (PSViewLogicTypeService)ServiceGlobal.getService(PSViewLogicTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSViewLogicTypeService.autoGet((IEntity)pSViewLogicType);
+                pSViewLogicTypeService.autoGet(pSViewLogicType);
                 this.psviewlogictype = pSViewLogicType;
             }
             return this.psviewlogictype;

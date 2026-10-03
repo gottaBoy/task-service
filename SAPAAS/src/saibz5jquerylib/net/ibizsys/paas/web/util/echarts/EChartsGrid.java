@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.web.util.echarts;
 
-import net.ibizsys.paas.web.util.echarts.EChartsCoordinate;
+/**
+ * EChart 表格坐标系对象
+ * 
+ * @author Administrator
+ *
+ */
+public class EChartsGrid extends EChartsCoordinate {
 
-public class EChartsGrid
-extends EChartsCoordinate {
 }
-

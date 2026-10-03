@@ -52,7 +52,7 @@ extends DELogicModelBase<PSDELLCond> {
         PSDELogicParam pSDELogicParam = (PSDELogicParam)iActionContext.getParam("DELogicParam");
         SessionFactory sessionFactory = iActionContext.getSessionFactory();
         IService iService = ServiceGlobal.getService(PSDELogicParamService.class, (SessionFactory)sessionFactory);
-        iService.executeAction("GETTEMP", (IEntity)pSDELogicParam);
+        iService.executeAction("GETTEMP", pSDELogicParam);
         this.executeFillDefaultParam(iActionContext);
     }
 

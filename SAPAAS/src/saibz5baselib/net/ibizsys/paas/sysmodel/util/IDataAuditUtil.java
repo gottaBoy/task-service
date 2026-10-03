@@ -1,11 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.sysmodel.util;
 
 import net.ibizsys.paas.sysmodel.ISystemUtil;
 
-public interface IDataAuditUtil
-extends ISystemUtil {
-}
+/**
+ * 数据审计辅助功能
+ * @author Administrator
+ *
+ */
+public interface IDataAuditUtil extends ISystemUtil {
 
+}

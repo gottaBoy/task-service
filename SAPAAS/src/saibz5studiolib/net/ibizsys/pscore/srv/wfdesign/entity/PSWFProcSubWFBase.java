@@ -2485,7 +2485,7 @@ implements Serializable {
                 PSDEDataSet pSDEDataSet = new PSDEDataSet();
                 pSDEDataSet.setPSDEDataSetId(this.getEmbedPSDEDSId());
                 PSDEDataSetService pSDEDataSetService = (PSDEDataSetService)ServiceGlobal.getService(PSDEDataSetService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataSetService.autoGet((IEntity)pSDEDataSet);
+                pSDEDataSetService.autoGet(pSDEDataSet);
                 this.embedpsdeds = pSDEDataSet;
             }
             return this.embedpsdeds;
@@ -2511,7 +2511,7 @@ implements Serializable {
                 PSWFDE pSWFDE = new PSWFDE();
                 pSWFDE.setPSWFDEId(this.getEmbedPSWFDEId());
                 PSWFDEService pSWFDEService = (PSWFDEService)ServiceGlobal.getService(PSWFDEService.class, (SessionFactory)this.getSessionFactory());
-                pSWFDEService.autoGet((IEntity)pSWFDE);
+                pSWFDEService.autoGet(pSWFDE);
                 this.embedpswfde = pSWFDE;
             }
             return this.embedpswfde;
@@ -2537,7 +2537,7 @@ implements Serializable {
                 PSWFProcess pSWFProcess = new PSWFProcess();
                 pSWFProcess.setPSWFProcessId(this.getPSWFProcessId());
                 PSWFProcessService pSWFProcessService = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
-                pSWFProcessService.autoGet((IEntity)pSWFProcess);
+                pSWFProcessService.autoGet(pSWFProcess);
                 this.pswfprocess = pSWFProcess;
             }
             return this.pswfprocess;
@@ -2563,7 +2563,7 @@ implements Serializable {
                 PSWFVersion pSWFVersion = new PSWFVersion();
                 pSWFVersion.setPSWFVersionId(this.getEmbedPSWFVerId());
                 PSWFVersionService pSWFVersionService = (PSWFVersionService)ServiceGlobal.getService(PSWFVersionService.class, (SessionFactory)this.getSessionFactory());
-                pSWFVersionService.autoGet((IEntity)pSWFVersion);
+                pSWFVersionService.autoGet(pSWFVersion);
                 this.embedpswfver = pSWFVersion;
             }
             return this.embedpswfver;
@@ -2589,7 +2589,7 @@ implements Serializable {
                 PSWorkflow pSWorkflow = new PSWorkflow();
                 pSWorkflow.setPSWorkflowId(this.getEmbedPSWFId());
                 PSWorkflowService pSWorkflowService = (PSWorkflowService)ServiceGlobal.getService(PSWorkflowService.class, (SessionFactory)this.getSessionFactory());
-                pSWorkflowService.autoGet((IEntity)pSWorkflow);
+                pSWorkflowService.autoGet(pSWorkflow);
                 this.embedpswf = pSWorkflow;
             }
             return this.embedpswf;

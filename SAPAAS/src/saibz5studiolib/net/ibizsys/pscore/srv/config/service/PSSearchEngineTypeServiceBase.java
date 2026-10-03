@@ -107,7 +107,7 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
     }
 
     protected void onFillParentInfo(PSSearchEngineType pSSearchEngineType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSearchEngineType, string, string2, string3);
+        super.onFillParentInfo(pSSearchEngineType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -118,11 +118,11 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
         if (bl && pSSearchEngineType.getValidFlag() == null) {
             pSSearchEngineType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSearchEngineType, bl);
+        super.onFillEntityFullInfo(pSSearchEngineType, bl);
     }
 
     protected void onWriteBackParent(PSSearchEngineType pSSearchEngineType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSearchEngineType, bl);
+        super.onWriteBackParent(pSSearchEngineType, bl);
     }
 
     @Override
@@ -131,7 +131,7 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSearchEngineType pSSearchEngineType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSearchEngineType, bl);
+        super.onRemoveEntityUncopyValues(pSSearchEngineType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSearchEngineType pSSearchEngineType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -155,7 +155,7 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSearchEngineType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSearchEngineType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSearchEngineType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSearchEngineType pSSearchEngineType, boolean bl2, boolean bl3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSearchEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSearchEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSearchEngineTypeId_Default((IEntity)pSSearchEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSearchEngineTypeId_Default(pSSearchEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSEARCHENGINETYPEID");
@@ -218,7 +218,7 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSearchEngineTypeName_Default((IEntity)pSSearchEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSearchEngineTypeName_Default(pSSearchEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSEARCHENGINETYPENAME");
@@ -240,7 +240,7 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeTag_Default((IEntity)pSSearchEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeTag_Default(pSSearchEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPETAG");
@@ -262,7 +262,7 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeTag2_Default((IEntity)pSSearchEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeTag2_Default(pSSearchEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPETAG2");
@@ -287,7 +287,7 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSearchEngineType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSearchEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -300,11 +300,11 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
     }
 
     protected void onSyncEntity(PSSearchEngineType pSSearchEngineType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSearchEngineType, bl);
+        super.onSyncEntity(pSSearchEngineType, bl);
     }
 
     protected void onSyncIndexEntities(PSSearchEngineType pSSearchEngineType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSearchEngineType, bl);
+        super.onSyncIndexEntities(pSSearchEngineType, bl);
     }
 
     public Object getDataContextValue(PSSearchEngineType pSSearchEngineType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -312,14 +312,14 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSearchEngineType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSearchEngineType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSearchEngineType pSSearchEngineType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSearchEngineType, arrayList, n);
+        super.onExportMajorModel(pSSearchEngineType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -454,14 +454,14 @@ extends PSCoreSysServiceBase<PSSearchEngineType> {
 
     protected boolean onMergeChild(String string, String string2, PSSearchEngineType pSSearchEngineType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSearchEngineType)) {
+        if (super.onMergeChild(string, string2, pSSearchEngineType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSearchEngineType pSSearchEngineType) throws Exception {
-        super.onUpdateParent((IEntity)pSSearchEngineType);
+        super.onUpdateParent(pSSearchEngineType);
     }
 
     @Override

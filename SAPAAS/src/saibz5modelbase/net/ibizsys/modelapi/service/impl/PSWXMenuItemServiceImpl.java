@@ -112,7 +112,7 @@ implements IPSWXMenuItemService {
     @Override
     protected List<PSWXMenuItem> onListAll() throws Exception {
         ArrayList<PSWXMenuItem> list = new ArrayList<PSWXMenuItem>();
-        List pswxmenus = PSModelServiceUtil.getInstance().getPSWXMenuService().listAll();
+        List<PSWXMenu> pswxmenus = PSModelServiceUtil.getInstance().getPSWXMenuService().listAll();
         if (pswxmenus != null) {
             for (PSWXMenu parent : pswxmenus) {
                 List<PSWXMenuItem> items = this.listByPSWXMenu(parent);

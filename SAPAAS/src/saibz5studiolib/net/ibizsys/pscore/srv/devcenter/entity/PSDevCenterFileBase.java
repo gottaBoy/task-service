@@ -2332,7 +2332,7 @@ implements Serializable {
                 PSDevCenterFile pSDevCenterFile = new PSDevCenterFile();
                 pSDevCenterFile.setPSDevCenterFileId(this.getPPSDevCenterFileId());
                 PSDevCenterFileService pSDevCenterFileService = (PSDevCenterFileService)ServiceGlobal.getService(PSDevCenterFileService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterFileService.autoGet((IEntity)pSDevCenterFile);
+                pSDevCenterFileService.autoGet(pSDevCenterFile);
                 this.ppsdevcenterfile = pSDevCenterFile;
             }
             return this.ppsdevcenterfile;
@@ -2358,7 +2358,7 @@ implements Serializable {
                 PSDevCenterFile pSDevCenterFile = new PSDevCenterFile();
                 pSDevCenterFile.setPSDevCenterFileId(this.getRootPSDevCenterFileId());
                 PSDevCenterFileService pSDevCenterFileService = (PSDevCenterFileService)ServiceGlobal.getService(PSDevCenterFileService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterFileService.autoGet((IEntity)pSDevCenterFile);
+                pSDevCenterFileService.autoGet(pSDevCenterFile);
                 this.rootpsdevcenterfile = pSDevCenterFile;
             }
             return this.rootpsdevcenterfile;
@@ -2384,7 +2384,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -2410,7 +2410,7 @@ implements Serializable {
                 PSNDFile pSNDFile = new PSNDFile();
                 pSNDFile.setPSNDFileId(this.getPSNDFileId());
                 PSNDFileService pSNDFileService = (PSNDFileService)ServiceGlobal.getService(PSNDFileService.class, (SessionFactory)this.getSessionFactory());
-                pSNDFileService.autoGet((IEntity)pSNDFile);
+                pSNDFileService.autoGet(pSNDFile);
                 this.psndfile = pSNDFile;
             }
             return this.psndfile;
@@ -2436,7 +2436,7 @@ implements Serializable {
                 PSTaskServer pSTaskServer = new PSTaskServer();
                 pSTaskServer.setPSTaskServerId(this.getPSTaskServerId());
                 PSTaskServerService pSTaskServerService = (PSTaskServerService)ServiceGlobal.getService(PSTaskServerService.class, (SessionFactory)this.getSessionFactory());
-                pSTaskServerService.autoGet((IEntity)pSTaskServer);
+                pSTaskServerService.autoGet(pSTaskServer);
                 this.pstaskserver = pSTaskServer;
             }
             return this.pstaskserver;

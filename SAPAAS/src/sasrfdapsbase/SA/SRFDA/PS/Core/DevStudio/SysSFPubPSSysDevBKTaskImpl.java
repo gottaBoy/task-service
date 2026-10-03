@@ -30,6 +30,7 @@ import SA.SRFDA.PS.Core.PSObjectImpl;
 import SA.SRFDA.PS.Core.PSSystemObjectImpl;
 import SA.SRFDA.PS.Core.PSTaskServerEnvImpl;
 import SA.SRFDA.PS.Core.Pub.IPSCodePublisher;
+import SA.SRFDA.PS.Core.Pub.IPSSFSysCodePublisher;
 import SA.SRFDA.PS.Core.Pub.IPSSysPubRuntime;
 import SA.SRFDA.PS.Core.Pub.IPSSysSFPub;
 import SA.SRFDA.PS.Core.Pub.IPSSysSFUserCode;
@@ -75,7 +76,7 @@ extends PubDynaInstModelPSSysDevBKTaskImpl {
         PSSysSFPubService psSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         net.ibizsys.pscore.srv.sysdesign.entity.PSSysSFPub psSysSFPub = new net.ibizsys.pscore.srv.sysdesign.entity.PSSysSFPub();
         psSysSFPub.setPSSysSFPubId(this.psSysDevBKTask.getTASKPARAM());
-        psSysSFPubService.get((IEntity)psSysSFPub);
+        psSysSFPubService.get(psSysSFPub);
         return this.generateCode(psSysSFPub);
     }
 
@@ -194,7 +195,7 @@ extends PubDynaInstModelPSSysDevBKTaskImpl {
                 }
                 this.generateUserCode((IPSSysSFPub)((Object)iPSSysSFPub));
             }
-            if (bV2 && (iPSSysSFPub.isPubModel() || bPubModelMode)) {
+            if (bV2 && (((IPSSysSFPub)((Object)iPSSysSFPub)).isPubModel() || bPubModelMode)) {
                 this.generateModel((IPSSysSFPub)((Object)iPSSysSFPub), bPubModelMode);
             }
             if (this.getPSSysPubRuntime() != null) {
@@ -366,7 +367,7 @@ extends PubDynaInstModelPSSysDevBKTaskImpl {
                 }
                 iPSSFCodeType = this.psSFCodeTypeList.remove(0);
             }
-            IPSCodePublisher iPSSFSysCodePublisher = null;
+            IPSSFSysCodePublisher iPSSFSysCodePublisher = null;
             try {
                 PSSFStyleParamImpl.setCurrent(this.iPSSysSFPub.getPSSFStyleParam());
                 PSPublishContextImpl psPublishContextImpl = new PSPublishContextImpl(SysSFPubPSSysDevBKTaskImpl.this.getDAGlobalHelper(), null);
@@ -417,4 +418,3 @@ extends PubDynaInstModelPSSysDevBKTaskImpl {
         }
     }
 }
-

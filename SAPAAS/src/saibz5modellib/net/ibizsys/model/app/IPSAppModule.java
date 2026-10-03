@@ -1,12 +1,20 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app;
 
-import net.ibizsys.model.app.IPSApplicationObject;
 
-public interface IPSAppModule
-extends IPSApplicationObject {
-    public String getCodeName();
+/**
+ * 应用模块对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSAppModule extends IPSApplicationObject
+{
+	/**
+	 * 代码名称
+	 * @return
+	 */
+	String getCodeName();
+
+
 }
+
 

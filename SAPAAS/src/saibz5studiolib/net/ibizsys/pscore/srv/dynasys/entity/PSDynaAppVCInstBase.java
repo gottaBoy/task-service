@@ -1205,7 +1205,7 @@ implements Serializable {
                 PSDynaAppViewCtrl pSDynaAppViewCtrl = new PSDynaAppViewCtrl();
                 pSDynaAppViewCtrl.setPSDynaAppViewCtrlId(this.getPSDynaAppViewCtrlId());
                 PSDynaAppViewCtrlService pSDynaAppViewCtrlService = (PSDynaAppViewCtrlService)ServiceGlobal.getService(PSDynaAppViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaAppViewCtrlService.autoGet((IEntity)pSDynaAppViewCtrl);
+                pSDynaAppViewCtrlService.autoGet(pSDynaAppViewCtrl);
                 this.psdynaappviewctrl = pSDynaAppViewCtrl;
             }
             return this.psdynaappviewctrl;
@@ -1231,7 +1231,7 @@ implements Serializable {
                 PSDynaAppViewInst pSDynaAppViewInst = new PSDynaAppViewInst();
                 pSDynaAppViewInst.setPSDynaAppViewInstId(this.getPSDynaAppViewInstId());
                 PSDynaAppViewInstService pSDynaAppViewInstService = (PSDynaAppViewInstService)ServiceGlobal.getService(PSDynaAppViewInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaAppViewInstService.autoGet((IEntity)pSDynaAppViewInst);
+                pSDynaAppViewInstService.autoGet(pSDynaAppViewInst);
                 this.psdynaappviewinst = pSDynaAppViewInst;
             }
             return this.psdynaappviewinst;
@@ -1257,7 +1257,7 @@ implements Serializable {
                 PSDynaDEFormInst pSDynaDEFormInst = new PSDynaDEFormInst();
                 pSDynaDEFormInst.setPSDynaDEFormInstId(this.getPSDynaDEFormInstId());
                 PSDynaDEFormInstService pSDynaDEFormInstService = (PSDynaDEFormInstService)ServiceGlobal.getService(PSDynaDEFormInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaDEFormInstService.autoGet((IEntity)pSDynaDEFormInst);
+                pSDynaDEFormInstService.autoGet(pSDynaDEFormInst);
                 this.psdynadeform = pSDynaDEFormInst;
             }
             return this.psdynadeform;

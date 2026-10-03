@@ -1,30 +1,55 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
-import net.ibizsys.paas.codelist.ICodeList;
-import net.ibizsys.paas.sysmodel.CodeListGlobal;
 import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
+import net.ibizsys.paas.sysmodel.CodeListGlobal;
 
-@CodeList(id="04d9f3b1fba109da46d2381b8c8c86a0", name="\u7edf\u4e00\u8d44\u6e90\u7c7b\u578b", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="PAGE", text="\u5185\u7f6e\u9875\u9762", realtext="\u5185\u7f6e\u9875\u9762"), @CodeItem(value="REPORT", text="\u62a5\u8868", realtext="\u62a5\u8868"), @CodeItem(value="CUSTOM", text="\u81ea\u5b9a\u4e49", realtext="\u81ea\u5b9a\u4e49")})
-public abstract class UniResTypeCodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String PAGE = "PAGE";
-    public static final String REPORT = "REPORT";
-    public static final String CUSTOM = "CUSTOM";
+
+@CodeList(id="04d9f3b1fba109da46d2381b8c8c86a0",name="统一资源类型",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="PAGE",text="内置页面",realtext="内置页面")
+    ,@CodeItem(value="REPORT",text="报表",realtext="报表")
+    ,@CodeItem(value="CUSTOM",text="自定义",realtext="自定义")
+})
+
+
+/**
+ * 静态代码表[统一资源类型]模型基类
+ */
+public abstract class UniResTypeCodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  内置页面，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String PAGE = "PAGE";
+    /**
+     *  报表，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String REPORT = "REPORT";
+    /**
+     *  自定义，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String CUSTOM = "CUSTOM";
 
     public UniResTypeCodeListModelBase() {
+        super();
         this.initAnnotation(UniResTypeCodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.UniResTypeCodeListModel", this);
     }
 
-    public static ICodeList getInstance() throws Exception {
+    /**
+     * 获取当前代码表对象实例
+     */
+    public static net.ibizsys.paas.codelist.ICodeList getInstance() throws Exception {
         return CodeListGlobal.getCodeList("net.ibizsys.psrt.srv.codelist.UniResTypeCodeListModel");
     }
-}
 
+}

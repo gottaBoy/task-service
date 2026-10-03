@@ -120,7 +120,7 @@ extends PSCoreSysServiceBase<PSSvrProvider> {
     }
 
     protected void onFillParentInfo(PSSvrProvider pSSvrProvider, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSvrProvider, string, string2, string3);
+        super.onFillParentInfo(pSSvrProvider, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -131,11 +131,11 @@ extends PSCoreSysServiceBase<PSSvrProvider> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSvrProvider, bl);
+        super.onFillEntityFullInfo(pSSvrProvider, bl);
     }
 
     protected void onWriteBackParent(PSSvrProvider pSSvrProvider, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSvrProvider, bl);
+        super.onWriteBackParent(pSSvrProvider, bl);
     }
 
     @Override
@@ -148,7 +148,7 @@ extends PSCoreSysServiceBase<PSSvrProvider> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSvrProvider pSSvrProvider, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSvrProvider, bl);
+        super.onRemoveEntityUncopyValues(pSSvrProvider, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSvrProvider pSSvrProvider, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -166,7 +166,7 @@ extends PSCoreSysServiceBase<PSSvrProvider> {
         if ((entityFieldError = this.onCheckField_SPSN(bl, pSSvrProvider, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSvrProvider, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSvrProvider, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSvrProvider pSSvrProvider, boolean bl2, boolean bl3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSSvrProvider> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSvrProvider, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSvrProvider, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -204,7 +204,7 @@ extends PSCoreSysServiceBase<PSSvrProvider> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrProviderId_Default((IEntity)pSSvrProvider, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrProviderId_Default(pSSvrProvider, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRPROVIDERID");
@@ -229,7 +229,7 @@ extends PSCoreSysServiceBase<PSSvrProvider> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrProviderName_Default((IEntity)pSSvrProvider, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrProviderName_Default(pSSvrProvider, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRPROVIDERNAME");
@@ -254,7 +254,7 @@ extends PSCoreSysServiceBase<PSSvrProvider> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SPSN_Default((IEntity)pSSvrProvider, bl2, bl3);
+            string2 = this.onTestValueRule_SPSN_Default(pSSvrProvider, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SPSN");
@@ -267,11 +267,11 @@ extends PSCoreSysServiceBase<PSSvrProvider> {
     }
 
     protected void onSyncEntity(PSSvrProvider pSSvrProvider, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSvrProvider, bl);
+        super.onSyncEntity(pSSvrProvider, bl);
     }
 
     protected void onSyncIndexEntities(PSSvrProvider pSSvrProvider, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSvrProvider, bl);
+        super.onSyncIndexEntities(pSSvrProvider, bl);
     }
 
     public Object getDataContextValue(PSSvrProvider pSSvrProvider, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -279,14 +279,14 @@ extends PSCoreSysServiceBase<PSSvrProvider> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSvrProvider, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSvrProvider, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSvrProvider pSSvrProvider, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSvrProvider, arrayList, n);
+        super.onExportMajorModel(pSSvrProvider, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -399,14 +399,14 @@ extends PSCoreSysServiceBase<PSSvrProvider> {
 
     protected boolean onMergeChild(String string, String string2, PSSvrProvider pSSvrProvider) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSvrProvider)) {
+        if (super.onMergeChild(string, string2, pSSvrProvider)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSvrProvider pSSvrProvider) throws Exception {
-        super.onUpdateParent((IEntity)pSSvrProvider);
+        super.onUpdateParent(pSSvrProvider);
     }
 
     @Override

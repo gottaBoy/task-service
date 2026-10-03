@@ -988,7 +988,7 @@ implements Serializable {
                 PSDynaSys pSDynaSys = new PSDynaSys();
                 pSDynaSys.setPSDynaSysId(this.getPSDynaSysId());
                 PSDynaSysService pSDynaSysService = (PSDynaSysService)ServiceGlobal.getService(PSDynaSysService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaSysService.autoGet((IEntity)pSDynaSys);
+                pSDynaSysService.autoGet(pSDynaSys);
                 this.psdynasys = pSDynaSys;
             }
             return this.psdynasys;
@@ -1014,7 +1014,7 @@ implements Serializable {
                 PSDynaWF pSDynaWF = new PSDynaWF();
                 pSDynaWF.setPSDynaWFId(this.getPSDynaWFId());
                 PSDynaWFService pSDynaWFService = (PSDynaWFService)ServiceGlobal.getService(PSDynaWFService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaWFService.autoGet((IEntity)pSDynaWF);
+                pSDynaWFService.autoGet(pSDynaWF);
                 this.psdynawf = pSDynaWF;
             }
             return this.psdynawf;

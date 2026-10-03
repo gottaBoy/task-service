@@ -71,7 +71,7 @@ extends PSDCDBViewServiceBase {
         pSDCDBView2.set("psdevcenterid", this.getWebContext().getCurOrgId());
         pSDCDBView2.setPSDCDBViewId(pSDCDBView.getPSDCDBViewId());
         try {
-            this.executeAction("X2G_GETCODE", (IEntity)pSDCDBView2);
+            this.executeAction("X2G_GETCODE", pSDCDBView2);
         }
         catch (Exception exception) {
             log.error((Object)exception);

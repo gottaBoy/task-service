@@ -54,7 +54,7 @@ extends PSDEDataQueryServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSDEDataQuery.getPSDEDataQueryId())) {
             this.getTempMajor(pSDEDataQuery);
         } else {
-            this.getTemp((IEntity)pSDEDataQuery);
+            this.getTemp(pSDEDataQuery);
         }
         pSDEDataQuery.setDQJoinModel(this.getDQJoinModel(pSDEDataQuery));
     }
@@ -105,7 +105,6 @@ extends PSDEDataQueryServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEDQJoin pSDEDQJoin2;
                 PSDEDQJoinService pSDEDQJoinService = (PSDEDQJoinService)ServiceGlobal.getService((String)PSDEDQJoinService.class.getCanonicalName(), (SessionFactory)PSDEDataQueryService.this.getSessionFactory());
                 ArrayList<PSDEDQJoin> arrayList = pSDEDQJoinService.selectTempByPSDEDQ(pSDEDataQuery2);
                 HashMap<String, PSDEDQJoin> hashMap = new HashMap<String, PSDEDQJoin>();
@@ -116,15 +115,16 @@ extends PSDEDataQueryServiceBase {
                 if (StringHelper.isNullOrEmpty((String)object)) {
                     object = WebContext.getCurrent().getPostValue("dqmodel");
                 }
-                if ((pSDEDQJoin2 = XmlNode.loadFromXML((String)object)) != null) {
-                    PSDEDataQueryService.this.updatePSDEDQJoins(pSDEDataQuery2, null, (XmlNode)pSDEDQJoin2, hashMap);
-                    pSDEDataQuery2.setDQJoinModel(XmlNode.export((XmlNode)pSDEDQJoin2));
+                XmlNode queryModel = XmlNode.loadFromXML((String)object);
+                if (queryModel != null) {
+                    PSDEDataQueryService.this.updatePSDEDQJoins(pSDEDataQuery2, null, queryModel, hashMap);
+                    pSDEDataQuery2.setDQJoinModel(XmlNode.export(queryModel));
                 } else {
                     pSDEDataQuery2.setDQJoinModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEDQJoin pSDEDQJoin3 : hashMap.values()) {
-                        pSDEDQJoinService.removeTemp((IEntity)pSDEDQJoin3);
+                        pSDEDQJoinService.removeTemp(pSDEDQJoin3);
                     }
                 }
             }
@@ -138,7 +138,6 @@ extends PSDEDataQueryServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEDQJoin pSDEDQJoin2;
                 PSDEDQJoinService pSDEDQJoinService = (PSDEDQJoinService)ServiceGlobal.getService((String)PSDEDQJoinService.class.getCanonicalName(), (SessionFactory)PSDEDataQueryService.this.getSessionFactory());
                 ArrayList<PSDEDQJoin> arrayList = pSDEDQJoinService.selectTempByPSDEDQ(pSDEDataQuery2);
                 HashMap<String, PSDEDQJoin> hashMap = new HashMap<String, PSDEDQJoin>();
@@ -146,18 +145,18 @@ extends PSDEDataQueryServiceBase {
                     hashMap.put(pSDEDQJoin2.getPSDEDQJoinId(), pSDEDQJoin2);
                 }
                 String string = pSDEDataQuery2.getDQJoinModel();
-                pSDEDQJoin2 = XmlNode.loadFromXML((String)string);
-                if (pSDEDQJoin2 != null) {
-                    pSDEDQJoin2.setAttribute("PSDEID", pSDEDataQuery2.getPSDEId());
-                    pSDEDQJoin2.setAttribute("PSDEDATAQUERYID", pSDEDataQuery2.getPSDEDataQueryId());
-                    PSDEDataQueryService.this.updatePSDEDQJoins(pSDEDataQuery2, null, (XmlNode)pSDEDQJoin2, hashMap);
-                    pSDEDataQuery2.setDQJoinModel(XmlNode.export((XmlNode)pSDEDQJoin2));
+                XmlNode queryModel = XmlNode.loadFromXML(string);
+                if (queryModel != null) {
+                    queryModel.setAttribute("PSDEID", pSDEDataQuery2.getPSDEId());
+                    queryModel.setAttribute("PSDEDATAQUERYID", pSDEDataQuery2.getPSDEDataQueryId());
+                    PSDEDataQueryService.this.updatePSDEDQJoins(pSDEDataQuery2, null, queryModel, hashMap);
+                    pSDEDataQuery2.setDQJoinModel(XmlNode.export(queryModel));
                 } else {
                     pSDEDataQuery2.setDQJoinModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEDQJoin pSDEDQJoin3 : hashMap.values()) {
-                        pSDEDQJoinService.removeTemp((IEntity)pSDEDQJoin3);
+                        pSDEDQJoinService.removeTemp(pSDEDQJoin3);
                     }
                 }
                 PSDEDataQueryService.this.updateTempMajor(pSDEDataQuery2);
@@ -168,7 +167,7 @@ extends PSDEDataQueryServiceBase {
     protected void updatePSDEDQJoins(PSDEDataQuery pSDEDataQuery, PSDEDQJoin pSDEDQJoin, XmlNode xmlNode, HashMap<String, PSDEDQJoin> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSDEDQJoinService pSDEDQJoinService = (PSDEDQJoinService)ServiceGlobal.getService((String)PSDEDQJoinService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -201,7 +200,7 @@ extends PSDEDataQueryServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSDEDQJoinService.updateTemp((IEntity)pSDEDQJoin2);
+                    pSDEDQJoinService.updateTemp(pSDEDQJoin2);
                 }
                 xmlNode2.resetAttributes();
                 pSDEDQJoin2.fillXmlNode(xmlNode2, false);
@@ -222,7 +221,6 @@ extends PSDEDataQueryServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEDQJoin pSDEDQJoin2;
                 PSDEDQJoinService pSDEDQJoinService = (PSDEDQJoinService)ServiceGlobal.getService((String)PSDEDQJoinService.class.getCanonicalName(), (SessionFactory)PSDEDataQueryService.this.getSessionFactory());
                 ArrayList<PSDEDQJoin> arrayList = pSDEDQJoinService.selectTempByPSDEDQ(pSDEDataQuery2);
                 HashMap<String, PSDEDQJoin> hashMap = new HashMap<String, PSDEDQJoin>();
@@ -230,28 +228,28 @@ extends PSDEDataQueryServiceBase {
                     hashMap.put(pSDEDQJoin2.getPSDEDQJoinId(), pSDEDQJoin2);
                 }
                 String string = pSDEDataQuery2.getDQJoinModel();
-                pSDEDQJoin2 = XmlNode.loadFromXML((String)string);
-                if (pSDEDQJoin2 != null) {
-                    pSDEDQJoin2.setAttribute("PSDEID", pSDEDataQuery2.getPSDEId());
-                    pSDEDQJoin2.setAttribute("PSDEDATAQUERYID", pSDEDataQuery2.getPSDEDataQueryId());
-                    PSDEDataQueryService.this.updatePSDEDQJoins(pSDEDataQuery2, null, (XmlNode)pSDEDQJoin2, hashMap);
-                    pSDEDataQuery2.setDQJoinModel(XmlNode.export((XmlNode)pSDEDQJoin2));
+                XmlNode queryModel = XmlNode.loadFromXML(string);
+                if (queryModel != null) {
+                    queryModel.setAttribute("PSDEID", pSDEDataQuery2.getPSDEId());
+                    queryModel.setAttribute("PSDEDATAQUERYID", pSDEDataQuery2.getPSDEDataQueryId());
+                    PSDEDataQueryService.this.updatePSDEDQJoins(pSDEDataQuery2, null, queryModel, hashMap);
+                    pSDEDataQuery2.setDQJoinModel(XmlNode.export(queryModel));
                 } else {
                     pSDEDataQuery2.setDQJoinModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEDQJoin pSDEDQJoin3 : hashMap.values()) {
-                        pSDEDQJoinService.removeTemp((IEntity)pSDEDQJoin3);
+                        pSDEDQJoinService.removeTemp(pSDEDQJoin3);
                     }
                 }
-                PSDEDataQueryService.this.createTempMajor((IEntity)pSDEDataQuery2);
+                PSDEDataQueryService.this.createTempMajor(pSDEDataQuery2);
             }
         });
     }
 
     @Override
     public void getDraftWithModel(PSDEDataQuery pSDEDataQuery) throws Exception {
-        this.getDraftTempMajor((IEntity)pSDEDataQuery);
+        this.getDraftTempMajor(pSDEDataQuery);
         pSDEDataQuery.setDQJoinModel(this.getDQJoinModel(pSDEDataQuery));
     }
 
@@ -294,11 +292,11 @@ extends PSDEDataQueryServiceBase {
 
     @Override
     protected void onCreateDEDataSet(PSDEDataQuery pSDEDataQuery) throws Exception {
-        this.get((IEntity)pSDEDataQuery);
+        this.get(pSDEDataQuery);
         PSDEDataSetService pSDEDataSetService = (PSDEDataSetService)ServiceGlobal.getService(PSDEDataSetService.class, (SessionFactory)this.getSessionFactory());
         PSDEDataSet pSDEDataSet = new PSDEDataSet();
         pSDEDataSet.setPSDEDataSetId(pSDEDataQuery.getPSDEDataQueryId());
-        if (pSDEDataSetService.get((IEntity)pSDEDataSet, true)) {
+        if (pSDEDataSetService.get(pSDEDataSet, true)) {
             throw new Exception("\u5bf9\u5e94\u6570\u636e\u96c6\u5408\u5df2\u7ecf\u5b58\u5728");
         }
         pSDEDataSet.setPSDEDataSetName(pSDEDataQuery.getPSDEDataQueryName());
@@ -314,4 +312,3 @@ extends PSDEDataQueryServiceBase {
         pSDEDSDQService.create(pSDEDSDQ);
     }
 }
-

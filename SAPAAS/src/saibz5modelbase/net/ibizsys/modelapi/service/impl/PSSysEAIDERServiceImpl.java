@@ -73,7 +73,7 @@ implements IPSSysEAIDERService {
     @Override
     protected List<PSSysEAIDER> onListAll() throws Exception {
         ArrayList<PSSysEAIDER> list = new ArrayList<PSSysEAIDER>();
-        List pssyseaides = PSModelServiceUtil.getInstance().getPSSysEAIDEService().listAll();
+        List<PSSysEAIDE> pssyseaides = PSModelServiceUtil.getInstance().getPSSysEAIDEService().listAll();
         if (pssyseaides != null) {
             for (PSSysEAIDE parent : pssyseaides) {
                 List<PSSysEAIDER> items = this.listByPSSysEAIDE(parent);

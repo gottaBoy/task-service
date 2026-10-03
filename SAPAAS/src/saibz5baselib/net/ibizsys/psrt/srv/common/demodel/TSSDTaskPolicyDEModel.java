@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel;
 
-import net.ibizsys.psrt.srv.common.demodel.TSSDTaskPolicyDEModelBase;
 
-public class TSSDTaskPolicyDEModel
-extends TSSDTaskPolicyDEModelBase {
+/**
+ * 实体[TSSDTASKPOLICY]模型对象
+ */
+public class TSSDTaskPolicyDEModel extends TSSDTaskPolicyDEModelBase {
+
     private static final long serialVersionUID = -1L;
-}
 
+    public TSSDTaskPolicyDEModel() throws Exception {
+        super();
+    }
+
+}

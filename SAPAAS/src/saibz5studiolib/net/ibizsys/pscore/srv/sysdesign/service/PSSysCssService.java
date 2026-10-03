@@ -46,7 +46,7 @@ extends PSSysCssServiceBase {
     @Override
     protected void onBeforeCreate(PSSysCss pSSysCss) throws Exception {
         if (StringHelper.isNullOrEmpty((String)pSSysCss.getPSSystemId())) {
-            pSSysCss.setPSSystemId(this.getCurrentPSSystemId((IEntity)pSSysCss, false));
+            pSSysCss.setPSSystemId(this.getCurrentPSSystemId(pSSysCss, false));
         }
         this.onCalcSampleContent(pSSysCss);
         super.onBeforeCreate(pSSysCss);
@@ -103,22 +103,23 @@ extends PSSysCssServiceBase {
             treeMap.put("background-color", pSSysCss2.getBKColor());
         }
         if (!StringHelper.isNullOrEmpty((String)pSSysCss2.getFontFamily())) {
-            void entry;
-            thicknessImpl = JSONArray.fromString((String)pSSysCss2.getFontFamily());
-            Object object = "";
-            boolean i = false;
-            while (entry < thicknessImpl.length()) {
-                String string;
-                JSONObject jSONObject = thicknessImpl.optJSONObject((int)entry);
-                if (jSONObject != null && !StringHelper.isNullOrEmpty((String)(string = jSONObject.optString("srfmajortext")))) {
-                    if (!StringHelper.isNullOrEmpty((String)object)) {
-                        object = (String)object + ",";
+            int entry = 0;
+            JSONArray fontFamilyArray = JSONArray.fromString((String)pSSysCss2.getFontFamily());
+            String fontFamily = "";
+            while (entry < fontFamilyArray.length()) {
+                JSONObject fontObject = fontFamilyArray.optJSONObject(entry);
+                if (fontObject != null) {
+                    String fontName = fontObject.optString("srfmajortext");
+                    if (!StringHelper.isNullOrEmpty(fontName)) {
+                        if (!StringHelper.isNullOrEmpty(fontFamily)) {
+                            fontFamily += ",";
+                        }
+                        fontFamily += StringHelper.format("\"%1$s\"", fontName);
                     }
-                    object = (String)object + StringHelper.format((String)"\"%1$s\"", (Object)string);
                 }
                 ++entry;
             }
-            treeMap.put("font-family", (String)object);
+            treeMap.put("font-family", fontFamily);
         }
         if (DataObject.getIntegerValue((Object)pSSysCss2.getFontSize(), (Integer)0) > 0) {
             treeMap.put("font-size", StringHelper.format((String)"%1$spx", (Object)pSSysCss2.getFontSize()));
@@ -160,7 +161,7 @@ extends PSSysCssServiceBase {
         PSDEFormDetail pSDEFormDetail = new PSDEFormDetail();
         String string = pSSysCss.getPSSysCssId();
         pSDEFormDetail.setPSDEFormDetailId(string);
-        pSDEFormDetailService.autoGet((IEntity)pSDEFormDetail, false);
+        pSDEFormDetailService.autoGet(pSDEFormDetail, false);
         String string2 = pSDEFormDetail.getLabelPSSysCssId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             string2 = pSDEFormDetail.getLabelCssId();
@@ -169,7 +170,7 @@ extends PSSysCssServiceBase {
             this.getDraft(pSSysCss);
         } else {
             pSSysCss.setPSSysCssId(string2);
-            this.get((IEntity)pSSysCss);
+            this.get(pSSysCss);
         }
         pSSysCss.setPSSysCssId(string);
     }
@@ -180,7 +181,7 @@ extends PSSysCssServiceBase {
         PSDEFormDetail pSDEFormDetail = new PSDEFormDetail();
         String string = pSSysCss.getPSSysCssId();
         pSDEFormDetail.setPSDEFormDetailId(string);
-        pSDEFormDetailService.autoGet((IEntity)pSDEFormDetail, false);
+        pSDEFormDetailService.autoGet(pSDEFormDetail, false);
         String string2 = pSDEFormDetail.getPSSysCssId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             string2 = pSDEFormDetail.getCssId();
@@ -189,7 +190,7 @@ extends PSSysCssServiceBase {
             this.getDraft(pSSysCss);
         } else {
             pSSysCss.setPSSysCssId(string2);
-            this.get((IEntity)pSSysCss);
+            this.get(pSSysCss);
         }
         pSSysCss.setPSSysCssId(string);
     }
@@ -200,7 +201,7 @@ extends PSSysCssServiceBase {
         PSSysViewPanelItem pSSysViewPanelItem = new PSSysViewPanelItem();
         String string = pSSysCss.getPSSysCssId();
         pSSysViewPanelItem.setPSSysViewPanelItemId(string);
-        pSSysViewPanelItemService.autoGet((IEntity)pSSysViewPanelItem, false);
+        pSSysViewPanelItemService.autoGet(pSSysViewPanelItem, false);
         String string2 = pSSysViewPanelItem.getLabelPSSysCssId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             string2 = pSSysViewPanelItem.getLableCssId();
@@ -209,7 +210,7 @@ extends PSSysCssServiceBase {
             this.getDraft(pSSysCss);
         } else {
             pSSysCss.setPSSysCssId(string2);
-            this.get((IEntity)pSSysCss);
+            this.get(pSSysCss);
         }
         pSSysCss.setPSSysCssId(string);
     }
@@ -220,7 +221,7 @@ extends PSSysCssServiceBase {
         PSSysViewPanelItem pSSysViewPanelItem = new PSSysViewPanelItem();
         String string = pSSysCss.getPSSysCssId();
         pSSysViewPanelItem.setPSSysViewPanelItemId(string);
-        pSSysViewPanelItemService.autoGet((IEntity)pSSysViewPanelItem, false);
+        pSSysViewPanelItemService.autoGet(pSSysViewPanelItem, false);
         String string2 = pSSysViewPanelItem.getPSSysCssId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             string2 = pSSysViewPanelItem.getCssId();
@@ -229,7 +230,7 @@ extends PSSysCssServiceBase {
             this.getDraft(pSSysCss);
         } else {
             pSSysCss.setPSSysCssId(string2);
-            this.get((IEntity)pSSysCss);
+            this.get(pSSysCss);
         }
         pSSysCss.setPSSysCssId(string);
     }
@@ -240,7 +241,7 @@ extends PSSysCssServiceBase {
         PSDEFormDetail pSDEFormDetail = new PSDEFormDetail();
         String string = pSSysCss.getPSSysCssId();
         pSDEFormDetail.setPSDEFormDetailId(string);
-        pSDEFormDetailService.autoGet((IEntity)pSDEFormDetail, false);
+        pSDEFormDetailService.autoGet(pSDEFormDetail, false);
         String string2 = pSDEFormDetail.getLabelPSSysCssId();
         if (!StringHelper.isNullOrEmpty((String)string2)) {
             throw new Exception(StringHelper.format((String)"\u4e0d\u80fd\u66f4\u65b0\u516c\u5171\u6837\u5f0f"));
@@ -260,7 +261,7 @@ extends PSSysCssServiceBase {
             pSDEFormDetail.setPSDEFormDetailId(string);
             pSDEFormDetail.setLabelCssId(pSSysCss.getPSSysCssId());
             if (KeyValueHelper.isTempKey((String)string)) {
-                pSDEFormDetailService.sysUpdateTemp((IEntity)pSDEFormDetail, false);
+                pSDEFormDetailService.sysUpdateTemp(pSDEFormDetail, false);
             } else {
                 pSDEFormDetailService.sysUpdate(pSDEFormDetail, false);
             }
@@ -274,7 +275,7 @@ extends PSSysCssServiceBase {
         PSDEFormDetail pSDEFormDetail = new PSDEFormDetail();
         String string = pSSysCss.getPSSysCssId();
         pSDEFormDetail.setPSDEFormDetailId(string);
-        pSDEFormDetailService.autoGet((IEntity)pSDEFormDetail, false);
+        pSDEFormDetailService.autoGet(pSDEFormDetail, false);
         String string2 = pSDEFormDetail.getPSSysCssId();
         if (!StringHelper.isNullOrEmpty((String)string2)) {
             throw new Exception(StringHelper.format((String)"\u4e0d\u80fd\u66f4\u65b0\u516c\u5171\u6837\u5f0f"));
@@ -294,7 +295,7 @@ extends PSSysCssServiceBase {
             pSDEFormDetail.setPSDEFormDetailId(string);
             pSDEFormDetail.setCssId(pSSysCss.getPSSysCssId());
             if (KeyValueHelper.isTempKey((String)string)) {
-                pSDEFormDetailService.sysUpdateTemp((IEntity)pSDEFormDetail, false);
+                pSDEFormDetailService.sysUpdateTemp(pSDEFormDetail, false);
             } else {
                 pSDEFormDetailService.sysUpdate(pSDEFormDetail, false);
             }
@@ -308,7 +309,7 @@ extends PSSysCssServiceBase {
         PSSysViewPanelItem pSSysViewPanelItem = new PSSysViewPanelItem();
         String string = pSSysCss.getPSSysCssId();
         pSSysViewPanelItem.setPSSysViewPanelItemId(string);
-        pSSysViewPanelItemService.autoGet((IEntity)pSSysViewPanelItem, false);
+        pSSysViewPanelItemService.autoGet(pSSysViewPanelItem, false);
         String string2 = pSSysViewPanelItem.getPSSysCssId();
         if (!StringHelper.isNullOrEmpty((String)string2)) {
             throw new Exception(StringHelper.format((String)"\u4e0d\u80fd\u66f4\u65b0\u516c\u5171\u6837\u5f0f"));
@@ -328,7 +329,7 @@ extends PSSysCssServiceBase {
             pSSysViewPanelItem.setPSSysViewPanelItemId(string);
             pSSysViewPanelItem.setCssId(pSSysCss.getPSSysCssId());
             if (KeyValueHelper.isTempKey((String)string)) {
-                pSSysViewPanelItemService.sysUpdateTemp((IEntity)pSSysViewPanelItem, false);
+                pSSysViewPanelItemService.sysUpdateTemp(pSSysViewPanelItem, false);
             } else {
                 pSSysViewPanelItemService.sysUpdate(pSSysViewPanelItem, false);
             }
@@ -342,7 +343,7 @@ extends PSSysCssServiceBase {
         PSSysViewPanelItem pSSysViewPanelItem = new PSSysViewPanelItem();
         String string = pSSysCss.getPSSysCssId();
         pSSysViewPanelItem.setPSSysViewPanelItemId(string);
-        pSSysViewPanelItemService.autoGet((IEntity)pSSysViewPanelItem, false);
+        pSSysViewPanelItemService.autoGet(pSSysViewPanelItem, false);
         String string2 = pSSysViewPanelItem.getLabelPSSysCssId();
         if (!StringHelper.isNullOrEmpty((String)string2)) {
             throw new Exception(StringHelper.format((String)"\u4e0d\u80fd\u66f4\u65b0\u516c\u5171\u6837\u5f0f"));
@@ -362,7 +363,7 @@ extends PSSysCssServiceBase {
             pSSysViewPanelItem.setPSSysViewPanelItemId(string);
             pSSysViewPanelItem.setLableCssId(pSSysCss.getPSSysCssId());
             if (KeyValueHelper.isTempKey((String)string)) {
-                pSSysViewPanelItemService.sysUpdateTemp((IEntity)pSSysViewPanelItem, false);
+                pSSysViewPanelItemService.sysUpdateTemp(pSSysViewPanelItem, false);
             } else {
                 pSSysViewPanelItemService.sysUpdate(pSSysViewPanelItem, false);
             }
@@ -370,4 +371,3 @@ extends PSSysCssServiceBase {
         pSSysCss.setPSSysCssId(string);
     }
 }
-

@@ -1,32 +1,43 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.control.IPSControl
- *  net.ibizsys.model.control.form.IPSDEFormDRUIPart
- *  net.ibizsys.model.pub.IPSGenerateCodeResult
- */
 package net.ibizsys.model.pub;
 
 import java.util.HashMap;
+
 import net.ibizsys.model.control.IPSControl;
 import net.ibizsys.model.control.form.IPSDEFormDRUIPart;
-import net.ibizsys.model.pub.IPSGenerateCodeResult;
-import net.ibizsys.model.pub.PSNGDEFormDetailVCPublisherImpl;
 
-public class PSNGDEFormDRUIPartVCPublisherImpl
-extends PSNGDEFormDetailVCPublisherImpl {
-    protected IPSDEFormDRUIPart iPSDEFormDRUIPart = null;
+/**
+ * angularJS表单关系数据部件视图发布器
+ * @author Administrator
+ *
+ */
+public class PSNGDEFormDRUIPartVCPublisherImpl extends PSNGDEFormDetailVCPublisherImpl
+{
+	protected IPSDEFormDRUIPart iPSDEFormDRUIPart = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDEFormDRUIPart = (IPSDEFormDRUIPart)object;
+		return super.generateCode(iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		if(true)
+		{
 
-    @Override
-    public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception {
-        this.iPSDEFormDRUIPart = (IPSDEFormDRUIPart)object;
-        return super.generateCode(iPSControl, object);
-    }
+		}
+		
+	}
+	
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
-        super.onFillGenerateCodeParams(params);
-    }
 }
-

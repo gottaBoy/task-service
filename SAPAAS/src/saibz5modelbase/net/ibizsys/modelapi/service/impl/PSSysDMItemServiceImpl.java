@@ -113,9 +113,9 @@ implements IPSSysDMItemService {
 
     @Override
     protected List<PSSysDMItem> onListAll() throws Exception {
-        List pssystemdbcfgs;
+        List<PSSystemDBCfg> pssystemdbcfgs;
         ArrayList<PSSysDMItem> list = new ArrayList<PSSysDMItem>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSSysDMItem> items = this.listByPSDataEntity(parent);

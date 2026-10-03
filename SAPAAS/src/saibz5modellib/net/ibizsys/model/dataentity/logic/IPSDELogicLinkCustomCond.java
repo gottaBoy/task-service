@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.logic;
 
-import net.ibizsys.model.dataentity.logic.IPSDELogicLinkCond;
+/**
+ * 实体逻辑链接自定义条件对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDELogicLinkCustomCond extends IPSDELogicLinkCond
+{
 
-public interface IPSDELogicLinkCustomCond
-extends IPSDELogicLinkCond {
 }
-

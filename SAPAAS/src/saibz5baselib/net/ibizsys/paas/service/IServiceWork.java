@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.service;
 
-import net.ibizsys.paas.service.ITransaction;
-
+/**
+ * 服务作业接口
+ * 
+ * @author lionlau
+ *
+ */
 public interface IServiceWork {
-    public void execute(ITransaction var1) throws Exception;
+	/**
+	 * 执行作业
+	 * 
+	 * @param iTransaction
+	 * @throws Exception
+	 */
+	void execute(ITransaction iTransaction) throws Exception;
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.devcenter.demodel.PSDCAbilityDEModelBase;
 
 public class PSDCAbilityDEModel
 extends PSDCAbilityDEModelBase {
+
+    public PSDCAbilityDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

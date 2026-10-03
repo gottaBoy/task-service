@@ -1481,7 +1481,7 @@ implements Serializable {
                 PSSysCanvas pSSysCanvas = new PSSysCanvas();
                 pSSysCanvas.setPSSysCanvasId(this.getPSSysCanvasId());
                 PSSysCanvasService pSSysCanvasService = (PSSysCanvasService)ServiceGlobal.getService(PSSysCanvasService.class, (SessionFactory)this.getSessionFactory());
-                pSSysCanvasService.autoGet((IEntity)pSSysCanvas);
+                pSSysCanvasService.autoGet(pSSysCanvas);
                 this.pssyscanvas = pSSysCanvas;
             }
             return this.pssyscanvas;

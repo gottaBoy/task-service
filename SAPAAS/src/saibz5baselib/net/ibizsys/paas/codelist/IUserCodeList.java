@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.codelist;
 
-import net.ibizsys.paas.codelist.ICodeList;
+/**
+ * 用户范围代码表接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IUserCodeList extends ICodeList {
 
-public interface IUserCodeList
-extends ICodeList {
 }
-

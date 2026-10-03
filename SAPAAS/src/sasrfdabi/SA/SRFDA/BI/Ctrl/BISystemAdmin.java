@@ -73,9 +73,9 @@ implements IDASystemAdmin {
 
     protected CallResult ResetCubeCache(BaseDataEntity dataEntity) {
         CallResult callResult = new CallResult();
-        Iterator schemaIterator = RolapSchema.getRolapSchemas();
+        Iterator<RolapSchema> schemaIterator = RolapSchema.getRolapSchemas().iterator();
         while (schemaIterator.hasNext()) {
-            RolapSchema schema = (RolapSchema)schemaIterator.next();
+            RolapSchema schema = schemaIterator.next();
             CacheControl cacheControl = schema.getInternalConnection().getCacheControl(null);
             Cube[] cubeArray = schema.getCubes();
             int n = cubeArray.length;
@@ -97,7 +97,7 @@ implements IDASystemAdmin {
             callResult.setErrorInfo(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u6570\u636e\u8f85\u52a9\u5bf9\u8c61", (Object)"BI0010"));
             return callResult;
         }
-        Vector biAggTables = new Vector();
+        Vector<BIAggTable> biAggTables = new Vector<BIAggTable>();
         callResult = iDEDataCtrl.Select("ALLAGGTABLE", dataEntity, biAggTables, BIAggTable.class.getName());
         if (callResult.IsError()) {
             callResult.setRetCode(1);
@@ -141,4 +141,3 @@ implements IDASystemAdmin {
         return false;
     }
 }
-

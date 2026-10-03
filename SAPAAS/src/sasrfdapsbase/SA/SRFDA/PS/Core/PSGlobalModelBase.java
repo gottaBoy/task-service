@@ -115,14 +115,12 @@ extends PSGlobalModelBaseBase<KT, VT, HT> {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     protected ArrayList<HT> registerModels(Vector<VT> list) throws Exception {
-        Object last;
         KT key;
-        ArrayList<Object> allModelHelperList = new ArrayList<Object>();
+        ArrayList<HT> allModelHelperList = new ArrayList<HT>();
         for (VT vt : list) {
             KT[] aliases;
             key = this.getObjectId(vt);
-            last = this.InternalGetModel(key);
-            if (last == null) {
+            if (this.InternalGetModel(key) == null) {
                 this.setModel(this.getObjectId(vt), vt, null);
             }
             if (!this.isEnableObjectAlias() || (aliases = this.getObjectAliases(vt)) == null || aliases.length <= 0) continue;
@@ -140,9 +138,9 @@ extends PSGlobalModelBaseBase<KT, VT, HT> {
         }
         for (VT vt : list) {
             key = this.getObjectId(vt);
-            last = this.InternalGetModelHelper(key);
-            if (last != null) {
-                allModelHelperList.add(last);
+            HT helper = this.InternalGetModelHelper(key);
+            if (helper != null) {
+                allModelHelperList.add(helper);
                 continue;
             }
             allModelHelperList.add(this.registerModel(vt));
@@ -208,12 +206,12 @@ extends PSGlobalModelBaseBase<KT, VT, HT> {
             log.error((Object)StringHelper.Format((String)"\u6a21\u677f\u53d1\u5e03\u8fc7\u7a0b\u4e2d\u4e0d\u80fd\u8fdb\u884c\u6a21\u578b\u6e05\u7a7a\u64cd\u4f5c"));
             return;
         }
-        Map<KT, KT> map = this.allModelHelperListLock;
-        synchronized (map) {
+        Object lock = this.allModelHelperListLock;
+        synchronized (lock) {
             this.allModelHelperList = null;
         }
         if (this.aliasObjectMap != null) {
-            map = this.aliasObjectMap;
+            Map<KT, KT> map = this.aliasObjectMap;
             synchronized (map) {
                 this.aliasObjectMap.clear();
             }
@@ -285,7 +283,7 @@ extends PSGlobalModelBaseBase<KT, VT, HT> {
         if (!this.isEnableObjectAlias()) {
             return super.FindModelHelper(objObjectId, bTryMode);
         }
-        Object ht = super.FindModelHelper(objObjectId, true);
+        HT ht = super.FindModelHelper(objObjectId, true);
         if (ht != null) {
             return ht;
         }
@@ -304,7 +302,7 @@ extends PSGlobalModelBaseBase<KT, VT, HT> {
         if (!this.isEnableObjectAlias()) {
             return super.InternalGetModel(objObjectId);
         }
-        Object vt = super.InternalGetModel(objObjectId);
+        VT vt = super.InternalGetModel(objObjectId);
         if (vt != null) {
             return vt;
         }
@@ -343,4 +341,3 @@ extends PSGlobalModelBaseBase<KT, VT, HT> {
         }
     }
 }
-

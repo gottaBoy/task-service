@@ -1,16 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.springframework.stereotype.Repository
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.dao;
 
-import net.ibizsys.psrt.srv.common.dao.DataSyncIn2DAOBase;
 import org.springframework.stereotype.Repository;
 
+/**
+ * 实体[DataSyncIn2] DAO对象
+ */
 @Repository
-public class DataSyncIn2DAO
-extends DataSyncIn2DAOBase {
-}
+public class DataSyncIn2DAO extends DataSyncIn2DAOBase {
 
+    public DataSyncIn2DAO() {
+        super();
+    }
+
+}

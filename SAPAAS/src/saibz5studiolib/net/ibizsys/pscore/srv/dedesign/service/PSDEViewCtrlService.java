@@ -72,12 +72,12 @@ extends PSDEViewCtrlServiceBase {
             }
         }
         if (StringHelper.isNullOrEmpty((String)pSDEViewCtrl.getPSACHandlerId()) && WebContext.getCurrent() != null && !StringHelper.isNullOrEmpty((String)(string = WebContext.getCurrent().getAppDataValue("pssystemid")))) {
-            object2 = new SelectCond();
-            object2.set("PSSYSTEMID", (Object)string);
-            object2.set("CTRLTYPE", (Object)pSDEViewCtrl.getPSDEViewCtrlType());
-            object2.set("PSACHANDLERID", SelectCond.ISNOTNULL);
-            object = (PSACHandlerService)ServiceGlobal.getService(PSACHandlerService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList arrayList = object.select((ISelectCond)object2);
+            SelectCond selectCond = new SelectCond();
+            selectCond.set("PSSYSTEMID", (Object)string);
+            selectCond.set("CTRLTYPE", (Object)pSDEViewCtrl.getPSDEViewCtrlType());
+            selectCond.set("PSACHANDLERID", SelectCond.ISNOTNULL);
+            PSACHandlerService handlerService = (PSACHandlerService)ServiceGlobal.getService(PSACHandlerService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<PSACHandler> arrayList = handlerService.select((ISelectCond)selectCond);
             if (arrayList.size() == 1) {
                 pSDEViewCtrl.setPSACHandlerId(((PSACHandler)arrayList.get(0)).getPSACHandlerId());
                 pSDEViewCtrl.setPSACHandlerName(((PSACHandler)arrayList.get(0)).getPSACHandlerName());
@@ -119,7 +119,7 @@ extends PSDEViewCtrlServiceBase {
             pSDEViewCtrl.setPSDEId(pSDEViewCtrl.getPSDEViewBase().getPSDEId());
             pSDEViewCtrl.setPSDEName(pSDEViewCtrl.getPSDEViewBase().getPSDEName());
         }
-        super.internalCreateTemp((IEntity)pSDEViewCtrl);
+        super.internalCreateTemp(pSDEViewCtrl);
     }
 
     @Override
@@ -401,4 +401,3 @@ extends PSDEViewCtrlServiceBase {
         return bl2;
     }
 }
-

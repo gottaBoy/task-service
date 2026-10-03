@@ -37,7 +37,7 @@ extends PSDBValueOPServiceBase {
             PSDBValueOPService pSDBValueOPService = (PSDBValueOPService)ServiceGlobal.getService(PSDBValueOPService.class, (SessionFactory)PSDBValueOPService.getCurMajorSessionFactory());
             PSDBValueOP pSDBValueOP2 = new PSDBValueOP();
             pSDBValueOP2.setPSDBValueOPId(pSDBValueOP.getPSDBValueOPId());
-            pSDBValueOPService.get((IEntity)pSDBValueOP2);
+            pSDBValueOPService.get(pSDBValueOP2);
             this.create(pSDBValueOP2, false);
         }
         return super.internalGet(pSDBValueOP, bl, n);

@@ -120,7 +120,7 @@ extends PSSysDevBKTaskImplBase {
             user.setIsSystem(Integer.valueOf(1));
             user.setValidFlag(Integer.valueOf(1));
             user.setMemo("\u7cfb\u7edf\u8d85\u7ea7\u7ba1\u7406\u5458");
-            userService.create((IEntity)user);
+            userService.create(user);
             String strPassword = KeyValueHelper.genUniqueId((String)"ibzadmin", (String)"123456");
             LoginAccount loginAccount = new LoginAccount();
             loginAccount.setUserId(user.getUserId());
@@ -128,7 +128,7 @@ extends PSSysDevBKTaskImplBase {
             loginAccount.setLoginAccountName("ibzadmin");
             loginAccount.setSuperUser(Integer.valueOf(1));
             loginAccount.setPwd(strPassword);
-            loginAccountService.create((IEntity)loginAccount);
+            loginAccountService.create(loginAccount);
         }
         DataEntityService dataEntityService = (DataEntityService)ServiceGlobal.getService(DataEntityService.class, (SessionFactory)sessionFactory);
         QueryModelService queryModelService = (QueryModelService)ServiceGlobal.getService(QueryModelService.class, (SessionFactory)sessionFactory);
@@ -155,8 +155,8 @@ extends PSSysDevBKTaskImplBase {
                 queryModel.setQMVersion(Integer.valueOf(1));
                 queryModel.setDEId(iPSDataEntity.getId());
                 queryModel.setDEName(iPSDataEntity.getName());
-                if (queryModelService.checkKey((IEntity)queryModel) != 0) continue;
-                queryModelService.create((IEntity)queryModel, false);
+                if (queryModelService.checkKey(queryModel) != 0) continue;
+                queryModelService.create(queryModel, false);
             }
         }
         psDataEntities = iPSSystem.getAllPSDataEntities();
@@ -170,8 +170,8 @@ extends PSSysDevBKTaskImplBase {
             dataEntity.setIsLogicValid(Integer.valueOf(iPSDataEntity.isLogicValid() ? 1 : 0));
             dataEntity.setDELogicName(iPSDataEntity.getLogicName());
             dataEntity.setDEVersion(Integer.valueOf(1));
-            if (dataEntityService.checkKey((IEntity)dataEntity) == 0) {
-                dataEntityService.create((IEntity)dataEntity, false);
+            if (dataEntityService.checkKey(dataEntity) == 0) {
+                dataEntityService.create(dataEntity, false);
             }
             Iterator<IPSDEDataQuery> psDEDataQueries = iPSDataEntity.getAllPSDEDataQueries();
             while (psDEDataQueries.hasNext()) {
@@ -183,11 +183,10 @@ extends PSSysDevBKTaskImplBase {
                 queryModel.setQMVersion(Integer.valueOf(1));
                 queryModel.setDEId(iPSDataEntity.getId());
                 queryModel.setDEName(iPSDataEntity.getName());
-                if (queryModelService.checkKey((IEntity)queryModel) != 0) continue;
-                queryModelService.create((IEntity)queryModel, false);
+                if (queryModelService.checkKey(queryModel) != 0) continue;
+                queryModelService.create(queryModel, false);
             }
         }
         return null;
     }
 }
-

@@ -72,7 +72,7 @@ implements IPSSubSysSADERSService {
     @Override
     protected List<PSSubSysSADERS> onListAll() throws Exception {
         ArrayList<PSSubSysSADERS> list = new ArrayList<PSSubSysSADERS>();
-        List pssubsysserviceapis = PSModelServiceUtil.getInstance().getPSSubSysServiceAPIService().listAll();
+        List<PSSubSysServiceAPI> pssubsysserviceapis = PSModelServiceUtil.getInstance().getPSSubSysServiceAPIService().listAll();
         if (pssubsysserviceapis != null) {
             for (PSSubSysServiceAPI parent : pssubsysserviceapis) {
                 List<PSSubSysSADERS> items = this.listByPSSubSysServiceAPI(parent);

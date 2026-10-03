@@ -1,16 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.IMDCtrlHandler;
-import net.ibizsys.paas.ctrlhandler.ISDCtrlHandler;
 
-public interface IGanttHandler
-extends IMDCtrlHandler,
-ISDCtrlHandler {
-    public static final String ACTION_LOADDRAFT = "loaddraft";
-    public static final String ACTION_LOADDRAFTFROM = "loaddraftfrom";
-    public static final String ACTION_LOADDRAFTPASTE = "loaddraftpaste";
+/**
+ * 甘特视图后台处理接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IGanttHandler extends IMDCtrlHandler,ISDCtrlHandler {
+	
+	/**
+	 * 获取草稿数据
+	 */
+	final static String ACTION_LOADDRAFT = "loaddraft";
+
+	/**
+	 * 获取草稿数据（从源数据）
+	 */
+	final static String ACTION_LOADDRAFTFROM = "loaddraftfrom";
+
+	
+	/**
+	 * 获取草稿数据(从粘贴数据中）
+	 */
+	final static String ACTION_LOADDRAFTPASTE = "loaddraftpaste";
+	
 }
-

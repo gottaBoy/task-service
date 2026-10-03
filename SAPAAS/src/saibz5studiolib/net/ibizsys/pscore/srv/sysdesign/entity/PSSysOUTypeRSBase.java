@@ -1406,7 +1406,7 @@ implements Serializable {
                 PSSysOUType pSSysOUType = new PSSysOUType();
                 pSSysOUType.setPSSysOUTypeId(this.getCPSSYSOUTypeID());
                 PSSysOUTypeService pSSysOUTypeService = (PSSysOUTypeService)ServiceGlobal.getService(PSSysOUTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysOUTypeService.autoGet((IEntity)pSSysOUType);
+                pSSysOUTypeService.autoGet(pSSysOUType);
                 this.cpssysoutype = pSSysOUType;
             }
             return this.cpssysoutype;
@@ -1432,7 +1432,7 @@ implements Serializable {
                 PSSysOUType pSSysOUType = new PSSysOUType();
                 pSSysOUType.setPSSysOUTypeId(this.getPPSSysOUTypeId());
                 PSSysOUTypeService pSSysOUTypeService = (PSSysOUTypeService)ServiceGlobal.getService(PSSysOUTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysOUTypeService.autoGet((IEntity)pSSysOUType);
+                pSSysOUTypeService.autoGet(pSSysOUType);
                 this.ppsssysoutype = pSSysOUType;
             }
             return this.ppsssysoutype;

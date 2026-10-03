@@ -148,14 +148,14 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSStudioTheme, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSStudioTheme, string, string2, string3);
+        super.onFillParentInfo(pSStudioTheme, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSStudioTheme, bl);
+        super.onFillEntityFullInfo(pSStudioTheme, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSStudioTheme, bl);
     }
 
@@ -189,7 +189,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
     }
 
     protected void onWriteBackParent(PSStudioTheme pSStudioTheme, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSStudioTheme, bl);
+        super.onWriteBackParent(pSStudioTheme, bl);
     }
 
     public ArrayList<PSStudioTheme> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -248,7 +248,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
         ArrayList<PSStudioTheme> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSStudioTheme pSStudioTheme : arrayList) {
-            this.remove((IEntity)pSStudioTheme);
+            this.remove(pSStudioTheme);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -275,14 +275,14 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
 
     protected void replaceParentInfo(PSStudioTheme pSStudioTheme, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSStudioTheme, cloneSession);
+        super.replaceParentInfo(pSStudioTheme, cloneSession);
         if (pSStudioTheme.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSStudioTheme.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSStudioTheme, (PSDevCenter)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSStudioTheme pSStudioTheme, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSStudioTheme, bl);
+        super.onRemoveEntityUncopyValues(pSStudioTheme, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSStudioTheme pSStudioTheme, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -321,7 +321,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSStudioTheme, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSStudioTheme, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSStudioTheme, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AllDCFlag(boolean bl, PSStudioTheme pSStudioTheme, boolean bl2, boolean bl3) throws Exception {
@@ -337,7 +337,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_AllDCFlag_Default((IEntity)pSStudioTheme, bl2, bl3);
+            string = this.onTestValueRule_AllDCFlag_Default(pSStudioTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALLDCFLAG");
@@ -359,7 +359,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CardCssStyle_Default((IEntity)pSStudioTheme, bl2, bl3);
+            string2 = this.onTestValueRule_CardCssStyle_Default(pSStudioTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CARDCSSSTYLE");
@@ -381,7 +381,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSStudioTheme, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSStudioTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -403,7 +403,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSStudioTheme, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSStudioTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -425,7 +425,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSStudioTheme, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSStudioTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -450,7 +450,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSStudioThemeId_Default((IEntity)pSStudioTheme, bl2, bl3);
+            string2 = this.onTestValueRule_PSStudioThemeId_Default(pSStudioTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSTUDIOTHEMEID");
@@ -475,7 +475,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSStudioThemeName_Default((IEntity)pSStudioTheme, bl2, bl3);
+            string2 = this.onTestValueRule_PSStudioThemeName_Default(pSStudioTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSTUDIOTHEMENAME");
@@ -497,7 +497,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThemeCode_Default((IEntity)pSStudioTheme, bl2, bl3);
+            string2 = this.onTestValueRule_ThemeCode_Default(pSStudioTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THEMECODE");
@@ -519,7 +519,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThemeData_Default((IEntity)pSStudioTheme, bl2, bl3);
+            string2 = this.onTestValueRule_ThemeData_Default(pSStudioTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THEMEDATA");
@@ -541,7 +541,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThemeData2_Default((IEntity)pSStudioTheme, bl2, bl3);
+            string2 = this.onTestValueRule_ThemeData2_Default(pSStudioTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THEMEDATA2");
@@ -566,7 +566,7 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSStudioTheme, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSStudioTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -579,11 +579,11 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
     }
 
     protected void onSyncEntity(PSStudioTheme pSStudioTheme, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSStudioTheme, bl);
+        super.onSyncEntity(pSStudioTheme, bl);
     }
 
     protected void onSyncIndexEntities(PSStudioTheme pSStudioTheme, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSStudioTheme, bl);
+        super.onSyncIndexEntities(pSStudioTheme, bl);
     }
 
     public Object getDataContextValue(PSStudioTheme pSStudioTheme, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -591,14 +591,14 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSStudioTheme, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSStudioTheme, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSStudioTheme pSStudioTheme, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSStudioTheme, arrayList, n);
+        super.onExportMajorModel(pSStudioTheme, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -800,14 +800,14 @@ extends PSCoreSysServiceBase<PSStudioTheme> {
 
     protected boolean onMergeChild(String string, String string2, PSStudioTheme pSStudioTheme) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSStudioTheme)) {
+        if (super.onMergeChild(string, string2, pSStudioTheme)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSStudioTheme pSStudioTheme) throws Exception {
-        super.onUpdateParent((IEntity)pSStudioTheme);
+        super.onUpdateParent(pSStudioTheme);
     }
 
     @Override

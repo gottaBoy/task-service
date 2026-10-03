@@ -70,7 +70,7 @@ implements IPSSysSearchFieldService {
     @Override
     protected List<PSSysSearchField> onListAll() throws Exception {
         ArrayList<PSSysSearchField> list = new ArrayList<PSSysSearchField>();
-        List pssyssearchdocs = PSModelServiceUtil.getInstance().getPSSysSearchDocService().listAll();
+        List<PSSysSearchDoc> pssyssearchdocs = PSModelServiceUtil.getInstance().getPSSysSearchDocService().listAll();
         if (pssyssearchdocs != null) {
             for (PSSysSearchDoc parent : pssyssearchdocs) {
                 List<PSSysSearchField> items = this.listByPSSysSearchDoc(parent);

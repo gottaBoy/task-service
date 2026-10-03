@@ -114,9 +114,9 @@ implements IPSSysUserDRService {
 
     @Override
     protected List<PSSysUserDR> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysUserDR> list = new ArrayList<PSSysUserDR>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysUserDR> items = this.listByPSModule(parent);

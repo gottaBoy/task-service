@@ -1,18 +1,18 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.ISystemObject
- */
 package net.ibizsys.model;
 
-import net.ibizsys.model.IPSSystem;
 import net.ibizsys.model.core.IPSModelObject;
 import net.ibizsys.paas.core.ISystemObject;
 
-public interface IPSSystemObject
-extends IPSModelObject,
-ISystemObject {
-    public IPSSystem getPSSystem();
-}
+/**
+ * 系统模型相关对象
+ * @author Administrator
+ *
+ */
+public interface IPSSystemObject extends IPSModelObject,ISystemObject {
 
+	/**
+	 * 获取系统模型对象
+	 * @return
+	 */
+	IPSSystem getPSSystem();
+}

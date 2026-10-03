@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSPFPluginTemplDEModelBase;
 
 public class PSPFPluginTemplDEModel
 extends PSPFPluginTemplDEModelBase {
+
+    public PSPFPluginTemplDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

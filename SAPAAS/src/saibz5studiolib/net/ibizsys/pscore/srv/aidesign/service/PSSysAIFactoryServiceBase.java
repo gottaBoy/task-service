@@ -204,9 +204,9 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSSysAIFactory, pSModule);
             return;
@@ -216,9 +216,9 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             PSSysDynaModel pSSysDynaModel = (PSSysDynaModel)iService.getDEModel().createEntity();
             pSSysDynaModel.set("PSSYSDYNAMODELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDynaModel);
+                iService.getTemp(pSSysDynaModel);
             } else {
-                iService.get((IEntity)pSSysDynaModel);
+                iService.get(pSSysDynaModel);
             }
             this.onFillParentInfo_PSSysDynaModel(pSSysAIFactory, pSSysDynaModel);
             return;
@@ -228,9 +228,9 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             PSSysResource pSSysResource = (PSSysResource)iService.getDEModel().createEntity();
             pSSysResource.set("PSSYSRESOURCEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysResource);
+                iService.getTemp(pSSysResource);
             } else {
-                iService.get((IEntity)pSSysResource);
+                iService.get(pSSysResource);
             }
             this.onFillParentInfo_PSSysResource(pSSysAIFactory, pSSysResource);
             return;
@@ -240,9 +240,9 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             PSSysSFPlugin pSSysSFPlugin = (PSSysSFPlugin)iService.getDEModel().createEntity();
             pSSysSFPlugin.set("PSSYSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPlugin);
+                iService.getTemp(pSSysSFPlugin);
             } else {
-                iService.get((IEntity)pSSysSFPlugin);
+                iService.get(pSSysSFPlugin);
             }
             this.onFillParentInfo_PSSysSFPlugin(pSSysAIFactory, pSSysSFPlugin);
             return;
@@ -252,14 +252,14 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysAIFactory, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysAIFactory, string, string2, string3);
+        super.onFillParentInfo(pSSysAIFactory, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -300,7 +300,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 pSSysAIFactory.setPSSysAIFactoryName((String)this.getDefaultValue(this.getWebContext(), "USER", "AI\u5de5\u5382", 25));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysAIFactory, bl);
+        super.onFillEntityFullInfo(pSSysAIFactory, bl);
         this.onFillEntityFullInfo_PSModule(pSSysAIFactory, bl);
         this.onFillEntityFullInfo_PSSysDynaModel(pSSysAIFactory, bl);
         this.onFillEntityFullInfo_PSSysResource(pSSysAIFactory, bl);
@@ -334,7 +334,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
     }
 
     protected void onWriteBackParent(PSSysAIFactory pSSysAIFactory, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysAIFactory, bl);
+        super.onWriteBackParent(pSSysAIFactory, bl);
     }
 
     public ArrayList<PSSysAIFactory> selectByPSModule(PSModuleBase pSModuleBase) throws Exception {
@@ -461,8 +461,8 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
         ArrayList<PSSysAIFactory> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIFACTORY_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSAIFACTORY", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIFACTORY_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSAIFACTORY", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -495,7 +495,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
         ArrayList<PSSysAIFactory> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSSysAIFactory pSSysAIFactory : arrayList) {
-            this.remove((IEntity)pSSysAIFactory);
+            this.remove(pSSysAIFactory);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -513,8 +513,8 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
         ArrayList<PSSysAIFactory> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSDYNAMODEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysDynaModel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIFACTORY_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSSYSAIFACTORY", iDataEntityModel.getDataInfo((IEntity)pSSysDynaModel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysDynaModel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIFACTORY_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSSYSAIFACTORY", iDataEntityModel.getDataInfo(pSSysDynaModel), arrayList.get(0)));
         }
     }
 
@@ -547,7 +547,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
         ArrayList<PSSysAIFactory> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel);
         this.onBeforeRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
         for (PSSysAIFactory pSSysAIFactory : arrayList) {
-            this.remove((IEntity)pSSysAIFactory);
+            this.remove(pSSysAIFactory);
         }
         this.onAfterRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
     }
@@ -565,8 +565,8 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
         ArrayList<PSSysAIFactory> arrayList = this.selectByPSSysResource(pSSysResource, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSRESOURCE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysResource);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIFACTORY_PSSYSRESOURCE_PSSYSRESOURCEID", "", iDataEntityModel.getName(), "PSSYSAIFACTORY", iDataEntityModel.getDataInfo((IEntity)pSSysResource), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysResource);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIFACTORY_PSSYSRESOURCE_PSSYSRESOURCEID", "", iDataEntityModel.getName(), "PSSYSAIFACTORY", iDataEntityModel.getDataInfo(pSSysResource), arrayList.get(0)));
         }
     }
 
@@ -599,7 +599,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
         ArrayList<PSSysAIFactory> arrayList = this.selectByPSSysResource(pSSysResource);
         this.onBeforeRemoveByPSSysResource(pSSysResource, arrayList);
         for (PSSysAIFactory pSSysAIFactory : arrayList) {
-            this.remove((IEntity)pSSysAIFactory);
+            this.remove(pSSysAIFactory);
         }
         this.onAfterRemoveByPSSysResource(pSSysResource, arrayList);
     }
@@ -617,8 +617,8 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
         ArrayList<PSSysAIFactory> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIFACTORY_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSAIFACTORY", iDataEntityModel.getDataInfo((IEntity)pSSysSFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIFACTORY_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSAIFACTORY", iDataEntityModel.getDataInfo(pSSysSFPlugin), arrayList.get(0)));
         }
     }
 
@@ -651,7 +651,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
         ArrayList<PSSysAIFactory> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin);
         this.onBeforeRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
         for (PSSysAIFactory pSSysAIFactory : arrayList) {
-            this.remove((IEntity)pSSysAIFactory);
+            this.remove(pSSysAIFactory);
         }
         this.onAfterRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
     }
@@ -697,7 +697,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
         ArrayList<PSSysAIFactory> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysAIFactory pSSysAIFactory : arrayList) {
-            this.remove((IEntity)pSSysAIFactory);
+            this.remove(pSSysAIFactory);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -732,7 +732,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
 
     protected void replaceParentInfo(PSSysAIFactory pSSysAIFactory, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysAIFactory, cloneSession);
+        super.replaceParentInfo(pSSysAIFactory, cloneSession);
         if (pSSysAIFactory.getPSModuleId() != null && (iEntity = cloneSession.getEntity("PSMODULE", (Object)pSSysAIFactory.getPSModuleId())) != null) {
             this.onFillParentInfo_PSModule(pSSysAIFactory, (PSModule)iEntity);
         }
@@ -751,7 +751,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysAIFactory pSSysAIFactory, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysAIFactory, bl);
+        super.onRemoveEntityUncopyValues(pSSysAIFactory, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysAIFactory pSSysAIFactory, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -844,7 +844,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSSysAIFactory, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysAIFactory, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysAIFactory, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AIFactoryParams(boolean bl, PSSysAIFactory pSSysAIFactory, boolean bl2, boolean bl3) throws Exception {
@@ -857,7 +857,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIFactoryParams_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_AIFactoryParams_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AIFACTORYPARAMS");
@@ -879,7 +879,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIFactoryTag_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_AIFactoryTag_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AIFACTORYTAG");
@@ -901,7 +901,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIFactoryTag2_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_AIFactoryTag2_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AIFACTORYTAG2");
@@ -926,7 +926,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIFactoryType_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_AIFactoryType_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AIFACTORYTYPE");
@@ -948,7 +948,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIPlatformType_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_AIPlatformType_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AIPLATFORMTYPE");
@@ -970,7 +970,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AuthClientId_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_AuthClientId_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AUTHCLIENTID");
@@ -992,7 +992,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AuthClientSecret_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_AuthClientSecret_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AUTHCLIENTSECRET");
@@ -1014,7 +1014,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AuthMode_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_AuthMode_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AUTHMODE");
@@ -1036,7 +1036,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AuthParam_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_AuthParam_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AUTHPARAM");
@@ -1058,7 +1058,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AuthParam2_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_AuthParam2_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AUTHPARAM2");
@@ -1083,7 +1083,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1124,7 +1124,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1146,7 +1146,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -1168,7 +1168,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -1193,7 +1193,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIFactoryId_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIFactoryId_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAIFACTORYID");
@@ -1218,7 +1218,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIFactoryName_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIFactoryName_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAIFACTORYNAME");
@@ -1259,7 +1259,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDynaModelId_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDynaModelId_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDYNAMODELID");
@@ -1281,7 +1281,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysResourceId_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysResourceId_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSRESOURCEID");
@@ -1303,7 +1303,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPluginId_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPluginId_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPLUGINID");
@@ -1325,7 +1325,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -1347,7 +1347,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -1369,7 +1369,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ServiceParam_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_ServiceParam_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SERVICEPARAM");
@@ -1391,7 +1391,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ServiceParam2_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_ServiceParam2_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SERVICEPARAM2");
@@ -1413,7 +1413,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ServicePath_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_ServicePath_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SERVICEPATH");
@@ -1435,7 +1435,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1457,7 +1457,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1479,7 +1479,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1501,7 +1501,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1523,7 +1523,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysAIFactory, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysAIFactory, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1536,11 +1536,11 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
     }
 
     protected void onSyncEntity(PSSysAIFactory pSSysAIFactory, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysAIFactory, bl);
+        super.onSyncEntity(pSSysAIFactory, bl);
     }
 
     protected void onSyncIndexEntities(PSSysAIFactory pSSysAIFactory, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysAIFactory, bl);
+        super.onSyncIndexEntities(pSSysAIFactory, bl);
     }
 
     public Object getDataContextValue(PSSysAIFactory pSSysAIFactory, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1548,14 +1548,14 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysAIFactory, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysAIFactory, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysAIFactory pSSysAIFactory, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysAIFactory, arrayList, n);
+        super.onExportMajorModel(pSSysAIFactory, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2100,14 +2100,14 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
 
     protected boolean onMergeChild(String string, String string2, PSSysAIFactory pSSysAIFactory) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysAIFactory)) {
+        if (super.onMergeChild(string, string2, pSSysAIFactory)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysAIFactory pSSysAIFactory) throws Exception {
-        super.onUpdateParent((IEntity)pSSysAIFactory);
+        super.onUpdateParent(pSSysAIFactory);
     }
 
     @Override
@@ -2260,7 +2260,6 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
     @Override
     protected void onExportRelatedModelV2(PSSysAIFactory pSSysAIFactory, String string, String string2) throws Exception {
         String string3;
-        EntityBase entityBase;
         ObjectNode objectNode;
         ArrayList<String> arrayList;
         File file;
@@ -2280,18 +2279,18 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSSysAIChatAgent();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSSysAIChatAgentServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysAIChatAgent)entityBase);
+                PSSysAIChatAgent pSSysAIChatAgent = new PSSysAIChatAgent();
+                PSModelV2Helper.fromJSONObject((IDataObject)pSSysAIChatAgent, objectNode, false);
+                string3 = ((PSSysAIChatAgentServiceBase)pSCoreSysServiceBase).getModelV2Tag(pSSysAIChatAgent);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSAICHATAGENT", (Object)entityBase.getPSSysAIChatAgentId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSAICHATAGENT", (Object)pSSysAIChatAgent.getPSSysAIChatAgentId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSCoreSysServiceBase.exportModelV2(pSSysAIChatAgent, string4 + File.separator + string3, string2);
             }
         }
         if (this.isExportRelatedModelV2("DER1N_PSSYSAIPIPELINEAGENT_PSSYSAIFACTORY_PSSYSAIFACTORYID") && (file2 = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSAIFACTORY#%4$s#ALL.txt", (Object)string2, (Object)File.separator, (Object)"PSSYSAIPIPELINEAGENT", (Object)pSSysAIFactory.getPSSysAIFactoryId()))).exists()) {
@@ -2306,18 +2305,18 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSSysAIPipelineAgent();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSSysAIPipelineAgentServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysAIPipelineAgent)entityBase);
+                PSSysAIPipelineAgent pSSysAIPipelineAgent = new PSSysAIPipelineAgent();
+                PSModelV2Helper.fromJSONObject((IDataObject)pSSysAIPipelineAgent, objectNode, false);
+                string3 = ((PSSysAIPipelineAgentServiceBase)pSCoreSysServiceBase).getModelV2Tag(pSSysAIPipelineAgent);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSAIPIPELINEAGENT", (Object)entityBase.getPSSysAIPipelineAgentId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSAIPIPELINEAGENT", (Object)pSSysAIPipelineAgent.getPSSysAIPipelineAgentId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSCoreSysServiceBase.exportModelV2(pSSysAIPipelineAgent, string4 + File.separator + string3, string2);
             }
         }
         if (this.isExportRelatedModelV2("DER1N_PSSYSAIWORKERAGENT_PSSYSAIFACTORY_PSSYSAIFACTORYID") && (file2 = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSAIFACTORY#%4$s#ALL.txt", (Object)string2, (Object)File.separator, (Object)"PSSYSAIWORKERAGENT", (Object)pSSysAIFactory.getPSSysAIFactoryId()))).exists()) {
@@ -2332,18 +2331,18 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSSysAIWorkerAgent();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSSysAIWorkerAgentServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysAIWorkerAgent)entityBase);
+                PSSysAIWorkerAgent pSSysAIWorkerAgent = new PSSysAIWorkerAgent();
+                PSModelV2Helper.fromJSONObject((IDataObject)pSSysAIWorkerAgent, objectNode, false);
+                string3 = ((PSSysAIWorkerAgentServiceBase)pSCoreSysServiceBase).getModelV2Tag(pSSysAIWorkerAgent);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSAIWORKERAGENT", (Object)entityBase.getPSSysAIWorkerAgentId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSAIWORKERAGENT", (Object)pSSysAIWorkerAgent.getPSSysAIWorkerAgentId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSCoreSysServiceBase.exportModelV2(pSSysAIWorkerAgent, string4 + File.separator + string3, string2);
             }
         }
         super.onExportRelatedModelV2(pSSysAIFactory, string, string2);
@@ -2351,46 +2350,31 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
 
     @Override
     protected void onExportCurModelV2(PSSysAIFactory pSSysAIFactory, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        Object object3;
-        Object object4;
-        ArrayList<PSSysAIChatAgent> arrayList;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSAICHATAGENT_PSSYSAIFACTORY_PSSYSAIFACTORYID")) {
-            pSCoreSysServiceBase = (PSSysAIChatAgentService)ServiceGlobal.getService(PSSysAIChatAgentService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSSysAIChatAgentServiceBase chatAgentService = (PSSysAIChatAgentServiceBase)ServiceGlobal.getService(PSSysAIChatAgentService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> chatAgentModels = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSAIFACTORY#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSAICHATAGENT", (Object)pSSysAIFactory.getPSSysAIFactoryId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add((PSSysAIChatAgent)entityBase2);
+                    chatAgentModels = new ArrayList<ObjectNode>();
+                    for (String modelText : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)modelText)) continue;
+                        chatAgentModels.add((ObjectNode)JsonNodeHelper.fromString((String)modelText));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysAIChatAgent>();
-                object4 = ((PSSysAIChatAgentServiceBase)pSCoreSysServiceBase).selectByPSSysAIFactory(pSSysAIFactory);
-                object3 = StringHelper.format((String)"PSSYSAIFACTORY#%1$s", (Object)pSSysAIFactory.getPSSysAIFactoryId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysAIChatAgent)object2.next();
-                    object = ((PSSysAIChatAgentServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysAIChatAgent)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                chatAgentModels = new ArrayList<ObjectNode>();
+                String modelScope = StringHelper.format((String)"PSSYSAIFACTORY#%1$s", (Object)pSSysAIFactory.getPSSysAIFactoryId());
+                for (PSSysAIChatAgent chatAgent : chatAgentService.selectByPSSysAIFactory(pSSysAIFactory)) {
+                    if (StringHelper.compare((String)modelScope, (String)chatAgentService.getModelV2ResScope(chatAgent), (boolean)false) != 0) continue;
+                    chatAgentModels.add(PSModelV2Helper.toJSONObject(chatAgent, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (chatAgentModels != null && chatAgentModels.size() > 0) {
+                String modelName = chatAgentService.getModelV2Name(false);
+                ArrayNode modelArray = objectNode.putArray(((String)modelName).toLowerCase());
+                Collections.sort(chatAgentModels, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -2417,45 +2401,37 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysAIChatAgent();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode modelNode : chatAgentModels) {
+                    PSSysAIChatAgent chatAgent = new PSSysAIChatAgent();
+                    PSModelV2Helper.fromJSONObject((IDataObject)chatAgent, (ObjectNode)modelNode, false);
+                    modelArray.add((JsonNode)chatAgentService.exportModelV2(chatAgent, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSAIPIPELINEAGENT_PSSYSAIFACTORY_PSSYSAIFACTORYID")) {
-            pSCoreSysServiceBase = (PSSysAIPipelineAgentService)ServiceGlobal.getService(PSSysAIPipelineAgentService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSSysAIPipelineAgentServiceBase pipelineAgentService = (PSSysAIPipelineAgentServiceBase)ServiceGlobal.getService(PSSysAIPipelineAgentService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> pipelineAgentModels = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSAIFACTORY#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSAIPIPELINEAGENT", (Object)pSSysAIFactory.getPSSysAIFactoryId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysAIChatAgent)entityBase2);
+                    pipelineAgentModels = new ArrayList<ObjectNode>();
+                    for (String modelText : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)modelText)) continue;
+                        pipelineAgentModels.add((ObjectNode)JsonNodeHelper.fromString((String)modelText));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysAIPipelineAgentServiceBase)pSCoreSysServiceBase).selectByPSSysAIFactory(pSSysAIFactory);
-                object3 = StringHelper.format((String)"PSSYSAIFACTORY#%1$s", (Object)pSSysAIFactory.getPSSysAIFactoryId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysAIPipelineAgent)object2.next();
-                    object = ((PSSysAIPipelineAgentServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysAIChatAgent)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                pipelineAgentModels = new ArrayList<ObjectNode>();
+                String modelScope = StringHelper.format((String)"PSSYSAIFACTORY#%1$s", (Object)pSSysAIFactory.getPSSysAIFactoryId());
+                for (PSSysAIPipelineAgent pipelineAgent : pipelineAgentService.selectByPSSysAIFactory(pSSysAIFactory)) {
+                    if (StringHelper.compare((String)modelScope, (String)pipelineAgentService.getModelV2ResScope(pipelineAgent), (boolean)false) != 0) continue;
+                    pipelineAgentModels.add(PSModelV2Helper.toJSONObject(pipelineAgent, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (pipelineAgentModels != null && pipelineAgentModels.size() > 0) {
+                String modelName = pipelineAgentService.getModelV2Name(false);
+                ArrayNode modelArray = objectNode.putArray(((String)modelName).toLowerCase());
+                Collections.sort(pipelineAgentModels, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -2482,45 +2458,37 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysAIPipelineAgent();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode modelNode : pipelineAgentModels) {
+                    PSSysAIPipelineAgent pipelineAgent = new PSSysAIPipelineAgent();
+                    PSModelV2Helper.fromJSONObject((IDataObject)pipelineAgent, (ObjectNode)modelNode, false);
+                    modelArray.add((JsonNode)pipelineAgentService.exportModelV2(pipelineAgent, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSAIWORKERAGENT_PSSYSAIFACTORY_PSSYSAIFACTORYID")) {
-            pSCoreSysServiceBase = (PSSysAIWorkerAgentService)ServiceGlobal.getService(PSSysAIWorkerAgentService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSSysAIWorkerAgentServiceBase workerAgentService = (PSSysAIWorkerAgentServiceBase)ServiceGlobal.getService(PSSysAIWorkerAgentService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> workerAgentModels = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSAIFACTORY#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSAIWORKERAGENT", (Object)pSSysAIFactory.getPSSysAIFactoryId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysAIChatAgent)entityBase2);
+                    workerAgentModels = new ArrayList<ObjectNode>();
+                    for (String modelText : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)modelText)) continue;
+                        workerAgentModels.add((ObjectNode)JsonNodeHelper.fromString((String)modelText));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysAIWorkerAgentServiceBase)pSCoreSysServiceBase).selectByPSSysAIFactory(pSSysAIFactory);
-                object3 = StringHelper.format((String)"PSSYSAIFACTORY#%1$s", (Object)pSSysAIFactory.getPSSysAIFactoryId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysAIWorkerAgent)object2.next();
-                    object = ((PSSysAIWorkerAgentServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysAIChatAgent)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                workerAgentModels = new ArrayList<ObjectNode>();
+                String modelScope = StringHelper.format((String)"PSSYSAIFACTORY#%1$s", (Object)pSSysAIFactory.getPSSysAIFactoryId());
+                for (PSSysAIWorkerAgent workerAgent : workerAgentService.selectByPSSysAIFactory(pSSysAIFactory)) {
+                    if (StringHelper.compare((String)modelScope, (String)workerAgentService.getModelV2ResScope(workerAgent), (boolean)false) != 0) continue;
+                    workerAgentModels.add(PSModelV2Helper.toJSONObject(workerAgent, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (workerAgentModels != null && workerAgentModels.size() > 0) {
+                String modelName = workerAgentService.getModelV2Name(false);
+                ArrayNode modelArray = objectNode.putArray(((String)modelName).toLowerCase());
+                Collections.sort(workerAgentModels, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -2547,10 +2515,10 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysAIWorkerAgent();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode modelNode : workerAgentModels) {
+                    PSSysAIWorkerAgent workerAgent = new PSSysAIWorkerAgent();
+                    PSModelV2Helper.fromJSONObject((IDataObject)workerAgent, (ObjectNode)modelNode, false);
+                    modelArray.add((JsonNode)workerAgentService.exportModelV2(workerAgent, string));
                 }
             }
         }
@@ -2608,97 +2576,98 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
 
     @Override
     protected void onCompileRelatedModelV2(PSSysAIFactory pSSysAIFactory, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
-        int n2;
-        String string3;
-        ArrayNode arrayNode;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
         if (!PSSysAIFactoryServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSSysAIChatAgentService)ServiceGlobal.getService(PSSysAIChatAgentService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
+            PSSysAIChatAgentService chatAgentService = (PSSysAIChatAgentService)ServiceGlobal.getService(PSSysAIChatAgentService.class, (SessionFactory)this.getSessionFactory());
+            ArrayNode arrayNode = null;
+            String modelName = chatAgentService.getModelV2Name(null, false);
             if (objectNode != null) {
-                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
-            }
-            if (arrayNode != null) {
-                for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSSysAIChatAgent();
-                    ((PSSysAIChatAgentBase)object).setPSSysAIFactoryId(pSSysAIFactory.getPSSysAIFactoryId());
-                    ((PSSysAIChatAgentBase)object).setPSSysAIFactoryName(pSSysAIFactory.getPSSysAIFactoryName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
-                }
-            } else {
-                String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string4);
-                if (((File)object2).exists()) {
-                    object = ((File)object2).listFiles();
-                    for (Object object3 : object) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysAIChatAgent();
-                        entityBase.setPSSysAIFactoryId(pSSysAIFactory.getPSSysAIFactoryId());
-                        entityBase.setPSSysAIFactoryName(pSSysAIFactory.getPSSysAIFactoryName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
-                    }
-                }
-            }
-        }
-        if (!PSSysAIFactoryServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSSysAIPipelineAgentService)ServiceGlobal.getService(PSSysAIPipelineAgentService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-            if (objectNode != null) {
-                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
-            }
-            if (arrayNode != null) {
-                for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSSysAIPipelineAgent();
-                    ((PSSysAIPipelineAgentBase)object).setPSSysAIFactoryId(pSSysAIFactory.getPSSysAIFactoryId());
-                    ((PSSysAIPipelineAgentBase)object).setPSSysAIFactoryName(pSSysAIFactory.getPSSysAIFactoryName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
-                }
-            } else {
-                String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string5);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysAIPipelineAgent();
-                        entityBase.setPSSysAIFactoryId(pSSysAIFactory.getPSSysAIFactoryId());
-                        entityBase.setPSSysAIFactoryName(pSSysAIFactory.getPSSysAIFactoryName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
-                    }
-                }
-            }
-        }
-        if (!PSSysAIFactoryServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSSysAIWorkerAgentService)ServiceGlobal.getService(PSSysAIWorkerAgentService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-            if (objectNode != null) {
-                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
+                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)modelName.toLowerCase());
             }
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
-                    object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSSysAIWorkerAgent();
-                    ((PSSysAIWorkerAgentBase)object).setPSSysAIFactoryId(pSSysAIFactory.getPSSysAIFactoryId());
-                    ((PSSysAIWorkerAgentBase)object).setPSSysAIFactoryName(pSSysAIFactory.getPSSysAIFactoryName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode modelNode = (ObjectNode)arrayNode.get(i);
+                    PSSysAIChatAgent chatAgent = new PSSysAIChatAgent();
+                    chatAgent.setPSSysAIFactoryId(pSSysAIFactory.getPSSysAIFactoryId());
+                    chatAgent.setPSSysAIFactoryName(pSSysAIFactory.getPSSysAIFactoryName());
+                    chatAgentService.compileModelV2(chatAgent, modelNode, string, null, n);
                 }
             } else {
-                String string6 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string6);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysAIWorkerAgent();
-                        entityBase.setPSSysAIFactoryId(pSSysAIFactory.getPSSysAIFactoryId());
-                        entityBase.setPSSysAIFactoryName(pSSysAIFactory.getPSSysAIFactoryName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                String modelPath = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)modelName);
+                File modelDirectory = new File(modelPath);
+                if (modelDirectory.exists()) {
+                    File[] modelFiles = modelDirectory.listFiles();
+                    if (modelFiles != null) {
+                        for (File modelFile : modelFiles) {
+                            if (!modelFile.isDirectory()) continue;
+                            PSSysAIChatAgent chatAgent = new PSSysAIChatAgent();
+                            chatAgent.setPSSysAIFactoryId(pSSysAIFactory.getPSSysAIFactoryId());
+                            chatAgent.setPSSysAIFactoryName(pSSysAIFactory.getPSSysAIFactoryName());
+                            chatAgentService.compileModelV2(chatAgent, null, string, modelFile.getCanonicalPath(), n);
+                        }
+                    }
+                }
+            }
+        }
+        if (!PSSysAIFactoryServiceBase.isSimpleImportExportMode("")) {
+            PSSysAIPipelineAgentService pipelineAgentService = (PSSysAIPipelineAgentService)ServiceGlobal.getService(PSSysAIPipelineAgentService.class, (SessionFactory)this.getSessionFactory());
+            ArrayNode arrayNode = null;
+            String modelName = pipelineAgentService.getModelV2Name(null, false);
+            if (objectNode != null) {
+                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)modelName.toLowerCase());
+            }
+            if (arrayNode != null) {
+                for (int i = 0; i < arrayNode.size(); ++i) {
+                    ObjectNode modelNode = (ObjectNode)arrayNode.get(i);
+                    PSSysAIPipelineAgent pipelineAgent = new PSSysAIPipelineAgent();
+                    pipelineAgent.setPSSysAIFactoryId(pSSysAIFactory.getPSSysAIFactoryId());
+                    pipelineAgent.setPSSysAIFactoryName(pSSysAIFactory.getPSSysAIFactoryName());
+                    pipelineAgentService.compileModelV2(pipelineAgent, modelNode, string, null, n);
+                }
+            } else {
+                String modelPath = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)modelName);
+                File modelDirectory = new File(modelPath);
+                if (modelDirectory.exists()) {
+                    File[] modelFiles = modelDirectory.listFiles();
+                    if (modelFiles != null) {
+                        for (File modelFile : modelFiles) {
+                            if (!modelFile.isDirectory()) continue;
+                            PSSysAIPipelineAgent pipelineAgent = new PSSysAIPipelineAgent();
+                            pipelineAgent.setPSSysAIFactoryId(pSSysAIFactory.getPSSysAIFactoryId());
+                            pipelineAgent.setPSSysAIFactoryName(pSSysAIFactory.getPSSysAIFactoryName());
+                            pipelineAgentService.compileModelV2(pipelineAgent, null, string, modelFile.getCanonicalPath(), n);
+                        }
+                    }
+                }
+            }
+        }
+        if (!PSSysAIFactoryServiceBase.isSimpleImportExportMode("")) {
+            PSSysAIWorkerAgentService workerAgentService = (PSSysAIWorkerAgentService)ServiceGlobal.getService(PSSysAIWorkerAgentService.class, (SessionFactory)this.getSessionFactory());
+            ArrayNode arrayNode = null;
+            String modelName = workerAgentService.getModelV2Name(null, false);
+            if (objectNode != null) {
+                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)modelName.toLowerCase());
+            }
+            if (arrayNode != null) {
+                for (int i = 0; i < arrayNode.size(); ++i) {
+                    ObjectNode modelNode = (ObjectNode)arrayNode.get(i);
+                    PSSysAIWorkerAgent workerAgent = new PSSysAIWorkerAgent();
+                    workerAgent.setPSSysAIFactoryId(pSSysAIFactory.getPSSysAIFactoryId());
+                    workerAgent.setPSSysAIFactoryName(pSSysAIFactory.getPSSysAIFactoryName());
+                    workerAgentService.compileModelV2(workerAgent, modelNode, string, null, n);
+                }
+            } else {
+                String modelPath = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)modelName);
+                File modelDirectory = new File(modelPath);
+                if (modelDirectory.exists()) {
+                    File[] modelFiles = modelDirectory.listFiles();
+                    if (modelFiles != null) {
+                        for (File modelFile : modelFiles) {
+                            if (!modelFile.isDirectory()) continue;
+                            PSSysAIWorkerAgent workerAgent = new PSSysAIWorkerAgent();
+                            workerAgent.setPSSysAIFactoryId(pSSysAIFactory.getPSSysAIFactoryId());
+                            workerAgent.setPSSysAIFactoryName(pSSysAIFactory.getPSSysAIFactoryName());
+                            workerAgentService.compileModelV2(workerAgent, null, string, modelFile.getCanonicalPath(), n);
+                        }
                     }
                 }
             }
@@ -2726,7 +2695,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             PSSysAIChatAgentService pSSysAIChatAgentService = (PSSysAIChatAgentService)ServiceGlobal.getService(PSSysAIChatAgentService.class, (SessionFactory)this.getSessionFactory());
             PSSysAIChatAgent pSSysAIChatAgent = new PSSysAIChatAgent();
             pSSysAIChatAgent.setPSSysAIChatAgentId(pSMOSFile.getPSModelId());
-            if (!pSSysAIChatAgentService.get((IEntity)pSSysAIChatAgent, true)) {
+            if (!pSSysAIChatAgentService.get(pSSysAIChatAgent, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysAIChatAgent.getPSSysAIFactoryId(), (String)pSSysAIFactory.getPSSysAIFactoryId(), (boolean)false) == 0) {
@@ -2734,12 +2703,12 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             }
             ObjectNode objectNode = pSSysAIChatAgentService.exportModelV2(pSSysAIChatAgent);
             pSSysAIChatAgent.reset();
-            if (!pSSysAIChatAgentService.setModelV2ResScope((IEntity)pSSysAIChatAgent, "PSSYSAIFACTORY", pSSysAIFactory.getPSSysAIFactoryId())) {
+            if (!pSSysAIChatAgentService.setModelV2ResScope(pSSysAIChatAgent, "PSSYSAIFACTORY", pSSysAIFactory.getPSSysAIFactoryId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysAIChatAgentService.importModelV2(pSSysAIChatAgent, objectNode);
             SessionFactoryManager.commit();
-            return pSSysAIChatAgentService.getFile((IEntity)pSSysAIChatAgent);
+            return pSSysAIChatAgentService.getFile(pSSysAIChatAgent);
         }
         return null;
     }
@@ -2749,7 +2718,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             PSSysAIPipelineAgentService pSSysAIPipelineAgentService = (PSSysAIPipelineAgentService)ServiceGlobal.getService(PSSysAIPipelineAgentService.class, (SessionFactory)this.getSessionFactory());
             PSSysAIPipelineAgent pSSysAIPipelineAgent = new PSSysAIPipelineAgent();
             pSSysAIPipelineAgent.setPSSysAIPipelineAgentId(pSMOSFile.getPSModelId());
-            if (!pSSysAIPipelineAgentService.get((IEntity)pSSysAIPipelineAgent, true)) {
+            if (!pSSysAIPipelineAgentService.get(pSSysAIPipelineAgent, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysAIPipelineAgent.getPSSysAIFactoryId(), (String)pSSysAIFactory.getPSSysAIFactoryId(), (boolean)false) == 0) {
@@ -2757,12 +2726,12 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             }
             ObjectNode objectNode = pSSysAIPipelineAgentService.exportModelV2(pSSysAIPipelineAgent);
             pSSysAIPipelineAgent.reset();
-            if (!pSSysAIPipelineAgentService.setModelV2ResScope((IEntity)pSSysAIPipelineAgent, "PSSYSAIFACTORY", pSSysAIFactory.getPSSysAIFactoryId())) {
+            if (!pSSysAIPipelineAgentService.setModelV2ResScope(pSSysAIPipelineAgent, "PSSYSAIFACTORY", pSSysAIFactory.getPSSysAIFactoryId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysAIPipelineAgentService.importModelV2(pSSysAIPipelineAgent, objectNode);
             SessionFactoryManager.commit();
-            return pSSysAIPipelineAgentService.getFile((IEntity)pSSysAIPipelineAgent);
+            return pSSysAIPipelineAgentService.getFile(pSSysAIPipelineAgent);
         }
         return null;
     }
@@ -2772,7 +2741,7 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             PSSysAIWorkerAgentService pSSysAIWorkerAgentService = (PSSysAIWorkerAgentService)ServiceGlobal.getService(PSSysAIWorkerAgentService.class, (SessionFactory)this.getSessionFactory());
             PSSysAIWorkerAgent pSSysAIWorkerAgent = new PSSysAIWorkerAgent();
             pSSysAIWorkerAgent.setPSSysAIWorkerAgentId(pSMOSFile.getPSModelId());
-            if (!pSSysAIWorkerAgentService.get((IEntity)pSSysAIWorkerAgent, true)) {
+            if (!pSSysAIWorkerAgentService.get(pSSysAIWorkerAgent, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysAIWorkerAgent.getPSSysAIFactoryId(), (String)pSSysAIFactory.getPSSysAIFactoryId(), (boolean)false) == 0) {
@@ -2780,12 +2749,12 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
             }
             ObjectNode objectNode = pSSysAIWorkerAgentService.exportModelV2(pSSysAIWorkerAgent);
             pSSysAIWorkerAgent.reset();
-            if (!pSSysAIWorkerAgentService.setModelV2ResScope((IEntity)pSSysAIWorkerAgent, "PSSYSAIFACTORY", pSSysAIFactory.getPSSysAIFactoryId())) {
+            if (!pSSysAIWorkerAgentService.setModelV2ResScope(pSSysAIWorkerAgent, "PSSYSAIFACTORY", pSSysAIFactory.getPSSysAIFactoryId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysAIWorkerAgentService.importModelV2(pSSysAIWorkerAgent, objectNode);
             SessionFactoryManager.commit();
-            return pSSysAIWorkerAgentService.getFile((IEntity)pSSysAIWorkerAgent);
+            return pSSysAIWorkerAgentService.getFile(pSSysAIWorkerAgent);
         }
         return null;
     }
@@ -2835,4 +2804,3 @@ extends PSCoreSysServiceBase<PSSysAIFactory> {
         defaultValueMap.put("PSSYSAIFACTORYNAME", "AI\u5de5\u5382");
     }
 }
-

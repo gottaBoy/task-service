@@ -72,7 +72,7 @@ implements IPSSysDBTableService {
     @Override
     protected List<PSSysDBTable> onListAll() throws Exception {
         ArrayList<PSSysDBTable> list = new ArrayList<PSSysDBTable>();
-        List pssysdbschemes = PSModelServiceUtil.getInstance().getPSSysDBSchemeService().listAll();
+        List<PSSysDBScheme> pssysdbschemes = PSModelServiceUtil.getInstance().getPSSysDBSchemeService().listAll();
         if (pssysdbschemes != null) {
             for (PSSysDBScheme parent : pssysdbschemes) {
                 List<PSSysDBTable> items = this.listByPSSysDBScheme(parent);

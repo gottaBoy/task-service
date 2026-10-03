@@ -1054,7 +1054,7 @@ implements Serializable {
                 PSModel pSModel = new PSModel();
                 pSModel.setPSModelId(this.getMajorPSModelId());
                 PSModelService pSModelService = (PSModelService)ServiceGlobal.getService(PSModelService.class, (SessionFactory)this.getSessionFactory());
-                pSModelService.autoGet((IEntity)pSModel);
+                pSModelService.autoGet(pSModel);
                 this.majorpsmodel = pSModel;
             }
             return this.majorpsmodel;
@@ -1080,7 +1080,7 @@ implements Serializable {
                 PSModel pSModel = new PSModel();
                 pSModel.setPSModelId(this.getMinorPSModelId());
                 PSModelService pSModelService = (PSModelService)ServiceGlobal.getService(PSModelService.class, (SessionFactory)this.getSessionFactory());
-                pSModelService.autoGet((IEntity)pSModel);
+                pSModelService.autoGet(pSModel);
                 this.minorpsmodel = pSModel;
             }
             return this.minorpsmodel;

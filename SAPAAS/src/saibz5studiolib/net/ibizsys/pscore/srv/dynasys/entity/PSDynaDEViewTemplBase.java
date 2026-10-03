@@ -1629,7 +1629,7 @@ implements Serializable {
                 PSDynaDETempl pSDynaDETempl = new PSDynaDETempl();
                 pSDynaDETempl.setPSDynaDETemplId(this.getPSDynaDETemplId());
                 PSDynaDETemplService pSDynaDETemplService = (PSDynaDETemplService)ServiceGlobal.getService(PSDynaDETemplService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaDETemplService.autoGet((IEntity)pSDynaDETempl);
+                pSDynaDETemplService.autoGet(pSDynaDETempl);
                 this.psdynadetempl = pSDynaDETempl;
             }
             return this.psdynadetempl;
@@ -1655,7 +1655,7 @@ implements Serializable {
                 PSSysUniRes pSSysUniRes = new PSSysUniRes();
                 pSSysUniRes.setPSSysUniResId(this.getPSSysUniResId());
                 PSSysUniResService pSSysUniResService = (PSSysUniResService)ServiceGlobal.getService(PSSysUniResService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUniResService.autoGet((IEntity)pSSysUniRes);
+                pSSysUniResService.autoGet(pSSysUniRes);
                 this.pssysunires = pSSysUniRes;
             }
             return this.pssysunires;

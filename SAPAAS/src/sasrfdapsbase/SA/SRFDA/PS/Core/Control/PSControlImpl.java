@@ -1,29 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  SA.SRFDA.Web.Utility.ISRFDAGlobalHelper
- *  com.fasterxml.jackson.databind.node.ObjectNode
- *  net.ibizsys.paas.core.IDataEntity
- *  net.ibizsys.paas.service.ActionSessionManager
- *  net.ibizsys.paas.service.IServiceWork
- *  net.ibizsys.paas.service.ITransaction
- *  net.ibizsys.paas.service.ServiceWorkHelper
- *  net.ibizsys.paas.util.JsonNodeHelper
- *  net.ibizsys.paas.util.KeyValueHelper
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.paas.view.IView
- *  net.ibizsys.pscore.srv.util.Inflector
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package SA.SRFDA.PS.Core.Control;
 
+import SA.SRFDA.PS.Core.IPSModelObject;
+import SA.SRFDA.PS.Core.IPSSystem;
+import SA.SRFDA.PS.Core.IPSSystemSetting;
+import SA.SRFDA.PS.Core.IPSSystemUtil;
+import SA.SRFDA.PS.Core.PSModelRTMeta;
+import SA.SRFDA.PS.Core.PSObjectImpl3;
+import SA.SRFDA.PS.Core.PSTaskServerEnvImpl;
+import SA.SRFDA.PS.Core.App.IPSApplication;
 import SA.SRFDA.PS.Core.App.DataEntity.IPSAppDEUIAction;
 import SA.SRFDA.PS.Core.App.DataEntity.IPSAppDEUILogicGroup;
 import SA.SRFDA.PS.Core.App.DataEntity.IPSAppDEUILogicGroupDetail;
 import SA.SRFDA.PS.Core.App.DataEntity.IPSAppDataEntity;
-import SA.SRFDA.PS.Core.App.IPSApplication;
 import SA.SRFDA.PS.Core.App.View.IPSAppDEView;
 import SA.SRFDA.PS.Core.App.View.IPSAppView;
 import SA.SRFDA.PS.Core.App.View.IPSAppViewLogic;
@@ -31,36 +19,11 @@ import SA.SRFDA.PS.Core.App.View.IPSAppViewPreview;
 import SA.SRFDA.PS.Core.App.View.IPSAppViewRef;
 import SA.SRFDA.PS.Core.App.View.PSAppViewImpl;
 import SA.SRFDA.PS.Core.CodeList.IPSCodeList;
-import SA.SRFDA.PS.Core.Control.IPSControl;
-import SA.SRFDA.PS.Core.Control.IPSControlAction;
-import SA.SRFDA.PS.Core.Control.IPSControlAttribute;
-import SA.SRFDA.PS.Core.Control.IPSControlContainer;
-import SA.SRFDA.PS.Core.Control.IPSControlHandler;
-import SA.SRFDA.PS.Core.Control.IPSControlLogic;
-import SA.SRFDA.PS.Core.Control.IPSControlParam;
-import SA.SRFDA.PS.Core.Control.IPSControlPreviewable;
-import SA.SRFDA.PS.Core.Control.IPSControlRender;
-import SA.SRFDA.PS.Core.Control.IPSControlType;
-import SA.SRFDA.PS.Core.Control.IPSControlXDataContainer;
-import SA.SRFDA.PS.Core.Control.PSControlAttributeProxy;
-import SA.SRFDA.PS.Core.Control.PSControlAttributeProxy4;
-import SA.SRFDA.PS.Core.Control.PSControlLogicProxy;
-import SA.SRFDA.PS.Core.Control.PSControlLogicProxy2;
-import SA.SRFDA.PS.Core.Control.PSControlLogicProxy4;
-import SA.SRFDA.PS.Core.Control.PSControlRenderProxy;
-import SA.SRFDA.PS.Core.Control.PSControlRenderProxy4;
 import SA.SRFDA.PS.Core.DataEntity.IPSDataEntity;
 import SA.SRFDA.PS.Core.DynaModel.IPSSysDynaModel;
-import SA.SRFDA.PS.Core.IPSModelObject;
-import SA.SRFDA.PS.Core.IPSSystem;
-import SA.SRFDA.PS.Core.IPSSystemSetting;
-import SA.SRFDA.PS.Core.IPSSystemUtil;
 import SA.SRFDA.PS.Core.PF.IPSPF;
 import SA.SRFDA.PS.Core.PF.IPSPFXCodeObject;
 import SA.SRFDA.PS.Core.PF.PSPFXCodeObjectProxy;
-import SA.SRFDA.PS.Core.PSModelRTMeta;
-import SA.SRFDA.PS.Core.PSObjectImpl3;
-import SA.SRFDA.PS.Core.PSTaskServerEnvImpl;
 import SA.SRFDA.PS.Core.Pub.IPSCodePublisherParam;
 import SA.SRFDA.PS.Core.Pub.IPSPFPubHelp;
 import SA.SRFDA.PS.Core.Pub.IPSPFPubSupportable;
@@ -91,1329 +54,1305 @@ import net.ibizsys.pscore.srv.util.Inflector;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class PSControlImpl
-extends PSObjectImpl3
-implements IPSControl,
-IPSControlPreviewable,
-IPSPFPubSupportable {
-    private static final Log log = LogFactory.getLog(PSControlImpl.class);
-    public static final String MODELGROUP_DETAIL = "\u90e8\u4ef6\u5143\u7d20";
-    public static final String MODELGROUP_LOGIC = "\u90e8\u4ef6\u903b\u8f91";
-    public static final String MODELGROUP_NAV = "\u90e8\u4ef6\u5bfc\u822a";
-    public static final String[] MODELGROUPS = new String[]{"\u57fa\u672c", "\u90e8\u4ef6\u5143\u7d20", "\u90e8\u4ef6\u903b\u8f91", "\u90e8\u4ef6\u5bfc\u822a", "\u7528\u6237\u6269\u5c55", "\u5176\u5b83"};
-    public static final int MODELORDER_DETAIL = 150;
-    public static final int MODELORDER_LOGIC = 200;
-    public static final int MODELORDER_NAV = 300;
-    public static final int DEFAULTORDERVALUE = 99999;
-    public static final String MODELREF_LINK = "LINK";
-    public static final String MODELREF_MUSTREF = "MUSTREF";
-    public static final String MODEL_SINGLE = "SINGLE";
-    public static final String MODELREF_INDIVIDUAL = "INDIVIDUAL";
-    private IPSControlContainer iPSControlContainer = null;
-    private IPSControlType iPSControlType = null;
-    private IPSDataEntity iPSDataEntity = null;
-    protected IPSControlParam iPSControlParam = null;
-    private IPSSysCss iPSSysCss = null;
-    private IPSSysPFPlugin iPSSysPFPlugin = null;
-    private IPSCtrlMsg iPSCtrlMsg = null;
-    private boolean bDesignMode = false;
-    private String strUniqueId = "";
-    private double fWidth = 0.0;
-    private double fHeight = 0.0;
-    private int nOrderValue = 99999;
-    private IPSControlXDataContainer iPSControlXDataContainer = null;
-    private boolean bDefaultCtrl = false;
-    private Boolean bDynamicCtrl = null;
-    private String strLogicName = null;
-    private IPSPF previewPSPF = null;
-    private List<IPSControlLogic> psControlLogicList = null;
-    private Map<String, ArrayList<IPSControlLogic>> hookEventMap = null;
-    private IPSPFXCodeObject iPSPFXCodeObject = null;
-    private IPSAppDataEntity iPSAppDataEntity = null;
-    private IPSPFPubHelp iPSPFPubHelp = null;
-    private List<IPSControlAttribute> psControlAttributeList = null;
-    private List<IPSControlRender> psControlRenderList = null;
+public class PSControlImpl extends PSObjectImpl3 implements IPSControl, IPSControlPreviewable, IPSPFPubSupportable {
+   private static final Log log = LogFactory.getLog(PSControlImpl.class);
+   public static final String MODELGROUP_DETAIL = "部件元素";
+   public static final String MODELGROUP_LOGIC = "部件逻辑";
+   public static final String MODELGROUP_NAV = "部件导航";
+   public static final String[] MODELGROUPS = new String[]{"基本", "部件元素", "部件逻辑", "部件导航", "用户扩展", "其它"};
+   public static final int MODELORDER_DETAIL = 150;
+   public static final int MODELORDER_LOGIC = 200;
+   public static final int MODELORDER_NAV = 300;
+   public static final int DEFAULTORDERVALUE = 99999;
+   public static final String MODELREF_LINK = "LINK";
+   public static final String MODELREF_MUSTREF = "MUSTREF";
+   public static final String MODEL_SINGLE = "SINGLE";
+   public static final String MODELREF_INDIVIDUAL = "INDIVIDUAL";
+   private IPSControlContainer iPSControlContainer = null;
+   private IPSControlType iPSControlType = null;
+   private IPSDataEntity iPSDataEntity = null;
+   protected IPSControlParam iPSControlParam = null;
+   private IPSSysCss iPSSysCss = null;
+   private IPSSysPFPlugin iPSSysPFPlugin = null;
+   private IPSCtrlMsg iPSCtrlMsg = null;
+   private boolean bDesignMode = false;
+   private String strUniqueId = "";
+   private double fWidth = 0.0;
+   private double fHeight = 0.0;
+   private int nOrderValue = 99999;
+   private IPSControlXDataContainer iPSControlXDataContainer = null;
+   private boolean bDefaultCtrl = false;
+   private Boolean bDynamicCtrl = null;
+   private String strLogicName = null;
+   private IPSPF previewPSPF = null;
+   private List<IPSControlLogic> psControlLogicList = null;
+   private Map<String, ArrayList<IPSControlLogic>> hookEventMap = null;
+   private IPSPFXCodeObject iPSPFXCodeObject = null;
+   private IPSAppDataEntity iPSAppDataEntity = null;
+   private IPSPFPubHelp iPSPFPubHelp = null;
+   private List<IPSControlAttribute> psControlAttributeList = null;
+   private List<IPSControlRender> psControlRenderList = null;
 
-    @Override
-    public void init(ISRFDAGlobalHelper iDAGlobalHelper, IPSControlContainer iPSControlContainer, String strName, IPSControlParam iPSControlParam) throws Exception {
-        this.setDAGlobalHelper(iDAGlobalHelper);
-        this.setPSControlContainer(iPSControlContainer);
-        this.setName(strName);
-        this.iPSControlParam = iPSControlParam;
-        this.strUniqueId = this.getPSAppView() != null ? this.getPSAppView().generateCtrlUniId() : "";
-        if (this.iPSControlParam.getWidth() != null) {
-            this.fWidth = this.iPSControlParam.getWidth();
-        }
-        if (this.iPSControlParam.getHeight() != null) {
-            this.fHeight = this.iPSControlParam.getHeight();
-        }
-        if (this.iPSControlParam.isDefaultCtrl() != null) {
-            this.bDefaultCtrl = this.iPSControlParam.isDefaultCtrl();
-        }
-        if (this.iPSControlParam.getOrderValue() != null) {
-            this.nOrderValue = this.iPSControlParam.getOrderValue();
-        }
-        if (!StringHelper.isNullOrEmpty((String)this.iPSControlParam.getPSSysPFPluginId())) {
-            this.iPSSysPFPlugin = this.getPSApplication() != null ? this.getPSApplication().getPSSysPFPlugin(this.iPSControlParam.getPSSysPFPluginId(), "CONTROL", this.getControlType(), null) : this.getPSSystem().getPSSysPFPlugin(this.iPSControlParam.getPSSysPFPluginId());
-            if (this.getPSAppView() != null) {
-                this.getPSAppView().registerPSSysPFPlugin(this.iPSSysPFPlugin);
-            }
-        }
-        if (!StringHelper.isNullOrEmpty((String)this.iPSControlParam.getPSSysCssId())) {
-            this.iPSSysCss = this.getPSSystem().getPSSysCss(this.iPSControlParam.getPSSysCssId());
-            if (this.getPSAppView() != null) {
-                if (this.getPSAppView().getPSPFStyle().isRegisterToContainer()) {
-                    this.getPSControlContainer().registerPSSysCss(this.iPSSysCss);
-                } else {
-                    this.getPSAppView().registerPSSysCss(this.iPSSysCss);
-                }
-            }
-        }
-        if (!StringHelper.isNullOrEmpty((String)this.iPSControlParam.getPSCtrlMsgId())) {
-            this.iPSCtrlMsg = this.getPSSystem().getPSCtrlMsg(this.iPSControlParam.getPSCtrlMsgId());
-        }
-        if (!this.isDesignMode() && !StringHelper.isNullOrEmpty((String)this.getId()) && this.getId().indexOf("SRFTEMPKEY:") == 0) {
-            this.setDesignMode(true);
-            if (this.getPreviewPSPF() == null) {
-                this.setPreviewPSPF(this.calcPreviewPSPF());
-            }
-        }
-        if (!this.isDesignMode() && this.getPSAppView() instanceof IPSAppViewPreview) {
-            this.setDesignMode(((IPSAppViewPreview)((Object)this.getPSAppView())).isDesignMode());
-            if (this.isDesignMode() && this.getPreviewPSPF() == null) {
-                this.setPreviewPSPF(this.calcPreviewPSPF());
-            }
-        }
-        if (this.iPSDataEntity == null && !StringHelper.isNullOrEmpty((String)this.iPSControlParam.getPSDEId())) {
-            this.setPSDataEntity(this.getPSAppView().getPSSystem().getPSDataEntity2(this.iPSControlParam.getPSDEId(), false));
-        }
-        if (this.getPSDataEntity() != null && this.getPSAppDataEntity() == null) {
-            if (this.getPSAppView().getPSAppDataEntity() != null) {
-                if (StringHelper.compare((String)this.getPSAppView().getPSAppDataEntity().getPSDE().getId(), (String)this.getPSDataEntity().getId(), (boolean)false) == 0) {
-                    this.setPSAppDataEntity(this.getPSAppView().getPSAppDataEntity());
-                } else if (this.getPSAppDataEntity() == null) {
-                    this.setPSAppDataEntity(this.getPSAppView().getPSApplication().getPSAppDataEntityByDEId(this.getPSDataEntity().getId(), true));
-                }
+   @Override
+   public void init(ISRFDAGlobalHelper iDAGlobalHelper, IPSControlContainer iPSControlContainer, String strName, IPSControlParam iPSControlParam) throws Exception {
+      this.setDAGlobalHelper(iDAGlobalHelper);
+      this.setPSControlContainer(iPSControlContainer);
+      this.setName(strName);
+      this.iPSControlParam = iPSControlParam;
+      if (this.getPSAppView() != null) {
+         this.strUniqueId = this.getPSAppView().generateCtrlUniId();
+      } else {
+         this.strUniqueId = "";
+      }
+
+      if (this.iPSControlParam.getWidth() != null) {
+         this.fWidth = this.iPSControlParam.getWidth();
+      }
+
+      if (this.iPSControlParam.getHeight() != null) {
+         this.fHeight = this.iPSControlParam.getHeight();
+      }
+
+      if (this.iPSControlParam.isDefaultCtrl() != null) {
+         this.bDefaultCtrl = this.iPSControlParam.isDefaultCtrl();
+      }
+
+      if (this.iPSControlParam.getOrderValue() != null) {
+         this.nOrderValue = this.iPSControlParam.getOrderValue();
+      }
+
+      if (!StringHelper.isNullOrEmpty(this.iPSControlParam.getPSSysPFPluginId())) {
+         if (this.getPSApplication() != null) {
+            this.iPSSysPFPlugin = this.getPSApplication().getPSSysPFPlugin(this.iPSControlParam.getPSSysPFPluginId(), "CONTROL", this.getControlType(), null);
+         } else {
+            this.iPSSysPFPlugin = this.getPSSystem().getPSSysPFPlugin(this.iPSControlParam.getPSSysPFPluginId());
+         }
+
+         if (this.getPSAppView() != null) {
+            this.getPSAppView().registerPSSysPFPlugin(this.iPSSysPFPlugin);
+         }
+      }
+
+      if (!StringHelper.isNullOrEmpty(this.iPSControlParam.getPSSysCssId())) {
+         this.iPSSysCss = this.getPSSystem().getPSSysCss(this.iPSControlParam.getPSSysCssId());
+         if (this.getPSAppView() != null) {
+            if (this.getPSAppView().getPSPFStyle().isRegisterToContainer()) {
+               this.getPSControlContainer().registerPSSysCss(this.iPSSysCss);
             } else {
-                this.setPSAppDataEntity(this.getPSAppView().getPSApplication().getPSAppDataEntityByDEId(this.getPSDataEntity().getId(), true));
+               this.getPSAppView().registerPSSysCss(this.iPSSysCss);
             }
-        }
-        ServiceWorkHelper.getInstance().execute(new IServiceWork(){
+         }
+      }
 
-            public void execute(ITransaction iTransaction) throws Exception {
-                if (!StringHelper.isNullOrEmpty((String)PSControlImpl.this.getModelType()) && !StringHelper.isNullOrEmpty((String)PSControlImpl.this.getId())) {
-                    String strUniqueTag = String.valueOf(PSControlImpl.this.getPSAppView().getName()) + "_" + PSControlImpl.this.getId();
-                    if (!ActionSessionManager.getCurrentSession().registerRecursion(PSControlImpl.this.getModelType(), (Object)strUniqueTag)) {
-                        throw new Exception(StringHelper.format((String)"\u89c6\u56fe[%1$s]\u90e8\u4ef6[%2$s]\u5b58\u5728\u9012\u5f52\u5f15\u7528", (Object)PSControlImpl.this.getPSAppView().getName(), (Object)PSControlImpl.this.getName()));
-                    }
-                    try {
-                        PSControlImpl.this.onInit();
-                        ActionSessionManager.getCurrentSession().unregisterRecursion(PSControlImpl.this.getModelType(), (Object)strUniqueTag);
-                    }
-                    catch (Exception ex) {
-                        ActionSessionManager.getCurrentSession().unregisterRecursion(PSControlImpl.this.getModelType(), (Object)strUniqueTag);
-                        throw ex;
-                    }
-                } else {
-                    PSControlImpl.this.onInit();
-                }
-            }
-        });
-        if (this.isRegisterToPSAppDataEntity() && this.getPSAppDataEntity() != null) {
-            this.getPSAppDataEntity().registerPSControl(this);
-        }
-        if (!this.isDesignMode()) {
-            if (this.getPSSysPFPlugin() != null) {
-                String strPSSysPFPluginTemplId = KeyValueHelper.genUniqueId((String)this.getPSSysPFPlugin().getId(), (String)this.getPSAppView().getPSPFStyle().getPSPF().getId());
-                IPSSysPFPluginTempl iPSSysPFPluginTempl = this.getPSSystem().getPSSysPFPluginTempl(strPSSysPFPluginTemplId, true);
-                if (iPSSysPFPluginTempl != null) {
-                    this.iPSPFXCodeObject = new PSPFXCodeObjectProxy(iPSSysPFPluginTempl, (Object)this.getPSAppView(), (Object)this);
-                }
-            }
-            this.registerPSControlLogics();
-            this.onCheckControlParam();
-        }
-    }
+      if (!StringHelper.isNullOrEmpty(this.iPSControlParam.getPSCtrlMsgId())) {
+         this.iPSCtrlMsg = this.getPSSystem().getPSCtrlMsg(this.iPSControlParam.getPSCtrlMsgId());
+      }
 
-    @Override
-    protected int onCheck() throws Exception {
-        if (this.isPrepareTemplV2logic()) {
-            Iterator<? extends IPSControlRender> psControlRenders;
-            Iterator<? extends IPSControlLogic> psControlLogics;
-            Iterator<? extends IPSControlAction> psControlActions = this.getPSControlActions();
-            if (psControlActions != null) {
-                while (psControlActions.hasNext()) {
-                    IPSControlAction iPSControlAction = psControlActions.next();
-                    iPSControlAction.getPSAppDataEntity();
-                }
-            }
-            if ((psControlLogics = this.getAllPSControlLogics()) != null) {
-                while (psControlLogics.hasNext()) {
-                    IPSControlLogic iPSControlLogic = psControlLogics.next();
-                    iPSControlLogic.getPSAppDataEntity();
-                    iPSControlLogic.getPSAppDEUIAction();
-                    if (iPSControlLogic.getPSAppDEUILogic() != null) {
-                        iPSControlLogic.getPSAppDEUILogic().check();
-                    }
-                    iPSControlLogic.getPSAppUILogic();
-                    iPSControlLogic.getPSAppViewEngine();
-                    iPSControlLogic.getPSAppViewLogic();
-                }
-            }
-            if ((psControlRenders = this.getAllPSControlRenders()) != null) {
-                while (psControlRenders.hasNext()) {
-                    IPSControlRender iPSControlRender = psControlRenders.next();
-                    if (iPSControlRender.getPSLayoutPanel() == null) continue;
-                    iPSControlRender.getPSLayoutPanel().check();
-                }
-            }
-        }
-        return super.onCheck();
-    }
+      if (!this.isDesignMode() && !StringHelper.isNullOrEmpty(this.getId()) && this.getId().indexOf("SRFTEMPKEY:") == 0) {
+         this.setDesignMode(true);
+         if (this.getPreviewPSPF() == null) {
+            this.setPreviewPSPF(this.calcPreviewPSPF());
+         }
+      }
 
-    protected Iterator<? extends IPSAppDEUILogicGroupDetail> getPSAppDEUILogicGroupDetails() {
-        return null;
-    }
+      if (!this.isDesignMode() && this.getPSAppView() instanceof IPSAppViewPreview) {
+         this.setDesignMode(((IPSAppViewPreview)this.getPSAppView()).isDesignMode());
+         if (this.isDesignMode() && this.getPreviewPSPF() == null) {
+            this.setPreviewPSPF(this.calcPreviewPSPF());
+         }
+      }
 
-    /*
-     * Unable to fully structure code
-     */
-    private void registerPSControlLogics() throws Exception {
-        block7: {
-            map = new LinkedHashMap<String, IPSAppDEUILogicGroupDetail>();
-            psAppDEUILogicGroupDetails = this.getPSAppDEUILogicGroupDetails();
-            if (psAppDEUILogicGroupDetails != null) {
-                while (psAppDEUILogicGroupDetails.hasNext()) {
-                    iPSAppDEUILogicGroupDetail = psAppDEUILogicGroupDetails.next();
-                    strName = iPSAppDEUILogicGroupDetail.getName();
-                    if (StringHelper.isNullOrEmpty((String)strName) || map.containsKey(strName = strName.toLowerCase())) continue;
-                    map.put(strName, iPSAppDEUILogicGroupDetail);
-                    this.registerPSAppDEUILogicGroupDetail(iPSAppDEUILogicGroupDetail);
-                }
-            }
-            if (StringHelper.isNullOrEmpty((String)(strPPSDEUILogicGroupId = this.iPSControlParam.getPSDEUILogicGroupId()))) break block7;
-            if (this.getPSAppDataEntity() == null) {
-                PSControlImpl.log.warn((Object)String.format("\u90e8\u4ef6[%1$s]\u5e94\u7528\u5b9e\u4f53\u65e0\u6548\uff0c\u65e0\u6cd5\u52a0\u8f7d\u90e8\u4ef6\u903b\u8f91\u7ec4", new Object[]{this.getName()}));
-                return;
-            }
-            list = new ArrayList<IPSAppDEUILogicGroup>();
-            while (!StringHelper.isNullOrEmpty((String)strPPSDEUILogicGroupId)) {
-                parent = this.getPSAppDataEntity().getPSAppDEUILogicGroup(strPPSDEUILogicGroupId);
-                if (list.contains(parent)) {
-                    throw new Exception(String.format("\u754c\u9762\u903b\u8f91\u7ec4[%1$s]\u51fa\u73b0\u9012\u5f52\u5f15\u7528", new Object[]{parent.getFullName()}));
-                }
-                list.add(parent);
-                strPPSDEUILogicGroupId = parent.getParentPSDEUILogicGroupId();
-            }
-            for (IPSAppDEUILogicGroup item : list) {
-                psAppDEUILogicGroupDetails = item.getPSAppDEUILogicGroupDetails();
-                if (psAppDEUILogicGroupDetails != null) ** GOTO lbl35
-                continue;
-lbl-1000:
-                // 1 sources
+      if (this.iPSDataEntity == null && !StringHelper.isNullOrEmpty(this.iPSControlParam.getPSDEId())) {
+         this.setPSDataEntity(this.getPSAppView().getPSSystem().getPSDataEntity2(this.iPSControlParam.getPSDEId(), false));
+      }
 
-                {
-                    iPSAppDEUILogicGroupDetail = psAppDEUILogicGroupDetails.next();
-                    strName = iPSAppDEUILogicGroupDetail.getName();
-                    if (StringHelper.isNullOrEmpty((String)strName) || map.containsKey(strName = strName.toLowerCase())) continue;
-                    map.put(strName, iPSAppDEUILogicGroupDetail);
-                    this.registerPSAppDEUILogicGroupDetail(iPSAppDEUILogicGroupDetail);
-lbl35:
-                    // 3 sources
-
-                    ** while (psAppDEUILogicGroupDetails.hasNext())
-                }
-lbl36:
-                // 1 sources
-
+      if (this.getPSDataEntity() != null && this.getPSAppDataEntity() == null) {
+         if (this.getPSAppView().getPSAppDataEntity() != null) {
+            if (StringHelper.compare(this.getPSAppView().getPSAppDataEntity().getPSDE().getId(), this.getPSDataEntity().getId(), false) == 0) {
+               this.setPSAppDataEntity(this.getPSAppView().getPSAppDataEntity());
+            } else if (this.getPSAppDataEntity() == null) {
+               this.setPSAppDataEntity(this.getPSAppView().getPSApplication().getPSAppDataEntityByDEId(this.getPSDataEntity().getId(), true));
             }
-        }
-    }
+         } else {
+            this.setPSAppDataEntity(this.getPSAppView().getPSApplication().getPSAppDataEntityByDEId(this.getPSDataEntity().getId(), true));
+         }
+      }
 
-    protected void registerPSAppDEUILogicGroupDetail(IPSAppDEUILogicGroupDetail iPSAppDEUILogicGroupDetail) throws Exception {
-        if ("CTRLEVENT".equals(iPSAppDEUILogicGroupDetail.getTriggerType()) || "TIMER".equals(iPSAppDEUILogicGroupDetail.getTriggerType()) || "CUSTOM".equals(iPSAppDEUILogicGroupDetail.getTriggerType()) || "ITEMBLANK".equals(iPSAppDEUILogicGroupDetail.getTriggerType()) || "ITEMENABLE".equals(iPSAppDEUILogicGroupDetail.getTriggerType()) || "ITEMVISIBLE".equals(iPSAppDEUILogicGroupDetail.getTriggerType()) || "ITEMDYNACLASS".equals(iPSAppDEUILogicGroupDetail.getTriggerType())) {
-            IPSAppDEUIAction iPSAppDEUIAction = null;
-            if (StringHelper.compare((String)iPSAppDEUILogicGroupDetail.getLogicType(), (String)"DEUIACTION", (boolean)true) == 0) {
-                IPSDataEntity iPSDataEntity = iPSAppDEUILogicGroupDetail.getPSDataEntity();
-                if (iPSDataEntity == null) {
-                    iPSDataEntity = this.getPSDataEntity();
-                }
-                if (iPSDataEntity == null) {
-                    throw new Exception("\u5f53\u524d\u5b9e\u4f53\u65e0\u6548");
-                }
-                IPSAppDataEntity iPSAppDataEntity = this.getPSAppView().getPSApplication().getPSAppDataEntity(iPSDataEntity, false);
-                iPSAppDEUIAction = iPSAppDataEntity.getPSAppDEUIAction(iPSAppDEUILogicGroupDetail.getPSDEUIActionId(), false, this);
+      ServiceWorkHelper.getInstance().execute(new IServiceWork() {
+         @Override
+         public void execute(ITransaction iTransaction) throws Exception {
+            if (!StringHelper.isNullOrEmpty(PSControlImpl.this.getModelType()) && !StringHelper.isNullOrEmpty(PSControlImpl.this.getId())) {
+               String strUniqueTag = PSControlImpl.this.getPSAppView().getName() + "_" + PSControlImpl.this.getId();
+               if (!ActionSessionManager.getCurrentSession().registerRecursion(PSControlImpl.this.getModelType(), strUniqueTag)) {
+                  throw new Exception(StringHelper.format("视图[%1$s]部件[%2$s]存在递归引用", PSControlImpl.this.getPSAppView().getName(), PSControlImpl.this.getName()));
+               }
+
+               try {
+                  PSControlImpl.this.onInit();
+                  ActionSessionManager.getCurrentSession().unregisterRecursion(PSControlImpl.this.getModelType(), strUniqueTag);
+               } catch (Exception ex) {
+                  ActionSessionManager.getCurrentSession().unregisterRecursion(PSControlImpl.this.getModelType(), strUniqueTag);
+                  throw ex;
+               }
+            } else {
+               PSControlImpl.this.onInit();
             }
-            PSControlLogicProxy2 psControlLogicProxy2 = new PSControlLogicProxy2(this, iPSAppDEUILogicGroupDetail, iPSAppDEUIAction);
-            this.registerPSControlLogic(psControlLogicProxy2);
+         }
+      });
+      if (this.isRegisterToPSAppDataEntity() && this.getPSAppDataEntity() != null) {
+         this.getPSAppDataEntity().registerPSControl(this);
+      }
+
+      if (!this.isDesignMode()) {
+         if (this.getPSSysPFPlugin() != null) {
+            String strPSSysPFPluginTemplId = KeyValueHelper.genUniqueId(this.getPSSysPFPlugin().getId(), this.getPSAppView().getPSPFStyle().getPSPF().getId());
+            IPSSysPFPluginTempl iPSSysPFPluginTempl = this.getPSSystem().getPSSysPFPluginTempl(strPSSysPFPluginTemplId, true);
+            if (iPSSysPFPluginTempl != null) {
+               this.iPSPFXCodeObject = new PSPFXCodeObjectProxy(iPSSysPFPluginTempl, this.getPSAppView(), this);
+            }
+         }
+
+         this.registerPSControlLogics();
+         this.onCheckControlParam();
+      }
+   }
+
+   @Override
+   protected int onCheck() throws Exception {
+      if (this.isPrepareTemplV2logic()) {
+         Iterator<? extends IPSControlAction> psControlActions = this.getPSControlActions();
+         if (psControlActions != null) {
+            while (psControlActions.hasNext()) {
+               IPSControlAction iPSControlAction = psControlActions.next();
+               iPSControlAction.getPSAppDataEntity();
+            }
+         }
+
+         Iterator<? extends IPSControlLogic> psControlLogics = this.getAllPSControlLogics();
+         if (psControlLogics != null) {
+            while (psControlLogics.hasNext()) {
+               IPSControlLogic iPSControlLogic = psControlLogics.next();
+               iPSControlLogic.getPSAppDataEntity();
+               iPSControlLogic.getPSAppDEUIAction();
+               if (iPSControlLogic.getPSAppDEUILogic() != null) {
+                  iPSControlLogic.getPSAppDEUILogic().check();
+               }
+
+               iPSControlLogic.getPSAppUILogic();
+               iPSControlLogic.getPSAppViewEngine();
+               iPSControlLogic.getPSAppViewLogic();
+            }
+         }
+
+         Iterator<? extends IPSControlRender> psControlRenders = this.getAllPSControlRenders();
+         if (psControlRenders != null) {
+            while (psControlRenders.hasNext()) {
+               IPSControlRender iPSControlRender = psControlRenders.next();
+               if (iPSControlRender.getPSLayoutPanel() != null) {
+                  iPSControlRender.getPSLayoutPanel().check();
+               }
+            }
+         }
+      }
+
+      return super.onCheck();
+   }
+
+   protected Iterator<? extends IPSAppDEUILogicGroupDetail> getPSAppDEUILogicGroupDetails() {
+      return null;
+   }
+
+   private void registerPSControlLogics() throws Exception {
+      Map<String, IPSAppDEUILogicGroupDetail> map = new LinkedHashMap<>();
+      Iterator<? extends IPSAppDEUILogicGroupDetail> psAppDEUILogicGroupDetails = this.getPSAppDEUILogicGroupDetails();
+      if (psAppDEUILogicGroupDetails != null) {
+         while (psAppDEUILogicGroupDetails.hasNext()) {
+            IPSAppDEUILogicGroupDetail iPSAppDEUILogicGroupDetail = psAppDEUILogicGroupDetails.next();
+            String strName = iPSAppDEUILogicGroupDetail.getName();
+            if (!StringHelper.isNullOrEmpty(strName)) {
+               strName = strName.toLowerCase();
+               if (!map.containsKey(strName)) {
+                  map.put(strName, iPSAppDEUILogicGroupDetail);
+                  this.registerPSAppDEUILogicGroupDetail(iPSAppDEUILogicGroupDetail);
+               }
+            }
+         }
+      }
+
+      String strPPSDEUILogicGroupId = this.iPSControlParam.getPSDEUILogicGroupId();
+      if (!StringHelper.isNullOrEmpty(strPPSDEUILogicGroupId)) {
+         if (this.getPSAppDataEntity() == null) {
+            log.warn(String.format("部件[%1$s]应用实体无效，无法加载部件逻辑组", this.getName()));
             return;
-        }
-        if ("RENDER".equals(iPSAppDEUILogicGroupDetail.getTriggerType())) {
-            PSControlRenderProxy psControlRenderProxy = new PSControlRenderProxy(this, iPSAppDEUILogicGroupDetail);
+         }
+
+         List<IPSAppDEUILogicGroup> list = new ArrayList<>();
+
+         while (!StringHelper.isNullOrEmpty(strPPSDEUILogicGroupId)) {
+            IPSAppDEUILogicGroup parent = this.getPSAppDataEntity().getPSAppDEUILogicGroup(strPPSDEUILogicGroupId);
+            if (list.contains(parent)) {
+               throw new Exception(String.format("界面逻辑组[%1$s]出现递归引用", parent.getFullName()));
+            }
+
+            list.add(parent);
+            strPPSDEUILogicGroupId = parent.getParentPSDEUILogicGroupId();
+         }
+
+         for (IPSAppDEUILogicGroup item : list) {
+            psAppDEUILogicGroupDetails = item.getPSAppDEUILogicGroupDetails();
+            if (psAppDEUILogicGroupDetails != null) {
+               while (psAppDEUILogicGroupDetails.hasNext()) {
+                  IPSAppDEUILogicGroupDetail iPSAppDEUILogicGroupDetail = psAppDEUILogicGroupDetails.next();
+                  String strName = iPSAppDEUILogicGroupDetail.getName();
+                  if (!StringHelper.isNullOrEmpty(strName)) {
+                     strName = strName.toLowerCase();
+                     if (!map.containsKey(strName)) {
+                        map.put(strName, iPSAppDEUILogicGroupDetail);
+                        this.registerPSAppDEUILogicGroupDetail(iPSAppDEUILogicGroupDetail);
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   protected void registerPSAppDEUILogicGroupDetail(IPSAppDEUILogicGroupDetail iPSAppDEUILogicGroupDetail) throws Exception {
+      if ("CTRLEVENT".equals(iPSAppDEUILogicGroupDetail.getTriggerType())
+         || "TIMER".equals(iPSAppDEUILogicGroupDetail.getTriggerType())
+         || "CUSTOM".equals(iPSAppDEUILogicGroupDetail.getTriggerType())
+         || "ITEMBLANK".equals(iPSAppDEUILogicGroupDetail.getTriggerType())
+         || "ITEMENABLE".equals(iPSAppDEUILogicGroupDetail.getTriggerType())
+         || "ITEMVISIBLE".equals(iPSAppDEUILogicGroupDetail.getTriggerType())
+         || "ITEMDYNACLASS".equals(iPSAppDEUILogicGroupDetail.getTriggerType())) {
+         IPSAppDEUIAction iPSAppDEUIAction = null;
+         if (StringHelper.compare(iPSAppDEUILogicGroupDetail.getLogicType(), "DEUIACTION", true) == 0) {
+            IPSDataEntity iPSDataEntity = iPSAppDEUILogicGroupDetail.getPSDataEntity();
+            if (iPSDataEntity == null) {
+               iPSDataEntity = this.getPSDataEntity();
+            }
+
+            if (iPSDataEntity == null) {
+               throw new Exception("当前实体无效");
+            }
+
+            IPSAppDataEntity iPSAppDataEntity = this.getPSAppView().getPSApplication().getPSAppDataEntity(iPSDataEntity, false);
+            iPSAppDEUIAction = iPSAppDataEntity.getPSAppDEUIAction(iPSAppDEUILogicGroupDetail.getPSDEUIActionId(), false, this);
+         }
+
+         PSControlLogicProxy2 psControlLogicProxy2 = new PSControlLogicProxy2(this, iPSAppDEUILogicGroupDetail, iPSAppDEUIAction);
+         this.registerPSControlLogic(psControlLogicProxy2);
+      } else if ("RENDER".equals(iPSAppDEUILogicGroupDetail.getTriggerType())) {
+         PSControlRenderProxy psControlRenderProxy = new PSControlRenderProxy(this, iPSAppDEUILogicGroupDetail);
+         this.registerPSControlRender(psControlRenderProxy);
+      } else if ("ATTRIBUTE".equals(iPSAppDEUILogicGroupDetail.getTriggerType())) {
+         PSControlAttributeProxy psControlAttributeProxy = new PSControlAttributeProxy(this, iPSAppDEUILogicGroupDetail);
+         this.registerPSControlAttribute(psControlAttributeProxy);
+      }
+   }
+
+   protected void onCheckControlParam() throws Exception {
+   }
+
+   protected IPSPF calcPreviewPSPF() throws Exception {
+      IPSPF iPSPF = this.getPSAppView().getPSApplication().getPSPF();
+      if (iPSPF.isUseJITDesignPreview() && !this.getPSApplication().isEnableUIModelEx()) {
+         if (iPSPF.getPSAppType().isMobileApp()) {
+            iPSPF = this.getPSModelStorage().getPSPF(PSTaskServerEnvImpl.getCurrent().getPreviewMobPFId());
+         } else {
+            iPSPF = this.getPSModelStorage().getPSPF(PSTaskServerEnvImpl.getCurrent().getPreviewPCPFId());
+         }
+      }
+
+      return iPSPF;
+   }
+
+   @PSModelRTMeta(description = "应用视图", debugmode = true)
+   @Override
+   public IPSAppView getPSAppView() {
+      return this.iPSControlContainer != null ? this.iPSControlContainer.getPSAppView() : null;
+   }
+
+   @PSModelRTMeta(description = "部件参数", child = true, outputdoc = "false")
+   @Override
+   public IPSControlParam getPSControlParam() {
+      return this.onGetPSControlParam();
+   }
+
+   protected IPSControlParam onGetPSControlParam() {
+      return this.iPSControlParam;
+   }
+
+   @PSModelRTMeta(description = "部件处理", child = true, outputdoc = "false", ignorert = 3)
+   @Override
+   public IPSControlHandler getPSControlHandler() {
+      return this.onGetPSControlHandler();
+   }
+
+   protected IPSControlHandler onGetPSControlHandler() {
+      return null;
+   }
+
+   protected void setPSControlContainer(IPSControlContainer iPSControlContainer) {
+      this.iPSControlContainer = iPSControlContainer;
+      if (this.iPSControlContainer == null) {
+         this.iPSControlXDataContainer = null;
+      } else {
+         this.iPSControlXDataContainer = this.calcPSControlXDataContainer();
+      }
+   }
+
+   @Override
+   public IPSControlContainer getPSControlContainer() {
+      return this.iPSControlContainer;
+   }
+
+   @Override
+   public IPSControlXDataContainer getPSControlXDataContainer() {
+      return this.iPSControlXDataContainer;
+   }
+
+   protected IPSControlXDataContainer calcPSControlXDataContainer() {
+      IPSControlContainer iPSControlContainer;
+      for (iPSControlContainer = this.getPSControlContainer();
+         !(iPSControlContainer instanceof IPSControlXDataContainer);
+         iPSControlContainer = ((IPSControl)iPSControlContainer).getPSControlContainer()
+      ) {
+         if (!(iPSControlContainer instanceof IPSControl)) {
+            return null;
+         }
+      }
+
+      return (IPSControlXDataContainer)iPSControlContainer;
+   }
+
+   @Override
+   public IPSControlType getPSControlType() {
+      return this.iPSControlType;
+   }
+
+   @Override
+   public void setPSControlType(IPSControlType iPSControlType) {
+      this.iPSControlType = iPSControlType;
+   }
+
+   @Override
+   public IView getView() {
+      return this.getPSAppView();
+   }
+
+   @PSModelRTMeta(description = "实体对象")
+   @Override
+   public IPSDataEntity getPSDataEntity() {
+      if (this.iPSDataEntity == null && this.getPSAppView() instanceof IPSAppDEView) {
+         this.iPSDataEntity = ((IPSAppDEView)this.getPSAppView()).getPSDataEntity();
+      }
+
+      return this.iPSDataEntity;
+   }
+
+   protected void setPSDataEntity(IPSDataEntity iPSDataEntity) {
+      this.iPSDataEntity = iPSDataEntity;
+   }
+
+   @Override
+   public IDataEntity getDataEntity() {
+      return this.getPSDataEntity();
+   }
+
+   @Override
+   public void fillRelatedPSAppViews(ArrayList<IPSAppView> relatedAppViewList) throws Exception {
+   }
+
+   @Override
+   public void fillEmbeddedPSAppViewRefs(String strContainerId, ArrayList<IPSAppViewRef> embeddedPSAppViewRefList) throws Exception {
+   }
+
+   @PSModelRTMeta(description = "代码标识")
+   @Override
+   public String getCodeName() {
+      return this.onGetCodeName();
+   }
+
+   protected String onGetCodeName() {
+      if (this.getPSAppView().getPSPFStyle().getPFEngineVer() < 20 || !(this.getPSAppView() instanceof IPSAppDEView)) {
+         return this.getPSApplication().getViewCodeName(null, this.getName(), null);
+      } else {
+         return this.isEnableUIModelEx()
+            ? this.getPSApplication().getViewCodeName(((IPSAppDEView)this.getPSAppView()).getPSDEViewCodeName(), this.getName(), null)
+            : StringHelper.format("%1$s%2$s", ((IPSAppDEView)this.getPSAppView()).getPSDEViewCodeName(), this.getName());
+      }
+   }
+
+   @Override
+   public boolean isDesignMode() {
+      if (this.bDesignMode) {
+         return true;
+      }
+
+      Boolean bRet = PSAppViewImpl.getCurrentDesignMode();
+      return bRet == null ? false : bRet;
+   }
+
+   protected void setDesignMode(boolean bDesignMode) {
+      this.bDesignMode = bDesignMode;
+   }
+
+   @Override
+   public boolean hasCtrlModel() {
+      return true;
+   }
+
+   @Override
+   public String getPSSysModelInstId() {
+      return this.iPSControlContainer.getPSSysModelInstId();
+   }
+
+   @Override
+   public final String getUniqueId() {
+      return this.strUniqueId;
+   }
+
+   @Override
+   public void fillRelatedPSCodeLists(ArrayList<IPSCodeList> relatedPSCodeListList) throws Exception {
+   }
+
+   @PSModelRTMeta(description = "控件宽度", ignoredumpvalues = "0.0", outputdoc = "(%1$s.getWidth() gt 0)")
+   @Override
+   public double getWidth() {
+      return this.fWidth;
+   }
+
+   @PSModelRTMeta(description = "控件高度", ignoredumpvalues = "0.0", outputdoc = "(%1$s.getHeight() gt 0)")
+   @Override
+   public double getHeight() {
+      return this.fHeight;
+   }
+
+   @PSModelRTMeta(description = "控件次序", dump = false)
+   @Override
+   public int getOrderValue() {
+      return this.nOrderValue;
+   }
+
+   public IPSSystem getPSSystem() {
+      return this.getPSAppView() == null ? null : this.getPSAppView().getPSSystem();
+   }
+
+   @PSModelRTMeta(description = "前端扩展插件")
+   @Override
+   public IPSSysPFPlugin getPSSysPFPlugin() {
+      return this.iPSSysPFPlugin;
+   }
+
+   @PSModelRTMeta(description = "部件消息", child = true)
+   @Override
+   public IPSCtrlMsg getPSCtrlMsg() {
+      return this.iPSCtrlMsg;
+   }
+
+   @PSModelRTMeta(description = "界面样式", dumpref = true)
+   @Override
+   public IPSSysCss getPSSysCss() {
+      return this.iPSSysCss;
+   }
+
+   @PSModelRTMeta(description = "默认部件", dump = false)
+   @Override
+   public boolean isDefaultCtrl() {
+      return this.bDefaultCtrl;
+   }
+
+   @Override
+   public boolean isDynamicCtrl() {
+      return this.bDynamicCtrl == null ? false : this.bDynamicCtrl;
+   }
+
+   protected IPSSystemSetting getPSSystemSetting() {
+      return (IPSSystemSetting)this.getPSSystem();
+   }
+
+   @Override
+   public String getModelId() {
+      return this.getPSAppView() != null ? StringHelper.format("%1$s#%2$s", this.getPSAppView().getId(), this.getName()) : super.getModelId();
+   }
+
+   protected IPSSystemUtil getPSSystemUtil() {
+      return (IPSSystemUtil)this.getPSSystem();
+   }
+
+   @Override
+   public String getFullModelName() {
+      return this.getPSAppView() != null
+         ? StringHelper.format("%1$s|%2$s", this.getPSAppView().getFullModelName(), this.getModelName())
+         : super.getFullModelName();
+   }
+
+   @Override
+   public boolean isEnableCol12ToCol24() {
+      if (this.isDesignMode()) {
+         if (this.getPSAppView() != null && this.getPSAppView().getPSApplication().getPFType().indexOf("PREVIEW_") == 0) {
+            return true;
+         }
+
+         if (StringHelper.compare(this.getPreviewPSPF().getFormLayoutMode(), "TABLE_24COL", true) != 0) {
+            return false;
+         }
+      }
+
+      return this.getPSAppView() != null ? this.getPSAppView().getPSApplication().getPSApplicationUI().isEnableCol12ToCol24() : false;
+   }
+
+   @PSModelRTMeta(description = "部件逻辑名称", hideempty2 = true)
+   @Override
+   public String getLogicName() {
+      return this.strLogicName;
+   }
+
+   protected void setLogicName(String strLogicName) {
+      this.strLogicName = strLogicName;
+   }
+
+   @Override
+   public String getControlSubType() {
+      return "";
+   }
+
+   @PSModelRTMeta(description = "部件样式")
+   @Override
+   public final String getControlStyle() {
+      String strControlSubType = this.getControlSubType();
+      if (!StringHelper.isNullOrEmpty(strControlSubType)) {
+         return strControlSubType;
+      }
+
+      if (this.getRender() == null && this.getPSSysPFPlugin() != null) {
+         strControlSubType = this.getPSSysPFPlugin().getPluginCode();
+         if (!StringHelper.isNullOrEmpty(strControlSubType)) {
+            return strControlSubType;
+         }
+      }
+
+      return this.getPSAppView() == null ? "" : this.getPSAppView().getPSApplication().getPSApplicationUI().getDefaultControlStyle();
+   }
+
+   @Override
+   public IPSPF getPreviewPSPF() {
+      return this.previewPSPF;
+   }
+
+   protected void setPreviewPSPF(IPSPF previewPSPF) {
+      this.previewPSPF = previewPSPF;
+   }
+
+   @Override
+   public void registerPSControlLogic(IPSControlLogic iPSControlLogic) throws Exception {
+      if (this.psControlLogicList == null) {
+         this.psControlLogicList = new ArrayList<>();
+      }
+
+      iPSControlLogic = new PSControlLogicProxy(this, iPSControlLogic);
+      this.psControlLogicList.add(iPSControlLogic);
+      String strEventNames = iPSControlLogic.getEventNames();
+      if (!StringHelper.isNullOrEmpty(strEventNames)) {
+         strEventNames = strEventNames.toUpperCase();
+         String[] events = StringHelper.splitEx(strEventNames);
+         if (events != null) {
+            String[] var7 = events;
+            int var6 = events.length;
+
+            for (int var5 = 0; var5 < var6; var5++) {
+               String strEvent = var7[var5];
+               strEvent = strEvent.trim();
+               if (!StringHelper.isNullOrEmpty(strEvent)) {
+                  if (this.hookEventMap == null) {
+                     this.hookEventMap = new LinkedHashMap<>();
+                  }
+
+                  ArrayList<IPSControlLogic> list = this.hookEventMap.get(strEvent);
+                  if (list == null) {
+                     list = new ArrayList<>();
+                     this.hookEventMap.put(strEvent, list);
+                  }
+
+                  list.add(iPSControlLogic);
+               }
+            }
+         }
+      }
+   }
+
+   @PSModelRTMeta(description = "部件逻辑集合", hideempty2 = true, child = true, group = "部件逻辑", order = 220)
+   @Override
+   public Iterator<? extends IPSControlLogic> getPSControlLogics() {
+      return this.onGetPSControlLogics();
+   }
+
+   protected Iterator<? extends IPSControlLogic> onGetPSControlLogics() {
+      if (!this.isEnableUIModelEx()) {
+         return this.getAllPSControlLogics();
+      }
+
+      Iterator<? extends IPSControlLogic> psControlLogics = this.getAllPSControlLogics();
+      if (psControlLogics == null) {
+         return null;
+      }
+
+      List<IPSControlLogic> psControlLogicList = null;
+
+      while (psControlLogics.hasNext()) {
+         IPSControlLogic iPSControlLogic = psControlLogics.next();
+         if (!"CTRLEVENT".equals(iPSControlLogic.getTriggerType())
+            && !"TIMER".equals(iPSControlLogic.getTriggerType())
+            && !"CUSTOM".equals(iPSControlLogic.getTriggerType())) {
+            if ((
+                  "ITEMBLANK".equals(iPSControlLogic.getTriggerType())
+                     || "ITEMENABLE".equals(iPSControlLogic.getTriggerType())
+                     || "ITEMVISIBLE".equals(iPSControlLogic.getTriggerType())
+                     || "ITEMDYNACLASS".equals(iPSControlLogic.getTriggerType())
+               )
+               && StringHelper.isNullOrEmpty(iPSControlLogic.getItemName())) {
+               if (psControlLogicList == null) {
+                  psControlLogicList = new ArrayList<>();
+               }
+
+               psControlLogicList.add(iPSControlLogic);
+            }
+         } else {
+            if (psControlLogicList == null) {
+               psControlLogicList = new ArrayList<>();
+            }
+
+            psControlLogicList.add(iPSControlLogic);
+         }
+      }
+
+      return psControlLogicList != null && psControlLogicList.size() != 0 ? psControlLogicList.iterator() : null;
+   }
+
+   @PSModelRTMeta(description = "部件全部逻辑集合", hideempty2 = true)
+   @Override
+   public Iterator<? extends IPSControlLogic> getAllPSControlLogics() {
+      return this.onGetAllPSControlLogics();
+   }
+
+   protected Iterator<? extends IPSControlLogic> onGetAllPSControlLogics() {
+      return this.psControlLogicList != null && this.psControlLogicList.size() != 0 ? this.psControlLogicList.iterator() : null;
+   }
+
+   @PSModelRTMeta(description = "监控事件名称集合", hideempty2 = true, child = true, rtname = "hookEventNames", ignorert = 3)
+   @Override
+   public Iterator<String> getHookEventNames() {
+      return this.hookEventMap != null && this.hookEventMap.size() != 0 ? this.hookEventMap.keySet().iterator() : null;
+   }
+
+   @Override
+   public Iterator<? extends IPSControlLogic> getPSControlLogics(String strEventName) {
+      if (this.hookEventMap == null) {
+         return null;
+      }
+
+      ArrayList<IPSControlLogic> list = this.hookEventMap.get(strEventName.toUpperCase());
+      return list != null && list.size() != 0 ? list.iterator() : null;
+   }
+
+   @PSModelRTMeta(description = "部件注入属性集合", hideempty2 = true, child = true, group = "部件逻辑", order = 222)
+   @Override
+   public Iterator<? extends IPSControlAttribute> getPSControlAttributes() {
+      return this.onGetPSControlAttributes();
+   }
+
+   protected Iterator<? extends IPSControlAttribute> onGetPSControlAttributes() {
+      Iterator<? extends IPSControlAttribute> psControlAttributes = this.getAllPSControlAttributes();
+      if (psControlAttributes == null) {
+         return null;
+      }
+
+      List<IPSControlAttribute> psControlAttributeList = null;
+
+      while (psControlAttributes.hasNext()) {
+         IPSControlAttribute iPSControlAttribute = psControlAttributes.next();
+         if (StringHelper.isNullOrEmpty(iPSControlAttribute.getItemName())) {
+            if (psControlAttributeList == null) {
+               psControlAttributeList = new ArrayList<>();
+            }
+
+            psControlAttributeList.add(iPSControlAttribute);
+         }
+      }
+
+      return psControlAttributeList != null && psControlAttributeList.size() != 0 ? psControlAttributeList.iterator() : null;
+   }
+
+   @PSModelRTMeta(description = "部件全部属性注入集合", hideempty2 = true)
+   @Override
+   public Iterator<? extends IPSControlAttribute> getAllPSControlAttributes() {
+      return this.onGetAllPSControlAttributes();
+   }
+
+   protected Iterator<? extends IPSControlAttribute> onGetAllPSControlAttributes() {
+      return this.psControlAttributeList != null && this.psControlAttributeList.size() != 0 ? this.psControlAttributeList.iterator() : null;
+   }
+
+   public void registerPSControlAttribute(IPSControlAttribute iPSControlAttribute) throws Exception {
+      if (this.psControlAttributeList == null) {
+         this.psControlAttributeList = new ArrayList<>();
+      }
+
+      this.psControlAttributeList.add(iPSControlAttribute);
+   }
+
+   @PSModelRTMeta(description = "部件绘制器集合", hideempty2 = true, child = true, group = "部件逻辑", order = 223)
+   @Override
+   public Iterator<? extends IPSControlRender> getPSControlRenders() {
+      return this.onGetPSControlRenders();
+   }
+
+   protected Iterator<? extends IPSControlRender> onGetPSControlRenders() {
+      Iterator<? extends IPSControlRender> psControlRenders = this.getAllPSControlRenders();
+      if (psControlRenders == null) {
+         return null;
+      }
+
+      List<IPSControlRender> psControlRenderList = null;
+
+      while (psControlRenders.hasNext()) {
+         IPSControlRender iPSControlRender = psControlRenders.next();
+         if (StringHelper.isNullOrEmpty(iPSControlRender.getItemName())) {
+            if (psControlRenderList == null) {
+               psControlRenderList = new ArrayList<>();
+            }
+
+            psControlRenderList.add(iPSControlRender);
+         }
+      }
+
+      return psControlRenderList != null && psControlRenderList.size() != 0 ? psControlRenderList.iterator() : null;
+   }
+
+   @PSModelRTMeta(description = "部件全部绘制器集合", hideempty2 = true)
+   @Override
+   public Iterator<? extends IPSControlRender> getAllPSControlRenders() {
+      return this.onGetAllPSControlRenders();
+   }
+
+   protected Iterator<? extends IPSControlRender> onGetAllPSControlRenders() {
+      return this.psControlRenderList != null && this.psControlRenderList.size() != 0 ? this.psControlRenderList.iterator() : null;
+   }
+
+   public void registerPSControlRender(IPSControlRender iPSControlRender) throws Exception {
+      if (this.psControlRenderList == null) {
+         this.psControlRenderList = new ArrayList<>();
+      }
+
+      this.psControlRenderList.add(iPSControlRender);
+   }
+
+   @Override
+   public Iterator<? extends IPSControlAttribute> getPSControlAttributesByItemName(String strItemName) {
+      Iterator<? extends IPSControlAttribute> psControlAttributes = this.getAllPSControlAttributes();
+      if (psControlAttributes == null) {
+         return null;
+      }
+
+      List<IPSControlAttribute> psControlAttributeList = null;
+
+      while (psControlAttributes.hasNext()) {
+         IPSControlAttribute iPSControlAttribute = psControlAttributes.next();
+         if (!StringHelper.isNullOrEmpty(iPSControlAttribute.getItemName()) && StringHelper.compare(iPSControlAttribute.getItemName(), strItemName, true) == 0) {
+            if (psControlAttributeList == null) {
+               psControlAttributeList = new ArrayList<>();
+            }
+
+            psControlAttributeList.add(iPSControlAttribute);
+         }
+      }
+
+      return psControlAttributeList != null && psControlAttributeList.size() != 0 ? psControlAttributeList.iterator() : null;
+   }
+
+   @Override
+   public Iterator<? extends IPSControlRender> getPSControlRendersByItemName(String strItemName) {
+      Iterator<? extends IPSControlRender> psControlRenders = this.getAllPSControlRenders();
+      if (psControlRenders == null) {
+         return null;
+      }
+
+      List<IPSControlRender> psControlRenderList = null;
+
+      while (psControlRenders.hasNext()) {
+         IPSControlRender iPSControlRender = psControlRenders.next();
+         if (!StringHelper.isNullOrEmpty(iPSControlRender.getItemName()) && StringHelper.compare(iPSControlRender.getItemName(), strItemName, true) == 0) {
+            if (psControlRenderList == null) {
+               psControlRenderList = new ArrayList<>();
+            }
+
+            psControlRenderList.add(iPSControlRender);
+         }
+      }
+
+      return psControlRenderList != null && psControlRenderList.size() != 0 ? psControlRenderList.iterator() : null;
+   }
+
+   @Override
+   public Iterator<? extends IPSControlLogic> getPSControlLogicsByItemName(String strItemName) {
+      Iterator<? extends IPSControlLogic> psControlLogics = this.getAllPSControlLogics();
+      if (psControlLogics == null) {
+         return null;
+      }
+
+      List<IPSControlLogic> psControlLogicList = null;
+
+      while (psControlLogics.hasNext()) {
+         IPSControlLogic iPSControlLogic = psControlLogics.next();
+         if (!StringHelper.isNullOrEmpty(iPSControlLogic.getItemName())
+            && (
+               "ITEMBLANK".equals(iPSControlLogic.getTriggerType())
+                  || "ITEMENABLE".equals(iPSControlLogic.getTriggerType())
+                  || "ITEMVISIBLE".equals(iPSControlLogic.getTriggerType())
+                  || "ITEMDYNACLASS".equals(iPSControlLogic.getTriggerType())
+            )
+            && StringHelper.compare(iPSControlLogic.getItemName(), strItemName, true) == 0) {
+            if (psControlLogicList == null) {
+               psControlLogicList = new ArrayList<>();
+            }
+
+            psControlLogicList.add(iPSControlLogic);
+         }
+      }
+
+      return psControlLogicList != null && psControlLogicList.size() != 0 ? psControlLogicList.iterator() : null;
+   }
+
+   @Override
+   public boolean isRegisterToPSAppDataEntity() {
+      return this.getPSAppView() == null ? false : this.getPSAppView().getPSPFStyle().getPFEngineVer() >= 20;
+   }
+
+   @Override
+   public boolean isPrepareDefaultPSAppViewLogics() {
+      return this.getPSAppView() == null ? false : this.getPSAppView().getPSPFStyle().getPFEngineVer() >= 20;
+   }
+
+   @Override
+   public boolean isPrepareTemplV2logic() {
+      return this.getPSAppView() == null ? false : this.getPSAppView().getPSPFStyle().getPFEngineVer() >= 20;
+   }
+
+   @Override
+   public Object getCtrlParam(String strParamName) {
+      return this.getPSControlParam() == null ? null : this.getPSControlParam().getCtrlParam(strParamName);
+   }
+
+   @Override
+   public boolean containsCtrlParam(String strParamName) {
+      return this.getPSControlParam() == null ? false : this.getPSControlParam().containsCtrlParam(strParamName);
+   }
+
+   @Override
+   public String getCtrlParam(String strParamName, String strDefault) {
+      return this.getPSControlParam() == null ? strDefault : this.getPSControlParam().getCtrlParam(strParamName, strDefault);
+   }
+
+   @Override
+   public boolean getCtrlParam(String strParamName, boolean bDefault) {
+      return this.getPSControlParam() == null ? bDefault : this.getPSControlParam().getCtrlParam(strParamName, bDefault);
+   }
+
+   @Override
+   public int getCtrlParam(String strParamName, int nDefault) {
+      return this.getPSControlParam() == null ? nDefault : this.getPSControlParam().getCtrlParam(strParamName, nDefault);
+   }
+
+   @PSModelRTMeta(description = "动态参数集合")
+   @Override
+   public Iterator<String> getCtrlParamNames() {
+      return this.getPSControlParam() == null ? null : this.getPSControlParam().getCtrlParamNames();
+   }
+
+   @PSModelRTMeta(description = "用户标记")
+   @Override
+   public String getUserTag() {
+      return this.getPSControlParam() == null ? null : this.getPSControlParam().getUserTag();
+   }
+
+   @PSModelRTMeta(description = "用户标记2")
+   @Override
+   public String getUserTag2() {
+      return this.getPSControlParam() == null ? null : this.getPSControlParam().getUserTag2();
+   }
+
+   @Override
+   public String getPSDynaModelId() {
+      return this.getPSControlParam() == null ? null : this.getPSControlParam().getPSDynaModelId();
+   }
+
+   @PSModelRTMeta(description = "绘制插件")
+   @Override
+   public IPSPFXCodeObject getRender() {
+      return this.iPSPFXCodeObject;
+   }
+
+   @Override
+   public String getPreviewHtml() {
+      return this.isDesignMode() && this.getPSSysPFPlugin() != null ? this.getPSSysPFPlugin().getPreviewHtml() : null;
+   }
+
+   @PSModelRTMeta(description = "应用实体", dumpref = true)
+   @Override
+   public IPSAppDataEntity getPSAppDataEntity() {
+      return this.iPSAppDataEntity;
+   }
+
+   protected void setPSAppDataEntity(IPSAppDataEntity iPSAppDataEntity) {
+      this.iPSAppDataEntity = iPSAppDataEntity;
+   }
+
+   @Override
+   public Iterator<? extends IPSControlAction> getPSControlActions() {
+      return null;
+   }
+
+   @Override
+   public IPSControlAction getUserPSControlAction() {
+      return null;
+   }
+
+   @Override
+   public IPSControlAction getUser2PSControlAction() {
+      return null;
+   }
+
+   public IPSApplication getPSApplication() {
+      return this.getPSAppView() != null ? this.getPSAppView().getPSApplication() : null;
+   }
+
+   @PSModelRTMeta(description = "部署数据标识", dump = false)
+   @Override
+   public String getDeployId() {
+      return this.getPSAppView() != null ? KeyValueHelper.genUniqueId(this.getPSAppView().getDeployId(), this.getName()) : super.getDeployId();
+   }
+
+   @Override
+   protected IPSSysDynaModel internalGetPSSysDynaModel(String strPSSysDynaModelId) throws Exception {
+      return this.getPSSystem() != null ? this.getPSSystem().getPSSysDynaModel(strPSSysDynaModelId) : super.internalGetPSSysDynaModel(strPSSysDynaModelId);
+   }
+
+   @PSModelRTMeta(name = "[H]前端模板发布帮助", hideempty = true)
+   @Override
+   public IPSPFPubHelp getPSPFPubHelp() {
+      try {
+         if (PSTemplHelper.isBusy()) {
+            return null;
+         }
+
+         if (this.iPSPFPubHelp != null) {
+            return this.iPSPFPubHelp;
+         }
+
+         Map<String, IPSCodePublisherParam> publisherParamMap = new LinkedHashMap<>();
+         this.iPSPFPubHelp = PSPFCtrlPubHelpImpl.createPSPFPubHelp(this, publisherParamMap);
+         return this.iPSPFPubHelp;
+      } catch (Exception ex) {
+         log.error(ex);
+         return null;
+      }
+   }
+
+   @Override
+   protected void onFillModelNode(ObjectNode objectNode, String strModelType) throws Exception {
+      super.onFillModelNode(objectNode, strModelType);
+      if (!StringHelper.isNullOrEmpty(this.getDynaModelFilePath())) {
+         objectNode.remove("name");
+      }
+
+      if (StringHelper.compare(strModelType, "SINGLE", true) != 0) {
+         if (!objectNode.has("name")) {
+            putJsonProperty(objectNode, "name", this.getName().toLowerCase());
+         }
+      } else {
+         objectNode.remove("getPSControlParam");
+         objectNode.remove("getPSControlHandler");
+      }
+
+      if (!objectNode.has("modelid") && !StringHelper.isNullOrEmpty(this.getId()) && !this.getId().equals("SRFCURRENTVIEW")) {
+         putJsonProperty(objectNode, "modelid", this.getId());
+         putJsonProperty(objectNode, "modeltype", this.getModelType());
+      }
+   }
+
+   @Override
+   public ObjectNode toModelRef(String strType) {
+      if (StringHelper.compare("LINK", strType, true) == 0) {
+         ObjectNode objectNode = JsonNodeHelper.createObjectNode();
+         objectNode.put("name", this.getName().toLowerCase());
+         return objectNode;
+      } else if (StringHelper.compare("IGNOREDESIGN", strType, true) == 0 && this.isDesignMode()) {
+         return this.toModel(null);
+      } else {
+         return this.isExportModelAlways() && StringHelper.compare("MUSTREF", strType, true) != 0 ? this.toModel(strType) : super.toModelRef(strType);
+      }
+   }
+
+   @Override
+   protected void onFillModelRefNode(ObjectNode objectNode, String strModelRefType) throws Exception {
+      super.onFillModelRefNode(objectNode, strModelRefType);
+      if (!"INDIVIDUAL".equals(strModelRefType)) {
+         if (!objectNode.has("name")) {
+            putJsonProperty(objectNode, "name", this.getName().toLowerCase());
+         }
+
+         if (this.getPSControlParam() != null) {
+            ObjectNode objNode = this.getPSControlParam().getModel();
+            putJsonProperty(objectNode, "getPSControlParam", objNode);
+         }
+
+         if (this.getPSControlHandler() != null) {
+            ObjectNode objNode = this.getPSControlHandler().getModel();
+            putJsonProperty(objectNode, "getPSControlHandler", objNode);
+         }
+      }
+
+      objectNode.put("controlType", this.getControlType());
+   }
+
+   @PSModelRTMeta(description = "动态模型文件路径", hideempty = true)
+   @Override
+   public String getDynaModelFilePath() {
+      if (this.isExportModelAlways()) {
+         return null;
+      } else if (!this.isEnableDynaModel()) {
+         return null;
+      } else {
+         return StringHelper.isNullOrEmpty(this.getDynaModelTag()) ? null : String.format("%1$s/%2$s.json", this.getDynaModelFolder(), this.getDynaModelTag());
+      }
+   }
+
+   @Override
+   protected boolean isExportModelAlways() {
+      return false;
+   }
+
+   protected Boolean getDynamicCtrl() {
+      return this.bDynamicCtrl;
+   }
+
+   @PSModelRTMeta(description = "动态实例模式", dump = false, codelist = "DynaInstMode3")
+   @Override
+   public int getDynaInstMode() {
+      return this.getPSApplication() != null && this.getPSApplication().getDynaInstMode() == 0 ? 0 : this.onGetDynaInstMode();
+   }
+
+   @Override
+   protected int onGetDynaInstMode() {
+      if (this.getDynamicCtrl() != null) {
+         if (this.isDynamicCtrl()) {
+            return this.getPSAppDataEntity() != null && this.getPSApplication().getDynaInstMode() == 0 ? 0 : 1;
+         } else {
+            return 0;
+         }
+      } else {
+         return this.getPSAppDataEntity() != null ? this.getPSAppDataEntity().getDynaInstMode() : 0;
+      }
+   }
+
+   @Override
+   protected boolean onGetEnableDynaModel() {
+      return this.getDynamicCtrl() != null ? this.isDynamicCtrl() : true;
+   }
+
+   @Override
+   protected String onGetDynaModelFolder() {
+      if (this.getPSAppDataEntity() != null) {
+         String strDynaModelFolder = this.getPSAppDataEntity().getDynaModelFolder();
+         return StringHelper.isNullOrEmpty(strDynaModelFolder)
+            ? null
+            : String.format("%1$s/PS%2$s", strDynaModelFolder, Inflector.getInstance().pluralize(this.getDumpModelType()).toUpperCase());
+      } else if (this.getPSAppView() != null) {
+         String strDynaModelFolder = this.getPSAppView().getDynaModelFolder();
+         return StringHelper.isNullOrEmpty(strDynaModelFolder)
+            ? null
+            : String.format("%1$s/PS%2$s", strDynaModelFolder, Inflector.getInstance().pluralize(this.getDumpModelType()).toUpperCase());
+      } else if (this.getPSApplication() != null) {
+         String strDynaModelFolder = this.getPSApplication().getDynaModelFolder();
+         return StringHelper.isNullOrEmpty(strDynaModelFolder)
+            ? null
+            : String.format("%1$s/PS%2$s", strDynaModelFolder, Inflector.getInstance().pluralize(this.getDumpModelType()).toUpperCase());
+      } else {
+         return super.onGetDynaModelFolder();
+      }
+   }
+
+   @Override
+   public String getDumpModelType() {
+      return this.getControlType();
+   }
+
+   protected boolean isNeedFillPSACHandlerData() {
+      return false;
+   }
+
+   protected void fillPSACHandlerData(PSACHandler psACHandler) throws Exception {
+   }
+
+   @Override
+   public String getModelScope() {
+      return null;
+   }
+
+   @PSModelRTMeta(description = "部件类型", codelist = "CtrlType", group = "基本", order = 125)
+   @Override
+   public String getControlType() {
+      return this.onGetControlType();
+   }
+
+   protected String onGetControlType() {
+      return null;
+   }
+
+   @PSModelRTMeta(description = "引用部件", dump = false, hideempty = true)
+   @Override
+   public IPSControl getRefPSControl() throws Exception {
+      if (this.getPSControlParam() != null && !StringHelper.isNullOrEmpty(this.getPSControlParam().getRefCtrlName())) {
+         if (StringHelper.compare(this.getPSControlParam().getRefCtrlName(), this.getName(), true) == 0) {
+            throw new Exception(String.format("引用部件不能为自己"));
+         } else {
+            return this.getPSControlContainer().getPSControl(this.getPSControlParam().getRefCtrlName());
+         }
+      } else {
+         return null;
+      }
+   }
+
+   @PSModelRTMeta(description = "引用部件2", dump = false, hideempty = true)
+   @Override
+   public IPSControl getRefPSControl2() throws Exception {
+      if (this.getPSControlParam() != null && !StringHelper.isNullOrEmpty(this.getPSControlParam().getRefCtrl2Name())) {
+         if (StringHelper.compare(this.getPSControlParam().getRefCtrl2Name(), this.getName(), true) == 0) {
+            throw new Exception(String.format("引用部件不能为自己"));
+         } else {
+            return this.getPSControlContainer().getPSControl(this.getPSControlParam().getRefCtrl2Name());
+         }
+      } else {
+         return null;
+      }
+   }
+
+   @PSModelRTMeta(description = "部件安装界面引擎", dump = false, hideempty2 = true)
+   @Override
+   public String getInstallUIEngine() {
+      return this.getPSControlParam() == null ? null : this.getPSControlParam().getInstallUIEngine();
+   }
+
+   @PSModelRTMeta(description = "部件安装界面引擎", dump = false, hideempty2 = true)
+   @Override
+   public String getInstallUIEngine2() {
+      return this.getPSControlParam() == null ? null : this.getPSControlParam().getInstallUIEngine2();
+   }
+
+   @Override
+   protected String onGetMOSFolder() {
+      String strRootPath = "";
+      if (this.getPSDataEntity() != null) {
+         strRootPath = this.getPSDataEntity().getMOSFilePath();
+         if (StringHelper.isNullOrEmpty(strRootPath)) {
+            return null;
+         }
+      }
+
+      return !StringHelper.isNullOrEmpty(strRootPath)
+         ? strRootPath + "/" + Inflector.getInstance().pluralize(this.getModelType()).toLowerCase()
+         : Inflector.getInstance().pluralize(this.getModelType()).toLowerCase();
+   }
+
+   @Override
+   protected String onGetRTMOSFileName() {
+      return this.getName();
+   }
+
+   @Override
+   protected String onGetMOSFileName() {
+      return this.getCodeName();
+   }
+
+   @Override
+   protected String onGetRTMOSFolder() {
+      String strRootPath = "";
+      if (this.getPSAppView() != null) {
+         strRootPath = this.getPSAppView().getRTMOSFilePath();
+      } else if (this.getPSAppDataEntity() != null) {
+         strRootPath = this.getPSAppDataEntity().getRTMOSFilePath();
+      } else if (this.getPSApplication() != null) {
+         strRootPath = this.getPSApplication().getRTMOSFilePath();
+      }
+
+      return !StringHelper.isNullOrEmpty(strRootPath)
+         ? strRootPath + "/" + Inflector.getInstance().pluralize(this.getRTMOSModelType()).toLowerCase()
+         : super.onGetRTMOSFolder();
+   }
+
+   @Override
+   protected IPSModelObject onGetScopeModel() {
+      return this.getPSAppView() != null ? this.getPSAppView() : this.getPSApplication();
+   }
+
+   @Override
+   public boolean isIndividualCtrl() {
+      return !this.isExportModelAlways();
+   }
+
+   @Override
+   public boolean isEnableUIModelEx() {
+      return this.getPSApplication() != null ? this.getPSApplication().getPSApplicationUI().isEnableUIModelEx() : false;
+   }
+
+   @Override
+   public String getRTMOSModelType() {
+      return this.getPSAppView() != null ? "PSAPPVIEWCTRL" : this.getModelType();
+   }
+
+   @Override
+   public void registerPSControlLogic(IPSAppViewLogic iPSAppViewLogic) throws Exception {
+      if (StringHelper.isNullOrEmpty(iPSAppViewLogic.getPSViewCtrlName())
+         || StringHelper.compare(iPSAppViewLogic.getPSViewCtrlName(), this.getName(), true) == 0) {
+         if ("ITEMBLANK".equals(iPSAppViewLogic.getLogicTrigger())
+            || "ITEMENABLE".equals(iPSAppViewLogic.getLogicTrigger())
+            || "ITEMVISIBLE".equals(iPSAppViewLogic.getLogicTrigger())
+            || "ITEMDYNACLASS".equals(iPSAppViewLogic.getLogicTrigger())) {
+            PSControlLogicProxy4 psControlLogicProxy4 = new PSControlLogicProxy4(this, iPSAppViewLogic);
+            this.registerPSControlLogic(psControlLogicProxy4);
+            return;
+         }
+
+         if ("RENDER".equals(iPSAppViewLogic.getLogicTrigger())) {
+            PSControlRenderProxy4 psControlRenderProxy = new PSControlRenderProxy4(this, iPSAppViewLogic);
             this.registerPSControlRender(psControlRenderProxy);
             return;
-        }
-        if ("ATTRIBUTE".equals(iPSAppDEUILogicGroupDetail.getTriggerType())) {
-            PSControlAttributeProxy psControlAttributeProxy = new PSControlAttributeProxy(this, iPSAppDEUILogicGroupDetail);
+         }
+
+         if ("ATTRIBUTE".equals(iPSAppViewLogic.getLogicTrigger())) {
+            PSControlAttributeProxy4 psControlAttributeProxy = new PSControlAttributeProxy4(this, iPSAppViewLogic);
             this.registerPSControlAttribute(psControlAttributeProxy);
             return;
-        }
-    }
-
-    protected void onCheckControlParam() throws Exception {
-    }
-
-    protected IPSPF calcPreviewPSPF() throws Exception {
-        IPSPF iPSPF = this.getPSAppView().getPSApplication().getPSPF();
-        if (iPSPF.isUseJITDesignPreview() && !this.getPSApplication().isEnableUIModelEx()) {
-            iPSPF = iPSPF.getPSAppType().isMobileApp() ? this.getPSModelStorage().getPSPF(PSTaskServerEnvImpl.getCurrent().getPreviewMobPFId()) : this.getPSModelStorage().getPSPF(PSTaskServerEnvImpl.getCurrent().getPreviewPCPFId());
-        }
-        return iPSPF;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u5e94\u7528\u89c6\u56fe", debugmode=true)
-    public IPSAppView getPSAppView() {
-        if (this.iPSControlContainer != null) {
-            return this.iPSControlContainer.getPSAppView();
-        }
-        return null;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u53c2\u6570", child=true, outputdoc="false")
-    public IPSControlParam getPSControlParam() {
-        return this.onGetPSControlParam();
-    }
-
-    protected IPSControlParam onGetPSControlParam() {
-        return this.iPSControlParam;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u5904\u7406", child=true, outputdoc="false", ignorert=3)
-    public IPSControlHandler getPSControlHandler() {
-        return this.onGetPSControlHandler();
-    }
-
-    protected IPSControlHandler onGetPSControlHandler() {
-        return null;
-    }
-
-    protected void setPSControlContainer(IPSControlContainer iPSControlContainer) {
-        this.iPSControlContainer = iPSControlContainer;
-        this.iPSControlXDataContainer = this.iPSControlContainer == null ? null : this.calcPSControlXDataContainer();
-    }
-
-    @Override
-    public IPSControlContainer getPSControlContainer() {
-        return this.iPSControlContainer;
-    }
-
-    @Override
-    public IPSControlXDataContainer getPSControlXDataContainer() {
-        return this.iPSControlXDataContainer;
-    }
-
-    protected IPSControlXDataContainer calcPSControlXDataContainer() {
-        IPSControlContainer iPSControlContainer = this.getPSControlContainer();
-        while (true) {
-            if (iPSControlContainer instanceof IPSControlXDataContainer) {
-                return (IPSControlXDataContainer)((Object)iPSControlContainer);
-            }
-            if (!(iPSControlContainer instanceof IPSControl)) break;
-            iPSControlContainer = ((IPSControl)((Object)iPSControlContainer)).getPSControlContainer();
-        }
-        return null;
-    }
-
-    @Override
-    public IPSControlType getPSControlType() {
-        return this.iPSControlType;
-    }
-
-    @Override
-    public void setPSControlType(IPSControlType iPSControlType) {
-        this.iPSControlType = iPSControlType;
-    }
-
-    public IView getView() {
-        return this.getPSAppView();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u5b9e\u4f53\u5bf9\u8c61")
-    public IPSDataEntity getPSDataEntity() {
-        if (this.iPSDataEntity == null && this.getPSAppView() instanceof IPSAppDEView) {
-            this.iPSDataEntity = ((IPSAppDEView)this.getPSAppView()).getPSDataEntity();
-        }
-        return this.iPSDataEntity;
-    }
-
-    protected void setPSDataEntity(IPSDataEntity iPSDataEntity) {
-        this.iPSDataEntity = iPSDataEntity;
-    }
-
-    public IDataEntity getDataEntity() {
-        return this.getPSDataEntity();
-    }
-
-    @Override
-    public void fillRelatedPSAppViews(ArrayList<IPSAppView> relatedAppViewList) throws Exception {
-    }
-
-    @Override
-    public void fillEmbeddedPSAppViewRefs(String strContainerId, ArrayList<IPSAppViewRef> embeddedPSAppViewRefList) throws Exception {
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u4ee3\u7801\u6807\u8bc6")
-    public String getCodeName() {
-        return this.onGetCodeName();
-    }
-
-    protected String onGetCodeName() {
-        if (this.getPSAppView().getPSPFStyle().getPFEngineVer() >= 20 && this.getPSAppView() instanceof IPSAppDEView) {
-            if (this.isEnableUIModelEx()) {
-                return this.getPSApplication().getViewCodeName(((IPSAppDEView)this.getPSAppView()).getPSDEViewCodeName(), this.getName(), null);
-            }
-            return StringHelper.format((String)"%1$s%2$s", (Object)((IPSAppDEView)this.getPSAppView()).getPSDEViewCodeName(), (Object)this.getName());
-        }
-        return this.getPSApplication().getViewCodeName(null, this.getName(), null);
-    }
-
-    @Override
-    public boolean isDesignMode() {
-        if (this.bDesignMode) {
-            return true;
-        }
-        Boolean bRet = PSAppViewImpl.getCurrentDesignMode();
-        if (bRet == null) {
-            return false;
-        }
-        return bRet;
-    }
-
-    protected void setDesignMode(boolean bDesignMode) {
-        this.bDesignMode = bDesignMode;
-    }
-
-    @Override
-    public boolean hasCtrlModel() {
-        return true;
-    }
-
-    @Override
-    public String getPSSysModelInstId() {
-        return this.iPSControlContainer.getPSSysModelInstId();
-    }
-
-    @Override
-    public final String getUniqueId() {
-        return this.strUniqueId;
-    }
-
-    @Override
-    public void fillRelatedPSCodeLists(ArrayList<IPSCodeList> relatedPSCodeListList) throws Exception {
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u63a7\u4ef6\u5bbd\u5ea6", ignoredumpvalues="0.0", outputdoc="(%1$s.getWidth() gt 0)")
-    public double getWidth() {
-        return this.fWidth;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u63a7\u4ef6\u9ad8\u5ea6", ignoredumpvalues="0.0", outputdoc="(%1$s.getHeight() gt 0)")
-    public double getHeight() {
-        return this.fHeight;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u63a7\u4ef6\u6b21\u5e8f", dump=false)
-    public int getOrderValue() {
-        return this.nOrderValue;
-    }
-
-    public IPSSystem getPSSystem() {
-        if (this.getPSAppView() == null) {
-            return null;
-        }
-        return this.getPSAppView().getPSSystem();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u524d\u7aef\u6269\u5c55\u63d2\u4ef6")
-    public IPSSysPFPlugin getPSSysPFPlugin() {
-        return this.iPSSysPFPlugin;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u6d88\u606f", child=true)
-    public IPSCtrlMsg getPSCtrlMsg() {
-        return this.iPSCtrlMsg;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u754c\u9762\u6837\u5f0f", dumpref=true)
-    public IPSSysCss getPSSysCss() {
-        return this.iPSSysCss;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u9ed8\u8ba4\u90e8\u4ef6", dump=false)
-    public boolean isDefaultCtrl() {
-        return this.bDefaultCtrl;
-    }
-
-    @Override
-    public boolean isDynamicCtrl() {
-        if (this.bDynamicCtrl == null) {
-            return false;
-        }
-        return this.bDynamicCtrl;
-    }
-
-    protected IPSSystemSetting getPSSystemSetting() {
-        return (IPSSystemSetting)((Object)this.getPSSystem());
-    }
-
-    @Override
-    public String getModelId() {
-        if (this.getPSAppView() != null) {
-            return StringHelper.format((String)"%1$s#%2$s", (Object)this.getPSAppView().getId(), (Object)this.getName());
-        }
-        return super.getModelId();
-    }
-
-    protected IPSSystemUtil getPSSystemUtil() {
-        return (IPSSystemUtil)((Object)this.getPSSystem());
-    }
-
-    @Override
-    public String getFullModelName() {
-        if (this.getPSAppView() != null) {
-            return StringHelper.format((String)"%1$s|%2$s", (Object)this.getPSAppView().getFullModelName(), (Object)this.getModelName());
-        }
-        return super.getFullModelName();
-    }
-
-    @Override
-    public boolean isEnableCol12ToCol24() {
-        if (this.isDesignMode()) {
-            if (this.getPSAppView() != null && this.getPSAppView().getPSApplication().getPFType().indexOf("PREVIEW_") == 0) {
-                return true;
-            }
-            if (StringHelper.compare((String)this.getPreviewPSPF().getFormLayoutMode(), (String)"TABLE_24COL", (boolean)true) != 0) {
-                return false;
-            }
-        }
-        if (this.getPSAppView() != null) {
-            return this.getPSAppView().getPSApplication().getPSApplicationUI().isEnableCol12ToCol24();
-        }
-        return false;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u903b\u8f91\u540d\u79f0", hideempty2=true)
-    public String getLogicName() {
-        return this.strLogicName;
-    }
-
-    protected void setLogicName(String strLogicName) {
-        this.strLogicName = strLogicName;
-    }
-
-    @Override
-    public String getControlSubType() {
-        return "";
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u6837\u5f0f")
-    public final String getControlStyle() {
-        String strControlSubType = this.getControlSubType();
-        if (!StringHelper.isNullOrEmpty((String)strControlSubType)) {
-            return strControlSubType;
-        }
-        if (this.getRender() == null && this.getPSSysPFPlugin() != null && !StringHelper.isNullOrEmpty((String)(strControlSubType = this.getPSSysPFPlugin().getPluginCode()))) {
-            return strControlSubType;
-        }
-        if (this.getPSAppView() == null) {
-            return "";
-        }
-        return this.getPSAppView().getPSApplication().getPSApplicationUI().getDefaultControlStyle();
-    }
-
-    @Override
-    public IPSPF getPreviewPSPF() {
-        return this.previewPSPF;
-    }
-
-    protected void setPreviewPSPF(IPSPF previewPSPF) {
-        this.previewPSPF = previewPSPF;
-    }
-
-    @Override
-    public void registerPSControlLogic(IPSControlLogic iPSControlLogic) throws Exception {
-        String[] events;
-        if (this.psControlLogicList == null) {
-            this.psControlLogicList = new ArrayList<IPSControlLogic>();
-        }
-        iPSControlLogic = new PSControlLogicProxy(this, iPSControlLogic);
-        this.psControlLogicList.add(iPSControlLogic);
-        String strEventNames = iPSControlLogic.getEventNames();
-        if (!StringHelper.isNullOrEmpty((String)strEventNames) && (events = StringHelper.splitEx((String)(strEventNames = strEventNames.toUpperCase()))) != null) {
-            String[] stringArray = events;
-            int n = events.length;
-            int n2 = 0;
-            while (n2 < n) {
-                String strEvent = stringArray[n2];
-                if (!StringHelper.isNullOrEmpty((String)(strEvent = strEvent.trim()))) {
-                    ArrayList<IPSControlLogic> list;
-                    if (this.hookEventMap == null) {
-                        this.hookEventMap = new LinkedHashMap<String, ArrayList<IPSControlLogic>>();
-                    }
-                    if ((list = this.hookEventMap.get(strEvent)) == null) {
-                        list = new ArrayList();
-                        this.hookEventMap.put(strEvent, list);
-                    }
-                    list.add(iPSControlLogic);
-                }
-                ++n2;
-            }
-        }
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u903b\u8f91\u96c6\u5408", hideempty2=true, child=true, group="\u90e8\u4ef6\u903b\u8f91", order=220)
-    public Iterator<? extends IPSControlLogic> getPSControlLogics() {
-        return this.onGetPSControlLogics();
-    }
-
-    protected Iterator<? extends IPSControlLogic> onGetPSControlLogics() {
-        if (this.isEnableUIModelEx()) {
-            Iterator<? extends IPSControlLogic> psControlLogics = this.getAllPSControlLogics();
-            if (psControlLogics == null) {
-                return null;
-            }
-            ArrayList<IPSControlLogic> psControlLogicList = null;
-            while (psControlLogics.hasNext()) {
-                IPSControlLogic iPSControlLogic = psControlLogics.next();
-                if ("CTRLEVENT".equals(iPSControlLogic.getTriggerType()) || "TIMER".equals(iPSControlLogic.getTriggerType()) || "CUSTOM".equals(iPSControlLogic.getTriggerType())) {
-                    if (psControlLogicList == null) {
-                        psControlLogicList = new ArrayList<IPSControlLogic>();
-                    }
-                    psControlLogicList.add(iPSControlLogic);
-                    continue;
-                }
-                if (!"ITEMBLANK".equals(iPSControlLogic.getTriggerType()) && !"ITEMENABLE".equals(iPSControlLogic.getTriggerType()) && !"ITEMVISIBLE".equals(iPSControlLogic.getTriggerType()) && !"ITEMDYNACLASS".equals(iPSControlLogic.getTriggerType()) || !StringHelper.isNullOrEmpty((String)iPSControlLogic.getItemName())) continue;
-                if (psControlLogicList == null) {
-                    psControlLogicList = new ArrayList();
-                }
-                psControlLogicList.add(iPSControlLogic);
-            }
-            if (psControlLogicList == null || psControlLogicList.size() == 0) {
-                return null;
-            }
-            return psControlLogicList.iterator();
-        }
-        return this.getAllPSControlLogics();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u5168\u90e8\u903b\u8f91\u96c6\u5408", hideempty2=true)
-    public Iterator<? extends IPSControlLogic> getAllPSControlLogics() {
-        return this.onGetAllPSControlLogics();
-    }
-
-    protected Iterator<? extends IPSControlLogic> onGetAllPSControlLogics() {
-        if (this.psControlLogicList == null || this.psControlLogicList.size() == 0) {
-            return null;
-        }
-        return this.psControlLogicList.iterator();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u76d1\u63a7\u4e8b\u4ef6\u540d\u79f0\u96c6\u5408", hideempty2=true, child=true, rtname="hookEventNames", ignorert=3)
-    public Iterator<String> getHookEventNames() {
-        if (this.hookEventMap == null || this.hookEventMap.size() == 0) {
-            return null;
-        }
-        return this.hookEventMap.keySet().iterator();
-    }
-
-    @Override
-    public Iterator<? extends IPSControlLogic> getPSControlLogics(String strEventName) {
-        if (this.hookEventMap == null) {
-            return null;
-        }
-        ArrayList<IPSControlLogic> list = this.hookEventMap.get(strEventName.toUpperCase());
-        if (list == null || list.size() == 0) {
-            return null;
-        }
-        return list.iterator();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u6ce8\u5165\u5c5e\u6027\u96c6\u5408", hideempty2=true, child=true, group="\u90e8\u4ef6\u903b\u8f91", order=222)
-    public Iterator<? extends IPSControlAttribute> getPSControlAttributes() {
-        return this.onGetPSControlAttributes();
-    }
-
-    protected Iterator<? extends IPSControlAttribute> onGetPSControlAttributes() {
-        Iterator<? extends IPSControlAttribute> psControlAttributes = this.getAllPSControlAttributes();
-        if (psControlAttributes == null) {
-            return null;
-        }
-        ArrayList<IPSControlAttribute> psControlAttributeList = null;
-        while (psControlAttributes.hasNext()) {
-            IPSControlAttribute iPSControlAttribute = psControlAttributes.next();
-            if (!StringHelper.isNullOrEmpty((String)iPSControlAttribute.getItemName())) continue;
-            if (psControlAttributeList == null) {
-                psControlAttributeList = new ArrayList<IPSControlAttribute>();
-            }
-            psControlAttributeList.add(iPSControlAttribute);
-        }
-        if (psControlAttributeList == null || psControlAttributeList.size() == 0) {
-            return null;
-        }
-        return psControlAttributeList.iterator();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u5168\u90e8\u5c5e\u6027\u6ce8\u5165\u96c6\u5408", hideempty2=true)
-    public Iterator<? extends IPSControlAttribute> getAllPSControlAttributes() {
-        return this.onGetAllPSControlAttributes();
-    }
-
-    protected Iterator<? extends IPSControlAttribute> onGetAllPSControlAttributes() {
-        if (this.psControlAttributeList == null || this.psControlAttributeList.size() == 0) {
-            return null;
-        }
-        return this.psControlAttributeList.iterator();
-    }
-
-    public void registerPSControlAttribute(IPSControlAttribute iPSControlAttribute) throws Exception {
-        if (this.psControlAttributeList == null) {
-            this.psControlAttributeList = new ArrayList<IPSControlAttribute>();
-        }
-        this.psControlAttributeList.add(iPSControlAttribute);
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u7ed8\u5236\u5668\u96c6\u5408", hideempty2=true, child=true, group="\u90e8\u4ef6\u903b\u8f91", order=223)
-    public Iterator<? extends IPSControlRender> getPSControlRenders() {
-        return this.onGetPSControlRenders();
-    }
-
-    protected Iterator<? extends IPSControlRender> onGetPSControlRenders() {
-        Iterator<? extends IPSControlRender> psControlRenders = this.getAllPSControlRenders();
-        if (psControlRenders == null) {
-            return null;
-        }
-        ArrayList<IPSControlRender> psControlRenderList = null;
-        while (psControlRenders.hasNext()) {
-            IPSControlRender iPSControlRender = psControlRenders.next();
-            if (!StringHelper.isNullOrEmpty((String)iPSControlRender.getItemName())) continue;
-            if (psControlRenderList == null) {
-                psControlRenderList = new ArrayList<IPSControlRender>();
-            }
-            psControlRenderList.add(iPSControlRender);
-        }
-        if (psControlRenderList == null || psControlRenderList.size() == 0) {
-            return null;
-        }
-        return psControlRenderList.iterator();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u5168\u90e8\u7ed8\u5236\u5668\u96c6\u5408", hideempty2=true)
-    public Iterator<? extends IPSControlRender> getAllPSControlRenders() {
-        return this.onGetAllPSControlRenders();
-    }
-
-    protected Iterator<? extends IPSControlRender> onGetAllPSControlRenders() {
-        if (this.psControlRenderList == null || this.psControlRenderList.size() == 0) {
-            return null;
-        }
-        return this.psControlRenderList.iterator();
-    }
-
-    public void registerPSControlRender(IPSControlRender iPSControlRender) throws Exception {
-        if (this.psControlRenderList == null) {
-            this.psControlRenderList = new ArrayList<IPSControlRender>();
-        }
-        this.psControlRenderList.add(iPSControlRender);
-    }
-
-    @Override
-    public Iterator<? extends IPSControlAttribute> getPSControlAttributesByItemName(String strItemName) {
-        Iterator<? extends IPSControlAttribute> psControlAttributes = this.getAllPSControlAttributes();
-        if (psControlAttributes == null) {
-            return null;
-        }
-        ArrayList<IPSControlAttribute> psControlAttributeList = null;
-        while (psControlAttributes.hasNext()) {
-            IPSControlAttribute iPSControlAttribute = psControlAttributes.next();
-            if (StringHelper.isNullOrEmpty((String)iPSControlAttribute.getItemName()) || StringHelper.compare((String)iPSControlAttribute.getItemName(), (String)strItemName, (boolean)true) != 0) continue;
-            if (psControlAttributeList == null) {
-                psControlAttributeList = new ArrayList<IPSControlAttribute>();
-            }
-            psControlAttributeList.add(iPSControlAttribute);
-        }
-        if (psControlAttributeList == null || psControlAttributeList.size() == 0) {
-            return null;
-        }
-        return psControlAttributeList.iterator();
-    }
-
-    @Override
-    public Iterator<? extends IPSControlRender> getPSControlRendersByItemName(String strItemName) {
-        Iterator<? extends IPSControlRender> psControlRenders = this.getAllPSControlRenders();
-        if (psControlRenders == null) {
-            return null;
-        }
-        ArrayList<IPSControlRender> psControlRenderList = null;
-        while (psControlRenders.hasNext()) {
-            IPSControlRender iPSControlRender = psControlRenders.next();
-            if (StringHelper.isNullOrEmpty((String)iPSControlRender.getItemName()) || StringHelper.compare((String)iPSControlRender.getItemName(), (String)strItemName, (boolean)true) != 0) continue;
-            if (psControlRenderList == null) {
-                psControlRenderList = new ArrayList<IPSControlRender>();
-            }
-            psControlRenderList.add(iPSControlRender);
-        }
-        if (psControlRenderList == null || psControlRenderList.size() == 0) {
-            return null;
-        }
-        return psControlRenderList.iterator();
-    }
-
-    @Override
-    public Iterator<? extends IPSControlLogic> getPSControlLogicsByItemName(String strItemName) {
-        Iterator<? extends IPSControlLogic> psControlLogics = this.getAllPSControlLogics();
-        if (psControlLogics == null) {
-            return null;
-        }
-        ArrayList<IPSControlLogic> psControlLogicList = null;
-        while (psControlLogics.hasNext()) {
-            IPSControlLogic iPSControlLogic = psControlLogics.next();
-            if (StringHelper.isNullOrEmpty((String)iPSControlLogic.getItemName()) || !"ITEMBLANK".equals(iPSControlLogic.getTriggerType()) && !"ITEMENABLE".equals(iPSControlLogic.getTriggerType()) && !"ITEMVISIBLE".equals(iPSControlLogic.getTriggerType()) && !"ITEMDYNACLASS".equals(iPSControlLogic.getTriggerType()) || StringHelper.compare((String)iPSControlLogic.getItemName(), (String)strItemName, (boolean)true) != 0) continue;
-            if (psControlLogicList == null) {
-                psControlLogicList = new ArrayList<IPSControlLogic>();
-            }
-            psControlLogicList.add(iPSControlLogic);
-        }
-        if (psControlLogicList == null || psControlLogicList.size() == 0) {
-            return null;
-        }
-        return psControlLogicList.iterator();
-    }
-
-    @Override
-    public boolean isRegisterToPSAppDataEntity() {
-        if (this.getPSAppView() == null) {
-            return false;
-        }
-        return this.getPSAppView().getPSPFStyle().getPFEngineVer() >= 20;
-    }
-
-    @Override
-    public boolean isPrepareDefaultPSAppViewLogics() {
-        if (this.getPSAppView() == null) {
-            return false;
-        }
-        return this.getPSAppView().getPSPFStyle().getPFEngineVer() >= 20;
-    }
-
-    @Override
-    public boolean isPrepareTemplV2logic() {
-        if (this.getPSAppView() == null) {
-            return false;
-        }
-        return this.getPSAppView().getPSPFStyle().getPFEngineVer() >= 20;
-    }
-
-    @Override
-    public Object getCtrlParam(String strParamName) {
-        if (this.getPSControlParam() == null) {
-            return null;
-        }
-        return this.getPSControlParam().getCtrlParam(strParamName);
-    }
-
-    @Override
-    public boolean containsCtrlParam(String strParamName) {
-        if (this.getPSControlParam() == null) {
-            return false;
-        }
-        return this.getPSControlParam().containsCtrlParam(strParamName);
-    }
-
-    @Override
-    public String getCtrlParam(String strParamName, String strDefault) {
-        if (this.getPSControlParam() == null) {
-            return strDefault;
-        }
-        return this.getPSControlParam().getCtrlParam(strParamName, strDefault);
-    }
-
-    @Override
-    public boolean getCtrlParam(String strParamName, boolean bDefault) {
-        if (this.getPSControlParam() == null) {
-            return bDefault;
-        }
-        return this.getPSControlParam().getCtrlParam(strParamName, bDefault);
-    }
-
-    @Override
-    public int getCtrlParam(String strParamName, int nDefault) {
-        if (this.getPSControlParam() == null) {
-            return nDefault;
-        }
-        return this.getPSControlParam().getCtrlParam(strParamName, nDefault);
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u52a8\u6001\u53c2\u6570\u96c6\u5408")
-    public Iterator<String> getCtrlParamNames() {
-        if (this.getPSControlParam() == null) {
-            return null;
-        }
-        return this.getPSControlParam().getCtrlParamNames();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u7528\u6237\u6807\u8bb0")
-    public String getUserTag() {
-        if (this.getPSControlParam() == null) {
-            return null;
-        }
-        return this.getPSControlParam().getUserTag();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u7528\u6237\u6807\u8bb02")
-    public String getUserTag2() {
-        if (this.getPSControlParam() == null) {
-            return null;
-        }
-        return this.getPSControlParam().getUserTag2();
-    }
-
-    @Override
-    public String getPSDynaModelId() {
-        if (this.getPSControlParam() == null) {
-            return null;
-        }
-        return this.getPSControlParam().getPSDynaModelId();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u7ed8\u5236\u63d2\u4ef6")
-    public IPSPFXCodeObject getRender() {
-        return this.iPSPFXCodeObject;
-    }
-
-    @Override
-    public String getPreviewHtml() {
-        if (!this.isDesignMode() || this.getPSSysPFPlugin() == null) {
-            return null;
-        }
-        return this.getPSSysPFPlugin().getPreviewHtml();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u5e94\u7528\u5b9e\u4f53", dumpref=true)
-    public IPSAppDataEntity getPSAppDataEntity() {
-        return this.iPSAppDataEntity;
-    }
-
-    protected void setPSAppDataEntity(IPSAppDataEntity iPSAppDataEntity) {
-        this.iPSAppDataEntity = iPSAppDataEntity;
-    }
-
-    @Override
-    public Iterator<? extends IPSControlAction> getPSControlActions() {
-        return null;
-    }
-
-    @Override
-    public IPSControlAction getUserPSControlAction() {
-        return null;
-    }
-
-    @Override
-    public IPSControlAction getUser2PSControlAction() {
-        return null;
-    }
-
-    public IPSApplication getPSApplication() {
-        if (this.getPSAppView() != null) {
-            return this.getPSAppView().getPSApplication();
-        }
-        return null;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u7f72\u6570\u636e\u6807\u8bc6", dump=false)
-    public String getDeployId() {
-        if (this.getPSAppView() != null) {
-            return KeyValueHelper.genUniqueId((String)this.getPSAppView().getDeployId(), (String)this.getName());
-        }
-        return super.getDeployId();
-    }
-
-    @Override
-    protected IPSSysDynaModel internalGetPSSysDynaModel(String strPSSysDynaModelId) throws Exception {
-        if (this.getPSSystem() != null) {
-            return this.getPSSystem().getPSSysDynaModel(strPSSysDynaModelId);
-        }
-        return super.internalGetPSSysDynaModel(strPSSysDynaModelId);
-    }
-
-    @Override
-    @PSModelRTMeta(name="[H]\u524d\u7aef\u6a21\u677f\u53d1\u5e03\u5e2e\u52a9", hideempty=true)
-    public IPSPFPubHelp getPSPFPubHelp() {
-        block4: {
-            try {
-                if (!PSTemplHelper.isBusy()) break block4;
-                return null;
-            }
-            catch (Exception ex) {
-                log.error((Object)ex);
-                return null;
-            }
-        }
-        if (this.iPSPFPubHelp != null) {
-            return this.iPSPFPubHelp;
-        }
-        LinkedHashMap<String, IPSCodePublisherParam> publisherParamMap = new LinkedHashMap<String, IPSCodePublisherParam>();
-        this.iPSPFPubHelp = PSPFCtrlPubHelpImpl.createPSPFPubHelp(this, publisherParamMap);
-        return this.iPSPFPubHelp;
-    }
-
-    @Override
-    protected void onFillModelNode(ObjectNode objectNode, String strModelType) throws Exception {
-        super.onFillModelNode(objectNode, strModelType);
-        if (!StringHelper.isNullOrEmpty((String)this.getDynaModelFilePath())) {
-            objectNode.remove("name");
-        }
-        if (StringHelper.compare((String)strModelType, (String)MODEL_SINGLE, (boolean)true) != 0) {
-            if (!objectNode.has("name")) {
-                PSControlImpl.putJsonProperty(objectNode, "name", this.getName().toLowerCase());
-            }
-        } else {
-            objectNode.remove("getPSControlParam");
-            objectNode.remove("getPSControlHandler");
-        }
-        if (!(objectNode.has("modelid") || StringHelper.isNullOrEmpty((String)this.getId()) || this.getId().equals("SRFCURRENTVIEW"))) {
-            PSControlImpl.putJsonProperty(objectNode, "modelid", this.getId());
-            PSControlImpl.putJsonProperty(objectNode, "modeltype", this.getModelType());
-        }
-    }
-
-    @Override
-    public ObjectNode toModelRef(String strType) {
-        if (StringHelper.compare((String)MODELREF_LINK, (String)strType, (boolean)true) == 0) {
-            ObjectNode objectNode = JsonNodeHelper.createObjectNode();
-            objectNode.put("name", this.getName().toLowerCase());
-            return objectNode;
-        }
-        if (StringHelper.compare((String)"IGNOREDESIGN", (String)strType, (boolean)true) == 0 && this.isDesignMode()) {
-            return this.toModel(null);
-        }
-        if (this.isExportModelAlways() && StringHelper.compare((String)MODELREF_MUSTREF, (String)strType, (boolean)true) != 0) {
-            return this.toModel(strType);
-        }
-        return super.toModelRef(strType);
-    }
-
-    @Override
-    protected void onFillModelRefNode(ObjectNode objectNode, String strModelRefType) throws Exception {
-        super.onFillModelRefNode(objectNode, strModelRefType);
-        if (!MODELREF_INDIVIDUAL.equals(strModelRefType)) {
-            ObjectNode objNode;
-            if (!objectNode.has("name")) {
-                PSControlImpl.putJsonProperty(objectNode, "name", this.getName().toLowerCase());
-            }
-            if (this.getPSControlParam() != null) {
-                objNode = this.getPSControlParam().getModel();
-                PSControlImpl.putJsonProperty(objectNode, "getPSControlParam", objNode);
-            }
-            if (this.getPSControlHandler() != null) {
-                objNode = this.getPSControlHandler().getModel();
-                PSControlImpl.putJsonProperty(objectNode, "getPSControlHandler", objNode);
-            }
-        }
-        objectNode.put("controlType", this.getControlType());
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u52a8\u6001\u6a21\u578b\u6587\u4ef6\u8def\u5f84", hideempty=true)
-    public String getDynaModelFilePath() {
-        if (this.isExportModelAlways()) {
-            return null;
-        }
-        if (!this.isEnableDynaModel()) {
-            return null;
-        }
-        if (StringHelper.isNullOrEmpty((String)this.getDynaModelTag())) {
-            return null;
-        }
-        return String.format("%1$s/%2$s.json", this.getDynaModelFolder(), this.getDynaModelTag());
-    }
-
-    @Override
-    protected boolean isExportModelAlways() {
-        return false;
-    }
-
-    protected Boolean getDynamicCtrl() {
-        return this.bDynamicCtrl;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u52a8\u6001\u5b9e\u4f8b\u6a21\u5f0f", dump=false, codelist="DynaInstMode3")
-    public int getDynaInstMode() {
-        if (this.getPSApplication() != null && this.getPSApplication().getDynaInstMode() == 0) {
-            return 0;
-        }
-        return this.onGetDynaInstMode();
-    }
-
-    @Override
-    protected int onGetDynaInstMode() {
-        if (this.getDynamicCtrl() != null) {
-            if (this.isDynamicCtrl()) {
-                if (this.getPSAppDataEntity() != null && this.getPSApplication().getDynaInstMode() == 0) {
-                    return 0;
-                }
-                return 1;
-            }
-            return 0;
-        }
-        if (this.getPSAppDataEntity() != null) {
-            return this.getPSAppDataEntity().getDynaInstMode();
-        }
-        return 0;
-    }
-
-    @Override
-    protected boolean onGetEnableDynaModel() {
-        if (this.getDynamicCtrl() != null) {
-            return this.isDynamicCtrl();
-        }
-        return true;
-    }
-
-    @Override
-    protected String onGetDynaModelFolder() {
-        if (this.getPSAppDataEntity() != null) {
-            String strDynaModelFolder = this.getPSAppDataEntity().getDynaModelFolder();
-            if (StringHelper.isNullOrEmpty((String)strDynaModelFolder)) {
-                return null;
-            }
-            return String.format("%1$s/PS%2$s", strDynaModelFolder, Inflector.getInstance().pluralize((Object)this.getDumpModelType()).toUpperCase());
-        }
-        if (this.getPSAppView() != null) {
-            String strDynaModelFolder = this.getPSAppView().getDynaModelFolder();
-            if (StringHelper.isNullOrEmpty((String)strDynaModelFolder)) {
-                return null;
-            }
-            return String.format("%1$s/PS%2$s", strDynaModelFolder, Inflector.getInstance().pluralize((Object)this.getDumpModelType()).toUpperCase());
-        }
-        if (this.getPSApplication() != null) {
-            String strDynaModelFolder = this.getPSApplication().getDynaModelFolder();
-            if (StringHelper.isNullOrEmpty((String)strDynaModelFolder)) {
-                return null;
-            }
-            return String.format("%1$s/PS%2$s", strDynaModelFolder, Inflector.getInstance().pluralize((Object)this.getDumpModelType()).toUpperCase());
-        }
-        return super.onGetDynaModelFolder();
-    }
-
-    @Override
-    public String getDumpModelType() {
-        return this.getControlType();
-    }
-
-    protected boolean isNeedFillPSACHandlerData() {
-        return false;
-    }
-
-    protected void fillPSACHandlerData(PSACHandler psACHandler) throws Exception {
-    }
-
-    @Override
-    public String getModelScope() {
-        return null;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u7c7b\u578b", codelist="CtrlType", group="\u57fa\u672c", order=125)
-    public String getControlType() {
-        return this.onGetControlType();
-    }
-
-    protected String onGetControlType() {
-        return null;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u5f15\u7528\u90e8\u4ef6", dump=false, hideempty=true)
-    public IPSControl getRefPSControl() throws Exception {
-        if (this.getPSControlParam() == null || StringHelper.isNullOrEmpty((String)this.getPSControlParam().getRefCtrlName())) {
-            return null;
-        }
-        if (StringHelper.compare((String)this.getPSControlParam().getRefCtrlName(), (String)this.getName(), (boolean)true) == 0) {
-            throw new Exception(String.format("\u5f15\u7528\u90e8\u4ef6\u4e0d\u80fd\u4e3a\u81ea\u5df1", new Object[0]));
-        }
-        return this.getPSControlContainer().getPSControl(this.getPSControlParam().getRefCtrlName());
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u5f15\u7528\u90e8\u4ef62", dump=false, hideempty=true)
-    public IPSControl getRefPSControl2() throws Exception {
-        if (this.getPSControlParam() == null || StringHelper.isNullOrEmpty((String)this.getPSControlParam().getRefCtrl2Name())) {
-            return null;
-        }
-        if (StringHelper.compare((String)this.getPSControlParam().getRefCtrl2Name(), (String)this.getName(), (boolean)true) == 0) {
-            throw new Exception(String.format("\u5f15\u7528\u90e8\u4ef6\u4e0d\u80fd\u4e3a\u81ea\u5df1", new Object[0]));
-        }
-        return this.getPSControlContainer().getPSControl(this.getPSControlParam().getRefCtrl2Name());
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u5b89\u88c5\u754c\u9762\u5f15\u64ce", dump=false, hideempty2=true)
-    public String getInstallUIEngine() {
-        if (this.getPSControlParam() == null) {
-            return null;
-        }
-        return this.getPSControlParam().getInstallUIEngine();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u5b89\u88c5\u754c\u9762\u5f15\u64ce", dump=false, hideempty2=true)
-    public String getInstallUIEngine2() {
-        if (this.getPSControlParam() == null) {
-            return null;
-        }
-        return this.getPSControlParam().getInstallUIEngine2();
-    }
-
-    @Override
-    protected String onGetMOSFolder() {
-        String strRootPath = "";
-        if (this.getPSDataEntity() != null && StringHelper.isNullOrEmpty((String)(strRootPath = this.getPSDataEntity().getMOSFilePath()))) {
-            return null;
-        }
-        if (!StringHelper.isNullOrEmpty((String)strRootPath)) {
-            return String.valueOf(strRootPath) + "/" + Inflector.getInstance().pluralize((Object)this.getModelType()).toLowerCase();
-        }
-        return Inflector.getInstance().pluralize((Object)this.getModelType()).toLowerCase();
-    }
-
-    @Override
-    protected String onGetRTMOSFileName() {
-        return this.getName();
-    }
-
-    @Override
-    protected String onGetMOSFileName() {
-        return this.getCodeName();
-    }
-
-    @Override
-    protected String onGetRTMOSFolder() {
-        String strRootPath = "";
-        if (this.getPSAppView() != null) {
-            strRootPath = this.getPSAppView().getRTMOSFilePath();
-        } else if (this.getPSAppDataEntity() != null) {
-            strRootPath = this.getPSAppDataEntity().getRTMOSFilePath();
-        } else if (this.getPSApplication() != null) {
-            strRootPath = this.getPSApplication().getRTMOSFilePath();
-        }
-        if (!StringHelper.isNullOrEmpty((String)strRootPath)) {
-            return String.valueOf(strRootPath) + "/" + Inflector.getInstance().pluralize((Object)this.getRTMOSModelType()).toLowerCase();
-        }
-        return super.onGetRTMOSFolder();
-    }
-
-    @Override
-    protected IPSModelObject onGetScopeModel() {
-        if (this.getPSAppView() != null) {
-            return this.getPSAppView();
-        }
-        return this.getPSApplication();
-    }
-
-    @Override
-    public boolean isIndividualCtrl() {
-        return !this.isExportModelAlways();
-    }
-
-    @Override
-    public boolean isEnableUIModelEx() {
-        if (this.getPSApplication() != null) {
-            return this.getPSApplication().getPSApplicationUI().isEnableUIModelEx();
-        }
-        return false;
-    }
-
-    @Override
-    public String getRTMOSModelType() {
-        if (this.getPSAppView() != null) {
-            return "PSAPPVIEWCTRL";
-        }
-        return this.getModelType();
-    }
-
-    @Override
-    public void registerPSControlLogic(IPSAppViewLogic iPSAppViewLogic) throws Exception {
-        if (StringHelper.isNullOrEmpty((String)iPSAppViewLogic.getPSViewCtrlName()) || StringHelper.compare((String)iPSAppViewLogic.getPSViewCtrlName(), (String)this.getName(), (boolean)true) == 0) {
-            if ("ITEMBLANK".equals(iPSAppViewLogic.getLogicTrigger()) || "ITEMENABLE".equals(iPSAppViewLogic.getLogicTrigger()) || "ITEMVISIBLE".equals(iPSAppViewLogic.getLogicTrigger()) || "ITEMDYNACLASS".equals(iPSAppViewLogic.getLogicTrigger())) {
-                PSControlLogicProxy4 psControlLogicProxy4 = new PSControlLogicProxy4(this, iPSAppViewLogic);
-                this.registerPSControlLogic(psControlLogicProxy4);
-                return;
-            }
-            if ("RENDER".equals(iPSAppViewLogic.getLogicTrigger())) {
-                PSControlRenderProxy4 psControlRenderProxy = new PSControlRenderProxy4(this, iPSAppViewLogic);
-                this.registerPSControlRender(psControlRenderProxy);
-                return;
-            }
-            if ("ATTRIBUTE".equals(iPSAppViewLogic.getLogicTrigger())) {
-                PSControlAttributeProxy4 psControlAttributeProxy = new PSControlAttributeProxy4(this, iPSAppViewLogic);
-                this.registerPSControlAttribute(psControlAttributeProxy);
-                return;
-            }
-        }
-        log.warn((Object)String.format("\u672a\u652f\u6301\u7684\u5e94\u7528\u89c6\u56fe\u903b\u8f91[%1$s][%2$s]", iPSAppViewLogic.getName(), iPSAppViewLogic.getLogicTrigger()));
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u52a8\u6001\u7cfb\u7edf\u6a21\u5f0f", codelist="ControlDynaSysMode", ignoredumpvalues="0")
-    public int getDynaSysMode() {
-        if (this.getPSControlParam() == null || this.getPSControlParam().getDynaSysMode() == null) {
-            return 0;
-        }
-        return this.getPSControlParam().getDynaSysMode();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u90e8\u4ef6\u4f18\u5148\u7ea7", codelist="ControlPriority", ignoredumpvalues="-1")
-    public int getPriority() {
-        if (this.onGetPriority() == null) {
-            return -1;
-        }
-        return this.onGetPriority();
-    }
-
-    protected Integer onGetPriority() {
-        if (this.getPSControlParam() == null || this.getPSControlParam().getPriority() == null) {
-            return -1;
-        }
-        return this.getPSControlParam().getPriority();
-    }
+         }
+      }
+
+      log.warn(String.format("未支持的应用视图逻辑[%1$s][%2$s]", iPSAppViewLogic.getName(), iPSAppViewLogic.getLogicTrigger()));
+   }
+
+   @PSModelRTMeta(description = "动态系统模式", codelist = "ControlDynaSysMode", ignoredumpvalues = "0")
+   @Override
+   public int getDynaSysMode() {
+      return this.getPSControlParam() != null && this.getPSControlParam().getDynaSysMode() != null ? this.getPSControlParam().getDynaSysMode() : 0;
+   }
+
+   @PSModelRTMeta(description = "部件优先级", codelist = "ControlPriority", ignoredumpvalues = "-1")
+   @Override
+   public int getPriority() {
+      return this.onGetPriority() == null ? -1 : this.onGetPriority();
+   }
+
+   protected Integer onGetPriority() {
+      return this.getPSControlParam() != null && this.getPSControlParam().getPriority() != null ? this.getPSControlParam().getPriority() : -1;
+   }
 }
-

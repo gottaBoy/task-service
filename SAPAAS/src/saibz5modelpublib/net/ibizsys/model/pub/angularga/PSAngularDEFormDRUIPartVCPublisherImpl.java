@@ -1,38 +1,39 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSControl
- *  IPSDEFormDRUIPart
- *  IPSGenerateCodeResult
- *  IPSPublisherContext
- */
 package net.ibizsys.model.pub.angularga;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.angularga.PSAngularDEFormDetailVCPublisherImpl;
 
-public class PSAngularDEFormDRUIPartVCPublisherImpl
-extends PSAngularDEFormDetailVCPublisherImpl {
-    protected IPSDEFormDRUIPart iPSDEFormDRUIPart;
+import net.ibizsys.model.control.IPSControl;
+import net.ibizsys.model.control.form.IPSDEFormDRUIPart;
+import net.ibizsys.model.pub.IPSGenerateCodeResult;
 
-    public PSAngularDEFormDRUIPartVCPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tIPSDEFormDRUIPart cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEFormDRUIPart cannot be resolved to a type\n\tIPSDEFormDRUIPart cannot be resolved to a type\n\tIPSDEFormDRUIPart cannot be resolved to a type\n");
-    }
+public class PSAngularDEFormDRUIPartVCPublisherImpl extends PSAngularDEFormDetailVCPublisherImpl
+{
+	protected IPSDEFormDRUIPart iPSDEFormDRUIPart = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDEFormDRUIPart = (IPSDEFormDRUIPart)object;
+		return super.generateCode(iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		if(true)
+		{
 
-    @Override
-    public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEFormDRUIPart cannot be resolved to a type\n\tIPSDEFormDRUIPart cannot be resolved to a type\n");
-    }
+		}
+		
+	}
+	
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problem: \n");
-    }
-
-    @Override
-    protected void onClose() {
-        throw new Error("Unresolved compilation problem: \n\tIPSDEFormDRUIPart cannot be resolved to a type\n");
-    }
 }
-

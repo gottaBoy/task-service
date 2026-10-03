@@ -1,16 +1,27 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
 import net.ibizsys.paas.controller.IDynaViewControllerInst;
-import net.ibizsys.paas.ctrlhandler.ICtrlHandler;
 import net.ibizsys.paas.ctrlmodel.IDynaCtrlModel;
 
-public interface IDynaCtrlHandler
-extends ICtrlHandler {
-    public void init(IDynaViewControllerInst var1, IDynaCtrlModel var2) throws Exception;
+/**
+ * 动态部件处理器对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaCtrlHandler extends ICtrlHandler{
 
-    public IDynaCtrlModel getDynaCtrlModel();
+	/**
+	 * 初始化控件处理器对象
+	 * @param iDynaViewControllerInst
+	 * @param iDynaViewCtrlModel
+	 * @throws Exception
+	 */
+	void init(IDynaViewControllerInst iDynaViewControllerInst,IDynaCtrlModel iDynaCtrlModel) throws Exception;
+	
+	
+	/**
+	 * 获取动态部件模型对象
+	 * @return
+	 */
+	IDynaCtrlModel getDynaCtrlModel();
 }
-

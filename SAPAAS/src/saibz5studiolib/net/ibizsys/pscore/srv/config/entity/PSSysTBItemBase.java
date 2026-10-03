@@ -1982,7 +1982,7 @@ implements Serializable {
                 PSCssTempl pSCssTempl = new PSCssTempl();
                 pSCssTempl.setPSCssTemplId(this.getPSCssTemplId());
                 PSCssTemplService pSCssTemplService = (PSCssTemplService)ServiceGlobal.getService(PSCssTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSCssTemplService.autoGet((IEntity)pSCssTempl);
+                pSCssTemplService.autoGet(pSCssTempl);
                 this.pscsstempl = pSCssTempl;
             }
             return this.pscsstempl;
@@ -2008,7 +2008,7 @@ implements Serializable {
                 PSImageTempl pSImageTempl = new PSImageTempl();
                 pSImageTempl.setPSImageTemplId(this.getPSImageTemplId());
                 PSImageTemplService pSImageTemplService = (PSImageTemplService)ServiceGlobal.getService(PSImageTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSImageTemplService.autoGet((IEntity)pSImageTempl);
+                pSImageTemplService.autoGet(pSImageTempl);
                 this.psimagetempl = pSImageTempl;
             }
             return this.psimagetempl;
@@ -2034,7 +2034,7 @@ implements Serializable {
                 PSSysTBItem pSSysTBItem = new PSSysTBItem();
                 pSSysTBItem.setPSSysTBItemId(this.getPPSSysTBItemId());
                 PSSysTBItemService pSSysTBItemService = (PSSysTBItemService)ServiceGlobal.getService(PSSysTBItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTBItemService.autoGet((IEntity)pSSysTBItem);
+                pSSysTBItemService.autoGet(pSSysTBItem);
                 this.ppssystbitem = pSSysTBItem;
             }
             return this.ppssystbitem;
@@ -2060,7 +2060,7 @@ implements Serializable {
                 PSSysToolbar pSSysToolbar = new PSSysToolbar();
                 pSSysToolbar.setPSSysToolbarId(this.getPSSysToolbarId());
                 PSSysToolbarService pSSysToolbarService = (PSSysToolbarService)ServiceGlobal.getService(PSSysToolbarService.class, (SessionFactory)this.getSessionFactory());
-                pSSysToolbarService.autoGet((IEntity)pSSysToolbar);
+                pSSysToolbarService.autoGet(pSSysToolbar);
                 this.pssystoolbar = pSSysToolbar;
             }
             return this.pssystoolbar;
@@ -2086,7 +2086,7 @@ implements Serializable {
                 PSSysUIAction pSSysUIAction = new PSSysUIAction();
                 pSSysUIAction.setPSSysUIActionId(this.getPSSysUIActionId());
                 PSSysUIActionService pSSysUIActionService = (PSSysUIActionService)ServiceGlobal.getService(PSSysUIActionService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUIActionService.autoGet((IEntity)pSSysUIAction);
+                pSSysUIActionService.autoGet(pSSysUIAction);
                 this.pssysuiaction = pSSysUIAction;
             }
             return this.pssysuiaction;

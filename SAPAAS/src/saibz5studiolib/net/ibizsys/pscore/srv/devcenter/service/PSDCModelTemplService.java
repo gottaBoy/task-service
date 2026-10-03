@@ -45,7 +45,7 @@ extends PSDCModelTemplServiceBase {
         ArrayList<PSDCMTDEF> arrayList = pSDCMTDEFService.selectByPSDCModelTempl(pSDCModelTempl);
         if (arrayList != null) {
             for (PSDCMTDEF pSDCMTDEF : arrayList) {
-                pSDCMTDEFService.remove((IEntity)pSDCMTDEF);
+                pSDCMTDEFService.remove(pSDCMTDEF);
             }
         }
         super.onEmptyModelV2(pSDCModelTempl);

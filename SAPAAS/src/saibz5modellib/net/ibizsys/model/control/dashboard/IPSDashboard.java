@@ -1,23 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.control.dashboard.IDashboard
- */
 package net.ibizsys.model.control.dashboard;
 
-import java.util.Iterator;
 import net.ibizsys.model.control.IPSAjaxControl;
 import net.ibizsys.model.control.IPSControlContainer;
-import net.ibizsys.model.control.dashboard.IPSDBPortletPart;
 import net.ibizsys.paas.control.dashboard.IDashboard;
 
-public interface IPSDashboard
-extends IPSAjaxControl,
-IPSControlContainer,
-IDashboard {
-    public Iterator<IPSDBPortletPart> getPSPortlets();
-
-    public void registerPSPortlet(IPSDBPortletPart var1) throws Exception;
+/**
+ * 数据看板部件对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDashboard extends IPSAjaxControl,IPSControlContainer,IDashboard
+{
+	/**
+	 * 获取部件
+	 * @return
+	 */
+	java.util.Iterator<IPSDBPortletPart> getPSPortlets();
+	
+	
+	
+	/**
+	 * 注册部件
+	 * @param iPSPortlet
+	 * @throws Exception
+	 */
+	void registerPSPortlet(IPSDBPortletPart iPSPortlet)throws Exception;
 }
-

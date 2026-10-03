@@ -1,21 +1,31 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  TransformerException
- */
 package SA.SRFDA.EAI.Ctrl.Transformer;
 
-import SA.SRFDA.EAI.Ctrl.Transformer.BaseTransformer;
+import SA.SRFramework.Utility.Base64;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.Map;
+import org.mule.api.transformer.TransformerException;
+import org.mule.config.i18n.MessageFactory;
 
-public class DataEntity2ObjectStream
-extends BaseTransformer {
-    public DataEntity2ObjectStream() {
-        throw new Error("Unresolved compilation problems: \n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe hierarchy of the type DataEntity2ObjectStream is inconsistent\n\tThe method doTransform(Object, String) of type DataEntity2ObjectStream must override or implement a supertype method\n\tTransformerException cannot be resolved to a type\n\tThe method GetMap(BaseTransformer, Object) from the type TransformerHelper refers to the missing type TransformerException\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n");
-    }
-
-    protected Object doTransform(Object object, String string) throws TransformerException {
-        throw new Error("Unresolved compilation problems: \n\tThe method doTransform(Object, String) of type DataEntity2ObjectStream must override or implement a supertype method\n\tTransformerException cannot be resolved to a type\n\tThe method GetMap(BaseTransformer, Object) from the type TransformerHelper refers to the missing type TransformerException\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n");
+public class DataEntity2ObjectStream extends BaseTransformer {
+    protected Object doTransform(Object object, String encoding) throws TransformerException {
+        Map map = TransformerHelper.GetMap(this, object);
+        try {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            ObjectOutputStream stream = new ObjectOutputStream(bytes);
+            stream.writeObject(Integer.valueOf(map.size()));
+            for (Object key : map.keySet()) {
+                if (!(key instanceof String)) {
+                    throw new TransformerException(MessageFactory.createStaticMessage("Object stream keys must be strings"));
+                }
+                stream.writeObject(key);
+                stream.writeObject(map.get(key));
+            }
+            stream.close();
+            return Base64.encodeBytes(bytes.toByteArray(), 2);
+        } catch (IOException ex) {
+            throw new TransformerException(MessageFactory.createStaticMessage("Cannot serialize entity"), ex);
+        }
     }
 }
-

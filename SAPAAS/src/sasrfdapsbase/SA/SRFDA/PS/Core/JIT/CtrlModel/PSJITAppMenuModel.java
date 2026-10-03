@@ -44,7 +44,7 @@ implements IPSJITCtrlModel {
     }
 
     protected void onPrepareRootItem(AppMenuRootItem appMenuRootItem) throws Exception {
-        ArrayList appMenuItems = this.getPSAppMenu().getRootItem().getAllItems();
+        ArrayList<IAppMenuItem> appMenuItems = this.getPSAppMenu().getRootItem().getAllItems();
         for (IAppMenuItem iAppMenuItem : appMenuItems) {
             IPSAppMenuItem iPSAppMenuItem = (IPSAppMenuItem)iAppMenuItem;
             AppMenuItem appMenuItemModel = appMenuRootItem.addItem(iPSAppMenuItem.getId(), iPSAppMenuItem.getPId());
@@ -83,4 +83,3 @@ implements IPSJITCtrlModel {
         }
     }
 }
-

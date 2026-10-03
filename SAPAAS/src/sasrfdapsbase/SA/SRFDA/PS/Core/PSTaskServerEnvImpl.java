@@ -515,7 +515,7 @@ implements IPSTaskServerEnv {
         try {
             if (!StringHelper.isNullOrEmpty((String)this.getPSSvrDomainId())) {
                 PSSvrDomain psSvrDomain = PSCoreEntityKeeperGlobal.getCurrent((SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory()).getPSSvrDomain(this.getPSSvrDomainId());
-                return DataObject.getIntegerValue((Object)psSvrDomain.getSyncData3(), (Integer)-1);
+                return DataObject.getIntegerValue((Object)psSvrDomain.getSyncData3(), (Integer)(-1));
             }
             return -1;
         }

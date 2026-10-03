@@ -81,7 +81,7 @@ implements IPSDataEntityService {
     @Override
     protected List<PSDataEntity> onListAll() throws Exception {
         ArrayList<PSDataEntity> list = new ArrayList<PSDataEntity>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSDataEntity> items = this.listByPSModule(parent);

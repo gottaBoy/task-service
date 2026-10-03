@@ -1631,7 +1631,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDCId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdc = pSDevCenter;
             }
             return this.psdc;
@@ -1657,7 +1657,7 @@ implements Serializable {
                 PSPFPkgCat pSPFPkgCat = new PSPFPkgCat();
                 pSPFPkgCat.setPSPFPkgCatId(this.getPSPFPkgCatId());
                 PSPFPkgCatService pSPFPkgCatService = (PSPFPkgCatService)ServiceGlobal.getService(PSPFPkgCatService.class, (SessionFactory)this.getSessionFactory());
-                pSPFPkgCatService.autoGet((IEntity)pSPFPkgCat);
+                pSPFPkgCatService.autoGet(pSPFPkgCat);
                 this.pspfpkgcat = pSPFPkgCat;
             }
             return this.pspfpkgcat;
@@ -1683,7 +1683,7 @@ implements Serializable {
                 PSPF pSPF = new PSPF();
                 pSPF.setPSPFId(this.getPSPFId());
                 PSPFService pSPFService = (PSPFService)ServiceGlobal.getService(PSPFService.class, (SessionFactory)this.getSessionFactory());
-                pSPFService.autoGet((IEntity)pSPF);
+                pSPFService.autoGet(pSPF);
                 this.pspf = pSPF;
             }
             return this.pspf;

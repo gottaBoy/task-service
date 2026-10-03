@@ -59,7 +59,7 @@ extends PSSystemBase {
                 PSDevCenterTS pSDevCenterTS = new PSDevCenterTS();
                 pSDevCenterTS.setPSDevCenterTSId(this.getPSDevCenterTSId());
                 PSDevCenterTSService pSDevCenterTSService = (PSDevCenterTSService)ServiceGlobal.getService(PSDevCenterTSService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                pSDevCenterTSService.autoGet((IEntity)pSDevCenterTS);
+                pSDevCenterTSService.autoGet(pSDevCenterTS);
                 this.psdevcenterts = pSDevCenterTS;
             }
             return this.psdevcenterts;

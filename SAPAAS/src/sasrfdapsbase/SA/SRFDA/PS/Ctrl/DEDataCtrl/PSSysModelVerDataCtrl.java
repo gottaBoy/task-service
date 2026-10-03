@@ -114,7 +114,7 @@ extends PSDEDataCtrl {
         }
         PSModelService psModelService = (PSModelService)ServiceGlobal.getService(PSModelService.class);
         SelectContext selectContext = new SelectContext();
-        ArrayList psModelList = psModelService.selectEx((ISelectContext)selectContext);
+        ArrayList<PSModel> psModelList = psModelService.selectEx((ISelectContext)selectContext);
         HashMap<String, PSModel> psModelMap = new HashMap<String, PSModel>();
         for (PSModel psModel : psModelList) {
             psModelMap.put(psModel.getPSModelId(), psModel);
@@ -130,7 +130,7 @@ extends PSDEDataCtrl {
         psSysDMItemService = (PSSysDMItemService)ServiceGlobal.getService(PSSysDMItemService.class, sessionFactory);
         PSSystemDBCfg psSystemDBCfg = new PSSystemDBCfg();
         psSystemDBCfg.setPSSystemDBCfgId(strPSSystemDBCfgId);
-        ArrayList psSysDMItemList2 = psSysDMItemService.selectByPSSystemDBCfg((PSSystemDBCfgBase)psSystemDBCfg);
+        ArrayList<PSSysDMItem> psSysDMItemList2 = psSysDMItemService.selectByPSSystemDBCfg((PSSystemDBCfgBase)psSystemDBCfg);
         ArrayList<PSSysDMItem> psSysDMItemList = new ArrayList<PSSysDMItem>();
         for (PSSysDMItem psSysDMItem : psSysDMItemList2) {
             if (!psModelMap.containsKey(psSysDMItem.getPSDEName())) continue;
@@ -214,4 +214,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

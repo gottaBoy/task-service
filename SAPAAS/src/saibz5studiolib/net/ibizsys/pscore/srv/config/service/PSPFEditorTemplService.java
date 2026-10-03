@@ -42,7 +42,7 @@ extends PSPFEditorTemplServiceBase {
             }
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)pSPFEditorTempl, bl);
+        return super.onFillEntityKeyValue(pSPFEditorTempl, bl);
     }
 
     @Override

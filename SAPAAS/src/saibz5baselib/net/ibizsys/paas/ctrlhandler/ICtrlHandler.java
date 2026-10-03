@@ -1,39 +1,102 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.ctrlhandler;
+
+import org.hibernate.SessionFactory;
 
 import net.ibizsys.paas.controller.IViewController;
 import net.ibizsys.paas.ctrlmodel.ICtrlModel;
 import net.ibizsys.paas.entity.EntityFieldError;
 import net.ibizsys.paas.web.AjaxActionResult;
 import net.ibizsys.paas.web.IWebContext;
-import org.hibernate.SessionFactory;
 
+/**
+ * 控件后台处理对象接口
+ * 
+ * @author lionlau
+ *
+ */
 public interface ICtrlHandler {
-    public static final int TEMPMODE_NONE = 0;
-    public static final int TEMPMODE_MAJOR = 1;
-    public static final int TEMPMODE_MINOR = 2;
+	/**
+	 * 临时数据模式:未知
+	 */
+	public final static int TEMPMODE_NONE = 0;
 
-    public void init(IViewController var1) throws Exception;
+	/**
+	 * 临时数据模式:主数据
+	 */
+	public final static int TEMPMODE_MAJOR = 1;
 
-    public ICtrlModel getCtrlModel();
+	/**
+	 * 临时数据模式:从数据
+	 */
+	public final static int TEMPMODE_MINOR = 2;
 
-    public IViewController getViewController();
+	/**
+	 * 初始化
+	 * 
+	 * @param iViewController
+	 * @throws Exception
+	 */
+	void init(IViewController iViewController) throws Exception;
 
-    public IWebContext getWebContext();
+	/**
+	 * 获取控件模型
+	 * 
+	 * @return
+	 */
+	ICtrlModel getCtrlModel();
 
-    public AjaxActionResult processAction(String var1, IWebContext var2) throws Exception;
+	/**
+	 * 获取视图Controller
+	 * 
+	 * @return
+	 */
+	IViewController getViewController();
 
-    public int getTempMode();
+	/**
+	 * 获取上下文对象
+	 * 
+	 * @return
+	 */
+	IWebContext getWebContext();
 
-    public boolean convertEntityFieldError(EntityFieldError var1) throws Exception;
+	/**
+	 * 处理
+	 * 
+	 * @param strAction
+	 * @param iWebContext
+	 * @return
+	 * @throws Exception
+	 */
+	AjaxActionResult processAction(String strAction, IWebContext iWebContext) throws Exception;
 
-    public String getName();
+	/**
+	 * 是否临时模式
+	 * 
+	 * @return
+	 */
+	int getTempMode();
 
-    public SessionFactory getSessionFactory();
+	/**
+	 * 转换实体属性错误
+	 * 
+	 * @param entityFieldError
+	 * @throws Exception
+	 */
+	boolean convertEntityFieldError(EntityFieldError entityFieldError) throws Exception;
+	
+	
+	/**
+	 * 获取处理对象名称
+	 * @return
+	 */
+	String getName();
+
+	
+	
+	/**
+	 * 获取数据库会话工厂
+	 * @return
+	 */
+	SessionFactory getSessionFactory();
+	
 }
-

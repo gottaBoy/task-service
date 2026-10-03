@@ -158,7 +158,7 @@ extends BaseDEDataCtrl {
         }
         catch (Exception ex) {
             log.error((Object)ex.getMessage(), (Throwable)ex);
-            page1 = (SRFDAPage)ObjectHelper.Create((String)strDefaultPageObject);
+            page1 = (SRFDAPageEx)ObjectHelper.Create((String)strDefaultPageObject);
         }
         page1.InitImitatedMode(simplePageContext);
         page1.Load();

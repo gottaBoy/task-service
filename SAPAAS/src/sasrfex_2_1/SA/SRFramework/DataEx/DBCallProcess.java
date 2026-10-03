@@ -93,10 +93,16 @@ implements IWFProcess {
                                     return false;
                                 }
                                 if (StringHelper.Compare((String)strDBAction, (String)DBACTION_UPDATE, (boolean)true) != 0) break block21;
-                                updateResult = wfEngineContext.getDBCallerHelper().UpdateCmd(connection, this.wfProcessConfig.getObject(), baseDataEntity.getTotalParamList(), wfEngineContext.getOpPersonId());
-                                if (updateResult.getRetCode() != 0) break block22;
-                                if (updateResult.getMainTable() != null && updateResult.getMainTable().GetRowCount() > 0) {
-                                    baseDataEntity.FromDataRow(updateResult.getMainTable().GetRow(0), false);
+                                try {
+                                    updateResult = wfEngineContext.getDBCallerHelper().UpdateCmd(connection, this.wfProcessConfig.getObject(), baseDataEntity.getTotalParamList(), wfEngineContext.getOpPersonId());
+                                    if (updateResult.getRetCode() != 0) break block22;
+                                    if (updateResult.getMainTable() != null && updateResult.getMainTable().GetRowCount() > 0) {
+                                        baseDataEntity.FromDataRow(updateResult.getMainTable().GetRow(0), false);
+                                    }
+                                }
+                                catch (Exception ex) {
+                                    wfEngineContext.Log(1, StringHelper.Format((String)"DB UPDATE[%1$s]\u5931\u8d25\uff0c\u539f\u56e0:%2$s", (Object)this.wfProcessConfig.getObject(), (Object)ex.getMessage()));
+                                    return false;
                                 }
                                 return true;
                             }
@@ -104,10 +110,16 @@ implements IWFProcess {
                             return false;
                         }
                         if (StringHelper.Compare((String)strDBAction, (String)DBACTION_SELECT, (boolean)true) != 0) break block23;
-                        selectResult = wfEngineContext.getDBCallerHelper().SelectCmd(connection, this.wfProcessConfig.getObject(), baseDataEntity.getTotalParamList(), wfEngineContext.getOpPersonId());
-                        if (selectResult.getRetCode() != 0) break block24;
-                        if (selectResult.getMainTable() != null && selectResult.getMainTable().GetRowCount() > 0) {
-                            baseDataEntity.FromDataRow(selectResult.getMainTable().GetRow(0), false);
+                        try {
+                            selectResult = wfEngineContext.getDBCallerHelper().SelectCmd(connection, this.wfProcessConfig.getObject(), baseDataEntity.getTotalParamList(), wfEngineContext.getOpPersonId());
+                            if (selectResult.getRetCode() != 0) break block24;
+                            if (selectResult.getMainTable() != null && selectResult.getMainTable().GetRowCount() > 0) {
+                                baseDataEntity.FromDataRow(selectResult.getMainTable().GetRow(0), false);
+                            }
+                        }
+                        catch (Exception ex) {
+                            wfEngineContext.Log(1, StringHelper.Format((String)"DB SELECT[%1$s]\u5931\u8d25\uff0c\u539f\u56e0:%2$s", (Object)this.wfProcessConfig.getObject(), (Object)ex.getMessage()));
+                            return false;
                         }
                         return true;
                     }
@@ -115,8 +127,14 @@ implements IWFProcess {
                     return false;
                 }
                 if (StringHelper.Compare((String)strDBAction, (String)DBACTION_DELETE, (boolean)true) != 0) break block25;
-                dbResult = wfEngineContext.getDBCallerHelper().SelectCmd(connection, this.wfProcessConfig.getObject(), baseDataEntity.getTotalParamList(), wfEngineContext.getOpPersonId());
-                if (dbResult.getRetCode() != 0) break block26;
+                try {
+                    dbResult = wfEngineContext.getDBCallerHelper().SelectCmd(connection, this.wfProcessConfig.getObject(), baseDataEntity.getTotalParamList(), wfEngineContext.getOpPersonId());
+                    if (dbResult.getRetCode() != 0) break block26;
+                }
+                catch (Exception ex) {
+                    wfEngineContext.Log(1, StringHelper.Format((String)"DB DELETE[%1$s]\u5931\u8d25\uff0c\u539f\u56e0:%2$s", (Object)this.wfProcessConfig.getObject(), (Object)ex.getMessage()));
+                    return false;
+                }
                 return true;
             }
             wfEngineContext.Log(1, StringHelper.Format((String)"DB DELETE[%1$s]\u5931\u8d25\uff0c\u539f\u56e0:%2$s", (Object)this.wfProcessConfig.getObject(), (Object)dbResult.getErrorInfo()));

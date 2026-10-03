@@ -1537,7 +1537,7 @@ implements Serializable {
                 PSModelExample pSModelExample = new PSModelExample();
                 pSModelExample.setPSModelExampleId(this.getPSModelExampleId());
                 PSModelExampleService pSModelExampleService = (PSModelExampleService)ServiceGlobal.getService(PSModelExampleService.class, (SessionFactory)this.getSessionFactory());
-                pSModelExampleService.autoGet((IEntity)pSModelExample);
+                pSModelExampleService.autoGet(pSModelExample);
                 this.psmodelexample = pSModelExample;
             }
             return this.psmodelexample;

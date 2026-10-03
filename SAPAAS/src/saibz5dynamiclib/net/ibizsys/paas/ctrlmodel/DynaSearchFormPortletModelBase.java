@@ -1,19 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.ctrlmodel.ISearchFormPortletModel
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.DynaPortletModelBase;
-import net.ibizsys.paas.ctrlmodel.ISearchFormPortletModel;
+/**
+ * 动态搜索表单门户部件模型
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class DynaSearchFormPortletModelBase extends DynaPortletModelBase implements ISearchFormPortletModel {
+	@Override
+	public String getPortletType() {
+		return PORTLETTYPE_SEARCHFORM;
+	}
 
-public abstract class DynaSearchFormPortletModelBase
-extends DynaPortletModelBase
-implements ISearchFormPortletModel {
-    public String getPortletType() {
-        return "SEARCHFORM";
-    }
 }
-

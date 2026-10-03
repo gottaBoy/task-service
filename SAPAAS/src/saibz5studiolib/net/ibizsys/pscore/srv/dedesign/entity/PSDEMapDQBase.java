@@ -1907,7 +1907,7 @@ implements Serializable {
                 PSDEDataQuery pSDEDataQuery = new PSDEDataQuery();
                 pSDEDataQuery.setPSDEDataQueryId(this.getDstPSDEDataQueryId());
                 PSDEDataQueryService pSDEDataQueryService = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataQueryService.autoGet((IEntity)pSDEDataQuery);
+                pSDEDataQueryService.autoGet(pSDEDataQuery);
                 this.dstpsdedataquery = pSDEDataQuery;
             }
             return this.dstpsdedataquery;
@@ -1933,7 +1933,7 @@ implements Serializable {
                 PSDEDataQuery pSDEDataQuery = new PSDEDataQuery();
                 pSDEDataQuery.setPSDEDataQueryId(this.getPSDEDataQueryId());
                 PSDEDataQueryService pSDEDataQueryService = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataQueryService.autoGet((IEntity)pSDEDataQuery);
+                pSDEDataQueryService.autoGet(pSDEDataQuery);
                 this.psdedataquery = pSDEDataQuery;
             }
             return this.psdedataquery;
@@ -1959,7 +1959,7 @@ implements Serializable {
                 PSDEMap pSDEMap = new PSDEMap();
                 pSDEMap.setPSDEMapId(this.getPSDEMapId());
                 PSDEMapService pSDEMapService = (PSDEMapService)ServiceGlobal.getService(PSDEMapService.class, (SessionFactory)this.getSessionFactory());
-                pSDEMapService.autoGet((IEntity)pSDEMap);
+                pSDEMapService.autoGet(pSDEMap);
                 this.psdemap = pSDEMap;
             }
             return this.psdemap;

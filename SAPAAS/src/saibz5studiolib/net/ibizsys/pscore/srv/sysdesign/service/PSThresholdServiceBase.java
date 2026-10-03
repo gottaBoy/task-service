@@ -168,9 +168,9 @@ extends PSCoreSysServiceBase<PSThreshold> {
             PSLanguageRes pSLanguageRes = (PSLanguageRes)iService.getDEModel().createEntity();
             pSLanguageRes.set("PSLANGUAGERESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSLanguageRes);
+                iService.getTemp(pSLanguageRes);
             } else {
-                iService.get((IEntity)pSLanguageRes);
+                iService.get(pSLanguageRes);
             }
             this.onFillParentInfo_TextPSLanRes(pSThreshold, pSLanguageRes);
             return;
@@ -180,9 +180,9 @@ extends PSCoreSysServiceBase<PSThreshold> {
             PSLanguageRes pSLanguageRes = (PSLanguageRes)iService.getDEModel().createEntity();
             pSLanguageRes.set("PSLANGUAGERESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSLanguageRes);
+                iService.getTemp(pSLanguageRes);
             } else {
-                iService.get((IEntity)pSLanguageRes);
+                iService.get(pSLanguageRes);
             }
             this.onFillParentInfo_TipPSLanRes(pSThreshold, pSLanguageRes);
             return;
@@ -192,9 +192,9 @@ extends PSCoreSysServiceBase<PSThreshold> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_PSSysCss(pSThreshold, pSSysCss);
             return;
@@ -204,9 +204,9 @@ extends PSCoreSysServiceBase<PSThreshold> {
             PSSysImage pSSysImage = (PSSysImage)iService.getDEModel().createEntity();
             pSSysImage.set("PSSYSIMAGEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysImage);
+                iService.getTemp(pSSysImage);
             } else {
-                iService.get((IEntity)pSSysImage);
+                iService.get(pSSysImage);
             }
             this.onFillParentInfo_PSSysImage(pSThreshold, pSSysImage);
             return;
@@ -216,14 +216,14 @@ extends PSCoreSysServiceBase<PSThreshold> {
             PSThresholdGroup pSThresholdGroup = (PSThresholdGroup)iService.getDEModel().createEntity();
             pSThresholdGroup.set("PSTHRESHOLDGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSThresholdGroup);
+                iService.getTemp(pSThresholdGroup);
             } else {
-                iService.get((IEntity)pSThresholdGroup);
+                iService.get(pSThresholdGroup);
             }
             this.onFillParentInfo_PSThresholdGroup(pSThreshold, pSThresholdGroup);
             return;
         }
-        super.onFillParentInfo((IEntity)pSThreshold, string, string2, string3);
+        super.onFillParentInfo(pSThreshold, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -264,7 +264,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 pSThreshold.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSThreshold, bl);
+        super.onFillEntityFullInfo(pSThreshold, bl);
         this.onFillEntityFullInfo_TextPSLanRes(pSThreshold, bl);
         this.onFillEntityFullInfo_TipPSLanRes(pSThreshold, bl);
         this.onFillEntityFullInfo_PSSysCss(pSThreshold, bl);
@@ -318,7 +318,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
     }
 
     protected void onWriteBackParent(PSThreshold pSThreshold, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSThreshold, bl);
+        super.onWriteBackParent(pSThreshold, bl);
     }
 
     public ArrayList<PSThreshold> selectByTextPSLanRes(PSLanguageResBase pSLanguageResBase) throws Exception {
@@ -460,8 +460,8 @@ extends PSCoreSysServiceBase<PSThreshold> {
         ArrayList<PSThreshold> arrayList = this.selectByTextPSLanRes(pSLanguageRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSLANGUAGERES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSLanguageRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLD_PSLANGUAGERES_TEXTPSLANRESID", "", iDataEntityModel.getName(), "PSTHRESHOLD", iDataEntityModel.getDataInfo((IEntity)pSLanguageRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSLanguageRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLD_PSLANGUAGERES_TEXTPSLANRESID", "", iDataEntityModel.getName(), "PSTHRESHOLD", iDataEntityModel.getDataInfo(pSLanguageRes), arrayList.get(0)));
         }
     }
 
@@ -494,7 +494,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
         ArrayList<PSThreshold> arrayList = this.selectByTextPSLanRes(pSLanguageRes);
         this.onBeforeRemoveByTextPSLanRes(pSLanguageRes, arrayList);
         for (PSThreshold pSThreshold : arrayList) {
-            this.remove((IEntity)pSThreshold);
+            this.remove(pSThreshold);
         }
         this.onAfterRemoveByTextPSLanRes(pSLanguageRes, arrayList);
     }
@@ -512,8 +512,8 @@ extends PSCoreSysServiceBase<PSThreshold> {
         ArrayList<PSThreshold> arrayList = this.selectByTipPSLanRes(pSLanguageRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSLANGUAGERES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSLanguageRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLD_PSLANGUAGERES_TIPPSLANRESID", "", iDataEntityModel.getName(), "PSTHRESHOLD", iDataEntityModel.getDataInfo((IEntity)pSLanguageRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSLanguageRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLD_PSLANGUAGERES_TIPPSLANRESID", "", iDataEntityModel.getName(), "PSTHRESHOLD", iDataEntityModel.getDataInfo(pSLanguageRes), arrayList.get(0)));
         }
     }
 
@@ -546,7 +546,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
         ArrayList<PSThreshold> arrayList = this.selectByTipPSLanRes(pSLanguageRes);
         this.onBeforeRemoveByTipPSLanRes(pSLanguageRes, arrayList);
         for (PSThreshold pSThreshold : arrayList) {
-            this.remove((IEntity)pSThreshold);
+            this.remove(pSThreshold);
         }
         this.onAfterRemoveByTipPSLanRes(pSLanguageRes, arrayList);
     }
@@ -564,8 +564,8 @@ extends PSCoreSysServiceBase<PSThreshold> {
         ArrayList<PSThreshold> arrayList = this.selectByPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLD_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSTHRESHOLD", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLD_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSTHRESHOLD", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -598,7 +598,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
         ArrayList<PSThreshold> arrayList = this.selectByPSSysCss(pSSysCss);
         this.onBeforeRemoveByPSSysCss(pSSysCss, arrayList);
         for (PSThreshold pSThreshold : arrayList) {
-            this.remove((IEntity)pSThreshold);
+            this.remove(pSThreshold);
         }
         this.onAfterRemoveByPSSysCss(pSSysCss, arrayList);
     }
@@ -616,8 +616,8 @@ extends PSCoreSysServiceBase<PSThreshold> {
         ArrayList<PSThreshold> arrayList = this.selectByPSSysImage(pSSysImage, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSIMAGE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysImage);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLD_PSSYSIMAGE_PSSYSIMAGEID", "", iDataEntityModel.getName(), "PSTHRESHOLD", iDataEntityModel.getDataInfo((IEntity)pSSysImage), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysImage);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLD_PSSYSIMAGE_PSSYSIMAGEID", "", iDataEntityModel.getName(), "PSTHRESHOLD", iDataEntityModel.getDataInfo(pSSysImage), arrayList.get(0)));
         }
     }
 
@@ -650,7 +650,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
         ArrayList<PSThreshold> arrayList = this.selectByPSSysImage(pSSysImage);
         this.onBeforeRemoveByPSSysImage(pSSysImage, arrayList);
         for (PSThreshold pSThreshold : arrayList) {
-            this.remove((IEntity)pSThreshold);
+            this.remove(pSThreshold);
         }
         this.onAfterRemoveByPSSysImage(pSSysImage, arrayList);
     }
@@ -683,7 +683,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
             PSThreshold pSThreshold2 = (PSThreshold)this.getDEModel().createEntity();
             pSThreshold2.setPSThresholdId(pSThreshold.getPSThresholdId());
             pSThreshold2.setPSThresholdGroupId(null);
-            this.updateTemp((IEntity)pSThreshold2);
+            this.updateTemp(pSThreshold2);
         }
     }
 
@@ -706,7 +706,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
         ArrayList<PSThreshold> arrayList = this.selectByPSThresholdGroup(pSThresholdGroup);
         this.onBeforeRemoveByPSThresholdGroup(pSThresholdGroup, arrayList);
         for (PSThreshold pSThreshold : arrayList) {
-            this.remove((IEntity)pSThreshold);
+            this.remove(pSThreshold);
         }
         this.onAfterRemoveByPSThresholdGroup(pSThresholdGroup, arrayList);
     }
@@ -744,7 +744,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
         ArrayList<PSThreshold> arrayList = this.selectTempByPSThresholdGroup(pSThresholdGroup);
         this.onBeforeRemoveTempByPSThresholdGroup(pSThresholdGroup, arrayList);
         for (PSThreshold pSThreshold : arrayList) {
-            this.removeTemp((IEntity)pSThreshold);
+            this.removeTemp(pSThreshold);
         }
         this.onAfterRemoveTempByPSThresholdGroup(pSThresholdGroup, arrayList);
     }
@@ -760,7 +760,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
 
     protected void replaceParentInfo(PSThreshold pSThreshold, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSThreshold, cloneSession);
+        super.replaceParentInfo(pSThreshold, cloneSession);
         if (pSThreshold.getTextPSLanResId() != null && (iEntity = cloneSession.getEntity("PSLANGUAGERES", (Object)pSThreshold.getTextPSLanResId())) != null) {
             this.onFillParentInfo_TextPSLanRes(pSThreshold, (PSLanguageRes)iEntity);
         }
@@ -779,7 +779,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
     }
 
     protected void onRemoveEntityUncopyValues(PSThreshold pSThreshold, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSThreshold, bl);
+        super.onRemoveEntityUncopyValues(pSThreshold, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSThreshold pSThreshold, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -869,7 +869,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSThreshold, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSThreshold, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSThreshold, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BeginValue(boolean bl, PSThreshold pSThreshold, boolean bl2, boolean bl3) throws Exception {
@@ -885,7 +885,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_BeginValue_Default((IEntity)pSThreshold, bl2, bl3);
+            string = this.onTestValueRule_BeginValue_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BEGINVALUE");
@@ -907,7 +907,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BKColor_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_BKColor_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BKCOLOR");
@@ -932,7 +932,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -971,7 +971,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Color_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_Color_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("COLOR");
@@ -993,7 +993,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Data_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_Data_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DATA");
@@ -1018,7 +1018,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_EndValue_Default((IEntity)pSThreshold, bl2, bl3);
+            string = this.onTestValueRule_EndValue_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENDVALUE");
@@ -1040,7 +1040,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IncBeginValue_Default((IEntity)pSThreshold, bl2, bl3);
+            string = this.onTestValueRule_IncBeginValue_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INCBEGINVALUE");
@@ -1062,7 +1062,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IncEndValue_Default((IEntity)pSThreshold, bl2, bl3);
+            string = this.onTestValueRule_IncEndValue_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INCENDVALUE");
@@ -1084,7 +1084,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1106,7 +1106,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCssId_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCssId_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCSSID");
@@ -1128,7 +1128,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCssName_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCssName_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCSSNAME");
@@ -1150,7 +1150,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysImageId_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysImageId_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSIMAGEID");
@@ -1172,7 +1172,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSThresholdGroupId_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_PSThresholdGroupId_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTHRESHOLDGROUPID");
@@ -1197,7 +1197,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSThresholdId_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_PSThresholdId_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTHRESHOLDID");
@@ -1222,7 +1222,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSThresholdName_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_PSThresholdName_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTHRESHOLDNAME");
@@ -1261,7 +1261,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TextPSLanResId_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_TextPSLanResId_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEXTPSLANRESID");
@@ -1283,7 +1283,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TextPSLanResName_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_TextPSLanResName_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEXTPSLANRESNAME");
@@ -1305,7 +1305,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThresholdTag_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_ThresholdTag_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THRESHOLDTAG");
@@ -1327,7 +1327,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThresholdTag2_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_ThresholdTag2_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THRESHOLDTAG2");
@@ -1349,7 +1349,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TipPSLanResId_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_TipPSLanResId_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TIPPSLANRESID");
@@ -1371,7 +1371,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TipPSLanResName_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_TipPSLanResName_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TIPPSLANRESNAME");
@@ -1393,7 +1393,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TooltipInfo_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_TooltipInfo_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TOOLTIPINFO");
@@ -1415,7 +1415,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1437,7 +1437,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1459,7 +1459,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1481,7 +1481,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1503,7 +1503,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSThreshold, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1528,7 +1528,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSThreshold, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSThreshold, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1541,11 +1541,11 @@ extends PSCoreSysServiceBase<PSThreshold> {
     }
 
     protected void onSyncEntity(PSThreshold pSThreshold, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSThreshold, bl);
+        super.onSyncEntity(pSThreshold, bl);
     }
 
     protected void onSyncIndexEntities(PSThreshold pSThreshold, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSThreshold, bl);
+        super.onSyncIndexEntities(pSThreshold, bl);
     }
 
     public Object getDataContextValue(PSThreshold pSThreshold, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1553,7 +1553,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSThreshold, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSThreshold, string, iDataContextParam)) != null) {
             return object;
         }
         PSThresholdGroup pSThresholdGroup = pSThreshold.getPSThresholdGroup();
@@ -1564,7 +1564,7 @@ extends PSCoreSysServiceBase<PSThreshold> {
     }
 
     protected void onExportMajorModel(PSThreshold pSThreshold, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSThreshold, arrayList, n);
+        super.onExportMajorModel(pSThreshold, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2048,14 +2048,14 @@ extends PSCoreSysServiceBase<PSThreshold> {
 
     protected boolean onMergeChild(String string, String string2, PSThreshold pSThreshold) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSThreshold)) {
+        if (super.onMergeChild(string, string2, pSThreshold)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSThreshold pSThreshold) throws Exception {
-        super.onUpdateParent((IEntity)pSThreshold);
+        super.onUpdateParent(pSThreshold);
     }
 
     @Override

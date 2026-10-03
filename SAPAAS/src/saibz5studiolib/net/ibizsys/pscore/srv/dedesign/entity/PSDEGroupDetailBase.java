@@ -2402,7 +2402,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -2428,7 +2428,7 @@ implements Serializable {
                 PSDEGroup pSDEGroup = new PSDEGroup();
                 pSDEGroup.setPSDEGroupId(this.getPSDEGroupId());
                 PSDEGroupService pSDEGroupService = (PSDEGroupService)ServiceGlobal.getService(PSDEGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSDEGroupService.autoGet((IEntity)pSDEGroup);
+                pSDEGroupService.autoGet(pSDEGroup);
                 this.psdegroup = pSDEGroup;
             }
             return this.psdegroup;

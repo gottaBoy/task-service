@@ -16,11 +16,11 @@
 package net.ibizsys.pscore.srv.bdscheme.service;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Properties;
 import net.ibizsys.paas.db.ISelectCond;
 import net.ibizsys.paas.db.SelectCond;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.PropertiesHelper;
 import net.ibizsys.paas.util.StringHelper;
@@ -50,10 +50,7 @@ extends PSSysBDModuleServiceBase {
 
     @Override
     protected void onInitBDTables(PSSysBDModule pSSysBDModule) throws Exception {
-        String string;
-        Object object;
-        Object object22;
-        this.get((IEntity)pSSysBDModule);
+        this.get(pSSysBDModule);
         if (StringHelper.isNullOrEmpty((String)pSSysBDModule.getPSModuleId())) {
             return;
         }
@@ -61,25 +58,26 @@ extends PSSysBDModuleServiceBase {
         SelectCond selectCond = new SelectCond();
         selectCond.set("STORAGEMODE", (Object)DEStorageTypeCodeListModel.NOSQL);
         selectCond.set("PSMODULEID", (Object)pSSysBDModule.getPSModuleId());
-        ArrayList arrayList = pSDataEntityService.select((ISelectCond)selectCond);
-        if (arrayList.size() == 0) {
+        ArrayList<PSDataEntity> dataEntities = pSDataEntityService.select((ISelectCond)selectCond);
+        if (dataEntities.size() == 0) {
             return;
         }
         HashMap<String, String> hashMap = new HashMap<String, String>();
-        if (!StringHelper.isNullOrEmpty((String)pSSysBDModule.getDENames()) && (object22 = ((Properties)(object = PropertiesHelper.load((String)(string = pSSysBDModule.getDENames().replace(";", "\r\n"))))).keys()) != null) {
-            while (object22.hasMoreElements()) {
-                hashMap.put((String)object22.nextElement(), "");
+        if (!StringHelper.isNullOrEmpty(pSSysBDModule.getDENames())) {
+            Properties names = PropertiesHelper.load(pSSysBDModule.getDENames().replace(";", "\r\n"));
+            Enumeration<?> keys = names.keys();
+            while (keys.hasMoreElements()) {
+                hashMap.put((String)keys.nextElement(), "");
             }
         }
         boolean bl = pSSysBDModule.getImpDEMode() == SysBDModuleDEImpModeCodeListModel.EXCLUDE;
-        for (Object object22 : arrayList) {
-            if (bl ? hashMap.containsKey(((PSDataEntityBase)object22).getPSDataEntityName()) : !hashMap.containsKey(((PSDataEntityBase)object22).getPSDataEntityName())) continue;
-            this.initPSSysBDTable((PSDataEntity)object22, pSSysBDModule);
+        for (PSDataEntity entity : dataEntities) {
+            if (bl ? hashMap.containsKey(entity.getPSDataEntityName()) : !hashMap.containsKey(entity.getPSDataEntityName())) continue;
+            this.initPSSysBDTable(entity, pSSysBDModule);
         }
     }
 
     protected void initPSSysBDTable(PSDataEntity pSDataEntity, PSSysBDModule pSSysBDModule) throws Exception {
-        Object object;
         PSSysBDTableService pSSysBDTableService = (PSSysBDTableService)ServiceGlobal.getService(PSSysBDTableService.class, (SessionFactory)this.getSessionFactory());
         PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
         PSSysBDColumnService pSSysBDColumnService = (PSSysBDColumnService)ServiceGlobal.getService(PSSysBDColumnService.class, (SessionFactory)this.getSessionFactory());
@@ -97,14 +95,14 @@ extends PSSysBDModuleServiceBase {
             pSSysBDTable.setLogicName(pSDataEntity.getLogicName());
             pSSysBDTable.setCodeName(pSDataEntity.getCodeName());
             if (StringHelper.isNullOrEmpty((String)pSDataEntity.getIndexDEType())) {
-                object = new PSDER();
-                ((PSDERBase)object).setDERType("DERINHERIT");
-                ((PSDERBase)object).setMinorPSDEId(pSDataEntity.getPSDataEntityId());
-                if (pSDERService.select(object, true)) {
+                PSDER relation = new PSDER();
+                relation.setDERType("DERINHERIT");
+                relation.setMinorPSDEId(pSDataEntity.getPSDataEntityId());
+                if (pSDERService.select(relation, true)) {
                     pSSysBDTable.setBDTableType(9);
-                    pSSysBDTable.setInheritPSDEId(((PSDERBase)object).getMajorPSDEId());
-                    pSSysBDTable.setInheritPSDEName(((PSDERBase)object).getMajorPSDEName());
-                    pSSysBDTable.setTypeValue(((PSDERBase)object).getIndexValue());
+                    pSSysBDTable.setInheritPSDEId(relation.getMajorPSDEId());
+                    pSSysBDTable.setInheritPSDEName(relation.getMajorPSDEName());
+                    pSSysBDTable.setTypeValue(relation.getIndexValue());
                 } else {
                     pSSysBDTable.setBDTableType(1);
                 }
@@ -113,12 +111,11 @@ extends PSSysBDModuleServiceBase {
             }
             pSSysBDTableService.create(pSSysBDTable);
         }
-        pSSysBDTable = new SelectCond();
-        pSSysBDTable.set("MAJORPSDEID", pSDataEntity.getPSDataEntityId());
-        pSSysBDTable.set("DERTYPE", "DER1N");
-        object = "BDRS%1$04d";
-        ArrayList arrayList = pSDERService.select((ISelectCond)pSSysBDTable);
-        for (PSDER pSDER : arrayList) {
+        SelectCond relationCond = new SelectCond();
+        relationCond.set("MAJORPSDEID", pSDataEntity.getPSDataEntityId());
+        relationCond.set("DERTYPE", "DER1N");
+        ArrayList<PSDER> relations = pSDERService.select((ISelectCond)relationCond);
+        for (PSDER pSDER : relations) {
             PSSysBDTable pSSysBDTable2;
             if (StringHelper.isNullOrEmpty((String)pSDER.getMinorCodeName())) continue;
             PSSysBDTable pSSysBDTable3 = new PSSysBDTable();
@@ -130,7 +127,7 @@ extends PSSysBDModuleServiceBase {
             String string = "";
             int n = 0;
             do {
-                string = StringHelper.format((String)object, (Object)(++n));
+                string = StringHelper.format("BDRS%1$04d", ++n);
                 pSSysBDTable2 = new PSSysBDTable();
                 pSSysBDTable2.setPSSysBDSchemeId(pSSysBDModule.getPSSysBDSchemeId());
                 pSSysBDTable2.setPSSysBDTableName(string);
@@ -150,4 +147,3 @@ extends PSSysBDModuleServiceBase {
         }
     }
 }
-

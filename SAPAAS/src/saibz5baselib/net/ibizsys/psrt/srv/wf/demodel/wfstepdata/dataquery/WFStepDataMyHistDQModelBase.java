@@ -1,21 +1,221 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfstepdata.dataquery;
 
-import net.ibizsys.paas.core.DEDataQuery;
-import net.ibizsys.paas.core.DEDataQueryCode;
-import net.ibizsys.paas.core.DEDataQueryCodeCond;
-import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
 
-@DEDataQuery(id="531C91E6-E358-4F02-9FF2-B7EDAF626FD3", name="MyHist")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS ACTIONTIME, t1.ACTORID, t1.ACTORNAME, t1.ACTORNAME2, t1.CONNECTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.NEXTTO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.SDPARAM, t1.SDPARAM2, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATADESC, t1.WFACTIONLANRESTAG, t1.WFINSTANCEID, t1.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFSTEPDATAID, t1.WFSTEPDATANAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME FROM T_SRFWFSTEPDATA t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="ACTIONTIME", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="ACTORID", expression="t1.ACTORID", showorder=1), @DEDataQueryCodeExp(name="ACTORNAME", expression="t1.ACTORNAME", showorder=2), @DEDataQueryCodeExp(name="ACTORNAME2", expression="t1.ACTORNAME2", showorder=3), @DEDataQueryCodeExp(name="CONNECTIONNAME", expression="t1.CONNECTIONNAME", showorder=4), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=5), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=6), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=7), @DEDataQueryCodeExp(name="NEXTTO", expression="t1.NEXTTO", showorder=8), @DEDataQueryCodeExp(name="ORIGINALWFUSERID", expression="t1.ORIGINALWFUSERID", showorder=9), @DEDataQueryCodeExp(name="ORIGINALWFUSERNAME", expression="t1.ORIGINALWFUSERNAME", showorder=10), @DEDataQueryCodeExp(name="SDPARAM", expression="t1.SDPARAM", showorder=11), @DEDataQueryCodeExp(name="SDPARAM2", expression="t1.SDPARAM2", showorder=12), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=13), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=14), @DEDataQueryCodeExp(name="USERDATA", expression="t1.USERDATA", showorder=15), @DEDataQueryCodeExp(name="USERDATADESC", expression="t1.USERDATADESC", showorder=16), @DEDataQueryCodeExp(name="WFACTIONLANRESTAG", expression="t1.WFACTIONLANRESTAG", showorder=17), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.WFINSTANCEID", showorder=18), @DEDataQueryCodeExp(name="WFINSTANCENAME", expression="t1.WFINSTANCENAME", showorder=19), @DEDataQueryCodeExp(name="WFPLOGICNAME", expression="t1.WFPLOGICNAME", showorder=20), @DEDataQueryCodeExp(name="WFSTEPDATAID", expression="t1.WFSTEPDATAID", showorder=21), @DEDataQueryCodeExp(name="WFSTEPDATANAME", expression="t1.WFSTEPDATANAME", showorder=22), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=23), @DEDataQueryCodeExp(name="WFSTEPLANRESTAG", expression="t1.WFSTEPLANRESTAG", showorder=24), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=25)}, conds={@DEDataQueryCodeCond(condition="( t1.CONNECTIONNAME <> 'SRFWFTIMEOUT'  AND  t1.ACTORID =  ${srfsessioncontext('SRFPERSONID','{\"defname\":\"ACTORID\",\"dename\":\"WFSTEPDATA\"}')} )")}), @DEDataQueryCode(querycode="SELECT t1.`createdate` AS `actiontime`, t1.`actorid`, t1.`actorname`, t1.`actorname2`, t1.`connectionname`, t1.`createdate`, t1.`createman`, t1.`memo`, t1.`nextto`, t1.`originalwfuserid`, t1.`originalwfusername`, t1.`sdparam`, t1.`sdparam2`, t1.`updatedate`, t1.`updateman`, t1.`userdata`, t1.`userdatadesc`, t1.`wfactionlanrestag`, t1.`wfinstanceid`, t1.`wfinstancename`, t1.`wfplogicname`, t1.`wfstepdataid`, t1.`wfstepdataname`, t1.`wfstepid`, t1.`wfsteplanrestag`, t1.`wfstepname` FROM `t_srfwfstepdata` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="ACTIONTIME", expression="t1.`createdate`", showorder=0), @DEDataQueryCodeExp(name="ACTORID", expression="t1.`actorid`", showorder=1), @DEDataQueryCodeExp(name="ACTORNAME", expression="t1.`actorname`", showorder=2), @DEDataQueryCodeExp(name="ACTORNAME2", expression="t1.`actorname2`", showorder=3), @DEDataQueryCodeExp(name="CONNECTIONNAME", expression="t1.`connectionname`", showorder=4), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=5), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=6), @DEDataQueryCodeExp(name="MEMO", expression="t1.`memo`", showorder=7), @DEDataQueryCodeExp(name="NEXTTO", expression="t1.`nextto`", showorder=8), @DEDataQueryCodeExp(name="ORIGINALWFUSERID", expression="t1.`originalwfuserid`", showorder=9), @DEDataQueryCodeExp(name="ORIGINALWFUSERNAME", expression="t1.`originalwfusername`", showorder=10), @DEDataQueryCodeExp(name="SDPARAM", expression="t1.`sdparam`", showorder=11), @DEDataQueryCodeExp(name="SDPARAM2", expression="t1.`sdparam2`", showorder=12), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=13), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=14), @DEDataQueryCodeExp(name="USERDATA", expression="t1.`userdata`", showorder=15), @DEDataQueryCodeExp(name="USERDATADESC", expression="t1.`userdatadesc`", showorder=16), @DEDataQueryCodeExp(name="WFACTIONLANRESTAG", expression="t1.`wfactionlanrestag`", showorder=17), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.`wfinstanceid`", showorder=18), @DEDataQueryCodeExp(name="WFINSTANCENAME", expression="t1.`wfinstancename`", showorder=19), @DEDataQueryCodeExp(name="WFPLOGICNAME", expression="t1.`wfplogicname`", showorder=20), @DEDataQueryCodeExp(name="WFSTEPDATAID", expression="t1.`wfstepdataid`", showorder=21), @DEDataQueryCodeExp(name="WFSTEPDATANAME", expression="t1.`wfstepdataname`", showorder=22), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.`wfstepid`", showorder=23), @DEDataQueryCodeExp(name="WFSTEPLANRESTAG", expression="t1.`wfsteplanrestag`", showorder=24), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.`wfstepname`", showorder=25)}, conds={@DEDataQueryCodeCond(condition="( t1.`connectionname` <> 'SRFWFTIMEOUT'  AND  t1.`actorid` =  ${srfsessioncontext('SRFPERSONID','{\"defname\":\"ACTORID\",\"dename\":\"WFSTEPDATA\"}')} )")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS ACTIONTIME, t1.ACTORID, t1.ACTORNAME, t1.ACTORNAME2, t1.CONNECTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.NEXTTO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.SDPARAM, t1.SDPARAM2, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATADESC, t1.WFACTIONLANRESTAG, t1.WFINSTANCEID, t1.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFSTEPDATAID, t1.WFSTEPDATANAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME FROM T_SRFWFSTEPDATA t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="ACTIONTIME", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="ACTORID", expression="t1.ACTORID", showorder=1), @DEDataQueryCodeExp(name="ACTORNAME", expression="t1.ACTORNAME", showorder=2), @DEDataQueryCodeExp(name="ACTORNAME2", expression="t1.ACTORNAME2", showorder=3), @DEDataQueryCodeExp(name="CONNECTIONNAME", expression="t1.CONNECTIONNAME", showorder=4), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=5), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=6), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=7), @DEDataQueryCodeExp(name="NEXTTO", expression="t1.NEXTTO", showorder=8), @DEDataQueryCodeExp(name="ORIGINALWFUSERID", expression="t1.ORIGINALWFUSERID", showorder=9), @DEDataQueryCodeExp(name="ORIGINALWFUSERNAME", expression="t1.ORIGINALWFUSERNAME", showorder=10), @DEDataQueryCodeExp(name="SDPARAM", expression="t1.SDPARAM", showorder=11), @DEDataQueryCodeExp(name="SDPARAM2", expression="t1.SDPARAM2", showorder=12), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=13), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=14), @DEDataQueryCodeExp(name="USERDATA", expression="t1.USERDATA", showorder=15), @DEDataQueryCodeExp(name="USERDATADESC", expression="t1.USERDATADESC", showorder=16), @DEDataQueryCodeExp(name="WFACTIONLANRESTAG", expression="t1.WFACTIONLANRESTAG", showorder=17), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.WFINSTANCEID", showorder=18), @DEDataQueryCodeExp(name="WFINSTANCENAME", expression="t1.WFINSTANCENAME", showorder=19), @DEDataQueryCodeExp(name="WFPLOGICNAME", expression="t1.WFPLOGICNAME", showorder=20), @DEDataQueryCodeExp(name="WFSTEPDATAID", expression="t1.WFSTEPDATAID", showorder=21), @DEDataQueryCodeExp(name="WFSTEPDATANAME", expression="t1.WFSTEPDATANAME", showorder=22), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=23), @DEDataQueryCodeExp(name="WFSTEPLANRESTAG", expression="t1.WFSTEPLANRESTAG", showorder=24), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=25)}, conds={@DEDataQueryCodeCond(condition="( t1.CONNECTIONNAME <> 'SRFWFTIMEOUT'  AND  t1.ACTORID =  ${srfsessioncontext('SRFPERSONID','{\"defname\":\"ACTORID\",\"dename\":\"WFSTEPDATA\"}')} )")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS ACTIONTIME, t1.ACTORID, t1.ACTORNAME, t1.ACTORNAME2, t1.CONNECTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.NEXTTO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.SDPARAM, t1.SDPARAM2, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATADESC, t1.WFACTIONLANRESTAG, t1.WFINSTANCEID, t1.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFSTEPDATAID, t1.WFSTEPDATANAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME FROM T_SRFWFSTEPDATA t1  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="ACTIONTIME", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="ACTORID", expression="t1.ACTORID", showorder=1), @DEDataQueryCodeExp(name="ACTORNAME", expression="t1.ACTORNAME", showorder=2), @DEDataQueryCodeExp(name="ACTORNAME2", expression="t1.ACTORNAME2", showorder=3), @DEDataQueryCodeExp(name="CONNECTIONNAME", expression="t1.CONNECTIONNAME", showorder=4), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=5), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=6), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=7), @DEDataQueryCodeExp(name="NEXTTO", expression="t1.NEXTTO", showorder=8), @DEDataQueryCodeExp(name="ORIGINALWFUSERID", expression="t1.ORIGINALWFUSERID", showorder=9), @DEDataQueryCodeExp(name="ORIGINALWFUSERNAME", expression="t1.ORIGINALWFUSERNAME", showorder=10), @DEDataQueryCodeExp(name="SDPARAM", expression="t1.SDPARAM", showorder=11), @DEDataQueryCodeExp(name="SDPARAM2", expression="t1.SDPARAM2", showorder=12), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=13), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=14), @DEDataQueryCodeExp(name="USERDATA", expression="t1.USERDATA", showorder=15), @DEDataQueryCodeExp(name="USERDATADESC", expression="t1.USERDATADESC", showorder=16), @DEDataQueryCodeExp(name="WFACTIONLANRESTAG", expression="t1.WFACTIONLANRESTAG", showorder=17), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.WFINSTANCEID", showorder=18), @DEDataQueryCodeExp(name="WFINSTANCENAME", expression="t1.WFINSTANCENAME", showorder=19), @DEDataQueryCodeExp(name="WFPLOGICNAME", expression="t1.WFPLOGICNAME", showorder=20), @DEDataQueryCodeExp(name="WFSTEPDATAID", expression="t1.WFSTEPDATAID", showorder=21), @DEDataQueryCodeExp(name="WFSTEPDATANAME", expression="t1.WFSTEPDATANAME", showorder=22), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=23), @DEDataQueryCodeExp(name="WFSTEPLANRESTAG", expression="t1.WFSTEPLANRESTAG", showorder=24), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=25)}, conds={@DEDataQueryCodeCond(condition="( t1.CONNECTIONNAME <> 'SRFWFTIMEOUT'  AND  t1.ACTORID =  ${srfsessioncontext('SRFPERSONID','{\"defname\":\"ACTORID\",\"dename\":\"WFSTEPDATA\"}')} )")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS ACTIONTIME, t1.ACTORID, t1.ACTORNAME, t1.ACTORNAME2, t1.CONNECTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.NEXTTO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.SDPARAM, t1.SDPARAM2, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATADESC, t1.WFACTIONLANRESTAG, t1.WFINSTANCEID, t1.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFSTEPDATAID, t1.WFSTEPDATANAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME FROM T_SRFWFSTEPDATA t1  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="ACTIONTIME", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="ACTORID", expression="t1.ACTORID", showorder=1), @DEDataQueryCodeExp(name="ACTORNAME", expression="t1.ACTORNAME", showorder=2), @DEDataQueryCodeExp(name="ACTORNAME2", expression="t1.ACTORNAME2", showorder=3), @DEDataQueryCodeExp(name="CONNECTIONNAME", expression="t1.CONNECTIONNAME", showorder=4), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=5), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=6), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=7), @DEDataQueryCodeExp(name="NEXTTO", expression="t1.NEXTTO", showorder=8), @DEDataQueryCodeExp(name="ORIGINALWFUSERID", expression="t1.ORIGINALWFUSERID", showorder=9), @DEDataQueryCodeExp(name="ORIGINALWFUSERNAME", expression="t1.ORIGINALWFUSERNAME", showorder=10), @DEDataQueryCodeExp(name="SDPARAM", expression="t1.SDPARAM", showorder=11), @DEDataQueryCodeExp(name="SDPARAM2", expression="t1.SDPARAM2", showorder=12), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=13), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=14), @DEDataQueryCodeExp(name="USERDATA", expression="t1.USERDATA", showorder=15), @DEDataQueryCodeExp(name="USERDATADESC", expression="t1.USERDATADESC", showorder=16), @DEDataQueryCodeExp(name="WFACTIONLANRESTAG", expression="t1.WFACTIONLANRESTAG", showorder=17), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.WFINSTANCEID", showorder=18), @DEDataQueryCodeExp(name="WFINSTANCENAME", expression="t1.WFINSTANCENAME", showorder=19), @DEDataQueryCodeExp(name="WFPLOGICNAME", expression="t1.WFPLOGICNAME", showorder=20), @DEDataQueryCodeExp(name="WFSTEPDATAID", expression="t1.WFSTEPDATAID", showorder=21), @DEDataQueryCodeExp(name="WFSTEPDATANAME", expression="t1.WFSTEPDATANAME", showorder=22), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=23), @DEDataQueryCodeExp(name="WFSTEPLANRESTAG", expression="t1.WFSTEPLANRESTAG", showorder=24), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=25)}, conds={@DEDataQueryCodeCond(condition="( t1.CONNECTIONNAME <> 'SRFWFTIMEOUT'  AND  t1.ACTORID =  ${srfsessioncontext('SRFPERSONID','{\"defname\":\"ACTORID\",\"dename\":\"WFSTEPDATA\"}')} )")}), @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE] AS [ACTIONTIME], t1.[ACTORID], t1.[ACTORNAME], t1.[ACTORNAME2], t1.[CONNECTIONNAME], t1.[CREATEDATE], t1.[CREATEMAN], t1.[MEMO], t1.[NEXTTO], t1.[ORIGINALWFUSERID], t1.[ORIGINALWFUSERNAME], t1.[SDPARAM], t1.[SDPARAM2], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[USERDATA], t1.[USERDATADESC], t1.[WFACTIONLANRESTAG], t1.[WFINSTANCEID], t1.[WFINSTANCENAME], t1.[WFPLOGICNAME], t1.[WFSTEPDATAID], t1.[WFSTEPDATANAME], t1.[WFSTEPID], t1.[WFSTEPLANRESTAG], t1.[WFSTEPNAME] FROM [T_SRFWFSTEPDATA] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="ACTIONTIME", expression="t1.[CREATEDATE]", showorder=0), @DEDataQueryCodeExp(name="ACTORID", expression="t1.[ACTORID]", showorder=1), @DEDataQueryCodeExp(name="ACTORNAME", expression="t1.[ACTORNAME]", showorder=2), @DEDataQueryCodeExp(name="ACTORNAME2", expression="t1.[ACTORNAME2]", showorder=3), @DEDataQueryCodeExp(name="CONNECTIONNAME", expression="t1.[CONNECTIONNAME]", showorder=4), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=5), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=6), @DEDataQueryCodeExp(name="MEMO", expression="t1.[MEMO]", showorder=7), @DEDataQueryCodeExp(name="NEXTTO", expression="t1.[NEXTTO]", showorder=8), @DEDataQueryCodeExp(name="ORIGINALWFUSERID", expression="t1.[ORIGINALWFUSERID]", showorder=9), @DEDataQueryCodeExp(name="ORIGINALWFUSERNAME", expression="t1.[ORIGINALWFUSERNAME]", showorder=10), @DEDataQueryCodeExp(name="SDPARAM", expression="t1.[SDPARAM]", showorder=11), @DEDataQueryCodeExp(name="SDPARAM2", expression="t1.[SDPARAM2]", showorder=12), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=13), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=14), @DEDataQueryCodeExp(name="USERDATA", expression="t1.[USERDATA]", showorder=15), @DEDataQueryCodeExp(name="USERDATADESC", expression="t1.[USERDATADESC]", showorder=16), @DEDataQueryCodeExp(name="WFACTIONLANRESTAG", expression="t1.[WFACTIONLANRESTAG]", showorder=17), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.[WFINSTANCEID]", showorder=18), @DEDataQueryCodeExp(name="WFINSTANCENAME", expression="t1.[WFINSTANCENAME]", showorder=19), @DEDataQueryCodeExp(name="WFPLOGICNAME", expression="t1.[WFPLOGICNAME]", showorder=20), @DEDataQueryCodeExp(name="WFSTEPDATAID", expression="t1.[WFSTEPDATAID]", showorder=21), @DEDataQueryCodeExp(name="WFSTEPDATANAME", expression="t1.[WFSTEPDATANAME]", showorder=22), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.[WFSTEPID]", showorder=23), @DEDataQueryCodeExp(name="WFSTEPLANRESTAG", expression="t1.[WFSTEPLANRESTAG]", showorder=24), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.[WFSTEPNAME]", showorder=25)}, conds={@DEDataQueryCodeCond(condition="( t1.[CONNECTIONNAME] <> 'SRFWFTIMEOUT'  AND  t1.[ACTORID] =  ${srfsessioncontext('SRFPERSONID','{\"defname\":\"ACTORID\",\"dename\":\"WFSTEPDATA\"}')} )")})})
-public abstract class WFStepDataMyHistDQModelBase
-extends DEDataQueryModelBase {
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
+
+@DEDataQuery(id="531C91E6-E358-4F02-9FF2-B7EDAF626FD3",name="MyHist" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS ACTIONTIME, t1.ACTORID, t1.ACTORNAME, t1.ACTORNAME2, t1.CONNECTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.NEXTTO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.SDPARAM, t1.SDPARAM2, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATADESC, t1.WFACTIONLANRESTAG, t1.WFINSTANCEID, t1.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFSTEPDATAID, t1.WFSTEPDATANAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME FROM T_SRFWFSTEPDATA t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTIONTIME",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTORID",expression="t1.ACTORID",showorder=1)
+        ,@DEDataQueryCodeExp(name="ACTORNAME",expression="t1.ACTORNAME",showorder=2)
+        ,@DEDataQueryCodeExp(name="ACTORNAME2",expression="t1.ACTORNAME2",showorder=3)
+        ,@DEDataQueryCodeExp(name="CONNECTIONNAME",expression="t1.CONNECTIONNAME",showorder=4)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=5)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=6)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=7)
+        ,@DEDataQueryCodeExp(name="NEXTTO",expression="t1.NEXTTO",showorder=8)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERID",expression="t1.ORIGINALWFUSERID",showorder=9)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERNAME",expression="t1.ORIGINALWFUSERNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="SDPARAM",expression="t1.SDPARAM",showorder=11)
+        ,@DEDataQueryCodeExp(name="SDPARAM2",expression="t1.SDPARAM2",showorder=12)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=13)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t1.USERDATA",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDATADESC",expression="t1.USERDATADESC",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFACTIONLANRESTAG",expression="t1.WFACTIONLANRESTAG",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.WFINSTANCEID",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFINSTANCENAME",expression="t1.WFINSTANCENAME",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFPLOGICNAME",expression="t1.WFPLOGICNAME",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFSTEPDATAID",expression="t1.WFSTEPDATAID",showorder=21)
+        ,@DEDataQueryCodeExp(name="WFSTEPDATANAME",expression="t1.WFSTEPDATANAME",showorder=22)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=23)
+        ,@DEDataQueryCodeExp(name="WFSTEPLANRESTAG",expression="t1.WFSTEPLANRESTAG",showorder=24)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=25)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="( t1.CONNECTIONNAME <> 'SRFWFTIMEOUT'  AND  t1.ACTORID =  ${srfsessioncontext('SRFPERSONID','{\"defname\":\"ACTORID\",\"dename\":\"WFSTEPDATA\"}')} )")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.`createdate` AS `actiontime`, t1.`actorid`, t1.`actorname`, t1.`actorname2`, t1.`connectionname`, t1.`createdate`, t1.`createman`, t1.`memo`, t1.`nextto`, t1.`originalwfuserid`, t1.`originalwfusername`, t1.`sdparam`, t1.`sdparam2`, t1.`updatedate`, t1.`updateman`, t1.`userdata`, t1.`userdatadesc`, t1.`wfactionlanrestag`, t1.`wfinstanceid`, t1.`wfinstancename`, t1.`wfplogicname`, t1.`wfstepdataid`, t1.`wfstepdataname`, t1.`wfstepid`, t1.`wfsteplanrestag`, t1.`wfstepname` FROM `t_srfwfstepdata` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTIONTIME",expression="t1.`createdate`",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTORID",expression="t1.`actorid`",showorder=1)
+        ,@DEDataQueryCodeExp(name="ACTORNAME",expression="t1.`actorname`",showorder=2)
+        ,@DEDataQueryCodeExp(name="ACTORNAME2",expression="t1.`actorname2`",showorder=3)
+        ,@DEDataQueryCodeExp(name="CONNECTIONNAME",expression="t1.`connectionname`",showorder=4)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=5)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=6)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.`memo`",showorder=7)
+        ,@DEDataQueryCodeExp(name="NEXTTO",expression="t1.`nextto`",showorder=8)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERID",expression="t1.`originalwfuserid`",showorder=9)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERNAME",expression="t1.`originalwfusername`",showorder=10)
+        ,@DEDataQueryCodeExp(name="SDPARAM",expression="t1.`sdparam`",showorder=11)
+        ,@DEDataQueryCodeExp(name="SDPARAM2",expression="t1.`sdparam2`",showorder=12)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=13)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t1.`userdata`",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDATADESC",expression="t1.`userdatadesc`",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFACTIONLANRESTAG",expression="t1.`wfactionlanrestag`",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.`wfinstanceid`",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFINSTANCENAME",expression="t1.`wfinstancename`",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFPLOGICNAME",expression="t1.`wfplogicname`",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFSTEPDATAID",expression="t1.`wfstepdataid`",showorder=21)
+        ,@DEDataQueryCodeExp(name="WFSTEPDATANAME",expression="t1.`wfstepdataname`",showorder=22)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.`wfstepid`",showorder=23)
+        ,@DEDataQueryCodeExp(name="WFSTEPLANRESTAG",expression="t1.`wfsteplanrestag`",showorder=24)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.`wfstepname`",showorder=25)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="( t1.`connectionname` <> 'SRFWFTIMEOUT'  AND  t1.`actorid` =  ${srfsessioncontext('SRFPERSONID','{\"defname\":\"ACTORID\",\"dename\":\"WFSTEPDATA\"}')} )")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS ACTIONTIME, t1.ACTORID, t1.ACTORNAME, t1.ACTORNAME2, t1.CONNECTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.NEXTTO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.SDPARAM, t1.SDPARAM2, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATADESC, t1.WFACTIONLANRESTAG, t1.WFINSTANCEID, t1.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFSTEPDATAID, t1.WFSTEPDATANAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME FROM T_SRFWFSTEPDATA t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTIONTIME",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTORID",expression="t1.ACTORID",showorder=1)
+        ,@DEDataQueryCodeExp(name="ACTORNAME",expression="t1.ACTORNAME",showorder=2)
+        ,@DEDataQueryCodeExp(name="ACTORNAME2",expression="t1.ACTORNAME2",showorder=3)
+        ,@DEDataQueryCodeExp(name="CONNECTIONNAME",expression="t1.CONNECTIONNAME",showorder=4)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=5)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=6)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=7)
+        ,@DEDataQueryCodeExp(name="NEXTTO",expression="t1.NEXTTO",showorder=8)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERID",expression="t1.ORIGINALWFUSERID",showorder=9)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERNAME",expression="t1.ORIGINALWFUSERNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="SDPARAM",expression="t1.SDPARAM",showorder=11)
+        ,@DEDataQueryCodeExp(name="SDPARAM2",expression="t1.SDPARAM2",showorder=12)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=13)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t1.USERDATA",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDATADESC",expression="t1.USERDATADESC",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFACTIONLANRESTAG",expression="t1.WFACTIONLANRESTAG",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.WFINSTANCEID",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFINSTANCENAME",expression="t1.WFINSTANCENAME",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFPLOGICNAME",expression="t1.WFPLOGICNAME",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFSTEPDATAID",expression="t1.WFSTEPDATAID",showorder=21)
+        ,@DEDataQueryCodeExp(name="WFSTEPDATANAME",expression="t1.WFSTEPDATANAME",showorder=22)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=23)
+        ,@DEDataQueryCodeExp(name="WFSTEPLANRESTAG",expression="t1.WFSTEPLANRESTAG",showorder=24)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=25)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="( t1.CONNECTIONNAME <> 'SRFWFTIMEOUT'  AND  t1.ACTORID =  ${srfsessioncontext('SRFPERSONID','{\"defname\":\"ACTORID\",\"dename\":\"WFSTEPDATA\"}')} )")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS ACTIONTIME, t1.ACTORID, t1.ACTORNAME, t1.ACTORNAME2, t1.CONNECTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.NEXTTO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.SDPARAM, t1.SDPARAM2, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATADESC, t1.WFACTIONLANRESTAG, t1.WFINSTANCEID, t1.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFSTEPDATAID, t1.WFSTEPDATANAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME FROM T_SRFWFSTEPDATA t1  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTIONTIME",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTORID",expression="t1.ACTORID",showorder=1)
+        ,@DEDataQueryCodeExp(name="ACTORNAME",expression="t1.ACTORNAME",showorder=2)
+        ,@DEDataQueryCodeExp(name="ACTORNAME2",expression="t1.ACTORNAME2",showorder=3)
+        ,@DEDataQueryCodeExp(name="CONNECTIONNAME",expression="t1.CONNECTIONNAME",showorder=4)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=5)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=6)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=7)
+        ,@DEDataQueryCodeExp(name="NEXTTO",expression="t1.NEXTTO",showorder=8)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERID",expression="t1.ORIGINALWFUSERID",showorder=9)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERNAME",expression="t1.ORIGINALWFUSERNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="SDPARAM",expression="t1.SDPARAM",showorder=11)
+        ,@DEDataQueryCodeExp(name="SDPARAM2",expression="t1.SDPARAM2",showorder=12)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=13)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t1.USERDATA",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDATADESC",expression="t1.USERDATADESC",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFACTIONLANRESTAG",expression="t1.WFACTIONLANRESTAG",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.WFINSTANCEID",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFINSTANCENAME",expression="t1.WFINSTANCENAME",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFPLOGICNAME",expression="t1.WFPLOGICNAME",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFSTEPDATAID",expression="t1.WFSTEPDATAID",showorder=21)
+        ,@DEDataQueryCodeExp(name="WFSTEPDATANAME",expression="t1.WFSTEPDATANAME",showorder=22)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=23)
+        ,@DEDataQueryCodeExp(name="WFSTEPLANRESTAG",expression="t1.WFSTEPLANRESTAG",showorder=24)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=25)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="( t1.CONNECTIONNAME <> 'SRFWFTIMEOUT'  AND  t1.ACTORID =  ${srfsessioncontext('SRFPERSONID','{\"defname\":\"ACTORID\",\"dename\":\"WFSTEPDATA\"}')} )")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS ACTIONTIME, t1.ACTORID, t1.ACTORNAME, t1.ACTORNAME2, t1.CONNECTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.NEXTTO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.SDPARAM, t1.SDPARAM2, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATADESC, t1.WFACTIONLANRESTAG, t1.WFINSTANCEID, t1.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFSTEPDATAID, t1.WFSTEPDATANAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME FROM T_SRFWFSTEPDATA t1  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTIONTIME",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTORID",expression="t1.ACTORID",showorder=1)
+        ,@DEDataQueryCodeExp(name="ACTORNAME",expression="t1.ACTORNAME",showorder=2)
+        ,@DEDataQueryCodeExp(name="ACTORNAME2",expression="t1.ACTORNAME2",showorder=3)
+        ,@DEDataQueryCodeExp(name="CONNECTIONNAME",expression="t1.CONNECTIONNAME",showorder=4)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=5)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=6)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=7)
+        ,@DEDataQueryCodeExp(name="NEXTTO",expression="t1.NEXTTO",showorder=8)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERID",expression="t1.ORIGINALWFUSERID",showorder=9)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERNAME",expression="t1.ORIGINALWFUSERNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="SDPARAM",expression="t1.SDPARAM",showorder=11)
+        ,@DEDataQueryCodeExp(name="SDPARAM2",expression="t1.SDPARAM2",showorder=12)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=13)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t1.USERDATA",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDATADESC",expression="t1.USERDATADESC",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFACTIONLANRESTAG",expression="t1.WFACTIONLANRESTAG",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.WFINSTANCEID",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFINSTANCENAME",expression="t1.WFINSTANCENAME",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFPLOGICNAME",expression="t1.WFPLOGICNAME",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFSTEPDATAID",expression="t1.WFSTEPDATAID",showorder=21)
+        ,@DEDataQueryCodeExp(name="WFSTEPDATANAME",expression="t1.WFSTEPDATANAME",showorder=22)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=23)
+        ,@DEDataQueryCodeExp(name="WFSTEPLANRESTAG",expression="t1.WFSTEPLANRESTAG",showorder=24)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=25)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="( t1.CONNECTIONNAME <> 'SRFWFTIMEOUT'  AND  t1.ACTORID =  ${srfsessioncontext('SRFPERSONID','{\"defname\":\"ACTORID\",\"dename\":\"WFSTEPDATA\"}')} )")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE] AS [ACTIONTIME], t1.[ACTORID], t1.[ACTORNAME], t1.[ACTORNAME2], t1.[CONNECTIONNAME], t1.[CREATEDATE], t1.[CREATEMAN], t1.[MEMO], t1.[NEXTTO], t1.[ORIGINALWFUSERID], t1.[ORIGINALWFUSERNAME], t1.[SDPARAM], t1.[SDPARAM2], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[USERDATA], t1.[USERDATADESC], t1.[WFACTIONLANRESTAG], t1.[WFINSTANCEID], t1.[WFINSTANCENAME], t1.[WFPLOGICNAME], t1.[WFSTEPDATAID], t1.[WFSTEPDATANAME], t1.[WFSTEPID], t1.[WFSTEPLANRESTAG], t1.[WFSTEPNAME] FROM [T_SRFWFSTEPDATA] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTIONTIME",expression="t1.[CREATEDATE]",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTORID",expression="t1.[ACTORID]",showorder=1)
+        ,@DEDataQueryCodeExp(name="ACTORNAME",expression="t1.[ACTORNAME]",showorder=2)
+        ,@DEDataQueryCodeExp(name="ACTORNAME2",expression="t1.[ACTORNAME2]",showorder=3)
+        ,@DEDataQueryCodeExp(name="CONNECTIONNAME",expression="t1.[CONNECTIONNAME]",showorder=4)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=5)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=6)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.[MEMO]",showorder=7)
+        ,@DEDataQueryCodeExp(name="NEXTTO",expression="t1.[NEXTTO]",showorder=8)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERID",expression="t1.[ORIGINALWFUSERID]",showorder=9)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERNAME",expression="t1.[ORIGINALWFUSERNAME]",showorder=10)
+        ,@DEDataQueryCodeExp(name="SDPARAM",expression="t1.[SDPARAM]",showorder=11)
+        ,@DEDataQueryCodeExp(name="SDPARAM2",expression="t1.[SDPARAM2]",showorder=12)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=13)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t1.[USERDATA]",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDATADESC",expression="t1.[USERDATADESC]",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFACTIONLANRESTAG",expression="t1.[WFACTIONLANRESTAG]",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.[WFINSTANCEID]",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFINSTANCENAME",expression="t1.[WFINSTANCENAME]",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFPLOGICNAME",expression="t1.[WFPLOGICNAME]",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFSTEPDATAID",expression="t1.[WFSTEPDATAID]",showorder=21)
+        ,@DEDataQueryCodeExp(name="WFSTEPDATANAME",expression="t1.[WFSTEPDATANAME]",showorder=22)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.[WFSTEPID]",showorder=23)
+        ,@DEDataQueryCodeExp(name="WFSTEPLANRESTAG",expression="t1.[WFSTEPLANRESTAG]",showorder=24)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.[WFSTEPNAME]",showorder=25)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="( t1.[CONNECTIONNAME] <> 'SRFWFTIMEOUT'  AND  t1.[ACTORID] =  ${srfsessioncontext('SRFPERSONID','{\"defname\":\"ACTORID\",\"dename\":\"WFSTEPDATA\"}')} )")
+    })
+})
+/**
+ *  实体数据查询 [我的历史数据]模型基类
+ */
+public abstract class WFStepDataMyHistDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public WFStepDataMyHistDQModelBase() {
+        super();
+
         this.initAnnotation(WFStepDataMyHistDQModelBase.class);
     }
-}
 
+}

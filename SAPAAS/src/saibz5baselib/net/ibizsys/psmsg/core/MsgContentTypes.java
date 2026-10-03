@@ -1,10 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psmsg.core;
 
+/**
+ * 消息内容类型
+ * 
+ * @author Administrator
+ *
+ */
 public class MsgContentTypes {
-    public static final String TEXT = "TEXT";
-    public static final String HTML = "HTML";
-}
+	/**
+	 * 纯文本
+	 */
+	public final static String TEXT = "TEXT";
 
+	/**
+	 * HTML网页
+	 */
+	public final static String HTML = "HTML";
+}

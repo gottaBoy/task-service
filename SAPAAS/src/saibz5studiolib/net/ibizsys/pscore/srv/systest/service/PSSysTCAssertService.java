@@ -11,6 +11,7 @@ package net.ibizsys.pscore.srv.systest.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.systest.entity.PSSysTCAssert;
 import net.ibizsys.pscore.srv.systest.entity.PSSysTestCase;
@@ -46,9 +47,10 @@ extends PSSysTCAssertServiceBase {
         ArrayList<PSSysTCAssert> arrayList = null;
         arrayList = pSSysTestCase.getPSSysTestCaseId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSSysTestCase(pSSysTestCase) : this.selectByPSSysTestCase(pSSysTestCase);
         HashMap<String, PSSysTCAssert> hashMap = new HashMap<String, PSSysTCAssert>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSSysTCAssert pSSysTCAssert2 = object.next();
+        String object;
+        Iterator<PSSysTCAssert> objectIterator = arrayList.iterator();
+        while (objectIterator.hasNext()) {
+            PSSysTCAssert pSSysTCAssert2 = objectIterator.next();
             hashMap.put(pSSysTCAssert2.getPSSysTCAssertName().toLowerCase(), pSSysTCAssert2);
         }
         while (true) {

@@ -105,7 +105,7 @@ extends BaseMainPage {
                 if (callResult.getRetCode() == 0) {
                     strIndexType = obj.GetParamStringValue(indexDEHelper.GetIndexTypeDEFHelper().getName(), "");
                 }
-                Vector list = indexDEHelper.GetDERINDEXs(true);
+                Vector<DERINDEX> list = indexDEHelper.GetDERINDEXs(true);
                 for (DERINDEX dERINDEX : list) {
                     if (StringHelper.Compare((String)dERINDEX.getTYPEVALUE(), (String)strIndexType, (boolean)true) != 0) continue;
                     this.strPageDataEntityId = dERINDEX.getDEID();
@@ -315,4 +315,3 @@ extends BaseMainPage {
         return this.getPageParam("PAGE.FORM.ITEMPRIVILEGE", this.getDEHelper().IsEnableDEFieldPriv());
     }
 }
-

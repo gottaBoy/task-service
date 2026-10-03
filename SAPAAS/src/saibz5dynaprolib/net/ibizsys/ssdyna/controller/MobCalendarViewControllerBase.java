@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.CalendarViewControllerBase;
+/**
+ * 移动端日历视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MobCalendarViewControllerBase extends CalendarViewControllerBase {
 
-public abstract class MobCalendarViewControllerBase
-extends CalendarViewControllerBase {
+	public MobCalendarViewControllerBase() throws Exception {
+		super();
+	}
 }
-

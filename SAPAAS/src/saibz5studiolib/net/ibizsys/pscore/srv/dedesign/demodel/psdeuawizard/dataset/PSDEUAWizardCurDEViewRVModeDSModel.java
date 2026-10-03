@@ -87,9 +87,9 @@ extends PSDEUAWizardCurDEViewRVModeDSModelBase {
         pSDEViewBase.setPSDEViewBaseId(string);
         try {
             if (KeyValueHelper.isTempKey((String)string)) {
-                pSDEViewBaseService.getTemp((IEntity)pSDEViewBase);
+                pSDEViewBaseService.getTemp(pSDEViewBase);
             } else {
-                pSDEViewBaseService.get((IEntity)pSDEViewBase);
+                pSDEViewBaseService.get(pSDEViewBase);
             }
         }
         catch (Exception exception) {

@@ -1907,7 +1907,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getLinkPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.linkpsdevccenter = pSDevCenter;
             }
             return this.linkpsdevccenter;
@@ -1933,7 +1933,7 @@ implements Serializable {
                 PSDevSlnSysRef pSDevSlnSysRef = new PSDevSlnSysRef();
                 pSDevSlnSysRef.setPSDevSlnSysRefId(this.getPSDevSlnSysRefId());
                 PSDevSlnSysRefService pSDevSlnSysRefService = (PSDevSlnSysRefService)ServiceGlobal.getService(PSDevSlnSysRefService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysRefService.autoGet((IEntity)pSDevSlnSysRef);
+                pSDevSlnSysRefService.autoGet(pSDevSlnSysRef);
                 this.psdevslnsysref = pSDevSlnSysRef;
             }
             return this.psdevslnsysref;
@@ -1959,7 +1959,7 @@ implements Serializable {
                 PSDevSlnSysSrv pSDevSlnSysSrv = new PSDevSlnSysSrv();
                 pSDevSlnSysSrv.setPSDevSlnSysSrvId(this.getPSDevSlnSysSrvId());
                 PSDevSlnSysSrvService pSDevSlnSysSrvService = (PSDevSlnSysSrvService)ServiceGlobal.getService(PSDevSlnSysSrvService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysSrvService.autoGet((IEntity)pSDevSlnSysSrv);
+                pSDevSlnSysSrvService.autoGet(pSDevSlnSysSrv);
                 this.psdevslnsyssrv = pSDevSlnSysSrv;
             }
             return this.psdevslnsyssrv;
@@ -1985,7 +1985,7 @@ implements Serializable {
                 PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
                 pSDevSlnSys.setPSDevSlnSysId(this.getPSDevSlnSysId());
                 PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysService.autoGet((IEntity)pSDevSlnSys);
+                pSDevSlnSysService.autoGet(pSDevSlnSys);
                 this.psdevslnsys = pSDevSlnSys;
             }
             return this.psdevslnsys;

@@ -89,27 +89,18 @@ IPSDELogicLinkRuntime {
         this.addToPSDELogicLinkCondList(this.psDELogicLinkGroupCondImpl);
     }
 
-    /*
-     * Unable to fully structure code
-     */
     protected void addToPSDELogicLinkCondList(IPSDELogicLinkCond iPSDELogicLinkCond) throws Exception {
-        block1: {
-            this.psDELogicLinkCondList.add(iPSDELogicLinkCond);
-            if (!(iPSDELogicLinkCond instanceof IPSDELogicLinkGroupCond)) break block1;
-            iPSDELogicLinkGroupCond = (IPSDELogicLinkGroupCond)iPSDELogicLinkCond;
-            psDELogicLinkConds = iPSDELogicLinkGroupCond.getPSDELogicLinkConds();
-            if (psDELogicLinkConds != null) ** GOTO lbl9
+        this.psDELogicLinkCondList.add(iPSDELogicLinkCond);
+        if (!(iPSDELogicLinkCond instanceof IPSDELogicLinkGroupCond)) {
             return;
-lbl-1000:
-            // 1 sources
-
-            {
-                this.addToPSDELogicLinkCondList((IPSDELogicLinkCond)psDELogicLinkConds.next());
-lbl9:
-                // 2 sources
-
-                ** while (psDELogicLinkConds.hasNext())
-            }
+        }
+        IPSDELogicLinkGroupCond iPSDELogicLinkGroupCond = (IPSDELogicLinkGroupCond)iPSDELogicLinkCond;
+        Iterator<IPSDELogicLinkCond> psDELogicLinkConds = iPSDELogicLinkGroupCond.getPSDELogicLinkConds();
+        if (psDELogicLinkConds == null) {
+            return;
+        }
+        while (psDELogicLinkConds.hasNext()) {
+            this.addToPSDELogicLinkCondList(psDELogicLinkConds.next());
         }
     }
 
@@ -147,4 +138,3 @@ lbl9:
         return this.psDELogicLinkCondList.iterator();
     }
 }
-

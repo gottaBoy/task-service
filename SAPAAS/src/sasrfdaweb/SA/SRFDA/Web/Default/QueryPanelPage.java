@@ -135,22 +135,22 @@ extends SRFDAPage {
                 this.strPDEID = der11.getMAJORDEID();
             }
             if (StringHelper.Compare((String)"CUSTOMN1", (String)arr[0], (boolean)true) == 0) {
-                der1N = new DERCUSTOM();
-                callResult = this.getDAModelHelper().GetDERCUSTOM(arr[1], (DERCUSTOM)der1N);
+                DERCUSTOM derCustom = new DERCUSTOM();
+                callResult = this.getDAModelHelper().GetDERCUSTOM(arr[1], derCustom);
                 if (callResult == null || callResult.getRetCode() != 0) {
                     return;
                 }
-                this.strDEID = der1N.getMAJORDEID();
-                this.strPDEID = der1N.getMINORDEID();
+                this.strDEID = derCustom.getMAJORDEID();
+                this.strPDEID = derCustom.getMINORDEID();
             }
             if (StringHelper.Compare((String)"CUSTOM1N", (String)arr[0], (boolean)true) == 0 || StringHelper.Compare((String)"CUSTOM1NNOT", (String)arr[0], (boolean)true) == 0) {
-                der1N = new DERCUSTOM();
-                callResult = this.getDAModelHelper().GetDERCUSTOM(arr[1], (DERCUSTOM)der1N);
+                DERCUSTOM derCustom = new DERCUSTOM();
+                callResult = this.getDAModelHelper().GetDERCUSTOM(arr[1], derCustom);
                 if (callResult == null || callResult.getRetCode() != 0) {
                     return;
                 }
-                this.strDEID = der1N.getMINORDEID();
-                this.strPDEID = der1N.getMAJORDEID();
+                this.strDEID = derCustom.getMINORDEID();
+                this.strPDEID = derCustom.getMAJORDEID();
             }
         }
         StringBuilderEx script = new StringBuilderEx();
@@ -208,7 +208,7 @@ extends SRFDAPage {
                     this.ddlDataEntities.getDropDownListConfig().getListItems().Add(new ListItem(StringHelper.Format((String)"[1:1\u4e3b\u5b9e\u4f53]%1$s(%2$s) - %3$s", (Object)der3.getMAJORDELOGICNAME(), (Object)der3.getMAJORDENAME(), (Object)der3.getDERLOGICNAME()), "11:" + der3.getDERID() + ":" + der3.getMAJORDEID()));
                     ++i;
                 }
-                Vector listindex = new Vector();
+                Vector<DERINDEX> listindex = new Vector<DERINDEX>();
                 callResult = this.getWebContext().getGlobalHelper().getDAModelHelper().GetDERINDEXVIEWs(true, this.strPDEID, listindex);
                 if (callResult == null || callResult.getRetCode() != 0) {
                     return;
@@ -446,4 +446,3 @@ extends SRFDAPage {
         return this.bMainQuery;
     }
 }
-

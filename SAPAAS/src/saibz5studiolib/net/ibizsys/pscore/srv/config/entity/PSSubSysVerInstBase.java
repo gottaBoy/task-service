@@ -1273,7 +1273,7 @@ implements Serializable {
                 PSSubSysVer pSSubSysVer = new PSSubSysVer();
                 pSSubSysVer.setPSSubSysVerId(this.getPSSubSysVerId());
                 PSSubSysVerService pSSubSysVerService = (PSSubSysVerService)ServiceGlobal.getService(PSSubSysVerService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysVerService.autoGet((IEntity)pSSubSysVer);
+                pSSubSysVerService.autoGet(pSSubSysVer);
                 this.pssubsysver = pSSubSysVer;
             }
             return this.pssubsysver;
@@ -1299,7 +1299,7 @@ implements Serializable {
                 PSSvrDomain pSSvrDomain = new PSSvrDomain();
                 pSSvrDomain.setPSSvrDomainId(this.getPSSvrDomainId());
                 PSSvrDomainService pSSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrDomainService.autoGet((IEntity)pSSvrDomain);
+                pSSvrDomainService.autoGet(pSSvrDomain);
                 this.pssvrdomain = pSSvrDomain;
             }
             return this.pssvrdomain;
@@ -1325,7 +1325,7 @@ implements Serializable {
                 PSSysModelInst pSSysModelInst = new PSSysModelInst();
                 pSSysModelInst.setPSSysModelInstId(this.getPSSysModelInstId());
                 PSSysModelInstService pSSysModelInstService = (PSSysModelInstService)ServiceGlobal.getService(PSSysModelInstService.class, (SessionFactory)this.getSessionFactory());
-                pSSysModelInstService.autoGet((IEntity)pSSysModelInst);
+                pSSysModelInstService.autoGet(pSSysModelInst);
                 this.pssysmodelinst = pSSysModelInst;
             }
             return this.pssysmodelinst;

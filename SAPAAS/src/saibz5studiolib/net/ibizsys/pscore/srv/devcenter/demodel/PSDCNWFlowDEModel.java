@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.devcenter.demodel.PSDCNWFlowDEModelBase;
 
 public class PSDCNWFlowDEModel
 extends PSDCNWFlowDEModelBase {
+
+    public PSDCNWFlowDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

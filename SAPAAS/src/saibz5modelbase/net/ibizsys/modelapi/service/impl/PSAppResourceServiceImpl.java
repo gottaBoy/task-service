@@ -72,7 +72,7 @@ implements IPSAppResourceService {
     @Override
     protected List<PSAppResource> onListAll() throws Exception {
         ArrayList<PSAppResource> list = new ArrayList<PSAppResource>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSAppResource> items = this.listByPSSysApp(parent);

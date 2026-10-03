@@ -1198,7 +1198,7 @@ implements Serializable {
                 PSDCWorkspace pSDCWorkspace = new PSDCWorkspace();
                 pSDCWorkspace.setPSDCWorkspaceId(this.getPSDCWorkspaceId());
                 PSDCWorkspaceService pSDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)this.getSessionFactory());
-                pSDCWorkspaceService.autoGet((IEntity)pSDCWorkspace);
+                pSDCWorkspaceService.autoGet(pSDCWorkspace);
                 this.psdcworkspace = pSDCWorkspace;
             }
             return this.psdcworkspace;
@@ -1224,7 +1224,7 @@ implements Serializable {
                 PSDevUser pSDevUser = new PSDevUser();
                 pSDevUser.setPSDevUserId(this.getPSDevUserId());
                 PSDevUserService pSDevUserService = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class, (SessionFactory)this.getSessionFactory());
-                pSDevUserService.autoGet((IEntity)pSDevUser);
+                pSDevUserService.autoGet(pSDevUser);
                 this.psdevuser = pSDevUser;
             }
             return this.psdevuser;

@@ -74,7 +74,7 @@ implements IPSSysBICubeLevelService {
     @Override
     protected List<PSSysBICubeLevel> onListAll() throws Exception {
         ArrayList<PSSysBICubeLevel> list = new ArrayList<PSSysBICubeLevel>();
-        List pssysbicubedimensions = PSModelServiceUtil.getInstance().getPSSysBICubeDimensionService().listAll();
+        List<PSSysBICubeDimension> pssysbicubedimensions = PSModelServiceUtil.getInstance().getPSSysBICubeDimensionService().listAll();
         if (pssysbicubedimensions != null) {
             for (PSSysBICubeDimension parent : pssysbicubedimensions) {
                 List<PSSysBICubeLevel> items = this.listByPSSysBICubeDimension(parent);

@@ -40,7 +40,7 @@ extends PSSVNServerServiceBase {
                 try {
                     PSSVNServer pSSVNServer = new PSSVNServer();
                     pSSVNServer.setPSSVNServerId(string);
-                    PSSVNServerService.this.get((IEntity)pSSVNServer);
+                    PSSVNServerService.this.get(pSSVNServer);
                     PSCoreEntityKeeperGlobal.getCurrent(PSSVNServerService.this.getSessionFactory()).updatePSSVNServer(pSSVNServer);
                 }
                 catch (Exception exception) {

@@ -8,5 +8,9 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSAppDERSDEModelBase;
 public class PSAppDERSDEModel
 extends PSAppDERSDEModelBase {
     private static final long serialVersionUID = -1L;
+
+    public PSAppDERSDEModel() throws Exception {
+        super();
+    }
 }
 

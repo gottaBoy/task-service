@@ -1,20 +1,137 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfusercandidate.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="DAEA0DFB-06AD-4D74-BF65-A7D8780794F1", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CANDIDATEORDER, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATA2, t1.WFMAJORUSERID, t11.WFUSERNAME AS WFMAJORUSERNAME, t1.WFMINORUSERID, t21.WFUSERNAME AS WFMINORUSERNAME, t1.WFUSERCANDIDATEID, t1.WFUSERCANDIDATENAME FROM T_SRFWFUSERCANDIDATE t1  LEFT JOIN T_SRFWFUSER t11 ON t1.WFMAJORUSERID = t11.WFUSERID  LEFT JOIN T_SRFWFUSER t21 ON t1.WFMINORUSERID = t21.WFUSERID  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="CANDIDATEORDER", expression="t1.CANDIDATEORDER", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=4), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=5), @DEDataQueryCodeExp(name="USERDATA", expression="t1.USERDATA", showorder=6), @DEDataQueryCodeExp(name="USERDATA2", expression="t1.USERDATA2", showorder=7), @DEDataQueryCodeExp(name="WFMAJORUSERID", expression="t1.WFMAJORUSERID", showorder=8), @DEDataQueryCodeExp(name="WFMAJORUSERNAME", expression="t11.WFUSERNAME", showorder=9), @DEDataQueryCodeExp(name="WFMINORUSERID", expression="t1.WFMINORUSERID", showorder=10), @DEDataQueryCodeExp(name="WFMINORUSERNAME", expression="t21.WFUSERNAME", showorder=11), @DEDataQueryCodeExp(name="WFUSERCANDIDATEID", expression="t1.WFUSERCANDIDATEID", showorder=12), @DEDataQueryCodeExp(name="WFUSERCANDIDATENAME", expression="t1.WFUSERCANDIDATENAME", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`candidateorder`, t1.`createdate`, t1.`createman`, t1.`memo`, t1.`updatedate`, t1.`updateman`, t1.`userdata`, t1.`userdata2`, t1.`wfmajoruserid`, t11.`wfusername` AS `wfmajorusername`, t1.`wfminoruserid`, t21.`wfusername` AS `wfminorusername`, t1.`wfusercandidateid`, t1.`wfusercandidatename` FROM `t_srfwfusercandidate` t1  LEFT JOIN t_srfwfuser t11 ON t1.wfmajoruserid = t11.wfuserid  LEFT JOIN t_srfwfuser t21 ON t1.wfminoruserid = t21.wfuserid  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CANDIDATEORDER", expression="t1.`candidateorder`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.`memo`", showorder=3), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=4), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=5), @DEDataQueryCodeExp(name="USERDATA", expression="t1.`userdata`", showorder=6), @DEDataQueryCodeExp(name="USERDATA2", expression="t1.`userdata2`", showorder=7), @DEDataQueryCodeExp(name="WFMAJORUSERID", expression="t1.`wfmajoruserid`", showorder=8), @DEDataQueryCodeExp(name="WFMAJORUSERNAME", expression="t11.`wfusername`", showorder=9), @DEDataQueryCodeExp(name="WFMINORUSERID", expression="t1.`wfminoruserid`", showorder=10), @DEDataQueryCodeExp(name="WFMINORUSERNAME", expression="t21.`wfusername`", showorder=11), @DEDataQueryCodeExp(name="WFUSERCANDIDATEID", expression="t1.`wfusercandidateid`", showorder=12), @DEDataQueryCodeExp(name="WFUSERCANDIDATENAME", expression="t1.`wfusercandidatename`", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CANDIDATEORDER, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATA2, t1.WFMAJORUSERID, t11.WFUSERNAME AS WFMAJORUSERNAME, t1.WFMINORUSERID, t21.WFUSERNAME AS WFMINORUSERNAME, t1.WFUSERCANDIDATEID, t1.WFUSERCANDIDATENAME FROM T_SRFWFUSERCANDIDATE t1  LEFT JOIN T_SRFWFUSER t11 ON t1.WFMAJORUSERID = t11.WFUSERID  LEFT JOIN T_SRFWFUSER t21 ON t1.WFMINORUSERID = t21.WFUSERID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CANDIDATEORDER", expression="t1.CANDIDATEORDER", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=4), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=5), @DEDataQueryCodeExp(name="USERDATA", expression="t1.USERDATA", showorder=6), @DEDataQueryCodeExp(name="USERDATA2", expression="t1.USERDATA2", showorder=7), @DEDataQueryCodeExp(name="WFMAJORUSERID", expression="t1.WFMAJORUSERID", showorder=8), @DEDataQueryCodeExp(name="WFMAJORUSERNAME", expression="t11.WFUSERNAME", showorder=9), @DEDataQueryCodeExp(name="WFMINORUSERID", expression="t1.WFMINORUSERID", showorder=10), @DEDataQueryCodeExp(name="WFMINORUSERNAME", expression="t21.WFUSERNAME", showorder=11), @DEDataQueryCodeExp(name="WFUSERCANDIDATEID", expression="t1.WFUSERCANDIDATEID", showorder=12), @DEDataQueryCodeExp(name="WFUSERCANDIDATENAME", expression="t1.WFUSERCANDIDATENAME", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CANDIDATEORDER, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATA2, t1.WFMAJORUSERID, t11.WFUSERNAME AS WFMAJORUSERNAME, t1.WFMINORUSERID, t21.WFUSERNAME AS WFMINORUSERNAME, t1.WFUSERCANDIDATEID, t1.WFUSERCANDIDATENAME FROM T_SRFWFUSERCANDIDATE t1  LEFT JOIN T_SRFWFUSER t11 ON t1.WFMAJORUSERID = t11.WFUSERID  LEFT JOIN T_SRFWFUSER t21 ON t1.WFMINORUSERID = t21.WFUSERID  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="CANDIDATEORDER", expression="t1.CANDIDATEORDER", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=4), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=5), @DEDataQueryCodeExp(name="USERDATA", expression="t1.USERDATA", showorder=6), @DEDataQueryCodeExp(name="USERDATA2", expression="t1.USERDATA2", showorder=7), @DEDataQueryCodeExp(name="WFMAJORUSERID", expression="t1.WFMAJORUSERID", showorder=8), @DEDataQueryCodeExp(name="WFMAJORUSERNAME", expression="t11.WFUSERNAME", showorder=9), @DEDataQueryCodeExp(name="WFMINORUSERID", expression="t1.WFMINORUSERID", showorder=10), @DEDataQueryCodeExp(name="WFMINORUSERNAME", expression="t21.WFUSERNAME", showorder=11), @DEDataQueryCodeExp(name="WFUSERCANDIDATEID", expression="t1.WFUSERCANDIDATEID", showorder=12), @DEDataQueryCodeExp(name="WFUSERCANDIDATENAME", expression="t1.WFUSERCANDIDATENAME", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CANDIDATEORDER, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATA2, t1.WFMAJORUSERID, t11.WFUSERNAME AS WFMAJORUSERNAME, t1.WFMINORUSERID, t21.WFUSERNAME AS WFMINORUSERNAME, t1.WFUSERCANDIDATEID, t1.WFUSERCANDIDATENAME FROM T_SRFWFUSERCANDIDATE t1  LEFT JOIN T_SRFWFUSER t11 ON t1.WFMAJORUSERID = t11.WFUSERID  LEFT JOIN T_SRFWFUSER t21 ON t1.WFMINORUSERID = t21.WFUSERID  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="CANDIDATEORDER", expression="t1.CANDIDATEORDER", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=4), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=5), @DEDataQueryCodeExp(name="USERDATA", expression="t1.USERDATA", showorder=6), @DEDataQueryCodeExp(name="USERDATA2", expression="t1.USERDATA2", showorder=7), @DEDataQueryCodeExp(name="WFMAJORUSERID", expression="t1.WFMAJORUSERID", showorder=8), @DEDataQueryCodeExp(name="WFMAJORUSERNAME", expression="t11.WFUSERNAME", showorder=9), @DEDataQueryCodeExp(name="WFMINORUSERID", expression="t1.WFMINORUSERID", showorder=10), @DEDataQueryCodeExp(name="WFMINORUSERNAME", expression="t21.WFUSERNAME", showorder=11), @DEDataQueryCodeExp(name="WFUSERCANDIDATEID", expression="t1.WFUSERCANDIDATEID", showorder=12), @DEDataQueryCodeExp(name="WFUSERCANDIDATENAME", expression="t1.WFUSERCANDIDATENAME", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[CANDIDATEORDER], t1.[CREATEDATE], t1.[CREATEMAN], t1.[MEMO], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[USERDATA], t1.[USERDATA2], t1.[WFMAJORUSERID], t11.[WFUSERNAME] AS [WFMAJORUSERNAME], t1.[WFMINORUSERID], t21.[WFUSERNAME] AS [WFMINORUSERNAME], t1.[WFUSERCANDIDATEID], t1.[WFUSERCANDIDATENAME] FROM [T_SRFWFUSERCANDIDATE] t1  LEFT JOIN T_SRFWFUSER t11 ON t1.WFMAJORUSERID = t11.WFUSERID  LEFT JOIN T_SRFWFUSER t21 ON t1.WFMINORUSERID = t21.WFUSERID  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="CANDIDATEORDER", expression="t1.[CANDIDATEORDER]", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.[MEMO]", showorder=3), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=4), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=5), @DEDataQueryCodeExp(name="USERDATA", expression="t1.[USERDATA]", showorder=6), @DEDataQueryCodeExp(name="USERDATA2", expression="t1.[USERDATA2]", showorder=7), @DEDataQueryCodeExp(name="WFMAJORUSERID", expression="t1.[WFMAJORUSERID]", showorder=8), @DEDataQueryCodeExp(name="WFMAJORUSERNAME", expression="t11.[WFUSERNAME]", showorder=9), @DEDataQueryCodeExp(name="WFMINORUSERID", expression="t1.[WFMINORUSERID]", showorder=10), @DEDataQueryCodeExp(name="WFMINORUSERNAME", expression="t21.[WFUSERNAME]", showorder=11), @DEDataQueryCodeExp(name="WFUSERCANDIDATEID", expression="t1.[WFUSERCANDIDATEID]", showorder=12), @DEDataQueryCodeExp(name="WFUSERCANDIDATENAME", expression="t1.[WFUSERCANDIDATENAME]", showorder=13)}, conds={})})
-public abstract class WFUserCandidateDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="DAEA0DFB-06AD-4D74-BF65-A7D8780794F1",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CANDIDATEORDER, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATA2, t1.WFMAJORUSERID, t11.WFUSERNAME AS WFMAJORUSERNAME, t1.WFMINORUSERID, t21.WFUSERNAME AS WFMINORUSERNAME, t1.WFUSERCANDIDATEID, t1.WFUSERCANDIDATENAME FROM T_SRFWFUSERCANDIDATE t1  LEFT JOIN T_SRFWFUSER t11 ON t1.WFMAJORUSERID = t11.WFUSERID  LEFT JOIN T_SRFWFUSER t21 ON t1.WFMINORUSERID = t21.WFUSERID  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CANDIDATEORDER",expression="t1.CANDIDATEORDER",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=4)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=5)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t1.USERDATA",showorder=6)
+        ,@DEDataQueryCodeExp(name="USERDATA2",expression="t1.USERDATA2",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFMAJORUSERID",expression="t1.WFMAJORUSERID",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFMAJORUSERNAME",expression="t11.WFUSERNAME",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFMINORUSERID",expression="t1.WFMINORUSERID",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFMINORUSERNAME",expression="t21.WFUSERNAME",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFUSERCANDIDATEID",expression="t1.WFUSERCANDIDATEID",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFUSERCANDIDATENAME",expression="t1.WFUSERCANDIDATENAME",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`candidateorder`, t1.`createdate`, t1.`createman`, t1.`memo`, t1.`updatedate`, t1.`updateman`, t1.`userdata`, t1.`userdata2`, t1.`wfmajoruserid`, t11.`wfusername` AS `wfmajorusername`, t1.`wfminoruserid`, t21.`wfusername` AS `wfminorusername`, t1.`wfusercandidateid`, t1.`wfusercandidatename` FROM `t_srfwfusercandidate` t1  LEFT JOIN t_srfwfuser t11 ON t1.wfmajoruserid = t11.wfuserid  LEFT JOIN t_srfwfuser t21 ON t1.wfminoruserid = t21.wfuserid  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CANDIDATEORDER",expression="t1.`candidateorder`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.`memo`",showorder=3)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=4)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=5)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t1.`userdata`",showorder=6)
+        ,@DEDataQueryCodeExp(name="USERDATA2",expression="t1.`userdata2`",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFMAJORUSERID",expression="t1.`wfmajoruserid`",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFMAJORUSERNAME",expression="t11.`wfusername`",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFMINORUSERID",expression="t1.`wfminoruserid`",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFMINORUSERNAME",expression="t21.`wfusername`",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFUSERCANDIDATEID",expression="t1.`wfusercandidateid`",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFUSERCANDIDATENAME",expression="t1.`wfusercandidatename`",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CANDIDATEORDER, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATA2, t1.WFMAJORUSERID, t11.WFUSERNAME AS WFMAJORUSERNAME, t1.WFMINORUSERID, t21.WFUSERNAME AS WFMINORUSERNAME, t1.WFUSERCANDIDATEID, t1.WFUSERCANDIDATENAME FROM T_SRFWFUSERCANDIDATE t1  LEFT JOIN T_SRFWFUSER t11 ON t1.WFMAJORUSERID = t11.WFUSERID  LEFT JOIN T_SRFWFUSER t21 ON t1.WFMINORUSERID = t21.WFUSERID  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CANDIDATEORDER",expression="t1.CANDIDATEORDER",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=4)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=5)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t1.USERDATA",showorder=6)
+        ,@DEDataQueryCodeExp(name="USERDATA2",expression="t1.USERDATA2",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFMAJORUSERID",expression="t1.WFMAJORUSERID",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFMAJORUSERNAME",expression="t11.WFUSERNAME",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFMINORUSERID",expression="t1.WFMINORUSERID",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFMINORUSERNAME",expression="t21.WFUSERNAME",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFUSERCANDIDATEID",expression="t1.WFUSERCANDIDATEID",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFUSERCANDIDATENAME",expression="t1.WFUSERCANDIDATENAME",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CANDIDATEORDER, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATA2, t1.WFMAJORUSERID, t11.WFUSERNAME AS WFMAJORUSERNAME, t1.WFMINORUSERID, t21.WFUSERNAME AS WFMINORUSERNAME, t1.WFUSERCANDIDATEID, t1.WFUSERCANDIDATENAME FROM T_SRFWFUSERCANDIDATE t1  LEFT JOIN T_SRFWFUSER t11 ON t1.WFMAJORUSERID = t11.WFUSERID  LEFT JOIN T_SRFWFUSER t21 ON t1.WFMINORUSERID = t21.WFUSERID  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CANDIDATEORDER",expression="t1.CANDIDATEORDER",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=4)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=5)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t1.USERDATA",showorder=6)
+        ,@DEDataQueryCodeExp(name="USERDATA2",expression="t1.USERDATA2",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFMAJORUSERID",expression="t1.WFMAJORUSERID",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFMAJORUSERNAME",expression="t11.WFUSERNAME",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFMINORUSERID",expression="t1.WFMINORUSERID",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFMINORUSERNAME",expression="t21.WFUSERNAME",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFUSERCANDIDATEID",expression="t1.WFUSERCANDIDATEID",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFUSERCANDIDATENAME",expression="t1.WFUSERCANDIDATENAME",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CANDIDATEORDER, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATA, t1.USERDATA2, t1.WFMAJORUSERID, t11.WFUSERNAME AS WFMAJORUSERNAME, t1.WFMINORUSERID, t21.WFUSERNAME AS WFMINORUSERNAME, t1.WFUSERCANDIDATEID, t1.WFUSERCANDIDATENAME FROM T_SRFWFUSERCANDIDATE t1  LEFT JOIN T_SRFWFUSER t11 ON t1.WFMAJORUSERID = t11.WFUSERID  LEFT JOIN T_SRFWFUSER t21 ON t1.WFMINORUSERID = t21.WFUSERID  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CANDIDATEORDER",expression="t1.CANDIDATEORDER",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=4)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=5)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t1.USERDATA",showorder=6)
+        ,@DEDataQueryCodeExp(name="USERDATA2",expression="t1.USERDATA2",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFMAJORUSERID",expression="t1.WFMAJORUSERID",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFMAJORUSERNAME",expression="t11.WFUSERNAME",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFMINORUSERID",expression="t1.WFMINORUSERID",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFMINORUSERNAME",expression="t21.WFUSERNAME",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFUSERCANDIDATEID",expression="t1.WFUSERCANDIDATEID",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFUSERCANDIDATENAME",expression="t1.WFUSERCANDIDATENAME",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[CANDIDATEORDER], t1.[CREATEDATE], t1.[CREATEMAN], t1.[MEMO], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[USERDATA], t1.[USERDATA2], t1.[WFMAJORUSERID], t11.[WFUSERNAME] AS [WFMAJORUSERNAME], t1.[WFMINORUSERID], t21.[WFUSERNAME] AS [WFMINORUSERNAME], t1.[WFUSERCANDIDATEID], t1.[WFUSERCANDIDATENAME] FROM [T_SRFWFUSERCANDIDATE] t1  LEFT JOIN T_SRFWFUSER t11 ON t1.WFMAJORUSERID = t11.WFUSERID  LEFT JOIN T_SRFWFUSER t21 ON t1.WFMINORUSERID = t21.WFUSERID  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CANDIDATEORDER",expression="t1.[CANDIDATEORDER]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.[MEMO]",showorder=3)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=4)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=5)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t1.[USERDATA]",showorder=6)
+        ,@DEDataQueryCodeExp(name="USERDATA2",expression="t1.[USERDATA2]",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFMAJORUSERID",expression="t1.[WFMAJORUSERID]",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFMAJORUSERNAME",expression="t11.[WFUSERNAME]",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFMINORUSERID",expression="t1.[WFMINORUSERID]",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFMINORUSERNAME",expression="t21.[WFUSERNAME]",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFUSERCANDIDATEID",expression="t1.[WFUSERCANDIDATEID]",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFUSERCANDIDATENAME",expression="t1.[WFUSERCANDIDATENAME]",showorder=13)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class WFUserCandidateDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public WFUserCandidateDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(WFUserCandidateDefaultDQModelBase.class);
     }
-}
 
+}

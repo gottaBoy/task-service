@@ -1269,7 +1269,7 @@ implements Serializable {
                 PSUSDCModuleInst pSUSDCModuleInst = new PSUSDCModuleInst();
                 pSUSDCModuleInst.setPSUSDCModuleInstId(this.getPSUSDCModuleInstId());
                 PSUSDCModuleInstService pSUSDCModuleInstService = (PSUSDCModuleInstService)ServiceGlobal.getService(PSUSDCModuleInstService.class, (SessionFactory)this.getSessionFactory());
-                pSUSDCModuleInstService.autoGet((IEntity)pSUSDCModuleInst);
+                pSUSDCModuleInstService.autoGet(pSUSDCModuleInst);
                 this.psusdcmoduleinst = pSUSDCModuleInst;
             }
             return this.psusdcmoduleinst;
@@ -1295,7 +1295,7 @@ implements Serializable {
                 PSUSModuleInstFunc pSUSModuleInstFunc = new PSUSModuleInstFunc();
                 pSUSModuleInstFunc.setPSUSModuleInstFuncId(this.getPSUSModuleInstFuncId());
                 PSUSModuleInstFuncService pSUSModuleInstFuncService = (PSUSModuleInstFuncService)ServiceGlobal.getService(PSUSModuleInstFuncService.class, (SessionFactory)this.getSessionFactory());
-                pSUSModuleInstFuncService.autoGet((IEntity)pSUSModuleInstFunc);
+                pSUSModuleInstFuncService.autoGet(pSUSModuleInstFunc);
                 this.psusmoduleinstfunc = pSUSModuleInstFunc;
             }
             return this.psusmoduleinstfunc;

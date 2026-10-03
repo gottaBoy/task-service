@@ -89,7 +89,7 @@ extends PSDEDataCtrl {
         PSPFPreviewActionService psPFPreviewActionService = (PSPFPreviewActionService)ServiceGlobal.getService(PSPFPreviewActionService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSPFPreviewAction psPFPreviewAction = new PSPFPreviewAction();
         PSDEDataCtrl.convertEntity2(dataEntity, (IEntity)psPFPreviewAction);
-        psPFPreviewActionService.get((IEntity)psPFPreviewAction);
+        psPFPreviewActionService.get(psPFPreviewAction);
         if (WebContext.getCurrent() != null) {
             WebContext.getCurrent().setSessionValue("SRFLOGINNAME", (Object)psPFPreviewAction.getCreateMan());
         }
@@ -127,10 +127,9 @@ extends PSDEDataCtrl {
             psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
         }
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)strPSSysModelInstId));
-        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        psSysDevBKTaskService.create(psSysDevBKTask);
         SA.SRFDA.PS.Data.PSSysDevBKTask psSysDevBKTask2 = new SA.SRFDA.PS.Data.PSSysDevBKTask();
         PSPFPreviewActionDataCtrl.convertEntity((IEntity)psSysDevBKTask, psSysDevBKTask2);
         this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
     }
 }
-

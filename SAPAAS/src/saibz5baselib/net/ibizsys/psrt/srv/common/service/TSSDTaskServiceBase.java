@@ -1,755 +1,1302 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.annotation.PostConstruct
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.hibernate.SessionFactory
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.service;
 
 import java.util.ArrayList;
-import javax.annotation.PostConstruct;
+import java.util.List;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import net.ibizsys.paas.exception.ErrorException;
+import net.ibizsys.paas.api.IServiceAPIAction;
+import net.ibizsys.paas.core.PluginActionResult;
+import net.ibizsys.paas.core.IDataEntity;
 import net.ibizsys.paas.core.IDEDataSetFetchContext;
-import net.ibizsys.paas.dao.DAOGlobal;
-import net.ibizsys.paas.dao.IDAO;
+import net.ibizsys.paas.core.CallResult;
+import net.ibizsys.paas.db.DBCallResult;
 import net.ibizsys.paas.db.DBFetchResult;
-import net.ibizsys.paas.db.SelectCond;
-import net.ibizsys.paas.demodel.DEModelGlobal;
-import net.ibizsys.paas.demodel.IDataEntityModel;
-import net.ibizsys.paas.entity.EntityError;
-import net.ibizsys.paas.entity.EntityFieldError;
-import net.ibizsys.paas.entity.IEntity;
-import net.ibizsys.paas.service.CloneSession;
-import net.ibizsys.paas.service.IDataContextParam;
-import net.ibizsys.paas.service.IService;
-import net.ibizsys.paas.service.IServiceWork;
-import net.ibizsys.paas.service.ITransaction;
-import net.ibizsys.paas.service.ServiceGlobal;
-import net.ibizsys.paas.util.DataTypeHelper;
+import net.ibizsys.paas.db.IProcParam;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.psrt.srv.PSRuntimeSysServiceBase;
-import net.ibizsys.psrt.srv.common.dao.TSSDTaskDAO;
-import net.ibizsys.psrt.srv.common.demodel.TSSDTaskDEModel;
-import net.ibizsys.psrt.srv.common.entity.TSSDEngine;
-import net.ibizsys.psrt.srv.common.entity.TSSDEngineBase;
-import net.ibizsys.psrt.srv.common.entity.TSSDTask;
-import net.ibizsys.psrt.srv.common.service.TSSDTaskPolicyService;
-import net.ibizsys.psrt.srv.common.service.TSSDTaskService;
+import net.ibizsys.paas.util.StringBuilderEx;
+import net.ibizsys.paas.core.Errors;
+import net.ibizsys.paas.core.ActionContext;
+import net.ibizsys.paas.data.DataObject;
+import net.ibizsys.paas.service.ServiceGlobal;
+import net.ibizsys.paas.entity.IEntity;
+import net.ibizsys.paas.demodel.IDataEntityModel;
+import net.ibizsys.paas.demodel.DEModelGlobal;
+import net.ibizsys.paas.demodel.IDELogicModel;
+import net.ibizsys.paas.dao.DAOGlobal;
+import net.ibizsys.paas.web.WebContext;
+import net.ibizsys.paas.service.IService;
+import net.ibizsys.paas.util.DataTypeHelper;
+import net.ibizsys.paas.util.KeyValueHelper;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.SessionFactory;
 
-public abstract class TSSDTaskServiceBase
-extends PSRuntimeSysServiceBase<TSSDTask> {
+import net.ibizsys.paas.db.SelectCond;
+import net.ibizsys.paas.service.IServiceWork;
+import net.ibizsys.paas.service.IServicePlugin;
+import net.ibizsys.paas.service.ITransaction;
+import net.ibizsys.paas.dao.IDAO;
+import net.ibizsys.paas.service.CloneSession;
+import net.ibizsys.paas.service.ServiceBase;
+import net.ibizsys.paas.entity.EntityFieldError;
+import net.ibizsys.paas.entity.EntityError;
+
+import java.sql.Timestamp;
+
+import net.ibizsys.paas.util.DefaultValueHelper;
+
+import javax.annotation.PostConstruct;
+
+import net.ibizsys.paas.service.IDataContextParam;
+import net.sf.json.JSONObject;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+
+
+import net.ibizsys.psrt.srv.common.service.TSSDTaskLogService;
+import net.ibizsys.psrt.srv.common.entity.TSSDTaskLog;
+
+import net.ibizsys.psrt.srv.common.service.TSSDTaskPolicyService;
+import net.ibizsys.psrt.srv.common.entity.TSSDTaskPolicy;
+
+import net.ibizsys.psrt.srv.common.entity.TSSDTask;
+import net.ibizsys.psrt.srv.common.dao.TSSDTaskDAO;
+import net.ibizsys.psrt.srv.common.demodel.TSSDTaskDEModel;
+
+/**
+ * 实体[TSSDTask] 服务对象基类
+ */
+public abstract class TSSDTaskServiceBase extends net.ibizsys.psrt.srv.PSRuntimeSysServiceBase<TSSDTask> {
     private static final Log log = LogFactory.getLog(TSSDTaskServiceBase.class);
-    public static final String DATASET_DEFAULT = "DEFAULT";
-    private TSSDTaskDEModel tSSDTaskDEModel;
-    private TSSDTaskDAO tSSDTaskDAO;
+    /**
+     * 实体数据集合[DEFAULT]标识
+     */
+    public final static String DATASET_DEFAULT = "DEFAULT";
 
-    public static TSSDTaskService getInstance() throws Exception {
-        return TSSDTaskServiceBase.getInstance(null);
+
+    public TSSDTaskServiceBase () {
+        super();
+
     }
 
+    /**
+     * 获取实体[TSSDTask]服务对象
+     * @param sessionFactory
+     * @return
+     * @throws Exception
+     */
+    public static TSSDTaskService getInstance() throws Exception {
+        return getInstance(null);
+    }
+
+    /**
+     * 获取实体[TSSDTask]服务对象
+     * @param sessionFactory
+     * @return
+     * @throws Exception
+     */
     public static TSSDTaskService getInstance(SessionFactory sessionFactory) throws Exception {
         return (TSSDTaskService)ServiceGlobal.getService(TSSDTaskService.class, sessionFactory);
     }
 
-    @Override
+    /**
+     * Spring注册后执行构造处理
+     * @throws Exception
+     */
     @PostConstruct
     public void postConstruct() throws Exception {
-        ServiceGlobal.registerService(this.getServiceId(), this);
+        ServiceGlobal.registerService(getServiceId(), this);
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#getServiceId()
+     */
     @Override
     protected String getServiceId() {
         return "net.ibizsys.psrt.srv.common.service.TSSDTaskService";
     }
 
-    public TSSDTaskDEModel getTSSDTaskDEModel() {
-        if (this.tSSDTaskDEModel == null) {
+    private TSSDTaskDEModel tSSDTaskDEModel;
+    /**
+     * 获取实体[TSSDTask]模型对象
+     */
+    public  TSSDTaskDEModel getTSSDTaskDEModel() {
+        if(this.tSSDTaskDEModel==null) {
             try {
                 this.tSSDTaskDEModel = (TSSDTaskDEModel)DEModelGlobal.getDEModel("net.ibizsys.psrt.srv.common.demodel.TSSDTaskDEModel");
-            }
-            catch (Exception exception) {
-                // empty catch block
+            } catch(Exception ex) {
             }
         }
         return this.tSSDTaskDEModel;
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#getDEModel()
+     */
     @Override
-    public IDataEntityModel getDEModel() {
+    public  IDataEntityModel getDEModel() {
         return this.getTSSDTaskDEModel();
     }
 
-    public TSSDTaskDAO getTSSDTaskDAO() {
-        if (this.tSSDTaskDAO == null) {
+
+    private TSSDTaskDAO tSSDTaskDAO;
+
+    /**
+     * 获取实体[TSSDTask]数据操作对象
+     */
+    public  TSSDTaskDAO getTSSDTaskDAO() {
+        if(this.tSSDTaskDAO==null) {
             try {
-                this.tSSDTaskDAO = (TSSDTaskDAO)DAOGlobal.getDAO("net.ibizsys.psrt.srv.common.dao.TSSDTaskDAO", this.getSessionFactory());
-            }
-            catch (Exception exception) {
-                // empty catch block
+                this.tSSDTaskDAO= (TSSDTaskDAO)DAOGlobal.getDAO("net.ibizsys.psrt.srv.common.dao.TSSDTaskDAO",this.getSessionFactory());
+            } catch(Exception ex) {
             }
         }
         return this.tSSDTaskDAO;
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.IService#getDAO()
+     */
     @Override
-    public IDAO getDAO() {
+    public  IDAO getDAO() {
         return this.getTSSDTaskDAO();
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onfetchDataSet(java.lang.String, net.ibizsys.paas.core.IDEDataSetFetchContext)
+     */
     @Override
-    protected DBFetchResult onfetchDataSet(String strDataSetName, IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        if (StringHelper.compare(strDataSetName, DATASET_DEFAULT, true) == 0) {
+    protected DBFetchResult onfetchDataSet(String strDataSetName,IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
+        if(StringHelper.compare(strDataSetName,DATASET_DEFAULT,true)==0) {
             return this.fetchDefault(iDEDataSetFetchContext);
         }
-        return super.onfetchDataSet(strDataSetName, iDEDataSetFetchContext);
+        return super.onfetchDataSet(strDataSetName,iDEDataSetFetchContext);
     }
 
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onExecuteAction(java.lang.String, net.ibizsys.paas.entity.IEntity)
+     */
     @Override
-    protected void onExecuteAction(String strAction, IEntity entity) throws Exception {
-        super.onExecuteAction(strAction, entity);
+    protected  void onExecuteAction(String strAction,IEntity entity) throws Exception {
+        super.onExecuteAction(strAction,entity);
     }
 
+    /**
+     * 获取数据集合[DEFAULT]
+     * @param iDEDataSetFetchContext
+     * @return
+     * @throws Exception
+     */
     public DBFetchResult fetchDefault(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        DBFetchResult dbFetchResult = this.doServiceFetchWork(iDEDataSetFetchContext, DATASET_DEFAULT, false);
+
+        DBFetchResult dbFetchResult =  doServiceFetchWork(iDEDataSetFetchContext,DATASET_DEFAULT,false);
+        // dbFetchResult.getDataSet().cacheDataRow();
+        // session.close();
         return dbFetchResult;
     }
 
+
+
+
+
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onFillParentInfo(net.ibizsys.paas.entity.IEntity, java.lang.String, java.lang.String, java.lang.String)
+     */
     @Override
-    protected void onFillParentInfo(TSSDTask et, String strParentType, String strTypeParam, String strParentKey) throws Exception {
-        if ((StringHelper.compare(strParentType, "DER1N", true) == 0 || StringHelper.compare(strParentType, "SYSDER1N", true) == 0 || StringHelper.compare(strParentType, "DER11", true) == 0 || StringHelper.compare(strParentType, "SYSDER11", true) == 0) && StringHelper.compare(strTypeParam, "DER1N_TSSDTASK_TSSDENGINE_TSSDENGINEID", true) == 0) {
-            IService iService = ServiceGlobal.getService("net.ibizsys.psrt.srv.common.service.TSSDEngineService", this.getSessionFactory());
-            TSSDEngine parentEntity = (TSSDEngine)iService.getDEModel().createEntity();
-            parentEntity.set("TSSDENGINEID", DataTypeHelper.parse(25, strParentKey));
-            if (strParentKey.indexOf("SRFTEMPKEY:") == 0) {
+    protected void onFillParentInfo(TSSDTask et,String strParentType,String strTypeParam,String strParentKey) throws Exception {
+        //关系类型 : DER1N ,主实体 :TSSDENGINE / 任务调度引擎
+        if (((StringHelper.compare(strParentType, WebContext.PARAM_PARENTTYPE_DER1N, true) == 0)
+                ||(StringHelper.compare(strParentType, WebContext.PARAM_PARENTTYPE_SYSDER1N, true) == 0)
+                ||(StringHelper.compare(strParentType, WebContext.PARAM_PARENTTYPE_DER11, true) == 0)
+                ||(StringHelper.compare(strParentType, WebContext.PARAM_PARENTTYPE_SYSDER11, true) == 0))
+                && (StringHelper.compare(strTypeParam, "DER1N_TSSDTASK_TSSDENGINE_TSSDENGINEID", true)==0)) {
+            IService iService= ServiceGlobal.getService("net.ibizsys.psrt.srv.common.service.TSSDEngineService",this.getSessionFactory());
+            net.ibizsys.psrt.srv.common.entity.TSSDEngine parentEntity = ( net.ibizsys.psrt.srv.common.entity.TSSDEngine)iService.getDEModel().createEntity();
+            parentEntity.set(net.ibizsys.psrt.srv.common.entity.TSSDEngine.FIELD_TSSDENGINEID,DataTypeHelper.parse(25,strParentKey));
+            if(strParentKey.indexOf(ServiceBase.TEMPKEY) == 0)
                 iService.getTemp(parentEntity);
-            } else {
+            else
                 iService.get(parentEntity);
-            }
-            this.onFillParentInfo_TSSDEngine(et, parentEntity);
+            this.onFillParentInfo_TSSDEngine(et,parentEntity );
             return;
         }
-        super.onFillParentInfo(et, strParentType, strTypeParam, strParentKey);
+        super.onFillParentInfo(et,strParentType,strTypeParam,strParentKey);
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onSyncDER1NData(java.lang.String, java.lang.String, java.lang.String)
+     */
     @Override
     protected String onSyncDER1NData(String strDER1NId, String strParentKey, String strDatas) throws Exception {
-        return super.onSyncDER1NData(strDER1NId, strParentKey, strDatas);
+        return super.onSyncDER1NData( strDER1NId,  strParentKey,  strDatas);
     }
 
-    protected void onFillParentInfo_TSSDEngine(TSSDTask et, TSSDEngine parentEntity) throws Exception {
+
+    /**
+    * 填充数据的父数据信息[任务调度引擎]
+    * @param et 当前数据对象
+    * @param parentEntity 父数据对象
+    * @throws Exception
+    */
+    protected void onFillParentInfo_TSSDEngine(TSSDTask et,net.ibizsys.psrt.srv.common.entity.TSSDEngine parentEntity) throws Exception {
         et.setTSSDEngineId(parentEntity.getTSSDEngineId());
         et.setTSSDEngineName(parentEntity.getTSSDEngineName());
     }
 
+
+
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onFillEntityFullInfo(net.ibizsys.paas.entity.IEntity, boolean)
+     */
     @Override
     protected void onFillEntityFullInfo(TSSDTask et, boolean bCreate) throws Exception {
+        //填充新建默认值
+        if(bCreate) {
+        }
         super.onFillEntityFullInfo(et, bCreate);
-        this.onFillEntityFullInfo_TSSDEngine(et, bCreate);
+
+        //填充物理化外键相关属性
+        //关系类型 : DER1N ,主实体 :TSSDENGINE / 任务调度引擎
+        onFillEntityFullInfo_TSSDEngine(et, bCreate);
     }
 
+    /**
+    * 填充实体的数据信息 任务调度引擎
+    * @param et
+    * @param bCreate 是否建立
+    * @throws Exception
+    */
     protected void onFillEntityFullInfo_TSSDEngine(TSSDTask et, boolean bCreate) throws Exception {
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onWriteBackParent(net.ibizsys.paas.entity.IEntity, boolean)
+     */
     @Override
     protected void onWriteBackParent(TSSDTask et, boolean bCreate) throws Exception {
         super.onWriteBackParent(et, bCreate);
     }
 
-    public ArrayList<TSSDTask> selectByTSSDEngine(TSSDEngineBase parentEntity) throws Exception {
-        return this.selectByTSSDEngine(parentEntity, "");
-    }
 
-    public ArrayList<TSSDTask> selectByTSSDEngine(TSSDEngineBase parentEntity, String strOrderInfo) throws Exception {
+
+
+    /**
+     * 通过关系[任务调度引擎]父数据查询数据
+     * @param parentEntity 父数据
+     * @throws Exception
+     */
+    public java.util.ArrayList<TSSDTask> selectByTSSDEngine(net.ibizsys.psrt.srv.common.entity.TSSDEngineBase parentEntity) throws Exception {
+        return selectByTSSDEngine( parentEntity,"");
+    }
+    /**
+     * 通过关系[任务调度引擎]父数据查询数据
+     * @param parentEntity 父数据
+     * @param strOrderInfo 排序信息
+     * @throws Exception
+     */
+    public java.util.ArrayList<TSSDTask> selectByTSSDEngine(net.ibizsys.psrt.srv.common.entity.TSSDEngineBase parentEntity,String strOrderInfo) throws Exception {
         SelectCond selectCond = new SelectCond();
-        selectCond.setConditon("TSSDENGINEID", parentEntity.getTSSDEngineId());
+        selectCond.setConditon(TSSDTask.FIELD_TSSDENGINEID, parentEntity.getTSSDEngineId());
         selectCond.setOrderInfo(strOrderInfo);
-        this.onFillSelectByTSSDEngineCond(selectCond);
+        onFillSelectByTSSDEngineCond(selectCond);
         return this.select(selectCond);
     }
 
+    /**
+     * 填充关系[任务调度引擎]父数据查询附加条件
+     * @param selectCond 查询条件对象
+     * @throws Exception
+     */
     protected void onFillSelectByTSSDEngineCond(SelectCond selectCond) throws Exception {
+
     }
 
-    public void testRemoveByTSSDEngine(TSSDEngine parentEntity) throws Exception {
+
+
+
+    /**
+     * 判断是否能够通过关系[任务调度引擎]删除数据
+     * @param parentEntity 父数据
+     * @throws Exception
+     */
+    public void testRemoveByTSSDEngine(net.ibizsys.psrt.srv.common.entity.TSSDEngine parentEntity) throws Exception {
     }
 
-    public void resetTSSDEngine(TSSDEngine parentEntity) throws Exception {
-        ArrayList<TSSDTask> list = this.selectByTSSDEngine(parentEntity);
-        for (TSSDTask item : list) {
-            TSSDTask item2 = (TSSDTask)this.getDEModel().createEntity();
+
+    /**
+     * 通过关系[任务调度引擎]重置数据
+     * @param parentEntity 父数据
+     * @throws Exception
+     */
+    public void resetTSSDEngine(net.ibizsys.psrt.srv.common.entity.TSSDEngine parentEntity) throws Exception {
+        java.util.ArrayList<TSSDTask> list =  this.selectByTSSDEngine(parentEntity);
+        for(TSSDTask item:list) {
+            TSSDTask item2 = (TSSDTask)getDEModel().createEntity();
             item2.setTSSDTaskId(item.getTSSDTaskId());
             item2.setTSSDEngineId(null);
             this.update(item2);
         }
     }
 
-    public void removeByTSSDEngine(TSSDEngine parentEntity) throws Exception {
-        final TSSDEngine parentEntity2 = parentEntity;
-        this.doServiceWork(new IServiceWork(){
 
+    /**
+     * 通过关系[任务调度引擎]删除数据
+     * @param parentEntity 父数据
+     * @throws Exception
+     */
+    public void removeByTSSDEngine(net.ibizsys.psrt.srv.common.entity.TSSDEngine parentEntity) throws Exception {
+        final net.ibizsys.psrt.srv.common.entity.TSSDEngine parentEntity2 = parentEntity;
+        this.doServiceWork(new IServiceWork() {
             @Override
             public void execute(ITransaction iTransaction) throws Exception {
-                TSSDTaskServiceBase.this.onBeforeRemoveByTSSDEngine(parentEntity2);
-                TSSDTaskServiceBase.this.internalRemoveByTSSDEngine(parentEntity2);
-                TSSDTaskServiceBase.this.onAfterRemoveByTSSDEngine(parentEntity2);
+                onBeforeRemoveByTSSDEngine(parentEntity2);
+                internalRemoveByTSSDEngine(parentEntity2);
+                onAfterRemoveByTSSDEngine(parentEntity2);
             }
         });
     }
 
-    protected void onBeforeRemoveByTSSDEngine(TSSDEngine parentEntity) throws Exception {
+    /**
+     * 通过关系[任务调度引擎]删除数据之前调用
+     * @param parentEntity 父数据
+     * @throws Exception
+     */
+    protected void onBeforeRemoveByTSSDEngine(net.ibizsys.psrt.srv.common.entity.TSSDEngine parentEntity) throws Exception {
+
     }
 
-    protected void internalRemoveByTSSDEngine(TSSDEngine parentEntity) throws Exception {
-        ArrayList<TSSDTask> removeList = this.selectByTSSDEngine(parentEntity);
-        this.onBeforeRemoveByTSSDEngine(parentEntity, removeList);
-        for (TSSDTask item : removeList) {
-            this.remove(item);
+    /**
+    * 内部删除数据，通过关系[任务调度引擎]
+    * @param parentEntity 父数据
+    * @throws Exception
+    */
+    protected void internalRemoveByTSSDEngine(net.ibizsys.psrt.srv.common.entity.TSSDEngine parentEntity) throws Exception {
+        java.util.ArrayList<TSSDTask> removeList = selectByTSSDEngine(parentEntity);
+        onBeforeRemoveByTSSDEngine(parentEntity,removeList );
+
+        // 执行删除
+        for (TSSDTask item : removeList ) {
+            remove(item );
         }
-        this.onAfterRemoveByTSSDEngine(parentEntity, removeList);
+        onAfterRemoveByTSSDEngine(parentEntity,removeList );
     }
 
-    protected void onAfterRemoveByTSSDEngine(TSSDEngine parentEntity) throws Exception {
+    /**
+     * 通过关系[任务调度引擎]删除数据之后调用
+     * @param parentEntity 父数据
+     * @throws Exception
+     */
+    protected void onAfterRemoveByTSSDEngine(net.ibizsys.psrt.srv.common.entity.TSSDEngine parentEntity) throws Exception {
+
     }
 
-    protected void onBeforeRemoveByTSSDEngine(TSSDEngine parentEntity, ArrayList<TSSDTask> removeList) throws Exception {
+    /**
+     * 通过关系[任务调度引擎]删除数据之前调用
+     * @param parentEntity 父数据
+     * @param removeList 要删除的数据清单
+     * @throws Exception
+     */
+    protected void onBeforeRemoveByTSSDEngine(net.ibizsys.psrt.srv.common.entity.TSSDEngine parentEntity,java.util.ArrayList<TSSDTask> removeList) throws Exception {
+
     }
 
-    protected void onAfterRemoveByTSSDEngine(TSSDEngine parentEntity, ArrayList<TSSDTask> removeList) throws Exception {
+    /**
+     * 通过关系[任务调度引擎]删除数据之后调用
+     * @param parentEntity 父数据
+     * @param removeList 要删除的数据清单
+     * @throws Exception
+     */
+    protected void onAfterRemoveByTSSDEngine(net.ibizsys.psrt.srv.common.entity.TSSDEngine parentEntity,java.util.ArrayList<TSSDTask> removeList) throws Exception {
+
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onBeforeRemove(net.ibizsys.paas.entity.IEntity)
+     */
     @Override
     protected void onBeforeRemove(TSSDTask et) throws Exception {
-        TSSDTaskPolicyService service = (TSSDTaskPolicyService)ServiceGlobal.getService(TSSDTaskPolicyService.class, this.getSessionFactory());
-        service.testRemoveByTSSDTask(et);
-        service = (TSSDTaskPolicyService)ServiceGlobal.getService(TSSDTaskPolicyService.class, this.getSessionFactory());
-        service.removeByTSSDTask(et);
+        //判断是否可以删除 关系 调度任务项策略 数据
+        if(true) {
+            TSSDTaskPolicyService service = (TSSDTaskPolicyService)ServiceGlobal.getService(TSSDTaskPolicyService.class,this.getSessionFactory());
+            service.testRemoveByTSSDTask(et);
+        }
+
+        //删除 关系 调度任务项策略 数据
+        if(true) {
+            TSSDTaskPolicyService service = (TSSDTaskPolicyService)ServiceGlobal.getService(TSSDTaskPolicyService.class,this.getSessionFactory());
+            service.removeByTSSDTask(et);
+        }
         super.onBeforeRemove(et);
     }
 
+
+
+
+
+    /**
+     * 替换父数据信息
+     * @param et
+     * @throws Exception
+     */
     @Override
-    protected void replaceParentInfo(TSSDTask et, CloneSession cloneSession) throws Exception {
-        IEntity entity;
+    protected void replaceParentInfo(TSSDTask et,CloneSession cloneSession) throws Exception {
         super.replaceParentInfo(et, cloneSession);
-        if (et.getTSSDEngineId() != null && (entity = cloneSession.getEntity("TSSDENGINE", et.getTSSDEngineId())) != null) {
-            this.onFillParentInfo_TSSDEngine(et, (TSSDEngine)entity);
+        //循环所有的从关系，判断有误替换
+        if(et.getTSSDEngineId()!=null) {
+            IEntity entity = cloneSession.getEntity("TSSDENGINE",et.getTSSDEngineId());
+            if(entity !=null) {
+                onFillParentInfo_TSSDEngine(et,(net.ibizsys.psrt.srv.common.entity.TSSDEngine) entity);
+            }
         }
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onRemoveEntityUncopyValues(net.ibizsys.paas.entity.IEntity, boolean)
+     */
     @Override
     protected void onRemoveEntityUncopyValues(TSSDTask et, boolean bTempMode) throws Exception {
-        super.onRemoveEntityUncopyValues(et, bTempMode);
+        super.onRemoveEntityUncopyValues(et,  bTempMode);
     }
 
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onCheckEntity(boolean, net.ibizsys.paas.entity.IEntity, boolean, boolean, net.ibizsys.paas.entity.EntityError)
+     */
     @Override
-    protected void onCheckEntity(boolean bBaseMode, TSSDTask et, boolean bCreate, boolean bTempMode, EntityError entityError) throws Exception {
+    protected void onCheckEntity(boolean bBaseMode,TSSDTask  et, boolean bCreate, boolean bTempMode,EntityError entityError) throws Exception {
         EntityFieldError entityFieldError = null;
-        entityFieldError = this.onCheckField_EnableFlag(bBaseMode, et, bCreate, bTempMode);
-        if (entityFieldError != null) {
+        //检查属性 启用标志
+        entityFieldError = onCheckField_EnableFlag( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_TaskParam(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 任务参数
+        entityFieldError = onCheckField_TaskParam( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_TSSDEngineId(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 任务调度引擎
+        entityFieldError = onCheckField_TSSDEngineId( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_TSSDTaskId(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 任务调度任务项标识
+        entityFieldError = onCheckField_TSSDTaskId( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_TSSDTaskName(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 调度任务项名称
+        entityFieldError = onCheckField_TSSDTaskName( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_UserData(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 用户数据
+        entityFieldError = onCheckField_UserData( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_UserData2(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 用户数据2
+        entityFieldError = onCheckField_UserData2( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_UserData3(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 用户数据3
+        entityFieldError = onCheckField_UserData3( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_UserData4(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 用户数据4
+        entityFieldError = onCheckField_UserData4( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_Version(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 版本
+        entityFieldError = onCheckField_Version( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bBaseMode, et, bCreate, bTempMode, entityError);
+        super.onCheckEntity(bBaseMode,et,  bCreate,bTempMode,entityError);
     }
 
-    protected EntityFieldError onCheckField_EnableFlag(boolean bBaseMode, TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isEnableFlagDirty()) {
-            if (bBaseMode && bCreate) {
+
+    /**
+     * 获取属性[EnableFlag]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_EnableFlag(boolean bBaseMode,TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isEnableFlagDirty()) {
+            if(bBaseMode && bCreate) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("ENABLEFLAG");
-                entityFieldError.setErrorType(1);
+                entityFieldError.setFieldName(TSSDTask.FIELD_ENABLEFLAG);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_EMPTY);
                 return entityFieldError;
             }
             return null;
         }
+
         Integer value = et.getEnableFlag();
-        if (bBaseMode) {
-            if (bCreate && value == null) {
-                EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("ENABLEFLAG");
-                entityFieldError.setErrorType(1);
-                return entityFieldError;
+        if(bBaseMode) {
+            if(bCreate) {
+                if(value==null) {
+                    EntityFieldError entityFieldError = new EntityFieldError();
+                    entityFieldError.setFieldName(TSSDTask.FIELD_ENABLEFLAG);
+                    entityFieldError.setErrorType(EntityFieldError.ERROR_EMPTY);
+                    return entityFieldError;
+                }
             }
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_EnableFlag_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_EnableFlag_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("ENABLEFLAG");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(TSSDTask.FIELD_ENABLEFLAG);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_TaskParam(boolean bBaseMode, TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isTaskParamDirty()) {
+
+    /**
+     * 获取属性[TaskParam]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_TaskParam(boolean bBaseMode,TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isTaskParamDirty()) {
             return null;
         }
+
         String value = et.getTaskParam();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_TaskParam_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_TaskParam_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("TASKPARAM");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(TSSDTask.FIELD_TASKPARAM);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_TSSDEngineId(boolean bBaseMode, TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isTSSDEngineIdDirty()) {
+
+    /**
+     * 获取属性[TSSDEngineId]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_TSSDEngineId(boolean bBaseMode,TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isTSSDEngineIdDirty()) {
             return null;
         }
+
         String value = et.getTSSDEngineId();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_TSSDEngineId_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_TSSDEngineId_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("TSSDENGINEID");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(TSSDTask.FIELD_TSSDENGINEID);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_TSSDTaskId(boolean bBaseMode, TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isTSSDTaskIdDirty()) {
-            if (bBaseMode && bCreate) {
+
+    /**
+     * 获取属性[TSSDTaskId]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_TSSDTaskId(boolean bBaseMode,TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isTSSDTaskIdDirty()) {
+            if(bBaseMode && bCreate) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("TSSDTASKID");
-                entityFieldError.setErrorType(1);
+                entityFieldError.setFieldName(TSSDTask.FIELD_TSSDTASKID);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_EMPTY);
                 return entityFieldError;
             }
             return null;
         }
+
         String value = et.getTSSDTaskId();
-        if (bBaseMode) {
-            if (bCreate && StringHelper.isNullOrEmpty(value)) {
-                EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("TSSDTASKID");
-                entityFieldError.setErrorType(1);
-                return entityFieldError;
+        if(bBaseMode) {
+            if(bCreate) {
+                if(StringHelper.isNullOrEmpty(value)) {
+                    EntityFieldError entityFieldError = new EntityFieldError();
+                    entityFieldError.setFieldName(TSSDTask.FIELD_TSSDTASKID);
+                    entityFieldError.setErrorType(EntityFieldError.ERROR_EMPTY);
+                    return entityFieldError;
+                }
             }
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_TSSDTaskId_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_TSSDTaskId_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("TSSDTASKID");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(TSSDTask.FIELD_TSSDTASKID);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_TSSDTaskName(boolean bBaseMode, TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isTSSDTaskNameDirty()) {
-            if (bBaseMode && bCreate) {
+
+    /**
+     * 获取属性[TSSDTaskName]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_TSSDTaskName(boolean bBaseMode,TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isTSSDTaskNameDirty()) {
+            if(bBaseMode && bCreate) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("TSSDTASKNAME");
-                entityFieldError.setErrorType(1);
+                entityFieldError.setFieldName(TSSDTask.FIELD_TSSDTASKNAME);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_EMPTY);
                 return entityFieldError;
             }
             return null;
         }
+
         String value = et.getTSSDTaskName();
-        if (bBaseMode) {
-            if (bCreate && StringHelper.isNullOrEmpty(value)) {
-                EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("TSSDTASKNAME");
-                entityFieldError.setErrorType(1);
-                return entityFieldError;
+        if(bBaseMode) {
+            if(bCreate) {
+                if(StringHelper.isNullOrEmpty(value)) {
+                    EntityFieldError entityFieldError = new EntityFieldError();
+                    entityFieldError.setFieldName(TSSDTask.FIELD_TSSDTASKNAME);
+                    entityFieldError.setErrorType(EntityFieldError.ERROR_EMPTY);
+                    return entityFieldError;
+                }
             }
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_TSSDTaskName_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_TSSDTaskName_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("TSSDTASKNAME");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(TSSDTask.FIELD_TSSDTASKNAME);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_UserData(boolean bBaseMode, TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isUserDataDirty()) {
+
+    /**
+     * 获取属性[UserData]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_UserData(boolean bBaseMode,TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isUserDataDirty()) {
             return null;
         }
+
         String value = et.getUserData();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_UserData_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_UserData_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("USERDATA");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(TSSDTask.FIELD_USERDATA);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_UserData2(boolean bBaseMode, TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isUserData2Dirty()) {
+
+    /**
+     * 获取属性[UserData2]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_UserData2(boolean bBaseMode,TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isUserData2Dirty()) {
             return null;
         }
+
         String value = et.getUserData2();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_UserData2_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_UserData2_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("USERDATA2");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(TSSDTask.FIELD_USERDATA2);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_UserData3(boolean bBaseMode, TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isUserData3Dirty()) {
+
+    /**
+     * 获取属性[UserData3]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_UserData3(boolean bBaseMode,TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isUserData3Dirty()) {
             return null;
         }
+
         String value = et.getUserData3();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_UserData3_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_UserData3_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("USERDATA3");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(TSSDTask.FIELD_USERDATA3);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_UserData4(boolean bBaseMode, TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isUserData4Dirty()) {
+
+    /**
+     * 获取属性[UserData4]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_UserData4(boolean bBaseMode,TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isUserData4Dirty()) {
             return null;
         }
+
         String value = et.getUserData4();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_UserData4_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_UserData4_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("USERDATA4");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(TSSDTask.FIELD_USERDATA4);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_Version(boolean bBaseMode, TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isVersionDirty()) {
-            if (bBaseMode && bCreate) {
+
+    /**
+     * 获取属性[Version]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_Version(boolean bBaseMode,TSSDTask et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isVersionDirty()) {
+            if(bBaseMode && bCreate) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("VERSION");
-                entityFieldError.setErrorType(1);
+                entityFieldError.setFieldName(TSSDTask.FIELD_VERSION);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_EMPTY);
                 return entityFieldError;
             }
             return null;
         }
+
         Integer value = et.getVersion();
-        if (bBaseMode) {
-            if (bCreate && value == null) {
-                EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("VERSION");
-                entityFieldError.setErrorType(1);
-                return entityFieldError;
+        if(bBaseMode) {
+            if(bCreate) {
+                if(value==null) {
+                    EntityFieldError entityFieldError = new EntityFieldError();
+                    entityFieldError.setFieldName(TSSDTask.FIELD_VERSION);
+                    entityFieldError.setErrorType(EntityFieldError.ERROR_EMPTY);
+                    return entityFieldError;
+                }
             }
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_Version_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_Version_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("VERSION");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(TSSDTask.FIELD_VERSION);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
+
+
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onSyncEntity(net.ibizsys.paas.entity.IEntity, boolean)
+     */
     @Override
     protected void onSyncEntity(TSSDTask et, boolean bRemove) throws Exception {
-        super.onSyncEntity(et, bRemove);
+        super.onSyncEntity( et,  bRemove);
     }
 
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onSyncIndexEntities(net.ibizsys.paas.entity.IEntity, boolean)
+     */
     @Override
-    protected void onSyncIndexEntities(TSSDTask et, boolean bRemove) throws Exception {
-        super.onSyncIndexEntities(et, bRemove);
+    protected void onSyncIndexEntities(TSSDTask et,boolean bRemove) throws Exception {
+        super.onSyncIndexEntities(et,bRemove);
     }
 
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#getDataContextValue(net.ibizsys.paas.entity.IEntity, java.lang.String, net.ibizsys.paas.service.IDataContextParam)
+     */
     @Override
-    public Object getDataContextValue(TSSDTask et, String strField, IDataContextParam iDataContextParam) throws Exception {
+    public Object getDataContextValue(TSSDTask et,String strField,IDataContextParam iDataContextParam)throws Exception {
         Object objValue = null;
-        objValue = super.getDataContextValue(et, strField, iDataContextParam);
-        if (objValue != null) {
+        if(iDataContextParam!=null) {
+        }
+
+        objValue = super.getDataContextValue(et,strField,iDataContextParam);
+        if(objValue!=null)
             return objValue;
-        }
+
         return null;
     }
 
+
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onTestValueRule(java.lang.String, java.lang.String, net.ibizsys.paas.entity.IEntity, boolean, boolean)
+     */
     @Override
-    protected String onTestValueRule(String strDEFieldName, String strRule, IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (StringHelper.compare(strDEFieldName, "CREATEDATE", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_CreateDate_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "CREATEMAN", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_CreateMan_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "ENABLEFLAG", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_EnableFlag_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "TASKPARAM", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_TaskParam_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "TSSDENGINEID", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_TSSDEngineId_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "TSSDENGINENAME", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_TSSDEngineName_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "TSSDTASKID", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_TSSDTaskId_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "TSSDTASKNAME", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_TSSDTaskName_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "UPDATEDATE", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_UpdateDate_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "UPDATEMAN", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_UpdateMan_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "USERDATA", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_UserData_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "USERDATA2", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_UserData2_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "USERDATA3", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_UserData3_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "USERDATA4", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_UserData4_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "VERSION", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_Version_Default(et, bCreate, bTempMode);
-        }
-        return super.onTestValueRule(strDEFieldName, strRule, et, bCreate, bTempMode);
+    protected String onTestValueRule(String strDEFieldName,String strRule,IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_CREATEDATE,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_CreateDate_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_CREATEMAN,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_CreateMan_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_ENABLEFLAG,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_EnableFlag_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_TASKPARAM,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_TaskParam_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_TSSDENGINEID,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_TSSDEngineId_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_TSSDENGINENAME,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_TSSDEngineName_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_TSSDTASKID,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_TSSDTaskId_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_TSSDTASKNAME,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_TSSDTaskName_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_UPDATEDATE,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_UpdateDate_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_UPDATEMAN,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_UpdateMan_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_USERDATA,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_UserData_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_USERDATA2,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_UserData2_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_USERDATA3,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_UserData3_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_USERDATA4,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_UserData4_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,TSSDTask.FIELD_VERSION,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_Version_Default(et,bCreate,bTempMode);
+
+        return super.onTestValueRule( strDEFieldName, strRule, et,bCreate, bTempMode);
     }
 
-    protected String onTestValueRule_CreateDate_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[建立时间][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_CreateDate_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         return null;
     }
 
-    protected String onTestValueRule_CreateMan_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[建立人][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_CreateMan_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("CREATEMAN", et, bTempMode, null, false, 60, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[60]", false)) {
+            if((checkFieldStringLengthRule("CREATEMAN", et, bTempMode,null,false,60,true,"内容长度必须小于等于[60]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[60]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[60]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_EnableFlag_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[启用标志][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_EnableFlag_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         return null;
     }
 
-    protected String onTestValueRule_TaskParam_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[任务参数][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_TaskParam_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("TASKPARAM", et, bTempMode, null, false, 0x100000, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[1048576]", false)) {
+            if((checkFieldStringLengthRule("TASKPARAM", et, bTempMode,null,false,1048576,true,"内容长度必须小于等于[1048576]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[1048576]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[1048576]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_TSSDEngineId_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[任务调度引擎][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_TSSDEngineId_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("TSSDENGINEID", et, bTempMode, null, false, 100, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]", false)) {
+            if((checkFieldStringLengthRule("TSSDENGINEID", et, bTempMode,null,false,100,true,"内容长度必须小于等于[100]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[100]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_TSSDEngineName_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[任务调度引擎][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_TSSDEngineName_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("TSSDENGINENAME", et, bTempMode, null, false, 200, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]", false)) {
+            if((checkFieldStringLengthRule("TSSDENGINENAME", et, bTempMode,null,false,200,true,"内容长度必须小于等于[200]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[200]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_TSSDTaskId_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[任务调度任务项标识][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_TSSDTaskId_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("TSSDTASKID", et, bTempMode, null, false, 100, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]", false)) {
+            if((checkFieldStringLengthRule("TSSDTASKID", et, bTempMode,null,false,100,true,"内容长度必须小于等于[100]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[100]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_TSSDTaskName_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[调度任务项名称][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_TSSDTaskName_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("TSSDTASKNAME", et, bTempMode, null, false, 200, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]", false)) {
+            if((checkFieldStringLengthRule("TSSDTASKNAME", et, bTempMode,null,false,200,true,"内容长度必须小于等于[200]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[200]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_UpdateDate_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[更新时间][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_UpdateDate_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         return null;
     }
 
-    protected String onTestValueRule_UpdateMan_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[更新人][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_UpdateMan_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("UPDATEMAN", et, bTempMode, null, false, 60, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[60]", false)) {
+            if((checkFieldStringLengthRule("UPDATEMAN", et, bTempMode,null,false,60,true,"内容长度必须小于等于[60]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[60]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[60]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_UserData_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[用户数据][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_UserData_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("USERDATA", et, bTempMode, null, false, 500, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[500]", false)) {
+            if((checkFieldStringLengthRule("USERDATA", et, bTempMode,null,false,500,true,"内容长度必须小于等于[500]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[500]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[500]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_UserData2_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[用户数据2][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_UserData2_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("USERDATA2", et, bTempMode, null, false, 200, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]", false)) {
+            if((checkFieldStringLengthRule("USERDATA2", et, bTempMode,null,false,200,true,"内容长度必须小于等于[200]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[200]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_UserData3_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[用户数据3][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_UserData3_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("USERDATA3", et, bTempMode, null, false, 200, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]", false)) {
+            if((checkFieldStringLengthRule("USERDATA3", et, bTempMode,null,false,200,true,"内容长度必须小于等于[200]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[200]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_UserData4_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[用户数据4][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_UserData4_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("USERDATA4", et, bTempMode, null, false, 200, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]", false)) {
+            if((checkFieldStringLengthRule("USERDATA4", et, bTempMode,null,false,200,true,"内容长度必须小于等于[200]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[200]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_Version_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[版本][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_Version_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         return null;
     }
 
+
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onMergeChild(java.lang.String, java.lang.String, net.ibizsys.paas.entity.IEntity)
+     */
     @Override
     protected boolean onMergeChild(String strChildType, String strTypeParam, TSSDTask et) throws Exception {
         boolean bRet = false;
-        if (super.onMergeChild(strChildType, strTypeParam, et)) {
+        if(super.onMergeChild( strChildType, strTypeParam,  et))
             bRet = true;
-        }
         return bRet;
     }
 
+
+
+    /**
+     * 更新父数据
+     * @param et
+     * @throws Exception
+     */
     @Override
-    protected void onUpdateParent(TSSDTask et) throws Exception {
+    protected void onUpdateParent(TSSDTask et)throws Exception {
         super.onUpdateParent(et);
     }
-}
 
+
+}

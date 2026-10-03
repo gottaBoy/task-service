@@ -1,23 +1,57 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
 import java.util.ArrayList;
+
 import net.ibizsys.paas.control.calendar.ICalendarItem;
-import net.ibizsys.paas.ctrlhandler.IMDCtrlRender;
 import net.ibizsys.paas.ctrlmodel.ICalendarModel;
 import net.ibizsys.paas.web.IWebContext;
 import net.ibizsys.paas.web.MDAjaxActionResult;
 
-public interface ICalendarRender
-extends IMDCtrlRender {
-    public String getItemType(IWebContext var1) throws Exception;
+/**
+ * 日历视图绘制器接口
+ * 
+ * @author Administrator
+ * 
+ */
+public interface ICalendarRender extends IMDCtrlRender {
 
-    public String getItemId(IWebContext var1) throws Exception;
-
-    public void fillFetchResult(ICalendarModel var1, MDAjaxActionResult var2, ArrayList<ICalendarItem> var3) throws Exception;
-
-    public void fillItemResult(ICalendarModel var1, MDAjaxActionResult var2, ICalendarItem var3) throws Exception;
+	/**
+	 * 获取传入的日历项类型
+	 * @param iWebContext
+	 * @return
+	 * @throws Exception
+	 */
+	String getItemType(IWebContext iWebContext) throws Exception;
+	
+	
+	/**
+	 * 获取传入的日历项标识
+	 * @param iWebContext
+	 * @return
+	 * @throws Exception
+	 */
+	String getItemId(IWebContext iWebContext) throws Exception;
+	
+	
+	/**
+	 * 填充数据获取结果
+	 * @param iCalendarModel
+	 * @param fetchResult
+	 * @param calendarItemList
+	 * @throws Exception
+	 */
+	void fillFetchResult(ICalendarModel iCalendarModel, MDAjaxActionResult fetchResult, ArrayList<ICalendarItem> calendarItemList) throws Exception;
+	
+	
+	
+	
+	
+	/**
+	 * 填充数据获取结果
+	 * @param iCalendarModel
+	 * @param fetchResult
+	 * @param iCalendarItem
+	 * @throws Exception
+	 */
+	void fillItemResult(ICalendarModel iCalendarModel, MDAjaxActionResult fetchResult, ICalendarItem iCalendarItem) throws Exception;
 }
-

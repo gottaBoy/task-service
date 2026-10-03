@@ -157,7 +157,7 @@ implements Serializable {
         PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevCenter pSDevCenter = new PSDevCenter();
         pSDevCenter.setPSDevCenterId(string);
-        if (!pSDevCenterService.get((IEntity)pSDevCenter, true)) {
+        if (!pSDevCenterService.get(pSDevCenter, true)) {
             throw new ErrorException(2, StringHelper.format((String)"\u5e94\u7528\u4e2d\u5fc3\u4e0d\u5b58\u5728"));
         }
         if (!StringHelper.isNullOrEmpty((String)PSSysModelInstGlobal.getCurrentPSSvrDomainId()) && !StringHelper.isNullOrEmpty((String)pSDevCenter.getPSSvrDomainId()) && StringHelper.compare((String)pSDevCenter.getPSSvrDomainId(), (String)PSSysModelInstGlobal.getCurrentPSSvrDomainId(), (boolean)false) != 0) {

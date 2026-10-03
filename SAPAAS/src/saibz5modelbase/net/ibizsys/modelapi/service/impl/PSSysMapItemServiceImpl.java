@@ -84,7 +84,7 @@ implements IPSSysMapItemService {
     @Override
     protected List<PSSysMapItem> onListAll() throws Exception {
         ArrayList<PSSysMapItem> list = new ArrayList<PSSysMapItem>();
-        List pssysmapviews = PSModelServiceUtil.getInstance().getPSSysMapViewService().listAll();
+        List<PSSysMapView> pssysmapviews = PSModelServiceUtil.getInstance().getPSSysMapViewService().listAll();
         if (pssysmapviews != null) {
             for (PSSysMapView parent : pssysmapviews) {
                 List<PSSysMapItem> items = this.listByPSSysMapView(parent);

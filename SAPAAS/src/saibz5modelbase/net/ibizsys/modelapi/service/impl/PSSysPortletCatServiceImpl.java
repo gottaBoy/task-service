@@ -115,9 +115,9 @@ implements IPSSysPortletCatService {
 
     @Override
     protected List<PSSysPortletCat> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysPortletCat> list = new ArrayList<PSSysPortletCat>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysPortletCat> items = this.listByPSModule(parent);

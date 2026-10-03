@@ -1,16 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFEmbedWFReturnModel
- */
 package net.ibizsys.model.wf;
 
-import net.ibizsys.model.wf.IPSWFLink;
 import net.ibizsys.pswf.core.IWFEmbedWFReturnModel;
+ 
+/**
+ * 嵌入流程返回连接对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSWFEmbedWFReturnLink extends IPSWFLink,IWFEmbedWFReturnModel
+{
 
-public interface IPSWFEmbedWFReturnLink
-extends IPSWFLink,
-IWFEmbedWFReturnModel {
 }
-

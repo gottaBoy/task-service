@@ -1,483 +1,787 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.control.tree;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import net.ibizsys.paas.control.tree.ITreeNode;
+
+import org.w3c.dom.Node;
+
+import net.ibizsys.paas.control.expbar.IExpBarItem;
 import net.ibizsys.paas.util.JSONObjectHelper;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.xml.SimpleXmlNode;
 import net.sf.json.JSONObject;
-import org.w3c.dom.Node;
 
-public class TreeNode
-extends SimpleXmlNode
-implements ITreeNode {
-    public static final String TREENODE_TREENODE = "SRFEXTREENODE";
-    public static final String TREENODE_TEXT = "TEXT";
-    public static final String TREENODE_ASYNCMODE = "ASYNCMODE";
-    public static final String TREENODE_TIPS = "TIPS";
-    public static final String TREENODE_CSSCLASS = "CSSCLASS";
-    public static final String TREENODE_ICONCSSCLASS = "ICONCSSCLASS";
-    public static final String TREENODE_ICON = "ICON";
-    public static final String TREENODE_EXPAND = "EXPAND";
-    public static final String TREENODE_DISABLE = "DISABLE";
-    public static final String TREENODE_HREF = "HREF";
-    public static final String TREENODE_HREFTARGET = "HREFTARGET";
-    public static final String TREENODE_LEAF = "LEAF";
-    public static final String TREENODE_TAG = "TAG";
-    public static final String TREENODE_ALWAYSASYNCMODE = "ALWAYSASYNCMODE";
-    public static final String TREENODE_DRAGGABLE = "DRAGGABLE";
-    public static final String TREENODE_CHECKED = "CHECKED";
-    public static final String TREENODE_DATATYPE = "DATATYPE";
-    protected boolean bAsyncMode = false;
-    protected String strText = "";
-    protected String strTips = "";
-    protected String strCssClass = "";
-    protected String strIconCssClass = "";
-    protected String strIcon = "";
-    protected boolean bExpand = false;
-    protected boolean bDisable = false;
-    protected String strHref = "";
-    protected String strHrefTarget = "";
-    protected boolean bLeaf = true;
-    protected boolean bAlwaysAsyncMode = false;
-    protected boolean bDraggable = false;
-    protected boolean bChecked = false;
-    protected boolean bEnableCheck = false;
-    private String strTreeNodeType = "";
-    private String strNodeDataType = "";
-    protected ArrayList<ITreeNode> childNodes = null;
-    protected JSONObject tagObj = null;
-    private String strCounterId = "";
-    private int nCounterMode = 0;
-    private Object dataSource = null;
+/**
+ * 树节点对象
+ * 
+ * @author Administrator
+ *
+ */
+public class TreeNode extends SimpleXmlNode implements ITreeNode {
+	public final static String TREENODE_TREENODE = "SRFEXTREENODE";
 
-    @Override
-    public Iterator<ITreeNode> getChildNodes() {
-        if (this.childNodes == null || this.childNodes.size() == 0) {
-            return null;
-        }
-        return this.childNodes.iterator();
-    }
+	public final static String TREENODE_TEXT = "TEXT";
+	public final static String TREENODE_ASYNCMODE = "ASYNCMODE";
+	public final static String TREENODE_TIPS = "TIPS";
+	public final static String TREENODE_CSSCLASS = "CSSCLASS";
+	public final static String TREENODE_ICONCSSCLASS = "ICONCSSCLASS";
+	public final static String TREENODE_ICON = "ICON";
+	public final static String TREENODE_EXPAND = "EXPAND";
+	public final static String TREENODE_DISABLE = "DISABLE";
+	public final static String TREENODE_HREF = "HREF";
+	public final static String TREENODE_HREFTARGET = "HREFTARGET";
+	public final static String TREENODE_LEAF = "LEAF";
+	public final static String TREENODE_TAG = "TAG";
+	public final static String TREENODE_ALWAYSASYNCMODE = "ALWAYSASYNCMODE";
+	public final static String TREENODE_DRAGGABLE = "DRAGGABLE";
+	public final static String TREENODE_CHECKED = "CHECKED";
+	public final static String TREENODE_DATATYPE = "DATATYPE";
 
-    @Override
-    public void onLoadNode(String strName, Node xmlNode) {
-        if (StringHelper.compare(TREENODE_TREENODE, strName, true) == 0) {
-            TreeNode treeNodeConfig;
-            if (this.childNodes == null) {
-                this.childNodes = new ArrayList();
-                this.bLeaf = false;
-            }
-            if ((treeNodeConfig = new TreeNode()).loadConfig(xmlNode)) {
-                this.childNodes.add(treeNodeConfig);
-            }
-            return;
-        }
-        super.onLoadNode(strName, xmlNode);
-    }
+	protected boolean bAsyncMode = false;
+	protected String strText = "";
+	protected String strTips = "";
+	protected String strCssClass = "";
+	protected String strIconCssClass = "";
+	protected String strIcon = "";
+	protected boolean bExpand = false;
+	protected boolean bDisable = false;
+	protected String strHref = "";
+	protected String strHrefTarget = "";
+	protected boolean bLeaf = true;
+	protected boolean bAlwaysAsyncMode = false;
+	protected boolean bDraggable = false;
+	protected boolean bChecked = false;
+	protected boolean bEnableCheck = false;
+	private String strTreeNodeType = "";
+	private String strNodeDataType = "";
+	// protected boolean bSelected = false;
 
-    @Override
-    protected void onSetAttribute(String strName, String strValue) {
-        if (StringHelper.compare(strName, TREENODE_ASYNCMODE, true) == 0) {
-            this.bAsyncMode = TreeNode.getValue(strValue, this.bAsyncMode);
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_TIPS, true) == 0) {
-            this.strTips = strValue;
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_EXPAND, true) == 0) {
-            this.bExpand = TreeNode.getValue(strValue, this.bExpand);
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_TAG, true) == 0) {
-            this.tagObj = JSONObjectHelper.fromString(strValue);
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_DISABLE, true) == 0) {
-            this.bDisable = TreeNode.getValue(strValue, this.bDisable);
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_LEAF, true) == 0) {
-            this.bLeaf = TreeNode.getValue(strValue, this.bLeaf);
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_HREFTARGET, true) == 0) {
-            this.strHrefTarget = strValue;
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_HREF, true) == 0) {
-            this.strHref = strValue;
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_CSSCLASS, true) == 0) {
-            this.strCssClass = strValue;
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_ICONCSSCLASS, true) == 0) {
-            this.strIconCssClass = strValue;
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_ICON, true) == 0) {
-            this.strIcon = strValue;
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_TEXT, true) == 0) {
-            this.strText = strValue;
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_ALWAYSASYNCMODE, true) == 0) {
-            this.bAlwaysAsyncMode = TreeNode.getValue(strValue, this.bAlwaysAsyncMode);
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_DRAGGABLE, true) == 0) {
-            this.bDraggable = TreeNode.getValue(strValue, this.bDraggable);
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_CHECKED, true) == 0) {
-            this.bEnableCheck = true;
-            this.bChecked = TreeNode.getValue(strValue, this.bChecked);
-            return;
-        }
-        if (StringHelper.compare(strName, TREENODE_DATATYPE, true) == 0) {
-            this.strNodeDataType = strValue;
-            return;
-        }
-        super.onSetAttribute(strName, strValue);
-    }
+	protected ArrayList<ITreeNode> childNodes = null;
+	protected JSONObject tagObj = null;
 
-    public void setAsyncMode(boolean bAsyncMode) {
-        this.bAsyncMode = bAsyncMode;
-    }
+	/**
+	 * 获取计数器标识
+	 * 
+	 * @return
+	 */
+	private String strCounterId = "";
 
-    @Override
-    public boolean isAsyncMode() {
-        if (this.isAlwaysAsyncMode()) {
-            return true;
-        }
-        return this.bAsyncMode;
-    }
+	/**
+	 * 获取计数器模式
+	 */
+	private int nCounterMode = IExpBarItem.COUNTERMODE_NONE;
 
-    public void setAlwaysAsyncMode(boolean bAlwaysAsyncMode) {
-        this.bAlwaysAsyncMode = bAlwaysAsyncMode;
-    }
+	private Object dataSource = null;
 
-    @Override
-    public boolean isAlwaysAsyncMode() {
-        return this.bAlwaysAsyncMode;
-    }
+	public TreeNode() {
 
-    public void setExpanded(boolean bExpand) {
-        this.bExpand = bExpand;
-    }
+	}
 
-    @Override
-    public boolean isExpanded() {
-        return this.bExpand;
-    }
+	/**
+	 * 获取子节点集合
+	 * 
+	 * @return
+	 */
+	public java.util.Iterator<ITreeNode> getChildNodes() {
+		if (childNodes == null || childNodes.size() == 0) return null;
+		return childNodes.iterator();
+	}
 
-    public void setDisabled(boolean bDisable) {
-        this.bDisable = bDisable;
-    }
+	@Override
+	public void onLoadNode(String strName, Node xmlNode) {
+		if (StringHelper.compare(TreeNode.TREENODE_TREENODE, strName, true) == 0) {
+			if (childNodes == null) {
+				childNodes = new ArrayList<ITreeNode>();
+				bLeaf = false;
+			}
 
-    @Override
-    public boolean isDisabled() {
-        return this.bDisable;
-    }
+			TreeNode treeNodeConfig = new TreeNode();
+			if (treeNodeConfig.loadConfig(xmlNode)) {
+				childNodes.add(treeNodeConfig);
+			}
+			return;
+		}
 
-    @Override
-    public void setLeaf(boolean bLeaf) {
-        this.bLeaf = bLeaf;
-    }
+		super.onLoadNode(strName, xmlNode);
+	}
 
-    @Override
-    public boolean isLeaf() {
-        return this.bLeaf;
-    }
+	@Override
+	protected void onSetAttribute(String strName, String strValue) {
+		if (StringHelper.compare(strName, TREENODE_ASYNCMODE, true) == 0) {
+			bAsyncMode = getValue(strValue, bAsyncMode);
+			return;
+		}
 
-    @Override
-    public String getCssClass() {
-        return this.strCssClass;
-    }
+		if (StringHelper.compare(strName, TREENODE_TIPS, true) == 0) {
+			strTips = strValue;
+			return;
+		}
+		if (StringHelper.compare(strName, TREENODE_EXPAND, true) == 0) {
+			bExpand = getValue(strValue, bExpand);
+			return;
+		}
 
-    public void setCssClass(String strCssClass) {
-        this.strCssClass = strCssClass;
-    }
+		if (StringHelper.compare(strName, TREENODE_TAG, true) == 0) {
+			tagObj = JSONObjectHelper.fromString(strValue);
+			return;
+		}
 
-    @Override
-    public String getIconCssClass() {
-        return this.strIconCssClass;
-    }
+		// if(StringHelper.compare(strName, TREENODE_SELECTED, true) == 0)
+		// {
+		// bSelected =GetValue(strValue, bSelected);
+		// return;
+		// }
 
-    public void setIconCssClass(String strIconCssClass) {
-        this.strIconCssClass = strIconCssClass;
-    }
+		if (StringHelper.compare(strName, TREENODE_DISABLE, true) == 0) {
+			bDisable = getValue(strValue, bDisable);
+			return;
+		}
 
-    @Override
-    public String getIcon() {
-        return this.strIcon;
-    }
+		if (StringHelper.compare(strName, TREENODE_LEAF, true) == 0) {
+			bLeaf = getValue(strValue, bLeaf);
+			return;
+		}
 
-    public void setIcon(String strIcon) {
-        this.strIcon = strIcon;
-    }
+		if (StringHelper.compare(strName, TREENODE_HREFTARGET, true) == 0) {
+			strHrefTarget = strValue;
+			return;
+		}
 
-    @Override
-    public String getHref() {
-        return this.strHref;
-    }
+		if (StringHelper.compare(strName, TREENODE_HREF, true) == 0) {
+			strHref = strValue;
+			return;
+		}
 
-    public void setHref(String strHref) {
-        this.strHref = strHref;
-    }
+		if (StringHelper.compare(strName, TREENODE_CSSCLASS, true) == 0) {
+			strCssClass = strValue;
+			return;
+		}
 
-    @Override
-    public String getHrefTarget() {
-        return this.strHrefTarget;
-    }
+		if (StringHelper.compare(strName, TREENODE_ICONCSSCLASS, true) == 0) {
+			strIconCssClass = strValue;
+			return;
+		}
 
-    public void setHrefTarget(String strHrefTarget) {
-        this.strHrefTarget = strHrefTarget;
-    }
+		if (StringHelper.compare(strName, TREENODE_ICON, true) == 0) {
+			strIcon = strValue;
+			return;
+		}
 
-    @Override
-    public String getTips() {
-        return this.strTips;
-    }
+		if (StringHelper.compare(strName, TREENODE_TEXT, true) == 0) {
+			this.strText = strValue;
+			return;
+		}
 
-    public void setTips(String strTips) {
-        this.strTips = strTips;
-    }
+		if (StringHelper.compare(strName, TREENODE_ALWAYSASYNCMODE, true) == 0) {
+			bAlwaysAsyncMode = getValue(strValue, bAlwaysAsyncMode);
+			return;
+		}
 
-    @Override
-    public String getText() {
-        return this.strText;
-    }
+		if (StringHelper.compare(strName, TREENODE_DRAGGABLE, true) == 0) {
+			bDraggable = getValue(strValue, bDraggable);
+			return;
+		}
 
-    public void setText(String strText) {
-        this.strText = strText;
-    }
+		if (StringHelper.compare(strName, TREENODE_CHECKED, true) == 0) {
+			this.bEnableCheck = true;
+			bChecked = getValue(strValue, bChecked);
+			return;
+		}
 
-    @Override
-    public boolean isDraggable() {
-        return this.bDraggable;
-    }
+		if (StringHelper.compare(strName, TREENODE_DATATYPE, true) == 0) {
+			this.strNodeDataType = strValue;
+			return;
+		}
+		
+		super.onSetAttribute(strName, strValue);
+	}
 
-    public void setDraggable(boolean draggable) {
-        this.bDraggable = draggable;
-    }
+	/**
+	 * 设置是否异步加载模式
+	 * 
+	 * @param bAsyncMode
+	 */
+	public void setAsyncMode(boolean bAsyncMode) {
+		this.bAsyncMode = bAsyncMode;
+	}
 
-    @Override
-    public boolean isChecked() {
-        return this.bChecked;
-    }
+	/**
+	 * 获取异步加载模式
+	 * 
+	 * @return
+	 */
+	public boolean isAsyncMode() {
+		if (this.isAlwaysAsyncMode()) return true;
+		return this.bAsyncMode;
+	}
 
-    @Override
-    public boolean isEnableCheck() {
-        return this.bEnableCheck;
-    }
+	/**
+	 * 设置是否一直为异步加载模式(此代码用于预先加装节点，通知框架不将父节点设置为非异步加载节点
+	 * 
+	 * @param bAlwaysAsyncMode
+	 */
+	public void setAlwaysAsyncMode(boolean bAlwaysAsyncMode) {
+		this.bAlwaysAsyncMode = bAlwaysAsyncMode;
+	}
 
-    public void setChecked(boolean bChecked) {
-        this.bEnableCheck = true;
-        this.bChecked = bChecked;
-    }
+	/**
+	 * 获取是否一直为异步加载模式
+	 * 
+	 * @return
+	 */
+	public boolean isAlwaysAsyncMode() {
+		return this.bAlwaysAsyncMode;
+	}
 
-    public void setEnableCheck(boolean bEnableCheck) {
-        this.bEnableCheck = bEnableCheck;
-    }
+	// /**
+	// * 设置是否选择
+	// * @param bSelected
+	// */
+	// public void setSelected(boolean bSelected)
+	// {
+	// this.bSelected = bSelected;
+	// }
+	//
+	//
+	// /**
+	// * 获取是否选择
+	// * @return
+	// */
+	// public boolean getSelected()
+	// {
+	// return this.bSelected;
+	// }
 
-    @Override
-    public ITreeNode findTreeNode(String strTreeNodeId) {
-        if (StringHelper.compare(this.getId(), strTreeNodeId, true) == 0) {
-            return this;
-        }
-        if (this.childNodes == null) {
-            return null;
-        }
-        int nCount = this.childNodes.size();
-        int i = 0;
-        while (i < nCount) {
-            ITreeNode childNode = this.childNodes.get(i);
-            ITreeNode findNode = childNode.findTreeNode(strTreeNodeId);
-            if (findNode != null) {
-                return findNode;
-            }
-            ++i;
-        }
-        return null;
-    }
+	/**
+	 * 设置是否展开显示
+	 * 
+	 * @param bExpand
+	 */
+	public void setExpanded(boolean bExpand) {
+		this.bExpand = bExpand;
+	}
 
-    @Override
-    public boolean containsTreeNode(String strTreeNodeId) {
-        return this.findTreeNode(strTreeNodeId) != null;
-    }
+	/**
+	 * 获取是否展开显示
+	 * 
+	 * @return
+	 */
+	public boolean isExpanded() {
+		return this.bExpand;
+	}
 
-    @Override
-    public void addChildNode(ITreeNode childNodeConfig) {
-        if (this.childNodes == null) {
-            this.childNodes = new ArrayList();
-            this.bLeaf = false;
-        }
-        this.childNodes.add(childNodeConfig);
-    }
+	/**
+	 * 设置是否禁用
+	 * 
+	 * @param bDisable
+	 */
+	public void setDisabled(boolean bDisable) {
+		this.bDisable = bDisable;
+	}
 
-    @Override
-    public void resetChildNodes() {
-        this.childNodes = null;
-        this.bLeaf = true;
-    }
+	/**
+	 * 获取是否禁用
+	 * 
+	 * @return
+	 */
+	public boolean isDisabled() {
+		return this.bDisable;
+	}
 
-    public void setTagValue(String strKey, Object objValue) {
-        if (this.tagObj == null) {
-            this.tagObj = new JSONObject();
-        }
-        if (this.tagObj.has(strKey)) {
-            this.tagObj.remove(strKey);
-        }
-        if (objValue == null) {
-            return;
-        }
-        this.tagObj.put(strKey, JSONObjectHelper.stripQuotes(objValue));
-    }
+	/**
+	 * 设置是否为叶子节点
+	 * 
+	 * @param bLeaf
+	 */
+	public void setLeaf(boolean bLeaf) {
+		this.bLeaf = bLeaf;
+	}
 
-    @Override
-    public Object getTagValue(String strKey) {
-        return this.tagObj.get(strKey);
-    }
+	/**
+	 * 获取是否为叶子节点
+	 * 
+	 * @return
+	 */
+	public boolean isLeaf() {
+		return this.bLeaf;
+	}
 
-    @Override
-    public JSONObject getTag() {
-        return this.tagObj;
-    }
+	/**
+	 * 获取样式
+	 * 
+	 * @return
+	 */
+	public String getCssClass() {
+		return strCssClass;
+	}
 
-    public static JSONObject toJSONObject(ITreeNode treeNodeConfig, boolean bSimple) {
-        JSONObject objJSON = new JSONObject();
-        objJSON.put("id", JSONObjectHelper.stripQuotes(treeNodeConfig.getId(), true));
-        objJSON.put("text", JSONObjectHelper.stripQuotes(treeNodeConfig.getText(), true));
-        if (!StringHelper.isNullOrEmpty(treeNodeConfig.getNodeDataType())) {
-            objJSON.put("datatype", JSONObjectHelper.stripQuotes(treeNodeConfig.getNodeDataType(), true));
-        }
-        if (!StringHelper.isNullOrEmpty(treeNodeConfig.getTips()) || !bSimple) {
-            objJSON.put("qtip", JSONObjectHelper.stripQuotes(treeNodeConfig.getTips(), true));
-        }
-        if (!StringHelper.isNullOrEmpty(treeNodeConfig.getCssClass()) || !bSimple) {
-            objJSON.put("cls", JSONObjectHelper.stripQuotes(treeNodeConfig.getCssClass(), true));
-        }
-        if (treeNodeConfig.isDisabled() || !bSimple) {
-            objJSON.put("disabled", treeNodeConfig.isDisabled());
-        }
-        if (treeNodeConfig.isExpanded() || !bSimple) {
-            objJSON.put("expanded", treeNodeConfig.isExpanded());
-        }
-        objJSON.put("leaf", treeNodeConfig.isLeaf());
-        if (!StringHelper.isNullOrEmpty(treeNodeConfig.getHref()) || !bSimple) {
-            objJSON.put("href", JSONObjectHelper.stripQuotes(treeNodeConfig.getHref(), true));
-        }
-        if (!StringHelper.isNullOrEmpty(treeNodeConfig.getHrefTarget()) || !bSimple) {
-            objJSON.put("hrefTarget", JSONObjectHelper.stripQuotes(treeNodeConfig.getHrefTarget(), true));
-        }
-        if (!StringHelper.isNullOrEmpty(treeNodeConfig.getIcon()) || !bSimple) {
-            objJSON.put("icon", JSONObjectHelper.stripQuotes(treeNodeConfig.getIcon(), true));
-        }
-        if (!StringHelper.isNullOrEmpty(treeNodeConfig.getIconCssClass()) || !bSimple) {
-            objJSON.put("iconCls", JSONObjectHelper.stripQuotes(treeNodeConfig.getIconCssClass(), true));
-        }
-        if (!StringHelper.isNullOrEmpty(treeNodeConfig.getCounterId())) {
-            objJSON.put("counterid", JSONObjectHelper.stripQuotes(treeNodeConfig.getCounterId(), true));
-            objJSON.put("countermode", treeNodeConfig.getCounterMode());
-        }
-        if (treeNodeConfig.isDraggable()) {
-            objJSON.put("draggable", treeNodeConfig.isDraggable());
-        }
-        if (treeNodeConfig.isEnableCheck()) {
-            objJSON.put("checked", treeNodeConfig.isChecked());
-        }
-        if (treeNodeConfig.getTag() != null) {
-            Iterator en = treeNodeConfig.getTag().keys();
-            while (en.hasNext()) {
-                String strKey = (String)en.next();
-                if (objJSON.has(strKey)) continue;
-                objJSON.put(strKey, treeNodeConfig.getTag().get(strKey));
-            }
-        }
-        return objJSON;
-    }
+	/**
+	 * 设置样式
+	 * 
+	 * @param strCssClass
+	 */
+	public void setCssClass(String strCssClass) {
+		this.strCssClass = strCssClass;
+	}
 
-    public static JSONObject toJSONObject(ITreeNode treeNodeConfig, boolean bSimple, boolean bChild) {
-        JSONObject objJSON = TreeNode.toJSONObject(treeNodeConfig, bSimple);
-        if (bChild && treeNodeConfig.getChildNodes() != null) {
-            ArrayList<JSONObject> childJson = new ArrayList<JSONObject>();
-            Iterator<ITreeNode> treeNodes = treeNodeConfig.getChildNodes();
-            while (treeNodes.hasNext()) {
-                ITreeNode childTreeNode = treeNodes.next();
-                JSONObject childJsonItem = TreeNode.toJSONObject(childTreeNode, bSimple, bChild);
-                childJson.add(childJsonItem);
-            }
-            if (childJson.size() > 0) {
-                objJSON.put("items", (Object)childJson.toArray());
-            }
-        }
-        return objJSON;
-    }
+	/**
+	 * 获取图标样式
+	 * 
+	 * @return
+	 */
+	public String getIconCssClass() {
+		return strIconCssClass;
+	}
 
-    public static JSONObject toJSONObject(ITreeNode treeNodeConfig) {
-        return TreeNode.toJSONObject(treeNodeConfig, false);
-    }
+	/**
+	 * 设置图标样式
+	 * 
+	 * @param strIconCssClass
+	 */
+	public void setIconCssClass(String strIconCssClass) {
+		this.strIconCssClass = strIconCssClass;
+	}
 
-    @Override
-    public String getName() {
-        return null;
-    }
+	/**
+	 * 获取图标
+	 * 
+	 * @return
+	 */
+	public String getIcon() {
+		return strIcon;
+	}
 
-    @Override
-    public String getTreeNodeType() {
-        return this.strTreeNodeType;
-    }
+	/**
+	 * 设置图标
+	 * 
+	 * @param strIcon
+	 */
+	public void setIcon(String strIcon) {
+		this.strIcon = strIcon;
+	}
 
-    public void setTreeNodeType(String strTreeNodeType) {
-        this.strTreeNodeType = strTreeNodeType;
-    }
+	/**
+	 * 获取链接
+	 * 
+	 * @return
+	 */
+	public String getHref() {
+		return strHref;
+	}
 
-    @Override
-    public String getCounterId() {
-        return this.strCounterId;
-    }
+	/**
+	 * 设置链接
+	 * 
+	 * @param strHref
+	 */
+	public void setHref(String strHref) {
+		this.strHref = strHref;
+	}
 
-    @Override
-    public int getCounterMode() {
-        return this.nCounterMode;
-    }
+	/**
+	 * 获取链接目标
+	 * 
+	 * @return
+	 */
+	public String getHrefTarget() {
+		return strHrefTarget;
+	}
 
-    public void setCounterId(String strCounterId) {
-        this.strCounterId = strCounterId;
-    }
+	/**
+	 * 设置链接目标
+	 * 
+	 * @param strHrefTarget
+	 */
+	public void setHrefTarget(String strHrefTarget) {
+		this.strHrefTarget = strHrefTarget;
+	}
 
-    public void setCounterMode(int nCounterMode) {
-        this.nCounterMode = nCounterMode;
-    }
+	/**
+	 * 获取节点提示信息
+	 * 
+	 * @return
+	 */
+	public String getTips() {
+		return strTips;
+	}
 
-    public void setDataSource(Object dataSource) {
-        this.dataSource = dataSource;
-    }
+	/**
+	 * 设置节点提示信息
+	 * 
+	 * @param strTips
+	 */
+	public void setTips(String strTips) {
+		this.strTips = strTips;
+	}
 
-    @Override
-    public Object getDataSource() {
-        return this.dataSource;
-    }
+	/**
+	 * 获取节点文本
+	 * 
+	 * @return
+	 */
+	public String getText() {
+		return strText;
+	}
 
-    @Override
-    public String getNodeDataType() {
-        return this.strNodeDataType;
-    }
+	/**
+	 * 设置节点文本
+	 * 
+	 * @param strText
+	 */
+	public void setText(String strText) {
+		this.strText = strText;
+	}
 
-    public void setNodeDataType(String strNodeDataType) {
-        this.strNodeDataType = strNodeDataType;
-    }
+	/**
+	 * 获取节点是否可以拖拽
+	 * 
+	 * @return the bDraggable
+	 */
+	public boolean isDraggable() {
+		return bDraggable;
+	}
+
+	/**
+	 * 设置节点是否可以拖拽
+	 * 
+	 * @param draggable
+	 */
+	public void setDraggable(boolean draggable) {
+		bDraggable = draggable;
+	}
+
+	/**
+	 * @return the bChecked
+	 */
+	public boolean isChecked() {
+		return bChecked;
+	}
+
+	/**
+	 * @return the bEnableCheck
+	 */
+	public boolean isEnableCheck() {
+		return bEnableCheck;
+	}
+
+	/**
+	 * 设置节点处于是否选中状态，同时启用 EnableCheck
+	 * 
+	 * @param bChecked
+	 */
+	public void setChecked(boolean bChecked) {
+		this.bEnableCheck = true;
+		this.bChecked = bChecked;
+	}
+
+	/**
+	 * @param bEnableCheck
+	 */
+	public void setEnableCheck(boolean bEnableCheck) {
+		this.bEnableCheck = bEnableCheck;
+	}
+
+	/**
+	 * 通过节点编号查找制定的节点
+	 * 
+	 * @param strTreeNodeId 树节点的编号
+	 * @return
+	 */
+	public ITreeNode findTreeNode(String strTreeNodeId) {
+		if (StringHelper.compare(this.getId(), strTreeNodeId, true) == 0) return this;
+
+		if (childNodes == null) return null;
+
+		int nCount = childNodes.size();
+		for (int i = 0; i < nCount; i++) {
+			ITreeNode childNode = (ITreeNode) childNodes.get(i);
+			ITreeNode findNode = childNode.findTreeNode(strTreeNodeId);
+			if (findNode != null) return findNode;
+		}
+		return null;
+	}
+
+	/**
+	 * 判断是否存在节点
+	 * 
+	 * @param strTreeNodeId
+	 * @return
+	 */
+	public boolean containsTreeNode(String strTreeNodeId) {
+		return (findTreeNode(strTreeNodeId) != null);
+	}
+
+	/**
+	 * 增加树节点的子节点
+	 * 
+	 * @param childNodeConfig
+	 */
+	public void addChildNode(ITreeNode childNodeConfig) {
+		if (childNodes == null) {
+			childNodes = new ArrayList<ITreeNode>();
+			bLeaf = false;
+		}
+		childNodes.add(childNodeConfig);
+	}
+
+	/**
+	 * 重置子节点
+	 */
+	public void resetChildNodes() {
+		childNodes = null;
+		bLeaf = true;
+	}
+
+	/**
+	 * 设置标记值
+	 * 
+	 * @param strKey
+	 * @param objValue
+	 */
+	public void setTagValue(String strKey, Object objValue) {
+		if (tagObj == null) tagObj = new JSONObject();
+
+		if (tagObj.has(strKey)) {
+			tagObj.remove(strKey);
+		}
+
+		if (objValue == null) {
+			return;
+		} else {
+			tagObj.put(strKey,JSONObjectHelper.stripQuotes(objValue));
+		}
+	}
+
+	/**
+	 * 获取节点的标记值
+	 * 
+	 * @param strKey
+	 * @return
+	 */
+	public Object getTagValue(String strKey) {
+		return tagObj.get(strKey);
+	}
+
+	/**
+	 * 获取标记数据
+	 * 
+	 * @return
+	 */
+	public JSONObject getTag() {
+		return tagObj;
+	}
+
+	/**
+	 * 导出树节点到Json
+	 * 
+	 * @param treeNodeConfig
+	 * @param bSimple
+	 * @return
+	 */
+	public static JSONObject toJSONObject(ITreeNode treeNodeConfig, boolean bSimple) {
+		JSONObject objJSON = new JSONObject();
+
+		objJSON.put("id", JSONObjectHelper.stripQuotes( treeNodeConfig.getId(),true));
+		objJSON.put("text", JSONObjectHelper.stripQuotes( treeNodeConfig.getText(),true));
+		if (!StringHelper.isNullOrEmpty(treeNodeConfig.getNodeDataType())){
+			objJSON.put("datatype", JSONObjectHelper.stripQuotes( treeNodeConfig.getNodeDataType(),true));
+		}
+		
+		if (!StringHelper.isNullOrEmpty(treeNodeConfig.getTips()) || !bSimple) {
+			objJSON.put("qtip",JSONObjectHelper.stripQuotes(  treeNodeConfig.getTips(),true));
+		}
+
+		if (!StringHelper.isNullOrEmpty(treeNodeConfig.getCssClass()) || !bSimple) {
+			objJSON.put("cls", JSONObjectHelper.stripQuotes( treeNodeConfig.getCssClass(),true));
+		}
+
+		if (treeNodeConfig.isDisabled() || !bSimple){
+			objJSON.put("disabled", treeNodeConfig.isDisabled());
+		}
+
+		if (treeNodeConfig.isExpanded() || !bSimple){
+			objJSON.put("expanded", treeNodeConfig.isExpanded());
+		}
+		objJSON.put("leaf", treeNodeConfig.isLeaf());
+
+		if (!StringHelper.isNullOrEmpty(treeNodeConfig.getHref()) || !bSimple){
+			objJSON.put("href", JSONObjectHelper.stripQuotes( treeNodeConfig.getHref(),true));
+		}
+
+		if (!StringHelper.isNullOrEmpty(treeNodeConfig.getHrefTarget()) || !bSimple){
+			objJSON.put("hrefTarget", JSONObjectHelper.stripQuotes( treeNodeConfig.getHrefTarget(),true));
+		}
+
+		if (!StringHelper.isNullOrEmpty(treeNodeConfig.getIcon()) || !bSimple){
+			objJSON.put("icon", JSONObjectHelper.stripQuotes( treeNodeConfig.getIcon(),true));
+		}
+
+		if (!StringHelper.isNullOrEmpty(treeNodeConfig.getIconCssClass()) || !bSimple){
+			objJSON.put("iconCls",JSONObjectHelper.stripQuotes(  treeNodeConfig.getIconCssClass(),true));
+		}
+		
+		if(!StringHelper.isNullOrEmpty(treeNodeConfig.getCounterId())) {
+			objJSON.put("counterid",JSONObjectHelper.stripQuotes( treeNodeConfig.getCounterId(),true));
+			objJSON.put("countermode", treeNodeConfig.getCounterMode());
+		}
+
+		if (treeNodeConfig.isDraggable()) objJSON.put("draggable", treeNodeConfig.isDraggable());
+		if (treeNodeConfig.isEnableCheck()) {
+			objJSON.put("checked", treeNodeConfig.isChecked());
+		}
+		if (treeNodeConfig.getTag() != null) {
+			Iterator en = treeNodeConfig.getTag().keys();
+			while (en.hasNext()) {
+				String strKey = (String) en.next();
+				if (!objJSON.has(strKey)){
+					//避免重复写入
+					objJSON.put(strKey, treeNodeConfig.getTag().get(strKey));
+				}
+			}
+		}
+
+		return objJSON;
+	}
+
+	/**
+	 * 导出树节点到Json
+	 * 
+	 * @param treeNodeConfig
+	 * @param bSimple
+	 * @param bChild
+	 * @return
+	 */
+	public static JSONObject toJSONObject(ITreeNode treeNodeConfig, boolean bSimple, boolean bChild) {
+		JSONObject objJSON = toJSONObject(treeNodeConfig, bSimple);
+		if (bChild && treeNodeConfig.getChildNodes() != null) {
+			ArrayList<JSONObject> childJson = new ArrayList<JSONObject>();
+			java.util.Iterator<ITreeNode> treeNodes = treeNodeConfig.getChildNodes();
+			while (treeNodes.hasNext()) {
+				ITreeNode childTreeNode = treeNodes.next();
+				JSONObject childJsonItem = toJSONObject(childTreeNode, bSimple, bChild);
+				childJson.add(childJsonItem);
+			}
+
+			if (childJson.size() > 0) {
+				objJSON.put("items", childJson.toArray());
+
+			}
+		}
+		return objJSON;
+	}
+
+	/**
+	 * 导出JSON对象
+	 * 
+	 * @return
+	 */
+	public static JSONObject toJSONObject(ITreeNode treeNodeConfig) {
+		return toJSONObject(treeNodeConfig, false);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IModelBase#getName()
+	 */
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.control.tree.ITreeNode#getTreeNodeType()
+	 */
+	@Override
+	public String getTreeNodeType() {
+		return this.strTreeNodeType;
+	}
+
+	/**
+	 * 设置节点类型
+	 * 
+	 * @param strTreeNodeType
+	 */
+	public void setTreeNodeType(String strTreeNodeType) {
+		this.strTreeNodeType = strTreeNodeType;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.control.expbar.IExpBarItem#getCounterId()
+	 */
+	@Override
+	public String getCounterId() {
+		return this.strCounterId;
+	}
+
+	/**
+	 * 获取计数器模式
+	 * 
+	 * @return
+	 */
+	@Override
+	public int getCounterMode() {
+		return this.nCounterMode;
+	}
+
+	/**
+	 * 设置计数器标识
+	 * 
+	 * @param strCounterId
+	 */
+	public void setCounterId(String strCounterId) {
+		this.strCounterId = strCounterId;
+	}
+
+	/**
+	 * 设置计算器模式
+	 * 
+	 * @param strCounterId
+	 */
+	public void setCounterMode(int nCounterMode) {
+		this.nCounterMode = nCounterMode;
+	}
+
+	/**
+	 * 设置数据源
+	 * 
+	 * @param dataSource
+	 */
+	public void setDataSource(Object dataSource) {
+		this.dataSource = dataSource;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.control.tree.ITreeNode#getDataSource()
+	 */
+	@Override
+	public Object getDataSource() {
+		return this.dataSource;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.tree.ITreeNode#getNodeDataType()
+	 */
+	@Override
+	public String getNodeDataType() {
+		return this.strNodeDataType;
+	}
+
+	
+	/**
+	 * 设置节点数据的类型
+	 * @param strNodeDataType
+	 */
+	public void setNodeDataType(String strNodeDataType){
+		this.strNodeDataType = strNodeDataType;
+	}
+	
+	
 }
-

@@ -1752,7 +1752,7 @@ implements Serializable {
                 PSModel pSModel = new PSModel();
                 pSModel.setPSModelId(this.getPPSModelId());
                 PSModelService pSModelService = (PSModelService)ServiceGlobal.getService(PSModelService.class, (SessionFactory)this.getSessionFactory());
-                pSModelService.autoGet((IEntity)pSModel);
+                pSModelService.autoGet(pSModel);
                 this.ppsmodel = pSModel;
             }
             return this.ppsmodel;

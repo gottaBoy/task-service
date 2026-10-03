@@ -57,7 +57,7 @@ extends PSSysDevBKTaskImplBase {
         PSSystemDBCfgService psSystemDBCfgService = (PSSystemDBCfgService)ServiceGlobal.getService(PSSystemDBCfgService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSystemDBCfg psSystemDBConfig2 = new PSSystemDBCfg();
         psSystemDBConfig2.setPSSystemDBCfgId(this.psSysDevBKTask.getTASKPARAM());
-        psSystemDBCfgService.get((IEntity)psSystemDBConfig2);
+        psSystemDBCfgService.get(psSystemDBConfig2);
         return this.pubSysDBModel(psSystemDBConfig2);
     }
 
@@ -178,4 +178,3 @@ extends PSSysDevBKTaskImplBase {
         }
     }
 }
-

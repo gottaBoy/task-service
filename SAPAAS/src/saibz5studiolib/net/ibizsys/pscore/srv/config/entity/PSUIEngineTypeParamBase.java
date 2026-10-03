@@ -771,7 +771,7 @@ implements Serializable {
                 PSUIEngineType pSUIEngineType = new PSUIEngineType();
                 pSUIEngineType.setPSUIEngineTypeId(this.getPSUIEngineTypeId());
                 PSUIEngineTypeService pSUIEngineTypeService = (PSUIEngineTypeService)ServiceGlobal.getService(PSUIEngineTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSUIEngineTypeService.autoGet((IEntity)pSUIEngineType);
+                pSUIEngineTypeService.autoGet(pSUIEngineType);
                 this.psuienginetype = pSUIEngineType;
             }
             return this.psuienginetype;

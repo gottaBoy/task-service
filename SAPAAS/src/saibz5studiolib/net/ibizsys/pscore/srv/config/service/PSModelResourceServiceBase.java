@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSModelResource> {
     }
 
     protected void onFillParentInfo(PSModelResource pSModelResource, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSModelResource, string, string2, string3);
+        super.onFillParentInfo(pSModelResource, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSModelResource> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSModelResource, bl);
+        super.onFillEntityFullInfo(pSModelResource, bl);
     }
 
     protected void onWriteBackParent(PSModelResource pSModelResource, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSModelResource, bl);
+        super.onWriteBackParent(pSModelResource, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSModelResource> {
     }
 
     protected void onRemoveEntityUncopyValues(PSModelResource pSModelResource, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSModelResource, bl);
+        super.onRemoveEntityUncopyValues(pSModelResource, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSModelResource pSModelResource, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSModelResource> {
         if ((entityFieldError = this.onCheckField_ResourceType(bl, pSModelResource, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSModelResource, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSModelResource, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ImageURL(boolean bl, PSModelResource pSModelResource, boolean bl2, boolean bl3) throws Exception {
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSModelResource> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ImageURL_Default((IEntity)pSModelResource, bl2, bl3);
+            string2 = this.onTestValueRule_ImageURL_Default(pSModelResource, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IMAGEURL");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSModelResource> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSModelResource, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSModelResource, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSModelResource> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelResourceId_Default((IEntity)pSModelResource, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelResourceId_Default(pSModelResource, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELRESOURCEID");
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSModelResource> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelResourceName_Default((IEntity)pSModelResource, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelResourceName_Default(pSModelResource, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELRESOURCENAME");
@@ -271,7 +271,7 @@ extends PSCoreSysServiceBase<PSModelResource> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ResourceType_Default((IEntity)pSModelResource, bl2, bl3);
+            string2 = this.onTestValueRule_ResourceType_Default(pSModelResource, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESOURCETYPE");
@@ -284,11 +284,11 @@ extends PSCoreSysServiceBase<PSModelResource> {
     }
 
     protected void onSyncEntity(PSModelResource pSModelResource, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSModelResource, bl);
+        super.onSyncEntity(pSModelResource, bl);
     }
 
     protected void onSyncIndexEntities(PSModelResource pSModelResource, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSModelResource, bl);
+        super.onSyncIndexEntities(pSModelResource, bl);
     }
 
     public Object getDataContextValue(PSModelResource pSModelResource, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -296,14 +296,14 @@ extends PSCoreSysServiceBase<PSModelResource> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSModelResource, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSModelResource, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSModelResource pSModelResource, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSModelResource, arrayList, n);
+        super.onExportMajorModel(pSModelResource, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -431,14 +431,14 @@ extends PSCoreSysServiceBase<PSModelResource> {
 
     protected boolean onMergeChild(String string, String string2, PSModelResource pSModelResource) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSModelResource)) {
+        if (super.onMergeChild(string, string2, pSModelResource)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSModelResource pSModelResource) throws Exception {
-        super.onUpdateParent((IEntity)pSModelResource);
+        super.onUpdateParent(pSModelResource);
     }
 
     @Override

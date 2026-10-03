@@ -1,52 +1,152 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswx.core;
 
 import net.ibizsys.paas.core.CallResult;
 import net.ibizsys.psrt.srv.wx.entity.WXMessage;
 import net.ibizsys.pswx.bean.WXOutMsg;
-import net.ibizsys.pswx.core.IWXAccountModel;
-import net.ibizsys.pswx.core.IWXEntApp;
 
-public interface IWXEntAppModel
-extends IWXEntApp {
-    public IWXAccountModel getWXAccountModel();
+/**
+ * 微信公众号企业应用模型接口
+ * 
+ * @author Administrator
+ * 
+ */
+public interface IWXEntAppModel extends IWXEntApp {
 
-    public int getAgentId();
+	/**
+	 * 获取微信公众号模型
+	 * 
+	 * @return
+	 */
+	IWXAccountModel getWXAccountModel();
 
-    public void setAgentId(int var1);
+	/**
+	 * 获取授权方应用标识
+	 * 
+	 * @return
+	 */
+	int getAgentId();
 
-    public void setReportLocation(boolean var1);
+	/**
+	 * 设置授权方应用标识
+	 * 
+	 * @param nAgentId
+	 */
+	void setAgentId(int nAgentId);
 
-    public void setReportEnter(boolean var1);
+	/**
+	 * 是否报告位置
+	 * 
+	 * @param bReportLocation
+	 */
+	void setReportLocation(boolean bReportLocation);
 
-    public void setAppURL(String var1);
+	/**
+	 * 是否报告进入
+	 * 
+	 * @param bReportEnter
+	 */
+	void setReportEnter(boolean bReportEnter);
 
-    public void processWXMessage(WXMessage var1) throws Exception;
+	/**
+	 * 设置企业应用URL
+	 * 
+	 * @param strAppURL
+	 */
+	void setAppURL(String strAppURL);
 
-    public void setAppSecret(String var1);
+	/**
+	 * 处理微信消息
+	 * 
+	 * @param wxMessage
+	 * @throws Exception
+	 */
+	void processWXMessage(WXMessage wxMessage) throws Exception;
 
-    public void setToken(String var1);
+	/**
+	 * 设置应用密钥
+	 * 
+	 * @param secret
+	 */
+	void setAppSecret(String secret);
 
-    public void setEncodingAESKey(String var1);
+	/**
+	 * 设置票据
+	 * 
+	 * @param token 票据
+	 */
+	void setToken(String token);
 
-    public String getAccessToken();
+	/**
+	 * 设置回调密钥
+	 * 
+	 * @param key
+	 */
+	void setEncodingAESKey(String key);
 
-    public String createJsToken(String var1);
+	/**
+	 * 获取访问票据
+	 * 
+	 * @return
+	 */
+	String getAccessToken();
 
-    public CallResult sendMsg(WXOutMsg var1);
+	/**
+	 * 创建脚本
+	 * 
+	 * @param url
+	 * @return
+	 */
+	String createJsToken(String url);
 
-    public CallResult downloadMedia(String var1);
+	/**
+	 * 发送通知消息到微信
+	 * 
+	 * @param wxOutMsg
+	 * @return
+	 */
+	CallResult sendMsg(WXOutMsg wxOutMsg);
 
-    public CallResult publishMenu();
+	/**
+	 * 下载多媒体文件
+	 * 
+	 * @return
+	 */
+	CallResult downloadMedia(String mediaId);
 
-    public CallResult deleteMenu();
+	/**
+	 * 发布应用菜单
+	 * 
+	 * @return
+	 */
+	CallResult publishMenu();
 
-    public CallResult getMenu();
+	/**
+	 * 删除应用菜单
+	 * 
+	 * @return
+	 */
+	CallResult deleteMenu();
 
-    public Object getRuntimeId();
-
-    public void setRuntimeId(Object var1);
+	/**
+	 * 获取应用菜单
+	 * 
+	 * @return
+	 */
+	CallResult getMenu();
+	
+	
+	
+	/**
+	 * 获取运行时标识
+	 * @return
+	 */
+	Object getRuntimeId();
+	
+	
+	/**
+	 * 设置运行时标识
+	 * @param objId
+	 */
+	void setRuntimeId(Object objId);
+	
 }
-

@@ -122,6 +122,7 @@ import net.ibizsys.pscore.srv.dedesign.entity.PSDEFSFItem;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEFSFItemBase;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEFUIMode;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEFUIModeBase;
+import net.ibizsys.pscore.srv.dedesign.entity.PSDEFValueRule;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEField;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEFieldBase;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDER;
@@ -220,6 +221,7 @@ import net.ibizsys.pscore.srv.eaidesign.service.PSSysEAIDEFieldServiceBase;
 import net.ibizsys.pscore.srv.helpdesign.entity.PSHelpSection;
 import net.ibizsys.pscore.srv.helpdesign.service.PSHelpSectionService;
 import net.ibizsys.pscore.srv.helpdesign.service.PSHelpSectionServiceBase;
+import net.ibizsys.pscore.srv.search.entity.PSSysSearchDEField;
 import net.ibizsys.pscore.srv.search.service.PSSysSearchDEFieldService;
 import net.ibizsys.pscore.srv.search.service.PSSysSearchDEFieldServiceBase;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSCodeList;
@@ -471,7 +473,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_AJAXFILLDVT, 0, (IEntity)pSDEField, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEField, ACTION_AJAXFILLDVT);
+        this.testDEMainStateAction(pSDEField, ACTION_AJAXFILLDVT);
         final PSDEField pSDEField2 = pSDEField;
         this.doServiceWork(new IServiceWork(){
 
@@ -495,7 +497,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_AJAXFILLDATATYPE, 0, (IEntity)pSDEField, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEField, ACTION_AJAXFILLDATATYPE);
+        this.testDEMainStateAction(pSDEField, ACTION_AJAXFILLDATATYPE);
         final PSDEField pSDEField2 = pSDEField;
         this.doServiceWork(new IServiceWork(){
 
@@ -519,7 +521,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_AUTOCODENAME, 0, (IEntity)pSDEField, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEField, ACTION_AUTOCODENAME);
+        this.testDEMainStateAction(pSDEField, ACTION_AUTOCODENAME);
         final PSDEField pSDEField2 = pSDEField;
         this.doServiceWork(new IServiceWork(){
 
@@ -543,7 +545,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDEFTYPE, 0, (IEntity)pSDEField, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEField, ACTION_CHANGEDEFTYPE);
+        this.testDEMainStateAction(pSDEField, ACTION_CHANGEDEFTYPE);
         final PSDEField pSDEField2 = pSDEField;
         this.doServiceWork(new IServiceWork(){
 
@@ -567,7 +569,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEDEFAULTINPUTTIP, 0, (IEntity)pSDEField, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEField, ACTION_CREATEDEFAULTINPUTTIP);
+        this.testDEMainStateAction(pSDEField, ACTION_CREATEDEFAULTINPUTTIP);
         final PSDEField pSDEField2 = pSDEField;
         this.doServiceWork(new IServiceWork(){
 
@@ -591,7 +593,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEDEFAULTVR, 0, (IEntity)pSDEField, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEField, ACTION_CREATEDEFAULTVR);
+        this.testDEMainStateAction(pSDEField, ACTION_CREATEDEFAULTVR);
         final PSDEField pSDEField2 = pSDEField;
         this.doServiceWork(new IServiceWork(){
 
@@ -615,7 +617,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_MAKELINKMODE, 0, (IEntity)pSDEField, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEField, ACTION_MAKELINKMODE);
+        this.testDEMainStateAction(pSDEField, ACTION_MAKELINKMODE);
         final PSDEField pSDEField2 = pSDEField;
         this.doServiceWork(new IServiceWork(){
 
@@ -639,7 +641,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_MAKEREALMODE, 0, (IEntity)pSDEField, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEField, ACTION_MAKEREALMODE);
+        this.testDEMainStateAction(pSDEField, ACTION_MAKEREALMODE);
         final PSDEField pSDEField2 = pSDEField;
         this.doServiceWork(new IServiceWork(){
 
@@ -663,7 +665,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_RESETREFS, 0, (IEntity)pSDEField, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEField, ACTION_RESETREFS);
+        this.testDEMainStateAction(pSDEField, ACTION_RESETREFS);
         final PSDEField pSDEField2 = pSDEField;
         this.doServiceWork(new IServiceWork(){
 
@@ -971,7 +973,7 @@ extends PSCoreSysServiceBase<PSDEField> {
             this.onFillParentInfo_PSSysValueRule(pSDEField, pSSysValueRule);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEField, string, string2, string3);
+        super.onFillParentInfo(pSDEField, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -1167,7 +1169,7 @@ extends PSCoreSysServiceBase<PSDEField> {
                 pSDEField.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDEField, bl);
+        super.onFillEntityFullInfo(pSDEField, bl);
         this.onFillEntityFullInfo_PSCodeList(pSDEField, bl);
         this.onFillEntityFullInfo_PSDE(pSDEField, bl);
         this.onFillEntityFullInfo_PSDataType(pSDEField, bl);
@@ -1406,7 +1408,7 @@ extends PSCoreSysServiceBase<PSDEField> {
     }
 
     protected void onWriteBackParent(PSDEField pSDEField, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEField, bl);
+        super.onWriteBackParent(pSDEField, bl);
     }
 
     public ArrayList<PSDEField> selectByPSCodeList(PSCodeListBase pSCodeListBase) throws Exception {
@@ -2023,7 +2025,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByPSCodeList(pSCodeList);
         this.onBeforeRemoveByPSCodeList(pSCodeList, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByPSCodeList(pSCodeList, arrayList);
     }
@@ -2069,7 +2071,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -2121,7 +2123,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByPSDataType(pSDEFDataType);
         this.onBeforeRemoveByPSDataType(pSDEFDataType, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByPSDataType(pSDEFDataType, arrayList);
     }
@@ -2173,7 +2175,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByDERPSDEF(pSDEField);
         this.onBeforeRemoveByDERPSDEF(pSDEField, arrayList);
         for (PSDEField pSDEField2 : arrayList) {
-            this.remove((IEntity)pSDEField2);
+            this.remove(pSDEField2);
         }
         this.onAfterRemoveByDERPSDEF(pSDEField, arrayList);
     }
@@ -2225,7 +2227,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByDupChkPSDEF(pSDEField);
         this.onBeforeRemoveByDupChkPSDEF(pSDEField, arrayList);
         for (PSDEField pSDEField2 : arrayList) {
-            this.remove((IEntity)pSDEField2);
+            this.remove(pSDEField2);
         }
         this.onAfterRemoveByDupChkPSDEF(pSDEField, arrayList);
     }
@@ -2277,7 +2279,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByNo2DupChkPSDEF(pSDEField);
         this.onBeforeRemoveByNo2DupChkPSDEF(pSDEField, arrayList);
         for (PSDEField pSDEField2 : arrayList) {
-            this.remove((IEntity)pSDEField2);
+            this.remove(pSDEField2);
         }
         this.onAfterRemoveByNo2DupChkPSDEF(pSDEField, arrayList);
     }
@@ -2329,7 +2331,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByNo3DupChkPSDEF(pSDEField);
         this.onBeforeRemoveByNo3DupChkPSDEF(pSDEField, arrayList);
         for (PSDEField pSDEField2 : arrayList) {
-            this.remove((IEntity)pSDEField2);
+            this.remove(pSDEField2);
         }
         this.onAfterRemoveByNo3DupChkPSDEF(pSDEField, arrayList);
     }
@@ -2381,7 +2383,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByRestrictedPSDEF(pSDEField);
         this.onBeforeRemoveByRestrictedPSDEF(pSDEField, arrayList);
         for (PSDEField pSDEField2 : arrayList) {
-            this.remove((IEntity)pSDEField2);
+            this.remove(pSDEField2);
         }
         this.onAfterRemoveByRestrictedPSDEF(pSDEField, arrayList);
     }
@@ -2433,7 +2435,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByValuePSDEF(pSDEField);
         this.onBeforeRemoveByValuePSDEF(pSDEField, arrayList);
         for (PSDEField pSDEField2 : arrayList) {
-            this.remove((IEntity)pSDEField2);
+            this.remove(pSDEField2);
         }
         this.onAfterRemoveByValuePSDEF(pSDEField, arrayList);
     }
@@ -2479,7 +2481,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByO2MPSDER(pSDER);
         this.onBeforeRemoveByO2MPSDER(pSDER, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByO2MPSDER(pSDER, arrayList);
     }
@@ -2525,7 +2527,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByO2OPSDER(pSDER);
         this.onBeforeRemoveByO2OPSDER(pSDER, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByO2OPSDER(pSDER, arrayList);
     }
@@ -2571,7 +2573,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByPSDER(pSDER);
         this.onBeforeRemoveByPSDER(pSDER, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByPSDER(pSDER, arrayList);
     }
@@ -2617,7 +2619,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByPSDETable(pSDETable);
         this.onBeforeRemoveByPSDETable(pSDETable, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByPSDETable(pSDETable, arrayList);
     }
@@ -2669,7 +2671,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByLNPSLanRes(pSLanguageRes);
         this.onBeforeRemoveByLNPSLanRes(pSLanguageRes, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByLNPSLanRes(pSLanguageRes, arrayList);
     }
@@ -2721,7 +2723,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByPSSubSysSADEField(pSSubSysSADEField);
         this.onBeforeRemoveByPSSubSysSADEField(pSSubSysSADEField, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByPSSubSysSADEField(pSSubSysSADEField, arrayList);
     }
@@ -2767,7 +2769,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByPSSysDBColumn(pSSysDBColumn);
         this.onBeforeRemoveByPSSysDBColumn(pSSysDBColumn, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByPSSysDBColumn(pSSysDBColumn, arrayList);
     }
@@ -2819,7 +2821,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByRefPSSysDynaModel(pSSysDynaModel);
         this.onBeforeRemoveByRefPSSysDynaModel(pSSysDynaModel, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByRefPSSysDynaModel(pSSysDynaModel, arrayList);
     }
@@ -2871,7 +2873,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByPSSysSampleValue(pSSysSampleValue);
         this.onBeforeRemoveByPSSysSampleValue(pSSysSampleValue, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByPSSysSampleValue(pSSysSampleValue, arrayList);
     }
@@ -2923,7 +2925,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByPSSysSequence(pSSysSequence);
         this.onBeforeRemoveByPSSysSequence(pSSysSequence, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByPSSysSequence(pSSysSequence, arrayList);
     }
@@ -2975,7 +2977,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByExpPSSysTranslator(pSSysTranslator);
         this.onBeforeRemoveByExpPSSysTranslator(pSSysTranslator, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByExpPSSysTranslator(pSSysTranslator, arrayList);
     }
@@ -3027,7 +3029,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByImpPSSysTranslator(pSSysTranslator);
         this.onBeforeRemoveByImpPSSysTranslator(pSSysTranslator, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByImpPSSysTranslator(pSSysTranslator, arrayList);
     }
@@ -3079,7 +3081,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByPSSysTranslator(pSSysTranslator);
         this.onBeforeRemoveByPSSysTranslator(pSSysTranslator, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByPSSysTranslator(pSSysTranslator, arrayList);
     }
@@ -3131,7 +3133,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByPSSysUnit(pSSysUnit);
         this.onBeforeRemoveByPSSysUnit(pSSysUnit, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByPSSysUnit(pSSysUnit, arrayList);
     }
@@ -3183,7 +3185,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         ArrayList<PSDEField> arrayList = this.selectByPSSysValueRule(pSSysValueRule);
         this.onBeforeRemoveByPSSysValueRule(pSSysValueRule, arrayList);
         for (PSDEField pSDEField : arrayList) {
-            this.remove((IEntity)pSDEField);
+            this.remove(pSDEField);
         }
         this.onAfterRemoveByPSSysValueRule(pSSysValueRule, arrayList);
     }
@@ -3779,7 +3781,7 @@ extends PSCoreSysServiceBase<PSDEField> {
 
     protected void replaceParentInfo(PSDEField pSDEField, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEField, cloneSession);
+        super.replaceParentInfo(pSDEField, cloneSession);
         if (pSDEField.getPSCodeListId() != null && (iEntity = cloneSession.getEntity("PSCODELIST", (Object)pSDEField.getPSCodeListId())) != null) {
             this.onFillParentInfo_PSCodeList(pSDEField, (PSCodeList)iEntity);
         }
@@ -3855,7 +3857,7 @@ extends PSCoreSysServiceBase<PSDEField> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEField pSDEField, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEField, bl);
+        super.onRemoveEntityUncopyValues(pSDEField, bl);
         pSDEField.resetPSDETableId();
         pSDEField.resetPSSysDBColumnId();
         pSDEField.resetTableName();
@@ -4239,7 +4241,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         if ((entityFieldError = this.onCheckField_ViewColLevel(bl, pSDEField, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEField, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEField, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AllowEmpty(boolean bl, PSDEField pSDEField, boolean bl2, boolean bl3) throws Exception {
@@ -7218,11 +7220,11 @@ extends PSCoreSysServiceBase<PSDEField> {
     }
 
     protected void onSyncEntity(PSDEField pSDEField, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEField, bl);
+        super.onSyncEntity(pSDEField, bl);
     }
 
     protected void onSyncIndexEntities(PSDEField pSDEField, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEField, bl);
+        super.onSyncIndexEntities(pSDEField, bl);
     }
 
     public Object getDataContextValue(PSDEField pSDEField, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -7230,7 +7232,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEField, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEField, string, iDataContextParam)) != null) {
             return object;
         }
         PSDataEntity pSDataEntity = pSDEField.getPSDE();
@@ -7243,7 +7245,7 @@ extends PSCoreSysServiceBase<PSDEField> {
     protected void onExportRelatedModel(PSDEField pSDEField, ArrayList<JSONObject> arrayList, int n) throws Exception {
         this.onExportRelatedModel_PSDEFDTCol_PSDEF(pSDEField, arrayList, n);
         this.onExportRelatedModel_PSDEFUIMode_PSDEF(pSDEField, arrayList, n);
-        super.onExportRelatedModel((IEntity)pSDEField, arrayList, n);
+        super.onExportRelatedModel(pSDEField, arrayList, n);
     }
 
     protected void onExportRelatedModel_PSDEFDTCol_PSDEF(PSDEField pSDEField, ArrayList<JSONObject> arrayList, int n) throws Exception {
@@ -7266,7 +7268,7 @@ extends PSCoreSysServiceBase<PSDEField> {
 
     protected void onExportMajorModel(PSDEField pSDEField, ArrayList<JSONObject> arrayList, int n) throws Exception {
         this.onExportMajorModel_LNPSLanRes(pSDEField, arrayList, n);
-        super.onExportMajorModel((IEntity)pSDEField, arrayList, n);
+        super.onExportMajorModel(pSDEField, arrayList, n);
     }
 
     protected void onExportMajorModel_LNPSLanRes(PSDEField pSDEField, ArrayList<JSONObject> arrayList, int n) throws Exception {
@@ -9063,7 +9065,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         if ((StringHelper.isNullOrEmpty((String)string) || (StringHelper.compare((String)string, (String)"DER1N", (boolean)true) == 0 || StringHelper.compare((String)string, (String)"SYSDER1N", (boolean)true) == 0) && StringHelper.compare((String)string2, (String)"DER1N_PSSYSTESTCASE_PSDEFIELD_PSDEFID", (boolean)true) == 0) && this.onMergeChild_PSSysTestCases(pSDEField)) {
             bl = true;
         }
-        if (super.onMergeChild(string, string2, (IEntity)pSDEField)) {
+        if (super.onMergeChild(string, string2, pSDEField)) {
             bl = true;
         }
         return bl;
@@ -9076,14 +9078,13 @@ extends PSCoreSysServiceBase<PSDEField> {
         selectField.setFunc("COUNT");
         selectContext.addSelectField((ISelectField)selectField);
         String string = DataObject.getStringValue((Object)pSDEField.getPSDEFieldId());
-        IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEFDTColService", (SessionFactory)this.getSessionFactory());
+        PSDEFDTColService iService = (PSDEFDTColService)ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEFDTColService", (SessionFactory)this.getSessionFactory());
         selectContext.set("PSDEFID", (Object)pSDEField.getPSDEFieldId());
-        ArrayList arrayList = null;
-        arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
+        ArrayList<PSDEFDTCol> arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        PSDEFDTCol iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSDEField, false);
         return true;
     }
@@ -9095,14 +9096,13 @@ extends PSCoreSysServiceBase<PSDEField> {
         selectField.setFunc("COUNT");
         selectContext.addSelectField((ISelectField)selectField);
         String string = DataObject.getStringValue((Object)pSDEField.getPSDEFieldId());
-        IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEFUIModeService", (SessionFactory)this.getSessionFactory());
+        PSDEFUIModeService iService = (PSDEFUIModeService)ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEFUIModeService", (SessionFactory)this.getSessionFactory());
         selectContext.set("PSDEFID", (Object)pSDEField.getPSDEFieldId());
-        ArrayList arrayList = null;
-        arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
+        ArrayList<PSDEFUIMode> arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        PSDEFUIMode iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSDEField, false);
         return true;
     }
@@ -9114,14 +9114,13 @@ extends PSCoreSysServiceBase<PSDEField> {
         selectField.setFunc("COUNT");
         selectContext.addSelectField((ISelectField)selectField);
         String string = DataObject.getStringValue((Object)pSDEField.getPSDEFieldId());
-        IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEFieldService", (SessionFactory)this.getSessionFactory());
+        PSDEFieldService iService = (PSDEFieldService)ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEFieldService", (SessionFactory)this.getSessionFactory());
         selectContext.set("DERPSDEFID", (Object)pSDEField.getPSDEFieldId());
-        ArrayList arrayList = null;
-        arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
+        ArrayList<PSDEField> arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        PSDEField iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSDEField, false);
         return true;
     }
@@ -9133,14 +9132,13 @@ extends PSCoreSysServiceBase<PSDEField> {
         selectField.setFunc("COUNT");
         selectContext.addSelectField((ISelectField)selectField);
         String string = DataObject.getStringValue((Object)pSDEField.getPSDEFieldId());
-        IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEFInputTipService", (SessionFactory)this.getSessionFactory());
+        PSDEFInputTipService iService = (PSDEFInputTipService)ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEFInputTipService", (SessionFactory)this.getSessionFactory());
         selectContext.set("PSDEFID", (Object)pSDEField.getPSDEFieldId());
-        ArrayList arrayList = null;
-        arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
+        ArrayList<PSDEFInputTip> arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        PSDEFInputTip iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSDEField, false);
         return true;
     }
@@ -9152,14 +9150,13 @@ extends PSCoreSysServiceBase<PSDEField> {
         selectField.setFunc("COUNT");
         selectContext.addSelectField((ISelectField)selectField);
         String string = DataObject.getStringValue((Object)pSDEField.getPSDEFieldId());
-        IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEFSFItemService", (SessionFactory)this.getSessionFactory());
+        PSDEFSFItemService iService = (PSDEFSFItemService)ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEFSFItemService", (SessionFactory)this.getSessionFactory());
         selectContext.set("PSDEFID", (Object)pSDEField.getPSDEFieldId());
-        ArrayList arrayList = null;
-        arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
+        ArrayList<PSDEFSFItem> arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        PSDEFSFItem iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSDEField, false);
         return true;
     }
@@ -9171,14 +9168,13 @@ extends PSCoreSysServiceBase<PSDEField> {
         selectField.setFunc("COUNT");
         selectContext.addSelectField((ISelectField)selectField);
         String string = DataObject.getStringValue((Object)pSDEField.getPSDEFieldId());
-        IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEFValueRuleService", (SessionFactory)this.getSessionFactory());
+        PSDEFValueRuleService iService = (PSDEFValueRuleService)ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDEFValueRuleService", (SessionFactory)this.getSessionFactory());
         selectContext.set("PSDEFID", (Object)pSDEField.getPSDEFieldId());
-        ArrayList arrayList = null;
-        arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
+        ArrayList<PSDEFValueRule> arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        PSDEFValueRule iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSDEField, false);
         return true;
     }
@@ -9190,14 +9186,13 @@ extends PSCoreSysServiceBase<PSDEField> {
         selectField.setFunc("COUNT");
         selectContext.addSelectField((ISelectField)selectField);
         String string = DataObject.getStringValue((Object)pSDEField.getPSDEFieldId());
-        IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.systest.service.PSSysTestCaseService", (SessionFactory)this.getSessionFactory());
+        PSSysTestCaseService iService = (PSSysTestCaseService)ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.systest.service.PSSysTestCaseService", (SessionFactory)this.getSessionFactory());
         selectContext.set("PSDEFID", (Object)pSDEField.getPSDEFieldId());
-        ArrayList arrayList = null;
-        arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
+        ArrayList<PSSysTestCase> arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        PSSysTestCase iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSDEField, false);
         return true;
     }
@@ -9217,7 +9212,7 @@ extends PSCoreSysServiceBase<PSDEField> {
             iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDERService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSDEFIELD_PSDER_PSDERID", object);
         }
-        super.onUpdateParent((IEntity)pSDEField);
+        super.onUpdateParent(pSDEField);
     }
 
     protected boolean isNeedUpdateParent() {
@@ -9253,7 +9248,7 @@ extends PSCoreSysServiceBase<PSDEField> {
         PSDEField pSDEField2 = new PSDEField();
         pSDEField2.setPSDEId(pSDEField.getPSDEId());
         pSDEField2.setPSDEFieldName(pSDEField.getPSDEFieldName());
-        if (this.selectOne((IEntity)pSDEField2, true)) {
+        if (this.selectOne(pSDEField2, true)) {
             return pSDEField2.getPSDEFieldId();
         }
         return super.getEntityFolderKeyValue(pSDEField, pSSystem);
@@ -9414,143 +9409,130 @@ extends PSCoreSysServiceBase<PSDEField> {
 
     @Override
     protected void onExportRelatedModelV2(PSDEField pSDEField, String string, String string2) throws Exception {
-        String string3;
-        EntityBase entityBase;
-        ObjectNode objectNode;
-        ArrayList<String> arrayList;
-        File file;
-        String string4;
-        String string5;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
         File file2 = null;
         if (this.isExportRelatedModelV2("DER1N_PSSYSTESTCASE_PSDEFIELD_PSDEFID") && (file2 = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEFIELD#%4$s#ALL.txt", (Object)string2, (Object)File.separator, (Object)"PSSYSTESTCASE", (Object)pSDEField.getPSDEFieldId()))).exists()) {
-            pSCoreSysServiceBase = (PSSysTestCaseService)ServiceGlobal.getService(PSSysTestCaseService.class, (SessionFactory)this.getSessionFactory());
-            string5 = pSCoreSysServiceBase.getModelV2Name(false);
-            string4 = string + File.separator + string5;
-            file = new File(string4);
+            PSSysTestCaseService pSSysTestCaseService = (PSSysTestCaseService)ServiceGlobal.getService(PSSysTestCaseService.class, (SessionFactory)this.getSessionFactory());
+            String string3 = pSSysTestCaseService.getModelV2Name(false);
+            String string4 = string + File.separator + string3;
+            File file = new File(string4);
             if (!file.exists()) {
                 file.mkdirs();
             }
-            arrayList = PSModelV2Helper.readFile2(file2);
-            for (String string6 : arrayList) {
-                if (StringHelper.isNullOrEmpty((String)string6)) continue;
-                objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSSysTestCase();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSSysTestCaseServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysTestCase)entityBase);
-                if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSTESTCASE", (Object)entityBase.getPSSysTestCaseId()));
+            for (String string5 : PSModelV2Helper.readFile2(file2)) {
+                if (StringHelper.isNullOrEmpty((String)string5)) continue;
+                ObjectNode objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string5);
+                PSSysTestCase pSSysTestCase = new PSSysTestCase();
+                PSModelV2Helper.fromJSONObject((IDataObject)pSSysTestCase, objectNode, false);
+                String string6 = pSSysTestCaseService.getModelV2Tag(pSSysTestCase);
+                if (StringHelper.isNullOrEmpty((String)string6)) {
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSTESTCASE", (Object)pSSysTestCase.getPSSysTestCaseId()));
                 }
-                string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
-                file = new File(string4 + File.separator + string3);
+                string6 = PSModelV2Helper.getModelV2TagFolderName(string6);
+                file = new File(string4 + File.separator + string6);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSSysTestCaseService.exportModelV2(pSSysTestCase, string4 + File.separator + string6, string2);
             }
         }
         if (this.isExportRelatedModelV2("DER1N_PSDEFFORMITEM_PSDEFIELD_PSDEFID") && (file2 = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEFIELD#%4$s#ALL.txt", (Object)string2, (Object)File.separator, (Object)"PSDEFFORMITEM", (Object)pSDEField.getPSDEFieldId()))).exists()) {
-            pSCoreSysServiceBase = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
-            string5 = pSCoreSysServiceBase.getModelV2Name(false);
-            string4 = string + File.separator + string5;
-            file = new File(string4);
+            PSDEFUIModeService pSDEFUIModeService = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
+            String string3 = pSDEFUIModeService.getModelV2Name(false);
+            String string4 = string + File.separator + string3;
+            File file = new File(string4);
             if (!file.exists()) {
                 file.mkdirs();
             }
-            arrayList = PSModelV2Helper.readFile2(file2);
-            for (String string6 : arrayList) {
-                if (StringHelper.isNullOrEmpty((String)string6)) continue;
-                objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSDEFUIMode();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSDEFUIModeService)pSCoreSysServiceBase).getModelV2Tag((PSDEFUIMode)entityBase);
-                if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEFFORMITEM", (Object)entityBase.getPSDEFUIModeId()));
+            for (String string5 : PSModelV2Helper.readFile2(file2)) {
+                if (StringHelper.isNullOrEmpty((String)string5)) continue;
+                ObjectNode objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string5);
+                PSDEFUIMode pSDEFUIMode = new PSDEFUIMode();
+                PSModelV2Helper.fromJSONObject((IDataObject)pSDEFUIMode, objectNode, false);
+                String string6 = pSDEFUIModeService.getModelV2Tag(pSDEFUIMode);
+                if (StringHelper.isNullOrEmpty((String)string6)) {
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEFFORMITEM", (Object)pSDEFUIMode.getPSDEFUIModeId()));
                 }
-                string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
-                file = new File(string4 + File.separator + string3);
+                string6 = PSModelV2Helper.getModelV2TagFolderName(string6);
+                file = new File(string4 + File.separator + string6);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSDEFUIModeService.exportModelV2(pSDEFUIMode, string4 + File.separator + string6, string2);
             }
         }
         if (this.isExportRelatedModelV2("DER1N_PSDEFINPUTTIP_PSDEFIELD_PSDEFID") && (file2 = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEFIELD#%4$s#ALL.txt", (Object)string2, (Object)File.separator, (Object)"PSDEFINPUTTIP", (Object)pSDEField.getPSDEFieldId()))).exists()) {
-            pSCoreSysServiceBase = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
-            string5 = pSCoreSysServiceBase.getModelV2Name(false);
-            string4 = string + File.separator + string5;
-            file = new File(string4);
+            PSDEFInputTipService pSDEFInputTipService = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
+            String string3 = pSDEFInputTipService.getModelV2Name(false);
+            String string4 = string + File.separator + string3;
+            File file = new File(string4);
             if (!file.exists()) {
                 file.mkdirs();
             }
-            arrayList = PSModelV2Helper.readFile2(file2);
-            for (String string6 : arrayList) {
-                if (StringHelper.isNullOrEmpty((String)string6)) continue;
-                objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSDEFInputTip();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSDEFInputTipServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSDEFInputTip)entityBase);
-                if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEFINPUTTIP", (Object)entityBase.getPSDEFInputTipId()));
+            for (String string5 : PSModelV2Helper.readFile2(file2)) {
+                if (StringHelper.isNullOrEmpty((String)string5)) continue;
+                ObjectNode objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string5);
+                PSDEFInputTip pSDEFInputTip = new PSDEFInputTip();
+                PSModelV2Helper.fromJSONObject((IDataObject)pSDEFInputTip, objectNode, false);
+                String string6 = pSDEFInputTipService.getModelV2Tag(pSDEFInputTip);
+                if (StringHelper.isNullOrEmpty((String)string6)) {
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEFINPUTTIP", (Object)pSDEFInputTip.getPSDEFInputTipId()));
                 }
-                string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
-                file = new File(string4 + File.separator + string3);
+                string6 = PSModelV2Helper.getModelV2TagFolderName(string6);
+                file = new File(string4 + File.separator + string6);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSDEFInputTipService.exportModelV2(pSDEFInputTip, string4 + File.separator + string6, string2);
             }
         }
         if (this.isExportRelatedModelV2("DER1N_PSDEFSFITEM_PSDEFIELD_PSDEFID") && (file2 = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEFIELD#%4$s#ALL.txt", (Object)string2, (Object)File.separator, (Object)"PSDEFSFITEM", (Object)pSDEField.getPSDEFieldId()))).exists()) {
-            pSCoreSysServiceBase = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
-            string5 = pSCoreSysServiceBase.getModelV2Name(false);
-            string4 = string + File.separator + string5;
-            file = new File(string4);
+            PSDEFSFItemService pSDEFSFItemService = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
+            String string3 = pSDEFSFItemService.getModelV2Name(false);
+            String string4 = string + File.separator + string3;
+            File file = new File(string4);
             if (!file.exists()) {
                 file.mkdirs();
             }
-            arrayList = PSModelV2Helper.readFile2(file2);
-            for (String string6 : arrayList) {
-                if (StringHelper.isNullOrEmpty((String)string6)) continue;
-                objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSDEFSFItem();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSDEFSFItemServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSDEFSFItem)entityBase);
-                if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEFSFITEM", (Object)entityBase.getPSDEFSFItemId()));
+            for (String string5 : PSModelV2Helper.readFile2(file2)) {
+                if (StringHelper.isNullOrEmpty((String)string5)) continue;
+                ObjectNode objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string5);
+                PSDEFSFItem pSDEFSFItem = new PSDEFSFItem();
+                PSModelV2Helper.fromJSONObject((IDataObject)pSDEFSFItem, objectNode, false);
+                String string6 = pSDEFSFItemService.getModelV2Tag(pSDEFSFItem);
+                if (StringHelper.isNullOrEmpty((String)string6)) {
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEFSFITEM", (Object)pSDEFSFItem.getPSDEFSFItemId()));
                 }
-                string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
-                file = new File(string4 + File.separator + string3);
+                string6 = PSModelV2Helper.getModelV2TagFolderName(string6);
+                file = new File(string4 + File.separator + string6);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSDEFSFItemService.exportModelV2(pSDEFSFItem, string4 + File.separator + string6, string2);
             }
         }
         if (this.isExportRelatedModelV2("DER1N_PSDEFDTCOL_PSDEFIELD_PSDEFID") && (file2 = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEFIELD#%4$s#ALL.txt", (Object)string2, (Object)File.separator, (Object)"PSDEFDTCOL", (Object)pSDEField.getPSDEFieldId()))).exists()) {
-            pSCoreSysServiceBase = (PSDEFDTColService)ServiceGlobal.getService(PSDEFDTColService.class, (SessionFactory)this.getSessionFactory());
-            string5 = pSCoreSysServiceBase.getModelV2Name(false);
-            string4 = string + File.separator + string5;
-            file = new File(string4);
+            PSDEFDTColService pSDEFDTColService = (PSDEFDTColService)ServiceGlobal.getService(PSDEFDTColService.class, (SessionFactory)this.getSessionFactory());
+            String string3 = pSDEFDTColService.getModelV2Name(false);
+            String string4 = string + File.separator + string3;
+            File file = new File(string4);
             if (!file.exists()) {
                 file.mkdirs();
             }
-            arrayList = PSModelV2Helper.readFile2(file2);
-            for (String string6 : arrayList) {
-                if (StringHelper.isNullOrEmpty((String)string6)) continue;
-                objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSDEFDTCol();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSDEFDTColServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSDEFDTCol)entityBase);
-                if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEFDTCOL", (Object)entityBase.getPSDEFDTColId()));
+            for (String string5 : PSModelV2Helper.readFile2(file2)) {
+                if (StringHelper.isNullOrEmpty((String)string5)) continue;
+                ObjectNode objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string5);
+                PSDEFDTCol pSDEFDTCol = new PSDEFDTCol();
+                PSModelV2Helper.fromJSONObject((IDataObject)pSDEFDTCol, objectNode, false);
+                String string6 = pSDEFDTColService.getModelV2Tag(pSDEFDTCol);
+                if (StringHelper.isNullOrEmpty((String)string6)) {
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEFDTCOL", (Object)pSDEFDTCol.getPSDEFDTColId()));
                 }
-                string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
-                file = new File(string4 + File.separator + string3);
+                string6 = PSModelV2Helper.getModelV2TagFolderName(string6);
+                file = new File(string4 + File.separator + string6);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSDEFDTColService.exportModelV2(pSDEFDTCol, string4 + File.separator + string6, string2);
             }
         }
         super.onExportRelatedModelV2(pSDEField, string, string2);
@@ -9558,45 +9540,32 @@ extends PSCoreSysServiceBase<PSDEField> {
 
     @Override
     protected void onExportCurModelV2(PSDEField pSDEField, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        Object object3;
-        Object object4;
-        ArrayList<PSSysTestCase> arrayList;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
+        ArrayList<ObjectNode> arrayList;
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSTESTCASE_PSDEFIELD_PSDEFID")) {
-            pSCoreSysServiceBase = (PSSysTestCaseService)ServiceGlobal.getService(PSSysTestCaseService.class, (SessionFactory)this.getSessionFactory());
+            PSSysTestCaseService pSSysTestCaseService = (PSSysTestCaseService)ServiceGlobal.getService(PSSysTestCaseService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEFIELD#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSTESTCASE", (Object)pSDEField.getPSDEFieldId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysTestCase)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String string2 : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)string2)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString((String)string2));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysTestCase>();
-                object4 = ((PSSysTestCaseServiceBase)pSCoreSysServiceBase).selectByPSDEF(pSDEField);
-                object3 = StringHelper.format((String)"PSDEFIELD#%1$s", (Object)pSDEField.getPSDEFieldId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysTestCase)object2.next();
-                    object = ((PSSysTestCaseServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysTestCase)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String string3 = StringHelper.format((String)"PSDEFIELD#%1$s", (Object)pSDEField.getPSDEFieldId());
+                for (PSSysTestCase pSSysTestCase : pSSysTestCaseService.selectByPSDEF(pSDEField)) {
+                    String string4 = pSSysTestCaseService.getModelV2ResScope(pSSysTestCase);
+                    if (StringHelper.compare((String)string3, (String)string4, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(pSSysTestCase, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                String string5 = pSSysTestCaseService.getModelV2Name(false);
+                ArrayNode arrayNode = objectNode.putArray(((String)string5).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9624,44 +9593,37 @@ extends PSCoreSysServiceBase<PSDEField> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysTestCase();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode objectNode2 : arrayList) {
+                    PSSysTestCase pSSysTestCase = new PSSysTestCase();
+                    PSModelV2Helper.fromJSONObject((IDataObject)pSSysTestCase, (ObjectNode)objectNode2, false);
+                    arrayNode.add((JsonNode)pSSysTestCaseService.exportModelV2(pSSysTestCase, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEFFORMITEM_PSDEFIELD_PSDEFID")) {
-            pSCoreSysServiceBase = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
+            PSDEFUIModeService pSDEFUIModeService = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEFIELD#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEFFORMITEM", (Object)pSDEField.getPSDEFieldId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysTestCase)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String string2 : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)string2)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString((String)string2));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEFUIModeServiceBase)pSCoreSysServiceBase).selectByPSDEF(pSDEField);
-                object3 = StringHelper.format((String)"PSDEFIELD#%1$s", (Object)pSDEField.getPSDEFieldId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEFUIMode)object2.next();
-                    object = ((PSDEFUIModeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysTestCase)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String string3 = StringHelper.format((String)"PSDEFIELD#%1$s", (Object)pSDEField.getPSDEFieldId());
+                for (PSDEFUIMode pSDEFUIMode : pSDEFUIModeService.selectByPSDEF(pSDEField)) {
+                    String string4 = pSDEFUIModeService.getModelV2ResScope(pSDEFUIMode);
+                    if (StringHelper.compare((String)string3, (String)string4, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(pSDEFUIMode, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                String string5 = pSDEFUIModeService.getModelV2Name(false);
+                ArrayNode arrayNode = objectNode.putArray(((String)string5).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9689,44 +9651,37 @@ extends PSCoreSysServiceBase<PSDEField> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEFUIMode();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode objectNode2 : arrayList) {
+                    PSDEFUIMode pSDEFUIMode = new PSDEFUIMode();
+                    PSModelV2Helper.fromJSONObject((IDataObject)pSDEFUIMode, (ObjectNode)objectNode2, false);
+                    arrayNode.add((JsonNode)pSDEFUIModeService.exportModelV2(pSDEFUIMode, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEFINPUTTIP_PSDEFIELD_PSDEFID")) {
-            pSCoreSysServiceBase = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
+            PSDEFInputTipService pSDEFInputTipService = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEFIELD#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEFINPUTTIP", (Object)pSDEField.getPSDEFieldId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysTestCase)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String string2 : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)string2)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString((String)string2));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEFInputTipServiceBase)pSCoreSysServiceBase).selectByPSDEF(pSDEField);
-                object3 = StringHelper.format((String)"PSDEFIELD#%1$s", (Object)pSDEField.getPSDEFieldId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEFInputTip)object2.next();
-                    object = ((PSDEFInputTipServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysTestCase)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String string3 = StringHelper.format((String)"PSDEFIELD#%1$s", (Object)pSDEField.getPSDEFieldId());
+                for (PSDEFInputTip pSDEFInputTip : pSDEFInputTipService.selectByPSDEF(pSDEField)) {
+                    String string4 = pSDEFInputTipService.getModelV2ResScope(pSDEFInputTip);
+                    if (StringHelper.compare((String)string3, (String)string4, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(pSDEFInputTip, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                String string5 = pSDEFInputTipService.getModelV2Name(false);
+                ArrayNode arrayNode = objectNode.putArray(((String)string5).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9754,44 +9709,37 @@ extends PSCoreSysServiceBase<PSDEField> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEFInputTip();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode objectNode2 : arrayList) {
+                    PSDEFInputTip pSDEFInputTip = new PSDEFInputTip();
+                    PSModelV2Helper.fromJSONObject((IDataObject)pSDEFInputTip, (ObjectNode)objectNode2, false);
+                    arrayNode.add((JsonNode)pSDEFInputTipService.exportModelV2(pSDEFInputTip, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEFSFITEM_PSDEFIELD_PSDEFID")) {
-            pSCoreSysServiceBase = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
+            PSDEFSFItemService pSDEFSFItemService = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEFIELD#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEFSFITEM", (Object)pSDEField.getPSDEFieldId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysTestCase)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String string2 : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)string2)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString((String)string2));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEFSFItemServiceBase)pSCoreSysServiceBase).selectByPSDEF(pSDEField);
-                object3 = StringHelper.format((String)"PSDEFIELD#%1$s", (Object)pSDEField.getPSDEFieldId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEFSFItem)object2.next();
-                    object = ((PSDEFSFItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysTestCase)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String string3 = StringHelper.format((String)"PSDEFIELD#%1$s", (Object)pSDEField.getPSDEFieldId());
+                for (PSDEFSFItem pSDEFSFItem : pSDEFSFItemService.selectByPSDEF(pSDEField)) {
+                    String string4 = pSDEFSFItemService.getModelV2ResScope(pSDEFSFItem);
+                    if (StringHelper.compare((String)string3, (String)string4, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(pSDEFSFItem, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                String string5 = pSDEFSFItemService.getModelV2Name(false);
+                ArrayNode arrayNode = objectNode.putArray(((String)string5).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9819,44 +9767,37 @@ extends PSCoreSysServiceBase<PSDEField> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEFSFItem();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode objectNode2 : arrayList) {
+                    PSDEFSFItem pSDEFSFItem = new PSDEFSFItem();
+                    PSModelV2Helper.fromJSONObject((IDataObject)pSDEFSFItem, (ObjectNode)objectNode2, false);
+                    arrayNode.add((JsonNode)pSDEFSFItemService.exportModelV2(pSDEFSFItem, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEFDTCOL_PSDEFIELD_PSDEFID")) {
-            pSCoreSysServiceBase = (PSDEFDTColService)ServiceGlobal.getService(PSDEFDTColService.class, (SessionFactory)this.getSessionFactory());
+            PSDEFDTColService pSDEFDTColService = (PSDEFDTColService)ServiceGlobal.getService(PSDEFDTColService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEFIELD#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEFDTCOL", (Object)pSDEField.getPSDEFieldId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysTestCase)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String string2 : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)string2)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString((String)string2));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEFDTColServiceBase)pSCoreSysServiceBase).selectByPSDEF(pSDEField);
-                object3 = StringHelper.format((String)"PSDEFIELD#%1$s", (Object)pSDEField.getPSDEFieldId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEFDTCol)object2.next();
-                    object = ((PSDEFDTColServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysTestCase)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String string3 = StringHelper.format((String)"PSDEFIELD#%1$s", (Object)pSDEField.getPSDEFieldId());
+                for (PSDEFDTCol pSDEFDTCol : pSDEFDTColService.selectByPSDEF(pSDEField)) {
+                    String string4 = pSDEFDTColService.getModelV2ResScope(pSDEFDTCol);
+                    if (StringHelper.compare((String)string3, (String)string4, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(pSDEFDTCol, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                String string5 = pSDEFDTColService.getModelV2Name(false);
+                ArrayNode arrayNode = objectNode.putArray(((String)string5).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -9884,10 +9825,10 @@ extends PSCoreSysServiceBase<PSDEField> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEFDTCol();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode objectNode2 : arrayList) {
+                    PSDEFDTCol pSDEFDTCol = new PSDEFDTCol();
+                    PSModelV2Helper.fromJSONObject((IDataObject)pSDEFDTCol, (ObjectNode)objectNode2, false);
+                    arrayNode.add((JsonNode)pSDEFDTColService.exportModelV2(pSDEFDTCol, string));
                 }
             }
         }
@@ -9967,177 +9908,174 @@ extends PSCoreSysServiceBase<PSDEField> {
 
     @Override
     protected void onCompileRelatedModelV2(PSDEField pSDEField, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
-        int n2;
-        String string3;
-        ArrayNode arrayNode;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
         if (!PSDEFieldServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSSysTestCaseService)ServiceGlobal.getService(PSSysTestCaseService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
+            PSSysTestCaseService pSSysTestCaseService = (PSSysTestCaseService)ServiceGlobal.getService(PSSysTestCaseService.class, (SessionFactory)this.getSessionFactory());
+            ArrayNode arrayNode = null;
+            String string3 = pSSysTestCaseService.getModelV2Name(null, false);
             if (objectNode != null) {
                 arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
             }
             if (arrayNode != null) {
-                for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSSysTestCase();
-                    ((PSSysTestCaseBase)object).setPSDEFId(pSDEField.getPSDEFieldId());
-                    ((PSSysTestCaseBase)object).setPSDEFName(pSDEField.getPSDEFieldName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                for (int i = 0; i < arrayNode.size(); ++i) {
+                    ObjectNode objectNode2 = (ObjectNode)arrayNode.get(i);
+                    PSSysTestCase pSSysTestCase = new PSSysTestCase();
+                    pSSysTestCase.setPSDEFId(pSDEField.getPSDEFieldId());
+                    pSSysTestCase.setPSDEFName(pSDEField.getPSDEFieldName());
+                    pSSysTestCaseService.compileModelV2(pSSysTestCase, objectNode2, string, null, n);
                 }
             } else {
                 String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string4);
-                if (((File)object2).exists()) {
-                    object = ((File)object2).listFiles();
-                    for (Object object3 : object) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysTestCase();
-                        entityBase.setPSDEFId(pSDEField.getPSDEFieldId());
-                        entityBase.setPSDEFName(pSDEField.getPSDEFieldName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File file = new File(string4);
+                if (file.exists()) {
+                    File[] files = file.listFiles();
+                    for (File file2 : files) {
+                        if (!file2.isDirectory()) continue;
+                        PSSysTestCase pSSysTestCase = new PSSysTestCase();
+                        pSSysTestCase.setPSDEFId(pSDEField.getPSDEFieldId());
+                        pSSysTestCase.setPSDEFName(pSDEField.getPSDEFieldName());
+                        pSSysTestCaseService.compileModelV2(pSSysTestCase, null, string, file2.getCanonicalPath(), n);
                     }
                 }
             }
         }
         if (!PSDEFieldServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
+            PSDEFUIModeService pSDEFUIModeService = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
+            ArrayNode arrayNode = null;
+            String string3 = pSDEFUIModeService.getModelV2Name(null, false);
             if (objectNode != null && (arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase())) == null) {
                 arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)"psdefuimodes");
             }
             if (arrayNode != null) {
-                for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSDEFUIMode();
-                    ((PSDEFUIModeBase)object).setPSDEFId(pSDEField.getPSDEFieldId());
-                    ((PSDEFUIModeBase)object).setPSDEFName(pSDEField.getPSDEFieldName());
-                    ((PSDEFUIModeBase)object).setPSDEId(pSDEField.getPSDEId());
-                    ((PSDEFUIModeBase)object).setPSDEName(pSDEField.getPSDEName());
-                    ((PSDEFUIModeBase)object).setPSSystemId(pSDEField.getPSSystemId());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                for (int i = 0; i < arrayNode.size(); ++i) {
+                    ObjectNode objectNode2 = (ObjectNode)arrayNode.get(i);
+                    PSDEFUIMode pSDEFUIMode = new PSDEFUIMode();
+                    pSDEFUIMode.setPSDEFId(pSDEField.getPSDEFieldId());
+                    pSDEFUIMode.setPSDEFName(pSDEField.getPSDEFieldName());
+                    pSDEFUIMode.setPSDEId(pSDEField.getPSDEId());
+                    pSDEFUIMode.setPSDEName(pSDEField.getPSDEName());
+                    pSDEFUIMode.setPSSystemId(pSDEField.getPSSystemId());
+                    pSDEFUIModeService.compileModelV2(pSDEFUIMode, objectNode2, string, null, n);
                 }
             } else {
                 String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string5);
-                if (!((File)object2).exists()) {
+                File file = new File(string5);
+                if (!file.exists()) {
                     string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)"PSDEFUIMODES");
-                    object2 = new File(string5);
+                    file = new File(string5);
                 }
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEFUIMode();
-                        entityBase.setPSDEFId(pSDEField.getPSDEFieldId());
-                        entityBase.setPSDEFName(pSDEField.getPSDEFieldName());
-                        entityBase.setPSDEId(pSDEField.getPSDEId());
-                        entityBase.setPSDEName(pSDEField.getPSDEName());
-                        entityBase.setPSSystemId(pSDEField.getPSSystemId());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                if (file.exists()) {
+                    File[] files = file.listFiles();
+                    for (File file2 : files) {
+                        if (!file2.isDirectory()) continue;
+                        PSDEFUIMode pSDEFUIMode = new PSDEFUIMode();
+                        pSDEFUIMode.setPSDEFId(pSDEField.getPSDEFieldId());
+                        pSDEFUIMode.setPSDEFName(pSDEField.getPSDEFieldName());
+                        pSDEFUIMode.setPSDEId(pSDEField.getPSDEId());
+                        pSDEFUIMode.setPSDEName(pSDEField.getPSDEName());
+                        pSDEFUIMode.setPSSystemId(pSDEField.getPSSystemId());
+                        pSDEFUIModeService.compileModelV2(pSDEFUIMode, null, string, file2.getCanonicalPath(), n);
                     }
                 }
             }
         }
         if (!PSDEFieldServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
+            PSDEFInputTipService pSDEFInputTipService = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
+            ArrayNode arrayNode = null;
+            String string3 = pSDEFInputTipService.getModelV2Name(null, false);
             if (objectNode != null) {
                 arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
             }
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
-                    object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDEFInputTip();
-                    ((PSDEFInputTipBase)object).setPSDEFId(pSDEField.getPSDEFieldId());
-                    ((PSDEFInputTipBase)object).setPSDEFName(pSDEField.getPSDEFieldName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode objectNode2 = (ObjectNode)arrayNode.get(i);
+                    PSDEFInputTip pSDEFInputTip = new PSDEFInputTip();
+                    pSDEFInputTip.setPSDEFId(pSDEField.getPSDEFieldId());
+                    pSDEFInputTip.setPSDEFName(pSDEField.getPSDEFieldName());
+                    pSDEFInputTipService.compileModelV2(pSDEFInputTip, objectNode2, string, null, n);
                 }
             } else {
                 String string6 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string6);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEFInputTip();
-                        entityBase.setPSDEFId(pSDEField.getPSDEFieldId());
-                        entityBase.setPSDEFName(pSDEField.getPSDEFieldName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File file = new File(string6);
+                if (file.exists()) {
+                    File[] files = file.listFiles();
+                    for (File file2 : files) {
+                        if (!file2.isDirectory()) continue;
+                        PSDEFInputTip pSDEFInputTip = new PSDEFInputTip();
+                        pSDEFInputTip.setPSDEFId(pSDEField.getPSDEFieldId());
+                        pSDEFInputTip.setPSDEFName(pSDEField.getPSDEFieldName());
+                        pSDEFInputTipService.compileModelV2(pSDEFInputTip, null, string, file2.getCanonicalPath(), n);
                     }
                 }
             }
         }
         if (!PSDEFieldServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
+            PSDEFSFItemService pSDEFSFItemService = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
+            ArrayNode arrayNode = null;
+            String string3 = pSDEFSFItemService.getModelV2Name(null, false);
             if (objectNode != null) {
                 arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
             }
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
-                    object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDEFSFItem();
-                    ((PSDEFSFItemBase)object).setLogicName(pSDEField.getLogicName());
-                    ((PSDEFSFItemBase)object).setO2MPSDERId(pSDEField.getO2MPSDERId());
-                    ((PSDEFSFItemBase)object).setO2OPSDERId(pSDEField.getO2OPSDERId());
-                    ((PSDEFSFItemBase)object).setPSDEFId(pSDEField.getPSDEFieldId());
-                    ((PSDEFSFItemBase)object).setPSDEFName(pSDEField.getPSDEFieldName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode objectNode2 = (ObjectNode)arrayNode.get(i);
+                    PSDEFSFItem pSDEFSFItem = new PSDEFSFItem();
+                    pSDEFSFItem.setLogicName(pSDEField.getLogicName());
+                    pSDEFSFItem.setO2MPSDERId(pSDEField.getO2MPSDERId());
+                    pSDEFSFItem.setO2OPSDERId(pSDEField.getO2OPSDERId());
+                    pSDEFSFItem.setPSDEFId(pSDEField.getPSDEFieldId());
+                    pSDEFSFItem.setPSDEFName(pSDEField.getPSDEFieldName());
+                    pSDEFSFItemService.compileModelV2(pSDEFSFItem, objectNode2, string, null, n);
                 }
             } else {
                 String string7 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string7);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEFSFItem();
-                        entityBase.setLogicName(pSDEField.getLogicName());
-                        entityBase.setO2MPSDERId(pSDEField.getO2MPSDERId());
-                        entityBase.setO2OPSDERId(pSDEField.getO2OPSDERId());
-                        entityBase.setPSDEFId(pSDEField.getPSDEFieldId());
-                        entityBase.setPSDEFName(pSDEField.getPSDEFieldName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File file = new File(string7);
+                if (file.exists()) {
+                    File[] files = file.listFiles();
+                    for (File file2 : files) {
+                        if (!file2.isDirectory()) continue;
+                        PSDEFSFItem pSDEFSFItem = new PSDEFSFItem();
+                        pSDEFSFItem.setLogicName(pSDEField.getLogicName());
+                        pSDEFSFItem.setO2MPSDERId(pSDEField.getO2MPSDERId());
+                        pSDEFSFItem.setO2OPSDERId(pSDEField.getO2OPSDERId());
+                        pSDEFSFItem.setPSDEFId(pSDEField.getPSDEFieldId());
+                        pSDEFSFItem.setPSDEFName(pSDEField.getPSDEFieldName());
+                        pSDEFSFItemService.compileModelV2(pSDEFSFItem, null, string, file2.getCanonicalPath(), n);
                     }
                 }
             }
         }
         if (!PSDEFieldServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSDEFDTColService)ServiceGlobal.getService(PSDEFDTColService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
+            PSDEFDTColService pSDEFDTColService = (PSDEFDTColService)ServiceGlobal.getService(PSDEFDTColService.class, (SessionFactory)this.getSessionFactory());
+            ArrayNode arrayNode = null;
+            String string3 = pSDEFDTColService.getModelV2Name(null, false);
             if (objectNode != null) {
                 arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
             }
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
-                    object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSDEFDTCol();
-                    ((PSDEFDTColBase)object).setPSDEFId(pSDEField.getPSDEFieldId());
-                    ((PSDEFDTColBase)object).setPSDEFName(pSDEField.getPSDEFieldName());
-                    ((PSDEFDTColBase)object).setPSDEId(pSDEField.getPSDEId());
-                    ((PSDEFDTColBase)object).setPSDEName(pSDEField.getPSDEName());
-                    ((PSDEFDTColBase)object).setTableName(pSDEField.getTableName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode objectNode2 = (ObjectNode)arrayNode.get(i);
+                    PSDEFDTCol pSDEFDTCol = new PSDEFDTCol();
+                    pSDEFDTCol.setPSDEFId(pSDEField.getPSDEFieldId());
+                    pSDEFDTCol.setPSDEFName(pSDEField.getPSDEFieldName());
+                    pSDEFDTCol.setPSDEId(pSDEField.getPSDEId());
+                    pSDEFDTCol.setPSDEName(pSDEField.getPSDEName());
+                    pSDEFDTCol.setTableName(pSDEField.getTableName());
+                    pSDEFDTColService.compileModelV2(pSDEFDTCol, objectNode2, string, null, n);
                 }
             } else {
                 String string8 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string8);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEFDTCol();
-                        entityBase.setPSDEFId(pSDEField.getPSDEFieldId());
-                        entityBase.setPSDEFName(pSDEField.getPSDEFieldName());
-                        entityBase.setPSDEId(pSDEField.getPSDEId());
-                        entityBase.setPSDEName(pSDEField.getPSDEName());
-                        entityBase.setTableName(pSDEField.getTableName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File file = new File(string8);
+                if (file.exists()) {
+                    File[] files = file.listFiles();
+                    for (File file2 : files) {
+                        if (!file2.isDirectory()) continue;
+                        PSDEFDTCol pSDEFDTCol = new PSDEFDTCol();
+                        pSDEFDTCol.setPSDEFId(pSDEField.getPSDEFieldId());
+                        pSDEFDTCol.setPSDEFName(pSDEField.getPSDEFieldName());
+                        pSDEFDTCol.setPSDEId(pSDEField.getPSDEId());
+                        pSDEFDTCol.setPSDEName(pSDEField.getPSDEName());
+                        pSDEFDTCol.setTableName(pSDEField.getTableName());
+                        pSDEFDTColService.compileModelV2(pSDEFDTCol, null, string, file2.getCanonicalPath(), n);
                     }
                 }
             }
@@ -10171,7 +10109,7 @@ extends PSCoreSysServiceBase<PSDEField> {
             PSSysTestCaseService pSSysTestCaseService = (PSSysTestCaseService)ServiceGlobal.getService(PSSysTestCaseService.class, (SessionFactory)this.getSessionFactory());
             PSSysTestCase pSSysTestCase = new PSSysTestCase();
             pSSysTestCase.setPSSysTestCaseId(pSMOSFile.getPSModelId());
-            if (!pSSysTestCaseService.get((IEntity)pSSysTestCase, true)) {
+            if (!pSSysTestCaseService.get(pSSysTestCase, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysTestCase.getPSDEFId(), (String)pSDEField.getPSDEFieldId(), (boolean)false) == 0) {
@@ -10179,12 +10117,12 @@ extends PSCoreSysServiceBase<PSDEField> {
             }
             ObjectNode objectNode = pSSysTestCaseService.exportModelV2(pSSysTestCase);
             pSSysTestCase.reset();
-            if (!pSSysTestCaseService.setModelV2ResScope((IEntity)pSSysTestCase, "PSDEFIELD", pSDEField.getPSDEFieldId())) {
+            if (!pSSysTestCaseService.setModelV2ResScope(pSSysTestCase, "PSDEFIELD", pSDEField.getPSDEFieldId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysTestCaseService.importModelV2(pSSysTestCase, objectNode);
             SessionFactoryManager.commit();
-            return pSSysTestCaseService.getFile((IEntity)pSSysTestCase);
+            return pSSysTestCaseService.getFile(pSSysTestCase);
         }
         return null;
     }
@@ -10194,7 +10132,7 @@ extends PSCoreSysServiceBase<PSDEField> {
             PSDEFUIModeService pSDEFUIModeService = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
             PSDEFUIMode pSDEFUIMode = new PSDEFUIMode();
             pSDEFUIMode.setPSDEFUIModeId(pSMOSFile.getPSModelId());
-            if (!pSDEFUIModeService.get((IEntity)pSDEFUIMode, true)) {
+            if (!pSDEFUIModeService.get(pSDEFUIMode, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEFUIMode.getPSDEFId(), (String)pSDEField.getPSDEFieldId(), (boolean)false) == 0) {
@@ -10202,12 +10140,12 @@ extends PSCoreSysServiceBase<PSDEField> {
             }
             ObjectNode objectNode = pSDEFUIModeService.exportModelV2(pSDEFUIMode);
             pSDEFUIMode.reset();
-            if (!pSDEFUIModeService.setModelV2ResScope((IEntity)pSDEFUIMode, "PSDEFIELD", pSDEField.getPSDEFieldId())) {
+            if (!pSDEFUIModeService.setModelV2ResScope(pSDEFUIMode, "PSDEFIELD", pSDEField.getPSDEFieldId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEFUIModeService.importModelV2(pSDEFUIMode, objectNode);
             SessionFactoryManager.commit();
-            return pSDEFUIModeService.getFile((IEntity)pSDEFUIMode);
+            return pSDEFUIModeService.getFile(pSDEFUIMode);
         }
         return null;
     }
@@ -10217,7 +10155,7 @@ extends PSCoreSysServiceBase<PSDEField> {
             PSDEFInputTipService pSDEFInputTipService = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
             PSDEFInputTip pSDEFInputTip = new PSDEFInputTip();
             pSDEFInputTip.setPSDEFInputTipId(pSMOSFile.getPSModelId());
-            if (!pSDEFInputTipService.get((IEntity)pSDEFInputTip, true)) {
+            if (!pSDEFInputTipService.get(pSDEFInputTip, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEFInputTip.getPSDEFId(), (String)pSDEField.getPSDEFieldId(), (boolean)false) == 0) {
@@ -10225,12 +10163,12 @@ extends PSCoreSysServiceBase<PSDEField> {
             }
             ObjectNode objectNode = pSDEFInputTipService.exportModelV2(pSDEFInputTip);
             pSDEFInputTip.reset();
-            if (!pSDEFInputTipService.setModelV2ResScope((IEntity)pSDEFInputTip, "PSDEFIELD", pSDEField.getPSDEFieldId())) {
+            if (!pSDEFInputTipService.setModelV2ResScope(pSDEFInputTip, "PSDEFIELD", pSDEField.getPSDEFieldId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEFInputTipService.importModelV2(pSDEFInputTip, objectNode);
             SessionFactoryManager.commit();
-            return pSDEFInputTipService.getFile((IEntity)pSDEFInputTip);
+            return pSDEFInputTipService.getFile(pSDEFInputTip);
         }
         return null;
     }
@@ -10240,7 +10178,7 @@ extends PSCoreSysServiceBase<PSDEField> {
             PSDEFSFItemService pSDEFSFItemService = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
             PSDEFSFItem pSDEFSFItem = new PSDEFSFItem();
             pSDEFSFItem.setPSDEFSFItemId(pSMOSFile.getPSModelId());
-            if (!pSDEFSFItemService.get((IEntity)pSDEFSFItem, true)) {
+            if (!pSDEFSFItemService.get(pSDEFSFItem, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEFSFItem.getPSDEFId(), (String)pSDEField.getPSDEFieldId(), (boolean)false) == 0) {
@@ -10248,12 +10186,12 @@ extends PSCoreSysServiceBase<PSDEField> {
             }
             ObjectNode objectNode = pSDEFSFItemService.exportModelV2(pSDEFSFItem);
             pSDEFSFItem.reset();
-            if (!pSDEFSFItemService.setModelV2ResScope((IEntity)pSDEFSFItem, "PSDEFIELD", pSDEField.getPSDEFieldId())) {
+            if (!pSDEFSFItemService.setModelV2ResScope(pSDEFSFItem, "PSDEFIELD", pSDEField.getPSDEFieldId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEFSFItemService.importModelV2(pSDEFSFItem, objectNode);
             SessionFactoryManager.commit();
-            return pSDEFSFItemService.getFile((IEntity)pSDEFSFItem);
+            return pSDEFSFItemService.getFile(pSDEFSFItem);
         }
         return null;
     }
@@ -10263,7 +10201,7 @@ extends PSCoreSysServiceBase<PSDEField> {
             PSDEFDTColService pSDEFDTColService = (PSDEFDTColService)ServiceGlobal.getService(PSDEFDTColService.class, (SessionFactory)this.getSessionFactory());
             PSDEFDTCol pSDEFDTCol = new PSDEFDTCol();
             pSDEFDTCol.setPSDEFDTColId(pSMOSFile.getPSModelId());
-            if (!pSDEFDTColService.get((IEntity)pSDEFDTCol, true)) {
+            if (!pSDEFDTColService.get(pSDEFDTCol, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEFDTCol.getPSDEFId(), (String)pSDEField.getPSDEFieldId(), (boolean)false) == 0) {
@@ -10271,12 +10209,12 @@ extends PSCoreSysServiceBase<PSDEField> {
             }
             ObjectNode objectNode = pSDEFDTColService.exportModelV2(pSDEFDTCol);
             pSDEFDTCol.reset();
-            if (!pSDEFDTColService.setModelV2ResScope((IEntity)pSDEFDTCol, "PSDEFIELD", pSDEField.getPSDEFieldId())) {
+            if (!pSDEFDTColService.setModelV2ResScope(pSDEFDTCol, "PSDEFIELD", pSDEField.getPSDEFieldId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEFDTColService.importModelV2(pSDEFDTCol, objectNode);
             SessionFactoryManager.commit();
-            return pSDEFDTColService.getFile((IEntity)pSDEFDTCol);
+            return pSDEFDTColService.getFile(pSDEFDTCol);
         }
         return null;
     }
@@ -10338,10 +10276,8 @@ extends PSCoreSysServiceBase<PSDEField> {
 
     @Override
     protected PSMOSFile[] onListDRFolders(PSMOSFile pSMOSFile, String string, IPSMOSFileFilter iPSMOSFileFilter) throws Exception {
-        ArrayList arrayList;
         SelectField selectField;
         SelectContext selectContext;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
         PSMOSFile pSMOSFile2;
         HashMap<String, PSMOSFile> hashMap = new HashMap<String, PSMOSFile>();
         if (this.isOutputDRDataFolder(pSMOSFile, string, iPSMOSFileFilter, null, "<\u6570\u636e\u5e93>", "DER1N_PSDEFDTCOL_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "")) {
@@ -10356,14 +10292,14 @@ extends PSCoreSysServiceBase<PSDEField> {
             pSMOSFile2.setFileTag3("PSDEFDTCOL");
             pSMOSFile2.setMemo("");
             if (this.isCountDRDataFolder(pSMOSFile, iPSMOSFileFilter, "DER1N_PSDEFDTCOL_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "")) {
-                pSCoreSysServiceBase = (PSDEFDTColService)ServiceGlobal.getService(PSDEFDTColService.class, (SessionFactory)this.getSessionFactory());
-                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEFDTCOL_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+                PSDEFDTColService pSDEFDTColService = (PSDEFDTColService)ServiceGlobal.getService(PSDEFDTColService.class, (SessionFactory)this.getSessionFactory());
+                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEFDTColService, "DER1N_PSDEFDTCOL_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
                 selectField = new SelectField();
                 selectField.setFunc("COUNT");
                 selectField.setAlias("CNT");
                 selectContext.addSelectField((ISelectField)selectField);
-                arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)((IDataObject)arrayList.get(0)), (String)"CNT", (int)0));
+                ArrayList<PSDEFDTCol> arrayList = pSDEFDTColService.selectEx(selectContext);
+                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)arrayList.get(0), (String)"CNT", (int)0));
             }
             if (PSDEFieldServiceBase.getMOSVer() == 2 && iPSMOSFileFilter != null) {
                 if (iPSMOSFileFilter.isStarQuery() || pSMOSFile2.getPSMOSFileName().indexOf(iPSMOSFileFilter.getQuery()) != -1) {
@@ -10385,14 +10321,14 @@ extends PSCoreSysServiceBase<PSDEField> {
             pSMOSFile2.setFileTag3("PSDEFVALUERULE");
             pSMOSFile2.setMemo("");
             if (this.isCountDRDataFolder(pSMOSFile, iPSMOSFileFilter, "DER1N_PSDEFVALUERULE_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "")) {
-                pSCoreSysServiceBase = (PSDEFValueRuleService)ServiceGlobal.getService(PSDEFValueRuleService.class, (SessionFactory)this.getSessionFactory());
-                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEFVALUERULE_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+                PSDEFValueRuleService pSDEFValueRuleService = (PSDEFValueRuleService)ServiceGlobal.getService(PSDEFValueRuleService.class, (SessionFactory)this.getSessionFactory());
+                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEFValueRuleService, "DER1N_PSDEFVALUERULE_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
                 selectField = new SelectField();
                 selectField.setFunc("COUNT");
                 selectField.setAlias("CNT");
                 selectContext.addSelectField((ISelectField)selectField);
-                arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)((IDataObject)arrayList.get(0)), (String)"CNT", (int)0));
+                ArrayList<PSDEFValueRule> arrayList = pSDEFValueRuleService.selectEx(selectContext);
+                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)arrayList.get(0), (String)"CNT", (int)0));
             }
             if (PSDEFieldServiceBase.getMOSVer() == 2 && iPSMOSFileFilter != null) {
                 if (iPSMOSFileFilter.isStarQuery() || pSMOSFile2.getPSMOSFileName().indexOf(iPSMOSFileFilter.getQuery()) != -1) {
@@ -10414,14 +10350,14 @@ extends PSCoreSysServiceBase<PSDEField> {
             pSMOSFile2.setFileTag3("PSDEFSFITEM");
             pSMOSFile2.setMemo("");
             if (this.isCountDRDataFolder(pSMOSFile, iPSMOSFileFilter, "DER1N_PSDEFSFITEM_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "")) {
-                pSCoreSysServiceBase = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
-                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEFSFITEM_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+                PSDEFSFItemService pSDEFSFItemService = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
+                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEFSFItemService, "DER1N_PSDEFSFITEM_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
                 selectField = new SelectField();
                 selectField.setFunc("COUNT");
                 selectField.setAlias("CNT");
                 selectContext.addSelectField((ISelectField)selectField);
-                arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)((IDataObject)arrayList.get(0)), (String)"CNT", (int)0));
+                ArrayList<PSDEFSFItem> arrayList = pSDEFSFItemService.selectEx(selectContext);
+                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)arrayList.get(0), (String)"CNT", (int)0));
             }
             if (PSDEFieldServiceBase.getMOSVer() == 2 && iPSMOSFileFilter != null) {
                 if (iPSMOSFileFilter.isStarQuery() || pSMOSFile2.getPSMOSFileName().indexOf(iPSMOSFileFilter.getQuery()) != -1) {
@@ -10443,14 +10379,14 @@ extends PSCoreSysServiceBase<PSDEField> {
             pSMOSFile2.setFileTag3("PSDEFFORMITEM");
             pSMOSFile2.setMemo("");
             if (this.isCountDRDataFolder(pSMOSFile, iPSMOSFileFilter, "DER1N_PSDEFFORMITEM_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "")) {
-                pSCoreSysServiceBase = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
-                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEFFORMITEM_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+                PSDEFUIModeService pSDEFUIModeService = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
+                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEFUIModeService, "DER1N_PSDEFFORMITEM_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
                 selectField = new SelectField();
                 selectField.setFunc("COUNT");
                 selectField.setAlias("CNT");
                 selectContext.addSelectField((ISelectField)selectField);
-                arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)((IDataObject)arrayList.get(0)), (String)"CNT", (int)0));
+                ArrayList<PSDEFUIMode> arrayList = pSDEFUIModeService.selectEx(selectContext);
+                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)arrayList.get(0), (String)"CNT", (int)0));
             }
             if (PSDEFieldServiceBase.getMOSVer() == 2 && iPSMOSFileFilter != null) {
                 if (iPSMOSFileFilter.isStarQuery() || pSMOSFile2.getPSMOSFileName().indexOf(iPSMOSFileFilter.getQuery()) != -1) {
@@ -10482,14 +10418,14 @@ extends PSCoreSysServiceBase<PSDEField> {
             pSMOSFile2.setFileTag3("PSSYSSEARCHDEFIELD");
             pSMOSFile2.setMemo("");
             if (this.isCountDRDataFolder(pSMOSFile, iPSMOSFileFilter, "DER1N_PSSYSSEARCHDEFIELD_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "")) {
-                pSCoreSysServiceBase = (PSSysSearchDEFieldService)ServiceGlobal.getService(PSSysSearchDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSSEARCHDEFIELD_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+                PSSysSearchDEFieldService pSSysSearchDEFieldService = (PSSysSearchDEFieldService)ServiceGlobal.getService(PSSysSearchDEFieldService.class, (SessionFactory)this.getSessionFactory());
+                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSSysSearchDEFieldService, "DER1N_PSSYSSEARCHDEFIELD_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
                 selectField = new SelectField();
                 selectField.setFunc("COUNT");
                 selectField.setAlias("CNT");
                 selectContext.addSelectField((ISelectField)selectField);
-                arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)((IDataObject)arrayList.get(0)), (String)"CNT", (int)0));
+                ArrayList<PSSysSearchDEField> arrayList = pSSysSearchDEFieldService.selectEx(selectContext);
+                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)arrayList.get(0), (String)"CNT", (int)0));
             }
             if (PSDEFieldServiceBase.getMOSVer() == 2 && iPSMOSFileFilter != null) {
                 if (iPSMOSFileFilter.isStarQuery() || pSMOSFile2.getPSMOSFileName().indexOf(iPSMOSFileFilter.getQuery()) != -1) {
@@ -10542,14 +10478,14 @@ extends PSCoreSysServiceBase<PSDEField> {
             pSMOSFile2.setFileTag4("[\u5f00\u53d1]");
             pSMOSFile2.setMemo("");
             if (this.isCountDRDataFolder(pSMOSFile, iPSMOSFileFilter, "DER1N_PSDEFINPUTTIP_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "")) {
-                pSCoreSysServiceBase = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
-                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEFINPUTTIP_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+                PSDEFInputTipService pSDEFInputTipService = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
+                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEFInputTipService, "DER1N_PSDEFINPUTTIP_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
                 selectField = new SelectField();
                 selectField.setFunc("COUNT");
                 selectField.setAlias("CNT");
                 selectContext.addSelectField((ISelectField)selectField);
-                arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)((IDataObject)arrayList.get(0)), (String)"CNT", (int)0));
+                ArrayList<PSDEFInputTip> arrayList = pSDEFInputTipService.selectEx(selectContext);
+                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)arrayList.get(0), (String)"CNT", (int)0));
             }
             if (PSDEFieldServiceBase.getMOSVer() == 2 && iPSMOSFileFilter != null) {
                 if (iPSMOSFileFilter.isStarQuery() || pSMOSFile2.getPSMOSFileName().indexOf(iPSMOSFileFilter.getQuery()) != -1) {
@@ -10572,14 +10508,14 @@ extends PSCoreSysServiceBase<PSDEField> {
             pSMOSFile2.setFileTag4("[\u5f00\u53d1]");
             pSMOSFile2.setMemo("");
             if (this.isCountDRDataFolder(pSMOSFile, iPSMOSFileFilter, "DER1N_PSSYSTESTCASE_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "")) {
-                pSCoreSysServiceBase = (PSSysTestCaseService)ServiceGlobal.getService(PSSysTestCaseService.class, (SessionFactory)this.getSessionFactory());
-                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSTESTCASE_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+                PSSysTestCaseService pSSysTestCaseService = (PSSysTestCaseService)ServiceGlobal.getService(PSSysTestCaseService.class, (SessionFactory)this.getSessionFactory());
+                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSSysTestCaseService, "DER1N_PSSYSTESTCASE_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
                 selectField = new SelectField();
                 selectField.setFunc("COUNT");
                 selectField.setAlias("CNT");
                 selectContext.addSelectField((ISelectField)selectField);
-                arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)((IDataObject)arrayList.get(0)), (String)"CNT", (int)0));
+                ArrayList<PSSysTestCase> arrayList = pSSysTestCaseService.selectEx(selectContext);
+                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)arrayList.get(0), (String)"CNT", (int)0));
             }
             if (PSDEFieldServiceBase.getMOSVer() == 2 && iPSMOSFileFilter != null) {
                 if (iPSMOSFileFilter.isStarQuery() || pSMOSFile2.getPSMOSFileName().indexOf(iPSMOSFileFilter.getQuery()) != -1) {
@@ -10602,14 +10538,14 @@ extends PSCoreSysServiceBase<PSDEField> {
             pSMOSFile2.setFileTag4("[\u5f00\u53d1]");
             pSMOSFile2.setMemo("");
             if (this.isCountDRDataFolder(pSMOSFile, iPSMOSFileFilter, "DER1N_PSHELPSECTION_PSDEFIELD_PSDEFIELDID", "PSDEFIELDID", pSMOSFile.getPSModelId(), "", "")) {
-                pSCoreSysServiceBase = (PSHelpSectionService)ServiceGlobal.getService(PSHelpSectionService.class, (SessionFactory)this.getSessionFactory());
-                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSHELPSECTION_PSDEFIELD_PSDEFIELDID", "PSDEFIELDID", pSMOSFile.getPSModelId(), "", "");
+                PSHelpSectionService pSHelpSectionService = (PSHelpSectionService)ServiceGlobal.getService(PSHelpSectionService.class, (SessionFactory)this.getSessionFactory());
+                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSHelpSectionService, "DER1N_PSHELPSECTION_PSDEFIELD_PSDEFIELDID", "PSDEFIELDID", pSMOSFile.getPSModelId(), "", "");
                 selectField = new SelectField();
                 selectField.setFunc("COUNT");
                 selectField.setAlias("CNT");
                 selectContext.addSelectField((ISelectField)selectField);
-                arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)((IDataObject)arrayList.get(0)), (String)"CNT", (int)0));
+                ArrayList<PSHelpSection> arrayList = pSHelpSectionService.selectEx(selectContext);
+                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)arrayList.get(0), (String)"CNT", (int)0));
             }
             if (PSDEFieldServiceBase.getMOSVer() == 2 && iPSMOSFileFilter != null) {
                 if (iPSMOSFileFilter.isStarQuery() || pSMOSFile2.getPSMOSFileName().indexOf(iPSMOSFileFilter.getQuery()) != -1) {
@@ -10632,14 +10568,14 @@ extends PSCoreSysServiceBase<PSDEField> {
             pSMOSFile2.setFileTag4("[\u5f15\u7528]");
             pSMOSFile2.setMemo("");
             if (this.isCountDRDataFolder(pSMOSFile, iPSMOSFileFilter, "DER1N_PSDEFIELD_PSDEFIELD_DERPSDEFID", "DERPSDEFID", pSMOSFile.getPSModelId(), "", "")) {
-                pSCoreSysServiceBase = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEFIELD_PSDEFIELD_DERPSDEFID", "DERPSDEFID", pSMOSFile.getPSModelId(), "", "");
+                PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
+                selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEFieldService, "DER1N_PSDEFIELD_PSDEFIELD_DERPSDEFID", "DERPSDEFID", pSMOSFile.getPSModelId(), "", "");
                 selectField = new SelectField();
                 selectField.setFunc("COUNT");
                 selectField.setAlias("CNT");
                 selectContext.addSelectField((ISelectField)selectField);
-                arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)((IDataObject)arrayList.get(0)), (String)"CNT", (int)0));
+                ArrayList<PSDEField> arrayList = pSDEFieldService.selectEx(selectContext);
+                pSMOSFile2.setFileCnt(DataObject.getIntegerValue((IDataObject)arrayList.get(0), (String)"CNT", (int)0));
             }
             if (PSDEFieldServiceBase.getMOSVer() == 2 && iPSMOSFileFilter != null) {
                 if (iPSMOSFileFilter.isStarQuery() || pSMOSFile2.getPSMOSFileName().indexOf(iPSMOSFileFilter.getQuery()) != -1) {
@@ -10657,97 +10593,84 @@ extends PSCoreSysServiceBase<PSDEField> {
 
     @Override
     protected PSMOSFile[] onListDRDataFolders(PSMOSFile pSMOSFile, String string, String string2, IPSMOSFileFilter iPSMOSFileFilter, boolean bl) throws Exception {
-        PSMOSFile pSMOSFile2;
-        ArrayList arrayList;
-        SelectContext selectContext;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
         ArrayList<PSMOSFile> arrayList2 = new ArrayList<PSMOSFile>();
         if (PSDEFieldServiceBase.getMOSVer() == 1 && StringHelper.isNullOrEmpty((String)string) && StringHelper.compare((String)string2, (String)"<\u6570\u636e\u5e93>", (boolean)false) == 0 || PSDEFieldServiceBase.getMOSVer() == 2 && StringHelper.compare((String)string2, (String)"PSDEFDTCols", (boolean)true) == 0) {
-            pSCoreSysServiceBase = (PSDEFDTColService)ServiceGlobal.getService(PSDEFDTColService.class, (SessionFactory)this.getSessionFactory());
-            selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEFDTCOL_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
-            arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            PSDEFDTColService pSDEFDTColService = (PSDEFDTColService)ServiceGlobal.getService(PSDEFDTColService.class, (SessionFactory)this.getSessionFactory());
+            SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEFDTColService, "DER1N_PSDEFDTCOL_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+            for (PSDEFDTCol pSDEFDTCol : pSDEFDTColService.selectEx(selectContext)) {
+                PSMOSFile pSMOSFile2 = pSDEFDTColService.getFile(pSMOSFile, pSDEFDTCol, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
         }
         if (PSDEFieldServiceBase.getMOSVer() == 1 && StringHelper.isNullOrEmpty((String)string) && StringHelper.compare((String)string2, (String)"<\u503c\u89c4\u5219>", (boolean)false) == 0 || PSDEFieldServiceBase.getMOSVer() == 2 && StringHelper.compare((String)string2, (String)"PSDEFValueRules", (boolean)true) == 0) {
-            pSCoreSysServiceBase = (PSDEFValueRuleService)ServiceGlobal.getService(PSDEFValueRuleService.class, (SessionFactory)this.getSessionFactory());
-            selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEFVALUERULE_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
-            arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            PSDEFValueRuleService pSDEFValueRuleService = (PSDEFValueRuleService)ServiceGlobal.getService(PSDEFValueRuleService.class, (SessionFactory)this.getSessionFactory());
+            SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEFValueRuleService, "DER1N_PSDEFVALUERULE_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+            for (PSDEFValueRule pSDEFValueRule : pSDEFValueRuleService.selectEx(selectContext)) {
+                PSMOSFile pSMOSFile2 = pSDEFValueRuleService.getFile(pSMOSFile, pSDEFValueRule, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
         }
         if (PSDEFieldServiceBase.getMOSVer() == 1 && StringHelper.isNullOrEmpty((String)string) && StringHelper.compare((String)string2, (String)"<\u641c\u7d22\u6a21\u5f0f>", (boolean)false) == 0 || PSDEFieldServiceBase.getMOSVer() == 2 && StringHelper.compare((String)string2, (String)"PSDEFSFItems", (boolean)true) == 0) {
-            pSCoreSysServiceBase = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
-            selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEFSFITEM_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
-            arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            PSDEFSFItemService pSDEFSFItemService = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
+            SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEFSFItemService, "DER1N_PSDEFSFITEM_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+            for (PSDEFSFItem pSDEFSFItem : pSDEFSFItemService.selectEx(selectContext)) {
+                PSMOSFile pSMOSFile2 = pSDEFSFItemService.getFile(pSMOSFile, pSDEFSFItem, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
         }
         if (PSDEFieldServiceBase.getMOSVer() == 1 && StringHelper.isNullOrEmpty((String)string) && StringHelper.compare((String)string2, (String)"<\u754c\u9762\u6a21\u5f0f>", (boolean)false) == 0 || PSDEFieldServiceBase.getMOSVer() == 2 && StringHelper.compare((String)string2, (String)"PSDEFUIModes", (boolean)true) == 0) {
-            pSCoreSysServiceBase = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
-            selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEFFORMITEM_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
-            arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            PSDEFUIModeService pSDEFUIModeService = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
+            SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEFUIModeService, "DER1N_PSDEFFORMITEM_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+            for (PSDEFUIMode pSDEFUIMode : pSDEFUIModeService.selectEx(selectContext)) {
+                PSMOSFile pSMOSFile2 = pSDEFUIModeService.getFile(pSMOSFile, pSDEFUIMode, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
         }
         if (PSDEFieldServiceBase.getMOSVer() == 1 && StringHelper.compare((String)string, (String)"[\u5f00\u53d1]", (boolean)false) == 0 && StringHelper.compare((String)string2, (String)"<\u8f93\u5165\u63d0\u793a>", (boolean)false) == 0 || PSDEFieldServiceBase.getMOSVer() == 2 && StringHelper.compare((String)string2, (String)"PSDEFInputTips", (boolean)true) == 0) {
-            pSCoreSysServiceBase = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
-            selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEFINPUTTIP_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
-            arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            PSDEFInputTipService pSDEFInputTipService = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)this.getSessionFactory());
+            SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEFInputTipService, "DER1N_PSDEFINPUTTIP_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+            for (PSDEFInputTip pSDEFInputTip : pSDEFInputTipService.selectEx(selectContext)) {
+                PSMOSFile pSMOSFile2 = pSDEFInputTipService.getFile(pSMOSFile, pSDEFInputTip, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
         }
         if (PSDEFieldServiceBase.getMOSVer() == 1 && StringHelper.isNullOrEmpty((String)string) && StringHelper.compare((String)string2, (String)"<\u5168\u6587\u68c0\u7d22>", (boolean)false) == 0 || PSDEFieldServiceBase.getMOSVer() == 2 && StringHelper.compare((String)string2, (String)"pssyssearchdefields", (boolean)true) == 0) {
-            pSCoreSysServiceBase = (PSSysSearchDEFieldService)ServiceGlobal.getService(PSSysSearchDEFieldService.class, (SessionFactory)this.getSessionFactory());
-            selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSSEARCHDEFIELD_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
-            arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            PSSysSearchDEFieldService pSSysSearchDEFieldService = (PSSysSearchDEFieldService)ServiceGlobal.getService(PSSysSearchDEFieldService.class, (SessionFactory)this.getSessionFactory());
+            SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSSysSearchDEFieldService, "DER1N_PSSYSSEARCHDEFIELD_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+            for (PSSysSearchDEField pSSysSearchDEField : pSSysSearchDEFieldService.selectEx(selectContext)) {
+                PSMOSFile pSMOSFile2 = pSSysSearchDEFieldService.getFile(pSMOSFile, pSSysSearchDEField, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
         }
         if (PSDEFieldServiceBase.getMOSVer() == 1 && StringHelper.compare((String)string, (String)"[\u5f00\u53d1]", (boolean)false) == 0 && StringHelper.compare((String)string2, (String)"<\u503c\u89c4\u5219\u6d4b\u8bd5\u7528\u4f8b>", (boolean)false) == 0 || PSDEFieldServiceBase.getMOSVer() == 2 && StringHelper.compare((String)string2, (String)"PSSysTestCases", (boolean)true) == 0) {
-            pSCoreSysServiceBase = (PSSysTestCaseService)ServiceGlobal.getService(PSSysTestCaseService.class, (SessionFactory)this.getSessionFactory());
-            selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSTESTCASE_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
-            arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            PSSysTestCaseService pSSysTestCaseService = (PSSysTestCaseService)ServiceGlobal.getService(PSSysTestCaseService.class, (SessionFactory)this.getSessionFactory());
+            SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSSysTestCaseService, "DER1N_PSSYSTESTCASE_PSDEFIELD_PSDEFID", "PSDEFID", pSMOSFile.getPSModelId(), "", "");
+            for (PSSysTestCase pSSysTestCase : pSSysTestCaseService.selectEx(selectContext)) {
+                PSMOSFile pSMOSFile2 = pSSysTestCaseService.getFile(pSMOSFile, pSSysTestCase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
         }
         if (PSDEFieldServiceBase.getMOSVer() == 1 && StringHelper.compare((String)string, (String)"[\u5f00\u53d1]", (boolean)false) == 0 && StringHelper.compare((String)string2, (String)"<\u5e2e\u52a9\u7ae0\u8282>", (boolean)false) == 0 || PSDEFieldServiceBase.getMOSVer() == 2 && StringHelper.compare((String)string2, (String)"pshelpsections", (boolean)true) == 0) {
-            pSCoreSysServiceBase = (PSHelpSectionService)ServiceGlobal.getService(PSHelpSectionService.class, (SessionFactory)this.getSessionFactory());
-            selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSHELPSECTION_PSDEFIELD_PSDEFIELDID", "PSDEFIELDID", pSMOSFile.getPSModelId(), "", "");
-            arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            PSHelpSectionService pSHelpSectionService = (PSHelpSectionService)ServiceGlobal.getService(PSHelpSectionService.class, (SessionFactory)this.getSessionFactory());
+            SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSHelpSectionService, "DER1N_PSHELPSECTION_PSDEFIELD_PSDEFIELDID", "PSDEFIELDID", pSMOSFile.getPSModelId(), "", "");
+            for (PSHelpSection pSHelpSection : pSHelpSectionService.selectEx(selectContext)) {
+                PSMOSFile pSMOSFile2 = pSHelpSectionService.getFile(pSMOSFile, pSHelpSection, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
         }
         if (PSDEFieldServiceBase.getMOSVer() == 1 && StringHelper.compare((String)string, (String)"[\u5f15\u7528]", (boolean)false) == 0 && StringHelper.compare((String)string2, (String)"<\u5173\u7cfb\u5c5e\u6027>", (boolean)false) == 0 || PSDEFieldServiceBase.getMOSVer() == 2 && StringHelper.compare((String)string2, (String)"PSDEFields", (boolean)true) == 0) {
-            pSCoreSysServiceBase = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-            selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEFIELD_PSDEFIELD_DERPSDEFID", "DERPSDEFID", pSMOSFile.getPSModelId(), "", "");
-            arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
+            SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEFieldService, "DER1N_PSDEFIELD_PSDEFIELD_DERPSDEFID", "DERPSDEFID", pSMOSFile.getPSModelId(), "", "");
+            for (PSDEField pSDEField2 : pSDEFieldService.selectEx(selectContext)) {
+                PSMOSFile pSMOSFile2 = pSDEFieldService.getFile(pSMOSFile, pSDEField2, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -10849,4 +10772,3 @@ extends PSCoreSysServiceBase<PSDEField> {
         defaultValueMap.put("LOGICNAME", "\u5c5e\u6027");
     }
 }
-

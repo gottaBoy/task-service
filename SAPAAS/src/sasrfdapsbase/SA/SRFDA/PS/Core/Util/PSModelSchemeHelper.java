@@ -303,47 +303,47 @@ public class PSModelSchemeHelper {
         PSWorkspaceTypeService psWorkspaceTypeService = (PSWorkspaceTypeService)ServiceGlobal.getService(PSWorkspaceTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSWorkspaceType psWorkspaceType = new PSWorkspaceType();
         psWorkspaceType.setPSWorkspaceTypeId("CLOUD");
-        if (!psWorkspaceTypeService.get((IEntity)psWorkspaceType, true)) {
+        if (!psWorkspaceTypeService.get(psWorkspaceType, true)) {
             psWorkspaceType.setPSWorkspaceTypeName("Cloud\u751f\u4ea7\u7ebf");
             psWorkspaceType.setWorkspaceUsage("CLOUD");
             psWorkspaceType.setWorkspaceMode("B");
-            psWorkspaceTypeService.create((IEntity)psWorkspaceType);
+            psWorkspaceTypeService.create(psWorkspaceType);
         }
         PSSvrDomainService psSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSSvrDomain psSvrDomain = new PSSvrDomain();
         psSvrDomain.setPSSvrDomainId(strDefaultId);
-        if (!psSvrDomainService.get((IEntity)psSvrDomain, true)) {
+        if (!psSvrDomainService.get(psSvrDomain, true)) {
             psSvrDomain.setPSSvrDomainName("\u9ed8\u8ba4\u670d\u52a1\u57df");
             psSvrDomain.setDomainCode("LITE");
-            psSvrDomainService.create((IEntity)psSvrDomain);
+            psSvrDomainService.create(psSvrDomain);
         }
         PSSFService psSFService = (PSSFService)ServiceGlobal.getService(PSSFService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSSF psSF = new PSSF();
         psSF.setPSSFId("J2EE6");
-        if (!psSFService.get((IEntity)psSF, true)) {
+        if (!psSFService.get(psSF, true)) {
             psSF.setPSSFName("J2EE\u6846\u67b6");
             psSF.setPkgLowerCase(Integer.valueOf(1));
             psSF.setCodeFlag(Integer.valueOf(1));
             psSF.setDocFlag(Integer.valueOf(0));
             psSF.setModelFlag(Integer.valueOf(0));
             psSF.setValidFlag(Integer.valueOf(1));
-            psSFService.create((IEntity)psSF);
+            psSFService.create(psSF);
         }
         PSTaskServerService psTaskServerService = (PSTaskServerService)ServiceGlobal.getService(PSTaskServerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSTaskServer psTaskServer = new PSTaskServer();
         String strDefaultTaskServerId = String.valueOf(strDefaultId) + "_TASK01";
         psTaskServer.setPSTaskServerId(strDefaultTaskServerId);
-        if (!psTaskServerService.get((IEntity)psTaskServer, true)) {
+        if (!psTaskServerService.get(psTaskServer, true)) {
             psTaskServer.setPSTaskServerName("\u9ed8\u8ba4\u670d\u52a1\u5668");
             psTaskServer.setPSSvrDomainId(psSvrDomain.getPSSvrDomainId());
             psTaskServer.setServerUrl("http://modelserver.ibizcloud.cn:38080");
-            psTaskServerService.create((IEntity)psTaskServer);
+            psTaskServerService.create(psTaskServer);
         }
         if (bInitDC) {
             PSDBServerService psDBServerService = (PSDBServerService)ServiceGlobal.getService(PSDBServerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDBServer psDBServer = new PSDBServer();
             psDBServer.setPSDBServerId(strDefaultId);
-            if (!psDBServerService.get((IEntity)psDBServer, true)) {
+            if (!psDBServerService.get(psDBServer, true)) {
                 psDBServer.setPSDBServerName("\u6570\u636e\u5e93\u670d\u52a1\u5668");
                 psDBServer.setPSSvrDomainId(psSvrDomain.getPSSvrDomainId());
                 psDBServer.setDBType("MYSQL5");
@@ -354,12 +354,12 @@ public class PSModelSchemeHelper {
                 psDBServer.setIPAddr("mysql.ibizcloud.cn");
                 psDBServer.setUserName("root");
                 psDBServer.setPasswd("12345678");
-                psDBServerService.create((IEntity)psDBServer);
+                psDBServerService.create(psDBServer);
             }
             PSSVNServerService psSVNServerService = (PSSVNServerService)ServiceGlobal.getService(PSSVNServerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSSVNServer psSVNServer = new PSSVNServer();
             psSVNServer.setPSSVNServerId(strDefaultId);
-            if (!psSVNServerService.get((IEntity)psSVNServer, true)) {
+            if (!psSVNServerService.get(psSVNServer, true)) {
                 psSVNServer.setPSSVNServerName("\u7248\u672c\u670d\u52a1\u5668");
                 psSVNServer.setPSSvrDomainId(psSvrDomain.getPSSvrDomainId());
                 psSVNServer.setSVNType("GIT");
@@ -369,12 +369,12 @@ public class PSModelSchemeHelper {
                 psSVNServer.setPasswd("12345678");
                 psSVNServer.setSVNRoot("/");
                 psSVNServer.setGitPath("http://gitlab.ibizcloud.cn");
-                psSVNServerService.create((IEntity)psSVNServer);
+                psSVNServerService.create(psSVNServer);
             }
             PSGitUserService psGitUserService = (PSGitUserService)ServiceGlobal.getService(PSGitUserService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSGitUser psGitUser = new PSGitUser();
             psGitUser.setPSGitUserId(strDefaultId);
-            if (!psGitUserService.get((IEntity)psGitUser, true)) {
+            if (!psGitUserService.get(psGitUser, true)) {
                 psGitUser.setPSGitUserName("\u7248\u672c\u670d\u52a1\u5668\u8bbf\u95ee\u7528\u6237");
                 psGitUser.setPSSvrDomainId(psSvrDomain.getPSSvrDomainId());
                 psGitUser.setPSSVNServerId(psSVNServer.getPSSVNServerId());
@@ -382,12 +382,12 @@ public class PSModelSchemeHelper {
                 psGitUser.setUserName("root");
                 psGitUser.setPasswd("12345678");
                 psGitUser.setGitPath("IBIZ");
-                psGitUserService.create((IEntity)psGitUser);
+                psGitUserService.create(psGitUser);
             }
             PSDevCenterService psDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDevCenter psDevCenter = new PSDevCenter();
             psDevCenter.setPSDevCenterId(strDefaultId);
-            if (!psDevCenterService.get((IEntity)psDevCenter, true)) {
+            if (!psDevCenterService.get(psDevCenter, true)) {
                 psDevCenter.setPSDevCenterName("\u9ed8\u8ba4\u5f00\u653e\u4e2d\u5fc3");
                 psDevCenter.setPSSvrDomainId(psSvrDomain.getPSSvrDomainId());
                 psDevCenter.setDCType("DEVCENTER");
@@ -395,14 +395,14 @@ public class PSModelSchemeHelper {
                 psDevCenter.setDomainName("lite");
                 psDevCenter.setFullDomainName("lite.ibizcloud.cn");
                 psDevCenter.setEnableWorkspace(Integer.valueOf(1));
-                psDevCenterService.create((IEntity)psDevCenter);
+                psDevCenterService.create(psDevCenter);
             }
         }
         if (!StringHelper.IsNullOrEmpty((String)strDataFolder) && !StringHelper.IsNullOrEmpty((String)(strLastTag = this.onInitData(strDataFolder, psSvrDomain.getDomainParam3())))) {
             psSvrDomain.reset();
             psSvrDomain.setPSSvrDomainId(strDefaultId);
             psSvrDomain.setDomainParam3(strLastTag);
-            psSvrDomainService.update((IEntity)psSvrDomain, false);
+            psSvrDomainService.update(psSvrDomain, false);
         }
     }
 
@@ -429,9 +429,9 @@ public class PSModelSchemeHelper {
             }
         }
         String strLast = "";
-        for (Map.Entry entry : folderMap.entrySet()) {
-            strLast = (String)entry.getKey();
-            this.onInitDataFolder((File)entry.getValue());
+        for (Map.Entry<String, File> entry : folderMap.entrySet()) {
+            strLast = entry.getKey();
+            this.onInitDataFolder(entry.getValue());
         }
         return strLast;
     }
@@ -471,20 +471,20 @@ public class PSModelSchemeHelper {
                 }
                 IDataEntityModel iDEModel = DEModelGlobal.getDEModel((String)strDEName);
                 BaseDataEntity importDataEntity = BaseDataEntity.FromString((String)strValue);
-                HashMap data = new HashMap();
+                HashMap<String, Object> data = new HashMap<String, Object>();
                 importDataEntity.FillMap(data);
                 IEntity iEntity = iDEModel.createEntity();
-                for (Map.Entry entry : data.entrySet()) {
+                for (Map.Entry<String, Object> entry : data.entrySet()) {
                     Object objValue = entry.getValue();
                     if (objValue != null) {
                         if (objValue instanceof String && StringHelper.IsNullOrEmpty((String)((String)objValue))) {
-                            iEntity.set((String)entry.getKey(), null);
+                            iEntity.set(entry.getKey(), null);
                             continue;
                         }
-                        iEntity.set((String)entry.getKey(), objValue);
+                        iEntity.set(entry.getKey(), objValue);
                         continue;
                     }
-                    iEntity.set((String)entry.getKey(), null);
+                    iEntity.set(entry.getKey(), null);
                 }
                 iEntity.remove("PSDEVCENTERID");
                 iEntity.remove("PSDCID");
@@ -855,4 +855,3 @@ public class PSModelSchemeHelper {
         psDBTypeService.executeRaw(strSql, null);
     }
 }
-

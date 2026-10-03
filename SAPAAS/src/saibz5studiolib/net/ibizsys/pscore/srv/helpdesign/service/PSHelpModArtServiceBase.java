@@ -139,9 +139,9 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
             PSHelpArticle pSHelpArticle = (PSHelpArticle)iService.getDEModel().createEntity();
             pSHelpArticle.set("PSHELPARTICLEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSHelpArticle);
+                iService.getTemp(pSHelpArticle);
             } else {
-                iService.get((IEntity)pSHelpArticle);
+                iService.get(pSHelpArticle);
             }
             this.onFillParentInfo_PSHelpArticle(pSHelpModArt, pSHelpArticle);
             return;
@@ -151,14 +151,14 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
             PSHelpModule pSHelpModule = (PSHelpModule)iService.getDEModel().createEntity();
             pSHelpModule.set("PSHELPMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSHelpModule);
+                iService.getTemp(pSHelpModule);
             } else {
-                iService.get((IEntity)pSHelpModule);
+                iService.get(pSHelpModule);
             }
             this.onFillParentInfo_PSHelpModule(pSHelpModArt, pSHelpModule);
             return;
         }
-        super.onFillParentInfo((IEntity)pSHelpModArt, string, string2, string3);
+        super.onFillParentInfo(pSHelpModArt, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
         if (bl && pSHelpModArt.getValidFlag() == null) {
             pSHelpModArt.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSHelpModArt, bl);
+        super.onFillEntityFullInfo(pSHelpModArt, bl);
         this.onFillEntityFullInfo_PSHelpArticle(pSHelpModArt, bl);
         this.onFillEntityFullInfo_PSHelpModule(pSHelpModArt, bl);
     }
@@ -211,7 +211,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
     }
 
     protected void onWriteBackParent(PSHelpModArt pSHelpModArt, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSHelpModArt, bl);
+        super.onWriteBackParent(pSHelpModArt, bl);
     }
 
     public ArrayList<PSHelpModArt> selectByPSHelpArticle(PSHelpArticleBase pSHelpArticleBase) throws Exception {
@@ -266,8 +266,8 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
         ArrayList<PSHelpModArt> arrayList = this.selectByPSHelpArticle(pSHelpArticle, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSHELPARTICLE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSHelpArticle);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPMODART_PSHELPARTICLE_PSHELPARTICLEID", "", iDataEntityModel.getName(), "PSHELPMODART", iDataEntityModel.getDataInfo((IEntity)pSHelpArticle), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSHelpArticle);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPMODART_PSHELPARTICLE_PSHELPARTICLEID", "", iDataEntityModel.getName(), "PSHELPMODART", iDataEntityModel.getDataInfo(pSHelpArticle), arrayList.get(0)));
         }
     }
 
@@ -300,7 +300,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
         ArrayList<PSHelpModArt> arrayList = this.selectByPSHelpArticle(pSHelpArticle);
         this.onBeforeRemoveByPSHelpArticle(pSHelpArticle, arrayList);
         for (PSHelpModArt pSHelpModArt : arrayList) {
-            this.remove((IEntity)pSHelpModArt);
+            this.remove(pSHelpModArt);
         }
         this.onAfterRemoveByPSHelpArticle(pSHelpArticle, arrayList);
     }
@@ -346,7 +346,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
         ArrayList<PSHelpModArt> arrayList = this.selectByPSHelpModule(pSHelpModule);
         this.onBeforeRemoveByPSHelpModule(pSHelpModule, arrayList);
         for (PSHelpModArt pSHelpModArt : arrayList) {
-            this.remove((IEntity)pSHelpModArt);
+            this.remove(pSHelpModArt);
         }
         this.onAfterRemoveByPSHelpModule(pSHelpModule, arrayList);
     }
@@ -367,7 +367,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
 
     protected void replaceParentInfo(PSHelpModArt pSHelpModArt, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSHelpModArt, cloneSession);
+        super.replaceParentInfo(pSHelpModArt, cloneSession);
         if (pSHelpModArt.getPSHelpArticleId() != null && (iEntity = cloneSession.getEntity("PSHELPARTICLE", (Object)pSHelpModArt.getPSHelpArticleId())) != null) {
             this.onFillParentInfo_PSHelpArticle(pSHelpModArt, (PSHelpArticle)iEntity);
         }
@@ -377,7 +377,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
     }
 
     protected void onRemoveEntityUncopyValues(PSHelpModArt pSHelpModArt, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSHelpModArt, bl);
+        super.onRemoveEntityUncopyValues(pSHelpModArt, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSHelpModArt pSHelpModArt, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -434,7 +434,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSHelpModArt, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSHelpModArt, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSHelpModArt, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSHelpModArt pSHelpModArt, boolean bl2, boolean bl3) throws Exception {
@@ -447,7 +447,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -469,7 +469,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -491,7 +491,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModArtParam_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_ModArtParam_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODARTPARAM");
@@ -513,7 +513,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModArtParam2_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_ModArtParam2_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODARTPARAM2");
@@ -535,7 +535,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -557,7 +557,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpArticleId_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpArticleId_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPARTICLEID");
@@ -579,7 +579,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpArticleName_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpArticleName_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPARTICLENAME");
@@ -604,7 +604,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpModArtId_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpModArtId_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPMODARTID");
@@ -629,7 +629,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpModArtName_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpModArtName_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPMODARTNAME");
@@ -651,7 +651,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpModuleId_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpModuleId_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPMODULEID");
@@ -673,7 +673,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpModuleName_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpModuleName_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPMODULENAME");
@@ -695,7 +695,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -717,7 +717,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -739,7 +739,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -761,7 +761,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -783,7 +783,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -808,7 +808,7 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSHelpModArt, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSHelpModArt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -821,11 +821,11 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
     }
 
     protected void onSyncEntity(PSHelpModArt pSHelpModArt, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSHelpModArt, bl);
+        super.onSyncEntity(pSHelpModArt, bl);
     }
 
     protected void onSyncIndexEntities(PSHelpModArt pSHelpModArt, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSHelpModArt, bl);
+        super.onSyncIndexEntities(pSHelpModArt, bl);
     }
 
     public Object getDataContextValue(PSHelpModArt pSHelpModArt, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -833,14 +833,14 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSHelpModArt, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSHelpModArt, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSHelpModArt pSHelpModArt, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSHelpModArt, arrayList, n);
+        super.onExportMajorModel(pSHelpModArt, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1132,14 +1132,14 @@ extends PSCoreSysServiceBase<PSHelpModArt> {
 
     protected boolean onMergeChild(String string, String string2, PSHelpModArt pSHelpModArt) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSHelpModArt)) {
+        if (super.onMergeChild(string, string2, pSHelpModArt)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSHelpModArt pSHelpModArt) throws Exception {
-        super.onUpdateParent((IEntity)pSHelpModArt);
+        super.onUpdateParent(pSHelpModArt);
     }
 
     @Override

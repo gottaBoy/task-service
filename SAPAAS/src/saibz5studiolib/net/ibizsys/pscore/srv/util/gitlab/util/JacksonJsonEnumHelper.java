@@ -19,7 +19,7 @@ public class JacksonJsonEnumHelper<E extends Enum<E>> {
     }
 
     public JacksonJsonEnumHelper(Class<E> clazz, boolean bl) {
-        for (Enum enum_ : (Enum[])clazz.getEnumConstants()) {
+        for (E enum_ : clazz.getEnumConstants()) {
             String string = enum_.name().toLowerCase();
             if (bl) {
                 string = string.substring(0, 1).toUpperCase() + string.substring(1);
@@ -30,7 +30,7 @@ public class JacksonJsonEnumHelper<E extends Enum<E>> {
     }
 
     public JacksonJsonEnumHelper(Class<E> clazz, boolean bl, boolean bl2) {
-        for (Enum enum_ : (Enum[])clazz.getEnumConstants()) {
+        for (E enum_ : clazz.getEnumConstants()) {
             char[] cArray = enum_.name().toLowerCase().toCharArray();
             StringBuilder stringBuilder = new StringBuilder(cArray.length);
             boolean bl3 = bl;
@@ -70,4 +70,3 @@ public class JacksonJsonEnumHelper<E extends Enum<E>> {
         return this.namesMap.get(e);
     }
 }
-

@@ -1,13 +1,18 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import net.ibizsys.psba.core.IBAColSet;
-import net.ibizsys.psba.core.IBAColumn;
-
-public interface IBAColSetModel
-extends IBAColSet {
-    public void registerBAColumn(IBAColumn var1) throws Exception;
+/**
+ * 列族模型接口对象
+ * 
+ * @author Administrator
+ *
+ */
+public interface IBAColSetModel extends IBAColSet {
+	
+	/**
+	 * 注册数据列
+	 * 
+	 * @param iBAColumn
+	 */
+	void registerBAColumn(IBAColumn iBAColumn)  throws Exception;
+	
 }
-

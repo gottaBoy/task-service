@@ -1,16 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.servlet.http.HttpServletRequest
- *  javax.servlet.http.HttpServletResponse
- */
 package net.ibizsys.paas.controller;
 
 import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.ibizsys.paas.controller.IViewController;
+
 import net.ibizsys.paas.core.IPlugin;
 import net.ibizsys.paas.core.PluginActionResult;
 import net.ibizsys.paas.ctrlhandler.ICtrlHandler;
@@ -20,14 +14,63 @@ import net.ibizsys.paas.view.IViewWizard;
 import net.ibizsys.paas.view.IViewWizardGroupModel;
 import net.ibizsys.paas.web.IWebContext;
 
-public interface IViewControllerPlugin
-extends IPlugin {
-    public PluginActionResult doTestUserAccess(IViewController var1, IWebContext var2, boolean var3, Object var4) throws Exception;
+/**
+ * 视图控制器插件
+ * @author Administrator
+ *
+ */
+public interface IViewControllerPlugin extends IPlugin {
 
-    public PluginActionResult doViewCtrlAjaxAction(IViewController var1, HttpServletRequest var2, HttpServletResponse var3, String var4, String var5, ICtrlHandler var6, Object var7) throws Exception;
+	/**
+	 * 执行判断用户访问操作
+	 * @param iViewController
+	 * @param iWebContext
+	 * @param bSendBack
+	 * @param objParam
+	 * @return
+	 * @throws Exception
+	 */
+	PluginActionResult doTestUserAccess(IViewController iViewController,IWebContext iWebContext,boolean bSendBack,Object objParam) throws Exception;
 
-    public PluginActionResult doGetViewMessages(IViewController var1, IViewMsgGroupModel var2, ArrayList<IViewMessage> var3, Object var4) throws Exception;
+	/**
+	 * 执行视图控件Ajax操作
+	 * @param iViewController
+	 * @param request
+	 * @param response
+	 * @param strCtrlId
+	 * @param strAction
+	 * @param iCtrlHandler
+	 * @param objParam
+	 * @return
+	 * @throws Exception
+	 */
+	PluginActionResult doViewCtrlAjaxAction(IViewController iViewController, HttpServletRequest request, HttpServletResponse response, String strCtrlId, String strAction, ICtrlHandler iCtrlHandler,Object objParam) throws Exception;
 
-    public PluginActionResult doGetViewWizards(IViewController var1, IViewWizardGroupModel var2, String var3, ArrayList<IViewWizard> var4, Object var5) throws Exception;
+
+	
+
+	/**
+	 * 获取视图消息集合
+	 * @param iApplicationModel
+	 * @param iViewController
+	 * @param iViewMsgGroupModel
+	 * @param viewMessageList
+	 * @param objParam
+	 * @return
+	 * @throws Exception
+	 */
+	PluginActionResult doGetViewMessages(IViewController iViewController, IViewMsgGroupModel iViewMsgGroupModel,ArrayList<IViewMessage> viewMessageList,Object objParam) throws Exception;
+	
+
+	/**
+	 * 获取视图向导集合
+	 * @param iViewController
+	 * @param iViewWizardGroupModel
+	 * @param strQuery
+	 * @param viewWizardList
+	 * @param objParam
+	 * @return
+	 * @throws Exception
+	 */
+	PluginActionResult doGetViewWizards(IViewController iViewController, IViewWizardGroupModel iViewWizardGroupModel,String strQuery,ArrayList<IViewWizard> viewWizardList,Object objParam) throws Exception;
 }
-

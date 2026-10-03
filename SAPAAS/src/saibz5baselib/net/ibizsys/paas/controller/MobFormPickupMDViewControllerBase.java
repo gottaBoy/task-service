@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.MobPickupMDViewControllerBase;
+/**
+ * 移动端多表单选择多数据视图控制器对象基类
+ * @author Administrator
+ *
+ */
+public abstract class MobFormPickupMDViewControllerBase extends MobPickupMDViewControllerBase {
 
-public abstract class MobFormPickupMDViewControllerBase
-extends MobPickupMDViewControllerBase {
+	public MobFormPickupMDViewControllerBase() throws Exception {
+		super();
+		
+	}
+
 }
-

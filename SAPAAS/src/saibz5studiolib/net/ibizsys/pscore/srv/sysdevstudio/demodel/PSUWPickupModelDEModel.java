@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdevstudio.demodel.PSUWPickupModelDEModelBase;
 
 public class PSUWPickupModelDEModel
 extends PSUWPickupModelDEModelBase {
+
+    public PSUWPickupModelDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

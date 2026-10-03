@@ -280,21 +280,21 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
 
     public void addActors(PSSysUCMap pSSysUCMap) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_ADDACTORS, 0, (IEntity)pSSysUCMap, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_ADDACTORS, 0, pSSysUCMap, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysUCMap, ACTION_ADDACTORS);
+        this.testDEMainStateAction(pSSysUCMap, ACTION_ADDACTORS);
         final PSSysUCMap pSSysUCMap2 = pSSysUCMap;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_ADDACTORS, 40, (IEntity)pSSysUCMap2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_ADDACTORS, 40, pSSysUCMap2, null).getResult() != 1) {
                     PSSysUCMapServiceBase.this.onAddActors(pSSysUCMap2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_ADDACTORS, 99, (IEntity)pSSysUCMap, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_ADDACTORS, 99, pSSysUCMap, null);
         }
     }
 
@@ -304,21 +304,21 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
 
     public void addUserCases(PSSysUCMap pSSysUCMap) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_ADDUSERCASES, 0, (IEntity)pSSysUCMap, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_ADDUSERCASES, 0, pSSysUCMap, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysUCMap, ACTION_ADDUSERCASES);
+        this.testDEMainStateAction(pSSysUCMap, ACTION_ADDUSERCASES);
         final PSSysUCMap pSSysUCMap2 = pSSysUCMap;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_ADDUSERCASES, 40, (IEntity)pSSysUCMap2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_ADDUSERCASES, 40, pSSysUCMap2, null).getResult() != 1) {
                     PSSysUCMapServiceBase.this.onAddUserCases(pSSysUCMap2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_ADDUSERCASES, 99, (IEntity)pSSysUCMap, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_ADDUSERCASES, 99, pSSysUCMap, null);
         }
     }
 
@@ -328,21 +328,21 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
 
     public void calcConnection(PSSysUCMap pSSysUCMap) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CALCCONNECTION, 0, (IEntity)pSSysUCMap, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CALCCONNECTION, 0, pSSysUCMap, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysUCMap, ACTION_CALCCONNECTION);
+        this.testDEMainStateAction(pSSysUCMap, ACTION_CALCCONNECTION);
         final PSSysUCMap pSSysUCMap2 = pSSysUCMap;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_CALCCONNECTION, 40, (IEntity)pSSysUCMap2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_CALCCONNECTION, 40, pSSysUCMap2, null).getResult() != 1) {
                     PSSysUCMapServiceBase.this.onCalcConnection(pSSysUCMap2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CALCCONNECTION, 99, (IEntity)pSSysUCMap, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CALCCONNECTION, 99, pSSysUCMap, null);
         }
     }
 
@@ -352,21 +352,21 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
 
     public void createWithModel(PSSysUCMap pSSysUCMap) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, (IEntity)pSSysUCMap, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, pSSysUCMap, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysUCMap, ACTION_CREATEWITHMODEL);
+        this.testDEMainStateAction(pSSysUCMap, ACTION_CREATEWITHMODEL);
         final PSSysUCMap pSSysUCMap2 = pSSysUCMap;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_CREATEWITHMODEL, 40, (IEntity)pSSysUCMap2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_CREATEWITHMODEL, 40, pSSysUCMap2, null).getResult() != 1) {
                     PSSysUCMapServiceBase.this.onCreateWithModel(pSSysUCMap2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, (IEntity)pSSysUCMap, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, pSSysUCMap, null);
         }
     }
 
@@ -376,21 +376,21 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
 
     public void getDraftFromWithModel(PSSysUCMap pSSysUCMap) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, (IEntity)pSSysUCMap, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, pSSysUCMap, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysUCMap, ACTION_GETDRAFTFROMWITHMODEL);
+        this.testDEMainStateAction(pSSysUCMap, ACTION_GETDRAFTFROMWITHMODEL);
         final PSSysUCMap pSSysUCMap2 = pSSysUCMap;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, (IEntity)pSSysUCMap2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, pSSysUCMap2, null).getResult() != 1) {
                     PSSysUCMapServiceBase.this.onGetDraftFromWithModel(pSSysUCMap2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, (IEntity)pSSysUCMap, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, pSSysUCMap, null);
         }
     }
 
@@ -400,21 +400,21 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
 
     public void getDraftWithModel(PSSysUCMap pSSysUCMap) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, (IEntity)pSSysUCMap, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, pSSysUCMap, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysUCMap, ACTION_GETDRAFTWITHMODEL);
+        this.testDEMainStateAction(pSSysUCMap, ACTION_GETDRAFTWITHMODEL);
         final PSSysUCMap pSSysUCMap2 = pSSysUCMap;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_GETDRAFTWITHMODEL, 40, (IEntity)pSSysUCMap2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_GETDRAFTWITHMODEL, 40, pSSysUCMap2, null).getResult() != 1) {
                     PSSysUCMapServiceBase.this.onGetDraftWithModel(pSSysUCMap2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, (IEntity)pSSysUCMap, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, pSSysUCMap, null);
         }
     }
 
@@ -424,21 +424,21 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
 
     public void getWithModel(PSSysUCMap pSSysUCMap) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, (IEntity)pSSysUCMap, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, pSSysUCMap, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysUCMap, ACTION_GETWITHMODEL);
+        this.testDEMainStateAction(pSSysUCMap, ACTION_GETWITHMODEL);
         final PSSysUCMap pSSysUCMap2 = pSSysUCMap;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_GETWITHMODEL, 40, (IEntity)pSSysUCMap2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_GETWITHMODEL, 40, pSSysUCMap2, null).getResult() != 1) {
                     PSSysUCMapServiceBase.this.onGetWithModel(pSSysUCMap2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, (IEntity)pSSysUCMap, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, pSSysUCMap, null);
         }
     }
 
@@ -448,21 +448,21 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
 
     public void getWithModel2(PSSysUCMap pSSysUCMap) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL2, 0, (IEntity)pSSysUCMap, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL2, 0, pSSysUCMap, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysUCMap, ACTION_GETWITHMODEL2);
+        this.testDEMainStateAction(pSSysUCMap, ACTION_GETWITHMODEL2);
         final PSSysUCMap pSSysUCMap2 = pSSysUCMap;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_GETWITHMODEL2, 40, (IEntity)pSSysUCMap2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_GETWITHMODEL2, 40, pSSysUCMap2, null).getResult() != 1) {
                     PSSysUCMapServiceBase.this.onGetWithModel2(pSSysUCMap2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL2, 99, (IEntity)pSSysUCMap, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL2, 99, pSSysUCMap, null);
         }
     }
 
@@ -472,21 +472,21 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
 
     public void updateWithModel(PSSysUCMap pSSysUCMap) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, (IEntity)pSSysUCMap, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, pSSysUCMap, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysUCMap, ACTION_UPDATEWITHMODEL);
+        this.testDEMainStateAction(pSSysUCMap, ACTION_UPDATEWITHMODEL);
         final PSSysUCMap pSSysUCMap2 = pSSysUCMap;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_UPDATEWITHMODEL, 40, (IEntity)pSSysUCMap2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysUCMapServiceBase.this.getService(), PSSysUCMapServiceBase.ACTION_UPDATEWITHMODEL, 40, pSSysUCMap2, null).getResult() != 1) {
                     PSSysUCMapServiceBase.this.onUpdateWithModel(pSSysUCMap2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, (IEntity)pSSysUCMap, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, pSSysUCMap, null);
         }
     }
 
@@ -500,9 +500,9 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSSysUCMap, pSModule);
             return;
@@ -512,9 +512,9 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSSysUCMap, pSSysApp);
             return;
@@ -524,14 +524,14 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysUCMap, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysUCMap, string, string2, string3);
+        super.onFillParentInfo(pSSysUCMap, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -562,7 +562,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 pSSysUCMap.setPSSysUCMapName((String)this.getDefaultValue(this.getWebContext(), "USER", "\u7528\u4f8b\u56fe", 25));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysUCMap, bl);
+        super.onFillEntityFullInfo(pSSysUCMap, bl);
         this.onFillEntityFullInfo_PSModule(pSSysUCMap, bl);
         this.onFillEntityFullInfo_PSSysApp(pSSysUCMap, bl);
         this.onFillEntityFullInfo_PSSystem(pSSysUCMap, bl);
@@ -588,7 +588,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
     }
 
     protected void onWriteBackParent(PSSysUCMap pSSysUCMap, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysUCMap, bl);
+        super.onWriteBackParent(pSSysUCMap, bl);
     }
 
     public ArrayList<PSSysUCMap> selectByPSModule(PSModuleBase pSModuleBase) throws Exception {
@@ -667,8 +667,8 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
         ArrayList<PSSysUCMap> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUCMAP_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSUCMAP", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUCMAP_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSUCMAP", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -701,7 +701,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
         ArrayList<PSSysUCMap> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSSysUCMap pSSysUCMap : arrayList) {
-            this.remove((IEntity)pSSysUCMap);
+            this.remove(pSSysUCMap);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -747,7 +747,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
         ArrayList<PSSysUCMap> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSSysUCMap pSSysUCMap : arrayList) {
-            this.remove((IEntity)pSSysUCMap);
+            this.remove(pSSysUCMap);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -793,7 +793,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
         ArrayList<PSSysUCMap> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysUCMap pSSysUCMap : arrayList) {
-            this.remove((IEntity)pSSysUCMap);
+            this.remove(pSSysUCMap);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -818,12 +818,12 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
     protected void onBeforeRemoveTemp(PSSysUCMap pSSysUCMap) throws Exception {
         PSSysUCMapNodeService pSSysUCMapNodeService = (PSSysUCMapNodeService)ServiceGlobal.getService(PSSysUCMapNodeService.class, (SessionFactory)this.getSessionFactory());
         pSSysUCMapNodeService.removeTempByPSSysUCMap(pSSysUCMap);
-        super.onBeforeRemoveTemp((IEntity)pSSysUCMap);
+        super.onBeforeRemoveTemp(pSSysUCMap);
     }
 
     protected void getRelatedDataTempMajor(PSSysUCMap pSSysUCMap) throws Exception {
         this.getRelatedDataTempMajor_PSSysUCMapNode(pSSysUCMap);
-        super.getRelatedDataTempMajor((IEntity)pSSysUCMap);
+        super.getRelatedDataTempMajor(pSSysUCMap);
     }
 
     protected void getRelatedDataTempMajor_PSSysUCMapNode(PSSysUCMap pSSysUCMap) throws Exception {
@@ -839,7 +839,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
     protected void updateRelatedDataTempMajor(PSSysUCMap pSSysUCMap, PSSysUCMap pSSysUCMap2) throws Exception {
         ArrayList<PSSysUCMapNode> arrayList = this.updateRelatedDataTempMajor_removePSSysUCMapNode(pSSysUCMap, pSSysUCMap2);
         this.updateRelatedDataTempMajor_updatePSSysUCMapNode(pSSysUCMap, pSSysUCMap2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSSysUCMap, (IEntity)pSSysUCMap2);
+        super.updateRelatedDataTempMajor(pSSysUCMap, pSSysUCMap2);
     }
 
     protected ArrayList<PSSysUCMapNode> updateRelatedDataTempMajor_removePSSysUCMapNode(PSSysUCMap pSSysUCMap, PSSysUCMap pSSysUCMap2) throws Exception {
@@ -855,7 +855,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
             hashMap.remove(object);
         }
         for (PSSysUCMapNode pSSysUCMapNode : hashMap.values()) {
-            pSSysUCMapNodeService.remove((IEntity)pSSysUCMapNode);
+            pSSysUCMapNodeService.remove(pSSysUCMapNode);
         }
         return arrayList;
     }
@@ -872,7 +872,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
 
     protected void replaceParentInfo(PSSysUCMap pSSysUCMap, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysUCMap, cloneSession);
+        super.replaceParentInfo(pSSysUCMap, cloneSession);
         if (pSSysUCMap.getPSModuleId() != null && (iEntity = cloneSession.getEntity("PSMODULE", (Object)pSSysUCMap.getPSModuleId())) != null) {
             this.onFillParentInfo_PSModule(pSSysUCMap, (PSModule)iEntity);
         }
@@ -885,7 +885,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysUCMap pSSysUCMap, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysUCMap, bl);
+        super.onRemoveEntityUncopyValues(pSSysUCMap, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysUCMap pSSysUCMap, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -942,7 +942,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSSysUCMap, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysUCMap, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysUCMap, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSSysUCMap pSSysUCMap, boolean bl2, boolean bl3) throws Exception {
@@ -958,7 +958,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -999,7 +999,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MapTag_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_MapTag_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAPTAG");
@@ -1021,7 +1021,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MapTag2_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_MapTag2_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAPTAG2");
@@ -1043,7 +1043,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1065,7 +1065,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -1087,7 +1087,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -1109,7 +1109,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -1131,7 +1131,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -1156,7 +1156,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUCMapId_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUCMapId_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUCMAPID");
@@ -1181,7 +1181,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUCMapName_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUCMapName_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUCMAPNAME");
@@ -1222,7 +1222,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Tags_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_Tags_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TAGS");
@@ -1244,7 +1244,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UCModel_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_UCModel_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UCMODEL");
@@ -1266,7 +1266,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1288,7 +1288,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1310,7 +1310,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1332,7 +1332,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1354,7 +1354,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysUCMap, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysUCMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1367,11 +1367,11 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
     }
 
     protected void onSyncEntity(PSSysUCMap pSSysUCMap, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysUCMap, bl);
+        super.onSyncEntity(pSSysUCMap, bl);
     }
 
     protected void onSyncIndexEntities(PSSysUCMap pSSysUCMap, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysUCMap, bl);
+        super.onSyncIndexEntities(pSSysUCMap, bl);
     }
 
     public Object getDataContextValue(PSSysUCMap pSSysUCMap, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1379,14 +1379,14 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysUCMap, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysUCMap, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysUCMap pSSysUCMap, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysUCMap, arrayList, n);
+        super.onExportMajorModel(pSSysUCMap, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1729,21 +1729,21 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
 
     protected boolean onMergeChild(String string, String string2, PSSysUCMap pSSysUCMap) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysUCMap)) {
+        if (super.onMergeChild(string, string2, pSSysUCMap)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysUCMap pSSysUCMap) throws Exception {
-        super.onUpdateParent((IEntity)pSSysUCMap);
+        super.onUpdateParent(pSSysUCMap);
     }
 
     protected void onCopyDetails(PSSysUCMap pSSysUCMap, Object object) throws Exception {
         PSSysUCMap pSSysUCMap2 = new PSSysUCMap();
         pSSysUCMap2.set("PSSYSUCMAPID", object);
         String string = DataObject.getStringValue((Object)pSSysUCMap.get("PSSYSUCMAPID"));
-        super.onCopyDetails((IEntity)pSSysUCMap, object);
+        super.onCopyDetails(pSSysUCMap, object);
     }
 
     @Override
@@ -1804,7 +1804,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSSysUCMapNode pSSysUCMapNode = new PSSysUCMapNode();
-                pSSysUCMapNodeService.fillParentInfo((IEntity)pSSysUCMapNode, "DER1N", "DER1N_PSSYSUCMAPNODE_PSSYSUCMAP_PSSYSUCMAPID", pSSysUCMap.getPSSysUCMapId());
+                pSSysUCMapNodeService.fillParentInfo(pSSysUCMapNode, "DER1N", "DER1N_PSSYSUCMAPNODE_PSSYSUCMAP_PSSYSUCMAPID", pSSysUCMap.getPSSysUCMapId());
                 pSSysUCMapNodeService.importXmlModel(pSSysUCMapNode, xmlNode2);
             }
         }
@@ -1944,41 +1944,28 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
     protected void onExportCurModelV2(PSSysUCMap pSSysUCMap, ObjectNode objectNode, String string, boolean bl) throws Exception {
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSUCMAPNODE_PSSYSUCMAP_PSSYSUCMAPID")) {
-            Object object;
-            PSSysUCMapNode pSSysUCMapNode2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSSysUCMapNodeService pSSysUCMapNodeService = (PSSysUCMapNodeService)ServiceGlobal.getService(PSSysUCMapNodeService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSSysUCMapNode> arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSUCMAP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUCMAPNODE", (Object)pSSysUCMap.getPSSysUCMapId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSSysUCMapNode2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSSysUCMapNode2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString((String)line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysUCMapNode>();
-                object4 = pSSysUCMapNodeService.selectByPSSysUCMap(pSSysUCMap);
-                object3 = StringHelper.format((String)"PSSYSUCMAP#%1$s", (Object)pSSysUCMap.getPSSysUCMapId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSSysUCMapNode2 = object2.next();
-                    object = pSSysUCMapNodeService.getModelV2ResScope((IEntity)pSSysUCMapNode2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysUCMapNode)PSModelV2Helper.toJSONObject((IEntity)pSSysUCMapNode2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSUCMAP#%1$s", (Object)pSSysUCMap.getPSSysUCMapId());
+                for (PSSysUCMapNode mapNode : pSSysUCMapNodeService.selectByPSSysUCMap(pSSysUCMap)) {
+                    String nodeScope = pSSysUCMapNodeService.getModelV2ResScope(mapNode);
+                    if (StringHelper.compare((String)scope, (String)nodeScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(mapNode, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSSysUCMapNodeService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode output = objectNode.putArray(pSSysUCMapNodeService.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2006,10 +1993,10 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSSysUCMapNode pSSysUCMapNode2 : arrayList) {
-                    object = new PSSysUCMapNode();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSSysUCMapNode2, false);
-                    object3.add((JsonNode)pSSysUCMapNodeService.exportModelV2(object, string));
+                for (ObjectNode node : arrayList) {
+                    PSSysUCMapNode mapNode = new PSSysUCMapNode();
+                    PSModelV2Helper.fromJSONObject((IDataObject)mapNode, node, false);
+                    output.add((JsonNode)pSSysUCMapNodeService.exportModelV2(mapNode, string));
                 }
             }
         }
@@ -2022,7 +2009,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
         ArrayList<PSSysUCMapNode> arrayList = pSSysUCMapNodeService.selectByPSSysUCMap(pSSysUCMap);
         String string = StringHelper.format((String)"PSSYSUCMAP#%1$s", (Object)pSSysUCMap.getPSSysUCMapId());
         for (PSSysUCMapNode pSSysUCMapNode : arrayList) {
-            String string2 = pSSysUCMapNodeService.getModelV2ResScope((IEntity)pSSysUCMapNode);
+            String string2 = pSSysUCMapNodeService.getModelV2ResScope(pSSysUCMapNode);
             if (StringHelper.compare((String)string, (String)string2, (boolean)false) != 0) continue;
             pSSysUCMapNodeService.emptyModelV2(pSSysUCMapNode);
         }
@@ -2102,7 +2089,7 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
             PSSysUCMapNodeService pSSysUCMapNodeService = (PSSysUCMapNodeService)ServiceGlobal.getService(PSSysUCMapNodeService.class, (SessionFactory)this.getSessionFactory());
             PSSysUCMapNode pSSysUCMapNode = new PSSysUCMapNode();
             pSSysUCMapNode.setPSSysUCMapNodeId(pSMOSFile.getPSModelId());
-            if (!pSSysUCMapNodeService.get((IEntity)pSSysUCMapNode, true)) {
+            if (!pSSysUCMapNodeService.get(pSSysUCMapNode, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUCMapNode.getPSSysUCMapId(), (String)pSSysUCMap.getPSSysUCMapId(), (boolean)false) == 0) {
@@ -2110,12 +2097,12 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
             }
             ObjectNode objectNode = pSSysUCMapNodeService.exportModelV2(pSSysUCMapNode);
             pSSysUCMapNode.reset();
-            if (!pSSysUCMapNodeService.setModelV2ResScope((IEntity)pSSysUCMapNode, "PSSYSUCMAP", pSSysUCMap.getPSSysUCMapId())) {
+            if (!pSSysUCMapNodeService.setModelV2ResScope(pSSysUCMapNode, "PSSYSUCMAP", pSSysUCMap.getPSSysUCMapId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUCMapNodeService.importModelV2(pSSysUCMapNode, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUCMapNodeService.getFile((IEntity)pSSysUCMapNode);
+            return pSSysUCMapNodeService.getFile(pSSysUCMapNode);
         }
         return null;
     }
@@ -2145,4 +2132,3 @@ extends PSCoreSysServiceBase<PSSysUCMap> {
         defaultValueMap.put("PSSYSUCMAPNAME", "\u7528\u4f8b\u56fe");
     }
 }
-

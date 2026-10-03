@@ -1554,7 +1554,7 @@ implements Serializable {
                 PSDepSlnHost pSDepSlnHost = new PSDepSlnHost();
                 pSDepSlnHost.setPSDepSlnHostId(this.getPSDepSlnHostId());
                 PSDepSlnHostService pSDepSlnHostService = (PSDepSlnHostService)ServiceGlobal.getService(PSDepSlnHostService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnHostService.autoGet((IEntity)pSDepSlnHost);
+                pSDepSlnHostService.autoGet(pSDepSlnHost);
                 this.psdepslnhost = pSDepSlnHost;
             }
             return this.psdepslnhost;
@@ -1580,7 +1580,7 @@ implements Serializable {
                 PSDepSln pSDepSln = new PSDepSln();
                 pSDepSln.setPSDepSlnId(this.getPSDepSlnId());
                 PSDepSlnService pSDepSlnService = (PSDepSlnService)ServiceGlobal.getService(PSDepSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnService.autoGet((IEntity)pSDepSln);
+                pSDepSlnService.autoGet(pSDepSln);
                 this.psdepsln = pSDepSln;
             }
             return this.psdepsln;
@@ -1606,7 +1606,7 @@ implements Serializable {
                 PSDevCenterMQ pSDevCenterMQ = new PSDevCenterMQ();
                 pSDevCenterMQ.setPSDevCenterMQId(this.getPSDevCenterMQId());
                 PSDevCenterMQService pSDevCenterMQService = (PSDevCenterMQService)ServiceGlobal.getService(PSDevCenterMQService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterMQService.autoGet((IEntity)pSDevCenterMQ);
+                pSDevCenterMQService.autoGet(pSDevCenterMQ);
                 this.psdevcentermq = pSDevCenterMQ;
             }
             return this.psdevcentermq;

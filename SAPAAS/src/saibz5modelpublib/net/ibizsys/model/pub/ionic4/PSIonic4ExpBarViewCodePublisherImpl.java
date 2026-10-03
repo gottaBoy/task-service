@@ -1,35 +1,63 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSExpBar
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.ionic4;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.ionic4.PSIonic4CtrlCodePublisherImpl;
 
-public class PSIonic4ExpBarViewCodePublisherImpl
-extends PSIonic4CtrlCodePublisherImpl {
-    protected IPSExpBar iPSExpBar;
-    public static final String CTRLPART_STORE = "STORE";
+import SA.SRFDA.PS.Core.Control.ExpBar.IPSExpBar;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
 
-    public PSIonic4ExpBarViewCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSIonic4ExpBarViewCodePublisherImpl is inconsistent\n\tIPSExpBar cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSIonic4ExpBarViewCodePublisherImpl must override or implement a supertype method\n\tIPSExpBar cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSIonic4CtrlCodePublisherImpl\n\tIPSExpBar cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSExpBar cannot be resolved to a type\n\tThe method onClose() of type PSIonic4ExpBarViewCodePublisherImpl must override or implement a supertype method\n\tIPSExpBar cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSIonic4CtrlCodePublisherImpl\n");
-    }
+/**
+ * 导航栏
+ * @author lionlau
+ *
+ */
+public class PSIonic4ExpBarViewCodePublisherImpl extends PSIonic4CtrlCodePublisherImpl
+{
+	protected IPSExpBar iPSExpBar = null;
+	public final static String CTRLPART_STORE = "STORE";
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSExpBar = (IPSExpBar)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSIonic4ExpBarViewCodePublisherImpl must override or implement a supertype method\n\tIPSExpBar cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSIonic4CtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSExpBar = (IPSExpBar)this.iPSControl;
+		
+		//输出结果集合代码
+		if(true)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_STORE).getPSPFCtrlPartCodePublisher();
+			IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext,iPSExpBar, null);
+			iPSPFCtrlPartCodePublisher.close();
+			params.put("store", iPSGenerateCodeResult);
+		}
+		
+		
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSExpBar cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSExpBar cannot be resolved to a type\n");
-    }
-
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSIonic4ExpBarViewCodePublisherImpl must override or implement a supertype method\n\tIPSExpBar cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSIonic4CtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSExpBar = null;
+		super.onClose();
+	}
+	
 }
-

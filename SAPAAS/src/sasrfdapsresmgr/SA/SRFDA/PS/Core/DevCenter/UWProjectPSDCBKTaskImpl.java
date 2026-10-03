@@ -29,7 +29,6 @@ import SA.SRFDA.PS.Core.DevCenter.PSDevCenterBKTaskImplBase;
 import SA.SRFDA.PS.Core.PSTaskServerEnvImpl;
 import SA.SRFDA.PS.Core.Util.CmdHelper;
 import java.io.File;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.DateHelper;
 import net.ibizsys.paas.util.StringHelper;
@@ -64,10 +63,10 @@ extends PSDevCenterBKTaskImplBase {
         int nLastPSDevSlnTemplState = -1;
         try {
             psUWProject.setPSUWProjectId(strPSUWProjectId);
-            psUWProjectService.get((IEntity)psUWProject);
+            psUWProjectService.get(psUWProject);
             PSDevSlnTempl psDevSlnTempl = new PSDevSlnTempl();
             psDevSlnTempl.setPSDevSlnTemplId(psUWProject.getRealProjectId());
-            psDevSlnTemplService.get((IEntity)psDevSlnTempl);
+            psDevSlnTemplService.get(psDevSlnTempl);
             String strGitUser = "";
             String strGitPassword = "";
             PSSVNServer psSVNServer = null;
@@ -94,7 +93,7 @@ extends PSDevCenterBKTaskImplBase {
             psUWProject2.setPSUWProjectId(strPSUWProjectId);
             psUWProject2.setEndTime(DateHelper.getCurTime());
             psUWProject2.setWizardState(DBInstBStateCodeListModel.CREATED);
-            psUWProjectService.sysUpdate((IEntity)psUWProject2, false);
+            psUWProjectService.sysUpdate(psUWProject2, false);
             return "\u5efa\u7acb\u9879\u76ee\u6210\u529f";
         }
         catch (Exception ex) {
@@ -104,7 +103,7 @@ extends PSDevCenterBKTaskImplBase {
                 psUWProject2.setPSUWProjectId(strPSUWProjectId);
                 psUWProject2.setEndTime(DateHelper.getCurTime());
                 psUWProject2.setWizardState(DBInstBStateCodeListModel.FAILED);
-                psUWProjectService.sysUpdate((IEntity)psUWProject2, false);
+                psUWProjectService.sysUpdate(psUWProject2, false);
             }
             catch (Exception e) {
                 log.error((Object)e);
@@ -113,4 +112,3 @@ extends PSDevCenterBKTaskImplBase {
         }
     }
 }
-

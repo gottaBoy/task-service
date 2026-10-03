@@ -316,7 +316,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CALCWFENGINETYPE, 0, (IEntity)pSWFVersion, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSWFVersion, ACTION_CALCWFENGINETYPE);
+        this.testDEMainStateAction(pSWFVersion, ACTION_CALCWFENGINETYPE);
         final PSWFVersion pSWFVersion2 = pSWFVersion;
         this.doServiceWork(new IServiceWork(){
 
@@ -340,7 +340,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, (IEntity)pSWFVersion, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSWFVersion, ACTION_CREATEWITHMODEL);
+        this.testDEMainStateAction(pSWFVersion, ACTION_CREATEWITHMODEL);
         final PSWFVersion pSWFVersion2 = pSWFVersion;
         this.doServiceWork(new IServiceWork(){
 
@@ -364,7 +364,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, (IEntity)pSWFVersion, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSWFVersion, ACTION_GETDRAFTFROMWITHMODEL);
+        this.testDEMainStateAction(pSWFVersion, ACTION_GETDRAFTFROMWITHMODEL);
         final PSWFVersion pSWFVersion2 = pSWFVersion;
         this.doServiceWork(new IServiceWork(){
 
@@ -388,7 +388,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, (IEntity)pSWFVersion, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSWFVersion, ACTION_GETDRAFTWITHMODEL);
+        this.testDEMainStateAction(pSWFVersion, ACTION_GETDRAFTWITHMODEL);
         final PSWFVersion pSWFVersion2 = pSWFVersion;
         this.doServiceWork(new IServiceWork(){
 
@@ -412,7 +412,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, (IEntity)pSWFVersion, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSWFVersion, ACTION_GETWITHMODEL);
+        this.testDEMainStateAction(pSWFVersion, ACTION_GETWITHMODEL);
         final PSWFVersion pSWFVersion2 = pSWFVersion;
         this.doServiceWork(new IServiceWork(){
 
@@ -436,7 +436,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, (IEntity)pSWFVersion, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSWFVersion, ACTION_UPDATEWITHMODEL);
+        this.testDEMainStateAction(pSWFVersion, ACTION_UPDATEWITHMODEL);
         final PSWFVersion pSWFVersion2 = pSWFVersion;
         this.doServiceWork(new IServiceWork(){
 
@@ -528,7 +528,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             this.onFillParentInfo_PSWF(pSWFVersion, pSWorkflow);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWFVersion, string, string2, string3);
+        super.onFillParentInfo(pSWFVersion, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -586,7 +586,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
                 pSWFVersion.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSWFVersion, bl);
+        super.onFillEntityFullInfo(pSWFVersion, bl);
         this.onFillEntityFullInfo_WFStepPSCodeList(pSWFVersion, bl);
         this.onFillEntityFullInfo_PSDynaInst(pSWFVersion, bl);
         this.onFillEntityFullInfo_PSDynaWFVer(pSWFVersion, bl);
@@ -638,7 +638,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
     }
 
     protected void onWriteBackParent(PSWFVersion pSWFVersion, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWFVersion, bl);
+        super.onWriteBackParent(pSWFVersion, bl);
     }
 
     public ArrayList<PSWFVersion> selectByWFStepPSCodeList(PSCodeListBase pSCodeListBase) throws Exception {
@@ -823,7 +823,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         ArrayList<PSWFVersion> arrayList = this.selectByWFStepPSCodeList(pSCodeList);
         this.onBeforeRemoveByWFStepPSCodeList(pSCodeList, arrayList);
         for (PSWFVersion pSWFVersion : arrayList) {
-            this.remove((IEntity)pSWFVersion);
+            this.remove(pSWFVersion);
         }
         this.onAfterRemoveByWFStepPSCodeList(pSCodeList, arrayList);
     }
@@ -875,7 +875,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         ArrayList<PSWFVersion> arrayList = this.selectByPSDynaInst(pSDynaInst);
         this.onBeforeRemoveByPSDynaInst(pSDynaInst, arrayList);
         for (PSWFVersion pSWFVersion : arrayList) {
-            this.remove((IEntity)pSWFVersion);
+            this.remove(pSWFVersion);
         }
         this.onAfterRemoveByPSDynaInst(pSDynaInst, arrayList);
     }
@@ -927,7 +927,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         ArrayList<PSWFVersion> arrayList = this.selectByPSDynaWFVer(pSDynaWFVer);
         this.onBeforeRemoveByPSDynaWFVer(pSDynaWFVer, arrayList);
         for (PSWFVersion pSWFVersion : arrayList) {
-            this.remove((IEntity)pSWFVersion);
+            this.remove(pSWFVersion);
         }
         this.onAfterRemoveByPSDynaWFVer(pSDynaWFVer, arrayList);
     }
@@ -979,7 +979,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         ArrayList<PSWFVersion> arrayList = this.selectByPSSysReqItem(pSSysReqItem);
         this.onBeforeRemoveByPSSysReqItem(pSSysReqItem, arrayList);
         for (PSWFVersion pSWFVersion : arrayList) {
-            this.remove((IEntity)pSWFVersion);
+            this.remove(pSWFVersion);
         }
         this.onAfterRemoveByPSSysReqItem(pSSysReqItem, arrayList);
     }
@@ -1031,7 +1031,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         ArrayList<PSWFVersion> arrayList = this.selectByPSSysWFMode(pSSysWFMode);
         this.onBeforeRemoveByPSSysWFMode(pSSysWFMode, arrayList);
         for (PSWFVersion pSWFVersion : arrayList) {
-            this.remove((IEntity)pSWFVersion);
+            this.remove(pSWFVersion);
         }
         this.onAfterRemoveByPSSysWFMode(pSSysWFMode, arrayList);
     }
@@ -1083,7 +1083,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         ArrayList<PSWFVersion> arrayList = this.selectByPSWF(pSWorkflow);
         this.onBeforeRemoveByPSWF(pSWorkflow, arrayList);
         for (PSWFVersion pSWFVersion : arrayList) {
-            this.remove((IEntity)pSWFVersion);
+            this.remove(pSWFVersion);
         }
         this.onAfterRemoveByPSWF(pSWorkflow, arrayList);
     }
@@ -1144,7 +1144,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         ((PSWFProcRoleServiceBase)pSCoreSysServiceBase).removeTempByPSWFVersion(pSWFVersion);
         pSCoreSysServiceBase = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
         ((PSWFProcessServiceBase)pSCoreSysServiceBase).removeTempByPSWFVersion(pSWFVersion);
-        super.onBeforeRemoveTemp((IEntity)pSWFVersion);
+        super.onBeforeRemoveTemp(pSWFVersion);
     }
 
     protected void getRelatedDataTempMajor(PSWFVersion pSWFVersion) throws Exception {
@@ -1152,7 +1152,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         this.getRelatedDataTempMajor_PSWFProcRole(pSWFVersion);
         this.getRelatedDataTempMajor_PSWFLink(pSWFVersion);
         this.getRelatedDataTempMajor_PSWFLinkCond(pSWFVersion);
-        super.getRelatedDataTempMajor((IEntity)pSWFVersion);
+        super.getRelatedDataTempMajor(pSWFVersion);
     }
 
     protected void getRelatedDataTempMajor_PSWFProcess(PSWFVersion pSWFVersion) throws Exception {
@@ -1205,7 +1205,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         this.updateRelatedDataTempMajor_updatePSWFProcRole(pSWFVersion, pSWFVersion2, arrayList3);
         this.updateRelatedDataTempMajor_updatePSWFLink(pSWFVersion, pSWFVersion2, arrayList2);
         this.updateRelatedDataTempMajor_updatePSWFLinkCond(pSWFVersion, pSWFVersion2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSWFVersion, (IEntity)pSWFVersion2);
+        super.updateRelatedDataTempMajor(pSWFVersion, pSWFVersion2);
     }
 
     protected ArrayList<PSWFProcess> updateRelatedDataTempMajor_removePSWFProcess(PSWFVersion pSWFVersion, PSWFVersion pSWFVersion2) throws Exception {
@@ -1221,7 +1221,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             hashMap.remove(object);
         }
         for (PSWFProcess pSWFProcess : hashMap.values()) {
-            pSWFProcessService.remove((IEntity)pSWFProcess);
+            pSWFProcessService.remove(pSWFProcess);
         }
         return arrayList;
     }
@@ -1249,7 +1249,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             hashMap.remove(object);
         }
         for (PSWFProcRole pSWFProcRole : hashMap.values()) {
-            pSWFProcRoleService.remove((IEntity)pSWFProcRole);
+            pSWFProcRoleService.remove(pSWFProcRole);
         }
         return arrayList;
     }
@@ -1277,7 +1277,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             hashMap.remove(object);
         }
         for (PSWFLink pSWFLink : hashMap.values()) {
-            pSWFLinkService.remove((IEntity)pSWFLink);
+            pSWFLinkService.remove(pSWFLink);
         }
         return arrayList;
     }
@@ -1306,7 +1306,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             hashMap.remove(object);
         }
         for (PSWFLinkCond pSWFLinkCond : hashMap.values()) {
-            pSWFLinkCondService.remove((IEntity)pSWFLinkCond);
+            pSWFLinkCondService.remove(pSWFLinkCond);
         }
         return arrayList;
     }
@@ -1323,7 +1323,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
 
     protected void replaceParentInfo(PSWFVersion pSWFVersion, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWFVersion, cloneSession);
+        super.replaceParentInfo(pSWFVersion, cloneSession);
         if (pSWFVersion.getWFStepPSCodeListId() != null && (iEntity = cloneSession.getEntity("PSCODELIST", (Object)pSWFVersion.getWFStepPSCodeListId())) != null) {
             this.onFillParentInfo_WFStepPSCodeList(pSWFVersion, (PSCodeList)iEntity);
         }
@@ -1345,7 +1345,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWFVersion pSWFVersion, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWFVersion, bl);
+        super.onRemoveEntityUncopyValues(pSWFVersion, bl);
         pSWFVersion.resetVerTag();
         pSWFVersion.resetVerTag2();
     }
@@ -1464,7 +1464,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         if ((entityFieldError = this.onCheckField_WFVersion(bl, pSWFVersion, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWFVersion, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWFVersion, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ActivitiModel(boolean bl, PSWFVersion pSWFVersion, boolean bl2, boolean bl3) throws Exception {
@@ -2337,11 +2337,11 @@ extends PSCoreSysServiceBase<PSWFVersion> {
     }
 
     protected void onSyncEntity(PSWFVersion pSWFVersion, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWFVersion, bl);
+        super.onSyncEntity(pSWFVersion, bl);
     }
 
     protected void onSyncIndexEntities(PSWFVersion pSWFVersion, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWFVersion, bl);
+        super.onSyncIndexEntities(pSWFVersion, bl);
     }
 
     public Object getDataContextValue(PSWFVersion pSWFVersion, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -2349,7 +2349,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWFVersion, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWFVersion, string, iDataContextParam)) != null) {
             return object;
         }
         PSWorkflow pSWorkflow = pSWFVersion.getPSWF();
@@ -2362,7 +2362,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
     protected void onExportRelatedModel(PSWFVersion pSWFVersion, ArrayList<JSONObject> arrayList, int n) throws Exception {
         this.onExportRelatedModel_PSWFProcess_PSWFVersion(pSWFVersion, arrayList, n);
         this.onExportRelatedModel_PSWFLink_PSWFVersion(pSWFVersion, arrayList, n);
-        super.onExportRelatedModel((IEntity)pSWFVersion, arrayList, n);
+        super.onExportRelatedModel(pSWFVersion, arrayList, n);
     }
 
     /*
@@ -2372,7 +2372,6 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         PSWFProcessService pSWFProcessService = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
         ArrayList<PSWFProcess> arrayList2 = pSWFProcessService.selectByPSWFVersion(pSWFVersion);
         if ((n & 2) != 0) {
-            void var7_8;
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("srfdeid", (Object)"8187422fc9b94fc127d18d949dd0a57e");
             jSONObject.put("srfdename", (Object)"PSWFPROCESS");
@@ -2381,13 +2380,12 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             jSONObject.put("srfarg", (Object)DataObject.getStringValue((IDataObject)pSWFVersion, (String)"PSWFVERSIONID", (String)""));
             String object = "";
             for (PSWFProcess pSWFProcess : arrayList2) {
-                void var7_10;
-                if (!StringHelper.isNullOrEmpty((String)var7_8)) {
-                    String string = (String)var7_8 + ";";
+                if (!StringHelper.isNullOrEmpty((String)object)) {
+                    object = object + ";";
                 }
-                String string = (String)var7_10 + DataObject.getStringValue((IDataObject)pSWFProcess, (String)"PSWFPROCESSID", (String)"");
+                object = object + DataObject.getStringValue((IDataObject)pSWFProcess, (String)"PSWFPROCESSID", (String)"");
             }
-            jSONObject.put("srfarg2", (Object)var7_8);
+            jSONObject.put("srfarg2", (Object)object);
             arrayList.add(jSONObject);
         }
         for (PSWFProcess pSWFProcess : arrayList2) {
@@ -2416,7 +2414,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
     }
 
     protected void onExportMajorModel(PSWFVersion pSWFVersion, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWFVersion, arrayList, n);
+        super.onExportMajorModel(pSWFVersion, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -3075,7 +3073,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         if ((StringHelper.isNullOrEmpty((String)string) || (StringHelper.compare((String)string, (String)"DER1N", (boolean)true) == 0 || StringHelper.compare((String)string, (String)"SYSDER1N", (boolean)true) == 0) && StringHelper.compare((String)string2, (String)"DER1N_PSDEUIACTION_PSWFVERSION_PSWFVERSIONID", (boolean)true) == 0) && this.onMergeChild_PSDEUIActions(pSWFVersion)) {
             bl = true;
         }
-        if (super.onMergeChild(string, string2, (IEntity)pSWFVersion)) {
+        if (super.onMergeChild(string, string2, pSWFVersion)) {
             bl = true;
         }
         return bl;
@@ -3125,7 +3123,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.wfdesign.service.PSWorkflowService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSWFVERSION_PSWORKFLOW_PSWFID", object);
         }
-        super.onUpdateParent((IEntity)pSWFVersion);
+        super.onUpdateParent(pSWFVersion);
     }
 
     protected boolean isNeedUpdateParent() {
@@ -3136,7 +3134,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         PSWFVersion pSWFVersion2 = new PSWFVersion();
         pSWFVersion2.set("PSWFVERSIONID", object);
         String string = DataObject.getStringValue((Object)pSWFVersion.get("PSWFVERSIONID"));
-        super.onCopyDetails((IEntity)pSWFVersion, object);
+        super.onCopyDetails(pSWFVersion, object);
     }
 
     @Override
@@ -3218,7 +3216,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSWFProcess pSWFProcess = new PSWFProcess();
-                pSWFProcessService.fillParentInfo((IEntity)pSWFProcess, "DER1N", "DER1N_PSWFPROCESS_PSWFVERSION_PSWFVERSIONID", pSWFVersion.getPSWFVersionId());
+                pSWFProcessService.fillParentInfo(pSWFProcess, "DER1N", "DER1N_PSWFPROCESS_PSWFVERSION_PSWFVERSIONID", pSWFVersion.getPSWFVersionId());
                 pSWFProcessService.importXmlModel(pSWFProcess, xmlNode2);
             }
         }
@@ -3243,7 +3241,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
                 PSWFLink pSWFLink = new PSWFLink();
                 pSWFLink.setOrderValue(n);
                 n += 100;
-                pSWFLinkService.fillParentInfo((IEntity)pSWFLink, "DER1N", "DER1N_PSWFLINK_PSWFVERSION_PSWFVERSIONID", pSWFVersion.getPSWFVersionId());
+                pSWFLinkService.fillParentInfo(pSWFLink, "DER1N", "DER1N_PSWFLINK_PSWFVERSION_PSWFVERSIONID", pSWFVersion.getPSWFVersionId());
                 pSWFLinkService.importXmlModel(pSWFLink, xmlNode2);
             }
         }
@@ -3368,7 +3366,6 @@ extends PSCoreSysServiceBase<PSWFVersion> {
     @Override
     protected void onExportRelatedModelV2(PSWFVersion pSWFVersion, String string, String string2) throws Exception {
         String string3;
-        EntityBase entityBase;
         ObjectNode objectNode;
         ArrayList<String> arrayList;
         File file;
@@ -3388,18 +3385,18 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSDEUAGroup();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSDEUAGroupService)pSCoreSysServiceBase).getModelV2Tag((PSDEUAGroup)entityBase);
+                PSDEUAGroup pSDEUAGroup = new PSDEUAGroup();
+                PSModelV2Helper.fromJSONObject((IDataObject)pSDEUAGroup, objectNode, false);
+                string3 = ((PSDEUAGroupService)pSCoreSysServiceBase).getModelV2Tag(pSDEUAGroup);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEUAGROUP", (Object)entityBase.getPSDEUAGroupId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEUAGROUP", (Object)pSDEUAGroup.getPSDEUAGroupId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSCoreSysServiceBase.exportModelV2(pSDEUAGroup, string4 + File.separator + string3, string2);
             }
         }
         if (this.isExportRelatedModelV2("DER1N_PSDEUIACTION_PSWFVERSION_PSWFVERSIONID") && (file2 = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string2, (Object)File.separator, (Object)"PSDEUIACTION", (Object)pSWFVersion.getPSWFVersionId()))).exists()) {
@@ -3414,18 +3411,18 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSDEUIAction();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSDEUIActionService)pSCoreSysServiceBase).getModelV2Tag((PSDEUIAction)entityBase);
+                PSDEUIAction pSDEUIAction = new PSDEUIAction();
+                PSModelV2Helper.fromJSONObject((IDataObject)pSDEUIAction, objectNode, false);
+                string3 = ((PSDEUIActionService)pSCoreSysServiceBase).getModelV2Tag(pSDEUIAction);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEUIACTION", (Object)entityBase.getPSDEUIActionId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEUIACTION", (Object)pSDEUIAction.getPSDEUIActionId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSCoreSysServiceBase.exportModelV2(pSDEUIAction, string4 + File.separator + string3, string2);
             }
         }
         if (this.isExportRelatedModelV2("DER1N_PSWFUTILUIACTION_PSWFVERSION_PSWFVERSIONID") && (file2 = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string2, (Object)File.separator, (Object)"PSWFUTILUIACTION", (Object)pSWFVersion.getPSWFVersionId()))).exists()) {
@@ -3440,18 +3437,18 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSWFUtilUIAction();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSWFUtilUIActionService)pSCoreSysServiceBase).getModelV2Tag((PSWFUtilUIAction)entityBase);
+                PSWFUtilUIAction pSWFUtilUIAction = new PSWFUtilUIAction();
+                PSModelV2Helper.fromJSONObject((IDataObject)pSWFUtilUIAction, objectNode, false);
+                string3 = ((PSWFUtilUIActionService)pSCoreSysServiceBase).getModelV2Tag(pSWFUtilUIAction);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFUTILUIACTION", (Object)entityBase.getPSWFUtilUIActionId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFUTILUIACTION", (Object)pSWFUtilUIAction.getPSWFUtilUIActionId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSCoreSysServiceBase.exportModelV2(pSWFUtilUIAction, string4 + File.separator + string3, string2);
             }
         }
         super.onExportRelatedModelV2(pSWFVersion, string, string2);
@@ -3459,46 +3456,28 @@ extends PSCoreSysServiceBase<PSWFVersion> {
 
     @Override
     protected void onExportCurModelV2(PSWFVersion pSWFVersion, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        Object object3;
-        Object object4;
-        ArrayList<PSDEUAGroup> arrayList;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEUAGROUP_PSWFVERSION_PSWFVERSIONID")) {
-            pSCoreSysServiceBase = (PSDEUAGroupService)ServiceGlobal.getService(PSDEUAGroupService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSDEUAGroupService service = (PSDEUAGroupService)ServiceGlobal.getService(PSDEUAGroupService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> items = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEUAGROUP", (Object)pSWFVersion.getPSWFVersionId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEUAGROUP", (Object)pSWFVersion.getPSWFVersionId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEUAGroup)entityBase2);
+                    items = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        items.add((ObjectNode)JsonNodeHelper.fromString((String)line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSDEUAGroup>();
-                object4 = ((PSDEUAGroupServiceBase)pSCoreSysServiceBase).selectByPSWFVersion(pSWFVersion);
-                object3 = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEUAGroup)object2.next();
-                    object = ((PSDEUAGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEUAGroup)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                items = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
+                for (PSDEUAGroup group : service.selectByPSWFVersion(pSWFVersion)) {
+                    if (StringHelper.compare((String)scope, (String)service.getModelV2ResScope((IEntity)group), (boolean)false) != 0) continue;
+                    items.add(PSModelV2Helper.toJSONObject((IEntity)group, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (items != null && !items.isEmpty()) {
+                Collections.sort(items, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3525,45 +3504,36 @@ extends PSCoreSysServiceBase<PSWFVersion> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEUAGroup();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                ArrayNode exported = objectNode.putArray(service.getModelV2Name(false).toLowerCase());
+                for (ObjectNode item : items) {
+                    PSDEUAGroup group = new PSDEUAGroup();
+                    PSModelV2Helper.fromJSONObject((IDataObject)group, item, false);
+                    exported.add((JsonNode)service.exportModelV2(group, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEUIACTION_PSWFVERSION_PSWFVERSIONID")) {
-            pSCoreSysServiceBase = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSDEUIActionService service = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> items = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEUIACTION", (Object)pSWFVersion.getPSWFVersionId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEUIACTION", (Object)pSWFVersion.getPSWFVersionId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEUAGroup)entityBase2);
+                    items = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        items.add((ObjectNode)JsonNodeHelper.fromString((String)line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEUIActionServiceBase)pSCoreSysServiceBase).selectByPSWFVersion(pSWFVersion);
-                object3 = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEUIAction)object2.next();
-                    object = ((PSDEUIActionServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEUAGroup)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                items = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
+                for (PSDEUIAction action : service.selectByPSWFVersion(pSWFVersion)) {
+                    if (StringHelper.compare((String)scope, (String)service.getModelV2ResScope((IEntity)action), (boolean)false) != 0) continue;
+                    items.add(PSModelV2Helper.toJSONObject((IEntity)action, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (items != null && !items.isEmpty()) {
+                Collections.sort(items, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3590,45 +3560,36 @@ extends PSCoreSysServiceBase<PSWFVersion> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEUIAction();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                ArrayNode exported = objectNode.putArray(service.getModelV2Name(false).toLowerCase());
+                for (ObjectNode item : items) {
+                    PSDEUIAction action = new PSDEUIAction();
+                    PSModelV2Helper.fromJSONObject((IDataObject)action, item, false);
+                    exported.add((JsonNode)service.exportModelV2(action, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSWFPROCESS_PSWFVERSION_PSWFVERSIONID")) {
-            pSCoreSysServiceBase = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSWFProcessService service = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> items = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFPROCESS", (Object)pSWFVersion.getPSWFVersionId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFPROCESS", (Object)pSWFVersion.getPSWFVersionId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEUAGroup)entityBase2);
+                    items = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        items.add((ObjectNode)JsonNodeHelper.fromString((String)line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWFProcessServiceBase)pSCoreSysServiceBase).selectByPSWFVersion(pSWFVersion);
-                object3 = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWFProcess)object2.next();
-                    object = ((PSWFProcessServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEUAGroup)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                items = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
+                for (PSWFProcess process : service.selectByPSWFVersion(pSWFVersion)) {
+                    if (StringHelper.compare((String)scope, (String)service.getModelV2ResScope((IEntity)process), (boolean)false) != 0) continue;
+                    items.add(PSModelV2Helper.toJSONObject((IEntity)process, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (items != null && !items.isEmpty()) {
+                Collections.sort(items, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3655,45 +3616,36 @@ extends PSCoreSysServiceBase<PSWFVersion> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWFProcess();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                ArrayNode exported = objectNode.putArray(service.getModelV2Name(false).toLowerCase());
+                for (ObjectNode item : items) {
+                    PSWFProcess process = new PSWFProcess();
+                    PSModelV2Helper.fromJSONObject((IDataObject)process, item, false);
+                    exported.add((JsonNode)service.exportModelV2(process, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSWFUTILUIACTION_PSWFVERSION_PSWFVERSIONID")) {
-            pSCoreSysServiceBase = (PSWFUtilUIActionService)ServiceGlobal.getService(PSWFUtilUIActionService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSWFUtilUIActionService service = (PSWFUtilUIActionService)ServiceGlobal.getService(PSWFUtilUIActionService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> items = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFUTILUIACTION", (Object)pSWFVersion.getPSWFVersionId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFUTILUIACTION", (Object)pSWFVersion.getPSWFVersionId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEUAGroup)entityBase2);
+                    items = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        items.add((ObjectNode)JsonNodeHelper.fromString((String)line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWFUtilUIActionServiceBase)pSCoreSysServiceBase).selectByPSWFVersion(pSWFVersion);
-                object3 = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWFUtilUIAction)object2.next();
-                    object = ((PSWFUtilUIActionServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEUAGroup)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                items = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
+                for (PSWFUtilUIAction action : service.selectByPSWFVersion(pSWFVersion)) {
+                    if (StringHelper.compare((String)scope, (String)service.getModelV2ResScope((IEntity)action), (boolean)false) != 0) continue;
+                    items.add(PSModelV2Helper.toJSONObject((IEntity)action, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (items != null && !items.isEmpty()) {
+                Collections.sort(items, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3720,45 +3672,36 @@ extends PSCoreSysServiceBase<PSWFVersion> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWFUtilUIAction();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                ArrayNode exported = objectNode.putArray(service.getModelV2Name(false).toLowerCase());
+                for (ObjectNode item : items) {
+                    PSWFUtilUIAction action = new PSWFUtilUIAction();
+                    PSModelV2Helper.fromJSONObject((IDataObject)action, item, false);
+                    exported.add((JsonNode)service.exportModelV2(action, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSWFLINK_PSWFVERSION_PSWFVERSIONID")) {
-            pSCoreSysServiceBase = (PSWFLinkService)ServiceGlobal.getService(PSWFLinkService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSWFLinkService service = (PSWFLinkService)ServiceGlobal.getService(PSWFLinkService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> items = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFLINK", (Object)pSWFVersion.getPSWFVersionId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFLINK", (Object)pSWFVersion.getPSWFVersionId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEUAGroup)entityBase2);
+                    items = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        items.add((ObjectNode)JsonNodeHelper.fromString((String)line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWFLinkServiceBase)pSCoreSysServiceBase).selectByPSWFVersion(pSWFVersion);
-                object3 = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWFLink)object2.next();
-                    object = ((PSWFLinkServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEUAGroup)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                items = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
+                for (PSWFLink link : service.selectByPSWFVersion(pSWFVersion)) {
+                    if (StringHelper.compare((String)scope, (String)service.getModelV2ResScope((IEntity)link), (boolean)false) != 0) continue;
+                    items.add(PSModelV2Helper.toJSONObject((IEntity)link, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (items != null && !items.isEmpty()) {
+                Collections.sort(items, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3785,45 +3728,36 @@ extends PSCoreSysServiceBase<PSWFVersion> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWFLink();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                ArrayNode exported = objectNode.putArray(service.getModelV2Name(false).toLowerCase());
+                for (ObjectNode item : items) {
+                    PSWFLink link = new PSWFLink();
+                    PSModelV2Helper.fromJSONObject((IDataObject)link, item, false);
+                    exported.add((JsonNode)service.exportModelV2(link, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSWFLINKCOND_PSWFVERSION_PSWFVERSIONID")) {
-            pSCoreSysServiceBase = (PSWFLinkCondService)ServiceGlobal.getService(PSWFLinkCondService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSWFLinkCondService service = (PSWFLinkCondService)ServiceGlobal.getService(PSWFLinkCondService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> items = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFLINKCOND", (Object)pSWFVersion.getPSWFVersionId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWFVERSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFLINKCOND", (Object)pSWFVersion.getPSWFVersionId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEUAGroup)entityBase2);
+                    items = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        items.add((ObjectNode)JsonNodeHelper.fromString((String)line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWFLinkCondServiceBase)pSCoreSysServiceBase).selectByPSWFVersion(pSWFVersion);
-                object3 = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWFLinkCond)object2.next();
-                    object = ((PSWFLinkCondServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEUAGroup)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                items = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
+                for (PSWFLinkCond linkCond : service.selectByPSWFVersion(pSWFVersion)) {
+                    if (StringHelper.compare((String)scope, (String)service.getModelV2ResScope((IEntity)linkCond), (boolean)false) != 0) continue;
+                    items.add(PSModelV2Helper.toJSONObject((IEntity)linkCond, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (items != null && !items.isEmpty()) {
+                Collections.sort(items, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3850,11 +3784,12 @@ extends PSCoreSysServiceBase<PSWFVersion> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWFLinkCond();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    ((PSWFLinkCondBase)object).remove("ordervalue");
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                ArrayNode exported = objectNode.putArray(service.getModelV2Name(false).toLowerCase());
+                for (ObjectNode item : items) {
+                    PSWFLinkCond linkCond = new PSWFLinkCond();
+                    PSModelV2Helper.fromJSONObject((IDataObject)linkCond, item, false);
+                    linkCond.remove("ordervalue");
+                    exported.add((JsonNode)service.exportModelV2(linkCond, string));
                 }
             }
         }
@@ -3865,41 +3800,41 @@ extends PSCoreSysServiceBase<PSWFVersion> {
     protected void onEmptyModelV2(PSWFVersion pSWFVersion) throws Exception {
         String string;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<EntityBase> arrayList = ((PSWFProcessServiceBase)pSCoreSysServiceBase).selectByPSWFVersion(pSWFVersion);
+        ArrayList<PSWFProcess> processes = ((PSWFProcessServiceBase)pSCoreSysServiceBase).selectByPSWFVersion(pSWFVersion);
         String string2 = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
-        for (PSWFProcess entityBase : arrayList) {
-            string = ((PSWFProcessServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase);
+        for (PSWFProcess pSWFProcess : processes) {
+            string = ((PSWFProcessServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSWFProcess);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
-            pSCoreSysServiceBase.emptyModelV2(entityBase);
+            pSCoreSysServiceBase.emptyModelV2(pSWFProcess);
         }
-        Object object = new SqlParamList();
-        object.addString(pSWFVersion.getPSWFVersionId());
+        SqlParamList processParams = new SqlParamList();
+        processParams.addString(pSWFVersion.getPSWFVersionId());
         ((PSWFProcessServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSWFProcessServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSWFPROCESS WHERE PSWFVERSIONID = ?", (SqlParamList)object);
+        ((PSWFProcessServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSWFPROCESS WHERE PSWFVERSIONID = ?", processParams);
         pSCoreSysServiceBase = (PSWFLinkService)ServiceGlobal.getService(PSWFLinkService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSWFLinkServiceBase)pSCoreSysServiceBase).selectByPSWFVersion(pSWFVersion);
+        ArrayList<PSWFLink> links = ((PSWFLinkServiceBase)pSCoreSysServiceBase).selectByPSWFVersion(pSWFVersion);
         string2 = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
-        for (PSWFLink pSWFLink : arrayList) {
+        for (PSWFLink pSWFLink : links) {
             string = ((PSWFLinkServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSWFLink);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(pSWFLink);
         }
-        object = new SqlParamList();
-        object.addString(pSWFVersion.getPSWFVersionId());
+        SqlParamList linkParams = new SqlParamList();
+        linkParams.addString(pSWFVersion.getPSWFVersionId());
         ((PSWFLinkServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSWFLinkServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSWFLINK WHERE PSWFVERSIONID = ?", (SqlParamList)object);
+        ((PSWFLinkServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSWFLINK WHERE PSWFVERSIONID = ?", linkParams);
         pSCoreSysServiceBase = (PSWFLinkCondService)ServiceGlobal.getService(PSWFLinkCondService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSWFLinkCondServiceBase)pSCoreSysServiceBase).selectByPSWFVersion(pSWFVersion);
+        ArrayList<PSWFLinkCond> linkConds = ((PSWFLinkCondServiceBase)pSCoreSysServiceBase).selectByPSWFVersion(pSWFVersion);
         string2 = StringHelper.format((String)"PSWFVERSION#%1$s", (Object)pSWFVersion.getPSWFVersionId());
-        for (PSWFLinkCond pSWFLinkCond : arrayList) {
+        for (PSWFLinkCond pSWFLinkCond : linkConds) {
             string = ((PSWFLinkCondServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSWFLinkCond);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(pSWFLinkCond);
         }
-        object = new SqlParamList();
-        object.addString(pSWFVersion.getPSWFVersionId());
+        SqlParamList linkCondParams = new SqlParamList();
+        linkCondParams.addString(pSWFVersion.getPSWFVersionId());
         ((PSWFLinkCondServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSWFLinkCondServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSWFLINKCOND WHERE PSWFVERSIONID = ?", (SqlParamList)object);
+        ((PSWFLinkCondServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSWFLINKCOND WHERE PSWFVERSIONID = ?", linkCondParams);
         super.onEmptyModelV2(pSWFVersion);
     }
 
@@ -3982,207 +3917,193 @@ extends PSCoreSysServiceBase<PSWFVersion> {
 
     @Override
     protected void onCompileRelatedModelV2(PSWFVersion pSWFVersion, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        Object object5;
-        File file;
-        int n2;
-        int n3;
-        Object object2;
-        Object object3;
-        Object object4;
-        int n4;
-        String string3;
-        ArrayNode arrayNode;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
         if (!PSWFVersionServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSDEUAGroupService)ServiceGlobal.getService(PSDEUAGroupService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
+            PSDEUAGroupService service = (PSDEUAGroupService)ServiceGlobal.getService(PSDEUAGroupService.class, (SessionFactory)this.getSessionFactory());
+            String modelName = service.getModelV2Name(null, false);
+            ArrayNode arrayNode = null;
             if (objectNode != null) {
-                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
-            }
-            if (arrayNode != null) {
-                for (n4 = 0; n4 < arrayNode.size(); ++n4) {
-                    object4 = (ObjectNode)arrayNode.get(n4);
-                    object3 = new PSDEUAGroup();
-                    ((PSDEUAGroupBase)object3).setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                    ((PSDEUAGroupBase)object3).setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                    pSCoreSysServiceBase.compileModelV2(object3, (ObjectNode)object4, string, null, n);
-                }
-            } else {
-                String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object4 = new File(string4);
-                if (((File)object4).exists()) {
-                    object2 = object3 = ((File)object4).listFiles();
-                    n3 = ((File[])object2).length;
-                    for (n2 = 0; n2 < n3; ++n2) {
-                        file = object2[n2];
-                        if (!file.isDirectory()) continue;
-                        object5 = new PSDEUAGroup();
-                        ((PSDEUAGroupBase)object5).setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                        ((PSDEUAGroupBase)object5).setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                        pSCoreSysServiceBase.compileModelV2(object5, null, string, file.getCanonicalPath(), n);
-                    }
-                }
-            }
-        }
-        if (!PSWFVersionServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-            if (objectNode != null) {
-                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
-            }
-            if (arrayNode != null) {
-                for (n4 = 0; n4 < arrayNode.size(); ++n4) {
-                    object4 = (ObjectNode)arrayNode.get(n4);
-                    object3 = new PSDEUIAction();
-                    ((PSDEUIActionBase)object3).setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                    ((PSDEUIActionBase)object3).setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                    pSCoreSysServiceBase.compileModelV2(object3, (ObjectNode)object4, string, null, n);
-                }
-            } else {
-                String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object4 = new File(string5);
-                if (((File)object4).exists()) {
-                    object2 = object3 = ((File)object4).listFiles();
-                    n3 = ((File[])object2).length;
-                    for (n2 = 0; n2 < n3; ++n2) {
-                        file = object2[n2];
-                        if (!file.isDirectory()) continue;
-                        object5 = new PSDEUIAction();
-                        ((PSDEUIActionBase)object5).setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                        ((PSDEUIActionBase)object5).setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                        pSCoreSysServiceBase.compileModelV2(object5, null, string, file.getCanonicalPath(), n);
-                    }
-                }
-            }
-        }
-        pSCoreSysServiceBase = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
-        arrayNode = null;
-        string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-        if (objectNode != null) {
-            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
-        }
-        if (arrayNode != null) {
-            for (int i = 0; i < arrayNode.size(); ++i) {
-                object4 = (ObjectNode)arrayNode.get(i);
-                object3 = new PSWFProcess();
-                ((PSWFProcessBase)object3).setPSSystemId(pSWFVersion.getPSSystemId());
-                ((PSWFProcessBase)object3).setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                ((PSWFProcessBase)object3).setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                ((PSWFProcessBase)object3).setWFEngineType(pSWFVersion.getWFEngineType());
-                pSCoreSysServiceBase.compileModelV2(object3, (ObjectNode)object4, string, null, n);
-            }
-        } else {
-            String string6 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object4 = new File(string6);
-            if (((File)object4).exists()) {
-                object2 = object3 = ((File)object4).listFiles();
-                n3 = ((File[])object2).length;
-                for (n2 = 0; n2 < n3; ++n2) {
-                    file = object2[n2];
-                    if (!file.isDirectory()) continue;
-                    object5 = new PSWFProcess();
-                    ((PSWFProcessBase)object5).setPSSystemId(pSWFVersion.getPSSystemId());
-                    ((PSWFProcessBase)object5).setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                    ((PSWFProcessBase)object5).setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                    ((PSWFProcessBase)object5).setWFEngineType(pSWFVersion.getWFEngineType());
-                    pSCoreSysServiceBase.compileModelV2(object5, null, string, file.getCanonicalPath(), n);
-                }
-            }
-        }
-        if (!PSWFVersionServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSWFUtilUIActionService)ServiceGlobal.getService(PSWFUtilUIActionService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-            if (objectNode != null) {
-                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
+                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)modelName.toLowerCase());
             }
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
-                    object4 = (ObjectNode)arrayNode.get(i);
-                    object3 = new PSWFUtilUIAction();
-                    ((PSWFUtilUIActionBase)object3).setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                    ((PSWFUtilUIActionBase)object3).setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                    pSCoreSysServiceBase.compileModelV2(object3, (ObjectNode)object4, string, null, n);
+                    ObjectNode item = (ObjectNode)arrayNode.get(i);
+                    PSDEUAGroup group = new PSDEUAGroup();
+                    group.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
+                    group.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
+                    service.compileModelV2(group, item, string, null, n);
                 }
             } else {
-                String string7 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object4 = new File(string7);
-                if (((File)object4).exists()) {
-                    object2 = object3 = ((File)object4).listFiles();
-                    n3 = ((File[])object2).length;
-                    for (n2 = 0; n2 < n3; ++n2) {
-                        file = object2[n2];
-                        if (!file.isDirectory()) continue;
-                        object5 = new PSWFUtilUIAction();
-                        ((PSWFUtilUIActionBase)object5).setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                        ((PSWFUtilUIActionBase)object5).setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                        pSCoreSysServiceBase.compileModelV2(object5, null, string, file.getCanonicalPath(), n);
+                File directory = new File(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)modelName));
+                if (directory.exists()) {
+                    File[] folders = directory.listFiles();
+                    if (folders != null) {
+                        for (File folder : folders) {
+                            if (!folder.isDirectory()) continue;
+                            PSDEUAGroup group = new PSDEUAGroup();
+                            group.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
+                            group.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
+                            service.compileModelV2(group, null, string, folder.getCanonicalPath(), n);
+                        }
                     }
                 }
             }
         }
-        pSCoreSysServiceBase = (PSWFLinkService)ServiceGlobal.getService(PSWFLinkService.class, (SessionFactory)this.getSessionFactory());
-        arrayNode = null;
-        string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-        if (objectNode != null) {
-            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
-        }
-        if (arrayNode != null) {
-            for (int i = 0; i < arrayNode.size(); ++i) {
-                object4 = (ObjectNode)arrayNode.get(i);
-                object3 = new PSWFLink();
-                ((PSWFLinkBase)object3).setPSSystemId(pSWFVersion.getPSSystemId());
-                ((PSWFLinkBase)object3).setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                ((PSWFLinkBase)object3).setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                ((PSWFLinkBase)object3).setWFEngineType(pSWFVersion.getWFEngineType());
-                pSCoreSysServiceBase.compileModelV2(object3, (ObjectNode)object4, string, null, n);
+        if (!PSWFVersionServiceBase.isSimpleImportExportMode("")) {
+            PSDEUIActionService service = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
+            String modelName = service.getModelV2Name(null, false);
+            ArrayNode arrayNode = null;
+            if (objectNode != null) {
+                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)modelName.toLowerCase());
             }
-        } else {
-            String string8 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object4 = new File(string8);
-            if (((File)object4).exists()) {
-                object2 = object3 = ((File)object4).listFiles();
-                n3 = ((File[])object2).length;
-                for (n2 = 0; n2 < n3; ++n2) {
-                    file = object2[n2];
-                    if (!file.isDirectory()) continue;
-                    object5 = new PSWFLink();
-                    ((PSWFLinkBase)object5).setPSSystemId(pSWFVersion.getPSSystemId());
-                    ((PSWFLinkBase)object5).setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                    ((PSWFLinkBase)object5).setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                    ((PSWFLinkBase)object5).setWFEngineType(pSWFVersion.getWFEngineType());
-                    pSCoreSysServiceBase.compileModelV2(object5, null, string, file.getCanonicalPath(), n);
+            if (arrayNode != null) {
+                for (int i = 0; i < arrayNode.size(); ++i) {
+                    ObjectNode item = (ObjectNode)arrayNode.get(i);
+                    PSDEUIAction action = new PSDEUIAction();
+                    action.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
+                    action.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
+                    service.compileModelV2(action, item, string, null, n);
+                }
+            } else {
+                File directory = new File(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)modelName));
+                if (directory.exists()) {
+                    File[] folders = directory.listFiles();
+                    if (folders != null) {
+                        for (File folder : folders) {
+                            if (!folder.isDirectory()) continue;
+                            PSDEUIAction action = new PSDEUIAction();
+                            action.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
+                            action.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
+                            service.compileModelV2(action, null, string, folder.getCanonicalPath(), n);
+                        }
+                    }
                 }
             }
         }
-        pSCoreSysServiceBase = (PSWFLinkCondService)ServiceGlobal.getService(PSWFLinkCondService.class, (SessionFactory)this.getSessionFactory());
-        arrayNode = null;
-        string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-        int n5 = 0;
+        PSWFProcessService processService = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
+        String processModelName = processService.getModelV2Name(null, false);
+        ArrayNode arrayNode = null;
         if (objectNode != null) {
-            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
+            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)processModelName.toLowerCase());
         }
         if (arrayNode != null) {
             for (int i = 0; i < arrayNode.size(); ++i) {
-                object3 = (ObjectNode)arrayNode.get(i);
-                object2 = new PSWFLinkCond();
-                ((PSWFLinkCondBase)object2).setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                ((PSWFLinkCondBase)object2).setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                ((PSWFLinkCondBase)object2).setOrderValue(n5 += 10);
-                pSCoreSysServiceBase.compileModelV2(object2, (ObjectNode)object3, string, null, n);
+                ObjectNode item = (ObjectNode)arrayNode.get(i);
+                PSWFProcess process = new PSWFProcess();
+                process.setPSSystemId(pSWFVersion.getPSSystemId());
+                process.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
+                process.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
+                process.setWFEngineType(pSWFVersion.getWFEngineType());
+                processService.compileModelV2(process, item, string, null, n);
             }
         } else {
-            object4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object3 = new File((String)object4);
-            if (((File)object3).exists()) {
-                for (Object object5 : object2 = ((File)object3).listFiles()) {
-                    if (!((File)object5).isDirectory()) continue;
-                    PSWFLinkCond pSWFLinkCond = new PSWFLinkCond();
-                    pSWFLinkCond.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                    pSWFLinkCond.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                    pSCoreSysServiceBase.compileModelV2(pSWFLinkCond, null, string, ((File)object5).getCanonicalPath(), n);
+            File directory = new File(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)processModelName));
+            if (directory.exists()) {
+                File[] folders = directory.listFiles();
+                if (folders != null) {
+                    for (File folder : folders) {
+                        if (!folder.isDirectory()) continue;
+                        PSWFProcess process = new PSWFProcess();
+                        process.setPSSystemId(pSWFVersion.getPSSystemId());
+                        process.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
+                        process.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
+                        process.setWFEngineType(pSWFVersion.getWFEngineType());
+                        processService.compileModelV2(process, null, string, folder.getCanonicalPath(), n);
+                    }
+                }
+            }
+        }
+        if (!PSWFVersionServiceBase.isSimpleImportExportMode("")) {
+            PSWFUtilUIActionService service = (PSWFUtilUIActionService)ServiceGlobal.getService(PSWFUtilUIActionService.class, (SessionFactory)this.getSessionFactory());
+            String modelName = service.getModelV2Name(null, false);
+            arrayNode = null;
+            if (objectNode != null) {
+                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)modelName.toLowerCase());
+            }
+            if (arrayNode != null) {
+                for (int i = 0; i < arrayNode.size(); ++i) {
+                    ObjectNode item = (ObjectNode)arrayNode.get(i);
+                    PSWFUtilUIAction action = new PSWFUtilUIAction();
+                    action.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
+                    action.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
+                    service.compileModelV2(action, item, string, null, n);
+                }
+            } else {
+                File directory = new File(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)modelName));
+                if (directory.exists()) {
+                    File[] folders = directory.listFiles();
+                    if (folders != null) {
+                        for (File folder : folders) {
+                            if (!folder.isDirectory()) continue;
+                            PSWFUtilUIAction action = new PSWFUtilUIAction();
+                            action.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
+                            action.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
+                            service.compileModelV2(action, null, string, folder.getCanonicalPath(), n);
+                        }
+                    }
+                }
+            }
+        }
+        PSWFLinkService linkService = (PSWFLinkService)ServiceGlobal.getService(PSWFLinkService.class, (SessionFactory)this.getSessionFactory());
+        String linkModelName = linkService.getModelV2Name(null, false);
+        arrayNode = null;
+        if (objectNode != null) {
+            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)linkModelName.toLowerCase());
+        }
+        if (arrayNode != null) {
+            for (int i = 0; i < arrayNode.size(); ++i) {
+                ObjectNode item = (ObjectNode)arrayNode.get(i);
+                PSWFLink link = new PSWFLink();
+                link.setPSSystemId(pSWFVersion.getPSSystemId());
+                link.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
+                link.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
+                link.setWFEngineType(pSWFVersion.getWFEngineType());
+                linkService.compileModelV2(link, item, string, null, n);
+            }
+        } else {
+            File directory = new File(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)linkModelName));
+            if (directory.exists()) {
+                File[] folders = directory.listFiles();
+                if (folders != null) {
+                    for (File folder : folders) {
+                        if (!folder.isDirectory()) continue;
+                        PSWFLink link = new PSWFLink();
+                        link.setPSSystemId(pSWFVersion.getPSSystemId());
+                        link.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
+                        link.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
+                        link.setWFEngineType(pSWFVersion.getWFEngineType());
+                        linkService.compileModelV2(link, null, string, folder.getCanonicalPath(), n);
+                    }
+                }
+            }
+        }
+        PSWFLinkCondService linkCondService = (PSWFLinkCondService)ServiceGlobal.getService(PSWFLinkCondService.class, (SessionFactory)this.getSessionFactory());
+        String linkCondModelName = linkCondService.getModelV2Name(null, false);
+        arrayNode = null;
+        int n5 = 0;
+        if (objectNode != null) {
+            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)linkCondModelName.toLowerCase());
+        }
+        if (arrayNode != null) {
+            for (int i = 0; i < arrayNode.size(); ++i) {
+                ObjectNode item = (ObjectNode)arrayNode.get(i);
+                PSWFLinkCond linkCond = new PSWFLinkCond();
+                linkCond.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
+                linkCond.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
+                linkCond.setOrderValue(n5 += 10);
+                linkCondService.compileModelV2(linkCond, item, string, null, n);
+            }
+        } else {
+            File directory = new File(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)linkCondModelName));
+            if (directory.exists()) {
+                File[] folders = directory.listFiles();
+                if (folders != null) {
+                    for (File folder : folders) {
+                        if (!folder.isDirectory()) continue;
+                        PSWFLinkCond linkCond = new PSWFLinkCond();
+                        linkCond.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
+                        linkCond.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
+                        linkCondService.compileModelV2(linkCond, null, string, folder.getCanonicalPath(), n);
+                    }
                 }
             }
         }
@@ -4210,9 +4131,9 @@ extends PSCoreSysServiceBase<PSWFVersion> {
     protected PSMOSFile onPasteFile_PSDEUAGroups(PSWFVersion pSWFVersion, PSMOSFile pSMOSFile, IPSMOSFileAction iPSMOSFileAction) throws Exception {
         if (StringHelper.compare((String)pSMOSFile.getPSModelType(), (String)PSModelV2Helper.getModelV2Name("PSDEUAGROUP", true), (boolean)false) == 0) {
             PSDEUAGroupService pSDEUAGroupService = (PSDEUAGroupService)ServiceGlobal.getService(PSDEUAGroupService.class, (SessionFactory)this.getSessionFactory());
-            PSDEUAGroup pSDEUAGroup = new PSDEUAGroup();
-            pSDEUAGroup.setPSDEUAGroupId(pSMOSFile.getPSModelId());
-            if (!pSDEUAGroupService.get((IEntity)pSDEUAGroup, true)) {
+                PSDEUAGroup pSDEUAGroup = new PSDEUAGroup();
+                pSDEUAGroup.setPSDEUAGroupId(pSMOSFile.getPSModelId());
+                if (!pSDEUAGroupService.get(pSDEUAGroup, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEUAGroup.getPSWFVersionId(), (String)pSWFVersion.getPSWFVersionId(), (boolean)false) == 0) {
@@ -4220,12 +4141,12 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             }
             ObjectNode objectNode = pSDEUAGroupService.exportModelV2(pSDEUAGroup);
             pSDEUAGroup.reset();
-            if (!pSDEUAGroupService.setModelV2ResScope((IEntity)pSDEUAGroup, "PSWFVERSION", pSWFVersion.getPSWFVersionId())) {
+            if (!pSDEUAGroupService.setModelV2ResScope(pSDEUAGroup, "PSWFVERSION", pSWFVersion.getPSWFVersionId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEUAGroupService.importModelV2(pSDEUAGroup, objectNode);
             SessionFactoryManager.commit();
-            return pSDEUAGroupService.getFile((IEntity)pSDEUAGroup);
+            return pSDEUAGroupService.getFile(pSDEUAGroup);
         }
         return null;
     }
@@ -4235,7 +4156,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             PSDEUIActionService pSDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
             PSDEUIAction pSDEUIAction = new PSDEUIAction();
             pSDEUIAction.setPSDEUIActionId(pSMOSFile.getPSModelId());
-            if (!pSDEUIActionService.get((IEntity)pSDEUIAction, true)) {
+            if (!pSDEUIActionService.get(pSDEUIAction, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEUIAction.getPSWFVersionId(), (String)pSWFVersion.getPSWFVersionId(), (boolean)false) == 0) {
@@ -4243,12 +4164,12 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             }
             ObjectNode objectNode = pSDEUIActionService.exportModelV2(pSDEUIAction);
             pSDEUIAction.reset();
-            if (!pSDEUIActionService.setModelV2ResScope((IEntity)pSDEUIAction, "PSWFVERSION", pSWFVersion.getPSWFVersionId())) {
+            if (!pSDEUIActionService.setModelV2ResScope(pSDEUIAction, "PSWFVERSION", pSWFVersion.getPSWFVersionId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEUIActionService.importModelV2(pSDEUIAction, objectNode);
             SessionFactoryManager.commit();
-            return pSDEUIActionService.getFile((IEntity)pSDEUIAction);
+            return pSDEUIActionService.getFile(pSDEUIAction);
         }
         return null;
     }
@@ -4258,7 +4179,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             PSWFProcessService pSWFProcessService = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
             PSWFProcess pSWFProcess = new PSWFProcess();
             pSWFProcess.setPSWFProcessId(pSMOSFile.getPSModelId());
-            if (!pSWFProcessService.get((IEntity)pSWFProcess, true)) {
+            if (!pSWFProcessService.get(pSWFProcess, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWFProcess.getPSWFVersionId(), (String)pSWFVersion.getPSWFVersionId(), (boolean)false) == 0) {
@@ -4266,12 +4187,12 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             }
             ObjectNode objectNode = pSWFProcessService.exportModelV2(pSWFProcess);
             pSWFProcess.reset();
-            if (!pSWFProcessService.setModelV2ResScope((IEntity)pSWFProcess, "PSWFVERSION", pSWFVersion.getPSWFVersionId())) {
+            if (!pSWFProcessService.setModelV2ResScope(pSWFProcess, "PSWFVERSION", pSWFVersion.getPSWFVersionId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWFProcessService.importModelV2(pSWFProcess, objectNode);
             SessionFactoryManager.commit();
-            return pSWFProcessService.getFile((IEntity)pSWFProcess);
+            return pSWFProcessService.getFile(pSWFProcess);
         }
         return null;
     }
@@ -4281,7 +4202,7 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             PSWFLinkService pSWFLinkService = (PSWFLinkService)ServiceGlobal.getService(PSWFLinkService.class, (SessionFactory)this.getSessionFactory());
             PSWFLink pSWFLink = new PSWFLink();
             pSWFLink.setPSWFLinkId(pSMOSFile.getPSModelId());
-            if (!pSWFLinkService.get((IEntity)pSWFLink, true)) {
+            if (!pSWFLinkService.get(pSWFLink, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWFLink.getPSWFVersionId(), (String)pSWFVersion.getPSWFVersionId(), (boolean)false) == 0) {
@@ -4289,12 +4210,12 @@ extends PSCoreSysServiceBase<PSWFVersion> {
             }
             ObjectNode objectNode = pSWFLinkService.exportModelV2(pSWFLink);
             pSWFLink.reset();
-            if (!pSWFLinkService.setModelV2ResScope((IEntity)pSWFLink, "PSWFVERSION", pSWFVersion.getPSWFVersionId())) {
+            if (!pSWFLinkService.setModelV2ResScope(pSWFLink, "PSWFVERSION", pSWFVersion.getPSWFVersionId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWFLinkService.importModelV2(pSWFLink, objectNode);
             SessionFactoryManager.commit();
-            return pSWFLinkService.getFile((IEntity)pSWFLink);
+            return pSWFLinkService.getFile(pSWFLink);
         }
         return null;
     }
@@ -4344,4 +4265,3 @@ extends PSCoreSysServiceBase<PSWFVersion> {
         list.add(pSHelpSection);
     }
 }
-

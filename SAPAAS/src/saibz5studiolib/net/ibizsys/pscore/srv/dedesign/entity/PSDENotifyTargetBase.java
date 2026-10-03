@@ -1985,7 +1985,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getTargetPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.targetpsdef = pSDEField;
             }
             return this.targetpsdef;
@@ -2011,7 +2011,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getTargetTypePSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.targettypepsdef = pSDEField;
             }
             return this.targettypepsdef;
@@ -2037,7 +2037,7 @@ implements Serializable {
                 PSDENotify pSDENotify = new PSDENotify();
                 pSDENotify.setPSDENotifyId(this.getPSDENotifyId());
                 PSDENotifyService pSDENotifyService = (PSDENotifyService)ServiceGlobal.getService(PSDENotifyService.class, (SessionFactory)this.getSessionFactory());
-                pSDENotifyService.autoGet((IEntity)pSDENotify);
+                pSDENotifyService.autoGet(pSDENotify);
                 this.psdenotify = pSDENotify;
             }
             return this.psdenotify;
@@ -2063,7 +2063,7 @@ implements Serializable {
                 PSSysMsgTarget pSSysMsgTarget = new PSSysMsgTarget();
                 pSSysMsgTarget.setPSSysMsgTargetId(this.getPSSysMsgTargetId());
                 PSSysMsgTargetService pSSysMsgTargetService = (PSSysMsgTargetService)ServiceGlobal.getService(PSSysMsgTargetService.class, (SessionFactory)this.getSessionFactory());
-                pSSysMsgTargetService.autoGet((IEntity)pSSysMsgTarget);
+                pSSysMsgTargetService.autoGet(pSSysMsgTarget);
                 this.pssysmsgtarget = pSSysMsgTarget;
             }
             return this.pssysmsgtarget;

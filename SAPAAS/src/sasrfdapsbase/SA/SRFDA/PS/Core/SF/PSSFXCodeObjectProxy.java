@@ -77,7 +77,12 @@ implements IPSSFXCodeObject {
                 return false;
             }
         }
-        return this.getPSSysSFPlugin().hasCode(strCodeType);
+        try {
+            return this.getPSSysSFPlugin().hasCode(strCodeType);
+        }
+        catch (Exception ex) {
+            return false;
+        }
     }
 
     @Override

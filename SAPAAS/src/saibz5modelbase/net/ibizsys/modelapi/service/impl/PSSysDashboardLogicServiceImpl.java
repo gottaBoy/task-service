@@ -76,7 +76,7 @@ implements IPSSysDashboardLogicService {
     @Override
     protected List<PSSysDashboardLogic> onListAll() throws Exception {
         ArrayList<PSSysDashboardLogic> list = new ArrayList<PSSysDashboardLogic>();
-        List pssysdashboards = PSModelServiceUtil.getInstance().getPSSysDashboardService().listAll();
+        List<PSSysDashboard> pssysdashboards = PSModelServiceUtil.getInstance().getPSSysDashboardService().listAll();
         if (pssysdashboards != null) {
             for (PSSysDashboard parent : pssysdashboards) {
                 List<PSSysDashboardLogic> items = this.listByPSSysDashboard(parent);

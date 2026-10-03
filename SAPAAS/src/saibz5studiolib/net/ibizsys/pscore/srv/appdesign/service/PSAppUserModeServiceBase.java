@@ -164,9 +164,9 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
             PSAppMenu pSAppMenu = (PSAppMenu)iService.getDEModel().createEntity();
             pSAppMenu.set("PSAPPMENUID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppMenu);
+                iService.getTemp(pSAppMenu);
             } else {
-                iService.get((IEntity)pSAppMenu);
+                iService.get(pSAppMenu);
             }
             this.onFillParentInfo_PSAppMenu(pSAppUserMode, pSAppMenu);
             return;
@@ -176,9 +176,9 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
             PSAppView pSAppView = (PSAppView)iService.getDEModel().createEntity();
             pSAppView.set("PSAPPVIEWID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppView);
+                iService.getTemp(pSAppView);
             } else {
-                iService.get((IEntity)pSAppView);
+                iService.get(pSAppView);
             }
             this.onFillParentInfo_PSAppView(pSAppUserMode, pSAppView);
             return;
@@ -188,9 +188,9 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSAppUserMode, pSSysApp);
             return;
@@ -200,14 +200,14 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
             PSSysUserMode pSSysUserMode = (PSSysUserMode)iService.getDEModel().createEntity();
             pSSysUserMode.set("PSSYSUSERMODEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysUserMode);
+                iService.getTemp(pSSysUserMode);
             } else {
-                iService.get((IEntity)pSSysUserMode);
+                iService.get(pSSysUserMode);
             }
             this.onFillParentInfo_PSSysUserMode(pSAppUserMode, pSSysUserMode);
             return;
         }
-        super.onFillParentInfo((IEntity)pSAppUserMode, string, string2, string3);
+        super.onFillParentInfo(pSAppUserMode, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -238,7 +238,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
         if (bl && pSAppUserMode.getDefaultFlag() == null) {
             pSAppUserMode.setDefaultFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "0", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSAppUserMode, bl);
+        super.onFillEntityFullInfo(pSAppUserMode, bl);
         this.onFillEntityFullInfo_PSAppMenu(pSAppUserMode, bl);
         this.onFillEntityFullInfo_PSAppView(pSAppUserMode, bl);
         this.onFillEntityFullInfo_PSSysApp(pSAppUserMode, bl);
@@ -258,7 +258,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
     }
 
     protected void onWriteBackParent(PSAppUserMode pSAppUserMode, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSAppUserMode, bl);
+        super.onWriteBackParent(pSAppUserMode, bl);
     }
 
     public ArrayList<PSAppUserMode> selectByPSAppMenu(PSAppMenuBase pSAppMenuBase) throws Exception {
@@ -361,8 +361,8 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
         ArrayList<PSAppUserMode> arrayList = this.selectByPSAppMenu(pSAppMenu, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSAPPMENU");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSAppMenu);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPUSERMODE_PSAPPMENU_PSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPUSERMODE", iDataEntityModel.getDataInfo((IEntity)pSAppMenu), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSAppMenu);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPUSERMODE_PSAPPMENU_PSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPUSERMODE", iDataEntityModel.getDataInfo(pSAppMenu), arrayList.get(0)));
         }
     }
 
@@ -395,7 +395,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
         ArrayList<PSAppUserMode> arrayList = this.selectByPSAppMenu(pSAppMenu);
         this.onBeforeRemoveByPSAppMenu(pSAppMenu, arrayList);
         for (PSAppUserMode pSAppUserMode : arrayList) {
-            this.remove((IEntity)pSAppUserMode);
+            this.remove(pSAppUserMode);
         }
         this.onAfterRemoveByPSAppMenu(pSAppMenu, arrayList);
     }
@@ -413,8 +413,8 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
         ArrayList<PSAppUserMode> arrayList = this.selectByPSAppView(pSAppView, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSAPPVIEW");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSAppView);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPUSERMODE_PSAPPVIEW_PSAPPVIEWID", "", iDataEntityModel.getName(), "PSAPPUSERMODE", iDataEntityModel.getDataInfo((IEntity)pSAppView), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSAppView);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPUSERMODE_PSAPPVIEW_PSAPPVIEWID", "", iDataEntityModel.getName(), "PSAPPUSERMODE", iDataEntityModel.getDataInfo(pSAppView), arrayList.get(0)));
         }
     }
 
@@ -447,7 +447,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
         ArrayList<PSAppUserMode> arrayList = this.selectByPSAppView(pSAppView);
         this.onBeforeRemoveByPSAppView(pSAppView, arrayList);
         for (PSAppUserMode pSAppUserMode : arrayList) {
-            this.remove((IEntity)pSAppUserMode);
+            this.remove(pSAppUserMode);
         }
         this.onAfterRemoveByPSAppView(pSAppView, arrayList);
     }
@@ -493,7 +493,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
         ArrayList<PSAppUserMode> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSAppUserMode pSAppUserMode : arrayList) {
-            this.remove((IEntity)pSAppUserMode);
+            this.remove(pSAppUserMode);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -511,8 +511,8 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
         ArrayList<PSAppUserMode> arrayList = this.selectByPSSysUserMode(pSSysUserMode, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSUSERMODE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysUserMode);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPUSERMODE_PSSYSUSERMODE_PSSYSUSERMODEID", "", iDataEntityModel.getName(), "PSAPPUSERMODE", iDataEntityModel.getDataInfo((IEntity)pSSysUserMode), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysUserMode);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPUSERMODE_PSSYSUSERMODE_PSSYSUSERMODEID", "", iDataEntityModel.getName(), "PSAPPUSERMODE", iDataEntityModel.getDataInfo(pSSysUserMode), arrayList.get(0)));
         }
     }
 
@@ -545,7 +545,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
         ArrayList<PSAppUserMode> arrayList = this.selectByPSSysUserMode(pSSysUserMode);
         this.onBeforeRemoveByPSSysUserMode(pSSysUserMode, arrayList);
         for (PSAppUserMode pSAppUserMode : arrayList) {
-            this.remove((IEntity)pSAppUserMode);
+            this.remove(pSAppUserMode);
         }
         this.onAfterRemoveByPSSysUserMode(pSSysUserMode, arrayList);
     }
@@ -566,7 +566,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
 
     protected void replaceParentInfo(PSAppUserMode pSAppUserMode, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSAppUserMode, cloneSession);
+        super.replaceParentInfo(pSAppUserMode, cloneSession);
         if (pSAppUserMode.getPSAppMenuId() != null && (iEntity = cloneSession.getEntity("PSAPPMENU", (Object)pSAppUserMode.getPSAppMenuId())) != null) {
             this.onFillParentInfo_PSAppMenu(pSAppUserMode, (PSAppMenu)iEntity);
         }
@@ -582,7 +582,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
     }
 
     protected void onRemoveEntityUncopyValues(PSAppUserMode pSAppUserMode, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSAppUserMode, bl);
+        super.onRemoveEntityUncopyValues(pSAppUserMode, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSAppUserMode pSAppUserMode, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -633,7 +633,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSAppUserMode, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSAppUserMode, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSAppUserMode, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSAppUserMode pSAppUserMode, boolean bl2, boolean bl3) throws Exception {
@@ -646,7 +646,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -685,7 +685,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -722,7 +722,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -744,7 +744,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -766,7 +766,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppMenuId_PSAppMenu((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppMenuId_PSAppMenu(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMENUID");
@@ -774,7 +774,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 entityFieldError.setErrorInfo(string2);
                 return entityFieldError;
             }
-            string2 = this.onTestValueRule_PSAppMenuId_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppMenuId_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMENUID");
@@ -799,7 +799,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppUserModeId_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppUserModeId_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPUSERMODEID");
@@ -821,7 +821,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppUserModeName_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppUserModeName_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPUSERMODENAME");
@@ -860,7 +860,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppViewId_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppViewId_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPVIEWID");
@@ -885,7 +885,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -907,7 +907,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUserModeId_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUserModeId_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUSERMODEID");
@@ -946,7 +946,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -968,7 +968,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -990,7 +990,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1012,7 +1012,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1034,7 +1034,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSAppUserMode, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSAppUserMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1047,11 +1047,11 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
     }
 
     protected void onSyncEntity(PSAppUserMode pSAppUserMode, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSAppUserMode, bl);
+        super.onSyncEntity(pSAppUserMode, bl);
     }
 
     protected void onSyncIndexEntities(PSAppUserMode pSAppUserMode, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSAppUserMode, bl);
+        super.onSyncIndexEntities(pSAppUserMode, bl);
     }
 
     public Object getDataContextValue(PSAppUserMode pSAppUserMode, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1059,7 +1059,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSAppUserMode, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSAppUserMode, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysApp pSSysApp = pSAppUserMode.getPSSysApp();
@@ -1070,7 +1070,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
     }
 
     protected void onExportMajorModel(PSAppUserMode pSAppUserMode, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSAppUserMode, arrayList, n);
+        super.onExportMajorModel(pSAppUserMode, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1420,7 +1420,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
 
     protected boolean onMergeChild(String string, String string2, PSAppUserMode pSAppUserMode) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSAppUserMode)) {
+        if (super.onMergeChild(string, string2, pSAppUserMode)) {
             bl = true;
         }
         return bl;
@@ -1432,7 +1432,7 @@ extends PSCoreSysServiceBase<PSAppUserMode> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.sysdesign.service.PSSysAppService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSAPPUSERMODE_PSSYSAPP_PSSYSAPPID", object);
         }
-        super.onUpdateParent((IEntity)pSAppUserMode);
+        super.onUpdateParent(pSAppUserMode);
     }
 
     protected boolean isNeedUpdateParent() {

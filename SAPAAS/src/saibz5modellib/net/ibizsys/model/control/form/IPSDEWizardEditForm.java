@@ -1,13 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.form;
 
-import net.ibizsys.model.control.form.IPSDEEditForm;
 import net.ibizsys.model.dataentity.wizard.IPSDEWizardForm;
 
-public interface IPSDEWizardEditForm
-extends IPSDEEditForm {
-    public IPSDEWizardForm getPSDEWizardForm();
-}
 
+/**
+ * 实体向导编辑表单对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEWizardEditForm extends IPSDEEditForm{
+
+	/**
+	 * 获取向导表单对象
+	 * @return
+	 */
+	IPSDEWizardForm getPSDEWizardForm();
+	
+}

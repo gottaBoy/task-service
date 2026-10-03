@@ -1,366 +1,491 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- *  net.ibizsys.paas.control.form.IForm
- *  net.ibizsys.paas.control.form.IFormItem
- *  net.ibizsys.paas.ctrlmodel.FormItemModel
- *  net.ibizsys.paas.util.JsonNodeHelper
- *  net.ibizsys.paas.util.StringHelper
- */
 package net.ibizsys.paas.ctrlmodel.form;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import net.ibizsys.paas.control.form.IForm;
 import net.ibizsys.paas.control.form.IFormItem;
 import net.ibizsys.paas.ctrlmodel.FormItemModel;
+import net.ibizsys.paas.ctrlmodel.IDynaCtrlModel;
 import net.ibizsys.paas.ctrlmodel.IDynaFormModel;
-import net.ibizsys.paas.ctrlmodel.form.DynaFormDetailModelBase;
-import net.ibizsys.paas.ctrlmodel.form.IDynaFormDetailModel;
-import net.ibizsys.paas.ctrlmodel.form.IDynaFormItemModel;
 import net.ibizsys.paas.util.JsonNodeHelper;
 import net.ibizsys.paas.util.StringHelper;
 
-public class DynaFormItemModel
-extends FormItemModel
-implements IDynaFormItemModel {
-    private IDynaFormModel iDynaFormModel = null;
-    private IDynaFormDetailModel parentModel = null;
-    private ObjectNode modelJsonObject = null;
-    private IDynaFormItemModel sourceDynaFormItemModel = null;
-    private boolean bShowCaption = true;
-    private int nColXS = -1;
-    private int nColSM = -1;
-    private int nColMD = -1;
-    private int nColLG = -1;
-    private int nColXSOffset = -1;
-    private int nColSMOffset = -1;
-    private int nColMDOffset = -1;
-    private int nColLGOffset = -1;
-    protected double fContentWidth = -1.0;
-    protected double fWidth = -1.0;
-    protected double fContentHeight = -1.0;
-    protected double fHeight = -1.0;
-    private boolean bEditable = true;
-    protected String strEditorType = "";
-    protected String strEditorStyle = "";
-    protected boolean bHidden = false;
-    protected String strLabelPos = "LEFT";
-    protected double fEditorWidth = -1.0;
-    protected double fEditorHeight = -1.0;
-    private boolean bEmptyCaption = false;
-    private int nLabelWidth = -1;
-    private String strPlaceHolder = null;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-    @Override
-    public void init(IDynaFormModel iDynaFormModel, IDynaFormDetailModel parentModel, Object modelObject) throws Exception {
-        this.iDynaFormModel = iDynaFormModel;
-        this.parentModel = parentModel;
-        this.setForm((IForm)iDynaFormModel);
-        if (modelObject != null && modelObject instanceof ObjectNode) {
-            this.loadJsonObject((ObjectNode)modelObject);
-        }
-    }
+/**
+ * 动态表单项模型对象
+ * @author Administrator
+ *
+ */
+public class DynaFormItemModel extends FormItemModel implements IDynaFormItemModel {
 
-    @Override
-    public String getDetailType() {
-        return "FORMITEM";
-    }
+	private IDynaFormModel iDynaFormModel = null;
+	private IDynaFormDetailModel parentModel = null;
+	private ObjectNode modelJsonObject = null;
+	private IDynaFormItemModel sourceDynaFormItemModel = null;
+	private boolean bShowCaption = true;
+	private int nColXS = -1;
+	private int nColSM = -1;
+	private int nColMD = -1;
+	private int nColLG = -1;
+	private int nColXSOffset = -1;
+	private int nColSMOffset = -1;
+	private int nColMDOffset = -1;
+	private int nColLGOffset = -1;
+	protected double fContentWidth = -1;
+	protected double fWidth = -1;
+	protected double fContentHeight = -1;
+	protected double fHeight = -1;
+	private boolean bEditable = true;
+	protected String strEditorType = "";
+	protected String strEditorStyle = "";
+	protected boolean bHidden = false;
+	protected String strLabelPos = IDynaFormItemModel.LABELPOS_LEFT;
+	protected double fEditorWidth = -1;
+	protected double fEditorHeight = -1;
+	private boolean bEmptyCaption = false;
+	private int nLabelWidth = -1;
+	
+	private String strPlaceHolder = null;
+	
+	@Override
+	public void init(IDynaFormModel iDynaFormModel, IDynaFormDetailModel parentModel, Object modelObject) throws Exception {
+		this.iDynaFormModel = iDynaFormModel;
+		this.parentModel = parentModel;
+		this.setForm(iDynaFormModel);
+		//获取原始表单项
+		if(modelObject!=null){
+			if(modelObject instanceof ObjectNode){
+				this.loadJsonObject((ObjectNode)modelObject);
+			}
+		}
+		
+	}
 
-    @Override
-    public IDynaFormModel getDynaFormModel() {
-        return this.iDynaFormModel;
-    }
+	@Override
+	public String getDetailType() {
+		return IDynaFormDetailModel.DETAILTYPE_FORMITEM;
+	}
 
-    @Override
-    public IDynaFormDetailModel getParentModel() {
-        return this.parentModel;
-    }
+	@Override
+	public IDynaFormModel getDynaFormModel() {
+		return this.iDynaFormModel;
+	}
 
-    @Override
-    public void loadJsonObject(ObjectNode jsonObject) throws Exception {
-        this.modelJsonObject = jsonObject;
-        this.onLoadJsonObject(jsonObject);
-    }
+	@Override
+	public IDynaFormDetailModel getParentModel() {
+		return this.parentModel;
+	}
 
-    protected void onLoadJsonObject(ObjectNode jsonObject) throws Exception {
-        String strEditorStyle;
-        String strEditorType;
-        IFormItem iFormItem;
-        String strName = JsonNodeHelper.getString((ObjectNode)jsonObject, (String)"name", null);
-        if (StringHelper.isNullOrEmpty((String)strName)) {
-            throw new Exception("\u8868\u5355\u9879\u6a21\u578b\u4e2d\u6ca1\u6709\u6307\u5b9a\u8868\u5355\u9879\u540d\u79f0");
-        }
-        this.setName(strName);
-        if (!StringHelper.isNullOrEmpty((String)this.getName()) && this.getDynaFormModel().getSourceFormModel() != null && (iFormItem = this.getDynaFormModel().getSourceFormModel().getFormItem(this.getName(), true)) != null && iFormItem instanceof IDynaFormItemModel) {
-            this.sourceDynaFormItemModel = (IDynaFormItemModel)iFormItem;
-        }
-        if (!StringHelper.isNullOrEmpty((String)(strEditorType = JsonNodeHelper.getString((ObjectNode)jsonObject, (String)"editortype", null)))) {
-            this.setEditorType(strEditorType);
-        }
-        if (!StringHelper.isNullOrEmpty((String)(strEditorStyle = JsonNodeHelper.getString((ObjectNode)jsonObject, (String)"editorstyle", null)))) {
-            this.setEditorStyle(strEditorStyle);
-        }
-    }
+	@Override
+	public void loadJsonObject(ObjectNode jsonObject) throws Exception {
+		this.modelJsonObject = jsonObject;
+		onLoadJsonObject(jsonObject);
+	}
+	
+	
+	
+	/**
+	 * 加载Json对象模型
+	 * @param jsonObject
+	 * @throws Exception
+	 */
+	protected void onLoadJsonObject(ObjectNode jsonObject) throws Exception {
+		String strName = JsonNodeHelper.getString(jsonObject, ATTR_NAME, null);
+		if(StringHelper.isNullOrEmpty(strName)){
+			throw new Exception("表单项模型中没有指定表单项名称");
+		}
+		this.setName(strName);
+		
+		if(!StringHelper.isNullOrEmpty(this.getName()) &&   this.getDynaFormModel().getSourceFormModel()!=null){
+			IFormItem iFormItem = this.getDynaFormModel().getSourceFormModel().getFormItem(this.getName(), true);
+			if(iFormItem!=null && iFormItem instanceof IDynaFormItemModel){
+				this.sourceDynaFormItemModel = (IDynaFormItemModel)iFormItem;
+			}
+		}
+		
+		
+		String strEditorType = JsonNodeHelper.getString(jsonObject, ATTR_EDITORTYPE, null);
+		if(!StringHelper.isNullOrEmpty(strEditorType)){
+			this.setEditorType(strEditorType);
+		}
+		String strEditorStyle = JsonNodeHelper.getString(jsonObject, ATTR_EDITORSTYLE, null);
+		if(!StringHelper.isNullOrEmpty(strEditorStyle)){
+			this.setEditorStyle(strEditorStyle);
+		}
+	}
+	
+	
 
-    @Override
-    public ObjectNode toJsonObject(ObjectNode jo) throws Exception {
-        if (jo == null) {
-            jo = JsonNodeHelper.createObjectNode();
-        }
-        this.onFillJsonObject(jo);
-        return jo;
-    }
+	@Override
+	public ObjectNode toJsonObject(ObjectNode jo) throws Exception {
+		if(jo==null)
+		{
+			jo = JsonNodeHelper.createObjectNode();
+		}
+		
+		onFillJsonObject(jo);
+		return jo;
+	}
+	
+	protected void onFillJsonObject(ObjectNode jo) throws Exception {
+		DynaFormDetailModelBase.fillJsonObject(this, jo);
+		if(this.getModelJsonObject()!=null){
+			JsonNodeHelper.copy(jo, getModelJsonObject(),true);
+		}
+		if(jo.has(IDynaFormItemModel.ATTR_EDITORTYPE)){
+			if(StringHelper.isNullOrEmpty(jo.get(IDynaFormItemModel.ATTR_EDITORTYPE).asText())){
+				if(!StringHelper.isNullOrEmpty(this.getEditorType()))
+					JsonNodeHelper.put(jo, IDynaFormItemModel.ATTR_EDITORTYPE, this.getEditorType());
+			}
+		}
+		else
+			if(!StringHelper.isNullOrEmpty(this.getEditorType()))
+				JsonNodeHelper.put(jo, IDynaFormItemModel.ATTR_EDITORTYPE, this.getEditorType());
+		if(jo.has(IDynaFormItemModel.ATTR_EDITORSTYLE)){
+			if(StringHelper.isNullOrEmpty(jo.get(IDynaFormItemModel.ATTR_EDITORSTYLE).asText())){
+				if(!StringHelper.isNullOrEmpty(this.getEditorStyle()))
+					JsonNodeHelper.put(jo, IDynaFormItemModel.ATTR_EDITORSTYLE, this.getEditorStyle());
+			}
+		}
+		else
+			if(!StringHelper.isNullOrEmpty(this.getEditorStyle()))
+				JsonNodeHelper.put(jo, IDynaFormItemModel.ATTR_EDITORSTYLE, this.getEditorStyle());
+		if(jo.has(IDynaCtrlModel.ATTR_CAPTION)){
+			if(StringHelper.isNullOrEmpty(jo.get(IDynaCtrlModel.ATTR_CAPTION).asText())){
+				if(!StringHelper.isNullOrEmpty(this.getCaption()))
+					JsonNodeHelper.put(jo, IDynaCtrlModel.ATTR_CAPTION, this.getCaption());
+			}
+		}
+		else
+			if(!StringHelper.isNullOrEmpty(this.getCaption()))
+				JsonNodeHelper.put(jo, IDynaCtrlModel.ATTR_CAPTION, this.getCaption());
+	}
+	
+	
+	/**
+	 * 获取源动态表单项模型
+	 * @return
+	 */
+	protected IDynaFormItemModel getSourceDynaFormItemModel(){
+		return this.sourceDynaFormItemModel;
+	}
+	
+	
 
-    protected void onFillJsonObject(ObjectNode jo) throws Exception {
-        DynaFormDetailModelBase.fillJsonObject(this, jo);
-        if (this.getModelJsonObject() != null) {
-            JsonNodeHelper.copy((ObjectNode)jo, (ObjectNode)this.getModelJsonObject(), (boolean)true);
-        }
-        if (jo.has("editortype")) {
-            if (StringHelper.isNullOrEmpty((String)jo.get("editortype").asText()) && !StringHelper.isNullOrEmpty((String)this.getEditorType())) {
-                JsonNodeHelper.put((ObjectNode)jo, (String)"editortype", (Object)this.getEditorType());
-            }
-        } else if (!StringHelper.isNullOrEmpty((String)this.getEditorType())) {
-            JsonNodeHelper.put((ObjectNode)jo, (String)"editortype", (Object)this.getEditorType());
-        }
-        if (jo.has("editorstyle")) {
-            if (StringHelper.isNullOrEmpty((String)jo.get("editorstyle").asText()) && !StringHelper.isNullOrEmpty((String)this.getEditorStyle())) {
-                JsonNodeHelper.put((ObjectNode)jo, (String)"editorstyle", (Object)this.getEditorStyle());
-            }
-        } else if (!StringHelper.isNullOrEmpty((String)this.getEditorStyle())) {
-            JsonNodeHelper.put((ObjectNode)jo, (String)"editorstyle", (Object)this.getEditorStyle());
-        }
-        if (jo.has("caption")) {
-            if (StringHelper.isNullOrEmpty((String)jo.get("caption").asText()) && !StringHelper.isNullOrEmpty((String)this.getCaption())) {
-                JsonNodeHelper.put((ObjectNode)jo, (String)"caption", (Object)this.getCaption());
-            }
-        } else if (!StringHelper.isNullOrEmpty((String)this.getCaption())) {
-            JsonNodeHelper.put((ObjectNode)jo, (String)"caption", (Object)this.getCaption());
-        }
-    }
 
-    protected IDynaFormItemModel getSourceDynaFormItemModel() {
-        return this.sourceDynaFormItemModel;
-    }
+	@Override
+	public int getColXS() {
+		return this.nColXS;
+	}
 
-    @Override
-    public int getColXS() {
-        return this.nColXS;
-    }
 
-    @Override
-    public int getColSM() {
-        return this.nColSM;
-    }
+	@Override
+	public int getColSM() {
+		return this.nColSM;
+	}
 
-    @Override
-    public int getColMD() {
-        return this.nColMD;
-    }
 
-    @Override
-    public int getColLG() {
-        return this.nColLG;
-    }
+	@Override
+	public int getColMD() {
+		return this.nColMD;
+	}
 
-    @Override
-    public int getColXSOffset() {
-        return this.nColXSOffset;
-    }
 
-    @Override
-    public int getColSMOffset() {
-        return this.nColSMOffset;
-    }
+	@Override
+	public int getColLG() {
+		return this.nColLG;
+	}
 
-    @Override
-    public int getColMDOffset() {
-        return this.nColMDOffset;
-    }
 
-    @Override
-    public int getColLGOffset() {
-        return this.nColLGOffset;
-    }
+	@Override
+	public int getColXSOffset() {
+		return this.nColXSOffset;
+	}
 
-    @Override
-    public boolean isShowCaption() {
-        return this.bShowCaption;
-    }
+	
+	@Override
+	public int getColSMOffset() {
+		return this.nColSMOffset;
+	}
 
-    @Override
-    public double getWidth() {
-        return this.fWidth;
-    }
+	
+	@Override
+	public int getColMDOffset() {
+		return this.nColMDOffset;
+	}
 
-    @Override
-    public double getHeight() {
-        return this.fHeight;
-    }
+	
+	@Override
+	public int getColLGOffset() {
+		return this.nColLGOffset;
+	}
 
-    @Override
-    public double getEditorWidth() {
-        return this.fEditorWidth;
-    }
 
-    @Override
-    public double getEditorHeight() {
-        return this.fEditorHeight;
-    }
 
-    @Override
-    public boolean isAllowEmpty() {
-        if (this.isEditable()) {
-            return super.isAllowEmpty();
-        }
-        return true;
-    }
+	@Override
+	public boolean isShowCaption() {
+		return this.bShowCaption;
+	}
+	
+	
+	
+//	@Override
+//	public double getContentWidth() {
+//		return this.fContentWidth;
+//	}
+//
+//
+//	@Override
+//	public double getContentHeight() {
+//		return this.fContentHeight;
+//	}
 
-    @Override
-    public boolean isEditable() {
-        return this.bEditable;
-    }
 
-    @Override
-    public String getLabelPos() {
-        return this.strLabelPos;
-    }
+	@Override
+	public double getWidth() {
+		return this.fWidth;
+	}
 
-    @Override
-    public int getLabelWidth() {
-        if (this.isShowCaption()) {
-            return this.nLabelWidth;
-        }
-        return 0;
-    }
 
-    @Override
-    public boolean isHidden() {
-        return this.bHidden;
-    }
+	@Override
+	public double getHeight() {
+		return this.fHeight;
+	}
+	
+	
+	
+	@Override
+	public double getEditorWidth()
+	{
+		return fEditorWidth;
+	}
 
-    @Override
-    public String getEditorType() {
-        if (StringHelper.isNullOrEmpty((String)this.strEditorType) && this.getSourceDynaFormItemModel() != null) {
-            return this.getSourceDynaFormItemModel().getEditorType();
-        }
-        return this.strEditorType;
-    }
 
-    @Override
-    public String getEditorStyle() {
-        if (StringHelper.isNullOrEmpty((String)this.strEditorStyle) && this.getSourceDynaFormItemModel() != null) {
-            return this.getSourceDynaFormItemModel().getEditorStyle();
-        }
-        return this.strEditorStyle;
-    }
+	@Override
+	public double getEditorHeight()
+	{
+		return fEditorHeight;
+	}
 
-    @Override
-    public String getCaption() {
-        if (StringHelper.isNullOrEmpty((String)super.getCaption()) && this.getSourceDynaFormItemModel() != null) {
-            return this.getSourceDynaFormItemModel().getCaption();
-        }
-        return super.getCaption();
-    }
 
-    @Override
-    public boolean isEmptyCaption() {
-        return this.bEmptyCaption;
-    }
+	@Override
+	public boolean isAllowEmpty()
+	{
+		if (isEditable())
+			return super.isAllowEmpty();
+		return true;
+	}
+	
+	/**
+	 * 是否支持编辑
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean isEditable()
+	{
+		return bEditable;
+	}
 
-    public void setShowCaption(boolean bShowCaption) {
-        this.bShowCaption = bShowCaption;
-    }
+	@Override
+	public String getLabelPos()
+	{
+		return this.strLabelPos;
+	}
 
-    public void setColXS(int nColXS) {
-        this.nColXS = nColXS;
-    }
 
-    public void setColSM(int nColSM) {
-        this.nColSM = nColSM;
-    }
+	@Override
+	public int getLabelWidth()
+	{
+		if (this.isShowCaption())
+		{
+			return nLabelWidth;
+		}
+		else
+		{
+			return 0;
+		}
+	}
 
-    public void setColMD(int nColMD) {
-        this.nColMD = nColMD;
-    }
 
-    public void setColLG(int nColLG) {
-        this.nColLG = nColLG;
-    }
+	@Override
+	public boolean isHidden()
+	{
+		return bHidden;
+	}
 
-    public void setColXSOffset(int nColXSOffset) {
-        this.nColXSOffset = nColXSOffset;
-    }
 
-    public void setColSMOffset(int nColSMOffset) {
-        this.nColSMOffset = nColSMOffset;
-    }
+	@Override
+	public String getEditorType()
+	{
+		if(StringHelper.isNullOrEmpty(strEditorType) && this.getSourceDynaFormItemModel()!=null)
+			return this.getSourceDynaFormItemModel().getEditorType();
+		return strEditorType;
+	}
 
-    public void setColMDOffset(int nColMDOffset) {
-        this.nColMDOffset = nColMDOffset;
-    }
 
-    public void setColLGOffset(int nColLGOffset) {
-        this.nColLGOffset = nColLGOffset;
-    }
+	@Override
+	public String getEditorStyle()
+	{
+		if(StringHelper.isNullOrEmpty(strEditorStyle) && this.getSourceDynaFormItemModel()!=null)
+			return this.getSourceDynaFormItemModel().getEditorStyle();
+		return strEditorStyle;
+	}
+	
+	@Override
+	public String getCaption()
+	{
+		if(StringHelper.isNullOrEmpty(super.getCaption()) && this.getSourceDynaFormItemModel()!=null)
+			return this.getSourceDynaFormItemModel().getCaption();
+		return super.getCaption();
+	}
 
-    public void setWidth(double fWidth) {
-        this.fWidth = fWidth;
-    }
+	
 
-    public void setHeight(double fHeight) {
-        this.fHeight = fHeight;
-    }
+	@Override
+	public boolean isEmptyCaption() {
+		return this.bEmptyCaption;
+	}
 
-    public void setEditable(boolean bEditable) {
-        this.bEditable = bEditable;
-    }
+	/**
+	 * 设置是否显示标题
+	 * @param bShowCaption
+	 */
+	public void setShowCaption(boolean bShowCaption) {
+		this.bShowCaption = bShowCaption;
+	}
 
-    public void setEditorType(String strEditorType) {
-        this.strEditorType = strEditorType;
-    }
 
-    public void setEditorStyle(String strEditorStyle) {
-        this.strEditorStyle = strEditorStyle;
-    }
+	public void setColXS(int nColXS) {
+		this.nColXS = nColXS;
+	}
 
-    public void setHidden(boolean bHidden) {
-        this.bHidden = bHidden;
-    }
+	public void setColSM(int nColSM) {
+		this.nColSM = nColSM;
+	}
 
-    public void setLabelPos(String strLabelPos) {
-        this.strLabelPos = strLabelPos;
-    }
+	public void setColMD(int nColMD) {
+		this.nColMD = nColMD;
+	}
 
-    public void setEditorWidth(double fEditorWidth) {
-        this.fEditorWidth = fEditorWidth;
-    }
+	public void setColLG(int nColLG) {
+		this.nColLG = nColLG;
+	}
 
-    public void setEditorHeight(double fEditorHeight) {
-        this.fEditorHeight = fEditorHeight;
-    }
+	public void setColXSOffset(int nColXSOffset) {
+		this.nColXSOffset = nColXSOffset;
+	}
 
-    public void setEmptyCaption(boolean bEmptyCaption) {
-        this.bEmptyCaption = bEmptyCaption;
-    }
+	public void setColSMOffset(int nColSMOffset) {
+		this.nColSMOffset = nColSMOffset;
+	}
 
-    public void setLabelWidth(int nLabelWidth) {
-        this.nLabelWidth = nLabelWidth;
-    }
+	public void setColMDOffset(int nColMDOffset) {
+		this.nColMDOffset = nColMDOffset;
+	}
 
-    public void setPlaceHolder(String strPlaceHolder) {
-        this.strPlaceHolder = strPlaceHolder;
-    }
+	public void setColLGOffset(int nColLGOffset) {
+		this.nColLGOffset = nColLGOffset;
+	}
 
-    protected ObjectNode getModelJsonObject() {
-        return this.modelJsonObject;
-    }
+	public void setWidth(double fWidth) {
+		this.fWidth = fWidth;
+	}
 
-    @Override
-    public String getPlaceHolder() {
-        return this.strPlaceHolder;
-    }
+	public void setHeight(double fHeight) {
+		this.fHeight = fHeight;
+	}
+
+	public void setEditable(boolean bEditable) {
+		this.bEditable = bEditable;
+	}
+
+	/**
+	 * 设置编辑器类型
+	 * @param strEditorType
+	 */
+	public void setEditorType(String strEditorType) {
+		this.strEditorType = strEditorType;
+	}
+
+	/**
+	 * 设置编辑器样式
+	 * @param strEditorStyle
+	 */
+	public void setEditorStyle(String strEditorStyle) {
+		this.strEditorStyle = strEditorStyle;
+	}
+
+	/**
+	 * 设置是否隐藏
+	 * @param bHidden
+	 */
+	public void setHidden(boolean bHidden) {
+		this.bHidden = bHidden;
+	}
+
+
+	/**
+	 * 设置标签位置
+	 * @param strLabelPos
+	 */
+	public void setLabelPos(String strLabelPos) {
+		this.strLabelPos = strLabelPos;
+	}
+
+	/**
+	 * 设置编辑器宽度 
+	 * @param fEditorWidth
+	 */
+	public void setEditorWidth(double fEditorWidth) {
+		this.fEditorWidth = fEditorWidth;
+	}
+
+	/**
+	 * 设置编辑器高度
+	 * @param fEditorHeight
+	 */
+	public void setEditorHeight(double fEditorHeight) {
+		this.fEditorHeight = fEditorHeight;
+	}
+
+	/**
+	 * 设置是否空白标题
+	 * @param bEmptyCaption
+	 */
+	public void setEmptyCaption(boolean bEmptyCaption) {
+		this.bEmptyCaption = bEmptyCaption;
+	}
+
+	/**
+	 * 设置标题宽度
+	 * @param nLabelWidth
+	 */
+	public void setLabelWidth(int nLabelWidth) {
+		this.nLabelWidth = nLabelWidth;
+	}
+
+	/**
+	 * 设置输入提示
+	 * @param strPlaceHolder
+	 */
+	public void setPlaceHolder(String strPlaceHolder) {
+		this.strPlaceHolder = strPlaceHolder;
+	}
+	
+	
+	/**
+	 * 获取最后导入的模型对象（json）
+	 * @return
+	 */
+	protected ObjectNode getModelJsonObject(){
+		return this.modelJsonObject;
+	}
+
+	@Override
+	public String getPlaceHolder() {
+		return this.strPlaceHolder;
+	}
+
+	
+
+
 }
-

@@ -70,7 +70,7 @@ implements IPSSysViewLogicParamService {
     @Override
     protected List<PSSysViewLogicParam> onListAll() throws Exception {
         ArrayList<PSSysViewLogicParam> list = new ArrayList<PSSysViewLogicParam>();
-        List pssysviewlogics = PSModelServiceUtil.getInstance().getPSSysViewLogicService().listAll();
+        List<PSSysViewLogic> pssysviewlogics = PSModelServiceUtil.getInstance().getPSSysViewLogicService().listAll();
         if (pssysviewlogics != null) {
             for (PSSysViewLogic parent : pssysviewlogics) {
                 List<PSSysViewLogicParam> items = this.listByPSSysViewLogic(parent);

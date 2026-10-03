@@ -1,10 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.control.drctrl.DRCtrlRootItem
- *  net.ibizsys.paas.control.drctrl.IDRCtrl
- */
 package net.ibizsys.model.control.drctrl;
 
 import net.ibizsys.model.control.IPSAjaxControl;
@@ -12,13 +5,31 @@ import net.ibizsys.model.control.counter.IPSSysCounterRef;
 import net.ibizsys.paas.control.drctrl.DRCtrlRootItem;
 import net.ibizsys.paas.control.drctrl.IDRCtrl;
 
-public interface IPSDRCtrl
-extends IPSAjaxControl,
-IDRCtrl {
-    public boolean isIncludeMajor();
+/**
+ * 关系数据控件接口
+ * @author Administrator
+ *
+ */
+public interface IPSDRCtrl  extends IPSAjaxControl,IDRCtrl
+{
+	/**
+	 * 是否包括主信息
+	 * @return
+	 */
+	boolean isIncludeMajor();
+	
+	
 
-    public IPSSysCounterRef getPSSysCounterRef();
-
-    public DRCtrlRootItem getRootItem();
+	/**
+	 * 获取系统计数器引用对象
+	 * @return
+	 */
+	IPSSysCounterRef getPSSysCounterRef();
+	
+	
+	/**
+	 * 获取根节点 
+	 * @return
+	 */
+	DRCtrlRootItem getRootItem();
 }
-

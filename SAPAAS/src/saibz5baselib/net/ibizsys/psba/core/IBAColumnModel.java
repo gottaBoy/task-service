@@ -1,13 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import net.ibizsys.psba.core.IBAColumn;
-import net.ibizsys.psba.core.IBAModelBase;
+/**
+ * 大数据列模型接口对象
+ * 
+ * @author Administrator
+ *
+ */
+public interface IBAColumnModel extends IBAModelBase, IBAColumn {
 
-public interface IBAColumnModel
-extends IBAModelBase,
-IBAColumn {
 }
-

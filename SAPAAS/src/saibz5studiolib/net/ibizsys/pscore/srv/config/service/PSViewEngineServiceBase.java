@@ -153,14 +153,14 @@ extends PSCoreSysServiceBase<PSViewEngine> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSViewEngine, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSViewEngine, string, string2, string3);
+        super.onFillParentInfo(pSViewEngine, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -176,7 +176,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
         if (bl && pSViewEngine.getValidFlag() == null) {
             pSViewEngine.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSViewEngine, bl);
+        super.onFillEntityFullInfo(pSViewEngine, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSViewEngine, bl);
     }
 
@@ -194,7 +194,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
     }
 
     protected void onWriteBackParent(PSViewEngine pSViewEngine, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSViewEngine, bl);
+        super.onWriteBackParent(pSViewEngine, bl);
     }
 
     public ArrayList<PSViewEngine> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -253,7 +253,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
         ArrayList<PSViewEngine> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSViewEngine pSViewEngine : arrayList) {
-            this.remove((IEntity)pSViewEngine);
+            this.remove(pSViewEngine);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -274,14 +274,14 @@ extends PSCoreSysServiceBase<PSViewEngine> {
 
     protected void replaceParentInfo(PSViewEngine pSViewEngine, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSViewEngine, cloneSession);
+        super.replaceParentInfo(pSViewEngine, cloneSession);
         if (pSViewEngine.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSViewEngine.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSViewEngine, (PSDevCenter)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSViewEngine pSViewEngine, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSViewEngine, bl);
+        super.onRemoveEntityUncopyValues(pSViewEngine, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSViewEngine pSViewEngine, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -314,7 +314,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSViewEngine, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSViewEngine, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSViewEngine, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AllDCFlag(boolean bl, PSViewEngine pSViewEngine, boolean bl2, boolean bl3) throws Exception {
@@ -330,7 +330,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_AllDCFlag_Default((IEntity)pSViewEngine, bl2, bl3);
+            string = this.onTestValueRule_AllDCFlag_Default(pSViewEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALLDCFLAG");
@@ -355,7 +355,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineObj_Default((IEntity)pSViewEngine, bl2, bl3);
+            string2 = this.onTestValueRule_EngineObj_Default(pSViewEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEOBJ");
@@ -380,7 +380,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineType_Default((IEntity)pSViewEngine, bl2, bl3);
+            string2 = this.onTestValueRule_EngineType_Default(pSViewEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINETYPE");
@@ -402,7 +402,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSViewEngine, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSViewEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -424,7 +424,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSViewEngine, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSViewEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -446,7 +446,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSViewEngine, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSViewEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -471,7 +471,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewEngineId_Default((IEntity)pSViewEngine, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewEngineId_Default(pSViewEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWENGINEID");
@@ -496,7 +496,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewEngineName_Default((IEntity)pSViewEngine, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewEngineName_Default(pSViewEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWENGINENAME");
@@ -521,7 +521,7 @@ extends PSCoreSysServiceBase<PSViewEngine> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSViewEngine, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSViewEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -534,11 +534,11 @@ extends PSCoreSysServiceBase<PSViewEngine> {
     }
 
     protected void onSyncEntity(PSViewEngine pSViewEngine, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSViewEngine, bl);
+        super.onSyncEntity(pSViewEngine, bl);
     }
 
     protected void onSyncIndexEntities(PSViewEngine pSViewEngine, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSViewEngine, bl);
+        super.onSyncIndexEntities(pSViewEngine, bl);
     }
 
     public Object getDataContextValue(PSViewEngine pSViewEngine, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -546,14 +546,14 @@ extends PSCoreSysServiceBase<PSViewEngine> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSViewEngine, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSViewEngine, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSViewEngine pSViewEngine, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSViewEngine, arrayList, n);
+        super.onExportMajorModel(pSViewEngine, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -725,14 +725,14 @@ extends PSCoreSysServiceBase<PSViewEngine> {
 
     protected boolean onMergeChild(String string, String string2, PSViewEngine pSViewEngine) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSViewEngine)) {
+        if (super.onMergeChild(string, string2, pSViewEngine)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSViewEngine pSViewEngine) throws Exception {
-        super.onUpdateParent((IEntity)pSViewEngine);
+        super.onUpdateParent(pSViewEngine);
     }
 
     @Override

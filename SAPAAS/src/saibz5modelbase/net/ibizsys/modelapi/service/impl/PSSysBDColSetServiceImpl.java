@@ -70,7 +70,7 @@ implements IPSSysBDColSetService {
     @Override
     protected List<PSSysBDColSet> onListAll() throws Exception {
         ArrayList<PSSysBDColSet> list = new ArrayList<PSSysBDColSet>();
-        List pssysbdtables = PSModelServiceUtil.getInstance().getPSSysBDTableService().listAll();
+        List<PSSysBDTable> pssysbdtables = PSModelServiceUtil.getInstance().getPSSysBDTableService().listAll();
         if (pssysbdtables != null) {
             for (PSSysBDTable parent : pssysbdtables) {
                 List<PSSysBDColSet> items = this.listByPSSysBDTable(parent);

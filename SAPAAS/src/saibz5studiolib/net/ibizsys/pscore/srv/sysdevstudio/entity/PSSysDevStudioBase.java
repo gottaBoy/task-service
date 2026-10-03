@@ -917,7 +917,7 @@ implements Serializable {
                 PSDevUser pSDevUser = new PSDevUser();
                 pSDevUser.setPSDevUserId(this.getPSDevUserId());
                 PSDevUserService pSDevUserService = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class, (SessionFactory)this.getSessionFactory());
-                pSDevUserService.autoGet((IEntity)pSDevUser);
+                pSDevUserService.autoGet(pSDevUser);
                 this.psdevuser = pSDevUser;
             }
             return this.psdevuser;
@@ -943,7 +943,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

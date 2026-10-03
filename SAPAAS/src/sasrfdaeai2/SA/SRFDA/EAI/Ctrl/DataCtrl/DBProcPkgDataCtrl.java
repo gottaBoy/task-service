@@ -77,11 +77,11 @@ extends DBOPPKGDataCtrl {
             log.error((Object)StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u6570\u636e\u64cd\u4f5c\u5bf9\u8c61", (Object)"EAI0060"));
             return callResult;
         }
-        ArrayList childs = processesNode.getChildNodes();
+        ArrayList<XMLNode> childs = processesNode.getChildNodes();
         if (childs == null) {
             return callResult;
         }
-        Vector indexList = dbopProcDataCtrl.GetDEHelper().GetDERINDEXs(true);
+        Vector<DERINDEX> indexList = dbopProcDataCtrl.GetDEHelper().GetDERINDEXs(true);
         Hashtable<String, IDEDataCtrl> indexTable = new Hashtable<String, IDEDataCtrl>();
         for (DERINDEX dERINDEX : indexList) {
             IDEDataCtrl ctrl = this.globalHelperEx.getDAModelStorage().FindDEDataCtrlEx(dERINDEX.getDEID(), (IDEDataCtrl)this);
@@ -108,4 +108,3 @@ extends DBOPPKGDataCtrl {
         return callResult;
     }
 }
-

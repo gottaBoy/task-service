@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSSampleValue> {
     }
 
     protected void onFillParentInfo(PSSampleValue pSSampleValue, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSampleValue, string, string2, string3);
+        super.onFillParentInfo(pSSampleValue, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSSampleValue> {
         if (bl && pSSampleValue.getValidFlag() == null) {
             pSSampleValue.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSampleValue, bl);
+        super.onFillEntityFullInfo(pSSampleValue, bl);
     }
 
     protected void onWriteBackParent(PSSampleValue pSSampleValue, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSampleValue, bl);
+        super.onWriteBackParent(pSSampleValue, bl);
     }
 
     @Override
@@ -144,7 +144,7 @@ extends PSCoreSysServiceBase<PSSampleValue> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSampleValue pSSampleValue, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSampleValue, bl);
+        super.onRemoveEntityUncopyValues(pSSampleValue, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSampleValue pSSampleValue, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSSampleValue> {
         if ((entityFieldError = this.onCheckField_ValueList(bl, pSSampleValue, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSampleValue, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSampleValue, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSampleValue pSSampleValue, boolean bl2, boolean bl3) throws Exception {
@@ -184,7 +184,7 @@ extends PSCoreSysServiceBase<PSSampleValue> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSampleValue, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSampleValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -206,7 +206,7 @@ extends PSCoreSysServiceBase<PSSampleValue> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NullValue_Default((IEntity)pSSampleValue, bl2, bl3);
+            string = this.onTestValueRule_NullValue_Default(pSSampleValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NULLVALUE");
@@ -231,7 +231,7 @@ extends PSCoreSysServiceBase<PSSampleValue> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSampleValueId_Default((IEntity)pSSampleValue, bl2, bl3);
+            string2 = this.onTestValueRule_PSSampleValueId_Default(pSSampleValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSAMPLEVALUEID");
@@ -256,7 +256,7 @@ extends PSCoreSysServiceBase<PSSampleValue> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSampleValueName_Default((IEntity)pSSampleValue, bl2, bl3);
+            string2 = this.onTestValueRule_PSSampleValueName_Default(pSSampleValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSAMPLEVALUENAME");
@@ -281,7 +281,7 @@ extends PSCoreSysServiceBase<PSSampleValue> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSampleValue, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSampleValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -303,7 +303,7 @@ extends PSCoreSysServiceBase<PSSampleValue> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Value_Default((IEntity)pSSampleValue, bl2, bl3);
+            string2 = this.onTestValueRule_Value_Default(pSSampleValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALUE");
@@ -325,7 +325,7 @@ extends PSCoreSysServiceBase<PSSampleValue> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ValueList_Default((IEntity)pSSampleValue, bl2, bl3);
+            string2 = this.onTestValueRule_ValueList_Default(pSSampleValue, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALUELIST");
@@ -338,11 +338,11 @@ extends PSCoreSysServiceBase<PSSampleValue> {
     }
 
     protected void onSyncEntity(PSSampleValue pSSampleValue, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSampleValue, bl);
+        super.onSyncEntity(pSSampleValue, bl);
     }
 
     protected void onSyncIndexEntities(PSSampleValue pSSampleValue, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSampleValue, bl);
+        super.onSyncIndexEntities(pSSampleValue, bl);
     }
 
     public Object getDataContextValue(PSSampleValue pSSampleValue, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -350,14 +350,14 @@ extends PSCoreSysServiceBase<PSSampleValue> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSampleValue, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSampleValue, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSampleValue pSSampleValue, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSampleValue, arrayList, n);
+        super.onExportMajorModel(pSSampleValue, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -499,14 +499,14 @@ extends PSCoreSysServiceBase<PSSampleValue> {
 
     protected boolean onMergeChild(String string, String string2, PSSampleValue pSSampleValue) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSampleValue)) {
+        if (super.onMergeChild(string, string2, pSSampleValue)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSampleValue pSSampleValue) throws Exception {
-        super.onUpdateParent((IEntity)pSSampleValue);
+        super.onUpdateParent(pSSampleValue);
     }
 
     @Override

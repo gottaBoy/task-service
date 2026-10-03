@@ -43,7 +43,7 @@ implements IPSModelService<PSDEDataRelation> {
                 return;
             }
             PSDEDataRelation pSDEDataRelation = new PSDEDataRelation();
-            if (this.isEnableFolderKey((IEntity)pSDataEntity)) {
+            if (this.isEnableFolderKey(pSDataEntity)) {
                 pSDEDataRelation.setPSDEDataRelationId(StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_DEFAULT));
             } else {
                 pSDEDataRelation.setPSDEDataRelationId(pSDataEntity.getPSDataEntityId());
@@ -52,7 +52,7 @@ implements IPSModelService<PSDEDataRelation> {
                 PSDEDataRelation pSDEDataRelation2 = new PSDEDataRelation();
                 pSDEDataRelation2.setPSDEId(pSDataEntity.getPSDataEntityId());
                 pSDEDataRelation2.setCodeName("Default");
-                if (this.selectOne((IEntity)pSDEDataRelation2, true)) {
+                if (this.selectOne(pSDEDataRelation2, true)) {
                     return;
                 }
                 pSDEDataRelation.setPSDEId(pSDataEntity.getPSDataEntityId());

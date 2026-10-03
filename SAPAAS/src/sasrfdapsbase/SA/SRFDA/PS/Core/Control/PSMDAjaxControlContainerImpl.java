@@ -165,8 +165,13 @@ IPSMDControl2 {
                 return null;
             }
         }
-        if (this.getPSAjaxControlHandler() != null) {
-            return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("create", true);
+        try {
+            if (this.getPSAjaxControlHandler() != null) {
+                return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("create", true);
+            }
+        }
+        catch (Exception ex) {
+            log.error((Object)ex);
         }
         return null;
     }
@@ -184,8 +189,13 @@ IPSMDControl2 {
                 return null;
             }
         }
-        if (this.getPSAjaxControlHandler() != null) {
-            return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("update", true);
+        try {
+            if (this.getPSAjaxControlHandler() != null) {
+                return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("update", true);
+            }
+        }
+        catch (Exception ex) {
+            log.error((Object)ex);
         }
         return null;
     }
@@ -203,8 +213,13 @@ IPSMDControl2 {
                 return null;
             }
         }
-        if (this.getPSAjaxControlHandler() != null) {
-            return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("remove", true);
+        try {
+            if (this.getPSAjaxControlHandler() != null) {
+                return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("remove", true);
+            }
+        }
+        catch (Exception ex) {
+            log.error((Object)ex);
         }
         return null;
     }
@@ -237,8 +252,13 @@ IPSMDControl2 {
                 return null;
             }
         }
-        if (this.getPSAjaxControlHandler() != null) {
-            return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("loaddraft", true);
+        try {
+            if (this.getPSAjaxControlHandler() != null) {
+                return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("loaddraft", true);
+            }
+        }
+        catch (Exception ex) {
+            log.error((Object)ex);
         }
         return null;
     }
@@ -256,8 +276,13 @@ IPSMDControl2 {
                 return null;
             }
         }
-        if (this.getPSAjaxControlHandler() != null) {
-            return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("loaddraftfrom", true);
+        try {
+            if (this.getPSAjaxControlHandler() != null) {
+                return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("loaddraftfrom", true);
+            }
+        }
+        catch (Exception ex) {
+            log.error((Object)ex);
         }
         return null;
     }
@@ -275,8 +300,13 @@ IPSMDControl2 {
                 return null;
             }
         }
-        if (this.getPSMDAjaxControlHandler() != null) {
-            return this.getPSMDAjaxControlHandler().getPSAjaxHandlerAction("move", true);
+        try {
+            if (this.getPSMDAjaxControlHandler() != null) {
+                return this.getPSMDAjaxControlHandler().getPSAjaxHandlerAction("move", true);
+            }
+        }
+        catch (Exception ex) {
+            log.error((Object)ex);
         }
         return null;
     }

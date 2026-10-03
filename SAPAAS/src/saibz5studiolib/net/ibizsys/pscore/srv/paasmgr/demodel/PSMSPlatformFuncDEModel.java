@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSMSPlatformFuncDEModelBase;
 
 public class PSMSPlatformFuncDEModel
 extends PSMSPlatformFuncDEModelBase {
+
+    public PSMSPlatformFuncDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

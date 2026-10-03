@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.entity;
 
-import net.ibizsys.psrt.srv.common.entity.UserRoleBase;
+/**
+ * 实体[UserRole] 数据对象
+ */
+//@Entity
+public class UserRole extends UserRoleBase {
 
-public class UserRole
-extends UserRoleBase {
+    public UserRole() {
+        super();
+    }
+
 }
-

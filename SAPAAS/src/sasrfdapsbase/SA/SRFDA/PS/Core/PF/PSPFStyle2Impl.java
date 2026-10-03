@@ -465,7 +465,7 @@ implements IPSPFStyle2 {
             PSDevSlnTempl psDevSlnTempl = new PSDevSlnTempl();
             psDevSlnTempl.setPSPFId(this.getPSPF().getId());
             psDevSlnTempl.setPSPFStyleId(this.getId());
-            if (psDevSlnTemplService.selectOne((IEntity)psDevSlnTempl, true) && psDevSlnTempl.getPSDevCenterSVN() != null && psDevSlnTempl.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+            if (psDevSlnTemplService.selectOne(psDevSlnTempl, true) && psDevSlnTempl.getPSDevCenterSVN() != null && psDevSlnTempl.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
                 psSVNServer = psDevSlnTempl.getPSDevCenterSVN().getPSSVNInstRepo().getPSSVNServer();
             }
             if (psSVNServer == null) {
@@ -2114,4 +2114,3 @@ implements IPSPFStyle2 {
         return map.values().iterator();
     }
 }
-

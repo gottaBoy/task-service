@@ -191,9 +191,9 @@ extends PSAppViewService<PSAppUtilView> {
             PSAppMenu pSAppMenu = (PSAppMenu)iService.getDEModel().createEntity();
             pSAppMenu.set("PSAPPMENUID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppMenu);
+                iService.getTemp(pSAppMenu);
             } else {
-                iService.get((IEntity)pSAppMenu);
+                iService.get(pSAppMenu);
             }
             this.onFillParentInfo_PSAppMenu(pSAppUtilView, pSAppMenu);
             return;
@@ -256,8 +256,8 @@ extends PSAppViewService<PSAppUtilView> {
         ArrayList<PSAppUtilView> arrayList = this.selectByPSAppMenu(pSAppMenu, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSAPPMENU");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSAppMenu);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPUTILVIEW_PSAPPMENU_PSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPUTILVIEW", iDataEntityModel.getDataInfo((IEntity)pSAppMenu), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSAppMenu);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPUTILVIEW_PSAPPMENU_PSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPUTILVIEW", iDataEntityModel.getDataInfo(pSAppMenu), arrayList.get(0)));
         }
     }
 
@@ -290,7 +290,7 @@ extends PSAppViewService<PSAppUtilView> {
         ArrayList<PSAppUtilView> arrayList = this.selectByPSAppMenu(pSAppMenu);
         this.onBeforeRemoveByPSAppMenu(pSAppMenu, arrayList);
         for (PSAppUtilView pSAppUtilView : arrayList) {
-            this.remove((IEntity)pSAppUtilView);
+            this.remove(pSAppUtilView);
         }
         this.onAfterRemoveByPSAppMenu(pSAppMenu, arrayList);
     }
@@ -354,7 +354,7 @@ extends PSAppViewService<PSAppUtilView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ErrCode_Default((IEntity)pSAppUtilView, bl2, bl3);
+            string2 = this.onTestValueRule_ErrCode_Default(pSAppUtilView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ERRCODE");
@@ -376,7 +376,7 @@ extends PSAppViewService<PSAppUtilView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppMenuId_Default((IEntity)pSAppUtilView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppMenuId_Default(pSAppUtilView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMENUID");
@@ -401,7 +401,7 @@ extends PSAppViewService<PSAppUtilView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppUtilViewId_Default((IEntity)pSAppUtilView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppUtilViewId_Default(pSAppUtilView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPUTILVIEWID");
@@ -426,7 +426,7 @@ extends PSAppViewService<PSAppUtilView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppUtilViewName_Default((IEntity)pSAppUtilView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppUtilViewName_Default(pSAppUtilView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPUTILVIEWNAME");

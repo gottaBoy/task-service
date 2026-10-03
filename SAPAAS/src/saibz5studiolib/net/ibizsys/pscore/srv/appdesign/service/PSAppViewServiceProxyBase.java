@@ -58,62 +58,62 @@ implements IInheritDEServiceProxy<PSAppView> {
 
     public void remove(PSAppView pSAppView) throws Exception {
         if (pSAppView.getPSAppViewType() == null) {
-            this.get((IEntity)pSAppView);
+            this.get(pSAppView);
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPDEVIEW", (boolean)true) == 0) {
             PSAppDEViewService pSAppDEViewService = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppDEView pSAppDEView = new PSAppDEView();
             pSAppDEView.setPSAppDEViewId(pSAppView.getPSAppViewId());
-            pSAppDEViewService.remove((IEntity)pSAppDEView);
+            pSAppDEViewService.remove(pSAppDEView);
             return;
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPDYNADEVIEW", (boolean)true) == 0) {
             PSAppDynaDEViewService pSAppDynaDEViewService = (PSAppDynaDEViewService)ServiceGlobal.getService(PSAppDynaDEViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppDynaDEView pSAppDynaDEView = new PSAppDynaDEView();
             pSAppDynaDEView.setPSAppDynaDEViewId(pSAppView.getPSAppViewId());
-            pSAppDynaDEViewService.remove((IEntity)pSAppDynaDEView);
+            pSAppDynaDEViewService.remove(pSAppDynaDEView);
             return;
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPINDEXVIEW", (boolean)true) == 0) {
             PSAppIndexViewService pSAppIndexViewService = (PSAppIndexViewService)ServiceGlobal.getService(PSAppIndexViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppIndexView pSAppIndexView = new PSAppIndexView();
             pSAppIndexView.setPSAppIndexViewId(pSAppView.getPSAppViewId());
-            pSAppIndexViewService.remove((IEntity)pSAppIndexView);
+            pSAppIndexViewService.remove(pSAppIndexView);
             return;
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPPANELVIEW", (boolean)true) == 0) {
             PSAppPanelViewService pSAppPanelViewService = (PSAppPanelViewService)ServiceGlobal.getService(PSAppPanelViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppPanelView pSAppPanelView = new PSAppPanelView();
             pSAppPanelView.setPSAppPanelViewId(pSAppView.getPSAppViewId());
-            pSAppPanelViewService.remove((IEntity)pSAppPanelView);
+            pSAppPanelViewService.remove(pSAppPanelView);
             return;
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPPORTALVIEW", (boolean)true) == 0) {
             PSAppPortalViewService pSAppPortalViewService = (PSAppPortalViewService)ServiceGlobal.getService(PSAppPortalViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppPortalView pSAppPortalView = new PSAppPortalView();
             pSAppPortalView.setPSAppPortalViewId(pSAppView.getPSAppViewId());
-            pSAppPortalViewService.remove((IEntity)pSAppPortalView);
+            pSAppPortalViewService.remove(pSAppPortalView);
             return;
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPUTILVIEW", (boolean)true) == 0) {
             PSAppUtilViewService pSAppUtilViewService = (PSAppUtilViewService)ServiceGlobal.getService(PSAppUtilViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppUtilView pSAppUtilView = new PSAppUtilView();
             pSAppUtilView.setPSAppUtilViewId(pSAppView.getPSAppViewId());
-            pSAppUtilViewService.remove((IEntity)pSAppUtilView);
+            pSAppUtilViewService.remove(pSAppUtilView);
             return;
         }
         throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u7ee7\u627f\u7c7b\u578b[%1$s]", (Object)pSAppView.getPSAppViewType()));
     }
 
     public PSAppView getReal(PSAppView pSAppView, boolean bl) throws Exception {
-        if (pSAppView.getPSAppViewType() == null && !this.get((IEntity)pSAppView, bl)) {
+        if (pSAppView.getPSAppViewType() == null && !this.get(pSAppView, bl)) {
             return null;
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPDEVIEW", (boolean)true) == 0) {
             PSAppDEViewService pSAppDEViewService = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppDEView pSAppDEView = new PSAppDEView();
             pSAppDEView.setPSAppDEViewId(pSAppView.getPSAppViewId());
-            if (!pSAppDEViewService.get((IEntity)pSAppDEView, bl)) {
+            if (!pSAppDEViewService.get(pSAppDEView, bl)) {
                 return null;
             }
             return pSAppDEView;
@@ -122,7 +122,7 @@ implements IInheritDEServiceProxy<PSAppView> {
             PSAppDynaDEViewService pSAppDynaDEViewService = (PSAppDynaDEViewService)ServiceGlobal.getService(PSAppDynaDEViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppDynaDEView pSAppDynaDEView = new PSAppDynaDEView();
             pSAppDynaDEView.setPSAppDynaDEViewId(pSAppView.getPSAppViewId());
-            if (!pSAppDynaDEViewService.get((IEntity)pSAppDynaDEView, bl)) {
+            if (!pSAppDynaDEViewService.get(pSAppDynaDEView, bl)) {
                 return null;
             }
             return pSAppDynaDEView;
@@ -131,7 +131,7 @@ implements IInheritDEServiceProxy<PSAppView> {
             PSAppIndexViewService pSAppIndexViewService = (PSAppIndexViewService)ServiceGlobal.getService(PSAppIndexViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppIndexView pSAppIndexView = new PSAppIndexView();
             pSAppIndexView.setPSAppIndexViewId(pSAppView.getPSAppViewId());
-            if (!pSAppIndexViewService.get((IEntity)pSAppIndexView, bl)) {
+            if (!pSAppIndexViewService.get(pSAppIndexView, bl)) {
                 return null;
             }
             return pSAppIndexView;
@@ -140,7 +140,7 @@ implements IInheritDEServiceProxy<PSAppView> {
             PSAppPanelViewService pSAppPanelViewService = (PSAppPanelViewService)ServiceGlobal.getService(PSAppPanelViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppPanelView pSAppPanelView = new PSAppPanelView();
             pSAppPanelView.setPSAppPanelViewId(pSAppView.getPSAppViewId());
-            if (!pSAppPanelViewService.get((IEntity)pSAppPanelView, bl)) {
+            if (!pSAppPanelViewService.get(pSAppPanelView, bl)) {
                 return null;
             }
             return pSAppPanelView;
@@ -149,7 +149,7 @@ implements IInheritDEServiceProxy<PSAppView> {
             PSAppPortalViewService pSAppPortalViewService = (PSAppPortalViewService)ServiceGlobal.getService(PSAppPortalViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppPortalView pSAppPortalView = new PSAppPortalView();
             pSAppPortalView.setPSAppPortalViewId(pSAppView.getPSAppViewId());
-            if (!pSAppPortalViewService.get((IEntity)pSAppPortalView, bl)) {
+            if (!pSAppPortalViewService.get(pSAppPortalView, bl)) {
                 return null;
             }
             return pSAppPortalView;
@@ -158,7 +158,7 @@ implements IInheritDEServiceProxy<PSAppView> {
             PSAppUtilViewService pSAppUtilViewService = (PSAppUtilViewService)ServiceGlobal.getService(PSAppUtilViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppUtilView pSAppUtilView = new PSAppUtilView();
             pSAppUtilView.setPSAppUtilViewId(pSAppView.getPSAppViewId());
-            if (!pSAppUtilViewService.get((IEntity)pSAppUtilView, bl)) {
+            if (!pSAppUtilViewService.get(pSAppUtilView, bl)) {
                 return null;
             }
             return pSAppUtilView;
@@ -168,7 +168,7 @@ implements IInheritDEServiceProxy<PSAppView> {
 
     public IService getRealService(PSAppView pSAppView) throws Exception {
         if (pSAppView.getPSAppViewType() == null) {
-            this.get((IEntity)pSAppView);
+            this.get(pSAppView);
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPDEVIEW", (boolean)true) == 0) {
             PSAppDEViewService pSAppDEViewService = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, (SessionFactory)this.getSessionFactory());
@@ -202,42 +202,42 @@ implements IInheritDEServiceProxy<PSAppView> {
             PSAppDEViewService pSAppDEViewService = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppDEView pSAppDEView = new PSAppDEView();
             pSAppDEView.setPSAppDEViewId(pSAppView.getPSAppViewId());
-            pSAppDEViewService.exportModel((IEntity)pSAppDEView, arrayList);
+            pSAppDEViewService.exportModel(pSAppDEView, arrayList);
             return;
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPDYNADEVIEW", (boolean)true) == 0) {
             PSAppDynaDEViewService pSAppDynaDEViewService = (PSAppDynaDEViewService)ServiceGlobal.getService(PSAppDynaDEViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppDynaDEView pSAppDynaDEView = new PSAppDynaDEView();
             pSAppDynaDEView.setPSAppDynaDEViewId(pSAppView.getPSAppViewId());
-            pSAppDynaDEViewService.exportModel((IEntity)pSAppDynaDEView, arrayList);
+            pSAppDynaDEViewService.exportModel(pSAppDynaDEView, arrayList);
             return;
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPINDEXVIEW", (boolean)true) == 0) {
             PSAppIndexViewService pSAppIndexViewService = (PSAppIndexViewService)ServiceGlobal.getService(PSAppIndexViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppIndexView pSAppIndexView = new PSAppIndexView();
             pSAppIndexView.setPSAppIndexViewId(pSAppView.getPSAppViewId());
-            pSAppIndexViewService.exportModel((IEntity)pSAppIndexView, arrayList);
+            pSAppIndexViewService.exportModel(pSAppIndexView, arrayList);
             return;
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPPANELVIEW", (boolean)true) == 0) {
             PSAppPanelViewService pSAppPanelViewService = (PSAppPanelViewService)ServiceGlobal.getService(PSAppPanelViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppPanelView pSAppPanelView = new PSAppPanelView();
             pSAppPanelView.setPSAppPanelViewId(pSAppView.getPSAppViewId());
-            pSAppPanelViewService.exportModel((IEntity)pSAppPanelView, arrayList);
+            pSAppPanelViewService.exportModel(pSAppPanelView, arrayList);
             return;
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPPORTALVIEW", (boolean)true) == 0) {
             PSAppPortalViewService pSAppPortalViewService = (PSAppPortalViewService)ServiceGlobal.getService(PSAppPortalViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppPortalView pSAppPortalView = new PSAppPortalView();
             pSAppPortalView.setPSAppPortalViewId(pSAppView.getPSAppViewId());
-            pSAppPortalViewService.exportModel((IEntity)pSAppPortalView, arrayList);
+            pSAppPortalViewService.exportModel(pSAppPortalView, arrayList);
             return;
         }
         if (StringHelper.compare((String)pSAppView.getPSAppViewType(), (String)"APPUTILVIEW", (boolean)true) == 0) {
             PSAppUtilViewService pSAppUtilViewService = (PSAppUtilViewService)ServiceGlobal.getService(PSAppUtilViewService.class, (SessionFactory)this.getSessionFactory());
             PSAppUtilView pSAppUtilView = new PSAppUtilView();
             pSAppUtilView.setPSAppUtilViewId(pSAppView.getPSAppViewId());
-            pSAppUtilViewService.exportModel((IEntity)pSAppUtilView, arrayList);
+            pSAppUtilViewService.exportModel(pSAppUtilView, arrayList);
             return;
         }
         throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u7ee7\u627f\u7c7b\u578b[%1$s]", (Object)pSAppView.getPSAppViewType()));

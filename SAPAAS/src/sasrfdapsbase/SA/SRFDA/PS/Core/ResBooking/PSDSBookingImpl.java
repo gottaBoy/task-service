@@ -92,7 +92,7 @@ implements IPSDSBooking {
             this.setBeginTime(this.psDSBooking.getBeginTime().getTime());
             this.setEndTime(this.psDSBooking.getEndTime().getTime());
             this.psDevServer.setPSDevServerId(this.psDSBooking.getPSDevServerId());
-            this.psDevServerService.get((IEntity)this.psDevServer);
+            this.psDevServerService.get(this.psDevServer);
             this.setBookingResType(this.psDevServer.getTimeShareResType());
             this.setPSBookingResType(this.getPSModelStorage().getPSBookingResType(this.getBookingResType(), false));
         }
@@ -107,7 +107,7 @@ implements IPSDSBooking {
         try {
             psDSBooking.setPSDSBookingId(this.getId());
             EntityBase.setLastUpdateDate((IEntity)psDSBooking, (Timestamp)this.getLastUpdateTime());
-            this.psDSBookingService.update((IEntity)psDSBooking);
+            this.psDSBookingService.update(psDSBooking);
             this.setLastUpdateTime(psDSBooking.getUpdateDate());
         }
         catch (Exception ex) {
@@ -125,14 +125,14 @@ implements IPSDSBooking {
                 psDSBooking.reset();
                 psDSBooking.setPSDSBookingId(this.getId());
                 psDSBooking.setBookingState(Integer.valueOf(nNewState));
-                this.psDSBookingService.update((IEntity)psDSBooking);
+                this.psDSBookingService.update(psDSBooking);
                 this.syncEntity((IEntity)psDSBooking);
             }
             catch (Exception ex) {
                 log.error((Object)StringHelper.Format((String)"\u66f4\u65b0\u8d44\u6e90\u9884\u7ea6\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
             }
             try {
-                this.psDSBookingLogService.save((IEntity)psDSBookingLog);
+                this.psDSBookingLogService.save(psDSBookingLog);
             }
             catch (Exception ex) {
                 log.error((Object)StringHelper.Format((String)"\u66f4\u65b0\u8d44\u6e90\u9884\u7ea6\u65e5\u5fd7\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
@@ -150,7 +150,7 @@ implements IPSDSBooking {
                     PSDevServer psDevServer2 = new PSDevServer();
                     psDevServer2.setPSDevServerId(this.psDevServer.getPSDevServerId());
                     psDevServer2.setPasswd(PasswordHelper.generate());
-                    this.psDevServerService.update((IEntity)psDevServer2);
+                    this.psDevServerService.update(psDevServer2);
                     this.psDevServer = psDevServer2;
                     IPSDevServerType iPSDevServerType = this.getPSModelStorage().getPSDevServerType(this.psDevServer.getDSType());
                     SA.SRFDA.PS.Data.PSDevServer psDevServerV3 = new SA.SRFDA.PS.Data.PSDevServer();
@@ -178,7 +178,7 @@ implements IPSDSBooking {
                 }
             }
             try {
-                this.psDSBookingLogService.save((IEntity)psDSBookingLog);
+                this.psDSBookingLogService.save(psDSBookingLog);
             }
             catch (Exception ex) {
                 log.error((Object)StringHelper.Format((String)"\u66f4\u65b0\u8d44\u6e90\u9884\u7ea6\u65e5\u5fd7\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
@@ -202,7 +202,7 @@ implements IPSDSBooking {
                 psDevCenterServer.setHostPasswd(psDevServer.getPasswd());
                 psDevCenterServer.setResReadyTime(null);
                 psDevCenterServer.setResState(Integer.valueOf(20));
-                psDevCenterServerService.update((IEntity)psDevCenterServer);
+                psDevCenterServerService.update(psDevCenterServer);
             } else {
                 psDevCenterServer.setPSDevServerId(null);
                 psDevCenterServer.setPSDevServerName(null);
@@ -211,12 +211,12 @@ implements IPSDSBooking {
                 psDevCenterServer.setHostUserName(null);
                 psDevCenterServer.setHostPasswd(null);
                 psDevCenterServer.setResState(Integer.valueOf(42));
-                psDevCenterServerService.update((IEntity)psDevCenterServer);
+                psDevCenterServerService.update(psDevCenterServer);
             }
             PSDSBooking psDSBooking = new PSDSBooking();
             psDSBooking.setPSDSBookingId(this.getId());
             psDSBooking.setBookingState(Integer.valueOf(nNewState));
-            this.psDSBookingService.update((IEntity)psDSBooking);
+            this.psDSBookingService.update(psDSBooking);
             this.syncEntity((IEntity)psDSBooking);
             SessionFactoryManager.releaseRef((boolean)true);
         }
@@ -226,4 +226,3 @@ implements IPSDSBooking {
         }
     }
 }
-

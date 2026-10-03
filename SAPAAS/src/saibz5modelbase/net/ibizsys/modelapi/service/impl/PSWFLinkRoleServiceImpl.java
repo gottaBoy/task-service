@@ -73,7 +73,7 @@ implements IPSWFLinkRoleService {
     @Override
     protected List<PSWFLinkRole> onListAll() throws Exception {
         ArrayList<PSWFLinkRole> list = new ArrayList<PSWFLinkRole>();
-        List pswflinks = PSModelServiceUtil.getInstance().getPSWFLinkService().listAll();
+        List<PSWFLink> pswflinks = PSModelServiceUtil.getInstance().getPSWFLinkService().listAll();
         if (pswflinks != null) {
             for (PSWFLink parent : pswflinks) {
                 List<PSWFLinkRole> items = this.listByPSWFLink(parent);

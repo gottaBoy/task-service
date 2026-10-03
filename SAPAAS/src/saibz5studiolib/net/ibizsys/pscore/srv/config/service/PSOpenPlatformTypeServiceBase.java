@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSOpenPlatformType> {
     }
 
     protected void onFillParentInfo(PSOpenPlatformType pSOpenPlatformType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSOpenPlatformType, string, string2, string3);
+        super.onFillParentInfo(pSOpenPlatformType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSOpenPlatformType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSOpenPlatformType, bl);
+        super.onFillEntityFullInfo(pSOpenPlatformType, bl);
     }
 
     protected void onWriteBackParent(PSOpenPlatformType pSOpenPlatformType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSOpenPlatformType, bl);
+        super.onWriteBackParent(pSOpenPlatformType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSOpenPlatformType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSOpenPlatformType pSOpenPlatformType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSOpenPlatformType, bl);
+        super.onRemoveEntityUncopyValues(pSOpenPlatformType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSOpenPlatformType pSOpenPlatformType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSOpenPlatformType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSOpenPlatformType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSOpenPlatformType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSOpenPlatformType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSOpenPlatformType pSOpenPlatformType, boolean bl2, boolean bl3) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSOpenPlatformType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSOpenPlatformType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSOpenPlatformType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSOpenPlatformType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSOpenFlatformTypeId_Default((IEntity)pSOpenPlatformType, bl2, bl3);
+            string2 = this.onTestValueRule_PSOpenFlatformTypeId_Default(pSOpenPlatformType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOPENPLATFORMTYPEID");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSOpenPlatformType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSOpenFlatformTypeName_Default((IEntity)pSOpenPlatformType, bl2, bl3);
+            string2 = this.onTestValueRule_PSOpenFlatformTypeName_Default(pSOpenPlatformType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOPENPLATFORMTYPENAME");
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSOpenPlatformType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSOpenPlatformType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSOpenPlatformType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -259,11 +259,11 @@ extends PSCoreSysServiceBase<PSOpenPlatformType> {
     }
 
     protected void onSyncEntity(PSOpenPlatformType pSOpenPlatformType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSOpenPlatformType, bl);
+        super.onSyncEntity(pSOpenPlatformType, bl);
     }
 
     protected void onSyncIndexEntities(PSOpenPlatformType pSOpenPlatformType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSOpenPlatformType, bl);
+        super.onSyncIndexEntities(pSOpenPlatformType, bl);
     }
 
     public Object getDataContextValue(PSOpenPlatformType pSOpenPlatformType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -271,14 +271,14 @@ extends PSCoreSysServiceBase<PSOpenPlatformType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSOpenPlatformType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSOpenPlatformType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSOpenPlatformType pSOpenPlatformType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSOpenPlatformType, arrayList, n);
+        super.onExportMajorModel(pSOpenPlatformType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -383,14 +383,14 @@ extends PSCoreSysServiceBase<PSOpenPlatformType> {
 
     protected boolean onMergeChild(String string, String string2, PSOpenPlatformType pSOpenPlatformType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSOpenPlatformType)) {
+        if (super.onMergeChild(string, string2, pSOpenPlatformType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSOpenPlatformType pSOpenPlatformType) throws Exception {
-        super.onUpdateParent((IEntity)pSOpenPlatformType);
+        super.onUpdateParent(pSOpenPlatformType);
     }
 
     @Override

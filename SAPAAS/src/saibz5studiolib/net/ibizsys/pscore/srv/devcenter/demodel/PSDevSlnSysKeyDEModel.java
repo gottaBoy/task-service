@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.devcenter.demodel.PSDevSlnSysKeyDEModelBase;
 
 public class PSDevSlnSysKeyDEModel
 extends PSDevSlnSysKeyDEModelBase {
+
+    public PSDevSlnSysKeyDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -1,20 +1,55 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ISDCtrlHandler;
+/**
+ * 编辑表单处理对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IEditFormHandler extends ISDCtrlHandler {
+	/**
+	 * 子项操作类型，表单项后台处理
+	 */
+	public final static String ITEMACTIONTYPE_FORMITEM = "FI:";
 
-public interface IEditFormHandler
-extends ISDCtrlHandler {
-    public static final String ITEMACTIONTYPE_FORMITEM = "FI:";
-    public static final String ITEMACTIONTYPE_FORMITEMUPDATE = "FIU:";
-    public static final String ACTION_ITEMFETCH = "itemfetch";
-    public static final String ACTION_LOADDRAFT = "loaddraft";
-    public static final String ACTION_LOADDRAFTFROM = "loaddraftfrom";
-    public static final String ACTION_UPDATEFORMITEM = "updateformitem";
-    public static final String ACTION_LOADDRAFTANDCREATE = "loaddraftandcreate";
-    public static final String ACTION_LOADDRAFTFROMANDCREATE = "loaddraftfromandcreate";
-    public static final String ACTION_ITEMTIP = "itemtip";
+	/**
+	 * 子项操作类型，表单项更新后台处理
+	 */
+	public final static String ITEMACTIONTYPE_FORMITEMUPDATE = "FIU:";
+
+	/**
+	 * 表单项数据
+	 */
+	final static String ACTION_ITEMFETCH = "itemfetch";
+
+	/**
+	 * 获取草稿数据
+	 */
+	final static String ACTION_LOADDRAFT = "loaddraft";
+
+	/**
+	 * 获取草稿数据（从源数据）
+	 */
+	final static String ACTION_LOADDRAFTFROM = "loaddraftfrom";
+
+	/**
+	 * 更新表单项
+	 */
+	final static String ACTION_UPDATEFORMITEM = "updateformitem";
+
+	/**
+	 * 获取草稿数据并创建数据
+	 */
+	final static String ACTION_LOADDRAFTANDCREATE = "loaddraftandcreate";
+
+	/**
+	 * 获取草稿数据（从源数据）并创建数据
+	 */
+	final static String ACTION_LOADDRAFTFROMANDCREATE = "loaddraftfromandcreate";
+
+	
+	/**
+	 * 表单项提示
+	 */
+	final static String ACTION_ITEMTIP = "itemtip";
 }
-

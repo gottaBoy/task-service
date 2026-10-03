@@ -44,7 +44,13 @@ ISRFExDataGridDSItem3 {
                 return "";
             }
         }
-        String strValue = dr.Get(dsItemConfig.getID()).toString();
+        String strValue;
+        try {
+            strValue = dr.Get(dsItemConfig.getID()).toString();
+        }
+        catch (Exception exception) {
+            return "";
+        }
         Long nValue = Long.parseLong(strValue);
         if (nValue < 1024L) {
             return StringHelper.Format((String)"%1$sB", (Object)nValue);

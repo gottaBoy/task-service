@@ -121,9 +121,9 @@ implements IPSAppLocalDEService {
 
     @Override
     protected List<PSAppLocalDE> onListAll() throws Exception {
-        List pssysapps;
+        List<PSSysApp> pssysapps;
         ArrayList<PSAppLocalDE> list = new ArrayList<PSAppLocalDE>();
-        List psappmodules = PSModelServiceUtil.getInstance().getPSAppModuleService().listAll();
+        List<PSAppModule> psappmodules = PSModelServiceUtil.getInstance().getPSAppModuleService().listAll();
         if (psappmodules != null) {
             for (PSAppModule parent : psappmodules) {
                 List<PSAppLocalDE> items = this.listByPSAppModule(parent);

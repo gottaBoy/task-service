@@ -1,20 +1,143 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.service.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="DC4E16C1-57A0-46EE-9DC0-E93377809C3C", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CONTAINER AS CONTAINER, t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.MEMO AS MEMO, t1.RESERVER AS RESERVER, t1.RUNORDER AS RUNORDER, t1.SERVICEID AS SERVICEID, t1.SERVICENAME AS SERVICENAME, t1.SERVICEOBJECT AS SERVICEOBJECT, t1.SERVICESTATE AS SERVICESTATE, t1.STARTMODE AS STARTMODE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFSERVICE t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="ERRORINFO", expression="t1.ERRORINFO", showorder=-1), @DEDataQueryCodeExp(name="SERVICEPARAM", expression="t1.SERVICEPARAM", showorder=-1), @DEDataQueryCodeExp(name="CONTAINER", expression="t1.CONTAINER", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=4), @DEDataQueryCodeExp(name="RUNORDER", expression="t1.RUNORDER", showorder=5), @DEDataQueryCodeExp(name="SERVICEID", expression="t1.SERVICEID", showorder=6), @DEDataQueryCodeExp(name="SERVICENAME", expression="t1.SERVICENAME", showorder=7), @DEDataQueryCodeExp(name="SERVICEOBJECT", expression="t1.SERVICEOBJECT", showorder=8), @DEDataQueryCodeExp(name="SERVICESTATE", expression="t1.SERVICESTATE", showorder=9), @DEDataQueryCodeExp(name="STARTMODE", expression="t1.STARTMODE", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`container`, t1.`createdate`, t1.`createman`, t1.`memo`, t1.`reserver`, t1.`runorder`, t1.`serviceid`, t1.`servicename`, t1.`serviceobject`, t1.`servicestate`, t1.`startmode`, t1.`updatedate`, t1.`updateman` FROM `t_srfservice` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="ERRORINFO", expression="t1.`errorinfo`", showorder=-1), @DEDataQueryCodeExp(name="SERVICEPARAM", expression="t1.`serviceparam`", showorder=-1), @DEDataQueryCodeExp(name="CONTAINER", expression="t1.`container`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.`memo`", showorder=3), @DEDataQueryCodeExp(name="RESERVER", expression="t1.`reserver`", showorder=4), @DEDataQueryCodeExp(name="RUNORDER", expression="t1.`runorder`", showorder=5), @DEDataQueryCodeExp(name="SERVICEID", expression="t1.`serviceid`", showorder=6), @DEDataQueryCodeExp(name="SERVICENAME", expression="t1.`servicename`", showorder=7), @DEDataQueryCodeExp(name="SERVICEOBJECT", expression="t1.`serviceobject`", showorder=8), @DEDataQueryCodeExp(name="SERVICESTATE", expression="t1.`servicestate`", showorder=9), @DEDataQueryCodeExp(name="STARTMODE", expression="t1.`startmode`", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CONTAINER AS CONTAINER, t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.MEMO AS MEMO, t1.RESERVER AS RESERVER, t1.RUNORDER AS RUNORDER, t1.SERVICEID AS SERVICEID, t1.SERVICENAME AS SERVICENAME, t1.SERVICEOBJECT AS SERVICEOBJECT, t1.SERVICESTATE AS SERVICESTATE, t1.STARTMODE AS STARTMODE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFSERVICE t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="ERRORINFO", expression="t1.ERRORINFO", showorder=-1), @DEDataQueryCodeExp(name="SERVICEPARAM", expression="t1.SERVICEPARAM", showorder=-1), @DEDataQueryCodeExp(name="CONTAINER", expression="t1.CONTAINER", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=4), @DEDataQueryCodeExp(name="RUNORDER", expression="t1.RUNORDER", showorder=5), @DEDataQueryCodeExp(name="SERVICEID", expression="t1.SERVICEID", showorder=6), @DEDataQueryCodeExp(name="SERVICENAME", expression="t1.SERVICENAME", showorder=7), @DEDataQueryCodeExp(name="SERVICEOBJECT", expression="t1.SERVICEOBJECT", showorder=8), @DEDataQueryCodeExp(name="SERVICESTATE", expression="t1.SERVICESTATE", showorder=9), @DEDataQueryCodeExp(name="STARTMODE", expression="t1.STARTMODE", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CONTAINER AS CONTAINER, t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.MEMO AS MEMO, t1.RESERVER AS RESERVER, t1.RUNORDER AS RUNORDER, t1.SERVICEID AS SERVICEID, t1.SERVICENAME AS SERVICENAME, t1.SERVICEOBJECT AS SERVICEOBJECT, t1.SERVICESTATE AS SERVICESTATE, t1.STARTMODE AS STARTMODE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFSERVICE t1  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="ERRORINFO", expression="t1.ERRORINFO", showorder=-1), @DEDataQueryCodeExp(name="SERVICEPARAM", expression="t1.SERVICEPARAM", showorder=-1), @DEDataQueryCodeExp(name="CONTAINER", expression="t1.CONTAINER", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=4), @DEDataQueryCodeExp(name="RUNORDER", expression="t1.RUNORDER", showorder=5), @DEDataQueryCodeExp(name="SERVICEID", expression="t1.SERVICEID", showorder=6), @DEDataQueryCodeExp(name="SERVICENAME", expression="t1.SERVICENAME", showorder=7), @DEDataQueryCodeExp(name="SERVICEOBJECT", expression="t1.SERVICEOBJECT", showorder=8), @DEDataQueryCodeExp(name="SERVICESTATE", expression="t1.SERVICESTATE", showorder=9), @DEDataQueryCodeExp(name="STARTMODE", expression="t1.STARTMODE", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CONTAINER AS CONTAINER, t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.MEMO AS MEMO, t1.RESERVER AS RESERVER, t1.RUNORDER AS RUNORDER, t1.SERVICEID AS SERVICEID, t1.SERVICENAME AS SERVICENAME, t1.SERVICEOBJECT AS SERVICEOBJECT, t1.SERVICESTATE AS SERVICESTATE, t1.STARTMODE AS STARTMODE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFSERVICE t1  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="ERRORINFO", expression="t1.ERRORINFO", showorder=-1), @DEDataQueryCodeExp(name="SERVICEPARAM", expression="t1.SERVICEPARAM", showorder=-1), @DEDataQueryCodeExp(name="CONTAINER", expression="t1.CONTAINER", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=4), @DEDataQueryCodeExp(name="RUNORDER", expression="t1.RUNORDER", showorder=5), @DEDataQueryCodeExp(name="SERVICEID", expression="t1.SERVICEID", showorder=6), @DEDataQueryCodeExp(name="SERVICENAME", expression="t1.SERVICENAME", showorder=7), @DEDataQueryCodeExp(name="SERVICEOBJECT", expression="t1.SERVICEOBJECT", showorder=8), @DEDataQueryCodeExp(name="SERVICESTATE", expression="t1.SERVICESTATE", showorder=9), @DEDataQueryCodeExp(name="STARTMODE", expression="t1.STARTMODE", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[CONTAINER] AS [CONTAINER], t1.[CREATEDATE] AS [CREATEDATE], t1.[CREATEMAN] AS [CREATEMAN], t1.[MEMO] AS [MEMO], t1.[RESERVER] AS [RESERVER], t1.[RUNORDER] AS [RUNORDER], t1.[SERVICEID] AS [SERVICEID], t1.[SERVICENAME] AS [SERVICENAME], t1.[SERVICEOBJECT] AS [SERVICEOBJECT], t1.[SERVICESTATE] AS [SERVICESTATE], t1.[STARTMODE] AS [STARTMODE], t1.[UPDATEDATE] AS [UPDATEDATE], t1.[UPDATEMAN] AS [UPDATEMAN] FROM [T_SRFSERVICE] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="ERRORINFO", expression="t1.[ERRORINFO]", showorder=-1), @DEDataQueryCodeExp(name="SERVICEPARAM", expression="t1.[SERVICEPARAM]", showorder=-1), @DEDataQueryCodeExp(name="CONTAINER", expression="t1.[CONTAINER]", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.[MEMO]", showorder=3), @DEDataQueryCodeExp(name="RESERVER", expression="t1.[RESERVER]", showorder=4), @DEDataQueryCodeExp(name="RUNORDER", expression="t1.[RUNORDER]", showorder=5), @DEDataQueryCodeExp(name="SERVICEID", expression="t1.[SERVICEID]", showorder=6), @DEDataQueryCodeExp(name="SERVICENAME", expression="t1.[SERVICENAME]", showorder=7), @DEDataQueryCodeExp(name="SERVICEOBJECT", expression="t1.[SERVICEOBJECT]", showorder=8), @DEDataQueryCodeExp(name="SERVICESTATE", expression="t1.[SERVICESTATE]", showorder=9), @DEDataQueryCodeExp(name="STARTMODE", expression="t1.[STARTMODE]", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=12)}, conds={})})
-public abstract class ServiceDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="DC4E16C1-57A0-46EE-9DC0-E93377809C3C",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CONTAINER AS CONTAINER, t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.MEMO AS MEMO, t1.RESERVER AS RESERVER, t1.RUNORDER AS RUNORDER, t1.SERVICEID AS SERVICEID, t1.SERVICENAME AS SERVICENAME, t1.SERVICEOBJECT AS SERVICEOBJECT, t1.SERVICESTATE AS SERVICESTATE, t1.STARTMODE AS STARTMODE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFSERVICE t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ERRORINFO",expression="t1.ERRORINFO",showorder=-1)
+        ,@DEDataQueryCodeExp(name="SERVICEPARAM",expression="t1.SERVICEPARAM",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CONTAINER",expression="t1.CONTAINER",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=4)
+        ,@DEDataQueryCodeExp(name="RUNORDER",expression="t1.RUNORDER",showorder=5)
+        ,@DEDataQueryCodeExp(name="SERVICEID",expression="t1.SERVICEID",showorder=6)
+        ,@DEDataQueryCodeExp(name="SERVICENAME",expression="t1.SERVICENAME",showorder=7)
+        ,@DEDataQueryCodeExp(name="SERVICEOBJECT",expression="t1.SERVICEOBJECT",showorder=8)
+        ,@DEDataQueryCodeExp(name="SERVICESTATE",expression="t1.SERVICESTATE",showorder=9)
+        ,@DEDataQueryCodeExp(name="STARTMODE",expression="t1.STARTMODE",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`container`, t1.`createdate`, t1.`createman`, t1.`memo`, t1.`reserver`, t1.`runorder`, t1.`serviceid`, t1.`servicename`, t1.`serviceobject`, t1.`servicestate`, t1.`startmode`, t1.`updatedate`, t1.`updateman` FROM `t_srfservice` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ERRORINFO",expression="t1.`errorinfo`",showorder=-1)
+        ,@DEDataQueryCodeExp(name="SERVICEPARAM",expression="t1.`serviceparam`",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CONTAINER",expression="t1.`container`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.`memo`",showorder=3)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.`reserver`",showorder=4)
+        ,@DEDataQueryCodeExp(name="RUNORDER",expression="t1.`runorder`",showorder=5)
+        ,@DEDataQueryCodeExp(name="SERVICEID",expression="t1.`serviceid`",showorder=6)
+        ,@DEDataQueryCodeExp(name="SERVICENAME",expression="t1.`servicename`",showorder=7)
+        ,@DEDataQueryCodeExp(name="SERVICEOBJECT",expression="t1.`serviceobject`",showorder=8)
+        ,@DEDataQueryCodeExp(name="SERVICESTATE",expression="t1.`servicestate`",showorder=9)
+        ,@DEDataQueryCodeExp(name="STARTMODE",expression="t1.`startmode`",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CONTAINER AS CONTAINER, t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.MEMO AS MEMO, t1.RESERVER AS RESERVER, t1.RUNORDER AS RUNORDER, t1.SERVICEID AS SERVICEID, t1.SERVICENAME AS SERVICENAME, t1.SERVICEOBJECT AS SERVICEOBJECT, t1.SERVICESTATE AS SERVICESTATE, t1.STARTMODE AS STARTMODE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFSERVICE t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ERRORINFO",expression="t1.ERRORINFO",showorder=-1)
+        ,@DEDataQueryCodeExp(name="SERVICEPARAM",expression="t1.SERVICEPARAM",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CONTAINER",expression="t1.CONTAINER",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=4)
+        ,@DEDataQueryCodeExp(name="RUNORDER",expression="t1.RUNORDER",showorder=5)
+        ,@DEDataQueryCodeExp(name="SERVICEID",expression="t1.SERVICEID",showorder=6)
+        ,@DEDataQueryCodeExp(name="SERVICENAME",expression="t1.SERVICENAME",showorder=7)
+        ,@DEDataQueryCodeExp(name="SERVICEOBJECT",expression="t1.SERVICEOBJECT",showorder=8)
+        ,@DEDataQueryCodeExp(name="SERVICESTATE",expression="t1.SERVICESTATE",showorder=9)
+        ,@DEDataQueryCodeExp(name="STARTMODE",expression="t1.STARTMODE",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CONTAINER AS CONTAINER, t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.MEMO AS MEMO, t1.RESERVER AS RESERVER, t1.RUNORDER AS RUNORDER, t1.SERVICEID AS SERVICEID, t1.SERVICENAME AS SERVICENAME, t1.SERVICEOBJECT AS SERVICEOBJECT, t1.SERVICESTATE AS SERVICESTATE, t1.STARTMODE AS STARTMODE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFSERVICE t1  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ERRORINFO",expression="t1.ERRORINFO",showorder=-1)
+        ,@DEDataQueryCodeExp(name="SERVICEPARAM",expression="t1.SERVICEPARAM",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CONTAINER",expression="t1.CONTAINER",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=4)
+        ,@DEDataQueryCodeExp(name="RUNORDER",expression="t1.RUNORDER",showorder=5)
+        ,@DEDataQueryCodeExp(name="SERVICEID",expression="t1.SERVICEID",showorder=6)
+        ,@DEDataQueryCodeExp(name="SERVICENAME",expression="t1.SERVICENAME",showorder=7)
+        ,@DEDataQueryCodeExp(name="SERVICEOBJECT",expression="t1.SERVICEOBJECT",showorder=8)
+        ,@DEDataQueryCodeExp(name="SERVICESTATE",expression="t1.SERVICESTATE",showorder=9)
+        ,@DEDataQueryCodeExp(name="STARTMODE",expression="t1.STARTMODE",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CONTAINER AS CONTAINER, t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.MEMO AS MEMO, t1.RESERVER AS RESERVER, t1.RUNORDER AS RUNORDER, t1.SERVICEID AS SERVICEID, t1.SERVICENAME AS SERVICENAME, t1.SERVICEOBJECT AS SERVICEOBJECT, t1.SERVICESTATE AS SERVICESTATE, t1.STARTMODE AS STARTMODE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFSERVICE t1  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ERRORINFO",expression="t1.ERRORINFO",showorder=-1)
+        ,@DEDataQueryCodeExp(name="SERVICEPARAM",expression="t1.SERVICEPARAM",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CONTAINER",expression="t1.CONTAINER",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=4)
+        ,@DEDataQueryCodeExp(name="RUNORDER",expression="t1.RUNORDER",showorder=5)
+        ,@DEDataQueryCodeExp(name="SERVICEID",expression="t1.SERVICEID",showorder=6)
+        ,@DEDataQueryCodeExp(name="SERVICENAME",expression="t1.SERVICENAME",showorder=7)
+        ,@DEDataQueryCodeExp(name="SERVICEOBJECT",expression="t1.SERVICEOBJECT",showorder=8)
+        ,@DEDataQueryCodeExp(name="SERVICESTATE",expression="t1.SERVICESTATE",showorder=9)
+        ,@DEDataQueryCodeExp(name="STARTMODE",expression="t1.STARTMODE",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[CONTAINER] AS [CONTAINER], t1.[CREATEDATE] AS [CREATEDATE], t1.[CREATEMAN] AS [CREATEMAN], t1.[MEMO] AS [MEMO], t1.[RESERVER] AS [RESERVER], t1.[RUNORDER] AS [RUNORDER], t1.[SERVICEID] AS [SERVICEID], t1.[SERVICENAME] AS [SERVICENAME], t1.[SERVICEOBJECT] AS [SERVICEOBJECT], t1.[SERVICESTATE] AS [SERVICESTATE], t1.[STARTMODE] AS [STARTMODE], t1.[UPDATEDATE] AS [UPDATEDATE], t1.[UPDATEMAN] AS [UPDATEMAN] FROM [T_SRFSERVICE] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ERRORINFO",expression="t1.[ERRORINFO]",showorder=-1)
+        ,@DEDataQueryCodeExp(name="SERVICEPARAM",expression="t1.[SERVICEPARAM]",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CONTAINER",expression="t1.[CONTAINER]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.[MEMO]",showorder=3)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.[RESERVER]",showorder=4)
+        ,@DEDataQueryCodeExp(name="RUNORDER",expression="t1.[RUNORDER]",showorder=5)
+        ,@DEDataQueryCodeExp(name="SERVICEID",expression="t1.[SERVICEID]",showorder=6)
+        ,@DEDataQueryCodeExp(name="SERVICENAME",expression="t1.[SERVICENAME]",showorder=7)
+        ,@DEDataQueryCodeExp(name="SERVICEOBJECT",expression="t1.[SERVICEOBJECT]",showorder=8)
+        ,@DEDataQueryCodeExp(name="SERVICESTATE",expression="t1.[SERVICESTATE]",showorder=9)
+        ,@DEDataQueryCodeExp(name="STARTMODE",expression="t1.[STARTMODE]",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=12)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class ServiceDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public ServiceDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(ServiceDefaultDQModelBase.class);
     }
-}
 
+}

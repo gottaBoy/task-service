@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.IViewController;
 
-public interface IPickupViewController
-extends IViewController {
-    public static final String VIEWACTION_CONVERTPICKUPDATA = "CONVERTPICKUPDATA";
+/**
+ * 选择视图控制器对象接口
+ * @author Administrator
+ *
+ */
+public interface IPickupViewController extends IViewController {
+	
+	/**
+	 * 转化选择数据
+	 */
+	final static String VIEWACTION_CONVERTPICKUPDATA = "CONVERTPICKUPDATA";
+	
+	
+	
+
 }
-

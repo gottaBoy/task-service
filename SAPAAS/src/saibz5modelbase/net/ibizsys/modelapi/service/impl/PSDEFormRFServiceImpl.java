@@ -70,7 +70,7 @@ implements IPSDEFormRFService {
     @Override
     protected List<PSDEFormRF> onListAll() throws Exception {
         ArrayList<PSDEFormRF> list = new ArrayList<PSDEFormRF>();
-        List psdeforms = PSModelServiceUtil.getInstance().getPSDEFormService().listAll();
+        List<PSDEForm> psdeforms = PSModelServiceUtil.getInstance().getPSDEFormService().listAll();
         if (psdeforms != null) {
             for (PSDEForm parent : psdeforms) {
                 List<PSDEFormRF> items = this.listByPSDEForm(parent);

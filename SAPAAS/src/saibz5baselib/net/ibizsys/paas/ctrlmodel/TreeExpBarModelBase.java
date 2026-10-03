@@ -1,17 +1,18 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.ExpBarModelBase;
-import net.ibizsys.paas.ctrlmodel.ITreeExpBarModel;
+import net.ibizsys.paas.control.ControlTypes;
 
-public abstract class TreeExpBarModelBase
-extends ExpBarModelBase
-implements ITreeExpBarModel {
-    @Override
-    public String getControlType() {
-        return "TREEEXPBAR";
-    }
+/**
+ * 树导航栏部件模型
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class TreeExpBarModelBase extends ExpBarModelBase implements ITreeExpBarModel {
+	
+	@Override
+	public String getControlType() {
+		return ControlTypes.TreeExpBar;
+	}
+
 }
-

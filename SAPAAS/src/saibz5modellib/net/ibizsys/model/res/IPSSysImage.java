@@ -1,32 +1,88 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.res;
 
 import net.ibizsys.model.IPSSystemObject;
 import net.ibizsys.model.core.IPSModelObject;
 
-public interface IPSSysImage
-extends IPSSystemObject,
-IPSModelObject {
-    public String getPSImageTemplId();
 
-    public String getImagePath();
+/**
+ * 系统图片资源对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSSysImage extends IPSSystemObject,IPSModelObject {
+	
 
-    public String getCssClass();
+	/**
+	 * 获取平台图片资源模版标识
+	 * 
+	 * @return
+	 */
+	String getPSImageTemplId();
 
-    public String getImagePathX();
+	/**
+	 * 获取图标路径
+	 * 
+	 * @return
+	 */
+	String getImagePath();
 
-    public String getCssClassX();
+	/**
+	 * 获取图标式样
+	 * 
+	 * @return
+	 */
+	String getCssClass();
 
-    public String getGlyph();
+	/**
+	 * 获取图标路径显示倍数格式字符串
+	 * 
+	 * @return
+	 */
+	String getImagePathX();
 
-    public String getImagePath(int var1);
+	/**
+	 * 获取图标式样显示倍数格式字符串
+	 * 
+	 * @return
+	 */
+	String getCssClassX();
 
-    public String getCssClass(int var1);
+	/**
+	 * 获取字符式样
+	 * 
+	 * @return
+	 */
+	String getGlyph();
 
-    public int getWidth();
+	/**
+	 * 获取指定显示倍数的图标路径
+	 * 
+	 * @param nX
+	 *            显示倍数
+	 * @return
+	 */
+	String getImagePath(int nX);
 
-    public int getHeight();
+	/**
+	 * 获取指定显示倍数的图标式样
+	 * 
+	 * @param nX
+	 *            显示倍数
+	 * @return
+	 */
+	String getCssClass(int nX);
+	
+	
+	/**
+	 * 图片宽度
+	 * @return
+	 */
+	int getWidth();
+
+	/**
+	 * 图片高度
+	 * @return
+	 */
+	int getHeight();
 }
-

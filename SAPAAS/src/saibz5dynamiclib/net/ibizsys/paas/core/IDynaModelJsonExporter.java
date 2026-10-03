@@ -1,14 +1,20 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- */
 package net.ibizsys.paas.core;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+/**
+ * 动态模型Json输出器对象接口
+ * @author Administrator
+ *
+ */
 public interface IDynaModelJsonExporter {
-    public ObjectNode toJsonObject(ObjectNode var1) throws Exception;
-}
 
+	/**
+	 * 将模型导出到JsonObject
+	 * @param objectNode
+	 * @return
+	 * @throws Exception
+	 */
+	ObjectNode toJsonObject(ObjectNode objectNode)throws Exception;
+	
+}

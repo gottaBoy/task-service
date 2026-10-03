@@ -1,25 +1,48 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="ad1b5c4ab74e4f1bb645257d58586b5b", name="\u62a5\u8868\u8f93\u51fa\u683c\u5f0f", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="PDF", text="PDF", realtext="PDF"), @CodeItem(value="EXCEL", text="EXCEL", realtext="EXCEL"), @CodeItem(value="HTML", text="HTML", realtext="HTML")})
-public abstract class CodeList54CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String PDF = "PDF";
-    public static final String EXCEL = "EXCEL";
-    public static final String HTML = "HTML";
+
+@CodeList(id="ad1b5c4ab74e4f1bb645257d58586b5b",name="报表输出格式",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="PDF",text="PDF",realtext="PDF" )
+    ,@CodeItem(value="EXCEL",text="EXCEL",realtext="EXCEL" )
+    ,@CodeItem(value="HTML",text="HTML",realtext="HTML" )
+})
+
+
+/**
+ * 静态代码表[报表输出格式]模型基类
+ */
+public abstract class CodeList54CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  PDF
+     */
+    public final static String PDF = "PDF";
+    /**
+     *  EXCEL
+     */
+    public final static String EXCEL = "EXCEL";
+    /**
+     *  HTML
+     */
+    public final static String HTML = "HTML";
+
 
     public CodeList54CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList54CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList54CodeListModel", this);
     }
-}
 
+}

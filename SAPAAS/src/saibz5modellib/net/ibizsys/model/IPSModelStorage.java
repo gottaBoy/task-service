@@ -1,18 +1,45 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model;
 
-import net.ibizsys.model.IPSDepSlnSys;
-import net.ibizsys.model.IPSSystem;
-
+/**
+ * 系统模型存储对象
+ * @author Administrator
+ *
+ */
 public interface IPSModelStorage {
-    public IPSDepSlnSys getPSDepSlnSys(String var1) throws Exception;
 
-    public boolean isLoaded();
-
-    public IPSSystem getPSSystem() throws Exception;
-
-    public IPSSystem getPSSystem(boolean var1) throws Exception;
+	
+	/**
+	 * 获取部署方案系统
+	 * @param strPSDepSlnSysId
+	 * @return
+	 * @throws Exception
+	 */
+	IPSDepSlnSys getPSDepSlnSys(String strPSDepSlnSysId)throws Exception;
+	
+	
+	
+	/**
+	 * 模型存储对象是否已经加载完成
+	 * @return
+	 */
+	boolean isLoaded();
+	
+	
+	
+	/**
+	 * 获取当前系统模型
+	 * @return
+	 * @throws Exception
+	 */
+	IPSSystem getPSSystem()throws Exception;
+	
+	
+	
+	/**
+	 * 获取当前系统模型
+	 * @param bCache 缓存
+	 * @return
+	 * @throws Exception
+	 */
+	IPSSystem getPSSystem(boolean bCache)throws Exception;
 }
-

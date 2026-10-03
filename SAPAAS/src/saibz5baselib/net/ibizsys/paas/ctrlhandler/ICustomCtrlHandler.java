@@ -1,14 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ICtrlHandler;
+/**
+ * 自定义部件后台处理对象
+ * 
+ * @author Administrator
+ *
+ */
+public interface ICustomCtrlHandler extends ICtrlHandler {
 
-public interface ICustomCtrlHandler
-extends ICtrlHandler {
-    public String getCustomTag();
+	/**
+	 * 获取自定义标记
+	 * 
+	 * @return
+	 */
+	String getCustomTag();
 
-    public String getCustomTag2();
+	/**
+	 * 获取自定义标记2
+	 * 
+	 * @return
+	 */
+	String getCustomTag2();
 }
-

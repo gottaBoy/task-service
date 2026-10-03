@@ -72,7 +72,7 @@ implements IPSAppLanService {
     @Override
     protected List<PSAppLan> onListAll() throws Exception {
         ArrayList<PSAppLan> list = new ArrayList<PSAppLan>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSAppLan> items = this.listByPSSysApp(parent);

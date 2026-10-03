@@ -2335,7 +2335,7 @@ implements Serializable {
                 PSTaskServer pSTaskServer = new PSTaskServer();
                 pSTaskServer.setPSTaskServerId(this.getPSTaskServerId());
                 PSTaskServerService pSTaskServerService = (PSTaskServerService)ServiceGlobal.getService(PSTaskServerService.class, (SessionFactory)this.getSessionFactory());
-                pSTaskServerService.autoGet((IEntity)pSTaskServer);
+                pSTaskServerService.autoGet(pSTaskServer);
                 this.pstaskserver = pSTaskServer;
             }
             return this.pstaskserver;

@@ -1,16 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import java.util.Iterator;
-import net.ibizsys.paas.core.IDEActionWizard;
-import net.ibizsys.paas.core.IDataEntityObject;
 import net.ibizsys.paas.view.IViewWizardGroup;
 
-public interface IDEActionWizardGroup
-extends IViewWizardGroup,
-IDataEntityObject {
-    public Iterator<IDEActionWizard> getDEActionWizards();
-}
-
+/**
+ * 实体操作向导组接口
+ * @author Administrator
+ *
+ */
+public interface IDEActionWizardGroup extends IViewWizardGroup,IDataEntityObject{
+	
+	/**
+	 * 获取实体操作向导组成员集合
+	 * @return
+	 */
+	java.util.Iterator<IDEActionWizard> getDEActionWizards();
+ }

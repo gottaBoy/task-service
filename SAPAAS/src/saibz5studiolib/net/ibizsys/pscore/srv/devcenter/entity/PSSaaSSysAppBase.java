@@ -1130,7 +1130,7 @@ implements Serializable {
                 PSAppType pSAppType = new PSAppType();
                 pSAppType.setPSAppTypeId(this.getPSAppTypeId());
                 PSAppTypeService pSAppTypeService = (PSAppTypeService)ServiceGlobal.getService(PSAppTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSAppTypeService.autoGet((IEntity)pSAppType);
+                pSAppTypeService.autoGet(pSAppType);
                 this.psapptype = pSAppType;
             }
             return this.psapptype;
@@ -1156,7 +1156,7 @@ implements Serializable {
                 PSSaaSSysVer pSSaaSSysVer = new PSSaaSSysVer();
                 pSSaaSSysVer.setPSSaaSSysVerId(this.getPSSaaSSysVerId());
                 PSSaaSSysVerService pSSaaSSysVerService = (PSSaaSSysVerService)ServiceGlobal.getService(PSSaaSSysVerService.class, (SessionFactory)this.getSessionFactory());
-                pSSaaSSysVerService.autoGet((IEntity)pSSaaSSysVer);
+                pSSaaSSysVerService.autoGet(pSSaaSSysVer);
                 this.pssaassysver = pSSaaSSysVer;
             }
             return this.pssaassysver;

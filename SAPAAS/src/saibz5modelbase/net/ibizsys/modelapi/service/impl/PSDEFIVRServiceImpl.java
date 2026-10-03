@@ -74,7 +74,7 @@ implements IPSDEFIVRService {
     @Override
     protected List<PSDEFIVR> onListAll() throws Exception {
         ArrayList<PSDEFIVR> list = new ArrayList<PSDEFIVR>();
-        List psdeforms = PSModelServiceUtil.getInstance().getPSDEFormService().listAll();
+        List<PSDEForm> psdeforms = PSModelServiceUtil.getInstance().getPSDEFormService().listAll();
         if (psdeforms != null) {
             for (PSDEForm parent : psdeforms) {
                 List<PSDEFIVR> items = this.listByPSDEForm(parent);

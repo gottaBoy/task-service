@@ -2593,7 +2593,7 @@ implements Serializable {
                 PSSysViewLogic pSSysViewLogic = new PSSysViewLogic();
                 pSSysViewLogic.setPSSysViewLogicId(this.getPSSysViewLogicId());
                 PSSysViewLogicService pSSysViewLogicService = (PSSysViewLogicService)ServiceGlobal.getService(PSSysViewLogicService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewLogicService.autoGet((IEntity)pSSysViewLogic);
+                pSSysViewLogicService.autoGet(pSSysViewLogic);
                 this.pssysviewlogic = pSSysViewLogic;
             }
             return this.pssysviewlogic;

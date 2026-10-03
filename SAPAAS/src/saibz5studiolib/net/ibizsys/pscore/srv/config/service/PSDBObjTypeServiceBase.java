@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDBObjType> {
     }
 
     protected void onFillParentInfo(PSDBObjType pSDBObjType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDBObjType, string, string2, string3);
+        super.onFillParentInfo(pSDBObjType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDBObjType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDBObjType, bl);
+        super.onFillEntityFullInfo(pSDBObjType, bl);
     }
 
     protected void onWriteBackParent(PSDBObjType pSDBObjType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDBObjType, bl);
+        super.onWriteBackParent(pSDBObjType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDBObjType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDBObjType pSDBObjType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDBObjType, bl);
+        super.onRemoveEntityUncopyValues(pSDBObjType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDBObjType pSDBObjType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSDBObjType> {
         if ((entityFieldError = this.onCheckField_PSDBObjTypeName(bl, pSDBObjType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDBObjType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDBObjType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_IconPath(boolean bl, PSDBObjType pSDBObjType, boolean bl2, boolean bl3) throws Exception {
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSDBObjType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconPath_Default((IEntity)pSDBObjType, bl2, bl3);
+            string2 = this.onTestValueRule_IconPath_Default(pSDBObjType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONPATH");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSDBObjType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDBObjType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDBObjType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSDBObjType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ObjOrderValue_Default((IEntity)pSDBObjType, bl2, bl3);
+            string = this.onTestValueRule_ObjOrderValue_Default(pSDBObjType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("OBJORDERVALUE");
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSDBObjType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDBObjTypeId_Default((IEntity)pSDBObjType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDBObjTypeId_Default(pSDBObjType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDBOBJTYPEID");
@@ -271,7 +271,7 @@ extends PSCoreSysServiceBase<PSDBObjType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDBObjTypeName_Default((IEntity)pSDBObjType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDBObjTypeName_Default(pSDBObjType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDBOBJTYPENAME");
@@ -284,11 +284,11 @@ extends PSCoreSysServiceBase<PSDBObjType> {
     }
 
     protected void onSyncEntity(PSDBObjType pSDBObjType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDBObjType, bl);
+        super.onSyncEntity(pSDBObjType, bl);
     }
 
     protected void onSyncIndexEntities(PSDBObjType pSDBObjType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDBObjType, bl);
+        super.onSyncIndexEntities(pSDBObjType, bl);
     }
 
     public Object getDataContextValue(PSDBObjType pSDBObjType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -296,14 +296,14 @@ extends PSCoreSysServiceBase<PSDBObjType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDBObjType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDBObjType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDBObjType pSDBObjType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDBObjType, arrayList, n);
+        super.onExportMajorModel(pSDBObjType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -423,14 +423,14 @@ extends PSCoreSysServiceBase<PSDBObjType> {
 
     protected boolean onMergeChild(String string, String string2, PSDBObjType pSDBObjType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDBObjType)) {
+        if (super.onMergeChild(string, string2, pSDBObjType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDBObjType pSDBObjType) throws Exception {
-        super.onUpdateParent((IEntity)pSDBObjType);
+        super.onUpdateParent(pSDBObjType);
     }
 
     @Override

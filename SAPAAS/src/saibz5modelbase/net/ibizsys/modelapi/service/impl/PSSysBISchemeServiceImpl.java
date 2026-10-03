@@ -116,9 +116,9 @@ implements IPSSysBISchemeService {
 
     @Override
     protected List<PSSysBIScheme> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysBIScheme> list = new ArrayList<PSSysBIScheme>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysBIScheme> items = this.listByPSModule(parent);

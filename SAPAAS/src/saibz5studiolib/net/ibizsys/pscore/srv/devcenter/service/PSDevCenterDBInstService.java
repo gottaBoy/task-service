@@ -102,7 +102,7 @@ extends PSDevCenterDBInstServiceBase {
     @Override
     protected void onAfterUpdate(PSDevCenterDBInst pSDevCenterDBInst) throws Exception {
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory()) && (pSDevCenterDBInst.isResStateDirty() || pSDevCenterDBInst.isExpriedTimeDirty() || pSDevCenterDBInst.isResReadyTimeDirty())) {
-            PSDevCenterDBInst pSDevCenterDBInst2 = (PSDevCenterDBInst)this.getLast((IEntity)pSDevCenterDBInst);
+            PSDevCenterDBInst pSDevCenterDBInst2 = (PSDevCenterDBInst)this.getLast(pSDevCenterDBInst);
             if ((pSDevCenterDBInst.isResStateDirty() && DataTypeHelper.compare((int)9, (Object)pSDevCenterDBInst.getResState(), (Object)pSDevCenterDBInst2.getResState()) != 0L || pSDevCenterDBInst.isExpriedTimeDirty() && DataTypeHelper.compare((int)5, (Object)pSDevCenterDBInst.getExpriedTime(), (Object)pSDevCenterDBInst2.getExpriedTime()) != 0L || pSDevCenterDBInst.isResReadyTimeDirty() && DataTypeHelper.compare((int)5, (Object)pSDevCenterDBInst.getResReadyTime(), (Object)pSDevCenterDBInst2.getResReadyTime()) != 0L) && DataObject.getIntegerValue((Object)pSDevCenterDBInst2.getRefCount(), (Integer)0) > 0) {
                 PSDCDBInstRefService pSDCDBInstRefService = (PSDCDBInstRefService)ServiceGlobal.getService(PSDCDBInstRefService.class, (SessionFactory)this.getSessionFactory());
                 ArrayList<PSDCDBInstRef> arrayList = pSDCDBInstRefService.selectByPSDevCenterDBInst(pSDevCenterDBInst);
@@ -122,7 +122,7 @@ extends PSDevCenterDBInstServiceBase {
     @Override
     protected void onAfterRemove(PSDevCenterDBInst pSDevCenterDBInst) throws Exception {
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
-            PSDevCenterDBInst pSDevCenterDBInst2 = (PSDevCenterDBInst)this.getLast((IEntity)pSDevCenterDBInst);
+            PSDevCenterDBInst pSDevCenterDBInst2 = (PSDevCenterDBInst)this.getLast(pSDevCenterDBInst);
             if (!StringHelper.isNullOrEmpty((String)pSDevCenterDBInst2.getPSDevCenterASId())) {
                 PSDevCenterASService pSDevCenterASService = (PSDevCenterASService)ServiceGlobal.getService(PSDevCenterASService.class, (SessionFactory)this.getSessionFactory());
                 PSDevCenterAS pSDevCenterAS = new PSDevCenterAS();

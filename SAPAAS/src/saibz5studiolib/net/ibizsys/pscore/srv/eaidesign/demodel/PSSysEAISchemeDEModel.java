@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.eaidesign.demodel.PSSysEAISchemeDEModelBase;
 
 public class PSSysEAISchemeDEModel
 extends PSSysEAISchemeDEModelBase {
+
+    public PSSysEAISchemeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

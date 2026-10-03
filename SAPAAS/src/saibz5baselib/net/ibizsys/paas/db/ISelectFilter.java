@@ -1,9 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
-public interface ISelectFilter {
-    public String getCondType();
-}
 
+
+
+/**
+ * 查询过滤条件
+ * @author Administrator
+ *
+ */
+public interface ISelectFilter    {
+	
+	/**
+	 * 获取条件类型
+	 * 
+	 * @return
+	 */
+	String getCondType();
+}

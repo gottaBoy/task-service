@@ -45,7 +45,7 @@ implements IPSModelService<PSDEFUIMode> {
             if (pSDEInitCfg != null && DataObject.getBoolValue((Integer)pSDEInitCfg.getIgnoreUIModel(), (boolean)false)) {
                 return;
             }
-            boolean bl = this.isEnableFolderKey((IEntity)pSDEField);
+            boolean bl = this.isEnableFolderKey(pSDEField);
             String string3 = null;
             string3 = bl ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDEField.getPSDEFieldId(), (Object)RESERVERTAG_DEFAULT) : pSDEField.getPSDEFieldId();
             PSDEFUIMode pSDEFUIMode = new PSDEFUIMode();

@@ -320,8 +320,15 @@ implements IPSDETreeNodeDataItem {
                         if (this.getPSAppDEField() == null) {
                             return null;
                         }
-                        IPSAppDEMethodDTO iPSAppDEMethodDTO = this.getPSAppDEMethodDTO();
-                        if (iPSAppDEMethodDTO == null || (iPSAppDEMethodDTOField = iPSAppDEMethodDTO.getPSAppDEMethodDTOField(this.getPSAppDEField(), true)) == null) break block7;
+                        IPSAppDEMethodDTO iPSAppDEMethodDTO;
+                        try {
+                           iPSAppDEMethodDTO = this.getPSAppDEMethodDTO();
+                           if (iPSAppDEMethodDTO == null || (iPSAppDEMethodDTOField = iPSAppDEMethodDTO.getPSAppDEMethodDTOField(this.getPSAppDEField(), true)) == null) break block7;
+                        }
+                        catch (Exception ex) {
+                           log.error((Object)ex);
+                           break block7;
+                        }
                         if (!"SIMPLE".equals(iPSAppDEMethodDTOField.getType())) break block8;
                         return "SIMPLE";
                     }

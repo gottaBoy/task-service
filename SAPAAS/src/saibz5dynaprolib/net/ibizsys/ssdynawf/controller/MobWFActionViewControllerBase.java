@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdynawf.controller;
 
-import net.ibizsys.ssdynawf.controller.WFActionViewControllerBase;
-
-public abstract class MobWFActionViewControllerBase
-extends WFActionViewControllerBase {
+/**
+ * 移动端流程交互操作视图控制器
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MobWFActionViewControllerBase extends WFActionViewControllerBase {
+	public MobWFActionViewControllerBase() throws Exception {
+		super();
+	}
 }
-

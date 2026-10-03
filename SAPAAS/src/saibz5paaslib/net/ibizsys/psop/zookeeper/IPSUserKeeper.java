@@ -1,16 +1,35 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psop.zookeeper;
 
-import net.ibizsys.psop.zookeeper.IPSObjectKeeper;
+/**
+ * �û�����������ӿ�
+ * @author Administrator
+ *
+ */
+public  interface IPSUserKeeper extends IPSObjectKeeper
+{
+	/**
+	 * ��¼�û�
+	 * @param paramString1
+	 * @param paramString2
+	 */
+	void loginUser(String paramString1, String paramString2) throws Exception;
+ 
+	/**
+	 * ע���û�
+	 * @param paramString1
+	 * @param paramString2
+	 * @throws Exception
+	 */
+	void logoutUser(String paramString1, String paramString2) throws Exception;
 
-public interface IPSUserKeeper
-extends IPSObjectKeeper {
-    public void loginUser(String var1, String var2) throws Exception;
 
-    public void logoutUser(String var1, String var2) throws Exception;
+	/**
+	 * �����û�
+	 * @param paramString1
+	 * @param paramString2
+	 * @return
+	 * @throws Exception
+	 */
+	boolean activeUser(String paramString1, String paramString2) throws Exception;
 
-    public boolean activeUser(String var1, String var2) throws Exception;
 }
-

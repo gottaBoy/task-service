@@ -101,7 +101,7 @@ extends PSDEDataCtrl {
         PSDCBKTaskService psDCBKTaskService = (PSDCBKTaskService)ServiceGlobal.getService(PSDCBKTaskService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDCBKTask psDCBKTask = new PSDCBKTask();
         PSDEDataCtrl.convertEntity2(dataEntity, (IEntity)psUWProject);
-        psUWProjectService.get((IEntity)psUWProject);
+        psUWProjectService.get(psUWProject);
         if (StringHelper.Compare((String)psUWProject.getWizardMode(), (String)"QUICKPF", (boolean)false) != 0 && StringHelper.Compare((String)psUWProject.getWizardMode(), (String)"QUICKSF", (boolean)false) != 0) {
             throw new Exception(StringHelper.Format((String)"\u65b0\u5efa\u9879\u76ee\u5411\u5bfc[%1$s]\u5411\u5bfc\u7c7b\u578b[%2$s]\uff0c\u65e0\u6cd5\u5efa\u7acb\u4efb\u52a1", (Object)psUWProject.getPSUWProjectName(), (Object)UWProjectModeCodeListModel.getInstance().getCodeItem(psUWProject.getWizardMode()).getText()));
         }
@@ -120,7 +120,7 @@ extends PSDEDataCtrl {
             psDCBKTask.setOrderValue(Integer.valueOf(100));
             psDCBKTask.setTaskType("UWPROJECT");
             psDCBKTask.setTaskParam(psUWProject.getPSUWProjectId());
-            psDCBKTaskService.create((IEntity)psDCBKTask);
+            psDCBKTaskService.create(psDCBKTask);
         }
         catch (Exception ex) {
             String strResult = ex.getMessage();
@@ -132,7 +132,7 @@ extends PSDEDataCtrl {
                 psUWProject2.setPSUWProjectId(psUWProject.getPSUWProjectId());
                 psUWProject2.setWizardState(Integer.valueOf(40));
                 psUWProject2.setErrorInfo(strResult);
-                psUWProjectService.update((IEntity)psUWProject2);
+                psUWProjectService.update(psUWProject2);
             }
             catch (Exception e) {
                 log.error((Object)e);
@@ -158,4 +158,3 @@ extends PSDEDataCtrl {
         });
     }
 }
-

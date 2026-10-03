@@ -1263,7 +1263,7 @@ implements Serializable {
                 PSDepSlnPack pSDepSlnPack = new PSDepSlnPack();
                 pSDepSlnPack.setPSDepSlnPackId(this.getPSDepSlnPackId());
                 PSDepSlnPackService pSDepSlnPackService = (PSDepSlnPackService)ServiceGlobal.getService(PSDepSlnPackService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnPackService.autoGet((IEntity)pSDepSlnPack);
+                pSDepSlnPackService.autoGet(pSDepSlnPack);
                 this.psdepslnpack = pSDepSlnPack;
             }
             return this.psdepslnpack;
@@ -1289,7 +1289,7 @@ implements Serializable {
                 PSDepSln pSDepSln = new PSDepSln();
                 pSDepSln.setPSDepSlnId(this.getPSDepSlnId());
                 PSDepSlnService pSDepSlnService = (PSDepSlnService)ServiceGlobal.getService(PSDepSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnService.autoGet((IEntity)pSDepSln);
+                pSDepSlnService.autoGet(pSDepSln);
                 this.psdepsln = pSDepSln;
             }
             return this.psdepsln;

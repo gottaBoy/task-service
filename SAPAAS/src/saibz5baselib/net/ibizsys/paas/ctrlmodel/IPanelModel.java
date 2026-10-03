@@ -1,19 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import net.ibizsys.paas.control.panel.IPanel;
-import net.ibizsys.paas.ctrlmodel.ICtrlModel;
 import net.ibizsys.paas.data.IDataObject;
 import net.sf.json.JSONObject;
 
-public interface IPanelModel
-extends ICtrlModel,
-IPanel {
-    public void fillOutputDatas(IDataObject var1, JSONObject var2, JSONObject var3) throws Exception;
-}
+/**
+ * 面板部件模型接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPanelModel extends ICtrlModel,IPanel {
 
+	/**
+	 * 通过数据对象填充面板
+	 * 
+	 * @param iDataObject 当前数据对象
+	 * @param outputData 输出数据对象
+	 * @param outputConfig 输出配置对象
+	 * @throws Exception
+	 */
+	void fillOutputDatas(IDataObject iDataObject, JSONObject outputData, JSONObject outputConfig) throws Exception;
+
+}

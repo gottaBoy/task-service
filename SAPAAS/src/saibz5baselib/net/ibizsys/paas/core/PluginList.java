@@ -1,20 +1,31 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import java.util.List;
-import net.ibizsys.paas.core.Plugin;
 
+/**
+ * 系统插件列表
+ * @author Administrator
+ *
+ */
 public class PluginList {
-    protected List<Plugin> list = null;
 
-    public List<Plugin> getList() {
-        return this.list;
-    }
+	protected List<Plugin> list = null;
 
-    public void setList(List<Plugin> list) {
-        this.list = list;
-    }
+	/**
+	 * 获取插件列表
+	 * @return
+	 */
+	public List<Plugin> getList() {
+		return list;
+	}
+
+	/**
+	 * 设置插件列表
+	 * @param list
+	 */
+	public void setList(List<Plugin> list) {
+		this.list = list;
+	}
+	
+	
 }
-

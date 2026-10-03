@@ -88,10 +88,9 @@ extends PSDEDataCtrl {
         psSysDevBKTask.setTaskParam2(psSysRef.getPSSYSREFID());
         psSysDevBKTask.setModelLevel(IPSSystem.LOADLEVEL_CODE);
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        psSysDevBKTaskService.create(psSysDevBKTask);
         SA.SRFDA.PS.Data.PSSysDevBKTask psSysDevBKTask2 = new SA.SRFDA.PS.Data.PSSysDevBKTask();
         PSSysRefDataCtrl.convertEntity((IEntity)psSysDevBKTask, psSysDevBKTask2);
         this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
     }
 }
-

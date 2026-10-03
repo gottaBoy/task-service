@@ -87,7 +87,7 @@ extends PSDBTypeImpl {
     }
 
     protected ArrayList<String> getTableColumns(IPSDatabase iPSDatabase, String strTableName2, boolean bTempMode) throws Exception {
-        Vector list;
+        Vector<BaseDataEntity> list;
         String strSQL;
         CallResult callResult;
         String strTableName = strTableName2;

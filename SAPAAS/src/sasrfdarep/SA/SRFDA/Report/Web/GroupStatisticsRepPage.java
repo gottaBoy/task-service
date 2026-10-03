@@ -218,13 +218,13 @@ extends BaseMainPage {
                 columnConfig2.setCaption("\u5e8f\u53f7");
                 columnConfig2.setWidth(50);
                 columnConfig2.setBorder(15);
-                this.dgEx.getDGExConfig().getRootGroupConfig().getGroupHeaderConfig().getColumnsConfig().add((Object)columnConfig2);
+                this.dgEx.getDGExConfig().getRootGroupConfig().getGroupHeaderConfig().getColumnsConfig().add(columnConfig2);
                 DGExSNCellConfig cellConfig2 = new DGExSNCellConfig();
                 cellConfig2.setWidth(50);
                 cellConfig2.setHeight(25);
                 cellConfig2.setBorder(13);
                 cellConfig2.setLastBorder(13);
-                this.dgEx.getDGExConfig().getRootGroupConfig().getGroupContentConfig().getCellsConfig().add((Object)cellConfig2);
+                this.dgEx.getDGExConfig().getRootGroupConfig().getGroupContentConfig().getCellsConfig().add(cellConfig2);
                 String strGroupField = this.getWebContext().GetPostValue("srfgroupfield");
                 if (!StringHelper.IsNullOrEmpty((String)strGroupField)) {
                     for (GSRGroupColumn groupColumn : this.groupStatisticsRep.getGroupColumns()) {
@@ -234,7 +234,7 @@ extends BaseMainPage {
                         columnConfig.setCaption("");
                         columnConfig.setWidth(30);
                         columnConfig.setBorder(14);
-                        this.dgEx.getDGExConfig().getRootGroupConfig().getGroupHeaderConfig().getColumnsConfig().add((Object)columnConfig);
+                        this.dgEx.getDGExConfig().getRootGroupConfig().getGroupHeaderConfig().getColumnsConfig().add(columnConfig);
                         cellConfig = new DGExCellConfig();
                         cellConfig.setHeight(25);
                         cellConfig.setID(groupColumn.getDEFIELDNAME());
@@ -242,14 +242,14 @@ extends BaseMainPage {
                         cellConfig.setWidth(30);
                         cellConfig.setBorder(12);
                         cellConfig.setLastBorder(12);
-                        this.dgEx.getDGExConfig().getRootGroupConfig().getGroupContentConfig().getCellsConfig().add((Object)cellConfig);
+                        this.dgEx.getDGExConfig().getRootGroupConfig().getGroupContentConfig().getCellsConfig().add(cellConfig);
                         columnConfig = new DGExColumnConfig();
                         columnConfig.setHeight(30);
                         columnConfig.setCaption(groupColumn.getGSRGROUPCOLUMNNAME());
                         columnConfig.setWidth(groupColumn.getWIDTH());
                         columnConfig.setSortField(strGroupField);
                         columnConfig.setBorder(14);
-                        this.dgEx.getDGExConfig().getRootGroupConfig().getGroupHeaderConfig().getColumnsConfig().add((Object)columnConfig);
+                        this.dgEx.getDGExConfig().getRootGroupConfig().getGroupHeaderConfig().getColumnsConfig().add(columnConfig);
                         cellConfig = new DGExCellConfig();
                         cellConfig.setHeight(25);
                         cellConfig.setID(groupColumn.getDEFIELDNAME());
@@ -257,7 +257,7 @@ extends BaseMainPage {
                         cellConfig.setWidth(groupColumn.getWIDTH());
                         cellConfig.setBorder(12);
                         cellConfig.setLastBorder(12);
-                        this.dgEx.getDGExConfig().getRootGroupConfig().getGroupContentConfig().getCellsConfig().add((Object)cellConfig);
+                        this.dgEx.getDGExConfig().getRootGroupConfig().getGroupContentConfig().getCellsConfig().add(cellConfig);
                         break;
                     }
                 }
@@ -269,7 +269,7 @@ extends BaseMainPage {
                     columnConfig.setSortField(gsrMeasure.getEXPALIAS());
                     columnConfig.setAlign("right");
                     columnConfig.setBorder(14);
-                    this.dgEx.getDGExConfig().getRootGroupConfig().getGroupHeaderConfig().getColumnsConfig().add((Object)columnConfig);
+                    this.dgEx.getDGExConfig().getRootGroupConfig().getGroupHeaderConfig().getColumnsConfig().add(columnConfig);
                     cellConfig = new DGExCellConfig();
                     cellConfig.setID(gsrMeasure.getEXPALIAS());
                     cellConfig.setHeight(25);
@@ -278,14 +278,14 @@ extends BaseMainPage {
                     cellConfig.setWidth(gsrMeasure.getWIDTH());
                     cellConfig.setBorder(12);
                     cellConfig.setLastBorder(12);
-                    this.dgEx.getDGExConfig().getRootGroupConfig().getGroupContentConfig().getCellsConfig().add((Object)cellConfig);
+                    this.dgEx.getDGExConfig().getRootGroupConfig().getGroupContentConfig().getCellsConfig().add(cellConfig);
                 }
                 DGExColumnConfig columnConfig3 = new DGExColumnConfig();
                 columnConfig3.setCssClass("sx-dg-column2");
-                this.dgEx.getDGExConfig().getRootGroupConfig().getGroupHeaderConfig().getColumnsConfig().add((Object)columnConfig3);
+                this.dgEx.getDGExConfig().getRootGroupConfig().getGroupHeaderConfig().getColumnsConfig().add(columnConfig3);
                 DGExLabelCellConfig cellConfig3 = new DGExLabelCellConfig();
                 cellConfig3.setHeight(25);
-                this.dgEx.getDGExConfig().getRootGroupConfig().getGroupContentConfig().getCellsConfig().add((Object)cellConfig3);
+                this.dgEx.getDGExConfig().getRootGroupConfig().getGroupContentConfig().getCellsConfig().add(cellConfig3);
             }
         }
         this.AddControl((SRFExControl)this.dgEx);
@@ -348,4 +348,3 @@ extends BaseMainPage {
         return this.strDetailDGUrl;
     }
 }
-

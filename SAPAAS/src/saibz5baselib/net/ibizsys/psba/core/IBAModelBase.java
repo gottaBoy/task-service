@@ -1,14 +1,26 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
 import net.ibizsys.paas.core.IModelBase;
 
-public interface IBAModelBase
-extends IModelBase {
-    public void setId(String var1);
+/**
+ * 大数据架构模型基类
+ * 
+ * @author Administrator
+ *
+ */
+public interface IBAModelBase extends IModelBase {
 
-    public void setName(String var1);
+	/**
+	 * 设置标识
+	 * 
+	 * @return
+	 */
+	void setId(String strId);
+
+	/**
+	 * 设置名称
+	 * 
+	 * @return
+	 */
+	void setName(String strName);
 }
-

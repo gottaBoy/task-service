@@ -35,8 +35,8 @@ extends XMLCollectionExConfig<WFParamConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = WFParamsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((WFParamConfig)childNode))) {
-                this.add((Object)((WFParamConfig)childNode));
+            if (this.OnChildNodeLoaded((WFParamConfig)childNode)) {
+                this.add((WFParamConfig)childNode);
                 return;
             }
         }

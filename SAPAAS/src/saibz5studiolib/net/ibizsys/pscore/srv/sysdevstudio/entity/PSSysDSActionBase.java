@@ -771,7 +771,7 @@ implements Serializable {
                 PSSysDevStudio pSSysDevStudio = new PSSysDevStudio();
                 pSSysDevStudio.setPSSysDevStudioId(this.getPSSysDevStudioId());
                 PSSysDevStudioService pSSysDevStudioService = (PSSysDevStudioService)ServiceGlobal.getService(PSSysDevStudioService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDevStudioService.autoGet((IEntity)pSSysDevStudio);
+                pSSysDevStudioService.autoGet(pSSysDevStudio);
                 this.pssysdevstudio = pSSysDevStudio;
             }
             return this.pssysdevstudio;

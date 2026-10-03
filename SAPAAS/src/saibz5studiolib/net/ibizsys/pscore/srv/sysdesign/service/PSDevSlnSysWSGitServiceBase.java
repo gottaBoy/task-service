@@ -144,9 +144,9 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
             PSDCWorkshopServer pSDCWorkshopServer = (PSDCWorkshopServer)iService.getDEModel().createEntity();
             pSDCWorkshopServer.set("PSDCWORKSHOPSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDCWorkshopServer);
+                iService.getTemp(pSDCWorkshopServer);
             } else {
-                iService.get((IEntity)pSDCWorkshopServer);
+                iService.get(pSDCWorkshopServer);
             }
             this.onFillParentInfo_PSDCWorkshopServer(pSDevSlnSysWSGit, pSDCWorkshopServer);
             return;
@@ -156,14 +156,14 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
             PSDevSlnSys pSDevSlnSys = (PSDevSlnSys)iService.getDEModel().createEntity();
             pSDevSlnSys.set("PSDEVSLNSYSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevSlnSys);
+                iService.getTemp(pSDevSlnSys);
             } else {
-                iService.get((IEntity)pSDevSlnSys);
+                iService.get(pSDevSlnSys);
             }
             this.onFillParentInfo_PSDevSlnSys(pSDevSlnSysWSGit, pSDevSlnSys);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDevSlnSysWSGit, string, string2, string3);
+        super.onFillParentInfo(pSDevSlnSysWSGit, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDevSlnSysWSGit, bl);
+        super.onFillEntityFullInfo(pSDevSlnSysWSGit, bl);
         this.onFillEntityFullInfo_PSDCWorkshopServer(pSDevSlnSysWSGit, bl);
         this.onFillEntityFullInfo_PSDevSlnSys(pSDevSlnSysWSGit, bl);
     }
@@ -214,7 +214,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
     }
 
     protected void onWriteBackParent(PSDevSlnSysWSGit pSDevSlnSysWSGit, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDevSlnSysWSGit, bl);
+        super.onWriteBackParent(pSDevSlnSysWSGit, bl);
     }
 
     public ArrayList<PSDevSlnSysWSGit> selectByPSDCWorkshopServer(PSDCWorkshopServerBase pSDCWorkshopServerBase) throws Exception {
@@ -269,8 +269,8 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
         ArrayList<PSDevSlnSysWSGit> arrayList = this.selectByPSDCWorkshopServer(pSDCWorkshopServer, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDCWORKSHOPSERVER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDCWorkshopServer);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEVSLNSYSWSGIT_PSDCWORKSHOPSERVER_PSDCWORKSHOPSERVERID", "", iDataEntityModel.getName(), "PSDEVSLNSYSWSGIT", iDataEntityModel.getDataInfo((IEntity)pSDCWorkshopServer), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDCWorkshopServer);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEVSLNSYSWSGIT_PSDCWORKSHOPSERVER_PSDCWORKSHOPSERVERID", "", iDataEntityModel.getName(), "PSDEVSLNSYSWSGIT", iDataEntityModel.getDataInfo(pSDCWorkshopServer), arrayList.get(0)));
         }
     }
 
@@ -303,7 +303,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
         ArrayList<PSDevSlnSysWSGit> arrayList = this.selectByPSDCWorkshopServer(pSDCWorkshopServer);
         this.onBeforeRemoveByPSDCWorkshopServer(pSDCWorkshopServer, arrayList);
         for (PSDevSlnSysWSGit pSDevSlnSysWSGit : arrayList) {
-            this.remove((IEntity)pSDevSlnSysWSGit);
+            this.remove(pSDevSlnSysWSGit);
         }
         this.onAfterRemoveByPSDCWorkshopServer(pSDCWorkshopServer, arrayList);
     }
@@ -349,7 +349,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
         ArrayList<PSDevSlnSysWSGit> arrayList = this.selectByPSDevSlnSys(pSDevSlnSys);
         this.onBeforeRemoveByPSDevSlnSys(pSDevSlnSys, arrayList);
         for (PSDevSlnSysWSGit pSDevSlnSysWSGit : arrayList) {
-            this.remove((IEntity)pSDevSlnSysWSGit);
+            this.remove(pSDevSlnSysWSGit);
         }
         this.onAfterRemoveByPSDevSlnSys(pSDevSlnSys, arrayList);
     }
@@ -370,7 +370,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
 
     protected void replaceParentInfo(PSDevSlnSysWSGit pSDevSlnSysWSGit, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDevSlnSysWSGit, cloneSession);
+        super.replaceParentInfo(pSDevSlnSysWSGit, cloneSession);
         if (pSDevSlnSysWSGit.getPSDCWorkshopServerId() != null && (iEntity = cloneSession.getEntity("PSDCWORKSHOPSERVER", (Object)pSDevSlnSysWSGit.getPSDCWorkshopServerId())) != null) {
             this.onFillParentInfo_PSDCWorkshopServer(pSDevSlnSysWSGit, (PSDCWorkshopServer)iEntity);
         }
@@ -380,7 +380,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDevSlnSysWSGit pSDevSlnSysWSGit, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDevSlnSysWSGit, bl);
+        super.onRemoveEntityUncopyValues(pSDevSlnSysWSGit, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDevSlnSysWSGit pSDevSlnSysWSGit, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -410,7 +410,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
         if ((entityFieldError = this.onCheckField_PSDevSlnSysWSGitName(bl, pSDevSlnSysWSGit, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDevSlnSysWSGit, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDevSlnSysWSGit, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_GITPassword(boolean bl, PSDevSlnSysWSGit pSDevSlnSysWSGit, boolean bl2, boolean bl3) throws Exception {
@@ -423,7 +423,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GITPassword_Default((IEntity)pSDevSlnSysWSGit, bl2, bl3);
+            string2 = this.onTestValueRule_GITPassword_Default(pSDevSlnSysWSGit, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITPASSWORD");
@@ -445,7 +445,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GitPath_Default((IEntity)pSDevSlnSysWSGit, bl2, bl3);
+            string2 = this.onTestValueRule_GitPath_Default(pSDevSlnSysWSGit, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITPATH");
@@ -467,7 +467,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GITUserName_Default((IEntity)pSDevSlnSysWSGit, bl2, bl3);
+            string2 = this.onTestValueRule_GITUserName_Default(pSDevSlnSysWSGit, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITUSERNAME");
@@ -489,7 +489,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDevSlnSysWSGit, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDevSlnSysWSGit, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -514,7 +514,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCWorkshopServerId_Default((IEntity)pSDevSlnSysWSGit, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCWorkshopServerId_Default(pSDevSlnSysWSGit, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCWORKSHOPSERVERID");
@@ -539,7 +539,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysId_Default((IEntity)pSDevSlnSysWSGit, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysId_Default(pSDevSlnSysWSGit, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSID");
@@ -564,7 +564,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysWSGitId_Default((IEntity)pSDevSlnSysWSGit, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysWSGitId_Default(pSDevSlnSysWSGit, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSWSGITID");
@@ -589,7 +589,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysWSGitName_Default((IEntity)pSDevSlnSysWSGit, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysWSGitName_Default(pSDevSlnSysWSGit, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSWSGITNAME");
@@ -616,11 +616,11 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
     }
 
     protected void onSyncEntity(PSDevSlnSysWSGit pSDevSlnSysWSGit, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDevSlnSysWSGit, bl);
+        super.onSyncEntity(pSDevSlnSysWSGit, bl);
     }
 
     protected void onSyncIndexEntities(PSDevSlnSysWSGit pSDevSlnSysWSGit, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDevSlnSysWSGit, bl);
+        super.onSyncIndexEntities(pSDevSlnSysWSGit, bl);
     }
 
     public Object getDataContextValue(PSDevSlnSysWSGit pSDevSlnSysWSGit, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -628,7 +628,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDevSlnSysWSGit, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDevSlnSysWSGit, string, iDataContextParam)) != null) {
             return object;
         }
         PSDevSlnSys pSDevSlnSys = pSDevSlnSysWSGit.getPSDevSlnSys();
@@ -639,7 +639,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
     }
 
     protected void onExportMajorModel(PSDevSlnSysWSGit pSDevSlnSysWSGit, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDevSlnSysWSGit, arrayList, n);
+        super.onExportMajorModel(pSDevSlnSysWSGit, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -847,14 +847,14 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
 
     protected boolean onMergeChild(String string, String string2, PSDevSlnSysWSGit pSDevSlnSysWSGit) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDevSlnSysWSGit)) {
+        if (super.onMergeChild(string, string2, pSDevSlnSysWSGit)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDevSlnSysWSGit pSDevSlnSysWSGit) throws Exception {
-        super.onUpdateParent((IEntity)pSDevSlnSysWSGit);
+        super.onUpdateParent(pSDevSlnSysWSGit);
     }
 
     @Override
@@ -875,7 +875,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysWSGit> {
         PSDevSlnSysWSGit pSDevSlnSysWSGit2 = new PSDevSlnSysWSGit();
         pSDevSlnSysWSGit2.setPSDevSlnSysId(pSDevSlnSysWSGit.getPSDevSlnSysId());
         pSDevSlnSysWSGit2.setPSDCWorkshopServerId(pSDevSlnSysWSGit.getPSDCWorkshopServerId());
-        if (this.selectOne((IEntity)pSDevSlnSysWSGit2, true)) {
+        if (this.selectOne(pSDevSlnSysWSGit2, true)) {
             return pSDevSlnSysWSGit2.getPSDevSlnSysWSGitId();
         }
         return super.getEntityFolderKeyValue(pSDevSlnSysWSGit, pSSystem);

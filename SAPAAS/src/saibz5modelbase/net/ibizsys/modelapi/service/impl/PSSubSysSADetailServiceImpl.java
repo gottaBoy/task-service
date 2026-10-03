@@ -116,9 +116,9 @@ implements IPSSubSysSADetailService {
 
     @Override
     protected List<PSSubSysSADetail> onListAll() throws Exception {
-        List pssubsysserviceapis;
+        List<PSSubSysServiceAPI> pssubsysserviceapis;
         ArrayList<PSSubSysSADetail> list = new ArrayList<PSSubSysSADetail>();
-        List pssubsyssades = PSModelServiceUtil.getInstance().getPSSubSysSADEService().listAll();
+        List<PSSubSysSADE> pssubsyssades = PSModelServiceUtil.getInstance().getPSSubSysSADEService().listAll();
         if (pssubsyssades != null) {
             for (PSSubSysSADE parent : pssubsyssades) {
                 List<PSSubSysSADetail> items = this.listByPSSubSysSADE(parent);

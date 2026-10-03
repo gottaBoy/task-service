@@ -107,7 +107,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
     }
 
     protected void onFillParentInfo(PSAppUtilType pSAppUtilType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSAppUtilType, string, string2, string3);
+        super.onFillParentInfo(pSAppUtilType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -118,11 +118,11 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
         if (bl && pSAppUtilType.getValidFlag() == null) {
             pSAppUtilType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSAppUtilType, bl);
+        super.onFillEntityFullInfo(pSAppUtilType, bl);
     }
 
     protected void onWriteBackParent(PSAppUtilType pSAppUtilType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSAppUtilType, bl);
+        super.onWriteBackParent(pSAppUtilType, bl);
     }
 
     @Override
@@ -131,7 +131,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSAppUtilType pSAppUtilType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSAppUtilType, bl);
+        super.onRemoveEntityUncopyValues(pSAppUtilType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSAppUtilType pSAppUtilType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSAppUtilType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSAppUtilType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSAppUtilType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSAppUtilType pSAppUtilType, boolean bl2, boolean bl3) throws Exception {
@@ -180,7 +180,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSAppUtilType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSAppUtilType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -205,7 +205,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppUtilTypeId_Default((IEntity)pSAppUtilType, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppUtilTypeId_Default(pSAppUtilType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPUTILTYPEID");
@@ -230,7 +230,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppUtilTypeName_Default((IEntity)pSAppUtilType, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppUtilTypeName_Default(pSAppUtilType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPUTILTYPENAME");
@@ -252,7 +252,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RegToAppFlag_Default((IEntity)pSAppUtilType, bl2, bl3);
+            string = this.onTestValueRule_RegToAppFlag_Default(pSAppUtilType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REGTOAPPFLAG");
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeObj_Default((IEntity)pSAppUtilType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeObj_Default(pSAppUtilType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEOBJ");
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UtilDesc_Default((IEntity)pSAppUtilType, bl2, bl3);
+            string2 = this.onTestValueRule_UtilDesc_Default(pSAppUtilType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UTILDESC");
@@ -318,7 +318,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UtilModel_Default((IEntity)pSAppUtilType, bl2, bl3);
+            string2 = this.onTestValueRule_UtilModel_Default(pSAppUtilType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UTILMODEL");
@@ -340,7 +340,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UtilObj_Default((IEntity)pSAppUtilType, bl2, bl3);
+            string2 = this.onTestValueRule_UtilObj_Default(pSAppUtilType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UTILOBJ");
@@ -362,7 +362,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UtilParams_Default((IEntity)pSAppUtilType, bl2, bl3);
+            string2 = this.onTestValueRule_UtilParams_Default(pSAppUtilType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UTILPARAMS");
@@ -387,7 +387,7 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSAppUtilType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSAppUtilType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -400,11 +400,11 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
     }
 
     protected void onSyncEntity(PSAppUtilType pSAppUtilType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSAppUtilType, bl);
+        super.onSyncEntity(pSAppUtilType, bl);
     }
 
     protected void onSyncIndexEntities(PSAppUtilType pSAppUtilType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSAppUtilType, bl);
+        super.onSyncIndexEntities(pSAppUtilType, bl);
     }
 
     public Object getDataContextValue(PSAppUtilType pSAppUtilType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -412,14 +412,14 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSAppUtilType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSAppUtilType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSAppUtilType pSAppUtilType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSAppUtilType, arrayList, n);
+        super.onExportMajorModel(pSAppUtilType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -606,14 +606,14 @@ extends PSCoreSysServiceBase<PSAppUtilType> {
 
     protected boolean onMergeChild(String string, String string2, PSAppUtilType pSAppUtilType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSAppUtilType)) {
+        if (super.onMergeChild(string, string2, pSAppUtilType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSAppUtilType pSAppUtilType) throws Exception {
-        super.onUpdateParent((IEntity)pSAppUtilType);
+        super.onUpdateParent(pSAppUtilType);
     }
 
     @Override

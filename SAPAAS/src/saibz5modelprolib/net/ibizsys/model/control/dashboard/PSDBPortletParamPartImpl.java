@@ -93,19 +93,22 @@ IPSDBSysPortletPartParam {
                 this.setTitlePSLanguageResId(iPSPortletParam.getTitlePSLanguageResId());
             }
         }
-        if (iPSControlParam instanceof IPSDBSysPortletPartParam && !StringHelper.isNullOrEmpty((String)(iPSPortletParam = (IPSDBSysPortletPartParam)iPSControlParam).getPSSysPortletId())) {
-            this.setPSSysPortletId(iPSPortletParam.getPSSysPortletId());
+        if (iPSControlParam instanceof IPSDBSysPortletPartParam) {
+            IPSDBSysPortletPartParam sysPortletParam = (IPSDBSysPortletPartParam)iPSControlParam;
+            if (!StringHelper.isNullOrEmpty((String)sysPortletParam.getPSSysPortletId())) {
+                this.setPSSysPortletId(sysPortletParam.getPSSysPortletId());
+            }
         }
         if (iPSControlParam instanceof IPSDBAppMenuPortletPartParam) {
-            iPSPortletParam = (IPSDBAppMenuPortletPartParam)iPSControlParam;
+            IPSDBAppMenuPortletPartParam appMenuPortletParam = (IPSDBAppMenuPortletPartParam)iPSControlParam;
             if (StringHelper.isNullOrEmpty((String)this.getPSAppMenuId())) {
-                this.setPSAppMenuId(iPSPortletParam.getPSAppMenuId());
+                this.setPSAppMenuId(appMenuPortletParam.getPSAppMenuId());
             }
             if (StringHelper.isNullOrEmpty((String)this.getAMListStyle())) {
-                this.setAMListStyle(iPSPortletParam.getAMListStyle());
+                this.setAMListStyle(appMenuPortletParam.getAMListStyle());
             }
             if (StringHelper.isNullOrEmpty((String)this.getAMPSSysPFPluginId())) {
-                this.setAMPSSysPFPluginId(iPSPortletParam.getAMPSSysPFPluginId());
+                this.setAMPSSysPFPluginId(appMenuPortletParam.getAMPSSysPFPluginId());
             }
         }
     }
@@ -262,4 +265,3 @@ IPSDBSysPortletPartParam {
         this.bShowTitleBar = bShowTitleBar;
     }
 }
-

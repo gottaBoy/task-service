@@ -144,9 +144,9 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
             PSDevCenterServer pSDevCenterServer = (PSDevCenterServer)iService.getDEModel().createEntity();
             pSDevCenterServer.set("PSDEVCENTERSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenterServer);
+                iService.getTemp(pSDevCenterServer);
             } else {
-                iService.get((IEntity)pSDevCenterServer);
+                iService.get(pSDevCenterServer);
             }
             this.onFillParentInfo_PSDevCenterServer(pSDSBookingLog, pSDevCenterServer);
             return;
@@ -156,9 +156,9 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDSBookingLog, pSDevCenter);
             return;
@@ -168,9 +168,9 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
             PSDevServer pSDevServer = (PSDevServer)iService.getDEModel().createEntity();
             pSDevServer.set("PSDEVSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevServer);
+                iService.getTemp(pSDevServer);
             } else {
-                iService.get((IEntity)pSDevServer);
+                iService.get(pSDevServer);
             }
             this.onFillParentInfo_PSDevServer(pSDSBookingLog, pSDevServer);
             return;
@@ -180,9 +180,9 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_Pssvrdomain(pSDSBookingLog, pSSvrDomain);
             return;
@@ -192,14 +192,14 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
             PSTaskServer pSTaskServer = (PSTaskServer)iService.getDEModel().createEntity();
             pSTaskServer.set("PSTASKSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSTaskServer);
+                iService.getTemp(pSTaskServer);
             } else {
-                iService.get((IEntity)pSTaskServer);
+                iService.get(pSTaskServer);
             }
             this.onFillParentInfo_PSTaskServer(pSDSBookingLog, pSTaskServer);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDSBookingLog, string, string2, string3);
+        super.onFillParentInfo(pSDSBookingLog, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -240,7 +240,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 pSDSBookingLog.setRestoreState((Integer)this.getDefaultValue(this.getWebContext(), "", "0", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDSBookingLog, bl);
+        super.onFillEntityFullInfo(pSDSBookingLog, bl);
         this.onFillEntityFullInfo_PSDevCenterServer(pSDSBookingLog, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDSBookingLog, bl);
         this.onFillEntityFullInfo_PSDevServer(pSDSBookingLog, bl);
@@ -314,7 +314,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
     }
 
     protected void onWriteBackParent(PSDSBookingLog pSDSBookingLog, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDSBookingLog, bl);
+        super.onWriteBackParent(pSDSBookingLog, bl);
     }
 
     public ArrayList<PSDSBookingLog> selectByPSDevCenterServer(PSDevCenterServerBase pSDevCenterServerBase) throws Exception {
@@ -469,7 +469,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
         ArrayList<PSDSBookingLog> arrayList = this.selectByPSDevCenterServer(pSDevCenterServer);
         this.onBeforeRemoveByPSDevCenterServer(pSDevCenterServer, arrayList);
         for (PSDSBookingLog pSDSBookingLog : arrayList) {
-            this.remove((IEntity)pSDSBookingLog);
+            this.remove(pSDSBookingLog);
         }
         this.onAfterRemoveByPSDevCenterServer(pSDevCenterServer, arrayList);
     }
@@ -515,7 +515,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
         ArrayList<PSDSBookingLog> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDSBookingLog pSDSBookingLog : arrayList) {
-            this.remove((IEntity)pSDSBookingLog);
+            this.remove(pSDSBookingLog);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -561,7 +561,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
         ArrayList<PSDSBookingLog> arrayList = this.selectByPSDevServer(pSDevServer);
         this.onBeforeRemoveByPSDevServer(pSDevServer, arrayList);
         for (PSDSBookingLog pSDSBookingLog : arrayList) {
-            this.remove((IEntity)pSDSBookingLog);
+            this.remove(pSDSBookingLog);
         }
         this.onAfterRemoveByPSDevServer(pSDevServer, arrayList);
     }
@@ -607,7 +607,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
         ArrayList<PSDSBookingLog> arrayList = this.selectByPssvrdomain(pSSvrDomain);
         this.onBeforeRemoveByPssvrdomain(pSSvrDomain, arrayList);
         for (PSDSBookingLog pSDSBookingLog : arrayList) {
-            this.remove((IEntity)pSDSBookingLog);
+            this.remove(pSDSBookingLog);
         }
         this.onAfterRemoveByPssvrdomain(pSSvrDomain, arrayList);
     }
@@ -653,7 +653,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
         ArrayList<PSDSBookingLog> arrayList = this.selectByPSTaskServer(pSTaskServer);
         this.onBeforeRemoveByPSTaskServer(pSTaskServer, arrayList);
         for (PSDSBookingLog pSDSBookingLog : arrayList) {
-            this.remove((IEntity)pSDSBookingLog);
+            this.remove(pSDSBookingLog);
         }
         this.onAfterRemoveByPSTaskServer(pSTaskServer, arrayList);
     }
@@ -674,7 +674,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
 
     protected void replaceParentInfo(PSDSBookingLog pSDSBookingLog, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDSBookingLog, cloneSession);
+        super.replaceParentInfo(pSDSBookingLog, cloneSession);
         if (pSDSBookingLog.getPSDevCenterServerId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTERSERVER", (Object)pSDSBookingLog.getPSDevCenterServerId())) != null) {
             this.onFillParentInfo_PSDevCenterServer(pSDSBookingLog, (PSDevCenterServer)iEntity);
         }
@@ -693,7 +693,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDSBookingLog pSDSBookingLog, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDSBookingLog, bl);
+        super.onRemoveEntityUncopyValues(pSDSBookingLog, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDSBookingLog pSDSBookingLog, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -786,7 +786,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
         if ((entityFieldError = this.onCheckField_RestoreState(bl, pSDSBookingLog, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDSBookingLog, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDSBookingLog, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BackupInfo(boolean bl, PSDSBookingLog pSDSBookingLog, boolean bl2, boolean bl3) throws Exception {
@@ -799,7 +799,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BackupInfo_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_BackupInfo_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BACKUPINFO");
@@ -824,7 +824,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_BackupState_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string = this.onTestValueRule_BackupState_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BACKUPSTATE");
@@ -849,7 +849,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_BeginTime_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string = this.onTestValueRule_BeginTime_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BEGINTIME");
@@ -871,7 +871,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BookingInfo_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_BookingInfo_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BOOKINGINFO");
@@ -893,7 +893,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BookingParam_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_BookingParam_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BOOKINGPARAM");
@@ -915,7 +915,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BookingParam2_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_BookingParam2_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BOOKINGPARAM2");
@@ -937,7 +937,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BookingParam3_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_BookingParam3_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BOOKINGPARAM3");
@@ -959,7 +959,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BookingParam4_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_BookingParam4_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BOOKINGPARAM4");
@@ -984,7 +984,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_BookingState_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string = this.onTestValueRule_BookingState_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BOOKINGSTATE");
@@ -1009,7 +1009,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BookingType_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_BookingType_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BOOKINGTYPE");
@@ -1031,7 +1031,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Duration_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string = this.onTestValueRule_Duration_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DURATION");
@@ -1056,7 +1056,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_EndTime_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string = this.onTestValueRule_EndTime_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENDTIME");
@@ -1081,7 +1081,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_Hours_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string = this.onTestValueRule_Hours_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HOURS");
@@ -1103,7 +1103,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogInfo_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_LogInfo_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGINFO");
@@ -1125,7 +1125,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1147,7 +1147,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -1169,7 +1169,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -1191,7 +1191,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterServerId_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterServerId_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERSERVERID");
@@ -1213,7 +1213,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterServerName_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterServerName_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERSERVERNAME");
@@ -1235,7 +1235,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevServerId_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevServerId_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSERVERID");
@@ -1257,7 +1257,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevServerName_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevServerName_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSERVERNAME");
@@ -1282,7 +1282,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSBookingLogId_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSBookingLogId_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSBOOKINGLOGID");
@@ -1307,7 +1307,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSBookingLogName_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSBookingLogName_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSBOOKINGLOGNAME");
@@ -1329,7 +1329,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -1351,7 +1351,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainName_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainName_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINNAME");
@@ -1373,7 +1373,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSTaskServerId_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSTaskServerId_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTASKSERVERID");
@@ -1395,7 +1395,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSTaskServerName_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSTaskServerName_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTASKSERVERNAME");
@@ -1417,7 +1417,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RestoreInfo_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string2 = this.onTestValueRule_RestoreInfo_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESTOREINFO");
@@ -1442,7 +1442,7 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_RestoreState_Default((IEntity)pSDSBookingLog, bl2, bl3);
+            string = this.onTestValueRule_RestoreState_Default(pSDSBookingLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESTORESTATE");
@@ -1455,11 +1455,11 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
     }
 
     protected void onSyncEntity(PSDSBookingLog pSDSBookingLog, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDSBookingLog, bl);
+        super.onSyncEntity(pSDSBookingLog, bl);
     }
 
     protected void onSyncIndexEntities(PSDSBookingLog pSDSBookingLog, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDSBookingLog, bl);
+        super.onSyncIndexEntities(pSDSBookingLog, bl);
     }
 
     public Object getDataContextValue(PSDSBookingLog pSDSBookingLog, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1467,14 +1467,14 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDSBookingLog, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDSBookingLog, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDSBookingLog pSDSBookingLog, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDSBookingLog, arrayList, n);
+        super.onExportMajorModel(pSDSBookingLog, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1906,14 +1906,14 @@ extends PSCoreSysServiceBase<PSDSBookingLog> {
 
     protected boolean onMergeChild(String string, String string2, PSDSBookingLog pSDSBookingLog) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDSBookingLog)) {
+        if (super.onMergeChild(string, string2, pSDSBookingLog)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDSBookingLog pSDSBookingLog) throws Exception {
-        super.onUpdateParent((IEntity)pSDSBookingLog);
+        super.onUpdateParent(pSDSBookingLog);
     }
 
     @Override

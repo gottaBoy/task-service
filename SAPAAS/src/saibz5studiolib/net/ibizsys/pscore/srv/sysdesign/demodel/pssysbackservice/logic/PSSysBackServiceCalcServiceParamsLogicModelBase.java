@@ -72,7 +72,7 @@ extends DELogicModelBase<PSSysBackService> {
         PSBackService pSBackService = (PSBackService)iActionContext.getParam("PSBackService");
         SessionFactory sessionFactory = iActionContext.getSessionFactory();
         IService iService = ServiceGlobal.getService(PSBackServiceService.class, (SessionFactory)sessionFactory);
-        iService.executeAction("GET", (IEntity)pSBackService);
+        iService.executeAction("GET", pSBackService);
         this.executePrepareparam2(iActionContext);
     }
 }

@@ -90,7 +90,7 @@ implements IPSDEChartService {
     @Override
     protected List<PSDEChart> onListAll() throws Exception {
         ArrayList<PSDEChart> list = new ArrayList<PSDEChart>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEChart> items = this.listByPSDataEntity(parent);
@@ -439,26 +439,28 @@ implements IPSDEChartService {
         } else {
             dto.setSubTitlePSLanResName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEChartAxesService().listByPSDEChart(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEChartAxes> pSDEChartAxesList = PSModelServiceUtil.getInstance().getPSDEChartAxesService().listByPSDEChart(t);
+        if (pSDEChartAxesList != null && pSDEChartAxesList.size() > 0) {
             ArrayList<PSDEChartAxesDTO> psdechartaxes = new ArrayList<PSDEChartAxesDTO>();
-            for (PSDEChartAxes pSDEChartAxes : list) {
+            for (PSDEChartAxes pSDEChartAxes : pSDEChartAxesList) {
                 dstItem = (PSDEChartAxesDTO)PSModelServiceUtil.getInstance().getPSDEChartAxesService().toDTO(pSDEChartAxes);
                 psdechartaxes.add((PSDEChartAxesDTO)dstItem);
             }
             dto.setPsdechartaxes(psdechartaxes);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEChartParamService().listByPSDEChart(t)) != null && list.size() > 0) {
+        List<PSDEChartParam> pSDEChartParamList = PSModelServiceUtil.getInstance().getPSDEChartParamService().listByPSDEChart(t);
+        if (pSDEChartParamList != null && pSDEChartParamList.size() > 0) {
             ArrayList<PSDEChartParamDTO> psdechartparams = new ArrayList<PSDEChartParamDTO>();
-            for (PSDEChartParam pSDEChartParam : list) {
+            for (PSDEChartParam pSDEChartParam : pSDEChartParamList) {
                 dstItem = (PSDEChartParamDTO)PSModelServiceUtil.getInstance().getPSDEChartParamService().toDTO(pSDEChartParam);
                 psdechartparams.add((PSDEChartParamDTO)dstItem);
             }
             dto.setPsdechartparams(psdechartparams);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEChartLogicService().listByPSDEChart(t)) != null && list.size() > 0) {
+        List<PSDEChartLogic> pSDEChartLogicList = PSModelServiceUtil.getInstance().getPSDEChartLogicService().listByPSDEChart(t);
+        if (pSDEChartLogicList != null && pSDEChartLogicList.size() > 0) {
             ArrayList<PSDEChartLogicDTO> psdechartlogics = new ArrayList<PSDEChartLogicDTO>();
-            for (PSDEChartLogic pSDEChartLogic : list) {
+            for (PSDEChartLogic pSDEChartLogic : pSDEChartLogicList) {
                 dstItem = (PSDEChartLogicDTO)PSModelServiceUtil.getInstance().getPSDEChartLogicService().toDTO(pSDEChartLogic);
                 psdechartlogics.add((PSDEChartLogicDTO)dstItem);
             }

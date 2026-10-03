@@ -256,21 +256,21 @@ extends PSCoreSysServiceBase<PSHelpSection> {
 
     public void batDisable(PSHelpSection pSHelpSection) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_BATDISABLE, 0, (IEntity)pSHelpSection, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_BATDISABLE, 0, pSHelpSection, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSHelpSection, ACTION_BATDISABLE);
+        this.testDEMainStateAction(pSHelpSection, ACTION_BATDISABLE);
         final PSHelpSection pSHelpSection2 = pSHelpSection;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSHelpSectionServiceBase.this.getService(), PSHelpSectionServiceBase.ACTION_BATDISABLE, 40, (IEntity)pSHelpSection2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSHelpSectionServiceBase.this.getService(), PSHelpSectionServiceBase.ACTION_BATDISABLE, 40, pSHelpSection2, null).getResult() != 1) {
                     PSHelpSectionServiceBase.this.onBatDisable(pSHelpSection2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_BATDISABLE, 99, (IEntity)pSHelpSection, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_BATDISABLE, 99, pSHelpSection, null);
         }
     }
 
@@ -280,21 +280,21 @@ extends PSCoreSysServiceBase<PSHelpSection> {
 
     public void batEnable(PSHelpSection pSHelpSection) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_BATENABLE, 0, (IEntity)pSHelpSection, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_BATENABLE, 0, pSHelpSection, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSHelpSection, ACTION_BATENABLE);
+        this.testDEMainStateAction(pSHelpSection, ACTION_BATENABLE);
         final PSHelpSection pSHelpSection2 = pSHelpSection;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSHelpSectionServiceBase.this.getService(), PSHelpSectionServiceBase.ACTION_BATENABLE, 40, (IEntity)pSHelpSection2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSHelpSectionServiceBase.this.getService(), PSHelpSectionServiceBase.ACTION_BATENABLE, 40, pSHelpSection2, null).getResult() != 1) {
                     PSHelpSectionServiceBase.this.onBatEnable(pSHelpSection2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_BATENABLE, 99, (IEntity)pSHelpSection, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_BATENABLE, 99, pSHelpSection, null);
         }
     }
 
@@ -304,21 +304,21 @@ extends PSCoreSysServiceBase<PSHelpSection> {
 
     public void toggleExpand(PSHelpSection pSHelpSection) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEEXPAND, 0, (IEntity)pSHelpSection, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEEXPAND, 0, pSHelpSection, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSHelpSection, ACTION_TOGGLEEXPAND);
+        this.testDEMainStateAction(pSHelpSection, ACTION_TOGGLEEXPAND);
         final PSHelpSection pSHelpSection2 = pSHelpSection;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSHelpSectionServiceBase.this.getService(), PSHelpSectionServiceBase.ACTION_TOGGLEEXPAND, 40, (IEntity)pSHelpSection2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSHelpSectionServiceBase.this.getService(), PSHelpSectionServiceBase.ACTION_TOGGLEEXPAND, 40, pSHelpSection2, null).getResult() != 1) {
                     PSHelpSectionServiceBase.this.onToggleExpand(pSHelpSection2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEEXPAND, 99, (IEntity)pSHelpSection, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEEXPAND, 99, pSHelpSection, null);
         }
     }
 
@@ -328,21 +328,21 @@ extends PSCoreSysServiceBase<PSHelpSection> {
 
     public void toggleValid(PSHelpSection pSHelpSection) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEVALID, 0, (IEntity)pSHelpSection, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEVALID, 0, pSHelpSection, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSHelpSection, ACTION_TOGGLEVALID);
+        this.testDEMainStateAction(pSHelpSection, ACTION_TOGGLEVALID);
         final PSHelpSection pSHelpSection2 = pSHelpSection;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSHelpSectionServiceBase.this.getService(), PSHelpSectionServiceBase.ACTION_TOGGLEVALID, 40, (IEntity)pSHelpSection2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSHelpSectionServiceBase.this.getService(), PSHelpSectionServiceBase.ACTION_TOGGLEVALID, 40, pSHelpSection2, null).getResult() != 1) {
                     PSHelpSectionServiceBase.this.onToggleValid(pSHelpSection2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEVALID, 99, (IEntity)pSHelpSection, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEVALID, 99, pSHelpSection, null);
         }
     }
 
@@ -356,9 +356,9 @@ extends PSCoreSysServiceBase<PSHelpSection> {
             PSCodeList pSCodeList = (PSCodeList)iService.getDEModel().createEntity();
             pSCodeList.set("PSCODELISTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCodeList);
+                iService.getTemp(pSCodeList);
             } else {
-                iService.get((IEntity)pSCodeList);
+                iService.get(pSCodeList);
             }
             this.onFillParentInfo_PSCodeList(pSHelpSection, pSCodeList);
             return;
@@ -368,9 +368,9 @@ extends PSCoreSysServiceBase<PSHelpSection> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_PSDEField(pSHelpSection, pSDEField);
             return;
@@ -380,9 +380,9 @@ extends PSCoreSysServiceBase<PSHelpSection> {
             PSDEUIAction pSDEUIAction = (PSDEUIAction)iService.getDEModel().createEntity();
             pSDEUIAction.set("PSDEUIACTIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUIAction);
+                iService.getTemp(pSDEUIAction);
             } else {
-                iService.get((IEntity)pSDEUIAction);
+                iService.get(pSDEUIAction);
             }
             this.onFillParentInfo_PSDEUIAction(pSHelpSection, pSDEUIAction);
             return;
@@ -392,9 +392,9 @@ extends PSCoreSysServiceBase<PSHelpSection> {
             PSHelpArticle pSHelpArticle = (PSHelpArticle)iService.getDEModel().createEntity();
             pSHelpArticle.set("PSHELPARTICLEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSHelpArticle);
+                iService.getTemp(pSHelpArticle);
             } else {
-                iService.get((IEntity)pSHelpArticle);
+                iService.get(pSHelpArticle);
             }
             this.onFillParentInfo_PSHelpArticle(pSHelpSection, pSHelpArticle);
             return;
@@ -404,9 +404,9 @@ extends PSCoreSysServiceBase<PSHelpSection> {
             PSHelpArticle pSHelpArticle = (PSHelpArticle)iService.getDEModel().createEntity();
             pSHelpArticle.set("PSHELPARTICLEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSHelpArticle);
+                iService.getTemp(pSHelpArticle);
             } else {
-                iService.get((IEntity)pSHelpArticle);
+                iService.get(pSHelpArticle);
             }
             this.onFillParentInfo_RefPSHelpArticle(pSHelpSection, pSHelpArticle);
             return;
@@ -416,9 +416,9 @@ extends PSCoreSysServiceBase<PSHelpSection> {
             PSHelpResource pSHelpResource = (PSHelpResource)iService.getDEModel().createEntity();
             pSHelpResource.set("PSHELPRESOURCEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSHelpResource);
+                iService.getTemp(pSHelpResource);
             } else {
-                iService.get((IEntity)pSHelpResource);
+                iService.get(pSHelpResource);
             }
             this.onFillParentInfo_LinkPSHelpResource(pSHelpSection, pSHelpResource);
             return;
@@ -428,9 +428,9 @@ extends PSCoreSysServiceBase<PSHelpSection> {
             PSHelpResource pSHelpResource = (PSHelpResource)iService.getDEModel().createEntity();
             pSHelpResource.set("PSHELPRESOURCEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSHelpResource);
+                iService.getTemp(pSHelpResource);
             } else {
-                iService.get((IEntity)pSHelpResource);
+                iService.get(pSHelpResource);
             }
             this.onFillParentInfo_PSHelpResource(pSHelpSection, pSHelpResource);
             return;
@@ -440,9 +440,9 @@ extends PSCoreSysServiceBase<PSHelpSection> {
             PSHelpSectionTempl pSHelpSectionTempl = (PSHelpSectionTempl)iService.getDEModel().createEntity();
             pSHelpSectionTempl.set("PSHELPSECTIONTEMPLID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSHelpSectionTempl);
+                iService.getTemp(pSHelpSectionTempl);
             } else {
-                iService.get((IEntity)pSHelpSectionTempl);
+                iService.get(pSHelpSectionTempl);
             }
             this.onFillParentInfo_PSHelpSectionTempl(pSHelpSection, pSHelpSectionTempl);
             return;
@@ -452,14 +452,14 @@ extends PSCoreSysServiceBase<PSHelpSection> {
             PSHelpSection pSHelpSection2 = (PSHelpSection)iService.getDEModel().createEntity();
             pSHelpSection2.set("PSHELPSECTIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSHelpSection2);
+                iService.getTemp(pSHelpSection2);
             } else {
-                iService.get((IEntity)pSHelpSection2);
+                iService.get(pSHelpSection2);
             }
             this.onFillParentInfo_PPSHelpSector(pSHelpSection, pSHelpSection2);
             return;
         }
-        super.onFillParentInfo((IEntity)pSHelpSection, string, string2, string3);
+        super.onFillParentInfo(pSHelpSection, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -519,7 +519,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         if (bl && pSHelpSection.getValidFlag() == null) {
             pSHelpSection.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSHelpSection, bl);
+        super.onFillEntityFullInfo(pSHelpSection, bl);
         this.onFillEntityFullInfo_PSCodeList(pSHelpSection, bl);
         this.onFillEntityFullInfo_PSDEField(pSHelpSection, bl);
         this.onFillEntityFullInfo_PSDEUIAction(pSHelpSection, bl);
@@ -611,7 +611,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
     }
 
     protected void onWriteBackParent(PSHelpSection pSHelpSection, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSHelpSection, bl);
+        super.onWriteBackParent(pSHelpSection, bl);
     }
 
     public ArrayList<PSHelpSection> selectByPSCodeList(PSCodeListBase pSCodeListBase) throws Exception {
@@ -862,7 +862,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByPSCodeList(pSCodeList);
         this.onBeforeRemoveByPSCodeList(pSCodeList, arrayList);
         for (PSHelpSection pSHelpSection : arrayList) {
-            this.remove((IEntity)pSHelpSection);
+            this.remove(pSHelpSection);
         }
         this.onAfterRemoveByPSCodeList(pSCodeList, arrayList);
     }
@@ -908,7 +908,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByPSDEField(pSDEField);
         this.onBeforeRemoveByPSDEField(pSDEField, arrayList);
         for (PSHelpSection pSHelpSection : arrayList) {
-            this.remove((IEntity)pSHelpSection);
+            this.remove(pSHelpSection);
         }
         this.onAfterRemoveByPSDEField(pSDEField, arrayList);
     }
@@ -954,7 +954,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByPSDEUIAction(pSDEUIAction);
         this.onBeforeRemoveByPSDEUIAction(pSDEUIAction, arrayList);
         for (PSHelpSection pSHelpSection : arrayList) {
-            this.remove((IEntity)pSHelpSection);
+            this.remove(pSHelpSection);
         }
         this.onAfterRemoveByPSDEUIAction(pSDEUIAction, arrayList);
     }
@@ -1000,7 +1000,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByPSHelpArticle(pSHelpArticle);
         this.onBeforeRemoveByPSHelpArticle(pSHelpArticle, arrayList);
         for (PSHelpSection pSHelpSection : arrayList) {
-            this.remove((IEntity)pSHelpSection);
+            this.remove(pSHelpSection);
         }
         this.onAfterRemoveByPSHelpArticle(pSHelpArticle, arrayList);
     }
@@ -1018,8 +1018,8 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByRefPSHelpArticle(pSHelpArticle, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSHELPARTICLE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSHelpArticle);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPSECTION_PSHELPARTICLE_REFPSHELPARTICLEID", "", iDataEntityModel.getName(), "PSHELPSECTION", iDataEntityModel.getDataInfo((IEntity)pSHelpArticle), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSHelpArticle);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPSECTION_PSHELPARTICLE_REFPSHELPARTICLEID", "", iDataEntityModel.getName(), "PSHELPSECTION", iDataEntityModel.getDataInfo(pSHelpArticle), arrayList.get(0)));
         }
     }
 
@@ -1052,7 +1052,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByRefPSHelpArticle(pSHelpArticle);
         this.onBeforeRemoveByRefPSHelpArticle(pSHelpArticle, arrayList);
         for (PSHelpSection pSHelpSection : arrayList) {
-            this.remove((IEntity)pSHelpSection);
+            this.remove(pSHelpSection);
         }
         this.onAfterRemoveByRefPSHelpArticle(pSHelpArticle, arrayList);
     }
@@ -1070,8 +1070,8 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByLinkPSHelpResource(pSHelpResource, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSHELPRESOURCE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSHelpResource);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPSECTION_PSHELPRESOURCE_LINKPSHELPRESOURCEID", "", iDataEntityModel.getName(), "PSHELPSECTION", iDataEntityModel.getDataInfo((IEntity)pSHelpResource), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSHelpResource);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPSECTION_PSHELPRESOURCE_LINKPSHELPRESOURCEID", "", iDataEntityModel.getName(), "PSHELPSECTION", iDataEntityModel.getDataInfo(pSHelpResource), arrayList.get(0)));
         }
     }
 
@@ -1104,7 +1104,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByLinkPSHelpResource(pSHelpResource);
         this.onBeforeRemoveByLinkPSHelpResource(pSHelpResource, arrayList);
         for (PSHelpSection pSHelpSection : arrayList) {
-            this.remove((IEntity)pSHelpSection);
+            this.remove(pSHelpSection);
         }
         this.onAfterRemoveByLinkPSHelpResource(pSHelpResource, arrayList);
     }
@@ -1122,8 +1122,8 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByPSHelpResource(pSHelpResource, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSHELPRESOURCE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSHelpResource);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPSECTION_PSHELPRESOURCE_PSHELPRESOURCEID", "", iDataEntityModel.getName(), "PSHELPSECTION", iDataEntityModel.getDataInfo((IEntity)pSHelpResource), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSHelpResource);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPSECTION_PSHELPRESOURCE_PSHELPRESOURCEID", "", iDataEntityModel.getName(), "PSHELPSECTION", iDataEntityModel.getDataInfo(pSHelpResource), arrayList.get(0)));
         }
     }
 
@@ -1156,7 +1156,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByPSHelpResource(pSHelpResource);
         this.onBeforeRemoveByPSHelpResource(pSHelpResource, arrayList);
         for (PSHelpSection pSHelpSection : arrayList) {
-            this.remove((IEntity)pSHelpSection);
+            this.remove(pSHelpSection);
         }
         this.onAfterRemoveByPSHelpResource(pSHelpResource, arrayList);
     }
@@ -1174,8 +1174,8 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByPSHelpSectionTempl(pSHelpSectionTempl, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSHELPSECTIONTEMPL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSHelpSectionTempl);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPSECTION_PSHELPSECTIONTEMPL_PSHELPSECTIONTEMPLID", "", iDataEntityModel.getName(), "PSHELPSECTION", iDataEntityModel.getDataInfo((IEntity)pSHelpSectionTempl), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSHelpSectionTempl);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPSECTION_PSHELPSECTIONTEMPL_PSHELPSECTIONTEMPLID", "", iDataEntityModel.getName(), "PSHELPSECTION", iDataEntityModel.getDataInfo(pSHelpSectionTempl), arrayList.get(0)));
         }
     }
 
@@ -1208,7 +1208,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByPSHelpSectionTempl(pSHelpSectionTempl);
         this.onBeforeRemoveByPSHelpSectionTempl(pSHelpSectionTempl, arrayList);
         for (PSHelpSection pSHelpSection : arrayList) {
-            this.remove((IEntity)pSHelpSection);
+            this.remove(pSHelpSection);
         }
         this.onAfterRemoveByPSHelpSectionTempl(pSHelpSectionTempl, arrayList);
     }
@@ -1254,7 +1254,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         ArrayList<PSHelpSection> arrayList = this.selectByPPSHelpSector(pSHelpSection);
         this.onBeforeRemoveByPPSHelpSector(pSHelpSection, arrayList);
         for (PSHelpSection pSHelpSection2 : arrayList) {
-            this.remove((IEntity)pSHelpSection2);
+            this.remove(pSHelpSection2);
         }
         this.onAfterRemoveByPPSHelpSector(pSHelpSection, arrayList);
     }
@@ -1278,7 +1278,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
 
     protected void replaceParentInfo(PSHelpSection pSHelpSection, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSHelpSection, cloneSession);
+        super.replaceParentInfo(pSHelpSection, cloneSession);
         if (pSHelpSection.getPSCodeListId() != null && (iEntity = cloneSession.getEntity("PSCODELIST", (Object)pSHelpSection.getPSCodeListId())) != null) {
             this.onFillParentInfo_PSCodeList(pSHelpSection, (PSCodeList)iEntity);
         }
@@ -1309,7 +1309,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
     }
 
     protected void onRemoveEntityUncopyValues(PSHelpSection pSHelpSection, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSHelpSection, bl);
+        super.onRemoveEntityUncopyValues(pSHelpSection, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSHelpSection pSHelpSection, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1423,7 +1423,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSHelpSection, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSHelpSection, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSHelpSection, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BottomContent(boolean bl, PSHelpSection pSHelpSection, boolean bl2, boolean bl3) throws Exception {
@@ -1436,7 +1436,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BottomContent_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_BottomContent_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BOTTOMCONTENT");
@@ -1458,7 +1458,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1497,7 +1497,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Content_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_Content_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTENT");
@@ -1519,7 +1519,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Content2_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_Content2_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTENT2");
@@ -1541,7 +1541,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ContentAsCode_Default((IEntity)pSHelpSection, bl2, bl3);
+            string = this.onTestValueRule_ContentAsCode_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTENTASCODE");
@@ -1563,7 +1563,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpandMode_Default((IEntity)pSHelpSection, bl2, bl3);
+            string = this.onTestValueRule_ExpandMode_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPANDMODE");
@@ -1585,7 +1585,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_HeaderContent_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_HeaderContent_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HEADERCONTENT");
@@ -1607,7 +1607,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LinkPSHelpResourceId_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_LinkPSHelpResourceId_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LINKPSHELPRESOURCEID");
@@ -1629,7 +1629,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1654,7 +1654,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSHelpSection, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -1676,7 +1676,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OutputDir_Default((IEntity)pSHelpSection, bl2, bl3);
+            string = this.onTestValueRule_OutputDir_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("OUTPUTDIR");
@@ -1698,7 +1698,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSHelpSectorId_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PPSHelpSectorId_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSHELPSECTIONID");
@@ -1720,7 +1720,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCodeListId_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSCodeListId_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCODELISTID");
@@ -1742,7 +1742,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCodeListName_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSCodeListName_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCODELISTNAME");
@@ -1764,7 +1764,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFieldId_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFieldId_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFIELDID");
@@ -1786,7 +1786,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFieldName_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFieldName_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFIELDNAME");
@@ -1808,7 +1808,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEUIActionId_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEUIActionId_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEUIACTIONID");
@@ -1830,7 +1830,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEUIActionName_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEUIActionName_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEUIACTIONNAME");
@@ -1855,7 +1855,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpArticleId_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpArticleId_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPARTICLEID");
@@ -1880,7 +1880,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpArticleName_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpArticleName_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPARTICLENAME");
@@ -1902,7 +1902,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpResourceId_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpResourceId_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPRESOURCEID");
@@ -1927,7 +1927,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpSectionId_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpSectionId_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPSECTIONID");
@@ -1952,7 +1952,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpSectionName_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpSectionName_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPSECTIONNAME");
@@ -1974,7 +1974,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpSectionTemplId_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpSectionTemplId_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPSECTIONTEMPLID");
@@ -1996,7 +1996,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpSectionTemplName_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpSectionTemplName_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPSECTIONTEMPLNAME");
@@ -2018,7 +2018,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefPSHelpArticleId_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_RefPSHelpArticleId_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFPSHELPARTICLEID");
@@ -2040,7 +2040,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SectionParam_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_SectionParam_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SECTIONPARAM");
@@ -2062,7 +2062,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SectionParam2_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_SectionParam2_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SECTIONPARAM2");
@@ -2084,7 +2084,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SectionSN_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_SectionSN_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SECTIONSN");
@@ -2126,7 +2126,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SectionType_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_SectionType_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SECTIONTYPE");
@@ -2148,7 +2148,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -2170,7 +2170,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -2192,7 +2192,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -2214,7 +2214,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -2236,7 +2236,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSHelpSection, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -2261,7 +2261,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSHelpSection, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSHelpSection, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -2274,11 +2274,11 @@ extends PSCoreSysServiceBase<PSHelpSection> {
     }
 
     protected void onSyncEntity(PSHelpSection pSHelpSection, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSHelpSection, bl);
+        super.onSyncEntity(pSHelpSection, bl);
     }
 
     protected void onSyncIndexEntities(PSHelpSection pSHelpSection, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSHelpSection, bl);
+        super.onSyncIndexEntities(pSHelpSection, bl);
     }
 
     public Object getDataContextValue(PSHelpSection pSHelpSection, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -2286,7 +2286,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSHelpSection, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSHelpSection, string, iDataContextParam)) != null) {
             return object;
         }
         PSHelpArticle pSHelpArticle = pSHelpSection.getPSHelpArticle();
@@ -2301,7 +2301,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
     }
 
     protected void onExportMajorModel(PSHelpSection pSHelpSection, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSHelpSection, arrayList, n);
+        super.onExportMajorModel(pSHelpSection, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2934,14 +2934,14 @@ extends PSCoreSysServiceBase<PSHelpSection> {
 
     protected boolean onMergeChild(String string, String string2, PSHelpSection pSHelpSection) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSHelpSection)) {
+        if (super.onMergeChild(string, string2, pSHelpSection)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSHelpSection pSHelpSection) throws Exception {
-        super.onUpdateParent((IEntity)pSHelpSection);
+        super.onUpdateParent(pSHelpSection);
     }
 
     @Override
@@ -3111,41 +3111,28 @@ extends PSCoreSysServiceBase<PSHelpSection> {
     protected void onExportCurModelV2(PSHelpSection pSHelpSection, ObjectNode objectNode, String string, boolean bl) throws Exception {
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSHELPSECTION_PSHELPSECTION_PPSHELPSECTIONID")) {
-            Object object;
-            PSHelpSection pSHelpSection22;
-            Object object2;
-            Object object3;
-            Object object4;
             PSHelpSectionService pSHelpSectionService = (PSHelpSectionService)ServiceGlobal.getService(PSHelpSectionService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSHelpSection> arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSHELPSECTION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSHELPSECTION", (Object)pSHelpSection.getPSHelpSectionId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSHelpSection22 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSHelpSection22);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String sectionJson : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)sectionJson)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(sectionJson));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSHelpSection>();
-                object4 = pSHelpSectionService.selectByPPSHelpSector(pSHelpSection);
-                object3 = StringHelper.format((String)"PSHELPSECTION#%1$s", (Object)pSHelpSection.getPSHelpSectionId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSHelpSection22 = object2.next();
-                    object = pSHelpSectionService.getModelV2ResScope((IEntity)pSHelpSection22);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSHelpSection)PSModelV2Helper.toJSONObject((IEntity)pSHelpSection22, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String resScope = StringHelper.format((String)"PSHELPSECTION#%1$s", (Object)pSHelpSection.getPSHelpSectionId());
+                for (PSHelpSection section : pSHelpSectionService.selectByPPSHelpSector(pSHelpSection)) {
+                    String sectionScope = pSHelpSectionService.getModelV2ResScope(section);
+                    if (StringHelper.compare(resScope, sectionScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(section, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSHelpSectionService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode sectionsNode = objectNode.putArray(pSHelpSectionService.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -3173,10 +3160,10 @@ extends PSCoreSysServiceBase<PSHelpSection> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSHelpSection pSHelpSection22 : arrayList) {
-                    object = new PSHelpSection();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSHelpSection22, false);
-                    object3.add((JsonNode)pSHelpSectionService.exportModelV2(object, string));
+                for (ObjectNode sectionNode : arrayList) {
+                    PSHelpSection section = new PSHelpSection();
+                    PSModelV2Helper.fromJSONObject((IDataObject)section, sectionNode, false);
+                    sectionsNode.add((JsonNode)pSHelpSectionService.exportModelV2(section, string));
                 }
             }
         }
@@ -3259,7 +3246,7 @@ extends PSCoreSysServiceBase<PSHelpSection> {
             PSHelpSectionService pSHelpSectionService = (PSHelpSectionService)ServiceGlobal.getService(PSHelpSectionService.class, (SessionFactory)this.getSessionFactory());
             PSHelpSection pSHelpSection2 = new PSHelpSection();
             pSHelpSection2.setPSHelpSectionId(pSMOSFile.getPSModelId());
-            if (!pSHelpSectionService.get((IEntity)pSHelpSection2, true)) {
+            if (!pSHelpSectionService.get(pSHelpSection2, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSHelpSection2.getPPSHelpSectorId(), (String)pSHelpSection.getPSHelpSectionId(), (boolean)false) == 0) {
@@ -3267,12 +3254,12 @@ extends PSCoreSysServiceBase<PSHelpSection> {
             }
             ObjectNode objectNode = pSHelpSectionService.exportModelV2(pSHelpSection2);
             pSHelpSection2.reset();
-            if (!pSHelpSectionService.setModelV2ResScope((IEntity)pSHelpSection2, "PSHELPSECTION", pSHelpSection.getPSHelpSectionId())) {
+            if (!pSHelpSectionService.setModelV2ResScope(pSHelpSection2, "PSHELPSECTION", pSHelpSection.getPSHelpSectionId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSHelpSectionService.importModelV2(pSHelpSection2, objectNode);
             SessionFactoryManager.commit();
-            return pSHelpSectionService.getFile((IEntity)pSHelpSection2);
+            return pSHelpSectionService.getFile(pSHelpSection2);
         }
         return null;
     }

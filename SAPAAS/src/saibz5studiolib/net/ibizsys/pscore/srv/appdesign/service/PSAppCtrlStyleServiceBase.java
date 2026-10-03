@@ -139,9 +139,9 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
             PSCtrlType pSCtrlType = (PSCtrlType)iService.getDEModel().createEntity();
             pSCtrlType.set("PSCTRLTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCtrlType);
+                iService.getTemp(pSCtrlType);
             } else {
-                iService.get((IEntity)pSCtrlType);
+                iService.get(pSCtrlType);
             }
             this.onFillParentInfo_PSCtrlType(pSAppCtrlStyle, pSCtrlType);
             return;
@@ -151,14 +151,14 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSAppCtrlStyle, pSSysApp);
             return;
         }
-        super.onFillParentInfo((IEntity)pSAppCtrlStyle, string, string2, string3);
+        super.onFillParentInfo(pSAppCtrlStyle, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSAppCtrlStyle, bl);
+        super.onFillEntityFullInfo(pSAppCtrlStyle, bl);
         this.onFillEntityFullInfo_PSCtrlType(pSAppCtrlStyle, bl);
         this.onFillEntityFullInfo_PSSysApp(pSAppCtrlStyle, bl);
     }
@@ -191,7 +191,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
     }
 
     protected void onWriteBackParent(PSAppCtrlStyle pSAppCtrlStyle, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSAppCtrlStyle, bl);
+        super.onWriteBackParent(pSAppCtrlStyle, bl);
     }
 
     public ArrayList<PSAppCtrlStyle> selectByPSCtrlType(PSCtrlTypeBase pSCtrlTypeBase) throws Exception {
@@ -246,8 +246,8 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
         ArrayList<PSAppCtrlStyle> arrayList = this.selectByPSCtrlType(pSCtrlType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCTRLTYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCtrlType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPCTRLSTYLE_PSCTRLTYPE_PSCTRLTYPEID", "", iDataEntityModel.getName(), "PSAPPCTRLSTYLE", iDataEntityModel.getDataInfo((IEntity)pSCtrlType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCtrlType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPCTRLSTYLE_PSCTRLTYPE_PSCTRLTYPEID", "", iDataEntityModel.getName(), "PSAPPCTRLSTYLE", iDataEntityModel.getDataInfo(pSCtrlType), arrayList.get(0)));
         }
     }
 
@@ -280,7 +280,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
         ArrayList<PSAppCtrlStyle> arrayList = this.selectByPSCtrlType(pSCtrlType);
         this.onBeforeRemoveByPSCtrlType(pSCtrlType, arrayList);
         for (PSAppCtrlStyle pSAppCtrlStyle : arrayList) {
-            this.remove((IEntity)pSAppCtrlStyle);
+            this.remove(pSAppCtrlStyle);
         }
         this.onAfterRemoveByPSCtrlType(pSCtrlType, arrayList);
     }
@@ -326,7 +326,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
         ArrayList<PSAppCtrlStyle> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSAppCtrlStyle pSAppCtrlStyle : arrayList) {
-            this.remove((IEntity)pSAppCtrlStyle);
+            this.remove(pSAppCtrlStyle);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -347,7 +347,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
 
     protected void replaceParentInfo(PSAppCtrlStyle pSAppCtrlStyle, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSAppCtrlStyle, cloneSession);
+        super.replaceParentInfo(pSAppCtrlStyle, cloneSession);
         if (pSAppCtrlStyle.getPSCtrlTypeId() != null && (iEntity = cloneSession.getEntity("PSCTRLTYPE", (Object)pSAppCtrlStyle.getPSCtrlTypeId())) != null) {
             this.onFillParentInfo_PSCtrlType(pSAppCtrlStyle, (PSCtrlType)iEntity);
         }
@@ -357,7 +357,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
     }
 
     protected void onRemoveEntityUncopyValues(PSAppCtrlStyle pSAppCtrlStyle, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSAppCtrlStyle, bl);
+        super.onRemoveEntityUncopyValues(pSAppCtrlStyle, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSAppCtrlStyle pSAppCtrlStyle, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -381,7 +381,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
         if ((entityFieldError = this.onCheckField_UserParams(bl, pSAppCtrlStyle, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSAppCtrlStyle, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSAppCtrlStyle, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSAppCtrlStyle pSAppCtrlStyle, boolean bl2, boolean bl3) throws Exception {
@@ -394,7 +394,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSAppCtrlStyle, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSAppCtrlStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -419,7 +419,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppCtrlStyleId_Default((IEntity)pSAppCtrlStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppCtrlStyleId_Default(pSAppCtrlStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPCTRLSTYLEID");
@@ -444,7 +444,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppCtrlStyleName_Default((IEntity)pSAppCtrlStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppCtrlStyleName_Default(pSAppCtrlStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPCTRLSTYLENAME");
@@ -469,7 +469,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeId_Default((IEntity)pSAppCtrlStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeId_Default(pSAppCtrlStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPEID");
@@ -494,7 +494,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSAppCtrlStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSAppCtrlStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -516,7 +516,7 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserParams_Default((IEntity)pSAppCtrlStyle, bl2, bl3);
+            string2 = this.onTestValueRule_UserParams_Default(pSAppCtrlStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERPARAMS");
@@ -529,11 +529,11 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
     }
 
     protected void onSyncEntity(PSAppCtrlStyle pSAppCtrlStyle, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSAppCtrlStyle, bl);
+        super.onSyncEntity(pSAppCtrlStyle, bl);
     }
 
     protected void onSyncIndexEntities(PSAppCtrlStyle pSAppCtrlStyle, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSAppCtrlStyle, bl);
+        super.onSyncIndexEntities(pSAppCtrlStyle, bl);
     }
 
     public Object getDataContextValue(PSAppCtrlStyle pSAppCtrlStyle, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -541,14 +541,14 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSAppCtrlStyle, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSAppCtrlStyle, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSAppCtrlStyle pSAppCtrlStyle, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSAppCtrlStyle, arrayList, n);
+        super.onExportMajorModel(pSAppCtrlStyle, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -721,14 +721,14 @@ extends PSCoreSysServiceBase<PSAppCtrlStyle> {
 
     protected boolean onMergeChild(String string, String string2, PSAppCtrlStyle pSAppCtrlStyle) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSAppCtrlStyle)) {
+        if (super.onMergeChild(string, string2, pSAppCtrlStyle)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSAppCtrlStyle pSAppCtrlStyle) throws Exception {
-        super.onUpdateParent((IEntity)pSAppCtrlStyle);
+        super.onUpdateParent(pSAppCtrlStyle);
     }
 
     @Override

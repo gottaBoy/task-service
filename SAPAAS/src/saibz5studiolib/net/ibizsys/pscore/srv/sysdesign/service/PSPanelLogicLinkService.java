@@ -81,10 +81,10 @@ extends PSPanelLogicLinkServiceBase {
                 }
                 if (hashMap.size() > 0) {
                     for (PSPanelLLCond pSPanelLLCond : hashMap.values()) {
-                        pSPanelLLCondService.removeTemp((IEntity)pSPanelLLCond);
+                        pSPanelLLCondService.removeTemp(pSPanelLLCond);
                     }
                 }
-                PSPanelLogicLinkService.this.updateTemp((IEntity)pSPanelLogicLink2);
+                PSPanelLogicLinkService.this.updateTemp(pSPanelLogicLink2);
             }
         });
     }
@@ -92,7 +92,7 @@ extends PSPanelLogicLinkServiceBase {
     protected void updatePSPanelLLConds(PSPanelLogicLink pSPanelLogicLink, PSPanelLLCond pSPanelLLCond, XmlNode xmlNode, HashMap<String, PSPanelLLCond> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSPanelLLCondService pSPanelLLCondService = (PSPanelLLCondService)ServiceGlobal.getService((String)PSPanelLLCondService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -125,7 +125,7 @@ extends PSPanelLogicLinkServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSPanelLLCondService.updateTemp((IEntity)pSPanelLLCond2);
+                    pSPanelLLCondService.updateTemp(pSPanelLLCond2);
                 }
                 xmlNode2.resetAttributes();
                 pSPanelLLCond2.fillXmlNode(xmlNode2, false);
@@ -172,10 +172,10 @@ extends PSPanelLogicLinkServiceBase {
 
     @Override
     public void getWithModel(PSPanelLogicLink pSPanelLogicLink) throws Exception {
-        this.getTemp((IEntity)pSPanelLogicLink);
+        this.getTemp(pSPanelLogicLink);
         if (StringHelper.isNullOrEmpty((String)pSPanelLogicLink.getCondModel())) {
             this.fillLogicLinkModel(pSPanelLogicLink);
-            this.updateTemp((IEntity)pSPanelLogicLink);
+            this.updateTemp(pSPanelLogicLink);
         }
     }
 
@@ -240,7 +240,7 @@ extends PSPanelLogicLinkServiceBase {
 
     @Override
     protected void onBeforeUpdateTemp(PSPanelLogicLink pSPanelLogicLink) throws Exception {
-        pSPanelLogicLink.setLinkInfo(this.calcPSPanelLogicLinkLabel(pSPanelLogicLink, (PSPanelLogicLink)this.getLast((IEntity)pSPanelLogicLink)));
+        pSPanelLogicLink.setLinkInfo(this.calcPSPanelLogicLinkLabel(pSPanelLogicLink, (PSPanelLogicLink)this.getLast(pSPanelLogicLink)));
         super.onBeforeUpdateTemp(pSPanelLogicLink);
     }
 
@@ -275,7 +275,7 @@ extends PSPanelLogicLinkServiceBase {
             object = new PSPanelLogicNode();
             ((PSPanelLogicNodeBase)object).setPSPanelLogicNodeName(string);
             ((PSPanelLogicNodeBase)object).setPSSysViewPanelLogicId(pSPanelLogicLink.getPSSysViewPanelLogicId());
-            pSPanelLogicNodeService.selectTemp(object, false);
+            pSPanelLogicNodeService.selectTemp((PSPanelLogicNode)object, false);
             pSPanelLogicLink.setSrcPSPanelLogicNodeId(((PSPanelLogicNodeBase)object).getPSPanelLogicNodeId());
             xmlNode.setAttribute("SRCPSPANELLOGICNODEID", ((PSPanelLogicNodeBase)object).getPSPanelLogicNodeId());
         }

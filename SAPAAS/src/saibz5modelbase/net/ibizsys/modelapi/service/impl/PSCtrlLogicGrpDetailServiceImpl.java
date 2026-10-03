@@ -76,7 +76,7 @@ implements IPSCtrlLogicGrpDetailService {
     @Override
     protected List<PSCtrlLogicGrpDetail> onListAll() throws Exception {
         ArrayList<PSCtrlLogicGrpDetail> list = new ArrayList<PSCtrlLogicGrpDetail>();
-        List psctrllogicgroups = PSModelServiceUtil.getInstance().getPSCtrlLogicGroupService().listAll();
+        List<PSCtrlLogicGroup> psctrllogicgroups = PSModelServiceUtil.getInstance().getPSCtrlLogicGroupService().listAll();
         if (psctrllogicgroups != null) {
             for (PSCtrlLogicGroup parent : psctrllogicgroups) {
                 List<PSCtrlLogicGrpDetail> items = this.listByPSCtrlLogicGroup(parent);

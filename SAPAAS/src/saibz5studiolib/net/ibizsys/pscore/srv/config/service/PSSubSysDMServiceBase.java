@@ -135,14 +135,14 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
             PSSubSys pSSubSys = (PSSubSys)iService.getDEModel().createEntity();
             pSSubSys.set("PSSUBSYSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSubSys);
+                iService.getTemp(pSSubSys);
             } else {
-                iService.get((IEntity)pSSubSys);
+                iService.get(pSSubSys);
             }
             this.onFillParentInfo_PSSubSys(pSSubSysDM, pSSubSys);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSubSysDM, string, string2, string3);
+        super.onFillParentInfo(pSSubSysDM, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSubSysDM, bl);
+        super.onFillEntityFullInfo(pSSubSysDM, bl);
         this.onFillEntityFullInfo_PSSubSys(pSSubSysDM, bl);
     }
 
@@ -176,7 +176,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
     }
 
     protected void onWriteBackParent(PSSubSysDM pSSubSysDM, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSubSysDM, bl);
+        super.onWriteBackParent(pSSubSysDM, bl);
     }
 
     public ArrayList<PSSubSysDM> selectByPSSubSys(PSSubSysBase pSSubSysBase) throws Exception {
@@ -235,7 +235,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
         ArrayList<PSSubSysDM> arrayList = this.selectByPSSubSys(pSSubSys);
         this.onBeforeRemoveByPSSubSys(pSSubSys, arrayList);
         for (PSSubSysDM pSSubSysDM : arrayList) {
-            this.remove((IEntity)pSSubSysDM);
+            this.remove(pSSubSysDM);
         }
         this.onAfterRemoveByPSSubSys(pSSubSys, arrayList);
     }
@@ -256,14 +256,14 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
 
     protected void replaceParentInfo(PSSubSysDM pSSubSysDM, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSubSysDM, cloneSession);
+        super.replaceParentInfo(pSSubSysDM, cloneSession);
         if (pSSubSysDM.getPSSubSysId() != null && (iEntity = cloneSession.getEntity("PSSUBSYS", (Object)pSSubSysDM.getPSSubSysId())) != null) {
             this.onFillParentInfo_PSSubSys(pSSubSysDM, (PSSubSys)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSubSysDM pSSubSysDM, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSubSysDM, bl);
+        super.onRemoveEntityUncopyValues(pSSubSysDM, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSubSysDM pSSubSysDM, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -299,7 +299,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
         if ((entityFieldError = this.onCheckField_PSSubSysName(bl, pSSubSysDM, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSubSysDM, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSubSysDM, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DataSQL(boolean bl, PSSubSysDM pSSubSysDM, boolean bl2, boolean bl3) throws Exception {
@@ -312,7 +312,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DataSQL_Default((IEntity)pSSubSysDM, bl2, bl3);
+            string2 = this.onTestValueRule_DataSQL_Default(pSSubSysDM, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DATASQL");
@@ -334,7 +334,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSubSysDM, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSubSysDM, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -359,7 +359,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModelSQL_Default((IEntity)pSSubSysDM, bl2, bl3);
+            string2 = this.onTestValueRule_ModelSQL_Default(pSSubSysDM, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODELSQL");
@@ -381,7 +381,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModelSQL2_Default((IEntity)pSSubSysDM, bl2, bl3);
+            string2 = this.onTestValueRule_ModelSQL2_Default(pSSubSysDM, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODELSQL2");
@@ -403,7 +403,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModelSQL3_Default((IEntity)pSSubSysDM, bl2, bl3);
+            string2 = this.onTestValueRule_ModelSQL3_Default(pSSubSysDM, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODELSQL3");
@@ -425,7 +425,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModelSQL4_Default((IEntity)pSSubSysDM, bl2, bl3);
+            string2 = this.onTestValueRule_ModelSQL4_Default(pSSubSysDM, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODELSQL4");
@@ -450,7 +450,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSubSysDMId_Default((IEntity)pSSubSysDM, bl2, bl3);
+            string2 = this.onTestValueRule_PSSubSysDMId_Default(pSSubSysDM, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSUBSYSDMID");
@@ -475,7 +475,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSubSysDMName_Default((IEntity)pSSubSysDM, bl2, bl3);
+            string2 = this.onTestValueRule_PSSubSysDMName_Default(pSSubSysDM, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSUBSYSDMNAME");
@@ -497,7 +497,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSubSysId_Default((IEntity)pSSubSysDM, bl2, bl3);
+            string2 = this.onTestValueRule_PSSubSysId_Default(pSSubSysDM, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSUBSYSID");
@@ -519,7 +519,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSubSysName_Default((IEntity)pSSubSysDM, bl2, bl3);
+            string2 = this.onTestValueRule_PSSubSysName_Default(pSSubSysDM, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSUBSYSNAME");
@@ -532,11 +532,11 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
     }
 
     protected void onSyncEntity(PSSubSysDM pSSubSysDM, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSubSysDM, bl);
+        super.onSyncEntity(pSSubSysDM, bl);
     }
 
     protected void onSyncIndexEntities(PSSubSysDM pSSubSysDM, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSubSysDM, bl);
+        super.onSyncIndexEntities(pSSubSysDM, bl);
     }
 
     public Object getDataContextValue(PSSubSysDM pSSubSysDM, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -544,7 +544,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSubSysDM, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSubSysDM, string, iDataContextParam)) != null) {
             return object;
         }
         PSSubSys pSSubSys = pSSubSysDM.getPSSubSys();
@@ -555,7 +555,7 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
     }
 
     protected void onExportMajorModel(PSSubSysDM pSSubSysDM, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSubSysDM, arrayList, n);
+        super.onExportMajorModel(pSSubSysDM, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -758,14 +758,14 @@ extends PSCoreSysServiceBase<PSSubSysDM> {
 
     protected boolean onMergeChild(String string, String string2, PSSubSysDM pSSubSysDM) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSubSysDM)) {
+        if (super.onMergeChild(string, string2, pSSubSysDM)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSubSysDM pSSubSysDM) throws Exception {
-        super.onUpdateParent((IEntity)pSSubSysDM);
+        super.onUpdateParent(pSSubSysDM);
     }
 
     @Override

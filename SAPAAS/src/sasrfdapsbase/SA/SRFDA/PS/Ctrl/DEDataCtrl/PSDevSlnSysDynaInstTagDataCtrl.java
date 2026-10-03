@@ -61,9 +61,9 @@ extends PSDEDataCtrl {
                     public void execute(ITransaction iTransaction) throws Exception {
                         PSDevSlnSysDynaInstTagService psDevSlnSysDynaInstTagService = (PSDevSlnSysDynaInstTagService)ServiceGlobal.getService(PSDevSlnSysDynaInstTagService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                         if (bInsert2) {
-                            psDevSlnSysDynaInstTagService.create((IEntity)psDevSlnSysDynaInstTag);
+                            psDevSlnSysDynaInstTagService.create(psDevSlnSysDynaInstTag);
                         } else {
-                            psDevSlnSysDynaInstTagService.update((IEntity)psDevSlnSysDynaInstTag);
+                            psDevSlnSysDynaInstTagService.update(psDevSlnSysDynaInstTag);
                         }
                     }
                 });
@@ -96,7 +96,7 @@ extends PSDEDataCtrl {
 
                 public void execute(ITransaction iTransaction) throws Exception {
                     PSDevSlnSysDynaInstTagService psDevSlnSysDynaInstTagService = (PSDevSlnSysDynaInstTagService)ServiceGlobal.getService(PSDevSlnSysDynaInstTagService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                    psDevSlnSysDynaInstTagService.get((IEntity)psDevSlnSysDynaInstTag);
+                    psDevSlnSysDynaInstTagService.get(psDevSlnSysDynaInstTag);
                 }
             });
             PSDEDataCtrl.convertEntity((IEntity)psDevSlnSysDynaInstTag, dataEntity);
@@ -109,4 +109,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

@@ -113,9 +113,9 @@ implements IPSSysDictCatService {
 
     @Override
     protected List<PSSysDictCat> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysDictCat> list = new ArrayList<PSSysDictCat>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysDictCat> items = this.listByPSModule(parent);

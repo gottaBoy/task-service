@@ -55,14 +55,14 @@ implements IPSBookingASType {
         PSASBooking psASBooking = (PSASBooking)iPSResBooking.getResBookingData();
         PSAppServer psAppServer = new PSAppServer();
         psAppServer.setPSAppServerId(psASBooking.getPSAppServerId());
-        this.psAppServerService.get((IEntity)psAppServer);
+        this.psAppServerService.get(psAppServer);
         String strNewPassword = PasswordHelper.generate();
         int nStartPos = DataObject.getIntegerValue((IDataObject)psAppServer, (String)"BEGINPORT", (int)8080);
         int nEndPos = DataObject.getIntegerValue((IDataObject)psAppServer, (String)"ENDPORT", (int)18080);
         int nNewPort = nStartPos + random.nextInt(nEndPos - nStartPos);
         psAppServer.setHttpPort(Integer.valueOf(nNewPort));
         psAppServer.setPasswd(strNewPassword);
-        this.psAppServerService.update((IEntity)psAppServer);
+        this.psAppServerService.update(psAppServer);
         SA.SRFDA.PS.Data.PSAppServer psAppServerV3 = new SA.SRFDA.PS.Data.PSAppServer();
         PSDEDataCtrl.convertEntity((IEntity)psAppServer, psAppServerV3);
         IPSAppServerType iPSAppServerType = this.getPSModelStorage().getPSAppServerType(psAppServer.getASType());
@@ -75,14 +75,14 @@ implements IPSBookingASType {
         PSASBooking psASBooking = (PSASBooking)iPSResBooking.getResBookingData();
         PSAppServer psAppServer = new PSAppServer();
         psAppServer.setPSAppServerId(psASBooking.getPSAppServerId());
-        this.psAppServerService.get((IEntity)psAppServer);
+        this.psAppServerService.get(psAppServer);
         String strNewPassword = PasswordHelper.generate();
         int nStartPos = DataObject.getIntegerValue((IDataObject)psAppServer, (String)"BEGINPORT", (int)8080);
         int nEndPos = DataObject.getIntegerValue((IDataObject)psAppServer, (String)"ENDPORT", (int)18080);
         int nNewPort = nStartPos + random.nextInt(nEndPos - nStartPos);
         psAppServer.setHttpPort(Integer.valueOf(nNewPort));
         psAppServer.setPasswd(strNewPassword);
-        this.psAppServerService.update((IEntity)psAppServer);
+        this.psAppServerService.update(psAppServer);
         SA.SRFDA.PS.Data.PSAppServer psAppServerV3 = new SA.SRFDA.PS.Data.PSAppServer();
         PSDEDataCtrl.convertEntity((IEntity)psAppServer, psAppServerV3);
         IPSAppServerType iPSAppServerType = this.getPSModelStorage().getPSAppServerType(psAppServer.getASType());
@@ -90,4 +90,3 @@ implements IPSBookingASType {
         super.onUninitResBooking(iPSResBooking);
     }
 }
-

@@ -1,12 +1,7 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.controller;
 
-import java.util.Iterator;
+import org.hibernate.SessionFactory;
+
 import net.ibizsys.paas.appmodel.IApplicationModel;
 import net.ibizsys.paas.core.CallResult;
 import net.ibizsys.paas.ctrlhandler.ICtrlHandler;
@@ -15,94 +10,369 @@ import net.ibizsys.paas.demodel.IDataEntityModel;
 import net.ibizsys.paas.service.IService;
 import net.ibizsys.paas.sysmodel.ISystemModel;
 import net.ibizsys.paas.web.IWebContext;
-import org.hibernate.SessionFactory;
 
+/**
+ * 视图控制器接口
+ * 
+ * @author lionlau
+ *
+ */
 public interface IViewController {
-    public static final String VIEWACTION_LOADMODEL = "loadmodel";
-    public static final String VIEWACTION_FETCHMSG = "fetchmsg";
-    public static final String VIEWACTION_FETCHWIZARD = "fetchwizard";
-    public static final String VIEWACTION_LOADAPPDATA = "loadappdata";
-    public static final String VIEWACTION_UIACTION = "uiaction";
-    public static final String VIEWACTION_LOADUIACTION = "loaduiaction";
+	
+	/**
+	 * 视图后台请求：加载视图模型
+	 */
+	public static String VIEWACTION_LOADMODEL = "loadmodel";
 
-    public String getId();
+	/**
+	 * 视图后台请求：查询视图消息
+	 */
+	public static String VIEWACTION_FETCHMSG = "fetchmsg";
+	
+	/**
+	 * 视图后台请求：查询视图向导
+	 */
+	public static String VIEWACTION_FETCHWIZARD = "fetchwizard";
+	
+	/**
+	 * 视图后台请求：获取应用上下文数据
+	 */
+	public static String VIEWACTION_LOADAPPDATA = "loadappdata";
+	
+	
+	/**
+	 * 用户界面行为处理
+	 */
+	final static String VIEWACTION_UIACTION = "uiaction";
 
-    public IWebContext getWebContext();
+	/**
+	 * 加载运行时界面行为模型
+	 */
+	final static String VIEWACTION_LOADUIACTION = "loaduiaction";
+	
+	
+	/**
+	 * 获取视图控制器标识
+	 * 
+	 * @return
+	 */
+	String getId();
 
-    public void prepareViewController() throws Exception;
+	/**
+	 * 获取当前访问上下文
+	 * 
+	 * @return
+	 */
+	IWebContext getWebContext();
 
-    public boolean isPrepareViewController();
+	/**
+	 * 准备视图控制器
+	 * 
+	 * @throws Exception
+	 */
+	void prepareViewController() throws Exception;
 
-    public IApplicationModel getAppModel();
 
-    public ISystemModel getSystemModel();
+	/**
+	 * 是否已经准备视图
+	 * 
+	 * @return
+	 */
+	boolean isPrepareViewController();
 
-    public IDataEntityModel getDEModel();
+	/**
+	 * 获取应用程序模型
+	 * 
+	 * @return
+	 */
+	IApplicationModel getAppModel();
 
-    public void registerCtrlModel(String var1, ICtrlModel var2) throws Exception;
+	/**
+	 * 获取系统模型
+	 * 
+	 * @return
+	 */
+	ISystemModel getSystemModel();
 
-    public void registerCtrlHandler(String var1, ICtrlHandler var2) throws Exception;
+	/**
+	 * 获取实体模型
+	 * 
+	 * @return
+	 */
+	IDataEntityModel getDEModel();
 
-    public ICtrlModel getCtrlModel(String var1) throws Exception;
+	/**
+	 * 注册控件模型
+	 * 
+	 * @param strCtrlId 控件标识
+	 * @param iCtrlModel 控件模型
+	 * @throws Exception
+	 */
+	void registerCtrlModel(String strCtrlId, ICtrlModel iCtrlModel) throws Exception;
 
-    public ICtrlHandler getCtrlHandler(String var1) throws Exception;
+	/**
+	 * 注册控件处理对象
+	 * 
+	 * @param strCtrlId 控件标识
+	 * @param iCtrlHandler 控件处理器
+	 * @throws Exception
+	 */
+	void registerCtrlHandler(String strCtrlId, ICtrlHandler iCtrlHandler) throws Exception;
 
-    public IService getService();
+	/**
+	 * 获取控件模型
+	 * 
+	 * @param strName 控件名称
+	 * @return
+	 * @throws Exception
+	 */
+	ICtrlModel getCtrlModel(String strName) throws Exception;
 
-    public boolean isPickupView();
+	/**
+	 * 获取控件处理对象
+	 * 
+	 * @param strName 控件名称
+	 * @return
+	 * @throws Exception
+	 */
+	ICtrlHandler getCtrlHandler(String strName) throws Exception;
 
-    public void setSessionFactory(SessionFactory var1);
+	/**
+	 * 获取服务对象
+	 * 
+	 * @return
+	 */
+	IService getService();
 
-    public SessionFactory getSessionFactory();
+	/**
+	 * 是否为拾取视图
+	 * 
+	 * @return
+	 */
+	boolean isPickupView();
 
-    public String getCaption();
+	/**
+	 * 设置会话工厂
+	 * 
+	 * @param sessionFactory
+	 */
+	void setSessionFactory(SessionFactory sessionFactory);
 
-    public String getCaption(boolean var1);
+	/**
+	 * 获取会话工厂
+	 * 
+	 * @return
+	 */
+	SessionFactory getSessionFactory();
 
-    public String getTitle();
+	/**
+	 * 获取视图标题
+	 * 
+	 * @return
+	 */
+	String getCaption();
+	
+	
+	/**
+	 * 获取视图标题
+	 * @bLocale 是否本地化
+	 *  
+	 * @return
+	 */
+	String getCaption(boolean bLocale);
+	
 
-    public String getSubCaption();
+	/**
+	 * 获取视图抬头
+	 * 
+	 * @return
+	 */
+	String getTitle();
 
-    public String getTitle(boolean var1);
+	/**
+	 * 获取视图子标题
+	 * 
+	 * @return
+	 */
+	String getSubCaption();
+	
+	
+	/**
+	 * 获取视图抬头
+	 * @bLocale 是否本地化
+	 * @return
+	 */
+	String getTitle(boolean bLocale);
 
-    public String getSubCaption(boolean var1);
+	/**
+	 * 获取视图子标题
+	 * @bLocale 是否本地化
+	 * @return
+	 */
+	String getSubCaption(boolean bLocale);
+	
 
-    public Object getAttribute(String var1) throws Exception;
+	/**
+	 * 获取视图属性
+	 * 
+	 * @param strKey
+	 * @return
+	 */
+	Object getAttribute(String strKey) throws Exception;
 
-    public boolean getAttribute(String var1, boolean var2) throws Exception;
+	/**
+	 * 获取boolean 视图属性
+	 * 
+	 * @param strKey
+	 * @param bDefault 默认值
+	 * @return
+	 */
+	boolean getAttribute(String strKey, boolean bDefault) throws Exception;
 
-    public String getAttribute(String var1, String var2) throws Exception;
+	/**
+	 * 获取String 视图属性
+	 * 
+	 * @param strKey
+	 * @param strDefault 默认值
+	 * @return
+	 */
+	String getAttribute(String strKey, String strDefault) throws Exception;
 
-    public int getAttribute(String var1, int var2) throws Exception;
+	/**
+	 * 获取Integer 视图属性
+	 * 
+	 * @param strKey
+	 * @param nDefault 默认值
+	 * @return
+	 */
+	int getAttribute(String strKey, int nDefault) throws Exception;
 
-    public double getAttribute(String var1, double var2) throws Exception;
+	/**
+	 * 获取Double 视图属性
+	 * 
+	 * @param strKey
+	 * @param fDefault 默认值
+	 * @return
+	 */
+	double getAttribute(String strKey, double fDefault) throws Exception;
 
-    public void setAttribute(String var1, Object var2) throws Exception;
+	/**
+	 * 设置视图属性
+	 * 
+	 * @param strKey
+	 * @param objValue
+	 */
+	void setAttribute(String strKey, Object objValue) throws Exception;
 
-    public int getAccessUserMode();
+	/**
+	 * 获取视图的访问用户模式，值参考 net.ibizsys.paas.security.AccessUserModes
+	 * 
+	 * @return
+	 */
+	int getAccessUserMode();
 
-    public String getAccessKey();
+	/**
+	 * 获取视图的访问标识，在视图访问模式为 AccessUserModes.LOGINUSERWITHKEY 时进一步获取访问标识
+	 * 
+	 * @return
+	 */
+	String getAccessKey();
 
-    public String getMSTag();
+	/**
+	 * 获取视图的主数据状态
+	 * 
+	 * @return
+	 */
+	String getMSTag();
 
-    public String getViewMsgGroupId();
+	/**
+	 * 获取视图消息组标识
+	 * 
+	 * @return
+	 */
+	String getViewMsgGroupId();
 
-    public Iterator<String> getUIActions() throws Exception;
+	/**
+	 * 获取界面行为集合
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	java.util.Iterator<String> getUIActions() throws Exception;
 
-    public Iterator<String> getDEDataAccessActions(String var1);
+	/**
+	 * 获取视图中对应实体的界面访问行为
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<String> getDEDataAccessActions(String strDEName);
+	
+	
+	/**
+	 * 获取视图向导组标识
+	 * 
+	 * @return
+	 */
+	String getViewWizardGroupId();
 
-    public String getViewWizardGroupId();
+	
+	
+	/**
+	 * 测试是否可以访问此页面
+	 * @param iWebContext
+	 * @param bSendResult 如不通过，以JSON形式返回结果到客户端
+	 * @return
+	 * @throws Exception
+	 */
+	boolean testUserAccess(IWebContext iWebContext,boolean bSendResult) throws Exception ;
+	
+	
+	
+	/**
+	 * 测试是否可以访问此页面（返回不通过结果）
+	 * @param iWebContext
+	 * @return
+	 * @throws Exception
+	 */
+	boolean testUserAccess(IWebContext iWebContext) throws Exception ;
+	
+	
+	
+	/**
+	 * 获取标题语言资源标识
+	 * @return
+	 */
+	String getCapLanResTag();
+	
+	
+	
+	/**
+	 * 获取子标题语言资源标识
+	 * @return
+	 */
+	String getSubCapLanResTag();
+	
+	
+	/**
+	 * 获取抬头语言资源标识
+	 * @return
+	 */
+	String getTitleLanResTag();
+	
+	
+	
+	/**
+	 * 获取视图的实体数据访问行为能力
+	 * @param iDataEntityModel
+	 * @param object 数据对象
+	 * @param strAction
+	 * @param bCache
+	 * @return
+	 * @throws Exception
+	 */
+	CallResult testDEDataAccessAction(IDataEntityModel iDataEntityModel,Object object, String strAction, boolean bCache)throws Exception;
 
-    public boolean testUserAccess(IWebContext var1, boolean var2) throws Exception;
-
-    public boolean testUserAccess(IWebContext var1) throws Exception;
-
-    public String getCapLanResTag();
-
-    public String getSubCapLanResTag();
-
-    public String getTitleLanResTag();
-
-    public CallResult testDEDataAccessAction(IDataEntityModel var1, Object var2, String var3, boolean var4) throws Exception;
+	
+	
+	
 }
-

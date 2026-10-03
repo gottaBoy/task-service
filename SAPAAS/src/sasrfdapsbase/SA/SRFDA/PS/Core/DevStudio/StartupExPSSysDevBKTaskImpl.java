@@ -123,7 +123,7 @@ extends PSSysDevBKTaskImplBase {
                     PSDCRegistryItemService psDCRegistryItemService = (PSDCRegistryItemService)ServiceGlobal.getService(PSDCRegistryItemService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                     PSDCRegistryItem psDCRegistryItem = new PSDCRegistryItem();
                     psDCRegistryItem.setPSDCRegistryItemId(strPSDCRegistryItemId);
-                    if (!psDCRegistryItemService.get((IEntity)psDCRegistryItem, true)) {
+                    if (!psDCRegistryItemService.get(psDCRegistryItem, true)) {
                         throw new Exception(String.format("\u8282\u70b9[%1$s]\u6307\u5b9a\u955c\u50cf[%2$s]\u4e0d\u5b58\u5728", iPSDCMSPlatformNode.getName(), strPSDCRegistryItemId));
                     }
                     this.nodePSDCRegistryItem = psDCRegistryItem;
@@ -223,7 +223,7 @@ extends PSSysDevBKTaskImplBase {
                     psDCRegistryItem.setItemTag3(strDate);
                     psDCRegistryItem.setLogicName(iPSApplication.getName());
                 }
-                psDCRegistryItemService.create((IEntity)psDCRegistryItem, false);
+                psDCRegistryItemService.create(psDCRegistryItem, false);
                 this.psDCRegistryItem = psDCRegistryItem;
                 this.lastPSDCRegistryItem = lastPSDCRegistryItem;
                 if (iPSDCMSPlatformNode != null) {
@@ -258,4 +258,3 @@ extends PSSysDevBKTaskImplBase {
         return this.strBackupPSDCRegistryItemId;
     }
 }
-

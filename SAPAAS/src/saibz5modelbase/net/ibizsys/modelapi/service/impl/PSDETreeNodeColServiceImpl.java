@@ -120,7 +120,7 @@ implements IPSDETreeNodeColService {
     @Override
     protected List<PSDETreeNodeCol> onListAll() throws Exception {
         ArrayList<PSDETreeNodeCol> list = new ArrayList<PSDETreeNodeCol>();
-        List psdetreenodes = PSModelServiceUtil.getInstance().getPSDETreeNodeService().listAll();
+        List<PSDETreeNode> psdetreenodes = PSModelServiceUtil.getInstance().getPSDETreeNodeService().listAll();
         if (psdetreenodes != null) {
             for (PSDETreeNode parent : psdetreenodes) {
                 List<PSDETreeNodeCol> items = this.listByPSDETreeNode(parent);

@@ -96,13 +96,13 @@ extends PSSysDevBKTaskImplBase {
                 if (this.getParentPSBKTask() instanceof StartupExPSSysDevBKTaskImpl && (psDCRegistryItem = (startupExPSSysDevBKTaskImpl = (StartupExPSSysDevBKTaskImpl)this.getParentPSBKTask()).getPSDCRegistryItem()) != null) {
                     PSDCMSPlatformNodeService psDCMSPlatformNodeService = (PSDCMSPlatformNodeService)ServiceGlobal.getService(PSDCMSPlatformNodeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                     try {
-                        ArrayList psDCMSPlatformNodeList = psDCMSPlatformNodeService.selectByPSDCRegistryItem((PSDCRegistryItemBase)psDCRegistryItem);
+                        ArrayList<PSDCMSPlatformNode> psDCMSPlatformNodeList = psDCMSPlatformNodeService.selectByPSDCRegistryItem((PSDCRegistryItemBase)psDCRegistryItem);
                         if (psDCMSPlatformNodeList != null && psDCMSPlatformNodeList.size() > 0) {
                             for (PSDCMSPlatformNode psDCMSPlatformNode : psDCMSPlatformNodeList) {
                                 PSDCMSPlatformNode node = new PSDCMSPlatformNode();
                                 node.setPSDCMSPlatformNodeId(psDCMSPlatformNode.getPSDCMSPlatformNodeId());
                                 node.setPSDCRegistryItemId(startupExPSSysDevBKTaskImpl.getBackupPSDCRegistryItemId());
-                                psDCMSPlatformNodeService.sysUpdate((IEntity)node, false);
+                                psDCMSPlatformNodeService.sysUpdate(node, false);
                             }
                         }
                     }
@@ -111,7 +111,7 @@ extends PSSysDevBKTaskImplBase {
                     }
                     PSDCRegistryItemService psDCRegistryItemService = (PSDCRegistryItemService)ServiceGlobal.getService(PSDCRegistryItemService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                     try {
-                        psDCRegistryItemService.remove((IEntity)psDCRegistryItem);
+                        psDCRegistryItemService.remove(psDCRegistryItem);
                     }
                     catch (Exception ex) {
                         log.error((Object)String.format("\u79fb\u9664\u955c\u50cf[%1$s]\u53d1\u751f\u5f02\u5e38\uff0c%2$s", psDCRegistryItem.getPSDCRegistryItemName(), ex.getMessage()), (Throwable)ex);
@@ -209,4 +209,3 @@ extends PSSysDevBKTaskImplBase {
     protected void onFillTemplateParams(Map<String, Object> paramsMap) throws Exception {
     }
 }
-

@@ -1,10 +1,8 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
+
 import net.ibizsys.paas.core.DEDataQuery;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodes;
@@ -12,118 +10,170 @@ import net.ibizsys.paas.core.IDEDataQuery;
 import net.ibizsys.paas.core.IDEDataQueryCode;
 import net.ibizsys.paas.core.IDataEntity;
 import net.ibizsys.paas.core.ModelBase3Impl;
-import net.ibizsys.paas.demodel.DEDataQueryCodeModel;
+import net.ibizsys.paas.db.DBTypes;
 import net.ibizsys.paas.util.StringHelper;
 
-public abstract class DEDataQueryModelBase
-extends ModelBase3Impl
-implements IDEDataQuery {
-    private static HashMap<String, String> dbCompatibleMap = new HashMap();
-    private IDataEntity iDataEntity = null;
-    private DEDataQuery deDataQuery = null;
-    protected HashMap<String, IDEDataQueryCode> deDataQueryCodeMap = new HashMap();
+/**
+ * 实体查询模型
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class DEDataQueryModelBase extends ModelBase3Impl  implements IDEDataQuery {
+	
+	private static HashMap<String,String> dbCompatibleMap = new HashMap<String,String>();
+	
+	static{
+		dbCompatibleMap.put(DBTypes.HANA, DBTypes.Oracle);
+		dbCompatibleMap.put(DBTypes.DM, DBTypes.Oracle);
+		dbCompatibleMap.put(DBTypes.SQLite, DBTypes.MySQL5);
+	}
+	
+	private IDataEntity iDataEntity = null;
+	private DEDataQuery deDataQuery = null;
 
-    static {
-        dbCompatibleMap.put("HANA", "ORACLE");
-        dbCompatibleMap.put("DM", "ORACLE");
-        dbCompatibleMap.put("SQLITE", "MYSQL5");
-    }
+	protected HashMap<String, IDEDataQueryCode> deDataQueryCodeMap = new HashMap<String, IDEDataQueryCode>();
 
-    @Override
-    public void init(IDataEntity iDataEntity) throws Exception {
-        this.setDataEntity(iDataEntity);
-        this.onInit();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataQuery#init(net.ibizsys.paas.core.IDataEntity)
+	 */
+	public void init(IDataEntity iDataEntity) throws Exception {
+		this.setDataEntity(iDataEntity);
+		this.onInit();
+	}
 
-    @Override
-    protected void onInit() throws Exception {
-    }
+	protected void onInit() throws Exception {
 
-    protected void initAnnotation(Class c) {
-        Annotation[] annotations = c.getAnnotations();
-        if (annotations != null) {
-            Annotation[] annotationArray = annotations;
-            int n = annotations.length;
-            int n2 = 0;
-            while (n2 < n) {
-                Annotation annotation = annotationArray[n2];
-                if (annotation instanceof DEDataQuery) {
-                    this.setDEDataQueryAnno((DEDataQuery)annotation);
-                } else if (annotation instanceof DEDataQueryCodes) {
-                    this.setDEDataQueryCodesAnno((DEDataQueryCodes)annotation);
-                }
-                ++n2;
-            }
-        }
-    }
+	}
 
-    @Override
-    public IDataEntity getDataEntity() {
-        return this.iDataEntity;
-    }
+	/**
+	 * 初始化注解
+	 * 
+	 * @param c
+	 * @throws Exception
+	 */
+	protected void initAnnotation(Class c) {
+		Annotation[] annotations = c.getAnnotations();
+		if (annotations != null) {
+			for (Annotation annotation : annotations) {
+				if (annotation instanceof DEDataQuery) {
+					setDEDataQueryAnno((DEDataQuery) annotation);
+					continue;
+				}
 
-    protected void setDataEntity(IDataEntity iDataEntity) {
-        this.iDataEntity = iDataEntity;
-    }
+				if (annotation instanceof DEDataQueryCodes) {
+					setDEDataQueryCodesAnno((DEDataQueryCodes) annotation);
+					continue;
+				}
+			}
+		}
+	}
 
-    protected DEDataQuery getDEDataQueryAnno() {
-        return this.deDataQuery;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDataEntityObject#getDataEntity()
+	 */
+	public IDataEntity getDataEntity() {
+		return iDataEntity;
+	}
 
-    protected void setDEDataQueryAnno(DEDataQuery deDataQuery) {
-        this.deDataQuery = deDataQuery;
-    }
+	/**
+	 * @param iDataEntity the iDataEntity to set
+	 */
+	protected void setDataEntity(IDataEntity iDataEntity) {
+		this.iDataEntity = iDataEntity;
+	}
 
-    protected void setDEDataQueryCodesAnno(DEDataQueryCodes deDataQueryCodes) {
-        DEDataQueryCode[] dEDataQueryCodeArray = deDataQueryCodes.value();
-        int n = dEDataQueryCodeArray.length;
-        int n2 = 0;
-        while (n2 < n) {
-            DEDataQueryCode deDataQueryCode = dEDataQueryCodeArray[n2];
-            IDEDataQueryCode iDEDataQueryCode = this.createDEDataQueryCode(deDataQueryCode);
-            this.deDataQueryCodeMap.put(iDEDataQueryCode.getDBType(), iDEDataQueryCode);
-            ++n2;
-        }
-    }
+	/**
+	 * @return the deDataQuery
+	 */
+	protected DEDataQuery getDEDataQueryAnno() {
+		return deDataQuery;
+	}
 
-    protected IDEDataQueryCode createDEDataQueryCode(DEDataQueryCode deDataQueryCode) {
-        DEDataQueryCodeModel deDataQueryCodeModel = new DEDataQueryCodeModel(this, deDataQueryCode);
-        return deDataQueryCodeModel;
-    }
+	/**
+	 * @param deDataQuery the deDataQuery to set
+	 */
+	protected void setDEDataQueryAnno(DEDataQuery deDataQuery) {
+		this.deDataQuery = deDataQuery;
+	}
 
-    @Override
-    public String getId() {
-        return this.getDEDataQueryAnno().id();
-    }
+	/**
+	 * @param deDataQuery the deDataQuery to set
+	 */
+	protected void setDEDataQueryCodesAnno(DEDataQueryCodes deDataQueryCodes) {
+		for (DEDataQueryCode deDataQueryCode : deDataQueryCodes.value()) {
+			IDEDataQueryCode iDEDataQueryCode = createDEDataQueryCode(deDataQueryCode);
+			deDataQueryCodeMap.put(iDEDataQueryCode.getDBType(), iDEDataQueryCode);
+		}
+	}
 
-    @Override
-    public String getName() {
-        return this.getDEDataQueryAnno().name();
-    }
+	protected IDEDataQueryCode createDEDataQueryCode(DEDataQueryCode deDataQueryCode) {
+		DEDataQueryCodeModel deDataQueryCodeModel = new DEDataQueryCodeModel(this, deDataQueryCode);
+		return deDataQueryCodeModel;
+	}
 
-    @Override
-    public IDEDataQueryCode getDEDataQueryCode(String strDBType) throws Exception {
-        IDEDataQueryCode iDEDataQueryCode = this.deDataQueryCodeMap.get(strDBType);
-        if (iDEDataQueryCode == null) {
-            String strDBType2 = dbCompatibleMap.get(strDBType);
-            if (!StringHelper.isNullOrEmpty(strDBType2)) {
-                iDEDataQueryCode = this.deDataQueryCodeMap.get(strDBType2);
-            }
-            if (iDEDataQueryCode == null) {
-                throw new Exception(StringHelper.format("\u65e0\u6cd5\u83b7\u53d6\u6570\u636e\u5e93[%1$s]\u4ee3\u7801", strDBType));
-            }
-        }
-        return iDEDataQueryCode;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IModelBase#getId()
+	 */
+	@Override
+	public String getId() {
+		return getDEDataQueryAnno().id();
+	}
 
-    @Override
-    public boolean isDefaultMode() {
-        return this.getDEDataQueryAnno().defaultmode();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IModelBase#getName()
+	 */
+	@Override
+	public String getName() {
+		return getDEDataQueryAnno().name();
+	}
 
-    @Override
-    public int getViewLevel() {
-        return this.getDEDataQueryAnno().viewlevel();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataQuery#getDEDataQueryCode(java.lang.String)
+	 */
+	@Override
+	public IDEDataQueryCode getDEDataQueryCode(String strDBType) throws Exception {
+		IDEDataQueryCode iDEDataQueryCode = deDataQueryCodeMap.get(strDBType);
+		if (iDEDataQueryCode == null) {
+			String strDBType2 = dbCompatibleMap.get(strDBType);
+			if(!StringHelper.isNullOrEmpty(strDBType2)){
+				iDEDataQueryCode = deDataQueryCodeMap.get(strDBType2);
+			}
+			if(iDEDataQueryCode==null)
+				throw new Exception(StringHelper.format("无法获取数据库[%1$s]代码", strDBType));
+		}
+		return iDEDataQueryCode;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataQuery#isDefaultMode()
+	 */
+	@Override
+	public boolean isDefaultMode() {
+		return this.getDEDataQueryAnno().defaultmode();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.core.IDEDataQuery#getViewLevel()
+	 */
+	@Override
+	public int getViewLevel() {
+		return this.getDEDataQueryAnno().viewlevel();
+	}
+
+	
+	
+	
 }
-

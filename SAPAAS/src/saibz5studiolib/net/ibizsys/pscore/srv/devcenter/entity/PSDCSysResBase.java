@@ -1130,7 +1130,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -1156,7 +1156,7 @@ implements Serializable {
                 PSSysProduct pSSysProduct = new PSSysProduct();
                 pSSysProduct.setPSSysProductId(this.getPSSysProductId());
                 PSSysProductService pSSysProductService = (PSSysProductService)ServiceGlobal.getService(PSSysProductService.class, (SessionFactory)this.getSessionFactory());
-                pSSysProductService.autoGet((IEntity)pSSysProduct);
+                pSSysProductService.autoGet(pSSysProduct);
                 this.pssysproduct = pSSysProduct;
             }
             return this.pssysproduct;

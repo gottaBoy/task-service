@@ -2086,7 +2086,7 @@ implements Serializable {
                 PSDCCluster pSDCCluster = new PSDCCluster();
                 pSDCCluster.setPSDCClusterId(this.getPSDCClusterId());
                 PSDCClusterService pSDCClusterService = (PSDCClusterService)ServiceGlobal.getService(PSDCClusterService.class, (SessionFactory)this.getSessionFactory());
-                pSDCClusterService.autoGet((IEntity)pSDCCluster);
+                pSDCClusterService.autoGet(pSDCCluster);
                 this.psdccluster = pSDCCluster;
             }
             return this.psdccluster;
@@ -2112,7 +2112,7 @@ implements Serializable {
                 PSDCMSPlatform pSDCMSPlatform = new PSDCMSPlatform();
                 pSDCMSPlatform.setPSDCMSPlatformId(this.getPSDCMSPlatformId());
                 PSDCMSPlatformService pSDCMSPlatformService = (PSDCMSPlatformService)ServiceGlobal.getService(PSDCMSPlatformService.class, (SessionFactory)this.getSessionFactory());
-                pSDCMSPlatformService.autoGet((IEntity)pSDCMSPlatform);
+                pSDCMSPlatformService.autoGet(pSDCMSPlatform);
                 this.psdcmsplatform = pSDCMSPlatform;
             }
             return this.psdcmsplatform;
@@ -2138,7 +2138,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -2164,7 +2164,7 @@ implements Serializable {
                 PSDevUser pSDevUser = new PSDevUser();
                 pSDevUser.setPSDevUserId(this.getAdminPSDevUserId());
                 PSDevUserService pSDevUserService = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class, (SessionFactory)this.getSessionFactory());
-                pSDevUserService.autoGet((IEntity)pSDevUser);
+                pSDevUserService.autoGet(pSDevUser);
                 this.adminpsdevuser = pSDevUser;
             }
             return this.adminpsdevuser;

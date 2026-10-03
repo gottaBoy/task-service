@@ -142,7 +142,7 @@ implements IPSDEFormDetailService {
     @Override
     protected List<PSDEFormDetail> onListAll() throws Exception {
         ArrayList<PSDEFormDetail> list = new ArrayList<PSDEFormDetail>();
-        List psdeforms = PSModelServiceUtil.getInstance().getPSDEFormService().listAll();
+        List<PSDEForm> psdeforms = PSModelServiceUtil.getInstance().getPSDEFormService().listAll();
         if (psdeforms != null) {
             for (PSDEForm parent : psdeforms) {
                 List<PSDEFormDetail> items = this.listByPSDEForm(parent);
@@ -1189,18 +1189,19 @@ implements IPSDEFormDetailService {
         } else {
             dto.setUCPSSysPFPluginName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEFormDetailService().listByPSDEFormDetail(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEFormDetail> pSDEFormDetailList = PSModelServiceUtil.getInstance().getPSDEFormDetailService().listByPSDEFormDetail(t);
+        if (pSDEFormDetailList != null && pSDEFormDetailList.size() > 0) {
             ArrayList<PSDEFormDetailDTO> psdeformdetails = new ArrayList<PSDEFormDetailDTO>();
-            for (PSDEFormDetail pSDEFormDetail : list) {
+            for (PSDEFormDetail pSDEFormDetail : pSDEFormDetailList) {
                 dstItem = (PSDEFormDetailDTO)PSModelServiceUtil.getInstance().getPSDEFormDetailService().toDTO(pSDEFormDetail);
                 psdeformdetails.add((PSDEFormDetailDTO)dstItem);
             }
             dto.setPsdeformdetails(psdeformdetails);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEFDLogicService().listByPSDEFormDetail(t)) != null && list.size() > 0) {
+        List<PSDEFDLogic> pSDEFDLogicList = PSModelServiceUtil.getInstance().getPSDEFDLogicService().listByPSDEFormDetail(t);
+        if (pSDEFDLogicList != null && pSDEFDLogicList.size() > 0) {
             ArrayList<PSDEFDLogicDTO> psdefdlogics = new ArrayList<PSDEFDLogicDTO>();
-            for (PSDEFDLogic pSDEFDLogic : list) {
+            for (PSDEFDLogic pSDEFDLogic : pSDEFDLogicList) {
                 dstItem = (PSDEFDLogicDTO)PSModelServiceUtil.getInstance().getPSDEFDLogicService().toDTO(pSDEFDLogic);
                 psdefdlogics.add((PSDEFDLogicDTO)dstItem);
             }

@@ -1473,7 +1473,7 @@ implements Serializable {
                 PSSysModelInst pSSysModelInst = new PSSysModelInst();
                 pSSysModelInst.setPSSysModelInstId(this.getPSSysModelInstId());
                 PSSysModelInstService pSSysModelInstService = (PSSysModelInstService)ServiceGlobal.getService(PSSysModelInstService.class, (SessionFactory)this.getSessionFactory());
-                pSSysModelInstService.autoGet((IEntity)pSSysModelInst);
+                pSSysModelInstService.autoGet(pSSysModelInst);
                 this.pssysmodelinst = pSSysModelInst;
             }
             return this.pssysmodelinst;
@@ -1499,7 +1499,7 @@ implements Serializable {
                 PSTaskServer pSTaskServer = new PSTaskServer();
                 pSTaskServer.setPSTaskServerId(this.getPSTaskServerId());
                 PSTaskServerService pSTaskServerService = (PSTaskServerService)ServiceGlobal.getService(PSTaskServerService.class, (SessionFactory)this.getSessionFactory());
-                pSTaskServerService.autoGet((IEntity)pSTaskServer);
+                pSTaskServerService.autoGet(pSTaskServer);
                 this.pstaskserver = pSTaskServer;
             }
             return this.pstaskserver;

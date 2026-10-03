@@ -1,15 +1,23 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.PickupViewControllerBase;
+/**
+ * 多选视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MPickupViewControllerBase extends PickupViewControllerBase {
+	public MPickupViewControllerBase() throws Exception {
+		super();
+	}
 
-public abstract class MPickupViewControllerBase
-extends PickupViewControllerBase {
-    @Override
-    protected boolean isEnableMultiSelect() {
-        return true;
-    }
+	/**
+	 * 是否支持多项选择
+	 * 
+	 * @return
+	 */
+	@Override
+	protected boolean isEnableMultiSelect() {
+		return true;
+	}
 }
-

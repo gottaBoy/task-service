@@ -1,158 +1,261 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONArray
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.web;
 
 import java.util.ArrayList;
+
+import net.ibizsys.paas.core.Errors;
 import net.ibizsys.paas.util.JSONObjectHelper;
-import net.ibizsys.paas.web.SDAjaxActionResult;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class MDAjaxActionResult
-extends SDAjaxActionResult {
-    protected ArrayList items = new ArrayList();
-    protected ArrayList columns = new ArrayList();
-    protected int nTotalRow = 0;
-    protected String strSearchCondition = "";
-    protected String strSummaryInfo = "";
-    private int nStartRow = 0;
-    private int nPageSize = -1;
-    private boolean bArrayMode = false;
-    private JSONObject summaryItem = null;
+/**
+ * 多数据异步请求结果对象
+ * 
+ * @author lionlau
+ *
+ */
+public class MDAjaxActionResult extends SDAjaxActionResult {
+	protected ArrayList items = new ArrayList();
+	protected ArrayList columns = new ArrayList();
+	protected int nTotalRow = 0;
+	protected String strSearchCondition = "";
+	protected String strSummaryInfo = "";
+	private int nStartRow = 0;
+	private int nPageSize = -1;
+	private boolean bArrayMode = false;
+	private JSONObject summaryItem = null;
 
-    public ArrayList getRows() {
-        return this.items;
-    }
+	public MDAjaxActionResult() {
 
-    public ArrayList getColumns() {
-        return this.columns;
-    }
+	}
 
-    public int getTotalRow() {
-        return this.nTotalRow;
-    }
+	/**
+	 * 获取结果数组
+	 * 
+	 * @return
+	 */
+	public ArrayList getRows() {
+		return items;
+	}
 
-    public void setTotalRow(int nTotalRow) {
-        this.nTotalRow = nTotalRow;
-    }
+	/**
+	 * 获取列集合数组
+	 * 
+	 * @return
+	 */
+	public ArrayList getColumns() {
+		return this.columns;
+	}
 
-    @Override
-    public String toJSONString() {
-        if (this.isArrayMode()) {
-            return JSONArray.fromArray((Object[])this.items.toArray()).toString();
-        }
-        return super.toJSONString();
-    }
+	/**
+	 * 获取全部行记录数量
+	 * 
+	 * @return
+	 */
+	public int getTotalRow() {
+		return nTotalRow;
+	}
 
-    @Override
-    protected void fillJSONObject(JSONObject objJSON) {
-        super.fillJSONObject(objJSON);
-        if (this.getRetCode() != 0) {
-            objJSON.put("totalrow", this.nTotalRow);
-            objJSON.put("items", (Object)new JSONArray());
-            return;
-        }
-        objJSON.put("totalrow", this.nTotalRow);
-        objJSON.put("startrow", this.nStartRow);
-        if (this.nPageSize > 0) {
-            objJSON.put("limit", this.nPageSize);
-        }
-        objJSON.put("items", (Object)JSONArray.fromArray((Object[])this.items.toArray()));
-        if (this.columns.size() > 0) {
-            objJSON.put("columns", (Object)JSONArray.fromArray((Object[])this.columns.toArray()));
-        }
-        objJSON.put("summaryinfo", (Object)this.strSummaryInfo);
-        if (this.getSummaryItem() != null) {
-            objJSON.put("summaryitem", (Object)this.getSummaryItem());
-        }
-    }
+	/**
+	 * 设置全部行记录数量
+	 * 
+	 * @param nTotalRow
+	 */
+	public void setTotalRow(int nTotalRow) {
+		this.nTotalRow = nTotalRow;
+	}
 
-    public String getSummaryInfo() {
-        return this.strSummaryInfo;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.web.AjaxActionResult#toJSONString()
+	 */
+	@Override
+	public String toJSONString() {
+		if (this.isArrayMode()) {
+			return JSONArray.fromArray(items.toArray()).toString();
+		}
+		return super.toJSONString();
+	}
 
-    public void setSummaryInfo(String strSummaryInfo) {
-        this.strSummaryInfo = strSummaryInfo;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.web.SDAjaxActionResult#fillJSONObject(net.sf.json.JSONObject)
+	 */
+	@Override
+	protected void fillJSONObject(JSONObject objJSON) {
+		super.fillJSONObject(objJSON);
 
-    public JSONObject getSummaryItem(boolean bCreateIf) {
-        if (this.summaryItem == null && bCreateIf) {
-            this.summaryItem = new JSONObject();
-        }
-        return this.summaryItem;
-    }
+		if (this.getRetCode() != Errors.OK) {
+			objJSON.put("totalrow", nTotalRow);
+			objJSON.put("items", new JSONArray());
 
-    public JSONObject getSummaryItem() {
-        return this.summaryItem;
-    }
+			return;
+		} else {
+			objJSON.put("totalrow", nTotalRow);
+			objJSON.put("startrow", nStartRow);
+			if (nPageSize > 0) {
+				objJSON.put("limit", nPageSize);
+			}
+			objJSON.put("items", JSONArray.fromArray(items.toArray()));
+			if (this.columns.size() > 0) {
+				objJSON.put("columns", JSONArray.fromArray(columns.toArray()));
+			}
+			objJSON.put("summaryinfo", strSummaryInfo);
+			if(this.getSummaryItem()!=null) {
+				objJSON.put("summaryitem", this.getSummaryItem());
+			}
+		}
+	}
 
-    public void setSummaryItem(JSONObject summaryItem) {
-        this.summaryItem = summaryItem;
-    }
+	/**
+	 * 获取多项数据概要信息
+	 * 
+	 * @return the strSummaryInfo
+	 */
+	public String getSummaryInfo() {
+		return strSummaryInfo;
+	}
 
-    public int getStartRow() {
-        return this.nStartRow;
-    }
+	/**
+	 * 设置多项数据概要信息
+	 * 
+	 * @param strSummaryInfo the strSummaryInfo to set
+	 */
+	public void setSummaryInfo(String strSummaryInfo) {
+		this.strSummaryInfo = strSummaryInfo;
+	}
 
-    public void setStartRow(int nStartRow) {
-        this.nStartRow = nStartRow;
-    }
+	/**
+	 * 获取多项数据概要数据项
+	 * @param bCreateIf 不存在则建立
+	 * @return the summaryItem
+	 */
+	public JSONObject getSummaryItem(boolean bCreateIf) {
+		if(this.summaryItem == null && bCreateIf) {
+			this.summaryItem = new JSONObject();
+		}
+		return this.summaryItem;
+	}
+	
+	
+	/**
+	 * 获取多项数据概要数据项
+	 * 
+	 * @return the summaryItem
+	 */
+	public JSONObject getSummaryItem() {
+		return summaryItem;
+	}
 
-    public int getPageSize() {
-        return this.nPageSize;
-    }
+	/**
+	 * 设置多项数据概要数据项
+	 * 
+	 * @param summaryItem the summaryItem to set
+	 */
+	public void setSummaryItem(JSONObject summaryItem) {
+		this.summaryItem = summaryItem;
+	}
+	
+	
+	
+	/**
+	 * 获取起始行号
+	 * 
+	 * @return the nStartRow
+	 */
+	public int getStartRow() {
+		return nStartRow;
+	}
 
-    public void setPageSize(int nPageSize) {
-        this.nPageSize = nPageSize;
-    }
+	/**
+	 * 设置起始行号
+	 * 
+	 * @param nStartRow the nStartRow to set
+	 */
+	public void setStartRow(int nStartRow) {
+		this.nStartRow = nStartRow;
+	}
 
-    public void setArrayMode(boolean bArrayMode) {
-        this.bArrayMode = bArrayMode;
-    }
+	/**
+	 * 获取分页记录数
+	 * 
+	 * @return the nPageSize
+	 */
+	public int getPageSize() {
+		return nPageSize;
+	}
 
-    public boolean isArrayMode() {
-        return this.bArrayMode;
-    }
+	/**
+	 * 设置分页记录数
+	 * 
+	 * @param nPageSize the nPageSize to set
+	 */
+	public void setPageSize(int nPageSize) {
+		this.nPageSize = nPageSize;
+	}
 
-    @Override
-    public void fromJSONObject(JSONObject jo) throws Exception {
-        int i;
-        this.nTotalRow = jo.optInt("totalrow", 0);
-        JSONObjectHelper.remove(jo, "totalrow");
-        JSONArray ja = jo.optJSONArray("items");
-        this.items.clear();
-        if (ja != null) {
-            i = 0;
-            while (i < ja.length()) {
-                this.items.add(ja.get(i));
-                ++i;
-            }
-        }
-        JSONObjectHelper.remove(jo, "items");
-        this.nStartRow = jo.optInt("startrow", -1);
-        JSONObjectHelper.remove(jo, "startrow");
-        this.nPageSize = jo.optInt("limit", 0);
-        JSONObjectHelper.remove(jo, "limit");
-        this.strSummaryInfo = jo.optString("summaryinfo", null);
-        JSONObjectHelper.remove(jo, "summaryinfo");
-        this.summaryItem = jo.optJSONObject("summaryitem");
-        JSONObjectHelper.remove(jo, "summaryitem");
-        ja = jo.optJSONArray("columns");
-        this.columns.clear();
-        if (ja != null) {
-            i = 0;
-            while (i < ja.length()) {
-                this.columns.add(ja.get(i));
-                ++i;
-            }
-        }
-        JSONObjectHelper.remove(jo, "columns");
-        super.fromJSONObject(jo);
-    }
+	/**
+	 * 设置以数组形式输出行记录结果
+	 * 
+	 * @param bArrayMode
+	 */
+	public void setArrayMode(boolean bArrayMode) {
+		this.bArrayMode = bArrayMode;
+	}
+
+	/**
+	 * 是否以数组形式输出行记录结果
+	 * 
+	 * @return
+	 */
+	public boolean isArrayMode() {
+		return this.bArrayMode;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.web.AjaxActionResult#fromJSONObject(net.sf.json.JSONObject)
+	 */
+	@Override
+	public void fromJSONObject(JSONObject jo) throws Exception {
+		this.nTotalRow = jo.optInt("totalrow", 0);
+		JSONObjectHelper.remove(jo, "totalrow");
+
+		JSONArray ja = jo.optJSONArray("items");
+		this.items.clear();
+		if (ja != null) {
+			for (int i = 0; i < ja.length(); i++) {
+				this.items.add(ja.get(i));
+			}
+		}
+		JSONObjectHelper.remove(jo, "items");
+
+		this.nStartRow = jo.optInt("startrow", -1);
+		JSONObjectHelper.remove(jo, "startrow");
+
+		this.nPageSize = jo.optInt("limit", 0);
+		JSONObjectHelper.remove(jo, "limit");
+
+		this.strSummaryInfo = jo.optString("summaryinfo", null);
+		JSONObjectHelper.remove(jo, "summaryinfo");
+		
+		this.summaryItem = jo.optJSONObject("summaryitem");
+		JSONObjectHelper.remove(jo, "summaryitem");
+
+		ja = jo.optJSONArray("columns");
+
+		this.columns.clear();
+		if (ja != null) {
+			for (int i = 0; i < ja.length(); i++) {
+				this.columns.add(ja.get(i));
+			}
+		}
+
+		JSONObjectHelper.remove(jo, "columns");
+
+		super.fromJSONObject(jo);
+	}
+
 }
-

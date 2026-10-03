@@ -143,14 +143,14 @@ extends PSCoreSysServiceBase<PSSVNServer> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_PSSvrDomain(pSSVNServer, pSSvrDomain);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSVNServer, string, string2, string3);
+        super.onFillParentInfo(pSSVNServer, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -166,7 +166,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
         if (bl && pSSVNServer.getValidFlag() == null) {
             pSSVNServer.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSVNServer, bl);
+        super.onFillEntityFullInfo(pSSVNServer, bl);
         this.onFillEntityFullInfo_PSSvrDomain(pSSVNServer, bl);
     }
 
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
     }
 
     protected void onWriteBackParent(PSSVNServer pSSVNServer, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSVNServer, bl);
+        super.onWriteBackParent(pSSVNServer, bl);
     }
 
     public ArrayList<PSSVNServer> selectByPSSvrDomain(PSSvrDomainBase pSSvrDomainBase) throws Exception {
@@ -205,8 +205,8 @@ extends PSCoreSysServiceBase<PSSVNServer> {
         ArrayList<PSSVNServer> arrayList = this.selectByPSSvrDomain(pSSvrDomain, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRDOMAIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrDomain);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSVNSERVER_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSSVNSERVER", iDataEntityModel.getDataInfo((IEntity)pSSvrDomain), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrDomain);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSVNSERVER_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSSVNSERVER", iDataEntityModel.getDataInfo(pSSvrDomain), arrayList.get(0)));
         }
     }
 
@@ -239,7 +239,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
         ArrayList<PSSVNServer> arrayList = this.selectByPSSvrDomain(pSSvrDomain);
         this.onBeforeRemoveByPSSvrDomain(pSSvrDomain, arrayList);
         for (PSSVNServer pSSVNServer : arrayList) {
-            this.remove((IEntity)pSSVNServer);
+            this.remove(pSSVNServer);
         }
         this.onAfterRemoveByPSSvrDomain(pSSvrDomain, arrayList);
     }
@@ -266,14 +266,14 @@ extends PSCoreSysServiceBase<PSSVNServer> {
 
     protected void replaceParentInfo(PSSVNServer pSSVNServer, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSVNServer, cloneSession);
+        super.replaceParentInfo(pSSVNServer, cloneSession);
         if (pSSVNServer.getPSSvrDomainId() != null && (iEntity = cloneSession.getEntity("PSSVRDOMAIN", (Object)pSSVNServer.getPSSvrDomainId())) != null) {
             this.onFillParentInfo_PSSvrDomain(pSSVNServer, (PSSvrDomain)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSVNServer pSSVNServer, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSVNServer, bl);
+        super.onRemoveEntityUncopyValues(pSSVNServer, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSVNServer pSSVNServer, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -387,7 +387,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSVNServer, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSVNServer, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSVNServer, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AuthzCfg(boolean bl, PSSVNServer pSSVNServer, boolean bl2, boolean bl3) throws Exception {
@@ -400,7 +400,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AuthzCfg_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_AuthzCfg_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AUTHZCFG");
@@ -422,7 +422,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GitAdminPass_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_GitAdminPass_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITADMINPASS");
@@ -444,7 +444,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GitAdminUser_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_GitAdminUser_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITADMINUSER");
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GITPassword_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_GITPassword_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITPASSWORD");
@@ -488,7 +488,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GitPath_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_GitPath_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITPATH");
@@ -510,7 +510,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GitPrj_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_GitPrj_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITPRJ");
@@ -532,7 +532,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GitToken_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_GitToken_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITTOKEN");
@@ -554,7 +554,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GITUserName_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_GITUserName_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITUSERNAME");
@@ -579,7 +579,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -601,7 +601,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr2_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr2_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR2");
@@ -623,7 +623,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -648,7 +648,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -670,7 +670,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Port_Default((IEntity)pSSVNServer, bl2, bl3);
+            string = this.onTestValueRule_Port_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PORT");
@@ -695,7 +695,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSVNServerId_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSSVNServerId_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVNSERVERID");
@@ -720,7 +720,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSVNServerName_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSSVNServerName_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVNSERVERNAME");
@@ -742,7 +742,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -764,7 +764,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SlaveIPADDR_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SlaveIPADDR_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SLAVEIPADDR");
@@ -786,7 +786,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SlaveIpAddr2_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SlaveIpAddr2_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SLAVEIPADDR2");
@@ -808,7 +808,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SlavePasswd_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SlavePasswd_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SLAVEPASSWD");
@@ -830,7 +830,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SlavePort_Default((IEntity)pSSVNServer, bl2, bl3);
+            string = this.onTestValueRule_SlavePort_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SLAVEPORT");
@@ -852,7 +852,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SlaveSvnPassWd_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SlaveSvnPassWd_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SLAVESVNPASSWD");
@@ -874,7 +874,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SlaveSVNRoot_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SlaveSVNRoot_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SLAVESVNROOT");
@@ -896,7 +896,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SlaveSVNUrl_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SlaveSVNUrl_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SLAVESVNURL");
@@ -918,7 +918,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SlaveSvnUserName_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SlaveSvnUserName_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SLAVESVNUSERNAME");
@@ -940,7 +940,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SlaveUserName_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SlaveUserName_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SLAVEUSERNAME");
@@ -962,7 +962,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SvnPassWd_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SvnPassWd_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SVNPASSWD");
@@ -987,7 +987,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SVNRoot_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SVNRoot_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SVNROOT");
@@ -1009,7 +1009,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SVNType_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SVNType_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SVNTYPE");
@@ -1034,7 +1034,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SVNUrl_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SVNUrl_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SVNURL");
@@ -1056,7 +1056,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SvnUserName_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_SvnUserName_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SVNUSERNAME");
@@ -1081,7 +1081,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -1103,7 +1103,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1125,7 +1125,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1147,7 +1147,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1169,7 +1169,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSVNServer, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1194,7 +1194,7 @@ extends PSCoreSysServiceBase<PSSVNServer> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSVNServer, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSVNServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1207,11 +1207,11 @@ extends PSCoreSysServiceBase<PSSVNServer> {
     }
 
     protected void onSyncEntity(PSSVNServer pSSVNServer, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSVNServer, bl);
+        super.onSyncEntity(pSSVNServer, bl);
     }
 
     protected void onSyncIndexEntities(PSSVNServer pSSVNServer, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSVNServer, bl);
+        super.onSyncIndexEntities(pSSVNServer, bl);
     }
 
     public Object getDataContextValue(PSSVNServer pSSVNServer, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1219,14 +1219,14 @@ extends PSCoreSysServiceBase<PSSVNServer> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSVNServer, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSVNServer, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSVNServer pSSVNServer, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSVNServer, arrayList, n);
+        super.onExportMajorModel(pSSVNServer, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1810,14 +1810,14 @@ extends PSCoreSysServiceBase<PSSVNServer> {
 
     protected boolean onMergeChild(String string, String string2, PSSVNServer pSSVNServer) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSVNServer)) {
+        if (super.onMergeChild(string, string2, pSSVNServer)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSVNServer pSSVNServer) throws Exception {
-        super.onUpdateParent((IEntity)pSSVNServer);
+        super.onUpdateParent(pSSVNServer);
     }
 
     @Override

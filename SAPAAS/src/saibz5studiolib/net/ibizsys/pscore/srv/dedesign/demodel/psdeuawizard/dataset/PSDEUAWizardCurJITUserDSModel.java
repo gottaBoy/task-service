@@ -69,7 +69,7 @@ extends PSDEUAWizardCurJITUserDSModelBase {
         SimpleDataTableImpl simpleDataTableImpl = new SimpleDataTableImpl((IDataSet)simpleDataSetImpl);
         PSDEUAWizardService pSDEUAWizardService = (PSDEUAWizardService)ServiceGlobal.getService(PSDEUAWizardService.class, (SessionFactory)iDEDataSetFetchContext.getSessionFactory());
         try {
-            pSDEUAWizardService.executeAction("XG_LISTJITUSERS", (IEntity)pSDEUAWizard);
+            pSDEUAWizardService.executeAction("XG_LISTJITUSERS", pSDEUAWizard);
         }
         catch (Exception exception) {
             log.error((Object)exception);

@@ -1,111 +1,155 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+
 import net.ibizsys.paas.core.ISystem;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.psba.core.BAModelBase;
-import net.ibizsys.psba.core.IBASchemeModel;
-import net.ibizsys.psba.core.IBASchemeRuntime;
-import net.ibizsys.psba.core.IBATable;
 import net.ibizsys.psba.dao.BADAOGlobal;
 import net.ibizsys.psba.dao.IBADAO;
 import net.ibizsys.psba.entity.BAEntity;
 import net.ibizsys.psba.entity.IBAEntity;
 
-public abstract class BASchemeModelBase
-extends BAModelBase
-implements IBASchemeModel,
-IBASchemeRuntime {
-    private HashMap<String, IBATable> baTableMap = new HashMap();
-    private ArrayList<IBATable> baTableList = new ArrayList();
-    private String strNamespace = null;
+/**
+ * 大数据架构模型
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class BASchemeModelBase extends BAModelBase implements IBASchemeModel, IBASchemeRuntime {
 
-    @Override
-    public void registerBATable(IBATable iBATable) {
-        String strId = iBATable.getId();
-        String strName = iBATable.getName();
-        this.baTableMap.put(strId, iBATable);
-        this.baTableMap.put(strName, iBATable);
-        this.baTableList.add(iBATable);
-    }
+	private HashMap<String, IBATable> baTableMap = new HashMap<String, IBATable>();
+	private ArrayList<IBATable> baTableList = new ArrayList<IBATable>();
+	private String strNamespace = null;
+	
 
-    @Override
-    public IBATable getBATable(String strName, boolean bTry) throws Exception {
-        IBATable iBATable = this.baTableMap.get(strName);
-        if (iBATable == null && !bTry) {
-            throw new Exception(StringHelper.format("\u65e0\u6cd5\u83b7\u53d6\u5927\u6570\u636e\u8868[%1$s]", strName));
-        }
-        return iBATable;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.psba.core.IBASchemeModel#registerBATable(net.ibizsys.psba.core.IBATable)
+	 */
+	@Override
+	public void registerBATable(IBATable iBATable) {
+		String strId = iBATable.getId();
+		String strName = iBATable.getName();
 
-    protected IBATable createBATable(String strBATableName) throws Exception {
-        return null;
-    }
+		baTableMap.put(strId, iBATable);
+		baTableMap.put(strName, iBATable);
+		baTableList.add(iBATable);
+	}
 
-    @Override
-    public Iterator<IBATable> getBATables() {
-        if (this.baTableList.size() == 0) {
-            return null;
-        }
-        return this.baTableList.iterator();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.psba.core.IBAScheme#getBATable(java.lang.String, boolean)
+	 */
+	@Override
+	public IBATable getBATable(String strName, boolean bTry) throws Exception {
+		IBATable iBATable = baTableMap.get(strName);
+		if (iBATable == null) {
+			if (!bTry) {
+				throw new Exception(StringHelper.format("无法获取大数据表[%1$s]", strName));
+			}
+		}
 
-    @Override
-    public ISystem getSystem() {
-        return this.getSystemModel();
-    }
+		return iBATable;
+	}
 
-    @Override
-    public void install() throws Exception {
-        block2: {
-            Object conn = null;
-            try {
-                conn = this.getBADataSource().getConnection();
-                this.getBADialect().install(conn, this);
-            }
-            catch (Exception ex) {
-                if (conn == null) break block2;
-                this.getBADataSource().closeConnection(conn);
-            }
-        }
-    }
+	/**
+	 * 建立大数据表对象
+	 * 
+	 * @param strBATableName
+	 * @return
+	 * @throws Exception
+	 */
+	protected IBATable createBATable(String strBATableName) throws Exception {
+		return null;
+	}
 
-    @Override
-    public IBADAO getBADAO(IBATable iBATable) throws Exception {
-        return BADAOGlobal.getBADAO(iBATable.getId());
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.psba.core.IBAScheme#getBATables()
+	 */
+	@Override
+	public Iterator<IBATable> getBATables() {
+		if (baTableList.size() == 0) return null;
+		return baTableList.iterator();
+	}
 
-    @Override
-    public String getNamespace() {
-        if (StringHelper.isNullOrEmpty(this.strNamespace)) {
-            return this.getBADataSource().getNamespace();
-        }
-        return this.strNamespace;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.psba.core.IBAScheme#getSystem()
+	 */
+	@Override
+	public ISystem getSystem() {
+		return this.getSystemModel();
+	}
 
-    public void setNamespace(String strNamespace) {
-        this.strNamespace = strNamespace;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.psba.core.IBASchemeRuntime#install()
+	 */
+	@Override
+	public void install() throws Exception {
+		Object conn = null;
+		try {
+			conn = this.getBADataSource().getConnection();
+			this.getBADialect().install(conn, this);
+		} catch (Exception ex) {
+			if (conn != null) {
+				this.getBADataSource().closeConnection(conn);
+			}
+		}
+	}
 
-    @Override
-    public IBAEntity createBAEntity(IBATable iBATable) throws Exception {
-        IBAEntity iBAEntity = this.onCreateBAEntity(iBATable);
-        iBAEntity.setActionHelper(this.getBADAO(iBATable).getBAEntityActionHelper());
-        return iBAEntity;
-    }
+	@Override
+	public IBADAO getBADAO(IBATable  iBATable) throws Exception {
+		return   BADAOGlobal.getBADAO(iBATable.getId());
+	}
 
-    protected IBAEntity onCreateBAEntity(IBATable iBATable) throws Exception {
-        return new BAEntity();
-    }
+	@Override
+	public String getNamespace() {
+		if(StringHelper.isNullOrEmpty(strNamespace))
+			return this.getBADataSource().getNamespace();
+		return strNamespace;
+	}
+	
+	
+	
+	/**
+	 * 设置命名空间
+	 * @param strNamespace
+	 */
+	public void setNamespace(String strNamespace){
+		this.strNamespace = strNamespace;
+	}
 
-    @Override
-    public int getMaxVersions() {
-        return this.getBADataSource().getMaxVersions();
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.psba.core.IBASchemeModel#createBAEntity(net.ibizsys.psba.core.IBATable)
+	 */
+	@Override
+	public IBAEntity createBAEntity(IBATable iBATable) throws Exception {
+		IBAEntity iBAEntity = onCreateBAEntity(iBATable);
+		iBAEntity.setActionHelper(this.getBADAO(iBATable).getBAEntityActionHelper());
+		return iBAEntity;
+	}
+	
+	protected IBAEntity onCreateBAEntity(IBATable iBATable)throws Exception {
+		return new BAEntity();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.psba.core.IBASchemeRuntime#getMaxVersions()
+	 */
+	@Override
+	public int getMaxVersions(){
+		return this.getBADataSource().getMaxVersions();
+	}
+	
+	
+	
 }
-

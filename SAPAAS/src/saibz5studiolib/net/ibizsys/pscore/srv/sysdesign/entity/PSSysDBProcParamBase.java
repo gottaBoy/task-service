@@ -1537,7 +1537,7 @@ implements Serializable {
                 PSSysDBProc pSSysDBProc = new PSSysDBProc();
                 pSSysDBProc.setPSSysDBProcId(this.getPSSysDBProcId());
                 PSSysDBProcService pSSysDBProcService = (PSSysDBProcService)ServiceGlobal.getService(PSSysDBProcService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDBProcService.autoGet((IEntity)pSSysDBProc);
+                pSSysDBProcService.autoGet(pSSysDBProc);
                 this.pssysdbproc = pSSysDBProc;
             }
             return this.pssysdbproc;

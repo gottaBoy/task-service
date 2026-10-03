@@ -204,7 +204,7 @@ implements IPSDEGrid {
 
     protected void onPreparePSDEGridColumns() throws Exception {
         IPSDEGridFieldColumn iPSDEGridFieldColumn;
-        Object iPSDEGridColumn;
+        IPSDEGridColumn iPSDEGridColumn;
         this.psDEGridColumnList.clear();
         this.gridColumnList.clear();
         this.psDEGridColumnList2.clear();
@@ -293,16 +293,22 @@ implements IPSDEGrid {
         }
     }
 
-    /*
-     * Unable to fully structure code
-     */
     protected void onPreparePSDEGridDataItems() throws Exception {
+        boolean bAddFKey = true;
+        boolean bAddDataAccAction = true;
+        boolean bEditModeItem = false;
+        int nIgnoreDSItem = this.psDEGrid.getIGNOREDSITEM();
+        Iterator psDEGridDataItems;
+        IPSDEGridDataItem iPSDEGridDataItem;
+        PSDEGridDataItemImpl psDEGridDataItemImpl;
+        PSDataItemParamImpl psItemParamImpl;
+        Iterator psDEFields;
+        IPSDEField iPSDEField;
+        Iterator psDEWFs;
+        IPSDEWF iPSDEWF;
+
         this.psDEGridDataItemMap.clear();
         this.gridDataItemList.clear();
-        bAddFKey = true;
-        bAddDataAccAction = true;
-        bEditModeItem = false;
-        nIgnoreDSItem = this.psDEGrid.getIGNOREDSITEM();
         if ((nIgnoreDSItem & 1) > 0) {
             bAddFKey = false;
         }
@@ -311,43 +317,29 @@ implements IPSDEGrid {
         }
         for (IPSDEGridColumn iPSDEGridColumn : this.psDEGridColumnList) {
             psDEGridDataItems = iPSDEGridColumn.getPSDEGridDataItems();
-            if (psDEGridDataItems != null) ** GOTO lbl19
-            continue;
-lbl-1000:
-            // 1 sources
-
-            {
-                iPSDEGridDataItem = (IPSDEGridDataItem)psDEGridDataItems.next();
-                if (this.psDEGridDataItemMap.containsKey(iPSDEGridDataItem.getName())) continue;
-                this.psDEGridDataItemMap.put(iPSDEGridDataItem.getName(), iPSDEGridDataItem);
-lbl19:
-                // 3 sources
-
-                ** while (psDEGridDataItems.hasNext())
+            if (psDEGridDataItems == null) {
+                continue;
             }
-lbl20:
-            // 1 sources
-
+            while (psDEGridDataItems.hasNext()) {
+                iPSDEGridDataItem = (IPSDEGridDataItem)psDEGridDataItems.next();
+                if (this.psDEGridDataItemMap.containsKey(iPSDEGridDataItem.getName())) {
+                    continue;
+                }
+                this.psDEGridDataItemMap.put(iPSDEGridDataItem.getName(), iPSDEGridDataItem);
+            }
         }
         for (IPSDEGridColumn iPSDEGridColumn : this.psDEGridColumnList2) {
             psDEGridDataItems = iPSDEGridColumn.getPSDEGridDataItems();
-            if (psDEGridDataItems != null) ** GOTO lbl29
-            continue;
-lbl-1000:
-            // 1 sources
-
-            {
-                iPSDEGridDataItem = (IPSDEGridDataItem)psDEGridDataItems.next();
-                if (this.psDEGridDataItemMap.containsKey(iPSDEGridDataItem.getName())) continue;
-                this.psDEGridDataItemMap.put(iPSDEGridDataItem.getName(), iPSDEGridDataItem);
-lbl29:
-                // 3 sources
-
-                ** while (psDEGridDataItems.hasNext())
+            if (psDEGridDataItems == null) {
+                continue;
             }
-lbl30:
-            // 1 sources
-
+            while (psDEGridDataItems.hasNext()) {
+                iPSDEGridDataItem = (IPSDEGridDataItem)psDEGridDataItems.next();
+                if (this.psDEGridDataItemMap.containsKey(iPSDEGridDataItem.getName())) {
+                    continue;
+                }
+                this.psDEGridDataItemMap.put(iPSDEGridDataItem.getName(), iPSDEGridDataItem);
+            }
         }
         if (!this.psDEGridDataItemMap.containsKey("srfkey")) {
             psDEGridDataItemImpl = new PSDEGridDataItemImpl();
@@ -439,7 +431,6 @@ lbl30:
             psDEGridDataItemImpl.init(this);
             this.psDEGridDataItemMap.put(psDEGridDataItemImpl.getName(), psDEGridDataItemImpl);
         }
-        bOutputMSTag = true;
         if (this.getPSDataEntity().getAllPSDEWFs() != null) {
             psDEWFs = this.getPSDataEntity().getAllPSDEWFs();
             while (psDEWFs.hasNext()) {
@@ -779,4 +770,3 @@ lbl30:
         return this.strSortMode;
     }
 }
-

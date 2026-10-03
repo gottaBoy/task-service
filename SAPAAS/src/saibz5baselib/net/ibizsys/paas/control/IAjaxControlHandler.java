@@ -1,18 +1,32 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control;
 
 import net.ibizsys.paas.ajax.IAjaxHandler;
-import net.ibizsys.paas.control.IAjaxControl;
-import net.ibizsys.paas.control.IControl;
 import net.ibizsys.paas.web.AjaxActionResult;
 import net.ibizsys.paas.web.IAjaxActionContext;
 
-public interface IAjaxControlHandler
-extends IAjaxHandler {
-    public IAjaxControl getAjaxControl();
+/**
+ * 异步控件处理对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IAjaxControlHandler extends IAjaxHandler {
 
-    public AjaxActionResult process(IControl var1, IAjaxActionContext var2) throws Exception;
+	/**
+	 * 获取异步部件
+	 * 
+	 * @return
+	 */
+	IAjaxControl getAjaxControl();
+
+	/**
+	 * 处理
+	 * 
+	 * @param iControl
+	 * @param iAjaxActionContext
+	 * @return
+	 * @throws Exception
+	 */
+	AjaxActionResult process(IControl iControl, IAjaxActionContext iAjaxActionContext) throws Exception;
+
 }
-

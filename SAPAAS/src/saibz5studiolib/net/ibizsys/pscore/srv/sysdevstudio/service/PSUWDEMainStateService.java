@@ -41,7 +41,7 @@ extends PSUWDEMainStateServiceBase {
         SelectContext selectContext = new SelectContext();
         selectContext.set("PSDEID", (Object)pSUWDEMainState.getPSUWDEMainStateId());
         selectContext.set("STATEFIELD", SelectContext.ISNOTNULL);
-        ArrayList arrayList = pSDEFieldService.select((ISelectCond)selectContext);
+        ArrayList<PSDEField> arrayList = pSDEFieldService.select((ISelectCond)selectContext);
         for (PSDEField pSDEField : arrayList) {
             if (StringHelper.compare((String)pSDEField.getStateField(), (String)"STATE1", (boolean)true) == 0) {
                 pSUWDEMainState.setStatePSDEFId(pSDEField.getPSDEFieldId());
@@ -72,12 +72,12 @@ extends PSUWDEMainStateServiceBase {
     }
 
     protected void internalCreateOrUpdate(PSUWDEMainState pSUWDEMainState) throws Exception {
-        Object object;
+        PSDEField object;
         PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
         SelectContext selectContext = new SelectContext();
         selectContext.set("PSDEID", (Object)pSUWDEMainState.getPSUWDEMainStateId());
         selectContext.set("STATEFIELD", SelectContext.ISNOTNULL);
-        ArrayList arrayList = pSDEFieldService.select((ISelectCond)selectContext);
+        ArrayList<PSDEField> arrayList = pSDEFieldService.select((ISelectCond)selectContext);
         for (PSDEField pSDEField : arrayList) {
             PSDEField pSDEField2 = new PSDEField();
             pSDEField2.setPSDEFieldId(pSDEField.getPSDEFieldId());
@@ -104,4 +104,3 @@ extends PSUWDEMainStateServiceBase {
         }
     }
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysDeployAppDEModelBase;
 
 public class PSSysDeployAppDEModel
 extends PSSysDeployAppDEModelBase {
+
+    public PSSysDeployAppDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

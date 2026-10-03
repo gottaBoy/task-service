@@ -23,6 +23,8 @@ import net.ibizsys.pswf.core.IWFInteractiveProcessModel;
 import net.ibizsys.pswf.core.IWFProcRoleModel;
 import net.ibizsys.pswf.core.WFInteractiveProcessModelBase;
 import net.ibizsys.pswf.core.WFProcRoleModel;
+import net.ibizsys.pswf.core.WFProcRoleModelBase;
+import net.ibizsys.pswf.core.WFProcUDActorRoleModel;
 
 public class PSJITWFInteractiveProcessModel
 extends WFInteractiveProcessModelBase
@@ -62,19 +64,17 @@ implements IPSJITIWFProcessModel {
         super.onInit();
         Iterator<IPSWFProcessRole> procroles = this.iPSWFProcess.getPSWFProcessRoles();
         while (procroles.hasNext()) {
-            Object procRole2;
             IPSWFProcessRole iWFProcRoleModel = procroles.next();
-            Object procRole = null;
+            WFProcRoleModelBase procRole = null;
             if (StringHelper.compare((String)iWFProcRoleModel.getWFProcRoleType(), (String)"WFROLE", (boolean)false) == 0) {
                 procRole = new WFProcRoleModel();
                 procRole.setWFRoleId(iWFProcRoleModel.getWFRoleId());
             } else if (StringHelper.compare((String)iWFProcRoleModel.getWFProcRoleType(), (String)"UDACTOR", (boolean)false) == 0) {
-                procRole2 = new PSJITWFProcUDActorRoleModel();
+                WFProcUDActorRoleModel procRole2 = new PSJITWFProcUDActorRoleModel();
                 procRole2.setUDField(iWFProcRoleModel.getUDField());
                 procRole = procRole2;
             } else {
-                procRole2 = new PSJITWFProcSysActorRoleModel();
-                procRole = procRole2;
+                procRole = new PSJITWFProcSysActorRoleModel();
             }
             procRole.setId(iWFProcRoleModel.getId());
             procRole.setName(iWFProcRoleModel.getName());

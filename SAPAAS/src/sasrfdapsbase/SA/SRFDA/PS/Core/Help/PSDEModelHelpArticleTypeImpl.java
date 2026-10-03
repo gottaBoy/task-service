@@ -38,12 +38,11 @@ extends PSHelpArticleTypeImpl {
             strPSModelId = StringHelper.format((String)"%1$s_%2$s", (Object)psHelpArticle.getPSDEName(), (Object)psHelpArticle.getUserTag());
         }
         psModel.setPSModelId(strPSModelId);
-        if (psModelService.get((IEntity)psModel, true) && !StringHelper.isNullOrEmpty((String)psModel.getModelDesc())) {
+        if (psModelService.get(psModel, true) && !StringHelper.isNullOrEmpty((String)psModel.getModelDesc())) {
             psHelpArticle.setContent(psModel.getModelDesc());
             PSHelpArticleService psHelpArticleService = (PSHelpArticleService)ServiceGlobal.getService(PSHelpArticleService.class, (SessionFactory)sessionFactory);
-            psHelpArticleService.update((IEntity)psHelpArticle);
+            psHelpArticleService.update(psHelpArticle);
         }
         super.onInitModel(iPSSystem, psHelpArticle);
     }
 }
-

@@ -118,7 +118,7 @@ implements IPSSysDBPartService {
     @Override
     protected List<PSSysDBPart> onListAll() throws Exception {
         ArrayList<PSSysDBPart> list = new ArrayList<PSSysDBPart>();
-        List pssysdashboards = PSModelServiceUtil.getInstance().getPSSysDashboardService().listAll();
+        List<PSSysDashboard> pssysdashboards = PSModelServiceUtil.getInstance().getPSSysDashboardService().listAll();
         if (pssysdashboards != null) {
             for (PSSysDashboard parent : pssysdashboards) {
                 List<PSSysDBPart> items = this.listByPSSysDashboard(parent);

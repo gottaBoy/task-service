@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.def.demodel.PSV3MGFormDEModelBase;
 
 public class PSV3MGFormDEModel
 extends PSV3MGFormDEModelBase {
+
+    public PSV3MGFormDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

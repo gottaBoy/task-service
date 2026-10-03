@@ -48,7 +48,7 @@ extends BaseDATSTask {
                 throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[IM0090]\u64cd\u4f5c\u5bf9\u8c61");
             }
             BaseDataEntity condition = new BaseDataEntity();
-            Vector vector = new Vector();
+            Vector<BaseDataEntity> vector = new Vector();
             callResult = imFileDataCtrl.Select(condition, vector);
             if (callResult.IsError()) {
                 return callResult;

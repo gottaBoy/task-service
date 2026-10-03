@@ -55,8 +55,6 @@ import org.apache.ftpserver.FtpServer;
 import org.apache.ftpserver.FtpServerFactory;
 import org.apache.ftpserver.ftplet.UserManager;
 import org.apache.ftpserver.listener.ListenerFactory;
-import org.apache.ftpserver.usermanager.ClearTextPasswordEncryptor;
-import org.apache.ftpserver.usermanager.PasswordEncryptor;
 
 public class IMMeetingServerInstance
 extends IMFuncServerInstance
@@ -470,7 +468,7 @@ IIMMeetingServerContext {
         factory.setDataConnectionConfiguration(dataConnectionConfigurationFactory.createDataConnectionConfiguration());
         factory.setPort(nPort);
         serverFactory.addListener("default", factory.createListener());
-        IMMTFtpUserManager imMTFtpUserManager = new IMMTFtpUserManager("", (PasswordEncryptor)new ClearTextPasswordEncryptor());
+        IMMTFtpUserManager imMTFtpUserManager = IMMTFtpUserManager.fromConfiguredCredentials();
         imMTFtpUserManager.setRootFolder(this.imMTServer.getFTPROOT());
         serverFactory.setUserManager((UserManager)imMTFtpUserManager);
         this.ftpServer = serverFactory.createServer();
@@ -600,4 +598,3 @@ IIMMeetingServerContext {
         }
     }
 }
-

@@ -2146,7 +2146,7 @@ implements Serializable {
                 PSDevSlnSysVer pSDevSlnSysVer = new PSDevSlnSysVer();
                 pSDevSlnSysVer.setPSDevSlnSysVerId(this.getPSDevSlnSysVerId());
                 PSDevSlnSysVerService pSDevSlnSysVerService = (PSDevSlnSysVerService)ServiceGlobal.getService(PSDevSlnSysVerService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysVerService.autoGet((IEntity)pSDevSlnSysVer);
+                pSDevSlnSysVerService.autoGet(pSDevSlnSysVer);
                 this.psdevslnsysver = pSDevSlnSysVer;
             }
             return this.psdevslnsysver;
@@ -2172,7 +2172,7 @@ implements Serializable {
                 PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
                 pSDevSlnSys.setPSDevSlnSysId(this.getPSDevSlnSysId());
                 PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysService.autoGet((IEntity)pSDevSlnSys);
+                pSDevSlnSysService.autoGet(pSDevSlnSys);
                 this.psdevslnsys = pSDevSlnSys;
             }
             return this.psdevslnsys;
@@ -2198,7 +2198,7 @@ implements Serializable {
                 PSRegistryItem pSRegistryItem = new PSRegistryItem();
                 pSRegistryItem.setPSRegistryItemId(this.getPSRegistryItemId());
                 PSRegistryItemService pSRegistryItemService = (PSRegistryItemService)ServiceGlobal.getService(PSRegistryItemService.class, (SessionFactory)this.getSessionFactory());
-                pSRegistryItemService.autoGet((IEntity)pSRegistryItem);
+                pSRegistryItemService.autoGet(pSRegistryItem);
                 this.psregistryitem = pSRegistryItem;
             }
             return this.psregistryitem;
@@ -2224,7 +2224,7 @@ implements Serializable {
                 PSRegistryRepo pSRegistryRepo = new PSRegistryRepo();
                 pSRegistryRepo.setPSRegistryRepoId(this.getPSRegistryRepoId());
                 PSRegistryRepoService pSRegistryRepoService = (PSRegistryRepoService)ServiceGlobal.getService(PSRegistryRepoService.class, (SessionFactory)this.getSessionFactory());
-                pSRegistryRepoService.autoGet((IEntity)pSRegistryRepo);
+                pSRegistryRepoService.autoGet(pSRegistryRepo);
                 this.psregistryrepo = pSRegistryRepo;
             }
             return this.psregistryrepo;
@@ -2250,7 +2250,7 @@ implements Serializable {
                 PSSaaSSys pSSaaSSys = new PSSaaSSys();
                 pSSaaSSys.setPSSaaSSysId(this.getPSSaaSSysId());
                 PSSaaSSysService pSSaaSSysService = (PSSaaSSysService)ServiceGlobal.getService(PSSaaSSysService.class, (SessionFactory)this.getSessionFactory());
-                pSSaaSSysService.autoGet((IEntity)pSSaaSSys);
+                pSSaaSSysService.autoGet(pSSaaSSys);
                 this.pssaassys = pSSaaSSys;
             }
             return this.pssaassys;

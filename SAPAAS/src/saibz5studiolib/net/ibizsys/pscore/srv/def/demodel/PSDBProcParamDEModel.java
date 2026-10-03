@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.def.demodel.PSDBProcParamDEModelBase;
 
 public class PSDBProcParamDEModel
 extends PSDBProcParamDEModelBase {
+
+    public PSDBProcParamDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

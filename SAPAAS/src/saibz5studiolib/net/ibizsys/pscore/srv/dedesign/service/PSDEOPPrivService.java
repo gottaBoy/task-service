@@ -86,7 +86,7 @@ implements IPSModelService<PSDEOPPriv> {
             if (pSDEInitCfg != null && DataObject.getBoolValue((Integer)pSDEInitCfg.getIgnoreMgrModel(), (boolean)false)) {
                 return;
             }
-            boolean bl = this.isEnableFolderKey((IEntity)pSDataEntity);
+            boolean bl = this.isEnableFolderKey(pSDataEntity);
             for (String string3 : defaultPSDEOPPrivMap.keySet()) {
                 PSDEOPPriv pSDEOPPriv = new PSDEOPPriv();
                 if (bl) {
@@ -95,17 +95,16 @@ implements IPSModelService<PSDEOPPriv> {
                     pSDEOPPriv.setPSDEOPPrivId(KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)string3));
                 }
                 if (this.checkKey(pSDEOPPriv) != 0) continue;
-                Object object = new SelectCond();
-                object.set("PSDERID", SelectCond.ISNULL);
-                object.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-                object.set("PSDEOPPRIVNAME", (Object)string3);
-                object.setFetchFirst(true);
-                if (this.select((ISelectCond)object).size() > 0) continue;
-                object = defaultPSDEOPPrivMap.get(string3);
+                SelectCond selectCond = new SelectCond();
+                selectCond.set("PSDERID", SelectCond.ISNULL);
+                selectCond.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
+                selectCond.set("PSDEOPPRIVNAME", (Object)string3);
+                selectCond.setFetchFirst(true);
+                if (this.select((ISelectCond)selectCond).size() > 0) continue;
                 pSDEOPPriv.setPSDEId(pSDataEntity.getPSDataEntityId());
                 pSDEOPPriv.setPSDEName(pSDataEntity.getPSDataEntityName());
                 pSDEOPPriv.setPSDEOPPrivName(string3);
-                pSDEOPPriv.setLogicName((String)object);
+                pSDEOPPriv.setLogicName(defaultPSDEOPPrivMap.get(string3));
                 this.create(pSDEOPPriv);
             }
             return;
@@ -115,7 +114,7 @@ implements IPSModelService<PSDEOPPriv> {
     @Override
     protected String getEntityFolderKeyValue(PSDEOPPriv pSDEOPPriv, PSSystem pSSystem) throws Exception {
         if (StringHelper.isNullOrEmpty((String)pSDEOPPriv.getPSDEId())) {
-            return PSModelFolderKeyHelper.getModelKey((IEntity)pSDEOPPriv, pSSystem, "PSDEOPPRIV_SYS", "", this.getSessionFactory());
+            return PSModelFolderKeyHelper.getModelKey(pSDEOPPriv, pSSystem, "PSDEOPPRIV_SYS", "", this.getSessionFactory());
         }
         return super.getEntityFolderKeyValue(pSDEOPPriv, pSSystem);
     }
@@ -131,4 +130,3 @@ implements IPSModelService<PSDEOPPriv> {
         actionReserverMap.put("READ", RESERVERTAG_READ);
     }
 }
-

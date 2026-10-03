@@ -984,7 +984,7 @@ implements Serializable {
                 PSDEDQCode pSDEDQCode = new PSDEDQCode();
                 pSDEDQCode.setPSDEDQCodeId(this.getPSDEDQCodeId());
                 PSDEDQCodeService pSDEDQCodeService = (PSDEDQCodeService)ServiceGlobal.getService(PSDEDQCodeService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDQCodeService.autoGet((IEntity)pSDEDQCode);
+                pSDEDQCodeService.autoGet(pSDEDQCode);
                 this.psdedqcode = pSDEDQCode;
             }
             return this.psdedqcode;

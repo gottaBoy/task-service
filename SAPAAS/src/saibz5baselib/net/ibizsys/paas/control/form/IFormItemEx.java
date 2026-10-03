@@ -1,13 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.form;
 
-import java.util.Iterator;
-import net.ibizsys.paas.control.form.IFormItem;
 
-public interface IFormItemEx
-extends IFormItem {
-    public Iterator<String> getItemNames();
+/**
+ * 复合表单项接口
+ * @author Administrator
+ *
+ */
+public interface IFormItemEx extends IFormItem{
+
+	/**
+	 * 获取子项名称集合
+	 * @return
+	 */
+	java.util.Iterator<String> getItemNames(); 
 }
-

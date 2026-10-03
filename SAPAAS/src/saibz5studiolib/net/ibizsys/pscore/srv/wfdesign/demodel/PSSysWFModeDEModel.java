@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.wfdesign.demodel.PSSysWFModeDEModelBase;
 
 public class PSSysWFModeDEModel
 extends PSSysWFModeDEModelBase {
+
+    public PSSysWFModeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

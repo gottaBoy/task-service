@@ -74,7 +74,7 @@ implements IPSDEDSParamService {
     @Override
     protected List<PSDEDSParam> onListAll() throws Exception {
         ArrayList<PSDEDSParam> list = new ArrayList<PSDEDSParam>();
-        List psdedatasets = PSModelServiceUtil.getInstance().getPSDEDataSetService().listAll();
+        List<PSDEDataSet> psdedatasets = PSModelServiceUtil.getInstance().getPSDEDataSetService().listAll();
         if (psdedatasets != null) {
             for (PSDEDataSet parent : psdedatasets) {
                 List<PSDEDSParam> items = this.listByPSDEDataSet(parent);

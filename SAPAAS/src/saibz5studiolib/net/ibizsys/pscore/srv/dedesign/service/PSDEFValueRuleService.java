@@ -53,7 +53,7 @@ extends PSDEFValueRuleServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSDEFValueRule.getPSDEFValueRuleId())) {
             this.getTempMajor(pSDEFValueRule);
         } else {
-            this.getTemp((IEntity)pSDEFValueRule);
+            this.getTemp(pSDEFValueRule);
         }
         pSDEFValueRule.setVRModel(this.getVRModel(pSDEFValueRule));
     }
@@ -106,7 +106,6 @@ extends PSDEFValueRuleServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEFVRCond pSDEFVRCond2;
                 PSDEFVRCondService pSDEFVRCondService = (PSDEFVRCondService)ServiceGlobal.getService((String)PSDEFVRCondService.class.getCanonicalName(), (SessionFactory)PSDEFValueRuleService.this.getSessionFactory());
                 ArrayList<PSDEFVRCond> arrayList = pSDEFVRCondService.selectTempByPSDEFVR(pSDEFValueRule2);
                 HashMap<String, PSDEFVRCond> hashMap = new HashMap<String, PSDEFVRCond>();
@@ -114,19 +113,19 @@ extends PSDEFValueRuleServiceBase {
                     hashMap.put(pSDEFVRCond2.getPSDEFVRCondId(), pSDEFVRCond2);
                 }
                 String string = pSDEFValueRule2.getVRModel();
-                pSDEFVRCond2 = XmlNode.loadFromXML((String)string);
-                if (pSDEFVRCond2 != null) {
-                    pSDEFVRCond2.setAttribute("PSDEFID", pSDEFValueRule2.getPSDEFId());
-                    pSDEFVRCond2.setAttribute("PSDEFVALUERULEID", pSDEFValueRule2.getPSDEFValueRuleId());
-                    pSDEFVRCond2.setAttribute("PSDEFVRID", pSDEFValueRule2.getPSDEFValueRuleId());
-                    PSDEFValueRuleService.this.updatePSDEFVRConds(pSDEFValueRule2, null, (XmlNode)pSDEFVRCond2, hashMap);
-                    pSDEFValueRule2.setVRModel(XmlNode.export((XmlNode)pSDEFVRCond2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)string);
+                if (xmlNode != null) {
+                    xmlNode.setAttribute("PSDEFID", pSDEFValueRule2.getPSDEFId());
+                    xmlNode.setAttribute("PSDEFVALUERULEID", pSDEFValueRule2.getPSDEFValueRuleId());
+                    xmlNode.setAttribute("PSDEFVRID", pSDEFValueRule2.getPSDEFValueRuleId());
+                    PSDEFValueRuleService.this.updatePSDEFVRConds(pSDEFValueRule2, null, xmlNode, hashMap);
+                    pSDEFValueRule2.setVRModel(XmlNode.export(xmlNode));
                 } else {
                     pSDEFValueRule2.setVRModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEFVRCond pSDEFVRCond3 : hashMap.values()) {
-                        pSDEFVRCondService.removeTemp((IEntity)pSDEFVRCond3);
+                        pSDEFVRCondService.removeTemp(pSDEFVRCond3);
                     }
                 }
                 PSDEFValueRuleService.this.updateTempMajor(pSDEFValueRule2);
@@ -137,7 +136,7 @@ extends PSDEFValueRuleServiceBase {
     protected void updatePSDEFVRConds(PSDEFValueRule pSDEFValueRule, PSDEFVRCond pSDEFVRCond, XmlNode xmlNode, HashMap<String, PSDEFVRCond> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSDEFVRCondService pSDEFVRCondService = (PSDEFVRCondService)ServiceGlobal.getService((String)PSDEFVRCondService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -170,7 +169,7 @@ extends PSDEFValueRuleServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSDEFVRCondService.updateTemp((IEntity)pSDEFVRCond2);
+                    pSDEFVRCondService.updateTemp(pSDEFVRCond2);
                 }
                 xmlNode2.resetAttributes();
                 pSDEFVRCond2.fillXmlNode(xmlNode2, false);
@@ -191,7 +190,6 @@ extends PSDEFValueRuleServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEFVRCond pSDEFVRCond2;
                 PSDEFVRCondService pSDEFVRCondService = (PSDEFVRCondService)ServiceGlobal.getService((String)PSDEFVRCondService.class.getCanonicalName(), (SessionFactory)PSDEFValueRuleService.this.getSessionFactory());
                 ArrayList<PSDEFVRCond> arrayList = pSDEFVRCondService.selectTempByPSDEFVR(pSDEFValueRule2);
                 HashMap<String, PSDEFVRCond> hashMap = new HashMap<String, PSDEFVRCond>();
@@ -199,22 +197,22 @@ extends PSDEFValueRuleServiceBase {
                     hashMap.put(pSDEFVRCond2.getPSDEFVRCondId(), pSDEFVRCond2);
                 }
                 String string = pSDEFValueRule2.getVRModel();
-                pSDEFVRCond2 = XmlNode.loadFromXML((String)string);
-                if (pSDEFVRCond2 != null) {
-                    pSDEFVRCond2.setAttribute("PSDEFID", pSDEFValueRule2.getPSDEFId());
-                    pSDEFVRCond2.setAttribute("PSDEFVALUERULEID", pSDEFValueRule2.getPSDEFValueRuleId());
-                    pSDEFVRCond2.setAttribute("PSDEFVRID", pSDEFValueRule2.getPSDEFValueRuleId());
-                    PSDEFValueRuleService.this.updatePSDEFVRConds(pSDEFValueRule2, null, (XmlNode)pSDEFVRCond2, hashMap);
-                    pSDEFValueRule2.setVRModel(XmlNode.export((XmlNode)pSDEFVRCond2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)string);
+                if (xmlNode != null) {
+                    xmlNode.setAttribute("PSDEFID", pSDEFValueRule2.getPSDEFId());
+                    xmlNode.setAttribute("PSDEFVALUERULEID", pSDEFValueRule2.getPSDEFValueRuleId());
+                    xmlNode.setAttribute("PSDEFVRID", pSDEFValueRule2.getPSDEFValueRuleId());
+                    PSDEFValueRuleService.this.updatePSDEFVRConds(pSDEFValueRule2, null, xmlNode, hashMap);
+                    pSDEFValueRule2.setVRModel(XmlNode.export(xmlNode));
                 } else {
                     pSDEFValueRule2.setVRModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEFVRCond pSDEFVRCond3 : hashMap.values()) {
-                        pSDEFVRCondService.removeTemp((IEntity)pSDEFVRCond3);
+                        pSDEFVRCondService.removeTemp(pSDEFVRCond3);
                     }
                 }
-                PSDEFValueRuleService.this.createTempMajor((IEntity)pSDEFValueRule2);
+                PSDEFValueRuleService.this.createTempMajor(pSDEFValueRule2);
             }
         });
     }
@@ -226,7 +224,6 @@ extends PSDEFValueRuleServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEFVRCond pSDEFVRCond2;
                 PSDEFVRCondService pSDEFVRCondService = (PSDEFVRCondService)ServiceGlobal.getService((String)PSDEFVRCondService.class.getCanonicalName(), (SessionFactory)PSDEFValueRuleService.this.getSessionFactory());
                 ArrayList<PSDEFVRCond> arrayList = pSDEFVRCondService.selectTempByPSDEFVR(pSDEFValueRule2);
                 HashMap<String, PSDEFVRCond> hashMap = new HashMap<String, PSDEFVRCond>();
@@ -237,15 +234,16 @@ extends PSDEFValueRuleServiceBase {
                 if (StringHelper.isNullOrEmpty((String)object)) {
                     object = WebContext.getCurrent().getPostValue("vrmodel");
                 }
-                if ((pSDEFVRCond2 = XmlNode.loadFromXML((String)object)) != null) {
-                    PSDEFValueRuleService.this.updatePSDEFVRConds(pSDEFValueRule2, null, (XmlNode)pSDEFVRCond2, hashMap);
-                    pSDEFValueRule2.setVRModel(XmlNode.export((XmlNode)pSDEFVRCond2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)object);
+                if (xmlNode != null) {
+                    PSDEFValueRuleService.this.updatePSDEFVRConds(pSDEFValueRule2, null, xmlNode, hashMap);
+                    pSDEFValueRule2.setVRModel(XmlNode.export(xmlNode));
                 } else {
                     pSDEFValueRule2.setVRModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEFVRCond pSDEFVRCond3 : hashMap.values()) {
-                        pSDEFVRCondService.removeTemp((IEntity)pSDEFVRCond3);
+                        pSDEFVRCondService.removeTemp(pSDEFVRCond3);
                     }
                 }
             }
@@ -254,7 +252,7 @@ extends PSDEFValueRuleServiceBase {
 
     @Override
     public void getDraftWithModel(PSDEFValueRule pSDEFValueRule) throws Exception {
-        this.getDraftTempMajor((IEntity)pSDEFValueRule);
+        this.getDraftTempMajor(pSDEFValueRule);
         pSDEFValueRule.setVRModel(this.getVRModel(pSDEFValueRule));
     }
 
@@ -279,7 +277,7 @@ extends PSDEFValueRuleServiceBase {
     public void createDER1NDefaultVR(PSDER pSDER) throws Exception {
         PSDEFValueRule pSDEFValueRule = new PSDEFValueRule();
         pSDEFValueRule.setPSDEFValueRuleId(pSDER.getPSDERId());
-        if (this.get((IEntity)pSDEFValueRule, true)) {
+        if (this.get(pSDEFValueRule, true)) {
             return;
         }
         if (StringHelper.isNullOrEmpty((String)pSDER.getPSDEDataSetId())) {
@@ -330,4 +328,3 @@ extends PSDEFValueRuleServiceBase {
         return super.getModelV2Tag(pSDEFValueRule);
     }
 }
-

@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
     }
 
     protected void onFillParentInfo(PSDEModelCnt pSDEModelCnt, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDEModelCnt, string, string2, string3);
+        super.onFillParentInfo(pSDEModelCnt, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEModelCnt, bl);
+        super.onFillEntityFullInfo(pSDEModelCnt, bl);
     }
 
     protected void onWriteBackParent(PSDEModelCnt pSDEModelCnt, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEModelCnt, bl);
+        super.onWriteBackParent(pSDEModelCnt, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEModelCnt pSDEModelCnt, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEModelCnt, bl);
+        super.onRemoveEntityUncopyValues(pSDEModelCnt, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEModelCnt pSDEModelCnt, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -248,7 +248,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
         if ((entityFieldError = this.onCheckField_PSDEModelCntName(bl, pSDEModelCnt, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEModelCnt, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEModelCnt, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CLCnt(boolean bl, PSDEModelCnt pSDEModelCnt, boolean bl2, boolean bl3) throws Exception {
@@ -261,7 +261,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CLCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_CLCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CLCNT");
@@ -283,7 +283,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEACCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEACCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEACCNT");
@@ -305,7 +305,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEActionCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEActionCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEACTIONCNT");
@@ -327,7 +327,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DECalendarCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DECalendarCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DECALENDARCNT");
@@ -349,7 +349,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEChartCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEChartCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DECHARTCNT");
@@ -371,7 +371,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEDashboardCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEDashboardCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEDASHBOARDCNT");
@@ -393,7 +393,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEDataViewCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEDataViewCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEDATAVIEWCNT");
@@ -415,7 +415,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEDQCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEDQCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEDQCNT");
@@ -437,7 +437,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEDRCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEDRCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEDRCNT");
@@ -459,7 +459,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEDRGrpCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEDRGrpCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEDRGRPCNT");
@@ -481,7 +481,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEDRItemCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEDRItemCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEDRITEMCNT");
@@ -503,7 +503,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEDSCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEDSCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEDSCNT");
@@ -525,7 +525,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEFieldCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEFieldCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFIELDCNT");
@@ -547,7 +547,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEFormCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEFormCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFORMCNT");
@@ -569,7 +569,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEGridCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEGridCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEGRIDCNT");
@@ -591,7 +591,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEListCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEListCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DELISTCNT");
@@ -613,7 +613,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DELogicCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DELogicCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DELOGICCNT");
@@ -635,7 +635,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEMapViewCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEMapViewCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEMAPVIEWCNT");
@@ -657,7 +657,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEMSCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEMSCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEMSCNT");
@@ -679,7 +679,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEOPPrivCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEOPPrivCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEOPPRIVCNT");
@@ -701,7 +701,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEPanelCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEPanelCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEPANELCNT");
@@ -723,7 +723,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEPortletCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEPortletCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEPORTLETCNT");
@@ -745,7 +745,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DERCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DERCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DERCNT");
@@ -767,7 +767,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DERCnt2_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DERCnt2_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DERCNT2");
@@ -789,7 +789,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEReportCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEReportCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEREPORTCNT");
@@ -811,7 +811,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DESearchBarCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DESearchBarCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DESEARCHBARCNT");
@@ -833,7 +833,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEToolbarCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEToolbarCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DETOOLBARCNT");
@@ -855,7 +855,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DETreeCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DETreeCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DETREECNT");
@@ -877,7 +877,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEUACnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEUACnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEUACNT");
@@ -899,7 +899,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEUAGrpCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEUAGrpCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEUAGRPCNT");
@@ -921,7 +921,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEWFCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_DEWFCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEWFCNT");
@@ -943,7 +943,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IndexCnt_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string = this.onTestValueRule_IndexCnt_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INDEXCNT");
@@ -968,7 +968,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEModelCntId_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEModelCntId_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMODELCNTID");
@@ -993,7 +993,7 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEModelCntName_Default((IEntity)pSDEModelCnt, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEModelCntName_Default(pSDEModelCnt, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMODELCNTNAME");
@@ -1006,11 +1006,11 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
     }
 
     protected void onSyncEntity(PSDEModelCnt pSDEModelCnt, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEModelCnt, bl);
+        super.onSyncEntity(pSDEModelCnt, bl);
     }
 
     protected void onSyncIndexEntities(PSDEModelCnt pSDEModelCnt, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEModelCnt, bl);
+        super.onSyncIndexEntities(pSDEModelCnt, bl);
     }
 
     public Object getDataContextValue(PSDEModelCnt pSDEModelCnt, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1018,14 +1018,14 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEModelCnt, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEModelCnt, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEModelCnt pSDEModelCnt, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEModelCnt, arrayList, n);
+        super.onExportMajorModel(pSDEModelCnt, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1332,14 +1332,14 @@ extends PSCoreSysServiceBase<PSDEModelCnt> {
 
     protected boolean onMergeChild(String string, String string2, PSDEModelCnt pSDEModelCnt) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEModelCnt)) {
+        if (super.onMergeChild(string, string2, pSDEModelCnt)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEModelCnt pSDEModelCnt) throws Exception {
-        super.onUpdateParent((IEntity)pSDEModelCnt);
+        super.onUpdateParent(pSDEModelCnt);
     }
 
     @Override

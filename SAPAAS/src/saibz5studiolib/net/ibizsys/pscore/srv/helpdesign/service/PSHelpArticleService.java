@@ -55,7 +55,7 @@ implements IPSModelService<PSHelpArticle> {
             }
             PSHelpArticle pSHelpArticle = new PSHelpArticle();
             pSHelpArticle.setPSHelpArticleId(pSDataEntity.getPSDataEntityId());
-            if (!this.get((IEntity)pSHelpArticle, true)) {
+            if (!this.get(pSHelpArticle, true)) {
                 pSHelpArticle.setArticleType("DEMODEL");
                 pSHelpArticle.setPSHelpArticleName(StringHelper.format((String)"[%1$s]\u6a21\u578b\u8bf4\u660e", (Object)pSDataEntity.getPSDataEntityName()));
                 pSHelpArticle.setPSDEId(pSDataEntity.getPSDataEntityId());
@@ -73,7 +73,7 @@ implements IPSModelService<PSHelpArticle> {
         PSHelpArticleTypeService pSHelpArticleTypeService = (PSHelpArticleTypeService)ServiceGlobal.getService(PSHelpArticleTypeService.class);
         PSHelpArticleType pSHelpArticleType = new PSHelpArticleType();
         pSHelpArticleType.setPSHelpArticleTypeId(pSHelpArticle.getArticleType());
-        pSHelpArticleTypeService.get((IEntity)pSHelpArticleType);
+        pSHelpArticleTypeService.get(pSHelpArticleType);
         PSHelpSectionService pSHelpSectionService = (PSHelpSectionService)ServiceGlobal.getService(PSHelpSectionService.class, (SessionFactory)this.getSessionFactory());
         ArrayList<PSHelpArtSec> arrayList = pSHelpArticleType.getPSHelpArtSecs();
         for (PSHelpArtSec pSHelpArtSec : arrayList) {
@@ -92,7 +92,7 @@ implements IPSModelService<PSHelpArticle> {
     @Override
     protected void onInitModel(PSHelpArticle pSHelpArticle) throws Exception {
         if (!pSHelpArticle.isFullEntity()) {
-            this.get((IEntity)pSHelpArticle);
+            this.get(pSHelpArticle);
         }
         super.onInitModel(pSHelpArticle);
         PSHelpSectionService pSHelpSectionService = (PSHelpSectionService)ServiceGlobal.getService(PSHelpSectionService.class, (SessionFactory)this.getSessionFactory());

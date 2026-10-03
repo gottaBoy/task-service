@@ -1,11 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.action;
 
-import net.ibizsys.model.dataentity.action.IPSDEAction;
 
-public interface IPSDEUserSysUpdateAction
-extends IPSDEAction {
+/**
+ * 实体更新数据行为对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDEUserSysUpdateAction extends IPSDEAction
+{
+
 }
-

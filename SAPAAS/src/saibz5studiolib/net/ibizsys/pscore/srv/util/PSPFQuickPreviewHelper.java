@@ -60,7 +60,7 @@ public class PSPFQuickPreviewHelper {
         object = (PSPFQuickTemplService)ServiceGlobal.getService(PSPFQuickTemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         SelectCond selectCond = new SelectCond();
         selectCond.set("VALIDFLAG", (Object)1);
-        ArrayList arrayList = object.select((ISelectCond)selectCond);
+        ArrayList<PSPFQuickTempl> arrayList = ((PSPFQuickTemplService)object).select((ISelectCond)selectCond);
         for (PSPFQuickTempl pSPFQuickTempl : arrayList) {
             psPFQuickTemplMap.put(pSPFQuickTempl.getPSPFQuickTemplId(), pSPFQuickTempl);
         }
@@ -111,13 +111,13 @@ public class PSPFQuickPreviewHelper {
             return template;
         }
         Integer n = string.hashCode();
-        Configuration configuration = templateCacheMap;
-        synchronized (configuration) {
+        HashMap<Integer, Template> cache = templateCacheMap;
+        synchronized (cache) {
             template = templateCacheMap.get(n);
         }
         if (template == null) {
-            configuration = new Configuration();
-            EntityTemplateLoader entityTemplateLoader = new EntityTemplateLoader((IEntity)pSPFQuickTempl);
+            Configuration configuration = new Configuration();
+            EntityTemplateLoader entityTemplateLoader = new EntityTemplateLoader(pSPFQuickTempl);
             configuration.setTemplateLoader((TemplateLoader)entityTemplateLoader);
             template = configuration.getTemplate("TEMPLCODE");
             HashMap<Integer, Template> hashMap = templateCacheMap;
@@ -131,4 +131,3 @@ public class PSPFQuickPreviewHelper {
         return template;
     }
 }
-

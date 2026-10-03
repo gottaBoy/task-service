@@ -1,108 +1,135 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.PSObjectImpl
- *  net.ibizsys.model.app.view.IPSAppView
- *  net.ibizsys.paas.util.StringHelper
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.model.pf;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import net.ibizsys.model.PSObjectImpl;
 import net.ibizsys.model.app.view.IPSAppView;
-import net.ibizsys.model.pf.IPSNGState;
 import net.ibizsys.paas.util.StringHelper;
 import net.sf.json.JSONObject;
 
-public class PSNGStateImpl
-extends PSObjectImpl
-implements IPSNGState {
-    private IPSNGState parentState = null;
-    private int nLevel = 0;
-    private ArrayList<IPSNGState> childStateList = new ArrayList();
-    private String strFullStateName = "";
-    private IPSAppView iPSAppView = null;
-    private int nIndex = 0;
-    private String strCId = "";
-    private JSONObject viewParamJO = null;
+/**
+ * AngularJS 路由状态项
+ * @author Administrator
+ *
+ */
+public class PSNGStateImpl extends PSObjectImpl implements IPSNGState {
 
-    public void init(IPSNGState parentState, String strName) {
-        this.parentState = parentState;
-        strName = strName.toLowerCase();
-        this.setName(strName);
-        if (this.parentState != null) {
-            this.strFullStateName = StringHelper.format((String)"%1$s.%2$s", (Object)parentState.getFullStateName(), (Object)this.getName());
-            this.nLevel = parentState.getLevel() + 1;
-        } else {
-            this.strFullStateName = strName;
-        }
-    }
+	private IPSNGState parentState = null;
+	private int nLevel = 0;
+	private ArrayList<IPSNGState> childStateList = new ArrayList<IPSNGState>();
+	private String strFullStateName = "";
+	private IPSAppView iPSAppView = null;
+	private int nIndex = 0;
+	private String strCId = "";
+	private JSONObject viewParamJO = null;
 
-    public String getPSSysModelInstId() {
-        return null;
-    }
+	/**
+	 * 初始化
+	 * @param parentState
+	 * @param strName
+	 */
+	public void init(IPSNGState parentState,String strName){
+		this.parentState = parentState;
+		strName = strName.toLowerCase();
+		this.setName(strName);
+		
+		if(this.parentState!=null){
+			this.strFullStateName  = StringHelper.format("%1$s.%2$s",parentState.getFullStateName(),this.getName());
+			this.nLevel = parentState.getLevel()+1;
+		}
+		else
+			this.strFullStateName = strName;
+		
+	}
+	
+	@Override
+	public String getPSSysModelInstId() {
+		return null;
+	}
 
-    @Override
-    public String getFullStateName() {
-        return this.strFullStateName;
-    }
+	@Override
+	public String getFullStateName() {
+		return this.strFullStateName;
+	}
 
-    @Override
-    public IPSNGState getParentState() {
-        return this.parentState;
-    }
+	@Override
+	public IPSNGState getParentState() {
+		return this.parentState ;
+	}
 
-    @Override
-    public IPSAppView getPSAppView() {
-        return this.iPSAppView;
-    }
+	@Override
+	public IPSAppView getPSAppView() {
+		return this.iPSAppView;
+	}
+	
+	public void setPSAppView(IPSAppView iPSAppView){
+		this.iPSAppView = iPSAppView;
+	}
 
-    public void setPSAppView(IPSAppView iPSAppView) {
-        this.iPSAppView = iPSAppView;
-    }
+	@Override
+	public Iterator<IPSNGState> getChildStates() {
+		return childStateList.iterator();
+	}
+	
+	/**
+	 * 获取子状态列表
+	 * @return
+	 */
+	public ArrayList<IPSNGState> getChildStateList(){
+		return childStateList;
+	}
 
-    @Override
-    public Iterator<IPSNGState> getChildStates() {
-        return this.childStateList.iterator();
-    }
+	@Override
+	public int getLevel() {
+		return nLevel;
+	}
 
-    public ArrayList<IPSNGState> getChildStateList() {
-        return this.childStateList;
-    }
+	/**
+	 * 设置路由状态编号
+	 * @param nIndex
+	 */
+	public void setIndex(int nIndex){
+		this.nIndex = nIndex;
+		if(this.nIndex==0){
+			this.strCId = "";
+		}
+		else{
+			this.strCId = StringHelper.format("C%1$s",this.nIndex);
+		}
+	}
+	
+	@Override
+	public String getCId() {
+		
+		return this.strCId;
+	}
 
-    @Override
-    public int getLevel() {
-        return this.nLevel;
-    }
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.PF.IPSNGState#getViewParamJO()
+	 */
+	@Override
+	public JSONObject getViewParamJO() {
+		return this.viewParamJO;
+	}
 
-    public void setIndex(int nIndex) {
-        this.nIndex = nIndex;
-        this.strCId = this.nIndex == 0 ? "" : StringHelper.format((String)"C%1$s", (Object)this.nIndex);
-    }
+	/**
+	 * 设置视图参数Json对象
+	 * @param viewParamJO
+	 */
+	public void setViewParamJO(JSONObject viewParamJO){
+		this.viewParamJO  =viewParamJO;
+	}
 
-    @Override
-    public String getCId() {
-        return this.strCId;
-    }
-
-    @Override
-    public JSONObject getViewParamJO() {
-        return this.viewParamJO;
-    }
-
-    public void setViewParamJO(JSONObject viewParamJO) {
-        this.viewParamJO = viewParamJO;
-    }
-
-    @Override
-    public String getViewParamJOString() {
-        if (this.getViewParamJO() != null) {
-            return this.getViewParamJO().toString();
-        }
-        return "";
-    }
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.PF.IPSNGState#getViewParamJOString()
+	 */
+	@Override
+	public String getViewParamJOString() {
+		if(getViewParamJO()!=null)
+			return getViewParamJO().toString();
+		return "";
+	}
+	
+	
 }
-

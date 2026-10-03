@@ -30,6 +30,10 @@ implements IPSDataEntityModel<ET> {
     private boolean bTranslateDEFieldServiceCodeName = false;
     private String strMemo = null;
 
+    protected PSDataEntityModelBase() throws Exception {
+        super();
+    }
+
     public static boolean isSimpleMode() {
         return PSCoreSysModel.isSimpleMode();
     }
@@ -177,4 +181,3 @@ implements IPSDataEntityModel<ET> {
         return this.bTranslateDEFieldServiceCodeName;
     }
 }
-

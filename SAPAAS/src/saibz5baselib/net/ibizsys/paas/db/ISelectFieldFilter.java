@@ -1,14 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
 import net.ibizsys.paas.core.IDEDataQueryCodeCond;
-import net.ibizsys.paas.db.ISelectFilter;
 
-public interface ISelectFieldFilter
-extends ISelectFilter,
-IDEDataQueryCodeCond {
-    public Object getCondObjectValue() throws Exception;
+
+/**
+ * 选择属性过滤器
+ * @author Administrator
+ *
+ */
+public interface ISelectFieldFilter extends ISelectFilter,IDEDataQueryCodeCond{
+
+	/**
+	 * 获取条件对象值
+	 * @return
+	 */
+	Object getCondObjectValue() throws Exception;
+
 }
-

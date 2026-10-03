@@ -1,159 +1,151 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  SA.SRFramework.Utility.StringHelper
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package SA.SRFDA.PS.Core.Service;
 
-import SA.SRFDA.PS.Core.DataEntity.DER.IPSDER1N;
-import SA.SRFDA.PS.Core.DataEntity.DER.IPSDERCustom;
 import SA.SRFDA.PS.Core.DataEntity.IPSDataEntity;
-import SA.SRFDA.PS.Core.Service.IPSSubSysServiceAPIDERS;
-import SA.SRFDA.PS.Core.Service.PSSubSysServiceAPIDERSImpl;
-import SA.SRFDA.PS.Core.Service.PSSubSysServiceAPIGlobalModelBase;
+import SA.SRFDA.PS.Core.DataEntity.DER.IPSDER1N;
+import SA.SRFDA.PS.Core.DataEntity.DER.IPSDERBase;
+import SA.SRFDA.PS.Core.DataEntity.DER.IPSDERCustom;
 import SA.SRFDA.PS.Data.PSSubSysSADERS;
+import SA.SRFramework.DataEx.CallResult;
 import SA.SRFramework.Utility.StringHelper;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Vector;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class PSSubSysServiceAPIDERSGlobalModel
-extends PSSubSysServiceAPIGlobalModelBase<String, PSSubSysSADERS, IPSSubSysServiceAPIDERS> {
-    private static final Log log = LogFactory.getLog(PSSubSysServiceAPIDERSGlobalModel.class);
+public class PSSubSysServiceAPIDERSGlobalModel extends PSSubSysServiceAPIGlobalModelBase<String, PSSubSysSADERS, IPSSubSysServiceAPIDERS> {
+   private static final Log log = LogFactory.getLog(PSSubSysServiceAPIDERSGlobalModel.class);
 
-    @Override
-    protected PSSubSysSADERS GetObject(String strPSSubSysSADERSId) {
-        if (this.isPrepareModels()) {
-            return null;
-        }
-        log.warn((Object)StringHelper.Format((String)"\u4e0d\u652f\u6301\u6307\u5b9a\u83b7\u53d6\u5916\u90e8\u670d\u52a1\u63a5\u53e3\u5b9e\u4f53\u5173\u7cfb[%1$s]", (Object)strPSSubSysSADERSId));
-        return null;
-    }
+   protected PSSubSysSADERS GetObject(String strPSSubSysSADERSId) {
+      if (this.isPrepareModels()) {
+         return null;
+      }
 
-    @Override
-    protected Boolean TestObjectRenew(PSSubSysSADERS obj) {
-        return false;
-    }
+      log.warn(StringHelper.Format("不支持指定获取外部服务接口实体关系[%1$s]", strPSSubSysSADERSId));
+      return null;
+   }
 
-    @Override
-    protected String getObjectId(PSSubSysSADERS vt) {
-        return vt.getPSSUBSYSSADERSID();
-    }
+   protected Boolean TestObjectRenew(PSSubSysSADERS obj) {
+      return false;
+   }
 
-    @Override
-    protected IPSSubSysServiceAPIDERS OnCreateModelHelper(PSSubSysSADERS vt, String strPSSubSysSADERSId) throws Exception {
-        if (StringHelper.Compare((String)strPSSubSysSADERSId, (String)vt.getPSSUBSYSSADERSID(), (boolean)false) == 0) {
-            PSSubSysServiceAPIDERSImpl iPSSubSysServiceAPIDERS = new PSSubSysServiceAPIDERSImpl();
-            iPSSubSysServiceAPIDERS.init(this.iDAGlobalHelper, this.getPSSubSysServiceAPI(), vt);
-            return iPSSubSysServiceAPIDERS;
-        }
-        return (IPSSubSysServiceAPIDERS)this.FindModelHelper(vt.getPSSUBSYSSADERSID());
-    }
+   protected String getObjectId(PSSubSysSADERS vt) {
+      return vt.getPSSUBSYSSADERSID();
+   }
 
-    @Override
-    protected IPSSubSysServiceAPIDERS registerModel(PSSubSysSADERS vt) throws Exception {
-        IPSSubSysServiceAPIDERS iPSSubSysSADERS = (IPSSubSysServiceAPIDERS)this.InternalGetModelHelper(vt.getPSSUBSYSSADERSID());
-        if (iPSSubSysSADERS != null) {
-            return iPSSubSysSADERS;
-        }
-        this.setModel(vt.getPSSUBSYSSADERSID(), vt, null);
-        iPSSubSysSADERS = (IPSSubSysServiceAPIDERS)this.FindModelHelper(vt.getPSSUBSYSSADERSID());
-        return iPSSubSysSADERS;
-    }
+   protected IPSSubSysServiceAPIDERS OnCreateModelHelper(PSSubSysSADERS vt, String strPSSubSysSADERSId) throws Exception {
+      if (StringHelper.Compare(strPSSubSysSADERSId, vt.getPSSUBSYSSADERSID(), false) == 0) {
+         IPSSubSysServiceAPIDERS iPSSubSysServiceAPIDERS = new PSSubSysServiceAPIDERSImpl();
+         iPSSubSysServiceAPIDERS.init(this.iDAGlobalHelper, this.getPSSubSysServiceAPI(), vt);
+         return iPSSubSysServiceAPIDERS;
+      } else {
+         return this.FindModelHelper(vt.getPSSUBSYSSADERSID());
+      }
+   }
 
-    /*
-     * Unable to fully structure code
-     */
-    @Override
-    protected Vector<PSSubSysSADERS> getAllModels() throws Exception {
-        block8: {
-            list = new Vector<PSSubSysSADERS>();
-            callResult = this.iPSModelHelper.getPSSubSysSADERSs(this.getPSSubSysServiceAPI().getId(), list);
-            if (callResult.isError()) {
-                throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5916\u90e8\u670d\u52a1\u63a5\u53e3\u5168\u90e8\u63a5\u53e3\u5b9e\u4f53\u5173\u7cfb\u53d1\u751f\u9519\u8bef, %1$s", (Object)callResult.getErrorInfo()));
-            }
-            if (!this.getPSSubSysServiceAPI().isFromDEModel() || (psSubSysServiceAPIDEs = this.getPSSubSysServiceAPI().getAllPSSubSysServiceAPIDEs()) == null) break block8;
-            psSubSysSADERSMap = new HashMap<String, PSSubSysSADERS>();
+   protected IPSSubSysServiceAPIDERS registerModel(PSSubSysSADERS vt) throws Exception {
+      IPSSubSysServiceAPIDERS iPSSubSysSADERS = this.InternalGetModelHelper(vt.getPSSUBSYSSADERSID());
+      if (iPSSubSysSADERS != null) {
+         return iPSSubSysSADERS;
+      }
+
+      this.setModel(vt.getPSSUBSYSSADERSID(), vt, null);
+      return this.FindModelHelper(vt.getPSSUBSYSSADERSID());
+   }
+
+   @Override
+   protected Vector<PSSubSysSADERS> getAllModels() throws Exception {
+      Vector<PSSubSysSADERS> list = new Vector<>();
+      CallResult callResult = this.iPSModelHelper.getPSSubSysSADERSs(this.getPSSubSysServiceAPI().getId(), list);
+      if (callResult.isError()) {
+         throw new Exception(StringHelper.Format("查询外部服务接口全部接口实体关系发生错误, %1$s", callResult.getErrorInfo()));
+      }
+
+      if (this.getPSSubSysServiceAPI().isFromDEModel()) {
+         Iterator<IPSSubSysServiceAPIDE> psSubSysServiceAPIDEs = this.getPSSubSysServiceAPI().getAllPSSubSysServiceAPIDEs();
+         if (psSubSysServiceAPIDEs != null) {
+            Map<String, PSSubSysSADERS> psSubSysSADERSMap = new HashMap<>();
+
             for (PSSubSysSADERS psSubSysSADERS : list) {
-                psSubSysSADERSMap.put(String.format("%1$s|%2$s", new Object[]{psSubSysSADERS.getPPSSUBSYSSADEID(), psSubSysSADERS.getCPSSUBSYSSADEID()}), psSubSysSADERS);
+               psSubSysSADERSMap.put(String.format("%1$s|%2$s", psSubSysSADERS.getPPSSUBSYSSADEID(), psSubSysSADERS.getCPSSUBSYSSADEID()), psSubSysSADERS);
             }
-            psDataEntityMap = new HashMap<String, IPSDataEntity>();
+
+            Map<String, IPSDataEntity> psDataEntityMap = new HashMap<>();
+
             while (psSubSysServiceAPIDEs.hasNext()) {
-                iPSSubSysServiceAPIDE = psSubSysServiceAPIDEs.next();
-                if (!iPSSubSysServiceAPIDE.isAutoModel() || (iPSDataEntity = this.getPSSubSysServiceAPI().getPSSystem().getPSDataEntity2(iPSSubSysServiceAPIDE.getId(), true)) == null) continue;
-                psDataEntityMap.put(iPSSubSysServiceAPIDE.getId(), iPSDataEntity);
+               IPSSubSysServiceAPIDE iPSSubSysServiceAPIDE = psSubSysServiceAPIDEs.next();
+               if (iPSSubSysServiceAPIDE.isAutoModel()) {
+                  IPSDataEntity iPSDataEntity = this.getPSSubSysServiceAPI().getPSSystem().getPSDataEntity2(iPSSubSysServiceAPIDE.getId(), true);
+                  if (iPSDataEntity != null) {
+                     psDataEntityMap.put(iPSSubSysServiceAPIDE.getId(), iPSDataEntity);
+                  }
+               }
             }
+
             for (IPSDataEntity iPSDataEntity : psDataEntityMap.values()) {
-                psDERBases = iPSDataEntity.getMajorPSDERs();
-                if (psDERBases != null) ** GOTO lbl59
-                continue;
-lbl-1000:
-                // 1 sources
+               Iterator<IPSDERBase> psDERBases = iPSDataEntity.getMajorPSDERs();
+               if (psDERBases != null) {
+                  while (psDERBases.hasNext()) {
+                     IPSDERBase iPSDERBase = psDERBases.next();
+                     IPSDataEntity minorPSDataEntity = psDataEntityMap.get(iPSDERBase.getMinorDEId());
+                     if (minorPSDataEntity != null) {
+                        if ("DER1N".equals(iPSDERBase.getDERType())) {
+                           IPSDER1N iPSDER1N = (IPSDER1N)iPSDERBase;
+                           if ((iPSDER1N.getMasterRS() & 1) == 1) {
+                              PSSubSysSADERS psSubSysSADERS = new PSSubSysSADERS();
+                              String strTag = String.format("%1$s__%2$s", iPSDataEntity.getName(), minorPSDataEntity.getName());
+                              psSubSysSADERS.setPSSUBSYSSADERSNAME(strTag);
+                              psSubSysSADERS.setPSSUBSYSSADERSID(strTag);
+                              psSubSysSADERS.setPPSSUBSYSSADEID(iPSDataEntity.getId());
+                              psSubSysSADERS.setPPSSUBSYSSADENAME(iPSDataEntity.getName());
+                              psSubSysSADERS.setCPSSUBSYSSADEID(minorPSDataEntity.getId());
+                              psSubSysSADERS.setCPSSUBSYSSADENAME(minorPSDataEntity.getName());
+                              psSubSysSADERS.setCODENAME(iPSDER1N.getMinorServiceCodeName());
+                              psSubSysSADERS.setCHILDFILTER(iPSDER1N.getPSPickupDEField().getName());
+                              psSubSysSADERS.set("AUTOMODEL", 1);
+                              list.add(psSubSysSADERS);
+                           }
+                        } else if ("DERCUSTOM".equals(iPSDERBase.getDERType())) {
+                           IPSDERCustom iPSDERCustom = (IPSDERCustom)iPSDERBase;
+                           if ("DER1N".equals(iPSDERCustom.getDERSubType()) && (iPSDERCustom.getMasterRS() & 1) == 1) {
+                              PSSubSysSADERS psSubSysSADERS = new PSSubSysSADERS();
+                              String strTag = String.format("%1$s__%2$s", iPSDataEntity.getName(), minorPSDataEntity.getName());
+                              psSubSysSADERS.setPSSUBSYSSADERSNAME(strTag);
+                              psSubSysSADERS.setPSSUBSYSSADERSID(strTag);
+                              psSubSysSADERS.setPPSSUBSYSSADEID(iPSDataEntity.getId());
+                              psSubSysSADERS.setPPSSUBSYSSADENAME(iPSDataEntity.getName());
+                              psSubSysSADERS.setCPSSUBSYSSADEID(minorPSDataEntity.getId());
+                              psSubSysSADERS.setCPSSUBSYSSADENAME(minorPSDataEntity.getName());
+                              psSubSysSADERS.setCODENAME(iPSDERCustom.getMinorServiceCodeName());
+                              if (iPSDERCustom.getPickupPSDEField() != null) {
+                                 psSubSysSADERS.setCHILDFILTER(iPSDERCustom.getPickupPSDEField().getName());
+                              } else {
+                                 psSubSysSADERS.setCHILDFILTER(iPSDERCustom.getPickupDEFName());
+                              }
 
-                {
-                    iPSDERBase = psDERBases.next();
-                    minorPSDataEntity = (IPSDataEntity)psDataEntityMap.get(iPSDERBase.getMinorDEId());
-                    if (minorPSDataEntity == null) continue;
-                    if ("DER1N".equals(iPSDERBase.getDERType())) {
-                        iPSDER1N = (IPSDER1N)iPSDERBase;
-                        if ((iPSDER1N.getMasterRS() & 1) != 1) continue;
-                        psSubSysSADERS = new PSSubSysSADERS();
-                        strTag = String.format("%1$s__%2$s", new Object[]{iPSDataEntity.getName(), minorPSDataEntity.getName()});
-                        psSubSysSADERS.setPSSUBSYSSADERSNAME(strTag);
-                        psSubSysSADERS.setPSSUBSYSSADERSID(strTag);
-                        psSubSysSADERS.setPPSSUBSYSSADEID(iPSDataEntity.getId());
-                        psSubSysSADERS.setPPSSUBSYSSADENAME(iPSDataEntity.getName());
-                        psSubSysSADERS.setCPSSUBSYSSADEID(minorPSDataEntity.getId());
-                        psSubSysSADERS.setCPSSUBSYSSADENAME(minorPSDataEntity.getName());
-                        psSubSysSADERS.setCODENAME(iPSDER1N.getMinorServiceCodeName());
-                        psSubSysSADERS.setCHILDFILTER(iPSDER1N.getPSPickupDEField().getName());
-                        psSubSysSADERS.set("AUTOMODEL", 1);
-                        list.add(psSubSysSADERS);
-                        continue;
-                    }
-                    if (!"DERCUSTOM".equals(iPSDERBase.getDERType()) || !"DER1N".equals((iPSDERCustom = (IPSDERCustom)iPSDERBase).getDERSubType()) || (iPSDERCustom.getMasterRS() & 1) != 1) continue;
-                    psSubSysSADERS = new PSSubSysSADERS();
-                    strTag = String.format("%1$s__%2$s", new Object[]{iPSDataEntity.getName(), minorPSDataEntity.getName()});
-                    psSubSysSADERS.setPSSUBSYSSADERSNAME(strTag);
-                    psSubSysSADERS.setPSSUBSYSSADERSID(strTag);
-                    psSubSysSADERS.setPPSSUBSYSSADEID(iPSDataEntity.getId());
-                    psSubSysSADERS.setPPSSUBSYSSADENAME(iPSDataEntity.getName());
-                    psSubSysSADERS.setCPSSUBSYSSADEID(minorPSDataEntity.getId());
-                    psSubSysSADERS.setCPSSUBSYSSADENAME(minorPSDataEntity.getName());
-                    psSubSysSADERS.setCODENAME(iPSDERCustom.getMinorServiceCodeName());
-                    if (iPSDERCustom.getPickupPSDEField() != null) {
-                        psSubSysSADERS.setCHILDFILTER(iPSDERCustom.getPickupPSDEField().getName());
-                    } else {
-                        psSubSysSADERS.setCHILDFILTER(iPSDERCustom.getPickupDEFName());
-                    }
-                    psSubSysSADERS.set("AUTOMODEL", 1);
-                    list.add(psSubSysSADERS);
-lbl59:
-                    // 6 sources
-
-                    ** while (psDERBases.hasNext())
-                }
-lbl60:
-                // 1 sources
-
+                              psSubSysSADERS.set("AUTOMODEL", 1);
+                              list.add(psSubSysSADERS);
+                           }
+                        }
+                     }
+                  }
+               }
             }
-        }
-        return list;
-    }
+         }
+      }
 
-    @Override
-    protected void onPreloadModels() {
-        super.onPreloadModels();
-        try {
-            this.getAllModelHelpers();
-        }
-        catch (Exception ex) {
-            log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5916\u90e8\u670d\u52a1\u63a5\u53e3\u5168\u90e8\u5b9e\u4f53\u5173\u7cfb\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
-        }
-    }
+      return list;
+   }
+
+   @Override
+   protected void onPreloadModels() {
+      super.onPreloadModels();
+
+      try {
+         this.getAllModelHelpers();
+      } catch (Exception ex) {
+         log.error(StringHelper.Format("获取外部服务接口全部实体关系发生异常，%1$s", ex.getMessage()), ex);
+      }
+   }
 }
-

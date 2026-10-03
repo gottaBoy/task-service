@@ -159,7 +159,7 @@ extends PSDEDataCtrl {
         PSWorkspace psWorkspace = new PSWorkspace();
         PSDEDataCtrl.convertEntity2(dataEntity, (IEntity)psWorkspace);
         PSWorkspaceService psWorkspaceService = (PSWorkspaceService)ServiceGlobal.getService(PSWorkspaceService.class);
-        psWorkspaceService.get((IEntity)psWorkspace);
+        psWorkspaceService.get(psWorkspace);
         PSWorkspace newPSWorkspace = new PSWorkspace();
         psWorkspace.copyTo((IDataObject)newPSWorkspace, false);
         newPSWorkspace.setPSSvrDomainId(psWorkspace.getPSSvrDomainId());
@@ -174,7 +174,7 @@ extends PSDEDataCtrl {
         newPSWorkspace.resetExp3();
         newPSWorkspace.resetExp4();
         newPSWorkspace.setWorkspaceState(Integer.valueOf(20));
-        psWorkspaceService.create((IEntity)newPSWorkspace);
+        psWorkspaceService.create(newPSWorkspace);
     }
 
     public CallResult bindDC(BaseDataEntity dataEntity) {
@@ -204,7 +204,7 @@ extends PSDEDataCtrl {
         PSWorkspace psWorkspace = new PSWorkspace();
         PSDEDataCtrl.convertEntity2(dataEntity, (IEntity)psWorkspace);
         PSWorkspaceService psWorkspaceService = (PSWorkspaceService)ServiceGlobal.getService(PSWorkspaceService.class);
-        psWorkspaceService.get((IEntity)psWorkspace);
+        psWorkspaceService.get(psWorkspace);
         psWorkspaceService.bindDC(psWorkspace);
     }
 
@@ -238,4 +238,3 @@ extends PSDEDataCtrl {
         psWorkspaceService.resetDC(psWorkspace);
     }
 }
-

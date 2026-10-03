@@ -352,9 +352,9 @@ implements IPSDEFGroup {
                     psDEFieldMap.put(iPSDEOPPriv.getMapPSDER1N().getPSPickupDEField().getId(), iPSDEOPPriv.getMapPSDER1N().getPSPickupDEField());
                 }
             }
-            for (IPSDEField iPSDEField3 : psDEFieldMap.values()) {
+            for (IPSDEField iPSDEField : psDEFieldMap.values()) {
                 iPSDEFGroupDetail2 = new PSDEFGroupDetailImpl3();
-                ((PSDEFGroupDetailImpl3)iPSDEFGroupDetail2).init(this.getDAGlobalHelper(), this, iPSDEField3);
+                ((PSDEFGroupDetailImpl3)iPSDEFGroupDetail2).init(this.getDAGlobalHelper(), this, iPSDEField);
                 this.psDEFGroupDetailList.add((IPSDEFGroupDetail)iPSDEFGroupDetail2);
                 if (((PSDEFGroupDetailImpl3)iPSDEFGroupDetail2).getPSDEField() == null) continue;
                 this.psDEFieldList.add(((PSDEFGroupDetailImpl3)iPSDEFGroupDetail2).getPSDEField());
@@ -369,9 +369,9 @@ implements IPSDEFGroup {
                     psDEFieldMap.put(iPSDEField3.getId(), iPSDEField3);
                 }
             }
-            for (IPSDEField iPSDEField3 : psDEFieldMap.values()) {
+            for (IPSDEField iPSDEField : psDEFieldMap.values()) {
                 iPSDEFGroupDetail = new PSDEFGroupDetailImpl3();
-                ((PSDEFGroupDetailImpl3)iPSDEFGroupDetail).init(this.getDAGlobalHelper(), this, iPSDEField3);
+                ((PSDEFGroupDetailImpl3)iPSDEFGroupDetail).init(this.getDAGlobalHelper(), this, iPSDEField);
                 this.psDEFGroupDetailList.add((IPSDEFGroupDetail)((Object)iPSDEFGroupDetail));
                 if (((PSDEFGroupDetailImpl3)iPSDEFGroupDetail).getPSDEField() == null) continue;
                 this.psDEFieldList.add(((PSDEFGroupDetailImpl3)iPSDEFGroupDetail).getPSDEField());

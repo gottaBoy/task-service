@@ -41,11 +41,9 @@
  */
 package net.ibizsys.pscore.srv.dedesign.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -345,21 +343,21 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
 
     public void createWithModel(PSDEToolbar pSDEToolbar) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, (IEntity)pSDEToolbar, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, pSDEToolbar, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEToolbar, ACTION_CREATEWITHMODEL);
+        this.testDEMainStateAction(pSDEToolbar, ACTION_CREATEWITHMODEL);
         final PSDEToolbar pSDEToolbar2 = pSDEToolbar;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEToolbarServiceBase.this.getService(), PSDEToolbarServiceBase.ACTION_CREATEWITHMODEL, 40, (IEntity)pSDEToolbar2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEToolbarServiceBase.this.getService(), PSDEToolbarServiceBase.ACTION_CREATEWITHMODEL, 40, pSDEToolbar2, null).getResult() != 1) {
                     PSDEToolbarServiceBase.this.onCreateWithModel(pSDEToolbar2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, (IEntity)pSDEToolbar, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, pSDEToolbar, null);
         }
     }
 
@@ -369,21 +367,21 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
 
     public void getDraftFromWithModel(PSDEToolbar pSDEToolbar) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, (IEntity)pSDEToolbar, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, pSDEToolbar, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEToolbar, ACTION_GETDRAFTFROMWITHMODEL);
+        this.testDEMainStateAction(pSDEToolbar, ACTION_GETDRAFTFROMWITHMODEL);
         final PSDEToolbar pSDEToolbar2 = pSDEToolbar;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEToolbarServiceBase.this.getService(), PSDEToolbarServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, (IEntity)pSDEToolbar2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEToolbarServiceBase.this.getService(), PSDEToolbarServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, pSDEToolbar2, null).getResult() != 1) {
                     PSDEToolbarServiceBase.this.onGetDraftFromWithModel(pSDEToolbar2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, (IEntity)pSDEToolbar, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, pSDEToolbar, null);
         }
     }
 
@@ -393,21 +391,21 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
 
     public void getDraftWithModel(PSDEToolbar pSDEToolbar) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, (IEntity)pSDEToolbar, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, pSDEToolbar, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEToolbar, ACTION_GETDRAFTWITHMODEL);
+        this.testDEMainStateAction(pSDEToolbar, ACTION_GETDRAFTWITHMODEL);
         final PSDEToolbar pSDEToolbar2 = pSDEToolbar;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEToolbarServiceBase.this.getService(), PSDEToolbarServiceBase.ACTION_GETDRAFTWITHMODEL, 40, (IEntity)pSDEToolbar2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEToolbarServiceBase.this.getService(), PSDEToolbarServiceBase.ACTION_GETDRAFTWITHMODEL, 40, pSDEToolbar2, null).getResult() != 1) {
                     PSDEToolbarServiceBase.this.onGetDraftWithModel(pSDEToolbar2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, (IEntity)pSDEToolbar, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, pSDEToolbar, null);
         }
     }
 
@@ -417,21 +415,21 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
 
     public void getWithModel(PSDEToolbar pSDEToolbar) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, (IEntity)pSDEToolbar, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, pSDEToolbar, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEToolbar, ACTION_GETWITHMODEL);
+        this.testDEMainStateAction(pSDEToolbar, ACTION_GETWITHMODEL);
         final PSDEToolbar pSDEToolbar2 = pSDEToolbar;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEToolbarServiceBase.this.getService(), PSDEToolbarServiceBase.ACTION_GETWITHMODEL, 40, (IEntity)pSDEToolbar2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEToolbarServiceBase.this.getService(), PSDEToolbarServiceBase.ACTION_GETWITHMODEL, 40, pSDEToolbar2, null).getResult() != 1) {
                     PSDEToolbarServiceBase.this.onGetWithModel(pSDEToolbar2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, (IEntity)pSDEToolbar, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, pSDEToolbar, null);
         }
     }
 
@@ -441,21 +439,21 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
 
     public void previewSave(PSDEToolbar pSDEToolbar) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 0, (IEntity)pSDEToolbar, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 0, pSDEToolbar, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEToolbar, ACTION_PREVIEWSAVE);
+        this.testDEMainStateAction(pSDEToolbar, ACTION_PREVIEWSAVE);
         final PSDEToolbar pSDEToolbar2 = pSDEToolbar;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEToolbarServiceBase.this.getService(), PSDEToolbarServiceBase.ACTION_PREVIEWSAVE, 40, (IEntity)pSDEToolbar2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEToolbarServiceBase.this.getService(), PSDEToolbarServiceBase.ACTION_PREVIEWSAVE, 40, pSDEToolbar2, null).getResult() != 1) {
                     PSDEToolbarServiceBase.this.onPreviewSave(pSDEToolbar2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 99, (IEntity)pSDEToolbar, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 99, pSDEToolbar, null);
         }
     }
 
@@ -465,21 +463,21 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
 
     public void updateWithModel(PSDEToolbar pSDEToolbar) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, (IEntity)pSDEToolbar, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, pSDEToolbar, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEToolbar, ACTION_UPDATEWITHMODEL);
+        this.testDEMainStateAction(pSDEToolbar, ACTION_UPDATEWITHMODEL);
         final PSDEToolbar pSDEToolbar2 = pSDEToolbar;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEToolbarServiceBase.this.getService(), PSDEToolbarServiceBase.ACTION_UPDATEWITHMODEL, 40, (IEntity)pSDEToolbar2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEToolbarServiceBase.this.getService(), PSDEToolbarServiceBase.ACTION_UPDATEWITHMODEL, 40, pSDEToolbar2, null).getResult() != 1) {
                     PSDEToolbarServiceBase.this.onUpdateWithModel(pSDEToolbar2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, (IEntity)pSDEToolbar, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, pSDEToolbar, null);
         }
     }
 
@@ -493,9 +491,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSCtrlLogicGroup pSCtrlLogicGroup = (PSCtrlLogicGroup)iService.getDEModel().createEntity();
             pSCtrlLogicGroup.set("PSCTRLLOGICGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCtrlLogicGroup);
+                iService.getTemp(pSCtrlLogicGroup);
             } else {
-                iService.get((IEntity)pSCtrlLogicGroup);
+                iService.get(pSCtrlLogicGroup);
             }
             this.onFillParentInfo_PSCtrlLogicGroup(pSDEToolbar, pSCtrlLogicGroup);
             return;
@@ -505,9 +503,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSDEToolbar, pSDataEntity);
             return;
@@ -517,9 +515,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSDEUAGroup pSDEUAGroup = (PSDEUAGroup)iService.getDEModel().createEntity();
             pSDEUAGroup.set("PSDEUAGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUAGroup);
+                iService.getTemp(pSDEUAGroup);
             } else {
-                iService.get((IEntity)pSDEUAGroup);
+                iService.get(pSDEUAGroup);
             }
             this.onFillParentInfo_No2PSDEUAGroup(pSDEToolbar, pSDEUAGroup);
             return;
@@ -529,9 +527,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSDEUAGroup pSDEUAGroup = (PSDEUAGroup)iService.getDEModel().createEntity();
             pSDEUAGroup.set("PSDEUAGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUAGroup);
+                iService.getTemp(pSDEUAGroup);
             } else {
-                iService.get((IEntity)pSDEUAGroup);
+                iService.get(pSDEUAGroup);
             }
             this.onFillParentInfo_No3PSDEUAGroup(pSDEToolbar, pSDEUAGroup);
             return;
@@ -541,9 +539,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSDEUAGroup pSDEUAGroup = (PSDEUAGroup)iService.getDEModel().createEntity();
             pSDEUAGroup.set("PSDEUAGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUAGroup);
+                iService.getTemp(pSDEUAGroup);
             } else {
-                iService.get((IEntity)pSDEUAGroup);
+                iService.get(pSDEUAGroup);
             }
             this.onFillParentInfo_No4PSDEUAGroup(pSDEToolbar, pSDEUAGroup);
             return;
@@ -553,9 +551,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSDEUAGroup pSDEUAGroup = (PSDEUAGroup)iService.getDEModel().createEntity();
             pSDEUAGroup.set("PSDEUAGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUAGroup);
+                iService.getTemp(pSDEUAGroup);
             } else {
-                iService.get((IEntity)pSDEUAGroup);
+                iService.get(pSDEUAGroup);
             }
             this.onFillParentInfo_No5PSDEUAGroup(pSDEToolbar, pSDEUAGroup);
             return;
@@ -565,9 +563,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSDEUAGroup pSDEUAGroup = (PSDEUAGroup)iService.getDEModel().createEntity();
             pSDEUAGroup.set("PSDEUAGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUAGroup);
+                iService.getTemp(pSDEUAGroup);
             } else {
-                iService.get((IEntity)pSDEUAGroup);
+                iService.get(pSDEUAGroup);
             }
             this.onFillParentInfo_No6PSDEUAGroup(pSDEToolbar, pSDEUAGroup);
             return;
@@ -577,9 +575,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSDEUAGroup pSDEUAGroup = (PSDEUAGroup)iService.getDEModel().createEntity();
             pSDEUAGroup.set("PSDEUAGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUAGroup);
+                iService.getTemp(pSDEUAGroup);
             } else {
-                iService.get((IEntity)pSDEUAGroup);
+                iService.get(pSDEUAGroup);
             }
             this.onFillParentInfo_PSDEUAGroup(pSDEToolbar, pSDEUAGroup);
             return;
@@ -589,9 +587,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSDEToolbar, pSModule);
             return;
@@ -601,9 +599,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSDEToolbar, pSSysApp);
             return;
@@ -613,9 +611,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSSysCounter pSSysCounter = (PSSysCounter)iService.getDEModel().createEntity();
             pSSysCounter.set("PSSYSCOUNTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCounter);
+                iService.getTemp(pSSysCounter);
             } else {
-                iService.get((IEntity)pSSysCounter);
+                iService.get(pSSysCounter);
             }
             this.onFillParentInfo_PSSysCounter(pSDEToolbar, pSSysCounter);
             return;
@@ -625,9 +623,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_PSSysCss(pSDEToolbar, pSSysCss);
             return;
@@ -637,9 +635,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_PSSysPFPlugin(pSDEToolbar, pSSysPFPlugin);
             return;
@@ -649,9 +647,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSDEToolbar, pSSystem);
             return;
@@ -661,9 +659,9 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSSysToolbar pSSysToolbar = (PSSysToolbar)iService.getDEModel().createEntity();
             pSSysToolbar.set("PSSYSTOOLBARID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysToolbar);
+                iService.getTemp(pSSysToolbar);
             } else {
-                iService.get((IEntity)pSSysToolbar);
+                iService.get(pSSysToolbar);
             }
             this.onFillParentInfo_PSSysToolbar(pSDEToolbar, pSSysToolbar);
             return;
@@ -673,14 +671,14 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSViewMsgGroup pSViewMsgGroup = (PSViewMsgGroup)iService.getDEModel().createEntity();
             pSViewMsgGroup.set("PSVIEWMSGGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSViewMsgGroup);
+                iService.getTemp(pSViewMsgGroup);
             } else {
-                iService.get((IEntity)pSViewMsgGroup);
+                iService.get(pSViewMsgGroup);
             }
             this.onFillParentInfo_PSViewMsgGroup(pSDEToolbar, pSViewMsgGroup);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEToolbar, string, string2, string3);
+        super.onFillParentInfo(pSDEToolbar, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -774,7 +772,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         if (bl && pSDEToolbar.getTemplToolbar() == null) {
             pSDEToolbar.setTemplToolbar((Integer)this.getDefaultValue(this.getWebContext(), "", "0", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDEToolbar, bl);
+        super.onFillEntityFullInfo(pSDEToolbar, bl);
         this.onFillEntityFullInfo_PSCtrlLogicGroup(pSDEToolbar, bl);
         this.onFillEntityFullInfo_PSDE(pSDEToolbar, bl);
         this.onFillEntityFullInfo_No2PSDEUAGroup(pSDEToolbar, bl);
@@ -917,7 +915,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
     }
 
     protected void onWriteBackParent(PSDEToolbar pSDEToolbar, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEToolbar, bl);
+        super.onWriteBackParent(pSDEToolbar, bl);
     }
 
     public ArrayList<PSDEToolbar> selectByPSCtrlLogicGroup(PSCtrlLogicGroupBase pSCtrlLogicGroupBase) throws Exception {
@@ -1308,8 +1306,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSCtrlLogicGroup(pSCtrlLogicGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCTRLLOGICGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCtrlLogicGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSCTRLLOGICGROUP_PSCTRLLOGICGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSCtrlLogicGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCtrlLogicGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSCTRLLOGICGROUP_PSCTRLLOGICGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSCtrlLogicGroup), arrayList.get(0)));
         }
     }
 
@@ -1342,7 +1340,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSCtrlLogicGroup(pSCtrlLogicGroup);
         this.onBeforeRemoveByPSCtrlLogicGroup(pSCtrlLogicGroup, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByPSCtrlLogicGroup(pSCtrlLogicGroup, arrayList);
     }
@@ -1388,7 +1386,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -1406,8 +1404,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByNo2PSDEUAGroup(pSDEUAGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEUAGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEUAGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSDEUAGROUP_NO2PSDEUAGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSDEUAGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEUAGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSDEUAGROUP_NO2PSDEUAGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSDEUAGroup), arrayList.get(0)));
         }
     }
 
@@ -1440,7 +1438,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByNo2PSDEUAGroup(pSDEUAGroup);
         this.onBeforeRemoveByNo2PSDEUAGroup(pSDEUAGroup, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByNo2PSDEUAGroup(pSDEUAGroup, arrayList);
     }
@@ -1458,8 +1456,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByNo3PSDEUAGroup(pSDEUAGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEUAGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEUAGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSDEUAGROUP_NO3PSDEUAGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSDEUAGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEUAGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSDEUAGROUP_NO3PSDEUAGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSDEUAGroup), arrayList.get(0)));
         }
     }
 
@@ -1492,7 +1490,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByNo3PSDEUAGroup(pSDEUAGroup);
         this.onBeforeRemoveByNo3PSDEUAGroup(pSDEUAGroup, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByNo3PSDEUAGroup(pSDEUAGroup, arrayList);
     }
@@ -1510,8 +1508,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByNo4PSDEUAGroup(pSDEUAGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEUAGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEUAGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSDEUAGROUP_NO4PSDEUAGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSDEUAGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEUAGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSDEUAGROUP_NO4PSDEUAGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSDEUAGroup), arrayList.get(0)));
         }
     }
 
@@ -1544,7 +1542,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByNo4PSDEUAGroup(pSDEUAGroup);
         this.onBeforeRemoveByNo4PSDEUAGroup(pSDEUAGroup, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByNo4PSDEUAGroup(pSDEUAGroup, arrayList);
     }
@@ -1562,8 +1560,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByNo5PSDEUAGroup(pSDEUAGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEUAGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEUAGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSDEUAGROUP_NO5PSDEUAGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSDEUAGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEUAGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSDEUAGROUP_NO5PSDEUAGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSDEUAGroup), arrayList.get(0)));
         }
     }
 
@@ -1596,7 +1594,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByNo5PSDEUAGroup(pSDEUAGroup);
         this.onBeforeRemoveByNo5PSDEUAGroup(pSDEUAGroup, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByNo5PSDEUAGroup(pSDEUAGroup, arrayList);
     }
@@ -1614,8 +1612,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByNo6PSDEUAGroup(pSDEUAGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEUAGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEUAGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSDEUAGROUP_NO6PSDEUAGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSDEUAGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEUAGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSDEUAGROUP_NO6PSDEUAGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSDEUAGroup), arrayList.get(0)));
         }
     }
 
@@ -1648,7 +1646,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByNo6PSDEUAGroup(pSDEUAGroup);
         this.onBeforeRemoveByNo6PSDEUAGroup(pSDEUAGroup, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByNo6PSDEUAGroup(pSDEUAGroup, arrayList);
     }
@@ -1666,8 +1664,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSDEUAGroup(pSDEUAGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEUAGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEUAGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSDEUAGROUP_PSDEUAGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSDEUAGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEUAGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSDEUAGROUP_PSDEUAGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSDEUAGroup), arrayList.get(0)));
         }
     }
 
@@ -1700,7 +1698,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSDEUAGroup(pSDEUAGroup);
         this.onBeforeRemoveByPSDEUAGroup(pSDEUAGroup, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByPSDEUAGroup(pSDEUAGroup, arrayList);
     }
@@ -1718,8 +1716,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -1752,7 +1750,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -1798,7 +1796,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -1816,8 +1814,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSSysCounter(pSSysCounter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCOUNTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCounter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSSYSCOUNTER_PSSYSCOUNTERID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSSysCounter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCounter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSSYSCOUNTER_PSSYSCOUNTERID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSSysCounter), arrayList.get(0)));
         }
     }
 
@@ -1850,7 +1848,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSSysCounter(pSSysCounter);
         this.onBeforeRemoveByPSSysCounter(pSSysCounter, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByPSSysCounter(pSSysCounter, arrayList);
     }
@@ -1868,8 +1866,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -1902,7 +1900,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSSysCss(pSSysCss);
         this.onBeforeRemoveByPSSysCss(pSSysCss, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByPSSysCss(pSSysCss, arrayList);
     }
@@ -1920,8 +1918,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -1954,7 +1952,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -2000,7 +1998,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -2018,8 +2016,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSSysToolbar(pSSysToolbar, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSTOOLBAR");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysToolbar);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSSYSTOOLBAR_PSSYSTOOLBARID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSSysToolbar), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysToolbar);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSSYSTOOLBAR_PSSYSTOOLBARID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSSysToolbar), arrayList.get(0)));
         }
     }
 
@@ -2052,7 +2050,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSSysToolbar(pSSysToolbar);
         this.onBeforeRemoveByPSSysToolbar(pSSysToolbar, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByPSSysToolbar(pSSysToolbar, arrayList);
     }
@@ -2070,8 +2068,8 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSViewMsgGroup(pSViewMsgGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSVIEWMSGGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSViewMsgGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSVIEWMSGGROUP_PSVIEWMSGGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo((IEntity)pSViewMsgGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSViewMsgGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETOOLBAR_PSVIEWMSGGROUP_PSVIEWMSGGROUPID", "", iDataEntityModel.getName(), "PSDETOOLBAR", iDataEntityModel.getDataInfo(pSViewMsgGroup), arrayList.get(0)));
         }
     }
 
@@ -2104,7 +2102,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDEToolbar> arrayList = this.selectByPSViewMsgGroup(pSViewMsgGroup);
         this.onBeforeRemoveByPSViewMsgGroup(pSViewMsgGroup, arrayList);
         for (PSDEToolbar pSDEToolbar : arrayList) {
-            this.remove((IEntity)pSDEToolbar);
+            this.remove(pSDEToolbar);
         }
         this.onAfterRemoveByPSViewMsgGroup(pSViewMsgGroup, arrayList);
     }
@@ -2168,13 +2166,13 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ((PSDEToolbarLogicServiceBase)pSCoreSysServiceBase).removeTempByPSDEToolbar(pSDEToolbar);
         pSCoreSysServiceBase = (PSDETBItemService)ServiceGlobal.getService(PSDETBItemService.class, (SessionFactory)this.getSessionFactory());
         ((PSDETBItemServiceBase)pSCoreSysServiceBase).removeTempByPSDEToolbar(pSDEToolbar);
-        super.onBeforeRemoveTemp((IEntity)pSDEToolbar);
+        super.onBeforeRemoveTemp(pSDEToolbar);
     }
 
     protected void getRelatedDataTempMajor(PSDEToolbar pSDEToolbar) throws Exception {
         this.getRelatedDataTempMajor_PSDETBItem(pSDEToolbar);
         this.getRelatedDataTempMajor_PSDEToolbarLogic(pSDEToolbar);
-        super.getRelatedDataTempMajor((IEntity)pSDEToolbar);
+        super.getRelatedDataTempMajor(pSDEToolbar);
     }
 
     protected void getRelatedDataTempMajor_PSDETBItem(PSDEToolbar pSDEToolbar) throws Exception {
@@ -2203,7 +2201,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         ArrayList<PSDETBItem> arrayList2 = this.updateRelatedDataTempMajor_removePSDETBItem(pSDEToolbar, pSDEToolbar2);
         this.updateRelatedDataTempMajor_updatePSDETBItem(pSDEToolbar, pSDEToolbar2, arrayList2);
         this.updateRelatedDataTempMajor_updatePSDEToolbarLogic(pSDEToolbar, pSDEToolbar2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSDEToolbar, (IEntity)pSDEToolbar2);
+        super.updateRelatedDataTempMajor(pSDEToolbar, pSDEToolbar2);
     }
 
     protected ArrayList<PSDETBItem> updateRelatedDataTempMajor_removePSDETBItem(PSDEToolbar pSDEToolbar, PSDEToolbar pSDEToolbar2) throws Exception {
@@ -2220,7 +2218,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             hashMap.remove(object);
         }
         for (PSDETBItem pSDETBItem : hashMap.values()) {
-            pSDETBItemService.remove((IEntity)pSDETBItem);
+            pSDETBItemService.remove(pSDETBItem);
         }
         return arrayList;
     }
@@ -2248,7 +2246,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             hashMap.remove(object);
         }
         for (PSDEToolbarLogic pSDEToolbarLogic : hashMap.values()) {
-            pSDEToolbarLogicService.remove((IEntity)pSDEToolbarLogic);
+            pSDEToolbarLogicService.remove(pSDEToolbarLogic);
         }
         return arrayList;
     }
@@ -2265,7 +2263,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
 
     protected void replaceParentInfo(PSDEToolbar pSDEToolbar, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEToolbar, cloneSession);
+        super.replaceParentInfo(pSDEToolbar, cloneSession);
         if (pSDEToolbar.getPSCtrlLogicGroupId() != null && (iEntity = cloneSession.getEntity("PSCTRLLOGICGROUP", (Object)pSDEToolbar.getPSCtrlLogicGroupId())) != null) {
             this.onFillParentInfo_PSCtrlLogicGroup(pSDEToolbar, (PSCtrlLogicGroup)iEntity);
         }
@@ -2317,7 +2315,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEToolbar pSDEToolbar, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEToolbar, bl);
+        super.onRemoveEntityUncopyValues(pSDEToolbar, bl);
         pSDEToolbar.resetCodeName();
     }
 
@@ -2432,7 +2430,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         if ((entityFieldError = this.onCheckField_UserParams(bl, pSDEToolbar, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEToolbar, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEToolbar, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSDEToolbar pSDEToolbar, boolean bl2, boolean bl3) throws Exception {
@@ -2445,7 +2443,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -2488,7 +2486,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconAlign_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_IconAlign_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONALIGN");
@@ -2510,7 +2508,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -2532,7 +2530,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -2554,7 +2552,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MobFlag_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string = this.onTestValueRule_MobFlag_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MOBFLAG");
@@ -2576,7 +2574,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No2PSDEUAGroupId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_No2PSDEUAGroupId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO2PSDEUAGROUPID");
@@ -2598,7 +2596,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No2PSDEUAGroupName_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_No2PSDEUAGroupName_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO2PSDEUAGROUPNAME");
@@ -2620,7 +2618,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No3PSDEUAGroupId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_No3PSDEUAGroupId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO3PSDEUAGROUPID");
@@ -2642,7 +2640,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No3PSDEUAGroupName_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_No3PSDEUAGroupName_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO3PSDEUAGROUPNAME");
@@ -2664,7 +2662,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No4PSDEUAGroupId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_No4PSDEUAGroupId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO4PSDEUAGROUPID");
@@ -2686,7 +2684,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No4PSDEUAGroupName_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_No4PSDEUAGroupName_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO4PSDEUAGROUPNAME");
@@ -2708,7 +2706,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No5PSDEUAGroupId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_No5PSDEUAGroupId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO5PSDEUAGROUPID");
@@ -2730,7 +2728,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No5PSDEUAGroupName_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_No5PSDEUAGroupName_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO5PSDEUAGROUPNAME");
@@ -2752,7 +2750,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No6PSDEUAGroupId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_No6PSDEUAGroupId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO6PSDEUAGROUPID");
@@ -2774,7 +2772,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_No6PSDEUAGroupName_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_No6PSDEUAGroupName_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NO6PSDEUAGROUPNAME");
@@ -2796,7 +2794,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlLogicGroupId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlLogicGroupId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLLOGICGROUPID");
@@ -2818,7 +2816,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -2840,7 +2838,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -2865,7 +2863,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEToolbarId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEToolbarId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDETOOLBARID");
@@ -2890,7 +2888,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEToolbarName_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEToolbarName_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDETOOLBARNAME");
@@ -2912,7 +2910,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEUAGroupId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEUAGroupId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEUAGROUPID");
@@ -2934,7 +2932,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEUAGroupName_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEUAGroupName_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEUAGROUPNAME");
@@ -2956,7 +2954,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -2978,7 +2976,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -3000,7 +2998,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCounterId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCounterId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCOUNTERID");
@@ -3022,7 +3020,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCssId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCssId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCSSID");
@@ -3044,7 +3042,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPluginId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPluginId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPLUGINID");
@@ -3069,7 +3067,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -3091,7 +3089,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysToolbarId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysToolbarId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTOOLBARID");
@@ -3113,7 +3111,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewMsgGroupId_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewMsgGroupId_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWMSGGROUPID");
@@ -3135,7 +3133,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SysAppFlag_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string = this.onTestValueRule_SysAppFlag_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYSAPPFLAG");
@@ -3157,7 +3155,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TBModel_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_TBModel_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TBMODEL");
@@ -3179,7 +3177,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TemplToolbar_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string = this.onTestValueRule_TemplToolbar_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLTOOLBAR");
@@ -3201,7 +3199,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ToolbarSN_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_ToolbarSN_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TOOLBARSN");
@@ -3223,7 +3221,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ToolbarStyle_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_ToolbarStyle_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TOOLBARSTYLE");
@@ -3245,7 +3243,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserParams_Default((IEntity)pSDEToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_UserParams_Default(pSDEToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERPARAMS");
@@ -3258,11 +3256,11 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
     }
 
     protected void onSyncEntity(PSDEToolbar pSDEToolbar, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEToolbar, bl);
+        super.onSyncEntity(pSDEToolbar, bl);
     }
 
     protected void onSyncIndexEntities(PSDEToolbar pSDEToolbar, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEToolbar, bl);
+        super.onSyncIndexEntities(pSDEToolbar, bl);
     }
 
     public Object getDataContextValue(PSDEToolbar pSDEToolbar, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -3270,7 +3268,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEToolbar, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEToolbar, string, iDataContextParam)) != null) {
             return object;
         }
         PSSystem pSSystem = pSDEToolbar.getPSSystem();
@@ -3283,7 +3281,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
     protected void onExportRelatedModel(PSDEToolbar pSDEToolbar, ArrayList<JSONObject> arrayList, int n) throws Exception {
         this.onExportRelatedModel_PSDETBItem_PSDEToolbar(pSDEToolbar, arrayList, n);
         this.onExportRelatedModel_PSDEToolbarLogic_PSDEToolbar(pSDEToolbar, arrayList, n);
-        super.onExportRelatedModel((IEntity)pSDEToolbar, arrayList, n);
+        super.onExportRelatedModel(pSDEToolbar, arrayList, n);
     }
 
     /*
@@ -3293,7 +3291,6 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         PSDETBItemService pSDETBItemService = (PSDETBItemService)ServiceGlobal.getService(PSDETBItemService.class, (SessionFactory)this.getSessionFactory());
         ArrayList<PSDETBItem> arrayList2 = pSDETBItemService.selectByPSDEToolbar(pSDEToolbar);
         if ((n & 2) != 0) {
-            void var7_8;
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("srfdeid", (Object)"35d6211dd58885b4b8908feceb4cbb31");
             jSONObject.put("srfdename", (Object)"PSDETBITEM");
@@ -3302,13 +3299,12 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             jSONObject.put("srfarg", (Object)DataObject.getStringValue((IDataObject)pSDEToolbar, (String)"PSDETOOLBARID", (String)""));
             String object = "";
             for (PSDETBItem pSDETBItem : arrayList2) {
-                void var7_10;
-                if (!StringHelper.isNullOrEmpty((String)var7_8)) {
-                    String string = (String)var7_8 + ";";
+                if (!StringHelper.isNullOrEmpty((String)object)) {
+                    object = object + ";";
                 }
-                String string = (String)var7_10 + DataObject.getStringValue((IDataObject)pSDETBItem, (String)"PSDETBITEMID", (String)"");
+                object = object + DataObject.getStringValue((IDataObject)pSDETBItem, (String)"PSDETBITEMID", (String)"");
             }
-            jSONObject.put("srfarg2", (Object)var7_8);
+            jSONObject.put("srfarg2", (Object)object);
             arrayList.add(jSONObject);
         }
         for (PSDETBItem pSDETBItem : arrayList2) {
@@ -3337,7 +3333,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
     }
 
     protected void onExportMajorModel(PSDEToolbar pSDEToolbar, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEToolbar, arrayList, n);
+        super.onExportMajorModel(pSDEToolbar, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -4038,7 +4034,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
 
     protected boolean onMergeChild(String string, String string2, PSDEToolbar pSDEToolbar) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEToolbar)) {
+        if (super.onMergeChild(string, string2, pSDEToolbar)) {
             bl = true;
         }
         return bl;
@@ -4050,7 +4046,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDataEntityService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSDETOOLBAR_PSDATAENTITY_PSDEID", object);
         }
-        super.onUpdateParent((IEntity)pSDEToolbar);
+        super.onUpdateParent(pSDEToolbar);
     }
 
     protected boolean isNeedUpdateParent() {
@@ -4061,7 +4057,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         PSDEToolbar pSDEToolbar2 = new PSDEToolbar();
         pSDEToolbar2.set("PSDETOOLBARID", object);
         String string = DataObject.getStringValue((Object)pSDEToolbar.get("PSDETOOLBARID"));
-        super.onCopyDetails((IEntity)pSDEToolbar, object);
+        super.onCopyDetails(pSDEToolbar, object);
     }
 
     @Override
@@ -4146,7 +4142,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 PSDETBItem pSDETBItem = new PSDETBItem();
                 pSDETBItem.setOrderValue(n);
                 n += 100;
-                pSDETBItemService.fillParentInfo((IEntity)pSDETBItem, "DER1N", "DER1N_PSDETBITEM_PSDETOOLBAR_PSDETOOLBARID", pSDEToolbar.getPSDEToolbarId());
+                pSDETBItemService.fillParentInfo(pSDETBItem, "DER1N", "DER1N_PSDETBITEM_PSDETOOLBAR_PSDETOOLBARID", pSDEToolbar.getPSDEToolbarId());
                 pSDETBItemService.importXmlModel(pSDETBItem, xmlNode2);
             }
         }
@@ -4171,7 +4167,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                 PSDEToolbarLogic pSDEToolbarLogic = new PSDEToolbarLogic();
                 pSDEToolbarLogic.setOrderValue(n);
                 n += 100;
-                pSDEToolbarLogicService.fillParentInfo((IEntity)pSDEToolbarLogic, "DER1N", "DER1N_PSDETOOLBARLOGIC_PSDETOOLBAR_PSDETOOLBARID", pSDEToolbar.getPSDEToolbarId());
+                pSDEToolbarLogicService.fillParentInfo(pSDEToolbarLogic, "DER1N", "DER1N_PSDETOOLBARLOGIC_PSDETOOLBAR_PSDETOOLBARID", pSDEToolbar.getPSDEToolbarId());
                 pSDEToolbarLogicService.importXmlModel(pSDEToolbarLogic, xmlNode2);
             }
         }
@@ -4322,45 +4318,31 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
 
     @Override
     protected void onExportCurModelV2(PSDEToolbar pSDEToolbar, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
         ArrayNode arrayNode;
-        Object object3;
-        ArrayList<PSDETBItem> arrayList;
+        ArrayList<ObjectNode> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDETBITEM_PSDETOOLBAR_PSDETOOLBARID")) {
             pSCoreSysServiceBase = (PSDETBItemService)ServiceGlobal.getService(PSDETBItemService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDETOOLBAR#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDETBITEM", (Object)pSDEToolbar.getPSDEToolbarId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDETOOLBAR#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDETBITEM", (Object)pSDEToolbar.getPSDEToolbarId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add((PSDETBItem)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSDETBItem>();
-                object3 = ((PSDETBItemServiceBase)pSCoreSysServiceBase).selectByPSDEToolbar(pSDEToolbar);
-                arrayNode = StringHelper.format((String)"PSDETOOLBAR#%1$s", (Object)pSDEToolbar.getPSDEToolbarId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDETBItem)object2.next();
-                    object = ((PSDETBItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDETBItem)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSDETOOLBAR#%1$s", (Object)pSDEToolbar.getPSDEToolbarId());
+                for (PSDETBItem model : ((PSDETBItemServiceBase)pSCoreSysServiceBase).selectByPSDEToolbar(pSDEToolbar)) {
+                    if (StringHelper.compare(scope, ((PSDETBItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope(model), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(model, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
+                arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -4388,11 +4370,11 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDETBItem();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    ((PSDETBItemBase)object).remove("ordervalue");
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode node : arrayList) {
+                    PSDETBItem model = new PSDETBItem();
+                    PSModelV2Helper.fromJSONObject(model, node, false);
+                    model.remove("ordervalue");
+                    arrayNode.add(pSCoreSysServiceBase.exportModelV2(model, string));
                 }
             }
         }
@@ -4400,33 +4382,24 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             pSCoreSysServiceBase = (PSDEToolbarLogicService)ServiceGlobal.getService(PSDEToolbarLogicService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDETOOLBAR#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDETOOLBARLOGIC", (Object)pSDEToolbar.getPSDEToolbarId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDETOOLBAR#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDETOOLBARLOGIC", (Object)pSDEToolbar.getPSDEToolbarId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDETBItem)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object3 = ((PSDEToolbarLogicServiceBase)pSCoreSysServiceBase).selectByPSDEToolbar(pSDEToolbar);
-                arrayNode = StringHelper.format((String)"PSDETOOLBAR#%1$s", (Object)pSDEToolbar.getPSDEToolbarId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEToolbarLogic)object2.next();
-                    object = ((PSDEToolbarLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDETBItem)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSDETOOLBAR#%1$s", (Object)pSDEToolbar.getPSDEToolbarId());
+                for (PSDEToolbarLogic model : ((PSDEToolbarLogicServiceBase)pSCoreSysServiceBase).selectByPSDEToolbar(pSDEToolbar)) {
+                    if (StringHelper.compare(scope, ((PSDEToolbarLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope(model), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(model, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
+                arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -4454,10 +4427,10 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEToolbarLogic();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode node : arrayList) {
+                    PSDEToolbarLogic model = new PSDEToolbarLogic();
+                    PSModelV2Helper.fromJSONObject(model, node, false);
+                    arrayNode.add(pSCoreSysServiceBase.exportModelV2(model, string));
                 }
             }
         }
@@ -4468,29 +4441,29 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
     protected void onEmptyModelV2(PSDEToolbar pSDEToolbar) throws Exception {
         String string;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSDETBItemService)ServiceGlobal.getService(PSDETBItemService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<EntityBase> arrayList = ((PSDETBItemServiceBase)pSCoreSysServiceBase).selectByPSDEToolbar(pSDEToolbar);
+        ArrayList<PSDETBItem> items = ((PSDETBItemServiceBase)pSCoreSysServiceBase).selectByPSDEToolbar(pSDEToolbar);
         String string2 = StringHelper.format((String)"PSDETOOLBAR#%1$s", (Object)pSDEToolbar.getPSDEToolbarId());
-        for (PSDETBItem entityBase : arrayList) {
-            string = ((PSDETBItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase);
+        for (PSDETBItem item : items) {
+            string = ((PSDETBItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope(item);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
-            pSCoreSysServiceBase.emptyModelV2(entityBase);
+            pSCoreSysServiceBase.emptyModelV2(item);
         }
-        Object object = new SqlParamList();
-        object.addString(pSDEToolbar.getPSDEToolbarId());
+        SqlParamList params = new SqlParamList();
+        params.addString(pSDEToolbar.getPSDEToolbarId());
         ((PSDETBItemServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSDETBItemServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDETBITEM WHERE PSDETOOLBARID = ?", (SqlParamList)object);
+        ((PSDETBItemServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDETBITEM WHERE PSDETOOLBARID = ?", params);
         pSCoreSysServiceBase = (PSDEToolbarLogicService)ServiceGlobal.getService(PSDEToolbarLogicService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSDEToolbarLogicServiceBase)pSCoreSysServiceBase).selectByPSDEToolbar(pSDEToolbar);
+        ArrayList<PSDEToolbarLogic> logics = ((PSDEToolbarLogicServiceBase)pSCoreSysServiceBase).selectByPSDEToolbar(pSDEToolbar);
         string2 = StringHelper.format((String)"PSDETOOLBAR#%1$s", (Object)pSDEToolbar.getPSDEToolbarId());
-        for (PSDEToolbarLogic pSDEToolbarLogic : arrayList) {
-            string = ((PSDEToolbarLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSDEToolbarLogic);
+        for (PSDEToolbarLogic pSDEToolbarLogic : logics) {
+            string = ((PSDEToolbarLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope(pSDEToolbarLogic);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(pSDEToolbarLogic);
         }
-        object = new SqlParamList();
-        object.addString(pSDEToolbar.getPSDEToolbarId());
+        params = new SqlParamList();
+        params.addString(pSDEToolbar.getPSDEToolbarId());
         ((PSDEToolbarLogicServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSDEToolbarLogicServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDETOOLBARLOGIC WHERE PSDETOOLBARID = ?", (SqlParamList)object);
+        ((PSDEToolbarLogicServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDETOOLBARLOGIC WHERE PSDETOOLBARID = ?", params);
         super.onEmptyModelV2(pSDEToolbar);
     }
 
@@ -4529,7 +4502,6 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
 
     @Override
     protected void onCompileRelatedModelV2(PSDEToolbar pSDEToolbar, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        Serializable serializable;
         Object object2;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSDETBItemService)ServiceGlobal.getService(PSDETBItemService.class, (SessionFactory)this.getSessionFactory());
         ArrayNode arrayNode = null;
@@ -4553,18 +4525,14 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
             object2 = new File(string4);
             if (((File)object2).exists()) {
-                File[] fileArray;
-                File[] fileArray2 = fileArray = ((File)object2).listFiles();
-                int n3 = fileArray2.length;
-                for (int i = 0; i < n3; ++i) {
-                    serializable = fileArray2[i];
-                    if (!((File)serializable).isDirectory()) continue;
+                for (File child : ((File)object2).listFiles()) {
+                    if (!child.isDirectory()) continue;
                     PSDETBItem pSDETBItem = new PSDETBItem();
                     pSDETBItem.setPSDEId(pSDEToolbar.getPSDEId());
                     pSDETBItem.setPSDEToolbarId(pSDEToolbar.getPSDEToolbarId());
                     pSDETBItem.setPSDEToolbarName(pSDEToolbar.getPSDEToolbarName());
                     pSDETBItem.setPSSystemId(pSDEToolbar.getPSSystemId());
-                    pSCoreSysServiceBase.compileModelV2(pSDETBItem, null, string, ((File)serializable).getCanonicalPath(), n);
+                    pSCoreSysServiceBase.compileModelV2(pSDETBItem, null, string, child.getCanonicalPath(), n);
                 }
             }
         }
@@ -4577,21 +4545,21 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         if (arrayNode != null) {
             for (n2 = 0; n2 < arrayNode.size(); ++n2) {
                 ObjectNode objectNode2 = (ObjectNode)arrayNode.get(n2);
-                object2 = new PSDEToolbarLogic();
-                ((PSDEToolbarLogicBase)object2).setPSDEToolbarId(pSDEToolbar.getPSDEToolbarId());
-                ((PSDEToolbarLogicBase)object2).setPSDEToolbarName(pSDEToolbar.getPSDEToolbarName());
-                pSCoreSysServiceBase.compileModelV2(object2, objectNode2, string, null, n);
+                PSDEToolbarLogic logic = new PSDEToolbarLogic();
+                logic.setPSDEToolbarId(pSDEToolbar.getPSDEToolbarId());
+                logic.setPSDEToolbarName(pSDEToolbar.getPSDEToolbarName());
+                pSCoreSysServiceBase.compileModelV2(logic, objectNode2, string, null, n);
             }
         } else {
             String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
             File file = new File(string5);
             if (file.exists()) {
-                for (Object object : object2 = file.listFiles()) {
-                    if (!((File)object).isDirectory()) continue;
-                    serializable = new PSDEToolbarLogic();
-                    ((PSDEToolbarLogicBase)serializable).setPSDEToolbarId(pSDEToolbar.getPSDEToolbarId());
-                    ((PSDEToolbarLogicBase)serializable).setPSDEToolbarName(pSDEToolbar.getPSDEToolbarName());
-                    pSCoreSysServiceBase.compileModelV2(serializable, null, string, ((File)object).getCanonicalPath(), n);
+                for (File child : file.listFiles()) {
+                    if (!child.isDirectory()) continue;
+                    PSDEToolbarLogic logic = new PSDEToolbarLogic();
+                    logic.setPSDEToolbarId(pSDEToolbar.getPSDEToolbarId());
+                    logic.setPSDEToolbarName(pSDEToolbar.getPSDEToolbarName());
+                    pSCoreSysServiceBase.compileModelV2(logic, null, string, child.getCanonicalPath(), n);
                 }
             }
         }
@@ -4615,7 +4583,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSDETBItemService pSDETBItemService = (PSDETBItemService)ServiceGlobal.getService(PSDETBItemService.class, (SessionFactory)this.getSessionFactory());
             PSDETBItem pSDETBItem = new PSDETBItem();
             pSDETBItem.setPSDETBItemId(pSMOSFile.getPSModelId());
-            if (!pSDETBItemService.get((IEntity)pSDETBItem, true)) {
+            if (!pSDETBItemService.get(pSDETBItem, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDETBItem.getPSDEToolbarId(), (String)pSDEToolbar.getPSDEToolbarId(), (boolean)false) == 0) {
@@ -4623,12 +4591,12 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             }
             ObjectNode objectNode = pSDETBItemService.exportModelV2(pSDETBItem);
             pSDETBItem.reset();
-            if (!pSDETBItemService.setModelV2ResScope((IEntity)pSDETBItem, "PSDETOOLBAR", pSDEToolbar.getPSDEToolbarId())) {
+            if (!pSDETBItemService.setModelV2ResScope(pSDETBItem, "PSDETOOLBAR", pSDEToolbar.getPSDEToolbarId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDETBItemService.importModelV2(pSDETBItem, objectNode);
             SessionFactoryManager.commit();
-            return pSDETBItemService.getFile((IEntity)pSDETBItem);
+            return pSDETBItemService.getFile(pSDETBItem);
         }
         return null;
     }
@@ -4638,7 +4606,7 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             PSDEToolbarLogicService pSDEToolbarLogicService = (PSDEToolbarLogicService)ServiceGlobal.getService(PSDEToolbarLogicService.class, (SessionFactory)this.getSessionFactory());
             PSDEToolbarLogic pSDEToolbarLogic = new PSDEToolbarLogic();
             pSDEToolbarLogic.setPSDEToolbarLogicId(pSMOSFile.getPSModelId());
-            if (!pSDEToolbarLogicService.get((IEntity)pSDEToolbarLogic, true)) {
+            if (!pSDEToolbarLogicService.get(pSDEToolbarLogic, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEToolbarLogic.getPSDEToolbarId(), (String)pSDEToolbar.getPSDEToolbarId(), (boolean)false) == 0) {
@@ -4646,12 +4614,12 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
             }
             ObjectNode objectNode = pSDEToolbarLogicService.exportModelV2(pSDEToolbarLogic);
             pSDEToolbarLogic.reset();
-            if (!pSDEToolbarLogicService.setModelV2ResScope((IEntity)pSDEToolbarLogic, "PSDETOOLBAR", pSDEToolbar.getPSDEToolbarId())) {
+            if (!pSDEToolbarLogicService.setModelV2ResScope(pSDEToolbarLogic, "PSDETOOLBAR", pSDEToolbar.getPSDEToolbarId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEToolbarLogicService.importModelV2(pSDEToolbarLogic, objectNode);
             SessionFactoryManager.commit();
-            return pSDEToolbarLogicService.getFile((IEntity)pSDEToolbarLogic);
+            return pSDEToolbarLogicService.getFile(pSDEToolbarLogic);
         }
         return null;
     }
@@ -4681,4 +4649,3 @@ extends PSCoreSysServiceBase<PSDEToolbar> {
         list.add(pSHelpSection);
     }
 }
-

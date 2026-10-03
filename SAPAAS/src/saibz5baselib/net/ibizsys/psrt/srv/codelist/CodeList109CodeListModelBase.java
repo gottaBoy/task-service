@@ -1,36 +1,103 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="72366c28902f0efeab7c6d7999b8a498", name="\u5b9e\u4f53\u6570\u636e\u5904\u7406_\u53d8\u91cf\u540d\u79f0", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="%DEFAULT%", text="\u9ed8\u8ba4\u53d8\u91cf", realtext="\u9ed8\u8ba4\u53d8\u91cf"), @CodeItem(value="%ENV%", text="\u73af\u5883\u53d8\u91cf", realtext="\u73af\u5883\u53d8\u91cf"), @CodeItem(value="PARAM1", text="\u53d8\u91cf1", realtext="\u53d8\u91cf1"), @CodeItem(value="PARAM2", text="\u53d8\u91cf2", realtext="\u53d8\u91cf2"), @CodeItem(value="PARAM3", text="\u53d8\u91cf3", realtext="\u53d8\u91cf3"), @CodeItem(value="PARAM4", text="\u53d8\u91cf4", realtext="\u53d8\u91cf4"), @CodeItem(value="PARAM5", text="\u53d8\u91cf5", realtext="\u53d8\u91cf5"), @CodeItem(value="%LAST%", text="\u5386\u53f2\u503c", realtext="\u5386\u53f2\u503c"), @CodeItem(value="%GLOBAL1%", text="\u5168\u5c40\u53d8\u91cf1", realtext="\u5168\u5c40\u53d8\u91cf1"), @CodeItem(value="%GLOBAL2%", text="\u5168\u5c40\u53d8\u91cf2", realtext="\u5168\u5c40\u53d8\u91cf2"), @CodeItem(value="%GLOBAL3%", text="\u5168\u5c40\u53d8\u91cf3", realtext="\u5168\u5c40\u53d8\u91cf3"), @CodeItem(value="%GLOBAL4%", text="\u5168\u5c40\u53d8\u91cf4", realtext="\u5168\u5c40\u53d8\u91cf4"), @CodeItem(value="%GLOBAL5%", text="\u5168\u5c40\u53d8\u91cf5", realtext="\u5168\u5c40\u53d8\u91cf5"), @CodeItem(value="%BRINST%", text="\u5168\u5c40\u89c4\u5219\u5f15\u64ce\u5b9e\u4f8b\u53d8\u91cf", realtext="\u5168\u5c40\u89c4\u5219\u5f15\u64ce\u5b9e\u4f8b\u53d8\u91cf")})
-public abstract class CodeList109CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String _DEFAULT_ = "%DEFAULT%";
-    public static final String _ENV_ = "%ENV%";
-    public static final String PARAM1 = "PARAM1";
-    public static final String PARAM2 = "PARAM2";
-    public static final String PARAM3 = "PARAM3";
-    public static final String PARAM4 = "PARAM4";
-    public static final String PARAM5 = "PARAM5";
-    public static final String _LAST_ = "%LAST%";
-    public static final String _GLOBAL1_ = "%GLOBAL1%";
-    public static final String _GLOBAL2_ = "%GLOBAL2%";
-    public static final String _GLOBAL3_ = "%GLOBAL3%";
-    public static final String _GLOBAL4_ = "%GLOBAL4%";
-    public static final String _GLOBAL5_ = "%GLOBAL5%";
-    public static final String _BRINST_ = "%BRINST%";
+
+@CodeList(id="72366c28902f0efeab7c6d7999b8a498",name="实体数据处理_变量名称",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="%DEFAULT%",text="默认变量",realtext="默认变量" )
+    ,@CodeItem(value="%ENV%",text="环境变量",realtext="环境变量" )
+    ,@CodeItem(value="PARAM1",text="变量1",realtext="变量1" )
+    ,@CodeItem(value="PARAM2",text="变量2",realtext="变量2" )
+    ,@CodeItem(value="PARAM3",text="变量3",realtext="变量3" )
+    ,@CodeItem(value="PARAM4",text="变量4",realtext="变量4" )
+    ,@CodeItem(value="PARAM5",text="变量5",realtext="变量5" )
+    ,@CodeItem(value="%LAST%",text="历史值",realtext="历史值" )
+    ,@CodeItem(value="%GLOBAL1%",text="全局变量1",realtext="全局变量1" )
+    ,@CodeItem(value="%GLOBAL2%",text="全局变量2",realtext="全局变量2" )
+    ,@CodeItem(value="%GLOBAL3%",text="全局变量3",realtext="全局变量3" )
+    ,@CodeItem(value="%GLOBAL4%",text="全局变量4",realtext="全局变量4" )
+    ,@CodeItem(value="%GLOBAL5%",text="全局变量5",realtext="全局变量5" )
+    ,@CodeItem(value="%BRINST%",text="全局规则引擎实例变量",realtext="全局规则引擎实例变量" )
+})
+
+
+/**
+ * 静态代码表[实体数据处理_变量名称]模型基类
+ */
+public abstract class CodeList109CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  默认变量
+     */
+    public final static String _DEFAULT_ = "%DEFAULT%";
+    /**
+     *  环境变量
+     */
+    public final static String _ENV_ = "%ENV%";
+    /**
+     *  变量1
+     */
+    public final static String PARAM1 = "PARAM1";
+    /**
+     *  变量2
+     */
+    public final static String PARAM2 = "PARAM2";
+    /**
+     *  变量3
+     */
+    public final static String PARAM3 = "PARAM3";
+    /**
+     *  变量4
+     */
+    public final static String PARAM4 = "PARAM4";
+    /**
+     *  变量5
+     */
+    public final static String PARAM5 = "PARAM5";
+    /**
+     *  历史值
+     */
+    public final static String _LAST_ = "%LAST%";
+    /**
+     *  全局变量1
+     */
+    public final static String _GLOBAL1_ = "%GLOBAL1%";
+    /**
+     *  全局变量2
+     */
+    public final static String _GLOBAL2_ = "%GLOBAL2%";
+    /**
+     *  全局变量3
+     */
+    public final static String _GLOBAL3_ = "%GLOBAL3%";
+    /**
+     *  全局变量4
+     */
+    public final static String _GLOBAL4_ = "%GLOBAL4%";
+    /**
+     *  全局变量5
+     */
+    public final static String _GLOBAL5_ = "%GLOBAL5%";
+    /**
+     *  全局规则引擎实例变量
+     */
+    public final static String _BRINST_ = "%BRINST%";
+
 
     public CodeList109CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList109CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList109CodeListModel", this);
     }
-}
 
+}

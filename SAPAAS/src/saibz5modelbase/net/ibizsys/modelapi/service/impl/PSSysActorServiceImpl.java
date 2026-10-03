@@ -112,9 +112,9 @@ implements IPSSysActorService {
 
     @Override
     protected List<PSSysActor> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysActor> list = new ArrayList<PSSysActor>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysActor> items = this.listByPSModule(parent);

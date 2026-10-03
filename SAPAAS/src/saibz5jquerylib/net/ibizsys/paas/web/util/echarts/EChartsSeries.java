@@ -1,168 +1,258 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.codelist.ICodeList
- *  net.ibizsys.paas.ctrlmodel.IChartSeriesModel
- *  net.ibizsys.paas.sysmodel.CodeListGlobal
- *  net.ibizsys.paas.util.StringHelper
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.web.util.echarts;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import net.ibizsys.paas.codelist.ICodeList;
 import net.ibizsys.paas.ctrlmodel.IChartSeriesModel;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.paas.web.util.echarts.EChartsPoint;
 import net.sf.json.JSONObject;
 
+/**
+ * Echart 序列
+ * 
+ * @author Administrator
+ *
+ */
 public class EChartsSeries {
-    private String strSeriesDataKey = null;
-    private String strSeriesTag = null;
-    private String strName = null;
-    private String strType = null;
-    private HashMap<String, EChartsPoint> echartsPointMap = new HashMap();
-    private ArrayList<String> catalogNameList = new ArrayList();
-    private HashMap<String, String> catalogMap = new HashMap();
+	private String strSeriesDataKey = null;
+	private String strSeriesTag = null;
+	private String strName = null;
+	private String strType = null;
+	private HashMap<String, EChartsPoint> echartsPointMap = new HashMap<String, EChartsPoint>();
 
-    public static String getSeriesDataKey(IChartSeriesModel iChartSeriesModel, String strSeriesFieldValue) {
-        String strValue = iChartSeriesModel.getName();
-        if (!StringHelper.isNullOrEmpty((String)strSeriesFieldValue)) {
-            strValue = StringHelper.format((String)"%1$s_%2$s", (Object)strValue, (Object)strSeriesFieldValue);
-        }
-        return strValue;
-    }
+	private ArrayList<String> catalogNameList = new ArrayList<String>();
+	private HashMap<String, String> catalogMap = new HashMap<String, String>();
 
-    public void init(IChartSeriesModel iChartSeriesModel, String strSeriesFieldValue) {
-        if (iChartSeriesModel != null) {
-            this.strSeriesDataKey = EChartsSeries.getSeriesDataKey(iChartSeriesModel, strSeriesFieldValue);
-            this.strSeriesTag = iChartSeriesModel.getName();
-            this.strType = iChartSeriesModel.getSeriesType();
-            this.strName = strSeriesFieldValue;
-            if (!StringHelper.isNullOrEmpty((String)iChartSeriesModel.getSeriesFieldCodeListId())) {
-                try {
-                    ICodeList iCodeList = CodeListGlobal.getCodeList((String)iChartSeriesModel.getSeriesFieldCodeListId());
-                    this.strName = iCodeList.getCodeListText(this.strName, true);
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+	public static String getSeriesDataKey(IChartSeriesModel iChartSeriesModel, String strSeriesFieldValue){
+		String strValue = iChartSeriesModel.getName();
+		if(!StringHelper.isNullOrEmpty(strSeriesFieldValue)){
+			strValue = StringHelper.format("%1$s_%2$s",strValue, strSeriesFieldValue);
+		}
+		return strValue;
+	}
+	
+	public void init(IChartSeriesModel iChartSeriesModel, String strSeriesFieldValue) {
+		if(iChartSeriesModel != null){
+			this.strSeriesDataKey = EChartsSeries.getSeriesDataKey(iChartSeriesModel, strSeriesFieldValue);
+			this.strSeriesTag = iChartSeriesModel.getName();
+			this.strType = iChartSeriesModel.getSeriesType();
+			this.strName = strSeriesFieldValue;
+			if(!StringHelper.isNullOrEmpty(iChartSeriesModel.getSeriesFieldCodeListId())){
+				try {
+					ICodeList iCodeList = (ICodeList)CodeListGlobal.getCodeList(iChartSeriesModel.getSeriesFieldCodeListId());
+					strName = iCodeList.getCodeListText(strName, true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 获取序列名称
+	 * 
+	 * @return the strName
+	 */
+	public String getSeriesDataKey() {
+		return strSeriesDataKey;
+	}
 
-    public String getSeriesDataKey() {
-        return this.strSeriesDataKey;
-    }
+	/**
+	 * 设置序列名称
+	 * 
+	 * @param strSeriesDataKey the strSeriesDataKey to set
+	 */
+	public void setSeriesDataKey(String strSeriesDataKey) {
+		this.strSeriesDataKey = strSeriesDataKey;
+	}
 
-    public void setSeriesDataKey(String strSeriesDataKey) {
-        this.strSeriesDataKey = strSeriesDataKey;
-    }
+	/**
+	 * 获取序列名称
+	 * 
+	 * @return the strName
+	 */
+	public String getSeriesTag() {
+		return strSeriesTag;
+	}
 
-    public String getSeriesTag() {
-        return this.strSeriesTag;
-    }
+	/**
+	 * 设置序列名称
+	 * 
+	 * @param strSeriesTag the strSeriesTag to set
+	 */
+	public void setSeriesTag(String strSeriesTag) {
+		this.strSeriesTag = strSeriesTag;
+	}
 
-    public void setSeriesTag(String strSeriesTag) {
-        this.strSeriesTag = strSeriesTag;
-    }
+	/**
+	 * 获取名称
+	 * 
+	 * @return the strName
+	 */
+	public String getName() {
+		return strName;
+	}
 
-    public String getName() {
-        return this.strName;
-    }
+	/**
+	 * 设置名称
+	 * 
+	 * @param strName the strName to set
+	 */
+	public void setName(String strName) {
+		this.strName = strName;
+	}
 
-    public void setName(String strName) {
-        this.strName = strName;
-    }
+	/**
+	 * 获取类型
+	 * 
+	 * @return the strType
+	 */
+	public String getType() {
+		return strType;
+	}
 
-    public String getType() {
-        return this.strType;
-    }
+	/**
+	 * 设置类型
+	 * 
+	 * @param strType the strType to set
+	 */
+	public void setType(String strType) {
+		this.strType = strType;
+	}
 
-    public void setType(String strType) {
-        this.strType = strType;
-    }
+	/**
+	 * 添加分类值
+	 * 
+	 * @param strName
+	 * @throws Exception
+	 */
+	public void addCatalog(String strName) throws Exception {
+		String strCatalog = catalogMap.get(strName);
+		if (strCatalog != null) return;
+		this.catalogNameList.add(strName);
+		this.catalogMap.put(strName, strName);
+	}
 
-    public void addCatalog(String strName) throws Exception {
-        String strCatalog = this.catalogMap.get(strName);
-        if (strCatalog != null) {
-            return;
-        }
-        this.catalogNameList.add(strName);
-        this.catalogMap.put(strName, strName);
-    }
+	/**
+	 * 获取全部分类值
+	 * 
+	 * @return
+	 */
+	public ArrayList<String> getCatalogList() {
+		return this.catalogNameList;
+	}
 
-    public ArrayList<String> getCatalogList() {
-        return this.catalogNameList;
-    }
+	/**
+	 * 增加数据点
+	 * 
+	 * @param strCatalog
+	 * @param fValue
+	 * @param fValue2
+	 * @return
+	 * @throws Exception
+	 */
+	public EChartsPoint addPoint(String strCatalog, Double fValue, Double fValue2) throws Exception {
+		return this.addPoint(strCatalog, fValue, fValue2, null, null);
+	}
+	
+	/**
+	 * 增加数据点
+	 * 
+	 * @param strCatalog
+	 * @param fValue
+	 * @param fValue2
+	 * @param fValue3
+	 * @param fValue4
+	 * @return
+	 * @throws Exception
+	 */
+	public EChartsPoint addPoint(String strCatalog, Double fValue, Double fValue2, Double fValue3, Double fValue4) throws Exception {
+		this.addCatalog(strCatalog);
 
-    public EChartsPoint addPoint(String strCatalog, Double fValue, Double fValue2) throws Exception {
-        return this.addPoint(strCatalog, fValue, fValue2, null, null);
-    }
+		EChartsPoint echartsPoint = echartsPointMap.get(strCatalog);
+		if (echartsPoint != null) {
+			if (echartsPoint.getValue() != null) {
+				if (fValue != null) {
+					echartsPoint.setValue(echartsPoint.getValue() + fValue);
+				}
+			} else {
+				echartsPoint.setValue(fValue);
+			}
 
-    public EChartsPoint addPoint(String strCatalog, Double fValue, Double fValue2, Double fValue3, Double fValue4) throws Exception {
-        this.addCatalog(strCatalog);
-        EChartsPoint echartsPoint = this.echartsPointMap.get(strCatalog);
-        if (echartsPoint != null) {
-            if (echartsPoint.getValue() != null) {
-                if (fValue != null) {
-                    echartsPoint.setValue(echartsPoint.getValue() + fValue);
-                }
-            } else {
-                echartsPoint.setValue(fValue);
-            }
-            if (echartsPoint.getValue2() != null) {
-                if (fValue2 != null) {
-                    echartsPoint.setValue2(echartsPoint.getValue2() + fValue2);
-                }
-            } else {
-                echartsPoint.setValue2(fValue2);
-            }
-            if (echartsPoint.getValue3() != null) {
-                if (fValue3 != null) {
-                    echartsPoint.setValue3(echartsPoint.getValue3() + fValue3);
-                }
-            } else {
-                echartsPoint.setValue3(fValue3);
-            }
-            if (echartsPoint.getValue4() != null) {
-                if (fValue4 != null) {
-                    echartsPoint.setValue4(echartsPoint.getValue4() + fValue4);
-                }
-            } else {
-                echartsPoint.setValue4(fValue4);
-            }
-        } else {
-            echartsPoint = new EChartsPoint();
-            echartsPoint.setCatalog(strCatalog);
-            echartsPoint.setValue(fValue);
-            echartsPoint.setValue2(fValue2);
-            echartsPoint.setValue3(fValue3);
-            echartsPoint.setValue4(fValue4);
-            this.echartsPointMap.put(strCatalog, echartsPoint);
-        }
-        return echartsPoint;
-    }
+			if (echartsPoint.getValue2() != null) {
+				if (fValue2 != null) {
+					echartsPoint.setValue2(echartsPoint.getValue2() + fValue2);
+				}
+			} else {
+				echartsPoint.setValue2(fValue2);
+			}
 
-    public EChartsPoint getEChartsPoint(String strCatalog) {
-        return this.echartsPointMap.get(strCatalog);
-    }
+			if (echartsPoint.getValue3() != null) {
+				if (fValue3 != null) {
+					echartsPoint.setValue3(echartsPoint.getValue3() + fValue3);
+				}
+			} else {
+				echartsPoint.setValue3(fValue3);
+			}
+			
+			if (echartsPoint.getValue4() != null) {
+				if (fValue4 != null) {
+					echartsPoint.setValue4(echartsPoint.getValue4() + fValue4);
+				}
+			} else {
+				echartsPoint.setValue4(fValue4);
+			}
+		} else {
+			echartsPoint = new EChartsPoint();
+			echartsPoint.setCatalog(strCatalog);
+			echartsPoint.setValue(fValue);
+			echartsPoint.setValue2(fValue2);
+			echartsPoint.setValue3(fValue3);
+			echartsPoint.setValue4(fValue4);
+			echartsPointMap.put(strCatalog, echartsPoint);
+		}
 
-    public JSONObject getSeriesJO(ArrayList<String> globalCatalogNameList) throws Exception {
-        JSONObject series = new JSONObject();
-        series.put("type", (Object)this.getType());
-        series.put("seriestag", (Object)this.getSeriesTag());
-        if (!StringHelper.isNullOrEmpty((String)this.getName())) {
-            series.put("name", (Object)this.getName());
-        }
-        this.onFillSeriesJO(series, globalCatalogNameList);
-        return series;
-    }
+		return echartsPoint;
+	}
 
-    protected void onFillSeriesJO(JSONObject jo, ArrayList<String> globalCatalogNameList) throws Exception {
-    }
+	/**
+	 * 获取指定分类数据点
+	 * 
+	 * @param strCatalog
+	 * @return
+	 */
+	public EChartsPoint getEChartsPoint(String strCatalog) {
+		return echartsPointMap.get(strCatalog);
+	}
+
+	/**
+	 * 获取图形序列结果对象（Json形式）
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject getSeriesJO(ArrayList<String> globalCatalogNameList) throws Exception {
+		JSONObject series = new JSONObject();
+		series.put("type", this.getType());
+		series.put("seriestag", this.getSeriesTag());
+		if (!StringHelper.isNullOrEmpty(this.getName())) {
+			series.put("name", this.getName());
+		}
+		onFillSeriesJO(series, globalCatalogNameList);
+		return series;
+	}
+
+	/**
+	 * 填充图形序列结果对象（Json形式）
+	 * 
+	 * @param jo
+	 * @param globalCatalogNameList
+	 * @throws Exception
+	 */
+	protected void onFillSeriesJO(JSONObject jo, ArrayList<String> globalCatalogNameList) throws Exception {
+
+	}
+
 }
-

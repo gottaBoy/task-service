@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSAppUserModeDEModelBase;
 
 public class PSAppUserModeDEModel
 extends PSAppUserModeDEModelBase {
+
+    public PSAppUserModeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

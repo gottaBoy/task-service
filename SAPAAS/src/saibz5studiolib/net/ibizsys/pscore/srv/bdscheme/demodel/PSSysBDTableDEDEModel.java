@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.bdscheme.demodel.PSSysBDTableDEDEModelBase;
 
 public class PSSysBDTableDEDEModel
 extends PSSysBDTableDEDEModelBase {
+
+    public PSSysBDTableDEDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

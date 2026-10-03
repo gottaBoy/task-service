@@ -79,7 +79,7 @@ implements IPSDEReportService {
     @Override
     protected List<PSDEReport> onListAll() throws Exception {
         ArrayList<PSDEReport> list = new ArrayList<PSDEReport>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEReport> items = this.listByPSDataEntity(parent);

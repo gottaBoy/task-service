@@ -1058,7 +1058,7 @@ implements Serializable {
                 PSSFVerCode pSSFVerCode = new PSSFVerCode();
                 pSSFVerCode.setPSSFVerCodeId(this.getPSSFVerCodeId());
                 PSSFVerCodeService pSSFVerCodeService = (PSSFVerCodeService)ServiceGlobal.getService(PSSFVerCodeService.class, (SessionFactory)this.getSessionFactory());
-                pSSFVerCodeService.autoGet((IEntity)pSSFVerCode);
+                pSSFVerCodeService.autoGet(pSSFVerCode);
                 this.pssfvercode = pSSFVerCode;
             }
             return this.pssfvercode;

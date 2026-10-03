@@ -17,6 +17,7 @@
  */
 package net.ibizsys.pscore.srv.sysdevstudio.service;
 
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.File;
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ extends PSUWProjectServiceBase {
     @Override
     protected void onFinish(PSUWProject pSUWProject) throws Exception {
         if (this.isMajorSessionFactory()) {
-            if (!this.get((IEntity)pSUWProject, true)) {
+            if (!this.get(pSUWProject, true)) {
                 throw new Exception(StringHelper.format((String)"\u6307\u5b9a\u9879\u76ee\u5411\u5bfc\u65e0\u6548"));
             }
             if (DataObject.getIntegerValue((Object)pSUWProject.getWizardState(), (Integer)10) != 10) {
@@ -125,7 +126,7 @@ extends PSUWProjectServiceBase {
                         public void commit() {
                             try {
                                 log.info((Object)StringHelper.format((String)"\u51c6\u5907\u542f\u52a8\u5f00\u53d1\u6a21\u677f\u5411\u5bfc[%1$s]\u540e\u53f0\u4efb\u52a1", (Object)pSUWProject2.getSource()));
-                                PSUWProjectService.this.executeAction("X2_ADDDCBKTASK", (IEntity)pSUWProject2);
+                                PSUWProjectService.this.executeAction("X2_ADDDCBKTASK", pSUWProject2);
                             }
                             catch (Exception exception) {
                                 log.error((Object)exception);
@@ -272,7 +273,7 @@ extends PSUWProjectServiceBase {
         PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
         pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(string);
         PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        if (!pSDevSlnSysDynaInstService.get((IEntity)pSDevSlnSysDynaInst, true)) {
+        if (!pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst, true)) {
             log.error((Object)String.format("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]", string));
             throw new Exception("\u4f20\u5165\u52a8\u6001\u5b9e\u4f8b\u65e0\u6548");
         }
@@ -311,7 +312,7 @@ extends PSUWProjectServiceBase {
         PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
         pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(string);
         PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        if (!pSDevSlnSysDynaInstService.get((IEntity)pSDevSlnSysDynaInst, true)) {
+        if (!pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst, true)) {
             log.error((Object)String.format("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]", string));
             throw new Exception("\u4f20\u5165\u52a8\u6001\u5b9e\u4f8b\u65e0\u6548");
         }
@@ -364,9 +365,10 @@ extends PSUWProjectServiceBase {
                 }
                 pSDevSlnSysDynaInstService.checkInModel(pSDevSlnSysDynaInst);
             }
-            if ((object2 = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)"PSDevSlnSysDynaInsts")) != null) {
-                for (int i = 0; i < object2.size(); ++i) {
-                    object = (ObjectNode)object2.get(i);
+            ArrayNode instances = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)"PSDevSlnSysDynaInsts");
+            if (instances != null) {
+                for (int i = 0; i < instances.size(); ++i) {
+                    object = (ObjectNode)instances.get(i);
                     String string7 = JsonNodeHelper.getString((ObjectNode)object, (String)"InstTag", (String)"");
                     String string8 = JsonNodeHelper.getString((ObjectNode)object, (String)"InstTag2", (String)"");
                     PSDevSlnSysDynaInst object4 = null;
@@ -421,13 +423,13 @@ extends PSUWProjectServiceBase {
         PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
         pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(string);
-        if (!pSDevSlnSysDynaInstService.get((IEntity)pSDevSlnSysDynaInst, true)) {
+        if (!pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst, true)) {
             throw new Exception(String.format("\u52a8\u6001\u5b9e\u4f8b\u4e0d\u5b58\u5728", new Object[0]));
         }
         String string2 = pSUWProject.getSource();
         PSDevSlnSysDynaInst pSDevSlnSysDynaInst2 = new PSDevSlnSysDynaInst();
         pSDevSlnSysDynaInst2.setPSDevSlnSysDynaInstId(string2);
-        if (!pSDevSlnSysDynaInstService.get((IEntity)pSDevSlnSysDynaInst2, true)) {
+        if (!pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst2, true)) {
             throw new Exception(String.format("\u5f15\u7528\u5b9e\u4f8b\u6a21\u677f\u4e0d\u5b58\u5728", new Object[0]));
         }
         if (!("CONFTEMPL".equals(pSDevSlnSysDynaInst2.getInstType()) || "MODULETEMPL".equals(pSDevSlnSysDynaInst2.getInstType()) || "MISCTEMPL".equals(pSDevSlnSysDynaInst2.getInstType()))) {
@@ -445,4 +447,3 @@ extends PSUWProjectServiceBase {
         pSDevSlnSysDynaInstRefService.create(pSDevSlnSysDynaInstRef);
     }
 }
-

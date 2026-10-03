@@ -1,72 +1,138 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.entity;
 
 import java.util.ArrayList;
-import net.ibizsys.paas.entity.EntityFieldError;
-import net.ibizsys.paas.entity.IEntity;
+
 import net.ibizsys.paas.util.StringBuilderEx;
 
+/**
+ * 数据对象错误对象
+ * 
+ * @author lionlau
+ *
+ */
 public class EntityError {
-    private ArrayList<EntityFieldError> fieldErrorList = new ArrayList();
-    private IEntity iEntity = null;
-    private Object objUserData = null;
+	
 
-    public void register(EntityFieldError entityFieldError) {
-        this.fieldErrorList.add(entityFieldError);
-    }
+	private ArrayList<EntityFieldError> fieldErrorList = new ArrayList<EntityFieldError>();
+	
+	private IEntity iEntity = null;
+	
+	private Object objUserData = null;
+	
 
-    public void register(String strFieldName, String strCaption, String strCapLanId, int nErrorType, String strErrorInfo) {
-        this.register(strFieldName, strCaption, strCapLanId, nErrorType, strErrorInfo, null);
-    }
+	/**
+	 * 注册错误信息
+	 * 
+	 * @param entityFieldError
+	 */
+	public void register(EntityFieldError entityFieldError) {
+		fieldErrorList.add(entityFieldError);
+	}
 
-    public void register(String strFieldName, String strCaption, String strCapLanId, int nErrorType, String strErrorInfo, Object objValue) {
-        EntityFieldError fieldError = new EntityFieldError();
-        fieldError.setFieldLogicName(strCaption);
-        fieldError.setFieldName(strFieldName);
-        fieldError.setErrorType(nErrorType);
-        fieldError.setErrorInfo(strErrorInfo);
-        fieldError.setFieldValue(objValue);
-        this.fieldErrorList.add(fieldError);
-    }
+	/**
+	 * 注册错误信息
+	 * 
+	 * @param strFieldName 属性名称
+	 * @param strCaption 逻辑名称
+	 * @param strCapLanId 逻辑名称语言资源标识
+	 * @param nErrorType 错误类型
+	 * @param strErrorInfo 错误信息
+	 */
+	public void register(String strFieldName, String strCaption, String strCapLanId, int nErrorType, String strErrorInfo) {
+		register(strFieldName, strCaption, strCapLanId, nErrorType, strErrorInfo, null);
+	}
 
-    public ArrayList<EntityFieldError> getEntityFieldErrorList() {
-        return this.fieldErrorList;
-    }
+	/**
+	 * 注册错误信息
+	 * 
+	 * @param strFieldName 属性名称
+	 * @param strCaption 逻辑名称
+	 * @param strCapLanId 逻辑名称语言资源标识
+	 * @param nErrorType 错误类型
+	 * @param strErrorInfo 错误信息
+	 * @param objValue 错误值
+	 */
+	public void register(String strFieldName, String strCaption, String strCapLanId, int nErrorType, String strErrorInfo, Object objValue) {
+		EntityFieldError fieldError = new EntityFieldError();
+		fieldError.setFieldLogicName(strCaption);
+		fieldError.setFieldName(strFieldName);
+		fieldError.setErrorType(nErrorType);
+		fieldError.setErrorInfo(strErrorInfo);
+		fieldError.setFieldValue(objValue);
+		fieldErrorList.add(fieldError);
+	}
 
-    public boolean hasError() {
-        return this.fieldErrorList.size() > 0;
-    }
+	/**
+	 * 获取实体项错误清单
+	 * 
+	 * @return
+	 */
+	public ArrayList<EntityFieldError> getEntityFieldErrorList() {
+		return this.fieldErrorList;
+	}
 
-    public String toString() {
-        StringBuilderEx sb = new StringBuilderEx();
-        boolean bFirst = true;
-        for (EntityFieldError entityFieldError : this.fieldErrorList) {
-            if (bFirst) {
-                bFirst = false;
-            } else {
-                sb.append("\r\n");
-            }
-            sb.append(entityFieldError.toString());
-        }
-        return sb.toString();
-    }
+	/**
+	 * 实体是否有错误
+	 * 
+	 * @return
+	 */
+	public boolean hasError() {
+		return this.fieldErrorList.size() > 0;
+	}
 
-    public IEntity getEntity() {
-        return this.iEntity;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilderEx sb = new StringBuilderEx();
+		boolean bFirst = true;
+		for (EntityFieldError entityFieldError : fieldErrorList) {
+			if (bFirst) {
+				bFirst = false;
+			} else {
+				sb.append("\r\n");
+			}
+			sb.append(entityFieldError.toString());
+		}
+		return sb.toString();
+	}
 
-    public void setEntity(IEntity iEntity) {
-        this.iEntity = iEntity;
-    }
+	
 
-    public Object getUserData() {
-        return this.objUserData;
-    }
+	/**
+	 * 获取检查的数据对象
+	 * @return
+	 */
+	public IEntity getEntity() {
+		return iEntity;
+	}
 
-    public void setUserData(Object objUserData) {
-        this.objUserData = objUserData;
-    }
+	/**
+	 * 设置检查的数据对象
+	 * @param iEntity
+	 */
+	public void setEntity(IEntity iEntity) {
+		this.iEntity = iEntity;
+	}
+
+	/**
+	 * 获取用户自定义数据
+	 * @return
+	 */
+	public Object getUserData() {
+		return objUserData;
+	}
+
+	/**
+	 * 设置用户自定义数据
+	 * @param objUserData
+	 */
+	public void setUserData(Object objUserData) {
+		this.objUserData = objUserData;
+	}
+
+	
 }
-

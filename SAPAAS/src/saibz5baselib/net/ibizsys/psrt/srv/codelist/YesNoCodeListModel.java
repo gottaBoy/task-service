@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
 
-import net.ibizsys.psrt.srv.codelist.YesNoCodeListModelBase;
 
-public class YesNoCodeListModel
-extends YesNoCodeListModelBase {
+/**
+ * 静态代码表[是否]模型对象
+ */
+public class YesNoCodeListModel extends YesNoCodeListModelBase {
+
+    public YesNoCodeListModel() {
+        super();
+    }
+
 }
-

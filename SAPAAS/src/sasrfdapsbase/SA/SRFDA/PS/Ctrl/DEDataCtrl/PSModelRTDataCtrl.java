@@ -294,16 +294,12 @@ extends PSDEDataCtrl {
                                                 ++nCount;
                                             }
                                         } else if (objValue.getClass().isArray()) {
-                                            Object[] list22;
                                             if (objValue instanceof Object[]) {
-                                                list22 = (Object[])objValue;
-                                                nCount = list22.length;
+                                                nCount = ((Object[])objValue).length;
                                             } else if (objValue instanceof double[]) {
-                                                list22 = (double[])objValue;
-                                                nCount = list22.length;
+                                                nCount = ((double[])objValue).length;
                                             } else if (objValue instanceof int[]) {
-                                                list22 = (int[])objValue;
-                                                nCount = list22.length;
+                                                nCount = ((int[])objValue).length;
                                             } else {
                                                 nCount = 1;
                                             }
@@ -392,24 +388,23 @@ extends PSDEDataCtrl {
                                 it = ((ArrayList)objValue).iterator();
                             } else if (objValue.getClass().isArray()) {
                                 int i;
-                                Object[] list3;
                                 ArrayList<Object> list2 = new ArrayList<Object>();
                                 if (objValue instanceof Object[]) {
-                                    list3 = (Object[])objValue;
+                                    Object[] list3 = (Object[])objValue;
                                     i = 0;
                                     while (i < list3.length) {
                                         list2.add(list3[i]);
                                         ++i;
                                     }
                                 } else if (objValue instanceof double[]) {
-                                    list3 = (double[])objValue;
+                                    double[] list3 = (double[])objValue;
                                     i = 0;
                                     while (i < list3.length) {
                                         list2.add((double)list3[i]);
                                         ++i;
                                     }
                                 } else if (objValue instanceof int[]) {
-                                    list3 = (int[])objValue;
+                                    int[] list3 = (int[])objValue;
                                     i = 0;
                                     while (i < list3.length) {
                                         list2.add((int)list3[i]);
@@ -732,4 +727,3 @@ extends PSDEDataCtrl {
         return strRet;
     }
 }
-

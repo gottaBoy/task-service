@@ -2638,7 +2638,7 @@ implements Serializable {
                 PSCorePrdVer pSCorePrdVer = new PSCorePrdVer();
                 pSCorePrdVer.setPSCorePrdVerId(this.getPSCorePrdVerId());
                 PSCorePrdVerService pSCorePrdVerService = (PSCorePrdVerService)ServiceGlobal.getService(PSCorePrdVerService.class, (SessionFactory)this.getSessionFactory());
-                pSCorePrdVerService.autoGet((IEntity)pSCorePrdVer);
+                pSCorePrdVerService.autoGet(pSCorePrdVer);
                 this.pscoreprdver = pSCorePrdVer;
             }
             return this.pscoreprdver;
@@ -2664,7 +2664,7 @@ implements Serializable {
                 PSCorePrd pSCorePrd = new PSCorePrd();
                 pSCorePrd.setPSCorePrdId(this.getPSCorePrdId());
                 PSCorePrdService pSCorePrdService = (PSCorePrdService)ServiceGlobal.getService(PSCorePrdService.class, (SessionFactory)this.getSessionFactory());
-                pSCorePrdService.autoGet((IEntity)pSCorePrd);
+                pSCorePrdService.autoGet(pSCorePrd);
                 this.pscoreprd = pSCorePrd;
             }
             return this.pscoreprd;
@@ -2690,7 +2690,7 @@ implements Serializable {
                 PSDeployCenter pSDeployCenter = new PSDeployCenter();
                 pSDeployCenter.setPSDeployCenterId(this.getPSDeployCenterId());
                 PSDeployCenterService pSDeployCenterService = (PSDeployCenterService)ServiceGlobal.getService(PSDeployCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDeployCenterService.autoGet((IEntity)pSDeployCenter);
+                pSDeployCenterService.autoGet(pSDeployCenter);
                 this.psdeploycenter = pSDeployCenter;
             }
             return this.psdeploycenter;
@@ -2716,7 +2716,7 @@ implements Serializable {
                 PSMobAppPackServer pSMobAppPackServer = new PSMobAppPackServer();
                 pSMobAppPackServer.setPSMobAppPackServerId(this.getNo2PSMobAppPSId());
                 PSMobAppPackServerService pSMobAppPackServerService = (PSMobAppPackServerService)ServiceGlobal.getService(PSMobAppPackServerService.class, (SessionFactory)this.getSessionFactory());
-                pSMobAppPackServerService.autoGet((IEntity)pSMobAppPackServer);
+                pSMobAppPackServerService.autoGet(pSMobAppPackServer);
                 this.no2psmobappps = pSMobAppPackServer;
             }
             return this.no2psmobappps;
@@ -2742,7 +2742,7 @@ implements Serializable {
                 PSMobAppPackServer pSMobAppPackServer = new PSMobAppPackServer();
                 pSMobAppPackServer.setPSMobAppPackServerId(this.getPSMobAppPackServerId());
                 PSMobAppPackServerService pSMobAppPackServerService = (PSMobAppPackServerService)ServiceGlobal.getService(PSMobAppPackServerService.class, (SessionFactory)this.getSessionFactory());
-                pSMobAppPackServerService.autoGet((IEntity)pSMobAppPackServer);
+                pSMobAppPackServerService.autoGet(pSMobAppPackServer);
                 this.psmobapppackserver = pSMobAppPackServer;
             }
             return this.psmobapppackserver;
@@ -2768,7 +2768,7 @@ implements Serializable {
                 PSSvrDomain pSSvrDomain = new PSSvrDomain();
                 pSSvrDomain.setPSSvrDomainId(this.getPSSvrDomainId());
                 PSSvrDomainService pSSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrDomainService.autoGet((IEntity)pSSvrDomain);
+                pSSvrDomainService.autoGet(pSSvrDomain);
                 this.pssvrdomain = pSSvrDomain;
             }
             return this.pssvrdomain;
@@ -2794,7 +2794,7 @@ implements Serializable {
                 PSWorkshopServer pSWorkshopServer = new PSWorkshopServer();
                 pSWorkshopServer.setPSWorkshopServerId(this.getPSWorkshopServerId());
                 PSWorkshopServerService pSWorkshopServerService = (PSWorkshopServerService)ServiceGlobal.getService(PSWorkshopServerService.class, (SessionFactory)this.getSessionFactory());
-                pSWorkshopServerService.autoGet((IEntity)pSWorkshopServer);
+                pSWorkshopServerService.autoGet(pSWorkshopServer);
                 this.psworkshopserver = pSWorkshopServer;
             }
             return this.psworkshopserver;

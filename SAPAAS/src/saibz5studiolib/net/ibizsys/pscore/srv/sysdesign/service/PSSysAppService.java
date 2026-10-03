@@ -1,42 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- *  net.ibizsys.paas.data.DataObject
- *  net.ibizsys.paas.data.IDataObject
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.paas.service.ServiceGlobal
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.paas.web.WebContext
- *  net.sf.json.JSONObject
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.hibernate.SessionFactory
- *  org.springframework.stereotype.Component
- */
 package net.ibizsys.pscore.srv.sysdesign.service;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import java.io.Serializable;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.data.IDataObject;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.web.WebContext;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
 import net.ibizsys.pscore.srv.appdesign.entity.PSAppIndexView;
-import net.ibizsys.pscore.srv.appdesign.entity.PSAppIndexViewBase;
 import net.ibizsys.pscore.srv.appdesign.entity.PSAppMenu;
 import net.ibizsys.pscore.srv.appdesign.entity.PSAppMenuItem;
 import net.ibizsys.pscore.srv.appdesign.entity.PSAppModule;
 import net.ibizsys.pscore.srv.appdesign.entity.PSAppPortalView;
-import net.ibizsys.pscore.srv.appdesign.entity.PSAppPortalViewBase;
 import net.ibizsys.pscore.srv.appdesign.entity.PSAppView;
 import net.ibizsys.pscore.srv.appdesign.service.PSAppIndexViewService;
 import net.ibizsys.pscore.srv.appdesign.service.PSAppMenuItemService;
@@ -55,505 +32,555 @@ import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSlnSysApp;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSLanguageRes;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSModule;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSysApp;
-import net.ibizsys.pscore.srv.sysdesign.entity.PSSysAppBase;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSysProject;
-import net.ibizsys.pscore.srv.sysdesign.service.PSDevSlnSysAppService;
-import net.ibizsys.pscore.srv.sysdesign.service.PSLanguageResService;
-import net.ibizsys.pscore.srv.sysdesign.service.PSSysAppServiceBase;
-import net.ibizsys.pscore.srv.sysdesign.service.PSSysProjectService;
 import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PSSysAppService
-extends PSSysAppServiceBase {
-    private static final Log log = LogFactory.getLog(PSSysAppService.class);
+public class PSSysAppService extends PSSysAppServiceBase {
+   private static final Log log = LogFactory.getLog(PSSysAppService.class);
 
-    @Override
-    protected void onBeforeCreate(PSSysApp pSSysApp) throws Exception {
-        this.syncPSPFStyle(pSSysApp);
-        if (pSSysApp.getDefaultPub() == null) {
-            PSSysApp pSSysApp2 = new PSSysApp();
-            pSSysApp2.setPSSystemId(pSSysApp.getPSSystemId());
-            pSSysApp2.setDefaultPub(1);
-            if (!this.existsData(pSSysApp2)) {
-                pSSysApp.setDefaultPub(1);
-            }
-        } else if (DataObject.getBoolValue((Integer)pSSysApp.getDefaultPub(), (boolean)false)) {
-            PSSysApp pSSysApp3 = new PSSysApp();
-            pSSysApp3.setPSSystemId(pSSysApp.getPSSystemId());
-            pSSysApp3.setDefaultPub(1);
-            if (this.existsData(pSSysApp3)) {
-                pSSysApp3.setDefaultPub(0);
-                this.update(pSSysApp3, false);
-            }
-        }
-        super.onBeforeCreate(pSSysApp);
-    }
+   protected void onBeforeCreate(PSSysApp var1) throws Exception {
+      this.syncPSPFStyle(var1);
+      if (var1.getDefaultPub() == null) {
+         PSSysApp var2 = new PSSysApp();
+         var2.setPSSystemId(var1.getPSSystemId());
+         var2.setDefaultPub(1);
+         if (!this.existsData(var2)) {
+            var1.setDefaultPub(1);
+         }
+      } else if (DataObject.getBoolValue(var1.getDefaultPub(), false)) {
+         PSSysApp var3 = new PSSysApp();
+         var3.setPSSystemId(var1.getPSSystemId());
+         var3.setDefaultPub(1);
+         if (this.existsData(var3)) {
+            var3.setDefaultPub(0);
+            this.update(var3, false);
+         }
+      }
 
-    @Override
-    protected void onBeforeUpdate(PSSysApp pSSysApp) throws Exception {
-        this.syncPSPFStyle(pSSysApp);
-        if (DataObject.getBoolValue((Integer)pSSysApp.getDefaultPub(), (boolean)false)) {
-            PSSysApp pSSysApp2 = new PSSysApp();
-            pSSysApp2.setPSSystemId(pSSysApp.getPSSystemId());
-            pSSysApp2.setDefaultPub(1);
-            if (this.existsData(pSSysApp2) && StringHelper.compare((String)pSSysApp2.getPSSysAppId(), (String)pSSysApp.getPSSysAppId(), (boolean)false) != 0) {
-                pSSysApp2.setDefaultPub(0);
-                this.update(pSSysApp2, false);
-            }
-        }
-        super.onBeforeUpdate(pSSysApp);
-    }
+      super.onBeforeCreate(var1);
+   }
 
-    @Override
-    protected void onInitModel(PSSysApp pSSysApp) throws Exception {
-        super.onInitModel(pSSysApp);
-        this.initPSSysAppLanRes(pSSysApp);
-    }
+   protected void onBeforeUpdate(PSSysApp var1) throws Exception {
+      this.syncPSPFStyle(var1);
+      if (DataObject.getBoolValue(var1.getDefaultPub(), false)) {
+         PSSysApp var2 = new PSSysApp();
+         var2.setPSSystemId(var1.getPSSystemId());
+         var2.setDefaultPub(1);
+         if (this.existsData(var2) && StringHelper.compare(var2.getPSSysAppId(), var1.getPSSysAppId(), false) != 0) {
+            var2.setDefaultPub(0);
+            this.update(var2, false);
+         }
+      }
 
-    protected void initPSSysAppLanRes(PSSysApp pSSysApp) throws Exception {
-        Serializable serializable;
-        Object object;
-        Object object2;
-        Serializable serializable22;
-        PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
-        PSAppIndexViewService pSAppIndexViewService = (PSAppIndexViewService)ServiceGlobal.getService(PSAppIndexViewService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList arrayList = pSAppIndexViewService.selectByPSSysApp(pSSysApp);
-        for (Serializable serializable22 : arrayList) {
-            object2 = new PSAppIndexView();
-            ((PSAppIndexViewBase)object2).setPSAppIndexViewId(((PSAppIndexViewBase)serializable22).getPSAppIndexViewId());
-            if (!this.initPSAppViewLanRes(pSSysApp, pSLanguageResService, (PSAppView)serializable22, (PSAppView)object2)) continue;
-            pSAppIndexViewService.update(object2, false);
-        }
-        PSAppPortalViewService pSAppPortalViewService = (PSAppPortalViewService)ServiceGlobal.getService(PSAppPortalViewService.class, (SessionFactory)this.getSessionFactory());
-        serializable22 = pSAppPortalViewService.selectByPSSysApp(pSSysApp);
-        object2 = ((ArrayList)serializable22).iterator();
-        while (object2.hasNext()) {
-            object = (PSAppPortalView)object2.next();
-            serializable = new PSAppPortalView();
-            ((PSAppPortalViewBase)serializable).setPSAppPortalViewId(((PSAppPortalViewBase)object).getPSAppPortalViewId());
-            if (!this.initPSAppViewLanRes(pSSysApp, pSLanguageResService, (PSAppView)object, (PSAppView)serializable)) continue;
-            pSAppPortalViewService.update(serializable, false);
-        }
-        object2 = (PSAppMenuService)ServiceGlobal.getService(PSAppMenuService.class, (SessionFactory)this.getSessionFactory());
-        object = (PSAppMenuItemService)ServiceGlobal.getService(PSAppMenuItemService.class, (SessionFactory)this.getSessionFactory());
-        serializable = pSSysApp.getPSAppMenus();
-        Iterator iterator = ((ArrayList)serializable).iterator();
-        while (iterator.hasNext()) {
-            PSAppMenu pSAppMenu = (PSAppMenu)iterator.next();
-            boolean bl = false;
-            ArrayList<PSAppMenuItem> arrayList2 = pSAppMenu.getPSAppMenuItems();
-            for (PSAppMenuItem pSAppMenuItem : arrayList2) {
-                PSLanguageRes pSLanguageRes;
-                PSAppMenuItem pSAppMenuItem2 = new PSAppMenuItem();
-                pSAppMenuItem2.setPSAppMenuItemId(pSAppMenuItem.getPSAppMenuItemId());
-                boolean bl2 = false;
-                if (!StringHelper.isNullOrEmpty((String)pSAppMenuItem.getCaption()) && StringHelper.isNullOrEmpty((String)pSAppMenuItem.getCapPSLanResId())) {
-                    pSLanguageRes = new PSLanguageRes();
-                    pSLanguageRes.setPSSystemId(pSSysApp.getPSSystemId());
-                    pSLanguageRes.setLanResType("CONTROL");
-                    pSLanguageRes.setUserData(StringHelper.format((String)"APPMENUITEM.CAPTION.%1$s.%2$s.%3$s", (Object)pSSysApp.getAppPKGName(), (Object)pSAppMenu.getCodeName(), (Object)pSAppMenuItem.getPSAppMenuItemName()).toUpperCase());
-                    if (!pSLanguageResService.select(pSLanguageRes, true)) {
-                        pSLanguageRes.setPSSysAppId(pSSysApp.getPSSysAppId());
-                        pSLanguageRes.setPSSysAppName(pSSysApp.getPSSysAppName());
-                        pSLanguageRes.setContent(pSAppMenuItem.getCaption());
-                        pSLanguageResService.create(pSLanguageRes);
-                        pSAppMenuItem2.setCapPSLanResId(pSLanguageRes.getPSLanguageResId());
-                        pSAppMenuItem2.setCapPSLanResName(pSLanguageRes.getPSLanguageResName());
-                        bl2 = true;
-                    }
-                }
-                if (!StringHelper.isNullOrEmpty((String)pSAppMenuItem.getTooltipInfo()) && StringHelper.isNullOrEmpty((String)pSAppMenuItem.getTipPSLanResId())) {
-                    pSLanguageRes = new PSLanguageRes();
-                    pSLanguageRes.setPSSystemId(pSSysApp.getPSSystemId());
-                    pSLanguageRes.setLanResType("CONTROL");
-                    pSLanguageRes.setUserData(StringHelper.format((String)"APPMENUITEM.TOOLTIP.%1$s.%2$s.%3$s", (Object)pSSysApp.getAppPKGName(), (Object)pSAppMenu.getCodeName(), (Object)pSAppMenuItem.getPSAppMenuItemName()).toUpperCase());
-                    if (!pSLanguageResService.select(pSLanguageRes, true)) {
-                        pSLanguageRes.setPSSysAppId(pSSysApp.getPSSysAppId());
-                        pSLanguageRes.setPSSysAppName(pSSysApp.getPSSysAppName());
-                        pSLanguageRes.setContent(pSAppMenuItem.getTooltipInfo());
-                        pSLanguageResService.create(pSLanguageRes);
-                        pSAppMenuItem2.setTipPSLanResId(pSLanguageRes.getPSLanguageResId());
-                        pSAppMenuItem2.setTipPSLanResName(pSLanguageRes.getPSLanguageResName());
-                        bl2 = true;
-                    }
-                }
-                if (!bl2) continue;
-                bl = true;
-                ((PSCoreSysServiceBase)object).update(pSAppMenuItem2, false);
-            }
-            if (!bl) continue;
-            PSAppMenu pSAppMenu2 = new PSAppMenu();
-            pSAppMenu2.setPSAppMenuId(pSAppMenu.getPSAppMenuId());
-            ((PSCoreSysServiceBase)object2).update(pSAppMenu2, false);
-        }
-    }
+      super.onBeforeUpdate(var1);
+   }
 
-    protected boolean initPSAppViewLanRes(PSSysApp pSSysApp, PSLanguageResService pSLanguageResService, PSAppView pSAppView, PSAppView pSAppView2) throws Exception {
-        PSLanguageRes pSLanguageRes;
-        boolean bl = false;
-        if (!StringHelper.isNullOrEmpty((String)pSAppView.getTitle()) && StringHelper.isNullOrEmpty((String)pSAppView.getTitlePSLanResId())) {
-            pSLanguageRes = new PSLanguageRes();
-            pSLanguageRes.setPSSystemId(pSSysApp.getPSSystemId());
-            pSLanguageRes.setLanResType("PAGE");
-            pSLanguageRes.setUserData(StringHelper.format((String)"TITLE.%1$s.%2$s", (Object)pSAppView.getPSSysApp().getAppPKGName(), (Object)pSAppView.getPSAppViewName()).toUpperCase());
-            if (!pSLanguageResService.select(pSLanguageRes, true)) {
-                pSLanguageRes.setPSSysAppId(pSAppView.getPSSysAppId());
-                pSLanguageRes.setPSSysAppName(pSAppView.getPSSysAppName());
-                pSLanguageRes.setPSAppViewId(pSAppView.getPSAppViewId());
-                pSLanguageRes.setPSAppViewName(pSAppView.getPSAppViewName());
-                pSLanguageRes.setContent(pSAppView.getTitle());
-                pSLanguageResService.create(pSLanguageRes);
-                pSAppView2.setTitlePSLanResId(pSLanguageRes.getPSLanguageResId());
-                pSAppView2.setTitlePSLanResName(pSLanguageRes.getPSLanguageResName());
-                bl = true;
-            }
-        }
-        if (!StringHelper.isNullOrEmpty((String)pSAppView.getCaption()) && StringHelper.isNullOrEmpty((String)pSAppView.getCapPSLanResId())) {
-            pSLanguageRes = new PSLanguageRes();
-            pSLanguageRes.setPSSystemId(pSSysApp.getPSSystemId());
-            pSLanguageRes.setLanResType("PAGE");
-            pSLanguageRes.setUserData(StringHelper.format((String)"CAPTION.%1$s.%2$s", (Object)pSAppView.getPSSysApp().getAppPKGName(), (Object)pSAppView.getPSAppViewName()).toUpperCase());
-            if (!pSLanguageResService.select(pSLanguageRes, true)) {
-                pSLanguageRes.setPSSysAppId(pSAppView.getPSSysAppId());
-                pSLanguageRes.setPSSysAppName(pSAppView.getPSSysAppName());
-                pSLanguageRes.setPSAppViewId(pSAppView.getPSAppViewId());
-                pSLanguageRes.setPSAppViewName(pSAppView.getPSAppViewName());
-                pSLanguageRes.setContent(pSAppView.getCaption());
-                pSLanguageResService.create(pSLanguageRes);
-                pSAppView2.setCapPSLanResId(pSLanguageRes.getPSLanguageResId());
-                pSAppView2.setCapPSLanResName(pSLanguageRes.getPSLanguageResName());
-                bl = true;
-            }
-        }
-        if (!StringHelper.isNullOrEmpty((String)pSAppView.getSubCaption()) && StringHelper.isNullOrEmpty((String)pSAppView.getSubCapPSLanResId())) {
-            pSLanguageRes = new PSLanguageRes();
-            pSLanguageRes.setPSSystemId(pSSysApp.getPSSystemId());
-            pSLanguageRes.setLanResType("PAGE");
-            pSLanguageRes.setUserData(StringHelper.format((String)"SUBCAP.%1$s.%2$s", (Object)pSAppView.getPSSysApp().getAppPKGName(), (Object)pSAppView.getPSAppViewName()).toUpperCase());
-            if (!pSLanguageResService.select(pSLanguageRes, true)) {
-                pSLanguageRes.setPSSysAppId(pSAppView.getPSSysAppId());
-                pSLanguageRes.setPSSysAppName(pSAppView.getPSSysAppName());
-                pSLanguageRes.setPSAppViewId(pSAppView.getPSAppViewId());
-                pSLanguageRes.setPSAppViewName(pSAppView.getPSAppViewName());
-                pSLanguageRes.setContent(pSAppView.getSubCaption());
-                pSLanguageResService.create(pSLanguageRes);
-                pSAppView2.setSubCapPSLanResId(pSLanguageRes.getPSLanguageResId());
-                pSAppView2.setSubCapPSLanResName(pSLanguageRes.getPSLanguageResName());
-                bl = true;
-            }
-        }
-        return bl;
-    }
+   protected void onInitModel(PSSysApp var1) throws Exception {
+      super.onInitModel(var1);
+      this.initPSSysAppLanRes(var1);
+   }
 
-    @Override
-    protected void onBeforeRemove(PSSysApp pSSysApp) throws Exception {
-        String string;
-        PSSysApp pSSysApp2 = (PSSysApp)this.getLast((IEntity)pSSysApp);
-        if (DataObject.getIntegerValue((Object)pSSysApp2.getRemoveFlag(), (Integer)0) != 1) {
-            throw new Exception(StringHelper.format((String)"\u5e94\u7528[%1$s]\u5fc5\u987b\u8bbe\u7f6e\u4e3a[\u5141\u8bb8\u5220\u9664]\u624d\u80fd\u5220\u9664", (Object)pSSysApp2.getPSSysAppName()));
-        }
-        if (pSSysApp2.getPSSystem() != null && !StringHelper.isNullOrEmpty((String)(string = pSSysApp2.getPSSystem().getPSDevSlnSysId()))) {
-            PSDevSlnSysAppService pSDevSlnSysAppService = (PSDevSlnSysAppService)ServiceGlobal.getService(PSDevSlnSysAppService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            PSDevSlnSysApp pSDevSlnSysApp = new PSDevSlnSysApp();
-            pSSysApp.copyTo((IDataObject)pSDevSlnSysApp, false);
-            pSDevSlnSysApp.setPSDevSlnSysId(string);
-            pSDevSlnSysAppService.fillEntityKeyValue((IEntity)pSDevSlnSysApp);
-            if (pSDevSlnSysAppService.checkKey(pSDevSlnSysApp) == 1) {
-                pSDevSlnSysAppService.remove((IEntity)pSDevSlnSysApp);
-            }
-        }
-        super.onBeforeRemove(pSSysApp);
-    }
+   protected void initPSSysAppLanRes(PSSysApp var1) throws Exception {
+      PSLanguageResService var2 = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, this.getSessionFactory());
+      PSAppIndexViewService var3 = (PSAppIndexViewService)ServiceGlobal.getService(PSAppIndexViewService.class, this.getSessionFactory());
 
-    @Override
-    protected void onAfterCreate(PSSysApp pSSysApp) throws Exception {
-        String string;
-        if (pSSysApp.isPSPFStyleIdDirty()) {
-            this.buildPSSysProject(pSSysApp);
-        }
-        if (pSSysApp.getPSSystem() != null && !StringHelper.isNullOrEmpty((String)(string = pSSysApp.getPSSystem().getPSDevSlnSysId()))) {
-            PSDevSlnSysAppService pSDevSlnSysAppService = (PSDevSlnSysAppService)ServiceGlobal.getService(PSDevSlnSysAppService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            PSDevSlnSysApp pSDevSlnSysApp = new PSDevSlnSysApp();
-            pSSysApp.copyTo((IDataObject)pSDevSlnSysApp, false);
-            pSDevSlnSysApp.setPSDevSlnSysId(string);
-            pSDevSlnSysApp.setPSDevSlnSysAppName(pSSysApp.getPSSysAppName());
-            pSDevSlnSysAppService.create(pSDevSlnSysApp, false);
-        }
-        this.initPSDynaApp(pSSysApp);
-        super.onAfterCreate(pSSysApp);
-    }
+      for (PSAppIndexView var6 : var3.selectByPSSysApp(var1)) {
+         PSAppIndexView var7 = new PSAppIndexView();
+         var7.setPSAppIndexViewId(var6.getPSAppIndexViewId());
+         if (this.initPSAppViewLanRes(var1, var2, var6, var7)) {
+            var3.update(var7, false);
+         }
+      }
 
-    @Override
-    protected void onAfterUpdate(PSSysApp pSSysApp) throws Exception {
-        Object object;
-        Object object2;
-        if (pSSysApp.isPSPFStyleIdDirty()) {
-            object2 = pSSysApp;
-            if (StringHelper.isNullOrEmpty((String)pSSysApp.getPSSystemId()) || StringHelper.isNullOrEmpty((String)pSSysApp.getPSSystemName()) || StringHelper.isNullOrEmpty((String)pSSysApp.getPSSysAppId()) || StringHelper.isNullOrEmpty((String)pSSysApp.getPSSysAppName()) || StringHelper.isNullOrEmpty((String)pSSysApp.getAppPKGName())) {
-                object = (PSSysApp)this.getLast((IEntity)pSSysApp);
-                object2 = new PSSysApp();
-                object.copyTo((IDataObject)object2, false);
-                pSSysApp.copyTo((IDataObject)object2, false);
-            }
-            this.buildPSSysProject((PSSysApp)object2);
-        }
-        object2 = null;
-        if (pSSysApp.getPSSystem() != null) {
-            object2 = pSSysApp.getPSSystem().getPSDevSlnSysId();
-        } else {
-            object = (PSSysApp)this.getLast((IEntity)pSSysApp);
-            if (((PSSysAppBase)object).getPSSystem() != null) {
-                object2 = ((PSSysAppBase)object).getPSSystem().getPSDevSlnSysId();
-            }
-        }
-        if (!StringHelper.isNullOrEmpty((String)object2)) {
-            object = (PSDevSlnSysAppService)ServiceGlobal.getService(PSDevSlnSysAppService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            PSDevSlnSysApp pSDevSlnSysApp = new PSDevSlnSysApp();
-            pSSysApp.copyTo((IDataObject)pSDevSlnSysApp, false);
-            pSDevSlnSysApp.setPSDevSlnSysId((String)object2);
-            if (!StringHelper.isNullOrEmpty((String)pSSysApp.getPSSysAppName())) {
-                pSDevSlnSysApp.setPSDevSlnSysAppName(pSSysApp.getPSSysAppName());
-            }
-            object.save((IEntity)pSDevSlnSysApp, false);
-        }
-        this.initPSDynaApp(pSSysApp);
-        super.onAfterUpdate(pSSysApp);
-    }
+      PSAppPortalViewService var19 = (PSAppPortalViewService)ServiceGlobal.getService(PSAppPortalViewService.class, this.getSessionFactory());
 
-    protected void buildPSSysProject(PSSysApp pSSysApp) throws Exception {
-        if (StringHelper.isNullOrEmpty((String)pSSysApp.getPSPFStyleId())) {
-            PSSysProjectService pSSysProjectService = (PSSysProjectService)ServiceGlobal.getService(PSSysProjectService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSSysProject> arrayList = pSSysApp.getPSSysProjects();
-            for (PSSysProject pSSysProject : arrayList) {
-                pSSysProjectService.remove((IEntity)pSSysProject);
-            }
-        } else {
-            PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            PSPFStyle pSPFStyle = new PSPFStyle();
-            pSPFStyle.setPSPFStyleId(pSSysApp.getPSPFStyleId());
-            pSPFStyleService.get((IEntity)pSPFStyle);
-            ArrayList<PSPFStylePrj> arrayList = pSPFStyle.getPSPFStylePrjs();
-            while (arrayList.size() == 0 && (pSPFStyle = pSPFStyle.getTemplPSPFStyle()) != null) {
-                arrayList = pSPFStyle.getPSPFStylePrjs();
-            }
-            PSSysProjectService pSSysProjectService = (PSSysProjectService)ServiceGlobal.getService(PSSysProjectService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSSysProject> arrayList2 = pSSysApp.getPSSysProjects();
-            HashMap<String, PSSysProject> hashMap = new HashMap<String, PSSysProject>();
-            for (PSSysProject entityBase : arrayList2) {
-                hashMap.put(entityBase.getPSSysProjectId(), entityBase);
-            }
-            for (PSPFStylePrj pSPFStylePrj : arrayList) {
-                PSSysProject pSSysProject = new PSSysProject();
-                pSSysProject.setPSSysProjectName(pSPFStylePrj.getNameFmt().replace("_APPPKGNAME_", pSSysApp.getAppPKGName()));
-                pSSysProject.setPSSystemId(pSSysApp.getPSSystemId());
-                pSSysProject.setPSSystemName(pSSysApp.getPSSystemName());
-                pSSysProject.setPrjType(pSPFStylePrj.getPrjType());
-                pSSysProject.setReadOnlyMode(pSPFStylePrj.getReadOnlyMode());
-                pSSysProject.setPSObjType("PSSYSAPP");
-                pSSysProject.setPSSysAppId(pSSysApp.getPSSysAppId());
-                pSSysProject.setPSSysAppName(pSSysApp.getPSSysAppName());
-                pSSysProject.setPSObjId(pSSysApp.getPSSysAppId());
-                pSSysProject.setPSObjName(pSSysApp.getPSSysAppName());
-                pSSysProjectService.save((IEntity)pSSysProject);
-                hashMap.remove(pSSysProject.getPSSysProjectId());
-            }
-            for (PSSysProject pSSysProject : hashMap.values()) {
-                pSSysProjectService.remove((IEntity)pSSysProject);
-            }
-        }
-    }
+      for (PSAppPortalView var8 : var19.selectByPSSysApp(var1)) {
+         PSAppPortalView var9 = new PSAppPortalView();
+         var9.setPSAppPortalViewId(var8.getPSAppPortalViewId());
+         if (this.initPSAppViewLanRes(var1, var2, var8, var9)) {
+            var19.update(var9, false);
+         }
+      }
 
-    @Override
-    protected boolean isPrepareLastForUpdate() {
-        return true;
-    }
+      PSAppMenuService var22 = (PSAppMenuService)ServiceGlobal.getService(PSAppMenuService.class, this.getSessionFactory());
+      PSAppMenuItemService var23 = (PSAppMenuItemService)ServiceGlobal.getService(PSAppMenuItemService.class, this.getSessionFactory());
 
-    protected void initPSDynaApp(PSSysApp pSSysApp) throws Exception {
-        if (!pSSysApp.isEnableDynaSysDirty()) {
-            return;
-        }
-        if (!DataObject.getBoolValue((Integer)pSSysApp.getEnableDynaSys(), (boolean)false)) {
-            return;
-        }
-        if (pSSysApp.getPSSystem() == null) {
-            return;
-        }
-        if (DataObject.getIntegerValue((Object)pSSysApp.getPSSystem().getEnableDynaSys(), (Integer)0) == 0) {
-            throw new Exception(StringHelper.format((String)"\u5f53\u524d\u7cfb\u7edf\u6ca1\u6709\u542f\u7528\u52a8\u6001\u7cfb\u7edf\u529f\u80fd\uff0c\u4e0d\u80fd\u542f\u7528\u5e94\u7528\u7684\u52a8\u6001\u529f\u80fd"));
-        }
-        PSDynaAppService pSDynaAppService = (PSDynaAppService)ServiceGlobal.getService(PSDynaAppService.class, (SessionFactory)this.getSessionFactory());
-        PSDynaApp pSDynaApp = new PSDynaApp();
-        pSDynaApp.setPSDynaAppId(pSSysApp.getPSSysAppId());
-        if (pSSysApp.isPSSysAppNameDirty()) {
-            pSDynaApp.setPSDynaAppName(pSSysApp.getPSSysAppName());
-        }
-        pSDynaApp.setPSDynaSysId(pSSysApp.getPSSystem().getPSSystemId());
-        pSDynaApp.setPSDynaSysName(pSSysApp.getPSSystem().getPSSystemName());
-        if (pSSysApp.isLogicNameDirty()) {
-            pSDynaApp.setLogicName(pSSysApp.getLogicName());
-        }
-        pSDynaAppService.save((IEntity)pSDynaApp);
-    }
+      for (PSAppMenu var11 : var1.getPSAppMenus()) {
+         boolean var12 = false;
 
-    /*
-     * WARNING - void declaration
-     */
-    @Override
-    protected void onInitPSAppModules(PSSysApp pSSysApp) throws Exception {
-        if (!pSSysApp.isFullEntity()) {
-            this.get((IEntity)pSSysApp);
-        } else {
-            pSSysApp.setSessionFactory(this.getSessionFactory());
-        }
-        ArrayList<PSModule> arrayList = pSSysApp.getPSSystem().getPSModules();
-        ArrayList<PSAppModule> arrayList2 = pSSysApp.getPSAppModules();
-        boolean bl = true;
-        for (PSAppModule entityBase : arrayList2) {
-            if (!DataObject.getBoolValue((Integer)entityBase.getDefaultFlag(), (boolean)false)) continue;
-            bl = false;
+         for (PSAppMenuItem var15 : var11.getPSAppMenuItems()) {
+            PSAppMenuItem var16 = new PSAppMenuItem();
+            var16.setPSAppMenuItemId(var15.getPSAppMenuItemId());
+            boolean var17 = false;
+            if (!StringHelper.isNullOrEmpty(var15.getCaption()) && StringHelper.isNullOrEmpty(var15.getCapPSLanResId())) {
+               PSLanguageRes var18 = new PSLanguageRes();
+               var18.setPSSystemId(var1.getPSSystemId());
+               var18.setLanResType("CONTROL");
+               var18.setUserData(
+                  StringHelper.format("APPMENUITEM.CAPTION.%1$s.%2$s.%3$s", var1.getAppPKGName(), var11.getCodeName(), var15.getPSAppMenuItemName())
+                     .toUpperCase()
+               );
+               if (!var2.select(var18, true)) {
+                  var18.setPSSysAppId(var1.getPSSysAppId());
+                  var18.setPSSysAppName(var1.getPSSysAppName());
+                  var18.setContent(var15.getCaption());
+                  var2.create(var18);
+                  var16.setCapPSLanResId(var18.getPSLanguageResId());
+                  var16.setCapPSLanResName(var18.getPSLanguageResName());
+                  var17 = true;
+               }
+            }
+
+            if (!StringHelper.isNullOrEmpty(var15.getTooltipInfo()) && StringHelper.isNullOrEmpty(var15.getTipPSLanResId())) {
+               PSLanguageRes var26 = new PSLanguageRes();
+               var26.setPSSystemId(var1.getPSSystemId());
+               var26.setLanResType("CONTROL");
+               var26.setUserData(
+                  StringHelper.format("APPMENUITEM.TOOLTIP.%1$s.%2$s.%3$s", var1.getAppPKGName(), var11.getCodeName(), var15.getPSAppMenuItemName())
+                     .toUpperCase()
+               );
+               if (!var2.select(var26, true)) {
+                  var26.setPSSysAppId(var1.getPSSysAppId());
+                  var26.setPSSysAppName(var1.getPSSysAppName());
+                  var26.setContent(var15.getTooltipInfo());
+                  var2.create(var26);
+                  var16.setTipPSLanResId(var26.getPSLanguageResId());
+                  var16.setTipPSLanResName(var26.getPSLanguageResName());
+                  var17 = true;
+               }
+            }
+
+            if (var17) {
+               var12 = true;
+               var23.update(var16, false);
+            }
+         }
+
+         if (var12) {
+            PSAppMenu var25 = new PSAppMenu();
+            var25.setPSAppMenuId(var11.getPSAppMenuId());
+            var22.update(var25, false);
+         }
+      }
+   }
+
+   protected boolean initPSAppViewLanRes(PSSysApp var1, PSLanguageResService var2, PSAppView var3, PSAppView var4) throws Exception {
+      boolean var5 = false;
+      if (!StringHelper.isNullOrEmpty(var3.getTitle()) && StringHelper.isNullOrEmpty(var3.getTitlePSLanResId())) {
+         PSLanguageRes var6 = new PSLanguageRes();
+         var6.setPSSystemId(var1.getPSSystemId());
+         var6.setLanResType("PAGE");
+         var6.setUserData(StringHelper.format("TITLE.%1$s.%2$s", var3.getPSSysApp().getAppPKGName(), var3.getPSAppViewName()).toUpperCase());
+         if (!var2.select(var6, true)) {
+            var6.setPSSysAppId(var3.getPSSysAppId());
+            var6.setPSSysAppName(var3.getPSSysAppName());
+            var6.setPSAppViewId(var3.getPSAppViewId());
+            var6.setPSAppViewName(var3.getPSAppViewName());
+            var6.setContent(var3.getTitle());
+            var2.create(var6);
+            var4.setTitlePSLanResId(var6.getPSLanguageResId());
+            var4.setTitlePSLanResName(var6.getPSLanguageResName());
+            var5 = true;
+         }
+      }
+
+      if (!StringHelper.isNullOrEmpty(var3.getCaption()) && StringHelper.isNullOrEmpty(var3.getCapPSLanResId())) {
+         PSLanguageRes var7 = new PSLanguageRes();
+         var7.setPSSystemId(var1.getPSSystemId());
+         var7.setLanResType("PAGE");
+         var7.setUserData(StringHelper.format("CAPTION.%1$s.%2$s", var3.getPSSysApp().getAppPKGName(), var3.getPSAppViewName()).toUpperCase());
+         if (!var2.select(var7, true)) {
+            var7.setPSSysAppId(var3.getPSSysAppId());
+            var7.setPSSysAppName(var3.getPSSysAppName());
+            var7.setPSAppViewId(var3.getPSAppViewId());
+            var7.setPSAppViewName(var3.getPSAppViewName());
+            var7.setContent(var3.getCaption());
+            var2.create(var7);
+            var4.setCapPSLanResId(var7.getPSLanguageResId());
+            var4.setCapPSLanResName(var7.getPSLanguageResName());
+            var5 = true;
+         }
+      }
+
+      if (!StringHelper.isNullOrEmpty(var3.getSubCaption()) && StringHelper.isNullOrEmpty(var3.getSubCapPSLanResId())) {
+         PSLanguageRes var8 = new PSLanguageRes();
+         var8.setPSSystemId(var1.getPSSystemId());
+         var8.setLanResType("PAGE");
+         var8.setUserData(StringHelper.format("SUBCAP.%1$s.%2$s", var3.getPSSysApp().getAppPKGName(), var3.getPSAppViewName()).toUpperCase());
+         if (!var2.select(var8, true)) {
+            var8.setPSSysAppId(var3.getPSSysAppId());
+            var8.setPSSysAppName(var3.getPSSysAppName());
+            var8.setPSAppViewId(var3.getPSAppViewId());
+            var8.setPSAppViewName(var3.getPSAppViewName());
+            var8.setContent(var3.getSubCaption());
+            var2.create(var8);
+            var4.setSubCapPSLanResId(var8.getPSLanguageResId());
+            var4.setSubCapPSLanResName(var8.getPSLanguageResName());
+            var5 = true;
+         }
+      }
+
+      return var5;
+   }
+
+   @Override
+   protected void onBeforeRemove(PSSysApp var1) throws Exception {
+      PSSysApp var2 = this.getLast(var1);
+      if (DataObject.getIntegerValue(var2.getRemoveFlag(), 0) != 1) {
+         throw new Exception(StringHelper.format("应用[%1$s]必须设置为[允许删除]才能删除", var2.getPSSysAppName()));
+      }
+
+      if (var2.getPSSystem() != null) {
+         String var3 = var2.getPSSystem().getPSDevSlnSysId();
+         if (!StringHelper.isNullOrEmpty(var3)) {
+            PSDevSlnSysAppService var4 = (PSDevSlnSysAppService)ServiceGlobal.getService(
+               PSDevSlnSysAppService.class, PSCoreSysServiceBase.getCurMajorSessionFactory()
+            );
+            PSDevSlnSysApp var5 = new PSDevSlnSysApp();
+            var1.copyTo(var5, false);
+            var5.setPSDevSlnSysId(var3);
+            var4.fillEntityKeyValue(var5);
+            if (var4.checkKey(var5) == 1) {
+               var4.remove(var5);
+            }
+         }
+      }
+
+      super.onBeforeRemove(var1);
+   }
+
+   protected void onAfterCreate(PSSysApp var1) throws Exception {
+      if (var1.isPSPFStyleIdDirty()) {
+         this.buildPSSysProject(var1);
+      }
+
+      if (var1.getPSSystem() != null) {
+         String var2 = var1.getPSSystem().getPSDevSlnSysId();
+         if (!StringHelper.isNullOrEmpty(var2)) {
+            PSDevSlnSysAppService var3 = (PSDevSlnSysAppService)ServiceGlobal.getService(
+               PSDevSlnSysAppService.class, PSCoreSysServiceBase.getCurMajorSessionFactory()
+            );
+            PSDevSlnSysApp var4 = new PSDevSlnSysApp();
+            var1.copyTo(var4, false);
+            var4.setPSDevSlnSysId(var2);
+            var4.setPSDevSlnSysAppName(var1.getPSSysAppName());
+            var3.create(var4, false);
+         }
+      }
+
+      this.initPSDynaApp(var1);
+      super.onAfterCreate(var1);
+   }
+
+   protected void onAfterUpdate(PSSysApp var1) throws Exception {
+      if (var1.isPSPFStyleIdDirty()) {
+         PSSysApp var2 = var1;
+         if (StringHelper.isNullOrEmpty(var1.getPSSystemId())
+            || StringHelper.isNullOrEmpty(var1.getPSSystemName())
+            || StringHelper.isNullOrEmpty(var1.getPSSysAppId())
+            || StringHelper.isNullOrEmpty(var1.getPSSysAppName())
+            || StringHelper.isNullOrEmpty(var1.getAppPKGName())) {
+            PSSysApp var3 = this.getLast(var1);
+            var2 = new PSSysApp();
+            var3.copyTo(var2, false);
+            var1.copyTo(var2, false);
+         }
+
+         this.buildPSSysProject(var2);
+      }
+
+      String var5 = null;
+      if (var1.getPSSystem() != null) {
+         var5 = var1.getPSSystem().getPSDevSlnSysId();
+      } else {
+         PSSysApp var6 = this.getLast(var1);
+         if (var6.getPSSystem() != null) {
+            var5 = var6.getPSSystem().getPSDevSlnSysId();
+         }
+      }
+
+      if (!StringHelper.isNullOrEmpty(var5)) {
+         PSDevSlnSysAppService var7 = (PSDevSlnSysAppService)ServiceGlobal.getService(
+            PSDevSlnSysAppService.class, PSCoreSysServiceBase.getCurMajorSessionFactory()
+         );
+         PSDevSlnSysApp var4 = new PSDevSlnSysApp();
+         var1.copyTo(var4, false);
+         var4.setPSDevSlnSysId(var5);
+         if (!StringHelper.isNullOrEmpty(var1.getPSSysAppName())) {
+            var4.setPSDevSlnSysAppName(var1.getPSSysAppName());
+         }
+
+         var7.save(var4, false);
+      }
+
+      this.initPSDynaApp(var1);
+      super.onAfterUpdate(var1);
+   }
+
+   protected void buildPSSysProject(PSSysApp var1) throws Exception {
+      if (StringHelper.isNullOrEmpty(var1.getPSPFStyleId())) {
+         PSSysProjectService var2 = (PSSysProjectService)ServiceGlobal.getService(PSSysProjectService.class, this.getSessionFactory());
+
+         for (PSSysProject var5 : var1.getPSSysProjects()) {
+            var2.remove(var5);
+         }
+      } else {
+         PSPFStyleService var11 = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+         PSPFStyle var12 = new PSPFStyle();
+         var12.setPSPFStyleId(var1.getPSPFStyleId());
+         var11.get(var12);
+
+         ArrayList<PSPFStylePrj> var13;
+         for (var13 = var12.getPSPFStylePrjs(); var13.size() == 0; var13 = var12.getPSPFStylePrjs()) {
+            var12 = var12.getTemplPSPFStyle();
+            if (var12 == null) {
+               break;
+            }
+         }
+
+         PSSysProjectService var14 = (PSSysProjectService)ServiceGlobal.getService(PSSysProjectService.class, this.getSessionFactory());
+         ArrayList<PSSysProject> var6 = var1.getPSSysProjects();
+         HashMap<String, PSSysProject> var7 = new HashMap<String, PSSysProject>();
+
+         for (PSSysProject var9 : var6) {
+            var7.put(var9.getPSSysProjectId(), var9);
+         }
+
+         for (PSPFStylePrj var17 : var13) {
+            PSSysProject var10 = new PSSysProject();
+            var10.setPSSysProjectName(var17.getNameFmt().replace("_APPPKGNAME_", var1.getAppPKGName()));
+            var10.setPSSystemId(var1.getPSSystemId());
+            var10.setPSSystemName(var1.getPSSystemName());
+            var10.setPrjType(var17.getPrjType());
+            var10.setReadOnlyMode(var17.getReadOnlyMode());
+            var10.setPSObjType("PSSYSAPP");
+            var10.setPSSysAppId(var1.getPSSysAppId());
+            var10.setPSSysAppName(var1.getPSSysAppName());
+            var10.setPSObjId(var1.getPSSysAppId());
+            var10.setPSObjName(var1.getPSSysAppName());
+            var14.save(var10);
+            var7.remove(var10.getPSSysProjectId());
+         }
+
+         for (PSSysProject var18 : var7.values()) {
+            var14.remove(var18);
+         }
+      }
+   }
+
+   @Override
+   protected boolean isPrepareLastForUpdate() {
+      return true;
+   }
+
+   protected void initPSDynaApp(PSSysApp var1) throws Exception {
+      if (var1.isEnableDynaSysDirty()) {
+         if (DataObject.getBoolValue(var1.getEnableDynaSys(), false)) {
+            if (var1.getPSSystem() != null) {
+               if (DataObject.getIntegerValue(var1.getPSSystem().getEnableDynaSys(), 0) == 0) {
+                  throw new Exception(StringHelper.format("当前系统没有启用动态系统功能，不能启用应用的动态功能"));
+               }
+
+               PSDynaAppService var2 = (PSDynaAppService)ServiceGlobal.getService(PSDynaAppService.class, this.getSessionFactory());
+               PSDynaApp var3 = new PSDynaApp();
+               var3.setPSDynaAppId(var1.getPSSysAppId());
+               if (var1.isPSSysAppNameDirty()) {
+                  var3.setPSDynaAppName(var1.getPSSysAppName());
+               }
+
+               var3.setPSDynaSysId(var1.getPSSystem().getPSSystemId());
+               var3.setPSDynaSysName(var1.getPSSystem().getPSSystemName());
+               if (var1.isLogicNameDirty()) {
+                  var3.setLogicName(var1.getLogicName());
+               }
+
+               var2.save(var3);
+            }
+         }
+      }
+   }
+
+   @Override
+   protected void onInitPSAppModules(PSSysApp var1) throws Exception {
+      if (!var1.isFullEntity()) {
+         this.get(var1);
+      } else {
+         var1.setSessionFactory(this.getSessionFactory());
+      }
+
+      ArrayList<PSModule> var2 = var1.getPSSystem().getPSModules();
+      ArrayList<PSAppModule> var3 = var1.getPSAppModules();
+      boolean var4 = true;
+
+      for (PSAppModule var6 : var3) {
+         if (DataObject.getBoolValue(var6.getDefaultFlag(), false)) {
+            var4 = false;
             break;
-        }
-        if (bl) {
-            Object object = "Ungroup";
-            int n = 0;
-            if (n > 0) {
-                object = StringHelper.format((String)"Ungroup%1$s", (Object)n);
-            }
-            for (PSAppModule pSAppModule : arrayList2) {
-                void var6_8;
-                if (StringHelper.compare((String)pSAppModule.getCodeName(), (String)object, (boolean)true) != 0) continue;
-                ++var6_8;
-            }
-            PSAppModule pSAppModule = new PSAppModule();
-            pSAppModule.setSessionFactory(this.getSessionFactory());
-            pSAppModule.setPSSysAppId(pSSysApp.getPSSysAppId());
-            pSAppModule.setCodeName((String)object);
-            pSAppModule.setColor("orange");
-            pSAppModule.setPSAppModuleName("\u672a\u5206\u7c7b\u6a21\u5757");
-            pSAppModule.setOrderValue(99999999);
-            pSAppModule.setDefaultFlag(1);
-            pSAppModule.create();
-        }
-        for (PSModule pSModule : arrayList) {
-            if (DataObject.getBoolValue((Integer)pSModule.getSubSysModule(), (boolean)false)) continue;
-            boolean bl2 = true;
-            for (PSAppModule pSAppModule : arrayList2) {
-                if (StringHelper.compare((String)pSAppModule.getPSModuleId(), (String)pSModule.getPSModuleId(), (boolean)true) != 0) continue;
-                bl2 = false;
-                break;
-            }
-            if (bl2) {
-                for (PSAppModule pSAppModule : arrayList2) {
-                    if (StringHelper.compare((String)pSAppModule.getCodeName(), (String)pSModule.getCodeName(), (boolean)true) != 0) continue;
-                    bl2 = false;
-                    break;
-                }
-            }
-            if (!bl2) continue;
-            PSAppModule pSAppModule = new PSAppModule();
-            pSAppModule.setSessionFactory(this.getSessionFactory());
-            pSAppModule.setPSSysAppId(pSSysApp.getPSSysAppId());
-            pSAppModule.setCodeName(pSModule.getCodeName());
-            pSAppModule.setColor(pSModule.getColor());
-            pSAppModule.setPSAppModuleName(pSModule.getPSModuleName());
-            pSAppModule.setPSModuleId(pSModule.getPSModuleId());
-            pSAppModule.setOrderValue(pSModule.getOrderValue());
-            if (pSAppModule.getOrderValue() == null) {
-                pSAppModule.setOrderValue(1000);
-            }
-            pSAppModule.create();
-        }
-    }
+         }
+      }
 
-    @Override
-    protected void onOpenQuickApp(PSSysApp pSSysApp) throws Exception {
-        if (this.getWebContext() == null || this.getWebContext().getCurAjaxActionResult() == null) {
-            throw new Exception("\u5f53\u524d\u8bf7\u6c42\u73af\u5883\u4e0d\u6b63\u786e");
-        }
-        pSSysApp.setSessionFactory(this.getSessionFactory());
-        String string = pSSysApp.getPSSystem().getPSDevSlnSysId();
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception("\u5f53\u524d\u7cfb\u7edf\u6ca1\u6709\u6307\u5b9a\u5f00\u53d1\u7cfb\u7edf");
-        }
-        this.getWebContext().getCurAjaxActionResult().setJSCode(StringHelper.format((String)"window.open('quickappview.jsp?DEVSLNSYS=1&srfkeys=%1$s&PSSYSAPPID=%2$s','_blank');", (Object)URLEncoder.encode(string, "UTF-8"), (Object)URLEncoder.encode(pSSysApp.getPSSysAppId(), "UTF-8")));
-    }
+      if (var4) {
+         String var10 = "Ungroup";
+         int var12 = 0;
+         if (var12 > 0) {
+            var10 = StringHelper.format("Ungroup%1$s", var12);
+         }
 
-    @Override
-    protected void onGetCur(PSSysApp pSSysApp) throws Exception {
-        JSONObject jSONObject = WebContext.getAppData();
-        if (jSONObject == null) {
-            throw new Exception(StringHelper.format((String)"\u4e0a\u4e0b\u6587\u6570\u636e\u65e0\u6548"));
-        }
-        String string = jSONObject.optString("pssysappid");
-        pSSysApp.setPSSysAppId(string);
-        this.get((IEntity)pSSysApp);
-    }
-
-    protected void syncPSPFStyle(PSSysApp pSSysApp) throws Exception {
-        if (StringHelper.isNullOrEmpty((String)pSSysApp.getPSPFStyleId())) {
-            return;
-        }
-        if (this.getSessionFactory() == PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            return;
-        }
-        PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)this.getSessionFactory());
-        PSPFStyle pSPFStyle = new PSPFStyle();
-        pSPFStyle.setPSPFStyleId(pSSysApp.getPSPFStyleId());
-        if (pSPFStyleService.get((IEntity)pSPFStyle, true)) {
-            return;
-        }
-        PSPFStyleService pSPFStyleService2 = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        PSPFStyle pSPFStyle2 = new PSPFStyle();
-        pSPFStyle2.setPSPFStyleId(pSSysApp.getPSPFStyleId());
-        if (!pSPFStyleService2.get((IEntity)pSPFStyle2, true)) {
-            throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u524d\u53f0\u6a21\u677f\u6837\u5f0f[%1$s]", (Object)pSSysApp.getPSPFStyleId()));
-        }
-        PSPFService pSPFService = (PSPFService)ServiceGlobal.getService(PSPFService.class, (SessionFactory)this.getSessionFactory());
-        PSPF pSPF = new PSPF();
-        pSPF.setPSPFId(pSPFStyle2.getPSPFId());
-        if (!pSPFService.get((IEntity)pSPF, true)) {
-            PSPFService pSPFService2 = (PSPFService)ServiceGlobal.getService(PSPFService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            PSPF pSPF2 = new PSPF();
-            pSPF2.setPSPFId(pSPFStyle2.getPSPFId());
-            if (!pSPFService2.get((IEntity)pSPF2, true)) {
-                throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u524d\u53f0\u6a21\u677f[%1$s]", (Object)pSPFStyle2.getPSPFId()));
+         for (PSAppModule var8 : var3) {
+            if (StringHelper.compare(var8.getCodeName(), var10, true) == 0) {
+               var12++;
             }
-            PSAppTypeService pSAppTypeService = (PSAppTypeService)ServiceGlobal.getService(PSAppTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            PSAppType pSAppType = new PSAppType();
-            pSAppType.setPSAppTypeId(pSPF2.getPSAppTypeId());
-            if (!pSAppTypeService.get((IEntity)pSAppType, true)) {
-                throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u524d\u53f0\u6a21\u677f[%1$s]", (Object)pSPFStyle2.getPSPFId()));
-            }
-            PSAppTypeService pSAppTypeService2 = (PSAppTypeService)ServiceGlobal.getService(PSAppTypeService.class, (SessionFactory)this.getSessionFactory());
-            pSAppTypeService2.save((IEntity)pSAppType, false);
-            pSPF.setPSAppTypeId(pSAppType.getPSAppTypeId());
-            pSPF.setPSAppTypeName(pSAppType.getPSAppTypeName());
-            pSPF.setPSPFId(pSPF2.getPSPFId());
-            pSPF.setPSPFName(pSPF2.getPSPFName());
-            pSPF.setValidFlag(1);
-            pSPFService.create(pSPF);
-        }
-        pSPFStyle.setPSPFStyleId(pSPFStyle2.getPSPFStyleId());
-        pSPFStyle.setPSPFStyleName(pSPFStyle2.getPSPFStyleName());
-        pSPFStyle.setPSPFId(pSPFStyle2.getPSPFId());
-        pSPFStyle.setPSPFName(pSPFStyle2.getPSPFName());
-        pSPFStyle.setStyleCode(pSPFStyle2.getStyleCode());
-        pSPFStyle.setStyleEngine(pSPFStyle2.getStyleEngine());
-        pSPFStyleService.create(pSPFStyle);
-    }
+         }
 
-    @Override
-    public boolean fillModelV2Key(PSSysApp pSSysApp, ObjectNode objectNode, String string, String string2, boolean bl) throws Exception {
-        boolean bl2 = super.fillModelV2Key(pSSysApp, objectNode, string, string2, bl);
-        if (bl) {
-            pSSysApp.setPSDevSlnSysAppId(null);
-        }
-        return bl2;
-    }
+         PSAppModule var14 = new PSAppModule();
+         var14.setSessionFactory(this.getSessionFactory());
+         var14.setPSSysAppId(var1.getPSSysAppId());
+         var14.setCodeName(var10);
+         var14.setColor("orange");
+         var14.setPSAppModuleName("未分类模块");
+         var14.setOrderValue(99999999);
+         var14.setDefaultFlag(1);
+         var14.create();
+      }
+
+      for (PSModule var13 : var2) {
+         if (!DataObject.getBoolValue(var13.getSubSysModule(), false)) {
+            boolean var15 = true;
+
+            for (PSAppModule var9 : var3) {
+               if (StringHelper.compare(var9.getPSModuleId(), var13.getPSModuleId(), true) == 0) {
+                  var15 = false;
+                  break;
+               }
+            }
+
+            if (var15) {
+               for (PSAppModule var19 : var3) {
+                  if (StringHelper.compare(var19.getCodeName(), var13.getCodeName(), true) == 0) {
+                     var15 = false;
+                     break;
+                  }
+               }
+            }
+
+            if (var15) {
+               PSAppModule var18 = new PSAppModule();
+               var18.setSessionFactory(this.getSessionFactory());
+               var18.setPSSysAppId(var1.getPSSysAppId());
+               var18.setCodeName(var13.getCodeName());
+               var18.setColor(var13.getColor());
+               var18.setPSAppModuleName(var13.getPSModuleName());
+               var18.setPSModuleId(var13.getPSModuleId());
+               var18.setOrderValue(var13.getOrderValue());
+               if (var18.getOrderValue() == null) {
+                  var18.setOrderValue(1000);
+               }
+
+               var18.create();
+            }
+         }
+      }
+   }
+
+   @Override
+   protected void onOpenQuickApp(PSSysApp var1) throws Exception {
+      if (this.getWebContext() != null && this.getWebContext().getCurAjaxActionResult() != null) {
+         var1.setSessionFactory(this.getSessionFactory());
+         String var2 = var1.getPSSystem().getPSDevSlnSysId();
+         if (StringHelper.isNullOrEmpty(var2)) {
+            throw new Exception("当前系统没有指定开发系统");
+         }
+
+         this.getWebContext()
+            .getCurAjaxActionResult()
+            .setJSCode(
+               StringHelper.format(
+                  "window.open('quickappview.jsp?DEVSLNSYS=1&srfkeys=%1$s&PSSYSAPPID=%2$s','_blank');",
+                  URLEncoder.encode(var2, "UTF-8"),
+                  URLEncoder.encode(var1.getPSSysAppId(), "UTF-8")
+               )
+            );
+      } else {
+         throw new Exception("当前请求环境不正确");
+      }
+   }
+
+   @Override
+   protected void onGetCur(PSSysApp var1) throws Exception {
+      JSONObject var2 = WebContext.getAppData();
+      if (var2 == null) {
+         throw new Exception(StringHelper.format("上下文数据无效"));
+      }
+
+      String var3 = var2.optString("pssysappid");
+      var1.setPSSysAppId(var3);
+      this.get(var1);
+   }
+
+   protected void syncPSPFStyle(PSSysApp var1) throws Exception {
+      if (!StringHelper.isNullOrEmpty(var1.getPSPFStyleId())) {
+         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
+            PSPFStyleService var2 = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, this.getSessionFactory());
+            PSPFStyle var3 = new PSPFStyle();
+            var3.setPSPFStyleId(var1.getPSPFStyleId());
+            if (!var2.get(var3, true)) {
+               PSPFStyleService var4 = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+               PSPFStyle var5 = new PSPFStyle();
+               var5.setPSPFStyleId(var1.getPSPFStyleId());
+               if (!var4.get(var5, true)) {
+                  throw new Exception(StringHelper.format("无法获取指定前台模板样式[%1$s]", var1.getPSPFStyleId()));
+               }
+
+               PSPFService var6 = (PSPFService)ServiceGlobal.getService(PSPFService.class, this.getSessionFactory());
+               PSPF var7 = new PSPF();
+               var7.setPSPFId(var5.getPSPFId());
+               if (!var6.get(var7, true)) {
+                  PSPFService var8 = (PSPFService)ServiceGlobal.getService(PSPFService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+                  PSPF var9 = new PSPF();
+                  var9.setPSPFId(var5.getPSPFId());
+                  if (!var8.get(var9, true)) {
+                     throw new Exception(StringHelper.format("无法获取指定前台模板[%1$s]", var5.getPSPFId()));
+                  }
+
+                  PSAppTypeService var10 = (PSAppTypeService)ServiceGlobal.getService(PSAppTypeService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+                  PSAppType var11 = new PSAppType();
+                  var11.setPSAppTypeId(var9.getPSAppTypeId());
+                  if (!var10.get(var11, true)) {
+                     throw new Exception(StringHelper.format("无法获取指定前台模板[%1$s]", var5.getPSPFId()));
+                  }
+
+                  PSAppTypeService var12 = (PSAppTypeService)ServiceGlobal.getService(PSAppTypeService.class, this.getSessionFactory());
+                  var12.save(var11, false);
+                  var7.setPSAppTypeId(var11.getPSAppTypeId());
+                  var7.setPSAppTypeName(var11.getPSAppTypeName());
+                  var7.setPSPFId(var9.getPSPFId());
+                  var7.setPSPFName(var9.getPSPFName());
+                  var7.setValidFlag(1);
+                  var6.create(var7);
+               }
+
+               var3.setPSPFStyleId(var5.getPSPFStyleId());
+               var3.setPSPFStyleName(var5.getPSPFStyleName());
+               var3.setPSPFId(var5.getPSPFId());
+               var3.setPSPFName(var5.getPSPFName());
+               var3.setStyleCode(var5.getStyleCode());
+               var3.setStyleEngine(var5.getStyleEngine());
+               var2.create(var3);
+            }
+         }
+      }
+   }
+
+   public boolean fillModelV2Key(PSSysApp var1, ObjectNode var2, String var3, String var4, boolean var5) throws Exception {
+      boolean var6 = super.fillModelV2Key(var1, var2, var3, var4, var5);
+      if (var5) {
+         var1.setPSDevSlnSysAppId(null);
+      }
+
+      return var6;
+   }
 }
-

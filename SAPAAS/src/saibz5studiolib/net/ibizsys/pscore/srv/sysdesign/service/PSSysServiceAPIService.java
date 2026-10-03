@@ -36,7 +36,6 @@ import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBaseBase;
 import net.ibizsys.pscore.srv.appdesign.entity.PSAppLocalDE;
-import net.ibizsys.pscore.srv.appdesign.entity.PSAppLocalDEBase;
 import net.ibizsys.pscore.srv.appdesign.service.PSAppLocalDEService;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDER;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEServiceAPI;
@@ -80,7 +79,7 @@ extends PSSysServiceAPIServiceBase {
             pSSysServiceAPI.copyTo((IDataObject)pSDevSlnSysAPI, false);
             pSDevSlnSysAPI.setPSDevSlnSysId(string);
             pSDevSlnSysAPI.setPSDevSlnSysAPIName(pSSysServiceAPI.getPSSysServiceAPIName());
-            EntityBase.setLastUpdateDate((IEntity)pSDevSlnSysAPI, null);
+            EntityBase.setLastUpdateDate(pSDevSlnSysAPI, null);
             pSDevSlnSysAPIService.create(pSDevSlnSysAPI, false);
             pSSysServiceAPI.setPSDevSlnSysAPIId(pSDevSlnSysAPI.getPSDevSlnSysAPIId());
         }
@@ -99,7 +98,7 @@ extends PSSysServiceAPIServiceBase {
         if (pSSysServiceAPI.getPSSystem() != null) {
             string = pSSysServiceAPI.getPSSystem().getPSDevSlnSysId();
         } else {
-            object = (PSSysServiceAPI)this.getLast((IEntity)pSSysServiceAPI);
+            object = (PSSysServiceAPI)this.getLast(pSSysServiceAPI);
             if (((PSSysServiceAPIBase)object).getPSSystem() != null) {
                 string = ((PSSysServiceAPIBase)object).getPSSystem().getPSDevSlnSysId();
             }
@@ -112,8 +111,8 @@ extends PSSysServiceAPIServiceBase {
             if (!StringHelper.isNullOrEmpty((String)pSSysServiceAPI.getPSSysServiceAPIName())) {
                 pSDevSlnSysAPI.setPSDevSlnSysAPIName(pSSysServiceAPI.getPSSysServiceAPIName());
             }
-            EntityBase.setLastUpdateDate((IEntity)pSDevSlnSysAPI, null);
-            object.save((IEntity)pSDevSlnSysAPI, false);
+            EntityBase.setLastUpdateDate(pSDevSlnSysAPI, null);
+            ((PSDevSlnSysAPIService)object).save(pSDevSlnSysAPI, false);
             pSSysServiceAPI.setPSDevSlnSysAPIId(pSDevSlnSysAPI.getPSDevSlnSysAPIId());
         }
         super.onBeforeUpdate(pSSysServiceAPI);
@@ -127,15 +126,15 @@ extends PSSysServiceAPIServiceBase {
     @Override
     protected void onBeforeRemove(PSSysServiceAPI pSSysServiceAPI) throws Exception {
         String string;
-        PSSysServiceAPI pSSysServiceAPI2 = (PSSysServiceAPI)this.getLast((IEntity)pSSysServiceAPI);
+        PSSysServiceAPI pSSysServiceAPI2 = (PSSysServiceAPI)this.getLast(pSSysServiceAPI);
         if (pSSysServiceAPI2.getPSSystem() != null && !StringHelper.isNullOrEmpty((String)(string = pSSysServiceAPI2.getPSSystem().getPSDevSlnSysId()))) {
             PSDevSlnSysAPIService pSDevSlnSysAPIService = (PSDevSlnSysAPIService)ServiceGlobal.getService(PSDevSlnSysAPIService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDevSlnSysAPI pSDevSlnSysAPI = new PSDevSlnSysAPI();
             pSSysServiceAPI.copyTo((IDataObject)pSDevSlnSysAPI, false);
             pSDevSlnSysAPI.setPSDevSlnSysId(string);
-            pSDevSlnSysAPIService.fillEntityKeyValue((IEntity)pSDevSlnSysAPI);
+            pSDevSlnSysAPIService.fillEntityKeyValue(pSDevSlnSysAPI);
             if (pSDevSlnSysAPIService.checkKey(pSDevSlnSysAPI) == 1) {
-                pSDevSlnSysAPIService.remove((IEntity)pSDevSlnSysAPI);
+                pSDevSlnSysAPIService.remove(pSDevSlnSysAPI);
             }
         }
         super.onBeforeRemove(pSSysServiceAPI);
@@ -143,7 +142,7 @@ extends PSSysServiceAPIServiceBase {
 
     @Override
     protected void onRebuildByAppDE(PSSysServiceAPI pSSysServiceAPI) throws Exception {
-        this.get((IEntity)pSSysServiceAPI);
+        this.get(pSSysServiceAPI);
         PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
         ArrayList<PSSysApp> arrayList = pSSysAppService.selectByPSSysServiceAPI(pSSysServiceAPI);
         ArrayList<PSDEServiceAPI> arrayList2 = pSSysServiceAPI.getPSDEServiceAPIs();
@@ -181,12 +180,12 @@ extends PSSysServiceAPIServiceBase {
                     hashMap.put(pSDEServiceAPI.getPSDEId(), pSDEServiceAPI);
                     hashMap2.put(pSDEServiceAPI.getPSDEServiceAPIName().toUpperCase(), pSDEServiceAPI);
                 }
-                object = new PSAppLocalDE();
-                ((PSAppLocalDEBase)object).setPSAppLocalDEId(pSAppLocalDE.getPSAppLocalDEId());
-                ((PSAppLocalDEBase)object).setPSDEServiceAPIId(pSDEServiceAPI.getPSDEServiceAPIId());
-                ((PSAppLocalDEBase)object).setPSSysServiceAPIId(pSSysServiceAPI.getPSSysServiceAPIId());
-                ((PSAppLocalDEBase)object).setPSSysServiceAPIName(pSSysServiceAPI.getPSSysServiceAPIName());
-                pSAppLocalDEService.sysUpdate(object, false);
+                PSAppLocalDE pSAppLocalDEUpdate = new PSAppLocalDE();
+                pSAppLocalDEUpdate.setPSAppLocalDEId(pSAppLocalDE.getPSAppLocalDEId());
+                pSAppLocalDEUpdate.setPSDEServiceAPIId(pSDEServiceAPI.getPSDEServiceAPIId());
+                pSAppLocalDEUpdate.setPSSysServiceAPIId(pSSysServiceAPI.getPSSysServiceAPIId());
+                pSAppLocalDEUpdate.setPSSysServiceAPIName(pSSysServiceAPI.getPSSysServiceAPIName());
+                pSAppLocalDEService.sysUpdate(pSAppLocalDEUpdate, false);
             }
         }
     }
@@ -194,10 +193,10 @@ extends PSSysServiceAPIServiceBase {
     @Override
     protected void onRebuildDESARS(PSSysServiceAPI pSSysServiceAPI) throws Exception {
         Object object;
-        Serializable serializable;
-        Serializable serializable2;
-        PSDESARS pSDESARS2;
-        this.get((IEntity)pSSysServiceAPI);
+        Object serializable;
+        Object serializable2;
+        SelectCond pSDESARS2;
+        this.get(pSSysServiceAPI);
         ArrayList<PSDEServiceAPI> arrayList = pSSysServiceAPI.getPSDEServiceAPIs();
         ArrayList<PSDESARS> arrayList2 = pSSysServiceAPI.getPSDESARSes();
         HashMap<String, PSDEServiceAPI> hashMap = new HashMap<String, PSDEServiceAPI>();
@@ -209,13 +208,13 @@ extends PSSysServiceAPIServiceBase {
             hashMap2.put(object22.getPSDEServiceAPIId(), object22);
         }
         HashMap hashMap3 = new HashMap();
-        for (PSDESARS pSDESARS2 : arrayList2) {
-            serializable2 = (PSDEServiceAPI)hashMap2.get(pSDESARS2.getPPSDEServiceAPIId());
-            serializable = (PSDEServiceAPI)hashMap2.get(pSDESARS2.getCPSDEServiceAPIId());
+        for (PSDESARS pSDESARS : arrayList2) {
+            serializable2 = (PSDEServiceAPI)hashMap2.get(pSDESARS.getPPSDEServiceAPIId());
+            serializable = (PSDEServiceAPI)hashMap2.get(pSDESARS.getCPSDEServiceAPIId());
             if (serializable2 == null || serializable == null) continue;
-            object = StringHelper.format((String)"%1$s|%2$s", (Object)((PSDEServiceAPIBase)serializable2).getPSDEId(), (Object)serializable.getPSDEId());
-            hashMap3.put(object, pSDESARS2);
-            hashMap3.put(pSDESARS2.getPSDESARSName(), pSDESARS2);
+            object = StringHelper.format((String)"%1$s|%2$s", (Object)((PSDEServiceAPIBase)serializable2).getPSDEId(), (Object)((PSDEServiceAPI)serializable).getPSDEId());
+            hashMap3.put(object, pSDESARS);
+            hashMap3.put(pSDESARS.getPSDESARSName(), pSDESARS);
         }
         PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
         pSDESARS2 = new SelectCond();
@@ -227,7 +226,7 @@ extends PSSysServiceAPIServiceBase {
         pSDESARS2.set("DERSUBTYPE", "DER1N");
         pSDESARS2.set("PSSYSTEMID", pSSysServiceAPI.getPSSystemId());
         serializable = pSDERService.select((ISelectCond)pSDESARS2);
-        ((ArrayList)serializable2).addAll(serializable);
+        ((ArrayList)serializable2).addAll((ArrayList)serializable);
         object = (PSDESARSService)ServiceGlobal.getService(PSDESARSService.class, (SessionFactory)this.getSessionFactory());
         Iterator iterator = ((ArrayList)serializable2).iterator();
         while (iterator.hasNext()) {
@@ -269,4 +268,3 @@ extends PSSysServiceAPIServiceBase {
         return bl2;
     }
 }
-

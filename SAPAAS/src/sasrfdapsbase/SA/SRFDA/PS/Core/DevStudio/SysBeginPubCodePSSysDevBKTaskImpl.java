@@ -202,9 +202,15 @@ extends SysTemplV2PSSysDevBKTaskImplBase {
                             strRunMode = this.getPSSysRunSession().getRunMode();
                         }
                         psDevSlnSys = new PSDevSlnSys();
-                        callResult = this.getPSModelHelper(null).getPSDevSlnSys(this.getPSDevSlnSysId(), psDevSlnSys);
-                        if (callResult.isError()) {
-                            throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u5f00\u53d1\u7cfb\u7edf\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
+                        try {
+                            callResult = this.getPSModelHelper(null).getPSDevSlnSys(this.getPSDevSlnSysId(), psDevSlnSys);
+                            if (callResult.isError()) {
+                                throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u5f00\u53d1\u7cfb\u7edf\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
+                            }
+                        }
+                        catch (Exception ex) {
+                            log.error((Object)StringHelper.format((String)"\u8ba1\u7b97\u56de\u8c03\u4fe1\u606f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
+                            return "";
                         }
                         strDeploySystemId = psDevSlnSys.getDEPLOYSYSID();
                         if (StringHelper.isNullOrEmpty((String)strDeploySystemId)) {
@@ -225,9 +231,15 @@ extends SysTemplV2PSSysDevBKTaskImplBase {
                 if (StringHelper.isNullOrEmpty((String)psDevSlnSys.getMAINPSDEVSLNSYSID())) break block33;
                 String strMainPSDevSlnSysId = psDevSlnSys.getMAINPSDEVSLNSYSID();
                 psDevSlnSys.Reset();
-                callResult = this.getPSModelHelper(null).getPSDevSlnSys(strMainPSDevSlnSysId, psDevSlnSys);
-                if (callResult.isError()) {
-                    throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u5f00\u53d1\u7cfb\u7edf\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
+                try {
+                    callResult = this.getPSModelHelper(null).getPSDevSlnSys(strMainPSDevSlnSysId, psDevSlnSys);
+                    if (callResult.isError()) {
+                        throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u5f00\u53d1\u7cfb\u7edf\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
+                    }
+                }
+                catch (Exception ex) {
+                    log.error((Object)StringHelper.format((String)"\u8ba1\u7b97\u56de\u8c03\u4fe1\u606f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
+                    return "";
                 }
                 if (psDevSlnSys.isENABLECALLBACKNull()) break block33;
                 if (psDevSlnSys.getENABLECALLBACK() && !StringHelper.isNullOrEmpty((String)(strCallbackUrl = psDevSlnSys.getCALLBACKURL()))) {
@@ -237,9 +249,15 @@ extends SysTemplV2PSSysDevBKTaskImplBase {
                 return "";
             }
             psDevSln = new PSDevSln();
-            callResult = this.getPSModelHelper(null).getPSDevSln(psDevSlnSys.getPSDEVSLNID(), psDevSln);
-            if (callResult.isError()) {
-                throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u5f00\u53d1\u65b9\u6848\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
+            try {
+                callResult = this.getPSModelHelper(null).getPSDevSln(psDevSlnSys.getPSDEVSLNID(), psDevSln);
+                if (callResult.isError()) {
+                    throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u5f00\u53d1\u65b9\u6848\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
+                }
+            }
+            catch (Exception ex) {
+                log.error((Object)StringHelper.format((String)"\u8ba1\u7b97\u56de\u8c03\u4fe1\u606f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
+                return "";
             }
             if (psDevSln.isENABLECALLBACKNull()) break block34;
             if (psDevSln.getENABLECALLBACK() && !StringHelper.isNullOrEmpty((String)(strCallbackUrl = psDevSln.getCALLBACKURL()))) {

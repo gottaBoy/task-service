@@ -32,12 +32,11 @@ extends XMLCollectionExConfig<DGExBaseColumnConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = DGExColumnsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((DGExBaseColumnConfig)childNode))) {
-                this.add((Object)((DGExBaseColumnConfig)childNode));
+            if (this.OnChildNodeLoaded((DGExBaseColumnConfig)childNode)) {
+                this.add((DGExBaseColumnConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

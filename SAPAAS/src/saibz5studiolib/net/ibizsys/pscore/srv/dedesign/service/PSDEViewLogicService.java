@@ -29,7 +29,7 @@ extends PSDEViewLogicServiceBase {
 
     protected CallResult internalGet(PSDEViewLogic pSDEViewLogic, boolean bl) throws Exception {
         String string;
-        CallResult callResult = super.internalGet((IEntity)pSDEViewLogic, bl);
+        CallResult callResult = super.internalGet(pSDEViewLogic, bl);
         if (callResult.isOk() && StringHelper.compare((String)(string = pSDEViewLogic.getDstLogicType()), (String)"DELOGIC", (boolean)true) == 0) {
             pSDEViewLogic.setDstLogicType("DEUILOGIC");
         }

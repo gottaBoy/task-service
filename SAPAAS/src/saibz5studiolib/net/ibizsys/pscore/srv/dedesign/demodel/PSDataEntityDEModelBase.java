@@ -4313,24 +4313,24 @@ extends PSDataEntityModelBase<PSDataEntity> {
         dEActionWizardModel.registerDEActionWizardItemModel((IDEActionWizardItemModel)dEActionWizardItemModel2);
         dEActionWizardModel.init((IDataEntity)this);
         this.registerDEActionWizard((IDEActionWizard)dEActionWizardModel);
-        dEActionWizardItemModel = (DEDataSetDEAWModel)this.getSystemModel().createDEActionWizardModel(1, "PSDATAENTITY");
-        dEActionWizardItemModel.setId("DB279E0E-8969-43E1-9A27-AF124C07CAD6");
-        dEActionWizardItemModel.setName("\u5b9e\u4f53\u8fd0\u884c\u5411\u5bfc");
-        dEActionWizardItemModel.setAWDEName("PSDERTAW");
-        dEActionWizardItemModel.setAWDEDataSetName("PSDATAENTITY");
-        dEActionWizardItemModel.setAWKeywordField("KEYWORDS");
-        dEActionWizardItemModel.setAWSortField("ORDERVALUE");
-        dEActionWizardItemModel.setAWIDEName("PSDERTAWI");
-        dEActionWizardItemModel.setAWIDEDataSetName("VALID");
-        dEActionWizardItemModel.setAWINameField("PSDERTAWINAME");
-        dEActionWizardItemModel.setAWIValueField("VALUE");
-        dEActionWizardItemModel.setAWIFKeyField("PSDERTAWIID");
-        dEActionWizardItemModel.setAWIContentField("CONTENT");
-        dEActionWizardItemModel.setAWIUrlField("URL");
-        dEActionWizardItemModel.setAWISortField("ORDERVALUE");
-        dEActionWizardItemModel.setUserTag("PSDATAENTITY");
-        dEActionWizardItemModel.init((IDataEntity)this);
-        this.registerDEActionWizard((IDEActionWizard)dEActionWizardItemModel);
+        DEDataSetDEAWModel dEDataSetDEAWModel = (DEDataSetDEAWModel)this.getSystemModel().createDEActionWizardModel(1, "PSDATAENTITY");
+        dEDataSetDEAWModel.setId("DB279E0E-8969-43E1-9A27-AF124C07CAD6");
+        dEDataSetDEAWModel.setName("\u5b9e\u4f53\u8fd0\u884c\u5411\u5bfc");
+        dEDataSetDEAWModel.setAWDEName("PSDERTAW");
+        dEDataSetDEAWModel.setAWDEDataSetName("PSDATAENTITY");
+        dEDataSetDEAWModel.setAWKeywordField("KEYWORDS");
+        dEDataSetDEAWModel.setAWSortField("ORDERVALUE");
+        dEDataSetDEAWModel.setAWIDEName("PSDERTAWI");
+        dEDataSetDEAWModel.setAWIDEDataSetName("VALID");
+        dEDataSetDEAWModel.setAWINameField("PSDERTAWINAME");
+        dEDataSetDEAWModel.setAWIValueField("VALUE");
+        dEDataSetDEAWModel.setAWIFKeyField("PSDERTAWIID");
+        dEDataSetDEAWModel.setAWIContentField("CONTENT");
+        dEDataSetDEAWModel.setAWIUrlField("URL");
+        dEDataSetDEAWModel.setAWISortField("ORDERVALUE");
+        dEDataSetDEAWModel.setUserTag("PSDATAENTITY");
+        dEDataSetDEAWModel.init((IDataEntity)this);
+        this.registerDEActionWizard((IDEActionWizard)dEDataSetDEAWModel);
     }
 
     protected void prepareDEActionWizardGroups() throws Exception {

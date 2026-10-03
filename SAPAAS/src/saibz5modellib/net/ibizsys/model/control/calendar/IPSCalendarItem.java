@@ -1,64 +1,168 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- *  net.ibizsys.paas.ctrlmodel.ICalendarItemModel
- */
 package net.ibizsys.model.control.calendar;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.util.ArrayList;
-import java.util.Iterator;
+
 import net.ibizsys.model.app.view.IPSAppView;
 import net.ibizsys.model.control.IPSControlMDataContainer;
 import net.ibizsys.model.control.IPSControlXDataContainer;
-import net.ibizsys.model.control.calendar.IPSCalendarItemDataItem;
 import net.ibizsys.model.control.toolbar.IPSDEContextMenu;
 import net.ibizsys.model.core.IPSModelObject;
 import net.ibizsys.model.dataentity.IPSDataEntity;
 import net.ibizsys.model.res.IPSSysImage;
 import net.ibizsys.paas.ctrlmodel.ICalendarItemModel;
 
-public interface IPSCalendarItem
-extends IPSModelObject,
-ICalendarItemModel,
-IPSControlXDataContainer,
-IPSControlMDataContainer {
-    public IPSDataEntity getPSDataEntity();
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-    public String getEmbedViewId();
 
-    public String getNavPSDEViewId();
 
-    public IPSAppView getNavPSAppView();
+/**
+ * 日历部件项对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IPSCalendarItem extends IPSModelObject, ICalendarItemModel, IPSControlXDataContainer, IPSControlMDataContainer {
 
-    public ObjectNode getNavViewParam();
+	/**
+	 * 获取实体
+	 * 
+	 * @return
+	 */
+	IPSDataEntity getPSDataEntity();
 
-    public IPSSysImage getPSSysImage();
+	/**
+	 * 获取嵌入视图编号
+	 * 
+	 * @return
+	 */
+	String getEmbedViewId();
 
-    public IPSDEContextMenu getPSDEContextMenu();
+	/**
+	 * 获取导航实体视图
+	 * 
+	 * @return
+	 */
+	String getNavPSDEViewId();
 
-    public void fillRelatedPSAppViews(ArrayList<IPSAppView> var1) throws Exception;
+	/**
+	 * 获取导航视图
+	 * 
+	 * @return
+	 */
+	IPSAppView getNavPSAppView();
 
-    public String getCreatePSDEActionName();
+	/**
+	 * 获取导航视图参数
+	 * 
+	 * @return
+	 */
+	ObjectNode getNavViewParam();
 
-    public String getCreatePSDEOPPrivName();
+	/**
+	 * 获取系统图标
+	 * 
+	 * @return
+	 */
+	IPSSysImage getPSSysImage();
 
-    public String getUpdatePSDEActionName();
+	/**
+	 * 获取上下文菜单对象
+	 * 
+	 * @return
+	 */
+	IPSDEContextMenu getPSDEContextMenu();
 
-    public String getUpdatePSDEOPPrivName();
+	/* INTERNAL-BEGIN */
 
-    public String getRemovePSDEActionName();
+	/**
+	 * 填充相关的应用视图
+	 * 
+	 * @param relatedAppViewList
+	 * @throws Exception
+	 */
+	void fillRelatedPSAppViews(ArrayList<IPSAppView> relatedAppViewList) throws Exception;
 
-    public String getRemovePSDEOPPrivName();
+	/* INTERNAL-END */
 
-    public Iterator<IPSCalendarItemDataItem> getPSCalendarItemDataItems();
+	
+	/**
+	 * 获取日历项建立行为名称
+	 * 
+	 * @return
+	 */
+	String getCreatePSDEActionName();
 
-    public String getUserTag();
+	/**
+	 * 获取日历项建立权限名称
+	 * 
+	 * @return
+	 */
+	String getCreatePSDEOPPrivName();
+	
+	
+	/**
+	 * 获取日历项更新行为名称
+	 * 
+	 * @return
+	 */
+	String getUpdatePSDEActionName();
 
-    public String getUserTag2();
+	/**
+	 * 获取日历项更新权限名称
+	 * 
+	 * @return
+	 */
+	String getUpdatePSDEOPPrivName();
+	
+	
+	/**
+	 * 获取日历项删除行为名称
+	 * 
+	 * @return
+	 */
+	String getRemovePSDEActionName();
 
-    public String getModelObj();
+	/**
+	 * 获取日历项删除权限名称
+	 * 
+	 * @return
+	 */
+	String getRemovePSDEOPPrivName();
+
+//	/**
+//	 * 获取名称的语言资源
+//	 * 
+//	 * @return
+//	 */
+//	IPSLanguageRes getNamePSLanguageRes();
+
+	
+	
+	/**
+	 * 获取日历项数据项集合
+	 * @return
+	 */
+	java.util.Iterator<IPSCalendarItemDataItem> getPSCalendarItemDataItems();
+	
+	
+	/**
+	 * 获取用户标记
+	 * @return
+	 */
+	String getUserTag();
+	
+	
+	/**
+	 * 获取用户标记2
+	 * @return
+	 */
+	String getUserTag2();
+	
+	
+	
+	/**
+	 * 获取日历项模型对象
+	 * @return
+	 */
+	String getModelObj();
 }
-

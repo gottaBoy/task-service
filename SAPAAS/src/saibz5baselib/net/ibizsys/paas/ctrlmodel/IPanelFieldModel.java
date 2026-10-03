@@ -1,21 +1,53 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import net.ibizsys.paas.control.panel.IPanelField;
-import net.ibizsys.paas.ctrlmodel.IPanelModel;
 
-public interface IPanelFieldModel
-extends IPanelField {
-    public static final Integer OUTPUTCODELISTCONFIGMODE_NONE = 0;
-    public static final Integer OUTPUTCODELISTCONFIGMODE_SELECTEDONLY = 1;
-    public static final Integer OUTPUTCODELISTCONFIGMODE_INCLUDECHILD = 2;
+/**
+ * 面板属性项模型对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPanelFieldModel extends IPanelField {
+	
+	/**
+	 * 输出代码表配置模式：无
+	 */
+	final static Integer OUTPUTCODELISTCONFIGMODE_NONE = 0;
+	
+	
+	/**
+	 * 输出代码表配置模式：只输出选择项
+	 */
+	final static Integer OUTPUTCODELISTCONFIGMODE_SELECTEDONLY = 1;
+	
+	
+	/**
+	 * 输出代码表配置模式：包括子项
+	 */
+	final static Integer OUTPUTCODELISTCONFIGMODE_INCLUDECHILD = 2;
+	
+	
+	
+	/**
+	 * 获取表单模型对象
+	 * 
+	 * @return
+	 */
+	IPanelModel getPanelModel();
 
-    public IPanelModel getPanelModel();
+	/**
+	 * 是否输出代码表配置
+	 * 
+	 * @return
+	 */
+	boolean isOutputCodeListConfig();
+	
+	
+	/**
+	 * 获取输出的代码表配置模式
+	 * @return
+	 */
+	int getOutputCodeListConfigMode();
 
-    public boolean isOutputCodeListConfig();
-
-    public int getOutputCodeListConfigMode();
 }
-

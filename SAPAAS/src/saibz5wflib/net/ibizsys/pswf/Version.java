@@ -1,11 +1,18 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf;
 
+/**
+ * 工作流版本信息
+ * 
+ * @author Administrator
+ *
+ */
 public class Version {
-    public static String outputInfo() {
-        return "5.0.2016051601";
-    }
+	/**
+	 * 输出版本信息
+	 * 
+	 * @return
+	 */
+	public static String outputInfo() {
+		return "5.0.2016051601";
+	}
 }
-

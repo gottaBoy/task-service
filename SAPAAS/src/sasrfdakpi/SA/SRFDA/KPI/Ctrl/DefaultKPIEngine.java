@@ -303,11 +303,11 @@ ISRFKPIContext {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     public CallResult GetMP(String strMPSN) {
-        TreeMap<String, Object> objProcess;
+        Object objProcess;
         Object strObject;
         CallResult callResult = new CallResult();
         strMPSN = strMPSN.toUpperCase();
-        TreeMap<String, Object> treeMap = this.mpMap;
+        TreeMap<String, Object> treeMap = (TreeMap<String, Object>)(TreeMap)this.mpMap;
         synchronized (treeMap) {
             if (this.mpMap.containsKey(strMPSN)) {
                 callResult.setRetCode(1);
@@ -398,7 +398,7 @@ ISRFKPIContext {
         CallResult callResult = new CallResult();
         strMPSN = strMPSN.toUpperCase();
         KPIMP mp = null;
-        TreeMap<String, Object> treeMap = this.mpMap;
+        TreeMap<String, Object> treeMap = (TreeMap<String, Object>)(TreeMap)this.mpMap;
         synchronized (treeMap) {
             mp = this.mpMap.get(strMPSN);
         }

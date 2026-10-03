@@ -140,9 +140,9 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
             PSDynaAppView pSDynaAppView = (PSDynaAppView)iService.getDEModel().createEntity();
             pSDynaAppView.set("PSDYNAAPPVIEWID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDynaAppView);
+                iService.getTemp(pSDynaAppView);
             } else {
-                iService.get((IEntity)pSDynaAppView);
+                iService.get(pSDynaAppView);
             }
             this.onFillParentInfo_PSDynaAppView(pSDynaAppViewCtrl, pSDynaAppView);
             return;
@@ -152,14 +152,14 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
             PSDynaDEForm pSDynaDEForm = (PSDynaDEForm)iService.getDEModel().createEntity();
             pSDynaDEForm.set("PSDYNADEFORMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDynaDEForm);
+                iService.getTemp(pSDynaDEForm);
             } else {
-                iService.get((IEntity)pSDynaDEForm);
+                iService.get(pSDynaDEForm);
             }
             this.onFillParentInfo_PSDynaDEForm(pSDynaAppViewCtrl, pSDynaDEForm);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDynaAppViewCtrl, string, string2, string3);
+        super.onFillParentInfo(pSDynaAppViewCtrl, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -180,7 +180,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDynaAppViewCtrl, bl);
+        super.onFillEntityFullInfo(pSDynaAppViewCtrl, bl);
         this.onFillEntityFullInfo_PSDynaAppView(pSDynaAppViewCtrl, bl);
         this.onFillEntityFullInfo_PSDynaDEForm(pSDynaAppViewCtrl, bl);
     }
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
     }
 
     protected void onWriteBackParent(PSDynaAppViewCtrl pSDynaAppViewCtrl, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDynaAppViewCtrl, bl);
+        super.onWriteBackParent(pSDynaAppViewCtrl, bl);
     }
 
     public ArrayList<PSDynaAppViewCtrl> selectByPSDynaAppView(PSDynaAppViewBase pSDynaAppViewBase) throws Exception {
@@ -285,7 +285,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
         ArrayList<PSDynaAppViewCtrl> arrayList = this.selectByPSDynaAppView(pSDynaAppView);
         this.onBeforeRemoveByPSDynaAppView(pSDynaAppView, arrayList);
         for (PSDynaAppViewCtrl pSDynaAppViewCtrl : arrayList) {
-            this.remove((IEntity)pSDynaAppViewCtrl);
+            this.remove(pSDynaAppViewCtrl);
         }
         this.onAfterRemoveByPSDynaAppView(pSDynaAppView, arrayList);
     }
@@ -303,8 +303,8 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
         ArrayList<PSDynaAppViewCtrl> arrayList = this.selectByPSDynaDEForm(pSDynaDEForm, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDYNADEFORM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDynaDEForm);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDYNAAPPVIEWCTRL_PSDYNADEFORM_PSDYNADEFORMID", "", iDataEntityModel.getName(), "PSDYNAAPPVIEWCTRL", iDataEntityModel.getDataInfo((IEntity)pSDynaDEForm), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDynaDEForm);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDYNAAPPVIEWCTRL_PSDYNADEFORM_PSDYNADEFORMID", "", iDataEntityModel.getName(), "PSDYNAAPPVIEWCTRL", iDataEntityModel.getDataInfo(pSDynaDEForm), arrayList.get(0)));
         }
     }
 
@@ -337,7 +337,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
         ArrayList<PSDynaAppViewCtrl> arrayList = this.selectByPSDynaDEForm(pSDynaDEForm);
         this.onBeforeRemoveByPSDynaDEForm(pSDynaDEForm, arrayList);
         for (PSDynaAppViewCtrl pSDynaAppViewCtrl : arrayList) {
-            this.remove((IEntity)pSDynaAppViewCtrl);
+            this.remove(pSDynaAppViewCtrl);
         }
         this.onAfterRemoveByPSDynaDEForm(pSDynaDEForm, arrayList);
     }
@@ -360,7 +360,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
 
     protected void replaceParentInfo(PSDynaAppViewCtrl pSDynaAppViewCtrl, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDynaAppViewCtrl, cloneSession);
+        super.replaceParentInfo(pSDynaAppViewCtrl, cloneSession);
         if (pSDynaAppViewCtrl.getPSDynaAppViewId() != null && (iEntity = cloneSession.getEntity("PSDYNAAPPVIEW", (Object)pSDynaAppViewCtrl.getPSDynaAppViewId())) != null) {
             this.onFillParentInfo_PSDynaAppView(pSDynaAppViewCtrl, (PSDynaAppView)iEntity);
         }
@@ -370,7 +370,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDynaAppViewCtrl pSDynaAppViewCtrl, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDynaAppViewCtrl, bl);
+        super.onRemoveEntityUncopyValues(pSDynaAppViewCtrl, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDynaAppViewCtrl pSDynaAppViewCtrl, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -397,7 +397,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
         if ((entityFieldError = this.onCheckField_PSDynaDEFormName(bl, pSDynaAppViewCtrl, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDynaAppViewCtrl, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDynaAppViewCtrl, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CtrlType(boolean bl, PSDynaAppViewCtrl pSDynaAppViewCtrl, boolean bl2, boolean bl3) throws Exception {
@@ -413,7 +413,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlType_Default((IEntity)pSDynaAppViewCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlType_Default(pSDynaAppViewCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLTYPE");
@@ -435,7 +435,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDynaAppViewCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDynaAppViewCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -460,7 +460,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaAppViewCtrlId_Default((IEntity)pSDynaAppViewCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaAppViewCtrlId_Default(pSDynaAppViewCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAAPPVIEWCTRLID");
@@ -485,7 +485,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaAppViewCtrlName_Default((IEntity)pSDynaAppViewCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaAppViewCtrlName_Default(pSDynaAppViewCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAAPPVIEWCTRLNAME");
@@ -507,7 +507,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaAppViewId_Default((IEntity)pSDynaAppViewCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaAppViewId_Default(pSDynaAppViewCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAAPPVIEWID");
@@ -529,7 +529,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaDEFormId_Default((IEntity)pSDynaAppViewCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaDEFormId_Default(pSDynaAppViewCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNADEFORMID");
@@ -551,7 +551,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaDEFormName_Default((IEntity)pSDynaAppViewCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaDEFormName_Default(pSDynaAppViewCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNADEFORMNAME");
@@ -564,11 +564,11 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
     }
 
     protected void onSyncEntity(PSDynaAppViewCtrl pSDynaAppViewCtrl, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDynaAppViewCtrl, bl);
+        super.onSyncEntity(pSDynaAppViewCtrl, bl);
     }
 
     protected void onSyncIndexEntities(PSDynaAppViewCtrl pSDynaAppViewCtrl, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDynaAppViewCtrl, bl);
+        super.onSyncIndexEntities(pSDynaAppViewCtrl, bl);
     }
 
     public Object getDataContextValue(PSDynaAppViewCtrl pSDynaAppViewCtrl, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -576,7 +576,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDynaAppViewCtrl, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDynaAppViewCtrl, string, iDataContextParam)) != null) {
             return object;
         }
         PSDynaAppView pSDynaAppView = pSDynaAppViewCtrl.getPSDynaAppView();
@@ -587,7 +587,7 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
     }
 
     protected void onExportMajorModel(PSDynaAppViewCtrl pSDynaAppViewCtrl, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDynaAppViewCtrl, arrayList, n);
+        super.onExportMajorModel(pSDynaAppViewCtrl, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -760,14 +760,14 @@ extends PSCoreSysServiceBase<PSDynaAppViewCtrl> {
 
     protected boolean onMergeChild(String string, String string2, PSDynaAppViewCtrl pSDynaAppViewCtrl) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDynaAppViewCtrl)) {
+        if (super.onMergeChild(string, string2, pSDynaAppViewCtrl)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDynaAppViewCtrl pSDynaAppViewCtrl) throws Exception {
-        super.onUpdateParent((IEntity)pSDynaAppViewCtrl);
+        super.onUpdateParent(pSDynaAppViewCtrl);
     }
 
     @Override

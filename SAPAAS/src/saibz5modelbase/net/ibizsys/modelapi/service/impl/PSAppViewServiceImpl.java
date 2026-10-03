@@ -54,14 +54,14 @@ implements IPSAppViewService<T, DTO> {
     public T get(PSAppModule parent, String strKey, boolean bTryMode) throws Exception {
         List<T> list = this.listByPSAppModule(parent);
         if (list != null) {
-            for (PSAppView item : list) {
+            for (T item : list) {
                 String strTag = item.getSrfTag();
                 if (!StringUtils.hasLength((String)strTag)) {
                     item.init();
-                    strTag = this.getModelTag((T)item);
+                    strTag = this.getModelTag(item);
                 }
                 if (strKey.compareTo(strTag) != 0) continue;
-                return (T)item;
+                return item;
             }
         }
         if (bTryMode) {
@@ -75,9 +75,9 @@ implements IPSAppViewService<T, DTO> {
         PSAppModule psappmodule = (PSAppModule)PSModelServiceUtil.getInstance().getPSAppModuleService().get(strParentKey);
         List<T> list = this.listByPSAppModule(psappmodule);
         if (list != null) {
-            ArrayList<PSAppViewDTO> dtoList = new ArrayList<PSAppViewDTO>();
-            for (PSAppView item : list) {
-                PSAppViewDTO dto = (PSAppViewDTO)this.toDTO(item);
+            ArrayList<DTO> dtoList = new ArrayList<DTO>();
+            for (T item : list) {
+                DTO dto = this.toDTO(item);
                 dtoList.add(dto);
             }
             return dtoList;
@@ -94,14 +94,14 @@ implements IPSAppViewService<T, DTO> {
     public T get(PSSysApp parent, String strKey, boolean bTryMode) throws Exception {
         List<T> list = this.listByPSSysApp(parent);
         if (list != null) {
-            for (PSAppView item : list) {
+            for (T item : list) {
                 String strTag = item.getSrfTag();
                 if (!StringUtils.hasLength((String)strTag)) {
                     item.init();
-                    strTag = this.getModelTag((T)item);
+                    strTag = this.getModelTag(item);
                 }
                 if (strKey.compareTo(strTag) != 0) continue;
-                return (T)item;
+                return item;
             }
         }
         if (bTryMode) {
@@ -115,9 +115,9 @@ implements IPSAppViewService<T, DTO> {
         PSSysApp pssysapp = (PSSysApp)PSModelServiceUtil.getInstance().getPSSysAppService().get(strParentKey);
         List<T> list = this.listByPSSysApp(pssysapp);
         if (list != null) {
-            ArrayList<PSAppViewDTO> dtoList = new ArrayList<PSAppViewDTO>();
-            for (PSAppView item : list) {
-                PSAppViewDTO dto = (PSAppViewDTO)this.toDTO(item);
+            ArrayList<DTO> dtoList = new ArrayList<DTO>();
+            for (T item : list) {
+                DTO dto = this.toDTO(item);
                 dtoList.add(dto);
             }
             return dtoList;
@@ -127,9 +127,9 @@ implements IPSAppViewService<T, DTO> {
 
     @Override
     protected List<T> onListAll() throws Exception {
-        List pssysapps;
+        List<PSSysApp> pssysapps;
         ArrayList<T> list = new ArrayList<T>();
-        List psappmodules = PSModelServiceUtil.getInstance().getPSAppModuleService().listAll();
+        List<PSAppModule> psappmodules = PSModelServiceUtil.getInstance().getPSAppModuleService().listAll();
         if (psappmodules != null) {
             for (PSAppModule parent : psappmodules) {
                 List<T> items = this.listByPSAppModule(parent);
@@ -626,4 +626,3 @@ implements IPSAppViewService<T, DTO> {
         return true;
     }
 }
-

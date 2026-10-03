@@ -137,14 +137,14 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSWPDCWFCat, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWPDCWFCat, string, string2, string3);
+        super.onFillParentInfo(pSWPDCWFCat, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -160,7 +160,7 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSWPDCWFCat, bl);
+        super.onFillEntityFullInfo(pSWPDCWFCat, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSWPDCWFCat, bl);
     }
 
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
     }
 
     protected void onWriteBackParent(PSWPDCWFCat pSWPDCWFCat, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWPDCWFCat, bl);
+        super.onWriteBackParent(pSWPDCWFCat, bl);
     }
 
     public ArrayList<PSWPDCWFCat> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -199,8 +199,8 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
         ArrayList<PSWPDCWFCat> arrayList = this.selectByPSDevCenter(pSDevCenter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVCENTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevCenter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWPDCWFCAT_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSWPDCWFCAT", iDataEntityModel.getDataInfo((IEntity)pSDevCenter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevCenter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWPDCWFCAT_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSWPDCWFCAT", iDataEntityModel.getDataInfo(pSDevCenter), arrayList.get(0)));
         }
     }
 
@@ -233,7 +233,7 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
         ArrayList<PSWPDCWFCat> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSWPDCWFCat pSWPDCWFCat : arrayList) {
-            this.remove((IEntity)pSWPDCWFCat);
+            this.remove(pSWPDCWFCat);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -254,14 +254,14 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
 
     protected void replaceParentInfo(PSWPDCWFCat pSWPDCWFCat, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWPDCWFCat, cloneSession);
+        super.replaceParentInfo(pSWPDCWFCat, cloneSession);
         if (pSWPDCWFCat.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSWPDCWFCat.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSWPDCWFCat, (PSDevCenter)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSWPDCWFCat pSWPDCWFCat, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWPDCWFCat, bl);
+        super.onRemoveEntityUncopyValues(pSWPDCWFCat, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWPDCWFCat pSWPDCWFCat, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -276,7 +276,7 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
         if ((entityFieldError = this.onCheckField_PSWPDCWFCatName(bl, pSWPDCWFCat, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWPDCWFCat, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWPDCWFCat, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDevCenterId(boolean bl, PSWPDCWFCat pSWPDCWFCat, boolean bl2, boolean bl3) throws Exception {
@@ -292,7 +292,7 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSWPDCWFCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSWPDCWFCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -317,7 +317,7 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWPDCWFCatId_Default((IEntity)pSWPDCWFCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSWPDCWFCatId_Default(pSWPDCWFCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWPDCWFCATID");
@@ -342,7 +342,7 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWPDCWFCatName_Default((IEntity)pSWPDCWFCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSWPDCWFCatName_Default(pSWPDCWFCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWPDCWFCATNAME");
@@ -355,11 +355,11 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
     }
 
     protected void onSyncEntity(PSWPDCWFCat pSWPDCWFCat, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWPDCWFCat, bl);
+        super.onSyncEntity(pSWPDCWFCat, bl);
     }
 
     protected void onSyncIndexEntities(PSWPDCWFCat pSWPDCWFCat, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWPDCWFCat, bl);
+        super.onSyncIndexEntities(pSWPDCWFCat, bl);
     }
 
     public Object getDataContextValue(PSWPDCWFCat pSWPDCWFCat, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -367,14 +367,14 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWPDCWFCat, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWPDCWFCat, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWPDCWFCat pSWPDCWFCat, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWPDCWFCat, arrayList, n);
+        super.onExportMajorModel(pSWPDCWFCat, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -487,14 +487,14 @@ extends PSCoreSysServiceBase<PSWPDCWFCat> {
 
     protected boolean onMergeChild(String string, String string2, PSWPDCWFCat pSWPDCWFCat) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWPDCWFCat)) {
+        if (super.onMergeChild(string, string2, pSWPDCWFCat)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWPDCWFCat pSWPDCWFCat) throws Exception {
-        super.onUpdateParent((IEntity)pSWPDCWFCat);
+        super.onUpdateParent(pSWPDCWFCat);
     }
 
     @Override

@@ -152,9 +152,9 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
             PSDevCenterMQ pSDevCenterMQ = (PSDevCenterMQ)iService.getDEModel().createEntity();
             pSDevCenterMQ.set("PSDEVCENTERMQID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenterMQ);
+                iService.getTemp(pSDevCenterMQ);
             } else {
-                iService.get((IEntity)pSDevCenterMQ);
+                iService.get(pSDevCenterMQ);
             }
             this.onFillParentInfo_PSDevCenterMQ(pSSystemMQ, pSDevCenterMQ);
             return;
@@ -164,14 +164,14 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSystemMQ, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSystemMQ, string, string2, string3);
+        super.onFillParentInfo(pSSystemMQ, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -192,7 +192,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSystemMQ, bl);
+        super.onFillEntityFullInfo(pSSystemMQ, bl);
         this.onFillEntityFullInfo_PSDevCenterMQ(pSSystemMQ, bl);
         this.onFillEntityFullInfo_PSSystem(pSSystemMQ, bl);
     }
@@ -214,7 +214,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
     }
 
     protected void onWriteBackParent(PSSystemMQ pSSystemMQ, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSystemMQ, bl);
+        super.onWriteBackParent(pSSystemMQ, bl);
     }
 
     public ArrayList<PSSystemMQ> selectByPSDevCenterMQ(PSDevCenterMQBase pSDevCenterMQBase) throws Exception {
@@ -269,8 +269,8 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
         ArrayList<PSSystemMQ> arrayList = this.selectByPSDevCenterMQ(pSDevCenterMQ, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVCENTERMQ");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevCenterMQ);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSTEMMQ_PSDEVCENTERMQ_PSDEVCENTERMQID", "", iDataEntityModel.getName(), "PSSYSTEMMQ", iDataEntityModel.getDataInfo((IEntity)pSDevCenterMQ), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevCenterMQ);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSTEMMQ_PSDEVCENTERMQ_PSDEVCENTERMQID", "", iDataEntityModel.getName(), "PSSYSTEMMQ", iDataEntityModel.getDataInfo(pSDevCenterMQ), arrayList.get(0)));
         }
     }
 
@@ -303,7 +303,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
         ArrayList<PSSystemMQ> arrayList = this.selectByPSDevCenterMQ(pSDevCenterMQ);
         this.onBeforeRemoveByPSDevCenterMQ(pSDevCenterMQ, arrayList);
         for (PSSystemMQ pSSystemMQ : arrayList) {
-            this.remove((IEntity)pSSystemMQ);
+            this.remove(pSSystemMQ);
         }
         this.onAfterRemoveByPSDevCenterMQ(pSDevCenterMQ, arrayList);
     }
@@ -349,7 +349,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
         ArrayList<PSSystemMQ> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSystemMQ pSSystemMQ : arrayList) {
-            this.remove((IEntity)pSSystemMQ);
+            this.remove(pSSystemMQ);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -370,7 +370,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
 
     protected void replaceParentInfo(PSSystemMQ pSSystemMQ, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSystemMQ, cloneSession);
+        super.replaceParentInfo(pSSystemMQ, cloneSession);
         if (pSSystemMQ.getPSDevCenterMQId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTERMQ", (Object)pSSystemMQ.getPSDevCenterMQId())) != null) {
             this.onFillParentInfo_PSDevCenterMQ(pSSystemMQ, (PSDevCenterMQ)iEntity);
         }
@@ -380,7 +380,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSystemMQ pSSystemMQ, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSystemMQ, bl);
+        super.onRemoveEntityUncopyValues(pSSystemMQ, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSystemMQ pSSystemMQ, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -416,7 +416,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
         if ((entityFieldError = this.onCheckField_ResState(bl, pSSystemMQ, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSystemMQ, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSystemMQ, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSystemMQ pSSystemMQ, boolean bl2, boolean bl3) throws Exception {
@@ -429,7 +429,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSystemMQ, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSystemMQ, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -454,7 +454,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MQId_Default((IEntity)pSSystemMQ, bl2, bl3);
+            string2 = this.onTestValueRule_MQId_Default(pSSystemMQ, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MQID");
@@ -476,7 +476,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterMQId_Default((IEntity)pSSystemMQ, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterMQId_Default(pSSystemMQ, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERMQID");
@@ -498,7 +498,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSystemMQ, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSystemMQ, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -523,7 +523,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemMQId_Default((IEntity)pSSystemMQ, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemMQId_Default(pSSystemMQ, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMMQID");
@@ -548,7 +548,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemMQName_Default((IEntity)pSSystemMQ, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemMQName_Default(pSSystemMQ, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMMQNAME");
@@ -570,7 +570,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSystemMQ, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSystemMQ, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -592,7 +592,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ResInfo_Default((IEntity)pSSystemMQ, bl2, bl3);
+            string2 = this.onTestValueRule_ResInfo_Default(pSSystemMQ, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESINFO");
@@ -614,7 +614,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResReadyTime_Default((IEntity)pSSystemMQ, bl2, bl3);
+            string = this.onTestValueRule_ResReadyTime_Default(pSSystemMQ, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESREADYTIME");
@@ -636,7 +636,7 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResState_Default((IEntity)pSSystemMQ, bl2, bl3);
+            string = this.onTestValueRule_ResState_Default(pSSystemMQ, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESSTATE");
@@ -649,11 +649,11 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
     }
 
     protected void onSyncEntity(PSSystemMQ pSSystemMQ, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSystemMQ, bl);
+        super.onSyncEntity(pSSystemMQ, bl);
     }
 
     protected void onSyncIndexEntities(PSSystemMQ pSSystemMQ, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSystemMQ, bl);
+        super.onSyncIndexEntities(pSSystemMQ, bl);
     }
 
     public Object getDataContextValue(PSSystemMQ pSSystemMQ, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -661,14 +661,14 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSystemMQ, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSystemMQ, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSystemMQ pSSystemMQ, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSystemMQ, arrayList, n);
+        super.onExportMajorModel(pSSystemMQ, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -870,14 +870,14 @@ extends PSCoreSysServiceBase<PSSystemMQ> {
 
     protected boolean onMergeChild(String string, String string2, PSSystemMQ pSSystemMQ) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSystemMQ)) {
+        if (super.onMergeChild(string, string2, pSSystemMQ)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSystemMQ pSSystemMQ) throws Exception {
-        super.onUpdateParent((IEntity)pSSystemMQ);
+        super.onUpdateParent(pSSystemMQ);
     }
 
     @Override

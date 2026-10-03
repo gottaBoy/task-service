@@ -535,12 +535,12 @@ implements IWTAccountHelper {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     protected IDEDataCtrl getDEDataCtrl(String strDEId) throws Exception {
-        ArrayList<Object> list = null;
+        ArrayList<IDEDataCtrl> list = null;
         Cloneable cloneable = this.wtDataCtrlMap;
         synchronized (cloneable) {
             list = this.wtDataCtrlMap.get(strDEId);
             if (list == null) {
-                list = new ArrayList();
+                list = new ArrayList<IDEDataCtrl>();
                 this.wtDataCtrlMap.put(strDEId, list);
             }
         }
@@ -557,12 +557,12 @@ implements IWTAccountHelper {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     protected void ReleaseDEDataCtrl(IDEDataCtrl iDEDataCtrl) {
-        ArrayList<Object> list = null;
+        ArrayList<IDEDataCtrl> list = null;
         Cloneable cloneable = this.wtDataCtrlMap;
         synchronized (cloneable) {
             list = this.wtDataCtrlMap.get(iDEDataCtrl.GetDEHelper().getId());
             if (list == null) {
-                list = new ArrayList();
+                list = new ArrayList<IDEDataCtrl>();
                 this.wtDataCtrlMap.put(iDEDataCtrl.GetDEHelper().getId(), list);
             }
         }
@@ -592,4 +592,3 @@ implements IWTAccountHelper {
         }
     }
 }
-

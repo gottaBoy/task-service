@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
     }
 
     protected void onFillParentInfo(PSWFEngineType pSWFEngineType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSWFEngineType, string, string2, string3);
+        super.onFillParentInfo(pSWFEngineType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSWFEngineType, bl);
+        super.onFillEntityFullInfo(pSWFEngineType, bl);
     }
 
     protected void onWriteBackParent(PSWFEngineType pSWFEngineType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWFEngineType, bl);
+        super.onWriteBackParent(pSWFEngineType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWFEngineType pSWFEngineType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWFEngineType, bl);
+        super.onRemoveEntityUncopyValues(pSWFEngineType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWFEngineType pSWFEngineType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -164,7 +164,7 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSWFEngineType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWFEngineType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWFEngineType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSWFEngineType pSWFEngineType, boolean bl2, boolean bl3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSWFEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSWFEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFEngineTypeId_Default((IEntity)pSWFEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFEngineTypeId_Default(pSWFEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFENGINETYPEID");
@@ -227,7 +227,7 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFEngineTypeName_Default((IEntity)pSWFEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFEngineTypeName_Default(pSWFEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFENGINETYPENAME");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeTag_Default((IEntity)pSWFEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeTag_Default(pSWFEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPETAG");
@@ -271,7 +271,7 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeTag2_Default((IEntity)pSWFEngineType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeTag2_Default(pSWFEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPETAG2");
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSWFEngineType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSWFEngineType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -309,11 +309,11 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
     }
 
     protected void onSyncEntity(PSWFEngineType pSWFEngineType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWFEngineType, bl);
+        super.onSyncEntity(pSWFEngineType, bl);
     }
 
     protected void onSyncIndexEntities(PSWFEngineType pSWFEngineType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWFEngineType, bl);
+        super.onSyncIndexEntities(pSWFEngineType, bl);
     }
 
     public Object getDataContextValue(PSWFEngineType pSWFEngineType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -321,14 +321,14 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWFEngineType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWFEngineType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWFEngineType pSWFEngineType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWFEngineType, arrayList, n);
+        super.onExportMajorModel(pSWFEngineType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -463,14 +463,14 @@ extends PSCoreSysServiceBase<PSWFEngineType> {
 
     protected boolean onMergeChild(String string, String string2, PSWFEngineType pSWFEngineType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWFEngineType)) {
+        if (super.onMergeChild(string, string2, pSWFEngineType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWFEngineType pSWFEngineType) throws Exception {
-        super.onUpdateParent((IEntity)pSWFEngineType);
+        super.onUpdateParent(pSWFEngineType);
     }
 
     @Override

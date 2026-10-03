@@ -20,7 +20,6 @@ package net.ibizsys.pscore.srv.sysdesign.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.IServiceWork;
 import net.ibizsys.paas.service.ITransaction;
 import net.ibizsys.paas.service.ServiceGlobal;
@@ -48,7 +47,7 @@ extends PSSysViewPanelServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSSysViewPanel.getPSSysViewPanelId())) {
             this.getTempMajor(pSSysViewPanel);
         } else {
-            this.getTemp((IEntity)pSSysViewPanel);
+            this.getTemp(pSSysViewPanel);
         }
         pSSysViewPanel.setPanelModel(this.getPanelModel(pSSysViewPanel));
     }
@@ -105,7 +104,6 @@ extends PSSysViewPanelServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysViewPanelItem pSSysViewPanelItem2;
                 PSSysViewPanelItemService pSSysViewPanelItemService = (PSSysViewPanelItemService)ServiceGlobal.getService((String)PSSysViewPanelItemService.class.getCanonicalName(), (SessionFactory)PSSysViewPanelService.this.getSessionFactory());
                 ArrayList<PSSysViewPanelItem> arrayList = pSSysViewPanelItemService.selectTempByPSSysViewPanel(pSSysViewPanel2);
                 HashMap<String, PSSysViewPanelItem> hashMap = new HashMap<String, PSSysViewPanelItem>();
@@ -113,18 +111,18 @@ extends PSSysViewPanelServiceBase {
                     hashMap.put(pSSysViewPanelItem2.getPSSysViewPanelItemId(), pSSysViewPanelItem2);
                 }
                 String string = pSSysViewPanel2.getPanelModel();
-                pSSysViewPanelItem2 = XmlNode.loadFromXML((String)string);
-                if (pSSysViewPanelItem2 != null) {
-                    pSSysViewPanelItem2.setAttribute("PSDEID", pSSysViewPanel2.getPSDEId());
-                    pSSysViewPanelItem2.setAttribute("PSSYSVIEWPANELID", pSSysViewPanel2.getPSSysViewPanelId());
-                    PSSysViewPanelService.this.updatePSSysViewPanelItems(pSSysViewPanel2, null, (XmlNode)pSSysViewPanelItem2, hashMap);
-                    pSSysViewPanel2.setPanelModel(XmlNode.export((XmlNode)pSSysViewPanelItem2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)string);
+                if (xmlNode != null) {
+                    xmlNode.setAttribute("PSDEID", pSSysViewPanel2.getPSDEId());
+                    xmlNode.setAttribute("PSSYSVIEWPANELID", pSSysViewPanel2.getPSSysViewPanelId());
+                    PSSysViewPanelService.this.updatePSSysViewPanelItems(pSSysViewPanel2, null, xmlNode, hashMap);
+                    pSSysViewPanel2.setPanelModel(XmlNode.export(xmlNode));
                 } else {
                     pSSysViewPanel2.setPanelModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSSysViewPanelItem pSSysViewPanelItem3 : hashMap.values()) {
-                        pSSysViewPanelItemService.removeTemp((IEntity)pSSysViewPanelItem3);
+                        pSSysViewPanelItemService.removeTemp(pSSysViewPanelItem3);
                     }
                 }
                 PSSysViewPanelService.this.updateTempMajor(pSSysViewPanel2);
@@ -135,7 +133,7 @@ extends PSSysViewPanelServiceBase {
     protected void updatePSSysViewPanelItems(PSSysViewPanel pSSysViewPanel, PSSysViewPanelItem pSSysViewPanelItem, XmlNode xmlNode, HashMap<String, PSSysViewPanelItem> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSSysViewPanelItemService pSSysViewPanelItemService = (PSSysViewPanelItemService)ServiceGlobal.getService((String)PSSysViewPanelItemService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -168,7 +166,7 @@ extends PSSysViewPanelServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSSysViewPanelItemService.updateTemp((IEntity)pSSysViewPanelItem2);
+                    pSSysViewPanelItemService.updateTemp(pSSysViewPanelItem2);
                 }
                 xmlNode2.resetAttributes();
                 pSSysViewPanelItem2.fillXmlNode(xmlNode2, false);
@@ -189,7 +187,6 @@ extends PSSysViewPanelServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysViewPanelItem pSSysViewPanelItem2;
                 PSSysViewPanelItemService pSSysViewPanelItemService = (PSSysViewPanelItemService)ServiceGlobal.getService((String)PSSysViewPanelItemService.class.getCanonicalName(), (SessionFactory)PSSysViewPanelService.this.getSessionFactory());
                 ArrayList<PSSysViewPanelItem> arrayList = pSSysViewPanelItemService.selectTempByPSSysViewPanel(pSSysViewPanel2);
                 HashMap<String, PSSysViewPanelItem> hashMap = new HashMap<String, PSSysViewPanelItem>();
@@ -197,21 +194,21 @@ extends PSSysViewPanelServiceBase {
                     hashMap.put(pSSysViewPanelItem2.getPSSysViewPanelItemId(), pSSysViewPanelItem2);
                 }
                 String string = pSSysViewPanel2.getPanelModel();
-                pSSysViewPanelItem2 = XmlNode.loadFromXML((String)string);
-                if (pSSysViewPanelItem2 != null) {
-                    pSSysViewPanelItem2.setAttribute("PSDEID", pSSysViewPanel2.getPSDEId());
-                    pSSysViewPanelItem2.setAttribute("PSSYSVIEWPANELID", pSSysViewPanel2.getPSSysViewPanelId());
-                    PSSysViewPanelService.this.updatePSSysViewPanelItems(pSSysViewPanel2, null, (XmlNode)pSSysViewPanelItem2, hashMap);
-                    pSSysViewPanel2.setPanelModel(XmlNode.export((XmlNode)pSSysViewPanelItem2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)string);
+                if (xmlNode != null) {
+                    xmlNode.setAttribute("PSDEID", pSSysViewPanel2.getPSDEId());
+                    xmlNode.setAttribute("PSSYSVIEWPANELID", pSSysViewPanel2.getPSSysViewPanelId());
+                    PSSysViewPanelService.this.updatePSSysViewPanelItems(pSSysViewPanel2, null, xmlNode, hashMap);
+                    pSSysViewPanel2.setPanelModel(XmlNode.export(xmlNode));
                 } else {
                     pSSysViewPanel2.setPanelModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSSysViewPanelItem pSSysViewPanelItem3 : hashMap.values()) {
-                        pSSysViewPanelItemService.removeTemp((IEntity)pSSysViewPanelItem3);
+                        pSSysViewPanelItemService.removeTemp(pSSysViewPanelItem3);
                     }
                 }
-                PSSysViewPanelService.this.createTempMajor((IEntity)pSSysViewPanel2);
+                PSSysViewPanelService.this.createTempMajor(pSSysViewPanel2);
             }
         });
     }
@@ -223,7 +220,6 @@ extends PSSysViewPanelServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysViewPanelItem pSSysViewPanelItem2;
                 PSSysViewPanelItemService pSSysViewPanelItemService = (PSSysViewPanelItemService)ServiceGlobal.getService((String)PSSysViewPanelItemService.class.getCanonicalName(), (SessionFactory)PSSysViewPanelService.this.getSessionFactory());
                 ArrayList<PSSysViewPanelItem> arrayList = pSSysViewPanelItemService.selectTempByPSSysViewPanel(pSSysViewPanel2);
                 HashMap<String, PSSysViewPanelItem> hashMap = new HashMap<String, PSSysViewPanelItem>();
@@ -234,15 +230,16 @@ extends PSSysViewPanelServiceBase {
                 if (StringHelper.isNullOrEmpty((String)object)) {
                     object = WebContext.getCurrent().getPostValue("panelmodel");
                 }
-                if ((pSSysViewPanelItem2 = XmlNode.loadFromXML((String)object)) != null) {
-                    PSSysViewPanelService.this.updatePSSysViewPanelItems(pSSysViewPanel2, null, (XmlNode)pSSysViewPanelItem2, hashMap);
-                    pSSysViewPanel2.setPanelModel(XmlNode.export((XmlNode)pSSysViewPanelItem2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)object);
+                if (xmlNode != null) {
+                    PSSysViewPanelService.this.updatePSSysViewPanelItems(pSSysViewPanel2, null, xmlNode, hashMap);
+                    pSSysViewPanel2.setPanelModel(XmlNode.export(xmlNode));
                 } else {
                     pSSysViewPanel2.setPanelModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSSysViewPanelItem pSSysViewPanelItem3 : hashMap.values()) {
-                        pSSysViewPanelItemService.removeTemp((IEntity)pSSysViewPanelItem3);
+                        pSSysViewPanelItemService.removeTemp(pSSysViewPanelItem3);
                     }
                 }
             }
@@ -251,7 +248,7 @@ extends PSSysViewPanelServiceBase {
 
     @Override
     public void getDraftWithModel(PSSysViewPanel pSSysViewPanel) throws Exception {
-        this.getDraftTempMajor((IEntity)pSSysViewPanel);
+        this.getDraftTempMajor(pSSysViewPanel);
         pSSysViewPanel.setPanelModel(this.getPanelModel(pSSysViewPanel));
     }
 

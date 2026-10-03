@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.TreeViewControllerBase;
+/**
+ * 嵌入树视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class TreeView9ControllerBase extends TreeViewControllerBase {
+	public TreeView9ControllerBase() throws Exception {
+		super();
+	}
 
-public abstract class TreeView9ControllerBase
-extends TreeViewControllerBase {
 }
-

@@ -52,7 +52,7 @@ extends PSSysWFSettingServiceBase {
             pSSysWFSetting.setPSSysWFSettingId(pSSysWFSetting.getPSSystemId());
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)pSSysWFSetting, bl);
+        return super.onFillEntityKeyValue(pSSysWFSetting, bl);
     }
 
     public boolean get(PSSysWFSetting pSSysWFSetting, boolean bl) throws Exception {
@@ -76,7 +76,7 @@ extends PSSysWFSettingServiceBase {
             this.create(pSSysWFSetting);
             return true;
         }
-        return super.get((IEntity)pSSysWFSetting, bl);
+        return super.get(pSSysWFSetting, bl);
     }
 
     public void rebuildPSWFUtilActions(PSSysWFSetting pSSysWFSetting) throws Exception {
@@ -89,8 +89,8 @@ extends PSSysWFSettingServiceBase {
         PSDEUIActionService pSDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
         ArrayList arrayList2 = pSDEUIActionService.select((ISelectCond)selectContext);
         HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Object object222 : arrayList2) {
-            hashMap.put(((PSDEUIActionBase)object222).getPSSysUIActionId(), object222);
+        for (Object object : arrayList2) {
+            hashMap.put(((PSDEUIActionBase)object).getPSSysUIActionId(), object);
         }
         HashMap hashMap2 = new HashMap();
         for (PSWFUtilUIAction object3 : arrayList) {
@@ -98,7 +98,7 @@ extends PSSysWFSettingServiceBase {
             hashMap2.put(object3.getUtilType(), object3);
         }
         object222 = (WFUtilUIActionTypeCodeListModel)CodeListGlobal.getCodeList(WFUtilUIActionTypeCodeListModel.class);
-        Iterator iterator = object222.getCodeItems();
+        Iterator iterator = ((WFUtilUIActionTypeCodeListModel)object222).getCodeItems();
         if (iterator != null) {
             while (iterator.hasNext()) {
                 ICodeItem iCodeItem = (ICodeItem)iterator.next();

@@ -1,16 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.springframework.stereotype.Repository
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.demodel.dao;
 
-import net.ibizsys.psrt.srv.demodel.dao.QueryModelDAOBase;
 import org.springframework.stereotype.Repository;
 
+/**
+ * 实体[QueryModel] DAO对象
+ */
 @Repository
-public class QueryModelDAO
-extends QueryModelDAOBase {
-}
+public class QueryModelDAO extends QueryModelDAOBase {
 
+    public QueryModelDAO() {
+        super();
+    }
+
+}

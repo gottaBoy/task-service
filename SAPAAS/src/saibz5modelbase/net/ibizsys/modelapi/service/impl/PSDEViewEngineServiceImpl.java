@@ -74,7 +74,7 @@ implements IPSDEViewEngineService {
     @Override
     protected List<PSDEViewEngine> onListAll() throws Exception {
         ArrayList<PSDEViewEngine> list = new ArrayList<PSDEViewEngine>();
-        List psdeviewbases = PSModelServiceUtil.getInstance().getPSDEViewBaseService().listAll();
+        List<PSDEViewBase> psdeviewbases = PSModelServiceUtil.getInstance().getPSDEViewBaseService().listAll();
         if (psdeviewbases != null) {
             for (PSDEViewBase parent : psdeviewbases) {
                 List<PSDEViewEngine> items = this.listByPSDEViewBase(parent);

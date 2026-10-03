@@ -1,22 +1,33 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
 import net.ibizsys.paas.core.ModelBaseImpl;
-import net.ibizsys.psba.core.IBAModelBase;
 
-public abstract class BAModelBase
-extends ModelBaseImpl
-implements IBAModelBase {
-    @Override
-    public void setId(String strId) {
-        this.strId = strId;
-    }
+/**
+ * 大数据模型基类
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class BAModelBase extends ModelBaseImpl implements IBAModelBase {
 
-    @Override
-    public void setName(String strName) {
-        this.strName = strName;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.psba.core.IBAModelBase#setId(java.lang.String)
+	 */
+	@Override
+	public void setId(String strId) {
+		this.strId = strId;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.psba.core.IBAModelBase#setName(java.lang.String)
+	 */
+	@Override
+	public void setName(String strName) {
+		this.strName = strName;
+	}
+
 }
-

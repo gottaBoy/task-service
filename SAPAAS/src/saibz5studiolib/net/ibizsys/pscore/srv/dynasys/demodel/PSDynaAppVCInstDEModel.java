@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dynasys.demodel.PSDynaAppVCInstDEModelBase;
 
 public class PSDynaAppVCInstDEModel
 extends PSDynaAppVCInstDEModelBase {
+
+    public PSDynaAppVCInstDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

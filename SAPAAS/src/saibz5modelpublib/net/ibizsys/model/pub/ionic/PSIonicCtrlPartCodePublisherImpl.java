@@ -1,17 +1,20 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.pub.ionic;
 
 import java.util.HashMap;
 
-public class PSIonicCtrlPartCodePublisherImpl {
-    public PSIonicCtrlPartCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tPSPFCtrlPartCodePublisherImpl cannot be resolved to a type\n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSIonicCtrlPartCodePublisherImpl must override or implement a supertype method\n\tPSPFCtrlPartCodePublisherImpl cannot be resolved to a type\n\tPSFR7TemplHelper cannot be resolved\n");
-    }
+import SA.SRFDA.PS.Core.Pub.PSFR7TemplHelper;
+import SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl;
 
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSIonicCtrlPartCodePublisherImpl must override or implement a supertype method\n\tPSPFCtrlPartCodePublisherImpl cannot be resolved to a type\n\tPSFR7TemplHelper cannot be resolved\n");
-    }
+public class PSIonicCtrlPartCodePublisherImpl extends PSPFCtrlPartCodePublisherImpl
+{
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		PSFR7TemplHelper.fillParams(params);
+	}
 }
-

@@ -90,7 +90,7 @@ implements IPSDBSysProcCodePublisher {
         IDEDataCtrl psDEDBProcFieldDataCtrl = this.iPSPublisherContext.getDEDataCtrl("DE2074");
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSDESYSPROCID", (Object)psDESysProc.getPSDESYSPROCID());
-        Vector psDEDBSysProcFieldList = new Vector();
+        Vector<PSDEDBSysProcField> psDEDBSysProcFieldList = new Vector<PSDEDBSysProcField>();
         CallResult callResult = psDEDBProcFieldDataCtrl.Select(cond, psDEDBSysProcFieldList, PSDEDBSysProcField.class.getName(), "", "ORDER BY ORDERVALUE");
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b58\u50a8\u8fc7\u7a0b\u5c5e\u6027\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -211,4 +211,3 @@ implements IPSDBSysProcCodePublisher {
         return this.iPSDBSysProcTempl.getPSSysModelInstId();
     }
 }
-

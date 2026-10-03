@@ -61,7 +61,7 @@ implements IPSModelService<T, DTO> {
             return null;
         }
         ArrayList<DTO> dtolist = new ArrayList<DTO>();
-        for (PSModelBase item : list) {
+        for (T item : list) {
             DTO dto = this.toDTO(item);
             dtolist.add(dto);
         }
@@ -99,18 +99,22 @@ implements IPSModelService<T, DTO> {
         return list;
     }
 
-    /*
-     * Could not resolve type clashes
-     */
+    private List<T> getParentModels(IPSModel parent, String strPSModelsName) throws Exception {
+        // The named child collection belongs to this model service and contains T instances.
+        @SuppressWarnings("unchecked")
+        List<T> models = (List<T>)parent.getPSModels(strPSModelsName);
+        return models;
+    }
+
     protected List<T> internalListAll(IPSModel parent, boolean bModel, boolean bDynaInst) throws Exception {
         PSModelServiceSession psModelServiceSession = PSModelServiceSession.getCurrent();
         String strPSModelsName = this.getModelName(null, false);
-        List<? extends IPSModel> list = null;
+        List<T> list = null;
         if (bModel) {
             if (parent.containsPSModels(strPSModelsName, false)) {
-                list = parent.getPSModels(strPSModelsName);
+                list = this.getParentModels(parent, strPSModelsName);
                 if (list != null) {
-                    for (PSModelBase t : list) {
+                    for (T t : list) {
                         if (StringUtils.hasLength((String)t.getSrfTag())) continue;
                         String strTag = PSModelServiceImplBase.getModelRealTag(this.getModelTag(t));
                         t.setSrfTag(strTag);
@@ -124,9 +128,9 @@ implements IPSModelService<T, DTO> {
                     parent.isFromDynaInst();
                     if (!StringUtils.hasLength((String)strModelFilePath)) {
                         if (parent.containsPSModels(strPSModelsName, true)) {
-                            list = parent.getPSModels(strPSModelsName);
+                            list = this.getParentModels(parent, strPSModelsName);
                             if (list != null) {
-                                for (PSModelBase t : list) {
+                                for (T t : list) {
                                     if (StringUtils.hasLength((String)t.getSrfTag())) continue;
                                     String strTag = PSModelServiceImplBase.getModelRealTag(this.getModelTag(t));
                                     t.setSrfTag(strTag);
@@ -143,7 +147,7 @@ implements IPSModelService<T, DTO> {
                     File[] files;
                     File folder = new File(strModelFilePath).getParentFile();
                     if ((folder = new File(String.valueOf(folder.getAbsolutePath()) + File.separator + this.getModelName(null, false))).exists() && (files = folder.listFiles()) != null) {
-                        list = new ArrayList<IPSModel>();
+                        list = new ArrayList<T>();
                         File[] fileArray = files;
                         int n = files.length;
                         int n2 = 0;
@@ -153,15 +157,17 @@ implements IPSModelService<T, DTO> {
                             String strModelFilePath2 = String.valueOf(file.getAbsolutePath()) + File.separator + this.getModelName() + ".json";
                             IPSModel iPSModel = psModelServiceSession.getPSModel(this.getModelName(), strModelFilePath2);
                             if (iPSModel == null) {
-                                Object t = this.createDomain();
-                                ((PSModelBase)t).setSrfFilePath(strModelFilePath2);
-                                ((PSModelBase)t).setSrfTag(strModelTag);
-                                ((PSModelBase)t).setId(PSModelServiceImplBase.calcPSModelId(parent.getId(), strModelTag));
-                                ((PSModelBase)t).setSrfParent(parent);
-                                psModelServiceSession.setPSModel(this.getModelName(), strModelFilePath2, (IPSModel)t);
+                                T t = this.createDomain();
+                                t.setSrfFilePath(strModelFilePath2);
+                                t.setSrfTag(strModelTag);
+                                t.setId(PSModelServiceImplBase.calcPSModelId(parent.getId(), strModelTag));
+                                t.setSrfParent(parent);
+                                psModelServiceSession.setPSModel(this.getModelName(), strModelFilePath2, t);
                                 iPSModel = t;
                             }
-                            list.add((PSModelBase)iPSModel);
+                            @SuppressWarnings("unchecked")
+                            T model = (T)iPSModel;
+                            list.add(model);
                             ++n2;
                         }
                     }
@@ -178,12 +184,12 @@ implements IPSModelService<T, DTO> {
                 PSDynaInstModelFolder dynaInstModelFolder = pSDynaInstModelFolderArray[n3];
                 String strPSDynaInstId = dynaInstModelFolder.dynaInstId;
                 String strPSDynaInstFolderPath = dynaInstModelFolder.modelPath;
-                ArrayList<PSModelBase> list2 = null;
+                ArrayList<T> list2 = null;
                 String strPSModelPath = this.getPSModelFullPath(parent);
                 String strFullPSModelPath = String.format("%1$s/%2$s/%3$s", strPSDynaInstFolderPath, strPSModelPath, strPSModelsName);
                 File folder = new File(strFullPSModelPath);
                 if (folder.exists() && (files = folder.listFiles()) != null) {
-                    list2 = new ArrayList<PSModelBase>();
+                    list2 = new ArrayList<T>();
                     File[] fileArray = files;
                     int n4 = files.length;
                     int n5 = 0;
@@ -195,16 +201,18 @@ implements IPSModelService<T, DTO> {
                         if (jsonfile.exists()) {
                             IPSModel iPSModel = psModelServiceSession.getPSModel(this.getModelName(), strModelFilePath2);
                             if (iPSModel == null) {
-                                Object t = this.createDomain();
-                                ((PSModelBase)t).setSrfFilePath(strModelFilePath2);
-                                ((PSModelBase)t).setSrfTag(strModelTag);
-                                ((PSModelBase)t).setId(PSModelServiceImplBase.calcPSModelId(parent.getId(), strModelTag));
-                                ((PSModelBase)t).setSrfParent(parent);
-                                ((PSModelBase)t).setSrfDynaInstId(strPSDynaInstId);
-                                psModelServiceSession.setPSModel(this.getModelName(), strModelFilePath2, (IPSModel)t);
+                                T t = this.createDomain();
+                                t.setSrfFilePath(strModelFilePath2);
+                                t.setSrfTag(strModelTag);
+                                t.setId(PSModelServiceImplBase.calcPSModelId(parent.getId(), strModelTag));
+                                t.setSrfParent(parent);
+                                t.setSrfDynaInstId(strPSDynaInstId);
+                                psModelServiceSession.setPSModel(this.getModelName(), strModelFilePath2, t);
                                 iPSModel = t;
                             }
-                            list2.add((PSModelBase)iPSModel);
+                            @SuppressWarnings("unchecked")
+                            T model = (T)iPSModel;
+                            list2.add(model);
                         }
                         ++n5;
                     }
@@ -213,20 +221,20 @@ implements IPSModelService<T, DTO> {
                     }
                 }
                 if (list != null && list2 != null) {
-                    PSModelBase t2;
+                    T t2;
                     String strTag;
-                    HashMap<String, PSModelBase> map2 = new HashMap<String, PSModelBase>();
-                    for (PSModelBase t : list2) {
+                    HashMap<String, T> map2 = new HashMap<String, T>();
+                    for (T t : list2) {
                         String strTag2 = t.getSrfTag();
                         map2.put(strTag2.toUpperCase(), t);
                     }
-                    ArrayList<? extends IPSModel> listAll = new ArrayList<IPSModel>();
-                    for (PSModelBase t : list) {
+                    ArrayList<T> listAll = new ArrayList<T>();
+                    for (T t : list) {
                         strTag = t.getSrfTag();
                         if (!StringUtils.hasLength((String)strTag)) {
                             strTag = PSModelServiceImplBase.getModelRealTag(this.getModelTag(t));
                         }
-                        if ((t2 = (PSModelBase)map2.remove(strTag.toUpperCase())) != null) {
+                        if ((t2 = map2.remove(strTag.toUpperCase())) != null) {
                             Map<String, Object> map;
                             if (this.isEnableTempData()) {
                                 map = t.any();
@@ -252,9 +260,9 @@ implements IPSModelService<T, DTO> {
                         }
                         listAll.add(t);
                     }
-                    for (PSModelBase t : list2) {
+                    for (T t : list2) {
                         strTag = t.getSrfTag();
-                        t2 = (PSModelBase)map2.remove(strTag.toUpperCase());
+                        t2 = map2.remove(strTag.toUpperCase());
                         if (t2 == null) continue;
                         listAll.add(t2);
                     }
@@ -402,7 +410,7 @@ implements IPSModelService<T, DTO> {
         }
         try {
             ((PSModelBase)t).init();
-            Object dto = this.createDTO();
+            DTO dto = this.createDTO();
             if (StringUtils.hasLength((String)((PSModelBase)t).getId())) {
                 psModelServiceSession.setPSModelDTO(this.getModelName(), ((PSModelBase)t).getId(), (IPSModelDTO)dto);
             }
@@ -518,4 +526,3 @@ implements IPSModelService<T, DTO> {
         return false;
     }
 }
-

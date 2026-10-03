@@ -1570,7 +1570,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -1596,7 +1596,7 @@ implements Serializable {
                 PSDevUser pSDevUser = new PSDevUser();
                 pSDevUser.setPSDevUserId(this.getAdminPSDevUserId());
                 PSDevUserService pSDevUserService = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class, (SessionFactory)this.getSessionFactory());
-                pSDevUserService.autoGet((IEntity)pSDevUser);
+                pSDevUserService.autoGet(pSDevUser);
                 this.adminpsdevuser = pSDevUser;
             }
             return this.adminpsdevuser;
@@ -1622,7 +1622,7 @@ implements Serializable {
                 PSUSDCModule pSUSDCModule = new PSUSDCModule();
                 pSUSDCModule.setPSUSDCModuleId(this.getPSUSDCModuleId());
                 PSUSDCModuleService pSUSDCModuleService = (PSUSDCModuleService)ServiceGlobal.getService(PSUSDCModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSUSDCModuleService.autoGet((IEntity)pSUSDCModule);
+                pSUSDCModuleService.autoGet(pSUSDCModule);
                 this.psusdcmodule = pSUSDCModule;
             }
             return this.psusdcmodule;
@@ -1648,7 +1648,7 @@ implements Serializable {
                 PSUSModuleInst pSUSModuleInst = new PSUSModuleInst();
                 pSUSModuleInst.setPSUSModuleInstId(this.getPSUSModuleInstId());
                 PSUSModuleInstService pSUSModuleInstService = (PSUSModuleInstService)ServiceGlobal.getService(PSUSModuleInstService.class, (SessionFactory)this.getSessionFactory());
-                pSUSModuleInstService.autoGet((IEntity)pSUSModuleInst);
+                pSUSModuleInstService.autoGet(pSUSModuleInst);
                 this.psusmoduleinst = pSUSModuleInst;
             }
             return this.psusmoduleinst;

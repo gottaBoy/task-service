@@ -1,31 +1,101 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IModelBase;
+/**
+ * 关系基类接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDERBase extends IModelBase {
+	/**
+	 * 1:N关系
+	 */
+	static String DERTYPE_DER1N = "DER1N";
 
-public interface IDERBase
-extends IModelBase {
-    public static final String DERTYPE_DER1N = "DER1N";
-    public static final String DERTYPE_DER11 = "DER11";
-    public static final String DERTYPE_DERINDEX = "DERINDEX";
-    public static final String DERTYPE_DERINHERIT = "DERINHERIT";
-    public static final String DERTYPE_DERMULINH = "DERMULINH";
-    public static final String DERTYPE_DERCUSTOM = "DERCUSTOM";
-    public static final int REMOVEACTIONTYPE_NONE = 0;
-    public static final int REMOVEACTIONTYPE_DELETE = 1;
-    public static final int REMOVEACTIONTYPE_RESET = 2;
-    public static final int REMOVEACTIONTYPE_REJECT = 3;
+	/**
+	 * 1:1关系
+	 */
+	static String DERTYPE_DER11 = "DER11";
 
-    public String getDERType();
+	/**
+	 * 索引关系
+	 */
+	static String DERTYPE_DERINDEX = "DERINDEX";
 
-    public String getMajorDEId();
+	/**
+	 * 继承关系
+	 */
+	static String DERTYPE_DERINHERIT = "DERINHERIT";
 
-    public String getMinorDEId();
+	/**
+	 * 虚拟实体多继承关系
+	 */
+	static String DERTYPE_DERMULINH = "DERMULINH";
 
-    public String getMajorDEName();
+	/**
+	 * 自定义关系
+	 */
+	static String DERTYPE_DERCUSTOM = "DERCUSTOM";
+	
+	
+	
 
-    public String getMinorDEName();
+
+	// 定义主实体删除类型代码表
+
+	/**
+	 * 无操作
+	 */
+	static int REMOVEACTIONTYPE_NONE = 0;
+
+	/**
+	 * 同时删除
+	 */
+	static int REMOVEACTIONTYPE_DELETE = 1;
+
+	/**
+	 * 置空
+	 */
+	static int REMOVEACTIONTYPE_RESET = 2;
+
+	/**
+	 * 限制删除
+	 */
+	static int REMOVEACTIONTYPE_REJECT = 3;
+
+	/**
+	 * 获取关系类型
+	 * 
+	 * @return
+	 */
+	String getDERType();
+
+	/**
+	 * 获取主实体
+	 * 
+	 * @return
+	 */
+	String getMajorDEId();
+
+	/**
+	 * 获取从实体
+	 * 
+	 * @return
+	 */
+	String getMinorDEId();
+
+	/**
+	 * 获取主实体
+	 * 
+	 * @return
+	 */
+	String getMajorDEName();
+
+	/**
+	 * 获取从实体
+	 * 
+	 * @return
+	 */
+	String getMinorDEName();
+
 }
-

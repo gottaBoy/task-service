@@ -1,44 +1,45 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+
 import net.ibizsys.paas.core.DBProcParam;
 import net.ibizsys.paas.core.DBProcParams;
 import net.ibizsys.paas.db.IProcParam;
-import net.ibizsys.paas.demodel.DEDBProcParamModel;
 
+/**
+ * 实体数据库过程参数集合模型
+ * 
+ * @author Administrator
+ *
+ */
 public class DEDBProcParamsModel {
-    protected DBProcParams dbProcParams = null;
-    protected ArrayList<IProcParam> procParamList = new ArrayList();
+	protected DBProcParams dbProcParams = null;
+	protected ArrayList<IProcParam> procParamList = new ArrayList<IProcParam>();
 
-    public void init(DBProcParams dbProcParams) {
-        this.dbProcParams = dbProcParams;
-        DBProcParam[] dBProcParamArray = this.dbProcParams.value();
-        int n = dBProcParamArray.length;
-        int n2 = 0;
-        while (n2 < n) {
-            DBProcParam dbProcParam = dBProcParamArray[n2];
-            IProcParam iProcParam = this.createProcParam(dbProcParam);
-            this.procParamList.add(iProcParam);
-            ++n2;
-        }
-    }
+	public DEDBProcParamsModel() {
 
-    protected IProcParam createProcParam(DBProcParam dbProcParam) {
-        DEDBProcParamModel dbDBProcParamModel = new DEDBProcParamModel();
-        dbDBProcParamModel.init(dbProcParam);
-        return dbDBProcParamModel;
-    }
+	}
 
-    public String getDBType() {
-        return this.dbProcParams.dbtype();
-    }
+	public void init(DBProcParams dbProcParams) {
+		this.dbProcParams = dbProcParams;
 
-    public Iterator<IProcParam> getProcParams() {
-        return this.procParamList.iterator();
-    }
+		for (DBProcParam dbProcParam : this.dbProcParams.value()) {
+			IProcParam iProcParam = createProcParam(dbProcParam);
+			procParamList.add(iProcParam);
+		}
+	}
+
+	protected IProcParam createProcParam(DBProcParam dbProcParam) {
+		DEDBProcParamModel dbDBProcParamModel = new DEDBProcParamModel();
+		dbDBProcParamModel.init(dbProcParam);
+		return dbDBProcParamModel;
+	}
+
+	public String getDBType() {
+		return dbProcParams.dbtype();
+	}
+
+	public java.util.Iterator<IProcParam> getProcParams() {
+		return this.procParamList.iterator();
+	}
 }
-

@@ -1,22 +1,62 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import net.ibizsys.paas.core.IModelBase;
 
-public interface ITreeNodeRSModel
-extends IModelBase {
-    public static final int SEARCHMODE_YES = 1;
-    public static final int SEARCHMODE_NO = 2;
-    public static final int SEARCHMODE_ALL = 3;
+/**
+ * 树节点关系模型接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface ITreeNodeRSModel extends IModelBase {
+	
+	
+	/**
+	 * 搜索模式，有搜索启用
+	 */
+	final int SEARCHMODE_YES = 1;
+	
+	
+	/**
+	 * 搜索模式，无搜索启用
+	 */
+	final int SEARCHMODE_NO = 2;
+	
+	
+	/**
+	 * 搜索模式，全部启用
+	 */
+	final int SEARCHMODE_ALL = 3;
+	
+	
+	/**
+	 * 获取父树节点标识
+	 * 
+	 * @return
+	 */
+	String getParentTreeNodeId();
 
-    public String getParentTreeNodeId();
+	/**
+	 * 获取子树节点标识
+	 * 
+	 * @return
+	 */
+	String getChildTreeNodeId();
 
-    public String getChildTreeNodeId();
+	/**
+	 * 获取处理的行为名称
+	 * 
+	 * @return
+	 */
+	String getDEActionName();
 
-    public String getDEActionName();
+	
+	
+	
+	/**
+	 * 搜索模式启用的关系
+	 * @return
+	 */
+	int getSearchMode();
 
-    public int getSearchMode();
 }
-

@@ -145,9 +145,9 @@ extends PSCoreSysServiceBase<PSDBServer> {
             PSAppServer pSAppServer = (PSAppServer)iService.getDEModel().createEntity();
             pSAppServer.set("PSAPPSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppServer);
+                iService.getTemp(pSAppServer);
             } else {
-                iService.get((IEntity)pSAppServer);
+                iService.get(pSAppServer);
             }
             this.onFillParentInfo_PSAppServer(pSDBServer, pSAppServer);
             return;
@@ -157,14 +157,14 @@ extends PSCoreSysServiceBase<PSDBServer> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_PSSvrDomain(pSDBServer, pSSvrDomain);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDBServer, string, string2, string3);
+        super.onFillParentInfo(pSDBServer, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -190,7 +190,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 pSDBServer.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDBServer, bl);
+        super.onFillEntityFullInfo(pSDBServer, bl);
         this.onFillEntityFullInfo_PSAppServer(pSDBServer, bl);
         this.onFillEntityFullInfo_PSSvrDomain(pSDBServer, bl);
     }
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
     }
 
     protected void onWriteBackParent(PSDBServer pSDBServer, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDBServer, bl);
+        super.onWriteBackParent(pSDBServer, bl);
     }
 
     public ArrayList<PSDBServer> selectByPSAppServer(PSAppServerBase pSAppServerBase) throws Exception {
@@ -257,8 +257,8 @@ extends PSCoreSysServiceBase<PSDBServer> {
         ArrayList<PSDBServer> arrayList = this.selectByPSAppServer(pSAppServer, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSAPPSERVER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSAppServer);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDBSERVER_PSAPPSERVER_PSAPPSERVERID", "", iDataEntityModel.getName(), "PSDBSERVER", iDataEntityModel.getDataInfo((IEntity)pSAppServer), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSAppServer);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDBSERVER_PSAPPSERVER_PSAPPSERVERID", "", iDataEntityModel.getName(), "PSDBSERVER", iDataEntityModel.getDataInfo(pSAppServer), arrayList.get(0)));
         }
     }
 
@@ -291,7 +291,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
         ArrayList<PSDBServer> arrayList = this.selectByPSAppServer(pSAppServer);
         this.onBeforeRemoveByPSAppServer(pSAppServer, arrayList);
         for (PSDBServer pSDBServer : arrayList) {
-            this.remove((IEntity)pSDBServer);
+            this.remove(pSDBServer);
         }
         this.onAfterRemoveByPSAppServer(pSAppServer, arrayList);
     }
@@ -309,8 +309,8 @@ extends PSCoreSysServiceBase<PSDBServer> {
         ArrayList<PSDBServer> arrayList = this.selectByPSSvrDomain(pSSvrDomain, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRDOMAIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrDomain);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDBSERVER_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSDBSERVER", iDataEntityModel.getDataInfo((IEntity)pSSvrDomain), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrDomain);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDBSERVER_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSDBSERVER", iDataEntityModel.getDataInfo(pSSvrDomain), arrayList.get(0)));
         }
     }
 
@@ -343,7 +343,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
         ArrayList<PSDBServer> arrayList = this.selectByPSSvrDomain(pSSvrDomain);
         this.onBeforeRemoveByPSSvrDomain(pSSvrDomain, arrayList);
         for (PSDBServer pSDBServer : arrayList) {
-            this.remove((IEntity)pSDBServer);
+            this.remove(pSDBServer);
         }
         this.onAfterRemoveByPSSvrDomain(pSSvrDomain, arrayList);
     }
@@ -370,7 +370,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
 
     protected void replaceParentInfo(PSDBServer pSDBServer, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDBServer, cloneSession);
+        super.replaceParentInfo(pSDBServer, cloneSession);
         if (pSDBServer.getPSAppServerId() != null && (iEntity = cloneSession.getEntity("PSAPPSERVER", (Object)pSDBServer.getPSAppServerId())) != null) {
             this.onFillParentInfo_PSAppServer(pSDBServer, (PSAppServer)iEntity);
         }
@@ -380,7 +380,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDBServer pSDBServer, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDBServer, bl);
+        super.onRemoveEntityUncopyValues(pSDBServer, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDBServer pSDBServer, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -464,7 +464,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDBServer, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDBServer, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDBServer, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BackupMode(boolean bl, PSDBServer pSDBServer, boolean bl2, boolean bl3) throws Exception {
@@ -477,7 +477,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BackupMode_Default((IEntity)pSDBServer, bl2, bl3);
+            string = this.onTestValueRule_BackupMode_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BACKUPMODE");
@@ -499,7 +499,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BakDBPassWD_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_BakDBPassWD_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BAKDBPASSWD");
@@ -521,7 +521,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BakDBPort_Default((IEntity)pSDBServer, bl2, bl3);
+            string = this.onTestValueRule_BakDBPort_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BAKDBPORT");
@@ -543,7 +543,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BakDBUrl_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_BakDBUrl_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BAKDBURL");
@@ -565,7 +565,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BakDBUserName_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_BakDBUserName_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BAKDBUSERNAME");
@@ -587,7 +587,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BakIPAddr_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_BakIPAddr_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BAKIPADDR");
@@ -609,7 +609,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DBInstallPath_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_DBInstallPath_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DBINSTALLPATH");
@@ -634,7 +634,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DBPasswd_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_DBPasswd_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DBPASSWD");
@@ -656,7 +656,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DBPort_Default((IEntity)pSDBServer, bl2, bl3);
+            string = this.onTestValueRule_DBPort_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DBPORT");
@@ -678,7 +678,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DBRoot_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_DBRoot_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DBROOT");
@@ -703,7 +703,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DBType_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_DBType_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DBTYPE");
@@ -728,7 +728,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DBUrl_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_DBUrl_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DBURL");
@@ -753,7 +753,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DBUserName_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_DBUserName_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DBUSERNAME");
@@ -778,7 +778,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IPAddr_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_IPAddr_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -800,7 +800,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LocalRes_Default((IEntity)pSDBServer, bl2, bl3);
+            string = this.onTestValueRule_LocalRes_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCALRES");
@@ -822,7 +822,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -847,7 +847,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -869,7 +869,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Port_Default((IEntity)pSDBServer, bl2, bl3);
+            string = this.onTestValueRule_Port_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PORT");
@@ -891,7 +891,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppServerId_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppServerId_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPSERVERID");
@@ -916,7 +916,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDBServerId_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDBServerId_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDBSERVERID");
@@ -941,7 +941,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDBServerName_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDBServerName_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDBSERVERNAME");
@@ -963,7 +963,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -985,7 +985,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadFileMode_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_UploadFileMode_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADFILEMODE");
@@ -1007,7 +1007,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadPath_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_UploadPath_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADPATH");
@@ -1032,7 +1032,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSDBServer, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -1054,7 +1054,7 @@ extends PSCoreSysServiceBase<PSDBServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDBServer, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDBServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1067,11 +1067,11 @@ extends PSCoreSysServiceBase<PSDBServer> {
     }
 
     protected void onSyncEntity(PSDBServer pSDBServer, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDBServer, bl);
+        super.onSyncEntity(pSDBServer, bl);
     }
 
     protected void onSyncIndexEntities(PSDBServer pSDBServer, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDBServer, bl);
+        super.onSyncIndexEntities(pSDBServer, bl);
     }
 
     public Object getDataContextValue(PSDBServer pSDBServer, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1079,14 +1079,14 @@ extends PSCoreSysServiceBase<PSDBServer> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDBServer, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDBServer, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDBServer pSDBServer, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDBServer, arrayList, n);
+        super.onExportMajorModel(pSDBServer, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1518,14 +1518,14 @@ extends PSCoreSysServiceBase<PSDBServer> {
 
     protected boolean onMergeChild(String string, String string2, PSDBServer pSDBServer) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDBServer)) {
+        if (super.onMergeChild(string, string2, pSDBServer)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDBServer pSDBServer) throws Exception {
-        super.onUpdateParent((IEntity)pSDBServer);
+        super.onUpdateParent(pSDBServer);
     }
 
     @Override

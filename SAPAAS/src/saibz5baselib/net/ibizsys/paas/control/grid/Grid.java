@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.grid;
 
 import java.lang.annotation.Documented;
@@ -8,21 +5,46 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
 import net.ibizsys.paas.control.Control;
-import net.ibizsys.paas.control.grid.GridColumn;
 import net.ibizsys.paas.data.DataItem;
 
-@Target(value={ElementType.TYPE})
-@Retention(value=RetentionPolicy.RUNTIME)
+/**
+ * 表格对象注解
+ * 
+ * @author Administrator
+ *
+ */
+@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Control
 public @interface Grid {
-    public String name() default "";
+	/**
+	 * 名称
+	 * 
+	 * @return
+	 */
+	String name() default "";
 
-    public String type() default "GRID";
+	/**
+	 * 类型
+	 * 
+	 * @return
+	 */
+	String type() default "GRID";
 
-    public GridColumn[] gridcolumns();
+	/**
+	 * 表格列模型
+	 * 
+	 * @return
+	 */
+	GridColumn[] gridcolumns();
 
-    public DataItem[] griddataitems();
+	/**
+	 * 表格数据项
+	 * 
+	 * @return
+	 */
+	DataItem[] griddataitems();
 }
-

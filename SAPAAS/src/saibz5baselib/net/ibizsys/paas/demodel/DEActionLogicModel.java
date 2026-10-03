@@ -1,53 +1,84 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
 import net.ibizsys.paas.core.ModelBase3Impl;
-import net.ibizsys.paas.demodel.IDEActionLogicModel;
 
-public class DEActionLogicModel
-extends ModelBase3Impl
-implements IDEActionLogicModel {
-    private String strDEName = "";
-    private String strDEActionName = "";
-    private boolean bCloneParam = false;
-    private boolean bIgnoreException = false;
+/**
+ * 实体操作附加逻辑模型
+ * 
+ * @author Administrator
+ *
+ */
+public class DEActionLogicModel extends ModelBase3Impl implements IDEActionLogicModel {
+	private String strDEName = "";
+	private String strDEActionName = "";
+	private boolean bCloneParam = false;
+	private boolean bIgnoreException = false;
 
-    @Override
-    public String getDEName() {
-        return this.strDEName;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDEActionLogicModel#getDEName()
+	 */
+	@Override
+	public String getDEName() {
+		return strDEName;
+	}
 
-    @Override
-    public String getDEActionName() {
-        return this.strDEActionName;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDEActionLogicModel#getDEActionName()
+	 */
+	@Override
+	public String getDEActionName() {
+		return strDEActionName;
+	}
 
-    public void setDEName(String strDEName) {
-        this.strDEName = strDEName;
-    }
+	/**
+	 * 设置实体模型名称
+	 * 
+	 * @param strDEName the strDEName to set
+	 */
+	public void setDEName(String strDEName) {
+		this.strDEName = strDEName;
+	}
 
-    public void setDEActionName(String strDEActionName) {
-        this.strDEActionName = strDEActionName;
-    }
+	/**
+	 * 设置实体行为名称
+	 * 
+	 * @param strDEActionName the strDEActionName to set
+	 */
+	public void setDEActionName(String strDEActionName) {
+		this.strDEActionName = strDEActionName;
+	}
 
-    @Override
-    public boolean isCloneParam() {
-        return this.bCloneParam;
-    }
+	@Override
+	public boolean isCloneParam() {
+		return this.bCloneParam;
+	}
 
-    @Override
-    public boolean isIgnoreException() {
-        return this.bIgnoreException;
-    }
+	@Override
+	public boolean isIgnoreException() {
+		return this.bIgnoreException;
+	}
 
-    public void setCloneParam(boolean bCloneParam) {
-        this.bCloneParam = bCloneParam;
-    }
+	/**
+	 * 设置是否克隆传入参数
+	 * @param bCloneParam
+	 */
+	public void setCloneParam(boolean bCloneParam) {
+		this.bCloneParam = bCloneParam;
+	}
 
-    public void setIgnoreException(boolean bIgnoreException) {
-        this.bIgnoreException = bIgnoreException;
-    }
+	/**
+	 * 设置是否忽略处理异常
+	 * @param bIgnoreException
+	 */
+	public void setIgnoreException(boolean bIgnoreException) {
+		this.bIgnoreException = bIgnoreException;
+	}
+	
+	
+	
+
 }
-

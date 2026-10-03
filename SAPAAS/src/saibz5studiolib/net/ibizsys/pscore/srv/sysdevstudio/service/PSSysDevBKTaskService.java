@@ -78,7 +78,7 @@ extends PSSysDevBKTaskServiceBase {
                     object = new PSDevSlnSys();
                     ((PSDevSlnSysBase)object).setPSDevSlnSysId(pSSysDevBKTask.getPSDevSlnSysId());
                     PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                    pSDevSlnSysService.get((IEntity)object);
+                    pSDevSlnSysService.get((PSDevSlnSys)object);
                     pSDCBKTask.setPSDevSlnSysName(((PSDevSlnSysBase)object).getPSDevSlnSysName());
                     if (((PSDevSlnSysBase)object).getPSDevSln() != null) {
                         pSDCBKTask.setPSDevSlnId(((PSDevSlnSysBase)object).getPSDevSln().getPSDevSlnId());
@@ -108,7 +108,7 @@ extends PSSysDevBKTaskServiceBase {
                 object = new PSDevSlnSys();
                 ((PSDevSlnSysBase)object).setPSDevSlnSysId(pSSysDevBKTask.getPSDevSlnSysId());
                 PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                pSDevSlnSysService.get((IEntity)object);
+                pSDevSlnSysService.get((PSDevSlnSys)object);
                 pSBKTaskLog.setPSDevSlnSysName(((PSDevSlnSysBase)object).getPSDevSlnSysName());
                 if (((PSDevSlnSysBase)object).getPSDevSln() != null) {
                     pSBKTaskLog.setPSDevCenterId(((PSDevSlnSysBase)object).getPSDevSln().getPSDevCenterId());
@@ -131,7 +131,7 @@ extends PSSysDevBKTaskServiceBase {
     @Override
     protected void onBeforeUpdate(PSSysDevBKTask pSSysDevBKTask) throws Exception {
         Object object;
-        PSSysDevBKTask pSSysDevBKTask2 = (PSSysDevBKTask)this.getLast((IEntity)pSSysDevBKTask);
+        PSSysDevBKTask pSSysDevBKTask2 = (PSSysDevBKTask)this.getLast(pSSysDevBKTask);
         pSSysDevBKTask.setTaskType(pSSysDevBKTask2.getTaskType());
         PSDCBKTask pSDCBKTask = null;
         if ("IBIZCENTRAL".equalsIgnoreCase(pSSysDevBKTask.getTaskType())) {
@@ -209,9 +209,8 @@ extends PSSysDevBKTaskServiceBase {
         if (!StringHelper.isNullOrEmpty((String)string) && !StringHelper.isNullOrEmpty((String)string2)) {
             String string3 = "DELETE FROM T_SRFPSSYSDEVBKTASK WHERE PSSYSTEMID=? AND (TASKSTATE=30 OR TASKSTATE=40)";
             SqlParamList sqlParamList = new SqlParamList();
-            sqlParamList.add((Object)new SqlParam((Object)string2, 25));
+            sqlParamList.add(new SqlParam((Object)string2, 25));
             this.getDAO().executeRawSql(null, string3, sqlParamList);
         }
     }
 }
-

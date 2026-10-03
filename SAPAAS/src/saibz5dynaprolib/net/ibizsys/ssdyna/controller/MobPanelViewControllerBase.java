@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.PanelViewControllerBase;
+/**
+ * 移动端面板视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MobPanelViewControllerBase extends PanelViewControllerBase {
 
-public abstract class MobPanelViewControllerBase
-extends PanelViewControllerBase {
+	public MobPanelViewControllerBase() throws Exception {
+		super();
+	}
 }
-

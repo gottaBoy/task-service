@@ -339,21 +339,21 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
 
     public void batAddAppView(PSDEUAWizard pSDEUAWizard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_BATADDAPPVIEW, 0, (IEntity)pSDEUAWizard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_BATADDAPPVIEW, 0, pSDEUAWizard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEUAWizard, ACTION_BATADDAPPVIEW);
+        this.testDEMainStateAction(pSDEUAWizard, ACTION_BATADDAPPVIEW);
         final PSDEUAWizard pSDEUAWizard2 = pSDEUAWizard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEUAWizardServiceBase.this.getService(), PSDEUAWizardServiceBase.ACTION_BATADDAPPVIEW, 40, (IEntity)pSDEUAWizard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEUAWizardServiceBase.this.getService(), PSDEUAWizardServiceBase.ACTION_BATADDAPPVIEW, 40, pSDEUAWizard2, null).getResult() != 1) {
                     PSDEUAWizardServiceBase.this.onBatAddAppView(pSDEUAWizard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_BATADDAPPVIEW, 99, (IEntity)pSDEUAWizard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_BATADDAPPVIEW, 99, pSDEUAWizard, null);
         }
     }
 
@@ -363,21 +363,21 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
 
     public void getBatAddAppViewDraft(PSDEUAWizard pSDEUAWizard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETBATADDAPPVIEWDRAFT, 0, (IEntity)pSDEUAWizard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETBATADDAPPVIEWDRAFT, 0, pSDEUAWizard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEUAWizard, ACTION_GETBATADDAPPVIEWDRAFT);
+        this.testDEMainStateAction(pSDEUAWizard, ACTION_GETBATADDAPPVIEWDRAFT);
         final PSDEUAWizard pSDEUAWizard2 = pSDEUAWizard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEUAWizardServiceBase.this.getService(), PSDEUAWizardServiceBase.ACTION_GETBATADDAPPVIEWDRAFT, 40, (IEntity)pSDEUAWizard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEUAWizardServiceBase.this.getService(), PSDEUAWizardServiceBase.ACTION_GETBATADDAPPVIEWDRAFT, 40, pSDEUAWizard2, null).getResult() != 1) {
                     PSDEUAWizardServiceBase.this.onGetBatAddAppViewDraft(pSDEUAWizard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETBATADDAPPVIEWDRAFT, 99, (IEntity)pSDEUAWizard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETBATADDAPPVIEWDRAFT, 99, pSDEUAWizard, null);
         }
     }
 
@@ -387,21 +387,21 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
 
     public void getDEMFCfg(PSDEUAWizard pSDEUAWizard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDEMFCFG, 0, (IEntity)pSDEUAWizard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDEMFCFG, 0, pSDEUAWizard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEUAWizard, ACTION_GETDEMFCFG);
+        this.testDEMainStateAction(pSDEUAWizard, ACTION_GETDEMFCFG);
         final PSDEUAWizard pSDEUAWizard2 = pSDEUAWizard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEUAWizardServiceBase.this.getService(), PSDEUAWizardServiceBase.ACTION_GETDEMFCFG, 40, (IEntity)pSDEUAWizard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEUAWizardServiceBase.this.getService(), PSDEUAWizardServiceBase.ACTION_GETDEMFCFG, 40, pSDEUAWizard2, null).getResult() != 1) {
                     PSDEUAWizardServiceBase.this.onGetDEMFCfg(pSDEUAWizard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDEMFCFG, 99, (IEntity)pSDEUAWizard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDEMFCFG, 99, pSDEUAWizard, null);
         }
     }
 
@@ -411,21 +411,21 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
 
     public void updateDEMFCfg(PSDEUAWizard pSDEUAWizard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEDEMFCFG, 0, (IEntity)pSDEUAWizard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEDEMFCFG, 0, pSDEUAWizard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEUAWizard, ACTION_UPDATEDEMFCFG);
+        this.testDEMainStateAction(pSDEUAWizard, ACTION_UPDATEDEMFCFG);
         final PSDEUAWizard pSDEUAWizard2 = pSDEUAWizard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEUAWizardServiceBase.this.getService(), PSDEUAWizardServiceBase.ACTION_UPDATEDEMFCFG, 40, (IEntity)pSDEUAWizard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEUAWizardServiceBase.this.getService(), PSDEUAWizardServiceBase.ACTION_UPDATEDEMFCFG, 40, pSDEUAWizard2, null).getResult() != 1) {
                     PSDEUAWizardServiceBase.this.onUpdateDEMFCfg(pSDEUAWizard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEDEMFCFG, 99, (IEntity)pSDEUAWizard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEDEMFCFG, 99, pSDEUAWizard, null);
         }
     }
 
@@ -436,7 +436,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
     public void getBatAddAppViewDraft2(PSDEUAWizard pSDEUAWizard) throws Exception {
         final PSDEUAWizard pSDEUAWizard2 = pSDEUAWizard;
         pSDEUAWizard2.setSessionFactory(this.getSessionFactory());
-        this.testDEMainStateAction((IEntity)pSDEUAWizard, ACTION_GETBATADDAPPVIEWDRAFT2);
+        this.testDEMainStateAction(pSDEUAWizard, ACTION_GETBATADDAPPVIEWDRAFT2);
         final IDELogicModel iDELogicModel = (IDELogicModel)this.getPSDEUAWizardDEModel().getDELogic(ACTION_GETBATADDAPPVIEWDRAFT);
         this.doServiceWork(new IServiceWork(){
 
@@ -455,9 +455,9 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
             PSAppModule pSAppModule = (PSAppModule)iService.getDEModel().createEntity();
             pSAppModule.set("PSAPPMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppModule);
+                iService.getTemp(pSAppModule);
             } else {
-                iService.get((IEntity)pSAppModule);
+                iService.get(pSAppModule);
             }
             this.onFillParentInfo_PSAppModule(pSDEUAWizard, pSAppModule);
             return;
@@ -467,9 +467,9 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSDEUAWizard, pSSysApp);
             return;
@@ -479,14 +479,14 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSDEUAWizard, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEUAWizard, string, string2, string3);
+        super.onFillParentInfo(pSDEUAWizard, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -512,7 +512,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEUAWizard, bl);
+        super.onFillEntityFullInfo(pSDEUAWizard, bl);
         this.onFillEntityFullInfo_PSAppModule(pSDEUAWizard, bl);
         this.onFillEntityFullInfo_PSSysApp(pSDEUAWizard, bl);
         this.onFillEntityFullInfo_PSSystem(pSDEUAWizard, bl);
@@ -558,7 +558,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
     }
 
     protected void onWriteBackParent(PSDEUAWizard pSDEUAWizard, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEUAWizard, bl);
+        super.onWriteBackParent(pSDEUAWizard, bl);
     }
 
     public ArrayList<PSDEUAWizard> selectByPSAppModule(PSAppModuleBase pSAppModuleBase) throws Exception {
@@ -665,7 +665,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
         ArrayList<PSDEUAWizard> arrayList = this.selectByPSAppModule(pSAppModule);
         this.onBeforeRemoveByPSAppModule(pSAppModule, arrayList);
         for (PSDEUAWizard pSDEUAWizard : arrayList) {
-            this.remove((IEntity)pSDEUAWizard);
+            this.remove(pSDEUAWizard);
         }
         this.onAfterRemoveByPSAppModule(pSAppModule, arrayList);
     }
@@ -711,7 +711,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
         ArrayList<PSDEUAWizard> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSDEUAWizard pSDEUAWizard : arrayList) {
-            this.remove((IEntity)pSDEUAWizard);
+            this.remove(pSDEUAWizard);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -757,7 +757,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
         ArrayList<PSDEUAWizard> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSDEUAWizard pSDEUAWizard : arrayList) {
-            this.remove((IEntity)pSDEUAWizard);
+            this.remove(pSDEUAWizard);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -778,7 +778,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
 
     protected void replaceParentInfo(PSDEUAWizard pSDEUAWizard, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEUAWizard, cloneSession);
+        super.replaceParentInfo(pSDEUAWizard, cloneSession);
         if (pSDEUAWizard.getPSAppModuleId() != null && (iEntity = cloneSession.getEntity("PSAPPMODULE", (Object)pSDEUAWizard.getPSAppModuleId())) != null) {
             this.onFillParentInfo_PSAppModule(pSDEUAWizard, (PSAppModule)iEntity);
         }
@@ -791,7 +791,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEUAWizard pSDEUAWizard, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEUAWizard, bl);
+        super.onRemoveEntityUncopyValues(pSDEUAWizard, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEUAWizard pSDEUAWizard, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -851,7 +851,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
         if ((entityFieldError = this.onCheckField_WizardParam6(bl, pSDEUAWizard, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEUAWizard, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEUAWizard, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ActionData(boolean bl, PSDEUAWizard pSDEUAWizard, boolean bl2, boolean bl3) throws Exception {
@@ -864,7 +864,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionData_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_ActionData_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONDATA");
@@ -886,7 +886,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionData2_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_ActionData2_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONDATA2");
@@ -908,7 +908,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppModuleId_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppModuleId_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMODULEID");
@@ -930,7 +930,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppModuleName_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppModuleName_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMODULENAME");
@@ -952,7 +952,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSConsoleId_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSConsoleId_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSCONSOLEID");
@@ -974,7 +974,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -996,7 +996,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppName_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppName_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPNAME");
@@ -1018,7 +1018,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -1040,7 +1040,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -1065,7 +1065,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUAWizardId_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_PSUAWizardId_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUAWIZARDID");
@@ -1087,7 +1087,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUAWizardName_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_PSUAWizardName_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUAWIZARDNAME");
@@ -1109,7 +1109,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardMode_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_WizardMode_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDMODE");
@@ -1131,7 +1131,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string = this.onTestValueRule_WizardParam_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM");
@@ -1153,7 +1153,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam2_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string = this.onTestValueRule_WizardParam2_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM2");
@@ -1175,7 +1175,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam3_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam3_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM3");
@@ -1197,7 +1197,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam4_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam4_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM4");
@@ -1219,7 +1219,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam5_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam5_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM5");
@@ -1241,7 +1241,7 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam6_Default((IEntity)pSDEUAWizard, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam6_Default(pSDEUAWizard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM6");
@@ -1254,11 +1254,11 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
     }
 
     protected void onSyncEntity(PSDEUAWizard pSDEUAWizard, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEUAWizard, bl);
+        super.onSyncEntity(pSDEUAWizard, bl);
     }
 
     protected void onSyncIndexEntities(PSDEUAWizard pSDEUAWizard, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEUAWizard, bl);
+        super.onSyncIndexEntities(pSDEUAWizard, bl);
     }
 
     public Object getDataContextValue(PSDEUAWizard pSDEUAWizard, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1266,14 +1266,14 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEUAWizard, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEUAWizard, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEUAWizard pSDEUAWizard, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEUAWizard, arrayList, n);
+        super.onExportMajorModel(pSDEUAWizard, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1580,14 +1580,14 @@ extends PSCoreSysServiceBase<PSDEUAWizard> {
 
     protected boolean onMergeChild(String string, String string2, PSDEUAWizard pSDEUAWizard) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEUAWizard)) {
+        if (super.onMergeChild(string, string2, pSDEUAWizard)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEUAWizard pSDEUAWizard) throws Exception {
-        super.onUpdateParent((IEntity)pSDEUAWizard);
+        super.onUpdateParent(pSDEUAWizard);
     }
 
     @Override

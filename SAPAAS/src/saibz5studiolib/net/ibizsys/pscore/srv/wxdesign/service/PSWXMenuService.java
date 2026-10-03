@@ -48,7 +48,7 @@ extends PSWXMenuServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSWXMenu.getPSWXMenuId())) {
             this.getTempMajor(pSWXMenu);
         } else {
-            this.getTemp((IEntity)pSWXMenu);
+            this.getTemp(pSWXMenu);
         }
         pSWXMenu.setMenuModel(this.getMenuModel(pSWXMenu));
     }
@@ -98,7 +98,6 @@ extends PSWXMenuServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSWXMenuItem pSWXMenuItem2;
                 PSWXMenuItemService pSWXMenuItemService = (PSWXMenuItemService)ServiceGlobal.getService((String)PSWXMenuItemService.class.getCanonicalName(), (SessionFactory)PSWXMenuService.this.getSessionFactory());
                 ArrayList<PSWXMenuItem> arrayList = pSWXMenuItemService.selectTempByPSWXMenu(pSWXMenu2);
                 HashMap<String, PSWXMenuItem> hashMap = new HashMap<String, PSWXMenuItem>();
@@ -106,16 +105,16 @@ extends PSWXMenuServiceBase {
                     hashMap.put(pSWXMenuItem2.getPSWXMenuItemId(), pSWXMenuItem2);
                 }
                 String string = pSWXMenu2.getMenuModel();
-                pSWXMenuItem2 = XmlNode.loadFromXML((String)string);
-                if (pSWXMenuItem2 != null) {
-                    PSWXMenuService.this.updatePSWXMenuItems(pSWXMenu2, null, (XmlNode)pSWXMenuItem2, hashMap);
-                    pSWXMenu2.setMenuModel(XmlNode.export((XmlNode)pSWXMenuItem2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)string);
+                if (xmlNode != null) {
+                    PSWXMenuService.this.updatePSWXMenuItems(pSWXMenu2, null, xmlNode, hashMap);
+                    pSWXMenu2.setMenuModel(XmlNode.export(xmlNode));
                 } else {
                     pSWXMenu2.setMenuModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSWXMenuItem pSWXMenuItem3 : hashMap.values()) {
-                        pSWXMenuItemService.removeTemp((IEntity)pSWXMenuItem3);
+                        pSWXMenuItemService.removeTemp(pSWXMenuItem3);
                     }
                 }
                 PSWXMenuService.this.updateTempMajor(pSWXMenu2);
@@ -126,7 +125,7 @@ extends PSWXMenuServiceBase {
     protected void updatePSWXMenuItems(PSWXMenu pSWXMenu, PSWXMenuItem pSWXMenuItem, XmlNode xmlNode, HashMap<String, PSWXMenuItem> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSWXMenuItemService pSWXMenuItemService = (PSWXMenuItemService)ServiceGlobal.getService(PSWXMenuItemService.class, (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -159,7 +158,7 @@ extends PSWXMenuServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSWXMenuItemService.updateTemp((IEntity)pSWXMenuItem2);
+                    pSWXMenuItemService.updateTemp(pSWXMenuItem2);
                 }
                 xmlNode2.resetAttributes();
                 pSWXMenuItem2.fillXmlNode(xmlNode2, false);
@@ -179,7 +178,6 @@ extends PSWXMenuServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSWXMenuItem pSWXMenuItem2;
                 PSWXMenuItemService pSWXMenuItemService = (PSWXMenuItemService)ServiceGlobal.getService((String)PSWXMenuItemService.class.getCanonicalName(), (SessionFactory)PSWXMenuService.this.getSessionFactory());
                 ArrayList<PSWXMenuItem> arrayList = pSWXMenuItemService.selectTempByPSWXMenu(pSWXMenu2);
                 HashMap<String, PSWXMenuItem> hashMap = new HashMap<String, PSWXMenuItem>();
@@ -187,19 +185,19 @@ extends PSWXMenuServiceBase {
                     hashMap.put(pSWXMenuItem2.getPSWXMenuItemId(), pSWXMenuItem2);
                 }
                 String string = pSWXMenu2.getMenuModel();
-                pSWXMenuItem2 = XmlNode.loadFromXML((String)string);
-                if (pSWXMenuItem2 != null) {
-                    PSWXMenuService.this.updatePSWXMenuItems(pSWXMenu2, null, (XmlNode)pSWXMenuItem2, hashMap);
-                    pSWXMenu2.setMenuModel(XmlNode.export((XmlNode)pSWXMenuItem2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)string);
+                if (xmlNode != null) {
+                    PSWXMenuService.this.updatePSWXMenuItems(pSWXMenu2, null, xmlNode, hashMap);
+                    pSWXMenu2.setMenuModel(XmlNode.export(xmlNode));
                 } else {
                     pSWXMenu2.setMenuModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSWXMenuItem pSWXMenuItem3 : hashMap.values()) {
-                        pSWXMenuItemService.removeTemp((IEntity)pSWXMenuItem3);
+                        pSWXMenuItemService.removeTemp(pSWXMenuItem3);
                     }
                 }
-                PSWXMenuService.this.createTempMajor((IEntity)pSWXMenu2);
+                PSWXMenuService.this.createTempMajor(pSWXMenu2);
             }
         });
     }
@@ -210,7 +208,6 @@ extends PSWXMenuServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSWXMenuItem pSWXMenuItem2;
                 PSWXMenuItemService pSWXMenuItemService = (PSWXMenuItemService)ServiceGlobal.getService((String)PSWXMenuItemService.class.getCanonicalName(), (SessionFactory)PSWXMenuService.this.getSessionFactory());
                 ArrayList<PSWXMenuItem> arrayList = pSWXMenuItemService.selectTempByPSWXMenu(pSWXMenu2);
                 HashMap<String, PSWXMenuItem> hashMap = new HashMap<String, PSWXMenuItem>();
@@ -221,15 +218,16 @@ extends PSWXMenuServiceBase {
                 if (StringHelper.isNullOrEmpty((String)object)) {
                     object = WebContext.getCurrent().getPostValue("tbmodel");
                 }
-                if ((pSWXMenuItem2 = XmlNode.loadFromXML((String)object)) != null) {
-                    PSWXMenuService.this.updatePSWXMenuItems(pSWXMenu2, null, (XmlNode)pSWXMenuItem2, hashMap);
-                    pSWXMenu2.setMenuModel(XmlNode.export((XmlNode)pSWXMenuItem2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)object);
+                if (xmlNode != null) {
+                    PSWXMenuService.this.updatePSWXMenuItems(pSWXMenu2, null, xmlNode, hashMap);
+                    pSWXMenu2.setMenuModel(XmlNode.export(xmlNode));
                 } else {
                     pSWXMenu2.setMenuModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSWXMenuItem pSWXMenuItem3 : hashMap.values()) {
-                        pSWXMenuItemService.removeTemp((IEntity)pSWXMenuItem3);
+                        pSWXMenuItemService.removeTemp(pSWXMenuItem3);
                     }
                 }
             }
@@ -238,7 +236,7 @@ extends PSWXMenuServiceBase {
 
     @Override
     public void getDraftWithModel(PSWXMenu pSWXMenu) throws Exception {
-        this.getDraftTempMajor((IEntity)pSWXMenu);
+        this.getDraftTempMajor(pSWXMenu);
         pSWXMenu.setMenuModel(this.getMenuModel(pSWXMenu));
     }
 

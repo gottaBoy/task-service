@@ -141,9 +141,9 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
             PSCtrlType pSCtrlType = (PSCtrlType)iService.getDEModel().createEntity();
             pSCtrlType.set("PSCTRLTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCtrlType);
+                iService.getTemp(pSCtrlType);
             } else {
-                iService.get((IEntity)pSCtrlType);
+                iService.get(pSCtrlType);
             }
             this.onFillParentInfo_PSCtrlType(pSPFCtrlType, pSCtrlType);
             return;
@@ -153,9 +153,9 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
             PSPFStyle pSPFStyle = (PSPFStyle)iService.getDEModel().createEntity();
             pSPFStyle.set("PSPFSTYLEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSPFStyle);
+                iService.getTemp(pSPFStyle);
             } else {
-                iService.get((IEntity)pSPFStyle);
+                iService.get(pSPFStyle);
             }
             this.onFillParentInfo_PSPFStyle(pSPFCtrlType, pSPFStyle);
             return;
@@ -165,14 +165,14 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
             PSPF pSPF = (PSPF)iService.getDEModel().createEntity();
             pSPF.set("PSPFID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSPF);
+                iService.getTemp(pSPF);
             } else {
-                iService.get((IEntity)pSPF);
+                iService.get(pSPF);
             }
             this.onFillParentInfo_PSPF(pSPFCtrlType, pSPF);
             return;
         }
-        super.onFillParentInfo((IEntity)pSPFCtrlType, string, string2, string3);
+        super.onFillParentInfo(pSPFCtrlType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -198,7 +198,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSPFCtrlType, bl);
+        super.onFillEntityFullInfo(pSPFCtrlType, bl);
         this.onFillEntityFullInfo_PSCtrlType(pSPFCtrlType, bl);
         this.onFillEntityFullInfo_PSPFStyle(pSPFCtrlType, bl);
         this.onFillEntityFullInfo_PSPF(pSPFCtrlType, bl);
@@ -214,7 +214,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
     }
 
     protected void onWriteBackParent(PSPFCtrlType pSPFCtrlType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPFCtrlType, bl);
+        super.onWriteBackParent(pSPFCtrlType, bl);
     }
 
     public ArrayList<PSPFCtrlType> selectByPSCtrlType(PSCtrlTypeBase pSCtrlTypeBase) throws Exception {
@@ -293,8 +293,8 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
         ArrayList<PSPFCtrlType> arrayList = this.selectByPSCtrlType(pSCtrlType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCTRLTYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCtrlType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPFCTRLTYPE_PSCTRLTYPE_PSCTRLTYPEID", "", iDataEntityModel.getName(), "PSPFCTRLTYPE", iDataEntityModel.getDataInfo((IEntity)pSCtrlType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCtrlType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPFCTRLTYPE_PSCTRLTYPE_PSCTRLTYPEID", "", iDataEntityModel.getName(), "PSPFCTRLTYPE", iDataEntityModel.getDataInfo(pSCtrlType), arrayList.get(0)));
         }
     }
 
@@ -327,7 +327,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
         ArrayList<PSPFCtrlType> arrayList = this.selectByPSCtrlType(pSCtrlType);
         this.onBeforeRemoveByPSCtrlType(pSCtrlType, arrayList);
         for (PSPFCtrlType pSPFCtrlType : arrayList) {
-            this.remove((IEntity)pSPFCtrlType);
+            this.remove(pSPFCtrlType);
         }
         this.onAfterRemoveByPSCtrlType(pSCtrlType, arrayList);
     }
@@ -345,8 +345,8 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
         ArrayList<PSPFCtrlType> arrayList = this.selectByPSPFStyle(pSPFStyle, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSPFSTYLE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSPFStyle);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPFCTRLTYPE_PSPFSTYLE_PSPFSTYLEID", "", iDataEntityModel.getName(), "PSPFCTRLTYPE", iDataEntityModel.getDataInfo((IEntity)pSPFStyle), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSPFStyle);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPFCTRLTYPE_PSPFSTYLE_PSPFSTYLEID", "", iDataEntityModel.getName(), "PSPFCTRLTYPE", iDataEntityModel.getDataInfo(pSPFStyle), arrayList.get(0)));
         }
     }
 
@@ -379,7 +379,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
         ArrayList<PSPFCtrlType> arrayList = this.selectByPSPFStyle(pSPFStyle);
         this.onBeforeRemoveByPSPFStyle(pSPFStyle, arrayList);
         for (PSPFCtrlType pSPFCtrlType : arrayList) {
-            this.remove((IEntity)pSPFCtrlType);
+            this.remove(pSPFCtrlType);
         }
         this.onAfterRemoveByPSPFStyle(pSPFStyle, arrayList);
     }
@@ -397,8 +397,8 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
         ArrayList<PSPFCtrlType> arrayList = this.selectByPSPF(pSPF, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSPF");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSPF);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPFCTRLTYPE_PSPF_PSPFID", "", iDataEntityModel.getName(), "PSPFCTRLTYPE", iDataEntityModel.getDataInfo((IEntity)pSPF), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSPF);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPFCTRLTYPE_PSPF_PSPFID", "", iDataEntityModel.getName(), "PSPFCTRLTYPE", iDataEntityModel.getDataInfo(pSPF), arrayList.get(0)));
         }
     }
 
@@ -431,7 +431,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
         ArrayList<PSPFCtrlType> arrayList = this.selectByPSPF(pSPF);
         this.onBeforeRemoveByPSPF(pSPF, arrayList);
         for (PSPFCtrlType pSPFCtrlType : arrayList) {
-            this.remove((IEntity)pSPFCtrlType);
+            this.remove(pSPFCtrlType);
         }
         this.onAfterRemoveByPSPF(pSPF, arrayList);
     }
@@ -452,7 +452,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
 
     protected void replaceParentInfo(PSPFCtrlType pSPFCtrlType, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSPFCtrlType, cloneSession);
+        super.replaceParentInfo(pSPFCtrlType, cloneSession);
         if (pSPFCtrlType.getPSCtrlTypeId() != null && (iEntity = cloneSession.getEntity("PSCTRLTYPE", (Object)pSPFCtrlType.getPSCtrlTypeId())) != null) {
             this.onFillParentInfo_PSCtrlType(pSPFCtrlType, (PSCtrlType)iEntity);
         }
@@ -465,7 +465,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSPFCtrlType pSPFCtrlType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPFCtrlType, bl);
+        super.onRemoveEntityUncopyValues(pSPFCtrlType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPFCtrlType pSPFCtrlType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -495,7 +495,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
         if ((entityFieldError = this.onCheckField_PSPFStyleId(bl, pSPFCtrlType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPFCtrlType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPFCtrlType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CtrlClass(boolean bl, PSPFCtrlType pSPFCtrlType, boolean bl2, boolean bl3) throws Exception {
@@ -508,7 +508,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlClass_Default((IEntity)pSPFCtrlType, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlClass_Default(pSPFCtrlType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLCLASS");
@@ -530,7 +530,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlDesc_Default((IEntity)pSPFCtrlType, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlDesc_Default(pSPFCtrlType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLDESC");
@@ -552,7 +552,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPFCtrlType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPFCtrlType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -574,7 +574,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeId_Default((IEntity)pSPFCtrlType, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeId_Default(pSPFCtrlType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPEID");
@@ -599,7 +599,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFCtrlTypeId_Default((IEntity)pSPFCtrlType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFCtrlTypeId_Default(pSPFCtrlType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFCTRLTYPEID");
@@ -624,7 +624,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFCtrlTypeName_Default((IEntity)pSPFCtrlType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFCtrlTypeName_Default(pSPFCtrlType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFCTRLTYPENAME");
@@ -646,7 +646,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFId_Default((IEntity)pSPFCtrlType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFId_Default(pSPFCtrlType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFID");
@@ -668,7 +668,7 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFStyleId_Default((IEntity)pSPFCtrlType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFStyleId_Default(pSPFCtrlType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFSTYLEID");
@@ -681,11 +681,11 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
     }
 
     protected void onSyncEntity(PSPFCtrlType pSPFCtrlType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPFCtrlType, bl);
+        super.onSyncEntity(pSPFCtrlType, bl);
     }
 
     protected void onSyncIndexEntities(PSPFCtrlType pSPFCtrlType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPFCtrlType, bl);
+        super.onSyncIndexEntities(pSPFCtrlType, bl);
     }
 
     public Object getDataContextValue(PSPFCtrlType pSPFCtrlType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -693,14 +693,14 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPFCtrlType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPFCtrlType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPFCtrlType pSPFCtrlType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPFCtrlType, arrayList, n);
+        super.onExportMajorModel(pSPFCtrlType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -918,14 +918,14 @@ extends PSCoreSysServiceBase<PSPFCtrlType> {
 
     protected boolean onMergeChild(String string, String string2, PSPFCtrlType pSPFCtrlType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPFCtrlType)) {
+        if (super.onMergeChild(string, string2, pSPFCtrlType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPFCtrlType pSPFCtrlType) throws Exception {
-        super.onUpdateParent((IEntity)pSPFCtrlType);
+        super.onUpdateParent(pSPFCtrlType);
     }
 
     @Override

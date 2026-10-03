@@ -140,21 +140,21 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
 
     public void syncSysVer(PSDepSaaSSys pSDepSaaSSys) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_SYNCSYSVER, 0, (IEntity)pSDepSaaSSys, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_SYNCSYSVER, 0, pSDepSaaSSys, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDepSaaSSys, ACTION_SYNCSYSVER);
+        this.testDEMainStateAction(pSDepSaaSSys, ACTION_SYNCSYSVER);
         final PSDepSaaSSys pSDepSaaSSys2 = pSDepSaaSSys;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDepSaaSSysServiceBase.this.getService(), PSDepSaaSSysServiceBase.ACTION_SYNCSYSVER, 40, (IEntity)pSDepSaaSSys2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDepSaaSSysServiceBase.this.getService(), PSDepSaaSSysServiceBase.ACTION_SYNCSYSVER, 40, pSDepSaaSSys2, null).getResult() != 1) {
                     PSDepSaaSSysServiceBase.this.onSyncSysVer(pSDepSaaSSys2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_SYNCSYSVER, 99, (IEntity)pSDepSaaSSys, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_SYNCSYSVER, 99, pSDepSaaSSys, null);
         }
     }
 
@@ -168,9 +168,9 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_FromDC(pSDepSaaSSys, pSDevCenter);
             return;
@@ -180,14 +180,14 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
             PSSaaSSys pSSaaSSys = (PSSaaSSys)iService.getDEModel().createEntity();
             pSSaaSSys.set("PSSAASSYSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSaaSSys);
+                iService.getTemp(pSSaaSSys);
             } else {
-                iService.get((IEntity)pSSaaSSys);
+                iService.get(pSSaaSSys);
             }
             this.onFillParentInfo_PSSaaSSys(pSDepSaaSSys, pSSaaSSys);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDepSaaSSys, string, string2, string3);
+        super.onFillParentInfo(pSDepSaaSSys, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -208,7 +208,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDepSaaSSys, bl);
+        super.onFillEntityFullInfo(pSDepSaaSSys, bl);
         this.onFillEntityFullInfo_FromDC(pSDepSaaSSys, bl);
         this.onFillEntityFullInfo_PSSaaSSys(pSDepSaaSSys, bl);
     }
@@ -240,7 +240,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
     }
 
     protected void onWriteBackParent(PSDepSaaSSys pSDepSaaSSys, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDepSaaSSys, bl);
+        super.onWriteBackParent(pSDepSaaSSys, bl);
     }
 
     public ArrayList<PSDepSaaSSys> selectByFromDC(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -323,7 +323,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
         ArrayList<PSDepSaaSSys> arrayList = this.selectByFromDC(pSDevCenter);
         this.onBeforeRemoveByFromDC(pSDevCenter, arrayList);
         for (PSDepSaaSSys pSDepSaaSSys : arrayList) {
-            this.remove((IEntity)pSDepSaaSSys);
+            this.remove(pSDepSaaSSys);
         }
         this.onAfterRemoveByFromDC(pSDevCenter, arrayList);
     }
@@ -369,7 +369,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
         ArrayList<PSDepSaaSSys> arrayList = this.selectByPSSaaSSys(pSSaaSSys);
         this.onBeforeRemoveByPSSaaSSys(pSSaaSSys, arrayList);
         for (PSDepSaaSSys pSDepSaaSSys : arrayList) {
-            this.remove((IEntity)pSDepSaaSSys);
+            this.remove(pSDepSaaSSys);
         }
         this.onAfterRemoveByPSSaaSSys(pSSaaSSys, arrayList);
     }
@@ -390,7 +390,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
 
     protected void replaceParentInfo(PSDepSaaSSys pSDepSaaSSys, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDepSaaSSys, cloneSession);
+        super.replaceParentInfo(pSDepSaaSSys, cloneSession);
         if (pSDepSaaSSys.getFromDCId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSDepSaaSSys.getFromDCId())) != null) {
             this.onFillParentInfo_FromDC(pSDepSaaSSys, (PSDevCenter)iEntity);
         }
@@ -400,7 +400,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDepSaaSSys pSDepSaaSSys, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDepSaaSSys, bl);
+        super.onRemoveEntityUncopyValues(pSDepSaaSSys, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDepSaaSSys pSDepSaaSSys, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -424,7 +424,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
         if ((entityFieldError = this.onCheckField_PSSaaSSysName(bl, pSDepSaaSSys, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDepSaaSSys, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDepSaaSSys, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_FromDCId(boolean bl, PSDepSaaSSys pSDepSaaSSys, boolean bl2, boolean bl3) throws Exception {
@@ -437,7 +437,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FromDCId_Default((IEntity)pSDepSaaSSys, bl2, bl3);
+            string2 = this.onTestValueRule_FromDCId_Default(pSDepSaaSSys, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FROMDCID");
@@ -459,7 +459,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FromDCName_Default((IEntity)pSDepSaaSSys, bl2, bl3);
+            string2 = this.onTestValueRule_FromDCName_Default(pSDepSaaSSys, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FROMDCNAME");
@@ -484,7 +484,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDepSaaSSysId_Default((IEntity)pSDepSaaSSys, bl2, bl3);
+            string2 = this.onTestValueRule_PSDepSaaSSysId_Default(pSDepSaaSSys, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEPSAASSYSID");
@@ -509,7 +509,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDepSaaSSysName_Default((IEntity)pSDepSaaSSys, bl2, bl3);
+            string2 = this.onTestValueRule_PSDepSaaSSysName_Default(pSDepSaaSSys, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEPSAASSYSNAME");
@@ -534,7 +534,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSaaSSysId_Default((IEntity)pSDepSaaSSys, bl2, bl3);
+            string2 = this.onTestValueRule_PSSaaSSysId_Default(pSDepSaaSSys, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSAASSYSID");
@@ -559,7 +559,7 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSaaSSysName_Default((IEntity)pSDepSaaSSys, bl2, bl3);
+            string2 = this.onTestValueRule_PSSaaSSysName_Default(pSDepSaaSSys, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSAASSYSNAME");
@@ -572,11 +572,11 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
     }
 
     protected void onSyncEntity(PSDepSaaSSys pSDepSaaSSys, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDepSaaSSys, bl);
+        super.onSyncEntity(pSDepSaaSSys, bl);
     }
 
     protected void onSyncIndexEntities(PSDepSaaSSys pSDepSaaSSys, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDepSaaSSys, bl);
+        super.onSyncIndexEntities(pSDepSaaSSys, bl);
     }
 
     public Object getDataContextValue(PSDepSaaSSys pSDepSaaSSys, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -584,14 +584,14 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDepSaaSSys, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDepSaaSSys, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDepSaaSSys pSDepSaaSSys, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDepSaaSSys, arrayList, n);
+        super.onExportMajorModel(pSDepSaaSSys, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -734,14 +734,14 @@ extends PSCoreSysServiceBase<PSDepSaaSSys> {
 
     protected boolean onMergeChild(String string, String string2, PSDepSaaSSys pSDepSaaSSys) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDepSaaSSys)) {
+        if (super.onMergeChild(string, string2, pSDepSaaSSys)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDepSaaSSys pSDepSaaSSys) throws Exception {
-        super.onUpdateParent((IEntity)pSDepSaaSSys);
+        super.onUpdateParent(pSDepSaaSSys);
     }
 
     @Override

@@ -1,13 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.grid;
 
-import net.ibizsys.model.control.grid.IPSDEGridColumn;
 import net.ibizsys.model.dataentity.uiaction.IPSDEUIActionGroup;
 
-public interface IPSDEGridUAColumn
-extends IPSDEGridColumn {
-    public IPSDEUIActionGroup getPSDEUIActionGroup();
+/**
+ * 实体表格操作列对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDEGridUAColumn extends IPSDEGridColumn
+{
+	/**
+	 * 获取对应的操作界面组
+	 * @return
+	 */
+	IPSDEUIActionGroup getPSDEUIActionGroup();
 }
-

@@ -30,7 +30,12 @@ ICodeListQuery {
         block8: {
             block7: {
                 block6: {
-                    selectResult = dbCallerHelper.CallRaw3("select t1.* from t_SRFUSER t1 order by t1.USERNAME", null);
+                    try {
+                        selectResult = dbCallerHelper.CallRaw3("select t1.* from t_SRFUSER t1 order by t1.USERNAME", null);
+                    }
+                    catch (Exception exception) {
+                        return false;
+                    }
                     if (selectResult != null) break block6;
                     return false;
                 }
@@ -85,11 +90,17 @@ ICodeListQuery {
             if (nRowCount != 0) break block9;
             return null;
         }
-        DataRow dr = selectResult.getMainTable().GetRow(0);
-        CodeItemConfig codeItemConfig = new CodeItemConfig();
-        codeItemConfig.setValue(dr.Get("USERID").toString());
-        codeItemConfig.setText(dr.Get("USERNAME").toString());
-        return codeItemConfig;
+        try {
+            DataRow dr = selectResult.getMainTable().GetRow(0);
+            CodeItemConfig codeItemConfig = new CodeItemConfig();
+            codeItemConfig.setValue(dr.Get("USERID").toString());
+            codeItemConfig.setText(dr.Get("USERNAME").toString());
+            return codeItemConfig;
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 }
 

@@ -1613,7 +1613,7 @@ implements Serializable {
                 PSDevSlnTempl pSDevSlnTempl = new PSDevSlnTempl();
                 pSDevSlnTempl.setPSDevSlnTemplId(this.getPSDevSlnTemplId());
                 PSDevSlnTemplService pSDevSlnTemplService = (PSDevSlnTemplService)ServiceGlobal.getService(PSDevSlnTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnTemplService.autoGet((IEntity)pSDevSlnTempl);
+                pSDevSlnTemplService.autoGet(pSDevSlnTempl);
                 this.psdevslntempl = pSDevSlnTempl;
             }
             return this.psdevslntempl;
@@ -1639,7 +1639,7 @@ implements Serializable {
                 PSDevSlnTempl pSDevSlnTempl = new PSDevSlnTempl();
                 pSDevSlnTempl.setPSDevSlnTemplId(this.getRefPSDevSlnTemplId());
                 PSDevSlnTemplService pSDevSlnTemplService = (PSDevSlnTemplService)ServiceGlobal.getService(PSDevSlnTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnTemplService.autoGet((IEntity)pSDevSlnTempl);
+                pSDevSlnTemplService.autoGet(pSDevSlnTempl);
                 this.refpsdevslntempl = pSDevSlnTempl;
             }
             return this.refpsdevslntempl;

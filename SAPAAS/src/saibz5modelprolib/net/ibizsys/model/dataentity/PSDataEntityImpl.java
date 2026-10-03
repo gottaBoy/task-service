@@ -588,7 +588,7 @@ IPSDataEntityRuntime {
                 throw new Exception("\u83b7\u53d6\u6307\u5b9a\u5b9e\u4f53\u5c5e\u6027\u754c\u9762\u914d\u7f6e\u9519\u8bef");
             }
             for (PSDEFUIMode psDEFUIMode : psDEFUIModeList) {
-                Object psDEField = (PSDEField)((Object)psDEFieldMap.get(psDEFUIMode.getPSDEFID()));
+                PSDEField psDEField = psDEFieldMap.get(psDEFUIMode.getPSDEFID());
                 if (psDEField == null) continue;
                 psDEField.getPSDEFUIModes(true).add(psDEFUIMode);
             }
@@ -598,7 +598,7 @@ IPSDataEntityRuntime {
                 throw new Exception("\u83b7\u53d6\u6307\u5b9a\u5b9e\u4f53\u5c5e\u6027\u641c\u7d22\u6a21\u5f0f\u9519\u8bef");
             }
             for (PSDEFSearchMode psDEFSearchMode : psDEFSearchModeList) {
-                Object psDEField = (PSDEField)((Object)psDEFieldMap.get(psDEFSearchMode.getPSDEFID()));
+                PSDEField psDEField = psDEFieldMap.get(psDEFSearchMode.getPSDEFID());
                 if (psDEField == null) continue;
                 psDEField.getPSDEFSearchModes(true).add(psDEFSearchMode);
             }
@@ -607,7 +607,7 @@ IPSDataEntityRuntime {
             if (callResult.getRetCode() != 0) {
                 throw new Exception("\u83b7\u53d6\u6307\u5b9a\u5b9e\u4f53\u5c5e\u6027\u503c\u89c4\u5219\u8bef");
             }
-            for (Object psDEFValueRule : psDEFValueRuleList) {
+            for (PSDEFValueRule psDEFValueRule : psDEFValueRuleList) {
                 PSDEField psDEField = (PSDEField)((Object)psDEFieldMap.get(psDEFValueRule.getPSDEFID()));
                 if (psDEField == null) continue;
                 psDEField.getPSDEFValueRules(true).add((PSDEFValueRule)((Object)psDEFValueRule));
@@ -1082,29 +1082,19 @@ IPSDataEntityRuntime {
         return this.getPSDERs(false);
     }
 
-    /*
-     * Unable to fully structure code
-     */
     public Iterator<IPSDER1N> getPSDER1Ns(boolean bMajor, boolean bRemoveOrder) {
-        psDER1NList = new ArrayList<IPSDER1N>();
-        psDERBases = this.getPSDERs(bMajor);
-        if (psDERBases != null) ** GOTO lbl9
-        return null;
-lbl-1000:
-        // 1 sources
-
-        {
-            iPSDERBase = psDERBases.next();
-            if (!(iPSDERBase instanceof IPSDER1N)) continue;
-            psDER1NList.add((IPSDER1N)iPSDERBase);
-lbl9:
-            // 3 sources
-
-            ** while (psDERBases.hasNext())
+        Iterator<IPSDERBase> psDERBases = this.getPSDERs(bMajor);
+        if (psDERBases == null) {
+            return null;
         }
-lbl10:
-        // 1 sources
-
+        ArrayList<IPSDER1N> psDER1NList = new ArrayList<IPSDER1N>();
+        while (psDERBases.hasNext()) {
+            IPSDERBase iPSDERBase = psDERBases.next();
+            if (!(iPSDERBase instanceof IPSDER1N)) {
+                continue;
+            }
+            psDER1NList.add((IPSDER1N)iPSDERBase);
+        }
         if (bRemoveOrder && psDER1NList.size() > 0) {
             Collections.sort(psDER1NList, new Comparator<IPSDER1N>(){
 
@@ -1120,60 +1110,39 @@ lbl10:
         return psDER1NList.iterator();
     }
 
-    /*
-     * Unable to fully structure code
-     */
     public Iterator<IPSDER1N> getPSDER1Ns(boolean bMajor) {
-        psDER1NList = new ArrayList<IPSDER1N>();
-        psDERBases = this.getPSDERs(bMajor);
-        if (psDERBases != null) ** GOTO lbl9
-        return null;
-lbl-1000:
-        // 1 sources
-
-        {
-            iPSDERBase = psDERBases.next();
-            if (!(iPSDERBase instanceof IPSDER1N)) continue;
-            psDER1NList.add((IPSDER1N)iPSDERBase);
-lbl9:
-            // 3 sources
-
-            ** while (psDERBases.hasNext())
+        Iterator<IPSDERBase> psDERBases = this.getPSDERs(bMajor);
+        if (psDERBases == null) {
+            return null;
         }
-lbl10:
-        // 1 sources
-
+        ArrayList<IPSDER1N> psDER1NList = new ArrayList<IPSDER1N>();
+        while (psDERBases.hasNext()) {
+            IPSDERBase iPSDERBase = psDERBases.next();
+            if (!(iPSDERBase instanceof IPSDER1N)) {
+                continue;
+            }
+            psDER1NList.add((IPSDER1N)iPSDERBase);
+        }
         if (psDER1NList.size() == 0) {
             return null;
         }
         return psDER1NList.iterator();
     }
 
-    /*
-     * Unable to fully structure code
-     */
     @PSModelRTMeta(description="\u5173\u8054\u5220\u96641:N\u5173\u7cfb\u96c6\u5408")
     public Iterator<IPSDER1N> getRemovePSDER1Ns() {
-        psDER1NList = new ArrayList<IPSDER1N>();
-        psDERBases = this.getPSDERs(true);
-        if (psDERBases != null) ** GOTO lbl10
-        return null;
-lbl-1000:
-        // 1 sources
-
-        {
-            iPSDERBase = psDERBases.next();
-            if (!(iPSDERBase instanceof IPSDER1N)) continue;
-            iPSDER1N = (IPSDER1N)iPSDERBase;
-            psDER1NList.add(iPSDER1N);
-lbl10:
-            // 3 sources
-
-            ** while (psDERBases.hasNext())
+        Iterator<IPSDERBase> psDERBases = this.getPSDERs(true);
+        if (psDERBases == null) {
+            return null;
         }
-lbl11:
-        // 1 sources
-
+        ArrayList<IPSDER1N> psDER1NList = new ArrayList<IPSDER1N>();
+        while (psDERBases.hasNext()) {
+            IPSDERBase iPSDERBase = psDERBases.next();
+            if (!(iPSDERBase instanceof IPSDER1N)) {
+                continue;
+            }
+            psDER1NList.add((IPSDER1N)iPSDERBase);
+        }
         if (psDER1NList.size() > 0) {
             Collections.sort(psDER1NList, new Comparator<IPSDER1N>(){
 
@@ -1189,30 +1158,24 @@ lbl11:
         return psDER1NList.iterator();
     }
 
-    /*
-     * Unable to fully structure code
-     */
     @PSModelRTMeta(description="\u5173\u8054\u514b\u96861:N\u5173\u7cfb\u96c6\u5408")
     public Iterator<IPSDER1N> getClonePSDER1Ns() {
-        psDER1NList = new ArrayList<IPSDER1N>();
-        psDERBases = this.getPSDERs(true);
-        if (psDERBases != null) ** GOTO lbl9
-        return null;
-lbl-1000:
-        // 1 sources
-
-        {
-            iPSDERBase = psDERBases.next();
-            if (!(iPSDERBase instanceof IPSDER1N) || (iPSDER1N = (IPSDER1N)iPSDERBase).getCloneOrder() < 0) continue;
-            psDER1NList.add(iPSDER1N);
-lbl9:
-            // 3 sources
-
-            ** while (psDERBases.hasNext())
+        Iterator<IPSDERBase> psDERBases = this.getPSDERs(true);
+        if (psDERBases == null) {
+            return null;
         }
-lbl10:
-        // 1 sources
-
+        ArrayList<IPSDER1N> psDER1NList = new ArrayList<IPSDER1N>();
+        while (psDERBases.hasNext()) {
+            IPSDERBase iPSDERBase = psDERBases.next();
+            if (!(iPSDERBase instanceof IPSDER1N)) {
+                continue;
+            }
+            IPSDER1N iPSDER1N = (IPSDER1N)iPSDERBase;
+            if (iPSDER1N.getCloneOrder() < 0) {
+                continue;
+            }
+            psDER1NList.add(iPSDER1N);
+        }
         if (psDER1NList.size() > 0) {
             Collections.sort(psDER1NList, new Comparator<IPSDER1N>(){
 
@@ -1228,29 +1191,19 @@ lbl10:
         return psDER1NList.iterator();
     }
 
-    /*
-     * Unable to fully structure code
-     */
     public Iterator<IPSDERIndex> getPSDERIndexs(boolean bMajor) {
-        psDERIndexList = new ArrayList<IPSDERIndex>();
-        psDERBases = this.getPSDERs(bMajor);
-        if (psDERBases != null) ** GOTO lbl9
-        return null;
-lbl-1000:
-        // 1 sources
-
-        {
-            iPSDERBase = psDERBases.next();
-            if (!(iPSDERBase instanceof IPSDERIndex)) continue;
-            psDERIndexList.add((IPSDERIndex)iPSDERBase);
-lbl9:
-            // 3 sources
-
-            ** while (psDERBases.hasNext())
+        Iterator<IPSDERBase> psDERBases = this.getPSDERs(bMajor);
+        if (psDERBases == null) {
+            return null;
         }
-lbl10:
-        // 1 sources
-
+        ArrayList<IPSDERIndex> psDERIndexList = new ArrayList<IPSDERIndex>();
+        while (psDERBases.hasNext()) {
+            IPSDERBase iPSDERBase = psDERBases.next();
+            if (!(iPSDERBase instanceof IPSDERIndex)) {
+                continue;
+            }
+            psDERIndexList.add((IPSDERIndex)iPSDERBase);
+        }
         if (psDERIndexList.size() == 0) {
             return null;
         }
@@ -1436,7 +1389,7 @@ lbl10:
     }
 
     public Iterator<IPSDEField> getPSDEFieldsByDER(String strDERId) throws Exception {
-        ArrayList<IPSLinkDEField> psDEFieldList = new ArrayList<IPSLinkDEField>();
+        ArrayList<IPSDEField> psDEFieldList = new ArrayList<IPSDEField>();
         Iterator<IPSDEField> deFields = this.getPSDEFields();
         while (deFields.hasNext()) {
             IPSLinkDEField iPSLinkDEField;
@@ -2100,4 +2053,3 @@ lbl10:
         return this.strPSDynaDETemplId;
     }
 }
-

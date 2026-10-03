@@ -842,7 +842,7 @@ implements Serializable {
                 PSNDFile pSNDFile = new PSNDFile();
                 pSNDFile.setPSNDFileId(this.getPSNDFileId());
                 PSNDFileService pSNDFileService = (PSNDFileService)ServiceGlobal.getService(PSNDFileService.class, (SessionFactory)this.getSessionFactory());
-                pSNDFileService.autoGet((IEntity)pSNDFile);
+                pSNDFileService.autoGet(pSNDFile);
                 this.psndfile = pSNDFile;
             }
             return this.psndfile;

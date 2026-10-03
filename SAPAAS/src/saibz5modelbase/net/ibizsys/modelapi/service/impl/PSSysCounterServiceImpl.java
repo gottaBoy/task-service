@@ -160,10 +160,10 @@ implements IPSSysCounterService {
 
     @Override
     protected List<PSSysCounter> onListAll() throws Exception {
-        List pssystems;
-        List psmodules;
+        List<PSSystem> pssystems;
+        List<PSModule> psmodules;
         ArrayList<PSSysCounter> list = new ArrayList<PSSysCounter>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSSysCounter> items = this.listByPSDataEntity(parent);

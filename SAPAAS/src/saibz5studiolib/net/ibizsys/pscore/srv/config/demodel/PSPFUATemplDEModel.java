@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSPFUATemplDEModelBase;
 
 public class PSPFUATemplDEModel
 extends PSPFUATemplDEModelBase {
+
+    public PSPFUATemplDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

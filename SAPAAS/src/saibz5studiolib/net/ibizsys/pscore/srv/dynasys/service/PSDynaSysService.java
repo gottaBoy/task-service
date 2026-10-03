@@ -53,11 +53,15 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSAppModuleDEModel;
 import net.ibizsys.pscore.srv.appdesign.entity.PSAppView;
 import net.ibizsys.pscore.srv.appdesign.service.PSAppViewService;
 import net.ibizsys.pscore.srv.config.entity.PSAppType;
+import net.ibizsys.pscore.srv.config.entity.PSLanguage;
 import net.ibizsys.pscore.srv.config.service.PSAppTypeService;
 import net.ibizsys.pscore.srv.config.service.PSLanguageService;
 import net.ibizsys.pscore.srv.config.service.PSLanguageServiceBase;
 import net.ibizsys.pscore.srv.dedesign.demodel.PSDataEntityDEModel;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEToolbarBase;
+import net.ibizsys.pscore.srv.dedesign.entity.PSDEOPPriv;
+import net.ibizsys.pscore.srv.dedesign.entity.PSDEToolbar;
+import net.ibizsys.pscore.srv.dedesign.entity.PSDEUIAction;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEUIActionBase;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDataEntity;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDataEntityBase;
@@ -71,12 +75,17 @@ import net.ibizsys.pscore.srv.dedesign.service.PSDataEntityService;
 import net.ibizsys.pscore.srv.dynasys.entity.PSDynaApp;
 import net.ibizsys.pscore.srv.dynasys.entity.PSDynaAppBase;
 import net.ibizsys.pscore.srv.dynasys.entity.PSDynaAppViewBase;
+import net.ibizsys.pscore.srv.dynasys.entity.PSDynaAppView;
+import net.ibizsys.pscore.srv.dynasys.entity.PSDynaCodeList;
 import net.ibizsys.pscore.srv.dynasys.entity.PSDynaCodeListBase;
+import net.ibizsys.pscore.srv.dynasys.entity.PSDynaDE;
 import net.ibizsys.pscore.srv.dynasys.entity.PSDynaDEBase;
 import net.ibizsys.pscore.srv.dynasys.entity.PSDynaDEForm;
 import net.ibizsys.pscore.srv.dynasys.entity.PSDynaSys;
 import net.ibizsys.pscore.srv.dynasys.entity.PSDynaSysBase;
 import net.ibizsys.pscore.srv.dynasys.entity.PSDynaWFBase;
+import net.ibizsys.pscore.srv.dynasys.entity.PSDynaWF;
+import net.ibizsys.pscore.srv.dynasys.entity.PSDynaWFVer;
 import net.ibizsys.pscore.srv.dynasys.entity.PSDynaWFVerBase;
 import net.ibizsys.pscore.srv.dynasys.service.PSDynaAppService;
 import net.ibizsys.pscore.srv.dynasys.service.PSDynaAppViewService;
@@ -90,6 +99,8 @@ import net.ibizsys.pscore.srv.sysdesign.entity.PSCodeList;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSCodeListBase;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSysApp;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSysAppBase;
+import net.ibizsys.pscore.srv.sysdesign.entity.PSSysCss;
+import net.ibizsys.pscore.srv.sysdesign.entity.PSModule;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSystem;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSystemBase;
 import net.ibizsys.pscore.srv.sysdesign.service.PSCodeListService;
@@ -106,6 +117,8 @@ import net.ibizsys.pscore.srv.wfdesign.entity.PSWFVersion;
 import net.ibizsys.pscore.srv.wfdesign.entity.PSWFVersionBase;
 import net.ibizsys.pscore.srv.wfdesign.entity.PSWorkflow;
 import net.ibizsys.pscore.srv.wfdesign.entity.PSWorkflowBase;
+import net.ibizsys.pscore.srv.wfdesign.entity.PSWFRole;
+import net.ibizsys.pscore.srv.wfdesign.entity.PSWFWorkTime;
 import net.ibizsys.pscore.srv.wfdesign.service.PSWFDEService;
 import net.ibizsys.pscore.srv.wfdesign.service.PSWFRoleService;
 import net.ibizsys.pscore.srv.wfdesign.service.PSWFVersionService;
@@ -128,14 +141,11 @@ extends PSDynaSysServiceBase {
 
     @Override
     protected void onExportDynaModel(PSDynaSys pSDynaSys) throws Exception {
-        EntityBase entityBase;
-        Object object7;
-        Object object2;
         if (WebContext.getCurrent() == null || WebContext.getCurrent().getCurAjaxActionResult() == null || ViewController.getCurrent() == null) {
             throw new Exception("\u4f20\u5165\u53c2\u6570\u4e0d\u6b63\u786e");
         }
         if (!pSDynaSys.isFullEntity()) {
-            this.get((IEntity)pSDynaSys);
+            this.get(pSDynaSys);
         }
         IDataEntityModel iDataEntityModel = DEModelGlobal.getDEModel((String)PSAppModuleDEModel.class.getName());
         IDataEntityModel iDataEntityModel2 = DEModelGlobal.getDEModel((String)PSDataEntityDEModel.class.getName());
@@ -154,227 +164,200 @@ extends PSDynaSysServiceBase {
         PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
         PSAppViewService pSAppViewService = (PSAppViewService)ServiceGlobal.getService(PSAppViewService.class, (SessionFactory)this.getSessionFactory());
         PSDynaDEFormService pSDynaDEFormService = (PSDynaDEFormService)ServiceGlobal.getService(PSDynaDEFormService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<Object> arrayList = new ArrayList<Object>();
-        HashMap<String, String> hashMap = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<Object> arrayList2 = new PSSystem();
-        ((PSSystemBase)((Object)arrayList2)).setPSSystemId(pSDynaSys.getPSDynaSysId());
-        hashMap.get((IEntity)arrayList2);
-        JSONObject jSONObject = new PSSystem();
-        jSONObject.setPSSystemId(((PSSystemBase)((Object)arrayList2)).getPSSystemId());
-        jSONObject.setPSSystemName(((PSSystemBase)((Object)arrayList2)).getPSSystemName());
-        Object object32 = this.toSimpleJsonObject((IEntity)jSONObject, ((PSSystemServiceBase)((Object)hashMap)).getDEModel());
-        if (object32 != null) {
-            arrayList.add(object32);
+        ArrayList<JSONObject> items = new ArrayList<JSONObject>();
+        PSSystemService systemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
+        PSSystem system = new PSSystem();
+        system.setPSSystemId(pSDynaSys.getPSDynaSysId());
+        systemService.get(system);
+        PSSystem exportSystem = new PSSystem();
+        exportSystem.setPSSystemId(system.getPSSystemId());
+        exportSystem.setPSSystemName(system.getPSSystemName());
+        JSONObject model = this.toSimpleJsonObject(exportSystem, systemService.getDEModel());
+        if (model != null) {
+            items.add(model);
         }
-        Object object42 = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.getSessionFactory());
-        Object object5 = ((PSModuleServiceBase)object42).selectByPSSystem((PSSystemBase)jSONObject);
-        Object object6 = ((ArrayList)object5).iterator();
-        while (object6.hasNext()) {
-            object2 = object6.next();
-            object32 = this.toSimpleJsonObject((IEntity)object2, ((PSModuleServiceBase)object42).getDEModel());
-            if (object32 == null) continue;
-            arrayList.add(object32);
-        }
-        object6 = (PSLanguageService)ServiceGlobal.getService(PSLanguageService.class, (SessionFactory)this.getSessionFactory());
-        object2 = object6.select((ISelectCond)new SelectCond());
-        for (Object object7 : object2) {
-            object32 = this.toSimpleJsonObject((IEntity)object7, ((PSLanguageServiceBase)object6).getDEModel());
-            if (object32 == null) continue;
-            arrayList.add(object32);
-        }
-        AjaxActionResult ajaxActionResult = (PSAppTypeService)ServiceGlobal.getService(PSAppTypeService.class, (SessionFactory)this.getSessionFactory());
-        object7 = ajaxActionResult.select((ISelectCond)new SelectCond());
-        Object object82 = ((ArrayList)object7).iterator();
-        while (object82.hasNext()) {
-            entityBase = (PSAppType)object82.next();
-            object32 = this.toSimpleJsonObject((IEntity)entityBase, ajaxActionResult.getDEModel());
-            if (object32 == null) continue;
-            arrayList.add(object32);
-        }
-        hashMap = new SelectCond();
-        hashMap.set("PSSYSTEMID", pSDynaSys.getPSDynaSysId());
-        arrayList2 = (PSSysCssService)ServiceGlobal.getService(PSSysCssService.class, (SessionFactory)this.getSessionFactory());
-        jSONObject = arrayList2.select((ISelectCond)hashMap);
-        for (Object object42 : jSONObject) {
-            arrayList2.exportModel((IEntity)object42, arrayList);
-        }
-        hashMap = new SelectCond();
-        hashMap.set("PSSYSTEMID", pSDynaSys.getPSDynaSysId());
-        hashMap.set("PSDEID", SelectCond.ISNULL);
-        arrayList2 = (PSDEOPPrivService)ServiceGlobal.getService(PSDEOPPrivService.class, (SessionFactory)this.getSessionFactory());
-        jSONObject = arrayList2.select((ISelectCond)hashMap);
-        for (Object object42 : jSONObject) {
-            arrayList2.exportModel((IEntity)object42, arrayList);
-        }
-        hashMap = new PSDynaSys();
-        ((PSDynaSysBase)((Object)hashMap)).setPSDynaSysId(pSDynaSys.getPSDynaSysId());
-        ((PSDynaSysBase)((Object)hashMap)).setPSDynaSysName(pSDynaSys.getPSDynaSysName());
-        arrayList2 = this.toSimpleJsonObject((IEntity)hashMap, this.getDEModel());
-        if (arrayList2 != null) {
-            arrayList.add(arrayList2);
-        }
-        hashMap = new SelectCond();
-        hashMap.set("UIACTIONTYPE", "SYS");
-        hashMap.set("PSSYSTEMID", pSDynaSys.getPSDynaSysId());
-        hashMap.set("PSWFID", SelectCond.ISNULL);
-        arrayList2 = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
-        jSONObject = arrayList2.select((ISelectCond)hashMap);
-        for (Object object42 : jSONObject) {
-            if (((PSDEUIActionBase)object42).getPSSysImage() != null) {
-                pSSysImageService.exportModel((IEntity)((PSDEUIActionBase)object42).getPSSysImage(), arrayList);
-            }
-            arrayList2.exportModel((IEntity)object42, arrayList);
-        }
-        hashMap = new SelectCond();
-        hashMap.set("PSDEID", SelectCond.ISNULL);
-        hashMap.set("PSSYSTEMID", pSDynaSys.getPSDynaSysId());
-        arrayList2 = (PSDEToolbarService)ServiceGlobal.getService(PSDEToolbarService.class, (SessionFactory)this.getSessionFactory());
-        jSONObject = arrayList2.select((ISelectCond)hashMap);
-        for (Object object42 : jSONObject) {
-            if (object42.isFullEntity()) {
-                ((PSDEToolbarBase)object42).resetPSSysToolbarId();
-                ((PSDEToolbarBase)object42).resetPSSysToolbarName();
-                ((PSDEToolbarBase)object42).resetPSSysPFPluginId();
-                ((PSDEToolbarBase)object42).resetPSSysPFPluginName();
-            }
-            arrayList2.exportModel((IEntity)object42, arrayList);
-        }
-        hashMap = new SelectCond();
-        hashMap.set("PSSYSTEMID", pSDynaSys.getPSDynaSysId());
-        hashMap.set("PSDEID", SelectCond.ISNULL);
-        hashMap.set("PSDYNAINSTID", SelectCond.ISNULL);
-        arrayList2 = pSCodeListService.select((ISelectCond)hashMap);
-        for (Object object32 : arrayList2) {
-            pSCodeListService.exportModel((IEntity)object32, arrayList);
-        }
-        hashMap = new SelectCond();
-        hashMap.set("PSDYNASYSID", pSDynaSys.getPSDynaSysId());
-        arrayList2 = (PSDynaCodeListService)ServiceGlobal.getService(PSDynaCodeListService.class, (SessionFactory)this.getSessionFactory());
-        jSONObject = arrayList2.select((ISelectCond)hashMap);
-        for (Object object42 : jSONObject) {
-            arrayList2.exportModel((IEntity)object42, arrayList);
-            object5 = new PSCodeList();
-            ((PSCodeListBase)object5).setPSCodeListId(((PSDynaCodeListBase)object42).getPSDynaCodeListId());
-            pSCodeListService.exportModel((IEntity)object5, arrayList);
-        }
-        hashMap = new SelectCond();
-        hashMap.set("PSDYNASYSID", pSDynaSys.getPSDynaSysId());
-        arrayList2 = (PSDynaDEService)ServiceGlobal.getService(PSDynaDEService.class, (SessionFactory)this.getSessionFactory());
-        jSONObject = arrayList2.select((ISelectCond)hashMap);
-        for (Object object42 : jSONObject) {
-            arrayList2.exportModel((IEntity)object42, arrayList);
-            object5 = new PSDataEntity();
-            ((PSDataEntityBase)object5).setPSDataEntityId(((PSDynaDEBase)object42).getPSDynaDEId());
-            pSDataEntityService.get((IEntity)object5);
-            ((PSDataEntityBase)object5).resetLNPSLanResId();
-            ((PSDataEntityBase)object5).resetLNPSLanResName();
-            pSDataEntityService.exportModel((IEntity)object5, arrayList);
-            object6 = ((PSDynaDEBase)object42).getPSDynaDEForms();
-            object2 = ((ArrayList)object6).iterator();
-            while (object2.hasNext()) {
-                ajaxActionResult = (PSDynaDEForm)object2.next();
-                pSDynaDEFormService.exportModel((IEntity)ajaxActionResult, arrayList);
+        PSModuleService moduleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.getSessionFactory());
+        for (PSModule module : moduleService.selectByPSSystem(exportSystem)) {
+            model = this.toSimpleJsonObject(module, moduleService.getDEModel());
+            if (model != null) {
+                items.add(model);
             }
         }
-        hashMap = new SelectCond();
-        arrayList2 = pSWFRoleService.select((ISelectCond)hashMap);
-        for (Object object32 : arrayList2) {
-            pSWFRoleService.exportModel((IEntity)object32, arrayList);
-        }
-        hashMap = new SelectCond();
-        arrayList2 = pSWFWorkTimeService.select((ISelectCond)hashMap);
-        for (Object object32 : arrayList2) {
-            pSWFWorkTimeService.exportModel((IEntity)object32, arrayList);
-        }
-        hashMap = new SelectCond();
-        hashMap.set("PSDYNASYSID", pSDynaSys.getPSDynaSysId());
-        arrayList2 = (PSDynaWFService)ServiceGlobal.getService(PSDynaWFService.class, (SessionFactory)this.getSessionFactory());
-        jSONObject = arrayList2.select((ISelectCond)hashMap);
-        for (Object object42 : jSONObject) {
-            arrayList2.exportModel((IEntity)object42, arrayList);
-            object5 = new PSWorkflow();
-            ((PSWorkflowBase)object5).setPSWorkflowId(((PSDynaWFBase)object42).getPSDynaWFId());
-            pSWorkflowService.exportModel((IEntity)object5, arrayList);
-            object6 = ((PSWorkflowBase)object5).getPSWFDEs();
-            object2 = ((ArrayList)object6).iterator();
-            while (object2.hasNext()) {
-                ajaxActionResult = (PSWFDE)object2.next();
-                pSWFDEService.exportModel((IEntity)ajaxActionResult, arrayList);
+        PSLanguageService languageService = (PSLanguageService)ServiceGlobal.getService(PSLanguageService.class, (SessionFactory)this.getSessionFactory());
+        for (PSLanguage language : languageService.select((ISelectCond)new SelectCond())) {
+            model = this.toSimpleJsonObject(language, languageService.getDEModel());
+            if (model != null) {
+                items.add(model);
             }
         }
-        hashMap = new SelectCond();
-        hashMap.set("PSDYNASYSID", pSDynaSys.getPSDynaSysId());
-        arrayList2 = (PSDynaWFVerService)ServiceGlobal.getService(PSDynaWFVerService.class, (SessionFactory)this.getSessionFactory());
-        jSONObject = arrayList2.select((ISelectCond)hashMap);
-        for (Object object42 : jSONObject) {
-            arrayList2.exportModel((IEntity)object42, arrayList);
-            object5 = new PSWFVersion();
-            ((PSWFVersionBase)object5).setPSWFVersionId(((PSDynaWFVerBase)object42).getPSDynaWFVerId());
-            if (!pSWFVersionService.get((IEntity)object5, true)) continue;
-            pSWFVersionService.exportModel((IEntity)object5, arrayList);
-        }
-        hashMap = new SelectCond();
-        hashMap.set("PSDYNASYSID", pSDynaSys.getPSDynaSysId());
-        arrayList2 = (PSDynaAppService)ServiceGlobal.getService(PSDynaAppService.class, (SessionFactory)this.getSessionFactory());
-        jSONObject = (PSDynaAppViewService)ServiceGlobal.getService(PSDynaAppViewService.class, (SessionFactory)this.getSessionFactory());
-        object32 = arrayList2.select((ISelectCond)hashMap);
-        object42 = ((ArrayList)object32).iterator();
-        while (object42.hasNext()) {
-            object5 = (PSDynaApp)object42.next();
-            arrayList2.exportModel((IEntity)object5, arrayList);
-            object6 = new PSSysApp();
-            ((PSSysAppBase)object6).setPSSysAppId(((PSDynaAppBase)object5).getPSDynaAppId());
-            pSSysAppService.get((IEntity)object6);
-            ((PSSysAppBase)object6).resetPSPFId();
-            ((PSSysAppBase)object6).resetPSPFName();
-            ((PSSysAppBase)object6).resetPSPFStyleId();
-            ((PSSysAppBase)object6).resetPSPFStyleName();
-            object2 = this.toSimpleJsonObject((IEntity)object6, pSSysAppService.getDEModel());
-            if (object2 != null) {
-                arrayList.add(object2);
-            }
-            ajaxActionResult = ((PSDynaAppBase)object5).getPSDynaAppViews();
-            for (Object object82 : ajaxActionResult) {
-                jSONObject.exportModel((IEntity)object82, arrayList);
-                entityBase = new PSAppView();
-                entityBase.setPSAppViewId(((PSDynaAppViewBase)object82).getPSDynaAppViewId());
-                if (!pSAppViewService.get((IEntity)entityBase, true)) continue;
-                pSAppViewService.exportModel((IEntity)entityBase, arrayList);
+        PSAppTypeService appTypeService = (PSAppTypeService)ServiceGlobal.getService(PSAppTypeService.class, (SessionFactory)this.getSessionFactory());
+        for (PSAppType appType : appTypeService.select((ISelectCond)new SelectCond())) {
+            model = this.toSimpleJsonObject(appType, appTypeService.getDEModel());
+            if (model != null) {
+                items.add(model);
             }
         }
-        hashMap = new HashMap<String, String>();
-        hashMap.put("PSDEDBCFG", "");
-        hashMap.put("PSDEFDTCOL", "");
-        hashMap.put("PSDEDATAQUERY", "");
-        hashMap.put("PSDEDQJOIN", "");
-        hashMap.put("PSDEDQCODE", "");
-        hashMap.put("PSDEDQCODEEXP", "");
-        hashMap.put("PSDEFSFITEM", "");
-        hashMap.put("PSDEDSDQ", "");
-        hashMap.put("PSDEDRGROUP", "");
-        hashMap.put("PSDEACMODE", "");
-        hashMap.put("PSDELIST", "");
-        hashMap.put("PSDEDATARELATION", "");
-        hashMap.put("PSDEDRDETAIL", "");
-        hashMap.put("PSDEVIEWRV", "");
-        arrayList2 = new ArrayList<Object>();
-        for (Object object32 : arrayList) {
-            object42 = object32.optString("srfdename");
-            if (!StringHelper.isNullOrEmpty((String)object42) && hashMap.containsKey(((String)object42).toUpperCase())) continue;
-            arrayList2.add(object32);
+        SelectCond cond = new SelectCond();
+        cond.set("PSSYSTEMID", pSDynaSys.getPSDynaSysId());
+        PSSysCssService cssService = (PSSysCssService)ServiceGlobal.getService(PSSysCssService.class, (SessionFactory)this.getSessionFactory());
+        for (PSSysCss css : cssService.select((ISelectCond)cond)) {
+            cssService.exportModel(css, items);
         }
-        jSONObject = new JSONObject();
-        jSONObject.put("items", (Object)arrayList2.toArray());
-        object32 = StringHelper.format((String)"%1$tY%1$tm%1$td%1$tH%1$tM%1$tS", (Object)new Date());
-        object42 = FileHelper.getTmpFileName((IWebContext)this.getWebContext(), (String)object32, (String)".ibzbak");
-        object5 = new OutputStreamWriter((OutputStream)new FileOutputStream((String)object42, false), "UTF-8");
-        ((Writer)object5).write(jSONObject.toString());
-        ((OutputStreamWriter)object5).flush();
-        ((OutputStreamWriter)object5).close();
-        object6 = ViewController.getCurrent().getAppModel().getUtilPageUrl("DOWNLOADTMPFILE");
-        object2 = StringHelper.format((String)"%1$sFILEID=%2$s", (Object)object6, (Object)WebUtility.encodeURLParamValue((String)((String)object32 + ".ibzbak")));
-        ajaxActionResult = WebContext.getCurrent().getCurAjaxActionResult();
-        ajaxActionResult.setDownloadPath((String)object2);
+        cond = new SelectCond();
+        cond.set("PSSYSTEMID", pSDynaSys.getPSDynaSysId());
+        cond.set("PSDEID", SelectCond.ISNULL);
+        PSDEOPPrivService opPrivService = (PSDEOPPrivService)ServiceGlobal.getService(PSDEOPPrivService.class, (SessionFactory)this.getSessionFactory());
+        for (PSDEOPPriv opPriv : opPrivService.select((ISelectCond)cond)) {
+            opPrivService.exportModel(opPriv, items);
+        }
+        PSDynaSys exportDynaSys = new PSDynaSys();
+        exportDynaSys.setPSDynaSysId(pSDynaSys.getPSDynaSysId());
+        exportDynaSys.setPSDynaSysName(pSDynaSys.getPSDynaSysName());
+        model = this.toSimpleJsonObject(exportDynaSys, this.getDEModel());
+        if (model != null) {
+            items.add(model);
+        }
+        cond = new SelectCond();
+        cond.set("UIACTIONTYPE", "SYS");
+        cond.set("PSSYSTEMID", pSDynaSys.getPSDynaSysId());
+        cond.set("PSWFID", SelectCond.ISNULL);
+        PSDEUIActionService uiActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
+        for (PSDEUIAction uiAction : uiActionService.select((ISelectCond)cond)) {
+            if (uiAction.getPSSysImage() != null) {
+                pSSysImageService.exportModel(uiAction.getPSSysImage(), items);
+            }
+            uiActionService.exportModel(uiAction, items);
+        }
+        cond = new SelectCond();
+        cond.set("PSDEID", SelectCond.ISNULL);
+        cond.set("PSSYSTEMID", pSDynaSys.getPSDynaSysId());
+        PSDEToolbarService toolbarService = (PSDEToolbarService)ServiceGlobal.getService(PSDEToolbarService.class, (SessionFactory)this.getSessionFactory());
+        for (PSDEToolbar toolbar : toolbarService.select((ISelectCond)cond)) {
+            if (toolbar.isFullEntity()) {
+                toolbar.resetPSSysToolbarId();
+                toolbar.resetPSSysToolbarName();
+                toolbar.resetPSSysPFPluginId();
+                toolbar.resetPSSysPFPluginName();
+            }
+            toolbarService.exportModel(toolbar, items);
+        }
+        cond = new SelectCond();
+        cond.set("PSSYSTEMID", pSDynaSys.getPSDynaSysId());
+        cond.set("PSDEID", SelectCond.ISNULL);
+        cond.set("PSDYNAINSTID", SelectCond.ISNULL);
+        for (PSCodeList codeList : pSCodeListService.select((ISelectCond)cond)) {
+            pSCodeListService.exportModel(codeList, items);
+        }
+        cond = new SelectCond();
+        cond.set("PSDYNASYSID", pSDynaSys.getPSDynaSysId());
+        PSDynaCodeListService dynaCodeListService = (PSDynaCodeListService)ServiceGlobal.getService(PSDynaCodeListService.class, (SessionFactory)this.getSessionFactory());
+        for (PSDynaCodeList dynaCodeList : dynaCodeListService.select((ISelectCond)cond)) {
+            dynaCodeListService.exportModel(dynaCodeList, items);
+            PSCodeList codeList = new PSCodeList();
+            codeList.setPSCodeListId(dynaCodeList.getPSDynaCodeListId());
+            pSCodeListService.exportModel(codeList, items);
+        }
+        cond = new SelectCond();
+        cond.set("PSDYNASYSID", pSDynaSys.getPSDynaSysId());
+        PSDynaDEService dynaDEService = (PSDynaDEService)ServiceGlobal.getService(PSDynaDEService.class, (SessionFactory)this.getSessionFactory());
+        for (PSDynaDE dynaDE : dynaDEService.select((ISelectCond)cond)) {
+            dynaDEService.exportModel(dynaDE, items);
+            PSDataEntity dataEntity = new PSDataEntity();
+            dataEntity.setPSDataEntityId(dynaDE.getPSDynaDEId());
+            pSDataEntityService.get(dataEntity);
+            dataEntity.resetLNPSLanResId();
+            dataEntity.resetLNPSLanResName();
+            pSDataEntityService.exportModel(dataEntity, items);
+            for (PSDynaDEForm dynaDEForm : dynaDE.getPSDynaDEForms()) {
+                pSDynaDEFormService.exportModel(dynaDEForm, items);
+            }
+        }
+        for (PSWFRole role : pSWFRoleService.select((ISelectCond)new SelectCond())) {
+            pSWFRoleService.exportModel(role, items);
+        }
+        for (PSWFWorkTime workTime : pSWFWorkTimeService.select((ISelectCond)new SelectCond())) {
+            pSWFWorkTimeService.exportModel(workTime, items);
+        }
+        cond = new SelectCond();
+        cond.set("PSDYNASYSID", pSDynaSys.getPSDynaSysId());
+        PSDynaWFService dynaWFService = (PSDynaWFService)ServiceGlobal.getService(PSDynaWFService.class, (SessionFactory)this.getSessionFactory());
+        for (PSDynaWF dynaWF : dynaWFService.select((ISelectCond)cond)) {
+            dynaWFService.exportModel(dynaWF, items);
+            PSWorkflow workflow = new PSWorkflow();
+            workflow.setPSWorkflowId(dynaWF.getPSDynaWFId());
+            pSWorkflowService.exportModel(workflow, items);
+            for (PSWFDE wfDE : workflow.getPSWFDEs()) {
+                pSWFDEService.exportModel(wfDE, items);
+            }
+        }
+        cond = new SelectCond();
+        cond.set("PSDYNASYSID", pSDynaSys.getPSDynaSysId());
+        PSDynaWFVerService dynaWFVerService = (PSDynaWFVerService)ServiceGlobal.getService(PSDynaWFVerService.class, (SessionFactory)this.getSessionFactory());
+        for (PSDynaWFVer dynaWFVer : dynaWFVerService.select((ISelectCond)cond)) {
+            dynaWFVerService.exportModel(dynaWFVer, items);
+            PSWFVersion version = new PSWFVersion();
+            version.setPSWFVersionId(dynaWFVer.getPSDynaWFVerId());
+            if (!pSWFVersionService.get(version, true)) continue;
+            pSWFVersionService.exportModel(version, items);
+        }
+        cond = new SelectCond();
+        cond.set("PSDYNASYSID", pSDynaSys.getPSDynaSysId());
+        PSDynaAppService dynaAppService = (PSDynaAppService)ServiceGlobal.getService(PSDynaAppService.class, (SessionFactory)this.getSessionFactory());
+        PSDynaAppViewService dynaAppViewService = (PSDynaAppViewService)ServiceGlobal.getService(PSDynaAppViewService.class, (SessionFactory)this.getSessionFactory());
+        for (PSDynaApp dynaApp : dynaAppService.select((ISelectCond)cond)) {
+            dynaAppService.exportModel(dynaApp, items);
+            PSSysApp sysApp = new PSSysApp();
+            sysApp.setPSSysAppId(dynaApp.getPSDynaAppId());
+            pSSysAppService.get(sysApp);
+            sysApp.resetPSPFId();
+            sysApp.resetPSPFName();
+            sysApp.resetPSPFStyleId();
+            sysApp.resetPSPFStyleName();
+            model = this.toSimpleJsonObject(sysApp, pSSysAppService.getDEModel());
+            if (model != null) {
+                items.add(model);
+            }
+            for (PSDynaAppView dynaAppView : dynaApp.getPSDynaAppViews()) {
+                dynaAppViewService.exportModel(dynaAppView, items);
+                PSAppView appView = new PSAppView();
+                appView.setPSAppViewId(dynaAppView.getPSDynaAppViewId());
+                if (!pSAppViewService.get(appView, true)) continue;
+                pSAppViewService.exportModel(appView, items);
+            }
+        }
+        HashMap<String, String> excluded = new HashMap<String, String>();
+        excluded.put("PSDEDBCFG", "");
+        excluded.put("PSDEFDTCOL", "");
+        excluded.put("PSDEDATAQUERY", "");
+        excluded.put("PSDEDQJOIN", "");
+        excluded.put("PSDEDQCODE", "");
+        excluded.put("PSDEDQCODEEXP", "");
+        excluded.put("PSDEFSFITEM", "");
+        excluded.put("PSDEDSDQ", "");
+        excluded.put("PSDEDRGROUP", "");
+        excluded.put("PSDEACMODE", "");
+        excluded.put("PSDELIST", "");
+        excluded.put("PSDEDATARELATION", "");
+        excluded.put("PSDEDRDETAIL", "");
+        excluded.put("PSDEVIEWRV", "");
+        ArrayList<JSONObject> filteredItems = new ArrayList<JSONObject>();
+        for (JSONObject item : items) {
+            String modelName = item.optString("srfdename");
+            if (!StringHelper.isNullOrEmpty(modelName) && excluded.containsKey(modelName.toUpperCase())) continue;
+            filteredItems.add(item);
+        }
+        JSONObject backup = new JSONObject();
+        backup.put("items", (Object)filteredItems.toArray());
+        String timestamp = StringHelper.format((String)"%1$tY%1$tm%1$td%1$tH%1$tM%1$tS", (Object)new Date());
+        String tmpFile = FileHelper.getTmpFileName((IWebContext)this.getWebContext(), timestamp, ".ibzbak");
+        OutputStreamWriter writer = new OutputStreamWriter((OutputStream)new FileOutputStream(tmpFile, false), "UTF-8");
+        writer.write(backup.toString());
+        writer.flush();
+        writer.close();
+        String downloadUrl = ViewController.getCurrent().getAppModel().getUtilPageUrl("DOWNLOADTMPFILE");
+        String downloadPath = StringHelper.format((String)"%1$sFILEID=%2$s", (Object)downloadUrl, (Object)WebUtility.encodeURLParamValue(timestamp + ".ibzbak"));
+        AjaxActionResult ajaxActionResult = WebContext.getCurrent().getCurAjaxActionResult();
+        ajaxActionResult.setDownloadPath(downloadPath);
     }
 
     protected JSONObject toSimpleJsonObject(IEntity iEntity, IDataEntityModel iDataEntityModel) throws Exception {
@@ -389,4 +372,3 @@ extends PSDynaSysServiceBase {
         return jSONObject;
     }
 }
-

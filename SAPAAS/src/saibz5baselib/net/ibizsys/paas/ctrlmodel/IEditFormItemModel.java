@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.IFormItemModel;
+/**
+ * 编辑表单项模型
+ * 
+ * @author lionlau
+ *
+ */
+public interface IEditFormItemModel extends IFormItemModel {
 
-public interface IEditFormItemModel
-extends IFormItemModel {
 }
-

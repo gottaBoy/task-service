@@ -41,7 +41,7 @@ extends BaseLayoutItemPublisher {
         BaseDataEntity cond = new BaseDataEntity();
         cond.SetParamValue("LAYOUTPANELID", (Object)layoutPanel.getLAYOUTPANELID());
         IDEDataCtrl layoutPanelItemDataCtrl = iDAConfigPublishContext.getDEDataCtrl("DE0353");
-        Vector layoutPanelItems = new Vector();
+        Vector<LayoutPanelItem> layoutPanelItems = new Vector<LayoutPanelItem>();
         callResult = layoutPanelItemDataCtrl.Select(cond, layoutPanelItems, LayoutPanelItem.class.getName(), "", "ORDER BY ORDERFLAG");
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u5e03\u5c40\u9762\u677f\u90e8\u4ef6\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -57,4 +57,3 @@ extends BaseLayoutItemPublisher {
         return jo;
     }
 }
-

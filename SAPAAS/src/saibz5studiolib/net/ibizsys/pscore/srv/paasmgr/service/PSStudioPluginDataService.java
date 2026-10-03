@@ -36,7 +36,7 @@ extends PSStudioPluginDataServiceBase {
 
     @Override
     protected void onBeforeUpdate(PSStudioPluginData pSStudioPluginData) throws Exception {
-        PSStudioPluginData pSStudioPluginData2 = (PSStudioPluginData)this.getLast((IEntity)pSStudioPluginData);
+        PSStudioPluginData pSStudioPluginData2 = (PSStudioPluginData)this.getLast(pSStudioPluginData);
         int n = DataTypeHelper.getIntegerValue((Object)pSStudioPluginData2.getActionState(), (Integer)30);
         if (n == 30 || n == 40) {
             throw new Exception("\u66f4\u65b0\u64cd\u4f5c\u72b6\u6001\u4e0d\u6b63\u786e");

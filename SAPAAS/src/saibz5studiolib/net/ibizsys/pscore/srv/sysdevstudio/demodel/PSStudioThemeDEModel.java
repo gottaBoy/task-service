@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdevstudio.demodel.PSStudioThemeDEModelBase;
 
 public class PSStudioThemeDEModel
 extends PSStudioThemeDEModelBase {
+
+    public PSStudioThemeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

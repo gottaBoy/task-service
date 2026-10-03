@@ -1,21 +1,59 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.xml;
 
+/**
+ * XML编写器接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface ISimpleXmlWriter {
-    public void writeRaw(String var1);
 
-    public void writeStartElement(String var1);
+	/**
+	 * 写入直接内容
+	 * 
+	 * @param strRawText
+	 */
+	void writeRaw(String strRawText);
 
-    public void writeComment(String var1);
+	/**
+	 * 开始写入元素
+	 * 
+	 * @param strElement
+	 */
+	void writeStartElement(String strElement);
 
-    public void writeCDATA(String var1);
+	/**
+	 * 写入注释
+	 * 
+	 * @param strComment
+	 */
+	void writeComment(String strComment);
 
-    public void writeValue(String var1);
+	/**
+	 * 写入CDATA分区
+	 * 
+	 * @param strContent
+	 */
+	void writeCDATA(String strContent);
 
-    public void writeAttributeString(String var1, String var2);
+	/**
+	 * 写入节点值
+	 * 
+	 * @param strContent
+	 */
+	void writeValue(String strContent);
 
-    public void writeEndElement();
+	/**
+	 * 写入属性
+	 *
+	 * @param strName String
+	 * @param strValue String
+	 */
+	void writeAttributeString(String strName, String strValue);
+
+	/**
+	 * 写入结束符号
+	 */
+	void writeEndElement();
+
 }
-

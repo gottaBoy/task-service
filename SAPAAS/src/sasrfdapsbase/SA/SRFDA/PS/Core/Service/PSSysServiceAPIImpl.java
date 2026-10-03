@@ -298,11 +298,11 @@ IPSModelSortable {
                 psModelStorage.setStorageType("DEFAULT");
                 psModelStorage.setPSModelStorageName(SA.SRFramework.Utility.StringHelper.Format((String)"\u7cfb\u7edf\u670d\u52a1\u63a5\u53e3\u914d\u7f6e\u6587\u4ef6"));
                 psModelStorage.setContent(strConfigModel);
-                psModelStorageService.save((IEntity)psModelStorage, false);
+                psModelStorageService.save(psModelStorage, false);
                 net.ibizsys.pscore.srv.sysdesign.entity.PSSysServiceAPI psSysServiceAPI = new net.ibizsys.pscore.srv.sysdesign.entity.PSSysServiceAPI();
                 psSysServiceAPI.setPSSysServiceAPIId(PSSysServiceAPIImpl.this.getId());
                 psSysServiceAPI.setCfgTag(strDigestCode);
-                psSysServiceAPIService.sysUpdate((IEntity)psSysServiceAPI, false);
+                psSysServiceAPIService.sysUpdate(psSysServiceAPI, false);
             }
         });
         this.getPSModelHelper().resetCache();
@@ -890,4 +890,3 @@ IPSModelSortable {
         return 99999;
     }
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEFGridColDEModelBase;
 
 public class PSDEFGridColDEModel
 extends PSDEFGridColDEModelBase {
+
+    public PSDEFGridColDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

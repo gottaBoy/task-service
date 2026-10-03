@@ -68,7 +68,7 @@ extends PSDevSlnSysDynaInstServiceBase {
                 try {
                     PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
                     pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(string);
-                    PSDevSlnSysDynaInstService.this.get((IEntity)pSDevSlnSysDynaInst);
+                    PSDevSlnSysDynaInstService.this.get(pSDevSlnSysDynaInst);
                     PSCoreEntityKeeperGlobal.getCurrent(PSDevSlnSysDynaInstService.this.getSessionFactory()).updatePSDevSlnSysDynaInst(pSDevSlnSysDynaInst);
                 }
                 catch (Exception exception) {
@@ -161,7 +161,7 @@ extends PSDevSlnSysDynaInstServiceBase {
     protected void onCheckOutModel(PSDevSlnSysDynaInst pSDevSlnSysDynaInst) throws Exception {
         PSDevCenterSVN pSDevCenterSVN;
         if (!pSDevSlnSysDynaInst.isFullEntity()) {
-            this.get((IEntity)pSDevSlnSysDynaInst);
+            this.get(pSDevSlnSysDynaInst);
         }
         if ((pSDevCenterSVN = pSDevSlnSysDynaInst.getModelPSDevCenterSVN()) == null) {
             throw new Exception("\u52a8\u6001\u5b9e\u4f8b\u6a21\u578b\u4ed3\u5e93\u65e0\u6548");
@@ -174,7 +174,7 @@ extends PSDevSlnSysDynaInstServiceBase {
     protected void onCheckInModel(PSDevSlnSysDynaInst pSDevSlnSysDynaInst) throws Exception {
         PSDevCenterSVN pSDevCenterSVN;
         if (!pSDevSlnSysDynaInst.isFullEntity()) {
-            this.get((IEntity)pSDevSlnSysDynaInst);
+            this.get(pSDevSlnSysDynaInst);
         }
         if ((pSDevCenterSVN = pSDevSlnSysDynaInst.getModelPSDevCenterSVN()) == null) {
             throw new Exception("\u52a8\u6001\u5b9e\u4f8b\u6a21\u578b\u4ed3\u5e93\u65e0\u6548");
@@ -191,7 +191,7 @@ extends PSDevSlnSysDynaInstServiceBase {
     protected void onCheckOutCfg(PSDevSlnSysDynaInst pSDevSlnSysDynaInst) throws Exception {
         PSDevCenterSVN pSDevCenterSVN;
         if (!pSDevSlnSysDynaInst.isFullEntity()) {
-            this.get((IEntity)pSDevSlnSysDynaInst);
+            this.get(pSDevSlnSysDynaInst);
         }
         if ((pSDevCenterSVN = pSDevSlnSysDynaInst.getCfgPSDevCenterSVN()) == null) {
             throw new Exception("\u52a8\u6001\u5b9e\u4f8b\u914d\u7f6e\u4ed3\u5e93\u65e0\u6548");
@@ -204,7 +204,7 @@ extends PSDevSlnSysDynaInstServiceBase {
     protected void onCheckInCfg(PSDevSlnSysDynaInst pSDevSlnSysDynaInst) throws Exception {
         PSDevCenterSVN pSDevCenterSVN;
         if (!pSDevSlnSysDynaInst.isFullEntity()) {
-            this.get((IEntity)pSDevSlnSysDynaInst);
+            this.get(pSDevSlnSysDynaInst);
         }
         if ((pSDevCenterSVN = pSDevSlnSysDynaInst.getCfgPSDevCenterSVN()) == null) {
             throw new Exception("\u52a8\u6001\u5b9e\u4f8b\u914d\u7f6e\u4ed3\u5e93\u65e0\u6548");
@@ -279,7 +279,7 @@ extends PSDevSlnSysDynaInstServiceBase {
         if (pSDevSlnSysDynaInst3 == null) {
             pSDevSlnSysDynaInst3 = new PSDevSlnSysDynaInst();
             pSDevSlnSysDynaInst3.setPSDevSlnSysDynaInstId(string);
-            this.get((IEntity)pSDevSlnSysDynaInst3);
+            this.get(pSDevSlnSysDynaInst3);
             if (StringHelper.isNullOrEmpty((String)pSDevSlnSysDynaInst3.getInstModelPath()) && !StringHelper.isNullOrEmpty((String)pSDevSlnSysDynaInst3.getModelPSDevCenterSVNId())) {
                 this.checkOutModel(pSDevSlnSysDynaInst3);
                 pSDevSlnSysDynaInst3.setInstModelPath(PSDevSlnSysDynaInstService.getPSDynaInstModelFolder(pSDevSlnSysDynaInst3));

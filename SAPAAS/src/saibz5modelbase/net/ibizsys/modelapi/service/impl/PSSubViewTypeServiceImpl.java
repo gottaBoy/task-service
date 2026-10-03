@@ -113,9 +113,9 @@ implements IPSSubViewTypeService {
 
     @Override
     protected List<PSSubViewType> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSubViewType> list = new ArrayList<PSSubViewType>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSubViewType> items = this.listByPSModule(parent);

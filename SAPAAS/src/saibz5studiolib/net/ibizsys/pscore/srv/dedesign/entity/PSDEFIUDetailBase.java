@@ -1202,7 +1202,7 @@ implements Serializable {
                 PSDEFIUpdate pSDEFIUpdate = new PSDEFIUpdate();
                 pSDEFIUpdate.setPSDEFIUpdateId(this.getPSDEFIUpdateId());
                 PSDEFIUpdateService pSDEFIUpdateService = (PSDEFIUpdateService)ServiceGlobal.getService(PSDEFIUpdateService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFIUpdateService.autoGet((IEntity)pSDEFIUpdate);
+                pSDEFIUpdateService.autoGet(pSDEFIUpdate);
                 this.psdefiupdate = pSDEFIUpdate;
             }
             return this.psdefiupdate;
@@ -1228,7 +1228,7 @@ implements Serializable {
                 PSDEFormDetail pSDEFormDetail = new PSDEFormDetail();
                 pSDEFormDetail.setPSDEFormDetailId(this.getPSDEFormDetailId());
                 PSDEFormDetailService pSDEFormDetailService = (PSDEFormDetailService)ServiceGlobal.getService(PSDEFormDetailService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFormDetailService.autoGet((IEntity)pSDEFormDetail);
+                pSDEFormDetailService.autoGet(pSDEFormDetail);
                 this.psdeformdetail = pSDEFormDetail;
             }
             return this.psdeformdetail;
@@ -1254,7 +1254,7 @@ implements Serializable {
                 PSDEForm pSDEForm = new PSDEForm();
                 pSDEForm.setPSDEFormId(this.getPSDEFormId());
                 PSDEFormService pSDEFormService = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFormService.autoGet((IEntity)pSDEForm);
+                pSDEFormService.autoGet(pSDEForm);
                 this.psdeform = pSDEForm;
             }
             return this.psdeform;

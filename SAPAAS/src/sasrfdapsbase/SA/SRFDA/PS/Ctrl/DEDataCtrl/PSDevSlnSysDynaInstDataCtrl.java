@@ -91,9 +91,9 @@ extends PSDEDataCtrl {
                     public void execute(ITransaction iTransaction) throws Exception {
                         PSDevSlnSysDynaInstService psDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                         if (bInsert2) {
-                            psDevSlnSysDynaInstService.create((IEntity)psDevSlnSysDynaInst);
+                            psDevSlnSysDynaInstService.create(psDevSlnSysDynaInst);
                         } else {
-                            psDevSlnSysDynaInstService.update((IEntity)psDevSlnSysDynaInst);
+                            psDevSlnSysDynaInstService.update(psDevSlnSysDynaInst);
                         }
                     }
                 });
@@ -168,7 +168,7 @@ extends PSDEDataCtrl {
         PSDevSlnSysDynaInstService psDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         psDevSlnSysDynaInstService.checkOutAllModel(psDevSlnSysDynaInst);
         log.debug((Object)String.format("\u52a8\u6001\u5b9e\u4f8b[%1$s]\u6a21\u578b\u8def\u5f84[%2$s]", psDevSlnSysDynaInst.getPSDevSlnSysDynaInstId(), psDevSlnSysDynaInst.getInstModelPath()));
-        ArrayList psDevSlnSysDynaInstRefList = psDevSlnSysDynaInst.getPSDevSlnSysDynaInstRefs();
+        ArrayList<PSDevSlnSysDynaInstRef> psDevSlnSysDynaInstRefList = psDevSlnSysDynaInst.getPSDevSlnSysDynaInstRefs();
         if (psDevSlnSysDynaInstRefList != null) {
             for (PSDevSlnSysDynaInstRef psDevSlnSysDynaInstRef : psDevSlnSysDynaInstRefList) {
                 log.debug((Object)String.format("\u52a8\u6001\u5b9e\u4f8b[%1$s]\u5f15\u7528\u6a21\u578b\u8def\u5f84[%2$s]", psDevSlnSysDynaInst.getPSDevSlnSysDynaInstId(), psDevSlnSysDynaInstRef.getInstModelPath()));
@@ -278,4 +278,3 @@ extends PSDEDataCtrl {
         psDevSlnSysDynaInstService.checkInCfg(psDevSlnSysDynaInst);
     }
 }
-

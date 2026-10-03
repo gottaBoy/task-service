@@ -431,12 +431,11 @@ extends BaseBIObjectModel {
 
     protected void BuildPivotTableMeasureColumns(int nDMIndex, Vector<String[]> columnList, Vector<String> bindingList, String strDMKey, AtomicReference<Object> refColumnIndex, Vector<MergeRange> mergeRangeList) {
         if (this.topDimensions.size() <= nDMIndex) {
-            Object columnTexts;
             Integer nCurColumnIndex = (Integer)refColumnIndex.get();
             int i = 0;
             while (i < this.measures.size()) {
                 int nColumnTextIndex = nDMIndex;
-                columnTexts = columnList.get(nCurColumnIndex);
+                String[] columnTexts = columnList.get(nCurColumnIndex);
                 int nLastColumnIndex = nCurColumnIndex;
                 if (this.bShowMeasureGroup) {
                     columnTexts[nColumnTextIndex] = this.measures.get(i).getGroupName();
@@ -454,9 +453,7 @@ extends BaseBIObjectModel {
             }
             if (this.bShowMeasureGroup) {
                 Integer nMeasureGroupSpanStart = (Integer)refColumnIndex.get();
-                columnTexts = this.measureGroupList.iterator();
-                while (columnTexts.hasNext()) {
-                    int nMeasureGroupSpan = (Integer)columnTexts.next();
+                for (Integer nMeasureGroupSpan : this.measureGroupList) {
                     if (nMeasureGroupSpan > 1) {
                         MergeRange mergeRange = new MergeRange();
                         mergeRange.StartRow = nDMIndex;
@@ -556,4 +553,3 @@ extends BaseBIObjectModel {
         }
     }
 }
-

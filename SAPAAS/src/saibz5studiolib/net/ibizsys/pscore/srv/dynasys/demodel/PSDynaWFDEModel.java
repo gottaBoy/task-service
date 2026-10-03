@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dynasys.demodel.PSDynaWFDEModelBase;
 
 public class PSDynaWFDEModel
 extends PSDynaWFDEModelBase {
+
+    public PSDynaWFDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

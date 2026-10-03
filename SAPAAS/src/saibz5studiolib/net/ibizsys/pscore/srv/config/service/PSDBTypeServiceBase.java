@@ -122,7 +122,7 @@ extends PSCoreSysServiceBase<PSDBType> {
     }
 
     protected void onFillParentInfo(PSDBType pSDBType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDBType, string, string2, string3);
+        super.onFillParentInfo(pSDBType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -133,11 +133,11 @@ extends PSCoreSysServiceBase<PSDBType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDBType, bl);
+        super.onFillEntityFullInfo(pSDBType, bl);
     }
 
     protected void onWriteBackParent(PSDBType pSDBType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDBType, bl);
+        super.onWriteBackParent(pSDBType, bl);
     }
 
     @Override
@@ -154,7 +154,7 @@ extends PSCoreSysServiceBase<PSDBType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDBType pSDBType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDBType, bl);
+        super.onRemoveEntityUncopyValues(pSDBType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDBType pSDBType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -223,7 +223,7 @@ extends PSCoreSysServiceBase<PSDBType> {
         if ((entityFieldError = this.onCheckField_UpdateSPPubObj(bl, pSDBType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDBType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDBType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DBClientPath(boolean bl, PSDBType pSDBType, boolean bl2, boolean bl3) throws Exception {
@@ -236,7 +236,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DBClientPath_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_DBClientPath_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DBCLIENTPATH");
@@ -261,7 +261,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEDBCfgObj_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_DEDBCfgObj_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEDBCFGOBJ");
@@ -286,7 +286,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEDQEngObj_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_DEDQEngObj_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEDQENGOBJ");
@@ -311,7 +311,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEDQPubObj_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_DEDQPubObj_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEDQPUBOBJ");
@@ -336,7 +336,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEDSPubObj_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_DEDSPubObj_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEDSPUBOBJ");
@@ -361,7 +361,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEFDTColObj_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_DEFDTColObj_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFDTCOLOBJ");
@@ -386,7 +386,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DeleteSPPubObj_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_DeleteSPPubObj_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DELETESPPUBOBJ");
@@ -411,7 +411,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GetSPPubObj_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_GetSPPubObj_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GETSPPUBOBJ");
@@ -436,7 +436,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_HibDialect_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_HibDialect_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HIBDIALECT");
@@ -458,7 +458,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconPath_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_IconPath_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONPATH");
@@ -483,7 +483,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_InsertSPPubObj_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_InsertSPPubObj_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INSERTSPPUBOBJ");
@@ -505,7 +505,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_InstallPath_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_InstallPath_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INSTALLPATH");
@@ -530,7 +530,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JdbcDialect_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_JdbcDialect_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JDBCDIALECT");
@@ -555,7 +555,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JdbcDriverName_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_JdbcDriverName_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JDBCDRIVERNAME");
@@ -577,7 +577,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -602,7 +602,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDBTypeId_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDBTypeId_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDBTYPEID");
@@ -627,7 +627,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDBTypeName_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDBTypeName_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDBTYPENAME");
@@ -649,7 +649,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PubMode_Default((IEntity)pSDBType, bl2, bl3);
+            string = this.onTestValueRule_PubMode_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PUBMODE");
@@ -674,7 +674,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SysDBCfgObj_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_SysDBCfgObj_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYSDBCFGOBJ");
@@ -699,7 +699,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeHelper_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeHelper_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEHELPER");
@@ -724,7 +724,7 @@ extends PSCoreSysServiceBase<PSDBType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UpdateSPPubObj_Default((IEntity)pSDBType, bl2, bl3);
+            string2 = this.onTestValueRule_UpdateSPPubObj_Default(pSDBType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPDATESPPUBOBJ");
@@ -737,11 +737,11 @@ extends PSCoreSysServiceBase<PSDBType> {
     }
 
     protected void onSyncEntity(PSDBType pSDBType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDBType, bl);
+        super.onSyncEntity(pSDBType, bl);
     }
 
     protected void onSyncIndexEntities(PSDBType pSDBType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDBType, bl);
+        super.onSyncIndexEntities(pSDBType, bl);
     }
 
     public Object getDataContextValue(PSDBType pSDBType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -749,14 +749,14 @@ extends PSCoreSysServiceBase<PSDBType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDBType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDBType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDBType pSDBType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDBType, arrayList, n);
+        super.onExportMajorModel(pSDBType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1116,14 +1116,14 @@ extends PSCoreSysServiceBase<PSDBType> {
 
     protected boolean onMergeChild(String string, String string2, PSDBType pSDBType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDBType)) {
+        if (super.onMergeChild(string, string2, pSDBType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDBType pSDBType) throws Exception {
-        super.onUpdateParent((IEntity)pSDBType);
+        super.onUpdateParent(pSDBType);
     }
 
     @Override

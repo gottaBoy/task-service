@@ -72,7 +72,7 @@ extends PSSysModelInstServiceBase {
         PSDevCenterTS pSDevCenterTS = new PSDevCenterTS();
         pSDevCenterTS.setPSDevCenterTSId(string2);
         PSDevCenterTSService pSDevCenterTSService = (PSDevCenterTSService)ServiceGlobal.getService(PSDevCenterTSService.class);
-        pSDevCenterTSService.get((IEntity)pSDevCenterTS);
+        pSDevCenterTSService.get(pSDevCenterTS);
         String string3 = pSDevCenterTS.getPSTaskServer().getServerUrl();
         string3 = string3 + "saps/remoteapi.jsp";
         RemoteService remoteService = new RemoteService();
@@ -96,7 +96,7 @@ extends PSSysModelInstServiceBase {
 
             public void execute(ITransaction iTransaction) throws Exception {
                 String string = StringHelper.format((String)"select trx_mysql_thread_id from information_schema.innodb_trx");
-                ArrayList arrayList = PSSysModelInstService.this.getDAO().executeRawSelectSql(null, string, null);
+                ArrayList<IEntity> arrayList = PSSysModelInstService.this.getDAO().executeRawSelectSql(null, string, null);
                 if (arrayList.size() == 0) {
                     return;
                 }
@@ -151,7 +151,7 @@ extends PSSysModelInstServiceBase {
                 PSSysModelInst pSSysModelInst = null;
                 do {
                     pSSysModelInst = null;
-                    ArrayList arrayList = PSSysModelInstService.this.select((ISelectCond)selectCond);
+                    ArrayList<PSSysModelInst> arrayList = PSSysModelInstService.this.select((ISelectCond)selectCond);
                     if (arrayList.size() == 0) {
                         if (pSDevSlnSys.getMainPSDevSlnSys() != null) {
                             selectCond.remove("PSDBSERVERID");
@@ -163,7 +163,7 @@ extends PSSysModelInstServiceBase {
                     }
                     int n = random.nextInt(100) % arrayList.size();
                     pSSysModelInst = (PSSysModelInst)arrayList.get(n);
-                    PSSysModelInstService.this.get((IEntity)pSSysModelInst);
+                    PSSysModelInstService.this.get(pSSysModelInst);
                 } while (StringHelper.compare((String)pSSysModelInst.getInstState(), (String)((String)selectCond.get("INSTSTATE")), (boolean)false) != 0);
                 pSSysModelInst.setPSDevCenterId(pSDevSlnSys.getPSDevSln().getPSDevCenterId());
                 pSSysModelInst.setPSDevCenterName(pSDevSlnSys.getPSDevSln().getPSDevCenterName());
@@ -187,51 +187,46 @@ extends PSSysModelInstServiceBase {
 
     @Override
     protected void onCreateDraft(PSSysModelInst pSSysModelInst) throws Exception {
-        Object object;
-        Object object2;
-        Object object3;
-        Object object4;
         PSDBServer pSDBServer = pSSysModelInst.getPSDBServer();
         if (pSDBServer == null) {
-            object4 = pSSysModelInst.getPSSvrDomainId();
-            if (StringHelper.isNullOrEmpty((String)object4)) {
+            String domainId = pSSysModelInst.getPSSvrDomainId();
+            if (StringHelper.isNullOrEmpty(domainId)) {
                 throw new Exception(StringHelper.format((String)"\u6ca1\u6709\u6307\u5b9a\u670d\u52a1\u57df\u6807\u8bc6\uff0c\u65e0\u6cd5\u5efa\u7acb\u6a21\u578b\u4ed3\u5e93"));
             }
-            object3 = new SelectCond();
-            object3.set("PSSVRDOMAINID", object4);
-            object3.set("BACKUPMODE", (Object)0);
-            object3.set("VALIDFLAG", (Object)1);
-            object2 = (PSDBServerService)ServiceGlobal.getService(PSDBServerService.class, (SessionFactory)this.getSessionFactory());
-            object = object2.select((ISelectCond)object3);
-            if (((ArrayList)object).size() == 0) {
+            SelectCond selectCond = new SelectCond();
+            selectCond.set("PSSVRDOMAINID", domainId);
+            selectCond.set("BACKUPMODE", (Object)0);
+            selectCond.set("VALIDFLAG", (Object)1);
+            PSDBServerService serverService = (PSDBServerService)ServiceGlobal.getService(PSDBServerService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<PSDBServer> servers = serverService.select((ISelectCond)selectCond);
+            if (servers.size() == 0) {
                 throw new Exception(StringHelper.format((String)"\u6ca1\u6709\u83b7\u53d6\u6570\u636e\u5e93\u670d\u52a1\u5668\uff0c\u65e0\u6cd5\u5efa\u7acb\u6a21\u578b\u4ed3\u5e93"));
             }
-            int n = random.nextInt(100) % ((ArrayList)object).size();
-            pSDBServer = (PSDBServer)((ArrayList)object).get(n);
+            int n = random.nextInt(100) % servers.size();
+            pSDBServer = servers.get(n);
         }
-        object4 = new PSSysModelInst();
-        pSSysModelInst.copyTo((IDataObject)object4, false);
-        object3 = "";
-        if (pSDBServer.getPSSvrDomain() != null && StringHelper.isNullOrEmpty((String)(object3 = pSDBServer.getPSSvrDomain().getDomainCode()))) {
-            object3 = "";
+        PSSysModelInst original = new PSSysModelInst();
+        pSSysModelInst.copyTo((IDataObject)original, false);
+        String domainCode = "";
+        if (pSDBServer.getPSSvrDomain() != null && StringHelper.isNullOrEmpty((String)(domainCode = pSDBServer.getPSSvrDomain().getDomainCode()))) {
+            domainCode = "";
         }
-        object2 = "s" + (String)object3 + KeyValueHelper.genUniqueId((String)KeyValueHelper.genGuidEx()).substring(0, 9);
+        String dbName = "s" + domainCode + KeyValueHelper.genUniqueId((String)KeyValueHelper.genGuidEx()).substring(0, 9);
         pSSysModelInst.setPSSvrDomainId(pSDBServer.getPSSvrDomainId());
         pSSysModelInst.setPSSvrDomainName(pSDBServer.getPSSvrDomainName());
         pSSysModelInst.setPSDBServerId(pSDBServer.getPSDBServerId());
         pSSysModelInst.setPSDBServerName(pSDBServer.getPSDBServerName());
         pSSysModelInst.setDBType(pSDBServer.getDBType());
         pSSysModelInst.setInstState("35");
-        pSSysModelInst.setPSSysModelInstName((String)object2);
-        pSSysModelInst.setConnStr(StringHelper.format((String)pSDBServer.getDBUrl(), (Object)object2));
+        pSSysModelInst.setPSSysModelInstName(dbName);
+        pSSysModelInst.setConnStr(StringHelper.format((String)pSDBServer.getDBUrl(), (Object)dbName));
         pSSysModelInst.setSysType("DEVSYS");
-        pSSysModelInst.setDBName((String)object2);
-        pSSysModelInst.setUserName((String)object2);
-        object = this.calcPassword();
-        pSSysModelInst.setPassWD((String)object);
-        pSSysModelInst.setPSDevCenterId(((PSSysModelInstBase)object4).getPSDevCenterId());
-        pSSysModelInst.setPSDevCenterName(((PSSysModelInstBase)object4).getPSDevCenterName());
-        pSSysModelInst.setRefInfo(((PSSysModelInstBase)object4).getRefInfo());
+        pSSysModelInst.setDBName(dbName);
+        pSSysModelInst.setUserName(dbName);
+        pSSysModelInst.setPassWD(this.calcPassword());
+        pSSysModelInst.setPSDevCenterId(original.getPSDevCenterId());
+        pSSysModelInst.setPSDevCenterName(original.getPSDevCenterName());
+        pSSysModelInst.setRefInfo(original.getRefInfo());
         this.create(pSSysModelInst);
     }
 
@@ -241,12 +236,12 @@ extends PSSysModelInstServiceBase {
         String string;
         PSSysModelInst pSSysModelInst2 = new PSSysModelInst();
         pSSysModelInst2.setPSSysModelInstId(pSSysModelInst.getPSSysModelInstId());
-        this.get((IEntity)pSSysModelInst2);
+        this.get(pSSysModelInst2);
         String string2 = pSSysModelInst.getPSSysModelInstId();
         String string3 = string2 + BACKUPEXT;
         pSSysModelInst.reset();
         pSSysModelInst.setPSSysModelInstId(string3);
-        if (this.get((IEntity)pSSysModelInst, true)) {
+        if (this.get(pSSysModelInst, true)) {
             return;
         }
         PSDBServerBase pSDBServerBase = null;
@@ -255,12 +250,12 @@ extends PSSysModelInstServiceBase {
             if (StringHelper.isNullOrEmpty((String)string)) {
                 throw new Exception(StringHelper.format((String)"\u6ca1\u6709\u6307\u5b9a\u670d\u52a1\u57df\u6807\u8bc6\uff0c\u65e0\u6cd5\u5efa\u7acb\u5907\u4efd\u6a21\u578b\u4ed3\u5e93"));
             }
-            object = new SelectCond();
-            object.set("PSSVRDOMAINID", (Object)string);
-            object.set("BACKUPMODE", (Object)1);
-            object.set("VALIDFLAG", (Object)1);
+            SelectCond selectCond = new SelectCond();
+            selectCond.set("PSSVRDOMAINID", (Object)string);
+            selectCond.set("BACKUPMODE", (Object)1);
+            selectCond.set("VALIDFLAG", (Object)1);
             PSDBServerService pSDBServerService = (PSDBServerService)ServiceGlobal.getService(PSDBServerService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList arrayList = pSDBServerService.select((ISelectCond)object);
+            ArrayList<PSDBServer> arrayList = pSDBServerService.select((ISelectCond)selectCond);
             if (arrayList.size() == 0) {
                 throw new Exception(StringHelper.format((String)"\u6ca1\u6709\u83b7\u53d6\u6570\u636e\u5e93\u670d\u52a1\u5668\uff0c\u65e0\u6cd5\u5efa\u7acb\u5907\u4efd\u6a21\u578b\u4ed3\u5e93"));
             }
@@ -300,4 +295,3 @@ extends PSSysModelInstServiceBase {
         return string2;
     }
 }
-

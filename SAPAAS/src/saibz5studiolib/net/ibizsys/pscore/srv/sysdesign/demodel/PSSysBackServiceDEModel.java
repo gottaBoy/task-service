@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysBackServiceDEModelBase;
 
 public class PSSysBackServiceDEModel
 extends PSSysBackServiceDEModelBase {
+
+    public PSSysBackServiceDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

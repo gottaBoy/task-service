@@ -150,7 +150,7 @@ extends BaseService {
 
     protected void InternalSend() {
         CallResult callResult;
-        Vector ftpSendQueueList = new Vector();
+        Vector<FtpSendQueue> ftpSendQueueList = new Vector();
         CallParamList callParamList = new CallParamList();
         if (this.bPlanSendTime) {
             Date date = new Date();

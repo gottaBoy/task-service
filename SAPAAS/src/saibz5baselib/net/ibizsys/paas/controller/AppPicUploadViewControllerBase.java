@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.AppUtilViewControllerBase;
+/**
+ * 应用图片上传视图控制器基类
+ * @author Administrator
+ *
+ */
+public abstract class AppPicUploadViewControllerBase extends AppUtilViewControllerBase {
 
-public abstract class AppPicUploadViewControllerBase
-extends AppUtilViewControllerBase {
+	public AppPicUploadViewControllerBase() throws Exception {
+		super();
+	}
 }
-

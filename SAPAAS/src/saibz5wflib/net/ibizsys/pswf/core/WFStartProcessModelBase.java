@@ -1,19 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.WFProcessModelBase;
+/**
+ * 流程开始处理模型
+ * @author lionlau
+ *
+ */
+public abstract class WFStartProcessModelBase extends WFProcessModelBase
+{
 
-public abstract class WFStartProcessModelBase
-extends WFProcessModelBase {
-    @Override
-    public boolean isStartProcess() {
-        return true;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.WFProcessModelBase#isStartProcess()
+	 */
+	@Override
+	public boolean isStartProcess()
+	{
+		return true;
+	}
 
-    public String getWFProcessType() {
-        return "START";
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.WFProcessModelBase#getWFProcessType()
+	 */
+	@Override
+	public String getWFProcessType()
+	{
+		return IWFProcessModel.Start;
+	}
 }
-

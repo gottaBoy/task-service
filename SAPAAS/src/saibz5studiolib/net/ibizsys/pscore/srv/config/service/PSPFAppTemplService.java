@@ -34,7 +34,7 @@ extends PSPFAppTemplServiceBase {
             pSPFAppTempl.setPSPFAppTemplId(KeyValueHelper.genUniqueId((String)pSPFAppTempl.getPSPFId(), (String)pSPFAppTempl.getPSPFStyleId(), (String)pSPFAppTempl.getPSPFPubCodeId()));
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)pSPFAppTempl, bl);
+        return super.onFillEntityKeyValue(pSPFAppTempl, bl);
     }
 
     @Override

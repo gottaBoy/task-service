@@ -1482,7 +1482,7 @@ implements Serializable {
                 PSCtrlMsg pSCtrlMsg = new PSCtrlMsg();
                 pSCtrlMsg.setPSCtrlMsgId(this.getPSCtrlMsgId());
                 PSCtrlMsgService pSCtrlMsgService = (PSCtrlMsgService)ServiceGlobal.getService(PSCtrlMsgService.class, (SessionFactory)this.getSessionFactory());
-                pSCtrlMsgService.autoGet((IEntity)pSCtrlMsg);
+                pSCtrlMsgService.autoGet(pSCtrlMsg);
                 this.psctrlmsg = pSCtrlMsg;
             }
             return this.psctrlmsg;
@@ -1508,7 +1508,7 @@ implements Serializable {
                 PSLanguageRes pSLanguageRes = new PSLanguageRes();
                 pSLanguageRes.setPSLanguageResId(this.getContentPSLanResId());
                 PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
-                pSLanguageResService.autoGet((IEntity)pSLanguageRes);
+                pSLanguageResService.autoGet(pSLanguageRes);
                 this.contentpslanres = pSLanguageRes;
             }
             return this.contentpslanres;

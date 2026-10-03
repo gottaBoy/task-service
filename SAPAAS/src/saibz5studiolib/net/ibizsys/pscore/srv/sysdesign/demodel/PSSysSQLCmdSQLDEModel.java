@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysSQLCmdSQLDEModelBase;
 
 public class PSSysSQLCmdSQLDEModel
 extends PSSysSQLCmdSQLDEModelBase {
+
+    public PSSysSQLCmdSQLDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

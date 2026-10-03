@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.ViewControllerBase;
+/**
+ * 导航界面视图控制器对象
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class ExpViewControllerBase extends ViewControllerBase {
+	public ExpViewControllerBase() throws Exception {
+		super();
+	}
 
-public abstract class ExpViewControllerBase
-extends ViewControllerBase {
 }
-

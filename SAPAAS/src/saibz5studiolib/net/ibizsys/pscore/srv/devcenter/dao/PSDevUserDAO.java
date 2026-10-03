@@ -75,7 +75,7 @@ extends PSCoreSysDAOBase<PSDevUser> {
     }
 
     protected void fillInheritEntity(PSDevUser pSDevUser) throws Exception {
-        super.fillInheritEntity((IEntity)pSDevUser);
+        super.fillInheritEntity(pSDevUser);
         PSDevUser pSDevUser2 = pSDevUser;
         pSDevUser2.setPSDevUserObjectId(pSDevUser.getPSDevUserId());
         if (pSDevUser.isPSDevUserNameDirty()) {

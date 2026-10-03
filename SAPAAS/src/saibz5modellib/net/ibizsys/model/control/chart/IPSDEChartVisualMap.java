@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.chart;
 
-import net.ibizsys.model.control.chart.IPSChartVisualMap;
+/**
+ * 实体图表显示映射对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEChartVisualMap extends IPSChartVisualMap
+{
 
-public interface IPSDEChartVisualMap
-extends IPSChartVisualMap {
 }
-

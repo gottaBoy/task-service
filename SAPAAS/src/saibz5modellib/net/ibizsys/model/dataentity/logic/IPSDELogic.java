@@ -1,39 +1,97 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IDELogic
- */
 package net.ibizsys.model.dataentity.logic;
 
-import java.util.Iterator;
 import net.ibizsys.model.dataentity.IPSDataEntityObject;
-import net.ibizsys.model.dataentity.logic.IPSDELogicLink;
-import net.ibizsys.model.dataentity.logic.IPSDELogicNode;
-import net.ibizsys.model.dataentity.logic.IPSDELogicParam;
 import net.ibizsys.paas.core.IDELogic;
 
-public interface IPSDELogic
-extends IPSDataEntityObject,
-IDELogic {
-    public String getLogicType();
 
-    public String getCodeName();
+/**
+ * 实体逻辑对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDELogic extends IPSDataEntityObject,IDELogic
+{
+	
+	/**
+	 * 获取逻辑类型
+	 * @return
+	 */
+	String getLogicType();
+	
+	
+	/**
+	 *  获取代码名称
+	 * @return
+	 */
+	String getCodeName();
+	
 
-    public String getLogicName();
+	
+	
+	/**
+	 * 获取逻辑名称
+	 * @return
+	 */
+	String getLogicName();
+	
+	
+	
+	
+	/**
+	 * 获取逻辑开始节点
+	 * @return
+	 */
+	IPSDELogicNode getStartPSDELogicNode();
+	
+	
+	
+	/**
+	 * 获取逻辑处理节点集合
+	 * @return
+	 */
+	java.util.Iterator<IPSDELogicNode> getPSDELogicNodes();
+	
+	
+	/**
+	 * 获取逻辑参数集合
+	 * @return
+	 */
+	java.util.Iterator<IPSDELogicParam> getPSDELogicParams();
+	
 
-    public IPSDELogicNode getStartPSDELogicNode();
+	/**
+	 * 获取指定参数对象
+	 * @param strPSDELogicParamId
+	 * @return
+	 * @throws Exception
+	 */
+	IPSDELogicParam getPSDELogicParam(String strPSDELogicParamId) throws Exception;
+	
+	
+	
+	
+	/**
+	 * 获取指定节点对象
+	 * @param strPSDELogicNodeId
+	 * @return
+	 * @throws Exception
+	 */
+	IPSDELogicNode getPSDELogicNode(String strPSDELogicNodeId) throws Exception;
+	
 
-    public Iterator<IPSDELogicNode> getPSDELogicNodes();
-
-    public Iterator<IPSDELogicParam> getPSDELogicParams();
-
-    public IPSDELogicParam getPSDELogicParam(String var1) throws Exception;
-
-    public IPSDELogicNode getPSDELogicNode(String var1) throws Exception;
-
-    public Iterator<IPSDELogicLink> getPSDELogicLinks();
-
-    public int getExtendMode();
+	
+	
+	/**
+	 * 获取逻辑处理连接集合
+	 * @return
+	 */
+	java.util.Iterator<IPSDELogicLink> getPSDELogicLinks();
+	
+	
+	/**
+	 * 获取扩展模式，值参考 SA.SRFDA.PS.Core.DataEntity.IPSDataEntity.EXTENDMODE_XXX 定义
+	 * 
+	 * @return
+	 */
+	int getExtendMode();
 }
-

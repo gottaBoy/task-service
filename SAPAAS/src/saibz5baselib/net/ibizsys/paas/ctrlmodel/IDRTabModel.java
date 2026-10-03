@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.IDRCtrlModel;
+/**
+ * 数据关系分页部件模型接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDRTabModel extends IDRCtrlModel {
 
-public interface IDRTabModel
-extends IDRCtrlModel {
 }
-

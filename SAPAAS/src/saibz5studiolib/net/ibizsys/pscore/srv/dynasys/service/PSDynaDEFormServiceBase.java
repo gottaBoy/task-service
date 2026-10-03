@@ -145,9 +145,9 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
             PSDEForm pSDEForm = (PSDEForm)iService.getDEModel().createEntity();
             pSDEForm.set("PSDEFORMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEForm);
+                iService.getTemp(pSDEForm);
             } else {
-                iService.get((IEntity)pSDEForm);
+                iService.get(pSDEForm);
             }
             this.onFillParentInfo_PSDEForm(pSDynaDEForm, pSDEForm);
             return;
@@ -157,14 +157,14 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
             PSDynaDE pSDynaDE = (PSDynaDE)iService.getDEModel().createEntity();
             pSDynaDE.set("PSDYNADEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDynaDE);
+                iService.getTemp(pSDynaDE);
             } else {
-                iService.get((IEntity)pSDynaDE);
+                iService.get(pSDynaDE);
             }
             this.onFillParentInfo_PSDynaDE(pSDynaDEForm, pSDynaDE);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDynaDEForm, string, string2, string3);
+        super.onFillParentInfo(pSDynaDEForm, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -185,7 +185,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDynaDEForm, bl);
+        super.onFillEntityFullInfo(pSDynaDEForm, bl);
         this.onFillEntityFullInfo_PSDEForm(pSDynaDEForm, bl);
         this.onFillEntityFullInfo_PSDynaDE(pSDynaDEForm, bl);
     }
@@ -197,7 +197,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
     }
 
     protected void onWriteBackParent(PSDynaDEForm pSDynaDEForm, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDynaDEForm, bl);
+        super.onWriteBackParent(pSDynaDEForm, bl);
     }
 
     public ArrayList<PSDynaDEForm> selectByPSDEForm(PSDEFormBase pSDEFormBase) throws Exception {
@@ -252,8 +252,8 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
         ArrayList<PSDynaDEForm> arrayList = this.selectByPSDEForm(pSDEForm, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFORM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEForm);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDYNADEFORM_PSDEFORM_PSDEFORMID", "", iDataEntityModel.getName(), "PSDYNADEFORM", iDataEntityModel.getDataInfo((IEntity)pSDEForm), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEForm);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDYNADEFORM_PSDEFORM_PSDEFORMID", "", iDataEntityModel.getName(), "PSDYNADEFORM", iDataEntityModel.getDataInfo(pSDEForm), arrayList.get(0)));
         }
     }
 
@@ -286,7 +286,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
         ArrayList<PSDynaDEForm> arrayList = this.selectByPSDEForm(pSDEForm);
         this.onBeforeRemoveByPSDEForm(pSDEForm, arrayList);
         for (PSDynaDEForm pSDynaDEForm : arrayList) {
-            this.remove((IEntity)pSDynaDEForm);
+            this.remove(pSDynaDEForm);
         }
         this.onAfterRemoveByPSDEForm(pSDEForm, arrayList);
     }
@@ -332,7 +332,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
         ArrayList<PSDynaDEForm> arrayList = this.selectByPSDynaDE(pSDynaDE);
         this.onBeforeRemoveByPSDynaDE(pSDynaDE, arrayList);
         for (PSDynaDEForm pSDynaDEForm : arrayList) {
-            this.remove((IEntity)pSDynaDEForm);
+            this.remove(pSDynaDEForm);
         }
         this.onAfterRemoveByPSDynaDE(pSDynaDE, arrayList);
     }
@@ -359,7 +359,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
 
     protected void replaceParentInfo(PSDynaDEForm pSDynaDEForm, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDynaDEForm, cloneSession);
+        super.replaceParentInfo(pSDynaDEForm, cloneSession);
         if (pSDynaDEForm.getPSDEFormId() != null && (iEntity = cloneSession.getEntity("PSDEFORM", (Object)pSDynaDEForm.getPSDEFormId())) != null) {
             this.onFillParentInfo_PSDEForm(pSDynaDEForm, (PSDEForm)iEntity);
         }
@@ -369,7 +369,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDynaDEForm pSDynaDEForm, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDynaDEForm, bl);
+        super.onRemoveEntityUncopyValues(pSDynaDEForm, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDynaDEForm pSDynaDEForm, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -390,7 +390,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
         if ((entityFieldError = this.onCheckField_PSDynaDEId(bl, pSDynaDEForm, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDynaDEForm, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDynaDEForm, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSDynaDEForm pSDynaDEForm, boolean bl2, boolean bl3) throws Exception {
@@ -403,7 +403,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDynaDEForm, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDynaDEForm, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -428,7 +428,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFormId_Default((IEntity)pSDynaDEForm, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFormId_Default(pSDynaDEForm, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFORMID");
@@ -453,7 +453,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaDEFormId_Default((IEntity)pSDynaDEForm, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaDEFormId_Default(pSDynaDEForm, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNADEFORMID");
@@ -478,7 +478,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaDEFormName_Default((IEntity)pSDynaDEForm, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaDEFormName_Default(pSDynaDEForm, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNADEFORMNAME");
@@ -503,7 +503,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaDEId_Default((IEntity)pSDynaDEForm, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaDEId_Default(pSDynaDEForm, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNADEID");
@@ -516,11 +516,11 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
     }
 
     protected void onSyncEntity(PSDynaDEForm pSDynaDEForm, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDynaDEForm, bl);
+        super.onSyncEntity(pSDynaDEForm, bl);
     }
 
     protected void onSyncIndexEntities(PSDynaDEForm pSDynaDEForm, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDynaDEForm, bl);
+        super.onSyncIndexEntities(pSDynaDEForm, bl);
     }
 
     public Object getDataContextValue(PSDynaDEForm pSDynaDEForm, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -528,7 +528,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDynaDEForm, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDynaDEForm, string, iDataContextParam)) != null) {
             return object;
         }
         PSDynaDE pSDynaDE = pSDynaDEForm.getPSDynaDE();
@@ -539,7 +539,7 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
     }
 
     protected void onExportMajorModel(PSDynaDEForm pSDynaDEForm, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDynaDEForm, arrayList, n);
+        super.onExportMajorModel(pSDynaDEForm, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -697,14 +697,14 @@ extends PSCoreSysServiceBase<PSDynaDEForm> {
 
     protected boolean onMergeChild(String string, String string2, PSDynaDEForm pSDynaDEForm) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDynaDEForm)) {
+        if (super.onMergeChild(string, string2, pSDynaDEForm)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDynaDEForm pSDynaDEForm) throws Exception {
-        super.onUpdateParent((IEntity)pSDynaDEForm);
+        super.onUpdateParent(pSDynaDEForm);
     }
 
     @Override

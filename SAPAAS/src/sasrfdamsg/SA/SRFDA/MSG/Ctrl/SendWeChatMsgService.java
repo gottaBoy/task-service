@@ -158,7 +158,7 @@ extends BaseService {
             Timestamp sendTime = new Timestamp(date.getTime() + 30000L);
             callParamList.AddDateTime((Object)sendTime);
         }
-        Vector sendMSNQueueList = new Vector();
+        Vector<MsgSendQueue> sendMSNQueueList = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.strQuerySQL, (Vector)callParamList.GetList(), sendMSNQueueList, (String)MsgSendQueue.class.getName());
         if (callResult.IsError()) {
             log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u672a\u53d1\u9001\u90ae\u4ef6\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));

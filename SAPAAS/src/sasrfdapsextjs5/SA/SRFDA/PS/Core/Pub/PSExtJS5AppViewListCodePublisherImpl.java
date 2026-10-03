@@ -32,7 +32,7 @@ extends PSExtJS5AppCodePublisherImpl {
             iPSAppView = (IPSAppView)requireViewList.remove(0);
             if (requireAppViewMap.containsKey(iPSAppView.getId())) continue;
             requireAppViewMap.put(iPSAppView.getId(), iPSAppView);
-            ArrayList psAppViewList = new ArrayList();
+            ArrayList<IPSAppView> psAppViewList = new ArrayList();
             iPSAppView.fillRelatedPSAppViews(psAppViewList);
             for (IPSAppView iPSAppView2 : psAppViewList) {
                 if (requireAppViewMap.containsKey(iPSAppView2.getId())) continue;

@@ -117,7 +117,7 @@ implements IPSDevSlnSysDynaInst {
             for (PSDevSlnSysDynaInstRef psDevSlnSysDynaInstRef : psDevSlnSysDynaInstRefs) {
                 psDevSlnSysDynaInst2 = new net.ibizsys.pscore.srv.dynasys.entity.PSDevSlnSysDynaInst();
                 psDevSlnSysDynaInst2.setPSDevSlnSysDynaInstId(psDevSlnSysDynaInstRef.getREFPSDEVSLNSYSDYNAINSTID());
-                if (!psDevSlnSysDynaInstService.get((IEntity)psDevSlnSysDynaInst2, true)) {
+                if (!psDevSlnSysDynaInstService.get(psDevSlnSysDynaInst2, true)) {
                     throw new Exception(String.format("\u65e0\u6cd5\u6307\u5b9a\u5f00\u53d1\u7cfb\u7edf\u52a8\u6001\u5b9e\u4f8b[%1$s]\u53d1\u751f\u9519\u8bef", psDevSlnSysDynaInstRef.getREFPSDEVSLNSYSDYNAINSTID()));
                 }
                 strModelPath = psDevSlnSysDynaInst2.getInstModelPath();
@@ -146,7 +146,7 @@ implements IPSDevSlnSysDynaInst {
                 for (PSDevSlnSysDynaInstRef psDevSlnSysDynaInstRef : psDevSlnSysDynaInstRefs) {
                     psDevSlnSysDynaInst2 = new net.ibizsys.pscore.srv.dynasys.entity.PSDevSlnSysDynaInst();
                     psDevSlnSysDynaInst2.setPSDevSlnSysDynaInstId(psDevSlnSysDynaInstRef.getREFPSDEVSLNSYSDYNAINSTID());
-                    if (!psDevSlnSysDynaInstService.get((IEntity)psDevSlnSysDynaInst2, true)) {
+                    if (!psDevSlnSysDynaInstService.get(psDevSlnSysDynaInst2, true)) {
                         throw new Exception(String.format("\u65e0\u6cd5\u6307\u5b9a\u5f00\u53d1\u7cfb\u7edf\u52a8\u6001\u5b9e\u4f8b[%1$s]\u53d1\u751f\u9519\u8bef", psDevSlnSysDynaInstRef.getREFPSDEVSLNSYSDYNAINSTID()));
                     }
                     strModelPath = psDevSlnSysDynaInst2.getInstModelPath();
@@ -227,4 +227,3 @@ implements IPSDevSlnSysDynaInst {
         return this.psDevSlnSysDynaInst.getPSDEVSLNID();
     }
 }
-

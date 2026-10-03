@@ -1,16 +1,26 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.tree;
 
 import java.util.Iterator;
+
 import net.ibizsys.paas.control.IControl;
-import net.ibizsys.paas.control.tree.ITreeNode;
 
-public interface ITree
-extends IControl {
-    public static final String FetchAction = "fetch";
+/**
+ * 树控件接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface ITree extends IControl {
 
-    public Iterator<ITreeNode> getTreeNodes();
+	/**
+	 * 搜索数据
+	 */
+	final static String FetchAction = "fetch";
+
+	/**
+	 * 获取树节点集合
+	 * 
+	 * @return
+	 */
+	Iterator<ITreeNode> getTreeNodes();
 }
-

@@ -70,7 +70,7 @@ implements IPSSysDBProcParamService {
     @Override
     protected List<PSSysDBProcParam> onListAll() throws Exception {
         ArrayList<PSSysDBProcParam> list = new ArrayList<PSSysDBProcParam>();
-        List pssysdbprocs = PSModelServiceUtil.getInstance().getPSSysDBProcService().listAll();
+        List<PSSysDBProc> pssysdbprocs = PSModelServiceUtil.getInstance().getPSSysDBProcService().listAll();
         if (pssysdbprocs != null) {
             for (PSSysDBProc parent : pssysdbprocs) {
                 List<PSSysDBProcParam> items = this.listByPSSysDBProc(parent);

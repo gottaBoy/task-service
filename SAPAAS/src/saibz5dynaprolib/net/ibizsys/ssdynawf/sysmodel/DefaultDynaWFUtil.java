@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdynawf.sysmodel;
 
-import net.ibizsys.ssdynawf.sysmodel.DynaWFUtilBase;
+/**
+ * 默认动态系统工作流模块
+ * @author Administrator
+ *
+ */
+public class DefaultDynaWFUtil extends DynaWFUtilBase {
 
-public class DefaultDynaWFUtil
-extends DynaWFUtilBase {
 }
-

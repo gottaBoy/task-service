@@ -1,15 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.dashboard;
 
-import net.ibizsys.model.control.dashboard.IPSDBPortletPart;
 import net.ibizsys.model.res.IPSSysPortlet;
 
-public interface IPSDBSysPortletPart
-extends IPSDBPortletPart {
-    public IPSSysPortlet getPSSysPortlet();
 
-    public long getTimer();
+/**
+ * 数据看板系统门户部件面板
+ * @author Administrator
+ *
+ */
+public interface IPSDBSysPortletPart extends IPSDBPortletPart{
+	
+	/**
+	 * 获取系统门户部件
+	 * @return
+	 */
+	IPSSysPortlet getPSSysPortlet();
+	
+	
+	/**
+	 * 获取计时器
+	 * @return
+	 */
+	long getTimer();
 }
-

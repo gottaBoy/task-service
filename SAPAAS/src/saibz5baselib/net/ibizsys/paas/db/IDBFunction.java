@@ -1,13 +1,36 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
+
+/**
+ * 数据库函数对象
+ * @author Administrator
+ *
+ */
 public interface IDBFunction {
-    public String getName();
 
-    public String getFuncSQL(boolean var1, String[] var2) throws Exception;
+	/**
+	 * 获取名称
+	 * @return
+	 */
+	String getName();
+	
+	
+	/**
+	 * 获取数据库的函数代码
+	 * 
+	 * @param 是否为数据插入时使用
+	 * @param 列名称
+	 * @return
+	 * @throws Exception
+	 */
+	String getFuncSQL(boolean bInsert, String[] args) throws Exception;
+	
 
-    public int getOutputDataType();
+	
+	
+	/**
+	 * 获取返回的数据类型
+	 * @return
+	 */
+	int getOutputDataType();
 }
-

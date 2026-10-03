@@ -74,7 +74,7 @@ implements IPSAppSBItemService {
     @Override
     protected List<PSAppSBItem> onListAll() throws Exception {
         ArrayList<PSAppSBItem> list = new ArrayList<PSAppSBItem>();
-        List psappstoryboards = PSModelServiceUtil.getInstance().getPSAppStoryBoardService().listAll();
+        List<PSAppStoryBoard> psappstoryboards = PSModelServiceUtil.getInstance().getPSAppStoryBoardService().listAll();
         if (psappstoryboards != null) {
             for (PSAppStoryBoard parent : psappstoryboards) {
                 List<PSAppSBItem> items = this.listByPSAppStoryBoard(parent);

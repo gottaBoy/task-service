@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
     }
 
     protected void onFillParentInfo(PSCtrlEvent pSCtrlEvent, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSCtrlEvent, string, string2, string3);
+        super.onFillParentInfo(pSCtrlEvent, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSCtrlEvent, bl);
+        super.onFillEntityFullInfo(pSCtrlEvent, bl);
     }
 
     protected void onWriteBackParent(PSCtrlEvent pSCtrlEvent, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSCtrlEvent, bl);
+        super.onWriteBackParent(pSCtrlEvent, bl);
     }
 
     @Override
@@ -143,7 +143,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
     }
 
     protected void onRemoveEntityUncopyValues(PSCtrlEvent pSCtrlEvent, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSCtrlEvent, bl);
+        super.onRemoveEntityUncopyValues(pSCtrlEvent, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSCtrlEvent pSCtrlEvent, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -182,7 +182,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
         if ((entityFieldError = this.onCheckField_ViewCodeNameFmt(bl, pSCtrlEvent, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSCtrlEvent, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSCtrlEvent, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSCtrlEvent pSCtrlEvent, boolean bl2, boolean bl3) throws Exception {
@@ -195,7 +195,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSCtrlEvent, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSCtrlEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -217,7 +217,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlCodeNameFmt_Default((IEntity)pSCtrlEvent, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlCodeNameFmt_Default(pSCtrlEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLCODENAMEFMT");
@@ -239,7 +239,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EventArg_Default((IEntity)pSCtrlEvent, bl2, bl3);
+            string2 = this.onTestValueRule_EventArg_Default(pSCtrlEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EVENTARG");
@@ -261,7 +261,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EventArg2_Default((IEntity)pSCtrlEvent, bl2, bl3);
+            string2 = this.onTestValueRule_EventArg2_Default(pSCtrlEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EVENTARG2");
@@ -283,7 +283,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EventArg3_Default((IEntity)pSCtrlEvent, bl2, bl3);
+            string2 = this.onTestValueRule_EventArg3_Default(pSCtrlEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EVENTARG3");
@@ -305,7 +305,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EventArg4_Default((IEntity)pSCtrlEvent, bl2, bl3);
+            string2 = this.onTestValueRule_EventArg4_Default(pSCtrlEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EVENTARG4");
@@ -327,7 +327,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSCtrlEvent, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSCtrlEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -349,7 +349,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSCtrlEvent, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSCtrlEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -374,7 +374,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlEventId_Default((IEntity)pSCtrlEvent, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlEventId_Default(pSCtrlEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLEVENTID");
@@ -399,7 +399,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlEventName_Default((IEntity)pSCtrlEvent, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlEventName_Default(pSCtrlEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLEVENTNAME");
@@ -421,7 +421,7 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ViewCodeNameFmt_Default((IEntity)pSCtrlEvent, bl2, bl3);
+            string2 = this.onTestValueRule_ViewCodeNameFmt_Default(pSCtrlEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWCODENAMEFMT");
@@ -434,11 +434,11 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
     }
 
     protected void onSyncEntity(PSCtrlEvent pSCtrlEvent, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSCtrlEvent, bl);
+        super.onSyncEntity(pSCtrlEvent, bl);
     }
 
     protected void onSyncIndexEntities(PSCtrlEvent pSCtrlEvent, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSCtrlEvent, bl);
+        super.onSyncIndexEntities(pSCtrlEvent, bl);
     }
 
     public Object getDataContextValue(PSCtrlEvent pSCtrlEvent, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -446,14 +446,14 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSCtrlEvent, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSCtrlEvent, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSCtrlEvent pSCtrlEvent, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSCtrlEvent, arrayList, n);
+        super.onExportMajorModel(pSCtrlEvent, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -671,14 +671,14 @@ extends PSCoreSysServiceBase<PSCtrlEvent> {
 
     protected boolean onMergeChild(String string, String string2, PSCtrlEvent pSCtrlEvent) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSCtrlEvent)) {
+        if (super.onMergeChild(string, string2, pSCtrlEvent)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSCtrlEvent pSCtrlEvent) throws Exception {
-        super.onUpdateParent((IEntity)pSCtrlEvent);
+        super.onUpdateParent(pSCtrlEvent);
     }
 
     @Override

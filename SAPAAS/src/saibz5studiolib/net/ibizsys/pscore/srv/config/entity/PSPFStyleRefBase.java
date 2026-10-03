@@ -1329,7 +1329,7 @@ implements Serializable {
                 PSPFStyle pSPFStyle = new PSPFStyle();
                 pSPFStyle.setPSPFStyleId(this.getPSPFStyleId());
                 PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)this.getSessionFactory());
-                pSPFStyleService.autoGet((IEntity)pSPFStyle);
+                pSPFStyleService.autoGet(pSPFStyle);
                 this.pspfstyle = pSPFStyle;
             }
             return this.pspfstyle;
@@ -1355,7 +1355,7 @@ implements Serializable {
                 PSPFStyle pSPFStyle = new PSPFStyle();
                 pSPFStyle.setPSPFStyleId(this.getRefPFPFStyleId());
                 PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)this.getSessionFactory());
-                pSPFStyleService.autoGet((IEntity)pSPFStyle);
+                pSPFStyleService.autoGet(pSPFStyle);
                 this.refpspfstyle = pSPFStyle;
             }
             return this.refpspfstyle;

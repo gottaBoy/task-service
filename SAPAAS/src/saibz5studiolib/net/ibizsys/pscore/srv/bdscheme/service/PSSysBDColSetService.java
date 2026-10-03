@@ -28,7 +28,7 @@ extends PSSysBDColSetServiceBase {
     @Override
     protected void onBeforeRemove(PSSysBDColSet pSSysBDColSet) throws Exception {
         PSSysBDColSet pSSysBDColSet2;
-        if (!pSSysBDColSet.isDefaultFlagDirty() && DataObject.getBoolValue((Integer)(pSSysBDColSet2 = (PSSysBDColSet)this.getLast((IEntity)pSSysBDColSet)).getDefaultFlag(), (boolean)false)) {
+        if (!pSSysBDColSet.isDefaultFlagDirty() && DataObject.getBoolValue((Integer)(pSSysBDColSet2 = (PSSysBDColSet)this.getLast(pSSysBDColSet)).getDefaultFlag(), (boolean)false)) {
             throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u5220\u9664\u5927\u6570\u636e\u8868\u9ed8\u8ba4\u5217\u65cf"));
         }
         if (DataObject.getBoolValue((Integer)pSSysBDColSet.getDefaultFlag(), (boolean)false)) {
@@ -42,7 +42,7 @@ extends PSSysBDColSetServiceBase {
             pSSysBDColSet.setPSSysBDColSetId(pSSysBDColSet.getPSSysBDTableId());
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)pSSysBDColSet, bl);
+        return super.onFillEntityKeyValue(pSSysBDColSet, bl);
     }
 }
 

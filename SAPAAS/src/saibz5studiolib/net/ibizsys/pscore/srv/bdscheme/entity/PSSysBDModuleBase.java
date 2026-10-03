@@ -1553,7 +1553,7 @@ implements Serializable {
                 PSModule pSModule = new PSModule();
                 pSModule.setPSModuleId(this.getPSModuleId());
                 PSModuleService pSModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSModuleService.autoGet((IEntity)pSModule);
+                pSModuleService.autoGet(pSModule);
                 this.psmodule = pSModule;
             }
             return this.psmodule;
@@ -1579,7 +1579,7 @@ implements Serializable {
                 PSSysBDScheme pSSysBDScheme = new PSSysBDScheme();
                 pSSysBDScheme.setPSSysBDSchemeId(this.getPSSysBDSchemeId());
                 PSSysBDSchemeService pSSysBDSchemeService = (PSSysBDSchemeService)ServiceGlobal.getService(PSSysBDSchemeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDSchemeService.autoGet((IEntity)pSSysBDScheme);
+                pSSysBDSchemeService.autoGet(pSSysBDScheme);
                 this.pssysbdscheme = pSSysBDScheme;
             }
             return this.pssysbdscheme;

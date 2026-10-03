@@ -1561,7 +1561,7 @@ implements ISRFWFDataCtrlEx {
 
     public CallResult GetWFUserAssists(WFInstance instance, String strWFStepActorId, String strAssistUserId, String strWorkflowId, Vector<WFUserAssist> userAssists) {
         String strSqlFormat = "select t1.* from T_SRFWFUSERASSIST t1 INNER JOIN T_SRFWFSTEPACTOR t2\t\tON t1.WFMAJORUSERID = t2.ACTORID WHERE t1.WFMINORUSERID = '%1$s' AND t2.WFSTEPACTORID='%2$s' AND WFWORKFLOWID='%3$s'";
-        Vector userAssists2 = new Vector();
+        Vector<WFUserAssist> userAssists2 = new Vector<WFUserAssist>();
         String strSql = StringHelper.Format((String)strSqlFormat, (Object)strAssistUserId, (Object)strWFStepActorId, (Object)strWorkflowId);
         CallResult callResult = this.SelectRaw(strSql, userAssists2, WFUserAssist.class.getName(), "");
         if (callResult.IsError()) {
@@ -1879,7 +1879,7 @@ implements ISRFWFDataCtrlEx {
             log.error((Object)e);
             return callResult;
         }
-        Vector wfDatas = new Vector();
+        Vector<BaseDataEntity> wfDatas = new Vector<BaseDataEntity>();
         callResult = iDataCtrl.Select(cond, wfDatas);
         if (callResult.IsError()) {
             log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u5d4c\u5957\u6d41\u7a0b\u6570\u636e\u53d1\u751f\u9519\u8bef,%1$s", (Object)callResult.getErrorInfo()));
@@ -1953,22 +1953,22 @@ implements ISRFWFDataCtrlEx {
             deSubWF2.setDESUBWFID(parallelSubWFConfig.getDESubWFId9());
             deSubWFList.add(deSubWF2);
         }
-        for (DESubWF deSubWF2 : deSubWFList) {
-            callResult = this.deSubWFDataCtrl.Get((BaseDataEntity)deSubWF2);
+        for (DESubWF deSubWF : deSubWFList) {
+            callResult = this.deSubWFDataCtrl.Get((BaseDataEntity)deSubWF);
             if (callResult.IsError()) {
-                log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53\u5b50\u6d41\u7a0b[%1$s]\u53d1\u751f\u9519\u8bef\uff0c%2$s", (Object)deSubWF2.getDESUBWFID(), (Object)callResult.getErrorInfo()));
+                log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53\u5b50\u6d41\u7a0b[%1$s]\u53d1\u751f\u9519\u8bef\uff0c%2$s", (Object)deSubWF.getDESUBWFID(), (Object)callResult.getErrorInfo()));
                 return callResult;
             }
-            if (StringHelper.Compare((String)deHelper.getId(), (String)deSubWF2.getDEID(), (boolean)true) == 0) {
+            if (StringHelper.Compare((String)deHelper.getId(), (String)deSubWF.getDEID(), (boolean)true) == 0) {
                 WFParam wfParam = new WFParam();
-                wfParam.setWorkflowId(deSubWF2.getWFID());
+                wfParam.setWorkflowId(deSubWF.getWFID());
                 wfParam.setUserData(wfContext.getActiveObject().GetParamStringValue(deHelper.GetKeyDEFHelper().getName(), ""));
-                wfParam.setUserData4(deSubWF2.getDEID());
-                wfParam.setConnection("PARALLELSUBWF:" + deSubWF2.getDESUBWFID());
+                wfParam.setUserData4(deSubWF.getDEID());
+                wfParam.setConnection("PARALLELSUBWF:" + deSubWF.getDESUBWFID());
                 wfParams.add(wfParam);
                 continue;
             }
-            log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53\u5b50\u6d41\u7a0b[%1$s]\u5b9e\u4f53\u7f16\u53f7\u4e0e\u4e3b\u6d41\u7a0b\u5b9e\u4f53\u7f16\u53f7\u4e0d\u4e00\u81f4\uff0c\u65e0\u6cd5\u542f\u52a8", (Object)deSubWF2.getDESUBWFID(), (Object)callResult.getErrorInfo()));
+            log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53\u5b50\u6d41\u7a0b[%1$s]\u5b9e\u4f53\u7f16\u53f7\u4e0e\u4e3b\u6d41\u7a0b\u5b9e\u4f53\u7f16\u53f7\u4e0d\u4e00\u81f4\uff0c\u65e0\u6cd5\u542f\u52a8", (Object)deSubWF.getDESUBWFID(), (Object)callResult.getErrorInfo()));
         }
         return callResult;
     }
@@ -2197,7 +2197,7 @@ implements ISRFWFDataCtrlEx {
             }
             callParamList.AddString(wfContext.getInstance().getWFINSTANCEID());
         }
-        Vector wfUsers = new Vector();
+        Vector<BaseDataEntity> wfUsers = new Vector<BaseDataEntity>();
         callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.globalHelperEx, (String)strSQL, (Vector)callParamList.GetList(), wfUsers, (String)"");
         if (callResult.IsError()) {
             return callResult;

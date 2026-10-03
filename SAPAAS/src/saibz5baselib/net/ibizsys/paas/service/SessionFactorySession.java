@@ -1,222 +1,329 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.hibernate.Session
- *  org.hibernate.SessionFactory
- *  org.hibernate.Transaction
- */
 package net.ibizsys.paas.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import net.ibizsys.paas.entity.IEntity;
-import net.ibizsys.paas.entity.SimpleEntity;
-import net.ibizsys.paas.service.ISFSAction;
+import java.util.Map.Entry;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import net.ibizsys.paas.entity.IEntity;
+import net.ibizsys.paas.entity.SimpleEntity;
+
+/**
+ * 会话工厂会话
+ * 
+ * @author lionlau
+ *
+ */
 public class SessionFactorySession {
-    private static final Log log = LogFactory.getLog(SessionFactorySession.class);
-    private int nRef = 0;
-    private HashMap<SessionFactory, Session> sessionMap = new HashMap();
-    private HashMap<IEntity, IEntity> lastEntityMap = new HashMap();
-    private HashMap<IEntity, SessionFactory> lastEntitySessionFactoryMap = new HashMap();
-    private static final SimpleEntity EMTPYENTITY = new SimpleEntity();
-    private HashMap<SessionFactory, ArrayList<ISFSAction>> sfsActionListMap = new HashMap();
+	private static final Log log = LogFactory.getLog(SessionFactorySession.class);
+	private int nRef = 0;
+	private HashMap<SessionFactory, Session> sessionMap = new HashMap<SessionFactory, Session>();
+	private HashMap<IEntity, IEntity> lastEntityMap = new HashMap<IEntity, IEntity>();
+	private HashMap<IEntity, SessionFactory> lastEntitySessionFactoryMap = new HashMap<IEntity, SessionFactory>();
+	
+	private final static SimpleEntity EMTPYENTITY = new SimpleEntity();
+	private HashMap<SessionFactory, ArrayList<ISFSAction>> sfsActionListMap = new HashMap<SessionFactory, ArrayList<ISFSAction>>();
+	
+	public SessionFactorySession() {
 
-    public synchronized IEntity getLastEntity(IEntity curEntity) {
-        IEntity iEntity = this.lastEntityMap.get(curEntity);
-        if (iEntity != null && iEntity != EMTPYENTITY) {
-            return iEntity;
-        }
-        return null;
-    }
+	}
 
-    public synchronized void setLastEntity(IEntity curEntity, IEntity lastEntity) {
-        this.setLastEntity(curEntity, lastEntity, null);
-    }
+	/**
+	 * 获取数据对象操作之前的数据
+	 * 
+	 * @param curEntity
+	 * @return
+	 */
+	public synchronized IEntity getLastEntity(IEntity curEntity) {
+		IEntity iEntity = lastEntityMap.get(curEntity);
+		if (iEntity != null && iEntity != EMTPYENTITY) return iEntity;
+		return null;
+	}
 
-    public synchronized void setLastEntity(IEntity curEntity, IEntity lastEntity, SessionFactory sessionFactory) {
-        if (lastEntity == null) {
-            this.lastEntityMap.put(curEntity, EMTPYENTITY);
-        } else {
-            this.lastEntityMap.put(curEntity, lastEntity);
-        }
-        this.lastEntitySessionFactoryMap.put(curEntity, sessionFactory);
-    }
+	/**
+	 * 设置对象操作之前的数据
+	 * 
+	 * @param curEntity
+	 * @param lastEntity
+	 */
+	public synchronized void setLastEntity(IEntity curEntity, IEntity lastEntity) {
+		setLastEntity(curEntity,  lastEntity,null);
+	}
+	
+	
+	/**
+	 * 设置对象操作之前的数据
+	 * 
+	 * @param curEntity
+	 * @param lastEntity
+	 * @param sessionFactory 会话工厂
+	 */
+	public synchronized void setLastEntity(IEntity curEntity, IEntity lastEntity,SessionFactory sessionFactory) {
+		if (lastEntity == null) {
+			lastEntityMap.put(curEntity, EMTPYENTITY);
+			
+		} else{
+			lastEntityMap.put(curEntity, lastEntity);
+		}
+		lastEntitySessionFactoryMap.put(curEntity, sessionFactory);
+	}
+	
+	
+	/**
+	 * 重置指定数据对象最后的数据对象
+	 * @param curEntity
+	 */
+	public synchronized void resetLastEntity(IEntity curEntity) {
+		lastEntityMap.remove(curEntity);
+		lastEntitySessionFactoryMap.remove(curEntity);
+	}
 
-    public synchronized void resetLastEntity(IEntity curEntity) {
-        this.lastEntityMap.remove(curEntity);
-        this.lastEntitySessionFactoryMap.remove(curEntity);
-    }
+	/**
+	 * 增加会话引用
+	 * 
+	 * @return
+	 */
+	public synchronized int addRef() {
+		nRef++;
+		return nRef;
+	}
 
-    public synchronized int addRef() {
-        ++this.nRef;
-        return this.nRef;
-    }
+	/**
+	 * 提交当前会话
+	 */
+	public synchronized void commit() {
+		commit(null);
+	}
 
-    public synchronized void commit() {
-        this.commit(null);
-    }
+	
+	/**
+	 * 获取当前会话引用计数
+	 * 
+	 * @return
+	 */
+	public synchronized int getRef() {
+		return nRef;
+	}
+	
+	
+	/**
+	 * 提交当前会话
+	 */
+	public synchronized void commit(SessionFactory sessionFactory) {
+		if (sessionFactory == null) {
+			for (Session session : sessionMap.values()) {
+				if (session.getTransaction() != null && session.getTransaction().isActive()) {
+					session.getTransaction().commit();
+				}
+			}
+			//清空最后一次的数据
+			lastEntityMap.clear();
+			lastEntitySessionFactoryMap.clear();
+			
+			ArrayList<ArrayList<ISFSAction>> sfsActionListList = new ArrayList<ArrayList<ISFSAction>>();
+			sfsActionListList.addAll(sfsActionListMap.values());
+			sfsActionListMap.clear();
+			
+			for (ArrayList<ISFSAction> list : sfsActionListList) {
+				for(ISFSAction iSFSAction:list){
+					iSFSAction.commit();
+				}
+				list.clear();
+			}
+		} else {
+			Session session = sessionMap.get(sessionFactory);
+			if (session != null) {
+				if (session.getTransaction() != null && session.getTransaction().isActive()) {
+					session.getTransaction().commit();
+				}
+			}
 
-    public synchronized int getRef() {
-        return this.nRef;
-    }
+			ArrayList<IEntity> removeEntityList = new ArrayList<IEntity>();
+			for(Entry<IEntity, SessionFactory> entry:lastEntitySessionFactoryMap.entrySet()){
+				if(entry.getValue() == sessionFactory){
+					removeEntityList.add(entry.getKey());
+				}
+			}
+			for(IEntity iEntity:removeEntityList){
+				resetLastEntity(iEntity);
+			}
+			
+			
+			ArrayList<ISFSAction> list = sfsActionListMap.remove(sessionFactory);
+			if(list!=null){
+				for(ISFSAction iSFSAction:list){
+					iSFSAction.commit();
+				}
+				list.clear();
+			}
+		}
+	}
 
-    public synchronized void commit(SessionFactory sessionFactory) {
-        if (sessionFactory == null) {
-            for (Session session : this.sessionMap.values()) {
-                if (session.getTransaction() == null || !session.getTransaction().isActive()) continue;
-                session.getTransaction().commit();
-            }
-            this.lastEntityMap.clear();
-            this.lastEntitySessionFactoryMap.clear();
-            ArrayList<ArrayList<ISFSAction>> sfsActionListList = new ArrayList<ArrayList<ISFSAction>>();
-            sfsActionListList.addAll(this.sfsActionListMap.values());
-            this.sfsActionListMap.clear();
-            for (ArrayList arrayList : sfsActionListList) {
-                for (ISFSAction iSFSAction : arrayList) {
-                    iSFSAction.commit();
-                }
-                arrayList.clear();
-            }
-        } else {
-            Session session = this.sessionMap.get(sessionFactory);
-            if (session != null && session.getTransaction() != null && session.getTransaction().isActive()) {
-                session.getTransaction().commit();
-            }
-            ArrayList<IEntity> arrayList = new ArrayList<IEntity>();
-            for (Map.Entry<IEntity, SessionFactory> entry : this.lastEntitySessionFactoryMap.entrySet()) {
-                if (entry.getValue() != sessionFactory) continue;
-                arrayList.add(entry.getKey());
-            }
-            for (IEntity iEntity : arrayList) {
-                this.resetLastEntity(iEntity);
-            }
-            ArrayList<ISFSAction> list = this.sfsActionListMap.remove(sessionFactory);
-            if (list != null) {
-                for (ISFSAction iSFSAction : list) {
-                    iSFSAction.commit();
-                }
-                list.clear();
-            }
-        }
-    }
+	/**
+	 * 回滚当前会话
+	 */
+	public synchronized void rollback(SessionFactory sessionFactory) {
+		if (sessionFactory == null) {
+			for (Session session : sessionMap.values()) {
+				if (session.getTransaction() != null && session.getTransaction().isActive()) {
+					session.getTransaction().rollback();
+				}
+			}
+			
+			//清空最后一次的数据
+			lastEntityMap.clear();
+			lastEntitySessionFactoryMap.clear();
+			ArrayList<ArrayList<ISFSAction>> sfsActionListList = new ArrayList<ArrayList<ISFSAction>>();
+			sfsActionListList.addAll(sfsActionListMap.values());
+			sfsActionListMap.clear();
+			
+			for (ArrayList<ISFSAction> list : sfsActionListList) {
+				for(ISFSAction iSFSAction:list){
+					iSFSAction.rollback();
+				}
+				list.clear();
+			}
+		} else {
+			Session session = sessionMap.get(sessionFactory);
+			if (session != null) {
+				if (session.getTransaction() != null && session.getTransaction().isActive()) {
+					session.getTransaction().rollback();
+				}
+			}
+			
+//			//清空最后一次的数据，此处有BUG，要按照SessionFactory区分
+//			lastEntityMap.clear();
+			
+			ArrayList<IEntity> removeEntityList = new ArrayList<IEntity>();
+			for(Entry<IEntity, SessionFactory> entry:lastEntitySessionFactoryMap.entrySet()){
+				if(entry.getValue() == sessionFactory){
+					removeEntityList.add(entry.getKey());
+				}
+			}
+			for(IEntity iEntity:removeEntityList){
+				resetLastEntity(iEntity);
+			}
+			
+			ArrayList<ISFSAction> list = sfsActionListMap.remove(sessionFactory);
+			if(list!=null){
+				for(ISFSAction iSFSAction:list){
+					iSFSAction.rollback();
+				}
+				list.clear();
+			}
+		}
+	}
+	
+	
+	/**
+	 * 释放引用
+	 * 
+	 * @param bCommit 是否提交
+	 * @return
+	 * @throws Exception
+	 */
+	public synchronized int releaseRef(boolean bCommit) {
+		nRef--;
+		if (nRef == 0) {
+			for (Session session : sessionMap.values()) {
+				try {
+					if (session.getTransaction() != null && session.getTransaction().isActive()) {
+						if (bCommit) {
+							session.getTransaction().commit();
+						} else {
+							session.getTransaction().rollback();
+						}
+					}
+					session.clear();
+					session.close();
+				} catch (Exception ex) {
+					log.error(ex.getMessage(), ex);
+				}
+			}
+			sessionMap.clear();
+			
+			//清空最后一次的数据
+			lastEntityMap.clear();
+			lastEntitySessionFactoryMap.clear();
+			ArrayList<ArrayList<ISFSAction>> sfsActionListList = new ArrayList<ArrayList<ISFSAction>>();
+			sfsActionListList.addAll(sfsActionListMap.values());
+			sfsActionListMap.clear();
+			
+			for (ArrayList<ISFSAction> list : sfsActionListList) {
+				for(ISFSAction iSFSAction:list){
+					if (bCommit) {
+						iSFSAction.commit();
+					}
+					else{
+						iSFSAction.rollback();
+					}
+				}
+				list.clear();
+			}
+			sfsActionListMap.clear();
+			
+		}
+		return nRef;
+	}
 
-    public synchronized void rollback(SessionFactory sessionFactory) {
-        if (sessionFactory == null) {
-            for (Session session : this.sessionMap.values()) {
-                if (session.getTransaction() == null || !session.getTransaction().isActive()) continue;
-                session.getTransaction().rollback();
-            }
-            this.lastEntityMap.clear();
-            this.lastEntitySessionFactoryMap.clear();
-            ArrayList<ArrayList<ISFSAction>> sfsActionListList = new ArrayList<ArrayList<ISFSAction>>();
-            sfsActionListList.addAll(this.sfsActionListMap.values());
-            this.sfsActionListMap.clear();
-            for (ArrayList arrayList : sfsActionListList) {
-                for (ISFSAction iSFSAction : arrayList) {
-                    iSFSAction.rollback();
-                }
-                arrayList.clear();
-            }
-        } else {
-            Session session = this.sessionMap.get(sessionFactory);
-            if (session != null && session.getTransaction() != null && session.getTransaction().isActive()) {
-                session.getTransaction().rollback();
-            }
-            ArrayList<IEntity> arrayList = new ArrayList<IEntity>();
-            for (Map.Entry<IEntity, SessionFactory> entry : this.lastEntitySessionFactoryMap.entrySet()) {
-                if (entry.getValue() != sessionFactory) continue;
-                arrayList.add(entry.getKey());
-            }
-            for (IEntity iEntity : arrayList) {
-                this.resetLastEntity(iEntity);
-            }
-            ArrayList<ISFSAction> list = this.sfsActionListMap.remove(sessionFactory);
-            if (list != null) {
-                for (ISFSAction iSFSAction : list) {
-                    iSFSAction.rollback();
-                }
-                list.clear();
-            }
-        }
-    }
+	/**
+	 * 获取当前会话
+	 * 
+	 * @param sessionFactory
+	 * @return
+	 * @throws Exception
+	 */
+	public synchronized Session getCurrentSession(SessionFactory sessionFactory) throws Exception {
+		if(sessionFactory == null){
+			throw new Exception("传入会话工厂对象无效");
+		}
+		
+		if (sessionMap.containsKey(sessionFactory)) {
+			return sessionMap.get(sessionFactory);
+		}
 
-    public synchronized int releaseRef(boolean bCommit) {
-        --this.nRef;
-        if (this.nRef == 0) {
-            for (Session session : this.sessionMap.values()) {
-                try {
-                    if (session.getTransaction() != null && session.getTransaction().isActive()) {
-                        if (bCommit) {
-                            session.getTransaction().commit();
-                        } else {
-                            session.getTransaction().rollback();
-                        }
-                    }
-                    session.clear();
-                    session.close();
-                }
-                catch (Exception ex) {
-                    log.error((Object)ex.getMessage(), (Throwable)ex);
-                }
-            }
-            this.sessionMap.clear();
-            this.lastEntityMap.clear();
-            this.lastEntitySessionFactoryMap.clear();
-            ArrayList<ArrayList<ISFSAction>> sfsActionListList = new ArrayList<ArrayList<ISFSAction>>();
-            sfsActionListList.addAll(this.sfsActionListMap.values());
-            this.sfsActionListMap.clear();
-            for (ArrayList arrayList : sfsActionListList) {
-                for (ISFSAction iSFSAction : arrayList) {
-                    if (bCommit) {
-                        iSFSAction.commit();
-                        continue;
-                    }
-                    iSFSAction.rollback();
-                }
-                arrayList.clear();
-            }
-            this.sfsActionListMap.clear();
-        }
-        return this.nRef;
-    }
+		Session session = sessionFactory.openSession();
+		sessionMap.put(sessionFactory, session);
+		return session;
+	}
 
-    public synchronized Session getCurrentSession(SessionFactory sessionFactory) throws Exception {
-        if (sessionFactory == null) {
-            throw new Exception("\u4f20\u5165\u4f1a\u8bdd\u5de5\u5382\u5bf9\u8c61\u65e0\u6548");
-        }
-        if (this.sessionMap.containsKey(sessionFactory)) {
-            return this.sessionMap.get(sessionFactory);
-        }
-        Session session = sessionFactory.openSession();
-        this.sessionMap.put(sessionFactory, session);
-        return session;
-    }
+	/**
+	 * 获取当前会话工厂事务
+	 * 
+	 * @param sessionFactory
+	 * @return
+	 * @throws Exception
+	 */
+	public synchronized Transaction getCurrentTransaction(SessionFactory sessionFactory) throws Exception {
+		Session session = getCurrentSession(sessionFactory);
+		if (session.getTransaction() == null || !session.getTransaction().isActive()) {
+			org.hibernate.Transaction curTransaction = session.beginTransaction();
+		}
+		return session.getTransaction();
+	}
 
-    public synchronized Transaction getCurrentTransaction(SessionFactory sessionFactory) throws Exception {
-        Session session = this.getCurrentSession(sessionFactory);
-        if (session.getTransaction() == null || !session.getTransaction().isActive()) {
-            Transaction transaction = session.beginTransaction();
-        }
-        return session.getTransaction();
-    }
-
-    public synchronized void registerSFSAction(SessionFactory sessionFactory, ISFSAction iSFSAction) throws Exception {
-        ArrayList<ISFSAction> sfsActionList = this.sfsActionListMap.get(sessionFactory);
-        if (sfsActionList == null) {
-            sfsActionList = new ArrayList();
-            this.sfsActionListMap.put(sessionFactory, sfsActionList);
-        }
-        sfsActionList.add(iSFSAction);
-    }
+	
+	
+	/**
+	 * 注册会话工厂会话行为
+	 * @param sessionFactory
+	 * @param iSFSAction
+	 * @throws Exception
+	 */
+	public synchronized void registerSFSAction(SessionFactory sessionFactory,ISFSAction iSFSAction) throws Exception {
+		
+		ArrayList<ISFSAction> sfsActionList =sfsActionListMap.get(sessionFactory);
+		if(sfsActionList == null)
+		{
+			sfsActionList = new ArrayList<ISFSAction>();
+			sfsActionListMap.put(sessionFactory, sfsActionList);
+		}
+		sfsActionList.add(iSFSAction);
+		
+	}
 }
-

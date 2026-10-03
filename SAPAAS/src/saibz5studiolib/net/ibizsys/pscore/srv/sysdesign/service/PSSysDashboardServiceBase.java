@@ -304,21 +304,21 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
 
     public void createWithModel(PSSysDashboard pSSysDashboard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, (IEntity)pSSysDashboard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, pSSysDashboard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysDashboard, ACTION_CREATEWITHMODEL);
+        this.testDEMainStateAction(pSSysDashboard, ACTION_CREATEWITHMODEL);
         final PSSysDashboard pSSysDashboard2 = pSSysDashboard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysDashboardServiceBase.this.getService(), PSSysDashboardServiceBase.ACTION_CREATEWITHMODEL, 40, (IEntity)pSSysDashboard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysDashboardServiceBase.this.getService(), PSSysDashboardServiceBase.ACTION_CREATEWITHMODEL, 40, pSSysDashboard2, null).getResult() != 1) {
                     PSSysDashboardServiceBase.this.onCreateWithModel(pSSysDashboard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, (IEntity)pSSysDashboard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, pSSysDashboard, null);
         }
     }
 
@@ -328,21 +328,21 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
 
     public void getDraftFromWithModel(PSSysDashboard pSSysDashboard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, (IEntity)pSSysDashboard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, pSSysDashboard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysDashboard, ACTION_GETDRAFTFROMWITHMODEL);
+        this.testDEMainStateAction(pSSysDashboard, ACTION_GETDRAFTFROMWITHMODEL);
         final PSSysDashboard pSSysDashboard2 = pSSysDashboard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysDashboardServiceBase.this.getService(), PSSysDashboardServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, (IEntity)pSSysDashboard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysDashboardServiceBase.this.getService(), PSSysDashboardServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, pSSysDashboard2, null).getResult() != 1) {
                     PSSysDashboardServiceBase.this.onGetDraftFromWithModel(pSSysDashboard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, (IEntity)pSSysDashboard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, pSSysDashboard, null);
         }
     }
 
@@ -352,21 +352,21 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
 
     public void getDraftWithModel(PSSysDashboard pSSysDashboard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, (IEntity)pSSysDashboard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, pSSysDashboard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysDashboard, ACTION_GETDRAFTWITHMODEL);
+        this.testDEMainStateAction(pSSysDashboard, ACTION_GETDRAFTWITHMODEL);
         final PSSysDashboard pSSysDashboard2 = pSSysDashboard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysDashboardServiceBase.this.getService(), PSSysDashboardServiceBase.ACTION_GETDRAFTWITHMODEL, 40, (IEntity)pSSysDashboard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysDashboardServiceBase.this.getService(), PSSysDashboardServiceBase.ACTION_GETDRAFTWITHMODEL, 40, pSSysDashboard2, null).getResult() != 1) {
                     PSSysDashboardServiceBase.this.onGetDraftWithModel(pSSysDashboard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, (IEntity)pSSysDashboard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, pSSysDashboard, null);
         }
     }
 
@@ -376,21 +376,21 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
 
     public void getWithModel(PSSysDashboard pSSysDashboard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, (IEntity)pSSysDashboard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, pSSysDashboard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysDashboard, ACTION_GETWITHMODEL);
+        this.testDEMainStateAction(pSSysDashboard, ACTION_GETWITHMODEL);
         final PSSysDashboard pSSysDashboard2 = pSSysDashboard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysDashboardServiceBase.this.getService(), PSSysDashboardServiceBase.ACTION_GETWITHMODEL, 40, (IEntity)pSSysDashboard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysDashboardServiceBase.this.getService(), PSSysDashboardServiceBase.ACTION_GETWITHMODEL, 40, pSSysDashboard2, null).getResult() != 1) {
                     PSSysDashboardServiceBase.this.onGetWithModel(pSSysDashboard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, (IEntity)pSSysDashboard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, pSSysDashboard, null);
         }
     }
 
@@ -400,21 +400,21 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
 
     public void previewSave(PSSysDashboard pSSysDashboard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 0, (IEntity)pSSysDashboard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 0, pSSysDashboard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysDashboard, ACTION_PREVIEWSAVE);
+        this.testDEMainStateAction(pSSysDashboard, ACTION_PREVIEWSAVE);
         final PSSysDashboard pSSysDashboard2 = pSSysDashboard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysDashboardServiceBase.this.getService(), PSSysDashboardServiceBase.ACTION_PREVIEWSAVE, 40, (IEntity)pSSysDashboard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysDashboardServiceBase.this.getService(), PSSysDashboardServiceBase.ACTION_PREVIEWSAVE, 40, pSSysDashboard2, null).getResult() != 1) {
                     PSSysDashboardServiceBase.this.onPreviewSave(pSSysDashboard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 99, (IEntity)pSSysDashboard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 99, pSSysDashboard, null);
         }
     }
 
@@ -424,21 +424,21 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
 
     public void updateWithModel(PSSysDashboard pSSysDashboard) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, (IEntity)pSSysDashboard, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, pSSysDashboard, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysDashboard, ACTION_UPDATEWITHMODEL);
+        this.testDEMainStateAction(pSSysDashboard, ACTION_UPDATEWITHMODEL);
         final PSSysDashboard pSSysDashboard2 = pSSysDashboard;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysDashboardServiceBase.this.getService(), PSSysDashboardServiceBase.ACTION_UPDATEWITHMODEL, 40, (IEntity)pSSysDashboard2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysDashboardServiceBase.this.getService(), PSSysDashboardServiceBase.ACTION_UPDATEWITHMODEL, 40, pSSysDashboard2, null).getResult() != 1) {
                     PSSysDashboardServiceBase.this.onUpdateWithModel(pSSysDashboard2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, (IEntity)pSSysDashboard, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, pSSysDashboard, null);
         }
     }
 
@@ -452,9 +452,9 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             PSCtrlLogicGroup pSCtrlLogicGroup = (PSCtrlLogicGroup)iService.getDEModel().createEntity();
             pSCtrlLogicGroup.set("PSCTRLLOGICGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCtrlLogicGroup);
+                iService.getTemp(pSCtrlLogicGroup);
             } else {
-                iService.get((IEntity)pSCtrlLogicGroup);
+                iService.get(pSCtrlLogicGroup);
             }
             this.onFillParentInfo_PSCtrlLogicGroup(pSSysDashboard, pSCtrlLogicGroup);
             return;
@@ -464,9 +464,9 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSSysDashboard, pSDataEntity);
             return;
@@ -476,9 +476,9 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSSysDashboard, pSModule);
             return;
@@ -488,9 +488,9 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSSysDashboard, pSSysApp);
             return;
@@ -500,9 +500,9 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_NavBarPSSysCss(pSSysDashboard, pSSysCss);
             return;
@@ -512,9 +512,9 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_PSSysCss(pSSysDashboard, pSSysCss);
             return;
@@ -524,9 +524,9 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_PSSysPFPlugin(pSSysDashboard, pSSysPFPlugin);
             return;
@@ -536,9 +536,9 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysDashboard, pSSystem);
             return;
@@ -548,14 +548,14 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             PSViewMsgGroup pSViewMsgGroup = (PSViewMsgGroup)iService.getDEModel().createEntity();
             pSViewMsgGroup.set("PSVIEWMSGGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSViewMsgGroup);
+                iService.getTemp(pSViewMsgGroup);
             } else {
-                iService.get((IEntity)pSViewMsgGroup);
+                iService.get(pSViewMsgGroup);
             }
             this.onFillParentInfo_PSViewMsgGroup(pSSysDashboard, pSViewMsgGroup);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysDashboard, string, string2, string3);
+        super.onFillParentInfo(pSSysDashboard, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -614,7 +614,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         if (bl && pSSysDashboard.getCodeName() == null) {
             pSSysDashboard.setCodeName((String)this.getDefaultValue(this.getWebContext(), "USER", "Dashboard", 25));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysDashboard, bl);
+        super.onFillEntityFullInfo(pSSysDashboard, bl);
         this.onFillEntityFullInfo_PSCtrlLogicGroup(pSSysDashboard, bl);
         this.onFillEntityFullInfo_PSDE(pSSysDashboard, bl);
         this.onFillEntityFullInfo_PSModule(pSSysDashboard, bl);
@@ -679,7 +679,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
     }
 
     protected void onWriteBackParent(PSSysDashboard pSSysDashboard, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysDashboard, bl);
+        super.onWriteBackParent(pSSysDashboard, bl);
     }
 
     public ArrayList<PSSysDashboard> selectByPSCtrlLogicGroup(PSCtrlLogicGroupBase pSCtrlLogicGroupBase) throws Exception {
@@ -902,8 +902,8 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSCtrlLogicGroup(pSCtrlLogicGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCTRLLOGICGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCtrlLogicGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSCTRLLOGICGROUP_PSCTRLLOGICGROUPID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo((IEntity)pSCtrlLogicGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCtrlLogicGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSCTRLLOGICGROUP_PSCTRLLOGICGROUPID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo(pSCtrlLogicGroup), arrayList.get(0)));
         }
     }
 
@@ -936,7 +936,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSCtrlLogicGroup(pSCtrlLogicGroup);
         this.onBeforeRemoveByPSCtrlLogicGroup(pSCtrlLogicGroup, arrayList);
         for (PSSysDashboard pSSysDashboard : arrayList) {
-            this.remove((IEntity)pSSysDashboard);
+            this.remove(pSSysDashboard);
         }
         this.onAfterRemoveByPSCtrlLogicGroup(pSCtrlLogicGroup, arrayList);
     }
@@ -954,8 +954,8 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -988,7 +988,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSSysDashboard pSSysDashboard : arrayList) {
-            this.remove((IEntity)pSSysDashboard);
+            this.remove(pSSysDashboard);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -1006,8 +1006,8 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -1040,7 +1040,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSSysDashboard pSSysDashboard : arrayList) {
-            this.remove((IEntity)pSSysDashboard);
+            this.remove(pSSysDashboard);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -1086,7 +1086,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSSysDashboard pSSysDashboard : arrayList) {
-            this.remove((IEntity)pSSysDashboard);
+            this.remove(pSSysDashboard);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -1104,8 +1104,8 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByNavBarPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSSYSCSS_NAVBARPSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSSYSCSS_NAVBARPSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -1138,7 +1138,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByNavBarPSSysCss(pSSysCss);
         this.onBeforeRemoveByNavBarPSSysCss(pSSysCss, arrayList);
         for (PSSysDashboard pSSysDashboard : arrayList) {
-            this.remove((IEntity)pSSysDashboard);
+            this.remove(pSSysDashboard);
         }
         this.onAfterRemoveByNavBarPSSysCss(pSSysCss, arrayList);
     }
@@ -1156,8 +1156,8 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -1190,7 +1190,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSSysCss(pSSysCss);
         this.onBeforeRemoveByPSSysCss(pSSysCss, arrayList);
         for (PSSysDashboard pSSysDashboard : arrayList) {
-            this.remove((IEntity)pSSysDashboard);
+            this.remove(pSSysDashboard);
         }
         this.onAfterRemoveByPSSysCss(pSSysCss, arrayList);
     }
@@ -1208,8 +1208,8 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -1242,7 +1242,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSSysDashboard pSSysDashboard : arrayList) {
-            this.remove((IEntity)pSSysDashboard);
+            this.remove(pSSysDashboard);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -1260,8 +1260,8 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSSystem(pSSystem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSTEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSystem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo((IEntity)pSSystem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSystem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo(pSSystem), arrayList.get(0)));
         }
     }
 
@@ -1294,7 +1294,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysDashboard pSSysDashboard : arrayList) {
-            this.remove((IEntity)pSSysDashboard);
+            this.remove(pSSysDashboard);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -1312,8 +1312,8 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSViewMsgGroup(pSViewMsgGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSVIEWMSGGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSViewMsgGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSVIEWMSGGROUP_PSVIEWMSGGROUPID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo((IEntity)pSViewMsgGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSViewMsgGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDASHBOARD_PSVIEWMSGGROUP_PSVIEWMSGGROUPID", "", iDataEntityModel.getName(), "PSSYSDASHBOARD", iDataEntityModel.getDataInfo(pSViewMsgGroup), arrayList.get(0)));
         }
     }
 
@@ -1346,7 +1346,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDashboard> arrayList = this.selectByPSViewMsgGroup(pSViewMsgGroup);
         this.onBeforeRemoveByPSViewMsgGroup(pSViewMsgGroup, arrayList);
         for (PSSysDashboard pSSysDashboard : arrayList) {
-            this.remove((IEntity)pSSysDashboard);
+            this.remove(pSSysDashboard);
         }
         this.onAfterRemoveByPSViewMsgGroup(pSViewMsgGroup, arrayList);
     }
@@ -1380,13 +1380,13 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ((PSSysDashboardLogicServiceBase)pSCoreSysServiceBase).removeTempByPSSysDashboard(pSSysDashboard);
         pSCoreSysServiceBase = (PSSysDBPartService)ServiceGlobal.getService(PSSysDBPartService.class, (SessionFactory)this.getSessionFactory());
         ((PSSysDBPartServiceBase)pSCoreSysServiceBase).removeTempByPSSysDashboard(pSSysDashboard);
-        super.onBeforeRemoveTemp((IEntity)pSSysDashboard);
+        super.onBeforeRemoveTemp(pSSysDashboard);
     }
 
     protected void getRelatedDataTempMajor(PSSysDashboard pSSysDashboard) throws Exception {
         this.getRelatedDataTempMajor_PSSysDBPart(pSSysDashboard);
         this.getRelatedDataTempMajor_PSSysDashboardLogic(pSSysDashboard);
-        super.getRelatedDataTempMajor((IEntity)pSSysDashboard);
+        super.getRelatedDataTempMajor(pSSysDashboard);
     }
 
     protected void getRelatedDataTempMajor_PSSysDBPart(PSSysDashboard pSSysDashboard) throws Exception {
@@ -1415,7 +1415,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         ArrayList<PSSysDBPart> arrayList2 = this.updateRelatedDataTempMajor_removePSSysDBPart(pSSysDashboard, pSSysDashboard2);
         this.updateRelatedDataTempMajor_updatePSSysDBPart(pSSysDashboard, pSSysDashboard2, arrayList2);
         this.updateRelatedDataTempMajor_updatePSSysDashboardLogic(pSSysDashboard, pSSysDashboard2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSSysDashboard, (IEntity)pSSysDashboard2);
+        super.updateRelatedDataTempMajor(pSSysDashboard, pSSysDashboard2);
     }
 
     protected ArrayList<PSSysDBPart> updateRelatedDataTempMajor_removePSSysDBPart(PSSysDashboard pSSysDashboard, PSSysDashboard pSSysDashboard2) throws Exception {
@@ -1432,7 +1432,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             hashMap.remove(object);
         }
         for (PSSysDBPart pSSysDBPart : hashMap.values()) {
-            pSSysDBPartService.remove((IEntity)pSSysDBPart);
+            pSSysDBPartService.remove(pSSysDBPart);
         }
         return arrayList;
     }
@@ -1460,7 +1460,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             hashMap.remove(object);
         }
         for (PSSysDashboardLogic pSSysDashboardLogic : hashMap.values()) {
-            pSSysDashboardLogicService.remove((IEntity)pSSysDashboardLogic);
+            pSSysDashboardLogicService.remove(pSSysDashboardLogic);
         }
         return arrayList;
     }
@@ -1477,7 +1477,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
 
     protected void replaceParentInfo(PSSysDashboard pSSysDashboard, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysDashboard, cloneSession);
+        super.replaceParentInfo(pSSysDashboard, cloneSession);
         if (pSSysDashboard.getPSCtrlLogicGroupId() != null && (iEntity = cloneSession.getEntity("PSCTRLLOGICGROUP", (Object)pSSysDashboard.getPSCtrlLogicGroupId())) != null) {
             this.onFillParentInfo_PSCtrlLogicGroup(pSSysDashboard, (PSCtrlLogicGroup)iEntity);
         }
@@ -1508,7 +1508,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysDashboard pSSysDashboard, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysDashboard, bl);
+        super.onRemoveEntityUncopyValues(pSSysDashboard, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysDashboard pSSysDashboard, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1613,7 +1613,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         if ((entityFieldError = this.onCheckField_SysAppFlag(bl, pSSysDashboard, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysDashboard, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysDashboard, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BusyIndicator(boolean bl, PSSysDashboard pSSysDashboard, boolean bl2, boolean bl3) throws Exception {
@@ -1626,7 +1626,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BusyIndicator_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string = this.onTestValueRule_BusyIndicator_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BUSYINDICATOR");
@@ -1651,7 +1651,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1690,7 +1690,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ColModel_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_ColModel_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("COLMODEL");
@@ -1712,7 +1712,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DashboardNavBar_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string = this.onTestValueRule_DashboardNavBar_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DASHBOARDNAVBAR");
@@ -1734,7 +1734,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DashboardStyle_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_DashboardStyle_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DASHBOARDSTYLE");
@@ -1756,7 +1756,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DashboardTag_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_DashboardTag_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DASHBOARDTAG");
@@ -1778,7 +1778,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DashboardTag2_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_DashboardTag2_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DASHBOARDTAG2");
@@ -1800,7 +1800,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DBModel_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_DBModel_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DBMODEL");
@@ -1822,7 +1822,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableCustomized_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string = this.onTestValueRule_EnableCustomized_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLECUSTOMIZED");
@@ -1844,7 +1844,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FlexAlign_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_FlexAlign_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FLEXALIGN");
@@ -1866,7 +1866,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FlexDir_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_FlexDir_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FLEXDIR");
@@ -1888,7 +1888,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FlexVAlign_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_FlexVAlign_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FLEXVALIGN");
@@ -1910,7 +1910,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LayoutMode_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_LayoutMode_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LAYOUTMODE");
@@ -1932,7 +1932,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -1954,7 +1954,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1976,7 +1976,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NavBarHeight_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string = this.onTestValueRule_NavBarHeight_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVBARHEIGHT");
@@ -1998,7 +1998,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NavBarPos_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_NavBarPos_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVBARPOS");
@@ -2020,7 +2020,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NavBarPSSysCssId_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_NavBarPSSysCssId_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVBARPSSYSCSSID");
@@ -2042,7 +2042,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NavBarStyle_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_NavBarStyle_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVBARSTYLE");
@@ -2064,7 +2064,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NavBarWidth_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string = this.onTestValueRule_NavBarWidth_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVBARWIDTH");
@@ -2086,7 +2086,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlLogicGroupId_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlLogicGroupId_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLLOGICGROUPID");
@@ -2111,7 +2111,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -2136,7 +2136,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -2158,7 +2158,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -2180,7 +2180,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -2202,7 +2202,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCssId_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCssId_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCSSID");
@@ -2227,7 +2227,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDashboardId_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDashboardId_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDASHBOARDID");
@@ -2252,7 +2252,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDashboardName_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDashboardName_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDASHBOARDNAME");
@@ -2274,7 +2274,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPluginId_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPluginId_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPLUGINID");
@@ -2296,7 +2296,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -2318,7 +2318,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -2340,7 +2340,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewMsgGroupId_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewMsgGroupId_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWMSGGROUPID");
@@ -2362,7 +2362,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SysAppFlag_Default((IEntity)pSSysDashboard, bl2, bl3);
+            string = this.onTestValueRule_SysAppFlag_Default(pSSysDashboard, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYSAPPFLAG");
@@ -2375,11 +2375,11 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
     }
 
     protected void onSyncEntity(PSSysDashboard pSSysDashboard, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysDashboard, bl);
+        super.onSyncEntity(pSSysDashboard, bl);
     }
 
     protected void onSyncIndexEntities(PSSysDashboard pSSysDashboard, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysDashboard, bl);
+        super.onSyncIndexEntities(pSSysDashboard, bl);
     }
 
     public Object getDataContextValue(PSSysDashboard pSSysDashboard, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -2387,7 +2387,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysDashboard, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysDashboard, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
@@ -2395,7 +2395,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
 
     protected void onExportRelatedModel(PSSysDashboard pSSysDashboard, ArrayList<JSONObject> arrayList, int n) throws Exception {
         this.onExportRelatedModel_PSSysDashboardLogic_PSSysDashboard(pSSysDashboard, arrayList, n);
-        super.onExportRelatedModel((IEntity)pSSysDashboard, arrayList, n);
+        super.onExportRelatedModel(pSSysDashboard, arrayList, n);
     }
 
     protected void onExportRelatedModel_PSSysDashboardLogic_PSSysDashboard(PSSysDashboard pSSysDashboard, ArrayList<JSONObject> arrayList, int n) throws Exception {
@@ -2418,7 +2418,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
     }
 
     protected void onExportMajorModel(PSSysDashboard pSSysDashboard, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysDashboard, arrayList, n);
+        super.onExportMajorModel(pSSysDashboard, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -3020,21 +3020,21 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
 
     protected boolean onMergeChild(String string, String string2, PSSysDashboard pSSysDashboard) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysDashboard)) {
+        if (super.onMergeChild(string, string2, pSSysDashboard)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysDashboard pSSysDashboard) throws Exception {
-        super.onUpdateParent((IEntity)pSSysDashboard);
+        super.onUpdateParent(pSSysDashboard);
     }
 
     protected void onCopyDetails(PSSysDashboard pSSysDashboard, Object object) throws Exception {
         PSSysDashboard pSSysDashboard2 = new PSSysDashboard();
         pSSysDashboard2.set("PSSYSDASHBOARDID", object);
         String string = DataObject.getStringValue((Object)pSSysDashboard.get("PSSYSDASHBOARDID"));
-        super.onCopyDetails((IEntity)pSSysDashboard, object);
+        super.onCopyDetails(pSSysDashboard, object);
     }
 
     @Override
@@ -3118,7 +3118,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 PSSysDBPart pSSysDBPart = new PSSysDBPart();
                 pSSysDBPart.setOrderValue(n);
                 n += 100;
-                pSSysDBPartService.fillParentInfo((IEntity)pSSysDBPart, "DER1N", "DER1N_PSSYSDBPART_PSSYSDASHBOARD_PSSYSDASHBOARDID", pSSysDashboard.getPSSysDashboardId());
+                pSSysDBPartService.fillParentInfo(pSSysDBPart, "DER1N", "DER1N_PSSYSDBPART_PSSYSDASHBOARD_PSSYSDASHBOARDID", pSSysDashboard.getPSSysDashboardId());
                 pSSysDBPartService.importXmlModel(pSSysDBPart, xmlNode2);
             }
         }
@@ -3143,7 +3143,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                 PSSysDashboardLogic pSSysDashboardLogic = new PSSysDashboardLogic();
                 pSSysDashboardLogic.setOrderValue(n);
                 n += 100;
-                pSSysDashboardLogicService.fillParentInfo((IEntity)pSSysDashboardLogic, "DER1N", "DER1N_PSSYSDASHBOARDLOGIC_PSSYSDASHBOARD_PSSYSDASHBOARDID", pSSysDashboard.getPSSysDashboardId());
+                pSSysDashboardLogicService.fillParentInfo(pSSysDashboardLogic, "DER1N", "DER1N_PSSYSDASHBOARDLOGIC_PSSYSDASHBOARD_PSSYSDASHBOARDID", pSSysDashboard.getPSSysDashboardId());
                 pSSysDashboardLogicService.importXmlModel(pSSysDashboardLogic, xmlNode2);
             }
         }
@@ -3294,46 +3294,31 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
 
     @Override
     protected void onExportCurModelV2(PSSysDashboard pSSysDashboard, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        ArrayNode arrayNode;
-        Object object3;
-        ArrayList<PSSysDashboardLogic> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSDASHBOARDLOGIC_PSSYSDASHBOARD_PSSYSDASHBOARDID")) {
             pSCoreSysServiceBase = (PSSysDashboardLogicService)ServiceGlobal.getService(PSSysDashboardLogicService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            ArrayList<ObjectNode> logics = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSDASHBOARD#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSDASHBOARDLOGIC", (Object)pSSysDashboard.getPSSysDashboardId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSDASHBOARD#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSDASHBOARDLOGIC", (Object)pSSysDashboard.getPSSysDashboardId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add((PSSysDashboardLogic)entityBase2);
+                    logics = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        logics.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysDashboardLogic>();
-                object3 = ((PSSysDashboardLogicServiceBase)pSCoreSysServiceBase).selectByPSSysDashboard(pSSysDashboard);
-                arrayNode = StringHelper.format((String)"PSSYSDASHBOARD#%1$s", (Object)pSSysDashboard.getPSSysDashboardId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysDashboardLogic)object2.next();
-                    object = ((PSSysDashboardLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysDashboardLogic)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                logics = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSDASHBOARD#%1$s", (Object)pSSysDashboard.getPSSysDashboardId());
+                for (PSSysDashboardLogic logic : ((PSSysDashboardLogicServiceBase)pSCoreSysServiceBase).selectByPSSysDashboard(pSSysDashboard)) {
+                    String logicScope = ((PSSysDashboardLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope(logic);
+                    if (StringHelper.compare(scope, logicScope, false) != 0) continue;
+                    logics.add(PSModelV2Helper.toJSONObject(logic, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (logics != null && !logics.isEmpty()) {
+                ArrayNode arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
+                Collections.sort(logics, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3360,45 +3345,37 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysDashboardLogic();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode logicNode : logics) {
+                    PSSysDashboardLogic logic = new PSSysDashboardLogic();
+                    PSModelV2Helper.fromJSONObject((IDataObject)logic, logicNode, false);
+                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(logic, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSDBPART_PSSYSDASHBOARD_PSSYSDASHBOARDID")) {
             pSCoreSysServiceBase = (PSSysDBPartService)ServiceGlobal.getService(PSSysDBPartService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            ArrayList<ObjectNode> parts = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSDASHBOARD#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSDBPART", (Object)pSSysDashboard.getPSSysDashboardId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSDASHBOARD#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSDBPART", (Object)pSSysDashboard.getPSSysDashboardId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysDashboardLogic)entityBase2);
+                    parts = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        parts.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object3 = ((PSSysDBPartServiceBase)pSCoreSysServiceBase).selectByPSSysDashboard(pSSysDashboard);
-                arrayNode = StringHelper.format((String)"PSSYSDASHBOARD#%1$s", (Object)pSSysDashboard.getPSSysDashboardId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysDBPart)object2.next();
-                    object = ((PSSysDBPartServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysDashboardLogic)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                parts = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSDASHBOARD#%1$s", (Object)pSSysDashboard.getPSSysDashboardId());
+                for (PSSysDBPart part : ((PSSysDBPartServiceBase)pSCoreSysServiceBase).selectByPSSysDashboard(pSSysDashboard)) {
+                    String partScope = ((PSSysDBPartServiceBase)pSCoreSysServiceBase).getModelV2ResScope(part);
+                    if (StringHelper.compare(scope, partScope, false) != 0) continue;
+                    parts.add(PSModelV2Helper.toJSONObject(part, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (parts != null && !parts.isEmpty()) {
+                ArrayNode arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
+                Collections.sort(parts, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3425,11 +3402,11 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysDBPart();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    ((PSSysDBPartBase)object).remove("ordervalue");
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode partNode : parts) {
+                    PSSysDBPart part = new PSSysDBPart();
+                    PSModelV2Helper.fromJSONObject((IDataObject)part, partNode, false);
+                    part.remove("ordervalue");
+                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(part, string));
                 }
             }
         }
@@ -3440,29 +3417,29 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
     protected void onEmptyModelV2(PSSysDashboard pSSysDashboard) throws Exception {
         String string;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSSysDashboardLogicService)ServiceGlobal.getService(PSSysDashboardLogicService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<EntityBase> arrayList = ((PSSysDashboardLogicServiceBase)pSCoreSysServiceBase).selectByPSSysDashboard(pSSysDashboard);
+        ArrayList<PSSysDashboardLogic> logics = ((PSSysDashboardLogicServiceBase)pSCoreSysServiceBase).selectByPSSysDashboard(pSSysDashboard);
         String string2 = StringHelper.format((String)"PSSYSDASHBOARD#%1$s", (Object)pSSysDashboard.getPSSysDashboardId());
-        for (PSSysDashboardLogic entityBase : arrayList) {
-            string = ((PSSysDashboardLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase);
+        for (PSSysDashboardLogic logic : logics) {
+            string = ((PSSysDashboardLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope(logic);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
-            pSCoreSysServiceBase.emptyModelV2(entityBase);
+            pSCoreSysServiceBase.emptyModelV2(logic);
         }
-        Object object = new SqlParamList();
-        object.addString(pSSysDashboard.getPSSysDashboardId());
+        SqlParamList params = new SqlParamList();
+        params.addString(pSSysDashboard.getPSSysDashboardId());
         ((PSSysDashboardLogicServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSSysDashboardLogicServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSSYSDASHBOARDLOGIC WHERE PSSYSDASHBOARDID = ?", (SqlParamList)object);
+        ((PSSysDashboardLogicServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSSYSDASHBOARDLOGIC WHERE PSSYSDASHBOARDID = ?", params);
         pSCoreSysServiceBase = (PSSysDBPartService)ServiceGlobal.getService(PSSysDBPartService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSSysDBPartServiceBase)pSCoreSysServiceBase).selectByPSSysDashboard(pSSysDashboard);
+        ArrayList<PSSysDBPart> parts = ((PSSysDBPartServiceBase)pSCoreSysServiceBase).selectByPSSysDashboard(pSSysDashboard);
         string2 = StringHelper.format((String)"PSSYSDASHBOARD#%1$s", (Object)pSSysDashboard.getPSSysDashboardId());
-        for (PSSysDBPart pSSysDBPart : arrayList) {
-            string = ((PSSysDBPartServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSSysDBPart);
+        for (PSSysDBPart pSSysDBPart : parts) {
+            string = ((PSSysDBPartServiceBase)pSCoreSysServiceBase).getModelV2ResScope(pSSysDBPart);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(pSSysDBPart);
         }
-        object = new SqlParamList();
-        object.addString(pSSysDashboard.getPSSysDashboardId());
+        params = new SqlParamList();
+        params.addString(pSSysDashboard.getPSSysDashboardId());
         ((PSSysDBPartServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSSysDBPartServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSSYSDBPART WHERE PSSYSDASHBOARDID = ?", (SqlParamList)object);
+        ((PSSysDBPartServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSSYSDBPART WHERE PSSYSDASHBOARDID = ?", params);
         super.onEmptyModelV2(pSSysDashboard);
     }
 
@@ -3501,9 +3478,6 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
 
     @Override
     protected void onCompileRelatedModelV2(PSSysDashboard pSSysDashboard, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        File[] fileArray;
-        Object object;
-        Object object2;
         int n2;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSSysDashboardLogicService)ServiceGlobal.getService(PSSysDashboardLogicService.class, (SessionFactory)this.getSessionFactory());
         ArrayNode arrayNode = null;
@@ -3513,26 +3487,25 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         }
         if (arrayNode != null) {
             for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSSysDashboardLogic();
-                ((PSSysDashboardLogicBase)object).setPSSysDashboardId(pSSysDashboard.getPSSysDashboardId());
-                ((PSSysDashboardLogicBase)object).setPSSysDashboardName(pSSysDashboard.getPSSysDashboardName());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                ObjectNode logicNode = (ObjectNode)arrayNode.get(n2);
+                PSSysDashboardLogic logic = new PSSysDashboardLogic();
+                logic.setPSSysDashboardId(pSSysDashboard.getPSSysDashboardId());
+                logic.setPSSysDashboardName(pSSysDashboard.getPSSysDashboardName());
+                pSCoreSysServiceBase.compileModelV2(logic, logicNode, string, null, n);
             }
         } else {
             String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string4);
-            if (((File)object2).exists()) {
-                object = ((File)object2).listFiles();
-                fileArray = object;
-                int n3 = fileArray.length;
-                for (int i = 0; i < n3; ++i) {
-                    File file = fileArray[i];
-                    if (!file.isDirectory()) continue;
-                    PSSysDashboardLogic serializable = new PSSysDashboardLogic();
-                    serializable.setPSSysDashboardId(pSSysDashboard.getPSSysDashboardId());
-                    serializable.setPSSysDashboardName(pSSysDashboard.getPSSysDashboardName());
-                    pSCoreSysServiceBase.compileModelV2(serializable, null, string, file.getCanonicalPath(), n);
+            File folder = new File(string4);
+            if (folder.exists()) {
+                File[] files = folder.listFiles();
+                if (files != null) {
+                    for (File file : files) {
+                        if (!file.isDirectory()) continue;
+                        PSSysDashboardLogic logic = new PSSysDashboardLogic();
+                        logic.setPSSysDashboardId(pSSysDashboard.getPSSysDashboardId());
+                        logic.setPSSysDashboardName(pSSysDashboard.getPSSysDashboardName());
+                        pSCoreSysServiceBase.compileModelV2(logic, null, string, file.getCanonicalPath(), n);
+                    }
                 }
             }
         }
@@ -3545,23 +3518,25 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         }
         if (arrayNode != null) {
             for (int i = 0; i < arrayNode.size(); ++i) {
-                object = (ObjectNode)arrayNode.get(i);
-                fileArray = new PSSysDBPart();
-                fileArray.setPSSysDashboardId(pSSysDashboard.getPSSysDashboardId());
-                fileArray.setPSSysDashboardName(pSSysDashboard.getPSSysDashboardName());
-                fileArray.setOrderValue(n2 += 10);
-                pSCoreSysServiceBase.compileModelV2(fileArray, (ObjectNode)object, string, null, n);
+                ObjectNode partNode = (ObjectNode)arrayNode.get(i);
+                PSSysDBPart part = new PSSysDBPart();
+                part.setPSSysDashboardId(pSSysDashboard.getPSSysDashboardId());
+                part.setPSSysDashboardName(pSSysDashboard.getPSSysDashboardName());
+                part.setOrderValue(n2 += 10);
+                pSCoreSysServiceBase.compileModelV2(part, partNode, string, null, n);
             }
         } else {
-            object2 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object = new File((String)object2);
-            if (((File)object).exists()) {
-                for (File file : fileArray = ((File)object).listFiles()) {
-                    if (!file.isDirectory()) continue;
-                    PSSysDBPart pSSysDBPart = new PSSysDBPart();
-                    pSSysDBPart.setPSSysDashboardId(pSSysDashboard.getPSSysDashboardId());
-                    pSSysDBPart.setPSSysDashboardName(pSSysDashboard.getPSSysDashboardName());
-                    pSCoreSysServiceBase.compileModelV2(pSSysDBPart, null, string, file.getCanonicalPath(), n);
+            File folder = new File(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3));
+            if (folder.exists()) {
+                File[] files = folder.listFiles();
+                if (files != null) {
+                    for (File file : files) {
+                        if (!file.isDirectory()) continue;
+                        PSSysDBPart part = new PSSysDBPart();
+                        part.setPSSysDashboardId(pSSysDashboard.getPSSysDashboardId());
+                        part.setPSSysDashboardName(pSSysDashboard.getPSSysDashboardName());
+                        pSCoreSysServiceBase.compileModelV2(part, null, string, file.getCanonicalPath(), n);
+                    }
                 }
             }
         }
@@ -3585,7 +3560,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             PSSysDashboardLogicService pSSysDashboardLogicService = (PSSysDashboardLogicService)ServiceGlobal.getService(PSSysDashboardLogicService.class, (SessionFactory)this.getSessionFactory());
             PSSysDashboardLogic pSSysDashboardLogic = new PSSysDashboardLogic();
             pSSysDashboardLogic.setPSSysDashboardLogicId(pSMOSFile.getPSModelId());
-            if (!pSSysDashboardLogicService.get((IEntity)pSSysDashboardLogic, true)) {
+            if (!pSSysDashboardLogicService.get(pSSysDashboardLogic, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysDashboardLogic.getPSSysDashboardId(), (String)pSSysDashboard.getPSSysDashboardId(), (boolean)false) == 0) {
@@ -3593,12 +3568,12 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             }
             ObjectNode objectNode = pSSysDashboardLogicService.exportModelV2(pSSysDashboardLogic);
             pSSysDashboardLogic.reset();
-            if (!pSSysDashboardLogicService.setModelV2ResScope((IEntity)pSSysDashboardLogic, "PSSYSDASHBOARD", pSSysDashboard.getPSSysDashboardId())) {
+            if (!pSSysDashboardLogicService.setModelV2ResScope(pSSysDashboardLogic, "PSSYSDASHBOARD", pSSysDashboard.getPSSysDashboardId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysDashboardLogicService.importModelV2(pSSysDashboardLogic, objectNode);
             SessionFactoryManager.commit();
-            return pSSysDashboardLogicService.getFile((IEntity)pSSysDashboardLogic);
+            return pSSysDashboardLogicService.getFile(pSSysDashboardLogic);
         }
         return null;
     }
@@ -3608,7 +3583,7 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             PSSysDBPartService pSSysDBPartService = (PSSysDBPartService)ServiceGlobal.getService(PSSysDBPartService.class, (SessionFactory)this.getSessionFactory());
             PSSysDBPart pSSysDBPart = new PSSysDBPart();
             pSSysDBPart.setPSSysDBPartId(pSMOSFile.getPSModelId());
-            if (!pSSysDBPartService.get((IEntity)pSSysDBPart, true)) {
+            if (!pSSysDBPartService.get(pSSysDBPart, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysDBPart.getPSSysDashboardId(), (String)pSSysDashboard.getPSSysDashboardId(), (boolean)false) == 0) {
@@ -3616,12 +3591,12 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
             }
             ObjectNode objectNode = pSSysDBPartService.exportModelV2(pSSysDBPart);
             pSSysDBPart.reset();
-            if (!pSSysDBPartService.setModelV2ResScope((IEntity)pSSysDBPart, "PSSYSDASHBOARD", pSSysDashboard.getPSSysDashboardId())) {
+            if (!pSSysDBPartService.setModelV2ResScope(pSSysDBPart, "PSSYSDASHBOARD", pSSysDashboard.getPSSysDashboardId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysDBPartService.importModelV2(pSSysDBPart, objectNode);
             SessionFactoryManager.commit();
-            return pSSysDBPartService.getFile((IEntity)pSSysDBPart);
+            return pSSysDBPartService.getFile(pSSysDBPart);
         }
         return null;
     }
@@ -3660,4 +3635,3 @@ extends PSCoreSysServiceBase<PSSysDashboard> {
         defaultValueMap.put("CODENAME", "Dashboard");
     }
 }
-

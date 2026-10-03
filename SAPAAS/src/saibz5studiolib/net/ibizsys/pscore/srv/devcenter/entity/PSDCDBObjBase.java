@@ -1130,7 +1130,7 @@ implements Serializable {
                 PSDevCenterDBInst pSDevCenterDBInst = new PSDevCenterDBInst();
                 pSDevCenterDBInst.setPSDevCenterDBInstId(this.getPSDCDBInstId());
                 PSDevCenterDBInstService pSDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterDBInstService.autoGet((IEntity)pSDevCenterDBInst);
+                pSDevCenterDBInstService.autoGet(pSDevCenterDBInst);
                 this.psdcdbinst = pSDevCenterDBInst;
             }
             return this.psdcdbinst;
@@ -1156,7 +1156,7 @@ implements Serializable {
                 PSDevUser pSDevUser = new PSDevUser();
                 pSDevUser.setPSDevUserId(this.getPSDevUserId());
                 PSDevUserService pSDevUserService = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class, (SessionFactory)this.getSessionFactory());
-                pSDevUserService.autoGet((IEntity)pSDevUser);
+                pSDevUserService.autoGet(pSDevUser);
                 this.psdevuser = pSDevUser;
             }
             return this.psdevuser;

@@ -39,8 +39,8 @@ extends PSSFGlobalModelBase<String, PSSFStyle, IPSSFStyle> {
     protected IPSSFStyle OnCreateModelHelper(PSSFStyle vt) throws Exception {
         PSSFObjectImpl iPSSFStyle = null;
         iPSSFStyle = StringHelper.Compare((String)vt.getSTYLEENGINE(), (String)"V2", (boolean)true) == 0 ? new PSSFStyle2Impl() : new PSSFStyleImpl();
-        iPSSFStyle.init(this.iDAGlobalHelper, this.getPSSF(), vt);
-        return iPSSFStyle;
+        ((IPSSFStyle)iPSSFStyle).init(this.iDAGlobalHelper, this.getPSSF(), vt);
+        return (IPSSFStyle)iPSSFStyle;
     }
 
     @Override

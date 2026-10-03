@@ -1,86 +1,179 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.persistence.Column
- *  net.sf.json.JSONObject
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.entity;
 
+
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import javax.persistence.Column;
-import net.ibizsys.paas.data.DataObject;
+
+import java.sql.Timestamp;
 import net.ibizsys.paas.data.IDataObject;
-import net.ibizsys.paas.entity.EntityBase;
-import net.ibizsys.paas.entity.IEntityActionHelper;
-import net.ibizsys.paas.service.ServiceGlobal;
-import net.ibizsys.paas.util.DataTypeHelper;
-import net.ibizsys.paas.util.JSONObjectHelper;
+import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.paas.xml.XmlNode;
-import net.ibizsys.psrt.srv.wf.entity.WFStep;
-import net.ibizsys.psrt.srv.wf.entity.WFUser;
-import net.ibizsys.psrt.srv.wf.service.WFStepService;
-import net.ibizsys.psrt.srv.wf.service.WFUserService;
 import net.sf.json.JSONObject;
+import net.ibizsys.paas.util.JSONObjectHelper;
+import net.ibizsys.paas.xml.XmlNode;
+import net.ibizsys.paas.service.ServiceGlobal;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public abstract class WFStepActorBase
-extends EntityBase
-implements Serializable {
+
+/**
+ * 实体[WFStepActor] 数据对象基类
+ */
+public abstract class WFStepActorBase extends net.ibizsys.paas.entity.EntityBase implements Serializable {
+
     private static final long serialVersionUID = -1L;
     private static final Log log = LogFactory.getLog(WFStepActorBase.class);
-    public static final String FIELD_ACTORID = "ACTORID";
-    public static final String FIELD_ACTORTYPE = "ACTORTYPE";
-    public static final String FIELD_CREATEDATE = "CREATEDATE";
-    public static final String FIELD_CREATEMAN = "CREATEMAN";
-    public static final String FIELD_FINISHDATE = "FINISHDATE";
-    public static final String FIELD_FIRSTREADTIME = "FIRSTREADTIME";
-    public static final String FIELD_IAACTIONS = "IAACTIONS";
-    public static final String FIELD_ISFINISH = "ISFINISH";
-    public static final String FIELD_ISREADONLY = "ISREADONLY";
-    public static final String FIELD_MEMO = "MEMO";
-    public static final String FIELD_ORIGINALWFUSERID = "ORIGINALWFUSERID";
-    public static final String FIELD_ORIGINALWFUSERNAME = "ORIGINALWFUSERNAME";
-    public static final String FIELD_READFLAG = "READFLAG";
-    public static final String FIELD_REMINDERCOUNT = "REMINDERCOUNT";
-    public static final String FIELD_ROLEID = "ROLEID";
-    public static final String FIELD_UPDATEDATE = "UPDATEDATE";
-    public static final String FIELD_UPDATEMAN = "UPDATEMAN";
-    public static final String FIELD_WFINSTANCEID = "WFINSTANCEID";
-    public static final String FIELD_WFSTEPACTORID = "WFSTEPACTORID";
-    public static final String FIELD_WFSTEPACTORNAME = "WFSTEPACTORNAME";
-    public static final String FIELD_WFSTEPID = "WFSTEPID";
-    public static final String FIELD_WFSTEPNAME = "WFSTEPNAME";
-    private static final int INDEX_ACTORID = 0;
-    private static final int INDEX_ACTORTYPE = 1;
-    private static final int INDEX_CREATEDATE = 2;
-    private static final int INDEX_CREATEMAN = 3;
-    private static final int INDEX_FINISHDATE = 4;
-    private static final int INDEX_FIRSTREADTIME = 5;
-    private static final int INDEX_IAACTIONS = 6;
-    private static final int INDEX_ISFINISH = 7;
-    private static final int INDEX_ISREADONLY = 8;
-    private static final int INDEX_MEMO = 9;
-    private static final int INDEX_ORIGINALWFUSERID = 10;
-    private static final int INDEX_ORIGINALWFUSERNAME = 11;
-    private static final int INDEX_READFLAG = 12;
-    private static final int INDEX_REMINDERCOUNT = 13;
-    private static final int INDEX_ROLEID = 14;
-    private static final int INDEX_UPDATEDATE = 15;
-    private static final int INDEX_UPDATEMAN = 16;
-    private static final int INDEX_WFINSTANCEID = 17;
-    private static final int INDEX_WFSTEPACTORID = 18;
-    private static final int INDEX_WFSTEPACTORNAME = 19;
-    private static final int INDEX_WFSTEPID = 20;
-    private static final int INDEX_WFSTEPNAME = 21;
-    private static final HashMap<String, Integer> fieldIndexMap = new HashMap();
+    /**
+     * 属性[工作流用户]
+     */
+    public final static String FIELD_ACTORID = "ACTORID";
+    /**
+     * 属性[用户类型]
+     */
+    public final static String FIELD_ACTORTYPE = "ACTORTYPE";
+    /**
+     * 属性[建立时间]
+     */
+    public final static String FIELD_CREATEDATE = "CREATEDATE";
+    /**
+     * 属性[建立人]
+     */
+    public final static String FIELD_CREATEMAN = "CREATEMAN";
+    /**
+     * 属性[完成时间]
+     */
+    public final static String FIELD_FINISHDATE = "FINISHDATE";
+    /**
+     * 属性[查看时间]
+     */
+    public final static String FIELD_FIRSTREADTIME = "FIRSTREADTIME";
+    /**
+     * 属性[允许交互操作]
+     */
+    public final static String FIELD_IAACTIONS = "IAACTIONS";
+    /**
+     * 属性[是否完成]
+     */
+    public final static String FIELD_ISFINISH = "ISFINISH";
+    /**
+     * 属性[是否只读]
+     */
+    public final static String FIELD_ISREADONLY = "ISREADONLY";
+    /**
+     * 属性[备注]
+     */
+    public final static String FIELD_MEMO = "MEMO";
+    /**
+     * 属性[源流程用户]
+     */
+    public final static String FIELD_ORIGINALWFUSERID = "ORIGINALWFUSERID";
+    /**
+     * 属性[源流程用户]
+     */
+    public final static String FIELD_ORIGINALWFUSERNAME = "ORIGINALWFUSERNAME";
+    /**
+     * 属性[是否已读]
+     */
+    public final static String FIELD_READFLAG = "READFLAG";
+    /**
+     * 属性[督促次数]
+     */
+    public final static String FIELD_REMINDERCOUNT = "REMINDERCOUNT";
+    /**
+     * 属性[角色用户]
+     */
+    public final static String FIELD_ROLEID = "ROLEID";
+    /**
+     * 属性[更新时间]
+     */
+    public final static String FIELD_UPDATEDATE = "UPDATEDATE";
+    /**
+     * 属性[更新人]
+     */
+    public final static String FIELD_UPDATEMAN = "UPDATEMAN";
+    /**
+     * 属性[流程实例]
+     */
+    public final static String FIELD_WFINSTANCEID = "WFINSTANCEID";
+    /**
+     * 属性[工作流步骤操作者标识]
+     */
+    public final static String FIELD_WFSTEPACTORID = "WFSTEPACTORID";
+    /**
+     * 属性[工作流步骤操作者名称]
+     */
+    public final static String FIELD_WFSTEPACTORNAME = "WFSTEPACTORNAME";
+    /**
+     * 属性[步骤角色_步骤]
+     */
+    public final static String FIELD_WFSTEPID = "WFSTEPID";
+    /**
+     * 属性[流程步骤]
+     */
+    public final static String FIELD_WFSTEPNAME = "WFSTEPNAME";
+
+    private final static int INDEX_ACTORID = 0;
+    private final static int INDEX_ACTORTYPE = 1;
+    private final static int INDEX_CREATEDATE = 2;
+    private final static int INDEX_CREATEMAN = 3;
+    private final static int INDEX_FINISHDATE = 4;
+    private final static int INDEX_FIRSTREADTIME = 5;
+    private final static int INDEX_IAACTIONS = 6;
+    private final static int INDEX_ISFINISH = 7;
+    private final static int INDEX_ISREADONLY = 8;
+    private final static int INDEX_MEMO = 9;
+    private final static int INDEX_ORIGINALWFUSERID = 10;
+    private final static int INDEX_ORIGINALWFUSERNAME = 11;
+    private final static int INDEX_READFLAG = 12;
+    private final static int INDEX_REMINDERCOUNT = 13;
+    private final static int INDEX_ROLEID = 14;
+    private final static int INDEX_UPDATEDATE = 15;
+    private final static int INDEX_UPDATEMAN = 16;
+    private final static int INDEX_WFINSTANCEID = 17;
+    private final static int INDEX_WFSTEPACTORID = 18;
+    private final static int INDEX_WFSTEPACTORNAME = 19;
+    private final static int INDEX_WFSTEPID = 20;
+    private final static int INDEX_WFSTEPNAME = 21;
+
+    private final static HashMap<String, Integer> fieldIndexMap = new HashMap<String, Integer>();
+    static {
+        fieldIndexMap.put( FIELD_ACTORID, INDEX_ACTORID);
+        fieldIndexMap.put( FIELD_ACTORTYPE, INDEX_ACTORTYPE);
+        fieldIndexMap.put( FIELD_CREATEDATE, INDEX_CREATEDATE);
+        fieldIndexMap.put( FIELD_CREATEMAN, INDEX_CREATEMAN);
+        fieldIndexMap.put( FIELD_FINISHDATE, INDEX_FINISHDATE);
+        fieldIndexMap.put( FIELD_FIRSTREADTIME, INDEX_FIRSTREADTIME);
+        fieldIndexMap.put( FIELD_IAACTIONS, INDEX_IAACTIONS);
+        fieldIndexMap.put( FIELD_ISFINISH, INDEX_ISFINISH);
+        fieldIndexMap.put( FIELD_ISREADONLY, INDEX_ISREADONLY);
+        fieldIndexMap.put( FIELD_MEMO, INDEX_MEMO);
+        fieldIndexMap.put( FIELD_ORIGINALWFUSERID, INDEX_ORIGINALWFUSERID);
+        fieldIndexMap.put( FIELD_ORIGINALWFUSERNAME, INDEX_ORIGINALWFUSERNAME);
+        fieldIndexMap.put( FIELD_READFLAG, INDEX_READFLAG);
+        fieldIndexMap.put( FIELD_REMINDERCOUNT, INDEX_REMINDERCOUNT);
+        fieldIndexMap.put( FIELD_ROLEID, INDEX_ROLEID);
+        fieldIndexMap.put( FIELD_UPDATEDATE, INDEX_UPDATEDATE);
+        fieldIndexMap.put( FIELD_UPDATEMAN, INDEX_UPDATEMAN);
+        fieldIndexMap.put( FIELD_WFINSTANCEID, INDEX_WFINSTANCEID);
+        fieldIndexMap.put( FIELD_WFSTEPACTORID, INDEX_WFSTEPACTORID);
+        fieldIndexMap.put( FIELD_WFSTEPACTORNAME, INDEX_WFSTEPACTORNAME);
+        fieldIndexMap.put( FIELD_WFSTEPID, INDEX_WFSTEPID);
+        fieldIndexMap.put( FIELD_WFSTEPNAME, INDEX_WFSTEPNAME);
+    }
+
     private WFStepActorBase proxyWFStepActorBase = null;
+    public WFStepActorBase() {
+        super();
+    }
     private boolean actoridDirtyFlag = false;
     private boolean actortypeDirtyFlag = false;
     private boolean createdateDirtyFlag = false;
@@ -103,6 +196,7 @@ implements Serializable {
     private boolean wfstepactornameDirtyFlag = false;
     private boolean wfstepidDirtyFlag = false;
     private boolean wfstepnameDirtyFlag = false;
+
     @Column(name="actorid")
     private String actorid;
     @Column(name="actortype")
@@ -147,785 +241,1134 @@ implements Serializable {
     private String wfstepid;
     @Column(name="wfstepname")
     private String wfstepname;
-    private Integer objWFStepLock = new Integer(1);
-    private WFStep wfstep = null;
-    private Integer objOriginalWFUserLock = new Integer(1);
-    private WFUser originalwfuser = null;
 
-    static {
-        fieldIndexMap.put(FIELD_ACTORID, 0);
-        fieldIndexMap.put(FIELD_ACTORTYPE, 1);
-        fieldIndexMap.put(FIELD_CREATEDATE, 2);
-        fieldIndexMap.put(FIELD_CREATEMAN, 3);
-        fieldIndexMap.put(FIELD_FINISHDATE, 4);
-        fieldIndexMap.put(FIELD_FIRSTREADTIME, 5);
-        fieldIndexMap.put(FIELD_IAACTIONS, 6);
-        fieldIndexMap.put(FIELD_ISFINISH, 7);
-        fieldIndexMap.put(FIELD_ISREADONLY, 8);
-        fieldIndexMap.put(FIELD_MEMO, 9);
-        fieldIndexMap.put(FIELD_ORIGINALWFUSERID, 10);
-        fieldIndexMap.put(FIELD_ORIGINALWFUSERNAME, 11);
-        fieldIndexMap.put(FIELD_READFLAG, 12);
-        fieldIndexMap.put(FIELD_REMINDERCOUNT, 13);
-        fieldIndexMap.put(FIELD_ROLEID, 14);
-        fieldIndexMap.put(FIELD_UPDATEDATE, 15);
-        fieldIndexMap.put(FIELD_UPDATEMAN, 16);
-        fieldIndexMap.put(FIELD_WFINSTANCEID, 17);
-        fieldIndexMap.put(FIELD_WFSTEPACTORID, 18);
-        fieldIndexMap.put(FIELD_WFSTEPACTORNAME, 19);
-        fieldIndexMap.put(FIELD_WFSTEPID, 20);
-        fieldIndexMap.put(FIELD_WFSTEPNAME, 21);
-    }
 
+    /**
+     *  设置属性值[工作流用户]
+     *  @param actorid
+     */
     public void setActorId(String actorid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setActorId(actorid);
             return;
         }
-        if (actorid != null && (actorid = StringHelper.trimRight(actorid)).length() == 0) {
-            actorid = null;
+        if(actorid!=null) {
+            actorid = StringHelper.trimRight(actorid);
+            if(actorid.length()==0) {
+                actorid = null;
+            }
         }
         this.actorid = actorid;
-        this.actoridDirtyFlag = true;
+        this.actoridDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[工作流用户]
+     */
     public String getActorId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getActorId();
         }
         return this.actorid;
     }
 
+    /**
+     *  获取属性值[工作流用户]是否修改
+     */
     public boolean isActorIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isActorIdDirty();
         }
         return this.actoridDirtyFlag;
     }
 
+    /**
+     *  重置属性值[工作流用户]
+     */
     public void resetActorId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetActorId();
             return;
         }
+
         this.actoridDirtyFlag = false;
         this.actorid = null;
     }
-
+    /**
+     *  设置属性值[用户类型]
+     *  @param actortype
+     */
     public void setActorType(Integer actortype) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setActorType(actortype);
             return;
         }
         this.actortype = actortype;
-        this.actortypeDirtyFlag = true;
+        this.actortypeDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[用户类型]
+     */
     public Integer getActorType() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getActorType();
         }
         return this.actortype;
     }
 
+    /**
+     *  获取属性值[用户类型]是否修改
+     */
     public boolean isActorTypeDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isActorTypeDirty();
         }
         return this.actortypeDirtyFlag;
     }
 
+    /**
+     *  重置属性值[用户类型]
+     */
     public void resetActorType() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetActorType();
             return;
         }
+
         this.actortypeDirtyFlag = false;
         this.actortype = null;
     }
-
+    /**
+     *  设置属性值[建立时间]
+     *  @param createdate
+     */
     public void setCreateDate(Timestamp createdate) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setCreateDate(createdate);
             return;
         }
         this.createdate = createdate;
-        this.createdateDirtyFlag = true;
+        this.createdateDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[建立时间]
+     */
     public Timestamp getCreateDate() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getCreateDate();
         }
         return this.createdate;
     }
 
+    /**
+     *  获取属性值[建立时间]是否修改
+     */
     public boolean isCreateDateDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isCreateDateDirty();
         }
         return this.createdateDirtyFlag;
     }
 
+    /**
+     *  重置属性值[建立时间]
+     */
     public void resetCreateDate() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetCreateDate();
             return;
         }
+
         this.createdateDirtyFlag = false;
         this.createdate = null;
     }
-
+    /**
+     *  设置属性值[建立人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     *  @param createman
+     */
     public void setCreateMan(String createman) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setCreateMan(createman);
             return;
         }
-        if (createman != null && (createman = StringHelper.trimRight(createman)).length() == 0) {
-            createman = null;
+        if(createman!=null) {
+            createman = StringHelper.trimRight(createman);
+            if(createman.length()==0) {
+                createman = null;
+            }
         }
         this.createman = createman;
-        this.createmanDirtyFlag = true;
+        this.createmanDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[建立人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     */
     public String getCreateMan() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getCreateMan();
         }
         return this.createman;
     }
 
+    /**
+     *  获取属性值[建立人]是否修改
+     */
     public boolean isCreateManDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isCreateManDirty();
         }
         return this.createmanDirtyFlag;
     }
 
+    /**
+     *  重置属性值[建立人]
+     */
     public void resetCreateMan() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetCreateMan();
             return;
         }
+
         this.createmanDirtyFlag = false;
         this.createman = null;
     }
-
+    /**
+     *  设置属性值[完成时间]
+     *  @param finishdate
+     */
     public void setFinishDate(Timestamp finishdate) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setFinishDate(finishdate);
             return;
         }
         this.finishdate = finishdate;
-        this.finishdateDirtyFlag = true;
+        this.finishdateDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[完成时间]
+     */
     public Timestamp getFinishDate() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getFinishDate();
         }
         return this.finishdate;
     }
 
+    /**
+     *  获取属性值[完成时间]是否修改
+     */
     public boolean isFinishDateDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isFinishDateDirty();
         }
         return this.finishdateDirtyFlag;
     }
 
+    /**
+     *  重置属性值[完成时间]
+     */
     public void resetFinishDate() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetFinishDate();
             return;
         }
+
         this.finishdateDirtyFlag = false;
         this.finishdate = null;
     }
-
+    /**
+     *  设置属性值[查看时间]
+     *  @param firstreadtime
+     */
     public void setFirstReadTime(Timestamp firstreadtime) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setFirstReadTime(firstreadtime);
             return;
         }
         this.firstreadtime = firstreadtime;
-        this.firstreadtimeDirtyFlag = true;
+        this.firstreadtimeDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[查看时间]
+     */
     public Timestamp getFirstReadTime() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getFirstReadTime();
         }
         return this.firstreadtime;
     }
 
+    /**
+     *  获取属性值[查看时间]是否修改
+     */
     public boolean isFirstReadTimeDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isFirstReadTimeDirty();
         }
         return this.firstreadtimeDirtyFlag;
     }
 
+    /**
+     *  重置属性值[查看时间]
+     */
     public void resetFirstReadTime() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetFirstReadTime();
             return;
         }
+
         this.firstreadtimeDirtyFlag = false;
         this.firstreadtime = null;
     }
-
+    /**
+     *  设置属性值[允许交互操作]
+     *  @param iaactions
+     */
     public void setIAActions(String iaactions) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setIAActions(iaactions);
             return;
         }
-        if (iaactions != null && (iaactions = StringHelper.trimRight(iaactions)).length() == 0) {
-            iaactions = null;
+        if(iaactions!=null) {
+            iaactions = StringHelper.trimRight(iaactions);
+            if(iaactions.length()==0) {
+                iaactions = null;
+            }
         }
         this.iaactions = iaactions;
-        this.iaactionsDirtyFlag = true;
+        this.iaactionsDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[允许交互操作]
+     */
     public String getIAActions() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getIAActions();
         }
         return this.iaactions;
     }
 
+    /**
+     *  获取属性值[允许交互操作]是否修改
+     */
     public boolean isIAActionsDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isIAActionsDirty();
         }
         return this.iaactionsDirtyFlag;
     }
 
+    /**
+     *  重置属性值[允许交互操作]
+     */
     public void resetIAActions() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetIAActions();
             return;
         }
+
         this.iaactionsDirtyFlag = false;
         this.iaactions = null;
     }
-
+    /**
+     *  设置属性值[是否完成]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param isfinish
+     */
     public void setIsFinish(Integer isfinish) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setIsFinish(isfinish);
             return;
         }
         this.isfinish = isfinish;
-        this.isfinishDirtyFlag = true;
+        this.isfinishDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[是否完成]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getIsFinish() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getIsFinish();
         }
         return this.isfinish;
     }
 
+    /**
+     *  获取属性值[是否完成]是否修改
+     */
     public boolean isIsFinishDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isIsFinishDirty();
         }
         return this.isfinishDirtyFlag;
     }
 
+    /**
+     *  重置属性值[是否完成]
+     */
     public void resetIsFinish() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetIsFinish();
             return;
         }
+
         this.isfinishDirtyFlag = false;
         this.isfinish = null;
     }
-
+    /**
+     *  设置属性值[是否只读]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param isreadonly
+     */
     public void setIsReadOnly(Integer isreadonly) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setIsReadOnly(isreadonly);
             return;
         }
         this.isreadonly = isreadonly;
-        this.isreadonlyDirtyFlag = true;
+        this.isreadonlyDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[是否只读]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getIsReadOnly() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getIsReadOnly();
         }
         return this.isreadonly;
     }
 
+    /**
+     *  获取属性值[是否只读]是否修改
+     */
     public boolean isIsReadOnlyDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isIsReadOnlyDirty();
         }
         return this.isreadonlyDirtyFlag;
     }
 
+    /**
+     *  重置属性值[是否只读]
+     */
     public void resetIsReadOnly() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetIsReadOnly();
             return;
         }
+
         this.isreadonlyDirtyFlag = false;
         this.isreadonly = null;
     }
-
+    /**
+     *  设置属性值[备注]
+     *  @param memo
+     */
     public void setMemo(String memo) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setMemo(memo);
             return;
         }
-        if (memo != null && (memo = StringHelper.trimRight(memo)).length() == 0) {
-            memo = null;
+        if(memo!=null) {
+            memo = StringHelper.trimRight(memo);
+            if(memo.length()==0) {
+                memo = null;
+            }
         }
         this.memo = memo;
-        this.memoDirtyFlag = true;
+        this.memoDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[备注]
+     */
     public String getMemo() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getMemo();
         }
         return this.memo;
     }
 
+    /**
+     *  获取属性值[备注]是否修改
+     */
     public boolean isMemoDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isMemoDirty();
         }
         return this.memoDirtyFlag;
     }
 
+    /**
+     *  重置属性值[备注]
+     */
     public void resetMemo() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetMemo();
             return;
         }
+
         this.memoDirtyFlag = false;
         this.memo = null;
     }
-
+    /**
+     *  设置属性值[源流程用户]
+     *  @param originalwfuserid
+     */
     public void setOriginalWFUserId(String originalwfuserid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setOriginalWFUserId(originalwfuserid);
             return;
         }
-        if (originalwfuserid != null && (originalwfuserid = StringHelper.trimRight(originalwfuserid)).length() == 0) {
-            originalwfuserid = null;
+        if(originalwfuserid!=null) {
+            originalwfuserid = StringHelper.trimRight(originalwfuserid);
+            if(originalwfuserid.length()==0) {
+                originalwfuserid = null;
+            }
         }
         this.originalwfuserid = originalwfuserid;
-        this.originalwfuseridDirtyFlag = true;
+        this.originalwfuseridDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[源流程用户]
+     */
     public String getOriginalWFUserId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getOriginalWFUserId();
         }
         return this.originalwfuserid;
     }
 
+    /**
+     *  获取属性值[源流程用户]是否修改
+     */
     public boolean isOriginalWFUserIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isOriginalWFUserIdDirty();
         }
         return this.originalwfuseridDirtyFlag;
     }
 
+    /**
+     *  重置属性值[源流程用户]
+     */
     public void resetOriginalWFUserId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetOriginalWFUserId();
             return;
         }
+
         this.originalwfuseridDirtyFlag = false;
         this.originalwfuserid = null;
     }
-
+    /**
+     *  设置属性值[源流程用户]
+     *  @param originalwfusername
+     */
     public void setOriginalWFUserName(String originalwfusername) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setOriginalWFUserName(originalwfusername);
             return;
         }
-        if (originalwfusername != null && (originalwfusername = StringHelper.trimRight(originalwfusername)).length() == 0) {
-            originalwfusername = null;
+        if(originalwfusername!=null) {
+            originalwfusername = StringHelper.trimRight(originalwfusername);
+            if(originalwfusername.length()==0) {
+                originalwfusername = null;
+            }
         }
         this.originalwfusername = originalwfusername;
-        this.originalwfusernameDirtyFlag = true;
+        this.originalwfusernameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[源流程用户]
+     */
     public String getOriginalWFUserName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getOriginalWFUserName();
         }
         return this.originalwfusername;
     }
 
+    /**
+     *  获取属性值[源流程用户]是否修改
+     */
     public boolean isOriginalWFUserNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isOriginalWFUserNameDirty();
         }
         return this.originalwfusernameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[源流程用户]
+     */
     public void resetOriginalWFUserName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetOriginalWFUserName();
             return;
         }
+
         this.originalwfusernameDirtyFlag = false;
         this.originalwfusername = null;
     }
-
+    /**
+     *  设置属性值[是否已读]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param readflag
+     */
     public void setReadFlag(Integer readflag) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setReadFlag(readflag);
             return;
         }
         this.readflag = readflag;
-        this.readflagDirtyFlag = true;
+        this.readflagDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[是否已读]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getReadFlag() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getReadFlag();
         }
         return this.readflag;
     }
 
+    /**
+     *  获取属性值[是否已读]是否修改
+     */
     public boolean isReadFlagDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isReadFlagDirty();
         }
         return this.readflagDirtyFlag;
     }
 
+    /**
+     *  重置属性值[是否已读]
+     */
     public void resetReadFlag() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetReadFlag();
             return;
         }
+
         this.readflagDirtyFlag = false;
         this.readflag = null;
     }
-
+    /**
+     *  设置属性值[督促次数]
+     *  @param remindercount
+     */
     public void setReminderCount(Integer remindercount) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setReminderCount(remindercount);
             return;
         }
         this.remindercount = remindercount;
-        this.remindercountDirtyFlag = true;
+        this.remindercountDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[督促次数]
+     */
     public Integer getReminderCount() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getReminderCount();
         }
         return this.remindercount;
     }
 
+    /**
+     *  获取属性值[督促次数]是否修改
+     */
     public boolean isReminderCountDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isReminderCountDirty();
         }
         return this.remindercountDirtyFlag;
     }
 
+    /**
+     *  重置属性值[督促次数]
+     */
     public void resetReminderCount() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetReminderCount();
             return;
         }
+
         this.remindercountDirtyFlag = false;
         this.remindercount = null;
     }
-
+    /**
+     *  设置属性值[角色用户]
+     *  @param roleid
+     */
     public void setRoleId(String roleid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setRoleId(roleid);
             return;
         }
-        if (roleid != null && (roleid = StringHelper.trimRight(roleid)).length() == 0) {
-            roleid = null;
+        if(roleid!=null) {
+            roleid = StringHelper.trimRight(roleid);
+            if(roleid.length()==0) {
+                roleid = null;
+            }
         }
         this.roleid = roleid;
-        this.roleidDirtyFlag = true;
+        this.roleidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[角色用户]
+     */
     public String getRoleId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getRoleId();
         }
         return this.roleid;
     }
 
+    /**
+     *  获取属性值[角色用户]是否修改
+     */
     public boolean isRoleIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isRoleIdDirty();
         }
         return this.roleidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[角色用户]
+     */
     public void resetRoleId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetRoleId();
             return;
         }
+
         this.roleidDirtyFlag = false;
         this.roleid = null;
     }
-
+    /**
+     *  设置属性值[更新时间]
+     *  @param updatedate
+     */
     public void setUpdateDate(Timestamp updatedate) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setUpdateDate(updatedate);
             return;
         }
         this.updatedate = updatedate;
-        this.updatedateDirtyFlag = true;
+        this.updatedateDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[更新时间]
+     */
     public Timestamp getUpdateDate() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getUpdateDate();
         }
         return this.updatedate;
     }
 
+    /**
+     *  获取属性值[更新时间]是否修改
+     */
     public boolean isUpdateDateDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isUpdateDateDirty();
         }
         return this.updatedateDirtyFlag;
     }
 
+    /**
+     *  重置属性值[更新时间]
+     */
     public void resetUpdateDate() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetUpdateDate();
             return;
         }
+
         this.updatedateDirtyFlag = false;
         this.updatedate = null;
     }
-
+    /**
+     *  设置属性值[更新人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     *  @param updateman
+     */
     public void setUpdateMan(String updateman) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setUpdateMan(updateman);
             return;
         }
-        if (updateman != null && (updateman = StringHelper.trimRight(updateman)).length() == 0) {
-            updateman = null;
+        if(updateman!=null) {
+            updateman = StringHelper.trimRight(updateman);
+            if(updateman.length()==0) {
+                updateman = null;
+            }
         }
         this.updateman = updateman;
-        this.updatemanDirtyFlag = true;
+        this.updatemanDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[更新人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     */
     public String getUpdateMan() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getUpdateMan();
         }
         return this.updateman;
     }
 
+    /**
+     *  获取属性值[更新人]是否修改
+     */
     public boolean isUpdateManDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isUpdateManDirty();
         }
         return this.updatemanDirtyFlag;
     }
 
+    /**
+     *  重置属性值[更新人]
+     */
     public void resetUpdateMan() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetUpdateMan();
             return;
         }
+
         this.updatemanDirtyFlag = false;
         this.updateman = null;
     }
-
+    /**
+     *  设置属性值[流程实例]
+     *  @param wfinstanceid
+     */
     public void setWFInstanceId(String wfinstanceid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setWFInstanceId(wfinstanceid);
             return;
         }
-        if (wfinstanceid != null && (wfinstanceid = StringHelper.trimRight(wfinstanceid)).length() == 0) {
-            wfinstanceid = null;
+        if(wfinstanceid!=null) {
+            wfinstanceid = StringHelper.trimRight(wfinstanceid);
+            if(wfinstanceid.length()==0) {
+                wfinstanceid = null;
+            }
         }
         this.wfinstanceid = wfinstanceid;
-        this.wfinstanceidDirtyFlag = true;
+        this.wfinstanceidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[流程实例]
+     */
     public String getWFInstanceId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getWFInstanceId();
         }
         return this.wfinstanceid;
     }
 
+    /**
+     *  获取属性值[流程实例]是否修改
+     */
     public boolean isWFInstanceIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isWFInstanceIdDirty();
         }
         return this.wfinstanceidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[流程实例]
+     */
     public void resetWFInstanceId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetWFInstanceId();
             return;
         }
+
         this.wfinstanceidDirtyFlag = false;
         this.wfinstanceid = null;
     }
-
+    /**
+     *  设置属性值[工作流步骤操作者标识]
+     *  @param wfstepactorid
+     */
     public void setWFStepActorId(String wfstepactorid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setWFStepActorId(wfstepactorid);
             return;
         }
-        if (wfstepactorid != null && (wfstepactorid = StringHelper.trimRight(wfstepactorid)).length() == 0) {
-            wfstepactorid = null;
+        if(wfstepactorid!=null) {
+            wfstepactorid = StringHelper.trimRight(wfstepactorid);
+            if(wfstepactorid.length()==0) {
+                wfstepactorid = null;
+            }
         }
         this.wfstepactorid = wfstepactorid;
-        this.wfstepactoridDirtyFlag = true;
+        this.wfstepactoridDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[工作流步骤操作者标识]
+     */
     public String getWFStepActorId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getWFStepActorId();
         }
         return this.wfstepactorid;
     }
 
+    /**
+     *  获取属性值[工作流步骤操作者标识]是否修改
+     */
     public boolean isWFStepActorIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isWFStepActorIdDirty();
         }
         return this.wfstepactoridDirtyFlag;
     }
 
+    /**
+     *  重置属性值[工作流步骤操作者标识]
+     */
     public void resetWFStepActorId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetWFStepActorId();
             return;
         }
+
         this.wfstepactoridDirtyFlag = false;
         this.wfstepactorid = null;
     }
-
+    /**
+     *  设置属性值[工作流步骤操作者名称]
+     *  @param wfstepactorname
+     */
     public void setWFStepActorName(String wfstepactorname) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setWFStepActorName(wfstepactorname);
             return;
         }
-        if (wfstepactorname != null && (wfstepactorname = StringHelper.trimRight(wfstepactorname)).length() == 0) {
-            wfstepactorname = null;
+        if(wfstepactorname!=null) {
+            wfstepactorname = StringHelper.trimRight(wfstepactorname);
+            if(wfstepactorname.length()==0) {
+                wfstepactorname = null;
+            }
         }
         this.wfstepactorname = wfstepactorname;
-        this.wfstepactornameDirtyFlag = true;
+        this.wfstepactornameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[工作流步骤操作者名称]
+     */
     public String getWFStepActorName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getWFStepActorName();
         }
         return this.wfstepactorname;
     }
 
+    /**
+     *  获取属性值[工作流步骤操作者名称]是否修改
+     */
     public boolean isWFStepActorNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isWFStepActorNameDirty();
         }
         return this.wfstepactornameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[工作流步骤操作者名称]
+     */
     public void resetWFStepActorName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetWFStepActorName();
             return;
         }
+
         this.wfstepactornameDirtyFlag = false;
         this.wfstepactorname = null;
     }
-
+    /**
+     *  设置属性值[步骤角色_步骤]
+     *  @param wfstepid
+     */
     public void setWFStepId(String wfstepid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setWFStepId(wfstepid);
             return;
         }
-        if (wfstepid != null && (wfstepid = StringHelper.trimRight(wfstepid)).length() == 0) {
-            wfstepid = null;
+        if(wfstepid!=null) {
+            wfstepid = StringHelper.trimRight(wfstepid);
+            if(wfstepid.length()==0) {
+                wfstepid = null;
+            }
         }
         this.wfstepid = wfstepid;
-        this.wfstepidDirtyFlag = true;
+        this.wfstepidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[步骤角色_步骤]
+     */
     public String getWFStepId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getWFStepId();
         }
         return this.wfstepid;
     }
 
+    /**
+     *  获取属性值[步骤角色_步骤]是否修改
+     */
     public boolean isWFStepIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isWFStepIdDirty();
         }
         return this.wfstepidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[步骤角色_步骤]
+     */
     public void resetWFStepId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetWFStepId();
             return;
         }
+
         this.wfstepidDirtyFlag = false;
         this.wfstepid = null;
     }
-
+    /**
+     *  设置属性值[流程步骤]
+     *  @param wfstepname
+     */
     public void setWFStepName(String wfstepname) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setWFStepName(wfstepname);
             return;
         }
-        if (wfstepname != null && (wfstepname = StringHelper.trimRight(wfstepname)).length() == 0) {
-            wfstepname = null;
+        if(wfstepname!=null) {
+            wfstepname = StringHelper.trimRight(wfstepname);
+            if(wfstepname.length()==0) {
+                wfstepname = null;
+            }
         }
         this.wfstepname = wfstepname;
-        this.wfstepnameDirtyFlag = true;
+        this.wfstepnameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[流程步骤]
+     */
     public String getWFStepName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getWFStepName();
         }
         return this.wfstepname;
     }
 
+    /**
+     *  获取属性值[流程步骤]是否修改
+     */
     public boolean isWFStepNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isWFStepNameDirty();
         }
         return this.wfstepnameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[流程步骤]
+     */
     public void resetWFStepName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetWFStepName();
             return;
         }
+
         this.wfstepnameDirtyFlag = false;
         this.wfstepname = null;
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.entity.EntityBase#onReset()
+     */
     @Override
     protected void onReset() {
         WFStepActorBase.resetAll(this);
         super.onReset();
     }
 
+    /**
+     * 重置当前数据对象属性值
+     * @param entity
+     */
     private static void resetAll(WFStepActorBase et) {
         et.resetActorId();
         et.resetActorType();
@@ -951,825 +1394,812 @@ implements Serializable {
         et.resetWFStepName();
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.entity.EntityBase#onFillMap(java.util.HashMap, boolean)
+     */
     @Override
     protected void onFillMap(HashMap<String, Object> params, boolean bDirtyOnly) {
-        if (!bDirtyOnly || this.isActorIdDirty()) {
-            params.put(FIELD_ACTORID, this.getActorId());
+        if(!bDirtyOnly || isActorIdDirty()) {
+            params.put(FIELD_ACTORID,getActorId());
         }
-        if (!bDirtyOnly || this.isActorTypeDirty()) {
-            params.put(FIELD_ACTORTYPE, this.getActorType());
+        if(!bDirtyOnly || isActorTypeDirty()) {
+            params.put(FIELD_ACTORTYPE,getActorType());
         }
-        if (!bDirtyOnly || this.isCreateDateDirty()) {
-            params.put(FIELD_CREATEDATE, this.getCreateDate());
+        if(!bDirtyOnly || isCreateDateDirty()) {
+            params.put(FIELD_CREATEDATE,getCreateDate());
         }
-        if (!bDirtyOnly || this.isCreateManDirty()) {
-            params.put(FIELD_CREATEMAN, this.getCreateMan());
+        if(!bDirtyOnly || isCreateManDirty()) {
+            params.put(FIELD_CREATEMAN,getCreateMan());
         }
-        if (!bDirtyOnly || this.isFinishDateDirty()) {
-            params.put(FIELD_FINISHDATE, this.getFinishDate());
+        if(!bDirtyOnly || isFinishDateDirty()) {
+            params.put(FIELD_FINISHDATE,getFinishDate());
         }
-        if (!bDirtyOnly || this.isFirstReadTimeDirty()) {
-            params.put(FIELD_FIRSTREADTIME, this.getFirstReadTime());
+        if(!bDirtyOnly || isFirstReadTimeDirty()) {
+            params.put(FIELD_FIRSTREADTIME,getFirstReadTime());
         }
-        if (!bDirtyOnly || this.isIAActionsDirty()) {
-            params.put(FIELD_IAACTIONS, this.getIAActions());
+        if(!bDirtyOnly || isIAActionsDirty()) {
+            params.put(FIELD_IAACTIONS,getIAActions());
         }
-        if (!bDirtyOnly || this.isIsFinishDirty()) {
-            params.put(FIELD_ISFINISH, this.getIsFinish());
+        if(!bDirtyOnly || isIsFinishDirty()) {
+            params.put(FIELD_ISFINISH,getIsFinish());
         }
-        if (!bDirtyOnly || this.isIsReadOnlyDirty()) {
-            params.put(FIELD_ISREADONLY, this.getIsReadOnly());
+        if(!bDirtyOnly || isIsReadOnlyDirty()) {
+            params.put(FIELD_ISREADONLY,getIsReadOnly());
         }
-        if (!bDirtyOnly || this.isMemoDirty()) {
-            params.put(FIELD_MEMO, this.getMemo());
+        if(!bDirtyOnly || isMemoDirty()) {
+            params.put(FIELD_MEMO,getMemo());
         }
-        if (!bDirtyOnly || this.isOriginalWFUserIdDirty()) {
-            params.put(FIELD_ORIGINALWFUSERID, this.getOriginalWFUserId());
+        if(!bDirtyOnly || isOriginalWFUserIdDirty()) {
+            params.put(FIELD_ORIGINALWFUSERID,getOriginalWFUserId());
         }
-        if (!bDirtyOnly || this.isOriginalWFUserNameDirty()) {
-            params.put(FIELD_ORIGINALWFUSERNAME, this.getOriginalWFUserName());
+        if(!bDirtyOnly || isOriginalWFUserNameDirty()) {
+            params.put(FIELD_ORIGINALWFUSERNAME,getOriginalWFUserName());
         }
-        if (!bDirtyOnly || this.isReadFlagDirty()) {
-            params.put(FIELD_READFLAG, this.getReadFlag());
+        if(!bDirtyOnly || isReadFlagDirty()) {
+            params.put(FIELD_READFLAG,getReadFlag());
         }
-        if (!bDirtyOnly || this.isReminderCountDirty()) {
-            params.put(FIELD_REMINDERCOUNT, this.getReminderCount());
+        if(!bDirtyOnly || isReminderCountDirty()) {
+            params.put(FIELD_REMINDERCOUNT,getReminderCount());
         }
-        if (!bDirtyOnly || this.isRoleIdDirty()) {
-            params.put(FIELD_ROLEID, this.getRoleId());
+        if(!bDirtyOnly || isRoleIdDirty()) {
+            params.put(FIELD_ROLEID,getRoleId());
         }
-        if (!bDirtyOnly || this.isUpdateDateDirty()) {
-            params.put(FIELD_UPDATEDATE, this.getUpdateDate());
+        if(!bDirtyOnly || isUpdateDateDirty()) {
+            params.put(FIELD_UPDATEDATE,getUpdateDate());
         }
-        if (!bDirtyOnly || this.isUpdateManDirty()) {
-            params.put(FIELD_UPDATEMAN, this.getUpdateMan());
+        if(!bDirtyOnly || isUpdateManDirty()) {
+            params.put(FIELD_UPDATEMAN,getUpdateMan());
         }
-        if (!bDirtyOnly || this.isWFInstanceIdDirty()) {
-            params.put(FIELD_WFINSTANCEID, this.getWFInstanceId());
+        if(!bDirtyOnly || isWFInstanceIdDirty()) {
+            params.put(FIELD_WFINSTANCEID,getWFInstanceId());
         }
-        if (!bDirtyOnly || this.isWFStepActorIdDirty()) {
-            params.put(FIELD_WFSTEPACTORID, this.getWFStepActorId());
+        if(!bDirtyOnly || isWFStepActorIdDirty()) {
+            params.put(FIELD_WFSTEPACTORID,getWFStepActorId());
         }
-        if (!bDirtyOnly || this.isWFStepActorNameDirty()) {
-            params.put(FIELD_WFSTEPACTORNAME, this.getWFStepActorName());
+        if(!bDirtyOnly || isWFStepActorNameDirty()) {
+            params.put(FIELD_WFSTEPACTORNAME,getWFStepActorName());
         }
-        if (!bDirtyOnly || this.isWFStepIdDirty()) {
-            params.put(FIELD_WFSTEPID, this.getWFStepId());
+        if(!bDirtyOnly || isWFStepIdDirty()) {
+            params.put(FIELD_WFSTEPID,getWFStepId());
         }
-        if (!bDirtyOnly || this.isWFStepNameDirty()) {
-            params.put(FIELD_WFSTEPNAME, this.getWFStepName());
+        if(!bDirtyOnly || isWFStepNameDirty()) {
+            params.put(FIELD_WFSTEPNAME,getWFStepName());
         }
         super.onFillMap(params, bDirtyOnly);
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#get(java.lang.String)
+     */
     @Override
     public Object get(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().get(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.get(strParamName);
-        }
-        return WFStepActorBase.get(this, index);
+
+        return  WFStepActorBase.get(this, index);
     }
 
-    private static Object get(WFStepActorBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                return et.getActorId();
-            }
-            case 1: {
-                return et.getActorType();
-            }
-            case 2: {
-                return et.getCreateDate();
-            }
-            case 3: {
-                return et.getCreateMan();
-            }
-            case 4: {
-                return et.getFinishDate();
-            }
-            case 5: {
-                return et.getFirstReadTime();
-            }
-            case 6: {
-                return et.getIAActions();
-            }
-            case 7: {
-                return et.getIsFinish();
-            }
-            case 8: {
-                return et.getIsReadOnly();
-            }
-            case 9: {
-                return et.getMemo();
-            }
-            case 10: {
-                return et.getOriginalWFUserId();
-            }
-            case 11: {
-                return et.getOriginalWFUserName();
-            }
-            case 12: {
-                return et.getReadFlag();
-            }
-            case 13: {
-                return et.getReminderCount();
-            }
-            case 14: {
-                return et.getRoleId();
-            }
-            case 15: {
-                return et.getUpdateDate();
-            }
-            case 16: {
-                return et.getUpdateMan();
-            }
-            case 17: {
-                return et.getWFInstanceId();
-            }
-            case 18: {
-                return et.getWFStepActorId();
-            }
-            case 19: {
-                return et.getWFStepActorName();
-            }
-            case 20: {
-                return et.getWFStepId();
-            }
-            case 21: {
-                return et.getWFStepName();
-            }
+    /**
+     * 通过属性标识获取属性值
+     * @param et 数据对象
+     * @param index 属性标识
+     * @return
+     * @throws Exception
+     */
+    private static Object get(WFStepActorBase et,int index) throws Exception {
+
+        switch(index) {
+        case INDEX_ACTORID:
+            return et.getActorId();
+        case INDEX_ACTORTYPE:
+            return et.getActorType();
+        case INDEX_CREATEDATE:
+            return et.getCreateDate();
+        case INDEX_CREATEMAN:
+            return et.getCreateMan();
+        case INDEX_FINISHDATE:
+            return et.getFinishDate();
+        case INDEX_FIRSTREADTIME:
+            return et.getFirstReadTime();
+        case INDEX_IAACTIONS:
+            return et.getIAActions();
+        case INDEX_ISFINISH:
+            return et.getIsFinish();
+        case INDEX_ISREADONLY:
+            return et.getIsReadOnly();
+        case INDEX_MEMO:
+            return et.getMemo();
+        case INDEX_ORIGINALWFUSERID:
+            return et.getOriginalWFUserId();
+        case INDEX_ORIGINALWFUSERNAME:
+            return et.getOriginalWFUserName();
+        case INDEX_READFLAG:
+            return et.getReadFlag();
+        case INDEX_REMINDERCOUNT:
+            return et.getReminderCount();
+        case INDEX_ROLEID:
+            return et.getRoleId();
+        case INDEX_UPDATEDATE:
+            return et.getUpdateDate();
+        case INDEX_UPDATEMAN:
+            return et.getUpdateMan();
+        case INDEX_WFINSTANCEID:
+            return et.getWFInstanceId();
+        case INDEX_WFSTEPACTORID:
+            return et.getWFStepActorId();
+        case INDEX_WFSTEPACTORNAME:
+            return et.getWFStepActorName();
+        case INDEX_WFSTEPID:
+            return et.getWFStepId();
+        case INDEX_WFSTEPNAME:
+            return et.getWFStepName();
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#set(java.lang.String, java.lang.Object)
+     */
     @Override
-    public void set(String strParamName, Object objValue) throws Exception {
-        if (this.getProxyEntity() != null) {
-            this.getProxyEntity().set(strParamName, objValue);
+    public void set(String strParamName,Object objValue) throws Exception {
+        if(this.getProxyEntity()!=null) {
+            this.getProxyEntity().set(strParamName,objValue);
             return;
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
-            super.set(strParamName, objValue);
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null) {
+            super.set(strParamName,objValue);
             return;
         }
-        WFStepActorBase.set(this, index, objValue);
+
+        WFStepActorBase.set(this,index,objValue);
     }
 
-    private static void set(WFStepActorBase et, int index, Object obj) throws Exception {
-        switch (index) {
-            case 0: {
-                et.setActorId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 1: {
-                et.setActorType(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 2: {
-                et.setCreateDate(DataObject.getTimestampValue(obj));
-                return;
-            }
-            case 3: {
-                et.setCreateMan(DataObject.getStringValue(obj));
-                return;
-            }
-            case 4: {
-                et.setFinishDate(DataObject.getTimestampValue(obj));
-                return;
-            }
-            case 5: {
-                et.setFirstReadTime(DataObject.getTimestampValue(obj));
-                return;
-            }
-            case 6: {
-                et.setIAActions(DataObject.getStringValue(obj));
-                return;
-            }
-            case 7: {
-                et.setIsFinish(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 8: {
-                et.setIsReadOnly(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 9: {
-                et.setMemo(DataObject.getStringValue(obj));
-                return;
-            }
-            case 10: {
-                et.setOriginalWFUserId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 11: {
-                et.setOriginalWFUserName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 12: {
-                et.setReadFlag(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 13: {
-                et.setReminderCount(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 14: {
-                et.setRoleId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 15: {
-                et.setUpdateDate(DataObject.getTimestampValue(obj));
-                return;
-            }
-            case 16: {
-                et.setUpdateMan(DataObject.getStringValue(obj));
-                return;
-            }
-            case 17: {
-                et.setWFInstanceId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 18: {
-                et.setWFStepActorId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 19: {
-                et.setWFStepActorName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 20: {
-                et.setWFStepId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 21: {
-                et.setWFStepName(DataObject.getStringValue(obj));
-                return;
-            }
+    /**
+     * 通过属性标识设定属性值
+     * @param et 数据对象
+     * @param index 属性标识
+     * @param obj 值
+     * @throws Exception
+     */
+    private static void set(WFStepActorBase et,int index,Object obj) throws Exception {
+        switch(index) {
+        case INDEX_ACTORID:
+            et.setActorId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_ACTORTYPE:
+            et.setActorType(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_CREATEDATE:
+            et.setCreateDate(DataObject.getTimestampValue(obj));
+            return ;
+        case INDEX_CREATEMAN:
+            et.setCreateMan(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_FINISHDATE:
+            et.setFinishDate(DataObject.getTimestampValue(obj));
+            return ;
+        case INDEX_FIRSTREADTIME:
+            et.setFirstReadTime(DataObject.getTimestampValue(obj));
+            return ;
+        case INDEX_IAACTIONS:
+            et.setIAActions(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_ISFINISH:
+            et.setIsFinish(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ISREADONLY:
+            et.setIsReadOnly(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_MEMO:
+            et.setMemo(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_ORIGINALWFUSERID:
+            et.setOriginalWFUserId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_ORIGINALWFUSERNAME:
+            et.setOriginalWFUserName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_READFLAG:
+            et.setReadFlag(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_REMINDERCOUNT:
+            et.setReminderCount(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ROLEID:
+            et.setRoleId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_UPDATEDATE:
+            et.setUpdateDate(DataObject.getTimestampValue(obj));
+            return ;
+        case INDEX_UPDATEMAN:
+            et.setUpdateMan(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_WFINSTANCEID:
+            et.setWFInstanceId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_WFSTEPACTORID:
+            et.setWFStepActorId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_WFSTEPACTORNAME:
+            et.setWFStepActorName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_WFSTEPID:
+            et.setWFStepId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_WFSTEPNAME:
+            et.setWFStepName(DataObject.getStringValue(obj));
+            return ;
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#isNull(java.lang.String)
+     */
     @Override
     public boolean isNull(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isNull(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.isNull(strParamName);
-        }
-        return WFStepActorBase.isNull(this, index);
+
+        return  WFStepActorBase.isNull(this, index);
     }
 
-    private static boolean isNull(WFStepActorBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                return et.getActorId() == null;
-            }
-            case 1: {
-                return et.getActorType() == null;
-            }
-            case 2: {
-                return et.getCreateDate() == null;
-            }
-            case 3: {
-                return et.getCreateMan() == null;
-            }
-            case 4: {
-                return et.getFinishDate() == null;
-            }
-            case 5: {
-                return et.getFirstReadTime() == null;
-            }
-            case 6: {
-                return et.getIAActions() == null;
-            }
-            case 7: {
-                return et.getIsFinish() == null;
-            }
-            case 8: {
-                return et.getIsReadOnly() == null;
-            }
-            case 9: {
-                return et.getMemo() == null;
-            }
-            case 10: {
-                return et.getOriginalWFUserId() == null;
-            }
-            case 11: {
-                return et.getOriginalWFUserName() == null;
-            }
-            case 12: {
-                return et.getReadFlag() == null;
-            }
-            case 13: {
-                return et.getReminderCount() == null;
-            }
-            case 14: {
-                return et.getRoleId() == null;
-            }
-            case 15: {
-                return et.getUpdateDate() == null;
-            }
-            case 16: {
-                return et.getUpdateMan() == null;
-            }
-            case 17: {
-                return et.getWFInstanceId() == null;
-            }
-            case 18: {
-                return et.getWFStepActorId() == null;
-            }
-            case 19: {
-                return et.getWFStepActorName() == null;
-            }
-            case 20: {
-                return et.getWFStepId() == null;
-            }
-            case 21: {
-                return et.getWFStepName() == null;
-            }
+    /**
+     * 判断指定属性值是否为空值
+     * @param et
+     * @param index
+     * @return
+     * @throws Exception
+     */
+    private static boolean isNull(WFStepActorBase et,int index) throws Exception {
+
+        switch(index) {
+        case INDEX_ACTORID:
+            return et.getActorId()==null;
+        case INDEX_ACTORTYPE:
+            return et.getActorType()==null;
+        case INDEX_CREATEDATE:
+            return et.getCreateDate()==null;
+        case INDEX_CREATEMAN:
+            return et.getCreateMan()==null;
+        case INDEX_FINISHDATE:
+            return et.getFinishDate()==null;
+        case INDEX_FIRSTREADTIME:
+            return et.getFirstReadTime()==null;
+        case INDEX_IAACTIONS:
+            return et.getIAActions()==null;
+        case INDEX_ISFINISH:
+            return et.getIsFinish()==null;
+        case INDEX_ISREADONLY:
+            return et.getIsReadOnly()==null;
+        case INDEX_MEMO:
+            return et.getMemo()==null;
+        case INDEX_ORIGINALWFUSERID:
+            return et.getOriginalWFUserId()==null;
+        case INDEX_ORIGINALWFUSERNAME:
+            return et.getOriginalWFUserName()==null;
+        case INDEX_READFLAG:
+            return et.getReadFlag()==null;
+        case INDEX_REMINDERCOUNT:
+            return et.getReminderCount()==null;
+        case INDEX_ROLEID:
+            return et.getRoleId()==null;
+        case INDEX_UPDATEDATE:
+            return et.getUpdateDate()==null;
+        case INDEX_UPDATEMAN:
+            return et.getUpdateMan()==null;
+        case INDEX_WFINSTANCEID:
+            return et.getWFInstanceId()==null;
+        case INDEX_WFSTEPACTORID:
+            return et.getWFStepActorId()==null;
+        case INDEX_WFSTEPACTORNAME:
+            return et.getWFStepActorName()==null;
+        case INDEX_WFSTEPID:
+            return et.getWFStepId()==null;
+        case INDEX_WFSTEPNAME:
+            return et.getWFStepName()==null;
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#contains(java.lang.String)
+     */
     @Override
     public boolean contains(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().contains(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.contains(strParamName);
-        }
-        return WFStepActorBase.contains(this, index);
+        return  WFStepActorBase.contains(this, index);
     }
 
-    private static boolean contains(WFStepActorBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                return et.isActorIdDirty();
-            }
-            case 1: {
-                return et.isActorTypeDirty();
-            }
-            case 2: {
-                return et.isCreateDateDirty();
-            }
-            case 3: {
-                return et.isCreateManDirty();
-            }
-            case 4: {
-                return et.isFinishDateDirty();
-            }
-            case 5: {
-                return et.isFirstReadTimeDirty();
-            }
-            case 6: {
-                return et.isIAActionsDirty();
-            }
-            case 7: {
-                return et.isIsFinishDirty();
-            }
-            case 8: {
-                return et.isIsReadOnlyDirty();
-            }
-            case 9: {
-                return et.isMemoDirty();
-            }
-            case 10: {
-                return et.isOriginalWFUserIdDirty();
-            }
-            case 11: {
-                return et.isOriginalWFUserNameDirty();
-            }
-            case 12: {
-                return et.isReadFlagDirty();
-            }
-            case 13: {
-                return et.isReminderCountDirty();
-            }
-            case 14: {
-                return et.isRoleIdDirty();
-            }
-            case 15: {
-                return et.isUpdateDateDirty();
-            }
-            case 16: {
-                return et.isUpdateManDirty();
-            }
-            case 17: {
-                return et.isWFInstanceIdDirty();
-            }
-            case 18: {
-                return et.isWFStepActorIdDirty();
-            }
-            case 19: {
-                return et.isWFStepActorNameDirty();
-            }
-            case 20: {
-                return et.isWFStepIdDirty();
-            }
-            case 21: {
-                return et.isWFStepNameDirty();
-            }
+    /**
+     * 获取判断对象是否存在指定属性值
+     * @param et
+     * @param index
+     * @return
+     * @throws Exception
+     */
+    private static boolean contains(WFStepActorBase et,int index) throws Exception {
+
+        switch(index) {
+        case INDEX_ACTORID:
+            return et.isActorIdDirty();
+        case INDEX_ACTORTYPE:
+            return et.isActorTypeDirty();
+        case INDEX_CREATEDATE:
+            return et.isCreateDateDirty();
+        case INDEX_CREATEMAN:
+            return et.isCreateManDirty();
+        case INDEX_FINISHDATE:
+            return et.isFinishDateDirty();
+        case INDEX_FIRSTREADTIME:
+            return et.isFirstReadTimeDirty();
+        case INDEX_IAACTIONS:
+            return et.isIAActionsDirty();
+        case INDEX_ISFINISH:
+            return et.isIsFinishDirty();
+        case INDEX_ISREADONLY:
+            return et.isIsReadOnlyDirty();
+        case INDEX_MEMO:
+            return et.isMemoDirty();
+        case INDEX_ORIGINALWFUSERID:
+            return et.isOriginalWFUserIdDirty();
+        case INDEX_ORIGINALWFUSERNAME:
+            return et.isOriginalWFUserNameDirty();
+        case INDEX_READFLAG:
+            return et.isReadFlagDirty();
+        case INDEX_REMINDERCOUNT:
+            return et.isReminderCountDirty();
+        case INDEX_ROLEID:
+            return et.isRoleIdDirty();
+        case INDEX_UPDATEDATE:
+            return et.isUpdateDateDirty();
+        case INDEX_UPDATEMAN:
+            return et.isUpdateManDirty();
+        case INDEX_WFINSTANCEID:
+            return et.isWFInstanceIdDirty();
+        case INDEX_WFSTEPACTORID:
+            return et.isWFStepActorIdDirty();
+        case INDEX_WFSTEPACTORNAME:
+            return et.isWFStepActorNameDirty();
+        case INDEX_WFSTEPID:
+            return et.isWFStepIdDirty();
+        case INDEX_WFSTEPNAME:
+            return et.isWFStepNameDirty();
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#onFillJSONObject(net.sf.json.JSONObject, boolean)
+     */
     @Override
     protected void onFillJSONObject(JSONObject objJSON, boolean bIncludeEmpty) throws Exception {
-        WFStepActorBase.fillJSONObject(this, objJSON, bIncludeEmpty);
+        fillJSONObject(this,objJSON,bIncludeEmpty);
         super.onFillJSONObject(objJSON, bIncludeEmpty);
     }
 
-    private static void fillJSONObject(WFStepActorBase et, JSONObject json, boolean bIncEmpty) throws Exception {
-        if (bIncEmpty || et.getActorId() != null) {
-            JSONObjectHelper.put(json, "actorid", WFStepActorBase.getJSONValue(et.getActorId()), false);
+    /**
+     * 填充当前对象到JSON
+     * @param et 当前数据对象
+     * @param json JSON对象
+     * @param bIncEmpty 是否包括空值
+     * @throws Exception
+     */
+    private static  void fillJSONObject(WFStepActorBase et,JSONObject json, boolean bIncEmpty) throws Exception {
+        if(bIncEmpty||et.getActorId()!=null) {
+            JSONObjectHelper.put(json,"actorid",getJSONValue(et.getActorId()),false);
         }
-        if (bIncEmpty || et.getActorType() != null) {
-            JSONObjectHelper.put(json, "actortype", WFStepActorBase.getJSONValue(et.getActorType()), false);
+        if(bIncEmpty||et.getActorType()!=null) {
+            JSONObjectHelper.put(json,"actortype",getJSONValue(et.getActorType()),false);
         }
-        if (bIncEmpty || et.getCreateDate() != null) {
-            JSONObjectHelper.put(json, "createdate", WFStepActorBase.getJSONValue(et.getCreateDate()), false);
+        if(bIncEmpty||et.getCreateDate()!=null) {
+            JSONObjectHelper.put(json,"createdate",getJSONValue(et.getCreateDate()),false);
         }
-        if (bIncEmpty || et.getCreateMan() != null) {
-            JSONObjectHelper.put(json, "createman", WFStepActorBase.getJSONValue(et.getCreateMan()), false);
+        if(bIncEmpty||et.getCreateMan()!=null) {
+            JSONObjectHelper.put(json,"createman",getJSONValue(et.getCreateMan()),false);
         }
-        if (bIncEmpty || et.getFinishDate() != null) {
-            JSONObjectHelper.put(json, "finishdate", WFStepActorBase.getJSONValue(et.getFinishDate()), false);
+        if(bIncEmpty||et.getFinishDate()!=null) {
+            JSONObjectHelper.put(json,"finishdate",getJSONValue(et.getFinishDate()),false);
         }
-        if (bIncEmpty || et.getFirstReadTime() != null) {
-            JSONObjectHelper.put(json, "firstreadtime", WFStepActorBase.getJSONValue(et.getFirstReadTime()), false);
+        if(bIncEmpty||et.getFirstReadTime()!=null) {
+            JSONObjectHelper.put(json,"firstreadtime",getJSONValue(et.getFirstReadTime()),false);
         }
-        if (bIncEmpty || et.getIAActions() != null) {
-            JSONObjectHelper.put(json, "iaactions", WFStepActorBase.getJSONValue(et.getIAActions()), false);
+        if(bIncEmpty||et.getIAActions()!=null) {
+            JSONObjectHelper.put(json,"iaactions",getJSONValue(et.getIAActions()),false);
         }
-        if (bIncEmpty || et.getIsFinish() != null) {
-            JSONObjectHelper.put(json, "isfinish", WFStepActorBase.getJSONValue(et.getIsFinish()), false);
+        if(bIncEmpty||et.getIsFinish()!=null) {
+            JSONObjectHelper.put(json,"isfinish",getJSONValue(et.getIsFinish()),false);
         }
-        if (bIncEmpty || et.getIsReadOnly() != null) {
-            JSONObjectHelper.put(json, "isreadonly", WFStepActorBase.getJSONValue(et.getIsReadOnly()), false);
+        if(bIncEmpty||et.getIsReadOnly()!=null) {
+            JSONObjectHelper.put(json,"isreadonly",getJSONValue(et.getIsReadOnly()),false);
         }
-        if (bIncEmpty || et.getMemo() != null) {
-            JSONObjectHelper.put(json, "memo", WFStepActorBase.getJSONValue(et.getMemo()), false);
+        if(bIncEmpty||et.getMemo()!=null) {
+            JSONObjectHelper.put(json,"memo",getJSONValue(et.getMemo()),false);
         }
-        if (bIncEmpty || et.getOriginalWFUserId() != null) {
-            JSONObjectHelper.put(json, "originalwfuserid", WFStepActorBase.getJSONValue(et.getOriginalWFUserId()), false);
+        if(bIncEmpty||et.getOriginalWFUserId()!=null) {
+            JSONObjectHelper.put(json,"originalwfuserid",getJSONValue(et.getOriginalWFUserId()),false);
         }
-        if (bIncEmpty || et.getOriginalWFUserName() != null) {
-            JSONObjectHelper.put(json, "originalwfusername", WFStepActorBase.getJSONValue(et.getOriginalWFUserName()), false);
+        if(bIncEmpty||et.getOriginalWFUserName()!=null) {
+            JSONObjectHelper.put(json,"originalwfusername",getJSONValue(et.getOriginalWFUserName()),false);
         }
-        if (bIncEmpty || et.getReadFlag() != null) {
-            JSONObjectHelper.put(json, "readflag", WFStepActorBase.getJSONValue(et.getReadFlag()), false);
+        if(bIncEmpty||et.getReadFlag()!=null) {
+            JSONObjectHelper.put(json,"readflag",getJSONValue(et.getReadFlag()),false);
         }
-        if (bIncEmpty || et.getReminderCount() != null) {
-            JSONObjectHelper.put(json, "remindercount", WFStepActorBase.getJSONValue(et.getReminderCount()), false);
+        if(bIncEmpty||et.getReminderCount()!=null) {
+            JSONObjectHelper.put(json,"remindercount",getJSONValue(et.getReminderCount()),false);
         }
-        if (bIncEmpty || et.getRoleId() != null) {
-            JSONObjectHelper.put(json, "roleid", WFStepActorBase.getJSONValue(et.getRoleId()), false);
+        if(bIncEmpty||et.getRoleId()!=null) {
+            JSONObjectHelper.put(json,"roleid",getJSONValue(et.getRoleId()),false);
         }
-        if (bIncEmpty || et.getUpdateDate() != null) {
-            JSONObjectHelper.put(json, "updatedate", WFStepActorBase.getJSONValue(et.getUpdateDate()), false);
+        if(bIncEmpty||et.getUpdateDate()!=null) {
+            JSONObjectHelper.put(json,"updatedate",getJSONValue(et.getUpdateDate()),false);
         }
-        if (bIncEmpty || et.getUpdateMan() != null) {
-            JSONObjectHelper.put(json, "updateman", WFStepActorBase.getJSONValue(et.getUpdateMan()), false);
+        if(bIncEmpty||et.getUpdateMan()!=null) {
+            JSONObjectHelper.put(json,"updateman",getJSONValue(et.getUpdateMan()),false);
         }
-        if (bIncEmpty || et.getWFInstanceId() != null) {
-            JSONObjectHelper.put(json, "wfinstanceid", WFStepActorBase.getJSONValue(et.getWFInstanceId()), false);
+        if(bIncEmpty||et.getWFInstanceId()!=null) {
+            JSONObjectHelper.put(json,"wfinstanceid",getJSONValue(et.getWFInstanceId()),false);
         }
-        if (bIncEmpty || et.getWFStepActorId() != null) {
-            JSONObjectHelper.put(json, "wfstepactorid", WFStepActorBase.getJSONValue(et.getWFStepActorId()), false);
+        if(bIncEmpty||et.getWFStepActorId()!=null) {
+            JSONObjectHelper.put(json,"wfstepactorid",getJSONValue(et.getWFStepActorId()),false);
         }
-        if (bIncEmpty || et.getWFStepActorName() != null) {
-            JSONObjectHelper.put(json, "wfstepactorname", WFStepActorBase.getJSONValue(et.getWFStepActorName()), false);
+        if(bIncEmpty||et.getWFStepActorName()!=null) {
+            JSONObjectHelper.put(json,"wfstepactorname",getJSONValue(et.getWFStepActorName()),false);
         }
-        if (bIncEmpty || et.getWFStepId() != null) {
-            JSONObjectHelper.put(json, "wfstepid", WFStepActorBase.getJSONValue(et.getWFStepId()), false);
+        if(bIncEmpty||et.getWFStepId()!=null) {
+            JSONObjectHelper.put(json,"wfstepid",getJSONValue(et.getWFStepId()),false);
         }
-        if (bIncEmpty || et.getWFStepName() != null) {
-            JSONObjectHelper.put(json, "wfstepname", WFStepActorBase.getJSONValue(et.getWFStepName()), false);
+        if(bIncEmpty||et.getWFStepName()!=null) {
+            JSONObjectHelper.put(json,"wfstepname",getJSONValue(et.getWFStepName()),false);
         }
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#onFillXmlNode(net.ibizsys.paas.xml.XmlNode, boolean)
+     */
     @Override
-    protected void onFillXmlNode(XmlNode xmlNode, boolean bIncludeEmpty) throws Exception {
-        WFStepActorBase.fillXmlNode(this, xmlNode, bIncludeEmpty);
+    protected void onFillXmlNode(XmlNode xmlNode,boolean bIncludeEmpty) throws Exception {
+        fillXmlNode(this,xmlNode,bIncludeEmpty);
         super.onFillXmlNode(xmlNode, bIncludeEmpty);
     }
 
-    private static void fillXmlNode(WFStepActorBase et, XmlNode node, boolean bIncEmpty) throws Exception {
-        Object obj;
-        if (bIncEmpty || et.getActorId() != null) {
-            obj = et.getActorId();
-            node.setAttribute(FIELD_ACTORID, obj == null ? "" : (String)obj);
+    /**
+     * 填充当前对象到Xml节点中
+     * @param et 当前数据对象
+     * @param node Xml节点
+     * @param bIncEmpty 是否包括空值
+     * @throws Exception
+     */
+    private static void fillXmlNode(WFStepActorBase et,XmlNode node,boolean bIncEmpty) throws Exception {
+        if(bIncEmpty||et.getActorId()!=null) {
+            Object obj = et.getActorId();
+            node.setAttribute("ACTORID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getActorType() != null) {
-            obj = et.getActorType();
-            node.setAttribute(FIELD_ACTORTYPE, obj == null ? "" : StringHelper.format("%1$s", obj));
+        if(bIncEmpty||et.getActorType()!=null) {
+            Object obj = et.getActorType();
+            node.setAttribute("ACTORTYPE",(obj==null)?"":StringHelper.format("%1$s",obj));
         }
-        if (bIncEmpty || et.getCreateDate() != null) {
-            obj = et.getCreateDate();
-            node.setAttribute(FIELD_CREATEDATE, obj == null ? "" : StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", obj));
+        if(bIncEmpty||et.getCreateDate()!=null) {
+            Object obj = et.getCreateDate();
+            node.setAttribute("CREATEDATE",(obj==null)?"":StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS",obj));
         }
-        if (bIncEmpty || et.getCreateMan() != null) {
-            obj = et.getCreateMan();
-            node.setAttribute(FIELD_CREATEMAN, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getCreateMan()!=null) {
+            Object obj = et.getCreateMan();
+            node.setAttribute("CREATEMAN",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getFinishDate() != null) {
-            obj = et.getFinishDate();
-            node.setAttribute(FIELD_FINISHDATE, obj == null ? "" : StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", obj));
+        if(bIncEmpty||et.getFinishDate()!=null) {
+            Object obj = et.getFinishDate();
+            node.setAttribute("FINISHDATE",(obj==null)?"":StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS",obj));
         }
-        if (bIncEmpty || et.getFirstReadTime() != null) {
-            obj = et.getFirstReadTime();
-            node.setAttribute(FIELD_FIRSTREADTIME, obj == null ? "" : StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", obj));
+        if(bIncEmpty||et.getFirstReadTime()!=null) {
+            Object obj = et.getFirstReadTime();
+            node.setAttribute("FIRSTREADTIME",(obj==null)?"":StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS",obj));
         }
-        if (bIncEmpty || et.getIAActions() != null) {
-            obj = et.getIAActions();
-            node.setAttribute(FIELD_IAACTIONS, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getIAActions()!=null) {
+            Object obj = et.getIAActions();
+            node.setAttribute("IAACTIONS",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getIsFinish() != null) {
-            obj = et.getIsFinish();
-            node.setAttribute(FIELD_ISFINISH, obj == null ? "" : StringHelper.format("%1$s", obj));
+        if(bIncEmpty||et.getIsFinish()!=null) {
+            Object obj = et.getIsFinish();
+            node.setAttribute("ISFINISH",(obj==null)?"":StringHelper.format("%1$s",obj));
         }
-        if (bIncEmpty || et.getIsReadOnly() != null) {
-            obj = et.getIsReadOnly();
-            node.setAttribute(FIELD_ISREADONLY, obj == null ? "" : StringHelper.format("%1$s", obj));
+        if(bIncEmpty||et.getIsReadOnly()!=null) {
+            Object obj = et.getIsReadOnly();
+            node.setAttribute("ISREADONLY",(obj==null)?"":StringHelper.format("%1$s",obj));
         }
-        if (bIncEmpty || et.getMemo() != null) {
-            obj = et.getMemo();
-            node.setAttribute(FIELD_MEMO, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getMemo()!=null) {
+            Object obj = et.getMemo();
+            node.setAttribute("MEMO",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getOriginalWFUserId() != null) {
-            obj = et.getOriginalWFUserId();
-            node.setAttribute(FIELD_ORIGINALWFUSERID, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getOriginalWFUserId()!=null) {
+            Object obj = et.getOriginalWFUserId();
+            node.setAttribute("ORIGINALWFUSERID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getOriginalWFUserName() != null) {
-            obj = et.getOriginalWFUserName();
-            node.setAttribute(FIELD_ORIGINALWFUSERNAME, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getOriginalWFUserName()!=null) {
+            Object obj = et.getOriginalWFUserName();
+            node.setAttribute("ORIGINALWFUSERNAME",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getReadFlag() != null) {
-            obj = et.getReadFlag();
-            node.setAttribute(FIELD_READFLAG, obj == null ? "" : StringHelper.format("%1$s", obj));
+        if(bIncEmpty||et.getReadFlag()!=null) {
+            Object obj = et.getReadFlag();
+            node.setAttribute("READFLAG",(obj==null)?"":StringHelper.format("%1$s",obj));
         }
-        if (bIncEmpty || et.getReminderCount() != null) {
-            obj = et.getReminderCount();
-            node.setAttribute(FIELD_REMINDERCOUNT, obj == null ? "" : StringHelper.format("%1$s", obj));
+        if(bIncEmpty||et.getReminderCount()!=null) {
+            Object obj = et.getReminderCount();
+            node.setAttribute("REMINDERCOUNT",(obj==null)?"":StringHelper.format("%1$s",obj));
         }
-        if (bIncEmpty || et.getRoleId() != null) {
-            obj = et.getRoleId();
-            node.setAttribute(FIELD_ROLEID, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getRoleId()!=null) {
+            Object obj = et.getRoleId();
+            node.setAttribute("ROLEID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getUpdateDate() != null) {
-            obj = et.getUpdateDate();
-            node.setAttribute(FIELD_UPDATEDATE, obj == null ? "" : StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", obj));
+        if(bIncEmpty||et.getUpdateDate()!=null) {
+            Object obj = et.getUpdateDate();
+            node.setAttribute("UPDATEDATE",(obj==null)?"":StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS",obj));
         }
-        if (bIncEmpty || et.getUpdateMan() != null) {
-            obj = et.getUpdateMan();
-            node.setAttribute(FIELD_UPDATEMAN, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getUpdateMan()!=null) {
+            Object obj = et.getUpdateMan();
+            node.setAttribute("UPDATEMAN",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getWFInstanceId() != null) {
-            obj = et.getWFInstanceId();
-            node.setAttribute(FIELD_WFINSTANCEID, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getWFInstanceId()!=null) {
+            Object obj = et.getWFInstanceId();
+            node.setAttribute("WFINSTANCEID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getWFStepActorId() != null) {
-            obj = et.getWFStepActorId();
-            node.setAttribute(FIELD_WFSTEPACTORID, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getWFStepActorId()!=null) {
+            Object obj = et.getWFStepActorId();
+            node.setAttribute("WFSTEPACTORID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getWFStepActorName() != null) {
-            obj = et.getWFStepActorName();
-            node.setAttribute(FIELD_WFSTEPACTORNAME, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getWFStepActorName()!=null) {
+            Object obj = et.getWFStepActorName();
+            node.setAttribute("WFSTEPACTORNAME",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getWFStepId() != null) {
-            obj = et.getWFStepId();
-            node.setAttribute(FIELD_WFSTEPID, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getWFStepId()!=null) {
+            Object obj = et.getWFStepId();
+            node.setAttribute("WFSTEPID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getWFStepName() != null) {
-            obj = et.getWFStepName();
-            node.setAttribute(FIELD_WFSTEPNAME, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getWFStepName()!=null) {
+            Object obj = et.getWFStepName();
+            node.setAttribute("WFSTEPNAME",(obj==null)?"":(String)obj);
         }
+
+
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.entity.EntityBase#onCopyTo(net.ibizsys.paas.data.IDataObject, boolean)
+     */
     @Override
     protected void onCopyTo(IDataObject dataEntity, boolean bIncludeEmtpy) throws Exception {
-        WFStepActorBase.copyTo(this, dataEntity, bIncludeEmtpy);
-        super.onCopyTo(dataEntity, bIncludeEmtpy);
+        WFStepActorBase.copyTo(this,dataEntity,bIncludeEmtpy);
+        super.onCopyTo(dataEntity,bIncludeEmtpy);
     }
 
-    private static void copyTo(WFStepActorBase et, IDataObject dst, boolean bIncEmpty) throws Exception {
-        if (et.isActorIdDirty() && (bIncEmpty || et.getActorId() != null)) {
-            dst.set(FIELD_ACTORID, et.getActorId());
+    /**
+     * 复制当前对象数据到目标对象
+     * @param et 当前数据对象
+     * @param dst 目标数据对象
+     * @param bIncEmpty 是否包括空值
+     * @throws Exception
+     */
+    private static void copyTo(WFStepActorBase et,IDataObject dst,boolean bIncEmpty) throws Exception {
+        if(et.isActorIdDirty() && (bIncEmpty||et.getActorId()!=null)) {
+            dst.set(FIELD_ACTORID,et.getActorId());
         }
-        if (et.isActorTypeDirty() && (bIncEmpty || et.getActorType() != null)) {
-            dst.set(FIELD_ACTORTYPE, et.getActorType());
+        if(et.isActorTypeDirty() && (bIncEmpty||et.getActorType()!=null)) {
+            dst.set(FIELD_ACTORTYPE,et.getActorType());
         }
-        if (et.isCreateDateDirty() && (bIncEmpty || et.getCreateDate() != null)) {
-            dst.set(FIELD_CREATEDATE, et.getCreateDate());
+        if(et.isCreateDateDirty() && (bIncEmpty||et.getCreateDate()!=null)) {
+            dst.set(FIELD_CREATEDATE,et.getCreateDate());
         }
-        if (et.isCreateManDirty() && (bIncEmpty || et.getCreateMan() != null)) {
-            dst.set(FIELD_CREATEMAN, et.getCreateMan());
+        if(et.isCreateManDirty() && (bIncEmpty||et.getCreateMan()!=null)) {
+            dst.set(FIELD_CREATEMAN,et.getCreateMan());
         }
-        if (et.isFinishDateDirty() && (bIncEmpty || et.getFinishDate() != null)) {
-            dst.set(FIELD_FINISHDATE, et.getFinishDate());
+        if(et.isFinishDateDirty() && (bIncEmpty||et.getFinishDate()!=null)) {
+            dst.set(FIELD_FINISHDATE,et.getFinishDate());
         }
-        if (et.isFirstReadTimeDirty() && (bIncEmpty || et.getFirstReadTime() != null)) {
-            dst.set(FIELD_FIRSTREADTIME, et.getFirstReadTime());
+        if(et.isFirstReadTimeDirty() && (bIncEmpty||et.getFirstReadTime()!=null)) {
+            dst.set(FIELD_FIRSTREADTIME,et.getFirstReadTime());
         }
-        if (et.isIAActionsDirty() && (bIncEmpty || et.getIAActions() != null)) {
-            dst.set(FIELD_IAACTIONS, et.getIAActions());
+        if(et.isIAActionsDirty() && (bIncEmpty||et.getIAActions()!=null)) {
+            dst.set(FIELD_IAACTIONS,et.getIAActions());
         }
-        if (et.isIsFinishDirty() && (bIncEmpty || et.getIsFinish() != null)) {
-            dst.set(FIELD_ISFINISH, et.getIsFinish());
+        if(et.isIsFinishDirty() && (bIncEmpty||et.getIsFinish()!=null)) {
+            dst.set(FIELD_ISFINISH,et.getIsFinish());
         }
-        if (et.isIsReadOnlyDirty() && (bIncEmpty || et.getIsReadOnly() != null)) {
-            dst.set(FIELD_ISREADONLY, et.getIsReadOnly());
+        if(et.isIsReadOnlyDirty() && (bIncEmpty||et.getIsReadOnly()!=null)) {
+            dst.set(FIELD_ISREADONLY,et.getIsReadOnly());
         }
-        if (et.isMemoDirty() && (bIncEmpty || et.getMemo() != null)) {
-            dst.set(FIELD_MEMO, et.getMemo());
+        if(et.isMemoDirty() && (bIncEmpty||et.getMemo()!=null)) {
+            dst.set(FIELD_MEMO,et.getMemo());
         }
-        if (et.isOriginalWFUserIdDirty() && (bIncEmpty || et.getOriginalWFUserId() != null)) {
-            dst.set(FIELD_ORIGINALWFUSERID, et.getOriginalWFUserId());
+        if(et.isOriginalWFUserIdDirty() && (bIncEmpty||et.getOriginalWFUserId()!=null)) {
+            dst.set(FIELD_ORIGINALWFUSERID,et.getOriginalWFUserId());
         }
-        if (et.isOriginalWFUserNameDirty() && (bIncEmpty || et.getOriginalWFUserName() != null)) {
-            dst.set(FIELD_ORIGINALWFUSERNAME, et.getOriginalWFUserName());
+        if(et.isOriginalWFUserNameDirty() && (bIncEmpty||et.getOriginalWFUserName()!=null)) {
+            dst.set(FIELD_ORIGINALWFUSERNAME,et.getOriginalWFUserName());
         }
-        if (et.isReadFlagDirty() && (bIncEmpty || et.getReadFlag() != null)) {
-            dst.set(FIELD_READFLAG, et.getReadFlag());
+        if(et.isReadFlagDirty() && (bIncEmpty||et.getReadFlag()!=null)) {
+            dst.set(FIELD_READFLAG,et.getReadFlag());
         }
-        if (et.isReminderCountDirty() && (bIncEmpty || et.getReminderCount() != null)) {
-            dst.set(FIELD_REMINDERCOUNT, et.getReminderCount());
+        if(et.isReminderCountDirty() && (bIncEmpty||et.getReminderCount()!=null)) {
+            dst.set(FIELD_REMINDERCOUNT,et.getReminderCount());
         }
-        if (et.isRoleIdDirty() && (bIncEmpty || et.getRoleId() != null)) {
-            dst.set(FIELD_ROLEID, et.getRoleId());
+        if(et.isRoleIdDirty() && (bIncEmpty||et.getRoleId()!=null)) {
+            dst.set(FIELD_ROLEID,et.getRoleId());
         }
-        if (et.isUpdateDateDirty() && (bIncEmpty || et.getUpdateDate() != null)) {
-            dst.set(FIELD_UPDATEDATE, et.getUpdateDate());
+        if(et.isUpdateDateDirty() && (bIncEmpty||et.getUpdateDate()!=null)) {
+            dst.set(FIELD_UPDATEDATE,et.getUpdateDate());
         }
-        if (et.isUpdateManDirty() && (bIncEmpty || et.getUpdateMan() != null)) {
-            dst.set(FIELD_UPDATEMAN, et.getUpdateMan());
+        if(et.isUpdateManDirty() && (bIncEmpty||et.getUpdateMan()!=null)) {
+            dst.set(FIELD_UPDATEMAN,et.getUpdateMan());
         }
-        if (et.isWFInstanceIdDirty() && (bIncEmpty || et.getWFInstanceId() != null)) {
-            dst.set(FIELD_WFINSTANCEID, et.getWFInstanceId());
+        if(et.isWFInstanceIdDirty() && (bIncEmpty||et.getWFInstanceId()!=null)) {
+            dst.set(FIELD_WFINSTANCEID,et.getWFInstanceId());
         }
-        if (et.isWFStepActorIdDirty() && (bIncEmpty || et.getWFStepActorId() != null)) {
-            dst.set(FIELD_WFSTEPACTORID, et.getWFStepActorId());
+        if(et.isWFStepActorIdDirty() && (bIncEmpty||et.getWFStepActorId()!=null)) {
+            dst.set(FIELD_WFSTEPACTORID,et.getWFStepActorId());
         }
-        if (et.isWFStepActorNameDirty() && (bIncEmpty || et.getWFStepActorName() != null)) {
-            dst.set(FIELD_WFSTEPACTORNAME, et.getWFStepActorName());
+        if(et.isWFStepActorNameDirty() && (bIncEmpty||et.getWFStepActorName()!=null)) {
+            dst.set(FIELD_WFSTEPACTORNAME,et.getWFStepActorName());
         }
-        if (et.isWFStepIdDirty() && (bIncEmpty || et.getWFStepId() != null)) {
-            dst.set(FIELD_WFSTEPID, et.getWFStepId());
+        if(et.isWFStepIdDirty() && (bIncEmpty||et.getWFStepId()!=null)) {
+            dst.set(FIELD_WFSTEPID,et.getWFStepId());
         }
-        if (et.isWFStepNameDirty() && (bIncEmpty || et.getWFStepName() != null)) {
-            dst.set(FIELD_WFSTEPNAME, et.getWFStepName());
+        if(et.isWFStepNameDirty() && (bIncEmpty||et.getWFStepName()!=null)) {
+            dst.set(FIELD_WFSTEPNAME,et.getWFStepName());
         }
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#remove(java.lang.String)
+     */
     @Override
     public boolean remove(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().remove(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.remove(strParamName);
-        }
-        return WFStepActorBase.remove(this, index);
+        return  WFStepActorBase.remove(this, index);
     }
 
-    private static boolean remove(WFStepActorBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                et.resetActorId();
-                return true;
-            }
-            case 1: {
-                et.resetActorType();
-                return true;
-            }
-            case 2: {
-                et.resetCreateDate();
-                return true;
-            }
-            case 3: {
-                et.resetCreateMan();
-                return true;
-            }
-            case 4: {
-                et.resetFinishDate();
-                return true;
-            }
-            case 5: {
-                et.resetFirstReadTime();
-                return true;
-            }
-            case 6: {
-                et.resetIAActions();
-                return true;
-            }
-            case 7: {
-                et.resetIsFinish();
-                return true;
-            }
-            case 8: {
-                et.resetIsReadOnly();
-                return true;
-            }
-            case 9: {
-                et.resetMemo();
-                return true;
-            }
-            case 10: {
-                et.resetOriginalWFUserId();
-                return true;
-            }
-            case 11: {
-                et.resetOriginalWFUserName();
-                return true;
-            }
-            case 12: {
-                et.resetReadFlag();
-                return true;
-            }
-            case 13: {
-                et.resetReminderCount();
-                return true;
-            }
-            case 14: {
-                et.resetRoleId();
-                return true;
-            }
-            case 15: {
-                et.resetUpdateDate();
-                return true;
-            }
-            case 16: {
-                et.resetUpdateMan();
-                return true;
-            }
-            case 17: {
-                et.resetWFInstanceId();
-                return true;
-            }
-            case 18: {
-                et.resetWFStepActorId();
-                return true;
-            }
-            case 19: {
-                et.resetWFStepActorName();
-                return true;
-            }
-            case 20: {
-                et.resetWFStepId();
-                return true;
-            }
-            case 21: {
-                et.resetWFStepName();
-                return true;
-            }
-        }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
-    }
-
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
+    /**
+     * 通过属性标识删除属性值
+     * @param entity
+     * @param index
+     * @return
+     * @throws Exception
      */
-    public WFStep getWFStep() throws Exception {
-        if (this.getProxyEntity() != null) {
+    private static boolean remove(WFStepActorBase et,int index) throws Exception {
+        switch(index) {
+        case INDEX_ACTORID:
+            et.resetActorId();
+            return true;
+        case INDEX_ACTORTYPE:
+            et.resetActorType();
+            return true;
+        case INDEX_CREATEDATE:
+            et.resetCreateDate();
+            return true;
+        case INDEX_CREATEMAN:
+            et.resetCreateMan();
+            return true;
+        case INDEX_FINISHDATE:
+            et.resetFinishDate();
+            return true;
+        case INDEX_FIRSTREADTIME:
+            et.resetFirstReadTime();
+            return true;
+        case INDEX_IAACTIONS:
+            et.resetIAActions();
+            return true;
+        case INDEX_ISFINISH:
+            et.resetIsFinish();
+            return true;
+        case INDEX_ISREADONLY:
+            et.resetIsReadOnly();
+            return true;
+        case INDEX_MEMO:
+            et.resetMemo();
+            return true;
+        case INDEX_ORIGINALWFUSERID:
+            et.resetOriginalWFUserId();
+            return true;
+        case INDEX_ORIGINALWFUSERNAME:
+            et.resetOriginalWFUserName();
+            return true;
+        case INDEX_READFLAG:
+            et.resetReadFlag();
+            return true;
+        case INDEX_REMINDERCOUNT:
+            et.resetReminderCount();
+            return true;
+        case INDEX_ROLEID:
+            et.resetRoleId();
+            return true;
+        case INDEX_UPDATEDATE:
+            et.resetUpdateDate();
+            return true;
+        case INDEX_UPDATEMAN:
+            et.resetUpdateMan();
+            return true;
+        case INDEX_WFINSTANCEID:
+            et.resetWFInstanceId();
+            return true;
+        case INDEX_WFSTEPACTORID:
+            et.resetWFStepActorId();
+            return true;
+        case INDEX_WFSTEPACTORNAME:
+            et.resetWFStepActorName();
+            return true;
+        case INDEX_WFSTEPID:
+            et.resetWFStepId();
+            return true;
+        case INDEX_WFSTEPNAME:
+            et.resetWFStepName();
+            return true;
+        default:
+            throw new Exception("不明属性标识");
+        }
+    }
+
+
+    private Integer objWFStepLock = new Integer(1);
+    private net.ibizsys.psrt.srv.wf.entity.WFStep wfstep = null;
+    /**
+    * 获取父数据 工作流步骤
+     * @throws Exception
+    */
+    public net.ibizsys.psrt.srv.wf.entity.WFStep getWFStep() throws Exception {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getWFStep();
         }
-        if (this.getWFStepId() == null) {
+
+        if(this.getWFStepId()==null)
             return null;
-        }
-        Integer n = this.objWFStepLock;
-        synchronized (n) {
-            if (this.wfstep != null && DataTypeHelper.compare(25, (Object)this.getWFStepId(), (Object)this.wfstep.getWFStepId()) != 0L) {
-                this.wfstep = null;
+        synchronized(this.objWFStepLock) {
+            if(this.wfstep!=null) {
+                if(net.ibizsys.paas.util.DataTypeHelper.compare(25,this.getWFStepId(),wfstep.getWFStepId())!=0) {
+                    this.wfstep = null;
+                }
             }
-            if (this.wfstep == null) {
-                WFStep wfstep = new WFStep();
+
+
+            if(this.wfstep==null) {
+                net.ibizsys.psrt.srv.wf.entity.WFStep wfstep = new net.ibizsys.psrt.srv.wf.entity.WFStep();
                 wfstep.setWFStepId(this.getWFStepId());
-                WFStepService service = (WFStepService)ServiceGlobal.getService(WFStepService.class, this.getSessionFactory());
+                net.ibizsys.psrt.srv.wf.service.WFStepService service = (net.ibizsys.psrt.srv.wf.service.WFStepService)ServiceGlobal.getService(net.ibizsys.psrt.srv.wf.service.WFStepService.class,this.getSessionFactory());
                 service.autoGet(wfstep);
                 this.wfstep = wfstep;
             }
@@ -1777,25 +2207,31 @@ implements Serializable {
         }
     }
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    public WFUser getOriginalWFUser() throws Exception {
-        if (this.getProxyEntity() != null) {
+    private Integer objOriginalWFUserLock = new Integer(1);
+    private net.ibizsys.psrt.srv.wf.entity.WFUser originalwfuser = null;
+    /**
+    * 获取父数据 工作流用户
+     * @throws Exception
+    */
+    public net.ibizsys.psrt.srv.wf.entity.WFUser getOriginalWFUser() throws Exception {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getOriginalWFUser();
         }
-        if (this.getOriginalWFUserId() == null) {
+
+        if(this.getOriginalWFUserId()==null)
             return null;
-        }
-        Integer n = this.objOriginalWFUserLock;
-        synchronized (n) {
-            if (this.originalwfuser != null && DataTypeHelper.compare(25, (Object)this.getOriginalWFUserId(), (Object)this.originalwfuser.getWFUserId()) != 0L) {
-                this.originalwfuser = null;
+        synchronized(this.objOriginalWFUserLock) {
+            if(this.originalwfuser!=null) {
+                if(net.ibizsys.paas.util.DataTypeHelper.compare(25,this.getOriginalWFUserId(),originalwfuser.getWFUserId())!=0) {
+                    this.originalwfuser = null;
+                }
             }
-            if (this.originalwfuser == null) {
-                WFUser originalwfuser = new WFUser();
+
+
+            if(this.originalwfuser==null) {
+                net.ibizsys.psrt.srv.wf.entity.WFUser originalwfuser = new net.ibizsys.psrt.srv.wf.entity.WFUser();
                 originalwfuser.setWFUserId(this.getOriginalWFUserId());
-                WFUserService service = (WFUserService)ServiceGlobal.getService(WFUserService.class, this.getSessionFactory());
+                net.ibizsys.psrt.srv.wf.service.WFUserService service = (net.ibizsys.psrt.srv.wf.service.WFUserService)ServiceGlobal.getService(net.ibizsys.psrt.srv.wf.service.WFUserService.class,this.getSessionFactory());
                 service.autoGet(originalwfuser);
                 this.originalwfuser = originalwfuser;
             }
@@ -1803,28 +2239,38 @@ implements Serializable {
         }
     }
 
+
+
+    /**
+     *  获取代理的数据对象
+     */
     private WFStepActorBase getProxyEntity() {
         return this.proxyWFStepActorBase;
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#onProxy(net.ibizsys.paas.data.IDataObject)
+     */
     @Override
     protected void onProxy(IDataObject proxyDataObject) {
         this.proxyWFStepActorBase = null;
-        if (proxyDataObject != null && proxyDataObject instanceof WFStepActorBase) {
+        if(proxyDataObject!=null && proxyDataObject instanceof WFStepActorBase) {
             this.proxyWFStepActorBase = (WFStepActorBase)proxyDataObject;
         }
         super.onProxy(proxyDataObject);
     }
 
-    @Override
-    protected IEntityActionHelper getActionHelper(boolean bMust) throws Exception {
-        IEntityActionHelper iEntityActionHelper = super.getActionHelper(false);
-        if (!bMust || iEntityActionHelper != null) {
+
+    /**
+    * 重写获取行为操作辅助对象
+    */
+    protected net.ibizsys.paas.entity.IEntityActionHelper getActionHelper(boolean bMust) throws Exception {
+        net.ibizsys.paas.entity.IEntityActionHelper iEntityActionHelper = super.getActionHelper(false);
+        if(!bMust || iEntityActionHelper!=null)
             return iEntityActionHelper;
-        }
-        iEntityActionHelper = ServiceGlobal.getService("net.ibizsys.psrt.srv.wf.service.WFStepActorService", this.getSessionFactory()).getServiceActionHelper();
+        iEntityActionHelper = net.ibizsys.paas.service.ServiceGlobal.getService("net.ibizsys.psrt.srv.wf.service.WFStepActorService", this.getSessionFactory()).getServiceActionHelper();
         this.setActionHelper(iEntityActionHelper);
         return iEntityActionHelper;
     }
-}
 
+}

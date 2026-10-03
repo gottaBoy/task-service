@@ -41,7 +41,7 @@ extends BaseDEDataCtrl {
         }
         String strUserTag = StringHelper.Format((String)"%1$s:%2$s", (Object)strUSERFUNCTEMPLID, (Object)afterDataEntity.GetParamStringValue("USERFUNCID", ""));
         String strSQLRoles = "SELECT * FROM T_SRFUSERROLEDETAIL WHERE USERTAG = ?";
-        Vector listUserRoleDetail = new Vector();
+        Vector<UserRoleDetail> listUserRoleDetail = new Vector();
         CallParamList callParamList = new CallParamList();
         callParamList.Add((Object)strUserTag);
         callResult = BaseDEDataCtrl.SelectMultiEx(this.globalHelperEx, this.GetDEHelper().GetDBStorage(), strSQLRoles, callParamList.GetList(), listUserRoleDetail, UserRoleDetail.class.getName());
@@ -58,7 +58,7 @@ extends BaseDEDataCtrl {
             userDataCtrl.Remove(userRole);
         }
         String strSQL = "SELECT * FROM T_SRFUFTEMPLROLE WHERE USERFUNCTEMPLID = ?";
-        Vector list = new Vector();
+        Vector<UFTemplRole> list = new Vector();
         callParamList.Reset();
         callParamList.Add((Object)strUSERFUNCTEMPLID);
         callResult = BaseDEDataCtrl.SelectMultiEx(this.globalHelperEx, this.GetDEHelper().GetDBStorage(), strSQL, callParamList.GetList(), list, UFTemplRole.class.getName());
@@ -91,7 +91,7 @@ extends BaseDEDataCtrl {
         }
         String strUserTag = StringHelper.Format((String)"%1$s:%2$s", (Object)strUSERFUNCTEMPLID, (Object)dataEntity.GetParamStringValue("USERFUNCID", ""));
         String strSQLRoles = "SELECT * FROM T_SRFUSERROLEDETAIL WHERE USERTAG = ?";
-        Vector listUserRoleDetail = new Vector();
+        Vector<UserRoleDetail> listUserRoleDetail = new Vector();
         CallParamList callParamList = new CallParamList();
         callParamList.Add((Object)strUserTag);
         callResult = BaseDEDataCtrl.SelectMultiEx(this.globalHelperEx, this.GetDEHelper().GetDBStorage(), strSQLRoles, callParamList.GetList(), listUserRoleDetail, UserRoleDetail.class.getName());

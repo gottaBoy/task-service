@@ -122,9 +122,9 @@ implements IPSCodeListService {
 
     @Override
     protected List<PSCodeList> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSCodeList> list = new ArrayList<PSCodeList>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSCodeList> items = this.listByPSModule(parent);

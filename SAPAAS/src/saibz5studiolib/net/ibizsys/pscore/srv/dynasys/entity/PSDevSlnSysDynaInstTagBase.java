@@ -1410,7 +1410,7 @@ implements Serializable {
                 PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
                 pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(this.getPSDevSlnSysDynaInstId());
                 PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysDynaInstService.autoGet((IEntity)pSDevSlnSysDynaInst);
+                pSDevSlnSysDynaInstService.autoGet(pSDevSlnSysDynaInst);
                 this.psdevslnsysdynainst = pSDevSlnSysDynaInst;
             }
             return this.psdevslnsysdynainst;

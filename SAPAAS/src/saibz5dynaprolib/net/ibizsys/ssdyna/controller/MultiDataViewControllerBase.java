@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.XDataViewControllerBase;
+/**
+ * 多项数据视图控制器实现基类
+ * @author Administrator
+ *
+ */
+public abstract class MultiDataViewControllerBase extends XDataViewControllerBase {
 
-public abstract class MultiDataViewControllerBase
-extends XDataViewControllerBase {
+	public MultiDataViewControllerBase() throws Exception {
+		super();
+	}
+
 }
-

@@ -1,12 +1,22 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.report.jr;
 
 import java.util.Map;
+
 import net.ibizsys.paas.report.IReportService;
 
+/**
+ * 报表服务参数填充器对象接口
+ * @author Administrator
+ *
+ */
 public interface IJRReportServiceParamFiller {
-    public boolean fillParameters(Map var1, IReportService var2) throws Exception;
-}
 
+	/**
+	 * 填充报表服务参数
+	 * @param parameters
+	 * @param iReportService
+	 * @return 是否进行了填充
+	 * @throws Exception
+	 */
+	boolean fillParameters(Map parameters,IReportService iReportService)throws Exception;
+}

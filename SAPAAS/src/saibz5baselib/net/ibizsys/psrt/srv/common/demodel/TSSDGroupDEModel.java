@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel;
 
-import net.ibizsys.psrt.srv.common.demodel.TSSDGroupDEModelBase;
 
-public class TSSDGroupDEModel
-extends TSSDGroupDEModelBase {
+/**
+ * 实体[TSSDGROUP]模型对象
+ */
+public class TSSDGroupDEModel extends TSSDGroupDEModelBase {
+
     private static final long serialVersionUID = -1L;
-}
 
+    public TSSDGroupDEModel() throws Exception {
+        super();
+    }
+
+}

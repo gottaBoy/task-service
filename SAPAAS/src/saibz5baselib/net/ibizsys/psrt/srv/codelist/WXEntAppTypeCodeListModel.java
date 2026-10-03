@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
 
-import net.ibizsys.psrt.srv.codelist.WXEntAppTypeCodeListModelBase;
 
-public class WXEntAppTypeCodeListModel
-extends WXEntAppTypeCodeListModelBase {
+/**
+ * 静态代码表[微信企业应用类型]模型对象
+ */
+public class WXEntAppTypeCodeListModel extends WXEntAppTypeCodeListModelBase {
+
+    public WXEntAppTypeCodeListModel() {
+        super();
+    }
+
 }
-

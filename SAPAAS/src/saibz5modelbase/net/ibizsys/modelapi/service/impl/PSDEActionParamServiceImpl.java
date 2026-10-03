@@ -76,7 +76,7 @@ implements IPSDEActionParamService {
     @Override
     protected List<PSDEActionParam> onListAll() throws Exception {
         ArrayList<PSDEActionParam> list = new ArrayList<PSDEActionParam>();
-        List psdeactions = PSModelServiceUtil.getInstance().getPSDEActionService().listAll();
+        List<PSDEAction> psdeactions = PSModelServiceUtil.getInstance().getPSDEActionService().listAll();
         if (psdeactions != null) {
             for (PSDEAction parent : psdeactions) {
                 List<PSDEActionParam> items = this.listByPSDEAction(parent);

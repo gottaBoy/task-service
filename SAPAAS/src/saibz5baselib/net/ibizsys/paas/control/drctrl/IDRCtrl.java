@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.drctrl;
 
 import net.ibizsys.paas.control.IControl;
 
-public interface IDRCtrl
-extends IControl {
-}
+/**
+ * 关系数据部件接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDRCtrl extends IControl {
 
+}

@@ -1,21 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFEmbedWFProcessModelBase
- */
 package net.ibizsys.model.wf;
 
-import java.util.Iterator;
-import net.ibizsys.model.wf.IPSWFProcess;
-import net.ibizsys.model.wf.IPSWFProcessSubWF;
 import net.ibizsys.pswf.core.IWFEmbedWFProcessModelBase;
 
-public interface IPSWFEmbedWFProcessBase
-extends IPSWFProcess,
-IWFEmbedWFProcessModelBase {
-    public Iterator<IPSWFProcessSubWF> getPSWFProcessSubWFs();
-
-    public int getPSWFProcessSubWFCount();
+/**
+ * 工作流嵌入流程处理基对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSWFEmbedWFProcessBase extends IPSWFProcess ,IWFEmbedWFProcessModelBase
+{
+	/**
+	 * 获取处理子流程对象集合
+	 * @return
+	 */
+	java.util.Iterator<IPSWFProcessSubWF> getPSWFProcessSubWFs();
+	
+	
+	/**
+	 * 获取处理子流程计数
+	 * @return
+	 */
+	int getPSWFProcessSubWFCount();
 }
-

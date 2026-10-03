@@ -1,25 +1,72 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.entity;
 
 import net.ibizsys.paas.entity.IEntityActionHelper;
 import net.ibizsys.psba.core.IBASchemeModel;
 import net.ibizsys.psba.core.IBATableModel;
-import net.ibizsys.psba.entity.IBAEntity;
 
-public interface IBAEntityActionHelper
-extends IEntityActionHelper {
-    public IBASchemeModel getBASchemeModel();
+/**
+ * 大数据实体操作辅助对象
+ * @author Administrator
+ *
+ */
+public interface IBAEntityActionHelper extends IEntityActionHelper {
 
-    public IBATableModel getBATableModel();
+	
+	/**
+	 * 获取大数据架构模型对象
+	 * @return
+	 */
+	IBASchemeModel getBASchemeModel();
+	
+	
+	/**
+	 * 获取大数据表模型对象
+	 * @return
+	 */
+	IBATableModel getBATableModel();
+	
+	/**
+	 * 建立数据对象
+	 * @param iEntity
+	 * @param colsets 指定列族集合
+	 * @throws Exception
+	 */
+	void create(IBAEntity iEntity,String[] colsets)throws Exception;
 
-    public void create(IBAEntity var1, String[] var2) throws Exception;
+	
+	
+	
+	/**
+	 * 更新数据对象
+	 * @param iEntity
+	 * @param colsets 指定列族集合
+	 * @throws Exception
+	 */
+	void update(IBAEntity iEntity,String[] colsets)throws Exception;
+	
+	
+	
+	
+	
+	/**
+	 * 保存数据对象
+	 * @param iEntity
+	 * @param colsets 指定列族集合
+	 * @throws Exception
+	 */
+	void save(IBAEntity iEntity,String[] colsets)throws Exception;
+	
+	
 
-    public void update(IBAEntity var1, String[] var2) throws Exception;
-
-    public void save(IBAEntity var1, String[] var2) throws Exception;
-
-    public boolean get(IBAEntity var1, String[] var2, boolean var3) throws Exception;
+	
+	
+	/**
+	 * 获取数据对象
+	 * @param iEntity
+	 * @param colsets 指定列族集合
+	 * @param bTryMode 尝试模式
+	 * @return
+	 * @throws Exception
+	 */
+	boolean get(IBAEntity iEntity,String[] colsets,boolean bTryMode)throws Exception;
 }
-

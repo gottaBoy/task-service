@@ -1,18 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.controller.IDynaViewController
- */
 package net.ibizsys.pswf.controller;
 
 import net.ibizsys.paas.controller.IDynaViewController;
-import net.ibizsys.pswf.controller.IDynaWFViewControllerInst;
 
-public interface IDynaWFViewController
-extends IDynaViewController {
-    public IDynaWFViewControllerInst getDynaWFViewControllerInst();
+/**
+ * 动态视图控制器对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaWFViewController extends IDynaViewController {
 
-    public String getViewWFId();
+	/**
+	 * 获取动态视图控制器实例对象
+	 * @return
+	 */
+	IDynaWFViewControllerInst getDynaWFViewControllerInst();
+	
+	
+	/**
+	 * 获取视图流程标识
+	 * @return
+	 */
+	String getViewWFId();
+
 }
-

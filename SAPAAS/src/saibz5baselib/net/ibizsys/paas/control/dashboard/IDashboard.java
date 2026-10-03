@@ -1,16 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.dashboard;
 
-import java.util.Iterator;
 import net.ibizsys.paas.control.IControl;
-import net.ibizsys.paas.control.dashboard.IPortlet;
 
-public interface IDashboard
-extends IControl {
-    public double[] getColumnModels();
+/**
+ * 数据看板部件接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDashboard extends IControl {
+	/**
+	 * 获取布局列模型
+	 * 
+	 * @return
+	 */
+	double[] getColumnModels();
 
-    public Iterator<IPortlet> getPortlets();
+	/**
+	 * 获取门户部件集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IPortlet> getPortlets();
 }
-

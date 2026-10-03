@@ -58,7 +58,7 @@ extends PSDEDataCtrl {
                     String strName;
                     BaseDataEntity cond = new BaseDataEntity();
                     cond.setParamValue("PSAPPMENUID", (Object)strPSAppMenuId);
-                    Vector psAppMenuItemList = new Vector();
+                    Vector<PSAppMenuItem> psAppMenuItemList = new Vector<PSAppMenuItem>();
                     callResult = this.Select(cond, psAppMenuItemList, PSAppMenuItem.class.getName(), "UPPER(PSAPPMENUITEMNAME) LIKE '" + strDetailType + "%'", "");
                     if (callResult.isError()) {
                         log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u540c\u7c7b\u5e94\u7528\u83dc\u5355\u9879\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -91,4 +91,3 @@ extends PSDEDataCtrl {
         return super.GetDefault(webContext, dataEntity);
     }
 }
-

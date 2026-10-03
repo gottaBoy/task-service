@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.web.jquery.render;
 
-import net.ibizsys.paas.web.jquery.render.ExpBarJSTreeRender;
+/**
+ * JQuery JSTree 流程导航栏绘制器
+ * 
+ * @author Administrator
+ *
+ */
+public class WFExpBarJSTreeRender extends ExpBarJSTreeRender {
 
-public class WFExpBarJSTreeRender
-extends ExpBarJSTreeRender {
 }
-

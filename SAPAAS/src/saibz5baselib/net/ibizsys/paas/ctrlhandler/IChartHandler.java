@@ -1,13 +1,18 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.IMDCtrlHandler;
 import net.ibizsys.paas.ctrlmodel.IChartModel;
 
-public interface IChartHandler
-extends IMDCtrlHandler {
-    public IChartModel getChartModel();
+/**
+ * 图表处理对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IChartHandler extends IMDCtrlHandler {
+	/**
+	 * 获取图表模型
+	 * 
+	 * @return
+	 */
+	IChartModel getChartModel();
 }
-

@@ -17,13 +17,11 @@ package net.ibizsys.pscore.srv.dedesign.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.entity.EntityBase;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.StringHelper;
+import net.ibizsys.pscore.srv.dedesign.entity.PSDEAction;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEDataSet;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDESADetail;
-import net.ibizsys.pscore.srv.dedesign.entity.PSDESADetailBase;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEServiceAPI;
 import net.ibizsys.pscore.srv.dedesign.service.PSDESADetailService;
 import net.ibizsys.pscore.srv.dedesign.service.PSDEServiceAPIServiceBase;
@@ -49,13 +47,10 @@ extends PSDEServiceAPIServiceBase {
     protected void onRebuildDetails(PSDEServiceAPI pSDEServiceAPI) throws Exception {
         PSDESADetail pSDESADetail;
         String string;
-        EntityBase entityBase;
-        Object object;
-        Object object2;
-        this.get((IEntity)pSDEServiceAPI);
+        this.get(pSDEServiceAPI);
         PSDESADetailService pSDESADetailService = (PSDESADetailService)ServiceGlobal.getService(PSDESADetailService.class, (SessionFactory)this.getSessionFactory());
         ArrayList<PSDESADetail> arrayList = pSDEServiceAPI.getPSDESADetails();
-        HashMap<Object, Object> hashMap = new HashMap<Object, Object>();
+        HashMap<String, PSDESADetail> hashMap = new HashMap<String, PSDESADetail>();
         for (PSDESADetail pSDESADetail2 : arrayList) {
             hashMap.put(pSDESADetail2.getPSDESADetailId(), pSDESADetail2);
             hashMap.put(pSDESADetail2.getUniqueTag(), pSDESADetail2);
@@ -64,62 +59,56 @@ extends PSDEServiceAPIServiceBase {
         boolean bl = DataObject.getBoolValue((Integer)pSDEServiceAPI.getPSDE().getPSSystem().getServiceAPIFlag(), (boolean)false);
         bl = DataObject.getBoolValue((Integer)pSDEServiceAPI.getPSDE().getServiceAPIFlag(), (boolean)bl);
         if (DataObject.getBoolValue((Integer)pSDEServiceAPI.getEnableDEAction(), (boolean)bl)) {
-            object2 = pSDEServiceAPI.getPSDE().getPSDEActions();
-            object = ((ArrayList)object2).iterator();
-            while (object.hasNext()) {
-                entityBase = object.next();
-                string = StringHelper.format((String)"%1$s__DEACTION__%2$s", (Object)string2, (Object)entityBase.getPSDEActionName()).toUpperCase();
+            for (PSDEAction action : pSDEServiceAPI.getPSDE().getPSDEActions()) {
+                string = StringHelper.format((String)"%1$s__DEACTION__%2$s", (Object)string2, (Object)action.getPSDEActionName()).toUpperCase();
                 if (hashMap.containsKey(string)) continue;
                 pSDESADetail = new PSDESADetail();
                 pSDESADetail.setDetailType("DEACTION");
-                pSDESADetail.setPSDEActionId(entityBase.getPSDEActionId());
-                pSDESADetail.setPSDEActionName(entityBase.getPSDEActionName());
+                pSDESADetail.setPSDEActionId(action.getPSDEActionId());
+                pSDESADetail.setPSDEActionName(action.getPSDEActionName());
                 pSDESADetail.setUniqueTag(string);
-                if (StringHelper.compare((String)entityBase.getPSDEActionName(), (String)"CREATE", (boolean)true) != 0 && StringHelper.compare((String)entityBase.getPSDEActionName(), (String)"UPDATE", (boolean)true) != 0 && StringHelper.compare((String)entityBase.getPSDEActionName(), (String)"REMOVE", (boolean)true) != 0 && StringHelper.compare((String)entityBase.getPSDEActionName(), (String)"GET", (boolean)true) != 0) {
-                    pSDESADetail.setCodeName(entityBase.getCodeName());
+                if (StringHelper.compare((String)action.getPSDEActionName(), (String)"CREATE", (boolean)true) != 0 && StringHelper.compare((String)action.getPSDEActionName(), (String)"UPDATE", (boolean)true) != 0 && StringHelper.compare((String)action.getPSDEActionName(), (String)"REMOVE", (boolean)true) != 0 && StringHelper.compare((String)action.getPSDEActionName(), (String)"GET", (boolean)true) != 0) {
+                    pSDESADetail.setCodeName(action.getCodeName());
                 }
-                if (DataObject.getBoolValue((Integer)entityBase.getPubMode(), (boolean)bl)) {
+                if (DataObject.getBoolValue((Integer)action.getPubMode(), (boolean)bl)) {
                     pSDESADetail.setValidFlag(1);
                 } else {
                     pSDESADetail.setValidFlag(0);
                 }
                 pSDESADetail.setPSDEServiceAPIId(pSDEServiceAPI.getPSDEServiceAPIId());
-                pSDESADetail.setMethodTag(StringHelper.format((String)"DEACTION__%1$s", (Object)entityBase.getPSDEActionName()).toUpperCase());
+                pSDESADetail.setMethodTag(StringHelper.format((String)"DEACTION__%1$s", (Object)action.getPSDEActionName()).toUpperCase());
                 pSDESADetailService.create(pSDESADetail, false);
                 hashMap.put(string, pSDESADetail);
             }
         }
         if (DataObject.getBoolValue((Integer)pSDEServiceAPI.getEnableDEDataSet(), (boolean)bl)) {
-            object2 = pSDEServiceAPI.getPSDE().getPSDEDataSets();
-            object = ((ArrayList)object2).iterator();
-            while (object.hasNext()) {
-                entityBase = (PSDEDataSet)((Object)object.next());
-                string = StringHelper.format((String)"%1$s__FETCH__%2$s", (Object)string2, (Object)entityBase.getPSDEDataSetName()).toUpperCase();
+            for (PSDEDataSet dataSet : pSDEServiceAPI.getPSDE().getPSDEDataSets()) {
+                string = StringHelper.format((String)"%1$s__FETCH__%2$s", (Object)string2, (Object)dataSet.getPSDEDataSetName()).toUpperCase();
                 if (hashMap.containsKey(string)) continue;
                 pSDESADetail = new PSDESADetail();
                 pSDESADetail.setDetailType("FETCH");
-                pSDESADetail.setPSDEDSId(entityBase.getPSDEDataSetId());
-                pSDESADetail.setPSDEDSName(entityBase.getPSDEDataSetName());
-                if (DataObject.getBoolValue((Integer)entityBase.getPubMode(), (boolean)bl)) {
+                pSDESADetail.setPSDEDSId(dataSet.getPSDEDataSetId());
+                pSDESADetail.setPSDEDSName(dataSet.getPSDEDataSetName());
+                if (DataObject.getBoolValue((Integer)dataSet.getPubMode(), (boolean)bl)) {
                     pSDESADetail.setValidFlag(1);
                 } else {
                     pSDESADetail.setValidFlag(0);
                 }
                 pSDESADetail.setPSDEServiceAPIId(pSDEServiceAPI.getPSDEServiceAPIId());
-                pSDESADetail.setMethodTag(StringHelper.format((String)"FETCH__%1$s", (Object)entityBase.getPSDEDataSetName()).toUpperCase());
+                pSDESADetail.setMethodTag(StringHelper.format((String)"FETCH__%1$s", (Object)dataSet.getPSDEDataSetName()).toUpperCase());
                 pSDESADetailService.create(pSDESADetail, false);
                 hashMap.put(string, pSDESADetail);
             }
         }
-        if (DataObject.getBoolValue((Integer)pSDEServiceAPI.getEnableSelect(), (boolean)bl) && !hashMap.containsKey(object2 = StringHelper.format((String)"%1$s__SELECT", (Object)string2).toUpperCase())) {
-            object = new PSDESADetail();
-            ((PSDESADetailBase)object).setDetailType("SELECT");
-            ((PSDESADetailBase)object).setPSDEServiceAPIId(pSDEServiceAPI.getPSDEServiceAPIId());
-            ((PSDESADetailBase)object).setMethodTag("SELECT");
-            ((PSDESADetailBase)object).setCodeName("Select");
-            pSDESADetailService.create(object, false);
-            hashMap.put(object2, object);
+        String selectTag = StringHelper.format((String)"%1$s__SELECT", (Object)string2).toUpperCase();
+        if (DataObject.getBoolValue((Integer)pSDEServiceAPI.getEnableSelect(), (boolean)bl) && !hashMap.containsKey(selectTag)) {
+            PSDESADetail selectDetail = new PSDESADetail();
+            selectDetail.setDetailType("SELECT");
+            selectDetail.setPSDEServiceAPIId(pSDEServiceAPI.getPSDEServiceAPIId());
+            selectDetail.setMethodTag("SELECT");
+            selectDetail.setCodeName("Select");
+            pSDESADetailService.create(selectDetail, false);
+            hashMap.put(selectTag, selectDetail);
         }
     }
 }
-

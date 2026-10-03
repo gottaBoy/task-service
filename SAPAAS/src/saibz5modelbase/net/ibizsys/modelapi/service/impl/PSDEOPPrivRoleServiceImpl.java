@@ -157,10 +157,10 @@ implements IPSDEOPPrivRoleService {
 
     @Override
     protected List<PSDEOPPrivRole> onListAll() throws Exception {
-        List psdataentities;
-        List pssysopprivs;
+        List<PSDataEntity> psdataentities;
+        List<PSSysOPPriv> pssysopprivs;
         ArrayList<PSDEOPPrivRole> list = new ArrayList<PSDEOPPrivRole>();
-        List psdeuserroles = PSModelServiceUtil.getInstance().getPSDEUserRoleService().listAll();
+        List<PSDEUserRole> psdeuserroles = PSModelServiceUtil.getInstance().getPSDEUserRoleService().listAll();
         if (psdeuserroles != null) {
             for (PSDEUserRole parent : psdeuserroles) {
                 List<PSDEOPPrivRole> items = this.listByPSDEUserRole(parent);

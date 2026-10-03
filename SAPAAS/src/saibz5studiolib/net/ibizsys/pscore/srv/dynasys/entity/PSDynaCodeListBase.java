@@ -913,7 +913,7 @@ implements Serializable {
                 PSDynaSys pSDynaSys = new PSDynaSys();
                 pSDynaSys.setPSDynaSysId(this.getPSDynaSysId());
                 PSDynaSysService pSDynaSysService = (PSDynaSysService)ServiceGlobal.getService(PSDynaSysService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaSysService.autoGet((IEntity)pSDynaSys);
+                pSDynaSysService.autoGet(pSDynaSys);
                 this.psdynasys = pSDynaSys;
             }
             return this.psdynasys;

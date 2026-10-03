@@ -44,7 +44,7 @@ extends PSSysConsoleServiceBase {
         if (!StringHelper.isNullOrEmpty((String)string)) {
             String string2 = "DELETE FROM T_SRFPSSYSCONSOLE WHERE PSSYSTEMID=? ";
             SqlParamList sqlParamList = new SqlParamList();
-            sqlParamList.add((Object)new SqlParam((Object)string, 25));
+            sqlParamList.add(new SqlParam((Object)string, 25));
             this.getDAO().executeRawSql(null, string2, sqlParamList);
         }
     }
@@ -52,7 +52,7 @@ extends PSSysConsoleServiceBase {
     @Override
     protected void onFixIssue(PSSysConsole pSSysConsole) throws Exception {
         if (!pSSysConsole.isFullEntity()) {
-            this.get((IEntity)pSSysConsole);
+            this.get(pSSysConsole);
         }
         if (DataObject.getIntegerValue((Object)pSSysConsole.getFixState(), (Integer)0) == 1) {
             String string = pSSysConsole.getFixDEName();

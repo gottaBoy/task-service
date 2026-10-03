@@ -56,7 +56,7 @@ extends PSAppStoryBoardServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSAppStoryBoard.getPSAppStoryBoardId())) {
             this.getTempMajor(pSAppStoryBoard);
         } else {
-            this.getTemp((IEntity)pSAppStoryBoard);
+            this.getTemp(pSAppStoryBoard);
         }
         pSAppStoryBoard.setSBModel(this.getSBModel(pSAppStoryBoard));
     }
@@ -89,13 +89,12 @@ extends PSAppStoryBoardServiceBase {
     public void updateWithModel(PSAppStoryBoard pSAppStoryBoard) throws Exception {
         PSAppStoryBoard pSAppStoryBoard2 = new PSAppStoryBoard();
         pSAppStoryBoard.copyTo((IDataObject)pSAppStoryBoard2, false);
-        this.getTemp((IEntity)pSAppStoryBoard2);
+        this.getTemp(pSAppStoryBoard2);
         final PSAppStoryBoard pSAppStoryBoard3 = pSAppStoryBoard;
         log.debug((Object)"\u5f00\u59cb[updateWithModel]\u4f5c\u4e1a");
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSAppSBItemRS pSAppSBItemRS2;
                 PSAppSBItemService pSAppSBItemService = (PSAppSBItemService)ServiceGlobal.getService((String)PSAppSBItemService.class.getCanonicalName(), (SessionFactory)PSAppStoryBoardService.this.getSessionFactory());
                 ArrayList<PSAppSBItem> arrayList = pSAppSBItemService.selectTempByPSAppStoryBoard(pSAppStoryBoard3);
                 HashMap<String, PSAppSBItem> hashMap = new HashMap<String, PSAppSBItem>();
@@ -109,23 +108,23 @@ extends PSAppStoryBoardServiceBase {
                     hashMap2.put(pSAppSBItemRS2.getPSAppSBItemRSId(), pSAppSBItemRS2);
                 }
                 String string = pSAppStoryBoard3.getSBModel();
-                pSAppSBItemRS2 = XmlNode.loadFromXML((String)string);
-                if (pSAppSBItemRS2 != null) {
-                    pSAppSBItemRS2.setAttribute("PSSYSAPPID", pSAppStoryBoard3.getPSSysAppId());
-                    pSAppSBItemRS2.setAttribute("PSAPPSTORYBOARDID", pSAppStoryBoard3.getPSAppStoryBoardId());
-                    PSAppStoryBoardService.this.updatePSAppStoryBoardModel(pSAppStoryBoard3, (XmlNode)pSAppSBItemRS2, hashMap, hashMap2);
-                    pSAppStoryBoard3.setSBModel(XmlNode.export((XmlNode)pSAppSBItemRS2));
+                XmlNode modelNode = XmlNode.loadFromXML(string);
+                if (modelNode != null) {
+                    modelNode.setAttribute("PSSYSAPPID", pSAppStoryBoard3.getPSSysAppId());
+                    modelNode.setAttribute("PSAPPSTORYBOARDID", pSAppStoryBoard3.getPSAppStoryBoardId());
+                    PSAppStoryBoardService.this.updatePSAppStoryBoardModel(pSAppStoryBoard3, modelNode, hashMap, hashMap2);
+                    pSAppStoryBoard3.setSBModel(XmlNode.export(modelNode));
                 } else {
                     pSAppStoryBoard3.setSBModel(null);
                 }
                 if (hashMap2.size() > 0) {
-                    for (EntityBase entityBase : hashMap2.values()) {
-                        pSAppSBItemRSService.removeTemp((IEntity)entityBase);
+                    for (PSAppSBItemRS relation : hashMap2.values()) {
+                        pSAppSBItemRSService.removeTemp(relation);
                     }
                 }
                 if (hashMap.size() > 0) {
-                    for (EntityBase entityBase : hashMap.values()) {
-                        pSAppSBItemService.removeTemp((IEntity)entityBase);
+                    for (PSAppSBItem item : hashMap.values()) {
+                        pSAppSBItemService.removeTemp(item);
                     }
                 }
                 PSAppStoryBoardService.this.updateTempMajor(pSAppStoryBoard3);
@@ -136,8 +135,8 @@ extends PSAppStoryBoardServiceBase {
     protected void updatePSAppStoryBoardModel(PSAppStoryBoard pSAppStoryBoard, XmlNode xmlNode, HashMap<String, PSAppSBItem> hashMap, HashMap<String, PSAppSBItemRS> hashMap2) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
-            ArrayList<Object> arrayList2 = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
+            ArrayList<XmlNode> arrayList2 = new ArrayList<XmlNode>();
             PSAppSBItemService pSAppSBItemService = (PSAppSBItemService)ServiceGlobal.getService((String)PSAppSBItemService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             PSAppSBItemRSService pSAppSBItemRSService = (PSAppSBItemRSService)ServiceGlobal.getService((String)PSAppSBItemRSService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             while (iterator.hasNext()) {
@@ -145,80 +144,83 @@ extends PSAppStoryBoardServiceBase {
                 String string2;
                 String string3;
                 boolean bl;
-                EntityBase entityBase;
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_APPSBITEM, (boolean)true) == 0) {
                     int n;
                     String string4 = xmlNode2.getAttribute("PSAPPSBITEMID", "");
-                    if (StringHelper.isNullOrEmpty((String)string4) || (entityBase = hashMap.remove(string4)) == null) continue;
+                    if (StringHelper.isNullOrEmpty(string4)) continue;
+                    PSAppSBItem item = hashMap.remove(string4);
+                    if (item == null) continue;
                     bl = false;
-                    if (StringHelper.compare((String)entityBase.getPSAppStoryBoardId(), (String)pSAppStoryBoard.getPSAppStoryBoardId(), (boolean)false) != 0) {
-                        entityBase.setPSAppStoryBoardId(pSAppStoryBoard.getPSAppStoryBoardId());
+                    if (StringHelper.compare(item.getPSAppStoryBoardId(), pSAppStoryBoard.getPSAppStoryBoardId(), false) != 0) {
+                        item.setPSAppStoryBoardId(pSAppStoryBoard.getPSAppStoryBoardId());
                         bl = true;
                     }
-                    if (StringHelper.compare((String)entityBase.getPSAppStoryBoardName(), (String)pSAppStoryBoard.getPSAppStoryBoardName(), (boolean)false) != 0) {
-                        entityBase.setPSAppStoryBoardName(pSAppStoryBoard.getPSAppStoryBoardName());
+                    if (StringHelper.compare(item.getPSAppStoryBoardName(), pSAppStoryBoard.getPSAppStoryBoardName(), false) != 0) {
+                        item.setPSAppStoryBoardName(pSAppStoryBoard.getPSAppStoryBoardName());
                         bl = true;
                     }
                     string3 = xmlNode2.getAttribute("LEFTPOS", "");
                     string2 = xmlNode2.getAttribute("TOPPOS", "");
                     if (!StringHelper.isNullOrEmpty((String)string3)) {
                         n = Integer.parseInt(string3);
-                        if (entityBase.getLeftPos() == null || entityBase.getLeftPos() != n) {
-                            entityBase.setLeftPos(n);
+                        if (item.getLeftPos() == null || item.getLeftPos() != n) {
+                            item.setLeftPos(n);
                             bl = true;
                         }
                     }
                     if (!StringHelper.isNullOrEmpty((String)string2)) {
                         n = Integer.parseInt(string2);
-                        if (entityBase.getTopPos() == null || entityBase.getTopPos() != n) {
-                            entityBase.setTopPos(n);
+                        if (item.getTopPos() == null || item.getTopPos() != n) {
+                            item.setTopPos(n);
                             bl = true;
                         }
                     }
                     if (bl) {
-                        pSAppSBItemService.updateTemp((IEntity)entityBase);
+                        pSAppSBItemService.updateTemp(item);
                     }
                     xmlNode2.resetAttributes();
-                    entityBase.fillXmlNode(xmlNode2, false);
+                    item.fillXmlNode(xmlNode2, false);
                     arrayList.add(xmlNode2);
                     continue;
                 }
-                if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_APPSBITEMRS, (boolean)true) != 0 || StringHelper.isNullOrEmpty((String)(string = xmlNode2.getAttribute("PSAPPSBITEMRSID", ""))) || (entityBase = hashMap2.remove(string)) == null) continue;
+                if (StringHelper.compare(xmlNode2.getNodeName(), XMLNODE_APPSBITEMRS, true) != 0 || StringHelper.isNullOrEmpty((string = xmlNode2.getAttribute("PSAPPSBITEMRSID", "")))) continue;
+                PSAppSBItemRS relation = hashMap2.remove(string);
+                if (relation == null) continue;
                 bl = false;
-                if (StringHelper.compare((String)entityBase.getPSAppStoryBoardId(), (String)pSAppStoryBoard.getPSAppStoryBoardId(), (boolean)false) != 0) {
-                    entityBase.setPSAppStoryBoardId(pSAppStoryBoard.getPSAppStoryBoardId());
+                if (StringHelper.compare(relation.getPSAppStoryBoardId(), pSAppStoryBoard.getPSAppStoryBoardId(), false) != 0) {
+                    relation.setPSAppStoryBoardId(pSAppStoryBoard.getPSAppStoryBoardId());
                     bl = true;
                 }
-                if (StringHelper.compare((String)entityBase.getPSAppStoryBoardName(), (String)pSAppStoryBoard.getPSAppStoryBoardName(), (boolean)false) != 0) {
-                    entityBase.setPSAppStoryBoardName(pSAppStoryBoard.getPSAppStoryBoardName());
+                if (StringHelper.compare(relation.getPSAppStoryBoardName(), pSAppStoryBoard.getPSAppStoryBoardName(), false) != 0) {
+                    relation.setPSAppStoryBoardName(pSAppStoryBoard.getPSAppStoryBoardName());
                     bl = true;
                 }
                 string3 = xmlNode2.getAttribute("SRCENDPOINT", "");
                 string2 = xmlNode2.getAttribute("DSTENDPOINT", "");
                 String string5 = xmlNode2.getAttribute("PPSAPPSBITEMID", "");
                 String string6 = xmlNode2.getAttribute("CPSAPPSBITEMID", "");
-                if (StringHelper.compare((String)entityBase.getSrcEndPoint(), (String)string3, (boolean)false) != 0) {
-                    entityBase.setSrcEndPoint(string3);
+                if (StringHelper.compare(relation.getSrcEndPoint(), string3, false) != 0) {
+                    relation.setSrcEndPoint(string3);
                     bl = true;
                 }
-                if (StringHelper.compare((String)entityBase.getDstEndPoint(), (String)string2, (boolean)false) != 0) {
-                    entityBase.setDstEndPoint(string2);
+                if (StringHelper.compare(relation.getDstEndPoint(), string2, false) != 0) {
+                    relation.setDstEndPoint(string2);
                     bl = true;
                 }
-                if (StringHelper.compare((String)entityBase.getPPSAppSBItemId(), (String)string5, (boolean)false) != 0) {
-                    entityBase.setPPSAppSBItemId(string5);
+                if (StringHelper.compare(relation.getPPSAppSBItemId(), string5, false) != 0) {
+                    relation.setPPSAppSBItemId(string5);
                     bl = true;
                 }
-                if (StringHelper.compare((String)entityBase.getCPSAppSBItemId(), (String)string6, (boolean)false) != 0) {
-                    entityBase.setCPSAppSBItemId(string6);
+                if (StringHelper.compare(relation.getCPSAppSBItemId(), string6, false) != 0) {
+                    relation.setCPSAppSBItemId(string6);
                     bl = true;
                 }
                 if (bl) {
-                    pSAppSBItemRSService.updateTemp((IEntity)entityBase);
+                    pSAppSBItemRSService.updateTemp(relation);
                 }
                 xmlNode2.resetAttributes();
-                entityBase.fillXmlNode(xmlNode2, false);
+                relation.fillXmlNode(xmlNode2, false);
                 arrayList2.add(xmlNode2);
             }
             xmlNode.resetChildNodes();
@@ -238,7 +240,6 @@ extends PSAppStoryBoardServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSAppSBItemRS pSAppSBItemRS2;
                 PSAppSBItemService pSAppSBItemService = (PSAppSBItemService)ServiceGlobal.getService((String)PSAppSBItemService.class.getCanonicalName(), (SessionFactory)PSAppStoryBoardService.this.getSessionFactory());
                 ArrayList<PSAppSBItem> arrayList = pSAppSBItemService.selectTempByPSAppStoryBoard(pSAppStoryBoard2);
                 HashMap<String, PSAppSBItem> hashMap = new HashMap<String, PSAppSBItem>();
@@ -252,33 +253,33 @@ extends PSAppStoryBoardServiceBase {
                     hashMap2.put(pSAppSBItemRS2.getPSAppSBItemRSId(), pSAppSBItemRS2);
                 }
                 String string = pSAppStoryBoard2.getSBModel();
-                pSAppSBItemRS2 = XmlNode.loadFromXML((String)string);
-                if (pSAppSBItemRS2 != null) {
-                    pSAppSBItemRS2.setAttribute("PSSYSAPPID", pSAppStoryBoard2.getPSSysAppId());
-                    pSAppSBItemRS2.setAttribute("PSAPPSTORYBOARDID", pSAppStoryBoard2.getPSAppStoryBoardId());
-                    PSAppStoryBoardService.this.updatePSAppStoryBoardModel(pSAppStoryBoard2, (XmlNode)pSAppSBItemRS2, hashMap, hashMap2);
-                    pSAppStoryBoard2.setSBModel(XmlNode.export((XmlNode)pSAppSBItemRS2));
+                XmlNode modelNode = XmlNode.loadFromXML(string);
+                if (modelNode != null) {
+                    modelNode.setAttribute("PSSYSAPPID", pSAppStoryBoard2.getPSSysAppId());
+                    modelNode.setAttribute("PSAPPSTORYBOARDID", pSAppStoryBoard2.getPSAppStoryBoardId());
+                    PSAppStoryBoardService.this.updatePSAppStoryBoardModel(pSAppStoryBoard2, modelNode, hashMap, hashMap2);
+                    pSAppStoryBoard2.setSBModel(XmlNode.export(modelNode));
                 } else {
                     pSAppStoryBoard2.setSBModel(null);
                 }
                 if (hashMap2.size() > 0) {
-                    for (EntityBase entityBase : hashMap2.values()) {
-                        pSAppSBItemRSService.removeTemp((IEntity)entityBase);
+                    for (PSAppSBItemRS relation : hashMap2.values()) {
+                        pSAppSBItemRSService.removeTemp(relation);
                     }
                 }
                 if (hashMap.size() > 0) {
-                    for (EntityBase entityBase : hashMap.values()) {
-                        pSAppSBItemService.removeTemp((IEntity)entityBase);
+                    for (PSAppSBItem item : hashMap.values()) {
+                        pSAppSBItemService.removeTemp(item);
                     }
                 }
-                PSAppStoryBoardService.this.createTempMajor((IEntity)pSAppStoryBoard2);
+                PSAppStoryBoardService.this.createTempMajor(pSAppStoryBoard2);
             }
         });
     }
 
     @Override
     public void getDraftWithModel(PSAppStoryBoard pSAppStoryBoard) throws Exception {
-        this.getDraftTempMajor((IEntity)pSAppStoryBoard);
+        this.getDraftTempMajor(pSAppStoryBoard);
         pSAppStoryBoard.setSBModel(this.getSBModel(pSAppStoryBoard));
     }
 
@@ -318,4 +319,3 @@ extends PSAppStoryBoardServiceBase {
         });
     }
 }
-

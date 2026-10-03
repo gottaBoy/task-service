@@ -156,7 +156,7 @@ extends SRFDAPage {
                     ajaxActionResult.setErrorInfo(StringHelper.Format((String)"\u8fdc\u7a0b\u8c03\u7528\u6ca1\u6709\u6388\u6743"));
                     return ajaxActionResult;
                 }
-                Vector list = new Vector();
+                Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
                 String strArg = this.getWebContext().GetPostValue("srfarg");
                 BaseDataEntity dataEntity = BaseDataEntity.FromString((String)strArg);
                 CallResult callResult = iDEDataCtrl.Select(dataEntity, list);
@@ -191,7 +191,7 @@ extends SRFDAPage {
                     ajaxActionResult.setErrorInfo(StringHelper.Format((String)"\u8fdc\u7a0b\u8c03\u7528\u6ca1\u6709\u6388\u6743"));
                     return ajaxActionResult;
                 }
-                Vector list = new Vector();
+                Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
                 String strActionMode = this.getWebContext().GetPostValue("srfarg");
                 String strArg2 = this.getWebContext().GetPostValue("srfarg2");
                 BaseDataEntity dataEntity = BaseDataEntity.FromString((String)strArg2);
@@ -225,4 +225,3 @@ extends SRFDAPage {
         throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u8fdc\u7a0b\u8c03\u7528[%1$s]", (Object)strCall));
     }
 }
-

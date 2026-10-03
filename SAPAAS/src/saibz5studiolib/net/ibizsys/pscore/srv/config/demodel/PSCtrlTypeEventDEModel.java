@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSCtrlTypeEventDEModelBase;
 
 public class PSCtrlTypeEventDEModel
 extends PSCtrlTypeEventDEModelBase {
+
+    public PSCtrlTypeEventDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

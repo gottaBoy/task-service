@@ -114,9 +114,9 @@ implements IPSSysDELogicNodeService {
 
     @Override
     protected List<PSSysDELogicNode> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysDELogicNode> list = new ArrayList<PSSysDELogicNode>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysDELogicNode> items = this.listByPSModule(parent);

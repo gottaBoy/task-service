@@ -1,19 +1,43 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ajax;
 
 import net.ibizsys.paas.core.IApplication;
 import net.ibizsys.paas.util.IGlobalContext;
 import net.ibizsys.paas.view.IView;
 
+/**
+ * 异步后台处理对象接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IAjaxHandler {
-    public void init(IGlobalContext var1, IApplication var2, String var3) throws Exception;
+	/**
+	 * 初始化
+	 * 
+	 * @param iGlobalContext 应用全局上下文对象
+	 * @param iApplication 应用对象
+	 * @param strHandler 处理器
+	 * @throws Exception
+	 */
+	void init(IGlobalContext iGlobalContext, IApplication iApplication, String strHandler) throws Exception;
 
-    public String getHandlerType();
+	/**
+	 * 获取处理对象类型
+	 * 
+	 * @return
+	 */
+	String getHandlerType();
 
-    public IView getView();
+	/**
+	 * 获取视图对象
+	 * 
+	 * @return
+	 */
+	IView getView();
 
-    public void close();
+	/**
+	 * 退出，进行释放
+	 */
+	void close();
+
 }
-

@@ -73,7 +73,7 @@ implements IPSDEAGDetailService {
     @Override
     protected List<PSDEAGDetail> onListAll() throws Exception {
         ArrayList<PSDEAGDetail> list = new ArrayList<PSDEAGDetail>();
-        List psdeactiongroups = PSModelServiceUtil.getInstance().getPSDEActionGroupService().listAll();
+        List<PSDEActionGroup> psdeactiongroups = PSModelServiceUtil.getInstance().getPSDEActionGroupService().listAll();
         if (psdeactiongroups != null) {
             for (PSDEActionGroup parent : psdeactiongroups) {
                 List<PSDEAGDetail> items = this.listByPSDEActionGroup(parent);

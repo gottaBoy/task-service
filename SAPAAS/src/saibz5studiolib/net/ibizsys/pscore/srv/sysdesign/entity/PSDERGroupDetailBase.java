@@ -1834,7 +1834,7 @@ implements Serializable {
                 PSDERGroup pSDERGroup = new PSDERGroup();
                 pSDERGroup.setPSDERGroupId(this.getPSDERGroupId());
                 PSDERGroupService pSDERGroupService = (PSDERGroupService)ServiceGlobal.getService(PSDERGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSDERGroupService.autoGet((IEntity)pSDERGroup);
+                pSDERGroupService.autoGet(pSDERGroup);
                 this.psdergroup = pSDERGroup;
             }
             return this.psdergroup;
@@ -1860,7 +1860,7 @@ implements Serializable {
                 PSDER pSDER = new PSDER();
                 pSDER.setPSDERId(this.getPSDERId());
                 PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
-                pSDERService.autoGet((IEntity)pSDER);
+                pSDERService.autoGet(pSDER);
                 this.psder = pSDER;
             }
             return this.psder;

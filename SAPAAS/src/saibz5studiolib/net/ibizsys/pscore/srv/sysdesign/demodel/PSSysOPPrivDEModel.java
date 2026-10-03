@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysOPPrivDEModelBase;
 
 public class PSSysOPPrivDEModel
 extends PSSysOPPrivDEModelBase {
+
+    public PSSysOPPrivDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

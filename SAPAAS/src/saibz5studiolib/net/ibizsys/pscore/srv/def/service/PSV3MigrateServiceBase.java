@@ -147,9 +147,9 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_Psmodule(pSV3Migrate, pSModule);
             return;
@@ -159,14 +159,14 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_Pssystem(pSV3Migrate, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSV3Migrate, string, string2, string3);
+        super.onFillParentInfo(pSV3Migrate, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -187,7 +187,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSV3Migrate, bl);
+        super.onFillEntityFullInfo(pSV3Migrate, bl);
         this.onFillEntityFullInfo_Psmodule(pSV3Migrate, bl);
         this.onFillEntityFullInfo_Pssystem(pSV3Migrate, bl);
     }
@@ -199,7 +199,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
     }
 
     protected void onWriteBackParent(PSV3Migrate pSV3Migrate, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSV3Migrate, bl);
+        super.onWriteBackParent(pSV3Migrate, bl);
     }
 
     public ArrayList<PSV3Migrate> selectByPsmodule(PSModuleBase pSModuleBase) throws Exception {
@@ -254,8 +254,8 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
         ArrayList<PSV3Migrate> arrayList = this.selectByPsmodule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSV3MIGRATE_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSV3MIGRATE", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSV3MIGRATE_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSV3MIGRATE", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -288,7 +288,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
         ArrayList<PSV3Migrate> arrayList = this.selectByPsmodule(pSModule);
         this.onBeforeRemoveByPsmodule(pSModule, arrayList);
         for (PSV3Migrate pSV3Migrate : arrayList) {
-            this.remove((IEntity)pSV3Migrate);
+            this.remove(pSV3Migrate);
         }
         this.onAfterRemoveByPsmodule(pSModule, arrayList);
     }
@@ -306,8 +306,8 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
         ArrayList<PSV3Migrate> arrayList = this.selectByPssystem(pSSystem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSTEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSystem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSV3MIGRATE_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSV3MIGRATE", iDataEntityModel.getDataInfo((IEntity)pSSystem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSystem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSV3MIGRATE_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSV3MIGRATE", iDataEntityModel.getDataInfo(pSSystem), arrayList.get(0)));
         }
     }
 
@@ -340,7 +340,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
         ArrayList<PSV3Migrate> arrayList = this.selectByPssystem(pSSystem);
         this.onBeforeRemoveByPssystem(pSSystem, arrayList);
         for (PSV3Migrate pSV3Migrate : arrayList) {
-            this.remove((IEntity)pSV3Migrate);
+            this.remove(pSV3Migrate);
         }
         this.onAfterRemoveByPssystem(pSSystem, arrayList);
     }
@@ -373,7 +373,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
 
     protected void replaceParentInfo(PSV3Migrate pSV3Migrate, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSV3Migrate, cloneSession);
+        super.replaceParentInfo(pSV3Migrate, cloneSession);
         if (pSV3Migrate.getPSModuleId() != null && (iEntity = cloneSession.getEntity("PSMODULE", (Object)pSV3Migrate.getPSModuleId())) != null) {
             this.onFillParentInfo_Psmodule(pSV3Migrate, (PSModule)iEntity);
         }
@@ -383,7 +383,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
     }
 
     protected void onRemoveEntityUncopyValues(PSV3Migrate pSV3Migrate, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSV3Migrate, bl);
+        super.onRemoveEntityUncopyValues(pSV3Migrate, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSV3Migrate pSV3Migrate, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -416,7 +416,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
         if ((entityFieldError = this.onCheckField_PSV3MigrateName(bl, pSV3Migrate, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSV3Migrate, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSV3Migrate, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DEIDPREFIX(boolean bl, PSV3Migrate pSV3Migrate, boolean bl2, boolean bl3) throws Exception {
@@ -429,7 +429,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEIDPREFIX_Default((IEntity)pSV3Migrate, bl2, bl3);
+            string2 = this.onTestValueRule_DEIDPREFIX_Default(pSV3Migrate, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEIDPREFIX");
@@ -451,7 +451,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DENamePREFIX_Default((IEntity)pSV3Migrate, bl2, bl3);
+            string2 = this.onTestValueRule_DENamePREFIX_Default(pSV3Migrate, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DENAMEPREFIX");
@@ -473,7 +473,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ExcludeIDS_Default((IEntity)pSV3Migrate, bl2, bl3);
+            string2 = this.onTestValueRule_ExcludeIDS_Default(pSV3Migrate, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXCLUDEIDS");
@@ -495,7 +495,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ExcludeNameS_Default((IEntity)pSV3Migrate, bl2, bl3);
+            string2 = this.onTestValueRule_ExcludeNameS_Default(pSV3Migrate, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXCLUDENAMES");
@@ -517,7 +517,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSV3Migrate, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSV3Migrate, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -542,7 +542,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSV3Migrate, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSV3Migrate, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -567,7 +567,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSV3Migrate, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSV3Migrate, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -592,7 +592,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSV3MigrateId_Default((IEntity)pSV3Migrate, bl2, bl3);
+            string2 = this.onTestValueRule_PSV3MigrateId_Default(pSV3Migrate, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSV3MIGRATEID");
@@ -617,7 +617,7 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSV3MigrateName_Default((IEntity)pSV3Migrate, bl2, bl3);
+            string2 = this.onTestValueRule_PSV3MigrateName_Default(pSV3Migrate, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSV3MIGRATENAME");
@@ -630,11 +630,11 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
     }
 
     protected void onSyncEntity(PSV3Migrate pSV3Migrate, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSV3Migrate, bl);
+        super.onSyncEntity(pSV3Migrate, bl);
     }
 
     protected void onSyncIndexEntities(PSV3Migrate pSV3Migrate, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSV3Migrate, bl);
+        super.onSyncIndexEntities(pSV3Migrate, bl);
     }
 
     public Object getDataContextValue(PSV3Migrate pSV3Migrate, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -642,14 +642,14 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSV3Migrate, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSV3Migrate, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSV3Migrate pSV3Migrate, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSV3Migrate, arrayList, n);
+        super.onExportMajorModel(pSV3Migrate, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -867,14 +867,14 @@ extends PSCoreSysServiceBase<PSV3Migrate> {
 
     protected boolean onMergeChild(String string, String string2, PSV3Migrate pSV3Migrate) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSV3Migrate)) {
+        if (super.onMergeChild(string, string2, pSV3Migrate)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSV3Migrate pSV3Migrate) throws Exception {
-        super.onUpdateParent((IEntity)pSV3Migrate);
+        super.onUpdateParent(pSV3Migrate);
     }
 
     @Override

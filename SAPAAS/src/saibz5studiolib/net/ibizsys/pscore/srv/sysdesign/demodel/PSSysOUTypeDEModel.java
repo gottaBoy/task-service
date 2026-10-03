@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysOUTypeDEModelBase;
 
 public class PSSysOUTypeDEModel
 extends PSSysOUTypeDEModelBase {
+
+    public PSSysOUTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -1,146 +1,200 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONArray
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.core;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import net.ibizsys.paas.core.DEDataQueryCodeCondImpl;
-import net.ibizsys.paas.core.IDEDataQueryCodeCond;
-import net.ibizsys.paas.core.IDEDataSetCond;
+
+import net.ibizsys.paas.db.SelectContext;
+import net.ibizsys.paas.db.SelectFieldFilter;
+import net.ibizsys.paas.db.SelectGroupFilter;
 import net.ibizsys.paas.util.JSONObjectHelper;
 import net.ibizsys.paas.util.StringHelper;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class DEDataSetCond
-extends DEDataQueryCodeCondImpl
-implements IDEDataSetCond {
-    private String strDEDataQueryName = "";
+/**
+ * 实体数据集合查询条件对象
+ * 
+ * @author Administrator
+ *
+ */
+public class DEDataSetCond extends DEDataQueryCodeCondImpl implements IDEDataSetCond {
+	
+	private String strDEDataQueryName = "";
 
-    @Override
-    public String getDEDataQueryName() {
-        return this.strDEDataQueryName;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataSetCond#getDEDataQueryName()
+	 */
+	@Override
+	public String getDEDataQueryName() {
+		return strDEDataQueryName;
+	}
 
-    public void setDEDataQueryName(String strDEDataQueryName) {
-        this.strDEDataQueryName = strDEDataQueryName;
-    }
+	/**
+	 * 设置实体数据查询名称
+	 * 
+	 * @param strDEDataQueryName the strDEDataQueryName to set
+	 */
+	public void setDEDataQueryName(String strDEDataQueryName) {
+		this.strDEDataQueryName = strDEDataQueryName;
+	}
+	
+	
 
-    public static JSONObject toJSONObject(IDEDataSetCond iDEDataSetCond, JSONObject jsonObject) throws Exception {
-        Iterator<IDEDataQueryCodeCond> conds;
-        if (jsonObject == null) {
-            jsonObject = new JSONObject();
-        }
-        if (!StringHelper.isNullOrEmpty(iDEDataSetCond.getDEDataQueryName())) {
-            JSONObjectHelper.put(jsonObject, "dedqname", iDEDataSetCond.getDEDataQueryName());
-        }
-        if (!StringHelper.isNullOrEmpty(iDEDataSetCond.getCondType())) {
-            JSONObjectHelper.put(jsonObject, "type", iDEDataSetCond.getCondType());
-        }
-        if (!StringHelper.isNullOrEmpty(iDEDataSetCond.getCondOp())) {
-            JSONObjectHelper.put(jsonObject, "cond", iDEDataSetCond.getCondOp());
-        }
-        if (iDEDataSetCond.getCondValue() != null) {
-            JSONObjectHelper.put(jsonObject, "condvalue", iDEDataSetCond.getCondValue());
-        }
-        if (!StringHelper.isNullOrEmpty(iDEDataSetCond.getDEFName())) {
-            JSONObjectHelper.put(jsonObject, "defname", iDEDataSetCond.getDEFName());
-        }
-        if (!StringHelper.isNullOrEmpty(iDEDataSetCond.getDEFieldExp())) {
-            JSONObjectHelper.put(jsonObject, "defexp", iDEDataSetCond.getDEFieldExp());
-        }
-        if (iDEDataSetCond.getStdDataType() != 0) {
-            JSONObjectHelper.put(jsonObject, "datatype", iDEDataSetCond.getStdDataType());
-        }
-        if (iDEDataSetCond.isNotMode()) {
-            JSONObjectHelper.put(jsonObject, "not", iDEDataSetCond.isNotMode());
-        }
-        if (!StringHelper.isNullOrEmpty(iDEDataSetCond.getCustomCond())) {
-            JSONObjectHelper.put(jsonObject, "customcond", iDEDataSetCond.getCustomCond());
-        }
-        if (!StringHelper.isNullOrEmpty(iDEDataSetCond.getValueFunc())) {
-            JSONObjectHelper.put(jsonObject, "func", iDEDataSetCond.getValueFunc());
-        }
-        if (!StringHelper.isNullOrEmpty(iDEDataSetCond.getPredefinedCode())) {
-            JSONObjectHelper.put(jsonObject, "predefined", iDEDataSetCond.getPredefinedCode());
-        }
-        if ((conds = iDEDataSetCond.getChildDEDataQueryConds()) != null) {
-            ArrayList<JSONObject> childCondList = new ArrayList<JSONObject>();
-            while (conds.hasNext()) {
-                IDEDataQueryCodeCond iDEDataQueryCodeCond = conds.next();
-                if (!(iDEDataQueryCodeCond instanceof IDEDataSetCond)) continue;
-                JSONObject childJsonObject = DEDataSetCond.toJSONObject((IDEDataSetCond)iDEDataQueryCodeCond, null);
-                childCondList.add(childJsonObject);
-            }
-            if (childCondList.size() > 0) {
-                JSONObjectHelper.put(jsonObject, "conds", JSONArray.fromArray((Object[])childCondList.toArray()));
-            }
-        }
-        return jsonObject;
-    }
+	/**
+	 * 导出到JSON对象
+	 * @param iDEDataSetCond
+	 * @param jsonObject
+	 * @return
+	 * @throws Exception
+	 */
+	public static JSONObject toJSONObject(IDEDataSetCond iDEDataSetCond,JSONObject jsonObject) throws Exception {
+		if(jsonObject==null){
+			jsonObject = new JSONObject();
+		}
+		
+		if(!StringHelper.isNullOrEmpty(iDEDataSetCond.getDEDataQueryName())){
+			JSONObjectHelper.put(jsonObject, SelectContext.ATTR_DEDATAQUERYNAME, iDEDataSetCond.getDEDataQueryName());
+		}
+		
+		if(!StringHelper.isNullOrEmpty(iDEDataSetCond.getCondType())){
+			JSONObjectHelper.put(jsonObject, SelectFieldFilter.ATTR_CONDTYPE, iDEDataSetCond.getCondType());
+		}
+		
+		if(!StringHelper.isNullOrEmpty(iDEDataSetCond.getCondOp())){
+			JSONObjectHelper.put(jsonObject, SelectFieldFilter.ATTR_CONDOP, iDEDataSetCond.getCondOp());
+		}
+		
+		if(iDEDataSetCond.getCondValue()!=null){
+			JSONObjectHelper.put(jsonObject, SelectFieldFilter.ATTR_CONDVALUE, iDEDataSetCond.getCondValue());
+		}
+		
+		if(!StringHelper.isNullOrEmpty(iDEDataSetCond.getDEFName())){
+			JSONObjectHelper.put(jsonObject, SelectFieldFilter.ATTR_DEFNAME, iDEDataSetCond.getDEFName());
+		}
+		
+		if(!StringHelper.isNullOrEmpty(iDEDataSetCond.getDEFieldExp())){
+			JSONObjectHelper.put(jsonObject, SelectFieldFilter.ATTR_DEFIELDEXP, iDEDataSetCond.getDEFieldExp());
+		}
+		
+		
+		if(iDEDataSetCond.getStdDataType()!=DataTypes.UNKNOWN){
+			JSONObjectHelper.put(jsonObject, SelectFieldFilter.ATTR_DATATYPE, iDEDataSetCond.getStdDataType());
+		}
+		
+		if(iDEDataSetCond.isNotMode()){
+			JSONObjectHelper.put(jsonObject, SelectGroupFilter.ATTR_NOT, iDEDataSetCond.isNotMode());
+		}
+		
+		if(!StringHelper.isNullOrEmpty(iDEDataSetCond.getCustomCond())){
+			JSONObjectHelper.put(jsonObject, SelectFieldFilter.ATTR_CUSTOMCOND, iDEDataSetCond.getCustomCond());
+		}
+		
+		if(!StringHelper.isNullOrEmpty(iDEDataSetCond.getValueFunc())){
+			JSONObjectHelper.put(jsonObject, SelectFieldFilter.ATTR_FUNC, iDEDataSetCond.getValueFunc());
+		}
+		
+		if(!StringHelper.isNullOrEmpty(iDEDataSetCond.getPredefinedCode())){
+			JSONObjectHelper.put(jsonObject, SelectFieldFilter.ATTR_PREDEFINED, iDEDataSetCond.getPredefinedCode());
+		}
+		
+		Iterator<IDEDataQueryCodeCond>  conds = iDEDataSetCond.getChildDEDataQueryConds();
+		if(conds!=null){
+			ArrayList<JSONObject> childCondList = new ArrayList<JSONObject>();
+			while(conds.hasNext()){
+				IDEDataQueryCodeCond iDEDataQueryCodeCond = conds.next();
+				if(iDEDataQueryCodeCond instanceof IDEDataSetCond){
+					JSONObject childJsonObject = toJSONObject((IDEDataSetCond)iDEDataQueryCodeCond,null);
+					childCondList.add(childJsonObject);
+				}
+				
+			}
+			if(childCondList.size()>0){
+				JSONObjectHelper.put(jsonObject, SelectGroupFilter.ATTR_CONDS,JSONArray.fromArray(childCondList.toArray()));
+			}
+		}
 
-    public static IDEDataSetCond fromJSONObject(JSONObject jsonObject) throws Exception {
-        JSONArray ja;
-        String strPredefinedCode;
-        String strValueFunc;
-        String strCustomCond;
-        boolean bNotMode;
-        int nDataType;
-        String strDEFieldExp;
-        String strDEFName;
-        String strCondValue;
-        String strCondOp;
-        String strCondType;
-        DEDataSetCond deDataSetCond = new DEDataSetCond();
-        String strDEDataQueryName = jsonObject.optString("dedqname");
-        if (!StringHelper.isNullOrEmpty(strDEDataQueryName)) {
-            deDataSetCond.setDEDataQueryName(strDEDataQueryName);
-        }
-        if (!StringHelper.isNullOrEmpty(strCondType = jsonObject.optString("type"))) {
-            deDataSetCond.setCondType(strCondType);
-        }
-        if (!StringHelper.isNullOrEmpty(strCondOp = jsonObject.optString("cond"))) {
-            deDataSetCond.setCondOp(strCondOp);
-        }
-        if ((strCondValue = jsonObject.optString("condvalue")) != null) {
-            deDataSetCond.setCondValue(strCondValue);
-        }
-        if (!StringHelper.isNullOrEmpty(strDEFName = jsonObject.optString("defname"))) {
-            deDataSetCond.setDEFName(strDEFName);
-        }
-        if (!StringHelper.isNullOrEmpty(strDEFieldExp = jsonObject.optString("defexp"))) {
-            deDataSetCond.setDEFieldExp(strDEFieldExp);
-        }
-        if ((nDataType = jsonObject.optInt("datatype", 0)) != 0) {
-            deDataSetCond.setStdDataType(nDataType);
-        }
-        if (bNotMode = jsonObject.optBoolean("not", false)) {
-            deDataSetCond.setNotMode(bNotMode);
-        }
-        if (!StringHelper.isNullOrEmpty(strCustomCond = jsonObject.optString("customcond"))) {
-            deDataSetCond.setCustomCond(strCustomCond);
-        }
-        if (!StringHelper.isNullOrEmpty(strValueFunc = jsonObject.optString("func"))) {
-            deDataSetCond.setValueFunc(strValueFunc);
-        }
-        if (!StringHelper.isNullOrEmpty(strPredefinedCode = jsonObject.optString("predefined"))) {
-            deDataSetCond.setPredefinedCond(strPredefinedCode);
-        }
-        if ((ja = jsonObject.optJSONArray("conds")) != null) {
-            int i = 0;
-            while (i < ja.length()) {
-                JSONObject childJsonObject = (JSONObject)ja.get(i);
-                IDEDataSetCond childDEDataSetCond = DEDataSetCond.fromJSONObject(childJsonObject);
-                deDataSetCond.addChildDEDataQueryCond(childDEDataSetCond);
-                ++i;
-            }
-        }
-        return deDataSetCond;
-    }
+		return jsonObject;
+	}
+	
+	/**
+	 * 从JSON对象中构建
+	 * @param jsonObject
+	 * @return
+	 * @throws Exception
+	 */
+	public static IDEDataSetCond fromJSONObject(JSONObject jsonObject) throws Exception {
+		DEDataSetCond deDataSetCond = new DEDataSetCond();
+		
+		String strDEDataQueryName = jsonObject.optString(SelectContext.ATTR_DEDATAQUERYNAME);
+		if(!StringHelper.isNullOrEmpty(strDEDataQueryName)){
+			deDataSetCond.setDEDataQueryName(strDEDataQueryName);
+		}
+		
+		
+		String strCondType = jsonObject.optString(SelectFieldFilter.ATTR_CONDTYPE);
+		if(!StringHelper.isNullOrEmpty(strCondType)){
+			deDataSetCond.setCondType(strCondType);
+		}
+		
+		String strCondOp = jsonObject.optString(SelectFieldFilter.ATTR_CONDOP);
+		if(!StringHelper.isNullOrEmpty(strCondOp)){
+			deDataSetCond.setCondOp(strCondOp);
+		}
+		
+		String strCondValue = jsonObject.optString(SelectFieldFilter.ATTR_CONDVALUE);
+		if(strCondValue!=null){
+			deDataSetCond.setCondValue(strCondValue);
+		}
+		
+
+		String strDEFName = jsonObject.optString(SelectFieldFilter.ATTR_DEFNAME);
+		if(!StringHelper.isNullOrEmpty(strDEFName)){
+			deDataSetCond.setDEFName(strDEFName);
+		}
+		
+		String strDEFieldExp = jsonObject.optString(SelectFieldFilter.ATTR_DEFIELDEXP);
+		if(!StringHelper.isNullOrEmpty(strDEFieldExp)){
+			deDataSetCond.setDEFieldExp(strDEFieldExp);
+		}
+	
+		int nDataType = jsonObject.optInt(SelectFieldFilter.ATTR_DATATYPE,DataTypes.UNKNOWN);
+		if(nDataType!=DataTypes.UNKNOWN){
+			deDataSetCond.setStdDataType(nDataType);
+		}
+
+		boolean bNotMode = jsonObject.optBoolean(SelectGroupFilter.ATTR_NOT,false);
+		if(bNotMode){
+			deDataSetCond.setNotMode(bNotMode);
+		}
+		
+		String strCustomCond = jsonObject.optString(SelectFieldFilter.ATTR_CUSTOMCOND);
+		if(!StringHelper.isNullOrEmpty(strCustomCond)){
+			deDataSetCond.setCustomCond(strCustomCond);
+		}
+		
+		String strValueFunc = jsonObject.optString(SelectFieldFilter.ATTR_FUNC);
+		if(!StringHelper.isNullOrEmpty(strValueFunc)){
+			deDataSetCond.setValueFunc(strValueFunc);
+		}
+		
+		String strPredefinedCode = jsonObject.optString(SelectFieldFilter.ATTR_PREDEFINED);
+		if(!StringHelper.isNullOrEmpty(strPredefinedCode)){
+			deDataSetCond.setPredefinedCond(strPredefinedCode);
+		}
+		
+		
+		JSONArray ja = jsonObject.optJSONArray(SelectGroupFilter.ATTR_CONDS);
+		if(ja!=null){
+			for(int i =0;i<ja.length();i++){
+				JSONObject childJsonObject = (JSONObject)ja.get(i);
+				 IDEDataSetCond childDEDataSetCond =  fromJSONObject(childJsonObject) ;
+				 deDataSetCond.addChildDEDataQueryCond(childDEDataSetCond);
+			}
+		}
+		
+		return deDataSetCond;
+	}
+
 }
-

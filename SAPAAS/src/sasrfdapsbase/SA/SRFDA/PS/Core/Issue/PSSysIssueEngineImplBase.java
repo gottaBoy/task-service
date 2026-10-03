@@ -98,7 +98,7 @@ implements IPSSysIssueEngine {
         }
         psSysIssue.setPSSysIssueName(strIssueTypeName);
         PSSysIssueService psSysIssueService = (PSSysIssueService)ServiceGlobal.getService(PSSysIssueService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)((IPSSystemUtil)((Object)iPSSystem)).getRuntimePSSysModelInstId()));
-        psSysIssueService.create((IEntity)psSysIssue, false);
+        psSysIssueService.create(psSysIssue, false);
         if (!StringHelper.isNullOrEmpty((String)iPSSystem.getPSDevSlnSysId()) && PSStudioConsoleHelper.getCurrent() != null) {
             StringBuilderEx sb = new StringBuilderEx();
             if (iPSDataEntity != null) {
@@ -110,4 +110,3 @@ implements IPSSysIssueEngine {
         }
     }
 }
-

@@ -1,11 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app.view;
 
-import net.ibizsys.model.app.view.IPSAppDEMultiDataView;
 
-public interface IPSAppDEDataView
-extends IPSAppDEMultiDataView {
+/**
+ * 应用实体数据视图对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSAppDEDataView extends IPSAppDEMultiDataView
+{
+	
 }
-

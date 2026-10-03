@@ -1984,7 +1984,7 @@ implements Serializable {
                 PSAppLocalDE pSAppLocalDE = new PSAppLocalDE();
                 pSAppLocalDE.setPSAppLocalDEId(this.getCPSAppLocalDEId());
                 PSAppLocalDEService pSAppLocalDEService = (PSAppLocalDEService)ServiceGlobal.getService(PSAppLocalDEService.class, (SessionFactory)this.getSessionFactory());
-                pSAppLocalDEService.autoGet((IEntity)pSAppLocalDE);
+                pSAppLocalDEService.autoGet(pSAppLocalDE);
                 this.cpsapplocalde = pSAppLocalDE;
             }
             return this.cpsapplocalde;
@@ -2010,7 +2010,7 @@ implements Serializable {
                 PSAppLocalDE pSAppLocalDE = new PSAppLocalDE();
                 pSAppLocalDE.setPSAppLocalDEId(this.getPPSAppLocalDEId());
                 PSAppLocalDEService pSAppLocalDEService = (PSAppLocalDEService)ServiceGlobal.getService(PSAppLocalDEService.class, (SessionFactory)this.getSessionFactory());
-                pSAppLocalDEService.autoGet((IEntity)pSAppLocalDE);
+                pSAppLocalDEService.autoGet(pSAppLocalDE);
                 this.ppsapplocalde = pSAppLocalDE;
             }
             return this.ppsapplocalde;
@@ -2036,7 +2036,7 @@ implements Serializable {
                 PSDER pSDER = new PSDER();
                 pSDER.setPSDERId(this.getPSDERId());
                 PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
-                pSDERService.autoGet((IEntity)pSDER);
+                pSDERService.autoGet(pSDER);
                 this.psder = pSDER;
             }
             return this.psder;
@@ -2062,7 +2062,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;

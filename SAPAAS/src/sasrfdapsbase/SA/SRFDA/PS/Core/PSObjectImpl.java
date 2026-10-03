@@ -1254,7 +1254,6 @@ IPSModelObjectRuntime {
             PSModelRTMeta meta = m.getAnnotation(PSModelRTMeta.class);
             if (meta == null || meta.debugmode() || meta.hidemethod() || !meta.dump() || (meta.dynamodelmode() & nDynaModelPubMode) == 0 || bIgnorePF && meta.ignorepf()) continue;
             try {
-                Object[] objectArray;
                 Object objValue;
                 String strRealText;
                 String strText;
@@ -1343,12 +1342,11 @@ IPSModelObjectRuntime {
                                 ++n5;
                             }
                         } else if (objValue instanceof double[]) {
-                            double[] list2;
-                            objectArray = list2 = (double[])objValue;
-                            int n6 = list2.length;
+                            double[] doubleArray = (double[])objValue;
+                            int n6 = doubleArray.length;
                             int n7 = 0;
                             while (n7 < n6) {
-                                double objItem3 = objectArray[n7];
+                                double objItem3 = doubleArray[n7];
                                 arrList.add(objItem3);
                                 ++n7;
                             }
@@ -1414,11 +1412,10 @@ IPSModelObjectRuntime {
                     } else {
                         boolean bExists = false;
                         String[] items = meta.ignoredumpvalues().split("[;]");
-                        objectArray = items;
                         int n10 = items.length;
                         int n11 = 0;
                         while (n11 < n10) {
-                            double strItem = objectArray[n11];
+                            String strItem = items[n11];
                             if (strValue.equals(strItem)) {
                                 bExists = true;
                                 break;

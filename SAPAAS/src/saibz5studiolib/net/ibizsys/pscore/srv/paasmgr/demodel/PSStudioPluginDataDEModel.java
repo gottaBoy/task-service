@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSStudioPluginDataDEModelBase;
 
 public class PSStudioPluginDataDEModel
 extends PSStudioPluginDataDEModelBase {
+
+    public PSStudioPluginDataDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

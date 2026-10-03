@@ -180,9 +180,9 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
             PSWXMenuFunc pSWXMenuFunc = (PSWXMenuFunc)iService.getDEModel().createEntity();
             pSWXMenuFunc.set("PSWXMENUFUNCID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWXMenuFunc);
+                iService.getTemp(pSWXMenuFunc);
             } else {
-                iService.get((IEntity)pSWXMenuFunc);
+                iService.get(pSWXMenuFunc);
             }
             this.onFillParentInfo_PSWXMenuFunc(pSWXMenuItem, pSWXMenuFunc);
             return;
@@ -192,9 +192,9 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
             PSWXMenuItem pSWXMenuItem2 = (PSWXMenuItem)iService.getDEModel().createEntity();
             pSWXMenuItem2.set("PSWXMENUITEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWXMenuItem2);
+                iService.getTemp(pSWXMenuItem2);
             } else {
-                iService.get((IEntity)pSWXMenuItem2);
+                iService.get(pSWXMenuItem2);
             }
             this.onFillParentInfo_PPSWXMenuItem(pSWXMenuItem, pSWXMenuItem2);
             return;
@@ -204,14 +204,14 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
             PSWXMenu pSWXMenu = (PSWXMenu)iService.getDEModel().createEntity();
             pSWXMenu.set("PSWXMENUID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWXMenu);
+                iService.getTemp(pSWXMenu);
             } else {
-                iService.get((IEntity)pSWXMenu);
+                iService.get(pSWXMenu);
             }
             this.onFillParentInfo_PSWXMenu(pSWXMenuItem, pSWXMenu);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWXMenuItem, string, string2, string3);
+        super.onFillParentInfo(pSWXMenuItem, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -240,7 +240,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSWXMenuItem, bl);
+        super.onFillEntityFullInfo(pSWXMenuItem, bl);
         this.onFillEntityFullInfo_PSWXMenuFunc(pSWXMenuItem, bl);
         this.onFillEntityFullInfo_PPSWXMenuItem(pSWXMenuItem, bl);
         this.onFillEntityFullInfo_PSWXMenu(pSWXMenuItem, bl);
@@ -281,7 +281,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
     }
 
     protected void onWriteBackParent(PSWXMenuItem pSWXMenuItem, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWXMenuItem, bl);
+        super.onWriteBackParent(pSWXMenuItem, bl);
     }
 
     public ArrayList<PSWXMenuItem> selectByPSWXMenuFunc(PSWXMenuFuncBase pSWXMenuFuncBase) throws Exception {
@@ -390,8 +390,8 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
         ArrayList<PSWXMenuItem> arrayList = this.selectByPSWXMenuFunc(pSWXMenuFunc, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSWXMENUFUNC");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSWXMenuFunc);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXMENUITEM_PSWXMENUFUNC_PSWXMENUFUNCID", "", iDataEntityModel.getName(), "PSWXMENUITEM", iDataEntityModel.getDataInfo((IEntity)pSWXMenuFunc), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSWXMenuFunc);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXMENUITEM_PSWXMENUFUNC_PSWXMENUFUNCID", "", iDataEntityModel.getName(), "PSWXMENUITEM", iDataEntityModel.getDataInfo(pSWXMenuFunc), arrayList.get(0)));
         }
     }
 
@@ -424,7 +424,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
         ArrayList<PSWXMenuItem> arrayList = this.selectByPSWXMenuFunc(pSWXMenuFunc);
         this.onBeforeRemoveByPSWXMenuFunc(pSWXMenuFunc, arrayList);
         for (PSWXMenuItem pSWXMenuItem : arrayList) {
-            this.remove((IEntity)pSWXMenuItem);
+            this.remove(pSWXMenuItem);
         }
         this.onAfterRemoveByPSWXMenuFunc(pSWXMenuFunc, arrayList);
     }
@@ -457,7 +457,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
             PSWXMenuItem pSWXMenuItem3 = (PSWXMenuItem)this.getDEModel().createEntity();
             pSWXMenuItem3.setPSWXMenuItemId(pSWXMenuItem2.getPSWXMenuItemId());
             pSWXMenuItem3.setPPSWXMenuItemId(null);
-            this.updateTemp((IEntity)pSWXMenuItem3);
+            this.updateTemp(pSWXMenuItem3);
         }
     }
 
@@ -480,7 +480,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
         ArrayList<PSWXMenuItem> arrayList = this.selectByPPSWXMenuItem(pSWXMenuItem);
         this.onBeforeRemoveByPPSWXMenuItem(pSWXMenuItem, arrayList);
         for (PSWXMenuItem pSWXMenuItem2 : arrayList) {
-            this.remove((IEntity)pSWXMenuItem2);
+            this.remove(pSWXMenuItem2);
         }
         this.onAfterRemoveByPPSWXMenuItem(pSWXMenuItem, arrayList);
     }
@@ -513,7 +513,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
             PSWXMenuItem pSWXMenuItem2 = (PSWXMenuItem)this.getDEModel().createEntity();
             pSWXMenuItem2.setPSWXMenuItemId(pSWXMenuItem.getPSWXMenuItemId());
             pSWXMenuItem2.setPSWXMenuId(null);
-            this.updateTemp((IEntity)pSWXMenuItem2);
+            this.updateTemp(pSWXMenuItem2);
         }
     }
 
@@ -536,7 +536,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
         ArrayList<PSWXMenuItem> arrayList = this.selectByPSWXMenu(pSWXMenu);
         this.onBeforeRemoveByPSWXMenu(pSWXMenu, arrayList);
         for (PSWXMenuItem pSWXMenuItem : arrayList) {
-            this.remove((IEntity)pSWXMenuItem);
+            this.remove(pSWXMenuItem);
         }
         this.onAfterRemoveByPSWXMenu(pSWXMenu, arrayList);
     }
@@ -561,7 +561,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
     protected void onBeforeRemoveTemp(PSWXMenuItem pSWXMenuItem) throws Exception {
         PSWXMenuItemService pSWXMenuItemService = (PSWXMenuItemService)ServiceGlobal.getService(PSWXMenuItemService.class, (SessionFactory)this.getSessionFactory());
         pSWXMenuItemService.resetTempPPSWXMenuItem(pSWXMenuItem);
-        super.onBeforeRemoveTemp((IEntity)pSWXMenuItem);
+        super.onBeforeRemoveTemp(pSWXMenuItem);
     }
 
     public void removeTempByPPSWXMenuItem(PSWXMenuItem pSWXMenuItem) throws Exception {
@@ -583,7 +583,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
         ArrayList<PSWXMenuItem> arrayList = this.selectTempByPPSWXMenuItem(pSWXMenuItem);
         this.onBeforeRemoveTempByPPSWXMenuItem(pSWXMenuItem, arrayList);
         for (PSWXMenuItem pSWXMenuItem2 : arrayList) {
-            this.removeTemp((IEntity)pSWXMenuItem2);
+            this.removeTemp(pSWXMenuItem2);
         }
         this.onAfterRemoveTempByPPSWXMenuItem(pSWXMenuItem, arrayList);
     }
@@ -616,7 +616,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
         ArrayList<PSWXMenuItem> arrayList = this.selectTempByPSWXMenu(pSWXMenu);
         this.onBeforeRemoveTempByPSWXMenu(pSWXMenu, arrayList);
         for (PSWXMenuItem pSWXMenuItem : arrayList) {
-            this.removeTemp((IEntity)pSWXMenuItem);
+            this.removeTemp(pSWXMenuItem);
         }
         this.onAfterRemoveTempByPSWXMenu(pSWXMenu, arrayList);
     }
@@ -631,16 +631,16 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
     }
 
     protected void getRelatedDataTempMajor(PSWXMenuItem pSWXMenuItem) throws Exception {
-        super.getRelatedDataTempMajor((IEntity)pSWXMenuItem);
+        super.getRelatedDataTempMajor(pSWXMenuItem);
     }
 
     protected void updateRelatedDataTempMajor(PSWXMenuItem pSWXMenuItem, PSWXMenuItem pSWXMenuItem2) throws Exception {
-        super.updateRelatedDataTempMajor((IEntity)pSWXMenuItem, (IEntity)pSWXMenuItem2);
+        super.updateRelatedDataTempMajor(pSWXMenuItem, pSWXMenuItem2);
     }
 
     protected void replaceParentInfo(PSWXMenuItem pSWXMenuItem, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWXMenuItem, cloneSession);
+        super.replaceParentInfo(pSWXMenuItem, cloneSession);
         if (pSWXMenuItem.getPSWXMenuFuncId() != null && (iEntity = cloneSession.getEntity("PSWXMENUFUNC", (Object)pSWXMenuItem.getPSWXMenuFuncId())) != null) {
             this.onFillParentInfo_PSWXMenuFunc(pSWXMenuItem, (PSWXMenuFunc)iEntity);
         }
@@ -653,7 +653,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWXMenuItem pSWXMenuItem, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWXMenuItem, bl);
+        super.onRemoveEntityUncopyValues(pSWXMenuItem, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWXMenuItem pSWXMenuItem, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -704,7 +704,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSWXMenuItem, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWXMenuItem, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWXMenuItem, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Caption(boolean bl, PSWXMenuItem pSWXMenuItem, boolean bl2, boolean bl3) throws Exception {
@@ -717,7 +717,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Caption_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_Caption_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CAPTION");
@@ -739,7 +739,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -761,7 +761,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -783,7 +783,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSWXMenuItemId_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_PPSWXMenuItemId_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSWXMENUITEMID");
@@ -805,7 +805,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSWXMenuItemName_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_PPSWXMenuItemName_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSWXMENUITEMNAME");
@@ -827,7 +827,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXMenuFuncId_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXMenuFuncId_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXMENUFUNCID");
@@ -852,7 +852,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXMenuId_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXMenuId_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXMENUID");
@@ -877,7 +877,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXMenuItemId_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXMenuItemId_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXMENUITEMID");
@@ -902,7 +902,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXMenuItemName_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXMenuItemName_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXMENUITEMNAME");
@@ -941,7 +941,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXMenuName_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXMenuName_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXMENUNAME");
@@ -963,7 +963,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -985,7 +985,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1007,7 +1007,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1029,7 +1029,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1051,7 +1051,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSWXMenuItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSWXMenuItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1064,11 +1064,11 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
     }
 
     protected void onSyncEntity(PSWXMenuItem pSWXMenuItem, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWXMenuItem, bl);
+        super.onSyncEntity(pSWXMenuItem, bl);
     }
 
     protected void onSyncIndexEntities(PSWXMenuItem pSWXMenuItem, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWXMenuItem, bl);
+        super.onSyncIndexEntities(pSWXMenuItem, bl);
     }
 
     public Object getDataContextValue(PSWXMenuItem pSWXMenuItem, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1076,7 +1076,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWXMenuItem, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWXMenuItem, string, iDataContextParam)) != null) {
             return object;
         }
         PSWXMenu pSWXMenu = pSWXMenuItem.getPSWXMenu();
@@ -1087,7 +1087,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
     }
 
     protected void onExportMajorModel(PSWXMenuItem pSWXMenuItem, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWXMenuItem, arrayList, n);
+        super.onExportMajorModel(pSWXMenuItem, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1377,14 +1377,14 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
 
     protected boolean onMergeChild(String string, String string2, PSWXMenuItem pSWXMenuItem) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWXMenuItem)) {
+        if (super.onMergeChild(string, string2, pSWXMenuItem)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWXMenuItem pSWXMenuItem) throws Exception {
-        super.onUpdateParent((IEntity)pSWXMenuItem);
+        super.onUpdateParent(pSWXMenuItem);
     }
 
     @Override
@@ -1557,41 +1557,29 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
     protected void onExportCurModelV2(PSWXMenuItem pSWXMenuItem, ObjectNode objectNode, String string, boolean bl) throws Exception {
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSWXMENUITEM_PSWXMENUITEM_PPSWXMENUITEMID")) {
-            Object object;
-            PSWXMenuItem pSWXMenuItem22;
-            Object object2;
-            Object object3;
-            Object object4;
             PSWXMenuItemService pSWXMenuItemService = (PSWXMenuItemService)ServiceGlobal.getService(PSWXMenuItemService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSWXMenuItem> arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWXMENUITEM#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWXMENUITEM", (Object)pSWXMenuItem.getPSWXMenuItemId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSWXMenuItem22 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSWXMenuItem22);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String menuItemJson : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)menuItemJson)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString((String)menuItemJson));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSWXMenuItem>();
-                object4 = pSWXMenuItemService.selectByPPSWXMenuItem(pSWXMenuItem);
-                object3 = StringHelper.format((String)"PSWXMENUITEM#%1$s", (Object)pSWXMenuItem.getPSWXMenuItemId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSWXMenuItem22 = object2.next();
-                    object = pSWXMenuItemService.getModelV2ResScope((IEntity)pSWXMenuItem22);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSWXMenuItem)PSModelV2Helper.toJSONObject((IEntity)pSWXMenuItem22, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String resScope = StringHelper.format((String)"PSWXMENUITEM#%1$s", (Object)pSWXMenuItem.getPSWXMenuItemId());
+                for (PSWXMenuItem childMenuItem : pSWXMenuItemService.selectByPPSWXMenuItem(pSWXMenuItem)) {
+                    String childScope = pSWXMenuItemService.getModelV2ResScope(childMenuItem);
+                    if (StringHelper.compare((String)resScope, (String)childScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(childMenuItem, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSWXMenuItemService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                String menuItemName = pSWXMenuItemService.getModelV2Name(false);
+                ArrayNode menuItemArray = objectNode.putArray(menuItemName.toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -1619,11 +1607,11 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSWXMenuItem pSWXMenuItem22 : arrayList) {
-                    object = new PSWXMenuItem();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSWXMenuItem22, false);
-                    ((PSWXMenuItemBase)object).remove("ordervalue");
-                    object3.add((JsonNode)pSWXMenuItemService.exportModelV2(object, string));
+                for (ObjectNode menuItemNode : arrayList) {
+                    PSWXMenuItem childMenuItem = new PSWXMenuItem();
+                    PSModelV2Helper.fromJSONObject((IDataObject)childMenuItem, menuItemNode, false);
+                    childMenuItem.remove("ordervalue");
+                    menuItemArray.add((JsonNode)pSWXMenuItemService.exportModelV2(childMenuItem, string));
                 }
             }
         }
@@ -1636,7 +1624,7 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
         ArrayList<PSWXMenuItem> arrayList = pSWXMenuItemService.selectByPPSWXMenuItem(pSWXMenuItem);
         String string = StringHelper.format((String)"PSWXMENUITEM#%1$s", (Object)pSWXMenuItem.getPSWXMenuItemId());
         for (PSWXMenuItem pSWXMenuItem2 : arrayList) {
-            String string2 = pSWXMenuItemService.getModelV2ResScope((IEntity)pSWXMenuItem2);
+            String string2 = pSWXMenuItemService.getModelV2ResScope(pSWXMenuItem2);
             if (StringHelper.compare((String)string, (String)string2, (boolean)false) != 0) continue;
             pSWXMenuItemService.emptyModelV2(pSWXMenuItem2);
         }
@@ -1715,4 +1703,3 @@ extends PSCoreSysServiceBase<PSWXMenuItem> {
         super.onFillPasteHelps(pSWXMenuItem, list);
     }
 }
-

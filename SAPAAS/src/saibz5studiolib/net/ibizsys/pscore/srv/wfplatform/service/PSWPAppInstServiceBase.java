@@ -138,14 +138,14 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
             PSWPApp pSWPApp = (PSWPApp)iService.getDEModel().createEntity();
             pSWPApp.set("PSWPAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWPApp);
+                iService.getTemp(pSWPApp);
             } else {
-                iService.get((IEntity)pSWPApp);
+                iService.get(pSWPApp);
             }
             this.onFillParentInfo_PSWPApp(pSWPAppInst, pSWPApp);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWPAppInst, string, string2, string3);
+        super.onFillParentInfo(pSWPAppInst, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSWPAppInst, bl);
+        super.onFillEntityFullInfo(pSWPAppInst, bl);
         this.onFillEntityFullInfo_PSWPApp(pSWPAppInst, bl);
     }
 
@@ -169,7 +169,7 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
     }
 
     protected void onWriteBackParent(PSWPAppInst pSWPAppInst, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWPAppInst, bl);
+        super.onWriteBackParent(pSWPAppInst, bl);
     }
 
     public ArrayList<PSWPAppInst> selectByPSWPApp(PSWPAppBase pSWPAppBase) throws Exception {
@@ -200,8 +200,8 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
         ArrayList<PSWPAppInst> arrayList = this.selectByPSWPApp(pSWPApp, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSWPAPP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSWPApp);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWPAPPINST_PSWPAPP_PSWPAPPID", "", iDataEntityModel.getName(), "PSWPAPPINST", iDataEntityModel.getDataInfo((IEntity)pSWPApp), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSWPApp);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWPAPPINST_PSWPAPP_PSWPAPPID", "", iDataEntityModel.getName(), "PSWPAPPINST", iDataEntityModel.getDataInfo(pSWPApp), arrayList.get(0)));
         }
     }
 
@@ -234,7 +234,7 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
         ArrayList<PSWPAppInst> arrayList = this.selectByPSWPApp(pSWPApp);
         this.onBeforeRemoveByPSWPApp(pSWPApp, arrayList);
         for (PSWPAppInst pSWPAppInst : arrayList) {
-            this.remove((IEntity)pSWPAppInst);
+            this.remove(pSWPAppInst);
         }
         this.onAfterRemoveByPSWPApp(pSWPApp, arrayList);
     }
@@ -257,14 +257,14 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
 
     protected void replaceParentInfo(PSWPAppInst pSWPAppInst, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWPAppInst, cloneSession);
+        super.replaceParentInfo(pSWPAppInst, cloneSession);
         if (pSWPAppInst.getPSWPAppId() != null && (iEntity = cloneSession.getEntity("PSWPAPP", (Object)pSWPAppInst.getPSWPAppId())) != null) {
             this.onFillParentInfo_PSWPApp(pSWPAppInst, (PSWPApp)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSWPAppInst pSWPAppInst, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWPAppInst, bl);
+        super.onRemoveEntityUncopyValues(pSWPAppInst, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWPAppInst pSWPAppInst, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -279,7 +279,7 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
         if ((entityFieldError = this.onCheckField_PSWPAppInstName(bl, pSWPAppInst, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWPAppInst, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWPAppInst, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSWPAppId(boolean bl, PSWPAppInst pSWPAppInst, boolean bl2, boolean bl3) throws Exception {
@@ -295,7 +295,7 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWPAppId_Default((IEntity)pSWPAppInst, bl2, bl3);
+            string2 = this.onTestValueRule_PSWPAppId_Default(pSWPAppInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWPAPPID");
@@ -320,7 +320,7 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWPAppInstId_Default((IEntity)pSWPAppInst, bl2, bl3);
+            string2 = this.onTestValueRule_PSWPAppInstId_Default(pSWPAppInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWPAPPINSTID");
@@ -345,7 +345,7 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWPAppInstName_Default((IEntity)pSWPAppInst, bl2, bl3);
+            string2 = this.onTestValueRule_PSWPAppInstName_Default(pSWPAppInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWPAPPINSTNAME");
@@ -358,11 +358,11 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
     }
 
     protected void onSyncEntity(PSWPAppInst pSWPAppInst, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWPAppInst, bl);
+        super.onSyncEntity(pSWPAppInst, bl);
     }
 
     protected void onSyncIndexEntities(PSWPAppInst pSWPAppInst, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWPAppInst, bl);
+        super.onSyncIndexEntities(pSWPAppInst, bl);
     }
 
     public Object getDataContextValue(PSWPAppInst pSWPAppInst, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -370,14 +370,14 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWPAppInst, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWPAppInst, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWPAppInst pSWPAppInst, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWPAppInst, arrayList, n);
+        super.onExportMajorModel(pSWPAppInst, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -490,14 +490,14 @@ extends PSCoreSysServiceBase<PSWPAppInst> {
 
     protected boolean onMergeChild(String string, String string2, PSWPAppInst pSWPAppInst) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWPAppInst)) {
+        if (super.onMergeChild(string, string2, pSWPAppInst)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWPAppInst pSWPAppInst) throws Exception {
-        super.onUpdateParent((IEntity)pSWPAppInst);
+        super.onUpdateParent(pSWPAppInst);
     }
 
     @Override

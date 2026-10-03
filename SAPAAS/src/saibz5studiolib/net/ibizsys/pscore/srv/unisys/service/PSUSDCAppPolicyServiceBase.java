@@ -137,14 +137,14 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSUSDCAppPolicy, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSUSDCAppPolicy, string, string2, string3);
+        super.onFillParentInfo(pSUSDCAppPolicy, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -160,7 +160,7 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSUSDCAppPolicy, bl);
+        super.onFillEntityFullInfo(pSUSDCAppPolicy, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSUSDCAppPolicy, bl);
     }
 
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
     }
 
     protected void onWriteBackParent(PSUSDCAppPolicy pSUSDCAppPolicy, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUSDCAppPolicy, bl);
+        super.onWriteBackParent(pSUSDCAppPolicy, bl);
     }
 
     public ArrayList<PSUSDCAppPolicy> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -199,8 +199,8 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
         ArrayList<PSUSDCAppPolicy> arrayList = this.selectByPSDevCenter(pSDevCenter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVCENTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevCenter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSUSDCAPPPOLICY_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSUSDCAPPPOLICY", iDataEntityModel.getDataInfo((IEntity)pSDevCenter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevCenter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSUSDCAPPPOLICY_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSUSDCAPPPOLICY", iDataEntityModel.getDataInfo(pSDevCenter), arrayList.get(0)));
         }
     }
 
@@ -233,7 +233,7 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
         ArrayList<PSUSDCAppPolicy> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSUSDCAppPolicy pSUSDCAppPolicy : arrayList) {
-            this.remove((IEntity)pSUSDCAppPolicy);
+            this.remove(pSUSDCAppPolicy);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -254,14 +254,14 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
 
     protected void replaceParentInfo(PSUSDCAppPolicy pSUSDCAppPolicy, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSUSDCAppPolicy, cloneSession);
+        super.replaceParentInfo(pSUSDCAppPolicy, cloneSession);
         if (pSUSDCAppPolicy.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSUSDCAppPolicy.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSUSDCAppPolicy, (PSDevCenter)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSUSDCAppPolicy pSUSDCAppPolicy, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUSDCAppPolicy, bl);
+        super.onRemoveEntityUncopyValues(pSUSDCAppPolicy, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUSDCAppPolicy pSUSDCAppPolicy, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -276,7 +276,7 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
         if ((entityFieldError = this.onCheckField_PSUSDCAppPolicyName(bl, pSUSDCAppPolicy, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUSDCAppPolicy, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUSDCAppPolicy, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDevCenterId(boolean bl, PSUSDCAppPolicy pSUSDCAppPolicy, boolean bl2, boolean bl3) throws Exception {
@@ -289,7 +289,7 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSUSDCAppPolicy, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSUSDCAppPolicy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -314,7 +314,7 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUSDCAppPolicyId_Default((IEntity)pSUSDCAppPolicy, bl2, bl3);
+            string2 = this.onTestValueRule_PSUSDCAppPolicyId_Default(pSUSDCAppPolicy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUSDCAPPPOLICYID");
@@ -339,7 +339,7 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUSDCAppPolicyName_Default((IEntity)pSUSDCAppPolicy, bl2, bl3);
+            string2 = this.onTestValueRule_PSUSDCAppPolicyName_Default(pSUSDCAppPolicy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUSDCAPPPOLICYNAME");
@@ -352,11 +352,11 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
     }
 
     protected void onSyncEntity(PSUSDCAppPolicy pSUSDCAppPolicy, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUSDCAppPolicy, bl);
+        super.onSyncEntity(pSUSDCAppPolicy, bl);
     }
 
     protected void onSyncIndexEntities(PSUSDCAppPolicy pSUSDCAppPolicy, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUSDCAppPolicy, bl);
+        super.onSyncIndexEntities(pSUSDCAppPolicy, bl);
     }
 
     public Object getDataContextValue(PSUSDCAppPolicy pSUSDCAppPolicy, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -364,14 +364,14 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUSDCAppPolicy, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUSDCAppPolicy, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUSDCAppPolicy pSUSDCAppPolicy, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUSDCAppPolicy, arrayList, n);
+        super.onExportMajorModel(pSUSDCAppPolicy, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -484,14 +484,14 @@ extends PSCoreSysServiceBase<PSUSDCAppPolicy> {
 
     protected boolean onMergeChild(String string, String string2, PSUSDCAppPolicy pSUSDCAppPolicy) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUSDCAppPolicy)) {
+        if (super.onMergeChild(string, string2, pSUSDCAppPolicy)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUSDCAppPolicy pSUSDCAppPolicy) throws Exception {
-        super.onUpdateParent((IEntity)pSUSDCAppPolicy);
+        super.onUpdateParent(pSUSDCAppPolicy);
     }
 
     @Override

@@ -1,37 +1,71 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSControl
- *  IPSDEDataView
- *  IPSGenerateCodeResult
- *  IPSPublisherContext
- */
 package net.ibizsys.model.pub.preview;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.preview.PSPreviewCtrlPartCodePublisherImpl;
 
-public class PSPreviewDEDataViewStoreVCPublisherImpl
-extends PSPreviewCtrlPartCodePublisherImpl {
-    public static final String CTRLPART_RECORD = "RECORD";
-    protected IPSDEDataView iPSDEDataView;
+import SA.SRFDA.PS.Core.Control.IPSControl;
+import SA.SRFDA.PS.Core.Control.DataView.IPSDEDataView;
+import SA.SRFDA.PS.Core.Control.DataView.IPSDEDataViewDataItem;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.IPSPublisherContext;
 
-    public PSPreviewDEDataViewStoreVCPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSPreviewDEDataViewStoreVCPublisherImpl is inconsistent\n\tIPSDEDataView cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEDataView cannot be resolved to a type\n\tIPSDEDataView cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSPreviewDEDataViewStoreVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEDataViewDataItem cannot be resolved to a type\n\tIPSDEDataView cannot be resolved to a type\n\tIPSDEDataViewDataItem cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEDataView cannot be resolved to a type\n\tThe method onClose() of type PSPreviewDEDataViewStoreVCPublisherImpl must override or implement a supertype method\n\tIPSDEDataView cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSPreviewCtrlPartCodePublisherImpl\n");
-    }
+public class PSPreviewDEDataViewStoreVCPublisherImpl extends PSPreviewCtrlPartCodePublisherImpl
+{
+	public final static String CTRLPART_RECORD = "RECORD";
 
-    public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEDataView cannot be resolved to a type\n\tIPSDEDataView cannot be resolved to a type\n");
-    }
+	
+	protected IPSDEDataView iPSDEDataView = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDEDataView = (IPSDEDataView)iPSControl;
+		return super.generateCode(iPSPublisherContext, iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		if(true)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(CTRLPART_RECORD).getPSPFCtrlPartCodePublisher();
+			ArrayList<IPSGenerateCodeResult> gridRecordList = new ArrayList<IPSGenerateCodeResult> ();
+			java.util.Iterator<IPSDEDataViewDataItem> psDEDataViewDataItems = 	iPSDEDataView.getPSDEDataViewDataItems();
+			while(psDEDataViewDataItems.hasNext())
+			{
+				IPSDEDataViewDataItem iPSDEDataViewDataItem = psDEDataViewDataItems.next();
+				
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext,iPSDEDataView, iPSDEDataViewDataItem);
+				gridRecordList.add(iPSGenerateCodeResult);
+			}
+			
+			iPSPFCtrlPartCodePublisher.close();
+			
+			params.put("records", gridRecordList);
+		}
+		
+	}
+	
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSPreviewDEDataViewStoreVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEDataViewDataItem cannot be resolved to a type\n\tIPSDEDataView cannot be resolved to a type\n\tIPSDEDataViewDataItem cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEDataView cannot be resolved to a type\n");
-    }
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSDEDataView= null;
+		super.onClose();
+	}
 
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSPreviewDEDataViewStoreVCPublisherImpl must override or implement a supertype method\n\tIPSDEDataView cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSPreviewCtrlPartCodePublisherImpl\n");
-    }
+	
+	
 }
-

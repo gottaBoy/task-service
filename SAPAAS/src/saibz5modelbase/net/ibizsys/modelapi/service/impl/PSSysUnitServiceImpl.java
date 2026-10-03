@@ -113,9 +113,9 @@ implements IPSSysUnitService {
 
     @Override
     protected List<PSSysUnit> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysUnit> list = new ArrayList<PSSysUnit>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysUnit> items = this.listByPSModule(parent);

@@ -152,7 +152,7 @@ implements IPSDevSlnSysModelStorage {
         this.activePSSysModelInst();
         List<Object> list = this.modelListMap.get(strModelName);
         if (list == null || iSelectCond == null) {
-            return list;
+            return (List<T>)list;
         }
         HashMap<String, Object> map = new HashMap<String, Object>();
         iSelectCond.fillMap(map);
@@ -165,7 +165,7 @@ implements IPSDevSlnSysModelStorage {
             if (map != null && !this.test((IEntity)(t = objItem), map)) continue;
             result.add(objItem);
         }
-        return result;
+        return (List<T>)result;
     }
 
     protected boolean test(IEntity iEntity, Map<String, Object> map) throws Exception {

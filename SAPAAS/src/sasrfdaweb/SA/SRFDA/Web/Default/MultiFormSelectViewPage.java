@@ -92,11 +92,11 @@ extends BaseMainPage {
         strIconView.Append("<tr><td height=\"20\"></td></tr><tr>");
         String strIconViewTDScheme = "<td width=\"100\"><table align=\"center\"  border=\"0\" cellspacing=\"0\" cellpadding=\"0\" ><tr><td align=\"center\" ><a href=\"#\"  class='gridlink' onclick=\"endview({ret:'ok',id:'%3$s'})\" ><img border=\"0\" width=\"50\" src=\"%1$s\" alt=\"%2$s\"/></a></td></tr><tr><td align=\"center\" ><a href=\"#\"  class='gridlink'  onclick=\"endview({ret:'ok',id:'%3$s'})\" ><span class=\"sx-normaltext\">%2$s</span></a></td></tr></table></td>";
         if (this.selectDEFHelper instanceof IPickupDEFHelper) {
-            Vector list;
+            Vector<BaseDataEntity> list;
             IPickupDEFHelper pickupDEFHelper = (IPickupDEFHelper)this.selectDEFHelper;
             IDEHelper iRealDEHelper = pickupDEFHelper.GetRealDEFHelper().getDEHelper();
             IDEDataCtrl iDataCtrl = iRealDEHelper.GetDEDataCtrl(this.getWebContext().getCurUserId(), (ISRFDAWebContext)this.getWebContext());
-            CallResult callResult = iDataCtrl.Select(new BaseDataEntity(), list = new Vector());
+            CallResult callResult = iDataCtrl.Select(new BaseDataEntity(), list = new Vector<BaseDataEntity>());
             if (callResult.IsError()) {
                 this.PageLog(this, 1, StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53[%1$s]\u6570\u636e\u53d1\u751f\u9519\u8bef\uff0c %2$s", (Object)iRealDEHelper.getId(), (Object)callResult.getErrorInfo()));
                 return "";
@@ -174,11 +174,11 @@ extends BaseMainPage {
         }
         Vector<JSONObject> items = new Vector<JSONObject>();
         if (this.selectDEFHelper instanceof IPickupDEFHelper) {
-            Vector list;
+            Vector<BaseDataEntity> list;
             IPickupDEFHelper pickupDEFHelper = (IPickupDEFHelper)this.selectDEFHelper;
             IDEHelper iRealDEHelper = pickupDEFHelper.GetRealDEFHelper().getDEHelper();
             IDEDataCtrl iDataCtrl = iRealDEHelper.GetDEDataCtrl(this.getWebContext().getCurUserId(), (ISRFDAWebContext)this.getWebContext());
-            CallResult callResult = iDataCtrl.Select(new BaseDataEntity(), list = new Vector());
+            CallResult callResult = iDataCtrl.Select(new BaseDataEntity(), list = new Vector<BaseDataEntity>());
             if (callResult.IsError()) {
                 this.PageLog(this, 1, StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53[%1$s]\u6570\u636e\u53d1\u751f\u9519\u8bef\uff0c %2$s", (Object)iRealDEHelper.getId(), (Object)callResult.getErrorInfo()));
                 return false;
@@ -236,4 +236,3 @@ extends BaseMainPage {
         return this.GetLocalization("PAGE.HEADER.PICKUPVIEW", "\u9009\u62e9\u89c6\u56fe");
     }
 }
-

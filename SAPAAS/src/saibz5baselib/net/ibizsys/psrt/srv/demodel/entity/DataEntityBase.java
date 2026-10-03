@@ -1,212 +1,557 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.persistence.Column
- *  net.sf.json.JSONObject
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.demodel.entity;
 
+
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import javax.persistence.Column;
-import net.ibizsys.paas.data.DataObject;
+
+import java.sql.Timestamp;
 import net.ibizsys.paas.data.IDataObject;
-import net.ibizsys.paas.entity.EntityBase;
-import net.ibizsys.paas.entity.IEntityActionHelper;
-import net.ibizsys.paas.service.ServiceGlobal;
-import net.ibizsys.paas.util.DataTypeHelper;
-import net.ibizsys.paas.util.JSONObjectHelper;
+import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.paas.xml.XmlNode;
-import net.ibizsys.psrt.srv.demodel.entity.DataEntity;
-import net.ibizsys.psrt.srv.demodel.entity.QueryModel;
-import net.ibizsys.psrt.srv.demodel.service.DataEntityService;
-import net.ibizsys.psrt.srv.demodel.service.QueryModelService;
 import net.sf.json.JSONObject;
+import net.ibizsys.paas.util.JSONObjectHelper;
+import net.ibizsys.paas.xml.XmlNode;
+import net.ibizsys.paas.service.ServiceGlobal;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public abstract class DataEntityBase
-extends EntityBase
-implements Serializable {
+
+/**
+ * 实体[DataEntity] 数据对象基类
+ */
+public abstract class DataEntityBase extends net.ibizsys.paas.entity.EntityBase implements Serializable {
+
     private static final long serialVersionUID = -1L;
     private static final Log log = LogFactory.getLog(DataEntityBase.class);
-    public static final String FIELD_ACENABLEDP = "ACENABLEDP";
-    public static final String FIELD_ACEXTINFO = "ACEXTINFO";
-    public static final String FIELD_ACINFOFORMAT = "ACINFOFORMAT";
-    public static final String FIELD_ACINFOPARAM = "ACINFOPARAM";
-    public static final String FIELD_ACMAXCNT = "ACMAXCNT";
-    public static final String FIELD_ACOBJECT = "ACOBJECT";
-    public static final String FIELD_ACQUERYMODELID = "ACQUERYMODELID";
-    public static final String FIELD_ACQUERYMODELNAME = "ACQUERYMODELNAME";
-    public static final String FIELD_ACSORTDIR = "ACSORTDIR";
-    public static final String FIELD_ACSORTFIELD = "ACSORTFIELD";
-    public static final String FIELD_BIGICON = "BIGICON";
-    public static final String FIELD_CONFIGHELPER = "CONFIGHELPER";
-    public static final String FIELD_CREATEDATE = "CREATEDATE";
-    public static final String FIELD_CREATEMAN = "CREATEMAN";
-    public static final String FIELD_DATAACCOBJECT = "DATAACCOBJECT";
-    public static final String FIELD_DATACHGLOGMODE = "DATACHGLOGMODE";
-    public static final String FIELD_DATACTRLINT = "DATACTRLINT";
-    public static final String FIELD_DATACTRLOBJECT = "DATACTRLOBJECT";
-    public static final String FIELD_DATANOTIFYHELPER = "DATANOTIFYHELPER";
-    public static final String FIELD_DBSTORAGE = "DBSTORAGE";
-    public static final String FIELD_DBVERSION = "DBVERSION";
-    public static final String FIELD_DEGROUP = "DEGROUP";
-    public static final String FIELD_DEHELPER = "DEHELPER";
-    public static final String FIELD_DEID = "DEID";
-    public static final String FIELD_DELOGICNAME = "DELOGICNAME";
-    public static final String FIELD_DENAME = "DENAME";
-    public static final String FIELD_DEOBJECT = "DEOBJECT";
-    public static final String FIELD_DEORDER = "DEORDER";
-    public static final String FIELD_DEPARAM = "DEPARAM";
-    public static final String FIELD_DER11DEID = "DER11DEID";
-    public static final String FIELD_DER11DENAME = "DER11DENAME";
-    public static final String FIELD_DETYPE = "DETYPE";
-    public static final String FIELD_DEUSERPARAM = "DEUSERPARAM";
-    public static final String FIELD_DEVERSION = "DEVERSION";
-    public static final String FIELD_DGROWCLASSHELPER = "DGROWCLASSHELPER";
-    public static final String FIELD_DGSUMMARYHEIGHT = "DGSUMMARYHEIGHT";
-    public static final String FIELD_DLKHELPER = "DLKHELPER";
-    public static final String FIELD_DYNAMICINTERVAL = "DYNAMICINTERVAL";
-    public static final String FIELD_ENABLECOLPRIV = "ENABLECOLPRIV";
-    public static final String FIELD_ENABLEGLOBALMODEL = "ENABLEGLOBALMODEL";
-    public static final String FIELD_EXITINGMODEL = "EXITINGMODEL";
-    public static final String FIELD_EXPORTINCEMPTY = "EXPORTINCEMPTY";
-    public static final String FIELD_EXTABLENAME = "EXTABLENAME";
-    public static final String FIELD_GLOBALMODELOBJ = "GLOBALMODELOBJ";
-    public static final String FIELD_INDEXMODE = "INDEXMODE";
-    public static final String FIELD_INFOFIELD = "INFOFIELD";
-    public static final String FIELD_INFOFORMAT = "INFOFORMAT";
-    public static final String FIELD_INHERITMODE = "INHERITMODE";
-    public static final String FIELD_ISDGROWEDIT = "ISDGROWEDIT";
-    public static final String FIELD_ISENABLEAUDIT = "ISENABLEAUDIT";
-    public static final String FIELD_ISENABLEDP = "ISENABLEDP";
-    public static final String FIELD_ISINDEXDE = "ISINDEXDE";
-    public static final String FIELD_ISLOGICVALID = "ISLOGICVALID";
-    public static final String FIELD_ISMULTIPRINT = "ISMULTIPRINT";
-    public static final String FIELD_ISSUPPORTFA = "ISSUPPORTFA";
-    public static final String FIELD_ISSYSTEM = "ISSYSTEM";
-    public static final String FIELD_KEYPARAMS = "KEYPARAMS";
-    public static final String FIELD_LICENSECODE = "LICENSECODE";
-    public static final String FIELD_LOGAUDITDETAIL = "LOGAUDITDETAIL";
-    public static final String FIELD_MEMO = "MEMO";
-    public static final String FIELD_MINORFIELDNAME = "MINORFIELDNAME";
-    public static final String FIELD_MINORFIELDVALUE = "MINORFIELDVALUE";
-    public static final String FIELD_MINORTABLENAME = "MINORTABLENAME";
-    public static final String FIELD_MUTLIMAJOR = "MULTIMAJOR";
-    public static final String FIELD_NODATAINFO = "NODATAINFO";
-    public static final String FIELD_PRINTFUNC = "PRINTFUNC";
-    public static final String FIELD_RESERVER = "RESERVER";
-    public static final String FIELD_RESERVER2 = "RESERVER2";
-    public static final String FIELD_ROWAMOUT = "ROWAMOUNT";
-    public static final String FIELD_RTINFO = "RTINFO";
-    public static final String FIELD_SMALLICON = "SMALLICON";
-    public static final String FIELD_STORAGETYPE = "STORAGETYPE";
-    public static final String FIELD_TABLENAME = "TABLENAME";
-    public static final String FIELD_TABLESPACE = "TABLESPACE";
-    public static final String FIELD_TIPSINFO = "TIPSINFO";
-    public static final String FIELD_UPDATEDATE = "UPDATEDATE";
-    public static final String FIELD_UPDATEMAN = "UPDATEMAN";
-    public static final String FIELD_USERACTION = "USERACTION";
-    public static final String FIELD_VALIDFLAG = "VALIDFLAG";
-    public static final String FIELD_VCFLAG = "VCFLAG";
-    public static final String FIELD_VERCHECKTIMER = "VERCHECKTIMER";
-    public static final String FIELD_VERFIELD = "VERFIELD";
-    public static final String FIELD_VERHELPER = "VERHELPER";
-    public static final String FIELD_VERSIONCHECK = "VERSIONCHECK";
-    public static final String FIELD_VIEWNAME = "VIEWNAME";
-    private static final int INDEX_ACENABLEDP = 0;
-    private static final int INDEX_ACEXTINFO = 1;
-    private static final int INDEX_ACINFOFORMAT = 2;
-    private static final int INDEX_ACINFOPARAM = 3;
-    private static final int INDEX_ACMAXCNT = 4;
-    private static final int INDEX_ACOBJECT = 5;
-    private static final int INDEX_ACQUERYMODELID = 6;
-    private static final int INDEX_ACQUERYMODELNAME = 7;
-    private static final int INDEX_ACSORTDIR = 8;
-    private static final int INDEX_ACSORTFIELD = 9;
-    private static final int INDEX_BIGICON = 10;
-    private static final int INDEX_CONFIGHELPER = 11;
-    private static final int INDEX_CREATEDATE = 12;
-    private static final int INDEX_CREATEMAN = 13;
-    private static final int INDEX_DATAACCOBJECT = 14;
-    private static final int INDEX_DATACHGLOGMODE = 15;
-    private static final int INDEX_DATACTRLINT = 16;
-    private static final int INDEX_DATACTRLOBJECT = 17;
-    private static final int INDEX_DATANOTIFYHELPER = 18;
-    private static final int INDEX_DBSTORAGE = 19;
-    private static final int INDEX_DBVERSION = 20;
-    private static final int INDEX_DEGROUP = 21;
-    private static final int INDEX_DEHELPER = 22;
-    private static final int INDEX_DEID = 23;
-    private static final int INDEX_DELOGICNAME = 24;
-    private static final int INDEX_DENAME = 25;
-    private static final int INDEX_DEOBJECT = 26;
-    private static final int INDEX_DEORDER = 27;
-    private static final int INDEX_DEPARAM = 28;
-    private static final int INDEX_DER11DEID = 29;
-    private static final int INDEX_DER11DENAME = 30;
-    private static final int INDEX_DETYPE = 31;
-    private static final int INDEX_DEUSERPARAM = 32;
-    private static final int INDEX_DEVERSION = 33;
-    private static final int INDEX_DGROWCLASSHELPER = 34;
-    private static final int INDEX_DGSUMMARYHEIGHT = 35;
-    private static final int INDEX_DLKHELPER = 36;
-    private static final int INDEX_DYNAMICINTERVAL = 37;
-    private static final int INDEX_ENABLECOLPRIV = 38;
-    private static final int INDEX_ENABLEGLOBALMODEL = 39;
-    private static final int INDEX_EXITINGMODEL = 40;
-    private static final int INDEX_EXPORTINCEMPTY = 41;
-    private static final int INDEX_EXTABLENAME = 42;
-    private static final int INDEX_GLOBALMODELOBJ = 43;
-    private static final int INDEX_INDEXMODE = 44;
-    private static final int INDEX_INFOFIELD = 45;
-    private static final int INDEX_INFOFORMAT = 46;
-    private static final int INDEX_INHERITMODE = 47;
-    private static final int INDEX_ISDGROWEDIT = 48;
-    private static final int INDEX_ISENABLEAUDIT = 49;
-    private static final int INDEX_ISENABLEDP = 50;
-    private static final int INDEX_ISINDEXDE = 51;
-    private static final int INDEX_ISLOGICVALID = 52;
-    private static final int INDEX_ISMULTIPRINT = 53;
-    private static final int INDEX_ISSUPPORTFA = 54;
-    private static final int INDEX_ISSYSTEM = 55;
-    private static final int INDEX_KEYPARAMS = 56;
-    private static final int INDEX_LICENSECODE = 57;
-    private static final int INDEX_LOGAUDITDETAIL = 58;
-    private static final int INDEX_MEMO = 59;
-    private static final int INDEX_MINORFIELDNAME = 60;
-    private static final int INDEX_MINORFIELDVALUE = 61;
-    private static final int INDEX_MINORTABLENAME = 62;
-    private static final int INDEX_MUTLIMAJOR = 63;
-    private static final int INDEX_NODATAINFO = 64;
-    private static final int INDEX_PRINTFUNC = 65;
-    private static final int INDEX_RESERVER = 66;
-    private static final int INDEX_RESERVER2 = 67;
-    private static final int INDEX_ROWAMOUT = 68;
-    private static final int INDEX_RTINFO = 69;
-    private static final int INDEX_SMALLICON = 70;
-    private static final int INDEX_STORAGETYPE = 71;
-    private static final int INDEX_TABLENAME = 72;
-    private static final int INDEX_TABLESPACE = 73;
-    private static final int INDEX_TIPSINFO = 74;
-    private static final int INDEX_UPDATEDATE = 75;
-    private static final int INDEX_UPDATEMAN = 76;
-    private static final int INDEX_USERACTION = 77;
-    private static final int INDEX_VALIDFLAG = 78;
-    private static final int INDEX_VCFLAG = 79;
-    private static final int INDEX_VERCHECKTIMER = 80;
-    private static final int INDEX_VERFIELD = 81;
-    private static final int INDEX_VERHELPER = 82;
-    private static final int INDEX_VERSIONCHECK = 83;
-    private static final int INDEX_VIEWNAME = 84;
-    private static final HashMap<String, Integer> fieldIndexMap = new HashMap();
+    /**
+     * 属性[启动自填数据权限]
+     */
+    public final static String FIELD_ACENABLEDP = "ACENABLEDP";
+    /**
+     * 属性[自动填充附加信息]
+     */
+    public final static String FIELD_ACEXTINFO = "ACEXTINFO";
+    /**
+     * 属性[自动填充信息格式]
+     */
+    public final static String FIELD_ACINFOFORMAT = "ACINFOFORMAT";
+    /**
+     * 属性[自动填充信息参数]
+     */
+    public final static String FIELD_ACINFOPARAM = "ACINFOPARAM";
+    /**
+     * 属性[自填最大数量]
+     */
+    public final static String FIELD_ACMAXCNT = "ACMAXCNT";
+    /**
+     * 属性[自动填充处理对象]
+     */
+    public final static String FIELD_ACOBJECT = "ACOBJECT";
+    /**
+     * 属性[数据实体_自填查询模型]
+     */
+    public final static String FIELD_ACQUERYMODELID = "ACQUERYMODELID";
+    /**
+     * 属性[自填查询模型]
+     */
+    public final static String FIELD_ACQUERYMODELNAME = "ACQUERYMODELNAME";
+    /**
+     * 属性[自动排序方向]
+     */
+    public final static String FIELD_ACSORTDIR = "ACSORTDIR";
+    /**
+     * 属性[自填排序字段]
+     */
+    public final static String FIELD_ACSORTFIELD = "ACSORTFIELD";
+    /**
+     * 属性[大图标]
+     */
+    public final static String FIELD_BIGICON = "BIGICON";
+    /**
+     * 属性[配置辅助对象]
+     */
+    public final static String FIELD_CONFIGHELPER = "CONFIGHELPER";
+    /**
+     * 属性[建立时间]
+     */
+    public final static String FIELD_CREATEDATE = "CREATEDATE";
+    /**
+     * 属性[建立人]
+     */
+    public final static String FIELD_CREATEMAN = "CREATEMAN";
+    /**
+     * 属性[数据访问控制对象]
+     */
+    public final static String FIELD_DATAACCOBJECT = "DATAACCOBJECT";
+    /**
+     * 属性[数据变更日志类型]
+     */
+    public final static String FIELD_DATACHGLOGMODE = "DATACHGLOGMODE";
+    /**
+     * 属性[数据访问对象接口]
+     */
+    public final static String FIELD_DATACTRLINT = "DATACTRLINT";
+    /**
+     * 属性[数据访问对象]
+     */
+    public final static String FIELD_DATACTRLOBJECT = "DATACTRLOBJECT";
+    /**
+     * 属性[数据通知辅助对象]
+     */
+    public final static String FIELD_DATANOTIFYHELPER = "DATANOTIFYHELPER";
+    /**
+     * 属性[数据库存储]
+     */
+    public final static String FIELD_DBSTORAGE = "DBSTORAGE";
+    /**
+     * 属性[数据结构版本]
+     */
+    public final static String FIELD_DBVERSION = "DBVERSION";
+    /**
+     * 属性[实体归属]
+     */
+    public final static String FIELD_DEGROUP = "DEGROUP";
+    /**
+     * 属性[实体辅助对象]
+     */
+    public final static String FIELD_DEHELPER = "DEHELPER";
+    /**
+     * 属性[实体标识]
+     */
+    public final static String FIELD_DEID = "DEID";
+    /**
+     * 属性[逻辑名称]
+     */
+    public final static String FIELD_DELOGICNAME = "DELOGICNAME";
+    /**
+     * 属性[实体名称]
+     */
+    public final static String FIELD_DENAME = "DENAME";
+    /**
+     * 属性[数据对象类]
+     */
+    public final static String FIELD_DEOBJECT = "DEOBJECT";
+    /**
+     * 属性[实体次序]
+     */
+    public final static String FIELD_DEORDER = "DEORDER";
+    /**
+     * 属性[实体参数]
+     */
+    public final static String FIELD_DEPARAM = "DEPARAM";
+    /**
+     * 属性[1:1关系实体]
+     */
+    public final static String FIELD_DER11DEID = "DER11DEID";
+    /**
+     * 属性[DER11DENAME]
+     */
+    public final static String FIELD_DER11DENAME = "DER11DENAME";
+    /**
+     * 属性[实体类型]
+     */
+    public final static String FIELD_DETYPE = "DETYPE";
+    /**
+     * 属性[实体用户参数]
+     */
+    public final static String FIELD_DEUSERPARAM = "DEUSERPARAM";
+    /**
+     * 属性[版本]
+     */
+    public final static String FIELD_DEVERSION = "DEVERSION";
+    /**
+     * 属性[表格行样式辅助对象]
+     */
+    public final static String FIELD_DGROWCLASSHELPER = "DGROWCLASSHELPER";
+    /**
+     * 属性[表格信息区高度]
+     */
+    public final static String FIELD_DGSUMMARYHEIGHT = "DGSUMMARYHEIGHT";
+    /**
+     * 属性[数据锁辅助对象]
+     */
+    public final static String FIELD_DLKHELPER = "DLKHELPER";
+    /**
+     * 属性[动态表间隔时间]
+     */
+    public final static String FIELD_DYNAMICINTERVAL = "DYNAMICINTERVAL";
+    /**
+     * 属性[启用列权限控制]
+     */
+    public final static String FIELD_ENABLECOLPRIV = "ENABLECOLPRIV";
+    /**
+     * 属性[启用全局模型缓存]
+     */
+    public final static String FIELD_ENABLEGLOBALMODEL = "ENABLEGLOBALMODEL";
+    /**
+     * 属性[现存模型]
+     */
+    public final static String FIELD_EXITINGMODEL = "EXITINGMODEL";
+    /**
+     * 属性[导出模型包含空值]
+     */
+    public final static String FIELD_EXPORTINCEMPTY = "EXPORTINCEMPTY";
+    /**
+     * 属性[用户表]
+     */
+    public final static String FIELD_EXTABLENAME = "EXTABLENAME";
+    /**
+     * 属性[全局模型对象]
+     */
+    public final static String FIELD_GLOBALMODELOBJ = "GLOBALMODELOBJ";
+    /**
+     * 属性[索引模式]
+     */
+    public final static String FIELD_INDEXMODE = "INDEXMODE";
+    /**
+     * 属性[信息属性参数]
+     */
+    public final static String FIELD_INFOFIELD = "INFOFIELD";
+    /**
+     * 属性[信息格式化]
+     */
+    public final static String FIELD_INFOFORMAT = "INFOFORMAT";
+    /**
+     * 属性[继承模式]
+     */
+    public final static String FIELD_INHERITMODE = "INHERITMODE";
+    /**
+     * 属性[启用表格行编辑]
+     */
+    public final static String FIELD_ISDGROWEDIT = "ISDGROWEDIT";
+    /**
+     * 属性[启用审计]
+     */
+    public final static String FIELD_ISENABLEAUDIT = "ISENABLEAUDIT";
+    /**
+     * 属性[启用数据权限]
+     */
+    public final static String FIELD_ISENABLEDP = "ISENABLEDP";
+    /**
+     * 属性[索引实体]
+     */
+    public final static String FIELD_ISINDEXDE = "ISINDEXDE";
+    /**
+     * 属性[启用逻辑有效]
+     */
+    public final static String FIELD_ISLOGICVALID = "ISLOGICVALID";
+    /**
+     * 属性[多选打印]
+     */
+    public final static String FIELD_ISMULTIPRINT = "ISMULTIPRINT";
+    /**
+     * 属性[数据附件]
+     */
+    public final static String FIELD_ISSUPPORTFA = "ISSUPPORTFA";
+    /**
+     * 属性[系统实体]
+     */
+    public final static String FIELD_ISSYSTEM = "ISSYSTEM";
+    /**
+     * 属性[主键参数]
+     */
+    public final static String FIELD_KEYPARAMS = "KEYPARAMS";
+    /**
+     * 属性[授权代码]
+     */
+    public final static String FIELD_LICENSECODE = "LICENSECODE";
+    /**
+     * 属性[记录审计明细]
+     */
+    public final static String FIELD_LOGAUDITDETAIL = "LOGAUDITDETAIL";
+    /**
+     * 属性[备注]
+     */
+    public final static String FIELD_MEMO = "MEMO";
+    /**
+     * 属性[附表标识字段]
+     */
+    public final static String FIELD_MINORFIELDNAME = "MINORFIELDNAME";
+    /**
+     * 属性[附表标识值]
+     */
+    public final static String FIELD_MINORFIELDVALUE = "MINORFIELDVALUE";
+    /**
+     * 属性[附表名称]
+     */
+    public final static String FIELD_MINORTABLENAME = "MINORTABLENAME";
+    /**
+     * 属性[多主实体模式]
+     */
+    public final static String FIELD_MUTLIMAJOR = "MULTIMAJOR";
+    /**
+     * 属性[无数据信息]
+     */
+    public final static String FIELD_NODATAINFO = "NODATAINFO";
+    /**
+     * 属性[打印功能]
+     */
+    public final static String FIELD_PRINTFUNC = "PRINTFUNC";
+    /**
+     * 属性[保留1]
+     */
+    public final static String FIELD_RESERVER = "RESERVER";
+    /**
+     * 属性[保留2]
+     */
+    public final static String FIELD_RESERVER2 = "RESERVER2";
+    /**
+     * 属性[记录数量]
+     */
+    public final static String FIELD_ROWAMOUT = "ROWAMOUNT";
+    /**
+     * 属性[运行信息]
+     */
+    public final static String FIELD_RTINFO = "RTINFO";
+    /**
+     * 属性[小图标]
+     */
+    public final static String FIELD_SMALLICON = "SMALLICON";
+    /**
+     * 属性[实体存储类型]
+     */
+    public final static String FIELD_STORAGETYPE = "STORAGETYPE";
+    /**
+     * 属性[表名称]
+     */
+    public final static String FIELD_TABLENAME = "TABLENAME";
+    /**
+     * 属性[实体表空间]
+     */
+    public final static String FIELD_TABLESPACE = "TABLESPACE";
+    /**
+     * 属性[提示信息]
+     */
+    public final static String FIELD_TIPSINFO = "TIPSINFO";
+    /**
+     * 属性[更新时间]
+     */
+    public final static String FIELD_UPDATEDATE = "UPDATEDATE";
+    /**
+     * 属性[更新人]
+     */
+    public final static String FIELD_UPDATEMAN = "UPDATEMAN";
+    /**
+     * 属性[用户数据行为]
+     */
+    public final static String FIELD_USERACTION = "USERACTION";
+    /**
+     * 属性[是否启用]
+     */
+    public final static String FIELD_VALIDFLAG = "VALIDFLAG";
+    /**
+     * 属性[启用数据版本控制]
+     */
+    public final static String FIELD_VCFLAG = "VCFLAG";
+    /**
+     * 属性[版本检查间隔]
+     */
+    public final static String FIELD_VERCHECKTIMER = "VERCHECKTIMER";
+    /**
+     * 属性[版本属性]
+     */
+    public final static String FIELD_VERFIELD = "VERFIELD";
+    /**
+     * 属性[版本辅助对象]
+     */
+    public final static String FIELD_VERHELPER = "VERHELPER";
+    /**
+     * 属性[版本检查]
+     */
+    public final static String FIELD_VERSIONCHECK = "VERSIONCHECK";
+    /**
+     * 属性[视图名称]
+     */
+    public final static String FIELD_VIEWNAME = "VIEWNAME";
+
+    private final static int INDEX_ACENABLEDP = 0;
+    private final static int INDEX_ACEXTINFO = 1;
+    private final static int INDEX_ACINFOFORMAT = 2;
+    private final static int INDEX_ACINFOPARAM = 3;
+    private final static int INDEX_ACMAXCNT = 4;
+    private final static int INDEX_ACOBJECT = 5;
+    private final static int INDEX_ACQUERYMODELID = 6;
+    private final static int INDEX_ACQUERYMODELNAME = 7;
+    private final static int INDEX_ACSORTDIR = 8;
+    private final static int INDEX_ACSORTFIELD = 9;
+    private final static int INDEX_BIGICON = 10;
+    private final static int INDEX_CONFIGHELPER = 11;
+    private final static int INDEX_CREATEDATE = 12;
+    private final static int INDEX_CREATEMAN = 13;
+    private final static int INDEX_DATAACCOBJECT = 14;
+    private final static int INDEX_DATACHGLOGMODE = 15;
+    private final static int INDEX_DATACTRLINT = 16;
+    private final static int INDEX_DATACTRLOBJECT = 17;
+    private final static int INDEX_DATANOTIFYHELPER = 18;
+    private final static int INDEX_DBSTORAGE = 19;
+    private final static int INDEX_DBVERSION = 20;
+    private final static int INDEX_DEGROUP = 21;
+    private final static int INDEX_DEHELPER = 22;
+    private final static int INDEX_DEID = 23;
+    private final static int INDEX_DELOGICNAME = 24;
+    private final static int INDEX_DENAME = 25;
+    private final static int INDEX_DEOBJECT = 26;
+    private final static int INDEX_DEORDER = 27;
+    private final static int INDEX_DEPARAM = 28;
+    private final static int INDEX_DER11DEID = 29;
+    private final static int INDEX_DER11DENAME = 30;
+    private final static int INDEX_DETYPE = 31;
+    private final static int INDEX_DEUSERPARAM = 32;
+    private final static int INDEX_DEVERSION = 33;
+    private final static int INDEX_DGROWCLASSHELPER = 34;
+    private final static int INDEX_DGSUMMARYHEIGHT = 35;
+    private final static int INDEX_DLKHELPER = 36;
+    private final static int INDEX_DYNAMICINTERVAL = 37;
+    private final static int INDEX_ENABLECOLPRIV = 38;
+    private final static int INDEX_ENABLEGLOBALMODEL = 39;
+    private final static int INDEX_EXITINGMODEL = 40;
+    private final static int INDEX_EXPORTINCEMPTY = 41;
+    private final static int INDEX_EXTABLENAME = 42;
+    private final static int INDEX_GLOBALMODELOBJ = 43;
+    private final static int INDEX_INDEXMODE = 44;
+    private final static int INDEX_INFOFIELD = 45;
+    private final static int INDEX_INFOFORMAT = 46;
+    private final static int INDEX_INHERITMODE = 47;
+    private final static int INDEX_ISDGROWEDIT = 48;
+    private final static int INDEX_ISENABLEAUDIT = 49;
+    private final static int INDEX_ISENABLEDP = 50;
+    private final static int INDEX_ISINDEXDE = 51;
+    private final static int INDEX_ISLOGICVALID = 52;
+    private final static int INDEX_ISMULTIPRINT = 53;
+    private final static int INDEX_ISSUPPORTFA = 54;
+    private final static int INDEX_ISSYSTEM = 55;
+    private final static int INDEX_KEYPARAMS = 56;
+    private final static int INDEX_LICENSECODE = 57;
+    private final static int INDEX_LOGAUDITDETAIL = 58;
+    private final static int INDEX_MEMO = 59;
+    private final static int INDEX_MINORFIELDNAME = 60;
+    private final static int INDEX_MINORFIELDVALUE = 61;
+    private final static int INDEX_MINORTABLENAME = 62;
+    private final static int INDEX_MUTLIMAJOR = 63;
+    private final static int INDEX_NODATAINFO = 64;
+    private final static int INDEX_PRINTFUNC = 65;
+    private final static int INDEX_RESERVER = 66;
+    private final static int INDEX_RESERVER2 = 67;
+    private final static int INDEX_ROWAMOUT = 68;
+    private final static int INDEX_RTINFO = 69;
+    private final static int INDEX_SMALLICON = 70;
+    private final static int INDEX_STORAGETYPE = 71;
+    private final static int INDEX_TABLENAME = 72;
+    private final static int INDEX_TABLESPACE = 73;
+    private final static int INDEX_TIPSINFO = 74;
+    private final static int INDEX_UPDATEDATE = 75;
+    private final static int INDEX_UPDATEMAN = 76;
+    private final static int INDEX_USERACTION = 77;
+    private final static int INDEX_VALIDFLAG = 78;
+    private final static int INDEX_VCFLAG = 79;
+    private final static int INDEX_VERCHECKTIMER = 80;
+    private final static int INDEX_VERFIELD = 81;
+    private final static int INDEX_VERHELPER = 82;
+    private final static int INDEX_VERSIONCHECK = 83;
+    private final static int INDEX_VIEWNAME = 84;
+
+    private final static HashMap<String, Integer> fieldIndexMap = new HashMap<String, Integer>();
+    static {
+        fieldIndexMap.put( FIELD_ACENABLEDP, INDEX_ACENABLEDP);
+        fieldIndexMap.put( FIELD_ACEXTINFO, INDEX_ACEXTINFO);
+        fieldIndexMap.put( FIELD_ACINFOFORMAT, INDEX_ACINFOFORMAT);
+        fieldIndexMap.put( FIELD_ACINFOPARAM, INDEX_ACINFOPARAM);
+        fieldIndexMap.put( FIELD_ACMAXCNT, INDEX_ACMAXCNT);
+        fieldIndexMap.put( FIELD_ACOBJECT, INDEX_ACOBJECT);
+        fieldIndexMap.put( FIELD_ACQUERYMODELID, INDEX_ACQUERYMODELID);
+        fieldIndexMap.put( FIELD_ACQUERYMODELNAME, INDEX_ACQUERYMODELNAME);
+        fieldIndexMap.put( FIELD_ACSORTDIR, INDEX_ACSORTDIR);
+        fieldIndexMap.put( FIELD_ACSORTFIELD, INDEX_ACSORTFIELD);
+        fieldIndexMap.put( FIELD_BIGICON, INDEX_BIGICON);
+        fieldIndexMap.put( FIELD_CONFIGHELPER, INDEX_CONFIGHELPER);
+        fieldIndexMap.put( FIELD_CREATEDATE, INDEX_CREATEDATE);
+        fieldIndexMap.put( FIELD_CREATEMAN, INDEX_CREATEMAN);
+        fieldIndexMap.put( FIELD_DATAACCOBJECT, INDEX_DATAACCOBJECT);
+        fieldIndexMap.put( FIELD_DATACHGLOGMODE, INDEX_DATACHGLOGMODE);
+        fieldIndexMap.put( FIELD_DATACTRLINT, INDEX_DATACTRLINT);
+        fieldIndexMap.put( FIELD_DATACTRLOBJECT, INDEX_DATACTRLOBJECT);
+        fieldIndexMap.put( FIELD_DATANOTIFYHELPER, INDEX_DATANOTIFYHELPER);
+        fieldIndexMap.put( FIELD_DBSTORAGE, INDEX_DBSTORAGE);
+        fieldIndexMap.put( FIELD_DBVERSION, INDEX_DBVERSION);
+        fieldIndexMap.put( FIELD_DEGROUP, INDEX_DEGROUP);
+        fieldIndexMap.put( FIELD_DEHELPER, INDEX_DEHELPER);
+        fieldIndexMap.put( FIELD_DEID, INDEX_DEID);
+        fieldIndexMap.put( FIELD_DELOGICNAME, INDEX_DELOGICNAME);
+        fieldIndexMap.put( FIELD_DENAME, INDEX_DENAME);
+        fieldIndexMap.put( FIELD_DEOBJECT, INDEX_DEOBJECT);
+        fieldIndexMap.put( FIELD_DEORDER, INDEX_DEORDER);
+        fieldIndexMap.put( FIELD_DEPARAM, INDEX_DEPARAM);
+        fieldIndexMap.put( FIELD_DER11DEID, INDEX_DER11DEID);
+        fieldIndexMap.put( FIELD_DER11DENAME, INDEX_DER11DENAME);
+        fieldIndexMap.put( FIELD_DETYPE, INDEX_DETYPE);
+        fieldIndexMap.put( FIELD_DEUSERPARAM, INDEX_DEUSERPARAM);
+        fieldIndexMap.put( FIELD_DEVERSION, INDEX_DEVERSION);
+        fieldIndexMap.put( FIELD_DGROWCLASSHELPER, INDEX_DGROWCLASSHELPER);
+        fieldIndexMap.put( FIELD_DGSUMMARYHEIGHT, INDEX_DGSUMMARYHEIGHT);
+        fieldIndexMap.put( FIELD_DLKHELPER, INDEX_DLKHELPER);
+        fieldIndexMap.put( FIELD_DYNAMICINTERVAL, INDEX_DYNAMICINTERVAL);
+        fieldIndexMap.put( FIELD_ENABLECOLPRIV, INDEX_ENABLECOLPRIV);
+        fieldIndexMap.put( FIELD_ENABLEGLOBALMODEL, INDEX_ENABLEGLOBALMODEL);
+        fieldIndexMap.put( FIELD_EXITINGMODEL, INDEX_EXITINGMODEL);
+        fieldIndexMap.put( FIELD_EXPORTINCEMPTY, INDEX_EXPORTINCEMPTY);
+        fieldIndexMap.put( FIELD_EXTABLENAME, INDEX_EXTABLENAME);
+        fieldIndexMap.put( FIELD_GLOBALMODELOBJ, INDEX_GLOBALMODELOBJ);
+        fieldIndexMap.put( FIELD_INDEXMODE, INDEX_INDEXMODE);
+        fieldIndexMap.put( FIELD_INFOFIELD, INDEX_INFOFIELD);
+        fieldIndexMap.put( FIELD_INFOFORMAT, INDEX_INFOFORMAT);
+        fieldIndexMap.put( FIELD_INHERITMODE, INDEX_INHERITMODE);
+        fieldIndexMap.put( FIELD_ISDGROWEDIT, INDEX_ISDGROWEDIT);
+        fieldIndexMap.put( FIELD_ISENABLEAUDIT, INDEX_ISENABLEAUDIT);
+        fieldIndexMap.put( FIELD_ISENABLEDP, INDEX_ISENABLEDP);
+        fieldIndexMap.put( FIELD_ISINDEXDE, INDEX_ISINDEXDE);
+        fieldIndexMap.put( FIELD_ISLOGICVALID, INDEX_ISLOGICVALID);
+        fieldIndexMap.put( FIELD_ISMULTIPRINT, INDEX_ISMULTIPRINT);
+        fieldIndexMap.put( FIELD_ISSUPPORTFA, INDEX_ISSUPPORTFA);
+        fieldIndexMap.put( FIELD_ISSYSTEM, INDEX_ISSYSTEM);
+        fieldIndexMap.put( FIELD_KEYPARAMS, INDEX_KEYPARAMS);
+        fieldIndexMap.put( FIELD_LICENSECODE, INDEX_LICENSECODE);
+        fieldIndexMap.put( FIELD_LOGAUDITDETAIL, INDEX_LOGAUDITDETAIL);
+        fieldIndexMap.put( FIELD_MEMO, INDEX_MEMO);
+        fieldIndexMap.put( FIELD_MINORFIELDNAME, INDEX_MINORFIELDNAME);
+        fieldIndexMap.put( FIELD_MINORFIELDVALUE, INDEX_MINORFIELDVALUE);
+        fieldIndexMap.put( FIELD_MINORTABLENAME, INDEX_MINORTABLENAME);
+        fieldIndexMap.put( FIELD_MUTLIMAJOR, INDEX_MUTLIMAJOR);
+        fieldIndexMap.put( FIELD_NODATAINFO, INDEX_NODATAINFO);
+        fieldIndexMap.put( FIELD_PRINTFUNC, INDEX_PRINTFUNC);
+        fieldIndexMap.put( FIELD_RESERVER, INDEX_RESERVER);
+        fieldIndexMap.put( FIELD_RESERVER2, INDEX_RESERVER2);
+        fieldIndexMap.put( FIELD_ROWAMOUT, INDEX_ROWAMOUT);
+        fieldIndexMap.put( FIELD_RTINFO, INDEX_RTINFO);
+        fieldIndexMap.put( FIELD_SMALLICON, INDEX_SMALLICON);
+        fieldIndexMap.put( FIELD_STORAGETYPE, INDEX_STORAGETYPE);
+        fieldIndexMap.put( FIELD_TABLENAME, INDEX_TABLENAME);
+        fieldIndexMap.put( FIELD_TABLESPACE, INDEX_TABLESPACE);
+        fieldIndexMap.put( FIELD_TIPSINFO, INDEX_TIPSINFO);
+        fieldIndexMap.put( FIELD_UPDATEDATE, INDEX_UPDATEDATE);
+        fieldIndexMap.put( FIELD_UPDATEMAN, INDEX_UPDATEMAN);
+        fieldIndexMap.put( FIELD_USERACTION, INDEX_USERACTION);
+        fieldIndexMap.put( FIELD_VALIDFLAG, INDEX_VALIDFLAG);
+        fieldIndexMap.put( FIELD_VCFLAG, INDEX_VCFLAG);
+        fieldIndexMap.put( FIELD_VERCHECKTIMER, INDEX_VERCHECKTIMER);
+        fieldIndexMap.put( FIELD_VERFIELD, INDEX_VERFIELD);
+        fieldIndexMap.put( FIELD_VERHELPER, INDEX_VERHELPER);
+        fieldIndexMap.put( FIELD_VERSIONCHECK, INDEX_VERSIONCHECK);
+        fieldIndexMap.put( FIELD_VIEWNAME, INDEX_VIEWNAME);
+    }
+
     private DataEntityBase proxyDataEntityBase = null;
+    public DataEntityBase() {
+        super();
+    }
     private boolean acenabledpDirtyFlag = false;
     private boolean acextinfoDirtyFlag = false;
     private boolean acinfoformatDirtyFlag = false;
@@ -292,6 +637,7 @@ implements Serializable {
     private boolean verhelperDirtyFlag = false;
     private boolean versioncheckDirtyFlag = false;
     private boolean viewnameDirtyFlag = false;
+
     @Column(name="acenabledp")
     private Integer acenabledp;
     @Column(name="acextinfo")
@@ -462,2978 +808,4323 @@ implements Serializable {
     private Integer versioncheck;
     @Column(name="viewname")
     private String viewname;
-    private Integer objDER11DELock = new Integer(1);
-    private DataEntity der11de = null;
-    private Integer objACQueryModelLock = new Integer(1);
-    private QueryModel acquerymodel = null;
 
-    static {
-        fieldIndexMap.put(FIELD_ACENABLEDP, 0);
-        fieldIndexMap.put(FIELD_ACEXTINFO, 1);
-        fieldIndexMap.put(FIELD_ACINFOFORMAT, 2);
-        fieldIndexMap.put(FIELD_ACINFOPARAM, 3);
-        fieldIndexMap.put(FIELD_ACMAXCNT, 4);
-        fieldIndexMap.put(FIELD_ACOBJECT, 5);
-        fieldIndexMap.put(FIELD_ACQUERYMODELID, 6);
-        fieldIndexMap.put(FIELD_ACQUERYMODELNAME, 7);
-        fieldIndexMap.put(FIELD_ACSORTDIR, 8);
-        fieldIndexMap.put(FIELD_ACSORTFIELD, 9);
-        fieldIndexMap.put(FIELD_BIGICON, 10);
-        fieldIndexMap.put(FIELD_CONFIGHELPER, 11);
-        fieldIndexMap.put(FIELD_CREATEDATE, 12);
-        fieldIndexMap.put(FIELD_CREATEMAN, 13);
-        fieldIndexMap.put(FIELD_DATAACCOBJECT, 14);
-        fieldIndexMap.put(FIELD_DATACHGLOGMODE, 15);
-        fieldIndexMap.put(FIELD_DATACTRLINT, 16);
-        fieldIndexMap.put(FIELD_DATACTRLOBJECT, 17);
-        fieldIndexMap.put(FIELD_DATANOTIFYHELPER, 18);
-        fieldIndexMap.put(FIELD_DBSTORAGE, 19);
-        fieldIndexMap.put(FIELD_DBVERSION, 20);
-        fieldIndexMap.put(FIELD_DEGROUP, 21);
-        fieldIndexMap.put(FIELD_DEHELPER, 22);
-        fieldIndexMap.put(FIELD_DEID, 23);
-        fieldIndexMap.put(FIELD_DELOGICNAME, 24);
-        fieldIndexMap.put(FIELD_DENAME, 25);
-        fieldIndexMap.put(FIELD_DEOBJECT, 26);
-        fieldIndexMap.put(FIELD_DEORDER, 27);
-        fieldIndexMap.put(FIELD_DEPARAM, 28);
-        fieldIndexMap.put(FIELD_DER11DEID, 29);
-        fieldIndexMap.put(FIELD_DER11DENAME, 30);
-        fieldIndexMap.put(FIELD_DETYPE, 31);
-        fieldIndexMap.put(FIELD_DEUSERPARAM, 32);
-        fieldIndexMap.put(FIELD_DEVERSION, 33);
-        fieldIndexMap.put(FIELD_DGROWCLASSHELPER, 34);
-        fieldIndexMap.put(FIELD_DGSUMMARYHEIGHT, 35);
-        fieldIndexMap.put(FIELD_DLKHELPER, 36);
-        fieldIndexMap.put(FIELD_DYNAMICINTERVAL, 37);
-        fieldIndexMap.put(FIELD_ENABLECOLPRIV, 38);
-        fieldIndexMap.put(FIELD_ENABLEGLOBALMODEL, 39);
-        fieldIndexMap.put(FIELD_EXITINGMODEL, 40);
-        fieldIndexMap.put(FIELD_EXPORTINCEMPTY, 41);
-        fieldIndexMap.put(FIELD_EXTABLENAME, 42);
-        fieldIndexMap.put(FIELD_GLOBALMODELOBJ, 43);
-        fieldIndexMap.put(FIELD_INDEXMODE, 44);
-        fieldIndexMap.put(FIELD_INFOFIELD, 45);
-        fieldIndexMap.put(FIELD_INFOFORMAT, 46);
-        fieldIndexMap.put(FIELD_INHERITMODE, 47);
-        fieldIndexMap.put(FIELD_ISDGROWEDIT, 48);
-        fieldIndexMap.put(FIELD_ISENABLEAUDIT, 49);
-        fieldIndexMap.put(FIELD_ISENABLEDP, 50);
-        fieldIndexMap.put(FIELD_ISINDEXDE, 51);
-        fieldIndexMap.put(FIELD_ISLOGICVALID, 52);
-        fieldIndexMap.put(FIELD_ISMULTIPRINT, 53);
-        fieldIndexMap.put(FIELD_ISSUPPORTFA, 54);
-        fieldIndexMap.put(FIELD_ISSYSTEM, 55);
-        fieldIndexMap.put(FIELD_KEYPARAMS, 56);
-        fieldIndexMap.put(FIELD_LICENSECODE, 57);
-        fieldIndexMap.put(FIELD_LOGAUDITDETAIL, 58);
-        fieldIndexMap.put(FIELD_MEMO, 59);
-        fieldIndexMap.put(FIELD_MINORFIELDNAME, 60);
-        fieldIndexMap.put(FIELD_MINORFIELDVALUE, 61);
-        fieldIndexMap.put(FIELD_MINORTABLENAME, 62);
-        fieldIndexMap.put(FIELD_MUTLIMAJOR, 63);
-        fieldIndexMap.put(FIELD_NODATAINFO, 64);
-        fieldIndexMap.put(FIELD_PRINTFUNC, 65);
-        fieldIndexMap.put(FIELD_RESERVER, 66);
-        fieldIndexMap.put(FIELD_RESERVER2, 67);
-        fieldIndexMap.put(FIELD_ROWAMOUT, 68);
-        fieldIndexMap.put(FIELD_RTINFO, 69);
-        fieldIndexMap.put(FIELD_SMALLICON, 70);
-        fieldIndexMap.put(FIELD_STORAGETYPE, 71);
-        fieldIndexMap.put(FIELD_TABLENAME, 72);
-        fieldIndexMap.put(FIELD_TABLESPACE, 73);
-        fieldIndexMap.put(FIELD_TIPSINFO, 74);
-        fieldIndexMap.put(FIELD_UPDATEDATE, 75);
-        fieldIndexMap.put(FIELD_UPDATEMAN, 76);
-        fieldIndexMap.put(FIELD_USERACTION, 77);
-        fieldIndexMap.put(FIELD_VALIDFLAG, 78);
-        fieldIndexMap.put(FIELD_VCFLAG, 79);
-        fieldIndexMap.put(FIELD_VERCHECKTIMER, 80);
-        fieldIndexMap.put(FIELD_VERFIELD, 81);
-        fieldIndexMap.put(FIELD_VERHELPER, 82);
-        fieldIndexMap.put(FIELD_VERSIONCHECK, 83);
-        fieldIndexMap.put(FIELD_VIEWNAME, 84);
-    }
 
+    /**
+     *  设置属性值[启动自填数据权限]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param acenabledp
+     */
     public void setACEnableDP(Integer acenabledp) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setACEnableDP(acenabledp);
             return;
         }
         this.acenabledp = acenabledp;
-        this.acenabledpDirtyFlag = true;
+        this.acenabledpDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[启动自填数据权限]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getACEnableDP() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getACEnableDP();
         }
         return this.acenabledp;
     }
 
+    /**
+     *  获取属性值[启动自填数据权限]是否修改
+     */
     public boolean isACEnableDPDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isACEnableDPDirty();
         }
         return this.acenabledpDirtyFlag;
     }
 
+    /**
+     *  重置属性值[启动自填数据权限]
+     */
     public void resetACEnableDP() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetACEnableDP();
             return;
         }
+
         this.acenabledpDirtyFlag = false;
         this.acenabledp = null;
     }
-
+    /**
+     *  设置属性值[自动填充附加信息]
+     *  @param acextinfo
+     */
     public void setACExtInfo(String acextinfo) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setACExtInfo(acextinfo);
             return;
         }
-        if (acextinfo != null && (acextinfo = StringHelper.trimRight(acextinfo)).length() == 0) {
-            acextinfo = null;
+        if(acextinfo!=null) {
+            acextinfo = StringHelper.trimRight(acextinfo);
+            if(acextinfo.length()==0) {
+                acextinfo = null;
+            }
         }
         this.acextinfo = acextinfo;
-        this.acextinfoDirtyFlag = true;
+        this.acextinfoDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[自动填充附加信息]
+     */
     public String getACExtInfo() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getACExtInfo();
         }
         return this.acextinfo;
     }
 
+    /**
+     *  获取属性值[自动填充附加信息]是否修改
+     */
     public boolean isACExtInfoDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isACExtInfoDirty();
         }
         return this.acextinfoDirtyFlag;
     }
 
+    /**
+     *  重置属性值[自动填充附加信息]
+     */
     public void resetACExtInfo() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetACExtInfo();
             return;
         }
+
         this.acextinfoDirtyFlag = false;
         this.acextinfo = null;
     }
-
+    /**
+     *  设置属性值[自动填充信息格式]
+     *  @param acinfoformat
+     */
     public void setACInfoFormat(String acinfoformat) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setACInfoFormat(acinfoformat);
             return;
         }
-        if (acinfoformat != null && (acinfoformat = StringHelper.trimRight(acinfoformat)).length() == 0) {
-            acinfoformat = null;
+        if(acinfoformat!=null) {
+            acinfoformat = StringHelper.trimRight(acinfoformat);
+            if(acinfoformat.length()==0) {
+                acinfoformat = null;
+            }
         }
         this.acinfoformat = acinfoformat;
-        this.acinfoformatDirtyFlag = true;
+        this.acinfoformatDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[自动填充信息格式]
+     */
     public String getACInfoFormat() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getACInfoFormat();
         }
         return this.acinfoformat;
     }
 
+    /**
+     *  获取属性值[自动填充信息格式]是否修改
+     */
     public boolean isACInfoFormatDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isACInfoFormatDirty();
         }
         return this.acinfoformatDirtyFlag;
     }
 
+    /**
+     *  重置属性值[自动填充信息格式]
+     */
     public void resetACInfoFormat() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetACInfoFormat();
             return;
         }
+
         this.acinfoformatDirtyFlag = false;
         this.acinfoformat = null;
     }
-
+    /**
+     *  设置属性值[自动填充信息参数]
+     *  @param acinfoparam
+     */
     public void setACInfoParam(String acinfoparam) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setACInfoParam(acinfoparam);
             return;
         }
-        if (acinfoparam != null && (acinfoparam = StringHelper.trimRight(acinfoparam)).length() == 0) {
-            acinfoparam = null;
+        if(acinfoparam!=null) {
+            acinfoparam = StringHelper.trimRight(acinfoparam);
+            if(acinfoparam.length()==0) {
+                acinfoparam = null;
+            }
         }
         this.acinfoparam = acinfoparam;
-        this.acinfoparamDirtyFlag = true;
+        this.acinfoparamDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[自动填充信息参数]
+     */
     public String getACInfoParam() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getACInfoParam();
         }
         return this.acinfoparam;
     }
 
+    /**
+     *  获取属性值[自动填充信息参数]是否修改
+     */
     public boolean isACInfoParamDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isACInfoParamDirty();
         }
         return this.acinfoparamDirtyFlag;
     }
 
+    /**
+     *  重置属性值[自动填充信息参数]
+     */
     public void resetACInfoParam() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetACInfoParam();
             return;
         }
+
         this.acinfoparamDirtyFlag = false;
         this.acinfoparam = null;
     }
-
+    /**
+     *  设置属性值[自填最大数量]
+     *  @param acmaxcnt
+     */
     public void setACMaxCnt(Integer acmaxcnt) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setACMaxCnt(acmaxcnt);
             return;
         }
         this.acmaxcnt = acmaxcnt;
-        this.acmaxcntDirtyFlag = true;
+        this.acmaxcntDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[自填最大数量]
+     */
     public Integer getACMaxCnt() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getACMaxCnt();
         }
         return this.acmaxcnt;
     }
 
+    /**
+     *  获取属性值[自填最大数量]是否修改
+     */
     public boolean isACMaxCntDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isACMaxCntDirty();
         }
         return this.acmaxcntDirtyFlag;
     }
 
+    /**
+     *  重置属性值[自填最大数量]
+     */
     public void resetACMaxCnt() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetACMaxCnt();
             return;
         }
+
         this.acmaxcntDirtyFlag = false;
         this.acmaxcnt = null;
     }
-
+    /**
+     *  设置属性值[自动填充处理对象]
+     *  @param acobject
+     */
     public void setACObject(String acobject) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setACObject(acobject);
             return;
         }
-        if (acobject != null && (acobject = StringHelper.trimRight(acobject)).length() == 0) {
-            acobject = null;
+        if(acobject!=null) {
+            acobject = StringHelper.trimRight(acobject);
+            if(acobject.length()==0) {
+                acobject = null;
+            }
         }
         this.acobject = acobject;
-        this.acobjectDirtyFlag = true;
+        this.acobjectDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[自动填充处理对象]
+     */
     public String getACObject() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getACObject();
         }
         return this.acobject;
     }
 
+    /**
+     *  获取属性值[自动填充处理对象]是否修改
+     */
     public boolean isACObjectDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isACObjectDirty();
         }
         return this.acobjectDirtyFlag;
     }
 
+    /**
+     *  重置属性值[自动填充处理对象]
+     */
     public void resetACObject() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetACObject();
             return;
         }
+
         this.acobjectDirtyFlag = false;
         this.acobject = null;
     }
-
+    /**
+     *  设置属性值[数据实体_自填查询模型]
+     *  @param acquerymodelid
+     */
     public void setACQueryModelId(String acquerymodelid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setACQueryModelId(acquerymodelid);
             return;
         }
-        if (acquerymodelid != null && (acquerymodelid = StringHelper.trimRight(acquerymodelid)).length() == 0) {
-            acquerymodelid = null;
+        if(acquerymodelid!=null) {
+            acquerymodelid = StringHelper.trimRight(acquerymodelid);
+            if(acquerymodelid.length()==0) {
+                acquerymodelid = null;
+            }
         }
         this.acquerymodelid = acquerymodelid;
-        this.acquerymodelidDirtyFlag = true;
+        this.acquerymodelidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[数据实体_自填查询模型]
+     */
     public String getACQueryModelId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getACQueryModelId();
         }
         return this.acquerymodelid;
     }
 
+    /**
+     *  获取属性值[数据实体_自填查询模型]是否修改
+     */
     public boolean isACQueryModelIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isACQueryModelIdDirty();
         }
         return this.acquerymodelidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[数据实体_自填查询模型]
+     */
     public void resetACQueryModelId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetACQueryModelId();
             return;
         }
+
         this.acquerymodelidDirtyFlag = false;
         this.acquerymodelid = null;
     }
-
+    /**
+     *  设置属性值[自填查询模型]
+     *  @param acquerymodelname
+     */
     public void setACQueryModelName(String acquerymodelname) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setACQueryModelName(acquerymodelname);
             return;
         }
-        if (acquerymodelname != null && (acquerymodelname = StringHelper.trimRight(acquerymodelname)).length() == 0) {
-            acquerymodelname = null;
+        if(acquerymodelname!=null) {
+            acquerymodelname = StringHelper.trimRight(acquerymodelname);
+            if(acquerymodelname.length()==0) {
+                acquerymodelname = null;
+            }
         }
         this.acquerymodelname = acquerymodelname;
-        this.acquerymodelnameDirtyFlag = true;
+        this.acquerymodelnameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[自填查询模型]
+     */
     public String getACQueryModelName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getACQueryModelName();
         }
         return this.acquerymodelname;
     }
 
+    /**
+     *  获取属性值[自填查询模型]是否修改
+     */
     public boolean isACQueryModelNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isACQueryModelNameDirty();
         }
         return this.acquerymodelnameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[自填查询模型]
+     */
     public void resetACQueryModelName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetACQueryModelName();
             return;
         }
+
         this.acquerymodelnameDirtyFlag = false;
         this.acquerymodelname = null;
     }
-
+    /**
+     *  设置属性值[自动排序方向]代码表：net.ibizsys.psrt.srv.codelist.CodeList25CodeListModel
+     *  @param acsortdir
+     */
     public void setACSortDir(String acsortdir) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setACSortDir(acsortdir);
             return;
         }
-        if (acsortdir != null && (acsortdir = StringHelper.trimRight(acsortdir)).length() == 0) {
-            acsortdir = null;
+        if(acsortdir!=null) {
+            acsortdir = StringHelper.trimRight(acsortdir);
+            if(acsortdir.length()==0) {
+                acsortdir = null;
+            }
         }
         this.acsortdir = acsortdir;
-        this.acsortdirDirtyFlag = true;
+        this.acsortdirDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[自动排序方向]代码表：net.ibizsys.psrt.srv.codelist.CodeList25CodeListModel
+     */
     public String getACSortDir() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getACSortDir();
         }
         return this.acsortdir;
     }
 
+    /**
+     *  获取属性值[自动排序方向]是否修改
+     */
     public boolean isACSortDirDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isACSortDirDirty();
         }
         return this.acsortdirDirtyFlag;
     }
 
+    /**
+     *  重置属性值[自动排序方向]
+     */
     public void resetACSortDir() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetACSortDir();
             return;
         }
+
         this.acsortdirDirtyFlag = false;
         this.acsortdir = null;
     }
-
+    /**
+     *  设置属性值[自填排序字段]
+     *  @param acsortfield
+     */
     public void setACSortField(String acsortfield) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setACSortField(acsortfield);
             return;
         }
-        if (acsortfield != null && (acsortfield = StringHelper.trimRight(acsortfield)).length() == 0) {
-            acsortfield = null;
+        if(acsortfield!=null) {
+            acsortfield = StringHelper.trimRight(acsortfield);
+            if(acsortfield.length()==0) {
+                acsortfield = null;
+            }
         }
         this.acsortfield = acsortfield;
-        this.acsortfieldDirtyFlag = true;
+        this.acsortfieldDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[自填排序字段]
+     */
     public String getACSortField() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getACSortField();
         }
         return this.acsortfield;
     }
 
+    /**
+     *  获取属性值[自填排序字段]是否修改
+     */
     public boolean isACSortFieldDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isACSortFieldDirty();
         }
         return this.acsortfieldDirtyFlag;
     }
 
+    /**
+     *  重置属性值[自填排序字段]
+     */
     public void resetACSortField() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetACSortField();
             return;
         }
+
         this.acsortfieldDirtyFlag = false;
         this.acsortfield = null;
     }
-
+    /**
+     *  设置属性值[大图标]
+     *  @param bigicon
+     */
     public void setBigIcon(String bigicon) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setBigIcon(bigicon);
             return;
         }
-        if (bigicon != null && (bigicon = StringHelper.trimRight(bigicon)).length() == 0) {
-            bigicon = null;
+        if(bigicon!=null) {
+            bigicon = StringHelper.trimRight(bigicon);
+            if(bigicon.length()==0) {
+                bigicon = null;
+            }
         }
         this.bigicon = bigicon;
-        this.bigiconDirtyFlag = true;
+        this.bigiconDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[大图标]
+     */
     public String getBigIcon() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getBigIcon();
         }
         return this.bigicon;
     }
 
+    /**
+     *  获取属性值[大图标]是否修改
+     */
     public boolean isBigIconDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isBigIconDirty();
         }
         return this.bigiconDirtyFlag;
     }
 
+    /**
+     *  重置属性值[大图标]
+     */
     public void resetBigIcon() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetBigIcon();
             return;
         }
+
         this.bigiconDirtyFlag = false;
         this.bigicon = null;
     }
-
+    /**
+     *  设置属性值[配置辅助对象]
+     *  @param confighelper
+     */
     public void setConfigHelper(String confighelper) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setConfigHelper(confighelper);
             return;
         }
-        if (confighelper != null && (confighelper = StringHelper.trimRight(confighelper)).length() == 0) {
-            confighelper = null;
+        if(confighelper!=null) {
+            confighelper = StringHelper.trimRight(confighelper);
+            if(confighelper.length()==0) {
+                confighelper = null;
+            }
         }
         this.confighelper = confighelper;
-        this.confighelperDirtyFlag = true;
+        this.confighelperDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[配置辅助对象]
+     */
     public String getConfigHelper() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getConfigHelper();
         }
         return this.confighelper;
     }
 
+    /**
+     *  获取属性值[配置辅助对象]是否修改
+     */
     public boolean isConfigHelperDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isConfigHelperDirty();
         }
         return this.confighelperDirtyFlag;
     }
 
+    /**
+     *  重置属性值[配置辅助对象]
+     */
     public void resetConfigHelper() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetConfigHelper();
             return;
         }
+
         this.confighelperDirtyFlag = false;
         this.confighelper = null;
     }
-
+    /**
+     *  设置属性值[建立时间]
+     *  @param createdate
+     */
     public void setCreateDate(Timestamp createdate) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setCreateDate(createdate);
             return;
         }
         this.createdate = createdate;
-        this.createdateDirtyFlag = true;
+        this.createdateDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[建立时间]
+     */
     public Timestamp getCreateDate() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getCreateDate();
         }
         return this.createdate;
     }
 
+    /**
+     *  获取属性值[建立时间]是否修改
+     */
     public boolean isCreateDateDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isCreateDateDirty();
         }
         return this.createdateDirtyFlag;
     }
 
+    /**
+     *  重置属性值[建立时间]
+     */
     public void resetCreateDate() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetCreateDate();
             return;
         }
+
         this.createdateDirtyFlag = false;
         this.createdate = null;
     }
-
+    /**
+     *  设置属性值[建立人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     *  @param createman
+     */
     public void setCreateMan(String createman) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setCreateMan(createman);
             return;
         }
-        if (createman != null && (createman = StringHelper.trimRight(createman)).length() == 0) {
-            createman = null;
+        if(createman!=null) {
+            createman = StringHelper.trimRight(createman);
+            if(createman.length()==0) {
+                createman = null;
+            }
         }
         this.createman = createman;
-        this.createmanDirtyFlag = true;
+        this.createmanDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[建立人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     */
     public String getCreateMan() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getCreateMan();
         }
         return this.createman;
     }
 
+    /**
+     *  获取属性值[建立人]是否修改
+     */
     public boolean isCreateManDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isCreateManDirty();
         }
         return this.createmanDirtyFlag;
     }
 
+    /**
+     *  重置属性值[建立人]
+     */
     public void resetCreateMan() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetCreateMan();
             return;
         }
+
         this.createmanDirtyFlag = false;
         this.createman = null;
     }
-
+    /**
+     *  设置属性值[数据访问控制对象]
+     *  @param dataaccobject
+     */
     public void setDataAccObject(String dataaccobject) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDataAccObject(dataaccobject);
             return;
         }
-        if (dataaccobject != null && (dataaccobject = StringHelper.trimRight(dataaccobject)).length() == 0) {
-            dataaccobject = null;
+        if(dataaccobject!=null) {
+            dataaccobject = StringHelper.trimRight(dataaccobject);
+            if(dataaccobject.length()==0) {
+                dataaccobject = null;
+            }
         }
         this.dataaccobject = dataaccobject;
-        this.dataaccobjectDirtyFlag = true;
+        this.dataaccobjectDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[数据访问控制对象]
+     */
     public String getDataAccObject() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDataAccObject();
         }
         return this.dataaccobject;
     }
 
+    /**
+     *  获取属性值[数据访问控制对象]是否修改
+     */
     public boolean isDataAccObjectDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDataAccObjectDirty();
         }
         return this.dataaccobjectDirtyFlag;
     }
 
+    /**
+     *  重置属性值[数据访问控制对象]
+     */
     public void resetDataAccObject() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDataAccObject();
             return;
         }
+
         this.dataaccobjectDirtyFlag = false;
         this.dataaccobject = null;
     }
-
+    /**
+     *  设置属性值[数据变更日志类型]代码表：net.ibizsys.psrt.srv.codelist.DEDataChgLogTypeCodeListModel
+     *  @param datachglogmode
+     */
     public void setDataChgLogMode(Integer datachglogmode) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDataChgLogMode(datachglogmode);
             return;
         }
         this.datachglogmode = datachglogmode;
-        this.datachglogmodeDirtyFlag = true;
+        this.datachglogmodeDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[数据变更日志类型]代码表：net.ibizsys.psrt.srv.codelist.DEDataChgLogTypeCodeListModel
+     */
     public Integer getDataChgLogMode() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDataChgLogMode();
         }
         return this.datachglogmode;
     }
 
+    /**
+     *  获取属性值[数据变更日志类型]是否修改
+     */
     public boolean isDataChgLogModeDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDataChgLogModeDirty();
         }
         return this.datachglogmodeDirtyFlag;
     }
 
+    /**
+     *  重置属性值[数据变更日志类型]
+     */
     public void resetDataChgLogMode() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDataChgLogMode();
             return;
         }
+
         this.datachglogmodeDirtyFlag = false;
         this.datachglogmode = null;
     }
-
+    /**
+     *  设置属性值[数据访问对象接口]
+     *  @param datactrlint
+     */
     public void setDataCtrlInt(String datactrlint) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDataCtrlInt(datactrlint);
             return;
         }
-        if (datactrlint != null && (datactrlint = StringHelper.trimRight(datactrlint)).length() == 0) {
-            datactrlint = null;
+        if(datactrlint!=null) {
+            datactrlint = StringHelper.trimRight(datactrlint);
+            if(datactrlint.length()==0) {
+                datactrlint = null;
+            }
         }
         this.datactrlint = datactrlint;
-        this.datactrlintDirtyFlag = true;
+        this.datactrlintDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[数据访问对象接口]
+     */
     public String getDataCtrlInt() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDataCtrlInt();
         }
         return this.datactrlint;
     }
 
+    /**
+     *  获取属性值[数据访问对象接口]是否修改
+     */
     public boolean isDataCtrlIntDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDataCtrlIntDirty();
         }
         return this.datactrlintDirtyFlag;
     }
 
+    /**
+     *  重置属性值[数据访问对象接口]
+     */
     public void resetDataCtrlInt() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDataCtrlInt();
             return;
         }
+
         this.datactrlintDirtyFlag = false;
         this.datactrlint = null;
     }
-
+    /**
+     *  设置属性值[数据访问对象]
+     *  @param datactrlobject
+     */
     public void setDataCtrlObject(String datactrlobject) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDataCtrlObject(datactrlobject);
             return;
         }
-        if (datactrlobject != null && (datactrlobject = StringHelper.trimRight(datactrlobject)).length() == 0) {
-            datactrlobject = null;
+        if(datactrlobject!=null) {
+            datactrlobject = StringHelper.trimRight(datactrlobject);
+            if(datactrlobject.length()==0) {
+                datactrlobject = null;
+            }
         }
         this.datactrlobject = datactrlobject;
-        this.datactrlobjectDirtyFlag = true;
+        this.datactrlobjectDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[数据访问对象]
+     */
     public String getDataCtrlObject() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDataCtrlObject();
         }
         return this.datactrlobject;
     }
 
+    /**
+     *  获取属性值[数据访问对象]是否修改
+     */
     public boolean isDataCtrlObjectDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDataCtrlObjectDirty();
         }
         return this.datactrlobjectDirtyFlag;
     }
 
+    /**
+     *  重置属性值[数据访问对象]
+     */
     public void resetDataCtrlObject() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDataCtrlObject();
             return;
         }
+
         this.datactrlobjectDirtyFlag = false;
         this.datactrlobject = null;
     }
-
+    /**
+     *  设置属性值[数据通知辅助对象]
+     *  @param datanotifyhelper
+     */
     public void setDataNotifyHelper(String datanotifyhelper) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDataNotifyHelper(datanotifyhelper);
             return;
         }
-        if (datanotifyhelper != null && (datanotifyhelper = StringHelper.trimRight(datanotifyhelper)).length() == 0) {
-            datanotifyhelper = null;
+        if(datanotifyhelper!=null) {
+            datanotifyhelper = StringHelper.trimRight(datanotifyhelper);
+            if(datanotifyhelper.length()==0) {
+                datanotifyhelper = null;
+            }
         }
         this.datanotifyhelper = datanotifyhelper;
-        this.datanotifyhelperDirtyFlag = true;
+        this.datanotifyhelperDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[数据通知辅助对象]
+     */
     public String getDataNotifyHelper() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDataNotifyHelper();
         }
         return this.datanotifyhelper;
     }
 
+    /**
+     *  获取属性值[数据通知辅助对象]是否修改
+     */
     public boolean isDataNotifyHelperDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDataNotifyHelperDirty();
         }
         return this.datanotifyhelperDirtyFlag;
     }
 
+    /**
+     *  重置属性值[数据通知辅助对象]
+     */
     public void resetDataNotifyHelper() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDataNotifyHelper();
             return;
         }
+
         this.datanotifyhelperDirtyFlag = false;
         this.datanotifyhelper = null;
     }
-
+    /**
+     *  设置属性值[数据库存储]代码表：net.ibizsys.psrt.srv.codelist.CodeList105CodeListModel
+     *  @param dbstorage
+     */
     public void setDBStorage(String dbstorage) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDBStorage(dbstorage);
             return;
         }
-        if (dbstorage != null && (dbstorage = StringHelper.trimRight(dbstorage)).length() == 0) {
-            dbstorage = null;
+        if(dbstorage!=null) {
+            dbstorage = StringHelper.trimRight(dbstorage);
+            if(dbstorage.length()==0) {
+                dbstorage = null;
+            }
         }
         this.dbstorage = dbstorage;
-        this.dbstorageDirtyFlag = true;
+        this.dbstorageDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[数据库存储]代码表：net.ibizsys.psrt.srv.codelist.CodeList105CodeListModel
+     */
     public String getDBStorage() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDBStorage();
         }
         return this.dbstorage;
     }
 
+    /**
+     *  获取属性值[数据库存储]是否修改
+     */
     public boolean isDBStorageDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDBStorageDirty();
         }
         return this.dbstorageDirtyFlag;
     }
 
+    /**
+     *  重置属性值[数据库存储]
+     */
     public void resetDBStorage() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDBStorage();
             return;
         }
+
         this.dbstorageDirtyFlag = false;
         this.dbstorage = null;
     }
-
+    /**
+     *  设置属性值[数据结构版本]
+     *  @param dbversion
+     */
     public void setDBVersion(Integer dbversion) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDBVersion(dbversion);
             return;
         }
         this.dbversion = dbversion;
-        this.dbversionDirtyFlag = true;
+        this.dbversionDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[数据结构版本]
+     */
     public Integer getDBVersion() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDBVersion();
         }
         return this.dbversion;
     }
 
+    /**
+     *  获取属性值[数据结构版本]是否修改
+     */
     public boolean isDBVersionDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDBVersionDirty();
         }
         return this.dbversionDirtyFlag;
     }
 
+    /**
+     *  重置属性值[数据结构版本]
+     */
     public void resetDBVersion() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDBVersion();
             return;
         }
+
         this.dbversionDirtyFlag = false;
         this.dbversion = null;
     }
-
+    /**
+     *  设置属性值[实体归属]代码表：net.ibizsys.psrt.srv.codelist.CodeList19CodeListModel
+     *  @param degroup
+     */
     public void setDEGroup(String degroup) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDEGroup(degroup);
             return;
         }
-        if (degroup != null && (degroup = StringHelper.trimRight(degroup)).length() == 0) {
-            degroup = null;
+        if(degroup!=null) {
+            degroup = StringHelper.trimRight(degroup);
+            if(degroup.length()==0) {
+                degroup = null;
+            }
         }
         this.degroup = degroup;
-        this.degroupDirtyFlag = true;
+        this.degroupDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实体归属]代码表：net.ibizsys.psrt.srv.codelist.CodeList19CodeListModel
+     */
     public String getDEGroup() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDEGroup();
         }
         return this.degroup;
     }
 
+    /**
+     *  获取属性值[实体归属]是否修改
+     */
     public boolean isDEGroupDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDEGroupDirty();
         }
         return this.degroupDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实体归属]
+     */
     public void resetDEGroup() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDEGroup();
             return;
         }
+
         this.degroupDirtyFlag = false;
         this.degroup = null;
     }
-
+    /**
+     *  设置属性值[实体辅助对象]
+     *  @param dehelper
+     */
     public void setDEHelper(String dehelper) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDEHelper(dehelper);
             return;
         }
-        if (dehelper != null && (dehelper = StringHelper.trimRight(dehelper)).length() == 0) {
-            dehelper = null;
+        if(dehelper!=null) {
+            dehelper = StringHelper.trimRight(dehelper);
+            if(dehelper.length()==0) {
+                dehelper = null;
+            }
         }
         this.dehelper = dehelper;
-        this.dehelperDirtyFlag = true;
+        this.dehelperDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实体辅助对象]
+     */
     public String getDEHelper() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDEHelper();
         }
         return this.dehelper;
     }
 
+    /**
+     *  获取属性值[实体辅助对象]是否修改
+     */
     public boolean isDEHelperDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDEHelperDirty();
         }
         return this.dehelperDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实体辅助对象]
+     */
     public void resetDEHelper() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDEHelper();
             return;
         }
+
         this.dehelperDirtyFlag = false;
         this.dehelper = null;
     }
-
+    /**
+     *  设置属性值[实体标识]
+     *  @param deid
+     */
     public void setDEId(String deid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDEId(deid);
             return;
         }
-        if (deid != null && (deid = StringHelper.trimRight(deid)).length() == 0) {
-            deid = null;
+        if(deid!=null) {
+            deid = StringHelper.trimRight(deid);
+            if(deid.length()==0) {
+                deid = null;
+            }
         }
         this.deid = deid;
-        this.deidDirtyFlag = true;
+        this.deidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实体标识]
+     */
     public String getDEId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDEId();
         }
         return this.deid;
     }
 
+    /**
+     *  获取属性值[实体标识]是否修改
+     */
     public boolean isDEIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDEIdDirty();
         }
         return this.deidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实体标识]
+     */
     public void resetDEId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDEId();
             return;
         }
+
         this.deidDirtyFlag = false;
         this.deid = null;
     }
-
+    /**
+     *  设置属性值[逻辑名称]
+     *  @param delogicname
+     */
     public void setDELogicName(String delogicname) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDELogicName(delogicname);
             return;
         }
-        if (delogicname != null && (delogicname = StringHelper.trimRight(delogicname)).length() == 0) {
-            delogicname = null;
+        if(delogicname!=null) {
+            delogicname = StringHelper.trimRight(delogicname);
+            if(delogicname.length()==0) {
+                delogicname = null;
+            }
         }
         this.delogicname = delogicname;
-        this.delogicnameDirtyFlag = true;
+        this.delogicnameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[逻辑名称]
+     */
     public String getDELogicName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDELogicName();
         }
         return this.delogicname;
     }
 
+    /**
+     *  获取属性值[逻辑名称]是否修改
+     */
     public boolean isDELogicNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDELogicNameDirty();
         }
         return this.delogicnameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[逻辑名称]
+     */
     public void resetDELogicName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDELogicName();
             return;
         }
+
         this.delogicnameDirtyFlag = false;
         this.delogicname = null;
     }
-
+    /**
+     *  设置属性值[实体名称]
+     *  @param dename
+     */
     public void setDEName(String dename) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDEName(dename);
             return;
         }
-        if (dename != null && (dename = StringHelper.trimRight(dename)).length() == 0) {
-            dename = null;
+        if(dename!=null) {
+            dename = StringHelper.trimRight(dename);
+            if(dename.length()==0) {
+                dename = null;
+            }
         }
         this.dename = dename;
-        this.denameDirtyFlag = true;
+        this.denameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实体名称]
+     */
     public String getDEName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDEName();
         }
         return this.dename;
     }
 
+    /**
+     *  获取属性值[实体名称]是否修改
+     */
     public boolean isDENameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDENameDirty();
         }
         return this.denameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实体名称]
+     */
     public void resetDEName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDEName();
             return;
         }
+
         this.denameDirtyFlag = false;
         this.dename = null;
     }
-
+    /**
+     *  设置属性值[数据对象类]
+     *  @param deobject
+     */
     public void setDEObject(String deobject) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDEObject(deobject);
             return;
         }
-        if (deobject != null && (deobject = StringHelper.trimRight(deobject)).length() == 0) {
-            deobject = null;
+        if(deobject!=null) {
+            deobject = StringHelper.trimRight(deobject);
+            if(deobject.length()==0) {
+                deobject = null;
+            }
         }
         this.deobject = deobject;
-        this.deobjectDirtyFlag = true;
+        this.deobjectDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[数据对象类]
+     */
     public String getDEObject() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDEObject();
         }
         return this.deobject;
     }
 
+    /**
+     *  获取属性值[数据对象类]是否修改
+     */
     public boolean isDEObjectDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDEObjectDirty();
         }
         return this.deobjectDirtyFlag;
     }
 
+    /**
+     *  重置属性值[数据对象类]
+     */
     public void resetDEObject() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDEObject();
             return;
         }
+
         this.deobjectDirtyFlag = false;
         this.deobject = null;
     }
-
+    /**
+     *  设置属性值[实体次序]
+     *  @param deorder
+     */
     public void setDEOrder(Integer deorder) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDEOrder(deorder);
             return;
         }
         this.deorder = deorder;
-        this.deorderDirtyFlag = true;
+        this.deorderDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实体次序]
+     */
     public Integer getDEOrder() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDEOrder();
         }
         return this.deorder;
     }
 
+    /**
+     *  获取属性值[实体次序]是否修改
+     */
     public boolean isDEOrderDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDEOrderDirty();
         }
         return this.deorderDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实体次序]
+     */
     public void resetDEOrder() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDEOrder();
             return;
         }
+
         this.deorderDirtyFlag = false;
         this.deorder = null;
     }
-
+    /**
+     *  设置属性值[实体参数]
+     *  @param deparam
+     */
     public void setDEParam(String deparam) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDEParam(deparam);
             return;
         }
-        if (deparam != null && (deparam = StringHelper.trimRight(deparam)).length() == 0) {
-            deparam = null;
+        if(deparam!=null) {
+            deparam = StringHelper.trimRight(deparam);
+            if(deparam.length()==0) {
+                deparam = null;
+            }
         }
         this.deparam = deparam;
-        this.deparamDirtyFlag = true;
+        this.deparamDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实体参数]
+     */
     public String getDEParam() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDEParam();
         }
         return this.deparam;
     }
 
+    /**
+     *  获取属性值[实体参数]是否修改
+     */
     public boolean isDEParamDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDEParamDirty();
         }
         return this.deparamDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实体参数]
+     */
     public void resetDEParam() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDEParam();
             return;
         }
+
         this.deparamDirtyFlag = false;
         this.deparam = null;
     }
-
+    /**
+     *  设置属性值[1:1关系实体]
+     *  @param der11deid
+     */
     public void setDER11DEId(String der11deid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDER11DEId(der11deid);
             return;
         }
-        if (der11deid != null && (der11deid = StringHelper.trimRight(der11deid)).length() == 0) {
-            der11deid = null;
+        if(der11deid!=null) {
+            der11deid = StringHelper.trimRight(der11deid);
+            if(der11deid.length()==0) {
+                der11deid = null;
+            }
         }
         this.der11deid = der11deid;
-        this.der11deidDirtyFlag = true;
+        this.der11deidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[1:1关系实体]
+     */
     public String getDER11DEId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDER11DEId();
         }
         return this.der11deid;
     }
 
+    /**
+     *  获取属性值[1:1关系实体]是否修改
+     */
     public boolean isDER11DEIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDER11DEIdDirty();
         }
         return this.der11deidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[1:1关系实体]
+     */
     public void resetDER11DEId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDER11DEId();
             return;
         }
+
         this.der11deidDirtyFlag = false;
         this.der11deid = null;
     }
-
+    /**
+     *  设置属性值[DER11DENAME]
+     *  @param der11dename
+     */
     public void setDER11DEName(String der11dename) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDER11DEName(der11dename);
             return;
         }
-        if (der11dename != null && (der11dename = StringHelper.trimRight(der11dename)).length() == 0) {
-            der11dename = null;
+        if(der11dename!=null) {
+            der11dename = StringHelper.trimRight(der11dename);
+            if(der11dename.length()==0) {
+                der11dename = null;
+            }
         }
         this.der11dename = der11dename;
-        this.der11denameDirtyFlag = true;
+        this.der11denameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[DER11DENAME]
+     */
     public String getDER11DEName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDER11DEName();
         }
         return this.der11dename;
     }
 
+    /**
+     *  获取属性值[DER11DENAME]是否修改
+     */
     public boolean isDER11DENameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDER11DENameDirty();
         }
         return this.der11denameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[DER11DENAME]
+     */
     public void resetDER11DEName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDER11DEName();
             return;
         }
+
         this.der11denameDirtyFlag = false;
         this.der11dename = null;
     }
-
+    /**
+     *  设置属性值[实体类型]
+     *  @param detype
+     */
     public void setDEType(Integer detype) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDEType(detype);
             return;
         }
         this.detype = detype;
-        this.detypeDirtyFlag = true;
+        this.detypeDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实体类型]
+     */
     public Integer getDEType() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDEType();
         }
         return this.detype;
     }
 
+    /**
+     *  获取属性值[实体类型]是否修改
+     */
     public boolean isDETypeDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDETypeDirty();
         }
         return this.detypeDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实体类型]
+     */
     public void resetDEType() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDEType();
             return;
         }
+
         this.detypeDirtyFlag = false;
         this.detype = null;
     }
-
+    /**
+     *  设置属性值[实体用户参数]
+     *  @param deuserparam
+     */
     public void setDEUserParam(String deuserparam) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDEUserParam(deuserparam);
             return;
         }
-        if (deuserparam != null && (deuserparam = StringHelper.trimRight(deuserparam)).length() == 0) {
-            deuserparam = null;
+        if(deuserparam!=null) {
+            deuserparam = StringHelper.trimRight(deuserparam);
+            if(deuserparam.length()==0) {
+                deuserparam = null;
+            }
         }
         this.deuserparam = deuserparam;
-        this.deuserparamDirtyFlag = true;
+        this.deuserparamDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实体用户参数]
+     */
     public String getDEUserParam() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDEUserParam();
         }
         return this.deuserparam;
     }
 
+    /**
+     *  获取属性值[实体用户参数]是否修改
+     */
     public boolean isDEUserParamDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDEUserParamDirty();
         }
         return this.deuserparamDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实体用户参数]
+     */
     public void resetDEUserParam() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDEUserParam();
             return;
         }
+
         this.deuserparamDirtyFlag = false;
         this.deuserparam = null;
     }
-
+    /**
+     *  设置属性值[版本]
+     *  @param deversion
+     */
     public void setDEVersion(Integer deversion) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDEVersion(deversion);
             return;
         }
         this.deversion = deversion;
-        this.deversionDirtyFlag = true;
+        this.deversionDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[版本]
+     */
     public Integer getDEVersion() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDEVersion();
         }
         return this.deversion;
     }
 
+    /**
+     *  获取属性值[版本]是否修改
+     */
     public boolean isDEVersionDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDEVersionDirty();
         }
         return this.deversionDirtyFlag;
     }
 
+    /**
+     *  重置属性值[版本]
+     */
     public void resetDEVersion() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDEVersion();
             return;
         }
+
         this.deversionDirtyFlag = false;
         this.deversion = null;
     }
-
+    /**
+     *  设置属性值[表格行样式辅助对象]
+     *  @param dgrowclasshelper
+     */
     public void setDGRowClassHelper(String dgrowclasshelper) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDGRowClassHelper(dgrowclasshelper);
             return;
         }
-        if (dgrowclasshelper != null && (dgrowclasshelper = StringHelper.trimRight(dgrowclasshelper)).length() == 0) {
-            dgrowclasshelper = null;
+        if(dgrowclasshelper!=null) {
+            dgrowclasshelper = StringHelper.trimRight(dgrowclasshelper);
+            if(dgrowclasshelper.length()==0) {
+                dgrowclasshelper = null;
+            }
         }
         this.dgrowclasshelper = dgrowclasshelper;
-        this.dgrowclasshelperDirtyFlag = true;
+        this.dgrowclasshelperDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[表格行样式辅助对象]
+     */
     public String getDGRowClassHelper() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDGRowClassHelper();
         }
         return this.dgrowclasshelper;
     }
 
+    /**
+     *  获取属性值[表格行样式辅助对象]是否修改
+     */
     public boolean isDGRowClassHelperDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDGRowClassHelperDirty();
         }
         return this.dgrowclasshelperDirtyFlag;
     }
 
+    /**
+     *  重置属性值[表格行样式辅助对象]
+     */
     public void resetDGRowClassHelper() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDGRowClassHelper();
             return;
         }
+
         this.dgrowclasshelperDirtyFlag = false;
         this.dgrowclasshelper = null;
     }
-
+    /**
+     *  设置属性值[表格信息区高度]
+     *  @param dgsummaryheight
+     */
     public void setDGSUMMARYHeight(Integer dgsummaryheight) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDGSUMMARYHeight(dgsummaryheight);
             return;
         }
         this.dgsummaryheight = dgsummaryheight;
-        this.dgsummaryheightDirtyFlag = true;
+        this.dgsummaryheightDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[表格信息区高度]
+     */
     public Integer getDGSUMMARYHeight() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDGSUMMARYHeight();
         }
         return this.dgsummaryheight;
     }
 
+    /**
+     *  获取属性值[表格信息区高度]是否修改
+     */
     public boolean isDGSUMMARYHeightDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDGSUMMARYHeightDirty();
         }
         return this.dgsummaryheightDirtyFlag;
     }
 
+    /**
+     *  重置属性值[表格信息区高度]
+     */
     public void resetDGSUMMARYHeight() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDGSUMMARYHeight();
             return;
         }
+
         this.dgsummaryheightDirtyFlag = false;
         this.dgsummaryheight = null;
     }
-
+    /**
+     *  设置属性值[数据锁辅助对象]
+     *  @param dlkhelper
+     */
     public void setDLKHelper(String dlkhelper) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDLKHelper(dlkhelper);
             return;
         }
-        if (dlkhelper != null && (dlkhelper = StringHelper.trimRight(dlkhelper)).length() == 0) {
-            dlkhelper = null;
+        if(dlkhelper!=null) {
+            dlkhelper = StringHelper.trimRight(dlkhelper);
+            if(dlkhelper.length()==0) {
+                dlkhelper = null;
+            }
         }
         this.dlkhelper = dlkhelper;
-        this.dlkhelperDirtyFlag = true;
+        this.dlkhelperDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[数据锁辅助对象]
+     */
     public String getDLKHelper() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDLKHelper();
         }
         return this.dlkhelper;
     }
 
+    /**
+     *  获取属性值[数据锁辅助对象]是否修改
+     */
     public boolean isDLKHelperDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDLKHelperDirty();
         }
         return this.dlkhelperDirtyFlag;
     }
 
+    /**
+     *  重置属性值[数据锁辅助对象]
+     */
     public void resetDLKHelper() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDLKHelper();
             return;
         }
+
         this.dlkhelperDirtyFlag = false;
         this.dlkhelper = null;
     }
-
+    /**
+     *  设置属性值[动态表间隔时间]
+     *  @param dynamicinterval
+     */
     public void setDynamicInterval(Integer dynamicinterval) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDynamicInterval(dynamicinterval);
             return;
         }
         this.dynamicinterval = dynamicinterval;
-        this.dynamicintervalDirtyFlag = true;
+        this.dynamicintervalDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[动态表间隔时间]
+     */
     public Integer getDynamicInterval() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDynamicInterval();
         }
         return this.dynamicinterval;
     }
 
+    /**
+     *  获取属性值[动态表间隔时间]是否修改
+     */
     public boolean isDynamicIntervalDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDynamicIntervalDirty();
         }
         return this.dynamicintervalDirtyFlag;
     }
 
+    /**
+     *  重置属性值[动态表间隔时间]
+     */
     public void resetDynamicInterval() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDynamicInterval();
             return;
         }
+
         this.dynamicintervalDirtyFlag = false;
         this.dynamicinterval = null;
     }
-
+    /**
+     *  设置属性值[启用列权限控制]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param enablecolpriv
+     */
     public void setEnableColPriv(Integer enablecolpriv) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setEnableColPriv(enablecolpriv);
             return;
         }
         this.enablecolpriv = enablecolpriv;
-        this.enablecolprivDirtyFlag = true;
+        this.enablecolprivDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[启用列权限控制]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getEnableColPriv() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getEnableColPriv();
         }
         return this.enablecolpriv;
     }
 
+    /**
+     *  获取属性值[启用列权限控制]是否修改
+     */
     public boolean isEnableColPrivDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isEnableColPrivDirty();
         }
         return this.enablecolprivDirtyFlag;
     }
 
+    /**
+     *  重置属性值[启用列权限控制]
+     */
     public void resetEnableColPriv() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetEnableColPriv();
             return;
         }
+
         this.enablecolprivDirtyFlag = false;
         this.enablecolpriv = null;
     }
-
+    /**
+     *  设置属性值[启用全局模型缓存]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param enableglobalmodel
+     */
     public void setEnableGlobalModel(Integer enableglobalmodel) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setEnableGlobalModel(enableglobalmodel);
             return;
         }
         this.enableglobalmodel = enableglobalmodel;
-        this.enableglobalmodelDirtyFlag = true;
+        this.enableglobalmodelDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[启用全局模型缓存]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getEnableGlobalModel() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getEnableGlobalModel();
         }
         return this.enableglobalmodel;
     }
 
+    /**
+     *  获取属性值[启用全局模型缓存]是否修改
+     */
     public boolean isEnableGlobalModelDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isEnableGlobalModelDirty();
         }
         return this.enableglobalmodelDirtyFlag;
     }
 
+    /**
+     *  重置属性值[启用全局模型缓存]
+     */
     public void resetEnableGlobalModel() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetEnableGlobalModel();
             return;
         }
+
         this.enableglobalmodelDirtyFlag = false;
         this.enableglobalmodel = null;
     }
-
+    /**
+     *  设置属性值[现存模型]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param exitingmodel
+     */
     public void setExitingModel(Integer exitingmodel) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setExitingModel(exitingmodel);
             return;
         }
         this.exitingmodel = exitingmodel;
-        this.exitingmodelDirtyFlag = true;
+        this.exitingmodelDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[现存模型]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getExitingModel() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getExitingModel();
         }
         return this.exitingmodel;
     }
 
+    /**
+     *  获取属性值[现存模型]是否修改
+     */
     public boolean isExitingModelDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isExitingModelDirty();
         }
         return this.exitingmodelDirtyFlag;
     }
 
+    /**
+     *  重置属性值[现存模型]
+     */
     public void resetExitingModel() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetExitingModel();
             return;
         }
+
         this.exitingmodelDirtyFlag = false;
         this.exitingmodel = null;
     }
-
+    /**
+     *  设置属性值[导出模型包含空值]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param exportincempty
+     */
     public void setExportIncEmpty(Integer exportincempty) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setExportIncEmpty(exportincempty);
             return;
         }
         this.exportincempty = exportincempty;
-        this.exportincemptyDirtyFlag = true;
+        this.exportincemptyDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[导出模型包含空值]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getExportIncEmpty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getExportIncEmpty();
         }
         return this.exportincempty;
     }
 
+    /**
+     *  获取属性值[导出模型包含空值]是否修改
+     */
     public boolean isExportIncEmptyDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isExportIncEmptyDirty();
         }
         return this.exportincemptyDirtyFlag;
     }
 
+    /**
+     *  重置属性值[导出模型包含空值]
+     */
     public void resetExportIncEmpty() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetExportIncEmpty();
             return;
         }
+
         this.exportincemptyDirtyFlag = false;
         this.exportincempty = null;
     }
-
+    /**
+     *  设置属性值[用户表]
+     *  @param extablename
+     */
     public void setExTableName(String extablename) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setExTableName(extablename);
             return;
         }
-        if (extablename != null && (extablename = StringHelper.trimRight(extablename)).length() == 0) {
-            extablename = null;
+        if(extablename!=null) {
+            extablename = StringHelper.trimRight(extablename);
+            if(extablename.length()==0) {
+                extablename = null;
+            }
         }
         this.extablename = extablename;
-        this.extablenameDirtyFlag = true;
+        this.extablenameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[用户表]
+     */
     public String getExTableName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getExTableName();
         }
         return this.extablename;
     }
 
+    /**
+     *  获取属性值[用户表]是否修改
+     */
     public boolean isExTableNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isExTableNameDirty();
         }
         return this.extablenameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[用户表]
+     */
     public void resetExTableName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetExTableName();
             return;
         }
+
         this.extablenameDirtyFlag = false;
         this.extablename = null;
     }
-
+    /**
+     *  设置属性值[全局模型对象]
+     *  @param globalmodelobj
+     */
     public void setGlobalModelObj(String globalmodelobj) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setGlobalModelObj(globalmodelobj);
             return;
         }
-        if (globalmodelobj != null && (globalmodelobj = StringHelper.trimRight(globalmodelobj)).length() == 0) {
-            globalmodelobj = null;
+        if(globalmodelobj!=null) {
+            globalmodelobj = StringHelper.trimRight(globalmodelobj);
+            if(globalmodelobj.length()==0) {
+                globalmodelobj = null;
+            }
         }
         this.globalmodelobj = globalmodelobj;
-        this.globalmodelobjDirtyFlag = true;
+        this.globalmodelobjDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[全局模型对象]
+     */
     public String getGlobalModelObj() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getGlobalModelObj();
         }
         return this.globalmodelobj;
     }
 
+    /**
+     *  获取属性值[全局模型对象]是否修改
+     */
     public boolean isGlobalModelObjDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isGlobalModelObjDirty();
         }
         return this.globalmodelobjDirtyFlag;
     }
 
+    /**
+     *  重置属性值[全局模型对象]
+     */
     public void resetGlobalModelObj() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetGlobalModelObj();
             return;
         }
+
         this.globalmodelobjDirtyFlag = false;
         this.globalmodelobj = null;
     }
-
+    /**
+     *  设置属性值[索引模式]代码表：net.ibizsys.psrt.srv.codelist.DEIndexModeCodeListModel
+     *  @param indexmode
+     */
     public void setIndexMode(Integer indexmode) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setIndexMode(indexmode);
             return;
         }
         this.indexmode = indexmode;
-        this.indexmodeDirtyFlag = true;
+        this.indexmodeDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[索引模式]代码表：net.ibizsys.psrt.srv.codelist.DEIndexModeCodeListModel
+     */
     public Integer getIndexMode() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getIndexMode();
         }
         return this.indexmode;
     }
 
+    /**
+     *  获取属性值[索引模式]是否修改
+     */
     public boolean isIndexModeDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isIndexModeDirty();
         }
         return this.indexmodeDirtyFlag;
     }
 
+    /**
+     *  重置属性值[索引模式]
+     */
     public void resetIndexMode() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetIndexMode();
             return;
         }
+
         this.indexmodeDirtyFlag = false;
         this.indexmode = null;
     }
-
+    /**
+     *  设置属性值[信息属性参数]
+     *  @param infofield
+     */
     public void setInfoField(String infofield) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setInfoField(infofield);
             return;
         }
-        if (infofield != null && (infofield = StringHelper.trimRight(infofield)).length() == 0) {
-            infofield = null;
+        if(infofield!=null) {
+            infofield = StringHelper.trimRight(infofield);
+            if(infofield.length()==0) {
+                infofield = null;
+            }
         }
         this.infofield = infofield;
-        this.infofieldDirtyFlag = true;
+        this.infofieldDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[信息属性参数]
+     */
     public String getInfoField() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getInfoField();
         }
         return this.infofield;
     }
 
+    /**
+     *  获取属性值[信息属性参数]是否修改
+     */
     public boolean isInfoFieldDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isInfoFieldDirty();
         }
         return this.infofieldDirtyFlag;
     }
 
+    /**
+     *  重置属性值[信息属性参数]
+     */
     public void resetInfoField() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetInfoField();
             return;
         }
+
         this.infofieldDirtyFlag = false;
         this.infofield = null;
     }
-
+    /**
+     *  设置属性值[信息格式化]
+     *  @param infoformat
+     */
     public void setInfoFormat(String infoformat) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setInfoFormat(infoformat);
             return;
         }
-        if (infoformat != null && (infoformat = StringHelper.trimRight(infoformat)).length() == 0) {
-            infoformat = null;
+        if(infoformat!=null) {
+            infoformat = StringHelper.trimRight(infoformat);
+            if(infoformat.length()==0) {
+                infoformat = null;
+            }
         }
         this.infoformat = infoformat;
-        this.infoformatDirtyFlag = true;
+        this.infoformatDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[信息格式化]
+     */
     public String getInfoFormat() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getInfoFormat();
         }
         return this.infoformat;
     }
 
+    /**
+     *  获取属性值[信息格式化]是否修改
+     */
     public boolean isInfoFormatDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isInfoFormatDirty();
         }
         return this.infoformatDirtyFlag;
     }
 
+    /**
+     *  重置属性值[信息格式化]
+     */
     public void resetInfoFormat() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetInfoFormat();
             return;
         }
+
         this.infoformatDirtyFlag = false;
         this.infoformat = null;
     }
-
+    /**
+     *  设置属性值[继承模式]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param inheritmode
+     */
     public void setInheritMode(Integer inheritmode) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setInheritMode(inheritmode);
             return;
         }
         this.inheritmode = inheritmode;
-        this.inheritmodeDirtyFlag = true;
+        this.inheritmodeDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[继承模式]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getInheritMode() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getInheritMode();
         }
         return this.inheritmode;
     }
 
+    /**
+     *  获取属性值[继承模式]是否修改
+     */
     public boolean isInheritModeDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isInheritModeDirty();
         }
         return this.inheritmodeDirtyFlag;
     }
 
+    /**
+     *  重置属性值[继承模式]
+     */
     public void resetInheritMode() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetInheritMode();
             return;
         }
+
         this.inheritmodeDirtyFlag = false;
         this.inheritmode = null;
     }
-
+    /**
+     *  设置属性值[启用表格行编辑]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param isdgrowedit
+     */
     public void setIsDGRowEdit(Integer isdgrowedit) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setIsDGRowEdit(isdgrowedit);
             return;
         }
         this.isdgrowedit = isdgrowedit;
-        this.isdgroweditDirtyFlag = true;
+        this.isdgroweditDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[启用表格行编辑]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getIsDGRowEdit() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getIsDGRowEdit();
         }
         return this.isdgrowedit;
     }
 
+    /**
+     *  获取属性值[启用表格行编辑]是否修改
+     */
     public boolean isIsDGRowEditDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isIsDGRowEditDirty();
         }
         return this.isdgroweditDirtyFlag;
     }
 
+    /**
+     *  重置属性值[启用表格行编辑]
+     */
     public void resetIsDGRowEdit() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetIsDGRowEdit();
             return;
         }
+
         this.isdgroweditDirtyFlag = false;
         this.isdgrowedit = null;
     }
-
+    /**
+     *  设置属性值[启用审计]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param isenableaudit
+     */
     public void setIsEnableAudit(Integer isenableaudit) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setIsEnableAudit(isenableaudit);
             return;
         }
         this.isenableaudit = isenableaudit;
-        this.isenableauditDirtyFlag = true;
+        this.isenableauditDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[启用审计]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getIsEnableAudit() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getIsEnableAudit();
         }
         return this.isenableaudit;
     }
 
+    /**
+     *  获取属性值[启用审计]是否修改
+     */
     public boolean isIsEnableAuditDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isIsEnableAuditDirty();
         }
         return this.isenableauditDirtyFlag;
     }
 
+    /**
+     *  重置属性值[启用审计]
+     */
     public void resetIsEnableAudit() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetIsEnableAudit();
             return;
         }
+
         this.isenableauditDirtyFlag = false;
         this.isenableaudit = null;
     }
-
+    /**
+     *  设置属性值[启用数据权限]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param isenabledp
+     */
     public void setIsEnableDP(Integer isenabledp) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setIsEnableDP(isenabledp);
             return;
         }
         this.isenabledp = isenabledp;
-        this.isenabledpDirtyFlag = true;
+        this.isenabledpDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[启用数据权限]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getIsEnableDP() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getIsEnableDP();
         }
         return this.isenabledp;
     }
 
+    /**
+     *  获取属性值[启用数据权限]是否修改
+     */
     public boolean isIsEnableDPDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isIsEnableDPDirty();
         }
         return this.isenabledpDirtyFlag;
     }
 
+    /**
+     *  重置属性值[启用数据权限]
+     */
     public void resetIsEnableDP() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetIsEnableDP();
             return;
         }
+
         this.isenabledpDirtyFlag = false;
         this.isenabledp = null;
     }
-
+    /**
+     *  设置属性值[索引实体]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param isindexde
+     */
     public void setIsIndexDE(Integer isindexde) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setIsIndexDE(isindexde);
             return;
         }
         this.isindexde = isindexde;
-        this.isindexdeDirtyFlag = true;
+        this.isindexdeDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[索引实体]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getIsIndexDE() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getIsIndexDE();
         }
         return this.isindexde;
     }
 
+    /**
+     *  获取属性值[索引实体]是否修改
+     */
     public boolean isIsIndexDEDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isIsIndexDEDirty();
         }
         return this.isindexdeDirtyFlag;
     }
 
+    /**
+     *  重置属性值[索引实体]
+     */
     public void resetIsIndexDE() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetIsIndexDE();
             return;
         }
+
         this.isindexdeDirtyFlag = false;
         this.isindexde = null;
     }
-
+    /**
+     *  设置属性值[启用逻辑有效]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param islogicvalid
+     */
     public void setIsLogicValid(Integer islogicvalid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setIsLogicValid(islogicvalid);
             return;
         }
         this.islogicvalid = islogicvalid;
-        this.islogicvalidDirtyFlag = true;
+        this.islogicvalidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[启用逻辑有效]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getIsLogicValid() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getIsLogicValid();
         }
         return this.islogicvalid;
     }
 
+    /**
+     *  获取属性值[启用逻辑有效]是否修改
+     */
     public boolean isIsLogicValidDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isIsLogicValidDirty();
         }
         return this.islogicvalidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[启用逻辑有效]
+     */
     public void resetIsLogicValid() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetIsLogicValid();
             return;
         }
+
         this.islogicvalidDirtyFlag = false;
         this.islogicvalid = null;
     }
-
+    /**
+     *  设置属性值[多选打印]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param ismultiprint
+     */
     public void setISMULTIPRINT(Integer ismultiprint) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setISMULTIPRINT(ismultiprint);
             return;
         }
         this.ismultiprint = ismultiprint;
-        this.ismultiprintDirtyFlag = true;
+        this.ismultiprintDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[多选打印]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getISMULTIPRINT() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getISMULTIPRINT();
         }
         return this.ismultiprint;
     }
 
+    /**
+     *  获取属性值[多选打印]是否修改
+     */
     public boolean isISMULTIPRINTDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isISMULTIPRINTDirty();
         }
         return this.ismultiprintDirtyFlag;
     }
 
+    /**
+     *  重置属性值[多选打印]
+     */
     public void resetISMULTIPRINT() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetISMULTIPRINT();
             return;
         }
+
         this.ismultiprintDirtyFlag = false;
         this.ismultiprint = null;
     }
-
+    /**
+     *  设置属性值[数据附件]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param issupportfa
+     */
     public void setISSupportFA(Integer issupportfa) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setISSupportFA(issupportfa);
             return;
         }
         this.issupportfa = issupportfa;
-        this.issupportfaDirtyFlag = true;
+        this.issupportfaDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[数据附件]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getISSupportFA() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getISSupportFA();
         }
         return this.issupportfa;
     }
 
+    /**
+     *  获取属性值[数据附件]是否修改
+     */
     public boolean isISSupportFADirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isISSupportFADirty();
         }
         return this.issupportfaDirtyFlag;
     }
 
+    /**
+     *  重置属性值[数据附件]
+     */
     public void resetISSupportFA() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetISSupportFA();
             return;
         }
+
         this.issupportfaDirtyFlag = false;
         this.issupportfa = null;
     }
-
+    /**
+     *  设置属性值[系统实体]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param issystem
+     */
     public void setIsSystem(Integer issystem) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setIsSystem(issystem);
             return;
         }
         this.issystem = issystem;
-        this.issystemDirtyFlag = true;
+        this.issystemDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[系统实体]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getIsSystem() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getIsSystem();
         }
         return this.issystem;
     }
 
+    /**
+     *  获取属性值[系统实体]是否修改
+     */
     public boolean isIsSystemDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isIsSystemDirty();
         }
         return this.issystemDirtyFlag;
     }
 
+    /**
+     *  重置属性值[系统实体]
+     */
     public void resetIsSystem() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetIsSystem();
             return;
         }
+
         this.issystemDirtyFlag = false;
         this.issystem = null;
     }
-
+    /**
+     *  设置属性值[主键参数]
+     *  @param keyparams
+     */
     public void setKeyParams(String keyparams) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setKeyParams(keyparams);
             return;
         }
-        if (keyparams != null && (keyparams = StringHelper.trimRight(keyparams)).length() == 0) {
-            keyparams = null;
+        if(keyparams!=null) {
+            keyparams = StringHelper.trimRight(keyparams);
+            if(keyparams.length()==0) {
+                keyparams = null;
+            }
         }
         this.keyparams = keyparams;
-        this.keyparamsDirtyFlag = true;
+        this.keyparamsDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[主键参数]
+     */
     public String getKeyParams() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getKeyParams();
         }
         return this.keyparams;
     }
 
+    /**
+     *  获取属性值[主键参数]是否修改
+     */
     public boolean isKeyParamsDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isKeyParamsDirty();
         }
         return this.keyparamsDirtyFlag;
     }
 
+    /**
+     *  重置属性值[主键参数]
+     */
     public void resetKeyParams() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetKeyParams();
             return;
         }
+
         this.keyparamsDirtyFlag = false;
         this.keyparams = null;
     }
-
+    /**
+     *  设置属性值[授权代码]
+     *  @param licensecode
+     */
     public void setLicenseCode(String licensecode) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setLicenseCode(licensecode);
             return;
         }
-        if (licensecode != null && (licensecode = StringHelper.trimRight(licensecode)).length() == 0) {
-            licensecode = null;
+        if(licensecode!=null) {
+            licensecode = StringHelper.trimRight(licensecode);
+            if(licensecode.length()==0) {
+                licensecode = null;
+            }
         }
         this.licensecode = licensecode;
-        this.licensecodeDirtyFlag = true;
+        this.licensecodeDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[授权代码]
+     */
     public String getLicenseCode() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getLicenseCode();
         }
         return this.licensecode;
     }
 
+    /**
+     *  获取属性值[授权代码]是否修改
+     */
     public boolean isLicenseCodeDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isLicenseCodeDirty();
         }
         return this.licensecodeDirtyFlag;
     }
 
+    /**
+     *  重置属性值[授权代码]
+     */
     public void resetLicenseCode() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetLicenseCode();
             return;
         }
+
         this.licensecodeDirtyFlag = false;
         this.licensecode = null;
     }
-
+    /**
+     *  设置属性值[记录审计明细]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param logauditdetail
+     */
     public void setLogAuditDetail(Integer logauditdetail) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setLogAuditDetail(logauditdetail);
             return;
         }
         this.logauditdetail = logauditdetail;
-        this.logauditdetailDirtyFlag = true;
+        this.logauditdetailDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[记录审计明细]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getLogAuditDetail() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getLogAuditDetail();
         }
         return this.logauditdetail;
     }
 
+    /**
+     *  获取属性值[记录审计明细]是否修改
+     */
     public boolean isLogAuditDetailDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isLogAuditDetailDirty();
         }
         return this.logauditdetailDirtyFlag;
     }
 
+    /**
+     *  重置属性值[记录审计明细]
+     */
     public void resetLogAuditDetail() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetLogAuditDetail();
             return;
         }
+
         this.logauditdetailDirtyFlag = false;
         this.logauditdetail = null;
     }
-
+    /**
+     *  设置属性值[备注]
+     *  @param memo
+     */
     public void setMemo(String memo) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setMemo(memo);
             return;
         }
-        if (memo != null && (memo = StringHelper.trimRight(memo)).length() == 0) {
-            memo = null;
+        if(memo!=null) {
+            memo = StringHelper.trimRight(memo);
+            if(memo.length()==0) {
+                memo = null;
+            }
         }
         this.memo = memo;
-        this.memoDirtyFlag = true;
+        this.memoDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[备注]
+     */
     public String getMemo() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getMemo();
         }
         return this.memo;
     }
 
+    /**
+     *  获取属性值[备注]是否修改
+     */
     public boolean isMemoDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isMemoDirty();
         }
         return this.memoDirtyFlag;
     }
 
+    /**
+     *  重置属性值[备注]
+     */
     public void resetMemo() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetMemo();
             return;
         }
+
         this.memoDirtyFlag = false;
         this.memo = null;
     }
-
+    /**
+     *  设置属性值[附表标识字段]
+     *  @param minorfieldname
+     */
     public void setMinorFieldName(String minorfieldname) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setMinorFieldName(minorfieldname);
             return;
         }
-        if (minorfieldname != null && (minorfieldname = StringHelper.trimRight(minorfieldname)).length() == 0) {
-            minorfieldname = null;
+        if(minorfieldname!=null) {
+            minorfieldname = StringHelper.trimRight(minorfieldname);
+            if(minorfieldname.length()==0) {
+                minorfieldname = null;
+            }
         }
         this.minorfieldname = minorfieldname;
-        this.minorfieldnameDirtyFlag = true;
+        this.minorfieldnameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[附表标识字段]
+     */
     public String getMinorFieldName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getMinorFieldName();
         }
         return this.minorfieldname;
     }
 
+    /**
+     *  获取属性值[附表标识字段]是否修改
+     */
     public boolean isMinorFieldNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isMinorFieldNameDirty();
         }
         return this.minorfieldnameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[附表标识字段]
+     */
     public void resetMinorFieldName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetMinorFieldName();
             return;
         }
+
         this.minorfieldnameDirtyFlag = false;
         this.minorfieldname = null;
     }
-
+    /**
+     *  设置属性值[附表标识值]
+     *  @param minorfieldvalue
+     */
     public void setMinorFieldValue(String minorfieldvalue) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setMinorFieldValue(minorfieldvalue);
             return;
         }
-        if (minorfieldvalue != null && (minorfieldvalue = StringHelper.trimRight(minorfieldvalue)).length() == 0) {
-            minorfieldvalue = null;
+        if(minorfieldvalue!=null) {
+            minorfieldvalue = StringHelper.trimRight(minorfieldvalue);
+            if(minorfieldvalue.length()==0) {
+                minorfieldvalue = null;
+            }
         }
         this.minorfieldvalue = minorfieldvalue;
-        this.minorfieldvalueDirtyFlag = true;
+        this.minorfieldvalueDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[附表标识值]
+     */
     public String getMinorFieldValue() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getMinorFieldValue();
         }
         return this.minorfieldvalue;
     }
 
+    /**
+     *  获取属性值[附表标识值]是否修改
+     */
     public boolean isMinorFieldValueDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isMinorFieldValueDirty();
         }
         return this.minorfieldvalueDirtyFlag;
     }
 
+    /**
+     *  重置属性值[附表标识值]
+     */
     public void resetMinorFieldValue() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetMinorFieldValue();
             return;
         }
+
         this.minorfieldvalueDirtyFlag = false;
         this.minorfieldvalue = null;
     }
-
+    /**
+     *  设置属性值[附表名称]
+     *  @param minortablename
+     */
     public void setMinorTableName(String minortablename) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setMinorTableName(minortablename);
             return;
         }
-        if (minortablename != null && (minortablename = StringHelper.trimRight(minortablename)).length() == 0) {
-            minortablename = null;
+        if(minortablename!=null) {
+            minortablename = StringHelper.trimRight(minortablename);
+            if(minortablename.length()==0) {
+                minortablename = null;
+            }
         }
         this.minortablename = minortablename;
-        this.minortablenameDirtyFlag = true;
+        this.minortablenameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[附表名称]
+     */
     public String getMinorTableName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getMinorTableName();
         }
         return this.minortablename;
     }
 
+    /**
+     *  获取属性值[附表名称]是否修改
+     */
     public boolean isMinorTableNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isMinorTableNameDirty();
         }
         return this.minortablenameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[附表名称]
+     */
     public void resetMinorTableName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetMinorTableName();
             return;
         }
+
         this.minortablenameDirtyFlag = false;
         this.minortablename = null;
     }
-
+    /**
+     *  设置属性值[多主实体模式]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param mutlimajor
+     */
     public void setMutliMajor(Integer mutlimajor) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setMutliMajor(mutlimajor);
             return;
         }
         this.mutlimajor = mutlimajor;
-        this.mutlimajorDirtyFlag = true;
+        this.mutlimajorDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[多主实体模式]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getMutliMajor() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getMutliMajor();
         }
         return this.mutlimajor;
     }
 
+    /**
+     *  获取属性值[多主实体模式]是否修改
+     */
     public boolean isMutliMajorDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isMutliMajorDirty();
         }
         return this.mutlimajorDirtyFlag;
     }
 
+    /**
+     *  重置属性值[多主实体模式]
+     */
     public void resetMutliMajor() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetMutliMajor();
             return;
         }
+
         this.mutlimajorDirtyFlag = false;
         this.mutlimajor = null;
     }
-
+    /**
+     *  设置属性值[无数据信息]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param nodatainfo
+     */
     public void setNoDataInfo(Integer nodatainfo) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setNoDataInfo(nodatainfo);
             return;
         }
         this.nodatainfo = nodatainfo;
-        this.nodatainfoDirtyFlag = true;
+        this.nodatainfoDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[无数据信息]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getNoDataInfo() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getNoDataInfo();
         }
         return this.nodatainfo;
     }
 
+    /**
+     *  获取属性值[无数据信息]是否修改
+     */
     public boolean isNoDataInfoDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isNoDataInfoDirty();
         }
         return this.nodatainfoDirtyFlag;
     }
 
+    /**
+     *  重置属性值[无数据信息]
+     */
     public void resetNoDataInfo() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetNoDataInfo();
             return;
         }
+
         this.nodatainfoDirtyFlag = false;
         this.nodatainfo = null;
     }
-
+    /**
+     *  设置属性值[打印功能]代码表：net.ibizsys.psrt.srv.codelist.DEPrintFuncCodeListModel
+     *  @param printfunc
+     */
     public void setPrintFunc(String printfunc) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setPrintFunc(printfunc);
             return;
         }
-        if (printfunc != null && (printfunc = StringHelper.trimRight(printfunc)).length() == 0) {
-            printfunc = null;
+        if(printfunc!=null) {
+            printfunc = StringHelper.trimRight(printfunc);
+            if(printfunc.length()==0) {
+                printfunc = null;
+            }
         }
         this.printfunc = printfunc;
-        this.printfuncDirtyFlag = true;
+        this.printfuncDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[打印功能]代码表：net.ibizsys.psrt.srv.codelist.DEPrintFuncCodeListModel
+     */
     public String getPrintFunc() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getPrintFunc();
         }
         return this.printfunc;
     }
 
+    /**
+     *  获取属性值[打印功能]是否修改
+     */
     public boolean isPrintFuncDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isPrintFuncDirty();
         }
         return this.printfuncDirtyFlag;
     }
 
+    /**
+     *  重置属性值[打印功能]
+     */
     public void resetPrintFunc() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetPrintFunc();
             return;
         }
+
         this.printfuncDirtyFlag = false;
         this.printfunc = null;
     }
-
+    /**
+     *  设置属性值[保留1]
+     *  @param reserver
+     */
     public void setReserver(String reserver) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setReserver(reserver);
             return;
         }
-        if (reserver != null && (reserver = StringHelper.trimRight(reserver)).length() == 0) {
-            reserver = null;
+        if(reserver!=null) {
+            reserver = StringHelper.trimRight(reserver);
+            if(reserver.length()==0) {
+                reserver = null;
+            }
         }
         this.reserver = reserver;
-        this.reserverDirtyFlag = true;
+        this.reserverDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[保留1]
+     */
     public String getReserver() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getReserver();
         }
         return this.reserver;
     }
 
+    /**
+     *  获取属性值[保留1]是否修改
+     */
     public boolean isReserverDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isReserverDirty();
         }
         return this.reserverDirtyFlag;
     }
 
+    /**
+     *  重置属性值[保留1]
+     */
     public void resetReserver() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetReserver();
             return;
         }
+
         this.reserverDirtyFlag = false;
         this.reserver = null;
     }
-
+    /**
+     *  设置属性值[保留2]
+     *  @param reserver2
+     */
     public void setReserver2(String reserver2) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setReserver2(reserver2);
             return;
         }
-        if (reserver2 != null && (reserver2 = StringHelper.trimRight(reserver2)).length() == 0) {
-            reserver2 = null;
+        if(reserver2!=null) {
+            reserver2 = StringHelper.trimRight(reserver2);
+            if(reserver2.length()==0) {
+                reserver2 = null;
+            }
         }
         this.reserver2 = reserver2;
-        this.reserver2DirtyFlag = true;
+        this.reserver2DirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[保留2]
+     */
     public String getReserver2() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getReserver2();
         }
         return this.reserver2;
     }
 
+    /**
+     *  获取属性值[保留2]是否修改
+     */
     public boolean isReserver2Dirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isReserver2Dirty();
         }
         return this.reserver2DirtyFlag;
     }
 
+    /**
+     *  重置属性值[保留2]
+     */
     public void resetReserver2() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetReserver2();
             return;
         }
+
         this.reserver2DirtyFlag = false;
         this.reserver2 = null;
     }
-
+    /**
+     *  设置属性值[记录数量]
+     *  @param rowamout
+     */
     public void setRowAmout(Integer rowamout) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setRowAmout(rowamout);
             return;
         }
         this.rowamout = rowamout;
-        this.rowamoutDirtyFlag = true;
+        this.rowamoutDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[记录数量]
+     */
     public Integer getRowAmout() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getRowAmout();
         }
         return this.rowamout;
     }
 
+    /**
+     *  获取属性值[记录数量]是否修改
+     */
     public boolean isRowAmoutDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isRowAmoutDirty();
         }
         return this.rowamoutDirtyFlag;
     }
 
+    /**
+     *  重置属性值[记录数量]
+     */
     public void resetRowAmout() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetRowAmout();
             return;
         }
+
         this.rowamoutDirtyFlag = false;
         this.rowamout = null;
     }
-
+    /**
+     *  设置属性值[运行信息]
+     *  @param rtinfo
+     */
     public void setRTInfo(String rtinfo) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setRTInfo(rtinfo);
             return;
         }
-        if (rtinfo != null && (rtinfo = StringHelper.trimRight(rtinfo)).length() == 0) {
-            rtinfo = null;
+        if(rtinfo!=null) {
+            rtinfo = StringHelper.trimRight(rtinfo);
+            if(rtinfo.length()==0) {
+                rtinfo = null;
+            }
         }
         this.rtinfo = rtinfo;
-        this.rtinfoDirtyFlag = true;
+        this.rtinfoDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[运行信息]
+     */
     public String getRTInfo() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getRTInfo();
         }
         return this.rtinfo;
     }
 
+    /**
+     *  获取属性值[运行信息]是否修改
+     */
     public boolean isRTInfoDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isRTInfoDirty();
         }
         return this.rtinfoDirtyFlag;
     }
 
+    /**
+     *  重置属性值[运行信息]
+     */
     public void resetRTInfo() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetRTInfo();
             return;
         }
+
         this.rtinfoDirtyFlag = false;
         this.rtinfo = null;
     }
-
+    /**
+     *  设置属性值[小图标]
+     *  @param smallicon
+     */
     public void setSMALLICON(String smallicon) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setSMALLICON(smallicon);
             return;
         }
-        if (smallicon != null && (smallicon = StringHelper.trimRight(smallicon)).length() == 0) {
-            smallicon = null;
+        if(smallicon!=null) {
+            smallicon = StringHelper.trimRight(smallicon);
+            if(smallicon.length()==0) {
+                smallicon = null;
+            }
         }
         this.smallicon = smallicon;
-        this.smalliconDirtyFlag = true;
+        this.smalliconDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[小图标]
+     */
     public String getSMALLICON() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getSMALLICON();
         }
         return this.smallicon;
     }
 
+    /**
+     *  获取属性值[小图标]是否修改
+     */
     public boolean isSMALLICONDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isSMALLICONDirty();
         }
         return this.smalliconDirtyFlag;
     }
 
+    /**
+     *  重置属性值[小图标]
+     */
     public void resetSMALLICON() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetSMALLICON();
             return;
         }
+
         this.smalliconDirtyFlag = false;
         this.smallicon = null;
     }
-
+    /**
+     *  设置属性值[实体存储类型]代码表：net.ibizsys.psrt.srv.codelist.CodeList80CodeListModel
+     *  @param storagetype
+     */
     public void setStorageType(String storagetype) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setStorageType(storagetype);
             return;
         }
-        if (storagetype != null && (storagetype = StringHelper.trimRight(storagetype)).length() == 0) {
-            storagetype = null;
+        if(storagetype!=null) {
+            storagetype = StringHelper.trimRight(storagetype);
+            if(storagetype.length()==0) {
+                storagetype = null;
+            }
         }
         this.storagetype = storagetype;
-        this.storagetypeDirtyFlag = true;
+        this.storagetypeDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实体存储类型]代码表：net.ibizsys.psrt.srv.codelist.CodeList80CodeListModel
+     */
     public String getStorageType() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getStorageType();
         }
         return this.storagetype;
     }
 
+    /**
+     *  获取属性值[实体存储类型]是否修改
+     */
     public boolean isStorageTypeDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isStorageTypeDirty();
         }
         return this.storagetypeDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实体存储类型]
+     */
     public void resetStorageType() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetStorageType();
             return;
         }
+
         this.storagetypeDirtyFlag = false;
         this.storagetype = null;
     }
-
+    /**
+     *  设置属性值[表名称]
+     *  @param tablename
+     */
     public void setTableName(String tablename) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setTableName(tablename);
             return;
         }
-        if (tablename != null && (tablename = StringHelper.trimRight(tablename)).length() == 0) {
-            tablename = null;
+        if(tablename!=null) {
+            tablename = StringHelper.trimRight(tablename);
+            if(tablename.length()==0) {
+                tablename = null;
+            }
         }
         this.tablename = tablename;
-        this.tablenameDirtyFlag = true;
+        this.tablenameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[表名称]
+     */
     public String getTableName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getTableName();
         }
         return this.tablename;
     }
 
+    /**
+     *  获取属性值[表名称]是否修改
+     */
     public boolean isTableNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isTableNameDirty();
         }
         return this.tablenameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[表名称]
+     */
     public void resetTableName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetTableName();
             return;
         }
+
         this.tablenameDirtyFlag = false;
         this.tablename = null;
     }
-
+    /**
+     *  设置属性值[实体表空间]代码表：net.ibizsys.psrt.srv.codelist.DETableSpaceCodeListModel
+     *  @param tablespace
+     */
     public void setTableSpace(String tablespace) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setTableSpace(tablespace);
             return;
         }
-        if (tablespace != null && (tablespace = StringHelper.trimRight(tablespace)).length() == 0) {
-            tablespace = null;
+        if(tablespace!=null) {
+            tablespace = StringHelper.trimRight(tablespace);
+            if(tablespace.length()==0) {
+                tablespace = null;
+            }
         }
         this.tablespace = tablespace;
-        this.tablespaceDirtyFlag = true;
+        this.tablespaceDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实体表空间]代码表：net.ibizsys.psrt.srv.codelist.DETableSpaceCodeListModel
+     */
     public String getTableSpace() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getTableSpace();
         }
         return this.tablespace;
     }
 
+    /**
+     *  获取属性值[实体表空间]是否修改
+     */
     public boolean isTableSpaceDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isTableSpaceDirty();
         }
         return this.tablespaceDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实体表空间]
+     */
     public void resetTableSpace() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetTableSpace();
             return;
         }
+
         this.tablespaceDirtyFlag = false;
         this.tablespace = null;
     }
-
+    /**
+     *  设置属性值[提示信息]
+     *  @param tipsinfo
+     */
     public void setTipsInfo(String tipsinfo) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setTipsInfo(tipsinfo);
             return;
         }
-        if (tipsinfo != null && (tipsinfo = StringHelper.trimRight(tipsinfo)).length() == 0) {
-            tipsinfo = null;
+        if(tipsinfo!=null) {
+            tipsinfo = StringHelper.trimRight(tipsinfo);
+            if(tipsinfo.length()==0) {
+                tipsinfo = null;
+            }
         }
         this.tipsinfo = tipsinfo;
-        this.tipsinfoDirtyFlag = true;
+        this.tipsinfoDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[提示信息]
+     */
     public String getTipsInfo() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getTipsInfo();
         }
         return this.tipsinfo;
     }
 
+    /**
+     *  获取属性值[提示信息]是否修改
+     */
     public boolean isTipsInfoDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isTipsInfoDirty();
         }
         return this.tipsinfoDirtyFlag;
     }
 
+    /**
+     *  重置属性值[提示信息]
+     */
     public void resetTipsInfo() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetTipsInfo();
             return;
         }
+
         this.tipsinfoDirtyFlag = false;
         this.tipsinfo = null;
     }
-
+    /**
+     *  设置属性值[更新时间]
+     *  @param updatedate
+     */
     public void setUpdateDate(Timestamp updatedate) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setUpdateDate(updatedate);
             return;
         }
         this.updatedate = updatedate;
-        this.updatedateDirtyFlag = true;
+        this.updatedateDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[更新时间]
+     */
     public Timestamp getUpdateDate() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getUpdateDate();
         }
         return this.updatedate;
     }
 
+    /**
+     *  获取属性值[更新时间]是否修改
+     */
     public boolean isUpdateDateDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isUpdateDateDirty();
         }
         return this.updatedateDirtyFlag;
     }
 
+    /**
+     *  重置属性值[更新时间]
+     */
     public void resetUpdateDate() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetUpdateDate();
             return;
         }
+
         this.updatedateDirtyFlag = false;
         this.updatedate = null;
     }
-
+    /**
+     *  设置属性值[更新人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     *  @param updateman
+     */
     public void setUpdateMan(String updateman) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setUpdateMan(updateman);
             return;
         }
-        if (updateman != null && (updateman = StringHelper.trimRight(updateman)).length() == 0) {
-            updateman = null;
+        if(updateman!=null) {
+            updateman = StringHelper.trimRight(updateman);
+            if(updateman.length()==0) {
+                updateman = null;
+            }
         }
         this.updateman = updateman;
-        this.updatemanDirtyFlag = true;
+        this.updatemanDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[更新人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     */
     public String getUpdateMan() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getUpdateMan();
         }
         return this.updateman;
     }
 
+    /**
+     *  获取属性值[更新人]是否修改
+     */
     public boolean isUpdateManDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isUpdateManDirty();
         }
         return this.updatemanDirtyFlag;
     }
 
+    /**
+     *  重置属性值[更新人]
+     */
     public void resetUpdateMan() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetUpdateMan();
             return;
         }
+
         this.updatemanDirtyFlag = false;
         this.updateman = null;
     }
-
+    /**
+     *  设置属性值[用户数据行为]代码表：net.ibizsys.psrt.srv.codelist.CodeList71CodeListModel
+     *  @param useraction
+     */
     public void setUserAction(Integer useraction) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setUserAction(useraction);
             return;
         }
         this.useraction = useraction;
-        this.useractionDirtyFlag = true;
+        this.useractionDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[用户数据行为]代码表：net.ibizsys.psrt.srv.codelist.CodeList71CodeListModel
+     */
     public Integer getUserAction() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getUserAction();
         }
         return this.useraction;
     }
 
+    /**
+     *  获取属性值[用户数据行为]是否修改
+     */
     public boolean isUserActionDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isUserActionDirty();
         }
         return this.useractionDirtyFlag;
     }
 
+    /**
+     *  重置属性值[用户数据行为]
+     */
     public void resetUserAction() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetUserAction();
             return;
         }
+
         this.useractionDirtyFlag = false;
         this.useraction = null;
     }
-
+    /**
+     *  设置属性值[是否启用]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param validflag
+     */
     public void setValidFlag(Integer validflag) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setValidFlag(validflag);
             return;
         }
         this.validflag = validflag;
-        this.validflagDirtyFlag = true;
+        this.validflagDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[是否启用]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getValidFlag() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getValidFlag();
         }
         return this.validflag;
     }
 
+    /**
+     *  获取属性值[是否启用]是否修改
+     */
     public boolean isValidFlagDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isValidFlagDirty();
         }
         return this.validflagDirtyFlag;
     }
 
+    /**
+     *  重置属性值[是否启用]
+     */
     public void resetValidFlag() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetValidFlag();
             return;
         }
+
         this.validflagDirtyFlag = false;
         this.validflag = null;
     }
-
+    /**
+     *  设置属性值[启用数据版本控制]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param vcflag
+     */
     public void setVCFlag(Integer vcflag) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setVCFlag(vcflag);
             return;
         }
         this.vcflag = vcflag;
-        this.vcflagDirtyFlag = true;
+        this.vcflagDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[启用数据版本控制]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getVCFlag() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getVCFlag();
         }
         return this.vcflag;
     }
 
+    /**
+     *  获取属性值[启用数据版本控制]是否修改
+     */
     public boolean isVCFlagDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isVCFlagDirty();
         }
         return this.vcflagDirtyFlag;
     }
 
+    /**
+     *  重置属性值[启用数据版本控制]
+     */
     public void resetVCFlag() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetVCFlag();
             return;
         }
+
         this.vcflagDirtyFlag = false;
         this.vcflag = null;
     }
-
+    /**
+     *  设置属性值[版本检查间隔]
+     *  @param verchecktimer
+     */
     public void setVerCheckTimer(Integer verchecktimer) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setVerCheckTimer(verchecktimer);
             return;
         }
         this.verchecktimer = verchecktimer;
-        this.verchecktimerDirtyFlag = true;
+        this.verchecktimerDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[版本检查间隔]
+     */
     public Integer getVerCheckTimer() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getVerCheckTimer();
         }
         return this.verchecktimer;
     }
 
+    /**
+     *  获取属性值[版本检查间隔]是否修改
+     */
     public boolean isVerCheckTimerDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isVerCheckTimerDirty();
         }
         return this.verchecktimerDirtyFlag;
     }
 
+    /**
+     *  重置属性值[版本检查间隔]
+     */
     public void resetVerCheckTimer() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetVerCheckTimer();
             return;
         }
+
         this.verchecktimerDirtyFlag = false;
         this.verchecktimer = null;
     }
-
+    /**
+     *  设置属性值[版本属性]
+     *  @param verfield
+     */
     public void setVerField(String verfield) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setVerField(verfield);
             return;
         }
-        if (verfield != null && (verfield = StringHelper.trimRight(verfield)).length() == 0) {
-            verfield = null;
+        if(verfield!=null) {
+            verfield = StringHelper.trimRight(verfield);
+            if(verfield.length()==0) {
+                verfield = null;
+            }
         }
         this.verfield = verfield;
-        this.verfieldDirtyFlag = true;
+        this.verfieldDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[版本属性]
+     */
     public String getVerField() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getVerField();
         }
         return this.verfield;
     }
 
+    /**
+     *  获取属性值[版本属性]是否修改
+     */
     public boolean isVerFieldDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isVerFieldDirty();
         }
         return this.verfieldDirtyFlag;
     }
 
+    /**
+     *  重置属性值[版本属性]
+     */
     public void resetVerField() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetVerField();
             return;
         }
+
         this.verfieldDirtyFlag = false;
         this.verfield = null;
     }
-
+    /**
+     *  设置属性值[版本辅助对象]
+     *  @param verhelper
+     */
     public void setVerHelper(String verhelper) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setVerHelper(verhelper);
             return;
         }
-        if (verhelper != null && (verhelper = StringHelper.trimRight(verhelper)).length() == 0) {
-            verhelper = null;
+        if(verhelper!=null) {
+            verhelper = StringHelper.trimRight(verhelper);
+            if(verhelper.length()==0) {
+                verhelper = null;
+            }
         }
         this.verhelper = verhelper;
-        this.verhelperDirtyFlag = true;
+        this.verhelperDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[版本辅助对象]
+     */
     public String getVerHelper() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getVerHelper();
         }
         return this.verhelper;
     }
 
+    /**
+     *  获取属性值[版本辅助对象]是否修改
+     */
     public boolean isVerHelperDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isVerHelperDirty();
         }
         return this.verhelperDirtyFlag;
     }
 
+    /**
+     *  重置属性值[版本辅助对象]
+     */
     public void resetVerHelper() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetVerHelper();
             return;
         }
+
         this.verhelperDirtyFlag = false;
         this.verhelper = null;
     }
-
+    /**
+     *  设置属性值[版本检查]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     *  @param versioncheck
+     */
     public void setVersionCheck(Integer versioncheck) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setVersionCheck(versioncheck);
             return;
         }
         this.versioncheck = versioncheck;
-        this.versioncheckDirtyFlag = true;
+        this.versioncheckDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[版本检查]代码表：net.ibizsys.psrt.srv.codelist.YesNoCodeListModel
+     */
     public Integer getVersionCheck() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getVersionCheck();
         }
         return this.versioncheck;
     }
 
+    /**
+     *  获取属性值[版本检查]是否修改
+     */
     public boolean isVersionCheckDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isVersionCheckDirty();
         }
         return this.versioncheckDirtyFlag;
     }
 
+    /**
+     *  重置属性值[版本检查]
+     */
     public void resetVersionCheck() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetVersionCheck();
             return;
         }
+
         this.versioncheckDirtyFlag = false;
         this.versioncheck = null;
     }
-
+    /**
+     *  设置属性值[视图名称]
+     *  @param viewname
+     */
     public void setViewName(String viewname) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setViewName(viewname);
             return;
         }
-        if (viewname != null && (viewname = StringHelper.trimRight(viewname)).length() == 0) {
-            viewname = null;
+        if(viewname!=null) {
+            viewname = StringHelper.trimRight(viewname);
+            if(viewname.length()==0) {
+                viewname = null;
+            }
         }
         this.viewname = viewname;
-        this.viewnameDirtyFlag = true;
+        this.viewnameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[视图名称]
+     */
     public String getViewName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getViewName();
         }
         return this.viewname;
     }
 
+    /**
+     *  获取属性值[视图名称]是否修改
+     */
     public boolean isViewNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isViewNameDirty();
         }
         return this.viewnameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[视图名称]
+     */
     public void resetViewName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetViewName();
             return;
         }
+
         this.viewnameDirtyFlag = false;
         this.viewname = null;
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.entity.EntityBase#onReset()
+     */
     @Override
     protected void onReset() {
         DataEntityBase.resetAll(this);
         super.onReset();
     }
 
+    /**
+     * 重置当前数据对象属性值
+     * @param entity
+     */
     private static void resetAll(DataEntityBase et) {
         et.resetACEnableDP();
         et.resetACExtInfo();
@@ -3522,2715 +5213,2387 @@ implements Serializable {
         et.resetViewName();
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.entity.EntityBase#onFillMap(java.util.HashMap, boolean)
+     */
     @Override
     protected void onFillMap(HashMap<String, Object> params, boolean bDirtyOnly) {
-        if (!bDirtyOnly || this.isACEnableDPDirty()) {
-            params.put(FIELD_ACENABLEDP, this.getACEnableDP());
+        if(!bDirtyOnly || isACEnableDPDirty()) {
+            params.put(FIELD_ACENABLEDP,getACEnableDP());
         }
-        if (!bDirtyOnly || this.isACExtInfoDirty()) {
-            params.put(FIELD_ACEXTINFO, this.getACExtInfo());
+        if(!bDirtyOnly || isACExtInfoDirty()) {
+            params.put(FIELD_ACEXTINFO,getACExtInfo());
         }
-        if (!bDirtyOnly || this.isACInfoFormatDirty()) {
-            params.put(FIELD_ACINFOFORMAT, this.getACInfoFormat());
+        if(!bDirtyOnly || isACInfoFormatDirty()) {
+            params.put(FIELD_ACINFOFORMAT,getACInfoFormat());
         }
-        if (!bDirtyOnly || this.isACInfoParamDirty()) {
-            params.put(FIELD_ACINFOPARAM, this.getACInfoParam());
+        if(!bDirtyOnly || isACInfoParamDirty()) {
+            params.put(FIELD_ACINFOPARAM,getACInfoParam());
         }
-        if (!bDirtyOnly || this.isACMaxCntDirty()) {
-            params.put(FIELD_ACMAXCNT, this.getACMaxCnt());
+        if(!bDirtyOnly || isACMaxCntDirty()) {
+            params.put(FIELD_ACMAXCNT,getACMaxCnt());
         }
-        if (!bDirtyOnly || this.isACObjectDirty()) {
-            params.put(FIELD_ACOBJECT, this.getACObject());
+        if(!bDirtyOnly || isACObjectDirty()) {
+            params.put(FIELD_ACOBJECT,getACObject());
         }
-        if (!bDirtyOnly || this.isACQueryModelIdDirty()) {
-            params.put(FIELD_ACQUERYMODELID, this.getACQueryModelId());
+        if(!bDirtyOnly || isACQueryModelIdDirty()) {
+            params.put(FIELD_ACQUERYMODELID,getACQueryModelId());
         }
-        if (!bDirtyOnly || this.isACQueryModelNameDirty()) {
-            params.put(FIELD_ACQUERYMODELNAME, this.getACQueryModelName());
+        if(!bDirtyOnly || isACQueryModelNameDirty()) {
+            params.put(FIELD_ACQUERYMODELNAME,getACQueryModelName());
         }
-        if (!bDirtyOnly || this.isACSortDirDirty()) {
-            params.put(FIELD_ACSORTDIR, this.getACSortDir());
+        if(!bDirtyOnly || isACSortDirDirty()) {
+            params.put(FIELD_ACSORTDIR,getACSortDir());
         }
-        if (!bDirtyOnly || this.isACSortFieldDirty()) {
-            params.put(FIELD_ACSORTFIELD, this.getACSortField());
+        if(!bDirtyOnly || isACSortFieldDirty()) {
+            params.put(FIELD_ACSORTFIELD,getACSortField());
         }
-        if (!bDirtyOnly || this.isBigIconDirty()) {
-            params.put(FIELD_BIGICON, this.getBigIcon());
+        if(!bDirtyOnly || isBigIconDirty()) {
+            params.put(FIELD_BIGICON,getBigIcon());
         }
-        if (!bDirtyOnly || this.isConfigHelperDirty()) {
-            params.put(FIELD_CONFIGHELPER, this.getConfigHelper());
+        if(!bDirtyOnly || isConfigHelperDirty()) {
+            params.put(FIELD_CONFIGHELPER,getConfigHelper());
         }
-        if (!bDirtyOnly || this.isCreateDateDirty()) {
-            params.put(FIELD_CREATEDATE, this.getCreateDate());
+        if(!bDirtyOnly || isCreateDateDirty()) {
+            params.put(FIELD_CREATEDATE,getCreateDate());
         }
-        if (!bDirtyOnly || this.isCreateManDirty()) {
-            params.put(FIELD_CREATEMAN, this.getCreateMan());
+        if(!bDirtyOnly || isCreateManDirty()) {
+            params.put(FIELD_CREATEMAN,getCreateMan());
         }
-        if (!bDirtyOnly || this.isDataAccObjectDirty()) {
-            params.put(FIELD_DATAACCOBJECT, this.getDataAccObject());
+        if(!bDirtyOnly || isDataAccObjectDirty()) {
+            params.put(FIELD_DATAACCOBJECT,getDataAccObject());
         }
-        if (!bDirtyOnly || this.isDataChgLogModeDirty()) {
-            params.put(FIELD_DATACHGLOGMODE, this.getDataChgLogMode());
+        if(!bDirtyOnly || isDataChgLogModeDirty()) {
+            params.put(FIELD_DATACHGLOGMODE,getDataChgLogMode());
         }
-        if (!bDirtyOnly || this.isDataCtrlIntDirty()) {
-            params.put(FIELD_DATACTRLINT, this.getDataCtrlInt());
+        if(!bDirtyOnly || isDataCtrlIntDirty()) {
+            params.put(FIELD_DATACTRLINT,getDataCtrlInt());
         }
-        if (!bDirtyOnly || this.isDataCtrlObjectDirty()) {
-            params.put(FIELD_DATACTRLOBJECT, this.getDataCtrlObject());
+        if(!bDirtyOnly || isDataCtrlObjectDirty()) {
+            params.put(FIELD_DATACTRLOBJECT,getDataCtrlObject());
         }
-        if (!bDirtyOnly || this.isDataNotifyHelperDirty()) {
-            params.put(FIELD_DATANOTIFYHELPER, this.getDataNotifyHelper());
+        if(!bDirtyOnly || isDataNotifyHelperDirty()) {
+            params.put(FIELD_DATANOTIFYHELPER,getDataNotifyHelper());
         }
-        if (!bDirtyOnly || this.isDBStorageDirty()) {
-            params.put(FIELD_DBSTORAGE, this.getDBStorage());
+        if(!bDirtyOnly || isDBStorageDirty()) {
+            params.put(FIELD_DBSTORAGE,getDBStorage());
         }
-        if (!bDirtyOnly || this.isDBVersionDirty()) {
-            params.put(FIELD_DBVERSION, this.getDBVersion());
+        if(!bDirtyOnly || isDBVersionDirty()) {
+            params.put(FIELD_DBVERSION,getDBVersion());
         }
-        if (!bDirtyOnly || this.isDEGroupDirty()) {
-            params.put(FIELD_DEGROUP, this.getDEGroup());
+        if(!bDirtyOnly || isDEGroupDirty()) {
+            params.put(FIELD_DEGROUP,getDEGroup());
         }
-        if (!bDirtyOnly || this.isDEHelperDirty()) {
-            params.put(FIELD_DEHELPER, this.getDEHelper());
+        if(!bDirtyOnly || isDEHelperDirty()) {
+            params.put(FIELD_DEHELPER,getDEHelper());
         }
-        if (!bDirtyOnly || this.isDEIdDirty()) {
-            params.put(FIELD_DEID, this.getDEId());
+        if(!bDirtyOnly || isDEIdDirty()) {
+            params.put(FIELD_DEID,getDEId());
         }
-        if (!bDirtyOnly || this.isDELogicNameDirty()) {
-            params.put(FIELD_DELOGICNAME, this.getDELogicName());
+        if(!bDirtyOnly || isDELogicNameDirty()) {
+            params.put(FIELD_DELOGICNAME,getDELogicName());
         }
-        if (!bDirtyOnly || this.isDENameDirty()) {
-            params.put(FIELD_DENAME, this.getDEName());
+        if(!bDirtyOnly || isDENameDirty()) {
+            params.put(FIELD_DENAME,getDEName());
         }
-        if (!bDirtyOnly || this.isDEObjectDirty()) {
-            params.put(FIELD_DEOBJECT, this.getDEObject());
+        if(!bDirtyOnly || isDEObjectDirty()) {
+            params.put(FIELD_DEOBJECT,getDEObject());
         }
-        if (!bDirtyOnly || this.isDEOrderDirty()) {
-            params.put(FIELD_DEORDER, this.getDEOrder());
+        if(!bDirtyOnly || isDEOrderDirty()) {
+            params.put(FIELD_DEORDER,getDEOrder());
         }
-        if (!bDirtyOnly || this.isDEParamDirty()) {
-            params.put(FIELD_DEPARAM, this.getDEParam());
+        if(!bDirtyOnly || isDEParamDirty()) {
+            params.put(FIELD_DEPARAM,getDEParam());
         }
-        if (!bDirtyOnly || this.isDER11DEIdDirty()) {
-            params.put(FIELD_DER11DEID, this.getDER11DEId());
+        if(!bDirtyOnly || isDER11DEIdDirty()) {
+            params.put(FIELD_DER11DEID,getDER11DEId());
         }
-        if (!bDirtyOnly || this.isDER11DENameDirty()) {
-            params.put(FIELD_DER11DENAME, this.getDER11DEName());
+        if(!bDirtyOnly || isDER11DENameDirty()) {
+            params.put(FIELD_DER11DENAME,getDER11DEName());
         }
-        if (!bDirtyOnly || this.isDETypeDirty()) {
-            params.put(FIELD_DETYPE, this.getDEType());
+        if(!bDirtyOnly || isDETypeDirty()) {
+            params.put(FIELD_DETYPE,getDEType());
         }
-        if (!bDirtyOnly || this.isDEUserParamDirty()) {
-            params.put(FIELD_DEUSERPARAM, this.getDEUserParam());
+        if(!bDirtyOnly || isDEUserParamDirty()) {
+            params.put(FIELD_DEUSERPARAM,getDEUserParam());
         }
-        if (!bDirtyOnly || this.isDEVersionDirty()) {
-            params.put(FIELD_DEVERSION, this.getDEVersion());
+        if(!bDirtyOnly || isDEVersionDirty()) {
+            params.put(FIELD_DEVERSION,getDEVersion());
         }
-        if (!bDirtyOnly || this.isDGRowClassHelperDirty()) {
-            params.put(FIELD_DGROWCLASSHELPER, this.getDGRowClassHelper());
+        if(!bDirtyOnly || isDGRowClassHelperDirty()) {
+            params.put(FIELD_DGROWCLASSHELPER,getDGRowClassHelper());
         }
-        if (!bDirtyOnly || this.isDGSUMMARYHeightDirty()) {
-            params.put(FIELD_DGSUMMARYHEIGHT, this.getDGSUMMARYHeight());
+        if(!bDirtyOnly || isDGSUMMARYHeightDirty()) {
+            params.put(FIELD_DGSUMMARYHEIGHT,getDGSUMMARYHeight());
         }
-        if (!bDirtyOnly || this.isDLKHelperDirty()) {
-            params.put(FIELD_DLKHELPER, this.getDLKHelper());
+        if(!bDirtyOnly || isDLKHelperDirty()) {
+            params.put(FIELD_DLKHELPER,getDLKHelper());
         }
-        if (!bDirtyOnly || this.isDynamicIntervalDirty()) {
-            params.put(FIELD_DYNAMICINTERVAL, this.getDynamicInterval());
+        if(!bDirtyOnly || isDynamicIntervalDirty()) {
+            params.put(FIELD_DYNAMICINTERVAL,getDynamicInterval());
         }
-        if (!bDirtyOnly || this.isEnableColPrivDirty()) {
-            params.put(FIELD_ENABLECOLPRIV, this.getEnableColPriv());
+        if(!bDirtyOnly || isEnableColPrivDirty()) {
+            params.put(FIELD_ENABLECOLPRIV,getEnableColPriv());
         }
-        if (!bDirtyOnly || this.isEnableGlobalModelDirty()) {
-            params.put(FIELD_ENABLEGLOBALMODEL, this.getEnableGlobalModel());
+        if(!bDirtyOnly || isEnableGlobalModelDirty()) {
+            params.put(FIELD_ENABLEGLOBALMODEL,getEnableGlobalModel());
         }
-        if (!bDirtyOnly || this.isExitingModelDirty()) {
-            params.put(FIELD_EXITINGMODEL, this.getExitingModel());
+        if(!bDirtyOnly || isExitingModelDirty()) {
+            params.put(FIELD_EXITINGMODEL,getExitingModel());
         }
-        if (!bDirtyOnly || this.isExportIncEmptyDirty()) {
-            params.put(FIELD_EXPORTINCEMPTY, this.getExportIncEmpty());
+        if(!bDirtyOnly || isExportIncEmptyDirty()) {
+            params.put(FIELD_EXPORTINCEMPTY,getExportIncEmpty());
         }
-        if (!bDirtyOnly || this.isExTableNameDirty()) {
-            params.put(FIELD_EXTABLENAME, this.getExTableName());
+        if(!bDirtyOnly || isExTableNameDirty()) {
+            params.put(FIELD_EXTABLENAME,getExTableName());
         }
-        if (!bDirtyOnly || this.isGlobalModelObjDirty()) {
-            params.put(FIELD_GLOBALMODELOBJ, this.getGlobalModelObj());
+        if(!bDirtyOnly || isGlobalModelObjDirty()) {
+            params.put(FIELD_GLOBALMODELOBJ,getGlobalModelObj());
         }
-        if (!bDirtyOnly || this.isIndexModeDirty()) {
-            params.put(FIELD_INDEXMODE, this.getIndexMode());
+        if(!bDirtyOnly || isIndexModeDirty()) {
+            params.put(FIELD_INDEXMODE,getIndexMode());
         }
-        if (!bDirtyOnly || this.isInfoFieldDirty()) {
-            params.put(FIELD_INFOFIELD, this.getInfoField());
+        if(!bDirtyOnly || isInfoFieldDirty()) {
+            params.put(FIELD_INFOFIELD,getInfoField());
         }
-        if (!bDirtyOnly || this.isInfoFormatDirty()) {
-            params.put(FIELD_INFOFORMAT, this.getInfoFormat());
+        if(!bDirtyOnly || isInfoFormatDirty()) {
+            params.put(FIELD_INFOFORMAT,getInfoFormat());
         }
-        if (!bDirtyOnly || this.isInheritModeDirty()) {
-            params.put(FIELD_INHERITMODE, this.getInheritMode());
+        if(!bDirtyOnly || isInheritModeDirty()) {
+            params.put(FIELD_INHERITMODE,getInheritMode());
         }
-        if (!bDirtyOnly || this.isIsDGRowEditDirty()) {
-            params.put(FIELD_ISDGROWEDIT, this.getIsDGRowEdit());
+        if(!bDirtyOnly || isIsDGRowEditDirty()) {
+            params.put(FIELD_ISDGROWEDIT,getIsDGRowEdit());
         }
-        if (!bDirtyOnly || this.isIsEnableAuditDirty()) {
-            params.put(FIELD_ISENABLEAUDIT, this.getIsEnableAudit());
+        if(!bDirtyOnly || isIsEnableAuditDirty()) {
+            params.put(FIELD_ISENABLEAUDIT,getIsEnableAudit());
         }
-        if (!bDirtyOnly || this.isIsEnableDPDirty()) {
-            params.put(FIELD_ISENABLEDP, this.getIsEnableDP());
+        if(!bDirtyOnly || isIsEnableDPDirty()) {
+            params.put(FIELD_ISENABLEDP,getIsEnableDP());
         }
-        if (!bDirtyOnly || this.isIsIndexDEDirty()) {
-            params.put(FIELD_ISINDEXDE, this.getIsIndexDE());
+        if(!bDirtyOnly || isIsIndexDEDirty()) {
+            params.put(FIELD_ISINDEXDE,getIsIndexDE());
         }
-        if (!bDirtyOnly || this.isIsLogicValidDirty()) {
-            params.put(FIELD_ISLOGICVALID, this.getIsLogicValid());
+        if(!bDirtyOnly || isIsLogicValidDirty()) {
+            params.put(FIELD_ISLOGICVALID,getIsLogicValid());
         }
-        if (!bDirtyOnly || this.isISMULTIPRINTDirty()) {
-            params.put(FIELD_ISMULTIPRINT, this.getISMULTIPRINT());
+        if(!bDirtyOnly || isISMULTIPRINTDirty()) {
+            params.put(FIELD_ISMULTIPRINT,getISMULTIPRINT());
         }
-        if (!bDirtyOnly || this.isISSupportFADirty()) {
-            params.put(FIELD_ISSUPPORTFA, this.getISSupportFA());
+        if(!bDirtyOnly || isISSupportFADirty()) {
+            params.put(FIELD_ISSUPPORTFA,getISSupportFA());
         }
-        if (!bDirtyOnly || this.isIsSystemDirty()) {
-            params.put(FIELD_ISSYSTEM, this.getIsSystem());
+        if(!bDirtyOnly || isIsSystemDirty()) {
+            params.put(FIELD_ISSYSTEM,getIsSystem());
         }
-        if (!bDirtyOnly || this.isKeyParamsDirty()) {
-            params.put(FIELD_KEYPARAMS, this.getKeyParams());
+        if(!bDirtyOnly || isKeyParamsDirty()) {
+            params.put(FIELD_KEYPARAMS,getKeyParams());
         }
-        if (!bDirtyOnly || this.isLicenseCodeDirty()) {
-            params.put(FIELD_LICENSECODE, this.getLicenseCode());
+        if(!bDirtyOnly || isLicenseCodeDirty()) {
+            params.put(FIELD_LICENSECODE,getLicenseCode());
         }
-        if (!bDirtyOnly || this.isLogAuditDetailDirty()) {
-            params.put(FIELD_LOGAUDITDETAIL, this.getLogAuditDetail());
+        if(!bDirtyOnly || isLogAuditDetailDirty()) {
+            params.put(FIELD_LOGAUDITDETAIL,getLogAuditDetail());
         }
-        if (!bDirtyOnly || this.isMemoDirty()) {
-            params.put(FIELD_MEMO, this.getMemo());
+        if(!bDirtyOnly || isMemoDirty()) {
+            params.put(FIELD_MEMO,getMemo());
         }
-        if (!bDirtyOnly || this.isMinorFieldNameDirty()) {
-            params.put(FIELD_MINORFIELDNAME, this.getMinorFieldName());
+        if(!bDirtyOnly || isMinorFieldNameDirty()) {
+            params.put(FIELD_MINORFIELDNAME,getMinorFieldName());
         }
-        if (!bDirtyOnly || this.isMinorFieldValueDirty()) {
-            params.put(FIELD_MINORFIELDVALUE, this.getMinorFieldValue());
+        if(!bDirtyOnly || isMinorFieldValueDirty()) {
+            params.put(FIELD_MINORFIELDVALUE,getMinorFieldValue());
         }
-        if (!bDirtyOnly || this.isMinorTableNameDirty()) {
-            params.put(FIELD_MINORTABLENAME, this.getMinorTableName());
+        if(!bDirtyOnly || isMinorTableNameDirty()) {
+            params.put(FIELD_MINORTABLENAME,getMinorTableName());
         }
-        if (!bDirtyOnly || this.isMutliMajorDirty()) {
-            params.put(FIELD_MUTLIMAJOR, this.getMutliMajor());
+        if(!bDirtyOnly || isMutliMajorDirty()) {
+            params.put(FIELD_MUTLIMAJOR,getMutliMajor());
         }
-        if (!bDirtyOnly || this.isNoDataInfoDirty()) {
-            params.put(FIELD_NODATAINFO, this.getNoDataInfo());
+        if(!bDirtyOnly || isNoDataInfoDirty()) {
+            params.put(FIELD_NODATAINFO,getNoDataInfo());
         }
-        if (!bDirtyOnly || this.isPrintFuncDirty()) {
-            params.put(FIELD_PRINTFUNC, this.getPrintFunc());
+        if(!bDirtyOnly || isPrintFuncDirty()) {
+            params.put(FIELD_PRINTFUNC,getPrintFunc());
         }
-        if (!bDirtyOnly || this.isReserverDirty()) {
-            params.put(FIELD_RESERVER, this.getReserver());
+        if(!bDirtyOnly || isReserverDirty()) {
+            params.put(FIELD_RESERVER,getReserver());
         }
-        if (!bDirtyOnly || this.isReserver2Dirty()) {
-            params.put(FIELD_RESERVER2, this.getReserver2());
+        if(!bDirtyOnly || isReserver2Dirty()) {
+            params.put(FIELD_RESERVER2,getReserver2());
         }
-        if (!bDirtyOnly || this.isRowAmoutDirty()) {
-            params.put(FIELD_ROWAMOUT, this.getRowAmout());
+        if(!bDirtyOnly || isRowAmoutDirty()) {
+            params.put(FIELD_ROWAMOUT,getRowAmout());
         }
-        if (!bDirtyOnly || this.isRTInfoDirty()) {
-            params.put(FIELD_RTINFO, this.getRTInfo());
+        if(!bDirtyOnly || isRTInfoDirty()) {
+            params.put(FIELD_RTINFO,getRTInfo());
         }
-        if (!bDirtyOnly || this.isSMALLICONDirty()) {
-            params.put(FIELD_SMALLICON, this.getSMALLICON());
+        if(!bDirtyOnly || isSMALLICONDirty()) {
+            params.put(FIELD_SMALLICON,getSMALLICON());
         }
-        if (!bDirtyOnly || this.isStorageTypeDirty()) {
-            params.put(FIELD_STORAGETYPE, this.getStorageType());
+        if(!bDirtyOnly || isStorageTypeDirty()) {
+            params.put(FIELD_STORAGETYPE,getStorageType());
         }
-        if (!bDirtyOnly || this.isTableNameDirty()) {
-            params.put(FIELD_TABLENAME, this.getTableName());
+        if(!bDirtyOnly || isTableNameDirty()) {
+            params.put(FIELD_TABLENAME,getTableName());
         }
-        if (!bDirtyOnly || this.isTableSpaceDirty()) {
-            params.put(FIELD_TABLESPACE, this.getTableSpace());
+        if(!bDirtyOnly || isTableSpaceDirty()) {
+            params.put(FIELD_TABLESPACE,getTableSpace());
         }
-        if (!bDirtyOnly || this.isTipsInfoDirty()) {
-            params.put(FIELD_TIPSINFO, this.getTipsInfo());
+        if(!bDirtyOnly || isTipsInfoDirty()) {
+            params.put(FIELD_TIPSINFO,getTipsInfo());
         }
-        if (!bDirtyOnly || this.isUpdateDateDirty()) {
-            params.put(FIELD_UPDATEDATE, this.getUpdateDate());
+        if(!bDirtyOnly || isUpdateDateDirty()) {
+            params.put(FIELD_UPDATEDATE,getUpdateDate());
         }
-        if (!bDirtyOnly || this.isUpdateManDirty()) {
-            params.put(FIELD_UPDATEMAN, this.getUpdateMan());
+        if(!bDirtyOnly || isUpdateManDirty()) {
+            params.put(FIELD_UPDATEMAN,getUpdateMan());
         }
-        if (!bDirtyOnly || this.isUserActionDirty()) {
-            params.put(FIELD_USERACTION, this.getUserAction());
+        if(!bDirtyOnly || isUserActionDirty()) {
+            params.put(FIELD_USERACTION,getUserAction());
         }
-        if (!bDirtyOnly || this.isValidFlagDirty()) {
-            params.put(FIELD_VALIDFLAG, this.getValidFlag());
+        if(!bDirtyOnly || isValidFlagDirty()) {
+            params.put(FIELD_VALIDFLAG,getValidFlag());
         }
-        if (!bDirtyOnly || this.isVCFlagDirty()) {
-            params.put(FIELD_VCFLAG, this.getVCFlag());
+        if(!bDirtyOnly || isVCFlagDirty()) {
+            params.put(FIELD_VCFLAG,getVCFlag());
         }
-        if (!bDirtyOnly || this.isVerCheckTimerDirty()) {
-            params.put(FIELD_VERCHECKTIMER, this.getVerCheckTimer());
+        if(!bDirtyOnly || isVerCheckTimerDirty()) {
+            params.put(FIELD_VERCHECKTIMER,getVerCheckTimer());
         }
-        if (!bDirtyOnly || this.isVerFieldDirty()) {
-            params.put(FIELD_VERFIELD, this.getVerField());
+        if(!bDirtyOnly || isVerFieldDirty()) {
+            params.put(FIELD_VERFIELD,getVerField());
         }
-        if (!bDirtyOnly || this.isVerHelperDirty()) {
-            params.put(FIELD_VERHELPER, this.getVerHelper());
+        if(!bDirtyOnly || isVerHelperDirty()) {
+            params.put(FIELD_VERHELPER,getVerHelper());
         }
-        if (!bDirtyOnly || this.isVersionCheckDirty()) {
-            params.put(FIELD_VERSIONCHECK, this.getVersionCheck());
+        if(!bDirtyOnly || isVersionCheckDirty()) {
+            params.put(FIELD_VERSIONCHECK,getVersionCheck());
         }
-        if (!bDirtyOnly || this.isViewNameDirty()) {
-            params.put(FIELD_VIEWNAME, this.getViewName());
+        if(!bDirtyOnly || isViewNameDirty()) {
+            params.put(FIELD_VIEWNAME,getViewName());
         }
         super.onFillMap(params, bDirtyOnly);
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#get(java.lang.String)
+     */
     @Override
     public Object get(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().get(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.get(strParamName);
-        }
-        return DataEntityBase.get(this, index);
+
+        return  DataEntityBase.get(this, index);
     }
 
-    private static Object get(DataEntityBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                return et.getACEnableDP();
-            }
-            case 1: {
-                return et.getACExtInfo();
-            }
-            case 2: {
-                return et.getACInfoFormat();
-            }
-            case 3: {
-                return et.getACInfoParam();
-            }
-            case 4: {
-                return et.getACMaxCnt();
-            }
-            case 5: {
-                return et.getACObject();
-            }
-            case 6: {
-                return et.getACQueryModelId();
-            }
-            case 7: {
-                return et.getACQueryModelName();
-            }
-            case 8: {
-                return et.getACSortDir();
-            }
-            case 9: {
-                return et.getACSortField();
-            }
-            case 10: {
-                return et.getBigIcon();
-            }
-            case 11: {
-                return et.getConfigHelper();
-            }
-            case 12: {
-                return et.getCreateDate();
-            }
-            case 13: {
-                return et.getCreateMan();
-            }
-            case 14: {
-                return et.getDataAccObject();
-            }
-            case 15: {
-                return et.getDataChgLogMode();
-            }
-            case 16: {
-                return et.getDataCtrlInt();
-            }
-            case 17: {
-                return et.getDataCtrlObject();
-            }
-            case 18: {
-                return et.getDataNotifyHelper();
-            }
-            case 19: {
-                return et.getDBStorage();
-            }
-            case 20: {
-                return et.getDBVersion();
-            }
-            case 21: {
-                return et.getDEGroup();
-            }
-            case 22: {
-                return et.getDEHelper();
-            }
-            case 23: {
-                return et.getDEId();
-            }
-            case 24: {
-                return et.getDELogicName();
-            }
-            case 25: {
-                return et.getDEName();
-            }
-            case 26: {
-                return et.getDEObject();
-            }
-            case 27: {
-                return et.getDEOrder();
-            }
-            case 28: {
-                return et.getDEParam();
-            }
-            case 29: {
-                return et.getDER11DEId();
-            }
-            case 30: {
-                return et.getDER11DEName();
-            }
-            case 31: {
-                return et.getDEType();
-            }
-            case 32: {
-                return et.getDEUserParam();
-            }
-            case 33: {
-                return et.getDEVersion();
-            }
-            case 34: {
-                return et.getDGRowClassHelper();
-            }
-            case 35: {
-                return et.getDGSUMMARYHeight();
-            }
-            case 36: {
-                return et.getDLKHelper();
-            }
-            case 37: {
-                return et.getDynamicInterval();
-            }
-            case 38: {
-                return et.getEnableColPriv();
-            }
-            case 39: {
-                return et.getEnableGlobalModel();
-            }
-            case 40: {
-                return et.getExitingModel();
-            }
-            case 41: {
-                return et.getExportIncEmpty();
-            }
-            case 42: {
-                return et.getExTableName();
-            }
-            case 43: {
-                return et.getGlobalModelObj();
-            }
-            case 44: {
-                return et.getIndexMode();
-            }
-            case 45: {
-                return et.getInfoField();
-            }
-            case 46: {
-                return et.getInfoFormat();
-            }
-            case 47: {
-                return et.getInheritMode();
-            }
-            case 48: {
-                return et.getIsDGRowEdit();
-            }
-            case 49: {
-                return et.getIsEnableAudit();
-            }
-            case 50: {
-                return et.getIsEnableDP();
-            }
-            case 51: {
-                return et.getIsIndexDE();
-            }
-            case 52: {
-                return et.getIsLogicValid();
-            }
-            case 53: {
-                return et.getISMULTIPRINT();
-            }
-            case 54: {
-                return et.getISSupportFA();
-            }
-            case 55: {
-                return et.getIsSystem();
-            }
-            case 56: {
-                return et.getKeyParams();
-            }
-            case 57: {
-                return et.getLicenseCode();
-            }
-            case 58: {
-                return et.getLogAuditDetail();
-            }
-            case 59: {
-                return et.getMemo();
-            }
-            case 60: {
-                return et.getMinorFieldName();
-            }
-            case 61: {
-                return et.getMinorFieldValue();
-            }
-            case 62: {
-                return et.getMinorTableName();
-            }
-            case 63: {
-                return et.getMutliMajor();
-            }
-            case 64: {
-                return et.getNoDataInfo();
-            }
-            case 65: {
-                return et.getPrintFunc();
-            }
-            case 66: {
-                return et.getReserver();
-            }
-            case 67: {
-                return et.getReserver2();
-            }
-            case 68: {
-                return et.getRowAmout();
-            }
-            case 69: {
-                return et.getRTInfo();
-            }
-            case 70: {
-                return et.getSMALLICON();
-            }
-            case 71: {
-                return et.getStorageType();
-            }
-            case 72: {
-                return et.getTableName();
-            }
-            case 73: {
-                return et.getTableSpace();
-            }
-            case 74: {
-                return et.getTipsInfo();
-            }
-            case 75: {
-                return et.getUpdateDate();
-            }
-            case 76: {
-                return et.getUpdateMan();
-            }
-            case 77: {
-                return et.getUserAction();
-            }
-            case 78: {
-                return et.getValidFlag();
-            }
-            case 79: {
-                return et.getVCFlag();
-            }
-            case 80: {
-                return et.getVerCheckTimer();
-            }
-            case 81: {
-                return et.getVerField();
-            }
-            case 82: {
-                return et.getVerHelper();
-            }
-            case 83: {
-                return et.getVersionCheck();
-            }
-            case 84: {
-                return et.getViewName();
-            }
+    /**
+     * 通过属性标识获取属性值
+     * @param et 数据对象
+     * @param index 属性标识
+     * @return
+     * @throws Exception
+     */
+    private static Object get(DataEntityBase et,int index) throws Exception {
+
+        switch(index) {
+        case INDEX_ACENABLEDP:
+            return et.getACEnableDP();
+        case INDEX_ACEXTINFO:
+            return et.getACExtInfo();
+        case INDEX_ACINFOFORMAT:
+            return et.getACInfoFormat();
+        case INDEX_ACINFOPARAM:
+            return et.getACInfoParam();
+        case INDEX_ACMAXCNT:
+            return et.getACMaxCnt();
+        case INDEX_ACOBJECT:
+            return et.getACObject();
+        case INDEX_ACQUERYMODELID:
+            return et.getACQueryModelId();
+        case INDEX_ACQUERYMODELNAME:
+            return et.getACQueryModelName();
+        case INDEX_ACSORTDIR:
+            return et.getACSortDir();
+        case INDEX_ACSORTFIELD:
+            return et.getACSortField();
+        case INDEX_BIGICON:
+            return et.getBigIcon();
+        case INDEX_CONFIGHELPER:
+            return et.getConfigHelper();
+        case INDEX_CREATEDATE:
+            return et.getCreateDate();
+        case INDEX_CREATEMAN:
+            return et.getCreateMan();
+        case INDEX_DATAACCOBJECT:
+            return et.getDataAccObject();
+        case INDEX_DATACHGLOGMODE:
+            return et.getDataChgLogMode();
+        case INDEX_DATACTRLINT:
+            return et.getDataCtrlInt();
+        case INDEX_DATACTRLOBJECT:
+            return et.getDataCtrlObject();
+        case INDEX_DATANOTIFYHELPER:
+            return et.getDataNotifyHelper();
+        case INDEX_DBSTORAGE:
+            return et.getDBStorage();
+        case INDEX_DBVERSION:
+            return et.getDBVersion();
+        case INDEX_DEGROUP:
+            return et.getDEGroup();
+        case INDEX_DEHELPER:
+            return et.getDEHelper();
+        case INDEX_DEID:
+            return et.getDEId();
+        case INDEX_DELOGICNAME:
+            return et.getDELogicName();
+        case INDEX_DENAME:
+            return et.getDEName();
+        case INDEX_DEOBJECT:
+            return et.getDEObject();
+        case INDEX_DEORDER:
+            return et.getDEOrder();
+        case INDEX_DEPARAM:
+            return et.getDEParam();
+        case INDEX_DER11DEID:
+            return et.getDER11DEId();
+        case INDEX_DER11DENAME:
+            return et.getDER11DEName();
+        case INDEX_DETYPE:
+            return et.getDEType();
+        case INDEX_DEUSERPARAM:
+            return et.getDEUserParam();
+        case INDEX_DEVERSION:
+            return et.getDEVersion();
+        case INDEX_DGROWCLASSHELPER:
+            return et.getDGRowClassHelper();
+        case INDEX_DGSUMMARYHEIGHT:
+            return et.getDGSUMMARYHeight();
+        case INDEX_DLKHELPER:
+            return et.getDLKHelper();
+        case INDEX_DYNAMICINTERVAL:
+            return et.getDynamicInterval();
+        case INDEX_ENABLECOLPRIV:
+            return et.getEnableColPriv();
+        case INDEX_ENABLEGLOBALMODEL:
+            return et.getEnableGlobalModel();
+        case INDEX_EXITINGMODEL:
+            return et.getExitingModel();
+        case INDEX_EXPORTINCEMPTY:
+            return et.getExportIncEmpty();
+        case INDEX_EXTABLENAME:
+            return et.getExTableName();
+        case INDEX_GLOBALMODELOBJ:
+            return et.getGlobalModelObj();
+        case INDEX_INDEXMODE:
+            return et.getIndexMode();
+        case INDEX_INFOFIELD:
+            return et.getInfoField();
+        case INDEX_INFOFORMAT:
+            return et.getInfoFormat();
+        case INDEX_INHERITMODE:
+            return et.getInheritMode();
+        case INDEX_ISDGROWEDIT:
+            return et.getIsDGRowEdit();
+        case INDEX_ISENABLEAUDIT:
+            return et.getIsEnableAudit();
+        case INDEX_ISENABLEDP:
+            return et.getIsEnableDP();
+        case INDEX_ISINDEXDE:
+            return et.getIsIndexDE();
+        case INDEX_ISLOGICVALID:
+            return et.getIsLogicValid();
+        case INDEX_ISMULTIPRINT:
+            return et.getISMULTIPRINT();
+        case INDEX_ISSUPPORTFA:
+            return et.getISSupportFA();
+        case INDEX_ISSYSTEM:
+            return et.getIsSystem();
+        case INDEX_KEYPARAMS:
+            return et.getKeyParams();
+        case INDEX_LICENSECODE:
+            return et.getLicenseCode();
+        case INDEX_LOGAUDITDETAIL:
+            return et.getLogAuditDetail();
+        case INDEX_MEMO:
+            return et.getMemo();
+        case INDEX_MINORFIELDNAME:
+            return et.getMinorFieldName();
+        case INDEX_MINORFIELDVALUE:
+            return et.getMinorFieldValue();
+        case INDEX_MINORTABLENAME:
+            return et.getMinorTableName();
+        case INDEX_MUTLIMAJOR:
+            return et.getMutliMajor();
+        case INDEX_NODATAINFO:
+            return et.getNoDataInfo();
+        case INDEX_PRINTFUNC:
+            return et.getPrintFunc();
+        case INDEX_RESERVER:
+            return et.getReserver();
+        case INDEX_RESERVER2:
+            return et.getReserver2();
+        case INDEX_ROWAMOUT:
+            return et.getRowAmout();
+        case INDEX_RTINFO:
+            return et.getRTInfo();
+        case INDEX_SMALLICON:
+            return et.getSMALLICON();
+        case INDEX_STORAGETYPE:
+            return et.getStorageType();
+        case INDEX_TABLENAME:
+            return et.getTableName();
+        case INDEX_TABLESPACE:
+            return et.getTableSpace();
+        case INDEX_TIPSINFO:
+            return et.getTipsInfo();
+        case INDEX_UPDATEDATE:
+            return et.getUpdateDate();
+        case INDEX_UPDATEMAN:
+            return et.getUpdateMan();
+        case INDEX_USERACTION:
+            return et.getUserAction();
+        case INDEX_VALIDFLAG:
+            return et.getValidFlag();
+        case INDEX_VCFLAG:
+            return et.getVCFlag();
+        case INDEX_VERCHECKTIMER:
+            return et.getVerCheckTimer();
+        case INDEX_VERFIELD:
+            return et.getVerField();
+        case INDEX_VERHELPER:
+            return et.getVerHelper();
+        case INDEX_VERSIONCHECK:
+            return et.getVersionCheck();
+        case INDEX_VIEWNAME:
+            return et.getViewName();
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#set(java.lang.String, java.lang.Object)
+     */
     @Override
-    public void set(String strParamName, Object objValue) throws Exception {
-        if (this.getProxyEntity() != null) {
-            this.getProxyEntity().set(strParamName, objValue);
+    public void set(String strParamName,Object objValue) throws Exception {
+        if(this.getProxyEntity()!=null) {
+            this.getProxyEntity().set(strParamName,objValue);
             return;
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
-            super.set(strParamName, objValue);
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null) {
+            super.set(strParamName,objValue);
             return;
         }
-        DataEntityBase.set(this, index, objValue);
+
+        DataEntityBase.set(this,index,objValue);
     }
 
-    private static void set(DataEntityBase et, int index, Object obj) throws Exception {
-        switch (index) {
-            case 0: {
-                et.setACEnableDP(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 1: {
-                et.setACExtInfo(DataObject.getStringValue(obj));
-                return;
-            }
-            case 2: {
-                et.setACInfoFormat(DataObject.getStringValue(obj));
-                return;
-            }
-            case 3: {
-                et.setACInfoParam(DataObject.getStringValue(obj));
-                return;
-            }
-            case 4: {
-                et.setACMaxCnt(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 5: {
-                et.setACObject(DataObject.getStringValue(obj));
-                return;
-            }
-            case 6: {
-                et.setACQueryModelId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 7: {
-                et.setACQueryModelName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 8: {
-                et.setACSortDir(DataObject.getStringValue(obj));
-                return;
-            }
-            case 9: {
-                et.setACSortField(DataObject.getStringValue(obj));
-                return;
-            }
-            case 10: {
-                et.setBigIcon(DataObject.getStringValue(obj));
-                return;
-            }
-            case 11: {
-                et.setConfigHelper(DataObject.getStringValue(obj));
-                return;
-            }
-            case 12: {
-                et.setCreateDate(DataObject.getTimestampValue(obj));
-                return;
-            }
-            case 13: {
-                et.setCreateMan(DataObject.getStringValue(obj));
-                return;
-            }
-            case 14: {
-                et.setDataAccObject(DataObject.getStringValue(obj));
-                return;
-            }
-            case 15: {
-                et.setDataChgLogMode(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 16: {
-                et.setDataCtrlInt(DataObject.getStringValue(obj));
-                return;
-            }
-            case 17: {
-                et.setDataCtrlObject(DataObject.getStringValue(obj));
-                return;
-            }
-            case 18: {
-                et.setDataNotifyHelper(DataObject.getStringValue(obj));
-                return;
-            }
-            case 19: {
-                et.setDBStorage(DataObject.getStringValue(obj));
-                return;
-            }
-            case 20: {
-                et.setDBVersion(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 21: {
-                et.setDEGroup(DataObject.getStringValue(obj));
-                return;
-            }
-            case 22: {
-                et.setDEHelper(DataObject.getStringValue(obj));
-                return;
-            }
-            case 23: {
-                et.setDEId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 24: {
-                et.setDELogicName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 25: {
-                et.setDEName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 26: {
-                et.setDEObject(DataObject.getStringValue(obj));
-                return;
-            }
-            case 27: {
-                et.setDEOrder(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 28: {
-                et.setDEParam(DataObject.getStringValue(obj));
-                return;
-            }
-            case 29: {
-                et.setDER11DEId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 30: {
-                et.setDER11DEName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 31: {
-                et.setDEType(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 32: {
-                et.setDEUserParam(DataObject.getStringValue(obj));
-                return;
-            }
-            case 33: {
-                et.setDEVersion(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 34: {
-                et.setDGRowClassHelper(DataObject.getStringValue(obj));
-                return;
-            }
-            case 35: {
-                et.setDGSUMMARYHeight(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 36: {
-                et.setDLKHelper(DataObject.getStringValue(obj));
-                return;
-            }
-            case 37: {
-                et.setDynamicInterval(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 38: {
-                et.setEnableColPriv(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 39: {
-                et.setEnableGlobalModel(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 40: {
-                et.setExitingModel(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 41: {
-                et.setExportIncEmpty(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 42: {
-                et.setExTableName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 43: {
-                et.setGlobalModelObj(DataObject.getStringValue(obj));
-                return;
-            }
-            case 44: {
-                et.setIndexMode(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 45: {
-                et.setInfoField(DataObject.getStringValue(obj));
-                return;
-            }
-            case 46: {
-                et.setInfoFormat(DataObject.getStringValue(obj));
-                return;
-            }
-            case 47: {
-                et.setInheritMode(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 48: {
-                et.setIsDGRowEdit(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 49: {
-                et.setIsEnableAudit(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 50: {
-                et.setIsEnableDP(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 51: {
-                et.setIsIndexDE(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 52: {
-                et.setIsLogicValid(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 53: {
-                et.setISMULTIPRINT(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 54: {
-                et.setISSupportFA(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 55: {
-                et.setIsSystem(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 56: {
-                et.setKeyParams(DataObject.getStringValue(obj));
-                return;
-            }
-            case 57: {
-                et.setLicenseCode(DataObject.getStringValue(obj));
-                return;
-            }
-            case 58: {
-                et.setLogAuditDetail(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 59: {
-                et.setMemo(DataObject.getStringValue(obj));
-                return;
-            }
-            case 60: {
-                et.setMinorFieldName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 61: {
-                et.setMinorFieldValue(DataObject.getStringValue(obj));
-                return;
-            }
-            case 62: {
-                et.setMinorTableName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 63: {
-                et.setMutliMajor(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 64: {
-                et.setNoDataInfo(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 65: {
-                et.setPrintFunc(DataObject.getStringValue(obj));
-                return;
-            }
-            case 66: {
-                et.setReserver(DataObject.getStringValue(obj));
-                return;
-            }
-            case 67: {
-                et.setReserver2(DataObject.getStringValue(obj));
-                return;
-            }
-            case 68: {
-                et.setRowAmout(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 69: {
-                et.setRTInfo(DataObject.getStringValue(obj));
-                return;
-            }
-            case 70: {
-                et.setSMALLICON(DataObject.getStringValue(obj));
-                return;
-            }
-            case 71: {
-                et.setStorageType(DataObject.getStringValue(obj));
-                return;
-            }
-            case 72: {
-                et.setTableName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 73: {
-                et.setTableSpace(DataObject.getStringValue(obj));
-                return;
-            }
-            case 74: {
-                et.setTipsInfo(DataObject.getStringValue(obj));
-                return;
-            }
-            case 75: {
-                et.setUpdateDate(DataObject.getTimestampValue(obj));
-                return;
-            }
-            case 76: {
-                et.setUpdateMan(DataObject.getStringValue(obj));
-                return;
-            }
-            case 77: {
-                et.setUserAction(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 78: {
-                et.setValidFlag(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 79: {
-                et.setVCFlag(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 80: {
-                et.setVerCheckTimer(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 81: {
-                et.setVerField(DataObject.getStringValue(obj));
-                return;
-            }
-            case 82: {
-                et.setVerHelper(DataObject.getStringValue(obj));
-                return;
-            }
-            case 83: {
-                et.setVersionCheck(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 84: {
-                et.setViewName(DataObject.getStringValue(obj));
-                return;
-            }
+    /**
+     * 通过属性标识设定属性值
+     * @param et 数据对象
+     * @param index 属性标识
+     * @param obj 值
+     * @throws Exception
+     */
+    private static void set(DataEntityBase et,int index,Object obj) throws Exception {
+        switch(index) {
+        case INDEX_ACENABLEDP:
+            et.setACEnableDP(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ACEXTINFO:
+            et.setACExtInfo(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_ACINFOFORMAT:
+            et.setACInfoFormat(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_ACINFOPARAM:
+            et.setACInfoParam(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_ACMAXCNT:
+            et.setACMaxCnt(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ACOBJECT:
+            et.setACObject(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_ACQUERYMODELID:
+            et.setACQueryModelId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_ACQUERYMODELNAME:
+            et.setACQueryModelName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_ACSORTDIR:
+            et.setACSortDir(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_ACSORTFIELD:
+            et.setACSortField(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_BIGICON:
+            et.setBigIcon(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_CONFIGHELPER:
+            et.setConfigHelper(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_CREATEDATE:
+            et.setCreateDate(DataObject.getTimestampValue(obj));
+            return ;
+        case INDEX_CREATEMAN:
+            et.setCreateMan(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DATAACCOBJECT:
+            et.setDataAccObject(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DATACHGLOGMODE:
+            et.setDataChgLogMode(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_DATACTRLINT:
+            et.setDataCtrlInt(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DATACTRLOBJECT:
+            et.setDataCtrlObject(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DATANOTIFYHELPER:
+            et.setDataNotifyHelper(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DBSTORAGE:
+            et.setDBStorage(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DBVERSION:
+            et.setDBVersion(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_DEGROUP:
+            et.setDEGroup(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DEHELPER:
+            et.setDEHelper(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DEID:
+            et.setDEId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DELOGICNAME:
+            et.setDELogicName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DENAME:
+            et.setDEName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DEOBJECT:
+            et.setDEObject(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DEORDER:
+            et.setDEOrder(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_DEPARAM:
+            et.setDEParam(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DER11DEID:
+            et.setDER11DEId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DER11DENAME:
+            et.setDER11DEName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DETYPE:
+            et.setDEType(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_DEUSERPARAM:
+            et.setDEUserParam(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DEVERSION:
+            et.setDEVersion(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_DGROWCLASSHELPER:
+            et.setDGRowClassHelper(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DGSUMMARYHEIGHT:
+            et.setDGSUMMARYHeight(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_DLKHELPER:
+            et.setDLKHelper(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DYNAMICINTERVAL:
+            et.setDynamicInterval(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ENABLECOLPRIV:
+            et.setEnableColPriv(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ENABLEGLOBALMODEL:
+            et.setEnableGlobalModel(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_EXITINGMODEL:
+            et.setExitingModel(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_EXPORTINCEMPTY:
+            et.setExportIncEmpty(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_EXTABLENAME:
+            et.setExTableName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_GLOBALMODELOBJ:
+            et.setGlobalModelObj(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_INDEXMODE:
+            et.setIndexMode(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_INFOFIELD:
+            et.setInfoField(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_INFOFORMAT:
+            et.setInfoFormat(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_INHERITMODE:
+            et.setInheritMode(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ISDGROWEDIT:
+            et.setIsDGRowEdit(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ISENABLEAUDIT:
+            et.setIsEnableAudit(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ISENABLEDP:
+            et.setIsEnableDP(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ISINDEXDE:
+            et.setIsIndexDE(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ISLOGICVALID:
+            et.setIsLogicValid(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ISMULTIPRINT:
+            et.setISMULTIPRINT(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ISSUPPORTFA:
+            et.setISSupportFA(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_ISSYSTEM:
+            et.setIsSystem(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_KEYPARAMS:
+            et.setKeyParams(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_LICENSECODE:
+            et.setLicenseCode(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_LOGAUDITDETAIL:
+            et.setLogAuditDetail(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_MEMO:
+            et.setMemo(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_MINORFIELDNAME:
+            et.setMinorFieldName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_MINORFIELDVALUE:
+            et.setMinorFieldValue(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_MINORTABLENAME:
+            et.setMinorTableName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_MUTLIMAJOR:
+            et.setMutliMajor(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_NODATAINFO:
+            et.setNoDataInfo(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_PRINTFUNC:
+            et.setPrintFunc(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_RESERVER:
+            et.setReserver(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_RESERVER2:
+            et.setReserver2(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_ROWAMOUT:
+            et.setRowAmout(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_RTINFO:
+            et.setRTInfo(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_SMALLICON:
+            et.setSMALLICON(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_STORAGETYPE:
+            et.setStorageType(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_TABLENAME:
+            et.setTableName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_TABLESPACE:
+            et.setTableSpace(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_TIPSINFO:
+            et.setTipsInfo(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_UPDATEDATE:
+            et.setUpdateDate(DataObject.getTimestampValue(obj));
+            return ;
+        case INDEX_UPDATEMAN:
+            et.setUpdateMan(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_USERACTION:
+            et.setUserAction(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_VALIDFLAG:
+            et.setValidFlag(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_VCFLAG:
+            et.setVCFlag(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_VERCHECKTIMER:
+            et.setVerCheckTimer(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_VERFIELD:
+            et.setVerField(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_VERHELPER:
+            et.setVerHelper(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_VERSIONCHECK:
+            et.setVersionCheck(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_VIEWNAME:
+            et.setViewName(DataObject.getStringValue(obj));
+            return ;
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#isNull(java.lang.String)
+     */
     @Override
     public boolean isNull(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isNull(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.isNull(strParamName);
-        }
-        return DataEntityBase.isNull(this, index);
+
+        return  DataEntityBase.isNull(this, index);
     }
 
-    private static boolean isNull(DataEntityBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                return et.getACEnableDP() == null;
-            }
-            case 1: {
-                return et.getACExtInfo() == null;
-            }
-            case 2: {
-                return et.getACInfoFormat() == null;
-            }
-            case 3: {
-                return et.getACInfoParam() == null;
-            }
-            case 4: {
-                return et.getACMaxCnt() == null;
-            }
-            case 5: {
-                return et.getACObject() == null;
-            }
-            case 6: {
-                return et.getACQueryModelId() == null;
-            }
-            case 7: {
-                return et.getACQueryModelName() == null;
-            }
-            case 8: {
-                return et.getACSortDir() == null;
-            }
-            case 9: {
-                return et.getACSortField() == null;
-            }
-            case 10: {
-                return et.getBigIcon() == null;
-            }
-            case 11: {
-                return et.getConfigHelper() == null;
-            }
-            case 12: {
-                return et.getCreateDate() == null;
-            }
-            case 13: {
-                return et.getCreateMan() == null;
-            }
-            case 14: {
-                return et.getDataAccObject() == null;
-            }
-            case 15: {
-                return et.getDataChgLogMode() == null;
-            }
-            case 16: {
-                return et.getDataCtrlInt() == null;
-            }
-            case 17: {
-                return et.getDataCtrlObject() == null;
-            }
-            case 18: {
-                return et.getDataNotifyHelper() == null;
-            }
-            case 19: {
-                return et.getDBStorage() == null;
-            }
-            case 20: {
-                return et.getDBVersion() == null;
-            }
-            case 21: {
-                return et.getDEGroup() == null;
-            }
-            case 22: {
-                return et.getDEHelper() == null;
-            }
-            case 23: {
-                return et.getDEId() == null;
-            }
-            case 24: {
-                return et.getDELogicName() == null;
-            }
-            case 25: {
-                return et.getDEName() == null;
-            }
-            case 26: {
-                return et.getDEObject() == null;
-            }
-            case 27: {
-                return et.getDEOrder() == null;
-            }
-            case 28: {
-                return et.getDEParam() == null;
-            }
-            case 29: {
-                return et.getDER11DEId() == null;
-            }
-            case 30: {
-                return et.getDER11DEName() == null;
-            }
-            case 31: {
-                return et.getDEType() == null;
-            }
-            case 32: {
-                return et.getDEUserParam() == null;
-            }
-            case 33: {
-                return et.getDEVersion() == null;
-            }
-            case 34: {
-                return et.getDGRowClassHelper() == null;
-            }
-            case 35: {
-                return et.getDGSUMMARYHeight() == null;
-            }
-            case 36: {
-                return et.getDLKHelper() == null;
-            }
-            case 37: {
-                return et.getDynamicInterval() == null;
-            }
-            case 38: {
-                return et.getEnableColPriv() == null;
-            }
-            case 39: {
-                return et.getEnableGlobalModel() == null;
-            }
-            case 40: {
-                return et.getExitingModel() == null;
-            }
-            case 41: {
-                return et.getExportIncEmpty() == null;
-            }
-            case 42: {
-                return et.getExTableName() == null;
-            }
-            case 43: {
-                return et.getGlobalModelObj() == null;
-            }
-            case 44: {
-                return et.getIndexMode() == null;
-            }
-            case 45: {
-                return et.getInfoField() == null;
-            }
-            case 46: {
-                return et.getInfoFormat() == null;
-            }
-            case 47: {
-                return et.getInheritMode() == null;
-            }
-            case 48: {
-                return et.getIsDGRowEdit() == null;
-            }
-            case 49: {
-                return et.getIsEnableAudit() == null;
-            }
-            case 50: {
-                return et.getIsEnableDP() == null;
-            }
-            case 51: {
-                return et.getIsIndexDE() == null;
-            }
-            case 52: {
-                return et.getIsLogicValid() == null;
-            }
-            case 53: {
-                return et.getISMULTIPRINT() == null;
-            }
-            case 54: {
-                return et.getISSupportFA() == null;
-            }
-            case 55: {
-                return et.getIsSystem() == null;
-            }
-            case 56: {
-                return et.getKeyParams() == null;
-            }
-            case 57: {
-                return et.getLicenseCode() == null;
-            }
-            case 58: {
-                return et.getLogAuditDetail() == null;
-            }
-            case 59: {
-                return et.getMemo() == null;
-            }
-            case 60: {
-                return et.getMinorFieldName() == null;
-            }
-            case 61: {
-                return et.getMinorFieldValue() == null;
-            }
-            case 62: {
-                return et.getMinorTableName() == null;
-            }
-            case 63: {
-                return et.getMutliMajor() == null;
-            }
-            case 64: {
-                return et.getNoDataInfo() == null;
-            }
-            case 65: {
-                return et.getPrintFunc() == null;
-            }
-            case 66: {
-                return et.getReserver() == null;
-            }
-            case 67: {
-                return et.getReserver2() == null;
-            }
-            case 68: {
-                return et.getRowAmout() == null;
-            }
-            case 69: {
-                return et.getRTInfo() == null;
-            }
-            case 70: {
-                return et.getSMALLICON() == null;
-            }
-            case 71: {
-                return et.getStorageType() == null;
-            }
-            case 72: {
-                return et.getTableName() == null;
-            }
-            case 73: {
-                return et.getTableSpace() == null;
-            }
-            case 74: {
-                return et.getTipsInfo() == null;
-            }
-            case 75: {
-                return et.getUpdateDate() == null;
-            }
-            case 76: {
-                return et.getUpdateMan() == null;
-            }
-            case 77: {
-                return et.getUserAction() == null;
-            }
-            case 78: {
-                return et.getValidFlag() == null;
-            }
-            case 79: {
-                return et.getVCFlag() == null;
-            }
-            case 80: {
-                return et.getVerCheckTimer() == null;
-            }
-            case 81: {
-                return et.getVerField() == null;
-            }
-            case 82: {
-                return et.getVerHelper() == null;
-            }
-            case 83: {
-                return et.getVersionCheck() == null;
-            }
-            case 84: {
-                return et.getViewName() == null;
-            }
+    /**
+     * 判断指定属性值是否为空值
+     * @param et
+     * @param index
+     * @return
+     * @throws Exception
+     */
+    private static boolean isNull(DataEntityBase et,int index) throws Exception {
+
+        switch(index) {
+        case INDEX_ACENABLEDP:
+            return et.getACEnableDP()==null;
+        case INDEX_ACEXTINFO:
+            return et.getACExtInfo()==null;
+        case INDEX_ACINFOFORMAT:
+            return et.getACInfoFormat()==null;
+        case INDEX_ACINFOPARAM:
+            return et.getACInfoParam()==null;
+        case INDEX_ACMAXCNT:
+            return et.getACMaxCnt()==null;
+        case INDEX_ACOBJECT:
+            return et.getACObject()==null;
+        case INDEX_ACQUERYMODELID:
+            return et.getACQueryModelId()==null;
+        case INDEX_ACQUERYMODELNAME:
+            return et.getACQueryModelName()==null;
+        case INDEX_ACSORTDIR:
+            return et.getACSortDir()==null;
+        case INDEX_ACSORTFIELD:
+            return et.getACSortField()==null;
+        case INDEX_BIGICON:
+            return et.getBigIcon()==null;
+        case INDEX_CONFIGHELPER:
+            return et.getConfigHelper()==null;
+        case INDEX_CREATEDATE:
+            return et.getCreateDate()==null;
+        case INDEX_CREATEMAN:
+            return et.getCreateMan()==null;
+        case INDEX_DATAACCOBJECT:
+            return et.getDataAccObject()==null;
+        case INDEX_DATACHGLOGMODE:
+            return et.getDataChgLogMode()==null;
+        case INDEX_DATACTRLINT:
+            return et.getDataCtrlInt()==null;
+        case INDEX_DATACTRLOBJECT:
+            return et.getDataCtrlObject()==null;
+        case INDEX_DATANOTIFYHELPER:
+            return et.getDataNotifyHelper()==null;
+        case INDEX_DBSTORAGE:
+            return et.getDBStorage()==null;
+        case INDEX_DBVERSION:
+            return et.getDBVersion()==null;
+        case INDEX_DEGROUP:
+            return et.getDEGroup()==null;
+        case INDEX_DEHELPER:
+            return et.getDEHelper()==null;
+        case INDEX_DEID:
+            return et.getDEId()==null;
+        case INDEX_DELOGICNAME:
+            return et.getDELogicName()==null;
+        case INDEX_DENAME:
+            return et.getDEName()==null;
+        case INDEX_DEOBJECT:
+            return et.getDEObject()==null;
+        case INDEX_DEORDER:
+            return et.getDEOrder()==null;
+        case INDEX_DEPARAM:
+            return et.getDEParam()==null;
+        case INDEX_DER11DEID:
+            return et.getDER11DEId()==null;
+        case INDEX_DER11DENAME:
+            return et.getDER11DEName()==null;
+        case INDEX_DETYPE:
+            return et.getDEType()==null;
+        case INDEX_DEUSERPARAM:
+            return et.getDEUserParam()==null;
+        case INDEX_DEVERSION:
+            return et.getDEVersion()==null;
+        case INDEX_DGROWCLASSHELPER:
+            return et.getDGRowClassHelper()==null;
+        case INDEX_DGSUMMARYHEIGHT:
+            return et.getDGSUMMARYHeight()==null;
+        case INDEX_DLKHELPER:
+            return et.getDLKHelper()==null;
+        case INDEX_DYNAMICINTERVAL:
+            return et.getDynamicInterval()==null;
+        case INDEX_ENABLECOLPRIV:
+            return et.getEnableColPriv()==null;
+        case INDEX_ENABLEGLOBALMODEL:
+            return et.getEnableGlobalModel()==null;
+        case INDEX_EXITINGMODEL:
+            return et.getExitingModel()==null;
+        case INDEX_EXPORTINCEMPTY:
+            return et.getExportIncEmpty()==null;
+        case INDEX_EXTABLENAME:
+            return et.getExTableName()==null;
+        case INDEX_GLOBALMODELOBJ:
+            return et.getGlobalModelObj()==null;
+        case INDEX_INDEXMODE:
+            return et.getIndexMode()==null;
+        case INDEX_INFOFIELD:
+            return et.getInfoField()==null;
+        case INDEX_INFOFORMAT:
+            return et.getInfoFormat()==null;
+        case INDEX_INHERITMODE:
+            return et.getInheritMode()==null;
+        case INDEX_ISDGROWEDIT:
+            return et.getIsDGRowEdit()==null;
+        case INDEX_ISENABLEAUDIT:
+            return et.getIsEnableAudit()==null;
+        case INDEX_ISENABLEDP:
+            return et.getIsEnableDP()==null;
+        case INDEX_ISINDEXDE:
+            return et.getIsIndexDE()==null;
+        case INDEX_ISLOGICVALID:
+            return et.getIsLogicValid()==null;
+        case INDEX_ISMULTIPRINT:
+            return et.getISMULTIPRINT()==null;
+        case INDEX_ISSUPPORTFA:
+            return et.getISSupportFA()==null;
+        case INDEX_ISSYSTEM:
+            return et.getIsSystem()==null;
+        case INDEX_KEYPARAMS:
+            return et.getKeyParams()==null;
+        case INDEX_LICENSECODE:
+            return et.getLicenseCode()==null;
+        case INDEX_LOGAUDITDETAIL:
+            return et.getLogAuditDetail()==null;
+        case INDEX_MEMO:
+            return et.getMemo()==null;
+        case INDEX_MINORFIELDNAME:
+            return et.getMinorFieldName()==null;
+        case INDEX_MINORFIELDVALUE:
+            return et.getMinorFieldValue()==null;
+        case INDEX_MINORTABLENAME:
+            return et.getMinorTableName()==null;
+        case INDEX_MUTLIMAJOR:
+            return et.getMutliMajor()==null;
+        case INDEX_NODATAINFO:
+            return et.getNoDataInfo()==null;
+        case INDEX_PRINTFUNC:
+            return et.getPrintFunc()==null;
+        case INDEX_RESERVER:
+            return et.getReserver()==null;
+        case INDEX_RESERVER2:
+            return et.getReserver2()==null;
+        case INDEX_ROWAMOUT:
+            return et.getRowAmout()==null;
+        case INDEX_RTINFO:
+            return et.getRTInfo()==null;
+        case INDEX_SMALLICON:
+            return et.getSMALLICON()==null;
+        case INDEX_STORAGETYPE:
+            return et.getStorageType()==null;
+        case INDEX_TABLENAME:
+            return et.getTableName()==null;
+        case INDEX_TABLESPACE:
+            return et.getTableSpace()==null;
+        case INDEX_TIPSINFO:
+            return et.getTipsInfo()==null;
+        case INDEX_UPDATEDATE:
+            return et.getUpdateDate()==null;
+        case INDEX_UPDATEMAN:
+            return et.getUpdateMan()==null;
+        case INDEX_USERACTION:
+            return et.getUserAction()==null;
+        case INDEX_VALIDFLAG:
+            return et.getValidFlag()==null;
+        case INDEX_VCFLAG:
+            return et.getVCFlag()==null;
+        case INDEX_VERCHECKTIMER:
+            return et.getVerCheckTimer()==null;
+        case INDEX_VERFIELD:
+            return et.getVerField()==null;
+        case INDEX_VERHELPER:
+            return et.getVerHelper()==null;
+        case INDEX_VERSIONCHECK:
+            return et.getVersionCheck()==null;
+        case INDEX_VIEWNAME:
+            return et.getViewName()==null;
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#contains(java.lang.String)
+     */
     @Override
     public boolean contains(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().contains(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.contains(strParamName);
-        }
-        return DataEntityBase.contains(this, index);
+        return  DataEntityBase.contains(this, index);
     }
 
-    private static boolean contains(DataEntityBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                return et.isACEnableDPDirty();
-            }
-            case 1: {
-                return et.isACExtInfoDirty();
-            }
-            case 2: {
-                return et.isACInfoFormatDirty();
-            }
-            case 3: {
-                return et.isACInfoParamDirty();
-            }
-            case 4: {
-                return et.isACMaxCntDirty();
-            }
-            case 5: {
-                return et.isACObjectDirty();
-            }
-            case 6: {
-                return et.isACQueryModelIdDirty();
-            }
-            case 7: {
-                return et.isACQueryModelNameDirty();
-            }
-            case 8: {
-                return et.isACSortDirDirty();
-            }
-            case 9: {
-                return et.isACSortFieldDirty();
-            }
-            case 10: {
-                return et.isBigIconDirty();
-            }
-            case 11: {
-                return et.isConfigHelperDirty();
-            }
-            case 12: {
-                return et.isCreateDateDirty();
-            }
-            case 13: {
-                return et.isCreateManDirty();
-            }
-            case 14: {
-                return et.isDataAccObjectDirty();
-            }
-            case 15: {
-                return et.isDataChgLogModeDirty();
-            }
-            case 16: {
-                return et.isDataCtrlIntDirty();
-            }
-            case 17: {
-                return et.isDataCtrlObjectDirty();
-            }
-            case 18: {
-                return et.isDataNotifyHelperDirty();
-            }
-            case 19: {
-                return et.isDBStorageDirty();
-            }
-            case 20: {
-                return et.isDBVersionDirty();
-            }
-            case 21: {
-                return et.isDEGroupDirty();
-            }
-            case 22: {
-                return et.isDEHelperDirty();
-            }
-            case 23: {
-                return et.isDEIdDirty();
-            }
-            case 24: {
-                return et.isDELogicNameDirty();
-            }
-            case 25: {
-                return et.isDENameDirty();
-            }
-            case 26: {
-                return et.isDEObjectDirty();
-            }
-            case 27: {
-                return et.isDEOrderDirty();
-            }
-            case 28: {
-                return et.isDEParamDirty();
-            }
-            case 29: {
-                return et.isDER11DEIdDirty();
-            }
-            case 30: {
-                return et.isDER11DENameDirty();
-            }
-            case 31: {
-                return et.isDETypeDirty();
-            }
-            case 32: {
-                return et.isDEUserParamDirty();
-            }
-            case 33: {
-                return et.isDEVersionDirty();
-            }
-            case 34: {
-                return et.isDGRowClassHelperDirty();
-            }
-            case 35: {
-                return et.isDGSUMMARYHeightDirty();
-            }
-            case 36: {
-                return et.isDLKHelperDirty();
-            }
-            case 37: {
-                return et.isDynamicIntervalDirty();
-            }
-            case 38: {
-                return et.isEnableColPrivDirty();
-            }
-            case 39: {
-                return et.isEnableGlobalModelDirty();
-            }
-            case 40: {
-                return et.isExitingModelDirty();
-            }
-            case 41: {
-                return et.isExportIncEmptyDirty();
-            }
-            case 42: {
-                return et.isExTableNameDirty();
-            }
-            case 43: {
-                return et.isGlobalModelObjDirty();
-            }
-            case 44: {
-                return et.isIndexModeDirty();
-            }
-            case 45: {
-                return et.isInfoFieldDirty();
-            }
-            case 46: {
-                return et.isInfoFormatDirty();
-            }
-            case 47: {
-                return et.isInheritModeDirty();
-            }
-            case 48: {
-                return et.isIsDGRowEditDirty();
-            }
-            case 49: {
-                return et.isIsEnableAuditDirty();
-            }
-            case 50: {
-                return et.isIsEnableDPDirty();
-            }
-            case 51: {
-                return et.isIsIndexDEDirty();
-            }
-            case 52: {
-                return et.isIsLogicValidDirty();
-            }
-            case 53: {
-                return et.isISMULTIPRINTDirty();
-            }
-            case 54: {
-                return et.isISSupportFADirty();
-            }
-            case 55: {
-                return et.isIsSystemDirty();
-            }
-            case 56: {
-                return et.isKeyParamsDirty();
-            }
-            case 57: {
-                return et.isLicenseCodeDirty();
-            }
-            case 58: {
-                return et.isLogAuditDetailDirty();
-            }
-            case 59: {
-                return et.isMemoDirty();
-            }
-            case 60: {
-                return et.isMinorFieldNameDirty();
-            }
-            case 61: {
-                return et.isMinorFieldValueDirty();
-            }
-            case 62: {
-                return et.isMinorTableNameDirty();
-            }
-            case 63: {
-                return et.isMutliMajorDirty();
-            }
-            case 64: {
-                return et.isNoDataInfoDirty();
-            }
-            case 65: {
-                return et.isPrintFuncDirty();
-            }
-            case 66: {
-                return et.isReserverDirty();
-            }
-            case 67: {
-                return et.isReserver2Dirty();
-            }
-            case 68: {
-                return et.isRowAmoutDirty();
-            }
-            case 69: {
-                return et.isRTInfoDirty();
-            }
-            case 70: {
-                return et.isSMALLICONDirty();
-            }
-            case 71: {
-                return et.isStorageTypeDirty();
-            }
-            case 72: {
-                return et.isTableNameDirty();
-            }
-            case 73: {
-                return et.isTableSpaceDirty();
-            }
-            case 74: {
-                return et.isTipsInfoDirty();
-            }
-            case 75: {
-                return et.isUpdateDateDirty();
-            }
-            case 76: {
-                return et.isUpdateManDirty();
-            }
-            case 77: {
-                return et.isUserActionDirty();
-            }
-            case 78: {
-                return et.isValidFlagDirty();
-            }
-            case 79: {
-                return et.isVCFlagDirty();
-            }
-            case 80: {
-                return et.isVerCheckTimerDirty();
-            }
-            case 81: {
-                return et.isVerFieldDirty();
-            }
-            case 82: {
-                return et.isVerHelperDirty();
-            }
-            case 83: {
-                return et.isVersionCheckDirty();
-            }
-            case 84: {
-                return et.isViewNameDirty();
-            }
+    /**
+     * 获取判断对象是否存在指定属性值
+     * @param et
+     * @param index
+     * @return
+     * @throws Exception
+     */
+    private static boolean contains(DataEntityBase et,int index) throws Exception {
+
+        switch(index) {
+        case INDEX_ACENABLEDP:
+            return et.isACEnableDPDirty();
+        case INDEX_ACEXTINFO:
+            return et.isACExtInfoDirty();
+        case INDEX_ACINFOFORMAT:
+            return et.isACInfoFormatDirty();
+        case INDEX_ACINFOPARAM:
+            return et.isACInfoParamDirty();
+        case INDEX_ACMAXCNT:
+            return et.isACMaxCntDirty();
+        case INDEX_ACOBJECT:
+            return et.isACObjectDirty();
+        case INDEX_ACQUERYMODELID:
+            return et.isACQueryModelIdDirty();
+        case INDEX_ACQUERYMODELNAME:
+            return et.isACQueryModelNameDirty();
+        case INDEX_ACSORTDIR:
+            return et.isACSortDirDirty();
+        case INDEX_ACSORTFIELD:
+            return et.isACSortFieldDirty();
+        case INDEX_BIGICON:
+            return et.isBigIconDirty();
+        case INDEX_CONFIGHELPER:
+            return et.isConfigHelperDirty();
+        case INDEX_CREATEDATE:
+            return et.isCreateDateDirty();
+        case INDEX_CREATEMAN:
+            return et.isCreateManDirty();
+        case INDEX_DATAACCOBJECT:
+            return et.isDataAccObjectDirty();
+        case INDEX_DATACHGLOGMODE:
+            return et.isDataChgLogModeDirty();
+        case INDEX_DATACTRLINT:
+            return et.isDataCtrlIntDirty();
+        case INDEX_DATACTRLOBJECT:
+            return et.isDataCtrlObjectDirty();
+        case INDEX_DATANOTIFYHELPER:
+            return et.isDataNotifyHelperDirty();
+        case INDEX_DBSTORAGE:
+            return et.isDBStorageDirty();
+        case INDEX_DBVERSION:
+            return et.isDBVersionDirty();
+        case INDEX_DEGROUP:
+            return et.isDEGroupDirty();
+        case INDEX_DEHELPER:
+            return et.isDEHelperDirty();
+        case INDEX_DEID:
+            return et.isDEIdDirty();
+        case INDEX_DELOGICNAME:
+            return et.isDELogicNameDirty();
+        case INDEX_DENAME:
+            return et.isDENameDirty();
+        case INDEX_DEOBJECT:
+            return et.isDEObjectDirty();
+        case INDEX_DEORDER:
+            return et.isDEOrderDirty();
+        case INDEX_DEPARAM:
+            return et.isDEParamDirty();
+        case INDEX_DER11DEID:
+            return et.isDER11DEIdDirty();
+        case INDEX_DER11DENAME:
+            return et.isDER11DENameDirty();
+        case INDEX_DETYPE:
+            return et.isDETypeDirty();
+        case INDEX_DEUSERPARAM:
+            return et.isDEUserParamDirty();
+        case INDEX_DEVERSION:
+            return et.isDEVersionDirty();
+        case INDEX_DGROWCLASSHELPER:
+            return et.isDGRowClassHelperDirty();
+        case INDEX_DGSUMMARYHEIGHT:
+            return et.isDGSUMMARYHeightDirty();
+        case INDEX_DLKHELPER:
+            return et.isDLKHelperDirty();
+        case INDEX_DYNAMICINTERVAL:
+            return et.isDynamicIntervalDirty();
+        case INDEX_ENABLECOLPRIV:
+            return et.isEnableColPrivDirty();
+        case INDEX_ENABLEGLOBALMODEL:
+            return et.isEnableGlobalModelDirty();
+        case INDEX_EXITINGMODEL:
+            return et.isExitingModelDirty();
+        case INDEX_EXPORTINCEMPTY:
+            return et.isExportIncEmptyDirty();
+        case INDEX_EXTABLENAME:
+            return et.isExTableNameDirty();
+        case INDEX_GLOBALMODELOBJ:
+            return et.isGlobalModelObjDirty();
+        case INDEX_INDEXMODE:
+            return et.isIndexModeDirty();
+        case INDEX_INFOFIELD:
+            return et.isInfoFieldDirty();
+        case INDEX_INFOFORMAT:
+            return et.isInfoFormatDirty();
+        case INDEX_INHERITMODE:
+            return et.isInheritModeDirty();
+        case INDEX_ISDGROWEDIT:
+            return et.isIsDGRowEditDirty();
+        case INDEX_ISENABLEAUDIT:
+            return et.isIsEnableAuditDirty();
+        case INDEX_ISENABLEDP:
+            return et.isIsEnableDPDirty();
+        case INDEX_ISINDEXDE:
+            return et.isIsIndexDEDirty();
+        case INDEX_ISLOGICVALID:
+            return et.isIsLogicValidDirty();
+        case INDEX_ISMULTIPRINT:
+            return et.isISMULTIPRINTDirty();
+        case INDEX_ISSUPPORTFA:
+            return et.isISSupportFADirty();
+        case INDEX_ISSYSTEM:
+            return et.isIsSystemDirty();
+        case INDEX_KEYPARAMS:
+            return et.isKeyParamsDirty();
+        case INDEX_LICENSECODE:
+            return et.isLicenseCodeDirty();
+        case INDEX_LOGAUDITDETAIL:
+            return et.isLogAuditDetailDirty();
+        case INDEX_MEMO:
+            return et.isMemoDirty();
+        case INDEX_MINORFIELDNAME:
+            return et.isMinorFieldNameDirty();
+        case INDEX_MINORFIELDVALUE:
+            return et.isMinorFieldValueDirty();
+        case INDEX_MINORTABLENAME:
+            return et.isMinorTableNameDirty();
+        case INDEX_MUTLIMAJOR:
+            return et.isMutliMajorDirty();
+        case INDEX_NODATAINFO:
+            return et.isNoDataInfoDirty();
+        case INDEX_PRINTFUNC:
+            return et.isPrintFuncDirty();
+        case INDEX_RESERVER:
+            return et.isReserverDirty();
+        case INDEX_RESERVER2:
+            return et.isReserver2Dirty();
+        case INDEX_ROWAMOUT:
+            return et.isRowAmoutDirty();
+        case INDEX_RTINFO:
+            return et.isRTInfoDirty();
+        case INDEX_SMALLICON:
+            return et.isSMALLICONDirty();
+        case INDEX_STORAGETYPE:
+            return et.isStorageTypeDirty();
+        case INDEX_TABLENAME:
+            return et.isTableNameDirty();
+        case INDEX_TABLESPACE:
+            return et.isTableSpaceDirty();
+        case INDEX_TIPSINFO:
+            return et.isTipsInfoDirty();
+        case INDEX_UPDATEDATE:
+            return et.isUpdateDateDirty();
+        case INDEX_UPDATEMAN:
+            return et.isUpdateManDirty();
+        case INDEX_USERACTION:
+            return et.isUserActionDirty();
+        case INDEX_VALIDFLAG:
+            return et.isValidFlagDirty();
+        case INDEX_VCFLAG:
+            return et.isVCFlagDirty();
+        case INDEX_VERCHECKTIMER:
+            return et.isVerCheckTimerDirty();
+        case INDEX_VERFIELD:
+            return et.isVerFieldDirty();
+        case INDEX_VERHELPER:
+            return et.isVerHelperDirty();
+        case INDEX_VERSIONCHECK:
+            return et.isVersionCheckDirty();
+        case INDEX_VIEWNAME:
+            return et.isViewNameDirty();
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#onFillJSONObject(net.sf.json.JSONObject, boolean)
+     */
     @Override
     protected void onFillJSONObject(JSONObject objJSON, boolean bIncludeEmpty) throws Exception {
-        DataEntityBase.fillJSONObject(this, objJSON, bIncludeEmpty);
+        fillJSONObject(this,objJSON,bIncludeEmpty);
         super.onFillJSONObject(objJSON, bIncludeEmpty);
     }
 
-    private static void fillJSONObject(DataEntityBase et, JSONObject json, boolean bIncEmpty) throws Exception {
-        if (bIncEmpty || et.getACEnableDP() != null) {
-            JSONObjectHelper.put(json, "acenabledp", DataEntityBase.getJSONValue(et.getACEnableDP()), false);
+    /**
+     * 填充当前对象到JSON
+     * @param et 当前数据对象
+     * @param json JSON对象
+     * @param bIncEmpty 是否包括空值
+     * @throws Exception
+     */
+    private static  void fillJSONObject(DataEntityBase et,JSONObject json, boolean bIncEmpty) throws Exception {
+        if(bIncEmpty||et.getACEnableDP()!=null) {
+            JSONObjectHelper.put(json,"acenabledp",getJSONValue(et.getACEnableDP()),false);
         }
-        if (bIncEmpty || et.getACExtInfo() != null) {
-            JSONObjectHelper.put(json, "acextinfo", DataEntityBase.getJSONValue(et.getACExtInfo()), false);
+        if(bIncEmpty||et.getACExtInfo()!=null) {
+            JSONObjectHelper.put(json,"acextinfo",getJSONValue(et.getACExtInfo()),false);
         }
-        if (bIncEmpty || et.getACInfoFormat() != null) {
-            JSONObjectHelper.put(json, "acinfoformat", DataEntityBase.getJSONValue(et.getACInfoFormat()), false);
+        if(bIncEmpty||et.getACInfoFormat()!=null) {
+            JSONObjectHelper.put(json,"acinfoformat",getJSONValue(et.getACInfoFormat()),false);
         }
-        if (bIncEmpty || et.getACInfoParam() != null) {
-            JSONObjectHelper.put(json, "acinfoparam", DataEntityBase.getJSONValue(et.getACInfoParam()), false);
+        if(bIncEmpty||et.getACInfoParam()!=null) {
+            JSONObjectHelper.put(json,"acinfoparam",getJSONValue(et.getACInfoParam()),false);
         }
-        if (bIncEmpty || et.getACMaxCnt() != null) {
-            JSONObjectHelper.put(json, "acmaxcnt", DataEntityBase.getJSONValue(et.getACMaxCnt()), false);
+        if(bIncEmpty||et.getACMaxCnt()!=null) {
+            JSONObjectHelper.put(json,"acmaxcnt",getJSONValue(et.getACMaxCnt()),false);
         }
-        if (bIncEmpty || et.getACObject() != null) {
-            JSONObjectHelper.put(json, "acobject", DataEntityBase.getJSONValue(et.getACObject()), false);
+        if(bIncEmpty||et.getACObject()!=null) {
+            JSONObjectHelper.put(json,"acobject",getJSONValue(et.getACObject()),false);
         }
-        if (bIncEmpty || et.getACQueryModelId() != null) {
-            JSONObjectHelper.put(json, "acquerymodelid", DataEntityBase.getJSONValue(et.getACQueryModelId()), false);
+        if(bIncEmpty||et.getACQueryModelId()!=null) {
+            JSONObjectHelper.put(json,"acquerymodelid",getJSONValue(et.getACQueryModelId()),false);
         }
-        if (bIncEmpty || et.getACQueryModelName() != null) {
-            JSONObjectHelper.put(json, "acquerymodelname", DataEntityBase.getJSONValue(et.getACQueryModelName()), false);
+        if(bIncEmpty||et.getACQueryModelName()!=null) {
+            JSONObjectHelper.put(json,"acquerymodelname",getJSONValue(et.getACQueryModelName()),false);
         }
-        if (bIncEmpty || et.getACSortDir() != null) {
-            JSONObjectHelper.put(json, "acsortdir", DataEntityBase.getJSONValue(et.getACSortDir()), false);
+        if(bIncEmpty||et.getACSortDir()!=null) {
+            JSONObjectHelper.put(json,"acsortdir",getJSONValue(et.getACSortDir()),false);
         }
-        if (bIncEmpty || et.getACSortField() != null) {
-            JSONObjectHelper.put(json, "acsortfield", DataEntityBase.getJSONValue(et.getACSortField()), false);
+        if(bIncEmpty||et.getACSortField()!=null) {
+            JSONObjectHelper.put(json,"acsortfield",getJSONValue(et.getACSortField()),false);
         }
-        if (bIncEmpty || et.getBigIcon() != null) {
-            JSONObjectHelper.put(json, "bigicon", DataEntityBase.getJSONValue(et.getBigIcon()), false);
+        if(bIncEmpty||et.getBigIcon()!=null) {
+            JSONObjectHelper.put(json,"bigicon",getJSONValue(et.getBigIcon()),false);
         }
-        if (bIncEmpty || et.getConfigHelper() != null) {
-            JSONObjectHelper.put(json, "confighelper", DataEntityBase.getJSONValue(et.getConfigHelper()), false);
+        if(bIncEmpty||et.getConfigHelper()!=null) {
+            JSONObjectHelper.put(json,"confighelper",getJSONValue(et.getConfigHelper()),false);
         }
-        if (bIncEmpty || et.getCreateDate() != null) {
-            JSONObjectHelper.put(json, "createdate", DataEntityBase.getJSONValue(et.getCreateDate()), false);
+        if(bIncEmpty||et.getCreateDate()!=null) {
+            JSONObjectHelper.put(json,"createdate",getJSONValue(et.getCreateDate()),false);
         }
-        if (bIncEmpty || et.getCreateMan() != null) {
-            JSONObjectHelper.put(json, "createman", DataEntityBase.getJSONValue(et.getCreateMan()), false);
+        if(bIncEmpty||et.getCreateMan()!=null) {
+            JSONObjectHelper.put(json,"createman",getJSONValue(et.getCreateMan()),false);
         }
-        if (bIncEmpty || et.getDataAccObject() != null) {
-            JSONObjectHelper.put(json, "dataaccobject", DataEntityBase.getJSONValue(et.getDataAccObject()), false);
+        if(bIncEmpty||et.getDataAccObject()!=null) {
+            JSONObjectHelper.put(json,"dataaccobject",getJSONValue(et.getDataAccObject()),false);
         }
-        if (bIncEmpty || et.getDataChgLogMode() != null) {
-            JSONObjectHelper.put(json, "datachglogmode", DataEntityBase.getJSONValue(et.getDataChgLogMode()), false);
+        if(bIncEmpty||et.getDataChgLogMode()!=null) {
+            JSONObjectHelper.put(json,"datachglogmode",getJSONValue(et.getDataChgLogMode()),false);
         }
-        if (bIncEmpty || et.getDataCtrlInt() != null) {
-            JSONObjectHelper.put(json, "datactrlint", DataEntityBase.getJSONValue(et.getDataCtrlInt()), false);
+        if(bIncEmpty||et.getDataCtrlInt()!=null) {
+            JSONObjectHelper.put(json,"datactrlint",getJSONValue(et.getDataCtrlInt()),false);
         }
-        if (bIncEmpty || et.getDataCtrlObject() != null) {
-            JSONObjectHelper.put(json, "datactrlobject", DataEntityBase.getJSONValue(et.getDataCtrlObject()), false);
+        if(bIncEmpty||et.getDataCtrlObject()!=null) {
+            JSONObjectHelper.put(json,"datactrlobject",getJSONValue(et.getDataCtrlObject()),false);
         }
-        if (bIncEmpty || et.getDataNotifyHelper() != null) {
-            JSONObjectHelper.put(json, "datanotifyhelper", DataEntityBase.getJSONValue(et.getDataNotifyHelper()), false);
+        if(bIncEmpty||et.getDataNotifyHelper()!=null) {
+            JSONObjectHelper.put(json,"datanotifyhelper",getJSONValue(et.getDataNotifyHelper()),false);
         }
-        if (bIncEmpty || et.getDBStorage() != null) {
-            JSONObjectHelper.put(json, "dbstorage", DataEntityBase.getJSONValue(et.getDBStorage()), false);
+        if(bIncEmpty||et.getDBStorage()!=null) {
+            JSONObjectHelper.put(json,"dbstorage",getJSONValue(et.getDBStorage()),false);
         }
-        if (bIncEmpty || et.getDBVersion() != null) {
-            JSONObjectHelper.put(json, "dbversion", DataEntityBase.getJSONValue(et.getDBVersion()), false);
+        if(bIncEmpty||et.getDBVersion()!=null) {
+            JSONObjectHelper.put(json,"dbversion",getJSONValue(et.getDBVersion()),false);
         }
-        if (bIncEmpty || et.getDEGroup() != null) {
-            JSONObjectHelper.put(json, "degroup", DataEntityBase.getJSONValue(et.getDEGroup()), false);
+        if(bIncEmpty||et.getDEGroup()!=null) {
+            JSONObjectHelper.put(json,"degroup",getJSONValue(et.getDEGroup()),false);
         }
-        if (bIncEmpty || et.getDEHelper() != null) {
-            JSONObjectHelper.put(json, "dehelper", DataEntityBase.getJSONValue(et.getDEHelper()), false);
+        if(bIncEmpty||et.getDEHelper()!=null) {
+            JSONObjectHelper.put(json,"dehelper",getJSONValue(et.getDEHelper()),false);
         }
-        if (bIncEmpty || et.getDEId() != null) {
-            JSONObjectHelper.put(json, "deid", DataEntityBase.getJSONValue(et.getDEId()), false);
+        if(bIncEmpty||et.getDEId()!=null) {
+            JSONObjectHelper.put(json,"deid",getJSONValue(et.getDEId()),false);
         }
-        if (bIncEmpty || et.getDELogicName() != null) {
-            JSONObjectHelper.put(json, "delogicname", DataEntityBase.getJSONValue(et.getDELogicName()), false);
+        if(bIncEmpty||et.getDELogicName()!=null) {
+            JSONObjectHelper.put(json,"delogicname",getJSONValue(et.getDELogicName()),false);
         }
-        if (bIncEmpty || et.getDEName() != null) {
-            JSONObjectHelper.put(json, "dename", DataEntityBase.getJSONValue(et.getDEName()), false);
+        if(bIncEmpty||et.getDEName()!=null) {
+            JSONObjectHelper.put(json,"dename",getJSONValue(et.getDEName()),false);
         }
-        if (bIncEmpty || et.getDEObject() != null) {
-            JSONObjectHelper.put(json, "deobject", DataEntityBase.getJSONValue(et.getDEObject()), false);
+        if(bIncEmpty||et.getDEObject()!=null) {
+            JSONObjectHelper.put(json,"deobject",getJSONValue(et.getDEObject()),false);
         }
-        if (bIncEmpty || et.getDEOrder() != null) {
-            JSONObjectHelper.put(json, "deorder", DataEntityBase.getJSONValue(et.getDEOrder()), false);
+        if(bIncEmpty||et.getDEOrder()!=null) {
+            JSONObjectHelper.put(json,"deorder",getJSONValue(et.getDEOrder()),false);
         }
-        if (bIncEmpty || et.getDEParam() != null) {
-            JSONObjectHelper.put(json, "deparam", DataEntityBase.getJSONValue(et.getDEParam()), false);
+        if(bIncEmpty||et.getDEParam()!=null) {
+            JSONObjectHelper.put(json,"deparam",getJSONValue(et.getDEParam()),false);
         }
-        if (bIncEmpty || et.getDER11DEId() != null) {
-            JSONObjectHelper.put(json, "der11deid", DataEntityBase.getJSONValue(et.getDER11DEId()), false);
+        if(bIncEmpty||et.getDER11DEId()!=null) {
+            JSONObjectHelper.put(json,"der11deid",getJSONValue(et.getDER11DEId()),false);
         }
-        if (bIncEmpty || et.getDER11DEName() != null) {
-            JSONObjectHelper.put(json, "der11dename", DataEntityBase.getJSONValue(et.getDER11DEName()), false);
+        if(bIncEmpty||et.getDER11DEName()!=null) {
+            JSONObjectHelper.put(json,"der11dename",getJSONValue(et.getDER11DEName()),false);
         }
-        if (bIncEmpty || et.getDEType() != null) {
-            JSONObjectHelper.put(json, "detype", DataEntityBase.getJSONValue(et.getDEType()), false);
+        if(bIncEmpty||et.getDEType()!=null) {
+            JSONObjectHelper.put(json,"detype",getJSONValue(et.getDEType()),false);
         }
-        if (bIncEmpty || et.getDEUserParam() != null) {
-            JSONObjectHelper.put(json, "deuserparam", DataEntityBase.getJSONValue(et.getDEUserParam()), false);
+        if(bIncEmpty||et.getDEUserParam()!=null) {
+            JSONObjectHelper.put(json,"deuserparam",getJSONValue(et.getDEUserParam()),false);
         }
-        if (bIncEmpty || et.getDEVersion() != null) {
-            JSONObjectHelper.put(json, "deversion", DataEntityBase.getJSONValue(et.getDEVersion()), false);
+        if(bIncEmpty||et.getDEVersion()!=null) {
+            JSONObjectHelper.put(json,"deversion",getJSONValue(et.getDEVersion()),false);
         }
-        if (bIncEmpty || et.getDGRowClassHelper() != null) {
-            JSONObjectHelper.put(json, "dgrowclasshelper", DataEntityBase.getJSONValue(et.getDGRowClassHelper()), false);
+        if(bIncEmpty||et.getDGRowClassHelper()!=null) {
+            JSONObjectHelper.put(json,"dgrowclasshelper",getJSONValue(et.getDGRowClassHelper()),false);
         }
-        if (bIncEmpty || et.getDGSUMMARYHeight() != null) {
-            JSONObjectHelper.put(json, "dgsummaryheight", DataEntityBase.getJSONValue(et.getDGSUMMARYHeight()), false);
+        if(bIncEmpty||et.getDGSUMMARYHeight()!=null) {
+            JSONObjectHelper.put(json,"dgsummaryheight",getJSONValue(et.getDGSUMMARYHeight()),false);
         }
-        if (bIncEmpty || et.getDLKHelper() != null) {
-            JSONObjectHelper.put(json, "dlkhelper", DataEntityBase.getJSONValue(et.getDLKHelper()), false);
+        if(bIncEmpty||et.getDLKHelper()!=null) {
+            JSONObjectHelper.put(json,"dlkhelper",getJSONValue(et.getDLKHelper()),false);
         }
-        if (bIncEmpty || et.getDynamicInterval() != null) {
-            JSONObjectHelper.put(json, "dynamicinterval", DataEntityBase.getJSONValue(et.getDynamicInterval()), false);
+        if(bIncEmpty||et.getDynamicInterval()!=null) {
+            JSONObjectHelper.put(json,"dynamicinterval",getJSONValue(et.getDynamicInterval()),false);
         }
-        if (bIncEmpty || et.getEnableColPriv() != null) {
-            JSONObjectHelper.put(json, "enablecolpriv", DataEntityBase.getJSONValue(et.getEnableColPriv()), false);
+        if(bIncEmpty||et.getEnableColPriv()!=null) {
+            JSONObjectHelper.put(json,"enablecolpriv",getJSONValue(et.getEnableColPriv()),false);
         }
-        if (bIncEmpty || et.getEnableGlobalModel() != null) {
-            JSONObjectHelper.put(json, "enableglobalmodel", DataEntityBase.getJSONValue(et.getEnableGlobalModel()), false);
+        if(bIncEmpty||et.getEnableGlobalModel()!=null) {
+            JSONObjectHelper.put(json,"enableglobalmodel",getJSONValue(et.getEnableGlobalModel()),false);
         }
-        if (bIncEmpty || et.getExitingModel() != null) {
-            JSONObjectHelper.put(json, "exitingmodel", DataEntityBase.getJSONValue(et.getExitingModel()), false);
+        if(bIncEmpty||et.getExitingModel()!=null) {
+            JSONObjectHelper.put(json,"exitingmodel",getJSONValue(et.getExitingModel()),false);
         }
-        if (bIncEmpty || et.getExportIncEmpty() != null) {
-            JSONObjectHelper.put(json, "exportincempty", DataEntityBase.getJSONValue(et.getExportIncEmpty()), false);
+        if(bIncEmpty||et.getExportIncEmpty()!=null) {
+            JSONObjectHelper.put(json,"exportincempty",getJSONValue(et.getExportIncEmpty()),false);
         }
-        if (bIncEmpty || et.getExTableName() != null) {
-            JSONObjectHelper.put(json, "extablename", DataEntityBase.getJSONValue(et.getExTableName()), false);
+        if(bIncEmpty||et.getExTableName()!=null) {
+            JSONObjectHelper.put(json,"extablename",getJSONValue(et.getExTableName()),false);
         }
-        if (bIncEmpty || et.getGlobalModelObj() != null) {
-            JSONObjectHelper.put(json, "globalmodelobj", DataEntityBase.getJSONValue(et.getGlobalModelObj()), false);
+        if(bIncEmpty||et.getGlobalModelObj()!=null) {
+            JSONObjectHelper.put(json,"globalmodelobj",getJSONValue(et.getGlobalModelObj()),false);
         }
-        if (bIncEmpty || et.getIndexMode() != null) {
-            JSONObjectHelper.put(json, "indexmode", DataEntityBase.getJSONValue(et.getIndexMode()), false);
+        if(bIncEmpty||et.getIndexMode()!=null) {
+            JSONObjectHelper.put(json,"indexmode",getJSONValue(et.getIndexMode()),false);
         }
-        if (bIncEmpty || et.getInfoField() != null) {
-            JSONObjectHelper.put(json, "infofield", DataEntityBase.getJSONValue(et.getInfoField()), false);
+        if(bIncEmpty||et.getInfoField()!=null) {
+            JSONObjectHelper.put(json,"infofield",getJSONValue(et.getInfoField()),false);
         }
-        if (bIncEmpty || et.getInfoFormat() != null) {
-            JSONObjectHelper.put(json, "infoformat", DataEntityBase.getJSONValue(et.getInfoFormat()), false);
+        if(bIncEmpty||et.getInfoFormat()!=null) {
+            JSONObjectHelper.put(json,"infoformat",getJSONValue(et.getInfoFormat()),false);
         }
-        if (bIncEmpty || et.getInheritMode() != null) {
-            JSONObjectHelper.put(json, "inheritmode", DataEntityBase.getJSONValue(et.getInheritMode()), false);
+        if(bIncEmpty||et.getInheritMode()!=null) {
+            JSONObjectHelper.put(json,"inheritmode",getJSONValue(et.getInheritMode()),false);
         }
-        if (bIncEmpty || et.getIsDGRowEdit() != null) {
-            JSONObjectHelper.put(json, "isdgrowedit", DataEntityBase.getJSONValue(et.getIsDGRowEdit()), false);
+        if(bIncEmpty||et.getIsDGRowEdit()!=null) {
+            JSONObjectHelper.put(json,"isdgrowedit",getJSONValue(et.getIsDGRowEdit()),false);
         }
-        if (bIncEmpty || et.getIsEnableAudit() != null) {
-            JSONObjectHelper.put(json, "isenableaudit", DataEntityBase.getJSONValue(et.getIsEnableAudit()), false);
+        if(bIncEmpty||et.getIsEnableAudit()!=null) {
+            JSONObjectHelper.put(json,"isenableaudit",getJSONValue(et.getIsEnableAudit()),false);
         }
-        if (bIncEmpty || et.getIsEnableDP() != null) {
-            JSONObjectHelper.put(json, "isenabledp", DataEntityBase.getJSONValue(et.getIsEnableDP()), false);
+        if(bIncEmpty||et.getIsEnableDP()!=null) {
+            JSONObjectHelper.put(json,"isenabledp",getJSONValue(et.getIsEnableDP()),false);
         }
-        if (bIncEmpty || et.getIsIndexDE() != null) {
-            JSONObjectHelper.put(json, "isindexde", DataEntityBase.getJSONValue(et.getIsIndexDE()), false);
+        if(bIncEmpty||et.getIsIndexDE()!=null) {
+            JSONObjectHelper.put(json,"isindexde",getJSONValue(et.getIsIndexDE()),false);
         }
-        if (bIncEmpty || et.getIsLogicValid() != null) {
-            JSONObjectHelper.put(json, "islogicvalid", DataEntityBase.getJSONValue(et.getIsLogicValid()), false);
+        if(bIncEmpty||et.getIsLogicValid()!=null) {
+            JSONObjectHelper.put(json,"islogicvalid",getJSONValue(et.getIsLogicValid()),false);
         }
-        if (bIncEmpty || et.getISMULTIPRINT() != null) {
-            JSONObjectHelper.put(json, "ismultiprint", DataEntityBase.getJSONValue(et.getISMULTIPRINT()), false);
+        if(bIncEmpty||et.getISMULTIPRINT()!=null) {
+            JSONObjectHelper.put(json,"ismultiprint",getJSONValue(et.getISMULTIPRINT()),false);
         }
-        if (bIncEmpty || et.getISSupportFA() != null) {
-            JSONObjectHelper.put(json, "issupportfa", DataEntityBase.getJSONValue(et.getISSupportFA()), false);
+        if(bIncEmpty||et.getISSupportFA()!=null) {
+            JSONObjectHelper.put(json,"issupportfa",getJSONValue(et.getISSupportFA()),false);
         }
-        if (bIncEmpty || et.getIsSystem() != null) {
-            JSONObjectHelper.put(json, "issystem", DataEntityBase.getJSONValue(et.getIsSystem()), false);
+        if(bIncEmpty||et.getIsSystem()!=null) {
+            JSONObjectHelper.put(json,"issystem",getJSONValue(et.getIsSystem()),false);
         }
-        if (bIncEmpty || et.getKeyParams() != null) {
-            JSONObjectHelper.put(json, "keyparams", DataEntityBase.getJSONValue(et.getKeyParams()), false);
+        if(bIncEmpty||et.getKeyParams()!=null) {
+            JSONObjectHelper.put(json,"keyparams",getJSONValue(et.getKeyParams()),false);
         }
-        if (bIncEmpty || et.getLicenseCode() != null) {
-            JSONObjectHelper.put(json, "licensecode", DataEntityBase.getJSONValue(et.getLicenseCode()), false);
+        if(bIncEmpty||et.getLicenseCode()!=null) {
+            JSONObjectHelper.put(json,"licensecode",getJSONValue(et.getLicenseCode()),false);
         }
-        if (bIncEmpty || et.getLogAuditDetail() != null) {
-            JSONObjectHelper.put(json, "logauditdetail", DataEntityBase.getJSONValue(et.getLogAuditDetail()), false);
+        if(bIncEmpty||et.getLogAuditDetail()!=null) {
+            JSONObjectHelper.put(json,"logauditdetail",getJSONValue(et.getLogAuditDetail()),false);
         }
-        if (bIncEmpty || et.getMemo() != null) {
-            JSONObjectHelper.put(json, "memo", DataEntityBase.getJSONValue(et.getMemo()), false);
+        if(bIncEmpty||et.getMemo()!=null) {
+            JSONObjectHelper.put(json,"memo",getJSONValue(et.getMemo()),false);
         }
-        if (bIncEmpty || et.getMinorFieldName() != null) {
-            JSONObjectHelper.put(json, "minorfieldname", DataEntityBase.getJSONValue(et.getMinorFieldName()), false);
+        if(bIncEmpty||et.getMinorFieldName()!=null) {
+            JSONObjectHelper.put(json,"minorfieldname",getJSONValue(et.getMinorFieldName()),false);
         }
-        if (bIncEmpty || et.getMinorFieldValue() != null) {
-            JSONObjectHelper.put(json, "minorfieldvalue", DataEntityBase.getJSONValue(et.getMinorFieldValue()), false);
+        if(bIncEmpty||et.getMinorFieldValue()!=null) {
+            JSONObjectHelper.put(json,"minorfieldvalue",getJSONValue(et.getMinorFieldValue()),false);
         }
-        if (bIncEmpty || et.getMinorTableName() != null) {
-            JSONObjectHelper.put(json, "minortablename", DataEntityBase.getJSONValue(et.getMinorTableName()), false);
+        if(bIncEmpty||et.getMinorTableName()!=null) {
+            JSONObjectHelper.put(json,"minortablename",getJSONValue(et.getMinorTableName()),false);
         }
-        if (bIncEmpty || et.getMutliMajor() != null) {
-            JSONObjectHelper.put(json, "multimajor", DataEntityBase.getJSONValue(et.getMutliMajor()), false);
+        if(bIncEmpty||et.getMutliMajor()!=null) {
+            JSONObjectHelper.put(json,"multimajor",getJSONValue(et.getMutliMajor()),false);
         }
-        if (bIncEmpty || et.getNoDataInfo() != null) {
-            JSONObjectHelper.put(json, "nodatainfo", DataEntityBase.getJSONValue(et.getNoDataInfo()), false);
+        if(bIncEmpty||et.getNoDataInfo()!=null) {
+            JSONObjectHelper.put(json,"nodatainfo",getJSONValue(et.getNoDataInfo()),false);
         }
-        if (bIncEmpty || et.getPrintFunc() != null) {
-            JSONObjectHelper.put(json, "printfunc", DataEntityBase.getJSONValue(et.getPrintFunc()), false);
+        if(bIncEmpty||et.getPrintFunc()!=null) {
+            JSONObjectHelper.put(json,"printfunc",getJSONValue(et.getPrintFunc()),false);
         }
-        if (bIncEmpty || et.getReserver() != null) {
-            JSONObjectHelper.put(json, "reserver", DataEntityBase.getJSONValue(et.getReserver()), false);
+        if(bIncEmpty||et.getReserver()!=null) {
+            JSONObjectHelper.put(json,"reserver",getJSONValue(et.getReserver()),false);
         }
-        if (bIncEmpty || et.getReserver2() != null) {
-            JSONObjectHelper.put(json, "reserver2", DataEntityBase.getJSONValue(et.getReserver2()), false);
+        if(bIncEmpty||et.getReserver2()!=null) {
+            JSONObjectHelper.put(json,"reserver2",getJSONValue(et.getReserver2()),false);
         }
-        if (bIncEmpty || et.getRowAmout() != null) {
-            JSONObjectHelper.put(json, "rowamount", DataEntityBase.getJSONValue(et.getRowAmout()), false);
+        if(bIncEmpty||et.getRowAmout()!=null) {
+            JSONObjectHelper.put(json,"rowamount",getJSONValue(et.getRowAmout()),false);
         }
-        if (bIncEmpty || et.getRTInfo() != null) {
-            JSONObjectHelper.put(json, "rtinfo", DataEntityBase.getJSONValue(et.getRTInfo()), false);
+        if(bIncEmpty||et.getRTInfo()!=null) {
+            JSONObjectHelper.put(json,"rtinfo",getJSONValue(et.getRTInfo()),false);
         }
-        if (bIncEmpty || et.getSMALLICON() != null) {
-            JSONObjectHelper.put(json, "smallicon", DataEntityBase.getJSONValue(et.getSMALLICON()), false);
+        if(bIncEmpty||et.getSMALLICON()!=null) {
+            JSONObjectHelper.put(json,"smallicon",getJSONValue(et.getSMALLICON()),false);
         }
-        if (bIncEmpty || et.getStorageType() != null) {
-            JSONObjectHelper.put(json, "storagetype", DataEntityBase.getJSONValue(et.getStorageType()), false);
+        if(bIncEmpty||et.getStorageType()!=null) {
+            JSONObjectHelper.put(json,"storagetype",getJSONValue(et.getStorageType()),false);
         }
-        if (bIncEmpty || et.getTableName() != null) {
-            JSONObjectHelper.put(json, "tablename", DataEntityBase.getJSONValue(et.getTableName()), false);
+        if(bIncEmpty||et.getTableName()!=null) {
+            JSONObjectHelper.put(json,"tablename",getJSONValue(et.getTableName()),false);
         }
-        if (bIncEmpty || et.getTableSpace() != null) {
-            JSONObjectHelper.put(json, "tablespace", DataEntityBase.getJSONValue(et.getTableSpace()), false);
+        if(bIncEmpty||et.getTableSpace()!=null) {
+            JSONObjectHelper.put(json,"tablespace",getJSONValue(et.getTableSpace()),false);
         }
-        if (bIncEmpty || et.getTipsInfo() != null) {
-            JSONObjectHelper.put(json, "tipsinfo", DataEntityBase.getJSONValue(et.getTipsInfo()), false);
+        if(bIncEmpty||et.getTipsInfo()!=null) {
+            JSONObjectHelper.put(json,"tipsinfo",getJSONValue(et.getTipsInfo()),false);
         }
-        if (bIncEmpty || et.getUpdateDate() != null) {
-            JSONObjectHelper.put(json, "updatedate", DataEntityBase.getJSONValue(et.getUpdateDate()), false);
+        if(bIncEmpty||et.getUpdateDate()!=null) {
+            JSONObjectHelper.put(json,"updatedate",getJSONValue(et.getUpdateDate()),false);
         }
-        if (bIncEmpty || et.getUpdateMan() != null) {
-            JSONObjectHelper.put(json, "updateman", DataEntityBase.getJSONValue(et.getUpdateMan()), false);
+        if(bIncEmpty||et.getUpdateMan()!=null) {
+            JSONObjectHelper.put(json,"updateman",getJSONValue(et.getUpdateMan()),false);
         }
-        if (bIncEmpty || et.getUserAction() != null) {
-            JSONObjectHelper.put(json, "useraction", DataEntityBase.getJSONValue(et.getUserAction()), false);
+        if(bIncEmpty||et.getUserAction()!=null) {
+            JSONObjectHelper.put(json,"useraction",getJSONValue(et.getUserAction()),false);
         }
-        if (bIncEmpty || et.getValidFlag() != null) {
-            JSONObjectHelper.put(json, "validflag", DataEntityBase.getJSONValue(et.getValidFlag()), false);
+        if(bIncEmpty||et.getValidFlag()!=null) {
+            JSONObjectHelper.put(json,"validflag",getJSONValue(et.getValidFlag()),false);
         }
-        if (bIncEmpty || et.getVCFlag() != null) {
-            JSONObjectHelper.put(json, "vcflag", DataEntityBase.getJSONValue(et.getVCFlag()), false);
+        if(bIncEmpty||et.getVCFlag()!=null) {
+            JSONObjectHelper.put(json,"vcflag",getJSONValue(et.getVCFlag()),false);
         }
-        if (bIncEmpty || et.getVerCheckTimer() != null) {
-            JSONObjectHelper.put(json, "verchecktimer", DataEntityBase.getJSONValue(et.getVerCheckTimer()), false);
+        if(bIncEmpty||et.getVerCheckTimer()!=null) {
+            JSONObjectHelper.put(json,"verchecktimer",getJSONValue(et.getVerCheckTimer()),false);
         }
-        if (bIncEmpty || et.getVerField() != null) {
-            JSONObjectHelper.put(json, "verfield", DataEntityBase.getJSONValue(et.getVerField()), false);
+        if(bIncEmpty||et.getVerField()!=null) {
+            JSONObjectHelper.put(json,"verfield",getJSONValue(et.getVerField()),false);
         }
-        if (bIncEmpty || et.getVerHelper() != null) {
-            JSONObjectHelper.put(json, "verhelper", DataEntityBase.getJSONValue(et.getVerHelper()), false);
+        if(bIncEmpty||et.getVerHelper()!=null) {
+            JSONObjectHelper.put(json,"verhelper",getJSONValue(et.getVerHelper()),false);
         }
-        if (bIncEmpty || et.getVersionCheck() != null) {
-            JSONObjectHelper.put(json, "versioncheck", DataEntityBase.getJSONValue(et.getVersionCheck()), false);
+        if(bIncEmpty||et.getVersionCheck()!=null) {
+            JSONObjectHelper.put(json,"versioncheck",getJSONValue(et.getVersionCheck()),false);
         }
-        if (bIncEmpty || et.getViewName() != null) {
-            JSONObjectHelper.put(json, "viewname", DataEntityBase.getJSONValue(et.getViewName()), false);
+        if(bIncEmpty||et.getViewName()!=null) {
+            JSONObjectHelper.put(json,"viewname",getJSONValue(et.getViewName()),false);
         }
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#onFillXmlNode(net.ibizsys.paas.xml.XmlNode, boolean)
+     */
     @Override
-    protected void onFillXmlNode(XmlNode xmlNode, boolean bIncludeEmpty) throws Exception {
-        DataEntityBase.fillXmlNode(this, xmlNode, bIncludeEmpty);
+    protected void onFillXmlNode(XmlNode xmlNode,boolean bIncludeEmpty) throws Exception {
+        fillXmlNode(this,xmlNode,bIncludeEmpty);
         super.onFillXmlNode(xmlNode, bIncludeEmpty);
     }
 
-    private static void fillXmlNode(DataEntityBase et, XmlNode node, boolean bIncEmpty) throws Exception {
-        Object obj;
-        if (bIncEmpty || et.getACEnableDP() != null) {
-            obj = et.getACEnableDP();
-            node.setAttribute(FIELD_ACENABLEDP, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getACExtInfo() != null) {
-            obj = et.getACExtInfo();
-            node.setAttribute(FIELD_ACEXTINFO, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getACInfoFormat() != null) {
-            obj = et.getACInfoFormat();
-            node.setAttribute(FIELD_ACINFOFORMAT, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getACInfoParam() != null) {
-            obj = et.getACInfoParam();
-            node.setAttribute(FIELD_ACINFOPARAM, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getACMaxCnt() != null) {
-            obj = et.getACMaxCnt();
-            node.setAttribute(FIELD_ACMAXCNT, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getACObject() != null) {
-            obj = et.getACObject();
-            node.setAttribute(FIELD_ACOBJECT, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getACQueryModelId() != null) {
-            obj = et.getACQueryModelId();
-            node.setAttribute(FIELD_ACQUERYMODELID, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getACQueryModelName() != null) {
-            obj = et.getACQueryModelName();
-            node.setAttribute(FIELD_ACQUERYMODELNAME, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getACSortDir() != null) {
-            obj = et.getACSortDir();
-            node.setAttribute(FIELD_ACSORTDIR, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getACSortField() != null) {
-            obj = et.getACSortField();
-            node.setAttribute(FIELD_ACSORTFIELD, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getBigIcon() != null) {
-            obj = et.getBigIcon();
-            node.setAttribute(FIELD_BIGICON, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getConfigHelper() != null) {
-            obj = et.getConfigHelper();
-            node.setAttribute(FIELD_CONFIGHELPER, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getCreateDate() != null) {
-            obj = et.getCreateDate();
-            node.setAttribute(FIELD_CREATEDATE, obj == null ? "" : StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", obj));
-        }
-        if (bIncEmpty || et.getCreateMan() != null) {
-            obj = et.getCreateMan();
-            node.setAttribute(FIELD_CREATEMAN, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDataAccObject() != null) {
-            obj = et.getDataAccObject();
-            node.setAttribute(FIELD_DATAACCOBJECT, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDataChgLogMode() != null) {
-            obj = et.getDataChgLogMode();
-            node.setAttribute(FIELD_DATACHGLOGMODE, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getDataCtrlInt() != null) {
-            obj = et.getDataCtrlInt();
-            node.setAttribute(FIELD_DATACTRLINT, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDataCtrlObject() != null) {
-            obj = et.getDataCtrlObject();
-            node.setAttribute(FIELD_DATACTRLOBJECT, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDataNotifyHelper() != null) {
-            obj = et.getDataNotifyHelper();
-            node.setAttribute(FIELD_DATANOTIFYHELPER, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDBStorage() != null) {
-            obj = et.getDBStorage();
-            node.setAttribute(FIELD_DBSTORAGE, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDBVersion() != null) {
-            obj = et.getDBVersion();
-            node.setAttribute(FIELD_DBVERSION, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getDEGroup() != null) {
-            obj = et.getDEGroup();
-            node.setAttribute(FIELD_DEGROUP, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDEHelper() != null) {
-            obj = et.getDEHelper();
-            node.setAttribute(FIELD_DEHELPER, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDEId() != null) {
-            obj = et.getDEId();
-            node.setAttribute(FIELD_DEID, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDELogicName() != null) {
-            obj = et.getDELogicName();
-            node.setAttribute(FIELD_DELOGICNAME, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDEName() != null) {
-            obj = et.getDEName();
-            node.setAttribute(FIELD_DENAME, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDEObject() != null) {
-            obj = et.getDEObject();
-            node.setAttribute(FIELD_DEOBJECT, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDEOrder() != null) {
-            obj = et.getDEOrder();
-            node.setAttribute(FIELD_DEORDER, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getDEParam() != null) {
-            obj = et.getDEParam();
-            node.setAttribute(FIELD_DEPARAM, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDER11DEId() != null) {
-            obj = et.getDER11DEId();
-            node.setAttribute(FIELD_DER11DEID, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDER11DEName() != null) {
-            obj = et.getDER11DEName();
-            node.setAttribute(FIELD_DER11DENAME, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDEType() != null) {
-            obj = et.getDEType();
-            node.setAttribute(FIELD_DETYPE, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getDEUserParam() != null) {
-            obj = et.getDEUserParam();
-            node.setAttribute(FIELD_DEUSERPARAM, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDEVersion() != null) {
-            obj = et.getDEVersion();
-            node.setAttribute(FIELD_DEVERSION, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getDGRowClassHelper() != null) {
-            obj = et.getDGRowClassHelper();
-            node.setAttribute(FIELD_DGROWCLASSHELPER, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDGSUMMARYHeight() != null) {
-            obj = et.getDGSUMMARYHeight();
-            node.setAttribute(FIELD_DGSUMMARYHEIGHT, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getDLKHelper() != null) {
-            obj = et.getDLKHelper();
-            node.setAttribute(FIELD_DLKHELPER, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getDynamicInterval() != null) {
-            obj = et.getDynamicInterval();
-            node.setAttribute(FIELD_DYNAMICINTERVAL, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getEnableColPriv() != null) {
-            obj = et.getEnableColPriv();
-            node.setAttribute(FIELD_ENABLECOLPRIV, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getEnableGlobalModel() != null) {
-            obj = et.getEnableGlobalModel();
-            node.setAttribute(FIELD_ENABLEGLOBALMODEL, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getExitingModel() != null) {
-            obj = et.getExitingModel();
-            node.setAttribute(FIELD_EXITINGMODEL, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getExportIncEmpty() != null) {
-            obj = et.getExportIncEmpty();
-            node.setAttribute(FIELD_EXPORTINCEMPTY, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getExTableName() != null) {
-            obj = et.getExTableName();
-            node.setAttribute(FIELD_EXTABLENAME, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getGlobalModelObj() != null) {
-            obj = et.getGlobalModelObj();
-            node.setAttribute(FIELD_GLOBALMODELOBJ, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getIndexMode() != null) {
-            obj = et.getIndexMode();
-            node.setAttribute(FIELD_INDEXMODE, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getInfoField() != null) {
-            obj = et.getInfoField();
-            node.setAttribute(FIELD_INFOFIELD, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getInfoFormat() != null) {
-            obj = et.getInfoFormat();
-            node.setAttribute(FIELD_INFOFORMAT, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getInheritMode() != null) {
-            obj = et.getInheritMode();
-            node.setAttribute(FIELD_INHERITMODE, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getIsDGRowEdit() != null) {
-            obj = et.getIsDGRowEdit();
-            node.setAttribute(FIELD_ISDGROWEDIT, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getIsEnableAudit() != null) {
-            obj = et.getIsEnableAudit();
-            node.setAttribute(FIELD_ISENABLEAUDIT, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getIsEnableDP() != null) {
-            obj = et.getIsEnableDP();
-            node.setAttribute(FIELD_ISENABLEDP, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getIsIndexDE() != null) {
-            obj = et.getIsIndexDE();
-            node.setAttribute(FIELD_ISINDEXDE, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getIsLogicValid() != null) {
-            obj = et.getIsLogicValid();
-            node.setAttribute(FIELD_ISLOGICVALID, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getISMULTIPRINT() != null) {
-            obj = et.getISMULTIPRINT();
-            node.setAttribute(FIELD_ISMULTIPRINT, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getISSupportFA() != null) {
-            obj = et.getISSupportFA();
-            node.setAttribute(FIELD_ISSUPPORTFA, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getIsSystem() != null) {
-            obj = et.getIsSystem();
-            node.setAttribute(FIELD_ISSYSTEM, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getKeyParams() != null) {
-            obj = et.getKeyParams();
-            node.setAttribute(FIELD_KEYPARAMS, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getLicenseCode() != null) {
-            obj = et.getLicenseCode();
-            node.setAttribute(FIELD_LICENSECODE, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getLogAuditDetail() != null) {
-            obj = et.getLogAuditDetail();
-            node.setAttribute(FIELD_LOGAUDITDETAIL, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getMemo() != null) {
-            obj = et.getMemo();
-            node.setAttribute(FIELD_MEMO, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getMinorFieldName() != null) {
-            obj = et.getMinorFieldName();
-            node.setAttribute(FIELD_MINORFIELDNAME, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getMinorFieldValue() != null) {
-            obj = et.getMinorFieldValue();
-            node.setAttribute(FIELD_MINORFIELDVALUE, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getMinorTableName() != null) {
-            obj = et.getMinorTableName();
-            node.setAttribute(FIELD_MINORTABLENAME, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getMutliMajor() != null) {
-            obj = et.getMutliMajor();
-            node.setAttribute("MUTLIMAJOR", obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getNoDataInfo() != null) {
-            obj = et.getNoDataInfo();
-            node.setAttribute(FIELD_NODATAINFO, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getPrintFunc() != null) {
-            obj = et.getPrintFunc();
-            node.setAttribute(FIELD_PRINTFUNC, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getReserver() != null) {
-            obj = et.getReserver();
-            node.setAttribute(FIELD_RESERVER, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getReserver2() != null) {
-            obj = et.getReserver2();
-            node.setAttribute(FIELD_RESERVER2, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getRowAmout() != null) {
-            obj = et.getRowAmout();
-            node.setAttribute("ROWAMOUT", obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getRTInfo() != null) {
-            obj = et.getRTInfo();
-            node.setAttribute(FIELD_RTINFO, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getSMALLICON() != null) {
-            obj = et.getSMALLICON();
-            node.setAttribute(FIELD_SMALLICON, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getStorageType() != null) {
-            obj = et.getStorageType();
-            node.setAttribute(FIELD_STORAGETYPE, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getTableName() != null) {
-            obj = et.getTableName();
-            node.setAttribute(FIELD_TABLENAME, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getTableSpace() != null) {
-            obj = et.getTableSpace();
-            node.setAttribute(FIELD_TABLESPACE, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getTipsInfo() != null) {
-            obj = et.getTipsInfo();
-            node.setAttribute(FIELD_TIPSINFO, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getUpdateDate() != null) {
-            obj = et.getUpdateDate();
-            node.setAttribute(FIELD_UPDATEDATE, obj == null ? "" : StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", obj));
-        }
-        if (bIncEmpty || et.getUpdateMan() != null) {
-            obj = et.getUpdateMan();
-            node.setAttribute(FIELD_UPDATEMAN, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getUserAction() != null) {
-            obj = et.getUserAction();
-            node.setAttribute(FIELD_USERACTION, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getValidFlag() != null) {
-            obj = et.getValidFlag();
-            node.setAttribute(FIELD_VALIDFLAG, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getVCFlag() != null) {
-            obj = et.getVCFlag();
-            node.setAttribute(FIELD_VCFLAG, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getVerCheckTimer() != null) {
-            obj = et.getVerCheckTimer();
-            node.setAttribute(FIELD_VERCHECKTIMER, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getVerField() != null) {
-            obj = et.getVerField();
-            node.setAttribute(FIELD_VERFIELD, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getVerHelper() != null) {
-            obj = et.getVerHelper();
-            node.setAttribute(FIELD_VERHELPER, obj == null ? "" : (String)obj);
-        }
-        if (bIncEmpty || et.getVersionCheck() != null) {
-            obj = et.getVersionCheck();
-            node.setAttribute(FIELD_VERSIONCHECK, obj == null ? "" : StringHelper.format("%1$s", obj));
-        }
-        if (bIncEmpty || et.getViewName() != null) {
-            obj = et.getViewName();
-            node.setAttribute(FIELD_VIEWNAME, obj == null ? "" : (String)obj);
-        }
+    /**
+     * 填充当前对象到Xml节点中
+     * @param et 当前数据对象
+     * @param node Xml节点
+     * @param bIncEmpty 是否包括空值
+     * @throws Exception
+     */
+    private static void fillXmlNode(DataEntityBase et,XmlNode node,boolean bIncEmpty) throws Exception {
+        if(bIncEmpty||et.getACEnableDP()!=null) {
+            Object obj = et.getACEnableDP();
+            node.setAttribute("ACENABLEDP",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getACExtInfo()!=null) {
+            Object obj = et.getACExtInfo();
+            node.setAttribute("ACEXTINFO",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getACInfoFormat()!=null) {
+            Object obj = et.getACInfoFormat();
+            node.setAttribute("ACINFOFORMAT",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getACInfoParam()!=null) {
+            Object obj = et.getACInfoParam();
+            node.setAttribute("ACINFOPARAM",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getACMaxCnt()!=null) {
+            Object obj = et.getACMaxCnt();
+            node.setAttribute("ACMAXCNT",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getACObject()!=null) {
+            Object obj = et.getACObject();
+            node.setAttribute("ACOBJECT",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getACQueryModelId()!=null) {
+            Object obj = et.getACQueryModelId();
+            node.setAttribute("ACQUERYMODELID",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getACQueryModelName()!=null) {
+            Object obj = et.getACQueryModelName();
+            node.setAttribute("ACQUERYMODELNAME",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getACSortDir()!=null) {
+            Object obj = et.getACSortDir();
+            node.setAttribute("ACSORTDIR",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getACSortField()!=null) {
+            Object obj = et.getACSortField();
+            node.setAttribute("ACSORTFIELD",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getBigIcon()!=null) {
+            Object obj = et.getBigIcon();
+            node.setAttribute("BIGICON",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getConfigHelper()!=null) {
+            Object obj = et.getConfigHelper();
+            node.setAttribute("CONFIGHELPER",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getCreateDate()!=null) {
+            Object obj = et.getCreateDate();
+            node.setAttribute("CREATEDATE",(obj==null)?"":StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS",obj));
+        }
+        if(bIncEmpty||et.getCreateMan()!=null) {
+            Object obj = et.getCreateMan();
+            node.setAttribute("CREATEMAN",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDataAccObject()!=null) {
+            Object obj = et.getDataAccObject();
+            node.setAttribute("DATAACCOBJECT",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDataChgLogMode()!=null) {
+            Object obj = et.getDataChgLogMode();
+            node.setAttribute("DATACHGLOGMODE",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getDataCtrlInt()!=null) {
+            Object obj = et.getDataCtrlInt();
+            node.setAttribute("DATACTRLINT",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDataCtrlObject()!=null) {
+            Object obj = et.getDataCtrlObject();
+            node.setAttribute("DATACTRLOBJECT",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDataNotifyHelper()!=null) {
+            Object obj = et.getDataNotifyHelper();
+            node.setAttribute("DATANOTIFYHELPER",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDBStorage()!=null) {
+            Object obj = et.getDBStorage();
+            node.setAttribute("DBSTORAGE",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDBVersion()!=null) {
+            Object obj = et.getDBVersion();
+            node.setAttribute("DBVERSION",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getDEGroup()!=null) {
+            Object obj = et.getDEGroup();
+            node.setAttribute("DEGROUP",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDEHelper()!=null) {
+            Object obj = et.getDEHelper();
+            node.setAttribute("DEHELPER",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDEId()!=null) {
+            Object obj = et.getDEId();
+            node.setAttribute("DEID",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDELogicName()!=null) {
+            Object obj = et.getDELogicName();
+            node.setAttribute("DELOGICNAME",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDEName()!=null) {
+            Object obj = et.getDEName();
+            node.setAttribute("DENAME",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDEObject()!=null) {
+            Object obj = et.getDEObject();
+            node.setAttribute("DEOBJECT",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDEOrder()!=null) {
+            Object obj = et.getDEOrder();
+            node.setAttribute("DEORDER",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getDEParam()!=null) {
+            Object obj = et.getDEParam();
+            node.setAttribute("DEPARAM",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDER11DEId()!=null) {
+            Object obj = et.getDER11DEId();
+            node.setAttribute("DER11DEID",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDER11DEName()!=null) {
+            Object obj = et.getDER11DEName();
+            node.setAttribute("DER11DENAME",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDEType()!=null) {
+            Object obj = et.getDEType();
+            node.setAttribute("DETYPE",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getDEUserParam()!=null) {
+            Object obj = et.getDEUserParam();
+            node.setAttribute("DEUSERPARAM",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDEVersion()!=null) {
+            Object obj = et.getDEVersion();
+            node.setAttribute("DEVERSION",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getDGRowClassHelper()!=null) {
+            Object obj = et.getDGRowClassHelper();
+            node.setAttribute("DGROWCLASSHELPER",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDGSUMMARYHeight()!=null) {
+            Object obj = et.getDGSUMMARYHeight();
+            node.setAttribute("DGSUMMARYHEIGHT",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getDLKHelper()!=null) {
+            Object obj = et.getDLKHelper();
+            node.setAttribute("DLKHELPER",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getDynamicInterval()!=null) {
+            Object obj = et.getDynamicInterval();
+            node.setAttribute("DYNAMICINTERVAL",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getEnableColPriv()!=null) {
+            Object obj = et.getEnableColPriv();
+            node.setAttribute("ENABLECOLPRIV",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getEnableGlobalModel()!=null) {
+            Object obj = et.getEnableGlobalModel();
+            node.setAttribute("ENABLEGLOBALMODEL",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getExitingModel()!=null) {
+            Object obj = et.getExitingModel();
+            node.setAttribute("EXITINGMODEL",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getExportIncEmpty()!=null) {
+            Object obj = et.getExportIncEmpty();
+            node.setAttribute("EXPORTINCEMPTY",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getExTableName()!=null) {
+            Object obj = et.getExTableName();
+            node.setAttribute("EXTABLENAME",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getGlobalModelObj()!=null) {
+            Object obj = et.getGlobalModelObj();
+            node.setAttribute("GLOBALMODELOBJ",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getIndexMode()!=null) {
+            Object obj = et.getIndexMode();
+            node.setAttribute("INDEXMODE",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getInfoField()!=null) {
+            Object obj = et.getInfoField();
+            node.setAttribute("INFOFIELD",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getInfoFormat()!=null) {
+            Object obj = et.getInfoFormat();
+            node.setAttribute("INFOFORMAT",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getInheritMode()!=null) {
+            Object obj = et.getInheritMode();
+            node.setAttribute("INHERITMODE",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getIsDGRowEdit()!=null) {
+            Object obj = et.getIsDGRowEdit();
+            node.setAttribute("ISDGROWEDIT",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getIsEnableAudit()!=null) {
+            Object obj = et.getIsEnableAudit();
+            node.setAttribute("ISENABLEAUDIT",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getIsEnableDP()!=null) {
+            Object obj = et.getIsEnableDP();
+            node.setAttribute("ISENABLEDP",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getIsIndexDE()!=null) {
+            Object obj = et.getIsIndexDE();
+            node.setAttribute("ISINDEXDE",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getIsLogicValid()!=null) {
+            Object obj = et.getIsLogicValid();
+            node.setAttribute("ISLOGICVALID",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getISMULTIPRINT()!=null) {
+            Object obj = et.getISMULTIPRINT();
+            node.setAttribute("ISMULTIPRINT",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getISSupportFA()!=null) {
+            Object obj = et.getISSupportFA();
+            node.setAttribute("ISSUPPORTFA",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getIsSystem()!=null) {
+            Object obj = et.getIsSystem();
+            node.setAttribute("ISSYSTEM",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getKeyParams()!=null) {
+            Object obj = et.getKeyParams();
+            node.setAttribute("KEYPARAMS",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getLicenseCode()!=null) {
+            Object obj = et.getLicenseCode();
+            node.setAttribute("LICENSECODE",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getLogAuditDetail()!=null) {
+            Object obj = et.getLogAuditDetail();
+            node.setAttribute("LOGAUDITDETAIL",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getMemo()!=null) {
+            Object obj = et.getMemo();
+            node.setAttribute("MEMO",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getMinorFieldName()!=null) {
+            Object obj = et.getMinorFieldName();
+            node.setAttribute("MINORFIELDNAME",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getMinorFieldValue()!=null) {
+            Object obj = et.getMinorFieldValue();
+            node.setAttribute("MINORFIELDVALUE",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getMinorTableName()!=null) {
+            Object obj = et.getMinorTableName();
+            node.setAttribute("MINORTABLENAME",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getMutliMajor()!=null) {
+            Object obj = et.getMutliMajor();
+            node.setAttribute("MUTLIMAJOR",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getNoDataInfo()!=null) {
+            Object obj = et.getNoDataInfo();
+            node.setAttribute("NODATAINFO",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getPrintFunc()!=null) {
+            Object obj = et.getPrintFunc();
+            node.setAttribute("PRINTFUNC",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getReserver()!=null) {
+            Object obj = et.getReserver();
+            node.setAttribute("RESERVER",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getReserver2()!=null) {
+            Object obj = et.getReserver2();
+            node.setAttribute("RESERVER2",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getRowAmout()!=null) {
+            Object obj = et.getRowAmout();
+            node.setAttribute("ROWAMOUT",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getRTInfo()!=null) {
+            Object obj = et.getRTInfo();
+            node.setAttribute("RTINFO",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getSMALLICON()!=null) {
+            Object obj = et.getSMALLICON();
+            node.setAttribute("SMALLICON",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getStorageType()!=null) {
+            Object obj = et.getStorageType();
+            node.setAttribute("STORAGETYPE",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getTableName()!=null) {
+            Object obj = et.getTableName();
+            node.setAttribute("TABLENAME",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getTableSpace()!=null) {
+            Object obj = et.getTableSpace();
+            node.setAttribute("TABLESPACE",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getTipsInfo()!=null) {
+            Object obj = et.getTipsInfo();
+            node.setAttribute("TIPSINFO",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getUpdateDate()!=null) {
+            Object obj = et.getUpdateDate();
+            node.setAttribute("UPDATEDATE",(obj==null)?"":StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS",obj));
+        }
+        if(bIncEmpty||et.getUpdateMan()!=null) {
+            Object obj = et.getUpdateMan();
+            node.setAttribute("UPDATEMAN",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getUserAction()!=null) {
+            Object obj = et.getUserAction();
+            node.setAttribute("USERACTION",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getValidFlag()!=null) {
+            Object obj = et.getValidFlag();
+            node.setAttribute("VALIDFLAG",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getVCFlag()!=null) {
+            Object obj = et.getVCFlag();
+            node.setAttribute("VCFLAG",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getVerCheckTimer()!=null) {
+            Object obj = et.getVerCheckTimer();
+            node.setAttribute("VERCHECKTIMER",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getVerField()!=null) {
+            Object obj = et.getVerField();
+            node.setAttribute("VERFIELD",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getVerHelper()!=null) {
+            Object obj = et.getVerHelper();
+            node.setAttribute("VERHELPER",(obj==null)?"":(String)obj);
+        }
+        if(bIncEmpty||et.getVersionCheck()!=null) {
+            Object obj = et.getVersionCheck();
+            node.setAttribute("VERSIONCHECK",(obj==null)?"":StringHelper.format("%1$s",obj));
+        }
+        if(bIncEmpty||et.getViewName()!=null) {
+            Object obj = et.getViewName();
+            node.setAttribute("VIEWNAME",(obj==null)?"":(String)obj);
+        }
+
+
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.entity.EntityBase#onCopyTo(net.ibizsys.paas.data.IDataObject, boolean)
+     */
     @Override
     protected void onCopyTo(IDataObject dataEntity, boolean bIncludeEmtpy) throws Exception {
-        DataEntityBase.copyTo(this, dataEntity, bIncludeEmtpy);
-        super.onCopyTo(dataEntity, bIncludeEmtpy);
+        DataEntityBase.copyTo(this,dataEntity,bIncludeEmtpy);
+        super.onCopyTo(dataEntity,bIncludeEmtpy);
     }
 
-    private static void copyTo(DataEntityBase et, IDataObject dst, boolean bIncEmpty) throws Exception {
-        if (et.isACEnableDPDirty() && (bIncEmpty || et.getACEnableDP() != null)) {
-            dst.set(FIELD_ACENABLEDP, et.getACEnableDP());
+    /**
+     * 复制当前对象数据到目标对象
+     * @param et 当前数据对象
+     * @param dst 目标数据对象
+     * @param bIncEmpty 是否包括空值
+     * @throws Exception
+     */
+    private static void copyTo(DataEntityBase et,IDataObject dst,boolean bIncEmpty) throws Exception {
+        if(et.isACEnableDPDirty() && (bIncEmpty||et.getACEnableDP()!=null)) {
+            dst.set(FIELD_ACENABLEDP,et.getACEnableDP());
         }
-        if (et.isACExtInfoDirty() && (bIncEmpty || et.getACExtInfo() != null)) {
-            dst.set(FIELD_ACEXTINFO, et.getACExtInfo());
+        if(et.isACExtInfoDirty() && (bIncEmpty||et.getACExtInfo()!=null)) {
+            dst.set(FIELD_ACEXTINFO,et.getACExtInfo());
         }
-        if (et.isACInfoFormatDirty() && (bIncEmpty || et.getACInfoFormat() != null)) {
-            dst.set(FIELD_ACINFOFORMAT, et.getACInfoFormat());
+        if(et.isACInfoFormatDirty() && (bIncEmpty||et.getACInfoFormat()!=null)) {
+            dst.set(FIELD_ACINFOFORMAT,et.getACInfoFormat());
         }
-        if (et.isACInfoParamDirty() && (bIncEmpty || et.getACInfoParam() != null)) {
-            dst.set(FIELD_ACINFOPARAM, et.getACInfoParam());
+        if(et.isACInfoParamDirty() && (bIncEmpty||et.getACInfoParam()!=null)) {
+            dst.set(FIELD_ACINFOPARAM,et.getACInfoParam());
         }
-        if (et.isACMaxCntDirty() && (bIncEmpty || et.getACMaxCnt() != null)) {
-            dst.set(FIELD_ACMAXCNT, et.getACMaxCnt());
+        if(et.isACMaxCntDirty() && (bIncEmpty||et.getACMaxCnt()!=null)) {
+            dst.set(FIELD_ACMAXCNT,et.getACMaxCnt());
         }
-        if (et.isACObjectDirty() && (bIncEmpty || et.getACObject() != null)) {
-            dst.set(FIELD_ACOBJECT, et.getACObject());
+        if(et.isACObjectDirty() && (bIncEmpty||et.getACObject()!=null)) {
+            dst.set(FIELD_ACOBJECT,et.getACObject());
         }
-        if (et.isACQueryModelIdDirty() && (bIncEmpty || et.getACQueryModelId() != null)) {
-            dst.set(FIELD_ACQUERYMODELID, et.getACQueryModelId());
+        if(et.isACQueryModelIdDirty() && (bIncEmpty||et.getACQueryModelId()!=null)) {
+            dst.set(FIELD_ACQUERYMODELID,et.getACQueryModelId());
         }
-        if (et.isACQueryModelNameDirty() && (bIncEmpty || et.getACQueryModelName() != null)) {
-            dst.set(FIELD_ACQUERYMODELNAME, et.getACQueryModelName());
+        if(et.isACQueryModelNameDirty() && (bIncEmpty||et.getACQueryModelName()!=null)) {
+            dst.set(FIELD_ACQUERYMODELNAME,et.getACQueryModelName());
         }
-        if (et.isACSortDirDirty() && (bIncEmpty || et.getACSortDir() != null)) {
-            dst.set(FIELD_ACSORTDIR, et.getACSortDir());
+        if(et.isACSortDirDirty() && (bIncEmpty||et.getACSortDir()!=null)) {
+            dst.set(FIELD_ACSORTDIR,et.getACSortDir());
         }
-        if (et.isACSortFieldDirty() && (bIncEmpty || et.getACSortField() != null)) {
-            dst.set(FIELD_ACSORTFIELD, et.getACSortField());
+        if(et.isACSortFieldDirty() && (bIncEmpty||et.getACSortField()!=null)) {
+            dst.set(FIELD_ACSORTFIELD,et.getACSortField());
         }
-        if (et.isBigIconDirty() && (bIncEmpty || et.getBigIcon() != null)) {
-            dst.set(FIELD_BIGICON, et.getBigIcon());
+        if(et.isBigIconDirty() && (bIncEmpty||et.getBigIcon()!=null)) {
+            dst.set(FIELD_BIGICON,et.getBigIcon());
         }
-        if (et.isConfigHelperDirty() && (bIncEmpty || et.getConfigHelper() != null)) {
-            dst.set(FIELD_CONFIGHELPER, et.getConfigHelper());
+        if(et.isConfigHelperDirty() && (bIncEmpty||et.getConfigHelper()!=null)) {
+            dst.set(FIELD_CONFIGHELPER,et.getConfigHelper());
         }
-        if (et.isCreateDateDirty() && (bIncEmpty || et.getCreateDate() != null)) {
-            dst.set(FIELD_CREATEDATE, et.getCreateDate());
+        if(et.isCreateDateDirty() && (bIncEmpty||et.getCreateDate()!=null)) {
+            dst.set(FIELD_CREATEDATE,et.getCreateDate());
         }
-        if (et.isCreateManDirty() && (bIncEmpty || et.getCreateMan() != null)) {
-            dst.set(FIELD_CREATEMAN, et.getCreateMan());
+        if(et.isCreateManDirty() && (bIncEmpty||et.getCreateMan()!=null)) {
+            dst.set(FIELD_CREATEMAN,et.getCreateMan());
         }
-        if (et.isDataAccObjectDirty() && (bIncEmpty || et.getDataAccObject() != null)) {
-            dst.set(FIELD_DATAACCOBJECT, et.getDataAccObject());
+        if(et.isDataAccObjectDirty() && (bIncEmpty||et.getDataAccObject()!=null)) {
+            dst.set(FIELD_DATAACCOBJECT,et.getDataAccObject());
         }
-        if (et.isDataChgLogModeDirty() && (bIncEmpty || et.getDataChgLogMode() != null)) {
-            dst.set(FIELD_DATACHGLOGMODE, et.getDataChgLogMode());
+        if(et.isDataChgLogModeDirty() && (bIncEmpty||et.getDataChgLogMode()!=null)) {
+            dst.set(FIELD_DATACHGLOGMODE,et.getDataChgLogMode());
         }
-        if (et.isDataCtrlIntDirty() && (bIncEmpty || et.getDataCtrlInt() != null)) {
-            dst.set(FIELD_DATACTRLINT, et.getDataCtrlInt());
+        if(et.isDataCtrlIntDirty() && (bIncEmpty||et.getDataCtrlInt()!=null)) {
+            dst.set(FIELD_DATACTRLINT,et.getDataCtrlInt());
         }
-        if (et.isDataCtrlObjectDirty() && (bIncEmpty || et.getDataCtrlObject() != null)) {
-            dst.set(FIELD_DATACTRLOBJECT, et.getDataCtrlObject());
+        if(et.isDataCtrlObjectDirty() && (bIncEmpty||et.getDataCtrlObject()!=null)) {
+            dst.set(FIELD_DATACTRLOBJECT,et.getDataCtrlObject());
         }
-        if (et.isDataNotifyHelperDirty() && (bIncEmpty || et.getDataNotifyHelper() != null)) {
-            dst.set(FIELD_DATANOTIFYHELPER, et.getDataNotifyHelper());
+        if(et.isDataNotifyHelperDirty() && (bIncEmpty||et.getDataNotifyHelper()!=null)) {
+            dst.set(FIELD_DATANOTIFYHELPER,et.getDataNotifyHelper());
         }
-        if (et.isDBStorageDirty() && (bIncEmpty || et.getDBStorage() != null)) {
-            dst.set(FIELD_DBSTORAGE, et.getDBStorage());
+        if(et.isDBStorageDirty() && (bIncEmpty||et.getDBStorage()!=null)) {
+            dst.set(FIELD_DBSTORAGE,et.getDBStorage());
         }
-        if (et.isDBVersionDirty() && (bIncEmpty || et.getDBVersion() != null)) {
-            dst.set(FIELD_DBVERSION, et.getDBVersion());
+        if(et.isDBVersionDirty() && (bIncEmpty||et.getDBVersion()!=null)) {
+            dst.set(FIELD_DBVERSION,et.getDBVersion());
         }
-        if (et.isDEGroupDirty() && (bIncEmpty || et.getDEGroup() != null)) {
-            dst.set(FIELD_DEGROUP, et.getDEGroup());
+        if(et.isDEGroupDirty() && (bIncEmpty||et.getDEGroup()!=null)) {
+            dst.set(FIELD_DEGROUP,et.getDEGroup());
         }
-        if (et.isDEHelperDirty() && (bIncEmpty || et.getDEHelper() != null)) {
-            dst.set(FIELD_DEHELPER, et.getDEHelper());
+        if(et.isDEHelperDirty() && (bIncEmpty||et.getDEHelper()!=null)) {
+            dst.set(FIELD_DEHELPER,et.getDEHelper());
         }
-        if (et.isDEIdDirty() && (bIncEmpty || et.getDEId() != null)) {
-            dst.set(FIELD_DEID, et.getDEId());
+        if(et.isDEIdDirty() && (bIncEmpty||et.getDEId()!=null)) {
+            dst.set(FIELD_DEID,et.getDEId());
         }
-        if (et.isDELogicNameDirty() && (bIncEmpty || et.getDELogicName() != null)) {
-            dst.set(FIELD_DELOGICNAME, et.getDELogicName());
+        if(et.isDELogicNameDirty() && (bIncEmpty||et.getDELogicName()!=null)) {
+            dst.set(FIELD_DELOGICNAME,et.getDELogicName());
         }
-        if (et.isDENameDirty() && (bIncEmpty || et.getDEName() != null)) {
-            dst.set(FIELD_DENAME, et.getDEName());
+        if(et.isDENameDirty() && (bIncEmpty||et.getDEName()!=null)) {
+            dst.set(FIELD_DENAME,et.getDEName());
         }
-        if (et.isDEObjectDirty() && (bIncEmpty || et.getDEObject() != null)) {
-            dst.set(FIELD_DEOBJECT, et.getDEObject());
+        if(et.isDEObjectDirty() && (bIncEmpty||et.getDEObject()!=null)) {
+            dst.set(FIELD_DEOBJECT,et.getDEObject());
         }
-        if (et.isDEOrderDirty() && (bIncEmpty || et.getDEOrder() != null)) {
-            dst.set(FIELD_DEORDER, et.getDEOrder());
+        if(et.isDEOrderDirty() && (bIncEmpty||et.getDEOrder()!=null)) {
+            dst.set(FIELD_DEORDER,et.getDEOrder());
         }
-        if (et.isDEParamDirty() && (bIncEmpty || et.getDEParam() != null)) {
-            dst.set(FIELD_DEPARAM, et.getDEParam());
+        if(et.isDEParamDirty() && (bIncEmpty||et.getDEParam()!=null)) {
+            dst.set(FIELD_DEPARAM,et.getDEParam());
         }
-        if (et.isDER11DEIdDirty() && (bIncEmpty || et.getDER11DEId() != null)) {
-            dst.set(FIELD_DER11DEID, et.getDER11DEId());
+        if(et.isDER11DEIdDirty() && (bIncEmpty||et.getDER11DEId()!=null)) {
+            dst.set(FIELD_DER11DEID,et.getDER11DEId());
         }
-        if (et.isDER11DENameDirty() && (bIncEmpty || et.getDER11DEName() != null)) {
-            dst.set(FIELD_DER11DENAME, et.getDER11DEName());
+        if(et.isDER11DENameDirty() && (bIncEmpty||et.getDER11DEName()!=null)) {
+            dst.set(FIELD_DER11DENAME,et.getDER11DEName());
         }
-        if (et.isDETypeDirty() && (bIncEmpty || et.getDEType() != null)) {
-            dst.set(FIELD_DETYPE, et.getDEType());
+        if(et.isDETypeDirty() && (bIncEmpty||et.getDEType()!=null)) {
+            dst.set(FIELD_DETYPE,et.getDEType());
         }
-        if (et.isDEUserParamDirty() && (bIncEmpty || et.getDEUserParam() != null)) {
-            dst.set(FIELD_DEUSERPARAM, et.getDEUserParam());
+        if(et.isDEUserParamDirty() && (bIncEmpty||et.getDEUserParam()!=null)) {
+            dst.set(FIELD_DEUSERPARAM,et.getDEUserParam());
         }
-        if (et.isDEVersionDirty() && (bIncEmpty || et.getDEVersion() != null)) {
-            dst.set(FIELD_DEVERSION, et.getDEVersion());
+        if(et.isDEVersionDirty() && (bIncEmpty||et.getDEVersion()!=null)) {
+            dst.set(FIELD_DEVERSION,et.getDEVersion());
         }
-        if (et.isDGRowClassHelperDirty() && (bIncEmpty || et.getDGRowClassHelper() != null)) {
-            dst.set(FIELD_DGROWCLASSHELPER, et.getDGRowClassHelper());
+        if(et.isDGRowClassHelperDirty() && (bIncEmpty||et.getDGRowClassHelper()!=null)) {
+            dst.set(FIELD_DGROWCLASSHELPER,et.getDGRowClassHelper());
         }
-        if (et.isDGSUMMARYHeightDirty() && (bIncEmpty || et.getDGSUMMARYHeight() != null)) {
-            dst.set(FIELD_DGSUMMARYHEIGHT, et.getDGSUMMARYHeight());
+        if(et.isDGSUMMARYHeightDirty() && (bIncEmpty||et.getDGSUMMARYHeight()!=null)) {
+            dst.set(FIELD_DGSUMMARYHEIGHT,et.getDGSUMMARYHeight());
         }
-        if (et.isDLKHelperDirty() && (bIncEmpty || et.getDLKHelper() != null)) {
-            dst.set(FIELD_DLKHELPER, et.getDLKHelper());
+        if(et.isDLKHelperDirty() && (bIncEmpty||et.getDLKHelper()!=null)) {
+            dst.set(FIELD_DLKHELPER,et.getDLKHelper());
         }
-        if (et.isDynamicIntervalDirty() && (bIncEmpty || et.getDynamicInterval() != null)) {
-            dst.set(FIELD_DYNAMICINTERVAL, et.getDynamicInterval());
+        if(et.isDynamicIntervalDirty() && (bIncEmpty||et.getDynamicInterval()!=null)) {
+            dst.set(FIELD_DYNAMICINTERVAL,et.getDynamicInterval());
         }
-        if (et.isEnableColPrivDirty() && (bIncEmpty || et.getEnableColPriv() != null)) {
-            dst.set(FIELD_ENABLECOLPRIV, et.getEnableColPriv());
+        if(et.isEnableColPrivDirty() && (bIncEmpty||et.getEnableColPriv()!=null)) {
+            dst.set(FIELD_ENABLECOLPRIV,et.getEnableColPriv());
         }
-        if (et.isEnableGlobalModelDirty() && (bIncEmpty || et.getEnableGlobalModel() != null)) {
-            dst.set(FIELD_ENABLEGLOBALMODEL, et.getEnableGlobalModel());
+        if(et.isEnableGlobalModelDirty() && (bIncEmpty||et.getEnableGlobalModel()!=null)) {
+            dst.set(FIELD_ENABLEGLOBALMODEL,et.getEnableGlobalModel());
         }
-        if (et.isExitingModelDirty() && (bIncEmpty || et.getExitingModel() != null)) {
-            dst.set(FIELD_EXITINGMODEL, et.getExitingModel());
+        if(et.isExitingModelDirty() && (bIncEmpty||et.getExitingModel()!=null)) {
+            dst.set(FIELD_EXITINGMODEL,et.getExitingModel());
         }
-        if (et.isExportIncEmptyDirty() && (bIncEmpty || et.getExportIncEmpty() != null)) {
-            dst.set(FIELD_EXPORTINCEMPTY, et.getExportIncEmpty());
+        if(et.isExportIncEmptyDirty() && (bIncEmpty||et.getExportIncEmpty()!=null)) {
+            dst.set(FIELD_EXPORTINCEMPTY,et.getExportIncEmpty());
         }
-        if (et.isExTableNameDirty() && (bIncEmpty || et.getExTableName() != null)) {
-            dst.set(FIELD_EXTABLENAME, et.getExTableName());
+        if(et.isExTableNameDirty() && (bIncEmpty||et.getExTableName()!=null)) {
+            dst.set(FIELD_EXTABLENAME,et.getExTableName());
         }
-        if (et.isGlobalModelObjDirty() && (bIncEmpty || et.getGlobalModelObj() != null)) {
-            dst.set(FIELD_GLOBALMODELOBJ, et.getGlobalModelObj());
+        if(et.isGlobalModelObjDirty() && (bIncEmpty||et.getGlobalModelObj()!=null)) {
+            dst.set(FIELD_GLOBALMODELOBJ,et.getGlobalModelObj());
         }
-        if (et.isIndexModeDirty() && (bIncEmpty || et.getIndexMode() != null)) {
-            dst.set(FIELD_INDEXMODE, et.getIndexMode());
+        if(et.isIndexModeDirty() && (bIncEmpty||et.getIndexMode()!=null)) {
+            dst.set(FIELD_INDEXMODE,et.getIndexMode());
         }
-        if (et.isInfoFieldDirty() && (bIncEmpty || et.getInfoField() != null)) {
-            dst.set(FIELD_INFOFIELD, et.getInfoField());
+        if(et.isInfoFieldDirty() && (bIncEmpty||et.getInfoField()!=null)) {
+            dst.set(FIELD_INFOFIELD,et.getInfoField());
         }
-        if (et.isInfoFormatDirty() && (bIncEmpty || et.getInfoFormat() != null)) {
-            dst.set(FIELD_INFOFORMAT, et.getInfoFormat());
+        if(et.isInfoFormatDirty() && (bIncEmpty||et.getInfoFormat()!=null)) {
+            dst.set(FIELD_INFOFORMAT,et.getInfoFormat());
         }
-        if (et.isInheritModeDirty() && (bIncEmpty || et.getInheritMode() != null)) {
-            dst.set(FIELD_INHERITMODE, et.getInheritMode());
+        if(et.isInheritModeDirty() && (bIncEmpty||et.getInheritMode()!=null)) {
+            dst.set(FIELD_INHERITMODE,et.getInheritMode());
         }
-        if (et.isIsDGRowEditDirty() && (bIncEmpty || et.getIsDGRowEdit() != null)) {
-            dst.set(FIELD_ISDGROWEDIT, et.getIsDGRowEdit());
+        if(et.isIsDGRowEditDirty() && (bIncEmpty||et.getIsDGRowEdit()!=null)) {
+            dst.set(FIELD_ISDGROWEDIT,et.getIsDGRowEdit());
         }
-        if (et.isIsEnableAuditDirty() && (bIncEmpty || et.getIsEnableAudit() != null)) {
-            dst.set(FIELD_ISENABLEAUDIT, et.getIsEnableAudit());
+        if(et.isIsEnableAuditDirty() && (bIncEmpty||et.getIsEnableAudit()!=null)) {
+            dst.set(FIELD_ISENABLEAUDIT,et.getIsEnableAudit());
         }
-        if (et.isIsEnableDPDirty() && (bIncEmpty || et.getIsEnableDP() != null)) {
-            dst.set(FIELD_ISENABLEDP, et.getIsEnableDP());
+        if(et.isIsEnableDPDirty() && (bIncEmpty||et.getIsEnableDP()!=null)) {
+            dst.set(FIELD_ISENABLEDP,et.getIsEnableDP());
         }
-        if (et.isIsIndexDEDirty() && (bIncEmpty || et.getIsIndexDE() != null)) {
-            dst.set(FIELD_ISINDEXDE, et.getIsIndexDE());
+        if(et.isIsIndexDEDirty() && (bIncEmpty||et.getIsIndexDE()!=null)) {
+            dst.set(FIELD_ISINDEXDE,et.getIsIndexDE());
         }
-        if (et.isIsLogicValidDirty() && (bIncEmpty || et.getIsLogicValid() != null)) {
-            dst.set(FIELD_ISLOGICVALID, et.getIsLogicValid());
+        if(et.isIsLogicValidDirty() && (bIncEmpty||et.getIsLogicValid()!=null)) {
+            dst.set(FIELD_ISLOGICVALID,et.getIsLogicValid());
         }
-        if (et.isISMULTIPRINTDirty() && (bIncEmpty || et.getISMULTIPRINT() != null)) {
-            dst.set(FIELD_ISMULTIPRINT, et.getISMULTIPRINT());
+        if(et.isISMULTIPRINTDirty() && (bIncEmpty||et.getISMULTIPRINT()!=null)) {
+            dst.set(FIELD_ISMULTIPRINT,et.getISMULTIPRINT());
         }
-        if (et.isISSupportFADirty() && (bIncEmpty || et.getISSupportFA() != null)) {
-            dst.set(FIELD_ISSUPPORTFA, et.getISSupportFA());
+        if(et.isISSupportFADirty() && (bIncEmpty||et.getISSupportFA()!=null)) {
+            dst.set(FIELD_ISSUPPORTFA,et.getISSupportFA());
         }
-        if (et.isIsSystemDirty() && (bIncEmpty || et.getIsSystem() != null)) {
-            dst.set(FIELD_ISSYSTEM, et.getIsSystem());
+        if(et.isIsSystemDirty() && (bIncEmpty||et.getIsSystem()!=null)) {
+            dst.set(FIELD_ISSYSTEM,et.getIsSystem());
         }
-        if (et.isKeyParamsDirty() && (bIncEmpty || et.getKeyParams() != null)) {
-            dst.set(FIELD_KEYPARAMS, et.getKeyParams());
+        if(et.isKeyParamsDirty() && (bIncEmpty||et.getKeyParams()!=null)) {
+            dst.set(FIELD_KEYPARAMS,et.getKeyParams());
         }
-        if (et.isLicenseCodeDirty() && (bIncEmpty || et.getLicenseCode() != null)) {
-            dst.set(FIELD_LICENSECODE, et.getLicenseCode());
+        if(et.isLicenseCodeDirty() && (bIncEmpty||et.getLicenseCode()!=null)) {
+            dst.set(FIELD_LICENSECODE,et.getLicenseCode());
         }
-        if (et.isLogAuditDetailDirty() && (bIncEmpty || et.getLogAuditDetail() != null)) {
-            dst.set(FIELD_LOGAUDITDETAIL, et.getLogAuditDetail());
+        if(et.isLogAuditDetailDirty() && (bIncEmpty||et.getLogAuditDetail()!=null)) {
+            dst.set(FIELD_LOGAUDITDETAIL,et.getLogAuditDetail());
         }
-        if (et.isMemoDirty() && (bIncEmpty || et.getMemo() != null)) {
-            dst.set(FIELD_MEMO, et.getMemo());
+        if(et.isMemoDirty() && (bIncEmpty||et.getMemo()!=null)) {
+            dst.set(FIELD_MEMO,et.getMemo());
         }
-        if (et.isMinorFieldNameDirty() && (bIncEmpty || et.getMinorFieldName() != null)) {
-            dst.set(FIELD_MINORFIELDNAME, et.getMinorFieldName());
+        if(et.isMinorFieldNameDirty() && (bIncEmpty||et.getMinorFieldName()!=null)) {
+            dst.set(FIELD_MINORFIELDNAME,et.getMinorFieldName());
         }
-        if (et.isMinorFieldValueDirty() && (bIncEmpty || et.getMinorFieldValue() != null)) {
-            dst.set(FIELD_MINORFIELDVALUE, et.getMinorFieldValue());
+        if(et.isMinorFieldValueDirty() && (bIncEmpty||et.getMinorFieldValue()!=null)) {
+            dst.set(FIELD_MINORFIELDVALUE,et.getMinorFieldValue());
         }
-        if (et.isMinorTableNameDirty() && (bIncEmpty || et.getMinorTableName() != null)) {
-            dst.set(FIELD_MINORTABLENAME, et.getMinorTableName());
+        if(et.isMinorTableNameDirty() && (bIncEmpty||et.getMinorTableName()!=null)) {
+            dst.set(FIELD_MINORTABLENAME,et.getMinorTableName());
         }
-        if (et.isMutliMajorDirty() && (bIncEmpty || et.getMutliMajor() != null)) {
-            dst.set(FIELD_MUTLIMAJOR, et.getMutliMajor());
+        if(et.isMutliMajorDirty() && (bIncEmpty||et.getMutliMajor()!=null)) {
+            dst.set(FIELD_MUTLIMAJOR,et.getMutliMajor());
         }
-        if (et.isNoDataInfoDirty() && (bIncEmpty || et.getNoDataInfo() != null)) {
-            dst.set(FIELD_NODATAINFO, et.getNoDataInfo());
+        if(et.isNoDataInfoDirty() && (bIncEmpty||et.getNoDataInfo()!=null)) {
+            dst.set(FIELD_NODATAINFO,et.getNoDataInfo());
         }
-        if (et.isPrintFuncDirty() && (bIncEmpty || et.getPrintFunc() != null)) {
-            dst.set(FIELD_PRINTFUNC, et.getPrintFunc());
+        if(et.isPrintFuncDirty() && (bIncEmpty||et.getPrintFunc()!=null)) {
+            dst.set(FIELD_PRINTFUNC,et.getPrintFunc());
         }
-        if (et.isReserverDirty() && (bIncEmpty || et.getReserver() != null)) {
-            dst.set(FIELD_RESERVER, et.getReserver());
+        if(et.isReserverDirty() && (bIncEmpty||et.getReserver()!=null)) {
+            dst.set(FIELD_RESERVER,et.getReserver());
         }
-        if (et.isReserver2Dirty() && (bIncEmpty || et.getReserver2() != null)) {
-            dst.set(FIELD_RESERVER2, et.getReserver2());
+        if(et.isReserver2Dirty() && (bIncEmpty||et.getReserver2()!=null)) {
+            dst.set(FIELD_RESERVER2,et.getReserver2());
         }
-        if (et.isRowAmoutDirty() && (bIncEmpty || et.getRowAmout() != null)) {
-            dst.set(FIELD_ROWAMOUT, et.getRowAmout());
+        if(et.isRowAmoutDirty() && (bIncEmpty||et.getRowAmout()!=null)) {
+            dst.set(FIELD_ROWAMOUT,et.getRowAmout());
         }
-        if (et.isRTInfoDirty() && (bIncEmpty || et.getRTInfo() != null)) {
-            dst.set(FIELD_RTINFO, et.getRTInfo());
+        if(et.isRTInfoDirty() && (bIncEmpty||et.getRTInfo()!=null)) {
+            dst.set(FIELD_RTINFO,et.getRTInfo());
         }
-        if (et.isSMALLICONDirty() && (bIncEmpty || et.getSMALLICON() != null)) {
-            dst.set(FIELD_SMALLICON, et.getSMALLICON());
+        if(et.isSMALLICONDirty() && (bIncEmpty||et.getSMALLICON()!=null)) {
+            dst.set(FIELD_SMALLICON,et.getSMALLICON());
         }
-        if (et.isStorageTypeDirty() && (bIncEmpty || et.getStorageType() != null)) {
-            dst.set(FIELD_STORAGETYPE, et.getStorageType());
+        if(et.isStorageTypeDirty() && (bIncEmpty||et.getStorageType()!=null)) {
+            dst.set(FIELD_STORAGETYPE,et.getStorageType());
         }
-        if (et.isTableNameDirty() && (bIncEmpty || et.getTableName() != null)) {
-            dst.set(FIELD_TABLENAME, et.getTableName());
+        if(et.isTableNameDirty() && (bIncEmpty||et.getTableName()!=null)) {
+            dst.set(FIELD_TABLENAME,et.getTableName());
         }
-        if (et.isTableSpaceDirty() && (bIncEmpty || et.getTableSpace() != null)) {
-            dst.set(FIELD_TABLESPACE, et.getTableSpace());
+        if(et.isTableSpaceDirty() && (bIncEmpty||et.getTableSpace()!=null)) {
+            dst.set(FIELD_TABLESPACE,et.getTableSpace());
         }
-        if (et.isTipsInfoDirty() && (bIncEmpty || et.getTipsInfo() != null)) {
-            dst.set(FIELD_TIPSINFO, et.getTipsInfo());
+        if(et.isTipsInfoDirty() && (bIncEmpty||et.getTipsInfo()!=null)) {
+            dst.set(FIELD_TIPSINFO,et.getTipsInfo());
         }
-        if (et.isUpdateDateDirty() && (bIncEmpty || et.getUpdateDate() != null)) {
-            dst.set(FIELD_UPDATEDATE, et.getUpdateDate());
+        if(et.isUpdateDateDirty() && (bIncEmpty||et.getUpdateDate()!=null)) {
+            dst.set(FIELD_UPDATEDATE,et.getUpdateDate());
         }
-        if (et.isUpdateManDirty() && (bIncEmpty || et.getUpdateMan() != null)) {
-            dst.set(FIELD_UPDATEMAN, et.getUpdateMan());
+        if(et.isUpdateManDirty() && (bIncEmpty||et.getUpdateMan()!=null)) {
+            dst.set(FIELD_UPDATEMAN,et.getUpdateMan());
         }
-        if (et.isUserActionDirty() && (bIncEmpty || et.getUserAction() != null)) {
-            dst.set(FIELD_USERACTION, et.getUserAction());
+        if(et.isUserActionDirty() && (bIncEmpty||et.getUserAction()!=null)) {
+            dst.set(FIELD_USERACTION,et.getUserAction());
         }
-        if (et.isValidFlagDirty() && (bIncEmpty || et.getValidFlag() != null)) {
-            dst.set(FIELD_VALIDFLAG, et.getValidFlag());
+        if(et.isValidFlagDirty() && (bIncEmpty||et.getValidFlag()!=null)) {
+            dst.set(FIELD_VALIDFLAG,et.getValidFlag());
         }
-        if (et.isVCFlagDirty() && (bIncEmpty || et.getVCFlag() != null)) {
-            dst.set(FIELD_VCFLAG, et.getVCFlag());
+        if(et.isVCFlagDirty() && (bIncEmpty||et.getVCFlag()!=null)) {
+            dst.set(FIELD_VCFLAG,et.getVCFlag());
         }
-        if (et.isVerCheckTimerDirty() && (bIncEmpty || et.getVerCheckTimer() != null)) {
-            dst.set(FIELD_VERCHECKTIMER, et.getVerCheckTimer());
+        if(et.isVerCheckTimerDirty() && (bIncEmpty||et.getVerCheckTimer()!=null)) {
+            dst.set(FIELD_VERCHECKTIMER,et.getVerCheckTimer());
         }
-        if (et.isVerFieldDirty() && (bIncEmpty || et.getVerField() != null)) {
-            dst.set(FIELD_VERFIELD, et.getVerField());
+        if(et.isVerFieldDirty() && (bIncEmpty||et.getVerField()!=null)) {
+            dst.set(FIELD_VERFIELD,et.getVerField());
         }
-        if (et.isVerHelperDirty() && (bIncEmpty || et.getVerHelper() != null)) {
-            dst.set(FIELD_VERHELPER, et.getVerHelper());
+        if(et.isVerHelperDirty() && (bIncEmpty||et.getVerHelper()!=null)) {
+            dst.set(FIELD_VERHELPER,et.getVerHelper());
         }
-        if (et.isVersionCheckDirty() && (bIncEmpty || et.getVersionCheck() != null)) {
-            dst.set(FIELD_VERSIONCHECK, et.getVersionCheck());
+        if(et.isVersionCheckDirty() && (bIncEmpty||et.getVersionCheck()!=null)) {
+            dst.set(FIELD_VERSIONCHECK,et.getVersionCheck());
         }
-        if (et.isViewNameDirty() && (bIncEmpty || et.getViewName() != null)) {
-            dst.set(FIELD_VIEWNAME, et.getViewName());
+        if(et.isViewNameDirty() && (bIncEmpty||et.getViewName()!=null)) {
+            dst.set(FIELD_VIEWNAME,et.getViewName());
         }
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#remove(java.lang.String)
+     */
     @Override
     public boolean remove(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().remove(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.remove(strParamName);
-        }
-        return DataEntityBase.remove(this, index);
+        return  DataEntityBase.remove(this, index);
     }
 
-    private static boolean remove(DataEntityBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                et.resetACEnableDP();
-                return true;
-            }
-            case 1: {
-                et.resetACExtInfo();
-                return true;
-            }
-            case 2: {
-                et.resetACInfoFormat();
-                return true;
-            }
-            case 3: {
-                et.resetACInfoParam();
-                return true;
-            }
-            case 4: {
-                et.resetACMaxCnt();
-                return true;
-            }
-            case 5: {
-                et.resetACObject();
-                return true;
-            }
-            case 6: {
-                et.resetACQueryModelId();
-                return true;
-            }
-            case 7: {
-                et.resetACQueryModelName();
-                return true;
-            }
-            case 8: {
-                et.resetACSortDir();
-                return true;
-            }
-            case 9: {
-                et.resetACSortField();
-                return true;
-            }
-            case 10: {
-                et.resetBigIcon();
-                return true;
-            }
-            case 11: {
-                et.resetConfigHelper();
-                return true;
-            }
-            case 12: {
-                et.resetCreateDate();
-                return true;
-            }
-            case 13: {
-                et.resetCreateMan();
-                return true;
-            }
-            case 14: {
-                et.resetDataAccObject();
-                return true;
-            }
-            case 15: {
-                et.resetDataChgLogMode();
-                return true;
-            }
-            case 16: {
-                et.resetDataCtrlInt();
-                return true;
-            }
-            case 17: {
-                et.resetDataCtrlObject();
-                return true;
-            }
-            case 18: {
-                et.resetDataNotifyHelper();
-                return true;
-            }
-            case 19: {
-                et.resetDBStorage();
-                return true;
-            }
-            case 20: {
-                et.resetDBVersion();
-                return true;
-            }
-            case 21: {
-                et.resetDEGroup();
-                return true;
-            }
-            case 22: {
-                et.resetDEHelper();
-                return true;
-            }
-            case 23: {
-                et.resetDEId();
-                return true;
-            }
-            case 24: {
-                et.resetDELogicName();
-                return true;
-            }
-            case 25: {
-                et.resetDEName();
-                return true;
-            }
-            case 26: {
-                et.resetDEObject();
-                return true;
-            }
-            case 27: {
-                et.resetDEOrder();
-                return true;
-            }
-            case 28: {
-                et.resetDEParam();
-                return true;
-            }
-            case 29: {
-                et.resetDER11DEId();
-                return true;
-            }
-            case 30: {
-                et.resetDER11DEName();
-                return true;
-            }
-            case 31: {
-                et.resetDEType();
-                return true;
-            }
-            case 32: {
-                et.resetDEUserParam();
-                return true;
-            }
-            case 33: {
-                et.resetDEVersion();
-                return true;
-            }
-            case 34: {
-                et.resetDGRowClassHelper();
-                return true;
-            }
-            case 35: {
-                et.resetDGSUMMARYHeight();
-                return true;
-            }
-            case 36: {
-                et.resetDLKHelper();
-                return true;
-            }
-            case 37: {
-                et.resetDynamicInterval();
-                return true;
-            }
-            case 38: {
-                et.resetEnableColPriv();
-                return true;
-            }
-            case 39: {
-                et.resetEnableGlobalModel();
-                return true;
-            }
-            case 40: {
-                et.resetExitingModel();
-                return true;
-            }
-            case 41: {
-                et.resetExportIncEmpty();
-                return true;
-            }
-            case 42: {
-                et.resetExTableName();
-                return true;
-            }
-            case 43: {
-                et.resetGlobalModelObj();
-                return true;
-            }
-            case 44: {
-                et.resetIndexMode();
-                return true;
-            }
-            case 45: {
-                et.resetInfoField();
-                return true;
-            }
-            case 46: {
-                et.resetInfoFormat();
-                return true;
-            }
-            case 47: {
-                et.resetInheritMode();
-                return true;
-            }
-            case 48: {
-                et.resetIsDGRowEdit();
-                return true;
-            }
-            case 49: {
-                et.resetIsEnableAudit();
-                return true;
-            }
-            case 50: {
-                et.resetIsEnableDP();
-                return true;
-            }
-            case 51: {
-                et.resetIsIndexDE();
-                return true;
-            }
-            case 52: {
-                et.resetIsLogicValid();
-                return true;
-            }
-            case 53: {
-                et.resetISMULTIPRINT();
-                return true;
-            }
-            case 54: {
-                et.resetISSupportFA();
-                return true;
-            }
-            case 55: {
-                et.resetIsSystem();
-                return true;
-            }
-            case 56: {
-                et.resetKeyParams();
-                return true;
-            }
-            case 57: {
-                et.resetLicenseCode();
-                return true;
-            }
-            case 58: {
-                et.resetLogAuditDetail();
-                return true;
-            }
-            case 59: {
-                et.resetMemo();
-                return true;
-            }
-            case 60: {
-                et.resetMinorFieldName();
-                return true;
-            }
-            case 61: {
-                et.resetMinorFieldValue();
-                return true;
-            }
-            case 62: {
-                et.resetMinorTableName();
-                return true;
-            }
-            case 63: {
-                et.resetMutliMajor();
-                return true;
-            }
-            case 64: {
-                et.resetNoDataInfo();
-                return true;
-            }
-            case 65: {
-                et.resetPrintFunc();
-                return true;
-            }
-            case 66: {
-                et.resetReserver();
-                return true;
-            }
-            case 67: {
-                et.resetReserver2();
-                return true;
-            }
-            case 68: {
-                et.resetRowAmout();
-                return true;
-            }
-            case 69: {
-                et.resetRTInfo();
-                return true;
-            }
-            case 70: {
-                et.resetSMALLICON();
-                return true;
-            }
-            case 71: {
-                et.resetStorageType();
-                return true;
-            }
-            case 72: {
-                et.resetTableName();
-                return true;
-            }
-            case 73: {
-                et.resetTableSpace();
-                return true;
-            }
-            case 74: {
-                et.resetTipsInfo();
-                return true;
-            }
-            case 75: {
-                et.resetUpdateDate();
-                return true;
-            }
-            case 76: {
-                et.resetUpdateMan();
-                return true;
-            }
-            case 77: {
-                et.resetUserAction();
-                return true;
-            }
-            case 78: {
-                et.resetValidFlag();
-                return true;
-            }
-            case 79: {
-                et.resetVCFlag();
-                return true;
-            }
-            case 80: {
-                et.resetVerCheckTimer();
-                return true;
-            }
-            case 81: {
-                et.resetVerField();
-                return true;
-            }
-            case 82: {
-                et.resetVerHelper();
-                return true;
-            }
-            case 83: {
-                et.resetVersionCheck();
-                return true;
-            }
-            case 84: {
-                et.resetViewName();
-                return true;
-            }
-        }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
-    }
-
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
+    /**
+     * 通过属性标识删除属性值
+     * @param entity
+     * @param index
+     * @return
+     * @throws Exception
      */
-    public DataEntity getDER11DE() throws Exception {
-        if (this.getProxyEntity() != null) {
+    private static boolean remove(DataEntityBase et,int index) throws Exception {
+        switch(index) {
+        case INDEX_ACENABLEDP:
+            et.resetACEnableDP();
+            return true;
+        case INDEX_ACEXTINFO:
+            et.resetACExtInfo();
+            return true;
+        case INDEX_ACINFOFORMAT:
+            et.resetACInfoFormat();
+            return true;
+        case INDEX_ACINFOPARAM:
+            et.resetACInfoParam();
+            return true;
+        case INDEX_ACMAXCNT:
+            et.resetACMaxCnt();
+            return true;
+        case INDEX_ACOBJECT:
+            et.resetACObject();
+            return true;
+        case INDEX_ACQUERYMODELID:
+            et.resetACQueryModelId();
+            return true;
+        case INDEX_ACQUERYMODELNAME:
+            et.resetACQueryModelName();
+            return true;
+        case INDEX_ACSORTDIR:
+            et.resetACSortDir();
+            return true;
+        case INDEX_ACSORTFIELD:
+            et.resetACSortField();
+            return true;
+        case INDEX_BIGICON:
+            et.resetBigIcon();
+            return true;
+        case INDEX_CONFIGHELPER:
+            et.resetConfigHelper();
+            return true;
+        case INDEX_CREATEDATE:
+            et.resetCreateDate();
+            return true;
+        case INDEX_CREATEMAN:
+            et.resetCreateMan();
+            return true;
+        case INDEX_DATAACCOBJECT:
+            et.resetDataAccObject();
+            return true;
+        case INDEX_DATACHGLOGMODE:
+            et.resetDataChgLogMode();
+            return true;
+        case INDEX_DATACTRLINT:
+            et.resetDataCtrlInt();
+            return true;
+        case INDEX_DATACTRLOBJECT:
+            et.resetDataCtrlObject();
+            return true;
+        case INDEX_DATANOTIFYHELPER:
+            et.resetDataNotifyHelper();
+            return true;
+        case INDEX_DBSTORAGE:
+            et.resetDBStorage();
+            return true;
+        case INDEX_DBVERSION:
+            et.resetDBVersion();
+            return true;
+        case INDEX_DEGROUP:
+            et.resetDEGroup();
+            return true;
+        case INDEX_DEHELPER:
+            et.resetDEHelper();
+            return true;
+        case INDEX_DEID:
+            et.resetDEId();
+            return true;
+        case INDEX_DELOGICNAME:
+            et.resetDELogicName();
+            return true;
+        case INDEX_DENAME:
+            et.resetDEName();
+            return true;
+        case INDEX_DEOBJECT:
+            et.resetDEObject();
+            return true;
+        case INDEX_DEORDER:
+            et.resetDEOrder();
+            return true;
+        case INDEX_DEPARAM:
+            et.resetDEParam();
+            return true;
+        case INDEX_DER11DEID:
+            et.resetDER11DEId();
+            return true;
+        case INDEX_DER11DENAME:
+            et.resetDER11DEName();
+            return true;
+        case INDEX_DETYPE:
+            et.resetDEType();
+            return true;
+        case INDEX_DEUSERPARAM:
+            et.resetDEUserParam();
+            return true;
+        case INDEX_DEVERSION:
+            et.resetDEVersion();
+            return true;
+        case INDEX_DGROWCLASSHELPER:
+            et.resetDGRowClassHelper();
+            return true;
+        case INDEX_DGSUMMARYHEIGHT:
+            et.resetDGSUMMARYHeight();
+            return true;
+        case INDEX_DLKHELPER:
+            et.resetDLKHelper();
+            return true;
+        case INDEX_DYNAMICINTERVAL:
+            et.resetDynamicInterval();
+            return true;
+        case INDEX_ENABLECOLPRIV:
+            et.resetEnableColPriv();
+            return true;
+        case INDEX_ENABLEGLOBALMODEL:
+            et.resetEnableGlobalModel();
+            return true;
+        case INDEX_EXITINGMODEL:
+            et.resetExitingModel();
+            return true;
+        case INDEX_EXPORTINCEMPTY:
+            et.resetExportIncEmpty();
+            return true;
+        case INDEX_EXTABLENAME:
+            et.resetExTableName();
+            return true;
+        case INDEX_GLOBALMODELOBJ:
+            et.resetGlobalModelObj();
+            return true;
+        case INDEX_INDEXMODE:
+            et.resetIndexMode();
+            return true;
+        case INDEX_INFOFIELD:
+            et.resetInfoField();
+            return true;
+        case INDEX_INFOFORMAT:
+            et.resetInfoFormat();
+            return true;
+        case INDEX_INHERITMODE:
+            et.resetInheritMode();
+            return true;
+        case INDEX_ISDGROWEDIT:
+            et.resetIsDGRowEdit();
+            return true;
+        case INDEX_ISENABLEAUDIT:
+            et.resetIsEnableAudit();
+            return true;
+        case INDEX_ISENABLEDP:
+            et.resetIsEnableDP();
+            return true;
+        case INDEX_ISINDEXDE:
+            et.resetIsIndexDE();
+            return true;
+        case INDEX_ISLOGICVALID:
+            et.resetIsLogicValid();
+            return true;
+        case INDEX_ISMULTIPRINT:
+            et.resetISMULTIPRINT();
+            return true;
+        case INDEX_ISSUPPORTFA:
+            et.resetISSupportFA();
+            return true;
+        case INDEX_ISSYSTEM:
+            et.resetIsSystem();
+            return true;
+        case INDEX_KEYPARAMS:
+            et.resetKeyParams();
+            return true;
+        case INDEX_LICENSECODE:
+            et.resetLicenseCode();
+            return true;
+        case INDEX_LOGAUDITDETAIL:
+            et.resetLogAuditDetail();
+            return true;
+        case INDEX_MEMO:
+            et.resetMemo();
+            return true;
+        case INDEX_MINORFIELDNAME:
+            et.resetMinorFieldName();
+            return true;
+        case INDEX_MINORFIELDVALUE:
+            et.resetMinorFieldValue();
+            return true;
+        case INDEX_MINORTABLENAME:
+            et.resetMinorTableName();
+            return true;
+        case INDEX_MUTLIMAJOR:
+            et.resetMutliMajor();
+            return true;
+        case INDEX_NODATAINFO:
+            et.resetNoDataInfo();
+            return true;
+        case INDEX_PRINTFUNC:
+            et.resetPrintFunc();
+            return true;
+        case INDEX_RESERVER:
+            et.resetReserver();
+            return true;
+        case INDEX_RESERVER2:
+            et.resetReserver2();
+            return true;
+        case INDEX_ROWAMOUT:
+            et.resetRowAmout();
+            return true;
+        case INDEX_RTINFO:
+            et.resetRTInfo();
+            return true;
+        case INDEX_SMALLICON:
+            et.resetSMALLICON();
+            return true;
+        case INDEX_STORAGETYPE:
+            et.resetStorageType();
+            return true;
+        case INDEX_TABLENAME:
+            et.resetTableName();
+            return true;
+        case INDEX_TABLESPACE:
+            et.resetTableSpace();
+            return true;
+        case INDEX_TIPSINFO:
+            et.resetTipsInfo();
+            return true;
+        case INDEX_UPDATEDATE:
+            et.resetUpdateDate();
+            return true;
+        case INDEX_UPDATEMAN:
+            et.resetUpdateMan();
+            return true;
+        case INDEX_USERACTION:
+            et.resetUserAction();
+            return true;
+        case INDEX_VALIDFLAG:
+            et.resetValidFlag();
+            return true;
+        case INDEX_VCFLAG:
+            et.resetVCFlag();
+            return true;
+        case INDEX_VERCHECKTIMER:
+            et.resetVerCheckTimer();
+            return true;
+        case INDEX_VERFIELD:
+            et.resetVerField();
+            return true;
+        case INDEX_VERHELPER:
+            et.resetVerHelper();
+            return true;
+        case INDEX_VERSIONCHECK:
+            et.resetVersionCheck();
+            return true;
+        case INDEX_VIEWNAME:
+            et.resetViewName();
+            return true;
+        default:
+            throw new Exception("不明属性标识");
+        }
+    }
+
+
+    private Integer objDER11DELock = new Integer(1);
+    private net.ibizsys.psrt.srv.demodel.entity.DataEntity der11de = null;
+    /**
+    * 获取父数据 实体
+     * @throws Exception
+    */
+    public net.ibizsys.psrt.srv.demodel.entity.DataEntity getDER11DE() throws Exception {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDER11DE();
         }
-        if (this.getDER11DEId() == null) {
+
+        if(this.getDER11DEId()==null)
             return null;
-        }
-        Integer n = this.objDER11DELock;
-        synchronized (n) {
-            if (this.der11de != null && DataTypeHelper.compare(25, (Object)this.getDER11DEId(), (Object)this.der11de.getDEId()) != 0L) {
-                this.der11de = null;
+        synchronized(this.objDER11DELock) {
+            if(this.der11de!=null) {
+                if(net.ibizsys.paas.util.DataTypeHelper.compare(25,this.getDER11DEId(),der11de.getDEId())!=0) {
+                    this.der11de = null;
+                }
             }
-            if (this.der11de == null) {
-                DataEntity der11de = new DataEntity();
+
+
+            if(this.der11de==null) {
+                net.ibizsys.psrt.srv.demodel.entity.DataEntity der11de = new net.ibizsys.psrt.srv.demodel.entity.DataEntity();
                 der11de.setDEId(this.getDER11DEId());
-                DataEntityService service = (DataEntityService)ServiceGlobal.getService(DataEntityService.class, this.getSessionFactory());
+                net.ibizsys.psrt.srv.demodel.service.DataEntityService service = (net.ibizsys.psrt.srv.demodel.service.DataEntityService)ServiceGlobal.getService(net.ibizsys.psrt.srv.demodel.service.DataEntityService.class,this.getSessionFactory());
                 service.autoGet(der11de);
                 this.der11de = der11de;
             }
@@ -6238,25 +7601,31 @@ implements Serializable {
         }
     }
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    public QueryModel getACQueryModel() throws Exception {
-        if (this.getProxyEntity() != null) {
+    private Integer objACQueryModelLock = new Integer(1);
+    private net.ibizsys.psrt.srv.demodel.entity.QueryModel acquerymodel = null;
+    /**
+    * 获取父数据 实体查询模型
+     * @throws Exception
+    */
+    public net.ibizsys.psrt.srv.demodel.entity.QueryModel getACQueryModel() throws Exception {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getACQueryModel();
         }
-        if (this.getACQueryModelId() == null) {
+
+        if(this.getACQueryModelId()==null)
             return null;
-        }
-        Integer n = this.objACQueryModelLock;
-        synchronized (n) {
-            if (this.acquerymodel != null && DataTypeHelper.compare(25, (Object)this.getACQueryModelId(), (Object)this.acquerymodel.getQueryModelId()) != 0L) {
-                this.acquerymodel = null;
+        synchronized(this.objACQueryModelLock) {
+            if(this.acquerymodel!=null) {
+                if(net.ibizsys.paas.util.DataTypeHelper.compare(25,this.getACQueryModelId(),acquerymodel.getQueryModelId())!=0) {
+                    this.acquerymodel = null;
+                }
             }
-            if (this.acquerymodel == null) {
-                QueryModel acquerymodel = new QueryModel();
+
+
+            if(this.acquerymodel==null) {
+                net.ibizsys.psrt.srv.demodel.entity.QueryModel acquerymodel = new net.ibizsys.psrt.srv.demodel.entity.QueryModel();
                 acquerymodel.setQueryModelId(this.getACQueryModelId());
-                QueryModelService service = (QueryModelService)ServiceGlobal.getService(QueryModelService.class, this.getSessionFactory());
+                net.ibizsys.psrt.srv.demodel.service.QueryModelService service = (net.ibizsys.psrt.srv.demodel.service.QueryModelService)ServiceGlobal.getService(net.ibizsys.psrt.srv.demodel.service.QueryModelService.class,this.getSessionFactory());
                 service.autoGet(acquerymodel);
                 this.acquerymodel = acquerymodel;
             }
@@ -6264,28 +7633,38 @@ implements Serializable {
         }
     }
 
+
+
+    /**
+     *  获取代理的数据对象
+     */
     private DataEntityBase getProxyEntity() {
         return this.proxyDataEntityBase;
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#onProxy(net.ibizsys.paas.data.IDataObject)
+     */
     @Override
     protected void onProxy(IDataObject proxyDataObject) {
         this.proxyDataEntityBase = null;
-        if (proxyDataObject != null && proxyDataObject instanceof DataEntityBase) {
+        if(proxyDataObject!=null && proxyDataObject instanceof DataEntityBase) {
             this.proxyDataEntityBase = (DataEntityBase)proxyDataObject;
         }
         super.onProxy(proxyDataObject);
     }
 
-    @Override
-    protected IEntityActionHelper getActionHelper(boolean bMust) throws Exception {
-        IEntityActionHelper iEntityActionHelper = super.getActionHelper(false);
-        if (!bMust || iEntityActionHelper != null) {
+
+    /**
+    * 重写获取行为操作辅助对象
+    */
+    protected net.ibizsys.paas.entity.IEntityActionHelper getActionHelper(boolean bMust) throws Exception {
+        net.ibizsys.paas.entity.IEntityActionHelper iEntityActionHelper = super.getActionHelper(false);
+        if(!bMust || iEntityActionHelper!=null)
             return iEntityActionHelper;
-        }
-        iEntityActionHelper = ServiceGlobal.getService("net.ibizsys.psrt.srv.demodel.service.DataEntityService", this.getSessionFactory()).getServiceActionHelper();
+        iEntityActionHelper = net.ibizsys.paas.service.ServiceGlobal.getService("net.ibizsys.psrt.srv.demodel.service.DataEntityService", this.getSessionFactory()).getServiceActionHelper();
         this.setActionHelper(iEntityActionHelper);
         return iEntityActionHelper;
     }
-}
 
+}

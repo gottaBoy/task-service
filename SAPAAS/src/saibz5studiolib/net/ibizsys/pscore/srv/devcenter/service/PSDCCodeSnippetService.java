@@ -68,7 +68,7 @@ extends PSDCCodeSnippetServiceBase {
         pSDCCodeSnippet2.set("psdevslnsysid", jSONObject.optString("psdevslnsysid", ""));
         pSDCCodeSnippet2.setPSDCCodeSnippetId(pSDCCodeSnippet.getPSDCCodeSnippetId());
         try {
-            this.executeAction("X3G_GETCODE", (IEntity)pSDCCodeSnippet2);
+            this.executeAction("X3G_GETCODE", pSDCCodeSnippet2);
         }
         catch (Exception exception) {
             log.error((Object)exception);
@@ -87,7 +87,7 @@ extends PSDCCodeSnippetServiceBase {
 
     @Override
     protected void onPublish(PSDCCodeSnippet pSDCCodeSnippet) throws Exception {
-        this.executeRemoteCall2All("RELOADMODEL", (IEntity)pSDCCodeSnippet);
+        this.executeRemoteCall2All("RELOADMODEL", pSDCCodeSnippet);
     }
 }
 

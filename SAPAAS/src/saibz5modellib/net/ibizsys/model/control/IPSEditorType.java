@@ -1,100 +1,394 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control;
 
 import java.util.Properties;
+
 import net.ibizsys.model.core.IPSModelObject;
 
-public interface IPSEditorType
-extends IPSModelObject {
-    public static final String EDITORTYPE_TEXTBOX = "TEXTBOX";
-    public static final String EDITORTYPE_USERCONTROL = "USERCONTROL";
-    public static final String EDITORTYPE_HIDDEN = "HIDDEN";
-    public static final String EDITORTYPE_IPADDRESSTEXTBOX = "IPADDRESSTEXTBOX";
-    public static final String EDITORTYPE_SPAN = "SPAN";
-    public static final String EDITORTYPE_TEXTAREA = "TEXTAREA";
-    public static final String EDITORTYPE_PICKER = "PICKER";
-    public static final String EDITORTYPE_DROPDOWNLIST = "DROPDOWNLIST";
-    public static final String EDITORTYPE_HTMLEDITOR = "HTMLEDITOR";
-    public static final String EDITORTYPE_RAW = "RAW";
-    public static final String EDITORTYPE_DATEPICKER = "DATEPICKER";
-    public static final String EDITORTYPE_LISTBOX = "LISTBOX";
-    public static final String EDITORTYPE_CHECKBOXLIST = "CHECKBOXLIST";
-    public static final String EDITORTYPE_CHECKBOX = "CHECKBOX";
-    public static final String EDITORTYPE_RADIOBUTTONLIST = "RADIOBUTTONLIST";
-    public static final String EDITORTYPE_FILEUPLOADER = "FILEUPLOADER";
-    public static final String EDITORTYPE_PICKEREX_TRIGGER = "PICKEREX_TRIGGER";
-    public static final String EDITORTYPE_TEXTAREA_10 = "TEXTAREA_10";
-    public static final String EDITORTYPE_AC = "AC";
-    public static final String EDITORTYPE_AC_FS = "AC_FS";
-    public static final String MBEDITORTYPE_MOB2DBARCODEREADER = "MOB2DBARCODEREADER";
-    public static final String MBEDITORTYPE_MOBBARCODEREADER = "MOBBARCODEREADER";
-    public static final String MBEDITORTYPE_MOBCHECKLIST = "MOBCHECKLIST";
-    public static final String MBEDITORTYPE_MOBDATE = "MOBDATE";
-    public static final String MBEDITORTYPE_MOBDROPDOWNLIST = "MOBDROPDOWNLIST";
-    public static final String MBEDITORTYPE_MOBPICKER = "MOBPICKER";
-    public static final String MBEDITORTYPE_MOBPICTURE = "MOBPICTURE";
-    public static final String MBEDITORTYPE_MOBPICTURELIST = "MOBPICTURELIST";
-    public static final String MBEDITORTYPE_MOBRADIOLIST = "MOBRADIOLIST";
-    public static final String MBEDITORTYPE_MOBSWITCH = "MOBSWITCH";
-    public static final String MBEDITORTYPE_MOBTEXT = "MOBTEXT";
-    public static final String MBEDITORTYPE_MOBTEXTAREA = "MOBTEXTAREA";
-    public static final String EDITORPARAM_PICKUPVIEW = "PICKUPVIEW";
-    public static final String EDITORPARAM_LINKVIEW = "LINKVIEW";
-    public static final String EDITORPARAM_USERCONTROL = "USERCONTROL";
-    public static final int OUTPUTCODELISTCONFIGMODE_NONE = 0;
-    public static final int OUTPUTCODELISTCONFIGMODE_SELECTEDONLY = 1;
-    public static final int OUTPUTCODELISTCONFIGMODE_INCLUDECHILD = 2;
-    public static final String REFVIEWSHOWMODE_NORMAL = "NORMAL";
-    public static final String REFVIEWSHOWMODE_MODAL = "MODAL";
-    public static final String REFVIEWSHOWMODE_EMBEDDED = "EMBEDDED";
-    public static final String LINKVIEWSHOWMODE_NORMAL = "NORMAL";
-    public static final String LINKVIEWSHOWMODE_MODAL = "MODAL";
-    public static final String LINKVIEWSHOWMODE_EMBEDDED = "EMBEDDED";
+/**
+ * 编辑器类型对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSEditorType extends IPSModelObject {
 
-    public boolean isStandardEditor();
+	// 定义编辑器类型代码表
 
-    public String getStandardPSEditorType();
+	/**
+	 * 文本框
+	 */
+	final static String EDITORTYPE_TEXTBOX = "TEXTBOX";
 
-    public boolean isEditable();
+	/**
+	 * 用户自定义
+	 */
+	final static String EDITORTYPE_USERCONTROL = "USERCONTROL";
 
-    public Properties getEditorParams();
+	/**
+	 * 隐藏表单项
+	 */
+	final static String EDITORTYPE_HIDDEN = "HIDDEN";
 
-    public int getEditorParam(String var1, int var2);
+	/**
+	 * IP地址输入框
+	 */
+	final static String EDITORTYPE_IPADDRESSTEXTBOX = "IPADDRESSTEXTBOX";
 
-    public String getEditorParam(String var1, String var2);
+	/**
+	 * 标签
+	 */
+	final static String EDITORTYPE_SPAN = "SPAN";
 
-    public double getEditorParam(String var1, double var2);
+	/**
+	 * 多行输入框
+	 */
+	final static String EDITORTYPE_TEXTAREA = "TEXTAREA";
 
-    public boolean getEditorParam(String var1, boolean var2);
+	/**
+	 * 数据选择
+	 */
+	final static String EDITORTYPE_PICKER = "PICKER";
 
-    public boolean isConvertToCodeItemText();
+	/**
+	 * 下拉列表框
+	 */
+	final static String EDITORTYPE_DROPDOWNLIST = "DROPDOWNLIST";
 
-    public boolean isNeedCodeListConfig();
+	/**
+	 * HTML编辑框
+	 */
+	final static String EDITORTYPE_HTMLEDITOR = "HTMLEDITOR";
 
-    public int getOutputCodeListConfigMode();
+	/**
+	 * 直接内容
+	 */
+	final static String EDITORTYPE_RAW = "RAW";
 
-    public String getValueProcessor();
+	/**
+	 * 时间选择器
+	 */
+	final static String EDITORTYPE_DATEPICKER = "DATEPICKER";
 
-    public int getWidth();
+	/**
+	 * 列表框
+	 */
+	final static String EDITORTYPE_LISTBOX = "LISTBOX";
 
-    public int getHeight();
+	/**
+	 * 选项框列表
+	 */
+	final static String EDITORTYPE_CHECKBOXLIST = "CHECKBOXLIST";
 
-    public int getWidth(String var1);
+	/**
+	 * 选项框
+	 */
+	final static String EDITORTYPE_CHECKBOX = "CHECKBOX";
 
-    public int getHeight(String var1);
+	/**
+	 * 单选项列表
+	 */
+	final static String EDITORTYPE_RADIOBUTTONLIST = "RADIOBUTTONLIST";
 
-    public boolean isUserControl();
+	/**
+	 * 文件上传控件
+	 */
+	final static String EDITORTYPE_FILEUPLOADER = "FILEUPLOADER";
 
-    public boolean hasPickupView();
+	/**
+	 * 数据选择（下拉）
+	 */
+	final static String EDITORTYPE_PICKEREX_TRIGGER = "PICKEREX_TRIGGER";
 
-    public boolean hasLinkView();
+	/**
+	 * 多行输入框（10行）
+	 */
+	final static String EDITORTYPE_TEXTAREA_10 = "TEXTAREA_10";
 
-    public String getAjaxHandlerType();
+	/**
+	 * 自动填充
+	 */
+	final static String EDITORTYPE_AC = "AC";
 
-    public String getRefViewShowMode();
+	/**
+	 * 自动填充（只能选择）
+	 */
+	final static String EDITORTYPE_AC_FS = "AC_FS";
 
-    public String getLinkViewShowMode();
+	// 定义移动端编辑器类型代码表
+
+	/**
+	 * 移动端二维码阅读器
+	 */
+	final static String MBEDITORTYPE_MOB2DBARCODEREADER = "MOB2DBARCODEREADER";
+
+	/**
+	 * 移动端条码阅读器
+	 */
+	final static String MBEDITORTYPE_MOBBARCODEREADER = "MOBBARCODEREADER";
+
+	/**
+	 * 移动端选项框列表
+	 */
+	final static String MBEDITORTYPE_MOBCHECKLIST = "MOBCHECKLIST";
+
+	/**
+	 * 移动端时间选择器
+	 */
+	final static String MBEDITORTYPE_MOBDATE = "MOBDATE";
+
+	/**
+	 * 移动端下拉列表框
+	 */
+	final static String MBEDITORTYPE_MOBDROPDOWNLIST = "MOBDROPDOWNLIST";
+
+	/**
+	 * 移动端数据选择
+	 */
+	final static String MBEDITORTYPE_MOBPICKER = "MOBPICKER";
+
+	/**
+	 * 移动端图片控件
+	 */
+	final static String MBEDITORTYPE_MOBPICTURE = "MOBPICTURE";
+
+	/**
+	 * 移动端图片列表控件
+	 */
+	final static String MBEDITORTYPE_MOBPICTURELIST = "MOBPICTURELIST";
+
+	/**
+	 * 移动端单选项列表
+	 */
+	final static String MBEDITORTYPE_MOBRADIOLIST = "MOBRADIOLIST";
+
+	/**
+	 * 移动端开关部件
+	 */
+	final static String MBEDITORTYPE_MOBSWITCH = "MOBSWITCH";
+
+	/**
+	 * 移动端文本框
+	 */
+	final static String MBEDITORTYPE_MOBTEXT = "MOBTEXT";
+
+	/**
+	 * 移动端多行文本
+	 */
+	final static String MBEDITORTYPE_MOBTEXTAREA = "MOBTEXTAREA";
+
+	/**
+	 * 编辑器参数：选择视图
+	 */
+	final static String EDITORPARAM_PICKUPVIEW = "PICKUPVIEW";
+
+	/**
+	 * 编辑器参数：链接视图
+	 */
+	final static String EDITORPARAM_LINKVIEW = "LINKVIEW";
+
+	/**
+	 * 编辑器参数：用户自定义控件
+	 */
+	final static String EDITORPARAM_USERCONTROL = "USERCONTROL";
+
+	/**
+	 * 输出代码表配置模式：无
+	 */
+	final static int OUTPUTCODELISTCONFIGMODE_NONE = 0;
+
+	/**
+	 * 输出代码表配置模式：只输出选择项
+	 */
+	final static int OUTPUTCODELISTCONFIGMODE_SELECTEDONLY = 1;
+
+	/**
+	 * 输出代码表配置模式：输出子项
+	 */
+	final static int OUTPUTCODELISTCONFIGMODE_INCLUDECHILD = 2;
+
+	/**
+	 * 引用视图显示模式：常规
+	 */
+	final static String REFVIEWSHOWMODE_NORMAL = "NORMAL";
+
+	/**
+	 * 引用视图显示模式：模态
+	 */
+	final static String REFVIEWSHOWMODE_MODAL = "MODAL";
+
+	/**
+	 * 引用视图显示模式：嵌入
+	 */
+	final static String REFVIEWSHOWMODE_EMBEDDED = "EMBEDDED";
+
+	/**
+	 * 链接视图显示模式：常规
+	 */
+	final static String LINKVIEWSHOWMODE_NORMAL = "NORMAL";
+
+	/**
+	 * 链接视图显示模式：模态
+	 */
+	final static String LINKVIEWSHOWMODE_MODAL = "MODAL";
+
+	/**
+	 * 链接视图显示模式：嵌入
+	 */
+	final static String LINKVIEWSHOWMODE_EMBEDDED = "EMBEDDED";
+
+	/**
+	 * 是否为标准编辑器
+	 * 
+	 * @return
+	 */
+	boolean isStandardEditor();
+
+	/**
+	 * 获取标准的编辑类型
+	 * 
+	 * @return
+	 */
+	String getStandardPSEditorType();
+
+	/**
+	 * 获取是否支持编辑
+	 * 
+	 * @return
+	 */
+	boolean isEditable();
+
+	/**
+	 * 获取编辑器参数
+	 * 
+	 * @return
+	 */
+	Properties getEditorParams();
+
+	/**
+	 * @param strEditorParam
+	 * @param nDefault
+	 * @return
+	 */
+	int getEditorParam(String strEditorParam, int nDefault);
+
+	/**
+	 * @param strEditorParam
+	 * @param strDefault
+	 * @return
+	 */
+	String getEditorParam(String strEditorParam, String strDefault);
+
+	/**
+	 * @param strEditorParam
+	 * @param strDefault
+	 * @return
+	 */
+	double getEditorParam(String strEditorParam, double fDefault);
+
+	/**
+	 * @param strEditorParam
+	 * @param strDefault
+	 * @return
+	 */
+	boolean getEditorParam(String strEditorParam, boolean bDefault);
+
+	/**
+	 * 是否需要转换为代码项文本
+	 * 
+	 * @return
+	 */
+	boolean isConvertToCodeItemText();
+
+	/**
+	 * 是否需要代码表配置
+	 * 
+	 * @return
+	 */
+	boolean isNeedCodeListConfig();
+
+	/**
+	 * 获取输出的代码表配置模式
+	 * 
+	 * @return
+	 */
+	int getOutputCodeListConfigMode();
+
+	/**
+	 * 获取值处理器
+	 * 
+	 * @return
+	 */
+	String getValueProcessor();
+
+	/**
+	 * 获取宽度
+	 * 
+	 * @return
+	 */
+	int getWidth();
+
+	/**
+	 * 获取高度
+	 * 
+	 * @return
+	 */
+	int getHeight();
+
+	/**
+	 * 获取宽度
+	 * 
+	 * @return
+	 */
+	int getWidth(String strPSPFId);
+
+	/**
+	 * 获取高度
+	 * 
+	 * @return
+	 */
+	int getHeight(String strPSPFId);
+
+	/**
+	 * 是否为用户自定义部件
+	 * 
+	 * @return
+	 */
+	boolean isUserControl();
+
+	/**
+	 * 是否有数据选择视图
+	 * 
+	 * @return
+	 */
+	boolean hasPickupView();
+
+	/**
+	 * 是否有数据链接视图
+	 * 
+	 * @return
+	 */
+	boolean hasLinkView();
+
+	/**
+	 * 获取后台处理对象类型
+	 * 
+	 * @return
+	 */
+	String getAjaxHandlerType();
+
+	/**
+	 * 获取引用视图显示模式，值参考 SA.SRFDA.PS.Core.Control.IPSEditorType.REFVIEWSHOWMODE_XXX
+	 * 定义
+	 * 
+	 * @return
+	 */
+	String getRefViewShowMode();
+
+	/**
+	 * 获取引用视图显示模式，值参考
+	 * SA.SRFDA.PS.Core.Control.IPSEditorType.LINKVIEWSHOWMODE_XXX 定义
+	 * 
+	 * @return
+	 */
+	String getLinkViewShowMode();
 }
-

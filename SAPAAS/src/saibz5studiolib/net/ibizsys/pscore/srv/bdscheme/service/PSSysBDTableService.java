@@ -243,11 +243,10 @@ extends PSSysBDTableServiceBase {
     @Override
     protected void onSyncDEFields(PSSysBDTable pSSysBDTable) throws Exception {
         if (!pSSysBDTable.isFullEntity()) {
-            this.get((IEntity)pSSysBDTable);
+            this.get(pSSysBDTable);
         }
         ArrayList<PSSysBDTableDE> arrayList = pSSysBDTable.getPSSysBDTableDEs();
         for (PSSysBDTableDE pSSysBDTableDE : arrayList) {
-            String[] stringArray;
             if (DataObject.getIntegerValue((Object)pSSysBDTableDE.getAddColMode(), (Integer)0) == 0) continue;
             boolean bl = true;
             if (DataObject.getIntegerValue((Object)pSSysBDTableDE.getAddColMode(), (Integer)0) == 2) {
@@ -260,12 +259,12 @@ extends PSSysBDTableServiceBase {
                 string = string.replace("\r\n", ";");
                 string = string.replace("\r", ";");
                 string = string.replace("\n", ";");
-                for (String string2 : stringArray = string.toUpperCase().split("[;]")) {
+                for (String string2 : string.toUpperCase().split("[;]")) {
                     if (StringHelper.isNullOrEmpty((String)string2)) continue;
                     hashMap.put(string2.trim(), "");
                 }
             }
-            stringArray = (String[])ServiceGlobal.getService(PSSysBDColumnService.class, (SessionFactory)this.getSessionFactory());
+            PSSysBDColumnService columnService = (PSSysBDColumnService)ServiceGlobal.getService(PSSysBDColumnService.class, (SessionFactory)this.getSessionFactory());
             for (PSDEField pSDEField : arrayList2) {
                 if (bl ? hashMap.containsKey(pSDEField.getPSDEFieldName()) : !hashMap.containsKey(pSDEField.getPSDEFieldName())) continue;
                 PSSysBDColumn pSSysBDColumn = new PSSysBDColumn();
@@ -280,10 +279,9 @@ extends PSSysBDTableServiceBase {
                 pSSysBDColumn.setCodeName(pSDEField.getCodeName());
                 pSSysBDColumn.setPSSysBDColSetId(pSSysBDTableDE.getPSSysBDColSetId());
                 pSSysBDColumn.setPSSysBDColSetName(pSSysBDTableDE.getPSSysBDColSetName());
-                if (stringArray.checkKey(pSSysBDColumn) != 0) continue;
-                stringArray.create(pSSysBDColumn, false);
+                if (columnService.checkKey(pSSysBDColumn) != 0) continue;
+                columnService.create(pSSysBDColumn, false);
             }
         }
     }
 }
-

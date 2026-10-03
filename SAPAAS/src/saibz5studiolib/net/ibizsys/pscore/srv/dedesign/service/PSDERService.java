@@ -232,24 +232,24 @@ extends PSDERServiceBase {
                 object = StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u4e3b\u5b9e\u4f53[%1$s]\u4e3b\u952e\u5c5e\u6027", (Object)pSDER.getMajorPSDEName());
                 throw new Exception((String)object);
             }
-            object = new PSDEField();
-            ((PSDEFieldBase)object).setPSDEId(pSDER.getMinorPSDEId());
-            ((PSDEFieldBase)object).setPKey(1);
-            if (!pSDEFieldService.select(object, true)) {
+            PSDEField minorField = new PSDEField();
+            minorField.setPSDEId(pSDER.getMinorPSDEId());
+            minorField.setPKey(1);
+            if (!pSDEFieldService.select(minorField, true)) {
                 string = StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u5173\u7cfb\u5b9e\u4f53[%1$s]\u4e3b\u952e\u5c5e\u6027", (Object)pSDER.getMinorPSDEName());
                 throw new Exception(string);
             }
-            if (!StringHelper.isNullOrEmpty((String)((PSDEFieldBase)object).getPSDERName())) {
-                string = StringHelper.format((String)"\u5173\u7cfb\u5b9e\u4f53[%1$s]\u4e3b\u952e\u5c5e\u6027\u5df2\u5b58\u5728\u5173\u7cfb[%2$s]", (Object)pSDER.getMinorPSDEName(), (Object)((PSDEFieldBase)object).getPSDERName());
+            if (!StringHelper.isNullOrEmpty((String)minorField.getPSDERName())) {
+                string = StringHelper.format((String)"\u5173\u7cfb\u5b9e\u4f53[%1$s]\u4e3b\u952e\u5c5e\u6027\u5df2\u5b58\u5728\u5173\u7cfb[%2$s]", (Object)pSDER.getMinorPSDEName(), (Object)minorField.getPSDERName());
                 throw new Exception(string);
             }
-            ((PSDEFieldBase)object).setDERPSDEFId(pSDEField.getPSDEFieldId());
-            ((PSDEFieldBase)object).setDERPSDEFName(pSDEField.getPSDEFieldName());
-            ((PSDEFieldBase)object).setPSDERId(pSDER.getPSDERId());
-            ((PSDEFieldBase)object).setPSDERName(pSDER.getPSDERName());
-            ((PSDEFieldBase)object).setPSDataTypeId("PICKUP");
-            ((PSDEFieldBase)object).setPSDataTypeName(null);
-            pSDEFieldService.update(object, false);
+            minorField.setDERPSDEFId(pSDEField.getPSDEFieldId());
+            minorField.setDERPSDEFName(pSDEField.getPSDEFieldName());
+            minorField.setPSDERId(pSDER.getPSDERId());
+            minorField.setPSDERName(pSDER.getPSDERName());
+            minorField.setPSDataTypeId("PICKUP");
+            minorField.setPSDataTypeName(null);
+            pSDEFieldService.update(minorField, false);
         }
     }
 
@@ -308,7 +308,7 @@ extends PSDERServiceBase {
 
     @Override
     protected void onCreateDefaultVR(PSDER pSDER) throws Exception {
-        this.get((IEntity)pSDER);
+        this.get(pSDER);
         if (StringHelper.compare((String)pSDER.getDERType(), (String)"DER1N", (boolean)true) == 0 || StringHelper.compare((String)pSDER.getDERType(), (String)"DER11", (boolean)true) == 0) {
             PSDEFValueRuleService pSDEFValueRuleService = (PSDEFValueRuleService)ServiceGlobal.getService(PSDEFValueRuleService.class, (SessionFactory)this.getSessionFactory());
             pSDEFValueRuleService.createDER1NDefaultVR(pSDER);
@@ -319,7 +319,7 @@ extends PSDERServiceBase {
 
     @Override
     protected void onCreatePickupTextField(PSDER pSDER) throws Exception {
-        this.get((IEntity)pSDER);
+        this.get(pSDER);
         if (StringHelper.compare((String)pSDER.getDERType(), (String)"DER1N", (boolean)true) == 0) {
             PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
             ArrayList<PSDEField> arrayList = pSDEFieldService.selectByPSDER(pSDER);
@@ -371,7 +371,7 @@ extends PSDERServiceBase {
 
     @Override
     protected void onCreateDEOPPriv(PSDER pSDER) throws Exception {
-        this.get((IEntity)pSDER);
+        this.get(pSDER);
         if (StringHelper.compare((String)pSDER.getDERType(), (String)"DER1N", (boolean)true) == 0) {
             if ((pSDER.getMasterRS() & 4) == 0) {
                 throw new Exception("\u5f53\u524d\u5173\u7cfb\u6ca1\u6709\u542f\u7528\u6570\u636e\u8bbf\u95ee\u63a7\u5236");
@@ -490,4 +490,3 @@ extends PSDERServiceBase {
         return super.exportModelV2(pSDER);
     }
 }
-

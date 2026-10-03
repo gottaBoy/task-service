@@ -2839,7 +2839,7 @@ implements Serializable {
                 PSDevSlnSysSrv pSDevSlnSysSrv = new PSDevSlnSysSrv();
                 pSDevSlnSysSrv.setPSDevSlnSysSrvId(this.getPSDevSlnSysSrvId());
                 PSDevSlnSysSrvService pSDevSlnSysSrvService = (PSDevSlnSysSrvService)ServiceGlobal.getService(PSDevSlnSysSrvService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysSrvService.autoGet((IEntity)pSDevSlnSysSrv);
+                pSDevSlnSysSrvService.autoGet(pSDevSlnSysSrv);
                 this.psdevslnsyssrv = pSDevSlnSysSrv;
             }
             return this.psdevslnsyssrv;
@@ -2865,7 +2865,7 @@ implements Serializable {
                 PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
                 pSDevSlnSys.setPSDevSlnSysId(this.getPSDevSlnSysId());
                 PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysService.autoGet((IEntity)pSDevSlnSys);
+                pSDevSlnSysService.autoGet(pSDevSlnSys);
                 this.psdevslnsys = pSDevSlnSys;
             }
             return this.psdevslnsys;
@@ -2891,7 +2891,7 @@ implements Serializable {
                 PSSubSys pSSubSys = new PSSubSys();
                 pSSubSys.setPSSubSysId(this.getPSSubSysId());
                 PSSubSysService pSSubSysService = (PSSubSysService)ServiceGlobal.getService(PSSubSysService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysService.autoGet((IEntity)pSSubSys);
+                pSSubSysService.autoGet(pSSubSys);
                 this.pssubsys = pSSubSys;
             }
             return this.pssubsys;
@@ -2917,7 +2917,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

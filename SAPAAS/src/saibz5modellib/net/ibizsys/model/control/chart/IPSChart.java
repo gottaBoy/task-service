@@ -1,55 +1,139 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.control.chart.IChart
- */
 package net.ibizsys.model.control.chart;
 
-import java.util.Iterator;
 import net.ibizsys.model.control.IPSAjaxControl;
-import net.ibizsys.model.control.chart.IPSChartAxes;
-import net.ibizsys.model.control.chart.IPSChartDataItem;
-import net.ibizsys.model.control.chart.IPSChartGrid;
-import net.ibizsys.model.control.chart.IPSChartLegend;
-import net.ibizsys.model.control.chart.IPSChartPolar;
-import net.ibizsys.model.control.chart.IPSChartSeries;
-import net.ibizsys.model.control.chart.IPSChartTitle;
-import net.ibizsys.model.control.chart.IPSChartVisualMap;
 import net.ibizsys.paas.control.chart.IChart;
 
-public interface IPSChart
-extends IPSAjaxControl,
-IChart {
-    public static final String COORDINATESYSTEM_XY = "XY";
-    public static final String COORDINATESYSTEM_POLAR = "POLAR";
-    public static final String COORDINATESYSTEM_RADAR = "RADAR";
-    public static final String COORDINATESYSTEM_PARALLEL = "PARALLEL";
-    public static final String COORDINATESYSTEM_SINGLE = "SINGLE";
-    public static final String COORDINATESYSTEM_CALENDAR = "CALENDAR";
-    public static final String COORDINATESYSTEM_MAP = "MAP";
-    public static final String COORDINATESYSTEM_NONE = "NONE";
+/**
+ * 云平台图表控件
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSChart extends IPSAjaxControl, IChart {
 
-    public String getChartTheme();
+	// 定义坐标系代码表
 
-    public IPSChartTitle getPSChartTitle();
+	/**
+	 * 坐标系类型:直角坐标系
+	 */
+	public final static String COORDINATESYSTEM_XY = "XY";
 
-    public IPSChartLegend getPSChartLegend();
+	/**
+	 * 坐标系类型:极坐标系
+	 */
+	public final static String COORDINATESYSTEM_POLAR = "POLAR";
 
-    public Iterator<IPSChartAxes> getPSChartAxeses();
+	/**
+	 * 坐标系类型:雷达坐标系
+	 */
+	public final static String COORDINATESYSTEM_RADAR = "RADAR";
 
-    public Iterator<IPSChartSeries> getPSChartSerieses();
+	/**
+	 * 坐标系类型:平行坐标系
+	 */
+	public final static String COORDINATESYSTEM_PARALLEL = "PARALLEL";
 
-    public Iterator<IPSChartDataItem> getPSChartDataItems();
+	/**
+	 * 坐标系类型:单轴坐标系
+	 */
+	public final static String COORDINATESYSTEM_SINGLE = "SINGLE";
 
-    public Iterator<IPSChartVisualMap> getPSChartVisualMaps();
+	/**
+	 * 坐标系类型:日历坐标系
+	 */
+	public final static String COORDINATESYSTEM_CALENDAR = "CALENDAR";
 
-    public Iterator<IPSChartGrid> getPSChartGrids();
+	/**
+	 * 坐标系类型:地图坐标系
+	 */
+	public final static String COORDINATESYSTEM_MAP = "MAP";
 
-    public Iterator<IPSChartPolar> getPSChartPolars();
+	/**
+	 * 坐标系类型:无坐标系
+	 */
+	public final static String COORDINATESYSTEM_NONE = "NONE";
 
-    public String getEmptyText();
+	/**
+	 * 获取图表界面主题
+	 * 
+	 * @return
+	 */
+	String getChartTheme();
 
-    public String getCoordinateSystem();
+	/**
+	 * 获取图表标题对象
+	 * 
+	 * @return
+	 */
+	IPSChartTitle getPSChartTitle();
+
+	/**
+	 * 获取图表图例对象
+	 * 
+	 * @return
+	 */
+	IPSChartLegend getPSChartLegend();
+
+	/**
+	 * 获取图表的坐标轴集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IPSChartAxes> getPSChartAxeses();
+
+	/**
+	 * 获取图表的数据序列集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IPSChartSeries> getPSChartSerieses();
+
+	/**
+	 * 获取图表的数据项集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IPSChartDataItem> getPSChartDataItems();
+
+	/**
+	 * 获取图表视觉映射
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IPSChartVisualMap> getPSChartVisualMaps();
+
+	/**
+	 * 获取图表表格对象集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IPSChartGrid> getPSChartGrids();
+
+	/**
+	 * 获取图表的极坐标集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IPSChartPolar> getPSChartPolars();
+
+//	/**
+//	 * 获取无值显示内容语言资源对象
+//	 * 
+//	 * @return
+//	 */
+//	IPSLanguageRes getEmptyTextPSLanguageRes();
+
+	/**
+	 * 获取无值显示内容
+	 * 
+	 * @return
+	 */
+	String getEmptyText();
+
+	/**
+	 * 获取图表的坐标系统
+	 * 
+	 * @return
+	 */
+	String getCoordinateSystem();
 }
-

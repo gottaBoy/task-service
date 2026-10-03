@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.der;
 
 import net.ibizsys.model.core.IPSModelObject;
 
-public interface IPSDERDEFieldMap
-extends IPSModelObject {
-}
 
+/**
+ * 实体关系属性映射对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDERDEFieldMap extends IPSModelObject {
+
+}

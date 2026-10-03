@@ -46,7 +46,7 @@ extends PSSysBDTableDEServiceBase {
     @Override
     protected void onBeforeRemove(PSSysBDTableDE pSSysBDTableDE) throws Exception {
         PSSysBDTableDE pSSysBDTableDE2;
-        if (!pSSysBDTableDE.isDefaultFlagDirty() && DataObject.getIntegerValue((Object)(pSSysBDTableDE2 = (PSSysBDTableDE)this.getLast((IEntity)pSSysBDTableDE)).getDefaultFlag(), (Integer)0) > 0) {
+        if (!pSSysBDTableDE.isDefaultFlagDirty() && DataObject.getIntegerValue((Object)(pSSysBDTableDE2 = (PSSysBDTableDE)this.getLast(pSSysBDTableDE)).getDefaultFlag(), (Integer)0) > 0) {
             throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u5220\u9664\u9ed8\u8ba4\u5927\u6570\u636e\u8868\u5b9e\u4f53\u5173\u7cfb"));
         }
         if (DataObject.getIntegerValue((Object)pSSysBDTableDE.getDefaultFlag(), (Integer)0) > 0) {

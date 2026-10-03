@@ -2304,7 +2304,7 @@ implements Serializable {
                 PSUnit pSUnit = new PSUnit();
                 pSUnit.setPSUnitId(this.getPSUnitId());
                 PSUnitService pSUnitService = (PSUnitService)ServiceGlobal.getService(PSUnitService.class, (SessionFactory)this.getSessionFactory());
-                pSUnitService.autoGet((IEntity)pSUnit);
+                pSUnitService.autoGet(pSUnit);
                 this.psunit = pSUnit;
             }
             return this.psunit;
@@ -2330,7 +2330,7 @@ implements Serializable {
                 PSValueRule pSValueRule = new PSValueRule();
                 pSValueRule.setPSValueRuleId(this.getPSValueRuleId());
                 PSValueRuleService pSValueRuleService = (PSValueRuleService)ServiceGlobal.getService(PSValueRuleService.class, (SessionFactory)this.getSessionFactory());
-                pSValueRuleService.autoGet((IEntity)pSValueRule);
+                pSValueRuleService.autoGet(pSValueRule);
                 this.psvaluerule = pSValueRule;
             }
             return this.psvaluerule;

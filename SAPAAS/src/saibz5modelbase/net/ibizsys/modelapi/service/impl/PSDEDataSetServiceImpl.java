@@ -92,7 +92,7 @@ implements IPSDEDataSetService {
     @Override
     protected List<PSDEDataSet> onListAll() throws Exception {
         ArrayList<PSDEDataSet> list = new ArrayList<PSDEDataSet>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEDataSet> items = this.listByPSDataEntity(parent);
@@ -644,26 +644,28 @@ implements IPSDEDataSetService {
         } else {
             dto.setPSSysUserDRName2(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEDSParamService().listByPSDEDataSet(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEDSParam> pSDEDSParamList = PSModelServiceUtil.getInstance().getPSDEDSParamService().listByPSDEDataSet(t);
+        if (pSDEDSParamList != null && pSDEDSParamList.size() > 0) {
             ArrayList<PSDEDSParamDTO> psdedsparams = new ArrayList<PSDEDSParamDTO>();
-            for (PSDEDSParam pSDEDSParam : list) {
+            for (PSDEDSParam pSDEDSParam : pSDEDSParamList) {
                 dstItem = (PSDEDSParamDTO)PSModelServiceUtil.getInstance().getPSDEDSParamService().toDTO(pSDEDSParam);
                 psdedsparams.add((PSDEDSParamDTO)dstItem);
             }
             dto.setPsdedsparams(psdedsparams);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEDSDQService().listByPSDEDataSet(t)) != null && list.size() > 0) {
+        List<PSDEDSDQ> pSDEDSDQList = PSModelServiceUtil.getInstance().getPSDEDSDQService().listByPSDEDataSet(t);
+        if (pSDEDSDQList != null && pSDEDSDQList.size() > 0) {
             ArrayList<PSDEDSDQDTO> psdedsdqs = new ArrayList<PSDEDSDQDTO>();
-            for (PSDEDSDQ pSDEDSDQ : list) {
+            for (PSDEDSDQ pSDEDSDQ : pSDEDSDQList) {
                 dstItem = (PSDEDSDQDTO)PSModelServiceUtil.getInstance().getPSDEDSDQService().toDTO(pSDEDSDQ);
                 psdedsdqs.add((PSDEDSDQDTO)dstItem);
             }
             dto.setPsdedsdqs(psdedsdqs);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEDSGrpParamService().listByPSDEDataSet(t)) != null && list.size() > 0) {
+        List<PSDEDSGrpParam> pSDEDSGrpParamList = PSModelServiceUtil.getInstance().getPSDEDSGrpParamService().listByPSDEDataSet(t);
+        if (pSDEDSGrpParamList != null && pSDEDSGrpParamList.size() > 0) {
             ArrayList<PSDEDSGrpParamDTO> psdedsgrpparams = new ArrayList<PSDEDSGrpParamDTO>();
-            for (PSDEDSGrpParam pSDEDSGrpParam : list) {
+            for (PSDEDSGrpParam pSDEDSGrpParam : pSDEDSGrpParamList) {
                 dstItem = (PSDEDSGrpParamDTO)PSModelServiceUtil.getInstance().getPSDEDSGrpParamService().toDTO(pSDEDSGrpParam);
                 psdedsgrpparams.add((PSDEDSGrpParamDTO)dstItem);
             }

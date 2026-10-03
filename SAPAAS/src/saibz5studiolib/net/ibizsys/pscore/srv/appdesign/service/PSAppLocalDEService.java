@@ -49,6 +49,7 @@ import net.ibizsys.pscore.srv.appdesign.service.PSAppDEViewService;
 import net.ibizsys.pscore.srv.appdesign.service.PSAppLocalDEServiceBase;
 import net.ibizsys.pscore.srv.appdesign.service.PSAppModuleService;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEViewCtrlBase;
+import net.ibizsys.pscore.srv.dedesign.entity.PSDEViewCtrl;
 import net.ibizsys.pscore.srv.dedesign.service.PSDEViewCtrlService;
 import net.ibizsys.pscore.srv.dedesign.service.PSDataEntityService;
 import net.ibizsys.pscore.srv.liteutil.entity.PSAppViewLite;
@@ -65,11 +66,6 @@ extends PSAppLocalDEServiceBase {
 
     @Override
     protected void onRebuildAll(PSAppLocalDE pSAppLocalDE) throws Exception {
-        Object object;
-        Object object2;
-        Serializable serializable;
-        Object object32;
-        PSAppViewLite pSAppViewLite2;
         if (this.getWebContext() == null) {
             return;
         }
@@ -84,57 +80,51 @@ extends PSAppLocalDEServiceBase {
         selectCond.set("PSSYSAPPID", (Object)string);
         HashMap<String, String> hashMap = new HashMap<String, String>();
         HashMap<String, String> hashMap2 = new HashMap<String, String>();
-        ArrayList arrayList = pSAppViewLiteService.select((ISelectCond)selectCond);
+        ArrayList<PSAppViewLite> arrayList = pSAppViewLiteService.select((ISelectCond)selectCond);
         for (PSAppViewLite pSAppViewLite2 : arrayList) {
             hashMap.put(pSAppViewLite2.getPSDEId(), pSAppViewLite2.getPSDEName());
             hashMap2.put(pSAppViewLite2.getPSAppViewId(), pSAppViewLite2.getPSDEId());
         }
         PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-        pSAppViewLite2 = new SelectContext();
-        pSAppViewLite2.setDEDataQueryName("CurApp");
-        pSAppViewLite2.set("pssysappid", string);
-        pSAppViewLite2.setIsNotNull("PSDEID");
-        ArrayList arrayList2 = pSDEViewCtrlService.select((ISelectCond)pSAppViewLite2);
-        for (Object object32 : arrayList2) {
-            if (StringHelper.isNullOrEmpty((String)((PSDEViewCtrlBase)object32).getPSDEId())) continue;
-            hashMap.put(((PSDEViewCtrlBase)object32).getPSDEId(), ((PSDEViewCtrlBase)object32).getPSDEName());
+        SelectContext viewContext = new SelectContext();
+        viewContext.setDEDataQueryName("CurApp");
+        viewContext.set("pssysappid", string);
+        viewContext.setIsNotNull("PSDEID");
+        ArrayList<PSDEViewCtrl> arrayList2 = pSDEViewCtrlService.select((ISelectCond)viewContext);
+        for (PSDEViewCtrl ctrl : arrayList2) {
+            if (StringHelper.isNullOrEmpty(ctrl.getPSDEId())) continue;
+            hashMap.put(ctrl.getPSDEId(), ctrl.getPSDEName());
         }
         selectCond.reset();
         selectCond.set("PSSYSAPPID", (Object)string);
-        ArrayList arrayList3 = this.select((ISelectCond)selectCond);
-        object32 = arrayList3.iterator();
-        while (object32.hasNext()) {
-            serializable = (PSAppLocalDE)object32.next();
-            if (StringHelper.isNullOrEmpty((String)((PSAppLocalDEBase)serializable).getPSAppModuleId())) continue;
-            hashMap.remove(((PSAppLocalDEBase)serializable).getPSDEId());
+        ArrayList<PSAppLocalDE> arrayList3 = this.select((ISelectCond)selectCond);
+        for (PSAppLocalDE localDE : arrayList3) {
+            if (StringHelper.isNullOrEmpty(localDE.getPSAppModuleId())) continue;
+            hashMap.remove(localDE.getPSDEId());
         }
         if (hashMap.size() == 0) {
             return;
         }
-        object32 = (PSAppModuleService)ServiceGlobal.getService(PSAppModuleService.class, (SessionFactory)this.getSessionFactory());
+        PSAppModuleService moduleService = (PSAppModuleService)ServiceGlobal.getService(PSAppModuleService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.set("PSSYSAPPID", (Object)string);
-        serializable = object32.select((ISelectCond)selectCond);
+        ArrayList<PSAppModule> modules = moduleService.select((ISelectCond)selectCond);
         HashMap<String, Object> hashMap3 = new HashMap<String, Object>();
-        if (((ArrayList)serializable).size() > 0) {
-            object2 = ((ArrayList)serializable).iterator();
-            while (object2.hasNext()) {
-                object = (PSAppModule)object2.next();
-                if (StringHelper.isNullOrEmpty((String)((PSAppModuleBase)object).getPSModuleId())) continue;
-                hashMap3.put(((PSAppModuleBase)object).getPSModuleId(), object);
+        if (modules.size() > 0) {
+            for (PSAppModule module : modules) {
+                if (StringHelper.isNullOrEmpty(module.getPSModuleId())) continue;
+                hashMap3.put(module.getPSModuleId(), module);
             }
         }
-        object2 = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-        object = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, (SessionFactory)this.getSessionFactory());
-        for (Map.Entry entry : hashMap.entrySet()) {
+        for (Map.Entry<String, String> entry : hashMap.entrySet()) {
             PSAppLocalDE pSAppLocalDE2 = new PSAppLocalDE();
-            pSAppLocalDE2.setPSDEId((String)entry.getKey());
-            pSAppLocalDE2.setPSDEName((String)entry.getValue());
+            pSAppLocalDE2.setPSDEId(entry.getKey());
+            pSAppLocalDE2.setPSDEName(entry.getValue());
             pSAppLocalDE2.setPSSysAppId(string);
-            pSAppLocalDE2.setPSAppLocalDEName((String)entry.getValue());
+            pSAppLocalDE2.setPSAppLocalDEName(entry.getValue());
             pSAppLocalDE2.setPSAppModuleId(null);
             pSAppLocalDE2.setPSAppModuleName(null);
-            this.save((IEntity)pSAppLocalDE2, false);
+            this.save(pSAppLocalDE2, false);
         }
     }
 
@@ -162,7 +152,7 @@ extends PSAppLocalDEServiceBase {
     }
 
     protected CallResult internalGet(PSAppLocalDE pSAppLocalDE, boolean bl) throws Exception {
-        CallResult callResult = super.internalGet((IEntity)pSAppLocalDE, bl);
+        CallResult callResult = super.internalGet(pSAppLocalDE, bl);
         if (callResult.isOk()) {
             if (pSAppLocalDE.getDefaultFlag() == null) {
                 if (StringHelper.compare((String)pSAppLocalDE.getPSAppLocalDEId(), (String)KeyValueHelper.genUniqueId((String)pSAppLocalDE.getPSSysAppId(), (String)pSAppLocalDE.getPSDEId()), (boolean)false) == 0) {
@@ -228,4 +218,3 @@ extends PSAppLocalDEServiceBase {
         return super.getDataContextValue(pSAppLocalDE, string, iDataContextParam);
     }
 }
-

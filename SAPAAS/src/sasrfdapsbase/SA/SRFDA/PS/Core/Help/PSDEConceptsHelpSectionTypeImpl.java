@@ -37,7 +37,6 @@ import java.util.Iterator;
 import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.db.ISelectCond;
 import net.ibizsys.paas.db.SelectCond;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.KeyValueHelper;
 import net.ibizsys.paas.util.StringHelper;
@@ -71,7 +70,7 @@ extends PSHelpSectionTypeImpl {
         SessionFactory sessionFactory = PSSysModelInstGlobal.getSessionFactory((String)iPSSystem.getPSSysModelInstId());
         int nMaxOrderValue = 100;
         PSHelpSectionService psHelpSectionService = (PSHelpSectionService)ServiceGlobal.getService(PSHelpSectionService.class, (SessionFactory)sessionFactory);
-        ArrayList psHelpSectionList = psHelpSectionService.select((ISelectCond)selectCond);
+        ArrayList<PSHelpSection> psHelpSectionList = psHelpSectionService.select((ISelectCond)selectCond);
         HashMap<String, PSHelpSection> psHelpSectionMap = new HashMap<String, PSHelpSection>();
         for (PSHelpSection psHelpSection2 : psHelpSectionList) {
             psHelpSectionMap.put(psHelpSection2.getPSHelpSectionId(), psHelpSection2);
@@ -90,8 +89,8 @@ extends PSHelpSectionTypeImpl {
             bExtend = true;
         }
         psModel.setPSModelId(strPSModelId);
-        if (psModelService.get((IEntity)psModel, true)) {
-            ArrayList psModelFieldList = psModelFieldService.selectByPSModel((PSModelBase)psModel, "ORDER BY CONCEPTORDERVALUE");
+        if (psModelService.get(psModel, true)) {
+            ArrayList<PSModelField> psModelFieldList = psModelFieldService.selectByPSModel((PSModelBase)psModel, "ORDER BY CONCEPTORDERVALUE");
             for (PSModelField psModelField : psModelFieldList) {
                 PSHelpSection psHelpSection2;
                 String strKeyValue = KeyValueHelper.genUniqueId((String)psHelpSection.getPSHelpSectionId(), (String)"DECONCEPT", (String)psModelField.getPSModelFieldId());
@@ -100,7 +99,7 @@ extends PSHelpSectionTypeImpl {
                     psHelpSection2 = new PSHelpSection();
                     psHelpSection2.setPSHelpSectionId(strKeyValue);
                     psHelpSection2.setValidFlag(Integer.valueOf(0));
-                    psHelpSectionService.update((IEntity)psHelpSection2);
+                    psHelpSectionService.update(psHelpSection2);
                     continue;
                 }
                 psHelpSection2 = new PSHelpSection();
@@ -131,11 +130,11 @@ extends PSHelpSectionTypeImpl {
                 psHelpSection2.setOrderValue(psModelField.getConceptOrderValue());
                 psHelpSection2.setValidFlag(Integer.valueOf(1));
                 if (!psHelpSectionMap.containsKey(strKeyValue)) {
-                    psHelpSectionService.create((IEntity)psHelpSection2);
+                    psHelpSectionService.create(psHelpSection2);
                 } else {
-                    psHelpSectionService.update((IEntity)psHelpSection2);
+                    psHelpSectionService.update(psHelpSection2);
                 }
-                ArrayList psModelValueGroupList = psModelValueGroupService.selectByPSModelField((PSModelFieldBase)psModelField);
+                ArrayList<PSModelValueGroup> psModelValueGroupList = psModelValueGroupService.selectByPSModelField((PSModelFieldBase)psModelField);
                 if (psModelValueGroupList.size() == 0) continue;
                 PSModelValueGroup psModelValueGroup = null;
                 if (StringHelper.isNullOrEmpty((String)psHelpSection2.getPSCodeListId())) {
@@ -144,7 +143,7 @@ extends PSHelpSectionTypeImpl {
                         psModelValueGroup = psModelValueGroup2;
                         psHelpSection2.setPSCodeListId(psModelValueGroup.getPSCodeListId());
                         psHelpSection2.setPSCodeListName(psModelValueGroup.getPSCodeListName());
-                        psHelpSectionService.update((IEntity)psHelpSection2);
+                        psHelpSectionService.update(psHelpSection2);
                         break;
                     }
                 } else {
@@ -158,15 +157,15 @@ extends PSHelpSectionTypeImpl {
                     psModelValueGroup = (PSModelValueGroup)psModelValueGroupList.get(0);
                 }
                 if (psModelValueGroup == null) continue;
-                ArrayList psModelFieldValueList = psModelFieldValueService.selectByPSModelValueGroup((PSModelValueGroupBase)psModelValueGroup, "ORDER BY ORDERVALUE");
+                ArrayList<PSModelFieldValue> psModelFieldValueList = psModelFieldValueService.selectByPSModelValueGroup((PSModelValueGroupBase)psModelValueGroup, "ORDER BY ORDERVALUE");
                 for (PSModelFieldValue psModelFieldValue : psModelFieldValueList) {
                     PSHelpSection psHelpSection3 = new PSHelpSection();
                     String strKeyValue2 = KeyValueHelper.genUniqueId((String)psHelpSection2.getPSHelpSectionId(), (String)psModelFieldValue.getPSModelFieldValueId());
                     psHelpSection3.setPSHelpSectionId(strKeyValue2);
                     if (!DataObject.getBoolValue((Integer)psModelFieldValue.getValidFlag(), (boolean)false) || !DataObject.getBoolValue((Integer)psModelFieldValue.getConceptFlag(), (boolean)false)) {
-                        if (psHelpSectionService.checkKey((IEntity)psHelpSection3) != 1) continue;
+                        if (psHelpSectionService.checkKey(psHelpSection3) != 1) continue;
                         psHelpSection3.setValidFlag(Integer.valueOf(0));
-                        psHelpSectionService.update((IEntity)psHelpSection3);
+                        psHelpSectionService.update(psHelpSection3);
                         continue;
                     }
                     psHelpSection3.setPPSHelpSectorId(psHelpSection2.getPSHelpSectionId());
@@ -183,12 +182,12 @@ extends PSHelpSectionTypeImpl {
                     psHelpSection3.setHeaderContent(psModelFieldValue.getValue());
                     psHelpSection3.setOrderValue(psModelFieldValue.getOrderValue());
                     psHelpSection3.setOutputDir(Integer.valueOf(0));
-                    if (psHelpSectionService.checkKey((IEntity)psHelpSection3) == 0) {
+                    if (psHelpSectionService.checkKey(psHelpSection3) == 0) {
                         psHelpSection3.setOutputDir(Integer.valueOf(0));
-                        psHelpSectionService.create((IEntity)psHelpSection3);
+                        psHelpSectionService.create(psHelpSection3);
                         continue;
                     }
-                    psHelpSectionService.update((IEntity)psHelpSection3);
+                    psHelpSectionService.update(psHelpSection3);
                 }
             }
         } else {
@@ -210,7 +209,7 @@ extends PSHelpSectionTypeImpl {
                 psHelpSection2.setPSCodeListName(iPSDEField.getPSCodeList().getName());
                 psHelpSection2.setPSHelpSectionName(iPSDEField.getLogicName());
                 psHelpSection2.setPSHelpSectionId(strKeyValue);
-                psHelpSectionService.create((IEntity)psHelpSection2);
+                psHelpSectionService.create(psHelpSection2);
                 nMaxOrderValue += 100;
             }
         }

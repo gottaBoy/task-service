@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control;
 
-import net.ibizsys.paas.control.IAjaxControlHandlerParam;
+/**
+ * 单数据异步部件处理对象参数
+ * 
+ * @author Administrator
+ *
+ */
+public interface ISDAjaxControlHandlerParam extends IAjaxControlHandlerParam {
 
-public interface ISDAjaxControlHandlerParam
-extends IAjaxControlHandlerParam {
 }
-

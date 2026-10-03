@@ -1,1079 +1,1268 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IDEField
- *  net.ibizsys.paas.core.IDataEntity
- *  net.ibizsys.paas.db.DBCallResult
- *  net.ibizsys.paas.db.IDBFunction
- *  net.ibizsys.paas.db.IDataSet
- *  net.ibizsys.paas.db.ProcParam
- *  net.ibizsys.paas.db.ProcParamList
- *  net.ibizsys.paas.db.SqlParam
- *  net.ibizsys.paas.db.SqlParamList
- *  net.ibizsys.paas.db.impl.DBDialectImpl
- *  net.ibizsys.paas.demodel.IDataEntityModel
- *  net.ibizsys.paas.util.DataTypeHelper
- *  net.ibizsys.paas.util.StringBuilderEx
- *  net.ibizsys.paas.util.StringHelper
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package net.ibizsys.paas.db.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
+
+import net.ibizsys.paas.core.DataTypes;
+import net.ibizsys.paas.core.Errors;
 import net.ibizsys.paas.core.IDEField;
 import net.ibizsys.paas.core.IDataEntity;
 import net.ibizsys.paas.db.DBCallResult;
-import net.ibizsys.paas.db.IDBFunction;
-import net.ibizsys.paas.db.IDataSet;
 import net.ibizsys.paas.db.ProcParam;
 import net.ibizsys.paas.db.ProcParamList;
 import net.ibizsys.paas.db.SqlParam;
+import net.ibizsys.paas.db.SqlParamDirections;
 import net.ibizsys.paas.db.SqlParamList;
-import net.ibizsys.paas.db.impl.DBDialectImpl;
-import net.ibizsys.paas.db.impl.OracleDataSetImpl;
-import net.ibizsys.paas.db.impl.OracleDateDiffNow2DBFunctionImpl;
-import net.ibizsys.paas.db.impl.OracleDateDiffNowDBFunctionImpl;
-import net.ibizsys.paas.db.impl.OracleStrLenDBFunctionImpl;
 import net.ibizsys.paas.demodel.IDataEntityModel;
+import net.ibizsys.paas.logic.ICondition;
 import net.ibizsys.paas.util.DataTypeHelper;
 import net.ibizsys.paas.util.StringBuilderEx;
 import net.ibizsys.paas.util.StringHelper;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class OracleDialectImpl
-extends DBDialectImpl {
-    private static final Log log = LogFactory.getLog(OracleDialectImpl.class);
-    private static OracleDateDiffNowDBFunctionImpl oracleDateDiffNowDBFunctionImpl = new OracleDateDiffNowDBFunctionImpl();
-    private static OracleStrLenDBFunctionImpl oracleStrLenDBFunctionImpl = new OracleStrLenDBFunctionImpl();
-    private static OracleDateDiffNow2DBFunctionImpl oracleDateDiffNowDB2FunctionImpl = new OracleDateDiffNow2DBFunctionImpl();
+/**
+ * Oracle数据库设配器对象
+ * 
+ * @author Administrator
+ *
+ */
+public class OracleDialectImpl extends DBDialectImpl {
+	private static final Log log = LogFactory.getLog(OracleDialectImpl.class);
 
-    public OracleDialectImpl() {
-        this.registerDBFunction((IDBFunction)oracleDateDiffNowDBFunctionImpl);
-        this.registerDBFunction((IDBFunction)oracleStrLenDBFunctionImpl);
-        this.registerDBFunction((IDBFunction)oracleDateDiffNowDB2FunctionImpl);
-    }
+	private static OracleDateDiffNowDBFunctionImpl oracleDateDiffNowDBFunctionImpl = new OracleDateDiffNowDBFunctionImpl();
+	private static OracleStrLenDBFunctionImpl oracleStrLenDBFunctionImpl = new OracleStrLenDBFunctionImpl();
+	private static OracleDateDiffNow2DBFunctionImpl oracleDateDiffNowDB2FunctionImpl = new OracleDateDiffNow2DBFunctionImpl();
+	
+	public OracleDialectImpl(){
+		super();
+		
+		this.registerDBFunction(oracleDateDiffNowDBFunctionImpl);
+		this.registerDBFunction(oracleStrLenDBFunctionImpl);
+		this.registerDBFunction(oracleDateDiffNowDB2FunctionImpl);
+	}
 
-    public String getDBType() {
-        return "ORACLE";
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.IDBDialect#getDBType()
+	 */
+	@Override
+	public String getDBType() {
+		return "ORACLE";
+	}
 
-    public String getCountSQL(String strSQL) {
-        return StringHelper.format((String)"select count(*) as TOTALROW from (%1$s) m1", (Object)strSQL);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.impl.DBDialectImpl#getCountSQL(java.lang.String)
+	 */
+	@Override
+	public String getCountSQL(String strSQL) {
+		return StringHelper.format("select count(*) as TOTALROW from (%1$s) m1", strSQL);
+	}
 
-    public int getJDBCType(int dataType) {
-        if (dataType == 1) {
-            return 3;
-        }
-        if (dataType == 2 || dataType == 8) {
-            return 2004;
-        }
-        if (dataType == 4 || dataType == 11 || dataType == 3) {
-            return 1;
-        }
-        if (dataType == 27) {
-            return 91;
-        }
-        if (dataType == 5 || dataType == 16 || dataType == 28 || dataType == 22) {
-            return 93;
-        }
-        if (dataType == 6 || dataType == 10 || dataType == 18) {
-            return 3;
-        }
-        if (dataType == 7) {
-            return 6;
-        }
-        if (dataType == 29) {
-            return 2;
-        }
-        if (dataType == 9) {
-            return 2;
-        }
-        if (dataType == 12 || dataType == 21) {
-            return -1;
-        }
-        if (dataType == 14) {
-            return 3;
-        }
-        if (dataType == 13 || dataType == 19 || dataType == 20 || dataType == 25) {
-            return 12;
-        }
-        if (dataType == 15) {
-            return 3;
-        }
-        if (dataType == 17) {
-            return 3;
-        }
-        if (dataType == 23) {
-            return 3;
-        }
-        if (dataType == 24) {
-            return -4;
-        }
-        return 12;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.impl.DBDialectImpl#getJDBCType(int)
+	 */
+	@Override
+	public int getJDBCType(int dataType) {
+		if (dataType == DataTypes.BIGINT) {
+			return oracle.jdbc.OracleTypes.DECIMAL;
+		} else if (dataType == DataTypes.BINARY || dataType == DataTypes.IMAGE) {
+			return oracle.jdbc.OracleTypes.BLOB;
+		} else
 
-    public String getPagingSQL(String strSQL, int nStartPos, int nPageSize, String strMajor, String strMajorDirection, String strMinor, String strMinorDirection) {
-        if (StringHelper.isNullOrEmpty((String)strMajor) && !StringHelper.isNullOrEmpty((String)strMinor)) {
-            strMajor = strMinor;
-            strMajorDirection = strMinorDirection;
-            strMinor = "";
-            strMinorDirection = "";
-        }
-        StringBuilderEx script = new StringBuilderEx();
-        if (!StringHelper.isNullOrEmpty((String)strMajor)) {
-            if (StringHelper.isNullOrEmpty((String)strMinor) || StringHelper.compare((String)strMajor, (String)strMinor, (boolean)true) == 0) {
-                script.append("SELECT * FROM (Select m1.*, rownum  as SRFROWINDEX from ( select * from (%1$s) pagetemp ORDER BY pagetemp.%2$s %3$s) m1  ", (Object)strSQL, (Object)strMajor, (Object)strMajorDirection);
-            } else {
-                script.append("SELECT * FROM (Select m1.*, rownum  as SRFROWINDEX from ( select * from (%1$s) pagetemp ORDER BY pagetemp.%2$s %3$s,pagetemp.%4$s %5$s) m1 ", (Object)strSQL, (Object)strMajor, (Object)strMajorDirection, (Object)strMinor, (Object)strMinorDirection);
-            }
-        } else {
-            script.append("SELECT * FROM (Select m1.*, rownum as SRFROWINDEX from (%1$s) m1 ", (Object)strSQL);
-            int n = nStartPos + nPageSize + 1;
-        }
-        script.append(" WHERE rownum < %2$s ) a1 WHERE a1.SRFROWINDEX >= %1$s  ", (Object)(nStartPos + 1), (Object)(nStartPos + nPageSize + 1));
-        return script.toString();
-    }
+		if (dataType == DataTypes.CHAR || dataType == DataTypes.NCHAR || dataType == DataTypes.BIT) {
+			return oracle.jdbc.OracleTypes.CHAR;
+		} else if (dataType == DataTypes.DATE) {
+			return oracle.jdbc.OracleTypes.DATE;
+		}
+		if (dataType == DataTypes.DATETIME || dataType == DataTypes.SMALLDATETIME || dataType == DataTypes.TIME || dataType == DataTypes.TIMESTAMP) {
+			return oracle.jdbc.OracleTypes.TIMESTAMP;
+		} else if (dataType == DataTypes.DECIMAL || dataType == DataTypes.MONEY || dataType == DataTypes.SMALLMONEY) {
+			return oracle.jdbc.OracleTypes.DECIMAL;
+		} else if (dataType == DataTypes.FLOAT) {
+			return oracle.jdbc.OracleTypes.FLOAT;
+		}
+		else if (dataType == DataTypes.BIGDECIMAL) {
+			return oracle.jdbc.OracleTypes.NUMBER;
+		}
+		else if (dataType == DataTypes.INT) {
+			return oracle.jdbc.OracleTypes.NUMBER;
+		} else if (dataType == DataTypes.NTEXT || dataType == DataTypes.TEXT) {
+			return oracle.jdbc.OracleTypes.LONGVARCHAR;
+			// return oracle.jdbc.OracleTypes.CLOB;
+		} else if (dataType == DataTypes.NUMERIC) {
+			return oracle.jdbc.OracleTypes.DECIMAL;
+		} else if (dataType == DataTypes.NVARCHAR || dataType == DataTypes.SQL_VARIANT || dataType == DataTypes.SYSNAME || dataType == DataTypes.VARCHAR) {
+			return oracle.jdbc.OracleTypes.VARCHAR;
+		} else if (dataType == DataTypes.REAL) {
+			return oracle.jdbc.OracleTypes.DECIMAL;
+		} else if (dataType == DataTypes.SMALLINT) {
+			return oracle.jdbc.OracleTypes.DECIMAL;
+		} else if (dataType == DataTypes.TINYINT) {
+			return oracle.jdbc.OracleTypes.DECIMAL;
+		} else if (dataType == DataTypes.VARBINARY) {
+			return oracle.jdbc.OracleTypes.LONGVARBINARY;
+		}
+		return oracle.jdbc.OracleTypes.VARCHAR;
 
-    /*
-     * Could not resolve type clashes
-     * Unable to fully structure code
-     */
-    public DBCallResult callSql(Connection connection, String strCommand, SqlParamList list, int nTimeOut) {
-        block39: {
-            block37: {
-                block40: {
-                    block38: {
-                        dbResult = new DBCallResult();
-                        dbResult.setRetCode(0);
-                        cstmt = null;
-                        isList = null;
-                        try {
-                            if (connection == null) {
-                                throw new Exception("\u6253\u5f00\u6570\u636e\u5e93\u8fde\u63a5\u5931\u8d25");
-                            }
-                            cstmt = connection.prepareStatement(strCommand);
-                            if (list != null) {
-                                i = 0;
-                                while (i < list.size()) {
-                                    callParam = (SqlParam)list.get(i);
-                                    if (callParam.getDataType() != 0) {
-                                        if (callParam.getDataType() == 2 || callParam.getDataType() == 24) {
-                                            if (callParam.getValue() == null || !(callParam.getValue() instanceof byte[])) {
-                                                cstmt.setObject(i + 1, callParam.getValue(), this.getJDBCType(callParam.getDataType()));
-                                            } else {
-                                                buffer = (byte[])callParam.getValue();
-                                                if (isList == null) {
-                                                    isList = new ArrayList<ByteArrayInputStream>();
-                                                }
-                                                is = new ByteArrayInputStream(buffer);
-                                                cstmt.setBinaryStream(i + 1, (InputStream)is, buffer.length);
-                                                isList.add(is);
-                                            }
-                                        } else {
-                                            cstmt.setObject(i + 1, callParam.getValue(), this.getJDBCType(callParam.getDataType()));
-                                        }
-                                    } else {
-                                        cstmt.setObject(i + 1, callParam.getValue());
-                                    }
-                                    ++i;
-                                }
-                            }
-                            cstmt.execute();
-                            dataSet = new OracleDataSetImpl(null, cstmt);
-                            dataSet.setSqlInfo(strCommand);
-                            while (true) {
-                                if ((updateCount = cstmt.getUpdateCount()) < 0) {
-                                    rs = cstmt.getResultSet();
-                                    if (rs == null) break;
-                                    dataSet.addResultSet(rs);
-                                    break;
-                                }
-                                dbResult.setUpdateCount(updateCount);
-                                cstmt.getMoreResults();
-                            }
-                            dbResult.setRetCode(0);
-                            if (dataSet.getDataTableCount() > 0) {
-                                dbResult.setDataSet((IDataSet)dataSet);
-                            } else {
-                                dataSet.close();
-                                cstmt = null;
-                            }
-                            break block37;
-                        }
-                        catch (Exception ex) {
-                            OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-                            dbResult.setErrorInfo(ex.toString());
-                            dbResult.setRetCode(1);
-                            if (isList == null) break block38;
-                            ** for (is : isList)
-                        }
-lbl-1000:
-                        // 1 sources
+	}
 
-                        {
-                            try {
-                                is.close();
-                            }
-                            catch (Exception ex) {
-                                OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-                            }
-                            continue;
-                        }
-                    }
-                    try {
-                        if (dbResult.getDataSet() == null && cstmt != null) {
-                            cstmt.close();
-                        }
-                        break block39;
-                    }
-                    catch (Exception ex) {
-                        OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-                    }
-                    break block39;
-                    catch (Throwable var12_27) {
-                        if (isList == null) break block40;
-                        ** for (is : isList)
-                    }
-lbl-1000:
-                    // 1 sources
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.IDBDialect#getPagingSQL(java.lang.String, int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getPagingSQL(String strSQL, int nStartPos, int nPageSize, String strMajor, String strMajorDirection, String strMinor, String strMinorDirection) {
+		// 重新生成排序字段
+		if (StringHelper.isNullOrEmpty(strMajor) && !StringHelper.isNullOrEmpty(strMinor)) {
+			strMajor = strMinor;
+			strMajorDirection = strMinorDirection;
 
-                    {
-                        try {
-                            is.close();
-                        }
-                        catch (Exception ex) {
-                            OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-                        }
-                        continue;
-                    }
-                }
-                try {
-                    if (dbResult.getDataSet() == null && cstmt != null) {
-                        cstmt.close();
-                    }
-                }
-                catch (Exception ex) {
-                    OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-                }
-                throw var12_27;
-            }
-            if (isList != null) {
-                for (InputStream is : isList) {
-                    try {
-                        is.close();
-                    }
-                    catch (Exception ex) {
-                        OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-                    }
-                }
-            }
-            try {
-                if (dbResult.getDataSet() == null && cstmt != null) {
-                    cstmt.close();
-                }
-            }
-            catch (Exception ex) {
-                OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-            }
-        }
-        return dbResult;
-    }
+			strMinor = "";
+			strMinorDirection = "";
+		}
 
-    public DBCallResult callProc(Connection connection, String strProcName, SqlParamList list, int nTimeOut) throws Exception {
-        DBCallResult dbResult;
-        block29: {
-            HashMap<Integer, SqlParam> outputParamMap = new HashMap<Integer, SqlParam>();
-            dbResult = new DBCallResult();
-            dbResult.setRetCode(0);
-            Statement cstmt = null;
-            try {
-                try {
-                    if (connection == null) {
-                        throw new Exception("\u6253\u5f00\u6570\u636e\u5e93\u8fde\u63a5\u5931\u8d25");
-                    }
-                    int nParamCount = 0;
-                    int nParamReturnRS = -1;
-                    if (list != null) {
-                        nParamCount = list.size();
-                    }
-                    String strCall = OracleDialectImpl.formatProcCall(strProcName, nParamCount);
-                    cstmt = connection.prepareCall(strCall);
-                    if (list != null) {
-                        int i = 0;
-                        while (i < list.size()) {
-                            SqlParam callParam = (SqlParam)list.get(i);
-                            if (StringHelper.compare((String)callParam.getOutputParamName(), (String)"SRF_RD", (boolean)true) == 0) {
-                                cstmt.registerOutParameter(i + 1, -10);
-                                nParamReturnRS = i + 1;
-                            } else if (callParam.getDirection() == 1) {
-                                cstmt.setObject(i + 1, callParam.getValue(), this.getJDBCType(callParam.getDataType()));
-                            } else if (callParam.getDirection() == 2) {
-                                cstmt.registerOutParameter(i + 1, this.getJDBCType(callParam.getDataType()));
-                                outputParamMap.put(i + 1, callParam);
-                            } else if (callParam.getDirection() == 3) {
-                                cstmt.setObject(i + 1, callParam.getValue(), this.getJDBCType(callParam.getDataType()));
-                                cstmt.registerOutParameter(i + 1, this.getJDBCType(callParam.getDataType()));
-                                outputParamMap.put(i + 1, callParam);
-                            }
-                            ++i;
-                        }
-                    }
-                    cstmt.execute();
-                    OracleDataSetImpl dataSet = new OracleDataSetImpl(null, (PreparedStatement)cstmt);
-                    if (nParamReturnRS >= 0) {
-                        ResultSet rsSystem = (ResultSet)cstmt.getObject(nParamReturnRS);
-                        dataSet.addResultSet(rsSystem);
-                    }
-                    Iterator iterator = outputParamMap.keySet().iterator();
-                    while (iterator.hasNext()) {
-                        int nIndex = (Integer)iterator.next();
-                        SqlParam sqlParam = (SqlParam)outputParamMap.get(nIndex);
-                        dbResult.getOutputValues(true).put(sqlParam.getOutputParamName(), cstmt.getObject(nIndex));
-                    }
-                    while (true) {
-                        int updateCount;
-                        if ((updateCount = cstmt.getUpdateCount()) < 0) {
-                            ResultSet rs = cstmt.getResultSet();
-                            if (rs == null) break;
-                            dataSet.addResultSet(rs);
-                            break;
-                        }
-                        dbResult.setUpdateCount(updateCount);
-                        cstmt.getMoreResults();
-                    }
-                    dbResult.setRetCode(0);
-                    if (dataSet.getDataTableCount() > 0) {
-                        dbResult.setDataSet((IDataSet)dataSet);
-                        break block29;
-                    }
-                    dataSet.close();
-                    cstmt = null;
-                }
-                catch (Exception ex) {
-                    log.error((Object)ex.getMessage(), (Throwable)ex);
-                    dbResult.setErrorInfo(ex.toString());
-                    dbResult.setRetCode(1);
-                    try {
-                        if (dbResult.getDataSet() == null && cstmt != null) {
-                            cstmt.close();
-                        }
-                    }
-                    catch (Exception ex2) {
-                        log.error((Object)ex2.getMessage(), (Throwable)ex2);
-                    }
-                }
-            }
-            finally {
-                try {
-                    if (dbResult.getDataSet() == null && cstmt != null) {
-                        cstmt.close();
-                    }
-                }
-                catch (Exception ex) {
-                    log.error((Object)ex.getMessage(), (Throwable)ex);
-                }
-            }
-        }
-        return dbResult;
-    }
+		StringBuilderEx script = new StringBuilderEx();
 
-    protected static String formatProcCall(String strProcName, int nParamCount) {
-        String strCall = "begin ";
-        strCall = String.valueOf(strCall) + strProcName;
-        strCall = String.valueOf(strCall) + " ";
-        if (nParamCount > 0) {
-            strCall = String.valueOf(strCall) + "(";
-            int i = 0;
-            while (i < nParamCount) {
-                if (i != 0) {
-                    strCall = String.valueOf(strCall) + ",";
-                }
-                strCall = String.valueOf(strCall) + "?";
-                ++i;
-            }
-            strCall = String.valueOf(strCall) + ")";
-        }
-        strCall = String.valueOf(strCall) + " ; end;";
-        return strCall;
-    }
+		if (!StringHelper.isNullOrEmpty(strMajor)) {
+			if (StringHelper.isNullOrEmpty(strMinor) || StringHelper.compare(strMajor, strMinor, true) == 0) {
+				// script.append("SELECT * FROM (Select m1.*, rownumber() over(ORDER BY m1.%2$s %3$s) as SRFROWINDEX from (%1$s ) m1 ", strSQL, strMajor, strMajorDirection);
 
-    public String getConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue, boolean bParam, SqlParamList sqlParamList) throws Exception {
-        if (StringHelper.compare((String)strCondOp, (String)"TESTNULL", (boolean)true) == 0) {
-            if (StringHelper.compare((String)strValue, (String)"1", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s IS NULL", (Object)strFieldName);
-            }
-            return StringHelper.format((String)"%1$s IS NOT NULL", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"ISNULL", (boolean)true) == 0) {
-            return StringHelper.format((String)"%1$s IS NULL", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"ISNOTNULL", (boolean)true) == 0) {
-            return StringHelper.format((String)"%1$s IS NOT NULL", (Object)strFieldName);
-        }
-        if (DataTypeHelper.isStringType((int)nStdDataType)) {
-            return this.getStringConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, bParam, sqlParamList);
-        }
-        if (DataTypeHelper.isIntType((int)nStdDataType)) {
-            return this.getIntConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, bParam, sqlParamList);
-        }
-        if (DataTypeHelper.isDoubleType((int)nStdDataType)) {
-            return this.getDoubleConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, bParam, sqlParamList);
-        }
-        if (DataTypeHelper.isDateTimeType((int)nStdDataType)) {
-            return this.getDateTimeConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, bParam, sqlParamList);
-        }
-        throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6570\u636e\u5e93\u67e5\u8be2\u6761\u4ef6"));
-    }
+				script.append("SELECT * FROM (Select m1.*, rownum  as SRFROWINDEX from ( select * from (%1$s) pagetemp ORDER BY pagetemp.%2$s %3$s) m1  ", strSQL, strMajor, strMajorDirection);
+			} else {
+				script.append("SELECT * FROM (Select m1.*, rownum  as SRFROWINDEX from ( select * from (%1$s) pagetemp ORDER BY pagetemp.%2$s %3$s,pagetemp.%4$s %5$s) m1 ", strSQL, strMajor, strMajorDirection, strMinor, strMinorDirection);
+			}
+		} else {
+			script.append("SELECT * FROM (Select m1.*, rownum as SRFROWINDEX from (%1$s) m1 ", strSQL);
 
-    public String getStringConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue) throws Exception {
-        return this.getStringConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, false, null);
-    }
+			int nFetchCnt = nStartPos + nPageSize + 1;
+			//
+			// if (nFetchCnt > 1000000)
+			// {
+			// script.append("SELECT * FROM (Select m1.*, rownumber() over() as SRFROWINDEX from (%1$s ) m1 ", strSQL, nFetchCnt);
+			// }
+			// else
+			// {
+			// script.append("SELECT * FROM (Select m1.*, rownumber() over() as SRFROWINDEX from (%1$s fetch first %2$s rows only ) m1 ", strSQL, nFetchCnt);
+			// }
+		}
 
-    protected String getStringConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue, boolean bParam, SqlParamList sqlParamList) throws Exception {
-        if (!bParam) {
-            if (StringHelper.compare((String)strCondOp, (String)"IN", (boolean)true) == 0) {
-                String strCondition = "";
-                String[] stringArray = strValue.split("[;|,]");
-                int n = stringArray.length;
-                int n2 = 0;
-                while (n2 < n) {
-                    String value = stringArray[n2];
-                    if (!StringHelper.isNullOrEmpty((String)strCondition)) {
-                        strCondition = String.valueOf(strCondition) + " or ";
-                    }
-                    strCondition = String.valueOf(strCondition) + StringHelper.format((String)"%1$s like '%%%2$s%%'", (Object)strFieldName, (Object)value);
-                    ++n2;
-                }
-                if (StringHelper.isNullOrEmpty((String)strCondition)) {
-                    strCondition = "0=0";
-                }
-                return StringHelper.format((String)"(%1$s)", (Object)strCondition);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"EQ", (boolean)true) == 0) {
-                strValue = strValue.replace("'", "''");
-                return StringHelper.format((String)"%1$s = '%2$s'", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"NOTEQ", (boolean)true) == 0) {
-                strValue = strValue.replace("'", "''");
-                return StringHelper.format((String)"%1$s <> '%2$s'", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"LIKE", (boolean)true) == 0) {
-                strValue = strValue.replace("'", "''");
-                strValue = "%" + strValue + "%";
-                return StringHelper.format((String)"UPPER(%1$s) LIKE '%2$s'", (Object)strFieldName, (Object)strValue.toUpperCase());
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"LEFTLIKE", (boolean)true) == 0) {
-                strValue = strValue.replace("'", "''");
-                strValue = String.valueOf(strValue) + "%";
-                return StringHelper.format((String)"UPPER(%1$s) LIKE '%2$s'", (Object)strFieldName, (Object)strValue.toUpperCase());
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"RIGHTLIKE", (boolean)true) == 0) {
-                strValue = strValue.replace("'", "''");
-                strValue = "%" + strValue;
-                return StringHelper.format((String)"UPPER(%1$s) LIKE '%2$s'", (Object)strFieldName, (Object)strValue.toUpperCase());
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"USERLIKE", (boolean)true) == 0) {
-                strValue = strValue.replace("'", "''");
-                return StringHelper.format((String)"UPPER(%1$s) LIKE '%2$s'", (Object)strFieldName, (Object)strValue.toUpperCase());
-            }
-        } else {
-            SqlParam sqlParam = new SqlParam();
-            sqlParam.setDataType(nStdDataType);
-            if (StringHelper.compare((String)strCondOp, (String)"IN", (boolean)true) == 0) {
-                String strCondition = "";
-                String[] stringArray = strValue.split("[;|,]");
-                int n = stringArray.length;
-                int n3 = 0;
-                while (n3 < n) {
-                    String value = stringArray[n3];
-                    if (!StringHelper.isNullOrEmpty((String)strCondition)) {
-                        strCondition = String.valueOf(strCondition) + " or ";
-                    }
-                    SqlParam sqlParam2 = new SqlParam();
-                    sqlParam2.setValue((Object)("%" + value + "%"));
-                    sqlParam2.setDataType(nStdDataType);
-                    sqlParamList.add((Object)sqlParam2);
-                    strCondition = String.valueOf(strCondition) + StringHelper.format((String)"%1$s like ?", (Object)strFieldName);
-                    ++n3;
-                }
-                if (StringHelper.isNullOrEmpty((String)strCondition)) {
-                    strCondition = "0=0";
-                }
-                return StringHelper.format((String)"(%1$s)", (Object)strCondition);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"EQ", (boolean)true) == 0) {
-                strValue = strValue.replace("'", "''");
-                sqlParam.setValue((Object)strValue);
-                sqlParamList.add((Object)sqlParam);
-                return StringHelper.format((String)"%1$s = ?", (Object)strFieldName);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"NOTEQ", (boolean)true) == 0) {
-                strValue = strValue.replace("'", "''");
-                sqlParam.setValue((Object)strValue);
-                sqlParamList.add((Object)sqlParam);
-                return StringHelper.format((String)"%1$s <> ?", (Object)strFieldName);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"LIKE", (boolean)true) == 0) {
-                strValue = strValue.replace("'", "''");
-                strValue = "%" + strValue + "%";
-                sqlParam.setValue((Object)strValue.toUpperCase());
-                sqlParamList.add((Object)sqlParam);
-                return StringHelper.format((String)"UPPER(%1$s) LIKE ?", (Object)strFieldName);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"LEFTLIKE", (boolean)true) == 0) {
-                strValue = strValue.replace("'", "''");
-                strValue = String.valueOf(strValue) + "%";
-                sqlParam.setValue((Object)strValue.toUpperCase());
-                sqlParamList.add((Object)sqlParam);
-                return StringHelper.format((String)"UPPER(%1$s) LIKE ?", (Object)strFieldName);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"RIGHTLIKE", (boolean)true) == 0) {
-                strValue = strValue.replace("'", "''");
-                strValue = "%" + strValue;
-                sqlParam.setValue((Object)strValue.toUpperCase());
-                sqlParamList.add((Object)sqlParam);
-                return StringHelper.format((String)"UPPER(%1$s) LIKE ?", (Object)strFieldName);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"USERLIKE", (boolean)true) == 0) {
-                strValue = strValue.replace("'", "''");
-                sqlParam.setValue((Object)strValue.toUpperCase());
-                sqlParamList.add((Object)sqlParam);
-                return StringHelper.format((String)"UPPER(%1$s) LIKE ?", (Object)strFieldName);
-            }
-        }
-        throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u6761\u4ef6\u64cd\u4f5c\u7b26[%1$s]", (Object)strCondOp));
-    }
+		script.append(" WHERE rownum < %2$s ) a1 WHERE a1.SRFROWINDEX >= %1$s  ", nStartPos + 1, nStartPos + nPageSize + 1);
+		// script.append(" ) AS a1 WHERE a1.SRFROWINDEX >= %1$s and a1.SRFROWINDEX < %2$s ", nStartPos + 1, nStartPos + nPageSize + 1);
 
-    public String getIntConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue) throws Exception {
-        return this.getIntConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, false, null);
-    }
+		return script.toString();
+	}
 
-    protected String getIntConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue, boolean bParam, SqlParamList sqlParamList) throws Exception {
-        if (!bParam) {
-            Object objValue = null;
-            if (StringHelper.compare((String)strCondOp, (String)"IN", (boolean)true) != 0 && StringHelper.compare((String)strCondOp, (String)"NOTIN", (boolean)true) != 0 && (objValue = DataTypeHelper.testBigInt((String)strValue)) == null) {
-                throw new Exception(StringHelper.format((String)"\u503c[%1$s]\u975e\u6574\u6570\u503c", (Object)strValue));
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"BITAND", (boolean)true) == 0) {
-                if (StringHelper.compare((String)strValue, (String)"0", (boolean)true) == 0) {
-                    return "(0=0)";
-                }
-                return StringHelper.format((String)"BITAND(%1$s,%2$s)>0", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"EQ", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s = %2$s", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"NOTEQ", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s <> %2$s", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"GT", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s > %2$s", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"GTANDEQ", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s >= %2$s", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"LT", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s < %2$s", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"LTANDEQ", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s <= %2$s", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"IN", (boolean)true) == 0 || StringHelper.compare((String)strCondOp, (String)"NOTIN", (boolean)true) == 0) {
-                if (StringHelper.isNullOrEmpty((String)strValue)) {
-                    if (StringHelper.compare((String)strCondOp, (String)"IN", (boolean)true) == 0) {
-                        return "1<>1";
-                    }
-                    return "1=1";
-                }
-                String[] items = strValue.split("[;|,]");
-                String strSQL = "";
-                strSQL = StringHelper.compare((String)strCondOp, (String)"IN", (boolean)true) == 0 ? StringHelper.format((String)"%1$s IN (", (Object)strFieldName) : StringHelper.format((String)"%1$s NOT IN (", (Object)strFieldName);
-                int i = 0;
-                while (i < items.length) {
-                    if (i != 0) {
-                        strSQL = String.valueOf(strSQL) + ",";
-                    }
-                    strSQL = String.valueOf(strSQL) + StringHelper.format((String)"%1$s", (Object)items[i]);
-                    ++i;
-                }
-                strSQL = String.valueOf(strSQL) + ")";
-                return strSQL;
-            }
-            return "";
-        }
-        SqlParam sqlParam = new SqlParam();
-        sqlParam.setValue((Object)strValue);
-        sqlParam.setDataType(nStdDataType);
-        if (StringHelper.compare((String)strCondOp, (String)"BITAND", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            if (StringHelper.compare((String)strValue, (String)"0", (boolean)true) == 0) {
-                return "0=?";
-            }
-            return StringHelper.format((String)"BITAND(%1$s,?)>0", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"EQ", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s = ?", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"NOTEQ", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s <> ?", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"GT", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s > ?", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"GTANDEQ", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s >=?", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"LT", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s < ?", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"LTANDEQ", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s <= ?", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"IN", (boolean)true) == 0 || StringHelper.compare((String)strCondOp, (String)"NOTIN", (boolean)true) == 0) {
-            if (StringHelper.isNullOrEmpty((String)strValue)) {
-                if (StringHelper.compare((String)strCondOp, (String)"IN", (boolean)true) == 0) {
-                    return "1<>1";
-                }
-                return "1=1";
-            }
-            String[] items = strValue.split("[;|,]");
-            String strSQL = "";
-            strSQL = StringHelper.compare((String)strCondOp, (String)"IN", (boolean)true) == 0 ? StringHelper.format((String)"%1$s IN (", (Object)strFieldName) : StringHelper.format((String)"%1$s NOT IN (", (Object)strFieldName);
-            int i = 0;
-            while (i < items.length) {
-                if (i != 0) {
-                    strSQL = String.valueOf(strSQL) + ",";
-                }
-                strSQL = String.valueOf(strSQL) + StringHelper.format((String)"%1$s", (Object)"?");
-                SqlParam sqlParam2 = new SqlParam();
-                sqlParam2.setValue((Object)items[i]);
-                sqlParam2.setDataType(nStdDataType);
-                sqlParamList.add((Object)sqlParam);
-                ++i;
-            }
-            strSQL = String.valueOf(strSQL) + ")";
-            return strSQL;
-        }
-        return "";
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.IDBDialect#callSql(java.sql.Connection, java.lang.String, net.ibizsys.paas.db.SqlParamList, int)
+	 */
+	@Override
+	public DBCallResult callSql(java.sql.Connection connection, String strCommand, SqlParamList list, int nTimeOut) {
+		DBCallResult dbResult = new DBCallResult();
+		dbResult.setRetCode(Errors.OK);
 
-    public String getDoubleConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue) throws Exception {
-        return this.getDoubleConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, false, null);
-    }
+		PreparedStatement cstmt = null;
+		ArrayList<InputStream> isList = null;
+		try {
+			if (connection == null) {
+				throw new Exception("打开数据库连接失败");
+			}
 
-    protected String getDoubleConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue, boolean bParam, SqlParamList sqlParamList) throws Exception {
-        if (!bParam) {
-            Object objValue = DataTypeHelper.testDouble((String)strValue);
-            if (objValue == null && StringHelper.compare((String)strCondOp, (String)"IN", (boolean)true) != 0 && StringHelper.compare((String)strCondOp, (String)"NOTIN", (boolean)true) != 0) {
-                throw new Exception(StringHelper.format((String)"\u503c[%1$s]\u975e\u6d6e\u70b9\u503c", (Object)strValue));
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"EQ", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s = %2$s", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"NOTEQ", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s <> %2$s", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"GT", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s > %2$s", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"GTANDEQ", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s >= %2$s", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"LT", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s < %2$s", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"LTANDEQ", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s <= %2$s", (Object)strFieldName, (Object)strValue);
-            }
-            return "";
-        }
-        SqlParam sqlParam = new SqlParam();
-        sqlParam.setParamName(strValue);
-        if (StringHelper.compare((String)strCondOp, (String)"EQ", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s = ?", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"NOTEQ", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s <> ?", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"GT", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s > ?", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"GTANDEQ", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s >=?", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"LT", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s < ?", (Object)strFieldName);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"LTANDEQ", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s <= ?", (Object)strFieldName);
-        }
-        return "";
-    }
+			// 设置调用参数
+			cstmt = connection.prepareStatement(strCommand);
 
-    public String getDateTimeConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue) throws Exception {
-        return this.getDateTimeConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, false, null);
-    }
+			if (list != null) {
+				for (int i = 0; i < list.size(); i++) {
+					SqlParam callParam = list.get(i);
+					if (callParam.getDataType() != DataTypes.UNKNOWN)
+					{
+						if(callParam.getDataType()==DataTypes.BINARY || callParam.getDataType()==DataTypes.VARBINARY){
+							if(callParam.getValue() == null || (!(callParam.getValue() instanceof byte[]))){
+								cstmt.setObject(i + 1, callParam.getValue(), this.getJDBCType(callParam.getDataType()));
+							}
+							else{
+								byte[] buffer = (byte[]) callParam.getValue();
+								if(isList==null){
+									isList = new ArrayList<InputStream>();
+								}
+								InputStream is = new ByteArrayInputStream(buffer);
+								cstmt.setBinaryStream(i + 1, is,buffer.length);
+								isList.add(is);
+							}
+						}
+						else{
+							cstmt.setObject(i + 1, callParam.getValue(), this.getJDBCType(callParam.getDataType()));
+						}
+					}
+					else {
+						cstmt.setObject(i + 1, callParam.getValue());
+					}
+				}
+			}
 
-    protected String getDateTimeConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue, boolean bParam, SqlParamList sqlParamList) throws Exception {
-        if (!bParam) {
-            Object objValue = null;
-            if (!StringHelper.isNullOrEmpty((String)strValue)) {
-                objValue = DataTypeHelper.testDateTime((String)strValue);
-                if (objValue == null) {
-                    throw new Exception(StringHelper.format((String)"\u503c[%1$s]\u975e\u65e5\u671f\u65f6\u95f4\u6027", (Object)strValue));
-                }
-                Timestamp ts = (Timestamp)objValue;
-                strValue = StringHelper.format((String)"%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", (Object)ts);
-                if (StringHelper.compare((String)strCondOp, (String)"LT", (boolean)true) == 0 || StringHelper.compare((String)strCondOp, (String)"LTANDEQ", (boolean)true) == 0) {
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(new Date(ts.getTime()));
-                    if (calendar.get(11) == 0 && calendar.get(12) == 0 && calendar.get(13) == 0) {
-                        strValue = StringHelper.format((String)"%1$tY-%1$tm-%1$td 23:59:59", (Object)ts);
-                        objValue = DataTypeHelper.testDateTime((String)strValue);
-                    }
-                }
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"EQ", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s = to_date('%2$s','yyyy-mm-dd hh24:mi:ss')", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"NOTEQ", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s <> to_date('%2$s','yyyy-mm-dd hh24:mi:ss')", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"GT", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s > to_date('%2$s','yyyy-mm-dd hh24:mi:ss')", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"GTANDEQ", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s >= to_date('%2$s','yyyy-mm-dd hh24:mi:ss')", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"LT", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s < to_date('%2$s','yyyy-mm-dd hh24:mi:ss')", (Object)strFieldName, (Object)strValue);
-            }
-            if (StringHelper.compare((String)strCondOp, (String)"LTANDEQ", (boolean)true) == 0) {
-                return StringHelper.format((String)"%1$s <= to_date('%2$s','yyyy-mm-dd hh24:mi:ss')", (Object)strFieldName, (Object)strValue);
-            }
-            return "";
-        }
-        SqlParam sqlParam = new SqlParam();
-        sqlParam.setParamName(strValue);
-        if (StringHelper.compare((String)strCondOp, (String)"EQ", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s = ?", (Object)strFieldName, (Object)strValue);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"NOTEQ", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s <> ?", (Object)strFieldName, (Object)strValue);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"GT", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s > ?", (Object)strFieldName, (Object)strValue);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"GTANDEQ", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s >= ?", (Object)strFieldName, (Object)strValue);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"LT", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s < ?", (Object)strFieldName, (Object)strValue);
-        }
-        if (StringHelper.compare((String)strCondOp, (String)"LTANDEQ", (boolean)true) == 0) {
-            sqlParamList.add((Object)sqlParam);
-            return StringHelper.format((String)"%1$s <= ?", (Object)strFieldName, (Object)strValue);
-        }
-        return "";
-    }
+			// 进行数据集填充
+			cstmt.execute();
 
-    public String getFuncSQL(String strFuncType, boolean bInsert, String[] args) throws Exception {
-        if (StringHelper.compare((String)strFuncType, (String)"CURDATETIME", (boolean)true) == 0) {
-            return "sysdate";
-        }
-        return super.getFuncSQL(strFuncType, bInsert, args);
-    }
+			OracleDataSetImpl dataSet = new OracleDataSetImpl(null, cstmt);
+			dataSet.setSqlInfo(strCommand);
+			while (true) {
+				int updateCount = cstmt.getUpdateCount();
+				if (updateCount >= 0) {
+					dbResult.setUpdateCount(updateCount);
+				} else {
+					ResultSet rs = cstmt.getResultSet();
+					if (rs == null) {
+						break;
+					}
+					dataSet.addResultSet(rs);
+					// rs.close();
+					break;
+				}
+				cstmt.getMoreResults();
+			}
 
-    /*
-     * Could not resolve type clashes
-     * Unable to fully structure code
-     */
-    public DBCallResult callSqlBatch(Connection connection, String[] commands, SqlParamList[] lists, int nBatchSize, int nTimeOut) throws Exception {
-        block44: {
-            block42: {
-                block45: {
-                    block43: {
-                        dbResult = new DBCallResult();
-                        dbResult.setRetCode(0);
-                        cstmt = null;
-                        cstmt2 = null;
-                        isList = null;
-                        try {
-                            if (connection == null) {
-                                throw new Exception("\u6253\u5f00\u6570\u636e\u5e93\u8fde\u63a5\u5931\u8d25");
-                            }
-                            if (lists == null) {
-                                cstmt2 = connection.createStatement();
-                                nIndex = 0;
-                                var14_12 = commands;
-                                var13_13 = commands.length;
-                                var12_14 = 0;
-                                while (var12_14 < var13_13) {
-                                    strCommand = var14_12[var12_14];
-                                    cstmt2.addBatch(strCommand);
-                                    if (nBatchSize > 0 && ++nIndex == nBatchSize) {
-                                        nIndex = 0;
-                                        cstmt2.executeBatch();
-                                        cstmt2.clearBatch();
-                                    }
-                                    ++var12_14;
-                                }
-                                cstmt2.executeBatch();
-                            } else {
-                                if (commands.length != 1) {
-                                    throw new Exception("\u4f20\u5165SQL\u53c2\u6570\u6709\u8bef\uff0c\u5fc5\u987b\u6307\u5b9a\u4e00\u4e2a\u8981\u6267\u884c\u7684\u8bed\u53e5");
-                                }
-                                cstmt = connection.prepareStatement(commands[0]);
-                                nIndex = 0;
-                                var14_12 = lists;
-                                var13_13 = lists.length;
-                                var12_14 = 0;
-                                while (var12_14 < var13_13) {
-                                    list = var14_12[var12_14];
-                                    i = 0;
-                                    while (i < list.size()) {
-                                        callParam = (SqlParam)list.get(i);
-                                        if (callParam.getDataType() != 0) {
-                                            if (callParam.getDataType() == 2 || callParam.getDataType() == 24) {
-                                                if (callParam.getValue() == null || !(callParam.getValue() instanceof byte[])) {
-                                                    cstmt.setObject(i + 1, callParam.getValue(), this.getJDBCType(callParam.getDataType()));
-                                                } else {
-                                                    buffer = (byte[])callParam.getValue();
-                                                    if (isList == null) {
-                                                        isList = new ArrayList<ByteArrayInputStream>();
-                                                    }
-                                                    is = new ByteArrayInputStream(buffer);
-                                                    cstmt.setBinaryStream(i + 1, is, buffer.length);
-                                                    isList.add(is);
-                                                }
-                                            } else {
-                                                cstmt.setObject(i + 1, callParam.getValue(), this.getJDBCType(callParam.getDataType()));
-                                            }
-                                        } else {
-                                            cstmt.setObject(i + 1, callParam.getValue());
-                                        }
-                                        ++i;
-                                    }
-                                    cstmt.addBatch();
-                                    if (nBatchSize > 0 && ++nIndex == nBatchSize) {
-                                        nIndex = 0;
-                                        cstmt.executeBatch();
-                                        cstmt.clearBatch();
-                                    }
-                                    ++var12_14;
-                                }
-                                cstmt.executeBatch();
-                            }
-                            dbResult.setRetCode(0);
-                            break block42;
-                        }
-                        catch (Exception ex) {
-                            OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-                            dbResult.setErrorInfo(ex.toString());
-                            dbResult.setRetCode(1);
-                            if (isList == null) break block43;
-                            ** for (is : isList)
-                        }
-lbl-1000:
-                        // 1 sources
+			// 获取返回值
+			dbResult.setRetCode(Errors.OK);
+			if (dataSet.getDataTableCount() > 0) {
+				dbResult.setDataSet(dataSet);
+			} else {
+				dataSet.close();
+				cstmt = null;
+			}
+		} catch (Exception ex) {
+			log.error(ex.getMessage(), ex);
+			dbResult.setErrorInfo(ex.toString());
+			dbResult.setRetCode(Errors.INTERNALERROR);
+		} finally {
 
-                        {
-                            try {
-                                is.close();
-                            }
-                            catch (Exception ex) {
-                                OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-                            }
-                            continue;
-                        }
-                    }
-                    try {
-                        if (cstmt != null) {
-                            cstmt.close();
-                            cstmt = null;
-                        }
-                        if (cstmt2 != null) {
-                            cstmt2.close();
-                            cstmt = null;
-                        }
-                        break block44;
-                    }
-                    catch (Exception ex) {
-                        OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-                    }
-                    break block44;
-                    catch (Throwable var19_32) {
-                        if (isList == null) break block45;
-                        ** for (is : isList)
-                    }
-lbl-1000:
-                    // 1 sources
+			if(isList!=null){
+				for(InputStream is:isList){
+					try {
+						is.close();
+					} catch (Exception ex) {
+						log.error(ex.getMessage(), ex);
+					}
+				}
+			}
+			
+			try {
+				if (dbResult.getDataSet() == null) {
+					if (cstmt != null) {
+						cstmt.close();
+					}
+				}
+			} catch (Exception ex) {
+				log.error(ex.getMessage(), ex);
+			}
 
-                    {
-                        try {
-                            is.close();
-                        }
-                        catch (Exception ex) {
-                            OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-                        }
-                        continue;
-                    }
-                }
-                try {
-                    if (cstmt != null) {
-                        cstmt.close();
-                        cstmt = null;
-                    }
-                    if (cstmt2 != null) {
-                        cstmt2.close();
-                        cstmt = null;
-                    }
-                }
-                catch (Exception ex) {
-                    OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-                }
-                throw var19_32;
-            }
-            if (isList != null) {
-                for (InputStream is : isList) {
-                    try {
-                        is.close();
-                    }
-                    catch (Exception ex) {
-                        OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-                    }
-                }
-            }
-            try {
-                if (cstmt != null) {
-                    cstmt.close();
-                    cstmt = null;
-                }
-                if (cstmt2 != null) {
-                    cstmt2.close();
-                    cstmt = null;
-                }
-            }
-            catch (Exception ex) {
-                OracleDialectImpl.log.error((Object)ex.getMessage(), (Throwable)ex);
-            }
-        }
-        return dbResult;
-    }
 
-    public String getMergeSQL(IDataEntity iDataEntity, ProcParamList procParamList) throws Exception {
-        IDataEntityModel iDEModel = (IDataEntityModel)iDataEntity;
-        HashMap<String, ProcParam> insertFieldMap = new HashMap<String, ProcParam>();
-        Iterator deFields = iDataEntity.getDEFields();
-        while (deFields.hasNext()) {
-            IDEField iDEField = (IDEField)deFields.next();
-            if (!iDEField.isPhisicalDEField() || iDEField.isInheritDEField() || iDEField.isFormulaDEField()) continue;
-            ProcParam procParam = new ProcParam();
-            procParam.setDataType(iDEField.getStdDataType());
-            procParam.setParamName(StringHelper.format((String)"VAR_%1$s", (Object)iDEField.getName().toUpperCase()));
-            insertFieldMap.put(iDEField.getName(), procParam);
-        }
-        StringBuilderEx sql = new StringBuilderEx();
-        sql.append("MERGE INTO %1$s t1 USING (SELECT ", (Object)this.getDBObjStandardName(iDataEntity.getTableName()));
-        boolean bFirst = true;
-        for (String strField : insertFieldMap.keySet()) {
-            if (bFirst) {
-                bFirst = false;
-            } else {
-                sql.append(",");
-            }
-            sql.append(" ? as %1$s ", (Object)this.getDBObjStandardName(strField));
-            Object objValue = insertFieldMap.get(strField);
-            if (objValue instanceof ProcParam) {
-                procParamList.add((Object)((ProcParam)objValue));
-                continue;
-            }
-            sql.append((String)objValue);
-        }
-        sql.append(" FROM DUAL) ARGS ON (");
-        boolean bUnionKey = false;
-        if (iDEModel.getKeyDEField().isPhisicalDEField() || iDEModel.getUnionKeyValueDEFields() == null) {
-            sql.append("t1.%1$s = ARGS.%1$s", (Object)this.getDBObjStandardName(iDEModel.getKeyDEField().getName()));
-        } else {
-            bFirst = true;
-            bUnionKey = true;
-            Iterator unionFields = iDEModel.getUnionKeyValueDEFields();
-            while (unionFields.hasNext()) {
-                IDEField iDEField = (IDEField)unionFields.next();
-                if (bFirst) {
-                    bFirst = false;
-                } else {
-                    sql.append(" AND ");
-                }
-                sql.append("t1.%1$s = ARGS.%1$s", (Object)this.getDBObjStandardName(iDEField.getName()));
-            }
-        }
-        sql.append(" ) WHEN MATCHED THEN UPDATE SET ");
-        bFirst = true;
-        for (String strField : insertFieldMap.keySet()) {
-            IDEField iDEField;
-            if (bUnionKey && (iDEField = iDEModel.getDEField(strField, true)) != null && !StringHelper.isNullOrEmpty((String)iDEField.getUnionKeyValue())) continue;
-            if (bFirst) {
-                bFirst = false;
-            } else {
-                sql.append(",");
-            }
-            sql.append("t1.%1$s = ARGS.%1$s", (Object)this.getDBObjStandardName(strField));
-        }
-        sql.append(" WHEN NOT MATCHED THEN INSERT (");
-        bFirst = true;
-        for (String strField : insertFieldMap.keySet()) {
-            if (bFirst) {
-                bFirst = false;
-            } else {
-                sql.append(",");
-            }
-            sql.append("t1.%1$s", (Object)this.getDBObjStandardName(strField));
-        }
-        sql.append(") VALUES (");
-        bFirst = true;
-        for (String strField : insertFieldMap.keySet()) {
-            if (bFirst) {
-                bFirst = false;
-            } else {
-                sql.append(",");
-            }
-            sql.append("ARGS.%1$s", (Object)this.getDBObjStandardName(strField));
-        }
-        sql.append(")");
-        return sql.toString();
-    }
+		}
+		return dbResult;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.IDBDialect#callProc(java.sql.Connection, java.lang.String, net.ibizsys.paas.db.SqlParamList, int)
+	 */
+	@Override
+	public DBCallResult callProc(Connection connection, String strProcName, SqlParamList list, int nTimeOut) throws Exception {
+		HashMap<Integer, SqlParam> outputParamMap = new HashMap<Integer, SqlParam>();
+
+		DBCallResult dbResult = new DBCallResult();
+		dbResult.setRetCode(Errors.OK);
+
+		CallableStatement cstmt = null;
+
+		try {
+			if (connection == null) {
+				throw new Exception("打开数据库连接失败");
+			}
+
+			int nParamCount = 0;
+			int nParamReturnRS = -1;
+			if (list != null) nParamCount = list.size();
+			// 需要注册返回值
+			String strCall = formatProcCall(strProcName, nParamCount);
+
+			// 设置调用参数
+			cstmt = connection.prepareCall(strCall);
+			// if(nTimeOut>0)
+			// {
+			// cstmt.setQueryTimeout(5*60);
+			// }
+			if (list != null) {
+				for (int i = 0; i < list.size(); i++) {
+					SqlParam callParam = list.get(i);
+
+					if (StringHelper.compare(callParam.getOutputParamName(), "SRF_RD", true) == 0) {
+						cstmt.registerOutParameter(i + 1, oracle.jdbc.OracleTypes.CURSOR);
+						nParamReturnRS = i + 1;
+						continue;
+					}
+
+					if (callParam.getDirection() == SqlParamDirections.Input) {
+						cstmt.setObject(i + 1, callParam.getValue(), this.getJDBCType(callParam.getDataType()));
+					} else if (callParam.getDirection() == SqlParamDirections.Output) {
+						cstmt.registerOutParameter(i + 1, getJDBCType(callParam.getDataType()));
+						outputParamMap.put(i + 1, callParam);
+					} else if (callParam.getDirection() == SqlParamDirections.InputOutput) {
+						cstmt.setObject(i + 1, callParam.getValue(), this.getJDBCType(callParam.getDataType()));
+						cstmt.registerOutParameter(i + 1, getJDBCType(callParam.getDataType()));
+						outputParamMap.put(i + 1, callParam);
+					}
+				}
+			}
+
+			// 进行数据集填充
+			cstmt.execute();
+
+			OracleDataSetImpl dataSet = new OracleDataSetImpl(null, cstmt);
+			// 进行系统数据集填充
+			if (nParamReturnRS >= 0) {
+				ResultSet rsSystem = (ResultSet) cstmt.getObject(nParamReturnRS);
+				dataSet.addResultSet(rsSystem);
+			}
+
+			// 获取需要输出的参数
+			for (int nIndex : outputParamMap.keySet()) {
+				SqlParam sqlParam = outputParamMap.get(nIndex);
+				dbResult.getOutputValues(true).put(sqlParam.getOutputParamName(), cstmt.getObject(nIndex));
+			}
+
+			while (true) {
+				int updateCount = cstmt.getUpdateCount();
+				if (updateCount >= 0) {
+					dbResult.setUpdateCount(updateCount);
+				} else {
+					ResultSet rs = cstmt.getResultSet();
+					if (rs == null) {
+						break;
+					}
+					dataSet.addResultSet(rs);
+					// rs.close();
+					break;
+				}
+				cstmt.getMoreResults();
+			}
+
+			// 获取返回值
+			dbResult.setRetCode(Errors.OK);
+			if (dataSet.getDataTableCount() > 0) {
+				dbResult.setDataSet(dataSet);
+			} else {
+				dataSet.close();
+				cstmt = null;
+			}
+		} catch (Exception ex) {
+			log.error(ex.getMessage(), ex);
+			dbResult.setErrorInfo(ex.toString());
+			dbResult.setRetCode(Errors.INTERNALERROR);
+		} finally {
+			try {
+				if (dbResult.getDataSet() == null) {
+					if (cstmt != null) {
+						cstmt.close();
+					}
+				}
+			} catch (Exception ex) {
+				log.error(ex.getMessage(), ex);
+			}
+
+		}
+		return dbResult;
+	}
+
+	/**
+	 * 格式化存储过程调用命令
+	 * 
+	 * @param strProcName
+	 * @param nParamCount
+	 * @return
+	 */
+	protected static String formatProcCall(String strProcName, int nParamCount) {
+		String strCall = "begin ";
+		strCall = strCall + strProcName;
+		strCall = strCall + " ";
+		if (nParamCount > 0) {
+			strCall = strCall + "(";
+			for (int i = 0; i < nParamCount; i++) {
+				if (i != 0) {
+					strCall = strCall + ",";
+				}
+				strCall = strCall + "?";
+			}
+			strCall = strCall + ")";
+		}
+		strCall = strCall + " ; end;";
+		return strCall;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.IDBDialect#getConditionSQL(java.lang.String, int, java.lang.String, java.lang.String, boolean, net.ibizsys.paas.db.SqlParamList)
+	 */
+	@Override
+	public String getConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue, boolean bParam, SqlParamList sqlParamList) throws Exception {
+		if (StringHelper.compare(strCondOp, ICondition.CONDOP_TESTNULL, true) == 0) {
+			if (StringHelper.compare(strValue, "1", true) == 0) {
+				return StringHelper.format("%1$s IS NULL", strFieldName);
+			} else {
+				return StringHelper.format("%1$s IS NOT NULL", strFieldName);
+			}
+		}
+
+		if (StringHelper.compare(strCondOp, ICondition.CONDOP_ISNULL, true) == 0) {
+			return StringHelper.format("%1$s IS NULL", strFieldName);
+		}
+
+		if (StringHelper.compare(strCondOp, ICondition.CONDOP_ISNOTNULL, true) == 0) {
+			return StringHelper.format("%1$s IS NOT NULL", strFieldName);
+		}
+
+		// if (!!bParam)
+		// {
+		// if (MacroHelper.isSRFFunc(strParamName))
+		// {
+		// Vector<String> argList = new Vector<String>();
+		// String strFuncName = MacroHelper.ParseSRFFunc(strParamName, argList);
+		// if (StringHelper.compare(strFuncName, MacroHelper.TAG_SRFUVEX, true)
+		// == 0)
+		// {
+		// if (argList.size() == 0)
+		// {
+		// log.error(StringHelper.format("无法失败扩展URL参数[%1$s]", strParamName));
+		// return "";
+		// }
+		//
+		// String strMacroIndex = StringHelper.format("_MACRO_%1$s_",
+		// this.nMacroIndex);
+		// this.nMacroIndex++;
+		//
+		// URLCondPair urlCondPair = new URLCondPair();
+		// urlCondPair.strFieldName = strFieldName;
+		// urlCondPair.strDataType = strDataType;
+		// urlCondPair.strCondOp = strCondOp;
+		// urlCondPair.strURLParam = argList.get(0);
+		// urlCondPair.strMacro = strMacroIndex;
+		// if (argList.size() >= 2)
+		// {
+		// urlCondPair.bAll = (StringHelper.compare(argList.get(1), "ALL", true)
+		// == 0);
+		// }
+		// urlCondPairList.add(urlCondPair);
+		// return strMacroIndex;
+		// }
+		// }
+		// }
+
+		if (DataTypeHelper.isStringType(nStdDataType)) {
+			return getStringConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, bParam, sqlParamList);
+		}
+
+		if (DataTypeHelper.isIntType(nStdDataType)) {
+			return getIntConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, bParam, sqlParamList);
+		}
+
+		if (DataTypeHelper.isDoubleType(nStdDataType)) {
+			return getDoubleConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, bParam, sqlParamList);
+		}
+
+		if (DataTypeHelper.isDateTimeType(nStdDataType)) {
+			return getDateTimeConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, bParam, sqlParamList);
+		}
+
+		throw new Exception(StringHelper.format("无法获取数据库查询条件"));
+	}
+
+	/**
+	 * 获取字符串条件SQL 语句
+	 * 
+	 * @param strFieldName
+	 * @param nStdDataType
+	 * @param strCondOp
+	 * @param strValue
+	 * @return
+	 * @throws Exception
+	 */
+	public String getStringConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue) throws Exception {
+		return getStringConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, false, null);
+	}
+
+	/**
+	 * 获取字符串条件SQL 语句
+	 * 
+	 * @param strFieldName
+	 * @param nStdDataType
+	 * @param strCondOp
+	 * @param strValue
+	 * @param bParam
+	 * @param sqlParamList
+	 * @return
+	 * @throws Exception
+	 */
+	protected String getStringConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue, boolean bParam, SqlParamList sqlParamList) throws Exception {
+		if(!bParam){
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_IN, true) == 0){
+				String strCondition = "";
+				for(String value : strValue.split("[;|,]")){
+					if(!StringHelper.isNullOrEmpty(strCondition))
+						strCondition += " or ";
+					strCondition += StringHelper.format("%1$s like '%%%2$s%%'", strFieldName, value);
+				}
+				if(StringHelper.isNullOrEmpty(strCondition))
+					strCondition = "0=0";
+				return StringHelper.format("(%1$s)", strCondition);
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_EQ, true) == 0) {
+				strValue = strValue.replace("'", "''");
+				return StringHelper.format("%1$s = '%2$s'", strFieldName, strValue);
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_NOTEQ, true) == 0) {
+				strValue = strValue.replace("'", "''");
+				return StringHelper.format("%1$s <> '%2$s'", strFieldName, strValue);
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LIKE, true) == 0) {
+				strValue = strValue.replace("'", "''");
+				strValue = "%" + strValue + "%";
+				return StringHelper.format("UPPER(%1$s) LIKE '%2$s'", strFieldName, strValue.toUpperCase());
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LEFTLIKE, true) == 0) {
+				strValue = strValue.replace("'", "''");
+				strValue = strValue + "%";
+				return StringHelper.format("UPPER(%1$s) LIKE '%2$s'", strFieldName, strValue.toUpperCase());
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_RIGHTLIKE, true) == 0) {
+				strValue = strValue.replace("'", "''");
+				strValue = "%" + strValue;
+				return StringHelper.format("UPPER(%1$s) LIKE '%2$s'", strFieldName, strValue.toUpperCase());
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_USERLIKE, true) == 0) {
+				strValue = strValue.replace("'", "''");
+				return StringHelper.format("UPPER(%1$s) LIKE '%2$s'", strFieldName, strValue.toUpperCase());
+			}
+			
+		}else{
+			SqlParam sqlParam = new SqlParam();
+			sqlParam.setDataType(nStdDataType);
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_IN, true) == 0){
+				String strCondition = "";
+				for(String value : strValue.split("[;|,]")){
+					if(!StringHelper.isNullOrEmpty(strCondition))
+						strCondition += " or ";
+					SqlParam sqlParam2 = new SqlParam();
+					sqlParam2.setValue("%" + value + "%");
+					sqlParam2.setDataType(nStdDataType);
+					sqlParamList.add(sqlParam2);
+					strCondition += StringHelper.format("%1$s like ?", strFieldName);
+				}
+				if(StringHelper.isNullOrEmpty(strCondition))
+					strCondition = "0=0";
+				return StringHelper.format("(%1$s)", strCondition);
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_EQ, true) == 0) {
+				strValue = strValue.replace("'", "''");
+				sqlParam.setValue(strValue);
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s = ?", strFieldName);
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_NOTEQ, true) == 0) {
+				strValue = strValue.replace("'", "''");
+				sqlParam.setValue(strValue);
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s <> ?", strFieldName);
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LIKE, true) == 0) {
+				strValue = strValue.replace("'", "''");
+				strValue = "%" + strValue + "%";
+				sqlParam.setValue(strValue.toUpperCase());
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("UPPER(%1$s) LIKE ?", strFieldName);
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LEFTLIKE, true) == 0) {
+				strValue = strValue.replace("'", "''");
+				strValue = strValue + "%";
+				sqlParam.setValue(strValue.toUpperCase());
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("UPPER(%1$s) LIKE ?", strFieldName);
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_RIGHTLIKE, true) == 0) {
+				strValue = strValue.replace("'", "''");
+				strValue = "%" + strValue;
+				sqlParam.setValue(strValue.toUpperCase());
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("UPPER(%1$s) LIKE ?", strFieldName);
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_USERLIKE, true) == 0) {
+				strValue = strValue.replace("'", "''");
+				sqlParam.setValue(strValue.toUpperCase());
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("UPPER(%1$s) LIKE ?", strFieldName);
+			}
+		}
+
+		throw new Exception(StringHelper.format("无法识别的条件操作符[%1$s]", strCondOp));
+	}
+
+	/**
+	 * 获取INT条件SQL 语句
+	 * 
+	 * @param strFieldName
+	 * @param nStdDataType
+	 * @param strCondOp
+	 * @param strValue
+	 * @return
+	 * @throws Exception
+	 */
+	public String getIntConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue) throws Exception {
+		return getIntConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, false, null);
+	}
+
+	/**
+	 * 获取INT条件SQL 语句
+	 * 
+	 * @param strFieldName
+	 * @param nStdDataType
+	 * @param strCondOp
+	 * @param strValue
+	 * @param bParam
+	 * @param sqlParamList
+	 * @return
+	 * @throws Exception
+	 */
+	protected String getIntConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue, boolean bParam, SqlParamList sqlParamList) throws Exception {
+		if (!bParam) {
+			// 判断值是否正确
+			Object objValue = null;
+			if (!((StringHelper.compare(strCondOp, ICondition.CONDOP_IN, true) == 0) || (StringHelper.compare(strCondOp, ICondition.CONDOP_NOTIN, true) == 0))) {
+				objValue = DataTypeHelper.testBigInt(strValue);
+				if (objValue == null) {
+					throw new Exception(StringHelper.format("值[%1$s]非整数值", strValue));
+				}
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_BITAND, true) == 0){
+				if(StringHelper.compare(strValue, "0", true) == 0)
+					return "(0=0)";
+				return StringHelper.format("BITAND(%1$s,%2$s)>0", strFieldName, strValue);
+			}
+
+			// if (StringHelper.compare(strCondOp, ICondition.CONDOP_EQ, true)
+			// == 0)
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_EQ, true) == 0) {
+				return StringHelper.format("%1$s = %2$s", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_NOTEQ, true) == 0) {
+				return StringHelper.format("%1$s <> %2$s", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_GT, true) == 0) {
+				return StringHelper.format("%1$s > %2$s", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_GTANDEQ, true) == 0) {
+				return StringHelper.format("%1$s >= %2$s", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LT, true) == 0) {
+				return StringHelper.format("%1$s < %2$s", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LTANDEQ, true) == 0) {
+				return StringHelper.format("%1$s <= %2$s", strFieldName, strValue);
+			}
+
+			if ((StringHelper.compare(strCondOp, ICondition.CONDOP_IN, true) == 0) || (StringHelper.compare(strCondOp, ICondition.CONDOP_NOTIN, true) == 0)) {
+				if (StringHelper.isNullOrEmpty(strValue)) {
+					if (StringHelper.compare(strCondOp, ICondition.CONDOP_IN, true) == 0)
+						return "1<>1";
+					else
+						return "1=1";
+				}
+
+				String[] items = strValue.split("[;|,]");
+				String strSQL = "";
+				if (StringHelper.compare(strCondOp, ICondition.CONDOP_IN, true) == 0) {
+					strSQL = StringHelper.format("%1$s IN (", strFieldName);
+				} else {
+					strSQL = StringHelper.format("%1$s NOT IN (", strFieldName);
+				}
+				for (int i = 0; i < items.length; i++) {
+					if (i != 0) strSQL += ",";
+					strSQL += StringHelper.format("%1$s", items[i]);
+				}
+				strSQL += ")";
+				return strSQL;
+			}
+
+			return "";
+		} else {
+			SqlParam sqlParam = new SqlParam();
+			//sqlParam.setParamName(strValue);
+			sqlParam.setValue(strValue);
+			sqlParam.setDataType(nStdDataType);
+			// callParam.setValue(objValue);
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_BITAND, true) == 0){
+				sqlParamList.add(sqlParam);
+				if(StringHelper.compare(strValue, "0", true) == 0)
+					return "0=?";
+				return StringHelper.format("BITAND(%1$s,?)>0", strFieldName);
+			}
+			
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_EQ, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s = ?", strFieldName);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_NOTEQ, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s <> ?", strFieldName);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_GT, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s > ?", strFieldName);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_GTANDEQ, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s >=?", strFieldName);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LT, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s < ?", strFieldName);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LTANDEQ, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s <= ?", strFieldName);
+			}
+
+			if ((StringHelper.compare(strCondOp, ICondition.CONDOP_IN, true) == 0) || (StringHelper.compare(strCondOp, ICondition.CONDOP_NOTIN, true) == 0)) {
+				if (StringHelper.isNullOrEmpty(strValue)) {
+					if (StringHelper.compare(strCondOp, ICondition.CONDOP_IN, true) == 0)
+						return "1<>1";
+					else
+						return "1=1";
+				}
+
+				String[] items = strValue.split("[;|,]");
+				String strSQL = "";
+				if (StringHelper.compare(strCondOp, ICondition.CONDOP_IN, true) == 0) {
+					strSQL = StringHelper.format("%1$s IN (", strFieldName);
+				} else {
+					strSQL = StringHelper.format("%1$s NOT IN (", strFieldName);
+				}
+				for (int i = 0; i < items.length; i++) {
+					if (i != 0) 
+						strSQL += ",";
+					strSQL += StringHelper.format("%1$s", "?");
+					
+					SqlParam sqlParam2 = new SqlParam();
+					sqlParam2.setValue(items[i]);
+					sqlParam2.setDataType(nStdDataType);
+					sqlParamList.add(sqlParam);
+				}
+				strSQL += ")";
+				return strSQL;
+			}
+
+			return "";
+		}
+	}
+
+	/**
+	 * 获取DOUBLE条件SQL 语句
+	 * 
+	 * @param strFieldName
+	 * @param nStdDataType
+	 * @param strCondOp
+	 * @param strValue
+	 * @return
+	 * @throws Exception
+	 */
+	public String getDoubleConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue) throws Exception {
+		return getDoubleConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, false, null);
+	}
+
+	/**
+	 * 获取DOUBLE条件SQL 语句
+	 * 
+	 * @param strFieldName
+	 * @param nStdDataType
+	 * @param strCondOp
+	 * @param strValue
+	 * @param bParam
+	 * @param sqlParamList
+	 * @return
+	 * @throws Exception
+	 */
+	protected String getDoubleConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue, boolean bParam, SqlParamList sqlParamList) throws Exception {
+		if (!bParam) {
+			// 判断值是否正确
+			Object objValue = DataTypeHelper.testDouble(strValue);
+			if (objValue == null) {
+				if (!((StringHelper.compare(strCondOp, ICondition.CONDOP_IN, true) == 0) || (StringHelper.compare(strCondOp, ICondition.CONDOP_NOTIN, true) == 0))) {
+					throw new Exception(StringHelper.format("值[%1$s]非浮点值", strValue));
+				}
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_EQ, true) == 0)
+
+			{
+				return StringHelper.format("%1$s = %2$s", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_NOTEQ, true) == 0) {
+				return StringHelper.format("%1$s <> %2$s", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_GT, true) == 0) {
+				return StringHelper.format("%1$s > %2$s", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_GTANDEQ, true) == 0) {
+				return StringHelper.format("%1$s >= %2$s", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LT, true) == 0) {
+				return StringHelper.format("%1$s < %2$s", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LTANDEQ, true) == 0) {
+				return StringHelper.format("%1$s <= %2$s", strFieldName, strValue);
+			}
+			return "";
+		} else {
+			SqlParam sqlParam = new SqlParam();
+			sqlParam.setParamName(strValue);
+			// callParam.setValue(objValue);
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_EQ, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s = ?", strFieldName);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_NOTEQ, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s <> ?", strFieldName);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_GT, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s > ?", strFieldName);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_GTANDEQ, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s >=?", strFieldName);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LT, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s < ?", strFieldName);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LTANDEQ, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s <= ?", strFieldName);
+			}
+			return "";
+		}
+	}
+
+	/**
+	 * 获取DATETIME条件SQL 语句
+	 * 
+	 * @param strFieldName
+	 * @param nStdDataType
+	 * @param strCondOp
+	 * @param strValue
+	 * @return
+	 * @throws Exception
+	 */
+	public String getDateTimeConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue) throws Exception {
+		return getDateTimeConditionSQL(strFieldName, nStdDataType, strCondOp, strValue, false, null);
+	}
+
+	/**
+	 * 获取DATETIME条件SQL 语句
+	 * 
+	 * @param strFieldName
+	 * @param nStdDataType
+	 * @param strCondOp
+	 * @param strValue
+	 * @param bParam
+	 * @param sqlParamList
+	 * @return
+	 * @throws Exception
+	 */
+	protected String getDateTimeConditionSQL(String strFieldName, int nStdDataType, String strCondOp, String strValue, boolean bParam, SqlParamList sqlParamList) throws Exception {
+		if (!bParam) {
+			// 判断值是否正确
+			Object objValue = null;
+			if (!StringHelper.isNullOrEmpty(strValue)) {
+				// 判断值是否正确
+				objValue = DataTypeHelper.testDateTime(strValue);
+				if (objValue == null) {
+					throw new Exception(StringHelper.format("值[%1$s]非日期时间性", strValue));
+				}
+
+				java.sql.Timestamp ts = (java.sql.Timestamp) objValue;
+				strValue = StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", ts);
+
+				if ((StringHelper.compare(strCondOp, ICondition.CONDOP_LT, true) == 0) || (StringHelper.compare(strCondOp, ICondition.CONDOP_LTANDEQ, true) == 0)) {
+
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTime(new Date(ts.getTime()));
+
+					if (calendar.get(Calendar.HOUR_OF_DAY) == 0 && calendar.get(Calendar.MINUTE) == 0 && calendar.get(Calendar.SECOND) == 0) {
+						strValue = StringHelper.format("%1$tY-%1$tm-%1$td 23:59:59", ts);
+						objValue = DataTypeHelper.testDateTime(strValue);
+					}
+				}
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_EQ, true) == 0) {
+				return StringHelper.format("%1$s = to_date('%2$s','yyyy-mm-dd hh24:mi:ss')", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_NOTEQ, true) == 0) {
+				return StringHelper.format("%1$s <> to_date('%2$s','yyyy-mm-dd hh24:mi:ss')", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_GT, true) == 0) {
+				return StringHelper.format("%1$s > to_date('%2$s','yyyy-mm-dd hh24:mi:ss')", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_GTANDEQ, true) == 0) {
+				return StringHelper.format("%1$s >= to_date('%2$s','yyyy-mm-dd hh24:mi:ss')", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LT, true) == 0) {
+				return StringHelper.format("%1$s < to_date('%2$s','yyyy-mm-dd hh24:mi:ss')", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LTANDEQ, true) == 0) {
+				return StringHelper.format("%1$s <= to_date('%2$s','yyyy-mm-dd hh24:mi:ss')", strFieldName, strValue);
+			}
+			return "";
+		} else {
+			SqlParam sqlParam = new SqlParam();
+			sqlParam.setParamName(strValue);
+			// callParam.setValue(objValue);
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_EQ, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s = ?", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_NOTEQ, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s <> ?", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_GT, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s > ?", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_GTANDEQ, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s >= ?", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LT, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s < ?", strFieldName, strValue);
+			}
+
+			if (StringHelper.compare(strCondOp, ICondition.CONDOP_LTANDEQ, true) == 0) {
+				sqlParamList.add(sqlParam);
+				return StringHelper.format("%1$s <= ?", strFieldName, strValue);
+			}
+			return "";
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.impl.DBDialectImpl#getFuncSQL(java.lang.String, boolean, java.lang.String[])
+	 */
+	@Override
+	public String getFuncSQL(String strFuncType, boolean bInsert, String[] args) throws Exception {
+		if (StringHelper.compare(strFuncType, FUNC_CURDATETIME, true) == 0) {
+			return "sysdate";
+		}
+
+		return super.getFuncSQL(strFuncType, bInsert, args);
+	}
+
+	@Override
+	public DBCallResult callSqlBatch(Connection connection, String[] commands, SqlParamList[] lists,int nBatchSize, int nTimeOut) throws Exception {
+		DBCallResult dbResult = new DBCallResult();
+		dbResult.setRetCode(Errors.OK);
+
+		PreparedStatement cstmt = null;
+		Statement  cstmt2 = null;
+		ArrayList<InputStream> isList = null;
+		try {
+			if (connection == null) {
+				throw new Exception("打开数据库连接失败");
+			}
+			
+			if(lists == null){
+				cstmt2 = connection.createStatement();
+				int nIndex = 0;
+				for(String strCommand:commands){
+					cstmt2.addBatch(strCommand);
+					nIndex++;
+					if(nBatchSize>0 && nIndex==nBatchSize){
+						nIndex = 0;
+						cstmt2.executeBatch();
+						cstmt2.clearBatch();
+					}
+				}
+				cstmt2.executeBatch();
+			}
+			else{
+				if(commands.length!=1){
+					throw new Exception("传入SQL参数有误，必须指定一个要执行的语句");
+				}
+				// 设置调用参数
+				cstmt = connection.prepareStatement(commands[0]);
+				int nIndex = 0;
+				for(SqlParamList list:lists){
+					for (int i = 0; i < list.size(); i++) {
+						SqlParam callParam = list.get(i);
+						if (callParam.getDataType() != DataTypes.UNKNOWN){
+							if(callParam.getDataType()==DataTypes.BINARY || callParam.getDataType()==DataTypes.VARBINARY){
+								if(callParam.getValue() == null || (!(callParam.getValue() instanceof byte[]))){
+									cstmt.setObject(i + 1, callParam.getValue(), this.getJDBCType(callParam.getDataType()));
+								}
+								else{
+									byte[] buffer = (byte[]) callParam.getValue();
+									if(isList==null){
+										isList = new ArrayList<InputStream>();
+									}
+									InputStream is = new ByteArrayInputStream(buffer);
+									cstmt.setBinaryStream(i + 1, is,buffer.length);
+									isList.add(is);
+								}
+							}
+							else
+								cstmt.setObject(i + 1, callParam.getValue(), this.getJDBCType(callParam.getDataType()));
+						}
+						else {
+							cstmt.setObject(i + 1, callParam.getValue());
+						}
+					}
+					cstmt.addBatch();
+					nIndex++;
+					if(nBatchSize>0 && nIndex==nBatchSize){
+						nIndex = 0;
+						cstmt.executeBatch();
+						cstmt.clearBatch();
+					}
+				}
+				cstmt.executeBatch();
+			}
+			dbResult.setRetCode(Errors.OK);
+			
+		} catch (Exception ex) {
+			log.error(ex.getMessage(), ex);
+			dbResult.setErrorInfo(ex.toString());
+			dbResult.setRetCode(Errors.INTERNALERROR);
+		} finally {
+			if(isList!=null){
+				for(InputStream is:isList){
+					try {
+						is.close();
+					} catch (Exception ex) {
+						log.error(ex.getMessage(), ex);
+					}
+				}
+			}
+		
+			try {
+				if (cstmt != null) {
+					cstmt.close();
+					cstmt = null;
+				}
+				if (cstmt2 != null) {
+					cstmt2.close();
+					cstmt = null;
+				}
+			} catch (Exception ex) {
+				log.error(ex.getMessage(), ex);
+			}
+		}
+		return dbResult;
+	}
+
+	@Override
+	public String getMergeSQL(IDataEntity iDataEntity, ProcParamList procParamList) throws Exception {
+	
+		IDataEntityModel iDEModel = (IDataEntityModel)iDataEntity;
+		
+		HashMap<String, Object> insertFieldMap = new HashMap<String, Object>();
+
+		java.util.Iterator<IDEField> deFields = iDataEntity.getDEFields();
+		while (deFields.hasNext()) {
+			IDEField iDEField = deFields.next();
+
+			// 判断插入
+			if (!iDEField.isPhisicalDEField()) continue;
+
+			// 继承属性
+			if (iDEField.isInheritDEField()) continue;
+
+			// 公式属性
+			if (iDEField.isFormulaDEField()) continue;
+
+			ProcParam procParam = new ProcParam();
+			procParam.setDataType(iDEField.getStdDataType());
+			procParam.setParamName(StringHelper.format("VAR_%1$s", iDEField.getName().toUpperCase()));
+			insertFieldMap.put(iDEField.getName(), procParam);
+			
+		}
+		
+/*		   XT_DM_FLDM T1
+		  USING (SELECT ? as DM, ? as FDM, ? as MC, ? as LBBM, ? as SM, ? as SFSC FROM DUAL) ARGS
+		  ON (T1.DM = ARGS.DM  AND T1.LBBM = ARGS.LBBM)
+		  WHEN MATCHED THEN
+		    UPDATE SET T1.FDM = ARGS.FDM, T1.MC = ARGS.MC, T1.SM = ARGS.SM, T1.SFSC = ARGS.SFSC
+		  WHEN NOT MATCHED THEN
+		    INSERT
+		      (T1.DM, T1.FDM, T1.MC, T1.LBBM, T1.SM, T1.SFSC)
+		    VALUES
+		      (ARGS.DM, ARGS.FDM, ARGS.MC, ARGS.LBBM, ARGS.SM, ARGS.SFSC)
+*/
+		
+		
+		StringBuilderEx sql = new StringBuilderEx();
+		sql.append("MERGE INTO %1$s t1 USING (SELECT ", this.getDBObjStandardName(iDataEntity.getTableName()));
+
+		boolean bFirst = true;
+		for (String strField : insertFieldMap.keySet()) {
+			if (bFirst)
+				bFirst = false;
+			else {
+				sql.append(",");
+			}
+			sql.append(" ? as %1$s ", this.getDBObjStandardName(strField));
+			Object objValue = insertFieldMap.get(strField);
+			if (objValue instanceof ProcParam) {
+				//sql.append("?");
+				procParamList.add((ProcParam) objValue);
+			} else {
+				sql.append((String) objValue);
+			}
+		}
+		sql.append(" FROM DUAL) ARGS ON (");
+		boolean bUnionKey = false;
+		if(iDEModel.getKeyDEField().isPhisicalDEField() || iDEModel.getUnionKeyValueDEFields()==null){
+			sql.append("t1.%1$s = ARGS.%1$s",this.getDBObjStandardName(iDEModel.getKeyDEField().getName()));
+		}
+		else{
+			bFirst = true;
+			bUnionKey = true;
+			java.util.Iterator<IDEField> unionFields = iDEModel.getUnionKeyValueDEFields();
+			while(unionFields.hasNext()){
+				IDEField iDEField = unionFields.next();
+				if (bFirst)
+					bFirst = false;
+				else {
+					sql.append(" AND ");
+				}	
+				sql.append("t1.%1$s = ARGS.%1$s",this.getDBObjStandardName(iDEField.getName()));
+			}
+			
+		}
+		
+		
+		sql.append(" ) WHEN MATCHED THEN UPDATE SET ");
+		bFirst = true;
+		
+		for (String strField : insertFieldMap.keySet()) {
+			if(bUnionKey){
+				IDEField iDEField = iDEModel.getDEField(strField, true);
+				if(iDEField!=null && !StringHelper.isNullOrEmpty(iDEField.getUnionKeyValue()))
+					continue;
+			}
+			if (bFirst)
+				bFirst = false;
+			else {
+				sql.append(",");
+			}
+			sql.append("t1.%1$s = ARGS.%1$s",this.getDBObjStandardName(strField));
+		}
+		sql.append(" WHEN NOT MATCHED THEN INSERT (");
+		bFirst = true;
+		for (String strField : insertFieldMap.keySet()) {
+			if (bFirst)
+				bFirst = false;
+			else {
+				sql.append(",");
+			}
+			sql.append("t1.%1$s",this.getDBObjStandardName(strField));
+		}
+		sql.append(") VALUES (");
+		bFirst = true;
+		for (String strField : insertFieldMap.keySet()) {
+			if (bFirst)
+				bFirst = false;
+			else {
+				sql.append(",");
+			}
+			sql.append("ARGS.%1$s",this.getDBObjStandardName(strField));
+		}    
+		sql.append(")");
+		return sql.toString();
+	}
+	
+
+//	/* (non-Javadoc)
+//	 * @see net.ibizsys.paas.db.impl.DBDialectImpl#getDBObjStandardName(java.lang.String)
+//	 */
+//	@Override
+//	public String getDBObjStandardName(String strOriginName) {
+//		return StringHelper.format("\"%1$s\"",strOriginName.toUpperCase());
+//	}
+
 }
-

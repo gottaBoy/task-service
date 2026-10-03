@@ -1,9 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-public class BAException
-extends Exception {
-}
+/**
+ * 大数据异常对象
+ * @author Administrator
+ *
+ */
+@SuppressWarnings("serial")
+public class BAException extends Exception {
 
+}

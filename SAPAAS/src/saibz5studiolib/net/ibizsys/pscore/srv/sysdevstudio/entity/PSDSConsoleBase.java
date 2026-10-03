@@ -1336,7 +1336,7 @@ implements Serializable {
                 PSConsoleServer pSConsoleServer = new PSConsoleServer();
                 pSConsoleServer.setPSConsoleServerId(this.getPSConsoleServerId());
                 PSConsoleServerService pSConsoleServerService = (PSConsoleServerService)ServiceGlobal.getService(PSConsoleServerService.class, (SessionFactory)this.getSessionFactory());
-                pSConsoleServerService.autoGet((IEntity)pSConsoleServer);
+                pSConsoleServerService.autoGet(pSConsoleServer);
                 this.psconsoleserver = pSConsoleServer;
             }
             return this.psconsoleserver;

@@ -1252,7 +1252,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSCodeListService().listAllDTO();
+                List<PSCodeListDTO> list = PSModelServiceUtil.getInstance().getPSCodeListService().listAllDTO();
                 if (list != null) {
                     for (PSCodeListDTO psCodeListDTO : list) {
                         if (psCodeListDTO.getValidFlag() != null && psCodeListDTO.getValidFlag() != 1) continue;
@@ -1273,7 +1273,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSCodeItemService().listAllDTO();
+                List<PSCodeItemDTO> list = PSModelServiceUtil.getInstance().getPSCodeItemService().listAllDTO();
                 if (list != null) {
                     for (PSCodeItemDTO psCodeItemDTO : list) {
                         if (psCodeItemDTO.getValidFlag() != null && psCodeItemDTO.getValidFlag() != 1) continue;
@@ -1294,7 +1294,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysImageService().listAllDTO();
+                List<PSSysImageDTO> list = PSModelServiceUtil.getInstance().getPSSysImageService().listAllDTO();
                 if (list != null) {
                     for (PSSysImageDTO psSysImageDTO : list) {
                         PSSysImage psSysImage = new PSSysImage();
@@ -1314,7 +1314,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysCssService().listAllDTO();
+                List<PSSysCssDTO> list = PSModelServiceUtil.getInstance().getPSSysCssService().listAllDTO();
                 if (list != null) {
                     for (PSSysCssDTO psSysCssDTO : list) {
                         PSSysCss psSysCss = new PSSysCss();
@@ -1334,7 +1334,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysCounterService().listAllDTO();
+                List<PSSysCounterDTO> list = PSModelServiceUtil.getInstance().getPSSysCounterService().listAllDTO();
                 if (list != null) {
                     for (PSSysCounterDTO psSysCounterDTO : list) {
                         PSSysCounter psSysCounter = new PSSysCounter();
@@ -1354,7 +1354,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSCtrlMsgService().listAllDTO();
+                List<PSCtrlMsgDTO> list = PSModelServiceUtil.getInstance().getPSCtrlMsgService().listAllDTO();
                 if (list != null) {
                     for (PSCtrlMsgDTO psCtrlMsgDTO : list) {
                         PSCtrlMsg psCtrlMsg = new PSCtrlMsg();
@@ -1374,7 +1374,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEActionTemplService().listAllDTO();
+                List<PSDEActionTemplDTO> list = PSModelServiceUtil.getInstance().getPSDEActionTemplService().listAllDTO();
                 if (list != null) {
                     for (PSDEActionTemplDTO psDEActionTemplDTO : list) {
                         if (psDEActionTemplDTO.getValidFlag() != null && psDEActionTemplDTO.getValidFlag() != 1) continue;
@@ -1395,7 +1395,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysDEFTypeService().listAllDTO();
+                List<PSSysDEFTypeDTO> list = PSModelServiceUtil.getInstance().getPSSysDEFTypeService().listAllDTO();
                 if (list != null) {
                     for (PSSysDEFTypeDTO psSysDEFTypeDTO : list) {
                         if (psSysDEFTypeDTO.getValidFlag() != null && psSysDEFTypeDTO.getValidFlag() != 1) continue;
@@ -1416,7 +1416,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysDELogicNodeService().listAllDTO();
+                List<PSSysDELogicNodeDTO> list = PSModelServiceUtil.getInstance().getPSSysDELogicNodeService().listAllDTO();
                 if (list != null) {
                     for (PSSysDELogicNodeDTO psSysDELogicNodeDTO : list) {
                         PSSysLogic psSysDELogicNode = new PSSysLogic();
@@ -1436,7 +1436,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysUnitService().listAllDTO();
+                List<PSSysUnitDTO> list = PSModelServiceUtil.getInstance().getPSSysUnitService().listAllDTO();
                 if (list != null) {
                     for (PSSysUnitDTO psSysUnitDTO : list) {
                         PSSysUnit psSysUnit = new PSSysUnit();
@@ -1461,7 +1461,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppLanService().listAllDTO();
+                List<PSAppLanDTO> list = PSModelServiceUtil.getInstance().getPSAppLanService().listAllDTO();
                 if (list != null) {
                     for (PSAppLanDTO psAppLanDTO : list) {
                         if (psAppLanDTO.getValidFlag() != null && psAppLanDTO.getValidFlag() != 1) continue;
@@ -1482,7 +1482,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSLanguageResService().listAllDTO();
+                List<PSLanguageResDTO> list = PSModelServiceUtil.getInstance().getPSLanguageResService().listAllDTO();
                 if (list != null) {
                     for (PSLanguageResDTO psLanguageResDTO : list) {
                         PSLanguageRes psLanguageRes = new PSLanguageRes();
@@ -1502,7 +1502,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSLanguageItemService().listAllDTO();
+                List<PSLanguageItemDTO> list = PSModelServiceUtil.getInstance().getPSLanguageItemService().listAllDTO();
                 if (list != null) {
                     for (PSLanguageItemDTO psLanguageItemDTO : list) {
                         PSLanguageItem psLanguageItem = new PSLanguageItem();
@@ -1522,7 +1522,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSubViewTypeService().listAllDTO();
+                List<PSSubViewTypeDTO> list = PSModelServiceUtil.getInstance().getPSSubViewTypeService().listAllDTO();
                 if (list != null) {
                     for (PSSubViewTypeDTO psSubViewTypeDTO : list) {
                         PSSubViewType psSubViewType = new PSSubViewType();
@@ -1542,7 +1542,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysValueRuleService().listAllDTO();
+                List<PSSysValueRuleDTO> list = PSModelServiceUtil.getInstance().getPSSysValueRuleService().listAllDTO();
                 if (list != null) {
                     for (PSSysValueRuleDTO psSysValueRuleDTO : list) {
                         PSSysValueRule psSysValueRule = new PSSysValueRule();
@@ -1562,7 +1562,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysPortletService().listAllDTO();
+                List<PSSysPortletDTO> list = PSModelServiceUtil.getInstance().getPSSysPortletService().listAllDTO();
                 if (list != null) {
                     for (PSSysPortletDTO psSysPortletDTO : list) {
                         PSSysPortlet psSysPortlet = new PSSysPortlet();
@@ -1582,7 +1582,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysDictCatService().listAllDTO();
+                List<PSSysDictCatDTO> list = PSModelServiceUtil.getInstance().getPSSysDictCatService().listAllDTO();
                 if (list != null) {
                     for (PSSysDictCatDTO psSysDictCatDTO : list) {
                         PSSysDictCat psSysDictCat = new PSSysDictCat();
@@ -1602,7 +1602,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysPortletCatService().listAllDTO();
+                List<PSSysPortletCatDTO> list = PSModelServiceUtil.getInstance().getPSSysPortletCatService().listAllDTO();
                 if (list != null) {
                     for (PSSysPortletCatDTO psSysPortletCatDTO : list) {
                         PSSysPortletCat psSysPortletCat = new PSSysPortletCat();
@@ -1622,7 +1622,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysEditorStyleService().listAllDTO();
+                List<PSSysEditorStyleDTO> list = PSModelServiceUtil.getInstance().getPSSysEditorStyleService().listAllDTO();
                 if (list != null) {
                     for (PSSysEditorStyleDTO psSysEditorStyleDTO : list) {
                         PSSysEditorStyle psSysEditorStyle = new PSSysEditorStyle();
@@ -1642,7 +1642,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysPFPluginService().listAllDTO();
+                List<PSSysPFPluginDTO> list = PSModelServiceUtil.getInstance().getPSSysPFPluginService().listAllDTO();
                 if (list != null) {
                     for (PSSysPFPluginDTO psSysPFPluginDTO : list) {
                         PSSysPFPlugin psSysPFPlugin = new PSSysPFPlugin();
@@ -1662,7 +1662,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysPFPITemplService().listAllDTO();
+                List<PSSysPFPITemplDTO> list = PSModelServiceUtil.getInstance().getPSSysPFPITemplService().listAllDTO();
                 if (list != null) {
                     for (PSSysPFPITemplDTO psSysPFPITemplDTO : list) {
                         PSSysPFPluginTempl psSysPFPluginTempl = new PSSysPFPluginTempl();
@@ -1682,7 +1682,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSFPluginService().listAllDTO();
+                List<PSSysSFPluginDTO> list = PSModelServiceUtil.getInstance().getPSSysSFPluginService().listAllDTO();
                 if (list != null) {
                     for (PSSysSFPluginDTO psSysSFPluginDTO : list) {
                         PSSysSFPlugin psSysSFPlugin = new PSSysSFPlugin();
@@ -1702,7 +1702,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSFPITemplService().listAllDTO();
+                List<PSSysSFPITemplDTO> list = PSModelServiceUtil.getInstance().getPSSysSFPITemplService().listAllDTO();
                 if (list != null) {
                     for (PSSysSFPITemplDTO psSysSFPITemplDTO : list) {
                         PSSysSFPluginTempl psSysSFPluginTempl = new PSSysSFPluginTempl();
@@ -1722,7 +1722,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysUniResService().listAllDTO();
+                List<PSSysUniResDTO> list = PSModelServiceUtil.getInstance().getPSSysUniResService().listAllDTO();
                 if (list != null) {
                     for (PSSysUniResDTO psSysUniResDTO : list) {
                         PSSysUniRes psSysUniRes = new PSSysUniRes();
@@ -1742,7 +1742,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysOPPrivService().listAllDTO();
+                List<PSSysOPPrivDTO> list = PSModelServiceUtil.getInstance().getPSSysOPPrivService().listAllDTO();
                 if (list != null) {
                     for (PSSysOPPrivDTO psSysOPPrivDTO : list) {
                         PSSysUserRole psSysUserRole = new PSSysUserRole();
@@ -1762,7 +1762,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysUserRoleResService().listAllDTO();
+                List<PSSysUserRoleResDTO> list = PSModelServiceUtil.getInstance().getPSSysUserRoleResService().listAllDTO();
                 if (list != null) {
                     for (PSSysUserRoleResDTO psSysUserRoleResDTO : list) {
                         if (psSysUserRoleResDTO.getValidFlag() != null && psSysUserRoleResDTO.getValidFlag() != 1) continue;
@@ -1783,7 +1783,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysUserRoleDataService().listAllDTO();
+                List<PSSysUserRoleDataDTO> list = PSModelServiceUtil.getInstance().getPSSysUserRoleDataService().listAllDTO();
                 if (list != null) {
                     for (PSSysUserRoleDataDTO psSysUserRoleDataDTO : list) {
                         if (psSysUserRoleDataDTO.getValidFlag() != null && psSysUserRoleDataDTO.getValidFlag() != 1) continue;
@@ -1804,7 +1804,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysMsgTemplService().listAllDTO();
+                List<PSSysMsgTemplDTO> list = PSModelServiceUtil.getInstance().getPSSysMsgTemplService().listAllDTO();
                 if (list != null) {
                     for (PSSysMsgTemplDTO psSysMsgTemplDTO : list) {
                         PSSysMsgTempl psSysMsgTempl = new PSSysMsgTempl();
@@ -1824,7 +1824,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSViewMsgService().listAllDTO();
+                List<PSViewMsgDTO> list = PSModelServiceUtil.getInstance().getPSViewMsgService().listAllDTO();
                 if (list != null) {
                     for (PSViewMsgDTO psViewMsgDTO : list) {
                         PSViewMsg psViewMsg = new PSViewMsg();
@@ -1844,7 +1844,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSViewMsgGroupService().listAllDTO();
+                List<PSViewMsgGroupDTO> list = PSModelServiceUtil.getInstance().getPSViewMsgGroupService().listAllDTO();
                 if (list != null) {
                     for (PSViewMsgGroupDTO psViewMsgGroupDTO : list) {
                         PSViewMsgGroup psViewMsgGroup = new PSViewMsgGroup();
@@ -1864,7 +1864,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSViewMsgGrpDetailService().listAllDTO();
+                List<PSViewMsgGrpDetailDTO> list = PSModelServiceUtil.getInstance().getPSViewMsgGrpDetailService().listAllDTO();
                 if (list != null) {
                     for (PSViewMsgGrpDetailDTO psViewMsgGroupDetailDTO : list) {
                         if (psViewMsgGroupDetailDTO.getValidFlag() != null && psViewMsgGroupDetailDTO.getValidFlag() != 1) continue;
@@ -1885,7 +1885,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSFPubService().listAllDTO();
+                List<PSSysSFPubDTO> list = PSModelServiceUtil.getInstance().getPSSysSFPubService().listAllDTO();
                 if (list != null) {
                     for (PSSysSFPubDTO psSysSFPubDTO : list) {
                         PSSysSFPub psSysSFPub = new PSSysSFPub();
@@ -1905,7 +1905,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSAHandlerService().listAllDTO();
+                List<PSSysSAHandlerDTO> list = PSModelServiceUtil.getInstance().getPSSysSAHandlerService().listAllDTO();
                 if (list != null) {
                     for (PSSysSAHandlerDTO psSysSAHandlerDTO : list) {
                         PSSysServiceAPIHandler psSysSAHandler = new PSSysServiceAPIHandler();
@@ -1925,7 +1925,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysServiceAPIService().listAllDTO();
+                List<PSSysServiceAPIDTO> list = PSModelServiceUtil.getInstance().getPSSysServiceAPIService().listAllDTO();
                 if (list != null) {
                     for (PSSysServiceAPIDTO psSysServiceAPIDTO : list) {
                         PSSysServiceAPI psSysServiceAPI = new PSSysServiceAPI();
@@ -1945,7 +1945,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSubSysServiceAPIService().listAllDTO();
+                List<PSSubSysServiceAPIDTO> list = PSModelServiceUtil.getInstance().getPSSubSysServiceAPIService().listAllDTO();
                 if (list != null) {
                     for (PSSubSysServiceAPIDTO psSubSysServiceAPIDTO : list) {
                         PSSubSysServiceAPI psSubSysServiceAPI = new PSSubSysServiceAPI();
@@ -1965,7 +1965,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSubSysSADetailService().listAllDTO();
+                List<PSSubSysSADetailDTO> list = PSModelServiceUtil.getInstance().getPSSubSysSADetailService().listAllDTO();
                 if (list != null) {
                     for (PSSubSysSADetailDTO psSubSysSADetailDTO : list) {
                         if (psSubSysSADetailDTO.getValidFlag() != null && psSubSysSADetailDTO.getValidFlag() != 1) continue;
@@ -1986,7 +1986,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSubSysSADEService().listAllDTO();
+                List<PSSubSysSADEDTO> list = PSModelServiceUtil.getInstance().getPSSubSysSADEService().listAllDTO();
                 if (list != null) {
                     for (PSSubSysSADEDTO psSubSysSADEDTO : list) {
                         if (psSubSysSADEDTO.getValidFlag() != null && psSubSysSADEDTO.getValidFlag() != 1) continue;
@@ -2007,7 +2007,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSubSysSADERSService().listAllDTO();
+                List<PSSubSysSADERSDTO> list = PSModelServiceUtil.getInstance().getPSSubSysSADERSService().listAllDTO();
                 if (list != null) {
                     for (PSSubSysSADERSDTO psSubSysSADERSDTO : list) {
                         if (psSubSysSADERSDTO.getValidFlag() != null && psSubSysSADERSDTO.getValidFlag() != 1) continue;
@@ -2028,7 +2028,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSubSysSADEFieldService().listAllDTO();
+                List<PSSubSysSADEFieldDTO> list = PSModelServiceUtil.getInstance().getPSSubSysSADEFieldService().listAllDTO();
                 if (list != null) {
                     for (PSSubSysSADEFieldDTO psSubSysSADEFieldDTO : list) {
                         if (psSubSysSADEFieldDTO.getValidFlag() != null && psSubSysSADEFieldDTO.getValidFlag() != 1) continue;
@@ -2049,7 +2049,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBackServiceService().listAllDTO();
+                List<PSSysBackServiceDTO> list = PSModelServiceUtil.getInstance().getPSSysBackServiceService().listAllDTO();
                 if (list != null) {
                     for (PSSysBackServiceDTO psSysBackServiceDTO : list) {
                         PSSysBackService psSysBackService = new PSSysBackService();
@@ -2069,7 +2069,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysPDTViewService().listAllDTO();
+                List<PSSysPDTViewDTO> list = PSModelServiceUtil.getInstance().getPSSysPDTViewService().listAllDTO();
                 if (list != null) {
                     for (PSSysPDTViewDTO psSysPDTViewDTO : list) {
                         PSSysPDTView psSysPDTView = new PSSysPDTView();
@@ -2094,7 +2094,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysViewLogicService().listAllDTO();
+                List<PSSysViewLogicDTO> list = PSModelServiceUtil.getInstance().getPSSysViewLogicService().listAllDTO();
                 if (list != null) {
                     for (PSSysViewLogicDTO psSysViewLogicDTO : list) {
                         PSSysViewLogic psSysViewLogic = new PSSysViewLogic();
@@ -2114,7 +2114,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysViewLogicParamService().listAllDTO();
+                List<PSSysViewLogicParamDTO> list = PSModelServiceUtil.getInstance().getPSSysViewLogicParamService().listAllDTO();
                 if (list != null) {
                     for (PSSysViewLogicParamDTO psSysViewLogicParamDTO : list) {
                         PSSysViewLogicParam psSysViewLogicParam = new PSSysViewLogicParam();
@@ -2134,7 +2134,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysDataSyncAgentService().listAllDTO();
+                List<PSSysDataSyncAgentDTO> list = PSModelServiceUtil.getInstance().getPSSysDataSyncAgentService().listAllDTO();
                 if (list != null) {
                     for (PSSysDataSyncAgentDTO psSysDataSyncAgentDTO : list) {
                         PSSysDataSyncAgent psSysDataSyncAgent = new PSSysDataSyncAgent();
@@ -2154,7 +2154,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDataEntityService().listAllDTO();
+                List<PSDataEntityDTO> list = PSModelServiceUtil.getInstance().getPSDataEntityService().listAllDTO();
                 if (list != null) {
                     for (PSDataEntityDTO psDataEntityDTO : list) {
                         PSDataEntity psDataEntity = new PSDataEntity();
@@ -2174,7 +2174,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFieldService().listAllDTO();
+                List<PSDEFieldDTO> list = PSModelServiceUtil.getInstance().getPSDEFieldService().listAllDTO();
                 if (list != null) {
                     for (PSDEFieldDTO psDEFieldDTO : list) {
                         PSDEField psDEField = new PSDEField();
@@ -2194,7 +2194,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEViewBaseService().listAllDTO();
+                List<PSDEViewBaseDTO> list = PSModelServiceUtil.getInstance().getPSDEViewBaseService().listAllDTO();
                 if (list != null) {
                     for (PSDEViewBaseDTO psDEViewBaseDTO : list) {
                         PSDEViewBase psDEViewBase = new PSDEViewBase();
@@ -2214,7 +2214,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFUIModeService().listAllDTO();
+                List<PSDEFUIModeDTO> list = PSModelServiceUtil.getInstance().getPSDEFUIModeService().listAllDTO();
                 if (list != null) {
                     for (PSDEFUIModeDTO psDEFUIModeDTO : list) {
                         PSDEFUIMode psDEFUIMode = new PSDEFUIMode();
@@ -2234,7 +2234,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFSFItemService().listAllDTO();
+                List<PSDEFSFItemDTO> list = PSModelServiceUtil.getInstance().getPSDEFSFItemService().listAllDTO();
                 if (list != null) {
                     for (PSDEFSFItemDTO psDEFSearchModeDTO : list) {
                         PSDEFSearchMode psDEFSearchMode = new PSDEFSearchMode();
@@ -2254,7 +2254,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFDTColService().listAllDTO();
+                List<PSDEFDTColDTO> list = PSModelServiceUtil.getInstance().getPSDEFDTColService().listAllDTO();
                 if (list != null) {
                     for (PSDEFDTColDTO psDEFDTColDTO : list) {
                         PSDEFDTColumn psDEFDTCol = new PSDEFDTColumn();
@@ -2274,7 +2274,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSearchDEFieldService().listAllDTO();
+                List<PSSysSearchDEFieldDTO> list = PSModelServiceUtil.getInstance().getPSSysSearchDEFieldService().listAllDTO();
                 if (list != null) {
                     for (PSSysSearchDEFieldDTO psSysSearchDEFieldDTO : list) {
                         PSSysSearchDEField psSysSearchDEField = new PSSysSearchDEField();
@@ -2294,7 +2294,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFValueRuleService().listAllDTO();
+                List<PSDEFValueRuleDTO> list = PSModelServiceUtil.getInstance().getPSDEFValueRuleService().listAllDTO();
                 if (list != null) {
                     for (PSDEFValueRuleDTO psDEFValueRuleDTO : list) {
                         PSDEFValueRule psDEFValueRule = new PSDEFValueRule();
@@ -2314,7 +2314,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFVRCondService().listAllDTO();
+                List<PSDEFVRCondDTO> list = PSModelServiceUtil.getInstance().getPSDEFVRCondService().listAllDTO();
                 if (list != null) {
                     for (PSDEFVRCondDTO psDEFValueRuleCondDTO : list) {
                         PSDEFValueRuleCond psDEFValueRuleCond = new PSDEFValueRuleCond();
@@ -2334,7 +2334,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFInputTipService().listAllDTO();
+                List<PSDEFInputTipDTO> list = PSModelServiceUtil.getInstance().getPSDEFInputTipService().listAllDTO();
                 if (list != null) {
                     for (PSDEFInputTipDTO psDEFInputTipDTO : list) {
                         if (StringHelper.isNullOrEmpty((String)psDEFInputTipDTO.getPSDEId())) continue;
@@ -2355,7 +2355,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFInputTipService().listAllDTO();
+                List<PSDEFInputTipDTO> list = PSModelServiceUtil.getInstance().getPSDEFInputTipService().listAllDTO();
                 if (list != null) {
                     for (PSDEFInputTipDTO psDEFInputTipDTO : list) {
                         if (!StringHelper.isNullOrEmpty((String)psDEFInputTipDTO.getPSDEId())) continue;
@@ -2376,7 +2376,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDERService().listAllDTO();
+                List<PSDERDTO> list = PSModelServiceUtil.getInstance().getPSDERService().listAllDTO();
                 if (list != null) {
                     for (PSDERDTO psDERDTO : list) {
                         if (psDERDTO.getValidFlag() != null && psDERDTO.getValidFlag() != 1) continue;
@@ -2401,7 +2401,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDERDEFMapService().listAllDTO();
+                List<PSDERDEFMapDTO> list = PSModelServiceUtil.getInstance().getPSDERDEFMapService().listAllDTO();
                 if (list != null) {
                     for (PSDERDEFMapDTO psDERDEFMapDTO : list) {
                         PSDERDEFMap psDERDEFMap = new PSDERDEFMap();
@@ -2421,7 +2421,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDBCfgService().listAllDTO();
+                List<PSDEDBCfgDTO> list = PSModelServiceUtil.getInstance().getPSDEDBCfgService().listAllDTO();
                 if (list != null) {
                     for (PSDEDBCfgDTO psDEDBConfigDTO : list) {
                         PSDEDBConfig psDEDBConfig = new PSDEDBConfig();
@@ -2441,7 +2441,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDBIndexService().listAllDTO();
+                List<PSDEDBIndexDTO> list = PSModelServiceUtil.getInstance().getPSDEDBIndexService().listAllDTO();
                 if (list != null) {
                     for (PSDEDBIndexDTO psDEDBIndexDTO : list) {
                         PSDEDBIndex psDEDBIndex = new PSDEDBIndex();
@@ -2461,7 +2461,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDBIdxFieldService().listAllDTO();
+                List<PSDEDBIdxFieldDTO> list = PSModelServiceUtil.getInstance().getPSDEDBIdxFieldService().listAllDTO();
                 if (list != null) {
                     for (PSDEDBIdxFieldDTO psDEDBIndexFieldDTO : list) {
                         PSDEDBIndexField psDEDBIndexField = new PSDEDBIndexField();
@@ -2481,7 +2481,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDETableService().listAllDTO();
+                List<PSDETableDTO> list = PSModelServiceUtil.getInstance().getPSDETableService().listAllDTO();
                 if (list != null) {
                     for (PSDETableDTO psDETableDTO : list) {
                         PSDEDBTable psDETable = new PSDEDBTable();
@@ -2501,7 +2501,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDataSetService().listAllDTO();
+                List<PSDEDataSetDTO> list = PSModelServiceUtil.getInstance().getPSDEDataSetService().listAllDTO();
                 if (list != null) {
                     for (PSDEDataSetDTO psDEDataSetDTO : list) {
                         PSDEDataSet psDEDataSet = new PSDEDataSet();
@@ -2521,7 +2521,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDSDQService().listAllDTO();
+                List<PSDEDSDQDTO> list = PSModelServiceUtil.getInstance().getPSDEDSDQService().listAllDTO();
                 if (list != null) {
                     for (PSDEDSDQDTO psDEDSDQDTO : list) {
                         PSDEDSDQ psDEDSDQ = new PSDEDSDQ();
@@ -2541,7 +2541,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDSGrpParamService().listAllDTO();
+                List<PSDEDSGrpParamDTO> list = PSModelServiceUtil.getInstance().getPSDEDSGrpParamService().listAllDTO();
                 if (list != null) {
                     for (PSDEDSGrpParamDTO psDEDSGroupParamDTO : list) {
                         PSDEDSGroupParam psDEDSGroupParam = new PSDEDSGroupParam();
@@ -2561,7 +2561,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDataQueryService().listAllDTO();
+                List<PSDEDataQueryDTO> list = PSModelServiceUtil.getInstance().getPSDEDataQueryService().listAllDTO();
                 if (list != null) {
                     for (PSDEDataQueryDTO psDEDataQueryDTO : list) {
                         PSDEDataQuery psDEDataQuery = new PSDEDataQuery();
@@ -2581,7 +2581,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDQCondService().listAllDTO();
+                List<PSDEDQCondDTO> list = PSModelServiceUtil.getInstance().getPSDEDQCondService().listAllDTO();
                 if (list != null) {
                     for (PSDEDQCondDTO psDEDataQueryCondDTO : list) {
                         PSDEDataQueryCond psDEDataQueryCond = new PSDEDataQueryCond();
@@ -2601,7 +2601,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDQJoinService().listAllDTO();
+                List<PSDEDQJoinDTO> list = PSModelServiceUtil.getInstance().getPSDEDQJoinService().listAllDTO();
                 if (list != null) {
                     for (PSDEDQJoinDTO psDEDataQueryJoinDTO : list) {
                         PSDEDataQueryJoin psDEDataQueryJoin = new PSDEDataQueryJoin();
@@ -2622,7 +2622,7 @@ extends PSModelHelperImpl {
 
                 @Override
                 public Object execute(Object param) throws Exception {
-                    List list = PSModelServiceUtil.getInstance().getPSDEDQCodeService().listAllDTO();
+                    List<PSDEDQCodeDTO> list = PSModelServiceUtil.getInstance().getPSDEDQCodeService().listAllDTO();
                     if (list != null) {
                         for (PSDEDQCodeDTO psDEDataQueryCodeDTO : list) {
                             PSDEDataQueryCode psDEDataQueryCode = new PSDEDataQueryCode();
@@ -2645,7 +2645,7 @@ extends PSModelHelperImpl {
 
                 @Override
                 public Object execute(Object param) throws Exception {
-                    List list = PSModelServiceUtil.getInstance().getPSDEDQCodeExpService().listAllDTO();
+                    List<PSDEDQCodeExpDTO> list = PSModelServiceUtil.getInstance().getPSDEDQCodeExpService().listAllDTO();
                     if (list != null) {
                         for (PSDEDQCodeExpDTO psDEDataQueryCodeExpDTO : list) {
                             PSDEDataQueryCodeExp psDEDataQueryCodeExp = new PSDEDataQueryCodeExp();
@@ -2668,7 +2668,7 @@ extends PSModelHelperImpl {
 
                 @Override
                 public Object execute(Object param) throws Exception {
-                    List list = PSModelServiceUtil.getInstance().getPSDEDQCodeCondService().listAllDTO();
+                    List<PSDEDQCodeCondDTO> list = PSModelServiceUtil.getInstance().getPSDEDQCodeCondService().listAllDTO();
                     if (list != null) {
                         for (PSDEDQCodeCondDTO psDEDataQueryCodeCondDTO : list) {
                             PSDEDataQueryCodeCond psDEDataQueryCodeCond = new PSDEDataQueryCodeCond();
@@ -2690,7 +2690,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDELogicService().listAllDTO();
+                List<PSDELogicDTO> list = PSModelServiceUtil.getInstance().getPSDELogicService().listAllDTO();
                 if (list != null) {
                     for (PSDELogicDTO psDELogicDTO : list) {
                         PSDELogic psDELogic = new PSDELogic();
@@ -2710,7 +2710,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDELogicParamService().listAllDTO();
+                List<PSDELogicParamDTO> list = PSModelServiceUtil.getInstance().getPSDELogicParamService().listAllDTO();
                 if (list != null) {
                     for (PSDELogicParamDTO psDELogicParamDTO : list) {
                         PSDELogicParam psDELogicParam = new PSDELogicParam();
@@ -2730,7 +2730,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDELogicNodeService().listAllDTO();
+                List<PSDELogicNodeDTO> list = PSModelServiceUtil.getInstance().getPSDELogicNodeService().listAllDTO();
                 if (list != null) {
                     for (PSDELogicNodeDTO psDELogicNodeDTO : list) {
                         PSDELogicNode psDELogicNode = new PSDELogicNode();
@@ -2750,7 +2750,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDELogicLinkService().listAllDTO();
+                List<PSDELogicLinkDTO> list = PSModelServiceUtil.getInstance().getPSDELogicLinkService().listAllDTO();
                 if (list != null) {
                     for (PSDELogicLinkDTO psDELogicLinkDTO : list) {
                         PSDELogicLink psDELogicLink = new PSDELogicLink();
@@ -2770,10 +2770,10 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List psDELogicNodeDTOList = PSModelServiceUtil.getInstance().getPSDELogicNodeService().listAllDTO();
+                List<PSDELogicNodeDTO> psDELogicNodeDTOList = PSModelServiceUtil.getInstance().getPSDELogicNodeService().listAllDTO();
                 if (psDELogicNodeDTOList != null) {
                     for (PSDELogicNodeDTO psDELogicNodeDTO : psDELogicNodeDTOList) {
-                        List list = PSModelServiceUtil.getInstance().getPSDELNParamService().listDTOByPSDELogicNode(psDELogicNodeDTO.getPSDELogicNodeId());
+                        List<PSDELNParamDTO> list = PSModelServiceUtil.getInstance().getPSDELNParamService().listDTOByPSDELogicNode(psDELogicNodeDTO.getPSDELogicNodeId());
                         if (list == null) continue;
                         for (PSDELNParamDTO psDELogicNodeParamDTO : list) {
                             PSDELogicNodeParam psDELogicNodeParam = new PSDELogicNodeParam();
@@ -2795,10 +2795,10 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List psDELogicLinkDTOList = PSModelServiceUtil.getInstance().getPSDELogicLinkService().listAllDTO();
+                List<PSDELogicLinkDTO> psDELogicLinkDTOList = PSModelServiceUtil.getInstance().getPSDELogicLinkService().listAllDTO();
                 if (psDELogicLinkDTOList != null) {
                     for (PSDELogicLinkDTO psDELogicLinkDTO : psDELogicLinkDTOList) {
-                        List list = PSModelServiceUtil.getInstance().getPSDELLCondService().listAllDTOByPSDELogicLink(psDELogicLinkDTO.getPSDELogicLinkId());
+                        List<PSDELLCondDTO> list = PSModelServiceUtil.getInstance().getPSDELLCondService().listAllDTOByPSDELogicLink(psDELogicLinkDTO.getPSDELogicLinkId());
                         if (list == null) continue;
                         for (PSDELLCondDTO psDELogicLinkCondDTO : list) {
                             PSDELogicLinkCond psDELogicLinkCond = new PSDELogicLinkCond();
@@ -2820,7 +2820,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEActionService().listAllDTO();
+                List<PSDEActionDTO> list = PSModelServiceUtil.getInstance().getPSDEActionService().listAllDTO();
                 if (list != null) {
                     for (PSDEActionDTO psDEActionDTO : list) {
                         PSDEAction psDEAction = new PSDEAction();
@@ -2840,7 +2840,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEActionParamService().listAllDTO();
+                List<PSDEActionParamDTO> list = PSModelServiceUtil.getInstance().getPSDEActionParamService().listAllDTO();
                 if (list != null) {
                     for (PSDEActionParamDTO psDEActionParamDTO : list) {
                         PSDEActionParam psDEActionParam = new PSDEActionParam();
@@ -2860,7 +2860,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEActionLogicService().listAllDTO();
+                List<PSDEActionLogicDTO> list = PSModelServiceUtil.getInstance().getPSDEActionLogicService().listAllDTO();
                 if (list != null) {
                     for (PSDEActionLogicDTO psDEActionLogicDTO : list) {
                         PSDEActionLogic psDEActionLogic = new PSDEActionLogic();
@@ -2885,7 +2885,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSACHandlerService().listAllDTO();
+                List<PSACHandlerDTO> list = PSModelServiceUtil.getInstance().getPSACHandlerService().listAllDTO();
                 if (list != null) {
                     for (PSACHandlerDTO psACHandlerDTO : list) {
                         PSACHandler psACHandler = new PSACHandler();
@@ -2905,7 +2905,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDRItemService().listAllDTO();
+                List<PSDEDRItemDTO> list = PSModelServiceUtil.getInstance().getPSDEDRItemService().listAllDTO();
                 if (list != null) {
                     for (PSDEDRItemDTO psDEDRItemDTO : list) {
                         PSDEDRItem psDEDRItem = new PSDEDRItem();
@@ -2925,7 +2925,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDRGroupService().listAllDTO();
+                List<PSDEDRGroupDTO> list = PSModelServiceUtil.getInstance().getPSDEDRGroupService().listAllDTO();
                 if (list != null) {
                     for (PSDEDRGroupDTO psDEDRGroupDTO : list) {
                         PSDEDRGroup psDEDRGroup = new PSDEDRGroup();
@@ -2945,7 +2945,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEMapService().listAllDTO();
+                List<PSDEMapDTO> list = PSModelServiceUtil.getInstance().getPSDEMapService().listAllDTO();
                 if (list != null) {
                     for (PSDEMapDTO psDEMapDTO : list) {
                         PSDEMap psDEMap = new PSDEMap();
@@ -2965,7 +2965,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEMapDetailService().listAllDTO();
+                List<PSDEMapDetailDTO> list = PSModelServiceUtil.getInstance().getPSDEMapDetailService().listAllDTO();
                 if (list != null) {
                     for (PSDEMapDetailDTO psDEMapDetailDTO : list) {
                         PSDEMapDetail psDEMapDetail = new PSDEMapDetail();
@@ -2985,7 +2985,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEMapActionService().listAllDTO();
+                List<PSDEMapActionDTO> list = PSModelServiceUtil.getInstance().getPSDEMapActionService().listAllDTO();
                 if (list != null) {
                     for (PSDEMapActionDTO psDEMapActionDTO : list) {
                         PSDEMapAction psDEMapAction = new PSDEMapAction();
@@ -3005,7 +3005,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEMapDQService().listAllDTO();
+                List<PSDEMapDQDTO> list = PSModelServiceUtil.getInstance().getPSDEMapDQService().listAllDTO();
                 if (list != null) {
                     for (PSDEMapDQDTO psDEMapDQDTO : list) {
                         PSDEMapDataQuery psDEMapDQ = new PSDEMapDataQuery();
@@ -3025,7 +3025,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEMapDSService().listAllDTO();
+                List<PSDEMapDSDTO> list = PSModelServiceUtil.getInstance().getPSDEMapDSService().listAllDTO();
                 if (list != null) {
                     for (PSDEMapDSDTO psDEMapDSDTO : list) {
                         PSDEMapDataSet psDEMapDS = new PSDEMapDataSet();
@@ -3045,7 +3045,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDataRelationService().listAllDTO();
+                List<PSDEDataRelationDTO> list = PSModelServiceUtil.getInstance().getPSDEDataRelationService().listAllDTO();
                 if (list != null) {
                     for (PSDEDataRelationDTO psDEDataRelationDTO : list) {
                         PSDEDataRelation psDEDataRelation = new PSDEDataRelation();
@@ -3065,7 +3065,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDRDetailService().listAllDTO();
+                List<PSDEDRDetailDTO> list = PSModelServiceUtil.getInstance().getPSDEDRDetailService().listAllDTO();
                 if (list != null) {
                     for (PSDEDRDetailDTO psDEDRDetailDTO : list) {
                         PSDEDRDetail psDEDRDetail = new PSDEDRDetail();
@@ -3085,7 +3085,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEACModeService().listAllDTO();
+                List<PSDEACModeDTO> list = PSModelServiceUtil.getInstance().getPSDEACModeService().listAllDTO();
                 if (list != null) {
                     for (PSDEACModeDTO psDEACModeDTO : list) {
                         PSDEACMode psDEACMode = new PSDEACMode();
@@ -3105,7 +3105,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEACModeItemService().listAllDTO();
+                List<PSDEACModeItemDTO> list = PSModelServiceUtil.getInstance().getPSDEACModeItemService().listAllDTO();
                 if (list != null) {
                     for (PSDEACModeItemDTO psDEACModeItemDTO : list) {
                         PSDEACModeItem psDEACModeItem = new PSDEACModeItem();
@@ -3125,7 +3125,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEUIActionService().listAllDTO();
+                List<PSDEUIActionDTO> list = PSModelServiceUtil.getInstance().getPSDEUIActionService().listAllDTO();
                 if (list != null) {
                     for (PSDEUIActionDTO psDEUIActionDTO : list) {
                         if (StringHelper.isNullOrEmpty((String)psDEUIActionDTO.getPSDEId())) continue;
@@ -3146,7 +3146,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEUIActionService().listAllDTO();
+                List<PSDEUIActionDTO> list = PSModelServiceUtil.getInstance().getPSDEUIActionService().listAllDTO();
                 if (list != null) {
                     for (PSDEUIActionDTO psDEUIActionDTO : list) {
                         if ((!StringHelper.isNullOrEmpty((String)psDEUIActionDTO.getPSDEId()) || !StringHelper.isNullOrEmpty((String)psDEUIActionDTO.getPSWFId())) && (psDEUIActionDTO.getGlobalFlag() == null || psDEUIActionDTO.getGlobalFlag() != 1)) continue;
@@ -3167,7 +3167,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEUAGroupService().listAllDTO();
+                List<PSDEUAGroupDTO> list = PSModelServiceUtil.getInstance().getPSDEUAGroupService().listAllDTO();
                 if (list != null) {
                     for (PSDEUAGroupDTO psDEUIActionGroupDTO : list) {
                         if (StringHelper.isNullOrEmpty((String)psDEUIActionGroupDTO.getPSDEId())) continue;
@@ -3188,7 +3188,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEUAGroupService().listAllDTO();
+                List<PSDEUAGroupDTO> list = PSModelServiceUtil.getInstance().getPSDEUAGroupService().listAllDTO();
                 if (list != null) {
                     for (PSDEUAGroupDTO psDEUIActionGroupDTO : list) {
                         if (!StringHelper.isNullOrEmpty((String)psDEUIActionGroupDTO.getPSDEId()) || !StringHelper.isNullOrEmpty((String)psDEUIActionGroupDTO.getPSWFId())) continue;
@@ -3209,7 +3209,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFGroupService().listAllDTO();
+                List<PSDEFGroupDTO> list = PSModelServiceUtil.getInstance().getPSDEFGroupService().listAllDTO();
                 if (list != null) {
                     for (PSDEFGroupDTO psDEFGroupDTO : list) {
                         if (StringHelper.isNullOrEmpty((String)psDEFGroupDTO.getPSDEId())) continue;
@@ -3230,7 +3230,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEGroupService().listAllDTO();
+                List<PSDEGroupDTO> list = PSModelServiceUtil.getInstance().getPSDEGroupService().listAllDTO();
                 if (list != null) {
                     for (PSDEGroupDTO psDEGroupDTO : list) {
                         if (StringHelper.isNullOrEmpty((String)psDEGroupDTO.getPSDEId())) continue;
@@ -3251,7 +3251,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDERGroupService().listAllDTO();
+                List<PSDERGroupDTO> list = PSModelServiceUtil.getInstance().getPSDERGroupService().listAllDTO();
                 if (list != null) {
                     for (PSDERGroupDTO psDERGroupDTO : list) {
                         if (StringHelper.isNullOrEmpty((String)psDERGroupDTO.getPSDEId())) continue;
@@ -3272,7 +3272,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEActionGroupService().listAllDTO();
+                List<PSDEActionGroupDTO> list = PSModelServiceUtil.getInstance().getPSDEActionGroupService().listAllDTO();
                 if (list != null) {
                     for (PSDEActionGroupDTO psDEActionGroupDTO : list) {
                         if (StringHelper.isNullOrEmpty((String)psDEActionGroupDTO.getPSDEId())) continue;
@@ -3293,7 +3293,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFDEService().listAllDTO();
+                List<PSWFDEDTO> list = PSModelServiceUtil.getInstance().getPSWFDEService().listAllDTO();
                 if (list != null) {
                     for (PSWFDEDTO psWFDEDTO : list) {
                         PSWFDE psWFDE = new PSWFDE();
@@ -3313,7 +3313,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDTSQueueService().listAllDTO();
+                List<PSDEDTSQueueDTO> list = PSModelServiceUtil.getInstance().getPSDEDTSQueueService().listAllDTO();
                 if (list != null) {
                     for (PSDEDTSQueueDTO psDEUniStateDTO : list) {
                         PSSysDTSQueue psDEUniState = new PSSysDTSQueue();
@@ -3333,7 +3333,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEOPPrivService().listAllDTO();
+                List<PSDEOPPrivDTO> list = PSModelServiceUtil.getInstance().getPSDEOPPrivService().listAllDTO();
                 if (list != null) {
                     for (PSDEOPPrivDTO psDEOPPrivDTO : list) {
                         if (!StringHelper.isNullOrEmpty((String)psDEOPPrivDTO.getPSDEId()) || psDEOPPrivDTO.getDEValidFlag() != null && psDEOPPrivDTO.getDEValidFlag() != 1 || psDEOPPrivDTO.getDERValidFlag() != null && psDEOPPrivDTO.getDERValidFlag() != 1) continue;
@@ -3354,7 +3354,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEOPPrivService().listAllDTO();
+                List<PSDEOPPrivDTO> list = PSModelServiceUtil.getInstance().getPSDEOPPrivService().listAllDTO();
                 if (list != null) {
                     for (PSDEOPPrivDTO psDEOPPrivDTO : list) {
                         if (psDEOPPrivDTO.getDEValidFlag() != null && psDEOPPrivDTO.getDEValidFlag() != 1 || psDEOPPrivDTO.getDERValidFlag() != null && psDEOPPrivDTO.getDERValidFlag() != 1 || StringHelper.isNullOrEmpty((String)psDEOPPrivDTO.getPSDEId())) continue;
@@ -3396,7 +3396,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEMainStateService().listAllDTO();
+                List<PSDEMainStateDTO> list = PSModelServiceUtil.getInstance().getPSDEMainStateService().listAllDTO();
                 if (list != null) {
                     for (PSDEMainStateDTO psDEMainStateDTO : list) {
                         PSDEMainState psDEMainState = new PSDEMainState();
@@ -3416,7 +3416,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEMSActionService().listAllDTO();
+                List<PSDEMSActionDTO> list = PSModelServiceUtil.getInstance().getPSDEMSActionService().listAllDTO();
                 if (list != null) {
                     for (PSDEMSActionDTO psDEMainStateActionDTO : list) {
                         if (psDEMainStateActionDTO.getValidFlag() != null && psDEMainStateActionDTO.getValidFlag() != 1) continue;
@@ -3437,7 +3437,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEMSOPPrivService().listAllDTO();
+                List<PSDEMSOPPrivDTO> list = PSModelServiceUtil.getInstance().getPSDEMSOPPrivService().listAllDTO();
                 if (list != null) {
                     for (PSDEMSOPPrivDTO psDEMainStateOPPrivDTO : list) {
                         if (psDEMainStateOPPrivDTO.getValidFlag() != null && psDEMainStateOPPrivDTO.getValidFlag() != 1) continue;
@@ -3463,7 +3463,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDataExpService().listAllDTO();
+                List<PSDEDataExpDTO> list = PSModelServiceUtil.getInstance().getPSDEDataExpService().listAllDTO();
                 if (list != null) {
                     for (PSDEDataExpDTO psDEDataExportDTO : list) {
                         PSDEDataExport psDEDataExport = new PSDEDataExport();
@@ -3483,10 +3483,10 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDataExpService().listAllDTO();
+                List<PSDEDataExpDTO> list = PSModelServiceUtil.getInstance().getPSDEDataExpService().listAllDTO();
                 if (list != null) {
                     for (PSDEDataExpDTO psDEDataExportDTO : list) {
-                        List list2;
+                        List<PSDEGridColDTO> list2;
                         if (StringHelper.isNullOrEmpty((String)psDEDataExportDTO.getPSDEGridId()) || (list2 = PSModelServiceUtil.getInstance().getPSDEGridColService().listAllDTOByPSDEGrid(psDEDataExportDTO.getPSDEGridId())) == null) continue;
                         for (PSDEGridColDTO psDEGridColDTO : list2) {
                             PSDEGridColumn psDEGridColumn = new PSDEGridColumn();
@@ -3508,7 +3508,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDataImpService().listAllDTO();
+                List<PSDEDataImpDTO> list = PSModelServiceUtil.getInstance().getPSDEDataImpService().listAllDTO();
                 if (list != null) {
                     for (PSDEDataImpDTO psDEDataImportDTO : list) {
                         PSDEDataImport psDEDataImport = new PSDEDataImport();
@@ -3528,7 +3528,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDataImpItemService().listAllDTO();
+                List<PSDEDataImpItemDTO> list = PSModelServiceUtil.getInstance().getPSDEDataImpItemService().listAllDTO();
                 if (list != null) {
                     for (PSDEDataImpItemDTO psDEDataImportItemDTO : list) {
                         if (psDEDataImportItemDTO.getValidFlag() != null && psDEDataImportItemDTO.getValidFlag() != 1) continue;
@@ -3549,7 +3549,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEReportService().listAllDTO();
+                List<PSDEReportDTO> list = PSModelServiceUtil.getInstance().getPSDEReportService().listAllDTO();
                 if (list != null) {
                     for (PSDEReportDTO psDEReportDTO : list) {
                         PSDEReport psDEReport = new PSDEReport();
@@ -3569,7 +3569,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDERepItemService().listAllDTO();
+                List<PSDERepItemDTO> list = PSModelServiceUtil.getInstance().getPSDERepItemService().listAllDTO();
                 if (list != null) {
                     for (PSDERepItemDTO psDEReportItemDTO : list) {
                         PSDEReportItem psDEReportItem = new PSDEReportItem();
@@ -3589,7 +3589,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEPrintService().listAllDTO();
+                List<PSDEPrintDTO> list = PSModelServiceUtil.getInstance().getPSDEPrintService().listAllDTO();
                 if (list != null) {
                     for (PSDEPrintDTO psDEPrintDTO : list) {
                         PSDEPrint psDEPrint = new PSDEPrint();
@@ -3609,7 +3609,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEUtilDEService().listAllDTO();
+                List<PSDEUtilDEDTO> list = PSModelServiceUtil.getInstance().getPSDEUtilDEService().listAllDTO();
                 if (list != null) {
                     for (PSDEUtilDEDTO psDEUtilDEDTO : list) {
                         PSDEUtil psDEUtilDE = new PSDEUtil();
@@ -3629,7 +3629,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEUserRoleService().listAllDTO();
+                List<PSDEUserRoleDTO> list = PSModelServiceUtil.getInstance().getPSDEUserRoleService().listAllDTO();
                 if (list != null) {
                     for (PSDEUserRoleDTO psDEUserRoleDTO : list) {
                         PSDEUserRole psDEUserRole = new PSDEUserRole();
@@ -3649,7 +3649,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEOPPrivRoleService().listAllDTO();
+                List<PSDEOPPrivRoleDTO> list = PSModelServiceUtil.getInstance().getPSDEOPPrivRoleService().listAllDTO();
                 if (list != null) {
                     for (PSDEOPPrivRoleDTO psDEOPPrivRoleDTO : list) {
                         PSDEOPPrivRole psDEOPPrivRole = new PSDEOPPrivRole();
@@ -3669,7 +3669,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysUserModeService().listAllDTO();
+                List<PSSysUserModeDTO> list = PSModelServiceUtil.getInstance().getPSSysUserModeService().listAllDTO();
                 if (list != null) {
                     for (PSSysUserModeDTO psSysUserModeDTO : list) {
                         PSSysUserMode psSysUserMode = new PSSysUserMode();
@@ -3689,7 +3689,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysUserDRService().listAllDTO();
+                List<PSSysUserDRDTO> list = PSModelServiceUtil.getInstance().getPSSysUserDRService().listAllDTO();
                 if (list != null) {
                     for (PSSysUserDRDTO psSysUserDRDTO : list) {
                         PSSysUserDR psSysUserDR = new PSSysUserDR();
@@ -3709,7 +3709,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDESampleDataService().listAllDTO();
+                List<PSDESampleDataDTO> list = PSModelServiceUtil.getInstance().getPSDESampleDataService().listAllDTO();
                 if (list != null) {
                     for (PSDESampleDataDTO psDESampleDataDTO : list) {
                         PSDESampleData psDESampleData = new PSDESampleData();
@@ -3729,7 +3729,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysUserCaseService().listAllDTO();
+                List<PSSysUserCaseDTO> list = PSModelServiceUtil.getInstance().getPSSysUserCaseService().listAllDTO();
                 if (list != null) {
                     for (PSSysUserCaseDTO psSysUserCaseDTO : list) {
                         PSSysUserCase psSysUserCase = new PSSysUserCase();
@@ -3749,7 +3749,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysActorService().listAllDTO();
+                List<PSSysActorDTO> list = PSModelServiceUtil.getInstance().getPSSysActorService().listAllDTO();
                 if (list != null) {
                     for (PSSysActorDTO psSysActorDTO : list) {
                         PSSysActor psSysActor = new PSSysActor();
@@ -3769,7 +3769,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysUserCaseRSService().listAllDTO();
+                List<PSSysUserCaseRSDTO> list = PSModelServiceUtil.getInstance().getPSSysUserCaseRSService().listAllDTO();
                 if (list != null) {
                     for (PSSysUserCaseRSDTO psSysUserCaseRSDTO : list) {
                         PSSysUserCaseRS psSysUserCaseRS = new PSSysUserCaseRS();
@@ -3789,7 +3789,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSampleValueService().listAllDTO();
+                List<PSSysSampleValueDTO> list = PSModelServiceUtil.getInstance().getPSSysSampleValueService().listAllDTO();
                 if (list != null) {
                     for (PSSysSampleValueDTO psSysSampleValueDTO : list) {
                         PSSysSampleValue psSysSampleValue = new PSSysSampleValue();
@@ -3809,7 +3809,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysResourceService().listAllDTO();
+                List<PSSysResourceDTO> list = PSModelServiceUtil.getInstance().getPSSysResourceService().listAllDTO();
                 if (list != null) {
                     for (PSSysResourceDTO psSysResourceDTO : list) {
                         if (psSysResourceDTO.getValidFlag() != null && psSysResourceDTO.getValidFlag() != 1) continue;
@@ -3830,7 +3830,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysContentService().listAllDTO();
+                List<PSSysContentDTO> list = PSModelServiceUtil.getInstance().getPSSysContentService().listAllDTO();
                 if (list != null) {
                     for (PSSysContentDTO psSysContentDTO : list) {
                         if (psSysContentDTO.getValidFlag() != null && psSysContentDTO.getValidFlag() != 1) continue;
@@ -3851,7 +3851,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysContentCatService().listAllDTO();
+                List<PSSysContentCatDTO> list = PSModelServiceUtil.getInstance().getPSSysContentCatService().listAllDTO();
                 if (list != null) {
                     for (PSSysContentCatDTO psSysContentCatDTO : list) {
                         PSSysContentCat psSysContentCat = new PSSysContentCat();
@@ -3871,7 +3871,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysReqModuleService().listAllDTO();
+                List<PSSysReqModuleDTO> list = PSModelServiceUtil.getInstance().getPSSysReqModuleService().listAllDTO();
                 if (list != null) {
                     for (PSSysReqModuleDTO psSysReqModuleDTO : list) {
                         PSSysReqModule psSysReqModule = new PSSysReqModule();
@@ -3891,7 +3891,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysReqItemService().listAllDTO();
+                List<PSSysReqItemDTO> list = PSModelServiceUtil.getInstance().getPSSysReqItemService().listAllDTO();
                 if (list != null) {
                     for (PSSysReqItemDTO psSysReqItemDTO : list) {
                         PSSysReqItem psSysReqItem = new PSSysReqItem();
@@ -3911,7 +3911,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysTestDataService().listAllDTO();
+                List<PSSysTestDataDTO> list = PSModelServiceUtil.getInstance().getPSSysTestDataService().listAllDTO();
                 if (list != null) {
                     for (PSSysTestDataDTO psSysTestDataDTO : list) {
                         PSSysTestData psSysTestData = new PSSysTestData();
@@ -3931,7 +3931,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysTDItemService().listAllDTO();
+                List<PSSysTDItemDTO> list = PSModelServiceUtil.getInstance().getPSSysTDItemService().listAllDTO();
                 if (list != null) {
                     for (PSSysTDItemDTO psSysTestDataItemDTO : list) {
                         if (psSysTestDataItemDTO.getValidFlag() != null && psSysTestDataItemDTO.getValidFlag() != 1) continue;
@@ -3952,7 +3952,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysTestPrjService().listAllDTO();
+                List<PSSysTestPrjDTO> list = PSModelServiceUtil.getInstance().getPSSysTestPrjService().listAllDTO();
                 if (list != null) {
                     for (PSSysTestPrjDTO psSysTestPrjDTO : list) {
                         PSSysTestPrj psSysTestPrj = new PSSysTestPrj();
@@ -3972,7 +3972,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysTestModuleService().listAllDTO();
+                List<PSSysTestModuleDTO> list = PSModelServiceUtil.getInstance().getPSSysTestModuleService().listAllDTO();
                 if (list != null) {
                     for (PSSysTestModuleDTO psSysTestModuleDTO : list) {
                         PSSysTestModule psSysTestModule = new PSSysTestModule();
@@ -3992,7 +3992,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysTestCaseService().listAllDTO();
+                List<PSSysTestCaseDTO> list = PSModelServiceUtil.getInstance().getPSSysTestCaseService().listAllDTO();
                 if (list != null) {
                     for (PSSysTestCaseDTO psSysTestCaseDTO : list) {
                         PSSysTestCase psSysTestCase = new PSSysTestCase();
@@ -4012,7 +4012,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysTCInputService().listAllDTO();
+                List<PSSysTCInputDTO> list = PSModelServiceUtil.getInstance().getPSSysTCInputService().listAllDTO();
                 if (list != null) {
                     for (PSSysTCInputDTO psSysTestCaseInputDTO : list) {
                         if (psSysTestCaseInputDTO.getValidFlag() != null && psSysTestCaseInputDTO.getValidFlag() != 1) continue;
@@ -4033,7 +4033,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysTCAssertService().listAllDTO();
+                List<PSSysTCAssertDTO> list = PSModelServiceUtil.getInstance().getPSSysTCAssertService().listAllDTO();
                 if (list != null) {
                     for (PSSysTCAssertDTO psSysTestCaseAssertDTO : list) {
                         if (psSysTestCaseAssertDTO.getValidFlag() != null && psSysTestCaseAssertDTO.getValidFlag() != 1) continue;
@@ -4054,7 +4054,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWXAccountService().listAllDTO();
+                List<PSWXAccountDTO> list = PSModelServiceUtil.getInstance().getPSWXAccountService().listAllDTO();
                 if (list != null) {
                     for (PSWXAccountDTO psWXAccountDTO : list) {
                         PSWXAccount psWXAccount = new PSWXAccount();
@@ -4074,7 +4074,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWXEntAppService().listAllDTO();
+                List<PSWXEntAppDTO> list = PSModelServiceUtil.getInstance().getPSWXEntAppService().listAllDTO();
                 if (list != null) {
                     for (PSWXEntAppDTO psWXEntAppDTO : list) {
                         if (psWXEntAppDTO.getValidFlag() != null && psWXEntAppDTO.getValidFlag() != 1) continue;
@@ -4095,7 +4095,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWXMenuFuncService().listAllDTO();
+                List<PSWXMenuFuncDTO> list = PSModelServiceUtil.getInstance().getPSWXMenuFuncService().listAllDTO();
                 if (list != null) {
                     for (PSWXMenuFuncDTO psWXMenuFuncDTO : list) {
                         PSWXMenuFunc psWXMenuFunc = new PSWXMenuFunc();
@@ -4115,7 +4115,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWXLogicService().listAllDTO();
+                List<PSWXLogicDTO> list = PSModelServiceUtil.getInstance().getPSWXLogicService().listAllDTO();
                 if (list != null) {
                     for (PSWXLogicDTO psWXLogicDTO : list) {
                         PSWXLogic psWXLogic = new PSWXLogic();
@@ -4135,7 +4135,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWXMenuService().listAllDTO();
+                List<PSWXMenuDTO> list = PSModelServiceUtil.getInstance().getPSWXMenuService().listAllDTO();
                 if (list != null) {
                     for (PSWXMenuDTO psWXMenuDTO : list) {
                         PSWXMenu psWXMenu = new PSWXMenu();
@@ -4155,7 +4155,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWXMenuItemService().listAllDTO();
+                List<PSWXMenuItemDTO> list = PSModelServiceUtil.getInstance().getPSWXMenuItemService().listAllDTO();
                 if (list != null) {
                     for (PSWXMenuItemDTO psWXMenuItemDTO : list) {
                         PSWXMenuItem psWXMenuItem = new PSWXMenuItem();
@@ -4175,7 +4175,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSearchSchemeService().listAllDTO();
+                List<PSSysSearchSchemeDTO> list = PSModelServiceUtil.getInstance().getPSSysSearchSchemeService().listAllDTO();
                 if (list != null) {
                     for (PSSysSearchSchemeDTO psSysSearchSchemeDTO : list) {
                         PSSysSearchScheme psSysSearchScheme = new PSSysSearchScheme();
@@ -4195,7 +4195,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSearchDocService().listAllDTO();
+                List<PSSysSearchDocDTO> list = PSModelServiceUtil.getInstance().getPSSysSearchDocService().listAllDTO();
                 if (list != null) {
                     for (PSSysSearchDocDTO psSysSearchDocDTO : list) {
                         if (psSysSearchDocDTO.getValidFlag() != null && psSysSearchDocDTO.getValidFlag() != 1) continue;
@@ -4216,7 +4216,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSearchDEService().listAllDTO();
+                List<PSSysSearchDEDTO> list = PSModelServiceUtil.getInstance().getPSSysSearchDEService().listAllDTO();
                 if (list != null) {
                     for (PSSysSearchDEDTO psSysSearchDEDTO : list) {
                         if (psSysSearchDEDTO.getValidFlag() != null && psSysSearchDEDTO.getValidFlag() != 1) continue;
@@ -4237,7 +4237,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSearchFieldService().listAllDTO();
+                List<PSSysSearchFieldDTO> list = PSModelServiceUtil.getInstance().getPSSysSearchFieldService().listAllDTO();
                 if (list != null) {
                     for (PSSysSearchFieldDTO psSysSearchFieldDTO : list) {
                         if (psSysSearchFieldDTO.getValidFlag() != null && psSysSearchFieldDTO.getValidFlag() != 1) continue;
@@ -4258,7 +4258,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysERMapService().listAllDTO();
+                List<PSSysERMapDTO> list = PSModelServiceUtil.getInstance().getPSSysERMapService().listAllDTO();
                 if (list != null) {
                     for (PSSysERMapDTO psSysERMapDTO : list) {
                         PSSysERMap psSysERMap = new PSSysERMap();
@@ -4278,7 +4278,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysERMapNodeService().listAllDTO();
+                List<PSSysERMapNodeDTO> list = PSModelServiceUtil.getInstance().getPSSysERMapNodeService().listAllDTO();
                 if (list != null) {
                     for (PSSysERMapNodeDTO psSysERMapNodeDTO : list) {
                         PSSysERMapNode psSysERMapNode = new PSSysERMapNode();
@@ -4298,7 +4298,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysUCMapService().listAllDTO();
+                List<PSSysUCMapDTO> list = PSModelServiceUtil.getInstance().getPSSysUCMapService().listAllDTO();
                 if (list != null) {
                     for (PSSysUCMapDTO psSysUCMapDTO : list) {
                         PSSysUCMap psSysUCMap = new PSSysUCMap();
@@ -4328,7 +4328,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysDynaModelAttrService().listAllDTO();
+                List<PSSysDynaModelAttrDTO> list = PSModelServiceUtil.getInstance().getPSSysDynaModelAttrService().listAllDTO();
                 if (list != null) {
                     for (PSSysDynaModelAttrDTO psSysDynaModelAttrDTO : list) {
                         if (psSysDynaModelAttrDTO.getValidFlag() != null && psSysDynaModelAttrDTO.getValidFlag() != 1) continue;
@@ -4364,7 +4364,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEWizardService().listAllDTO();
+                List<PSDEWizardDTO> list = PSModelServiceUtil.getInstance().getPSDEWizardService().listAllDTO();
                 if (list != null) {
                     for (PSDEWizardDTO psDEWizardDTO : list) {
                         PSDEWizard psDEWizard = new PSDEWizard();
@@ -4384,7 +4384,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEWizardStepService().listAllDTO();
+                List<PSDEWizardStepDTO> list = PSModelServiceUtil.getInstance().getPSDEWizardStepService().listAllDTO();
                 if (list != null) {
                     for (PSDEWizardStepDTO psDEWizardStepDTO : list) {
                         PSDEWizardStep psDEWizardStep = new PSDEWizardStep();
@@ -4404,7 +4404,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEWizardFormService().listAllDTO();
+                List<PSDEWizardFormDTO> list = PSModelServiceUtil.getInstance().getPSDEWizardFormService().listAllDTO();
                 if (list != null) {
                     for (PSDEWizardFormDTO psDEWizardFormDTO : list) {
                         PSDEWizardForm psDEWizardForm = new PSDEWizardForm();
@@ -4424,7 +4424,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEServiceAPIService().listAllDTO();
+                List<PSDEServiceAPIDTO> list = PSModelServiceUtil.getInstance().getPSDEServiceAPIService().listAllDTO();
                 if (list != null) {
                     for (PSDEServiceAPIDTO psDEServiceAPIDTO : list) {
                         if (psDEServiceAPIDTO.getValidFlag() != null && psDEServiceAPIDTO.getValidFlag() != 1) continue;
@@ -4445,7 +4445,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDESARSService().listAllDTO();
+                List<PSDESARSDTO> list = PSModelServiceUtil.getInstance().getPSDESARSService().listAllDTO();
                 if (list != null) {
                     for (PSDESARSDTO psDESARSDTO : list) {
                         if (psDESARSDTO.getValidFlag() != null && psDESARSDTO.getValidFlag() != 1) continue;
@@ -4466,7 +4466,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDESADetailService().listAllDTO();
+                List<PSDESADetailDTO> list = PSModelServiceUtil.getInstance().getPSDESADetailService().listAllDTO();
                 if (list != null) {
                     for (PSDESADetailDTO psDESADetailDTO : list) {
                         if (psDESADetailDTO.getValidFlag() != null && psDESADetailDTO.getValidFlag() != 1) continue;
@@ -4487,7 +4487,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDESAVRService().listAllDTO();
+                List<PSDESAVRDTO> list = PSModelServiceUtil.getInstance().getPSDESAVRService().listAllDTO();
                 if (list != null) {
                     for (PSDESAVRDTO psDESAVRDTO : list) {
                         if (psDESAVRDTO.getValidFlag() != null && psDESAVRDTO.getValidFlag() != 1) continue;
@@ -4508,7 +4508,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDataSyncService().listAllDTO();
+                List<PSDEDataSyncDTO> list = PSModelServiceUtil.getInstance().getPSDEDataSyncService().listAllDTO();
                 if (list != null) {
                     for (PSDEDataSyncDTO psDEDataSyncDTO : list) {
                         PSDEDataSync psDEDataSync = new PSDEDataSync();
@@ -4528,7 +4528,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBDTableDEService().listAllDTO();
+                List<PSSysBDTableDEDTO> list = PSModelServiceUtil.getInstance().getPSSysBDTableDEService().listAllDTO();
                 if (list != null) {
                     for (PSSysBDTableDEDTO psSysBDTableDEDTO : list) {
                         if (StringHelper.isNullOrEmpty((String)psSysBDTableDEDTO.getPSDEId())) continue;
@@ -4549,7 +4549,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSearchDEService().listAllDTO();
+                List<PSSysSearchDEDTO> list = PSModelServiceUtil.getInstance().getPSSysSearchDEService().listAllDTO();
                 if (list != null) {
                     for (PSSysSearchDEDTO psSysSearchDEDTO : list) {
                         if (StringHelper.isNullOrEmpty((String)psSysSearchDEDTO.getPSDEId())) continue;
@@ -4570,7 +4570,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBDSchemeService().listAllDTO();
+                List<PSSysBDSchemeDTO> list = PSModelServiceUtil.getInstance().getPSSysBDSchemeService().listAllDTO();
                 if (list != null) {
                     for (PSSysBDSchemeDTO psSysBDSchemeDTO : list) {
                         PSSysBDScheme psSysBDScheme = new PSSysBDScheme();
@@ -4590,7 +4590,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBDModuleService().listAllDTO();
+                List<PSSysBDModuleDTO> list = PSModelServiceUtil.getInstance().getPSSysBDModuleService().listAllDTO();
                 if (list != null) {
                     for (PSSysBDModuleDTO psSysBDModuleDTO : list) {
                         PSSysBDModule psSysBDModule = new PSSysBDModule();
@@ -4610,7 +4610,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBDPartService().listAllDTO();
+                List<PSSysBDPartDTO> list = PSModelServiceUtil.getInstance().getPSSysBDPartService().listAllDTO();
                 if (list != null) {
                     for (PSSysBDPartDTO psSysBDPartDTO : list) {
                         PSSysBDPart psSysBDPart = new PSSysBDPart();
@@ -4630,7 +4630,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBDTableService().listAllDTO();
+                List<PSSysBDTableDTO> list = PSModelServiceUtil.getInstance().getPSSysBDTableService().listAllDTO();
                 if (list != null) {
                     for (PSSysBDTableDTO psSysBDTableDTO : list) {
                         if (psSysBDTableDTO.getValidFlag() != null && psSysBDTableDTO.getValidFlag() != 1) continue;
@@ -4651,7 +4651,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBDTableRSService().listAllDTO();
+                List<PSSysBDTableRSDTO> list = PSModelServiceUtil.getInstance().getPSSysBDTableRSService().listAllDTO();
                 if (list != null) {
                     for (PSSysBDTableRSDTO psSysBDTableRSDTO : list) {
                         if (psSysBDTableRSDTO.getValidFlag() != null && psSysBDTableRSDTO.getValidFlag() != 1) continue;
@@ -4672,7 +4672,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBDColSetService().listAllDTO();
+                List<PSSysBDColSetDTO> list = PSModelServiceUtil.getInstance().getPSSysBDColSetService().listAllDTO();
                 if (list != null) {
                     for (PSSysBDColSetDTO psSysBDColSetDTO : list) {
                         PSSysBDColSet psSysBDColSet = new PSSysBDColSet();
@@ -4692,7 +4692,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBDTableDEService().listAllDTO();
+                List<PSSysBDTableDEDTO> list = PSModelServiceUtil.getInstance().getPSSysBDTableDEService().listAllDTO();
                 if (list != null) {
                     for (PSSysBDTableDEDTO psSysBDTableDEDTO : list) {
                         PSSysBDTableDE psSysBDTableDE = new PSSysBDTableDE();
@@ -4712,7 +4712,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBDTableDERService().listAllDTO();
+                List<PSSysBDTableDERDTO> list = PSModelServiceUtil.getInstance().getPSSysBDTableDERService().listAllDTO();
                 if (list != null) {
                     for (PSSysBDTableDERDTO psSysBDTableDERDTO : list) {
                         PSSysBDTableDER psSysBDTableDER = new PSSysBDTableDER();
@@ -4732,7 +4732,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBDColumnService().listAllDTO();
+                List<PSSysBDColumnDTO> list = PSModelServiceUtil.getInstance().getPSSysBDColumnService().listAllDTO();
                 if (list != null) {
                     for (PSSysBDColumnDTO psSysBDColumnDTO : list) {
                         PSSysBDColumn psSysBDColumn = new PSSysBDColumn();
@@ -4752,7 +4752,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysDBSchemeService().listAllDTO();
+                List<PSSysDBSchemeDTO> list = PSModelServiceUtil.getInstance().getPSSysDBSchemeService().listAllDTO();
                 if (list != null) {
                     for (PSSysDBSchemeDTO psSysDBSchemeDTO : list) {
                         PSSysDBScheme psSysDBScheme = new PSSysDBScheme();
@@ -4772,7 +4772,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysDBTableService().listAllDTO();
+                List<PSSysDBTableDTO> list = PSModelServiceUtil.getInstance().getPSSysDBTableService().listAllDTO();
                 if (list != null) {
                     for (PSSysDBTableDTO psSysDBTableDTO : list) {
                         PSSysDBTable psSysDBTable = new PSSysDBTable();
@@ -4792,7 +4792,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysDBColumnService().listAllDTO();
+                List<PSSysDBColumnDTO> list = PSModelServiceUtil.getInstance().getPSSysDBColumnService().listAllDTO();
                 if (list != null) {
                     for (PSSysDBColumnDTO psSysDBColumnDTO : list) {
                         PSSysDBColumn psSysDBColumn = new PSSysDBColumn();
@@ -4832,7 +4832,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWorkflowService().listAllDTO();
+                List<PSWorkflowDTO> list = PSModelServiceUtil.getInstance().getPSWorkflowService().listAllDTO();
                 if (list != null) {
                     for (PSWorkflowDTO psWorkflowDTO : list) {
                         PSWorkflow psWorkflow = new PSWorkflow();
@@ -4852,7 +4852,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFVersionService().listAllDTO();
+                List<PSWFVersionDTO> list = PSModelServiceUtil.getInstance().getPSWFVersionService().listAllDTO();
                 if (list != null) {
                     for (PSWFVersionDTO psWFVersionDTO : list) {
                         PSWFVersion psWFVersion = new PSWFVersion();
@@ -4872,7 +4872,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFProcessService().listAllDTO();
+                List<PSWFProcessDTO> list = PSModelServiceUtil.getInstance().getPSWFProcessService().listAllDTO();
                 if (list != null) {
                     for (PSWFProcessDTO psWFProcessDTO : list) {
                         PSWFProcess psWFProcess = new PSWFProcess();
@@ -4892,7 +4892,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFProcParamService().listAllDTO();
+                List<PSWFProcParamDTO> list = PSModelServiceUtil.getInstance().getPSWFProcParamService().listAllDTO();
                 if (list != null) {
                     for (PSWFProcParamDTO psWFProcParamDTO : list) {
                         PSWFProcParam psWFProcParam = new PSWFProcParam();
@@ -4912,7 +4912,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFProcRoleService().listAllDTO();
+                List<PSWFProcRoleDTO> list = PSModelServiceUtil.getInstance().getPSWFProcRoleService().listAllDTO();
                 if (list != null) {
                     for (PSWFProcRoleDTO psWFProcRoleDTO : list) {
                         PSWFProcRole psWFProcRole = new PSWFProcRole();
@@ -4932,7 +4932,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFLinkRoleService().listAllDTO();
+                List<PSWFLinkRoleDTO> list = PSModelServiceUtil.getInstance().getPSWFLinkRoleService().listAllDTO();
                 if (list != null) {
                     for (PSWFLinkRoleDTO psWFLinkRoleDTO : list) {
                         PSWFLinkRole psWFLinkRole = new PSWFLinkRole();
@@ -4952,7 +4952,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFProcSubWFService().listAllDTO();
+                List<PSWFProcSubWFDTO> list = PSModelServiceUtil.getInstance().getPSWFProcSubWFService().listAllDTO();
                 if (list != null) {
                     for (PSWFProcSubWFDTO psWFProcSubWFDTO : list) {
                         PSWFProcSubWF psWFProcSubWF = new PSWFProcSubWF();
@@ -4972,7 +4972,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFLinkService().listAllDTO();
+                List<PSWFLinkDTO> list = PSModelServiceUtil.getInstance().getPSWFLinkService().listAllDTO();
                 if (list != null) {
                     for (PSWFLinkDTO psWFLinkDTO : list) {
                         PSWFLink psWFLink = new PSWFLink();
@@ -4992,7 +4992,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFLinkCondService().listAllDTO();
+                List<PSWFLinkCondDTO> list = PSModelServiceUtil.getInstance().getPSWFLinkCondService().listAllDTO();
                 if (list != null) {
                     for (PSWFLinkCondDTO psWFLinkCondDTO : list) {
                         PSWFLinkCond psWFLinkCond = new PSWFLinkCond();
@@ -5012,7 +5012,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEUIActionService().listAllDTO();
+                List<PSDEUIActionDTO> list = PSModelServiceUtil.getInstance().getPSDEUIActionService().listAllDTO();
                 if (list != null) {
                     for (PSDEUIActionDTO psDEUIActionDTO : list) {
                         if (StringHelper.isNullOrEmpty((String)psDEUIActionDTO.getPSWFVersionId())) continue;
@@ -5033,7 +5033,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEUAGroupService().listAllDTO();
+                List<PSDEUAGroupDTO> list = PSModelServiceUtil.getInstance().getPSDEUAGroupService().listAllDTO();
                 if (list != null) {
                     for (PSDEUAGroupDTO psDEUIActionGroupDTO : list) {
                         if (StringHelper.isNullOrEmpty((String)psDEUIActionGroupDTO.getPSWFVersionId())) continue;
@@ -5054,7 +5054,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEUIActionService().listAllDTO();
+                List<PSDEUIActionDTO> list = PSModelServiceUtil.getInstance().getPSDEUIActionService().listAllDTO();
                 if (list != null) {
                     for (PSDEUIActionDTO psDEUIActionDTO : list) {
                         if (!StringHelper.isNullOrEmpty((String)psDEUIActionDTO.getPSWFVersionId()) || StringHelper.isNullOrEmpty((String)psDEUIActionDTO.getPSWFId())) continue;
@@ -5075,7 +5075,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEUAGroupService().listAllDTO();
+                List<PSDEUAGroupDTO> list = PSModelServiceUtil.getInstance().getPSDEUAGroupService().listAllDTO();
                 if (list != null) {
                     for (PSDEUAGroupDTO psDEUIActionGroupDTO : list) {
                         if (!StringHelper.isNullOrEmpty((String)psDEUIActionGroupDTO.getPSWFVersionId()) || StringHelper.isNullOrEmpty((String)psDEUIActionGroupDTO.getPSWFId())) continue;
@@ -5096,7 +5096,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEUAGroupDetailService().listAllDTO();
+                List<PSDEUAGroupDetailDTO> list = PSModelServiceUtil.getInstance().getPSDEUAGroupDetailService().listAllDTO();
                 if (list != null) {
                     for (PSDEUAGroupDetailDTO psDEUIActionGroupDetailDTO : list) {
                         if (psDEUIActionGroupDetailDTO.getValidFlag() != null && psDEUIActionGroupDetailDTO.getValidFlag() != 1) continue;
@@ -5117,7 +5117,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFGroupDetailService().listAllDTO();
+                List<PSDEFGroupDetailDTO> list = PSModelServiceUtil.getInstance().getPSDEFGroupDetailService().listAllDTO();
                 if (list != null) {
                     for (PSDEFGroupDetailDTO psDEFGroupDetailDTO : list) {
                         if (psDEFGroupDetailDTO.getValidFlag() != null && psDEFGroupDetailDTO.getValidFlag() != 1) continue;
@@ -5138,10 +5138,10 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFGroupService().listAllDTO();
+                List<PSDEFGroupDTO> list = PSModelServiceUtil.getInstance().getPSDEFGroupService().listAllDTO();
                 if (list != null) {
                     for (PSDEFGroupDTO psDEFGroupDTO : list) {
-                        List list2;
+                        List<PSDEFormDetailDTO> list2;
                         if (StringHelper.isNullOrEmpty((String)psDEFGroupDTO.getPSDEFormId()) || (list2 = PSModelServiceUtil.getInstance().getPSDEFormDetailService().listAllDTOByPSDEForm(psDEFGroupDTO.getPSDEFormId())) == null) continue;
                         for (PSDEFormDetailDTO psDEFormDetailDTO : list2) {
                             PSDEFormDetail psDEFormDetail = new PSDEFormDetail();
@@ -5163,7 +5163,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEGroupDetailService().listAllDTO();
+                List<PSDEGroupDetailDTO> list = PSModelServiceUtil.getInstance().getPSDEGroupDetailService().listAllDTO();
                 if (list != null) {
                     for (PSDEGroupDetailDTO psDEGroupDetailDTO : list) {
                         if (psDEGroupDetailDTO.getValidFlag() != null && psDEGroupDetailDTO.getValidFlag() != 1) continue;
@@ -5184,7 +5184,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDERGroupDetailService().listAllDTO();
+                List<PSDERGroupDetailDTO> list = PSModelServiceUtil.getInstance().getPSDERGroupDetailService().listAllDTO();
                 if (list != null) {
                     for (PSDERGroupDetailDTO psDERGroupDetailDTO : list) {
                         if (psDERGroupDetailDTO.getValidFlag() != null && psDERGroupDetailDTO.getValidFlag() != 1) continue;
@@ -5205,7 +5205,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEAGDetailService().listAllDTO();
+                List<PSDEAGDetailDTO> list = PSModelServiceUtil.getInstance().getPSDEAGDetailService().listAllDTO();
                 if (list != null) {
                     for (PSDEAGDetailDTO psDEActionGroupDetailDTO : list) {
                         if (psDEActionGroupDetailDTO.getValidFlag() != null && psDEActionGroupDetailDTO.getValidFlag() != 1) continue;
@@ -5226,7 +5226,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFInputTipSetService().listAllDTO();
+                List<PSDEFInputTipSetDTO> list = PSModelServiceUtil.getInstance().getPSDEFInputTipSetService().listAllDTO();
                 if (list != null) {
                     for (PSDEFInputTipSetDTO psDEFInputTipSetDTO : list) {
                         PSDEFInputTipSet psDEFInputTipSet = new PSDEFInputTipSet();
@@ -5246,7 +5246,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysUniStateService().listAllDTO();
+                List<PSSysUniStateDTO> list = PSModelServiceUtil.getInstance().getPSSysUniStateService().listAllDTO();
                 if (list != null) {
                     for (PSSysUniStateDTO psSysUniStateDTO : list) {
                         PSSysUniState psSysUniState = new PSSysUniState();
@@ -5266,7 +5266,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDTSQueueService().listAllDTO();
+                List<PSDEDTSQueueDTO> list = PSModelServiceUtil.getInstance().getPSDEDTSQueueService().listAllDTO();
                 if (list != null) {
                     for (PSDEDTSQueueDTO psSysDTSQueueDTO : list) {
                         PSSysDTSQueue psSysDTSQueue = new PSSysDTSQueue();
@@ -5286,7 +5286,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysUtilDEService().listAllDTO();
+                List<PSSysUtilDEDTO> list = PSModelServiceUtil.getInstance().getPSSysUtilDEService().listAllDTO();
                 if (list != null) {
                     for (PSSysUtilDEDTO psSysUtilDTO : list) {
                         PSSysUtil psSysUtil = new PSSysUtil();
@@ -5321,7 +5321,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSCtrlLogicGroupService().listAllDTO();
+                List<PSCtrlLogicGroupDTO> list = PSModelServiceUtil.getInstance().getPSCtrlLogicGroupService().listAllDTO();
                 if (list != null) {
                     for (PSCtrlLogicGroupDTO psCtrlLogicGroupDTO : list) {
                         PSCtrlLogicGroup psCtrlLogicGroup = new PSCtrlLogicGroup();
@@ -5341,7 +5341,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSCtrlLogicGrpDetailService().listAllDTO();
+                List<PSCtrlLogicGrpDetailDTO> list = PSModelServiceUtil.getInstance().getPSCtrlLogicGrpDetailService().listAllDTO();
                 if (list != null) {
                     for (PSCtrlLogicGrpDetailDTO psCtrlLogicGroupDetailDTO : list) {
                         if (psCtrlLogicGroupDetailDTO.getValidFlag() != null && psCtrlLogicGroupDetailDTO.getValidFlag() != 1) continue;
@@ -5363,7 +5363,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppModuleService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppModuleDTO> list = PSModelServiceUtil.getInstance().getPSAppModuleService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppModuleDTO psAppModuleDTO : list) {
                         PSAppModule psAppModule = new PSAppModule();
@@ -5384,7 +5384,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppViewService().listAllDTO();
+                List<PSAppViewDTO> list = PSModelServiceUtil.getInstance().getPSAppViewService().listAllDTO();
                 if (list != null) {
                     for (PSAppViewDTO psAppViewDTO : list) {
                         if (StringHelper.compare((String)psAppViewDTO.getPSSysAppId(), (String)strPSSysAppId2, (boolean)false) != 0) continue;
@@ -5416,7 +5416,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppLanService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppLanDTO> list = PSModelServiceUtil.getInstance().getPSAppLanService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppLanDTO psAppLanDTO : list) {
                         if (psAppLanDTO.getValidFlag() != null && psAppLanDTO.getValidFlag() != 1) continue;
@@ -5443,7 +5443,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppPkgService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppPkgDTO> list = PSModelServiceUtil.getInstance().getPSAppPkgService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppPkgDTO psAppPkgDTO : list) {
                         PSAppPkg psAppPkg = new PSAppPkg();
@@ -5464,7 +5464,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppUIStyleService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppUIStyleDTO> list = PSModelServiceUtil.getInstance().getPSAppUIStyleService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppUIStyleDTO psAppUIStyleDTO : list) {
                         PSAppUIStyle psAppUIStyle = new PSAppUIStyle();
@@ -5485,7 +5485,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppUtilPageService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppUtilPageDTO> list = PSModelServiceUtil.getInstance().getPSAppUtilPageService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppUtilPageDTO psAppUtilPageDTO : list) {
                         PSAppUtilPage psAppUtilPage = new PSAppUtilPage();
@@ -5506,7 +5506,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppPDTViewService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppPDTViewDTO> list = PSModelServiceUtil.getInstance().getPSAppPDTViewService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppPDTViewDTO psAppPDTViewDTO : list) {
                         PSAppPDTView psAppPDTView = new PSAppPDTView();
@@ -5527,7 +5527,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppResourceService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppResourceDTO> list = PSModelServiceUtil.getInstance().getPSAppResourceService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppResourceDTO psAppResourceDTO : list) {
                         PSAppResource psAppResource = new PSAppResource();
@@ -5548,7 +5548,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppFuncService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppFuncDTO> list = PSModelServiceUtil.getInstance().getPSAppFuncService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppFuncDTO psAppFuncDTO : list) {
                         PSAppFunc psAppFunc = new PSAppFunc();
@@ -5569,7 +5569,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppUtilService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppUtilDTO> list = PSModelServiceUtil.getInstance().getPSAppUtilService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppUtilDTO psAppUtilDTO : list) {
                         PSAppUtil psAppUtil = new PSAppUtil();
@@ -5590,7 +5590,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppPortletService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppPortletDTO> list = PSModelServiceUtil.getInstance().getPSAppPortletService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppPortletDTO psAppPortletDTO : list) {
                         PSAppPortlet psAppPortlet = new PSAppPortlet();
@@ -5616,7 +5616,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppWFService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppWFDTO> list = PSModelServiceUtil.getInstance().getPSAppWFService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppWFDTO psAppWFDTO : list) {
                         PSAppWF psAppWF = new PSAppWF();
@@ -5642,10 +5642,10 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppWFService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppWFDTO> list = PSModelServiceUtil.getInstance().getPSAppWFService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppWFDTO psAppWFDTO : list) {
-                        List list2 = PSModelServiceUtil.getInstance().getPSAppWFVerService().listDTOByPSAppWF(psAppWFDTO.getPSAppWFId());
+                        List<PSAppWFVerDTO> list2 = PSModelServiceUtil.getInstance().getPSAppWFVerService().listDTOByPSAppWF(psAppWFDTO.getPSAppWFId());
                         if (list2 == null) continue;
                         for (PSAppWFVerDTO psAppWFVerDTO : list2) {
                             PSAppWFVer psAppWFVer = new PSAppWFVer();
@@ -5667,7 +5667,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppMenuService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppMenuDTO> list = PSModelServiceUtil.getInstance().getPSAppMenuService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppMenuDTO psAppMenuDTO : list) {
                         PSAppMenu psAppMenu = new PSAppMenu();
@@ -5688,10 +5688,10 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppMenuService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppMenuDTO> list = PSModelServiceUtil.getInstance().getPSAppMenuService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppMenuDTO psAppMenuDTO : list) {
-                        List list2 = PSModelServiceUtil.getInstance().getPSAppMenuItemService().listAllDTOByPSAppMenu(psAppMenuDTO.getPSAppMenuId());
+                        List<PSAppMenuItemDTO> list2 = PSModelServiceUtil.getInstance().getPSAppMenuItemService().listAllDTOByPSAppMenu(psAppMenuDTO.getPSAppMenuId());
                         if (list2 == null) continue;
                         for (PSAppMenuItemDTO psAppMenuItemDTO : list2) {
                             PSAppMenuItem psAppMenuItem = new PSAppMenuItem();
@@ -5713,7 +5713,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppUserModeService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppUserModeDTO> list = PSModelServiceUtil.getInstance().getPSAppUserModeService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppUserModeDTO psAppUserModeDTO : list) {
                         PSAppUserMode psAppUserMode = new PSAppUserMode();
@@ -5734,7 +5734,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppUIThemeService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppUIThemeDTO> list = PSModelServiceUtil.getInstance().getPSAppUIThemeService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppUIThemeDTO psAppUIThemeDTO : list) {
                         PSAppUITheme psAppUITheme = new PSAppUITheme();
@@ -5760,7 +5760,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppLocalDEService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppLocalDEDTO> list = PSModelServiceUtil.getInstance().getPSAppLocalDEService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppLocalDEDTO psAppLocalDEDTO : list) {
                         if (psAppLocalDEDTO.getValidFlag() != null && psAppLocalDEDTO.getValidFlag() != 1) continue;
@@ -5792,7 +5792,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSMobAppStartPageService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSMobAppStartPageDTO> list = PSModelServiceUtil.getInstance().getPSMobAppStartPageService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSMobAppStartPageDTO psMobAppStartPageDTO : list) {
                         PSMobAppStartPage psMobAppStartPage = new PSMobAppStartPage();
@@ -5837,7 +5837,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEViewBaseService().listAllDTO();
+                List<PSDEViewBaseDTO> list = PSModelServiceUtil.getInstance().getPSDEViewBaseService().listAllDTO();
                 if (list != null) {
                     for (PSDEViewBaseDTO psDEViewBaseDTO : list) {
                         PSDEViewBase psDEViewBase = new PSDEViewBase();
@@ -5857,7 +5857,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEViewRVService().listAllDTO();
+                List<PSDEViewRVDTO> list = PSModelServiceUtil.getInstance().getPSDEViewRVService().listAllDTO();
                 if (list != null) {
                     for (PSDEViewRVDTO psDEViewViewDTO : list) {
                         PSDEViewView psDEViewView = new PSDEViewView();
@@ -5877,7 +5877,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEViewCtrlService().listAllDTO();
+                List<PSDEViewCtrlDTO> list = PSModelServiceUtil.getInstance().getPSDEViewCtrlService().listAllDTO();
                 if (list != null) {
                     for (PSDEViewCtrlDTO psDEViewCtrlDTO : list) {
                         PSDEViewCtrl psDEViewCtrl = new PSDEViewCtrl();
@@ -5897,7 +5897,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEViewLogicService().listAllDTO();
+                List<PSDEViewLogicDTO> list = PSModelServiceUtil.getInstance().getPSDEViewLogicService().listAllDTO();
                 if (list != null) {
                     for (PSDEViewLogicDTO psDEViewLogicDTO : list) {
                         PSDEViewLogic psDEViewLogic = new PSDEViewLogic();
@@ -5917,7 +5917,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEViewEngineService().listAllDTO();
+                List<PSDEViewEngineDTO> list = PSModelServiceUtil.getInstance().getPSDEViewEngineService().listAllDTO();
                 if (list != null) {
                     for (PSDEViewEngineDTO psDEViewEngineDTO : list) {
                         PSDEViewEngine psDEViewEngine = new PSDEViewEngine();
@@ -5937,7 +5937,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEToolbarService().listAllDTO();
+                List<PSDEToolbarDTO> list = PSModelServiceUtil.getInstance().getPSDEToolbarService().listAllDTO();
                 if (list != null) {
                     for (PSDEToolbarDTO psDEToolbarDTO : list) {
                         PSDEToolbar psDEToolbar = new PSDEToolbar();
@@ -5957,7 +5957,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDETBItemService().listAllDTO();
+                List<PSDETBItemDTO> list = PSModelServiceUtil.getInstance().getPSDETBItemService().listAllDTO();
                 if (list != null) {
                     for (PSDETBItemDTO psDEToolbarItemDTO : list) {
                         PSDEToolbarItem psDEToolbarItem = new PSDEToolbarItem();
@@ -5977,7 +5977,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSearchBarService().listAllDTO();
+                List<PSSysSearchBarDTO> list = PSModelServiceUtil.getInstance().getPSSysSearchBarService().listAllDTO();
                 if (list != null) {
                     for (PSSysSearchBarDTO psSysSearchBarDTO : list) {
                         PSSysSearchBar psSysSearchBar = new PSSysSearchBar();
@@ -5997,7 +5997,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSearchBarItemService().listAllDTO();
+                List<PSSysSearchBarItemDTO> list = PSModelServiceUtil.getInstance().getPSSysSearchBarItemService().listAllDTO();
                 if (list != null) {
                     for (PSSysSearchBarItemDTO psSysSearchBarItemDTO : list) {
                         PSSysSearchBarItem psSysSearchBarItem = new PSSysSearchBarItem();
@@ -6017,7 +6017,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppTitleBarService().listAllDTO();
+                List<PSAppTitleBarDTO> list = PSModelServiceUtil.getInstance().getPSAppTitleBarService().listAllDTO();
                 if (list != null) {
                     for (PSAppTitleBarDTO psAppTitleBarDTO : list) {
                         PSAppTitleBar psAppTitleBar = new PSAppTitleBar();
@@ -6037,7 +6037,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysDashboardService().listAllDTO();
+                List<PSSysDashboardDTO> list = PSModelServiceUtil.getInstance().getPSSysDashboardService().listAllDTO();
                 if (list != null) {
                     for (PSSysDashboardDTO psSysDashboardDTO : list) {
                         PSSysDashboard psSysDashboard = new PSSysDashboard();
@@ -6057,7 +6057,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysDBPartService().listAllDTO();
+                List<PSSysDBPartDTO> list = PSModelServiceUtil.getInstance().getPSSysDBPartService().listAllDTO();
                 if (list != null) {
                     for (PSSysDBPartDTO psSysDashboardPartDTO : list) {
                         PSSysDashboardPart psSysDashboardPart = new PSSysDashboardPart();
@@ -6077,7 +6077,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysCalendarService().listAllDTO();
+                List<PSSysCalendarDTO> list = PSModelServiceUtil.getInstance().getPSSysCalendarService().listAllDTO();
                 if (list != null) {
                     for (PSSysCalendarDTO psSysCalendarDTO : list) {
                         PSSysCalendar psSysCalendar = new PSSysCalendar();
@@ -6097,7 +6097,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysCalendarItemService().listAllDTO();
+                List<PSSysCalendarItemDTO> list = PSModelServiceUtil.getInstance().getPSSysCalendarItemService().listAllDTO();
                 if (list != null) {
                     for (PSSysCalendarItemDTO psSysCalendarItemDTO : list) {
                         PSSysCalendarItem psSysCalendarItem = new PSSysCalendarItem();
@@ -6122,7 +6122,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysMapViewService().listAllDTO();
+                List<PSSysMapViewDTO> list = PSModelServiceUtil.getInstance().getPSSysMapViewService().listAllDTO();
                 if (list != null) {
                     for (PSSysMapViewDTO psSysMapViewDTO : list) {
                         PSSysMapView psSysMapView = new PSSysMapView();
@@ -6142,7 +6142,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysMapItemService().listAllDTO();
+                List<PSSysMapItemDTO> list = PSModelServiceUtil.getInstance().getPSSysMapItemService().listAllDTO();
                 if (list != null) {
                     for (PSSysMapItemDTO psSysMapItemDTO : list) {
                         PSSysMapItem psSysMapItem = new PSSysMapItem();
@@ -6162,7 +6162,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysViewPanelService().listAllDTO();
+                List<PSSysViewPanelDTO> list = PSModelServiceUtil.getInstance().getPSSysViewPanelService().listAllDTO();
                 if (list != null) {
                     for (PSSysViewPanelDTO psSysPanelDTO : list) {
                         PSSysPanel psSysPanel = new PSSysPanel();
@@ -6182,7 +6182,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysViewPanelItemService().listAllDTO();
+                List<PSSysViewPanelItemDTO> list = PSModelServiceUtil.getInstance().getPSSysViewPanelItemService().listAllDTO();
                 if (list != null) {
                     for (PSSysViewPanelItemDTO psSysPanelItemDTO : list) {
                         PSSysPanelItem psSysPanelItem = new PSSysPanelItem();
@@ -6202,7 +6202,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSPanelEngineService().listAllDTO();
+                List<PSPanelEngineDTO> list = PSModelServiceUtil.getInstance().getPSPanelEngineService().listAllDTO();
                 if (list != null) {
                     for (PSPanelEngineDTO psPanelEngineDTO : list) {
                         PSPanelEngine psPanelEngine = new PSPanelEngine();
@@ -6222,7 +6222,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysViewPanelModelService().listAllDTO();
+                List<PSSysViewPanelModelDTO> list = PSModelServiceUtil.getInstance().getPSSysViewPanelModelService().listAllDTO();
                 if (list != null) {
                     for (PSSysViewPanelModelDTO psSysPanelModelDTO : list) {
                         PSSysPanelModel psSysPanelModel = new PSSysPanelModel();
@@ -6242,7 +6242,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysViewPanelLogicService().listAllDTO();
+                List<PSSysViewPanelLogicDTO> list = PSModelServiceUtil.getInstance().getPSSysViewPanelLogicService().listAllDTO();
                 if (list != null) {
                     for (PSSysViewPanelLogicDTO psSysPanelLogicDTO : list) {
                         PSSysPanelLogic psSysPanelLogic = new PSSysPanelLogic();
@@ -6267,7 +6267,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSPanelItemLogicService().listAllDTO();
+                List<PSPanelItemLogicDTO> list = PSModelServiceUtil.getInstance().getPSPanelItemLogicService().listAllDTO();
                 if (list != null) {
                     for (PSPanelItemLogicDTO psPanelItemLogicDTO : list) {
                         PSPanelItemLogic psPanelItemLogic = new PSPanelItemLogic();
@@ -6317,7 +6317,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFormService().listAllDTO();
+                List<PSDEFormDTO> list = PSModelServiceUtil.getInstance().getPSDEFormService().listAllDTO();
                 if (list != null) {
                     for (PSDEFormDTO psDEFormDTO : list) {
                         PSDEForm psDEForm = new PSDEForm();
@@ -6337,7 +6337,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFormDetailService().listAllDTO();
+                List<PSDEFormDetailDTO> list = PSModelServiceUtil.getInstance().getPSDEFormDetailService().listAllDTO();
                 if (list != null) {
                     for (PSDEFormDetailDTO psDEFormDetailDTO : list) {
                         PSDEFormDetail psDEFormDetail = new PSDEFormDetail();
@@ -6357,7 +6357,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFDLogicService().listAllDTO();
+                List<PSDEFDLogicDTO> list = PSModelServiceUtil.getInstance().getPSDEFDLogicService().listAllDTO();
                 if (list != null) {
                     for (PSDEFDLogicDTO psDEFDLogicDTO : list) {
                         PSDEFDLogic psDEFDLogic = new PSDEFDLogic();
@@ -6377,7 +6377,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFIUpdateService().listAllDTO();
+                List<PSDEFIUpdateDTO> list = PSModelServiceUtil.getInstance().getPSDEFIUpdateService().listAllDTO();
                 if (list != null) {
                     for (PSDEFIUpdateDTO psDEFIUpdateDTO : list) {
                         PSDEFIUpdate psDEFIUpdate = new PSDEFIUpdate();
@@ -6397,7 +6397,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFIUDetailService().listAllDTO();
+                List<PSDEFIUDetailDTO> list = PSModelServiceUtil.getInstance().getPSDEFIUDetailService().listAllDTO();
                 if (list != null) {
                     for (PSDEFIUDetailDTO psDEFIUDetailDTO : list) {
                         PSDEFIUDetail psDEFIUDetail = new PSDEFIUDetail();
@@ -6417,7 +6417,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFormRFService().listAllDTO();
+                List<PSDEFormRFDTO> list = PSModelServiceUtil.getInstance().getPSDEFormRFService().listAllDTO();
                 if (list != null) {
                     for (PSDEFormRFDTO psDEFormRFDTO : list) {
                         PSDEFormRF psDEFormRF = new PSDEFormRF();
@@ -6437,7 +6437,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFIVRService().listAllDTO();
+                List<PSDEFIVRDTO> list = PSModelServiceUtil.getInstance().getPSDEFIVRService().listAllDTO();
                 if (list != null) {
                     for (PSDEFIVRDTO psDEFormItemVRDTO : list) {
                         PSDEFormItemVR psDEFormItemVR = new PSDEFormItemVR();
@@ -6457,7 +6457,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEGridService().listAllDTO();
+                List<PSDEGridDTO> list = PSModelServiceUtil.getInstance().getPSDEGridService().listAllDTO();
                 if (list != null) {
                     for (PSDEGridDTO psDEGridDTO : list) {
                         PSDEGrid psDEGrid = new PSDEGrid();
@@ -6477,7 +6477,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEGridColService().listAllDTO();
+                List<PSDEGridColDTO> list = PSModelServiceUtil.getInstance().getPSDEGridColService().listAllDTO();
                 if (list != null) {
                     for (PSDEGridColDTO psDEGridColumnDTO : list) {
                         PSDEGridColumn psDEGridColumn = new PSDEGridColumn();
@@ -6497,7 +6497,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEGEIUpdateService().listAllDTO();
+                List<PSDEGEIUpdateDTO> list = PSModelServiceUtil.getInstance().getPSDEGEIUpdateService().listAllDTO();
                 if (list != null) {
                     for (PSDEGEIUpdateDTO psDEGEIUpdateDTO : list) {
                         PSDEGEIUpdate psDEGEIUpdate = new PSDEGEIUpdate();
@@ -6517,7 +6517,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEGEIUDetailService().listAllDTO();
+                List<PSDEGEIUDetailDTO> list = PSModelServiceUtil.getInstance().getPSDEGEIUDetailService().listAllDTO();
                 if (list != null) {
                     for (PSDEGEIUDetailDTO psDEGEIUDetailDTO : list) {
                         PSDEGEIUDetail psDEGEIUDetail = new PSDEGEIUDetail();
@@ -6537,7 +6537,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEGEIVRService().listAllDTO();
+                List<PSDEGEIVRDTO> list = PSModelServiceUtil.getInstance().getPSDEGEIVRService().listAllDTO();
                 if (list != null) {
                     for (PSDEGEIVRDTO psDEGridEditItemVRDTO : list) {
                         PSDEGridEditItemVR psDEGridEditItemVR = new PSDEGridEditItemVR();
@@ -6557,7 +6557,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDETreeViewService().listAllDTO();
+                List<PSDETreeViewDTO> list = PSModelServiceUtil.getInstance().getPSDETreeViewService().listAllDTO();
                 if (list != null) {
                     for (PSDETreeViewDTO psDETreeViewDTO : list) {
                         PSDETreeView psDETreeView = new PSDETreeView();
@@ -6577,7 +6577,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDETreeNodeService().listAllDTO();
+                List<PSDETreeNodeDTO> list = PSModelServiceUtil.getInstance().getPSDETreeNodeService().listAllDTO();
                 if (list != null) {
                     for (PSDETreeNodeDTO psDETreeNodeDTO : list) {
                         PSDETreeNode psDETreeNode = new PSDETreeNode();
@@ -6597,7 +6597,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDETreeColService().listAllDTO();
+                List<PSDETreeColDTO> list = PSModelServiceUtil.getInstance().getPSDETreeColService().listAllDTO();
                 if (list != null) {
                     for (PSDETreeColDTO psDETreeColumnDTO : list) {
                         PSDETreeColumn psDETreeColumn = new PSDETreeColumn();
@@ -6617,7 +6617,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDETreeNodeRSService().listAllDTO();
+                List<PSDETreeNodeRSDTO> list = PSModelServiceUtil.getInstance().getPSDETreeNodeRSService().listAllDTO();
                 if (list != null) {
                     for (PSDETreeNodeRSDTO psDETreeNodeRSDTO : list) {
                         PSDETreeNodeRS psDETreeNodeRS = new PSDETreeNodeRS();
@@ -6637,7 +6637,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDETreeNodeRVService().listAllDTO();
+                List<PSDETreeNodeRVDTO> list = PSModelServiceUtil.getInstance().getPSDETreeNodeRVService().listAllDTO();
                 if (list != null) {
                     for (PSDETreeNodeRVDTO psDETreeNodeRVDTO : list) {
                         PSDETreeNodeRV psDETreeNodeRV = new PSDETreeNodeRV();
@@ -6657,7 +6657,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDETreeNodeColService().listAllDTO();
+                List<PSDETreeNodeColDTO> list = PSModelServiceUtil.getInstance().getPSDETreeNodeColService().listAllDTO();
                 if (list != null) {
                     for (PSDETreeNodeColDTO psDETreeNodeColumnDTO : list) {
                         PSDETreeNodeColumn psDETreeNodeColumn = new PSDETreeNodeColumn();
@@ -6677,7 +6677,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEChartService().listAllDTO();
+                List<PSDEChartDTO> list = PSModelServiceUtil.getInstance().getPSDEChartService().listAllDTO();
                 if (list != null) {
                     for (PSDEChartDTO psDEChartDTO : list) {
                         PSDEChart psDEChart = new PSDEChart();
@@ -6697,7 +6697,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEChartAxesService().listAllDTO();
+                List<PSDEChartAxesDTO> list = PSModelServiceUtil.getInstance().getPSDEChartAxesService().listAllDTO();
                 if (list != null) {
                     for (PSDEChartAxesDTO psDEChartAxesDTO : list) {
                         PSDEChartAxes psDEChartAxes = new PSDEChartAxes();
@@ -6717,7 +6717,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEChartParamService().listAllDTO();
+                List<PSDEChartParamDTO> list = PSModelServiceUtil.getInstance().getPSDEChartParamService().listAllDTO();
                 if (list != null) {
                     for (PSDEChartParamDTO psDEChartSeriesDTO : list) {
                         PSDEChartSeries psDEChartSeries = new PSDEChartSeries();
@@ -6737,7 +6737,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEListService().listAllDTO();
+                List<PSDEListDTO> list = PSModelServiceUtil.getInstance().getPSDEListService().listAllDTO();
                 if (list != null) {
                     for (PSDEListDTO psDEListDTO : list) {
                         PSDEList psDEList = new PSDEList();
@@ -6757,7 +6757,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEListItemService().listAllDTO();
+                List<PSDEListItemDTO> list = PSModelServiceUtil.getInstance().getPSDEListItemService().listAllDTO();
                 if (list != null) {
                     for (PSDEListItemDTO psDEListItemDTO : list) {
                         PSDEListItem psDEListItem = new PSDEListItem();
@@ -6777,7 +6777,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEDataViewService().listAllDTO();
+                List<PSDEDataViewDTO> list = PSModelServiceUtil.getInstance().getPSDEDataViewService().listAllDTO();
                 if (list != null) {
                     for (PSDEDataViewDTO psDEDataViewDTO : list) {
                         PSDEDataView psDEDataView = new PSDEDataView();
@@ -6797,7 +6797,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEListItemService().listAllDTO();
+                List<PSDEListItemDTO> list = PSModelServiceUtil.getInstance().getPSDEListItemService().listAllDTO();
                 if (list != null) {
                     for (PSDEListItemDTO psDEDataViewItemDTO : list) {
                         PSDEDataViewItem psDEDataViewItem = new PSDEDataViewItem();
@@ -6817,7 +6817,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysUniStateService().listAllDTO();
+                List<PSSysUniStateDTO> list = PSModelServiceUtil.getInstance().getPSSysUniStateService().listAllDTO();
                 if (list != null) {
                     for (PSSysUniStateDTO psSysUniStateDTO : list) {
                         PSSysUniState psSysUniState = new PSSysUniState();
@@ -6837,7 +6837,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysModelGroupService().listAllDTO();
+                List<PSSysModelGroupDTO> list = PSModelServiceUtil.getInstance().getPSSysModelGroupService().listAllDTO();
                 if (list != null) {
                     for (PSSysModelGroupDTO psSysModelGroupDTO : list) {
                         PSSysModelGroup psSysModelGroup = new PSSysModelGroup();
@@ -6857,7 +6857,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysAppService().listAllDTO();
+                List<PSSysAppDTO> list = PSModelServiceUtil.getInstance().getPSSysAppService().listAllDTO();
                 if (list != null) {
                     for (PSSysAppDTO psSystemApplicationDTO : list) {
                         PSSystemApplication psSystemApplication = new PSSystemApplication();
@@ -6883,7 +6883,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSFPubPkgService().listDTOByPSSysSFPub(strPSSysSFPubId2);
+                List<PSSysSFPubPkgDTO> list = PSModelServiceUtil.getInstance().getPSSysSFPubPkgService().listDTOByPSSysSFPub(strPSSysSFPubId2);
                 if (list != null) {
                     for (PSSysSFPubPkgDTO psSysSFPubPkgDTO : list) {
                         PSSysSFPubPkg psSysSFPubPkg = new PSSysSFPubPkg();
@@ -6903,7 +6903,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysDMVerService().listAllDTO();
+                List<PSSysDMVerDTO> list = PSModelServiceUtil.getInstance().getPSSysDMVerService().listAllDTO();
                 if (list != null) {
                     for (PSSysDMVerDTO psSysDMVerDTO : list) {
                         PSSysDMVer psSysDMVer = new PSSysDMVer();
@@ -6923,7 +6923,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSModuleService().listAllDTO();
+                List<PSModuleDTO> list = PSModelServiceUtil.getInstance().getPSModuleService().listAllDTO();
                 if (list != null) {
                     for (PSModuleDTO psSystemModuleDTO : list) {
                         PSSystemModule psSystemModule = new PSSystemModule();
@@ -6943,7 +6943,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysRefService().listAllDTO();
+                List<PSSysRefDTO> list = PSModelServiceUtil.getInstance().getPSSysRefService().listAllDTO();
                 if (list != null) {
                     for (PSSysRefDTO psSysRefDTO : list) {
                         PSSysRef psSysRef = new PSSysRef();
@@ -6963,7 +6963,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSystemDBCfgService().listAllDTO();
+                List<PSSystemDBCfgDTO> list = PSModelServiceUtil.getInstance().getPSSystemDBCfgService().listAllDTO();
                 if (list != null) {
                     for (PSSystemDBCfgDTO psSystemDBConfigDTO : list) {
                         PSSystemDBConfig psSystemDBConfig = new PSSystemDBConfig();
@@ -6983,7 +6983,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFRoleService().listAllDTO();
+                List<PSWFRoleDTO> list = PSModelServiceUtil.getInstance().getPSWFRoleService().listAllDTO();
                 if (list != null) {
                     for (PSWFRoleDTO psWFRoleDTO : list) {
                         PSWFRole psWFRole = new PSWFRole();
@@ -7003,7 +7003,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFWorkTimeService().listAllDTO();
+                List<PSWFWorkTimeDTO> list = PSModelServiceUtil.getInstance().getPSWFWorkTimeService().listAllDTO();
                 if (list != null) {
                     for (PSWFWorkTimeDTO psWFWorkTimeDTO : list) {
                         PSWFWorkTime psWFWorkTime = new PSWFWorkTime();
@@ -7023,7 +7023,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSACHandlerService().listAllDTO();
+                List<PSACHandlerDTO> list = PSModelServiceUtil.getInstance().getPSACHandlerService().listAllDTO();
                 if (list != null) {
                     for (PSACHandlerDTO psACHandlerDTO : list) {
                         if (!StringHelper.isNullOrEmpty((String)psACHandlerDTO.getPSDEId())) continue;
@@ -7045,7 +7045,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSACHandlerService().listDTOByPSDataEntity(strPSDataEntityId2);
+                List<PSACHandlerDTO> list = PSModelServiceUtil.getInstance().getPSACHandlerService().listDTOByPSDataEntity(strPSDataEntityId2);
                 if (list != null) {
                     for (PSACHandlerDTO psACHandlerDTO : list) {
                         PSACHandler psACHandler = new PSACHandler();
@@ -7141,7 +7141,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list2 = PSModelServiceUtil.getInstance().getPSAppPVPartService().listAllDTOByPSAppPortalView(strPSAppPortalViewId2);
+                List<PSAppPVPartDTO> list2 = PSModelServiceUtil.getInstance().getPSAppPVPartService().listAllDTOByPSAppPortalView(strPSAppPortalViewId2);
                 if (list2 != null) {
                     for (PSAppPVPartDTO psAppPortalViewPartDTO : list2) {
                         PSAppPortalViewPart psAppPortalViewPart = new PSAppPortalViewPart();
@@ -7210,7 +7210,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list2 = PSModelServiceUtil.getInstance().getPSDEFormRFService().listDTOByPSDEForm(strPSDEFormId2);
+                List<PSDEFormRFDTO> list2 = PSModelServiceUtil.getInstance().getPSDEFormRFService().listDTOByPSDEForm(strPSDEFormId2);
                 if (list2 != null) {
                     for (PSDEFormRFDTO psDEFormRFDTO : list2) {
                         PSDEFormRF psDEFormRF = new PSDEFormRF();
@@ -7264,7 +7264,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFDEService().listDTOByPSWorkflow(strPSWFId2);
+                List<PSWFDEDTO> list = PSModelServiceUtil.getInstance().getPSWFDEService().listDTOByPSWorkflow(strPSWFId2);
                 if (list != null) {
                     for (PSWFDEDTO psWFDEDTO : list) {
                         if (psWFDEDTO.getValidFlag() != null && psWFDEDTO.getValidFlag() != 1) continue;
@@ -7290,7 +7290,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSAppUIStyleService().listDTOByPSSysApp(strPSSysAppId2);
+                List<PSAppUIStyleDTO> list = PSModelServiceUtil.getInstance().getPSAppUIStyleService().listDTOByPSSysApp(strPSSysAppId2);
                 if (list != null) {
                     for (PSAppUIStyleDTO psAppUIStyleDTO : list) {
                         PSAppUIStyle psAppUIStyle = new PSAppUIStyle();
@@ -7329,7 +7329,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysSequenceService().listAllDTO();
+                List<PSSysSequenceDTO> list = PSModelServiceUtil.getInstance().getPSSysSequenceService().listAllDTO();
                 if (list != null) {
                     for (PSSysSequenceDTO psSysSequenceDTO : list) {
                         if (psSysSequenceDTO.getValidFlag() != null && psSysSequenceDTO.getValidFlag() != 1) continue;
@@ -7350,7 +7350,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysTranslatorService().listAllDTO();
+                List<PSSysTranslatorDTO> list = PSModelServiceUtil.getInstance().getPSSysTranslatorService().listAllDTO();
                 if (list != null) {
                     for (PSSysTranslatorDTO psSysTranslatorDTO : list) {
                         if (psSysTranslatorDTO.getValidFlag() != null && psSysTranslatorDTO.getValidFlag() != 1) continue;
@@ -7371,7 +7371,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysMsgTargetService().listAllDTO();
+                List<PSSysMsgTargetDTO> list = PSModelServiceUtil.getInstance().getPSSysMsgTargetService().listAllDTO();
                 if (list != null) {
                     for (PSSysMsgTargetDTO psSysMsgTargetDTO : list) {
                         if (psSysMsgTargetDTO.getValidFlag() != null && psSysMsgTargetDTO.getValidFlag() != 1) continue;
@@ -7392,7 +7392,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysMsgQueueService().listAllDTO();
+                List<PSSysMsgQueueDTO> list = PSModelServiceUtil.getInstance().getPSSysMsgQueueService().listAllDTO();
                 if (list != null) {
                     for (PSSysMsgQueueDTO psSysMsgQueueDTO : list) {
                         if (psSysMsgQueueDTO.getValidFlag() != null && psSysMsgQueueDTO.getValidFlag() != 1) continue;
@@ -7413,7 +7413,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysWFSettingService().listAllDTO();
+                List<PSSysWFSettingDTO> list = PSModelServiceUtil.getInstance().getPSSysWFSettingService().listAllDTO();
                 if (list != null) {
                     for (PSSysWFSettingDTO psSysWFSettingDTO : list) {
                         PSSysWFSetting psSysWFSetting = new PSSysWFSetting();
@@ -7438,7 +7438,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSWFUtilUIActionService().listAllDTO();
+                List<PSWFUtilUIActionDTO> list = PSModelServiceUtil.getInstance().getPSWFUtilUIActionService().listAllDTO();
                 if (list != null) {
                     for (PSWFUtilUIActionDTO psWFUtilUIActionDTO : list) {
                         if (psWFUtilUIActionDTO.getValidFlag() != null && psWFUtilUIActionDTO.getValidFlag() != 1) continue;
@@ -7459,7 +7459,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEMainStateRSService().listAllDTO();
+                List<PSDEMainStateRSDTO> list = PSModelServiceUtil.getInstance().getPSDEMainStateRSService().listAllDTO();
                 if (list != null) {
                     for (PSDEMainStateRSDTO psDEMainStateRSDTO : list) {
                         if (psDEMainStateRSDTO.getValidFlag() != null && psDEMainStateRSDTO.getValidFlag() != 1) continue;
@@ -7480,7 +7480,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDENotifyService().listAllDTO();
+                List<PSDENotifyDTO> list = PSModelServiceUtil.getInstance().getPSDENotifyService().listAllDTO();
                 if (list != null) {
                     for (PSDENotifyDTO psDENotifyDTO : list) {
                         if (psDENotifyDTO.getValidFlag() != null && psDENotifyDTO.getValidFlag() != 1) continue;
@@ -7501,7 +7501,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDENotifyTargetService().listAllDTO();
+                List<PSDENotifyTargetDTO> list = PSModelServiceUtil.getInstance().getPSDENotifyTargetService().listAllDTO();
                 if (list != null) {
                     for (PSDENotifyTargetDTO psDENotifyTargetDTO : list) {
                         if (psDENotifyTargetDTO.getValidFlag() != null && psDENotifyTargetDTO.getValidFlag() != 1) continue;
@@ -7527,7 +7527,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDETBItemService().listAllDTOByPSDEToolbar(strPSDEToolbarId2);
+                List<PSDETBItemDTO> list = PSModelServiceUtil.getInstance().getPSDETBItemService().listAllDTOByPSDEToolbar(strPSDEToolbarId2);
                 if (list != null) {
                     for (PSDETBItemDTO psDEToolbarItemDTO : list) {
                         PSDEToolbarItem psDEToolbarItem = new PSDEToolbarItem();
@@ -7547,7 +7547,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEFormService().listAllDTO();
+                List<PSDEFormDTO> list = PSModelServiceUtil.getInstance().getPSDEFormService().listAllDTO();
                 if (list != null) {
                     for (PSDEFormDTO psDEFormDTO : list) {
                         if (!"EDITFORM".equals(psDEFormDTO.getFormType())) continue;
@@ -7598,7 +7598,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysEAISchemeService().listAllDTO();
+                List<PSSysEAISchemeDTO> list = PSModelServiceUtil.getInstance().getPSSysEAISchemeService().listAllDTO();
                 if (list != null) {
                     for (PSSysEAISchemeDTO psSysEAISchemeDTO : list) {
                         PSSysEAIScheme psSysEAIScheme = new PSSysEAIScheme();
@@ -7618,7 +7618,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysEAIDataTypeService().listAllDTO();
+                List<PSSysEAIDataTypeDTO> list = PSModelServiceUtil.getInstance().getPSSysEAIDataTypeService().listAllDTO();
                 if (list != null) {
                     for (PSSysEAIDataTypeDTO psSysEAIDataTypeDTO : list) {
                         if (psSysEAIDataTypeDTO.getValidFlag() != null && psSysEAIDataTypeDTO.getValidFlag() != 1) continue;
@@ -7639,7 +7639,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysEAIDataTypeItemService().listAllDTO();
+                List<PSSysEAIDataTypeItemDTO> list = PSModelServiceUtil.getInstance().getPSSysEAIDataTypeItemService().listAllDTO();
                 if (list != null) {
                     for (PSSysEAIDataTypeItemDTO psSysEAIDataTypeItemDTO : list) {
                         if (psSysEAIDataTypeItemDTO.getValidFlag() != null && psSysEAIDataTypeItemDTO.getValidFlag() != 1) continue;
@@ -7660,7 +7660,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysEAIElementService().listAllDTO();
+                List<PSSysEAIElementDTO> list = PSModelServiceUtil.getInstance().getPSSysEAIElementService().listAllDTO();
                 if (list != null) {
                     for (PSSysEAIElementDTO psSysEAIElementDTO : list) {
                         if (psSysEAIElementDTO.getValidFlag() != null && psSysEAIElementDTO.getValidFlag() != 1) continue;
@@ -7681,7 +7681,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysEAIElementAttrService().listAllDTO();
+                List<PSSysEAIElementAttrDTO> list = PSModelServiceUtil.getInstance().getPSSysEAIElementAttrService().listAllDTO();
                 if (list != null) {
                     for (PSSysEAIElementAttrDTO psSysEAIElementAttrDTO : list) {
                         if (psSysEAIElementAttrDTO.getValidFlag() != null && psSysEAIElementAttrDTO.getValidFlag() != 1) continue;
@@ -7702,7 +7702,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysEAIElementREService().listAllDTO();
+                List<PSSysEAIElementREDTO> list = PSModelServiceUtil.getInstance().getPSSysEAIElementREService().listAllDTO();
                 if (list != null) {
                     for (PSSysEAIElementREDTO psSysEAIElementREDTO : list) {
                         if (psSysEAIElementREDTO.getValidFlag() != null && psSysEAIElementREDTO.getValidFlag() != 1) continue;
@@ -7723,7 +7723,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysEAIDEService().listAllDTO();
+                List<PSSysEAIDEDTO> list = PSModelServiceUtil.getInstance().getPSSysEAIDEService().listAllDTO();
                 if (list != null) {
                     for (PSSysEAIDEDTO psSysEAIDEDTO : list) {
                         if (psSysEAIDEDTO.getValidFlag() != null && psSysEAIDEDTO.getValidFlag() != 1) continue;
@@ -7744,7 +7744,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysEAIDEFieldService().listAllDTO();
+                List<PSSysEAIDEFieldDTO> list = PSModelServiceUtil.getInstance().getPSSysEAIDEFieldService().listAllDTO();
                 if (list != null) {
                     for (PSSysEAIDEFieldDTO psSysEAIDEFieldDTO : list) {
                         if (psSysEAIDEFieldDTO.getValidFlag() != null && psSysEAIDEFieldDTO.getValidFlag() != 1) continue;
@@ -7765,7 +7765,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysEAIDERService().listAllDTO();
+                List<PSSysEAIDERDTO> list = PSModelServiceUtil.getInstance().getPSSysEAIDERService().listAllDTO();
                 if (list != null) {
                     for (PSSysEAIDERDTO psSysEAIDERDTO : list) {
                         if (psSysEAIDERDTO.getValidFlag() != null && psSysEAIDERDTO.getValidFlag() != 1) continue;
@@ -7786,7 +7786,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBISchemeService().listAllDTO();
+                List<PSSysBISchemeDTO> list = PSModelServiceUtil.getInstance().getPSSysBISchemeService().listAllDTO();
                 if (list != null) {
                     for (PSSysBISchemeDTO psSysBISchemeDTO : list) {
                         PSSysBIScheme psSysBIScheme = new PSSysBIScheme();
@@ -7806,7 +7806,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBIDimensionService().listAllDTO();
+                List<PSSysBIDimensionDTO> list = PSModelServiceUtil.getInstance().getPSSysBIDimensionService().listAllDTO();
                 if (list != null) {
                     for (PSSysBIDimensionDTO psSysBIDimensionDTO : list) {
                         if (psSysBIDimensionDTO.getValidFlag() != null && psSysBIDimensionDTO.getValidFlag() != 1) continue;
@@ -7827,7 +7827,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBIHierarchyService().listAllDTO();
+                List<PSSysBIHierarchyDTO> list = PSModelServiceUtil.getInstance().getPSSysBIHierarchyService().listAllDTO();
                 if (list != null) {
                     for (PSSysBIHierarchyDTO psSysBIHierarchyDTO : list) {
                         if (psSysBIHierarchyDTO.getValidFlag() != null && psSysBIHierarchyDTO.getValidFlag() != 1) continue;
@@ -7848,7 +7848,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBILevelService().listAllDTO();
+                List<PSSysBILevelDTO> list = PSModelServiceUtil.getInstance().getPSSysBILevelService().listAllDTO();
                 if (list != null) {
                     for (PSSysBILevelDTO psSysBILevelDTO : list) {
                         if (psSysBILevelDTO.getValidFlag() != null && psSysBILevelDTO.getValidFlag() != 1) continue;
@@ -7869,7 +7869,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBICubeService().listAllDTO();
+                List<PSSysBICubeDTO> list = PSModelServiceUtil.getInstance().getPSSysBICubeService().listAllDTO();
                 if (list != null) {
                     for (PSSysBICubeDTO psSysBICubeDTO : list) {
                         if (psSysBICubeDTO.getValidFlag() != null && psSysBICubeDTO.getValidFlag() != 1) continue;
@@ -7890,7 +7890,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBICubeDimensionService().listAllDTO();
+                List<PSSysBICubeDimensionDTO> list = PSModelServiceUtil.getInstance().getPSSysBICubeDimensionService().listAllDTO();
                 if (list != null) {
                     for (PSSysBICubeDimensionDTO psSysBICubeDimensionDTO : list) {
                         if (psSysBICubeDimensionDTO.getValidFlag() != null && psSysBICubeDimensionDTO.getValidFlag() != 1) continue;
@@ -7911,7 +7911,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBICubeLevelService().listAllDTO();
+                List<PSSysBICubeLevelDTO> list = PSModelServiceUtil.getInstance().getPSSysBICubeLevelService().listAllDTO();
                 if (list != null) {
                     for (PSSysBICubeLevelDTO psSysBICubeLevelDTO : list) {
                         if (psSysBICubeLevelDTO.getValidFlag() != null && psSysBICubeLevelDTO.getValidFlag() != 1) continue;
@@ -7932,7 +7932,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBICubeMeasureService().listAllDTO();
+                List<PSSysBICubeMeasureDTO> list = PSModelServiceUtil.getInstance().getPSSysBICubeMeasureService().listAllDTO();
                 if (list != null) {
                     for (PSSysBICubeMeasureDTO psSysBICubeMeasureDTO : list) {
                         if (psSysBICubeMeasureDTO.getValidFlag() != null && psSysBICubeMeasureDTO.getValidFlag() != 1) continue;
@@ -7953,7 +7953,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBIAggTableService().listAllDTO();
+                List<PSSysBIAggTableDTO> list = PSModelServiceUtil.getInstance().getPSSysBIAggTableService().listAllDTO();
                 if (list != null) {
                     for (PSSysBIAggTableDTO psSysBIAggTableDTO : list) {
                         if (psSysBIAggTableDTO.getValidFlag() != null && psSysBIAggTableDTO.getValidFlag() != 1) continue;
@@ -7974,7 +7974,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysBIAggColumnService().listAllDTO();
+                List<PSSysBIAggColumnDTO> list = PSModelServiceUtil.getInstance().getPSSysBIAggColumnService().listAllDTO();
                 if (list != null) {
                     for (PSSysBIAggColumnDTO psSysBIAggColumnDTO : list) {
                         if (psSysBIAggColumnDTO.getValidFlag() != null && psSysBIAggColumnDTO.getValidFlag() != 1) continue;
@@ -7995,7 +7995,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSThresholdGroupService().listAllDTO();
+                List<PSThresholdGroupDTO> list = PSModelServiceUtil.getInstance().getPSThresholdGroupService().listAllDTO();
                 if (list != null) {
                     for (PSThresholdGroupDTO psThresholdGroupDTO : list) {
                         if (psThresholdGroupDTO.getValidFlag() != null && psThresholdGroupDTO.getValidFlag() != 1) continue;
@@ -8016,7 +8016,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSThresholdService().listAllDTO();
+                List<PSThresholdDTO> list = PSModelServiceUtil.getInstance().getPSThresholdService().listAllDTO();
                 if (list != null) {
                     for (PSThresholdDTO psThresholdDTO : list) {
                         if (psThresholdDTO.getValidFlag() != null && psThresholdDTO.getValidFlag() != 1) continue;
@@ -8037,7 +8037,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysChartThemeService().listAllDTO();
+                List<PSSysChartThemeDTO> list = PSModelServiceUtil.getInstance().getPSSysChartThemeService().listAllDTO();
                 if (list != null) {
                     for (PSSysChartThemeDTO psSysChartThemeDTO : list) {
                         PSSysChartTheme psSysChartTheme = new PSSysChartTheme();
@@ -8072,7 +8072,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSSysDBVFService().listAllDTO();
+                List<PSSysDBVFDTO> list = PSModelServiceUtil.getInstance().getPSSysDBVFService().listAllDTO();
                 if (list != null) {
                     for (PSSysDBVFDTO psSysDBValueFuncDTO : list) {
                         PSSysDBValueFunc psSysDBValueFunc = new PSSysDBValueFunc();
@@ -8097,7 +8097,7 @@ extends PSModelHelperImpl {
 
             @Override
             public Object execute(Object param) throws Exception {
-                List list = PSModelServiceUtil.getInstance().getPSDEViewCtrlService().listDTOByPSDEViewBase(strPSDEViewId2);
+                List<PSDEViewCtrlDTO> list = PSModelServiceUtil.getInstance().getPSDEViewCtrlService().listDTOByPSDEViewBase(strPSDEViewId2);
                 if (list != null) {
                     for (PSDEViewCtrlDTO psDEViewCtrlDTO : list) {
                         if (psDEViewCtrlDTO.getValidFlag() != null && psDEViewCtrlDTO.getValidFlag() != 1) continue;
@@ -8395,4 +8395,3 @@ extends PSModelHelperImpl {
         public Object execute(Object var1) throws Exception;
     }
 }
-

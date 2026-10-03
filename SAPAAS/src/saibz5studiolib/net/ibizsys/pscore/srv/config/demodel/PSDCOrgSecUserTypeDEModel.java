@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSDCOrgSecUserTypeDEModelBase;
 
 public class PSDCOrgSecUserTypeDEModel
 extends PSDCOrgSecUserTypeDEModelBase {
+
+    public PSDCOrgSecUserTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

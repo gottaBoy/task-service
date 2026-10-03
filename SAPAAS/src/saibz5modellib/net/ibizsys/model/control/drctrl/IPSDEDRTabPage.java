@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.drctrl;
 
-import net.ibizsys.model.control.drctrl.IPSDEDRCtrlItem;
 
-public interface IPSDEDRTabPage
-extends IPSDEDRCtrlItem {
+
+/**
+ * 关系部件分页对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEDRTabPage extends IPSDEDRCtrlItem
+{
+
 }
-

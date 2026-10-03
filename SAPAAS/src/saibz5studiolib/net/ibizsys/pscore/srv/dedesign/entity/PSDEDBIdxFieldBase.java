@@ -1195,7 +1195,7 @@ implements Serializable {
                 PSDEDBIndex pSDEDBIndex = new PSDEDBIndex();
                 pSDEDBIndex.setPSDEDBIndexId(this.getPSDEDBIndexId());
                 PSDEDBIndexService pSDEDBIndexService = (PSDEDBIndexService)ServiceGlobal.getService(PSDEDBIndexService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDBIndexService.autoGet((IEntity)pSDEDBIndex);
+                pSDEDBIndexService.autoGet(pSDEDBIndex);
                 this.psdedbindex = pSDEDBIndex;
             }
             return this.psdedbindex;
@@ -1221,7 +1221,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.psdef = pSDEField;
             }
             return this.psdef;

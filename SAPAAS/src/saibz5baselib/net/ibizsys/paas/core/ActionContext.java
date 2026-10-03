@@ -1,107 +1,156 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.core;
 
 import java.util.HashMap;
-import net.ibizsys.paas.core.IActionContext;
+
+import org.hibernate.SessionFactory;
+
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.web.IWebContext;
 import net.ibizsys.paas.web.WebContext;
-import org.hibernate.SessionFactory;
 
-public class ActionContext
-implements IActionContext {
-    private static ThreadLocal<IActionContext> actionContext = new ThreadLocal();
-    protected IWebContext iWebContext = null;
-    protected SessionFactory sessionFactory = null;
-    protected HashMap<String, Object> paramMap = new HashMap();
-    protected String strOperator = null;
-    protected String strOperatorName = null;
-    protected String strRemoteAddr = null;
+/**
+ * 操作上下文对象
+ * 
+ * @author Administrator
+ *
+ */
+public class ActionContext implements IActionContext {
+	private static ThreadLocal<IActionContext> actionContext = new ThreadLocal<IActionContext>();
 
-    public ActionContext(IWebContext iWebContext) {
-        this.iWebContext = iWebContext;
-    }
+	protected IWebContext iWebContext = null;
+	protected SessionFactory sessionFactory = null;
+	protected HashMap<String, Object> paramMap = new HashMap<String, Object>();
+	protected String strOperator = null;
+	protected String strOperatorName = null;
+	protected String strRemoteAddr = null;
 
-    @Override
-    public IWebContext getWebContext() {
-        if (this.iWebContext == null) {
-            return WebContext.getCurrent();
-        }
-        return this.iWebContext;
-    }
+	public ActionContext(IWebContext iWebContext) {
+		this.iWebContext = iWebContext;
+	}
 
-    public void setWebContext(IWebContext iWebContext) {
-        this.iWebContext = iWebContext;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.core.IActionContext#getWebContext()
+	 */
+	@Override
+	public IWebContext getWebContext() {
+		if (this.iWebContext == null) return WebContext.getCurrent();
+		return this.iWebContext;
+	}
+	
+	/**
+	 * 设置网络访问上下文
+	 * @param iWebContext
+	 */
+	public void setWebContext(IWebContext iWebContext){
+		this.iWebContext = iWebContext;
+	}
 
-    @Override
-    public SessionFactory getSessionFactory() {
-        return this.sessionFactory;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IActionContext#getSessionFactory()
+	 */
+	@Override
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+	/**
+	 * 设置会话工厂
+	 * 
+	 * @param sessionFactory the sessionFactory to set
+	 */
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
-    @Override
-    public Object getParam(String strParamName) {
-        return this.paramMap.get(strParamName.toUpperCase());
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IActionContext#getParam(java.lang.String)
+	 */
+	@Override
+	public Object getParam(String strParamName) {
+		return paramMap.get(strParamName.toUpperCase());
+	}
 
-    @Override
-    public void setParam(String strParamName, Object objValue) {
-        if (objValue != null) {
-            this.paramMap.put(strParamName.toUpperCase(), objValue);
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IActionContext#setParam(java.lang.String, java.lang.Object)
+	 */
+	public void setParam(String strParamName, Object objValue) {
+		if (objValue != null) {
+			paramMap.put(strParamName.toUpperCase(), objValue);
+		}
+	}
 
-    @Override
-    public String getOperator() {
-        if (StringHelper.isNullOrEmpty(this.strOperator) && this.getWebContext() != null) {
-            return this.getWebContext().getCurUserId();
-        }
-        return this.strOperator;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IActionContext#getOperator()
+	 */
+	@Override
+	public String getOperator() {
+		if (StringHelper.isNullOrEmpty(this.strOperator) && this.getWebContext() != null) return this.getWebContext().getCurUserId();
+		return this.strOperator;
+	}
 
-    public void setOperator(String strOperator) {
-        this.strOperator = strOperator;
-    }
+	/**
+	 * 设置操作者
+	 * 
+	 * @param strOperator
+	 */
+	public void setOperator(String strOperator) {
+		this.strOperator = strOperator;
+	}
 
-    @Override
-    public String getOperatorName() {
-        if (StringHelper.isNullOrEmpty(this.strOperatorName) && this.getWebContext() != null) {
-            return this.getWebContext().getCurUserName();
-        }
-        return this.strOperatorName;
-    }
+	@Override
+	public String getOperatorName() {
+		if (StringHelper.isNullOrEmpty(this.strOperatorName) && this.getWebContext() != null) return this.getWebContext().getCurUserName();
+		return this.strOperatorName;
+	}
 
-    public void setOperatorName(String strOperatorName) {
-        this.strOperatorName = strOperatorName;
-    }
+	/**
+	 * 设置操作者名称
+	 * 
+	 * @param strOperatorName
+	 */
+	public void setOperatorName(String strOperatorName) {
+		this.strOperatorName = strOperatorName;
+	}
 
-    @Override
-    public String getRemoteAddr() {
-        if (StringHelper.isNullOrEmpty(this.strRemoteAddr) && this.getWebContext() != null) {
-            return this.getWebContext().getRemoteAddr();
-        }
-        return this.strRemoteAddr;
-    }
+	@Override
+	public String getRemoteAddr() {
+		if (StringHelper.isNullOrEmpty(this.strRemoteAddr) && this.getWebContext() != null) return this.getWebContext().getRemoteAddr();
+		return this.strRemoteAddr;
+	}
 
-    public void setRemoteAddr(String strRemoteAddr) {
-        this.strRemoteAddr = strRemoteAddr;
-    }
+	/**
+	 * 设置远端地址
+	 * 
+	 * @param strRemoteAddr
+	 */
+	public void setRemoteAddr(String strRemoteAddr) {
+		this.strRemoteAddr = strRemoteAddr;
+	}
 
-    public static IActionContext getCurrent() {
-        return actionContext.get();
-    }
+	/**
+	 * 获取上下文对象
+	 * 
+	 * @return
+	 */
+	public static IActionContext getCurrent() {
+		return actionContext.get();
+	}
 
-    public static void setCurrent(IActionContext value) {
-        actionContext.set(value);
-    }
+	/**
+	 * 设置上下文对象
+	 * 
+	 * @param value
+	 */
+	public static void setCurrent(IActionContext value) {
+		actionContext.set(value);
+	}
+
 }
-

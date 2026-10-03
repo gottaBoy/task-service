@@ -112,21 +112,15 @@ public class ConnectionPool {
     }
 
     private boolean TestConnection(Connection conn) {
-        block4: {
-            if (conn == null) {
-                return false;
-            }
-            try {
-                if (!conn.isClosed()) break block4;
-                return false;
-            }
-            catch (Exception ex) {
-                ex.printStackTrace(System.out);
-                return false;
-            }
+        if (conn == null) {
+            return false;
         }
-        conn.getMetaData();
-        return true;
+        try {
+            return !conn.isClosed() && conn.getMetaData() != null;
+        } catch (Exception ex) {
+            ex.printStackTrace(System.out);
+            return false;
+        }
     }
 
     public synchronized void ReleaseConnction(Connection conn) {
@@ -194,4 +188,3 @@ public class ConnectionPool {
         }
     }
 }
-

@@ -1,34 +1,87 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDataEntity;
-import net.ibizsys.paas.core.IDataEntityObject;
 import net.ibizsys.paas.view.IUIAction;
 
-public interface IDEUIAction
-extends IDataEntityObject,
-IUIAction {
-    public static final String ACTIONTARGET_SINGLEDATA = "SINGLEDATA";
-    public static final String ACTIONTARGET_SINGLEKEY = "SINGLEKEY";
-    public static final String ACTIONTARGET_MULTIDATA = "MULTIDATA";
-    public static final String ACTIONTARGET_MULTIKEY = "MULTIKEY";
-    public static final String ACTIONTARGET_NONE = "NONE";
+/**
+ * 实体界面行为接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDEUIAction extends IDataEntityObject,IUIAction {
+	/**
+	 * 单数据
+	 */
+	public final String ACTIONTARGET_SINGLEDATA = "SINGLEDATA";
 
-    public void init(IDataEntity var1) throws Exception;
+	/**
+	 * 单数据主键
+	 */
+	public final String ACTIONTARGET_SINGLEKEY = "SINGLEKEY";
 
-    @Override
-    public String getActionTarget();
+	/**
+	 * 多数据
+	 */
+	public final String ACTIONTARGET_MULTIDATA = "MULTIDATA";
 
-    public boolean isReloadData();
+	/**
+	 * 多数据主键
+	 */
+	public final String ACTIONTARGET_MULTIKEY = "MULTIKEY";
 
-    public String getSuccessMsg();
+	/**
+	 * 无数据
+	 */
+	public final String ACTIONTARGET_NONE = "NONE";
 
-    public String getDataAccessAction();
+	/**
+	 * 初始化
+	 * 
+	 * @param iDataEntity
+	 * @throws Exception
+	 */
+	void init(IDataEntity iDataEntity) throws Exception;
 
-    public boolean isCloseEditView();
+	/**
+	 * 获取数据操作目标
+	 * 
+	 * @return
+	 */
+	String getActionTarget();
 
-    public boolean isGlobalUIAction();
+	/**
+	 * 获取是否重新加载数据
+	 * 
+	 * @return
+	 */
+	boolean isReloadData();
+
+	/**
+	 * 获取操作完成提示信息
+	 * 
+	 * @return
+	 */
+	String getSuccessMsg();
+
+	/**
+	 * 获取数据范围行为
+	 * 
+	 * @return
+	 */
+	String getDataAccessAction();
+
+	/**
+	 * 关闭编辑视图
+	 * 
+	 * @return
+	 */
+	boolean isCloseEditView();
+	
+	
+	
+	/**
+	 * 是否为全局的界面行为，全局界面行为支持跨实体调用
+	 * @return
+	 */
+	boolean isGlobalUIAction();
 }
-

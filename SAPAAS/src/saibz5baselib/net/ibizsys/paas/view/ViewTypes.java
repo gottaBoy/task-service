@@ -1,9 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.view;
 
+/**
+ * 视图类型
+ * 
+ * @author Administrator
+ *
+ */
 public class ViewTypes {
-    public static final String Unknown = "UNKNOWN";
+	/**
+	 * 未知
+	 */
+	public final static String Unknown = "UNKNOWN";
 }
-

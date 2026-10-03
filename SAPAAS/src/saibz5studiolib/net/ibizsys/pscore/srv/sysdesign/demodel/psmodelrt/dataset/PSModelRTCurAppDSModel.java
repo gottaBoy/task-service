@@ -71,7 +71,7 @@ extends PSModelRTCurAppDSModelBase {
         SimpleDataTableImpl simpleDataTableImpl = new SimpleDataTableImpl((IDataSet)simpleDataSetImpl);
         PSModelRTService pSModelRTService = (PSModelRTService)ServiceGlobal.getService(PSModelRTService.class, (SessionFactory)iDEDataSetFetchContext.getSessionFactory());
         try {
-            pSModelRTService.executeAction("XG_LISTMODELRT", (IEntity)pSModelRT);
+            pSModelRTService.executeAction("XG_LISTMODELRT", pSModelRT);
         }
         catch (Exception exception) {
             log.error((Object)exception);

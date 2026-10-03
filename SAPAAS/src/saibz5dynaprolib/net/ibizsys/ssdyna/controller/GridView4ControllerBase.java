@@ -1,11 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.GridViewControllerBase;
-
-public abstract class GridView4ControllerBase
-extends GridViewControllerBase {
+/**
+ * 实体表格视图控制器基类（上下关系）
+ * @author Administrator
+ *
+ */
+public abstract class GridView4ControllerBase extends GridViewControllerBase {
+	public GridView4ControllerBase() throws Exception {
+		super();
+	}
 }
-

@@ -1,9 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-public interface IAsyncHandler {
-    public void exception(Exception var1);
-}
 
+/**
+ * 异步处理对象
+ * @author Administrator
+ *
+ */
+public interface IAsyncHandler {
+	
+	/**
+	 * 查询出现异常触发
+	 * @param baException
+	 */
+	void exception(Exception exception );
+}

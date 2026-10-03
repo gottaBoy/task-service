@@ -1,15 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.PortletModelBase;
-
-public abstract class HtmlPortletModelBase
-extends PortletModelBase {
-    @Override
-    public String getPortletType() {
-        return "HTML";
-    }
+/**
+ * 网页门户部件模型
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class HtmlPortletModelBase extends PortletModelBase {
+	@Override
+	public String getPortletType() {
+		return PORTLETTYPE_HTML;
+	}
 }
-

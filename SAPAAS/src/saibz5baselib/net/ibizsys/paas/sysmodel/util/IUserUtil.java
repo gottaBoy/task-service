@@ -1,11 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.sysmodel.util;
 
 import net.ibizsys.paas.sysmodel.ISystemUtil;
 
-public interface IUserUtil
-extends ISystemUtil {
-}
+/**
+ * 用户自定义功能接口
+ * @author Administrator
+ *
+ */
+public interface IUserUtil extends ISystemUtil {
 
+}

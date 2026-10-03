@@ -23,11 +23,11 @@ import SA.SRFDA.PS.Core.Deploy.PSDCSVNInstRepoImpl;
 import SA.SRFDA.PS.Core.DevCenter.PSDevCenterBKTaskImplBase;
 import SA.SRFDA.PS.Core.IPSTaskServerEnv;
 import SA.SRFDA.PS.Core.PSObjectFactory;
+import SA.SRFDA.PS.Core.Util.CmdHelper;
 import SA.SRFDA.PS.Data.PSDevCenterSVN;
 import SA.SRFDA.Web.Utility.ISRFDAGlobalHelper;
 import SA.SRFramework.DataEx.CallResult;
 import java.io.File;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
@@ -42,7 +42,7 @@ extends PSDevCenterBKTaskImplBase {
         PSPFStyleService psPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSPFStyle psPFStyle = new PSPFStyle();
         psPFStyle.setPSPFStyleId(strPSPFStyleId);
-        psPFStyleService.get((IEntity)psPFStyle);
+        psPFStyleService.get(psPFStyle);
         if (StringHelper.isNullOrEmpty((String)psPFStyle.getPSDevCenterSVNId())) {
             throw new Exception(StringHelper.format((String)"\u6ca1\u6709\u6307\u5b9a\u6a21\u677f[%1$s]\u4f7f\u7528\u7684\u7248\u672c\u4ed3\u5e93", (Object)psPFStyle.getPSPFStyleName()));
         }
@@ -60,10 +60,11 @@ extends PSDevCenterBKTaskImplBase {
             folder.mkdirs();
         }
         this.updatePSDCBKTaskStep("\u83b7\u53d6\u7248\u672c\u5e93\u5185\u5bb9", 300, 300);
+        String strCmd = StringHelper.format((String)"\"%1$s\\java\\bin\\java.exe\" -cp %1$s\\js\\saibz5.jar net.ibizsys.paas.builder.SynGitHelper %2$s %3$s", (Object)iPSTaskServerEnv.getToolFolder(), (Object)psSVNInstRepoImpl.getResCfgFilePath(), (Object)strFullTemplFolder);
+        CmdHelper.getInstance().executeBat(strCmd);
         this.updatePSDCBKTaskStep("\u5bfc\u5165\u6a21\u677f", 60);
         psPFStyle.set("SRFPRJFOLDER", (Object)(String.valueOf(strFullTemplFolder) + File.separator + "templ"));
         psPFStyleService.impStyle(psPFStyle);
         return super.onRun();
     }
 }
-

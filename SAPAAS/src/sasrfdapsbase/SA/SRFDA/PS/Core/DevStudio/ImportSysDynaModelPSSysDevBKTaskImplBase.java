@@ -42,10 +42,9 @@ extends PSSysDevBKTaskImplBase {
         PSSysDynaModelService psSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSysDynaModel psSysDynaModel2 = new PSSysDynaModel();
         psSysDynaModel2.setPSSysDynaModelId(this.psSysDevBKTask.getTASKPARAM());
-        psSysDynaModelService.get((IEntity)psSysDynaModel2);
+        psSysDynaModelService.get(psSysDynaModel2);
         return this.onImportPSSysDynaModel(psSysDynaModel2);
     }
 
     protected abstract String onImportPSSysDynaModel(PSSysDynaModel var1) throws Exception;
 }
-

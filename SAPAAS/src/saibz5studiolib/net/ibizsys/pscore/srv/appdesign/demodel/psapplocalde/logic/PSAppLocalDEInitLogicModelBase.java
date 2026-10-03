@@ -71,7 +71,7 @@ extends DELogicModelBase<PSAppLocalDE> {
         PSDataEntity pSDataEntity = (PSDataEntity)iActionContext.getParam("LocalDE");
         SessionFactory sessionFactory = iActionContext.getSessionFactory();
         IService iService = ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)sessionFactory);
-        iService.executeAction("GET", (IEntity)pSDataEntity);
+        iService.executeAction("GET", pSDataEntity);
         this.executesetPSDEName(iActionContext);
     }
 

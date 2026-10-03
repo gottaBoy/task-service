@@ -1,22 +1,52 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.view;
 
 import net.ibizsys.paas.view.IView;
 import net.ibizsys.pswf.core.IWFModel;
 import net.ibizsys.pswf.core.IWFVersionModel;
 
-public interface IWFView
-extends IView {
-    public boolean isWFIAMode();
+/**
+ * 工作流视图对象接口
+ * @author Administrator
+ *
+ */
+public interface IWFView extends IView {
 
-    public String getWFStepValue();
+	/**
+	 * 是否为流程交互模式
+	 * 
+	 * @return
+	 */
+	boolean isWFIAMode();
 
-    public IWFModel getWFModel();
+	
+	/**
+	 * 获取流程步骤值
+	 * 
+	 * @return
+	 */
+	String getWFStepValue();
+	
+	
 
-    public IWFVersionModel getWFVersionModel();
+	/**
+	 * 获取流程模型
+	 * 
+	 * @return
+	 */
+	IWFModel getWFModel();
 
-    public int getWFVersion();
+	/**
+	 * 获取流程版本模型
+	 * 
+	 * @return
+	 */
+	IWFVersionModel getWFVersionModel();
+
+
+	/**
+	 * 获取流程版本号，-1为最新
+	 * 
+	 * @return
+	 */
+	int getWFVersion();
 }
-

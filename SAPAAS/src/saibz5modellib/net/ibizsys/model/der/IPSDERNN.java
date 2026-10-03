@@ -1,13 +1,22 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.der;
 
-import net.ibizsys.model.der.IPSDER1N;
-
-public interface IPSDERNN {
-    public IPSDER1N getFirstPSDER1N();
-
-    public IPSDER1N getSecondPSDER1N();
+/**
+ * 实体N:N关系对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDERNN
+{
+	/**
+	 * 获取第一个关系
+	 * @return
+	 */
+	IPSDER1N getFirstPSDER1N();
+	
+	
+	/**
+	 * 获取第二个关系
+	 * @return
+	 */
+	IPSDER1N getSecondPSDER1N();
 }
-

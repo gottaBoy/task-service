@@ -19,6 +19,10 @@ import net.ibizsys.pswf.core.IWFVersionModel;
 public class PSJITWFDEViewController
 extends PSJITViewController
 implements IPSJITWFDEViewController {
+
+    public PSJITWFDEViewController() throws Exception {
+        super();
+    }
     private IWFModel iWFModel = null;
     private IDEWF iDEWF = null;
     private boolean bWFIAMode = false;

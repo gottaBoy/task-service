@@ -55,7 +55,7 @@ public class PropertiesHelper {
             } else if (string.indexOf(":") != -1) {
                 try {
                     object = new Yaml();
-                    map = (Map)object.loadAs(string, Map.class);
+                    map = (Map)((Yaml)object).loadAs(string, Map.class);
                 }
                 catch (Exception exception) {
                     log.error((Object)exception);
@@ -64,7 +64,7 @@ public class PropertiesHelper {
             if (map != null) {
                 object = new PropertiesEx();
                 ((PropertiesEx)object).load(map);
-                return object;
+                return (Properties)object;
             }
             object = new ByteArrayInputStream(string.getBytes("utf8"));
             properties.load((InputStream)object);
@@ -220,4 +220,3 @@ public class PropertiesHelper {
         }
     }
 }
-

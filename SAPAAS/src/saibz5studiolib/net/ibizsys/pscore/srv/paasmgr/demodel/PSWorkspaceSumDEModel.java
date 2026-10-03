@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSWorkspaceSumDEModelBase;
 
 public class PSWorkspaceSumDEModel
 extends PSWorkspaceSumDEModelBase {
+
+    public PSWorkspaceSumDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

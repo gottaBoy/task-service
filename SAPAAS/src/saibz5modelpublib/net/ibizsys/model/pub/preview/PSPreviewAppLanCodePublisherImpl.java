@@ -1,18 +1,26 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.pub.preview;
 
-import net.ibizsys.model.pub.preview.PSPreviewAppCodePublisherImpl;
+import SA.SRFDA.PS.Core.App.IPSAppLan;
 
-public class PSPreviewAppLanCodePublisherImpl
-extends PSPreviewAppCodePublisherImpl {
-    public PSPreviewAppLanCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSPreviewAppLanCodePublisherImpl is inconsistent\n\tThe method onGenerateCode() of type PSPreviewAppLanCodePublisherImpl must override or implement a supertype method\n\tIPSAppLan cannot be resolved to a type\n\tiPSApplication cannot be resolved or is not a field\n\tIPSAppLan cannot be resolved to a type\n");
-    }
-
-    protected void onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tThe method onGenerateCode() of type PSPreviewAppLanCodePublisherImpl must override or implement a supertype method\n\tIPSAppLan cannot be resolved to a type\n\tiPSApplication cannot be resolved or is not a field\n\tIPSAppLan cannot be resolved to a type\n");
-    }
+/**
+ * PreViewPC应用程序语言支持
+ * 
+ * @author lionlau
+ *
+ */
+public class PSPreviewAppLanCodePublisherImpl extends PSPreviewAppCodePublisherImpl
+{
+	
+	@Override
+	protected void onGenerateCode() throws Exception {
+		
+		java.util.Iterator<IPSAppLan> psAppLans = this.iPSApplication.getAllPSAppLans();
+		while(psAppLans.hasNext()){
+			IPSAppLan iPSAppLan = psAppLans.next();
+			this.onGenerateCode(iPSAppLan,iPSAppLan.getLanguage().toLowerCase());
+		}
+	}
+	
+	
+	
 }
-

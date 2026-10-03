@@ -1,77 +1,132 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package net.ibizsys.paas.demodel;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import net.ibizsys.paas.core.IDEDataExportItem;
-import net.ibizsys.paas.core.IDataEntity;
-import net.ibizsys.paas.core.ModelBase3Impl;
-import net.ibizsys.paas.demodel.IDEDataExportModel;
-import net.ibizsys.paas.web.IWebContext;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public abstract class DEDataExportModelBase
-extends ModelBase3Impl
-implements IDEDataExportModel {
-    private static final Log log = LogFactory.getLog(DEDataExportModelBase.class);
-    private IDataEntity iDataEntity = null;
-    protected ArrayList<IDEDataExportItem> deDataExportItemList = new ArrayList();
+import net.ibizsys.paas.core.IDEDataExportItem;
+import net.ibizsys.paas.core.IDataEntity;
+import net.ibizsys.paas.core.ModelBase3Impl;
+import net.ibizsys.paas.web.IWebContext;
 
-    @Override
-    public void init(IDataEntity iDataEntity) throws Exception {
-        this.setDataEntity(iDataEntity);
-        this.onInit();
-    }
+/**
+ * 实体数据导出模型对象基类
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class DEDataExportModelBase extends ModelBase3Impl implements IDEDataExportModel {
+	private static final Log log = LogFactory.getLog(DEDataExportModelBase.class);
 
-    @Override
-    public IDataEntity getDataEntity() {
-        return this.iDataEntity;
-    }
+	private IDataEntity iDataEntity = null;
+	protected ArrayList<IDEDataExportItem> deDataExportItemList = new ArrayList<IDEDataExportItem>();
 
-    protected void setDataEntity(IDataEntity iDataEntity) {
-        this.iDataEntity = iDataEntity;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEACMode#init(net.ibizsys.paas.core.IDataEntity)
+	 */
+	public void init(IDataEntity iDataEntity) throws Exception {
+		this.setDataEntity(iDataEntity);
+		this.onInit();
+	}
 
-    public void setId(String strId) {
-        this.strId = strId;
-    }
+	/**
+	 * 获取实体模型对象
+	 * 
+	 * @return the iDataEntity
+	 */
+	public IDataEntity getDataEntity() {
+		return iDataEntity;
+	}
 
-    public void setName(String strName) {
-        this.strName = strName;
-    }
+	/**
+	 * 设置实体模型对象
+	 * 
+	 * @param iDataEntity the iDataEntity to set
+	 */
+	protected void setDataEntity(IDataEntity iDataEntity) {
+		this.iDataEntity = iDataEntity;
+	}
 
-    @Override
-    protected void onInit() throws Exception {
-        super.onInit();
-        this.prepareDEDataExportItemModels();
-    }
+	/**
+	 * 设置标识
+	 * 
+	 * @param strId
+	 */
+	public void setId(String strId) {
+		this.strId = strId;
+	}
 
-    protected void prepareDEDataExportItemModels() throws Exception {
-    }
+	/**
+	 * 设置名称
+	 * 
+	 * @param strName
+	 */
+	public void setName(String strName) {
+		this.strName = strName;
+	}
 
-    protected IDEDataExportItem createDEDataExportItem(String strName) throws Exception {
-        return null;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.control.impl.ControlImpl#onInit()
+	 */
+	@Override
+	protected void onInit() throws Exception {
+		super.onInit();
 
-    @Override
-    public Iterator<IDEDataExportItem> getDEDataExportItems() {
-        return this.deDataExportItemList.iterator();
-    }
+		prepareDEDataExportItemModels();
 
-    protected void registerDEDataExportItem(IDEDataExportItem iDEDataExportItem) {
-        this.deDataExportItemList.add(iDEDataExportItem);
-    }
+	}
 
-    @Override
-    public String getItemText(IDEDataExportItem iDEDataExportItem, IWebContext iWebContext, Object object, boolean bEnableItemPrivilege) throws Exception {
-        return iDEDataExportItem.getText(iWebContext, object, bEnableItemPrivilege);
-    }
+	/**
+	 * 准备导出项模型
+	 * 
+	 * @throws Exception
+	 */
+	protected void prepareDEDataExportItemModels() throws Exception {
+
+	}
+
+	/**
+	 * 建立导出项
+	 * 
+	 * @param strName
+	 * @return
+	 */
+	protected IDEDataExportItem createDEDataExportItem(String strName) throws Exception {
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataExport#getDEDataExportItems()
+	 */
+	@Override
+	public Iterator<IDEDataExportItem> getDEDataExportItems() {
+		return deDataExportItemList.iterator();
+	}
+
+	/**
+	 * 注册导出项对象
+	 * 
+	 * @param iDEDataExportItem
+	 */
+	protected void registerDEDataExportItem(IDEDataExportItem iDEDataExportItem) {
+		this.deDataExportItemList.add(iDEDataExportItem);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDEDataExportModel#getItemText(net.ibizsys.paas.core.IDEDataExportItem, net.ibizsys.paas.web.IWebContext, java.lang.Object, boolean)
+	 */
+	@Override
+	public String getItemText(IDEDataExportItem iDEDataExportItem, IWebContext iWebContext, Object object, boolean bEnableItemPrivilege) throws Exception {
+		return iDEDataExportItem.getText(iWebContext, object, bEnableItemPrivilege);
+	}
 }
-

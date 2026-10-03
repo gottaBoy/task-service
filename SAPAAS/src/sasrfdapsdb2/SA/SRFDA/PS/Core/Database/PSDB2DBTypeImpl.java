@@ -84,7 +84,7 @@ extends PSDBTypeImpl {
     }
 
     protected ArrayList<String> getTableColumns(IPSDatabase iPSDatabase, String strTableName2, boolean bTempMode) throws Exception {
-        Vector list;
+        Vector<BaseDataEntity> list;
         String strSQL;
         CallResult callResult;
         String strTableName = strTableName2;
@@ -177,7 +177,7 @@ extends PSDBTypeImpl {
     }
 
     public SqlParamList getDBProcParamList(IPSDatabase iPSDatabase, String strProcName) throws Exception {
-        Vector dataEntities;
+        Vector<BaseDataEntity> dataEntities;
         String strSQL = StringHelper.Format((String)"SELECT PARM_MODE,PARAMNAME,TYPENAME FROM  SYSCAT.PROCPARMS WHERE UPPER(PROCSCHEMA)='%1$s' AND UPPER(PROCNAME)='%2$s' ORDER BY ordinal", (Object)iPSDatabase.getDBName().toUpperCase(), (Object)strProcName.toUpperCase());
         CallResult callResult = this.selectMulti(iPSDatabase, strSQL, null, dataEntities = new Vector());
         if (callResult.isError()) {
@@ -196,7 +196,7 @@ extends PSDBTypeImpl {
                 sqlParam.setDirection(3);
             }
             sqlParam.setDataType(DataTypeHelper.FromString((String)baseDataEntity.getParamStringValue("TYPENAME", "")));
-            sqlParamList.add((Object)sqlParam);
+            sqlParamList.add(sqlParam);
         }
         return sqlParamList;
     }

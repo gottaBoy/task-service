@@ -114,9 +114,9 @@ implements IPSSysPDTViewService {
 
     @Override
     protected List<PSSysPDTView> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysPDTView> list = new ArrayList<PSSysPDTView>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysPDTView> items = this.listByPSModule(parent);

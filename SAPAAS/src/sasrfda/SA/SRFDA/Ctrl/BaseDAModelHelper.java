@@ -203,7 +203,7 @@ implements IDAModelHelper {
 
     protected CallResult PrepareDEModelVersion() {
         this.deModelVersionMap.clear();
-        Vector list = new Vector();
+        Vector<BaseDataEntity> list = new Vector();
         String strSQL = StringHelper.Format((String)"select DEID,DBVERSION from t_SRFDATAENTITY ");
         CallResult callResult = this.SelectMulti(strSQL, list, "", USER_SYSTEM);
         if (callResult.IsError() && (callResult = this.SelectMulti(strSQL = StringHelper.Format((String)"select DEID from t_SRFDATAENTITY "), list, "", USER_SYSTEM)).IsError()) {
@@ -2011,7 +2011,12 @@ implements IDAModelHelper {
             log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u6570\u636e\u7248\u672c\u51fa\u73b0\u9519\u8bef\uff0c\u6ca1\u6709\u8fd4\u56de\u8bb0\u5f55"));
             return -1;
         }
-        return Integer.parseInt(selectResult.getMainTable().GetRow(0).Get("VERSION").toString());
+        try {
+            return Integer.parseInt(selectResult.getMainTable().GetRow(0).Get("VERSION").toString());
+        }
+        catch (Exception exception) {
+            return -1;
+        }
     }
 
     private int SelectVersion(String strSQL) {
@@ -2043,7 +2048,12 @@ implements IDAModelHelper {
             log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u6570\u636e\u7248\u672c\u51fa\u73b0\u9519\u8bef\uff0c\u6ca1\u6709\u8fd4\u56de\u8bb0\u5f55"));
             return -1;
         }
-        return Integer.parseInt(selectResult.getMainTable().GetRow(0).Get("VERSION").toString());
+        try {
+            return Integer.parseInt(selectResult.getMainTable().GetRow(0).Get("VERSION").toString());
+        }
+        catch (Exception exception) {
+            return -1;
+        }
     }
 
     protected void LogPerformance(Date startTime, String strAction, String strSQL) {

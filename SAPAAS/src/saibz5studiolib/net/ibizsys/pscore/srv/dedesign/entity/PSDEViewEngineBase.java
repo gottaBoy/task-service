@@ -7016,7 +7016,7 @@ implements Serializable {
                 PSDEViewBase pSDEViewBase = new PSDEViewBase();
                 pSDEViewBase.setPSDEViewBaseId(this.getPSDEViewBaseId());
                 PSDEViewBaseService pSDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewBaseService.autoGet((IEntity)pSDEViewBase);
+                pSDEViewBaseService.autoGet(pSDEViewBase);
                 this.psdeviewbase = pSDEViewBase;
             }
             return this.psdeviewbase;
@@ -7042,7 +7042,7 @@ implements Serializable {
                 PSDEViewCtrl pSDEViewCtrl = new PSDEViewCtrl();
                 pSDEViewCtrl.setPSDEViewCtrlId(this.getNo2PSDEViewCtrlId());
                 PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewCtrlService.autoGet((IEntity)pSDEViewCtrl);
+                pSDEViewCtrlService.autoGet(pSDEViewCtrl);
                 this.no2psdeviewctrl = pSDEViewCtrl;
             }
             return this.no2psdeviewctrl;
@@ -7068,7 +7068,7 @@ implements Serializable {
                 PSDEViewCtrl pSDEViewCtrl = new PSDEViewCtrl();
                 pSDEViewCtrl.setPSDEViewCtrlId(this.getNo3PSDEViewCtrlId());
                 PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewCtrlService.autoGet((IEntity)pSDEViewCtrl);
+                pSDEViewCtrlService.autoGet(pSDEViewCtrl);
                 this.no3psdeviewctrl = pSDEViewCtrl;
             }
             return this.no3psdeviewctrl;
@@ -7094,7 +7094,7 @@ implements Serializable {
                 PSDEViewCtrl pSDEViewCtrl = new PSDEViewCtrl();
                 pSDEViewCtrl.setPSDEViewCtrlId(this.getNo4PSDEViewCtrlId());
                 PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewCtrlService.autoGet((IEntity)pSDEViewCtrl);
+                pSDEViewCtrlService.autoGet(pSDEViewCtrl);
                 this.no4psdeviewctrl = pSDEViewCtrl;
             }
             return this.no4psdeviewctrl;
@@ -7120,7 +7120,7 @@ implements Serializable {
                 PSDEViewCtrl pSDEViewCtrl = new PSDEViewCtrl();
                 pSDEViewCtrl.setPSDEViewCtrlId(this.getPSDEViewCtrlId());
                 PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewCtrlService.autoGet((IEntity)pSDEViewCtrl);
+                pSDEViewCtrlService.autoGet(pSDEViewCtrl);
                 this.psdeviewctrl = pSDEViewCtrl;
             }
             return this.psdeviewctrl;
@@ -7146,7 +7146,7 @@ implements Serializable {
                 PSDEViewLogic pSDEViewLogic = new PSDEViewLogic();
                 pSDEViewLogic.setPSDEViewLogicId(this.getNo2PSDEViewLogicId());
                 PSDEViewLogicService pSDEViewLogicService = (PSDEViewLogicService)ServiceGlobal.getService(PSDEViewLogicService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewLogicService.autoGet((IEntity)pSDEViewLogic);
+                pSDEViewLogicService.autoGet(pSDEViewLogic);
                 this.no2psdeviewlogic = pSDEViewLogic;
             }
             return this.no2psdeviewlogic;
@@ -7172,7 +7172,7 @@ implements Serializable {
                 PSDEViewLogic pSDEViewLogic = new PSDEViewLogic();
                 pSDEViewLogic.setPSDEViewLogicId(this.getNo3PSDEViewLogicId());
                 PSDEViewLogicService pSDEViewLogicService = (PSDEViewLogicService)ServiceGlobal.getService(PSDEViewLogicService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewLogicService.autoGet((IEntity)pSDEViewLogic);
+                pSDEViewLogicService.autoGet(pSDEViewLogic);
                 this.no3psdeviewlogic = pSDEViewLogic;
             }
             return this.no3psdeviewlogic;
@@ -7198,7 +7198,7 @@ implements Serializable {
                 PSDEViewLogic pSDEViewLogic = new PSDEViewLogic();
                 pSDEViewLogic.setPSDEViewLogicId(this.getNo4PSDEViewLogicId());
                 PSDEViewLogicService pSDEViewLogicService = (PSDEViewLogicService)ServiceGlobal.getService(PSDEViewLogicService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewLogicService.autoGet((IEntity)pSDEViewLogic);
+                pSDEViewLogicService.autoGet(pSDEViewLogic);
                 this.no4psdeviewlogic = pSDEViewLogic;
             }
             return this.no4psdeviewlogic;
@@ -7224,7 +7224,7 @@ implements Serializable {
                 PSDEViewLogic pSDEViewLogic = new PSDEViewLogic();
                 pSDEViewLogic.setPSDEViewLogicId(this.getPSDEViewLogicId());
                 PSDEViewLogicService pSDEViewLogicService = (PSDEViewLogicService)ServiceGlobal.getService(PSDEViewLogicService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewLogicService.autoGet((IEntity)pSDEViewLogic);
+                pSDEViewLogicService.autoGet(pSDEViewLogic);
                 this.psdeviewlogic = pSDEViewLogic;
             }
             return this.psdeviewlogic;
@@ -7250,7 +7250,7 @@ implements Serializable {
                 PSSysPFPlugin pSSysPFPlugin = new PSSysPFPlugin();
                 pSSysPFPlugin.setPSSysPFPluginId(this.getPSSysPFPluginId());
                 PSSysPFPluginService pSSysPFPluginService = (PSSysPFPluginService)ServiceGlobal.getService(PSSysPFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysPFPluginService.autoGet((IEntity)pSSysPFPlugin);
+                pSSysPFPluginService.autoGet(pSSysPFPlugin);
                 this.pssyspfplugin = pSSysPFPlugin;
             }
             return this.pssyspfplugin;
@@ -7276,7 +7276,7 @@ implements Serializable {
                 PSUIEngineType pSUIEngineType = new PSUIEngineType();
                 pSUIEngineType.setPSUIEngineTypeId(this.getPSUIEngineTypeId());
                 PSUIEngineTypeService pSUIEngineTypeService = (PSUIEngineTypeService)ServiceGlobal.getService(PSUIEngineTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSUIEngineTypeService.autoGet((IEntity)pSUIEngineType);
+                pSUIEngineTypeService.autoGet(pSUIEngineType);
                 this.psuienginetype = pSUIEngineType;
             }
             return this.psuienginetype;

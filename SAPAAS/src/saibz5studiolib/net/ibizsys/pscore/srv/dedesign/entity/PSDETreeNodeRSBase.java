@@ -2542,7 +2542,7 @@ implements Serializable {
                 PSDEAction pSDEAction = new PSDEAction();
                 pSDEAction.setPSDEActionId(this.getPSDEActionId());
                 PSDEActionService pSDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionService.autoGet((IEntity)pSDEAction);
+                pSDEActionService.autoGet(pSDEAction);
                 this.psdeaction = pSDEAction;
             }
             return this.psdeaction;
@@ -2568,7 +2568,7 @@ implements Serializable {
                 PSDER pSDER = new PSDER();
                 pSDER.setPSDERId(this.getPSDERId());
                 PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
-                pSDERService.autoGet((IEntity)pSDER);
+                pSDERService.autoGet(pSDER);
                 this.psder = pSDER;
             }
             return this.psder;
@@ -2594,7 +2594,7 @@ implements Serializable {
                 PSDETreeNode pSDETreeNode = new PSDETreeNode();
                 pSDETreeNode.setPSDETreeNodeId(this.getCPSDETreeNodeId());
                 PSDETreeNodeService pSDETreeNodeService = (PSDETreeNodeService)ServiceGlobal.getService(PSDETreeNodeService.class, (SessionFactory)this.getSessionFactory());
-                pSDETreeNodeService.autoGet((IEntity)pSDETreeNode);
+                pSDETreeNodeService.autoGet(pSDETreeNode);
                 this.cpsdetreenode = pSDETreeNode;
             }
             return this.cpsdetreenode;
@@ -2620,7 +2620,7 @@ implements Serializable {
                 PSDETreeNode pSDETreeNode = new PSDETreeNode();
                 pSDETreeNode.setPSDETreeNodeId(this.getPPSDETreeNodeId());
                 PSDETreeNodeService pSDETreeNodeService = (PSDETreeNodeService)ServiceGlobal.getService(PSDETreeNodeService.class, (SessionFactory)this.getSessionFactory());
-                pSDETreeNodeService.autoGet((IEntity)pSDETreeNode);
+                pSDETreeNodeService.autoGet(pSDETreeNode);
                 this.ppsdetreenode = pSDETreeNode;
             }
             return this.ppsdetreenode;
@@ -2646,7 +2646,7 @@ implements Serializable {
                 PSDETreeView pSDETreeView = new PSDETreeView();
                 pSDETreeView.setPSDETreeViewId(this.getPSDETreeViewId());
                 PSDETreeViewService pSDETreeViewService = (PSDETreeViewService)ServiceGlobal.getService(PSDETreeViewService.class, (SessionFactory)this.getSessionFactory());
-                pSDETreeViewService.autoGet((IEntity)pSDETreeView);
+                pSDETreeViewService.autoGet(pSDETreeView);
                 this.psdetreeview = pSDETreeView;
             }
             return this.psdetreeview;

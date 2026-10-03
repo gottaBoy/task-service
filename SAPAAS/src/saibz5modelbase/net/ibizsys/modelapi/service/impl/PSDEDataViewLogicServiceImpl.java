@@ -76,7 +76,7 @@ implements IPSDEDataViewLogicService {
     @Override
     protected List<PSDEDataViewLogic> onListAll() throws Exception {
         ArrayList<PSDEDataViewLogic> list = new ArrayList<PSDEDataViewLogic>();
-        List psdedataviews = PSModelServiceUtil.getInstance().getPSDEDataViewService().listAll();
+        List<PSDEDataView> psdedataviews = PSModelServiceUtil.getInstance().getPSDEDataViewService().listAll();
         if (psdedataviews != null) {
             for (PSDEDataView parent : psdedataviews) {
                 List<PSDEDataViewLogic> items = this.listByPSDEDataView(parent);

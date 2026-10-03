@@ -1,17 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.entity.IEntity
- */
 package net.ibizsys.psop.zookeeper;
 
 import net.ibizsys.paas.entity.IEntity;
 
-public interface IPSZooKeeperEntity
-extends IEntity {
-    public int getZKDataVersion();
+/**
+ * ZooKeeper数据对象
+ * @author Administrator
+ *
+ */
+public interface IPSZooKeeperEntity extends IEntity {
 
-    public void setZKDataVersion(int var1);
+	/**
+	 * 获取数据版本
+	 * @return
+	 */
+	int getZKDataVersion();
+	
+	
+	/**
+	 * 设置数据版本
+	 * @param nVersion
+	 */
+	void setZKDataVersion(int nVersion);
 }
-

@@ -75,7 +75,7 @@ public class PrintFormActionHelper {
                 log.error((Object)StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e\u68c0\u7d22\u6a21\u578b[%1$s]", (Object)strQueryModelId));
                 return "";
             }
-            Vector userConditions = new Vector();
+            Vector<String> userConditions = new Vector<String>();
             queryModelHelper.FillMajorConditions(userConditions);
             StringBuilderEx script = new StringBuilderEx();
             script.Append(this.GetDAModelQueryScript(queryModelHelper));

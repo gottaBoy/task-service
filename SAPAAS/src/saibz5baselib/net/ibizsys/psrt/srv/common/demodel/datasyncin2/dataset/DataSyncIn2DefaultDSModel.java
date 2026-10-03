@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.datasyncin2.dataset;
 
-import net.ibizsys.psrt.srv.common.demodel.datasyncin2.dataset.DataSyncIn2DefaultDSModelBase;
+/**
+ *  实体数据集合[DEFAULT]模型
+ */
+public class DataSyncIn2DefaultDSModel extends DataSyncIn2DefaultDSModelBase {
 
-public class DataSyncIn2DefaultDSModel
-extends DataSyncIn2DefaultDSModelBase {
+    public DataSyncIn2DefaultDSModel() {
+        super();
+    }
+
 }
-

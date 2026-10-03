@@ -114,9 +114,9 @@ implements IPSSysUserCaseRSService {
 
     @Override
     protected List<PSSysUserCaseRS> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysUserCaseRS> list = new ArrayList<PSSysUserCaseRS>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysUserCaseRS> items = this.listByPSModule(parent);

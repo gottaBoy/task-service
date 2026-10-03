@@ -169,7 +169,7 @@ implements IPSSysDevBKTask {
             PSSysDevBKTask psSysDevBKTask = new PSSysDevBKTask();
             PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
             psSysDevBKTask.setPSSysDevBKTaskId(this.psSysDevBKTask.getPSSYSDEVBKTASKID());
-            psSysDevBKTaskService.get((IEntity)psSysDevBKTask);
+            psSysDevBKTaskService.get(psSysDevBKTask);
             if (psSysDevBKTask.getTaskState() != 10) {
                 throw new Exception("\u4efb\u52a1\u72b6\u6001\u4e0d\u6b63\u786e\uff0c\u5fc5\u987b\u4e3a[\u5df2\u5efa\u7acb]");
             }
@@ -178,7 +178,7 @@ implements IPSSysDevBKTask {
             psSysDevBKTask.setTaskState(SysDevBKTaskStateCodeListModel.EXECUTING);
             psSysDevBKTask.setQueueInfo(null);
             psSysDevBKTask.setBeginTime(new Timestamp(System.currentTimeMillis()));
-            psSysDevBKTaskService.update((IEntity)psSysDevBKTask, false);
+            psSysDevBKTaskService.update(psSysDevBKTask, false);
             if (PSStudioConsoleHelper.getCurrent() != null) {
                 PSStudioConsoleHelper.getCurrent().sendConsole(this.getPSDSConsoleId(), StringHelper.format((String)"[\u5f00\u59cb\u6267\u884c] %1$s%2$s", (Object)this.getTaskLevelPadding(), (Object)this.getName()));
             }
@@ -257,7 +257,7 @@ implements IPSSysDevBKTask {
             psSysDevBKTask.setQueueInfo(null);
             psSysDevBKTask.setEndTime(new Timestamp(System.currentTimeMillis()));
             psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-            psSysDevBKTaskService.update((IEntity)psSysDevBKTask, false);
+            psSysDevBKTaskService.update(psSysDevBKTask, false);
             if (PSStudioConsoleHelper.getCurrent() == null) return true;
             PSStudioConsoleHelper.getCurrent().sendConsole(this.getPSDSConsoleId(), PSStudioConsoleHelper.getContent((String)StringHelper.format((String)"[\u7ed3\u675f\u6267\u884c] %1$s%2$s", (Object)this.getTaskLevelPadding(), (Object)this.getName()), (int)34));
             return true;
@@ -283,7 +283,7 @@ implements IPSSysDevBKTask {
                 PSSysDevBKTask psSysDevBKTask = new PSSysDevBKTask();
                 PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
                 psSysDevBKTask.setPSSysDevBKTaskId(this.psSysDevBKTask.getPSSYSDEVBKTASKID());
-                psSysDevBKTaskService.get((IEntity)psSysDevBKTask);
+                psSysDevBKTaskService.get(psSysDevBKTask);
                 if (psSysDevBKTask.getTaskState() == 40) return false;
                 if (psSysDevBKTask.getTaskState() == 30) return false;
                 psSysDevBKTask.reset();
@@ -334,7 +334,7 @@ implements IPSSysDevBKTask {
                 }
                 psSysDevBKTask.setEndTime(new Timestamp(System.currentTimeMillis()));
                 psSysDevBKTask.setPSSysDevBKTaskId(this.psSysDevBKTask.getPSSYSDEVBKTASKID());
-                psSysDevBKTaskService.update((IEntity)psSysDevBKTask, false);
+                psSysDevBKTaskService.update(psSysDevBKTask, false);
                 return false;
             }
             catch (Exception ex2) {
@@ -380,7 +380,7 @@ implements IPSSysDevBKTask {
             PSSysDevBKTask psSysDevBKTask = new PSSysDevBKTask();
             PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
             psSysDevBKTask.setPSSysDevBKTaskId(this.psSysDevBKTask.getPSSYSDEVBKTASKID());
-            psSysDevBKTaskService.get((IEntity)psSysDevBKTask);
+            psSysDevBKTaskService.get(psSysDevBKTask);
             if (psSysDevBKTask.getTaskState() != 40 && psSysDevBKTask.getTaskState() != 30) {
                 psSysDevBKTask.reset();
                 psSysDevBKTask.setPSSysDevBKTaskId(this.psSysDevBKTask.getPSSYSDEVBKTASKID());
@@ -388,7 +388,7 @@ implements IPSSysDevBKTask {
                 psSysDevBKTask.setQueueInfo(null);
                 psSysDevBKTask.setResultInfo(strReason);
                 psSysDevBKTask.setPSSysDevBKTaskId(this.psSysDevBKTask.getPSSYSDEVBKTASKID());
-                psSysDevBKTaskService.update((IEntity)psSysDevBKTask, false);
+                psSysDevBKTaskService.update(psSysDevBKTask, false);
             }
         }
         catch (Exception ex) {
@@ -485,7 +485,7 @@ implements IPSSysDevBKTask {
                     if (this.nEnergy > 0) {
                         psSysDevBKTask.setPSDCRobotName(StringHelper.format((String)"%1$s,\u8017\u80fd %2$smAh", (Object)this.iPSRobot.getName(), (Object)this.nEnergy));
                     }
-                    psSysDevBKTaskService.update((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.update(psSysDevBKTask, false);
                 }
                 catch (Exception ex) {
                     log.error((Object)ex);
@@ -540,7 +540,7 @@ implements IPSSysDevBKTask {
                     psSysDevBKTask.setPSDCRobotId("WAITING");
                     psSysDevBKTask.setPSDCRobotName(this.strPlanPSRobotInfo);
                 }
-                psSysDevBKTaskService.update((IEntity)psSysDevBKTask, false);
+                psSysDevBKTaskService.update(psSysDevBKTask, false);
             }
             catch (Exception ex) {
                 log.error((Object)ex);
@@ -587,7 +587,7 @@ implements IPSSysDevBKTask {
             PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
             psSysDevBKTask.setPSSysDevBKTaskId(this.psSysDevBKTask.getPSSYSDEVBKTASKID());
             psSysDevBKTask.setQueueInfo(strQueueInfo);
-            psSysDevBKTaskService.update((IEntity)psSysDevBKTask, false);
+            psSysDevBKTaskService.update(psSysDevBKTask, false);
         }
         catch (Exception ex) {
             log.error((Object)ex);
@@ -657,4 +657,3 @@ implements IPSSysDevBKTask {
         return this.iPSModelObjectLogger;
     }
 }
-

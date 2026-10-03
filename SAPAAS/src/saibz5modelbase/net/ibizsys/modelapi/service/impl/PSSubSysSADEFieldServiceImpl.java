@@ -73,7 +73,7 @@ implements IPSSubSysSADEFieldService {
     @Override
     protected List<PSSubSysSADEField> onListAll() throws Exception {
         ArrayList<PSSubSysSADEField> list = new ArrayList<PSSubSysSADEField>();
-        List pssubsyssades = PSModelServiceUtil.getInstance().getPSSubSysSADEService().listAll();
+        List<PSSubSysSADE> pssubsyssades = PSModelServiceUtil.getInstance().getPSSubSysSADEService().listAll();
         if (pssubsyssades != null) {
             for (PSSubSysSADE parent : pssubsyssades) {
                 List<PSSubSysSADEField> items = this.listByPSSubSysSADE(parent);

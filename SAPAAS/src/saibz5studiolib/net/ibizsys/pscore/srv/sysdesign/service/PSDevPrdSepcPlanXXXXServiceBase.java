@@ -107,7 +107,7 @@ extends PSCoreSysServiceBase<PSDevPrdSepcPlanXXXX> {
     }
 
     protected void onFillParentInfo(PSDevPrdSepcPlanXXXX pSDevPrdSepcPlanXXXX, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDevPrdSepcPlanXXXX, string, string2, string3);
+        super.onFillParentInfo(pSDevPrdSepcPlanXXXX, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -118,11 +118,11 @@ extends PSCoreSysServiceBase<PSDevPrdSepcPlanXXXX> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDevPrdSepcPlanXXXX, bl);
+        super.onFillEntityFullInfo(pSDevPrdSepcPlanXXXX, bl);
     }
 
     protected void onWriteBackParent(PSDevPrdSepcPlanXXXX pSDevPrdSepcPlanXXXX, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDevPrdSepcPlanXXXX, bl);
+        super.onWriteBackParent(pSDevPrdSepcPlanXXXX, bl);
     }
 
     @Override
@@ -131,7 +131,7 @@ extends PSCoreSysServiceBase<PSDevPrdSepcPlanXXXX> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDevPrdSepcPlanXXXX pSDevPrdSepcPlanXXXX, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDevPrdSepcPlanXXXX, bl);
+        super.onRemoveEntityUncopyValues(pSDevPrdSepcPlanXXXX, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDevPrdSepcPlanXXXX pSDevPrdSepcPlanXXXX, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -152,7 +152,7 @@ extends PSCoreSysServiceBase<PSDevPrdSepcPlanXXXX> {
         if ((entityFieldError = this.onCheckField_PSDevPrdSepcPlanName(bl, pSDevPrdSepcPlanXXXX, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDevPrdSepcPlanXXXX, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDevPrdSepcPlanXXXX, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSDevPrdSepcPlanXXXX pSDevPrdSepcPlanXXXX, boolean bl2, boolean bl3) throws Exception {
@@ -165,7 +165,7 @@ extends PSCoreSysServiceBase<PSDevPrdSepcPlanXXXX> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDevPrdSepcPlanXXXX, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDevPrdSepcPlanXXXX, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -187,7 +187,7 @@ extends PSCoreSysServiceBase<PSDevPrdSepcPlanXXXX> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSDevPrdSepcPlanXXXX, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSDevPrdSepcPlanXXXX, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -209,7 +209,7 @@ extends PSCoreSysServiceBase<PSDevPrdSepcPlanXXXX> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PlanState_Default((IEntity)pSDevPrdSepcPlanXXXX, bl2, bl3);
+            string = this.onTestValueRule_PlanState_Default(pSDevPrdSepcPlanXXXX, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PLANSTATE");
@@ -234,7 +234,7 @@ extends PSCoreSysServiceBase<PSDevPrdSepcPlanXXXX> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevPrdSepcPlanId_Default((IEntity)pSDevPrdSepcPlanXXXX, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevPrdSepcPlanId_Default(pSDevPrdSepcPlanXXXX, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVPRDSEPCPLANID");
@@ -259,7 +259,7 @@ extends PSCoreSysServiceBase<PSDevPrdSepcPlanXXXX> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevPrdSepcPlanName_Default((IEntity)pSDevPrdSepcPlanXXXX, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevPrdSepcPlanName_Default(pSDevPrdSepcPlanXXXX, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVPRDSEPCPLANNAME");
@@ -272,11 +272,11 @@ extends PSCoreSysServiceBase<PSDevPrdSepcPlanXXXX> {
     }
 
     protected void onSyncEntity(PSDevPrdSepcPlanXXXX pSDevPrdSepcPlanXXXX, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDevPrdSepcPlanXXXX, bl);
+        super.onSyncEntity(pSDevPrdSepcPlanXXXX, bl);
     }
 
     protected void onSyncIndexEntities(PSDevPrdSepcPlanXXXX pSDevPrdSepcPlanXXXX, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDevPrdSepcPlanXXXX, bl);
+        super.onSyncIndexEntities(pSDevPrdSepcPlanXXXX, bl);
     }
 
     public Object getDataContextValue(PSDevPrdSepcPlanXXXX pSDevPrdSepcPlanXXXX, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -284,14 +284,14 @@ extends PSCoreSysServiceBase<PSDevPrdSepcPlanXXXX> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDevPrdSepcPlanXXXX, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDevPrdSepcPlanXXXX, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDevPrdSepcPlanXXXX pSDevPrdSepcPlanXXXX, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDevPrdSepcPlanXXXX, arrayList, n);
+        super.onExportMajorModel(pSDevPrdSepcPlanXXXX, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -403,14 +403,14 @@ extends PSCoreSysServiceBase<PSDevPrdSepcPlanXXXX> {
 
     protected boolean onMergeChild(String string, String string2, PSDevPrdSepcPlanXXXX pSDevPrdSepcPlanXXXX) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDevPrdSepcPlanXXXX)) {
+        if (super.onMergeChild(string, string2, pSDevPrdSepcPlanXXXX)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDevPrdSepcPlanXXXX pSDevPrdSepcPlanXXXX) throws Exception {
-        super.onUpdateParent((IEntity)pSDevPrdSepcPlanXXXX);
+        super.onUpdateParent(pSDevPrdSepcPlanXXXX);
     }
 
     @Override

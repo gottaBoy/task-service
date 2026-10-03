@@ -1,60 +1,190 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.codelist;
 
-import java.util.Iterator;
-import net.ibizsys.paas.codelist.ICodeList;
 import net.ibizsys.paas.core.IModelBase;
 
-public interface ICodeItem
-extends IModelBase {
-    public ICodeList getCodeList();
+/**
+ * 代码项对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface ICodeItem extends IModelBase {
+	
+	/**
+	 * 获取代码表对象
+	 * 
+	 * @return
+	 */
+	ICodeList getCodeList();
 
-    public ICodeItem getParentCodeItem();
+	/**
+	 * 获取父代码项
+	 * 
+	 * @return
+	 */
+	ICodeItem getParentCodeItem();
 
-    public Iterator<ICodeItem> getCodeItems() throws Exception;
+	/**
+	 * 获取子代码列表
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<ICodeItem> getCodeItems() throws Exception;
 
-    public String getRealText();
+	/**
+	 * 获取实际文本
+	 * 
+	 * @return
+	 */
+	String getRealText();
 
-    public String getText();
+	/**
+	 * 获取文本
+	 * 
+	 * @return
+	 */
+	String getText();
 
-    public String getValue();
+	/**
+	 * 获取值
+	 * 
+	 * @return
+	 */
+	String getValue();
 
-    public String getColor();
+	/**
+	 * 获取对应的颜色
+	 * 
+	 * @return
+	 */
+	String getColor();
 
-    public String getIconPath();
+	/**
+	 * 获取图标路径
+	 * 
+	 * @return
+	 */
+	String getIconPath();
 
-    public String getIconPathX();
+	/**
+	 * 获取图标路径显示倍数格式化串
+	 * 
+	 * @return
+	 */
+	String getIconPathX();
 
-    public String getIconPath(int var1);
+	/**
+	 * 获取图标路径
+	 * 
+	 * @param nX 显示倍数
+	 * @return
+	 */
+	String getIconPath(int nX);
 
-    public String getMemo();
+	/**
+	 * 获取备注
+	 * 
+	 * @return
+	 */
+	String getMemo();
 
-    public String getIconCls();
+	/**
+	 * 获取图标样式
+	 * 
+	 * @return
+	 */
+	String getIconCls();
 
-    public String getIconClsX();
+	/**
+	 * 获取图标样式显示倍数格式化串
+	 * 
+	 * @return
+	 */
+	String getIconClsX();
 
-    public String getIconCls(int var1);
+	/**
+	 * 获取图标样式
+	 * 
+	 * @param nX 显示倍数
+	 * @return
+	 */
+	String getIconCls(int nX);
 
-    public String getTextCls();
+	/**
+	 * 获取文本式样
+	 * 
+	 * @return
+	 */
+	String getTextCls();
 
-    public ICodeItem getCodeItemByText(String var1, boolean var2) throws Exception;
+	/**
+	 * 通过文本获取列表项
+	 * 
+	 * @param strText 文本
+	 * @param bRecursion 是否递归查找
+	 * @return
+	 */
+	ICodeItem getCodeItemByText(String strText, boolean bRecursion) throws Exception;
 
-    public ICodeItem getCodeItem(String var1, boolean var2) throws Exception;
+	/**
+	 * 通过值获取列表项
+	 * 
+	 * @param strValue 值
+	 * @param bRecursion 是否递归查找
+	 * @return
+	 */
+	ICodeItem getCodeItem(String strValue, boolean bRecursion) throws Exception;
 
-    public ICodeItem getCodeItemByText(String var1) throws Exception;
+	
+	/**
+	 * 通过文本获取列表项，递归查找符合条件的子项
+	 * 
+	 * @param strText 文本
+	 * @return
+	 */
+	ICodeItem getCodeItemByText(String strText) throws Exception;
 
-    public ICodeItem getCodeItem(String var1) throws Exception;
+	/**
+	 * 通过值获取列表项，递归查找符合条件的子项
+	 * 
+	 * @param strValue 值
+	 * @return
+	 */
+	ICodeItem getCodeItem(String strValue) throws Exception;
+	
+	/**
+	 * 获取上级值
+	 * 
+	 * @return
+	 */
+	String getParentValue();
 
-    public String getParentValue();
+	/**
+	 * 获取用户自定义数据
+	 * 
+	 * @return
+	 */
+	String getUserData();
 
-    public String getUserData();
+	/**
+	 * 获取用户自定义数据2
+	 * 
+	 * @return
+	 */
+	String getUserData2();
 
-    public String getUserData2();
-
-    public boolean isDisableSelect();
-
-    public String getTextLanResTag();
+	/**
+	 * 获取代码项是否禁止选择（应用于选项部件）
+	 * 
+	 * @return
+	 */
+	boolean isDisableSelect();
+	
+	
+	
+	/**
+	 * 获取文本语言资源标识
+	 * @return
+	 */
+	String getTextLanResTag();
 }
-

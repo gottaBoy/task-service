@@ -1,20 +1,36 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.pub.react;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.react.PSReactViewCodePublisherImpl;
 
-public class PSReactViewServiceCodePublisherImpl
-extends PSReactViewCodePublisherImpl {
-    public PSReactViewServiceCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSReactViewServiceCodePublisherImpl is inconsistent\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tStringHelper cannot be resolved\n");
-    }
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFramework.Utility.StringHelper;
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tStringHelper cannot be resolved\n");
-    }
+public class PSReactViewServiceCodePublisherImpl extends PSReactViewCodePublisherImpl
+{
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		ArrayList<IPSGenerateCodeResult> psGenerateCodeResultList = (ArrayList<IPSGenerateCodeResult>) params.get("ctrls");
+		ArrayList<String> strList = new ArrayList<String>();
+		StringBuffer ctrlImports = new StringBuffer();
+		for (IPSGenerateCodeResult ipsGenerateCodeResult : psGenerateCodeResultList) {
+			ctrlImports.append(ipsGenerateCodeResult.getCode2());
+		}
+		String[] imports = ctrlImports.toString().replace("\n", "").split(";");
+		for (String str : imports) {
+			str += ";";
+			if(!StringHelper.IsNullOrEmpty(str)){
+				if(!strList.contains(str)){
+					strList.add(str);
+				}
+			}
+		}
+		params.put("imports", strList);
+	}
 }
-

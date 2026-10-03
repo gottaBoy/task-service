@@ -1,25 +1,48 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="93712a5199ec3e74c7e45d0bf576d38d", name="\u5b57\u6bb5\u67e5\u8be2\u6269\u5c55\u9009\u9879", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="LIKE", text="LIKE\u5927\u5c0f\u5199\u654f\u611f", realtext="LIKE\u5927\u5c0f\u5199\u654f\u611f"), @CodeItem(value="=", text="=\uff08\u542b\u5176\u5b83\uff09\u5927\u5c0f\u5199\u654f\u611f", realtext="=\uff08\u542b\u5176\u5b83\uff09\u5927\u5c0f\u5199\u654f\u611f"), @CodeItem(value="LIKESPLIT", text="LIKE\u5206\u89e3", realtext="LIKE\u5206\u89e3")})
-public abstract class CodeList60CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String LIKE = "LIKE";
-    public static final String EQ = "=";
-    public static final String LIKESPLIT = "LIKESPLIT";
+
+@CodeList(id="93712a5199ec3e74c7e45d0bf576d38d",name="字段查询扩展选项",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="LIKE",text="LIKE大小写敏感",realtext="LIKE大小写敏感" )
+    ,@CodeItem(value="=",text="=（含其它）大小写敏感",realtext="=（含其它）大小写敏感" )
+    ,@CodeItem(value="LIKESPLIT",text="LIKE分解",realtext="LIKE分解" )
+})
+
+
+/**
+ * 静态代码表[字段查询扩展选项]模型基类
+ */
+public abstract class CodeList60CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  LIKE大小写敏感
+     */
+    public final static String LIKE = "LIKE";
+    /**
+     *  =（含其它）大小写敏感
+     */
+    public final static String EQ = "=";
+    /**
+     *  LIKE分解
+     */
+    public final static String LIKESPLIT = "LIKESPLIT";
+
 
     public CodeList60CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList60CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList60CodeListModel", this);
     }
-}
 
+}

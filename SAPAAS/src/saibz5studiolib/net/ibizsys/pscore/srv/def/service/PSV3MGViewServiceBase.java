@@ -135,14 +135,14 @@ extends PSCoreSysServiceBase<PSV3MGView> {
             PSV3Migrate pSV3Migrate = (PSV3Migrate)iService.getDEModel().createEntity();
             pSV3Migrate.set("PSV3MIGRATEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSV3Migrate);
+                iService.getTemp(pSV3Migrate);
             } else {
-                iService.get((IEntity)pSV3Migrate);
+                iService.get(pSV3Migrate);
             }
             this.onFillParentInfo_Psv3migrate(pSV3MGView, pSV3Migrate);
             return;
         }
-        super.onFillParentInfo((IEntity)pSV3MGView, string, string2, string3);
+        super.onFillParentInfo(pSV3MGView, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSV3MGView> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSV3MGView, bl);
+        super.onFillEntityFullInfo(pSV3MGView, bl);
         this.onFillEntityFullInfo_Psv3migrate(pSV3MGView, bl);
     }
 
@@ -166,7 +166,7 @@ extends PSCoreSysServiceBase<PSV3MGView> {
     }
 
     protected void onWriteBackParent(PSV3MGView pSV3MGView, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSV3MGView, bl);
+        super.onWriteBackParent(pSV3MGView, bl);
     }
 
     public ArrayList<PSV3MGView> selectByPsv3migrate(PSV3MigrateBase pSV3MigrateBase) throws Exception {
@@ -225,7 +225,7 @@ extends PSCoreSysServiceBase<PSV3MGView> {
         ArrayList<PSV3MGView> arrayList = this.selectByPsv3migrate(pSV3Migrate);
         this.onBeforeRemoveByPsv3migrate(pSV3Migrate, arrayList);
         for (PSV3MGView pSV3MGView : arrayList) {
-            this.remove((IEntity)pSV3MGView);
+            this.remove(pSV3MGView);
         }
         this.onAfterRemoveByPsv3migrate(pSV3Migrate, arrayList);
     }
@@ -246,14 +246,14 @@ extends PSCoreSysServiceBase<PSV3MGView> {
 
     protected void replaceParentInfo(PSV3MGView pSV3MGView, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSV3MGView, cloneSession);
+        super.replaceParentInfo(pSV3MGView, cloneSession);
         if (pSV3MGView.getPSV3MigrateId() != null && (iEntity = cloneSession.getEntity("PSV3MIGRATE", (Object)pSV3MGView.getPSV3MigrateId())) != null) {
             this.onFillParentInfo_Psv3migrate(pSV3MGView, (PSV3Migrate)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSV3MGView pSV3MGView, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSV3MGView, bl);
+        super.onRemoveEntityUncopyValues(pSV3MGView, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSV3MGView pSV3MGView, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -268,7 +268,7 @@ extends PSCoreSysServiceBase<PSV3MGView> {
         if ((entityFieldError = this.onCheckField_PSV3MigrateId(bl, pSV3MGView, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSV3MGView, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSV3MGView, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSV3MGViewId(boolean bl, PSV3MGView pSV3MGView, boolean bl2, boolean bl3) throws Exception {
@@ -284,7 +284,7 @@ extends PSCoreSysServiceBase<PSV3MGView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSV3MGViewId_Default((IEntity)pSV3MGView, bl2, bl3);
+            string2 = this.onTestValueRule_PSV3MGViewId_Default(pSV3MGView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSV3MGVIEWID");
@@ -309,7 +309,7 @@ extends PSCoreSysServiceBase<PSV3MGView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSV3MGViewName_Default((IEntity)pSV3MGView, bl2, bl3);
+            string2 = this.onTestValueRule_PSV3MGViewName_Default(pSV3MGView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSV3MGVIEWNAME");
@@ -334,7 +334,7 @@ extends PSCoreSysServiceBase<PSV3MGView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSV3MigrateId_Default((IEntity)pSV3MGView, bl2, bl3);
+            string2 = this.onTestValueRule_PSV3MigrateId_Default(pSV3MGView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSV3MIGRATEID");
@@ -347,11 +347,11 @@ extends PSCoreSysServiceBase<PSV3MGView> {
     }
 
     protected void onSyncEntity(PSV3MGView pSV3MGView, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSV3MGView, bl);
+        super.onSyncEntity(pSV3MGView, bl);
     }
 
     protected void onSyncIndexEntities(PSV3MGView pSV3MGView, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSV3MGView, bl);
+        super.onSyncIndexEntities(pSV3MGView, bl);
     }
 
     public Object getDataContextValue(PSV3MGView pSV3MGView, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -359,14 +359,14 @@ extends PSCoreSysServiceBase<PSV3MGView> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSV3MGView, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSV3MGView, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSV3MGView pSV3MGView, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSV3MGView, arrayList, n);
+        super.onExportMajorModel(pSV3MGView, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -479,14 +479,14 @@ extends PSCoreSysServiceBase<PSV3MGView> {
 
     protected boolean onMergeChild(String string, String string2, PSV3MGView pSV3MGView) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSV3MGView)) {
+        if (super.onMergeChild(string, string2, pSV3MGView)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSV3MGView pSV3MGView) throws Exception {
-        super.onUpdateParent((IEntity)pSV3MGView);
+        super.onUpdateParent(pSV3MGView);
     }
 
     @Override

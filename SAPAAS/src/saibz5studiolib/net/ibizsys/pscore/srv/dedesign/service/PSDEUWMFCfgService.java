@@ -60,7 +60,7 @@ extends PSDEUWMFCfgServiceBase {
 
     @Override
     protected void onAfterUpdate(PSDEUWMFCfg pSDEUWMFCfg) throws Exception {
-        this.onAfterGet((IEntity)pSDEUWMFCfg);
+        this.onAfterGet(pSDEUWMFCfg);
         super.onAfterUpdate(pSDEUWMFCfg);
     }
 
@@ -76,7 +76,7 @@ extends PSDEUWMFCfgServiceBase {
             pSDEUWMFCfg.set("psdefname", pSDEField.getPSDEFieldName());
             pSDEUWMFCfg.setUserTag(pSDEField.getPSDEFieldName());
         }
-        super.onAfterGet((IEntity)pSDEUWMFCfg, n);
+        super.onAfterGet(pSDEUWMFCfg, n);
     }
 }
 

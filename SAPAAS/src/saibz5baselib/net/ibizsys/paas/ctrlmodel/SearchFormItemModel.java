@@ -1,13 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.FormItemModel;
-import net.ibizsys.paas.ctrlmodel.ISearchFormItemModel;
+/**
+ * 搜索表单项模型
+ * 
+ * @author lionlau
+ *
+ */
+public class SearchFormItemModel extends FormItemModel implements ISearchFormItemModel {
 
-public class SearchFormItemModel
-extends FormItemModel
-implements ISearchFormItemModel {
 }
-

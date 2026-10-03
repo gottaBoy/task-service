@@ -1,65 +1,66 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.CallResult
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.paas.service.ServiceGlobal
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.paas.web.HttpServletBase
- *  net.ibizsys.paas.web.IWebContext
- *  net.ibizsys.paas.web.WebContext
- *  net.ibizsys.psrt.srv.common.entity.LoginAccount
- *  net.ibizsys.psrt.srv.common.entity.OrgUser
- *  net.ibizsys.psrt.srv.common.service.LoginAccountService
- *  net.ibizsys.psrt.srv.common.service.OrgUserService
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package net.ibizsys.psuac.web;
 
 import net.ibizsys.paas.core.CallResult;
-import net.ibizsys.paas.entity.IEntity;
+import net.ibizsys.paas.core.Errors;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.web.HttpServletBase;
-import net.ibizsys.paas.web.IWebContext;
 import net.ibizsys.paas.web.WebContext;
 import net.ibizsys.psrt.srv.common.entity.LoginAccount;
 import net.ibizsys.psrt.srv.common.entity.OrgUser;
 import net.ibizsys.psrt.srv.common.service.LoginAccountService;
 import net.ibizsys.psrt.srv.common.service.OrgUserService;
-import net.ibizsys.psuac.web.LoginPageBase;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class LoginServletBase
-extends HttpServletBase {
-    private static final Log log = LogFactory.getLog(LoginPageBase.class);
 
-    protected CallResult loginUserName(String strUserName) throws Exception {
-        CallResult callResult = new CallResult();
-        try {
-            LoginAccountService loginAccountService = (LoginAccountService)ServiceGlobal.getService(LoginAccountService.class);
-            LoginAccount loginAccount = new LoginAccount();
-            loginAccount.setLoginAccountName(strUserName.toLowerCase());
-            if (loginAccountService.select((IEntity)loginAccount, true)) {
-                WebContext.fillByLoginAccount((IWebContext)this.getWebContext(), (LoginAccount)loginAccount);
-            }
-            OrgUserService orgUserService = (OrgUserService)ServiceGlobal.getService(OrgUserService.class);
-            OrgUser orgUser = new OrgUser();
-            orgUser.setOrgUserId(loginAccount.getUserId());
-            if (orgUserService.get((IEntity)orgUser, true)) {
-                WebContext.fillByOrgUser((IWebContext)this.getWebContext(), (OrgUser)orgUser);
-            }
-            this.getWebContext().login(strUserName);
-        }
-        catch (Exception ex) {
-            log.error((Object)StringHelper.format((String)"\u767b\u5f55\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
-            callResult.setRetCode(1);
-            callResult.setErrorInfo(ex.getMessage());
-        }
-        return callResult;
-    }
+/**
+ * 登录处理Servlet处理基类
+ * @author Administrator
+ *
+ */
+public class LoginServletBase extends HttpServletBase {
+	private static final Log log = LogFactory.getLog(LoginPageBase.class);
+
+	
+	/**
+	 * 登录用户名称
+	 * @param strUserName
+	 * @return
+	 * @throws Exception
+	 */
+	protected CallResult loginUserName(String strUserName)throws Exception
+	{
+		CallResult callResult = new CallResult();
+		try
+		{
+			//根据账户查找登录账户
+			LoginAccountService loginAccountService = (LoginAccountService)ServiceGlobal.getService(LoginAccountService.class);
+			LoginAccount loginAccount = new LoginAccount();
+			loginAccount.setLoginAccountName(strUserName.toLowerCase());
+			if(loginAccountService.select(loginAccount, true))
+			{
+				WebContext.fillByLoginAccount(this.getWebContext(), loginAccount);
+			}
+				
+			//根据账户查找登录账户
+			OrgUserService orgUserService = (OrgUserService)ServiceGlobal.getService(OrgUserService.class);
+			OrgUser orgUser = new OrgUser();
+			orgUser.setOrgUserId(loginAccount.getUserId());
+			if(orgUserService.get(orgUser, true))
+			{
+				WebContext.fillByOrgUser(this.getWebContext(), orgUser);
+			}
+			this.getWebContext().login(strUserName);
+			
+		}
+		catch(Exception ex)
+		{
+			log.error(StringHelper.format("登录用户发生异常，%1$s",ex.getMessage()),ex);
+			callResult.setRetCode(Errors.INTERNALERROR);
+			callResult.setErrorInfo(ex.getMessage());
+		}
+		return callResult;
+	}
 }
-

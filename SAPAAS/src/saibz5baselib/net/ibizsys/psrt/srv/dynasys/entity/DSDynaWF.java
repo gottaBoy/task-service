@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.dynasys.entity;
 
-import net.ibizsys.psrt.srv.dynasys.entity.DSDynaWFBase;
+/**
+ * 实体[DSDynaWF] 数据对象
+ */
+//@Entity
+public class DSDynaWF extends DSDynaWFBase {
 
-public class DSDynaWF
-extends DSDynaWFBase {
+    public DSDynaWF() {
+        super();
+    }
+
 }
-

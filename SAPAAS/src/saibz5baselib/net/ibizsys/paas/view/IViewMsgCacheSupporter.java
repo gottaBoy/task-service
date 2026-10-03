@@ -1,21 +1,63 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.view;
 
+/**
+ * 视图消息缓存支持对象
+ * @author Administrator
+ *
+ */
 public interface IViewMsgCacheSupporter {
-    public static final String CACHESCOPE_GLOBAL = "GLOBAL";
-    public static final String CACHESCOPE_ORG = "ORG";
-    public static final String CACHESCOPE_USER = "USER";
 
-    public boolean isEnableCache();
+	/**
+	* 缓存范围 - 全局 
+	*/
+	public final static String CACHESCOPE_GLOBAL = "GLOBAL" ;
 
-    public String getCacheScope();
+	/**
+	*缓存范围 - 组织
+	*/
+	public final static String CACHESCOPE_ORG = "ORG" ;
 
-    public int getCacheTimeout();
+	/**
+	*缓存范围 - 用户
+	*/
+	public final static String CACHESCOPE_USER = "USER" ;
+	
+	
 
-    public String getCacheTagField();
-
-    public String getCacheTag2Field();
+	
+	/**
+	 * 是否支持缓存
+	 * @return
+	 */
+	boolean isEnableCache();
+	
+	
+	/**
+	 * 获取缓存范围
+	 * @return
+	 */
+	String getCacheScope();
+	
+	
+	
+	/**
+	 * 获取缓存过期时长（毫秒）
+	 * @return
+	 */
+	int getCacheTimeout();
+	
+	
+	
+	/**
+	 * 获取缓存标识属性
+	 * @return
+	 */
+	String getCacheTagField();
+	
+	
+	/**
+	 * 获取缓存标识2属性
+	 * @return
+	 */
+	String getCacheTag2Field();
 }
-

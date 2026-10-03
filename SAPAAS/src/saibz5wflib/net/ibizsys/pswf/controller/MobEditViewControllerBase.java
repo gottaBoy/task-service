@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.controller;
 
-import net.ibizsys.pswf.controller.MobWFEditViewControllerBase;
+/**
+ * 移动端流程编辑器视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MobEditViewControllerBase extends MobWFEditViewControllerBase {
 
-public abstract class MobEditViewControllerBase
-extends MobWFEditViewControllerBase {
+	public MobEditViewControllerBase() throws Exception {
+		super();
+	}
+
 }
-

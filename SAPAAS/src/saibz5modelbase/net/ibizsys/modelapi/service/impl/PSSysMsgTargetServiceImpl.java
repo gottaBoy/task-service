@@ -118,9 +118,9 @@ implements IPSSysMsgTargetService {
 
     @Override
     protected List<PSSysMsgTarget> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysMsgTarget> list = new ArrayList<PSSysMsgTarget>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysMsgTarget> items = this.listByPSModule(parent);

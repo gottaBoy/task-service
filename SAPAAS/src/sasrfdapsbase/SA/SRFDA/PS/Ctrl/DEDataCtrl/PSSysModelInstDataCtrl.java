@@ -277,7 +277,7 @@ extends PSDEDataCtrl {
             } else {
                 cond.setParamValue("SYSTYPE", (Object)"DEVSYS");
             }
-            Vector psSysModelInstList = new Vector();
+            Vector<BaseDataEntity> psSysModelInstList = new Vector<BaseDataEntity>();
             callResult = this.Select(cond, psSysModelInstList);
             if (callResult.isError()) {
                 return callResult;
@@ -528,7 +528,7 @@ extends PSDEDataCtrl {
     protected void onUpdateCounter(SA.SRFDA.PS.Data.PSSysModelInst psSysModelInst) throws Exception {
         SessionFactory sessionFactory = PSSysModelInstGlobal.getSessionFactory((String)psSysModelInst.getPSSYSMODELINSTID());
         PSSysDBDetailService psSysDBDetailService = (PSSysDBDetailService)ServiceGlobal.getService(PSSysDBDetailService.class, (SessionFactory)sessionFactory);
-        ArrayList psSysDBDetailList = psSysDBDetailService.select((ISelectCond)new SelectCond());
+        ArrayList<PSSysDBDetail> psSysDBDetailList = psSysDBDetailService.select((ISelectCond)new SelectCond());
         HashMap<String, Boolean> psSysDBDetailMap = new HashMap<String, Boolean>();
         for (PSSysDBDetail psSysDBDetail : psSysDBDetailList) {
             psSysDBDetailMap.put(psSysDBDetail.getPSSysDBDetailId(), psSysDBDetail.getDBVer() == psSysDBDetail.getPubDBVer());
@@ -560,7 +560,7 @@ extends PSDEDataCtrl {
             Boolean bMatch;
             if (psSysDBDetail.getDBVer() == psSysDBDetail.getPubDBVer() || (bMatch = (Boolean)psSysDBDetailMap.get(psSysDBDetail.getPSSysDBDetailId())) == null || !bMatch.booleanValue()) continue;
             psSysDBDetail.setPubDBVer(psSysDBDetail.getDBVer());
-            psSysDBDetailService.update((IEntity)psSysDBDetail);
+            psSysDBDetailService.update(psSysDBDetail);
         }
     }
 
@@ -709,7 +709,7 @@ extends PSDEDataCtrl {
         psSysModelInstV5.setPSSysModelInstId(psSysModelInst.getPSSYSMODELINSTID());
         psSysModelInstV5.setUsedSize(Integer.valueOf(entity.GetParamIntValue("USEDSIZE", 0)));
         psSysModelInstV5.setRowCnt(Integer.valueOf(entity.GetParamIntValue("ROWCNT", 0)));
-        psSysModelInstService.update((IEntity)psSysModelInstV5, true);
+        psSysModelInstService.update(psSysModelInstV5, true);
     }
 
     public CallResult cleanDBInst(BaseDataEntity dataEntity) {
@@ -940,23 +940,23 @@ extends PSDEDataCtrl {
         PSDataEntity psDataEntity = new PSDataEntity();
         psDataEntity.setPSDataEntityId("fb256ae72dcecd2acf433f6640cd2648");
         PSDataEntityService psDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)psSysModelInst.getPSSYSMODELINSTID()));
-        psDataEntityService.get((IEntity)psDataEntity);
-        String strRet = psDataEntityService.exportModelV2Ex((IEntity)psDataEntity, "YAML");
+        psDataEntityService.get(psDataEntity);
+        String strRet = psDataEntityService.exportModelV2Ex(psDataEntity, "YAML");
         log.debug((Object)strRet);
         PSMOSFile formPSMOSFile = psSystemService.getFile(psMOSFile, "/psmodules/OrderMgr/psdataentities/ORDER/psdeforms/Main");
         PSDEForm psDEForm = new PSDEForm();
         psDEForm.setPSDEFormId(formPSMOSFile.getPSModelId());
         PSDEFormService psDEFormService = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)psSysModelInst.getPSSYSMODELINSTID()));
-        psDEFormService.get((IEntity)psDEForm);
-        strRet = psDEFormService.exportModelV2Ex((IEntity)psDEForm, "YAML");
+        psDEFormService.get(psDEForm);
+        strRet = psDEFormService.exportModelV2Ex(psDEForm, "YAML");
         log.debug((Object)strRet);
         PSDEForm psDEForm2 = new PSDEForm();
         psDEForm2.setPSDEFormId(formPSMOSFile.getPSModelId());
-        psDEFormService.importModelV2Ex((IEntity)psDEForm2, strRet, "YAML");
+        psDEFormService.importModelV2Ex(psDEForm2, strRet, "YAML");
         PSDEForm psDEForm3 = new PSDEForm();
         psDEForm3.setPSDEFormId(formPSMOSFile.getPSModelId());
-        psDEFormService.get((IEntity)psDEForm3);
-        String strRet2 = psDEFormService.exportModelV2Ex((IEntity)psDEForm3, "YAML");
+        psDEFormService.get(psDEForm3);
+        String strRet2 = psDEFormService.exportModelV2Ex(psDEForm3, "YAML");
         if (StringHelper.Compare((String)strRet, (String)strRet2, (boolean)false) != 0) {
             log.debug((Object)strRet2);
             throw new Exception("\u4e24\u6b21\u5bfc\u51fa\u5185\u5bb9\u4e0d\u4e00\u81f4");
@@ -1151,7 +1151,7 @@ extends PSDEDataCtrl {
         PSDEServiceAPIService psDEServiceAPIService = (PSDEServiceAPIService)ServiceGlobal.getService(PSDEServiceAPIService.class, (SessionFactory)sessionFactory);
         PSDEServiceAPI psDEServiceAPI = new PSDEServiceAPI();
         psDEServiceAPI.setPSDEServiceAPIId("390726870b5604664515ee12c3847708");
-        psDEServiceAPIService.get((IEntity)psDEServiceAPI);
+        psDEServiceAPIService.get(psDEServiceAPI);
         PSHelpSection[] helps = psDEServiceAPIService.getPasteHelps(null);
         if (helps != null) {
             PSHelpSection[] pSHelpSectionArray = helps;
@@ -1191,7 +1191,7 @@ extends PSDEDataCtrl {
             }
             modelV2Map.put("PSAPPVIEW", null);
             PSDataEntityService psDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)sessionFactory);
-            ArrayList psDataEntities = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
+            ArrayList<PSDataEntity> psDataEntities = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
             for (PSDataEntity psDataEntity : psDataEntities) {
                 if (!modelV2Map.containsKey(psDataEntity.getPSDataEntityName())) continue;
                 modelV2Map.put(psDataEntity.getPSDataEntityName(), psDataEntity);
@@ -1213,10 +1213,10 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             PSDEViewBase psDEViewBase = new PSDEViewBase();
             psDEViewBase.setPSDEViewBaseId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfoView"));
-            if (psDEViewBaseService.checkKey((IEntity)psDEViewBase) != 1) continue;
+            if (psDEViewBaseService.checkKey(psDEViewBase) != 1) continue;
             PSDEUAGroup psDEUAGroup = new PSDEUAGroup();
             psDEUAGroup.setPSDEUAGroupId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfo"));
-            if (psDEUAGroupService.checkKey((IEntity)psDEUAGroup) != 1) continue;
+            if (psDEUAGroupService.checkKey(psDEUAGroup) != 1) continue;
             PSDEViewCtrl psDEViewCtrl = new PSDEViewCtrl();
             psDEViewCtrl.setPSDEViewCtrlId(KeyValueHelper.genUniqueId((String)psDEViewBase.getPSDEViewBaseId(), (String)"TOOLBAR"));
             psDEViewCtrl.setPSDEViewCtrlName("TOOLBAR");
@@ -1229,7 +1229,7 @@ extends PSDEDataCtrl {
             psDEViewCtrl.setPSDEToolbarName("\u5de5\u5177\u680f\u6a21\u677f\uff08\u7eaf\u754c\u9762\u884c\u4e3a\u7ec41-6\uff09");
             psDEViewCtrl.setPSDEUAGroupId(psDEUAGroup.getPSDEUAGroupId());
             psDEViewCtrl.setPSDEUAGroupName("mos-quick-info");
-            psDEViewCtrlService.create((IEntity)psDEViewCtrl, false);
+            psDEViewCtrlService.create(psDEViewCtrl, false);
         }
     }
 
@@ -1239,7 +1239,7 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             PSDEViewBase psDEViewBase = new PSDEViewBase();
             psDEViewBase.setPSDEViewBaseId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfoView"));
-            if (psDEViewBaseService.checkKey((IEntity)psDEViewBase) == 1) continue;
+            if (psDEViewBaseService.checkKey(psDEViewBase) == 1) continue;
             psDEViewBase.setPSDEViewBaseName(StringHelper.Format((String)"%1$sMOS\u4fe1\u606f\u89c6\u56fe", (Object)psDataEntity.getLogicName()));
             psDEViewBase.setPSDEViewBaseType("DEEDITVIEW");
             psDEViewBase.setCodeName("MosQuickInfoView");
@@ -1253,7 +1253,7 @@ extends PSDEDataCtrl {
             psDEViewBase.setShowCaptionBar(Integer.valueOf(1));
             psDEViewBase.setViewParam5(Integer.valueOf(0));
             psDEViewBase.setReadOnlyMode(Integer.valueOf(1));
-            psDEViewBaseService.create((IEntity)psDEViewBase, false);
+            psDEViewBaseService.create(psDEViewBase, false);
         }
     }
 
@@ -1263,9 +1263,9 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             PSDEViewBase psDEViewBase = new PSDEViewBase();
             psDEViewBase.setPSDEViewBaseId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfoView"));
-            if (psDEViewBaseService.checkKey((IEntity)psDEViewBase) != 1) continue;
+            if (psDEViewBaseService.checkKey(psDEViewBase) != 1) continue;
             psDEViewBase.setCaption(StringHelper.Format((String)"%1$s", (Object)psDataEntity.getLogicName()));
-            psDEViewBaseService.sysUpdate((IEntity)psDEViewBase, false);
+            psDEViewBaseService.sysUpdate(psDEViewBase, false);
         }
     }
 
@@ -1276,27 +1276,27 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             psDEUAGroup = new PSDEUAGroup();
             psDEUAGroup.setPSDEUAGroupId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosExplorerQuick"));
-            if (psDEUAGroupService.checkKey((IEntity)psDEUAGroup) == 1) continue;
+            if (psDEUAGroupService.checkKey(psDEUAGroup) == 1) continue;
             psDEUAGroup.setPSDEUAGroupName("mos-explorer-quick");
             psDEUAGroup.setPSDEId(psDataEntity.getPSDataEntityId());
             psDEUAGroup.setPSDEName(psDataEntity.getPSDataEntityName());
             psDEUAGroup.setPSSystemId(psSystem.getPSSystemId());
             psDEUAGroup.setPSSystemName(psSystem.getPSSystemName());
             psDEUAGroup.setCodeName("MosExplorerQuick");
-            psDEUAGroupService.create((IEntity)psDEUAGroup, false);
+            psDEUAGroupService.create(psDEUAGroup, false);
         }
         for (PSDataEntity psDataEntity : modelV2Map.values()) {
             if (psDataEntity == null) continue;
             psDEUAGroup = new PSDEUAGroup();
             psDEUAGroup.setPSDEUAGroupId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosExplorerMain"));
-            if (psDEUAGroupService.checkKey((IEntity)psDEUAGroup) == 1) continue;
+            if (psDEUAGroupService.checkKey(psDEUAGroup) == 1) continue;
             psDEUAGroup.setPSDEUAGroupName("mos-explorer-main");
             psDEUAGroup.setPSDEId(psDataEntity.getPSDataEntityId());
             psDEUAGroup.setPSDEName(psDataEntity.getPSDataEntityName());
             psDEUAGroup.setPSSystemId(psSystem.getPSSystemId());
             psDEUAGroup.setPSSystemName(psSystem.getPSSystemName());
             psDEUAGroup.setCodeName("MosExplorerMain");
-            psDEUAGroupService.create((IEntity)psDEUAGroup, false);
+            psDEUAGroupService.create(psDEUAGroup, false);
         }
     }
 
@@ -1306,14 +1306,14 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             PSDEUAGroup psDEUAGroup = new PSDEUAGroup();
             psDEUAGroup.setPSDEUAGroupId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfo"));
-            if (psDEUAGroupService.checkKey((IEntity)psDEUAGroup) == 1) continue;
+            if (psDEUAGroupService.checkKey(psDEUAGroup) == 1) continue;
             psDEUAGroup.setPSDEUAGroupName("mos-quick-info");
             psDEUAGroup.setPSDEId(psDataEntity.getPSDataEntityId());
             psDEUAGroup.setPSDEName(psDataEntity.getPSDataEntityName());
             psDEUAGroup.setPSSystemId(psSystem.getPSSystemId());
             psDEUAGroup.setPSSystemName(psSystem.getPSSystemName());
             psDEUAGroup.setCodeName("MosQuickInfo");
-            psDEUAGroupService.create((IEntity)psDEUAGroup, false);
+            psDEUAGroupService.create(psDEUAGroup, false);
         }
     }
 
@@ -1324,7 +1324,7 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             PSDEForm psDEForm = new PSDEForm();
             psDEForm.setPSDEFormId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfo"));
-            if (psDEFormService.checkKey((IEntity)psDEForm) == 1) continue;
+            if (psDEFormService.checkKey(psDEForm) == 1) continue;
             psDEForm.setFormType("EDITFORM");
             psDEForm.setPSDEFormName("mos-quick-info");
             psDEForm.setPSDEId(psDataEntity.getPSDataEntityId());
@@ -1332,7 +1332,7 @@ extends PSDEDataCtrl {
             psDEForm.setCodeName("MosQuickInfo");
             psDEForm.setInfoFormFlag(Integer.valueOf(3));
             psDEForm.setLabelWidth(Integer.valueOf(100));
-            psDEFormService.create((IEntity)psDEForm, false);
+            psDEFormService.create(psDEForm, false);
             PSDEFormDetail formpage1 = new PSDEFormDetail();
             formpage1.setPSDEFormDetailId(KeyValueHelper.genUniqueId((String)psDEForm.getPSDEFormId(), (String)"formpage1"));
             formpage1.setPSDEFormId(psDEForm.getPSDEFormId());
@@ -1340,7 +1340,7 @@ extends PSDEDataCtrl {
             formpage1.setDetailType("FORMPAGE");
             formpage1.setOrderValue(Integer.valueOf(1));
             formpage1.setCaption("\u57fa\u672c\u4fe1\u606f");
-            psDEFormDetailService.create((IEntity)formpage1, false);
+            psDEFormDetailService.create(formpage1, false);
         }
     }
 
@@ -1352,10 +1352,10 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             PSDEViewBase psDEViewBase = new PSDEViewBase();
             psDEViewBase.setPSDEViewBaseId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfoView"));
-            if (psDEViewBaseService.checkKey((IEntity)psDEViewBase) != 1) continue;
+            if (psDEViewBaseService.checkKey(psDEViewBase) != 1) continue;
             PSDEForm psDEForm = new PSDEForm();
             psDEForm.setPSDEFormId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfo"));
-            if (psDEFormService.checkKey((IEntity)psDEForm) != 1) continue;
+            if (psDEFormService.checkKey(psDEForm) != 1) continue;
             PSDEViewCtrl psDEViewCtrl = new PSDEViewCtrl();
             psDEViewCtrl.setPSDEViewCtrlId(KeyValueHelper.genUniqueId((String)psDEViewBase.getPSDEViewBaseId(), (String)"FORM"));
             psDEViewCtrl.setPSDEViewCtrlName("FORM");
@@ -1368,13 +1368,13 @@ extends PSDEDataCtrl {
             psDEViewCtrl.setPSDEFormName("mos-quick-info");
             psDEViewCtrl.setPSACHandlerId("aeb813ef39d45ec5fa5a55eb3ca4a21d");
             psDEViewCtrl.setPSACHandlerName("\u7f16\u8f91\u8868\u5355\u5904\u7406\u5668");
-            psDEViewCtrlService.create((IEntity)psDEViewCtrl, false);
+            psDEViewCtrlService.create(psDEViewCtrl, false);
         }
     }
 
     protected void onInitV6MosQuickInfoViewUIActions(PSSystem psSystem, Map<String, PSDataEntity> modelV2Map, SessionFactory sessionFactory) throws Exception {
         PSDEViewBaseService psDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)sessionFactory);
-        ArrayList psDEViewList = psDEViewBaseService.select((ISelectCond)new SelectCond());
+        ArrayList<PSDEViewBase> psDEViewList = psDEViewBaseService.select((ISelectCond)new SelectCond());
         HashMap<String, PSDEViewBase> psDEViewBaseMap = new HashMap<String, PSDEViewBase>();
         for (PSDEViewBase psDEViewBase : psDEViewList) {
             PSDataEntity psDataEntity = modelV2Map.get(psDEViewBase.getPSDEName());
@@ -1388,7 +1388,7 @@ extends PSDEDataCtrl {
         PSDEUAGroupDetailService psDEUAGroupDetailService = (PSDEUAGroupDetailService)ServiceGlobal.getService(PSDEUAGroupDetailService.class, (SessionFactory)sessionFactory);
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSSYSAPPID", (Object)"CBB07EF3-B451-42ED-B859-2A05224110AE");
-        ArrayList psAppDEViewList = psAppDEViewService.select((ISelectCond)selectCond);
+        ArrayList<PSAppDEView> psAppDEViewList = psAppDEViewService.select((ISelectCond)selectCond);
         for (PSAppDEView psAppDEView : psAppDEViewList) {
             PSDEViewBase psDEViewBase = (PSDEViewBase)psDEViewBaseMap.get(psAppDEView.getPSDEViewBaseId());
             if (psDEViewBase == null) continue;
@@ -1407,7 +1407,7 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             PSDEUIAction psDEUIAction = new PSDEUIAction();
             psDEUIAction.setPSDEUIActionId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MsoOpenQuickCfgView"));
-            if (psDEUIActionService.checkKey((IEntity)psDEUIAction) == 1) continue;
+            if (psDEUIActionService.checkKey(psDEUIAction) == 1) continue;
             psDEUIAction.setPSDEUIActionName(StringHelper.Format((String)"\u6253\u5f00%1$sMSO\u914d\u7f6e\u89c6\u56fe", (Object)psDataEntity.getLogicName()));
             psDEUIAction.setCaption("\u5feb\u901f\u914d\u7f6e");
             psDEUIAction.setPSDEId(psDataEntity.getPSDataEntityId());
@@ -1420,19 +1420,19 @@ extends PSDEDataCtrl {
             psDEUIAction.setFrontProType("WIZARD");
             psDEUIAction.setPSDEViewBaseId(((PSDEViewBase)entry.getValue()).getPSDEViewBaseId());
             psDEUIAction.setPSDEViewBaseName(((PSDEViewBase)entry.getValue()).getPSDEViewBaseName());
-            psDEUIActionService.create((IEntity)psDEUIAction, false);
+            psDEUIActionService.create(psDEUIAction, false);
             PSDEUAGroup psDEUAGroup = new PSDEUAGroup();
             psDEUAGroup.setPSDEUAGroupId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfo"));
-            if (psDEUAGroupService.checkKey((IEntity)psDEUAGroup) != 1) continue;
+            if (psDEUAGroupService.checkKey(psDEUAGroup) != 1) continue;
             PSDEUAGroupDetail psDEUAGroupDetail = new PSDEUAGroupDetail();
             psDEUAGroupDetail.setPSDEUAGRPDetailId(KeyValueHelper.genUniqueId((String)psDEUAGroup.getPSDEUAGroupId(), (String)"QuickCfg"));
-            if (psDEUAGroupDetailService.checkKey((IEntity)psDEUAGroupDetail) == 1) continue;
+            if (psDEUAGroupDetailService.checkKey(psDEUAGroupDetail) == 1) continue;
             psDEUAGroupDetail.setPSDEUAGRPDetailName("QuickCfg");
             psDEUAGroupDetail.setPSDEUAGroupId(psDEUAGroup.getPSDEUAGroupId());
             psDEUAGroupDetail.setPSDEUIActionId(psDEUIAction.getPSDEUIActionId());
             psDEUAGroupDetail.setOrderValue(Integer.valueOf(100));
             psDEUAGroupDetail.setCodeName("QuickCfg");
-            psDEUAGroupDetailService.create((IEntity)psDEUAGroupDetail, false);
+            psDEUAGroupDetailService.create(psDEUAGroupDetail, false);
             log.debug((Object)StringHelper.Format((String)"\u521d\u59cb\u5316\u5b9e\u4f53\u754c\u9762\u884c\u4e3a[%1$s]\uff0c\u5269\u4f59[%2$s]", (Object)psDEUIAction.getPSDEUIActionName(), (Object)nSize));
         }
     }
@@ -1445,21 +1445,21 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             PSDEForm psDEForm = new PSDEForm();
             psDEForm.setPSDEFormId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfo"));
-            if (!psDEFormService.get((IEntity)psDEForm, true) || StringHelper.Compare((String)psDEForm.getUserTag(), (String)"MOSINIT", (boolean)true) == 0) continue;
+            if (!psDEFormService.get(psDEForm, true) || StringHelper.Compare((String)psDEForm.getUserTag(), (String)"MOSINIT", (boolean)true) == 0) continue;
             PSDEUIAction psDEUIAction = new PSDEUIAction();
             psDEUIAction.setPSDEUIActionId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MsoOpenQuickCfgView"));
-            if (!psDEUIActionService.get((IEntity)psDEUIAction, true)) continue;
+            if (!psDEUIActionService.get(psDEUIAction, true)) continue;
             PSDEViewCtrl psDEViewCtrl = new PSDEViewCtrl();
             psDEViewCtrl.setPSDEViewBaseId(psDEUIAction.getPSDEViewBaseId());
             psDEViewCtrl.setPSDEViewCtrlName("FORM");
-            if (!psDEViewCtrlService.select((IEntity)psDEViewCtrl, true) || StringHelper.IsNullOrEmpty((String)psDEViewCtrl.getPSDEFormId())) continue;
+            if (!psDEViewCtrlService.select(psDEViewCtrl, true) || StringHelper.IsNullOrEmpty((String)psDEViewCtrl.getPSDEFormId())) continue;
             PSDEForm srcPSDEForm = new PSDEForm();
             srcPSDEForm.setPSDEFormId(psDEViewCtrl.getPSDEFormId());
             psDEFormService.initMOSForm(psDEForm, srcPSDEForm);
             psDEForm.reset();
             psDEForm.setPSDEFormId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfo"));
             psDEForm.setUserTag("MOSINIT");
-            psDEFormService.sysUpdate((IEntity)psDEForm, false);
+            psDEFormService.sysUpdate(psDEForm, false);
         }
     }
 
@@ -1471,14 +1471,14 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             PSDEForm psDEForm = new PSDEForm();
             psDEForm.setPSDEFormId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfo"));
-            if (!psDEFormService.get((IEntity)psDEForm, true)) continue;
+            if (!psDEFormService.get(psDEForm, true)) continue;
             PSDEUIAction psDEUIAction = new PSDEUIAction();
             psDEUIAction.setPSDEUIActionId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MsoOpenQuickCfgView"));
-            if (!psDEUIActionService.get((IEntity)psDEUIAction, true)) continue;
+            if (!psDEUIActionService.get(psDEUIAction, true)) continue;
             PSDEViewCtrl psDEViewCtrl = new PSDEViewCtrl();
             psDEViewCtrl.setPSDEViewBaseId(psDEUIAction.getPSDEViewBaseId());
             psDEViewCtrl.setPSDEViewCtrlName("FORM");
-            if (!psDEViewCtrlService.select((IEntity)psDEViewCtrl, true) || StringHelper.IsNullOrEmpty((String)psDEViewCtrl.getPSDEFormId())) continue;
+            if (!psDEViewCtrlService.select(psDEViewCtrl, true) || StringHelper.IsNullOrEmpty((String)psDEViewCtrl.getPSDEFormId())) continue;
             PSDEForm srcPSDEForm = new PSDEForm();
             srcPSDEForm.setPSDEFormId(psDEViewCtrl.getPSDEFormId());
             psDEFormService.fixMOSForm(psDEForm, srcPSDEForm);
@@ -1489,7 +1489,7 @@ extends PSDEDataCtrl {
         PSAppModuleService psAppModuleService = (PSAppModuleService)ServiceGlobal.getService(PSAppModuleService.class, (SessionFactory)sessionFactory);
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSSYSAPPID", (Object)"CBB07EF3-B451-42ED-B859-2A05224110AE");
-        ArrayList psAppModuleList = psAppModuleService.select((ISelectCond)selectCond);
+        ArrayList<PSAppModule> psAppModuleList = psAppModuleService.select((ISelectCond)selectCond);
         HashMap<String, PSAppModule> psAppModuleMap = new HashMap<String, PSAppModule>();
         for (PSAppModule psAppModule : psAppModuleList) {
             psAppModuleMap.put(psAppModule.getCodeName().toUpperCase(), psAppModule);
@@ -1497,7 +1497,7 @@ extends PSDEDataCtrl {
         selectCond.reset();
         HashMap<String, PSAppModule> psModuleMap = new HashMap<String, PSAppModule>();
         PSModuleService psModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)sessionFactory);
-        ArrayList psModuleList = psModuleService.select((ISelectCond)selectCond);
+        ArrayList<PSModule> psModuleList = psModuleService.select((ISelectCond)selectCond);
         for (PSModule psModule : psModuleList) {
             PSAppModule psAppModule = (PSAppModule)psAppModuleMap.get(psModule.getCodeName().toUpperCase());
             if (psAppModule == null) continue;
@@ -1511,20 +1511,20 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             PSDEUIAction psDEUIAction = new PSDEUIAction();
             psDEUIAction.setPSDEUIActionId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MsoOpenQuickCfgView"));
-            if (psDEUIActionService.checkKey((IEntity)psDEUIAction) != 1) continue;
+            if (psDEUIActionService.checkKey(psDEUIAction) != 1) continue;
             PSDEViewBase psDEViewBase = new PSDEViewBase();
             psDEViewBase.setPSDEViewBaseId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfoView"));
-            if (!psDEViewBaseService.get((IEntity)psDEViewBase, true)) continue;
+            if (!psDEViewBaseService.get(psDEViewBase, true)) continue;
             PSAppDEView psAppDEView = new PSAppDEView();
             psAppDEView.setPSAppDEViewId(KeyValueHelper.genUniqueId((String)"CBB07EF3-B451-42ED-B859-2A05224110AE", (String)psDEViewBase.getPSDEViewBaseId()));
-            if (psAppDEViewService.checkKey((IEntity)psAppDEView) == 1 || (psAppModule = (PSAppModule)psModuleMap.get(psDataEntity.getPSModuleId())) == null) continue;
+            if (psAppDEViewService.checkKey(psAppDEView) == 1 || (psAppModule = (PSAppModule)psModuleMap.get(psDataEntity.getPSModuleId())) == null) continue;
             psAppDEView.setPSSysAppId("CBB07EF3-B451-42ED-B859-2A05224110AE");
             psAppDEView.setPSDEViewBaseId(psDEViewBase.getPSDEViewBaseId());
             psAppDEView.setPSDEViewBaseName(psDEViewBase.getPSDEViewBaseName());
             psAppDEView.setPSAppModuleId(psAppModule.getPSAppModuleId());
             psAppDEView.setPSAppModuleName(psAppModule.getPSAppModuleName());
             psAppDEView.setUserRefFlag(Integer.valueOf(1));
-            psAppDEViewService.create((IEntity)psAppDEView, false);
+            psAppDEViewService.create(psAppDEView, false);
         }
     }
 
@@ -1532,7 +1532,7 @@ extends PSDEDataCtrl {
         PSDEUIActionService psDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)sessionFactory);
         SelectCond selectCond = new SelectCond();
         selectCond.set("CODENAME", (Object)"OpenMainView");
-        ArrayList psDEUIActionList = psDEUIActionService.select((ISelectCond)selectCond);
+        ArrayList<PSDEUIAction> psDEUIActionList = psDEUIActionService.select((ISelectCond)selectCond);
         HashMap<String, PSDEUIAction> psDEUIActionMap = new HashMap<String, PSDEUIAction>();
         for (PSDEUIAction psDEUIAction : psDEUIActionList) {
             PSDataEntity psDataEntity = modelV2Map.get(psDEUIAction.getPSDEName());
@@ -1550,30 +1550,30 @@ extends PSDEDataCtrl {
             PSDEUIAction psDEUIAction = (PSDEUIAction)entry.getValue();
             PSDEUAGroup psDEUAGroup = new PSDEUAGroup();
             psDEUAGroup.setPSDEUAGroupId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosQuickInfo"));
-            if (psDEUAGroupService.checkKey((IEntity)psDEUAGroup) == 1) {
+            if (psDEUAGroupService.checkKey(psDEUAGroup) == 1) {
                 psDEUAGroupDetail = new PSDEUAGroupDetail();
                 psDEUAGroupDetail.setPSDEUAGRPDetailId(KeyValueHelper.genUniqueId((String)psDEUAGroup.getPSDEUAGroupId(), (String)"OpenMainView"));
-                if (psDEUAGroupDetailService.checkKey((IEntity)psDEUAGroupDetail) != 1) {
+                if (psDEUAGroupDetailService.checkKey(psDEUAGroupDetail) != 1) {
                     psDEUAGroupDetail.setPSDEUAGRPDetailName("OpenMainView");
                     psDEUAGroupDetail.setPSDEUAGroupId(psDEUAGroup.getPSDEUAGroupId());
                     psDEUAGroupDetail.setPSDEUIActionId(psDEUIAction.getPSDEUIActionId());
                     psDEUAGroupDetail.setOrderValue(Integer.valueOf(50));
                     psDEUAGroupDetail.setCodeName("OpenMainView");
-                    psDEUAGroupDetailService.create((IEntity)psDEUAGroupDetail, false);
+                    psDEUAGroupDetailService.create(psDEUAGroupDetail, false);
                 }
             }
             psDEUAGroup.reset();
             psDEUAGroup.setPSDEUAGroupId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosExplorerQuick"));
-            if (psDEUAGroupService.checkKey((IEntity)psDEUAGroup) == 1) {
+            if (psDEUAGroupService.checkKey(psDEUAGroup) == 1) {
                 psDEUAGroupDetail = new PSDEUAGroupDetail();
                 psDEUAGroupDetail.setPSDEUAGRPDetailId(KeyValueHelper.genUniqueId((String)psDEUAGroup.getPSDEUAGroupId(), (String)"OpenMainView"));
-                if (psDEUAGroupDetailService.checkKey((IEntity)psDEUAGroupDetail) != 1) {
+                if (psDEUAGroupDetailService.checkKey(psDEUAGroupDetail) != 1) {
                     psDEUAGroupDetail.setPSDEUAGRPDetailName("OpenMainView");
                     psDEUAGroupDetail.setPSDEUAGroupId(psDEUAGroup.getPSDEUAGroupId());
                     psDEUAGroupDetail.setPSDEUIActionId(psDEUIAction.getPSDEUIActionId());
                     psDEUAGroupDetail.setOrderValue(Integer.valueOf(50));
                     psDEUAGroupDetail.setCodeName("OpenMainView");
-                    psDEUAGroupDetailService.create((IEntity)psDEUAGroupDetail, false);
+                    psDEUAGroupDetailService.create(psDEUAGroupDetail, false);
                 }
             }
             log.debug((Object)StringHelper.Format((String)"\u521d\u59cb\u5316\u5b9e\u4f53\u754c\u9762\u884c\u4e3a[%1$s]\uff0c\u5269\u4f59[%2$s]", (Object)psDEUIAction.getPSDEUIActionName(), (Object)nSize));
@@ -1585,7 +1585,7 @@ extends PSDEDataCtrl {
         PSDEUIActionService psDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)sessionFactory);
         SelectCond selectCond = new SelectCond();
         selectCond.set("CODENAME", (Object)"OpenDesignTool");
-        ArrayList psDEUIActionList = psDEUIActionService.select((ISelectCond)selectCond);
+        ArrayList<PSDEUIAction> psDEUIActionList = psDEUIActionService.select((ISelectCond)selectCond);
         HashMap<String, PSDEUIAction> psDEUIActionMap = new HashMap<String, PSDEUIAction>();
         for (PSDEUIAction psDEUIAction : psDEUIActionList) {
             psDataEntity = modelV2Map.get(psDEUIAction.getPSDEName());
@@ -1619,16 +1619,16 @@ extends PSDEDataCtrl {
             PSDEUAGroup psDEUAGroup = new PSDEUAGroup();
             psDEUAGroup.reset();
             psDEUAGroup.setPSDEUAGroupId(KeyValueHelper.genUniqueId((String)psDataEntity2.getPSDataEntityId(), (String)"MosExplorerQuick"));
-            if (psDEUAGroupService.checkKey((IEntity)psDEUAGroup) == 1) {
+            if (psDEUAGroupService.checkKey(psDEUAGroup) == 1) {
                 PSDEUAGroupDetail psDEUAGroupDetail = new PSDEUAGroupDetail();
                 psDEUAGroupDetail.setPSDEUAGRPDetailId(KeyValueHelper.genUniqueId((String)psDEUAGroup.getPSDEUAGroupId(), (String)"OpenDesignTool"));
-                if (psDEUAGroupDetailService.checkKey((IEntity)psDEUAGroupDetail) != 1) {
+                if (psDEUAGroupDetailService.checkKey(psDEUAGroupDetail) != 1) {
                     psDEUAGroupDetail.setPSDEUAGRPDetailName("OpenDesignTool");
                     psDEUAGroupDetail.setPSDEUAGroupId(psDEUAGroup.getPSDEUAGroupId());
                     psDEUAGroupDetail.setPSDEUIActionId(psDEUIAction.getPSDEUIActionId());
                     psDEUAGroupDetail.setOrderValue(Integer.valueOf(70));
                     psDEUAGroupDetail.setCodeName("OpenDesignTool");
-                    psDEUAGroupDetailService.create((IEntity)psDEUAGroupDetail, false);
+                    psDEUAGroupDetailService.create(psDEUAGroupDetail, false);
                 }
             }
             log.debug((Object)StringHelper.Format((String)"\u521d\u59cb\u5316\u5b9e\u4f53\u754c\u9762\u884c\u4e3a[%1$s]\uff0c\u5269\u4f59[%2$s]", (Object)psDEUIAction.getPSDEUIActionName(), (Object)nSize));
@@ -1640,7 +1640,7 @@ extends PSDEDataCtrl {
         PSDEUIActionService psDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)sessionFactory);
         SelectCond selectCond = new SelectCond();
         selectCond.set("CODENAME", (Object)"OpenQuickCreateView");
-        ArrayList psDEUIActionList = psDEUIActionService.select((ISelectCond)selectCond);
+        ArrayList<PSDEUIAction> psDEUIActionList = psDEUIActionService.select((ISelectCond)selectCond);
         HashMap<String, PSDEUIAction> psDEUIActionMap = new HashMap<String, PSDEUIAction>();
         for (PSDEUIAction psDEUIAction : psDEUIActionList) {
             psDataEntity = modelV2Map.get(psDEUIAction.getPSDEName());
@@ -1673,17 +1673,17 @@ extends PSDEDataCtrl {
             PSDEUIAction psDEUIAction = (PSDEUIAction)entry.getValue();
             PSDEUAGroup psDEUAGroup = new PSDEUAGroup();
             psDEUAGroup.setPSDEUAGroupId(KeyValueHelper.genUniqueId((String)psDataEntity2.getPSDataEntityId(), (String)"MosExplorerQuick"));
-            if (psDEUAGroupService.checkKey((IEntity)psDEUAGroup) == 1) {
+            if (psDEUAGroupService.checkKey(psDEUAGroup) == 1) {
                 PSDEUAGroupDetail psDEUAGroupDetail = new PSDEUAGroupDetail();
                 psDEUAGroupDetail.setPSDEUAGRPDetailId(KeyValueHelper.genUniqueId((String)psDEUAGroup.getPSDEUAGroupId(), (String)"OpenQuickCreateView"));
-                if (psDEUAGroupDetailService.checkKey((IEntity)psDEUAGroupDetail) == 1) continue;
+                if (psDEUAGroupDetailService.checkKey(psDEUAGroupDetail) == 1) continue;
                 psDEUAGroupDetail.setAddSeparator(Integer.valueOf(1));
                 psDEUAGroupDetail.setPSDEUAGRPDetailName("OpenQuickCreateView");
                 psDEUAGroupDetail.setPSDEUAGroupId(psDEUAGroup.getPSDEUAGroupId());
                 psDEUAGroupDetail.setPSDEUIActionId(psDEUIAction.getPSDEUIActionId());
                 psDEUAGroupDetail.setOrderValue(Integer.valueOf(100));
                 psDEUAGroupDetail.setCodeName("OpenQuickCreateView");
-                psDEUAGroupDetailService.create((IEntity)psDEUAGroupDetail, false);
+                psDEUAGroupDetailService.create(psDEUAGroupDetail, false);
             }
             log.debug((Object)StringHelper.Format((String)"\u521d\u59cb\u5316\u5b9e\u4f53\u754c\u9762\u884c\u4e3a[%1$s]\uff0c\u5269\u4f59[%2$s]", (Object)psDEUIAction.getPSDEUIActionName(), (Object)nSize));
         }
@@ -1693,7 +1693,7 @@ extends PSDEDataCtrl {
         PSDEUIActionService psDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)sessionFactory);
         SelectCond selectCond = new SelectCond();
         selectCond.set("CODENAME", (Object)"OpenQuickCreateView");
-        ArrayList psDEUIActionList = psDEUIActionService.select((ISelectCond)selectCond);
+        ArrayList<PSDEUIAction> psDEUIActionList = psDEUIActionService.select((ISelectCond)selectCond);
         HashMap<String, PSDataEntity> modelV2Map2 = new HashMap<String, PSDataEntity>();
         modelV2Map2.putAll(modelV2Map);
         HashMap psDEUIActionMap = new HashMap();
@@ -1712,10 +1712,10 @@ extends PSDEDataCtrl {
         PSDEViewBaseService psDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)sessionFactory);
         selectCond.reset();
         selectCond.set("CODENAME", (Object)"QuickCreateView");
-        ArrayList psDEViewList = psDEViewBaseService.select((ISelectCond)selectCond);
+        ArrayList<PSDEViewBase> psDEViewList = psDEViewBaseService.select((ISelectCond)selectCond);
         selectCond.reset();
         selectCond.set("CODENAME", (Object)"QuickCreateOptionView");
-        ArrayList psDEViewList2 = psDEViewBaseService.select((ISelectCond)selectCond);
+        ArrayList<PSDEViewBase> psDEViewList2 = psDEViewBaseService.select((ISelectCond)selectCond);
         psDEViewList.addAll(psDEViewList2);
         HashMap<String, PSDEViewBase> psDEViewBaseMap = new HashMap<String, PSDEViewBase>();
         for (PSDEViewBase psDEViewBase : psDEViewList) {
@@ -1729,7 +1729,7 @@ extends PSDEDataCtrl {
         PSDEUAGroupDetailService psDEUAGroupDetailService = (PSDEUAGroupDetailService)ServiceGlobal.getService(PSDEUAGroupDetailService.class, (SessionFactory)sessionFactory);
         selectCond.reset();
         selectCond.set("PSSYSAPPID", (Object)"CBB07EF3-B451-42ED-B859-2A05224110AE");
-        ArrayList psAppDEViewList = psAppDEViewService.select((ISelectCond)selectCond);
+        ArrayList<PSAppDEView> psAppDEViewList = psAppDEViewService.select((ISelectCond)selectCond);
         for (PSAppDEView psAppDEView : psAppDEViewList) {
             PSDEViewBase lastPSDEViewBase;
             PSDEViewBase psDEViewBase = (PSDEViewBase)psDEViewBaseMap.get(psAppDEView.getPSDEViewBaseId());
@@ -1743,7 +1743,7 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             PSDEUIAction psDEUIAction = new PSDEUIAction();
             psDEUIAction.setPSDEUIActionId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"OpenQuickCreateView"));
-            if (psDEUIActionService.checkKey((IEntity)psDEUIAction) == 1) continue;
+            if (psDEUIActionService.checkKey(psDEUIAction) == 1) continue;
             psDEUIAction.setPSDEUIActionName(StringHelper.Format((String)"\u6253\u5f00%1$s\u5feb\u901f\u65b0\u5efa\u89c6\u56fe", (Object)psDataEntity.getLogicName()));
             psDEUIAction.setCaption("\u65b0\u5efa");
             psDEUIAction.setPSDEId(psDataEntity.getPSDataEntityId());
@@ -1765,20 +1765,20 @@ extends PSDEDataCtrl {
                 psDEUIAction.setNextPSDEUIActionId(nextPSDEUIAction.getPSDEUIActionId());
                 psDEUIAction.setNextPSDEUIActionName(nextPSDEUIAction.getPSDEUIActionName());
             }
-            psDEUIActionService.create((IEntity)psDEUIAction, false);
+            psDEUIActionService.create(psDEUIAction, false);
             PSDEUAGroup psDEUAGroup = new PSDEUAGroup();
             psDEUAGroup.setPSDEUAGroupId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosExplorerQuick"));
-            if (psDEUAGroupService.checkKey((IEntity)psDEUAGroup) == 1) {
+                if (psDEUAGroupService.checkKey(psDEUAGroup) == 1) {
                 PSDEUAGroupDetail psDEUAGroupDetail = new PSDEUAGroupDetail();
                 psDEUAGroupDetail.setPSDEUAGRPDetailId(KeyValueHelper.genUniqueId((String)psDEUAGroup.getPSDEUAGroupId(), (String)"OpenQuickCreateView"));
-                if (psDEUAGroupDetailService.checkKey((IEntity)psDEUAGroupDetail) == 1) continue;
+                if (psDEUAGroupDetailService.checkKey(psDEUAGroupDetail) == 1) continue;
                 psDEUAGroupDetail.setAddSeparator(Integer.valueOf(1));
                 psDEUAGroupDetail.setPSDEUAGRPDetailName("OpenQuickCreateView");
                 psDEUAGroupDetail.setPSDEUAGroupId(psDEUAGroup.getPSDEUAGroupId());
                 psDEUAGroupDetail.setPSDEUIActionId(psDEUIAction.getPSDEUIActionId());
                 psDEUAGroupDetail.setOrderValue(Integer.valueOf(100));
                 psDEUAGroupDetail.setCodeName("OpenQuickCreateView");
-                psDEUAGroupDetailService.create((IEntity)psDEUAGroupDetail, false);
+                psDEUAGroupDetailService.create(psDEUAGroupDetail, false);
             }
             modelV2Map2.remove(psDataEntity.getPSDataEntityName());
             log.debug((Object)StringHelper.Format((String)"\u521d\u59cb\u5316\u5b9e\u4f53\u754c\u9762\u884c\u4e3a[%1$s]\uff0c\u5269\u4f59[%2$s]", (Object)psDEUIAction.getPSDEUIActionName(), (Object)nSize));
@@ -1792,7 +1792,7 @@ extends PSDEDataCtrl {
         PSDEActionService psDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)sessionFactory);
         SelectCond selectCond = new SelectCond();
         selectCond.set("CODENAME", (Object)"Remove");
-        ArrayList psDEActionList = psDEActionService.select((ISelectCond)selectCond);
+        ArrayList<PSDEAction> psDEActionList = psDEActionService.select((ISelectCond)selectCond);
         HashMap<String, PSDEAction> psDEActionMap = new HashMap<String, PSDEAction>();
         for (PSDEAction psDEAction : psDEActionList) {
             PSDataEntity psDataEntity = modelV2Map.get(psDEAction.getPSDEName());
@@ -1809,7 +1809,7 @@ extends PSDEDataCtrl {
             if (psDataEntity == null) continue;
             PSDEUIAction psDEUIAction = new PSDEUIAction();
             psDEUIAction.setPSDEUIActionId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosRemove"));
-            if (psDEUIActionService.checkKey((IEntity)psDEUIAction) == 1) continue;
+            if (psDEUIActionService.checkKey(psDEUIAction) == 1) continue;
             psDEUIAction.setPSDEUIActionName(StringHelper.Format((String)"%1$sMSO\u5220\u9664\u6570\u636e", (Object)psDataEntity.getLogicName()));
             psDEUIAction.setCaption("\u5220\u9664");
             psDEUIAction.setPSDEId(psDataEntity.getPSDataEntityId());
@@ -1827,20 +1827,20 @@ extends PSDEDataCtrl {
             psDEUIAction.setPSSysImageId("f60c95b158d706b1a74242df94aad527");
             psDEUIAction.setPSSysImageName("remove (alias)");
             psDEUIAction.setConfirmInfo(StringHelper.Format((String)"\u786e\u5b9a\u8981\u5220\u9664\u9009\u4e2d\u6570\u636e\uff0c\u6570\u636e\u4e00\u65e6\u5220\u9664\u5c06\u65e0\u6cd5\u6062\u590d"));
-            psDEUIActionService.create((IEntity)psDEUIAction, false);
+            psDEUIActionService.create(psDEUIAction, false);
             PSDEUAGroup psDEUAGroup = new PSDEUAGroup();
             psDEUAGroup.setPSDEUAGroupId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosExplorerQuick"));
-            if (psDEUAGroupService.checkKey((IEntity)psDEUAGroup) == 1) {
+                if (psDEUAGroupService.checkKey(psDEUAGroup) == 1) {
                 PSDEUAGroupDetail psDEUAGroupDetail = new PSDEUAGroupDetail();
                 psDEUAGroupDetail.setPSDEUAGRPDetailId(KeyValueHelper.genUniqueId((String)psDEUAGroup.getPSDEUAGroupId(), (String)"MosRemove"));
-                if (psDEUAGroupDetailService.checkKey((IEntity)psDEUAGroupDetail) == 1) continue;
+                if (psDEUAGroupDetailService.checkKey(psDEUAGroupDetail) == 1) continue;
                 psDEUAGroupDetail.setAddSeparator(Integer.valueOf(1));
                 psDEUAGroupDetail.setPSDEUAGRPDetailName("MosRemove");
                 psDEUAGroupDetail.setPSDEUAGroupId(psDEUAGroup.getPSDEUAGroupId());
                 psDEUAGroupDetail.setPSDEUIActionId(psDEUIAction.getPSDEUIActionId());
                 psDEUAGroupDetail.setOrderValue(Integer.valueOf(300));
                 psDEUAGroupDetail.setCodeName("MosRemove");
-                psDEUAGroupDetailService.create((IEntity)psDEUAGroupDetail, false);
+                psDEUAGroupDetailService.create(psDEUAGroupDetail, false);
             }
             log.debug((Object)StringHelper.Format((String)"\u521d\u59cb\u5316\u5b9e\u4f53\u754c\u9762\u884c\u4e3a[%1$s]\uff0c\u5269\u4f59[%2$s]", (Object)psDEUIAction.getPSDEUIActionName(), (Object)nSize));
         }
@@ -1848,7 +1848,7 @@ extends PSDEDataCtrl {
 
     protected void onInitV6MosQuickInfoViewUAGroup_Major(PSSystem psSystem, Map<String, PSDataEntity> modelV2Map, SessionFactory sessionFactory) throws Exception {
         PSDEViewBaseService psDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)sessionFactory);
-        ArrayList psDEViewList = psDEViewBaseService.select((ISelectCond)new SelectCond());
+        ArrayList<PSDEViewBase> psDEViewList = psDEViewBaseService.select((ISelectCond)new SelectCond());
         HashMap<String, PSDEViewBase> psDEViewBaseMap = new HashMap<String, PSDEViewBase>();
         for (PSDEViewBase psDEViewBase : psDEViewList) {
             PSDataEntity psDataEntity = modelV2Map.get(psDEViewBase.getPSDEName());
@@ -1858,7 +1858,7 @@ extends PSDEDataCtrl {
         PSDEViewCtrlService psDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)sessionFactory);
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSDEVIEWCTRLTYPE", (Object)"TOOLBAR");
-        ArrayList psDEViewCtrlList = psDEViewCtrlService.select((ISelectCond)selectCond);
+        ArrayList<PSDEViewCtrl> psDEViewCtrlList = psDEViewCtrlService.select((ISelectCond)selectCond);
         HashMap<String, String> psDEUAGroupMap = new HashMap<String, String>();
         for (PSDEViewCtrl psDEViewCtrl : psDEViewCtrlList) {
             if (!psDEViewBaseMap.containsKey(psDEViewCtrl.getPSDEViewBaseId())) continue;
@@ -1879,7 +1879,7 @@ extends PSDEDataCtrl {
         }
         PSDEUAGroupService psDEUAGroupService = (PSDEUAGroupService)ServiceGlobal.getService(PSDEUAGroupService.class, (SessionFactory)sessionFactory);
         PSDEUIActionService psDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)sessionFactory);
-        ArrayList psDEUIActionList = psDEUIActionService.select((ISelectCond)new SelectCond());
+        ArrayList<PSDEUIAction> psDEUIActionList = psDEUIActionService.select((ISelectCond)new SelectCond());
         HashMap<String, PSDEUIAction> psDEUIActionMap = new HashMap<String, PSDEUIAction>();
         for (PSDEUIAction psDEUIAction : psDEUIActionList) {
             psDEUIActionMap.put(psDEUIAction.getPSDEUIActionId(), psDEUIAction);
@@ -1887,24 +1887,23 @@ extends PSDEDataCtrl {
         PSDEUAGroupDetailService psDEUAGroupDetailService = (PSDEUAGroupDetailService)ServiceGlobal.getService(PSDEUAGroupDetailService.class, (SessionFactory)sessionFactory);
         selectCond.reset();
         selectCond.setOrderInfo("ORDER BY ORDERVALUE");
-        ArrayList psDEUAGroupDetailList = psDEUAGroupDetailService.select((ISelectCond)selectCond);
+        ArrayList<PSDEUAGroupDetail> psDEUAGroupDetailList = psDEUAGroupDetailService.select((ISelectCond)selectCond);
         for (PSDEUAGroupDetail psDEUAGroupDetail2 : psDEUAGroupDetailList) {
             PSDataEntity psDataEntity;
             PSDEUIAction psDEUIAction;
             if (!psDEUAGroupMap.containsKey(psDEUAGroupDetail2.getPSDEUAGroupId()) || (psDEUIAction = (PSDEUIAction)psDEUIActionMap.get(psDEUAGroupDetail2.getPSDEUIActionId())) == null || StringHelper.IsNullOrEmpty((String)psDEUIAction.getPSDEName()) || (psDataEntity = modelV2Map.get(psDEUIAction.getPSDEName())) == null) continue;
             PSDEUAGroup psDEUAGroup = new PSDEUAGroup();
             psDEUAGroup.setPSDEUAGroupId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"MosExplorerMain"));
-            if (psDEUAGroupService.checkKey((IEntity)psDEUAGroup) != 1) continue;
+            if (psDEUAGroupService.checkKey(psDEUAGroup) != 1) continue;
             PSDEUAGroupDetail psDEUAGroupDetail = new PSDEUAGroupDetail();
             psDEUAGroupDetail.setPSDEUAGRPDetailId(KeyValueHelper.genUniqueId((String)psDEUAGroup.getPSDEUAGroupId(), (String)psDEUIAction.getCodeName()));
-            if (psDEUAGroupDetailService.checkKey((IEntity)psDEUAGroupDetail) == 1) continue;
+            if (psDEUAGroupDetailService.checkKey(psDEUAGroupDetail) == 1) continue;
             psDEUAGroupDetail.setPSDEUAGRPDetailName(psDEUIAction.getCodeName());
             psDEUAGroupDetail.setPSDEUAGroupId(psDEUAGroup.getPSDEUAGroupId());
             psDEUAGroupDetail.setPSDEUIActionId(psDEUIAction.getPSDEUIActionId());
             psDEUAGroupDetail.setOrderValue(psDEUAGroupDetail2.getOrderValue());
             psDEUAGroupDetail.setCodeName(psDEUIAction.getCodeName());
-            psDEUAGroupDetailService.create((IEntity)psDEUAGroupDetail, false);
+            psDEUAGroupDetailService.create(psDEUAGroupDetail, false);
         }
     }
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSubSysServiceAPIDEModelBase;
 
 public class PSSubSysServiceAPIDEModel
 extends PSSubSysServiceAPIDEModelBase {
+
+    public PSSubSysServiceAPIDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

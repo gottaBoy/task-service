@@ -1,18 +1,38 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
 import net.ibizsys.paas.appmodel.IAppViewModel;
-import net.ibizsys.paas.controller.IViewController;
 
-public interface IRedirectViewController
-extends IViewController {
-    public static final String VIEWACTION_GETRDVIEW = "GETRDVIEW";
-    public static final String VIEWACTION_GETRDVIEWURL = "GETRDVIEWURL";
-
-    public boolean isEnableWorkflow();
-
-    public IAppViewModel getRDAppViewModel(String var1) throws Exception;
+/**
+ * 重定向视图控制器接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IRedirectViewController extends IViewController {
+	
+	/**
+	 * 获取重定向视图请求
+	 */
+	final static String VIEWACTION_GETRDVIEW = "GETRDVIEW";
+	
+	/**
+	 * 获取重定向视图请求（直接获取URL)
+	 */
+	final static String VIEWACTION_GETRDVIEWURL = "GETRDVIEWURL";
+	
+	
+	/**
+	 * 获取是否支持工作流
+	 * @return
+	 */
+	boolean isEnableWorkflow();
+	
+	/**
+	 * 获取指定数据的重定向页面模型
+	 * 
+	 * @param strKeyValue 数据主键
+	 * @return
+	 * @throws Exception
+	 */
+	IAppViewModel getRDAppViewModel(String strKeyValue) throws Exception;
 }
-

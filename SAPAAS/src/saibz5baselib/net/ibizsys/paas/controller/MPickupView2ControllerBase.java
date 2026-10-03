@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.MPickupViewControllerBase;
+/**
+ * 多选视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MPickupView2ControllerBase extends MPickupViewControllerBase {
 
-public abstract class MPickupView2ControllerBase
-extends MPickupViewControllerBase {
+	public MPickupView2ControllerBase() throws Exception {
+		super();
+	}
+
 }
-

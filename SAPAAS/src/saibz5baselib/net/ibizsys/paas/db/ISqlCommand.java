@@ -1,14 +1,23 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
-import java.util.Iterator;
-import net.ibizsys.paas.db.IProcParam;
-
+/**
+ * 数据库命令接口
+ * 
+ * @author lionlau
+ *
+ */
 public interface ISqlCommand {
-    public String getSql();
+	/**
+	 * 获取Sql
+	 * 
+	 * @return
+	 */
+	String getSql();
 
-    public Iterator<IProcParam> getProcParams();
+	/**
+	 * 获取参数
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IProcParam> getProcParams();
 }
-

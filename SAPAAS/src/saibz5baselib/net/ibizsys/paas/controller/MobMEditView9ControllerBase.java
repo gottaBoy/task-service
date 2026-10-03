@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.MobMDViewControllerBase;
+/**
+ * 移动端多编辑嵌入视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MobMEditView9ControllerBase extends MobMDViewControllerBase {
 
-public abstract class MobMEditView9ControllerBase
-extends MobMDViewControllerBase {
+	public MobMEditView9ControllerBase() throws Exception {
+		super();
+	}
+
 }
-

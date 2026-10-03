@@ -70,7 +70,7 @@ implements IPSSubSysSADetailParamService {
     @Override
     protected List<PSSubSysSADetailParam> onListAll() throws Exception {
         ArrayList<PSSubSysSADetailParam> list = new ArrayList<PSSubSysSADetailParam>();
-        List pssubsyssadetails = PSModelServiceUtil.getInstance().getPSSubSysSADetailService().listAll();
+        List<PSSubSysSADetail> pssubsyssadetails = PSModelServiceUtil.getInstance().getPSSubSysSADetailService().listAll();
         if (pssubsyssadetails != null) {
             for (PSSubSysSADetail parent : pssubsyssadetails) {
                 List<PSSubSysSADetailParam> items = this.listByPSSubSysSADetail(parent);

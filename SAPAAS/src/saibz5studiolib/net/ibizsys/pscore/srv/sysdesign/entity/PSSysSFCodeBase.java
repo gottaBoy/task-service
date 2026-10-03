@@ -1628,7 +1628,7 @@ implements Serializable {
                 PSSFCodeFolder pSSFCodeFolder = new PSSFCodeFolder();
                 pSSFCodeFolder.setPSSFCodeFolderId(this.getPSSFCodeFolderId());
                 PSSFCodeFolderService pSSFCodeFolderService = (PSSFCodeFolderService)ServiceGlobal.getService(PSSFCodeFolderService.class, (SessionFactory)this.getSessionFactory());
-                pSSFCodeFolderService.autoGet((IEntity)pSSFCodeFolder);
+                pSSFCodeFolderService.autoGet(pSSFCodeFolder);
                 this.pssfcodefolder = pSSFCodeFolder;
             }
             return this.pssfcodefolder;
@@ -1654,7 +1654,7 @@ implements Serializable {
                 PSSFCodeType pSSFCodeType = new PSSFCodeType();
                 pSSFCodeType.setPSSFCodeTypeId(this.getPSSFCodeTypeId());
                 PSSFCodeTypeService pSSFCodeTypeService = (PSSFCodeTypeService)ServiceGlobal.getService(PSSFCodeTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSSFCodeTypeService.autoGet((IEntity)pSSFCodeType);
+                pSSFCodeTypeService.autoGet(pSSFCodeType);
                 this.pssfcodetype = pSSFCodeType;
             }
             return this.pssfcodetype;
@@ -1680,7 +1680,7 @@ implements Serializable {
                 PSSysSFPub pSSysSFPub = new PSSysSFPub();
                 pSSysSFPub.setPSSysSFPubId(this.getPSSysSFPubId());
                 PSSysSFPubService pSSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPubService.autoGet((IEntity)pSSysSFPub);
+                pSSysSFPubService.autoGet(pSSysSFPub);
                 this.pssyssfpub = pSSysSFPub;
             }
             return this.pssyssfpub;

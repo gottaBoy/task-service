@@ -1,36 +1,61 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSDEDataView
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.react;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.react.PSReactCtrlCodePublisherImpl;
 
-public class PSReactDEDataViewCodePublisherImpl
-extends PSReactCtrlCodePublisherImpl {
-    protected IPSDEDataView iPSDEDataView;
-    public static final String CTRLPART_RECORD = "RECORD";
-    public static final String CTRLPART_STORE = "STORE";
+import SA.SRFDA.PS.Core.Control.DataView.IPSDEDataView;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
 
-    public PSReactDEDataViewCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSReactDEDataViewCodePublisherImpl is inconsistent\n\tIPSDEDataView cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSReactDEDataViewCodePublisherImpl must override or implement a supertype method\n\tIPSDEDataView cannot be resolved to a type\n\tIPSDEDataView cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSReactCtrlCodePublisherImpl\n\tIPSDEDataView cannot be resolved to a type\n\tIPSDEDataView cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEDataView cannot be resolved to a type\n\tThe method onClose() of type PSReactDEDataViewCodePublisherImpl must override or implement a supertype method\n\tIPSDEDataView cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSReactCtrlCodePublisherImpl\n");
-    }
+public class PSReactDEDataViewCodePublisherImpl extends PSReactCtrlCodePublisherImpl
+{
+	protected IPSDEDataView iPSDEDataView = null;
+	
+	public final static String CTRLPART_RECORD = "RECORD";
+	
+	public final static String CTRLPART_STORE = "STORE";
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSDEDataView = (IPSDEDataView)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSReactDEDataViewCodePublisherImpl must override or implement a supertype method\n\tIPSDEDataView cannot be resolved to a type\n\tIPSDEDataView cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSReactCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSDEDataView = (IPSDEDataView)this.iPSControl;
+		
+		//输出结果集合代码
+		if(true)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_STORE).getPSPFCtrlPartCodePublisher();
+			IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext,iPSDEDataView, null);
+			iPSPFCtrlPartCodePublisher.close();
+			params.put("store", iPSGenerateCodeResult);
+		}
+		
+		
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDEDataView cannot be resolved to a type\n\tIPSDEDataView cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEDataView cannot be resolved to a type\n");
-    }
-
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSReactDEDataViewCodePublisherImpl must override or implement a supertype method\n\tIPSDEDataView cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSReactCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSDEDataView = null;
+		super.onClose();
+	}
+	
 }
-

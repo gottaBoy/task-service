@@ -1,15 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.GridHandlerBase;
+/**
+ * 表格后台处理对象扩展
+ * （1）不支持父数据条件
+ * @author Administrator
+ *
+ */
+public class GridHandlerBase2 extends GridHandlerBase {
 
-public class GridHandlerBase2
-extends GridHandlerBase {
-    @Override
-    protected boolean isEnableParentCondition() {
-        return false;
-    }
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.ctrlhandler.MDCtrlHandlerBase#isEnableParentCondition()
+	 */
+	@Override
+	protected boolean isEnableParentCondition() {
+		return false;
+	}
 }
-

@@ -167,9 +167,9 @@ IPSDEActionRESTfulAPI {
         for (PSDEActionLogic psDEActionLogic : psDEActionLogicList) {
             PSDEActionLogicImpl iPSDEActionLogic = new PSDEActionLogicImpl();
             iPSDEActionLogic.init(this.getPSModelStorageContext(), this, psDEActionLogic);
-            ArrayList<Object> attachList = this.psDEActionLogicMap.get(iPSDEActionLogic.getAttachMode());
+            ArrayList<IPSDEActionLogic> attachList = this.psDEActionLogicMap.get(iPSDEActionLogic.getAttachMode());
             if (attachList == null) {
-                attachList = new ArrayList();
+                attachList = new ArrayList<IPSDEActionLogic>();
                 this.psDEActionLogicMap.put(iPSDEActionLogic.getAttachMode(), attachList);
             }
             attachList.add(iPSDEActionLogic);
@@ -312,4 +312,3 @@ IPSDEActionRESTfulAPI {
         return this.bCustomParam;
     }
 }
-

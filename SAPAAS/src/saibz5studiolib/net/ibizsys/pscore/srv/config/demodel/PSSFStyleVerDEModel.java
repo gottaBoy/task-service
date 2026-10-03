@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSSFStyleVerDEModelBase;
 
 public class PSSFStyleVerDEModel
 extends PSSFStyleVerDEModelBase {
+
+    public PSSFStyleVerDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

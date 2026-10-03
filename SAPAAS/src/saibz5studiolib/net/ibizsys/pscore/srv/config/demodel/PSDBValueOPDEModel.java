@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSDBValueOPDEModelBase;
 
 public class PSDBValueOPDEModel
 extends PSDBValueOPDEModelBase {
+
+    public PSDBValueOPDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

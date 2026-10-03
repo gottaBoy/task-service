@@ -1,23 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  MuleContext
- */
 package SA.SRFDA.EAI.Endpoint;
 
-import SA.SRFDA.EAI.Endpoint.BaseProcessEndpoint;
+import org.mule.api.MuleContext;
+import org.mule.api.context.MuleContextAware;
+import org.mule.api.lifecycle.Callable;
 
-public abstract class BaseFtpProcess
-extends BaseProcessEndpoint {
+public abstract class BaseFtpProcess extends BaseProcessEndpoint
+        implements Callable, MuleContextAware {
     protected MuleContext muleContet;
 
-    public BaseFtpProcess() {
-        throw new Error("Unresolved compilation problems: \n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tCallable cannot be resolved to a type\n\tMuleContextAware cannot be resolved to a type\n\tMuleContext cannot be resolved to a type\n\tMuleContext cannot be resolved to a type\n\tMuleContext cannot be resolved to a type\n");
-    }
-
     public void setMuleContext(MuleContext muleContext) {
-        throw new Error("Unresolved compilation problems: \n\tMuleContext cannot be resolved to a type\n\tMuleContext cannot be resolved to a type\n");
+        this.muleContet = muleContext;
     }
 }
-

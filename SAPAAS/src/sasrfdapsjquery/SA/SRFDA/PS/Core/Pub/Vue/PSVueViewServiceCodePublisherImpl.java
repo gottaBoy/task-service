@@ -18,7 +18,7 @@ extends PSVueViewCodePublisherImpl {
     @Override
     protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
         super.onFillGenerateCodeParams(params);
-        ArrayList psGenerateCodeResultList = (ArrayList)params.get("ctrls");
+        ArrayList<IPSGenerateCodeResult> psGenerateCodeResultList = (ArrayList<IPSGenerateCodeResult>)params.get("ctrls");
         ArrayList<String> strList = new ArrayList<String>();
         for (IPSGenerateCodeResult ipsGenerateCodeResult : psGenerateCodeResultList) {
             String strImport = ipsGenerateCodeResult.getCode2();
@@ -28,4 +28,3 @@ extends PSVueViewCodePublisherImpl {
         params.put("imports", strList);
     }
 }
-

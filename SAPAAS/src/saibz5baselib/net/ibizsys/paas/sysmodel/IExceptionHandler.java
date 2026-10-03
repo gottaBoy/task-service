@@ -1,11 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.sysmodel;
 
-import net.ibizsys.paas.sysmodel.ISystemModel;
-
+/**
+ * 系统全局异常处理对象
+ * @author Administrator
+ *
+ */
 public interface IExceptionHandler {
-    public void log(ISystemModel var1, Object var2, Throwable var3, String var4, Object var5);
-}
 
+	/**
+	 * 登记异常
+	 * @param iSystemModel
+	 * @param logger
+	 * @param throwable
+	 * @param strMessage
+	 * @param objUserData
+	 */
+	void log(ISystemModel iSystemModel,Object logger,Throwable throwable,String strMessage,Object objUserData);
+}

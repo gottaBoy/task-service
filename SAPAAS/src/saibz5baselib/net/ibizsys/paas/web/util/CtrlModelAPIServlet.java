@@ -1,18 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONArray
- *  net.sf.json.JSONObject
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package net.ibizsys.paas.web.util;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import net.ibizsys.paas.control.form.IFormItem;
 import net.ibizsys.paas.core.DataTypes;
+import net.ibizsys.paas.core.Errors;
 import net.ibizsys.paas.ctrlmodel.CtrlModelGlobal;
 import net.ibizsys.paas.ctrlmodel.ICtrlModel;
 import net.ibizsys.paas.ctrlmodel.IEditFormModel;
@@ -26,65 +21,78 @@ import net.ibizsys.paas.web.WebContext;
 import net.ibizsys.psrt.srv.common.entity.LoginLog;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
-public class CtrlModelAPIServlet
-extends HttpServletBase {
-    private static final long serialVersionUID = 1L;
-    private static final Log log = LogFactory.getLog(CtrlModelAPIServlet.class);
+/**
+ * 控件模型 API Servlet
+ * 
+ * @author Administrator
+ * 
+ */
+public class CtrlModelAPIServlet extends HttpServletBase {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final Log log = LogFactory.getLog(CtrlModelAPIServlet.class);
 
-    @Override
-    protected AjaxActionResult onProcessAction() throws Exception {
-        try {
-            String strLoginKey = WebContext.getLoginKey(this.getWebContext());
-            if (StringHelper.isNullOrEmpty(strLoginKey)) {
-                AjaxActionResult ajaxActionResult = new AjaxActionResult();
-                ajaxActionResult.setRetCode(2);
-                ajaxActionResult.setErrorInfo("\u6ca1\u6709\u6307\u5b9a\u767b\u5f55\u6807\u8bc6\uff0c\u8bf7\u5148\u8fdb\u884c\u767b\u5f55");
-                return ajaxActionResult;
-            }
-            LoginLog loginLog = RemoteLoginGlobal.getLoginLog(strLoginKey);
-            if (loginLog == null) {
-                AjaxActionResult ajaxActionResult = new AjaxActionResult();
-                ajaxActionResult.setRetCode(2);
-                ajaxActionResult.setErrorInfo("\u65e0\u6548\u767b\u5f55\u6807\u8bc6\uff0c\u8bf7\u91cd\u65b0\u767b\u5f55");
-                return ajaxActionResult;
-            }
-            SDAjaxActionResult sdAjaxActionResult = new SDAjaxActionResult();
-            String strCtrlId = WebContext.getCtrlId(this.getWebContext());
-            ICtrlModel iCtrlModel = CtrlModelGlobal.getCtrlModel(strCtrlId);
-            if (iCtrlModel instanceof IEditFormModel) {
-                ArrayList<JSONObject> ja = new ArrayList<JSONObject>();
-                IEditFormModel iEditFormModel = (IEditFormModel)iCtrlModel;
-                Iterator<IFormItem> formItems = iEditFormModel.getFormItems();
-                while (formItems.hasNext()) {
-                    IFormItem iFormItem = formItems.next();
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("name", JSONObjectHelper.stripQuotes(iFormItem.getName(), true));
-                    jsonObject.put("defname", JSONObjectHelper.stripQuotes(iFormItem.getDEFName(), true));
-                    jsonObject.put("allowempty", iFormItem.isAllowEmpty());
-                    jsonObject.put("caption", JSONObjectHelper.stripQuotes(iFormItem.getCaption(), true));
-                    jsonObject.put("enablecond", iFormItem.getEnableCond());
-                    if (iFormItem.getDataItem() != null) {
-                        jsonObject.put("datatype", (Object)DataTypes.toString(iFormItem.getDataItem().getDataType()));
-                    }
-                    ja.add(jsonObject);
-                }
-                JSONObject item = new JSONObject();
-                item.put("items", (Object)JSONArray.fromArray((Object[])ja.toArray()));
-                sdAjaxActionResult.setData(item);
-                return sdAjaxActionResult;
-            }
-            throw new Exception(StringHelper.format("\u65e0\u6cd5\u8bc6\u522b\u7684\u8fdc\u7a0b\u8c03\u7528"));
-        }
-        catch (Exception ex) {
-            AjaxActionResult ajaxActionResult = new AjaxActionResult();
-            log.error((Object)StringHelper.format("\u8fdc\u7a0b\u8bf7\u6c42\u53d1\u751f\u5f02\u5e38\uff0c%1$s", ex.getMessage()), (Throwable)ex);
-            ajaxActionResult.setRetCode(1);
-            ajaxActionResult.setErrorInfo(ex.getMessage());
-            return ajaxActionResult;
-        }
-    }
+	@Override
+	protected AjaxActionResult onProcessAction() throws Exception {
+
+		try {
+			String strLoginKey = WebContext.getLoginKey(this.getWebContext());
+			if (StringHelper.isNullOrEmpty(strLoginKey)) {
+				AjaxActionResult ajaxActionResult = new AjaxActionResult();
+				ajaxActionResult.setRetCode(Errors.ACCESSDENY);
+				ajaxActionResult.setErrorInfo("没有指定登录标识，请先进行登录");
+				return ajaxActionResult;
+			}
+
+			LoginLog loginLog = RemoteLoginGlobal.getLoginLog(strLoginKey);
+			if (loginLog == null) {
+				AjaxActionResult ajaxActionResult = new AjaxActionResult();
+				ajaxActionResult.setRetCode(Errors.ACCESSDENY);
+				ajaxActionResult.setErrorInfo("无效登录标识，请重新登录");
+				return ajaxActionResult;
+			}
+
+			SDAjaxActionResult sdAjaxActionResult = new SDAjaxActionResult();
+			// srfctrlid
+			String strCtrlId = WebContext.getCtrlId(this.getWebContext());
+			ICtrlModel iCtrlModel = CtrlModelGlobal.getCtrlModel(strCtrlId);
+			if (iCtrlModel instanceof IEditFormModel) {
+				// 编辑表单模型
+				ArrayList ja = new ArrayList();
+				IEditFormModel iEditFormModel = (IEditFormModel) iCtrlModel;
+				java.util.Iterator<IFormItem> formItems = iEditFormModel.getFormItems();
+				while (formItems.hasNext()) {
+					IFormItem iFormItem = formItems.next();
+					JSONObject jsonObject = new JSONObject();
+					jsonObject.put("name", JSONObjectHelper.stripQuotes(iFormItem.getName(),true));
+					jsonObject.put("defname", JSONObjectHelper.stripQuotes(iFormItem.getDEFName(),true));
+					jsonObject.put("allowempty", iFormItem.isAllowEmpty());
+					jsonObject.put("caption", JSONObjectHelper.stripQuotes(iFormItem.getCaption(),true));
+					jsonObject.put("enablecond", iFormItem.getEnableCond());
+					if (iFormItem.getDataItem() != null) {
+						jsonObject.put("datatype", DataTypes.toString(iFormItem.getDataItem().getDataType()));
+					}
+
+					ja.add(jsonObject);
+				}
+
+				JSONObject item = new JSONObject();
+				item.put("items", JSONArray.fromArray(ja.toArray()));
+				sdAjaxActionResult.setData(item);
+				return sdAjaxActionResult;
+			}
+
+			throw new Exception(StringHelper.format("无法识别的远程调用"));
+		} catch (Exception ex) {
+			AjaxActionResult ajaxActionResult = new AjaxActionResult();
+			log.error(StringHelper.format("远程请求发生异常，%1$s", ex.getMessage()), ex);
+			ajaxActionResult.setRetCode(Errors.INTERNALERROR);
+			ajaxActionResult.setErrorInfo(ex.getMessage());
+			return ajaxActionResult;
+		}
+	}
+
 }
-

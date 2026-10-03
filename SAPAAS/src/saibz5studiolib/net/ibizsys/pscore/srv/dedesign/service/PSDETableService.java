@@ -57,12 +57,12 @@ extends PSDETableServiceBase {
             PSSysDBScheme pSSysDBScheme = new PSSysDBScheme();
             pSSysDBScheme.setPSSystemId(pSDETable.getPSDE().getPSSystemId());
             pSSysDBScheme.setDSLink(string);
-            if (pSSysDBSchemeService.selectOne((IEntity)pSSysDBScheme, true)) {
+            if (pSSysDBSchemeService.selectOne(pSSysDBScheme, true)) {
                 PSSysDBTableService pSSysDBTableService = (PSSysDBTableService)ServiceGlobal.getService(PSSysDBTableService.class, (SessionFactory)this.getSessionFactory());
                 PSSysDBTable pSSysDBTable = new PSSysDBTable();
                 pSSysDBTable.setPSSysDBTableName(pSDETable.getPSDETableName());
                 pSSysDBTable.setPSSysDBSchemeId(pSSysDBScheme.getPSSysDBSchemeId());
-                if (pSSysDBTableService.selectOne((IEntity)pSSysDBTable, true)) {
+                if (pSSysDBTableService.selectOne(pSSysDBTable, true)) {
                     pSDETable.setPSSysDBTableId(pSSysDBTable.getPSSysDBTableId());
                     pSDETable.setPSSysDBTableName(pSSysDBTable.getPSSysDBTableName());
                 }
@@ -91,7 +91,7 @@ extends PSDETableServiceBase {
         String string;
         PSSysDBTable pSSysDBTable;
         if (!pSDETable.isFullEntity()) {
-            this.get((IEntity)pSDETable);
+            this.get(pSDETable);
         }
         if ((pSSysDBTable = pSDETable.getPSSysDBTable()) == null) {
             throw new Exception(StringHelper.format((String)"\u5b9e\u4f53\u6570\u636e\u8868\u672a\u7ed1\u5b9a\u7cfb\u7edf\u6570\u636e\u5e93\u8868\uff0c\u65e0\u6cd5\u540c\u6b65\u5c5e\u6027"));
@@ -114,13 +114,11 @@ extends PSDETableServiceBase {
         }
         ArrayList<PSSysDBColumn> arrayList2 = pSSysDBTable.getPSSysDBColumns();
         HashMap<String, PSSysDBColumn> hashMap2 = new HashMap<String, PSSysDBColumn>();
-        Object object = arrayList2.iterator();
-        while (object.hasNext()) {
-            PSSysDBColumn n = (PSSysDBColumn)object.next();
-            if (StringHelper.isNullOrEmpty((String)n.getPSSysDBColumnName()) || hashMap.containsKey(string = n.getPSSysDBColumnName().toUpperCase())) continue;
-            hashMap2.put(string, n);
+        for (PSSysDBColumn column : arrayList2) {
+            if (StringHelper.isNullOrEmpty((String)column.getPSSysDBColumnName()) || hashMap.containsKey(string = column.getPSSysDBColumnName().toUpperCase())) continue;
+            hashMap2.put(string, column);
         }
-        object = new ArrayList();
+        ArrayList<PSSysDBColumn> selectedColumns = new ArrayList<PSSysDBColumn>();
         int n = DataObject.getIntegerValue((Object)pSDETable.getColInheritMode(), (Integer)1);
         string = pSDETable.getColumns();
         if (!StringHelper.isNullOrEmpty((String)string)) {
@@ -135,17 +133,15 @@ extends PSDETableServiceBase {
                     }
                     PSSysDBColumn pSSysDBColumn = (PSSysDBColumn)hashMap2.get(string2);
                     if (pSSysDBColumn == null) continue;
-                    ((ArrayList)object).add(pSSysDBColumn);
+                    selectedColumns.add(pSSysDBColumn);
                 }
             }
         }
         if (n == 1) {
-            ((ArrayList)object).addAll(hashMap2.values());
+            selectedColumns.addAll(hashMap2.values());
         }
-        stringArray = (String[])ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-        String[] stringArray2 = ((ArrayList)object).iterator();
-        while (stringArray2.hasNext()) {
-            PSSysDBColumn pSSysDBColumn = (PSSysDBColumn)stringArray2.next();
+        PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
+        for (PSSysDBColumn pSSysDBColumn : selectedColumns) {
             PSDEField pSDEField = new PSDEField();
             pSDEField.setPSDEId(pSDETable.getPSDEId());
             pSDEField.setPSDEName(pSDETable.getPSDEName());
@@ -168,8 +164,8 @@ extends PSDETableServiceBase {
             if (n2 == null || n2 == 0) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u6570\u636e\u5217[%1$s]\u6570\u636e\u7c7b\u578b", (Object)pSSysDBColumn.getPSSysDBColumnName()));
             }
-            int n3 = DataObject.getIntegerValue((Object)pSSysDBColumn.getLength(), (Integer)-1);
-            int n4 = DataObject.getIntegerValue((Object)pSSysDBColumn.getPrecision2(), (Integer)-1);
+            int n3 = DataObject.getIntegerValue((Object)pSSysDBColumn.getLength(), Integer.valueOf(-1));
+            int n4 = DataObject.getIntegerValue((Object)pSSysDBColumn.getPrecision2(), Integer.valueOf(-1));
             PSDEFDataTypeHelper.fillPSDEField(pSDEField, n2, n3, n4);
             if (!bl && DataObject.getIntegerValue((Object)pSSysDBColumn.getPKey(), (Integer)0) == 1) {
                 pSDEField.setPKey(1);
@@ -203,7 +199,7 @@ extends PSDETableServiceBase {
                     pSDERService.create(pSDER);
                     continue;
                 }
-                stringArray.create(pSDEField);
+                pSDEFieldService.create(pSDEField);
             }
             catch (Exception exception) {
                 throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u5c5e\u6027[%1$s]\u53d1\u751f\u9519\u8bef\uff0c%2$s", (Object)pSDEField.getPSDEFieldName(), (Object)exception.getMessage()), exception);
@@ -211,4 +207,3 @@ extends PSDETableServiceBase {
         }
     }
 }
-

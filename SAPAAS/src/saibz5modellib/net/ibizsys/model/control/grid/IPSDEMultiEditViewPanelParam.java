@@ -1,14 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.grid;
 
-import net.ibizsys.model.control.grid.IPSDEGridParam;
 
-public interface IPSDEMultiEditViewPanelParam
-extends IPSDEGridParam {
-    public String getPSDEViewId();
-
-    public String getPanelStyle();
+/**
+ * 实体多编辑页面板控件参数对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEMultiEditViewPanelParam extends IPSDEGridParam
+{
+	/**
+	 * 获取实体视图标识
+	 * @return
+	 */
+	String getPSDEViewId();
+	
+	
+	
+	/**
+	 * 获取面板样式
+	 * @return
+	 */
+	String getPanelStyle();
 }
-

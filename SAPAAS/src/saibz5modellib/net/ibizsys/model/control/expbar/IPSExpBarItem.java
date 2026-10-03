@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.expbar;
 
-import java.util.ArrayList;
-
-public interface IPSExpBarItem {
-    public ArrayList<IPSExpBarItem> getItems();
+/**
+ * 导航栏项对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSExpBarItem
+{
+	/**
+	 * 获取子项集合
+	 * @return
+	 */
+	java.util.ArrayList<IPSExpBarItem> getItems();
 }
-

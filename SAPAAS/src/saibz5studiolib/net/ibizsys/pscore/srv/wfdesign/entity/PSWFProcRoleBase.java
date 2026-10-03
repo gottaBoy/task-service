@@ -2268,7 +2268,7 @@ implements Serializable {
                 PSSysMsgTempl pSSysMsgTempl = new PSSysMsgTempl();
                 pSSysMsgTempl.setPSSysMsgTemplId(this.getPSSysMsgTemplId());
                 PSSysMsgTemplService pSSysMsgTemplService = (PSSysMsgTemplService)ServiceGlobal.getService(PSSysMsgTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSSysMsgTemplService.autoGet((IEntity)pSSysMsgTempl);
+                pSSysMsgTemplService.autoGet(pSSysMsgTempl);
                 this.pssysmsgtempl = pSSysMsgTempl;
             }
             return this.pssysmsgtempl;
@@ -2294,7 +2294,7 @@ implements Serializable {
                 PSWFProcess pSWFProcess = new PSWFProcess();
                 pSWFProcess.setPSWFProcessId(this.getPSWFProcessId());
                 PSWFProcessService pSWFProcessService = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
-                pSWFProcessService.autoGet((IEntity)pSWFProcess);
+                pSWFProcessService.autoGet(pSWFProcess);
                 this.pswfprocess = pSWFProcess;
             }
             return this.pswfprocess;
@@ -2320,7 +2320,7 @@ implements Serializable {
                 PSWFRole pSWFRole = new PSWFRole();
                 pSWFRole.setPSWFRoleId(this.getPSWFRoleId());
                 PSWFRoleService pSWFRoleService = (PSWFRoleService)ServiceGlobal.getService(PSWFRoleService.class, (SessionFactory)this.getSessionFactory());
-                pSWFRoleService.autoGet((IEntity)pSWFRole);
+                pSWFRoleService.autoGet(pSWFRole);
                 this.pswfrole = pSWFRole;
             }
             return this.pswfrole;
@@ -2346,7 +2346,7 @@ implements Serializable {
                 PSWFVersion pSWFVersion = new PSWFVersion();
                 pSWFVersion.setPSWFVersionId(this.getPSWFVersionId());
                 PSWFVersionService pSWFVersionService = (PSWFVersionService)ServiceGlobal.getService(PSWFVersionService.class, (SessionFactory)this.getSessionFactory());
-                pSWFVersionService.autoGet((IEntity)pSWFVersion);
+                pSWFVersionService.autoGet(pSWFVersion);
                 this.pswfversion = pSWFVersion;
             }
             return this.pswfversion;

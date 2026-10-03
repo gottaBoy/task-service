@@ -1,50 +1,68 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
-import net.ibizsys.paas.demodel.DEModelGlobal;
-import net.ibizsys.paas.demodel.DERBaseModel;
-import net.ibizsys.paas.demodel.IDER1NModel;
-import net.ibizsys.paas.demodel.IDataEntityModel;
 import net.ibizsys.paas.sysmodel.ISystemModel;
 
-public class DER1NModel
-extends DERBaseModel
-implements IDER1NModel {
-    private IDataEntityModel majorDEModel = null;
-    private IDataEntityModel minorDEModel = null;
+/**
+ * 实体1：N关系模型对象
+ * 
+ * @author Administrator
+ *
+ */
+public class DER1NModel extends DERBaseModel implements IDER1NModel {
+	private IDataEntityModel majorDEModel = null;
+	private IDataEntityModel minorDEModel = null;
 
-    @Override
-    public String getPickupDEFName() {
-        return this.der.pickupdefname();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDER1N#getPickupDEFName()
+	 */
+	@Override
+	public String getPickupDEFName() {
+		return this.der.pickupdefname();
+	}
 
-    @Override
-    public int getMasterRS() {
-        return this.der.masterrs();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDER1N#getMasterRS()
+	 */
+	@Override
+	public int getMasterRS() {
+		return der.masterrs();
+	}
 
-    @Override
-    public IDataEntityModel getMajorDEModel() throws Exception {
-        if (this.majorDEModel != null) {
-            return this.majorDEModel;
-        }
-        this.majorDEModel = DEModelGlobal.getDEModel(this.getMajorDEId());
-        return this.majorDEModel;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDER1NModel#getMajorDEModel()
+	 */
+	@Override
+	public IDataEntityModel getMajorDEModel() throws Exception {
+		if (majorDEModel != null) return majorDEModel;
+		this.majorDEModel = DEModelGlobal.getDEModel(this.getMajorDEId());
+		return this.majorDEModel;
+	}
 
-    @Override
-    public IDataEntityModel getMinorDEModel() throws Exception {
-        if (this.minorDEModel != null) {
-            return this.minorDEModel;
-        }
-        this.minorDEModel = DEModelGlobal.getDEModel(this.getMinorDEId());
-        return this.minorDEModel;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDER1NModel#getMinorDEModel()
+	 */
+	@Override
+	public IDataEntityModel getMinorDEModel() throws Exception {
+		if (minorDEModel != null) return minorDEModel;
+		this.minorDEModel = DEModelGlobal.getDEModel(this.getMinorDEId());
+		return this.minorDEModel;
+	}
 
-    public ISystemModel getSystemModel() {
-        return (ISystemModel)this.iSystem;
-    }
+	/**
+	 * 获取系统模型对象
+	 * 
+	 * @return
+	 */
+	public ISystemModel getSystemModel() {
+		return (ISystemModel) this.iSystem;
+	}
+
 }
-

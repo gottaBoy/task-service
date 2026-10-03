@@ -1,27 +1,66 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.control.calendar.ICalendar
- */
 package net.ibizsys.model.control.calendar;
 
 import net.ibizsys.model.control.IPSMDAjaxControl;
 import net.ibizsys.paas.control.calendar.ICalendar;
 
-public interface IPSCalendar
-extends IPSMDAjaxControl,
-ICalendar {
-    public static final String CALENDARSTYLE_DAY = "DAY";
-    public static final String CALENDARSTYLE_WEEK = "WEEK";
-    public static final String CALENDARSTYLE_MONTH = "MONTH";
-    public static final String CALENDARSTYLE_USER = "USER";
-    public static final String CALENDARSTYLE_USER2 = "USER2";
+/**
+ * 日历部件对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSCalendar extends IPSMDAjaxControl, ICalendar {
+	/**
+	 * 日历部件样式：天
+	 */
+	public final static String CALENDARSTYLE_DAY = "DAY";
 
-    public String getCalendarStyle();
+	/**
+	 * 日历部件样式：周
+	 */
+	public final static String CALENDARSTYLE_WEEK = "WEEK";
 
-    public String getEmptyText();
+	/**
+	 * 日历部件样式：月
+	 */
+	public final static String CALENDARSTYLE_MONTH = "MONTH";
 
-    public boolean isBufferRenderer();
+	/**
+	 * 日历部件样式：用户自定义
+	 */
+	public final static String CALENDARSTYLE_USER = "USER";
+
+	/**
+	 * 日历部件样式：用户自定义2
+	 */
+	public final static String CALENDARSTYLE_USER2 = "USER2";
+
+	/**
+	 * 获取日历部件样式，值参考 SA.SRFDA.PS.Core.Control.Calendar.IPSCalendar.CALENDARSTYLE_XXX 定义
+	 * 
+	 * @return
+	 */
+	String getCalendarStyle();
+
+//	/**
+//	 * 获取无值显示内容语言资源对象
+//	 * 
+//	 * @return
+//	 */
+//	IPSLanguageRes getEmptyTextPSLanguageRes();
+
+	/**
+	 * 获取无值显示内容
+	 * 
+	 * @return
+	 */
+	String getEmptyText();
+
+	/**
+	 * 是否使用缓存绘制模式，默认为是
+	 * 
+	 * @return
+	 */
+	boolean isBufferRenderer();
+
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSSFACHandlerDEModelBase;
 
 public class PSSFACHandlerDEModel
 extends PSSFACHandlerDEModelBase {
+
+    public PSSFACHandlerDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -48,7 +48,7 @@ extends PSSysDevBKTaskImplBase {
         PSSysSFPubService psSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSysSFPub psSysSFPub = new PSSysSFPub();
         psSysSFPub.setPSSysSFPubId(this.psSysDevBKTask.getTASKPARAM());
-        psSysSFPubService.get((IEntity)psSysSFPub);
+        psSysSFPubService.get(psSysSFPub);
         return this.deploySys(psSysSFPub);
     }
 
@@ -107,4 +107,3 @@ extends PSSysDevBKTaskImplBase {
         throw new PSSysBTException(5, strResult);
     }
 }
-

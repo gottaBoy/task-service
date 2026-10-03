@@ -23,6 +23,7 @@ package net.ibizsys.pscore.srv.sysdesign.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import net.ibizsys.paas.codelist.ICodeList;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.IServiceWork;
 import net.ibizsys.paas.service.ITransaction;
@@ -59,7 +60,7 @@ extends PSSysUCMapServiceBase {
 
     @Override
     protected void onAddUserCases(PSSysUCMap pSSysUCMap) throws Exception {
-        this.get((IEntity)pSSysUCMap);
+        this.get(pSSysUCMap);
     }
 
     @Override
@@ -67,14 +68,14 @@ extends PSSysUCMapServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSSysUCMap.getPSSysUCMapId())) {
             this.getTempMajor(pSSysUCMap);
         } else {
-            this.getTemp((IEntity)pSSysUCMap);
+            this.getTemp(pSSysUCMap);
         }
         pSSysUCMap.setUCModel(this.getUCModel(pSSysUCMap));
     }
 
     @Override
     public void getWithModel2(PSSysUCMap pSSysUCMap) throws Exception {
-        this.get((IEntity)pSSysUCMap);
+        this.get(pSSysUCMap);
         pSSysUCMap.setUCModel(this.getUCModel(pSSysUCMap));
     }
 
@@ -89,7 +90,7 @@ extends PSSysUCMapServiceBase {
         for (PSSysUCMapNode pSSysUCMapNode : arrayList) {
             XmlNode xmlNode2 = new XmlNode();
             xmlNode2.setNodeName(XMLNODE_UCNODE);
-            this.fillXmlNode((IEntity)pSSysUCMapNode, xmlNode2, false);
+            this.fillXmlNode(pSSysUCMapNode, xmlNode2, false);
             xmlNode.addNode(xmlNode2);
         }
         return XmlNode.export((XmlNode)xmlNode);
@@ -102,7 +103,6 @@ extends PSSysUCMapServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysUCMapNode pSSysUCMapNode2;
                 PSSysUCMapNodeService pSSysUCMapNodeService = (PSSysUCMapNodeService)ServiceGlobal.getService((String)PSSysUCMapNodeService.class.getCanonicalName(), (SessionFactory)PSSysUCMapService.this.getSessionFactory());
                 ArrayList<PSSysUCMapNode> arrayList = pSSysUCMapNodeService.selectTempByPSSysUCMap(pSSysUCMap2);
                 HashMap<String, PSSysUCMapNode> hashMap = new HashMap<String, PSSysUCMapNode>();
@@ -110,18 +110,18 @@ extends PSSysUCMapServiceBase {
                     hashMap.put(pSSysUCMapNode2.getPSSysUCMapNodeId(), pSSysUCMapNode2);
                 }
                 String string = pSSysUCMap2.getUCModel();
-                pSSysUCMapNode2 = XmlNode.loadFromXML((String)string);
-                if (pSSysUCMapNode2 != null) {
-                    pSSysUCMapNode2.setAttribute("PSSYSUCMAPID", pSSysUCMap2.getPSSysUCMapId());
-                    pSSysUCMapNode2.setAttribute("PSSYSTEMID", pSSysUCMap2.getPSSystemId());
-                    PSSysUCMapService.this.updatePSSysUCMapModel(pSSysUCMap2, (XmlNode)pSSysUCMapNode2, hashMap);
-                    pSSysUCMap2.setUCModel(XmlNode.export((XmlNode)pSSysUCMapNode2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)string);
+                if (xmlNode != null) {
+                    xmlNode.setAttribute("PSSYSUCMAPID", pSSysUCMap2.getPSSysUCMapId());
+                    xmlNode.setAttribute("PSSYSTEMID", pSSysUCMap2.getPSSystemId());
+                    PSSysUCMapService.this.updatePSSysUCMapModel(pSSysUCMap2, xmlNode, hashMap);
+                    pSSysUCMap2.setUCModel(XmlNode.export(xmlNode));
                 } else {
                     pSSysUCMap2.setUCModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSSysUCMapNode pSSysUCMapNode3 : hashMap.values()) {
-                        pSSysUCMapNodeService.removeTemp((IEntity)pSSysUCMapNode3);
+                        pSSysUCMapNodeService.removeTemp(pSSysUCMapNode3);
                     }
                 }
                 PSSysUCMapService.this.updateTempMajor(pSSysUCMap2);
@@ -132,7 +132,7 @@ extends PSSysUCMapServiceBase {
     protected void updatePSSysUCMapModel(PSSysUCMap pSSysUCMap, XmlNode xmlNode, HashMap<String, PSSysUCMapNode> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSSysUCMapNodeService pSSysUCMapNodeService = (PSSysUCMapNodeService)ServiceGlobal.getService((String)PSSysUCMapNodeService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             while (iterator.hasNext()) {
                 int n;
@@ -166,7 +166,7 @@ extends PSSysUCMapServiceBase {
                     }
                 }
                 if (bl) {
-                    pSSysUCMapNodeService.updateTemp((IEntity)pSSysUCMapNode);
+                    pSSysUCMapNodeService.updateTemp(pSSysUCMapNode);
                 }
                 xmlNode2.resetAttributes();
                 pSSysUCMapNode.fillXmlNode(xmlNode2, false);
@@ -186,7 +186,6 @@ extends PSSysUCMapServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysUCMapNode pSSysUCMapNode2;
                 PSSysUCMapNodeService pSSysUCMapNodeService = (PSSysUCMapNodeService)ServiceGlobal.getService((String)PSSysUCMapNodeService.class.getCanonicalName(), (SessionFactory)PSSysUCMapService.this.getSessionFactory());
                 ArrayList<PSSysUCMapNode> arrayList = pSSysUCMapNodeService.selectTempByPSSysUCMap(pSSysUCMap2);
                 HashMap<String, PSSysUCMapNode> hashMap = new HashMap<String, PSSysUCMapNode>();
@@ -194,28 +193,28 @@ extends PSSysUCMapServiceBase {
                     hashMap.put(pSSysUCMapNode2.getPSSysUCMapNodeId(), pSSysUCMapNode2);
                 }
                 String string = pSSysUCMap2.getUCModel();
-                pSSysUCMapNode2 = XmlNode.loadFromXML((String)string);
-                if (pSSysUCMapNode2 != null) {
-                    pSSysUCMapNode2.setAttribute("PSSYSTEMID", pSSysUCMap2.getPSSystemId());
-                    pSSysUCMapNode2.setAttribute("PSSYSUCMAPID", pSSysUCMap2.getPSSysUCMapId());
-                    PSSysUCMapService.this.updatePSSysUCMapModel(pSSysUCMap2, (XmlNode)pSSysUCMapNode2, hashMap);
-                    pSSysUCMap2.setUCModel(XmlNode.export((XmlNode)pSSysUCMapNode2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)string);
+                if (xmlNode != null) {
+                    xmlNode.setAttribute("PSSYSTEMID", pSSysUCMap2.getPSSystemId());
+                    xmlNode.setAttribute("PSSYSUCMAPID", pSSysUCMap2.getPSSysUCMapId());
+                    PSSysUCMapService.this.updatePSSysUCMapModel(pSSysUCMap2, xmlNode, hashMap);
+                    pSSysUCMap2.setUCModel(XmlNode.export(xmlNode));
                 } else {
                     pSSysUCMap2.setUCModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSSysUCMapNode pSSysUCMapNode3 : hashMap.values()) {
-                        pSSysUCMapNodeService.removeTemp((IEntity)pSSysUCMapNode3);
+                        pSSysUCMapNodeService.removeTemp(pSSysUCMapNode3);
                     }
                 }
-                PSSysUCMapService.this.createTempMajor((IEntity)pSSysUCMap2);
+                PSSysUCMapService.this.createTempMajor(pSSysUCMap2);
             }
         });
     }
 
     @Override
     public void getDraftWithModel(PSSysUCMap pSSysUCMap) throws Exception {
-        this.getDraftTempMajor((IEntity)pSSysUCMap);
+        this.getDraftTempMajor(pSSysUCMap);
         pSSysUCMap.setUCModel(this.getUCModel(pSSysUCMap));
     }
 
@@ -260,11 +259,10 @@ extends PSSysUCMapServiceBase {
 
     @Override
     protected void onCalcConnection(PSSysUCMap pSSysUCMap) throws Exception {
-        PSSysUCMapNode pSSysUCMapNode2;
         if (WebContext.getCurrent() == null || WebContext.getCurrent().getCurAjaxActionResult() == null) {
             throw new Exception("\u8bf7\u6c42\u73af\u5883\u4e0d\u6b63\u786e");
         }
-        this.autoGet((IEntity)pSSysUCMap);
+        this.autoGet(pSSysUCMap);
         MDAjaxActionResult mDAjaxActionResult = (MDAjaxActionResult)WebContext.getCurrent().getCurAjaxActionResult();
         PSSysUCMapNodeService pSSysUCMapNodeService = (PSSysUCMapNodeService)ServiceGlobal.getService((String)PSSysUCMapNodeService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
         ArrayList<PSSysUCMapNode> arrayList = null;
@@ -281,7 +279,7 @@ extends PSSysUCMapServiceBase {
         }
         PSSystem pSSystem = new PSSystem();
         pSSystem.setPSSystemId(pSSysUCMap.getPSSystemId());
-        pSSysUCMapNode2 = CodeListGlobal.getCodeList((String)"net.ibizsys.pscore.srv.codelist.UseCaseRSTypeCodeListModel");
+        ICodeList iCodeList = CodeListGlobal.getCodeList((String)"net.ibizsys.pscore.srv.codelist.UseCaseRSTypeCodeListModel");
         PSSysUserCaseRSService pSSysUserCaseRSService = (PSSysUserCaseRSService)ServiceGlobal.getService(PSSysUserCaseRSService.class, (SessionFactory)this.getSessionFactory());
         ArrayList<PSSysUserCaseRS> arrayList2 = pSSysUserCaseRSService.selectByPSSystem(pSSystem);
         for (PSSysUserCaseRS pSSysUserCaseRS : arrayList2) {
@@ -307,11 +305,10 @@ extends PSSysUCMapServiceBase {
                 jSONObject.put("minorpsucobjid", (Object)pSSysUCMapNode4.getPSSysUserCaseId());
             }
             jSONObject.put("rstype", (Object)pSSysUserCaseRS.getRSType());
-            jSONObject.put("rstypename", (Object)pSSysUCMapNode2.getCodeListText(pSSysUserCaseRS.getRSType(), true));
+            jSONObject.put("rstypename", (Object)iCodeList.getCodeListText(pSSysUserCaseRS.getRSType(), true));
             jSONObject.put("frompsucnodeid", (Object)pSSysUCMapNode3.getPSSysUCMapNodeId());
             jSONObject.put("topsucnodeid", (Object)pSSysUCMapNode4.getPSSysUCMapNodeId());
             mDAjaxActionResult.getRows().add(jSONObject);
         }
     }
 }
-

@@ -614,7 +614,7 @@ extends DefaultDPExBuilder {
             iFormItem = (ISRFExFormItem)control;
         }
         if (iFormItem != null) {
-            Vector focusItems = new Vector();
+            Vector<String> focusItems = new Vector<String>();
             iFormItem.GetFocusItemIds(focusItems);
             for (String strFocusItem : focusItems) {
                 JSONObject obj = new JSONObject();
@@ -826,4 +826,3 @@ extends DefaultDPExBuilder {
         this.RenderBaseGroup(writer, dpEx, dpConfig, (DPBaseGroupConfig)dpPageGroupConfig, false, false, false);
     }
 }
-

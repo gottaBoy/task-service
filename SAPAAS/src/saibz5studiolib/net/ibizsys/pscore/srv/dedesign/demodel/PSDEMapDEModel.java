@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEMapDEModelBase;
 
 public class PSDEMapDEModel
 extends PSDEMapDEModelBase {
+
+    public PSDEMapDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -1,21 +1,58 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
+/**
+ * 数据表列接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IDataColumn {
-    public String getCatalogName();
+	/**
+	 * 获取分类名词
+	 * 
+	 * @return
+	 */
+	String getCatalogName();
 
-    public String getColumnClassName();
+	/**
+	 * 获取列类名词
+	 * 
+	 * @return
+	 */
+	String getColumnClassName();
 
-    public int getDisplaySize();
+	/**
+	 * 获取显示长度
+	 * 
+	 * @return
+	 */
+	int getDisplaySize();
 
-    public int getColumnType();
+	/**
+	 * 获取列类型
+	 * 
+	 * @return
+	 */
+	int getColumnType();
 
-    public String getName();
+	/**
+	 * 获取列名称
+	 * 
+	 * @return
+	 */
+	String getName();
 
-    public String getDBDataType();
+	/**
+	 * 获取数据库数据类型
+	 * 
+	 * @return
+	 */
+	String getDBDataType();
 
-    public int getIndex();
+	/**
+	 * 获取类索引
+	 * 
+	 * @return
+	 */
+	int getIndex();
 }
-

@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
     }
 
     protected void onFillParentInfo(PSSFPreviewAction pSSFPreviewAction, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSFPreviewAction, string, string2, string3);
+        super.onFillParentInfo(pSSFPreviewAction, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSFPreviewAction, bl);
+        super.onFillEntityFullInfo(pSSFPreviewAction, bl);
     }
 
     protected void onWriteBackParent(PSSFPreviewAction pSSFPreviewAction, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSFPreviewAction, bl);
+        super.onWriteBackParent(pSSFPreviewAction, bl);
     }
 
     @Override
@@ -141,7 +141,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSFPreviewAction pSSFPreviewAction, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSFPreviewAction, bl);
+        super.onRemoveEntityUncopyValues(pSSFPreviewAction, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSFPreviewAction pSSFPreviewAction, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -225,7 +225,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
         if ((entityFieldError = this.onCheckField_PSTaskServerId(bl, pSSFPreviewAction, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSFPreviewAction, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSFPreviewAction, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ActionParam(boolean bl, PSSFPreviewAction pSSFPreviewAction, boolean bl2, boolean bl3) throws Exception {
@@ -238,7 +238,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM");
@@ -260,7 +260,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam2_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam2_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM2");
@@ -282,7 +282,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam3_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam3_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM3");
@@ -304,7 +304,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam4_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam4_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM4");
@@ -326,7 +326,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ActionParam5_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string = this.onTestValueRule_ActionParam5_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM5");
@@ -348,7 +348,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ActionParam6_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string = this.onTestValueRule_ActionParam6_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM6");
@@ -370,7 +370,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionResult_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionResult_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONRESULT");
@@ -395,7 +395,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ActionState_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string = this.onTestValueRule_ActionState_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONSTATE");
@@ -417,7 +417,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BeginTime_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string = this.onTestValueRule_BeginTime_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BEGINTIME");
@@ -439,7 +439,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeUrl_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_CodeUrl_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODEURL");
@@ -461,7 +461,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EndTime_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string = this.onTestValueRule_EndTime_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENDTIME");
@@ -483,7 +483,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PreviewInfo_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PreviewInfo_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PREVIEWINFO");
@@ -505,7 +505,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PreviewStep_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PreviewStep_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PREVIEWSTEP");
@@ -527,7 +527,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PreviewUrl_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PreviewUrl_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PREVIEWURL");
@@ -549,7 +549,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysId_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysId_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSID");
@@ -571,7 +571,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSConsoleId_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSConsoleId_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSCONSOLEID");
@@ -593,7 +593,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -615,7 +615,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjId_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjId_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJID");
@@ -637,7 +637,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjType_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjType_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJTYPE");
@@ -659,7 +659,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFId_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFId_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFID");
@@ -684,7 +684,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFPreviewActionId_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFPreviewActionId_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFPREVIEWACTIONID");
@@ -709,7 +709,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFPreviewActionName_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFPreviewActionName_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFPREVIEWACTIONNAME");
@@ -731,7 +731,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFStyleId_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFStyleId_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFSTYLEID");
@@ -753,7 +753,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -775,7 +775,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPubId_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPubId_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPUBID");
@@ -797,7 +797,7 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSTaskServerId_Default((IEntity)pSSFPreviewAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSTaskServerId_Default(pSSFPreviewAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTASKSERVERID");
@@ -810,11 +810,11 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
     }
 
     protected void onSyncEntity(PSSFPreviewAction pSSFPreviewAction, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSFPreviewAction, bl);
+        super.onSyncEntity(pSSFPreviewAction, bl);
     }
 
     protected void onSyncIndexEntities(PSSFPreviewAction pSSFPreviewAction, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSFPreviewAction, bl);
+        super.onSyncIndexEntities(pSSFPreviewAction, bl);
     }
 
     public Object getDataContextValue(PSSFPreviewAction pSSFPreviewAction, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -822,14 +822,14 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSFPreviewAction, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSFPreviewAction, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSFPreviewAction pSSFPreviewAction, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSFPreviewAction, arrayList, n);
+        super.onExportMajorModel(pSSFPreviewAction, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1232,14 +1232,14 @@ extends PSCoreSysServiceBase<PSSFPreviewAction> {
 
     protected boolean onMergeChild(String string, String string2, PSSFPreviewAction pSSFPreviewAction) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSFPreviewAction)) {
+        if (super.onMergeChild(string, string2, pSSFPreviewAction)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSFPreviewAction pSSFPreviewAction) throws Exception {
-        super.onUpdateParent((IEntity)pSSFPreviewAction);
+        super.onUpdateParent(pSSFPreviewAction);
     }
 
     @Override

@@ -1,12 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app.view;
 
-import net.ibizsys.model.app.view.IPSAppView;
-
-public interface IPSAppDataRelationView
-extends IPSAppView {
-    public static final String VIEWREFMODE_DRITEM = "DRITEM";
+/**
+ * 应用数据关系视图对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSAppDataRelationView extends IPSAppView
+{
+	/**
+	 * 视图引用模式，数据关系项
+	 */
+	public final static String VIEWREFMODE_DRITEM = "DRITEM";	
+	
+	
+	
 }
-

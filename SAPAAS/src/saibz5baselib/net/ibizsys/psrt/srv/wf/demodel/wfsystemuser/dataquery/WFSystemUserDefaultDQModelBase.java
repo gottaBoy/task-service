@@ -1,20 +1,89 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfsystemuser.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="9424D163-710F-41B8-89CC-D8076504B6E1", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFSYSTEMUSERID, t1.WFSYSTEMUSERNAME FROM T_SRFWFSYSTEMUSER t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=2), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=3), @DEDataQueryCodeExp(name="WFSYSTEMUSERID", expression="t1.WFSYSTEMUSERID", showorder=4), @DEDataQueryCodeExp(name="WFSYSTEMUSERNAME", expression="t1.WFSYSTEMUSERNAME", showorder=5)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`updatedate`, t1.`updateman`, t1.`wfsystemuserid`, t1.`wfsystemusername` FROM `t_srfwfsystemuser` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=1), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=2), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=3), @DEDataQueryCodeExp(name="WFSYSTEMUSERID", expression="t1.`wfsystemuserid`", showorder=4), @DEDataQueryCodeExp(name="WFSYSTEMUSERNAME", expression="t1.`wfsystemusername`", showorder=5)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFSYSTEMUSERID, t1.WFSYSTEMUSERNAME FROM T_SRFWFSYSTEMUSER t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=2), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=3), @DEDataQueryCodeExp(name="WFSYSTEMUSERID", expression="t1.WFSYSTEMUSERID", showorder=4), @DEDataQueryCodeExp(name="WFSYSTEMUSERNAME", expression="t1.WFSYSTEMUSERNAME", showorder=5)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFSYSTEMUSERID, t1.WFSYSTEMUSERNAME FROM T_SRFWFSYSTEMUSER t1  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=2), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=3), @DEDataQueryCodeExp(name="WFSYSTEMUSERID", expression="t1.WFSYSTEMUSERID", showorder=4), @DEDataQueryCodeExp(name="WFSYSTEMUSERNAME", expression="t1.WFSYSTEMUSERNAME", showorder=5)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFSYSTEMUSERID, t1.WFSYSTEMUSERNAME FROM T_SRFWFSYSTEMUSER t1  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=2), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=3), @DEDataQueryCodeExp(name="WFSYSTEMUSERID", expression="t1.WFSYSTEMUSERID", showorder=4), @DEDataQueryCodeExp(name="WFSYSTEMUSERNAME", expression="t1.WFSYSTEMUSERNAME", showorder=5)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[WFSYSTEMUSERID], t1.[WFSYSTEMUSERNAME] FROM [T_SRFWFSYSTEMUSER] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=1), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=2), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=3), @DEDataQueryCodeExp(name="WFSYSTEMUSERID", expression="t1.[WFSYSTEMUSERID]", showorder=4), @DEDataQueryCodeExp(name="WFSYSTEMUSERNAME", expression="t1.[WFSYSTEMUSERNAME]", showorder=5)}, conds={})})
-public abstract class WFSystemUserDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="9424D163-710F-41B8-89CC-D8076504B6E1",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFSYSTEMUSERID, t1.WFSYSTEMUSERNAME FROM T_SRFWFSYSTEMUSER t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=2)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=3)
+        ,@DEDataQueryCodeExp(name="WFSYSTEMUSERID",expression="t1.WFSYSTEMUSERID",showorder=4)
+        ,@DEDataQueryCodeExp(name="WFSYSTEMUSERNAME",expression="t1.WFSYSTEMUSERNAME",showorder=5)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`updatedate`, t1.`updateman`, t1.`wfsystemuserid`, t1.`wfsystemusername` FROM `t_srfwfsystemuser` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=1)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=2)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=3)
+        ,@DEDataQueryCodeExp(name="WFSYSTEMUSERID",expression="t1.`wfsystemuserid`",showorder=4)
+        ,@DEDataQueryCodeExp(name="WFSYSTEMUSERNAME",expression="t1.`wfsystemusername`",showorder=5)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFSYSTEMUSERID, t1.WFSYSTEMUSERNAME FROM T_SRFWFSYSTEMUSER t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=2)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=3)
+        ,@DEDataQueryCodeExp(name="WFSYSTEMUSERID",expression="t1.WFSYSTEMUSERID",showorder=4)
+        ,@DEDataQueryCodeExp(name="WFSYSTEMUSERNAME",expression="t1.WFSYSTEMUSERNAME",showorder=5)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFSYSTEMUSERID, t1.WFSYSTEMUSERNAME FROM T_SRFWFSYSTEMUSER t1  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=2)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=3)
+        ,@DEDataQueryCodeExp(name="WFSYSTEMUSERID",expression="t1.WFSYSTEMUSERID",showorder=4)
+        ,@DEDataQueryCodeExp(name="WFSYSTEMUSERNAME",expression="t1.WFSYSTEMUSERNAME",showorder=5)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFSYSTEMUSERID, t1.WFSYSTEMUSERNAME FROM T_SRFWFSYSTEMUSER t1  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=2)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=3)
+        ,@DEDataQueryCodeExp(name="WFSYSTEMUSERID",expression="t1.WFSYSTEMUSERID",showorder=4)
+        ,@DEDataQueryCodeExp(name="WFSYSTEMUSERNAME",expression="t1.WFSYSTEMUSERNAME",showorder=5)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[WFSYSTEMUSERID], t1.[WFSYSTEMUSERNAME] FROM [T_SRFWFSYSTEMUSER] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=1)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=2)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=3)
+        ,@DEDataQueryCodeExp(name="WFSYSTEMUSERID",expression="t1.[WFSYSTEMUSERID]",showorder=4)
+        ,@DEDataQueryCodeExp(name="WFSYSTEMUSERNAME",expression="t1.[WFSYSTEMUSERNAME]",showorder=5)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class WFSystemUserDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public WFSystemUserDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(WFSystemUserDefaultDQModelBase.class);
     }
-}
 
+}

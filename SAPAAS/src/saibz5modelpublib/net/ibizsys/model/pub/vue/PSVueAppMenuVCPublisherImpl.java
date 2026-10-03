@@ -1,34 +1,67 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSAppMenu
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.vue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.vue.PSVueCtrlCodePublisherImpl;
 
-public class PSVueAppMenuVCPublisherImpl
-extends PSVueCtrlCodePublisherImpl {
-    protected IPSAppMenu iPSAppMenu;
+import SA.SRFDA.PS.Core.Control.Menu.IPSAppMenu;
+import SA.SRFDA.PS.Core.Control.Menu.IPSAppMenuItem;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
 
-    public PSVueAppMenuVCPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSVueAppMenuVCPublisherImpl is inconsistent\n\tIPSAppMenu cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSVueAppMenuVCPublisherImpl must override or implement a supertype method\n\tIPSAppMenu cannot be resolved to a type\n\tIPSAppMenu cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSVueCtrlCodePublisherImpl\n\tIPSAppMenu cannot be resolved to a type\n\tIPSAppMenu cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSAppMenuItem cannot be resolved to a type\n\tIPSAppMenu cannot be resolved to a type\n\tIPSAppMenuItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSAppMenu cannot be resolved to a type\n\tThe method onClose() of type PSVueAppMenuVCPublisherImpl must override or implement a supertype method\n\tIPSAppMenu cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSVueCtrlCodePublisherImpl\n");
-    }
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSVueAppMenuVCPublisherImpl must override or implement a supertype method\n\tIPSAppMenu cannot be resolved to a type\n\tIPSAppMenu cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSVueCtrlCodePublisherImpl\n");
-    }
+public class PSVueAppMenuVCPublisherImpl extends PSVueCtrlCodePublisherImpl
+{
+	protected IPSAppMenu iPSAppMenu = null;
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSAppMenu = (IPSAppMenu)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSAppMenu cannot be resolved to a type\n\tIPSAppMenu cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSAppMenuItem cannot be resolved to a type\n\tIPSAppMenu cannot be resolved to a type\n\tIPSAppMenuItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSAppMenu cannot be resolved to a type\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSAppMenu = (IPSAppMenu)this.iPSControl;
+		
+		if(true)
+		{
+			ArrayList<IPSGenerateCodeResult> itemList = new ArrayList<IPSGenerateCodeResult> ();
+			java.util.Iterator<IPSAppMenuItem> psAppMenuItems = 	iPSAppMenu.getPSAppMenuItems();
+			while(psAppMenuItems.hasNext())
+			{
+				IPSAppMenuItem iPSAppMenuItem = psAppMenuItems.next();
+				IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(iPSAppMenuItem.getItemType()).getPSPFCtrlPartCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, iPSAppMenu,iPSAppMenuItem);
+				itemList.add(iPSGenerateCodeResult);
+				iPSPFCtrlPartCodePublisher.close();
+			}		
+			
+			params.put("items", itemList);
+		}
+		
+	}
 
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSVueAppMenuVCPublisherImpl must override or implement a supertype method\n\tIPSAppMenu cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSVueCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSAppMenu = null;
+		super.onClose();
+	}
+	
 }
-

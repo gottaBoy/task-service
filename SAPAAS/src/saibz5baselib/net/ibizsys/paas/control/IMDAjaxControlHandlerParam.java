@@ -1,12 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control;
 
-import net.ibizsys.paas.control.IAjaxControlHandlerParam;
-
-public interface IMDAjaxControlHandlerParam
-extends IAjaxControlHandlerParam {
-    public String getDEDataSetId();
+/**
+ * 多数据异步部件处理对象参数
+ * 
+ * @author Administrator
+ *
+ */
+public interface IMDAjaxControlHandlerParam extends IAjaxControlHandlerParam {
+	/**
+	 * 获取实体数据集合编号
+	 * 
+	 * @return
+	 */
+	String getDEDataSetId();
 }
-

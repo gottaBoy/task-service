@@ -8,5 +8,8 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSAppCtrlStyleDEModelBase;
 public class PSAppCtrlStyleDEModel
 extends PSAppCtrlStyleDEModelBase {
     private static final long serialVersionUID = -1L;
-}
 
+    public PSAppCtrlStyleDEModel() throws Exception {
+        super();
+    }
+}

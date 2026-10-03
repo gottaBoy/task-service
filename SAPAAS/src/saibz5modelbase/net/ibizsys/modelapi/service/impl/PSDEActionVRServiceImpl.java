@@ -72,7 +72,7 @@ implements IPSDEActionVRService {
     @Override
     protected List<PSDEActionVR> onListAll() throws Exception {
         ArrayList<PSDEActionVR> list = new ArrayList<PSDEActionVR>();
-        List psdeactions = PSModelServiceUtil.getInstance().getPSDEActionService().listAll();
+        List<PSDEAction> psdeactions = PSModelServiceUtil.getInstance().getPSDEActionService().listAll();
         if (psdeactions != null) {
             for (PSDEAction parent : psdeactions) {
                 List<PSDEActionVR> items = this.listByPSDEAction(parent);

@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.codelist;
 
 import java.lang.annotation.Documented;
@@ -9,36 +6,113 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value={ElementType.TYPE})
-@Retention(value=RetentionPolicy.RUNTIME)
+/**
+ * 代码项注解
+ * 
+ * @author Administrator
+ *
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface CodeItem {
-    public String value();
+	/**
+	 * 值
+	 * 
+	 * @return
+	 */
+	String value();
 
-    public String parentvalue() default "";
+	/**
+	 * 父值
+	 * 
+	 * @return
+	 */
+	String parentvalue() default "";
 
-    public String text() default "";
+	/**
+	 * 文本
+	 * 
+	 * @return
+	 */
+	String text() default "";
 
-    public String realtext();
+	/**
+	 * 实际文本
+	 * 
+	 * @return
+	 */
+	String realtext();
 
-    public String color() default "";
+	/**
+	 * 颜色
+	 * 
+	 * @return
+	 */
+	String color() default "";
 
-    public String iconpath() default "";
+	/**
+	 * 图标路径
+	 * 
+	 * @return
+	 */
+	String iconpath() default "";
 
-    public String iconpathx() default "";
+	/**
+	 * 图标路径倍数格式化
+	 * 
+	 * @return
+	 */
+	String iconpathx() default "";
 
-    public String iconcls() default "";
+	/**
+	 * 图标样式名称
+	 * 
+	 * @return
+	 */
+	String iconcls() default "";
 
-    public String iconclsx() default "";
+	/**
+	 * 样式名称倍数格式化
+	 * 
+	 * @return
+	 */
+	String iconclsx() default "";
 
-    public String textcls() default "";
+	/**
+	 * 文本显示样式名称
+	 * 
+	 * @return
+	 */
+	String textcls() default "";
 
-    public String userdata() default "";
+	/**
+	 * 用户自定义数据
+	 * 
+	 * @return
+	 */
+	String userdata() default "";
 
-    public String userdata2() default "";
+	/**
+	 * 用户自定义数据2
+	 * 
+	 * @return
+	 */
+	String userdata2() default "";
 
-    public boolean disableselect() default false;
-
-    public String textlanrestag() default "";
+	/**
+	 * 禁止选中
+	 * 
+	 * @return
+	 */
+	boolean disableselect() default false;
+	
+	
+	
+	/**
+	 * 文本语言资源标识
+	 * 
+	 * @return
+	 */
+	String textlanrestag() default "";
 }
-

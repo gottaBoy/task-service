@@ -1,23 +1,53 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel.toolbar;
 
-import java.util.Iterator;
-import net.ibizsys.paas.ctrlmodel.toolbar.IDynaToolbarItemModel;
+/**
+ * 动态工具栏分组模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaToolbarItemsModel extends IDynaToolbarItemModel {
+	
+	/**
+	 * 获取成员对象集合
+	 * @return
+	 */
+	java.util.Iterator<IDynaToolbarItemModel> getItemModels();
+	
+	
+	
+	/**
+	 * 获取显示模式
+	 * @return
+	 */
+	String getShowMode();
+	
+	
+	
+	/**
+	 * 获取标题
+	 * @return
+	 */
+	String getCaption();
 
-public interface IDynaToolbarItemsModel
-extends IDynaToolbarItemModel {
-    public Iterator<IDynaToolbarItemModel> getItemModels();
+	
 
-    public String getShowMode();
+	/**
+	 * 获取标题语言资源标识
+	 * @return
+	 */
+	String getCapLanResTag();
 
-    public String getCaption();
 
-    public String getCapLanResTag();
 
-    public String getTooltip();
+	/**
+	 * 获取项操作提示
+	 * @return
+	 */
+	String getTooltip();
+	/**
+	 * 获取项操作提示语言资源标识
+	 * @return
+	 */
+	String getTooltipLanResTag();
 
-    public String getTooltipLanResTag();
 }
-

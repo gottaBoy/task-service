@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.devcenter.demodel.PSDCBKTaskDEModelBase;
 
 public class PSDCBKTaskDEModel
 extends PSDCBKTaskDEModelBase {
+
+    public PSDCBKTaskDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

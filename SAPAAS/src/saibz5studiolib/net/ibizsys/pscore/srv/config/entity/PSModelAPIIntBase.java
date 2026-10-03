@@ -1269,7 +1269,7 @@ implements Serializable {
                 PSModelAPI pSModelAPI = new PSModelAPI();
                 pSModelAPI.setPSModelAPIId(this.getPSModelAPIId());
                 PSModelAPIService pSModelAPIService = (PSModelAPIService)ServiceGlobal.getService(PSModelAPIService.class, (SessionFactory)this.getSessionFactory());
-                pSModelAPIService.autoGet((IEntity)pSModelAPI);
+                pSModelAPIService.autoGet(pSModelAPI);
                 this.psmodelapi = pSModelAPI;
             }
             return this.psmodelapi;
@@ -1295,7 +1295,7 @@ implements Serializable {
                 PSModel pSModel = new PSModel();
                 pSModel.setPSModelId(this.getPSModelId());
                 PSModelService pSModelService = (PSModelService)ServiceGlobal.getService(PSModelService.class, (SessionFactory)this.getSessionFactory());
-                pSModelService.autoGet((IEntity)pSModel);
+                pSModelService.autoGet(pSModel);
                 this.psmodel = pSModel;
             }
             return this.psmodel;

@@ -84,10 +84,10 @@ extends PSWFLinkServiceBase {
                 }
                 if (hashMap.size() > 0) {
                     for (PSWFLinkCond pSWFLinkCond : hashMap.values()) {
-                        pSWFLinkCondService.removeTemp((IEntity)pSWFLinkCond);
+                        pSWFLinkCondService.removeTemp(pSWFLinkCond);
                     }
                 }
-                PSWFLinkService.this.updateTemp((IEntity)pSWFLink2);
+                PSWFLinkService.this.updateTemp(pSWFLink2);
             }
         });
     }
@@ -95,7 +95,7 @@ extends PSWFLinkServiceBase {
     protected void updatePSWFLinkConds(PSWFLink pSWFLink, PSWFLinkCond pSWFLinkCond, XmlNode xmlNode, HashMap<String, PSWFLinkCond> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSWFLinkCondService pSWFLinkCondService = (PSWFLinkCondService)ServiceGlobal.getService((String)PSWFLinkCondService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -128,7 +128,7 @@ extends PSWFLinkServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSWFLinkCondService.updateTemp((IEntity)pSWFLinkCond2);
+                    pSWFLinkCondService.updateTemp(pSWFLinkCond2);
                 }
                 xmlNode2.resetAttributes();
                 pSWFLinkCond2.fillXmlNode(xmlNode2, false);
@@ -175,10 +175,10 @@ extends PSWFLinkServiceBase {
 
     @Override
     public void getWithModel(PSWFLink pSWFLink) throws Exception {
-        this.getTemp((IEntity)pSWFLink);
+        this.getTemp(pSWFLink);
         if (StringHelper.isNullOrEmpty((String)pSWFLink.getCondModel())) {
             this.fillWFLinkModel(pSWFLink);
-            this.updateTemp((IEntity)pSWFLink);
+            this.updateTemp(pSWFLink);
         }
     }
 
@@ -251,7 +251,7 @@ extends PSWFLinkServiceBase {
 
     @Override
     protected void onBeforeUpdateTemp(PSWFLink pSWFLink) throws Exception {
-        pSWFLink.setLabel(this.calcPSWFLinkLabel(pSWFLink, (PSWFLink)this.getLast((IEntity)pSWFLink)));
+        pSWFLink.setLabel(this.calcPSWFLinkLabel(pSWFLink, (PSWFLink)this.getLast(pSWFLink)));
         super.onBeforeUpdateTemp(pSWFLink);
     }
 
@@ -300,7 +300,7 @@ extends PSWFLinkServiceBase {
             object = new PSWFProcess();
             ((PSWFProcessBase)object).setPSWFProcessName(string);
             ((PSWFProcessBase)object).setPSWFVersionId(pSWFLink.getPSWFVersionId());
-            pSWFProcessService.selectTemp(object, false);
+            pSWFProcessService.selectTemp((PSWFProcess)object, false);
             pSWFLink.setFromPSWFProcId(((PSWFProcessBase)object).getPSWFProcessId());
             xmlNode.setAttribute("FROMPSWFPROCID", ((PSWFProcessBase)object).getPSWFProcessId());
         }

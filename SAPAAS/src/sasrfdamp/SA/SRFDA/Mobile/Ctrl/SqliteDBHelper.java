@@ -104,7 +104,7 @@ extends MobileAppDBHelper {
                 this.GenMobileAppMenuSql((IDAActionContext)iActionContext, mobileApp, sqlList);
                 BaseDataEntity cond = new BaseDataEntity();
                 cond.SetParamValue("MOBILEAPPID", (Object)mobileApp.getMOBILEAPPID());
-                Vector mobleAppDEList = new Vector();
+                Vector<MobileAppDE> mobleAppDEList = new Vector();
                 CallResult callResult = mobAppDEDataCtrl.Select(cond, mobleAppDEList, MobileAppDE.class.getName(), "");
                 if (callResult.IsError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u79fb\u52a8\u5e94\u7528\u79bb\u7ebf\u5b9e\u4f53\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -132,7 +132,7 @@ extends MobileAppDBHelper {
                 this.GenMobileAppCodeListSql((IDAActionContext)iActionContext, codeListMap, sqlList);
                 cond.Reset();
                 cond.SetParamValue("MOBILEAPPID", (Object)mobileApp.getMOBILEAPPID());
-                Vector mobleAppPageList = new Vector();
+                Vector<MobileAppPage> mobleAppPageList = new Vector();
                 callResult = mobAppPageDataCtrl.Select(cond, mobleAppPageList, MobileAppPage.class.getName(), "");
                 if (callResult.IsError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u79fb\u52a8\u5e94\u7528\u79bb\u7ebf\u754c\u9762\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -142,7 +142,7 @@ extends MobileAppDBHelper {
                 }
                 cond.Reset();
                 cond.SetParamValue("MOBILEAPPID", (Object)mobileApp.getMOBILEAPPID());
-                Vector mobileAppDataList = new Vector();
+                Vector<MobileAppData> mobileAppDataList = new Vector();
                 callResult = mobAppDataDataCtrl.Select(cond, mobileAppDataList, MobileAppData.class.getName(), "");
                 if (callResult.IsError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u79fb\u52a8\u5e94\u7528\u79bb\u7ebf\u6570\u636e\u5305\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -193,7 +193,7 @@ extends MobileAppDBHelper {
         IDEDataCtrl deFieldDataCtrl = iDAActionContext.getDEDataCtrl("DE0002");
         cond.Reset();
         cond.SetParamValue("DEID", (Object)mobleAppDE.getDEID());
-        Vector deFieldList = new Vector();
+        Vector<DEField> deFieldList = new Vector();
         callResult = deFieldDataCtrl.Select(cond, deFieldList, DEField.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u5c5e\u6027\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -209,7 +209,7 @@ extends MobileAppDBHelper {
         IDEDataCtrl der1nDataCtrl = iDAActionContext.getDEDataCtrl("DE0003");
         cond.Reset();
         cond.SetParamValue("MINORDEID", (Object)mobleAppDE.getDEID());
-        Vector der1nList = new Vector();
+        Vector<DER1N> der1nList = new Vector();
         callResult = der1nDataCtrl.Select(cond, der1nList, DER1N.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f531:N\u5173\u7cfb\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -220,7 +220,7 @@ extends MobileAppDBHelper {
         IDEDataCtrl derIndexDataCtrl = iDAActionContext.getDEDataCtrl("DE0016");
         cond.Reset();
         cond.SetParamValue("DEID", (Object)mobleAppDE.getDEID());
-        Vector derIndexList = new Vector();
+        Vector<DERINDEX> derIndexList = new Vector();
         callResult = derIndexDataCtrl.Select(cond, derIndexList, DERINDEX.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53INDEX\u5173\u7cfb\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -244,7 +244,7 @@ extends MobileAppDBHelper {
         IDEDataCtrl mobileCtrlConfigDataCtrl = iDAActionContext.getDEDataCtrl("DE0383");
         cond.Reset();
         cond.SetParamValue("MOBILEPAGEID", (Object)mobilePage.getMOBILEPAGEID());
-        Vector mobilePageConfigList = new Vector();
+        Vector<MobilePageConfig> mobilePageConfigList = new Vector();
         callResult = mobileCtrlConfigDataCtrl.Select(cond, mobilePageConfigList, MobilePageConfig.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u79bb\u7ebf\u754c\u9762\u90e8\u4ef6\u914d\u7f6e\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));

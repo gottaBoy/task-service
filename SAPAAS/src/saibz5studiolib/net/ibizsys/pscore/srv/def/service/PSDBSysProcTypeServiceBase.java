@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
     }
 
     protected void onFillParentInfo(PSDBSysProcType pSDBSysProcType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDBSysProcType, string, string2, string3);
+        super.onFillParentInfo(pSDBSysProcType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDBSysProcType, bl);
+        super.onFillEntityFullInfo(pSDBSysProcType, bl);
     }
 
     protected void onWriteBackParent(PSDBSysProcType pSDBSysProcType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDBSysProcType, bl);
+        super.onWriteBackParent(pSDBSysProcType, bl);
     }
 
     @Override
@@ -143,7 +143,7 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDBSysProcType pSDBSysProcType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDBSysProcType, bl);
+        super.onRemoveEntityUncopyValues(pSDBSysProcType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDBSysProcType pSDBSysProcType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
         if ((entityFieldError = this.onCheckField_RETURNResult(bl, pSDBSysProcType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDBSysProcType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDBSysProcType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSDBSysProcType pSDBSysProcType, boolean bl2, boolean bl3) throws Exception {
@@ -183,7 +183,7 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSDBSysProcType, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSDBSysProcType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -205,7 +205,7 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconPath_Default((IEntity)pSDBSysProcType, bl2, bl3);
+            string2 = this.onTestValueRule_IconPath_Default(pSDBSysProcType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONPATH");
@@ -227,7 +227,7 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDBSysProcType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDBSysProcType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -252,7 +252,7 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDBSysProcTypeId_Default((IEntity)pSDBSysProcType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDBSysProcTypeId_Default(pSDBSysProcType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDBSYSPROCTYPEID");
@@ -277,7 +277,7 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDBSysProcTypeName_Default((IEntity)pSDBSysProcType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDBSysProcTypeName_Default(pSDBSysProcType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDBSYSPROCTYPENAME");
@@ -302,7 +302,7 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_RETURNResult_Default((IEntity)pSDBSysProcType, bl2, bl3);
+            string = this.onTestValueRule_RETURNResult_Default(pSDBSysProcType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RETURNRESULT");
@@ -315,11 +315,11 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
     }
 
     protected void onSyncEntity(PSDBSysProcType pSDBSysProcType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDBSysProcType, bl);
+        super.onSyncEntity(pSDBSysProcType, bl);
     }
 
     protected void onSyncIndexEntities(PSDBSysProcType pSDBSysProcType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDBSysProcType, bl);
+        super.onSyncIndexEntities(pSDBSysProcType, bl);
     }
 
     public Object getDataContextValue(PSDBSysProcType pSDBSysProcType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -327,14 +327,14 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDBSysProcType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDBSysProcType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDBSysProcType pSDBSysProcType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDBSysProcType, arrayList, n);
+        super.onExportMajorModel(pSDBSysProcType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -469,14 +469,14 @@ extends PSCoreSysServiceBase<PSDBSysProcType> {
 
     protected boolean onMergeChild(String string, String string2, PSDBSysProcType pSDBSysProcType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDBSysProcType)) {
+        if (super.onMergeChild(string, string2, pSDBSysProcType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDBSysProcType pSDBSysProcType) throws Exception {
-        super.onUpdateParent((IEntity)pSDBSysProcType);
+        super.onUpdateParent(pSDBSysProcType);
     }
 
     @Override

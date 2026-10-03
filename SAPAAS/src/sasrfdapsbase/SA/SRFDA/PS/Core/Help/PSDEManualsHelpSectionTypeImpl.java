@@ -53,7 +53,7 @@ extends PSHelpSectionTypeImpl {
         SessionFactory sessionFactory = PSSysModelInstGlobal.getSessionFactory((String)iPSSystem.getPSSysModelInstId());
         int nMaxOrderValue = 100;
         PSHelpSectionService psHelpSectionService = (PSHelpSectionService)ServiceGlobal.getService(PSHelpSectionService.class, (SessionFactory)sessionFactory);
-        ArrayList psHelpSectionList = psHelpSectionService.select((ISelectCond)selectCond);
+        ArrayList<PSHelpSection> psHelpSectionList = psHelpSectionService.select((ISelectCond)selectCond);
         HashMap<String, PSHelpSection> psHelpSectionMap = new HashMap<String, PSHelpSection>();
         for (PSHelpSection psHelpSection2 : psHelpSectionList) {
             psHelpSectionMap.put(psHelpSection2.getPSHelpSectionId(), psHelpSection2);
@@ -68,13 +68,13 @@ extends PSHelpSectionTypeImpl {
             strPSModelId = StringHelper.format((String)"%1$s_%2$s", (Object)psHelpSection.getPSHelpArticle().getPSDEName(), (Object)psHelpSection.getPSHelpArticle().getUserTag());
         }
         psModel.setPSModelId(strPSModelId);
-        if (psModelService.get((IEntity)psModel, true)) {
+        if (psModelService.get(psModel, true)) {
             int nOrderValue = 1000;
             selectCond.reset();
             selectCond.set("PSMODELID", (Object)strPSModelId);
             selectCond.set("EXAMPLETYPE", (Object)"MANUAL");
             selectCond.setOrderInfo("ORDER BY CATORDERVALUE,ORDERVALUE");
-            ArrayList psModelExampleList = psModelExampleService.select((ISelectCond)selectCond);
+            ArrayList<PSModelExample> psModelExampleList = psModelExampleService.select((ISelectCond)selectCond);
             for (PSModelExample psModelExample : psModelExampleList) {
                 PSHelpSection psHelpSection2;
                 String strKeyValue = KeyValueHelper.genUniqueId((String)psHelpSection.getPSHelpSectionId(), (String)"DEMANUAL", (String)psModelExample.getPSModelExampleId());
@@ -83,7 +83,7 @@ extends PSHelpSectionTypeImpl {
                     psHelpSection2 = new PSHelpSection();
                     psHelpSection2.setPSHelpSectionId(strKeyValue);
                     psHelpSection2.setValidFlag(Integer.valueOf(0));
-                    psHelpSectionService.update((IEntity)psHelpSection2);
+                    psHelpSectionService.update(psHelpSection2);
                     continue;
                 }
                 psHelpSection2 = new PSHelpSection();
@@ -100,13 +100,12 @@ extends PSHelpSectionTypeImpl {
                 psHelpSection2.setOrderValue(Integer.valueOf(nOrderValue += 100));
                 psHelpSection2.setValidFlag(Integer.valueOf(1));
                 if (!psHelpSectionMap.containsKey(strKeyValue)) {
-                    psHelpSectionService.create((IEntity)psHelpSection2);
+                    psHelpSectionService.create(psHelpSection2);
                     continue;
                 }
-                psHelpSectionService.update((IEntity)psHelpSection2);
+                psHelpSectionService.update(psHelpSection2);
             }
         }
         super.onInitModel(iPSSystem, psHelpSection);
     }
 }
-

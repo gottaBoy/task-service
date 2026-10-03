@@ -1,20 +1,47 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
 import java.sql.SQLException;
-import net.ibizsys.paas.db.IDataTable;
 
+/**
+ * 数据集对象接口
+ * 
+ * @author lionlau
+ *
+ */
 public interface IDataSet {
-    public int getDataTableCount();
+	/**
+	 * 获取数据表数量
+	 * 
+	 * @return
+	 */
+	int getDataTableCount();
 
-    public IDataTable getDataTable(int var1);
+	/**
+	 * 获取指定数据表
+	 * 
+	 * @param nIndex
+	 * @return
+	 */
+	IDataTable getDataTable(int nIndex);
 
-    public void close();
+	/**
+	 * 关闭数据集合，释放表对象
+	 */
+	void close();
 
-    public void cacheDataRow() throws SQLException;
+	/**
+	 * 预读记录
+	 * 
+	 * @param nSize
+	 * @return
+	 * @throws SQLException
+	 */
+	void cacheDataRow() throws SQLException;
 
-    public String getSqlInfo();
+	/**
+	 * 获取Sql信息
+	 * 
+	 * @return
+	 */
+	String getSqlInfo();
 }
-

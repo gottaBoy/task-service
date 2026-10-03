@@ -1201,7 +1201,7 @@ implements Serializable {
                 PSAppViewStyle pSAppViewStyle = new PSAppViewStyle();
                 pSAppViewStyle.setPSAppViewStyleId(this.getPSAppViewStyleId());
                 PSAppViewStyleService pSAppViewStyleService = (PSAppViewStyleService)ServiceGlobal.getService(PSAppViewStyleService.class, (SessionFactory)this.getSessionFactory());
-                pSAppViewStyleService.autoGet((IEntity)pSAppViewStyle);
+                pSAppViewStyleService.autoGet(pSAppViewStyle);
                 this.psappviewstyle = pSAppViewStyle;
             }
             return this.psappviewstyle;
@@ -1227,7 +1227,7 @@ implements Serializable {
                 PSPFPubCode pSPFPubCode = new PSPFPubCode();
                 pSPFPubCode.setPSPFPubCodeId(this.getPSPFPubCodeId());
                 PSPFPubCodeService pSPFPubCodeService = (PSPFPubCodeService)ServiceGlobal.getService(PSPFPubCodeService.class, (SessionFactory)this.getSessionFactory());
-                pSPFPubCodeService.autoGet((IEntity)pSPFPubCode);
+                pSPFPubCodeService.autoGet(pSPFPubCode);
                 this.pspfpubcode = pSPFPubCode;
             }
             return this.pspfpubcode;

@@ -1975,7 +1975,7 @@ implements Serializable {
                 PSSFCodeType pSSFCodeType = new PSSFCodeType();
                 pSSFCodeType.setPSSFCodeTypeId(this.getPSSFCodeTypeId());
                 PSSFCodeTypeService pSSFCodeTypeService = (PSSFCodeTypeService)ServiceGlobal.getService(PSSFCodeTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSSFCodeTypeService.autoGet((IEntity)pSSFCodeType);
+                pSSFCodeTypeService.autoGet(pSSFCodeType);
                 this.pssfcodetype = pSSFCodeType;
             }
             return this.pssfcodetype;
@@ -2001,7 +2001,7 @@ implements Serializable {
                 PSSFStyleVer pSSFStyleVer = new PSSFStyleVer();
                 pSSFStyleVer.setPSSFStyleVerId(this.getPSSFStyleVerId());
                 PSSFStyleVerService pSSFStyleVerService = (PSSFStyleVerService)ServiceGlobal.getService(PSSFStyleVerService.class, (SessionFactory)this.getSessionFactory());
-                pSSFStyleVerService.autoGet((IEntity)pSSFStyleVer);
+                pSSFStyleVerService.autoGet(pSSFStyleVer);
                 this.pssfstylever = pSSFStyleVer;
             }
             return this.pssfstylever;

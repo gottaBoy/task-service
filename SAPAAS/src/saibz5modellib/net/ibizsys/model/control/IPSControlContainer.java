@@ -1,31 +1,79 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control;
 
 import java.util.Iterator;
+
 import net.ibizsys.model.app.view.IPSAppView;
-import net.ibizsys.model.control.IPSAjaxControl;
-import net.ibizsys.model.control.IPSControl;
-import net.ibizsys.model.control.IPSControlParam;
 import net.ibizsys.model.core.IPSModelObject;
 
-public interface IPSControlContainer
-extends IPSModelObject {
-    public String getId();
+/**
+ * 控件容器对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSControlContainer extends IPSModelObject {
+	/**
+	 * 获取标识
+	 * 
+	 * @return
+	 */
+	String getId();
 
-    public String getName();
+	/**
+	 * 获取名称
+	 * 
+	 * @return
+	 */
+	String getName();
 
-    public IPSAppView getPSAppView();
+	/**
+	 * 获取应用视图
+	 * 
+	 * @return
+	 */
+	IPSAppView getPSAppView();
 
-    public boolean hasPSControl(String var1);
+	/**
+	 * 是否有指定控件
+	 * 
+	 * @param strControlName
+	 * @return
+	 */
+	boolean hasPSControl(String strControlName);
 
-    public Iterator<IPSControl> getPSControls();
+	/**
+	 * 获取控件集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IPSControl> getPSControls();
 
-    public IPSControl getPSControl(String var1) throws Exception;
+	/**
+	 * 获取指定部件
+	 * 
+	 * @param strControlName
+	 * @return
+	 * @throws Exception
+	 */
+	IPSControl getPSControl(String strControlName) throws Exception;
 
-    public Iterator<IPSAjaxControl> getPSAjaxControls();
+	/**
+	 * 获取异步控件集合
+	 * 
+	 * @return
+	 */
+	Iterator<IPSAjaxControl> getPSAjaxControls();
 
-    public IPSControl registerPSControl(String var1, String var2, IPSControlParam var3) throws Exception;
+	/* INTERNAL-BEGIN */
+	/**
+	 * 注册控件
+	 * 
+	 * @param strKey
+	 * @param strPSCtrlType
+	 * @param iPSControlParam
+	 * @return
+	 * @throws Exception
+	 */
+	IPSControl registerPSControl(String strKey, String strPSCtrlType, IPSControlParam iPSControlParam) throws Exception;
+	/* INTERNAL-END */
 }
-

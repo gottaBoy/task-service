@@ -988,7 +988,7 @@ implements Serializable {
                 PSWPDCAppEntity pSWPDCAppEntity = new PSWPDCAppEntity();
                 pSWPDCAppEntity.setPSWPDCAppEntityId(this.getPSWPDCAppEntityId());
                 PSWPDCAppEntityService pSWPDCAppEntityService = (PSWPDCAppEntityService)ServiceGlobal.getService(PSWPDCAppEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSWPDCAppEntityService.autoGet((IEntity)pSWPDCAppEntity);
+                pSWPDCAppEntityService.autoGet(pSWPDCAppEntity);
                 this.pswpdcappentity = pSWPDCAppEntity;
             }
             return this.pswpdcappentity;
@@ -1014,7 +1014,7 @@ implements Serializable {
                 PSWPDCWorkflow pSWPDCWorkflow = new PSWPDCWorkflow();
                 pSWPDCWorkflow.setPSWPDCWorkflowId(this.getPSWPDCWorkflowId());
                 PSWPDCWorkflowService pSWPDCWorkflowService = (PSWPDCWorkflowService)ServiceGlobal.getService(PSWPDCWorkflowService.class, (SessionFactory)this.getSessionFactory());
-                pSWPDCWorkflowService.autoGet((IEntity)pSWPDCWorkflow);
+                pSWPDCWorkflowService.autoGet(pSWPDCWorkflow);
                 this.pswpdcworkflow = pSWPDCWorkflow;
             }
             return this.pswpdcworkflow;

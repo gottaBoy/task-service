@@ -1,13 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app.view;
 
-import net.ibizsys.model.app.view.IPSAppDECalendarView;
-import net.ibizsys.model.app.view.IPSAppMobView;
+/**
+ * 移动端日历视图对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSAppDEMobCalendarView extends  IPSAppDECalendarView,IPSAppMobView {
 
-public interface IPSAppDEMobCalendarView
-extends IPSAppDECalendarView,
-IPSAppMobView {
 }
-

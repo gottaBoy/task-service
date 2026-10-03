@@ -1754,7 +1754,7 @@ implements Serializable {
                 PSDCResHours pSDCResHours = new PSDCResHours();
                 pSDCResHours.setPSDCResHoursId(this.getPSDCResHoursId());
                 PSDCResHoursService pSDCResHoursService = (PSDCResHoursService)ServiceGlobal.getService(PSDCResHoursService.class, (SessionFactory)this.getSessionFactory());
-                pSDCResHoursService.autoGet((IEntity)pSDCResHours);
+                pSDCResHoursService.autoGet(pSDCResHours);
                 this.psdcreshours = pSDCResHours;
             }
             return this.psdcreshours;
@@ -1780,7 +1780,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;

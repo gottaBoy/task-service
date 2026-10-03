@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.ViewControllerBase;
-
-public abstract class CustomViewControllerBase
-extends ViewControllerBase {
+/**
+ * 自定义视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class CustomViewControllerBase extends ViewControllerBase {
+	public CustomViewControllerBase() throws Exception {
+		super();
+	}
 }
-

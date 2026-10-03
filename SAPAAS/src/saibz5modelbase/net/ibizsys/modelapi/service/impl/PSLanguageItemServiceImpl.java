@@ -114,9 +114,9 @@ implements IPSLanguageItemService {
 
     @Override
     protected List<PSLanguageItem> onListAll() throws Exception {
-        List pslanguages;
+        List<PSLanguage> pslanguages;
         ArrayList<PSLanguageItem> list = new ArrayList<PSLanguageItem>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSLanguageItem> items = this.listByPSModule(parent);

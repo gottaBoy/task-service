@@ -1699,7 +1699,7 @@ implements Serializable {
                 PSAppView pSAppView = new PSAppView();
                 pSAppView.setPSAppViewId(this.getPSAppViewId());
                 PSAppViewService pSAppViewService = (PSAppViewService)ServiceGlobal.getService(PSAppViewService.class, (SessionFactory)this.getSessionFactory());
-                pSAppViewService.autoGet((IEntity)pSAppView);
+                pSAppViewService.autoGet(pSAppView);
                 this.psappview = pSAppView;
             }
             return this.psappview;
@@ -1725,7 +1725,7 @@ implements Serializable {
                 PSPFPubCode pSPFPubCode = new PSPFPubCode();
                 pSPFPubCode.setPSPFPubCodeId(this.getPSPFPubCodeId());
                 PSPFPubCodeService pSPFPubCodeService = (PSPFPubCodeService)ServiceGlobal.getService(PSPFPubCodeService.class, (SessionFactory)this.getSessionFactory());
-                pSPFPubCodeService.autoGet((IEntity)pSPFPubCode);
+                pSPFPubCodeService.autoGet(pSPFPubCode);
                 this.pspfpubcode = pSPFPubCode;
             }
             return this.pspfpubcode;
@@ -1751,7 +1751,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;

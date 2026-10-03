@@ -1553,7 +1553,7 @@ implements Serializable {
                 PSSAHandler pSSAHandler = new PSSAHandler();
                 pSSAHandler.setPSSAHandlerId(this.getPSSAHandlerId());
                 PSSAHandlerService pSSAHandlerService = (PSSAHandlerService)ServiceGlobal.getService(PSSAHandlerService.class, (SessionFactory)this.getSessionFactory());
-                pSSAHandlerService.autoGet((IEntity)pSSAHandler);
+                pSSAHandlerService.autoGet(pSSAHandler);
                 this.pssahandler = pSSAHandler;
             }
             return this.pssahandler;
@@ -1579,7 +1579,7 @@ implements Serializable {
                 PSSF pSSF = new PSSF();
                 pSSF.setPSSFId(this.getPSSFId());
                 PSSFService pSSFService = (PSSFService)ServiceGlobal.getService(PSSFService.class, (SessionFactory)this.getSessionFactory());
-                pSSFService.autoGet((IEntity)pSSF);
+                pSSFService.autoGet(pSSF);
                 this.pssf = pSSF;
             }
             return this.pssf;

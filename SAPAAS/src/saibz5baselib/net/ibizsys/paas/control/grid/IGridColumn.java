@@ -1,35 +1,122 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.grid;
 
 import net.ibizsys.paas.web.IWebContext;
 
+/**
+ * 表格列接口
+ * 
+ * @author lionlau
+ *
+ */
 public interface IGridColumn {
-    public static final String GRIDCOLTYPE_DEFGRIDCOLUMN = "DEFGRIDCOLUMN";
-    public static final String GRIDCOLTYPE_DEFTREEGRIDCOLUMN = "DEFTREEGRIDCOLUMN";
-    public static final String WIDTHUNIT_PX = "PX";
-    public static final String WIDTHUNIT_STAR = "STAR";
-    public static final String ALIGN_LEFT = "LEFT";
-    public static final String ALIGN_CENTER = "CENTER";
-    public static final String ALIGN_RIGHT = "RIGHT";
+	// 定义表格列类型代码表
+	/**
+	 * 属性列
+	 */
+	final static String GRIDCOLTYPE_DEFGRIDCOLUMN = "DEFGRIDCOLUMN";
 
-    public String getCaption();
+	/**
+	 * 树表属性列
+	 */
+	final static String GRIDCOLTYPE_DEFTREEGRIDCOLUMN = "DEFTREEGRIDCOLUMN";
 
-    public String getDataItemName();
+	// 定义宽度单位代码表
 
-    public String getExcelCaption();
+	/**
+	 * px
+	 */
+	final static String WIDTHUNIT_PX = "PX";
 
-    public String getCodeListId();
+	/**
+	**
+	*/
+	final static String WIDTHUNIT_STAR = "STAR";
 
-    public String getExcelText(IWebContext var1, Object var2) throws Exception;
+	// 水平对齐方式
+	/**
+	 * 左侧
+	 */
+	final static String ALIGN_LEFT = "LEFT";
 
-    public String getExcelText(IWebContext var1, Object var2, boolean var3) throws Exception;
+	/**
+	 * 居中
+	 */
+	final static String ALIGN_CENTER = "CENTER";
 
-    public String getAlign();
+	/**
+	 * 右侧
+	 */
+	final static String ALIGN_RIGHT = "RIGHT";
 
-    public String getCapLanResTag();
+	/**
+	 * 获取标题
+	 * 
+	 * @return
+	 */
+	String getCaption();
 
-    public String getExcelCapLanResTag();
+	/**
+	 * 获取数据项名称
+	 * 
+	 * @return
+	 */
+	String getDataItemName();
+
+	/**
+	 * 获取导出Excel标题
+	 * 
+	 * @return
+	 */
+	String getExcelCaption();
+
+	/**
+	 * 获取代码表标识
+	 * 
+	 * @return
+	 */
+	String getCodeListId();
+
+	/**
+	 * 获取Excel文本值
+	 * 
+	 * @param iWebContext
+	 * @param object 列值
+	 * @return
+	 * @throws Exception
+	 */
+	String getExcelText(IWebContext iWebContext, Object object) throws Exception;
+
+	/**
+	 * 获取Excel文本值
+	 * 
+	 * @param iWebContext
+	 * @param object 列值
+	 * @param bEnableItemPrivilege 是否启用列权限
+	 * @return
+	 * @throws Exception
+	 */
+	String getExcelText(IWebContext iWebContext, Object object, boolean bEnableItemPrivilege) throws Exception;
+
+	/**
+	 * 获取水平对齐方式
+	 * 
+	 * @return
+	 */
+	String getAlign();
+	
+	
+	
+	
+	/**
+	 * 获取标题语言资源标识
+	 * @return
+	 */
+	String getCapLanResTag();
+	
+	
+	/**
+	 * 获取Excel标题语言资源标识
+	 * @return
+	 */
+	String getExcelCapLanResTag();
 }
-

@@ -116,9 +116,9 @@ implements IPSWFRoleService {
 
     @Override
     protected List<PSWFRole> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSWFRole> list = new ArrayList<PSWFRole>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSWFRole> items = this.listByPSModule(parent);

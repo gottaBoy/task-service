@@ -15,12 +15,10 @@
  */
 package SA.SRFDA.PS.Core.Util.CLI;
 
-import SA.SRFDA.PS.Core.Util.CLI.PSStudioCLIHelperBase;
 import SA.SRFDA.PS.Data.PSTaskServerCmd;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.util.Map;
 import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
 import net.ibizsys.pscore.srv.devcenter.entity.PSDevCenterSVN;
@@ -39,10 +37,27 @@ extends PSStudioCLIHelperBase {
 
     @Override
     protected void registerDefault() {
-        this.registerSlnCmdDataItems(CMD_DEVTEMPL_CREATEPF, new PSStudioCLIHelperBase.CLIDataItem[]{new PSStudioCLIHelperBase.CLIDataItem(this, "unitag", "PSDEVSLNTEMPLNAME", true, null), new PSStudioCLIHelperBase.CLIDataItem(this, "pf", "PSPFID", true, null), new PSStudioCLIHelperBase.CLIDataItem(this, "name", "LOGICNAME", false, null), new PSStudioCLIHelperBase.CLIDataItem(this, "memo", "MEMO", false, null), new PSStudioCLIHelperBase.CLIDataItem(this, null, "TEMPLTYPE", false, null, "PSPF")});
-        this.registerSlnCmdDataItems(CMD_DEVTEMPL_CREATESF, new PSStudioCLIHelperBase.CLIDataItem[]{new PSStudioCLIHelperBase.CLIDataItem(this, "unitag", "PSDEVSLNTEMPLNAME", true, null), new PSStudioCLIHelperBase.CLIDataItem(this, "sf", "PSSFID", true, null), new PSStudioCLIHelperBase.CLIDataItem(this, "name", "LOGICNAME", false, null), new PSStudioCLIHelperBase.CLIDataItem(this, "memo", "MEMO", false, null), new PSStudioCLIHelperBase.CLIDataItem(this, null, "TEMPLTYPE", false, null, "PSSF")});
-        this.registerTemplCmdDataItems(CMD_DEVTEMPL_PUBLISH, new PSStudioCLIHelperBase.CLIDataItem[0]);
-        this.registerTemplCmdDataItems(CMD_DEVTEMPL_UPDATEREPO, new PSStudioCLIHelperBase.CLIDataItem[]{new PSStudioCLIHelperBase.CLIDataItem(this, null, "SVNTYPE", false, null, "GIT"), new PSStudioCLIHelperBase.CLIDataItem(this, "repo", "GITREPO", false, null, "GITEE"), new PSStudioCLIHelperBase.CLIDataItem(this, "url", "GITPATH", true, null), new PSStudioCLIHelperBase.CLIDataItem(this, "memo", "MEMO", false, null)});
+        this.registerSlnCmdDataItems(CMD_DEVTEMPL_CREATEPF, new CLIDataItem[]{
+            new CLIDataItem("unitag", "PSDEVSLNTEMPLNAME", true, null),
+            new CLIDataItem("pf", "PSPFID", true, null),
+            new CLIDataItem("name", "LOGICNAME", false, null),
+            new CLIDataItem("memo", "MEMO", false, null),
+            new CLIDataItem(null, "TEMPLTYPE", false, null, "PSPF")
+        });
+        this.registerSlnCmdDataItems(CMD_DEVTEMPL_CREATESF, new CLIDataItem[]{
+            new CLIDataItem("unitag", "PSDEVSLNTEMPLNAME", true, null),
+            new CLIDataItem("sf", "PSSFID", true, null),
+            new CLIDataItem("name", "LOGICNAME", false, null),
+            new CLIDataItem("memo", "MEMO", false, null),
+            new CLIDataItem(null, "TEMPLTYPE", false, null, "PSSF")
+        });
+        this.registerTemplCmdDataItems(CMD_DEVTEMPL_PUBLISH, new CLIDataItem[0]);
+        this.registerTemplCmdDataItems(CMD_DEVTEMPL_UPDATEREPO, new CLIDataItem[]{
+            new CLIDataItem(null, "SVNTYPE", false, null, "GIT"),
+            new CLIDataItem("repo", "GITREPO", false, null, "GITEE"),
+            new CLIDataItem("url", "GITPATH", true, null),
+            new CLIDataItem("memo", "MEMO", false, null)
+        });
         super.registerDefault();
     }
 
@@ -59,7 +74,7 @@ extends PSStudioCLIHelperBase {
             psDevSlnTempl.setPSDevSlnName(psTaskServerCmd.getPSDEVSLNNAME());
             try {
                 PSDevSlnTemplService psDevSlnTemplService = (PSDevSlnTemplService)ServiceGlobal.getService(PSDevSlnTemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                psDevSlnTemplService.create((IEntity)psDevSlnTempl);
+                psDevSlnTemplService.create(psDevSlnTempl);
             }
             catch (Exception ex) {
                 throw new Exception(String.format("\u5efa\u7acb\u5f00\u53d1\u6a21\u677f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", ex.getMessage()));
@@ -89,7 +104,7 @@ extends PSStudioCLIHelperBase {
             PSDevSlnTemplService psDevSlnTemplService = (PSDevSlnTemplService)ServiceGlobal.getService(PSDevSlnTemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDevCenterSVNService psDevCenterSVNService = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             try {
-                psDevSlnTemplService.get((IEntity)psDevSlnTempl);
+                psDevSlnTemplService.get(psDevSlnTempl);
             }
             catch (Exception ex) {
                 throw new Exception(String.format("\u83b7\u53d6\u5f00\u53d1\u6a21\u677f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", ex.getMessage()));
@@ -114,9 +129,9 @@ extends PSStudioCLIHelperBase {
             }
             try {
                 if (bNew) {
-                    psDevCenterSVNService.create((IEntity)psDevCenterSVN);
+                    psDevCenterSVNService.create(psDevCenterSVN);
                 } else {
-                    psDevCenterSVNService.update((IEntity)psDevCenterSVN);
+                    psDevCenterSVNService.update(psDevCenterSVN);
                 }
             }
             catch (Exception ex) {
@@ -134,4 +149,3 @@ extends PSStudioCLIHelperBase {
         super.onExecute(strCmd, paramMap, objectNode, psTaskServerCmd);
     }
 }
-

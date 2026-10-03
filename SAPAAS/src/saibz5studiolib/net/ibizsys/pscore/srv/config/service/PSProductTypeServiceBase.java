@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSProductType> {
     }
 
     protected void onFillParentInfo(PSProductType pSProductType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSProductType, string, string2, string3);
+        super.onFillParentInfo(pSProductType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSProductType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSProductType, bl);
+        super.onFillEntityFullInfo(pSProductType, bl);
     }
 
     protected void onWriteBackParent(PSProductType pSProductType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSProductType, bl);
+        super.onWriteBackParent(pSProductType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSProductType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSProductType pSProductType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSProductType, bl);
+        super.onRemoveEntityUncopyValues(pSProductType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSProductType pSProductType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSProductType> {
         if ((entityFieldError = this.onCheckField_PSProductTypeName(bl, pSProductType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSProductType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSProductType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_IconPath(boolean bl, PSProductType pSProductType, boolean bl2, boolean bl3) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSProductType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconPath_Default((IEntity)pSProductType, bl2, bl3);
+            string2 = this.onTestValueRule_IconPath_Default(pSProductType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONPATH");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSProductType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSProductType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSProductType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -218,7 +218,7 @@ extends PSCoreSysServiceBase<PSProductType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSProductTypeId_Default((IEntity)pSProductType, bl2, bl3);
+            string2 = this.onTestValueRule_PSProductTypeId_Default(pSProductType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPRODUCTTYPEID");
@@ -243,7 +243,7 @@ extends PSCoreSysServiceBase<PSProductType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSProductTypeName_Default((IEntity)pSProductType, bl2, bl3);
+            string2 = this.onTestValueRule_PSProductTypeName_Default(pSProductType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPRODUCTTYPENAME");
@@ -256,11 +256,11 @@ extends PSCoreSysServiceBase<PSProductType> {
     }
 
     protected void onSyncEntity(PSProductType pSProductType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSProductType, bl);
+        super.onSyncEntity(pSProductType, bl);
     }
 
     protected void onSyncIndexEntities(PSProductType pSProductType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSProductType, bl);
+        super.onSyncIndexEntities(pSProductType, bl);
     }
 
     public Object getDataContextValue(PSProductType pSProductType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -268,14 +268,14 @@ extends PSCoreSysServiceBase<PSProductType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSProductType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSProductType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSProductType pSProductType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSProductType, arrayList, n);
+        super.onExportMajorModel(pSProductType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -388,14 +388,14 @@ extends PSCoreSysServiceBase<PSProductType> {
 
     protected boolean onMergeChild(String string, String string2, PSProductType pSProductType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSProductType)) {
+        if (super.onMergeChild(string, string2, pSProductType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSProductType pSProductType) throws Exception {
-        super.onUpdateParent((IEntity)pSProductType);
+        super.onUpdateParent(pSProductType);
     }
 
     @Override

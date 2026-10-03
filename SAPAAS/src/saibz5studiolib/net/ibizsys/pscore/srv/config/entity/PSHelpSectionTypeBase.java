@@ -1191,7 +1191,7 @@ implements Serializable {
                 PSHelpSectionTempl pSHelpSectionTempl = new PSHelpSectionTempl();
                 pSHelpSectionTempl.setPSHelpSectionTemplId(this.getPSHelpSectionTemplId());
                 PSHelpSectionTemplService pSHelpSectionTemplService = (PSHelpSectionTemplService)ServiceGlobal.getService(PSHelpSectionTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpSectionTemplService.autoGet((IEntity)pSHelpSectionTempl);
+                pSHelpSectionTemplService.autoGet(pSHelpSectionTempl);
                 this.pshelpsectiontempl = pSHelpSectionTempl;
             }
             return this.pshelpsectiontempl;

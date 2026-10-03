@@ -112,9 +112,9 @@ implements IPSSysImageService {
 
     @Override
     protected List<PSSysImage> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysImage> list = new ArrayList<PSSysImage>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysImage> items = this.listByPSModule(parent);

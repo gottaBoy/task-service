@@ -94,7 +94,7 @@ implements IPSWorkspaceBooking {
             this.setBeginTime(this.psWSBooking.getBeginTime().getTime());
             this.setEndTime(this.psWSBooking.getEndTime().getTime());
             this.psWorkspace.setPSWorkspaceId(this.psWSBooking.getPSWorkspaceId());
-            this.psWorkspaceService.get((IEntity)this.psWorkspace);
+            this.psWorkspaceService.get(this.psWorkspace);
             this.setBookingResType("WORKSPACE");
             this.setPSBookingResType(this.getPSModelStorage().getPSBookingResType(this.getBookingResType(), false));
         }
@@ -107,7 +107,7 @@ implements IPSWorkspaceBooking {
                     PSWorkspace psWorkspace = new PSWorkspace();
                     psWorkspace.setPSWorkspaceId(this.psWSBooking.getPSWorkspaceId());
                     psWorkspace.setExpiredTime(this.psWSBooking.getEndTime());
-                    psWorkspaceService.update((IEntity)psWorkspace);
+                    psWorkspaceService.update(psWorkspace);
                 }
             }
             catch (Exception ex) {
@@ -118,13 +118,13 @@ implements IPSWorkspaceBooking {
                     PSDCWorkspaceService psDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                     PSDCWorkspace psDCWorkspace = new PSDCWorkspace();
                     psDCWorkspace.setPSDCWorkspaceId(this.psWSBooking.getPSDCWorkspaceId());
-                    psDCWorkspaceService.get((IEntity)psDCWorkspace);
+                    psDCWorkspaceService.get(psDCWorkspace);
                     if (!StringHelper.IsNullOrEmpty((String)psDCWorkspace.getPSDevSlnSysId())) {
                         PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                         PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
                         psDevSlnSys.setPSDevSlnSysId(psDCWorkspace.getPSDevSlnSysId());
                         psDevSlnSys.setOfflineTime(this.psWSBooking.getEndTime());
-                        psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys, true);
+                        psDevSlnSysService.sysUpdate(psDevSlnSys, true);
                         PSCoreEntityKeeperGlobal.getCurrent((SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory()).updatePSDevSlnSys(psDevSlnSys);
                     }
                 }
@@ -143,7 +143,7 @@ implements IPSWorkspaceBooking {
         try {
             psWSBooking.setPSWSBookingId(this.getId());
             EntityBase.setLastUpdateDate((IEntity)psWSBooking, (Timestamp)this.getLastUpdateTime());
-            this.psWSBookingService.update((IEntity)psWSBooking);
+            this.psWSBookingService.update(psWSBooking);
             this.setLastUpdateTime(psWSBooking.getUpdateDate());
         }
         catch (Exception ex) {
@@ -161,14 +161,14 @@ implements IPSWorkspaceBooking {
                 psWSBooking.reset();
                 psWSBooking.setPSWSBookingId(this.getId());
                 psWSBooking.setBookingState(Integer.valueOf(nNewState));
-                this.psWSBookingService.update((IEntity)psWSBooking);
+                this.psWSBookingService.update(psWSBooking);
                 this.syncEntity((IEntity)psWSBooking);
             }
             catch (Exception ex) {
                 log.error((Object)StringHelper.Format((String)"\u66f4\u65b0\u8d44\u6e90\u9884\u7ea6\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
             }
             try {
-                this.psWSBookingLogService.save((IEntity)psWSBookingLog);
+                this.psWSBookingLogService.save(psWSBookingLog);
             }
             catch (Exception ex) {
                 log.error((Object)StringHelper.Format((String)"\u66f4\u65b0\u8d44\u6e90\u9884\u7ea6\u65e5\u5fd7\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
@@ -179,7 +179,7 @@ implements IPSWorkspaceBooking {
                         PSDCWorkspaceService psDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                         PSDCWorkspace psDCWorkspace = new PSDCWorkspace();
                         psDCWorkspace.setPSDCWorkspaceId(psWSBooking.getPSDCWorkspaceId());
-                        psDCWorkspaceService.get((IEntity)psDCWorkspace);
+                        psDCWorkspaceService.get(psDCWorkspace);
                         if (!StringHelper.IsNullOrEmpty((String)psDCWorkspace.getPSDevSlnSysId())) {
                             this.sendStudioConsole(psDCWorkspace.getPSDevSlnSysId(), "WARN", StringHelper.Format((String)"\u5f00\u53d1\u7cfb\u7edf\u4f7f\u7528\u7684\u751f\u4ea7\u7ebf\u5373\u5c06\u88ab\u5173\u95ed"));
                         }
@@ -196,7 +196,7 @@ implements IPSWorkspaceBooking {
                         PSWorkspace psWorkspace = new PSWorkspace();
                         psWorkspace.setPSWorkspaceId(psWSBooking.getPSWorkspaceId());
                         psWorkspace.setExpiredTime(psWSBooking.getEndTime());
-                        psWorkspaceService.update((IEntity)psWorkspace);
+                        psWorkspaceService.update(psWorkspace);
                     }
                 }
                 catch (Exception ex) {
@@ -234,7 +234,7 @@ implements IPSWorkspaceBooking {
                 }
             }
             try {
-                this.psWSBookingLogService.save((IEntity)psWSBookingLog);
+                this.psWSBookingLogService.save(psWSBookingLog);
             }
             catch (Exception ex) {
                 log.error((Object)StringHelper.Format((String)"\u66f4\u65b0\u8d44\u6e90\u9884\u7ea6\u65e5\u5fd7\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
@@ -245,7 +245,7 @@ implements IPSWorkspaceBooking {
                     if (!StringHelper.IsNullOrEmpty((String)psWSBooking.getPSDCWorkspaceId())) {
                         PSDCWorkspaceService psDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                         psDCWorkspace.setPSDCWorkspaceId(psWSBooking.getPSDCWorkspaceId());
-                        psDCWorkspaceService.get((IEntity)psDCWorkspace);
+                        psDCWorkspaceService.get(psDCWorkspace);
                         if (!StringHelper.IsNullOrEmpty((String)psDCWorkspace.getPSDevSlnSysId())) {
                             this.sendStudioConsole(psDCWorkspace.getPSDevSlnSysId(), "ERROR", StringHelper.Format((String)"\u5f00\u53d1\u7cfb\u7edf\u4f7f\u7528\u7684\u751f\u4ea7\u7ebf\u5df2\u7ecf\u5173\u95ed"));
                         }
@@ -278,15 +278,15 @@ implements IPSWorkspaceBooking {
             psDCWorkspace.setPSDCWorkspaceId(this.psWSBooking.getPSDCWorkspaceId());
             if (bBind) {
                 psDCWorkspace.setResState(Integer.valueOf(20));
-                psDCWorkspaceService.update((IEntity)psDCWorkspace);
+                psDCWorkspaceService.update(psDCWorkspace);
             } else {
                 psDCWorkspace.setResState(Integer.valueOf(42));
-                psDCWorkspaceService.update((IEntity)psDCWorkspace);
+                psDCWorkspaceService.update(psDCWorkspace);
             }
             PSWSBooking psWSBooking = new PSWSBooking();
             psWSBooking.setPSWSBookingId(this.getId());
             psWSBooking.setBookingState(Integer.valueOf(nNewState));
-            this.psWSBookingService.update((IEntity)psWSBooking);
+            this.psWSBookingService.update(psWSBooking);
             this.syncEntity((IEntity)psWSBooking);
             SessionFactoryManager.releaseRef((boolean)true);
         }
@@ -296,4 +296,3 @@ implements IPSWorkspaceBooking {
         }
     }
 }
-

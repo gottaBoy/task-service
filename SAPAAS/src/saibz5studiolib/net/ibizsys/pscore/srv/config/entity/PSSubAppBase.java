@@ -1201,7 +1201,7 @@ implements Serializable {
                 PSPF pSPF = new PSPF();
                 pSPF.setPSPFId(this.getPSPFId());
                 PSPFService pSPFService = (PSPFService)ServiceGlobal.getService(PSPFService.class, (SessionFactory)this.getSessionFactory());
-                pSPFService.autoGet((IEntity)pSPF);
+                pSPFService.autoGet(pSPF);
                 this.pspf = pSPF;
             }
             return this.pspf;
@@ -1227,7 +1227,7 @@ implements Serializable {
                 PSSubSys pSSubSys = new PSSubSys();
                 pSSubSys.setPSSubSysId(this.getPSSubSysId());
                 PSSubSysService pSSubSysService = (PSSubSysService)ServiceGlobal.getService(PSSubSysService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysService.autoGet((IEntity)pSSubSys);
+                pSSubSysService.autoGet(pSSubSys);
                 this.pssubsys = pSSubSys;
             }
             return this.pssubsys;

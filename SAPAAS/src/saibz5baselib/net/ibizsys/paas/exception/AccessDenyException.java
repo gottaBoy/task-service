@@ -1,26 +1,42 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.exception;
 
-import net.ibizsys.paas.exception.ErrorException;
+import net.ibizsys.paas.core.Errors;
 
-public class AccessDenyException
-extends ErrorException {
-    private static final long serialVersionUID = 1L;
-    private boolean bNotLogin = true;
+/**
+ * 访问被拒绝异常
+ * @author Administrator
+ *
+ */
+public class AccessDenyException extends ErrorException {
 
-    public AccessDenyException(String strMessage, boolean bNotLogin) {
-        super(2, strMessage);
-        this.bNotLogin = bNotLogin;
-    }
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private boolean bNotLogin = true;
+	
+	public AccessDenyException(String strMessage,boolean bNotLogin) {
+		super(Errors.ACCESSDENY,strMessage);
+		this.bNotLogin = bNotLogin;
+	}
 
-    public boolean isNotLogin() {
-        return this.bNotLogin;
-    }
+	/**
+	 * 获取是否已经登录
+	 * @return
+	 */
+	public boolean isNotLogin() {
+		return bNotLogin;
+	}
 
-    public void setNotLogin(boolean bNotLogin) {
-        this.bNotLogin = bNotLogin;
-    }
+	/**
+	 * 设置是否已经登录
+	 * @param bNotLogin
+	 */
+	public void setNotLogin(boolean bNotLogin) {
+		this.bNotLogin = bNotLogin;
+	}
+
+	
+	
+
 }
-

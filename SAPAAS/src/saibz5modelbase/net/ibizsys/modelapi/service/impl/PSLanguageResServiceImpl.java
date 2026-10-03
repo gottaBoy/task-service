@@ -119,9 +119,9 @@ implements IPSLanguageResService {
 
     @Override
     protected List<PSLanguageRes> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSLanguageRes> list = new ArrayList<PSLanguageRes>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSLanguageRes> items = this.listByPSModule(parent);

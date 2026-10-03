@@ -58,7 +58,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.Vector;
@@ -236,14 +235,14 @@ extends PSDEDataCtrl {
 
     protected void onUpdateAuthz(SA.SRFDA.PS.Data.PSSVNServer psSVNServer) throws Exception {
         boolean bReadOnly;
-        Iterator strSLNCodeName;
+        String strSLNCodeName;
         String strREPOName;
         CallResult callResult;
         String strSQL4;
         TreeMap<String, Boolean> repoMap = new TreeMap<String, Boolean>();
-        HashMap<String, ArrayList> svnGroupMap = new HashMap<String, ArrayList>();
+        HashMap<String, ArrayList<String>> svnGroupMap = new HashMap<String, ArrayList<String>>();
         int nCount = 100;
-        Vector dataList = new Vector();
+        Vector<BaseDataEntity> dataList = new Vector<BaseDataEntity>();
         CallParamList callParamList = new CallParamList();
         callParamList.AddString(psSVNServer.getPSSVNSERVERID());
         TreeMap<String, Boolean> repoMap2 = new TreeMap<String, Boolean>();
@@ -285,12 +284,12 @@ extends PSDEDataCtrl {
                 }
                 repoMap.put(strREPOName2, bReadOnly2);
                 String strAdminTag = StringHelper.Format((String)(bReadOnly2 ? "u_%1$s" : "a_%1$s"), (Object)strREPOName2);
-                ArrayList userList = null;
+                ArrayList<String> userList = null;
                 if (!svnGroupMap.containsKey(strAdminTag)) {
-                    userList = new ArrayList();
+                    userList = new ArrayList<String>();
                     svnGroupMap.put(strAdminTag, userList);
                 } else {
-                    userList = (ArrayList)svnGroupMap.get(strAdminTag);
+                    userList = svnGroupMap.get(strAdminTag);
                 }
                 if (userList.contains(strFullLogicName)) continue;
                 userList.add(strFullLogicName);
@@ -337,12 +336,12 @@ extends PSDEDataCtrl {
                 }
                 String strAdminTag = "";
                 strAdminTag = nAccMode == 3 && !bReadOnly3 ? StringHelper.Format((String)"a_%1$s", (Object)strREPOName3) : StringHelper.Format((String)"u_%1$s", (Object)strREPOName3);
-                ArrayList userList = null;
+                ArrayList<String> userList = null;
                 if (!svnGroupMap.containsKey(strAdminTag)) {
-                    userList = new ArrayList();
+                    userList = new ArrayList<String>();
                     svnGroupMap.put(strAdminTag, userList);
                 } else {
-                    userList = (ArrayList)svnGroupMap.get(strAdminTag);
+                    userList = svnGroupMap.get(strAdminTag);
                 }
                 if (userList.contains(strFullLogicName)) continue;
                 userList.add(strFullLogicName);
@@ -362,12 +361,12 @@ extends PSDEDataCtrl {
                 }
                 repoMap.put(strREPOName4, bReadOnly2);
                 String strAdminTag = StringHelper.Format((String)(bReadOnly2 ? "u_%1$s" : "a_%1$s"), (Object)strREPOName4);
-                ArrayList userList = null;
+                ArrayList<String> userList = null;
                 if (!svnGroupMap.containsKey(strAdminTag)) {
-                    userList = new ArrayList();
+                    userList = new ArrayList<String>();
                     svnGroupMap.put(strAdminTag, userList);
                 } else {
-                    userList = (ArrayList)svnGroupMap.get(strAdminTag);
+                    userList = svnGroupMap.get(strAdminTag);
                 }
                 if (userList.contains(strFullLogicName)) continue;
                 userList.add(strFullLogicName);
@@ -414,7 +413,7 @@ extends PSDEDataCtrl {
             boolean bReadOnly4 = (Boolean)repoMap.get(strKey);
             sbProject.Append("\r\n[%1$s]\r\n", (Object)strKey);
             String strGroupName = StringHelper.Format((String)"g%1$s", (Object)(++nCount));
-            ArrayList userList = (ArrayList)svnGroupMap.get(StringHelper.Format((String)"a_%1$s", (Object)strKey));
+            ArrayList<String> userList = svnGroupMap.get(StringHelper.Format((String)"a_%1$s", (Object)strKey));
             if (userList != null) {
                 Collections.sort(userList, new Comparator<String>(){
 
@@ -441,7 +440,7 @@ extends PSDEDataCtrl {
                 }
             }
             strGroupName = StringHelper.Format((String)"g%1$s", (Object)(++nCount));
-            userList = (ArrayList)svnGroupMap.get(StringHelper.Format((String)"u_%1$s", (Object)strKey));
+            userList = svnGroupMap.get(StringHelper.Format((String)"u_%1$s", (Object)strKey));
             if (userList == null) continue;
             Collections.sort(userList, new Comparator<String>(){
 
@@ -667,7 +666,7 @@ extends PSDEDataCtrl {
         PSSVNServerService psSVNServerService = (PSSVNServerService)ServiceGlobal.getService(PSSVNServerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSSVNServer psSVNServer = new PSSVNServer();
         psSVNServer.setPSSVNServerId(strPSSVNServerId);
-        psSVNServerService.get((IEntity)psSVNServer);
+        psSVNServerService.get(psSVNServer);
         PSCoreEntityKeeperGlobal.getCurrent((SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory()).updatePSSVNServer(psSVNServer);
     }
 
@@ -685,4 +684,3 @@ extends PSDEDataCtrl {
         return psSvrDomain.getDOMAINCODE();
     }
 }
-

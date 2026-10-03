@@ -913,7 +913,7 @@ implements Serializable {
                 PSDEFVRType pSDEFVRType = new PSDEFVRType();
                 pSDEFVRType.setPSDEFVRTypeId(this.getPSDEFVRTypeId());
                 PSDEFVRTypeService pSDEFVRTypeService = (PSDEFVRTypeService)ServiceGlobal.getService(PSDEFVRTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFVRTypeService.autoGet((IEntity)pSDEFVRType);
+                pSDEFVRTypeService.autoGet(pSDEFVRType);
                 this.psdefvrtype = pSDEFVRType;
             }
             return this.psdefvrtype;

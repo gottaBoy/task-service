@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.controller;
 
-import net.ibizsys.pswf.controller.WFViewControllerBase;
+/**
+ * 应用流程征求意见操作视图控制器基类
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class AppWFTakeAdviceViewControllerBase extends WFViewControllerBase {
 
-public abstract class AppWFTakeAdviceViewControllerBase
-extends WFViewControllerBase {
+	public AppWFTakeAdviceViewControllerBase() throws Exception {
+		super();
+
+	}
+
+	
 }
-

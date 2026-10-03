@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSDCMobPackCertDEModelBase;
 
 public class PSDCMobPackCertDEModel
 extends PSDCMobPackCertDEModelBase {
+
+    public PSDCMobPackCertDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

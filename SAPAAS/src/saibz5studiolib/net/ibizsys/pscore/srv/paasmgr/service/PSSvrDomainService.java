@@ -27,7 +27,7 @@ extends PSSvrDomainServiceBase {
         if (!this.isMajorSessionFactory()) {
             return;
         }
-        this.get((IEntity)pSSvrDomain);
+        this.get(pSSvrDomain);
         PSCoreEntityKeeperGlobal.getCurrent(this.getSessionFactory()).updatePSSvrDomain(pSSvrDomain);
     }
 }

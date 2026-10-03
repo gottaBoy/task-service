@@ -1555,7 +1555,7 @@ implements Serializable {
                 PSImageTempl pSImageTempl = new PSImageTempl();
                 pSImageTempl.setPSImageTemplId(this.getPSImageTemplId());
                 PSImageTemplService pSImageTemplService = (PSImageTemplService)ServiceGlobal.getService(PSImageTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSImageTemplService.autoGet((IEntity)pSImageTempl);
+                pSImageTemplService.autoGet(pSImageTempl);
                 this.psimagetempl = pSImageTempl;
             }
             return this.psimagetempl;
@@ -1581,7 +1581,7 @@ implements Serializable {
                 PSSysLanRes pSSysLanRes = new PSSysLanRes();
                 pSSysLanRes.setPSSysLanResId(this.getCapPSSysLanResId());
                 PSSysLanResService pSSysLanResService = (PSSysLanResService)ServiceGlobal.getService(PSSysLanResService.class, (SessionFactory)this.getSessionFactory());
-                pSSysLanResService.autoGet((IEntity)pSSysLanRes);
+                pSSysLanResService.autoGet(pSSysLanRes);
                 this.cappssyslanres = pSSysLanRes;
             }
             return this.cappssyslanres;
@@ -1607,7 +1607,7 @@ implements Serializable {
                 PSSysLanRes pSSysLanRes = new PSSysLanRes();
                 pSSysLanRes.setPSSysLanResId(this.getTipPSSysLanResId());
                 PSSysLanResService pSSysLanResService = (PSSysLanResService)ServiceGlobal.getService(PSSysLanResService.class, (SessionFactory)this.getSessionFactory());
-                pSSysLanResService.autoGet((IEntity)pSSysLanRes);
+                pSSysLanResService.autoGet(pSSysLanRes);
                 this.tippssyslanres = pSSysLanRes;
             }
             return this.tippssyslanres;

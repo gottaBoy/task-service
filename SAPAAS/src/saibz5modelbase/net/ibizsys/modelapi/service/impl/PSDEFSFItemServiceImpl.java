@@ -84,7 +84,7 @@ implements IPSDEFSFItemService {
     @Override
     protected List<PSDEFSFItem> onListAll() throws Exception {
         ArrayList<PSDEFSFItem> list = new ArrayList<PSDEFSFItem>();
-        List psdefields = PSModelServiceUtil.getInstance().getPSDEFieldService().listAll();
+        List<PSDEField> psdefields = PSModelServiceUtil.getInstance().getPSDEFieldService().listAll();
         if (psdefields != null) {
             for (PSDEField parent : psdefields) {
                 List<PSDEFSFItem> items = this.listByPSDEField(parent);

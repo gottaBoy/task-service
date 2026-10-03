@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSSvrProviderDEModelBase;
 
 public class PSSvrProviderDEModel
 extends PSSvrProviderDEModelBase {
+
+    public PSSvrProviderDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

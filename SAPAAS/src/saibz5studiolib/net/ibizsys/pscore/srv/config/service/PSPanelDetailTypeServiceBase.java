@@ -107,7 +107,7 @@ extends PSCoreSysServiceBase<PSPanelDetailType> {
     }
 
     protected void onFillParentInfo(PSPanelDetailType pSPanelDetailType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSPanelDetailType, string, string2, string3);
+        super.onFillParentInfo(pSPanelDetailType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -118,11 +118,11 @@ extends PSCoreSysServiceBase<PSPanelDetailType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSPanelDetailType, bl);
+        super.onFillEntityFullInfo(pSPanelDetailType, bl);
     }
 
     protected void onWriteBackParent(PSPanelDetailType pSPanelDetailType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPanelDetailType, bl);
+        super.onWriteBackParent(pSPanelDetailType, bl);
     }
 
     @Override
@@ -131,7 +131,7 @@ extends PSCoreSysServiceBase<PSPanelDetailType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSPanelDetailType pSPanelDetailType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPanelDetailType, bl);
+        super.onRemoveEntityUncopyValues(pSPanelDetailType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPanelDetailType pSPanelDetailType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -152,7 +152,7 @@ extends PSCoreSysServiceBase<PSPanelDetailType> {
         if ((entityFieldError = this.onCheckField_TypeObj(bl, pSPanelDetailType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPanelDetailType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPanelDetailType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DetailOBJ(boolean bl, PSPanelDetailType pSPanelDetailType, boolean bl2, boolean bl3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSPanelDetailType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DetailOBJ_Default((IEntity)pSPanelDetailType, bl2, bl3);
+            string2 = this.onTestValueRule_DetailOBJ_Default(pSPanelDetailType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DETAILOBJ");
@@ -190,7 +190,7 @@ extends PSCoreSysServiceBase<PSPanelDetailType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPanelDetailType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPanelDetailType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -215,7 +215,7 @@ extends PSCoreSysServiceBase<PSPanelDetailType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPanelDetailTypeId_Default((IEntity)pSPanelDetailType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPanelDetailTypeId_Default(pSPanelDetailType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPANELDETAILTYPEID");
@@ -240,7 +240,7 @@ extends PSCoreSysServiceBase<PSPanelDetailType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPanelDetailTypeName_Default((IEntity)pSPanelDetailType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPanelDetailTypeName_Default(pSPanelDetailType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPANELDETAILTYPENAME");
@@ -262,7 +262,7 @@ extends PSCoreSysServiceBase<PSPanelDetailType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeObj_Default((IEntity)pSPanelDetailType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeObj_Default(pSPanelDetailType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEOBJ");
@@ -275,11 +275,11 @@ extends PSCoreSysServiceBase<PSPanelDetailType> {
     }
 
     protected void onSyncEntity(PSPanelDetailType pSPanelDetailType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPanelDetailType, bl);
+        super.onSyncEntity(pSPanelDetailType, bl);
     }
 
     protected void onSyncIndexEntities(PSPanelDetailType pSPanelDetailType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPanelDetailType, bl);
+        super.onSyncIndexEntities(pSPanelDetailType, bl);
     }
 
     public Object getDataContextValue(PSPanelDetailType pSPanelDetailType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -287,14 +287,14 @@ extends PSCoreSysServiceBase<PSPanelDetailType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPanelDetailType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPanelDetailType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPanelDetailType pSPanelDetailType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPanelDetailType, arrayList, n);
+        super.onExportMajorModel(pSPanelDetailType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -422,14 +422,14 @@ extends PSCoreSysServiceBase<PSPanelDetailType> {
 
     protected boolean onMergeChild(String string, String string2, PSPanelDetailType pSPanelDetailType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPanelDetailType)) {
+        if (super.onMergeChild(string, string2, pSPanelDetailType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPanelDetailType pSPanelDetailType) throws Exception {
-        super.onUpdateParent((IEntity)pSPanelDetailType);
+        super.onUpdateParent(pSPanelDetailType);
     }
 
     @Override

@@ -545,7 +545,7 @@ IPSDBTypeEx {
         psSysDMItem2.setPSSysDMItemId(psSysDMItem.getPSSYSDMITEMID());
         psSysDMItem3.setPSSysDMItemId(psSysDMItem.getPSSYSDMITEMID());
         String strLastSql = "";
-        if (psSysDMItemService.get((IEntity)psSysDMItem3, true)) {
+        if (psSysDMItemService.get(psSysDMItem3, true)) {
             if (DataObject.getBoolValue((Integer)psSysDMItem3.getUserFlag(), (boolean)false)) {
                 return;
             }
@@ -568,9 +568,9 @@ IPSDBTypeEx {
             return;
         }
         if (bInsert) {
-            psSysDMItemService.create((IEntity)psSysDMItem2, false);
+            psSysDMItemService.create(psSysDMItem2, false);
         } else {
-            psSysDMItemService.update((IEntity)psSysDMItem2, false);
+            psSysDMItemService.update(psSysDMItem2, false);
         }
         if (!StringHelper.IsNullOrEmpty((String)strLastSql) && StringHelper.Compare((String)psSysDMItem2.getDBObjType(), (String)"COLUMN", (boolean)true) == 0 && StringHelper.Compare((String)strLastSql, (String)strCurSql, (boolean)false) != 0) {
             PSSysDMItemLogService psSysDMItemLogService = (PSSysDMItemLogService)iPSPublisherContext.getService(PSSysDMItemLogService.class);
@@ -585,7 +585,7 @@ IPSDBTypeEx {
                 strLastSql = String.valueOf(strLastSql.substring(0, 1980)) + "...[\u622a\u65ad]";
             }
             psSysDMItemLog.setOldSql(strLastSql);
-            psSysDMItemLogService.create((IEntity)psSysDMItemLog, false);
+            psSysDMItemLogService.create(psSysDMItemLog, false);
         }
     }
 
@@ -854,51 +854,45 @@ IPSDBTypeEx {
     protected SelectResult invokeSQL(Connection connection, String strCommand, Vector<CallParam> list, int nTimeOut, int nMaxRowCount) throws SQLException {
         SelectResult dbResult = new SelectResult();
         dbResult.setRetCode(-1);
-        try (PreparedStatement cstmt = null;){
-            try {
-                cstmt = connection.prepareStatement(strCommand);
-                if (list != null) {
-                    int i = 0;
-                    while (i < list.size()) {
-                        CallParam callParam = list.get(i);
-                        if (callParam.getDataType() != 0) {
-                            cstmt.setObject(i + 1, callParam.getValue(), this.getJDCBType(callParam.getDataType()));
-                        } else {
-                            cstmt.setObject(i + 1, callParam.getValue());
-                        }
-                        ++i;
-                    }
-                }
-                cstmt.execute();
-                DataSet dataSet = this.createDataSet();
-                do {
-                    int updateCount;
-                    if ((updateCount = cstmt.getUpdateCount()) >= 0) {
-                        dbResult.setUpdateCount(updateCount);
-                        continue;
-                    }
-                    ResultSet rs = cstmt.getResultSet();
-                    if (rs == null) break;
-                    if (nMaxRowCount >= 0) {
-                        dataSet.AddResultSet(rs, true);
-                        dataSet.getTable(0).ReadRows(nMaxRowCount);
+        try (PreparedStatement cstmt = connection.prepareStatement(strCommand)) {
+            if (list != null) {
+                int i = 0;
+                while (i < list.size()) {
+                    CallParam callParam = list.get(i);
+                    if (callParam.getDataType() != 0) {
+                        cstmt.setObject(i + 1, callParam.getValue(), this.getJDCBType(callParam.getDataType()));
                     } else {
-                        dataSet.AddResultSet(rs);
+                        cstmt.setObject(i + 1, callParam.getValue());
                     }
-                    rs.close();
-                } while (cstmt.getMoreResults() || cstmt.getUpdateCount() != -1);
-                Integer nRetCode = 0;
-                dbResult.setRetCode(nRetCode.intValue());
-                dbResult.setSelectData(dataSet);
-                dbResult.setDataTableIndex(0);
-            }
-            catch (Exception ex) {
-                log.error((Object)ex.getMessage(), (Throwable)ex);
-                dbResult.setErrorInfo(StringHelper.Format((String)"\u6267\u884cSQL\u53d1\u751f\u5f02\u5e38\uff0c%1$s\r\n%2$s", (Object)ex.toString(), (Object)strCommand));
-                if (cstmt != null) {
-                    cstmt.close();
+                    ++i;
                 }
             }
+            cstmt.execute();
+            DataSet dataSet = this.createDataSet();
+            do {
+                int updateCount;
+                if ((updateCount = cstmt.getUpdateCount()) >= 0) {
+                    dbResult.setUpdateCount(updateCount);
+                    continue;
+                }
+                ResultSet rs = cstmt.getResultSet();
+                if (rs == null) break;
+                if (nMaxRowCount >= 0) {
+                    dataSet.AddResultSet(rs, true);
+                    dataSet.getTable(0).ReadRows(nMaxRowCount);
+                } else {
+                    dataSet.AddResultSet(rs);
+                }
+                rs.close();
+            } while (cstmt.getMoreResults() || cstmt.getUpdateCount() != -1);
+            Integer nRetCode = 0;
+            dbResult.setRetCode(nRetCode.intValue());
+            dbResult.setSelectData(dataSet);
+            dbResult.setDataTableIndex(0);
+        }
+        catch (Exception ex) {
+            log.error((Object)ex.getMessage(), (Throwable)ex);
+            dbResult.setErrorInfo(StringHelper.Format((String)"\u6267\u884cSQL\u53d1\u751f\u5f02\u5e38\uff0c%1$s\r\n%2$s", (Object)ex.toString(), (Object)strCommand));
         }
         return dbResult;
     }
@@ -1752,24 +1746,24 @@ IPSDBTypeEx {
             PSDEDataCtrl.convertEntity2(dbBackupData, (IEntity)psDCDBInstBK);
             PSDevCenterDBInstService psDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDCDBInstBKService psDCDBInstBKService = (PSDCDBInstBKService)ServiceGlobal.getService(PSDCDBInstBKService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            psDevCenterDBInstService.get((IEntity)psDCDBInst);
-            psDCDBInstBKService.get((IEntity)psDCDBInstBK);
+            psDevCenterDBInstService.get(psDCDBInst);
+            psDCDBInstBKService.get(psDCDBInstBK);
             try {
                 PSDevCenterDBInst psDCDBInst2 = new PSDevCenterDBInst();
                 psDCDBInst2.setPSDevCenterDBInstId(psDCDBInst.getPSDevCenterDBInstId());
                 psDCDBInst2.setCurDBAction("BACKUP");
-                psDevCenterDBInstService.update((IEntity)psDCDBInst2);
+                psDevCenterDBInstService.update(psDCDBInst2);
                 this.backupPSDCDBInst(psDCDBInst, psDCDBInstBK, bOffline);
                 psDCDBInst2.reset();
                 psDCDBInst2.setPSDevCenterDBInstId(psDCDBInst.getPSDevCenterDBInstId());
                 psDCDBInst2.setCurDBAction(null);
-                psDevCenterDBInstService.update((IEntity)psDCDBInst2);
+                psDevCenterDBInstService.update(psDCDBInst2);
             }
             catch (Exception ex) {
                 PSDevCenterDBInst psDCDBInst2 = new PSDevCenterDBInst();
                 psDCDBInst2.setPSDevCenterDBInstId(psDCDBInst.getPSDevCenterDBInstId());
                 psDCDBInst2.setCurDBAction(null);
-                psDevCenterDBInstService.update((IEntity)psDCDBInst2);
+                psDevCenterDBInstService.update(psDCDBInst2);
                 throw ex;
             }
             PSDEDataCtrl.convertEntity((IEntity)psDCDBInstBK, dbBackupData);
@@ -1864,24 +1858,24 @@ IPSDBTypeEx {
             PSDEDataCtrl.convertEntity2(dbBackupData, (IEntity)psDCDBInstBK);
             PSDevCenterDBInstService psDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDCDBInstBKService psDCDBInstBKService = (PSDCDBInstBKService)ServiceGlobal.getService(PSDCDBInstBKService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            psDevCenterDBInstService.get((IEntity)psDCDBInst);
-            psDCDBInstBKService.get((IEntity)psDCDBInstBK);
+            psDevCenterDBInstService.get(psDCDBInst);
+            psDCDBInstBKService.get(psDCDBInstBK);
             try {
                 PSDevCenterDBInst psDCDBInst2 = new PSDevCenterDBInst();
                 psDCDBInst2.setPSDevCenterDBInstId(psDCDBInst.getPSDevCenterDBInstId());
                 psDCDBInst2.setCurDBAction("RESTORE");
-                psDevCenterDBInstService.update((IEntity)psDCDBInst2);
+                psDevCenterDBInstService.update(psDCDBInst2);
                 this.restorePSDCDBInst(psDCDBInst, psDCDBInstBK);
                 psDCDBInst2.reset();
                 psDCDBInst2.setPSDevCenterDBInstId(psDCDBInst.getPSDevCenterDBInstId());
                 psDCDBInst2.setCurDBAction(null);
-                psDevCenterDBInstService.update((IEntity)psDCDBInst2);
+                psDevCenterDBInstService.update(psDCDBInst2);
             }
             catch (Exception ex) {
                 PSDevCenterDBInst psDCDBInst2 = new PSDevCenterDBInst();
                 psDCDBInst2.setPSDevCenterDBInstId(psDCDBInst.getPSDevCenterDBInstId());
                 psDCDBInst2.setCurDBAction(null);
-                psDevCenterDBInstService.update((IEntity)psDCDBInst2);
+                psDevCenterDBInstService.update(psDCDBInst2);
                 throw ex;
             }
             PSDEDataCtrl.convertEntity((IEntity)psDCDBInstBK, dbBackupData);

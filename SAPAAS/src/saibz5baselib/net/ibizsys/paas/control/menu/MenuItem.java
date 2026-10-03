@@ -1,13 +1,5 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.control.menu;
 
-import net.ibizsys.paas.control.menu.IMenuItem;
-import net.ibizsys.paas.control.menu.IMenuItemFiller;
 import net.ibizsys.paas.security.AccessUserModes;
 import net.ibizsys.paas.util.JSONObjectHelper;
 import net.ibizsys.paas.util.ObjectHelper;
@@ -16,232 +8,517 @@ import net.ibizsys.paas.web.IWebContext;
 import net.ibizsys.paas.web.WebContext;
 import net.sf.json.JSONObject;
 
-public class MenuItem
-implements IMenuItem {
-    public static final String MENUITEM_COUNTERID = "counterid";
-    public static final String MENUITEM_ID = "id";
-    public static final String MENUITEM_PID = "pid";
-    public static final String MENUITEM_TEXT = "text";
-    public static final String MENUITEM_ICONPATH = "icon";
-    public static final String MENUITEM_TEXTCLS = "textcls";
-    public static final String MENUITEM_ICONCLS = "iconcls";
-    public static final String MENUITEM_ITEMS = "items";
-    public static final String MENUITEM_LEAF = "leaf";
-    public static final String MENUITEM_EXPANDED = "expanded";
-    public static final String MENUITEM_TOOLTIP = "tooltip";
-    public static final String MENUITEM_TOOLTIPLANRESTAG = "tooltiplanrestag";
-    public static final String MENUITEM_TEXTLANRESTAG = "textlanrestag";
-    public static final String MENUITEM_ACCESSKEY = "accesskey";
-    public static final String MENUITEM_ACCUSERMODE = "accusermode";
-    private String strId = "";
-    private String strText = "";
-    private boolean bExpanded = false;
-    private String strItemType = null;
-    private int nAccUserMode = AccessUserModes.UNKNOWN;
-    private String strAccessKey = null;
-    private boolean bHidden = false;
-    private String strPId = "";
-    private String strTextCls = "";
-    private String strIconCls = "";
-    private String strIconPath = "";
-    private String strCounterId = "";
-    private String strTextLanResTag = "";
-    private String strTooltip = "";
-    private String strTooltipLanResTag = "";
-    private String strFillerObj = null;
-    private IMenuItemFiller iMenuItemFiller = null;
+/**
+ * 菜单项
+ * 
+ * @author lionlau
+ *
+ */
+public class MenuItem implements IMenuItem {
+	/**
+	 * 计数器标识
+	 */
+	public final static String MENUITEM_COUNTERID = "counterid";
 
-    @Override
-    public String getId() {
-        return this.strId;
-    }
+	/**
+	 * 菜单项标识
+	 */
+	public final static String MENUITEM_ID = "id";
 
-    @Override
-    public String getText() {
-        return this.strText;
-    }
+	/**
+	 * 父菜单项标识
+	 */
+	public final static String MENUITEM_PID = "pid";
 
-    @Override
-    public boolean isExpanded() {
-        return this.bExpanded;
-    }
+	/**
+	 * 显示文本
+	 */
+	public final static String MENUITEM_TEXT = "text";
 
-    @Override
-    public String getPId() {
-        return this.strPId;
-    }
+	/**
+	 * 图标路径
+	 */
+	public final static String MENUITEM_ICONPATH = "icon";
 
-    @Override
-    public String getTextCls() {
-        return this.strTextCls;
-    }
+	/**
+	 * 文本显示样式
+	 */
+	public final static String MENUITEM_TEXTCLS = "textcls";
 
-    @Override
-    public String getIconCls() {
-        return this.strIconCls;
-    }
+	/**
+	 * 图标显示样式
+	 */
+	public final static String MENUITEM_ICONCLS = "iconcls";
 
-    @Override
-    public String getIconPath() {
-        return this.strIconPath;
-    }
+	/**
+	 * 子项集合
+	 */
+	public final static String MENUITEM_ITEMS = "items";
 
-    @Override
-    public String getCounterId() {
-        return this.strCounterId;
-    }
+	/**
+	 * 是否为子节点
+	 */
+	public final static String MENUITEM_LEAF = "leaf";
 
-    @Override
-    public void setAttribute(String strName, Object objValue) {
-    }
+	/**
+	 * 是否默认展开
+	 */
+	public final static String MENUITEM_EXPANDED = "expanded";
+	
+	/**
+	 * 提示
+	 */
+	public final static String MENUITEM_TOOLTIP = "tooltip";
+	
+	/**
+	 * 提示语言资源标记
+	 */
+	public final static String MENUITEM_TOOLTIPLANRESTAG = "tooltiplanrestag";
+	
+	/**
+	 * 显示文本语言资源标记
+	 */
+	public final static String MENUITEM_TEXTLANRESTAG = "textlanrestag";
 
-    @Override
-    public Object getAttribute(String strName) {
-        return null;
-    }
+	/**
+	 * 权限标识
+	 */
+	public final static String MENUITEM_ACCESSKEY = "accesskey";
+	
+	/**
+	 * 用户访问模式
+	 */
+	public final static String MENUITEM_ACCUSERMODE = "accusermode";
+	
 
-    public void setId(String strId) {
-        this.strId = strId;
-    }
+	private String strId = "";
+	private String strText = "";
+	private boolean bExpanded = false;
+	private String strItemType = null;
+	private int nAccUserMode = AccessUserModes.UNKNOWN;
+	private String strAccessKey = null;
+	private boolean bHidden = false;
 
-    public void setText(String strText) {
-        this.strText = strText;
-    }
+	/**
+	 * 获取父标识
+	 * 
+	 * @return
+	 */
+	private String strPId = "";
 
-    public void setExpanded(boolean bExpanded) {
-        this.bExpanded = bExpanded;
-    }
+	/**
+	 * 获取文本样式
+	 * 
+	 * @return
+	 */
+	private String strTextCls = "";
 
-    public void setPId(String strPId) {
-        this.strPId = strPId;
-    }
+	/**
+	 * 获取图标样式
+	 * 
+	 * @return
+	 */
+	private String strIconCls = "";
 
-    public void setTextCls(String strTextCls) {
-        this.strTextCls = strTextCls;
-    }
+	/**
+	 * 获取图标路径
+	 * 
+	 * @return
+	 */
+	private String strIconPath = "";
 
-    public void setIconCls(String strIconCls) {
-        this.strIconCls = strIconCls;
-    }
+	/**
+	 * 获取计数器标识
+	 * 
+	 * @return
+	 */
+	private String strCounterId = "";
 
-    public void setIconPath(String strIconPath) {
-        this.strIconPath = strIconPath;
-    }
+	
+	/**
+	 * 文本语言资源标识
+	 */
+	private String strTextLanResTag = "";
+	
+	/**
+	 * 提示信息
+	 */
+	private String strTooltip = "";
+	
+	/**
+	 *  提示信息语言资源标识
+	 */
+	private String strTooltipLanResTag = "";
+	
+	
+	/**
+	 * 填充器对象
+	 */
+	private String strFillerObj = null;
+	
+	
+	/**
+	 * 菜单填充器对象
+	 */
+	private IMenuItemFiller iMenuItemFiller = null;
 
-    public void setCounterId(String strCounterId) {
-        this.strCounterId = strCounterId;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getId()
+	 */
+	@Override
+	public String getId() {
+		return strId;
+	}
 
-    @Override
-    public String getItemType() {
-        return this.strItemType;
-    }
 
-    public void setItemType(String strItemType) {
-        this.strItemType = strItemType;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getText()
+	 */
+	@Override
+	public String getText() {
+		return this.strText;
+	}
 
-    @Override
-    public String getAccessKey() {
-        return this.strAccessKey;
-    }
 
-    public void setAccessKey(String strAccessKey) {
-        this.strAccessKey = strAccessKey;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#isExpanded()
+	 */
+	@Override
+	public boolean isExpanded() {
+		return this.bExpanded;
+	}
 
-    public static JSONObject toJSONObject(IMenuItem iMenuItem, JSONObject jsonObject) throws Exception {
-        if (jsonObject == null) {
-            jsonObject = new JSONObject();
-        }
-        jsonObject.put(MENUITEM_ID, JSONObjectHelper.stripQuotes(iMenuItem.getId(), true));
-        IWebContext iWebContext = WebContext.getCurrent();
-        if (iWebContext == null) {
-            jsonObject.put(MENUITEM_TEXT, JSONObjectHelper.stripQuotes(iMenuItem.getText(), true));
-            jsonObject.put(MENUITEM_TOOLTIP, JSONObjectHelper.stripQuotes(iMenuItem.getTooltip(), true));
-        } else {
-            if (!StringHelper.isNullOrEmpty(iMenuItem.getTextLanResTag())) {
-                jsonObject.put(MENUITEM_TEXT, JSONObjectHelper.stripQuotes(iWebContext.getLocalization(iMenuItem.getTextLanResTag(), iMenuItem.getText()), true));
-            } else {
-                jsonObject.put(MENUITEM_TEXT, JSONObjectHelper.stripQuotes(iMenuItem.getText(), true));
-            }
-            if (!StringHelper.isNullOrEmpty(iMenuItem.getTooltipLanResTag())) {
-                jsonObject.put(MENUITEM_TOOLTIP, JSONObjectHelper.stripQuotes(iWebContext.getLocalization(iMenuItem.getTooltipLanResTag(), iMenuItem.getTooltip()), true));
-            } else {
-                jsonObject.put(MENUITEM_TOOLTIP, JSONObjectHelper.stripQuotes(iMenuItem.getTooltip(), true));
-            }
-        }
-        jsonObject.put(MENUITEM_TEXTCLS, JSONObjectHelper.stripQuotes(iMenuItem.getTextCls(), true));
-        jsonObject.put(MENUITEM_ICONPATH, JSONObjectHelper.stripQuotes(iMenuItem.getIconPath(), true));
-        jsonObject.put(MENUITEM_ICONCLS, JSONObjectHelper.stripQuotes(iMenuItem.getIconCls(), true));
-        jsonObject.put(MENUITEM_COUNTERID, JSONObjectHelper.stripQuotes(iMenuItem.getCounterId(), true));
-        jsonObject.put(MENUITEM_EXPANDED, iMenuItem.isExpanded());
-        return jsonObject;
-    }
 
-    @Override
-    public int getAccUserMode() {
-        return this.nAccUserMode;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getPId()
+	 */
+	@Override
+	public String getPId() {
+		return this.strPId;
+	}
 
-    public void setAccUserMode(int nAccUserMode) {
-        this.nAccUserMode = nAccUserMode;
-    }
 
-    @Override
-    public String getTextLanResTag() {
-        return this.strTextLanResTag;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getTextCls()
+	 */
+	@Override
+	public String getTextCls() {
+		return this.strTextCls;
+	}
 
-    public void setTextLanResTag(String strTextLanResTag) {
-        this.strTextLanResTag = strTextLanResTag;
-    }
 
-    @Override
-    public String getTooltip() {
-        return this.strTooltip;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getIconCls()
+	 */
+	@Override
+	public String getIconCls() {
+		return this.strIconCls;
+	}
 
-    public void setTooltip(String strTooltip) {
-        this.strTooltip = strTooltip;
-    }
 
-    @Override
-    public String getTooltipLanResTag() {
-        return this.strTooltipLanResTag;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getIconPath()
+	 */
+	@Override
+	public String getIconPath() {
+		return this.strIconPath;
+	}
 
-    public void setTooltipLanResTag(String strTooltipLanResTag) {
-        this.strTooltipLanResTag = strTooltipLanResTag;
-    }
 
-    @Override
-    public boolean isHidden() {
-        return this.bHidden;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getCounterId()
+	 */
+	@Override
+	public String getCounterId() {
+		return this.strCounterId;
+	}
 
-    public void setHidden(boolean bHidden) {
-        this.bHidden = bHidden;
-    }
 
-    @Override
-    public String getFillerObj() {
-        return this.strFillerObj;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#setAttribute(java.lang.String, java.lang.Object)
+	 */
+	@Override
+	public void setAttribute(String strName, Object objValue) {
 
-    public void setFillerObj(String strFillerObj) {
-        this.strFillerObj = strFillerObj;
-    }
+	}
 
-    @Override
-    public IMenuItemFiller getFiller() throws Exception {
-        if (StringHelper.isNullOrEmpty(this.getFillerObj())) {
-            return null;
-        }
-        if (this.iMenuItemFiller == null) {
-            this.iMenuItemFiller = (IMenuItemFiller)ObjectHelper.create(this.getFillerObj());
-        }
-        return this.iMenuItemFiller;
-    }
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getAttribute(java.lang.String)
+	 */
+	@Override
+	public Object getAttribute(String strName) {
+		return null;
+	}
+
+	/**
+	 * 设置标识
+	 * 
+	 * @param strId
+	 */
+	public void setId(String strId) {
+		this.strId = strId;
+	}
+
+	/**
+	 * 设置文本
+	 * 
+	 * @param strText
+	 */
+	public void setText(String strText) {
+		this.strText = strText;
+	}
+
+	/**
+	 * 设置默认展开
+	 * 
+	 * @param bExpanded
+	 */
+	public void setExpanded(boolean bExpanded) {
+		this.bExpanded = bExpanded;
+	}
+
+	/**
+	 * 设置父菜单项标识
+	 * 
+	 * @param strPId
+	 */
+	public void setPId(String strPId) {
+		this.strPId = strPId;
+	}
+
+	/**
+	 * 设置文本样式
+	 * 
+	 * @param strTextCls
+	 */
+	public void setTextCls(String strTextCls) {
+		this.strTextCls = strTextCls;
+	}
+
+	/**
+	 * 设置图标样式
+	 * 
+	 * @param strIconCls
+	 */
+	public void setIconCls(String strIconCls) {
+		this.strIconCls = strIconCls;
+	}
+
+	/**
+	 * 设置图标路径
+	 * 
+	 * @param strIconPath
+	 */
+	public void setIconPath(String strIconPath) {
+		this.strIconPath = strIconPath;
+	}
+
+	/**
+	 * 设置计数器标识
+	 * 
+	 * @param strCounterId
+	 */
+	public void setCounterId(String strCounterId) {
+		this.strCounterId = strCounterId;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getItemType()
+	 */
+	@Override
+	public String getItemType() {
+		return this.strItemType;
+	}
+
+	/**
+	 * 设置菜单项类型
+	 * 
+	 * @param strItemType
+	 */
+	public void setItemType(String strItemType) {
+		this.strItemType = strItemType;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getAccessKey()
+	 */
+	@Override
+	public String getAccessKey() {
+		return this.strAccessKey;
+	}
+
+	/**
+	 * 设置菜单项资源编号
+	 * 
+	 * @param strAccessKey
+	 */
+	public void setAccessKey(String strAccessKey) {
+		this.strAccessKey = strAccessKey;
+	}
+
+	/**
+	 * 导出到JSON对象
+	 * 
+	 * @param iMenuItem
+	 * @param jsonObject
+	 * @return
+	 * @throws Exception
+	 */
+	public static JSONObject toJSONObject(IMenuItem iMenuItem, JSONObject jsonObject) throws Exception {
+		if (jsonObject == null) jsonObject = new JSONObject();
+		jsonObject.put(MENUITEM_ID,JSONObjectHelper.stripQuotes( iMenuItem.getId(),true));
+		IWebContext iWebContext = WebContext.getCurrent(); 
+		if(iWebContext ==null)
+		{
+			jsonObject.put(MENUITEM_TEXT, JSONObjectHelper.stripQuotes(iMenuItem.getText(),true));
+			jsonObject.put(MENUITEM_TOOLTIP, JSONObjectHelper.stripQuotes(iMenuItem.getTooltip(),true));
+		}
+		else{
+			if(!StringHelper.isNullOrEmpty(iMenuItem.getTextLanResTag())){
+				jsonObject.put(MENUITEM_TEXT,JSONObjectHelper.stripQuotes(iWebContext.getLocalization(iMenuItem.getTextLanResTag(),iMenuItem.getText()),true));
+			}
+			else{
+				jsonObject.put(MENUITEM_TEXT, JSONObjectHelper.stripQuotes(iMenuItem.getText(),true));
+			}
+			if(!StringHelper.isNullOrEmpty(iMenuItem.getTooltipLanResTag())){
+				jsonObject.put(MENUITEM_TOOLTIP,JSONObjectHelper.stripQuotes(iWebContext.getLocalization(iMenuItem.getTooltipLanResTag(),iMenuItem.getTooltip()),true));
+			}
+			else{
+				jsonObject.put(MENUITEM_TOOLTIP, JSONObjectHelper.stripQuotes(iMenuItem.getTooltip(),true));
+			}
+		}
+		
+		jsonObject.put(MENUITEM_TEXTCLS, JSONObjectHelper.stripQuotes(iMenuItem.getTextCls(),true));
+		jsonObject.put(MENUITEM_ICONPATH, JSONObjectHelper.stripQuotes(iMenuItem.getIconPath(),true));
+		jsonObject.put(MENUITEM_ICONCLS, JSONObjectHelper.stripQuotes(iMenuItem.getIconCls(),true));
+		jsonObject.put(MENUITEM_COUNTERID, JSONObjectHelper.stripQuotes(iMenuItem.getCounterId(),true));
+		jsonObject.put(MENUITEM_EXPANDED, iMenuItem.isExpanded());
+		
+		
+		
+		return jsonObject;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getAccUserMode()
+	 */
+	@Override
+	public int getAccUserMode() {
+		return nAccUserMode;
+	}
+
+	/**
+	 * 设置用户访问模式
+	 * 
+	 * @param nAccUserMode
+	 */
+	public void setAccUserMode(int nAccUserMode) {
+		this.nAccUserMode = nAccUserMode;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getTextLanResTag()
+	 */
+	@Override
+	public String getTextLanResTag() {
+		return this.strTextLanResTag;
+	}
+	
+	
+	/**
+	 * 设置文本语言标识
+	 * @param strTextLanResTag
+	 */
+	public void setTextLanResTag(String strTextLanResTag){
+		this.strTextLanResTag = strTextLanResTag;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getTooltip()
+	 */
+	@Override
+	public String getTooltip() {
+		return this.strTooltip;
+	}
+	
+	/**
+	 * 设置提示信息
+	 * @param strTooltip
+	 */
+	public void setTooltip(String strTooltip){
+		this.strTooltip = strTooltip;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getTooltipLanResTag()
+	 */
+	@Override
+	public String getTooltipLanResTag() {
+		return  this.strTooltipLanResTag;
+	}
+	
+	
+	/**
+	 * 设置提示信息语言标识
+	 * @param strTooltipLanResTag
+	 */
+	public void setTooltipLanResTag(String strTooltipLanResTag){
+		this.strTooltipLanResTag = strTooltipLanResTag;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#isHidden()
+	 */
+	@Override
+	public boolean isHidden() {
+		return bHidden;
+	}
+	
+	/**
+	 * 设置是否隐藏
+	 * @param bHidden
+	 */
+	public void setHidden(boolean bHidden){
+		this.bHidden = bHidden;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IMenuItem#getFillerObj()
+	 */
+	@Override
+	public String getFillerObj() {
+		return this.strFillerObj;
+	}
+	
+	/**
+	 * 设置填充器对象
+	 * @param strFillerObj
+	 */
+	public void setFillerObj(String strFillerObj){
+		this.strFillerObj = strFillerObj;
+	}
+
+
+	@Override
+	public IMenuItemFiller getFiller() throws Exception {
+		if(StringHelper.isNullOrEmpty(getFillerObj()))
+			return null;
+		if(this.iMenuItemFiller ==null){
+			this.iMenuItemFiller = (IMenuItemFiller)ObjectHelper.create(this.getFillerObj());
+		}
+		return this.iMenuItemFiller;
+	}
+	
+	
+	
+
 }
-

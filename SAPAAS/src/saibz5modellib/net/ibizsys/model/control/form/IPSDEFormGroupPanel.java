@@ -1,53 +1,164 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.form;
 
-import java.util.Iterator;
-import net.ibizsys.model.control.form.IPSDEFormDetail;
+/**
+ * 表单分组对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IPSDEFormGroupPanel extends IPSDEFormDetail {
+	/**
+	 * 分组标题栏关闭模式：无关闭
+	 */
+	public final static int TITLEBARCLOSEMODE_NONE = 0;
 
-public interface IPSDEFormGroupPanel
-extends IPSDEFormDetail {
-    public static final int TITLEBARCLOSEMODE_NONE = 0;
-    public static final int TITLEBARCLOSEMODE_OPENDEFAULT = 1;
-    public static final int TITLEBARCLOSEMODE_CLOSEDEFAULT = 2;
-    public static final int BUILDINACTION_NEW = 1;
-    public static final int BUILDINACTION_MORE = 2;
+	/**
+	 * 分组标题栏关闭模式：启用关闭（默认打开）
+	 */
+	public final static int TITLEBARCLOSEMODE_OPENDEFAULT = 1;
 
-    public String getLayoutMode();
+	/**
+	 * 分组标题栏关闭模式：启用关闭（默认关闭）
+	 */
+	public final static int TITLEBARCLOSEMODE_CLOSEDEFAULT = 2;
+	
 
-    public double[] getColumnWidths();
+	//定义内置操作代码表
 
-    public Iterator<IPSDEFormDetail> getPSDEFormDetails();
+	/**
+	*新建
+	*/
+	public final static int BUILDINACTION_NEW = 1 ;
 
-    public int getPSDEFormDetailCount();
+	/**
+	*更多操作
+	*/
+	public final static int BUILDINACTION_MORE = 2 ;
+	
 
-    public IPSDEFormDetail getPSDEFormDetail(int var1) throws Exception;
+	/**
+	 * 获取布局模式
+	 * 
+	 * @return
+	 */
+	String getLayoutMode();
 
-    public int getLabelColSpan();
+	/**
+	 * 获取列宽度集合，表格布局使用
+	 * 
+	 * @return
+	 */
+	double[] getColumnWidths();
 
-    public int getCtrlColSpan();
+	
 
-    public int getColumnCount();
+	/**
+	 * 获取分组表单成员集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IPSDEFormDetail> getPSDEFormDetails();
+	
+	
+	
+	/**
+	 * 获取分组表单成员数量
+	 * @return
+	 */
+	int getPSDEFormDetailCount();
+	
+	
+	/**
+	 * 获取指定位置的表单成员
+	 * @param nIndex
+	 * @return
+	 * @throws Exception
+	 */
+	IPSDEFormDetail getPSDEFormDetail(int nIndex)throws Exception;
 
-    public int getChildColXS();
+	/**
+	 * 获取默认的标签单元格信息
+	 * 
+	 * @return
+	 */
+	int getLabelColSpan();
 
-    public int getChildColSM();
+	/**
+	 * 获取默认的控件单元格信息
+	 * 
+	 * @return
+	 */
+	int getCtrlColSpan();
 
-    public int getChildColMD();
+	/**
+	 * 获取列数量
+	 * 
+	 * @return
+	 */
+	int getColumnCount();
 
-    public int getChildColLG();
+	/**
+	 * @return
+	 */
+	int getChildColXS();
 
-    public String getCaptionItemName();
+	/**
+	 * @return
+	 */
+	int getChildColSM();
 
-    public String getSubCaption();
+	/**
+	 * @return
+	 */
+	int getChildColMD();
 
-    public int getTitleBarCloseMode();
+	/**
+	 * @return
+	 */
+	int getChildColLG();
 
-    public boolean isEnableAnchor();
+	
+	/**
+	 * 获取标题绑定的表单项名称
+	 * 
+	 * @return
+	 */
+	String getCaptionItemName();
 
-    public int getBuildInActions();
-
-    public boolean isEnableBuildInAction(int var1);
+	/**
+	 * 获取子标题内容
+	 * 
+	 * @return
+	 */
+	String getSubCaption();
+	
+	
+	/**
+	 * 获取标题栏关闭模式，值参考 SA.SRFDA.PS.Core.Control.Form.IPSDEFormGroupPanel.TITLEBARCLOSEMODE_XXX 定义
+	 * 
+	 * @return
+	 */
+	int getTitleBarCloseMode();
+	
+	/**
+	 * 是否支持锚点
+	 * @return
+	 */
+	boolean isEnableAnchor();
+	
+	
+	
+	/**
+	 * 获取分组的内置行为，值参考 SA.SRFDA.PS.Core.Control.Form.IPSDEFormGroupPanel.BUILDINACTION_XXX 定义
+	 * @return
+	 */
+	int getBuildInActions();
+	
+	
+	/**
+	 * 是否支持内置行为
+	 * @param nAction
+	 * @return
+	 */
+	boolean isEnableBuildInAction(int nAction);
 }
-

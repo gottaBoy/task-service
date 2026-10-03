@@ -1628,7 +1628,7 @@ implements Serializable {
                 PSAppWF pSAppWF = new PSAppWF();
                 pSAppWF.setPSAppWFId(this.getPSAppWFId());
                 PSAppWFService pSAppWFService = (PSAppWFService)ServiceGlobal.getService(PSAppWFService.class, (SessionFactory)this.getSessionFactory());
-                pSAppWFService.autoGet((IEntity)pSAppWF);
+                pSAppWFService.autoGet(pSAppWF);
                 this.psappwf = pSAppWF;
             }
             return this.psappwf;
@@ -1654,7 +1654,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;
@@ -1680,7 +1680,7 @@ implements Serializable {
                 PSWFVersion pSWFVersion = new PSWFVersion();
                 pSWFVersion.setPSWFVersionId(this.getPSWFVersionId());
                 PSWFVersionService pSWFVersionService = (PSWFVersionService)ServiceGlobal.getService(PSWFVersionService.class, (SessionFactory)this.getSessionFactory());
-                pSWFVersionService.autoGet((IEntity)pSWFVersion);
+                pSWFVersionService.autoGet(pSWFVersion);
                 this.pswfversion = pSWFVersion;
             }
             return this.pswfversion;

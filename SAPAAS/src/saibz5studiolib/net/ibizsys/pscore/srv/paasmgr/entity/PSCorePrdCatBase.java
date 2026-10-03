@@ -1126,7 +1126,7 @@ implements Serializable {
                 PSCorePrdCat pSCorePrdCat = new PSCorePrdCat();
                 pSCorePrdCat.setPSCorePrdCatId(this.getPPSCorePrdCatId());
                 PSCorePrdCatService pSCorePrdCatService = (PSCorePrdCatService)ServiceGlobal.getService(PSCorePrdCatService.class, (SessionFactory)this.getSessionFactory());
-                pSCorePrdCatService.autoGet((IEntity)pSCorePrdCat);
+                pSCorePrdCatService.autoGet(pSCorePrdCat);
                 this.ppscoreprdcat = pSCorePrdCat;
             }
             return this.ppscoreprdcat;

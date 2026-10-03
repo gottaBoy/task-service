@@ -1,17 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IModelBase2
- */
 package net.ibizsys.ssdyna.core;
 
 import net.ibizsys.paas.core.IModelBase2;
 
-public interface IDynaDETempl
-extends IModelBase2 {
-    public String getTemplDEId();
+/**
+ * 动态实体模板
+ * @author Administrator
+ *
+ */
+public interface IDynaDETempl extends IModelBase2{
 
-    public String getTemplDEName();
+	/**
+	 *  获取模板实体标识
+	 * @return
+	 */
+	String getTemplDEId();
+	
+	
+	/**
+	 *  获取模板实体名称
+	 * @return
+	 */
+	String getTemplDEName();
 }
-

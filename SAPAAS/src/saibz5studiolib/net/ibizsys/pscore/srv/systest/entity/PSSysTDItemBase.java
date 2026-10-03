@@ -2630,7 +2630,7 @@ implements Serializable {
                 PSCodeList pSCodeList = new PSCodeList();
                 pSCodeList.setPSCodeListId(this.getPSCodeListId());
                 PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.getSessionFactory());
-                pSCodeListService.autoGet((IEntity)pSCodeList);
+                pSCodeListService.autoGet(pSCodeList);
                 this.pscodelist = pSCodeList;
             }
             return this.pscodelist;
@@ -2656,7 +2656,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getRefPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.refpsde = pSDataEntity;
             }
             return this.refpsde;
@@ -2682,7 +2682,7 @@ implements Serializable {
                 PSDEDataSet pSDEDataSet = new PSDEDataSet();
                 pSDEDataSet.setPSDEDataSetId(this.getRefPSDEDataSetId());
                 PSDEDataSetService pSDEDataSetService = (PSDEDataSetService)ServiceGlobal.getService(PSDEDataSetService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataSetService.autoGet((IEntity)pSDEDataSet);
+                pSDEDataSetService.autoGet(pSDEDataSet);
                 this.refpsdedataset = pSDEDataSet;
             }
             return this.refpsdedataset;
@@ -2708,7 +2708,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.psdef = pSDEField;
             }
             return this.psdef;
@@ -2734,7 +2734,7 @@ implements Serializable {
                 PSSysSampleValue pSSysSampleValue = new PSSysSampleValue();
                 pSSysSampleValue.setPSSysSampleValueId(this.getPSSysSampleValueId());
                 PSSysSampleValueService pSSysSampleValueService = (PSSysSampleValueService)ServiceGlobal.getService(PSSysSampleValueService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSampleValueService.autoGet((IEntity)pSSysSampleValue);
+                pSSysSampleValueService.autoGet(pSSysSampleValue);
                 this.pssyssamplevalue = pSSysSampleValue;
             }
             return this.pssyssamplevalue;
@@ -2760,7 +2760,7 @@ implements Serializable {
                 PSSysTestData pSSysTestData = new PSSysTestData();
                 pSSysTestData.setPSSysTestDataId(this.getPSSysTestDataId());
                 PSSysTestDataService pSSysTestDataService = (PSSysTestDataService)ServiceGlobal.getService(PSSysTestDataService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTestDataService.autoGet((IEntity)pSSysTestData);
+                pSSysTestDataService.autoGet(pSSysTestData);
                 this.pssystestdata = pSSysTestData;
             }
             return this.pssystestdata;
@@ -2786,7 +2786,7 @@ implements Serializable {
                 PSSysTestData pSSysTestData = new PSSysTestData();
                 pSSysTestData.setPSSysTestDataId(this.getRefPSSysTestDataId());
                 PSSysTestDataService pSSysTestDataService = (PSSysTestDataService)ServiceGlobal.getService(PSSysTestDataService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTestDataService.autoGet((IEntity)pSSysTestData);
+                pSSysTestDataService.autoGet(pSSysTestData);
                 this.refpssystestdata = pSSysTestData;
             }
             return this.refpssystestdata;

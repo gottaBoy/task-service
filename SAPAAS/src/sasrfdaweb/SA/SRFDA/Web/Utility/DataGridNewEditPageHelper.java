@@ -137,7 +137,7 @@ public class DataGridNewEditPageHelper {
                         String strBatchDSTDERID = daPage.getWebContext().GetParamValue("SRFDSTDERID");
                         String strDERId = daPage.getWebContext().getSRFDERID();
                         if (!StringHelper.IsNullOrEmpty((String)strDERId)) {
-                            Vector derList = iDEHelper.GetDER1Ns(false);
+                            Vector<DER1N> derList = iDEHelper.GetDER1Ns(false);
                             for (DER1N der1n : derList) {
                                 if ((der1n.getDERSUBTYPE() & 8) == 0) continue;
                                 if (StringHelper.Compare((String)strDERId, (String)der1n.getDERID(), (boolean)true) == 0) {
@@ -255,4 +255,3 @@ public class DataGridNewEditPageHelper {
         return true;
     }
 }
-

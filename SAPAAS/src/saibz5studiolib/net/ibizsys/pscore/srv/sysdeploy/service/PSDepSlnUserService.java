@@ -39,7 +39,7 @@ extends PSDepSlnUserServiceBase {
         PSDepSlnService pSDepSlnService = (PSDepSlnService)ServiceGlobal.getService(PSDepSlnService.class, (SessionFactory)this.getSessionFactory());
         PSDepSln pSDepSln = new PSDepSln();
         pSDepSln.setPSDepSlnId(pSDepSlnSys.getPSDepSlnId());
-        pSDepSlnService.get((IEntity)pSDepSln);
+        pSDepSlnService.get(pSDepSln);
         if (StringHelper.compare((String)pSDepSln.getAdminPSDevUserId(), (String)string, (boolean)false) == 0) {
             PSDepSlnUser pSDepSlnUser = new PSDepSlnUser();
             pSDepSlnUser.setPSDepSlnUserId(KeyValueHelper.genUniqueId((String)pSDepSlnSys.getPSDepSlnSysId(), (String)string));

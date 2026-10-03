@@ -56,10 +56,10 @@ extends PSModuleServiceBase {
             pSModule.setCodeName(string);
         }
         if (pSModule.getOrderValue() == null) {
-            string = new SelectContext();
-            string.set("PSSYSTEMID", (Object)pSModule.getPSSystemId());
-            string.addSelectField(SelectField.create((String)"ORDERVALUE", (String)"ORDERVALUE", (String)"MAX"));
-            ArrayList arrayList = this.selectEx((ISelectContext)string);
+            SelectContext selectContext = new SelectContext();
+            selectContext.set("PSSYSTEMID", (Object)pSModule.getPSSystemId());
+            selectContext.addSelectField(SelectField.create((String)"ORDERVALUE", (String)"ORDERVALUE", (String)"MAX"));
+            ArrayList arrayList = this.selectEx((ISelectContext)selectContext);
             int n = 1000;
             if (arrayList.size() > 0 && ((PSModule)arrayList.get(0)).getOrderValue() != null) {
                 n = ((PSModule)arrayList.get(0)).getOrderValue();
@@ -72,7 +72,7 @@ extends PSModuleServiceBase {
 
     @Override
     protected void onBeforeUpdate(PSModule pSModule) throws Exception {
-        PSModule pSModule2 = (PSModule)this.getLast((IEntity)pSModule);
+        PSModule pSModule2 = (PSModule)this.getLast(pSModule);
         if (pSModule.isPSSysModelGroupIdDirty()) {
             PSDataEntityService pSDataEntityService;
             ArrayList<PSDataEntity> arrayList;

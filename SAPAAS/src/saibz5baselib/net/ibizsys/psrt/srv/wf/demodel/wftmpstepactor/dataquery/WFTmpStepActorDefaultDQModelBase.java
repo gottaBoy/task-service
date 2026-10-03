@@ -1,20 +1,131 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wftmpstepactor.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="8D0E57E7-5B46-40AD-AC63-E8B160197457", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CONNECTION, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.PREVPROCESS, t1.PREVWFSTEPID, t1.PREVWFSTEPNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFTMPSTEPACTORID, t1.WFTMPSTEPACTORNAME FROM T_SRFWFTMPSTEPACTOR t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="CONNECTION", expression="t1.CONNECTION", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="PREVPROCESS", expression="t1.PREVPROCESS", showorder=4), @DEDataQueryCodeExp(name="PREVWFSTEPID", expression="t1.PREVWFSTEPID", showorder=5), @DEDataQueryCodeExp(name="PREVWFSTEPNAME", expression="t1.PREVWFSTEPNAME", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=8), @DEDataQueryCodeExp(name="WFACTORID", expression="t1.WFACTORID", showorder=9), @DEDataQueryCodeExp(name="WFACTORNAME", expression="t1.WFACTORNAME", showorder=10), @DEDataQueryCodeExp(name="WFTMPSTEPACTORID", expression="t1.WFTMPSTEPACTORID", showorder=11), @DEDataQueryCodeExp(name="WFTMPSTEPACTORNAME", expression="t1.WFTMPSTEPACTORNAME", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`connection`, t1.`createdate`, t1.`createman`, t1.`memo`, t1.`prevprocess`, t1.`prevwfstepid`, t1.`prevwfstepname`, t1.`updatedate`, t1.`updateman`, t1.`wfactorid`, t1.`wfactorname`, t1.`wftmpstepactorid`, t1.`wftmpstepactorname` FROM `t_srfwftmpstepactor` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CONNECTION", expression="t1.`connection`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.`memo`", showorder=3), @DEDataQueryCodeExp(name="PREVPROCESS", expression="t1.`prevprocess`", showorder=4), @DEDataQueryCodeExp(name="PREVWFSTEPID", expression="t1.`prevwfstepid`", showorder=5), @DEDataQueryCodeExp(name="PREVWFSTEPNAME", expression="t1.`prevwfstepname`", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=8), @DEDataQueryCodeExp(name="WFACTORID", expression="t1.`wfactorid`", showorder=9), @DEDataQueryCodeExp(name="WFACTORNAME", expression="t1.`wfactorname`", showorder=10), @DEDataQueryCodeExp(name="WFTMPSTEPACTORID", expression="t1.`wftmpstepactorid`", showorder=11), @DEDataQueryCodeExp(name="WFTMPSTEPACTORNAME", expression="t1.`wftmpstepactorname`", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CONNECTION, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.PREVPROCESS, t1.PREVWFSTEPID, t1.PREVWFSTEPNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFTMPSTEPACTORID, t1.WFTMPSTEPACTORNAME FROM T_SRFWFTMPSTEPACTOR t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CONNECTION", expression="t1.CONNECTION", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="PREVPROCESS", expression="t1.PREVPROCESS", showorder=4), @DEDataQueryCodeExp(name="PREVWFSTEPID", expression="t1.PREVWFSTEPID", showorder=5), @DEDataQueryCodeExp(name="PREVWFSTEPNAME", expression="t1.PREVWFSTEPNAME", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=8), @DEDataQueryCodeExp(name="WFACTORID", expression="t1.WFACTORID", showorder=9), @DEDataQueryCodeExp(name="WFACTORNAME", expression="t1.WFACTORNAME", showorder=10), @DEDataQueryCodeExp(name="WFTMPSTEPACTORID", expression="t1.WFTMPSTEPACTORID", showorder=11), @DEDataQueryCodeExp(name="WFTMPSTEPACTORNAME", expression="t1.WFTMPSTEPACTORNAME", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CONNECTION, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.PREVPROCESS, t1.PREVWFSTEPID, t1.PREVWFSTEPNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFTMPSTEPACTORID, t1.WFTMPSTEPACTORNAME FROM T_SRFWFTMPSTEPACTOR t1  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="CONNECTION", expression="t1.CONNECTION", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="PREVPROCESS", expression="t1.PREVPROCESS", showorder=4), @DEDataQueryCodeExp(name="PREVWFSTEPID", expression="t1.PREVWFSTEPID", showorder=5), @DEDataQueryCodeExp(name="PREVWFSTEPNAME", expression="t1.PREVWFSTEPNAME", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=8), @DEDataQueryCodeExp(name="WFACTORID", expression="t1.WFACTORID", showorder=9), @DEDataQueryCodeExp(name="WFACTORNAME", expression="t1.WFACTORNAME", showorder=10), @DEDataQueryCodeExp(name="WFTMPSTEPACTORID", expression="t1.WFTMPSTEPACTORID", showorder=11), @DEDataQueryCodeExp(name="WFTMPSTEPACTORNAME", expression="t1.WFTMPSTEPACTORNAME", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CONNECTION, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.PREVPROCESS, t1.PREVWFSTEPID, t1.PREVWFSTEPNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFTMPSTEPACTORID, t1.WFTMPSTEPACTORNAME FROM T_SRFWFTMPSTEPACTOR t1  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="CONNECTION", expression="t1.CONNECTION", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="PREVPROCESS", expression="t1.PREVPROCESS", showorder=4), @DEDataQueryCodeExp(name="PREVWFSTEPID", expression="t1.PREVWFSTEPID", showorder=5), @DEDataQueryCodeExp(name="PREVWFSTEPNAME", expression="t1.PREVWFSTEPNAME", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=8), @DEDataQueryCodeExp(name="WFACTORID", expression="t1.WFACTORID", showorder=9), @DEDataQueryCodeExp(name="WFACTORNAME", expression="t1.WFACTORNAME", showorder=10), @DEDataQueryCodeExp(name="WFTMPSTEPACTORID", expression="t1.WFTMPSTEPACTORID", showorder=11), @DEDataQueryCodeExp(name="WFTMPSTEPACTORNAME", expression="t1.WFTMPSTEPACTORNAME", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[CONNECTION], t1.[CREATEDATE], t1.[CREATEMAN], t1.[MEMO], t1.[PREVPROCESS], t1.[PREVWFSTEPID], t1.[PREVWFSTEPNAME], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[WFACTORID], t1.[WFACTORNAME], t1.[WFTMPSTEPACTORID], t1.[WFTMPSTEPACTORNAME] FROM [T_SRFWFTMPSTEPACTOR] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="CONNECTION", expression="t1.[CONNECTION]", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.[MEMO]", showorder=3), @DEDataQueryCodeExp(name="PREVPROCESS", expression="t1.[PREVPROCESS]", showorder=4), @DEDataQueryCodeExp(name="PREVWFSTEPID", expression="t1.[PREVWFSTEPID]", showorder=5), @DEDataQueryCodeExp(name="PREVWFSTEPNAME", expression="t1.[PREVWFSTEPNAME]", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=8), @DEDataQueryCodeExp(name="WFACTORID", expression="t1.[WFACTORID]", showorder=9), @DEDataQueryCodeExp(name="WFACTORNAME", expression="t1.[WFACTORNAME]", showorder=10), @DEDataQueryCodeExp(name="WFTMPSTEPACTORID", expression="t1.[WFTMPSTEPACTORID]", showorder=11), @DEDataQueryCodeExp(name="WFTMPSTEPACTORNAME", expression="t1.[WFTMPSTEPACTORNAME]", showorder=12)}, conds={})})
-public abstract class WFTmpStepActorDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="8D0E57E7-5B46-40AD-AC63-E8B160197457",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CONNECTION, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.PREVPROCESS, t1.PREVWFSTEPID, t1.PREVWFSTEPNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFTMPSTEPACTORID, t1.WFTMPSTEPACTORNAME FROM T_SRFWFTMPSTEPACTOR t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CONNECTION",expression="t1.CONNECTION",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="PREVPROCESS",expression="t1.PREVPROCESS",showorder=4)
+        ,@DEDataQueryCodeExp(name="PREVWFSTEPID",expression="t1.PREVWFSTEPID",showorder=5)
+        ,@DEDataQueryCodeExp(name="PREVWFSTEPNAME",expression="t1.PREVWFSTEPNAME",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFACTORID",expression="t1.WFACTORID",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFACTORNAME",expression="t1.WFACTORNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFTMPSTEPACTORID",expression="t1.WFTMPSTEPACTORID",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFTMPSTEPACTORNAME",expression="t1.WFTMPSTEPACTORNAME",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`connection`, t1.`createdate`, t1.`createman`, t1.`memo`, t1.`prevprocess`, t1.`prevwfstepid`, t1.`prevwfstepname`, t1.`updatedate`, t1.`updateman`, t1.`wfactorid`, t1.`wfactorname`, t1.`wftmpstepactorid`, t1.`wftmpstepactorname` FROM `t_srfwftmpstepactor` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CONNECTION",expression="t1.`connection`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.`memo`",showorder=3)
+        ,@DEDataQueryCodeExp(name="PREVPROCESS",expression="t1.`prevprocess`",showorder=4)
+        ,@DEDataQueryCodeExp(name="PREVWFSTEPID",expression="t1.`prevwfstepid`",showorder=5)
+        ,@DEDataQueryCodeExp(name="PREVWFSTEPNAME",expression="t1.`prevwfstepname`",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFACTORID",expression="t1.`wfactorid`",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFACTORNAME",expression="t1.`wfactorname`",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFTMPSTEPACTORID",expression="t1.`wftmpstepactorid`",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFTMPSTEPACTORNAME",expression="t1.`wftmpstepactorname`",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CONNECTION, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.PREVPROCESS, t1.PREVWFSTEPID, t1.PREVWFSTEPNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFTMPSTEPACTORID, t1.WFTMPSTEPACTORNAME FROM T_SRFWFTMPSTEPACTOR t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CONNECTION",expression="t1.CONNECTION",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="PREVPROCESS",expression="t1.PREVPROCESS",showorder=4)
+        ,@DEDataQueryCodeExp(name="PREVWFSTEPID",expression="t1.PREVWFSTEPID",showorder=5)
+        ,@DEDataQueryCodeExp(name="PREVWFSTEPNAME",expression="t1.PREVWFSTEPNAME",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFACTORID",expression="t1.WFACTORID",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFACTORNAME",expression="t1.WFACTORNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFTMPSTEPACTORID",expression="t1.WFTMPSTEPACTORID",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFTMPSTEPACTORNAME",expression="t1.WFTMPSTEPACTORNAME",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CONNECTION, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.PREVPROCESS, t1.PREVWFSTEPID, t1.PREVWFSTEPNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFTMPSTEPACTORID, t1.WFTMPSTEPACTORNAME FROM T_SRFWFTMPSTEPACTOR t1  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CONNECTION",expression="t1.CONNECTION",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="PREVPROCESS",expression="t1.PREVPROCESS",showorder=4)
+        ,@DEDataQueryCodeExp(name="PREVWFSTEPID",expression="t1.PREVWFSTEPID",showorder=5)
+        ,@DEDataQueryCodeExp(name="PREVWFSTEPNAME",expression="t1.PREVWFSTEPNAME",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFACTORID",expression="t1.WFACTORID",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFACTORNAME",expression="t1.WFACTORNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFTMPSTEPACTORID",expression="t1.WFTMPSTEPACTORID",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFTMPSTEPACTORNAME",expression="t1.WFTMPSTEPACTORNAME",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CONNECTION, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.PREVPROCESS, t1.PREVWFSTEPID, t1.PREVWFSTEPNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFTMPSTEPACTORID, t1.WFTMPSTEPACTORNAME FROM T_SRFWFTMPSTEPACTOR t1  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CONNECTION",expression="t1.CONNECTION",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="PREVPROCESS",expression="t1.PREVPROCESS",showorder=4)
+        ,@DEDataQueryCodeExp(name="PREVWFSTEPID",expression="t1.PREVWFSTEPID",showorder=5)
+        ,@DEDataQueryCodeExp(name="PREVWFSTEPNAME",expression="t1.PREVWFSTEPNAME",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFACTORID",expression="t1.WFACTORID",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFACTORNAME",expression="t1.WFACTORNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFTMPSTEPACTORID",expression="t1.WFTMPSTEPACTORID",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFTMPSTEPACTORNAME",expression="t1.WFTMPSTEPACTORNAME",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[CONNECTION], t1.[CREATEDATE], t1.[CREATEMAN], t1.[MEMO], t1.[PREVPROCESS], t1.[PREVWFSTEPID], t1.[PREVWFSTEPNAME], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[WFACTORID], t1.[WFACTORNAME], t1.[WFTMPSTEPACTORID], t1.[WFTMPSTEPACTORNAME] FROM [T_SRFWFTMPSTEPACTOR] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CONNECTION",expression="t1.[CONNECTION]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.[MEMO]",showorder=3)
+        ,@DEDataQueryCodeExp(name="PREVPROCESS",expression="t1.[PREVPROCESS]",showorder=4)
+        ,@DEDataQueryCodeExp(name="PREVWFSTEPID",expression="t1.[PREVWFSTEPID]",showorder=5)
+        ,@DEDataQueryCodeExp(name="PREVWFSTEPNAME",expression="t1.[PREVWFSTEPNAME]",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFACTORID",expression="t1.[WFACTORID]",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFACTORNAME",expression="t1.[WFACTORNAME]",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFTMPSTEPACTORID",expression="t1.[WFTMPSTEPACTORID]",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFTMPSTEPACTORNAME",expression="t1.[WFTMPSTEPACTORNAME]",showorder=12)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class WFTmpStepActorDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public WFTmpStepActorDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(WFTmpStepActorDefaultDQModelBase.class);
     }
-}
 
+}

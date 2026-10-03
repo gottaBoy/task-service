@@ -84,7 +84,7 @@ implements IPSSysERMapNodeService {
     @Override
     protected List<PSSysERMapNode> onListAll() throws Exception {
         ArrayList<PSSysERMapNode> list = new ArrayList<PSSysERMapNode>();
-        List pssysermaps = PSModelServiceUtil.getInstance().getPSSysERMapService().listAll();
+        List<PSSysERMap> pssysermaps = PSModelServiceUtil.getInstance().getPSSysERMapService().listAll();
         if (pssysermaps != null) {
             for (PSSysERMap parent : pssysermaps) {
                 List<PSSysERMapNode> items = this.listByPSSysERMap(parent);

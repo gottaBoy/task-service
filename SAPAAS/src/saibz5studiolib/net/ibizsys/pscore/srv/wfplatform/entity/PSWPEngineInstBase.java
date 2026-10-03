@@ -771,7 +771,7 @@ implements Serializable {
                 PSWFEngine pSWFEngine = new PSWFEngine();
                 pSWFEngine.setPSWPEngineId(this.getPSWPEngineId());
                 PSWFEngineService pSWFEngineService = (PSWFEngineService)ServiceGlobal.getService(PSWFEngineService.class, (SessionFactory)this.getSessionFactory());
-                pSWFEngineService.autoGet((IEntity)pSWFEngine);
+                pSWFEngineService.autoGet(pSWFEngine);
                 this.pswpengine = pSWFEngine;
             }
             return this.pswpengine;

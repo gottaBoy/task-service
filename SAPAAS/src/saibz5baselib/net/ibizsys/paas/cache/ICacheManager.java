@@ -1,27 +1,93 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.cache;
 
-import net.ibizsys.paas.cache.ICacheItem;
-
+/**
+ * 缓存管理对象接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface ICacheManager {
-    public static final int CACHESCOPE_NONE = 0;
-    public static final int CACHESCOPE_GLOBAL = 1;
-    public static final int CACHESCOPE_ORG = 2;
-    public static final int CACHESCOPE_USER = 3;
-    public static final int CACHESCOPE_APP = 4;
 
-    public Object getData(String var1, Object var2) throws Exception;
+	/**
+	 * 缓存范围 - 未定义
+	 */
+	public final static int CACHESCOPE_NONE = 0;
+	
+	
+	/**
+	 * 缓存范围 - 全局
+	 */
+	public final static int CACHESCOPE_GLOBAL = 1;
 
-    public ICacheItem updateData(String var1, Object var2, Object var3) throws Exception;
+	/**
+	 * 缓存范围 - 组织
+	 */
+	public final static int CACHESCOPE_ORG = 2;
 
-    public ICacheItem updateData(String var1, Object var2, Object var3, long var4) throws Exception;
+	/**
+	 * 缓存范围 - 用户
+	 */
+	public final static int CACHESCOPE_USER = 3;
 
-    public ICacheItem removeData(String var1) throws Exception;
+	/**
+	 * 缓存范围 - 应用程序级别
+	 */
+	public final static int CACHESCOPE_APP = 4;
+	
+	
 
-    public ICacheItem getCacheItem(String var1);
+	/**
+	 * 获取数据
+	 * 
+	 * @param strCacheTag
+	 * @param objState
+	 * @return
+	 * @throws Exception
+	 */
+	Object getData(String strCacheTag, Object objState) throws Exception;
 
-    public void removeAll();
+	/**
+	 * 更新缓存数据
+	 * 
+	 * @param strCacheTag
+	 * @param objState
+	 * @param objData
+	 * @return
+	 * @throws Exception
+	 */
+	ICacheItem updateData(String strCacheTag, Object objState, Object objData) throws Exception;
+
+	/**
+	 * 更新缓存数据
+	 * 
+	 * @param strCacheTag
+	 * @param objState
+	 * @param objData
+	 * @param nTimeout 超时时长，-1为不超时
+	 * @return
+	 * @throws Exception
+	 */
+	ICacheItem updateData(String strCacheTag, Object objState, Object objData, long nTimeout) throws Exception;
+
+	/**
+	 * 移除数据
+	 * 
+	 * @param strCacheTag
+	 * @throws Exception
+	 */
+	ICacheItem removeData(String strCacheTag) throws Exception;
+
+	/**
+	 * 获取指定数据缓存项
+	 * 
+	 * @param strCacheTag
+	 * @return
+	 */
+	ICacheItem getCacheItem(String strCacheTag);
+	
+	
+	/**
+	 * 清空全部缓存
+	 */
+	void removeAll();
 }
-

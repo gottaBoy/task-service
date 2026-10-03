@@ -1057,7 +1057,7 @@ implements Serializable {
                 PSDevSlnSysVer pSDevSlnSysVer = new PSDevSlnSysVer();
                 pSDevSlnSysVer.setPSDevSlnSysVerId(this.getFromPSDevSlnSysVerId());
                 PSDevSlnSysVerService pSDevSlnSysVerService = (PSDevSlnSysVerService)ServiceGlobal.getService(PSDevSlnSysVerService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysVerService.autoGet((IEntity)pSDevSlnSysVer);
+                pSDevSlnSysVerService.autoGet(pSDevSlnSysVer);
                 this.frompsdevslnsysver = pSDevSlnSysVer;
             }
             return this.frompsdevslnsysver;
@@ -1083,7 +1083,7 @@ implements Serializable {
                 PSDevSlnSysVer pSDevSlnSysVer = new PSDevSlnSysVer();
                 pSDevSlnSysVer.setPSDevSlnSysVerId(this.getPSDevSlnSysVerId());
                 PSDevSlnSysVerService pSDevSlnSysVerService = (PSDevSlnSysVerService)ServiceGlobal.getService(PSDevSlnSysVerService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysVerService.autoGet((IEntity)pSDevSlnSysVer);
+                pSDevSlnSysVerService.autoGet(pSDevSlnSysVer);
                 this.psdevslnsysver = pSDevSlnSysVer;
             }
             return this.psdevslnsysver;

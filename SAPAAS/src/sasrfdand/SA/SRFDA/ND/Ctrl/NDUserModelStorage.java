@@ -162,7 +162,7 @@ implements INDUserModelStorage {
             return;
         }
         this.deptNDDiskList = new ArrayList();
-        Vector orgTreeNodes = new Vector();
+        Vector<ORGTreeNode> orgTreeNodes = new Vector();
         CallResult callResult = this.getDAGlobalHelper().getDAModelHelper().GetORGTreeNodes(this.getNDORGTreeId(), this.iUserRoleHelper.getCurOU().getORGUNITID(), orgTreeNodes);
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u83b7\u53d6OU\u5bf9\u5e94\u7684\u7f51\u76d8\u7ec4\u7ec7\u6811\u8282\u70b9\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));

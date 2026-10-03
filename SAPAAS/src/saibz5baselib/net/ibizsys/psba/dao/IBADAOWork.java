@@ -1,9 +1,18 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.dao;
 
+/**
+ * 大数据访问作业
+ * 
+ * @author Administrator
+ *
+ */
 public interface IBADAOWork {
-    public void execute(Object var1) throws Exception;
-}
 
+	/**
+	 * 执行作业
+	 * 
+	 * @param objConn
+	 * @throws Exception
+	 */
+	void execute(Object objConn) throws Exception;
+}

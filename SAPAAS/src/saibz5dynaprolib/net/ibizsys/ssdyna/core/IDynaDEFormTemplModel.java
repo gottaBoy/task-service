@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.core;
 
-import net.ibizsys.ssdyna.core.IDynaDEFormTempl;
+/**
+ * 动态实体表单模板对象模型接口
+ * @author Administrator
+ *
+ */
+public interface IDynaDEFormTemplModel extends IDynaDEFormTempl {
 
-public interface IDynaDEFormTemplModel
-extends IDynaDEFormTempl {
+
 }
-

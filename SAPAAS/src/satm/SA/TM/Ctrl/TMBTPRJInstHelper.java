@@ -62,7 +62,7 @@ implements ITMBTPRJInstHelper {
         CallParamList callParamList = new CallParamList();
         callParamList.Add((Object)this.getId());
         String strSQL = "select t1.* FROM SRFV_TMBOOKINGTEST t1 where t1.TMBTPRJINSTID =? ORDER BY T1.ORDERFLAG";
-        Vector tmBookingTests = new Vector();
+        Vector<TMBookingTest> tmBookingTests = new Vector<TMBookingTest>();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getDAGlobalHelper(), null, (String)this.getDBStorage(), (String)strSQL, (Vector)callParamList.GetList(), tmBookingTests, (String)TMBookingTest.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8bd5\u7b97\u8ba1\u5212\u4e3b\u4efb\u52a1\u5b9e\u4f8b\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -174,4 +174,3 @@ implements ITMBTPRJInstHelper {
         return this.tmBTPRJInst.getTASKFAILEDLOOPCNT();
     }
 }
-

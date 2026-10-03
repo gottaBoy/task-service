@@ -1,41 +1,51 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package net.ibizsys.paas.dts;
 
-import net.ibizsys.paas.dts.IDTSQueueModel;
-import net.ibizsys.paas.entity.IEntity;
-import net.ibizsys.paas.service.ISFSAction;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class DTSQueueSFSAction
-implements ISFSAction {
-    private static final Log log = LogFactory.getLog(DTSQueueSFSAction.class);
-    private IDTSQueueModel iDTSQueueModel = null;
-    private IEntity iEntity = null;
+import net.ibizsys.paas.entity.IEntity;
+import net.ibizsys.paas.service.ISFSAction;
 
-    public DTSQueueSFSAction(IDTSQueueModel iDTSQueueModel, IEntity iEntity) {
-        this.iDTSQueueModel = iDTSQueueModel;
-        this.iEntity = iEntity;
-    }
+/**
+ * 分布事物队列会话工厂会话操作
+ * @author Administrator
+ *
+ */
+public class DTSQueueSFSAction implements ISFSAction {
 
-    @Override
-    public void commit() {
-        try {
-            this.iDTSQueueModel.push(this.iEntity);
-        }
-        catch (Exception ex) {
-            log.error((Object)ex);
-        }
-    }
+	private static final Log log = LogFactory.getLog(DTSQueueSFSAction.class);
+	
+	private IDTSQueueModel iDTSQueueModel = null;
+	private IEntity iEntity = null;
+	
+	public DTSQueueSFSAction(IDTSQueueModel iDTSQueueModel,IEntity iEntity){
+		this.iDTSQueueModel = iDTSQueueModel;
+		this.iEntity = iEntity;
+	}
 
-    @Override
-    public void rollback() {
-    }
+	@Override
+	public void commit() {
+		try{
+			iDTSQueueModel.push(iEntity);
+		}
+		catch(Exception ex){
+			log.error(ex);
+		}
+	}
+
+	@Override
+	public void rollback() {
+		try{
+			
+		}
+		catch(Exception ex){
+			log.error(ex);
+		}
+	}
+	
+	
+	
+	
+	
+	
 }
-

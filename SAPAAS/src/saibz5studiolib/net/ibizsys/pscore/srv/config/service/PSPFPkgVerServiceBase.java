@@ -152,9 +152,9 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDC(pSPFPkgVer, pSDevCenter);
             return;
@@ -164,14 +164,14 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
             PSPFPkg pSPFPkg = (PSPFPkg)iService.getDEModel().createEntity();
             pSPFPkg.set("PSPFPKGID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSPFPkg);
+                iService.getTemp(pSPFPkg);
             } else {
-                iService.get((IEntity)pSPFPkg);
+                iService.get(pSPFPkg);
             }
             this.onFillParentInfo_PSPFPkg(pSPFPkgVer, pSPFPkg);
             return;
         }
-        super.onFillParentInfo((IEntity)pSPFPkgVer, string, string2, string3);
+        super.onFillParentInfo(pSPFPkgVer, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -192,7 +192,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSPFPkgVer, bl);
+        super.onFillEntityFullInfo(pSPFPkgVer, bl);
         this.onFillEntityFullInfo_PSDC(pSPFPkgVer, bl);
         this.onFillEntityFullInfo_PSPFPkg(pSPFPkgVer, bl);
     }
@@ -214,7 +214,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
     }
 
     protected void onWriteBackParent(PSPFPkgVer pSPFPkgVer, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPFPkgVer, bl);
+        super.onWriteBackParent(pSPFPkgVer, bl);
     }
 
     public ArrayList<PSPFPkgVer> selectByPSDC(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -297,7 +297,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
         ArrayList<PSPFPkgVer> arrayList = this.selectByPSDC(pSDevCenter);
         this.onBeforeRemoveByPSDC(pSDevCenter, arrayList);
         for (PSPFPkgVer pSPFPkgVer : arrayList) {
-            this.remove((IEntity)pSPFPkgVer);
+            this.remove(pSPFPkgVer);
         }
         this.onAfterRemoveByPSDC(pSDevCenter, arrayList);
     }
@@ -343,7 +343,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
         ArrayList<PSPFPkgVer> arrayList = this.selectByPSPFPkg(pSPFPkg);
         this.onBeforeRemoveByPSPFPkg(pSPFPkg, arrayList);
         for (PSPFPkgVer pSPFPkgVer : arrayList) {
-            this.remove((IEntity)pSPFPkgVer);
+            this.remove(pSPFPkgVer);
         }
         this.onAfterRemoveByPSPFPkg(pSPFPkg, arrayList);
     }
@@ -371,7 +371,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
 
     protected void replaceParentInfo(PSPFPkgVer pSPFPkgVer, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSPFPkgVer, cloneSession);
+        super.replaceParentInfo(pSPFPkgVer, cloneSession);
         if (pSPFPkgVer.getPSDCId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSPFPkgVer.getPSDCId())) != null) {
             this.onFillParentInfo_PSDC(pSPFPkgVer, (PSDevCenter)iEntity);
         }
@@ -381,7 +381,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
     }
 
     protected void onRemoveEntityUncopyValues(PSPFPkgVer pSPFPkgVer, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPFPkgVer, bl);
+        super.onRemoveEntityUncopyValues(pSPFPkgVer, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPFPkgVer pSPFPkgVer, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -417,7 +417,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
         if ((entityFieldError = this.onCheckField_PSPFPkgVerName(bl, pSPFPkgVer, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPFPkgVer, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPFPkgVer, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSPFPkgVer pSPFPkgVer, boolean bl2, boolean bl3) throws Exception {
@@ -430,7 +430,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPFPkgVer, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPFPkgVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -452,7 +452,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PkgParam_Default((IEntity)pSPFPkgVer, bl2, bl3);
+            string2 = this.onTestValueRule_PkgParam_Default(pSPFPkgVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PKGPARAM");
@@ -474,7 +474,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PkgParam2_Default((IEntity)pSPFPkgVer, bl2, bl3);
+            string2 = this.onTestValueRule_PkgParam2_Default(pSPFPkgVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PKGPARAM2");
@@ -496,7 +496,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PkgParam3_Default((IEntity)pSPFPkgVer, bl2, bl3);
+            string2 = this.onTestValueRule_PkgParam3_Default(pSPFPkgVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PKGPARAM3");
@@ -518,7 +518,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PkgParam4_Default((IEntity)pSPFPkgVer, bl2, bl3);
+            string2 = this.onTestValueRule_PkgParam4_Default(pSPFPkgVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PKGPARAM4");
@@ -540,7 +540,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCId_Default((IEntity)pSPFPkgVer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCId_Default(pSPFPkgVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCID");
@@ -562,7 +562,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCName_Default((IEntity)pSPFPkgVer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCName_Default(pSPFPkgVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCNAME");
@@ -584,7 +584,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPkgId_Default((IEntity)pSPFPkgVer, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPkgId_Default(pSPFPkgVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPKGID");
@@ -609,7 +609,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPkgVerId_Default((IEntity)pSPFPkgVer, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPkgVerId_Default(pSPFPkgVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPKGVERID");
@@ -634,7 +634,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPkgVerName_Default((IEntity)pSPFPkgVer, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPkgVerName_Default(pSPFPkgVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPKGVERNAME");
@@ -647,11 +647,11 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
     }
 
     protected void onSyncEntity(PSPFPkgVer pSPFPkgVer, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPFPkgVer, bl);
+        super.onSyncEntity(pSPFPkgVer, bl);
     }
 
     protected void onSyncIndexEntities(PSPFPkgVer pSPFPkgVer, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPFPkgVer, bl);
+        super.onSyncIndexEntities(pSPFPkgVer, bl);
     }
 
     public Object getDataContextValue(PSPFPkgVer pSPFPkgVer, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -659,7 +659,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPFPkgVer, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPFPkgVer, string, iDataContextParam)) != null) {
             return object;
         }
         PSPFPkg pSPFPkg = pSPFPkgVer.getPSPFPkg();
@@ -670,7 +670,7 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
     }
 
     protected void onExportMajorModel(PSPFPkgVer pSPFPkgVer, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPFPkgVer, arrayList, n);
+        super.onExportMajorModel(pSPFPkgVer, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -888,14 +888,14 @@ extends PSCoreSysServiceBase<PSPFPkgVer> {
 
     protected boolean onMergeChild(String string, String string2, PSPFPkgVer pSPFPkgVer) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPFPkgVer)) {
+        if (super.onMergeChild(string, string2, pSPFPkgVer)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPFPkgVer pSPFPkgVer) throws Exception {
-        super.onUpdateParent((IEntity)pSPFPkgVer);
+        super.onUpdateParent(pSPFPkgVer);
     }
 
     @Override

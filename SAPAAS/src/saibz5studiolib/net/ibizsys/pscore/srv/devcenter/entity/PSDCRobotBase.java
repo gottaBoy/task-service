@@ -2317,7 +2317,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -2343,7 +2343,7 @@ implements Serializable {
                 PSDevUser pSDevUser = new PSDevUser();
                 pSDevUser.setPSDevUserId(this.getPSDevUserId());
                 PSDevUserService pSDevUserService = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class, (SessionFactory)this.getSessionFactory());
-                pSDevUserService.autoGet((IEntity)pSDevUser);
+                pSDevUserService.autoGet(pSDevUser);
                 this.psdevuser = pSDevUser;
             }
             return this.psdevuser;
@@ -2369,7 +2369,7 @@ implements Serializable {
                 PSRobot pSRobot = new PSRobot();
                 pSRobot.setPSRobotId(this.getPSRobotId());
                 PSRobotService pSRobotService = (PSRobotService)ServiceGlobal.getService(PSRobotService.class, (SessionFactory)this.getSessionFactory());
-                pSRobotService.autoGet((IEntity)pSRobot);
+                pSRobotService.autoGet(pSRobot);
                 this.psrobot = pSRobot;
             }
             return this.psrobot;
@@ -2395,7 +2395,7 @@ implements Serializable {
                 PSTaskServer pSTaskServer = new PSTaskServer();
                 pSTaskServer.setPSTaskServerId(this.getPSTaskServerId());
                 PSTaskServerService pSTaskServerService = (PSTaskServerService)ServiceGlobal.getService(PSTaskServerService.class, (SessionFactory)this.getSessionFactory());
-                pSTaskServerService.autoGet((IEntity)pSTaskServer);
+                pSTaskServerService.autoGet(pSTaskServer);
                 this.pstaskserver = pSTaskServer;
             }
             return this.pstaskserver;

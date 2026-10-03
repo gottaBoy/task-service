@@ -1333,7 +1333,7 @@ implements Serializable {
                 PSModelRT pSModelRT = new PSModelRT();
                 pSModelRT.setPSModelRTId(this.getPPSModelRTId());
                 PSModelRTService pSModelRTService = (PSModelRTService)ServiceGlobal.getService(PSModelRTService.class, (SessionFactory)this.getSessionFactory());
-                pSModelRTService.autoGet((IEntity)pSModelRT);
+                pSModelRTService.autoGet(pSModelRT);
                 this.ppsmodelrt = pSModelRT;
             }
             return this.ppsmodelrt;

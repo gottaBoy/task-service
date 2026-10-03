@@ -1,97 +1,145 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.util.JSONObjectHelper
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.pswx.core.IWXMenuItem
- *  net.sf.json.JSON
- *  net.sf.json.JSONArray
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.pswx.core;
 
 import java.util.ArrayList;
+
 import net.ibizsys.paas.util.JSONObjectHelper;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.pswx.core.IWXMenuItem;
-import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class WXMenuItem
-implements IWXMenuItem {
-    public static final String WXMENUITEM_ID = "id";
-    public static final String WXMENUITEM_PID = "pid";
-    public static final String WXMENUITEM_TEXT = "text";
-    private String strId = "";
-    private String strText = "";
-    private String strPId = "";
-    private String strWXFunc = "";
-    private String strClickTag = "";
-    private ArrayList<IWXMenuItem> items = new ArrayList();
+/**
+ * 微信菜单项实现对象
+ * 
+ * @author Administrator
+ * 
+ */
+public class WXMenuItem implements IWXMenuItem {
 
-    public String getId() {
-        return this.strId;
-    }
+	/**
+	 * 菜单项标识
+	 */
+	public final static String WXMENUITEM_ID = "id";
 
-    public String getText() {
-        return this.strText;
-    }
+	/**
+	 * 父菜单项标识
+	 */
+	public final static String WXMENUITEM_PID = "pid";
 
-    public String getPId() {
-        return this.strPId;
-    }
+	/**
+	 * 显示文本
+	 */
+	public final static String WXMENUITEM_TEXT = "text";
 
-    public void setId(String strId) {
-        this.strId = strId;
-    }
+	private String strId = "";
+	private String strText = "";
+	private String strPId = "";
+	private String strWXFunc = "";
+	private String strClickTag = "";
+	private ArrayList<IWXMenuItem> items = new ArrayList<IWXMenuItem>();
 
-    public void setText(String strText) {
-        this.strText = strText;
-    }
+	@Override
+	public String getId() {
+		return strId;
+	}
 
-    public void setPId(String strPId) {
-        this.strPId = strPId;
-    }
+	@Override
+	public String getText() {
+		return this.strText;
+	}
 
-    public String getWXFunc() {
-        return this.strWXFunc;
-    }
+	@Override
+	public String getPId() {
+		return this.strPId;
+	}
 
-    public void setWXFunc(String strWXFunc) {
-        this.strWXFunc = strWXFunc;
-    }
+	/**
+	 * 设置标识
+	 * 
+	 * @param strId
+	 */
+	public void setId(String strId) {
+		this.strId = strId;
+	}
 
-    public ArrayList<IWXMenuItem> getItems() {
-        return this.items;
-    }
+	/**
+	 * 设置文本
+	 * 
+	 * @param strText
+	 */
+	public void setText(String strText) {
+		this.strText = strText;
+	}
 
-    public String getClickTag() {
-        return this.strClickTag;
-    }
+	/**
+	 * 设置父菜单项标识
+	 * 
+	 * @param strPId
+	 */
+	public void setPId(String strPId) {
+		this.strPId = strPId;
+	}
 
-    public void setClickTag(String strClickTag) {
-        this.strClickTag = strClickTag;
-    }
+	/**
+	 * 获取应用功能编号
+	 * 
+	 * @return
+	 */
+	@Override
+	public String getWXFunc() {
+		return this.strWXFunc;
+	}
 
-    public JSONObject toJSON() {
-        JSONObject json = new JSONObject();
-        json.put("name", JSONObjectHelper.stripQuotes((String)this.getText(), (boolean)true));
-        if (this.items.size() <= 0) {
-            json.put("type", (Object)this.getWXFunc());
-            if (StringHelper.isNullOrEmpty((String)this.getClickTag())) {
-                json.put("key", (Object)this.getId());
-            } else {
-                json.put("key", (Object)this.getClickTag());
-            }
-        }
-        JSONArray array = new JSONArray();
-        for (IWXMenuItem item : this.items) {
-            array.put((JSON)item.toJSON());
-        }
-        json.put("sub_button", (Object)array);
-        return json;
-    }
+	/**
+	 * 设置应用功能编号
+	 * 
+	 * @param strWXFunc
+	 */
+	public void setWXFunc(String strWXFunc) {
+		this.strWXFunc = strWXFunc;
+	}
+
+	@Override
+	public ArrayList<IWXMenuItem> getItems() {
+		return items;
+	}
+
+	@Override
+	public String getClickTag() {
+		return strClickTag;
+	}
+
+	/**
+	 * 设置菜单点击标识
+	 * 
+	 * @param strClickTag
+	 */
+	public void setClickTag(String strClickTag) {
+		this.strClickTag = strClickTag;
+	}
+
+	@Override
+	public JSONObject toJSON() {
+		JSONObject json = new JSONObject();
+
+		json.put("name", JSONObjectHelper.stripQuotes(this.getText(),true));
+
+		if (this.items.size() <= 0) {
+			json.put("type", this.getWXFunc());
+
+			if (StringHelper.isNullOrEmpty(this.getClickTag())) {
+				json.put("key", this.getId());
+			} else {
+				json.put("key", this.getClickTag());
+			}
+		}
+		JSONArray array = new JSONArray();
+
+		for (IWXMenuItem item : this.items) {
+			array.put(item.toJSON());
+		}
+
+		json.put("sub_button", array);
+
+		return json;
+	}
 }
-

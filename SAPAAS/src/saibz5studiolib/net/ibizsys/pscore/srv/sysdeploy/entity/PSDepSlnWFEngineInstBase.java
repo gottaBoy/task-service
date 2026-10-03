@@ -1056,7 +1056,7 @@ implements Serializable {
                 PSDCWFEngineInst pSDCWFEngineInst = new PSDCWFEngineInst();
                 pSDCWFEngineInst.setPSDCWFEngineInstId(this.getPSDCWFEngineInstId());
                 PSDCWFEngineInstService pSDCWFEngineInstService = (PSDCWFEngineInstService)ServiceGlobal.getService(PSDCWFEngineInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDCWFEngineInstService.autoGet((IEntity)pSDCWFEngineInst);
+                pSDCWFEngineInstService.autoGet(pSDCWFEngineInst);
                 this.psdcwfengineinst = pSDCWFEngineInst;
             }
             return this.psdcwfengineinst;
@@ -1082,7 +1082,7 @@ implements Serializable {
                 PSDepSln pSDepSln = new PSDepSln();
                 pSDepSln.setPSDepSlnId(this.getPSDepSlnId());
                 PSDepSlnService pSDepSlnService = (PSDepSlnService)ServiceGlobal.getService(PSDepSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnService.autoGet((IEntity)pSDepSln);
+                pSDepSlnService.autoGet(pSDepSln);
                 this.psdepsln = pSDepSln;
             }
             return this.psdepsln;

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEFormDetailDEModelBase;
 
 public class PSDEFormDetailDEModel
 extends PSDEFormDetailDEModelBase {
+
+    public PSDEFormDetailDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

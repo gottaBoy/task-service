@@ -143,9 +143,9 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
             PSDCWorkspace pSDCWorkspace = (PSDCWorkspace)iService.getDEModel().createEntity();
             pSDCWorkspace.set("PSDCWORKSPACEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDCWorkspace);
+                iService.getTemp(pSDCWorkspace);
             } else {
-                iService.get((IEntity)pSDCWorkspace);
+                iService.get(pSDCWorkspace);
             }
             this.onFillParentInfo_PSDCWorkspace(pSDCWorkspaceUser, pSDCWorkspace);
             return;
@@ -155,14 +155,14 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
             PSDevUser pSDevUser = (PSDevUser)iService.getDEModel().createEntity();
             pSDevUser.set("PSDEVUSERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevUser);
+                iService.getTemp(pSDevUser);
             } else {
-                iService.get((IEntity)pSDevUser);
+                iService.get(pSDevUser);
             }
             this.onFillParentInfo_PSDevUser(pSDCWorkspaceUser, pSDevUser);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCWorkspaceUser, string, string2, string3);
+        super.onFillParentInfo(pSDCWorkspaceUser, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -201,7 +201,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCWorkspaceUser, bl);
+        super.onFillEntityFullInfo(pSDCWorkspaceUser, bl);
         this.onFillEntityFullInfo_PSDCWorkspace(pSDCWorkspaceUser, bl);
         this.onFillEntityFullInfo_PSDevUser(pSDCWorkspaceUser, bl);
     }
@@ -223,7 +223,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
     }
 
     protected void onWriteBackParent(PSDCWorkspaceUser pSDCWorkspaceUser, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCWorkspaceUser, bl);
+        super.onWriteBackParent(pSDCWorkspaceUser, bl);
     }
 
     public ArrayList<PSDCWorkspaceUser> selectByPSDCWorkspace(PSDCWorkspaceBase pSDCWorkspaceBase) throws Exception {
@@ -306,7 +306,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
         ArrayList<PSDCWorkspaceUser> arrayList = this.selectByPSDCWorkspace(pSDCWorkspace);
         this.onBeforeRemoveByPSDCWorkspace(pSDCWorkspace, arrayList);
         for (PSDCWorkspaceUser pSDCWorkspaceUser : arrayList) {
-            this.remove((IEntity)pSDCWorkspaceUser);
+            this.remove(pSDCWorkspaceUser);
         }
         this.onAfterRemoveByPSDCWorkspace(pSDCWorkspace, arrayList);
     }
@@ -352,7 +352,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
         ArrayList<PSDCWorkspaceUser> arrayList = this.selectByPSDevUser(pSDevUser);
         this.onBeforeRemoveByPSDevUser(pSDevUser, arrayList);
         for (PSDCWorkspaceUser pSDCWorkspaceUser : arrayList) {
-            this.remove((IEntity)pSDCWorkspaceUser);
+            this.remove(pSDCWorkspaceUser);
         }
         this.onAfterRemoveByPSDevUser(pSDevUser, arrayList);
     }
@@ -373,7 +373,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
 
     protected void replaceParentInfo(PSDCWorkspaceUser pSDCWorkspaceUser, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCWorkspaceUser, cloneSession);
+        super.replaceParentInfo(pSDCWorkspaceUser, cloneSession);
         if (pSDCWorkspaceUser.getPSDCWorkspaceId() != null && (iEntity = cloneSession.getEntity("PSDCWORKSPACE", (Object)pSDCWorkspaceUser.getPSDCWorkspaceId())) != null) {
             this.onFillParentInfo_PSDCWorkspace(pSDCWorkspaceUser, (PSDCWorkspace)iEntity);
         }
@@ -383,7 +383,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCWorkspaceUser pSDCWorkspaceUser, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCWorkspaceUser, bl);
+        super.onRemoveEntityUncopyValues(pSDCWorkspaceUser, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCWorkspaceUser pSDCWorkspaceUser, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -416,7 +416,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
         if ((entityFieldError = this.onCheckField_UserTag2(bl, pSDCWorkspaceUser, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCWorkspaceUser, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCWorkspaceUser, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AccessTime(boolean bl, PSDCWorkspaceUser pSDCWorkspaceUser, boolean bl2, boolean bl3) throws Exception {
@@ -429,7 +429,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AccessTime_Default((IEntity)pSDCWorkspaceUser, bl2, bl3);
+            string = this.onTestValueRule_AccessTime_Default(pSDCWorkspaceUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACCESSTIME");
@@ -451,7 +451,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCWorkspaceUser, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCWorkspaceUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -476,7 +476,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCWorkspaceId_Default((IEntity)pSDCWorkspaceUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCWorkspaceId_Default(pSDCWorkspaceUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCWORKSPACEID");
@@ -501,7 +501,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCWorkspaceUserId_Default((IEntity)pSDCWorkspaceUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCWorkspaceUserId_Default(pSDCWorkspaceUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCWORKSPACEUSERID");
@@ -526,7 +526,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCWorkspaceUserName_Default((IEntity)pSDCWorkspaceUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCWorkspaceUserName_Default(pSDCWorkspaceUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCWORKSPACEUSERNAME");
@@ -548,7 +548,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevUserId_Default((IEntity)pSDCWorkspaceUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevUserId_Default(pSDCWorkspaceUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVUSERID");
@@ -570,7 +570,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevUserName_Default((IEntity)pSDCWorkspaceUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevUserName_Default(pSDCWorkspaceUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVUSERNAME");
@@ -592,7 +592,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDCWorkspaceUser, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDCWorkspaceUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -614,7 +614,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDCWorkspaceUser, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDCWorkspaceUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -627,11 +627,11 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
     }
 
     protected void onSyncEntity(PSDCWorkspaceUser pSDCWorkspaceUser, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCWorkspaceUser, bl);
+        super.onSyncEntity(pSDCWorkspaceUser, bl);
     }
 
     protected void onSyncIndexEntities(PSDCWorkspaceUser pSDCWorkspaceUser, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCWorkspaceUser, bl);
+        super.onSyncIndexEntities(pSDCWorkspaceUser, bl);
     }
 
     public Object getDataContextValue(PSDCWorkspaceUser pSDCWorkspaceUser, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -639,7 +639,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCWorkspaceUser, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCWorkspaceUser, string, iDataContextParam)) != null) {
             return object;
         }
         PSDCWorkspace pSDCWorkspace = pSDCWorkspaceUser.getPSDCWorkspace();
@@ -650,7 +650,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
     }
 
     protected void onExportMajorModel(PSDCWorkspaceUser pSDCWorkspaceUser, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCWorkspaceUser, arrayList, n);
+        super.onExportMajorModel(pSDCWorkspaceUser, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -845,14 +845,14 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
 
     protected boolean onMergeChild(String string, String string2, PSDCWorkspaceUser pSDCWorkspaceUser) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCWorkspaceUser)) {
+        if (super.onMergeChild(string, string2, pSDCWorkspaceUser)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCWorkspaceUser pSDCWorkspaceUser) throws Exception {
-        super.onUpdateParent((IEntity)pSDCWorkspaceUser);
+        super.onUpdateParent(pSDCWorkspaceUser);
     }
 
     @Override
@@ -874,7 +874,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceUser> {
         PSDCWorkspaceUser pSDCWorkspaceUser2 = new PSDCWorkspaceUser();
         pSDCWorkspaceUser2.setPSDCWorkspaceId(pSDCWorkspaceUser.getPSDCWorkspaceId());
         pSDCWorkspaceUser2.setPSDCWorkspaceUserName(pSDCWorkspaceUser.getPSDCWorkspaceUserName());
-        if (this.selectOne((IEntity)pSDCWorkspaceUser2, true)) {
+        if (this.selectOne(pSDCWorkspaceUser2, true)) {
             return pSDCWorkspaceUser2.getPSDCWorkspaceUserId();
         }
         return super.getEntityFolderKeyValue(pSDCWorkspaceUser, pSSystem);

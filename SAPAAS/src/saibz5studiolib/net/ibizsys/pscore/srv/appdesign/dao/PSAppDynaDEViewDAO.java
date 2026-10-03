@@ -73,7 +73,7 @@ extends PSCoreSysDAOBase<PSAppDynaDEView> {
     }
 
     protected void fillInheritEntity(PSAppDynaDEView pSAppDynaDEView) throws Exception {
-        super.fillInheritEntity((IEntity)pSAppDynaDEView);
+        super.fillInheritEntity(pSAppDynaDEView);
         PSAppDynaDEView pSAppDynaDEView2 = pSAppDynaDEView;
         pSAppDynaDEView2.setPSAppViewId(pSAppDynaDEView.getPSAppDynaDEViewId());
         if (pSAppDynaDEView.isPSAppDynaDEViewNameDirty()) {

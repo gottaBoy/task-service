@@ -47,7 +47,7 @@ extends PSDevSysDiffRepServiceBase {
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
             SessionFactoryManager.commit((SessionFactory)this.getSessionFactory());
             if (pSDevSysDiffRep.getRepState() != null && pSDevSysDiffRep.getRepState() == 10) {
-                this.executeRemoteCall2("STARTDIFF", (IEntity)pSDevSysDiffRep);
+                this.executeRemoteCall2("STARTDIFF", pSDevSysDiffRep);
             }
             return;
         }

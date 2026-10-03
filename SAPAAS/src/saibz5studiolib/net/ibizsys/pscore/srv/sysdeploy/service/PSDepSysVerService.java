@@ -39,13 +39,13 @@ extends PSDepSysVerServiceBase {
             PSSaaSSys pSSaaSSys = new PSSaaSSys();
             pSSaaSSys.setPSSaaSSysId(string);
             String string2 = pSDepSysVer.getPSDepSys().getCodeName();
-            if (pSSaaSSysService.get((IEntity)pSSaaSSys, true) && !StringHelper.isNullOrEmpty((String)pSSaaSSys.getCodeName())) {
+            if (pSSaaSSysService.get(pSSaaSSys, true) && !StringHelper.isNullOrEmpty((String)pSSaaSSys.getCodeName())) {
                 string2 = pSSaaSSys.getCodeName();
             }
             PSSaaSSysVerService pSSaaSSysVerService = (PSSaaSSysVerService)ServiceGlobal.getService(PSSaaSSysVerService.class);
             PSSaaSSysVer pSSaaSSysVer = new PSSaaSSysVer();
             pSSaaSSysVer.setPSSaaSSysVerId(pSDepSysVer.getPSSaaSSysVerId());
-            if (!pSSaaSSysVerService.get((IEntity)pSSaaSSysVer, true)) {
+            if (!pSSaaSSysVerService.get(pSSaaSSysVer, true)) {
                 throw new Exception("\u65e0\u6cd5\u83b7\u53d6SaaS\u7cfb\u7edf\u7248\u672c\u4fe1\u606f");
             }
             PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();

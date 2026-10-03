@@ -156,9 +156,9 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
             PSSysOPPriv pSSysOPPriv = (PSSysOPPriv)iService.getDEModel().createEntity();
             pSSysOPPriv.set("PSSYSOPPRIVID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysOPPriv);
+                iService.getTemp(pSSysOPPriv);
             } else {
-                iService.get((IEntity)pSSysOPPriv);
+                iService.get(pSSysOPPriv);
             }
             this.onFillParentInfo_PSSysOPPriv(pSSysUserRoleRes, pSSysOPPriv);
             return;
@@ -168,14 +168,14 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
             PSSysUniRes pSSysUniRes = (PSSysUniRes)iService.getDEModel().createEntity();
             pSSysUniRes.set("PSSYSUNIRESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysUniRes);
+                iService.getTemp(pSSysUniRes);
             } else {
-                iService.get((IEntity)pSSysUniRes);
+                iService.get(pSSysUniRes);
             }
             this.onFillParentInfo_PSSysUniRes(pSSysUserRoleRes, pSSysUniRes);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysUserRoleRes, string, string2, string3);
+        super.onFillParentInfo(pSSysUserRoleRes, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -219,7 +219,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 pSSysUserRoleRes.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysUserRoleRes, bl);
+        super.onFillEntityFullInfo(pSSysUserRoleRes, bl);
         this.onFillEntityFullInfo_PSSysOPPriv(pSSysUserRoleRes, bl);
         this.onFillEntityFullInfo_PSSysUniRes(pSSysUserRoleRes, bl);
     }
@@ -231,7 +231,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
     }
 
     protected void onWriteBackParent(PSSysUserRoleRes pSSysUserRoleRes, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysUserRoleRes, bl);
+        super.onWriteBackParent(pSSysUserRoleRes, bl);
     }
 
     public ArrayList<PSSysUserRoleRes> selectByPSSysOPPriv(PSSysOPPrivBase pSSysOPPrivBase) throws Exception {
@@ -301,8 +301,8 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
         ArrayList<PSSysUserRoleRes> arrayList = this.selectByPSSysOPPriv(pSSysOPPriv, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSOPPRIV");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysOPPriv);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUSERROLERES_PSSYSOPPRIV_PSSYSOPPRIVID", "", iDataEntityModel.getName(), "PSSYSUSERROLERES", iDataEntityModel.getDataInfo((IEntity)pSSysOPPriv), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysOPPriv);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUSERROLERES_PSSYSOPPRIV_PSSYSOPPRIVID", "", iDataEntityModel.getName(), "PSSYSUSERROLERES", iDataEntityModel.getDataInfo(pSSysOPPriv), arrayList.get(0)));
         }
     }
 
@@ -335,7 +335,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
         ArrayList<PSSysUserRoleRes> arrayList = this.selectByPSSysOPPriv(pSSysOPPriv);
         this.onBeforeRemoveByPSSysOPPriv(pSSysOPPriv, arrayList);
         for (PSSysUserRoleRes pSSysUserRoleRes : arrayList) {
-            this.remove((IEntity)pSSysUserRoleRes);
+            this.remove(pSSysUserRoleRes);
         }
         this.onAfterRemoveByPSSysOPPriv(pSSysOPPriv, arrayList);
     }
@@ -353,8 +353,8 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
         ArrayList<PSSysUserRoleRes> arrayList = this.selectByPSSysUniRes(pSSysUniRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSUNIRES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysUniRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUSERROLERES_PSSYSUNIRES_PSSYSUNIRESID", "", iDataEntityModel.getName(), "PSSYSUSERROLERES", iDataEntityModel.getDataInfo((IEntity)pSSysUniRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysUniRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSUSERROLERES_PSSYSUNIRES_PSSYSUNIRESID", "", iDataEntityModel.getName(), "PSSYSUSERROLERES", iDataEntityModel.getDataInfo(pSSysUniRes), arrayList.get(0)));
         }
     }
 
@@ -387,7 +387,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
         ArrayList<PSSysUserRoleRes> arrayList = this.selectByPSSysUniRes(pSSysUniRes);
         this.onBeforeRemoveByPSSysUniRes(pSSysUniRes, arrayList);
         for (PSSysUserRoleRes pSSysUserRoleRes : arrayList) {
-            this.remove((IEntity)pSSysUserRoleRes);
+            this.remove(pSSysUserRoleRes);
         }
         this.onAfterRemoveByPSSysUniRes(pSSysUniRes, arrayList);
     }
@@ -425,7 +425,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
         ArrayList<PSSysUserRoleRes> arrayList = this.selectTempByPSSysOPPriv(pSSysOPPriv);
         this.onBeforeRemoveTempByPSSysOPPriv(pSSysOPPriv, arrayList);
         for (PSSysUserRoleRes pSSysUserRoleRes : arrayList) {
-            this.removeTemp((IEntity)pSSysUserRoleRes);
+            this.removeTemp(pSSysUserRoleRes);
         }
         this.onAfterRemoveTempByPSSysOPPriv(pSSysOPPriv, arrayList);
     }
@@ -441,7 +441,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
 
     protected void replaceParentInfo(PSSysUserRoleRes pSSysUserRoleRes, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysUserRoleRes, cloneSession);
+        super.replaceParentInfo(pSSysUserRoleRes, cloneSession);
         if (pSSysUserRoleRes.getPSSysOPPrivId() != null && (iEntity = cloneSession.getEntity("PSSYSOPPRIV", (Object)pSSysUserRoleRes.getPSSysOPPrivId())) != null) {
             this.onFillParentInfo_PSSysOPPriv(pSSysUserRoleRes, (PSSysOPPriv)iEntity);
         }
@@ -451,7 +451,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysUserRoleRes pSSysUserRoleRes, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysUserRoleRes, bl);
+        super.onRemoveEntityUncopyValues(pSSysUserRoleRes, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysUserRoleRes pSSysUserRoleRes, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -493,7 +493,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysUserRoleRes, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysUserRoleRes, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysUserRoleRes, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSysUserRoleRes pSSysUserRoleRes, boolean bl2, boolean bl3) throws Exception {
@@ -506,7 +506,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysUserRoleRes, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysUserRoleRes, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -531,7 +531,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysOPPrivId_Default((IEntity)pSSysUserRoleRes, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysOPPrivId_Default(pSSysUserRoleRes, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSOPPRIVID");
@@ -556,7 +556,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUniResId_Default((IEntity)pSSysUserRoleRes, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUniResId_Default(pSSysUserRoleRes, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUNIRESID");
@@ -581,7 +581,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUserRoleResId_Default((IEntity)pSSysUserRoleRes, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUserRoleResId_Default(pSSysUserRoleRes, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUSERROLERESID");
@@ -603,7 +603,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUserRoleResName_Default((IEntity)pSSysUserRoleRes, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUserRoleResName_Default(pSSysUserRoleRes, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUSERROLERESNAME");
@@ -625,7 +625,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ResModel_Default((IEntity)pSSysUserRoleRes, bl2, bl3);
+            string2 = this.onTestValueRule_ResModel_Default(pSSysUserRoleRes, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESMODEL");
@@ -647,7 +647,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysUserRoleRes, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysUserRoleRes, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -669,7 +669,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysUserRoleRes, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysUserRoleRes, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -691,7 +691,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysUserRoleRes, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysUserRoleRes, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -713,7 +713,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysUserRoleRes, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysUserRoleRes, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -735,7 +735,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysUserRoleRes, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysUserRoleRes, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -760,7 +760,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysUserRoleRes, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysUserRoleRes, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -773,11 +773,11 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
     }
 
     protected void onSyncEntity(PSSysUserRoleRes pSSysUserRoleRes, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysUserRoleRes, bl);
+        super.onSyncEntity(pSSysUserRoleRes, bl);
     }
 
     protected void onSyncIndexEntities(PSSysUserRoleRes pSSysUserRoleRes, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysUserRoleRes, bl);
+        super.onSyncIndexEntities(pSSysUserRoleRes, bl);
     }
 
     public Object getDataContextValue(PSSysUserRoleRes pSSysUserRoleRes, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -785,7 +785,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysUserRoleRes, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysUserRoleRes, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysOPPriv pSSysOPPriv = pSSysUserRoleRes.getPSSysOPPriv();
@@ -800,7 +800,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
     }
 
     protected void onExportMajorModel(PSSysUserRoleRes pSSysUserRoleRes, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysUserRoleRes, arrayList, n);
+        super.onExportMajorModel(pSSysUserRoleRes, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1055,14 +1055,14 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
 
     protected boolean onMergeChild(String string, String string2, PSSysUserRoleRes pSSysUserRoleRes) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysUserRoleRes)) {
+        if (super.onMergeChild(string, string2, pSSysUserRoleRes)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysUserRoleRes pSSysUserRoleRes) throws Exception {
-        super.onUpdateParent((IEntity)pSSysUserRoleRes);
+        super.onUpdateParent(pSSysUserRoleRes);
     }
 
     @Override
@@ -1084,7 +1084,7 @@ extends PSCoreSysServiceBase<PSSysUserRoleRes> {
         PSSysUserRoleRes pSSysUserRoleRes2 = new PSSysUserRoleRes();
         pSSysUserRoleRes2.setPSSysOPPrivId(pSSysUserRoleRes.getPSSysOPPrivId());
         pSSysUserRoleRes2.setPSSysUniResId(pSSysUserRoleRes.getPSSysUniResId());
-        if (this.selectOne((IEntity)pSSysUserRoleRes2, true)) {
+        if (this.selectOne(pSSysUserRoleRes2, true)) {
             return pSSysUserRoleRes2.getPSSysUserRoleResId();
         }
         return super.getEntityFolderKeyValue(pSSysUserRoleRes, pSSystem);

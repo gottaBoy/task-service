@@ -1,17 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel.form;
 
-import net.ibizsys.paas.ctrlmodel.form.DynaFormGroupModelBase;
-import net.ibizsys.paas.ctrlmodel.form.IDynaFormPageModel;
+/**
+ * 默认动态表单分页模型对象
+ * @author Administrator
+ *
+ */
+public class DynaFormPageModel extends DynaFormGroupModelBase implements IDynaFormPageModel{
 
-public class DynaFormPageModel
-extends DynaFormGroupModelBase
-implements IDynaFormPageModel {
-    @Override
-    public String getDetailType() {
-        return "FORMPAGE";
-    }
+	@Override
+	public String getDetailType() {
+		return IDynaFormDetailModel.DETAILTYPE_FORMPAGE;
+	}
+
 }
-

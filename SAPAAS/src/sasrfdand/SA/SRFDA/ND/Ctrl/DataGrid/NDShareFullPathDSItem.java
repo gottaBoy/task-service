@@ -67,7 +67,14 @@ ISRFExDataGridDSItem3 {
             }
         }
         SRFDAPage srfDAPage = (SRFDAPage)webContext.getPage();
-        String strValue = dr.Get(strDataRow).toString();
+        String strValue;
+        try {
+            strValue = dr.Get(strDataRow).toString();
+        }
+        catch (Exception exception) {
+            return "";
+        }
+        try {
         IDEDataCtrl ndFSODataCtrl = srfDAPage.GetDEDataCtrl("ND0010");
         NDFSObject ndFSObject = new NDFSObject();
         ndFSObject.setNDFSOBJECTID(strValue);
@@ -80,6 +87,11 @@ ISRFExDataGridDSItem3 {
         INDFSOTypeHelper iNDFSOTypeHelper = iNDModelStorage.FindNDFSOType(ndFSObject.getNDFSOBJECTTYPE());
         String strFolderPath = iNDFSOTypeHelper.CalcFSOFullPath(iNDActionContext, ndFSObject);
         return strFolderPath;
+        }
+        catch (Exception exception) {
+            log.error((Object)exception.getMessage(), (Throwable)exception);
+            return "";
+        }
     }
 }
 

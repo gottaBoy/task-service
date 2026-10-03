@@ -48,7 +48,7 @@ extends XMLCollectionExConfig<DEDCBaseProcessConfig> {
 
     protected boolean OnChildNodeLoaded(DEDCBaseProcessConfig childNode) {
         childNode.setParentProcessConfig(this.processConfig);
-        return super.OnChildNodeLoaded((Object)childNode);
+        return super.OnChildNodeLoaded(childNode);
     }
 
     public void OnLoadNode(String strName, Node xmlNode) {
@@ -57,7 +57,7 @@ extends XMLCollectionExConfig<DEDCBaseProcessConfig> {
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = DEDCProcessesConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
             if (this.OnChildNodeLoaded((DEDCBaseProcessConfig)childNode)) {
-                this.add((Object)((DEDCBaseProcessConfig)childNode));
+                this.add((DEDCBaseProcessConfig)childNode);
                 return;
             }
         }
@@ -89,4 +89,3 @@ extends XMLCollectionExConfig<DEDCBaseProcessConfig> {
         return true;
     }
 }
-

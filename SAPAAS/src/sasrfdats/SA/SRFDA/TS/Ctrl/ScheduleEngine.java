@@ -178,7 +178,7 @@ IScheduleEngineContext {
         }
         CallParamList callParamList = new CallParamList();
         callParamList.AddString(this.tsSDEngine.getTSSDENGINEID());
-        Vector tasks = new Vector();
+        Vector<TSSDTask> tasks = new Vector();
         callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.taskTypeDataCtrl.GetDEHelper().GetDBStorage(), (String)strSQL, (Vector)callParamList.GetList(), tasks, (String)TSSDTask.class.getName());
         if (callResult.IsError()) {
             log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u8c03\u5ea6\u4efb\u52a1\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -224,7 +224,7 @@ IScheduleEngineContext {
         String strSQL = "select TSSDPOLICYID from t_SRFTSSDTASKPOLICY where TSSDTASKID = ?";
         CallParamList callParamList = new CallParamList();
         callParamList.AddString(task.getTSSDTASKID());
-        Vector taskPolicies = new Vector();
+        Vector<TSSDTaskPolicy> taskPolicies = new Vector();
         callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.taskTypeDataCtrl.GetDEHelper().GetDBStorage(), (String)strSQL, (Vector)callParamList.GetList(), taskPolicies, (String)TSSDTaskPolicy.class.getName());
         if (callResult.IsError()) {
             log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u4efb\u52a1\u8c03\u5ea6\u7b56\u7565\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -364,7 +364,7 @@ IScheduleEngineContext {
         CallParamList callParamList = new CallParamList();
         callParamList.AddString(strTSSDId);
         callParamList.AddString(strTSSDId);
-        Vector tsItems = new Vector();
+        Vector<TSSDItem> tsItems = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)"", (String)strSQL, (Vector)callParamList.GetList(), tsItems, (String)TSSDItem.class.getName());
         if (callResult.IsError()) {
             log.error((Object)callResult.getErrorInfo());

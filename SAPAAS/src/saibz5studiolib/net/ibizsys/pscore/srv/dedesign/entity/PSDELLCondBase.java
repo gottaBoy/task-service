@@ -2700,7 +2700,7 @@ implements Serializable {
                 PSDBValueOP pSDBValueOP = new PSDBValueOP();
                 pSDBValueOP.setPSDBValueOPId(this.getPSDBValueOPId());
                 PSDBValueOPService pSDBValueOPService = (PSDBValueOPService)ServiceGlobal.getService(PSDBValueOPService.class, (SessionFactory)this.getSessionFactory());
-                pSDBValueOPService.autoGet((IEntity)pSDBValueOP);
+                pSDBValueOPService.autoGet(pSDBValueOP);
                 this.psdbvalueop = pSDBValueOP;
             }
             return this.psdbvalueop;
@@ -2726,7 +2726,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getDstPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.dstpsdef = pSDEField;
             }
             return this.dstpsdef;
@@ -2752,7 +2752,7 @@ implements Serializable {
                 PSDELLCond pSDELLCond = new PSDELLCond();
                 pSDELLCond.setPSDELLCondId(this.getPPSDELLCondId());
                 PSDELLCondService pSDELLCondService = (PSDELLCondService)ServiceGlobal.getService(PSDELLCondService.class, (SessionFactory)this.getSessionFactory());
-                pSDELLCondService.autoGet((IEntity)pSDELLCond);
+                pSDELLCondService.autoGet(pSDELLCond);
                 this.ppsdellcond = pSDELLCond;
             }
             return this.ppsdellcond;
@@ -2778,7 +2778,7 @@ implements Serializable {
                 PSDELogicLink pSDELogicLink = new PSDELogicLink();
                 pSDELogicLink.setPSDELogicLinkId(this.getPSDELogicLinkId());
                 PSDELogicLinkService pSDELogicLinkService = (PSDELogicLinkService)ServiceGlobal.getService(PSDELogicLinkService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicLinkService.autoGet((IEntity)pSDELogicLink);
+                pSDELogicLinkService.autoGet(pSDELogicLink);
                 this.psdelogiclink = pSDELogicLink;
             }
             return this.psdelogiclink;
@@ -2804,7 +2804,7 @@ implements Serializable {
                 PSDELogicParam pSDELogicParam = new PSDELogicParam();
                 pSDELogicParam.setPSDELogicParamId(this.getDstPSDLParamId());
                 PSDELogicParamService pSDELogicParamService = (PSDELogicParamService)ServiceGlobal.getService(PSDELogicParamService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicParamService.autoGet((IEntity)pSDELogicParam);
+                pSDELogicParamService.autoGet(pSDELogicParam);
                 this.dstpsdlparam = pSDELogicParam;
             }
             return this.dstpsdlparam;
@@ -2830,7 +2830,7 @@ implements Serializable {
                 PSDELogicParam pSDELogicParam = new PSDELogicParam();
                 pSDELogicParam.setPSDELogicParamId(this.getSrcPSDLParamId());
                 PSDELogicParamService pSDELogicParamService = (PSDELogicParamService)ServiceGlobal.getService(PSDELogicParamService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicParamService.autoGet((IEntity)pSDELogicParam);
+                pSDELogicParamService.autoGet(pSDELogicParam);
                 this.srcpsdlparam = pSDELogicParam;
             }
             return this.srcpsdlparam;

@@ -51,10 +51,10 @@ implements IPSBookingDSType {
         PSDSBooking psDSBooking = (PSDSBooking)iPSResBooking.getResBookingData();
         PSDevServer psDevServer = new PSDevServer();
         psDevServer.setPSDevServerId(psDSBooking.getPSDevServerId());
-        this.psDevServerService.get((IEntity)psDevServer);
+        this.psDevServerService.get(psDevServer);
         String strNewPassword = PasswordHelper.generate();
         psDevServer.setPasswd(strNewPassword);
-        this.psDevServerService.update((IEntity)psDevServer);
+        this.psDevServerService.update(psDevServer);
         SA.SRFDA.PS.Data.PSDevServer psDevServerV3 = new SA.SRFDA.PS.Data.PSDevServer();
         PSDEDataCtrl.convertEntity((IEntity)psDevServer, psDevServerV3);
         IPSDevServerType iPSDevServerType = this.getPSModelStorage().getPSDevServerType(psDevServer.getDSType());
@@ -67,10 +67,10 @@ implements IPSBookingDSType {
         PSDSBooking psDSBooking = (PSDSBooking)iPSResBooking.getResBookingData();
         PSDevServer psDevServer = new PSDevServer();
         psDevServer.setPSDevServerId(psDSBooking.getPSDevServerId());
-        this.psDevServerService.get((IEntity)psDevServer);
+        this.psDevServerService.get(psDevServer);
         String strNewPassword = PasswordHelper.generate();
         psDevServer.setPasswd(strNewPassword);
-        this.psDevServerService.update((IEntity)psDevServer);
+        this.psDevServerService.update(psDevServer);
         SA.SRFDA.PS.Data.PSDevServer psDevServerV3 = new SA.SRFDA.PS.Data.PSDevServer();
         PSDEDataCtrl.convertEntity((IEntity)psDevServer, psDevServerV3);
         IPSDevServerType iPSDevServerType = this.getPSModelStorage().getPSDevServerType(psDevServer.getDSType());
@@ -78,4 +78,3 @@ implements IPSBookingDSType {
         super.onUninitResBooking(iPSResBooking);
     }
 }
-

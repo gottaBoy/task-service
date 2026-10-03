@@ -72,7 +72,7 @@ implements IPSDEGroupDetailService {
     @Override
     protected List<PSDEGroupDetail> onListAll() throws Exception {
         ArrayList<PSDEGroupDetail> list = new ArrayList<PSDEGroupDetail>();
-        List psdegroups = PSModelServiceUtil.getInstance().getPSDEGroupService().listAll();
+        List<PSDEGroup> psdegroups = PSModelServiceUtil.getInstance().getPSDEGroupService().listAll();
         if (psdegroups != null) {
             for (PSDEGroup parent : psdegroups) {
                 List<PSDEGroupDetail> items = this.listByPSDEGroup(parent);

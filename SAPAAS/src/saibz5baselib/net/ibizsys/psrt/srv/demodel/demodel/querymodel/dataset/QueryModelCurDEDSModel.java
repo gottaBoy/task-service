@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.demodel.demodel.querymodel.dataset;
 
-import net.ibizsys.psrt.srv.demodel.demodel.querymodel.dataset.QueryModelCurDEDSModelBase;
+/**
+ *  实体数据集合[当前实体]模型
+ */
+public class QueryModelCurDEDSModel extends QueryModelCurDEDSModelBase {
 
-public class QueryModelCurDEDSModel
-extends QueryModelCurDEDSModelBase {
+    public QueryModelCurDEDSModel() {
+        super();
+    }
+
 }
-

@@ -48,8 +48,8 @@ extends XMLCollectionExConfig<WFEmbedWFReturnConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = WFEmbedWFReturnsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((WFEmbedWFReturnConfig)childNode))) {
-                this.add((Object)((WFEmbedWFReturnConfig)childNode));
+            if (this.OnChildNodeLoaded((WFEmbedWFReturnConfig)childNode)) {
+                this.add((WFEmbedWFReturnConfig)childNode);
                 return;
             }
         }

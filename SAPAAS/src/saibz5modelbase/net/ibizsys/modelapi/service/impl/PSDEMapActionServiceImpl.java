@@ -72,7 +72,7 @@ implements IPSDEMapActionService {
     @Override
     protected List<PSDEMapAction> onListAll() throws Exception {
         ArrayList<PSDEMapAction> list = new ArrayList<PSDEMapAction>();
-        List psdemaps = PSModelServiceUtil.getInstance().getPSDEMapService().listAll();
+        List<PSDEMap> psdemaps = PSModelServiceUtil.getInstance().getPSDEMapService().listAll();
         if (psdemaps != null) {
             for (PSDEMap parent : psdemaps) {
                 List<PSDEMapAction> items = this.listByPSDEMap(parent);

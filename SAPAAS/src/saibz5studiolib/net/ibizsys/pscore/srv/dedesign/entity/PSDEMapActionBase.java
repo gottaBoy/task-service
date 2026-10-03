@@ -1839,7 +1839,7 @@ implements Serializable {
                 PSDEAction pSDEAction = new PSDEAction();
                 pSDEAction.setPSDEActionId(this.getDstPSDEActionId());
                 PSDEActionService pSDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionService.autoGet((IEntity)pSDEAction);
+                pSDEActionService.autoGet(pSDEAction);
                 this.dstpsdeaction = pSDEAction;
             }
             return this.dstpsdeaction;
@@ -1865,7 +1865,7 @@ implements Serializable {
                 PSDEAction pSDEAction = new PSDEAction();
                 pSDEAction.setPSDEActionId(this.getPSDEActionId());
                 PSDEActionService pSDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionService.autoGet((IEntity)pSDEAction);
+                pSDEActionService.autoGet(pSDEAction);
                 this.psdeaction = pSDEAction;
             }
             return this.psdeaction;
@@ -1891,7 +1891,7 @@ implements Serializable {
                 PSDEMap pSDEMap = new PSDEMap();
                 pSDEMap.setPSDEMapId(this.getPSDEMapId());
                 PSDEMapService pSDEMapService = (PSDEMapService)ServiceGlobal.getService(PSDEMapService.class, (SessionFactory)this.getSessionFactory());
-                pSDEMapService.autoGet((IEntity)pSDEMap);
+                pSDEMapService.autoGet(pSDEMap);
                 this.psdemap = pSDEMap;
             }
             return this.psdemap;

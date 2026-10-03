@@ -1,42 +1,120 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
 import net.ibizsys.paas.core.IDEField;
-import net.ibizsys.psba.core.IBAColSet;
-import net.ibizsys.psba.core.IBATableDE;
-import net.ibizsys.psba.core.IBATableObject;
 
-public interface IBAColumn
-extends IBATableObject {
-    public static final String UNIONKEYVALUE_KEY1 = "KEY1";
-    public static final String UNIONKEYVALUE_KEY2 = "KEY2";
-    public static final String UNIONKEYVALUE_KEY3 = "KEY3";
-    public static final String UNIONKEYVALUE_KEY4 = "KEY4";
+/**
+ * 大数据列模型接口对象
+ * 
+ * @author Administrator
+ *
+ */
+public interface IBAColumn extends IBATableObject {
 
-    public IDEField getDEField();
+	/**
+	 * 联合键值1
+	 */
+	public final static String UNIONKEYVALUE_KEY1 = "KEY1";
+	
+	/**
+	 * 联合键值2
+	 */
+	public final static String UNIONKEYVALUE_KEY2 = "KEY2";
 
-    public IBAColSet getBAColSet();
+	/**
+	 * 联合键值3
+	 */
+	public final static String UNIONKEYVALUE_KEY3 = "KEY3";
 
-    public IBATableDE getBATableDE();
+	/**
+	 * 联合键值4
+	 */
+	public final static String UNIONKEYVALUE_KEY4 = "KEY4";
+	
+	/**
+	 * 获取实体属性模型
+	 * 
+	 * @return
+	 */
+	IDEField getDEField();
 
-    public String getDBValueFunc();
+	/**
+	 * 获取列族模型
+	 * 
+	 * @return
+	 */
+	IBAColSet getBAColSet();
 
-    public String getDEFieldName();
+	/**
+	 * 获取表实体模型对象
+	 * 
+	 * @return
+	 */
+	IBATableDE getBATableDE();
 
-    public String getDEName();
+	/**
+	 * 数据库值函数
+	 * 
+	 * @return
+	 */
+	String getDBValueFunc();
 
-    public String getBAColSetName();
+	/**
+	 * 获取实体属性名称
+	 * 
+	 * @return
+	 */
+	String getDEFieldName();
 
-    public String getPreDefinedType();
+	/**
+	 * 获取实体名称
+	 * 
+	 * @return
+	 */
+	String getDEName();
 
-    public boolean isEnableTempData();
+	/**
+	 * 获取列族名称
+	 * 
+	 * @return
+	 */
+	String getBAColSetName();
 
-    public int getStdDataType();
+	/**
+	 * 获取预定义列类型
+	 * 
+	 * @return
+	 */
+	String getPreDefinedType();
 
-    public String getUnionKeyValue();
+	/**
+	 * 是否支持临时数据
+	 * 
+	 * @return
+	 */
+	boolean isEnableTempData();
 
-    public String getBATableDEId();
+	/**
+	 * 获取标准数据类型
+	 * 
+	 * @return
+	 */
+	int getStdDataType();
+	
+	
+	
+	
+	
+	/**
+	 * 获取联合键值模式
+	 * @return
+	 */
+	String getUnionKeyValue();
+	
+	
+	
+	/**
+	 * 获取大数据表实体标识
+	 * @return
+	 */
+	String getBATableDEId();
 }
-

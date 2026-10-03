@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
     }
 
     protected void onFillParentInfo(PSDELNType pSDELNType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDELNType, string, string2, string3);
+        super.onFillParentInfo(pSDELNType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDELNType> {
         if (bl && pSDELNType.getValidFlag() == null) {
             pSDELNType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDELNType, bl);
+        super.onFillEntityFullInfo(pSDELNType, bl);
     }
 
     protected void onWriteBackParent(PSDELNType pSDELNType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDELNType, bl);
+        super.onWriteBackParent(pSDELNType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDELNType pSDELNType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDELNType, bl);
+        super.onRemoveEntityUncopyValues(pSDELNType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDELNType pSDELNType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -191,7 +191,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDELNType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDELNType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDELNType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSDELNType pSDELNType, boolean bl2, boolean bl3) throws Exception {
@@ -207,7 +207,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSDELNType, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -229,7 +229,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconPath_Default((IEntity)pSDELNType, bl2, bl3);
+            string2 = this.onTestValueRule_IconPath_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONPATH");
@@ -254,7 +254,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj_Default((IEntity)pSDELNType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ");
@@ -276,7 +276,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj2_Default((IEntity)pSDELNType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj2_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ2");
@@ -298,7 +298,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj3_Default((IEntity)pSDELNType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj3_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ3");
@@ -320,7 +320,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj4_Default((IEntity)pSDELNType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj4_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ4");
@@ -342,7 +342,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj5_Default((IEntity)pSDELNType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj5_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ5");
@@ -364,7 +364,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj6_Default((IEntity)pSDELNType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj6_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ6");
@@ -386,7 +386,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LogicHolder_Default((IEntity)pSDELNType, bl2, bl3);
+            string = this.onTestValueRule_LogicHolder_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICHOLDER");
@@ -408,7 +408,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicType_Default((IEntity)pSDELNType, bl2, bl3);
+            string2 = this.onTestValueRule_LogicType_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICTYPE");
@@ -430,7 +430,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDELNType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -452,7 +452,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSDELNType, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -477,7 +477,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDELNTypeId_Default((IEntity)pSDELNType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDELNTypeId_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDELNTYPEID");
@@ -502,7 +502,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDELNTypeName_Default((IEntity)pSDELNType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDELNTypeName_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDELNTYPENAME");
@@ -524,7 +524,7 @@ extends PSCoreSysServiceBase<PSDELNType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDELNType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDELNType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -537,11 +537,11 @@ extends PSCoreSysServiceBase<PSDELNType> {
     }
 
     protected void onSyncEntity(PSDELNType pSDELNType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDELNType, bl);
+        super.onSyncEntity(pSDELNType, bl);
     }
 
     protected void onSyncIndexEntities(PSDELNType pSDELNType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDELNType, bl);
+        super.onSyncIndexEntities(pSDELNType, bl);
     }
 
     public Object getDataContextValue(PSDELNType pSDELNType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -549,14 +549,14 @@ extends PSCoreSysServiceBase<PSDELNType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDELNType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDELNType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDELNType pSDELNType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDELNType, arrayList, n);
+        super.onExportMajorModel(pSDELNType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -810,14 +810,14 @@ extends PSCoreSysServiceBase<PSDELNType> {
 
     protected boolean onMergeChild(String string, String string2, PSDELNType pSDELNType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDELNType)) {
+        if (super.onMergeChild(string, string2, pSDELNType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDELNType pSDELNType) throws Exception {
-        super.onUpdateParent((IEntity)pSDELNType);
+        super.onUpdateParent(pSDELNType);
     }
 
     @Override

@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.TreeViewControllerBase;
-
-public abstract class MobTreeViewControllerBase
-extends TreeViewControllerBase {
+/**
+ * 移动端树视图控制器基类
+ * @author Administrator
+ *
+ */
+public abstract class MobTreeViewControllerBase extends TreeViewControllerBase {
+	
+	public MobTreeViewControllerBase() throws Exception {
+		super();
+	}
 }
-

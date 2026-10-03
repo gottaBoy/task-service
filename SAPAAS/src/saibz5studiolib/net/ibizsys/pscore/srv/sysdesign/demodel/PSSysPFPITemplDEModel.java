@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysPFPITemplDEModelBase;
 
 public class PSSysPFPITemplDEModel
 extends PSSysPFPITemplDEModelBase {
+
+    public PSSysPFPITemplDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

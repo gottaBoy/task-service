@@ -350,7 +350,7 @@ extends PSDEDataCtrl {
         IDEDataCtrl psCodeListTemplDataCtrl = this.GetRelatedDataCtrl("DE1530");
         IDEDataCtrl psCodeListDataCtrl = this.GetRelatedDataCtrl("DE2040");
         BaseDataEntity cond = new BaseDataEntity();
-        Vector psCodeListTemplList = new Vector();
+        Vector<PSCodeListTempl> psCodeListTemplList = new Vector<PSCodeListTempl>();
         CallResult callResult = psCodeListTemplDataCtrl.Select(cond, psCodeListTemplList, PSCodeListTempl.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4e91\u5e73\u53f0\u4ee3\u7801\u8868\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -451,7 +451,7 @@ extends PSDEDataCtrl {
         IDEDataCtrl psV3MigrateDEDataCtl = this.GetRelatedDataCtrl("DE2901");
         BaseDataEntity selectCond = new BaseDataEntity();
         selectCond.set("PSV3MIGRATEID", (Object)psV3Migrate.getPSV3MIGRATEID());
-        Vector psV3MigrateDEList = new Vector();
+        Vector<BaseDataEntity> psV3MigrateDEList = new Vector<BaseDataEntity>();
         CallResult callResult = psV3MigrateDEDataCtl.Select(selectCond, psV3MigrateDEList);
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8fc1\u79fb\u5b9e\u4f53\u6e05\u5355\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -487,7 +487,7 @@ extends PSDEDataCtrl {
         IDEDataCtrl psV3MigrateDEDataCtl = this.GetRelatedDataCtrl("DE2901");
         BaseDataEntity selectCond = new BaseDataEntity();
         selectCond.set("PSV3MIGRATEID", (Object)psV3Migrate.getPSV3MIGRATEID());
-        Vector psV3MigrateDEList = new Vector();
+        Vector<BaseDataEntity> psV3MigrateDEList = new Vector<BaseDataEntity>();
         CallResult callResult = psV3MigrateDEDataCtl.Select(selectCond, psV3MigrateDEList);
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8fc1\u79fb\u5b9e\u4f53\u6e05\u5355\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -523,7 +523,7 @@ extends PSDEDataCtrl {
         IDEDataCtrl psV3MigrateDEDataCtl = this.GetRelatedDataCtrl("DE2901");
         BaseDataEntity selectCond = new BaseDataEntity();
         selectCond.set("PSV3MIGRATEID", (Object)psV3Migrate.getPSV3MIGRATEID());
-        Vector psV3MigrateDEList = new Vector();
+        Vector<BaseDataEntity> psV3MigrateDEList = new Vector<BaseDataEntity>();
         CallResult callResult = psV3MigrateDEDataCtl.Select(selectCond, psV3MigrateDEList);
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8fc1\u79fb\u5b9e\u4f53\u6e05\u5355\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -551,7 +551,7 @@ extends PSDEDataCtrl {
                     PSSystemService psSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class);
                     PSSystem psSystem = new PSSystem();
                     psSystem.setPSSystemId("86E2A266-4D1E-49F0-A12D-D636905457A3");
-                    psSystemService.get((IEntity)psSystem);
+                    psSystemService.get(psSystem);
                     try {
                         PSCoreSysServiceBase.setCurrentPSSystemId((String)psSystem.getPSSystemId());
                         SessionFactoryManager.addRef();
@@ -589,14 +589,14 @@ extends PSDEDataCtrl {
         PSModuleService dstPSModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)dstSessionFactory);
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSSYSTEMID", (Object)"86E2A266-4D1E-49F0-A12D-D636905457A3");
-        ArrayList psModuleList = psModuleService.select((ISelectCond)selectCond);
+        ArrayList<PSModule> psModuleList = psModuleService.select((ISelectCond)selectCond);
         for (PSModule psModule : psModuleList) {
-            if (dstPSModuleService.checkKey((IEntity)psModule) != 0) continue;
-            dstPSModuleService.create((IEntity)psModule, false);
+            if (dstPSModuleService.checkKey(psModule) != 0) continue;
+            dstPSModuleService.create(psModule, false);
         }
         PSDataEntityService psDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class);
         PSDataEntityService dstPSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)dstSessionFactory);
-        ArrayList psDataEntityList = psDataEntityService.select((ISelectCond)selectCond);
+        ArrayList<PSDataEntity> psDataEntityList = psDataEntityService.select((ISelectCond)selectCond);
         for (PSDataEntity psDataEntity : psDataEntityList) {
             try {
                 PSDataEntity newPSDataEntity = new PSDataEntity();
@@ -615,8 +615,8 @@ extends PSDEDataCtrl {
                 newPSDataEntity.setTableName(psDataEntity.getTableName());
                 newPSDataEntity.setViewName(psDataEntity.getViewName());
                 newPSDataEntity.setLogicValid(psDataEntity.getLogicValid());
-                if (dstPSDataEntityService.checkKey((IEntity)psDataEntity) != 0) continue;
-                dstPSDataEntityService.create((IEntity)newPSDataEntity, false);
+                if (dstPSDataEntityService.checkKey(psDataEntity) != 0) continue;
+                dstPSDataEntityService.create(newPSDataEntity, false);
             }
             catch (Exception ex) {
                 throw new Exception(StringHelper.Format((String)"\u4fdd\u5b58\u5b9e\u4f53[%1$s]\u53d1\u751f\u5f02\u5e38\uff0c%2$s", (Object)psDataEntity.getPSDataEntityName(), (Object)ex.getMessage()));
@@ -625,7 +625,7 @@ extends PSDEDataCtrl {
         PSDEFieldService psDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class);
         PSDEFieldService dstPSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)dstSessionFactory);
         for (PSDataEntity psDataEntity : psDataEntityList) {
-            ArrayList psDEFieldList = psDataEntity.getPSDEFields();
+            ArrayList<PSDEField> psDEFieldList = psDataEntity.getPSDEFields();
             for (PSDEField psDEField : psDEFieldList) {
                 try {
                     EntityBase.setIgnoreCheck((IEntity)psDEField, (boolean)true);
@@ -633,7 +633,7 @@ extends PSDEDataCtrl {
                     psDEField.setLNPSLanResName(null);
                     psDEField.setPSSysUnitId(null);
                     psDEField.setPSSysUnitName(null);
-                    dstPSDEFieldService.save((IEntity)psDEField, false);
+                    dstPSDEFieldService.save(psDEField, false);
                 }
                 catch (Exception ex) {
                     throw new Exception(StringHelper.Format((String)"\u4fdd\u5b58\u5b9e\u4f53[%1$s]\u5c5e\u6027[%2$s]\u53d1\u751f\u5f02\u5e38\uff0c%3$s", (Object)psDataEntity.getPSDataEntityName(), (Object)psDEField.getPSDEFieldName(), (Object)ex.getMessage()));
@@ -643,10 +643,10 @@ extends PSDEDataCtrl {
         PSCodeListService psCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class);
         PSCodeListService dstPSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)dstSessionFactory);
         PSCodeItemService dstPSCodeItemService = (PSCodeItemService)ServiceGlobal.getService(PSCodeItemService.class, (SessionFactory)dstSessionFactory);
-        ArrayList psCodeListList = psCodeListService.select((ISelectCond)selectCond);
+        ArrayList<PSCodeList> psCodeListList = psCodeListService.select((ISelectCond)selectCond);
         for (PSCodeList psCodeList : psCodeListList) {
             try {
-                if (dstPSCodeListService.checkKey((IEntity)psCodeList) != 0) continue;
+                if (dstPSCodeListService.checkKey(psCodeList) != 0) continue;
                 if (StringHelper.Compare((String)psCodeList.getCLType(), (String)"DYNAMIC", (boolean)true) == 0) {
                     psCodeList.setCLType("STATIC");
                     psCodeList.setPSDEDSId(null);
@@ -662,11 +662,11 @@ extends PSDEDataCtrl {
                 EntityBase.setIgnoreCheck((IEntity)psCodeList, (boolean)true);
                 psCodeList.setEmptyTextPSLanResId(null);
                 psCodeList.setEmptyTextPSLanResName(null);
-                dstPSCodeListService.create((IEntity)psCodeList, false);
-                ArrayList psCodeItems = psCodeList.getPSCodeItems();
+                dstPSCodeListService.create(psCodeList, false);
+                ArrayList<PSCodeItem> psCodeItems = psCodeList.getPSCodeItems();
                 for (PSCodeItem psCodeItem : psCodeItems) {
                     EntityBase.setIgnoreCheck((IEntity)psCodeItem, (boolean)true);
-                    dstPSCodeItemService.save((IEntity)psCodeItem, false);
+                    dstPSCodeItemService.save(psCodeItem, false);
                 }
             }
             catch (Exception ex) {
@@ -675,10 +675,10 @@ extends PSDEDataCtrl {
         }
         PSDERService psDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class);
         PSDERService dstPSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)dstSessionFactory);
-        ArrayList psDERList = psDERService.select((ISelectCond)selectCond);
+        ArrayList<PSDER> psDERList = psDERService.select((ISelectCond)selectCond);
         for (PSDER psDER : psDERList) {
             try {
-                if (dstPSDERService.checkKey((IEntity)psDER) != 0) continue;
+                if (dstPSDERService.checkKey(psDER) != 0) continue;
                 psDER.setEXTMajorPSDEFId(null);
                 psDER.setEXTMajorPSDEFName(null);
                 psDER.setEXTMinorPSDEFId(null);
@@ -697,7 +697,7 @@ extends PSDEDataCtrl {
                 psDER.setPSDEDataSetId(null);
                 psDER.setPSDEDataSetName(null);
                 EntityBase.setIgnoreCheck((IEntity)psDER, (boolean)true);
-                dstPSDERService.save((IEntity)psDER, false);
+                dstPSDERService.save(psDER, false);
             }
             catch (Exception ex) {
                 throw new Exception(StringHelper.Format((String)"\u4fdd\u5b58\u5173\u7cfb[%1$s]\u53d1\u751f\u5f02\u5e38\uff0c%2$s", (Object)psDER.getPSDERName(), (Object)ex.getMessage()));

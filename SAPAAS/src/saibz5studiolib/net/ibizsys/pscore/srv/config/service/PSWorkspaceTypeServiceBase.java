@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
     }
 
     protected void onFillParentInfo(PSWorkspaceType pSWorkspaceType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSWorkspaceType, string, string2, string3);
+        super.onFillParentInfo(pSWorkspaceType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
         if (bl && pSWorkspaceType.getValidFlag() == null) {
             pSWorkspaceType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSWorkspaceType, bl);
+        super.onFillEntityFullInfo(pSWorkspaceType, bl);
     }
 
     protected void onWriteBackParent(PSWorkspaceType pSWorkspaceType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWorkspaceType, bl);
+        super.onWriteBackParent(pSWorkspaceType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWorkspaceType pSWorkspaceType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWorkspaceType, bl);
+        super.onRemoveEntityUncopyValues(pSWorkspaceType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWorkspaceType pSWorkspaceType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -188,7 +188,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
         if ((entityFieldError = this.onCheckField_WorkspaceUsage(bl, pSWorkspaceType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWorkspaceType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWorkspaceType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_EntityList(boolean bl, PSWorkspaceType pSWorkspaceType, boolean bl2, boolean bl3) throws Exception {
@@ -201,7 +201,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EntityList_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string2 = this.onTestValueRule_EntityList_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENTITYLIST");
@@ -223,7 +223,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Exp_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string = this.onTestValueRule_Exp_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXP");
@@ -245,7 +245,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Exp2_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string = this.onTestValueRule_Exp2_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXP2");
@@ -267,7 +267,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxDevUser_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string = this.onTestValueRule_MaxDevUser_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXDEVUSER");
@@ -289,7 +289,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -311,7 +311,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelLimits_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelLimits_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELLIMITS");
@@ -336,7 +336,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkspaceTypeId_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkspaceTypeId_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKSPACETYPEID");
@@ -361,7 +361,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkspaceTypeName_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkspaceTypeName_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKSPACETYPENAME");
@@ -383,7 +383,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParams_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParams_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAMS");
@@ -405,7 +405,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -427,7 +427,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -452,7 +452,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -474,7 +474,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WorkspaceMode_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string2 = this.onTestValueRule_WorkspaceMode_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WORKSPACEMODE");
@@ -499,7 +499,7 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WorkspaceUsage_Default((IEntity)pSWorkspaceType, bl2, bl3);
+            string2 = this.onTestValueRule_WorkspaceUsage_Default(pSWorkspaceType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WORKSPACEUSAGE");
@@ -512,11 +512,11 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
     }
 
     protected void onSyncEntity(PSWorkspaceType pSWorkspaceType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWorkspaceType, bl);
+        super.onSyncEntity(pSWorkspaceType, bl);
     }
 
     protected void onSyncIndexEntities(PSWorkspaceType pSWorkspaceType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWorkspaceType, bl);
+        super.onSyncIndexEntities(pSWorkspaceType, bl);
     }
 
     public Object getDataContextValue(PSWorkspaceType pSWorkspaceType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -524,14 +524,14 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWorkspaceType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWorkspaceType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWorkspaceType pSWorkspaceType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWorkspaceType, arrayList, n);
+        super.onExportMajorModel(pSWorkspaceType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -762,14 +762,14 @@ extends PSCoreSysServiceBase<PSWorkspaceType> {
 
     protected boolean onMergeChild(String string, String string2, PSWorkspaceType pSWorkspaceType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWorkspaceType)) {
+        if (super.onMergeChild(string, string2, pSWorkspaceType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWorkspaceType pSWorkspaceType) throws Exception {
-        super.onUpdateParent((IEntity)pSWorkspaceType);
+        super.onUpdateParent(pSWorkspaceType);
     }
 
     @Override

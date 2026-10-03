@@ -122,9 +122,8 @@ extends SRFDAHttpServlet {
             }
             ServletInputStream is = request.getInputStream();
             if (is != null) {
-                try (Scanner br = null;){
+                try (Scanner br = new Scanner((InputStream)is)) {
                     try {
-                        br = new Scanner((InputStream)is);
                         StringBuilderEx sb = new StringBuilderEx();
                         while (br.hasNextLine()) {
                             String tempStream = br.nextLine();

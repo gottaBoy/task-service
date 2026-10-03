@@ -1269,7 +1269,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDCId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdc = pSDevCenter;
             }
             return this.psdc;
@@ -1295,7 +1295,7 @@ implements Serializable {
                 PSSFPkg pSSFPkg = new PSSFPkg();
                 pSSFPkg.setPSSFPkgId(this.getPSSFPkgId());
                 PSSFPkgService pSSFPkgService = (PSSFPkgService)ServiceGlobal.getService(PSSFPkgService.class, (SessionFactory)this.getSessionFactory());
-                pSSFPkgService.autoGet((IEntity)pSSFPkg);
+                pSSFPkgService.autoGet(pSSFPkg);
                 this.pssfpkg = pSSFPkg;
             }
             return this.pssfpkg;

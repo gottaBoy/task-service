@@ -1766,7 +1766,7 @@ implements Serializable {
                 PSDevSysDiffItem pSDevSysDiffItem = new PSDevSysDiffItem();
                 pSDevSysDiffItem.setPSDevSysDiffItemId(this.getPPSDevSysDiffItemId());
                 PSDevSysDiffItemService pSDevSysDiffItemService = (PSDevSysDiffItemService)ServiceGlobal.getService(PSDevSysDiffItemService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSysDiffItemService.autoGet((IEntity)pSDevSysDiffItem);
+                pSDevSysDiffItemService.autoGet(pSDevSysDiffItem);
                 this.ppsdevsysdiffitem = pSDevSysDiffItem;
             }
             return this.ppsdevsysdiffitem;
@@ -1792,7 +1792,7 @@ implements Serializable {
                 PSDevSysDiffRep pSDevSysDiffRep = new PSDevSysDiffRep();
                 pSDevSysDiffRep.setPSDevSysDiffRepId(this.getPSDevSysDiffRepId());
                 PSDevSysDiffRepService pSDevSysDiffRepService = (PSDevSysDiffRepService)ServiceGlobal.getService(PSDevSysDiffRepService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSysDiffRepService.autoGet((IEntity)pSDevSysDiffRep);
+                pSDevSysDiffRepService.autoGet(pSDevSysDiffRep);
                 this.psdevsysdiffrep = pSDevSysDiffRep;
             }
             return this.psdevsysdiffrep;

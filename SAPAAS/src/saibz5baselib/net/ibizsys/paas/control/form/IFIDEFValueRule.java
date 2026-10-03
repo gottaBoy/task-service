@@ -1,15 +1,33 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.form;
 
 import net.ibizsys.paas.core.valuerule.IDEFValueRule;
 
+/**
+ * 表单项属性值规则接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IFIDEFValueRule {
-    public String getDEFVRName();
 
-    public String getDEFVRId();
+	/**
+	 * 获取规则名称
+	 * 
+	 * @return
+	 */
+	String getDEFVRName();
 
-    public IDEFValueRule getDEFValueRule();
+	/**
+	 * 获取规则名称
+	 * 
+	 * @return
+	 */
+	String getDEFVRId();
+
+	/**
+	 * 获取属性值规则
+	 * 
+	 * @return
+	 */
+	IDEFValueRule getDEFValueRule();
 }
-

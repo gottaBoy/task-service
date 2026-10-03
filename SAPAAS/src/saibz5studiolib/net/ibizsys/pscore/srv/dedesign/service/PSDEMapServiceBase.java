@@ -261,9 +261,9 @@ extends PSCoreSysServiceBase<PSDEMap> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_DstPSDE(pSDEMap, pSDataEntity);
             return;
@@ -273,9 +273,9 @@ extends PSCoreSysServiceBase<PSDEMap> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSDEMap, pSDataEntity);
             return;
@@ -285,9 +285,9 @@ extends PSCoreSysServiceBase<PSDEMap> {
             PSSysDynaModel pSSysDynaModel = (PSSysDynaModel)iService.getDEModel().createEntity();
             pSSysDynaModel.set("PSSYSDYNAMODELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDynaModel);
+                iService.getTemp(pSSysDynaModel);
             } else {
-                iService.get((IEntity)pSSysDynaModel);
+                iService.get(pSSysDynaModel);
             }
             this.onFillParentInfo_PSSysDynaModel(pSDEMap, pSSysDynaModel);
             return;
@@ -297,9 +297,9 @@ extends PSCoreSysServiceBase<PSDEMap> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_PSSysPFPlugin(pSDEMap, pSSysPFPlugin);
             return;
@@ -309,9 +309,9 @@ extends PSCoreSysServiceBase<PSDEMap> {
             PSSysRefDE pSSysRefDE = (PSSysRefDE)iService.getDEModel().createEntity();
             pSSysRefDE.set("PSSYSREFDEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysRefDE);
+                iService.getTemp(pSSysRefDE);
             } else {
-                iService.get((IEntity)pSSysRefDE);
+                iService.get(pSSysRefDE);
             }
             this.onFillParentInfo_DstPSSysRefDE(pSDEMap, pSSysRefDE);
             return;
@@ -321,9 +321,9 @@ extends PSCoreSysServiceBase<PSDEMap> {
             PSSysRef pSSysRef = (PSSysRef)iService.getDEModel().createEntity();
             pSSysRef.set("PSSYSREFID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysRef);
+                iService.getTemp(pSSysRef);
             } else {
-                iService.get((IEntity)pSSysRef);
+                iService.get(pSSysRef);
             }
             this.onFillParentInfo_PSSysRef(pSDEMap, pSSysRef);
             return;
@@ -333,9 +333,9 @@ extends PSCoreSysServiceBase<PSDEMap> {
             PSSysReqItem pSSysReqItem = (PSSysReqItem)iService.getDEModel().createEntity();
             pSSysReqItem.set("PSSYSREQITEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysReqItem);
+                iService.getTemp(pSSysReqItem);
             } else {
-                iService.get((IEntity)pSSysReqItem);
+                iService.get(pSSysReqItem);
             }
             this.onFillParentInfo_PSSysReqItem(pSDEMap, pSSysReqItem);
             return;
@@ -345,14 +345,14 @@ extends PSCoreSysServiceBase<PSDEMap> {
             PSSysSFPlugin pSSysSFPlugin = (PSSysSFPlugin)iService.getDEModel().createEntity();
             pSSysSFPlugin.set("PSSYSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPlugin);
+                iService.getTemp(pSSysSFPlugin);
             } else {
-                iService.get((IEntity)pSSysSFPlugin);
+                iService.get(pSSysSFPlugin);
             }
             this.onFillParentInfo_PSSysSFPlugin(pSDEMap, pSSysSFPlugin);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEMap, string, string2, string3);
+        super.onFillParentInfo(pSDEMap, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -418,7 +418,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 pSDEMap.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDEMap, bl);
+        super.onFillEntityFullInfo(pSDEMap, bl);
         this.onFillEntityFullInfo_DstPSDE(pSDEMap, bl);
         this.onFillEntityFullInfo_PSDE(pSDEMap, bl);
         this.onFillEntityFullInfo_PSSysDynaModel(pSDEMap, bl);
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
     }
 
     protected void onWriteBackParent(PSDEMap pSDEMap, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEMap, bl);
+        super.onWriteBackParent(pSDEMap, bl);
     }
 
     public ArrayList<PSDEMap> selectByDstPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -665,8 +665,8 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByDstPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSDATAENTITY_DSTPSDEID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSDATAENTITY_DSTPSDEID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -699,7 +699,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByDstPSDE(pSDataEntity);
         this.onBeforeRemoveByDstPSDE(pSDataEntity, arrayList);
         for (PSDEMap pSDEMap : arrayList) {
-            this.remove((IEntity)pSDEMap);
+            this.remove(pSDEMap);
         }
         this.onAfterRemoveByDstPSDE(pSDataEntity, arrayList);
     }
@@ -745,7 +745,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSDEMap pSDEMap : arrayList) {
-            this.remove((IEntity)pSDEMap);
+            this.remove(pSDEMap);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -763,8 +763,8 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSDYNAMODEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysDynaModel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo((IEntity)pSSysDynaModel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysDynaModel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo(pSSysDynaModel), arrayList.get(0)));
         }
     }
 
@@ -797,7 +797,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel);
         this.onBeforeRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
         for (PSDEMap pSDEMap : arrayList) {
-            this.remove((IEntity)pSDEMap);
+            this.remove(pSDEMap);
         }
         this.onAfterRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
     }
@@ -815,8 +815,8 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -849,7 +849,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSDEMap pSDEMap : arrayList) {
-            this.remove((IEntity)pSDEMap);
+            this.remove(pSDEMap);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -867,8 +867,8 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByDstPSSysRefDE(pSSysRefDE, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSREFDE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysRefDE);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSSYSREFDE_DSTPSSYSREFDEID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo((IEntity)pSSysRefDE), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysRefDE);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSSYSREFDE_DSTPSSYSREFDEID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo(pSSysRefDE), arrayList.get(0)));
         }
     }
 
@@ -901,7 +901,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByDstPSSysRefDE(pSSysRefDE);
         this.onBeforeRemoveByDstPSSysRefDE(pSSysRefDE, arrayList);
         for (PSDEMap pSDEMap : arrayList) {
-            this.remove((IEntity)pSDEMap);
+            this.remove(pSDEMap);
         }
         this.onAfterRemoveByDstPSSysRefDE(pSSysRefDE, arrayList);
     }
@@ -919,8 +919,8 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByPSSysRef(pSSysRef, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSREF");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysRef);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSSYSREF_PSSYSREFID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo((IEntity)pSSysRef), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysRef);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSSYSREF_PSSYSREFID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo(pSSysRef), arrayList.get(0)));
         }
     }
 
@@ -953,7 +953,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByPSSysRef(pSSysRef);
         this.onBeforeRemoveByPSSysRef(pSSysRef, arrayList);
         for (PSDEMap pSDEMap : arrayList) {
-            this.remove((IEntity)pSDEMap);
+            this.remove(pSDEMap);
         }
         this.onAfterRemoveByPSSysRef(pSSysRef, arrayList);
     }
@@ -971,8 +971,8 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByPSSysReqItem(pSSysReqItem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSREQITEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysReqItem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSSYSREQITEM_PSSYSREQITEMID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo((IEntity)pSSysReqItem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysReqItem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSSYSREQITEM_PSSYSREQITEMID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo(pSSysReqItem), arrayList.get(0)));
         }
     }
 
@@ -1005,7 +1005,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByPSSysReqItem(pSSysReqItem);
         this.onBeforeRemoveByPSSysReqItem(pSSysReqItem, arrayList);
         for (PSDEMap pSDEMap : arrayList) {
-            this.remove((IEntity)pSDEMap);
+            this.remove(pSDEMap);
         }
         this.onAfterRemoveByPSSysReqItem(pSSysReqItem, arrayList);
     }
@@ -1023,8 +1023,8 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo((IEntity)pSSysSFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAP_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSDEMAP", iDataEntityModel.getDataInfo(pSSysSFPlugin), arrayList.get(0)));
         }
     }
 
@@ -1057,7 +1057,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ArrayList<PSDEMap> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin);
         this.onBeforeRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
         for (PSDEMap pSDEMap : arrayList) {
-            this.remove((IEntity)pSDEMap);
+            this.remove(pSDEMap);
         }
         this.onAfterRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
     }
@@ -1099,7 +1099,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ((PSDEMapActionServiceBase)pSCoreSysServiceBase).removeTempByPSDEMap(pSDEMap);
         pSCoreSysServiceBase = (PSDEMapDetailService)ServiceGlobal.getService(PSDEMapDetailService.class, (SessionFactory)this.getSessionFactory());
         ((PSDEMapDetailServiceBase)pSCoreSysServiceBase).removeTempByPSDEMap(pSDEMap);
-        super.onBeforeRemoveTemp((IEntity)pSDEMap);
+        super.onBeforeRemoveTemp(pSDEMap);
     }
 
     protected void getRelatedDataTempMajor(PSDEMap pSDEMap) throws Exception {
@@ -1107,7 +1107,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         this.getRelatedDataTempMajor_PSDEMapAction(pSDEMap);
         this.getRelatedDataTempMajor_PSDEMapDQ(pSDEMap);
         this.getRelatedDataTempMajor_PSDEMapDS(pSDEMap);
-        super.getRelatedDataTempMajor((IEntity)pSDEMap);
+        super.getRelatedDataTempMajor(pSDEMap);
     }
 
     protected void getRelatedDataTempMajor_PSDEMapDetail(PSDEMap pSDEMap) throws Exception {
@@ -1159,7 +1159,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         this.updateRelatedDataTempMajor_updatePSDEMapAction(pSDEMap, pSDEMap2, arrayList3);
         this.updateRelatedDataTempMajor_updatePSDEMapDQ(pSDEMap, pSDEMap2, arrayList2);
         this.updateRelatedDataTempMajor_updatePSDEMapDS(pSDEMap, pSDEMap2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSDEMap, (IEntity)pSDEMap2);
+        super.updateRelatedDataTempMajor(pSDEMap, pSDEMap2);
     }
 
     protected ArrayList<PSDEMapDetail> updateRelatedDataTempMajor_removePSDEMapDetail(PSDEMap pSDEMap, PSDEMap pSDEMap2) throws Exception {
@@ -1175,7 +1175,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             hashMap.remove(object);
         }
         for (PSDEMapDetail pSDEMapDetail : hashMap.values()) {
-            pSDEMapDetailService.remove((IEntity)pSDEMapDetail);
+            pSDEMapDetailService.remove(pSDEMapDetail);
         }
         return arrayList;
     }
@@ -1203,7 +1203,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             hashMap.remove(object);
         }
         for (PSDEMapAction pSDEMapAction : hashMap.values()) {
-            pSDEMapActionService.remove((IEntity)pSDEMapAction);
+            pSDEMapActionService.remove(pSDEMapAction);
         }
         return arrayList;
     }
@@ -1231,7 +1231,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             hashMap.remove(object);
         }
         for (PSDEMapDQ pSDEMapDQ : hashMap.values()) {
-            pSDEMapDQService.remove((IEntity)pSDEMapDQ);
+            pSDEMapDQService.remove(pSDEMapDQ);
         }
         return arrayList;
     }
@@ -1259,7 +1259,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             hashMap.remove(object);
         }
         for (PSDEMapDS pSDEMapDS : hashMap.values()) {
-            pSDEMapDSService.remove((IEntity)pSDEMapDS);
+            pSDEMapDSService.remove(pSDEMapDS);
         }
         return arrayList;
     }
@@ -1276,7 +1276,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
 
     protected void replaceParentInfo(PSDEMap pSDEMap, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEMap, cloneSession);
+        super.replaceParentInfo(pSDEMap, cloneSession);
         if (pSDEMap.getDSTPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSDEMap.getDSTPSDEId())) != null) {
             this.onFillParentInfo_DstPSDE(pSDEMap, (PSDataEntity)iEntity);
         }
@@ -1304,7 +1304,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEMap pSDEMap, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEMap, bl);
+        super.onRemoveEntityUncopyValues(pSDEMap, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEMap pSDEMap, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1406,7 +1406,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDEMap, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEMap, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEMap, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AutoDEActionMap(boolean bl, PSDEMap pSDEMap, boolean bl2, boolean bl3) throws Exception {
@@ -1419,7 +1419,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AutoDEActionMap_Default((IEntity)pSDEMap, bl2, bl3);
+            string = this.onTestValueRule_AutoDEActionMap_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AUTODEACTIONMAP");
@@ -1441,7 +1441,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AutoDEDQMap_Default((IEntity)pSDEMap, bl2, bl3);
+            string = this.onTestValueRule_AutoDEDQMap_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AUTODEDQMAP");
@@ -1463,7 +1463,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AutoDEDSMap_Default((IEntity)pSDEMap, bl2, bl3);
+            string = this.onTestValueRule_AutoDEDSMap_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AUTODEDSMAP");
@@ -1485,7 +1485,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AutoDEFieldMap_Default((IEntity)pSDEMap, bl2, bl3);
+            string = this.onTestValueRule_AutoDEFieldMap_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AUTODEFIELDMAP");
@@ -1510,7 +1510,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1549,7 +1549,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CustomCode_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_CustomCode_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMCODE");
@@ -1571,7 +1571,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CustomMode_Default((IEntity)pSDEMap, bl2, bl3);
+            string = this.onTestValueRule_CustomMode_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMMODE");
@@ -1593,7 +1593,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DefaultMode_Default((IEntity)pSDEMap, bl2, bl3);
+            string = this.onTestValueRule_DefaultMode_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTMODE");
@@ -1630,7 +1630,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DSTPSDEId_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_DSTPSDEId_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DSTPSDEID");
@@ -1652,7 +1652,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DstPSSysRefDEId_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_DstPSSysRefDEId_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DSTPSSYSREFDEID");
@@ -1674,7 +1674,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LogicHolder_Default((IEntity)pSDEMap, bl2, bl3);
+            string = this.onTestValueRule_LogicHolder_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICHOLDER");
@@ -1696,7 +1696,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -1718,7 +1718,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MapMode_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_MapMode_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAPMODE");
@@ -1743,7 +1743,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MapTarget_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_MapTarget_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAPTARGET");
@@ -1765,7 +1765,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1787,7 +1787,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSDEMap, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -1809,7 +1809,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PropertyMap_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_PropertyMap_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PROPERTYMAP");
@@ -1834,7 +1834,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -1859,7 +1859,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEMapId_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEMapId_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMAPID");
@@ -1884,7 +1884,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEMapName_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEMapName_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMAPNAME");
@@ -1926,7 +1926,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -1948,7 +1948,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDynaModelId_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDynaModelId_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDYNAMODELID");
@@ -1970,7 +1970,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPluginId_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPluginId_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPLUGINID");
@@ -1992,7 +1992,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysRefId_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysRefId_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSREFID");
@@ -2014,7 +2014,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysReqItemId_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysReqItemId_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSREQITEMID");
@@ -2036,7 +2036,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPluginId_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPluginId_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPLUGINID");
@@ -2058,7 +2058,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -2080,7 +2080,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -2102,7 +2102,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -2124,7 +2124,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -2146,7 +2146,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDEMap, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -2168,7 +2168,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDEMap, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDEMap, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -2181,11 +2181,11 @@ extends PSCoreSysServiceBase<PSDEMap> {
     }
 
     protected void onSyncEntity(PSDEMap pSDEMap, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEMap, bl);
+        super.onSyncEntity(pSDEMap, bl);
     }
 
     protected void onSyncIndexEntities(PSDEMap pSDEMap, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEMap, bl);
+        super.onSyncIndexEntities(pSDEMap, bl);
     }
 
     public Object getDataContextValue(PSDEMap pSDEMap, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -2193,14 +2193,14 @@ extends PSCoreSysServiceBase<PSDEMap> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEMap, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEMap, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEMap pSDEMap, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEMap, arrayList, n);
+        super.onExportMajorModel(pSDEMap, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2786,7 +2786,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
 
     protected boolean onMergeChild(String string, String string2, PSDEMap pSDEMap) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEMap)) {
+        if (super.onMergeChild(string, string2, pSDEMap)) {
             bl = true;
         }
         return bl;
@@ -2798,7 +2798,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDataEntityService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSDEMAP_PSDATAENTITY_PSDEID", object);
         }
-        super.onUpdateParent((IEntity)pSDEMap);
+        super.onUpdateParent(pSDEMap);
     }
 
     protected boolean isNeedUpdateParent() {
@@ -2809,7 +2809,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
         PSDEMap pSDEMap2 = new PSDEMap();
         pSDEMap2.set("PSDEMAPID", object);
         String string = DataObject.getStringValue((Object)pSDEMap.get("PSDEMAPID"));
-        super.onCopyDetails((IEntity)pSDEMap, object);
+        super.onCopyDetails(pSDEMap, object);
     }
 
     @Override
@@ -2900,7 +2900,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSDEMapDetail pSDEMapDetail = new PSDEMapDetail();
-                pSDEMapDetailService.fillParentInfo((IEntity)pSDEMapDetail, "DER1N", "DER1N_PSDEMAPDETAIL_PSDEMAP_PSDEMAPID", pSDEMap.getPSDEMapId());
+                pSDEMapDetailService.fillParentInfo(pSDEMapDetail, "DER1N", "DER1N_PSDEMAPDETAIL_PSDEMAP_PSDEMAPID", pSDEMap.getPSDEMapId());
                 pSDEMapDetailService.importXmlModel(pSDEMapDetail, xmlNode2);
             }
         }
@@ -2922,7 +2922,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSDEMapAction pSDEMapAction = new PSDEMapAction();
-                pSDEMapActionService.fillParentInfo((IEntity)pSDEMapAction, "DER1N", "DER1N_PSDEMAPACTION_PSDEMAP_PSDEMAPID", pSDEMap.getPSDEMapId());
+                pSDEMapActionService.fillParentInfo(pSDEMapAction, "DER1N", "DER1N_PSDEMAPACTION_PSDEMAP_PSDEMAPID", pSDEMap.getPSDEMapId());
                 pSDEMapActionService.importXmlModel(pSDEMapAction, xmlNode2);
             }
         }
@@ -2944,7 +2944,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSDEMapDQ pSDEMapDQ = new PSDEMapDQ();
-                pSDEMapDQService.fillParentInfo((IEntity)pSDEMapDQ, "DER1N", "DER1N_PSDEMAPDQ_PSDEMAP_PSDEMAPID", pSDEMap.getPSDEMapId());
+                pSDEMapDQService.fillParentInfo(pSDEMapDQ, "DER1N", "DER1N_PSDEMAPDQ_PSDEMAP_PSDEMAPID", pSDEMap.getPSDEMapId());
                 pSDEMapDQService.importXmlModel(pSDEMapDQ, xmlNode2);
             }
         }
@@ -3076,45 +3076,30 @@ extends PSCoreSysServiceBase<PSDEMap> {
 
     @Override
     protected void onExportCurModelV2(PSDEMap pSDEMap, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        Object object3;
-        Object object4;
-        ArrayList<PSDEMapAction> arrayList;
+        ArrayList<ObjectNode> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEMAPACTION_PSDEMAP_PSDEMAPID")) {
             pSCoreSysServiceBase = (PSDEMapActionService)ServiceGlobal.getService(PSDEMapActionService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEMAP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEMAPACTION", (Object)pSDEMap.getPSDEMapId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEMAP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEMAPACTION", (Object)pSDEMap.getPSDEMapId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEMapAction)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSDEMapAction>();
-                object4 = ((PSDEMapActionServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap);
-                object3 = StringHelper.format((String)"PSDEMAP#%1$s", (Object)pSDEMap.getPSDEMapId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEMapAction)object2.next();
-                    object = ((PSDEMapActionServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEMapAction)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSDEMAP#%1$s", (Object)pSDEMap.getPSDEMapId());
+                for (PSDEMapAction action : ((PSDEMapActionServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap)) {
+                    if (StringHelper.compare(scope, ((PSDEMapActionServiceBase)pSCoreSysServiceBase).getModelV2ResScope(action), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(action, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode related = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -3142,10 +3127,10 @@ extends PSCoreSysServiceBase<PSDEMap> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEMapAction();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode model : arrayList) {
+                    PSDEMapAction action = new PSDEMapAction();
+                    PSModelV2Helper.fromJSONObject(action, model, false);
+                    related.add(pSCoreSysServiceBase.exportModelV2(action, string));
                 }
             }
         }
@@ -3153,33 +3138,24 @@ extends PSCoreSysServiceBase<PSDEMap> {
             pSCoreSysServiceBase = (PSDEMapDetailService)ServiceGlobal.getService(PSDEMapDetailService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEMAP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEMAPDETAIL", (Object)pSDEMap.getPSDEMapId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEMAP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEMAPDETAIL", (Object)pSDEMap.getPSDEMapId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEMapAction)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEMapDetailServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap);
-                object3 = StringHelper.format((String)"PSDEMAP#%1$s", (Object)pSDEMap.getPSDEMapId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEMapDetail)object2.next();
-                    object = ((PSDEMapDetailServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEMapAction)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSDEMAP#%1$s", (Object)pSDEMap.getPSDEMapId());
+                for (PSDEMapDetail detail : ((PSDEMapDetailServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap)) {
+                    if (StringHelper.compare(scope, ((PSDEMapDetailServiceBase)pSCoreSysServiceBase).getModelV2ResScope(detail), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(detail, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode related = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -3207,10 +3183,10 @@ extends PSCoreSysServiceBase<PSDEMap> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEMapDetail();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode model : arrayList) {
+                    PSDEMapDetail detail = new PSDEMapDetail();
+                    PSModelV2Helper.fromJSONObject(detail, model, false);
+                    related.add(pSCoreSysServiceBase.exportModelV2(detail, string));
                 }
             }
         }
@@ -3218,33 +3194,24 @@ extends PSCoreSysServiceBase<PSDEMap> {
             pSCoreSysServiceBase = (PSDEMapDQService)ServiceGlobal.getService(PSDEMapDQService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEMAP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEMAPDQ", (Object)pSDEMap.getPSDEMapId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEMAP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEMAPDQ", (Object)pSDEMap.getPSDEMapId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEMapAction)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEMapDQServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap);
-                object3 = StringHelper.format((String)"PSDEMAP#%1$s", (Object)pSDEMap.getPSDEMapId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEMapDQ)object2.next();
-                    object = ((PSDEMapDQServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEMapAction)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSDEMAP#%1$s", (Object)pSDEMap.getPSDEMapId());
+                for (PSDEMapDQ dq : ((PSDEMapDQServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap)) {
+                    if (StringHelper.compare(scope, ((PSDEMapDQServiceBase)pSCoreSysServiceBase).getModelV2ResScope(dq), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(dq, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode related = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -3272,10 +3239,10 @@ extends PSCoreSysServiceBase<PSDEMap> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEMapDQ();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode model : arrayList) {
+                    PSDEMapDQ dq = new PSDEMapDQ();
+                    PSModelV2Helper.fromJSONObject(dq, model, false);
+                    related.add(pSCoreSysServiceBase.exportModelV2(dq, string));
                 }
             }
         }
@@ -3283,33 +3250,24 @@ extends PSCoreSysServiceBase<PSDEMap> {
             pSCoreSysServiceBase = (PSDEMapDSService)ServiceGlobal.getService(PSDEMapDSService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEMAP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEMAPDS", (Object)pSDEMap.getPSDEMapId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEMAP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEMAPDS", (Object)pSDEMap.getPSDEMapId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEMapAction)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEMapDSServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap);
-                object3 = StringHelper.format((String)"PSDEMAP#%1$s", (Object)pSDEMap.getPSDEMapId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEMapDS)object2.next();
-                    object = ((PSDEMapDSServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEMapAction)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSDEMAP#%1$s", (Object)pSDEMap.getPSDEMapId());
+                for (PSDEMapDS ds : ((PSDEMapDSServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap)) {
+                    if (StringHelper.compare(scope, ((PSDEMapDSServiceBase)pSCoreSysServiceBase).getModelV2ResScope(ds), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(ds, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode related = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -3337,10 +3295,10 @@ extends PSCoreSysServiceBase<PSDEMap> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEMapDS();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode model : arrayList) {
+                    PSDEMapDS ds = new PSDEMapDS();
+                    PSModelV2Helper.fromJSONObject(ds, model, false);
+                    related.add(pSCoreSysServiceBase.exportModelV2(ds, string));
                 }
             }
         }
@@ -3351,22 +3309,22 @@ extends PSCoreSysServiceBase<PSDEMap> {
     protected void onEmptyModelV2(PSDEMap pSDEMap) throws Exception {
         String string;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSDEMapActionService)ServiceGlobal.getService(PSDEMapActionService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<EntityBase> arrayList = ((PSDEMapActionServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap);
+        ArrayList<PSDEMapAction> actions = ((PSDEMapActionServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap);
         String string2 = StringHelper.format((String)"PSDEMAP#%1$s", (Object)pSDEMap.getPSDEMapId());
-        for (PSDEMapAction entityBase : arrayList) {
-            string = ((PSDEMapActionServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase);
+        for (PSDEMapAction entityBase : actions) {
+            string = ((PSDEMapActionServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entityBase);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(entityBase);
         }
-        Object object = new SqlParamList();
+        SqlParamList object = new SqlParamList();
         object.addString(pSDEMap.getPSDEMapId());
         ((PSDEMapActionServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
         ((PSDEMapActionServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEMAPACTION WHERE PSDEMAPID = ?", (SqlParamList)object);
         pSCoreSysServiceBase = (PSDEMapDetailService)ServiceGlobal.getService(PSDEMapDetailService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSDEMapDetailServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap);
+        ArrayList<PSDEMapDetail> details = ((PSDEMapDetailServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap);
         string2 = StringHelper.format((String)"PSDEMAP#%1$s", (Object)pSDEMap.getPSDEMapId());
-        for (PSDEMapDetail pSDEMapDetail : arrayList) {
-            string = ((PSDEMapDetailServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSDEMapDetail);
+        for (PSDEMapDetail pSDEMapDetail : details) {
+            string = ((PSDEMapDetailServiceBase)pSCoreSysServiceBase).getModelV2ResScope(pSDEMapDetail);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(pSDEMapDetail);
         }
@@ -3375,10 +3333,10 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ((PSDEMapDetailServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
         ((PSDEMapDetailServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEMAPDETAIL WHERE PSDEMAPID = ?", (SqlParamList)object);
         pSCoreSysServiceBase = (PSDEMapDQService)ServiceGlobal.getService(PSDEMapDQService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSDEMapDQServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap);
+        ArrayList<PSDEMapDQ> dqs = ((PSDEMapDQServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap);
         string2 = StringHelper.format((String)"PSDEMAP#%1$s", (Object)pSDEMap.getPSDEMapId());
-        for (PSDEMapDQ pSDEMapDQ : arrayList) {
-            string = ((PSDEMapDQServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSDEMapDQ);
+        for (PSDEMapDQ pSDEMapDQ : dqs) {
+            string = ((PSDEMapDQServiceBase)pSCoreSysServiceBase).getModelV2ResScope(pSDEMapDQ);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(pSDEMapDQ);
         }
@@ -3387,10 +3345,10 @@ extends PSCoreSysServiceBase<PSDEMap> {
         ((PSDEMapDQServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
         ((PSDEMapDQServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSDEMAPDQ WHERE PSDEMAPID = ?", (SqlParamList)object);
         pSCoreSysServiceBase = (PSDEMapDSService)ServiceGlobal.getService(PSDEMapDSService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSDEMapDSServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap);
+        ArrayList<PSDEMapDS> datasets = ((PSDEMapDSServiceBase)pSCoreSysServiceBase).selectByPSDEMap(pSDEMap);
         string2 = StringHelper.format((String)"PSDEMAP#%1$s", (Object)pSDEMap.getPSDEMapId());
-        for (PSDEMapDS pSDEMapDS : arrayList) {
-            string = ((PSDEMapDSServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSDEMapDS);
+        for (PSDEMapDS pSDEMapDS : datasets) {
+            string = ((PSDEMapDSServiceBase)pSCoreSysServiceBase).getModelV2ResScope(pSDEMapDS);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(pSDEMapDS);
         }
@@ -3458,9 +3416,6 @@ extends PSCoreSysServiceBase<PSDEMap> {
 
     @Override
     protected void onCompileRelatedModelV2(PSDEMap pSDEMap, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
         int n2;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSDEMapActionService)ServiceGlobal.getService(PSDEMapActionService.class, (SessionFactory)this.getSessionFactory());
         ArrayNode arrayNode = null;
@@ -3470,27 +3425,26 @@ extends PSCoreSysServiceBase<PSDEMap> {
         }
         if (arrayNode != null) {
             for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSDEMapAction();
-                ((PSDEMapActionBase)object).setDstPSDEId(pSDEMap.getDSTPSDEId());
-                ((PSDEMapActionBase)object).setPSDEId(pSDEMap.getPSDEId());
-                ((PSDEMapActionBase)object).setPSDEMapId(pSDEMap.getPSDEMapId());
-                ((PSDEMapActionBase)object).setPSDEMapName(pSDEMap.getPSDEMapName());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                ObjectNode model = (ObjectNode)arrayNode.get(n2);
+                PSDEMapAction action = new PSDEMapAction();
+                action.setDstPSDEId(pSDEMap.getDSTPSDEId());
+                action.setPSDEId(pSDEMap.getPSDEId());
+                action.setPSDEMapId(pSDEMap.getPSDEMapId());
+                action.setPSDEMapName(pSDEMap.getPSDEMapName());
+                pSCoreSysServiceBase.compileModelV2(action, model, string, null, n);
             }
         } else {
             String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string4);
-            if (((File)object2).exists()) {
-                object = ((File)object2).listFiles();
-                for (Object object3 : object) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSDEMapAction();
-                    entityBase.setDstPSDEId(pSDEMap.getDSTPSDEId());
-                    entityBase.setPSDEId(pSDEMap.getPSDEId());
-                    entityBase.setPSDEMapId(pSDEMap.getPSDEMapId());
-                    entityBase.setPSDEMapName(pSDEMap.getPSDEMapName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+            File folder = new File(string4);
+            if (folder.exists()) {
+                for (File child : folder.listFiles()) {
+                    if (!child.isDirectory()) continue;
+                    PSDEMapAction action = new PSDEMapAction();
+                    action.setDstPSDEId(pSDEMap.getDSTPSDEId());
+                    action.setPSDEId(pSDEMap.getPSDEId());
+                    action.setPSDEMapId(pSDEMap.getPSDEMapId());
+                    action.setPSDEMapName(pSDEMap.getPSDEMapName());
+                    pSCoreSysServiceBase.compileModelV2(action, null, string, child.getCanonicalPath(), n);
                 }
             }
         }
@@ -3502,24 +3456,24 @@ extends PSCoreSysServiceBase<PSDEMap> {
         }
         if (arrayNode != null) {
             for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSDEMapDetail();
-                ((PSDEMapDetailBase)object).setPSDEId(pSDEMap.getPSDEId());
-                ((PSDEMapDetailBase)object).setPSDEMapId(pSDEMap.getPSDEMapId());
-                ((PSDEMapDetailBase)object).setPSDEMapName(pSDEMap.getPSDEMapName());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                ObjectNode model = (ObjectNode)arrayNode.get(n2);
+                PSDEMapDetail detail = new PSDEMapDetail();
+                detail.setPSDEId(pSDEMap.getPSDEId());
+                detail.setPSDEMapId(pSDEMap.getPSDEMapId());
+                detail.setPSDEMapName(pSDEMap.getPSDEMapName());
+                pSCoreSysServiceBase.compileModelV2(detail, model, string, null, n);
             }
         } else {
             String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string5);
-            if (((File)object2).exists()) {
-                for (Object object3 : object = ((File)object2).listFiles()) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSDEMapDetail();
-                    entityBase.setPSDEId(pSDEMap.getPSDEId());
-                    entityBase.setPSDEMapId(pSDEMap.getPSDEMapId());
-                    entityBase.setPSDEMapName(pSDEMap.getPSDEMapName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+            File folder = new File(string5);
+            if (folder.exists()) {
+                for (File child : folder.listFiles()) {
+                    if (!child.isDirectory()) continue;
+                    PSDEMapDetail detail = new PSDEMapDetail();
+                    detail.setPSDEId(pSDEMap.getPSDEId());
+                    detail.setPSDEMapId(pSDEMap.getPSDEMapId());
+                    detail.setPSDEMapName(pSDEMap.getPSDEMapName());
+                    pSCoreSysServiceBase.compileModelV2(detail, null, string, child.getCanonicalPath(), n);
                 }
             }
         }
@@ -3531,26 +3485,26 @@ extends PSCoreSysServiceBase<PSDEMap> {
         }
         if (arrayNode != null) {
             for (int i = 0; i < arrayNode.size(); ++i) {
-                object2 = (ObjectNode)arrayNode.get(i);
-                object = new PSDEMapDQ();
-                ((PSDEMapDQBase)object).setDstPSDEId(pSDEMap.getDSTPSDEId());
-                ((PSDEMapDQBase)object).setPSDEId(pSDEMap.getPSDEId());
-                ((PSDEMapDQBase)object).setPSDEMapId(pSDEMap.getPSDEMapId());
-                ((PSDEMapDQBase)object).setPSDEMapName(pSDEMap.getPSDEMapName());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                ObjectNode model = (ObjectNode)arrayNode.get(i);
+                PSDEMapDQ dq = new PSDEMapDQ();
+                dq.setDstPSDEId(pSDEMap.getDSTPSDEId());
+                dq.setPSDEId(pSDEMap.getPSDEId());
+                dq.setPSDEMapId(pSDEMap.getPSDEMapId());
+                dq.setPSDEMapName(pSDEMap.getPSDEMapName());
+                pSCoreSysServiceBase.compileModelV2(dq, model, string, null, n);
             }
         } else {
             String string6 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string6);
-            if (((File)object2).exists()) {
-                for (Object object3 : object = ((File)object2).listFiles()) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSDEMapDQ();
-                    entityBase.setDstPSDEId(pSDEMap.getDSTPSDEId());
-                    entityBase.setPSDEId(pSDEMap.getPSDEId());
-                    entityBase.setPSDEMapId(pSDEMap.getPSDEMapId());
-                    entityBase.setPSDEMapName(pSDEMap.getPSDEMapName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+            File folder = new File(string6);
+            if (folder.exists()) {
+                for (File child : folder.listFiles()) {
+                    if (!child.isDirectory()) continue;
+                    PSDEMapDQ dq = new PSDEMapDQ();
+                    dq.setDstPSDEId(pSDEMap.getDSTPSDEId());
+                    dq.setPSDEId(pSDEMap.getPSDEId());
+                    dq.setPSDEMapId(pSDEMap.getPSDEMapId());
+                    dq.setPSDEMapName(pSDEMap.getPSDEMapName());
+                    pSCoreSysServiceBase.compileModelV2(dq, null, string, child.getCanonicalPath(), n);
                 }
             }
         }
@@ -3562,26 +3516,26 @@ extends PSCoreSysServiceBase<PSDEMap> {
         }
         if (arrayNode != null) {
             for (int i = 0; i < arrayNode.size(); ++i) {
-                object2 = (ObjectNode)arrayNode.get(i);
-                object = new PSDEMapDS();
-                ((PSDEMapDSBase)object).setDstPSDEId(pSDEMap.getDSTPSDEId());
-                ((PSDEMapDSBase)object).setPSDEId(pSDEMap.getPSDEId());
-                ((PSDEMapDSBase)object).setPSDEMapId(pSDEMap.getPSDEMapId());
-                ((PSDEMapDSBase)object).setPSDEMapName(pSDEMap.getPSDEMapName());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                ObjectNode model = (ObjectNode)arrayNode.get(i);
+                PSDEMapDS ds = new PSDEMapDS();
+                ds.setDstPSDEId(pSDEMap.getDSTPSDEId());
+                ds.setPSDEId(pSDEMap.getPSDEId());
+                ds.setPSDEMapId(pSDEMap.getPSDEMapId());
+                ds.setPSDEMapName(pSDEMap.getPSDEMapName());
+                pSCoreSysServiceBase.compileModelV2(ds, model, string, null, n);
             }
         } else {
             String string7 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string7);
-            if (((File)object2).exists()) {
-                for (Object object3 : object = ((File)object2).listFiles()) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSDEMapDS();
-                    entityBase.setDstPSDEId(pSDEMap.getDSTPSDEId());
-                    entityBase.setPSDEId(pSDEMap.getPSDEId());
-                    entityBase.setPSDEMapId(pSDEMap.getPSDEMapId());
-                    entityBase.setPSDEMapName(pSDEMap.getPSDEMapName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+            File folder = new File(string7);
+            if (folder.exists()) {
+                for (File child : folder.listFiles()) {
+                    if (!child.isDirectory()) continue;
+                    PSDEMapDS ds = new PSDEMapDS();
+                    ds.setDstPSDEId(pSDEMap.getDSTPSDEId());
+                    ds.setPSDEId(pSDEMap.getPSDEId());
+                    ds.setPSDEMapId(pSDEMap.getPSDEMapId());
+                    ds.setPSDEMapName(pSDEMap.getPSDEMapName());
+                    pSCoreSysServiceBase.compileModelV2(ds, null, string, child.getCanonicalPath(), n);
                 }
             }
         }
@@ -3608,7 +3562,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             PSDEMapActionService pSDEMapActionService = (PSDEMapActionService)ServiceGlobal.getService(PSDEMapActionService.class, (SessionFactory)this.getSessionFactory());
             PSDEMapAction pSDEMapAction = new PSDEMapAction();
             pSDEMapAction.setPSDEMapActionId(pSMOSFile.getPSModelId());
-            if (!pSDEMapActionService.get((IEntity)pSDEMapAction, true)) {
+            if (!pSDEMapActionService.get(pSDEMapAction, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEMapAction.getPSDEMapId(), (String)pSDEMap.getPSDEMapId(), (boolean)false) == 0) {
@@ -3616,31 +3570,31 @@ extends PSCoreSysServiceBase<PSDEMap> {
             }
             ObjectNode objectNode = pSDEMapActionService.exportModelV2(pSDEMapAction);
             pSDEMapAction.reset();
-            if (!pSDEMapActionService.setModelV2ResScope((IEntity)pSDEMapAction, "PSDEMAP", pSDEMap.getPSDEMapId())) {
+            if (!pSDEMapActionService.setModelV2ResScope(pSDEMapAction, "PSDEMAP", pSDEMap.getPSDEMapId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEMapActionService.importModelV2(pSDEMapAction, objectNode);
             SessionFactoryManager.commit();
-            return pSDEMapActionService.getFile((IEntity)pSDEMapAction);
+            return pSDEMapActionService.getFile(pSDEMapAction);
         }
         if (StringHelper.compare((String)pSMOSFile.getPSModelType(), (String)PSModelV2Helper.getModelV2Name("PSDEACTION", true), (boolean)false) == 0) {
             PSDEActionService pSDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)this.getSessionFactory());
             PSDEAction pSDEAction = new PSDEAction();
             pSDEAction.setPSDEActionId(pSMOSFile.getPSModelId());
-            if (!pSDEActionService.get((IEntity)pSDEAction, true)) {
+            if (!pSDEActionService.get(pSDEAction, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             PSDEMapActionService pSDEMapActionService = (PSDEMapActionService)ServiceGlobal.getService(PSDEMapActionService.class, (SessionFactory)this.getSessionFactory());
             PSDEMapAction pSDEMapAction = new PSDEMapAction();
             pSDEMapAction.setPSDEMapId(pSDEMap.getPSDEMapId());
             pSDEMapAction.setPSDEActionId(pSDEAction.getPSDEActionId());
-            this.fillPasteEntity((IEntity)pSDEMapAction, "PASTETAG");
+            this.fillPasteEntity(pSDEMapAction, "PASTETAG");
             pSDEMapActionService.create(pSDEMapAction);
             if (StringHelper.compare((String)pSDEAction.getPSDEId(), (String)pSDEMapAction.getPSDEId(), (boolean)false) != 0) {
                 throw new Exception("\u6a21\u578b\u57df[\u6e90\u5b9e\u4f53]\u4e0d\u4e00\u81f4");
             }
             SessionFactoryManager.commit();
-            return pSDEMapActionService.getFile((IEntity)pSDEMapAction);
+            return pSDEMapActionService.getFile(pSDEMapAction);
         }
         return null;
     }
@@ -3650,7 +3604,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             PSDEMapDetailService pSDEMapDetailService = (PSDEMapDetailService)ServiceGlobal.getService(PSDEMapDetailService.class, (SessionFactory)this.getSessionFactory());
             PSDEMapDetail pSDEMapDetail = new PSDEMapDetail();
             pSDEMapDetail.setPSDEMapDetailId(pSMOSFile.getPSModelId());
-            if (!pSDEMapDetailService.get((IEntity)pSDEMapDetail, true)) {
+            if (!pSDEMapDetailService.get(pSDEMapDetail, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEMapDetail.getPSDEMapId(), (String)pSDEMap.getPSDEMapId(), (boolean)false) == 0) {
@@ -3658,31 +3612,31 @@ extends PSCoreSysServiceBase<PSDEMap> {
             }
             ObjectNode objectNode = pSDEMapDetailService.exportModelV2(pSDEMapDetail);
             pSDEMapDetail.reset();
-            if (!pSDEMapDetailService.setModelV2ResScope((IEntity)pSDEMapDetail, "PSDEMAP", pSDEMap.getPSDEMapId())) {
+            if (!pSDEMapDetailService.setModelV2ResScope(pSDEMapDetail, "PSDEMAP", pSDEMap.getPSDEMapId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEMapDetailService.importModelV2(pSDEMapDetail, objectNode);
             SessionFactoryManager.commit();
-            return pSDEMapDetailService.getFile((IEntity)pSDEMapDetail);
+            return pSDEMapDetailService.getFile(pSDEMapDetail);
         }
         if (StringHelper.compare((String)pSMOSFile.getPSModelType(), (String)PSModelV2Helper.getModelV2Name("PSDEFIELD", true), (boolean)false) == 0) {
             PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
             PSDEField pSDEField = new PSDEField();
             pSDEField.setPSDEFieldId(pSMOSFile.getPSModelId());
-            if (!pSDEFieldService.get((IEntity)pSDEField, true)) {
+            if (!pSDEFieldService.get(pSDEField, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             PSDEMapDetailService pSDEMapDetailService = (PSDEMapDetailService)ServiceGlobal.getService(PSDEMapDetailService.class, (SessionFactory)this.getSessionFactory());
             PSDEMapDetail pSDEMapDetail = new PSDEMapDetail();
             pSDEMapDetail.setPSDEMapId(pSDEMap.getPSDEMapId());
             pSDEMapDetail.setSrcPSDEFId(pSDEField.getPSDEFieldId());
-            this.fillPasteEntity((IEntity)pSDEMapDetail, "PASTETAG");
+            this.fillPasteEntity(pSDEMapDetail, "PASTETAG");
             pSDEMapDetailService.create(pSDEMapDetail);
             if (StringHelper.compare((String)pSDEField.getPSDEId(), (String)pSDEMapDetail.getPSDEId(), (boolean)false) != 0) {
                 throw new Exception("\u6a21\u578b\u57df[PSDEID]\u4e0d\u4e00\u81f4");
             }
             SessionFactoryManager.commit();
-            return pSDEMapDetailService.getFile((IEntity)pSDEMapDetail);
+            return pSDEMapDetailService.getFile(pSDEMapDetail);
         }
         return null;
     }
@@ -3692,7 +3646,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             PSDEMapDQService pSDEMapDQService = (PSDEMapDQService)ServiceGlobal.getService(PSDEMapDQService.class, (SessionFactory)this.getSessionFactory());
             PSDEMapDQ pSDEMapDQ = new PSDEMapDQ();
             pSDEMapDQ.setPSDEMapDQId(pSMOSFile.getPSModelId());
-            if (!pSDEMapDQService.get((IEntity)pSDEMapDQ, true)) {
+            if (!pSDEMapDQService.get(pSDEMapDQ, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSDEMapDQ.getPSDEMapId(), (String)pSDEMap.getPSDEMapId(), (boolean)false) == 0) {
@@ -3700,31 +3654,31 @@ extends PSCoreSysServiceBase<PSDEMap> {
             }
             ObjectNode objectNode = pSDEMapDQService.exportModelV2(pSDEMapDQ);
             pSDEMapDQ.reset();
-            if (!pSDEMapDQService.setModelV2ResScope((IEntity)pSDEMapDQ, "PSDEMAP", pSDEMap.getPSDEMapId())) {
+            if (!pSDEMapDQService.setModelV2ResScope(pSDEMapDQ, "PSDEMAP", pSDEMap.getPSDEMapId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSDEMapDQService.importModelV2(pSDEMapDQ, objectNode);
             SessionFactoryManager.commit();
-            return pSDEMapDQService.getFile((IEntity)pSDEMapDQ);
+            return pSDEMapDQService.getFile(pSDEMapDQ);
         }
         if (StringHelper.compare((String)pSMOSFile.getPSModelType(), (String)PSModelV2Helper.getModelV2Name("PSDEDATAQUERY", true), (boolean)false) == 0) {
             PSDEDataQueryService pSDEDataQueryService = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)this.getSessionFactory());
             PSDEDataQuery pSDEDataQuery = new PSDEDataQuery();
             pSDEDataQuery.setPSDEDataQueryId(pSMOSFile.getPSModelId());
-            if (!pSDEDataQueryService.get((IEntity)pSDEDataQuery, true)) {
+            if (!pSDEDataQueryService.get(pSDEDataQuery, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             PSDEMapDQService pSDEMapDQService = (PSDEMapDQService)ServiceGlobal.getService(PSDEMapDQService.class, (SessionFactory)this.getSessionFactory());
             PSDEMapDQ pSDEMapDQ = new PSDEMapDQ();
             pSDEMapDQ.setPSDEMapId(pSDEMap.getPSDEMapId());
             pSDEMapDQ.setPSDEDataQueryId(pSDEDataQuery.getPSDEDataQueryId());
-            this.fillPasteEntity((IEntity)pSDEMapDQ, "PASTETAG");
+            this.fillPasteEntity(pSDEMapDQ, "PASTETAG");
             pSDEMapDQService.create(pSDEMapDQ);
             if (StringHelper.compare((String)pSDEDataQuery.getPSDEId(), (String)pSDEMapDQ.getPSDEId(), (boolean)false) != 0) {
                 throw new Exception("\u6a21\u578b\u57df[\u6e90\u5b9e\u4f53]\u4e0d\u4e00\u81f4");
             }
             SessionFactoryManager.commit();
-            return pSDEMapDQService.getFile((IEntity)pSDEMapDQ);
+            return pSDEMapDQService.getFile(pSDEMapDQ);
         }
         return null;
     }
@@ -3918,7 +3872,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
     @Override
     protected PSMOSFile[] onListDRDataFolders(PSMOSFile pSMOSFile, String string, String string2, IPSMOSFileFilter iPSMOSFileFilter, boolean bl) throws Exception {
         PSMOSFile pSMOSFile2;
-        ArrayList arrayList;
+        ArrayList<? extends EntityBase> arrayList;
         SelectContext selectContext;
         PSCoreSysServiceBase pSCoreSysServiceBase;
         ArrayList<PSMOSFile> arrayList2 = new ArrayList<PSMOSFile>();
@@ -3927,7 +3881,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEMAPDETAIL_PSDEMAP_PSDEMAPID", "PSDEMAPID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -3937,7 +3891,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEMAPACTION_PSDEMAP_PSDEMAPID", "PSDEMAPID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -3947,7 +3901,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEMAPDS_PSDEMAP_PSDEMAPID", "PSDEMAPID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -3957,7 +3911,7 @@ extends PSCoreSysServiceBase<PSDEMap> {
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSDEMAPDQ_PSDEMAP_PSDEMAPID", "PSDEMAPID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
             for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -4020,4 +3974,3 @@ extends PSCoreSysServiceBase<PSDEMap> {
         defaultValueMap.put("PSDEMAPNAME", "\u5b9e\u4f53\u6620\u5c04");
     }
 }
-

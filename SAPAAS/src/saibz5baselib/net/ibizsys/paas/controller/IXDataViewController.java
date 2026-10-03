@@ -1,12 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.IViewController;
+/**
+ * 数据相关视图控制器
+ * @author Administrator
+ *
+ */
+public interface IXDataViewController extends IViewController {
 
-public interface IXDataViewController
-extends IViewController {
-    public boolean isReadOnly();
+	/**
+	 * 是否为只读模式
+	 * @return
+	 */
+	boolean isReadOnly();
+	
 }
-

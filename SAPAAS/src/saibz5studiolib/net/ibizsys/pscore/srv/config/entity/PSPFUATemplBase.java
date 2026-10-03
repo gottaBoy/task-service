@@ -1635,7 +1635,7 @@ implements Serializable {
                 PSPFPubCode pSPFPubCode = new PSPFPubCode();
                 pSPFPubCode.setPSPFPubCodeId(this.getPSPFPubCodeId());
                 PSPFPubCodeService pSPFPubCodeService = (PSPFPubCodeService)ServiceGlobal.getService(PSPFPubCodeService.class, (SessionFactory)this.getSessionFactory());
-                pSPFPubCodeService.autoGet((IEntity)pSPFPubCode);
+                pSPFPubCodeService.autoGet(pSPFPubCode);
                 this.pspfpubcode = pSPFPubCode;
             }
             return this.pspfpubcode;
@@ -1661,7 +1661,7 @@ implements Serializable {
                 PSPFStyle pSPFStyle = new PSPFStyle();
                 pSPFStyle.setPSPFStyleId(this.getPSPFStyleId());
                 PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)this.getSessionFactory());
-                pSPFStyleService.autoGet((IEntity)pSPFStyle);
+                pSPFStyleService.autoGet(pSPFStyle);
                 this.pspfstyle = pSPFStyle;
             }
             return this.pspfstyle;
@@ -1687,7 +1687,7 @@ implements Serializable {
                 PSPF pSPF = new PSPF();
                 pSPF.setPSPFId(this.getPSPFId());
                 PSPFService pSPFService = (PSPFService)ServiceGlobal.getService(PSPFService.class, (SessionFactory)this.getSessionFactory());
-                pSPFService.autoGet((IEntity)pSPF);
+                pSPFService.autoGet(pSPF);
                 this.pspf = pSPF;
             }
             return this.pspf;
@@ -1713,7 +1713,7 @@ implements Serializable {
                 PSSysUIAction pSSysUIAction = new PSSysUIAction();
                 pSSysUIAction.setPSSysUIActionId(this.getPSSysUIActionId());
                 PSSysUIActionService pSSysUIActionService = (PSSysUIActionService)ServiceGlobal.getService(PSSysUIActionService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUIActionService.autoGet((IEntity)pSSysUIAction);
+                pSSysUIActionService.autoGet(pSSysUIAction);
                 this.pssysuiaction = pSSysUIAction;
             }
             return this.pssysuiaction;

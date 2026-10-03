@@ -75,7 +75,7 @@ implements IPSDELogicLinkService {
     @Override
     protected List<PSDELogicLink> onListAll() throws Exception {
         ArrayList<PSDELogicLink> list = new ArrayList<PSDELogicLink>();
-        List psdelogics = PSModelServiceUtil.getInstance().getPSDELogicService().listAll();
+        List<PSDELogic> psdelogics = PSModelServiceUtil.getInstance().getPSDELogicService().listAll();
         if (psdelogics != null) {
             for (PSDELogic parent : psdelogics) {
                 List<PSDELogicLink> items = this.listByPSDELogic(parent);

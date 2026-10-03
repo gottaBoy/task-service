@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.data;
 
 import java.lang.annotation.Documented;
@@ -8,22 +5,52 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import net.ibizsys.paas.data.DataItemParam;
 
-@Target(value={ElementType.TYPE})
-@Retention(value=RetentionPolicy.RUNTIME)
+/**
+ * 数据项注解
+ * 
+ * @author Administrator
+ *
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DataItem {
-    public int datatype() default 0;
+	/**
+	 * 数据类型
+	 * 
+	 * @return
+	 */
+	int datatype() default 0;
 
-    public String format() default "";
+	/**
+	 * 获取格式化
+	 * 
+	 * @return
+	 */
+	String format() default "";
 
-    public String name() default "";
+	/**
+	 * 名称
+	 * 
+	 * @return
+	 */
+	String name() default "";
 
-    public String defaultvalue() default "";
+	/**
+	 * 获取默认值
+	 * 
+	 * @return
+	 */
+	String defaultvalue() default "";
 
-    public String codelistid() default "";
+	/**
+	 * @return
+	 */
+	String codelistid() default "";
 
-    public DataItemParam[] dataitemparams();
+	/**
+	 * @return
+	 */
+	DataItemParam[] dataitemparams();
 }
-

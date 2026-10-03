@@ -1,52 +1,162 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSControl
- *  IPSGenerateCodeResult
- *  IPSPanelContainer
- *  IPSPublisherContext
- */
 package net.ibizsys.model.pub.ionic4;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.ionic4.PSIonic4SysPanelItemVCPublisherImpl;
 
-public class PSIonic4SysPanelContainerVCPublisherImpl
-extends PSIonic4SysPanelItemVCPublisherImpl {
-    protected IPSPanelContainer iPSPanelContainer;
+import SA.SRFDA.PS.Core.Control.IPSControl;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEFormItem;
+import SA.SRFDA.PS.Core.Control.Panel.IPSPanelContainer;
+import SA.SRFDA.PS.Core.Control.Panel.IPSPanelItem;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.IPSPublisherContext;
+import SA.SRFDA.PS.Data.PSSysPanelItem;
+import SA.SRFramework.Utility.StringHelper;
 
-    public PSIonic4SysPanelContainerVCPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSIonic4SysPanelContainerVCPublisherImpl is inconsistent\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tobject cannot be resolved to a variable\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tStringHelper cannot be resolved\n\tIPSPanelContainer cannot be resolved to a type\n\tStringHelper cannot be resolved\n\tPSSysPanelItem cannot be resolved to a variable\n\tStringHelper cannot be resolved\n\tPSSysPanelItem cannot be resolved to a variable\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSIonic4SysPanelContainerVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tThe method getItems() from the type PSIonic4SysPanelContainerVCPublisherImpl.ColumnLayoutGroup refers to the missing type IPSGenerateCodeResult\n\tStringHelper cannot be resolved\n\tPSSysPanelItem cannot be resolved to a variable\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSIonic4SysPanelContainerVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSIonic4SysPanelContainerVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tIPSPanelContainer cannot be resolved to a type\n");
-    }
+/**
+ * EXT JS 系统面板容器成员视图代码发布器对象
+ * @author Administrator
+ *
+ */
+public class PSIonic4SysPanelContainerVCPublisherImpl extends PSIonic4SysPanelItemVCPublisherImpl {
+	public class ColumnLayoutGroup {
+		private ArrayList<IPSGenerateCodeResult> itemCodeList = new ArrayList<IPSGenerateCodeResult>();
 
-    @Override
-    public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n");
-    }
+		public ArrayList<IPSGenerateCodeResult> getItems() {
+			return this.itemCodeList;
+		}
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSPanelItem cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tobject cannot be resolved to a variable\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tStringHelper cannot be resolved\n\tIPSPanelContainer cannot be resolved to a type\n\tStringHelper cannot be resolved\n\tPSSysPanelItem cannot be resolved to a variable\n\tStringHelper cannot be resolved\n\tPSSysPanelItem cannot be resolved to a variable\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSIonic4SysPanelContainerVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tThe method getItems() from the type PSIonic4SysPanelContainerVCPublisherImpl.ColumnLayoutGroup refers to the missing type IPSGenerateCodeResult\n\tStringHelper cannot be resolved\n\tPSSysPanelItem cannot be resolved to a variable\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSIonic4SysPanelContainerVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSIonic4SysPanelContainerVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n");
-    }
+	protected IPSPanelContainer iPSPanelContainer = null;
 
-    @Override
-    protected void onClose() {
-        throw new Error("Unresolved compilation problem: \n\tIPSPanelContainer cannot be resolved to a type\n");
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA
+	 * .PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl,
+	 * java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception {
+		iPSPanelContainer = (IPSPanelContainer) object;
+		return super.generateCode(iPSPublisherContext, iPSControl, object);
+	}
 
-    public class ColumnLayoutGroup {
-        private ArrayList<IPSGenerateCodeResult> itemCodeList;
-        final /* synthetic */ PSIonic4SysPanelContainerVCPublisherImpl this$0;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams
+	 * (java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
+		super.onFillGenerateCodeParams(params);
 
-        public ColumnLayoutGroup(PSIonic4SysPanelContainerVCPublisherImpl pSIonic4SysPanelContainerVCPublisherImpl) {
-            throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSIonic4SysPanelContainerVCPublisherImpl is inconsistent\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tobject cannot be resolved to a variable\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tStringHelper cannot be resolved\n\tIPSPanelContainer cannot be resolved to a type\n\tStringHelper cannot be resolved\n\tPSSysPanelItem cannot be resolved to a variable\n\tStringHelper cannot be resolved\n\tPSSysPanelItem cannot be resolved to a variable\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPanelContainer cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSIonic4SysPanelContainerVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tThe method getItems() from the type PSIonic4SysPanelContainerVCPublisherImpl.ColumnLayoutGroup refers to the missing type IPSGenerateCodeResult\n\tStringHelper cannot be resolved\n\tPSSysPanelItem cannot be resolved to a variable\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSIonic4SysPanelContainerVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPanelItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSIonic4SysPanelContainerVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tIPSPanelContainer cannot be resolved to a type\n");
-        }
+		Object objViewCtrl = params.get("srfviewctrl");
+		
+		if (true) {
+			ArrayList<IPSPanelItem> psPanelItemList = new ArrayList<IPSPanelItem>();
+			iPSPanelContainer = (IPSPanelContainer) object;
+			java.util.Iterator<IPSPanelItem> psPanelItems = iPSPanelContainer.getPSPanelItems();
+			while (psPanelItems.hasNext()) {
+				IPSPanelItem iPSPanelItem = psPanelItems.next();
+				if (iPSPanelItem instanceof IPSDEFormItem) {
+					IPSDEFormItem iPSDEFormItem = (IPSDEFormItem) iPSPanelItem;
+					if (StringHelper.Compare(iPSDEFormItem.getEditorType(), "HIDDEN", true) == 0)
+						continue;
+				}
+				psPanelItemList.add(iPSPanelItem);
+			}
 
-        public ArrayList<IPSGenerateCodeResult> getItems() {
-            throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n");
-        }
-    }
+			String strLayoutType = iPSPanelContainer.getLayoutMode();
+			if ((StringHelper.Compare(strLayoutType, PSSysPanelItem.LAYOUTMODE_AUTOTABLE, true) == 0) || (StringHelper.Compare(strLayoutType, PSSysPanelItem.LAYOUTMODE_TABLE, true) == 0)) {
+				HashMap<Integer, ColumnLayoutGroup> columnLayoutGroupMap = new HashMap<Integer, ColumnLayoutGroup>();
+
+				// 产生集合代码
+				for (IPSPanelItem iPSPanelItem : psPanelItemList) {
+					int nRowId = iPSPanelContainer.getItemRowId(iPSPanelItem);
+					ColumnLayoutGroup columnLayoutGroup = null;
+					if (columnLayoutGroupMap.containsKey(nRowId)) {
+						columnLayoutGroup = columnLayoutGroupMap.get(nRowId);
+					} else {
+						columnLayoutGroup = new ColumnLayoutGroup();
+						columnLayoutGroupMap.put(nRowId, columnLayoutGroup);
+					}
+
+					// 根据类型，获取对应的编辑器代码
+					
+					HashMap<String,Object> rootParams = new HashMap<String,Object>();
+					if(objViewCtrl!=null){
+						rootParams.put("srfviewctrl", objViewCtrl);
+					}
+					
+					IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(iPSPanelItem.getItemType()).getPSPFCtrlPartCodePublisher();
+					IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, this.iPSControl, iPSPanelItem,rootParams);
+					iPSPFCtrlPartCodePublisher.close();
+
+					columnLayoutGroup.getItems().add(iPSGenerateCodeResult);
+				}
+
+				ArrayList<ColumnLayoutGroup> columnLayoutGroupList = new ArrayList<ColumnLayoutGroup>();
+				for (int i = 0; i < 1000; i++) {
+					ColumnLayoutGroup columnLayoutGroup = columnLayoutGroupMap.get(i);
+					if (columnLayoutGroup == null)
+						break;
+					columnLayoutGroupList.add(columnLayoutGroup);
+				}
+				params.put("rows", columnLayoutGroupList);
+			} else if (StringHelper.Compare(strLayoutType, PSSysPanelItem.LAYOUTMODE_BORDER, true) == 0) {
+				ArrayList<IPSGenerateCodeResult> itemCodeList = new ArrayList<IPSGenerateCodeResult>();
+
+				// 产生集合代码
+				for (IPSPanelItem iPSPanelItem : psPanelItemList) {
+					
+					HashMap<String,Object> rootParams = new HashMap<String,Object>();
+					if(objViewCtrl!=null){
+						rootParams.put("srfviewctrl", objViewCtrl);
+					}
+					
+					IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(iPSPanelItem.getItemType()).getPSPFCtrlPartCodePublisher();
+					IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, this.iPSControl, iPSPanelItem,rootParams);
+					iPSPFCtrlPartCodePublisher.close();
+
+					itemCodeList.add(iPSGenerateCodeResult);
+
+				}
+
+				params.put("items", itemCodeList);
+			} else {
+				ArrayList<IPSGenerateCodeResult> itemCodeList = new ArrayList<IPSGenerateCodeResult>();
+
+				// 产生集合代码
+				for (IPSPanelItem iPSPanelItem : psPanelItemList) {
+					
+					HashMap<String,Object> rootParams = new HashMap<String,Object>();
+					if(objViewCtrl!=null){
+						rootParams.put("srfviewctrl", objViewCtrl);
+					}
+					
+					IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(iPSPanelItem.getItemType()).getPSPFCtrlPartCodePublisher();
+					IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, this.iPSControl, iPSPanelItem,rootParams);
+					iPSPFCtrlPartCodePublisher.close();
+
+					itemCodeList.add(iPSGenerateCodeResult);
+
+				}
+
+				params.put("items", itemCodeList);
+			}
+
+		}
+
+	}
+
+	@Override
+	protected void onClose() {
+		this.iPSPanelContainer = null;
+		super.onClose();
+	}
+
 }
-

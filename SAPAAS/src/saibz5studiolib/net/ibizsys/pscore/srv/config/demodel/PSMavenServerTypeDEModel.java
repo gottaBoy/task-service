@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSMavenServerTypeDEModelBase;
 
 public class PSMavenServerTypeDEModel
 extends PSMavenServerTypeDEModelBase {
+
+    public PSMavenServerTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

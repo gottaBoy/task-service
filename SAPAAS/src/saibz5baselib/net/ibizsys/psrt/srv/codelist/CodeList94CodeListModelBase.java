@@ -1,25 +1,48 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="20bce8400b92312729a0be0766058bb7", name="\u6811\u89c6\u56fe\u8282\u70b9\u7c7b\u578b", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="STATIC", text="\u9759\u6001", realtext="\u9759\u6001"), @CodeItem(value="DE", text="\u52a8\u6001\uff08\u5b9e\u4f53\uff09", realtext="\u52a8\u6001\uff08\u5b9e\u4f53\uff09"), @CodeItem(value="CODELIST", text="\u52a8\u6001\uff08\u4ee3\u7801\u8868\uff09", realtext="\u52a8\u6001\uff08\u4ee3\u7801\u8868\uff09")})
-public abstract class CodeList94CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String STATIC = "STATIC";
-    public static final String DE = "DE";
-    public static final String CODELIST = "CODELIST";
+
+@CodeList(id="20bce8400b92312729a0be0766058bb7",name="树视图节点类型",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="STATIC",text="静态",realtext="静态" )
+    ,@CodeItem(value="DE",text="动态（实体）",realtext="动态（实体）" )
+    ,@CodeItem(value="CODELIST",text="动态（代码表）",realtext="动态（代码表）" )
+})
+
+
+/**
+ * 静态代码表[树视图节点类型]模型基类
+ */
+public abstract class CodeList94CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  静态
+     */
+    public final static String STATIC = "STATIC";
+    /**
+     *  动态（实体）
+     */
+    public final static String DE = "DE";
+    /**
+     *  动态（代码表）
+     */
+    public final static String CODELIST = "CODELIST";
+
 
     public CodeList94CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList94CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList94CodeListModel", this);
     }
-}
 
+}

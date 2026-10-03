@@ -135,14 +135,14 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
             PSSysTask pSSysTask = (PSSysTask)iService.getDEModel().createEntity();
             pSSysTask.set("PSSYSTASKID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysTask);
+                iService.getTemp(pSSysTask);
             } else {
-                iService.get((IEntity)pSSysTask);
+                iService.get(pSSysTask);
             }
             this.onFillParentInfo_PSSysTask(pSSysTaskData, pSSysTask);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysTaskData, string, string2, string3);
+        super.onFillParentInfo(pSSysTaskData, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysTaskData, bl);
+        super.onFillEntityFullInfo(pSSysTaskData, bl);
         this.onFillEntityFullInfo_PSSysTask(pSSysTaskData, bl);
     }
 
@@ -166,7 +166,7 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
     }
 
     protected void onWriteBackParent(PSSysTaskData pSSysTaskData, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysTaskData, bl);
+        super.onWriteBackParent(pSSysTaskData, bl);
     }
 
     public ArrayList<PSSysTaskData> selectByPSSysTask(PSSysTaskBase pSSysTaskBase) throws Exception {
@@ -225,7 +225,7 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
         ArrayList<PSSysTaskData> arrayList = this.selectByPSSysTask(pSSysTask);
         this.onBeforeRemoveByPSSysTask(pSSysTask, arrayList);
         for (PSSysTaskData pSSysTaskData : arrayList) {
-            this.remove((IEntity)pSSysTaskData);
+            this.remove(pSSysTaskData);
         }
         this.onAfterRemoveByPSSysTask(pSSysTask, arrayList);
     }
@@ -246,14 +246,14 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
 
     protected void replaceParentInfo(PSSysTaskData pSSysTaskData, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysTaskData, cloneSession);
+        super.replaceParentInfo(pSSysTaskData, cloneSession);
         if (pSSysTaskData.getPSSysTaskId() != null && (iEntity = cloneSession.getEntity("PSSYSTASK", (Object)pSSysTaskData.getPSSysTaskId())) != null) {
             this.onFillParentInfo_PSSysTask(pSSysTaskData, (PSSysTask)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSysTaskData pSSysTaskData, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysTaskData, bl);
+        super.onRemoveEntityUncopyValues(pSSysTaskData, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysTaskData pSSysTaskData, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -271,7 +271,7 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
         if ((entityFieldError = this.onCheckField_PSSysTaskId(bl, pSSysTaskData, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysTaskData, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysTaskData, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Content(boolean bl, PSSysTaskData pSSysTaskData, boolean bl2, boolean bl3) throws Exception {
@@ -284,7 +284,7 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Content_Default((IEntity)pSSysTaskData, bl2, bl3);
+            string2 = this.onTestValueRule_Content_Default(pSSysTaskData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTENT");
@@ -309,7 +309,7 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysTaskDataId_Default((IEntity)pSSysTaskData, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysTaskDataId_Default(pSSysTaskData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTASKDATAID");
@@ -334,7 +334,7 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysTaskDataName_Default((IEntity)pSSysTaskData, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysTaskDataName_Default(pSSysTaskData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTASKDATANAME");
@@ -356,7 +356,7 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysTaskId_Default((IEntity)pSSysTaskData, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysTaskId_Default(pSSysTaskData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTASKID");
@@ -369,11 +369,11 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
     }
 
     protected void onSyncEntity(PSSysTaskData pSSysTaskData, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysTaskData, bl);
+        super.onSyncEntity(pSSysTaskData, bl);
     }
 
     protected void onSyncIndexEntities(PSSysTaskData pSSysTaskData, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysTaskData, bl);
+        super.onSyncIndexEntities(pSSysTaskData, bl);
     }
 
     public Object getDataContextValue(PSSysTaskData pSSysTaskData, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -381,7 +381,7 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysTaskData, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysTaskData, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysTask pSSysTask = pSSysTaskData.getPSSysTask();
@@ -392,7 +392,7 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
     }
 
     protected void onExportMajorModel(PSSysTaskData pSSysTaskData, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysTaskData, arrayList, n);
+        super.onExportMajorModel(pSSysTaskData, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -520,7 +520,7 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
 
     protected boolean onMergeChild(String string, String string2, PSSysTaskData pSSysTaskData) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysTaskData)) {
+        if (super.onMergeChild(string, string2, pSSysTaskData)) {
             bl = true;
         }
         return bl;
@@ -532,7 +532,7 @@ extends PSCoreSysServiceBase<PSSysTaskData> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.sysdesign.service.PSSysTaskService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSSYSTASKDATA_PSSYSTASK_PSSYSTASKID", object);
         }
-        super.onUpdateParent((IEntity)pSSysTaskData);
+        super.onUpdateParent(pSSysTaskData);
     }
 
     protected boolean isNeedUpdateParent() {

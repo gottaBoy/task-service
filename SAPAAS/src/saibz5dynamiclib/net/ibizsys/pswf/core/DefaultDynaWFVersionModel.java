@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.DynaWFVersionModelBase;
+/**
+ * 默认动态工作流版本模型对象实现
+ * @author Administrator
+ *
+ */
+public class DefaultDynaWFVersionModel extends DynaWFVersionModelBase {
 
-public class DefaultDynaWFVersionModel
-extends DynaWFVersionModelBase {
 }
-

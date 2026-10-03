@@ -290,9 +290,9 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSCtrlMsg, pSDataEntity);
             return;
@@ -302,9 +302,9 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSCtrlMsg, pSModule);
             return;
@@ -314,9 +314,9 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
             PSSysDynaModel pSSysDynaModel = (PSSysDynaModel)iService.getDEModel().createEntity();
             pSSysDynaModel.set("PSSYSDYNAMODELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDynaModel);
+                iService.getTemp(pSSysDynaModel);
             } else {
-                iService.get((IEntity)pSSysDynaModel);
+                iService.get(pSSysDynaModel);
             }
             this.onFillParentInfo_PSSysDynaModel(pSCtrlMsg, pSSysDynaModel);
             return;
@@ -326,14 +326,14 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSCtrlMsg, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSCtrlMsg, string, string2, string3);
+        super.onFillParentInfo(pSCtrlMsg, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -369,7 +369,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 pSCtrlMsg.setPSCtrlMsgName((String)this.getDefaultValue(this.getWebContext(), "USER", "\u90e8\u4ef6\u6d88\u606f", 25));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSCtrlMsg, bl);
+        super.onFillEntityFullInfo(pSCtrlMsg, bl);
         this.onFillEntityFullInfo_PSDE(pSCtrlMsg, bl);
         this.onFillEntityFullInfo_PSModule(pSCtrlMsg, bl);
         this.onFillEntityFullInfo_PSSysDynaModel(pSCtrlMsg, bl);
@@ -409,7 +409,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
     }
 
     protected void onWriteBackParent(PSCtrlMsg pSCtrlMsg, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSCtrlMsg, bl);
+        super.onWriteBackParent(pSCtrlMsg, bl);
     }
 
     public ArrayList<PSCtrlMsg> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -512,8 +512,8 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         ArrayList<PSCtrlMsg> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCTRLMSG_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSCTRLMSG", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCTRLMSG_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSCTRLMSG", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -546,7 +546,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         ArrayList<PSCtrlMsg> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSCtrlMsg pSCtrlMsg : arrayList) {
-            this.remove((IEntity)pSCtrlMsg);
+            this.remove(pSCtrlMsg);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -564,8 +564,8 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         ArrayList<PSCtrlMsg> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCTRLMSG_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSCTRLMSG", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCTRLMSG_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSCTRLMSG", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -598,7 +598,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         ArrayList<PSCtrlMsg> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSCtrlMsg pSCtrlMsg : arrayList) {
-            this.remove((IEntity)pSCtrlMsg);
+            this.remove(pSCtrlMsg);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -616,8 +616,8 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         ArrayList<PSCtrlMsg> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSDYNAMODEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysDynaModel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCTRLMSG_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSCTRLMSG", iDataEntityModel.getDataInfo((IEntity)pSSysDynaModel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysDynaModel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCTRLMSG_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSCTRLMSG", iDataEntityModel.getDataInfo(pSSysDynaModel), arrayList.get(0)));
         }
     }
 
@@ -650,7 +650,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         ArrayList<PSCtrlMsg> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel);
         this.onBeforeRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
         for (PSCtrlMsg pSCtrlMsg : arrayList) {
-            this.remove((IEntity)pSCtrlMsg);
+            this.remove(pSCtrlMsg);
         }
         this.onAfterRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
     }
@@ -668,8 +668,8 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         ArrayList<PSCtrlMsg> arrayList = this.selectByPSSystem(pSSystem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSTEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSystem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCTRLMSG_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSCTRLMSG", iDataEntityModel.getDataInfo((IEntity)pSSystem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSystem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCTRLMSG_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSCTRLMSG", iDataEntityModel.getDataInfo(pSSystem), arrayList.get(0)));
         }
     }
 
@@ -702,7 +702,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         ArrayList<PSCtrlMsg> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSCtrlMsg pSCtrlMsg : arrayList) {
-            this.remove((IEntity)pSCtrlMsg);
+            this.remove(pSCtrlMsg);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -751,12 +751,12 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
     protected void onBeforeRemoveTemp(PSCtrlMsg pSCtrlMsg) throws Exception {
         PSCtrlMsgItemService pSCtrlMsgItemService = (PSCtrlMsgItemService)ServiceGlobal.getService(PSCtrlMsgItemService.class, (SessionFactory)this.getSessionFactory());
         pSCtrlMsgItemService.removeTempByPSCtrlMsg(pSCtrlMsg);
-        super.onBeforeRemoveTemp((IEntity)pSCtrlMsg);
+        super.onBeforeRemoveTemp(pSCtrlMsg);
     }
 
     protected void getRelatedDataTempMajor(PSCtrlMsg pSCtrlMsg) throws Exception {
         this.getRelatedDataTempMajor_PSCtrlMsgItem(pSCtrlMsg);
-        super.getRelatedDataTempMajor((IEntity)pSCtrlMsg);
+        super.getRelatedDataTempMajor(pSCtrlMsg);
     }
 
     protected void getRelatedDataTempMajor_PSCtrlMsgItem(PSCtrlMsg pSCtrlMsg) throws Exception {
@@ -772,7 +772,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
     protected void updateRelatedDataTempMajor(PSCtrlMsg pSCtrlMsg, PSCtrlMsg pSCtrlMsg2) throws Exception {
         ArrayList<PSCtrlMsgItem> arrayList = this.updateRelatedDataTempMajor_removePSCtrlMsgItem(pSCtrlMsg, pSCtrlMsg2);
         this.updateRelatedDataTempMajor_updatePSCtrlMsgItem(pSCtrlMsg, pSCtrlMsg2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSCtrlMsg, (IEntity)pSCtrlMsg2);
+        super.updateRelatedDataTempMajor(pSCtrlMsg, pSCtrlMsg2);
     }
 
     protected ArrayList<PSCtrlMsgItem> updateRelatedDataTempMajor_removePSCtrlMsgItem(PSCtrlMsg pSCtrlMsg, PSCtrlMsg pSCtrlMsg2) throws Exception {
@@ -788,7 +788,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
             hashMap.remove(object);
         }
         for (PSCtrlMsgItem pSCtrlMsgItem : hashMap.values()) {
-            pSCtrlMsgItemService.remove((IEntity)pSCtrlMsgItem);
+            pSCtrlMsgItemService.remove(pSCtrlMsgItem);
         }
         return arrayList;
     }
@@ -805,7 +805,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
 
     protected void replaceParentInfo(PSCtrlMsg pSCtrlMsg, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSCtrlMsg, cloneSession);
+        super.replaceParentInfo(pSCtrlMsg, cloneSession);
         if (pSCtrlMsg.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSCtrlMsg.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSCtrlMsg, (PSDataEntity)iEntity);
         }
@@ -821,7 +821,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
     }
 
     protected void onRemoveEntityUncopyValues(PSCtrlMsg pSCtrlMsg, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSCtrlMsg, bl);
+        super.onRemoveEntityUncopyValues(pSCtrlMsg, bl);
         pSCtrlMsg.resetCodeName();
     }
 
@@ -882,7 +882,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSCtrlMsg, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSCtrlMsg, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSCtrlMsg, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSCtrlMsg pSCtrlMsg, boolean bl2, boolean bl3) throws Exception {
@@ -898,7 +898,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -941,7 +941,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -963,7 +963,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -985,7 +985,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MsgModel_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_MsgModel_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MSGMODEL");
@@ -1010,7 +1010,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlMsgId_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlMsgId_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLMSGID");
@@ -1035,7 +1035,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlMsgName_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlMsgName_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLMSGNAME");
@@ -1057,7 +1057,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -1079,7 +1079,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -1101,7 +1101,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEViewCtrlType_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEViewCtrlType_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVIEWCTRLTYPE");
@@ -1123,7 +1123,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -1145,7 +1145,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDynaModelId_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDynaModelId_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDYNAMODELID");
@@ -1170,7 +1170,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -1195,7 +1195,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -1217,7 +1217,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1239,7 +1239,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1261,7 +1261,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1283,7 +1283,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1305,7 +1305,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSCtrlMsg, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSCtrlMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1318,11 +1318,11 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
     }
 
     protected void onSyncEntity(PSCtrlMsg pSCtrlMsg, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSCtrlMsg, bl);
+        super.onSyncEntity(pSCtrlMsg, bl);
     }
 
     protected void onSyncIndexEntities(PSCtrlMsg pSCtrlMsg, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSCtrlMsg, bl);
+        super.onSyncIndexEntities(pSCtrlMsg, bl);
     }
 
     public Object getDataContextValue(PSCtrlMsg pSCtrlMsg, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1330,14 +1330,14 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSCtrlMsg, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSCtrlMsg, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSCtrlMsg pSCtrlMsg, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSCtrlMsg, arrayList, n);
+        super.onExportMajorModel(pSCtrlMsg, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1687,21 +1687,21 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
 
     protected boolean onMergeChild(String string, String string2, PSCtrlMsg pSCtrlMsg) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSCtrlMsg)) {
+        if (super.onMergeChild(string, string2, pSCtrlMsg)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSCtrlMsg pSCtrlMsg) throws Exception {
-        super.onUpdateParent((IEntity)pSCtrlMsg);
+        super.onUpdateParent(pSCtrlMsg);
     }
 
     protected void onCopyDetails(PSCtrlMsg pSCtrlMsg, Object object) throws Exception {
         PSCtrlMsg pSCtrlMsg2 = new PSCtrlMsg();
         pSCtrlMsg2.set("PSCTRLMSGID", object);
         String string = DataObject.getStringValue((Object)pSCtrlMsg.get("PSCTRLMSGID"));
-        super.onCopyDetails((IEntity)pSCtrlMsg, object);
+        super.onCopyDetails(pSCtrlMsg, object);
     }
 
     @Override
@@ -1761,7 +1761,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSCtrlMsgItem pSCtrlMsgItem = new PSCtrlMsgItem();
-                pSCtrlMsgItemService.fillParentInfo((IEntity)pSCtrlMsgItem, "DER1N", "DER1N_PSCTRLMSGITEM_PSCTRLMSG_PSCTRLMSGID", pSCtrlMsg.getPSCtrlMsgId());
+                pSCtrlMsgItemService.fillParentInfo(pSCtrlMsgItem, "DER1N", "DER1N_PSCTRLMSGITEM_PSCTRLMSG_PSCTRLMSGID", pSCtrlMsg.getPSCtrlMsgId());
                 pSCtrlMsgItemService.importXmlModel(pSCtrlMsgItem, xmlNode2);
             }
         }
@@ -1911,41 +1911,28 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
     protected void onExportCurModelV2(PSCtrlMsg pSCtrlMsg, ObjectNode objectNode, String string, boolean bl) throws Exception {
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSCTRLMSGITEM_PSCTRLMSG_PSCTRLMSGID")) {
-            Object object;
-            PSCtrlMsgItem pSCtrlMsgItem2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSCtrlMsgItemService pSCtrlMsgItemService = (PSCtrlMsgItemService)ServiceGlobal.getService(PSCtrlMsgItemService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSCtrlMsgItem> arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSCTRLMSG#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSCTRLMSGITEM", (Object)pSCtrlMsg.getPSCtrlMsgId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSCtrlMsgItem2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSCtrlMsgItem2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String itemJson : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)itemJson)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(itemJson));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSCtrlMsgItem>();
-                object4 = pSCtrlMsgItemService.selectByPSCtrlMsg(pSCtrlMsg);
-                object3 = StringHelper.format((String)"PSCTRLMSG#%1$s", (Object)pSCtrlMsg.getPSCtrlMsgId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSCtrlMsgItem2 = object2.next();
-                    object = pSCtrlMsgItemService.getModelV2ResScope((IEntity)pSCtrlMsgItem2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSCtrlMsgItem)PSModelV2Helper.toJSONObject((IEntity)pSCtrlMsgItem2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String resScope = StringHelper.format((String)"PSCTRLMSG#%1$s", (Object)pSCtrlMsg.getPSCtrlMsgId());
+                for (PSCtrlMsgItem item : pSCtrlMsgItemService.selectByPSCtrlMsg(pSCtrlMsg)) {
+                    String itemScope = pSCtrlMsgItemService.getModelV2ResScope(item);
+                    if (StringHelper.compare(resScope, itemScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(item, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCtrlMsgItemService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode itemsNode = objectNode.putArray(pSCtrlMsgItemService.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -1973,10 +1960,10 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSCtrlMsgItem pSCtrlMsgItem2 : arrayList) {
-                    object = new PSCtrlMsgItem();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSCtrlMsgItem2, false);
-                    object3.add((JsonNode)pSCtrlMsgItemService.exportModelV2(object, string));
+                for (ObjectNode itemNode : arrayList) {
+                    PSCtrlMsgItem item = new PSCtrlMsgItem();
+                    PSModelV2Helper.fromJSONObject((IDataObject)item, itemNode, false);
+                    itemsNode.add((JsonNode)pSCtrlMsgItemService.exportModelV2(item, string));
                 }
             }
         }
@@ -1989,7 +1976,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         ArrayList<PSCtrlMsgItem> arrayList = pSCtrlMsgItemService.selectByPSCtrlMsg(pSCtrlMsg);
         String string = StringHelper.format((String)"PSCTRLMSG#%1$s", (Object)pSCtrlMsg.getPSCtrlMsgId());
         for (PSCtrlMsgItem pSCtrlMsgItem : arrayList) {
-            String string2 = pSCtrlMsgItemService.getModelV2ResScope((IEntity)pSCtrlMsgItem);
+            String string2 = pSCtrlMsgItemService.getModelV2ResScope(pSCtrlMsgItem);
             if (StringHelper.compare((String)string, (String)string2, (boolean)false) != 0) continue;
             pSCtrlMsgItemService.emptyModelV2(pSCtrlMsgItem);
         }
@@ -2069,7 +2056,7 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
             PSCtrlMsgItemService pSCtrlMsgItemService = (PSCtrlMsgItemService)ServiceGlobal.getService(PSCtrlMsgItemService.class, (SessionFactory)this.getSessionFactory());
             PSCtrlMsgItem pSCtrlMsgItem = new PSCtrlMsgItem();
             pSCtrlMsgItem.setPSCtrlMsgItemId(pSMOSFile.getPSModelId());
-            if (!pSCtrlMsgItemService.get((IEntity)pSCtrlMsgItem, true)) {
+            if (!pSCtrlMsgItemService.get(pSCtrlMsgItem, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSCtrlMsgItem.getPSCtrlMsgId(), (String)pSCtrlMsg.getPSCtrlMsgId(), (boolean)false) == 0) {
@@ -2077,12 +2064,12 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
             }
             ObjectNode objectNode = pSCtrlMsgItemService.exportModelV2(pSCtrlMsgItem);
             pSCtrlMsgItem.reset();
-            if (!pSCtrlMsgItemService.setModelV2ResScope((IEntity)pSCtrlMsgItem, "PSCTRLMSG", pSCtrlMsg.getPSCtrlMsgId())) {
+            if (!pSCtrlMsgItemService.setModelV2ResScope(pSCtrlMsgItem, "PSCTRLMSG", pSCtrlMsg.getPSCtrlMsgId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSCtrlMsgItemService.importModelV2(pSCtrlMsgItem, objectNode);
             SessionFactoryManager.commit();
-            return pSCtrlMsgItemService.getFile((IEntity)pSCtrlMsgItem);
+            return pSCtrlMsgItemService.getFile(pSCtrlMsgItem);
         }
         return null;
     }
@@ -2146,9 +2133,9 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         if (PSCtrlMsgServiceBase.getMOSVer() == 1 && StringHelper.isNullOrEmpty((String)string) && StringHelper.compare((String)string2, (String)"<\u6d88\u606f\u9879>", (boolean)false) == 0 || PSCtrlMsgServiceBase.getMOSVer() == 2 && StringHelper.compare((String)string2, (String)"PSCtrlMsgItems", (boolean)true) == 0) {
             PSCtrlMsgItemService pSCtrlMsgItemService = (PSCtrlMsgItemService)ServiceGlobal.getService(PSCtrlMsgItemService.class, (SessionFactory)this.getSessionFactory());
             SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCtrlMsgItemService, "DER1N_PSCTRLMSGITEM_PSCTRLMSG_PSCTRLMSGID", "PSCTRLMSGID", pSMOSFile.getPSModelId(), "", "");
-            ArrayList arrayList2 = pSCtrlMsgItemService.selectEx((ISelectContext)selectContext);
+            ArrayList<PSCtrlMsgItem> arrayList2 = pSCtrlMsgItemService.selectEx((ISelectContext)selectContext);
             for (PSCtrlMsgItem pSCtrlMsgItem : arrayList2) {
-                PSMOSFile pSMOSFile2 = pSCtrlMsgItemService.getFile(pSMOSFile, (IEntity)pSCtrlMsgItem, bl);
+                PSMOSFile pSMOSFile2 = pSCtrlMsgItemService.getFile(pSMOSFile, pSCtrlMsgItem, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList.add(pSMOSFile2);
             }
@@ -2192,4 +2179,3 @@ extends PSCoreSysServiceBase<PSCtrlMsg> {
         defaultValueMap.put("PSCTRLMSGNAME", "\u90e8\u4ef6\u6d88\u606f");
     }
 }
-

@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.grid;
 
-import net.ibizsys.model.control.grid.IPSDEGridParam;
+/**
+ * 实体树表格部件参数对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDETreeGridParam extends IPSDEGridParam
+{
 
-public interface IPSDETreeGridParam
-extends IPSDEGridParam {
 }
-

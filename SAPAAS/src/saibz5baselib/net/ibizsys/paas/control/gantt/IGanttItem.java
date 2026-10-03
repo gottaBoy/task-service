@@ -1,49 +1,141 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.control.gantt;
 
-import java.sql.Timestamp;
 import net.ibizsys.paas.core.IModelBase;
 import net.sf.json.JSONObject;
 
-public interface IGanttItem
-extends IModelBase {
-    public String getItemType();
+/**
+ * 甘特项接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IGanttItem extends IModelBase {
+	
+	/**
+	 * 获取甘特项类型
+	 * 
+	 * @return
+	 */
+	String getItemType();
 
-    public boolean isDisabled();
+	
+	/**
+	 * 获取是否禁用
+	 * 
+	 * @return
+	 */
+	boolean isDisabled();
 
-    public String getCssClass();
 
-    public String getIconCssClass();
 
-    public String getIcon();
+	/**
+	 * 获取样式
+	 * 
+	 * @return
+	 */
+	String getCssClass();
 
-    public String getHref();
+	/**
+	 * 获取图标样式
+	 * 
+	 * @return
+	 */
+	String getIconCssClass();
 
-    public String getHrefTarget();
+	/**
+	 * 获取图标
+	 * 
+	 * @return
+	 */
+	String getIcon();
 
-    public String getTips();
+	/**
+	 * 获取链接
+	 * 
+	 * @return
+	 */
+	String getHref();
 
-    public String getText();
+	/**
+	 * 获取链接目标
+	 * 
+	 * @return
+	 */
+	String getHrefTarget();
 
-    public String getContent();
+	/**
+	 * 获取节点提示信息
+	 * 
+	 * @return
+	 */
+	String getTips();
 
-    public String getColor();
+	/**
+	 * 获取节点文本
+	 * 
+	 * @return
+	 */
+	String getText();
+	
+	
+	/**
+	 * 获取内容
+	 * @return
+	 */
+	String getContent();
 
-    public String getBKColor();
+	
+	/**
+	 * 获取字体颜色
+	 * @return
+	 */
+	String getColor();
+	
+	
+	/**
+	 * 获取背景颜色
+	 * @return
+	 */
+	String getBKColor();
+	
+	
+	/**
+	 * 获取开始时间
+	 * @return
+	 */
+	java.sql.Timestamp getBeginTime();
+	
+	
+	/**
+	 * 获取结束时间
+	 * @return
+	 */
+	java.sql.Timestamp getEndTime();
+	
 
-    public Timestamp getBeginTime();
+	/**
+	 * 获取节点的标记值
+	 * 
+	 * @param strKey
+	 * @return
+	 */
+	Object getTagValue(String strKey);
 
-    public Timestamp getEndTime();
+	/**
+	 * 获取标记对象
+	 * 
+	 * @return
+	 */
+	JSONObject getTag();
 
-    public Object getTagValue(String var1);
+	
 
-    public JSONObject getTag();
+	/**
+	 * 获取甘特项的数据源
+	 * 
+	 * @return
+	 */
+	Object getDataSource();
+	
 
-    public Object getDataSource();
 }
-

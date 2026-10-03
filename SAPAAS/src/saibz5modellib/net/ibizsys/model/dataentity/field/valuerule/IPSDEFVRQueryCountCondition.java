@@ -1,25 +1,59 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.field.valuerule;
 
 import net.ibizsys.model.dataentity.ds.IPSDEDataQuery;
-import net.ibizsys.model.dataentity.field.valuerule.IPSDEFVRSingleCondition;
 
-public interface IPSDEFVRQueryCountCondition
-extends IPSDEFVRSingleCondition {
-    public String getPSDEDataQueryId();
 
-    public IPSDEDataQuery getPSDEDataQuery();
-
-    public Integer getMinValue();
-
-    public boolean isIncludeMinValue();
-
-    public Integer getMaxValue();
-
-    public boolean isIncludeMaxValue();
-
-    public boolean isAlwaysCheck();
+/**
+ * 属性值规则（查询计数条件）对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEFVRQueryCountCondition extends IPSDEFVRSingleCondition
+{
+	/**
+	 * 数据查询标识
+	 * @return
+	 */
+	String getPSDEDataQueryId();
+	
+	
+	/**
+	 * 获取实体数据查询
+	 * @return
+	 */
+	IPSDEDataQuery getPSDEDataQuery();
+	
+	
+	/**
+	 * 获取最小值
+	 * @return
+	 */
+	Integer getMinValue();
+	
+	
+	/**
+	 * 是否包括最小值
+	 * @return
+	 */
+	boolean isIncludeMinValue();
+	
+	/**
+	 * 获取最大值
+	 * @return
+	 */
+	Integer getMaxValue();
+	
+	
+	/**
+	 * 是否包括最大值
+	 * @return
+	 */
+	boolean isIncludeMaxValue();
+	
+	
+	/**
+	 * 是否为始终检查
+	 * @return
+	 */
+	boolean isAlwaysCheck();
 }
-

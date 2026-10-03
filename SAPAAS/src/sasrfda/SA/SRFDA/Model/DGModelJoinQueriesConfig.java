@@ -29,12 +29,11 @@ extends XMLCollectionExConfig<DGModelJoinQueryConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = DGModelJoinQueriesConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((DGModelJoinQueryConfig)childNode))) {
-                this.add((Object)((DGModelJoinQueryConfig)childNode));
+            if (this.OnChildNodeLoaded((DGModelJoinQueryConfig)childNode)) {
+                this.add((DGModelJoinQueryConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel;
 
-import net.ibizsys.psrt.srv.common.demodel.DataSyncIn2DEModelBase;
 
-public class DataSyncIn2DEModel
-extends DataSyncIn2DEModelBase {
+/**
+ * 实体[DATASYNCIN2]模型对象
+ */
+public class DataSyncIn2DEModel extends DataSyncIn2DEModelBase {
+
     private static final long serialVersionUID = -1L;
-}
 
+    public DataSyncIn2DEModel() throws Exception {
+        super();
+    }
+
+}

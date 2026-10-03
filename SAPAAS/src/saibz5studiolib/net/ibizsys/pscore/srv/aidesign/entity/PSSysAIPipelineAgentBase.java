@@ -2203,7 +2203,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -2229,7 +2229,7 @@ implements Serializable {
                 PSSysAIFactory pSSysAIFactory = new PSSysAIFactory();
                 pSSysAIFactory.setPSSysAIFactoryId(this.getPSSysAIFactoryId());
                 PSSysAIFactoryService pSSysAIFactoryService = (PSSysAIFactoryService)ServiceGlobal.getService(PSSysAIFactoryService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAIFactoryService.autoGet((IEntity)pSSysAIFactory);
+                pSSysAIFactoryService.autoGet(pSSysAIFactory);
                 this.pssysaifactory = pSSysAIFactory;
             }
             return this.pssysaifactory;
@@ -2255,7 +2255,7 @@ implements Serializable {
                 PSSysSFPlugin pSSysSFPlugin = new PSSysSFPlugin();
                 pSSysSFPlugin.setPSSysSFPluginId(this.getPSSysSFPluginId());
                 PSSysSFPluginService pSSysSFPluginService = (PSSysSFPluginService)ServiceGlobal.getService(PSSysSFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPluginService.autoGet((IEntity)pSSysSFPlugin);
+                pSSysSFPluginService.autoGet(pSSysSFPlugin);
                 this.pssyssfplugin = pSSysSFPlugin;
             }
             return this.pssyssfplugin;
@@ -2277,7 +2277,7 @@ implements Serializable {
         Integer n = this.objPSSysAIPipelineJobsLock;
         synchronized (n) {
             if (this.pssysaipipelinejobs == null) {
-                this.pssysaipipelinejobs = pSSysAIPipelineAgentService.isTempData((IEntity)this) ? pSSysAIPipelineJobService.selectTempByPSSysAIPipelineAgent(this) : pSSysAIPipelineJobService.selectByPSSysAIPipelineAgent(this);
+                this.pssysaipipelinejobs = pSSysAIPipelineAgentService.isTempData(this) ? pSSysAIPipelineJobService.selectTempByPSSysAIPipelineAgent(this) : pSSysAIPipelineJobService.selectByPSSysAIPipelineAgent(this);
             }
             return this.pssysaipipelinejobs;
         }
@@ -2298,7 +2298,7 @@ implements Serializable {
         Integer n = this.objPSSysAIPipelineWorkersLock;
         synchronized (n) {
             if (this.pssysaipipelineworkers == null) {
-                this.pssysaipipelineworkers = pSSysAIPipelineAgentService.isTempData((IEntity)this) ? pSSysAIPipelineWorkerService.selectTempByPSSysAIPipelineAgent(this) : pSSysAIPipelineWorkerService.selectByPSSysAIPipelineAgent(this);
+                this.pssysaipipelineworkers = pSSysAIPipelineAgentService.isTempData(this) ? pSSysAIPipelineWorkerService.selectTempByPSSysAIPipelineAgent(this) : pSSysAIPipelineWorkerService.selectByPSSysAIPipelineAgent(this);
             }
             return this.pssysaipipelineworkers;
         }

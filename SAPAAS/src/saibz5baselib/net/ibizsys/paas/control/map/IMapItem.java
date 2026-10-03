@@ -1,73 +1,250 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.control.map;
 
 import net.ibizsys.paas.core.IModelBase;
 import net.sf.json.JSONObject;
 
-public interface IMapItem
-extends IModelBase {
-    public static final String ITEMSTYLE_POINT = "POINT";
-    public static final String ITEMSTYLE_POINT2 = "POINT2";
-    public static final String ITEMSTYLE_POINT3 = "POINT3";
-    public static final String ITEMSTYLE_POINT4 = "POINT4";
-    public static final String ITEMSTYLE_LINE = "LINE";
-    public static final String ITEMSTYLE_LINE2 = "LINE2";
-    public static final String ITEMSTYLE_LINE3 = "LINE3";
-    public static final String ITEMSTYLE_LINE4 = "LINE4";
-    public static final String ITEMSTYLE_REGION = "REGION";
-    public static final String ITEMSTYLE_REGION2 = "REGION2";
-    public static final String ITEMSTYLE_REGION3 = "REGION3";
-    public static final String ITEMSTYLE_REGION4 = "REGION4";
-    public static final String ITEMSTYLE_USER = "USER";
-    public static final String ITEMSTYLE_USER2 = "USER2";
-    public static final String ITEMSTYLE_USER3 = "USER3";
-    public static final String ITEMSTYLE_USER4 = "USER4";
+/**
+ * 地图项接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IMapItem extends IModelBase {
+	
+	/**
+	*项展现样式：点
+	*/
+	public final static String ITEMSTYLE_POINT = "POINT" ;
 
-    public String getItemType();
+	/**
+	*项展现样式：点2
+	*/
+	public final static String ITEMSTYLE_POINT2 = "POINT2" ;
 
-    public boolean isDisabled();
+	/**
+	*项展现样式：点3
+	*/
+	public final static String ITEMSTYLE_POINT3 = "POINT3" ;
 
-    public String getCssClass();
+	/**
+	*项展现样式：点4
+	*/
+	public final static String ITEMSTYLE_POINT4 = "POINT4" ;
 
-    public String getIconCssClass();
+	/**
+	*项展现样式：连线
+	*/
+	public final static String ITEMSTYLE_LINE = "LINE" ;
 
-    public String getIcon();
+	/**
+	*项展现样式：连线2
+	*/
+	public final static String ITEMSTYLE_LINE2 = "LINE2" ;
 
-    public String getHref();
+	/**
+	*项展现样式：连线3
+	*/
+	public final static String ITEMSTYLE_LINE3 = "LINE3" ;
 
-    public String getHrefTarget();
+	/**
+	*项展现样式：连线4
+	*/
+	public final static String ITEMSTYLE_LINE4 = "LINE4" ;
 
-    public String getTips();
+	/**
+	*项展现样式：区域
+	*/
+	public final static String ITEMSTYLE_REGION = "REGION" ;
 
-    public String getText();
+	/**
+	*项展现样式：区域2
+	*/
+	public final static String ITEMSTYLE_REGION2 = "REGION2" ;
 
-    public String getContent();
+	/**
+	*项展现样式：区域3
+	*/
+	public final static String ITEMSTYLE_REGION3 = "REGION3" ;
 
-    public String getColor();
+	/**
+	*项展现样式：区域4
+	*/
+	public final static String ITEMSTYLE_REGION4 = "REGION4" ;
 
-    public String getBKColor();
+	/**
+	*项展现样式：用户自定义
+	*/
+	public final static String ITEMSTYLE_USER = "USER" ;
 
-    public String getBorderColor();
+	/**
+	*项展现样式：用户自定义2
+	*/
+	public final static String ITEMSTYLE_USER2 = "USER2" ;
 
-    public int getBorderWidth();
+	/**
+	*项展现样式：用户自定义3
+	*/
+	public final static String ITEMSTYLE_USER3 = "USER3" ;
 
-    public int getRadius();
+	/**
+	*项展现样式：用户自定义4
+	*/
+	public final static String ITEMSTYLE_USER4 = "USER4" ;
 
-    public Double getLongitude();
+	
+	/**
+	 * 获取地图项类型
+	 * 
+	 * @return
+	 */
+	String getItemType();
 
-    public Double getLatitude();
+	
+	/**
+	 * 获取是否禁用
+	 * 
+	 * @return
+	 */
+	boolean isDisabled();
 
-    public Double getAltitude();
 
-    public Object getTagValue(String var1);
 
-    public JSONObject getTag();
+	/**
+	 * 获取样式
+	 * 
+	 * @return
+	 */
+	String getCssClass();
 
-    public Object getDataSource();
+	/**
+	 * 获取图标样式
+	 * 
+	 * @return
+	 */
+	String getIconCssClass();
+
+	/**
+	 * 获取图标
+	 * 
+	 * @return
+	 */
+	String getIcon();
+
+	/**
+	 * 获取链接
+	 * 
+	 * @return
+	 */
+	String getHref();
+
+	/**
+	 * 获取链接目标
+	 * 
+	 * @return
+	 */
+	String getHrefTarget();
+
+	/**
+	 * 获取节点提示信息
+	 * 
+	 * @return
+	 */
+	String getTips();
+
+	/**
+	 * 获取节点文本
+	 * 
+	 * @return
+	 */
+	String getText();
+	
+	
+	/**
+	 * 获取内容
+	 * @return
+	 */
+	String getContent();
+
+	
+	/**
+	 * 获取字体颜色
+	 * @return
+	 */
+	String getColor();
+	
+	
+	/**
+	 * 获取背景颜色
+	 * @return
+	 */
+	String getBKColor();
+	
+	
+
+	/**
+	 * 获取边框颜色
+	 * @return
+	 */
+	String getBorderColor();
+	
+	
+	/**
+	 * 获取边框宽度
+	 * @return
+	 */
+	int getBorderWidth();
+	
+	
+	/**
+	 * 获取半径
+	 * @return
+	 */
+	int getRadius();
+	
+	/**
+	 * 获取经度
+	 * @return
+	 */
+	Double getLongitude();
+	
+	
+	/**
+	 * 获取维度
+	 * @return
+	 */
+	Double getLatitude();
+	
+	
+	/**
+	 * 获取高度
+	 * @return
+	 */
+	Double getAltitude();
+	
+
+	/**
+	 * 获取节点的标记值
+	 * 
+	 * @param strKey
+	 * @return
+	 */
+	Object getTagValue(String strKey);
+
+	/**
+	 * 获取标记对象
+	 * 
+	 * @return
+	 */
+	JSONObject getTag();
+
+	
+
+	/**
+	 * 获取地图项的数据源
+	 * 
+	 * @return
+	 */
+	Object getDataSource();
+	
+
 }
-

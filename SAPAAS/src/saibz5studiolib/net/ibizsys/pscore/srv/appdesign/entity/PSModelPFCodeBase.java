@@ -1766,7 +1766,7 @@ implements Serializable {
                 PSPFPubCode pSPFPubCode = new PSPFPubCode();
                 pSPFPubCode.setPSPFPubCodeId(this.getPSPFPubCodeId());
                 PSPFPubCodeService pSPFPubCodeService = (PSPFPubCodeService)ServiceGlobal.getService(PSPFPubCodeService.class, (SessionFactory)this.getSessionFactory());
-                pSPFPubCodeService.autoGet((IEntity)pSPFPubCode);
+                pSPFPubCodeService.autoGet(pSPFPubCode);
                 this.pssfpubcode = pSPFPubCode;
             }
             return this.pssfpubcode;
@@ -1792,7 +1792,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;

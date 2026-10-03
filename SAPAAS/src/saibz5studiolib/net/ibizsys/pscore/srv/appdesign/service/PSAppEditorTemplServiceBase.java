@@ -143,9 +143,9 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
             PSEditorType pSEditorType = (PSEditorType)iService.getDEModel().createEntity();
             pSEditorType.set("PSEDITORTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSEditorType);
+                iService.getTemp(pSEditorType);
             } else {
-                iService.get((IEntity)pSEditorType);
+                iService.get(pSEditorType);
             }
             this.onFillParentInfo_PSEditorType(pSAppEditorTempl, pSEditorType);
             return;
@@ -155,9 +155,9 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
             PSPFPubCode pSPFPubCode = (PSPFPubCode)iService.getDEModel().createEntity();
             pSPFPubCode.set("PSPFPUBCODEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSPFPubCode);
+                iService.getTemp(pSPFPubCode);
             } else {
-                iService.get((IEntity)pSPFPubCode);
+                iService.get(pSPFPubCode);
             }
             this.onFillParentInfo_PSPFPubCode(pSAppEditorTempl, pSPFPubCode);
             return;
@@ -167,9 +167,9 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSAppEditorTempl, pSSysApp);
             return;
@@ -179,14 +179,14 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
             PSSysEditorStyle pSSysEditorStyle = (PSSysEditorStyle)iService.getDEModel().createEntity();
             pSSysEditorStyle.set("PSSYSEDITORSTYLEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysEditorStyle);
+                iService.getTemp(pSSysEditorStyle);
             } else {
-                iService.get((IEntity)pSSysEditorStyle);
+                iService.get(pSSysEditorStyle);
             }
             this.onFillParentInfo_PSSysEditorStyle(pSAppEditorTempl, pSSysEditorStyle);
             return;
         }
-        super.onFillParentInfo((IEntity)pSAppEditorTempl, string, string2, string3);
+        super.onFillParentInfo(pSAppEditorTempl, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -219,7 +219,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSAppEditorTempl, bl);
+        super.onFillEntityFullInfo(pSAppEditorTempl, bl);
         this.onFillEntityFullInfo_PSEditorType(pSAppEditorTempl, bl);
         this.onFillEntityFullInfo_PSPFPubCode(pSAppEditorTempl, bl);
         this.onFillEntityFullInfo_PSSysApp(pSAppEditorTempl, bl);
@@ -239,7 +239,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
     }
 
     protected void onWriteBackParent(PSAppEditorTempl pSAppEditorTempl, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSAppEditorTempl, bl);
+        super.onWriteBackParent(pSAppEditorTempl, bl);
     }
 
     public ArrayList<PSAppEditorTempl> selectByPSEditorType(PSEditorTypeBase pSEditorTypeBase) throws Exception {
@@ -342,8 +342,8 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
         ArrayList<PSAppEditorTempl> arrayList = this.selectByPSEditorType(pSEditorType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSEDITORTYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSEditorType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPEDITORTEMPL_PSEDITORTYPE_PSEDITORTYPEID", "", iDataEntityModel.getName(), "PSAPPEDITORTEMPL", iDataEntityModel.getDataInfo((IEntity)pSEditorType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSEditorType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPEDITORTEMPL_PSEDITORTYPE_PSEDITORTYPEID", "", iDataEntityModel.getName(), "PSAPPEDITORTEMPL", iDataEntityModel.getDataInfo(pSEditorType), arrayList.get(0)));
         }
     }
 
@@ -376,7 +376,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
         ArrayList<PSAppEditorTempl> arrayList = this.selectByPSEditorType(pSEditorType);
         this.onBeforeRemoveByPSEditorType(pSEditorType, arrayList);
         for (PSAppEditorTempl pSAppEditorTempl : arrayList) {
-            this.remove((IEntity)pSAppEditorTempl);
+            this.remove(pSAppEditorTempl);
         }
         this.onAfterRemoveByPSEditorType(pSEditorType, arrayList);
     }
@@ -394,8 +394,8 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
         ArrayList<PSAppEditorTempl> arrayList = this.selectByPSPFPubCode(pSPFPubCode, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSPFPUBCODE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSPFPubCode);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPEDITORTEMPL_PSPFPUBCODE_PSPFPUBCODEID", "", iDataEntityModel.getName(), "PSAPPEDITORTEMPL", iDataEntityModel.getDataInfo((IEntity)pSPFPubCode), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSPFPubCode);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPEDITORTEMPL_PSPFPUBCODE_PSPFPUBCODEID", "", iDataEntityModel.getName(), "PSAPPEDITORTEMPL", iDataEntityModel.getDataInfo(pSPFPubCode), arrayList.get(0)));
         }
     }
 
@@ -428,7 +428,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
         ArrayList<PSAppEditorTempl> arrayList = this.selectByPSPFPubCode(pSPFPubCode);
         this.onBeforeRemoveByPSPFPubCode(pSPFPubCode, arrayList);
         for (PSAppEditorTempl pSAppEditorTempl : arrayList) {
-            this.remove((IEntity)pSAppEditorTempl);
+            this.remove(pSAppEditorTempl);
         }
         this.onAfterRemoveByPSPFPubCode(pSPFPubCode, arrayList);
     }
@@ -474,7 +474,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
         ArrayList<PSAppEditorTempl> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSAppEditorTempl pSAppEditorTempl : arrayList) {
-            this.remove((IEntity)pSAppEditorTempl);
+            this.remove(pSAppEditorTempl);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -492,8 +492,8 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
         ArrayList<PSAppEditorTempl> arrayList = this.selectByPSSysEditorStyle(pSSysEditorStyle, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSEDITORSTYLE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysEditorStyle);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPEDITORTEMPL_PSSYSEDITORSTYLE_PSSYSEDITORSTYLEID", "", iDataEntityModel.getName(), "PSAPPEDITORTEMPL", iDataEntityModel.getDataInfo((IEntity)pSSysEditorStyle), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysEditorStyle);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPEDITORTEMPL_PSSYSEDITORSTYLE_PSSYSEDITORSTYLEID", "", iDataEntityModel.getName(), "PSAPPEDITORTEMPL", iDataEntityModel.getDataInfo(pSSysEditorStyle), arrayList.get(0)));
         }
     }
 
@@ -526,7 +526,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
         ArrayList<PSAppEditorTempl> arrayList = this.selectByPSSysEditorStyle(pSSysEditorStyle);
         this.onBeforeRemoveByPSSysEditorStyle(pSSysEditorStyle, arrayList);
         for (PSAppEditorTempl pSAppEditorTempl : arrayList) {
-            this.remove((IEntity)pSAppEditorTempl);
+            this.remove(pSAppEditorTempl);
         }
         this.onAfterRemoveByPSSysEditorStyle(pSSysEditorStyle, arrayList);
     }
@@ -547,7 +547,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
 
     protected void replaceParentInfo(PSAppEditorTempl pSAppEditorTempl, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSAppEditorTempl, cloneSession);
+        super.replaceParentInfo(pSAppEditorTempl, cloneSession);
         if (pSAppEditorTempl.getPSEditorTypeId() != null && (iEntity = cloneSession.getEntity("PSEDITORTYPE", (Object)pSAppEditorTempl.getPSEditorTypeId())) != null) {
             this.onFillParentInfo_PSEditorType(pSAppEditorTempl, (PSEditorType)iEntity);
         }
@@ -563,7 +563,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
     }
 
     protected void onRemoveEntityUncopyValues(PSAppEditorTempl pSAppEditorTempl, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSAppEditorTempl, bl);
+        super.onRemoveEntityUncopyValues(pSAppEditorTempl, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSAppEditorTempl pSAppEditorTempl, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -611,7 +611,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
         if ((entityFieldError = this.onCheckField_TemplCode4(bl, pSAppEditorTempl, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSAppEditorTempl, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSAppEditorTempl, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ContainerType(boolean bl, PSAppEditorTempl pSAppEditorTempl, boolean bl2, boolean bl3) throws Exception {
@@ -627,7 +627,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ContainerType_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_ContainerType_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTAINERTYPE");
@@ -649,7 +649,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -674,7 +674,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppEditorTemplId_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppEditorTemplId_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPEDITORTEMPLID");
@@ -699,7 +699,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppEditorTemplName_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppEditorTemplName_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPEDITORTEMPLNAME");
@@ -724,7 +724,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSEditorTypeId_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSEditorTypeId_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSEDITORTYPEID");
@@ -749,7 +749,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPubCodeId_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPubCodeId_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPUBCODEID");
@@ -774,7 +774,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -796,7 +796,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysEditorStyleId_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysEditorStyleId_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSEDITORSTYLEID");
@@ -818,7 +818,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PubObj_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PubObj_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PUBOBJ");
@@ -840,7 +840,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_REQCode_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_REQCode_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REQCODE");
@@ -862,7 +862,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE");
@@ -884,7 +884,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode2_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode2_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE2");
@@ -906,7 +906,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode3_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode3_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE3");
@@ -928,7 +928,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode4_Default((IEntity)pSAppEditorTempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode4_Default(pSAppEditorTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE4");
@@ -941,11 +941,11 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
     }
 
     protected void onSyncEntity(PSAppEditorTempl pSAppEditorTempl, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSAppEditorTempl, bl);
+        super.onSyncEntity(pSAppEditorTempl, bl);
     }
 
     protected void onSyncIndexEntities(PSAppEditorTempl pSAppEditorTempl, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSAppEditorTempl, bl);
+        super.onSyncIndexEntities(pSAppEditorTempl, bl);
     }
 
     public Object getDataContextValue(PSAppEditorTempl pSAppEditorTempl, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -953,7 +953,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSAppEditorTempl, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSAppEditorTempl, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysApp pSSysApp = pSAppEditorTempl.getPSSysApp();
@@ -964,7 +964,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
     }
 
     protected void onExportMajorModel(PSAppEditorTempl pSAppEditorTempl, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSAppEditorTempl, arrayList, n);
+        super.onExportMajorModel(pSAppEditorTempl, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1317,7 +1317,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
 
     protected boolean onMergeChild(String string, String string2, PSAppEditorTempl pSAppEditorTempl) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSAppEditorTempl)) {
+        if (super.onMergeChild(string, string2, pSAppEditorTempl)) {
             bl = true;
         }
         return bl;
@@ -1329,7 +1329,7 @@ extends PSCoreSysServiceBase<PSAppEditorTempl> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.sysdesign.service.PSSysAppService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSAPPEDITORTEMPL_PSSYSAPP_PSSYSAPPID", object);
         }
-        super.onUpdateParent((IEntity)pSAppEditorTempl);
+        super.onUpdateParent(pSAppEditorTempl);
     }
 
     protected boolean isNeedUpdateParent() {

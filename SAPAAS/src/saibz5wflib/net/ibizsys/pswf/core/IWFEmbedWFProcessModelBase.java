@@ -1,20 +1,30 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFProcessModel
- */
 package net.ibizsys.pswf.core;
 
-import java.util.Iterator;
-import net.ibizsys.pswf.core.IWFEmbedWFReturnModel;
-import net.ibizsys.pswf.core.IWFProcSubWFModel;
-import net.ibizsys.pswf.core.IWFProcessModel;
-
-public interface IWFEmbedWFProcessModelBase
-extends IWFProcessModel {
-    public IWFEmbedWFReturnModel getWFEmbedWFReturnModelByValue(String var1, boolean var2) throws Exception;
-
-    public Iterator<IWFProcSubWFModel> getWFProcSubWFModels();
+/**
+ * 嵌入流程模型基础对象接口
+ * @author Administrator
+ *
+ */
+public interface IWFEmbedWFProcessModelBase extends IWFProcessModel
+{
+	/**
+	 * 通过返回值获取对应的连接
+	 * @param strValue
+	 * @param bTryMode
+	 * @return
+	 * @throws Exception
+	 */
+	IWFEmbedWFReturnModel getWFEmbedWFReturnModelByValue(String strValue,boolean bTryMode)throws Exception;
+	
+	
+	
+	/**
+	 * 获取流程处理子流程模型
+	 * @return
+	 */
+	java.util.Iterator<IWFProcSubWFModel> getWFProcSubWFModels();
+	
+	
+	
+	
 }
-

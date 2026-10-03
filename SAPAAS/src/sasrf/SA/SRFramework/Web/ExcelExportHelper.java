@@ -43,7 +43,7 @@ public class ExcelExportHelper {
             writer.write("\u6570\u636e\u96c6\u5408\u6709\u8bef\uff0c\u8bf7\u786e\u8ba4\uff01");
             return;
         }
-        TreeMap<Integer, Object> outputColumns = new TreeMap<Integer, Object>();
+        TreeMap<Integer, ListColumnConfig> outputColumns = new TreeMap<Integer, ListColumnConfig>();
         if (this.mainListConfig != null) {
             int nBestOrderId = -1;
             for (Object tempItemObj : this.mainListConfig.getColumnItems()) {

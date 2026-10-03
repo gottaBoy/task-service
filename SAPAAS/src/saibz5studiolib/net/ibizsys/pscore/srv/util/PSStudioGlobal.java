@@ -94,7 +94,7 @@ public class PSStudioGlobal {
             object = this.psStudioUserLogSessionMap.get(string);
         }
         if (object != null) {
-            return object;
+            return (PSStudioUserLogSession)object;
         }
         object2 = new PSStudioUserLogSession();
         ((PSStudioUserLogSession)object2).init(iWebContext);
@@ -110,7 +110,7 @@ public class PSStudioGlobal {
                 }
             }
         }
-        return object;
+        return (PSStudioUserLogSession)object;
     }
 
     /*
@@ -170,7 +170,7 @@ public class PSStudioGlobal {
             simpleEntity.set("PSDEVUSERID", (Object)iWebContext.getCurUserId());
             simpleEntity.set("SESSIONID", (Object)iWebContext.getSessionId());
             simpleEntity.set("REMOTEADDR", (Object)iWebContext.getRemoteAddr());
-            PSEntityKeeperGlobal.getCurrent().updatePSEntity("PSDEVUSER", (IEntity)simpleEntity, true);
+            PSEntityKeeperGlobal.getCurrent().updatePSEntity("PSDEVUSER", simpleEntity, true);
         }
         return activeOkResult;
     }
@@ -180,7 +180,7 @@ public class PSStudioGlobal {
             String string;
             SimpleEntity simpleEntity = new SimpleEntity();
             simpleEntity.set("PSDEVUSERID", (Object)iWebContext.getCurUserId());
-            if (PSEntityKeeperGlobal.getCurrent().getPSEntity("PSDEVUSER", (IEntity)simpleEntity, false) && StringHelper.compare((String)(string = DataObject.getStringValue((Object)simpleEntity.get("SESSIONID"))), (String)iWebContext.getSessionId(), (boolean)true) == 0) {
+            if (PSEntityKeeperGlobal.getCurrent().getPSEntity("PSDEVUSER", simpleEntity, false) && StringHelper.compare((String)(string = DataObject.getStringValue((Object)simpleEntity.get("SESSIONID"))), (String)iWebContext.getSessionId(), (boolean)true) == 0) {
                 return activeOkResult;
             }
             return loginAnotherResult;
@@ -193,12 +193,12 @@ public class PSStudioGlobal {
             String string;
             SimpleEntity simpleEntity = new SimpleEntity();
             simpleEntity.set("PSDEVUSERID", (Object)iWebContext.getCurUserId());
-            if (PSEntityKeeperGlobal.getCurrent().getPSEntity("PSDEVUSER", (IEntity)simpleEntity, false) && StringHelper.compare((String)(string = DataObject.getStringValue((Object)simpleEntity.get("SESSIONID"))), (String)iWebContext.getSessionId(), (boolean)true) == 0) {
+            if (PSEntityKeeperGlobal.getCurrent().getPSEntity("PSDEVUSER", simpleEntity, false) && StringHelper.compare((String)(string = DataObject.getStringValue((Object)simpleEntity.get("SESSIONID"))), (String)iWebContext.getSessionId(), (boolean)true) == 0) {
                 simpleEntity.set("PSDEVUSERID", (Object)iWebContext.getCurUserId());
                 simpleEntity.set("PSDEVCENTERID", (Object)"");
                 simpleEntity.set("SESSIONID", (Object)"");
                 simpleEntity.set("REMOTEADDR", (Object)"");
-                PSEntityKeeperGlobal.getCurrent().updatePSEntity("PSDEVUSER", (IEntity)simpleEntity, false);
+                PSEntityKeeperGlobal.getCurrent().updatePSEntity("PSDEVUSER", simpleEntity, false);
             }
         }
         return activeOkResult;
@@ -275,7 +275,7 @@ public class PSStudioGlobal {
                     PSStudioServerService pSStudioServerService = (PSStudioServerService)ServiceGlobal.getService(PSStudioServerService.class);
                     PSStudioServer pSStudioServer = new PSStudioServer();
                     pSStudioServer.setPSStudioServerId(string);
-                    pSStudioServerService.get((IEntity)pSStudioServer);
+                    pSStudioServerService.get(pSStudioServer);
                     this.psStudioServer = pSStudioServer;
                     PSStudioBKTaskWorkHelper.execute(new IPSStudioBKTaskWork2(){
 
@@ -373,4 +373,3 @@ public class PSStudioGlobal {
         devslnsysInvalidResult.setErrorInfo("\u5f00\u53d1\u7cfb\u7edf\u672a\u88ab\u542f\u7528");
     }
 }
-

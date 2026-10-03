@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.api;
 
-import net.ibizsys.paas.api.RestCallResult;
 
+/**
+ * Rest 服务作业对象接口
+ * @author Administrator
+ *
+ */
 public interface IRestServiceWork {
-    public void execute(RestCallResult var1) throws Exception;
-}
 
+	/**
+	 * 执行服务作业
+	 * @param restCallResult
+	 */
+	void execute(RestCallResult restCallResult) throws Exception;
+}

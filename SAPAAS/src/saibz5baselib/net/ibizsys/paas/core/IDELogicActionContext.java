@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IActionContext;
+/**
+ * 实体逻辑操作上下文对象
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDELogicActionContext extends IActionContext {
 
-public interface IDELogicActionContext
-extends IActionContext {
 }
-

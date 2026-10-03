@@ -127,7 +127,7 @@ extends SRFDAPage {
         }
         String strSql = "";
         strSql = StringHelper.IsNullOrEmpty((String)strCalendarGroup) ? "select * from  v_SRFCalendar WHERE ENABLE=1 AND (CALSEQID IS NULL OR  CALENDARID <> CALSEQID ) AND  OWNERID=? AND ((BEGINTIME<? AND ENDTIME>? ) OR (BEGINTIME>=? AND BEGINTIME<? )) ORDER BY BEGINTIME" : "select * from  v_SRFCalendar WHERE ENABLE =1 AND (CALSEQID IS NULL OR  CALENDARID <> CALSEQID ) AND  OWNERID=? AND ((BEGINTIME<? AND ENDTIME>? ) OR (BEGINTIME>=? AND BEGINTIME<? )) AND CALENDARGROUP=? ORDER BY BEGINTIME";
-        Vector list = new Vector();
+        Vector<Calendar> list = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), (String)strSql, params, list, (String)Calendar.class.getName());
         if (callResult.getRetCode() == 0) {
             StringBuilderEx sb = new StringBuilderEx();

@@ -1,11 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.chart;
 
-import net.ibizsys.model.control.chart.IPSChartObject;
 
-public interface IPSChartPolar
-extends IPSChartObject {
+/**
+ * 极坐标系对象接口，可以用于散点图和折线图。每个极坐标系拥有一个角度轴和一个半径轴。
+ * @author Administrator
+ *
+ */
+public interface IPSChartPolar extends IPSChartObject
+{
+
 }
-

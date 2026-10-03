@@ -1,79 +1,109 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.annotation.PostConstruct
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.dao;
 
-import javax.annotation.PostConstruct;
+import net.ibizsys.paas.db.IDBDialect;
+import net.ibizsys.paas.core.IDataEntity;
+import net.ibizsys.paas.util.StringHelper;
+import net.ibizsys.paas.core.IDEDBCallContext;
+import net.ibizsys.paas.db.DBCallResult;
+import net.ibizsys.paas.demodel.IDataEntityModel;
+import net.ibizsys.paas.demodel.DEModelGlobal;
 import net.ibizsys.paas.dao.DAOGlobal;
 import net.ibizsys.paas.dao.IDAO;
-import net.ibizsys.paas.demodel.DEModelGlobal;
-import net.ibizsys.paas.demodel.IDataEntityModel;
-import net.ibizsys.psrt.srv.PSRuntimeSysDAOBase;
-import net.ibizsys.psrt.srv.common.dao.UserObjectDAO;
+import net.ibizsys.paas.entity.IEntity;
+import javax.annotation.PostConstruct;
+
 import net.ibizsys.psrt.srv.common.demodel.UserGroupDEModel;
 import net.ibizsys.psrt.srv.common.entity.UserGroup;
-import net.ibizsys.psrt.srv.common.entity.UserObjectBase;
+import net.ibizsys.psrt.srv.common.dao.UserObjectDAO;
+import net.ibizsys.psrt.srv.common.entity.UserObject;
+/**
+ * 实体[UserGroup] DAO对象基类
+ */
+public abstract class UserGroupDAOBase extends net.ibizsys.psrt.srv.PSRuntimeSysDAOBase<UserGroup> {
 
-public abstract class UserGroupDAOBase
-extends PSRuntimeSysDAOBase<UserGroup> {
     private static final long serialVersionUID = -1L;
-    public static final String DATAQUERY_DEFAULT = "DEFAULT";
-    private UserGroupDEModel userGroupDEModel;
-    private UserObjectDAO userObjectDAO;
 
-    @Override
-    @PostConstruct
-    public void postConstruct() throws Exception {
-        DAOGlobal.registerDAO(this.getDAOId(), this);
+    public static final String DATAQUERY_DEFAULT = "DEFAULT";
+
+    public UserGroupDAOBase() {
+        super();
+
     }
 
+    @PostConstruct
+    public void postConstruct() throws Exception {
+        DAOGlobal.registerDAO(getDAOId(), this);
+    }
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.dao.DAOBase#getDAOId()
+     */
     @Override
     protected String getDAOId() {
         return "net.ibizsys.psrt.srv.common.dao.UserGroupDAO";
     }
 
-    public UserGroupDEModel getUserGroupDEModel() {
-        if (this.userGroupDEModel == null) {
+    private UserGroupDEModel userGroupDEModel;
+
+    /**
+    * 获取实体[UserGroup]模型对象
+    * @return
+    */
+    public  UserGroupDEModel getUserGroupDEModel() {
+        if(this.userGroupDEModel==null) {
             try {
                 this.userGroupDEModel = (UserGroupDEModel)DEModelGlobal.getDEModel("net.ibizsys.psrt.srv.common.demodel.UserGroupDEModel");
-            }
-            catch (Exception exception) {
-                // empty catch block
+            } catch(Exception ex) {
             }
         }
         return this.userGroupDEModel;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see net.ibizsys.paas.dao.DAOBase#getDEModel()
+     */
     @Override
-    public IDataEntityModel getDEModel() {
+    public  IDataEntityModel getDEModel() {
         return this.getUserGroupDEModel();
     }
 
+
+    private UserObjectDAO userObjectDAO;
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.dao.DAOBase#getInheritDEDAO()
+     */
     @Override
-    protected IDAO getInheritDEDAO() {
-        if (this.userObjectDAO == null) {
+    protected  IDAO  getInheritDEDAO() {
+        if(this.userObjectDAO==null) {
             try {
-                this.userObjectDAO = (UserObjectDAO)DAOGlobal.getDAO("net.ibizsys.psrt.srv.common.dao.UserObjectDAO", this.getSessionFactory());
-            }
-            catch (Exception exception) {
-                // empty catch block
+                this.userObjectDAO= (UserObjectDAO)DAOGlobal.getDAO("net.ibizsys.psrt.srv.common.dao.UserObjectDAO",this.getSessionFactory());
+            } catch(Exception ex) {
             }
         }
         return this.userObjectDAO;
     }
 
+    /**
+     * 填充继承实体数据信息
+     * @param et
+     * @throws Exception
+     */
     @Override
-    protected void fillInheritEntity(UserGroup et) throws Exception {
-        super.fillInheritEntity(et);
-        UserGroup userObject = et;
-        userObject.setUserObjectId(et.getUserGroupId());
-        if (et.isUserGroupNameDirty()) {
-            userObject.setUserObjectName(et.getUserGroupName());
-        }
-        ((UserObjectBase)userObject).set("USEROBJECTTYPE", "USERGROUP");
-    }
-}
+    protected void fillInheritEntity(UserGroup et)throws Exception {
+        super.fillInheritEntity( et);
 
+        UserObject userObject =  (UserObject)et;
+        userObject.setUserObjectId(et.getUserGroupId());
+        if(et.isUserGroupNameDirty())
+            userObject.setUserObjectName(et.getUserGroupName());
+        userObject.set(UserObject.FIELD_USEROBJECTTYPE,"USERGROUP");
+    }
+
+
+}

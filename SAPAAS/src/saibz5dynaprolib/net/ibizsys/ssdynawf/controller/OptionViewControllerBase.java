@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdynawf.controller;
 
-import net.ibizsys.ssdynawf.controller.WFEditViewControllerBase;
+/**
+ * 选项视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class OptionViewControllerBase extends WFEditViewControllerBase {
+	public OptionViewControllerBase() throws Exception {
+		super();
+	}
 
-public abstract class OptionViewControllerBase
-extends WFEditViewControllerBase {
 }
-

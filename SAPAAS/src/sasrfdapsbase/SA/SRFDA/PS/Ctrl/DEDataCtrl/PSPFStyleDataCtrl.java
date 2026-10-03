@@ -145,7 +145,7 @@ extends PSPFTemplDataCtrlBase {
     }
 
     protected void onMergeCode(PSPFStyle psPFStyle) throws Exception {
-        Vector vector;
+        Vector<PSPFAppTempl> vector;
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSPFSTYLEID", (Object)psPFStyle.getPSPFSTYLEID());
         IDEDataCtrl psPFStyleCodeDataCtrl = this.GetRelatedDataCtrl("DE1800");
@@ -170,7 +170,7 @@ extends PSPFTemplDataCtrlBase {
             if (templPSPFStyleMap.containsKey(strTemplPSPFStyleId)) break;
             cond.Reset();
             cond.setParamValue("PSPFSTYLEID", (Object)strTemplPSPFStyleId);
-            Vector psPFStyleCodeList = new Vector();
+            Vector<PSPFStyleCode> psPFStyleCodeList = new Vector<PSPFStyleCode>();
             callResult = psPFStyleCodeDataCtrl.Select(cond, psPFStyleCodeList, PSPFStyleCode.class.getName());
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u5c55\u73b0\u6837\u5f0f\u5b8f\u4ee3\u7801\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -181,7 +181,7 @@ extends PSPFTemplDataCtrlBase {
                 psPFStyleCodeMap.put(pSPFStyleCode.getPSPFSTYLECODENAME(), pSPFStyleCode);
             }
             if (bHasStyleCode) {
-                Vector vector2 = new Vector();
+                Vector<PSPFViewTempl> vector2 = new Vector<PSPFViewTempl>();
                 callResult = psPFViewTemplDataCtrl.Select(cond, vector2, PSPFViewTempl.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u5c55\u73b0\u6837\u5f0f\u89c6\u56fe\u6a21\u7248\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -203,7 +203,7 @@ extends PSPFTemplDataCtrlBase {
         }
         cond.Reset();
         cond.setParamValue("PSPFSTYLEID", (Object)psPFStyle.getPSPFSTYLEID());
-        Vector psPFViewTempls = new Vector();
+        Vector<PSPFViewTempl> psPFViewTempls = new Vector<PSPFViewTempl>();
         callResult = psPFViewTemplDataCtrl.Select(cond, psPFViewTempls, PSPFViewTempl.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u5c55\u73b0\u6837\u5f0f\u89c6\u56fe\u6a21\u7248\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -264,7 +264,7 @@ extends PSPFTemplDataCtrlBase {
                 throw new Exception(StringHelper.Format((String)"\u65b0\u5efa\u5c55\u73b0\u6837\u5f0f\u89c6\u56fe\u6a21\u7248\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
             }
         }
-        if ((callResult = psPFAppTemplDataCtrl.Select(cond, vector = new Vector(), PSPFAppTempl.class.getName())).isError()) {
+        if ((callResult = psPFAppTemplDataCtrl.Select(cond, vector = new Vector<PSPFAppTempl>(), PSPFAppTempl.class.getName())).isError()) {
             throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u5c55\u73b0\u6837\u5f0f\u5e94\u7528\u6a21\u7248\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
         }
         for (PSPFAppTempl psPFAppTempl : vector) {
@@ -326,7 +326,7 @@ extends PSPFTemplDataCtrlBase {
         IDEDataCtrl iPSPFCtrlTemplDataCtrl = this.GetRelatedDataCtrl("DE1802");
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSPFSTYLEID", (Object)strPSPFStyleId);
-        Vector psPFCtrlTemplList = new Vector();
+        Vector<BaseDataEntity> psPFCtrlTemplList = new Vector<BaseDataEntity>();
         iPSPFCtrlTemplDataCtrl.Select(cond, psPFCtrlTemplList);
         for (BaseDataEntity baseDataEntity : psPFCtrlTemplList) {
             iPSPFCtrlTemplDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
@@ -334,7 +334,7 @@ extends PSPFTemplDataCtrlBase {
         IDEDataCtrl iPSPFViewTemplDataCtrl = this.GetRelatedDataCtrl("DE1801");
         cond = new BaseDataEntity();
         cond.setParamValue("PSPFSTYLEID", (Object)strPSPFStyleId);
-        Vector psPFViewTemplList = new Vector();
+        Vector<BaseDataEntity> psPFViewTemplList = new Vector<BaseDataEntity>();
         iPSPFViewTemplDataCtrl.Select(cond, psPFViewTemplList);
         for (BaseDataEntity baseDataEntity : psPFViewTemplList) {
             iPSPFViewTemplDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
@@ -342,7 +342,7 @@ extends PSPFTemplDataCtrlBase {
         IDEDataCtrl iPSPFAppTemplDataCtrl = this.GetRelatedDataCtrl("DE1808");
         cond = new BaseDataEntity();
         cond.setParamValue("PSPFSTYLEID", (Object)strPSPFStyleId);
-        Vector psPFAppTemplList = new Vector();
+        Vector<BaseDataEntity> psPFAppTemplList = new Vector<BaseDataEntity>();
         iPSPFAppTemplDataCtrl.Select(cond, psPFAppTemplList);
         for (BaseDataEntity baseDataEntity : psPFAppTemplList) {
             iPSPFAppTemplDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
@@ -350,7 +350,7 @@ extends PSPFTemplDataCtrlBase {
         IDEDataCtrl iPSPFStyleCodeDataCtrl = this.GetRelatedDataCtrl("DE1800");
         cond = new BaseDataEntity();
         cond.setParamValue("PSPFSTYLEID", (Object)strPSPFStyleId);
-        Vector psPFStyleCodeList = new Vector();
+        Vector<BaseDataEntity> psPFStyleCodeList = new Vector<BaseDataEntity>();
         iPSPFStyleCodeDataCtrl.Select(cond, psPFStyleCodeList);
         for (BaseDataEntity baseDataEntity : psPFStyleCodeList) {
             iPSPFStyleCodeDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
@@ -358,7 +358,7 @@ extends PSPFTemplDataCtrlBase {
         IDEDataCtrl iPSPFEditorTemplDataCtrl = this.GetRelatedDataCtrl("DE1804");
         cond = new BaseDataEntity();
         cond.setParamValue("PSPFSTYLEID", (Object)strPSPFStyleId);
-        Vector psPFEditorTemplList = new Vector();
+        Vector<BaseDataEntity> psPFEditorTemplList = new Vector<BaseDataEntity>();
         iPSPFEditorTemplDataCtrl.Select(cond, psPFEditorTemplList);
         for (BaseDataEntity baseDataEntity : psPFEditorTemplList) {
             iPSPFEditorTemplDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
@@ -398,18 +398,17 @@ extends PSPFTemplDataCtrlBase {
             HashMap<String, PSPFPkg> clonePSPFPkgMap = null;
             HashMap<String, PSPFPkgVer> clonePSPFPkgVerMap = null;
             if (StringHelper.Compare((String)psPFStyle.getPSPFID(), (String)strPSPFId, (boolean)false) != 0) {
-                Iterator strPSPFPubCodeName;
                 cond = new BaseDataEntity();
                 cond.Reset();
                 cond.set("PSPFID", (Object)psPFStyle.getPSPFID());
-                Vector psPFPubCodeList = new Vector();
+                Vector<PSPFPubCode> psPFPubCodeList = new Vector<PSPFPubCode>();
                 callResult = psPFPubCodeDataCtrl.Select(cond, psPFPubCodeList, PSPFPubCode.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4ee3\u7801\u7c7b\u578b\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                 }
                 cond.Reset();
                 cond.set("PSPFID", (Object)strPSPFId);
-                Vector psPFPubCodeList2 = new Vector();
+                Vector<PSPFPubCode> psPFPubCodeList2 = new Vector<PSPFPubCode>();
                 callResult = psPFPubCodeDataCtrl.Select(cond, psPFPubCodeList2, PSPFPubCode.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4ee3\u7801\u7c7b\u578b\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -417,7 +416,7 @@ extends PSPFTemplDataCtrlBase {
                 clonePSPFPubCodeMap = new HashMap<String, PSPFPubCode>();
                 block2: for (PSPFPubCode psPFPubCode : psPFPubCodeList) {
                     String strPSPFPubCodeId = psPFPubCode.getPSPFPUBCODEID();
-                    strPSPFPubCodeName = psPFPubCode.getPSPFPUBCODENAME();
+                    String strPSPFPubCodeName = psPFPubCode.getPSPFPUBCODENAME();
                     for (PSPFPubCode clonePSPFPubCode : psPFPubCodeList2) {
                         String strPSPFPubCodeName2 = clonePSPFPubCode.getPSPFPUBCODENAME();
                         if (StringHelper.Compare((String)((Object)strPSPFPubCodeName), (String)strPSPFPubCodeName2, (boolean)false) != 0) continue;
@@ -427,22 +426,22 @@ extends PSPFTemplDataCtrlBase {
                 }
                 cond.Reset();
                 cond.set("PSPFID", (Object)psPFStyle.getPSPFID());
-                Vector psPFPkgList = new Vector();
+                Vector<PSPFPkg> psPFPkgList = new Vector<PSPFPkg>();
                 callResult = psPFPkgDataCtrl.Select(cond, psPFPkgList, PSPFPkg.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7ec4\u4ef6\u5305\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                 }
                 cond.Reset();
                 cond.set("PSPFID", (Object)strPSPFId);
-                Vector psPFPkgList2 = new Vector();
+                Vector<PSPFPkg> psPFPkgList2 = new Vector<PSPFPkg>();
                 callResult = psPFPkgDataCtrl.Select(cond, psPFPkgList2, PSPFPkg.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7ec4\u4ef6\u5305\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                 }
                 clonePSPFPkgMap = new HashMap<String, PSPFPkg>();
-                strPSPFPubCodeName = psPFPkgList.iterator();
-                block4: while (strPSPFPubCodeName.hasNext()) {
-                    PSPFPkg psPFPkg = (PSPFPkg)((Object)strPSPFPubCodeName.next());
+                Iterator<PSPFPkg> psPFPkgIterator = psPFPkgList.iterator();
+                block4: while (psPFPkgIterator.hasNext()) {
+                    PSPFPkg psPFPkg = psPFPkgIterator.next();
                     String strPSPFPkgId = psPFPkg.getPSPFPKGID();
                     String strPSPFPkgName = psPFPkg.getPSPFPKGNAME();
                     for (PSPFPkg clonePSPFPkg : psPFPkgList2) {
@@ -457,14 +456,14 @@ extends PSPFTemplDataCtrlBase {
                     PSPFPkg clonePSPFPkg = (PSPFPkg)((Object)clonePSPFPkgMap.get(strPSPFPkgId));
                     cond.Reset();
                     cond.set("PSPFPKGID", (Object)strPSPFPkgId);
-                    Vector psPFPkgVerList = new Vector();
+                    Vector<PSPFPkgVer> psPFPkgVerList = new Vector<PSPFPkgVer>();
                     callResult = psPFPkgVerDataCtrl.Select(cond, psPFPkgVerList, PSPFPkgVer.class.getName());
                     if (callResult.isError()) {
                         throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7ec4\u4ef6\u5305\u7248\u672c\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                     }
                     cond.Reset();
                     cond.set("PSPFPKGID", (Object)clonePSPFPkg.getPSPFPKGID());
-                    Vector psPFPkgVerList2 = new Vector();
+                    Vector<PSPFPkgVer> psPFPkgVerList2 = new Vector<PSPFPkgVer>();
                     callResult = psPFPkgVerDataCtrl.Select(cond, psPFPkgVerList2, PSPFPkgVer.class.getName());
                     if (callResult.isError()) {
                         throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7ec4\u4ef6\u5305\u7248\u672c\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -483,7 +482,7 @@ extends PSPFTemplDataCtrlBase {
             }
             cond = new BaseDataEntity();
             cond.set("PSPFSTYLEID", srcKey);
-            Vector psPFStyleCodeList = new Vector();
+            Vector<BaseDataEntity> psPFStyleCodeList = new Vector<BaseDataEntity>();
             callResult = psPFStyleCodeDataCtrl.Select(cond, psPFStyleCodeList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4ee3\u7801\u5b8f\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -500,7 +499,7 @@ extends PSPFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSPFSTYLEID", srcKey);
-            Vector psPFStylePkgList = new Vector();
+            Vector<BaseDataEntity> psPFStylePkgList = new Vector<BaseDataEntity>();
             callResult = psPFStylePkgDataCtrl.Select(cond, psPFStylePkgList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u6837\u5f0f\u7ec4\u4ef6\u5305\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -532,7 +531,7 @@ extends PSPFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSPFSTYLEID", srcKey);
-            Vector psPFViewTemplList = new Vector();
+            Vector<BaseDataEntity> psPFViewTemplList = new Vector<BaseDataEntity>();
             callResult = psPFViewTemplDataCtrl.Select(cond, psPFViewTemplList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u89c6\u56fe\u6a21\u677f\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -556,7 +555,7 @@ extends PSPFTemplDataCtrlBase {
                 if (!callResult.isError()) continue;
                 throw new Exception(StringHelper.Format((String)"\u5efa\u7acb\u89c6\u56fe\u6a21\u677f\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
             }
-            Vector psPFCtrlTemplList = new Vector();
+            Vector<BaseDataEntity> psPFCtrlTemplList = new Vector<BaseDataEntity>();
             cond.Reset();
             cond.set("PSPFSTYLEID", srcKey);
             callResult = psPFCtrlTemplDataCtrl.Select(cond, psPFCtrlTemplList);
@@ -581,7 +580,7 @@ extends PSPFTemplDataCtrlBase {
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u5efa\u7acb\u90e8\u4ef6\u6a21\u677f\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                 }
-                Vector psPFCtrlTemplDetailList = new Vector();
+                Vector<BaseDataEntity> psPFCtrlTemplDetailList = new Vector<BaseDataEntity>();
                 cond.Reset();
                 cond.set("PSPFCTRLTEMPLID", psPFCtrlTempl.getParamValue("PSPFCTRLTEMPLID"));
                 callResult = psPFCtrlTemplDetailDataCtrl.Select(cond, psPFCtrlTemplDetailList);
@@ -600,7 +599,7 @@ extends PSPFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSPFSTYLEID", srcKey);
-            Vector psPFEditorTemplList = new Vector();
+            Vector<BaseDataEntity> psPFEditorTemplList = new Vector<BaseDataEntity>();
             callResult = psPFEditorTemplDataCtrl.Select(cond, psPFEditorTemplList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7f16\u8f91\u5668\u6a21\u677f\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -625,7 +624,7 @@ extends PSPFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSPFSTYLEID", srcKey);
-            Vector psPFUIActionTemplList = new Vector();
+            Vector<BaseDataEntity> psPFUIActionTemplList = new Vector<BaseDataEntity>();
             callResult = psPFUIActionTemplDataCtrl.Select(cond, psPFUIActionTemplList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u754c\u9762\u884c\u4e3a\u6a21\u677f\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -650,7 +649,7 @@ extends PSPFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSPFSTYLEID", srcKey);
-            Vector psPFViewLogicTemplList = new Vector();
+            Vector<BaseDataEntity> psPFViewLogicTemplList = new Vector<BaseDataEntity>();
             callResult = psPFViewLogicTemplDataCtrl.Select(cond, psPFViewLogicTemplList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u89c6\u56fe\u903b\u8f91\u6a21\u677f\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -675,7 +674,7 @@ extends PSPFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSPFSTYLEID", srcKey);
-            Vector psPFAppTemplList = new Vector();
+            Vector<BaseDataEntity> psPFAppTemplList = new Vector<BaseDataEntity>();
             callResult = psPFAppTemplDataCtrl.Select(cond, psPFAppTemplList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5e94\u7528\u4ee3\u7801\u6a21\u677f\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -700,7 +699,7 @@ extends PSPFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSPFSTYLEID", srcKey);
-            Vector psPFStylePrjList = new Vector();
+            Vector<BaseDataEntity> psPFStylePrjList = new Vector<BaseDataEntity>();
             callResult = psPFStylePrjDataCtrl.Select(cond, psPFStylePrjList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u53d1\u5e03\u9879\u76ee\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -882,51 +881,50 @@ extends PSPFTemplDataCtrlBase {
             SelectCond selectCond = new SelectCond();
             selectCond.setIsNull("PSPFSTYLEID");
             selectCond.set("PSPFID", (Object)psPFStyle.getPSPFId());
-            ArrayList psPFEditorTemplList = psPFEditorTemplService.select((ISelectCond)selectCond);
+            ArrayList<net.ibizsys.pscore.srv.config.entity.PSPFEditorTempl> psPFEditorTemplList = psPFEditorTemplService.select((ISelectCond)selectCond);
             for (net.ibizsys.pscore.srv.config.entity.PSPFEditorTempl psPFEditorTempl : psPFEditorTemplList) {
                 psPFEditorTempl.resetPSPFEditorTemplId();
                 psPFEditorTempl.setPSPFStyleId(psPFStyle.getPSPFStyleId());
                 psPFEditorTempl.setPSPFStyleName(psPFStyle.getPSPFStyleName());
-                if (psPFEditorTemplService.checkKey((IEntity)psPFEditorTempl) != 0) continue;
-                psPFEditorTemplService.create((IEntity)psPFEditorTempl);
+                if (psPFEditorTemplService.checkKey(psPFEditorTempl) != 0) continue;
+                psPFEditorTemplService.create(psPFEditorTempl);
             }
         } else {
             SelectCond selectCond = new SelectCond();
             selectCond.set("PSPFSTYLEID", (Object)clonePSPFStyle.getPSPFStyleId());
             selectCond.set("PSPFID", (Object)psPFStyle.getPSPFId());
-            ArrayList psPFEditorTemplList = psPFEditorTemplService.select((ISelectCond)selectCond);
+            ArrayList<net.ibizsys.pscore.srv.config.entity.PSPFEditorTempl> psPFEditorTemplList = psPFEditorTemplService.select((ISelectCond)selectCond);
             for (net.ibizsys.pscore.srv.config.entity.PSPFEditorTempl psPFEditorTempl : psPFEditorTemplList) {
                 psPFEditorTempl.resetPSPFEditorTemplId();
                 psPFEditorTempl.setPSPFStyleId(psPFStyle.getPSPFStyleId());
                 psPFEditorTempl.setPSPFStyleName(psPFStyle.getPSPFStyleName());
-                if (psPFEditorTemplService.checkKey((IEntity)psPFEditorTempl) != 0) continue;
-                psPFEditorTemplService.create((IEntity)psPFEditorTempl);
+                if (psPFEditorTemplService.checkKey(psPFEditorTempl) != 0) continue;
+                psPFEditorTemplService.create(psPFEditorTempl);
             }
             selectCond = new SelectCond();
             selectCond.set("PSPFSTYLEID", (Object)clonePSPFStyle.getPSPFStyleId());
             selectCond.set("PSPFID", (Object)psPFStyle.getPSPFId());
-            ArrayList psPFCtrlTemplList = psPFCtrlTemplService.select((ISelectCond)selectCond);
+            ArrayList<net.ibizsys.pscore.srv.config.entity.PSPFCtrlTempl> psPFCtrlTemplList = psPFCtrlTemplService.select((ISelectCond)selectCond);
             for (net.ibizsys.pscore.srv.config.entity.PSPFCtrlTempl psPFCtrlTempl : psPFCtrlTemplList) {
                 net.ibizsys.pscore.srv.config.entity.PSPFCtrlTempl psPFCtrlTempl2 = new net.ibizsys.pscore.srv.config.entity.PSPFCtrlTempl();
                 psPFCtrlTempl.copyTo((IDataObject)psPFCtrlTempl2, false);
                 psPFCtrlTempl2.resetPSPFCtrlTemplId();
                 psPFCtrlTempl2.setPSPFStyleId(psPFStyle.getPSPFStyleId());
                 psPFCtrlTempl2.setPSPFStyleName(psPFStyle.getPSPFStyleName());
-                if (psPFCtrlTemplService.checkKey((IEntity)psPFCtrlTempl2) != 0) continue;
-                psPFCtrlTemplService.create((IEntity)psPFCtrlTempl2);
-                ArrayList psPFCTDetailList = psPFCtrlTempl.getPSPFCTDetails();
-                Iterator iterator = psPFCTDetailList.iterator();
+                if (psPFCtrlTemplService.checkKey(psPFCtrlTempl2) != 0) continue;
+                psPFCtrlTemplService.create(psPFCtrlTempl2);
+                ArrayList<PSPFCTDetail> psPFCTDetailList = psPFCtrlTempl.getPSPFCTDetails();
+                Iterator<PSPFCTDetail> iterator = psPFCTDetailList.iterator();
                 while (iterator.hasNext()) {
                     PSPFCTDetail psPFCTDetail;
                     PSPFCTDetail psPFCTDetail2 = psPFCTDetail = (PSPFCTDetail)iterator.next();
                     psPFCTDetail2.resetPSPFCTDetailId();
                     psPFCTDetail2.setPSPFCtrlTemplId(psPFCtrlTempl2.getPSPFCtrlTemplId());
                     psPFCTDetail2.setPSPFCtrlTemplName(psPFCtrlTempl2.getPSPFCtrlTemplName());
-                    psPFCTDetailService.create((IEntity)psPFCTDetail2, false);
+                    psPFCTDetailService.create(psPFCTDetail2, false);
                 }
             }
             this.copyPSPFTempls(psPFStyle, clonePSPFStyle.getTemplPSPFStyle());
         }
     }
 }
-

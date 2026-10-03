@@ -1,20 +1,155 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.userdictitem.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="CDBE4F4A-8854-4711-8F5A-5C4D20878891", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CONTENT, t1.CREATEDATE, t1.CREATEMAN, t1.MARKFLAG, t1.MEMO, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDICTCATID, t11.USERDICTCATNAME, t1.USERDICTID, t1.USERDICTITEMID, t1.USERDICTITEMNAME, t21.USERDICTNAME FROM T_SRFUSERDICTITEM t1  LEFT JOIN T_SRFUSERDICTCAT t11 ON t1.USERDICTCATID = t11.USERDICTCATID  LEFT JOIN T_SRFUSERDICT t21 ON t1.USERDICTID = t21.USERDICTID  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="CONTENT", expression="t1.CONTENT", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MARKFLAG", expression="t1.MARKFLAG", showorder=3), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=4), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=5), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.RESERVER2", showorder=6), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.RESERVER3", showorder=7), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.RESERVER4", showorder=8), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=9), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=10), @DEDataQueryCodeExp(name="USERDICTCATID", expression="t1.USERDICTCATID", showorder=11), @DEDataQueryCodeExp(name="USERDICTCATNAME", expression="t11.USERDICTCATNAME", showorder=12), @DEDataQueryCodeExp(name="USERDICTID", expression="t1.USERDICTID", showorder=13), @DEDataQueryCodeExp(name="USERDICTITEMID", expression="t1.USERDICTITEMID", showorder=14), @DEDataQueryCodeExp(name="USERDICTITEMNAME", expression="t1.USERDICTITEMNAME", showorder=15), @DEDataQueryCodeExp(name="USERDICTNAME", expression="t21.USERDICTNAME", showorder=16)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`content`, t1.`createdate`, t1.`createman`, t1.`markflag`, t1.`memo`, t1.`reserver`, t1.`reserver2`, t1.`reserver3`, t1.`reserver4`, t1.`updatedate`, t1.`updateman`, t1.`userdictcatid`, t11.`userdictcatname`, t1.`userdictid`, t1.`userdictitemid`, t1.`userdictitemname`, t21.`userdictname` FROM `t_srfuserdictitem` t1  LEFT JOIN t_srfuserdictcat t11 ON t1.userdictcatid = t11.userdictcatid  LEFT JOIN t_srfuserdict t21 ON t1.userdictid = t21.userdictid  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CONTENT", expression="t1.`content`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=2), @DEDataQueryCodeExp(name="MARKFLAG", expression="t1.`markflag`", showorder=3), @DEDataQueryCodeExp(name="MEMO", expression="t1.`memo`", showorder=4), @DEDataQueryCodeExp(name="RESERVER", expression="t1.`reserver`", showorder=5), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.`reserver2`", showorder=6), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.`reserver3`", showorder=7), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.`reserver4`", showorder=8), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=9), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=10), @DEDataQueryCodeExp(name="USERDICTCATID", expression="t1.`userdictcatid`", showorder=11), @DEDataQueryCodeExp(name="USERDICTCATNAME", expression="t11.`userdictcatname`", showorder=12), @DEDataQueryCodeExp(name="USERDICTID", expression="t1.`userdictid`", showorder=13), @DEDataQueryCodeExp(name="USERDICTITEMID", expression="t1.`userdictitemid`", showorder=14), @DEDataQueryCodeExp(name="USERDICTITEMNAME", expression="t1.`userdictitemname`", showorder=15), @DEDataQueryCodeExp(name="USERDICTNAME", expression="t21.`userdictname`", showorder=16)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CONTENT, t1.CREATEDATE, t1.CREATEMAN, t1.MARKFLAG, t1.MEMO, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDICTCATID, t11.USERDICTCATNAME, t1.USERDICTID, t1.USERDICTITEMID, t1.USERDICTITEMNAME, t21.USERDICTNAME FROM T_SRFUSERDICTITEM t1  LEFT JOIN T_SRFUSERDICTCAT t11 ON t1.USERDICTCATID = t11.USERDICTCATID  LEFT JOIN T_SRFUSERDICT t21 ON t1.USERDICTID = t21.USERDICTID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CONTENT", expression="t1.CONTENT", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MARKFLAG", expression="t1.MARKFLAG", showorder=3), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=4), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=5), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.RESERVER2", showorder=6), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.RESERVER3", showorder=7), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.RESERVER4", showorder=8), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=9), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=10), @DEDataQueryCodeExp(name="USERDICTCATID", expression="t1.USERDICTCATID", showorder=11), @DEDataQueryCodeExp(name="USERDICTCATNAME", expression="t11.USERDICTCATNAME", showorder=12), @DEDataQueryCodeExp(name="USERDICTID", expression="t1.USERDICTID", showorder=13), @DEDataQueryCodeExp(name="USERDICTITEMID", expression="t1.USERDICTITEMID", showorder=14), @DEDataQueryCodeExp(name="USERDICTITEMNAME", expression="t1.USERDICTITEMNAME", showorder=15), @DEDataQueryCodeExp(name="USERDICTNAME", expression="t21.USERDICTNAME", showorder=16)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CONTENT, t1.CREATEDATE, t1.CREATEMAN, t1.MARKFLAG, t1.MEMO, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDICTCATID, t11.USERDICTCATNAME, t1.USERDICTID, t1.USERDICTITEMID, t1.USERDICTITEMNAME, t21.USERDICTNAME FROM T_SRFUSERDICTITEM t1  LEFT JOIN T_SRFUSERDICTCAT t11 ON t1.USERDICTCATID = t11.USERDICTCATID  LEFT JOIN T_SRFUSERDICT t21 ON t1.USERDICTID = t21.USERDICTID  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="CONTENT", expression="t1.CONTENT", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MARKFLAG", expression="t1.MARKFLAG", showorder=3), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=4), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=5), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.RESERVER2", showorder=6), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.RESERVER3", showorder=7), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.RESERVER4", showorder=8), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=9), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=10), @DEDataQueryCodeExp(name="USERDICTCATID", expression="t1.USERDICTCATID", showorder=11), @DEDataQueryCodeExp(name="USERDICTCATNAME", expression="t11.USERDICTCATNAME", showorder=12), @DEDataQueryCodeExp(name="USERDICTID", expression="t1.USERDICTID", showorder=13), @DEDataQueryCodeExp(name="USERDICTITEMID", expression="t1.USERDICTITEMID", showorder=14), @DEDataQueryCodeExp(name="USERDICTITEMNAME", expression="t1.USERDICTITEMNAME", showorder=15), @DEDataQueryCodeExp(name="USERDICTNAME", expression="t21.USERDICTNAME", showorder=16)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CONTENT, t1.CREATEDATE, t1.CREATEMAN, t1.MARKFLAG, t1.MEMO, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDICTCATID, t11.USERDICTCATNAME, t1.USERDICTID, t1.USERDICTITEMID, t1.USERDICTITEMNAME, t21.USERDICTNAME FROM T_SRFUSERDICTITEM t1  LEFT JOIN T_SRFUSERDICTCAT t11 ON t1.USERDICTCATID = t11.USERDICTCATID  LEFT JOIN T_SRFUSERDICT t21 ON t1.USERDICTID = t21.USERDICTID  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="CONTENT", expression="t1.CONTENT", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MARKFLAG", expression="t1.MARKFLAG", showorder=3), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=4), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=5), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.RESERVER2", showorder=6), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.RESERVER3", showorder=7), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.RESERVER4", showorder=8), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=9), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=10), @DEDataQueryCodeExp(name="USERDICTCATID", expression="t1.USERDICTCATID", showorder=11), @DEDataQueryCodeExp(name="USERDICTCATNAME", expression="t11.USERDICTCATNAME", showorder=12), @DEDataQueryCodeExp(name="USERDICTID", expression="t1.USERDICTID", showorder=13), @DEDataQueryCodeExp(name="USERDICTITEMID", expression="t1.USERDICTITEMID", showorder=14), @DEDataQueryCodeExp(name="USERDICTITEMNAME", expression="t1.USERDICTITEMNAME", showorder=15), @DEDataQueryCodeExp(name="USERDICTNAME", expression="t21.USERDICTNAME", showorder=16)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[CONTENT], t1.[CREATEDATE], t1.[CREATEMAN], t1.[MARKFLAG], t1.[MEMO], t1.[RESERVER], t1.[RESERVER2], t1.[RESERVER3], t1.[RESERVER4], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[USERDICTCATID], t11.[USERDICTCATNAME], t1.[USERDICTID], t1.[USERDICTITEMID], t1.[USERDICTITEMNAME], t21.[USERDICTNAME] FROM [T_SRFUSERDICTITEM] t1  LEFT JOIN T_SRFUSERDICTCAT t11 ON t1.USERDICTCATID = t11.USERDICTCATID  LEFT JOIN T_SRFUSERDICT t21 ON t1.USERDICTID = t21.USERDICTID  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="CONTENT", expression="t1.[CONTENT]", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=2), @DEDataQueryCodeExp(name="MARKFLAG", expression="t1.[MARKFLAG]", showorder=3), @DEDataQueryCodeExp(name="MEMO", expression="t1.[MEMO]", showorder=4), @DEDataQueryCodeExp(name="RESERVER", expression="t1.[RESERVER]", showorder=5), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.[RESERVER2]", showorder=6), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.[RESERVER3]", showorder=7), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.[RESERVER4]", showorder=8), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=9), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=10), @DEDataQueryCodeExp(name="USERDICTCATID", expression="t1.[USERDICTCATID]", showorder=11), @DEDataQueryCodeExp(name="USERDICTCATNAME", expression="t11.[USERDICTCATNAME]", showorder=12), @DEDataQueryCodeExp(name="USERDICTID", expression="t1.[USERDICTID]", showorder=13), @DEDataQueryCodeExp(name="USERDICTITEMID", expression="t1.[USERDICTITEMID]", showorder=14), @DEDataQueryCodeExp(name="USERDICTITEMNAME", expression="t1.[USERDICTITEMNAME]", showorder=15), @DEDataQueryCodeExp(name="USERDICTNAME", expression="t21.[USERDICTNAME]", showorder=16)}, conds={})})
-public abstract class UserDictItemDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="CDBE4F4A-8854-4711-8F5A-5C4D20878891",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CONTENT, t1.CREATEDATE, t1.CREATEMAN, t1.MARKFLAG, t1.MEMO, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDICTCATID, t11.USERDICTCATNAME, t1.USERDICTID, t1.USERDICTITEMID, t1.USERDICTITEMNAME, t21.USERDICTNAME FROM T_SRFUSERDICTITEM t1  LEFT JOIN T_SRFUSERDICTCAT t11 ON t1.USERDICTCATID = t11.USERDICTCATID  LEFT JOIN T_SRFUSERDICT t21 ON t1.USERDICTID = t21.USERDICTID  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CONTENT",expression="t1.CONTENT",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MARKFLAG",expression="t1.MARKFLAG",showorder=3)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=4)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=5)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.RESERVER2",showorder=6)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.RESERVER3",showorder=7)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.RESERVER4",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=9)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERDICTCATID",expression="t1.USERDICTCATID",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERDICTCATNAME",expression="t11.USERDICTCATNAME",showorder=12)
+        ,@DEDataQueryCodeExp(name="USERDICTID",expression="t1.USERDICTID",showorder=13)
+        ,@DEDataQueryCodeExp(name="USERDICTITEMID",expression="t1.USERDICTITEMID",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDICTITEMNAME",expression="t1.USERDICTITEMNAME",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDICTNAME",expression="t21.USERDICTNAME",showorder=16)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`content`, t1.`createdate`, t1.`createman`, t1.`markflag`, t1.`memo`, t1.`reserver`, t1.`reserver2`, t1.`reserver3`, t1.`reserver4`, t1.`updatedate`, t1.`updateman`, t1.`userdictcatid`, t11.`userdictcatname`, t1.`userdictid`, t1.`userdictitemid`, t1.`userdictitemname`, t21.`userdictname` FROM `t_srfuserdictitem` t1  LEFT JOIN t_srfuserdictcat t11 ON t1.userdictcatid = t11.userdictcatid  LEFT JOIN t_srfuserdict t21 ON t1.userdictid = t21.userdictid  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CONTENT",expression="t1.`content`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=2)
+        ,@DEDataQueryCodeExp(name="MARKFLAG",expression="t1.`markflag`",showorder=3)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.`memo`",showorder=4)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.`reserver`",showorder=5)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.`reserver2`",showorder=6)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.`reserver3`",showorder=7)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.`reserver4`",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=9)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERDICTCATID",expression="t1.`userdictcatid`",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERDICTCATNAME",expression="t11.`userdictcatname`",showorder=12)
+        ,@DEDataQueryCodeExp(name="USERDICTID",expression="t1.`userdictid`",showorder=13)
+        ,@DEDataQueryCodeExp(name="USERDICTITEMID",expression="t1.`userdictitemid`",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDICTITEMNAME",expression="t1.`userdictitemname`",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDICTNAME",expression="t21.`userdictname`",showorder=16)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CONTENT, t1.CREATEDATE, t1.CREATEMAN, t1.MARKFLAG, t1.MEMO, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDICTCATID, t11.USERDICTCATNAME, t1.USERDICTID, t1.USERDICTITEMID, t1.USERDICTITEMNAME, t21.USERDICTNAME FROM T_SRFUSERDICTITEM t1  LEFT JOIN T_SRFUSERDICTCAT t11 ON t1.USERDICTCATID = t11.USERDICTCATID  LEFT JOIN T_SRFUSERDICT t21 ON t1.USERDICTID = t21.USERDICTID  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CONTENT",expression="t1.CONTENT",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MARKFLAG",expression="t1.MARKFLAG",showorder=3)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=4)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=5)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.RESERVER2",showorder=6)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.RESERVER3",showorder=7)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.RESERVER4",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=9)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERDICTCATID",expression="t1.USERDICTCATID",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERDICTCATNAME",expression="t11.USERDICTCATNAME",showorder=12)
+        ,@DEDataQueryCodeExp(name="USERDICTID",expression="t1.USERDICTID",showorder=13)
+        ,@DEDataQueryCodeExp(name="USERDICTITEMID",expression="t1.USERDICTITEMID",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDICTITEMNAME",expression="t1.USERDICTITEMNAME",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDICTNAME",expression="t21.USERDICTNAME",showorder=16)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CONTENT, t1.CREATEDATE, t1.CREATEMAN, t1.MARKFLAG, t1.MEMO, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDICTCATID, t11.USERDICTCATNAME, t1.USERDICTID, t1.USERDICTITEMID, t1.USERDICTITEMNAME, t21.USERDICTNAME FROM T_SRFUSERDICTITEM t1  LEFT JOIN T_SRFUSERDICTCAT t11 ON t1.USERDICTCATID = t11.USERDICTCATID  LEFT JOIN T_SRFUSERDICT t21 ON t1.USERDICTID = t21.USERDICTID  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CONTENT",expression="t1.CONTENT",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MARKFLAG",expression="t1.MARKFLAG",showorder=3)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=4)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=5)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.RESERVER2",showorder=6)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.RESERVER3",showorder=7)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.RESERVER4",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=9)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERDICTCATID",expression="t1.USERDICTCATID",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERDICTCATNAME",expression="t11.USERDICTCATNAME",showorder=12)
+        ,@DEDataQueryCodeExp(name="USERDICTID",expression="t1.USERDICTID",showorder=13)
+        ,@DEDataQueryCodeExp(name="USERDICTITEMID",expression="t1.USERDICTITEMID",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDICTITEMNAME",expression="t1.USERDICTITEMNAME",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDICTNAME",expression="t21.USERDICTNAME",showorder=16)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CONTENT, t1.CREATEDATE, t1.CREATEMAN, t1.MARKFLAG, t1.MEMO, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDICTCATID, t11.USERDICTCATNAME, t1.USERDICTID, t1.USERDICTITEMID, t1.USERDICTITEMNAME, t21.USERDICTNAME FROM T_SRFUSERDICTITEM t1  LEFT JOIN T_SRFUSERDICTCAT t11 ON t1.USERDICTCATID = t11.USERDICTCATID  LEFT JOIN T_SRFUSERDICT t21 ON t1.USERDICTID = t21.USERDICTID  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CONTENT",expression="t1.CONTENT",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MARKFLAG",expression="t1.MARKFLAG",showorder=3)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=4)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=5)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.RESERVER2",showorder=6)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.RESERVER3",showorder=7)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.RESERVER4",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=9)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERDICTCATID",expression="t1.USERDICTCATID",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERDICTCATNAME",expression="t11.USERDICTCATNAME",showorder=12)
+        ,@DEDataQueryCodeExp(name="USERDICTID",expression="t1.USERDICTID",showorder=13)
+        ,@DEDataQueryCodeExp(name="USERDICTITEMID",expression="t1.USERDICTITEMID",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDICTITEMNAME",expression="t1.USERDICTITEMNAME",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDICTNAME",expression="t21.USERDICTNAME",showorder=16)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[CONTENT], t1.[CREATEDATE], t1.[CREATEMAN], t1.[MARKFLAG], t1.[MEMO], t1.[RESERVER], t1.[RESERVER2], t1.[RESERVER3], t1.[RESERVER4], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[USERDICTCATID], t11.[USERDICTCATNAME], t1.[USERDICTID], t1.[USERDICTITEMID], t1.[USERDICTITEMNAME], t21.[USERDICTNAME] FROM [T_SRFUSERDICTITEM] t1  LEFT JOIN T_SRFUSERDICTCAT t11 ON t1.USERDICTCATID = t11.USERDICTCATID  LEFT JOIN T_SRFUSERDICT t21 ON t1.USERDICTID = t21.USERDICTID  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CONTENT",expression="t1.[CONTENT]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=2)
+        ,@DEDataQueryCodeExp(name="MARKFLAG",expression="t1.[MARKFLAG]",showorder=3)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.[MEMO]",showorder=4)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.[RESERVER]",showorder=5)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.[RESERVER2]",showorder=6)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.[RESERVER3]",showorder=7)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.[RESERVER4]",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=9)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERDICTCATID",expression="t1.[USERDICTCATID]",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERDICTCATNAME",expression="t11.[USERDICTCATNAME]",showorder=12)
+        ,@DEDataQueryCodeExp(name="USERDICTID",expression="t1.[USERDICTID]",showorder=13)
+        ,@DEDataQueryCodeExp(name="USERDICTITEMID",expression="t1.[USERDICTITEMID]",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDICTITEMNAME",expression="t1.[USERDICTITEMNAME]",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDICTNAME",expression="t21.[USERDICTNAME]",showorder=16)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class UserDictItemDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public UserDictItemDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(UserDictItemDefaultDQModelBase.class);
     }
-}
 
+}

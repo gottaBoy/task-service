@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSMobAppPackServerDEModelBase;
 
 public class PSMobAppPackServerDEModel
 extends PSMobAppPackServerDEModelBase {
+
+    public PSMobAppPackServerDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

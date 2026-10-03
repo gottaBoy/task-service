@@ -1,53 +1,188 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="e6ef8701ffdebdd6daff4383ef9d3549", name="\u6708\uff081\uff5e31\uff09", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="1", text="1\u53f7", realtext="1\u53f7"), @CodeItem(value="2", text="2\u53f7", realtext="2\u53f7"), @CodeItem(value="3", text="3\u53f7", realtext="3\u53f7"), @CodeItem(value="4", text="4\u53f7", realtext="4\u53f7"), @CodeItem(value="5", text="5\u53f7", realtext="5\u53f7"), @CodeItem(value="6", text="6\u53f7", realtext="6\u53f7"), @CodeItem(value="7", text="7\u53f7", realtext="7\u53f7"), @CodeItem(value="8", text="8\u53f7", realtext="8\u53f7"), @CodeItem(value="9", text="9\u53f7", realtext="9\u53f7"), @CodeItem(value="10", text="10\u53f7", realtext="10\u53f7"), @CodeItem(value="11", text="11\u53f7", realtext="11\u53f7"), @CodeItem(value="12", text="12\u53f7", realtext="12\u53f7"), @CodeItem(value="13", text="13\u53f7", realtext="13\u53f7"), @CodeItem(value="14", text="14\u53f7", realtext="14\u53f7"), @CodeItem(value="15", text="15\u53f7", realtext="15\u53f7"), @CodeItem(value="16", text="16\u53f7", realtext="16\u53f7"), @CodeItem(value="17", text="17\u53f7", realtext="17\u53f7"), @CodeItem(value="18", text="18\u53f7", realtext="18\u53f7"), @CodeItem(value="19", text="19\u53f7", realtext="19\u53f7"), @CodeItem(value="20", text="20\u53f7", realtext="20\u53f7"), @CodeItem(value="21", text="21\u53f7", realtext="21\u53f7"), @CodeItem(value="22", text="22\u53f7", realtext="22\u53f7"), @CodeItem(value="23", text="23\u53f7", realtext="23\u53f7"), @CodeItem(value="24", text="24\u53f7", realtext="24\u53f7"), @CodeItem(value="25", text="25\u53f7", realtext="25\u53f7"), @CodeItem(value="26", text="26\u53f7", realtext="26\u53f7"), @CodeItem(value="27", text="27\u53f7", realtext="27\u53f7"), @CodeItem(value="28", text="28\u53f7", realtext="28\u53f7"), @CodeItem(value="29", text="29\u53f7", realtext="29\u53f7"), @CodeItem(value="30", text="30\u53f7", realtext="30\u53f7"), @CodeItem(value="31", text="31\u53f7", realtext="31\u53f7")})
-public abstract class CodeList47CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String ITEM_1 = "1";
-    public static final String ITEM_2 = "2";
-    public static final String ITEM_3 = "3";
-    public static final String ITEM_4 = "4";
-    public static final String ITEM_5 = "5";
-    public static final String ITEM_6 = "6";
-    public static final String ITEM_7 = "7";
-    public static final String ITEM_8 = "8";
-    public static final String ITEM_9 = "9";
-    public static final String ITEM_10 = "10";
-    public static final String ITEM_11 = "11";
-    public static final String ITEM_12 = "12";
-    public static final String ITEM_13 = "13";
-    public static final String ITEM_14 = "14";
-    public static final String ITEM_15 = "15";
-    public static final String ITEM_16 = "16";
-    public static final String ITEM_17 = "17";
-    public static final String ITEM_18 = "18";
-    public static final String ITEM_19 = "19";
-    public static final String ITEM_20 = "20";
-    public static final String ITEM_21 = "21";
-    public static final String ITEM_22 = "22";
-    public static final String ITEM_23 = "23";
-    public static final String ITEM_24 = "24";
-    public static final String ITEM_25 = "25";
-    public static final String ITEM_26 = "26";
-    public static final String ITEM_27 = "27";
-    public static final String ITEM_28 = "28";
-    public static final String ITEM_29 = "29";
-    public static final String ITEM_30 = "30";
-    public static final String ITEM_31 = "31";
+
+@CodeList(id="e6ef8701ffdebdd6daff4383ef9d3549",name="月（1～31）",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="1",text="1号",realtext="1号" )
+    ,@CodeItem(value="2",text="2号",realtext="2号" )
+    ,@CodeItem(value="3",text="3号",realtext="3号" )
+    ,@CodeItem(value="4",text="4号",realtext="4号" )
+    ,@CodeItem(value="5",text="5号",realtext="5号" )
+    ,@CodeItem(value="6",text="6号",realtext="6号" )
+    ,@CodeItem(value="7",text="7号",realtext="7号" )
+    ,@CodeItem(value="8",text="8号",realtext="8号" )
+    ,@CodeItem(value="9",text="9号",realtext="9号" )
+    ,@CodeItem(value="10",text="10号",realtext="10号" )
+    ,@CodeItem(value="11",text="11号",realtext="11号" )
+    ,@CodeItem(value="12",text="12号",realtext="12号" )
+    ,@CodeItem(value="13",text="13号",realtext="13号" )
+    ,@CodeItem(value="14",text="14号",realtext="14号" )
+    ,@CodeItem(value="15",text="15号",realtext="15号" )
+    ,@CodeItem(value="16",text="16号",realtext="16号" )
+    ,@CodeItem(value="17",text="17号",realtext="17号" )
+    ,@CodeItem(value="18",text="18号",realtext="18号" )
+    ,@CodeItem(value="19",text="19号",realtext="19号" )
+    ,@CodeItem(value="20",text="20号",realtext="20号" )
+    ,@CodeItem(value="21",text="21号",realtext="21号" )
+    ,@CodeItem(value="22",text="22号",realtext="22号" )
+    ,@CodeItem(value="23",text="23号",realtext="23号" )
+    ,@CodeItem(value="24",text="24号",realtext="24号" )
+    ,@CodeItem(value="25",text="25号",realtext="25号" )
+    ,@CodeItem(value="26",text="26号",realtext="26号" )
+    ,@CodeItem(value="27",text="27号",realtext="27号" )
+    ,@CodeItem(value="28",text="28号",realtext="28号" )
+    ,@CodeItem(value="29",text="29号",realtext="29号" )
+    ,@CodeItem(value="30",text="30号",realtext="30号" )
+    ,@CodeItem(value="31",text="31号",realtext="31号" )
+})
+
+
+/**
+ * 静态代码表[月（1～31）]模型基类
+ */
+public abstract class CodeList47CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  1号
+     */
+    public final static String ITEM_1 = "1";
+    /**
+     *  2号
+     */
+    public final static String ITEM_2 = "2";
+    /**
+     *  3号
+     */
+    public final static String ITEM_3 = "3";
+    /**
+     *  4号
+     */
+    public final static String ITEM_4 = "4";
+    /**
+     *  5号
+     */
+    public final static String ITEM_5 = "5";
+    /**
+     *  6号
+     */
+    public final static String ITEM_6 = "6";
+    /**
+     *  7号
+     */
+    public final static String ITEM_7 = "7";
+    /**
+     *  8号
+     */
+    public final static String ITEM_8 = "8";
+    /**
+     *  9号
+     */
+    public final static String ITEM_9 = "9";
+    /**
+     *  10号
+     */
+    public final static String ITEM_10 = "10";
+    /**
+     *  11号
+     */
+    public final static String ITEM_11 = "11";
+    /**
+     *  12号
+     */
+    public final static String ITEM_12 = "12";
+    /**
+     *  13号
+     */
+    public final static String ITEM_13 = "13";
+    /**
+     *  14号
+     */
+    public final static String ITEM_14 = "14";
+    /**
+     *  15号
+     */
+    public final static String ITEM_15 = "15";
+    /**
+     *  16号
+     */
+    public final static String ITEM_16 = "16";
+    /**
+     *  17号
+     */
+    public final static String ITEM_17 = "17";
+    /**
+     *  18号
+     */
+    public final static String ITEM_18 = "18";
+    /**
+     *  19号
+     */
+    public final static String ITEM_19 = "19";
+    /**
+     *  20号
+     */
+    public final static String ITEM_20 = "20";
+    /**
+     *  21号
+     */
+    public final static String ITEM_21 = "21";
+    /**
+     *  22号
+     */
+    public final static String ITEM_22 = "22";
+    /**
+     *  23号
+     */
+    public final static String ITEM_23 = "23";
+    /**
+     *  24号
+     */
+    public final static String ITEM_24 = "24";
+    /**
+     *  25号
+     */
+    public final static String ITEM_25 = "25";
+    /**
+     *  26号
+     */
+    public final static String ITEM_26 = "26";
+    /**
+     *  27号
+     */
+    public final static String ITEM_27 = "27";
+    /**
+     *  28号
+     */
+    public final static String ITEM_28 = "28";
+    /**
+     *  29号
+     */
+    public final static String ITEM_29 = "29";
+    /**
+     *  30号
+     */
+    public final static String ITEM_30 = "30";
+    /**
+     *  31号
+     */
+    public final static String ITEM_31 = "31";
+
 
     public CodeList47CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList47CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList47CodeListModel", this);
     }
-}
 
+}

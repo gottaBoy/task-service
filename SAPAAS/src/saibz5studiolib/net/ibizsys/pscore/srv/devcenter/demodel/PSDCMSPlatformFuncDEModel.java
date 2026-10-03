@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.devcenter.demodel.PSDCMSPlatformFuncDEModelBase;
 
 public class PSDCMSPlatformFuncDEModel
 extends PSDCMSPlatformFuncDEModelBase {
+
+    public PSDCMSPlatformFuncDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

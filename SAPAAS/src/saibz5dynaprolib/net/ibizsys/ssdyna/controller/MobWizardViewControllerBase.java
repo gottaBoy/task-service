@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.WizardViewControllerBase;
+/**
+ * 移动端向导视图控制器基类
+ * @author Administrator
+ *
+ */
+public abstract class MobWizardViewControllerBase extends WizardViewControllerBase {
 
-public abstract class MobWizardViewControllerBase
-extends WizardViewControllerBase {
+	public MobWizardViewControllerBase() throws Exception {
+		super();
+	}
+
 }
-

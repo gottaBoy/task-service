@@ -138,14 +138,14 @@ extends PSCoreSysServiceBase<PSDynaWF> {
             PSDynaSys pSDynaSys = (PSDynaSys)iService.getDEModel().createEntity();
             pSDynaSys.set("PSDYNASYSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDynaSys);
+                iService.getTemp(pSDynaSys);
             } else {
-                iService.get((IEntity)pSDynaSys);
+                iService.get(pSDynaSys);
             }
             this.onFillParentInfo_PSDynaSys(pSDynaWF, pSDynaSys);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDynaWF, string, string2, string3);
+        super.onFillParentInfo(pSDynaWF, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSDynaWF> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDynaWF, bl);
+        super.onFillEntityFullInfo(pSDynaWF, bl);
         this.onFillEntityFullInfo_PSDynaSys(pSDynaWF, bl);
     }
 
@@ -169,7 +169,7 @@ extends PSCoreSysServiceBase<PSDynaWF> {
     }
 
     protected void onWriteBackParent(PSDynaWF pSDynaWF, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDynaWF, bl);
+        super.onWriteBackParent(pSDynaWF, bl);
     }
 
     public ArrayList<PSDynaWF> selectByPSDynaSys(PSDynaSysBase pSDynaSysBase) throws Exception {
@@ -200,8 +200,8 @@ extends PSCoreSysServiceBase<PSDynaWF> {
         ArrayList<PSDynaWF> arrayList = this.selectByPSDynaSys(pSDynaSys, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDYNASYS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDynaSys);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDYNAWF_PSDYNASYS_PSDYNASYSID", "", iDataEntityModel.getName(), "PSDYNAWF", iDataEntityModel.getDataInfo((IEntity)pSDynaSys), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDynaSys);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDYNAWF_PSDYNASYS_PSDYNASYSID", "", iDataEntityModel.getName(), "PSDYNAWF", iDataEntityModel.getDataInfo(pSDynaSys), arrayList.get(0)));
         }
     }
 
@@ -234,7 +234,7 @@ extends PSCoreSysServiceBase<PSDynaWF> {
         ArrayList<PSDynaWF> arrayList = this.selectByPSDynaSys(pSDynaSys);
         this.onBeforeRemoveByPSDynaSys(pSDynaSys, arrayList);
         for (PSDynaWF pSDynaWF : arrayList) {
-            this.remove((IEntity)pSDynaWF);
+            this.remove(pSDynaWF);
         }
         this.onAfterRemoveByPSDynaSys(pSDynaSys, arrayList);
     }
@@ -258,14 +258,14 @@ extends PSCoreSysServiceBase<PSDynaWF> {
 
     protected void replaceParentInfo(PSDynaWF pSDynaWF, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDynaWF, cloneSession);
+        super.replaceParentInfo(pSDynaWF, cloneSession);
         if (pSDynaWF.getPSDynaSysId() != null && (iEntity = cloneSession.getEntity("PSDYNASYS", (Object)pSDynaWF.getPSDynaSysId())) != null) {
             this.onFillParentInfo_PSDynaSys(pSDynaWF, (PSDynaSys)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDynaWF pSDynaWF, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDynaWF, bl);
+        super.onRemoveEntityUncopyValues(pSDynaWF, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDynaWF pSDynaWF, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -283,7 +283,7 @@ extends PSCoreSysServiceBase<PSDynaWF> {
         if ((entityFieldError = this.onCheckField_PSDynaWFName(bl, pSDynaWF, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDynaWF, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDynaWF, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSDynaWF pSDynaWF, boolean bl2, boolean bl3) throws Exception {
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSDynaWF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDynaWF, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDynaWF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -321,7 +321,7 @@ extends PSCoreSysServiceBase<PSDynaWF> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaSysId_Default((IEntity)pSDynaWF, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaSysId_Default(pSDynaWF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNASYSID");
@@ -346,7 +346,7 @@ extends PSCoreSysServiceBase<PSDynaWF> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaWFId_Default((IEntity)pSDynaWF, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaWFId_Default(pSDynaWF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAWFID");
@@ -371,7 +371,7 @@ extends PSCoreSysServiceBase<PSDynaWF> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaWFName_Default((IEntity)pSDynaWF, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaWFName_Default(pSDynaWF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAWFNAME");
@@ -384,11 +384,11 @@ extends PSCoreSysServiceBase<PSDynaWF> {
     }
 
     protected void onSyncEntity(PSDynaWF pSDynaWF, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDynaWF, bl);
+        super.onSyncEntity(pSDynaWF, bl);
     }
 
     protected void onSyncIndexEntities(PSDynaWF pSDynaWF, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDynaWF, bl);
+        super.onSyncIndexEntities(pSDynaWF, bl);
     }
 
     public Object getDataContextValue(PSDynaWF pSDynaWF, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -396,7 +396,7 @@ extends PSCoreSysServiceBase<PSDynaWF> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDynaWF, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDynaWF, string, iDataContextParam)) != null) {
             return object;
         }
         PSDynaSys pSDynaSys = pSDynaWF.getPSDynaSys();
@@ -407,7 +407,7 @@ extends PSCoreSysServiceBase<PSDynaWF> {
     }
 
     protected void onExportMajorModel(PSDynaWF pSDynaWF, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDynaWF, arrayList, n);
+        super.onExportMajorModel(pSDynaWF, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -535,14 +535,14 @@ extends PSCoreSysServiceBase<PSDynaWF> {
 
     protected boolean onMergeChild(String string, String string2, PSDynaWF pSDynaWF) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDynaWF)) {
+        if (super.onMergeChild(string, string2, pSDynaWF)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDynaWF pSDynaWF) throws Exception {
-        super.onUpdateParent((IEntity)pSDynaWF);
+        super.onUpdateParent(pSDynaWF);
     }
 
     @Override

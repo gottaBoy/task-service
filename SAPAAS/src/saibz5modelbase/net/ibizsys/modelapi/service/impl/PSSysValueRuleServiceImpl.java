@@ -116,9 +116,9 @@ implements IPSSysValueRuleService {
 
     @Override
     protected List<PSSysValueRule> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysValueRule> list = new ArrayList<PSSysValueRule>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysValueRule> items = this.listByPSModule(parent);

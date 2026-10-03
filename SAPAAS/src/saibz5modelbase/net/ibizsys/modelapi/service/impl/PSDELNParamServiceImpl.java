@@ -76,7 +76,7 @@ implements IPSDELNParamService {
     @Override
     protected List<PSDELNParam> onListAll() throws Exception {
         ArrayList<PSDELNParam> list = new ArrayList<PSDELNParam>();
-        List psdelogicnodes = PSModelServiceUtil.getInstance().getPSDELogicNodeService().listAll();
+        List<PSDELogicNode> psdelogicnodes = PSModelServiceUtil.getInstance().getPSDELogicNodeService().listAll();
         if (psdelogicnodes != null) {
             for (PSDELogicNode parent : psdelogicnodes) {
                 List<PSDELNParam> items = this.listByPSDELogicNode(parent);

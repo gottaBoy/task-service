@@ -166,10 +166,10 @@ implements IPSDELogicService {
 
     @Override
     protected List<PSDELogic> onListAll() throws Exception {
-        List pssystems;
-        List psmodules;
+        List<PSSystem> pssystems;
+        List<PSModule> psmodules;
         ArrayList<PSDELogic> list = new ArrayList<PSDELogic>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDELogic> items = this.listByPSDataEntity(parent);
@@ -466,26 +466,28 @@ implements IPSDELogicService {
         } else {
             dto.setPSSystemName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDELogicLinkService().listByPSDELogic(t);
-        if (list != null && list.size() > 0) {
+        List<PSDELogicLink> pSDELogicLinkList = PSModelServiceUtil.getInstance().getPSDELogicLinkService().listByPSDELogic(t);
+        if (pSDELogicLinkList != null && pSDELogicLinkList.size() > 0) {
             ArrayList<PSDELogicLinkDTO> psdelogiclinks = new ArrayList<PSDELogicLinkDTO>();
-            for (PSDELogicLink pSDELogicLink : list) {
+            for (PSDELogicLink pSDELogicLink : pSDELogicLinkList) {
                 dstItem = (PSDELogicLinkDTO)PSModelServiceUtil.getInstance().getPSDELogicLinkService().toDTO(pSDELogicLink);
                 psdelogiclinks.add((PSDELogicLinkDTO)dstItem);
             }
             dto.setPsdelogiclinks(psdelogiclinks);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDELogicNodeService().listByPSDELogic(t)) != null && list.size() > 0) {
+        List<PSDELogicNode> pSDELogicNodeList = PSModelServiceUtil.getInstance().getPSDELogicNodeService().listByPSDELogic(t);
+        if (pSDELogicNodeList != null && pSDELogicNodeList.size() > 0) {
             ArrayList<PSDELogicNodeDTO> psdelogicnodes = new ArrayList<PSDELogicNodeDTO>();
-            for (PSDELogicNode pSDELogicNode : list) {
+            for (PSDELogicNode pSDELogicNode : pSDELogicNodeList) {
                 dstItem = (PSDELogicNodeDTO)PSModelServiceUtil.getInstance().getPSDELogicNodeService().toDTO(pSDELogicNode);
                 psdelogicnodes.add((PSDELogicNodeDTO)dstItem);
             }
             dto.setPsdelogicnodes(psdelogicnodes);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDELogicParamService().listByPSDELogic(t)) != null && list.size() > 0) {
+        List<PSDELogicParam> pSDELogicParamList = PSModelServiceUtil.getInstance().getPSDELogicParamService().listByPSDELogic(t);
+        if (pSDELogicParamList != null && pSDELogicParamList.size() > 0) {
             ArrayList<PSDELogicParamDTO> psdelogicparams = new ArrayList<PSDELogicParamDTO>();
-            for (PSDELogicParam pSDELogicParam : list) {
+            for (PSDELogicParam pSDELogicParam : pSDELogicParamList) {
                 dstItem = (PSDELogicParamDTO)PSModelServiceUtil.getInstance().getPSDELogicParamService().toDTO(pSDELogicParam);
                 psdelogicparams.add((PSDELogicParamDTO)dstItem);
             }

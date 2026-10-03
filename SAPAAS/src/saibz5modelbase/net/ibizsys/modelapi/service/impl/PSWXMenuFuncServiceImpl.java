@@ -112,9 +112,9 @@ implements IPSWXMenuFuncService {
 
     @Override
     protected List<PSWXMenuFunc> onListAll() throws Exception {
-        List pswxaccounts;
+        List<PSWXAccount> pswxaccounts;
         ArrayList<PSWXMenuFunc> list = new ArrayList<PSWXMenuFunc>();
-        List pswxentapps = PSModelServiceUtil.getInstance().getPSWXEntAppService().listAll();
+        List<PSWXEntApp> pswxentapps = PSModelServiceUtil.getInstance().getPSWXEntAppService().listAll();
         if (pswxentapps != null) {
             for (PSWXEntApp parent : pswxentapps) {
                 List<PSWXMenuFunc> items = this.listByPSWXEntApp(parent);

@@ -1,12 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.ITreeNodeModel;
+/**
+ * 静态树节点模型接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface ITreeStaticNodeModel extends ITreeNodeModel {
+	/**
+	 * 获取节点值
+	 * 
+	 * @return
+	 */
+	String getNodeValue();
 
-public interface ITreeStaticNodeModel
-extends ITreeNodeModel {
-    public String getNodeValue();
 }
-

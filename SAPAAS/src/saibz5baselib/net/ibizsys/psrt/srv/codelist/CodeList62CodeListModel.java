@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
 
-import net.ibizsys.psrt.srv.codelist.CodeList62CodeListModelBase;
 
-public class CodeList62CodeListModel
-extends CodeList62CodeListModelBase {
+/**
+ * 静态代码表[数据通知_时间条件]模型对象
+ */
+public class CodeList62CodeListModel extends CodeList62CodeListModelBase {
+
+    public CodeList62CodeListModel() {
+        super();
+    }
+
 }
-

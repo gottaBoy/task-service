@@ -1,17 +1,27 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.toolbar;
 
-import java.util.Iterator;
-import net.ibizsys.model.control.toolbar.IPSDEContextMenuItem;
-import net.ibizsys.model.control.toolbar.IPSDEToolbar;
-
-public interface IPSDEContextMenu
-extends IPSDEToolbar {
-    @Deprecated
-    public Iterator<IPSDEContextMenuItem> getPSContextMenuItems() throws Exception;
-
-    public Iterator<IPSDEContextMenuItem> getPSDEContextMenuItems() throws Exception;
+/**
+ * 实体上下文菜单对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEContextMenu extends IPSDEToolbar {
+	
+	
+	/**
+	 * 获取上下文菜单项集合
+	 * @return
+	 * @throws Exception
+	 */
+	@Deprecated
+	java.util.Iterator<IPSDEContextMenuItem> getPSContextMenuItems()throws Exception;
+	
+	
+	
+	/**
+	 * 获取上下文菜单项集合
+	 * @return
+	 * @throws Exception
+	 */
+	java.util.Iterator<IPSDEContextMenuItem> getPSDEContextMenuItems()throws Exception;
 }
-

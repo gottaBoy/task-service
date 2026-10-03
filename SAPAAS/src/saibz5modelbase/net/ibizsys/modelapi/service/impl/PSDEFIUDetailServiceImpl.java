@@ -114,7 +114,7 @@ implements IPSDEFIUDetailService {
     @Override
     protected List<PSDEFIUDetail> onListAll() throws Exception {
         ArrayList<PSDEFIUDetail> list = new ArrayList<PSDEFIUDetail>();
-        List psdefiupdates = PSModelServiceUtil.getInstance().getPSDEFIUpdateService().listAll();
+        List<PSDEFIUpdate> psdefiupdates = PSModelServiceUtil.getInstance().getPSDEFIUpdateService().listAll();
         if (psdefiupdates != null) {
             for (PSDEFIUpdate parent : psdefiupdates) {
                 List<PSDEFIUDetail> items = this.listByPSDEFIUpdate(parent);

@@ -1,14 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.tree;
 
 import net.ibizsys.paas.data.IDataItem;
 
-public interface ITreeNodeDataItem
-extends IDataItem {
-    public boolean isDataAccessAction();
+/**
+ * 树节点数据项
+ * 
+ * @author lionlau
+ *
+ */
+public interface ITreeNodeDataItem extends IDataItem {
 
-    public String getPrivilegeId();
+	/**
+	 * 数据范围控制
+	 * 
+	 * @return
+	 */
+	boolean isDataAccessAction();
+
+	/**
+	 * 获取权限标识
+	 * 
+	 * @return
+	 */
+	String getPrivilegeId();
+
+
 }
-

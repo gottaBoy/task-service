@@ -24,8 +24,8 @@ public class PSRawItemHelper {
     public static IPSRawItemBase createPSRawItemBase(ISRFDAGlobalHelper iDAGlobalHelper, IPSRawItemContainer iPSRawItemContainer, String strName) throws Exception {
         PSObjectImpl iPSRawItemBase = null;
         iPSRawItemBase = StringHelper.compare((String)"RAW", (String)iPSRawItemContainer.getContentType(), (boolean)false) == 0 ? new PSTextItemImpl() : (StringHelper.compare((String)"IMAGE", (String)iPSRawItemContainer.getContentType(), (boolean)false) == 0 ? new PSImageItemImpl() : (StringHelper.compare((String)"MARKDOWN", (String)iPSRawItemContainer.getContentType(), (boolean)false) == 0 ? new PSMarkdownItemImpl() : (StringHelper.compare((String)"HTML", (String)iPSRawItemContainer.getContentType(), (boolean)false) == 0 ? new PSHtmlItemImpl() : (StringHelper.compare((String)"VIDEO", (String)iPSRawItemContainer.getContentType(), (boolean)false) == 0 ? new PSVideoItemImpl() : (StringHelper.compare((String)"PLACEHOLDER", (String)iPSRawItemContainer.getContentType(), (boolean)false) == 0 ? new PSPlaceholderItemImpl() : new PSRawItemImpl())))));
-        iPSRawItemBase.init(iDAGlobalHelper, iPSRawItemContainer, strName);
-        return iPSRawItemBase;
+        ((IPSRawItemBase)iPSRawItemBase).init(iDAGlobalHelper, iPSRawItemContainer, strName);
+        return (IPSRawItemBase)iPSRawItemBase;
     }
 }
 

@@ -1,17 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  MuleEventContext
- *  SA.SRFDA.Ctrl.IDEDataCtrl
- */
 package SA.SRFDA.EAI.Endpoint;
 
 import SA.SRFDA.Ctrl.IDEDataCtrl;
-import SA.SRFDA.EAI.Endpoint.DEPrepareProcess;
+import SA.SRFramework.DataEx.BaseDataEntity;
+import org.mule.api.MuleEventContext;
 
-public class DEDataCtrlProcess
-extends DEPrepareProcess {
+public class DEDataCtrlProcess extends DEPrepareProcess {
     protected IDEDataCtrl iDEDataCtrl;
     public static final String TAG_DEID = "DEID";
     public static final String TAG_ACTION = "ACTION";
@@ -22,13 +15,28 @@ extends DEPrepareProcess {
     public static final String TAG_ACTION_PROC = "PROC";
     public static final String TAG_ACTIONMODE = "ACTIONMODE";
 
-    public DEDataCtrlProcess() {
-        throw new Error("Unresolved compilation problems: \n\tThe import org.mule cannot be resolved\n\tThe hierarchy of the type DEDataCtrlProcess is inconsistent\n\tMuleEventContext cannot be resolved to a type\n");
+    public void setDEDataCtrl(IDEDataCtrl ctrl) {
+        this.iDEDataCtrl = ctrl;
     }
 
     @Override
-    public Object onCall(MuleEventContext muleEventContext) throws Exception {
-        throw new Error("Unresolved compilation problem: \n\tMuleEventContext cannot be resolved to a type\n");
+    public Object onCall(MuleEventContext event) throws Exception {
+        Object original = EndpointRuntime.payload(event);
+        BaseDataEntity entity = GetDataEntity(super.onCall(event));
+        IDEDataCtrl ctrl = iDEDataCtrl;
+        if (ctrl == null) {
+            String deId = strDEId == null ? EndpointRuntime.setting(event, TAG_DEID) : strDEId;
+            if (deId == null || deId.length() == 0) {
+                throw new IllegalArgumentException("DEID is required");
+            }
+            ctrl = GetGlobalHelper(event).getDAModelStorage()
+                    .FindDEDataCtrl(deId, "SYSTEM", null);
+        }
+        if (ctrl == null) {
+            throw new IllegalArgumentException("No data controller for " + strDEId);
+        }
+        DEDataCtrlEndpoint.execute(ctrl, EndpointRuntime.setting(event, TAG_ACTION),
+                EndpointRuntime.setting(event, TAG_ACTIONMODE), entity);
+        return bReturnPayloadAsMap ? EndpointRuntime.output(original, entity) : entity;
     }
 }
-

@@ -1,51 +1,64 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.web;
 
-import net.ibizsys.paas.web.SDAjaxActionResult;
+import net.ibizsys.paas.core.Errors;
 import net.sf.json.JSONObject;
 
-public class GridRowAjaxActionResult
-extends SDAjaxActionResult {
-    protected JSONObject state = null;
-    protected JSONObject config = null;
+/**
+ * 表格行异步请求处理结果对象
+ * 
+ * @author lionlau
+ *
+ */
+public class GridRowAjaxActionResult extends SDAjaxActionResult {
+	protected JSONObject state = null;
 
-    public JSONObject getState(boolean bCreate) {
-        if (this.state != null) {
-            return this.state;
-        }
-        if (bCreate) {
-            this.state = new JSONObject();
-        }
-        return this.state;
-    }
+	/**
+	 * 获取状态对象
+	 * 
+	 * @param bCreate 不存在时是否建立
+	 * @return
+	 */
+	public JSONObject getState(boolean bCreate) {
+		if (state != null) return state;
 
-    public JSONObject getConfig(boolean bCreate) {
-        if (this.config != null) {
-            return this.config;
-        }
-        if (bCreate) {
-            this.config = new JSONObject();
-        }
-        return this.config;
-    }
+		if (bCreate) state = new JSONObject();
+		return state;
+	}
 
-    @Override
-    protected void fillJSONObject(JSONObject objJSON) {
-        super.fillJSONObject(objJSON);
-        if (this.getRetCode() != 0) {
-            return;
-        }
-        if (this.getState(false) != null) {
-            objJSON.put("state", (Object)this.getState(false));
-        }
-        if (this.getConfig(false) != null) {
-            objJSON.put("config", (Object)this.getConfig(false));
-        }
-    }
+	protected JSONObject config = null;
+
+	/**
+	 * 获取配置对象
+	 * 
+	 * @param bCreate 不存在时是否建立
+	 * @return
+	 */
+	public JSONObject getConfig(boolean bCreate) {
+		if (config != null) return config;
+
+		if (bCreate) config = new JSONObject();
+		return config;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.web.SDAjaxActionResult#fillJSONObject(net.sf.json.JSONObject)
+	 */
+	@Override
+	protected void fillJSONObject(JSONObject objJSON) {
+		super.fillJSONObject(objJSON);
+
+		if (this.getRetCode() != Errors.OK) {
+			return;
+		}
+
+		if (this.getState(false) != null) {
+			objJSON.put("state", this.getState(false));
+		}
+
+		if (this.getConfig(false) != null) {
+			objJSON.put("config", this.getConfig(false));
+		}
+	}
 }
-

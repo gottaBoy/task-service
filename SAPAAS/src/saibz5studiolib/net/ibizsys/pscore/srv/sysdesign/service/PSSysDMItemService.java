@@ -47,7 +47,7 @@ extends PSSysDMItemServiceBase {
             if (StringHelper.isNullOrEmpty((String)pSSysDMVerItem.getPSSysDMVerName())) {
                 pSSysDMVerItem.setPSSysDMVerName("\u7248\u672c");
             }
-            pSSysDMVerItemService.save((IEntity)pSSysDMVerItem);
+            pSSysDMVerItemService.save(pSSysDMVerItem);
         }
         super.onAfterCreate(pSSysDMItem);
     }
@@ -62,7 +62,7 @@ extends PSSysDMItemServiceBase {
             if (StringHelper.isNullOrEmpty((String)pSSysDMVerItem.getPSSysDMVerName())) {
                 pSSysDMVerItem.setPSSysDMVerName("\u7248\u672c");
             }
-            pSSysDMVerItemService.save((IEntity)pSSysDMVerItem);
+            pSSysDMVerItemService.save(pSSysDMVerItem);
         }
         super.onAfterUpdate(pSSysDMItem);
     }

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSUIEngineTypeDEModelBase;
 
 public class PSUIEngineTypeDEModel
 extends PSUIEngineTypeDEModelBase {
+
+    public PSUIEngineTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

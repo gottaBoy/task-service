@@ -1,13 +1,37 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
+/**
+ * Sql变量方向
+ * 
+ * @author Administrator
+ *
+ */
 public final class SqlParamDirections {
-    public static final int Input = 1;
-    public static final int Output = 2;
-    public static final int InputOutput = 3;
-    public static final int ReturnValue = 4;
-    public static final int None = 5;
-}
+	/**
+	 * 输入
+	 */
+	final public static int Input = 1;
 
+	/**
+	 * 输出
+	 */
+	final public static int Output = 2;
+
+	/**
+	 * 输入输出
+	 */
+	final public static int InputOutput = 3;
+
+	/**
+	 * 返回值
+	 */
+	final public static int ReturnValue = 4;
+
+	/**
+	 * 无
+	 */
+	final public static int None = 5;
+
+	public SqlParamDirections() {
+	}
+}

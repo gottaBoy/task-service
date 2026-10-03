@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
     }
 
     protected void onFillParentInfo(PSFormDetailType pSFormDetailType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSFormDetailType, string, string2, string3);
+        super.onFillParentInfo(pSFormDetailType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSFormDetailType, bl);
+        super.onFillEntityFullInfo(pSFormDetailType, bl);
     }
 
     protected void onWriteBackParent(PSFormDetailType pSFormDetailType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSFormDetailType, bl);
+        super.onWriteBackParent(pSFormDetailType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSFormDetailType pSFormDetailType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSFormDetailType, bl);
+        super.onRemoveEntityUncopyValues(pSFormDetailType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSFormDetailType pSFormDetailType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -164,7 +164,7 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
         if ((entityFieldError = this.onCheckField_TypeOBJ(bl, pSFormDetailType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSFormDetailType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSFormDetailType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DetailOBJ(boolean bl, PSFormDetailType pSFormDetailType, boolean bl2, boolean bl3) throws Exception {
@@ -180,7 +180,7 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DetailOBJ_Default((IEntity)pSFormDetailType, bl2, bl3);
+            string2 = this.onTestValueRule_DetailOBJ_Default(pSFormDetailType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DETAILOBJ");
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSFormDetailType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSFormDetailType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PFDType_Default((IEntity)pSFormDetailType, bl2, bl3);
+            string2 = this.onTestValueRule_PFDType_Default(pSFormDetailType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PFDTYPE");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSFormDetailTypeId_Default((IEntity)pSFormDetailType, bl2, bl3);
+            string2 = this.onTestValueRule_PSFormDetailTypeId_Default(pSFormDetailType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSFORMDETAILTYPEID");
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSFormDetailTypeName_Default((IEntity)pSFormDetailType, bl2, bl3);
+            string2 = this.onTestValueRule_PSFormDetailTypeName_Default(pSFormDetailType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSFORMDETAILTYPENAME");
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeOBJ_Default((IEntity)pSFormDetailType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeOBJ_Default(pSFormDetailType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEOBJ");
@@ -309,11 +309,11 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
     }
 
     protected void onSyncEntity(PSFormDetailType pSFormDetailType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSFormDetailType, bl);
+        super.onSyncEntity(pSFormDetailType, bl);
     }
 
     protected void onSyncIndexEntities(PSFormDetailType pSFormDetailType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSFormDetailType, bl);
+        super.onSyncIndexEntities(pSFormDetailType, bl);
     }
 
     public Object getDataContextValue(PSFormDetailType pSFormDetailType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -321,14 +321,14 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSFormDetailType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSFormDetailType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSFormDetailType pSFormDetailType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSFormDetailType, arrayList, n);
+        super.onExportMajorModel(pSFormDetailType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -471,14 +471,14 @@ extends PSCoreSysServiceBase<PSFormDetailType> {
 
     protected boolean onMergeChild(String string, String string2, PSFormDetailType pSFormDetailType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSFormDetailType)) {
+        if (super.onMergeChild(string, string2, pSFormDetailType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSFormDetailType pSFormDetailType) throws Exception {
-        super.onUpdateParent((IEntity)pSFormDetailType);
+        super.onUpdateParent(pSFormDetailType);
     }
 
     @Override

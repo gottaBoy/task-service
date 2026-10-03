@@ -1,12 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IValueRule;
+/**
+ * 正则式值规则对象接口
+ * @author Administrator
+ *
+ */
+public interface IRegExValueRule extends IValueRule {
 
-public interface IRegExValueRule
-extends IValueRule {
-    public String getExpression();
+	/**
+	 * 获取表单式
+	 * @return
+	 */
+	String getExpression();
 }
-

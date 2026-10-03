@@ -108,7 +108,7 @@ extends PSCoreSysServiceBase<PSNDFile> {
     }
 
     protected void onFillParentInfo(PSNDFile pSNDFile, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSNDFile, string, string2, string3);
+        super.onFillParentInfo(pSNDFile, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -119,11 +119,11 @@ extends PSCoreSysServiceBase<PSNDFile> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSNDFile, bl);
+        super.onFillEntityFullInfo(pSNDFile, bl);
     }
 
     protected void onWriteBackParent(PSNDFile pSNDFile, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSNDFile, bl);
+        super.onWriteBackParent(pSNDFile, bl);
     }
 
     @Override
@@ -135,7 +135,7 @@ extends PSCoreSysServiceBase<PSNDFile> {
     }
 
     protected void onRemoveEntityUncopyValues(PSNDFile pSNDFile, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSNDFile, bl);
+        super.onRemoveEntityUncopyValues(pSNDFile, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSNDFile pSNDFile, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -162,7 +162,7 @@ extends PSCoreSysServiceBase<PSNDFile> {
         if ((entityFieldError = this.onCheckField_RefCount(bl, pSNDFile, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSNDFile, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSNDFile, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_FileHashCode(boolean bl, PSNDFile pSNDFile, boolean bl2, boolean bl3) throws Exception {
@@ -175,7 +175,7 @@ extends PSCoreSysServiceBase<PSNDFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FileHashCode_Default((IEntity)pSNDFile, bl2, bl3);
+            string2 = this.onTestValueRule_FileHashCode_Default(pSNDFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FILEHASHCODE");
@@ -197,7 +197,7 @@ extends PSCoreSysServiceBase<PSNDFile> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_FileObjSize_Default((IEntity)pSNDFile, bl2, bl3);
+            string = this.onTestValueRule_FileObjSize_Default(pSNDFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FILEOBJSIZE");
@@ -222,7 +222,7 @@ extends PSCoreSysServiceBase<PSNDFile> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FilePath_Default((IEntity)pSNDFile, bl2, bl3);
+            string2 = this.onTestValueRule_FilePath_Default(pSNDFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FILEPATH");
@@ -244,7 +244,7 @@ extends PSCoreSysServiceBase<PSNDFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSNDFile, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSNDFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -269,7 +269,7 @@ extends PSCoreSysServiceBase<PSNDFile> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSNDFileId_Default((IEntity)pSNDFile, bl2, bl3);
+            string2 = this.onTestValueRule_PSNDFileId_Default(pSNDFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSNDFILEID");
@@ -294,7 +294,7 @@ extends PSCoreSysServiceBase<PSNDFile> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSNDFileName_Default((IEntity)pSNDFile, bl2, bl3);
+            string2 = this.onTestValueRule_PSNDFileName_Default(pSNDFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSNDFILENAME");
@@ -316,7 +316,7 @@ extends PSCoreSysServiceBase<PSNDFile> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RefCount_Default((IEntity)pSNDFile, bl2, bl3);
+            string = this.onTestValueRule_RefCount_Default(pSNDFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFCOUNT");
@@ -329,11 +329,11 @@ extends PSCoreSysServiceBase<PSNDFile> {
     }
 
     protected void onSyncEntity(PSNDFile pSNDFile, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSNDFile, bl);
+        super.onSyncEntity(pSNDFile, bl);
     }
 
     protected void onSyncIndexEntities(PSNDFile pSNDFile, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSNDFile, bl);
+        super.onSyncIndexEntities(pSNDFile, bl);
     }
 
     public Object getDataContextValue(PSNDFile pSNDFile, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -341,14 +341,14 @@ extends PSCoreSysServiceBase<PSNDFile> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSNDFile, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSNDFile, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSNDFile pSNDFile, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSNDFile, arrayList, n);
+        super.onExportMajorModel(pSNDFile, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -490,14 +490,14 @@ extends PSCoreSysServiceBase<PSNDFile> {
 
     protected boolean onMergeChild(String string, String string2, PSNDFile pSNDFile) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSNDFile)) {
+        if (super.onMergeChild(string, string2, pSNDFile)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSNDFile pSNDFile) throws Exception {
-        super.onUpdateParent((IEntity)pSNDFile);
+        super.onUpdateParent(pSNDFile);
     }
 
     @Override

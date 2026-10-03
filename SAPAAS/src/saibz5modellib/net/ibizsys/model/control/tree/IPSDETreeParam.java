@@ -1,17 +1,20 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.control.tree.ITreeHandlerParam
- */
 package net.ibizsys.model.control.tree;
 
 import net.ibizsys.model.control.IPSMDAjaxControlParam;
 import net.ibizsys.paas.control.tree.ITreeHandlerParam;
 
-public interface IPSDETreeParam
-extends IPSMDAjaxControlParam,
-ITreeHandlerParam {
-    public String getPSDETreeId();
-}
+/**
+ * 实体树部件参数对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDETreeParam extends IPSMDAjaxControlParam,ITreeHandlerParam
+{
+	/**
+	 * 获取实体树视图标识
+	 * @return
+	 */
+	String getPSDETreeId();
+	
 
+}

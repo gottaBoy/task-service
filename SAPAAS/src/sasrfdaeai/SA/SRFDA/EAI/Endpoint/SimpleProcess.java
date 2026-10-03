@@ -1,18 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  MuleEventContext
- */
 package SA.SRFDA.EAI.Endpoint;
 
-public class SimpleProcess {
-    public SimpleProcess() {
-        throw new Error("Unresolved compilation problems: \n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tCallable cannot be resolved to a type\n\tMuleEventContext cannot be resolved to a type\n");
-    }
+import org.mule.api.MuleEventContext;
+import org.mule.api.lifecycle.Callable;
 
-    public Object onCall(MuleEventContext muleEventContext) throws Exception {
-        throw new Error("Unresolved compilation problem: \n\tMuleEventContext cannot be resolved to a type\n");
+public class SimpleProcess implements Callable {
+    public Object onCall(MuleEventContext event) throws Exception {
+        return event.getMessage().getPayload();
     }
 }
-

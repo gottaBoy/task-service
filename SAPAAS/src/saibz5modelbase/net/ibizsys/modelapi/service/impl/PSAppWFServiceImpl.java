@@ -113,9 +113,9 @@ implements IPSAppWFService {
 
     @Override
     protected List<PSAppWF> onListAll() throws Exception {
-        List pssysapps;
+        List<PSSysApp> pssysapps;
         ArrayList<PSAppWF> list = new ArrayList<PSAppWF>();
-        List psappmodules = PSModelServiceUtil.getInstance().getPSAppModuleService().listAll();
+        List<PSAppModule> psappmodules = PSModelServiceUtil.getInstance().getPSAppModuleService().listAll();
         if (psappmodules != null) {
             for (PSAppModule parent : psappmodules) {
                 List<PSAppWF> items = this.listByPSAppModule(parent);

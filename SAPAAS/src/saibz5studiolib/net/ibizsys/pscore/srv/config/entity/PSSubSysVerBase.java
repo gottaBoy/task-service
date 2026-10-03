@@ -1337,7 +1337,7 @@ implements Serializable {
                 PSSubSys pSSubSys = new PSSubSys();
                 pSSubSys.setPSSubSysId(this.getPSSubSysId());
                 PSSubSysService pSSubSysService = (PSSubSysService)ServiceGlobal.getService(PSSubSysService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysService.autoGet((IEntity)pSSubSys);
+                pSSubSysService.autoGet(pSSubSys);
                 this.pssubsys = pSSubSys;
             }
             return this.pssubsys;
@@ -1363,7 +1363,7 @@ implements Serializable {
                 PSSysModelInst pSSysModelInst = new PSSysModelInst();
                 pSSysModelInst.setPSSysModelInstId(this.getPSSysModelInstId());
                 PSSysModelInstService pSSysModelInstService = (PSSysModelInstService)ServiceGlobal.getService(PSSysModelInstService.class, (SessionFactory)this.getSessionFactory());
-                pSSysModelInstService.autoGet((IEntity)pSSysModelInst);
+                pSSysModelInstService.autoGet(pSSysModelInst);
                 this.pssysmodelinst = pSSysModelInst;
             }
             return this.pssysmodelinst;

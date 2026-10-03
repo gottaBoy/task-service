@@ -65,7 +65,7 @@ extends PSDCWorkspaceServiceBase {
                 try {
                     PSDCWorkspace pSDCWorkspace = new PSDCWorkspace();
                     pSDCWorkspace.setPSDCWorkspaceId(string);
-                    PSDCWorkspaceService.this.get((IEntity)pSDCWorkspace);
+                    PSDCWorkspaceService.this.get(pSDCWorkspace);
                     PSCoreEntityKeeperGlobal.getCurrent(PSDCWorkspaceService.this.getSessionFactory()).updatePSDCWorkspace(pSDCWorkspace);
                 }
                 catch (Exception exception) {
@@ -101,7 +101,7 @@ extends PSDCWorkspaceServiceBase {
     protected void onAssign(PSDCWorkspace pSDCWorkspace) throws Exception {
         PSDCWorkspace pSDCWorkspace2 = new PSDCWorkspace();
         pSDCWorkspace2.setPSDCWorkspaceId(pSDCWorkspace.getPSDCWorkspaceId());
-        this.get((IEntity)pSDCWorkspace2);
+        this.get(pSDCWorkspace2);
         if (!StringHelper.isNullOrEmpty((String)pSDCWorkspace2.getPSDevSlnId())) {
             throw new Exception(StringHelper.format((String)"\u751f\u4ea7\u7ebf[%1$s]\u5df2\u7ecf\u5206\u914d\u5230\u5f00\u53d1\u65b9\u6848[%2$s],\u65e0\u6cd5\u518d\u6b21\u5206\u914d", (Object)pSDCWorkspace2.getPSDCWorkspaceName(), (Object)pSDCWorkspace2.getPSDevSlnName()));
         }
@@ -110,7 +110,7 @@ extends PSDCWorkspaceServiceBase {
 
     @Override
     protected void onUnassign(PSDCWorkspace pSDCWorkspace) throws Exception {
-        this.get((IEntity)pSDCWorkspace);
+        this.get(pSDCWorkspace);
         if (StringHelper.isNullOrEmpty((String)pSDCWorkspace.getPSDevSlnId())) {
             return;
         }
@@ -129,7 +129,7 @@ extends PSDCWorkspaceServiceBase {
     protected void onInstallSys(PSDCWorkspace pSDCWorkspace) throws Exception {
         PSDCWorkspace pSDCWorkspace2 = new PSDCWorkspace();
         pSDCWorkspace2.setPSDCWorkspaceId(pSDCWorkspace.getPSDCWorkspaceId());
-        this.get((IEntity)pSDCWorkspace2);
+        this.get(pSDCWorkspace2);
         if (!StringHelper.isNullOrEmpty((String)pSDCWorkspace2.getCurAction()) && StringHelper.compare((String)pSDCWorkspace2.getCurAction(), (String)"NONE", (boolean)true) != 0) {
             throw new Exception(StringHelper.format((String)"\u751f\u4ea7\u7ebf[%1$s]\u6b63\u5728\u8fdb\u884c[%2$s]\u64cd\u4f5c\uff0c\u65e0\u6cd5\u8fdb\u884c\u7cfb\u7edf\u5b89\u88c5", (Object)pSDCWorkspace2.getPSDCWorkspaceName(), (Object)DCWorkspaceLogTypeCodeListModel.getInstance().getCodeItem(pSDCWorkspace2.getCurAction()).getText()));
         }
@@ -143,7 +143,7 @@ extends PSDCWorkspaceServiceBase {
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)this.getSessionFactory());
         pSDevSlnSys = new PSDevSlnSys();
         pSDevSlnSys.setPSDevSlnSysId(pSDCWorkspace.getPSDevSlnSysId());
-        pSCoreSysServiceBase.get((IEntity)pSDevSlnSys);
+        pSCoreSysServiceBase.get(pSDevSlnSys);
         if (DataObject.getIntegerValue((Object)pSDevSlnSys.getDevSysState(), (Integer)30) != 35) {
             throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u6ca1\u6709\u5904\u4e8e[\u79bb\u7ebf]\u72b6\u6001\uff0c\u65e0\u6cd5\u8fdb\u884c\u5b89\u88c5", (Object)pSDevSlnSys.getPSDevSlnSysName()));
         }
@@ -168,17 +168,13 @@ extends PSDCWorkspaceServiceBase {
         pSDCWorkspaceAction.setActionParam3(pSDCWorkspace.getActionParam3());
         pSDCWorkspaceAction.setActionParam4(pSDCWorkspace.getActionParam4());
         pSCoreSysServiceBase.create(pSDCWorkspaceAction);
-        SessionFactoryManager.getCurrentSFS().registerSFSAction(this.getRealSessionFactory(), new ISFSAction((PSDCWorkspaceActionService)pSCoreSysServiceBase, pSDCWorkspaceAction){
-            final /* synthetic */ PSDCWorkspaceActionService val$psDCWorkspaceActionService;
-            final /* synthetic */ PSDCWorkspaceAction val$psDCWorkspaceAction;
-            {
-                this.val$psDCWorkspaceActionService = pSDCWorkspaceActionService;
-                this.val$psDCWorkspaceAction = pSDCWorkspaceAction;
-            }
+        final PSDCWorkspaceActionService actionService = (PSDCWorkspaceActionService)pSCoreSysServiceBase;
+        final PSDCWorkspaceAction pendingAction = pSDCWorkspaceAction;
+        SessionFactoryManager.getCurrentSFS().registerSFSAction(this.getRealSessionFactory(), new ISFSAction(){
 
             public void commit() {
                 try {
-                    this.val$psDCWorkspaceActionService.executeAction("X2_ADDDCBKTASK", (IEntity)this.val$psDCWorkspaceAction);
+                    actionService.executeAction("X2_ADDDCBKTASK", pendingAction);
                 }
                 catch (Exception exception) {
                     log.error((Object)exception);
@@ -194,7 +190,7 @@ extends PSDCWorkspaceServiceBase {
     protected void onUninstallSys(PSDCWorkspace pSDCWorkspace) throws Exception {
         PSDCWorkspace pSDCWorkspace2 = new PSDCWorkspace();
         pSDCWorkspace2.setPSDCWorkspaceId(pSDCWorkspace.getPSDCWorkspaceId());
-        this.get((IEntity)pSDCWorkspace2);
+        this.get(pSDCWorkspace2);
         if (!StringHelper.isNullOrEmpty((String)pSDCWorkspace2.getCurAction()) && StringHelper.compare((String)pSDCWorkspace2.getCurAction(), (String)"NONE", (boolean)true) != 0) {
             throw new Exception(StringHelper.format((String)"\u751f\u4ea7\u7ebf[%1$s]\u6b63\u5728\u8fdb\u884c[%2$s]\u64cd\u4f5c\uff0c\u65e0\u6cd5\u8fdb\u884c\u7cfb\u7edf\u5378\u8f7d", (Object)pSDCWorkspace2.getPSDCWorkspaceName(), (Object)DCWorkspaceLogTypeCodeListModel.getInstance().getCodeItem(pSDCWorkspace2.getCurAction()).getText()));
         }
@@ -205,7 +201,7 @@ extends PSDCWorkspaceServiceBase {
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)this.getSessionFactory());
         pSDevSlnSys = new PSDevSlnSys();
         pSDevSlnSys.setPSDevSlnSysId(pSDCWorkspace2.getPSDevSlnSysId());
-        pSCoreSysServiceBase.get((IEntity)pSDevSlnSys);
+        pSCoreSysServiceBase.get(pSDevSlnSys);
         if (DataObject.getIntegerValue((Object)pSDevSlnSys.getDevSysState(), (Integer)30) != 30) {
             throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u6ca1\u6709\u5904\u4e8e[\u8fde\u7ebf]\u72b6\u6001\uff0c\u65e0\u6cd5\u8fdb\u884c\u5378\u8f7d", (Object)pSDevSlnSys.getPSDevSlnSysName()));
         }
@@ -230,17 +226,13 @@ extends PSDCWorkspaceServiceBase {
         pSDCWorkspaceAction.setActionParam3(pSDCWorkspace.getActionParam3());
         pSDCWorkspaceAction.setActionParam4(pSDCWorkspace.getActionParam4());
         pSCoreSysServiceBase.create(pSDCWorkspaceAction);
-        SessionFactoryManager.getCurrentSFS().registerSFSAction(this.getRealSessionFactory(), new ISFSAction((PSDCWorkspaceActionService)pSCoreSysServiceBase, pSDCWorkspaceAction){
-            final /* synthetic */ PSDCWorkspaceActionService val$psDCWorkspaceActionService;
-            final /* synthetic */ PSDCWorkspaceAction val$psDCWorkspaceAction;
-            {
-                this.val$psDCWorkspaceActionService = pSDCWorkspaceActionService;
-                this.val$psDCWorkspaceAction = pSDCWorkspaceAction;
-            }
+        final PSDCWorkspaceActionService actionService = (PSDCWorkspaceActionService)pSCoreSysServiceBase;
+        final PSDCWorkspaceAction pendingAction = pSDCWorkspaceAction;
+        SessionFactoryManager.getCurrentSFS().registerSFSAction(this.getRealSessionFactory(), new ISFSAction(){
 
             public void commit() {
                 try {
-                    this.val$psDCWorkspaceActionService.executeAction("X2_ADDDCBKTASK", (IEntity)this.val$psDCWorkspaceAction);
+                    actionService.executeAction("X2_ADDDCBKTASK", pendingAction);
                 }
                 catch (Exception exception) {
                     log.error((Object)exception);
@@ -271,7 +263,7 @@ extends PSDCWorkspaceServiceBase {
     @Override
     protected void onBeforeRemove(PSDCWorkspace pSDCWorkspace) throws Exception {
         PSDCWorkspace pSDCWorkspace2;
-        if (this.isMajorSessionFactory() && !StringHelper.isNullOrEmpty((String)(pSDCWorkspace2 = (PSDCWorkspace)this.getLast((IEntity)pSDCWorkspace)).getPSDevSlnSysId())) {
+        if (this.isMajorSessionFactory() && !StringHelper.isNullOrEmpty((String)(pSDCWorkspace2 = (PSDCWorkspace)this.getLast(pSDCWorkspace)).getPSDevSlnSysId())) {
             throw new Exception(StringHelper.format((String)"\u4e2d\u5fc3\u751f\u4ea7\u7ebf\u5df2\u5b89\u88c5\u7cfb\u7edf\uff0c\u65e0\u6cd5\u5220\u9664"));
         }
         super.onBeforeRemove(pSDCWorkspace);
@@ -280,7 +272,7 @@ extends PSDCWorkspaceServiceBase {
     @Override
     protected void onAfterRemove(PSDCWorkspace pSDCWorkspace) throws Exception {
         if (this.isMajorSessionFactory()) {
-            PSDCWorkspace pSDCWorkspace2 = (PSDCWorkspace)this.getLast((IEntity)pSDCWorkspace);
+            PSDCWorkspace pSDCWorkspace2 = (PSDCWorkspace)this.getLast(pSDCWorkspace);
             PSDevCenterHelper.updatetPSDCResRep(pSDCWorkspace2.getPSDevCenter(), "WORKSPACECNT");
             if (!StringHelper.isNullOrEmpty((String)pSDCWorkspace2.getPSWorkspaceId())) {
                 PSWorkspaceService pSWorkspaceService = (PSWorkspaceService)ServiceGlobal.getService(PSWorkspaceService.class, (SessionFactory)this.getSessionFactory());
@@ -308,7 +300,7 @@ extends PSDCWorkspaceServiceBase {
 
     @Override
     protected void onRawUninstallSys(PSDCWorkspace pSDCWorkspace) throws Exception {
-        this.get((IEntity)pSDCWorkspace);
+        this.get(pSDCWorkspace);
     }
 
     @Override
@@ -321,4 +313,3 @@ extends PSDCWorkspaceServiceBase {
         }
     }
 }
-

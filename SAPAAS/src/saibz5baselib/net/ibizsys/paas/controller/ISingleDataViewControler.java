@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.IXDataViewController;
+/**
+ * 单项数据视图控制器接口
+ * @author Administrator
+ *
+ */
+public interface ISingleDataViewControler extends IXDataViewController {
 
-public interface ISingleDataViewControler
-extends IXDataViewController {
 }
-

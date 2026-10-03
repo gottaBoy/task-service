@@ -94,7 +94,7 @@ implements IPSDEFormService {
     @Override
     protected List<PSDEForm> onListAll() throws Exception {
         ArrayList<PSDEForm> list = new ArrayList<PSDEForm>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEForm> items = this.listByPSDataEntity(parent);
@@ -554,58 +554,64 @@ implements IPSDEFormService {
         } else {
             dto.setUserPSDEActionName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEFormDetailService().listByPSDEForm(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEFormDetail> pSDEFormDetailList = PSModelServiceUtil.getInstance().getPSDEFormDetailService().listByPSDEForm(t);
+        if (pSDEFormDetailList != null && pSDEFormDetailList.size() > 0) {
             ArrayList<PSDEFormDetailDTO> psdeformdetails = new ArrayList<PSDEFormDetailDTO>();
-            for (PSDEFormDetail pSDEFormDetail : list) {
+            for (PSDEFormDetail pSDEFormDetail : pSDEFormDetailList) {
                 dstItem = (PSDEFormDetailDTO)PSModelServiceUtil.getInstance().getPSDEFormDetailService().toDTO(pSDEFormDetail);
                 psdeformdetails.add((PSDEFormDetailDTO)dstItem);
             }
             dto.setPsdeformdetails(psdeformdetails);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEFormRFService().listByPSDEForm(t)) != null && list.size() > 0) {
+        List<PSDEFormRF> pSDEFormRFList = PSModelServiceUtil.getInstance().getPSDEFormRFService().listByPSDEForm(t);
+        if (pSDEFormRFList != null && pSDEFormRFList.size() > 0) {
             ArrayList<PSDEFormRFDTO> psdeformrves = new ArrayList<PSDEFormRFDTO>();
-            for (PSDEFormRF pSDEFormRF : list) {
+            for (PSDEFormRF pSDEFormRF : pSDEFormRFList) {
                 dstItem = (PSDEFormRFDTO)PSModelServiceUtil.getInstance().getPSDEFormRFService().toDTO(pSDEFormRF);
                 psdeformrves.add((PSDEFormRFDTO)dstItem);
             }
             dto.setPsdeformrves(psdeformrves);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEFDLogicService().listByPSDEForm(t)) != null && list.size() > 0) {
+        List<PSDEFDLogic> pSDEFDLogicList = PSModelServiceUtil.getInstance().getPSDEFDLogicService().listByPSDEForm(t);
+        if (pSDEFDLogicList != null && pSDEFDLogicList.size() > 0) {
             ArrayList<PSDEFDLogicDTO> psdefdlogics = new ArrayList<PSDEFDLogicDTO>();
-            for (PSDEFDLogic pSDEFDLogic : list) {
+            for (PSDEFDLogic pSDEFDLogic : pSDEFDLogicList) {
                 dstItem = (PSDEFDLogicDTO)PSModelServiceUtil.getInstance().getPSDEFDLogicService().toDTO(pSDEFDLogic);
                 psdefdlogics.add((PSDEFDLogicDTO)dstItem);
             }
             dto.setPsdefdlogics(psdefdlogics);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEFIUDetailService().listByPSDEForm(t)) != null && list.size() > 0) {
+        List<PSDEFIUDetail> pSDEFIUDetailList = PSModelServiceUtil.getInstance().getPSDEFIUDetailService().listByPSDEForm(t);
+        if (pSDEFIUDetailList != null && pSDEFIUDetailList.size() > 0) {
             ArrayList<PSDEFIUDetailDTO> psdefiudetails = new ArrayList<PSDEFIUDetailDTO>();
-            for (PSDEFIUDetail pSDEFIUDetail : list) {
+            for (PSDEFIUDetail pSDEFIUDetail : pSDEFIUDetailList) {
                 dstItem = (PSDEFIUDetailDTO)PSModelServiceUtil.getInstance().getPSDEFIUDetailService().toDTO(pSDEFIUDetail);
                 psdefiudetails.add((PSDEFIUDetailDTO)dstItem);
             }
             dto.setPsdefiudetails(psdefiudetails);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEFIUpdateService().listByPSDEForm(t)) != null && list.size() > 0) {
+        List<PSDEFIUpdate> pSDEFIUpdateList = PSModelServiceUtil.getInstance().getPSDEFIUpdateService().listByPSDEForm(t);
+        if (pSDEFIUpdateList != null && pSDEFIUpdateList.size() > 0) {
             ArrayList<PSDEFIUpdateDTO> psdefiupdates = new ArrayList<PSDEFIUpdateDTO>();
-            for (PSDEFIUpdate pSDEFIUpdate : list) {
+            for (PSDEFIUpdate pSDEFIUpdate : pSDEFIUpdateList) {
                 dstItem = (PSDEFIUpdateDTO)PSModelServiceUtil.getInstance().getPSDEFIUpdateService().toDTO(pSDEFIUpdate);
                 psdefiupdates.add((PSDEFIUpdateDTO)dstItem);
             }
             dto.setPsdefiupdates(psdefiupdates);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEFIVRService().listByPSDEForm(t)) != null && list.size() > 0) {
+        List<PSDEFIVR> pSDEFIVRList = PSModelServiceUtil.getInstance().getPSDEFIVRService().listByPSDEForm(t);
+        if (pSDEFIVRList != null && pSDEFIVRList.size() > 0) {
             ArrayList<PSDEFIVRDTO> psdefivrs = new ArrayList<PSDEFIVRDTO>();
-            for (PSDEFIVR pSDEFIVR : list) {
+            for (PSDEFIVR pSDEFIVR : pSDEFIVRList) {
                 dstItem = (PSDEFIVRDTO)PSModelServiceUtil.getInstance().getPSDEFIVRService().toDTO(pSDEFIVR);
                 psdefivrs.add((PSDEFIVRDTO)dstItem);
             }
             dto.setPsdefivrs(psdefivrs);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEFormLogicService().listByPSDEForm(t)) != null && list.size() > 0) {
+        List<PSDEFormLogic> pSDEFormLogicList = PSModelServiceUtil.getInstance().getPSDEFormLogicService().listByPSDEForm(t);
+        if (pSDEFormLogicList != null && pSDEFormLogicList.size() > 0) {
             ArrayList<PSDEFormLogicDTO> psdeformlogics = new ArrayList<PSDEFormLogicDTO>();
-            for (PSDEFormLogic pSDEFormLogic : list) {
+            for (PSDEFormLogic pSDEFormLogic : pSDEFormLogicList) {
                 dstItem = (PSDEFormLogicDTO)PSModelServiceUtil.getInstance().getPSDEFormLogicService().toDTO(pSDEFormLogic);
                 psdeformlogics.add((PSDEFormLogicDTO)dstItem);
             }

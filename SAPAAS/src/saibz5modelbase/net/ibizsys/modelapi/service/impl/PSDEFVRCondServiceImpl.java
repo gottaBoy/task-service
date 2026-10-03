@@ -117,7 +117,7 @@ implements IPSDEFVRCondService {
     @Override
     protected List<PSDEFVRCond> onListAll() throws Exception {
         ArrayList<PSDEFVRCond> list = new ArrayList<PSDEFVRCond>();
-        List psdefvaluerules = PSModelServiceUtil.getInstance().getPSDEFValueRuleService().listAll();
+        List<PSDEFValueRule> psdefvaluerules = PSModelServiceUtil.getInstance().getPSDEFValueRuleService().listAll();
         if (psdefvaluerules != null) {
             for (PSDEFValueRule parent : psdefvaluerules) {
                 List<PSDEFVRCond> items = this.listByPSDEFValueRule(parent);

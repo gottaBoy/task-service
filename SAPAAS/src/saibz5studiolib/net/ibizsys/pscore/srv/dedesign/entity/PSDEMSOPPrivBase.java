@@ -1482,7 +1482,7 @@ implements Serializable {
                 PSDEMainState pSDEMainState = new PSDEMainState();
                 pSDEMainState.setPSDEMainStateId(this.getPSDEMainStateId());
                 PSDEMainStateService pSDEMainStateService = (PSDEMainStateService)ServiceGlobal.getService(PSDEMainStateService.class, (SessionFactory)this.getSessionFactory());
-                pSDEMainStateService.autoGet((IEntity)pSDEMainState);
+                pSDEMainStateService.autoGet(pSDEMainState);
                 this.psdemainstate = pSDEMainState;
             }
             return this.psdemainstate;
@@ -1508,7 +1508,7 @@ implements Serializable {
                 PSDEOPPriv pSDEOPPriv = new PSDEOPPriv();
                 pSDEOPPriv.setPSDEOPPrivId(this.getPSDEOPPrivId());
                 PSDEOPPrivService pSDEOPPrivService = (PSDEOPPrivService)ServiceGlobal.getService(PSDEOPPrivService.class, (SessionFactory)this.getSessionFactory());
-                pSDEOPPrivService.autoGet((IEntity)pSDEOPPriv);
+                pSDEOPPrivService.autoGet(pSDEOPPriv);
                 this.psdeoppriv = pSDEOPPriv;
             }
             return this.psdeoppriv;

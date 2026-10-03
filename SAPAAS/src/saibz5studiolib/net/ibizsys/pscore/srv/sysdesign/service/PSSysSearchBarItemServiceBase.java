@@ -252,9 +252,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSCodeList pSCodeList = (PSCodeList)iService.getDEModel().createEntity();
             pSCodeList.set("PSCODELISTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCodeList);
+                iService.getTemp(pSCodeList);
             } else {
-                iService.get((IEntity)pSCodeList);
+                iService.get(pSCodeList);
             }
             this.onFillParentInfo_PSCodeList(pSSysSearchBarItem, pSCodeList);
             return;
@@ -264,9 +264,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSDEDataSet pSDEDataSet = (PSDEDataSet)iService.getDEModel().createEntity();
             pSDEDataSet.set("PSDEDATASETID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEDataSet);
+                iService.getTemp(pSDEDataSet);
             } else {
-                iService.get((IEntity)pSDEDataSet);
+                iService.get(pSDEDataSet);
             }
             this.onFillParentInfo_FilterPSDEDS(pSSysSearchBarItem, pSDEDataSet);
             return;
@@ -276,9 +276,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_PSDEF(pSSysSearchBarItem, pSDEField);
             return;
@@ -288,9 +288,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSDEFSFItem pSDEFSFItem = (PSDEFSFItem)iService.getDEModel().createEntity();
             pSDEFSFItem.set("PSDEFSFITEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEFSFItem);
+                iService.getTemp(pSDEFSFItem);
             } else {
-                iService.get((IEntity)pSDEFSFItem);
+                iService.get(pSDEFSFItem);
             }
             this.onFillParentInfo_PSDEFSFItem(pSSysSearchBarItem, pSDEFSFItem);
             return;
@@ -300,9 +300,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSLanguageRes pSLanguageRes = (PSLanguageRes)iService.getDEModel().createEntity();
             pSLanguageRes.set("PSLANGUAGERESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSLanguageRes);
+                iService.getTemp(pSLanguageRes);
             } else {
-                iService.get((IEntity)pSLanguageRes);
+                iService.get(pSLanguageRes);
             }
             this.onFillParentInfo_CapPSLanRes(pSSysSearchBarItem, pSLanguageRes);
             return;
@@ -312,9 +312,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSLanguageRes pSLanguageRes = (PSLanguageRes)iService.getDEModel().createEntity();
             pSLanguageRes.set("PSLANGUAGERESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSLanguageRes);
+                iService.getTemp(pSLanguageRes);
             } else {
-                iService.get((IEntity)pSLanguageRes);
+                iService.get(pSLanguageRes);
             }
             this.onFillParentInfo_PHPSLanRes(pSSysSearchBarItem, pSLanguageRes);
             return;
@@ -324,9 +324,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSLanguageRes pSLanguageRes = (PSLanguageRes)iService.getDEModel().createEntity();
             pSLanguageRes.set("PSLANGUAGERESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSLanguageRes);
+                iService.getTemp(pSLanguageRes);
             } else {
-                iService.get((IEntity)pSLanguageRes);
+                iService.get(pSLanguageRes);
             }
             this.onFillParentInfo_TipPSLanRes(pSSysSearchBarItem, pSLanguageRes);
             return;
@@ -336,9 +336,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSSysCounter pSSysCounter = (PSSysCounter)iService.getDEModel().createEntity();
             pSSysCounter.set("PSSYSCOUNTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCounter);
+                iService.getTemp(pSSysCounter);
             } else {
-                iService.get((IEntity)pSSysCounter);
+                iService.get(pSSysCounter);
             }
             this.onFillParentInfo_PSSysCounter(pSSysSearchBarItem, pSSysCounter);
             return;
@@ -348,9 +348,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_CtrlPSSysCss(pSSysSearchBarItem, pSSysCss);
             return;
@@ -360,9 +360,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_LabelPSSysCss(pSSysSearchBarItem, pSSysCss);
             return;
@@ -372,9 +372,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_PSSysCss(pSSysSearchBarItem, pSSysCss);
             return;
@@ -384,9 +384,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSSysEditorStyle pSSysEditorStyle = (PSSysEditorStyle)iService.getDEModel().createEntity();
             pSSysEditorStyle.set("PSSYSEDITORSTYLEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysEditorStyle);
+                iService.getTemp(pSSysEditorStyle);
             } else {
-                iService.get((IEntity)pSSysEditorStyle);
+                iService.get(pSSysEditorStyle);
             }
             this.onFillParentInfo_PSSysEditorStyle(pSSysSearchBarItem, pSSysEditorStyle);
             return;
@@ -396,9 +396,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSSysImage pSSysImage = (PSSysImage)iService.getDEModel().createEntity();
             pSSysImage.set("PSSYSIMAGEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysImage);
+                iService.getTemp(pSSysImage);
             } else {
-                iService.get((IEntity)pSSysImage);
+                iService.get(pSSysImage);
             }
             this.onFillParentInfo_PSSysImage(pSSysSearchBarItem, pSSysImage);
             return;
@@ -408,9 +408,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_PSSysPFPlugin(pSSysSearchBarItem, pSSysPFPlugin);
             return;
@@ -420,9 +420,9 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSSysResource pSSysResource = (PSSysResource)iService.getDEModel().createEntity();
             pSSysResource.set("PSSYSRESOURCEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysResource);
+                iService.getTemp(pSSysResource);
             } else {
-                iService.get((IEntity)pSSysResource);
+                iService.get(pSSysResource);
             }
             this.onFillParentInfo_PSSysResource(pSSysSearchBarItem, pSSysResource);
             return;
@@ -432,14 +432,14 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSSysSearchBar pSSysSearchBar = (PSSysSearchBar)iService.getDEModel().createEntity();
             pSSysSearchBar.set("PSSYSSEARCHBARID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSearchBar);
+                iService.getTemp(pSSysSearchBar);
             } else {
-                iService.get((IEntity)pSSysSearchBar);
+                iService.get(pSSysSearchBar);
             }
             this.onFillParentInfo_PSSysSearchBar(pSSysSearchBarItem, pSSysSearchBar);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysSearchBarItem, string, string2, string3);
+        super.onFillParentInfo(pSSysSearchBarItem, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -532,7 +532,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         if (bl && pSSysSearchBarItem.getValidFlag() == null) {
             pSSysSearchBarItem.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysSearchBarItem, bl);
+        super.onFillEntityFullInfo(pSSysSearchBarItem, bl);
         this.onFillEntityFullInfo_PSCodeList(pSSysSearchBarItem, bl);
         this.onFillEntityFullInfo_FilterPSDEDS(pSSysSearchBarItem, bl);
         this.onFillEntityFullInfo_PSDEF(pSSysSearchBarItem, bl);
@@ -664,7 +664,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
     }
 
     protected void onWriteBackParent(PSSysSearchBarItem pSSysSearchBarItem, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysSearchBarItem, bl);
+        super.onWriteBackParent(pSSysSearchBarItem, bl);
     }
 
     public ArrayList<PSSysSearchBarItem> selectByPSCodeList(PSCodeListBase pSCodeListBase) throws Exception {
@@ -1070,8 +1070,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSCodeList(pSCodeList, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCODELIST");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCodeList);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSCODELIST_PSCODELISTID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSCodeList), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCodeList);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSCODELIST_PSCODELISTID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSCodeList), arrayList.get(0)));
         }
     }
 
@@ -1104,7 +1104,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSCodeList(pSCodeList);
         this.onBeforeRemoveByPSCodeList(pSCodeList, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByPSCodeList(pSCodeList, arrayList);
     }
@@ -1122,8 +1122,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByFilterPSDEDS(pSDEDataSet, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEDATASET");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEDataSet);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSDEDATASET_FILTERPSDEDSID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSDEDataSet), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEDataSet);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSDEDATASET_FILTERPSDEDSID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSDEDataSet), arrayList.get(0)));
         }
     }
 
@@ -1156,7 +1156,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByFilterPSDEDS(pSDEDataSet);
         this.onBeforeRemoveByFilterPSDEDS(pSDEDataSet, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByFilterPSDEDS(pSDEDataSet, arrayList);
     }
@@ -1174,8 +1174,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSDEFIELD_PSDEFID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSDEFIELD_PSDEFID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -1208,7 +1208,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSDEF(pSDEField);
         this.onBeforeRemoveByPSDEF(pSDEField, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByPSDEF(pSDEField, arrayList);
     }
@@ -1226,8 +1226,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSDEFSFItem(pSDEFSFItem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFSFITEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEFSFItem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSDEFSFITEM_PSDEFSFITEMID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSDEFSFItem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEFSFItem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSDEFSFITEM_PSDEFSFITEMID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSDEFSFItem), arrayList.get(0)));
         }
     }
 
@@ -1260,7 +1260,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSDEFSFItem(pSDEFSFItem);
         this.onBeforeRemoveByPSDEFSFItem(pSDEFSFItem, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByPSDEFSFItem(pSDEFSFItem, arrayList);
     }
@@ -1278,8 +1278,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByCapPSLanRes(pSLanguageRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSLANGUAGERES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSLanguageRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSLANGUAGERES_CAPPSLANRESID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSLanguageRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSLanguageRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSLANGUAGERES_CAPPSLANRESID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSLanguageRes), arrayList.get(0)));
         }
     }
 
@@ -1312,7 +1312,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByCapPSLanRes(pSLanguageRes);
         this.onBeforeRemoveByCapPSLanRes(pSLanguageRes, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByCapPSLanRes(pSLanguageRes, arrayList);
     }
@@ -1330,8 +1330,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPHPSLanRes(pSLanguageRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSLANGUAGERES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSLanguageRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSLANGUAGERES_PHPSLANRESID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSLanguageRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSLanguageRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSLANGUAGERES_PHPSLANRESID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSLanguageRes), arrayList.get(0)));
         }
     }
 
@@ -1364,7 +1364,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPHPSLanRes(pSLanguageRes);
         this.onBeforeRemoveByPHPSLanRes(pSLanguageRes, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByPHPSLanRes(pSLanguageRes, arrayList);
     }
@@ -1382,8 +1382,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByTipPSLanRes(pSLanguageRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSLANGUAGERES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSLanguageRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSLANGUAGERES_TIPPSLANRESID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSLanguageRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSLanguageRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSLANGUAGERES_TIPPSLANRESID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSLanguageRes), arrayList.get(0)));
         }
     }
 
@@ -1416,7 +1416,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByTipPSLanRes(pSLanguageRes);
         this.onBeforeRemoveByTipPSLanRes(pSLanguageRes, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByTipPSLanRes(pSLanguageRes, arrayList);
     }
@@ -1434,8 +1434,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysCounter(pSSysCounter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCOUNTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCounter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSCOUNTER_PSSYSCOUNTERID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSSysCounter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCounter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSCOUNTER_PSSYSCOUNTERID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSSysCounter), arrayList.get(0)));
         }
     }
 
@@ -1468,7 +1468,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysCounter(pSSysCounter);
         this.onBeforeRemoveByPSSysCounter(pSSysCounter, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByPSSysCounter(pSSysCounter, arrayList);
     }
@@ -1486,8 +1486,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByCtrlPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSCSS_CTRLPSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSCSS_CTRLPSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -1520,7 +1520,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByCtrlPSSysCss(pSSysCss);
         this.onBeforeRemoveByCtrlPSSysCss(pSSysCss, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByCtrlPSSysCss(pSSysCss, arrayList);
     }
@@ -1538,8 +1538,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByLabelPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSCSS_LABELPSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSCSS_LABELPSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -1572,7 +1572,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByLabelPSSysCss(pSSysCss);
         this.onBeforeRemoveByLabelPSSysCss(pSSysCss, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByLabelPSSysCss(pSSysCss, arrayList);
     }
@@ -1590,8 +1590,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -1624,7 +1624,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysCss(pSSysCss);
         this.onBeforeRemoveByPSSysCss(pSSysCss, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByPSSysCss(pSSysCss, arrayList);
     }
@@ -1642,8 +1642,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysEditorStyle(pSSysEditorStyle, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSEDITORSTYLE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysEditorStyle);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSEDITORSTYLE_PSSYSEDITORSTYLEID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSSysEditorStyle), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysEditorStyle);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSEDITORSTYLE_PSSYSEDITORSTYLEID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSSysEditorStyle), arrayList.get(0)));
         }
     }
 
@@ -1676,7 +1676,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysEditorStyle(pSSysEditorStyle);
         this.onBeforeRemoveByPSSysEditorStyle(pSSysEditorStyle, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByPSSysEditorStyle(pSSysEditorStyle, arrayList);
     }
@@ -1694,8 +1694,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysImage(pSSysImage, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSIMAGE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysImage);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSIMAGE_PSSYSIMAGEID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSSysImage), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysImage);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSIMAGE_PSSYSIMAGEID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSSysImage), arrayList.get(0)));
         }
     }
 
@@ -1728,7 +1728,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysImage(pSSysImage);
         this.onBeforeRemoveByPSSysImage(pSSysImage, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByPSSysImage(pSSysImage, arrayList);
     }
@@ -1746,8 +1746,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -1780,7 +1780,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -1798,8 +1798,8 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysResource(pSSysResource, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSRESOURCE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysResource);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSRESOURCE_PSSYSRESOURCEID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo((IEntity)pSSysResource), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysResource);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHBARITEM_PSSYSRESOURCE_PSSYSRESOURCEID", "", iDataEntityModel.getName(), "PSSYSSEARCHBARITEM", iDataEntityModel.getDataInfo(pSSysResource), arrayList.get(0)));
         }
     }
 
@@ -1832,7 +1832,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysResource(pSSysResource);
         this.onBeforeRemoveByPSSysResource(pSSysResource, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByPSSysResource(pSSysResource, arrayList);
     }
@@ -1865,7 +1865,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
             PSSysSearchBarItem pSSysSearchBarItem2 = (PSSysSearchBarItem)this.getDEModel().createEntity();
             pSSysSearchBarItem2.setPSSysSearchBarItemId(pSSysSearchBarItem.getPSSysSearchBarItemId());
             pSSysSearchBarItem2.setPSSysSearchBarId(null);
-            this.updateTemp((IEntity)pSSysSearchBarItem2);
+            this.updateTemp(pSSysSearchBarItem2);
         }
     }
 
@@ -1888,7 +1888,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectByPSSysSearchBar(pSSysSearchBar);
         this.onBeforeRemoveByPSSysSearchBar(pSSysSearchBar, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.remove((IEntity)pSSysSearchBarItem);
+            this.remove(pSSysSearchBarItem);
         }
         this.onAfterRemoveByPSSysSearchBar(pSSysSearchBar, arrayList);
     }
@@ -1912,7 +1912,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
     protected void onBeforeRemoveTemp(PSSysSearchBarItem pSSysSearchBarItem) throws Exception {
         PSSysSearchBarLogicService pSSysSearchBarLogicService = (PSSysSearchBarLogicService)ServiceGlobal.getService(PSSysSearchBarLogicService.class, (SessionFactory)this.getSessionFactory());
         pSSysSearchBarLogicService.resetTempPSSysSearchBarItem(pSSysSearchBarItem);
-        super.onBeforeRemoveTemp((IEntity)pSSysSearchBarItem);
+        super.onBeforeRemoveTemp(pSSysSearchBarItem);
     }
 
     public void removeTempByPSSysSearchBar(PSSysSearchBar pSSysSearchBar) throws Exception {
@@ -1934,7 +1934,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         ArrayList<PSSysSearchBarItem> arrayList = this.selectTempByPSSysSearchBar(pSSysSearchBar);
         this.onBeforeRemoveTempByPSSysSearchBar(pSSysSearchBar, arrayList);
         for (PSSysSearchBarItem pSSysSearchBarItem : arrayList) {
-            this.removeTemp((IEntity)pSSysSearchBarItem);
+            this.removeTemp(pSSysSearchBarItem);
         }
         this.onAfterRemoveTempByPSSysSearchBar(pSSysSearchBar, arrayList);
     }
@@ -1949,16 +1949,16 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
     }
 
     protected void getRelatedDataTempMajor(PSSysSearchBarItem pSSysSearchBarItem) throws Exception {
-        super.getRelatedDataTempMajor((IEntity)pSSysSearchBarItem);
+        super.getRelatedDataTempMajor(pSSysSearchBarItem);
     }
 
     protected void updateRelatedDataTempMajor(PSSysSearchBarItem pSSysSearchBarItem, PSSysSearchBarItem pSSysSearchBarItem2) throws Exception {
-        super.updateRelatedDataTempMajor((IEntity)pSSysSearchBarItem, (IEntity)pSSysSearchBarItem2);
+        super.updateRelatedDataTempMajor(pSSysSearchBarItem, pSSysSearchBarItem2);
     }
 
     protected void replaceParentInfo(PSSysSearchBarItem pSSysSearchBarItem, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysSearchBarItem, cloneSession);
+        super.replaceParentInfo(pSSysSearchBarItem, cloneSession);
         if (pSSysSearchBarItem.getPSCodeListId() != null && (iEntity = cloneSession.getEntity("PSCODELIST", (Object)pSSysSearchBarItem.getPSCodeListId())) != null) {
             this.onFillParentInfo_PSCodeList(pSSysSearchBarItem, (PSCodeList)iEntity);
         }
@@ -2010,7 +2010,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysSearchBarItem pSSysSearchBarItem, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysSearchBarItem, bl);
+        super.onRemoveEntityUncopyValues(pSSysSearchBarItem, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysSearchBarItem pSSysSearchBarItem, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -2223,7 +2223,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         if ((entityFieldError = this.onCheckField_Width(bl, pSSysSearchBarItem, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysSearchBarItem, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysSearchBarItem, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AddSeparator(boolean bl, PSSysSearchBarItem pSSysSearchBarItem, boolean bl2, boolean bl3) throws Exception {
@@ -2236,7 +2236,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AddSeparator_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string = this.onTestValueRule_AddSeparator_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ADDSEPARATOR");
@@ -2258,7 +2258,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CapPSLanResId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_CapPSLanResId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CAPPSLANRESID");
@@ -2280,7 +2280,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CapPSLanResName_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_CapPSLanResName_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CAPPSLANRESNAME");
@@ -2302,7 +2302,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Caption_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_Caption_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CAPTION");
@@ -2324,7 +2324,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ContentType_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_ContentType_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTENTTYPE");
@@ -2346,7 +2346,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CounterId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_CounterId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("COUNTERID");
@@ -2368,7 +2368,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CounterMode_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string = this.onTestValueRule_CounterMode_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("COUNTERMODE");
@@ -2390,7 +2390,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlDynaClass_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlDynaClass_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLDYNACLASS");
@@ -2412,7 +2412,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlHeight_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string = this.onTestValueRule_CtrlHeight_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLHEIGHT");
@@ -2434,7 +2434,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlPSSysCssId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlPSSysCssId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPSSYSCSSID");
@@ -2456,7 +2456,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlRawCssStyle_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlRawCssStyle_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLRAWCSSSTYLE");
@@ -2478,7 +2478,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlWidth_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string = this.onTestValueRule_CtrlWidth_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLWIDTH");
@@ -2500,7 +2500,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Data_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_Data_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DATA");
@@ -2522,7 +2522,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -2544,7 +2544,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DynaClass_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_DynaClass_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNACLASS");
@@ -2566,7 +2566,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EditorParams_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_EditorParams_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EDITORPARAMS");
@@ -2588,7 +2588,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EditorType_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_EditorType_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EDITORTYPE");
@@ -2610,7 +2610,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EditorTypeName_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_EditorTypeName_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EDITORTYPENAME");
@@ -2632,7 +2632,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FilterPSDEDSId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_FilterPSDEDSId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FILTERPSDEDSID");
@@ -2654,7 +2654,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Height_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string = this.onTestValueRule_Height_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HEIGHT");
@@ -2676,7 +2676,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_HtmlContent_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_HtmlContent_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HTMLCONTENT");
@@ -2698,7 +2698,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemSubType_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_ItemSubType_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMSUBTYPE");
@@ -2720,7 +2720,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemTag_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_ItemTag_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMTAG");
@@ -2742,7 +2742,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemTag2_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_ItemTag2_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMTAG2");
@@ -2767,7 +2767,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemType_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_ItemType_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMTYPE");
@@ -2789,7 +2789,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LabelDynaClass_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_LabelDynaClass_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LABELDYNACLASS");
@@ -2811,7 +2811,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LabelPos_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_LabelPos_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LABELPOS");
@@ -2833,7 +2833,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LabelPSSysCssId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_LabelPSSysCssId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LABELPSSYSCSSID");
@@ -2855,7 +2855,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LabelRawCssStyle_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_LabelRawCssStyle_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LABELRAWCSSSTYLE");
@@ -2877,7 +2877,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LabelWidth_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string = this.onTestValueRule_LabelWidth_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LABELWIDTH");
@@ -2899,7 +2899,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -2921,7 +2921,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -2943,7 +2943,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PHPSLanResId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PHPSLanResId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PHPSLANRESID");
@@ -2965,7 +2965,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PHPSLanResName_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PHPSLanResName_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PHPSLANRESNAME");
@@ -2987,7 +2987,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PlaceHolder_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PlaceHolder_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PLACEHOLDER");
@@ -3009,7 +3009,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCodeListId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSCodeListId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCODELISTID");
@@ -3031,7 +3031,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFID");
@@ -3053,7 +3053,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFName_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFName_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFNAME");
@@ -3075,7 +3075,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFSFItemId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFSFItemId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFSFITEMID");
@@ -3097,7 +3097,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFSFItemName_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFSFItemName_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFSFITEMNAME");
@@ -3119,7 +3119,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCounterId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCounterId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCOUNTERID");
@@ -3141,7 +3141,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCssId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCssId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCSSID");
@@ -3163,7 +3163,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysEditorStyleId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysEditorStyleId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSEDITORSTYLEID");
@@ -3185,7 +3185,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysImageId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysImageId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSIMAGEID");
@@ -3207,7 +3207,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPluginId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPluginId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPLUGINID");
@@ -3229,7 +3229,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysResourceId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysResourceId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSRESOURCEID");
@@ -3251,7 +3251,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchBarId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchBarId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHBARID");
@@ -3276,7 +3276,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchBarItemId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchBarItemId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHBARITEMID");
@@ -3301,7 +3301,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchBarItemName_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchBarItemName_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHBARITEMNAME");
@@ -3337,7 +3337,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchBarName_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchBarName_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHBARNAME");
@@ -3359,7 +3359,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RawContent_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_RawContent_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RAWCONTENT");
@@ -3381,7 +3381,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RawCssStyle_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_RawCssStyle_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RAWCSSSTYLE");
@@ -3403,7 +3403,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RawServiceMethod_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_RawServiceMethod_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RAWSERVICEMETHOD");
@@ -3425,7 +3425,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RawServiceUrl_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_RawServiceUrl_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RAWSERVICEURL");
@@ -3447,7 +3447,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ResetItemName_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_ResetItemName_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESETITEMNAME");
@@ -3469,7 +3469,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ShowCaption_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string = this.onTestValueRule_ShowCaption_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SHOWCAPTION");
@@ -3491,7 +3491,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TemplateMode_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string = this.onTestValueRule_TemplateMode_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLATEMODE");
@@ -3513,7 +3513,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TipPSLanResId_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_TipPSLanResId_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TIPPSLANRESID");
@@ -3535,7 +3535,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TipPSLanResName_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_TipPSLanResName_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TIPPSLANRESNAME");
@@ -3557,7 +3557,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TooltipInfo_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_TooltipInfo_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TOOLTIPINFO");
@@ -3579,7 +3579,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -3601,7 +3601,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserParams_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserParams_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERPARAMS");
@@ -3623,7 +3623,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -3645,7 +3645,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -3667,7 +3667,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -3689,7 +3689,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -3714,7 +3714,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -3736,7 +3736,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ValueItemName_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string2 = this.onTestValueRule_ValueItemName_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALUEITEMNAME");
@@ -3758,7 +3758,7 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Width_Default((IEntity)pSSysSearchBarItem, bl2, bl3);
+            string = this.onTestValueRule_Width_Default(pSSysSearchBarItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIDTH");
@@ -3771,19 +3771,19 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
     }
 
     protected void onSyncEntity(PSSysSearchBarItem pSSysSearchBarItem, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysSearchBarItem, bl);
+        super.onSyncEntity(pSSysSearchBarItem, bl);
     }
 
     protected void onSyncIndexEntities(PSSysSearchBarItem pSSysSearchBarItem, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysSearchBarItem, bl);
+        super.onSyncIndexEntities(pSSysSearchBarItem, bl);
     }
 
     public Object getDataContextValue(PSSysSearchBarItem pSSysSearchBarItem, String string, IDataContextParam iDataContextParam) throws Exception {
         Object object = null;
-        if (iDataContextParam != null && StringHelper.compare((String)iDataContextParam.getDEName(), (String)"PSSYSEDITORSTYLE", (boolean)true) == 0 && StringHelper.compare((String)iDataContextParam.getDEFName(), (String)"PSEDITORTYPEID", (boolean)true) == 0 && (StringHelper.isNullOrEmpty((String)iDataContextParam.getReferItem()) || StringHelper.compare((String)iDataContextParam.getReferItem(), (String)"PSSYSEDITORSTYLEID", (boolean)true) == 0 || StringHelper.compare((String)iDataContextParam.getReferItem(), (String)"PSSYSEDITORSTYLENAME", (boolean)true) == 0) && (object = super.getDataContextValue((IEntity)pSSysSearchBarItem, "editortype", iDataContextParam)) != null) {
+        if (iDataContextParam != null && StringHelper.compare((String)iDataContextParam.getDEName(), (String)"PSSYSEDITORSTYLE", (boolean)true) == 0 && StringHelper.compare((String)iDataContextParam.getDEFName(), (String)"PSEDITORTYPEID", (boolean)true) == 0 && (StringHelper.isNullOrEmpty((String)iDataContextParam.getReferItem()) || StringHelper.compare((String)iDataContextParam.getReferItem(), (String)"PSSYSEDITORSTYLEID", (boolean)true) == 0 || StringHelper.compare((String)iDataContextParam.getReferItem(), (String)"PSSYSEDITORSTYLENAME", (boolean)true) == 0) && (object = super.getDataContextValue(pSSysSearchBarItem, "editortype", iDataContextParam)) != null) {
             return object;
         }
-        object = super.getDataContextValue((IEntity)pSSysSearchBarItem, string, iDataContextParam);
+        object = super.getDataContextValue(pSSysSearchBarItem, string, iDataContextParam);
         if (object != null) {
             return object;
         }
@@ -3794,27 +3794,27 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
         this.onExportMajorModel_CapPSLanRes(pSSysSearchBarItem, arrayList, n);
         this.onExportMajorModel_PHPSLanRes(pSSysSearchBarItem, arrayList, n);
         this.onExportMajorModel_TipPSLanRes(pSSysSearchBarItem, arrayList, n);
-        super.onExportMajorModel((IEntity)pSSysSearchBarItem, arrayList, n);
+        super.onExportMajorModel(pSSysSearchBarItem, arrayList, n);
     }
 
     protected void onExportMajorModel_CapPSLanRes(PSSysSearchBarItem pSSysSearchBarItem, ArrayList<JSONObject> arrayList, int n) throws Exception {
         if (pSSysSearchBarItem.getCapPSLanRes() != null) {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.sysdesign.service.PSLanguageResService", (SessionFactory)this.getSessionFactory());
-            iService.exportModel((IEntity)pSSysSearchBarItem.getCapPSLanRes(), arrayList, n);
+            iService.exportModel(pSSysSearchBarItem.getCapPSLanRes(), arrayList, n);
         }
     }
 
     protected void onExportMajorModel_PHPSLanRes(PSSysSearchBarItem pSSysSearchBarItem, ArrayList<JSONObject> arrayList, int n) throws Exception {
         if (pSSysSearchBarItem.getPHPSLanRes() != null) {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.sysdesign.service.PSLanguageResService", (SessionFactory)this.getSessionFactory());
-            iService.exportModel((IEntity)pSSysSearchBarItem.getPHPSLanRes(), arrayList, n);
+            iService.exportModel(pSSysSearchBarItem.getPHPSLanRes(), arrayList, n);
         }
     }
 
     protected void onExportMajorModel_TipPSLanRes(PSSysSearchBarItem pSSysSearchBarItem, ArrayList<JSONObject> arrayList, int n) throws Exception {
         if (pSSysSearchBarItem.getTipPSLanRes() != null) {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.sysdesign.service.PSLanguageResService", (SessionFactory)this.getSessionFactory());
-            iService.exportModel((IEntity)pSSysSearchBarItem.getTipPSLanRes(), arrayList, n);
+            iService.exportModel(pSSysSearchBarItem.getTipPSLanRes(), arrayList, n);
         }
     }
 
@@ -4984,14 +4984,14 @@ extends PSCoreSysServiceBase<PSSysSearchBarItem> {
 
     protected boolean onMergeChild(String string, String string2, PSSysSearchBarItem pSSysSearchBarItem) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysSearchBarItem)) {
+        if (super.onMergeChild(string, string2, pSSysSearchBarItem)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysSearchBarItem pSSysSearchBarItem) throws Exception {
-        super.onUpdateParent((IEntity)pSSysSearchBarItem);
+        super.onUpdateParent(pSSysSearchBarItem);
     }
 
     @Override

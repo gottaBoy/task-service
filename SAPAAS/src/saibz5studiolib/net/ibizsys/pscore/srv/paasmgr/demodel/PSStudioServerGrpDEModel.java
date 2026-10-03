@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSStudioServerGrpDEModelBase;
 
 public class PSStudioServerGrpDEModel
 extends PSStudioServerGrpDEModelBase {
+
+    public PSStudioServerGrpDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

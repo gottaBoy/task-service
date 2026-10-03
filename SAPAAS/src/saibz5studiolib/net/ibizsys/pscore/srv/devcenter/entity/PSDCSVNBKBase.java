@@ -1273,7 +1273,7 @@ implements Serializable {
                 PSDCSVNBK pSDCSVNBK = new PSDCSVNBK();
                 pSDCSVNBK.setPSDCSVNBKId(this.getPPSDCSVNBKId());
                 PSDCSVNBKService pSDCSVNBKService = (PSDCSVNBKService)ServiceGlobal.getService(PSDCSVNBKService.class, (SessionFactory)this.getSessionFactory());
-                pSDCSVNBKService.autoGet((IEntity)pSDCSVNBK);
+                pSDCSVNBKService.autoGet(pSDCSVNBK);
                 this.ppsdcsvnbk = pSDCSVNBK;
             }
             return this.ppsdcsvnbk;
@@ -1299,7 +1299,7 @@ implements Serializable {
                 PSDevCenterSVN pSDevCenterSVN = new PSDevCenterSVN();
                 pSDevCenterSVN.setPSDevCenterSVNId(this.getPSDevCenterSVNId());
                 PSDevCenterSVNService pSDevCenterSVNService = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterSVNService.autoGet((IEntity)pSDevCenterSVN);
+                pSDevCenterSVNService.autoGet(pSDevCenterSVN);
                 this.psdevcentersvn = pSDevCenterSVN;
             }
             return this.psdevcentersvn;
@@ -1325,7 +1325,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;

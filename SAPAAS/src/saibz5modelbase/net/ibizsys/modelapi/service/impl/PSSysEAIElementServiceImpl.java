@@ -76,7 +76,7 @@ implements IPSSysEAIElementService {
     @Override
     protected List<PSSysEAIElement> onListAll() throws Exception {
         ArrayList<PSSysEAIElement> list = new ArrayList<PSSysEAIElement>();
-        List pssyseaischemes = PSModelServiceUtil.getInstance().getPSSysEAISchemeService().listAll();
+        List<PSSysEAIScheme> pssyseaischemes = PSModelServiceUtil.getInstance().getPSSysEAISchemeService().listAll();
         if (pssyseaischemes != null) {
             for (PSSysEAIScheme parent : pssyseaischemes) {
                 List<PSSysEAIElement> items = this.listByPSSysEAIScheme(parent);
@@ -199,18 +199,19 @@ implements IPSSysEAIElementService {
         } else {
             dto.setPSSysEAISchemeName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSSysEAIElementAttrService().listByPSSysEAIElement(t);
-        if (list != null && list.size() > 0) {
+        List<PSSysEAIElementAttr> pSSysEAIElementAttrList = PSModelServiceUtil.getInstance().getPSSysEAIElementAttrService().listByPSSysEAIElement(t);
+        if (pSSysEAIElementAttrList != null && pSSysEAIElementAttrList.size() > 0) {
             ArrayList<PSSysEAIElementAttrDTO> pssyseaielementattrs = new ArrayList<PSSysEAIElementAttrDTO>();
-            for (PSSysEAIElementAttr pSSysEAIElementAttr : list) {
+            for (PSSysEAIElementAttr pSSysEAIElementAttr : pSSysEAIElementAttrList) {
                 dstItem = (PSSysEAIElementAttrDTO)PSModelServiceUtil.getInstance().getPSSysEAIElementAttrService().toDTO(pSSysEAIElementAttr);
                 pssyseaielementattrs.add((PSSysEAIElementAttrDTO)dstItem);
             }
             dto.setPssyseaielementattrs(pssyseaielementattrs);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSSysEAIElementREService().listByPSSysEAIElement(t)) != null && list.size() > 0) {
+        List<PSSysEAIElementRE> pSSysEAIElementREList = PSModelServiceUtil.getInstance().getPSSysEAIElementREService().listByPSSysEAIElement(t);
+        if (pSSysEAIElementREList != null && pSSysEAIElementREList.size() > 0) {
             ArrayList<PSSysEAIElementREDTO> pssyseaielementres = new ArrayList<PSSysEAIElementREDTO>();
-            for (PSSysEAIElementRE pSSysEAIElementRE : list) {
+            for (PSSysEAIElementRE pSSysEAIElementRE : pSSysEAIElementREList) {
                 dstItem = (PSSysEAIElementREDTO)PSModelServiceUtil.getInstance().getPSSysEAIElementREService().toDTO(pSSysEAIElementRE);
                 pssyseaielementres.add((PSSysEAIElementREDTO)dstItem);
             }

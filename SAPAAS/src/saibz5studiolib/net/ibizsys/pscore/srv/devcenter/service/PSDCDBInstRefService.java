@@ -43,7 +43,7 @@ extends PSDCDBInstRefServiceBase {
 
     @Override
     protected void onAfterRemove(PSDCDBInstRef pSDCDBInstRef) throws Exception {
-        PSDCDBInstRef pSDCDBInstRef2 = (PSDCDBInstRef)this.getLast((IEntity)pSDCDBInstRef);
+        PSDCDBInstRef pSDCDBInstRef2 = (PSDCDBInstRef)this.getLast(pSDCDBInstRef);
         PSDevCenterDBInstService pSDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)this.getSessionFactory());
         PSDevCenterDBInst pSDevCenterDBInst = new PSDevCenterDBInst();
         pSDevCenterDBInst.setPSDevCenterDBInstId(pSDCDBInstRef2.getPSDevCenterDBInstId());

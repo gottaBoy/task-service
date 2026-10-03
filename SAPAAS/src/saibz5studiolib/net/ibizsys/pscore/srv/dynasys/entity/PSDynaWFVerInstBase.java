@@ -1263,7 +1263,7 @@ implements Serializable {
                 PSDynaInst pSDynaInst = new PSDynaInst();
                 pSDynaInst.setPSDynaInstId(this.getPSDynaInstId());
                 PSDynaInstService pSDynaInstService = (PSDynaInstService)ServiceGlobal.getService(PSDynaInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaInstService.autoGet((IEntity)pSDynaInst);
+                pSDynaInstService.autoGet(pSDynaInst);
                 this.psdynainst = pSDynaInst;
             }
             return this.psdynainst;
@@ -1289,7 +1289,7 @@ implements Serializable {
                 PSDynaWFVer pSDynaWFVer = new PSDynaWFVer();
                 pSDynaWFVer.setPSDynaWFVerId(this.getPSDynaWFVerId());
                 PSDynaWFVerService pSDynaWFVerService = (PSDynaWFVerService)ServiceGlobal.getService(PSDynaWFVerService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaWFVerService.autoGet((IEntity)pSDynaWFVer);
+                pSDynaWFVerService.autoGet(pSDynaWFVer);
                 this.psdynawfver = pSDynaWFVer;
             }
             return this.psdynawfver;

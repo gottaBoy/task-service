@@ -1,18 +1,22 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.orguser.logic;
 
-import net.ibizsys.psrt.srv.common.demodel.orguser.logic.OrgUserGetCurUserLogicModelBase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class OrgUserGetCurUserLogicModel
-extends OrgUserGetCurUserLogicModelBase {
-    private static final Log log = LogFactory.getLog(OrgUserGetCurUserLogicModel.class);
-}
+/**
+ * 实体逻辑处理[获取当前用户]模型对象
+ */
+public class OrgUserGetCurUserLogicModel extends OrgUserGetCurUserLogicModelBase {
 
+    private static final Log log = LogFactory.getLog(OrgUserGetCurUserLogicModel.class);
+
+    public OrgUserGetCurUserLogicModel() {
+        super();
+    }
+
+
+}

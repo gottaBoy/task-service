@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.devcenter.demodel.PSDCProductDEModelBase;
 
 public class PSDCProductDEModel
 extends PSDCProductDEModelBase {
+
+    public PSDCProductDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -77,7 +77,7 @@ implements IPSAppTitleBarService {
     @Override
     protected List<PSAppTitleBar> onListAll() throws Exception {
         ArrayList<PSAppTitleBar> list = new ArrayList<PSAppTitleBar>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSAppTitleBar> items = this.listByPSSysApp(parent);

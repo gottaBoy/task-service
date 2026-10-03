@@ -1,18 +1,38 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.wf;
 
-import net.ibizsys.model.wf.IPSWFProcess;
+/**
+ * 工作流开始处理对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSWFStartProcess extends IPSWFProcess {
 
-public interface IPSWFStartProcess
-extends IPSWFProcess {
-    public String getStartPSDEViewId();
+	/**
+	 * 获取启动流程实体视图标识
+	 * @return
+	 */
+	String getStartPSDEViewId();
+	
+	
 
-    public String getMobStartPSDEViewId();
+	/**
+	 * 获取移动端启动流程实体视图标识
+	 * @return
+	 */
+	String getMobStartPSDEViewId();
+	
+	
+	/**
+	 * 获取启动流程实体视图用户数据
+	 * @return
+	 */
+	String getStartPSDEViewUserData();
+	
+	
 
-    public String getStartPSDEViewUserData();
-
-    public String getMobStartPSDEViewUserData();
+	/**
+	 * 获取移动端启动流程实体视图用户数据
+	 * @return
+	 */
+	String getMobStartPSDEViewUserData();
 }
-

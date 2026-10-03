@@ -1,19 +1,36 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
 import java.util.ArrayList;
+
 import net.ibizsys.paas.control.tree.ITreeNode;
-import net.ibizsys.paas.ctrlhandler.IMDCtrlRender;
 import net.ibizsys.paas.ctrlmodel.ITreeModel;
 import net.ibizsys.paas.web.IWebContext;
 import net.ibizsys.paas.web.MDAjaxActionResult;
 
-public interface ITreeRender
-extends IMDCtrlRender {
-    public String getNodeId(IWebContext var1) throws Exception;
+/**
+ * 树绘制器接口
+ * 
+ * @author Administrator
+ * 
+ */
+public interface ITreeRender extends IMDCtrlRender {
 
-    public void fillFetchResult(ITreeModel var1, MDAjaxActionResult var2, ArrayList<ITreeNode> var3) throws Exception;
+	/**
+	 * 获取子节点标识
+	 * 
+	 * @param iWebContext
+	 * @return
+	 * @throws Exception
+	 */
+	String getNodeId(IWebContext iWebContext) throws Exception;
+
+	/**
+	 * 填充数据获取结果
+	 * 
+	 * @param iTreeModel
+	 * @param fetchResult
+	 * @param treeNodeList
+	 * @throws Exception
+	 */
+	void fillFetchResult(ITreeModel iTreeModel, MDAjaxActionResult fetchResult, ArrayList<ITreeNode> treeNodeList) throws Exception;
 }
-

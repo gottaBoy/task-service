@@ -184,7 +184,7 @@ extends SRFDAPage {
                 }
                 BaseDataEntity cond = new BaseDataEntity();
                 cond.SetParamValue("DEFGROUPID", (Object)strDEId);
-                Vector defGroupDetailList = new Vector();
+                Vector<BaseDataEntity> defGroupDetailList = new Vector<BaseDataEntity>();
                 CallResult callResult = iDEFGroupDetailDataCtrl.Select(cond, defGroupDetailList);
                 if (callResult.IsError()) {
                     String strErrorInfo = StringHelper.Format((String)"\u67e5\u8be2\u5c5e\u6027\u5206\u7ec4[%1$s]\u660e\u7ec6\u53d1\u751f\u9519\u8bef\uff0c%2$s", (Object)strDEId, (Object)callResult.getErrorInfo());
@@ -294,7 +294,7 @@ extends SRFDAPage {
             this.qmUserContext = new DefaultDAQueryModelUserContext();
             StringBuilderEx script = new StringBuilderEx();
             script.Append(daQueryModelHelper.GetQueryModelScript());
-            Vector userConditions = new Vector();
+            Vector<String> userConditions = new Vector<String>();
             daQueryModelHelper.FillMajorConditions(userConditions);
             if (userConditions.size() != 0) {
                 script.Append(" WHERE ");
@@ -370,4 +370,3 @@ extends SRFDAPage {
         return this.iDBModelHelper;
     }
 }
-

@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSSysDSActoinType> {
     }
 
     protected void onFillParentInfo(PSSysDSActoinType pSSysDSActoinType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSysDSActoinType, string, string2, string3);
+        super.onFillParentInfo(pSSysDSActoinType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSSysDSActoinType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysDSActoinType, bl);
+        super.onFillEntityFullInfo(pSSysDSActoinType, bl);
     }
 
     protected void onWriteBackParent(PSSysDSActoinType pSSysDSActoinType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysDSActoinType, bl);
+        super.onWriteBackParent(pSSysDSActoinType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSSysDSActoinType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysDSActoinType pSSysDSActoinType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysDSActoinType, bl);
+        super.onRemoveEntityUncopyValues(pSSysDSActoinType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysDSActoinType pSSysDSActoinType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -152,7 +152,7 @@ extends PSCoreSysServiceBase<PSSysDSActoinType> {
         if ((entityFieldError = this.onCheckField_PSSysDSActionTypeName(bl, pSSysDSActoinType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysDSActoinType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysDSActoinType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSSysDSActionTypeId(boolean bl, PSSysDSActoinType pSSysDSActoinType, boolean bl2, boolean bl3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSSysDSActoinType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDSActionTypeId_Default((IEntity)pSSysDSActoinType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDSActionTypeId_Default(pSSysDSActoinType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDSACTIONTYPEID");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSSysDSActoinType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDSActionTypeName_Default((IEntity)pSSysDSActoinType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDSActionTypeName_Default(pSSysDSActoinType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDSACTIONTYPENAME");
@@ -206,11 +206,11 @@ extends PSCoreSysServiceBase<PSSysDSActoinType> {
     }
 
     protected void onSyncEntity(PSSysDSActoinType pSSysDSActoinType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysDSActoinType, bl);
+        super.onSyncEntity(pSSysDSActoinType, bl);
     }
 
     protected void onSyncIndexEntities(PSSysDSActoinType pSSysDSActoinType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysDSActoinType, bl);
+        super.onSyncIndexEntities(pSSysDSActoinType, bl);
     }
 
     public Object getDataContextValue(PSSysDSActoinType pSSysDSActoinType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -218,14 +218,14 @@ extends PSCoreSysServiceBase<PSSysDSActoinType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysDSActoinType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysDSActoinType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysDSActoinType pSSysDSActoinType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysDSActoinType, arrayList, n);
+        super.onExportMajorModel(pSSysDSActoinType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -308,14 +308,14 @@ extends PSCoreSysServiceBase<PSSysDSActoinType> {
 
     protected boolean onMergeChild(String string, String string2, PSSysDSActoinType pSSysDSActoinType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysDSActoinType)) {
+        if (super.onMergeChild(string, string2, pSSysDSActoinType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysDSActoinType pSSysDSActoinType) throws Exception {
-        super.onUpdateParent((IEntity)pSSysDSActoinType);
+        super.onUpdateParent(pSSysDSActoinType);
     }
 
     @Override

@@ -199,7 +199,7 @@ extends PSAppViewService<PSAppDynaDEView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppDynaDEViewId_Default((IEntity)pSAppDynaDEView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppDynaDEViewId_Default(pSAppDynaDEView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPDYNADEVIEWID");
@@ -224,7 +224,7 @@ extends PSAppViewService<PSAppDynaDEView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppDynaDEViewName_Default((IEntity)pSAppDynaDEView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppDynaDEViewName_Default(pSAppDynaDEView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPDYNADEVIEWNAME");
@@ -1546,7 +1546,7 @@ extends PSAppViewService<PSAppDynaDEView> {
         PSAppDynaDEView pSAppDynaDEView2 = new PSAppDynaDEView();
         pSAppDynaDEView2.setPSSysAppId(pSAppDynaDEView.getPSSysAppId());
         pSAppDynaDEView2.setPSDynaDEViewTemplId(pSAppDynaDEView.getPSDynaDEViewTemplId());
-        if (this.selectOne((IEntity)pSAppDynaDEView2, true)) {
+        if (this.selectOne(pSAppDynaDEView2, true)) {
             return pSAppDynaDEView2.getPSAppDynaDEViewId();
         }
         return super.getEntityFolderKeyValue(pSAppDynaDEView, pSSystem);

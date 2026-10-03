@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.wfplatform.demodel.PSWPEngineInstDEModelBase;
 
 public class PSWPEngineInstDEModel
 extends PSWPEngineInstDEModelBase {
+
+    public PSWPEngineInstDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

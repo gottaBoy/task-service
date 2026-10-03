@@ -839,7 +839,7 @@ implements Serializable {
                 PSDCOrgUser pSDCOrgUser = new PSDCOrgUser();
                 pSDCOrgUser.setPSDCOrgUserId(this.getPSDCOrgUserId());
                 PSDCOrgUserService pSDCOrgUserService = (PSDCOrgUserService)ServiceGlobal.getService(PSDCOrgUserService.class, (SessionFactory)this.getSessionFactory());
-                pSDCOrgUserService.autoGet((IEntity)pSDCOrgUser);
+                pSDCOrgUserService.autoGet(pSDCOrgUser);
                 this.psdcorguser = pSDCOrgUser;
             }
             return this.psdcorguser;

@@ -107,7 +107,7 @@ extends PSCoreSysServiceBase<PSMQType> {
     }
 
     protected void onFillParentInfo(PSMQType pSMQType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSMQType, string, string2, string3);
+        super.onFillParentInfo(pSMQType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -118,11 +118,11 @@ extends PSCoreSysServiceBase<PSMQType> {
         if (bl && pSMQType.getValidFlag() == null) {
             pSMQType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSMQType, bl);
+        super.onFillEntityFullInfo(pSMQType, bl);
     }
 
     protected void onWriteBackParent(PSMQType pSMQType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSMQType, bl);
+        super.onWriteBackParent(pSMQType, bl);
     }
 
     @Override
@@ -131,7 +131,7 @@ extends PSCoreSysServiceBase<PSMQType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSMQType pSMQType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSMQType, bl);
+        super.onRemoveEntityUncopyValues(pSMQType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSMQType pSMQType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -155,7 +155,7 @@ extends PSCoreSysServiceBase<PSMQType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSMQType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSMQType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSMQType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_InstallPath(boolean bl, PSMQType pSMQType, boolean bl2, boolean bl3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSMQType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_InstallPath_Default((IEntity)pSMQType, bl2, bl3);
+            string2 = this.onTestValueRule_InstallPath_Default(pSMQType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INSTALLPATH");
@@ -190,7 +190,7 @@ extends PSCoreSysServiceBase<PSMQType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSMQType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSMQType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -215,7 +215,7 @@ extends PSCoreSysServiceBase<PSMQType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMQTypeId_Default((IEntity)pSMQType, bl2, bl3);
+            string2 = this.onTestValueRule_PSMQTypeId_Default(pSMQType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMQTYPEID");
@@ -240,7 +240,7 @@ extends PSCoreSysServiceBase<PSMQType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMQTypeName_Default((IEntity)pSMQType, bl2, bl3);
+            string2 = this.onTestValueRule_PSMQTypeName_Default(pSMQType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMQTYPENAME");
@@ -262,7 +262,7 @@ extends PSCoreSysServiceBase<PSMQType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeHelper_Default((IEntity)pSMQType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeHelper_Default(pSMQType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEHELPER");
@@ -287,7 +287,7 @@ extends PSCoreSysServiceBase<PSMQType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSMQType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSMQType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -300,11 +300,11 @@ extends PSCoreSysServiceBase<PSMQType> {
     }
 
     protected void onSyncEntity(PSMQType pSMQType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSMQType, bl);
+        super.onSyncEntity(pSMQType, bl);
     }
 
     protected void onSyncIndexEntities(PSMQType pSMQType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSMQType, bl);
+        super.onSyncIndexEntities(pSMQType, bl);
     }
 
     public Object getDataContextValue(PSMQType pSMQType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -312,14 +312,14 @@ extends PSCoreSysServiceBase<PSMQType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSMQType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSMQType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSMQType pSMQType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSMQType, arrayList, n);
+        super.onExportMajorModel(pSMQType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -454,14 +454,14 @@ extends PSCoreSysServiceBase<PSMQType> {
 
     protected boolean onMergeChild(String string, String string2, PSMQType pSMQType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSMQType)) {
+        if (super.onMergeChild(string, string2, pSMQType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSMQType pSMQType) throws Exception {
-        super.onUpdateParent((IEntity)pSMQType);
+        super.onUpdateParent(pSMQType);
     }
 
     @Override

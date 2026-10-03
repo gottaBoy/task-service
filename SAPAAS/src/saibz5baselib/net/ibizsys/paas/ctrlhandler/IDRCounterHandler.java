@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ICounterHandler;
+/**
+ * 数据关系计数器处理对象
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDRCounterHandler extends ICounterHandler {
 
-public interface IDRCounterHandler
-extends ICounterHandler {
 }
-

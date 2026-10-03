@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
     }
 
     protected void onFillParentInfo(PSSysIssueEngine pSSysIssueEngine, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSysIssueEngine, string, string2, string3);
+        super.onFillParentInfo(pSSysIssueEngine, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
         if (bl && pSSysIssueEngine.getValidFlag() == null) {
             pSSysIssueEngine.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysIssueEngine, bl);
+        super.onFillEntityFullInfo(pSSysIssueEngine, bl);
     }
 
     protected void onWriteBackParent(PSSysIssueEngine pSSysIssueEngine, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysIssueEngine, bl);
+        super.onWriteBackParent(pSSysIssueEngine, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysIssueEngine pSSysIssueEngine, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysIssueEngine, bl);
+        super.onRemoveEntityUncopyValues(pSSysIssueEngine, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysIssueEngine pSSysIssueEngine, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysIssueEngine, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysIssueEngine, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysIssueEngine, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_EngineObj(boolean bl, PSSysIssueEngine pSSysIssueEngine, boolean bl2, boolean bl3) throws Exception {
@@ -183,7 +183,7 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineObj_Default((IEntity)pSSysIssueEngine, bl2, bl3);
+            string2 = this.onTestValueRule_EngineObj_Default(pSSysIssueEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEOBJ");
@@ -205,7 +205,7 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EngineParams_Default((IEntity)pSSysIssueEngine, bl2, bl3);
+            string2 = this.onTestValueRule_EngineParams_Default(pSSysIssueEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENGINEPARAMS");
@@ -227,7 +227,7 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysIssueEngine, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysIssueEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -252,7 +252,7 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysIssueEngine, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysIssueEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -277,7 +277,7 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysIssueEngineId_Default((IEntity)pSSysIssueEngine, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysIssueEngineId_Default(pSSysIssueEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSISSUEENGINEID");
@@ -302,7 +302,7 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysIssueEngineName_Default((IEntity)pSSysIssueEngine, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysIssueEngineName_Default(pSSysIssueEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSISSUEENGINENAME");
@@ -327,7 +327,7 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysIssueEngine, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysIssueEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -340,11 +340,11 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
     }
 
     protected void onSyncEntity(PSSysIssueEngine pSSysIssueEngine, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysIssueEngine, bl);
+        super.onSyncEntity(pSSysIssueEngine, bl);
     }
 
     protected void onSyncIndexEntities(PSSysIssueEngine pSSysIssueEngine, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysIssueEngine, bl);
+        super.onSyncIndexEntities(pSSysIssueEngine, bl);
     }
 
     public Object getDataContextValue(PSSysIssueEngine pSSysIssueEngine, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -352,14 +352,14 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysIssueEngine, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysIssueEngine, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysIssueEngine pSSysIssueEngine, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysIssueEngine, arrayList, n);
+        super.onExportMajorModel(pSSysIssueEngine, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -501,14 +501,14 @@ extends PSCoreSysServiceBase<PSSysIssueEngine> {
 
     protected boolean onMergeChild(String string, String string2, PSSysIssueEngine pSSysIssueEngine) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysIssueEngine)) {
+        if (super.onMergeChild(string, string2, pSSysIssueEngine)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysIssueEngine pSSysIssueEngine) throws Exception {
-        super.onUpdateParent((IEntity)pSSysIssueEngine);
+        super.onUpdateParent(pSSysIssueEngine);
     }
 
     @Override

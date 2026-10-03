@@ -120,7 +120,7 @@ public class ThreadLockChecker {
                     }
                     threadEnterLockMap.put(entry.getValue().getLockObject(), lockWaitInfo);
                 }
-                for (Map.Entry<Object, LockInfo> entry : removeList) {
+                for (Object entry : removeList) {
                     LockInfo lockInfo = this.lockInfoMap.get(entry);
                     if (lockInfo != null && !lockInfo.isIdle()) continue;
                     this.lockInfoMap.remove(lockInfo);
@@ -149,7 +149,7 @@ public class ThreadLockChecker {
                 }
             }
             sb.append("\r\n\u5176\u5b83\u7ebf\u7a0b\r\n");
-            for (Map.Entry<Object, Object> entry : threadWaitLockMap.entrySet()) {
+            for (Map.Entry<Long, LockWaitInfo> entry : threadWaitLockMap.entrySet()) {
                 LockWaitInfo lockWaitInfo;
                 Long nThreadId = (Long)entry.getKey();
                 if (hashMap2.containsKey(nThreadId) || (lockWaitInfo = (LockWaitInfo)entry.getValue()) == null) continue;

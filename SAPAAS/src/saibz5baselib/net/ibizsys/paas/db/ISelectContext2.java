@@ -1,16 +1,31 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
-import net.ibizsys.paas.db.ISelectContext;
+/**
+ * 数据查询上下文条件2，提供开始行，分页，用于非视图模式查询
+ * @author Administrator
+ *
+ */
+public interface ISelectContext2 extends ISelectContext {
 
-public interface ISelectContext2
-extends ISelectContext {
-    public boolean isPaging();
+	/**
+	 * 是否支持分页
+	  * @return
+	 */
+	boolean isPaging();
+	
+	
+	/**
+	 * 开始行数
+	 * 
+	 * @return
+	 */
+	int getStartRow();
 
-    public int getStartRow();
+	/**
+	 * 分页大小
+	 * 
+	 * @return
+	 */
+	int getPageSize();
 
-    public int getPageSize();
 }
-

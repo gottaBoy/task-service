@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDERIndex;
+/**
+ * 继承关系接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDERInherit extends IDERIndex {
 
-public interface IDERInherit
-extends IDERIndex {
 }
-

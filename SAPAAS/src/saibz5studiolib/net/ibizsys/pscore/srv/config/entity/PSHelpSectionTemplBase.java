@@ -1405,7 +1405,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -1431,7 +1431,7 @@ implements Serializable {
                 PSHelpSectionType pSHelpSectionType = new PSHelpSectionType();
                 pSHelpSectionType.setPSHelpSectionTypeId(this.getPSHelpSectionTypeId());
                 PSHelpSectionTypeService pSHelpSectionTypeService = (PSHelpSectionTypeService)ServiceGlobal.getService(PSHelpSectionTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpSectionTypeService.autoGet((IEntity)pSHelpSectionType);
+                pSHelpSectionTypeService.autoGet(pSHelpSectionType);
                 this.pshelparticletype = pSHelpSectionType;
             }
             return this.pshelparticletype;

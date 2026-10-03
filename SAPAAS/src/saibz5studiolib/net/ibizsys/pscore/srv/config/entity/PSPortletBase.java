@@ -1055,7 +1055,7 @@ implements Serializable {
                 PSPFPlugin pSPFPlugin = new PSPFPlugin();
                 pSPFPlugin.setPSPFPluginId(this.getPSPFPluginId());
                 PSPFPluginService pSPFPluginService = (PSPFPluginService)ServiceGlobal.getService(PSPFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSPFPluginService.autoGet((IEntity)pSPFPlugin);
+                pSPFPluginService.autoGet(pSPFPlugin);
                 this.pspfplugin = pSPFPlugin;
             }
             return this.pspfplugin;

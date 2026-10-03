@@ -1763,7 +1763,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -1789,7 +1789,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -1811,7 +1811,7 @@ implements Serializable {
         Integer n = this.objPSDERTAWIsLock;
         synchronized (n) {
             if (this.psdertawis == null) {
-                this.psdertawis = pSDERTAWService.isTempData((IEntity)this) ? pSDERTAWIService.selectTempByPSDERTAW(this) : pSDERTAWIService.selectByPSDERTAW(this);
+                this.psdertawis = pSDERTAWService.isTempData(this) ? pSDERTAWIService.selectTempByPSDERTAW(this) : pSDERTAWIService.selectByPSDERTAW(this);
             }
             return this.psdertawis;
         }

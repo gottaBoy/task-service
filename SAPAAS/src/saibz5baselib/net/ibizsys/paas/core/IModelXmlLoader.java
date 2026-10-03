@@ -1,12 +1,21 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import net.ibizsys.paas.util.IGlobalContext;
 import net.ibizsys.paas.xml.XmlNode;
 
+/**
+ * 模型XML加载器接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IModelXmlLoader {
-    public void initFromXml(IGlobalContext var1, Object var2, XmlNode var3) throws Exception;
+	/**
+	 * 初始化
+	 * 
+	 * @param iDAGlobalHelper
+	 * @param xmlConfig
+	 * @throws Exception
+	 */
+	void initFromXml(IGlobalContext iGlobalContext, Object objParent, XmlNode xmlConfig) throws Exception;
 }
-

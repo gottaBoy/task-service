@@ -1,39 +1,100 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
-import net.ibizsys.paas.codelist.ICodeList;
-import net.ibizsys.paas.sysmodel.CodeListGlobal;
 import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
+import net.ibizsys.paas.sysmodel.CodeListGlobal;
 
-@CodeList(id="57e083a5e9c3455f05dc283dc18ce1d0", name="\u4efb\u52a1\u65f6\u523b\u8868\u6708\u4efd", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49", ormode="STR", valueseparator=",", textseparator=",")
-@CodeItems(value={@CodeItem(value="1", text="\u4e00\u6708", realtext="\u4e00\u6708"), @CodeItem(value="2", text="\u4e8c\u6708", realtext="\u4e8c\u6708"), @CodeItem(value="3", text="\u4e09\u6708", realtext="\u4e09\u6708"), @CodeItem(value="4", text="\u56db\u6708", realtext="\u56db\u6708"), @CodeItem(value="5", text="\u4e94\u6708", realtext="\u4e94\u6708"), @CodeItem(value="6", text="\u516d\u6708", realtext="\u516d\u6708"), @CodeItem(value="7", text="\u4e03\u6708", realtext="\u4e03\u6708"), @CodeItem(value="8", text="\u516b\u6708", realtext="\u516b\u6708"), @CodeItem(value="9", text="\u4e5d\u6708", realtext="\u4e5d\u6708"), @CodeItem(value="10", text="\u5341\u6708", realtext="\u5341\u6708"), @CodeItem(value="11", text="\u5341\u4e00\u6708", realtext="\u5341\u4e00\u6708"), @CodeItem(value="12", text="\u5341\u4e8c\u6708", realtext="\u5341\u4e8c\u6708")})
-public abstract class TSMonthCodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String ITEM_1 = "1";
-    public static final String ITEM_2 = "2";
-    public static final String ITEM_3 = "3";
-    public static final String ITEM_4 = "4";
-    public static final String ITEM_5 = "5";
-    public static final String ITEM_6 = "6";
-    public static final String ITEM_7 = "7";
-    public static final String ITEM_8 = "8";
-    public static final String ITEM_9 = "9";
-    public static final String ITEM_10 = "10";
-    public static final String ITEM_11 = "11";
-    public static final String ITEM_12 = "12";
+
+@CodeList(id="57e083a5e9c3455f05dc283dc18ce1d0",name="任务时刻表月份",type="STATIC",userscope=false,emptytext="未定义",ormode="STR",valueseparator=",",textseparator=",")
+
+@CodeItems({
+    @CodeItem(value="1",text="一月",realtext="一月")
+    ,@CodeItem(value="2",text="二月",realtext="二月")
+    ,@CodeItem(value="3",text="三月",realtext="三月")
+    ,@CodeItem(value="4",text="四月",realtext="四月")
+    ,@CodeItem(value="5",text="五月",realtext="五月")
+    ,@CodeItem(value="6",text="六月",realtext="六月")
+    ,@CodeItem(value="7",text="七月",realtext="七月")
+    ,@CodeItem(value="8",text="八月",realtext="八月")
+    ,@CodeItem(value="9",text="九月",realtext="九月")
+    ,@CodeItem(value="10",text="十月",realtext="十月")
+    ,@CodeItem(value="11",text="十一月",realtext="十一月")
+    ,@CodeItem(value="12",text="十二月",realtext="十二月")
+})
+
+
+/**
+ * 静态代码表[任务时刻表月份]模型基类
+ */
+public abstract class TSMonthCodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  一月，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_1 = "1";
+    /**
+     *  二月，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_2 = "2";
+    /**
+     *  三月，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_3 = "3";
+    /**
+     *  四月，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_4 = "4";
+    /**
+     *  五月，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_5 = "5";
+    /**
+     *  六月，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_6 = "6";
+    /**
+     *  七月，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_7 = "7";
+    /**
+     *  八月，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_8 = "8";
+    /**
+     *  九月，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_9 = "9";
+    /**
+     *  十月，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_10 = "10";
+    /**
+     *  十一月，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_11 = "11";
+    /**
+     *  十二月，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_12 = "12";
 
     public TSMonthCodeListModelBase() {
+        super();
         this.initAnnotation(TSMonthCodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.TSMonthCodeListModel", this);
     }
 
-    public static ICodeList getInstance() throws Exception {
+    /**
+     * 获取当前代码表对象实例
+     */
+    public static net.ibizsys.paas.codelist.ICodeList getInstance() throws Exception {
         return CodeListGlobal.getCodeList("net.ibizsys.psrt.srv.codelist.TSMonthCodeListModel");
     }
-}
 
+}

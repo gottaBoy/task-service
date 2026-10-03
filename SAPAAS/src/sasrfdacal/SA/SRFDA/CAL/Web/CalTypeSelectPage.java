@@ -66,7 +66,7 @@ extends BaseMainPage {
             this.PageLog((Object)this, 1, StringHelper.Format((String)"\u83b7\u53d6\u7528\u6237\u53ef\u5efa\u7acb\u65e5\u5386\u5931\u8d25\u5931\u8d25,%1$s", (Object)callResult.getErrorInfo()));
             return "";
         }
-        Vector list = (Vector)callResult.getUserObject();
+        Vector<CalendarType> list = (Vector)callResult.getUserObject();
         StringBuilderEx strIconView = new StringBuilderEx();
         strIconView.Append("<table align=\"left\" width=\"100%%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" >");
         strIconView.Append("<tr><td height=\"20\"></td></tr><tr>");
@@ -111,7 +111,7 @@ extends BaseMainPage {
             this.PageLog((Object)this, 1, StringHelper.Format((String)"\u83b7\u53d6\u7528\u6237\u53ef\u5efa\u7acb\u65e5\u5386\u7c7b\u578b\u5931\u8d25,%1$s", (Object)callResult.getErrorInfo()));
             return false;
         }
-        Vector list = (Vector)callResult.getUserObject();
+        Vector<CalendarType> list = (Vector)callResult.getUserObject();
         for (CalendarType calendarType : list) {
             IDEHelper calTypeDEHelper = null;
             String strImage = "";

@@ -268,7 +268,7 @@ extends BaseBIAggTableBuilder {
         if (bicubeDEHelper == null) {
             throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6BICube[%1$s]\u5bf9\u5e94\u7684\u5b9e\u4f53[%2$s]\u8f85\u52a9\u5bf9\u8c61", (Object)bicube.getBICUBEID(), (Object)bicube.getDEID()));
         }
-        Vector list = new Vector();
+        Vector<BIAggColumn> list = new Vector<BIAggColumn>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_AggTableColumnQuery(aggtable.getBIAGGTABLEID()), list, (String)BIAggColumn.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -400,4 +400,3 @@ extends BaseBIAggTableBuilder {
         return callResult;
     }
 }
-

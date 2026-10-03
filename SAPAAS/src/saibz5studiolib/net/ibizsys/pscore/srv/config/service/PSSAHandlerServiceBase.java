@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSSAHandler> {
     }
 
     protected void onFillParentInfo(PSSAHandler pSSAHandler, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSAHandler, string, string2, string3);
+        super.onFillParentInfo(pSSAHandler, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSSAHandler> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSAHandler, bl);
+        super.onFillEntityFullInfo(pSSAHandler, bl);
     }
 
     protected void onWriteBackParent(PSSAHandler pSSAHandler, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSAHandler, bl);
+        super.onWriteBackParent(pSSAHandler, bl);
     }
 
     @Override
@@ -143,7 +143,7 @@ extends PSCoreSysServiceBase<PSSAHandler> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSAHandler pSSAHandler, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSAHandler, bl);
+        super.onRemoveEntityUncopyValues(pSSAHandler, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSAHandler pSSAHandler, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -164,7 +164,7 @@ extends PSCoreSysServiceBase<PSSAHandler> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSAHandler, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSAHandler, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSAHandler, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSAHandler pSSAHandler, boolean bl2, boolean bl3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSSAHandler> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSAHandler, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSAHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSSAHandler> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSAHandlerId_Default((IEntity)pSSAHandler, bl2, bl3);
+            string2 = this.onTestValueRule_PSSAHandlerId_Default(pSSAHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSAHANDLERID");
@@ -227,7 +227,7 @@ extends PSCoreSysServiceBase<PSSAHandler> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSAHandlerName_Default((IEntity)pSSAHandler, bl2, bl3);
+            string2 = this.onTestValueRule_PSSAHandlerName_Default(pSSAHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSAHANDLERNAME");
@@ -252,7 +252,7 @@ extends PSCoreSysServiceBase<PSSAHandler> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SAType_Default((IEntity)pSSAHandler, bl2, bl3);
+            string2 = this.onTestValueRule_SAType_Default(pSSAHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SATYPE");
@@ -277,7 +277,7 @@ extends PSCoreSysServiceBase<PSSAHandler> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSAHandler, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSAHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -290,11 +290,11 @@ extends PSCoreSysServiceBase<PSSAHandler> {
     }
 
     protected void onSyncEntity(PSSAHandler pSSAHandler, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSAHandler, bl);
+        super.onSyncEntity(pSSAHandler, bl);
     }
 
     protected void onSyncIndexEntities(PSSAHandler pSSAHandler, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSAHandler, bl);
+        super.onSyncIndexEntities(pSSAHandler, bl);
     }
 
     public Object getDataContextValue(PSSAHandler pSSAHandler, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -302,14 +302,14 @@ extends PSCoreSysServiceBase<PSSAHandler> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSAHandler, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSAHandler, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSAHandler pSSAHandler, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSAHandler, arrayList, n);
+        super.onExportMajorModel(pSSAHandler, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -429,14 +429,14 @@ extends PSCoreSysServiceBase<PSSAHandler> {
 
     protected boolean onMergeChild(String string, String string2, PSSAHandler pSSAHandler) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSAHandler)) {
+        if (super.onMergeChild(string, string2, pSSAHandler)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSAHandler pSSAHandler) throws Exception {
-        super.onUpdateParent((IEntity)pSSAHandler);
+        super.onUpdateParent(pSSAHandler);
     }
 
     @Override

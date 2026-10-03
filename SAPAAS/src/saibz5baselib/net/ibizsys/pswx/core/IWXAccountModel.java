@@ -1,43 +1,121 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswx.core;
 
 import java.util.Collection;
+
 import net.ibizsys.paas.core.CallResult;
 import net.ibizsys.paas.sysmodel.ISystemModel;
 import net.ibizsys.psrt.srv.wx.entity.WXMessage;
 import net.ibizsys.pswx.bean.WXDept;
 import net.ibizsys.pswx.bean.WXUser;
-import net.ibizsys.pswx.core.IWXAccount;
-import net.ibizsys.pswx.core.IWXEntAppModel;
 
-public interface IWXAccountModel
-extends IWXAccount {
-    public String getCorpId();
+/**
+ * 微信公众号运行时
+ * 
+ * @author Administrator
+ * 
+ */
+public interface IWXAccountModel extends IWXAccount {
 
-    public void setCropId(String var1);
+	/**
+	 * 获取企业编号
+	 * 
+	 * @return
+	 */
+	String getCorpId();
 
-    public String getCorpSecret();
+	/**
+	 * 设置企业编号
+	 * 
+	 * @param strCropId
+	 */
+	void setCropId(String strCropId);
 
-    public void setCropSecret(String var1);
+	/**
+	 * 获取企业凭证密钥
+	 * 
+	 * @return
+	 */
+	String getCorpSecret();
 
-    public ISystemModel getSystemModel();
+	/**
+	 * 设置企业凭证密钥
+	 * 
+	 * @param strCropSecret
+	 */
+	void setCropSecret(String strCropSecret);
 
-    public void processWXMessage(WXMessage var1) throws Exception;
+	/**
+	 * 获取系统模型对象
+	 * 
+	 * @return
+	 */
+	ISystemModel getSystemModel();
 
-    public IWXEntAppModel getWXEntAppModel(int var1) throws Exception;
+	/**
+	 * 处理微信消息
+	 * 
+	 * @param wxMessage
+	 * @throws Exception
+	 */
+	void processWXMessage(WXMessage wxMessage) throws Exception;
 
-    public IWXEntAppModel getWXEntAppModel(String var1) throws Exception;
+	/**
+	 * 获取微信应用模型，通过agentid
+	 * 
+	 * @param nAgentId
+	 * @return
+	 */
+	IWXEntAppModel getWXEntAppModel(int nAgentId) throws Exception;
 
-    public CallResult syncWXDept(Collection<WXDept> var1);
+	
+	/**
+	 * 获取微信应用模型
+	 * @param strWXEntAppId
+	 * @return
+	 * @throws Exception
+	 */
+	IWXEntAppModel getWXEntAppModel(String strWXEntAppId) throws Exception;
+	
+	
+	/**
+	 * 同步微信部门数据
+	 * 
+	 * @param depts
+	 * @return
+	 */
+	CallResult syncWXDept(Collection<WXDept> depts);
 
-    public CallResult syncWXUsers(Collection<WXUser> var1);
+	/**
+	 * 同步微信用户数据
+	 * 
+	 * @param users
+	 * @return
+	 */
+	CallResult syncWXUsers(Collection<WXUser> users);
 
-    public void refresh() throws Exception;
-
-    public void setWXEntAppModelRuntimeId(String var1, Object var2) throws Exception;
-
-    public IWXEntAppModel getWXEntAppModelByRuntimeId(Object var1) throws Exception;
+	/**
+	 * 刷新数据
+	 * 
+	 * @throws Exception
+	 */
+	void refresh() throws Exception;
+	
+	
+	
+	/**
+	 * 设置微信企业应用模型运行时标识
+	 * @param strWXEntAppModelId
+	 * @param runtimeId
+	 * @throws Exception
+	 */
+	void setWXEntAppModelRuntimeId(String strWXEntAppModelId,Object runtimeId)throws Exception;
+	
+	
+	/**
+	 * 通过运行时标识获取微信企业应用模型
+	 * @param runtimeId
+	 * @return
+	 * @throws Exception
+	 */
+	IWXEntAppModel getWXEntAppModelByRuntimeId(Object runtimeId) throws Exception;
 }
-

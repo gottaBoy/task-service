@@ -199,7 +199,7 @@ implements IDAGlobalModel<KT, VT, HT> {
     }
 
     public HT FindModelHelper(KT objObjectId) throws Exception {
-        return this.FindModelHelper(objObjectId, (VT)false);
+        return this.FindModelHelper(objObjectId, false);
     }
 
     public Iterator<HT> GetModelHelpers() {
@@ -397,4 +397,3 @@ implements IDAGlobalModel<KT, VT, HT> {
         return objHelperMap.size();
     }
 }
-

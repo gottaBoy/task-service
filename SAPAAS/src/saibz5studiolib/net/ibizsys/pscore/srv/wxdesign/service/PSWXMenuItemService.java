@@ -11,6 +11,7 @@ package net.ibizsys.pscore.srv.wxdesign.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.wxdesign.entity.PSWXMenu;
 import net.ibizsys.pscore.srv.wxdesign.entity.PSWXMenuItem;
@@ -42,9 +43,10 @@ extends PSWXMenuItemServiceBase {
         ArrayList<PSWXMenuItem> arrayList = null;
         arrayList = pSWXMenu.getPSWXMenuId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSWXMenu(pSWXMenu) : this.selectByPSWXMenu(pSWXMenu);
         HashMap<String, PSWXMenuItem> hashMap = new HashMap<String, PSWXMenuItem>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSWXMenuItem pSWXMenuItem2 = object.next();
+        String object;
+        Iterator<PSWXMenuItem> objectIterator = arrayList.iterator();
+        while (objectIterator.hasNext()) {
+            PSWXMenuItem pSWXMenuItem2 = objectIterator.next();
             hashMap.put(pSWXMenuItem2.getPSWXMenuItemName().toLowerCase(), pSWXMenuItem2);
         }
         while (true) {

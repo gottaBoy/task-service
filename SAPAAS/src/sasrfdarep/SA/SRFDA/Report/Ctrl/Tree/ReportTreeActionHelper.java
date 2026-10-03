@@ -35,8 +35,14 @@ extends BaseDATreeActionHelper {
                 return false;
             }
         }
-        strReportId = dr.Get("REPORTID").toString();
-        return this.getWebContext().GetUserPrivilegeMgr().Test((SRFExWebContext)this.getWebContext(), UniResHelper.GetReportResId((String)strReportId));
+        try {
+            strReportId = dr.Get("REPORTID").toString();
+            return this.getWebContext().GetUserPrivilegeMgr().Test((SRFExWebContext)this.getWebContext(), UniResHelper.GetReportResId((String)strReportId));
+        }
+        catch (Exception e) {
+            log.error((Object)e);
+            return false;
+        }
     }
 }
 

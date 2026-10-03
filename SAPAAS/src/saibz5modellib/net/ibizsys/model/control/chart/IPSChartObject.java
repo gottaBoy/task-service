@@ -1,13 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.chart;
 
-import net.ibizsys.model.control.chart.IPSChart;
 import net.ibizsys.model.core.IPSModelObject;
 
-public interface IPSChartObject
-extends IPSModelObject {
-    public IPSChart getPSChart();
+/**
+ * 图表元素对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSChartObject extends IPSModelObject
+{
+	/**
+	 * 获取图表对象
+	 * @return
+	 */
+	IPSChart  getPSChart();
 }
-

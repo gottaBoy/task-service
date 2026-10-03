@@ -1,13 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.controller.IDynaViewController
- *  net.ibizsys.paas.controller.IDynaViewControllerInst
- *  net.ibizsys.paas.ctrlhandler.IDynaCtrlHandler
- *  net.ibizsys.paas.ctrlmodel.IDynaCtrlModel
- *  net.ibizsys.paas.view.IDynaViewSetting
- */
 package net.ibizsys.paas.view;
 
 import net.ibizsys.paas.controller.IDynaViewController;
@@ -18,24 +8,82 @@ import net.ibizsys.paas.ctrlmodel.IDynaEditFormModel;
 import net.ibizsys.paas.ctrlmodel.IDynaSearchFormModel;
 import net.ibizsys.paas.ctrlmodel.IDynaToolbarModel;
 import net.ibizsys.paas.sysmodel.IDynaSystemSettingModel;
-import net.ibizsys.paas.view.IDynaViewSetting;
 
-public interface IDynaViewSettingModel
-extends IDynaViewSetting {
-    public void init(IDynaSystemSettingModel var1) throws Exception;
+/**
+ * 动态视图设置对象模型接口
+ * @author Administrator
+ *
+ */
+public interface IDynaViewSettingModel extends IDynaViewSetting {
 
-    public IDynaSystemSettingModel getDynaSystemSettingModel();
-
-    public IDynaViewControllerInst createDynaViewControllerInst(IDynaViewController var1, String var2) throws Exception;
-
-    public IDynaCtrlModel createDynaCtrlModel(String var1, Object var2) throws Exception;
-
-    public IDynaCtrlHandler createDynaCtrlHandler(IDynaCtrlModel var1) throws Exception;
-
-    public IDynaToolbarModel createDynaToolbarModel();
-
-    public IDynaEditFormModel createDynaEditFormModel();
-
-    public IDynaSearchFormModel createDynaSearchFormModel();
+	/**
+	 * 初始化
+	 * @param iDynaSystemSettingModel
+	 * @throws Exception
+	 */
+	void init(IDynaSystemSettingModel iDynaSystemSettingModel)throws Exception;
+	
+	
+	/**
+	 * 获取动态系统设置模型对象
+	 * @return
+	 */
+	IDynaSystemSettingModel getDynaSystemSettingModel();
+	
+	/**
+	 * 创建动态视图控制器实例
+	 * @param iDynaViewController
+	 * @param strDynaViewInstId
+	 * @return
+	 * @throws Exception
+	 */
+	IDynaViewControllerInst createDynaViewControllerInst(IDynaViewController iDynaViewController,String strDynaViewInstId)throws Exception;
+	
+	
+	
+	/**
+	 * 创建动态部件模型
+	 * @param strCtrlType
+	 * @param ctrlParam
+	 * @return
+	 * @throws Exception
+	 */
+	IDynaCtrlModel createDynaCtrlModel(String strCtrlType,Object ctrlParam)throws Exception;
+	
+	
+	
+	/**
+	 * 建立动态部件处理对象
+	 * @param iDynaCtrlModel
+	 * @return
+	 * @throws Exception
+	 */
+	IDynaCtrlHandler createDynaCtrlHandler(IDynaCtrlModel iDynaCtrlModel)throws Exception;
+	
+	
+	
+	/**
+	 * 建立动态工具栏模型对象
+	 * @return
+	 */
+	IDynaToolbarModel createDynaToolbarModel();
+	
+	
+	
+	/**
+	 * 建立动态编辑表单模型对象
+	 * @return
+	 */
+	IDynaEditFormModel createDynaEditFormModel();
+	
+	
+	
+	/**
+	 * 建立动态搜索表单模型对象
+	 * @return
+	 */
+	IDynaSearchFormModel createDynaSearchFormModel();
+	
+	
+	
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEFInputTipSetDEModelBase;
 
 public class PSDEFInputTipSetDEModel
 extends PSDEFInputTipSetDEModelBase {
+
+    public PSDEFInputTipSetDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

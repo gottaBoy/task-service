@@ -689,10 +689,10 @@ ISRFWFContext {
                     this.wfDataCtrl.ErrorWFInstance(this.wfInstance, callResult == null ? "\u4e0d\u660e\u9519\u8bef" : callResult.getErrorInfo(), wpParam.getOpPersonId());
                     return this.LogAndReturn("SubmitIAAction", StringHelper.Format((String)"\u83b7\u53d6\u4ea4\u4e92\u64cd\u4f5c\u7528\u6237\u64cd\u4f5c\u7ed3\u679c[%1$s]\u5931\u8d25", (Object)stepData.getWFSTEPID()), callResult);
                 }
-                TreeMap<Object, Integer> roleCountMap = new TreeMap<Object, Integer>();
+                TreeMap<String, Integer> roleCountMap = new TreeMap<String, Integer>();
                 TreeMap<String, String> actorRoleMap = new TreeMap<String, String>();
                 for (WFStepActor wfStepActor : stepActorList) {
-                    Object strRoleId = wfStepActor.getROLEID();
+                    String strRoleId = wfStepActor.getROLEID();
                     int nCurCount = 0;
                     if (roleCountMap.containsKey(strRoleId)) {
                         nCurCount = (Integer)roleCountMap.get(strRoleId);
@@ -719,7 +719,7 @@ ISRFWFContext {
                     strCurRoleId = strRoleId;
                 }
                 nCount = 0;
-                for (Object strRoleId : roleCountMap.keySet()) {
+                for (String strRoleId : roleCountMap.keySet()) {
                     if (!this.TestRoleConnection(stepData.getCONNECTIONNAME(), (Integer)roleCountMap.get(strRoleId), (TreeMap)roleStepCountMap.get(strRoleId), strRoleNextCond, "")) continue;
                     ++nCount;
                     if (StringHelper.Compare((String)strCurRoleId, (String)strRoleId, (boolean)true) != 0) continue;
@@ -1617,9 +1617,7 @@ ISRFWFContext {
                     return this.LogAndReturn("InternalPrepareProcess", StringHelper.Format((String)"\u5237\u65b0\u7528\u6237\u6570\u636e\u5931\u8d25"), ret);
                 }
                 if (processConfig instanceof WFInteractiveProcessConfig) {
-                    Object strUDActors;
-                    Object actors;
-                    Hashtable<Object, String> wfStepActorMap = new Hashtable<Object, String>();
+                    Hashtable<String, String> wfStepActorMap = new Hashtable<String, String>();
                     WFInteractiveProcessConfig iaProcessConfig = (WFInteractiveProcessConfig)processConfig;
                     if (this.rollbackStepActors.size() > 0) {
                         for (WFStepActor lastWFStepActor : this.rollbackStepActors) {
@@ -1643,8 +1641,8 @@ ISRFWFContext {
                         boolean bActorIAActionControl = iaProcessConfig.isActorIAActionControl();
                         String strActors = iaProcessConfig.getActors();
                         if (!StringHelper.IsNullOrEmpty((String)strActors)) {
-                            actors = strActors.split(";");
-                            int nCount = ((String[])actors).length;
+                            String[] actors = strActors.split(";");
+                            int nCount = actors.length;
                             int i = 0;
                             while (i < nCount) {
                                 WFInteractiveActionConfig iaActionConfig;
@@ -1818,8 +1816,9 @@ ISRFWFContext {
                                 ++i;
                             }
                         }
-                        if (!StringHelper.IsNullOrEmpty((String)(strUDActors = iaProcessConfig.getUDActors()))) {
-                            String[] actors2 = ((String)strUDActors).split(";");
+                        String strUDActors = iaProcessConfig.getUDActors();
+                        if (!StringHelper.IsNullOrEmpty((String)strUDActors)) {
+                            String[] actors2 = strUDActors.split(";");
                             int nCount = actors2.length;
                             int i = 0;
                             while (i < nCount) {
@@ -1859,9 +1858,9 @@ ISRFWFContext {
                         }
                     }
                     int nOrderFlag = 1;
-                    strUDActors = iaProcessConfig.getIAActionsConfig().iterator();
-                    while (strUDActors.hasNext()) {
-                        WFInteractiveActionConfig iaActionConfig = (WFInteractiveActionConfig)((Object)strUDActors.next());
+                    Iterator<WFInteractiveActionConfig> iaActions = iaProcessConfig.getIAActionsConfig().iterator();
+                    while (iaActions.hasNext()) {
+                        WFInteractiveActionConfig iaActionConfig = iaActions.next();
                         WFIAAction iaAction = new WFIAAction();
                         iaAction.setWFIAACTIONID(Helper.GenGuidEx());
                         iaAction.setWFSTEPID(wfStep.getWFSTEPID());
@@ -1889,11 +1888,11 @@ ISRFWFContext {
                             }
                             wfStepActorMapReal.put(strRealActorId, "");
                         }
-                        actors = new Vector();
+                        Vector<String> actorsToInform = new Vector<String>();
                         for (String strActorId : wfStepActorMapReal.keySet()) {
-                            ((Vector)actors).add(strActorId);
+                            actorsToInform.add(strActorId);
                         }
-                        this.wfDataCtrl.SendWFStepActorInformMsg((Vector<String>)actors, this.wfInstance, iaProcessConfig.getMsgTemplateId(), iaProcessConfig.getMsgType());
+                        this.wfDataCtrl.SendWFStepActorInformMsg(actorsToInform, this.wfInstance, iaProcessConfig.getMsgTemplateId(), iaProcessConfig.getMsgType());
                     }
                     if (this.wfDataCtrlEx != null && ((ret = this.wfDataCtrlEx.UpdateCurWFStepActors(this)) == null || ret.getRetCode() != 0)) {
                         return this.LogAndReturn("InternalPrepareProcess", StringHelper.Format((String)"\u66f4\u65b0\u5b9e\u4f8b\u6b65\u9aa4\u4ea4\u4e92\u7528\u6237\u5931\u8d25"), ret);

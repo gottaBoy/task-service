@@ -917,7 +917,7 @@ implements Serializable {
                 PSDEDSParam pSDEDSParam = new PSDEDSParam();
                 pSDEDSParam.setPSDEDSParamId(this.getPSDEDSParamId());
                 PSDEDSParamService pSDEDSParamService = (PSDEDSParamService)ServiceGlobal.getService(PSDEDSParamService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDSParamService.autoGet((IEntity)pSDEDSParam);
+                pSDEDSParamService.autoGet(pSDEDSParam);
                 this.psdedsparam = pSDEDSParam;
             }
             return this.psdedsparam;
@@ -943,7 +943,7 @@ implements Serializable {
                 PSDEFValueRule pSDEFValueRule = new PSDEFValueRule();
                 pSDEFValueRule.setPSDEFValueRuleId(this.getPSDEFVRID());
                 PSDEFValueRuleService pSDEFValueRuleService = (PSDEFValueRuleService)ServiceGlobal.getService(PSDEFValueRuleService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFValueRuleService.autoGet((IEntity)pSDEFValueRule);
+                pSDEFValueRuleService.autoGet(pSDEFValueRule);
                 this.psdefvr = pSDEFValueRule;
             }
             return this.psdefvr;

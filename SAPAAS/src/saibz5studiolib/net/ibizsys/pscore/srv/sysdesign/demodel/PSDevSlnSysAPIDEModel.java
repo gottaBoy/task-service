@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSDevSlnSysAPIDEModelBase;
 
 public class PSDevSlnSysAPIDEModel
 extends PSDevSlnSysAPIDEModelBase {
+
+    public PSDevSlnSysAPIDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -1055,7 +1055,7 @@ implements Serializable {
                 PSSubDE pSSubDE = new PSSubDE();
                 pSSubDE.setPSSubDEId(this.getPSSubDEId());
                 PSSubDEService pSSubDEService = (PSSubDEService)ServiceGlobal.getService(PSSubDEService.class, (SessionFactory)this.getSessionFactory());
-                pSSubDEService.autoGet((IEntity)pSSubDE);
+                pSSubDEService.autoGet(pSSubDE);
                 this.pssubde = pSSubDE;
             }
             return this.pssubde;

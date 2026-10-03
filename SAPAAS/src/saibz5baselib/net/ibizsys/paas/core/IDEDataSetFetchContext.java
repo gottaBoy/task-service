@@ -1,56 +1,166 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import java.util.ArrayList;
-import net.ibizsys.paas.core.IActionContext;
-import net.ibizsys.paas.core.IDEDataSetCond;
+
 import net.ibizsys.paas.data.ISimpleDataObject;
 import net.ibizsys.paas.db.SqlParamList;
 
-public interface IDEDataSetFetchContext
-extends IActionContext {
-    public int getStartRow();
+/**
+ * 实体数据集合获取操作上下文对象
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDEDataSetFetchContext extends IActionContext {
+	
+	/**
+	 * 开始行数
+	 * 
+	 * @return
+	 */
+	int getStartRow();
 
-    public int getPageSize();
+	/**
+	 * 分页大小
+	 * 
+	 * @return
+	 */
+	int getPageSize();
 
-    public String getSort();
+	/**
+	 * 排序字段
+	 * 
+	 * @return
+	 */
+	String getSort();
 
-    public String getSortDir();
+	/**
+	 * 排序字段方向
+	 * 
+	 * @return
+	 */
+	String getSortDir();
 
-    public String getSort2();
+	/**
+	 * 排序字段2
+	 * 
+	 * @return
+	 */
+	String getSort2();
 
-    public String getSort2Dir();
+	/**
+	 * 排序字段2方向
+	 * 
+	 * @return
+	 */
+	String getSort2Dir();
 
-    public ArrayList<IDEDataSetCond> getConditionList();
+	/**
+	 * 获取用户条件集合
+	 * 
+	 * @return
+	 */
+	ArrayList<IDEDataSetCond> getConditionList();
 
-    public String getDeclareScript();
+	/**
+	 * 获取SQL定义代码
+	 * 
+	 * @return
+	 */
+	String getDeclareScript();
 
-    public void fillDeclareParams(SqlParamList var1) throws Exception;
+	/**
+	 * 填充定义代码参数集合
+	 * 
+	 * @param list
+	 * @throws Exception
+	 */
+	void fillDeclareParams(SqlParamList list) throws Exception;
 
-    public ISimpleDataObject getActiveDataObject();
+	/**
+	 * 获取当前数据对象
+	 * 
+	 * @return
+	 */
+	ISimpleDataObject getActiveDataObject();
 
-    public void setActiveDataObject(ISimpleDataObject var1);
+	
+	
+	/**
+	 * 设置当前数据对象
+	 * @param iSimpleDataObject
+	 */
+	void setActiveDataObject(ISimpleDataObject iSimpleDataObject);
+	
+	/**
+	 * 设置连接代码
+	 * 
+	 * @return
+	 */
+	String getJoinScript();
 
-    public String getJoinScript();
+	/**
+	 * 获取分组的前部记录数
+	 * 
+	 * @return
+	 */
+	int getGroupTopCount();
 
-    public int getGroupTopCount();
+	/**
+	 * 是否查询数据
+	 * 
+	 * @return
+	 */
+	boolean isFetchData();
 
-    public boolean isFetchData();
+	/**
+	 * 是否返回数据行总数
+	 * 
+	 * @return
+	 */
+	boolean isFetchTotalRow();
 
-    public boolean isFetchTotalRow();
+	/**
+	 * 是否取消查询
+	 * 
+	 * @return
+	 */
+	boolean isCancel();
 
-    public boolean isCancel();
+	/**
+	 * 设置取消
+	 * 
+	 * @param bCancel
+	 */
+	void setCancel(boolean bCancel);
 
-    public void setCancel(boolean var1);
+	/**
+	 * 获取操作信息
+	 * 
+	 * @return
+	 */
+	String getFetchInfo();
 
-    public String getFetchInfo();
-
-    public boolean isCacheDataSet();
-
-    public void setJoinScript(String var1);
-
-    public boolean isPaging();
+	/**
+	 * 是否缓存结果集合
+	 * 
+	 * @return
+	 */
+	boolean isCacheDataSet();
+	
+	
+	/**
+	 * 设置连接代码
+	 * 
+	 * @param strJoinScript the strJoinScript to set
+	 */
+	void setJoinScript(String strJoinScript);
+	
+	
+	
+	/**
+	 * 是否支持分页
+	  * @return
+	 */
+	boolean isPaging();
 }
-

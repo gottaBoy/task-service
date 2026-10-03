@@ -55,7 +55,7 @@ extends PSAppPanelViewServiceBase {
             PSAppPanelView pSAppPanelView2 = new PSAppPanelView();
             pSAppPanelView2.setPSAppPanelViewId(pSAppPanelView.getPSAppPanelViewId());
             pSAppPanelView2.setPSSysViewPanelId(pSSysViewPanel.getPSSysViewPanelId());
-            this.sysUpdateTemp((IEntity)pSAppPanelView2, false);
+            this.sysUpdateTemp(pSAppPanelView2, false);
         }
     }
 
@@ -113,13 +113,13 @@ extends PSAppPanelViewServiceBase {
                 pSAppPanelView2.set("SRFENTITYKEY", string);
                 pSAppPanelView2.setPSSysViewPanelId(string);
                 pSAppPanelView2.set(PSAppPanelViewService.ATTR_PANELMODEL, null);
-                PSAppPanelViewService.this.createTempMajor((IEntity)pSAppPanelView2);
+                PSAppPanelViewService.this.createTempMajor(pSAppPanelView2);
                 pSAppPanelView2.setPSSysViewPanelId(pSSysViewPanel.getPSSysViewPanelId());
                 pSAppPanelView2.set(PSAppPanelViewService.ATTR_PANELMODEL, pSSysViewPanel.getPanelModel());
                 PSAppPanelView pSAppPanelView = new PSAppPanelView();
                 pSAppPanelView.setPSAppPanelViewId(pSAppPanelView2.getPSAppPanelViewId());
                 pSAppPanelView.setPSSysViewPanelId(pSSysViewPanel.getPSSysViewPanelId());
-                PSAppPanelViewService.this.sysUpdateTemp((IEntity)pSAppPanelView, false);
+                PSAppPanelViewService.this.sysUpdateTemp(pSAppPanelView, false);
                 String string3 = DataObject.getStringValue((Object)pSAppPanelView2.get("SRFORIKEY"));
                 pSSysViewPanel.reset();
                 pSSysViewPanel.setOwnerId(string3);
@@ -130,7 +130,7 @@ extends PSAppPanelViewServiceBase {
                 pSSysViewPanel.setOwnerId(string3);
                 pSSysViewPanel.setOwnerType("PSAPPPANELVIEW");
                 pSSysViewPanel.setPSSysViewPanelId(string2);
-                pSSysViewPanelService.sysUpdateTemp((IEntity)pSSysViewPanel, false);
+                pSSysViewPanelService.sysUpdateTemp(pSSysViewPanel, false);
             }
         });
     }
@@ -152,8 +152,7 @@ extends PSAppPanelViewServiceBase {
 
     @Override
     public void getDraftWithModel(PSAppPanelView pSAppPanelView) throws Exception {
-        Object object;
-        this.getDraftTempMajor((IEntity)pSAppPanelView);
+        this.getDraftTempMajor(pSAppPanelView);
         this.fillPSAppPanelViewDefaultName(pSAppPanelView);
         PSSysViewPanelService pSSysViewPanelService = (PSSysViewPanelService)ServiceGlobal.getService(PSSysViewPanelService.class, (SessionFactory)this.getSessionFactory());
         PSSysViewPanel pSSysViewPanel = new PSSysViewPanel();
@@ -163,10 +162,10 @@ extends PSAppPanelViewServiceBase {
             pSSysViewPanel.setPSSystemId(pSAppPanelView.getPSSysApp().getPSSystemId());
             pSSysViewPanel.setPSSystemName(pSAppPanelView.getPSSysApp().getPSSystemName());
             if (!StringHelper.isNullOrEmpty((String)pSAppPanelView.getPSSysApp().getPSAppTypeId())) {
-                object = (PSAppTypeService)ServiceGlobal.getService(PSAppTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+                PSAppTypeService appTypeService = (PSAppTypeService)ServiceGlobal.getService(PSAppTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                 PSAppType pSAppType = new PSAppType();
                 pSAppType.setPSAppTypeId(pSAppPanelView.getPSSysApp().getPSAppTypeId());
-                object.get((IEntity)pSAppType);
+                appTypeService.get(pSAppType);
                 if (DataObject.getBoolValue((Integer)pSAppType.getMobileMode(), (boolean)false)) {
                     pSSysViewPanel.setMobFlag(1);
                 } else {
@@ -179,10 +178,10 @@ extends PSAppPanelViewServiceBase {
         pSSysViewPanelService.getDraftWithModel(pSSysViewPanel);
         pSAppPanelView.setPSSysViewPanelId(pSSysViewPanel.getPSSysViewPanelId());
         pSAppPanelView.set(ATTR_PANELMODEL, pSSysViewPanel.getPanelModel());
-        object = new PSAppPanelView();
-        ((PSAppPanelViewBase)object).setPSAppPanelViewId(pSAppPanelView.getPSAppPanelViewId());
-        ((PSAppViewBase)object).setPSSysViewPanelId(pSSysViewPanel.getPSSysViewPanelId());
-        this.sysUpdateTemp((IEntity)object, false);
+        PSAppPanelView updatedView = new PSAppPanelView();
+        updatedView.setPSAppPanelViewId(pSAppPanelView.getPSAppPanelViewId());
+        updatedView.setPSSysViewPanelId(pSSysViewPanel.getPSSysViewPanelId());
+        this.sysUpdateTemp(updatedView, false);
     }
 
     @Override
@@ -201,18 +200,18 @@ extends PSAppPanelViewServiceBase {
             PSAppPanelView pSAppPanelView2 = new PSAppPanelView();
             pSAppPanelView2.setPSAppPanelViewId(pSAppPanelView.getPSAppPanelViewId());
             pSAppPanelView2.setPSSysViewPanelId(pSSysViewPanel.getPSSysViewPanelId());
-            this.sysUpdateTemp((IEntity)pSAppPanelView2, false);
+            this.sysUpdateTemp(pSAppPanelView2, false);
         }
     }
 
     @Override
     protected void onAfterRemove(PSAppPanelView pSAppPanelView) throws Exception {
-        PSAppPanelView pSAppPanelView2 = (PSAppPanelView)this.getLast((IEntity)pSAppPanelView);
+        PSAppPanelView pSAppPanelView2 = (PSAppPanelView)this.getLast(pSAppPanelView);
         if (!StringHelper.isNullOrEmpty((String)pSAppPanelView2.getPSSysViewPanelId())) {
             PSSysViewPanelService pSSysViewPanelService = (PSSysViewPanelService)ServiceGlobal.getService(PSSysViewPanelService.class, (SessionFactory)this.getSessionFactory());
             PSSysViewPanel pSSysViewPanel = new PSSysViewPanel();
             pSSysViewPanel.setPSSysViewPanelId(pSAppPanelView2.getPSSysViewPanelId());
-            pSSysViewPanelService.remove((IEntity)pSSysViewPanel);
+            pSSysViewPanelService.remove(pSSysViewPanel);
         }
         super.onAfterRemove(pSAppPanelView);
     }
@@ -233,10 +232,9 @@ extends PSAppPanelViewServiceBase {
             pSAppPanelView2 = new PSAppPanelView();
             pSAppPanelView2.setPSSysAppId(pSAppPanelView.getPSSysAppId());
             pSAppPanelView2.setPSAppPanelViewName(StringHelper.format((String)"%1$s%2$s", (Object)string, (Object)(n == 0 ? "" : Integer.valueOf(n + 1))));
-            if (!this.selectOne((IEntity)pSAppPanelView2, true)) break;
+            if (!this.selectOne(pSAppPanelView2, true)) break;
             ++n;
         }
         pSAppPanelView.setPSAppPanelViewName(pSAppPanelView2.getPSAppPanelViewName());
     }
 }
-

@@ -1,15 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.api;
 
-import net.ibizsys.paas.api.IServiceWebContext;
-import net.ibizsys.paas.api.RestCallResult;
 import net.ibizsys.paas.web.IWebContext;
 
-public interface IRestCallContext
-extends IWebContext,
-IServiceWebContext {
-    public RestCallResult getRestCallResult();
-}
+/**
+ * Rest 调用上下文对象
+ * @author Administrator
+ *
+ */
+public interface IRestCallContext extends IWebContext,IServiceWebContext {
 
+	/**
+	 * 获取Rest调用结果对象
+	 * @return
+	 */
+	RestCallResult getRestCallResult();
+}

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSDCBKTypeDEModelBase;
 
 public class PSDCBKTypeDEModel
 extends PSDCBKTypeDEModelBase {
+
+    public PSDCBKTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -1628,7 +1628,7 @@ implements Serializable {
                 PSWXMenuFunc pSWXMenuFunc = new PSWXMenuFunc();
                 pSWXMenuFunc.setPSWXMenuFuncId(this.getPSWXMenuFuncId());
                 PSWXMenuFuncService pSWXMenuFuncService = (PSWXMenuFuncService)ServiceGlobal.getService(PSWXMenuFuncService.class, (SessionFactory)this.getSessionFactory());
-                pSWXMenuFuncService.autoGet((IEntity)pSWXMenuFunc);
+                pSWXMenuFuncService.autoGet(pSWXMenuFunc);
                 this.pswxmenufunc = pSWXMenuFunc;
             }
             return this.pswxmenufunc;
@@ -1654,7 +1654,7 @@ implements Serializable {
                 PSWXMenuItem pSWXMenuItem = new PSWXMenuItem();
                 pSWXMenuItem.setPSWXMenuItemId(this.getPPSWXMenuItemId());
                 PSWXMenuItemService pSWXMenuItemService = (PSWXMenuItemService)ServiceGlobal.getService(PSWXMenuItemService.class, (SessionFactory)this.getSessionFactory());
-                pSWXMenuItemService.autoGet((IEntity)pSWXMenuItem);
+                pSWXMenuItemService.autoGet(pSWXMenuItem);
                 this.ppswxmenuitem = pSWXMenuItem;
             }
             return this.ppswxmenuitem;
@@ -1680,7 +1680,7 @@ implements Serializable {
                 PSWXMenu pSWXMenu = new PSWXMenu();
                 pSWXMenu.setPSWXMenuId(this.getPSWXMenuId());
                 PSWXMenuService pSWXMenuService = (PSWXMenuService)ServiceGlobal.getService(PSWXMenuService.class, (SessionFactory)this.getSessionFactory());
-                pSWXMenuService.autoGet((IEntity)pSWXMenu);
+                pSWXMenuService.autoGet(pSWXMenu);
                 this.pswxmenu = pSWXMenu;
             }
             return this.pswxmenu;

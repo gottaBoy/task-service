@@ -1484,7 +1484,7 @@ implements Serializable {
                 PSDepSlnSysDynaInst pSDepSlnSysDynaInst = new PSDepSlnSysDynaInst();
                 pSDepSlnSysDynaInst.setPSDepSlnSysDynaInstId(this.getPPSDepSlnSysDynaInstId());
                 PSDepSlnSysDynaInstService pSDepSlnSysDynaInstService = (PSDepSlnSysDynaInstService)ServiceGlobal.getService(PSDepSlnSysDynaInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnSysDynaInstService.autoGet((IEntity)pSDepSlnSysDynaInst);
+                pSDepSlnSysDynaInstService.autoGet(pSDepSlnSysDynaInst);
                 this.ppsdepslnsysdynainst = pSDepSlnSysDynaInst;
             }
             return this.ppsdepslnsysdynainst;
@@ -1510,7 +1510,7 @@ implements Serializable {
                 PSDepSlnSysDynaInst pSDepSlnSysDynaInst = new PSDepSlnSysDynaInst();
                 pSDepSlnSysDynaInst.setPSDepSlnSysDynaInstId(this.getProxyPSDepSlnSysDynaInstId());
                 PSDepSlnSysDynaInstService pSDepSlnSysDynaInstService = (PSDepSlnSysDynaInstService)ServiceGlobal.getService(PSDepSlnSysDynaInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnSysDynaInstService.autoGet((IEntity)pSDepSlnSysDynaInst);
+                pSDepSlnSysDynaInstService.autoGet(pSDepSlnSysDynaInst);
                 this.proxypsdepslnsysdynainst = pSDepSlnSysDynaInst;
             }
             return this.proxypsdepslnsysdynainst;
@@ -1536,7 +1536,7 @@ implements Serializable {
                 PSDepSlnSys pSDepSlnSys = new PSDepSlnSys();
                 pSDepSlnSys.setPSDepSlnSysId(this.getPSDepSlnSysId());
                 PSDepSlnSysService pSDepSlnSysService = (PSDepSlnSysService)ServiceGlobal.getService(PSDepSlnSysService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnSysService.autoGet((IEntity)pSDepSlnSys);
+                pSDepSlnSysService.autoGet(pSDepSlnSys);
                 this.psdepslnsys = pSDepSlnSys;
             }
             return this.psdepslnsys;

@@ -1,20 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.wf.IPSWFVersion
- *  net.ibizsys.sswf.core.ISaaSWFVersionModel
- */
 package net.ibizsys.ssdynawf.core;
 
 import net.ibizsys.model.wf.IPSWFVersion;
-import net.ibizsys.ssdynawf.core.IDynaWFModel;
 import net.ibizsys.sswf.core.ISaaSWFVersionModel;
 
-public interface IDynaWFVersionModel
-extends ISaaSWFVersionModel {
-    public IDynaWFModel getDynaWFModel();
+/**
+ * JIT流程版本模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaWFVersionModel extends ISaaSWFVersionModel {
 
-    public IPSWFVersion getPSWFVersion();
+	/**
+	 * 获取JIT流程模型对象
+	 * @return
+	 */
+	IDynaWFModel getDynaWFModel();
+	
+	
+	/**
+	 * 获取流程版本对象
+	 * @return
+	 */
+	IPSWFVersion getPSWFVersion();
 }
-

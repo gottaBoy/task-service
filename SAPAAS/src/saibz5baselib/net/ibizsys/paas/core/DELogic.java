@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import java.lang.annotation.Documented;
@@ -9,12 +6,28 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value={ElementType.TYPE})
-@Retention(value=RetentionPolicy.RUNTIME)
+/**
+ * 实体逻辑注解
+ * 
+ * @author Administrator
+ *
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DELogic {
-    public String id() default "";
+	/**
+	 * 实体逻辑标识
+	 * 
+	 * @return
+	 */
+	String id() default "";
 
-    public String name() default "";
+	/**
+	 * 实体逻辑名称
+	 * 
+	 * @return
+	 */
+	String name() default "";
+
 }
-

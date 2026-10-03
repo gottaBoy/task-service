@@ -1,33 +1,27 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  MuleContext
- *  MuleEventContext
- */
 package SA.SRFDA.EAI.Endpoint;
 
-import SA.SRFDA.EAI.Endpoint.ISimpleWebService;
+import org.mule.api.MuleContext;
+import org.mule.api.MuleEventContext;
+import org.mule.api.context.MuleContextAware;
+import org.mule.api.lifecycle.Callable;
 
-public class SimpleWSEndpoint
-implements ISimpleWebService {
+public class SimpleWSEndpoint implements ISimpleWebService, MuleContextAware, Callable {
     protected MuleContext context;
 
-    public SimpleWSEndpoint() {
-        throw new Error("Unresolved compilation problems: \n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tMuleContextAware cannot be resolved to a type\n\tCallable cannot be resolved to a type\n\tMuleContext cannot be resolved to a type\n\tMuleContext cannot be resolved to a type\n\tMuleContext cannot be resolved to a type\n\tMuleEventContext cannot be resolved to a type\n");
-    }
-
     public void setMuleContext(MuleContext muleContext) {
-        throw new Error("Unresolved compilation problems: \n\tMuleContext cannot be resolved to a type\n\tMuleContext cannot be resolved to a type\n");
+        this.context = muleContext;
     }
 
-    @Override
-    public String Call(String string) {
-        throw new Error("Unresolved compilation problem: \n");
+    // The RPC result is routed by Mule's outbound router after the component returns.
+    public String Call(String input) {
+        return input;
     }
 
-    public Object onCall(MuleEventContext muleEventContext) throws Exception {
-        throw new Error("Unresolved compilation problem: \n\tMuleEventContext cannot be resolved to a type\n");
+    public Object onCall(MuleEventContext event) throws Exception {
+        Object payload = event.getMessage().getPayload();
+        if (!(payload instanceof String)) {
+            throw new IllegalArgumentException("Web service payload must be a String");
+        }
+        return Call((String) payload);
     }
 }
-

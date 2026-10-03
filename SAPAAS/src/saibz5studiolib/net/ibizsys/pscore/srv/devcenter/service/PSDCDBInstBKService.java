@@ -79,7 +79,7 @@ extends PSDCDBInstBKServiceBase {
         PSDevCenterFile pSDevCenterFile = new PSDevCenterFile();
         pSDevCenterFile.setPSDevCenterFileId(pSDCDBInstBK.getPSDCDBInstBKId());
         if (pSDevCenterFileService.checkKey(pSDevCenterFile) == 1) {
-            pSDevCenterFileService.remove((IEntity)pSDevCenterFile);
+            pSDevCenterFileService.remove(pSDevCenterFile);
         }
         super.onAfterRemove(pSDCDBInstBK);
     }

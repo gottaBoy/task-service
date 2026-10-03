@@ -73,7 +73,7 @@ extends PSDCMSPlatformServiceBase {
     @Override
     protected void onAfterRemove(PSDCMSPlatform pSDCMSPlatform) throws Exception {
         if (this.isMajorSessionFactory()) {
-            PSDCMSPlatform pSDCMSPlatform2 = (PSDCMSPlatform)this.getLast((IEntity)pSDCMSPlatform);
+            PSDCMSPlatform pSDCMSPlatform2 = (PSDCMSPlatform)this.getLast(pSDCMSPlatform);
             PSDevCenterHelper.updatetPSDCResRep(pSDCMSPlatform2.getPSDevCenter(), "MSPCNT");
         }
         super.onAfterRemove(pSDCMSPlatform);
@@ -89,11 +89,7 @@ extends PSDCMSPlatformServiceBase {
 
     @Override
     protected void onPubConfigs(PSDCMSPlatform pSDCMSPlatform) throws Exception {
-        ObjectNode objectNode;
-        Object object;
-        Object object2;
-        Object object3;
-        this.get((IEntity)pSDCMSPlatform);
+        this.get(pSDCMSPlatform);
         if (StringHelper.isNullOrEmpty((String)pSDCMSPlatform.getPSDevSlnId())) {
             throw new Exception(String.format("\u5fae\u670d\u52a1\u5e73\u53f0\u672a\u7ed1\u5b9a\u5f00\u53d1\u65b9\u6848", new Object[0]));
         }
@@ -109,29 +105,27 @@ extends PSDCMSPlatformServiceBase {
         ObjectNode objectNode2 = JsonNodeHelper.createObjectNode();
         ArrayList<PSDevCenterDBInst> arrayList = pSDevCenterDBInstService.selectByPSDevSln(pSDevSln);
         if (arrayList != null) {
-            object3 = objectNode2.putObject(CONFIG_DBINST);
-            object2 = arrayList.iterator();
-            while (object2.hasNext()) {
-                object = (PSDevCenterDBInst)object2.next();
-                objectNode = object3.putObject(((PSDevCenterDBInstBase)object).getPSDevCenterDBInstName());
-                objectNode.put(CONFIG_DBINST_DBTYPE, ((PSDevCenterDBInstBase)object).getDBType());
-                if (!StringHelper.isNullOrEmpty((String)((PSDevCenterDBInstBase)object).getUserName())) {
-                    objectNode.put(CONFIG_DBINST_USERNAME, ((PSDevCenterDBInstBase)object).getUserName());
+            ObjectNode dbConfigs = objectNode2.putObject(CONFIG_DBINST);
+            for (PSDevCenterDBInst dbInst : arrayList) {
+                ObjectNode objectNode = dbConfigs.putObject(dbInst.getPSDevCenterDBInstName());
+                objectNode.put(CONFIG_DBINST_DBTYPE, dbInst.getDBType());
+                if (!StringHelper.isNullOrEmpty((String)dbInst.getUserName())) {
+                    objectNode.put(CONFIG_DBINST_USERNAME, dbInst.getUserName());
                 }
-                if (!StringHelper.isNullOrEmpty((String)((PSDevCenterDBInstBase)object).getPasswd())) {
-                    objectNode.put(CONFIG_DBINST_PASSWORD, ((PSDevCenterDBInstBase)object).getPasswd());
+                if (!StringHelper.isNullOrEmpty((String)dbInst.getPasswd())) {
+                    objectNode.put(CONFIG_DBINST_PASSWORD, dbInst.getPasswd());
                 }
-                if (StringHelper.isNullOrEmpty((String)((PSDevCenterDBInstBase)object).getConnStr())) continue;
-                objectNode.put(CONFIG_DBINST_URL, ((PSDevCenterDBInstBase)object).getConnStr());
+                if (StringHelper.isNullOrEmpty((String)dbInst.getConnStr())) continue;
+                objectNode.put(CONFIG_DBINST_URL, dbInst.getConnStr());
             }
         }
-        if ((object2 = ((PSDCMSPlatformFuncServiceBase)(object3 = (PSDCMSPlatformFuncService)ServiceGlobal.getService(PSDCMSPlatformFuncService.class, (SessionFactory)this.getSessionFactory()))).selectByPSDCMSPlatform(pSDCMSPlatform)) != null) {
-            object = objectNode2.putObject(CONFIG_CLOUDUTIL);
-            objectNode = objectNode2.putObject(CONFIG_CLOUDCONF);
-            Iterator iterator = ((ArrayList)object2).iterator();
-            while (iterator.hasNext()) {
+        PSDCMSPlatformFuncService funcService = (PSDCMSPlatformFuncService)ServiceGlobal.getService(PSDCMSPlatformFuncService.class, (SessionFactory)this.getSessionFactory());
+        ArrayList<PSDCMSPlatformFunc> functions = funcService.selectByPSDCMSPlatform(pSDCMSPlatform);
+        if (functions != null) {
+            ObjectNode cloudUtil = objectNode2.putObject(CONFIG_CLOUDUTIL);
+            ObjectNode cloudConf = objectNode2.putObject(CONFIG_CLOUDCONF);
+            for (PSDCMSPlatformFunc pSDCMSPlatformFunc : functions) {
                 String string2;
-                PSDCMSPlatformFunc pSDCMSPlatformFunc = (PSDCMSPlatformFunc)iterator.next();
                 if (DataObject.getIntegerValue((Object)pSDCMSPlatformFunc.getValidFlag(), (Integer)1) != 1 || StringHelper.isNullOrEmpty((String)(string2 = pSDCMSPlatformFunc.getMSFuncType())) || string2.indexOf("CLOUD") != 0) continue;
                 String string3 = pSDCMSPlatformFunc.getFuncParam9();
                 if (!StringHelper.isNullOrEmpty((String)string3) && !StringHelper.isNullOrEmpty((String)pSDCMSPlatformFunc.getFuncParam10())) {
@@ -141,15 +135,14 @@ extends PSDCMSPlatformServiceBase {
                 if (StringHelper.isNullOrEmpty((String)string3)) continue;
                 if ("CLOUDCONFITEM".equals(string2)) {
                     if (StringHelper.isNullOrEmpty((String)pSDCMSPlatformFunc.getPSDCMSPlatformFuncName())) continue;
-                    objectNode.put(pSDCMSPlatformFunc.getPSDCMSPlatformFuncName(), string3);
+                    cloudConf.put(pSDCMSPlatformFunc.getPSDCMSPlatformFuncName(), string3);
                     continue;
                 }
                 String string4 = string2.replace("CLOUD", "").replace("UTIL", "").toLowerCase();
-                object.put(string4, string3);
+                cloudUtil.put(string4, string3);
             }
         }
-        object = pSDevSln.getCallbackTag() == null ? "" : pSDevSln.getCallbackTag();
-        this.executeCallback(this.getRealCallbackUrl(string, "", pSDevSln.getPSDevSlnId(), "PUBCONFIG", "srfcloudplatform", "", (String)object), objectNode2.toString());
+        String callbackTag = pSDevSln.getCallbackTag() == null ? "" : pSDevSln.getCallbackTag();
+        this.executeCallback(this.getRealCallbackUrl(string, "", pSDevSln.getPSDevSlnId(), "PUBCONFIG", "srfcloudplatform", "", callbackTag), objectNode2.toString());
     }
 }
-

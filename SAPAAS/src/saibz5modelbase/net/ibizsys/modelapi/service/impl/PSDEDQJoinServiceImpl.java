@@ -116,7 +116,7 @@ implements IPSDEDQJoinService {
     @Override
     protected List<PSDEDQJoin> onListAll() throws Exception {
         ArrayList<PSDEDQJoin> list = new ArrayList<PSDEDQJoin>();
-        List psdedataqueries = PSModelServiceUtil.getInstance().getPSDEDataQueryService().listAll();
+        List<PSDEDataQuery> psdedataqueries = PSModelServiceUtil.getInstance().getPSDEDataQueryService().listAll();
         if (psdedataqueries != null) {
             for (PSDEDataQuery parent : psdedataqueries) {
                 List<PSDEDQJoin> items = this.listByPSDEDataQuery(parent);
@@ -366,18 +366,19 @@ implements IPSDEDQJoinService {
         } else {
             dto.setPSDERName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEDQJoinService().listByPSDEDQJoin(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEDQJoin> pSDEDQJoinList = PSModelServiceUtil.getInstance().getPSDEDQJoinService().listByPSDEDQJoin(t);
+        if (pSDEDQJoinList != null && pSDEDQJoinList.size() > 0) {
             ArrayList<PSDEDQJoinDTO> psdedqjoins = new ArrayList<PSDEDQJoinDTO>();
-            for (PSDEDQJoin pSDEDQJoin : list) {
+            for (PSDEDQJoin pSDEDQJoin : pSDEDQJoinList) {
                 dstItem = (PSDEDQJoinDTO)PSModelServiceUtil.getInstance().getPSDEDQJoinService().toDTO(pSDEDQJoin);
                 psdedqjoins.add((PSDEDQJoinDTO)dstItem);
             }
             dto.setPsdedqjoins(psdedqjoins);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEDQCondService().listByPSDEDQJoin(t)) != null && list.size() > 0) {
+        List<PSDEDQCond> pSDEDQCondList = PSModelServiceUtil.getInstance().getPSDEDQCondService().listByPSDEDQJoin(t);
+        if (pSDEDQCondList != null && pSDEDQCondList.size() > 0) {
             ArrayList<PSDEDQCondDTO> psdedqconds = new ArrayList<PSDEDQCondDTO>();
-            for (PSDEDQCond pSDEDQCond : list) {
+            for (PSDEDQCond pSDEDQCond : pSDEDQCondList) {
                 dstItem = (PSDEDQCondDTO)PSModelServiceUtil.getInstance().getPSDEDQCondService().toDTO(pSDEDQCond);
                 psdedqconds.add((PSDEDQCondDTO)dstItem);
             }

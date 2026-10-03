@@ -171,6 +171,7 @@ import SA.SRFramework.Base.XMLConfig;
 import SA.SRFramework.CodeList.CodeListConfig;
 import SA.SRFramework.DataEx.BaseDataEntity;
 import SA.SRFramework.DataEx.CallResult;
+import SA.SRFramework.DataEx.ProcParam;
 import SA.SRFramework.Utility.StringHelper;
 import SA.SRFramework.UtilityEx.ObjectHelper;
 import SA.SRFramework.UtilityEx.PropertiesHelper;
@@ -2445,8 +2446,8 @@ IDAConfigHelperContext {
         if ((file = new File(strSPExFilePath = ConfigPathHelper.GetRuntimeSPConfigPath((String)this.globalHelperEx.GetAppRootPath(), (String)strSPExConfigId))).exists()) {
             return strSPExConfigId;
         }
-        ArrayList commItemList = new ArrayList();
-        TreeMap<String, ArrayList> pageItemMap = new TreeMap<String, ArrayList>();
+        ArrayList<XMLNode> commItemList = new ArrayList<XMLNode>();
+        TreeMap<String, ArrayList<XMLNode>> pageItemMap = new TreeMap<String, ArrayList<XMLNode>>();
         for (IDEFHelper iDEFHelper : iDEHelper.GetDEFHelpers()) {
             SearchModelConfig searchModelConfig = iDEFHelper.GetSearchModel();
             if (searchModelConfig == null) continue;
@@ -2459,13 +2460,13 @@ IDAConfigHelperContext {
                 if (searchItemConfig.getColSpan() > 1) {
                     formItemNode.SetValue("COLSPAN", StringHelper.Format((String)"%1$s", (Object)searchItemConfig.getColSpan()));
                 }
-                ArrayList list = null;
+                ArrayList<XMLNode> list = null;
                 if (StringHelper.IsNullOrEmpty((String)strGroup)) {
                     list = commItemList;
                 } else if (pageItemMap.containsKey(strGroup)) {
-                    list = (ArrayList)pageItemMap.get(strGroup);
+                    list = pageItemMap.get(strGroup);
                 } else {
-                    list = new ArrayList();
+                    list = new ArrayList<XMLNode>();
                     pageItemMap.put(strGroup, list);
                 }
                 int nInsertPos = -1;
@@ -2505,7 +2506,7 @@ IDAConfigHelperContext {
             dpCommonGroupNode.AddNode(xmlNode);
         }
         for (String strCaption : pageItemMap.keySet()) {
-            ArrayList groupList = (ArrayList)pageItemMap.get(strCaption);
+            ArrayList<XMLNode> groupList = pageItemMap.get(strCaption);
             strCaption = this.GetLocalization(iDEHelper, "CONTROL.SPEX.CUSTOMPAGE." + strCaption, strCaption);
             XMLNode dpPageGroupNode = new XMLNode();
             dpPageGroupNode.setNodeName("SRFEXDPPAGEGROUP");
@@ -2531,8 +2532,8 @@ IDAConfigHelperContext {
         if (file.exists()) {
             return strSPExFilePath;
         }
-        ArrayList commItemList = new ArrayList();
-        TreeMap<String, ArrayList> pageItemMap = new TreeMap<String, ArrayList>();
+        ArrayList<XMLNode> commItemList = new ArrayList<XMLNode>();
+        TreeMap<String, ArrayList<XMLNode>> pageItemMap = new TreeMap<String, ArrayList<XMLNode>>();
         for (IDEFHelper iDEFHelper : iDEHelper.GetDEFHelpers()) {
             SearchModelConfig searchModelConfig = iDEFHelper.GetSearchModel();
             if (searchModelConfig == null) continue;
@@ -2542,13 +2543,13 @@ IDAConfigHelperContext {
                 String strGroup = searchItemConfig.getGroup();
                 if (searchItemConfig.getShowOrder() < 0) continue;
                 formItemNode.SetValue("SHOWORDER", StringHelper.Format((String)"%1$s", (Object)searchItemConfig.getShowOrder()));
-                ArrayList list = null;
+                ArrayList<XMLNode> list = null;
                 if (StringHelper.IsNullOrEmpty((String)strGroup)) {
                     list = commItemList;
                 } else if (pageItemMap.containsKey(strGroup)) {
-                    list = (ArrayList)pageItemMap.get(strGroup);
+                    list = pageItemMap.get(strGroup);
                 } else {
-                    list = new ArrayList();
+                    list = new ArrayList<XMLNode>();
                     pageItemMap.put(strGroup, list);
                 }
                 int nInsertPos = -1;
@@ -2588,7 +2589,7 @@ IDAConfigHelperContext {
             dpCommonGroupNode.AddNode(xmlNode);
         }
         for (String strCaption : pageItemMap.keySet()) {
-            ArrayList groupList = (ArrayList)pageItemMap.get(strCaption);
+            ArrayList<XMLNode> groupList = pageItemMap.get(strCaption);
             XMLNode dpPageGroupNode = new XMLNode();
             dpPageGroupNode.setNodeName("SRFEXDPPAGEGROUP");
             dpPageGroupNode.SetValue("COLUMNS", strGroupColumns);
@@ -2794,7 +2795,7 @@ IDAConfigHelperContext {
                         callResult = this.globalHelperEx.getDAModelHelper().GetDGMode(iDEHelper.getId(), strDGMode, dgMode);
                     }
                     if (callResult.getRetCode() == 0) {
-                        Vector dgModeDetails = new Vector();
+                        Vector<DGModeDetail> dgModeDetails = new Vector<DGModeDetail>();
                         callResult = this.globalHelperEx.getDAModelHelper().GetDGModeDetails(dgMode.getDGMODEID(), dgModeDetails);
                         if (callResult == null || callResult.getRetCode() != 0) {
                             log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u8868\u683c\u6a21\u5f0f\u660e\u7ec6\u5931\u8d25\uff0c%1$s", (Object)(callResult == null ? "\u4e0d\u660e" : callResult.getErrorInfo())));
@@ -4367,24 +4368,24 @@ IDAConfigHelperContext {
             String strCaption;
             XMLNode rsNode;
             XMLNode rsNode2;
-            Object iMinorDEHelper;
+            IDEHelper iMinorDEHelper;
             DERType tempDERType;
             DERType derType;
-            Object strDERTypeId;
-            Vector sectionNodes;
-            Vector derList = iDEHelper.GetDER1Ns(true);
-            Vector der11List = iDEHelper.GetDER11s(true);
-            Vector derIndexs = iDEHelper.GetDERINDEXs(false);
-            Vector sumpagelist = new Vector();
+            String strDERTypeId;
+            Vector<XMLNode> sectionNodes;
+            Vector<DER1N> derList = iDEHelper.GetDER1Ns(true);
+            Vector<DER11> der11List = iDEHelper.GetDER11s(true);
+            Vector<DERINDEX> derIndexs = iDEHelper.GetDERINDEXs(false);
+            Vector<SummaryPage> sumpagelist = new Vector<SummaryPage>();
             CallResult callResult = this.globalHelperEx.getDAModelHelper().GetSummaryPages(iDEHelper.getId(), "DER", sumpagelist);
             if (callResult == null || callResult.getRetCode() != 0) {
                 log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u7f29\u7565\u754c\u9762\u5931\u8d25\uff0c%1$s", (Object)(callResult == null ? "\u4e0d\u660e" : callResult.getErrorInfo())));
                 return "";
             }
-            TreeMap derTypeNodesMap = new TreeMap();
+            TreeMap<String, Vector<XMLNode>> derTypeNodesMap = new TreeMap<String, Vector<XMLNode>>();
             TreeMap<String, DERType> derTypeMap = new TreeMap<String, DERType>();
             Vector<DERType> derTypes = new Vector<DERType>();
-            derTypeNodesMap.put("", new Vector());
+            derTypeNodesMap.put("", new Vector<XMLNode>());
             for (DER11 der11 : der11List) {
                 if (der11.getSHOWORDER() < 0) continue;
                 sectionNodes = null;
@@ -4394,7 +4395,7 @@ IDAConfigHelperContext {
                     derType = new DERType();
                     callResult = this.globalHelperEx.getDAModelHelper().GetDERType((String)strDERTypeId, derType);
                     if (callResult.getRetCode() == 0) {
-                        derTypeNodesMap.put(der11.getDERTYPEID(), new Vector());
+                        derTypeNodesMap.put(der11.getDERTYPEID(), new Vector<XMLNode>());
                         derTypeMap.put(der11.getDERTYPEID(), derType);
                         boolean bAppendLast = true;
                         int i = 0;
@@ -4415,7 +4416,7 @@ IDAConfigHelperContext {
                         log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u5173\u7cfb\u7c7b\u578b[%1$s]\u5931\u8d25\uff0c%2$s", (Object)der11.getDERTYPEID(), (Object)(callResult == null ? "\u4e0d\u660e" : callResult.getErrorInfo())));
                     }
                 }
-                sectionNodes = (Vector)derTypeNodesMap.get(strDERTypeId);
+                sectionNodes = derTypeNodesMap.get(strDERTypeId);
                 iMinorDEHelper = this.globalHelperEx.getDAModelStorage().FindDEHelper(der11.getMINORDEID());
                 rsNode2 = new XMLNode();
                 rsNode2.setNodeName("SRFEXTABVIEWPAGE");
@@ -4478,7 +4479,7 @@ IDAConfigHelperContext {
                     derType = new DERType();
                     callResult = this.globalHelperEx.getDAModelHelper().GetDERType((String)strDERTypeId, derType);
                     if (callResult.getRetCode() == 0) {
-                        derTypeNodesMap.put(der1n.getDERTYPEID(), new Vector());
+                        derTypeNodesMap.put(der1n.getDERTYPEID(), new Vector<XMLNode>());
                         derTypeMap.put(der1n.getDERTYPEID(), derType);
                         boolean bAppendLast = true;
                         int i = 0;
@@ -4499,7 +4500,7 @@ IDAConfigHelperContext {
                         log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u5173\u7cfb\u7c7b\u578b[%1$s]\u5931\u8d25\uff0c%2$s", (Object)der1n.getDERTYPEID(), (Object)(callResult == null ? "\u4e0d\u660e" : callResult.getErrorInfo())));
                     }
                 }
-                sectionNodes = (Vector)derTypeNodesMap.get(strDERTypeId);
+                sectionNodes = derTypeNodesMap.get(strDERTypeId);
                 iMinorDEHelper = this.globalHelperEx.getDAModelStorage().FindDEHelper(der1n.getMINORDEID());
                 if (iMinorDEHelper == null) {
                     log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53[%1$s]\u8f85\u52a9\u5bf9\u8c61\u5931\u8d25", (Object)der1n.getMINORDEID()));
@@ -4579,7 +4580,7 @@ IDAConfigHelperContext {
                 sectionNodes.add(nInsertPos, rsNode2);
             }
             for (DERINDEX derIndex : derIndexs) {
-                Vector derList2 = new Vector();
+                Vector<DER1N> derList2 = new Vector<DER1N>();
                 callResult = this.globalHelperEx.getDAModelHelper().GetDER1Ns(derIndex.getINDEXDEID(), derList2);
                 if (callResult == null || callResult.getRetCode() != 0) {
                     log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53\u5173\u7cfb1:N\u5931\u8d25\uff0c%1$s", (Object)(callResult == null ? "\u4e0d\u660e" : callResult.getErrorInfo())));
@@ -4587,14 +4588,14 @@ IDAConfigHelperContext {
                 }
                 for (DER1N der1n : derList2) {
                     if (der1n.getSHOWORDER() < 0) continue;
-                    Vector sectionNodes2 = null;
+                    Vector<XMLNode> sectionNodes2 = null;
                     String strDERTypeId2 = der1n.getDERTYPEID();
                     if (!derTypeNodesMap.containsKey(strDERTypeId2)) {
                         DERType derType4 = null;
                         derType4 = new DERType();
                         callResult = this.globalHelperEx.getDAModelHelper().GetDERType(strDERTypeId2, derType4);
                         if (callResult.getRetCode() == 0) {
-                            derTypeNodesMap.put(der1n.getDERTYPEID(), new Vector());
+                            derTypeNodesMap.put(der1n.getDERTYPEID(), new Vector<XMLNode>());
                             derTypeMap.put(der1n.getDERTYPEID(), derType4);
                             boolean bAppendLast = true;
                             int i = 0;
@@ -4615,7 +4616,7 @@ IDAConfigHelperContext {
                             strDERTypeId2 = "";
                         }
                     }
-                    sectionNodes2 = (Vector)derTypeNodesMap.get(strDERTypeId2);
+                    sectionNodes2 = derTypeNodesMap.get(strDERTypeId2);
                     IDEHelper iMinorDEHelper2 = this.globalHelperEx.getDAModelStorage().FindDEHelper(der1n.getMINORDEID());
                     if (iMinorDEHelper2 == null) {
                         log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53[%1$s]\u8f85\u52a9\u5bf9\u8c61\u5931\u8d25", (Object)der1n.getMINORDEID()));
@@ -4699,7 +4700,7 @@ IDAConfigHelperContext {
                     derType = new DERType();
                     callResult = this.globalHelperEx.getDAModelHelper().GetDERType((String)strDERTypeId, derType);
                     if (callResult.getRetCode() == 0) {
-                        derTypeNodesMap.put(summaryPage.getDERTYPEID(), new Vector());
+                        derTypeNodesMap.put(summaryPage.getDERTYPEID(), new Vector<XMLNode>());
                         derTypeMap.put(summaryPage.getDERTYPEID(), derType);
                         boolean bAppendLast = true;
                         int i = 0;
@@ -4720,7 +4721,7 @@ IDAConfigHelperContext {
                         strDERTypeId = "";
                     }
                 }
-                sectionNodes = (Vector)derTypeNodesMap.get(strDERTypeId);
+                sectionNodes = derTypeNodesMap.get(strDERTypeId);
                 rsNode = new XMLNode();
                 rsNode.setNodeName("SRFEXTABVIEWPAGE");
                 rsNode.SetValue("SHOWORDER", StringHelper.Format((String)"%1$s", (Object)summaryPage.getDERSHOWORDER()));
@@ -4779,7 +4780,7 @@ IDAConfigHelperContext {
             }
             boolean bFirstNode = true;
             bFirstNode = true;
-            Vector sectionNodes3 = (Vector)derTypeNodesMap.get("");
+            Vector<XMLNode> sectionNodes3 = derTypeNodesMap.get("");
             for (XMLNode item : sectionNodes3) {
                 if (bFirstNode) {
                     item.SetValue("GROUPICON", "../sasrfex/images/default/icon_related.png");
@@ -4790,7 +4791,7 @@ IDAConfigHelperContext {
             }
             for (DERType derType7 : derTypes) {
                 bFirstNode = true;
-                Vector sectionNodes4 = (Vector)derTypeNodesMap.get(derType7.getDERTYPEID());
+                Vector<XMLNode> sectionNodes4 = derTypeNodesMap.get(derType7.getDERTYPEID());
                 for (XMLNode item : sectionNodes4) {
                     if (bFirstNode) {
                         item.SetValue("GROUPICON", derType7.getSMALLICON());
@@ -4992,13 +4993,13 @@ IDAConfigHelperContext {
         if (StringHelper.IsNullOrEmpty((String)strDERGroupId)) {
             XMLNode rsNode;
             String strCaption;
-            Object sectionNodes;
-            Vector derList = iDEHelper.GetDER1Ns(true);
-            Vector derIndexs = iDEHelper.GetDERINDEXs(false);
-            TreeMap derTypeNodesMap = new TreeMap();
+            Vector<XMLNode> sectionNodes;
+            Vector<DER1N> derList = iDEHelper.GetDER1Ns(true);
+            Vector<DERINDEX> derIndexs = iDEHelper.GetDERINDEXs(false);
+            TreeMap<String, Vector<XMLNode>> derTypeNodesMap = new TreeMap<String, Vector<XMLNode>>();
             TreeMap<String, DERType> derTypeMap = new TreeMap<String, DERType>();
             Vector<DERType> derTypes = new Vector<DERType>();
-            derTypeNodesMap.put("", new Vector());
+            derTypeNodesMap.put("", new Vector<XMLNode>());
             for (DER1N der1n : derList) {
                 if (der1n.getSHOWORDER() < 0 || (der1n.getDERSUBTYPE() & 2) == 0) continue;
                 sectionNodes = null;
@@ -5007,7 +5008,7 @@ IDAConfigHelperContext {
                     derType = new DERType();
                     CallResult callResult = this.globalHelperEx.getDAModelHelper().GetDERType(der1n.getDERTYPEID(), derType);
                     if (callResult != null && callResult.getRetCode() == 0) {
-                        derTypeNodesMap.put(der1n.getDERTYPEID(), new Vector());
+                        derTypeNodesMap.put(der1n.getDERTYPEID(), new Vector<XMLNode>());
                         derTypeMap.put(der1n.getDERTYPEID(), derType);
                         boolean bAppendLast = true;
                         int i = 0;
@@ -5027,7 +5028,7 @@ IDAConfigHelperContext {
                         log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u5173\u7cfb\u7c7b\u578b[%1$s]\u5931\u8d25\uff0c%2$s", (Object)der1n.getDERTYPEID(), (Object)(callResult == null ? "\u4e0d\u660e" : callResult.getErrorInfo())));
                     }
                 }
-                sectionNodes = (Vector)derTypeNodesMap.get(der1n.getDERTYPEID());
+                sectionNodes = derTypeNodesMap.get(der1n.getDERTYPEID());
                 IDEHelper iMinorDEHelper = this.globalHelperEx.getDAModelStorage().FindDEHelper(der1n.getMINORDEID());
                 if (iMinorDEHelper == null) {
                     log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53[%1$s]\u8f85\u52a9\u5bf9\u8c61\u5931\u8d25", (Object)der1n.getMINORDEID()));
@@ -5083,10 +5084,10 @@ IDAConfigHelperContext {
                 }
                 rsNode2.SetValue("RESOURCEID", (String)strResourceId);
                 int nInsertPos = -1;
-                int nCount = ((Vector)sectionNodes).size();
+                int nCount = sectionNodes.size();
                 int i = 0;
                 while (i < nCount) {
-                    XMLNode item = (XMLNode)((Vector)sectionNodes).get(i);
+                    XMLNode item = sectionNodes.get(i);
                     int nPos = item.GetExtValue("SHOWORDER", 0);
                     if (der1n.getSHOWORDER() < nPos) {
                         nInsertPos = i;
@@ -5095,13 +5096,13 @@ IDAConfigHelperContext {
                     ++i;
                 }
                 if (nInsertPos == -1) {
-                    ((Vector)sectionNodes).add(rsNode2);
+                    sectionNodes.add(rsNode2);
                     continue;
                 }
-                ((Vector)sectionNodes).add(nInsertPos, rsNode2);
+                sectionNodes.add(nInsertPos, rsNode2);
             }
             for (DERINDEX derIndex : derIndexs) {
-                Vector derList2 = new Vector();
+                Vector<DER1N> derList2 = new Vector<DER1N>();
                 CallResult callResult = this.globalHelperEx.getDAModelHelper().GetDER1Ns(derIndex.getINDEXDEID(), derList2);
                 if (callResult == null || callResult.getRetCode() != 0) {
                     log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53\u5173\u7cfb1:N\u5931\u8d25\uff0c%1$s", (Object)(callResult == null ? "\u4e0d\u660e" : callResult.getErrorInfo())));
@@ -5109,14 +5110,14 @@ IDAConfigHelperContext {
                 }
                 for (DER1N der1n : derList2) {
                     if (der1n.getSHOWORDER() < 0) continue;
-                    Vector sectionNodes2 = null;
+                    Vector<XMLNode> sectionNodes2 = null;
                     String strDERTypeId = der1n.getDERTYPEID();
                     if (!derTypeNodesMap.containsKey(strDERTypeId)) {
                         DERType derType = null;
                         derType = new DERType();
                         callResult = this.globalHelperEx.getDAModelHelper().GetDERType(strDERTypeId, derType);
                         if (callResult.getRetCode() == 0) {
-                            derTypeNodesMap.put(der1n.getDERTYPEID(), new Vector());
+                        derTypeNodesMap.put(der1n.getDERTYPEID(), new Vector<XMLNode>());
                             derTypeMap.put(der1n.getDERTYPEID(), derType);
                             boolean bAppendLast = true;
                             int i = 0;
@@ -5137,7 +5138,7 @@ IDAConfigHelperContext {
                             strDERTypeId = "";
                         }
                     }
-                    sectionNodes2 = (Vector)derTypeNodesMap.get(strDERTypeId);
+                    sectionNodes2 = derTypeNodesMap.get(strDERTypeId);
                     IDEHelper iMinorDEHelper = this.globalHelperEx.getDAModelStorage().FindDEHelper(der1n.getMINORDEID());
                     if (iMinorDEHelper == null) {
                         log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53[%1$s]\u8f85\u52a9\u5bf9\u8c61\u5931\u8d25", (Object)der1n.getMINORDEID()));
@@ -5213,17 +5214,16 @@ IDAConfigHelperContext {
                 }
             }
             for (DERType derType : derTypes) {
-                DER1N der1n;
-                sectionNodes = (Vector)derTypeNodesMap.get(derType.getDERTYPEID());
-                der1n = ((Vector)sectionNodes).iterator();
-                while (der1n.hasNext()) {
-                    XMLNode item = (XMLNode)der1n.next();
+                sectionNodes = derTypeNodesMap.get(derType.getDERTYPEID());
+                Iterator<XMLNode> sectionNodeIterator = sectionNodes.iterator();
+                while (sectionNodeIterator.hasNext()) {
+                    XMLNode item = sectionNodeIterator.next();
                     item.SetValue("GROUPICON", derType.getSMALLICON());
                     item.SetValue("ISCOLLAPSE", derType.getISCOLLAPSE() ? "TRUE" : "FALSE");
                     rootNode.AddNode(item);
                 }
             }
-            Vector sectionNodes3 = (Vector)derTypeNodesMap.get("");
+            Vector<XMLNode> sectionNodes3 = derTypeNodesMap.get("");
             for (XMLNode item : sectionNodes3) {
                 item.SetValue("GROUPICON", "../sasrfex/images/default/icon_related.png");
                 rootNode.AddNode(item);
@@ -5292,7 +5292,7 @@ IDAConfigHelperContext {
 
     protected boolean AppendDERGroupTabViewPages(IDEHelper iDEHelper, XMLNode rootNode, String strDERGroupId, boolean bWF) {
         XMLNode rsNode;
-        Vector derGroupDetails = new Vector();
+        Vector<DERGroupDetail> derGroupDetails = new Vector<DERGroupDetail>();
         CallResult callResult = this.globalHelperEx.getDAModelHelper().GetDERGroupDetails(strDERGroupId, derGroupDetails);
         if (callResult == null || callResult.getRetCode() != 0) {
             log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53\u5206\u7ec4\u5173\u7cfb\u660e\u7ec6\u5931\u8d25\uff0c%1$s", (Object)(callResult == null ? "\u4e0d\u660e" : callResult.getErrorInfo())));
@@ -5625,7 +5625,7 @@ IDAConfigHelperContext {
         }
         TreeMap<String, IDEHelper> deHelperMap = new TreeMap<String, IDEHelper>();
         deHelperMap.put(iDEHelper.getId(), iDEHelper);
-        ArrayList cellNodes = new ArrayList();
+        ArrayList<XMLNode> cellNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDGEXDATAGROUP", cellNodes);
         for (XMLNode cellNode : cellNodes) {
             String strORDERINFO;
@@ -5655,7 +5655,7 @@ IDAConfigHelperContext {
                 }
                 deHelperMap.put(strDEId, curDEHelper);
                 String strFKey = "";
-                Vector der1ns = curDEHelper.GetDER1Ns(false);
+                Vector<DER1N> der1ns = curDEHelper.GetDER1Ns(false);
                 for (DER1N der1n : der1ns) {
                     if (StringHelper.Compare((String)der1n.getMAJORDEID(), (String)strPDEId, (boolean)true) != 0) continue;
                     strFKey = der1n.getMAJORKEYDEFNAME();
@@ -5667,7 +5667,7 @@ IDAConfigHelperContext {
                 }
                 BaseDataEntity dataEntity = new BaseDataEntity();
                 dataEntity.SetParamValue(strFKey, (Object)"");
-                Vector procParams = new Vector();
+                Vector<ProcParam> procParams = new Vector<ProcParam>();
                 strSQL = curDEHelper.GetSelectCode(dataEntity, procParams);
             }
             if (!StringHelper.IsNullOrEmpty((String)(strORDERINFO = cellNode.GetExtValue("ORDERINFO", "")))) {
@@ -5744,7 +5744,7 @@ IDAConfigHelperContext {
     protected XMLNode GetDPConfig(IDEHelper iDEHelper, XMLNode rootNode, Form formView) {
         CallResult callResult = new CallResult();
         try {
-            Object iDEFHelper;
+            IDEFHelper iDEFHelper;
             IDEDataCtrl formPartDataCtrl;
             if (rootNode == null) {
                 log.error((Object)StringHelper.Format((String)"\u8f7d\u5165\u8868\u5355\u6a21\u578b\u5931\u8d25"));
@@ -5763,7 +5763,7 @@ IDAConfigHelperContext {
             if (this.globalHelperEx.getDAModelVersion() >= 10120900 && (rawFIStyleDataCtrl = this.globalHelperEx.getDAModelStorage().FindDEDataCtrl("DE0069", "SYSTEM", null)) == null) {
                 log.warn((Object)StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u6570\u636e\u8bbf\u95ee\u5bf9\u8c61", (Object)"DE0069"));
             }
-            ArrayList rawItemNodes = new ArrayList();
+            ArrayList<XMLNode> rawItemNodes = new ArrayList<XMLNode>();
             rootNode.GetAllNodeByNodeName("SRFEXDPRAWITEM", rawItemNodes);
             for (XMLNode rawItemNode : rawItemNodes) {
                 boolean bDPModel = rawItemNode.GetExtValue("DPMODEL", false);
@@ -5792,7 +5792,7 @@ IDAConfigHelperContext {
                 XMLConfig.LoadFromXML((String)strXML, (XMLConfig)rawItemNode);
             }
             rawItemNodes.clear();
-            ArrayList tabPageNodes = new ArrayList();
+            ArrayList<XMLNode> tabPageNodes = new ArrayList<XMLNode>();
             rootNode.GetAllNodeByNodeName("SRFEXDPPAGEGROUP", tabPageNodes);
             for (XMLNode tabPageNode : tabPageNodes) {
                 String strCapLanResId = tabPageNode.GetExtValue("CAPLANRESID", "");
@@ -5803,7 +5803,7 @@ IDAConfigHelperContext {
                 }
                 this.FillDPPageGroupNodeDERMode(iDEHelper, tabPageNode, formView);
             }
-            ArrayList groupNodes = new ArrayList();
+            ArrayList<XMLNode> groupNodes = new ArrayList<XMLNode>();
             rootNode.GetAllNodeByNodeName("SRFEXDPGROUP", groupNodes);
             for (XMLNode groupNode : groupNodes) {
                 String strCapLanResId = groupNode.GetExtValue("CAPLANRESID", "");
@@ -5812,7 +5812,7 @@ IDAConfigHelperContext {
                 strCaption = this.GetLocalization(iDEHelper, strCapLanResId, strCaption);
                 groupNode.SetExtValue("CAPTION", strCaption);
             }
-            ArrayList dpGroupNodes = new ArrayList();
+            ArrayList<XMLNode> dpGroupNodes = new ArrayList<XMLNode>();
             rootNode.GetAllNodeByNodeName("SRFEXDPGROUP", dpGroupNodes);
             rootNode.GetAllNodeByNodeName("SRFEXDPPAGEGROUP", dpGroupNodes);
             for (XMLNode dpGroupNode : dpGroupNodes) {
@@ -5826,12 +5826,12 @@ IDAConfigHelperContext {
                 if (formItemRuleConfig == null || !StringHelper.IsNullOrEmpty((String)(strCode = dpGroupNode.GetExtValue("ENABLECOND", ""))) || !(callResult = defaultFormItemLogicHelper.GetEnableCode(formItemRuleConfig)).IsOk() || StringHelper.IsNullOrEmpty((String)(strCode = (String)callResult.getUserObject()))) continue;
                 dpGroupNode.SetValue("ENABLECOND", strCode);
             }
-            ArrayList dpDataGridNodes = new ArrayList();
+            ArrayList<XMLNode> dpDataGridNodes = new ArrayList<XMLNode>();
             rootNode.GetAllNodeByNodeName("SRFEXDPDATAGRIDITEM", dpDataGridNodes);
             if (dpDataGridNodes.size() > 0) {
                 for (XMLNode dpDataGridNode : dpDataGridNodes) {
                     String strDERId = dpDataGridNode.GetExtValue("DER1NID", "");
-                    Iterator strDGId = dpDataGridNode.GetExtValue("DGID", "");
+                    String strDGId = dpDataGridNode.GetExtValue("DGID", "");
                     String strURLParams = dpDataGridNode.GetExtValue("URLPARAMS", "");
                     String strRelatedFields = dpDataGridNode.GetExtValue("RELATEDFIELDS", "");
                     String strPageId = dpDataGridNode.GetExtValue("PAGEID", "");
@@ -5844,7 +5844,7 @@ IDAConfigHelperContext {
                         log.error((Object)StringHelper.Format((String)"\u6ca1\u6709\u6307\u5b9a\u5185\u5d4c\u8868\u683cDER1N\u5173\u7cfb\u7f16\u53f7"));
                         return null;
                     }
-                    TreeMap<String, Object> urlParams = new TreeMap<String, Object>();
+                    TreeMap<String, String> urlParams = new TreeMap<String, String>();
                     urlParams.put("SRFGRIDVIEW", strDGId);
                     urlParams.put("SRFDERID", strDERId);
                     urlParams.put("SRFSUMMARYKEY", iDEHelper.GetKeyDEFHelper().getName().toUpperCase());
@@ -5889,7 +5889,7 @@ IDAConfigHelperContext {
                     dpDataGridNode.AddNode(dgItem);
                 }
             }
-            ArrayList formItemNodes = new ArrayList();
+            ArrayList<XMLNode> formItemNodes = new ArrayList<XMLNode>();
             rootNode.GetAllNodeByNodeName("SRFEXDPFORMITEM", formItemNodes);
             ArrayList<XMLNode> hiddenNodes = new ArrayList<XMLNode>();
             for (XMLNode formItemNode : formItemNodes) {
@@ -6086,14 +6086,14 @@ IDAConfigHelperContext {
                     }
                     ArrayList<String> childXMLList = new ArrayList<String>();
                     ArrayList<String> childXMLList2 = new ArrayList<String>();
-                    ArrayList pageGroupNodes = new ArrayList();
+                    ArrayList<XMLNode> pageGroupNodes = new ArrayList<XMLNode>();
                     loopFormRootNode.GetAllNodeByNodeName("SRFEXDPPAGEGROUP", pageGroupNodes);
                     if (pageGroupNodes.size() > 0 && (pageGroupNode2 = (XMLNode)pageGroupNodes.get(0)).getChildNodes() != null) {
                         for (XMLNode childNode : pageGroupNode2.getChildNodes()) {
                             childXMLList.add(XMLNode.Export((XMLNode)childNode));
                         }
                     }
-                    ArrayList hiddenNodeList = new ArrayList();
+                    ArrayList<XMLNode> hiddenNodeList = new ArrayList<XMLNode>();
                     loopFormRootNode.GetAllNodeByNodeName("SRFEXHIDDEN", hiddenNodeList);
                     if (hiddenNodeList.size() > 0) {
                         for (XMLNode hiddenXMLNode : hiddenNodeList) {
@@ -6143,14 +6143,14 @@ IDAConfigHelperContext {
                 }
                 ArrayList<String> childXMLList = new ArrayList<String>();
                 ArrayList<String> childXMLList2 = new ArrayList<String>();
-                ArrayList pageGroupNodes = new ArrayList();
+                ArrayList<XMLNode> pageGroupNodes = new ArrayList<XMLNode>();
                 loopFormRootNode.GetAllNodeByNodeName("SRFEXDPPAGEGROUP", pageGroupNodes);
                 if (pageGroupNodes.size() > 0 && (pageGroupNode = (XMLNode)pageGroupNodes.get(0)).getChildNodes() != null) {
                     for (XMLNode childNode : pageGroupNode.getChildNodes()) {
                         childXMLList.add(XMLNode.Export((XMLNode)childNode));
                     }
                 }
-                ArrayList hiddenNodeList = new ArrayList();
+                ArrayList<XMLNode> hiddenNodeList = new ArrayList<XMLNode>();
                 loopFormRootNode.GetAllNodeByNodeName("SRFEXHIDDEN", hiddenNodeList);
                 if (hiddenNodeList.size() > 0) {
                     for (XMLNode hiddenXMLNode : hiddenNodeList) {
@@ -6220,7 +6220,7 @@ IDAConfigHelperContext {
             for (XMLNode xmlNode : hiddenNodes) {
                 hiddenGroupNode.AddNode(xmlNode);
             }
-            ArrayList defaultItemNodes = new ArrayList();
+            ArrayList<XMLNode> defaultItemNodes = new ArrayList<XMLNode>();
             rootNode.GetAllNodeByNodeName("SRFEXDEFAULTITEM", defaultItemNodes);
             for (XMLNode formItemNode : defaultItemNodes) {
                 String strDEField = formItemNode.GetExtValue("DEFIELD", "");
@@ -7264,7 +7264,7 @@ IDAConfigHelperContext {
         if (this.globalHelperEx.getDAModelVersion() >= 10120900 && (rawFIStyleDataCtrl = this.globalHelperEx.getDAModelStorage().FindDEDataCtrl("DE0069", "SYSTEM", null)) == null) {
             log.warn((Object)StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u6570\u636e\u8bbf\u95ee\u5bf9\u8c61", (Object)"DE0069"));
         }
-        ArrayList rawItemNodes = new ArrayList();
+        ArrayList<XMLNode> rawItemNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPRAWITEM", rawItemNodes);
         for (XMLNode rawItemNode : rawItemNodes) {
             boolean bDPModel = rawItemNode.GetExtValue("DPMODEL", false);
@@ -7293,7 +7293,7 @@ IDAConfigHelperContext {
             XMLConfig.LoadFromXML((String)strXML, (XMLConfig)rawItemNode);
         }
         rawItemNodes.clear();
-        ArrayList tabPageNodes = new ArrayList();
+        ArrayList<XMLNode> tabPageNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPPAGEGROUP", tabPageNodes);
         for (XMLNode tabPageNode : tabPageNodes) {
             String strCapLanResId = tabPageNode.GetExtValue("CAPLANRESID", "");
@@ -7302,7 +7302,7 @@ IDAConfigHelperContext {
             strCaption = this.GetLocalization(iDEHelper, strCapLanResId, strCaption);
             tabPageNode.SetExtValue("CAPTION", strCaption);
         }
-        ArrayList groupNodes = new ArrayList();
+        ArrayList<XMLNode> groupNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPGROUP", groupNodes);
         for (XMLNode groupNode : groupNodes) {
             String strCapLanResId = groupNode.GetExtValue("CAPLANRESID", "");
@@ -7311,7 +7311,7 @@ IDAConfigHelperContext {
             strCaption = this.GetLocalization(iDEHelper, strCapLanResId, strCaption);
             groupNode.SetExtValue("CAPTION", strCaption);
         }
-        ArrayList dpGroupNodes = new ArrayList();
+        ArrayList<XMLNode> dpGroupNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPGROUP", dpGroupNodes);
         rootNode.GetAllNodeByNodeName("SRFEXDPPAGEGROUP", dpGroupNodes);
         for (XMLNode dpGroupNode : dpGroupNodes) {
@@ -7325,7 +7325,7 @@ IDAConfigHelperContext {
             if (formItemRuleConfig == null || !StringHelper.IsNullOrEmpty((String)(strCode = dpGroupNode.GetExtValue("ENABLECOND", ""))) || !(callResult = defaultFormItemLogicHelper.GetEnableCode(formItemRuleConfig)).IsOk() || StringHelper.IsNullOrEmpty((String)(strCode = (String)callResult.getUserObject()))) continue;
             dpGroupNode.SetValue("ENABLECOND", strCode);
         }
-        ArrayList dpDataGridNodes = new ArrayList();
+        ArrayList<XMLNode> dpDataGridNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPDATAGRIDITEM", dpDataGridNodes);
         if (dpDataGridNodes.size() > 0) {
             for (XMLNode dpDataGridNode : dpDataGridNodes) {
@@ -7387,7 +7387,7 @@ IDAConfigHelperContext {
                 dpDataGridNode.AddNode(dgItem);
             }
         }
-        ArrayList formItemNodes = new ArrayList();
+        ArrayList<XMLNode> formItemNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPFORMITEM", formItemNodes);
         TreeMap<String, XMLNode> searchItemNodeMap = new TreeMap<String, XMLNode>();
         for (XMLNode formItemNode : formItemNodes) {
@@ -7531,7 +7531,7 @@ IDAConfigHelperContext {
             log.error((Object)StringHelper.Format((String)"\u8f7d\u5165\u8868\u5355\u6a21\u578b\u5931\u8d25"));
             return null;
         }
-        ArrayList formItemNodes = new ArrayList();
+        ArrayList<XMLNode> formItemNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPFORMITEM", formItemNodes);
         TreeMap<String, XMLNode> searchItemNodeMap = new TreeMap<String, XMLNode>();
         for (XMLNode formItemNode : formItemNodes) {
@@ -7545,7 +7545,7 @@ IDAConfigHelperContext {
         }
         BaseDataEntity cond = new BaseDataEntity();
         cond.SetParamValue("DEFGROUPID", (Object)strDEFGroupId);
-        Vector defGroupDetailList = new Vector();
+        Vector<BaseDataEntity> defGroupDetailList = new Vector<BaseDataEntity>();
         CallResult callResult = iDEFGroupDetailDataCtrl.Select(cond, defGroupDetailList);
         if (callResult.IsError()) {
             String strErrorInfo = StringHelper.Format((String)"\u67e5\u8be2\u5c5e\u6027\u5206\u7ec4[%1$s]\u660e\u7ec6\u53d1\u751f\u9519\u8bef\uff0c%2$s", (Object)strDEFGroupId, (Object)callResult.getErrorInfo());
@@ -7794,7 +7794,7 @@ IDAConfigHelperContext {
     }
 
     protected void PrepareDAConfigPublishers() throws Exception {
-        Vector configPublishers = new Vector();
+        Vector<ConfigPublisher> configPublishers = new Vector<ConfigPublisher>();
         CallResult callResult = this.getGlobalHelper().getDAModelHelper().GetConfigPublishers(configPublishers);
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u914d\u7f6e\u53d1\u5e03\u5668\u5bf9\u8c61\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -7866,4 +7866,3 @@ IDAConfigHelperContext {
         return true;
     }
 }
-

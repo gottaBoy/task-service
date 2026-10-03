@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.calendar;
 
-import net.ibizsys.model.control.calendar.IPSCalendarItemDataItem;
+/**
+ * 系统日历部件项数据项对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSSysCalendarItemDataItem extends IPSCalendarItemDataItem {
 
-public interface IPSSysCalendarItemDataItem
-extends IPSCalendarItemDataItem {
 }
-

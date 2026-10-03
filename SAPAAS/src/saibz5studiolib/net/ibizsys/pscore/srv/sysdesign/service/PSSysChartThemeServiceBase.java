@@ -164,9 +164,9 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSSysChartTheme, pSModule);
             return;
@@ -176,9 +176,9 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
             PSSysDynaModel pSSysDynaModel = (PSSysDynaModel)iService.getDEModel().createEntity();
             pSSysDynaModel.set("PSSYSDYNAMODELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDynaModel);
+                iService.getTemp(pSSysDynaModel);
             } else {
-                iService.get((IEntity)pSSysDynaModel);
+                iService.get(pSSysDynaModel);
             }
             this.onFillParentInfo_PSSysDynaModel(pSSysChartTheme, pSSysDynaModel);
             return;
@@ -188,14 +188,14 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysChartTheme, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysChartTheme, string, string2, string3);
+        super.onFillParentInfo(pSSysChartTheme, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -232,7 +232,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 pSSysChartTheme.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysChartTheme, bl);
+        super.onFillEntityFullInfo(pSSysChartTheme, bl);
         this.onFillEntityFullInfo_PSModule(pSSysChartTheme, bl);
         this.onFillEntityFullInfo_PSSysDynaModel(pSSysChartTheme, bl);
         this.onFillEntityFullInfo_PSSystem(pSSysChartTheme, bl);
@@ -248,7 +248,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
     }
 
     protected void onWriteBackParent(PSSysChartTheme pSSysChartTheme, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysChartTheme, bl);
+        super.onWriteBackParent(pSSysChartTheme, bl);
     }
 
     public ArrayList<PSSysChartTheme> selectByPSModule(PSModuleBase pSModuleBase) throws Exception {
@@ -327,8 +327,8 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
         ArrayList<PSSysChartTheme> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCHARTTHEME_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSCHARTTHEME", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCHARTTHEME_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSCHARTTHEME", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -361,7 +361,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
         ArrayList<PSSysChartTheme> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSSysChartTheme pSSysChartTheme : arrayList) {
-            this.remove((IEntity)pSSysChartTheme);
+            this.remove(pSSysChartTheme);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -379,8 +379,8 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
         ArrayList<PSSysChartTheme> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSDYNAMODEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysDynaModel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCHARTTHEME_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSSYSCHARTTHEME", iDataEntityModel.getDataInfo((IEntity)pSSysDynaModel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysDynaModel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCHARTTHEME_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSSYSCHARTTHEME", iDataEntityModel.getDataInfo(pSSysDynaModel), arrayList.get(0)));
         }
     }
 
@@ -413,7 +413,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
         ArrayList<PSSysChartTheme> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel);
         this.onBeforeRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
         for (PSSysChartTheme pSSysChartTheme : arrayList) {
-            this.remove((IEntity)pSSysChartTheme);
+            this.remove(pSSysChartTheme);
         }
         this.onAfterRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
     }
@@ -459,7 +459,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
         ArrayList<PSSysChartTheme> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysChartTheme pSSysChartTheme : arrayList) {
-            this.remove((IEntity)pSSysChartTheme);
+            this.remove(pSSysChartTheme);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -482,7 +482,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
 
     protected void replaceParentInfo(PSSysChartTheme pSSysChartTheme, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysChartTheme, cloneSession);
+        super.replaceParentInfo(pSSysChartTheme, cloneSession);
         if (pSSysChartTheme.getPSModuleId() != null && (iEntity = cloneSession.getEntity("PSMODULE", (Object)pSSysChartTheme.getPSModuleId())) != null) {
             this.onFillParentInfo_PSModule(pSSysChartTheme, (PSModule)iEntity);
         }
@@ -495,7 +495,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysChartTheme pSSysChartTheme, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysChartTheme, bl);
+        super.onRemoveEntityUncopyValues(pSSysChartTheme, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysChartTheme pSSysChartTheme, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -558,7 +558,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysChartTheme, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysChartTheme, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysChartTheme, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSSysChartTheme pSSysChartTheme, boolean bl2, boolean bl3) throws Exception {
@@ -574,7 +574,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -618,7 +618,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -655,7 +655,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -677,7 +677,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -699,7 +699,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -724,7 +724,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysChartThemeId_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysChartThemeId_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCHARTTHEMEID");
@@ -749,7 +749,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysChartThemeName_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysChartThemeName_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCHARTTHEMENAME");
@@ -790,7 +790,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDynaModelId_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDynaModelId_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDYNAMODELID");
@@ -812,7 +812,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -834,7 +834,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThemeDesc_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_ThemeDesc_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THEMEDESC");
@@ -856,7 +856,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThemeParams_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_ThemeParams_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THEMEPARAMS");
@@ -878,7 +878,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThemeTag_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_ThemeTag_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THEMETAG");
@@ -900,7 +900,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThemeTag2_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_ThemeTag2_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THEMETAG2");
@@ -922,7 +922,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -944,7 +944,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -966,7 +966,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -988,7 +988,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1010,7 +1010,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1035,7 +1035,7 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysChartTheme, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysChartTheme, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1048,11 +1048,11 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
     }
 
     protected void onSyncEntity(PSSysChartTheme pSSysChartTheme, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysChartTheme, bl);
+        super.onSyncEntity(pSSysChartTheme, bl);
     }
 
     protected void onSyncIndexEntities(PSSysChartTheme pSSysChartTheme, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysChartTheme, bl);
+        super.onSyncIndexEntities(pSSysChartTheme, bl);
     }
 
     public Object getDataContextValue(PSSysChartTheme pSSysChartTheme, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1060,14 +1060,14 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysChartTheme, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysChartTheme, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysChartTheme pSSysChartTheme, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysChartTheme, arrayList, n);
+        super.onExportMajorModel(pSSysChartTheme, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1431,14 +1431,14 @@ extends PSCoreSysServiceBase<PSSysChartTheme> {
 
     protected boolean onMergeChild(String string, String string2, PSSysChartTheme pSSysChartTheme) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysChartTheme)) {
+        if (super.onMergeChild(string, string2, pSSysChartTheme)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysChartTheme pSSysChartTheme) throws Exception {
-        super.onUpdateParent((IEntity)pSSysChartTheme);
+        super.onUpdateParent(pSSysChartTheme);
     }
 
     @Override

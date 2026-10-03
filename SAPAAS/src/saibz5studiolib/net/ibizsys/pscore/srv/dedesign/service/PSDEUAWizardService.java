@@ -113,7 +113,7 @@ extends PSDEUAWizardServiceBase {
         PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
         PSDataEntity pSDataEntity = new PSDataEntity();
         pSDataEntity.setPSDataEntityId(string);
-        pSDataEntityService.get((IEntity)pSDataEntity);
+        pSDataEntityService.get(pSDataEntity);
         pSDEUAWizard.setPSSystemId(pSDataEntity.getPSSystemId());
         pSDEUAWizard.setPSSystemName(pSDataEntity.getPSSystemName());
     }
@@ -133,7 +133,7 @@ extends PSDEUAWizardServiceBase {
                 pSAppDEView.setPSAppModuleId(pSDEUAWizard.getPSAppModuleId());
                 pSAppDEView.setPSAppModuleName(pSDEUAWizard.getPSAppModuleName());
                 if (bl && pSAppDEViewService.checkKey(pSAppDEView) == 1) continue;
-                pSAppDEViewService.save((IEntity)pSAppDEView);
+                pSAppDEViewService.save(pSAppDEView);
             }
             return;
         }
@@ -153,7 +153,7 @@ extends PSDEUAWizardServiceBase {
                     pSAppDEView.setPSAppModuleId(pSDEUAWizard.getPSAppModuleId());
                     pSAppDEView.setPSAppModuleName(pSDEUAWizard.getPSAppModuleName());
                     if (bl && pSAppDEViewService.checkKey(pSAppDEView) == 1) continue;
-                    pSAppDEViewService.save((IEntity)pSAppDEView);
+                    pSAppDEViewService.save(pSAppDEView);
                 }
             }
             return;
@@ -169,7 +169,7 @@ extends PSDEUAWizardServiceBase {
                 pSAppDynaDEView.setPSAppModuleId(pSDEUAWizard.getPSAppModuleId());
                 pSAppDynaDEView.setPSAppModuleName(pSDEUAWizard.getPSAppModuleName());
                 if (bl && pSAppDynaDEViewService.checkKey(pSAppDynaDEView) == 1) continue;
-                pSAppDynaDEViewService.save((IEntity)pSAppDynaDEView);
+                pSAppDynaDEViewService.save(pSAppDynaDEView);
             }
             return;
         }
@@ -189,7 +189,7 @@ extends PSDEUAWizardServiceBase {
                     pSAppDynaDEView.setPSAppModuleId(pSDEUAWizard.getPSAppModuleId());
                     pSAppDynaDEView.setPSAppModuleName(pSDEUAWizard.getPSAppModuleName());
                     if (bl && pSAppDynaDEViewService.checkKey(pSAppDynaDEView) == 1) continue;
-                    pSAppDynaDEViewService.save((IEntity)pSAppDynaDEView);
+                    pSAppDynaDEViewService.save(pSAppDynaDEView);
                 }
             }
             return;
@@ -198,29 +198,23 @@ extends PSDEUAWizardServiceBase {
 
     @Override
     protected void onAfterCreate(PSDEUAWizard pSDEUAWizard) throws Exception {
-        PSDCDETempl pSDCDETempl;
-        PSDCDETemplService pSDCDETemplService;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
-        IDataEntityModel iDataEntityModel;
-        String string;
-        String string2;
         if (StringHelper.compare((String)pSDEUAWizard.getWizardMode(), (String)WIZARDMODE_BATAPPLYDETEMPL, (boolean)true) == 0) {
-            string2 = pSDEUAWizard.getActionData();
-            string = pSDEUAWizard.getWizardParam4();
+            String string2 = pSDEUAWizard.getActionData();
+            String string = pSDEUAWizard.getWizardParam4();
             if (!StringHelper.isNullOrEmpty((String)string2)) {
-                iDataEntityModel = string2.split("[;]");
-                pSCoreSysServiceBase = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDCDETemplService = (PSDCDETemplService)ServiceGlobal.getService(PSDCDETemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                pSDCDETempl = new PSDCDETempl();
+                String[] entityIds = string2.split("[;]");
+                PSCoreSysServiceBase pSCoreSysServiceBase = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
+                PSDCDETemplService pSDCDETemplService = (PSDCDETemplService)ServiceGlobal.getService(PSDCDETemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+                PSDCDETempl pSDCDETempl = new PSDCDETempl();
                 pSDCDETempl.setPSDCDETemplId(string);
-                if (!pSDCDETemplService.get((IEntity)pSDCDETempl, true)) {
+                if (!pSDCDETemplService.get(pSDCDETempl, true)) {
                     throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u5b9e\u4f53\u6a21\u677f"));
                 }
-                for (Object object : iDataEntityModel) {
+                for (String entityId : entityIds) {
                     ArrayList<PSDCDETemplField> arrayList = pSDCDETempl.getPSDCDETemplFields();
                     for (PSDCDETemplField pSDCDETemplField : arrayList) {
                         PSDEField pSDEField = new PSDEField();
-                        pSDEField.setPSDEId((String)object);
+                        pSDEField.setPSDEId(entityId);
                         pSDEField.setPSDEFieldName(pSDCDETemplField.getPSDCDETemplFieldName().toUpperCase());
                         if (pSCoreSysServiceBase.select(pSDEField, true)) continue;
                         pSDCDETemplField.copyTo((IDataObject)pSDEField, false);
@@ -235,39 +229,37 @@ extends PSDEUAWizardServiceBase {
             }
         }
         if (StringHelper.compare((String)pSDEUAWizard.getWizardMode(), (String)WIZARDMODE_BATADDDEDQCODEEXP, (boolean)true) == 0) {
-            string2 = pSDEUAWizard.getActionData();
-            string = pSDEUAWizard.getWizardParam3();
-            iDataEntityModel = PropertiesHelper.load((String)string);
-            pSCoreSysServiceBase = (PSDEDQCodeExpService)ServiceGlobal.getService(PSDEDQCodeExpService.class, (SessionFactory)this.getSessionFactory());
-            pSDCDETemplService = new SelectCond();
-            pSDCDETemplService.set("PSDEDQCODEID", string2);
-            pSCoreSysServiceBase.remove((ISelectCond)pSDCDETemplService, true);
+            String string2 = pSDEUAWizard.getActionData();
+            String string = pSDEUAWizard.getWizardParam3();
+            Properties properties = PropertiesHelper.load((String)string);
+            PSCoreSysServiceBase pSCoreSysServiceBase = (PSDEDQCodeExpService)ServiceGlobal.getService(PSDEDQCodeExpService.class, (SessionFactory)this.getSessionFactory());
+            SelectCond selectCond = new SelectCond();
+            selectCond.set("PSDEDQCODEID", string2);
+            pSCoreSysServiceBase.remove((ISelectCond)selectCond, true);
             int n = 1;
-            for (Object e : iDataEntityModel.keySet()) {
-                Object object;
-                String string3 = PropertiesHelper.getProperty((Properties)iDataEntityModel, (String)e.toString());
+            for (Object e : properties.keySet()) {
+                String string3 = PropertiesHelper.getProperty(properties, (String)e.toString());
                 if (StringHelper.isNullOrEmpty((String)string3)) continue;
-                object = new PSDEDQCodeExp();
-                ((PSDEDQCodeExpBase)object).setPSDEDQCodeExpName(e.toString());
-                ((PSDEDQCodeExpBase)object).setExpCode(string3);
-                ((PSDEDQCodeExpBase)object).setPSDEDQCodeId(string2);
-                ((PSDEDQCodeExpBase)object).setOrderValue(n);
-                if (pSCoreSysServiceBase.checkKey(object) == 0) {
-                    pSCoreSysServiceBase.create(object);
+                PSDEDQCodeExp codeExp = new PSDEDQCodeExp();
+                codeExp.setPSDEDQCodeExpName(e.toString());
+                codeExp.setExpCode(string3);
+                codeExp.setPSDEDQCodeId(string2);
+                codeExp.setOrderValue(n);
+                if (pSCoreSysServiceBase.checkKey(codeExp) == 0) {
+                    pSCoreSysServiceBase.create(codeExp);
                 }
                 ++n;
             }
         }
         if (StringHelper.compare((String)pSDEUAWizard.getWizardMode(), (String)WIZARDMODE_MODIFYXMLMODEL, (boolean)true) == 0) {
-            string2 = pSDEUAWizard.getActionData();
-            string = pSDEUAWizard.getActionData2();
-            iDataEntityModel = DEModelGlobal.getDEModel((String)string);
-            pSCoreSysServiceBase = (PSCoreSysServiceBase)iDataEntityModel.getService(this.getSessionFactory());
-            pSDCDETemplService = iDataEntityModel.createEntity();
-            pSDCDETemplService.set(iDataEntityModel.getKeyDEField().getName(), string2);
-            pSDCDETempl = null;
-            pSDCDETempl = StringHelper.isNullOrEmpty((String)pSDEUAWizard.getWizardParam3()) ? new XmlNode() : XmlNode.loadFromXML((String)pSDEUAWizard.getWizardParam3());
-            pSCoreSysServiceBase.importXmlModel(pSDCDETemplService, (XmlNode)pSDCDETempl);
+            String string2 = pSDEUAWizard.getActionData();
+            String string = pSDEUAWizard.getActionData2();
+            IDataEntityModel iDataEntityModel = DEModelGlobal.getDEModel((String)string);
+            PSCoreSysServiceBase pSCoreSysServiceBase = (PSCoreSysServiceBase)iDataEntityModel.getService(this.getSessionFactory());
+            IEntity entity = iDataEntityModel.createEntity();
+            entity.set(iDataEntityModel.getKeyDEField().getName(), string2);
+            XmlNode xmlNode = StringHelper.isNullOrEmpty((String)pSDEUAWizard.getWizardParam3()) ? new XmlNode() : XmlNode.loadFromXML((String)pSDEUAWizard.getWizardParam3());
+            pSCoreSysServiceBase.importXmlModel(entity, xmlNode);
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("ctrl", (Object)"form");
             jSONObject.put("action", (Object)"reload");
@@ -285,7 +277,7 @@ extends PSDEUAWizardServiceBase {
             selectCond.set("PSDEDQCODEID", (Object)string);
             selectCond.setOrderInfo("ORDER BY ORDERVALUE");
             PSDEDQCodeExpService pSDEDQCodeExpService = (PSDEDQCodeExpService)ServiceGlobal.getService(PSDEDQCodeExpService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList arrayList = pSDEDQCodeExpService.select((ISelectCond)selectCond);
+            ArrayList<PSDEDQCodeExp> arrayList = pSDEDQCodeExpService.select((ISelectCond)selectCond);
             StringBuilderEx stringBuilderEx = new StringBuilderEx();
             for (PSDEDQCodeExp pSDEDQCodeExp : arrayList) {
                 stringBuilderEx.append("%1$s=%2$s\r\n", (Object)pSDEDQCodeExp.getPSDEDQCodeExpName(), (Object)pSDEDQCodeExp.getExpCode());
@@ -463,8 +455,6 @@ extends PSDEUAWizardServiceBase {
     }
 
     protected void batModifyDE(PSDEUAWizard pSDEUAWizard) throws Exception {
-        Object object;
-        Object object2;
         if (StringHelper.isNullOrEmpty((String)pSDEUAWizard.getActionData())) {
             return;
         }
@@ -475,103 +465,86 @@ extends PSDEUAWizardServiceBase {
         int n = 0;
         boolean bl2 = false;
         if (DataObject.getIntegerValue((IDataObject)pSDEUAWizard, (String)"clonedeflag", (int)0) == 1) {
-            JSONArray jSONArray;
             bl = true;
             string = DataObject.getStringValue((IDataObject)pSDEUAWizard, (String)"psdeid", null);
             string2 = DataObject.getStringValue((IDataObject)pSDEUAWizard, (String)"WIZARDPARAM4", null);
             n = DataObject.getIntegerValue((IDataObject)pSDEUAWizard, (String)"defflag", (int)0);
             bl2 = DataObject.getIntegerValue((IDataObject)pSDEUAWizard, (String)"derflag", (int)0) == 1;
-            object2 = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-            object = new PSDataEntity();
-            ((PSDataEntityBase)object).setPSDataEntityId(string);
-            pSDataEntityService.get((IEntity)object);
-            Object object3 = null;
+            PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
+            PSDataEntity sourceEntity = new PSDataEntity();
+            sourceEntity.setPSDataEntityId(string);
+            pSDataEntityService.get(sourceEntity);
+            HashMap<String, String> selectedFields = null;
             if (n == 3) {
-                object3 = new HashMap();
+                selectedFields = new HashMap<String, String>();
                 if (!StringHelper.isNullOrEmpty((String)pSDEUAWizard.getWizardParam3())) {
-                    jSONArray = JSONArray.fromString((String)pSDEUAWizard.getWizardParam3());
+                    JSONArray jSONArray = JSONArray.fromString((String)pSDEUAWizard.getWizardParam3());
                     for (int i = 0; i < jSONArray.length(); ++i) {
                         JSONObject jSONObject = jSONArray.getJSONObject(i);
                         String string3 = jSONObject.optString("id");
-                        Object object4 = jSONObject.optString("name");
-                        ((HashMap)object3).put(string3, object4);
+                        String fieldName = jSONObject.optString("name");
+                        selectedFields.put(string3, fieldName);
                     }
                 }
             }
-            for (Object object4 : jSONArray = pSDEUAWizard.getActionData().split("[;]")) {
-                Object object5;
-                EntityBase entityBase;
-                Object object6;
-                Object object7;
-                Object object8;
+            for (String targetId : pSDEUAWizard.getActionData().split("[;]")) {
                 PSDataEntity pSDataEntity = new PSDataEntity();
-                pSDataEntity.setPSDataEntityId((String)object4);
-                pSDataEntityService.get((IEntity)pSDataEntity);
+                pSDataEntity.setPSDataEntityId(targetId);
+                pSDataEntityService.get(pSDataEntity);
                 if (n > 0) {
-                    object8 = ((PSDataEntityBase)object).getPSDEFields();
-                    object7 = ((ArrayList)object8).iterator();
-                    while (object7.hasNext()) {
-                        object6 = object7.next();
-                        if (n == 1 && (DataObject.getIntegerValue((Object)((PSDEFieldBase)object6).getPKey(), (Integer)0) != 0 || DataObject.getIntegerValue((Object)((PSDEFieldBase)object6).getMajorField(), (Integer)0) != 0) || !StringHelper.isNullOrEmpty((String)((PSDEFieldBase)object6).getPSDERId()) || object3 != null && !((HashMap)object3).containsKey(((PSDEFieldBase)object6).getPSDEFieldId())) continue;
-                        entityBase = new PSDEField();
-                        object6.copyTo((IDataObject)entityBase, false);
-                        object2.removeUncopyValues((IEntity)entityBase, false);
-                        entityBase.setPSDEId(pSDataEntity.getPSDataEntityId());
-                        entityBase.setPSDEName(pSDataEntity.getPSDataEntityName());
-                        entityBase.setValidFlag(1);
+                    for (PSDEField sourceField : sourceEntity.getPSDEFields()) {
+                        if (n == 1 && (DataObject.getIntegerValue((Object)sourceField.getPKey(), (Integer)0) != 0 || DataObject.getIntegerValue((Object)sourceField.getMajorField(), (Integer)0) != 0) || !StringHelper.isNullOrEmpty((String)sourceField.getPSDERId()) || selectedFields != null && !selectedFields.containsKey(sourceField.getPSDEFieldId())) continue;
+                        PSDEField field = new PSDEField();
+                        sourceField.copyTo((IDataObject)field, false);
+                        pSDEFieldService.removeUncopyValues(field, false);
+                        field.setPSDEId(pSDataEntity.getPSDataEntityId());
+                        field.setPSDEName(pSDataEntity.getPSDataEntityName());
+                        field.setValidFlag(1);
                         try {
-                            ((PSCoreSysServiceBase)object2).create(entityBase, false);
+                            pSDEFieldService.create(field, false);
                         }
                         catch (Exception exception) {
-                            if (exception instanceof ErrorException && ((object5 = (ErrorException)((Object)exception)).getErrorCode() == 6 || object5.getErrorCode() == 7) || exception instanceof EntityException && ((object5 = (EntityException)exception).getErrorCode() == 6 || object5.getErrorCode() == 7)) continue;
+                            if (exception instanceof ErrorException && (((ErrorException)exception).getErrorCode() == 6 || ((ErrorException)exception).getErrorCode() == 7) || exception instanceof EntityException && (((EntityException)exception).getErrorCode() == 6 || ((EntityException)exception).getErrorCode() == 7)) continue;
                             throw exception;
                         }
                     }
                 }
                 if (!bl2) continue;
-                object8 = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
-                object7 = ((PSDataEntityBase)object).getMinorPSDERs();
-                object6 = ((ArrayList)object7).iterator();
-                while (object6.hasNext()) {
-                    Object object9;
-                    entityBase = (PSDER)object6.next();
+                PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
+                for (PSDER sourceRelation : sourceEntity.getMinorPSDERs()) {
                     PSDER pSDER = new PSDER();
-                    entityBase.copyTo((IDataObject)pSDER, false);
-                    object8.removeUncopyValues((IEntity)pSDER, false);
+                    sourceRelation.copyTo((IDataObject)pSDER, false);
+                    pSDERService.removeUncopyValues(pSDER, false);
                     pSDER.setMinorPSDEId(pSDataEntity.getPSDataEntityId());
                     pSDER.setMinorPSDEName(pSDataEntity.getPSDataEntityName());
                     pSDER.setValidFlag(1);
                     try {
-                        object8.fillEntityKeyValue((IEntity)pSDER);
-                        if (((PSCoreSysServiceBase)object8).checkKey(pSDER) == 1) {
-                            object8.get((IEntity)pSDER);
+                        pSDERService.fillEntityKeyValue(pSDER);
+                        if (pSDERService.checkKey(pSDER) == 1) {
+                            pSDERService.get(pSDER);
                         } else {
-                            ((PSCoreSysServiceBaseBase)((Object)object8)).create(pSDER);
+                            pSDERService.create(pSDER);
                         }
                     }
                     catch (Exception exception) {
-                        if (exception instanceof ErrorException && ((object9 = (ErrorException)((Object)exception)).getErrorCode() == 6 || object9.getErrorCode() == 6) || exception instanceof EntityException && ((object9 = (EntityException)exception).getErrorCode() == 6 || object9.getErrorCode() == 6)) continue;
+                        if (exception instanceof ErrorException && (((ErrorException)exception).getErrorCode() == 6 || ((ErrorException)exception).getErrorCode() == 6) || exception instanceof EntityException && (((EntityException)exception).getErrorCode() == 6 || ((EntityException)exception).getErrorCode() == 6)) continue;
                         throw exception;
                     }
-                    object5 = ((PSDataEntityBase)object).getPSDEFields();
-                    object9 = ((ArrayList)object5).iterator();
-                    while (object9.hasNext()) {
-                        PSDEField pSDEField = (PSDEField)object9.next();
-                        if (StringHelper.compare((String)pSDEField.getPSDERId(), (String)entityBase.getPSDERId(), (boolean)false) != 0) continue;
+                    for (PSDEField pSDEField : sourceEntity.getPSDEFields()) {
+                        if (StringHelper.compare((String)pSDEField.getPSDERId(), (String)sourceRelation.getPSDERId(), (boolean)false) != 0) continue;
                         PSDEField pSDEField2 = new PSDEField();
                         pSDEField.copyTo((IDataObject)pSDEField2, false);
-                        object2.removeUncopyValues((IEntity)pSDEField2, false);
+                        pSDEFieldService.removeUncopyValues(pSDEField2, false);
                         pSDEField2.setPSDEId(pSDataEntity.getPSDataEntityId());
                         pSDEField2.setPSDEName(pSDataEntity.getPSDataEntityName());
                         pSDEField2.setPSDERId(pSDER.getPSDERId());
                         pSDEField2.setPSDERName(pSDER.getPSDERName());
                         pSDEField2.setValidFlag(1);
                         try {
-                            ((PSCoreSysServiceBase)object2).create(pSDEField2, false);
+                            pSDEFieldService.create(pSDEField2, false);
                         }
                         catch (Exception exception) {
-                            ErrorException errorException;
-                            if (exception instanceof ErrorException && ((errorException = (ErrorException)((Object)exception)).getErrorCode() == 6 || errorException.getErrorCode() == 6) || exception instanceof EntityException && ((errorException = (EntityException)exception).getErrorCode() == 6 || errorException.getErrorCode() == 6)) continue;
+                            if (exception instanceof ErrorException && (((ErrorException)exception).getErrorCode() == 6 || ((ErrorException)exception).getErrorCode() == 6) || exception instanceof EntityException && (((EntityException)exception).getErrorCode() == 6 || ((EntityException)exception).getErrorCode() == 6)) continue;
                             throw exception;
                         }
                     }
@@ -579,14 +552,14 @@ extends PSDEUAWizardServiceBase {
             }
         }
         if (DataObject.getIntegerValue((IDataObject)pSDEUAWizard, (String)"saasmodeflag", (int)0) == 1) {
-            object2 = DataObject.getStringValue((IDataObject)pSDEUAWizard, (String)"saasmode", null);
-            for (String string4 : object = pSDEUAWizard.getActionData().split("[;]")) {
+            String saasMode = DataObject.getStringValue((IDataObject)pSDEUAWizard, (String)"saasmode", null);
+            for (String string4 : pSDEUAWizard.getActionData().split("[;]")) {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(string4);
-                if (StringHelper.isNullOrEmpty((String)object2)) {
+                if (StringHelper.isNullOrEmpty((String)saasMode)) {
                     pSDataEntity.setSaaSMode(null);
                 } else {
-                    pSDataEntity.setSaaSMode(Integer.parseInt((String)object2));
+                    pSDataEntity.setSaaSMode(Integer.parseInt(saasMode));
                 }
                 pSDataEntityService.update(pSDataEntity, false);
             }
@@ -671,7 +644,7 @@ extends PSDEUAWizardServiceBase {
             if (!bl) continue;
             PSLanguageRes pSLanguageRes = new PSLanguageRes();
             pSLanguageRes.setPSLanguageResId(string3);
-            if (bl2 && (!pSLanguageResService.get((IEntity)pSLanguageRes, true) || !StringHelper.isNullOrEmpty((String)pSLanguageRes.getPSModuleId()))) continue;
+            if (bl2 && (!pSLanguageResService.get(pSLanguageRes, true) || !StringHelper.isNullOrEmpty((String)pSLanguageRes.getPSModuleId()))) continue;
             if (bl) {
                 pSLanguageRes.setPSModuleId(string);
                 pSLanguageRes.setPSModuleName(string2);
@@ -680,4 +653,3 @@ extends PSDEUAWizardServiceBase {
         }
     }
 }
-

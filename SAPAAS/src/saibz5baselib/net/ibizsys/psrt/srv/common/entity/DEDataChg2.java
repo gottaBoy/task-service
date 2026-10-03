@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.entity;
 
-import net.ibizsys.psrt.srv.common.entity.DEDataChg2Base;
+/**
+ * 实体[DEDataChg2] 数据对象
+ */
+//@Entity
+public class DEDataChg2 extends DEDataChg2Base {
 
-public class DEDataChg2
-extends DEDataChg2Base {
+    public DEDataChg2() {
+        super();
+    }
+
 }
-

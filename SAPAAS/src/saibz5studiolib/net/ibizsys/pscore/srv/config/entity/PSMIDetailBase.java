@@ -1052,7 +1052,7 @@ implements Serializable {
                 PSModelInit pSModelInit = new PSModelInit();
                 pSModelInit.setPSModelInitId(this.getPSModelInitId());
                 PSModelInitService pSModelInitService = (PSModelInitService)ServiceGlobal.getService(PSModelInitService.class, (SessionFactory)this.getSessionFactory());
-                pSModelInitService.autoGet((IEntity)pSModelInit);
+                pSModelInitService.autoGet(pSModelInit);
                 this.psmodelinit = pSModelInit;
             }
             return this.psmodelinit;

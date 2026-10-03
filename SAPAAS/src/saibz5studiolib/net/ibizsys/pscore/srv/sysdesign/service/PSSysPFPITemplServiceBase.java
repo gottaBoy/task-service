@@ -165,21 +165,21 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
 
     public void calcTemplLabel(PSSysPFPITempl pSSysPFPITempl) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CALCTEMPLLABEL, 0, (IEntity)pSSysPFPITempl, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CALCTEMPLLABEL, 0, pSSysPFPITempl, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysPFPITempl, ACTION_CALCTEMPLLABEL);
+        this.testDEMainStateAction(pSSysPFPITempl, ACTION_CALCTEMPLLABEL);
         final PSSysPFPITempl pSSysPFPITempl2 = pSSysPFPITempl;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysPFPITemplServiceBase.this.getService(), PSSysPFPITemplServiceBase.ACTION_CALCTEMPLLABEL, 40, (IEntity)pSSysPFPITempl2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysPFPITemplServiceBase.this.getService(), PSSysPFPITemplServiceBase.ACTION_CALCTEMPLLABEL, 40, pSSysPFPITempl2, null).getResult() != 1) {
                     PSSysPFPITemplServiceBase.this.onCalcTemplLabel(pSSysPFPITempl2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CALCTEMPLLABEL, 99, (IEntity)pSSysPFPITempl, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CALCTEMPLLABEL, 99, pSSysPFPITempl, null);
         }
     }
 
@@ -193,9 +193,9 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
             PSPFPubCode pSPFPubCode = (PSPFPubCode)iService.getDEModel().createEntity();
             pSPFPubCode.set("PSPFPUBCODEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSPFPubCode);
+                iService.getTemp(pSPFPubCode);
             } else {
-                iService.get((IEntity)pSPFPubCode);
+                iService.get(pSPFPubCode);
             }
             this.onFillParentInfo_PSPFPubCode(pSSysPFPITempl, pSPFPubCode);
             return;
@@ -205,9 +205,9 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
             PSPF pSPF = (PSPF)iService.getDEModel().createEntity();
             pSPF.set("PSPFID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSPF);
+                iService.getTemp(pSPF);
             } else {
-                iService.get((IEntity)pSPF);
+                iService.get(pSPF);
             }
             this.onFillParentInfo_PSPF(pSSysPFPITempl, pSPF);
             return;
@@ -217,9 +217,9 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_PSSysCss(pSSysPFPITempl, pSSysCss);
             return;
@@ -229,9 +229,9 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
             PSSysDynaModel pSSysDynaModel = (PSSysDynaModel)iService.getDEModel().createEntity();
             pSSysDynaModel.set("PSSYSDYNAMODELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDynaModel);
+                iService.getTemp(pSSysDynaModel);
             } else {
-                iService.get((IEntity)pSSysDynaModel);
+                iService.get(pSSysDynaModel);
             }
             this.onFillParentInfo_PSSysDynaModel(pSSysPFPITempl, pSSysDynaModel);
             return;
@@ -241,14 +241,14 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_PSSysPFPlugin(pSSysPFPITempl, pSSysPFPlugin);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysPFPITempl, string, string2, string3);
+        super.onFillParentInfo(pSSysPFPITempl, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -301,7 +301,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
         if (bl && pSSysPFPITempl.getPSSysPFPITemplName() == null) {
             pSSysPFPITempl.setPSSysPFPITemplName((String)this.getDefaultValue(this.getWebContext(), "", "\u4e91\u7cfb\u7edf\u5e94\u7528\u63d2\u4ef6\u6a21\u677f\u540d\u79f0", 25));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysPFPITempl, bl);
+        super.onFillEntityFullInfo(pSSysPFPITempl, bl);
         this.onFillEntityFullInfo_PSPFPubCode(pSSysPFPITempl, bl);
         this.onFillEntityFullInfo_PSPF(pSSysPFPITempl, bl);
         this.onFillEntityFullInfo_PSSysCss(pSSysPFPITempl, bl);
@@ -325,7 +325,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
     }
 
     protected void onWriteBackParent(PSSysPFPITempl pSSysPFPITempl, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysPFPITempl, bl);
+        super.onWriteBackParent(pSSysPFPITempl, bl);
     }
 
     public ArrayList<PSSysPFPITempl> selectByPSPFPubCode(PSPFPubCodeBase pSPFPubCodeBase) throws Exception {
@@ -480,7 +480,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
         ArrayList<PSSysPFPITempl> arrayList = this.selectByPSPFPubCode(pSPFPubCode);
         this.onBeforeRemoveByPSPFPubCode(pSPFPubCode, arrayList);
         for (PSSysPFPITempl pSSysPFPITempl : arrayList) {
-            this.remove((IEntity)pSSysPFPITempl);
+            this.remove(pSSysPFPITempl);
         }
         this.onAfterRemoveByPSPFPubCode(pSPFPubCode, arrayList);
     }
@@ -498,8 +498,8 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
         ArrayList<PSSysPFPITempl> arrayList = this.selectByPSPF(pSPF, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSPF");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSPF);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPFPITEMPL_PSPF_PSPFID", "", iDataEntityModel.getName(), "PSSYSPFPITEMPL", iDataEntityModel.getDataInfo((IEntity)pSPF), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSPF);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPFPITEMPL_PSPF_PSPFID", "", iDataEntityModel.getName(), "PSSYSPFPITEMPL", iDataEntityModel.getDataInfo(pSPF), arrayList.get(0)));
         }
     }
 
@@ -532,7 +532,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
         ArrayList<PSSysPFPITempl> arrayList = this.selectByPSPF(pSPF);
         this.onBeforeRemoveByPSPF(pSPF, arrayList);
         for (PSSysPFPITempl pSSysPFPITempl : arrayList) {
-            this.remove((IEntity)pSSysPFPITempl);
+            this.remove(pSSysPFPITempl);
         }
         this.onAfterRemoveByPSPF(pSPF, arrayList);
     }
@@ -550,8 +550,8 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
         ArrayList<PSSysPFPITempl> arrayList = this.selectByPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPFPITEMPL_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSPFPITEMPL", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPFPITEMPL_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSPFPITEMPL", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -584,7 +584,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
         ArrayList<PSSysPFPITempl> arrayList = this.selectByPSSysCss(pSSysCss);
         this.onBeforeRemoveByPSSysCss(pSSysCss, arrayList);
         for (PSSysPFPITempl pSSysPFPITempl : arrayList) {
-            this.remove((IEntity)pSSysPFPITempl);
+            this.remove(pSSysPFPITempl);
         }
         this.onAfterRemoveByPSSysCss(pSSysCss, arrayList);
     }
@@ -602,8 +602,8 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
         ArrayList<PSSysPFPITempl> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSDYNAMODEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysDynaModel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPFPITEMPL_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSSYSPFPITEMPL", iDataEntityModel.getDataInfo((IEntity)pSSysDynaModel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysDynaModel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPFPITEMPL_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSSYSPFPITEMPL", iDataEntityModel.getDataInfo(pSSysDynaModel), arrayList.get(0)));
         }
     }
 
@@ -636,7 +636,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
         ArrayList<PSSysPFPITempl> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel);
         this.onBeforeRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
         for (PSSysPFPITempl pSSysPFPITempl : arrayList) {
-            this.remove((IEntity)pSSysPFPITempl);
+            this.remove(pSSysPFPITempl);
         }
         this.onAfterRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
     }
@@ -682,7 +682,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
         ArrayList<PSSysPFPITempl> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSSysPFPITempl pSSysPFPITempl : arrayList) {
-            this.remove((IEntity)pSSysPFPITempl);
+            this.remove(pSSysPFPITempl);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -703,7 +703,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
 
     protected void replaceParentInfo(PSSysPFPITempl pSSysPFPITempl, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysPFPITempl, cloneSession);
+        super.replaceParentInfo(pSSysPFPITempl, cloneSession);
         if (pSSysPFPITempl.getPSPFPubCodeId() != null && (iEntity = cloneSession.getEntity("PSPFPUBCODE", (Object)pSSysPFPITempl.getPSPFPubCodeId())) != null) {
             this.onFillParentInfo_PSPFPubCode(pSSysPFPITempl, (PSPFPubCode)iEntity);
         }
@@ -722,7 +722,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysPFPITempl pSSysPFPITempl, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysPFPITempl, bl);
+        super.onRemoveEntityUncopyValues(pSSysPFPITempl, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysPFPITempl pSSysPFPITempl, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -809,7 +809,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
         if ((entityFieldError = this.onCheckField_TemplCodeInfo(bl, pSSysPFPITempl, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysPFPITempl, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysPFPITempl, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeMap(boolean bl, PSSysPFPITempl pSSysPFPITempl, boolean bl2, boolean bl3) throws Exception {
@@ -822,7 +822,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeMap_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_CodeMap_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODEMAP");
@@ -844,7 +844,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DynaModelFlag_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string = this.onTestValueRule_DynaModelFlag_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNAMODELFLAG");
@@ -866,7 +866,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -888,7 +888,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -913,7 +913,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFId_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFId_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFID");
@@ -949,7 +949,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPubCodeId_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPubCodeId_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPUBCODEID");
@@ -971,7 +971,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPubCodeName_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPubCodeName_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPUBCODENAME");
@@ -993,7 +993,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCssId_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCssId_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCSSID");
@@ -1015,7 +1015,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDynaModelId_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDynaModelId_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDYNAMODELID");
@@ -1040,7 +1040,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPITemplId_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPITemplId_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPITEMPLID");
@@ -1065,7 +1065,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPITemplName_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPITemplName_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPITEMPLNAME");
@@ -1090,7 +1090,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPluginId_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPluginId_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPLUGINID");
@@ -1112,7 +1112,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE");
@@ -1134,7 +1134,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode2_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode2_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE2");
@@ -1156,7 +1156,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode2Ex_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode2Ex_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE2EX");
@@ -1178,7 +1178,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TemplCode2Flag_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string = this.onTestValueRule_TemplCode2Flag_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE2FLAG");
@@ -1200,7 +1200,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode2Info_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode2Info_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE2INFO");
@@ -1222,7 +1222,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode3_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode3_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE3");
@@ -1244,7 +1244,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TemplCode3Flag_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string = this.onTestValueRule_TemplCode3Flag_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE3FLAG");
@@ -1266,7 +1266,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode3Info_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode3Info_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE3INFO");
@@ -1288,7 +1288,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode4_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode4_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE4");
@@ -1310,7 +1310,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TemplCode4Flag_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string = this.onTestValueRule_TemplCode4Flag_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE4FLAG");
@@ -1332,7 +1332,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode4Info_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode4Info_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE4INFO");
@@ -1354,7 +1354,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode5_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode5_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE5");
@@ -1376,7 +1376,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode6_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode6_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE6");
@@ -1398,7 +1398,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TemplCodeFlag_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string = this.onTestValueRule_TemplCodeFlag_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODEFLAG");
@@ -1420,7 +1420,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCodeInfo_Default((IEntity)pSSysPFPITempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCodeInfo_Default(pSSysPFPITempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODEINFO");
@@ -1433,11 +1433,11 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
     }
 
     protected void onSyncEntity(PSSysPFPITempl pSSysPFPITempl, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysPFPITempl, bl);
+        super.onSyncEntity(pSSysPFPITempl, bl);
     }
 
     protected void onSyncIndexEntities(PSSysPFPITempl pSSysPFPITempl, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysPFPITempl, bl);
+        super.onSyncIndexEntities(pSSysPFPITempl, bl);
     }
 
     public Object getDataContextValue(PSSysPFPITempl pSSysPFPITempl, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1445,7 +1445,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysPFPITempl, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysPFPITempl, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysPFPlugin pSSysPFPlugin = pSSysPFPITempl.getPSSysPFPlugin();
@@ -1456,7 +1456,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
     }
 
     protected void onExportMajorModel(PSSysPFPITempl pSSysPFPITempl, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysPFPITempl, arrayList, n);
+        super.onExportMajorModel(pSSysPFPITempl, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1939,7 +1939,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
 
     protected boolean onMergeChild(String string, String string2, PSSysPFPITempl pSSysPFPITempl) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysPFPITempl)) {
+        if (super.onMergeChild(string, string2, pSSysPFPITempl)) {
             bl = true;
         }
         return bl;
@@ -1951,7 +1951,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.config.service.PSSysPFPluginService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSSYSPFPITEMPL_PSSYSPFPLUGIN_PSSYSPFPLUGINID", object);
         }
-        super.onUpdateParent((IEntity)pSSysPFPITempl);
+        super.onUpdateParent(pSSysPFPITempl);
     }
 
     protected boolean isNeedUpdateParent() {
@@ -1971,7 +1971,7 @@ extends PSCoreSysServiceBase<PSSysPFPITempl> {
         PSSysPFPITempl pSSysPFPITempl2 = new PSSysPFPITempl();
         pSSysPFPITempl2.setPSSysPFPluginId(pSSysPFPITempl.getPSSysPFPluginId());
         pSSysPFPITempl2.setPSPFId(pSSysPFPITempl.getPSPFId());
-        if (this.selectOne((IEntity)pSSysPFPITempl2, true)) {
+        if (this.selectOne(pSSysPFPITempl2, true)) {
             return pSSysPFPITempl2.getPSSysPFPITemplId();
         }
         return super.getEntityFolderKeyValue(pSSysPFPITempl, pSSystem);

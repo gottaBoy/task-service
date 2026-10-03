@@ -138,14 +138,14 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
             PSMSPlatform pSMSPlatform = (PSMSPlatform)iService.getDEModel().createEntity();
             pSMSPlatform.set("PSMSPLATFORMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSMSPlatform);
+                iService.getTemp(pSMSPlatform);
             } else {
-                iService.get((IEntity)pSMSPlatform);
+                iService.get(pSMSPlatform);
             }
             this.onFillParentInfo_PSMSPlatform(pSMSPlatformNode, pSMSPlatform);
             return;
         }
-        super.onFillParentInfo((IEntity)pSMSPlatformNode, string, string2, string3);
+        super.onFillParentInfo(pSMSPlatformNode, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
         if (bl && pSMSPlatformNode.getValidFlag() == null) {
             pSMSPlatformNode.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSMSPlatformNode, bl);
+        super.onFillEntityFullInfo(pSMSPlatformNode, bl);
         this.onFillEntityFullInfo_PSMSPlatform(pSMSPlatformNode, bl);
     }
 
@@ -169,7 +169,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
     }
 
     protected void onWriteBackParent(PSMSPlatformNode pSMSPlatformNode, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSMSPlatformNode, bl);
+        super.onWriteBackParent(pSMSPlatformNode, bl);
     }
 
     public ArrayList<PSMSPlatformNode> selectByPSMSPlatform(PSMSPlatformBase pSMSPlatformBase) throws Exception {
@@ -200,8 +200,8 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
         ArrayList<PSMSPlatformNode> arrayList = this.selectByPSMSPlatform(pSMSPlatform, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMSPLATFORM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSMSPlatform);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMSPLATFORMNODE_PSMSPLATFORM_PSMSPLATFORMID", "", iDataEntityModel.getName(), "PSMSPLATFORMNODE", iDataEntityModel.getDataInfo((IEntity)pSMSPlatform), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSMSPlatform);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMSPLATFORMNODE_PSMSPLATFORM_PSMSPLATFORMID", "", iDataEntityModel.getName(), "PSMSPLATFORMNODE", iDataEntityModel.getDataInfo(pSMSPlatform), arrayList.get(0)));
         }
     }
 
@@ -234,7 +234,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
         ArrayList<PSMSPlatformNode> arrayList = this.selectByPSMSPlatform(pSMSPlatform);
         this.onBeforeRemoveByPSMSPlatform(pSMSPlatform, arrayList);
         for (PSMSPlatformNode pSMSPlatformNode : arrayList) {
-            this.remove((IEntity)pSMSPlatformNode);
+            this.remove(pSMSPlatformNode);
         }
         this.onAfterRemoveByPSMSPlatform(pSMSPlatform, arrayList);
     }
@@ -257,14 +257,14 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
 
     protected void replaceParentInfo(PSMSPlatformNode pSMSPlatformNode, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSMSPlatformNode, cloneSession);
+        super.replaceParentInfo(pSMSPlatformNode, cloneSession);
         if (pSMSPlatformNode.getPSMSPlatformId() != null && (iEntity = cloneSession.getEntity("PSMSPLATFORM", (Object)pSMSPlatformNode.getPSMSPlatformId())) != null) {
             this.onFillParentInfo_PSMSPlatform(pSMSPlatformNode, (PSMSPlatform)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSMSPlatformNode pSMSPlatformNode, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSMSPlatformNode, bl);
+        super.onRemoveEntityUncopyValues(pSMSPlatformNode, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSMSPlatformNode pSMSPlatformNode, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -315,7 +315,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
         if ((entityFieldError = this.onCheckField_WorkshopPath(bl, pSMSPlatformNode, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSMSPlatformNode, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSMSPlatformNode, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_IpAddr(boolean bl, PSMSPlatformNode pSMSPlatformNode, boolean bl2, boolean bl3) throws Exception {
@@ -328,7 +328,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -350,7 +350,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr2_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr2_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR2");
@@ -372,7 +372,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -394,7 +394,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -416,7 +416,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Port_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string = this.onTestValueRule_Port_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PORT");
@@ -441,7 +441,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMSPlatformId_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSMSPlatformId_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMSPLATFORMID");
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMSPlatformNodeId_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSMSPlatformNodeId_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMSPLATFORMNODEID");
@@ -491,7 +491,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMSPlatformNodeName_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSMSPlatformNodeName_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMSPLATFORMNODENAME");
@@ -513,7 +513,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SSHIPAddr_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string2 = this.onTestValueRule_SSHIPAddr_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHIPADDR");
@@ -535,7 +535,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SSHPort_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string = this.onTestValueRule_SSHPort_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHPORT");
@@ -557,7 +557,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadFileMode_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string2 = this.onTestValueRule_UploadFileMode_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADFILEMODE");
@@ -579,7 +579,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadPath_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string2 = this.onTestValueRule_UploadPath_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADPATH");
@@ -601,7 +601,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -626,7 +626,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -648,7 +648,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WorkshopPath_Default((IEntity)pSMSPlatformNode, bl2, bl3);
+            string2 = this.onTestValueRule_WorkshopPath_Default(pSMSPlatformNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WORKSHOPPATH");
@@ -661,11 +661,11 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
     }
 
     protected void onSyncEntity(PSMSPlatformNode pSMSPlatformNode, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSMSPlatformNode, bl);
+        super.onSyncEntity(pSMSPlatformNode, bl);
     }
 
     protected void onSyncIndexEntities(PSMSPlatformNode pSMSPlatformNode, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSMSPlatformNode, bl);
+        super.onSyncIndexEntities(pSMSPlatformNode, bl);
     }
 
     public Object getDataContextValue(PSMSPlatformNode pSMSPlatformNode, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -673,7 +673,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSMSPlatformNode, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSMSPlatformNode, string, iDataContextParam)) != null) {
             return object;
         }
         PSMSPlatform pSMSPlatform = pSMSPlatformNode.getPSMSPlatform();
@@ -684,7 +684,7 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
     }
 
     protected void onExportMajorModel(PSMSPlatformNode pSMSPlatformNode, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSMSPlatformNode, arrayList, n);
+        super.onExportMajorModel(pSMSPlatformNode, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -953,14 +953,14 @@ extends PSCoreSysServiceBase<PSMSPlatformNode> {
 
     protected boolean onMergeChild(String string, String string2, PSMSPlatformNode pSMSPlatformNode) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSMSPlatformNode)) {
+        if (super.onMergeChild(string, string2, pSMSPlatformNode)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSMSPlatformNode pSMSPlatformNode) throws Exception {
-        super.onUpdateParent((IEntity)pSMSPlatformNode);
+        super.onUpdateParent(pSMSPlatformNode);
     }
 
     @Override

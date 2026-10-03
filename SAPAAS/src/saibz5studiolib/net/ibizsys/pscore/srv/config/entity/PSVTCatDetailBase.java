@@ -985,7 +985,7 @@ implements Serializable {
                 PSViewTypeCat pSViewTypeCat = new PSViewTypeCat();
                 pSViewTypeCat.setPSViewTypeCatId(this.getPSViewTypeCatId());
                 PSViewTypeCatService pSViewTypeCatService = (PSViewTypeCatService)ServiceGlobal.getService(PSViewTypeCatService.class, (SessionFactory)this.getSessionFactory());
-                pSViewTypeCatService.autoGet((IEntity)pSViewTypeCat);
+                pSViewTypeCatService.autoGet(pSViewTypeCat);
                 this.psviewtypecat = pSViewTypeCat;
             }
             return this.psviewtypecat;
@@ -1011,7 +1011,7 @@ implements Serializable {
                 PSViewType pSViewType = new PSViewType();
                 pSViewType.setPSViewTypeId(this.getPSViewTypeId());
                 PSViewTypeService pSViewTypeService = (PSViewTypeService)ServiceGlobal.getService(PSViewTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSViewTypeService.autoGet((IEntity)pSViewType);
+                pSViewTypeService.autoGet(pSViewType);
                 this.psviewtype = pSViewType;
             }
             return this.psviewtype;

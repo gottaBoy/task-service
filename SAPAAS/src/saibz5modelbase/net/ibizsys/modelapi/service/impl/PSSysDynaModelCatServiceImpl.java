@@ -112,9 +112,9 @@ implements IPSSysDynaModelCatService {
 
     @Override
     protected List<PSSysDynaModelCat> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysDynaModelCat> list = new ArrayList<PSSysDynaModelCat>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysDynaModelCat> items = this.listByPSModule(parent);

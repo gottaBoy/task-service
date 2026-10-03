@@ -15,7 +15,18 @@ import java.util.Map;
 
 public class BaseProcessEndpoint {
     public static BaseDataEntity GetDataEntity(Object object) throws Exception {
-        throw new Error("Unresolved compilation problem: \n\tNullPayload cannot be resolved to a type\n");
+        if (object instanceof BaseDataEntity) {
+            return (BaseDataEntity)object;
+        }
+        BaseDataEntity entity = new BaseDataEntity();
+        if (object instanceof Map) {
+            entity.FromMap((Map)object);
+            return entity;
+        }
+        if (object instanceof org.mule.transport.NullPayload) {
+            return entity;
+        }
+        throw new Exception("\u65e0\u6cd5\u8bc6\u522b\u7684\u5bf9\u8c61");
     }
 
     public static Map GetPayload(Object objPayload, BaseDataEntity dataEntity) throws Exception {
@@ -43,8 +54,16 @@ public class BaseProcessEndpoint {
         throw new Exception("\u65e0\u6cd5\u8bc6\u522b\u7684\u5bf9\u8c61");
     }
 
-    public static ISRFDAGlobalHelper GetGlobalHelper(MuleEventContext muleEventContext) {
-        throw new Error("Unresolved compilation problem: \n\tMuleEventContext cannot be resolved to a type\n");
+    public static ISRFDAGlobalHelper GetGlobalHelper(org.mule.api.MuleEventContext muleEventContext) {
+        org.mule.api.MuleContext context = muleEventContext == null ? null : muleEventContext.getMuleContext();
+        if (context == null || context.getRegistry() == null) {
+            throw new IllegalArgumentException("Mule context and registry are required");
+        }
+        Object helper = context.getRegistry().lookupObject("SRFDACONTEXTHELPER");
+        if (!(helper instanceof ISRFDAGlobalHelper)) {
+            throw new IllegalStateException("Mule registry has no ISRFDAGlobalHelper at SRFDACONTEXTHELPER");
+        }
+        return (ISRFDAGlobalHelper)helper;
     }
 }
 

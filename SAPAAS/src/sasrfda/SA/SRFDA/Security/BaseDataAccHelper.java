@@ -86,14 +86,14 @@ implements IDataAccHelper {
                 String strAction = actions[i];
                 if (!StringHelper.IsNullOrEmpty((String)(strAction = strAction.trim()))) {
                     strAction = strAction.toUpperCase();
-                    Vector<Object> values = null;
+                    Vector<DEDSCtrl> values = null;
                     if (!this.dsCtrlMap.containsKey(strAction)) {
-                        values = new Vector();
+                        values = new Vector<DEDSCtrl>();
                         this.dsCtrlMap.put(strAction, values);
                     } else {
                         values = this.dsCtrlMap.get(strAction);
                     }
-                    values.add((Object)dsCtrl);
+                    values.add(dsCtrl);
                 }
                 ++i;
             }

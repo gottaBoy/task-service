@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.tssdtasklog.dataquery;
 
-import net.ibizsys.psrt.srv.common.demodel.tssdtasklog.dataquery.TSSDTaskLogDefaultDQModelBase;
+/**
+ *  实体数据查询 [DEFAULT]模型
+ */
+public class TSSDTaskLogDefaultDQModel extends TSSDTaskLogDefaultDQModelBase {
 
-public class TSSDTaskLogDefaultDQModel
-extends TSSDTaskLogDefaultDQModelBase {
+    public TSSDTaskLogDefaultDQModel() {
+        super();
+    }
+
 }
-

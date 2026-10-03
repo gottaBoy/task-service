@@ -72,7 +72,7 @@ implements IPSSysWFSettingService {
     @Override
     protected List<PSSysWFSetting> onListAll() throws Exception {
         ArrayList<PSSysWFSetting> list = new ArrayList<PSSysWFSetting>();
-        List pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
+        List<PSSystem> pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
         if (pssystems != null) {
             for (PSSystem parent : pssystems) {
                 List<PSSysWFSetting> items = this.listByPSSystem(parent);

@@ -1,19 +1,41 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDEAction;
-import net.ibizsys.paas.core.IDEActionCallContext;
 import net.ibizsys.paas.util.IGlobalContext;
 
+/**
+ * 实体行为调用器接口
+ * 
+ * @author Administrator
+ *
+ */
+
 public interface IDEActionCaller {
-    public void init(IGlobalContext var1, IDEAction var2) throws Exception;
+	/**
+	 * 初始化
+	 * 
+	 * @param iGlobalContext
+	 * @param iDEAction
+	 * @throws Exception
+	 */
+	void init(IGlobalContext iGlobalContext, IDEAction iDEAction) throws Exception;
 
-    public void execute(IDEActionCallContext var1) throws Exception;
+	/**
+	 * 执行操作
+	 * 
+	 * @param iDEActionContext
+	 * @throws Exception
+	 */
+	void execute(IDEActionCallContext iDEActionContext) throws Exception;
 
-    public void close();
+	/**
+	 * 关闭
+	 */
+	void close();
 
-    public IDEActionCallContext getDEActionCallContext();
+	/**
+	 * 获取调用器上下文对象
+	 * 
+	 * @return
+	 */
+	IDEActionCallContext getDEActionCallContext();
 }
-

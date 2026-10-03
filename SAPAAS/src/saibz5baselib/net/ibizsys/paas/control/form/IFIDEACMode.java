@@ -1,11 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.form;
 
+/**
+ * 表单项自动填充模式接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IFIDEACMode {
-    public String getDEName();
+	/**
+	 * 获取对应的实体名称
+	 * 
+	 * @return
+	 */
+	String getDEName();
 
-    public String getDEACModeName();
+	/**
+	 * AC模式名称
+	 * 
+	 * @return
+	 */
+	String getDEACModeName();
+
 }
-

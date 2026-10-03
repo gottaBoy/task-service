@@ -117,9 +117,9 @@ implements IPSSysMsgQueueService {
 
     @Override
     protected List<PSSysMsgQueue> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysMsgQueue> list = new ArrayList<PSSysMsgQueue>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysMsgQueue> items = this.listByPSModule(parent);

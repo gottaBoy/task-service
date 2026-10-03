@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.form;
 
-import net.ibizsys.model.control.form.IPSDEFormParam;
+/**
+ * 实体编辑表单部件参数
+ * @author Administrator
+ *
+ */
+public interface IPSDEEditFormParam extends IPSDEFormParam {
 
-public interface IPSDEEditFormParam
-extends IPSDEFormParam {
 }
-

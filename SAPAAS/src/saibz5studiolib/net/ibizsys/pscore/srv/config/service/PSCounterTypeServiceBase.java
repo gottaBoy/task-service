@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSCounterType> {
     }
 
     protected void onFillParentInfo(PSCounterType pSCounterType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSCounterType, string, string2, string3);
+        super.onFillParentInfo(pSCounterType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSCounterType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSCounterType, bl);
+        super.onFillEntityFullInfo(pSCounterType, bl);
     }
 
     protected void onWriteBackParent(PSCounterType pSCounterType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSCounterType, bl);
+        super.onWriteBackParent(pSCounterType, bl);
     }
 
     @Override
@@ -144,7 +144,7 @@ extends PSCoreSysServiceBase<PSCounterType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSCounterType pSCounterType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSCounterType, bl);
+        super.onRemoveEntityUncopyValues(pSCounterType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSCounterType pSCounterType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSCounterType> {
         if ((entityFieldError = this.onCheckField_TypeParams(bl, pSCounterType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSCounterType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSCounterType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BaseClsParams(boolean bl, PSCounterType pSCounterType, boolean bl2, boolean bl3) throws Exception {
@@ -187,7 +187,7 @@ extends PSCoreSysServiceBase<PSCounterType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BaseClsParams_Default((IEntity)pSCounterType, bl2, bl3);
+            string2 = this.onTestValueRule_BaseClsParams_Default(pSCounterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BASECLSPARAMS");
@@ -209,7 +209,7 @@ extends PSCoreSysServiceBase<PSCounterType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CounterOBJ_Default((IEntity)pSCounterType, bl2, bl3);
+            string2 = this.onTestValueRule_CounterOBJ_Default(pSCounterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("COUNTEROBJ");
@@ -231,7 +231,7 @@ extends PSCoreSysServiceBase<PSCounterType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JITCtrlObj_Default((IEntity)pSCounterType, bl2, bl3);
+            string2 = this.onTestValueRule_JITCtrlObj_Default(pSCounterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JITCTRLOBJ");
@@ -253,7 +253,7 @@ extends PSCoreSysServiceBase<PSCounterType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSCounterType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSCounterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -278,7 +278,7 @@ extends PSCoreSysServiceBase<PSCounterType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCounterTypeId_Default((IEntity)pSCounterType, bl2, bl3);
+            string2 = this.onTestValueRule_PSCounterTypeId_Default(pSCounterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCOUNTERTYPEID");
@@ -303,7 +303,7 @@ extends PSCoreSysServiceBase<PSCounterType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCounterTypeName_Default((IEntity)pSCounterType, bl2, bl3);
+            string2 = this.onTestValueRule_PSCounterTypeName_Default(pSCounterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCOUNTERTYPENAME");
@@ -325,7 +325,7 @@ extends PSCoreSysServiceBase<PSCounterType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeOBJ_Default((IEntity)pSCounterType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeOBJ_Default(pSCounterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEOBJ");
@@ -347,7 +347,7 @@ extends PSCoreSysServiceBase<PSCounterType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParams_Default((IEntity)pSCounterType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParams_Default(pSCounterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAMS");
@@ -360,11 +360,11 @@ extends PSCoreSysServiceBase<PSCounterType> {
     }
 
     protected void onSyncEntity(PSCounterType pSCounterType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSCounterType, bl);
+        super.onSyncEntity(pSCounterType, bl);
     }
 
     protected void onSyncIndexEntities(PSCounterType pSCounterType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSCounterType, bl);
+        super.onSyncIndexEntities(pSCounterType, bl);
     }
 
     public Object getDataContextValue(PSCounterType pSCounterType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -372,14 +372,14 @@ extends PSCoreSysServiceBase<PSCounterType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSCounterType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSCounterType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSCounterType pSCounterType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSCounterType, arrayList, n);
+        super.onExportMajorModel(pSCounterType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -552,14 +552,14 @@ extends PSCoreSysServiceBase<PSCounterType> {
 
     protected boolean onMergeChild(String string, String string2, PSCounterType pSCounterType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSCounterType)) {
+        if (super.onMergeChild(string, string2, pSCounterType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSCounterType pSCounterType) throws Exception {
-        super.onUpdateParent((IEntity)pSCounterType);
+        super.onUpdateParent(pSCounterType);
     }
 
     @Override

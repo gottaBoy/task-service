@@ -1385,7 +1385,13 @@ implements IPSDEDataView {
             }
         }
         if (this.getPSMDAjaxControlHandler() != null) {
-            return this.getPSMDAjaxControlHandler().getPSAjaxHandlerAction("groupmove", true);
+            try {
+               return this.getPSMDAjaxControlHandler().getPSAjaxHandlerAction("groupmove", true);
+            }
+            catch (Exception exAjaxAction) {
+               log.error((Object)exAjaxAction);
+               return null;
+            }
         }
         return null;
     }

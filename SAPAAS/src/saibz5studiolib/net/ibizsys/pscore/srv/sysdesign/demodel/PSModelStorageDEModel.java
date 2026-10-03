@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSModelStorageDEModelBase;
 
 public class PSModelStorageDEModel
 extends PSModelStorageDEModelBase {
+
+    public PSModelStorageDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -59,9 +59,9 @@ extends PSSysAppGetQuickAppDEViewUIActionModelBase {
             pSAppDEView.setSessionFactory(sessionFactory);
             if (!pSAppDEView.select(true)) {
                 object = new PSDEViewBase();
-                object.setSessionFactory(sessionFactory);
+                ((PSDEViewBase)object).setSessionFactory(sessionFactory);
                 ((PSDEViewBaseBase)object).setPSDEViewBaseId(string);
-                if (!object.get(true)) {
+                if (!((PSDEViewBase)object).get(true)) {
                     throw new ErrorException(5, "\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u5b9e\u4f53\u89c6\u56fe");
                 }
                 PSModule pSModule = ((PSDEViewBaseBase)object).getPSDE().getPSModule();
@@ -96,8 +96,8 @@ extends PSSysAppGetQuickAppDEViewUIActionModelBase {
             }
         }
         object = new JSONObject();
-        object.put("psappdeviewid", (Object)pSAppDEView.getPSAppDEViewId());
-        object.put("psdeviewbaseid", (Object)pSAppDEView.getPSDEViewBaseId());
+        ((JSONObject)object).put("psappdeviewid", (Object)pSAppDEView.getPSAppDEViewId());
+        ((JSONObject)object).put("psdeviewbaseid", (Object)pSAppDEView.getPSDEViewBaseId());
         WebContext.getCurrent().getCurAjaxActionResult().setExtAttr("psappdeview", object);
     }
 }

@@ -338,9 +338,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSCodeList pSCodeList = (PSCodeList)iService.getDEModel().createEntity();
             pSCodeList.set("PSCODELISTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCodeList);
+                iService.getTemp(pSCodeList);
             } else {
-                iService.get((IEntity)pSCodeList);
+                iService.get(pSCodeList);
             }
             this.onFillParentInfo_GroupPSCodeList(pSSysCalendar, pSCodeList);
             return;
@@ -350,9 +350,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSCtrlLogicGroup pSCtrlLogicGroup = (PSCtrlLogicGroup)iService.getDEModel().createEntity();
             pSCtrlLogicGroup.set("PSCTRLLOGICGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCtrlLogicGroup);
+                iService.getTemp(pSCtrlLogicGroup);
             } else {
-                iService.get((IEntity)pSCtrlLogicGroup);
+                iService.get(pSCtrlLogicGroup);
             }
             this.onFillParentInfo_PSCtrlLogicGroup(pSSysCalendar, pSCtrlLogicGroup);
             return;
@@ -362,9 +362,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSCtrlMsg pSCtrlMsg = (PSCtrlMsg)iService.getDEModel().createEntity();
             pSCtrlMsg.set("PSCTRLMSGID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCtrlMsg);
+                iService.getTemp(pSCtrlMsg);
             } else {
-                iService.get((IEntity)pSCtrlMsg);
+                iService.get(pSCtrlMsg);
             }
             this.onFillParentInfo_PSCtrlMsg(pSSysCalendar, pSCtrlMsg);
             return;
@@ -374,9 +374,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSSysCalendar, pSDataEntity);
             return;
@@ -386,9 +386,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_GroupPSDEF(pSSysCalendar, pSDEField);
             return;
@@ -398,9 +398,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_GroupTextPSDEF(pSSysCalendar, pSDEField);
             return;
@@ -410,9 +410,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSDEToolbar pSDEToolbar = (PSDEToolbar)iService.getDEModel().createEntity();
             pSDEToolbar.set("PSDETOOLBARID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEToolbar);
+                iService.getTemp(pSDEToolbar);
             } else {
-                iService.get((IEntity)pSDEToolbar);
+                iService.get(pSDEToolbar);
             }
             this.onFillParentInfo_BatPSDEToolbar(pSSysCalendar, pSDEToolbar);
             return;
@@ -422,9 +422,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSDEToolbar pSDEToolbar = (PSDEToolbar)iService.getDEModel().createEntity();
             pSDEToolbar.set("PSDETOOLBARID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEToolbar);
+                iService.getTemp(pSDEToolbar);
             } else {
-                iService.get((IEntity)pSDEToolbar);
+                iService.get(pSDEToolbar);
             }
             this.onFillParentInfo_QuickPSDEToolbar(pSSysCalendar, pSDEToolbar);
             return;
@@ -434,9 +434,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSLanguageRes pSLanguageRes = (PSLanguageRes)iService.getDEModel().createEntity();
             pSLanguageRes.set("PSLANGUAGERESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSLanguageRes);
+                iService.getTemp(pSLanguageRes);
             } else {
-                iService.get((IEntity)pSLanguageRes);
+                iService.get(pSLanguageRes);
             }
             this.onFillParentInfo_EmptyTextPSLanRes(pSSysCalendar, pSLanguageRes);
             return;
@@ -446,9 +446,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSSysCalendar, pSModule);
             return;
@@ -458,9 +458,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSSysCalendar, pSSysApp);
             return;
@@ -470,9 +470,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_GroupPSSysCss(pSSysCalendar, pSSysCss);
             return;
@@ -482,9 +482,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_PSSysCss(pSSysCalendar, pSSysCss);
             return;
@@ -494,9 +494,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_GanttPSSysPFPlugin(pSSysCalendar, pSSysPFPlugin);
             return;
@@ -506,9 +506,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_GroupPSSysPFPlugin(pSSysCalendar, pSSysPFPlugin);
             return;
@@ -518,9 +518,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_PSSysPFPlugin(pSSysCalendar, pSSysPFPlugin);
             return;
@@ -530,9 +530,9 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysCalendar, pSSystem);
             return;
@@ -542,14 +542,14 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSViewMsgGroup pSViewMsgGroup = (PSViewMsgGroup)iService.getDEModel().createEntity();
             pSViewMsgGroup.set("PSVIEWMSGGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSViewMsgGroup);
+                iService.getTemp(pSViewMsgGroup);
             } else {
-                iService.get((IEntity)pSViewMsgGroup);
+                iService.get(pSViewMsgGroup);
             }
             this.onFillParentInfo_PSViewMsgGroup(pSSysCalendar, pSViewMsgGroup);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysCalendar, string, string2, string3);
+        super.onFillParentInfo(pSSysCalendar, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -658,7 +658,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 pSSysCalendar.setGanttFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "0", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysCalendar, bl);
+        super.onFillEntityFullInfo(pSSysCalendar, bl);
         this.onFillEntityFullInfo_GroupPSCodeList(pSSysCalendar, bl);
         this.onFillEntityFullInfo_PSCtrlLogicGroup(pSSysCalendar, bl);
         this.onFillEntityFullInfo_PSCtrlMsg(pSSysCalendar, bl);
@@ -789,7 +789,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
     }
 
     protected void onWriteBackParent(PSSysCalendar pSSysCalendar, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysCalendar, bl);
+        super.onWriteBackParent(pSSysCalendar, bl);
     }
 
     public ArrayList<PSSysCalendar> selectByGroupPSCodeList(PSCodeListBase pSCodeListBase) throws Exception {
@@ -1228,8 +1228,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByGroupPSCodeList(pSCodeList, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCODELIST");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCodeList);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSCODELIST_GROUPPSCODELISTID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSCodeList), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCodeList);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSCODELIST_GROUPPSCODELISTID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSCodeList), arrayList.get(0)));
         }
     }
 
@@ -1262,7 +1262,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByGroupPSCodeList(pSCodeList);
         this.onBeforeRemoveByGroupPSCodeList(pSCodeList, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByGroupPSCodeList(pSCodeList, arrayList);
     }
@@ -1280,8 +1280,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSCtrlLogicGroup(pSCtrlLogicGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCTRLLOGICGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCtrlLogicGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSCTRLLOGICGROUP_PSCTRLLOGICGROUPID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSCtrlLogicGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCtrlLogicGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSCTRLLOGICGROUP_PSCTRLLOGICGROUPID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSCtrlLogicGroup), arrayList.get(0)));
         }
     }
 
@@ -1314,7 +1314,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSCtrlLogicGroup(pSCtrlLogicGroup);
         this.onBeforeRemoveByPSCtrlLogicGroup(pSCtrlLogicGroup, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByPSCtrlLogicGroup(pSCtrlLogicGroup, arrayList);
     }
@@ -1332,8 +1332,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSCtrlMsg(pSCtrlMsg, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCTRLMSG");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCtrlMsg);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSCTRLMSG_PSCTRLMSGID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSCtrlMsg), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCtrlMsg);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSCTRLMSG_PSCTRLMSGID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSCtrlMsg), arrayList.get(0)));
         }
     }
 
@@ -1366,7 +1366,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSCtrlMsg(pSCtrlMsg);
         this.onBeforeRemoveByPSCtrlMsg(pSCtrlMsg, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByPSCtrlMsg(pSCtrlMsg, arrayList);
     }
@@ -1384,8 +1384,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -1418,7 +1418,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -1436,8 +1436,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByGroupPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSDEFIELD_GROUPPSDEFID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSDEFIELD_GROUPPSDEFID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -1470,7 +1470,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByGroupPSDEF(pSDEField);
         this.onBeforeRemoveByGroupPSDEF(pSDEField, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByGroupPSDEF(pSDEField, arrayList);
     }
@@ -1488,8 +1488,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByGroupTextPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSDEFIELD_GROUPTEXTPSDEFID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSDEFIELD_GROUPTEXTPSDEFID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -1522,7 +1522,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByGroupTextPSDEF(pSDEField);
         this.onBeforeRemoveByGroupTextPSDEF(pSDEField, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByGroupTextPSDEF(pSDEField, arrayList);
     }
@@ -1540,8 +1540,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByBatPSDEToolbar(pSDEToolbar, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDETOOLBAR");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEToolbar);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSDETOOLBAR_BATPSDETOOLBARID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSDEToolbar), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEToolbar);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSDETOOLBAR_BATPSDETOOLBARID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSDEToolbar), arrayList.get(0)));
         }
     }
 
@@ -1574,7 +1574,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByBatPSDEToolbar(pSDEToolbar);
         this.onBeforeRemoveByBatPSDEToolbar(pSDEToolbar, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByBatPSDEToolbar(pSDEToolbar, arrayList);
     }
@@ -1592,8 +1592,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByQuickPSDEToolbar(pSDEToolbar, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDETOOLBAR");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEToolbar);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSDETOOLBAR_QUICKPSDETOOLBARID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSDEToolbar), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEToolbar);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSDETOOLBAR_QUICKPSDETOOLBARID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSDEToolbar), arrayList.get(0)));
         }
     }
 
@@ -1626,7 +1626,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByQuickPSDEToolbar(pSDEToolbar);
         this.onBeforeRemoveByQuickPSDEToolbar(pSDEToolbar, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByQuickPSDEToolbar(pSDEToolbar, arrayList);
     }
@@ -1644,8 +1644,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByEmptyTextPSLanRes(pSLanguageRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSLANGUAGERES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSLanguageRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSLANGUAGERES_EMPTYTEXTPSLANRESID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSLanguageRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSLanguageRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSLANGUAGERES_EMPTYTEXTPSLANRESID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSLanguageRes), arrayList.get(0)));
         }
     }
 
@@ -1678,7 +1678,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByEmptyTextPSLanRes(pSLanguageRes);
         this.onBeforeRemoveByEmptyTextPSLanRes(pSLanguageRes, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByEmptyTextPSLanRes(pSLanguageRes, arrayList);
     }
@@ -1696,8 +1696,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -1730,7 +1730,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -1776,7 +1776,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -1794,8 +1794,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByGroupPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSSYSCSS_GROUPPSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSSYSCSS_GROUPPSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -1828,7 +1828,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByGroupPSSysCss(pSSysCss);
         this.onBeforeRemoveByGroupPSSysCss(pSSysCss, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByGroupPSSysCss(pSSysCss, arrayList);
     }
@@ -1846,8 +1846,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -1880,7 +1880,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSSysCss(pSSysCss);
         this.onBeforeRemoveByPSSysCss(pSSysCss, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByPSSysCss(pSSysCss, arrayList);
     }
@@ -1898,8 +1898,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByGanttPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSSYSPFPLUGIN_GANTTPSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSSYSPFPLUGIN_GANTTPSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -1932,7 +1932,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByGanttPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByGanttPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByGanttPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -1950,8 +1950,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByGroupPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSSYSPFPLUGIN_GROUPPSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSSYSPFPLUGIN_GROUPPSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -1984,7 +1984,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByGroupPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByGroupPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByGroupPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -2002,8 +2002,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -2036,7 +2036,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -2054,8 +2054,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSSystem(pSSystem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSTEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSystem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSSystem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSystem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSSystem), arrayList.get(0)));
         }
     }
 
@@ -2088,7 +2088,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -2106,8 +2106,8 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSViewMsgGroup(pSViewMsgGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSVIEWMSGGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSViewMsgGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSVIEWMSGGROUP_PSVIEWMSGGROUPID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo((IEntity)pSViewMsgGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSViewMsgGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCALENDAR_PSVIEWMSGGROUP_PSVIEWMSGGROUPID", "", iDataEntityModel.getName(), "PSSYSCALENDAR", iDataEntityModel.getDataInfo(pSViewMsgGroup), arrayList.get(0)));
         }
     }
 
@@ -2140,7 +2140,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendar> arrayList = this.selectByPSViewMsgGroup(pSViewMsgGroup);
         this.onBeforeRemoveByPSViewMsgGroup(pSViewMsgGroup, arrayList);
         for (PSSysCalendar pSSysCalendar : arrayList) {
-            this.remove((IEntity)pSSysCalendar);
+            this.remove(pSSysCalendar);
         }
         this.onAfterRemoveByPSViewMsgGroup(pSViewMsgGroup, arrayList);
     }
@@ -2176,13 +2176,13 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ((PSSysCalendarLogicServiceBase)pSCoreSysServiceBase).removeTempByPSSysCalendar(pSSysCalendar);
         pSCoreSysServiceBase = (PSSysCalendarItemService)ServiceGlobal.getService(PSSysCalendarItemService.class, (SessionFactory)this.getSessionFactory());
         ((PSSysCalendarItemServiceBase)pSCoreSysServiceBase).removeTempByPSSysCalendar(pSSysCalendar);
-        super.onBeforeRemoveTemp((IEntity)pSSysCalendar);
+        super.onBeforeRemoveTemp(pSSysCalendar);
     }
 
     protected void getRelatedDataTempMajor(PSSysCalendar pSSysCalendar) throws Exception {
         this.getRelatedDataTempMajor_PSSysCalendarItem(pSSysCalendar);
         this.getRelatedDataTempMajor_PSSysCalendarLogic(pSSysCalendar);
-        super.getRelatedDataTempMajor((IEntity)pSSysCalendar);
+        super.getRelatedDataTempMajor(pSSysCalendar);
     }
 
     protected void getRelatedDataTempMajor_PSSysCalendarItem(PSSysCalendar pSSysCalendar) throws Exception {
@@ -2210,7 +2210,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         ArrayList<PSSysCalendarItem> arrayList2 = this.updateRelatedDataTempMajor_removePSSysCalendarItem(pSSysCalendar, pSSysCalendar2);
         this.updateRelatedDataTempMajor_updatePSSysCalendarItem(pSSysCalendar, pSSysCalendar2, arrayList2);
         this.updateRelatedDataTempMajor_updatePSSysCalendarLogic(pSSysCalendar, pSSysCalendar2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSSysCalendar, (IEntity)pSSysCalendar2);
+        super.updateRelatedDataTempMajor(pSSysCalendar, pSSysCalendar2);
     }
 
     protected ArrayList<PSSysCalendarItem> updateRelatedDataTempMajor_removePSSysCalendarItem(PSSysCalendar pSSysCalendar, PSSysCalendar pSSysCalendar2) throws Exception {
@@ -2226,7 +2226,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             hashMap.remove(object);
         }
         for (PSSysCalendarItem pSSysCalendarItem : hashMap.values()) {
-            pSSysCalendarItemService.remove((IEntity)pSSysCalendarItem);
+            pSSysCalendarItemService.remove(pSSysCalendarItem);
         }
         return arrayList;
     }
@@ -2254,7 +2254,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             hashMap.remove(object);
         }
         for (PSSysCalendarLogic pSSysCalendarLogic : hashMap.values()) {
-            pSSysCalendarLogicService.remove((IEntity)pSSysCalendarLogic);
+            pSSysCalendarLogicService.remove(pSSysCalendarLogic);
         }
         return arrayList;
     }
@@ -2271,7 +2271,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
 
     protected void replaceParentInfo(PSSysCalendar pSSysCalendar, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysCalendar, cloneSession);
+        super.replaceParentInfo(pSSysCalendar, cloneSession);
         if (pSSysCalendar.getGroupPSCodeListId() != null && (iEntity = cloneSession.getEntity("PSCODELIST", (Object)pSSysCalendar.getGroupPSCodeListId())) != null) {
             this.onFillParentInfo_GroupPSCodeList(pSSysCalendar, (PSCodeList)iEntity);
         }
@@ -2329,7 +2329,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysCalendar pSSysCalendar, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysCalendar, bl);
+        super.onRemoveEntityUncopyValues(pSSysCalendar, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysCalendar pSSysCalendar, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -2488,7 +2488,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         if ((entityFieldError = this.onCheckField_SysAppFlag(bl, pSSysCalendar, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysCalendar, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysCalendar, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BatPSDEToolbarId(boolean bl, PSSysCalendar pSSysCalendar, boolean bl2, boolean bl3) throws Exception {
@@ -2501,7 +2501,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BatPSDEToolbarId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_BatPSDEToolbarId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BATPSDETOOLBARID");
@@ -2523,7 +2523,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BusyIndicator_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_BusyIndicator_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BUSYINDICATOR");
@@ -2548,7 +2548,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CalendarStyle_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_CalendarStyle_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CALENDARSTYLE");
@@ -2570,7 +2570,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CalendarTag_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_CalendarTag_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CALENDARTAG");
@@ -2592,7 +2592,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CalendarTag2_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_CalendarTag2_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CALENDARTAG2");
@@ -2617,7 +2617,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -2656,7 +2656,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EmptyText_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_EmptyText_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EMPTYTEXT");
@@ -2678,7 +2678,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EmptyTextPSLanResId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_EmptyTextPSLanResId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EMPTYTEXTPSLANRESID");
@@ -2700,7 +2700,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EmptyTextPSLanResName_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_EmptyTextPSLanResName_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EMPTYTEXTPSLANRESNAME");
@@ -2722,7 +2722,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableEdit_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_EnableEdit_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLEEDIT");
@@ -2744,7 +2744,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_GanttFlag_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_GanttFlag_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GANTTFLAG");
@@ -2766,7 +2766,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GanttPSSysPFPluginId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_GanttPSSysPFPluginId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GANTTPSSYSPFPLUGINID");
@@ -2788,7 +2788,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GanttStyle_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_GanttStyle_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GANTTSTYLE");
@@ -2810,7 +2810,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_GroupHeight_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_GroupHeight_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPHEIGHT");
@@ -2832,7 +2832,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupLayout_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_GroupLayout_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPLAYOUT");
@@ -2854,7 +2854,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupMode_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_GroupMode_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPMODE");
@@ -2876,7 +2876,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupPSCodeListId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_GroupPSCodeListId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPPSCODELISTID");
@@ -2898,7 +2898,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupPSDEFId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_GroupPSDEFId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPPSDEFID");
@@ -2920,7 +2920,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupPSDEFName_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_GroupPSDEFName_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPPSDEFNAME");
@@ -2942,7 +2942,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupPSSysCssId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_GroupPSSysCssId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPPSSYSCSSID");
@@ -2964,7 +2964,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupPSSysPFPluginId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_GroupPSSysPFPluginId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPPSSYSPFPLUGINID");
@@ -2986,7 +2986,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupStyle_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_GroupStyle_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPSTYLE");
@@ -3008,7 +3008,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupTextPSDEFId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_GroupTextPSDEFId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPTEXTPSDEFID");
@@ -3030,7 +3030,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupTextPSDEFName_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_GroupTextPSDEFName_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPTEXTPSDEFNAME");
@@ -3052,7 +3052,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_GroupWidth_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_GroupWidth_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPWIDTH");
@@ -3074,7 +3074,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -3096,7 +3096,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -3118,7 +3118,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -3140,7 +3140,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NavViewHeight_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_NavViewHeight_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVVIEWHEIGHT");
@@ -3162,7 +3162,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NavViewMaxHeight_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_NavViewMaxHeight_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVVIEWMAXHEIGHT");
@@ -3184,7 +3184,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NavViewMaxWidth_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_NavViewMaxWidth_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVVIEWMAXWIDTH");
@@ -3206,7 +3206,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NavViewMinHeight_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_NavViewMinHeight_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVVIEWMINHEIGHT");
@@ -3228,7 +3228,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NavViewMinWidth_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_NavViewMinWidth_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVVIEWMINWIDTH");
@@ -3250,7 +3250,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NavViewPos_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_NavViewPos_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVVIEWPOS");
@@ -3272,7 +3272,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NavViewShowMode_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_NavViewShowMode_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVVIEWSHOWMODE");
@@ -3294,7 +3294,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_NavViewWidth_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_NavViewWidth_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVVIEWWIDTH");
@@ -3316,7 +3316,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlLogicGroupId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlLogicGroupId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLLOGICGROUPID");
@@ -3338,7 +3338,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlMsgId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlMsgId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLMSGID");
@@ -3363,7 +3363,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -3388,7 +3388,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -3410,7 +3410,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -3432,7 +3432,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -3457,7 +3457,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCalendarId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCalendarId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCALENDARID");
@@ -3482,7 +3482,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCalendarName_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCalendarName_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCALENDARNAME");
@@ -3504,7 +3504,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCssId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCssId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCSSID");
@@ -3526,7 +3526,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPluginId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPluginId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPLUGINID");
@@ -3551,7 +3551,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -3573,7 +3573,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -3595,7 +3595,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewMsgGroupId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewMsgGroupId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWMSGGROUPID");
@@ -3617,7 +3617,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_QuickPSDEToolbarId_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string2 = this.onTestValueRule_QuickPSDEToolbarId_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("QUICKPSDETOOLBARID");
@@ -3639,7 +3639,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SysAppFlag_Default((IEntity)pSSysCalendar, bl2, bl3);
+            string = this.onTestValueRule_SysAppFlag_Default(pSSysCalendar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYSAPPFLAG");
@@ -3652,11 +3652,11 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
     }
 
     protected void onSyncEntity(PSSysCalendar pSSysCalendar, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysCalendar, bl);
+        super.onSyncEntity(pSSysCalendar, bl);
     }
 
     protected void onSyncIndexEntities(PSSysCalendar pSSysCalendar, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysCalendar, bl);
+        super.onSyncIndexEntities(pSSysCalendar, bl);
     }
 
     public Object getDataContextValue(PSSysCalendar pSSysCalendar, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -3664,7 +3664,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysCalendar, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysCalendar, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
@@ -3672,7 +3672,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
 
     protected void onExportRelatedModel(PSSysCalendar pSSysCalendar, ArrayList<JSONObject> arrayList, int n) throws Exception {
         this.onExportRelatedModel_PSSysCalendarLogic_PSSysCalendar(pSSysCalendar, arrayList, n);
-        super.onExportRelatedModel((IEntity)pSSysCalendar, arrayList, n);
+        super.onExportRelatedModel(pSSysCalendar, arrayList, n);
     }
 
     protected void onExportRelatedModel_PSSysCalendarLogic_PSSysCalendar(PSSysCalendar pSSysCalendar, ArrayList<JSONObject> arrayList, int n) throws Exception {
@@ -3695,7 +3695,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
     }
 
     protected void onExportMajorModel(PSSysCalendar pSSysCalendar, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysCalendar, arrayList, n);
+        super.onExportMajorModel(pSSysCalendar, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -4601,21 +4601,21 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
 
     protected boolean onMergeChild(String string, String string2, PSSysCalendar pSSysCalendar) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysCalendar)) {
+        if (super.onMergeChild(string, string2, pSSysCalendar)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysCalendar pSSysCalendar) throws Exception {
-        super.onUpdateParent((IEntity)pSSysCalendar);
+        super.onUpdateParent(pSSysCalendar);
     }
 
     protected void onCopyDetails(PSSysCalendar pSSysCalendar, Object object) throws Exception {
         PSSysCalendar pSSysCalendar2 = new PSSysCalendar();
         pSSysCalendar2.set("PSSYSCALENDARID", object);
         String string = DataObject.getStringValue((Object)pSSysCalendar.get("PSSYSCALENDARID"));
-        super.onCopyDetails((IEntity)pSSysCalendar, object);
+        super.onCopyDetails(pSSysCalendar, object);
     }
 
     @Override
@@ -4698,7 +4698,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 PSSysCalendarItem pSSysCalendarItem = new PSSysCalendarItem();
                 pSSysCalendarItem.setOrderValue(n);
                 n += 100;
-                pSSysCalendarItemService.fillParentInfo((IEntity)pSSysCalendarItem, "DER1N", "DER1N_PSSYSCALENDARITEM_PSSYSCALENDAR_PSSYSCALENDARID", pSSysCalendar.getPSSysCalendarId());
+                pSSysCalendarItemService.fillParentInfo(pSSysCalendarItem, "DER1N", "DER1N_PSSYSCALENDARITEM_PSSYSCALENDAR_PSSYSCALENDARID", pSSysCalendar.getPSSysCalendarId());
                 pSSysCalendarItemService.importXmlModel(pSSysCalendarItem, xmlNode2);
             }
         }
@@ -4723,7 +4723,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                 PSSysCalendarLogic pSSysCalendarLogic = new PSSysCalendarLogic();
                 pSSysCalendarLogic.setOrderValue(n);
                 n += 100;
-                pSSysCalendarLogicService.fillParentInfo((IEntity)pSSysCalendarLogic, "DER1N", "DER1N_PSSYSCALENDARLOGIC_PSSYSCALENDAR_PSSYSCALENDARID", pSSysCalendar.getPSSysCalendarId());
+                pSSysCalendarLogicService.fillParentInfo(pSSysCalendarLogic, "DER1N", "DER1N_PSSYSCALENDARLOGIC_PSSYSCALENDAR_PSSYSCALENDARID", pSSysCalendar.getPSSysCalendarId());
                 pSSysCalendarLogicService.importXmlModel(pSSysCalendarLogic, xmlNode2);
             }
         }
@@ -4874,46 +4874,31 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
 
     @Override
     protected void onExportCurModelV2(PSSysCalendar pSSysCalendar, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        ArrayNode arrayNode;
-        Object object3;
-        ArrayList<PSSysCalendarItem> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSCALENDARITEM_PSSYSCALENDAR_PSSYSCALENDARID")) {
             pSCoreSysServiceBase = (PSSysCalendarItemService)ServiceGlobal.getService(PSSysCalendarItemService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            ArrayList<ObjectNode> items = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSCALENDAR#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSCALENDARITEM", (Object)pSSysCalendar.getPSSysCalendarId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSCALENDAR#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSCALENDARITEM", (Object)pSSysCalendar.getPSSysCalendarId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add((PSSysCalendarItem)entityBase2);
+                    items = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        items.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysCalendarItem>();
-                object3 = ((PSSysCalendarItemServiceBase)pSCoreSysServiceBase).selectByPSSysCalendar(pSSysCalendar);
-                arrayNode = StringHelper.format((String)"PSSYSCALENDAR#%1$s", (Object)pSSysCalendar.getPSSysCalendarId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysCalendarItem)object2.next();
-                    object = ((PSSysCalendarItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysCalendarItem)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                items = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSCALENDAR#%1$s", (Object)pSSysCalendar.getPSSysCalendarId());
+                for (PSSysCalendarItem item : ((PSSysCalendarItemServiceBase)pSCoreSysServiceBase).selectByPSSysCalendar(pSSysCalendar)) {
+                    String itemScope = ((PSSysCalendarItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope(item);
+                    if (StringHelper.compare(scope, itemScope, false) != 0) continue;
+                    items.add(PSModelV2Helper.toJSONObject(item, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (items != null && items.size() > 0) {
+                ArrayNode arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
+                Collections.sort(items, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -4940,45 +4925,37 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysCalendarItem();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode itemNode : items) {
+                    PSSysCalendarItem item = new PSSysCalendarItem();
+                    PSModelV2Helper.fromJSONObject((IDataObject)item, itemNode, false);
+                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(item, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSCALENDARLOGIC_PSSYSCALENDAR_PSSYSCALENDARID")) {
             pSCoreSysServiceBase = (PSSysCalendarLogicService)ServiceGlobal.getService(PSSysCalendarLogicService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            ArrayList<ObjectNode> logics = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSCALENDAR#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSCALENDARLOGIC", (Object)pSSysCalendar.getPSSysCalendarId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSCALENDAR#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSCALENDARLOGIC", (Object)pSSysCalendar.getPSSysCalendarId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysCalendarItem)entityBase2);
+                    logics = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        logics.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object3 = ((PSSysCalendarLogicServiceBase)pSCoreSysServiceBase).selectByPSSysCalendar(pSSysCalendar);
-                arrayNode = StringHelper.format((String)"PSSYSCALENDAR#%1$s", (Object)pSSysCalendar.getPSSysCalendarId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysCalendarLogic)object2.next();
-                    object = ((PSSysCalendarLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysCalendarItem)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                logics = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSCALENDAR#%1$s", (Object)pSSysCalendar.getPSSysCalendarId());
+                for (PSSysCalendarLogic logic : ((PSSysCalendarLogicServiceBase)pSCoreSysServiceBase).selectByPSSysCalendar(pSSysCalendar)) {
+                    String logicScope = ((PSSysCalendarLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope(logic);
+                    if (StringHelper.compare(scope, logicScope, false) != 0) continue;
+                    logics.add(PSModelV2Helper.toJSONObject(logic, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (logics != null && logics.size() > 0) {
+                ArrayNode arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
+                Collections.sort(logics, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -5005,10 +4982,10 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysCalendarLogic();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode logicNode : logics) {
+                    PSSysCalendarLogic logic = new PSSysCalendarLogic();
+                    PSModelV2Helper.fromJSONObject((IDataObject)logic, logicNode, false);
+                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(logic, string));
                 }
             }
         }
@@ -5017,31 +4994,30 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
 
     @Override
     protected void onEmptyModelV2(PSSysCalendar pSSysCalendar) throws Exception {
-        String string;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSSysCalendarItemService)ServiceGlobal.getService(PSSysCalendarItemService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<EntityBase> arrayList = ((PSSysCalendarItemServiceBase)pSCoreSysServiceBase).selectByPSSysCalendar(pSSysCalendar);
+        ArrayList<PSSysCalendarItem> items = ((PSSysCalendarItemServiceBase)pSCoreSysServiceBase).selectByPSSysCalendar(pSSysCalendar);
         String string2 = StringHelper.format((String)"PSSYSCALENDAR#%1$s", (Object)pSSysCalendar.getPSSysCalendarId());
-        for (PSSysCalendarItem entityBase : arrayList) {
-            string = ((PSSysCalendarItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase);
-            if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
-            pSCoreSysServiceBase.emptyModelV2(entityBase);
+        for (PSSysCalendarItem item : items) {
+            String scope = ((PSSysCalendarItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope(item);
+            if (StringHelper.compare(string2, scope, false) != 0) continue;
+            pSCoreSysServiceBase.emptyModelV2(item);
         }
-        Object object = new SqlParamList();
-        object.addString(pSSysCalendar.getPSSysCalendarId());
+        SqlParamList params = new SqlParamList();
+        params.addString(pSSysCalendar.getPSSysCalendarId());
         ((PSSysCalendarItemServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSSysCalendarItemServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSSYSCALENDARITEM WHERE PSSYSCALENDARID = ?", (SqlParamList)object);
+        ((PSSysCalendarItemServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSSYSCALENDARITEM WHERE PSSYSCALENDARID = ?", params);
         pSCoreSysServiceBase = (PSSysCalendarLogicService)ServiceGlobal.getService(PSSysCalendarLogicService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSSysCalendarLogicServiceBase)pSCoreSysServiceBase).selectByPSSysCalendar(pSSysCalendar);
+        ArrayList<PSSysCalendarLogic> logics = ((PSSysCalendarLogicServiceBase)pSCoreSysServiceBase).selectByPSSysCalendar(pSSysCalendar);
         string2 = StringHelper.format((String)"PSSYSCALENDAR#%1$s", (Object)pSSysCalendar.getPSSysCalendarId());
-        for (PSSysCalendarLogic pSSysCalendarLogic : arrayList) {
-            string = ((PSSysCalendarLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSSysCalendarLogic);
-            if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
+        for (PSSysCalendarLogic pSSysCalendarLogic : logics) {
+            String scope = ((PSSysCalendarLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope(pSSysCalendarLogic);
+            if (StringHelper.compare(string2, scope, false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(pSSysCalendarLogic);
         }
-        object = new SqlParamList();
-        object.addString(pSSysCalendar.getPSSysCalendarId());
+        params = new SqlParamList();
+        params.addString(pSSysCalendar.getPSSysCalendarId());
         ((PSSysCalendarLogicServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSSysCalendarLogicServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSSYSCALENDARLOGIC WHERE PSSYSCALENDARID = ?", (SqlParamList)object);
+        ((PSSysCalendarLogicServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSSYSCALENDARLOGIC WHERE PSSYSCALENDARID = ?", params);
         super.onEmptyModelV2(pSSysCalendar);
     }
 
@@ -5080,10 +5056,6 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
 
     @Override
     protected void onCompileRelatedModelV2(PSSysCalendar pSSysCalendar, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
-        int n2;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSSysCalendarItemService)ServiceGlobal.getService(PSSysCalendarItemService.class, (SessionFactory)this.getSessionFactory());
         ArrayNode arrayNode = null;
         String string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
@@ -5091,24 +5063,24 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
         }
         if (arrayNode != null) {
-            for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSSysCalendarItem();
-                ((PSSysCalendarItemBase)object).setPSSysCalendarId(pSSysCalendar.getPSSysCalendarId());
-                ((PSSysCalendarItemBase)object).setPSSysCalendarName(pSSysCalendar.getPSSysCalendarName());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+            for (int index = 0; index < arrayNode.size(); ++index) {
+                ObjectNode child = (ObjectNode)arrayNode.get(index);
+                PSSysCalendarItem item = new PSSysCalendarItem();
+                item.setPSSysCalendarId(pSSysCalendar.getPSSysCalendarId());
+                item.setPSSysCalendarName(pSSysCalendar.getPSSysCalendarName());
+                pSCoreSysServiceBase.compileModelV2(item, child, string, null, n);
             }
         } else {
             String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string4);
-            if (((File)object2).exists()) {
-                object = ((File)object2).listFiles();
-                for (Object object3 : object) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSSysCalendarItem();
-                    entityBase.setPSSysCalendarId(pSSysCalendar.getPSSysCalendarId());
-                    entityBase.setPSSysCalendarName(pSSysCalendar.getPSSysCalendarName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+            File directory = new File(string4);
+            File[] children = directory.exists() ? directory.listFiles() : null;
+            if (children != null) {
+                for (File child : children) {
+                    if (!child.isDirectory()) continue;
+                    PSSysCalendarItem item = new PSSysCalendarItem();
+                    item.setPSSysCalendarId(pSSysCalendar.getPSSysCalendarId());
+                    item.setPSSysCalendarName(pSSysCalendar.getPSSysCalendarName());
+                    pSCoreSysServiceBase.compileModelV2(item, null, string, child.getCanonicalPath(), n);
                 }
             }
         }
@@ -5119,23 +5091,24 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
         }
         if (arrayNode != null) {
-            for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSSysCalendarLogic();
-                ((PSSysCalendarLogicBase)object).setPSSysCalendarId(pSSysCalendar.getPSSysCalendarId());
-                ((PSSysCalendarLogicBase)object).setPSSysCalendarName(pSSysCalendar.getPSSysCalendarName());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+            for (int index = 0; index < arrayNode.size(); ++index) {
+                ObjectNode child = (ObjectNode)arrayNode.get(index);
+                PSSysCalendarLogic logic = new PSSysCalendarLogic();
+                logic.setPSSysCalendarId(pSSysCalendar.getPSSysCalendarId());
+                logic.setPSSysCalendarName(pSSysCalendar.getPSSysCalendarName());
+                pSCoreSysServiceBase.compileModelV2(logic, child, string, null, n);
             }
         } else {
             String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string5);
-            if (((File)object2).exists()) {
-                for (Object object3 : object = ((File)object2).listFiles()) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSSysCalendarLogic();
-                    entityBase.setPSSysCalendarId(pSSysCalendar.getPSSysCalendarId());
-                    entityBase.setPSSysCalendarName(pSSysCalendar.getPSSysCalendarName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+            File directory = new File(string5);
+            File[] children = directory.exists() ? directory.listFiles() : null;
+            if (children != null) {
+                for (File child : children) {
+                    if (!child.isDirectory()) continue;
+                    PSSysCalendarLogic logic = new PSSysCalendarLogic();
+                    logic.setPSSysCalendarId(pSSysCalendar.getPSSysCalendarId());
+                    logic.setPSSysCalendarName(pSSysCalendar.getPSSysCalendarName());
+                    pSCoreSysServiceBase.compileModelV2(logic, null, string, child.getCanonicalPath(), n);
                 }
             }
         }
@@ -5159,7 +5132,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSSysCalendarItemService pSSysCalendarItemService = (PSSysCalendarItemService)ServiceGlobal.getService(PSSysCalendarItemService.class, (SessionFactory)this.getSessionFactory());
             PSSysCalendarItem pSSysCalendarItem = new PSSysCalendarItem();
             pSSysCalendarItem.setPSSysCalendarItemId(pSMOSFile.getPSModelId());
-            if (!pSSysCalendarItemService.get((IEntity)pSSysCalendarItem, true)) {
+            if (!pSSysCalendarItemService.get(pSSysCalendarItem, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysCalendarItem.getPSSysCalendarId(), (String)pSSysCalendar.getPSSysCalendarId(), (boolean)false) == 0) {
@@ -5167,12 +5140,12 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             }
             ObjectNode objectNode = pSSysCalendarItemService.exportModelV2(pSSysCalendarItem);
             pSSysCalendarItem.reset();
-            if (!pSSysCalendarItemService.setModelV2ResScope((IEntity)pSSysCalendarItem, "PSSYSCALENDAR", pSSysCalendar.getPSSysCalendarId())) {
+            if (!pSSysCalendarItemService.setModelV2ResScope(pSSysCalendarItem, "PSSYSCALENDAR", pSSysCalendar.getPSSysCalendarId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysCalendarItemService.importModelV2(pSSysCalendarItem, objectNode);
             SessionFactoryManager.commit();
-            return pSSysCalendarItemService.getFile((IEntity)pSSysCalendarItem);
+            return pSSysCalendarItemService.getFile(pSSysCalendarItem);
         }
         return null;
     }
@@ -5182,7 +5155,7 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             PSSysCalendarLogicService pSSysCalendarLogicService = (PSSysCalendarLogicService)ServiceGlobal.getService(PSSysCalendarLogicService.class, (SessionFactory)this.getSessionFactory());
             PSSysCalendarLogic pSSysCalendarLogic = new PSSysCalendarLogic();
             pSSysCalendarLogic.setPSSysCalendarLogicId(pSMOSFile.getPSModelId());
-            if (!pSSysCalendarLogicService.get((IEntity)pSSysCalendarLogic, true)) {
+            if (!pSSysCalendarLogicService.get(pSSysCalendarLogic, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysCalendarLogic.getPSSysCalendarId(), (String)pSSysCalendar.getPSSysCalendarId(), (boolean)false) == 0) {
@@ -5190,12 +5163,12 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
             }
             ObjectNode objectNode = pSSysCalendarLogicService.exportModelV2(pSSysCalendarLogic);
             pSSysCalendarLogic.reset();
-            if (!pSSysCalendarLogicService.setModelV2ResScope((IEntity)pSSysCalendarLogic, "PSSYSCALENDAR", pSSysCalendar.getPSSysCalendarId())) {
+            if (!pSSysCalendarLogicService.setModelV2ResScope(pSSysCalendarLogic, "PSSYSCALENDAR", pSSysCalendar.getPSSysCalendarId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysCalendarLogicService.importModelV2(pSSysCalendarLogic, objectNode);
             SessionFactoryManager.commit();
-            return pSSysCalendarLogicService.getFile((IEntity)pSSysCalendarLogic);
+            return pSSysCalendarLogicService.getFile(pSSysCalendarLogic);
         }
         return null;
     }
@@ -5225,4 +5198,3 @@ extends PSCoreSysServiceBase<PSSysCalendar> {
         list.add(pSHelpSection);
     }
 }
-

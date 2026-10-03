@@ -74,7 +74,7 @@ implements IPSSysTCInputService {
     @Override
     protected List<PSSysTCInput> onListAll() throws Exception {
         ArrayList<PSSysTCInput> list = new ArrayList<PSSysTCInput>();
-        List pssystestcases = PSModelServiceUtil.getInstance().getPSSysTestCaseService().listAll();
+        List<PSSysTestCase> pssystestcases = PSModelServiceUtil.getInstance().getPSSysTestCaseService().listAll();
         if (pssystestcases != null) {
             for (PSSysTestCase parent : pssystestcases) {
                 List<PSSysTCInput> items = this.listByPSSysTestCase(parent);

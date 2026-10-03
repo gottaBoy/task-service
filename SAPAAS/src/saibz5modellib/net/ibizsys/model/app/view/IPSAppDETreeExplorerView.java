@@ -1,15 +1,20 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app.view;
 
-import net.ibizsys.model.app.view.IPSAppDEExplorerView;
-import net.ibizsys.model.app.view.IPSAppDEMultiDataView;
-
-public interface IPSAppDETreeExplorerView
-extends IPSAppDEExplorerView,
-IPSAppDEMultiDataView {
-    public static final String CTRL_TREEEXPBAR = "TREEEXPBAR";
-    public static final String VIEWPARAM_UI_ENABLEEXPTREECAT = "UI.ENABLEEXPTREECAT";
+/**
+ * 应用实体树导航视图对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSAppDETreeExplorerView extends IPSAppDEExplorerView,IPSAppDEMultiDataView
+{
+	/**
+	 * 树导航面板
+	 */
+	final static String CTRL_TREEEXPBAR = "TREEEXPBAR";
+	
+	/**
+	 * 支持树导航分类
+	 */
+	public final static String VIEWPARAM_UI_ENABLEEXPTREECAT = "UI.ENABLEEXPTREECAT";
+	
 }
-

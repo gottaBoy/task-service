@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
     }
 
     protected void onFillParentInfo(PSDevCenterType pSDevCenterType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDevCenterType, string, string2, string3);
+        super.onFillParentInfo(pSDevCenterType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDevCenterType, bl);
+        super.onFillEntityFullInfo(pSDevCenterType, bl);
     }
 
     protected void onWriteBackParent(PSDevCenterType pSDevCenterType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDevCenterType, bl);
+        super.onWriteBackParent(pSDevCenterType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDevCenterType pSDevCenterType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDevCenterType, bl);
+        super.onRemoveEntityUncopyValues(pSDevCenterType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDevCenterType pSDevCenterType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -230,7 +230,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDevCenterType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDevCenterType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDevCenterType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DCLevel(boolean bl, PSDevCenterType pSDevCenterType, boolean bl2, boolean bl3) throws Exception {
@@ -243,7 +243,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DCLevel_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_DCLevel_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DCLEVEL");
@@ -268,7 +268,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DCType_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string2 = this.onTestValueRule_DCType_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DCTYPE");
@@ -290,7 +290,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Exp_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_Exp_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXP");
@@ -312,7 +312,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Exp2_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_Exp2_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXP2");
@@ -334,7 +334,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Limits_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string2 = this.onTestValueRule_Limits_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LIMITS");
@@ -356,7 +356,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxDBInstCnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxDBInstCnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXDBINSTCNT");
@@ -378,7 +378,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxDepInstCnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxDepInstCnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXDEPINSTCNT");
@@ -400,7 +400,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxDevObjCnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxDevObjCnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXDEVOBJCNT");
@@ -422,7 +422,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxDevSlnCnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxDevSlnCnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXDEVSLNCNT");
@@ -444,7 +444,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxDevSysCnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxDevSysCnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXDEVSYSCNT");
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxDevTemplCnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxDevTemplCnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXDEVTEMPLCNT");
@@ -488,7 +488,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxDynaInstCnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxDynaInstCnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXDYNAINSTCNT");
@@ -510,7 +510,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxGitLabAccLevel_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxGitLabAccLevel_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXGITLABACCLEVEL");
@@ -532,7 +532,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxMSPCnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxMSPCnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXMSPCNT");
@@ -554,7 +554,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxObj2Cnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxObj2Cnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXOBJ2CNT");
@@ -576,7 +576,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxObj3Cnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxObj3Cnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXOBJ3CNT");
@@ -598,7 +598,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxObj4Cnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxObj4Cnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXOBJ4CNT");
@@ -620,7 +620,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxObjCnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxObjCnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXOBJCNT");
@@ -642,7 +642,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxSysBakCnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxSysBakCnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXSYSBAKCNT");
@@ -664,7 +664,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxUserCnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxUserCnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXUSERCNT");
@@ -686,7 +686,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxWorkspaceCnt_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_MaxWorkspaceCnt_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXWORKSPACECNT");
@@ -708,7 +708,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -733,7 +733,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterTypeId_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterTypeId_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERTYPEID");
@@ -758,7 +758,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterTypeName_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterTypeName_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERTYPENAME");
@@ -780,7 +780,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParams_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParams_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAMS");
@@ -802,7 +802,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -824,7 +824,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -849,7 +849,7 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDevCenterType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDevCenterType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -862,11 +862,11 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
     }
 
     protected void onSyncEntity(PSDevCenterType pSDevCenterType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDevCenterType, bl);
+        super.onSyncEntity(pSDevCenterType, bl);
     }
 
     protected void onSyncIndexEntities(PSDevCenterType pSDevCenterType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDevCenterType, bl);
+        super.onSyncIndexEntities(pSDevCenterType, bl);
     }
 
     public Object getDataContextValue(PSDevCenterType pSDevCenterType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -874,14 +874,14 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDevCenterType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDevCenterType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDevCenterType pSDevCenterType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDevCenterType, arrayList, n);
+        super.onExportMajorModel(pSDevCenterType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1194,14 +1194,14 @@ extends PSCoreSysServiceBase<PSDevCenterType> {
 
     protected boolean onMergeChild(String string, String string2, PSDevCenterType pSDevCenterType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDevCenterType)) {
+        if (super.onMergeChild(string, string2, pSDevCenterType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDevCenterType pSDevCenterType) throws Exception {
-        super.onUpdateParent((IEntity)pSDevCenterType);
+        super.onUpdateParent(pSDevCenterType);
     }
 
     @Override

@@ -55,7 +55,7 @@ public class PSPFPreviewNodeGlobal {
         PSPFPreviewNodeService psPFPreviewNodeService = (PSPFPreviewNodeService)ServiceGlobal.getService(PSPFPreviewNodeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSTASKSERVERID", (Object)this.strPSTaskServerId);
-        ArrayList psPFPreviewNodeList = psPFPreviewNodeService.select((ISelectCond)selectCond);
+        ArrayList<PSPFPreviewNode> psPFPreviewNodeList = psPFPreviewNodeService.select((ISelectCond)selectCond);
         for (PSPFPreviewNode psPFPreviewNode : psPFPreviewNodeList) {
             if (psPFPreviewNode.getASState() != 20 && psPFPreviewNode.getASState() != 30) continue;
             this.psPFPreviewNodeMap.put(psPFPreviewNode.getPSPFPreviewNodeId(), psPFPreviewNode);
@@ -90,7 +90,7 @@ public class PSPFPreviewNodeGlobal {
         psPFPreviewNode2.setPSPFPreviewNodeId(psPFPreviewNode.getPSPFPreviewNodeId());
         psPFPreviewNode2.setLastPreviewTime(new Timestamp(System.currentTimeMillis()));
         PSPFPreviewNodeService psPFPreviewNodeService = (PSPFPreviewNodeService)ServiceGlobal.getService(PSPFPreviewNodeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        psPFPreviewNodeService.update((IEntity)psPFPreviewNode2);
+        psPFPreviewNodeService.update(psPFPreviewNode2);
         psPFPreviewNode2.setCreateMan(strTag);
         HashMap<String, PSPFPreviewNode> hashMap2 = this.psPFPreviewNodeMap;
         synchronized (hashMap2) {
@@ -99,4 +99,3 @@ public class PSPFPreviewNodeGlobal {
         return psPFPreviewNode;
     }
 }
-

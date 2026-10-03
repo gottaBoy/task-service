@@ -1,43 +1,133 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import java.util.Iterator;
-import net.ibizsys.psba.core.IBAColSet;
-import net.ibizsys.psba.core.IBAColumn;
-import net.ibizsys.psba.core.IBASchemeObject;
-import net.ibizsys.psba.core.IBATableDE;
-import net.ibizsys.psba.core.IBATableDER;
+/**
+ * 大数据库架构表架构
+ * 
+ * @author Administrator
+ *
+ */
+public interface IBATable extends IBASchemeObject {
 
-public interface IBATable
-extends IBASchemeObject {
-    public static final String COLSET_CREATEINFO = "CREATEINFO";
-    public static final String COLSET_UPDATEINFO = "UPDATEINFO";
-    public static final String COL_CREATEINFO_CREATEDATE = "SRFCREATEDATE";
-    public static final String COL_UPDATEINFO_UPDATEDATE = "SRFUPDATEDATE";
-    public static final int BATABLETYPE_MAJOR = 1;
-    public static final int BATABLETYPE_RELATED = 3;
-    public static final int BATABLETYPE_INHERIT = 9;
+	/**
+	 * 系统保留的创建信息列族
+	 */
+	public final static String COLSET_CREATEINFO = "CREATEINFO";
+	
+	/**
+	 * 系统保留的更新信息列族
+	 */
+	public final static String COLSET_UPDATEINFO = "UPDATEINFO";
+	
+	/**
+	 * 系统保留的创建时间列
+	 */
+	public final static String COL_CREATEINFO_CREATEDATE = "SRFCREATEDATE";
+	
+	/**
+	 * 系统保留的更新时间列
+	 */
+	public final static String COL_UPDATEINFO_UPDATEDATE = "SRFUPDATEDATE";
+	
+	/**
+	*主实体
+	*/
+	final static int BATABLETYPE_MAJOR = 1 ;
 
-    public int getBATableType();
+	/**
+	*关系实体
+	*/
+	final static int BATABLETYPE_RELATED = 3 ;
 
-    public Iterator<IBAColSet> getBAColSets();
+	/**
+	*继承从实体
+	*/
+	final static int BATABLETYPE_INHERIT = 9 ;
+	
+	
+	
+	/**
+	 * 获取大数据表类型
+	 * @return
+	 */
+	int getBATableType();
+	
+	
+	/**
+	 * 获取表模型中的列族模型集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IBAColSet> getBAColSets();
 
-    public Iterator<IBAColumn> getBAColumns();
+	/**
+	 * 获取表模型中的列模型集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IBAColumn> getBAColumns();
 
-    public IBATableDE getBATableDE(String var1) throws Exception;
+	/**
+	 * 获取对应的表实体模型对象
+	 * 
+	 * @param strDEName
+	 * @return
+	 * @throws Exception
+	 */
+	IBATableDE getBATableDE(String strDEName) throws Exception;
+	
+	
+	
+	/**
+	 * 获取大数据表实体集合
+	 * @return
+	 */
+	java.util.Iterator<IBATableDE> getBATableDEs();
+	
+	
+	/**
+	 * 获取对应的表实体模型对象
+	 * 
+	 * @param strDEName
+	 * @param bTryMode 尝试模式
+	 * @return
+	 * @throws Exception
+	 */
+	IBATableDE getBATableDE(String strDEName,boolean bTryMode) throws Exception;
 
-    public Iterator<IBATableDE> getBATableDEs();
+	/**
+	 * 获取指定列族对象
+	 * 
+	 * @param strBAColSetName
+	 * @return
+	 * @throws Exception
+	 */
+	IBAColSet getBAColSet(String strBAColSetName) throws Exception;
 
-    public IBATableDE getBATableDE(String var1, boolean var2) throws Exception;
-
-    public IBAColSet getBAColSet(String var1) throws Exception;
-
-    public IBAColumn getBAColumn(String var1) throws Exception;
-
-    public IBAColumn getBAColumn(String var1, String var2) throws Exception;
-
-    public IBATableDER getBATableDER(String var1) throws Exception;
+	/**
+	 * 获取指定列对象
+	 * 
+	 * @param strBAColumnId
+	 * @return
+	 * @throws Exception
+	 */
+	IBAColumn getBAColumn(String strBAColumnId) throws Exception;
+	
+	
+	/**
+	 * 获取指定列对象
+	 * @param strBAColSetId
+	 * @param strBAColumnId
+	 * @return
+	 * @throws Exception
+	 */
+	IBAColumn getBAColumn(String strBAColSetId,String strBAColumnId) throws Exception;
+	
+	
+	/**
+	 * 获取指定大数据实体关系对象
+	 * @param strDERName
+	 * @return
+	 * @throws Exception
+	 */
+	IBATableDER getBATableDER(String strDERName) throws Exception ;
 }
-

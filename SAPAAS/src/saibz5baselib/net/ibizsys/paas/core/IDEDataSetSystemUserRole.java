@@ -1,14 +1,23 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.ISystemUserRole;
+/**
+ * 实体数据集合系统用户角色对象接口
+ * @author Administrator
+ *
+ */
+public interface IDEDataSetSystemUserRole extends ISystemUserRole {
+	
+	/**
+	 * 获取实体名称
+	 * 
+	 * @return
+	 */
+	String getDEName();
 
-public interface IDEDataSetSystemUserRole
-extends ISystemUserRole {
-    public String getDEName();
-
-    public String getDEDataSetName();
+	/**
+	 * 获取实体数据集合名称
+	 * 
+	 * @return
+	 */
+	String getDEDataSetName();
 }
-

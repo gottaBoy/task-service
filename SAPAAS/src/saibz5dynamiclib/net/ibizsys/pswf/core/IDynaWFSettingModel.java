@@ -1,18 +1,26 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IDynaWFSetting
- */
 package net.ibizsys.pswf.core;
 
 import net.ibizsys.paas.sysmodel.IDynaSystemSettingModel;
-import net.ibizsys.pswf.core.IDynaWFSetting;
 
-public interface IDynaWFSettingModel
-extends IDynaWFSetting {
-    public void init(IDynaSystemSettingModel var1) throws Exception;
+/**
+ * 动态工作流设置模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaWFSettingModel extends IDynaWFSetting {
 
-    public IDynaSystemSettingModel getDynaSystemSettingModel();
+	/**
+	 * 初始化
+	 * @param iDynaSystemSettingModel
+	 * @throws Exception
+	 */
+	void init(IDynaSystemSettingModel iDynaSystemSettingModel)throws Exception;
+	
+	
+	/**
+	 * 获取动态系统设置模型对象
+	 * @return
+	 */
+	IDynaSystemSettingModel getDynaSystemSettingModel();
+	
 }
-

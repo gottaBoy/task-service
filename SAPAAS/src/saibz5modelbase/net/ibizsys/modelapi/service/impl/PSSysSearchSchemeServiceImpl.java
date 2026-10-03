@@ -159,10 +159,10 @@ implements IPSSysSearchSchemeService {
 
     @Override
     protected List<PSSysSearchScheme> onListAll() throws Exception {
-        List pssystems;
-        List pssysmodelgroups;
+        List<PSSystem> pssystems;
+        List<PSSysModelGroup> pssysmodelgroups;
         ArrayList<PSSysSearchScheme> list = new ArrayList<PSSysSearchScheme>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysSearchScheme> items = this.listByPSModule(parent);

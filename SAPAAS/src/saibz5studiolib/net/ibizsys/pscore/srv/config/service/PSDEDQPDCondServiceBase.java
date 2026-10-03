@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSDEDQPDCond> {
     }
 
     protected void onFillParentInfo(PSDEDQPDCond pSDEDQPDCond, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDEDQPDCond, string, string2, string3);
+        super.onFillParentInfo(pSDEDQPDCond, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSDEDQPDCond> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEDQPDCond, bl);
+        super.onFillEntityFullInfo(pSDEDQPDCond, bl);
     }
 
     protected void onWriteBackParent(PSDEDQPDCond pSDEDQPDCond, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEDQPDCond, bl);
+        super.onWriteBackParent(pSDEDQPDCond, bl);
     }
 
     @Override
@@ -143,7 +143,7 @@ extends PSCoreSysServiceBase<PSDEDQPDCond> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEDQPDCond pSDEDQPDCond, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEDQPDCond, bl);
+        super.onRemoveEntityUncopyValues(pSDEDQPDCond, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEDQPDCond pSDEDQPDCond, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSDEDQPDCond> {
         if ((entityFieldError = this.onCheckField_PSDEDQPDCondName(bl, pSDEDQPDCond, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEDQPDCond, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEDQPDCond, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CondObj(boolean bl, PSDEDQPDCond pSDEDQPDCond, boolean bl2, boolean bl3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSDEDQPDCond> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CondObj_Default((IEntity)pSDEDQPDCond, bl2, bl3);
+            string2 = this.onTestValueRule_CondObj_Default(pSDEDQPDCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONDOBJ");
@@ -199,7 +199,7 @@ extends PSCoreSysServiceBase<PSDEDQPDCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEDQPDCond, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEDQPDCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSDEDQPDCond> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDQPDCondId_Default((IEntity)pSDEDQPDCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDQPDCondId_Default(pSDEDQPDCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDQPDCONDID");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSDEDQPDCond> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDQPDCondName_Default((IEntity)pSDEDQPDCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDQPDCondName_Default(pSDEDQPDCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDQPDCONDNAME");
@@ -262,11 +262,11 @@ extends PSCoreSysServiceBase<PSDEDQPDCond> {
     }
 
     protected void onSyncEntity(PSDEDQPDCond pSDEDQPDCond, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEDQPDCond, bl);
+        super.onSyncEntity(pSDEDQPDCond, bl);
     }
 
     protected void onSyncIndexEntities(PSDEDQPDCond pSDEDQPDCond, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEDQPDCond, bl);
+        super.onSyncIndexEntities(pSDEDQPDCond, bl);
     }
 
     public Object getDataContextValue(PSDEDQPDCond pSDEDQPDCond, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -274,14 +274,14 @@ extends PSCoreSysServiceBase<PSDEDQPDCond> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEDQPDCond, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEDQPDCond, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEDQPDCond pSDEDQPDCond, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEDQPDCond, arrayList, n);
+        super.onExportMajorModel(pSDEDQPDCond, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -394,14 +394,14 @@ extends PSCoreSysServiceBase<PSDEDQPDCond> {
 
     protected boolean onMergeChild(String string, String string2, PSDEDQPDCond pSDEDQPDCond) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEDQPDCond)) {
+        if (super.onMergeChild(string, string2, pSDEDQPDCond)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEDQPDCond pSDEDQPDCond) throws Exception {
-        super.onUpdateParent((IEntity)pSDEDQPDCond);
+        super.onUpdateParent(pSDEDQPDCond);
     }
 
     @Override

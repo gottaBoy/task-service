@@ -1557,7 +1557,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -1583,7 +1583,7 @@ implements Serializable {
                 PSDEUserRole pSDEUserRole = new PSDEUserRole();
                 pSDEUserRole.setPSDEUserRoleId(this.getPSDEUserRoleId());
                 PSDEUserRoleService pSDEUserRoleService = (PSDEUserRoleService)ServiceGlobal.getService(PSDEUserRoleService.class, (SessionFactory)this.getSessionFactory());
-                pSDEUserRoleService.autoGet((IEntity)pSDEUserRole);
+                pSDEUserRoleService.autoGet(pSDEUserRole);
                 this.psdeuserrole = pSDEUserRole;
             }
             return this.psdeuserrole;
@@ -1609,7 +1609,7 @@ implements Serializable {
                 PSSysOPPriv pSSysOPPriv = new PSSysOPPriv();
                 pSSysOPPriv.setPSSysOPPrivId(this.getPSSysOPPrivId());
                 PSSysOPPrivService pSSysOPPrivService = (PSSysOPPrivService)ServiceGlobal.getService(PSSysOPPrivService.class, (SessionFactory)this.getSessionFactory());
-                pSSysOPPrivService.autoGet((IEntity)pSSysOPPriv);
+                pSSysOPPrivService.autoGet(pSSysOPPriv);
                 this.pssysoppriv = pSSysOPPriv;
             }
             return this.pssysoppriv;

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSLanguageDEModelBase;
 
 public class PSLanguageDEModel
 extends PSLanguageDEModelBase {
+
+    public PSLanguageDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.sys;
 
 import net.ibizsys.model.IPSSystemObject;
 
-public interface IPSSystemModule
-extends IPSSystemObject {
-}
 
+/**
+ * 系统模块对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSSystemModule extends IPSSystemObject
+{
+
+}

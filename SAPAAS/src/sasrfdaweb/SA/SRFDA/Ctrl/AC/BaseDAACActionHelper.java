@@ -218,7 +218,17 @@ extends SRFExAutoCompleteActionHelper {
                         }
                         log.info((Object)info.toString());
                     }
-                    if ((selectResult = this.getWebContext().getDBCaller(iDEHelper.GetDBStorage()).CallRaw3(strPagingSQL, vector)) != null) break block42;
+                    try {
+                        if ((selectResult = this.getWebContext().getDBCaller(iDEHelper.GetDBStorage()).CallRaw3(strPagingSQL, vector)) != null) break block42;
+                    }
+                    catch (Exception ex) {
+                        log.error((Object)ex);
+                        fetchResult.setRetCode(1);
+                        fetchResult.setErrorInfo(ex.getMessage());
+                        log.error((Object)fetchResult.getErrorInfo());
+                        this.getPage().Output(fetchResult.ToJSONString());
+                        return true;
+                    }
                     fetchResult.setRetCode(1);
                     fetchResult.setErrorInfo(StringHelper.Format((String)"\u4e0d\u660e\u9519\u8bef"));
                     log.error((Object)fetchResult.getErrorInfo());
@@ -366,7 +376,7 @@ extends SRFExAutoCompleteActionHelper {
         if (shortWordDataCtrl != null) {
             BaseDataEntity conds = new BaseDataEntity();
             conds.SetParamValue("SHORTWORDNAME", (Object)strShortWord);
-            Vector list = new Vector();
+            Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
             CallResult callResult = shortWordDataCtrl.Select(conds, list);
             if (callResult.getRetCode() != 0) {
                 log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u77ed\u8bcd[%1$s]\u5bf9\u5e94\u7684\u5b8c\u6574\u8bcd\u53e5\u5931\u8d25\uff0c%2$s", (Object)strShortWord, (Object)callResult.getErrorInfo()));
@@ -412,4 +422,3 @@ extends SRFExAutoCompleteActionHelper {
         return strACUserMode;
     }
 }
-

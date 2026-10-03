@@ -51,7 +51,7 @@ implements IGlobalObject {
             log.error((Object)callResult.getErrorInfo());
             return callResult;
         }
-        Vector list = new Vector();
+        Vector<ISType> list = new Vector();
         callResult = isTypeDataCtrl.Select((BaseDataEntity)new DataEntity(), list, ISType.class.getName());
         if (callResult.IsError()) {
             log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u7d22\u5f15\u6570\u636e\u6e90\u7c7b\u578b\u5931\u8d25\uff0c%1$s", (Object)callResult.getErrorInfo()));

@@ -89,7 +89,7 @@ extends PSDEDataCtrl {
         PSModelField psModelField = new PSModelField();
         psModelField.setPSModelFieldId(dataEntity.getParamStringValue("PSMODELFIELDID", ""));
         psModelField.setValidFlag(Integer.valueOf(bValid ? 1 : 0));
-        psModelFieldService.update((IEntity)psModelField, false);
+        psModelFieldService.update(psModelField, false);
     }
 
     public CallResult setConcept(final BaseDataEntity dataEntity, final boolean bConcept) {
@@ -120,7 +120,6 @@ extends PSDEDataCtrl {
         PSModelField psModelField = new PSModelField();
         psModelField.setPSModelFieldId(dataEntity.getParamStringValue("PSMODELFIELDID", ""));
         psModelField.setConceptFlag(Integer.valueOf(bConcept ? 1 : 0));
-        psModelFieldService.update((IEntity)psModelField, false);
+        psModelFieldService.update(psModelField, false);
     }
 }
-

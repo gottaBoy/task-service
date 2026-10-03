@@ -1,19 +1,43 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.logic;
 
-import net.ibizsys.model.dataentity.logic.IPSDELogicLinkCond;
-import net.ibizsys.model.dataentity.logic.IPSDELogicParam;
 
-public interface IPSDELogicLinkSingleCond
-extends IPSDELogicLinkCond {
-    public IPSDELogicParam getDstLogicParam() throws Exception;
+/**
+ *  实体逻辑链接单项条件对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDELogicLinkSingleCond extends IPSDELogicLinkCond
+{
+	/**
+	 * 获取目标参数
+	 * @return
+	 */
+	IPSDELogicParam getDstLogicParam() throws Exception;
+	
+	
+	
+	/**
+	 * 获取目标属性名称
+	 * @return
+	 * @throws Exception
+	 */
+	String getDstFieldName() throws Exception;
+	
+	
 
-    public String getDstFieldName() throws Exception;
-
-    public String getPSDBValueOPId();
-
-    public String getValue();
+	/**
+	 * 获取值操作符号标识
+	 * @return
+	 */
+	String getPSDBValueOPId();
+	
+	
+	/**
+	 * 获取值
+	 * @return
+	 */
+	String getValue();
+	
+	
+	
 }
-

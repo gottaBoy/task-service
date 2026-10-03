@@ -1,17 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.DRCtrlModelBase;
-import net.ibizsys.paas.ctrlmodel.IDRBarModel;
+import net.ibizsys.paas.control.ControlTypes;
 
-public abstract class DRBarModelBase
-extends DRCtrlModelBase
-implements IDRBarModel {
-    @Override
-    public String getControlType() {
-        return "DRBAR";
-    }
+/**
+ * 数据关系栏部件模型
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class DRBarModelBase extends DRCtrlModelBase implements IDRBarModel {
+	@Override
+	public String getControlType() {
+		return ControlTypes.DRBar;
+	}
+
 }
-

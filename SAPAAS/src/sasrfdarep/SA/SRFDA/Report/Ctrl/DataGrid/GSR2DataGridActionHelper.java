@@ -462,11 +462,11 @@ extends SRFExDataGridActionHelper {
                 curGroupLogicConfig.InitLogicsConfig();
                 curGroupLogicConfig.setCondition("AND");
                 groups.put(strGroupNo.toUpperCase(), curGroupLogicConfig);
-                realGroupLogicConfig.getLogicsConfig().add((Object)curGroupLogicConfig);
+                realGroupLogicConfig.getLogicsConfig().add(curGroupLogicConfig);
             } else {
                 curGroupLogicConfig = (DGModelGroupLogicConfig)groups.get(strGroupNo.toUpperCase());
             }
-            curGroupLogicConfig.getLogicsConfig().add((Object)dgModelBaseLogicConfig);
+            curGroupLogicConfig.getLogicsConfig().add(dgModelBaseLogicConfig);
         }
         CallResult callResult = daQueryModelHelper.GetGroupCondition(realGroupLogicConfig);
         if (callResult.IsError()) {
@@ -551,7 +551,7 @@ extends SRFExDataGridActionHelper {
                 log.error((Object)fetchResult.getErrorInfo());
                 return;
             }
-            Vector list = new Vector();
+            Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
             CallResult callResult = iTempDataCtrl.Select(cond, list);
             if (callResult == null) {
                 fetchResult.setRetCode(1);

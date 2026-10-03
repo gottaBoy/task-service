@@ -151,58 +151,61 @@ IPSDBRawItemPortletPartParam {
                 this.setEnableAnchor(iPSPortletParam.isEnableAnchor());
             }
         }
-        if (iPSControlParam instanceof IPSDBSysPortletPartParam && !StringHelper.IsNullOrEmpty((String)(iPSPortletParam = (IPSDBSysPortletPartParam)iPSControlParam).getPSSysPortletId())) {
-            this.setPSSysPortletId(iPSPortletParam.getPSSysPortletId());
+        if (iPSControlParam instanceof IPSDBSysPortletPartParam) {
+            IPSDBSysPortletPartParam sysPortletParam = (IPSDBSysPortletPartParam)iPSControlParam;
+            if (!StringHelper.IsNullOrEmpty(sysPortletParam.getPSSysPortletId())) {
+                this.setPSSysPortletId(sysPortletParam.getPSSysPortletId());
+            }
         }
         if (iPSControlParam instanceof IPSDBAppMenuPortletPartParam) {
-            iPSPortletParam = (IPSDBAppMenuPortletPartParam)iPSControlParam;
+            IPSDBAppMenuPortletPartParam appMenuParam = (IPSDBAppMenuPortletPartParam)iPSControlParam;
             if (StringHelper.IsNullOrEmpty((String)this.getPSAppMenuId())) {
-                this.setPSAppMenuId(iPSPortletParam.getPSAppMenuId());
+                this.setPSAppMenuId(appMenuParam.getPSAppMenuId());
             }
             if (StringHelper.IsNullOrEmpty((String)this.getAMListStyle())) {
-                this.setAMListStyle(iPSPortletParam.getAMListStyle());
+                this.setAMListStyle(appMenuParam.getAMListStyle());
             }
             if (StringHelper.IsNullOrEmpty((String)this.getAMPSSysPFPluginId())) {
-                this.setAMPSSysPFPluginId(iPSPortletParam.getAMPSSysPFPluginId());
+                this.setAMPSSysPFPluginId(appMenuParam.getAMPSSysPFPluginId());
             }
             if (StringHelper.IsNullOrEmpty((String)this.getPSAppFuncPickupViewId())) {
-                this.setPSAppFuncPickupViewId(iPSPortletParam.getPSAppFuncPickupViewId());
+                this.setPSAppFuncPickupViewId(appMenuParam.getPSAppFuncPickupViewId());
             }
         }
         if (iPSControlParam instanceof IPSDBContainerPortletPartParam) {
-            iPSPortletParam = (IPSDBContainerPortletPartParam)iPSControlParam;
+            IPSDBContainerPortletPartParam containerParam = (IPSDBContainerPortletPartParam)iPSControlParam;
             if (StringHelper.IsNullOrEmpty((String)this.getLayoutMode())) {
-                this.setLayoutMode(iPSPortletParam.getLayoutMode());
+                this.setLayoutMode(containerParam.getLayoutMode());
             }
             if (StringHelper.IsNullOrEmpty((String)this.getFlexDir())) {
-                this.setFlexDir(iPSPortletParam.getFlexDir());
+                this.setFlexDir(containerParam.getFlexDir());
             }
             if (StringHelper.IsNullOrEmpty((String)this.getFlexAlign())) {
-                this.setFlexAlign(iPSPortletParam.getFlexAlign());
+                this.setFlexAlign(containerParam.getFlexAlign());
             }
             if (StringHelper.IsNullOrEmpty((String)this.getFlexVAlign())) {
-                this.setFlexVAlign(iPSPortletParam.getFlexVAlign());
+                this.setFlexVAlign(containerParam.getFlexVAlign());
             }
         }
         if (iPSControlParam instanceof IPSDBAppViewPortletPartParam) {
-            iPSPortletParam = (IPSDBAppViewPortletPartParam)iPSControlParam;
+            IPSDBAppViewPortletPartParam appViewParam = (IPSDBAppViewPortletPartParam)iPSControlParam;
             if (StringHelper.IsNullOrEmpty((String)this.getEmbededPSAppViewId())) {
-                this.setEmbededPSAppViewId(iPSPortletParam.getEmbededPSAppViewId());
+                this.setEmbededPSAppViewId(appViewParam.getEmbededPSAppViewId());
             }
         }
         if (iPSControlParam instanceof IPSDBRawItemPortletPartParam) {
-            iPSPortletParam = (IPSDBRawItemPortletPartParam)iPSControlParam;
+            IPSDBRawItemPortletPartParam rawItemParam = (IPSDBRawItemPortletPartParam)iPSControlParam;
             if (StringHelper.IsNullOrEmpty((String)this.getContentType())) {
-                this.setContentType(iPSPortletParam.getContentType());
+                this.setContentType(rawItemParam.getContentType());
             }
             if (StringHelper.IsNullOrEmpty((String)this.getRawContent())) {
-                this.setRawContent(iPSPortletParam.getRawContent());
+                this.setRawContent(rawItemParam.getRawContent());
             }
             if (StringHelper.IsNullOrEmpty((String)this.getHtmlContent())) {
-                this.setHtmlContent(iPSPortletParam.getHtmlContent());
+                this.setHtmlContent(rawItemParam.getHtmlContent());
             }
             if (StringHelper.IsNullOrEmpty((String)this.getPSSysResourceId())) {
-                this.setPSSysResourceId(iPSPortletParam.getPSSysResourceId());
+                this.setPSSysResourceId(rawItemParam.getPSSysResourceId());
             }
         }
     }
@@ -567,4 +570,3 @@ IPSDBRawItemPortletPartParam {
         this.bEnableAnchor = bEnableAnchor;
     }
 }
-

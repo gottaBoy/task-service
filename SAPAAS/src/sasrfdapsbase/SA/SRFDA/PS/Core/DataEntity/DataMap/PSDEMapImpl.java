@@ -69,10 +69,10 @@ IPSAppDEMap,
 IPSModelSortable {
     private static final Log log = LogFactory.getLog(PSDEMapImpl.class);
     protected PSDEMap psDEMap;
-    protected List<IPSDEMapField> psDEMapDetailList = new ArrayList<IPSDEMapField>();
-    protected List<IPSDEMapAction> psDEMapActionList = new ArrayList<IPSDEMapAction>();
+    protected List<PSDEMapDetailImpl> psDEMapDetailList = new ArrayList<PSDEMapDetailImpl>();
+    protected List<PSDEMapActionImpl> psDEMapActionList = new ArrayList<PSDEMapActionImpl>();
     protected List<IPSDEMapDataQuery> psDEMapDataQueryList = new ArrayList<IPSDEMapDataQuery>();
-    protected List<IPSDEMapDataSet> psDEMapDataSetList = new ArrayList<IPSDEMapDataSet>();
+    protected List<PSDEMapDataSetImpl> psDEMapDataSetList = new ArrayList<PSDEMapDataSetImpl>();
     protected String strCodeName = "";
     protected IPSSysRef iPSSysRef = null;
     protected IPSSysRefDE dstPSSysRefDE = null;
@@ -260,7 +260,7 @@ IPSModelSortable {
             Iterator<IPSDEAction> psDEActions = this.getDstPSDE().getAllPSDEActions();
             if (psDEActions != null) {
                 while (psDEActions.hasNext()) {
-                    Object srcPSDEAction;
+                    IPSDEAction srcPSDEAction;
                     IPSDEAction iPSDEAction = psDEActions.next();
                     if (psDEMapActionMap.containsKey(iPSDEAction.getId()) || (srcPSDEAction = this.getPSDataEntity().getPSDEAction(iPSDEAction.getName(), true)) == null) continue;
                     PSDEMapAction psDEMapAction = new PSDEMapAction();
@@ -298,11 +298,11 @@ IPSModelSortable {
             }
             if (this.isAutoDEDataQueryMap() && this.getDstPSDE() != null) {
                 Vector<PSDEMapDataQuery> psDEMapDataQueryList2 = new Vector<PSDEMapDataQuery>();
-                Iterator<Object> psDEDataQuerys = this.getDstPSDE().getAllPSDEDataQueries();
+                Iterator<IPSDEDataQuery> psDEDataQuerys = this.getDstPSDE().getAllPSDEDataQueries();
                 if (psDEDataQuerys != null) {
                     while (psDEDataQuerys.hasNext()) {
-                        Object srcPSDEDataQuery;
-                        IPSDEDataQuery iPSDEDataQuery = (IPSDEDataQuery)psDEDataQuerys.next();
+                        IPSDEDataQuery srcPSDEDataQuery;
+                        IPSDEDataQuery iPSDEDataQuery = psDEDataQuerys.next();
                         if (psDEMapDataQueryMap.containsKey(iPSDEDataQuery.getId()) || (srcPSDEDataQuery = this.getPSDataEntity().getPSDEDataQuery(iPSDEDataQuery.getName(), true)) == null) continue;
                         PSDEMapDataQuery psDEMapDataQuery = new PSDEMapDataQuery();
                         psDEMapDataQuery.setPSDEMAPDQID(KeyValueHelper.genUniqueId((String)srcPSDEDataQuery.getId(), (String)iPSDEDataQuery.getId()));
@@ -366,7 +366,7 @@ IPSModelSortable {
 
     @Override
     public Iterator<IPSDEMapField> getPSDEMapDetails() {
-        return this.psDEMapDetailList.iterator();
+        return PSDEMapImpl.<IPSDEMapField>upcastIterator(this.psDEMapDetailList.iterator());
     }
 
     @Override
@@ -375,7 +375,7 @@ IPSModelSortable {
         if (this.getPSAppDataEntity() != null) {
             return null;
         }
-        return this.psDEMapDetailList.iterator();
+        return PSDEMapImpl.<IPSDEMapField>upcastIterator(this.psDEMapDetailList.iterator());
     }
 
     @Override
@@ -384,7 +384,7 @@ IPSModelSortable {
         if (this.getPSAppDataEntity() != null) {
             return null;
         }
-        return this.psDEMapActionList.iterator();
+        return PSDEMapImpl.<IPSDEMapAction>upcastIterator(this.psDEMapActionList.iterator());
     }
 
     @Override
@@ -402,7 +402,7 @@ IPSModelSortable {
         if (this.getPSAppDataEntity() != null) {
             return null;
         }
-        return this.psDEMapDataSetList.iterator();
+        return PSDEMapImpl.<IPSDEMapDataSet>upcastIterator(this.psDEMapDataSetList.iterator());
     }
 
     @Override
@@ -430,6 +430,25 @@ IPSModelSortable {
             return this.psDEMapDataSetList.iterator();
         }
         return null;
+    }
+
+    private static <T> Iterator<T> upcastIterator(final Iterator<? extends T> source) {
+        return new Iterator<T>() {
+            @Override
+            public boolean hasNext() {
+                return source.hasNext();
+            }
+
+            @Override
+            public T next() {
+                return source.next();
+            }
+
+            @Override
+            public void remove() {
+                source.remove();
+            }
+        };
     }
 
     @Override
@@ -610,4 +629,3 @@ IPSModelSortable {
         return null;
     }
 }
-

@@ -27,12 +27,12 @@ extends PSDEViewRVServiceBase {
     private static final Log log = LogFactory.getLog(PSDEViewRVService.class);
 
     public void getTemp(PSDEViewRV pSDEViewRV) throws Exception {
-        super.getTemp((IEntity)pSDEViewRV);
+        super.getTemp(pSDEViewRV);
         this.recalcRefModeAndRefModeParam(pSDEViewRV);
     }
 
     public boolean get(PSDEViewRV pSDEViewRV, boolean bl) throws Exception {
-        boolean bl2 = super.get((IEntity)pSDEViewRV, bl);
+        boolean bl2 = super.get(pSDEViewRV, bl);
         if (bl2) {
             this.recalcRefModeAndRefModeParam(pSDEViewRV);
         }

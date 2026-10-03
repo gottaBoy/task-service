@@ -1,21 +1,197 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.file.dataquery;
 
-import net.ibizsys.paas.core.DEDataQuery;
-import net.ibizsys.paas.core.DEDataQueryCode;
-import net.ibizsys.paas.core.DEDataQueryCodeCond;
-import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
 
-@DEDataQuery(id="160D07ED-4D8E-4292-A60C-63F66CCFAE27", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DIGESTCODE, t1.ENABLE, t1.FILENAME2, t1.FILESIZE, t1.FILE_ID, t1.FILE_NAME, t1.FOLDER, t1.LOCALPATH, t1.LOCALPATH2, t1.OWNERID, t1.OWNERTYPE, t1.PICHEIGHT, t1.PICWIDTH, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFFILE t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DIGESTCODE", expression="t1.DIGESTCODE", showorder=2), @DEDataQueryCodeExp(name="ENABLE", expression="t1.ENABLE", showorder=3), @DEDataQueryCodeExp(name="FILENAME2", expression="t1.FILENAME2", showorder=4), @DEDataQueryCodeExp(name="FILESIZE", expression="t1.FILESIZE", showorder=5), @DEDataQueryCodeExp(name="FILE_ID", expression="t1.FILE_ID", showorder=6), @DEDataQueryCodeExp(name="FILE_NAME", expression="t1.FILE_NAME", showorder=7), @DEDataQueryCodeExp(name="FOLDER", expression="t1.FOLDER", showorder=8), @DEDataQueryCodeExp(name="LOCALPATH", expression="t1.LOCALPATH", showorder=9), @DEDataQueryCodeExp(name="LOCALPATH2", expression="t1.LOCALPATH2", showorder=10), @DEDataQueryCodeExp(name="OWNERID", expression="t1.OWNERID", showorder=11), @DEDataQueryCodeExp(name="OWNERTYPE", expression="t1.OWNERTYPE", showorder=12), @DEDataQueryCodeExp(name="PICHEIGHT", expression="t1.PICHEIGHT", showorder=13), @DEDataQueryCodeExp(name="PICWIDTH", expression="t1.PICWIDTH", showorder=14), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=15), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.RESERVER2", showorder=16), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.RESERVER3", showorder=17), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.RESERVER4", showorder=18), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=19), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=20)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")}), @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`digestcode`, t1.`enable`, t1.`filename2`, t1.`filesize`, t1.`file_id`, t1.`file_name`, t1.`folder`, t1.`localpath`, t1.`localpath2`, t1.`ownerid`, t1.`ownertype`, t1.`picheight`, t1.`picwidth`, t1.`reserver`, t1.`reserver2`, t1.`reserver3`, t1.`reserver4`, t1.`updatedate`, t1.`updateman` FROM `t_srffile` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="MEMO", expression="t1.`memo`", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=1), @DEDataQueryCodeExp(name="DIGESTCODE", expression="t1.`digestcode`", showorder=2), @DEDataQueryCodeExp(name="ENABLE", expression="t1.`enable`", showorder=3), @DEDataQueryCodeExp(name="FILENAME2", expression="t1.`filename2`", showorder=4), @DEDataQueryCodeExp(name="FILESIZE", expression="t1.`filesize`", showorder=5), @DEDataQueryCodeExp(name="FILE_ID", expression="t1.`file_id`", showorder=6), @DEDataQueryCodeExp(name="FILE_NAME", expression="t1.`file_name`", showorder=7), @DEDataQueryCodeExp(name="FOLDER", expression="t1.`folder`", showorder=8), @DEDataQueryCodeExp(name="LOCALPATH", expression="t1.`localpath`", showorder=9), @DEDataQueryCodeExp(name="LOCALPATH2", expression="t1.`localpath2`", showorder=10), @DEDataQueryCodeExp(name="OWNERID", expression="t1.`ownerid`", showorder=11), @DEDataQueryCodeExp(name="OWNERTYPE", expression="t1.`ownertype`", showorder=12), @DEDataQueryCodeExp(name="PICHEIGHT", expression="t1.`picheight`", showorder=13), @DEDataQueryCodeExp(name="PICWIDTH", expression="t1.`picwidth`", showorder=14), @DEDataQueryCodeExp(name="RESERVER", expression="t1.`reserver`", showorder=15), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.`reserver2`", showorder=16), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.`reserver3`", showorder=17), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.`reserver4`", showorder=18), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=19), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=20)}, conds={@DEDataQueryCodeCond(condition="t1.enable = 1")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DIGESTCODE, t1.ENABLE, t1.FILENAME2, t1.FILESIZE, t1.FILE_ID, t1.FILE_NAME, t1.FOLDER, t1.LOCALPATH, t1.LOCALPATH2, t1.OWNERID, t1.OWNERTYPE, t1.PICHEIGHT, t1.PICWIDTH, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFFILE t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DIGESTCODE", expression="t1.DIGESTCODE", showorder=2), @DEDataQueryCodeExp(name="ENABLE", expression="t1.ENABLE", showorder=3), @DEDataQueryCodeExp(name="FILENAME2", expression="t1.FILENAME2", showorder=4), @DEDataQueryCodeExp(name="FILESIZE", expression="t1.FILESIZE", showorder=5), @DEDataQueryCodeExp(name="FILE_ID", expression="t1.FILE_ID", showorder=6), @DEDataQueryCodeExp(name="FILE_NAME", expression="t1.FILE_NAME", showorder=7), @DEDataQueryCodeExp(name="FOLDER", expression="t1.FOLDER", showorder=8), @DEDataQueryCodeExp(name="LOCALPATH", expression="t1.LOCALPATH", showorder=9), @DEDataQueryCodeExp(name="LOCALPATH2", expression="t1.LOCALPATH2", showorder=10), @DEDataQueryCodeExp(name="OWNERID", expression="t1.OWNERID", showorder=11), @DEDataQueryCodeExp(name="OWNERTYPE", expression="t1.OWNERTYPE", showorder=12), @DEDataQueryCodeExp(name="PICHEIGHT", expression="t1.PICHEIGHT", showorder=13), @DEDataQueryCodeExp(name="PICWIDTH", expression="t1.PICWIDTH", showorder=14), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=15), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.RESERVER2", showorder=16), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.RESERVER3", showorder=17), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.RESERVER4", showorder=18), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=19), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=20)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DIGESTCODE, t1.ENABLE, t1.FILENAME2, t1.FILESIZE, t1.FILE_ID, t1.FILE_NAME, t1.FOLDER, t1.LOCALPATH, t1.LOCALPATH2, t1.OWNERID, t1.OWNERTYPE, t1.PICHEIGHT, t1.PICWIDTH, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFFILE t1  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DIGESTCODE", expression="t1.DIGESTCODE", showorder=2), @DEDataQueryCodeExp(name="ENABLE", expression="t1.ENABLE", showorder=3), @DEDataQueryCodeExp(name="FILENAME2", expression="t1.FILENAME2", showorder=4), @DEDataQueryCodeExp(name="FILESIZE", expression="t1.FILESIZE", showorder=5), @DEDataQueryCodeExp(name="FILE_ID", expression="t1.FILE_ID", showorder=6), @DEDataQueryCodeExp(name="FILE_NAME", expression="t1.FILE_NAME", showorder=7), @DEDataQueryCodeExp(name="FOLDER", expression="t1.FOLDER", showorder=8), @DEDataQueryCodeExp(name="LOCALPATH", expression="t1.LOCALPATH", showorder=9), @DEDataQueryCodeExp(name="LOCALPATH2", expression="t1.LOCALPATH2", showorder=10), @DEDataQueryCodeExp(name="OWNERID", expression="t1.OWNERID", showorder=11), @DEDataQueryCodeExp(name="OWNERTYPE", expression="t1.OWNERTYPE", showorder=12), @DEDataQueryCodeExp(name="PICHEIGHT", expression="t1.PICHEIGHT", showorder=13), @DEDataQueryCodeExp(name="PICWIDTH", expression="t1.PICWIDTH", showorder=14), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=15), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.RESERVER2", showorder=16), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.RESERVER3", showorder=17), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.RESERVER4", showorder=18), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=19), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=20)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DIGESTCODE, t1.ENABLE, t1.FILENAME2, t1.FILESIZE, t1.FILE_ID, t1.FILE_NAME, t1.FOLDER, t1.LOCALPATH, t1.LOCALPATH2, t1.OWNERID, t1.OWNERTYPE, t1.PICHEIGHT, t1.PICWIDTH, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFFILE t1  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DIGESTCODE", expression="t1.DIGESTCODE", showorder=2), @DEDataQueryCodeExp(name="ENABLE", expression="t1.ENABLE", showorder=3), @DEDataQueryCodeExp(name="FILENAME2", expression="t1.FILENAME2", showorder=4), @DEDataQueryCodeExp(name="FILESIZE", expression="t1.FILESIZE", showorder=5), @DEDataQueryCodeExp(name="FILE_ID", expression="t1.FILE_ID", showorder=6), @DEDataQueryCodeExp(name="FILE_NAME", expression="t1.FILE_NAME", showorder=7), @DEDataQueryCodeExp(name="FOLDER", expression="t1.FOLDER", showorder=8), @DEDataQueryCodeExp(name="LOCALPATH", expression="t1.LOCALPATH", showorder=9), @DEDataQueryCodeExp(name="LOCALPATH2", expression="t1.LOCALPATH2", showorder=10), @DEDataQueryCodeExp(name="OWNERID", expression="t1.OWNERID", showorder=11), @DEDataQueryCodeExp(name="OWNERTYPE", expression="t1.OWNERTYPE", showorder=12), @DEDataQueryCodeExp(name="PICHEIGHT", expression="t1.PICHEIGHT", showorder=13), @DEDataQueryCodeExp(name="PICWIDTH", expression="t1.PICWIDTH", showorder=14), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=15), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.RESERVER2", showorder=16), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.RESERVER3", showorder=17), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.RESERVER4", showorder=18), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=19), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=20)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")}), @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[DIGESTCODE], t1.[ENABLE], t1.[FILENAME2], t1.[FILESIZE], t1.[FILE_ID], t1.[FILE_NAME], t1.[FOLDER], t1.[LOCALPATH], t1.[LOCALPATH2], t1.[OWNERID], t1.[OWNERTYPE], t1.[PICHEIGHT], t1.[PICWIDTH], t1.[RESERVER], t1.[RESERVER2], t1.[RESERVER3], t1.[RESERVER4], t1.[UPDATEDATE], t1.[UPDATEMAN] FROM [T_SRFFILE] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="MEMO", expression="t1.[MEMO]", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=1), @DEDataQueryCodeExp(name="DIGESTCODE", expression="t1.[DIGESTCODE]", showorder=2), @DEDataQueryCodeExp(name="ENABLE", expression="t1.[ENABLE]", showorder=3), @DEDataQueryCodeExp(name="FILENAME2", expression="t1.[FILENAME2]", showorder=4), @DEDataQueryCodeExp(name="FILESIZE", expression="t1.[FILESIZE]", showorder=5), @DEDataQueryCodeExp(name="FILE_ID", expression="t1.[FILE_ID]", showorder=6), @DEDataQueryCodeExp(name="FILE_NAME", expression="t1.[FILE_NAME]", showorder=7), @DEDataQueryCodeExp(name="FOLDER", expression="t1.[FOLDER]", showorder=8), @DEDataQueryCodeExp(name="LOCALPATH", expression="t1.[LOCALPATH]", showorder=9), @DEDataQueryCodeExp(name="LOCALPATH2", expression="t1.[LOCALPATH2]", showorder=10), @DEDataQueryCodeExp(name="OWNERID", expression="t1.[OWNERID]", showorder=11), @DEDataQueryCodeExp(name="OWNERTYPE", expression="t1.[OWNERTYPE]", showorder=12), @DEDataQueryCodeExp(name="PICHEIGHT", expression="t1.[PICHEIGHT]", showorder=13), @DEDataQueryCodeExp(name="PICWIDTH", expression="t1.[PICWIDTH]", showorder=14), @DEDataQueryCodeExp(name="RESERVER", expression="t1.[RESERVER]", showorder=15), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.[RESERVER2]", showorder=16), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.[RESERVER3]", showorder=17), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.[RESERVER4]", showorder=18), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=19), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=20)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")})})
-public abstract class FileDefaultDQModelBase
-extends DEDataQueryModelBase {
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
+
+@DEDataQuery(id="160D07ED-4D8E-4292-A60C-63F66CCFAE27",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DIGESTCODE, t1.ENABLE, t1.FILENAME2, t1.FILESIZE, t1.FILE_ID, t1.FILE_NAME, t1.FOLDER, t1.LOCALPATH, t1.LOCALPATH2, t1.OWNERID, t1.OWNERTYPE, t1.PICHEIGHT, t1.PICWIDTH, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFFILE t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DIGESTCODE",expression="t1.DIGESTCODE",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.ENABLE",showorder=3)
+        ,@DEDataQueryCodeExp(name="FILENAME2",expression="t1.FILENAME2",showorder=4)
+        ,@DEDataQueryCodeExp(name="FILESIZE",expression="t1.FILESIZE",showorder=5)
+        ,@DEDataQueryCodeExp(name="FILE_ID",expression="t1.FILE_ID",showorder=6)
+        ,@DEDataQueryCodeExp(name="FILE_NAME",expression="t1.FILE_NAME",showorder=7)
+        ,@DEDataQueryCodeExp(name="FOLDER",expression="t1.FOLDER",showorder=8)
+        ,@DEDataQueryCodeExp(name="LOCALPATH",expression="t1.LOCALPATH",showorder=9)
+        ,@DEDataQueryCodeExp(name="LOCALPATH2",expression="t1.LOCALPATH2",showorder=10)
+        ,@DEDataQueryCodeExp(name="OWNERID",expression="t1.OWNERID",showorder=11)
+        ,@DEDataQueryCodeExp(name="OWNERTYPE",expression="t1.OWNERTYPE",showorder=12)
+        ,@DEDataQueryCodeExp(name="PICHEIGHT",expression="t1.PICHEIGHT",showorder=13)
+        ,@DEDataQueryCodeExp(name="PICWIDTH",expression="t1.PICWIDTH",showorder=14)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=15)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.RESERVER2",showorder=16)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.RESERVER3",showorder=17)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.RESERVER4",showorder=18)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=19)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=20)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`digestcode`, t1.`enable`, t1.`filename2`, t1.`filesize`, t1.`file_id`, t1.`file_name`, t1.`folder`, t1.`localpath`, t1.`localpath2`, t1.`ownerid`, t1.`ownertype`, t1.`picheight`, t1.`picwidth`, t1.`reserver`, t1.`reserver2`, t1.`reserver3`, t1.`reserver4`, t1.`updatedate`, t1.`updateman` FROM `t_srffile` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="MEMO",expression="t1.`memo`",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=1)
+        ,@DEDataQueryCodeExp(name="DIGESTCODE",expression="t1.`digestcode`",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.`enable`",showorder=3)
+        ,@DEDataQueryCodeExp(name="FILENAME2",expression="t1.`filename2`",showorder=4)
+        ,@DEDataQueryCodeExp(name="FILESIZE",expression="t1.`filesize`",showorder=5)
+        ,@DEDataQueryCodeExp(name="FILE_ID",expression="t1.`file_id`",showorder=6)
+        ,@DEDataQueryCodeExp(name="FILE_NAME",expression="t1.`file_name`",showorder=7)
+        ,@DEDataQueryCodeExp(name="FOLDER",expression="t1.`folder`",showorder=8)
+        ,@DEDataQueryCodeExp(name="LOCALPATH",expression="t1.`localpath`",showorder=9)
+        ,@DEDataQueryCodeExp(name="LOCALPATH2",expression="t1.`localpath2`",showorder=10)
+        ,@DEDataQueryCodeExp(name="OWNERID",expression="t1.`ownerid`",showorder=11)
+        ,@DEDataQueryCodeExp(name="OWNERTYPE",expression="t1.`ownertype`",showorder=12)
+        ,@DEDataQueryCodeExp(name="PICHEIGHT",expression="t1.`picheight`",showorder=13)
+        ,@DEDataQueryCodeExp(name="PICWIDTH",expression="t1.`picwidth`",showorder=14)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.`reserver`",showorder=15)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.`reserver2`",showorder=16)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.`reserver3`",showorder=17)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.`reserver4`",showorder=18)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=19)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=20)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.enable = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DIGESTCODE, t1.ENABLE, t1.FILENAME2, t1.FILESIZE, t1.FILE_ID, t1.FILE_NAME, t1.FOLDER, t1.LOCALPATH, t1.LOCALPATH2, t1.OWNERID, t1.OWNERTYPE, t1.PICHEIGHT, t1.PICWIDTH, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFFILE t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DIGESTCODE",expression="t1.DIGESTCODE",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.ENABLE",showorder=3)
+        ,@DEDataQueryCodeExp(name="FILENAME2",expression="t1.FILENAME2",showorder=4)
+        ,@DEDataQueryCodeExp(name="FILESIZE",expression="t1.FILESIZE",showorder=5)
+        ,@DEDataQueryCodeExp(name="FILE_ID",expression="t1.FILE_ID",showorder=6)
+        ,@DEDataQueryCodeExp(name="FILE_NAME",expression="t1.FILE_NAME",showorder=7)
+        ,@DEDataQueryCodeExp(name="FOLDER",expression="t1.FOLDER",showorder=8)
+        ,@DEDataQueryCodeExp(name="LOCALPATH",expression="t1.LOCALPATH",showorder=9)
+        ,@DEDataQueryCodeExp(name="LOCALPATH2",expression="t1.LOCALPATH2",showorder=10)
+        ,@DEDataQueryCodeExp(name="OWNERID",expression="t1.OWNERID",showorder=11)
+        ,@DEDataQueryCodeExp(name="OWNERTYPE",expression="t1.OWNERTYPE",showorder=12)
+        ,@DEDataQueryCodeExp(name="PICHEIGHT",expression="t1.PICHEIGHT",showorder=13)
+        ,@DEDataQueryCodeExp(name="PICWIDTH",expression="t1.PICWIDTH",showorder=14)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=15)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.RESERVER2",showorder=16)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.RESERVER3",showorder=17)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.RESERVER4",showorder=18)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=19)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=20)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DIGESTCODE, t1.ENABLE, t1.FILENAME2, t1.FILESIZE, t1.FILE_ID, t1.FILE_NAME, t1.FOLDER, t1.LOCALPATH, t1.LOCALPATH2, t1.OWNERID, t1.OWNERTYPE, t1.PICHEIGHT, t1.PICWIDTH, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFFILE t1  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DIGESTCODE",expression="t1.DIGESTCODE",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.ENABLE",showorder=3)
+        ,@DEDataQueryCodeExp(name="FILENAME2",expression="t1.FILENAME2",showorder=4)
+        ,@DEDataQueryCodeExp(name="FILESIZE",expression="t1.FILESIZE",showorder=5)
+        ,@DEDataQueryCodeExp(name="FILE_ID",expression="t1.FILE_ID",showorder=6)
+        ,@DEDataQueryCodeExp(name="FILE_NAME",expression="t1.FILE_NAME",showorder=7)
+        ,@DEDataQueryCodeExp(name="FOLDER",expression="t1.FOLDER",showorder=8)
+        ,@DEDataQueryCodeExp(name="LOCALPATH",expression="t1.LOCALPATH",showorder=9)
+        ,@DEDataQueryCodeExp(name="LOCALPATH2",expression="t1.LOCALPATH2",showorder=10)
+        ,@DEDataQueryCodeExp(name="OWNERID",expression="t1.OWNERID",showorder=11)
+        ,@DEDataQueryCodeExp(name="OWNERTYPE",expression="t1.OWNERTYPE",showorder=12)
+        ,@DEDataQueryCodeExp(name="PICHEIGHT",expression="t1.PICHEIGHT",showorder=13)
+        ,@DEDataQueryCodeExp(name="PICWIDTH",expression="t1.PICWIDTH",showorder=14)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=15)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.RESERVER2",showorder=16)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.RESERVER3",showorder=17)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.RESERVER4",showorder=18)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=19)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=20)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DIGESTCODE, t1.ENABLE, t1.FILENAME2, t1.FILESIZE, t1.FILE_ID, t1.FILE_NAME, t1.FOLDER, t1.LOCALPATH, t1.LOCALPATH2, t1.OWNERID, t1.OWNERTYPE, t1.PICHEIGHT, t1.PICWIDTH, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFFILE t1  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DIGESTCODE",expression="t1.DIGESTCODE",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.ENABLE",showorder=3)
+        ,@DEDataQueryCodeExp(name="FILENAME2",expression="t1.FILENAME2",showorder=4)
+        ,@DEDataQueryCodeExp(name="FILESIZE",expression="t1.FILESIZE",showorder=5)
+        ,@DEDataQueryCodeExp(name="FILE_ID",expression="t1.FILE_ID",showorder=6)
+        ,@DEDataQueryCodeExp(name="FILE_NAME",expression="t1.FILE_NAME",showorder=7)
+        ,@DEDataQueryCodeExp(name="FOLDER",expression="t1.FOLDER",showorder=8)
+        ,@DEDataQueryCodeExp(name="LOCALPATH",expression="t1.LOCALPATH",showorder=9)
+        ,@DEDataQueryCodeExp(name="LOCALPATH2",expression="t1.LOCALPATH2",showorder=10)
+        ,@DEDataQueryCodeExp(name="OWNERID",expression="t1.OWNERID",showorder=11)
+        ,@DEDataQueryCodeExp(name="OWNERTYPE",expression="t1.OWNERTYPE",showorder=12)
+        ,@DEDataQueryCodeExp(name="PICHEIGHT",expression="t1.PICHEIGHT",showorder=13)
+        ,@DEDataQueryCodeExp(name="PICWIDTH",expression="t1.PICWIDTH",showorder=14)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=15)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.RESERVER2",showorder=16)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.RESERVER3",showorder=17)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.RESERVER4",showorder=18)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=19)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=20)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[DIGESTCODE], t1.[ENABLE], t1.[FILENAME2], t1.[FILESIZE], t1.[FILE_ID], t1.[FILE_NAME], t1.[FOLDER], t1.[LOCALPATH], t1.[LOCALPATH2], t1.[OWNERID], t1.[OWNERTYPE], t1.[PICHEIGHT], t1.[PICWIDTH], t1.[RESERVER], t1.[RESERVER2], t1.[RESERVER3], t1.[RESERVER4], t1.[UPDATEDATE], t1.[UPDATEMAN] FROM [T_SRFFILE] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="MEMO",expression="t1.[MEMO]",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=1)
+        ,@DEDataQueryCodeExp(name="DIGESTCODE",expression="t1.[DIGESTCODE]",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.[ENABLE]",showorder=3)
+        ,@DEDataQueryCodeExp(name="FILENAME2",expression="t1.[FILENAME2]",showorder=4)
+        ,@DEDataQueryCodeExp(name="FILESIZE",expression="t1.[FILESIZE]",showorder=5)
+        ,@DEDataQueryCodeExp(name="FILE_ID",expression="t1.[FILE_ID]",showorder=6)
+        ,@DEDataQueryCodeExp(name="FILE_NAME",expression="t1.[FILE_NAME]",showorder=7)
+        ,@DEDataQueryCodeExp(name="FOLDER",expression="t1.[FOLDER]",showorder=8)
+        ,@DEDataQueryCodeExp(name="LOCALPATH",expression="t1.[LOCALPATH]",showorder=9)
+        ,@DEDataQueryCodeExp(name="LOCALPATH2",expression="t1.[LOCALPATH2]",showorder=10)
+        ,@DEDataQueryCodeExp(name="OWNERID",expression="t1.[OWNERID]",showorder=11)
+        ,@DEDataQueryCodeExp(name="OWNERTYPE",expression="t1.[OWNERTYPE]",showorder=12)
+        ,@DEDataQueryCodeExp(name="PICHEIGHT",expression="t1.[PICHEIGHT]",showorder=13)
+        ,@DEDataQueryCodeExp(name="PICWIDTH",expression="t1.[PICWIDTH]",showorder=14)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.[RESERVER]",showorder=15)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.[RESERVER2]",showorder=16)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.[RESERVER3]",showorder=17)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.[RESERVER4]",showorder=18)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=19)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=20)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    })
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class FileDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public FileDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(FileDefaultDQModelBase.class);
     }
-}
 
+}

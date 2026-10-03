@@ -46,12 +46,11 @@ extends XMLCollectionExConfig<EAIConnectionConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = EAIConnectionsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((EAIConnectionConfig)childNode))) {
-                this.add((Object)((EAIConnectionConfig)childNode));
+            if (this.OnChildNodeLoaded((EAIConnectionConfig)childNode)) {
+                this.add((EAIConnectionConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

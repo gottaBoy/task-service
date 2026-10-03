@@ -1,15 +1,21 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core.valuerule;
 
-import net.ibizsys.paas.core.valuerule.IDEFVRDEDataSet;
-import net.ibizsys.paas.core.valuerule.IDEFValueRule;
+/**
+ * 属性数据范围规则接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDEFDataRangeRule extends IDEFValueRule {
+	/**
+	 * 实体数据集合
+	 */
+	static final String DATARANGE_DEDATASET = "DEDATASET";
 
-public interface IDEFDataRangeRule
-extends IDEFValueRule {
-    public static final String DATARANGE_DEDATASET = "DEDATASET";
-
-    public IDEFVRDEDataSet getDEFVRDEDataSet();
+	/**
+	 * 获取 属性值规则实体结果集合
+	 * 
+	 * @return
+	 */
+	IDEFVRDEDataSet getDEFVRDEDataSet();
 }
-

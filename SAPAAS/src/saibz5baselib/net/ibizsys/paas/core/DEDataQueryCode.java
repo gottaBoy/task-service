@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import java.lang.annotation.Documented;
@@ -8,23 +5,57 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import net.ibizsys.paas.core.DEDataQueryCodeCond;
-import net.ibizsys.paas.core.DEDataQueryCodeExp;
 
-@Target(value={ElementType.TYPE})
-@Retention(value=RetentionPolicy.RUNTIME)
+/**
+ * 实体数据查询代码注解
+ * 
+ * @author Administrator
+ *
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DEDataQueryCode {
-    public String dbtype() default "";
 
-    public String querycode() default "";
+	/**
+	 * 数据库类型
+	 * 
+	 * @return
+	 */
+	String dbtype() default "";
 
-    public String querycodetemp() default "";
+	/**
+	 * 查询代码
+	 * 
+	 * @return
+	 */
+	String querycode() default "";
 
-    public String declarecode() default "";
+	/**
+	 * 查询代码临时
+	 * 
+	 * @return
+	 */
+	String querycodetemp() default "";
 
-    public DEDataQueryCodeExp[] fieldexps();
+	/**
+	 * 查询代码
+	 * 
+	 * @return
+	 */
+	String declarecode() default "";
 
-    public DEDataQueryCodeCond[] conds();
+	/**
+	 * 属性表达式
+	 * 
+	 * @return
+	 */
+	DEDataQueryCodeExp[] fieldexps();
+
+	/**
+	 * 附加条件
+	 * 
+	 * @return
+	 */
+	DEDataQueryCodeCond[] conds();
 }
-

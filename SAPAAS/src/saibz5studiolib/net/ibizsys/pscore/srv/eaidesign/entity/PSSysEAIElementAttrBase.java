@@ -2188,7 +2188,7 @@ implements Serializable {
                 PSSysEAIDataType pSSysEAIDataType = new PSSysEAIDataType();
                 pSSysEAIDataType.setPSSysEAIDataTypeId(this.getPSSysEAIDataTypeId());
                 PSSysEAIDataTypeService pSSysEAIDataTypeService = (PSSysEAIDataTypeService)ServiceGlobal.getService(PSSysEAIDataTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysEAIDataTypeService.autoGet((IEntity)pSSysEAIDataType);
+                pSSysEAIDataTypeService.autoGet(pSSysEAIDataType);
                 this.pssyseaidatatype = pSSysEAIDataType;
             }
             return this.pssyseaidatatype;
@@ -2214,7 +2214,7 @@ implements Serializable {
                 PSSysEAIElement pSSysEAIElement = new PSSysEAIElement();
                 pSSysEAIElement.setPSSysEAIElementId(this.getPSSysEAIElementId());
                 PSSysEAIElementService pSSysEAIElementService = (PSSysEAIElementService)ServiceGlobal.getService(PSSysEAIElementService.class, (SessionFactory)this.getSessionFactory());
-                pSSysEAIElementService.autoGet((IEntity)pSSysEAIElement);
+                pSSysEAIElementService.autoGet(pSSysEAIElement);
                 this.pssyseaielement = pSSysEAIElement;
             }
             return this.pssyseaielement;
@@ -2240,7 +2240,7 @@ implements Serializable {
                 PSSysEAIElement pSSysEAIElement = new PSSysEAIElement();
                 pSSysEAIElement.setPSSysEAIElementId(this.getRefPSSysEAIElementId());
                 PSSysEAIElementService pSSysEAIElementService = (PSSysEAIElementService)ServiceGlobal.getService(PSSysEAIElementService.class, (SessionFactory)this.getSessionFactory());
-                pSSysEAIElementService.autoGet((IEntity)pSSysEAIElement);
+                pSSysEAIElementService.autoGet(pSSysEAIElement);
                 this.refpssyseaielement = pSSysEAIElement;
             }
             return this.refpssyseaielement;

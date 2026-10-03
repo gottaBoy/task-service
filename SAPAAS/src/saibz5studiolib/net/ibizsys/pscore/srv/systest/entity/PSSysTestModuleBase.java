@@ -2274,7 +2274,7 @@ implements Serializable {
                 PSSysTestData pSSysTestData = new PSSysTestData();
                 pSSysTestData.setPSSysTestDataId(this.getPSSysTestDataId());
                 PSSysTestDataService pSSysTestDataService = (PSSysTestDataService)ServiceGlobal.getService(PSSysTestDataService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTestDataService.autoGet((IEntity)pSSysTestData);
+                pSSysTestDataService.autoGet(pSSysTestData);
                 this.pssystestdata = pSSysTestData;
             }
             return this.pssystestdata;
@@ -2300,7 +2300,7 @@ implements Serializable {
                 PSSysTestModule pSSysTestModule = new PSSysTestModule();
                 pSSysTestModule.setPSSysTestModuleId(this.getPPSSysTestModuleId());
                 PSSysTestModuleService pSSysTestModuleService = (PSSysTestModuleService)ServiceGlobal.getService(PSSysTestModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTestModuleService.autoGet((IEntity)pSSysTestModule);
+                pSSysTestModuleService.autoGet(pSSysTestModule);
                 this.ppssystestmodule = pSSysTestModule;
             }
             return this.ppssystestmodule;
@@ -2326,7 +2326,7 @@ implements Serializable {
                 PSSysTestPrj pSSysTestPrj = new PSSysTestPrj();
                 pSSysTestPrj.setPSSysTestPrjId(this.getPSSysTestPrjId());
                 PSSysTestPrjService pSSysTestPrjService = (PSSysTestPrjService)ServiceGlobal.getService(PSSysTestPrjService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTestPrjService.autoGet((IEntity)pSSysTestPrj);
+                pSSysTestPrjService.autoGet(pSSysTestPrj);
                 this.pssystestprj = pSSysTestPrj;
             }
             return this.pssystestprj;

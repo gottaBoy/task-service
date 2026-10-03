@@ -1834,7 +1834,7 @@ implements Serializable {
                 PSCredential pSCredential = new PSCredential();
                 pSCredential.setPSCredentialId(this.getPSCredentialId());
                 PSCredentialService pSCredentialService = (PSCredentialService)ServiceGlobal.getService(PSCredentialService.class, (SessionFactory)this.getSessionFactory());
-                pSCredentialService.autoGet((IEntity)pSCredential);
+                pSCredentialService.autoGet(pSCredential);
                 this.pscredential = pSCredential;
             }
             return this.pscredential;
@@ -1860,7 +1860,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;

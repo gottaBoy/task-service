@@ -91,19 +91,15 @@ implements IPSModelService<PSDEForm> {
         if (!KeyValueHelper.isTempKey((String)pSDEForm.getPSDEFormId())) {
             this.getTempMajor(pSDEForm);
         } else {
-            this.getTemp((IEntity)pSDEForm);
+            this.getTemp(pSDEForm);
         }
         pSDEForm.setFormModel(this.getFormModel(pSDEForm));
     }
 
     protected String getFormModel(PSDEForm pSDEForm) throws Exception {
-        XmlNode xmlNode;
-        Object object;
-        Object object2;
-        Object object3;
         final PSDEFormDetailService pSDEFormDetailService = (PSDEFormDetailService)ServiceGlobal.getService((String)PSDEFormDetailService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
         final ArrayList<PSDEFormDetail> arrayList = pSDEFormDetailService.selectTempByPSDEForm(pSDEForm, "ORDER BY ORDERVALUE");
-        final HashMap hashMap = new HashMap();
+        final HashMap<String, XmlNode> hashMap = new HashMap<String, XmlNode>();
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
@@ -111,7 +107,7 @@ implements IPSModelService<PSDEForm> {
                     pSDEFormDetailService.fillPreviewHtml(pSDEFormDetail, false);
                     XmlNode xmlNode = new XmlNode();
                     xmlNode.setNodeName(pSDEFormDetail.getDetailType());
-                    pSDEFormDetailService.fillXmlNode((IEntity)pSDEFormDetail, xmlNode, false);
+                    pSDEFormDetailService.fillXmlNode(pSDEFormDetail, xmlNode, false);
                     hashMap.put(pSDEFormDetail.getPSDEFormDetailId(), xmlNode);
                 }
             }
@@ -133,55 +129,52 @@ implements IPSModelService<PSDEForm> {
         xmlNode2.setAttribute("TABHEADERPOS", pSDEForm.getTabHeaderPos());
         xmlNode2.setAttribute("FORMWIDTH", StringHelper.format((String)"%1$s", (Object)pSDEForm.getFormWidth()));
         if (StringHelper.compare((String)pSDEForm.getFormType(), (String)"EDITFORM", (boolean)true) == 0) {
-            object3 = (PSDEFieldService)ServiceGlobal.getService((String)PSDEFieldService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
-            ArrayList<PSDEField> selectCond2 = ((PSDEFieldService)object3).selectByDataEntity(pSDEForm.getPSDEId());
-            object2 = new XmlNode();
-            object2.setNodeName("DEFIELDS");
-            xmlNode2.addNode((XmlNode)object2);
-            for (Object object4 : selectCond2) {
-                object = new XmlNode();
-                object.setNodeName("DEFIELD");
-                object.setAttribute("PSDEFID", ((PSDEFieldBase)object4).getPSDEFieldId());
-                object.setAttribute("PSDEFNAME", ((PSDEFieldBase)object4).getPSDEFieldName().toLowerCase());
-                object.setAttribute("LOGICNAME", ((PSDEFieldBase)object4).getLogicName());
-                object2.addNode((XmlNode)object);
+            PSDEFieldService fieldService = (PSDEFieldService)ServiceGlobal.getService((String)PSDEFieldService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
+            ArrayList<PSDEField> fields = fieldService.selectByDataEntity(pSDEForm.getPSDEId());
+            XmlNode fieldNodes = new XmlNode();
+            fieldNodes.setNodeName("DEFIELDS");
+            xmlNode2.addNode(fieldNodes);
+            for (PSDEField field : fields) {
+                XmlNode fieldNode = new XmlNode();
+                fieldNode.setNodeName("DEFIELD");
+                fieldNode.setAttribute("PSDEFID", field.getPSDEFieldId());
+                fieldNode.setAttribute("PSDEFNAME", field.getPSDEFieldName().toLowerCase());
+                fieldNode.setAttribute("LOGICNAME", field.getLogicName());
+                fieldNodes.addNode(fieldNode);
             }
         } else if (StringHelper.compare((String)pSDEForm.getFormType(), (String)"SEARCHFORM", (boolean)true) == 0) {
-            Object object4;
-            object3 = (PSDEFSFItemService)ServiceGlobal.getService((String)PSDEFSFItemService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
+            PSDEFSFItemService itemService = (PSDEFSFItemService)ServiceGlobal.getService((String)PSDEFSFItemService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             SelectCond selectCond = new SelectCond();
             selectCond.setOrderInfo("ORDER BY PSDEFNAME");
             selectCond.setConditon("PSDEID", (Object)pSDEForm.getPSDEId());
-            object2 = object3.select((ISelectCond)selectCond);
-            xmlNode = new XmlNode();
+            ArrayList<PSDEFSFItem> items = itemService.select((ISelectCond)selectCond);
+            XmlNode xmlNode = new XmlNode();
             xmlNode.setNodeName("DEFSFITEMS");
             xmlNode2.addNode(xmlNode);
-            object4 = ((ArrayList)object2).iterator();
-            while (object4.hasNext()) {
-                object = (PSDEFSFItem)object4.next();
+            for (PSDEFSFItem item : items) {
                 XmlNode xmlNode3 = new XmlNode();
                 xmlNode3.setNodeName("DEFSFITEM");
-                xmlNode3.setAttribute("PSDEFID", ((PSDEFSFItemBase)object).getPSDEFId());
-                xmlNode3.setAttribute("PSDEFNAME", ((PSDEFSFItemBase)object).getPSDEFName().toLowerCase());
-                xmlNode3.setAttribute("PSDEFSFITEMNAME", ((PSDEFSFItemBase)object).getPSDEFSFItemName());
-                xmlNode3.setAttribute("PSDEFSFITEMID", ((PSDEFSFItemBase)object).getPSDEFSFItemId());
-                String string = ((PSDEFSFItemBase)object).getCaption();
+                xmlNode3.setAttribute("PSDEFID", item.getPSDEFId());
+                xmlNode3.setAttribute("PSDEFNAME", item.getPSDEFName().toLowerCase());
+                xmlNode3.setAttribute("PSDEFSFITEMNAME", item.getPSDEFSFItemName());
+                xmlNode3.setAttribute("PSDEFSFITEMID", item.getPSDEFSFItemId());
+                String string = item.getCaption();
                 if (StringHelper.isNullOrEmpty((String)string)) {
-                    string = StringHelper.isNullOrEmpty((String)((PSDEFSFItemBase)object).getPSSysDBVFName()) ? StringHelper.format((String)"%1$s(%2$s)", (Object)((PSDEFSFItemBase)object).getLogicName(), (Object)((PSDEFSFItemBase)object).getPSDBValueOPName()) : StringHelper.format((String)"%1$s[%3$s](%2$s)", (Object)((PSDEFSFItemBase)object).getLogicName(), (Object)((PSDEFSFItemBase)object).getPSDBValueOPName(), (Object)((PSDEFSFItemBase)object).getPSSysDBVFName());
+                    string = StringHelper.isNullOrEmpty((String)item.getPSSysDBVFName()) ? StringHelper.format((String)"%1$s(%2$s)", (Object)item.getLogicName(), (Object)item.getPSDBValueOPName()) : StringHelper.format((String)"%1$s[%3$s](%2$s)", (Object)item.getLogicName(), (Object)item.getPSDBValueOPName(), (Object)item.getPSSysDBVFName());
                 }
                 xmlNode3.setAttribute("CAPTION", string);
                 xmlNode.addNode(xmlNode3);
             }
         }
         for (PSDEFormDetail pSDEFormDetail : arrayList) {
-            object2 = (XmlNode)hashMap.get(pSDEFormDetail.getPSDEFormDetailId());
+            XmlNode detailNode = hashMap.get(pSDEFormDetail.getPSDEFormDetailId());
             if (StringHelper.isNullOrEmpty((String)pSDEFormDetail.getPPSDEFormDetailId())) {
-                xmlNode2.addNode((XmlNode)object2);
+                xmlNode2.addNode(detailNode);
                 continue;
             }
-            xmlNode = (XmlNode)hashMap.get(pSDEFormDetail.getPPSDEFormDetailId());
-            if (xmlNode != null) {
-                xmlNode.addNode((XmlNode)object2);
+            XmlNode parentNode = hashMap.get(pSDEFormDetail.getPPSDEFormDetailId());
+            if (parentNode != null) {
+                parentNode.addNode(detailNode);
                 continue;
             }
             throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u7236\u8868\u5355\u6210\u5458[%1$s], \u5f53\u524d[%2$s]", (Object)pSDEFormDetail.getPPSDEFormDetailId(), (Object)pSDEFormDetail.getPSDEFormDetailName()));
@@ -196,7 +189,6 @@ implements IPSModelService<PSDEForm> {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEFormDetail pSDEFormDetail2;
                 PSDEFormDetailService pSDEFormDetailService = (PSDEFormDetailService)ServiceGlobal.getService((String)PSDEFormDetailService.class.getCanonicalName(), (SessionFactory)PSDEFormService.this.getSessionFactory());
                 ArrayList<PSDEFormDetail> arrayList = pSDEFormDetailService.selectTempByPSDEForm(pSDEForm2);
                 HashMap<String, PSDEFormDetail> hashMap = new HashMap<String, PSDEFormDetail>();
@@ -204,19 +196,19 @@ implements IPSModelService<PSDEForm> {
                     hashMap.put(pSDEFormDetail2.getPSDEFormDetailId(), pSDEFormDetail2);
                 }
                 String string = pSDEForm2.getFormModel();
-                pSDEFormDetail2 = XmlNode.loadFromXML((String)string);
-                if (pSDEFormDetail2 != null) {
-                    pSDEFormDetail2.setAttribute("PSDEID", pSDEForm2.getPSDEId());
-                    pSDEFormDetail2.setAttribute("PSDEFORMID", pSDEForm2.getPSDEFormId());
-                    pSDEFormDetail2.setAttribute("FORMTYPE", pSDEForm2.getFormType());
-                    PSDEFormService.this.updatePSDEFormDetails(pSDEForm2, null, (XmlNode)pSDEFormDetail2, hashMap);
-                    pSDEForm2.setFormModel(XmlNode.export((XmlNode)pSDEFormDetail2));
+                XmlNode formNode = XmlNode.loadFromXML((String)string);
+                if (formNode != null) {
+                    formNode.setAttribute("PSDEID", pSDEForm2.getPSDEId());
+                    formNode.setAttribute("PSDEFORMID", pSDEForm2.getPSDEFormId());
+                    formNode.setAttribute("FORMTYPE", pSDEForm2.getFormType());
+                    PSDEFormService.this.updatePSDEFormDetails(pSDEForm2, null, formNode, hashMap);
+                    pSDEForm2.setFormModel(XmlNode.export(formNode));
                 } else {
                     pSDEForm2.setFormModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEFormDetail pSDEFormDetail3 : hashMap.values()) {
-                        pSDEFormDetailService.removeTemp((IEntity)pSDEFormDetail3);
+                        pSDEFormDetailService.removeTemp(pSDEFormDetail3);
                     }
                 }
                 PSDEFormService.this.updateTempMajor(pSDEForm2);
@@ -227,7 +219,7 @@ implements IPSModelService<PSDEForm> {
     protected void updatePSDEFormDetails(PSDEForm pSDEForm, PSDEFormDetail pSDEFormDetail, XmlNode xmlNode, HashMap<String, PSDEFormDetail> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSDEFormDetailService pSDEFormDetailService = (PSDEFormDetailService)ServiceGlobal.getService((String)PSDEFormDetailService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -260,7 +252,7 @@ implements IPSModelService<PSDEForm> {
                     bl = true;
                 }
                 if (bl) {
-                    pSDEFormDetailService.updateTemp((IEntity)pSDEFormDetail2);
+                    pSDEFormDetailService.updateTemp(pSDEFormDetail2);
                 }
                 if (StringHelper.compare((String)pSDEFormDetail2.getDetailType(), (String)"FORMITEMEX", (boolean)true) == 0) {
                     ArrayList<String> arrayList2 = new ArrayList<String>();
@@ -275,7 +267,7 @@ implements IPSModelService<PSDEForm> {
                 }
                 xmlNode2.resetAttributes();
                 pSDEFormDetailService.fillPreviewHtml(pSDEFormDetail2, false);
-                pSDEFormDetailService.fillXmlNode((IEntity)pSDEFormDetail2, xmlNode2, false);
+                pSDEFormDetailService.fillXmlNode(pSDEFormDetail2, xmlNode2, false);
                 arrayList.add(xmlNode2);
                 this.updatePSDEFormDetails(pSDEForm, pSDEFormDetail2, xmlNode2, hashMap);
             }
@@ -293,7 +285,6 @@ implements IPSModelService<PSDEForm> {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEFormDetail pSDEFormDetail2;
                 PSDEFormDetailService pSDEFormDetailService = (PSDEFormDetailService)ServiceGlobal.getService((String)PSDEFormDetailService.class.getCanonicalName(), (SessionFactory)PSDEFormService.this.getSessionFactory());
                 ArrayList<PSDEFormDetail> arrayList = pSDEFormDetailService.selectTempByPSDEForm(pSDEForm2);
                 HashMap<String, PSDEFormDetail> hashMap = new HashMap<String, PSDEFormDetail>();
@@ -301,22 +292,22 @@ implements IPSModelService<PSDEForm> {
                     hashMap.put(pSDEFormDetail2.getPSDEFormDetailId(), pSDEFormDetail2);
                 }
                 String string = pSDEForm2.getFormModel();
-                pSDEFormDetail2 = XmlNode.loadFromXML((String)string);
-                if (pSDEFormDetail2 != null) {
-                    pSDEFormDetail2.setAttribute("PSDEID", pSDEForm2.getPSDEId());
-                    pSDEFormDetail2.setAttribute("PSDEFORMID", pSDEForm2.getPSDEFormId());
-                    pSDEFormDetail2.setAttribute("FORMTYPE", pSDEForm2.getFormType());
-                    PSDEFormService.this.updatePSDEFormDetails(pSDEForm2, null, (XmlNode)pSDEFormDetail2, hashMap);
-                    pSDEForm2.setFormModel(XmlNode.export((XmlNode)pSDEFormDetail2));
+                XmlNode formNode = XmlNode.loadFromXML((String)string);
+                if (formNode != null) {
+                    formNode.setAttribute("PSDEID", pSDEForm2.getPSDEId());
+                    formNode.setAttribute("PSDEFORMID", pSDEForm2.getPSDEFormId());
+                    formNode.setAttribute("FORMTYPE", pSDEForm2.getFormType());
+                    PSDEFormService.this.updatePSDEFormDetails(pSDEForm2, null, formNode, hashMap);
+                    pSDEForm2.setFormModel(XmlNode.export(formNode));
                 } else {
                     pSDEForm2.setFormModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEFormDetail pSDEFormDetail3 : hashMap.values()) {
-                        pSDEFormDetailService.removeTemp((IEntity)pSDEFormDetail3);
+                        pSDEFormDetailService.removeTemp(pSDEFormDetail3);
                     }
                 }
-                PSDEFormService.this.createTempMajor((IEntity)pSDEForm2);
+                PSDEFormService.this.createTempMajor(pSDEForm2);
             }
         });
     }
@@ -328,7 +319,6 @@ implements IPSModelService<PSDEForm> {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEFormDetail pSDEFormDetail2;
                 PSDEFormDetailService pSDEFormDetailService = (PSDEFormDetailService)ServiceGlobal.getService((String)PSDEFormDetailService.class.getCanonicalName(), (SessionFactory)PSDEFormService.this.getSessionFactory());
                 ArrayList<PSDEFormDetail> arrayList = pSDEFormDetailService.selectTempByPSDEForm(pSDEForm2);
                 HashMap<String, PSDEFormDetail> hashMap = new HashMap<String, PSDEFormDetail>();
@@ -339,15 +329,16 @@ implements IPSModelService<PSDEForm> {
                 if (StringHelper.isNullOrEmpty((String)object)) {
                     object = WebContext.getCurrent().getPostValue("formmodel");
                 }
-                if ((pSDEFormDetail2 = XmlNode.loadFromXML((String)object)) != null) {
-                    PSDEFormService.this.updatePSDEFormDetails(pSDEForm2, null, (XmlNode)pSDEFormDetail2, hashMap);
-                    pSDEForm2.setFormModel(XmlNode.export((XmlNode)pSDEFormDetail2));
+                XmlNode formNode = XmlNode.loadFromXML((String)object);
+                if (formNode != null) {
+                    PSDEFormService.this.updatePSDEFormDetails(pSDEForm2, null, formNode, hashMap);
+                    pSDEForm2.setFormModel(XmlNode.export(formNode));
                 } else {
                     pSDEForm2.setFormModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEFormDetail pSDEFormDetail3 : hashMap.values()) {
-                        pSDEFormDetailService.removeTemp((IEntity)pSDEFormDetail3);
+                        pSDEFormDetailService.removeTemp(pSDEFormDetail3);
                     }
                 }
             }
@@ -356,7 +347,7 @@ implements IPSModelService<PSDEForm> {
 
     @Override
     public void getDraftWithModel(PSDEForm pSDEForm) throws Exception {
-        this.getDraftTempMajor((IEntity)pSDEForm);
+        this.getDraftTempMajor(pSDEForm);
         this.initDefaultFormDetail(pSDEForm.getPSDE(), pSDEForm, true);
         pSDEForm.setFormModel(this.getFormModel(pSDEForm));
     }
@@ -400,17 +391,17 @@ implements IPSModelService<PSDEForm> {
 
     protected void initDefaultEditForm(PSDataEntity pSDataEntity) throws Exception {
         String string = null;
-        string = this.isEnableFolderKey((IEntity)pSDataEntity) ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_EDITFORM) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"EDITFORM");
+        string = this.isEnableFolderKey(pSDataEntity) ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_EDITFORM) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"EDITFORM");
         PSDEForm pSDEForm = new PSDEForm();
         pSDEForm.setPSDEFormId(string);
         if (this.checkKey(pSDEForm) == 0) {
             PSDEFormDetail pSDEFormDetail;
-            EntityBase entityBase;
+            PSDEField field;
             pSDEForm.reset();
             pSDEForm.setFormType("EDITFORM");
             pSDEForm.setPSDEId(pSDataEntity.getPSDataEntityId());
             pSDEForm.setCodeName("Main");
-            if (this.selectOne((IEntity)pSDEForm, true)) {
+            if (this.selectOne(pSDEForm, true)) {
                 return;
             }
             pSDEForm.reset();
@@ -448,15 +439,15 @@ implements IPSModelService<PSDEForm> {
             pSDEFormDetail3.setColModel("50%;50%");
             pSDEFormDetailService.create(pSDEFormDetail3);
             if (entityBase3 != null) {
-                entityBase = new PSDEFormDetail();
-                entityBase.setPSDEFormId(pSDEForm.getPSDEFormId());
-                entityBase.setPSDEFormDetailName(entityBase3.getPSDEFieldName().toLowerCase());
-                entityBase.setPPSDEFormDetailId(pSDEFormDetail3.getPSDEFormDetailId());
-                entityBase.setDetailType("FORMITEM");
-                entityBase.setOrderValue(1);
-                entityBase.setPSDEFId(entityBase3.getPSDEFieldId());
-                entityBase.setPSDEFName(entityBase3.getPSDEFieldName());
-                pSDEFormDetailService.create(entityBase);
+                PSDEFormDetail majorItem = new PSDEFormDetail();
+                majorItem.setPSDEFormId(pSDEForm.getPSDEFormId());
+                majorItem.setPSDEFormDetailName(entityBase3.getPSDEFieldName().toLowerCase());
+                majorItem.setPPSDEFormDetailId(pSDEFormDetail3.getPSDEFormDetailId());
+                majorItem.setDetailType("FORMITEM");
+                majorItem.setOrderValue(1);
+                majorItem.setPSDEFId(entityBase3.getPSDEFieldId());
+                majorItem.setPSDEFName(entityBase3.getPSDEFieldName());
+                pSDEFormDetailService.create(majorItem);
             }
             PSDEFormDetail pSDEFormDetail4 = new PSDEFormDetail();
             pSDEFormDetail4.setPSDEFormId(pSDEForm.getPSDEFormId());
@@ -474,49 +465,49 @@ implements IPSModelService<PSDEForm> {
             pSDEFormDetail3.setCaption("\u64cd\u4f5c\u4fe1\u606f");
             pSDEFormDetail3.setColModel("50%;50%");
             pSDEFormDetailService.create(pSDEFormDetail3);
-            entityBase = (PSDEField)hashMap.get("CREATEMAN");
-            if (entityBase != null) {
+            field = hashMap.get("CREATEMAN");
+            if (field != null) {
                 pSDEFormDetail = new PSDEFormDetail();
                 pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
-                pSDEFormDetail.setPSDEFormDetailName(entityBase.getPSDEFieldName().toLowerCase());
+                pSDEFormDetail.setPSDEFormDetailName(field.getPSDEFieldName().toLowerCase());
                 pSDEFormDetail.setPPSDEFormDetailId(pSDEFormDetail3.getPSDEFormDetailId());
                 pSDEFormDetail.setDetailType("FORMITEM");
                 pSDEFormDetail.setOrderValue(1);
-                pSDEFormDetail.setPSDEFId(entityBase.getPSDEFieldId());
-                pSDEFormDetail.setPSDEFName(entityBase.getPSDEFieldName());
+                pSDEFormDetail.setPSDEFId(field.getPSDEFieldId());
+                pSDEFormDetail.setPSDEFName(field.getPSDEFieldName());
                 pSDEFormDetailService.create(pSDEFormDetail);
             }
-            if ((entityBase = (PSDEField)hashMap.get("CREATEDATE")) != null) {
+            if ((field = hashMap.get("CREATEDATE")) != null) {
                 pSDEFormDetail = new PSDEFormDetail();
                 pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
-                pSDEFormDetail.setPSDEFormDetailName(entityBase.getPSDEFieldName().toLowerCase());
+                pSDEFormDetail.setPSDEFormDetailName(field.getPSDEFieldName().toLowerCase());
                 pSDEFormDetail.setPPSDEFormDetailId(pSDEFormDetail3.getPSDEFormDetailId());
                 pSDEFormDetail.setDetailType("FORMITEM");
                 pSDEFormDetail.setOrderValue(2);
-                pSDEFormDetail.setPSDEFId(entityBase.getPSDEFieldId());
-                pSDEFormDetail.setPSDEFName(entityBase.getPSDEFieldName());
+                pSDEFormDetail.setPSDEFId(field.getPSDEFieldId());
+                pSDEFormDetail.setPSDEFName(field.getPSDEFieldName());
                 pSDEFormDetailService.create(pSDEFormDetail);
             }
-            if ((entityBase = (PSDEField)hashMap.get("UPDATEMAN")) != null) {
+            if ((field = hashMap.get("UPDATEMAN")) != null) {
                 pSDEFormDetail = new PSDEFormDetail();
                 pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
-                pSDEFormDetail.setPSDEFormDetailName(entityBase.getPSDEFieldName().toLowerCase());
+                pSDEFormDetail.setPSDEFormDetailName(field.getPSDEFieldName().toLowerCase());
                 pSDEFormDetail.setPPSDEFormDetailId(pSDEFormDetail3.getPSDEFormDetailId());
                 pSDEFormDetail.setDetailType("FORMITEM");
                 pSDEFormDetail.setOrderValue(3);
-                pSDEFormDetail.setPSDEFId(entityBase.getPSDEFieldId());
-                pSDEFormDetail.setPSDEFName(entityBase.getPSDEFieldName());
+                pSDEFormDetail.setPSDEFId(field.getPSDEFieldId());
+                pSDEFormDetail.setPSDEFName(field.getPSDEFieldName());
                 pSDEFormDetailService.create(pSDEFormDetail);
             }
-            if ((entityBase = (PSDEField)hashMap.get("UPDATEDATE")) != null) {
+            if ((field = hashMap.get("UPDATEDATE")) != null) {
                 pSDEFormDetail = new PSDEFormDetail();
                 pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
-                pSDEFormDetail.setPSDEFormDetailName(entityBase.getPSDEFieldName().toLowerCase());
+                pSDEFormDetail.setPSDEFormDetailName(field.getPSDEFieldName().toLowerCase());
                 pSDEFormDetail.setPPSDEFormDetailId(pSDEFormDetail3.getPSDEFormDetailId());
                 pSDEFormDetail.setDetailType("FORMITEM");
                 pSDEFormDetail.setOrderValue(4);
-                pSDEFormDetail.setPSDEFId(entityBase.getPSDEFieldId());
-                pSDEFormDetail.setPSDEFName(entityBase.getPSDEFieldName());
+                pSDEFormDetail.setPSDEFId(field.getPSDEFieldId());
+                pSDEFormDetail.setPSDEFName(field.getPSDEFieldName());
                 pSDEFormDetailService.create(pSDEFormDetail);
             }
         }
@@ -524,7 +515,7 @@ implements IPSModelService<PSDEForm> {
 
     protected void initDefaultSearchForm(PSDataEntity pSDataEntity) throws Exception {
         String string = null;
-        string = this.isEnableFolderKey((IEntity)pSDataEntity) ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_SEARCHFORM) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"SEARCHFORM");
+        string = this.isEnableFolderKey(pSDataEntity) ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_SEARCHFORM) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"SEARCHFORM");
         PSDEForm pSDEForm = new PSDEForm();
         pSDEForm.setPSDEFormId(string);
         if (this.checkKey(pSDEForm) == 0) {
@@ -532,7 +523,7 @@ implements IPSModelService<PSDEForm> {
             pSDEForm.setFormType("SEARCHFORM");
             pSDEForm.setPSDEId(pSDataEntity.getPSDataEntityId());
             pSDEForm.setCodeName("Default");
-            if (this.selectOne((IEntity)pSDEForm, true)) {
+            if (this.selectOne(pSDEForm, true)) {
                 return;
             }
             pSDEForm.reset();
@@ -558,18 +549,17 @@ implements IPSModelService<PSDEForm> {
 
     protected void initDefaultMobEditForm(PSDataEntity pSDataEntity) throws Exception {
         String string = null;
-        string = this.isEnableFolderKey((IEntity)pSDataEntity) ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_MOBEDITFORM) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"EDITFORM", (String)"MOB");
+        string = this.isEnableFolderKey(pSDataEntity) ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_MOBEDITFORM) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"EDITFORM", (String)"MOB");
         PSDEForm pSDEForm = new PSDEForm();
         pSDEForm.setPSDEFormId(string);
         if (this.checkKey(pSDEForm) == 0) {
             PSDEFormDetail pSDEFormDetail;
-            EntityBase entityBase;
-            Object object;
+            PSDEField field;
             pSDEForm.reset();
             pSDEForm.setFormType("EDITFORM");
             pSDEForm.setPSDEId(pSDataEntity.getPSDataEntityId());
             pSDEForm.setCodeName("MobMain");
-            if (this.selectOne((IEntity)pSDEForm, true)) {
+            if (this.selectOne(pSDEForm, true)) {
                 return;
             }
             pSDEForm.reset();
@@ -581,16 +571,19 @@ implements IPSModelService<PSDEForm> {
             do {
                 string2 = StringHelper.format((String)"MobMain%1$s", (Object)(n == 1 ? "" : Integer.valueOf(n)));
                 ++n;
-                object = new PSDEForm();
-                ((PSDEFormBase)object).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEFormBase)object).setCodeName(string2);
-            } while (this.select(object, true));
+                PSDEForm candidate = new PSDEForm();
+                candidate.setPSDEId(pSDataEntity.getPSDataEntityId());
+                candidate.setCodeName(string2);
+                if (!this.select(candidate, true)) {
+                    break;
+                }
+            } while (true);
             pSDEForm.setCodeName(string2);
             pSDEForm.setPSDEFormName("\u79fb\u52a8\u7aef\u9ed8\u8ba4\u7f16\u8f91\u8868\u5355");
             pSDEForm.setMobFlag(1);
             this.create(pSDEForm);
-            object = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSDEField> arrayList = ((PSDEFieldServiceBase)object).selectByPSDE(pSDataEntity);
+            PSDEFieldService fieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<PSDEField> arrayList = fieldService.selectByPSDE(pSDataEntity);
             HashMap<String, PSDEField> hashMap = new HashMap<String, PSDEField>();
             PSDEField entityBase3 = null;
             for (PSDEField entityBase22 : arrayList) {
@@ -615,15 +608,15 @@ implements IPSModelService<PSDEForm> {
             pSDEFormDetail3.setCaption(StringHelper.format((String)"%1$s\u57fa\u672c\u4fe1\u606f", (Object)pSDataEntity.getLogicName()));
             pSDEFormDetailService.create(pSDEFormDetail3);
             if (entityBase3 != null) {
-                entityBase = new PSDEFormDetail();
-                entityBase.setPSDEFormId(pSDEForm.getPSDEFormId());
-                entityBase.setPSDEFormDetailName(entityBase3.getPSDEFieldName().toLowerCase());
-                entityBase.setPPSDEFormDetailId(pSDEFormDetail3.getPSDEFormDetailId());
-                entityBase.setDetailType("FORMITEM");
-                entityBase.setOrderValue(1);
-                entityBase.setPSDEFId(entityBase3.getPSDEFieldId());
-                entityBase.setPSDEFName(entityBase3.getPSDEFieldName());
-                pSDEFormDetailService.create(entityBase);
+                PSDEFormDetail majorItem = new PSDEFormDetail();
+                majorItem.setPSDEFormId(pSDEForm.getPSDEFormId());
+                majorItem.setPSDEFormDetailName(entityBase3.getPSDEFieldName().toLowerCase());
+                majorItem.setPPSDEFormDetailId(pSDEFormDetail3.getPSDEFormDetailId());
+                majorItem.setDetailType("FORMITEM");
+                majorItem.setOrderValue(1);
+                majorItem.setPSDEFId(entityBase3.getPSDEFieldId());
+                majorItem.setPSDEFName(entityBase3.getPSDEFieldName());
+                pSDEFormDetailService.create(majorItem);
             }
             pSDEFormDetail3 = new PSDEFormDetail();
             pSDEFormDetail3.setPSDEFormId(pSDEForm.getPSDEFormId());
@@ -633,49 +626,49 @@ implements IPSModelService<PSDEForm> {
             pSDEFormDetail3.setOrderValue(2);
             pSDEFormDetail3.setCaption("\u64cd\u4f5c\u4fe1\u606f");
             pSDEFormDetailService.create(pSDEFormDetail3);
-            entityBase = (PSDEField)hashMap.get("CREATEMAN");
-            if (entityBase != null) {
+            field = hashMap.get("CREATEMAN");
+            if (field != null) {
                 pSDEFormDetail = new PSDEFormDetail();
                 pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
-                pSDEFormDetail.setPSDEFormDetailName(entityBase.getPSDEFieldName().toLowerCase());
+                pSDEFormDetail.setPSDEFormDetailName(field.getPSDEFieldName().toLowerCase());
                 pSDEFormDetail.setPPSDEFormDetailId(pSDEFormDetail3.getPSDEFormDetailId());
                 pSDEFormDetail.setDetailType("FORMITEM");
                 pSDEFormDetail.setOrderValue(1);
-                pSDEFormDetail.setPSDEFId(entityBase.getPSDEFieldId());
-                pSDEFormDetail.setPSDEFName(entityBase.getPSDEFieldName());
+                pSDEFormDetail.setPSDEFId(field.getPSDEFieldId());
+                pSDEFormDetail.setPSDEFName(field.getPSDEFieldName());
                 pSDEFormDetailService.create(pSDEFormDetail);
             }
-            if ((entityBase = (PSDEField)hashMap.get("CREATEDATE")) != null) {
+            if ((field = hashMap.get("CREATEDATE")) != null) {
                 pSDEFormDetail = new PSDEFormDetail();
                 pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
-                pSDEFormDetail.setPSDEFormDetailName(entityBase.getPSDEFieldName().toLowerCase());
+                pSDEFormDetail.setPSDEFormDetailName(field.getPSDEFieldName().toLowerCase());
                 pSDEFormDetail.setPPSDEFormDetailId(pSDEFormDetail3.getPSDEFormDetailId());
                 pSDEFormDetail.setDetailType("FORMITEM");
                 pSDEFormDetail.setOrderValue(2);
-                pSDEFormDetail.setPSDEFId(entityBase.getPSDEFieldId());
-                pSDEFormDetail.setPSDEFName(entityBase.getPSDEFieldName());
+                pSDEFormDetail.setPSDEFId(field.getPSDEFieldId());
+                pSDEFormDetail.setPSDEFName(field.getPSDEFieldName());
                 pSDEFormDetailService.create(pSDEFormDetail);
             }
-            if ((entityBase = (PSDEField)hashMap.get("UPDATEMAN")) != null) {
+            if ((field = hashMap.get("UPDATEMAN")) != null) {
                 pSDEFormDetail = new PSDEFormDetail();
                 pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
-                pSDEFormDetail.setPSDEFormDetailName(entityBase.getPSDEFieldName().toLowerCase());
+                pSDEFormDetail.setPSDEFormDetailName(field.getPSDEFieldName().toLowerCase());
                 pSDEFormDetail.setPPSDEFormDetailId(pSDEFormDetail3.getPSDEFormDetailId());
                 pSDEFormDetail.setDetailType("FORMITEM");
                 pSDEFormDetail.setOrderValue(3);
-                pSDEFormDetail.setPSDEFId(entityBase.getPSDEFieldId());
-                pSDEFormDetail.setPSDEFName(entityBase.getPSDEFieldName());
+                pSDEFormDetail.setPSDEFId(field.getPSDEFieldId());
+                pSDEFormDetail.setPSDEFName(field.getPSDEFieldName());
                 pSDEFormDetailService.create(pSDEFormDetail);
             }
-            if ((entityBase = (PSDEField)hashMap.get("UPDATEDATE")) != null) {
+            if ((field = hashMap.get("UPDATEDATE")) != null) {
                 pSDEFormDetail = new PSDEFormDetail();
                 pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
-                pSDEFormDetail.setPSDEFormDetailName(entityBase.getPSDEFieldName().toLowerCase());
+                pSDEFormDetail.setPSDEFormDetailName(field.getPSDEFieldName().toLowerCase());
                 pSDEFormDetail.setPPSDEFormDetailId(pSDEFormDetail3.getPSDEFormDetailId());
                 pSDEFormDetail.setDetailType("FORMITEM");
                 pSDEFormDetail.setOrderValue(4);
-                pSDEFormDetail.setPSDEFId(entityBase.getPSDEFieldId());
-                pSDEFormDetail.setPSDEFName(entityBase.getPSDEFieldName());
+                pSDEFormDetail.setPSDEFId(field.getPSDEFieldId());
+                pSDEFormDetail.setPSDEFName(field.getPSDEFieldName());
                 pSDEFormDetailService.create(pSDEFormDetail);
             }
         }
@@ -683,16 +676,15 @@ implements IPSModelService<PSDEForm> {
 
     protected void initDefaultMobSearchForm(PSDataEntity pSDataEntity) throws Exception {
         String string = null;
-        string = this.isEnableFolderKey((IEntity)pSDataEntity) ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_MOBSEARCHFORM) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"SEARCHFORM", (String)"MOB");
+        string = this.isEnableFolderKey(pSDataEntity) ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_MOBSEARCHFORM) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"SEARCHFORM", (String)"MOB");
         PSDEForm pSDEForm = new PSDEForm();
         pSDEForm.setPSDEFormId(string);
         if (this.checkKey(pSDEForm) == 0) {
-            Object object;
             pSDEForm.reset();
             pSDEForm.setFormType("SEARCHFORM");
             pSDEForm.setPSDEId(pSDataEntity.getPSDataEntityId());
             pSDEForm.setCodeName("MobDef");
-            if (this.selectOne((IEntity)pSDEForm, true)) {
+            if (this.selectOne(pSDEForm, true)) {
                 return;
             }
             pSDEForm.reset();
@@ -704,15 +696,18 @@ implements IPSModelService<PSDEForm> {
             do {
                 string2 = StringHelper.format((String)"MobDef%1$s", (Object)(n == 1 ? "" : Integer.valueOf(n)));
                 ++n;
-                object = new PSDEForm();
-                ((PSDEFormBase)object).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEFormBase)object).setCodeName(string2);
-            } while (this.select(object, true));
+                PSDEForm candidate = new PSDEForm();
+                candidate.setPSDEId(pSDataEntity.getPSDataEntityId());
+                candidate.setCodeName(string2);
+                if (!this.select(candidate, true)) {
+                    break;
+                }
+            } while (true);
             pSDEForm.setMobFlag(1);
             pSDEForm.setCodeName(string2);
             pSDEForm.setPSDEFormName("\u79fb\u52a8\u7aef\u641c\u7d22\u8868\u5355");
             this.create(pSDEForm);
-            object = (PSDEFormDetailService)ServiceGlobal.getService(PSDEFormDetailService.class, (SessionFactory)this.getSessionFactory());
+            PSDEFormDetailService detailService = (PSDEFormDetailService)ServiceGlobal.getService(PSDEFormDetailService.class, (SessionFactory)this.getSessionFactory());
             PSDEFormDetail pSDEFormDetail = new PSDEFormDetail();
             pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
             pSDEFormDetail.setPSDEFormDetailName("formpage1");
@@ -720,7 +715,7 @@ implements IPSModelService<PSDEForm> {
             pSDEFormDetail.setDetailType("FORMPAGE");
             pSDEFormDetail.setOrderValue(1);
             pSDEFormDetail.setShowCaption(0);
-            ((PSCoreSysServiceBaseBase)((Object)object)).create(pSDEFormDetail);
+            detailService.create(pSDEFormDetail);
         }
     }
 
@@ -732,185 +727,179 @@ implements IPSModelService<PSDEForm> {
 
     protected void initDefaultEditFormDetail(PSDataEntity pSDataEntity, PSDEForm pSDEForm, boolean bl) throws Exception {
         PSDEFormDetail pSDEFormDetail;
-        EntityBase entityBase;
-        Object object;
-        Serializable serializable;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
+        PSDEField field;
         PSDEField pSDEField = null;
         HashMap<String, PSDEField> hashMap = new HashMap<String, PSDEField>();
         if (pSDataEntity != null) {
-            pSCoreSysServiceBase = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-            serializable = ((PSDEFieldServiceBase)pSCoreSysServiceBase).selectByPSDE(pSDataEntity);
-            object = ((ArrayList)serializable).iterator();
-            while (object.hasNext()) {
-                entityBase = (PSDEField)object.next();
-                hashMap.put(entityBase.getPSDEFieldName(), (PSDEField)entityBase);
-                if (!DataObject.getBoolValue((Integer)entityBase.getMajorField(), (boolean)false)) continue;
-                pSDEField = entityBase;
+            PSDEFieldService fieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<PSDEField> fields = fieldService.selectByPSDE(pSDataEntity);
+            for (PSDEField selectedField : fields) {
+                hashMap.put(selectedField.getPSDEFieldName(), selectedField);
+                if (!DataObject.getBoolValue((Integer)selectedField.getMajorField(), (boolean)false)) continue;
+                pSDEField = selectedField;
             }
         }
-        pSCoreSysServiceBase = (PSDEFormDetailService)ServiceGlobal.getService(PSDEFormDetailService.class, (SessionFactory)this.getSessionFactory());
-        serializable = new PSDEFormDetail();
-        ((PSDEFormDetailBase)serializable).setPSDEFormId(pSDEForm.getPSDEFormId());
-        ((PSDEFormDetailBase)serializable).setPSDEFormDetailName("formpage1");
-        ((PSDEFormDetailBase)serializable).setDetailType("FORMPAGE");
-        ((PSDEFormDetailBase)serializable).setOrderValue(1);
-        ((PSDEFormDetailBase)serializable).setCaption("\u57fa\u672c\u4fe1\u606f");
+        PSDEFormDetailService detailService = (PSDEFormDetailService)ServiceGlobal.getService(PSDEFormDetailService.class, (SessionFactory)this.getSessionFactory());
+        PSDEFormDetail page = new PSDEFormDetail();
+        page.setPSDEFormId(pSDEForm.getPSDEFormId());
+        page.setPSDEFormDetailName("formpage1");
+        page.setDetailType("FORMPAGE");
+        page.setOrderValue(1);
+        page.setCaption("\u57fa\u672c\u4fe1\u606f");
         if (bl) {
-            pSCoreSysServiceBase.createTemp(serializable);
+            detailService.createTemp(page);
         } else {
-            pSCoreSysServiceBase.create(serializable);
+            detailService.create(page);
         }
-        object = new PSDEFormDetail();
-        ((PSDEFormDetailBase)object).setPSDEFormId(pSDEForm.getPSDEFormId());
-        ((PSDEFormDetailBase)object).setPSDEFormDetailName("group1");
-        ((PSDEFormDetailBase)object).setPPSDEFormDetailId(((PSDEFormDetailBase)serializable).getPSDEFormDetailId());
-        ((PSDEFormDetailBase)object).setDetailType("GROUPPANEL");
-        ((PSDEFormDetailBase)object).setOrderValue(1);
+        PSDEFormDetail group = new PSDEFormDetail();
+        group.setPSDEFormId(pSDEForm.getPSDEFormId());
+        group.setPSDEFormDetailName("group1");
+        group.setPPSDEFormDetailId(page.getPSDEFormDetailId());
+        group.setDetailType("GROUPPANEL");
+        group.setOrderValue(1);
         if (pSDataEntity != null) {
-            ((PSDEFormDetailBase)object).setCaption(StringHelper.format((String)"%1$s\u57fa\u672c\u4fe1\u606f", (Object)pSDataEntity.getLogicName()));
+            group.setCaption(StringHelper.format((String)"%1$s\u57fa\u672c\u4fe1\u606f", (Object)pSDataEntity.getLogicName()));
         } else {
-            ((PSDEFormDetailBase)object).setCaption(StringHelper.format((String)"\u57fa\u672c\u4fe1\u606f"));
+            group.setCaption(StringHelper.format((String)"\u57fa\u672c\u4fe1\u606f"));
         }
-        ((PSDEFormDetailBase)object).setColModel("50%;50%");
+        group.setColModel("50%;50%");
         if (bl) {
-            pSCoreSysServiceBase.createTemp(object);
+            detailService.createTemp(group);
         } else {
-            pSCoreSysServiceBase.create(object);
+            detailService.create(group);
         }
         if (pSDEField != null) {
-            entityBase = new PSDEFormDetail();
-            entityBase.setPSDEFormId(pSDEForm.getPSDEFormId());
-            entityBase.setPSDEFormDetailName(pSDEField.getPSDEFieldName().toLowerCase());
-            entityBase.setPPSDEFormDetailId(((PSDEFormDetailBase)object).getPSDEFormDetailId());
-            entityBase.setDetailType("FORMITEM");
-            entityBase.setOrderValue(1);
-            entityBase.setPSDEFId(pSDEField.getPSDEFieldId());
-            entityBase.setPSDEFName(pSDEField.getPSDEFieldName());
+            PSDEFormDetail majorItem = new PSDEFormDetail();
+            majorItem.setPSDEFormId(pSDEForm.getPSDEFormId());
+            majorItem.setPSDEFormDetailName(pSDEField.getPSDEFieldName().toLowerCase());
+            majorItem.setPPSDEFormDetailId(group.getPSDEFormDetailId());
+            majorItem.setDetailType("FORMITEM");
+            majorItem.setOrderValue(1);
+            majorItem.setPSDEFId(pSDEField.getPSDEFieldId());
+            majorItem.setPSDEFName(pSDEField.getPSDEFieldName());
             if (bl) {
-                pSCoreSysServiceBase.createTemp(entityBase);
+                detailService.createTemp(majorItem);
             } else {
-                pSCoreSysServiceBase.create(entityBase);
+                detailService.create(majorItem);
             }
         }
-        serializable = new PSDEFormDetail();
-        ((PSDEFormDetailBase)serializable).setPSDEFormId(pSDEForm.getPSDEFormId());
-        ((PSDEFormDetailBase)serializable).setPSDEFormDetailName("formpage2");
-        ((PSDEFormDetailBase)serializable).setDetailType("FORMPAGE");
-        ((PSDEFormDetailBase)serializable).setOrderValue(2);
-        ((PSDEFormDetailBase)serializable).setCaption("\u5176\u5b83");
+        page = new PSDEFormDetail();
+        page.setPSDEFormId(pSDEForm.getPSDEFormId());
+        page.setPSDEFormDetailName("formpage2");
+        page.setDetailType("FORMPAGE");
+        page.setOrderValue(2);
+        page.setCaption("\u5176\u5b83");
         if (bl) {
-            pSCoreSysServiceBase.createTemp(serializable);
+            detailService.createTemp(page);
         } else {
-            pSCoreSysServiceBase.create(serializable);
+            detailService.create(page);
         }
-        object = new PSDEFormDetail();
-        ((PSDEFormDetailBase)object).setPSDEFormId(pSDEForm.getPSDEFormId());
-        ((PSDEFormDetailBase)object).setPSDEFormDetailName("group2");
-        ((PSDEFormDetailBase)object).setPPSDEFormDetailId(((PSDEFormDetailBase)serializable).getPSDEFormDetailId());
-        ((PSDEFormDetailBase)object).setDetailType("GROUPPANEL");
-        ((PSDEFormDetailBase)object).setOrderValue(2);
-        ((PSDEFormDetailBase)object).setCaption("\u64cd\u4f5c\u4fe1\u606f");
-        ((PSDEFormDetailBase)object).setColModel("50%;50%");
+        group = new PSDEFormDetail();
+        group.setPSDEFormId(pSDEForm.getPSDEFormId());
+        group.setPSDEFormDetailName("group2");
+        group.setPPSDEFormDetailId(page.getPSDEFormDetailId());
+        group.setDetailType("GROUPPANEL");
+        group.setOrderValue(2);
+        group.setCaption("\u64cd\u4f5c\u4fe1\u606f");
+        group.setColModel("50%;50%");
         if (bl) {
-            pSCoreSysServiceBase.createTemp(object);
+            detailService.createTemp(group);
         } else {
-            pSCoreSysServiceBase.create(object);
+            detailService.create(group);
         }
-        entityBase = (PSDEField)hashMap.get("CREATEMAN");
-        if (entityBase != null) {
+        field = hashMap.get("CREATEMAN");
+        if (field != null) {
             pSDEFormDetail = new PSDEFormDetail();
             pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
-            pSDEFormDetail.setPSDEFormDetailName(entityBase.getPSDEFieldName().toLowerCase());
-            pSDEFormDetail.setPPSDEFormDetailId(((PSDEFormDetailBase)object).getPSDEFormDetailId());
+            pSDEFormDetail.setPSDEFormDetailName(field.getPSDEFieldName().toLowerCase());
+            pSDEFormDetail.setPPSDEFormDetailId(group.getPSDEFormDetailId());
             pSDEFormDetail.setDetailType("FORMITEM");
             pSDEFormDetail.setOrderValue(1);
-            pSDEFormDetail.setPSDEFId(entityBase.getPSDEFieldId());
-            pSDEFormDetail.setPSDEFName(entityBase.getPSDEFieldName());
+            pSDEFormDetail.setPSDEFId(field.getPSDEFieldId());
+            pSDEFormDetail.setPSDEFName(field.getPSDEFieldName());
             if (bl) {
-                pSCoreSysServiceBase.createTemp(pSDEFormDetail);
+                detailService.createTemp(pSDEFormDetail);
             } else {
-                pSCoreSysServiceBase.create(pSDEFormDetail);
+                detailService.create(pSDEFormDetail);
             }
         }
-        if ((entityBase = (PSDEField)hashMap.get("CREATEDATE")) != null) {
+        if ((field = hashMap.get("CREATEDATE")) != null) {
             pSDEFormDetail = new PSDEFormDetail();
             pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
-            pSDEFormDetail.setPSDEFormDetailName(entityBase.getPSDEFieldName().toLowerCase());
-            pSDEFormDetail.setPPSDEFormDetailId(((PSDEFormDetailBase)object).getPSDEFormDetailId());
+            pSDEFormDetail.setPSDEFormDetailName(field.getPSDEFieldName().toLowerCase());
+            pSDEFormDetail.setPPSDEFormDetailId(group.getPSDEFormDetailId());
             pSDEFormDetail.setDetailType("FORMITEM");
             pSDEFormDetail.setOrderValue(2);
-            pSDEFormDetail.setPSDEFId(entityBase.getPSDEFieldId());
-            pSDEFormDetail.setPSDEFName(entityBase.getPSDEFieldName());
+            pSDEFormDetail.setPSDEFId(field.getPSDEFieldId());
+            pSDEFormDetail.setPSDEFName(field.getPSDEFieldName());
             if (bl) {
-                pSCoreSysServiceBase.createTemp(pSDEFormDetail);
+                detailService.createTemp(pSDEFormDetail);
             } else {
-                pSCoreSysServiceBase.create(pSDEFormDetail);
+                detailService.create(pSDEFormDetail);
             }
         }
-        if ((entityBase = (PSDEField)hashMap.get("UPDATEMAN")) != null) {
+        if ((field = hashMap.get("UPDATEMAN")) != null) {
             pSDEFormDetail = new PSDEFormDetail();
             pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
-            pSDEFormDetail.setPSDEFormDetailName(entityBase.getPSDEFieldName().toLowerCase());
-            pSDEFormDetail.setPPSDEFormDetailId(((PSDEFormDetailBase)object).getPSDEFormDetailId());
+            pSDEFormDetail.setPSDEFormDetailName(field.getPSDEFieldName().toLowerCase());
+            pSDEFormDetail.setPPSDEFormDetailId(group.getPSDEFormDetailId());
             pSDEFormDetail.setDetailType("FORMITEM");
             pSDEFormDetail.setOrderValue(3);
-            pSDEFormDetail.setPSDEFId(entityBase.getPSDEFieldId());
-            pSDEFormDetail.setPSDEFName(entityBase.getPSDEFieldName());
+            pSDEFormDetail.setPSDEFId(field.getPSDEFieldId());
+            pSDEFormDetail.setPSDEFName(field.getPSDEFieldName());
             if (bl) {
-                pSCoreSysServiceBase.createTemp(pSDEFormDetail);
+                detailService.createTemp(pSDEFormDetail);
             } else {
-                pSCoreSysServiceBase.create(pSDEFormDetail);
+                detailService.create(pSDEFormDetail);
             }
         }
-        if ((entityBase = (PSDEField)hashMap.get("UPDATEDATE")) != null) {
+        if ((field = hashMap.get("UPDATEDATE")) != null) {
             pSDEFormDetail = new PSDEFormDetail();
             pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
-            pSDEFormDetail.setPSDEFormDetailName(entityBase.getPSDEFieldName().toLowerCase());
-            pSDEFormDetail.setPPSDEFormDetailId(((PSDEFormDetailBase)object).getPSDEFormDetailId());
+            pSDEFormDetail.setPSDEFormDetailName(field.getPSDEFieldName().toLowerCase());
+            pSDEFormDetail.setPPSDEFormDetailId(group.getPSDEFormDetailId());
             pSDEFormDetail.setDetailType("FORMITEM");
             pSDEFormDetail.setOrderValue(4);
-            pSDEFormDetail.setPSDEFId(entityBase.getPSDEFieldId());
-            pSDEFormDetail.setPSDEFName(entityBase.getPSDEFieldName());
+            pSDEFormDetail.setPSDEFId(field.getPSDEFieldId());
+            pSDEFormDetail.setPSDEFName(field.getPSDEFieldName());
             if (bl) {
-                pSCoreSysServiceBase.createTemp(pSDEFormDetail);
+                detailService.createTemp(pSDEFormDetail);
             } else {
-                pSCoreSysServiceBase.create(pSDEFormDetail);
+                detailService.create(pSDEFormDetail);
             }
         }
     }
 
     @Override
     protected void onImportRelatedXmlModel(PSDEForm pSDEForm, XmlNode xmlNode) throws Exception {
-        Object object;
-        Object object2;
-        Iterator iterator;
-        HashMap<Object, XmlNode> hashMap = new HashMap<Object, XmlNode>();
+        HashMap<XmlNode, XmlNode> hashMap = new HashMap<XmlNode, XmlNode>();
         XmlNode xmlNode2 = xmlNode.getChildNodeByNodeName("PSDEFIUPDATES");
-        if (xmlNode2 != null && (iterator = xmlNode2.getChildNodes()) != null) {
-            while (iterator.hasNext()) {
-                object2 = (XmlNode)iterator.next();
-                object = object2.getChildNodeByNodeName("PSDEFIDETAILS");
-                if (object == null) continue;
-                hashMap.put(object2, (XmlNode)object);
-                object2.removeNode((XmlNode)object);
+        Iterator updateNodes = xmlNode2 != null ? xmlNode2.getChildNodes() : null;
+        if (updateNodes != null) {
+            while (updateNodes.hasNext()) {
+                XmlNode updateNode = (XmlNode)updateNodes.next();
+                XmlNode detailNode = updateNode.getChildNodeByNodeName("PSDEFIDETAILS");
+                if (detailNode == null) continue;
+                hashMap.put(updateNode, detailNode);
+                updateNode.removeNode(detailNode);
             }
         }
         this.importRelatedXmlModel_PSDEFIUpdate(pSDEForm, xmlNode2);
-        iterator = xmlNode.getChildNodeByNodeName("PSDEFORMDETAILS");
-        this.importRelatedXmlModel_PSDEFormDetail(pSDEForm, (XmlNode)iterator);
-        if (xmlNode2 != null && (object2 = xmlNode2.getChildNodes()) != null) {
-            object = (PSDEFIUDetailService)ServiceGlobal.getService(PSDEFIUDetailService.class, (SessionFactory)this.getSessionFactory());
-            while (object2.hasNext()) {
+        XmlNode formDetails = xmlNode.getChildNodeByNodeName("PSDEFORMDETAILS");
+        this.importRelatedXmlModel_PSDEFormDetail(pSDEForm, formDetails);
+        updateNodes = xmlNode2 != null ? xmlNode2.getChildNodes() : null;
+        if (updateNodes != null) {
+            PSDEFIUDetailService detailService = (PSDEFIUDetailService)ServiceGlobal.getService(PSDEFIUDetailService.class, (SessionFactory)this.getSessionFactory());
+            while (updateNodes.hasNext()) {
                 Iterator iterator2;
-                XmlNode xmlNode3 = (XmlNode)object2.next();
+                XmlNode xmlNode3 = (XmlNode)updateNodes.next();
                 XmlNode xmlNode4 = (XmlNode)hashMap.get(xmlNode3);
                 if (xmlNode4 == null || (iterator2 = xmlNode4.getChildNodes()) == null) continue;
                 while (iterator2.hasNext()) {
                     XmlNode xmlNode5 = (XmlNode)iterator2.next();
                     PSDEFIUDetail pSDEFIUDetail = new PSDEFIUDetail();
-                    object.fillParentInfo((IEntity)pSDEFIUDetail, "DER1N", "DER1N_PSDEFIUDETAIL_PSDEFIUPDATE_PSDEFIUPDATEID", xmlNode3.getAttribute("PSDEFIUPDATEID", ""));
-                    ((PSCoreSysServiceBase)object).importXmlModel(pSDEFIUDetail, xmlNode5);
+                    detailService.fillParentInfo(pSDEFIUDetail, "DER1N", "DER1N_PSDEFIUDETAIL_PSDEFIUPDATE_PSDEFIUPDATEID", xmlNode3.getAttribute("PSDEFIUPDATEID", ""));
+                    detailService.importXmlModel(pSDEFIUDetail, xmlNode5);
                 }
             }
         }
@@ -923,8 +912,8 @@ implements IPSModelService<PSDEForm> {
         }
         String string = pSDEForm.getPSDEFormId();
         if (KeyValueHelper.isTempKey((String)string)) {
-            this.getTemp((IEntity)pSDEForm);
-            string = (String)EntityBase.getOriginKey((IEntity)pSDEForm);
+            this.getTemp(pSDEForm);
+            string = (String)EntityBase.getOriginKey(pSDEForm);
         }
         PSDEForm pSDEForm2 = new PSDEForm();
         pSDEForm2.setPSDEFormId(string);
@@ -936,7 +925,7 @@ implements IPSModelService<PSDEForm> {
         PSAppDEViewService pSAppDEViewService = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, (SessionFactory)this.getSessionFactory());
         PSAppDEView pSAppDEView = null;
         for (PSDEViewCtrl pSDEViewCtrl : arrayList) {
-            ArrayList arrayList2 = pSAppDEViewService.selectByPSDEViewBase(pSDEViewCtrl.getPSDEViewBase());
+            ArrayList<PSAppDEView> arrayList2 = pSAppDEViewService.selectByPSDEViewBase(pSDEViewCtrl.getPSDEViewBase());
             if (arrayList2.size() == 0) continue;
             PSSysAppBase pSSysAppBase = null;
             for (PSAppDEView pSAppDEView2 : arrayList2) {
@@ -958,7 +947,7 @@ implements IPSModelService<PSDEForm> {
 
     @Override
     public void getDraftTempMajorFrom(PSDEForm pSDEForm) throws Exception {
-        Object object = EntityBase.getOriginKey((IEntity)pSDEForm);
+        Object object = EntityBase.getOriginKey(pSDEForm);
         if (StringHelper.isNullOrEmpty((Object)object)) {
             object = pSDEForm.getPSDEFormId();
         }
@@ -999,7 +988,7 @@ implements IPSModelService<PSDEForm> {
     }
 
     @Override
-    protected void onImportModelV2(boolean bl, PSDEForm pSDEForm, ArrayList<PSCoreSysServiceBase.ModelV2> arrayList) throws Exception {
+    protected void onImportModelV2(boolean bl, PSDEForm pSDEForm, ArrayList<PSCoreSysServiceBase<PSDEForm>.ModelV2> arrayList) throws Exception {
         Object object;
         HashMap<String, String> hashMap = new HashMap<String, String>();
         if (!StringHelper.isNullOrEmpty((String)pSDEForm.getPSDEFormId())) {
@@ -1013,7 +1002,7 @@ implements IPSModelService<PSDEForm> {
                 String string2 = DataObject.getStringValue((Object)iEntity.get("REFPSDEFORMDETAILNAME"));
                 String string3 = DataObject.getStringValue((Object)iEntity.get("REFPSDEFORMDETAILID"));
                 String string4 = null;
-                for (PSCoreSysServiceBase.ModelV2 modelV2 : arrayList) {
+                for (PSCoreSysServiceBase<PSDEForm>.ModelV2 modelV2 : arrayList) {
                     if (StringHelper.compare((String)modelV2.type, (String)"PSDEFORMDETAIL", (boolean)false) != 0 || StringHelper.compare((String)modelV2.text, (String)string2, (boolean)true) != 0) continue;
                     string4 = modelV2.key;
                     break;
@@ -1041,24 +1030,21 @@ implements IPSModelService<PSDEForm> {
     }
 
     protected void onInitMOSForm(PSDEForm pSDEForm, PSDEForm pSDEForm2) throws Exception {
-        EntityBase entityBase;
-        EntityBase entityBase2;
-        Serializable serializable;
         PSDEFormDetailService pSDEFormDetailService = (PSDEFormDetailService)ServiceGlobal.getService(PSDEFormDetailService.class, (SessionFactory)this.getSessionFactory());
         PSDEFDLogicService pSDEFDLogicService = (PSDEFDLogicService)ServiceGlobal.getService(PSDEFDLogicService.class, (SessionFactory)this.getSessionFactory());
         ArrayList<PSDEFormDetail> arrayList = pSDEFormDetailService.selectByPSDEForm(pSDEForm2);
         ArrayList<PSDEFDLogic> arrayList2 = pSDEFDLogicService.selectByPSDEForm(pSDEForm2);
         try {
-            serializable = new PSDEFormDetail();
-            ((PSDEFormDetailBase)serializable).setPSDEFormDetailId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)"formpage1"));
-            if (pSDEFormDetailService.checkKey(serializable) == 1) {
-                pSDEFormDetailService.remove((IEntity)serializable);
+            PSDEFormDetail page = new PSDEFormDetail();
+            page.setPSDEFormDetailId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)"formpage1"));
+            if (pSDEFormDetailService.checkKey(page) == 1) {
+                pSDEFormDetailService.remove(page);
             }
         }
         catch (Exception exception) {
             // empty catch block
         }
-        serializable = new HashMap();
+        HashMap<String, PSDEFDLogic> copiedLogics = new HashMap<String, PSDEFDLogic>();
         HashMap<String, PSDEFormDetail> hashMap = new HashMap<String, PSDEFormDetail>();
         for (PSDEFormDetail iterator : arrayList) {
             PSDEFormDetail pSDEFormDetail = new PSDEFormDetail();
@@ -1071,89 +1057,89 @@ implements IPSModelService<PSDEForm> {
             pSDEFormDetail.setPPSDEFormDetailName(null);
             pSDEFormDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
             pSDEFormDetail.setPSDEFormName(pSDEForm.getPSDEFormName());
-            EntityBase.setIgnoreCheck((IEntity)pSDEFormDetail, (boolean)true);
-            EntityBase.setIgnoreCheckKey((IEntity)pSDEFormDetail, (boolean)true);
+            EntityBase.setIgnoreCheck(pSDEFormDetail, (boolean)true);
+            EntityBase.setIgnoreCheckKey(pSDEFormDetail, (boolean)true);
             pSDEFormDetailService.create(pSDEFormDetail, false);
             hashMap.put(iterator.getPSDEFormDetailId(), pSDEFormDetail);
         }
         HashMap hashMap2 = new HashMap();
         for (PSDEFDLogic pSDEFDLogic : arrayList2) {
-            entityBase2 = new PSDEFDLogic();
-            pSDEFDLogic.copyTo((IDataObject)entityBase2, false);
-            entityBase2.setPSDEFDLogicId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFDLogic.getPSDEFDLogicId()));
-            entityBase2.setPPSDEFDLogicId(null);
-            entityBase2.setPPSDEFDLogicName(null);
+            PSDEFDLogic copiedLogic = new PSDEFDLogic();
+            pSDEFDLogic.copyTo((IDataObject)copiedLogic, false);
+            copiedLogic.setPSDEFDLogicId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFDLogic.getPSDEFDLogicId()));
+            copiedLogic.setPPSDEFDLogicId(null);
+            copiedLogic.setPPSDEFDLogicName(null);
             if (!StringHelper.isNullOrEmpty((String)pSDEFDLogic.getPSDEFormDetailId())) {
-                entityBase2.setPSDEFormDetailId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFDLogic.getPSDEFormDetailId()));
+                copiedLogic.setPSDEFormDetailId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFDLogic.getPSDEFormDetailId()));
             }
-            entityBase2.setPSDEFormId(pSDEForm.getPSDEFormId());
-            entityBase2.setPSDEFormName(pSDEForm.getPSDEFormName());
-            EntityBase.setIgnoreCheck((IEntity)entityBase2, (boolean)true);
-            EntityBase.setIgnoreCheckKey((IEntity)entityBase2, (boolean)true);
-            pSDEFDLogicService.create(entityBase2, false);
+            copiedLogic.setPSDEFormId(pSDEForm.getPSDEFormId());
+            copiedLogic.setPSDEFormName(pSDEForm.getPSDEFormName());
+            EntityBase.setIgnoreCheck(copiedLogic, (boolean)true);
+            EntityBase.setIgnoreCheckKey(copiedLogic, (boolean)true);
+            pSDEFDLogicService.create(copiedLogic, false);
             if (!StringHelper.isNullOrEmpty((String)pSDEFDLogic.getFDName())) {
                 hashMap2.put(pSDEFDLogic.getFDName().toLowerCase(), "");
             }
-            ((HashMap)serializable).put(pSDEFDLogic.getPSDEFDLogicId(), entityBase2);
+            copiedLogics.put(pSDEFDLogic.getPSDEFDLogicId(), copiedLogic);
         }
         for (PSDEFDLogic pSDEFDLogic : arrayList2) {
-            entityBase2 = new PSDEFDLogic();
+            PSDEFDLogic copiedLogic = new PSDEFDLogic();
             if (StringHelper.isNullOrEmpty((String)pSDEFDLogic.getPPSDEFDLogicId())) continue;
-            entityBase = (PSDEFDLogic)((HashMap)serializable).get(pSDEFDLogic.getPPSDEFDLogicId());
-            entityBase2.setPSDEFDLogicId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFDLogic.getPSDEFDLogicId()));
-            if (entityBase != null) {
-                entityBase2.setPPSDEFDLogicId(entityBase.getPSDEFDLogicId());
-                pSDEFDLogicService.sysUpdate(entityBase2, false);
+            PSDEFDLogic parentLogic = copiedLogics.get(pSDEFDLogic.getPPSDEFDLogicId());
+            copiedLogic.setPSDEFDLogicId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFDLogic.getPSDEFDLogicId()));
+            if (parentLogic != null) {
+                copiedLogic.setPPSDEFDLogicId(parentLogic.getPSDEFDLogicId());
+                pSDEFDLogicService.sysUpdate(copiedLogic, false);
                 continue;
             }
             log.error((Object)StringHelper.format((String)"\u8868\u5355\u9879\u903b\u8f91[%1$s]\u7236[%2$s]\u65e0\u6548", (Object)pSDEFDLogic.getPSDEFDLogicId(), (Object)pSDEFDLogic.getPPSDEFDLogicId()));
         }
         for (PSDEFormDetail pSDEFormDetail : arrayList) {
-            entityBase2 = new PSDEFormDetail();
-            entityBase2.setPSDEFormDetailId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFormDetail.getPSDEFormDetailId()));
+            PSDEFormDetail copiedDetail = new PSDEFormDetail();
+            copiedDetail.setPSDEFormDetailId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFormDetail.getPSDEFormDetailId()));
             if (!StringHelper.isNullOrEmpty((String)pSDEFormDetail.getPPSDEFormDetailId())) {
-                entityBase = (PSDEFormDetail)hashMap.get(pSDEFormDetail.getPPSDEFormDetailId());
-                if (entityBase != null) {
-                    entityBase2.setPPSDEFormDetailId(entityBase.getPSDEFormDetailId());
+                PSDEFormDetail parentDetail = hashMap.get(pSDEFormDetail.getPPSDEFormDetailId());
+                if (parentDetail != null) {
+                    copiedDetail.setPPSDEFormDetailId(parentDetail.getPSDEFormDetailId());
                 } else {
                     log.error((Object)StringHelper.format((String)"\u8868\u5355\u9879[%1$s]\u7236[%2$s]\u65e0\u6548", (Object)pSDEFormDetail.getPSDEFormDetailId(), (Object)pSDEFormDetail.getPPSDEFormDetailId()));
                     continue;
                 }
             }
             if (StringHelper.compare((String)pSDEFormDetail.getDetailType(), (String)"GROUPPANEL", (boolean)false) == 0) {
-                entityBase2.setChild_Col_LG(null);
-                entityBase2.setChild_Col_MD(null);
-                entityBase2.setChild_Col_SM(null);
-                entityBase2.setChild_Col_XS(null);
-                entityBase2.setEnableCond(null);
+                copiedDetail.setChild_Col_LG(null);
+                copiedDetail.setChild_Col_MD(null);
+                copiedDetail.setChild_Col_SM(null);
+                copiedDetail.setChild_Col_XS(null);
+                copiedDetail.setEnableCond(null);
             }
-            entityBase2.setCol_LG(null);
-            entityBase2.setCol_MD(null);
-            entityBase2.setCol_SM(null);
-            entityBase2.setCol_XS(null);
-            entityBase2.setPSDEFUIModeId(null);
+            copiedDetail.setCol_LG(null);
+            copiedDetail.setCol_MD(null);
+            copiedDetail.setCol_SM(null);
+            copiedDetail.setCol_XS(null);
+            copiedDetail.setPSDEFUIModeId(null);
             if (hashMap2.containsKey(pSDEFormDetail.getPSDEFormDetailName().toLowerCase())) {
-                entityBase2.setEditorType("HIDDEN");
-                entityBase = new PSDEFormDetail();
-                pSDEFormDetail.copyTo((IDataObject)entityBase, false);
-                entityBase.setPSDEFormDetailId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFormDetail.getPSDEFormDetailId(), (String)"mostext"));
-                entityBase.setPSDEFormDetailName(pSDEFormDetail.getPSDEFormDetailName() + "_mostext");
-                entityBase.setPSDEFUIModeId(null);
-                entityBase.setPSDEFIUpdateId(null);
-                entityBase.setPSDEFIUpdateName(null);
-                entityBase.setResetItemName(null);
+                copiedDetail.setEditorType("HIDDEN");
+                PSDEFormDetail textDetail = new PSDEFormDetail();
+                pSDEFormDetail.copyTo((IDataObject)textDetail, false);
+                textDetail.setPSDEFormDetailId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFormDetail.getPSDEFormDetailId(), (String)"mostext"));
+                textDetail.setPSDEFormDetailName(pSDEFormDetail.getPSDEFormDetailName() + "_mostext");
+                textDetail.setPSDEFUIModeId(null);
+                textDetail.setPSDEFIUpdateId(null);
+                textDetail.setPSDEFIUpdateName(null);
+                textDetail.setResetItemName(null);
                 if (!StringHelper.isNullOrEmpty((String)pSDEFormDetail.getPPSDEFormDetailId())) {
-                    entityBase.setPPSDEFormDetailId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFormDetail.getPPSDEFormDetailId()));
+                    textDetail.setPPSDEFormDetailId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFormDetail.getPPSDEFormDetailId()));
                 }
-                entityBase.setPSDEFormId(pSDEForm.getPSDEFormId());
-                entityBase.setPSDEFormName(pSDEForm.getPSDEFormName());
-                EntityBase.setIgnoreCheck((IEntity)entityBase, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)entityBase, (boolean)true);
-                pSDEFormDetailService.create(entityBase, false);
+                textDetail.setPSDEFormId(pSDEForm.getPSDEFormId());
+                textDetail.setPSDEFormName(pSDEForm.getPSDEFormName());
+                EntityBase.setIgnoreCheck(textDetail, (boolean)true);
+                EntityBase.setIgnoreCheckKey(textDetail, (boolean)true);
+                pSDEFormDetailService.create(textDetail, false);
             } else if (!StringHelper.isNullOrEmpty((String)pSDEFormDetail.getEditorType()) && StringHelper.compare((String)pSDEFormDetail.getEditorType(), (String)"HIDDEN", (boolean)true) != 0) {
-                entityBase2.setEditorType(null);
+                copiedDetail.setEditorType(null);
             }
-            pSDEFormDetailService.sysUpdate(entityBase2, false);
+            pSDEFormDetailService.sysUpdate(copiedDetail, false);
         }
     }
 
@@ -1171,11 +1157,10 @@ implements IPSModelService<PSDEForm> {
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSDEFORMID", (Object)pSDEForm2.getPSDEFormId());
         selectCond.set("DETAILTYPE", (Object)"FORMPART");
-        ArrayList arrayList = pSDEFormDetailService.select((ISelectCond)selectCond);
+        ArrayList<PSDEFormDetail> arrayList = pSDEFormDetailService.select((ISelectCond)selectCond);
         for (PSDEFormDetail pSDEFormDetail : arrayList) {
             PSDEFormDetail pSDEFormDetail2 = new PSDEFormDetail();
             pSDEFormDetail2.setPSDEFormDetailId(KeyValueHelper.genUniqueId((String)pSDEForm.getPSDEFormId(), (String)pSDEFormDetail.getPSDEFormDetailId()));
         }
     }
 }
-

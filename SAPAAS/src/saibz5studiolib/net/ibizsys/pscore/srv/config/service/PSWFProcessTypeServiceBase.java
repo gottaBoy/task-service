@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
     }
 
     protected void onFillParentInfo(PSWFProcessType pSWFProcessType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSWFProcessType, string, string2, string3);
+        super.onFillParentInfo(pSWFProcessType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
         if (bl && pSWFProcessType.getValidFlag() == null) {
             pSWFProcessType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSWFProcessType, bl);
+        super.onFillEntityFullInfo(pSWFProcessType, bl);
     }
 
     protected void onWriteBackParent(PSWFProcessType pSWFProcessType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWFProcessType, bl);
+        super.onWriteBackParent(pSWFProcessType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWFProcessType pSWFProcessType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWFProcessType, bl);
+        super.onRemoveEntityUncopyValues(pSWFProcessType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWFProcessType pSWFProcessType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -164,7 +164,7 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSWFProcessType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWFProcessType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWFProcessType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_IconPath(boolean bl, PSWFProcessType pSWFProcessType, boolean bl2, boolean bl3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconPath_Default((IEntity)pSWFProcessType, bl2, bl3);
+            string2 = this.onTestValueRule_IconPath_Default(pSWFProcessType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONPATH");
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj_Default((IEntity)pSWFProcessType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj_Default(pSWFProcessType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ");
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSWFProcessType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSWFProcessType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFProcessTypeId_Default((IEntity)pSWFProcessType, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFProcessTypeId_Default(pSWFProcessType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFPROCESSTYPEID");
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFProcessTypeName_Default((IEntity)pSWFProcessType, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFProcessTypeName_Default(pSWFProcessType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFPROCESSTYPENAME");
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSWFProcessType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSWFProcessType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -309,11 +309,11 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
     }
 
     protected void onSyncEntity(PSWFProcessType pSWFProcessType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWFProcessType, bl);
+        super.onSyncEntity(pSWFProcessType, bl);
     }
 
     protected void onSyncIndexEntities(PSWFProcessType pSWFProcessType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWFProcessType, bl);
+        super.onSyncIndexEntities(pSWFProcessType, bl);
     }
 
     public Object getDataContextValue(PSWFProcessType pSWFProcessType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -321,14 +321,14 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWFProcessType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWFProcessType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWFProcessType pSWFProcessType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWFProcessType, arrayList, n);
+        super.onExportMajorModel(pSWFProcessType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -463,14 +463,14 @@ extends PSCoreSysServiceBase<PSWFProcessType> {
 
     protected boolean onMergeChild(String string, String string2, PSWFProcessType pSWFProcessType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWFProcessType)) {
+        if (super.onMergeChild(string, string2, pSWFProcessType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWFProcessType pSWFProcessType) throws Exception {
-        super.onUpdateParent((IEntity)pSWFProcessType);
+        super.onUpdateParent(pSWFProcessType);
     }
 
     @Override

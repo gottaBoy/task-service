@@ -142,9 +142,9 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
             PSCounterType pSCounterType = (PSCounterType)iService.getDEModel().createEntity();
             pSCounterType.set("PSCOUNTERTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCounterType);
+                iService.getTemp(pSCounterType);
             } else {
-                iService.get((IEntity)pSCounterType);
+                iService.get(pSCounterType);
             }
             this.onFillParentInfo_PSCounterType(pSCounterTypeSF, pSCounterType);
             return;
@@ -154,14 +154,14 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
             PSSF pSSF = (PSSF)iService.getDEModel().createEntity();
             pSSF.set("PSSFID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSF);
+                iService.getTemp(pSSF);
             } else {
-                iService.get((IEntity)pSSF);
+                iService.get(pSSF);
             }
             this.onFillParentInfo_PSSF(pSCounterTypeSF, pSSF);
             return;
         }
-        super.onFillParentInfo((IEntity)pSCounterTypeSF, string, string2, string3);
+        super.onFillParentInfo(pSCounterTypeSF, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -200,7 +200,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSCounterTypeSF, bl);
+        super.onFillEntityFullInfo(pSCounterTypeSF, bl);
         this.onFillEntityFullInfo_PSCounterType(pSCounterTypeSF, bl);
         this.onFillEntityFullInfo_PSSF(pSCounterTypeSF, bl);
     }
@@ -212,7 +212,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
     }
 
     protected void onWriteBackParent(PSCounterTypeSF pSCounterTypeSF, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSCounterTypeSF, bl);
+        super.onWriteBackParent(pSCounterTypeSF, bl);
     }
 
     public ArrayList<PSCounterTypeSF> selectByPSCounterType(PSCounterTypeBase pSCounterTypeBase) throws Exception {
@@ -295,7 +295,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
         ArrayList<PSCounterTypeSF> arrayList = this.selectByPSCounterType(pSCounterType);
         this.onBeforeRemoveByPSCounterType(pSCounterType, arrayList);
         for (PSCounterTypeSF pSCounterTypeSF : arrayList) {
-            this.remove((IEntity)pSCounterTypeSF);
+            this.remove(pSCounterTypeSF);
         }
         this.onAfterRemoveByPSCounterType(pSCounterType, arrayList);
     }
@@ -341,7 +341,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
         ArrayList<PSCounterTypeSF> arrayList = this.selectByPSSF(pSSF);
         this.onBeforeRemoveByPSSF(pSSF, arrayList);
         for (PSCounterTypeSF pSCounterTypeSF : arrayList) {
-            this.remove((IEntity)pSCounterTypeSF);
+            this.remove(pSCounterTypeSF);
         }
         this.onAfterRemoveByPSSF(pSSF, arrayList);
     }
@@ -362,7 +362,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
 
     protected void replaceParentInfo(PSCounterTypeSF pSCounterTypeSF, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSCounterTypeSF, cloneSession);
+        super.replaceParentInfo(pSCounterTypeSF, cloneSession);
         if (pSCounterTypeSF.getPSCounterTypeId() != null && (iEntity = cloneSession.getEntity("PSCOUNTERTYPE", (Object)pSCounterTypeSF.getPSCounterTypeId())) != null) {
             this.onFillParentInfo_PSCounterType(pSCounterTypeSF, (PSCounterType)iEntity);
         }
@@ -372,7 +372,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
     }
 
     protected void onRemoveEntityUncopyValues(PSCounterTypeSF pSCounterTypeSF, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSCounterTypeSF, bl);
+        super.onRemoveEntityUncopyValues(pSCounterTypeSF, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSCounterTypeSF pSCounterTypeSF, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -396,7 +396,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
         if ((entityFieldError = this.onCheckField_PSSFId(bl, pSCounterTypeSF, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSCounterTypeSF, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSCounterTypeSF, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BaseObj(boolean bl, PSCounterTypeSF pSCounterTypeSF, boolean bl2, boolean bl3) throws Exception {
@@ -412,7 +412,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BaseObj_Default((IEntity)pSCounterTypeSF, bl2, bl3);
+            string2 = this.onTestValueRule_BaseObj_Default(pSCounterTypeSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BASEOBJ");
@@ -434,7 +434,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSCounterTypeSF, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSCounterTypeSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -459,7 +459,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCounterTypeId_Default((IEntity)pSCounterTypeSF, bl2, bl3);
+            string2 = this.onTestValueRule_PSCounterTypeId_Default(pSCounterTypeSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCOUNTERTYPEID");
@@ -484,7 +484,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCounterTypeSFId_Default((IEntity)pSCounterTypeSF, bl2, bl3);
+            string2 = this.onTestValueRule_PSCounterTypeSFId_Default(pSCounterTypeSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCOUNTERTYPESFID");
@@ -509,7 +509,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCounterTypeSFName_Default((IEntity)pSCounterTypeSF, bl2, bl3);
+            string2 = this.onTestValueRule_PSCounterTypeSFName_Default(pSCounterTypeSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCOUNTERTYPESFNAME");
@@ -534,7 +534,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFId_Default((IEntity)pSCounterTypeSF, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFId_Default(pSCounterTypeSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFID");
@@ -547,11 +547,11 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
     }
 
     protected void onSyncEntity(PSCounterTypeSF pSCounterTypeSF, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSCounterTypeSF, bl);
+        super.onSyncEntity(pSCounterTypeSF, bl);
     }
 
     protected void onSyncIndexEntities(PSCounterTypeSF pSCounterTypeSF, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSCounterTypeSF, bl);
+        super.onSyncIndexEntities(pSCounterTypeSF, bl);
     }
 
     public Object getDataContextValue(PSCounterTypeSF pSCounterTypeSF, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -559,14 +559,14 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSCounterTypeSF, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSCounterTypeSF, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSCounterTypeSF pSCounterTypeSF, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSCounterTypeSF, arrayList, n);
+        super.onExportMajorModel(pSCounterTypeSF, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -739,14 +739,14 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
 
     protected boolean onMergeChild(String string, String string2, PSCounterTypeSF pSCounterTypeSF) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSCounterTypeSF)) {
+        if (super.onMergeChild(string, string2, pSCounterTypeSF)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSCounterTypeSF pSCounterTypeSF) throws Exception {
-        super.onUpdateParent((IEntity)pSCounterTypeSF);
+        super.onUpdateParent(pSCounterTypeSF);
     }
 
     @Override
@@ -762,7 +762,7 @@ extends PSCoreSysServiceBase<PSCounterTypeSF> {
         PSCounterTypeSF pSCounterTypeSF2 = new PSCounterTypeSF();
         pSCounterTypeSF2.setPSCounterTypeId(pSCounterTypeSF.getPSCounterTypeId());
         pSCounterTypeSF2.setPSSFId(pSCounterTypeSF.getPSSFId());
-        if (this.selectOne((IEntity)pSCounterTypeSF2, true)) {
+        if (this.selectOne(pSCounterTypeSF2, true)) {
             return pSCounterTypeSF2.getPSCounterTypeSFId();
         }
         return super.getEntityFolderKeyValue(pSCounterTypeSF, pSSystem);

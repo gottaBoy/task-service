@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.PortletHandlerBase;
+/**
+ * 网页门户部件后台处理对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class HtmlPortletHandlerBase extends PortletHandlerBase {
 
-public abstract class HtmlPortletHandlerBase
-extends PortletHandlerBase {
 }
-

@@ -1,13 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDataEntity;
-import net.ibizsys.paas.core.IModelBase;
-
-public interface IDataEntityObject
-extends IModelBase {
-    public IDataEntity getDataEntity();
+/**
+ * 实体相关对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDataEntityObject extends IModelBase {
+	/**
+	 * 获取实体对象
+	 * 
+	 * @return
+	 */
+	IDataEntity getDataEntity();
 }
-

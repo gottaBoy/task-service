@@ -1,14 +1,27 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.form;
 
-import net.ibizsys.paas.control.form.IForm;
+/**
+ * 编辑表单接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IEditForm extends IForm {
+	/**
+	 * 加载数据
+	 */
+	final static String LoadAction = "load";
 
-public interface IEditForm
-extends IForm {
-    public static final String LoadAction = "load";
-    public static final String CreateAction = "create";
-    public static final String UpdateAction = "update";
+	/**
+	 * 建立数据
+	 */
+	final static String CreateAction = "create";
+
+	/**
+	 * 更新数据
+	 */
+	final static String UpdateAction = "update";
+	
+	
+
 }
-

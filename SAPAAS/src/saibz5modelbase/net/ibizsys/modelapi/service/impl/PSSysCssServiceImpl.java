@@ -113,9 +113,9 @@ implements IPSSysCssService {
 
     @Override
     protected List<PSSysCss> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysCss> list = new ArrayList<PSSysCss>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysCss> items = this.listByPSModule(parent);

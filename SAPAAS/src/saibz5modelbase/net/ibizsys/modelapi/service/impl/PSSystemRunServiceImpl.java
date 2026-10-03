@@ -76,7 +76,7 @@ implements IPSSystemRunService {
     @Override
     protected List<PSSystemRun> onListAll() throws Exception {
         ArrayList<PSSystemRun> list = new ArrayList<PSSystemRun>();
-        List pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
+        List<PSSystem> pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
         if (pssystems != null) {
             for (PSSystem parent : pssystems) {
                 List<PSSystemRun> items = this.listByPSSystem(parent);

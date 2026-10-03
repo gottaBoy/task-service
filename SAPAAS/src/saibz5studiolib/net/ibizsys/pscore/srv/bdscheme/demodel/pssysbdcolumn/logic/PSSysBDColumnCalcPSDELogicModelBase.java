@@ -65,7 +65,7 @@ extends DELogicModelBase<PSSysBDColumn> {
         PSSysBDTableDE pSSysBDTableDE = (PSSysBDTableDE)iActionContext.getParam("CurPSSysBDTableDE");
         SessionFactory sessionFactory = iActionContext.getSessionFactory();
         IService iService = ServiceGlobal.getService(PSSysBDTableDEService.class, (SessionFactory)sessionFactory);
-        iService.executeAction("GET", (IEntity)pSSysBDTableDE);
+        iService.executeAction("GET", pSSysBDTableDE);
         this.executePrepareparam2(iActionContext);
     }
 

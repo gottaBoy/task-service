@@ -157,7 +157,7 @@ implements IPSBKTask {
                     psTSCmd.set("SRF_LOGINNAME", (Object)"SYSTEM");
                     psTSCmd.setPSTSCmdName(StringHelper.format((String)"%1$s", (Object)pid));
                     psTSCmdService = (PSTSCmdService)ServiceGlobal.getService(PSTSCmdService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                    psTSCmdService.create((IEntity)psTSCmd, true);
+                    psTSCmdService.create(psTSCmd, true);
                 }
             }
             catch (Exception ex) {
@@ -177,7 +177,7 @@ implements IPSBKTask {
             try {
                 if (pid != -1L && psTSCmd != null) {
                     psTSCmdService = (PSTSCmdService)ServiceGlobal.getService(PSTSCmdService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                    psTSCmdService.remove((IEntity)psTSCmd);
+                    psTSCmdService.remove(psTSCmd);
                 }
             }
             catch (Exception ex) {
@@ -214,7 +214,7 @@ implements IPSBKTask {
             try {
                 if (pid != -1L && psTSCmd != null) {
                     PSTSCmdService psTSCmdService = (PSTSCmdService)ServiceGlobal.getService(PSTSCmdService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                    psTSCmdService.remove((IEntity)psTSCmd);
+                    psTSCmdService.remove(psTSCmd);
                 }
             }
             catch (Exception e) {
@@ -239,7 +239,7 @@ implements IPSBKTask {
             try {
                 if (pid != -1L && psTSCmd != null) {
                     PSTSCmdService psTSCmdService = (PSTSCmdService)ServiceGlobal.getService(PSTSCmdService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                    psTSCmdService.remove((IEntity)psTSCmd);
+                    psTSCmdService.remove(psTSCmd);
                 }
             }
             catch (Exception e) {
@@ -519,4 +519,3 @@ implements IPSBKTask {
         }
     }
 }
-

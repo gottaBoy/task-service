@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEDBObjSqlDEModelBase;
 
 public class PSDEDBObjSqlDEModel
 extends PSDEDBObjSqlDEModelBase {
+
+    public PSDEDBObjSqlDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

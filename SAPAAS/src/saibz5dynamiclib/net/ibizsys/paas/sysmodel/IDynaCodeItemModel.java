@@ -1,35 +1,100 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.sysmodel.ICodeItemModel
- */
 package net.ibizsys.paas.sysmodel;
 
 import net.ibizsys.paas.core.IDynaModelJsonLoader;
-import net.ibizsys.paas.sysmodel.ICodeItemModel;
-import net.ibizsys.paas.sysmodel.IDynaCodeListModel;
 
-public interface IDynaCodeItemModel
-extends ICodeItemModel,
-IDynaModelJsonLoader {
-    public static final String ATTR_ITEMS = "items";
-    public static final String ATTR_VALUE = "value";
-    public static final String ATTR_TEXT = "text";
-    public static final String ATTR_REALTEXT = "realtext";
-    public static final String ATTR_PARENTVALUE = "parentvalue";
-    public static final String ATTR_ICONCLS = "iconcls";
-    public static final String ATTR_ICONCLSX = "iconclsx";
-    public static final String ATTR_ICONPATH = "iconpath";
-    public static final String ATTR_ICONPATHX = "iconpathx";
-    public static final String ATTR_DISABLESELECT = "disableselect";
-    public static final String ATTR_USERDATA = "userdata";
-    public static final String ATTR_USERDATA2 = "userdata2";
+/**
+ * 动态系统代码项模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaCodeItemModel extends ICodeItemModel,IDynaModelJsonLoader {
 
-    public void init(IDynaCodeListModel var1, IDynaCodeItemModel var2, Object var3) throws Exception;
+	/**
+	 * 代码表子项集合
+	 */
+	final static String ATTR_ITEMS = "items";
+	
+	/**
+	 * 模型属性：项值
+	 */
+	final static String ATTR_VALUE = "value";
+	
+	/**
+	 * 模型属性：文本
+	 */
+	final static String ATTR_TEXT = "text";
+	
+	/**
+	 * 模型属性：实际文本
+	 */
+	final static String ATTR_REALTEXT = "realtext";
+	
+	/**
+	 * 模型属性：父项值
+	 */
+	final static String ATTR_PARENTVALUE = "parentvalue";
+	
+	/**
+	 * 模型属性：图标样式
+	 */
+	final static String ATTR_ICONCLS = "iconcls";
+	
+	/**
+	 * 模型属性：图标样式（X）
+	 */
+	final static String ATTR_ICONCLSX = "iconclsx";
+	
+	
+	/**
+	 * 模型属性：图标路径
+	 */
+	final static String ATTR_ICONPATH = "iconpath";
+	
+	/**
+	 * 模型属性：图标路径（X）
+	 */
+	final static String ATTR_ICONPATHX = "iconpathx";
+	
+	/**
+	 * 模型属性：禁止选择
+	 */
+	final static String ATTR_DISABLESELECT = "disableselect";
+	
+	/**
+	 * 模型属性：用户数据
+	 */
+	final static String ATTR_USERDATA = "userdata";
+	
+	/**
+	 * 模型属性：用户数据2
+	 */
+	final static String ATTR_USERDATA2 = "userdata2";
 
-    public IDynaCodeListModel getDynaCodeListModel();
-
-    public IDynaCodeItemModel getParentModel();
+	
+	
+	/**
+	 * 初始化
+	 * @param iDynaCodeListModel
+	 * @param parentModel
+	 * @param modelObject
+	 * @throws Exception
+	 */
+	void init(IDynaCodeListModel iDynaCodeListModel, IDynaCodeItemModel parentModel, Object modelObject) throws Exception;
+	
+	
+	
+	/**
+	 * 获取动态代码表模型
+	 * @return
+	 */
+	IDynaCodeListModel getDynaCodeListModel();
+	
+	
+	
+	/**
+	 * 获取父项对象
+	 * @return
+	 */
+	IDynaCodeItemModel getParentModel();
+	 
 }
-

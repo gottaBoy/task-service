@@ -86,7 +86,7 @@ extends PSDEDataCtrl {
             psSysDevBKTask.setTaskParam(psDevSysDiffRep.getPSDEVSYSDIFFREPID());
             psSysDevBKTask.setTaskParam2(strPSDevCenterId);
             psSysDevBKTask.setOrderValue(Integer.valueOf(nTaskOrder));
-            psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+            psSysDevBKTaskService.create(psSysDevBKTask);
             parentPSSysDevBKTask = psSysDevBKTask;
             SessionFactoryManager.releaseRef((boolean)true);
         }
@@ -99,4 +99,3 @@ extends PSDEDataCtrl {
         this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
     }
 }
-

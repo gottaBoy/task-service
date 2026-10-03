@@ -1697,7 +1697,7 @@ implements Serializable {
                 PSCorePrdVer pSCorePrdVer = new PSCorePrdVer();
                 pSCorePrdVer.setPSCorePrdVerId(this.getPSCorePrdVerId());
                 PSCorePrdVerService pSCorePrdVerService = (PSCorePrdVerService)ServiceGlobal.getService(PSCorePrdVerService.class, (SessionFactory)this.getSessionFactory());
-                pSCorePrdVerService.autoGet((IEntity)pSCorePrdVer);
+                pSCorePrdVerService.autoGet(pSCorePrdVer);
                 this.pscoreprdver = pSCorePrdVer;
             }
             return this.pscoreprdver;
@@ -1723,7 +1723,7 @@ implements Serializable {
                 PSCorePrd pSCorePrd = new PSCorePrd();
                 pSCorePrd.setPSCorePrdId(this.getPSCorePrdId());
                 PSCorePrdService pSCorePrdService = (PSCorePrdService)ServiceGlobal.getService(PSCorePrdService.class, (SessionFactory)this.getSessionFactory());
-                pSCorePrdService.autoGet((IEntity)pSCorePrd);
+                pSCorePrdService.autoGet(pSCorePrd);
                 this.pscoreprd = pSCorePrd;
             }
             return this.pscoreprd;
@@ -1749,7 +1749,7 @@ implements Serializable {
                 PSStudioServer pSStudioServer = new PSStudioServer();
                 pSStudioServer.setPSStudioServerId(this.getPSStudioServerId());
                 PSStudioServerService pSStudioServerService = (PSStudioServerService)ServiceGlobal.getService(PSStudioServerService.class, (SessionFactory)this.getSessionFactory());
-                pSStudioServerService.autoGet((IEntity)pSStudioServer);
+                pSStudioServerService.autoGet(pSStudioServer);
                 this.psstudioserver = pSStudioServer;
             }
             return this.psstudioserver;
@@ -1775,7 +1775,7 @@ implements Serializable {
                 PSTaskServer pSTaskServer = new PSTaskServer();
                 pSTaskServer.setPSTaskServerId(this.getPSTaskServerId());
                 PSTaskServerService pSTaskServerService = (PSTaskServerService)ServiceGlobal.getService(PSTaskServerService.class, (SessionFactory)this.getSessionFactory());
-                pSTaskServerService.autoGet((IEntity)pSTaskServer);
+                pSTaskServerService.autoGet(pSTaskServer);
                 this.pstaskserver = pSTaskServer;
             }
             return this.pstaskserver;

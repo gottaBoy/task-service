@@ -200,21 +200,21 @@ extends PSAppViewService<PSAppPanelView> {
 
     public void createWithModel(PSAppPanelView pSAppPanelView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, (IEntity)pSAppPanelView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, pSAppPanelView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppPanelView, ACTION_CREATEWITHMODEL);
+        this.testDEMainStateAction(pSAppPanelView, ACTION_CREATEWITHMODEL);
         final PSAppPanelView pSAppPanelView2 = pSAppPanelView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPanelViewServiceBase.this.getService(), PSAppPanelViewServiceBase.ACTION_CREATEWITHMODEL, 40, (IEntity)pSAppPanelView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPanelViewServiceBase.this.getService(), PSAppPanelViewServiceBase.ACTION_CREATEWITHMODEL, 40, pSAppPanelView2, null).getResult() != 1) {
                     PSAppPanelViewServiceBase.this.onCreateWithModel(pSAppPanelView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, (IEntity)pSAppPanelView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, pSAppPanelView, null);
         }
     }
 
@@ -224,21 +224,21 @@ extends PSAppViewService<PSAppPanelView> {
 
     public void getDraftFromWithModel(PSAppPanelView pSAppPanelView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, (IEntity)pSAppPanelView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, pSAppPanelView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppPanelView, ACTION_GETDRAFTFROMWITHMODEL);
+        this.testDEMainStateAction(pSAppPanelView, ACTION_GETDRAFTFROMWITHMODEL);
         final PSAppPanelView pSAppPanelView2 = pSAppPanelView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPanelViewServiceBase.this.getService(), PSAppPanelViewServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, (IEntity)pSAppPanelView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPanelViewServiceBase.this.getService(), PSAppPanelViewServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, pSAppPanelView2, null).getResult() != 1) {
                     PSAppPanelViewServiceBase.this.onGetDraftFromWithModel(pSAppPanelView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, (IEntity)pSAppPanelView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, pSAppPanelView, null);
         }
     }
 
@@ -248,21 +248,21 @@ extends PSAppViewService<PSAppPanelView> {
 
     public void getDraftWithModel(PSAppPanelView pSAppPanelView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, (IEntity)pSAppPanelView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, pSAppPanelView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppPanelView, ACTION_GETDRAFTWITHMODEL);
+        this.testDEMainStateAction(pSAppPanelView, ACTION_GETDRAFTWITHMODEL);
         final PSAppPanelView pSAppPanelView2 = pSAppPanelView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPanelViewServiceBase.this.getService(), PSAppPanelViewServiceBase.ACTION_GETDRAFTWITHMODEL, 40, (IEntity)pSAppPanelView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPanelViewServiceBase.this.getService(), PSAppPanelViewServiceBase.ACTION_GETDRAFTWITHMODEL, 40, pSAppPanelView2, null).getResult() != 1) {
                     PSAppPanelViewServiceBase.this.onGetDraftWithModel(pSAppPanelView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, (IEntity)pSAppPanelView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, pSAppPanelView, null);
         }
     }
 
@@ -272,21 +272,21 @@ extends PSAppViewService<PSAppPanelView> {
 
     public void getWithModel(PSAppPanelView pSAppPanelView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, (IEntity)pSAppPanelView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, pSAppPanelView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppPanelView, ACTION_GETWITHMODEL);
+        this.testDEMainStateAction(pSAppPanelView, ACTION_GETWITHMODEL);
         final PSAppPanelView pSAppPanelView2 = pSAppPanelView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPanelViewServiceBase.this.getService(), PSAppPanelViewServiceBase.ACTION_GETWITHMODEL, 40, (IEntity)pSAppPanelView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPanelViewServiceBase.this.getService(), PSAppPanelViewServiceBase.ACTION_GETWITHMODEL, 40, pSAppPanelView2, null).getResult() != 1) {
                     PSAppPanelViewServiceBase.this.onGetWithModel(pSAppPanelView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, (IEntity)pSAppPanelView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, pSAppPanelView, null);
         }
     }
 
@@ -296,21 +296,21 @@ extends PSAppViewService<PSAppPanelView> {
 
     public void previewSave(PSAppPanelView pSAppPanelView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 0, (IEntity)pSAppPanelView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 0, pSAppPanelView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppPanelView, ACTION_PREVIEWSAVE);
+        this.testDEMainStateAction(pSAppPanelView, ACTION_PREVIEWSAVE);
         final PSAppPanelView pSAppPanelView2 = pSAppPanelView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPanelViewServiceBase.this.getService(), PSAppPanelViewServiceBase.ACTION_PREVIEWSAVE, 40, (IEntity)pSAppPanelView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPanelViewServiceBase.this.getService(), PSAppPanelViewServiceBase.ACTION_PREVIEWSAVE, 40, pSAppPanelView2, null).getResult() != 1) {
                     PSAppPanelViewServiceBase.this.onPreviewSave(pSAppPanelView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 99, (IEntity)pSAppPanelView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 99, pSAppPanelView, null);
         }
     }
 
@@ -320,21 +320,21 @@ extends PSAppViewService<PSAppPanelView> {
 
     public void updateWithModel(PSAppPanelView pSAppPanelView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, (IEntity)pSAppPanelView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, pSAppPanelView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppPanelView, ACTION_UPDATEWITHMODEL);
+        this.testDEMainStateAction(pSAppPanelView, ACTION_UPDATEWITHMODEL);
         final PSAppPanelView pSAppPanelView2 = pSAppPanelView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPanelViewServiceBase.this.getService(), PSAppPanelViewServiceBase.ACTION_UPDATEWITHMODEL, 40, (IEntity)pSAppPanelView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppPanelViewServiceBase.this.getService(), PSAppPanelViewServiceBase.ACTION_UPDATEWITHMODEL, 40, pSAppPanelView2, null).getResult() != 1) {
                     PSAppPanelViewServiceBase.this.onUpdateWithModel(pSAppPanelView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, (IEntity)pSAppPanelView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, pSAppPanelView, null);
         }
     }
 
@@ -349,9 +349,9 @@ extends PSAppViewService<PSAppPanelView> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_NavBarPSSysCss(pSAppPanelView, pSSysCss);
             return;
@@ -414,8 +414,8 @@ extends PSAppViewService<PSAppPanelView> {
         ArrayList<PSAppPanelView> arrayList = this.selectByNavBarPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPPANELVIEW_PSSYSCSS_NAVBARPSSYSCSSID", "", iDataEntityModel.getName(), "PSAPPPANELVIEW", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPPANELVIEW_PSSYSCSS_NAVBARPSSYSCSSID", "", iDataEntityModel.getName(), "PSAPPPANELVIEW", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -448,7 +448,7 @@ extends PSAppViewService<PSAppPanelView> {
         ArrayList<PSAppPanelView> arrayList = this.selectByNavBarPSSysCss(pSSysCss);
         this.onBeforeRemoveByNavBarPSSysCss(pSSysCss, arrayList);
         for (PSAppPanelView pSAppPanelView : arrayList) {
-            this.remove((IEntity)pSAppPanelView);
+            this.remove(pSAppPanelView);
         }
         this.onAfterRemoveByNavBarPSSysCss(pSSysCss, arrayList);
     }
@@ -519,7 +519,7 @@ extends PSAppViewService<PSAppPanelView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LayoutMode_Default((IEntity)pSAppPanelView, bl2, bl3);
+            string2 = this.onTestValueRule_LayoutMode_Default(pSAppPanelView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LAYOUTMODE");
@@ -541,7 +541,7 @@ extends PSAppViewService<PSAppPanelView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NavBarPSSysCssId_Default((IEntity)pSAppPanelView, bl2, bl3);
+            string2 = this.onTestValueRule_NavBarPSSysCssId_Default(pSAppPanelView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAVBARPSSYSCSSID");
@@ -563,7 +563,7 @@ extends PSAppViewService<PSAppPanelView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PanelModel_Default((IEntity)pSAppPanelView, bl2, bl3);
+            string2 = this.onTestValueRule_PanelModel_Default(pSAppPanelView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PANELMODEL");
@@ -585,7 +585,7 @@ extends PSAppViewService<PSAppPanelView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PanelStyle_Default((IEntity)pSAppPanelView, bl2, bl3);
+            string2 = this.onTestValueRule_PanelStyle_Default(pSAppPanelView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PANELSTYLE");
@@ -607,7 +607,7 @@ extends PSAppViewService<PSAppPanelView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PanelWidth_Default((IEntity)pSAppPanelView, bl2, bl3);
+            string = this.onTestValueRule_PanelWidth_Default(pSAppPanelView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PANELWIDTH");
@@ -632,7 +632,7 @@ extends PSAppViewService<PSAppPanelView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppPanelViewId_Default((IEntity)pSAppPanelView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppPanelViewId_Default(pSAppPanelView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPPANELVIEWID");
@@ -657,7 +657,7 @@ extends PSAppViewService<PSAppPanelView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppPanelViewName_Default((IEntity)pSAppPanelView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppPanelViewName_Default(pSAppPanelView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPPANELVIEWNAME");

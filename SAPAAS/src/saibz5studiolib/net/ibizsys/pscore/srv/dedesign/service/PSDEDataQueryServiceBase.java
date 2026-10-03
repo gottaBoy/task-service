@@ -290,21 +290,21 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
 
     public void createDEDataSet(PSDEDataQuery pSDEDataQuery) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEDEDATASET, 0, (IEntity)pSDEDataQuery, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEDEDATASET, 0, pSDEDataQuery, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEDataQuery, ACTION_CREATEDEDATASET);
+        this.testDEMainStateAction(pSDEDataQuery, ACTION_CREATEDEDATASET);
         final PSDEDataQuery pSDEDataQuery2 = pSDEDataQuery;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_CREATEDEDATASET, 40, (IEntity)pSDEDataQuery2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_CREATEDEDATASET, 40, pSDEDataQuery2, null).getResult() != 1) {
                     PSDEDataQueryServiceBase.this.onCreateDEDataSet(pSDEDataQuery2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEDEDATASET, 99, (IEntity)pSDEDataQuery, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEDEDATASET, 99, pSDEDataQuery, null);
         }
     }
 
@@ -314,21 +314,21 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
 
     public void createWithModel(PSDEDataQuery pSDEDataQuery) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, (IEntity)pSDEDataQuery, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, pSDEDataQuery, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEDataQuery, ACTION_CREATEWITHMODEL);
+        this.testDEMainStateAction(pSDEDataQuery, ACTION_CREATEWITHMODEL);
         final PSDEDataQuery pSDEDataQuery2 = pSDEDataQuery;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_CREATEWITHMODEL, 40, (IEntity)pSDEDataQuery2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_CREATEWITHMODEL, 40, pSDEDataQuery2, null).getResult() != 1) {
                     PSDEDataQueryServiceBase.this.onCreateWithModel(pSDEDataQuery2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, (IEntity)pSDEDataQuery, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, pSDEDataQuery, null);
         }
     }
 
@@ -338,21 +338,21 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
 
     public void generateCode(PSDEDataQuery pSDEDataQuery) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_X_GENERATECODE, 0, (IEntity)pSDEDataQuery, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_X_GENERATECODE, 0, pSDEDataQuery, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEDataQuery, ACTION_X_GENERATECODE);
+        this.testDEMainStateAction(pSDEDataQuery, ACTION_X_GENERATECODE);
         final PSDEDataQuery pSDEDataQuery2 = pSDEDataQuery;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_X_GENERATECODE, 40, (IEntity)pSDEDataQuery2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_X_GENERATECODE, 40, pSDEDataQuery2, null).getResult() != 1) {
                     PSDEDataQueryServiceBase.this.onGenerateCode(pSDEDataQuery2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_X_GENERATECODE, 99, (IEntity)pSDEDataQuery, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_X_GENERATECODE, 99, pSDEDataQuery, null);
         }
     }
 
@@ -362,21 +362,21 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
 
     public void getDraftFromWithModel(PSDEDataQuery pSDEDataQuery) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, (IEntity)pSDEDataQuery, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, pSDEDataQuery, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEDataQuery, ACTION_GETDRAFTFROMWITHMODEL);
+        this.testDEMainStateAction(pSDEDataQuery, ACTION_GETDRAFTFROMWITHMODEL);
         final PSDEDataQuery pSDEDataQuery2 = pSDEDataQuery;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, (IEntity)pSDEDataQuery2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, pSDEDataQuery2, null).getResult() != 1) {
                     PSDEDataQueryServiceBase.this.onGetDraftFromWithModel(pSDEDataQuery2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, (IEntity)pSDEDataQuery, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, pSDEDataQuery, null);
         }
     }
 
@@ -386,21 +386,21 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
 
     public void getDraftWithModel(PSDEDataQuery pSDEDataQuery) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, (IEntity)pSDEDataQuery, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, pSDEDataQuery, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEDataQuery, ACTION_GETDRAFTWITHMODEL);
+        this.testDEMainStateAction(pSDEDataQuery, ACTION_GETDRAFTWITHMODEL);
         final PSDEDataQuery pSDEDataQuery2 = pSDEDataQuery;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_GETDRAFTWITHMODEL, 40, (IEntity)pSDEDataQuery2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_GETDRAFTWITHMODEL, 40, pSDEDataQuery2, null).getResult() != 1) {
                     PSDEDataQueryServiceBase.this.onGetDraftWithModel(pSDEDataQuery2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, (IEntity)pSDEDataQuery, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, pSDEDataQuery, null);
         }
     }
 
@@ -410,21 +410,21 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
 
     public void getWithModel(PSDEDataQuery pSDEDataQuery) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, (IEntity)pSDEDataQuery, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, pSDEDataQuery, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEDataQuery, ACTION_GETWITHMODEL);
+        this.testDEMainStateAction(pSDEDataQuery, ACTION_GETWITHMODEL);
         final PSDEDataQuery pSDEDataQuery2 = pSDEDataQuery;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_GETWITHMODEL, 40, (IEntity)pSDEDataQuery2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_GETWITHMODEL, 40, pSDEDataQuery2, null).getResult() != 1) {
                     PSDEDataQueryServiceBase.this.onGetWithModel(pSDEDataQuery2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, (IEntity)pSDEDataQuery, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, pSDEDataQuery, null);
         }
     }
 
@@ -434,21 +434,21 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
 
     public void previewSave(PSDEDataQuery pSDEDataQuery) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 0, (IEntity)pSDEDataQuery, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 0, pSDEDataQuery, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEDataQuery, ACTION_PREVIEWSAVE);
+        this.testDEMainStateAction(pSDEDataQuery, ACTION_PREVIEWSAVE);
         final PSDEDataQuery pSDEDataQuery2 = pSDEDataQuery;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_PREVIEWSAVE, 40, (IEntity)pSDEDataQuery2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_PREVIEWSAVE, 40, pSDEDataQuery2, null).getResult() != 1) {
                     PSDEDataQueryServiceBase.this.onPreviewSave(pSDEDataQuery2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 99, (IEntity)pSDEDataQuery, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 99, pSDEDataQuery, null);
         }
     }
 
@@ -458,21 +458,21 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
 
     public void updateWithModel(PSDEDataQuery pSDEDataQuery) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, (IEntity)pSDEDataQuery, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, pSDEDataQuery, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDEDataQuery, ACTION_UPDATEWITHMODEL);
+        this.testDEMainStateAction(pSDEDataQuery, ACTION_UPDATEWITHMODEL);
         final PSDEDataQuery pSDEDataQuery2 = pSDEDataQuery;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_UPDATEWITHMODEL, 40, (IEntity)pSDEDataQuery2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDEDataQueryServiceBase.this.getService(), PSDEDataQueryServiceBase.ACTION_UPDATEWITHMODEL, 40, pSDEDataQuery2, null).getResult() != 1) {
                     PSDEDataQueryServiceBase.this.onUpdateWithModel(pSDEDataQuery2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, (IEntity)pSDEDataQuery, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, pSDEDataQuery, null);
         }
     }
 
@@ -486,9 +486,9 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSDEDataQuery, pSDataEntity);
             return;
@@ -498,9 +498,9 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
             PSDEFGroup pSDEFGroup = (PSDEFGroup)iService.getDEModel().createEntity();
             pSDEFGroup.set("PSDEFGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEFGroup);
+                iService.getTemp(pSDEFGroup);
             } else {
-                iService.get((IEntity)pSDEFGroup);
+                iService.get(pSDEFGroup);
             }
             this.onFillParentInfo_PSDEFGroup(pSDEDataQuery, pSDEFGroup);
             return;
@@ -510,14 +510,14 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
             PSDEMainState pSDEMainState = (PSDEMainState)iService.getDEModel().createEntity();
             pSDEMainState.set("PSDEMAINSTATEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEMainState);
+                iService.getTemp(pSDEMainState);
             } else {
-                iService.get((IEntity)pSDEMainState);
+                iService.get(pSDEMainState);
             }
             this.onFillParentInfo_PSDEMainState(pSDEDataQuery, pSDEMainState);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEDataQuery, string, string2, string3);
+        super.onFillParentInfo(pSDEDataQuery, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -560,7 +560,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 pSDEDataQuery.setPSDEDataQueryName((String)this.getDefaultValue(this.getWebContext(), "USER", "DATAQUERY", 25));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDEDataQuery, bl);
+        super.onFillEntityFullInfo(pSDEDataQuery, bl);
         this.onFillEntityFullInfo_PSDE(pSDEDataQuery, bl);
         this.onFillEntityFullInfo_PSDEFGroup(pSDEDataQuery, bl);
         this.onFillEntityFullInfo_PSDEMainState(pSDEDataQuery, bl);
@@ -586,7 +586,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
     }
 
     protected void onWriteBackParent(PSDEDataQuery pSDEDataQuery, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEDataQuery, bl);
+        super.onWriteBackParent(pSDEDataQuery, bl);
     }
 
     public ArrayList<PSDEDataQuery> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -693,7 +693,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         ArrayList<PSDEDataQuery> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSDEDataQuery pSDEDataQuery : arrayList) {
-            this.remove((IEntity)pSDEDataQuery);
+            this.remove(pSDEDataQuery);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -711,8 +711,8 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         ArrayList<PSDEDataQuery> arrayList = this.selectByPSDEFGroup(pSDEFGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEFGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDATAQUERY_PSDEFGROUP_PSDEFGROUPID", "", iDataEntityModel.getName(), "PSDEDATAQUERY", iDataEntityModel.getDataInfo((IEntity)pSDEFGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEFGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDATAQUERY_PSDEFGROUP_PSDEFGROUPID", "", iDataEntityModel.getName(), "PSDEDATAQUERY", iDataEntityModel.getDataInfo(pSDEFGroup), arrayList.get(0)));
         }
     }
 
@@ -745,7 +745,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         ArrayList<PSDEDataQuery> arrayList = this.selectByPSDEFGroup(pSDEFGroup);
         this.onBeforeRemoveByPSDEFGroup(pSDEFGroup, arrayList);
         for (PSDEDataQuery pSDEDataQuery : arrayList) {
-            this.remove((IEntity)pSDEDataQuery);
+            this.remove(pSDEDataQuery);
         }
         this.onAfterRemoveByPSDEFGroup(pSDEFGroup, arrayList);
     }
@@ -763,8 +763,8 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         ArrayList<PSDEDataQuery> arrayList = this.selectByPSDEMainState(pSDEMainState, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEMAINSTATE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEMainState);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDATAQUERY_PSDEMAINSTATE_PSDEMAINSTATEID", "", iDataEntityModel.getName(), "PSDEDATAQUERY", iDataEntityModel.getDataInfo((IEntity)pSDEMainState), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEMainState);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDATAQUERY_PSDEMAINSTATE_PSDEMAINSTATEID", "", iDataEntityModel.getName(), "PSDEDATAQUERY", iDataEntityModel.getDataInfo(pSDEMainState), arrayList.get(0)));
         }
     }
 
@@ -797,7 +797,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         ArrayList<PSDEDataQuery> arrayList = this.selectByPSDEMainState(pSDEMainState);
         this.onBeforeRemoveByPSDEMainState(pSDEMainState, arrayList);
         for (PSDEDataQuery pSDEDataQuery : arrayList) {
-            this.remove((IEntity)pSDEDataQuery);
+            this.remove(pSDEDataQuery);
         }
         this.onAfterRemoveByPSDEMainState(pSDEMainState, arrayList);
     }
@@ -853,13 +853,13 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         ((PSDEDQCondServiceBase)pSCoreSysServiceBase).removeTempByPSDEDQ(pSDEDataQuery);
         pSCoreSysServiceBase = (PSDEDQJoinService)ServiceGlobal.getService(PSDEDQJoinService.class, (SessionFactory)this.getSessionFactory());
         ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).removeTempByPSDEDQ(pSDEDataQuery);
-        super.onBeforeRemoveTemp((IEntity)pSDEDataQuery);
+        super.onBeforeRemoveTemp(pSDEDataQuery);
     }
 
     protected void getRelatedDataTempMajor(PSDEDataQuery pSDEDataQuery) throws Exception {
         this.getRelatedDataTempMajor_PSDEDQJoin(pSDEDataQuery);
         this.getRelatedDataTempMajor_PSDEDQCond(pSDEDataQuery);
-        super.getRelatedDataTempMajor((IEntity)pSDEDataQuery);
+        super.getRelatedDataTempMajor(pSDEDataQuery);
     }
 
     protected void getRelatedDataTempMajor_PSDEDQJoin(PSDEDataQuery pSDEDataQuery) throws Exception {
@@ -889,7 +889,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         ArrayList<PSDEDQJoin> arrayList2 = this.updateRelatedDataTempMajor_removePSDEDQJoin(pSDEDataQuery, pSDEDataQuery2);
         this.updateRelatedDataTempMajor_updatePSDEDQJoin(pSDEDataQuery, pSDEDataQuery2, arrayList2);
         this.updateRelatedDataTempMajor_updatePSDEDQCond(pSDEDataQuery, pSDEDataQuery2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSDEDataQuery, (IEntity)pSDEDataQuery2);
+        super.updateRelatedDataTempMajor(pSDEDataQuery, pSDEDataQuery2);
     }
 
     protected ArrayList<PSDEDQJoin> updateRelatedDataTempMajor_removePSDEDQJoin(PSDEDataQuery pSDEDataQuery, PSDEDataQuery pSDEDataQuery2) throws Exception {
@@ -906,7 +906,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
             hashMap.remove(object);
         }
         for (PSDEDQJoin pSDEDQJoin : hashMap.values()) {
-            pSDEDQJoinService.remove((IEntity)pSDEDQJoin);
+            pSDEDQJoinService.remove(pSDEDQJoin);
         }
         return arrayList;
     }
@@ -935,7 +935,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
             hashMap.remove(object);
         }
         for (PSDEDQCond pSDEDQCond : hashMap.values()) {
-            pSDEDQCondService.remove((IEntity)pSDEDQCond);
+            pSDEDQCondService.remove(pSDEDQCond);
         }
         return arrayList;
     }
@@ -952,7 +952,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
 
     protected void replaceParentInfo(PSDEDataQuery pSDEDataQuery, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEDataQuery, cloneSession);
+        super.replaceParentInfo(pSDEDataQuery, cloneSession);
         if (pSDEDataQuery.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSDEDataQuery.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSDEDataQuery, (PSDataEntity)iEntity);
         }
@@ -965,7 +965,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEDataQuery pSDEDataQuery, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEDataQuery, bl);
+        super.onRemoveEntityUncopyValues(pSDEDataQuery, bl);
         pSDEDataQuery.resetCodeName();
         pSDEDataQuery.resetDefaultMode();
         pSDEDataQuery.resetViewColLevel();
@@ -1097,7 +1097,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         if ((entityFieldError = this.onCheckField_ViewColLevel(bl, pSDEDataQuery, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEDataQuery, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEDataQuery, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSDEDataQuery pSDEDataQuery, boolean bl2, boolean bl3) throws Exception {
@@ -1110,7 +1110,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1149,7 +1149,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CustomCode_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_CustomCode_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMCODE");
@@ -1171,7 +1171,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CustomMode_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_CustomMode_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMMODE");
@@ -1193,7 +1193,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DefaultMode_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_DefaultMode_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTMODE");
@@ -1230,7 +1230,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DQJoinModel_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_DQJoinModel_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DQJOINMODEL");
@@ -1252,7 +1252,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DQOption_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_DQOption_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DQOPTION");
@@ -1274,7 +1274,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DQSN_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_DQSN_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DQSN");
@@ -1296,7 +1296,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DQTag_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_DQTag_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DQTAG");
@@ -1318,7 +1318,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DQTag2_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_DQTag2_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DQTAG2");
@@ -1340,7 +1340,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DQTag3_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_DQTag3_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DQTAG3");
@@ -1362,7 +1362,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DQTag4_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_DQTag4_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DQTAG4");
@@ -1384,7 +1384,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DynaModelFlag_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_DynaModelFlag_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNAMODELFLAG");
@@ -1406,7 +1406,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnablePQL_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_EnablePQL_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLEPQL");
@@ -1428,7 +1428,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExtendMode_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_ExtendMode_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXTENDMODE");
@@ -1450,7 +1450,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FilterModel_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_FilterModel_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FILTERMODEL");
@@ -1472,7 +1472,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -1494,7 +1494,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -1516,7 +1516,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1538,7 +1538,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -1560,7 +1560,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PrivMode_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_PrivMode_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PRIVMODE");
@@ -1585,7 +1585,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataQueryId_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataQueryId_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATAQUERYID");
@@ -1610,7 +1610,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataQueryName_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataQueryName_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATAQUERYNAME");
@@ -1646,7 +1646,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFGroupId_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFGroupId_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFGROUPID");
@@ -1671,7 +1671,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -1693,7 +1693,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEMainStateId_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEMainStateId_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMAINSTATEID");
@@ -1718,7 +1718,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -1740,7 +1740,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -1762,7 +1762,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PubMode_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_PubMode_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PUBMODE");
@@ -1784,7 +1784,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_QueryViewFlag_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_QueryViewFlag_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("QUERYVIEWFLAG");
@@ -1806,7 +1806,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RequestMethod_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_RequestMethod_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REQUESTMETHOD");
@@ -1828,7 +1828,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RequestPath_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_RequestPath_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REQUESTPATH");
@@ -1850,7 +1850,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ServiceCodeName_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_ServiceCodeName_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SERVICECODENAME");
@@ -1872,7 +1872,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SubSysSADetailMode_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_SubSysSADetailMode_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SUBSYSSADETAILMODE");
@@ -1894,7 +1894,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ToDoTask_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_ToDoTask_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TODOTASK");
@@ -1916,7 +1916,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1938,7 +1938,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1960,7 +1960,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1982,7 +1982,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -2004,7 +2004,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -2026,7 +2026,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -2048,7 +2048,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ViewColLevel_Default((IEntity)pSDEDataQuery, bl2, bl3);
+            string = this.onTestValueRule_ViewColLevel_Default(pSDEDataQuery, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWCOLLEVEL");
@@ -2061,11 +2061,11 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
     }
 
     protected void onSyncEntity(PSDEDataQuery pSDEDataQuery, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEDataQuery, bl);
+        super.onSyncEntity(pSDEDataQuery, bl);
     }
 
     protected void onSyncIndexEntities(PSDEDataQuery pSDEDataQuery, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEDataQuery, bl);
+        super.onSyncIndexEntities(pSDEDataQuery, bl);
     }
 
     public Object getDataContextValue(PSDEDataQuery pSDEDataQuery, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -2073,7 +2073,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEDataQuery, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEDataQuery, string, iDataContextParam)) != null) {
             return object;
         }
         PSDataEntity pSDataEntity = pSDEDataQuery.getPSDE();
@@ -2087,7 +2087,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         this.onExportRelatedModel_PSDEDQJoin_PSDEDQ(pSDEDataQuery, arrayList, n);
         this.onExportRelatedModel_PSDEDQCond_PSDEDQ(pSDEDataQuery, arrayList, n);
         this.onExportRelatedModel_PSDEDQCode_PSDEDQ(pSDEDataQuery, arrayList, n);
-        super.onExportRelatedModel((IEntity)pSDEDataQuery, arrayList, n);
+        super.onExportRelatedModel(pSDEDataQuery, arrayList, n);
     }
 
     protected void onExportRelatedModel_PSDEDQJoin_PSDEDQ(PSDEDataQuery pSDEDataQuery, ArrayList<JSONObject> arrayList, int n) throws Exception {
@@ -2138,7 +2138,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
     }
 
     protected void onExportMajorModel(PSDEDataQuery pSDEDataQuery, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEDataQuery, arrayList, n);
+        super.onExportMajorModel(pSDEDataQuery, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2729,7 +2729,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
 
     protected boolean onMergeChild(String string, String string2, PSDEDataQuery pSDEDataQuery) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEDataQuery)) {
+        if (super.onMergeChild(string, string2, pSDEDataQuery)) {
             bl = true;
         }
         return bl;
@@ -2741,7 +2741,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDataEntityService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSDEDATAQUERY_PSDATAENTITY_PSDEID", object);
         }
-        super.onUpdateParent((IEntity)pSDEDataQuery);
+        super.onUpdateParent(pSDEDataQuery);
     }
 
     protected boolean isNeedUpdateParent() {
@@ -2810,7 +2810,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                 PSDEDQCond pSDEDQCond = new PSDEDQCond();
                 pSDEDQCond.setOrderValue(n);
                 n += 100;
-                pSDEDQCondService.fillParentInfo((IEntity)pSDEDQCond, "DER1N", "DER1N_PSDEDQCOND_PSDEDATAQUERY_PSDEDQID", pSDEDataQuery.getPSDEDataQueryId());
+                pSDEDQCondService.fillParentInfo(pSDEDQCond, "DER1N", "DER1N_PSDEDQCOND_PSDEDATAQUERY_PSDEDQID", pSDEDataQuery.getPSDEDataQueryId());
                 pSDEDQCondService.importXmlModel(pSDEDQCond, xmlNode2);
             }
         }
@@ -2958,12 +2958,8 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
 
     @Override
     protected void onExportCurModelV2(PSDEDataQuery pSDEDataQuery, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
         ArrayNode arrayNode;
-        Object object3;
-        ArrayList<PSDEDQCode> arrayList;
+        ArrayList<ObjectNode> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEDQCODE_PSDEDATAQUERY_PSDEDQID")) {
@@ -2972,31 +2968,22 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDATAQUERY#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDQCODE", (Object)pSDEDataQuery.getPSDEDataQueryId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add((PSDEDQCode)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSDEDQCode>();
-                object3 = ((PSDEDQCodeServiceBase)pSCoreSysServiceBase).selectByPSDEDQ(pSDEDataQuery);
-                arrayNode = StringHelper.format((String)"PSDEDATAQUERY#%1$s", (Object)pSDEDataQuery.getPSDEDataQueryId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEDQCode)object2.next();
-                    object = ((PSDEDQCodeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEDQCode)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSDEDATAQUERY#%1$s", (Object)pSDEDataQuery.getPSDEDataQueryId());
+                for (PSDEDQCode model : ((PSDEDQCodeServiceBase)pSCoreSysServiceBase).selectByPSDEDQ(pSDEDataQuery)) {
+                    if (StringHelper.compare(scope, ((PSDEDQCodeServiceBase)pSCoreSysServiceBase).getModelV2ResScope(model), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(model, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
+                arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -3024,10 +3011,10 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEDQCode();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode node : arrayList) {
+                    PSDEDQCode model = new PSDEDQCode();
+                    PSModelV2Helper.fromJSONObject(model, node, false);
+                    arrayNode.add(pSCoreSysServiceBase.exportModelV2(model, string));
                 }
             }
         }
@@ -3037,31 +3024,22 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDATAQUERY#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDQJOIN", (Object)pSDEDataQuery.getPSDEDataQueryId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEDQCode)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object3 = ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).selectByPSDEDQ(pSDEDataQuery);
-                arrayNode = StringHelper.format((String)"PSDEDATAQUERY#%1$s", (Object)pSDEDataQuery.getPSDEDataQueryId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEDQJoin)object2.next();
-                    object = ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEDQCode)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSDEDATAQUERY#%1$s", (Object)pSDEDataQuery.getPSDEDataQueryId());
+                for (PSDEDQJoin model : ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).selectByPSDEDQ(pSDEDataQuery)) {
+                    if (StringHelper.compare(scope, ((PSDEDQJoinServiceBase)pSCoreSysServiceBase).getModelV2ResScope(model), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(model, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
+                arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -3089,11 +3067,11 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEDQJoin();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    ((PSDEDQJoinBase)object).remove("ordervalue");
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode node : arrayList) {
+                    PSDEDQJoin model = new PSDEDQJoin();
+                    PSModelV2Helper.fromJSONObject(model, node, false);
+                    model.remove("ordervalue");
+                    arrayNode.add(pSCoreSysServiceBase.exportModelV2(model, string));
                 }
             }
         }
@@ -3106,7 +3084,7 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         ArrayList<PSDEDQJoin> arrayList = pSDEDQJoinService.selectByPSDEDQ(pSDEDataQuery);
         String string = StringHelper.format((String)"PSDEDATAQUERY#%1$s", (Object)pSDEDataQuery.getPSDEDataQueryId());
         for (PSDEDQJoin pSDEDQJoin : arrayList) {
-            String string2 = pSDEDQJoinService.getModelV2ResScope((IEntity)pSDEDQJoin);
+            String string2 = pSDEDQJoinService.getModelV2ResScope(pSDEDQJoin);
             if (StringHelper.compare((String)string, (String)string2, (boolean)false) != 0) continue;
             pSDEDQJoinService.emptyModelV2(pSDEDQJoin);
         }
@@ -3152,9 +3130,6 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
 
     @Override
     protected void onCompileRelatedModelV2(PSDEDataQuery pSDEDataQuery, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        File[] fileArray;
-        Object object;
-        Object object2;
         int n2;
         String string3;
         ArrayNode arrayNode;
@@ -3168,25 +3143,25 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
             }
             if (arrayNode != null) {
                 for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSDEDQCode();
-                    object.setPSDEDQId(pSDEDataQuery.getPSDEDataQueryId());
-                    object.setPSDEDQName(pSDEDataQuery.getPSDEDataQueryName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode node = (ObjectNode)arrayNode.get(n2);
+                    PSDEDQCode model = new PSDEDQCode();
+                    model.setPSDEDQId(pSDEDataQuery.getPSDEDataQueryId());
+                    model.setPSDEDQName(pSDEDataQuery.getPSDEDataQueryName());
+                    pSCoreSysServiceBase.compileModelV2(model, node, string, null, n);
                 }
             } else {
                 String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string4);
-                if (((File)object2).exists()) {
-                    fileArray = object = ((File)object2).listFiles();
-                    int n3 = fileArray.length;
-                    for (int i = 0; i < n3; ++i) {
-                        File file = fileArray[i];
-                        if (!file.isDirectory()) continue;
-                        PSDEDQCode serializable = new PSDEDQCode();
-                        serializable.setPSDEDQId(pSDEDataQuery.getPSDEDataQueryId());
-                        serializable.setPSDEDQName(pSDEDataQuery.getPSDEDataQueryName());
-                        pSCoreSysServiceBase.compileModelV2(serializable, null, string, file.getCanonicalPath(), n);
+                File folder = new File(string4);
+                if (folder.exists()) {
+                    File[] files = folder.listFiles();
+                    if (files != null) {
+                        for (File file : files) {
+                            if (!file.isDirectory()) continue;
+                            PSDEDQCode model = new PSDEDQCode();
+                            model.setPSDEDQId(pSDEDataQuery.getPSDEDataQueryId());
+                            model.setPSDEDQName(pSDEDataQuery.getPSDEDataQueryName());
+                            pSCoreSysServiceBase.compileModelV2(model, null, string, file.getCanonicalPath(), n);
+                        }
                     }
                 }
             }
@@ -3200,23 +3175,26 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         }
         if (arrayNode != null) {
             for (int i = 0; i < arrayNode.size(); ++i) {
-                object = (ObjectNode)arrayNode.get(i);
-                fileArray = new PSDEDQJoin();
-                fileArray.setPSDEDQId(pSDEDataQuery.getPSDEDataQueryId());
-                fileArray.setPSDEDQName(pSDEDataQuery.getPSDEDataQueryName());
-                fileArray.setOrderValue(n2 += 10);
-                pSCoreSysServiceBase.compileModelV2(fileArray, (ObjectNode)object, string, null, n);
+                ObjectNode node = (ObjectNode)arrayNode.get(i);
+                PSDEDQJoin model = new PSDEDQJoin();
+                model.setPSDEDQId(pSDEDataQuery.getPSDEDataQueryId());
+                model.setPSDEDQName(pSDEDataQuery.getPSDEDataQueryName());
+                model.setOrderValue(n2 += 10);
+                pSCoreSysServiceBase.compileModelV2(model, node, string, null, n);
             }
         } else {
-            object2 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object = new File((String)object2);
-            if (object.exists()) {
-                for (File file : fileArray = object.listFiles()) {
-                    if (!file.isDirectory()) continue;
-                    PSDEDQJoin pSDEDQJoin = new PSDEDQJoin();
-                    pSDEDQJoin.setPSDEDQId(pSDEDataQuery.getPSDEDataQueryId());
-                    pSDEDQJoin.setPSDEDQName(pSDEDataQuery.getPSDEDataQueryName());
-                    pSCoreSysServiceBase.compileModelV2(pSDEDQJoin, null, string, file.getCanonicalPath(), n);
+            String path = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
+            File folder = new File(path);
+            if (folder.exists()) {
+                File[] files = folder.listFiles();
+                if (files != null) {
+                    for (File file : files) {
+                        if (!file.isDirectory()) continue;
+                        PSDEDQJoin model = new PSDEDQJoin();
+                        model.setPSDEDQId(pSDEDataQuery.getPSDEDataQueryId());
+                        model.setPSDEDQName(pSDEDataQuery.getPSDEDataQueryName());
+                        pSCoreSysServiceBase.compileModelV2(model, null, string, file.getCanonicalPath(), n);
+                    }
                 }
             }
         }
@@ -3245,4 +3223,3 @@ extends PSCoreSysServiceBase<PSDEDataQuery> {
         defaultValueMap.put("PSDEDATAQUERYNAME", "DATAQUERY");
     }
 }
-

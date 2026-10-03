@@ -70,7 +70,7 @@ implements IPSSysEAIDataTypeItemService {
     @Override
     protected List<PSSysEAIDataTypeItem> onListAll() throws Exception {
         ArrayList<PSSysEAIDataTypeItem> list = new ArrayList<PSSysEAIDataTypeItem>();
-        List pssyseaidatatypes = PSModelServiceUtil.getInstance().getPSSysEAIDataTypeService().listAll();
+        List<PSSysEAIDataType> pssyseaidatatypes = PSModelServiceUtil.getInstance().getPSSysEAIDataTypeService().listAll();
         if (pssyseaidatatypes != null) {
             for (PSSysEAIDataType parent : pssyseaidatatypes) {
                 List<PSSysEAIDataTypeItem> items = this.listByPSSysEAIDataType(parent);

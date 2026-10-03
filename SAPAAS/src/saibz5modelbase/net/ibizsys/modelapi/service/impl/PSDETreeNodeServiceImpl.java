@@ -93,7 +93,7 @@ implements IPSDETreeNodeService {
     @Override
     protected List<PSDETreeNode> onListAll() throws Exception {
         ArrayList<PSDETreeNode> list = new ArrayList<PSDETreeNode>();
-        List psdetreeviews = PSModelServiceUtil.getInstance().getPSDETreeViewService().listAll();
+        List<PSDETreeView> psdetreeviews = PSModelServiceUtil.getInstance().getPSDETreeViewService().listAll();
         if (psdetreeviews != null) {
             for (PSDETreeView parent : psdetreeviews) {
                 List<PSDETreeNode> items = this.listByPSDETreeView(parent);
@@ -819,18 +819,19 @@ implements IPSDETreeNodeService {
         } else {
             dto.setUpdatePSDEOPPrivName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDETreeNodeColService().listByPSDETreeNode(t);
-        if (list != null && list.size() > 0) {
+        List<PSDETreeNodeCol> pSDETreeNodeColList = PSModelServiceUtil.getInstance().getPSDETreeNodeColService().listByPSDETreeNode(t);
+        if (pSDETreeNodeColList != null && pSDETreeNodeColList.size() > 0) {
             ArrayList<PSDETreeNodeColDTO> psdetreenodecols = new ArrayList<PSDETreeNodeColDTO>();
-            for (PSDETreeNodeCol pSDETreeNodeCol : list) {
+            for (PSDETreeNodeCol pSDETreeNodeCol : pSDETreeNodeColList) {
                 dstItem = (PSDETreeNodeColDTO)PSModelServiceUtil.getInstance().getPSDETreeNodeColService().toDTO(pSDETreeNodeCol);
                 psdetreenodecols.add((PSDETreeNodeColDTO)dstItem);
             }
             dto.setPsdetreenodecols(psdetreenodecols);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDETreeNodeRVService().listByPSDETreeNode(t)) != null && list.size() > 0) {
+        List<PSDETreeNodeRV> pSDETreeNodeRVList = PSModelServiceUtil.getInstance().getPSDETreeNodeRVService().listByPSDETreeNode(t);
+        if (pSDETreeNodeRVList != null && pSDETreeNodeRVList.size() > 0) {
             ArrayList<PSDETreeNodeRVDTO> psdetreenodervs = new ArrayList<PSDETreeNodeRVDTO>();
-            for (PSDETreeNodeRV pSDETreeNodeRV : list) {
+            for (PSDETreeNodeRV pSDETreeNodeRV : pSDETreeNodeRVList) {
                 dstItem = (PSDETreeNodeRVDTO)PSModelServiceUtil.getInstance().getPSDETreeNodeRVService().toDTO(pSDETreeNodeRV);
                 psdetreenodervs.add((PSDETreeNodeRVDTO)dstItem);
             }

@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.datamodel;
 
 import net.ibizsys.paas.data.impl.DataItemParamImpl;
 
-public class DataItemParamModel
-extends DataItemParamImpl {
-}
+/**
+ * 数据项参数
+ * 
+ * @author lionlau
+ *
+ */
+public class DataItemParamModel extends DataItemParamImpl {
 
+}

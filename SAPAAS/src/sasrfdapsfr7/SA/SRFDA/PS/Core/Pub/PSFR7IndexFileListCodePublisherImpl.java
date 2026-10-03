@@ -26,7 +26,7 @@ extends PSPFViewCodePublisherImpl {
         requireAppViewMap.put(this.iPSAppView.getId(), this.iPSAppView);
         while (requireViewList.size() > 0) {
             IPSAppView iPSAppView = (IPSAppView)requireViewList.remove(0);
-            ArrayList psAppViewList = new ArrayList();
+            ArrayList<IPSAppView> psAppViewList = new ArrayList();
             iPSAppView.fillRelatedPSAppViews(psAppViewList);
             for (IPSAppView iPSAppView2 : psAppViewList) {
                 if (requireAppViewMap.containsKey(iPSAppView2.getId())) continue;

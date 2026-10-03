@@ -46,12 +46,11 @@ extends XMLCollectionExConfig<DEDCRouteConnectionConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = DEDCRouteConnectionsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((DEDCRouteConnectionConfig)childNode))) {
-                this.add((Object)((DEDCRouteConnectionConfig)childNode));
+            if (this.OnChildNodeLoaded((DEDCRouteConnectionConfig)childNode)) {
+                this.add((DEDCRouteConnectionConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

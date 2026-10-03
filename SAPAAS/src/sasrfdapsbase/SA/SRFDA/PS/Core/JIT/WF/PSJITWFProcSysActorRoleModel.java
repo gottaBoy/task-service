@@ -41,11 +41,10 @@ extends WFProcSysActorRoleModel {
             WFUserService wfUserService = (WFUserService)ServiceGlobal.getService(WFUserService.class, (SessionFactory)((IPSJITIWFProcessModel)this.getWFInteractiveProcessModel()).getPSJITWFVersionModel().getPSJITWFModel().getPSJITSystemModel().getSessionFactory());
             WFUser wfUser = new WFUser();
             wfUser.setWFUserId(strWFUserId);
-            wfUserService.get((IEntity)wfUser);
+            wfUserService.get(wfUser);
             wfRoleUserList.add(WFRoleUser.fromWFUser((WFUser)wfUser, null));
             return wfRoleUserList.iterator();
         }
         return null;
     }
 }
-

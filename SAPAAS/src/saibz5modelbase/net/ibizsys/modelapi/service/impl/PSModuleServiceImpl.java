@@ -156,10 +156,10 @@ implements IPSModuleService {
 
     @Override
     protected List<PSModule> onListAll() throws Exception {
-        List pssystems;
-        List pssysrefs;
+        List<PSSystem> pssystems;
+        List<PSSysRef> pssysrefs;
         ArrayList<PSModule> list = new ArrayList<PSModule>();
-        List pssysmodelgroups = PSModelServiceUtil.getInstance().getPSSysModelGroupService().listAll();
+        List<PSSysModelGroup> pssysmodelgroups = PSModelServiceUtil.getInstance().getPSSysModelGroupService().listAll();
         if (pssysmodelgroups != null) {
             for (PSSysModelGroup parent : pssysmodelgroups) {
                 List<PSModule> items = this.listByPSSysModelGroup(parent);

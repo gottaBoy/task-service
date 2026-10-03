@@ -59,11 +59,10 @@ extends PSDELogicNodeServiceBase {
         ArrayList<PSDELogicNode> arrayList = null;
         arrayList = pSDELogic.getPSDELogicId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSDELogic(pSDELogic) : this.selectByPSDELogic(pSDELogic);
         HashMap<String, PSDELogicNode> hashMap = new HashMap<String, PSDELogicNode>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSDELogicNode pSDELogicNode2 = object.next();
+        for (PSDELogicNode pSDELogicNode2 : arrayList) {
             hashMap.put(pSDELogicNode2.getCodeName().toLowerCase(), pSDELogicNode2);
         }
+        Object object;
         while (true) {
             if (!hashMap.containsKey(object = StringHelper.format((String)"%1$s%2$s", (Object)string2, (Object)(n == 0 ? "" : Integer.valueOf(n))))) break;
             ++n;
@@ -77,7 +76,7 @@ extends PSDELogicNodeServiceBase {
             pSDELogicNode.setPSDELogicNodeId(pSDELogicNode.getPSDELogicId());
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)pSDELogicNode, bl);
+        return super.onFillEntityKeyValue(pSDELogicNode, bl);
     }
 
     @Override
@@ -94,12 +93,12 @@ extends PSDELogicNodeServiceBase {
         PSDELogicParamService pSDELogicParamService = (PSDELogicParamService)ServiceGlobal.getService(PSDELogicParamService.class, (SessionFactory)this.getSessionFactory());
         String string = xmlNode.getAttribute("SRCPSDLPARAMNAME", "");
         if (!StringHelper.isNullOrEmpty((String)string)) {
-            object = new PSDELogicParam();
-            ((PSDELogicParamBase)object).setPSDELogicParamName(string);
-            ((PSDELogicParamBase)object).setPSDELogicId(pSDELogicNode.getPSDELogicId());
-            pSDELogicParamService.selectTemp(object, false);
-            pSDELogicNode.setSrcPSDLParamId(((PSDELogicParamBase)object).getPSDELogicParamId());
-            xmlNode.setAttribute("SRCPSDLPARAMID", ((PSDELogicParamBase)object).getPSDELogicParamId());
+            PSDELogicParam sourceParam = new PSDELogicParam();
+            sourceParam.setPSDELogicParamName(string);
+            sourceParam.setPSDELogicId(pSDELogicNode.getPSDELogicId());
+            pSDELogicParamService.selectTemp(sourceParam, false);
+            pSDELogicNode.setSrcPSDLParamId(sourceParam.getPSDELogicParamId());
+            xmlNode.setAttribute("SRCPSDLPARAMID", sourceParam.getPSDELogicParamId());
         }
         if (!StringHelper.isNullOrEmpty((String)(object = xmlNode.getAttribute("DSTPSDLPARAMNAME", "")))) {
             PSDELogicParam pSDELogicParam = new PSDELogicParam();
@@ -112,4 +111,3 @@ extends PSDELogicNodeServiceBase {
         super.importCurXmlModel(pSDELogicNode, xmlNode);
     }
 }
-

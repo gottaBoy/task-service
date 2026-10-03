@@ -1,25 +1,40 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  MuleEventContext
- */
 package SA.SRFDA.EAI.Endpoint;
 
-import SA.SRFDA.EAI.Endpoint.BaseProcessEndpoint;
+import SA.SRFramework.DataEx.BaseDataEntity;
+import java.util.HashMap;
+import java.util.Map;
+import org.mule.api.MuleEventContext;
+import org.mule.api.lifecycle.Callable;
 
-public class DEPrepareProcess
-extends BaseProcessEndpoint {
+public class DEPrepareProcess extends BaseProcessEndpoint implements Callable {
     protected String strDEId;
     protected boolean bReturnPayloadAsMap;
     protected boolean bCloneDataEntity;
 
-    public DEPrepareProcess() {
-        throw new Error("Unresolved compilation problems: \n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tCallable cannot be resolved to a type\n\tMuleEventContext cannot be resolved to a type\n");
+    public void setDEId(String deId) {
+        this.strDEId = deId;
     }
 
-    public Object onCall(MuleEventContext muleEventContext) throws Exception {
-        throw new Error("Unresolved compilation problem: \n\tMuleEventContext cannot be resolved to a type\n");
+    public void setReturnPayloadAsMap(boolean returnAsMap) {
+        this.bReturnPayloadAsMap = returnAsMap;
+    }
+
+    public void setCloneDataEntity(boolean clone) {
+        this.bCloneDataEntity = clone;
+    }
+
+    public Object onCall(MuleEventContext event) throws Exception {
+        BaseDataEntity entity = GetDataEntity(EndpointRuntime.payload(event));
+        if (bCloneDataEntity) {
+            BaseDataEntity copy = new BaseDataEntity();
+            entity.CopyTo(copy, true);
+            entity = copy;
+        }
+        if (bReturnPayloadAsMap) {
+            Map result = new HashMap();
+            entity.FillMap(result);
+            return result;
+        }
+        return entity;
     }
 }
-

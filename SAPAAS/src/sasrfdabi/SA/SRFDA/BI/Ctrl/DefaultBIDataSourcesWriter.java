@@ -28,7 +28,7 @@ public class DefaultBIDataSourcesWriter {
         try {
             IDEHelper iDEHelper = iDAGlobalHelper.getDAModelStorage().FindDEHelper("BI0000");
             String strSQL = "SELECT * from V_SRFBICATALOG where ISVALID IS NULL OR ISVALID = 1";
-            Vector cataLogs = new Vector();
+            Vector<BaseDataEntity> cataLogs = new Vector<BaseDataEntity>();
             callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)iDAGlobalHelper, (String)iDEHelper.GetDBStorage(), (String)strSQL, null, cataLogs, (String)"");
             if (callResult.IsError()) {
                 return callResult;
@@ -81,4 +81,3 @@ public class DefaultBIDataSourcesWriter {
         return callResult;
     }
 }
-

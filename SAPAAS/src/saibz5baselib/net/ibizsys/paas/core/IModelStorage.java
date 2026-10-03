@@ -1,22 +1,53 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IApplication;
-import net.ibizsys.paas.core.IApplicationRuntime;
-import net.ibizsys.paas.core.ISystem;
-import net.ibizsys.paas.core.ISystemRuntime;
-
+/**
+ * 模型存储对象接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IModelStorage {
-    public ISystem getSystem(String var1) throws Exception;
+	/**
+	 * 获取系统
+	 * 
+	 * @param strSystemId
+	 * @return
+	 * @throws Exception
+	 */
+	ISystem getSystem(String strSystemId) throws Exception;
 
-    public IApplication getApplication(String var1) throws Exception;
+	/**
+	 * 获取系统应用
+	 * 
+	 * @param strApplicationId
+	 * @return
+	 * @throws Exception
+	 */
+	IApplication getApplication(String strApplicationId) throws Exception;
 
-    public ISystemRuntime getSystemRuntime(String var1) throws Exception;
+	/**
+	 * 获取系统运行
+	 * 
+	 * @param strSystemId
+	 * @return
+	 * @throws Exception
+	 */
+	ISystemRuntime getSystemRuntime(String strSystemId) throws Exception;
 
-    public IApplicationRuntime getApplicationRuntime(String var1) throws Exception;
+	/**
+	 * 获取系统运行
+	 * 
+	 * @param strSystemId
+	 * @return
+	 * @throws Exception
+	 */
+	IApplicationRuntime getApplicationRuntime(String strApplicationId) throws Exception;
 
-    public String getSystemSetting(String var1, String var2);
+	/**
+	 * 获取系统设置
+	 * 
+	 * @param strKey
+	 * @return
+	 */
+	String getSystemSetting(String strKey, String strDefault);
 }
-

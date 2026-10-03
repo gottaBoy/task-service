@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.EditViewControllerBase;
-
-public abstract class EditView4ControllerBase
-extends EditViewControllerBase {
+/**
+ * 编辑视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class EditView4ControllerBase extends EditViewControllerBase {
+	public EditView4ControllerBase() throws Exception {
+		super();
+	}
 }
-

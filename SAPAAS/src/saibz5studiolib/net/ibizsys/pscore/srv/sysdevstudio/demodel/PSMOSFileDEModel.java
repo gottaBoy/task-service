@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdevstudio.demodel.PSMOSFileDEModelBase;
 
 public class PSMOSFileDEModel
 extends PSMOSFileDEModelBase {
+
+    public PSMOSFileDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

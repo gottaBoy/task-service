@@ -1055,7 +1055,7 @@ implements Serializable {
                 PSDCSFPkg pSDCSFPkg = new PSDCSFPkg();
                 pSDCSFPkg.setPSDCSFPkgId(this.getPSDCSFPkgId());
                 PSDCSFPkgService pSDCSFPkgService = (PSDCSFPkgService)ServiceGlobal.getService(PSDCSFPkgService.class, (SessionFactory)this.getSessionFactory());
-                pSDCSFPkgService.autoGet((IEntity)pSDCSFPkg);
+                pSDCSFPkgService.autoGet(pSDCSFPkg);
                 this.psdcsfpkg = pSDCSFPkg;
             }
             return this.psdcsfpkg;

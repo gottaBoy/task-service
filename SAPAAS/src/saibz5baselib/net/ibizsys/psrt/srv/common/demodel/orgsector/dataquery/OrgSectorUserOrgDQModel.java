@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.orgsector.dataquery;
 
-import net.ibizsys.psrt.srv.common.demodel.orgsector.dataquery.OrgSectorUserOrgDQModelBase;
+/**
+ *  实体数据查询 [用户组织部门]模型
+ */
+public class OrgSectorUserOrgDQModel extends OrgSectorUserOrgDQModelBase {
 
-public class OrgSectorUserOrgDQModel
-extends OrgSectorUserOrgDQModelBase {
+    public OrgSectorUserOrgDQModel() {
+        super();
+    }
+
 }
-

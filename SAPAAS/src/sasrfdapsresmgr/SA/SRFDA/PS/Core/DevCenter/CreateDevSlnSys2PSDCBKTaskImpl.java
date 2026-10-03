@@ -16,7 +16,6 @@ package SA.SRFDA.PS.Core.DevCenter;
 
 import SA.SRFDA.PS.Core.DevCenter.DevSlnSysPSDCBKTaskImplBase;
 import SA.SRFramework.Utility.StringHelper;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSlnSys;
@@ -33,20 +32,20 @@ extends DevSlnSysPSDCBKTaskImplBase {
         PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
         psDevSlnSys.setPSDevSlnSysId(this.getTaskParam());
-        psDevSlnSysService.get((IEntity)psDevSlnSys);
+        psDevSlnSysService.get(psDevSlnSys);
         String strOwnerId = StringHelper.Format((String)"%1$s|%2$s", (Object)psDevSlnSysService.getDEModel().getName(), (Object)psDevSlnSys.getPSDevSlnSysId());
         try {
             PSDevSlnSys psDevSlnSys2 = new PSDevSlnSys();
             psDevSlnSys2.setPSDevSlnSysId(this.getTaskParam());
             psDevSlnSysService.bindSysModel(psDevSlnSys2);
             psDevSlnSys.setPSDevSlnSysId(this.getTaskParam());
-            psDevSlnSysService.get((IEntity)psDevSlnSys);
+            psDevSlnSysService.get(psDevSlnSys);
             if (StringHelper.Compare((String)psDevSlnSys.getActionOwner(), (String)strOwnerId, (boolean)false) == 0) {
                 psDevSlnSys2 = new PSDevSlnSys();
                 psDevSlnSys2.setPSDevSlnSysId(this.getTaskParam());
                 psDevSlnSys2.setActionOwner(null);
                 psDevSlnSys2.setCurAction("NONE");
-                psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, false);
+                psDevSlnSysService.sysUpdate(psDevSlnSys2, false);
             }
             return "\u7ed1\u5b9a\u6210\u529f";
         }
@@ -54,14 +53,14 @@ extends DevSlnSysPSDCBKTaskImplBase {
             log.error((Object)StringHelper.Format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u7ed1\u5b9a\u6a21\u578b\u53d1\u751f\u5f02\u5e38\uff0c%2$s", (Object)this.getTaskParam(), (Object)ex.getMessage()), (Throwable)ex);
             try {
                 psDevSlnSys.setPSDevSlnSysId(this.getTaskParam());
-                psDevSlnSysService.get((IEntity)psDevSlnSys);
+                psDevSlnSysService.get(psDevSlnSys);
                 if (StringHelper.Compare((String)psDevSlnSys.getActionOwner(), (String)strOwnerId, (boolean)false) == 0) {
                     PSDevSlnSys psDevSlnSys2 = new PSDevSlnSys();
                     psDevSlnSys2.setPSDevSlnSysId(this.getTaskParam());
                     psDevSlnSys2.setActionOwner(null);
                     psDevSlnSys2.setCurAction("NONE");
                     psDevSlnSys2.setDevSysState(Integer.valueOf(42));
-                    psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, false);
+                    psDevSlnSysService.sysUpdate(psDevSlnSys2, false);
                 }
             }
             catch (Exception e) {
@@ -71,4 +70,3 @@ extends DevSlnSysPSDCBKTaskImplBase {
         }
     }
 }
-

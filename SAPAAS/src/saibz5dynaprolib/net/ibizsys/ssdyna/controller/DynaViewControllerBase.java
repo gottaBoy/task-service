@@ -1,15 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.ViewControllerBase;
+/**
+ * 动态控制器基类
+ * @author Administrator
+ *
+ */
+public abstract class DynaViewControllerBase extends ViewControllerBase {
 
-public abstract class DynaViewControllerBase
-extends ViewControllerBase {
-    @Override
-    public boolean isEnableDynaView() {
-        return true;
-    }
+	public DynaViewControllerBase() throws Exception {
+		super();
+	}
+
+	
+	@Override
+	public boolean isEnableDynaView() {
+		return true;
+	}
 }
-

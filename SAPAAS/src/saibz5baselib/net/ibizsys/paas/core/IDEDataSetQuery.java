@@ -1,9 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
+/**
+ * 实体数据集合查询接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IDEDataSetQuery {
-    public String getDEDataQueryId();
-}
+	/**
+	 * 获取数据查询标识
+	 * 
+	 * @return
+	 */
+	String getDEDataQueryId();
 
+}

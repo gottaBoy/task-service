@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.dynasys.demodel;
 
-import net.ibizsys.psrt.srv.dynasys.demodel.DSDynaCodeListDEModelBase;
 
-public class DSDynaCodeListDEModel
-extends DSDynaCodeListDEModelBase {
+/**
+ * 实体[DSDYNACODELIST]模型对象
+ */
+public class DSDynaCodeListDEModel extends DSDynaCodeListDEModelBase {
+
     private static final long serialVersionUID = -1L;
-}
 
+    public DSDynaCodeListDEModel() throws Exception {
+        super();
+    }
+
+}

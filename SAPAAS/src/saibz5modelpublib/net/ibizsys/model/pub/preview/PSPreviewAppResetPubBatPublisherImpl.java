@@ -1,20 +1,23 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.pub.preview;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.preview.PSPreviewAppCodePublisherImpl;
 
-public class PSPreviewAppResetPubBatPublisherImpl
-extends PSPreviewAppCodePublisherImpl {
-    public PSPreviewAppResetPubBatPublisherImpl() {
-        throw new Error("Unresolved compilation problem: \n\tThe hierarchy of the type PSPreviewAppResetPubBatPublisherImpl is inconsistent\n");
-    }
-
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problem: \n");
-    }
+/**
+ * 重置发布应用
+ * 
+ * @author lionlau
+ *
+ */
+public class PSPreviewAppResetPubBatPublisherImpl extends PSPreviewAppCodePublisherImpl
+{
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+	
+	}	
 }
-

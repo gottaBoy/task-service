@@ -218,7 +218,7 @@ extends SRFDAPageEx {
         for (WebPart webPart : this.webParts) {
             if (this.webPartMap.containsKey(webPart.getWEBPARTID())) continue;
             String strType = webPart.getWEBPARTTYPE();
-            SRFExChart webPartControl = null;
+            SRFExControl webPartControl = null;
             if (StringHelper.Compare((String)strType, (String)"CHART", (boolean)true) == 0) {
                 webPartControl = this.GetChartWebPart(webPart);
                 if (webPartControl == null) {
@@ -441,4 +441,3 @@ extends SRFDAPageEx {
         return true;
     }
 }
-

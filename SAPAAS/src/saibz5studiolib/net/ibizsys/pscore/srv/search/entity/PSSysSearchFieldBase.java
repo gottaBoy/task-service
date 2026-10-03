@@ -2525,7 +2525,7 @@ implements Serializable {
                 PSSysSearchDoc pSSysSearchDoc = new PSSysSearchDoc();
                 pSSysSearchDoc.setPSSysSearchDocId(this.getPSSysSearchDocId());
                 PSSysSearchDocService pSSysSearchDocService = (PSSysSearchDocService)ServiceGlobal.getService(PSSysSearchDocService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSearchDocService.autoGet((IEntity)pSSysSearchDoc);
+                pSSysSearchDocService.autoGet(pSSysSearchDoc);
                 this.pssyssearchdoc = pSSysSearchDoc;
             }
             return this.pssyssearchdoc;

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEFieldDEModelBase;
 
 public class PSDEFieldDEModel
 extends PSDEFieldDEModelBase {
+
+    public PSDEFieldDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

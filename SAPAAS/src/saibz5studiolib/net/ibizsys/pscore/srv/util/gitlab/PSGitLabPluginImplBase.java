@@ -1,33 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.util.StringBuilderEx
- *  net.ibizsys.paas.util.StringHelper
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.springframework.http.HttpEntity
- *  org.springframework.http.HttpHeaders
- *  org.springframework.http.HttpMethod
- *  org.springframework.http.HttpStatus
- *  org.springframework.http.MediaType
- *  org.springframework.http.ResponseEntity
- *  org.springframework.util.LinkedMultiValueMap
- *  org.springframework.util.MultiValueMap
- *  org.springframework.util.StringUtils
- *  org.springframework.web.client.HttpClientErrorException
- *  org.springframework.web.client.RestTemplate
- *  org.springframework.web.util.UriComponentsBuilder
- */
 package net.ibizsys.pscore.srv.util.gitlab;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.util.Map;
+import java.util.Map.Entry;
 import net.ibizsys.paas.util.StringBuilderEx;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.paasmgr.entity.PSSVNServer;
-import net.ibizsys.pscore.srv.util.gitlab.IPSGitLabPlugin;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.http.HttpEntity;
@@ -37,198 +16,219 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-public abstract class PSGitLabPluginImplBase
-implements IPSGitLabPlugin {
-    private static final Log log = LogFactory.getLog(PSGitLabPluginImplBase.class);
-    private RestTemplate restTemplate = new RestTemplate();
+public abstract class PSGitLabPluginImplBase implements IPSGitLabPlugin {
+   private static final Log log = LogFactory.getLog(PSGitLabPluginImplBase.class);
+   private RestTemplate restTemplate = new RestTemplate();
 
-    protected String executeGet(PSSVNServer pSSVNServer, String string, Map<String, Object> map, HttpHeaders httpHeaders) throws Exception {
-        return this.executeGet(pSSVNServer, string, map, null, httpHeaders);
-    }
+   protected String executeGet(PSSVNServer var1, String var2, Map<String, Object> var3, HttpHeaders var4) throws Exception {
+      return this.executeGet(var1, var2, var3, null, var4);
+   }
 
-    protected String executePost(PSSVNServer pSSVNServer, String string, Map<String, Object> map, HttpHeaders httpHeaders) throws Exception {
-        return this.executePost(pSSVNServer, string, map, null, httpHeaders);
-    }
+   protected String executePost(PSSVNServer var1, String var2, Map<String, Object> var3, HttpHeaders var4) throws Exception {
+      return this.executePost(var1, var2, var3, null, var4);
+   }
 
-    /*
-     * WARNING - void declaration
-     */
-    protected String executeGet(PSSVNServer pSSVNServer, String string, Map<String, Object> map, String string2, HttpHeaders httpHeaders) throws Exception {
-        if (httpHeaders == null) {
-            httpHeaders = new HttpHeaders();
-        }
-        if (!httpHeaders.containsKey((Object)"PRIVATE-TOKEN")) {
-            httpHeaders.add("PRIVATE-TOKEN", pSSVNServer.getGitToken());
-        }
-        if (StringUtils.hasLength((String)string2) && !httpHeaders.containsKey((Object)"SUDO")) {
-            httpHeaders.add("SUDO", string2);
-        }
-        HttpEntity httpEntity = new HttpEntity(null, (MultiValueMap)httpHeaders);
-        String string3 = String.format("%1$s/api/v4/%2$s", pSSVNServer.getGitPath(), string);
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl((String)string3);
-        if (map != null) {
-            for (Map.Entry<String, Object> object : map.entrySet()) {
-                uriComponentsBuilder.queryParam(object.getKey(), new Object[]{object.getValue()});
-            }
-        }
-        try {
-            ResponseEntity responseEntity = this.restTemplate.exchange(new URI(uriComponentsBuilder.build().toString()), HttpMethod.GET, httpEntity, String.class);
-            if (responseEntity.getStatusCode() == HttpStatus.OK || responseEntity.getStatusCode() == HttpStatus.FOUND) {
-                void var10_14;
-                String string4 = (String)responseEntity.getBody();
-                if (!StringHelper.isNullOrEmpty((String)string4)) {
-                    String string5 = new String(string4.getBytes("ISO-8859-1"), "utf8");
-                }
-                return var10_14;
-            }
-            throw new Exception(StringHelper.format((String)"\u8bf7\u6c42\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)responseEntity.getStatusCode().getReasonPhrase()));
-        }
-        catch (Exception exception) {
-            this.outputException(exception, string3, HttpMethod.GET, map);
-            throw new Exception(StringHelper.format((String)"\u8bf7\u6c42\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-    }
+   protected String executeGet(PSSVNServer var1, String var2, Map<String, Object> var3, String var4, HttpHeaders var5) throws Exception {
+      if (var5 == null) {
+         var5 = new HttpHeaders();
+      }
 
-    protected String executePost(PSSVNServer pSSVNServer, String string, Map<String, Object> map, String string2, HttpHeaders httpHeaders) throws Exception {
-        if (httpHeaders == null) {
-            httpHeaders = new HttpHeaders();
-        }
-        if (!httpHeaders.containsKey((Object)"PRIVATE-TOKEN")) {
-            httpHeaders.add("PRIVATE-TOKEN", pSSVNServer.getGitToken());
-        }
-        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        if (StringUtils.hasLength((String)string2) && !httpHeaders.containsKey((Object)"SUDO")) {
-            httpHeaders.add("SUDO", string2);
-        }
-        String string3 = String.format("%1$s/api/v4/%2$s", pSSVNServer.getGitPath(), string);
-        LinkedMultiValueMap linkedMultiValueMap = new LinkedMultiValueMap();
-        if (map != null) {
-            for (Map.Entry entry : map.entrySet()) {
-                linkedMultiValueMap.add(entry.getKey(), entry.getValue());
-            }
-        }
-        HttpEntity httpEntity = new HttpEntity((Object)linkedMultiValueMap, (MultiValueMap)httpHeaders);
-        try {
-            ResponseEntity exception = this.restTemplate.exchange(new URI(string3), HttpMethod.POST, httpEntity, String.class);
-            if (exception.getStatusCode() == HttpStatus.CREATED) {
-                String string4 = (String)exception.getBody();
-                if (!StringHelper.isNullOrEmpty((String)string4)) {
-                    string4 = new String(string4.getBytes("ISO-8859-1"), "utf8");
-                }
-                return string4;
-            }
-            throw new Exception(StringHelper.format((String)"\u8bf7\u6c42\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getStatusCode().getReasonPhrase()));
-        }
-        catch (Exception exception) {
-            this.outputException(exception, string3, HttpMethod.POST, map);
-            throw new Exception(StringHelper.format((String)"\u8bf7\u6c42\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-    }
+      if (!var5.containsKey("PRIVATE-TOKEN")) {
+         var5.add("PRIVATE-TOKEN", var1.getGitToken());
+      }
 
-    protected String executePut(PSSVNServer pSSVNServer, String string, Map<String, Object> map, String string2, HttpHeaders httpHeaders) throws Exception {
-        if (httpHeaders == null) {
-            httpHeaders = new HttpHeaders();
-        }
-        if (!httpHeaders.containsKey((Object)"PRIVATE-TOKEN")) {
-            httpHeaders.add("PRIVATE-TOKEN", pSSVNServer.getGitToken());
-        }
-        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        if (StringUtils.hasLength((String)string2) && !httpHeaders.containsKey((Object)"SUDO")) {
-            httpHeaders.add("SUDO", string2);
-        }
-        String string3 = String.format("%1$s/api/v4/%2$s", pSSVNServer.getGitPath(), string);
-        LinkedMultiValueMap linkedMultiValueMap = new LinkedMultiValueMap();
-        if (map != null) {
-            for (Map.Entry entry : map.entrySet()) {
-                linkedMultiValueMap.add(entry.getKey(), entry.getValue());
-            }
-        }
-        HttpEntity httpEntity = new HttpEntity((Object)linkedMultiValueMap, (MultiValueMap)httpHeaders);
-        try {
-            ResponseEntity exception = this.restTemplate.exchange(new URI(string3), HttpMethod.PUT, httpEntity, String.class);
-            if (exception.getStatusCode() == HttpStatus.OK) {
-                String string4 = (String)exception.getBody();
-                if (!StringHelper.isNullOrEmpty((String)string4)) {
-                    string4 = new String(string4.getBytes("ISO-8859-1"), "utf8");
-                }
-                return string4;
-            }
-            throw new Exception(StringHelper.format((String)"\u8bf7\u6c42\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getStatusCode().getReasonPhrase()));
-        }
-        catch (Exception exception) {
-            this.outputException(exception, string3, HttpMethod.PUT, map);
-            throw new Exception(StringHelper.format((String)"\u8bf7\u6c42\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-    }
+      if (StringUtils.hasLength(var4) && !var5.containsKey("SUDO")) {
+         var5.add("SUDO", var4);
+      }
 
-    protected String executeDelete(PSSVNServer pSSVNServer, String string, Map<String, Object> map, String string2, HttpHeaders httpHeaders) throws Exception {
-        if (httpHeaders == null) {
-            httpHeaders = new HttpHeaders();
-        }
-        if (!httpHeaders.containsKey((Object)"PRIVATE-TOKEN")) {
-            httpHeaders.add("PRIVATE-TOKEN", pSSVNServer.getGitToken());
-        }
-        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        if (StringUtils.hasLength((String)string2) && !httpHeaders.containsKey((Object)"SUDO")) {
-            httpHeaders.add("SUDO", string2);
-        }
-        String string3 = String.format("%1$s/api/v4/%2$s", pSSVNServer.getGitPath(), string);
-        LinkedMultiValueMap linkedMultiValueMap = new LinkedMultiValueMap();
-        if (map != null) {
-            for (Map.Entry entry : map.entrySet()) {
-                linkedMultiValueMap.add(entry.getKey(), entry.getValue());
-            }
-        }
-        HttpEntity httpEntity = new HttpEntity((Object)linkedMultiValueMap, (MultiValueMap)httpHeaders);
-        try {
-            ResponseEntity exception = this.restTemplate.exchange(new URI(string3), HttpMethod.DELETE, httpEntity, String.class);
-            if (exception.getStatusCode() == HttpStatus.OK || exception.getStatusCode() == HttpStatus.NO_CONTENT) {
-                String string4 = (String)exception.getBody();
-                if (!StringHelper.isNullOrEmpty((String)string4)) {
-                    string4 = new String(string4.getBytes("ISO-8859-1"), "utf8");
-                }
-                return string4;
-            }
-            throw new Exception(StringHelper.format((String)"\u8bf7\u6c42\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getStatusCode().getReasonPhrase()));
-        }
-        catch (Exception exception) {
-            this.outputException(exception, string3, HttpMethod.DELETE, map);
-            throw new Exception(StringHelper.format((String)"\u8bf7\u6c42\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-    }
+      HttpEntity var6 = new HttpEntity(null, var5);
+      String var7 = String.format("%1$s/api/v4/%2$s", var1.getGitPath(), var2);
+      UriComponentsBuilder var8 = UriComponentsBuilder.fromHttpUrl(var7);
+      if (var3 != null) {
+         for (Entry var10 : var3.entrySet()) {
+            var8.queryParam((String)var10.getKey(), var10.getValue());
+         }
+      }
 
-    protected void outputException(Exception exception, String string, HttpMethod httpMethod, Map<String, Object> map) {
-        HttpClientErrorException httpClientErrorException;
-        byte[] byArray;
-        StringBuilderEx stringBuilderEx = new StringBuilderEx();
-        stringBuilderEx.append("\u8bf7\u6c42[%1$s][%2$s]", (Object)string, (Object)httpMethod);
-        if (map != null) {
-            stringBuilderEx.append("\uff0c\u53c2\u6570{", (Object)string, (Object)httpMethod);
-            for (Map.Entry<String, Object> object2 : map.entrySet()) {
-                stringBuilderEx.append("%1$s:%2$s,", (Object)object2.getKey(), object2.getValue());
+      try {
+         ResponseEntity var12 = this.restTemplate.exchange(new URI(var8.build().toString()), HttpMethod.GET, var6, String.class);
+         if (var12.getStatusCode() != HttpStatus.OK && var12.getStatusCode() != HttpStatus.FOUND) {
+            throw new Exception(StringHelper.format("请求发生异常，%1$s", var12.getStatusCode().getReasonPhrase()));
+         }
+
+         String var13 = (String)var12.getBody();
+         if (!StringHelper.isNullOrEmpty(var13)) {
+            var13 = new String(var13.getBytes("ISO-8859-1"), "utf8");
+         }
+
+         return var13;
+      } catch (Exception var11) {
+         this.outputException(var11, var7, HttpMethod.GET, var3);
+         throw new Exception(StringHelper.format("请求发生异常，%1$s", var11.getMessage()), var11);
+      }
+   }
+
+   protected String executePost(PSSVNServer var1, String var2, Map<String, Object> var3, String var4, HttpHeaders var5) throws Exception {
+      if (var5 == null) {
+         var5 = new HttpHeaders();
+      }
+
+      if (!var5.containsKey("PRIVATE-TOKEN")) {
+         var5.add("PRIVATE-TOKEN", var1.getGitToken());
+      }
+
+      var5.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+      if (StringUtils.hasLength(var4) && !var5.containsKey("SUDO")) {
+         var5.add("SUDO", var4);
+      }
+
+      String var6 = String.format("%1$s/api/v4/%2$s", var1.getGitPath(), var2);
+      LinkedMultiValueMap var7 = new LinkedMultiValueMap();
+      if (var3 != null) {
+         for (Entry var9 : var3.entrySet()) {
+            var7.add(var9.getKey(), var9.getValue());
+         }
+      }
+
+      HttpEntity var12 = new HttpEntity<>(var7, var5);
+
+      try {
+         ResponseEntity var13 = this.restTemplate.exchange(new URI(var6), HttpMethod.POST, var12, String.class);
+         if (var13.getStatusCode() == HttpStatus.CREATED) {
+            String var10 = (String)var13.getBody();
+            if (!StringHelper.isNullOrEmpty(var10)) {
+               var10 = new String(var10.getBytes("ISO-8859-1"), "utf8");
             }
-            stringBuilderEx.append("}", (Object)string, (Object)httpMethod);
-        }
-        Object object3 = null;
-        if (exception instanceof HttpClientErrorException && (byArray = (httpClientErrorException = (HttpClientErrorException)exception).getResponseBodyAsByteArray()) != null) {
+
+            return var10;
+         } else {
+            throw new Exception(StringHelper.format("请求发生异常，%1$s", var13.getStatusCode().getReasonPhrase()));
+         }
+      } catch (Exception var11) {
+         this.outputException(var11, var6, HttpMethod.POST, var3);
+         throw new Exception(StringHelper.format("请求发生异常，%1$s", var11.getMessage()), var11);
+      }
+   }
+
+   protected String executePut(PSSVNServer var1, String var2, Map<String, Object> var3, String var4, HttpHeaders var5) throws Exception {
+      if (var5 == null) {
+         var5 = new HttpHeaders();
+      }
+
+      if (!var5.containsKey("PRIVATE-TOKEN")) {
+         var5.add("PRIVATE-TOKEN", var1.getGitToken());
+      }
+
+      var5.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+      if (StringUtils.hasLength(var4) && !var5.containsKey("SUDO")) {
+         var5.add("SUDO", var4);
+      }
+
+      String var6 = String.format("%1$s/api/v4/%2$s", var1.getGitPath(), var2);
+      LinkedMultiValueMap var7 = new LinkedMultiValueMap();
+      if (var3 != null) {
+         for (Entry var9 : var3.entrySet()) {
+            var7.add(var9.getKey(), var9.getValue());
+         }
+      }
+
+      HttpEntity var12 = new HttpEntity<>(var7, var5);
+
+      try {
+         ResponseEntity var13 = this.restTemplate.exchange(new URI(var6), HttpMethod.PUT, var12, String.class);
+         if (var13.getStatusCode() == HttpStatus.OK) {
+            String var10 = (String)var13.getBody();
+            if (!StringHelper.isNullOrEmpty(var10)) {
+               var10 = new String(var10.getBytes("ISO-8859-1"), "utf8");
+            }
+
+            return var10;
+         } else {
+            throw new Exception(StringHelper.format("请求发生异常，%1$s", var13.getStatusCode().getReasonPhrase()));
+         }
+      } catch (Exception var11) {
+         this.outputException(var11, var6, HttpMethod.PUT, var3);
+         throw new Exception(StringHelper.format("请求发生异常，%1$s", var11.getMessage()), var11);
+      }
+   }
+
+   protected String executeDelete(PSSVNServer var1, String var2, Map<String, Object> var3, String var4, HttpHeaders var5) throws Exception {
+      if (var5 == null) {
+         var5 = new HttpHeaders();
+      }
+
+      if (!var5.containsKey("PRIVATE-TOKEN")) {
+         var5.add("PRIVATE-TOKEN", var1.getGitToken());
+      }
+
+      var5.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+      if (StringUtils.hasLength(var4) && !var5.containsKey("SUDO")) {
+         var5.add("SUDO", var4);
+      }
+
+      String var6 = String.format("%1$s/api/v4/%2$s", var1.getGitPath(), var2);
+      LinkedMultiValueMap var7 = new LinkedMultiValueMap();
+      if (var3 != null) {
+         for (Entry var9 : var3.entrySet()) {
+            var7.add(var9.getKey(), var9.getValue());
+         }
+      }
+
+      HttpEntity var12 = new HttpEntity<>(var7, var5);
+
+      try {
+         ResponseEntity var13 = this.restTemplate.exchange(new URI(var6), HttpMethod.DELETE, var12, String.class);
+         if (var13.getStatusCode() != HttpStatus.OK && var13.getStatusCode() != HttpStatus.NO_CONTENT) {
+            throw new Exception(StringHelper.format("请求发生异常，%1$s", var13.getStatusCode().getReasonPhrase()));
+         }
+
+         String var10 = (String)var13.getBody();
+         if (!StringHelper.isNullOrEmpty(var10)) {
+            var10 = new String(var10.getBytes("ISO-8859-1"), "utf8");
+         }
+
+         return var10;
+      } catch (Exception var11) {
+         this.outputException(var11, var6, HttpMethod.DELETE, var3);
+         throw new Exception(StringHelper.format("请求发生异常，%1$s", var11.getMessage()), var11);
+      }
+   }
+
+   protected void outputException(Exception var1, String var2, HttpMethod var3, Map<String, Object> var4) {
+      StringBuilderEx var5 = new StringBuilderEx();
+      var5.append("请求[%1$s][%2$s]", var2, var3);
+      if (var4 != null) {
+         var5.append("，参数{", var2, var3);
+
+         for (Entry var7 : var4.entrySet()) {
+            var5.append("%1$s:%2$s,", var7.getKey(), var7.getValue());
+         }
+
+         var5.append("}", var2, var3);
+      }
+
+      String var11 = null;
+      if (var1 instanceof HttpClientErrorException) {
+         HttpClientErrorException var12 = (HttpClientErrorException)var1;
+         byte[] var8 = var12.getResponseBodyAsByteArray();
+         if (var8 != null) {
             try {
-                object3 = new String(httpClientErrorException.getResponseBodyAsByteArray(), "utf8");
+               var11 = new String(var12.getResponseBodyAsByteArray(), "utf8");
+            } catch (UnsupportedEncodingException var10) {
+               log.error(var10);
             }
-            catch (UnsupportedEncodingException unsupportedEncodingException) {
-                log.error((Object)unsupportedEncodingException);
-            }
-        }
-        if (StringHelper.isNullOrEmpty(object3)) {
-            log.error((Object)String.format("%1$s \u53d1\u751f\u5f02\u5e38\uff0c%2$s", stringBuilderEx.toString(), exception.getMessage()), (Throwable)exception);
-        } else {
-            log.error((Object)String.format("%1$s \u53d1\u751f\u5f02\u5e38\uff0c%2$s\uff0c\u8be6\u7ec6 ==> %3$s", stringBuilderEx.toString(), exception.getMessage(), object3), (Throwable)exception);
-        }
-    }
-}
+         }
+      }
 
+      if (StringHelper.isNullOrEmpty(var11)) {
+         log.error(String.format("%1$s 发生异常，%2$s", var5.toString(), var1.getMessage()), var1);
+      } else {
+         log.error(String.format("%1$s 发生异常，%2$s，详细 ==> %3$s", var5.toString(), var1.getMessage(), var11), var1);
+      }
+   }
+}

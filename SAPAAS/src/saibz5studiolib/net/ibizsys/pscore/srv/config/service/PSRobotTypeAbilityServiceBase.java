@@ -139,9 +139,9 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
             PSRobotType pSRobotType = (PSRobotType)iService.getDEModel().createEntity();
             pSRobotType.set("PSROBOTTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSRobotType);
+                iService.getTemp(pSRobotType);
             } else {
-                iService.get((IEntity)pSRobotType);
+                iService.get(pSRobotType);
             }
             this.onFillParentInfo_PSRobotType(pSRobotTypeAbility, pSRobotType);
             return;
@@ -151,14 +151,14 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
             PSRobotWorkType pSRobotWorkType = (PSRobotWorkType)iService.getDEModel().createEntity();
             pSRobotWorkType.set("PSROBOTWORKTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSRobotWorkType);
+                iService.getTemp(pSRobotWorkType);
             } else {
-                iService.get((IEntity)pSRobotWorkType);
+                iService.get(pSRobotWorkType);
             }
             this.onFillParentInfo_PSRobotWorkType(pSRobotTypeAbility, pSRobotWorkType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSRobotTypeAbility, string, string2, string3);
+        super.onFillParentInfo(pSRobotTypeAbility, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
         if (bl && pSRobotTypeAbility.getValidFlag() == null) {
             pSRobotTypeAbility.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSRobotTypeAbility, bl);
+        super.onFillEntityFullInfo(pSRobotTypeAbility, bl);
         this.onFillEntityFullInfo_PSRobotType(pSRobotTypeAbility, bl);
         this.onFillEntityFullInfo_PSRobotWorkType(pSRobotTypeAbility, bl);
     }
@@ -191,7 +191,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
     }
 
     protected void onWriteBackParent(PSRobotTypeAbility pSRobotTypeAbility, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSRobotTypeAbility, bl);
+        super.onWriteBackParent(pSRobotTypeAbility, bl);
     }
 
     public ArrayList<PSRobotTypeAbility> selectByPSRobotType(PSRobotTypeBase pSRobotTypeBase) throws Exception {
@@ -246,8 +246,8 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
         ArrayList<PSRobotTypeAbility> arrayList = this.selectByPSRobotType(pSRobotType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSROBOTTYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSRobotType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSROBOTTYPEABILITY_PSROBOTTYPE_PSROBOTTYPEID", "", iDataEntityModel.getName(), "PSROBOTTYPEABILITY", iDataEntityModel.getDataInfo((IEntity)pSRobotType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSRobotType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSROBOTTYPEABILITY_PSROBOTTYPE_PSROBOTTYPEID", "", iDataEntityModel.getName(), "PSROBOTTYPEABILITY", iDataEntityModel.getDataInfo(pSRobotType), arrayList.get(0)));
         }
     }
 
@@ -280,7 +280,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
         ArrayList<PSRobotTypeAbility> arrayList = this.selectByPSRobotType(pSRobotType);
         this.onBeforeRemoveByPSRobotType(pSRobotType, arrayList);
         for (PSRobotTypeAbility pSRobotTypeAbility : arrayList) {
-            this.remove((IEntity)pSRobotTypeAbility);
+            this.remove(pSRobotTypeAbility);
         }
         this.onAfterRemoveByPSRobotType(pSRobotType, arrayList);
     }
@@ -298,8 +298,8 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
         ArrayList<PSRobotTypeAbility> arrayList = this.selectByPSRobotWorkType(pSRobotWorkType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSROBOTWORKTYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSRobotWorkType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSROBOTTYPEABILITY_PSROBOTWORKTYPE_PSROBOTWORKTYPEID", "", iDataEntityModel.getName(), "PSROBOTTYPEABILITY", iDataEntityModel.getDataInfo((IEntity)pSRobotWorkType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSRobotWorkType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSROBOTTYPEABILITY_PSROBOTWORKTYPE_PSROBOTWORKTYPEID", "", iDataEntityModel.getName(), "PSROBOTTYPEABILITY", iDataEntityModel.getDataInfo(pSRobotWorkType), arrayList.get(0)));
         }
     }
 
@@ -332,7 +332,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
         ArrayList<PSRobotTypeAbility> arrayList = this.selectByPSRobotWorkType(pSRobotWorkType);
         this.onBeforeRemoveByPSRobotWorkType(pSRobotWorkType, arrayList);
         for (PSRobotTypeAbility pSRobotTypeAbility : arrayList) {
-            this.remove((IEntity)pSRobotTypeAbility);
+            this.remove(pSRobotTypeAbility);
         }
         this.onAfterRemoveByPSRobotWorkType(pSRobotWorkType, arrayList);
     }
@@ -353,7 +353,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
 
     protected void replaceParentInfo(PSRobotTypeAbility pSRobotTypeAbility, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSRobotTypeAbility, cloneSession);
+        super.replaceParentInfo(pSRobotTypeAbility, cloneSession);
         if (pSRobotTypeAbility.getPSRobotTypeId() != null && (iEntity = cloneSession.getEntity("PSROBOTTYPE", (Object)pSRobotTypeAbility.getPSRobotTypeId())) != null) {
             this.onFillParentInfo_PSRobotType(pSRobotTypeAbility, (PSRobotType)iEntity);
         }
@@ -363,7 +363,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
     }
 
     protected void onRemoveEntityUncopyValues(PSRobotTypeAbility pSRobotTypeAbility, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSRobotTypeAbility, bl);
+        super.onRemoveEntityUncopyValues(pSRobotTypeAbility, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSRobotTypeAbility pSRobotTypeAbility, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -393,7 +393,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSRobotTypeAbility, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSRobotTypeAbility, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSRobotTypeAbility, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Energy(boolean bl, PSRobotTypeAbility pSRobotTypeAbility, boolean bl2, boolean bl3) throws Exception {
@@ -406,7 +406,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Energy_Default((IEntity)pSRobotTypeAbility, bl2, bl3);
+            string = this.onTestValueRule_Energy_Default(pSRobotTypeAbility, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENERGY");
@@ -428,7 +428,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSRobotTypeAbility, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSRobotTypeAbility, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -453,7 +453,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRobotTypeAbilityId_Default((IEntity)pSRobotTypeAbility, bl2, bl3);
+            string2 = this.onTestValueRule_PSRobotTypeAbilityId_Default(pSRobotTypeAbility, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSROBOTTYPEABILITYID");
@@ -478,7 +478,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRobotTypeAbilityName_Default((IEntity)pSRobotTypeAbility, bl2, bl3);
+            string2 = this.onTestValueRule_PSRobotTypeAbilityName_Default(pSRobotTypeAbility, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSROBOTTYPEABILITYNAME");
@@ -500,7 +500,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRobotTypeId_Default((IEntity)pSRobotTypeAbility, bl2, bl3);
+            string2 = this.onTestValueRule_PSRobotTypeId_Default(pSRobotTypeAbility, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSROBOTTYPEID");
@@ -522,7 +522,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRobotWorkTypeId_Default((IEntity)pSRobotTypeAbility, bl2, bl3);
+            string2 = this.onTestValueRule_PSRobotWorkTypeId_Default(pSRobotTypeAbility, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSROBOTWORKTYPEID");
@@ -544,7 +544,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RobotLevel_Default((IEntity)pSRobotTypeAbility, bl2, bl3);
+            string = this.onTestValueRule_RobotLevel_Default(pSRobotTypeAbility, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ROBOTLEVEL");
@@ -569,7 +569,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSRobotTypeAbility, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSRobotTypeAbility, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -582,11 +582,11 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
     }
 
     protected void onSyncEntity(PSRobotTypeAbility pSRobotTypeAbility, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSRobotTypeAbility, bl);
+        super.onSyncEntity(pSRobotTypeAbility, bl);
     }
 
     protected void onSyncIndexEntities(PSRobotTypeAbility pSRobotTypeAbility, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSRobotTypeAbility, bl);
+        super.onSyncIndexEntities(pSRobotTypeAbility, bl);
     }
 
     public Object getDataContextValue(PSRobotTypeAbility pSRobotTypeAbility, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -594,7 +594,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSRobotTypeAbility, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSRobotTypeAbility, string, iDataContextParam)) != null) {
             return object;
         }
         PSRobotWorkType pSRobotWorkType = pSRobotTypeAbility.getPSRobotWorkType();
@@ -605,7 +605,7 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
     }
 
     protected void onExportMajorModel(PSRobotTypeAbility pSRobotTypeAbility, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSRobotTypeAbility, arrayList, n);
+        super.onExportMajorModel(pSRobotTypeAbility, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -784,14 +784,14 @@ extends PSCoreSysServiceBase<PSRobotTypeAbility> {
 
     protected boolean onMergeChild(String string, String string2, PSRobotTypeAbility pSRobotTypeAbility) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSRobotTypeAbility)) {
+        if (super.onMergeChild(string, string2, pSRobotTypeAbility)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSRobotTypeAbility pSRobotTypeAbility) throws Exception {
-        super.onUpdateParent((IEntity)pSRobotTypeAbility);
+        super.onUpdateParent(pSRobotTypeAbility);
     }
 
     @Override

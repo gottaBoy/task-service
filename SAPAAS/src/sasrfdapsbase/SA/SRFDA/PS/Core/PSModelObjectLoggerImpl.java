@@ -177,7 +177,7 @@ implements IPSModelObjectLogger {
                 ServiceWorkHelper.getInstance().execute(new IServiceWork(){
 
                     public void execute(ITransaction iTransaction) throws Exception {
-                        psSysConsoleService.create((IEntity)psSysConsole, false);
+                    psSysConsoleService.create(psSysConsole, false);
                     }
                 });
             }
@@ -289,4 +289,3 @@ implements IPSModelObjectLogger {
         }
     }
 }
-

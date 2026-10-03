@@ -937,8 +937,14 @@ implements Serializable {
                 dataEntity = new BaseDataEntity();
             }
             ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64.decode((String)strString));
-            objInput = new ObjectInputStream(inputStream);
-            objCount = objInput.readObject();
+            try {
+                objInput = new ObjectInputStream(inputStream);
+                objCount = objInput.readObject();
+            }
+            catch (Exception ex) {
+                ex.printStackTrace(System.out);
+                return null;
+            }
             if (objCount != null) break block8;
             return null;
         }
@@ -979,8 +985,14 @@ implements Serializable {
             }
             map = new TreeMap<Object, Object>();
             ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64.decode((String)strString));
-            objInput = new ObjectInputStream(inputStream);
-            objCount = objInput.readObject();
+            try {
+                objInput = new ObjectInputStream(inputStream);
+                objCount = objInput.readObject();
+            }
+            catch (Exception ex) {
+                ex.printStackTrace(System.out);
+                return null;
+            }
             if (objCount != null) break block7;
             return null;
         }
@@ -1054,4 +1066,3 @@ implements Serializable {
         return true;
     }
 }
-

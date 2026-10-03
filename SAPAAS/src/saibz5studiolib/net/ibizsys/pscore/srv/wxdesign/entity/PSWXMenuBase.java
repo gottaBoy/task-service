@@ -1553,7 +1553,7 @@ implements Serializable {
                 PSWXAccount pSWXAccount = new PSWXAccount();
                 pSWXAccount.setPSWXAccountId(this.getPSWXAccountId());
                 PSWXAccountService pSWXAccountService = (PSWXAccountService)ServiceGlobal.getService(PSWXAccountService.class, (SessionFactory)this.getSessionFactory());
-                pSWXAccountService.autoGet((IEntity)pSWXAccount);
+                pSWXAccountService.autoGet(pSWXAccount);
                 this.pswxaccount = pSWXAccount;
             }
             return this.pswxaccount;
@@ -1579,7 +1579,7 @@ implements Serializable {
                 PSWXEntApp pSWXEntApp = new PSWXEntApp();
                 pSWXEntApp.setPSWXEntAppId(this.getPSWXEntAppId());
                 PSWXEntAppService pSWXEntAppService = (PSWXEntAppService)ServiceGlobal.getService(PSWXEntAppService.class, (SessionFactory)this.getSessionFactory());
-                pSWXEntAppService.autoGet((IEntity)pSWXEntApp);
+                pSWXEntAppService.autoGet(pSWXEntApp);
                 this.pswxentapp = pSWXEntApp;
             }
             return this.pswxentapp;

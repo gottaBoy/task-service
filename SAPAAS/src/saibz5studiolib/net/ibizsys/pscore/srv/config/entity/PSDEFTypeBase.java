@@ -3926,7 +3926,7 @@ implements Serializable {
                 PSCodeListTempl pSCodeListTempl = new PSCodeListTempl();
                 pSCodeListTempl.setPSCodeListTemplId(this.getPSCodeListTemplId());
                 PSCodeListTemplService pSCodeListTemplService = (PSCodeListTemplService)ServiceGlobal.getService(PSCodeListTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSCodeListTemplService.autoGet((IEntity)pSCodeListTempl);
+                pSCodeListTemplService.autoGet(pSCodeListTempl);
                 this.pscodelisttempl = pSCodeListTempl;
             }
             return this.pscodelisttempl;
@@ -3952,7 +3952,7 @@ implements Serializable {
                 PSUnit pSUnit = new PSUnit();
                 pSUnit.setPSUnitId(this.getPSUnitId());
                 PSUnitService pSUnitService = (PSUnitService)ServiceGlobal.getService(PSUnitService.class, (SessionFactory)this.getSessionFactory());
-                pSUnitService.autoGet((IEntity)pSUnit);
+                pSUnitService.autoGet(pSUnit);
                 this.psunit = pSUnit;
             }
             return this.psunit;
@@ -3978,7 +3978,7 @@ implements Serializable {
                 PSValueRule pSValueRule = new PSValueRule();
                 pSValueRule.setPSValueRuleId(this.getPSValueRuleId());
                 PSValueRuleService pSValueRuleService = (PSValueRuleService)ServiceGlobal.getService(PSValueRuleService.class, (SessionFactory)this.getSessionFactory());
-                pSValueRuleService.autoGet((IEntity)pSValueRule);
+                pSValueRuleService.autoGet(pSValueRule);
                 this.psvaluerule = pSValueRule;
             }
             return this.psvaluerule;

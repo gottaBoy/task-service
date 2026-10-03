@@ -140,9 +140,9 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
             PSDESampleData pSDESampleData = (PSDESampleData)iService.getDEModel().createEntity();
             pSDESampleData.set("PSDESAMPLEDATAID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDESampleData);
+                iService.getTemp(pSDESampleData);
             } else {
-                iService.get((IEntity)pSDESampleData);
+                iService.get(pSDESampleData);
             }
             this.onFillParentInfo_PSDESampleData(pSDESampleDataRef, pSDESampleData);
             return;
@@ -152,14 +152,14 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
             PSDESampleData pSDESampleData = (PSDESampleData)iService.getDEModel().createEntity();
             pSDESampleData.set("PSDESAMPLEDATAID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDESampleData);
+                iService.getTemp(pSDESampleData);
             } else {
-                iService.get((IEntity)pSDESampleData);
+                iService.get(pSDESampleData);
             }
             this.onFillParentInfo_RefPSDESampleData(pSDESampleDataRef, pSDESampleData);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDESampleDataRef, string, string2, string3);
+        super.onFillParentInfo(pSDESampleDataRef, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -180,7 +180,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDESampleDataRef, bl);
+        super.onFillEntityFullInfo(pSDESampleDataRef, bl);
         this.onFillEntityFullInfo_PSDESampleData(pSDESampleDataRef, bl);
         this.onFillEntityFullInfo_RefPSDESampleData(pSDESampleDataRef, bl);
     }
@@ -192,7 +192,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
     }
 
     protected void onWriteBackParent(PSDESampleDataRef pSDESampleDataRef, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDESampleDataRef, bl);
+        super.onWriteBackParent(pSDESampleDataRef, bl);
     }
 
     public ArrayList<PSDESampleDataRef> selectByPSDESampleData(PSDESampleDataBase pSDESampleDataBase) throws Exception {
@@ -275,7 +275,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
         ArrayList<PSDESampleDataRef> arrayList = this.selectByPSDESampleData(pSDESampleData);
         this.onBeforeRemoveByPSDESampleData(pSDESampleData, arrayList);
         for (PSDESampleDataRef pSDESampleDataRef : arrayList) {
-            this.remove((IEntity)pSDESampleDataRef);
+            this.remove(pSDESampleDataRef);
         }
         this.onAfterRemoveByPSDESampleData(pSDESampleData, arrayList);
     }
@@ -293,8 +293,8 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
         ArrayList<PSDESampleDataRef> arrayList = this.selectByRefPSDESampleData(pSDESampleData, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDESAMPLEDATA");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDESampleData);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDESAMPLEDATAREF_PSDESAMPLEDATA_REFPSDESAMPLEDATAID", "", iDataEntityModel.getName(), "PSDESAMPLEDATAREF", iDataEntityModel.getDataInfo((IEntity)pSDESampleData), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDESampleData);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDESAMPLEDATAREF_PSDESAMPLEDATA_REFPSDESAMPLEDATAID", "", iDataEntityModel.getName(), "PSDESAMPLEDATAREF", iDataEntityModel.getDataInfo(pSDESampleData), arrayList.get(0)));
         }
     }
 
@@ -327,7 +327,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
         ArrayList<PSDESampleDataRef> arrayList = this.selectByRefPSDESampleData(pSDESampleData);
         this.onBeforeRemoveByRefPSDESampleData(pSDESampleData, arrayList);
         for (PSDESampleDataRef pSDESampleDataRef : arrayList) {
-            this.remove((IEntity)pSDESampleDataRef);
+            this.remove(pSDESampleDataRef);
         }
         this.onAfterRemoveByRefPSDESampleData(pSDESampleData, arrayList);
     }
@@ -348,7 +348,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
 
     protected void replaceParentInfo(PSDESampleDataRef pSDESampleDataRef, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDESampleDataRef, cloneSession);
+        super.replaceParentInfo(pSDESampleDataRef, cloneSession);
         if (pSDESampleDataRef.getPSDESampleDataId() != null && (iEntity = cloneSession.getEntity("PSDESAMPLEDATA", (Object)pSDESampleDataRef.getPSDESampleDataId())) != null) {
             this.onFillParentInfo_PSDESampleData(pSDESampleDataRef, (PSDESampleData)iEntity);
         }
@@ -358,7 +358,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDESampleDataRef pSDESampleDataRef, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDESampleDataRef, bl);
+        super.onRemoveEntityUncopyValues(pSDESampleDataRef, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDESampleDataRef pSDESampleDataRef, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -376,7 +376,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
         if ((entityFieldError = this.onCheckField_RefPSDESampleDataId(bl, pSDESampleDataRef, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDESampleDataRef, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDESampleDataRef, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDESampleDataId(boolean bl, PSDESampleDataRef pSDESampleDataRef, boolean bl2, boolean bl3) throws Exception {
@@ -389,7 +389,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDESampleDataId_Default((IEntity)pSDESampleDataRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSDESampleDataId_Default(pSDESampleDataRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESAMPLEDATAID");
@@ -414,7 +414,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDESampleDataRefId_Default((IEntity)pSDESampleDataRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSDESampleDataRefId_Default(pSDESampleDataRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESAMPLEDATAREFID");
@@ -439,7 +439,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDESampleDataRefName_Default((IEntity)pSDESampleDataRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSDESampleDataRefName_Default(pSDESampleDataRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESAMPLEDATAREFNAME");
@@ -464,7 +464,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefPSDESampleDataId_Default((IEntity)pSDESampleDataRef, bl2, bl3);
+            string2 = this.onTestValueRule_RefPSDESampleDataId_Default(pSDESampleDataRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFPSDESAMPLEDATAID");
@@ -477,11 +477,11 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
     }
 
     protected void onSyncEntity(PSDESampleDataRef pSDESampleDataRef, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDESampleDataRef, bl);
+        super.onSyncEntity(pSDESampleDataRef, bl);
     }
 
     protected void onSyncIndexEntities(PSDESampleDataRef pSDESampleDataRef, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDESampleDataRef, bl);
+        super.onSyncIndexEntities(pSDESampleDataRef, bl);
     }
 
     public Object getDataContextValue(PSDESampleDataRef pSDESampleDataRef, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -489,7 +489,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDESampleDataRef, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDESampleDataRef, string, iDataContextParam)) != null) {
             return object;
         }
         PSDESampleData pSDESampleData = pSDESampleDataRef.getPSDESampleData();
@@ -500,7 +500,7 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
     }
 
     protected void onExportMajorModel(PSDESampleDataRef pSDESampleDataRef, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDESampleDataRef, arrayList, n);
+        super.onExportMajorModel(pSDESampleDataRef, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -643,14 +643,14 @@ extends PSCoreSysServiceBase<PSDESampleDataRef> {
 
     protected boolean onMergeChild(String string, String string2, PSDESampleDataRef pSDESampleDataRef) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDESampleDataRef)) {
+        if (super.onMergeChild(string, string2, pSDESampleDataRef)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDESampleDataRef pSDESampleDataRef) throws Exception {
-        super.onUpdateParent((IEntity)pSDESampleDataRef);
+        super.onUpdateParent(pSDESampleDataRef);
     }
 
     @Override

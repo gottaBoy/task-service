@@ -2662,7 +2662,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -2688,7 +2688,7 @@ implements Serializable {
                 PSWorkshopServer pSWorkshopServer = new PSWorkshopServer();
                 pSWorkshopServer.setPSWorkshopServerId(this.getPSWorkshopServerId());
                 PSWorkshopServerService pSWorkshopServerService = (PSWorkshopServerService)ServiceGlobal.getService(PSWorkshopServerService.class, (SessionFactory)this.getSessionFactory());
-                pSWorkshopServerService.autoGet((IEntity)pSWorkshopServer);
+                pSWorkshopServerService.autoGet(pSWorkshopServer);
                 this.psworkshopserver = pSWorkshopServer;
             }
             return this.psworkshopserver;

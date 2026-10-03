@@ -83,7 +83,7 @@ implements IPSStudioCLIHelper {
                         }
                         objValue = cliDataItem.def;
                     } else {
-                        JsonNode jsonNode = objValue;
+                        JsonNode jsonNode = (JsonNode)objValue;
                         if (jsonNode.isTextual()) {
                             objValue = jsonNode.asText();
                         } else if (jsonNode.isInt()) {
@@ -163,4 +163,3 @@ implements IPSStudioCLIHelper {
         }
     }
 }
-

@@ -74,7 +74,7 @@ implements IPSSysBIHierarchyService {
     @Override
     protected List<PSSysBIHierarchy> onListAll() throws Exception {
         ArrayList<PSSysBIHierarchy> list = new ArrayList<PSSysBIHierarchy>();
-        List pssysbidimensions = PSModelServiceUtil.getInstance().getPSSysBIDimensionService().listAll();
+        List<PSSysBIDimension> pssysbidimensions = PSModelServiceUtil.getInstance().getPSSysBIDimensionService().listAll();
         if (pssysbidimensions != null) {
             for (PSSysBIDimension parent : pssysbidimensions) {
                 List<PSSysBIHierarchy> items = this.listByPSSysBIDimension(parent);

@@ -73,7 +73,7 @@ implements IPSDEGEIUDetailService {
     @Override
     protected List<PSDEGEIUDetail> onListAll() throws Exception {
         ArrayList<PSDEGEIUDetail> list = new ArrayList<PSDEGEIUDetail>();
-        List psdegeiupdates = PSModelServiceUtil.getInstance().getPSDEGEIUpdateService().listAll();
+        List<PSDEGEIUpdate> psdegeiupdates = PSModelServiceUtil.getInstance().getPSDEGEIUpdateService().listAll();
         if (psdegeiupdates != null) {
             for (PSDEGEIUpdate parent : psdegeiupdates) {
                 List<PSDEGEIUDetail> items = this.listByPSDEGEIUpdate(parent);

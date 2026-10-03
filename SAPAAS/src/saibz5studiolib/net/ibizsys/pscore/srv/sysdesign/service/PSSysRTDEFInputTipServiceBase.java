@@ -144,14 +144,14 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSSysRTDEFInputTip, pSDataEntity);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysRTDEFInputTip, string, string2, string3);
+        super.onFillParentInfo(pSSysRTDEFInputTip, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
         if (bl && pSSysRTDEFInputTip.getValidFlag() == null) {
             pSSysRTDEFInputTip.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysRTDEFInputTip, bl);
+        super.onFillEntityFullInfo(pSSysRTDEFInputTip, bl);
         this.onFillEntityFullInfo_PSDE(pSSysRTDEFInputTip, bl);
     }
 
@@ -185,7 +185,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
     }
 
     protected void onWriteBackParent(PSSysRTDEFInputTip pSSysRTDEFInputTip, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysRTDEFInputTip, bl);
+        super.onWriteBackParent(pSSysRTDEFInputTip, bl);
     }
 
     public ArrayList<PSSysRTDEFInputTip> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -244,7 +244,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
         ArrayList<PSSysRTDEFInputTip> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSSysRTDEFInputTip pSSysRTDEFInputTip : arrayList) {
-            this.remove((IEntity)pSSysRTDEFInputTip);
+            this.remove(pSSysRTDEFInputTip);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -265,14 +265,14 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
 
     protected void replaceParentInfo(PSSysRTDEFInputTip pSSysRTDEFInputTip, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysRTDEFInputTip, cloneSession);
+        super.replaceParentInfo(pSSysRTDEFInputTip, cloneSession);
         if (pSSysRTDEFInputTip.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSSysRTDEFInputTip.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSSysRTDEFInputTip, (PSDataEntity)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSysRTDEFInputTip pSSysRTDEFInputTip, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysRTDEFInputTip, bl);
+        super.onRemoveEntityUncopyValues(pSSysRTDEFInputTip, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysRTDEFInputTip pSSysRTDEFInputTip, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -311,7 +311,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysRTDEFInputTip, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysRTDEFInputTip, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysRTDEFInputTip, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Content(boolean bl, PSSysRTDEFInputTip pSSysRTDEFInputTip, boolean bl2, boolean bl3) throws Exception {
@@ -324,7 +324,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Content_Default((IEntity)pSSysRTDEFInputTip, bl2, bl3);
+            string2 = this.onTestValueRule_Content_Default(pSSysRTDEFInputTip, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTENT");
@@ -346,7 +346,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableClose_Default((IEntity)pSSysRTDEFInputTip, bl2, bl3);
+            string = this.onTestValueRule_EnableClose_Default(pSSysRTDEFInputTip, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLECLOSE");
@@ -368,7 +368,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysRTDEFInputTip, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysRTDEFInputTip, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -390,7 +390,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MoreUrl_Default((IEntity)pSSysRTDEFInputTip, bl2, bl3);
+            string2 = this.onTestValueRule_MoreUrl_Default(pSSysRTDEFInputTip, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MOREURL");
@@ -412,7 +412,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysRTDEFInputTip, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysRTDEFInputTip, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -434,7 +434,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysRTDEFInputTip, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysRTDEFInputTip, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -456,7 +456,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSSysRTDEFInputTip, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSSysRTDEFInputTip, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -481,7 +481,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysRTDEFInputTipId_Default((IEntity)pSSysRTDEFInputTip, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysRTDEFInputTipId_Default(pSSysRTDEFInputTip, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSRTDEFINPUTTIPID");
@@ -506,7 +506,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysRTDEFInputTipName_Default((IEntity)pSSysRTDEFInputTip, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysRTDEFInputTipName_Default(pSSysRTDEFInputTip, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSRTDEFINPUTTIPNAME");
@@ -531,7 +531,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UniqueTag_Default((IEntity)pSSysRTDEFInputTip, bl2, bl3);
+            string2 = this.onTestValueRule_UniqueTag_Default(pSSysRTDEFInputTip, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UNIQUETAG");
@@ -569,7 +569,7 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysRTDEFInputTip, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysRTDEFInputTip, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -582,11 +582,11 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
     }
 
     protected void onSyncEntity(PSSysRTDEFInputTip pSSysRTDEFInputTip, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysRTDEFInputTip, bl);
+        super.onSyncEntity(pSSysRTDEFInputTip, bl);
     }
 
     protected void onSyncIndexEntities(PSSysRTDEFInputTip pSSysRTDEFInputTip, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysRTDEFInputTip, bl);
+        super.onSyncIndexEntities(pSSysRTDEFInputTip, bl);
     }
 
     public Object getDataContextValue(PSSysRTDEFInputTip pSSysRTDEFInputTip, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -594,14 +594,14 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysRTDEFInputTip, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysRTDEFInputTip, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysRTDEFInputTip pSSysRTDEFInputTip, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysRTDEFInputTip, arrayList, n);
+        super.onExportMajorModel(pSSysRTDEFInputTip, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -800,14 +800,14 @@ extends PSCoreSysServiceBase<PSSysRTDEFInputTip> {
 
     protected boolean onMergeChild(String string, String string2, PSSysRTDEFInputTip pSSysRTDEFInputTip) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysRTDEFInputTip)) {
+        if (super.onMergeChild(string, string2, pSSysRTDEFInputTip)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysRTDEFInputTip pSSysRTDEFInputTip) throws Exception {
-        super.onUpdateParent((IEntity)pSSysRTDEFInputTip);
+        super.onUpdateParent(pSSysRTDEFInputTip);
     }
 
     @Override

@@ -78,7 +78,7 @@ extends PSDevCenterSVNServiceBase {
     @Override
     protected void onAfterUpdate(PSDevCenterSVN pSDevCenterSVN) throws Exception {
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory()) && (pSDevCenterSVN.isResStateDirty() || pSDevCenterSVN.isExpriedTimeDirty())) {
-            PSDevCenterSVN pSDevCenterSVN2 = (PSDevCenterSVN)this.getLast((IEntity)pSDevCenterSVN);
+            PSDevCenterSVN pSDevCenterSVN2 = (PSDevCenterSVN)this.getLast(pSDevCenterSVN);
             if (pSDevCenterSVN.isResStateDirty() && DataTypeHelper.compare((int)9, (Object)pSDevCenterSVN.getResState(), (Object)pSDevCenterSVN2.getResState()) != 0L || pSDevCenterSVN.isExpriedTimeDirty() && DataTypeHelper.compare((int)5, (Object)pSDevCenterSVN.getExpriedTime(), (Object)pSDevCenterSVN2.getExpriedTime()) != 0L) {
                 boolean bl = DataObject.getBoolValue((Integer)pSDevCenterSVN2.getRefFlag(), (boolean)false);
                 if (pSDevCenterSVN.isRefFlagDirty()) {
@@ -126,7 +126,7 @@ extends PSDevCenterSVNServiceBase {
     protected void onBind(PSDevCenterSVN pSDevCenterSVN) throws Exception {
         PSDevCenterSVN pSDevCenterSVN2 = new PSDevCenterSVN();
         pSDevCenterSVN2.setPSDevCenterSVNId(pSDevCenterSVN.getPSDevCenterSVNId());
-        this.get((IEntity)pSDevCenterSVN2);
+        this.get(pSDevCenterSVN2);
         if (!(StringHelper.isNullOrEmpty((String)pSDevCenterSVN2.getRefObjType()) && StringHelper.isNullOrEmpty((String)pSDevCenterSVN2.getRefObjId()) || StringHelper.compare((String)pSDevCenterSVN2.getRefObjType(), (String)pSDevCenterSVN.getRefObjType(), (boolean)false) == 0 && StringHelper.compare((String)pSDevCenterSVN2.getRefObjId(), (String)pSDevCenterSVN.getRefObjId(), (boolean)false) == 0)) {
             throw new Exception(StringHelper.format((String)"\u4ee3\u7801\u7248\u672c\u5e93[%1$s]\u5df2\u7ecf\u88ab[%2$s]\u4f7f\u7528\uff0c\u65e0\u6cd5\u518d\u6b21\u4f7f\u7528", (Object)pSDevCenterSVN2.getPSDevCenterSVNName(), (Object)pSDevCenterSVN2.getRefObjName()));
         }
@@ -143,7 +143,7 @@ extends PSDevCenterSVNServiceBase {
     protected void onUnbind(PSDevCenterSVN pSDevCenterSVN) throws Exception {
         PSDevCenterSVN pSDevCenterSVN2 = new PSDevCenterSVN();
         pSDevCenterSVN2.setPSDevCenterSVNId(pSDevCenterSVN.getPSDevCenterSVNId());
-        this.get((IEntity)pSDevCenterSVN2);
+        this.get(pSDevCenterSVN2);
         if (!(StringHelper.isNullOrEmpty((String)pSDevCenterSVN2.getRefObjType()) && StringHelper.isNullOrEmpty((String)pSDevCenterSVN2.getRefObjId()) || StringHelper.compare((String)pSDevCenterSVN2.getRefObjType(), (String)pSDevCenterSVN.getRefObjType(), (boolean)false) == 0 && StringHelper.compare((String)pSDevCenterSVN2.getRefObjId(), (String)pSDevCenterSVN.getRefObjId(), (boolean)false) == 0)) {
             throw new Exception(StringHelper.format((String)"\u4ee3\u7801\u7248\u672c\u5e93[%1$s]\u5df2\u7ecf\u88ab[%2$s]\u4f7f\u7528\uff0c\u65e0\u6cd5\u89e3\u9664\u4f7f\u7528", (Object)pSDevCenterSVN2.getPSDevCenterSVNName(), (Object)pSDevCenterSVN2.getRefObjName()));
         }

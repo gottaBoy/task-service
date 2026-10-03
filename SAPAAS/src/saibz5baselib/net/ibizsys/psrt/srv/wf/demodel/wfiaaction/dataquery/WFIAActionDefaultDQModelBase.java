@@ -1,20 +1,161 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfiaaction.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="8D5194BA-3765-4525-9028-CD93DBFB2DD0", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.ACTIONCOUNT, t1.ACTIONLOGICNAME, t1.ACTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.FAHELPER, t1.NEXTCONDITION, t1.NEXTTO, t1.ORDERFLAG, t1.PAGEPATH, t1.PANELID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFIAACTIONID, t1.WFIAACTIONNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFIAACTION t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=-1), @DEDataQueryCodeExp(name="ACTIONCOUNT", expression="t1.ACTIONCOUNT", showorder=0), @DEDataQueryCodeExp(name="ACTIONLOGICNAME", expression="t1.ACTIONLOGICNAME", showorder=1), @DEDataQueryCodeExp(name="ACTIONNAME", expression="t1.ACTIONNAME", showorder=2), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=3), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=4), @DEDataQueryCodeExp(name="FAHELPER", expression="t1.FAHELPER", showorder=5), @DEDataQueryCodeExp(name="NEXTCONDITION", expression="t1.NEXTCONDITION", showorder=6), @DEDataQueryCodeExp(name="NEXTTO", expression="t1.NEXTTO", showorder=7), @DEDataQueryCodeExp(name="ORDERFLAG", expression="t1.ORDERFLAG", showorder=8), @DEDataQueryCodeExp(name="PAGEPATH", expression="t1.PAGEPATH", showorder=9), @DEDataQueryCodeExp(name="PANELID", expression="t1.PANELID", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12), @DEDataQueryCodeExp(name="WFIAACTIONID", expression="t1.WFIAACTIONID", showorder=13), @DEDataQueryCodeExp(name="WFIAACTIONNAME", expression="t1.WFIAACTIONNAME", showorder=14), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=15), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=16)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`actioncount`, t1.`actionlogicname`, t1.`actionname`, t1.`createdate`, t1.`createman`, t1.`fahelper`, t1.`nextcondition`, t1.`nextto`, t1.`orderflag`, t1.`pagepath`, t1.`panelid`, t1.`updatedate`, t1.`updateman`, t1.`wfiaactionid`, t1.`wfiaactionname`, t1.`wfstepid`, t1.`wfstepname` FROM `t_srfwfiaaction` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="MEMO", expression="t1.`memo`", showorder=-1), @DEDataQueryCodeExp(name="ACTIONCOUNT", expression="t1.`actioncount`", showorder=0), @DEDataQueryCodeExp(name="ACTIONLOGICNAME", expression="t1.`actionlogicname`", showorder=1), @DEDataQueryCodeExp(name="ACTIONNAME", expression="t1.`actionname`", showorder=2), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=3), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=4), @DEDataQueryCodeExp(name="FAHELPER", expression="t1.`fahelper`", showorder=5), @DEDataQueryCodeExp(name="NEXTCONDITION", expression="t1.`nextcondition`", showorder=6), @DEDataQueryCodeExp(name="NEXTTO", expression="t1.`nextto`", showorder=7), @DEDataQueryCodeExp(name="ORDERFLAG", expression="t1.`orderflag`", showorder=8), @DEDataQueryCodeExp(name="PAGEPATH", expression="t1.`pagepath`", showorder=9), @DEDataQueryCodeExp(name="PANELID", expression="t1.`panelid`", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=12), @DEDataQueryCodeExp(name="WFIAACTIONID", expression="t1.`wfiaactionid`", showorder=13), @DEDataQueryCodeExp(name="WFIAACTIONNAME", expression="t1.`wfiaactionname`", showorder=14), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.`wfstepid`", showorder=15), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.`wfstepname`", showorder=16)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.ACTIONCOUNT, t1.ACTIONLOGICNAME, t1.ACTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.FAHELPER, t1.NEXTCONDITION, t1.NEXTTO, t1.ORDERFLAG, t1.PAGEPATH, t1.PANELID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFIAACTIONID, t1.WFIAACTIONNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFIAACTION t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=-1), @DEDataQueryCodeExp(name="ACTIONCOUNT", expression="t1.ACTIONCOUNT", showorder=0), @DEDataQueryCodeExp(name="ACTIONLOGICNAME", expression="t1.ACTIONLOGICNAME", showorder=1), @DEDataQueryCodeExp(name="ACTIONNAME", expression="t1.ACTIONNAME", showorder=2), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=3), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=4), @DEDataQueryCodeExp(name="FAHELPER", expression="t1.FAHELPER", showorder=5), @DEDataQueryCodeExp(name="NEXTCONDITION", expression="t1.NEXTCONDITION", showorder=6), @DEDataQueryCodeExp(name="NEXTTO", expression="t1.NEXTTO", showorder=7), @DEDataQueryCodeExp(name="ORDERFLAG", expression="t1.ORDERFLAG", showorder=8), @DEDataQueryCodeExp(name="PAGEPATH", expression="t1.PAGEPATH", showorder=9), @DEDataQueryCodeExp(name="PANELID", expression="t1.PANELID", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12), @DEDataQueryCodeExp(name="WFIAACTIONID", expression="t1.WFIAACTIONID", showorder=13), @DEDataQueryCodeExp(name="WFIAACTIONNAME", expression="t1.WFIAACTIONNAME", showorder=14), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=15), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=16)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.ACTIONCOUNT, t1.ACTIONLOGICNAME, t1.ACTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.FAHELPER, t1.NEXTCONDITION, t1.NEXTTO, t1.ORDERFLAG, t1.PAGEPATH, t1.PANELID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFIAACTIONID, t1.WFIAACTIONNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFIAACTION t1  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=-1), @DEDataQueryCodeExp(name="ACTIONCOUNT", expression="t1.ACTIONCOUNT", showorder=0), @DEDataQueryCodeExp(name="ACTIONLOGICNAME", expression="t1.ACTIONLOGICNAME", showorder=1), @DEDataQueryCodeExp(name="ACTIONNAME", expression="t1.ACTIONNAME", showorder=2), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=3), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=4), @DEDataQueryCodeExp(name="FAHELPER", expression="t1.FAHELPER", showorder=5), @DEDataQueryCodeExp(name="NEXTCONDITION", expression="t1.NEXTCONDITION", showorder=6), @DEDataQueryCodeExp(name="NEXTTO", expression="t1.NEXTTO", showorder=7), @DEDataQueryCodeExp(name="ORDERFLAG", expression="t1.ORDERFLAG", showorder=8), @DEDataQueryCodeExp(name="PAGEPATH", expression="t1.PAGEPATH", showorder=9), @DEDataQueryCodeExp(name="PANELID", expression="t1.PANELID", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12), @DEDataQueryCodeExp(name="WFIAACTIONID", expression="t1.WFIAACTIONID", showorder=13), @DEDataQueryCodeExp(name="WFIAACTIONNAME", expression="t1.WFIAACTIONNAME", showorder=14), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=15), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=16)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.ACTIONCOUNT, t1.ACTIONLOGICNAME, t1.ACTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.FAHELPER, t1.NEXTCONDITION, t1.NEXTTO, t1.ORDERFLAG, t1.PAGEPATH, t1.PANELID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFIAACTIONID, t1.WFIAACTIONNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFIAACTION t1  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=-1), @DEDataQueryCodeExp(name="ACTIONCOUNT", expression="t1.ACTIONCOUNT", showorder=0), @DEDataQueryCodeExp(name="ACTIONLOGICNAME", expression="t1.ACTIONLOGICNAME", showorder=1), @DEDataQueryCodeExp(name="ACTIONNAME", expression="t1.ACTIONNAME", showorder=2), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=3), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=4), @DEDataQueryCodeExp(name="FAHELPER", expression="t1.FAHELPER", showorder=5), @DEDataQueryCodeExp(name="NEXTCONDITION", expression="t1.NEXTCONDITION", showorder=6), @DEDataQueryCodeExp(name="NEXTTO", expression="t1.NEXTTO", showorder=7), @DEDataQueryCodeExp(name="ORDERFLAG", expression="t1.ORDERFLAG", showorder=8), @DEDataQueryCodeExp(name="PAGEPATH", expression="t1.PAGEPATH", showorder=9), @DEDataQueryCodeExp(name="PANELID", expression="t1.PANELID", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12), @DEDataQueryCodeExp(name="WFIAACTIONID", expression="t1.WFIAACTIONID", showorder=13), @DEDataQueryCodeExp(name="WFIAACTIONNAME", expression="t1.WFIAACTIONNAME", showorder=14), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=15), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=16)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[ACTIONCOUNT], t1.[ACTIONLOGICNAME], t1.[ACTIONNAME], t1.[CREATEDATE], t1.[CREATEMAN], t1.[FAHELPER], t1.[NEXTCONDITION], t1.[NEXTTO], t1.[ORDERFLAG], t1.[PAGEPATH], t1.[PANELID], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[WFIAACTIONID], t1.[WFIAACTIONNAME], t1.[WFSTEPID], t1.[WFSTEPNAME] FROM [T_SRFWFIAACTION] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="MEMO", expression="t1.[MEMO]", showorder=-1), @DEDataQueryCodeExp(name="ACTIONCOUNT", expression="t1.[ACTIONCOUNT]", showorder=0), @DEDataQueryCodeExp(name="ACTIONLOGICNAME", expression="t1.[ACTIONLOGICNAME]", showorder=1), @DEDataQueryCodeExp(name="ACTIONNAME", expression="t1.[ACTIONNAME]", showorder=2), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=3), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=4), @DEDataQueryCodeExp(name="FAHELPER", expression="t1.[FAHELPER]", showorder=5), @DEDataQueryCodeExp(name="NEXTCONDITION", expression="t1.[NEXTCONDITION]", showorder=6), @DEDataQueryCodeExp(name="NEXTTO", expression="t1.[NEXTTO]", showorder=7), @DEDataQueryCodeExp(name="ORDERFLAG", expression="t1.[ORDERFLAG]", showorder=8), @DEDataQueryCodeExp(name="PAGEPATH", expression="t1.[PAGEPATH]", showorder=9), @DEDataQueryCodeExp(name="PANELID", expression="t1.[PANELID]", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=12), @DEDataQueryCodeExp(name="WFIAACTIONID", expression="t1.[WFIAACTIONID]", showorder=13), @DEDataQueryCodeExp(name="WFIAACTIONNAME", expression="t1.[WFIAACTIONNAME]", showorder=14), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.[WFSTEPID]", showorder=15), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.[WFSTEPNAME]", showorder=16)}, conds={})})
-public abstract class WFIAActionDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="8D5194BA-3765-4525-9028-CD93DBFB2DD0",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.ACTIONCOUNT, t1.ACTIONLOGICNAME, t1.ACTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.FAHELPER, t1.NEXTCONDITION, t1.NEXTTO, t1.ORDERFLAG, t1.PAGEPATH, t1.PANELID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFIAACTIONID, t1.WFIAACTIONNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFIAACTION t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=-1)
+        ,@DEDataQueryCodeExp(name="ACTIONCOUNT",expression="t1.ACTIONCOUNT",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTIONLOGICNAME",expression="t1.ACTIONLOGICNAME",showorder=1)
+        ,@DEDataQueryCodeExp(name="ACTIONNAME",expression="t1.ACTIONNAME",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=3)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=4)
+        ,@DEDataQueryCodeExp(name="FAHELPER",expression="t1.FAHELPER",showorder=5)
+        ,@DEDataQueryCodeExp(name="NEXTCONDITION",expression="t1.NEXTCONDITION",showorder=6)
+        ,@DEDataQueryCodeExp(name="NEXTTO",expression="t1.NEXTTO",showorder=7)
+        ,@DEDataQueryCodeExp(name="ORDERFLAG",expression="t1.ORDERFLAG",showorder=8)
+        ,@DEDataQueryCodeExp(name="PAGEPATH",expression="t1.PAGEPATH",showorder=9)
+        ,@DEDataQueryCodeExp(name="PANELID",expression="t1.PANELID",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFIAACTIONID",expression="t1.WFIAACTIONID",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFIAACTIONNAME",expression="t1.WFIAACTIONNAME",showorder=14)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=15)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=16)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`actioncount`, t1.`actionlogicname`, t1.`actionname`, t1.`createdate`, t1.`createman`, t1.`fahelper`, t1.`nextcondition`, t1.`nextto`, t1.`orderflag`, t1.`pagepath`, t1.`panelid`, t1.`updatedate`, t1.`updateman`, t1.`wfiaactionid`, t1.`wfiaactionname`, t1.`wfstepid`, t1.`wfstepname` FROM `t_srfwfiaaction` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="MEMO",expression="t1.`memo`",showorder=-1)
+        ,@DEDataQueryCodeExp(name="ACTIONCOUNT",expression="t1.`actioncount`",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTIONLOGICNAME",expression="t1.`actionlogicname`",showorder=1)
+        ,@DEDataQueryCodeExp(name="ACTIONNAME",expression="t1.`actionname`",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=3)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=4)
+        ,@DEDataQueryCodeExp(name="FAHELPER",expression="t1.`fahelper`",showorder=5)
+        ,@DEDataQueryCodeExp(name="NEXTCONDITION",expression="t1.`nextcondition`",showorder=6)
+        ,@DEDataQueryCodeExp(name="NEXTTO",expression="t1.`nextto`",showorder=7)
+        ,@DEDataQueryCodeExp(name="ORDERFLAG",expression="t1.`orderflag`",showorder=8)
+        ,@DEDataQueryCodeExp(name="PAGEPATH",expression="t1.`pagepath`",showorder=9)
+        ,@DEDataQueryCodeExp(name="PANELID",expression="t1.`panelid`",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFIAACTIONID",expression="t1.`wfiaactionid`",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFIAACTIONNAME",expression="t1.`wfiaactionname`",showorder=14)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.`wfstepid`",showorder=15)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.`wfstepname`",showorder=16)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.ACTIONCOUNT, t1.ACTIONLOGICNAME, t1.ACTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.FAHELPER, t1.NEXTCONDITION, t1.NEXTTO, t1.ORDERFLAG, t1.PAGEPATH, t1.PANELID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFIAACTIONID, t1.WFIAACTIONNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFIAACTION t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=-1)
+        ,@DEDataQueryCodeExp(name="ACTIONCOUNT",expression="t1.ACTIONCOUNT",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTIONLOGICNAME",expression="t1.ACTIONLOGICNAME",showorder=1)
+        ,@DEDataQueryCodeExp(name="ACTIONNAME",expression="t1.ACTIONNAME",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=3)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=4)
+        ,@DEDataQueryCodeExp(name="FAHELPER",expression="t1.FAHELPER",showorder=5)
+        ,@DEDataQueryCodeExp(name="NEXTCONDITION",expression="t1.NEXTCONDITION",showorder=6)
+        ,@DEDataQueryCodeExp(name="NEXTTO",expression="t1.NEXTTO",showorder=7)
+        ,@DEDataQueryCodeExp(name="ORDERFLAG",expression="t1.ORDERFLAG",showorder=8)
+        ,@DEDataQueryCodeExp(name="PAGEPATH",expression="t1.PAGEPATH",showorder=9)
+        ,@DEDataQueryCodeExp(name="PANELID",expression="t1.PANELID",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFIAACTIONID",expression="t1.WFIAACTIONID",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFIAACTIONNAME",expression="t1.WFIAACTIONNAME",showorder=14)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=15)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=16)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.ACTIONCOUNT, t1.ACTIONLOGICNAME, t1.ACTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.FAHELPER, t1.NEXTCONDITION, t1.NEXTTO, t1.ORDERFLAG, t1.PAGEPATH, t1.PANELID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFIAACTIONID, t1.WFIAACTIONNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFIAACTION t1  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=-1)
+        ,@DEDataQueryCodeExp(name="ACTIONCOUNT",expression="t1.ACTIONCOUNT",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTIONLOGICNAME",expression="t1.ACTIONLOGICNAME",showorder=1)
+        ,@DEDataQueryCodeExp(name="ACTIONNAME",expression="t1.ACTIONNAME",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=3)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=4)
+        ,@DEDataQueryCodeExp(name="FAHELPER",expression="t1.FAHELPER",showorder=5)
+        ,@DEDataQueryCodeExp(name="NEXTCONDITION",expression="t1.NEXTCONDITION",showorder=6)
+        ,@DEDataQueryCodeExp(name="NEXTTO",expression="t1.NEXTTO",showorder=7)
+        ,@DEDataQueryCodeExp(name="ORDERFLAG",expression="t1.ORDERFLAG",showorder=8)
+        ,@DEDataQueryCodeExp(name="PAGEPATH",expression="t1.PAGEPATH",showorder=9)
+        ,@DEDataQueryCodeExp(name="PANELID",expression="t1.PANELID",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFIAACTIONID",expression="t1.WFIAACTIONID",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFIAACTIONNAME",expression="t1.WFIAACTIONNAME",showorder=14)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=15)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=16)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.ACTIONCOUNT, t1.ACTIONLOGICNAME, t1.ACTIONNAME, t1.CREATEDATE, t1.CREATEMAN, t1.FAHELPER, t1.NEXTCONDITION, t1.NEXTTO, t1.ORDERFLAG, t1.PAGEPATH, t1.PANELID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFIAACTIONID, t1.WFIAACTIONNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFIAACTION t1  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=-1)
+        ,@DEDataQueryCodeExp(name="ACTIONCOUNT",expression="t1.ACTIONCOUNT",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTIONLOGICNAME",expression="t1.ACTIONLOGICNAME",showorder=1)
+        ,@DEDataQueryCodeExp(name="ACTIONNAME",expression="t1.ACTIONNAME",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=3)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=4)
+        ,@DEDataQueryCodeExp(name="FAHELPER",expression="t1.FAHELPER",showorder=5)
+        ,@DEDataQueryCodeExp(name="NEXTCONDITION",expression="t1.NEXTCONDITION",showorder=6)
+        ,@DEDataQueryCodeExp(name="NEXTTO",expression="t1.NEXTTO",showorder=7)
+        ,@DEDataQueryCodeExp(name="ORDERFLAG",expression="t1.ORDERFLAG",showorder=8)
+        ,@DEDataQueryCodeExp(name="PAGEPATH",expression="t1.PAGEPATH",showorder=9)
+        ,@DEDataQueryCodeExp(name="PANELID",expression="t1.PANELID",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFIAACTIONID",expression="t1.WFIAACTIONID",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFIAACTIONNAME",expression="t1.WFIAACTIONNAME",showorder=14)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=15)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=16)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[ACTIONCOUNT], t1.[ACTIONLOGICNAME], t1.[ACTIONNAME], t1.[CREATEDATE], t1.[CREATEMAN], t1.[FAHELPER], t1.[NEXTCONDITION], t1.[NEXTTO], t1.[ORDERFLAG], t1.[PAGEPATH], t1.[PANELID], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[WFIAACTIONID], t1.[WFIAACTIONNAME], t1.[WFSTEPID], t1.[WFSTEPNAME] FROM [T_SRFWFIAACTION] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="MEMO",expression="t1.[MEMO]",showorder=-1)
+        ,@DEDataQueryCodeExp(name="ACTIONCOUNT",expression="t1.[ACTIONCOUNT]",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTIONLOGICNAME",expression="t1.[ACTIONLOGICNAME]",showorder=1)
+        ,@DEDataQueryCodeExp(name="ACTIONNAME",expression="t1.[ACTIONNAME]",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=3)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=4)
+        ,@DEDataQueryCodeExp(name="FAHELPER",expression="t1.[FAHELPER]",showorder=5)
+        ,@DEDataQueryCodeExp(name="NEXTCONDITION",expression="t1.[NEXTCONDITION]",showorder=6)
+        ,@DEDataQueryCodeExp(name="NEXTTO",expression="t1.[NEXTTO]",showorder=7)
+        ,@DEDataQueryCodeExp(name="ORDERFLAG",expression="t1.[ORDERFLAG]",showorder=8)
+        ,@DEDataQueryCodeExp(name="PAGEPATH",expression="t1.[PAGEPATH]",showorder=9)
+        ,@DEDataQueryCodeExp(name="PANELID",expression="t1.[PANELID]",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFIAACTIONID",expression="t1.[WFIAACTIONID]",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFIAACTIONNAME",expression="t1.[WFIAACTIONNAME]",showorder=14)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.[WFSTEPID]",showorder=15)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.[WFSTEPNAME]",showorder=16)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class WFIAActionDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public WFIAActionDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(WFIAActionDefaultDQModelBase.class);
     }
-}
 
+}

@@ -2987,7 +2987,7 @@ implements Serializable {
                 PSAppLocalDE pSAppLocalDE = new PSAppLocalDE();
                 pSAppLocalDE.setPSAppLocalDEId(this.getPSAppDEId());
                 PSAppLocalDEService pSAppLocalDEService = (PSAppLocalDEService)ServiceGlobal.getService(PSAppLocalDEService.class, (SessionFactory)this.getSessionFactory());
-                pSAppLocalDEService.autoGet((IEntity)pSAppLocalDE);
+                pSAppLocalDEService.autoGet(pSAppLocalDE);
                 this.psappde = pSAppLocalDE;
             }
             return this.psappde;
@@ -3013,7 +3013,7 @@ implements Serializable {
                 PSAppViewLogic pSAppViewLogic = new PSAppViewLogic();
                 pSAppViewLogic.setPSAppViewLogicId(this.getRefPSAppViewLogicId());
                 PSAppViewLogicService pSAppViewLogicService = (PSAppViewLogicService)ServiceGlobal.getService(PSAppViewLogicService.class, (SessionFactory)this.getSessionFactory());
-                pSAppViewLogicService.autoGet((IEntity)pSAppViewLogic);
+                pSAppViewLogicService.autoGet(pSAppViewLogic);
                 this.refpsappviewlogic = pSAppViewLogic;
             }
             return this.refpsappviewlogic;
@@ -3039,7 +3039,7 @@ implements Serializable {
                 PSAppView pSAppView = new PSAppView();
                 pSAppView.setPSAppViewId(this.getPSAppViewId());
                 PSAppViewService pSAppViewService = (PSAppViewService)ServiceGlobal.getService(PSAppViewService.class, (SessionFactory)this.getSessionFactory());
-                pSAppViewService.autoGet((IEntity)pSAppView);
+                pSAppViewService.autoGet(pSAppView);
                 this.psappview = pSAppView;
             }
             return this.psappview;
@@ -3065,7 +3065,7 @@ implements Serializable {
                 PSDELogic pSDELogic = new PSDELogic();
                 pSDELogic.setPSDELogicId(this.getPSDELogicId());
                 PSDELogicService pSDELogicService = (PSDELogicService)ServiceGlobal.getService(PSDELogicService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicService.autoGet((IEntity)pSDELogic);
+                pSDELogicService.autoGet(pSDELogic);
                 this.psdelogic = pSDELogic;
             }
             return this.psdelogic;
@@ -3091,7 +3091,7 @@ implements Serializable {
                 PSDEUIAction pSDEUIAction = new PSDEUIAction();
                 pSDEUIAction.setPSDEUIActionId(this.getPSDEUIActionId());
                 PSDEUIActionService pSDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEUIActionService.autoGet((IEntity)pSDEUIAction);
+                pSDEUIActionService.autoGet(pSDEUIAction);
                 this.psdeuiaction = pSDEUIAction;
             }
             return this.psdeuiaction;
@@ -3117,7 +3117,7 @@ implements Serializable {
                 PSSysPFPlugin pSSysPFPlugin = new PSSysPFPlugin();
                 pSSysPFPlugin.setPSSysPFPluginId(this.getPSSysPFPluginId());
                 PSSysPFPluginService pSSysPFPluginService = (PSSysPFPluginService)ServiceGlobal.getService(PSSysPFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysPFPluginService.autoGet((IEntity)pSSysPFPlugin);
+                pSSysPFPluginService.autoGet(pSSysPFPlugin);
                 this.pssyspfplugin = pSSysPFPlugin;
             }
             return this.pssyspfplugin;
@@ -3143,7 +3143,7 @@ implements Serializable {
                 PSSysViewLogic pSSysViewLogic = new PSSysViewLogic();
                 pSSysViewLogic.setPSSysViewLogicId(this.getPSSysViewLogicId());
                 PSSysViewLogicService pSSysViewLogicService = (PSSysViewLogicService)ServiceGlobal.getService(PSSysViewLogicService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewLogicService.autoGet((IEntity)pSSysViewLogic);
+                pSSysViewLogicService.autoGet(pSSysViewLogic);
                 this.pssysviewlogic = pSSysViewLogic;
             }
             return this.pssysviewlogic;

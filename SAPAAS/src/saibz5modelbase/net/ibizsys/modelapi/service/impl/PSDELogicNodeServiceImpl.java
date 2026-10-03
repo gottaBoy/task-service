@@ -111,7 +111,7 @@ implements IPSDELogicNodeService {
     @Override
     protected List<PSDELogicNode> onListAll() throws Exception {
         ArrayList<PSDELogicNode> list = new ArrayList<PSDELogicNode>();
-        List psdelogics = PSModelServiceUtil.getInstance().getPSDELogicService().listAll();
+        List<PSDELogic> psdelogics = PSModelServiceUtil.getInstance().getPSDELogicService().listAll();
         if (psdelogics != null) {
             for (PSDELogic parent : psdelogics) {
                 List<PSDELogicNode> items = this.listByPSDELogic(parent);

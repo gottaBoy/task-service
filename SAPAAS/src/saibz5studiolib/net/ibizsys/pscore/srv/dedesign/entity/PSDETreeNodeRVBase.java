@@ -1769,7 +1769,7 @@ implements Serializable {
                 PSDETreeNode pSDETreeNode = new PSDETreeNode();
                 pSDETreeNode.setPSDETreeNodeId(this.getPSDETreeNodeId());
                 PSDETreeNodeService pSDETreeNodeService = (PSDETreeNodeService)ServiceGlobal.getService(PSDETreeNodeService.class, (SessionFactory)this.getSessionFactory());
-                pSDETreeNodeService.autoGet((IEntity)pSDETreeNode);
+                pSDETreeNodeService.autoGet(pSDETreeNode);
                 this.psdetreenode = pSDETreeNode;
             }
             return this.psdetreenode;
@@ -1795,7 +1795,7 @@ implements Serializable {
                 PSDEViewBase pSDEViewBase = new PSDEViewBase();
                 pSDEViewBase.setPSDEViewBaseId(this.getPSDEViewBaseId());
                 PSDEViewBaseService pSDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewBaseService.autoGet((IEntity)pSDEViewBase);
+                pSDEViewBaseService.autoGet(pSDEViewBase);
                 this.psdeviewbase = pSDEViewBase;
             }
             return this.psdeviewbase;

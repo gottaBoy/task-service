@@ -1,22 +1,54 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.sysmodel;
 
 import net.ibizsys.paas.core.ISystemUserRole;
-import net.ibizsys.paas.sysmodel.ISystemModel;
 import net.ibizsys.paas.web.IWebContext;
 
-public interface ISystemUserRoleModel
-extends ISystemUserRole {
-    public void init(ISystemModel var1) throws Exception;
+/**
+ * 系统用户角色模型接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface ISystemUserRoleModel extends ISystemUserRole {
 
-    public ISystemModel getSystemModel();
-
-    public void registerUniResTag(String var1);
-
-    public boolean testUniResTag(String var1) throws Exception;
-
-    public boolean testCurUser(IWebContext var1) throws Exception;
+	
+	/**
+	 * 初始化
+	 * @param iSystemModel
+	 * @throws Exception
+	 */
+	void init(ISystemModel iSystemModel)throws Exception;
+	
+	
+	
+	/**
+	 * 获取系统模型对象
+	 * @return
+	 */
+	ISystemModel getSystemModel();
+	
+	
+	
+	/**
+	 * 注册角色拥有的统一资源标记
+	 * @param strUniResTag
+	 */
+	void registerUniResTag(String strUniResTag);
+	
+	
+	/**
+	 * 判断统一资源标识
+	 * @param strUniResTag
+	 * @return
+	 */
+	boolean testUniResTag(String strUniResTag)throws Exception;
+	
+	
+	/**
+	 * 判断当前用户是否在角色中
+	 * @param iWebContext
+	 * @return
+	 * @throws Exception
+	 */
+	boolean testCurUser(IWebContext iWebContext)throws Exception;
 }
-

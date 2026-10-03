@@ -60,7 +60,7 @@ extends DELogicModelBase<PSDEFormDetail> {
         PSDEFormRF pSDEFormRF = (PSDEFormRF)iActionContext.getParam("PSDEFORMRF");
         SessionFactory sessionFactory = iActionContext.getSessionFactory();
         IService iService = ServiceGlobal.getService(PSDEFormRFService.class, (SessionFactory)sessionFactory);
-        iService.executeAction("GETTEMP", (IEntity)pSDEFormRF);
+        iService.executeAction("GETTEMP", pSDEFormRF);
         this.executeFillbackDefault(iActionContext);
     }
 

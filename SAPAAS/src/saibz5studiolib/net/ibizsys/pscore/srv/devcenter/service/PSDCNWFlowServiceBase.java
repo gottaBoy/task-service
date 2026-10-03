@@ -138,14 +138,14 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDCNWFlow, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCNWFlow, string, string2, string3);
+        super.onFillParentInfo(pSDCNWFlow, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCNWFlow, bl);
+        super.onFillEntityFullInfo(pSDCNWFlow, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDCNWFlow, bl);
     }
 
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
     }
 
     protected void onWriteBackParent(PSDCNWFlow pSDCNWFlow, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCNWFlow, bl);
+        super.onWriteBackParent(pSDCNWFlow, bl);
     }
 
     public ArrayList<PSDCNWFlow> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -210,8 +210,8 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
         ArrayList<PSDCNWFlow> arrayList = this.selectByPSDevCenter(pSDevCenter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVCENTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevCenter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCNWFLOW_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSDCNWFLOW", iDataEntityModel.getDataInfo((IEntity)pSDevCenter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevCenter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCNWFLOW_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSDCNWFLOW", iDataEntityModel.getDataInfo(pSDevCenter), arrayList.get(0)));
         }
     }
 
@@ -244,7 +244,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
         ArrayList<PSDCNWFlow> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCNWFlow pSDCNWFlow : arrayList) {
-            this.remove((IEntity)pSDCNWFlow);
+            this.remove(pSDCNWFlow);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -265,14 +265,14 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
 
     protected void replaceParentInfo(PSDCNWFlow pSDCNWFlow, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCNWFlow, cloneSession);
+        super.replaceParentInfo(pSDCNWFlow, cloneSession);
         if (pSDCNWFlow.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSDCNWFlow.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSDCNWFlow, (PSDevCenter)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDCNWFlow pSDCNWFlow, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCNWFlow, bl);
+        super.onRemoveEntityUncopyValues(pSDCNWFlow, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCNWFlow pSDCNWFlow, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -311,7 +311,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
         if ((entityFieldError = this.onCheckField_UserTag2(bl, pSDCNWFlow, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCNWFlow, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCNWFlow, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ActionInfo(boolean bl, PSDCNWFlow pSDCNWFlow, boolean bl2, boolean bl3) throws Exception {
@@ -324,7 +324,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionInfo_Default((IEntity)pSDCNWFlow, bl2, bl3);
+            string2 = this.onTestValueRule_ActionInfo_Default(pSDCNWFlow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONINFO");
@@ -349,7 +349,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionType_Default((IEntity)pSDCNWFlow, bl2, bl3);
+            string2 = this.onTestValueRule_ActionType_Default(pSDCNWFlow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONTYPE");
@@ -371,7 +371,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BeginTime_Default((IEntity)pSDCNWFlow, bl2, bl3);
+            string = this.onTestValueRule_BeginTime_Default(pSDCNWFlow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BEGINTIME");
@@ -393,7 +393,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EndTime_Default((IEntity)pSDCNWFlow, bl2, bl3);
+            string = this.onTestValueRule_EndTime_Default(pSDCNWFlow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENDTIME");
@@ -415,7 +415,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Flow_Default((IEntity)pSDCNWFlow, bl2, bl3);
+            string = this.onTestValueRule_Flow_Default(pSDCNWFlow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FLOW");
@@ -440,7 +440,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCNWFlowId_Default((IEntity)pSDCNWFlow, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCNWFlowId_Default(pSDCNWFlow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCNWFLOWID");
@@ -465,7 +465,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCNWFlowName_Default((IEntity)pSDCNWFlow, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCNWFlowName_Default(pSDCNWFlow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCNWFLOWNAME");
@@ -490,7 +490,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDCNWFlow, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDCNWFlow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -515,7 +515,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDCNWFlow, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDCNWFlow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -537,7 +537,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDCNWFlow, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDCNWFlow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -559,7 +559,7 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDCNWFlow, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDCNWFlow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -572,11 +572,11 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
     }
 
     protected void onSyncEntity(PSDCNWFlow pSDCNWFlow, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCNWFlow, bl);
+        super.onSyncEntity(pSDCNWFlow, bl);
     }
 
     protected void onSyncIndexEntities(PSDCNWFlow pSDCNWFlow, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCNWFlow, bl);
+        super.onSyncIndexEntities(pSDCNWFlow, bl);
     }
 
     public Object getDataContextValue(PSDCNWFlow pSDCNWFlow, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -584,14 +584,14 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCNWFlow, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCNWFlow, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCNWFlow pSDCNWFlow, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCNWFlow, arrayList, n);
+        super.onExportMajorModel(pSDCNWFlow, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -785,14 +785,14 @@ extends PSCoreSysServiceBase<PSDCNWFlow> {
 
     protected boolean onMergeChild(String string, String string2, PSDCNWFlow pSDCNWFlow) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCNWFlow)) {
+        if (super.onMergeChild(string, string2, pSDCNWFlow)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCNWFlow pSDCNWFlow) throws Exception {
-        super.onUpdateParent((IEntity)pSDCNWFlow);
+        super.onUpdateParent(pSDCNWFlow);
     }
 
     @Override

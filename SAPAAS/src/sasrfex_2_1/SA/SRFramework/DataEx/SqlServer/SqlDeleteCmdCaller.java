@@ -27,7 +27,7 @@ import SA.SRFramework.UtilityEx.StringBuilderEx;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -148,7 +148,7 @@ implements IDBDeleteCmdCaller {
             dbResult = new DBResult();
             dbResult.setRetCode(1);
             dbResult.setDatabase(2);
-            Statement cstmt = null;
+            PreparedStatement cstmt = null;
             try {
                 try {
                     DataTable dt;

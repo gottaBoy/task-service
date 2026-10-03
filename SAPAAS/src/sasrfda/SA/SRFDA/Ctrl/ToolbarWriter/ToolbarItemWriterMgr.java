@@ -68,8 +68,8 @@ extends XMLCollectionExConfig<ToolbarItemWriterConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = ToolbarItemWriterMgr.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((ToolbarItemWriterConfig)childNode))) {
-                this.add((Object)((ToolbarItemWriterConfig)childNode));
+            if (this.OnChildNodeLoaded((ToolbarItemWriterConfig)childNode)) {
+                this.add((ToolbarItemWriterConfig)childNode);
                 return;
             }
         }

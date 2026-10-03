@@ -1,21 +1,30 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
-import net.ibizsys.paas.db.IProcParam;
-import net.ibizsys.paas.db.SqlParam;
+/**
+ * 存储过程参数对象
+ * 
+ * @author Administrator
+ *
+ */
+public class ProcParam extends SqlParam implements IProcParam {
 
-public class ProcParam
-extends SqlParam
-implements IProcParam {
-    @Override
-    public Object getDefaultValue() {
-        return this.getValue();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.IProcParam#getDefaultValue()
+	 */
+	@Override
+	public Object getDefaultValue() {
+		return this.getValue();
+	}
 
-    public void setDefaultValue(Object objValue) {
-        this.setValue(objValue);
-    }
+	/**
+	 * 设置默认值
+	 * 
+	 * @param objValue
+	 */
+	public void setDefaultValue(Object objValue) {
+		this.setValue(objValue);
+	}
+
 }
-

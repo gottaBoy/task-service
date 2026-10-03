@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.unisys.demodel.PSUSDCModuleInstDEModelBase;
 
 public class PSUSDCModuleInstDEModel
 extends PSUSDCModuleInstDEModelBase {
+
+    public PSUSDCModuleInstDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

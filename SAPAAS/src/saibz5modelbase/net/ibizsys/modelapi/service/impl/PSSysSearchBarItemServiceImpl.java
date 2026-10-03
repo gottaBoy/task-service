@@ -80,7 +80,7 @@ implements IPSSysSearchBarItemService {
     @Override
     protected List<PSSysSearchBarItem> onListAll() throws Exception {
         ArrayList<PSSysSearchBarItem> list = new ArrayList<PSSysSearchBarItem>();
-        List pssyssearchbars = PSModelServiceUtil.getInstance().getPSSysSearchBarService().listAll();
+        List<PSSysSearchBar> pssyssearchbars = PSModelServiceUtil.getInstance().getPSSysSearchBarService().listAll();
         if (pssyssearchbars != null) {
             for (PSSysSearchBar parent : pssyssearchbars) {
                 List<PSSysSearchBarItem> items = this.listByPSSysSearchBar(parent);

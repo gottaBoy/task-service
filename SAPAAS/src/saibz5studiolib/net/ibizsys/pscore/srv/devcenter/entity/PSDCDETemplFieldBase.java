@@ -1541,7 +1541,7 @@ implements Serializable {
                 PSDCDETempl pSDCDETempl = new PSDCDETempl();
                 pSDCDETempl.setPSDCDETemplId(this.getPSDCDETemplId());
                 PSDCDETemplService pSDCDETemplService = (PSDCDETemplService)ServiceGlobal.getService(PSDCDETemplService.class, (SessionFactory)this.getSessionFactory());
-                pSDCDETemplService.autoGet((IEntity)pSDCDETempl);
+                pSDCDETemplService.autoGet(pSDCDETempl);
                 this.psdcdetempl = pSDCDETempl;
             }
             return this.psdcdetempl;
@@ -1567,7 +1567,7 @@ implements Serializable {
                 PSDEFDataType pSDEFDataType = new PSDEFDataType();
                 pSDEFDataType.setPSDEFDataTypeId(this.getPSDataTypeId());
                 PSDEFDataTypeService pSDEFDataTypeService = (PSDEFDataTypeService)ServiceGlobal.getService(PSDEFDataTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFDataTypeService.autoGet((IEntity)pSDEFDataType);
+                pSDEFDataTypeService.autoGet(pSDEFDataType);
                 this.psdatatype = pSDEFDataType;
             }
             return this.psdatatype;

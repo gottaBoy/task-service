@@ -76,7 +76,7 @@ implements IPSSysSearchBarLogicService {
     @Override
     protected List<PSSysSearchBarLogic> onListAll() throws Exception {
         ArrayList<PSSysSearchBarLogic> list = new ArrayList<PSSysSearchBarLogic>();
-        List pssyssearchbars = PSModelServiceUtil.getInstance().getPSSysSearchBarService().listAll();
+        List<PSSysSearchBar> pssyssearchbars = PSModelServiceUtil.getInstance().getPSSysSearchBarService().listAll();
         if (pssyssearchbars != null) {
             for (PSSysSearchBar parent : pssyssearchbars) {
                 List<PSSysSearchBarLogic> items = this.listByPSSysSearchBar(parent);

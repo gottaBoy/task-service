@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.DynaGridViewControllerInstBase;
+/**
+ * 默认的动态表格视图实例对象
+ * @author Administrator
+ *
+ */
+public class DefaultDynaGridViewControllerInst extends DynaGridViewControllerInstBase {
 
-public class DefaultDynaGridViewControllerInst
-extends DynaGridViewControllerInstBase {
+	public DefaultDynaGridViewControllerInst() throws Exception {
+		super();
+	}
+
 }
-

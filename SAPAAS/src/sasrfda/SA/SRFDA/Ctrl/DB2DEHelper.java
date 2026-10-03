@@ -555,8 +555,8 @@ extends BaseDEHelper {
         if (bInheritTable) {
             iDEHelper = this.GetInheritDEHelper();
         }
-        for (IDEFHelper iDEFHelper2 : this.GetDEFHelpers()) {
-            this.GetTableInsertField(strTableName, iDEFHelper2, fields, bInheritTable);
+        for (IDEFHelper iDEFHelper : this.GetDEFHelpers()) {
+            this.GetTableInsertField(strTableName, iDEFHelper, fields, bInheritTable);
         }
         if (bLogicEnable && (iValidDEFHelper = iDEHelper.GetDEFHelperByPreDefineType("LOGICVALID")) != null) {
             fields.put(iValidDEFHelper.GetDTColumn().GetColumnName(), this.GetProperty("VALIDVALUE"));
@@ -597,9 +597,9 @@ extends BaseDEHelper {
 
     protected void GetTableUpdateFields(String strTableName, TreeMap<String, String> fields, boolean bInheritTable) {
         IDEFHelper iDEFHelper2;
-        for (IDEFHelper iDEFHelper2 : this.GetDEFHelpers()) {
-            if (iDEFHelper2.IsKeyDEField()) continue;
-            this.GetTableUpdateField(strTableName, iDEFHelper2, fields, bInheritTable);
+        for (IDEFHelper iDEFHelper : this.GetDEFHelpers()) {
+            if (iDEFHelper.IsKeyDEField()) continue;
+            this.GetTableUpdateField(strTableName, iDEFHelper, fields, bInheritTable);
         }
         iDEFHelper2 = this.GetDEFHelperByPreDefineType("UPDATEMAN");
         if (iDEFHelper2 != null) {

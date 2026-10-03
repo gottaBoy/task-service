@@ -1485,7 +1485,7 @@ implements Serializable {
                 PSSubApp pSSubApp = new PSSubApp();
                 pSSubApp.setPSSubAppId(this.getPSSubAppId());
                 PSSubAppService pSSubAppService = (PSSubAppService)ServiceGlobal.getService(PSSubAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSubAppService.autoGet((IEntity)pSSubApp);
+                pSSubAppService.autoGet(pSSubApp);
                 this.pssubapp = pSSubApp;
             }
             return this.pssubapp;
@@ -1511,7 +1511,7 @@ implements Serializable {
                 PSSubDEView pSSubDEView = new PSSubDEView();
                 pSSubDEView.setPSSubDEViewId(this.getPSSubDEViewId());
                 PSSubDEViewService pSSubDEViewService = (PSSubDEViewService)ServiceGlobal.getService(PSSubDEViewService.class, (SessionFactory)this.getSessionFactory());
-                pSSubDEViewService.autoGet((IEntity)pSSubDEView);
+                pSSubDEViewService.autoGet(pSSubDEView);
                 this.pssubdeview = pSSubDEView;
             }
             return this.pssubdeview;

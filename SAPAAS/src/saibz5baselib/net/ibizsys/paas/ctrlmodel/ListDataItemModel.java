@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import net.ibizsys.paas.control.list.IList;
@@ -10,42 +7,86 @@ import net.ibizsys.paas.core.ISystem;
 import net.ibizsys.paas.datamodel.DataItemModel;
 import net.ibizsys.paas.demodel.IDataEntityModel;
 
-public class ListDataItemModel
-extends DataItemModel
-implements IListDataItem {
-    protected IList iList = null;
-    private String strPrivilegeId = null;
+/**
+ * 列表数据项参数
+ * 
+ * @author lionlau
+ *
+ */
+public class ListDataItemModel extends DataItemModel implements IListDataItem {
+	protected IList iList = null;
+	private String strPrivilegeId = null;
 
-    public void init(IList iList) throws Exception {
-        this.setList(iList);
-        this.onInit();
-    }
+	public ListDataItemModel() {
 
-    protected IList getList() {
-        return this.iList;
-    }
+	}
 
-    protected void setList(IList iList) {
-        this.iList = iList;
-    }
+	/**
+	 * 初始化
+	 * 
+	 * @param iList
+	 * @throws Exception
+	 */
+	public void init(IList iList) throws Exception {
+		this.setList(iList);
+		this.onInit();
+	}
 
-    @Override
-    public ISystem getCurSystem(IActionContext iActionContext) throws Exception {
-        return this.getList().getDataEntity().getSystem();
-    }
+	/**
+	 * 获取列表部件对象
+	 * 
+	 * @return the iList
+	 */
+	protected IList getList() {
+		return iList;
+	}
 
-    @Override
-    public String getPrivilegeId() {
-        return this.strPrivilegeId;
-    }
+	/**
+	 * 设置列表部件对象
+	 * 
+	 * @param iList the iList to set
+	 */
+	protected void setList(IList iList) {
+		this.iList = iList;
+	}
 
-    public void setPrivilegeId(String strPrivilegeId) {
-        this.strPrivilegeId = strPrivilegeId;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.data.impl.DataItemImpl#getCurSystem(net.ibizsys.paas.core.IActionContext)
+	 */
+	@Override
+	public ISystem getCurSystem(IActionContext iActionContext) throws Exception {
+		return this.getList().getDataEntity().getSystem();
+	}
 
-    @Override
-    protected IDataEntityModel getDEModel() throws Exception {
-        return (IDataEntityModel)this.getList().getDataEntity();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.control.list.IListDataItem#getPrivilegeId()
+	 */
+	@Override
+	public String getPrivilegeId() {
+		return this.strPrivilegeId;
+	}
+
+	/**
+	 * 设置列控制标识
+	 * 
+	 * @param strPrivilegeId
+	 */
+	public void setPrivilegeId(String strPrivilegeId) {
+		this.strPrivilegeId = strPrivilegeId;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.data.impl.DataItemImpl#getDEModel()
+	 */
+	@Override
+	protected IDataEntityModel getDEModel() throws Exception {
+		return (IDataEntityModel) this.getList().getDataEntity();
+	}
+
 }
-

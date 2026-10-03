@@ -28,7 +28,7 @@ import SA.SRFramework.UtilityEx.StringBuilderEx;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.CallableStatement;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -38,7 +38,7 @@ extends OraDBProcCallerEx
 implements IDBDeleteCmdCaller {
     @Override
     public DBResult Invoke(Hashtable paramList, String strOpPersonId) throws SQLException {
-        UpdateResult deleteResult = null;
+        DBResult deleteResult = null;
         Connection SqlConn = this.CreateConnection();
         if (SqlConn == null) {
             deleteResult = new UpdateResult();
@@ -77,7 +77,7 @@ implements IDBDeleteCmdCaller {
                 return deleteResult;
             }
         }
-        Statement cstmt = null;
+        CallableStatement cstmt = null;
         Hashtable<Integer, String> outputParamList = new Hashtable<Integer, String>();
         try {
             try {

@@ -1,20 +1,38 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.api;
 
 import net.sf.json.JSONObject;
 
+/**
+ * 服务调用上下文对象接口
+ * @author Administrator
+ *
+ */
 public interface IServiceCallContext {
-    public String getResultRaw();
 
-    public JSONObject getResultJO();
-
-    public void setResultRaw(String var1);
-
-    public void setResultJO(JSONObject var1);
+	/**
+	 * 获取直接的返回内容
+	 * @return
+	 */
+	String getResultRaw();
+	
+	
+	/**
+	 * 获取返回的JSON对象
+	 * @return
+	 */
+	JSONObject getResultJO();
+	
+	
+	/**
+	 * 设置结果字符串
+	 * @param strResultRaw
+	 */
+	void setResultRaw(String strResultRaw);
+	
+	
+	/**
+	 * 设置结果JSONObject
+	 * @param resultJO
+	 */
+	void setResultJO(JSONObject resultJO);
 }
-

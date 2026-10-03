@@ -4541,7 +4541,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -4567,7 +4567,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getDstPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.dstpsdef = pSDEField;
             }
             return this.dstpsdef;
@@ -4593,7 +4593,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getSrcPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.srcpsdef = pSDEField;
             }
             return this.srcpsdef;
@@ -4619,7 +4619,7 @@ implements Serializable {
                 PSDELogicNode pSDELogicNode = new PSDELogicNode();
                 pSDELogicNode.setPSDELogicNodeId(this.getPSDELogicNodeId());
                 PSDELogicNodeService pSDELogicNodeService = (PSDELogicNodeService)ServiceGlobal.getService(PSDELogicNodeService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicNodeService.autoGet((IEntity)pSDELogicNode);
+                pSDELogicNodeService.autoGet(pSDELogicNode);
                 this.psdelogicnode = pSDELogicNode;
             }
             return this.psdelogicnode;
@@ -4645,7 +4645,7 @@ implements Serializable {
                 PSDELogicParam pSDELogicParam = new PSDELogicParam();
                 pSDELogicParam.setPSDELogicParamId(this.getDstPSDLParamId());
                 PSDELogicParamService pSDELogicParamService = (PSDELogicParamService)ServiceGlobal.getService(PSDELogicParamService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicParamService.autoGet((IEntity)pSDELogicParam);
+                pSDELogicParamService.autoGet(pSDELogicParam);
                 this.dstpsdlparam = pSDELogicParam;
             }
             return this.dstpsdlparam;
@@ -4671,7 +4671,7 @@ implements Serializable {
                 PSDELogicParam pSDELogicParam = new PSDELogicParam();
                 pSDELogicParam.setPSDELogicParamId(this.getSrcPSDLParamId());
                 PSDELogicParamService pSDELogicParamService = (PSDELogicParamService)ServiceGlobal.getService(PSDELogicParamService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicParamService.autoGet((IEntity)pSDELogicParam);
+                pSDELogicParamService.autoGet(pSDELogicParam);
                 this.srcpsdlparam = pSDELogicParam;
             }
             return this.srcpsdlparam;
@@ -4697,7 +4697,7 @@ implements Serializable {
                 PSSysMsgTempl pSSysMsgTempl = new PSSysMsgTempl();
                 pSSysMsgTempl.setPSSysMsgTemplId(this.getPSSysMsgTemplId());
                 PSSysMsgTemplService pSSysMsgTemplService = (PSSysMsgTemplService)ServiceGlobal.getService(PSSysMsgTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSSysMsgTemplService.autoGet((IEntity)pSSysMsgTempl);
+                pSSysMsgTemplService.autoGet(pSSysMsgTempl);
                 this.pssysmsgtempl = pSSysMsgTempl;
             }
             return this.pssysmsgtempl;
@@ -4723,7 +4723,7 @@ implements Serializable {
                 PSSysSequence pSSysSequence = new PSSysSequence();
                 pSSysSequence.setPSSysSequenceId(this.getPSSysSequenceId());
                 PSSysSequenceService pSSysSequenceService = (PSSysSequenceService)ServiceGlobal.getService(PSSysSequenceService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSequenceService.autoGet((IEntity)pSSysSequence);
+                pSSysSequenceService.autoGet(pSSysSequence);
                 this.pssyssequeue = pSSysSequence;
             }
             return this.pssyssequeue;
@@ -4749,7 +4749,7 @@ implements Serializable {
                 PSSysTranslator pSSysTranslator = new PSSysTranslator();
                 pSSysTranslator.setPSSysTranslatorId(this.getPSSysTranslatorId());
                 PSSysTranslatorService pSSysTranslatorService = (PSSysTranslatorService)ServiceGlobal.getService(PSSysTranslatorService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTranslatorService.autoGet((IEntity)pSSysTranslator);
+                pSSysTranslatorService.autoGet(pSSysTranslator);
                 this.pssystranslator = pSSysTranslator;
             }
             return this.pssystranslator;

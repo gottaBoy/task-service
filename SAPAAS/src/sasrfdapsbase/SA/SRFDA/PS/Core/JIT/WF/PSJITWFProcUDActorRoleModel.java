@@ -44,7 +44,7 @@ extends WFProcUDActorRoleModel {
                 if (!StringHelper.isNullOrEmpty((String)strWFUserId)) {
                     WFUser wfUser = new WFUser();
                     wfUser.setWFUserId(strWFUserId);
-                    wfUserService.get((IEntity)wfUser);
+                    wfUserService.get(wfUser);
                     wfRoleUserList.add(WFRoleUser.fromWFUser((WFUser)wfUser, null));
                 }
                 ++n2;
@@ -54,4 +54,3 @@ extends WFProcUDActorRoleModel {
         return null;
     }
 }
-

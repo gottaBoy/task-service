@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSBookingResTypeDEModelBase;
 
 public class PSBookingResTypeDEModel
 extends PSBookingResTypeDEModelBase {
+
+    public PSBookingResTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

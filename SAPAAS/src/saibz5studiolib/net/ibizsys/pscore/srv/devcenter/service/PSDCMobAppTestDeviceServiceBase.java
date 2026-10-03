@@ -145,14 +145,14 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDCMobAppTestDevice, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCMobAppTestDevice, string, string2, string3);
+        super.onFillParentInfo(pSDCMobAppTestDevice, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
         if (bl && pSDCMobAppTestDevice.getValidFlag() == null) {
             pSDCMobAppTestDevice.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDCMobAppTestDevice, bl);
+        super.onFillEntityFullInfo(pSDCMobAppTestDevice, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDCMobAppTestDevice, bl);
     }
 
@@ -186,7 +186,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
     }
 
     protected void onWriteBackParent(PSDCMobAppTestDevice pSDCMobAppTestDevice, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCMobAppTestDevice, bl);
+        super.onWriteBackParent(pSDCMobAppTestDevice, bl);
     }
 
     public ArrayList<PSDCMobAppTestDevice> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -245,7 +245,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
         ArrayList<PSDCMobAppTestDevice> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCMobAppTestDevice pSDCMobAppTestDevice : arrayList) {
-            this.remove((IEntity)pSDCMobAppTestDevice);
+            this.remove(pSDCMobAppTestDevice);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -268,14 +268,14 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
 
     protected void replaceParentInfo(PSDCMobAppTestDevice pSDCMobAppTestDevice, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCMobAppTestDevice, cloneSession);
+        super.replaceParentInfo(pSDCMobAppTestDevice, cloneSession);
         if (pSDCMobAppTestDevice.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSDCMobAppTestDevice.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSDCMobAppTestDevice, (PSDevCenter)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDCMobAppTestDevice pSDCMobAppTestDevice, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCMobAppTestDevice, bl);
+        super.onRemoveEntityUncopyValues(pSDCMobAppTestDevice, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCMobAppTestDevice pSDCMobAppTestDevice, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -311,7 +311,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDCMobAppTestDevice, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCMobAppTestDevice, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCMobAppTestDevice, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DeviceId(boolean bl, PSDCMobAppTestDevice pSDCMobAppTestDevice, boolean bl2, boolean bl3) throws Exception {
@@ -324,7 +324,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DeviceId_Default((IEntity)pSDCMobAppTestDevice, bl2, bl3);
+            string2 = this.onTestValueRule_DeviceId_Default(pSDCMobAppTestDevice, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEVICEID");
@@ -346,7 +346,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCMobAppTestDevice, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCMobAppTestDevice, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -371,7 +371,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_OSType_Default((IEntity)pSDCMobAppTestDevice, bl2, bl3);
+            string2 = this.onTestValueRule_OSType_Default(pSDCMobAppTestDevice, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("OSTYPE");
@@ -396,7 +396,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_OSVer_Default((IEntity)pSDCMobAppTestDevice, bl2, bl3);
+            string2 = this.onTestValueRule_OSVer_Default(pSDCMobAppTestDevice, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("OSVER");
@@ -421,7 +421,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCMobAppTestDeviceId_Default((IEntity)pSDCMobAppTestDevice, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCMobAppTestDeviceId_Default(pSDCMobAppTestDevice, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCMOBAPPTESTDEVICEID");
@@ -446,7 +446,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCMobAppTestDeviceName_Default((IEntity)pSDCMobAppTestDevice, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCMobAppTestDeviceName_Default(pSDCMobAppTestDevice, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCMOBAPPTESTDEVICENAME");
@@ -468,7 +468,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDCMobAppTestDevice, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDCMobAppTestDevice, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -490,7 +490,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDCMobAppTestDevice, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDCMobAppTestDevice, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -512,7 +512,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RefCount_Default((IEntity)pSDCMobAppTestDevice, bl2, bl3);
+            string = this.onTestValueRule_RefCount_Default(pSDCMobAppTestDevice, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFCOUNT");
@@ -537,7 +537,7 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDCMobAppTestDevice, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDCMobAppTestDevice, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -550,11 +550,11 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
     }
 
     protected void onSyncEntity(PSDCMobAppTestDevice pSDCMobAppTestDevice, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCMobAppTestDevice, bl);
+        super.onSyncEntity(pSDCMobAppTestDevice, bl);
     }
 
     protected void onSyncIndexEntities(PSDCMobAppTestDevice pSDCMobAppTestDevice, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCMobAppTestDevice, bl);
+        super.onSyncIndexEntities(pSDCMobAppTestDevice, bl);
     }
 
     public Object getDataContextValue(PSDCMobAppTestDevice pSDCMobAppTestDevice, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -562,14 +562,14 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCMobAppTestDevice, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCMobAppTestDevice, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCMobAppTestDevice pSDCMobAppTestDevice, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCMobAppTestDevice, arrayList, n);
+        super.onExportMajorModel(pSDCMobAppTestDevice, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -756,14 +756,14 @@ extends PSCoreSysServiceBase<PSDCMobAppTestDevice> {
 
     protected boolean onMergeChild(String string, String string2, PSDCMobAppTestDevice pSDCMobAppTestDevice) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCMobAppTestDevice)) {
+        if (super.onMergeChild(string, string2, pSDCMobAppTestDevice)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCMobAppTestDevice pSDCMobAppTestDevice) throws Exception {
-        super.onUpdateParent((IEntity)pSDCMobAppTestDevice);
+        super.onUpdateParent(pSDCMobAppTestDevice);
     }
 
     @Override

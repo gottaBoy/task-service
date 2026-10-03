@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDEFVRCodeType> {
     }
 
     protected void onFillParentInfo(PSDEFVRCodeType pSDEFVRCodeType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDEFVRCodeType, string, string2, string3);
+        super.onFillParentInfo(pSDEFVRCodeType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDEFVRCodeType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEFVRCodeType, bl);
+        super.onFillEntityFullInfo(pSDEFVRCodeType, bl);
     }
 
     protected void onWriteBackParent(PSDEFVRCodeType pSDEFVRCodeType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEFVRCodeType, bl);
+        super.onWriteBackParent(pSDEFVRCodeType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDEFVRCodeType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEFVRCodeType pSDEFVRCodeType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEFVRCodeType, bl);
+        super.onRemoveEntityUncopyValues(pSDEFVRCodeType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEFVRCodeType pSDEFVRCodeType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSDEFVRCodeType> {
         if ((entityFieldError = this.onCheckField_PSDEFVRCodeTypeName(bl, pSDEFVRCodeType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEFVRCodeType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEFVRCodeType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeType(boolean bl, PSDEFVRCodeType pSDEFVRCodeType, boolean bl2, boolean bl3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSDEFVRCodeType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeType_Default((IEntity)pSDEFVRCodeType, bl2, bl3);
+            string2 = this.onTestValueRule_CodeType_Default(pSDEFVRCodeType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODETYPE");
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSDEFVRCodeType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MainType_Default((IEntity)pSDEFVRCodeType, bl2, bl3);
+            string2 = this.onTestValueRule_MainType_Default(pSDEFVRCodeType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAINTYPE");
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSDEFVRCodeType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEFVRCodeType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEFVRCodeType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSDEFVRCodeType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFVRCodeTypeId_Default((IEntity)pSDEFVRCodeType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFVRCodeTypeId_Default(pSDEFVRCodeType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFVRCODETYPEID");
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSDEFVRCodeType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFVRCodeTypeName_Default((IEntity)pSDEFVRCodeType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFVRCodeTypeName_Default(pSDEFVRCodeType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFVRCODETYPENAME");
@@ -287,11 +287,11 @@ extends PSCoreSysServiceBase<PSDEFVRCodeType> {
     }
 
     protected void onSyncEntity(PSDEFVRCodeType pSDEFVRCodeType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEFVRCodeType, bl);
+        super.onSyncEntity(pSDEFVRCodeType, bl);
     }
 
     protected void onSyncIndexEntities(PSDEFVRCodeType pSDEFVRCodeType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEFVRCodeType, bl);
+        super.onSyncIndexEntities(pSDEFVRCodeType, bl);
     }
 
     public Object getDataContextValue(PSDEFVRCodeType pSDEFVRCodeType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -299,14 +299,14 @@ extends PSCoreSysServiceBase<PSDEFVRCodeType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEFVRCodeType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEFVRCodeType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEFVRCodeType pSDEFVRCodeType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEFVRCodeType, arrayList, n);
+        super.onExportMajorModel(pSDEFVRCodeType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -434,14 +434,14 @@ extends PSCoreSysServiceBase<PSDEFVRCodeType> {
 
     protected boolean onMergeChild(String string, String string2, PSDEFVRCodeType pSDEFVRCodeType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEFVRCodeType)) {
+        if (super.onMergeChild(string, string2, pSDEFVRCodeType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEFVRCodeType pSDEFVRCodeType) throws Exception {
-        super.onUpdateParent((IEntity)pSDEFVRCodeType);
+        super.onUpdateParent(pSDEFVRCodeType);
     }
 
     @Override

@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.toolbar;
 
-import net.ibizsys.model.control.toolbar.IPSDEContextMenuItem;
+/**
+ * 上下文菜单分隔项对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDECMSeperatorItem extends IPSDEContextMenuItem {
 
-public interface IPSDECMSeperatorItem
-extends IPSDEContextMenuItem {
 }
-

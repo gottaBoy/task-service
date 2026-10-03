@@ -76,7 +76,7 @@ implements IPSDEUserRoleService {
     @Override
     protected List<PSDEUserRole> onListAll() throws Exception {
         ArrayList<PSDEUserRole> list = new ArrayList<PSDEUserRole>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEUserRole> items = this.listByPSDataEntity(parent);

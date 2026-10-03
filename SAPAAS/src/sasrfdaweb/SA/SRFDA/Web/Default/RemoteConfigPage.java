@@ -722,7 +722,7 @@ extends SRFDAPage {
     }
 
     protected void RemoveNoPrivMenuNode(XMLNode xmlNode) {
-        ArrayList childs;
+        ArrayList<XMLNode> childs;
         String strResourceId = xmlNode.GetExtValue("RESOURCEID", "");
         if (!StringHelper.IsNullOrEmpty((String)strResourceId)) {
             if (!this.getWebContext().GetUserPrivilegeMgr().Test((SRFExWebContext)this.getWebContext(), strResourceId)) {
@@ -744,7 +744,7 @@ extends SRFDAPage {
     }
 
     protected boolean RemoveNoPrivConfigNode(XMLNode xmlNode, boolean bRemove) {
-        ArrayList childs;
+        ArrayList<XMLNode> childs;
         String strResourceId = xmlNode.GetExtValue("RESOURCEID", "");
         if (!StringHelper.IsNullOrEmpty((String)strResourceId)) {
             if (!this.getWebContext().GetUserPrivilegeMgr().Test((SRFExWebContext)this.getWebContext(), strResourceId)) {
@@ -777,7 +777,7 @@ extends SRFDAPage {
     }
 
     protected boolean RemoveNoPrivConfigNode2(XMLNode xmlNode, boolean bRemove) {
-        ArrayList childs;
+        ArrayList<XMLNode> childs;
         String strPrivilegeId = xmlNode.GetExtValue("PRIVILEGEID", "");
         if (!StringHelper.IsNullOrEmpty((String)strPrivilegeId)) {
             if ((this.getWebContext().GetUserPrivilegeMgr().TestColumn((ISRFExWebContext)this.getWebContext(), strPrivilegeId) & 1) == 0) {
@@ -821,4 +821,3 @@ extends SRFDAPage {
         return StringHelper.Format((String)"%1$s%2$s", (Object)(nCode >= 0 ? "A" : "B"), (Object)Math.abs(nCode));
     }
 }
-

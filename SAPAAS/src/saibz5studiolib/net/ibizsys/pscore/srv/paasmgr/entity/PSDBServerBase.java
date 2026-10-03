@@ -2529,7 +2529,7 @@ implements Serializable {
                 PSAppServer pSAppServer = new PSAppServer();
                 pSAppServer.setPSAppServerId(this.getPSAppServerId());
                 PSAppServerService pSAppServerService = (PSAppServerService)ServiceGlobal.getService(PSAppServerService.class, (SessionFactory)this.getSessionFactory());
-                pSAppServerService.autoGet((IEntity)pSAppServer);
+                pSAppServerService.autoGet(pSAppServer);
                 this.psappserver = pSAppServer;
             }
             return this.psappserver;
@@ -2555,7 +2555,7 @@ implements Serializable {
                 PSSvrDomain pSSvrDomain = new PSSvrDomain();
                 pSSvrDomain.setPSSvrDomainId(this.getPSSvrDomainId());
                 PSSvrDomainService pSSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrDomainService.autoGet((IEntity)pSSvrDomain);
+                pSSvrDomainService.autoGet(pSSvrDomain);
                 this.pssvrdomain = pSSvrDomain;
             }
             return this.pssvrdomain;

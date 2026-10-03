@@ -72,7 +72,7 @@ implements IPSDEMSActionService {
     @Override
     protected List<PSDEMSAction> onListAll() throws Exception {
         ArrayList<PSDEMSAction> list = new ArrayList<PSDEMSAction>();
-        List psdemainstates = PSModelServiceUtil.getInstance().getPSDEMainStateService().listAll();
+        List<PSDEMainState> psdemainstates = PSModelServiceUtil.getInstance().getPSDEMainStateService().listAll();
         if (psdemainstates != null) {
             for (PSDEMainState parent : psdemainstates) {
                 List<PSDEMSAction> items = this.listByPSDEMainState(parent);

@@ -1,34 +1,53 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSExpBar
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.preview;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.preview.PSPreviewCtrlCodePublisherImpl;
 
-public class PSPreviewExpBarControllerCodePublisherImpl
-extends PSPreviewCtrlCodePublisherImpl {
-    protected IPSExpBar iPSExpBar;
+import SA.SRFDA.PS.Core.Control.ExpBar.IPSExpBar;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
 
-    public PSPreviewExpBarControllerCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSPreviewExpBarControllerCodePublisherImpl is inconsistent\n\tIPSExpBar cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSPreviewExpBarControllerCodePublisherImpl must override or implement a supertype method\n\tIPSExpBar cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSPreviewCtrlCodePublisherImpl\n\tThe method onClose() of type PSPreviewExpBarControllerCodePublisherImpl must override or implement a supertype method\n\tIPSExpBar cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSPreviewCtrlCodePublisherImpl\n");
-    }
+/**
+ * 导航栏
+ * @author lionlau
+ *
+ */
+public class PSPreviewExpBarControllerCodePublisherImpl extends PSPreviewCtrlCodePublisherImpl
+{
+	protected IPSExpBar iPSExpBar = null;
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSExpBar = (IPSExpBar)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSPreviewExpBarControllerCodePublisherImpl must override or implement a supertype method\n\tIPSExpBar cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSPreviewCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		//输出结果集合代码
+	
+		
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problem: \n");
-    }
-
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSPreviewExpBarControllerCodePublisherImpl must override or implement a supertype method\n\tIPSExpBar cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSPreviewCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSExpBar = null;
+		super.onClose();
+	}
+	
 }
-

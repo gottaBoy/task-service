@@ -34,7 +34,7 @@ extends PSPFVLTemplServiceBase {
             pSPFVLTempl.setPSPFVLTemplId(KeyValueHelper.genUniqueId((String)pSPFVLTempl.getPSPFId(), (String)pSPFVLTempl.getPSPFStyleId(), (String)pSPFVLTempl.getPSViewLogicTypeId(), (String)pSPFVLTempl.getPSPFPubCodeId()));
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)pSPFVLTempl, bl);
+        return super.onFillEntityKeyValue(pSPFVLTempl, bl);
     }
 
     @Override

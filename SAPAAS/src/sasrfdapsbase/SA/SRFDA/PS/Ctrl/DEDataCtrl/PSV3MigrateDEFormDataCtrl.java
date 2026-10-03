@@ -359,7 +359,7 @@ extends PSDEDataCtrl {
         String strPSDEFormName = psV3MigrateDEForm.getPSV3MGFORMNAME();
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSDEFORMID", (Object)strDefaultEditFormId);
-        Vector psDEViewCtrlList = new Vector();
+        Vector<PSDEViewCtrl> psDEViewCtrlList = new Vector<PSDEViewCtrl>();
         IDEDataCtrl psDEViewCtrlDataCtrl = this.GetRelatedDataCtrl("DE2302");
         callResult = psDEViewCtrlDataCtrl.Select(cond, psDEViewCtrlList, PSDEViewCtrl.class.getName());
         if (callResult.isError()) {
@@ -374,4 +374,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

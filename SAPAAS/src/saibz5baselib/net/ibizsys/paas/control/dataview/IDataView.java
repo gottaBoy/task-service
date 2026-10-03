@@ -1,16 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.dataview;
 
-import java.util.Iterator;
 import net.ibizsys.paas.control.IControl;
-import net.ibizsys.paas.control.dataview.IDataViewDataItem;
 
-public interface IDataView
-extends IControl {
-    public static final String FetchAction = "fetch";
+/**
+ * 数据视图接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDataView extends IControl {
 
-    public Iterator<IDataViewDataItem> getDataViewDataItems();
+	/**
+	 * 获取数据
+	 */
+	final static String FetchAction = "fetch";
+
+	/**
+	 * 获取视图数据数据项集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IDataViewDataItem> getDataViewDataItems();
 }
-

@@ -1,19 +1,46 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.service;
 
 import net.ibizsys.paas.entity.IEntity;
 
-public interface IServiceActionParam<ET extends IEntity> {
-    public String getAction();
+/**
+ * 服务行为参数
+ * @author Administrator
+ *
+ * @param <ET>
+ */
+public interface IServiceActionParam<ET extends IEntity> { 
 
-    public ET getEntity();
-
-    public void doBeforeAction(ET var1) throws Exception;
-
-    public void doAfterAction(ET var1) throws Exception;
-
-    public boolean testAction(ET var1) throws Exception;
+	/**
+	 * 获取行为标识
+	 * @return
+	 */
+	String getAction();
+	
+	/**
+	 * 获取数据对象
+	 * @return
+	 */
+	ET getEntity();
+	
+	
+	/**
+	 * 执行之前触发
+	 * @param et
+	 * @throws Exception
+	 */
+	void doBeforeAction(ET et) throws Exception;
+	
+	
+	
+	/**
+	 * 执行之后触发
+	 * @param et
+	 * @throws Exception
+	 */
+	void doAfterAction(ET et) throws Exception;
+	
+	
+	
+	boolean testAction(ET et)throws Exception;
+	 
 }
-

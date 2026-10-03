@@ -1195,7 +1195,7 @@ implements Serializable {
                 PSDESPCode pSDESPCode = new PSDESPCode();
                 pSDESPCode.setPSDESPCodeId(this.getPSDESPCodeId());
                 PSDESPCodeService pSDESPCodeService = (PSDESPCodeService)ServiceGlobal.getService(PSDESPCodeService.class, (SessionFactory)this.getSessionFactory());
-                pSDESPCodeService.autoGet((IEntity)pSDESPCode);
+                pSDESPCodeService.autoGet(pSDESPCode);
                 this.psdespcode = pSDESPCode;
             }
             return this.psdespcode;
@@ -1221,7 +1221,7 @@ implements Serializable {
                 PSDESysProc pSDESysProc = new PSDESysProc();
                 pSDESysProc.setPSDESysProcId(this.getPSDESysProcId());
                 PSDESysProcService pSDESysProcService = (PSDESysProcService)ServiceGlobal.getService(PSDESysProcService.class, (SessionFactory)this.getSessionFactory());
-                pSDESysProcService.autoGet((IEntity)pSDESysProc);
+                pSDESysProcService.autoGet(pSDESysProc);
                 this.psdesysproc = pSDESysProc;
             }
             return this.psdesysproc;

@@ -1,19 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.ctrlmodel.IEditFormPortletModel
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.DynaPortletModelBase;
-import net.ibizsys.paas.ctrlmodel.IEditFormPortletModel;
+/**
+ * 动态表单门户部件模型
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class DynaEditFormPortletModelBase extends DynaPortletModelBase implements IEditFormPortletModel {
+	
+	@Override
+	public String getPortletType() {
+		return PORTLETTYPE_FORM;
+	}
 
-public abstract class DynaEditFormPortletModelBase
-extends DynaPortletModelBase
-implements IEditFormPortletModel {
-    public String getPortletType() {
-        return "FORM";
-    }
 }
-

@@ -102,7 +102,7 @@ extends BaseService {
     }
 
     protected void InternalRun() {
-        Vector timeoutWFInstaceList = new Vector();
+        Vector<WFInstance> timeoutWFInstaceList = new Vector<WFInstance>();
         CallParamList callParamList = new CallParamList();
         callParamList.AddDateTime((Object)new Date());
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.strQuerySQL, (Vector)callParamList.GetList(), timeoutWFInstaceList, (String)WFInstance.class.getName());

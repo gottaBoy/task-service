@@ -136,14 +136,14 @@ extends PSCoreSysServiceBase<PSDCResRep> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDCResRep, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCResRep, string, string2, string3);
+        super.onFillParentInfo(pSDCResRep, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -284,7 +284,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 pSDCResRep.setWorkspaceCnt((Integer)this.getDefaultValue(this.getWebContext(), "", "0", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDCResRep, bl);
+        super.onFillEntityFullInfo(pSDCResRep, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDCResRep, bl);
     }
 
@@ -302,7 +302,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
     }
 
     protected void onWriteBackParent(PSDCResRep pSDCResRep, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCResRep, bl);
+        super.onWriteBackParent(pSDCResRep, bl);
     }
 
     public ArrayList<PSDCResRep> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -361,7 +361,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
         ArrayList<PSDCResRep> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCResRep pSDCResRep : arrayList) {
-            this.remove((IEntity)pSDCResRep);
+            this.remove(pSDCResRep);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -382,14 +382,14 @@ extends PSCoreSysServiceBase<PSDCResRep> {
 
     protected void replaceParentInfo(PSDCResRep pSDCResRep, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCResRep, cloneSession);
+        super.replaceParentInfo(pSDCResRep, cloneSession);
         if (pSDCResRep.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSDCResRep.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSDCResRep, (PSDevCenter)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDCResRep pSDCResRep, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCResRep, bl);
+        super.onRemoveEntityUncopyValues(pSDCResRep, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCResRep pSDCResRep, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -551,7 +551,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
         if ((entityFieldError = this.onCheckField_WorkspaceCnt(bl, pSDCResRep, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCResRep, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCResRep, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ASCnt(boolean bl, PSDCResRep pSDCResRep, boolean bl2, boolean bl3) throws Exception {
@@ -564,7 +564,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ASCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_ASCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ASCNT");
@@ -586,7 +586,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CodeRepoCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_CodeRepoCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODEREPOCNT");
@@ -608,7 +608,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Content_Default((IEntity)pSDCResRep, bl2, bl3);
+            string2 = this.onTestValueRule_Content_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTENT");
@@ -630,7 +630,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DBInstCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_DBInstCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DBINSTCNT");
@@ -652,7 +652,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DCBalance_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_DCBalance_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DCBALANCE");
@@ -677,7 +677,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -714,7 +714,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DepInstCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_DepInstCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEPINSTCNT");
@@ -736,7 +736,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DevSlnCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_DevSlnCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEVSLNCNT");
@@ -758,7 +758,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DevSysCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_DevSysCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEVSYSCNT");
@@ -780,7 +780,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DevTemplCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_DevTemplCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEVTEMPLCNT");
@@ -802,7 +802,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DiskSize_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_DiskSize_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DISKSIZE");
@@ -824,7 +824,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DiskUsed_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_DiskUsed_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DISKUSED");
@@ -846,7 +846,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DynaInstCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_DynaInstCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNAINSTCNT");
@@ -868,7 +868,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpiredASCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_ExpiredASCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPIREDASCNT");
@@ -890,7 +890,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpiredASCnt2_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_ExpiredASCnt2_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPIREDASCNT2");
@@ -912,7 +912,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpiredCodeRepoCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_ExpiredCodeRepoCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPIREDCODEREPOCNT");
@@ -934,7 +934,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpiredCodeRepoCnt2_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_ExpiredCodeRepoCnt2_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPIREDCODEREPOCNT2");
@@ -956,7 +956,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpiredDBInstCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_ExpiredDBInstCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPIREDDBINSTCNT");
@@ -978,7 +978,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpiredDBInstCnt2_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_ExpiredDBInstCnt2_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPIREDDBINSTCNT2");
@@ -1000,7 +1000,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpiredMQInstCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_ExpiredMQInstCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPIREDMQINSTCNT");
@@ -1022,7 +1022,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpiredMQInstCnt2_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_ExpiredMQInstCnt2_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPIREDMQINSTCNT2");
@@ -1044,7 +1044,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IdleASCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_IdleASCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IDLEASCNT");
@@ -1066,7 +1066,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IdleCodeRepoCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_IdleCodeRepoCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IDLECODEREPOCNT");
@@ -1088,7 +1088,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IdleDBInstCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_IdleDBInstCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IDLEDBINSTCNT");
@@ -1110,7 +1110,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IdleMQInstCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_IdleMQInstCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IDLEMQINSTCNT");
@@ -1132,7 +1132,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCResRep, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1154,7 +1154,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MonthNWFlowSize_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_MonthNWFlowSize_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MONTHNWFLOWSIZE");
@@ -1176,7 +1176,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MonthNWFlowUsed_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_MonthNWFlowUsed_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MONTHNWFLOWUSED");
@@ -1198,7 +1198,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MQInstCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_MQInstCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MQINSTCNT");
@@ -1220,7 +1220,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MSPCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_MSPCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MSPCNT");
@@ -1242,7 +1242,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Obj2Cnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_Obj2Cnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("OBJ2CNT");
@@ -1264,7 +1264,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Obj3Cnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_Obj3Cnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("OBJ3CNT");
@@ -1286,7 +1286,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Obj4Cnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_Obj4Cnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("OBJ4CNT");
@@ -1308,7 +1308,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ObjCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_ObjCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("OBJCNT");
@@ -1333,7 +1333,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCResRepId_Default((IEntity)pSDCResRep, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCResRepId_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCRESREPID");
@@ -1358,7 +1358,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCResRepName_Default((IEntity)pSDCResRep, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCResRepName_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCRESREPNAME");
@@ -1380,7 +1380,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDCResRep, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -1402,7 +1402,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDCResRep, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -1424,7 +1424,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ReportUrl_Default((IEntity)pSDCResRep, bl2, bl3);
+            string2 = this.onTestValueRule_ReportUrl_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REPORTURL");
@@ -1446,7 +1446,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RepTime_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_RepTime_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REPTIME");
@@ -1468,7 +1468,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RobotCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_RobotCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ROBOTCNT");
@@ -1490,7 +1490,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SysBakCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_SysBakCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYSBAKCNT");
@@ -1512,7 +1512,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UsedASCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_UsedASCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USEDASCNT");
@@ -1534,7 +1534,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UsedCodeRepoCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_UsedCodeRepoCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USEDCODEREPOCNT");
@@ -1556,7 +1556,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UsedDBInstCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_UsedDBInstCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USEDDBINSTCNT");
@@ -1578,7 +1578,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UsedMQInstCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_UsedMQInstCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USEDMQINSTCNT");
@@ -1600,7 +1600,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UserASCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_UserASCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERASCNT");
@@ -1622,7 +1622,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UserCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_UserCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCNT");
@@ -1644,7 +1644,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UserCodeRepoCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_UserCodeRepoCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCODEREPOCNT");
@@ -1666,7 +1666,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UserDBInstCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_UserDBInstCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERDBINSTCNT");
@@ -1688,7 +1688,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UserMQInstCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_UserMQInstCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERMQINSTCNT");
@@ -1710,7 +1710,7 @@ extends PSCoreSysServiceBase<PSDCResRep> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WorkspaceCnt_Default((IEntity)pSDCResRep, bl2, bl3);
+            string = this.onTestValueRule_WorkspaceCnt_Default(pSDCResRep, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WORKSPACECNT");
@@ -1723,11 +1723,11 @@ extends PSCoreSysServiceBase<PSDCResRep> {
     }
 
     protected void onSyncEntity(PSDCResRep pSDCResRep, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCResRep, bl);
+        super.onSyncEntity(pSDCResRep, bl);
     }
 
     protected void onSyncIndexEntities(PSDCResRep pSDCResRep, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCResRep, bl);
+        super.onSyncIndexEntities(pSDCResRep, bl);
     }
 
     public Object getDataContextValue(PSDCResRep pSDCResRep, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1735,14 +1735,14 @@ extends PSCoreSysServiceBase<PSDCResRep> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCResRep, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCResRep, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCResRep pSDCResRep, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCResRep, arrayList, n);
+        super.onExportMajorModel(pSDCResRep, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2220,14 +2220,14 @@ extends PSCoreSysServiceBase<PSDCResRep> {
 
     protected boolean onMergeChild(String string, String string2, PSDCResRep pSDCResRep) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCResRep)) {
+        if (super.onMergeChild(string, string2, pSDCResRep)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCResRep pSDCResRep) throws Exception {
-        super.onUpdateParent((IEntity)pSDCResRep);
+        super.onUpdateParent(pSDCResRep);
     }
 
     @Override

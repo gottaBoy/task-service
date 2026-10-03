@@ -1,17 +1,31 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IDEDataExport
- */
 package net.ibizsys.model.dataentity.dataexport;
 
 import net.ibizsys.model.dataentity.IPSDataEntityObject;
 import net.ibizsys.paas.core.IDEDataExport;
+/* INTERNAL-BEGIN */
 
-public interface IPSDEDataExport
-extends IPSDataEntityObject,
-IDEDataExport {
-    public int getMaxRowCount();
+
+
+/**
+ * 实体数据导出定义对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSDEDataExport extends IPSDataEntityObject, IDEDataExport {
+	
+
+//	/**
+//	 * 获取数据导出项集合
+//	 * 
+//	 * @return
+//	 */
+//	java.util.Iterator<IPSDEDataExportItem> getPSDEDataExportItems();
+
+	/**
+	 * 获取允许导出的最大记录数
+	 * 
+	 * @return
+	 */
+	int getMaxRowCount();
 }
-

@@ -34,12 +34,11 @@ extends XMLCollectionExConfig<DGModelBaseLogicConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = DGModelLogicsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((DGModelBaseLogicConfig)childNode))) {
-                this.add((Object)((DGModelBaseLogicConfig)childNode));
+            if (this.OnChildNodeLoaded((DGModelBaseLogicConfig)childNode)) {
+                this.add((DGModelBaseLogicConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

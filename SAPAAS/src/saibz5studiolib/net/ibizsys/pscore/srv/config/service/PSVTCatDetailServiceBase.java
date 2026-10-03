@@ -153,9 +153,9 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
             PSViewTypeCat pSViewTypeCat = (PSViewTypeCat)iService.getDEModel().createEntity();
             pSViewTypeCat.set("PSVIEWTYPECATID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSViewTypeCat);
+                iService.getTemp(pSViewTypeCat);
             } else {
-                iService.get((IEntity)pSViewTypeCat);
+                iService.get(pSViewTypeCat);
             }
             this.onFillParentInfo_PSViewTypeCat(pSVTCatDetail, pSViewTypeCat);
             return;
@@ -165,14 +165,14 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
             PSViewType pSViewType = (PSViewType)iService.getDEModel().createEntity();
             pSViewType.set("PSVIEWTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSViewType);
+                iService.getTemp(pSViewType);
             } else {
-                iService.get((IEntity)pSViewType);
+                iService.get(pSViewType);
             }
             this.onFillParentInfo_PSViewType(pSVTCatDetail, pSViewType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSVTCatDetail, string, string2, string3);
+        super.onFillParentInfo(pSVTCatDetail, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -216,7 +216,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
                 pSVTCatDetail.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSVTCatDetail, bl);
+        super.onFillEntityFullInfo(pSVTCatDetail, bl);
         this.onFillEntityFullInfo_PSViewTypeCat(pSVTCatDetail, bl);
         this.onFillEntityFullInfo_PSViewType(pSVTCatDetail, bl);
     }
@@ -228,7 +228,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
     }
 
     protected void onWriteBackParent(PSVTCatDetail pSVTCatDetail, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSVTCatDetail, bl);
+        super.onWriteBackParent(pSVTCatDetail, bl);
     }
 
     public ArrayList<PSVTCatDetail> selectByPSViewTypeCat(PSViewTypeCatBase pSViewTypeCatBase) throws Exception {
@@ -283,8 +283,8 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
         ArrayList<PSVTCatDetail> arrayList = this.selectByPSViewTypeCat(pSViewTypeCat, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSVIEWTYPECAT");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSViewTypeCat);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSVTCATDETAIL_PSVIEWTYPECAT_PSVIEWTYPECATID", "", iDataEntityModel.getName(), "PSVTCATDETAIL", iDataEntityModel.getDataInfo((IEntity)pSViewTypeCat), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSViewTypeCat);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSVTCATDETAIL_PSVIEWTYPECAT_PSVIEWTYPECATID", "", iDataEntityModel.getName(), "PSVTCATDETAIL", iDataEntityModel.getDataInfo(pSViewTypeCat), arrayList.get(0)));
         }
     }
 
@@ -317,7 +317,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
         ArrayList<PSVTCatDetail> arrayList = this.selectByPSViewTypeCat(pSViewTypeCat);
         this.onBeforeRemoveByPSViewTypeCat(pSViewTypeCat, arrayList);
         for (PSVTCatDetail pSVTCatDetail : arrayList) {
-            this.remove((IEntity)pSVTCatDetail);
+            this.remove(pSVTCatDetail);
         }
         this.onAfterRemoveByPSViewTypeCat(pSViewTypeCat, arrayList);
     }
@@ -363,7 +363,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
         ArrayList<PSVTCatDetail> arrayList = this.selectByPSViewType(pSViewType);
         this.onBeforeRemoveByPSViewType(pSViewType, arrayList);
         for (PSVTCatDetail pSVTCatDetail : arrayList) {
-            this.remove((IEntity)pSVTCatDetail);
+            this.remove(pSVTCatDetail);
         }
         this.onAfterRemoveByPSViewType(pSViewType, arrayList);
     }
@@ -384,7 +384,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
 
     protected void replaceParentInfo(PSVTCatDetail pSVTCatDetail, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSVTCatDetail, cloneSession);
+        super.replaceParentInfo(pSVTCatDetail, cloneSession);
         if (pSVTCatDetail.getPSViewTypeCatId() != null && (iEntity = cloneSession.getEntity("PSVIEWTYPECAT", (Object)pSVTCatDetail.getPSViewTypeCatId())) != null) {
             this.onFillParentInfo_PSViewTypeCat(pSVTCatDetail, (PSViewTypeCat)iEntity);
         }
@@ -394,7 +394,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
     }
 
     protected void onRemoveEntityUncopyValues(PSVTCatDetail pSVTCatDetail, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSVTCatDetail, bl);
+        super.onRemoveEntityUncopyValues(pSVTCatDetail, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSVTCatDetail pSVTCatDetail, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -415,7 +415,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSVTCatDetail, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSVTCatDetail, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSVTCatDetail, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSViewTypeCatId(boolean bl, PSVTCatDetail pSVTCatDetail, boolean bl2, boolean bl3) throws Exception {
@@ -428,7 +428,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewTypeCatId_Default((IEntity)pSVTCatDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewTypeCatId_Default(pSVTCatDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWTYPECATID");
@@ -450,7 +450,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewTypeId_Default((IEntity)pSVTCatDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewTypeId_Default(pSVTCatDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWTYPEID");
@@ -475,7 +475,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSVTCatDetailId_Default((IEntity)pSVTCatDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSVTCatDetailId_Default(pSVTCatDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVTCATDETAILID");
@@ -500,7 +500,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSVTCatDetailName_Default((IEntity)pSVTCatDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSVTCatDetailName_Default(pSVTCatDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVTCATDETAILNAME");
@@ -525,7 +525,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSVTCatDetail, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSVTCatDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -538,11 +538,11 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
     }
 
     protected void onSyncEntity(PSVTCatDetail pSVTCatDetail, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSVTCatDetail, bl);
+        super.onSyncEntity(pSVTCatDetail, bl);
     }
 
     protected void onSyncIndexEntities(PSVTCatDetail pSVTCatDetail, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSVTCatDetail, bl);
+        super.onSyncIndexEntities(pSVTCatDetail, bl);
     }
 
     public Object getDataContextValue(PSVTCatDetail pSVTCatDetail, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -550,7 +550,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSVTCatDetail, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSVTCatDetail, string, iDataContextParam)) != null) {
             return object;
         }
         PSViewTypeCat pSViewTypeCat = pSVTCatDetail.getPSViewTypeCat();
@@ -565,7 +565,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
     }
 
     protected void onExportMajorModel(PSVTCatDetail pSVTCatDetail, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSVTCatDetail, arrayList, n);
+        super.onExportMajorModel(pSVTCatDetail, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -715,14 +715,14 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
 
     protected boolean onMergeChild(String string, String string2, PSVTCatDetail pSVTCatDetail) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSVTCatDetail)) {
+        if (super.onMergeChild(string, string2, pSVTCatDetail)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSVTCatDetail pSVTCatDetail) throws Exception {
-        super.onUpdateParent((IEntity)pSVTCatDetail);
+        super.onUpdateParent(pSVTCatDetail);
     }
 
     @Override
@@ -743,7 +743,7 @@ extends PSCoreSysServiceBase<PSVTCatDetail> {
         PSVTCatDetail pSVTCatDetail2 = new PSVTCatDetail();
         pSVTCatDetail2.setPSViewTypeId(pSVTCatDetail.getPSViewTypeId());
         pSVTCatDetail2.setPSViewTypeCatId(pSVTCatDetail.getPSViewTypeCatId());
-        if (this.selectOne((IEntity)pSVTCatDetail2, true)) {
+        if (this.selectOne(pSVTCatDetail2, true)) {
             return pSVTCatDetail2.getPSVTCatDetailId();
         }
         return super.getEntityFolderKeyValue(pSVTCatDetail, pSSystem);

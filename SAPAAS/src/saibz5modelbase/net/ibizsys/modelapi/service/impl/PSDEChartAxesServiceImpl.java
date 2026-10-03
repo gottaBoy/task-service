@@ -74,7 +74,7 @@ implements IPSDEChartAxesService {
     @Override
     protected List<PSDEChartAxes> onListAll() throws Exception {
         ArrayList<PSDEChartAxes> list = new ArrayList<PSDEChartAxes>();
-        List psdecharts = PSModelServiceUtil.getInstance().getPSDEChartService().listAll();
+        List<PSDEChart> psdecharts = PSModelServiceUtil.getInstance().getPSDEChartService().listAll();
         if (psdecharts != null) {
             for (PSDEChart parent : psdecharts) {
                 List<PSDEChartAxes> items = this.listByPSDEChart(parent);

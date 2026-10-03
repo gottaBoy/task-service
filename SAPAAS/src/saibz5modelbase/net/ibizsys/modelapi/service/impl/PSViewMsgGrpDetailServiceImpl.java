@@ -72,7 +72,7 @@ implements IPSViewMsgGrpDetailService {
     @Override
     protected List<PSViewMsgGrpDetail> onListAll() throws Exception {
         ArrayList<PSViewMsgGrpDetail> list = new ArrayList<PSViewMsgGrpDetail>();
-        List psviewmsggroups = PSModelServiceUtil.getInstance().getPSViewMsgGroupService().listAll();
+        List<PSViewMsgGroup> psviewmsggroups = PSModelServiceUtil.getInstance().getPSViewMsgGroupService().listAll();
         if (psviewmsggroups != null) {
             for (PSViewMsgGroup parent : psviewmsggroups) {
                 List<PSViewMsgGrpDetail> items = this.listByPSViewMsgGroup(parent);

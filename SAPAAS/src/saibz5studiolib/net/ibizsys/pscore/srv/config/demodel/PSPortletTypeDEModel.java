@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSPortletTypeDEModelBase;
 
 public class PSPortletTypeDEModel
 extends PSPortletTypeDEModelBase {
+
+    public PSPortletTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -29,12 +29,11 @@ extends XMLCollectionExConfig<DGExDataGroupConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = DGExDataGroupsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((DGExDataGroupConfig)childNode))) {
-                this.add((Object)((DGExDataGroupConfig)childNode));
+            if (this.OnChildNodeLoaded((DGExDataGroupConfig)childNode)) {
+                this.add((DGExDataGroupConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

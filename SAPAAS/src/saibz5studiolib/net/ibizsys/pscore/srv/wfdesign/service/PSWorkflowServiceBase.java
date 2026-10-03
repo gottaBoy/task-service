@@ -245,21 +245,21 @@ extends PSCoreSysServiceBase<PSWorkflow> {
 
     public void testActivityEngine(PSWorkflow pSWorkflow) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_TESTACTIVITYENGINE, 0, (IEntity)pSWorkflow, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_TESTACTIVITYENGINE, 0, pSWorkflow, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSWorkflow, ACTION_TESTACTIVITYENGINE);
+        this.testDEMainStateAction(pSWorkflow, ACTION_TESTACTIVITYENGINE);
         final PSWorkflow pSWorkflow2 = pSWorkflow;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSWorkflowServiceBase.this.getService(), PSWorkflowServiceBase.ACTION_TESTACTIVITYENGINE, 40, (IEntity)pSWorkflow2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSWorkflowServiceBase.this.getService(), PSWorkflowServiceBase.ACTION_TESTACTIVITYENGINE, 40, pSWorkflow2, null).getResult() != 1) {
                     PSWorkflowServiceBase.this.onTestActivityEngine(pSWorkflow2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_TESTACTIVITYENGINE, 99, (IEntity)pSWorkflow, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_TESTACTIVITYENGINE, 99, pSWorkflow, null);
         }
     }
 
@@ -269,21 +269,21 @@ extends PSCoreSysServiceBase<PSWorkflow> {
 
     public void testEmbededEngine(PSWorkflow pSWorkflow) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_TESTEMBEDEDENGINE, 0, (IEntity)pSWorkflow, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_TESTEMBEDEDENGINE, 0, pSWorkflow, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSWorkflow, ACTION_TESTEMBEDEDENGINE);
+        this.testDEMainStateAction(pSWorkflow, ACTION_TESTEMBEDEDENGINE);
         final PSWorkflow pSWorkflow2 = pSWorkflow;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSWorkflowServiceBase.this.getService(), PSWorkflowServiceBase.ACTION_TESTEMBEDEDENGINE, 40, (IEntity)pSWorkflow2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSWorkflowServiceBase.this.getService(), PSWorkflowServiceBase.ACTION_TESTEMBEDEDENGINE, 40, pSWorkflow2, null).getResult() != 1) {
                     PSWorkflowServiceBase.this.onTestEmbededEngine(pSWorkflow2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_TESTEMBEDEDENGINE, 99, (IEntity)pSWorkflow, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_TESTEMBEDEDENGINE, 99, pSWorkflow, null);
         }
     }
 
@@ -297,9 +297,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSCodeList pSCodeList = (PSCodeList)iService.getDEModel().createEntity();
             pSCodeList.set("PSCODELISTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCodeList);
+                iService.getTemp(pSCodeList);
             } else {
-                iService.get((IEntity)pSCodeList);
+                iService.get(pSCodeList);
             }
             this.onFillParentInfo_StateCodeList(pSWorkflow, pSCodeList);
             return;
@@ -309,9 +309,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSCodeList pSCodeList = (PSCodeList)iService.getDEModel().createEntity();
             pSCodeList.set("PSCODELISTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCodeList);
+                iService.getTemp(pSCodeList);
             } else {
-                iService.get((IEntity)pSCodeList);
+                iService.get(pSCodeList);
             }
             this.onFillParentInfo_WFStepCodeList(pSWorkflow, pSCodeList);
             return;
@@ -321,9 +321,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSDEViewBase pSDEViewBase = (PSDEViewBase)iService.getDEModel().createEntity();
             pSDEViewBase.set("PSDEVIEWBASEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEViewBase);
+                iService.getTemp(pSDEViewBase);
             } else {
-                iService.get((IEntity)pSDEViewBase);
+                iService.get(pSDEViewBase);
             }
             this.onFillParentInfo_ActionMobPSDEView(pSWorkflow, pSDEViewBase);
             return;
@@ -333,9 +333,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSDEViewBase pSDEViewBase = (PSDEViewBase)iService.getDEModel().createEntity();
             pSDEViewBase.set("PSDEVIEWBASEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEViewBase);
+                iService.getTemp(pSDEViewBase);
             } else {
-                iService.get((IEntity)pSDEViewBase);
+                iService.get(pSDEViewBase);
             }
             this.onFillParentInfo_ActionPSDEView(pSWorkflow, pSDEViewBase);
             return;
@@ -345,9 +345,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSDEViewBase pSDEViewBase = (PSDEViewBase)iService.getDEModel().createEntity();
             pSDEViewBase.set("PSDEVIEWBASEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEViewBase);
+                iService.getTemp(pSDEViewBase);
             } else {
-                iService.get((IEntity)pSDEViewBase);
+                iService.get(pSDEViewBase);
             }
             this.onFillParentInfo_StartMobPSDEView(pSWorkflow, pSDEViewBase);
             return;
@@ -357,9 +357,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSDEViewBase pSDEViewBase = (PSDEViewBase)iService.getDEModel().createEntity();
             pSDEViewBase.set("PSDEVIEWBASEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEViewBase);
+                iService.getTemp(pSDEViewBase);
             } else {
-                iService.get((IEntity)pSDEViewBase);
+                iService.get(pSDEViewBase);
             }
             this.onFillParentInfo_StartPSDEView(pSWorkflow, pSDEViewBase);
             return;
@@ -369,9 +369,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSLanguageRes pSLanguageRes = (PSLanguageRes)iService.getDEModel().createEntity();
             pSLanguageRes.set("PSLANGUAGERESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSLanguageRes);
+                iService.getTemp(pSLanguageRes);
             } else {
-                iService.get((IEntity)pSLanguageRes);
+                iService.get(pSLanguageRes);
             }
             this.onFillParentInfo_NamePSLanRes(pSWorkflow, pSLanguageRes);
             return;
@@ -381,9 +381,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSWorkflow, pSModule);
             return;
@@ -393,9 +393,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSSysMsgTempl pSSysMsgTempl = (PSSysMsgTempl)iService.getDEModel().createEntity();
             pSSysMsgTempl.set("PSSYSMSGTEMPLID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysMsgTempl);
+                iService.getTemp(pSSysMsgTempl);
             } else {
-                iService.get((IEntity)pSSysMsgTempl);
+                iService.get(pSSysMsgTempl);
             }
             this.onFillParentInfo_RemindPSSysMsgTempl(pSWorkflow, pSSysMsgTempl);
             return;
@@ -405,9 +405,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSSysReqItem pSSysReqItem = (PSSysReqItem)iService.getDEModel().createEntity();
             pSSysReqItem.set("PSSYSREQITEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysReqItem);
+                iService.getTemp(pSSysReqItem);
             } else {
-                iService.get((IEntity)pSSysReqItem);
+                iService.get(pSSysReqItem);
             }
             this.onFillParentInfo_PSSysReqItem(pSWorkflow, pSSysReqItem);
             return;
@@ -417,9 +417,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSWorkflow, pSSystem);
             return;
@@ -429,9 +429,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSSysWFCat pSSysWFCat = (PSSysWFCat)iService.getDEModel().createEntity();
             pSSysWFCat.set("PSSYSWFCATID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysWFCat);
+                iService.getTemp(pSSysWFCat);
             } else {
-                iService.get((IEntity)pSSysWFCat);
+                iService.get(pSSysWFCat);
             }
             this.onFillParentInfo_PSSysWFCat(pSWorkflow, pSSysWFCat);
             return;
@@ -441,9 +441,9 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSWXAccount pSWXAccount = (PSWXAccount)iService.getDEModel().createEntity();
             pSWXAccount.set("PSWXACCOUNTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWXAccount);
+                iService.getTemp(pSWXAccount);
             } else {
-                iService.get((IEntity)pSWXAccount);
+                iService.get(pSWXAccount);
             }
             this.onFillParentInfo_PSWXAccount(pSWorkflow, pSWXAccount);
             return;
@@ -453,14 +453,14 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSWXEntApp pSWXEntApp = (PSWXEntApp)iService.getDEModel().createEntity();
             pSWXEntApp.set("PSWXENTAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWXEntApp);
+                iService.getTemp(pSWXEntApp);
             } else {
-                iService.get((IEntity)pSWXEntApp);
+                iService.get(pSWXEntApp);
             }
             this.onFillParentInfo_PSWXEntApp(pSWorkflow, pSWXEntApp);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWorkflow, string, string2, string3);
+        super.onFillParentInfo(pSWorkflow, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -556,7 +556,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 pSWorkflow.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSWorkflow, bl);
+        super.onFillEntityFullInfo(pSWorkflow, bl);
         this.onFillEntityFullInfo_StateCodeList(pSWorkflow, bl);
         this.onFillEntityFullInfo_WFStepCodeList(pSWorkflow, bl);
         this.onFillEntityFullInfo_ActionMobPSDEView(pSWorkflow, bl);
@@ -636,7 +636,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
     }
 
     protected void onWriteBackParent(PSWorkflow pSWorkflow, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWorkflow, bl);
+        super.onWriteBackParent(pSWorkflow, bl);
     }
 
     public ArrayList<PSWorkflow> selectByStateCodeList(PSCodeListBase pSCodeListBase) throws Exception {
@@ -979,8 +979,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByStateCodeList(pSCodeList, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCODELIST");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCodeList);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSCODELIST_STATECODELISTID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSCodeList), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCodeList);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSCODELIST_STATECODELISTID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSCodeList), arrayList.get(0)));
         }
     }
 
@@ -1013,7 +1013,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByStateCodeList(pSCodeList);
         this.onBeforeRemoveByStateCodeList(pSCodeList, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByStateCodeList(pSCodeList, arrayList);
     }
@@ -1031,8 +1031,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByWFStepCodeList(pSCodeList, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCODELIST");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCodeList);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSCODELIST_WFSTEPCODELISTID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSCodeList), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCodeList);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSCODELIST_WFSTEPCODELISTID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSCodeList), arrayList.get(0)));
         }
     }
 
@@ -1065,7 +1065,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByWFStepCodeList(pSCodeList);
         this.onBeforeRemoveByWFStepCodeList(pSCodeList, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByWFStepCodeList(pSCodeList, arrayList);
     }
@@ -1083,8 +1083,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByActionMobPSDEView(pSDEViewBase, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVIEWBASE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEViewBase);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSDEVIEWBASE_ACTIONMOBPSDEVIEWID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSDEViewBase), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEViewBase);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSDEVIEWBASE_ACTIONMOBPSDEVIEWID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSDEViewBase), arrayList.get(0)));
         }
     }
 
@@ -1117,7 +1117,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByActionMobPSDEView(pSDEViewBase);
         this.onBeforeRemoveByActionMobPSDEView(pSDEViewBase, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByActionMobPSDEView(pSDEViewBase, arrayList);
     }
@@ -1135,8 +1135,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByActionPSDEView(pSDEViewBase, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVIEWBASE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEViewBase);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSDEVIEWBASE_ACTIONPSDEVIEWID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSDEViewBase), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEViewBase);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSDEVIEWBASE_ACTIONPSDEVIEWID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSDEViewBase), arrayList.get(0)));
         }
     }
 
@@ -1169,7 +1169,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByActionPSDEView(pSDEViewBase);
         this.onBeforeRemoveByActionPSDEView(pSDEViewBase, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByActionPSDEView(pSDEViewBase, arrayList);
     }
@@ -1187,8 +1187,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByStartMobPSDEView(pSDEViewBase, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVIEWBASE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEViewBase);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSDEVIEWBASE_STARTMOBPSDEVIEWID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSDEViewBase), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEViewBase);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSDEVIEWBASE_STARTMOBPSDEVIEWID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSDEViewBase), arrayList.get(0)));
         }
     }
 
@@ -1221,7 +1221,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByStartMobPSDEView(pSDEViewBase);
         this.onBeforeRemoveByStartMobPSDEView(pSDEViewBase, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByStartMobPSDEView(pSDEViewBase, arrayList);
     }
@@ -1239,8 +1239,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByStartPSDEView(pSDEViewBase, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVIEWBASE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEViewBase);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSDEVIEWBASE_STARTPSDEVIEWID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSDEViewBase), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEViewBase);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSDEVIEWBASE_STARTPSDEVIEWID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSDEViewBase), arrayList.get(0)));
         }
     }
 
@@ -1273,7 +1273,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByStartPSDEView(pSDEViewBase);
         this.onBeforeRemoveByStartPSDEView(pSDEViewBase, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByStartPSDEView(pSDEViewBase, arrayList);
     }
@@ -1291,8 +1291,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByNamePSLanRes(pSLanguageRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSLANGUAGERES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSLanguageRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSLANGUAGERES_NAMEPSLANRESID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSLanguageRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSLanguageRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSLANGUAGERES_NAMEPSLANRESID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSLanguageRes), arrayList.get(0)));
         }
     }
 
@@ -1325,7 +1325,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByNamePSLanRes(pSLanguageRes);
         this.onBeforeRemoveByNamePSLanRes(pSLanguageRes, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByNamePSLanRes(pSLanguageRes, arrayList);
     }
@@ -1343,8 +1343,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -1377,7 +1377,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -1395,8 +1395,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByRemindPSSysMsgTempl(pSSysMsgTempl, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSMSGTEMPL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysMsgTempl);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSSYSMSGTEMPL_REMINDPSSYSMSGTEMPLID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSSysMsgTempl), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysMsgTempl);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSSYSMSGTEMPL_REMINDPSSYSMSGTEMPLID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSSysMsgTempl), arrayList.get(0)));
         }
     }
 
@@ -1429,7 +1429,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByRemindPSSysMsgTempl(pSSysMsgTempl);
         this.onBeforeRemoveByRemindPSSysMsgTempl(pSSysMsgTempl, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByRemindPSSysMsgTempl(pSSysMsgTempl, arrayList);
     }
@@ -1447,8 +1447,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByPSSysReqItem(pSSysReqItem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSREQITEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysReqItem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSSYSREQITEM_PSSYSREQITEMID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSSysReqItem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysReqItem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSSYSREQITEM_PSSYSREQITEMID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSSysReqItem), arrayList.get(0)));
         }
     }
 
@@ -1481,7 +1481,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByPSSysReqItem(pSSysReqItem);
         this.onBeforeRemoveByPSSysReqItem(pSSysReqItem, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByPSSysReqItem(pSSysReqItem, arrayList);
     }
@@ -1527,7 +1527,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -1545,8 +1545,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByPSSysWFCat(pSSysWFCat, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSWFCAT");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysWFCat);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSSYSWFCAT_PSSYSWFCATID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSSysWFCat), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysWFCat);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSSYSWFCAT_PSSYSWFCATID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSSysWFCat), arrayList.get(0)));
         }
     }
 
@@ -1579,7 +1579,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByPSSysWFCat(pSSysWFCat);
         this.onBeforeRemoveByPSSysWFCat(pSSysWFCat, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByPSSysWFCat(pSSysWFCat, arrayList);
     }
@@ -1597,8 +1597,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByPSWXAccount(pSWXAccount, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSWXACCOUNT");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSWXAccount);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSWXACCOUNT_PSWXACCOUNTID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSWXAccount), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSWXAccount);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSWXACCOUNT_PSWXACCOUNTID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSWXAccount), arrayList.get(0)));
         }
     }
 
@@ -1631,7 +1631,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByPSWXAccount(pSWXAccount);
         this.onBeforeRemoveByPSWXAccount(pSWXAccount, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByPSWXAccount(pSWXAccount, arrayList);
     }
@@ -1649,8 +1649,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByPSWXEntApp(pSWXEntApp, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSWXENTAPP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSWXEntApp);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSWXENTAPP_PSWXENTAPPID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSWXEntApp), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSWXEntApp);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWORKFLOW_PSWXENTAPP_PSWXENTAPPID", "", iDataEntityModel.getName(), "PSWORKFLOW", iDataEntityModel.getDataInfo(pSWXEntApp), arrayList.get(0)));
         }
     }
 
@@ -1683,7 +1683,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         ArrayList<PSWorkflow> arrayList = this.selectByPSWXEntApp(pSWXEntApp);
         this.onBeforeRemoveByPSWXEntApp(pSWXEntApp, arrayList);
         for (PSWorkflow pSWorkflow : arrayList) {
-            this.remove((IEntity)pSWorkflow);
+            this.remove(pSWorkflow);
         }
         this.onAfterRemoveByPSWXEntApp(pSWXEntApp, arrayList);
     }
@@ -1733,7 +1733,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
 
     protected void replaceParentInfo(PSWorkflow pSWorkflow, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWorkflow, cloneSession);
+        super.replaceParentInfo(pSWorkflow, cloneSession);
         if (pSWorkflow.getStateCodeListId() != null && (iEntity = cloneSession.getEntity("PSCODELIST", (Object)pSWorkflow.getStateCodeListId())) != null) {
             this.onFillParentInfo_StateCodeList(pSWorkflow, (PSCodeList)iEntity);
         }
@@ -1779,7 +1779,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWorkflow pSWorkflow, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWorkflow, bl);
+        super.onRemoveEntityUncopyValues(pSWorkflow, bl);
         pSWorkflow.resetWFTag();
         pSWorkflow.resetWFTag2();
         pSWorkflow.resetWFTag3();
@@ -1957,7 +1957,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         if ((entityFieldError = this.onCheckField_WFType(bl, pSWorkflow, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWorkflow, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWorkflow, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ActionMobPSDEViewId(boolean bl, PSWorkflow pSWorkflow, boolean bl2, boolean bl3) throws Exception {
@@ -1970,7 +1970,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionMobPSDEViewId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_ActionMobPSDEViewId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONMOBPSDEVIEWID");
@@ -1992,7 +1992,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionPSDEViewId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_ActionPSDEViewId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPSDEVIEWID");
@@ -2017,7 +2017,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -2055,7 +2055,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DynaModelFlag_Default((IEntity)pSWorkflow, bl2, bl3);
+            string = this.onTestValueRule_DynaModelFlag_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNAMODELFLAG");
@@ -2077,7 +2077,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EditableWFStep_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_EditableWFStep_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EDITABLEWFSTEP");
@@ -2102,7 +2102,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_Enable_Default((IEntity)pSWorkflow, bl2, bl3);
+            string = this.onTestValueRule_Enable_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLE");
@@ -2124,7 +2124,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableDynaSys_Default((IEntity)pSWorkflow, bl2, bl3);
+            string = this.onTestValueRule_EnableDynaSys_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLEDYNASYS");
@@ -2146,7 +2146,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableDynaView_Default((IEntity)pSWorkflow, bl2, bl3);
+            string = this.onTestValueRule_EnableDynaView_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLEDYNAVIEW");
@@ -2168,7 +2168,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableMob_Default((IEntity)pSWorkflow, bl2, bl3);
+            string = this.onTestValueRule_EnableMob_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLEMOB");
@@ -2190,7 +2190,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ExtCntStates_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_ExtCntStates_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXTCNTSTATES");
@@ -2212,7 +2212,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSWorkflow, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -2234,7 +2234,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -2256,7 +2256,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MobWFEditViewType_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_MobWFEditViewType_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MOBWFEDITVIEWTYPE");
@@ -2278,7 +2278,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NamePSLanResId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_NamePSLanResId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAMEPSLANRESID");
@@ -2300,7 +2300,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NamePSLanResName_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_NamePSLanResName_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAMEPSLANRESNAME");
@@ -2322,7 +2322,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -2344,7 +2344,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -2366,7 +2366,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysReqItemId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysReqItemId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSREQITEMID");
@@ -2391,7 +2391,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -2416,7 +2416,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -2438,7 +2438,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysWFCatId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysWFCatId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSWFCATID");
@@ -2460,7 +2460,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PSWFDEsCnt_Default((IEntity)pSWorkflow, bl2, bl3);
+            string = this.onTestValueRule_PSWFDEsCnt_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFDESCNT");
@@ -2482,7 +2482,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PSWFVersionsCnt_Default((IEntity)pSWorkflow, bl2, bl3);
+            string = this.onTestValueRule_PSWFVersionsCnt_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFVERSIONSCNT");
@@ -2507,7 +2507,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkflowId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkflowId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKFLOWID");
@@ -2532,7 +2532,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkflowName_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkflowName_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKFLOWNAME");
@@ -2554,7 +2554,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXAccountId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXAccountId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXACCOUNTID");
@@ -2576,7 +2576,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXEntAppId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXEntAppId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXENTAPPID");
@@ -2598,7 +2598,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RemindPSSysMsgTemplId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_RemindPSSysMsgTemplId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REMINDPSSYSMSGTEMPLID");
@@ -2620,7 +2620,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RemoteEngineFlag_Default((IEntity)pSWorkflow, bl2, bl3);
+            string = this.onTestValueRule_RemoteEngineFlag_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REMOTEENGINEFLAG");
@@ -2642,7 +2642,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StartMobPSDEViewId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_StartMobPSDEViewId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STARTMOBPSDEVIEWID");
@@ -2664,7 +2664,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StartPSDEViewId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_StartPSDEViewId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STARTPSDEVIEWID");
@@ -2686,7 +2686,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StateCodeListId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_StateCodeListId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STATECODELISTID");
@@ -2708,7 +2708,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ToDoTask_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_ToDoTask_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TODOTASK");
@@ -2730,7 +2730,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -2752,7 +2752,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -2774,7 +2774,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -2796,7 +2796,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -2818,7 +2818,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -2840,7 +2840,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSWorkflow, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -2862,7 +2862,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFCancelValue_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFCancelValue_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFCANCELVALUE");
@@ -2884,7 +2884,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFCancelValueText_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFCancelValueText_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFCANCELVALUETEXT");
@@ -2906,7 +2906,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFEditViewType_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFEditViewType_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFEDITVIEWTYPE");
@@ -2928,7 +2928,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFEngineType_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFEngineType_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFENGINETYPE");
@@ -2950,7 +2950,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFErrorValue_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFErrorValue_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFERRORVALUE");
@@ -2972,7 +2972,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFErrorValueText_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFErrorValueText_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFERRORVALUETEXT");
@@ -2994,7 +2994,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFFinishValue_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFFinishValue_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFFINISHEVALUE");
@@ -3016,7 +3016,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFFinishValueText_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFFinishValueText_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFFINISHEVALUETEXT");
@@ -3038,7 +3038,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WFProxyMode_Default((IEntity)pSWorkflow, bl2, bl3);
+            string = this.onTestValueRule_WFProxyMode_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFPROXYMODE");
@@ -3060,7 +3060,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFSN_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFSN_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFSN");
@@ -3099,7 +3099,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFStateValue_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFStateValue_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFSTATEVALUE");
@@ -3121,7 +3121,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFStepCodeListId_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFStepCodeListId_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFSTEPCODELISTID");
@@ -3143,7 +3143,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFTag_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFTag_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFTAG");
@@ -3165,7 +3165,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFTag2_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFTag2_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFTAG2");
@@ -3187,7 +3187,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFTag3_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFTag3_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFTAG3");
@@ -3209,7 +3209,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFTag4_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFTag4_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFTAG4");
@@ -3231,7 +3231,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WFType_Default((IEntity)pSWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_WFType_Default(pSWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WFTYPE");
@@ -3244,11 +3244,11 @@ extends PSCoreSysServiceBase<PSWorkflow> {
     }
 
     protected void onSyncEntity(PSWorkflow pSWorkflow, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWorkflow, bl);
+        super.onSyncEntity(pSWorkflow, bl);
     }
 
     protected void onSyncIndexEntities(PSWorkflow pSWorkflow, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWorkflow, bl);
+        super.onSyncIndexEntities(pSWorkflow, bl);
     }
 
     public Object getDataContextValue(PSWorkflow pSWorkflow, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -3256,7 +3256,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWorkflow, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWorkflow, string, iDataContextParam)) != null) {
             return object;
         }
         PSSystem pSSystem = pSWorkflow.getPSSystem();
@@ -3268,13 +3268,13 @@ extends PSCoreSysServiceBase<PSWorkflow> {
 
     protected void onExportMajorModel(PSWorkflow pSWorkflow, ArrayList<JSONObject> arrayList, int n) throws Exception {
         this.onExportMajorModel_NamePSLanRes(pSWorkflow, arrayList, n);
-        super.onExportMajorModel((IEntity)pSWorkflow, arrayList, n);
+        super.onExportMajorModel(pSWorkflow, arrayList, n);
     }
 
     protected void onExportMajorModel_NamePSLanRes(PSWorkflow pSWorkflow, ArrayList<JSONObject> arrayList, int n) throws Exception {
         if (pSWorkflow.getNamePSLanRes() != null) {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.sysdesign.service.PSLanguageResService", (SessionFactory)this.getSessionFactory());
-            iService.exportModel((IEntity)pSWorkflow.getNamePSLanRes(), arrayList, n);
+            iService.exportModel(pSWorkflow.getNamePSLanRes(), arrayList, n);
         }
     }
 
@@ -4286,7 +4286,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         if ((StringHelper.isNullOrEmpty((String)string) || (StringHelper.compare((String)string, (String)"DER1N", (boolean)true) == 0 || StringHelper.compare((String)string, (String)"SYSDER1N", (boolean)true) == 0) && StringHelper.compare((String)string2, (String)"DER1N_PSWFVERSION_PSWORKFLOW_PSWFID", (boolean)true) == 0) && this.onMergeChild_PSWFVersions(pSWorkflow)) {
             bl = true;
         }
-        if (super.onMergeChild(string, string2, (IEntity)pSWorkflow)) {
+        if (super.onMergeChild(string, string2, pSWorkflow)) {
             bl = true;
         }
         return bl;
@@ -4301,12 +4301,12 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         String string = DataObject.getStringValue((Object)pSWorkflow.getPSWorkflowId());
         IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.wfdesign.service.PSWFDEService", (SessionFactory)this.getSessionFactory());
         selectContext.set("PSWFID", (Object)pSWorkflow.getPSWorkflowId());
-        ArrayList arrayList = null;
+        ArrayList<IEntity> arrayList = null;
         arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        IEntity iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSWorkflow, false);
         return true;
     }
@@ -4321,12 +4321,12 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         String string = DataObject.getStringValue((Object)pSWorkflow.getPSWorkflowId());
         IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.wfdesign.service.PSWFVersionService", (SessionFactory)this.getSessionFactory());
         selectContext.set("PSWFID", (Object)pSWorkflow.getPSWorkflowId());
-        ArrayList arrayList = null;
+        ArrayList<IEntity> arrayList = null;
         arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        IEntity iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSWorkflow, false);
         return true;
     }
@@ -4337,7 +4337,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.sysdesign.service.PSSystemService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSWORKFLOW_PSSYSTEM_PSSYSTEMID", object);
         }
-        super.onUpdateParent((IEntity)pSWorkflow);
+        super.onUpdateParent(pSWorkflow);
     }
 
     protected boolean isNeedUpdateParent() {
@@ -4494,7 +4494,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
     @Override
     protected void onExportRelatedModelV2(PSWorkflow pSWorkflow, String string, String string2) throws Exception {
         String string3;
-        EntityBase entityBase;
+        IEntity entityBase;
         ObjectNode objectNode;
         ArrayList<String> arrayList;
         File file;
@@ -4518,7 +4518,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDEUAGroupService)pSCoreSysServiceBase).getModelV2Tag((PSDEUAGroup)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEUAGROUP", (Object)entityBase.getPSDEUAGroupId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEUAGROUP", (Object)((PSDEUAGroup)entityBase).getPSDEUAGroupId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4544,7 +4544,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSDEUIActionService)pSCoreSysServiceBase).getModelV2Tag((PSDEUIAction)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEUIACTION", (Object)entityBase.getPSDEUIActionId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSDEUIACTION", (Object)((PSDEUIAction)entityBase).getPSDEUIActionId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4570,7 +4570,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSWFVersionService)pSCoreSysServiceBase).getModelV2Tag((PSWFVersion)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFVERSION", (Object)entityBase.getPSWFVersionId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFVERSION", (Object)((PSWFVersion)entityBase).getPSWFVersionId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4596,7 +4596,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSWFDEServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSWFDE)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFDE", (Object)entityBase.getPSWFDEId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFDE", (Object)((PSWFDE)entityBase).getPSWFDEId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4622,7 +4622,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSWFSubWFServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSWFSubWF)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFSUBWF", (Object)entityBase.getPSWFSubWFId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFSUBWF", (Object)((PSWFSubWF)entityBase).getPSWFSubWFId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4648,7 +4648,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSWFUtilUIActionService)pSCoreSysServiceBase).getModelV2Tag((PSWFUtilUIAction)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFUTILUIACTION", (Object)entityBase.getPSWFUtilUIActionId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWFUTILUIACTION", (Object)((PSWFUtilUIAction)entityBase).getPSWFUtilUIActionId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -4663,12 +4663,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
 
     @Override
     protected void onExportCurModelV2(PSWorkflow pSWorkflow, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        Object object3;
-        Object object4;
-        ArrayList<PSDEUAGroup> arrayList;
+        ArrayList<ObjectNode> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEUAGROUP_PSWORKFLOW_PSWFID")) {
@@ -4677,31 +4672,22 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWORKFLOW#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEUAGROUP", (Object)pSWorkflow.getPSWorkflowId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEUAGroup)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSDEUAGroup>();
-                object4 = ((PSDEUAGroupServiceBase)pSCoreSysServiceBase).selectByPSWF(pSWorkflow);
-                object3 = StringHelper.format((String)"PSWORKFLOW#%1$s", (Object)pSWorkflow.getPSWorkflowId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEUAGroup)object2.next();
-                    object = ((PSDEUAGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEUAGroup)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWORKFLOW#%1$s", (Object)pSWorkflow.getPSWorkflowId());
+                for (PSDEUAGroup child : ((PSDEUAGroupServiceBase)pSCoreSysServiceBase).selectByPSWF(pSWorkflow)) {
+                    if (StringHelper.compare(scope, ((PSDEUAGroupServiceBase)pSCoreSysServiceBase).getModelV2ResScope(child), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(child, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode exported = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -4729,10 +4715,10 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEUAGroup();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode childNode : arrayList) {
+                    PSDEUAGroup child = new PSDEUAGroup();
+                    PSModelV2Helper.fromJSONObject(child, childNode, false);
+                    exported.add(pSCoreSysServiceBase.exportModelV2(child, string));
                 }
             }
         }
@@ -4742,31 +4728,22 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWORKFLOW#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEUIACTION", (Object)pSWorkflow.getPSWorkflowId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEUAGroup)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEUIActionServiceBase)pSCoreSysServiceBase).selectByPSWF(pSWorkflow);
-                object3 = StringHelper.format((String)"PSWORKFLOW#%1$s", (Object)pSWorkflow.getPSWorkflowId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEUIAction)object2.next();
-                    object = ((PSDEUIActionServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEUAGroup)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWORKFLOW#%1$s", (Object)pSWorkflow.getPSWorkflowId());
+                for (PSDEUIAction child : ((PSDEUIActionServiceBase)pSCoreSysServiceBase).selectByPSWF(pSWorkflow)) {
+                    if (StringHelper.compare(scope, ((PSDEUIActionServiceBase)pSCoreSysServiceBase).getModelV2ResScope(child), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(child, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode exported = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -4794,10 +4771,10 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEUIAction();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode childNode : arrayList) {
+                    PSDEUIAction child = new PSDEUIAction();
+                    PSModelV2Helper.fromJSONObject(child, childNode, false);
+                    exported.add(pSCoreSysServiceBase.exportModelV2(child, string));
                 }
             }
         }
@@ -4807,31 +4784,22 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWORKFLOW#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFVERSION", (Object)pSWorkflow.getPSWorkflowId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEUAGroup)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWFVersionServiceBase)pSCoreSysServiceBase).selectByPSWF(pSWorkflow);
-                object3 = StringHelper.format((String)"PSWORKFLOW#%1$s", (Object)pSWorkflow.getPSWorkflowId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWFVersion)object2.next();
-                    object = ((PSWFVersionServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEUAGroup)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWORKFLOW#%1$s", (Object)pSWorkflow.getPSWorkflowId());
+                for (PSWFVersion child : ((PSWFVersionServiceBase)pSCoreSysServiceBase).selectByPSWF(pSWorkflow)) {
+                    if (StringHelper.compare(scope, ((PSWFVersionServiceBase)pSCoreSysServiceBase).getModelV2ResScope(child), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(child, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode exported = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -4859,10 +4827,10 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWFVersion();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode childNode : arrayList) {
+                    PSWFVersion child = new PSWFVersion();
+                    PSModelV2Helper.fromJSONObject(child, childNode, false);
+                    exported.add(pSCoreSysServiceBase.exportModelV2(child, string));
                 }
             }
         }
@@ -4872,31 +4840,22 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWORKFLOW#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFDE", (Object)pSWorkflow.getPSWorkflowId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEUAGroup)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWFDEServiceBase)pSCoreSysServiceBase).selectByPSWF(pSWorkflow);
-                object3 = StringHelper.format((String)"PSWORKFLOW#%1$s", (Object)pSWorkflow.getPSWorkflowId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWFDE)object2.next();
-                    object = ((PSWFDEServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEUAGroup)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWORKFLOW#%1$s", (Object)pSWorkflow.getPSWorkflowId());
+                for (PSWFDE child : ((PSWFDEServiceBase)pSCoreSysServiceBase).selectByPSWF(pSWorkflow)) {
+                    if (StringHelper.compare(scope, ((PSWFDEServiceBase)pSCoreSysServiceBase).getModelV2ResScope(child), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(child, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode exported = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -4924,10 +4883,10 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWFDE();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode childNode : arrayList) {
+                    PSWFDE child = new PSWFDE();
+                    PSModelV2Helper.fromJSONObject(child, childNode, false);
+                    exported.add(pSCoreSysServiceBase.exportModelV2(child, string));
                 }
             }
         }
@@ -4937,31 +4896,22 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWORKFLOW#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFSUBWF", (Object)pSWorkflow.getPSWorkflowId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEUAGroup)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWFSubWFServiceBase)pSCoreSysServiceBase).selectByPSWF(pSWorkflow);
-                object3 = StringHelper.format((String)"PSWORKFLOW#%1$s", (Object)pSWorkflow.getPSWorkflowId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWFSubWF)object2.next();
-                    object = ((PSWFSubWFServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEUAGroup)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWORKFLOW#%1$s", (Object)pSWorkflow.getPSWorkflowId());
+                for (PSWFSubWF child : ((PSWFSubWFServiceBase)pSCoreSysServiceBase).selectByPSWF(pSWorkflow)) {
+                    if (StringHelper.compare(scope, ((PSWFSubWFServiceBase)pSCoreSysServiceBase).getModelV2ResScope(child), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(child, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode exported = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -4989,10 +4939,10 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWFSubWF();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode childNode : arrayList) {
+                    PSWFSubWF child = new PSWFSubWF();
+                    PSModelV2Helper.fromJSONObject(child, childNode, false);
+                    exported.add(pSCoreSysServiceBase.exportModelV2(child, string));
                 }
             }
         }
@@ -5002,31 +4952,22 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWORKFLOW#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFUTILUIACTION", (Object)pSWorkflow.getPSWorkflowId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSDEUAGroup)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWFUtilUIActionServiceBase)pSCoreSysServiceBase).selectByPSWorkflow(pSWorkflow);
-                object3 = StringHelper.format((String)"PSWORKFLOW#%1$s", (Object)pSWorkflow.getPSWorkflowId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWFUtilUIAction)object2.next();
-                    object = ((PSWFUtilUIActionServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEUAGroup)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWORKFLOW#%1$s", (Object)pSWorkflow.getPSWorkflowId());
+                for (PSWFUtilUIAction child : ((PSWFUtilUIActionServiceBase)pSCoreSysServiceBase).selectByPSWorkflow(pSWorkflow)) {
+                    if (StringHelper.compare(scope, ((PSWFUtilUIActionServiceBase)pSCoreSysServiceBase).getModelV2ResScope(child), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(child, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode exported = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -5054,10 +4995,10 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWFUtilUIAction();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode childNode : arrayList) {
+                    PSWFUtilUIAction child = new PSWFUtilUIAction();
+                    PSModelV2Helper.fromJSONObject(child, childNode, false);
+                    exported.add(pSCoreSysServiceBase.exportModelV2(child, string));
                 }
             }
         }
@@ -5148,8 +5089,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
 
     @Override
     protected void onCompileRelatedModelV2(PSWorkflow pSWorkflow, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
+        IEntity entityBase;
+        IEntity object;
         Object object2;
         int n2;
         String string3;
@@ -5174,13 +5115,13 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string4);
                 if (((File)object2).exists()) {
-                    object = ((File)object2).listFiles();
-                    for (Object object3 : object) {
-                        if (!((File)object3).isDirectory()) continue;
+                    File[] files = ((File)object2).listFiles();
+                    for (File childFile : files) {
+                        if (!childFile.isDirectory()) continue;
                         entityBase = new PSDEUAGroup();
-                        entityBase.setPSWFId(pSWorkflow.getPSWorkflowId());
-                        entityBase.setPSWFName(pSWorkflow.getPSWorkflowName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                        ((PSDEUAGroup)entityBase).setPSWFId(pSWorkflow.getPSWorkflowId());
+                        ((PSDEUAGroup)entityBase).setPSWFName(pSWorkflow.getPSWorkflowName());
+                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, childFile.getCanonicalPath(), n);
                     }
                 }
             }
@@ -5204,12 +5145,12 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string5);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
+                    for (File childFile : ((File)object2).listFiles()) {
+                        if (!childFile.isDirectory()) continue;
                         entityBase = new PSDEUIAction();
-                        entityBase.setPSWFId(pSWorkflow.getPSWorkflowId());
-                        entityBase.setPSWFName(pSWorkflow.getPSWorkflowName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                        ((PSDEUIAction)entityBase).setPSWFId(pSWorkflow.getPSWorkflowId());
+                        ((PSDEUIAction)entityBase).setPSWFName(pSWorkflow.getPSWorkflowName());
+                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, childFile.getCanonicalPath(), n);
                     }
                 }
             }
@@ -5235,14 +5176,14 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 String string6 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string6);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
+                    for (File childFile : ((File)object2).listFiles()) {
+                        if (!childFile.isDirectory()) continue;
                         entityBase = new PSWFVersion();
-                        entityBase.setPSSystemId(pSWorkflow.getPSSystemId());
-                        entityBase.setPSWFId(pSWorkflow.getPSWorkflowId());
-                        entityBase.setPSWFName(pSWorkflow.getPSWorkflowName());
-                        entityBase.setWFEngineType(pSWorkflow.getWFEngineType());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                        ((PSWFVersion)entityBase).setPSSystemId(pSWorkflow.getPSSystemId());
+                        ((PSWFVersion)entityBase).setPSWFId(pSWorkflow.getPSWorkflowId());
+                        ((PSWFVersion)entityBase).setPSWFName(pSWorkflow.getPSWorkflowName());
+                        ((PSWFVersion)entityBase).setWFEngineType(pSWorkflow.getWFEngineType());
+                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, childFile.getCanonicalPath(), n);
                     }
                 }
             }
@@ -5267,13 +5208,13 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 String string7 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string7);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
+                    for (File childFile : ((File)object2).listFiles()) {
+                        if (!childFile.isDirectory()) continue;
                         entityBase = new PSWFDE();
-                        entityBase.setPSWFId(pSWorkflow.getPSWorkflowId());
-                        entityBase.setPSWFName(pSWorkflow.getPSWorkflowName());
-                        entityBase.setWFCodeName(pSWorkflow.getCodeName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                        ((PSWFDE)entityBase).setPSWFId(pSWorkflow.getPSWorkflowId());
+                        ((PSWFDE)entityBase).setPSWFName(pSWorkflow.getPSWorkflowName());
+                        ((PSWFDE)entityBase).setWFCodeName(pSWorkflow.getCodeName());
+                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, childFile.getCanonicalPath(), n);
                     }
                 }
             }
@@ -5297,12 +5238,12 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 String string8 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string8);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
+                    for (File childFile : ((File)object2).listFiles()) {
+                        if (!childFile.isDirectory()) continue;
                         entityBase = new PSWFSubWF();
-                        entityBase.setPSWFId(pSWorkflow.getPSWorkflowId());
-                        entityBase.setPSWFName(pSWorkflow.getPSWorkflowName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                        ((PSWFSubWF)entityBase).setPSWFId(pSWorkflow.getPSWorkflowId());
+                        ((PSWFSubWF)entityBase).setPSWFName(pSWorkflow.getPSWorkflowName());
+                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, childFile.getCanonicalPath(), n);
                     }
                 }
             }
@@ -5326,12 +5267,12 @@ extends PSCoreSysServiceBase<PSWorkflow> {
                 String string9 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
                 object2 = new File(string9);
                 if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
+                    for (File childFile : ((File)object2).listFiles()) {
+                        if (!childFile.isDirectory()) continue;
                         entityBase = new PSWFUtilUIAction();
-                        entityBase.setPSWorkflowId(pSWorkflow.getPSWorkflowId());
-                        entityBase.setPSWorkflowName(pSWorkflow.getPSWorkflowName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                        ((PSWFUtilUIAction)entityBase).setPSWorkflowId(pSWorkflow.getPSWorkflowId());
+                        ((PSWFUtilUIAction)entityBase).setPSWorkflowName(pSWorkflow.getPSWorkflowName());
+                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, childFile.getCanonicalPath(), n);
                     }
                 }
             }
@@ -5356,7 +5297,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSWFVersionService pSWFVersionService = (PSWFVersionService)ServiceGlobal.getService(PSWFVersionService.class, (SessionFactory)this.getSessionFactory());
             PSWFVersion pSWFVersion = new PSWFVersion();
             pSWFVersion.setPSWFVersionId(pSMOSFile.getPSModelId());
-            if (!pSWFVersionService.get((IEntity)pSWFVersion, true)) {
+            if (!pSWFVersionService.get(pSWFVersion, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWFVersion.getPSWFId(), (String)pSWorkflow.getPSWorkflowId(), (boolean)false) == 0) {
@@ -5364,12 +5305,12 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             }
             ObjectNode objectNode = pSWFVersionService.exportModelV2(pSWFVersion);
             pSWFVersion.reset();
-            if (!pSWFVersionService.setModelV2ResScope((IEntity)pSWFVersion, "PSWORKFLOW", pSWorkflow.getPSWorkflowId())) {
+            if (!pSWFVersionService.setModelV2ResScope(pSWFVersion, "PSWORKFLOW", pSWorkflow.getPSWorkflowId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWFVersionService.importModelV2(pSWFVersion, objectNode);
             SessionFactoryManager.commit();
-            return pSWFVersionService.getFile((IEntity)pSWFVersion);
+            return pSWFVersionService.getFile(pSWFVersion);
         }
         return null;
     }
@@ -5379,7 +5320,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             PSWFDEService pSWFDEService = (PSWFDEService)ServiceGlobal.getService(PSWFDEService.class, (SessionFactory)this.getSessionFactory());
             PSWFDE pSWFDE = new PSWFDE();
             pSWFDE.setPSWFDEId(pSMOSFile.getPSModelId());
-            if (!pSWFDEService.get((IEntity)pSWFDE, true)) {
+            if (!pSWFDEService.get(pSWFDE, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWFDE.getPSWFId(), (String)pSWorkflow.getPSWorkflowId(), (boolean)false) == 0) {
@@ -5387,12 +5328,12 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             }
             ObjectNode objectNode = pSWFDEService.exportModelV2(pSWFDE);
             pSWFDE.reset();
-            if (!pSWFDEService.setModelV2ResScope((IEntity)pSWFDE, "PSWORKFLOW", pSWorkflow.getPSWorkflowId())) {
+            if (!pSWFDEService.setModelV2ResScope(pSWFDE, "PSWORKFLOW", pSWorkflow.getPSWorkflowId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWFDEService.importModelV2(pSWFDE, objectNode);
             SessionFactoryManager.commit();
-            return pSWFDEService.getFile((IEntity)pSWFDE);
+            return pSWFDEService.getFile(pSWFDE);
         }
         return null;
     }
@@ -5526,7 +5467,7 @@ extends PSCoreSysServiceBase<PSWorkflow> {
     @Override
     protected PSMOSFile[] onListDRDataFolders(PSMOSFile pSMOSFile, String string, String string2, IPSMOSFileFilter iPSMOSFileFilter, boolean bl) throws Exception {
         PSMOSFile pSMOSFile2;
-        ArrayList arrayList;
+        ArrayList<IEntity> arrayList;
         SelectContext selectContext;
         PSCoreSysServiceBase pSCoreSysServiceBase;
         ArrayList<PSMOSFile> arrayList2 = new ArrayList<PSMOSFile>();
@@ -5534,8 +5475,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             pSCoreSysServiceBase = (PSWFVersionService)ServiceGlobal.getService(PSWFVersionService.class, (SessionFactory)this.getSessionFactory());
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSWFVERSION_PSWORKFLOW_PSWFID", "PSWFID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            for (IEntity entityBase : arrayList) {
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -5544,8 +5485,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             pSCoreSysServiceBase = (PSWFDEService)ServiceGlobal.getService(PSWFDEService.class, (SessionFactory)this.getSessionFactory());
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSWFDE_PSWORKFLOW_PSWFID", "PSWFID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            for (IEntity entityBase : arrayList) {
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -5554,8 +5495,8 @@ extends PSCoreSysServiceBase<PSWorkflow> {
             pSCoreSysServiceBase = (PSAppWFService)ServiceGlobal.getService(PSAppWFService.class, (SessionFactory)this.getSessionFactory());
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSAPPWF_PSWORKFLOW_PSWORKFLOWID", "PSWORKFLOWID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            for (IEntity entityBase : arrayList) {
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -5609,4 +5550,3 @@ extends PSCoreSysServiceBase<PSWorkflow> {
         defaultValueMap.put("CODENAME", "Workflow");
     }
 }
-

@@ -1,14 +1,23 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.ViewControllerBase;
+/**
+ * 选择树视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class PickupTreeViewControllerBase extends ViewControllerBase {
+	public PickupTreeViewControllerBase() throws Exception {
+		super();
+	}
 
-public abstract class PickupTreeViewControllerBase
-extends ViewControllerBase {
-    public boolean isPickupView() {
-        return true;
-    }
+	/**
+	 * 是否为拾取视图
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean isPickupView() {
+		return true;
+	}
 }
-

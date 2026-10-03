@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSDevSlnSysGDDEModelBase;
 
 public class PSDevSlnSysGDDEModel
 extends PSDevSlnSysGDDEModelBase {
+
+    public PSDevSlnSysGDDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

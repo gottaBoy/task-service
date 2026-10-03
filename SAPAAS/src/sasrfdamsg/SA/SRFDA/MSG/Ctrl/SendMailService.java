@@ -183,7 +183,7 @@ extends BaseService {
 
     protected void InternalSend() {
         CallResult callResult;
-        Vector sendMailQueueList = new Vector();
+        Vector<MsgSendQueue> sendMailQueueList = new Vector();
         CallParamList callParamList = new CallParamList();
         if (this.bPlanSendTime) {
             Date date = new Date();
@@ -277,7 +277,7 @@ extends BaseService {
                                 throw new Exception(msgSendQueue.getERRORINFO());
                             }
                             if (msgAccount.getISLIST()) {
-                                Vector msgAccountList = new Vector();
+                                Vector<MsgAccount> msgAccountList = new Vector();
                                 callResult = msgAccountDataCtrl.Select("LISTGROUPDETAIL", (BaseDataEntity)msgAccount, msgAccountList, MsgAccount.class.getName());
                                 if (callResult.IsError()) {
                                     msgSendQueue.setERRORINFO(StringHelper.Format((String)"\u53d1\u9001\u90ae\u4ef6\u53d1\u751f\u9519\u8bef\uff0c\u83b7\u53d6\u6d88\u606f\u8d26\u6237\u7ec4[%1$s]\u660e\u7ec6\u7528\u6237\u5931\u8d25\uff0c%2$s", (Object)addrs[i], (Object)callResult.getErrorInfo()));

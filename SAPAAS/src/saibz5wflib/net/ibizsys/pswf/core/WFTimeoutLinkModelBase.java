@@ -1,13 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFTimeoutLinkModel;
-import net.ibizsys.pswf.core.WFLinkModelBase;
+/**
+ * 流程超时连接模型对象
+ * @author Administrator
+ *
+ */
+public abstract class WFTimeoutLinkModelBase extends WFLinkModelBase implements IWFTimeoutLinkModel
+{
 
-public abstract class WFTimeoutLinkModelBase
-extends WFLinkModelBase
-implements IWFTimeoutLinkModel {
 }
-

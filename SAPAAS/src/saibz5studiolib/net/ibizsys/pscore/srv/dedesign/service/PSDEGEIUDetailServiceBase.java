@@ -170,9 +170,9 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
             PSDEGEIUpdate pSDEGEIUpdate = (PSDEGEIUpdate)iService.getDEModel().createEntity();
             pSDEGEIUpdate.set("PSDEGEIUPDATEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEGEIUpdate);
+                iService.getTemp(pSDEGEIUpdate);
             } else {
-                iService.get((IEntity)pSDEGEIUpdate);
+                iService.get(pSDEGEIUpdate);
             }
             this.onFillParentInfo_PSDEGEIUpdate(pSDEGEIUDetail, pSDEGEIUpdate);
             return;
@@ -182,9 +182,9 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
             PSDEGridCol pSDEGridCol = (PSDEGridCol)iService.getDEModel().createEntity();
             pSDEGridCol.set("PSDEGRIDCOLID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEGridCol);
+                iService.getTemp(pSDEGridCol);
             } else {
-                iService.get((IEntity)pSDEGridCol);
+                iService.get(pSDEGridCol);
             }
             this.onFillParentInfo_PSDEGridCol(pSDEGEIUDetail, pSDEGridCol);
             return;
@@ -194,14 +194,14 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
             PSDEGrid pSDEGrid = (PSDEGrid)iService.getDEModel().createEntity();
             pSDEGrid.set("PSDEGRIDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEGrid);
+                iService.getTemp(pSDEGrid);
             } else {
-                iService.get((IEntity)pSDEGrid);
+                iService.get(pSDEGrid);
             }
             this.onFillParentInfo_PSDEGrid(pSDEGEIUDetail, pSDEGrid);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEGEIUDetail, string, string2, string3);
+        super.onFillParentInfo(pSDEGEIUDetail, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -250,7 +250,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
             ArrayList<PSDEGEIUDetail> arrayList = this.selectByPSDEGrid(pSDEGrid);
             for (PSDEGEIUDetail pSDEGEIUDetail : arrayList) {
                 if (hashMap.containsKey(DataObject.getStringValue((IDataObject)pSDEGEIUDetail, (String)"PSDEGEIUDETAILID", (String)""))) continue;
-                this.remove((IEntity)pSDEGEIUDetail);
+                this.remove(pSDEGEIUDetail);
             }
         }
         return null;
@@ -278,7 +278,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEGEIUDetail, bl);
+        super.onFillEntityFullInfo(pSDEGEIUDetail, bl);
         this.onFillEntityFullInfo_PSDEGEIUpdate(pSDEGEIUDetail, bl);
         this.onFillEntityFullInfo_PSDEGridCol(pSDEGEIUDetail, bl);
         this.onFillEntityFullInfo_PSDEGrid(pSDEGEIUDetail, bl);
@@ -294,7 +294,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
     }
 
     protected void onWriteBackParent(PSDEGEIUDetail pSDEGEIUDetail, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEGEIUDetail, bl);
+        super.onWriteBackParent(pSDEGEIUDetail, bl);
     }
 
     public ArrayList<PSDEGEIUDetail> selectByPSDEGEIUpdate(PSDEGEIUpdateBase pSDEGEIUpdateBase) throws Exception {
@@ -433,7 +433,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
             PSDEGEIUDetail pSDEGEIUDetail2 = (PSDEGEIUDetail)this.getDEModel().createEntity();
             pSDEGEIUDetail2.setPSDEGEIUDetailId(pSDEGEIUDetail.getPSDEGEIUDetailId());
             pSDEGEIUDetail2.setPSDEGEIUpdateId(null);
-            this.updateTemp((IEntity)pSDEGEIUDetail2);
+            this.updateTemp(pSDEGEIUDetail2);
         }
     }
 
@@ -456,7 +456,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
         ArrayList<PSDEGEIUDetail> arrayList = this.selectByPSDEGEIUpdate(pSDEGEIUpdate);
         this.onBeforeRemoveByPSDEGEIUpdate(pSDEGEIUpdate, arrayList);
         for (PSDEGEIUDetail pSDEGEIUDetail : arrayList) {
-            this.remove((IEntity)pSDEGEIUDetail);
+            this.remove(pSDEGEIUDetail);
         }
         this.onAfterRemoveByPSDEGEIUpdate(pSDEGEIUpdate, arrayList);
     }
@@ -474,8 +474,8 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
         ArrayList<PSDEGEIUDetail> arrayList = this.selectByPSDEGridCol(pSDEGridCol, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEGRIDCOL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEGridCol);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEGEIUDETAIL_PSDEGRIDCOL_PSDEGRIDCOLID", "", iDataEntityModel.getName(), "PSDEGEIUDETAIL", iDataEntityModel.getDataInfo((IEntity)pSDEGridCol), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEGridCol);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEGEIUDETAIL_PSDEGRIDCOL_PSDEGRIDCOLID", "", iDataEntityModel.getName(), "PSDEGEIUDETAIL", iDataEntityModel.getDataInfo(pSDEGridCol), arrayList.get(0)));
         }
     }
 
@@ -495,7 +495,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
             PSDEGEIUDetail pSDEGEIUDetail2 = (PSDEGEIUDetail)this.getDEModel().createEntity();
             pSDEGEIUDetail2.setPSDEGEIUDetailId(pSDEGEIUDetail.getPSDEGEIUDetailId());
             pSDEGEIUDetail2.setPSDEGridColId(null);
-            this.updateTemp((IEntity)pSDEGEIUDetail2);
+            this.updateTemp(pSDEGEIUDetail2);
         }
     }
 
@@ -518,7 +518,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
         ArrayList<PSDEGEIUDetail> arrayList = this.selectByPSDEGridCol(pSDEGridCol);
         this.onBeforeRemoveByPSDEGridCol(pSDEGridCol, arrayList);
         for (PSDEGEIUDetail pSDEGEIUDetail : arrayList) {
-            this.remove((IEntity)pSDEGEIUDetail);
+            this.remove(pSDEGEIUDetail);
         }
         this.onAfterRemoveByPSDEGridCol(pSDEGridCol, arrayList);
     }
@@ -551,7 +551,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
             PSDEGEIUDetail pSDEGEIUDetail2 = (PSDEGEIUDetail)this.getDEModel().createEntity();
             pSDEGEIUDetail2.setPSDEGEIUDetailId(pSDEGEIUDetail.getPSDEGEIUDetailId());
             pSDEGEIUDetail2.setPSDEGridId(null);
-            this.updateTemp((IEntity)pSDEGEIUDetail2);
+            this.updateTemp(pSDEGEIUDetail2);
         }
     }
 
@@ -574,7 +574,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
         ArrayList<PSDEGEIUDetail> arrayList = this.selectByPSDEGrid(pSDEGrid);
         this.onBeforeRemoveByPSDEGrid(pSDEGrid, arrayList);
         for (PSDEGEIUDetail pSDEGEIUDetail : arrayList) {
-            this.remove((IEntity)pSDEGEIUDetail);
+            this.remove(pSDEGEIUDetail);
         }
         this.onAfterRemoveByPSDEGrid(pSDEGrid, arrayList);
     }
@@ -612,7 +612,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
         ArrayList<PSDEGEIUDetail> arrayList = this.selectTempByPSDEGridCol(pSDEGridCol);
         this.onBeforeRemoveTempByPSDEGridCol(pSDEGridCol, arrayList);
         for (PSDEGEIUDetail pSDEGEIUDetail : arrayList) {
-            this.removeTemp((IEntity)pSDEGEIUDetail);
+            this.removeTemp(pSDEGEIUDetail);
         }
         this.onAfterRemoveTempByPSDEGridCol(pSDEGridCol, arrayList);
     }
@@ -645,7 +645,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
         ArrayList<PSDEGEIUDetail> arrayList = this.selectTempByPSDEGEIUpdate(pSDEGEIUpdate);
         this.onBeforeRemoveTempByPSDEGEIUpdate(pSDEGEIUpdate, arrayList);
         for (PSDEGEIUDetail pSDEGEIUDetail : arrayList) {
-            this.removeTemp((IEntity)pSDEGEIUDetail);
+            this.removeTemp(pSDEGEIUDetail);
         }
         this.onAfterRemoveTempByPSDEGEIUpdate(pSDEGEIUpdate, arrayList);
     }
@@ -678,7 +678,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
         ArrayList<PSDEGEIUDetail> arrayList = this.selectTempByPSDEGrid(pSDEGrid);
         this.onBeforeRemoveTempByPSDEGrid(pSDEGrid, arrayList);
         for (PSDEGEIUDetail pSDEGEIUDetail : arrayList) {
-            this.removeTemp((IEntity)pSDEGEIUDetail);
+            this.removeTemp(pSDEGEIUDetail);
         }
         this.onAfterRemoveTempByPSDEGrid(pSDEGrid, arrayList);
     }
@@ -694,7 +694,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
 
     protected void replaceParentInfo(PSDEGEIUDetail pSDEGEIUDetail, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEGEIUDetail, cloneSession);
+        super.replaceParentInfo(pSDEGEIUDetail, cloneSession);
         if (pSDEGEIUDetail.getPSDEGEIUpdateId() != null && (iEntity = cloneSession.getEntity("PSDEGEIUPDATE", (Object)pSDEGEIUDetail.getPSDEGEIUpdateId())) != null) {
             this.onFillParentInfo_PSDEGEIUpdate(pSDEGEIUDetail, (PSDEGEIUpdate)iEntity);
         }
@@ -707,7 +707,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEGEIUDetail pSDEGEIUDetail, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEGEIUDetail, bl);
+        super.onRemoveEntityUncopyValues(pSDEGEIUDetail, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEGEIUDetail pSDEGEIUDetail, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -728,7 +728,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
         if ((entityFieldError = this.onCheckField_PSDEGridId(bl, pSDEGEIUDetail, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEGEIUDetail, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEGEIUDetail, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDEGEIUDetailId(boolean bl, PSDEGEIUDetail pSDEGEIUDetail, boolean bl2, boolean bl3) throws Exception {
@@ -744,7 +744,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEGEIUDetailId_Default((IEntity)pSDEGEIUDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEGEIUDetailId_Default(pSDEGEIUDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEGEIUDETAILID");
@@ -766,7 +766,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEGEIUDetailName_Default((IEntity)pSDEGEIUDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEGEIUDetailName_Default(pSDEGEIUDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEGEIUDETAILNAME");
@@ -791,7 +791,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEGEIUpdateId_Default((IEntity)pSDEGEIUDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEGEIUpdateId_Default(pSDEGEIUDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEGEIUPDATEID");
@@ -816,7 +816,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEGridColId_Default((IEntity)pSDEGEIUDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEGridColId_Default(pSDEGEIUDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEGRIDCOLID");
@@ -838,7 +838,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEGridId_Default((IEntity)pSDEGEIUDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEGridId_Default(pSDEGEIUDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEGRIDID");
@@ -851,11 +851,11 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
     }
 
     protected void onSyncEntity(PSDEGEIUDetail pSDEGEIUDetail, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEGEIUDetail, bl);
+        super.onSyncEntity(pSDEGEIUDetail, bl);
     }
 
     protected void onSyncIndexEntities(PSDEGEIUDetail pSDEGEIUDetail, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEGEIUDetail, bl);
+        super.onSyncIndexEntities(pSDEGEIUDetail, bl);
     }
 
     public Object getDataContextValue(PSDEGEIUDetail pSDEGEIUDetail, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -863,7 +863,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEGEIUDetail, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEGEIUDetail, string, iDataContextParam)) != null) {
             return object;
         }
         PSDEGEIUpdate pSDEGEIUpdate = pSDEGEIUDetail.getPSDEGEIUpdate();
@@ -878,7 +878,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
     }
 
     protected void onExportMajorModel(PSDEGEIUDetail pSDEGEIUDetail, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEGEIUDetail, arrayList, n);
+        super.onExportMajorModel(pSDEGEIUDetail, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1051,14 +1051,14 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
 
     protected boolean onMergeChild(String string, String string2, PSDEGEIUDetail pSDEGEIUDetail) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEGEIUDetail)) {
+        if (super.onMergeChild(string, string2, pSDEGEIUDetail)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEGEIUDetail pSDEGEIUDetail) throws Exception {
-        super.onUpdateParent((IEntity)pSDEGEIUDetail);
+        super.onUpdateParent(pSDEGEIUDetail);
     }
 
     @Override
@@ -1084,7 +1084,7 @@ extends PSCoreSysServiceBase<PSDEGEIUDetail> {
         PSDEGEIUDetail pSDEGEIUDetail2 = new PSDEGEIUDetail();
         pSDEGEIUDetail2.setPSDEGEIUpdateId(pSDEGEIUDetail.getPSDEGEIUpdateId());
         pSDEGEIUDetail2.setPSDEGridColId(pSDEGEIUDetail.getPSDEGridColId());
-        if (this.selectOne((IEntity)pSDEGEIUDetail2, true)) {
+        if (this.selectOne(pSDEGEIUDetail2, true)) {
             return pSDEGEIUDetail2.getPSDEGEIUDetailId();
         }
         return super.getEntityFolderKeyValue(pSDEGEIUDetail, pSSystem);

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSSFPubObjParamDEModelBase;
 
 public class PSSFPubObjParamDEModel
 extends PSSFPubObjParamDEModelBase {
+
+    public PSSFPubObjParamDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

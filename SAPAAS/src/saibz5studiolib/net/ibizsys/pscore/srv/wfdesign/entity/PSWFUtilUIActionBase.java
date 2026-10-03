@@ -1558,7 +1558,7 @@ implements Serializable {
                 PSDEUIAction pSDEUIAction = new PSDEUIAction();
                 pSDEUIAction.setPSDEUIActionId(this.getPSDEUIActionId());
                 PSDEUIActionService pSDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEUIActionService.autoGet((IEntity)pSDEUIAction);
+                pSDEUIActionService.autoGet(pSDEUIAction);
                 this.psdeuiaction = pSDEUIAction;
             }
             return this.psdeuiaction;
@@ -1584,7 +1584,7 @@ implements Serializable {
                 PSSysWFSetting pSSysWFSetting = new PSSysWFSetting();
                 pSSysWFSetting.setPSSysWFSettingId(this.getPSSysWFSettingId());
                 PSSysWFSettingService pSSysWFSettingService = (PSSysWFSettingService)ServiceGlobal.getService(PSSysWFSettingService.class, (SessionFactory)this.getSessionFactory());
-                pSSysWFSettingService.autoGet((IEntity)pSSysWFSetting);
+                pSSysWFSettingService.autoGet(pSSysWFSetting);
                 this.pssyswfsetting = pSSysWFSetting;
             }
             return this.pssyswfsetting;
@@ -1610,7 +1610,7 @@ implements Serializable {
                 PSWFVersion pSWFVersion = new PSWFVersion();
                 pSWFVersion.setPSWFVersionId(this.getPSWFVersionId());
                 PSWFVersionService pSWFVersionService = (PSWFVersionService)ServiceGlobal.getService(PSWFVersionService.class, (SessionFactory)this.getSessionFactory());
-                pSWFVersionService.autoGet((IEntity)pSWFVersion);
+                pSWFVersionService.autoGet(pSWFVersion);
                 this.pswfversion = pSWFVersion;
             }
             return this.pswfversion;
@@ -1636,7 +1636,7 @@ implements Serializable {
                 PSWorkflow pSWorkflow = new PSWorkflow();
                 pSWorkflow.setPSWorkflowId(this.getPSWorkflowId());
                 PSWorkflowService pSWorkflowService = (PSWorkflowService)ServiceGlobal.getService(PSWorkflowService.class, (SessionFactory)this.getSessionFactory());
-                pSWorkflowService.autoGet((IEntity)pSWorkflow);
+                pSWorkflowService.autoGet(pSWorkflow);
                 this.psworkflow = pSWorkflow;
             }
             return this.psworkflow;

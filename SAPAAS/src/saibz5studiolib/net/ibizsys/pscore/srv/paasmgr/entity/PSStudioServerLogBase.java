@@ -1451,7 +1451,7 @@ implements Serializable {
                 PSStudioServer pSStudioServer = new PSStudioServer();
                 pSStudioServer.setPSStudioServerId(this.getPSStudioServerId());
                 PSStudioServerService pSStudioServerService = (PSStudioServerService)ServiceGlobal.getService(PSStudioServerService.class, (SessionFactory)this.getSessionFactory());
-                pSStudioServerService.autoGet((IEntity)pSStudioServer);
+                pSStudioServerService.autoGet(pSStudioServer);
                 this.psstudioserver = pSStudioServer;
             }
             return this.psstudioserver;

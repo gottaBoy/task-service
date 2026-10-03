@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.controller;
 
-import net.ibizsys.pswf.controller.WFEditViewControllerBase;
-
-public abstract class WFStartViewControllerBase
-extends WFEditViewControllerBase {
+/**
+ * 流程启动交互操作视图控制器
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class WFStartViewControllerBase extends WFEditViewControllerBase {
+	public WFStartViewControllerBase() throws Exception {
+		super();
+	}
 }
-

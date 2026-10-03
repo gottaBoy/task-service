@@ -1,30 +1,35 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.web.util.echarts;
 
 import java.util.ArrayList;
-import net.ibizsys.paas.web.util.echarts.EChartsPoint;
-import net.ibizsys.paas.web.util.echarts.EChartsSeries;
+
+import net.ibizsys.paas.ctrlmodel.IChartSeriesModel;
+import net.ibizsys.paas.util.StringHelper;
 import net.sf.json.JSONObject;
 
-public class EChartsScatterSeries
-extends EChartsSeries {
-    @Override
-    protected void onFillSeriesJO(JSONObject series, ArrayList<String> globalCatalogNameList) throws Exception {
-        ArrayList<Double> dataList = new ArrayList<Double>();
-        for (String strCatalogName : globalCatalogNameList) {
-            EChartsPoint echartsPoint = this.getEChartsPoint(strCatalogName);
-            if (echartsPoint != null && echartsPoint.getValue() != null) {
-                dataList.add(echartsPoint.getValue());
-                continue;
-            }
-            dataList.add(0.0);
-        }
-        series.put("data", (Object)dataList.toArray());
-    }
+/**
+ * ECharts 散点图序列对象
+ * 
+ * @author Administrator
+ *
+ */
+public class EChartsScatterSeries extends EChartsSeries {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.web.util.echarts.EChartsSeries#onFillSeriesJO(net.sf.json.JSONObject, java.util.ArrayList)
+	 */
+	@Override
+	protected void onFillSeriesJO(JSONObject series, ArrayList<String> globalCatalogNameList) throws Exception {
+		ArrayList<Double> dataList = new ArrayList<Double>();
+		for (String strCatalogName : globalCatalogNameList) {
+			EChartsPoint echartsPoint = this.getEChartsPoint(strCatalogName);
+			if (echartsPoint != null && echartsPoint.getValue()!= null) {
+				dataList.add(echartsPoint.getValue());
+			} else {
+				dataList.add(0.0);
+			}
+		}
+		series.put("data", dataList.toArray());
+		
+	}
 }
-

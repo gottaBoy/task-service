@@ -1,34 +1,123 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.ISystem;
-import net.ibizsys.paas.core.ISystemObject;
+/**
+ * 应用程序接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IApplication extends ISystemObject {
+	
+	
+	/**
+	 * 应用程序类型：未知
+	 */
+	public final static int APPTYPE_UNKNOWN = 0;
+	
+	
+	/**
+	 * 应用程序类型：桌面端应用程序
+	 */
+	public final static int APPTYPE_DESKTOP = 1;
+	
+	
+	/**
+	 * 应用程序类型：移动端应用程序
+	 */
+	public final static int APPTYPE_MOBILE = 2;
+	
+	
+	/**
+	 * ExtJS5 技术
+	 */
+	public final static String PF_EXTJS5 = "EXTJS5";
 
-public interface IApplication
-extends ISystemObject {
-    public static final int APPTYPE_UNKNOWN = 0;
-    public static final int APPTYPE_DESKTOP = 1;
-    public static final int APPTYPE_MOBILE = 2;
-    public static final String PF_EXTJS5 = "EXTJS5";
-    public static final String PF_JQUERY = "JQUERY";
-    public static final String PF_JQUERY_R2 = "JQUERY_R2";
-    public static final String PF_ANGULARJS = "ANGULARJS";
-    public static final String PF_ANGULAR = "ANGULAR";
-    public static final String PF_IONIC = "IONIC";
-    public static final String PF_VUE = "VUE";
-    public static final String PF_VUEMOB = "VUEMOB";
-    public static final String PF_VUE_R2 = "VUE_R2";
-    public static final String PF_VUEMOB_R2 = "VUEMOB_R2";
-    public static final String PF_REACT = "REACT";
-    public static final String PF_REACTMOB = "REACTMOB";
-    public static final String PF_VUE_R3 = "VUE_R3";
-    public static final String PF_IONIC4_R6 = "IONIC4_R6";
+	/**
+	 * JQuery技术
+	 */
+	public final static String PF_JQUERY = "JQUERY";
 
-    @Override
-    public ISystem getSystem();
+	/**
+	 * JQuery技术(R2)
+	 */
+	public final static String PF_JQUERY_R2 = "JQUERY_R2";
 
-    public String getPFType();
+	/**
+	 * AngularJS技术
+	 */
+	public final static String PF_ANGULARJS = "ANGULARJS";
+	
+	
+	/**
+	 * Angular2（含2.0 以上版本） 技术
+	 */
+	public final static String PF_ANGULAR = "ANGULAR";
+	
+	
+	/**
+	 * Ionic 技术
+	 */
+	public final static String PF_IONIC = "IONIC";
+	
+	/**
+	 * Vue 技术
+	 */
+	public final static String PF_VUE = "VUE";
+	
+	
+	/**
+	 * VueMob 技术
+	 */
+	public final static String PF_VUEMOB = "VUEMOB";
+
+	
+	/**
+	 * Vue 技术(R2)
+	 */
+	public final static String PF_VUE_R2 = "VUE_R2";
+	
+	
+	/**
+	 * VueMob 技术(R2)
+	 */
+	public final static String PF_VUEMOB_R2 = "VUEMOB_R2";
+	
+
+	/**
+	 * React 技术
+	 */
+	public final static String PF_REACT = "REACT";
+	
+	
+	/**
+	 * ReactMob 技术
+	 */
+	public final static String PF_REACTMOB = "REACTMOB";
+	
+	
+	/**
+	 * Vue 技术(R3)
+	 */
+	public final static String PF_VUE_R3 = "VUE_R3";
+	
+	
+	/**
+	 * Ionic 技术
+	 */
+	public final static String PF_IONIC4_R6 = "IONIC4_R6";
+	
+	/**
+	 * 获取系统
+	 * 
+	 * @return
+	 */
+	ISystem getSystem();
+
+	/**
+	 * 获取应用技术
+	 * 
+	 * @return
+	 */
+	String getPFType();
+
 }
-

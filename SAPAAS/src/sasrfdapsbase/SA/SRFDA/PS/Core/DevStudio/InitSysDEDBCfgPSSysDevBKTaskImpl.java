@@ -65,7 +65,7 @@ extends PSSysDevBKTaskImplBase {
         PSSystemService psSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSystem psSystem2 = new PSSystem();
         psSystem2.setPSSystemId(this.psSysDevBKTask.getTASKPARAM());
-        psSystemService.get((IEntity)psSystem2);
+        psSystemService.get(psSystem2);
         try {
             PSCoreSysServiceBase.setCurrentPSSystemId((String)psSystem2.getPSSystemId());
             PSCoreSysServiceBase.setCurrentPSDevSlnSysId((String)this.getPSDevSlnSysId());
@@ -91,13 +91,13 @@ extends PSSysDevBKTaskImplBase {
         IPSModelService psDEDBCfgService = (IPSModelService)ServiceGlobal.getService(PSDEDBCfgService.class, (SessionFactory)sessionFactory);
         IPSModelService psDEFDTColService = (IPSModelService)ServiceGlobal.getService(PSDEFDTColService.class, (SessionFactory)sessionFactory);
         Hashtable ignorePSDataEntityMap = new Hashtable();
-        ArrayList psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDataEntity> psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
         for (PSDataEntity psDataEntity : psDataEntityList) {
             psDEDBCfgService.initModel("PSDATAENTITY", (IEntity)psDataEntity, "");
         }
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSSYSTEMID", (Object)psSystem.getPSSystemId());
-        ArrayList psDEFieldList = psDEFieldService.select((ISelectCond)selectCond);
+        ArrayList<PSDEField> psDEFieldList = psDEFieldService.select((ISelectCond)selectCond);
         for (PSDEField psDEField : psDEFieldList) {
             psDEFDTColService.initModel("PSDEFIELD", (IEntity)psDEField, "");
         }
@@ -106,4 +106,3 @@ extends PSSysDevBKTaskImplBase {
         return sBuilderEx.toString();
     }
 }
-

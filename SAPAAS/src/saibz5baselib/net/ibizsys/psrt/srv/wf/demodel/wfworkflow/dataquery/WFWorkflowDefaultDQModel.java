@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfworkflow.dataquery;
 
-import net.ibizsys.psrt.srv.wf.demodel.wfworkflow.dataquery.WFWorkflowDefaultDQModelBase;
+/**
+ *  实体数据查询 [DEFAULT]模型
+ */
+public class WFWorkflowDefaultDQModel extends WFWorkflowDefaultDQModelBase {
 
-public class WFWorkflowDefaultDQModel
-extends WFWorkflowDefaultDQModelBase {
+    public WFWorkflowDefaultDQModel() {
+        super();
+    }
+
 }
-

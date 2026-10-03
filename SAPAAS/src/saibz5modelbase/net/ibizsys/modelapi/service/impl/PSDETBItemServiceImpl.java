@@ -121,7 +121,7 @@ implements IPSDETBItemService {
     @Override
     protected List<PSDETBItem> onListAll() throws Exception {
         ArrayList<PSDETBItem> list = new ArrayList<PSDETBItem>();
-        List psdetoolbars = PSModelServiceUtil.getInstance().getPSDEToolbarService().listAll();
+        List<PSDEToolbar> psdetoolbars = PSModelServiceUtil.getInstance().getPSDEToolbarService().listAll();
         if (psdetoolbars != null) {
             for (PSDEToolbar parent : psdetoolbars) {
                 List<PSDETBItem> items = this.listByPSDEToolbar(parent);

@@ -27,6 +27,7 @@ package net.ibizsys.pscore.srv.devcenter.demodel.psdcdbtable.dataset;
 import net.ibizsys.paas.core.IDEDataSetFetchContext;
 import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.data.IDataObject;
+import net.ibizsys.paas.data.ISimpleDataObject;
 import net.ibizsys.paas.db.DBFetchResult;
 import net.ibizsys.paas.db.IDataRow;
 import net.ibizsys.paas.db.IDataSet;
@@ -59,43 +60,41 @@ extends PSDCDBTableCurDBDSModelBase {
     }
 
     public static DBFetchResult fetchDEDataSet(IDEDataSetFetchContext iDEDataSetFetchContext, String string, IDataEntityModel iDataEntityModel) throws Exception {
-        PSDBDevInst pSDBDevInst;
-        Object object;
         DBFetchResult dBFetchResult = new DBFetchResult();
         SimpleDataSetImpl simpleDataSetImpl = new SimpleDataSetImpl();
         SimpleDataTableImpl simpleDataTableImpl = new SimpleDataTableImpl((IDataSet)simpleDataSetImpl);
-        IEntity iEntity = (IEntity)iDEDataSetFetchContext.getActiveDataObject();
-        if (iEntity == null) {
+        ISimpleDataObject activeData = iDEDataSetFetchContext.getActiveDataObject();
+        if (activeData == null) {
             throw new Exception(StringHelper.format((String)"\u5f53\u524d\u4e0a\u4e0b\u6587\u6570\u636e\u5bf9\u8c61\u65e0\u6548"));
         }
-        String string2 = DataObject.getStringValue((IDataObject)iEntity, (String)"NODEID2", null);
+        String string2 = DataObject.getStringValue(activeData.get("NODEID2"), null);
         if (StringHelper.isNullOrEmpty((String)string2)) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5f53\u524d\u5e94\u7528\u4e2d\u5fc3\u6570\u636e\u5e93");
         }
         PSDevCenterDBInstService pSDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class);
         PSDevCenterDBInst pSDevCenterDBInst = new PSDevCenterDBInst();
         pSDevCenterDBInst.setPSDevCenterDBInstId(string2);
-        if (!pSDevCenterDBInstService.get((IEntity)pSDevCenterDBInst, true)) {
-            object = (PSDBDevInstService)ServiceGlobal.getService(PSDBDevInstService.class);
-            pSDBDevInst = new PSDBDevInst();
+        if (!pSDevCenterDBInstService.get(pSDevCenterDBInst, true)) {
+            PSDBDevInstService dbDevInstService = (PSDBDevInstService)ServiceGlobal.getService(PSDBDevInstService.class);
+            PSDBDevInst pSDBDevInst = new PSDBDevInst();
             pSDBDevInst.setPSDBDevInstId(string2);
-            if (!object.get((IEntity)pSDBDevInst, true)) {
+            if (!dbDevInstService.get(pSDBDevInst, true)) {
                 throw new Exception("\u6307\u5b9a\u5e94\u7528\u4e2d\u5fc3\u6570\u636e\u5e93\u4e0d\u5b58\u5728");
             }
             pSDevCenterDBInst.setPSDevCenterDBInstId(JITDBINST_PREFIX + string2);
         }
         try {
-            pSDevCenterDBInstService.executeAction("X2G_" + string, (IEntity)pSDevCenterDBInst);
+            pSDevCenterDBInstService.executeAction("X2G_" + string, pSDevCenterDBInst);
         }
         catch (Exception exception) {
             log.error((Object)exception);
             throw new Exception("\u67e5\u8be2\u6570\u636e\u5e93\u6a21\u578b\u53d1\u751f\u9519\u8bef");
         }
-        object = DataObject.getStringValue((IDataObject)pSDevCenterDBInst, (String)"SRFMODELLIST", null);
-        if (!StringHelper.isNullOrEmpty((String)object)) {
-            pSDBDevInst = JSONArray.fromString((String)new String(Base64Helper.decode((String)object), "GBK"));
-            for (int i = 0; i < pSDBDevInst.length(); ++i) {
-                JSONObject jSONObject = pSDBDevInst.getJSONObject(i);
+        String modelList = DataObject.getStringValue((IDataObject)pSDevCenterDBInst, (String)"SRFMODELLIST", null);
+        if (!StringHelper.isNullOrEmpty(modelList)) {
+            JSONArray models = JSONArray.fromString(new String(Base64Helper.decode(modelList), "GBK"));
+            for (int i = 0; i < models.length(); ++i) {
+                JSONObject jSONObject = models.getJSONObject(i);
                 SimpleDataRowImpl simpleDataRowImpl = new SimpleDataRowImpl();
                 simpleDataRowImpl.set(iDataEntityModel.getKeyDEField().getName(), (Object)jSONObject.optString("name", ""));
                 simpleDataRowImpl.set(iDataEntityModel.getMajorDEField().getName(), (Object)jSONObject.optString("name", ""));
@@ -109,4 +108,3 @@ extends PSDCDBTableCurDBDSModelBase {
         return dBFetchResult;
     }
 }
-

@@ -56,7 +56,13 @@ extends BaseMainPage {
                 return false;
             }
         }
-        return this.ProcessParentDataTag();
+        try {
+            return this.ProcessParentDataTag();
+        }
+        catch (Exception exception) {
+            this.PageLog(this, 1, exception.getMessage(), exception);
+            return false;
+        }
     }
 
     protected boolean ProcessPDEMainState() throws Exception {

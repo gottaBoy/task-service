@@ -1,18 +1,29 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import net.ibizsys.paas.control.list.IList;
-import net.ibizsys.paas.ctrlmodel.ICtrlModel;
 import net.ibizsys.paas.db.IDataTable;
 import net.ibizsys.paas.web.MDAjaxActionResult;
 
-public interface IListModel
-extends ICtrlModel,
-IList {
-    public void fillFetchResult(MDAjaxActionResult var1, IDataTable var2) throws Exception;
+/**
+ * 数据列表部件模型接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IListModel extends ICtrlModel, IList {
+	/**
+	 * 填充结果数据对象
+	 * 
+	 * @param fetchResult
+	 * @param dt
+	 * @throws Exception
+	 */
+	void fillFetchResult(MDAjaxActionResult fetchResult, IDataTable dt) throws Exception;
 
-    public int getPageSize();
+	/**
+	 * 获取分页大小
+	 * 
+	 * @return
+	 */
+	int getPageSize();
 }
-

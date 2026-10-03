@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.view;
 
-import net.ibizsys.ssdyna.view.DynaUIActionModelBase;
+/**
+ * 默认界面行为模型对象
+ * @author Administrator
+ *
+ */
+public class DynaUIActionModel extends DynaUIActionModelBase {
 
-public class DynaUIActionModel
-extends DynaUIActionModelBase {
 }
-

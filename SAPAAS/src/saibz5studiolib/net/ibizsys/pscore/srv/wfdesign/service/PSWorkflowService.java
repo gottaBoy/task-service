@@ -106,7 +106,7 @@ extends PSWorkflowServiceBase {
         }
         pSDynaWF.setPSDynaSysId(pSWorkflow.getPSSystem().getPSSystemId());
         pSDynaWF.setPSDynaSysName(pSWorkflow.getPSSystem().getPSSystemName());
-        pSDynaWFService.save((IEntity)pSDynaWF);
+        pSDynaWFService.save(pSDynaWF);
     }
 
     @Override
@@ -128,7 +128,7 @@ extends PSWorkflowServiceBase {
     }
 
     public void rebuildPSDEUIActions(PSWorkflow pSWorkflow) throws Exception {
-        Object object;
+        PSDEUIAction object;
         Object object22;
         boolean bl;
         Object object3;
@@ -146,22 +146,22 @@ extends PSWorkflowServiceBase {
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSWFID", (Object)pSWorkflow.getPSWorkflowId());
         selectCond.setIsNull("PSWFVERSIONID");
-        ArrayList arrayList = pSDEUAGroupService.select((ISelectCond)selectCond);
-        ArrayList arrayList2 = pSDEUIActionService.select((ISelectCond)selectCond);
-        HashMap<String, EntityBase> hashMap = new HashMap<String, EntityBase>();
-        HashMap<String, Object> hashMap2 = new HashMap<String, Object>();
-        for (Object object42 : arrayList) {
-            if (!StringHelper.isNullOrEmpty((String)((PSDEUAGroupBase)object42).getPSWFVersionId())) continue;
-            hashMap.put(((PSDEUAGroupBase)object42).getPSDEUAGroupId(), (EntityBase)object42);
+        ArrayList<PSDEUAGroup> arrayList = pSDEUAGroupService.select((ISelectCond)selectCond);
+        ArrayList<PSDEUIAction> arrayList2 = pSDEUIActionService.select((ISelectCond)selectCond);
+        HashMap<String, PSDEUAGroup> hashMap = new HashMap<String, PSDEUAGroup>();
+        HashMap<String, PSDEUIAction> hashMap2 = new HashMap<String, PSDEUIAction>();
+        for (PSDEUAGroup group : arrayList) {
+            if (!StringHelper.isNullOrEmpty(group.getPSWFVersionId())) continue;
+            hashMap.put(group.getPSDEUAGroupId(), group);
         }
-        for (Object object42 : arrayList2) {
-            if (!StringHelper.isNullOrEmpty((String)((PSDEUIActionBase)object42).getPSWFVersionId())) continue;
-            hashMap2.put(((PSDEUIActionBase)object42).getPSDEUIActionId(), object42);
+        for (PSDEUIAction action : arrayList2) {
+            if (!StringHelper.isNullOrEmpty(action.getPSWFVersionId())) continue;
+            hashMap2.put(action.getPSDEUIActionId(), action);
         }
-        Object object5 = new PSDEUIAction();
+        PSDEUIAction object5 = new PSDEUIAction();
         object42 = KeyValueHelper.genUniqueId((String)pSWorkflow.getPSSystemId(), (String)"EDITVIEW_SAVEANDSTARTWFACTION");
         ((PSDEUIActionBase)object5).setPSDEUIActionId((String)object42);
-        if (!pSDEUIActionService.get((IEntity)object5, true)) {
+        if (!pSDEUIActionService.get(object5, true)) {
             object5 = null;
         }
         if (!StringHelper.isNullOrEmpty((String)pSWorkflow.getStartPSDEViewId())) {
@@ -170,9 +170,9 @@ extends PSWorkflowServiceBase {
             if (hashMap2.containsKey(object3)) {
                 bl = true;
             } else {
-                for (Object object22 : arrayList2) {
-                    if (StringHelper.compare((String)((PSDEUIActionBase)object22).getUATag(), (String)"WFSTARTWIZARD", (boolean)false) != 0) continue;
-                    object3 = ((PSDEUIActionBase)object22).getPSDEUIActionId();
+                for (PSDEUIAction action : arrayList2) {
+                    if (StringHelper.compare(action.getUATag(), "WFSTARTWIZARD", false) != 0) continue;
+                    object3 = action.getPSDEUIActionId();
                     bl = true;
                     break;
                 }
@@ -214,9 +214,9 @@ extends PSWorkflowServiceBase {
             if (hashMap2.containsKey(object3)) {
                 bl = true;
             } else {
-                for (Object object22 : arrayList2) {
-                    if (StringHelper.compare((String)((PSDEUIActionBase)object22).getUATag(), (String)"MOBWFSTARTWIZARD", (boolean)false) != 0) continue;
-                    object3 = ((PSDEUIActionBase)object22).getPSDEUIActionId();
+                for (PSDEUIAction action : arrayList2) {
+                    if (StringHelper.compare(action.getUATag(), "MOBWFSTARTWIZARD", false) != 0) continue;
+                    object3 = action.getPSDEUIActionId();
                     bl = true;
                     break;
                 }
@@ -253,11 +253,10 @@ extends PSWorkflowServiceBase {
             hashMap2.remove(object3);
         }
         for (PSDEUAGroup pSDEUAGroup : hashMap.values()) {
-            pSDEUAGroupService.remove((IEntity)pSDEUAGroup);
+            pSDEUAGroupService.remove(pSDEUAGroup);
         }
         for (PSDEUIAction pSDEUIAction : hashMap2.values()) {
-            pSDEUIActionService.remove((IEntity)pSDEUIAction);
+            pSDEUIActionService.remove(pSDEUIAction);
         }
     }
 }
-

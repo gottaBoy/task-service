@@ -913,7 +913,7 @@ implements Serializable {
                 PSViewType pSViewType = new PSViewType();
                 pSViewType.setPSViewTypeId(this.getPSViewTypeId());
                 PSViewTypeService pSViewTypeService = (PSViewTypeService)ServiceGlobal.getService(PSViewTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSViewTypeService.autoGet((IEntity)pSViewType);
+                pSViewTypeService.autoGet(pSViewType);
                 this.psviewtype = pSViewType;
             }
             return this.psviewtype;

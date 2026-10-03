@@ -45,12 +45,11 @@ extends PSAppPVPartServiceBase {
         ArrayList<PSAppPVPart> arrayList = null;
         arrayList = pSAppPortalView.getPSAppPortalViewId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSAppPortalView(pSAppPortalView) : this.selectByPSAppPortalView(pSAppPortalView);
         HashMap<String, PSAppPVPart> hashMap = new HashMap<String, PSAppPVPart>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSAppPVPart pSAppPVPart2 = object.next();
+        for (PSAppPVPart pSAppPVPart2 : arrayList) {
             if (StringHelper.isNullOrEmpty((String)pSAppPVPart2.getPSAppPVPartName())) continue;
             hashMap.put(pSAppPVPart2.getPSAppPVPartName().toLowerCase(), pSAppPVPart2);
         }
+        Object object;
         while (true) {
             if (!hashMap.containsKey(object = StringHelper.format((String)"%1$s%2$s", (Object)string2, (Object)(n == 0 ? "" : Integer.valueOf(n))))) break;
             ++n;
@@ -66,4 +65,3 @@ extends PSAppPVPartServiceBase {
         super.onBeforeCreateTemp(pSAppPVPart);
     }
 }
-

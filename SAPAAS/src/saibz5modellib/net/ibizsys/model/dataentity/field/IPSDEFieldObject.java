@@ -1,13 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.field;
 
 import net.ibizsys.model.core.IPSModelObject;
-import net.ibizsys.model.dataentity.field.IPSDEField;
 
-public interface IPSDEFieldObject
-extends IPSModelObject {
-    public IPSDEField getPSDEField();
+/**
+ * 实体属性相关对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDEFieldObject  extends IPSModelObject
+{
+	/**
+	 * 获取实体属性对象
+	 * @return
+	 */
+	IPSDEField getPSDEField();
 }
-

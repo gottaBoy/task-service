@@ -74,7 +74,7 @@ implements IPSSysDEFTypeService {
     @Override
     protected List<PSSysDEFType> onListAll() throws Exception {
         ArrayList<PSSysDEFType> list = new ArrayList<PSSysDEFType>();
-        List pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
+        List<PSSystem> pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
         if (pssystems != null) {
             for (PSSystem parent : pssystems) {
                 List<PSSysDEFType> items = this.listByPSSystem(parent);

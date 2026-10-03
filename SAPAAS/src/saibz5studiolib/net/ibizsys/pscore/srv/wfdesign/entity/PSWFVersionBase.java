@@ -3616,7 +3616,7 @@ implements Serializable {
                 PSCodeList pSCodeList = new PSCodeList();
                 pSCodeList.setPSCodeListId(this.getWFStepPSCodeListId());
                 PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.getSessionFactory());
-                pSCodeListService.autoGet((IEntity)pSCodeList);
+                pSCodeListService.autoGet(pSCodeList);
                 this.wfsteppscodelist = pSCodeList;
             }
             return this.wfsteppscodelist;
@@ -3642,7 +3642,7 @@ implements Serializable {
                 PSDynaInst pSDynaInst = new PSDynaInst();
                 pSDynaInst.setPSDynaInstId(this.getPSDynaInstId());
                 PSDynaInstService pSDynaInstService = (PSDynaInstService)ServiceGlobal.getService(PSDynaInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaInstService.autoGet((IEntity)pSDynaInst);
+                pSDynaInstService.autoGet(pSDynaInst);
                 this.psdynainst = pSDynaInst;
             }
             return this.psdynainst;
@@ -3668,7 +3668,7 @@ implements Serializable {
                 PSDynaWFVer pSDynaWFVer = new PSDynaWFVer();
                 pSDynaWFVer.setPSDynaWFVerId(this.getPSDynaWFVerId());
                 PSDynaWFVerService pSDynaWFVerService = (PSDynaWFVerService)ServiceGlobal.getService(PSDynaWFVerService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaWFVerService.autoGet((IEntity)pSDynaWFVer);
+                pSDynaWFVerService.autoGet(pSDynaWFVer);
                 this.psdynawfver = pSDynaWFVer;
             }
             return this.psdynawfver;
@@ -3694,7 +3694,7 @@ implements Serializable {
                 PSSysReqItem pSSysReqItem = new PSSysReqItem();
                 pSSysReqItem.setPSSysReqItemId(this.getPSSysReqItemId());
                 PSSysReqItemService pSSysReqItemService = (PSSysReqItemService)ServiceGlobal.getService(PSSysReqItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysReqItemService.autoGet((IEntity)pSSysReqItem);
+                pSSysReqItemService.autoGet(pSSysReqItem);
                 this.pssysreqitem = pSSysReqItem;
             }
             return this.pssysreqitem;
@@ -3720,7 +3720,7 @@ implements Serializable {
                 PSSysWFMode pSSysWFMode = new PSSysWFMode();
                 pSSysWFMode.setPSSysWFModeId(this.getPSSysWFModeId());
                 PSSysWFModeService pSSysWFModeService = (PSSysWFModeService)ServiceGlobal.getService(PSSysWFModeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysWFModeService.autoGet((IEntity)pSSysWFMode);
+                pSSysWFModeService.autoGet(pSSysWFMode);
                 this.pssyswfmode = pSSysWFMode;
             }
             return this.pssyswfmode;
@@ -3746,7 +3746,7 @@ implements Serializable {
                 PSWorkflow pSWorkflow = new PSWorkflow();
                 pSWorkflow.setPSWorkflowId(this.getPSWFId());
                 PSWorkflowService pSWorkflowService = (PSWorkflowService)ServiceGlobal.getService(PSWorkflowService.class, (SessionFactory)this.getSessionFactory());
-                pSWorkflowService.autoGet((IEntity)pSWorkflow);
+                pSWorkflowService.autoGet(pSWorkflow);
                 this.pswf = pSWorkflow;
             }
             return this.pswf;
@@ -3808,7 +3808,7 @@ implements Serializable {
         Integer n = this.objPSWFLinksLock;
         synchronized (n) {
             if (this.pswflinks == null) {
-                this.pswflinks = pSWFVersionService.isTempData((IEntity)this) ? pSWFLinkService.selectTempByPSWFVersion(this) : pSWFLinkService.selectByPSWFVersion(this);
+                this.pswflinks = pSWFVersionService.isTempData(this) ? pSWFLinkService.selectTempByPSWFVersion(this) : pSWFLinkService.selectByPSWFVersion(this);
             }
             return this.pswflinks;
         }
@@ -3829,7 +3829,7 @@ implements Serializable {
         Integer n = this.objPSWFProcessesLock;
         synchronized (n) {
             if (this.pswfprocesses == null) {
-                this.pswfprocesses = pSWFVersionService.isTempData((IEntity)this) ? pSWFProcessService.selectTempByPSWFVersion(this) : pSWFProcessService.selectByPSWFVersion(this);
+                this.pswfprocesses = pSWFVersionService.isTempData(this) ? pSWFProcessService.selectTempByPSWFVersion(this) : pSWFProcessService.selectByPSWFVersion(this);
             }
             return this.pswfprocesses;
         }

@@ -118,9 +118,9 @@ implements IPSSysViewLogicService {
 
     @Override
     protected List<PSSysViewLogic> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysViewLogic> list = new ArrayList<PSSysViewLogic>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysViewLogic> items = this.listByPSModule(parent);

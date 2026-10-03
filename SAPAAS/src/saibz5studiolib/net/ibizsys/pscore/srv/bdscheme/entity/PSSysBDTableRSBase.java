@@ -1911,7 +1911,7 @@ implements Serializable {
                 PSDER pSDER = new PSDER();
                 pSDER.setPSDERId(this.getPSDERId());
                 PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
-                pSDERService.autoGet((IEntity)pSDER);
+                pSDERService.autoGet(pSDER);
                 this.psder = pSDER;
             }
             return this.psder;
@@ -1937,7 +1937,7 @@ implements Serializable {
                 PSSysBDScheme pSSysBDScheme = new PSSysBDScheme();
                 pSSysBDScheme.setPSSysBDSchemeId(this.getPSSysBDSchemeId());
                 PSSysBDSchemeService pSSysBDSchemeService = (PSSysBDSchemeService)ServiceGlobal.getService(PSSysBDSchemeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDSchemeService.autoGet((IEntity)pSSysBDScheme);
+                pSSysBDSchemeService.autoGet(pSSysBDScheme);
                 this.pssysbdscheme = pSSysBDScheme;
             }
             return this.pssysbdscheme;
@@ -1963,7 +1963,7 @@ implements Serializable {
                 PSSysBDTable pSSysBDTable = new PSSysBDTable();
                 pSSysBDTable.setPSSysBDTableId(this.getMajorPSSysBDTableId());
                 PSSysBDTableService pSSysBDTableService = (PSSysBDTableService)ServiceGlobal.getService(PSSysBDTableService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDTableService.autoGet((IEntity)pSSysBDTable);
+                pSSysBDTableService.autoGet(pSSysBDTable);
                 this.majorpssysbdtable = pSSysBDTable;
             }
             return this.majorpssysbdtable;
@@ -1989,7 +1989,7 @@ implements Serializable {
                 PSSysBDTable pSSysBDTable = new PSSysBDTable();
                 pSSysBDTable.setPSSysBDTableId(this.getMinorPSSysBDTableId());
                 PSSysBDTableService pSSysBDTableService = (PSSysBDTableService)ServiceGlobal.getService(PSSysBDTableService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDTableService.autoGet((IEntity)pSSysBDTable);
+                pSSysBDTableService.autoGet(pSSysBDTable);
                 this.minorpssysbdtable = pSSysBDTable;
             }
             return this.minorpssysbdtable;

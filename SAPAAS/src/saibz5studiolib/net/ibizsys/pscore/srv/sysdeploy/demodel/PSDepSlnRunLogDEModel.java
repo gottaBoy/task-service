@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdeploy.demodel.PSDepSlnRunLogDEModelBase;
 
 public class PSDepSlnRunLogDEModel
 extends PSDepSlnRunLogDEModelBase {
+
+    public PSDepSlnRunLogDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

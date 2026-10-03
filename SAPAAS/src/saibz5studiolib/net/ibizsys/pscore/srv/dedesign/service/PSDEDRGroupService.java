@@ -43,7 +43,7 @@ implements IPSModelService<PSDEDRGroup> {
                 return;
             }
             PSDEDRGroup pSDEDRGroup = new PSDEDRGroup();
-            if (this.isEnableFolderKey((IEntity)pSDataEntity)) {
+            if (this.isEnableFolderKey(pSDataEntity)) {
                 pSDEDRGroup.setPSDEDRGroupId(StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_DEFAULT));
             } else {
                 pSDEDRGroup.setPSDEDRGroupId(pSDataEntity.getPSDataEntityId());
@@ -51,7 +51,7 @@ implements IPSModelService<PSDEDRGroup> {
             if (this.checkKey(pSDEDRGroup) == 0) {
                 PSDEDRGroup pSDEDRGroup2 = new PSDEDRGroup();
                 pSDEDRGroup2.setPSDEId(pSDataEntity.getPSDataEntityId());
-                if (this.selectOne((IEntity)pSDEDRGroup2, true)) {
+                if (this.selectOne(pSDEDRGroup2, true)) {
                     return;
                 }
                 pSDEDRGroup.setOrderValue(10000);

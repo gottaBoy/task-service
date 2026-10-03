@@ -61,7 +61,7 @@ extends SRFExSearchFormActionHelper {
         cond.SetParamValue("PERSONID", (Object)this.getWebContext().getCurUserId());
         cond.SetParamValue("SFID", (Object)this.strFormTag);
         cond.SetParamValue("DEID", (Object)this.GetDEId());
-        Vector conds = new Vector();
+        Vector<SFSaveState> conds = new Vector<SFSaveState>();
         CallResult callResult = sfSaveStateDataCtrl.Select("LISTUSERCOND", cond, conds, SFSaveState.class.getName());
         if (callResult.IsError()) {
             formAjaxResult.From(callResult);
@@ -480,4 +480,3 @@ extends SRFExSearchFormActionHelper {
         return (SRFDAWebContext)super.getWebContext();
     }
 }
-

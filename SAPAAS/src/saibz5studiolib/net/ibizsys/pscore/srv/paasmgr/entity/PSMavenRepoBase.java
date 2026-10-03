@@ -2672,7 +2672,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -2698,7 +2698,7 @@ implements Serializable {
                 PSMavenServer pSMavenServer = new PSMavenServer();
                 pSMavenServer.setPSMavenServerId(this.getPSMavenServerId());
                 PSMavenServerService pSMavenServerService = (PSMavenServerService)ServiceGlobal.getService(PSMavenServerService.class, (SessionFactory)this.getSessionFactory());
-                pSMavenServerService.autoGet((IEntity)pSMavenServer);
+                pSMavenServerService.autoGet(pSMavenServer);
                 this.psmavenserver = pSMavenServer;
             }
             return this.psmavenserver;
@@ -2724,7 +2724,7 @@ implements Serializable {
                 PSSvrDomain pSSvrDomain = new PSSvrDomain();
                 pSSvrDomain.setPSSvrDomainId(this.getPSSvrDomainId());
                 PSSvrDomainService pSSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrDomainService.autoGet((IEntity)pSSvrDomain);
+                pSSvrDomainService.autoGet(pSSvrDomain);
                 this.pssvrdomain = pSSvrDomain;
             }
             return this.pssvrdomain;

@@ -1,16 +1,26 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import java.util.Iterator;
-import net.ibizsys.psba.core.IBAColumn;
-import net.ibizsys.psba.core.IBATableObject;
+/**
+ * 列族模型接口对象
+ * 
+ * @author Administrator
+ *
+ */
+public interface IBAColSet extends IBATableObject {
 
-public interface IBAColSet
-extends IBATableObject {
-    public Iterator<IBAColumn> getBAColumns();
-
-    public IBAColumn getBAColumn(String var1) throws Exception;
+	/**
+	 * 获取数据列集合
+	 * @return
+	 */
+	java.util.Iterator<IBAColumn> getBAColumns();
+	
+	
+	/**
+	 * 获取指定列对象
+	 * 
+	 * @param strBAColumnName
+	 * @return
+	 * @throws Exception
+	 */
+	IBAColumn getBAColumn(String strBAColumnName) throws Exception;
 }
-

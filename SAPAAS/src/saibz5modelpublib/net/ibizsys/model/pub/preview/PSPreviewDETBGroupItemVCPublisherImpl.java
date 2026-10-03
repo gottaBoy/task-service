@@ -1,36 +1,67 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSControl
- *  IPSDETBGroupItem
- *  IPSGenerateCodeResult
- *  IPSPublisherContext
- */
 package net.ibizsys.model.pub.preview;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.preview.PSPreviewCtrlPartCodePublisherImpl;
 
-public class PSPreviewDETBGroupItemVCPublisherImpl
-extends PSPreviewCtrlPartCodePublisherImpl {
-    protected IPSDETBGroupItem iPSDETBGroupItem;
+import SA.SRFDA.PS.Core.Control.IPSControl;
+import SA.SRFDA.PS.Core.Control.Toolbar.IPSDETBGroupItem;
+import SA.SRFDA.PS.Core.Control.Toolbar.IPSDEToolbarItem;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.IPSPublisherContext;
 
-    public PSPreviewDETBGroupItemVCPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSPreviewDETBGroupItemVCPublisherImpl is inconsistent\n\tIPSDETBGroupItem cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDETBGroupItem cannot be resolved to a type\n\tIPSDETBGroupItem cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEToolbarItem cannot be resolved to a type\n\tIPSDETBGroupItem cannot be resolved to a type\n\tIPSDEToolbarItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSPreviewDETBGroupItemVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tThe method onClose() of type PSPreviewDETBGroupItemVCPublisherImpl must override or implement a supertype method\n\tIPSDETBGroupItem cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSPreviewCtrlPartCodePublisherImpl\n");
-    }
+public class PSPreviewDETBGroupItemVCPublisherImpl extends PSPreviewCtrlPartCodePublisherImpl
+{
+	protected IPSDETBGroupItem iPSDETBGroupItem = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDETBGroupItem = (IPSDETBGroupItem)object;
+		return super.generateCode(iPSPublisherContext, iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		if(true)
+		{
+			ArrayList<IPSGenerateCodeResult> itemList = new ArrayList<IPSGenerateCodeResult> ();
+			java.util.Iterator<IPSDEToolbarItem> psDEToolbarItems = 	iPSDETBGroupItem.getPSDEToolbarItems();
+			while(psDEToolbarItems.hasNext())
+			{
+				IPSDEToolbarItem iPSDEToolbarItem = psDEToolbarItems.next();
+				IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(iPSDEToolbarItem.getItemType()).getPSPFCtrlPartCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, this.iPSControl,iPSDEToolbarItem);
+				if(iPSGenerateCodeResult!=null)
+					itemList.add(iPSGenerateCodeResult);
+				iPSPFCtrlPartCodePublisher.close();
+			}		
+			
+			params.put("items", itemList);
+		}
+		
+	}
+	
 
-    public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDETBGroupItem cannot be resolved to a type\n\tIPSDETBGroupItem cannot be resolved to a type\n");
-    }
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSDETBGroupItem = null;
+		super.onClose();
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEToolbarItem cannot be resolved to a type\n\tIPSDETBGroupItem cannot be resolved to a type\n\tIPSDEToolbarItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSPreviewDETBGroupItemVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n");
-    }
-
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSPreviewDETBGroupItemVCPublisherImpl must override or implement a supertype method\n\tIPSDETBGroupItem cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSPreviewCtrlPartCodePublisherImpl\n");
-    }
+	
+	
 }
-

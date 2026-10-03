@@ -1,198 +1,249 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- *  net.ibizsys.paas.util.JsonNodeHelper
- */
 package net.ibizsys.paas.ctrlmodel.form;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import net.ibizsys.paas.core.DynaModelBase;
+import net.ibizsys.paas.ctrlmodel.IDynaCtrlModel;
 import net.ibizsys.paas.ctrlmodel.IDynaFormModel;
-import net.ibizsys.paas.ctrlmodel.form.IDynaFormDetailModel;
 import net.ibizsys.paas.util.JsonNodeHelper;
 
-public abstract class DynaFormDetailModelBase
-extends DynaModelBase
-implements IDynaFormDetailModel {
-    private IDynaFormModel iDynaFormModel = null;
-    private IDynaFormDetailModel parentModel = null;
-    private boolean bShowCaption = true;
-    private String strCaption = null;
-    private int nColXS = -1;
-    private int nColSM = -1;
-    private int nColMD = -1;
-    private int nColLG = -1;
-    private int nColXSOffset = -1;
-    private int nColSMOffset = -1;
-    private int nColMDOffset = -1;
-    private int nColLGOffset = -1;
-    protected double fContentWidth = 0.0;
-    protected double fWidth = 0.0;
-    protected double fContentHeight = 0.0;
-    protected double fHeight = 0.0;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-    @Override
-    public void init(IDynaFormModel iDynaFormModel, IDynaFormDetailModel parentModel, Object modelObject) throws Exception {
-        this.setFormModel(iDynaFormModel);
-        this.setParentModel(parentModel);
-        this.onInit();
-        if (modelObject != null && modelObject instanceof ObjectNode) {
-            this.loadJsonObject((ObjectNode)modelObject);
-            return;
-        }
-    }
+/**
+ * 动态表单成员模型对象实现基类
+ * @author Administrator
+ *
+ */
+public abstract class DynaFormDetailModelBase  extends DynaModelBase implements IDynaFormDetailModel{
 
-    @Override
-    public IDynaFormModel getDynaFormModel() {
-        return this.iDynaFormModel;
-    }
+	private IDynaFormModel iDynaFormModel = null;
+	private IDynaFormDetailModel parentModel = null;
+	private boolean bShowCaption = true;
+	private String strCaption = null;
+	private int nColXS = -1;
+	private int nColSM = -1;
+	private int nColMD = -1;
+	private int nColLG = -1;
+	private int nColXSOffset = -1;
+	private int nColSMOffset = -1;
+	private int nColMDOffset = -1;
+	private int nColLGOffset = -1;
+	protected double fContentWidth = 0;
+	protected double fWidth = 0;
+	protected double fContentHeight = 0;
+	protected double fHeight = 0;
 
-    @Override
-    public IDynaFormDetailModel getParentModel() {
-        return this.parentModel;
-    }
+	
+	
+	@Override
+	public void init(IDynaFormModel iDynaFormModel, IDynaFormDetailModel parentModel, Object modelObject) throws Exception {
+		this.setFormModel(iDynaFormModel);
+		this.setParentModel(parentModel);
+		this.onInit();
+		if(modelObject !=null ){
+			if(modelObject instanceof ObjectNode){
+				loadJsonObject((ObjectNode)modelObject);
+				return;
+			}
+		}
+	}
 
-    @Override
-    protected void onFillJsonObject(ObjectNode jo) throws Exception {
-        super.onFillJsonObject(jo);
-        DynaFormDetailModelBase.fillJsonObject(this, jo);
-        if (this.getModelJsonObject() != null) {
-            JsonNodeHelper.copy((ObjectNode)jo, (ObjectNode)this.getModelJsonObject(), (boolean)true, (String[])new String[]{"pages", "items"});
-        }
-    }
 
-    public void setFormModel(IDynaFormModel iDynaFormModel) {
-        this.iDynaFormModel = iDynaFormModel;
-    }
 
-    public void setParentModel(IDynaFormDetailModel parentModel) {
-        this.parentModel = parentModel;
-    }
+	@Override
+	public IDynaFormModel getDynaFormModel() {
+		return iDynaFormModel;
+	}
 
-    public void setName(String strName) {
-        this.strName = strName;
-    }
+	@Override
+	public IDynaFormDetailModel getParentModel() {
+		return parentModel;
+	}
 
-    @Override
-    protected void onLoadJsonObject(ObjectNode jsonObject) throws Exception {
-        String strName = JsonNodeHelper.getString((ObjectNode)jsonObject, (String)"name", null);
-        this.setName(strName);
-        super.onLoadJsonObject(jsonObject);
-    }
 
-    public static void fillJsonObject(IDynaFormDetailModel iDynaFormDetailModel, ObjectNode jo) throws Exception {
-        JsonNodeHelper.put((ObjectNode)jo, (String)"type", (Object)iDynaFormDetailModel.getDetailType());
-        JsonNodeHelper.put((ObjectNode)jo, (String)"name", (Object)iDynaFormDetailModel.getName());
-    }
+	protected void onFillJsonObject(ObjectNode jo) throws Exception {
+		super.onFillJsonObject(jo);
+		fillJsonObject(this,jo);
+		if(this.getModelJsonObject()!=null){
+			JsonNodeHelper.copy(jo, getModelJsonObject(),true,new String[]{IDynaFormModel.ATTR_PAGES,IDynaCtrlModel.ATTR_ITEMS});
+		}
+	}
 
-    @Override
-    public int getColXS() {
-        return this.nColXS;
-    }
+	/**
+	 * 设置动态表单模型
+	 * @param iDynaFormModel
+	 */
+	public void setFormModel(IDynaFormModel iDynaFormModel) {
+		this.iDynaFormModel = iDynaFormModel;
+	}
 
-    @Override
-    public int getColSM() {
-        return this.nColSM;
-    }
+	/**
+	 * 设置父模型
+	 * @param parentModel
+	 */
+	public void setParentModel(IDynaFormDetailModel parentModel) {
+		this.parentModel = parentModel;
+	}
+	
+	/**
+	 * 设置名称
+	 * @param strName
+	 */
+	public void setName(String strName){
+		this.strName = strName;
+	}
+	
+	@Override
+	protected void onLoadJsonObject(ObjectNode jsonObject) throws Exception {
+		
+		String strName = JsonNodeHelper.getString(jsonObject, IDynaCtrlModel.ATTR_NAME, null);
+		this.setName(strName);
+		super.onLoadJsonObject(jsonObject);
+	}
+	
+	
+	public static void fillJsonObject(IDynaFormDetailModel iDynaFormDetailModel,ObjectNode jo) throws Exception {
+		JsonNodeHelper.put(jo, ATTR_TYPE, iDynaFormDetailModel.getDetailType());
+		JsonNodeHelper.put(jo, ATTR_NAME, iDynaFormDetailModel.getName());
+	}
 
-    @Override
-    public int getColMD() {
-        return this.nColMD;
-    }
 
-    @Override
-    public int getColLG() {
-        return this.nColLG;
-    }
 
-    @Override
-    public int getColXSOffset() {
-        return this.nColXSOffset;
-    }
 
-    @Override
-    public int getColSMOffset() {
-        return this.nColSMOffset;
-    }
+	@Override
+	public int getColXS() {
+		return this.nColXS;
+	}
 
-    @Override
-    public int getColMDOffset() {
-        return this.nColMDOffset;
-    }
 
-    @Override
-    public int getColLGOffset() {
-        return this.nColLGOffset;
-    }
+	@Override
+	public int getColSM() {
+		return this.nColSM;
+	}
 
-    @Override
-    public String getCaption() {
-        return this.strCaption;
-    }
 
-    @Override
-    public boolean isShowCaption() {
-        return this.bShowCaption;
-    }
+	@Override
+	public int getColMD() {
+		return this.nColMD;
+	}
 
-    @Override
-    public double getWidth() {
-        return this.fWidth;
-    }
 
-    @Override
-    public double getHeight() {
-        return this.fHeight;
-    }
+	@Override
+	public int getColLG() {
+		return this.nColLG;
+	}
 
-    public void setShowCaption(boolean bShowCaption) {
-        this.bShowCaption = bShowCaption;
-    }
 
-    public void setColXS(int nColXS) {
-        this.nColXS = nColXS;
-    }
+	@Override
+	public int getColXSOffset() {
+		return this.nColXSOffset;
+	}
 
-    public void setColSM(int nColSM) {
-        this.nColSM = nColSM;
-    }
+	
+	@Override
+	public int getColSMOffset() {
+		return this.nColSMOffset;
+	}
 
-    public void setColMD(int nColMD) {
-        this.nColMD = nColMD;
-    }
+	
+	@Override
+	public int getColMDOffset() {
+		return this.nColMDOffset;
+	}
 
-    public void setColLG(int nColLG) {
-        this.nColLG = nColLG;
-    }
+	
+	@Override
+	public int getColLGOffset() {
+		return this.nColLGOffset;
+	}
 
-    public void setColXSOffset(int nColXSOffset) {
-        this.nColXSOffset = nColXSOffset;
-    }
 
-    public void setColSMOffset(int nColSMOffset) {
-        this.nColSMOffset = nColSMOffset;
-    }
 
-    public void setColMDOffset(int nColMDOffset) {
-        this.nColMDOffset = nColMDOffset;
-    }
+	@Override
+	public String getCaption() {
+		return this.strCaption;
+	}
 
-    public void setColLGOffset(int nColLGOffset) {
-        this.nColLGOffset = nColLGOffset;
-    }
 
-    public void setWidth(double fWidth) {
-        this.fWidth = fWidth;
-    }
 
-    public void setHeight(double fHeight) {
-        this.fHeight = fHeight;
-    }
+	@Override
+	public boolean isShowCaption() {
+		return this.bShowCaption;
+	}
+	
+	
+	
+//	@Override
+//	public double getContentWidth() {
+//		return this.fContentWidth;
+//	}
+//
+//
+//	@Override
+//	public double getContentHeight() {
+//		return this.fContentHeight;
+//	}
 
-    public void setCaption(String strCaption) {
-        this.strCaption = strCaption;
-    }
+
+	@Override
+	public double getWidth() {
+		return this.fWidth;
+	}
+
+
+	@Override
+	public double getHeight() {
+		return this.fHeight;
+	}
+	
+	/**
+	 * 设置是否显示标题
+	 * @param bShowCaption
+	 */
+	public void setShowCaption(boolean bShowCaption) {
+		this.bShowCaption = bShowCaption;
+	}
+
+
+	public void setColXS(int nColXS) {
+		this.nColXS = nColXS;
+	}
+
+	public void setColSM(int nColSM) {
+		this.nColSM = nColSM;
+	}
+
+	public void setColMD(int nColMD) {
+		this.nColMD = nColMD;
+	}
+
+	public void setColLG(int nColLG) {
+		this.nColLG = nColLG;
+	}
+
+	public void setColXSOffset(int nColXSOffset) {
+		this.nColXSOffset = nColXSOffset;
+	}
+
+	public void setColSMOffset(int nColSMOffset) {
+		this.nColSMOffset = nColSMOffset;
+	}
+
+	public void setColMDOffset(int nColMDOffset) {
+		this.nColMDOffset = nColMDOffset;
+	}
+
+	public void setColLGOffset(int nColLGOffset) {
+		this.nColLGOffset = nColLGOffset;
+	}
+
+	public void setWidth(double fWidth) {
+		this.fWidth = fWidth;
+	}
+
+	public void setHeight(double fHeight) {
+		this.fHeight = fHeight;
+	}
+	
+	public void setCaption(String strCaption){
+		this.strCaption = strCaption;
+	}
 }
-

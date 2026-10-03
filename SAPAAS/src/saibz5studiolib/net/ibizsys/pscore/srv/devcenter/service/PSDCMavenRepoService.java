@@ -25,7 +25,7 @@ extends PSDCMavenRepoServiceBase {
     protected void onInitDCDefault(PSDCMavenRepo pSDCMavenRepo) throws Exception {
         PSDCMavenRepo pSDCMavenRepo2 = new PSDCMavenRepo();
         pSDCMavenRepo2.setPSDCMavenRepoId(this.getWebContext().getCurOrgId());
-        if (this.get((IEntity)pSDCMavenRepo2, true)) {
+        if (this.get(pSDCMavenRepo2, true)) {
             return;
         }
         pSDCMavenRepo2.setPSDevCenterId(this.getWebContext().getCurOrgId());

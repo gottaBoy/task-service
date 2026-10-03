@@ -1,29 +1,97 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.entity;
 
-import net.ibizsys.paas.entity.IEntityActionHelper;
-
+/**
+ * 数据对象操作支持对象接口
+ * @author Administrator
+ *
+ */
 public interface IEntityActionSupporter {
-    public void setActionHelper(IEntityActionHelper var1);
-
-    public IEntityActionHelper getActionHelper();
-
-    public void create() throws Exception;
-
-    public void update() throws Exception;
-
-    public void remove() throws Exception;
-
-    public void save() throws Exception;
-
-    public boolean get(boolean var1) throws Exception;
-
-    public void get() throws Exception;
-
-    public boolean select(boolean var1) throws Exception;
-
-    public void select() throws Exception;
+	
+	/**
+	 * 设置操作辅助对象
+	 * @param iEntityActionHelper
+	 */
+	void setActionHelper(IEntityActionHelper iEntityActionHelper);
+	
+	
+	/**
+	 * 获取操作辅助对象
+	 * @return
+	 */
+	IEntityActionHelper getActionHelper();
+	
+	/**
+	 * 建立数据
+	 * @throws Exception
+	 */
+	void create()throws Exception;
+	
+	
+	
+	/**
+	 * 更新数据
+	 * @throws Exception
+	 */
+	void update()throws Exception;
+	
+	
+	
+	
+	/**
+	 * 删除数据
+	 * @throws Exception
+	 */
+	void remove()throws Exception;
+	
+	
+	
+	
+	/**
+	 * 保存数据
+	 * @throws Exception
+	 */
+	void save()throws Exception;
+	
+	
+	
+	
+	/**
+	 * 获取数据
+	 * @param bTryMode
+	 * @return
+	 * @throws Exception
+	 */
+	boolean get(boolean bTryMode)throws Exception;
+	
+	
+	
+	/**
+	 * 获取数据
+	 * @return
+	 * @throws Exception
+	 */
+	void get()throws Exception;
+	
+	
+	
+	
+	/**
+	 * 选择数据
+	 * @param bTryMode
+	 * @return
+	 * @throws Exception
+	 */
+	boolean select(boolean bTryMode)throws Exception;
+	
+	
+	
+	/**
+	 * 选择数据
+	 * @return
+	 * @throws Exception
+	 */
+	void select()throws Exception;
+	
+	
+	
 }
-

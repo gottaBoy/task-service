@@ -36,7 +36,7 @@ extends PSACHandlerServiceBase {
     @Override
     protected String getEntityFolderKeyValue(PSACHandler pSACHandler, PSSystem pSSystem) throws Exception {
         if (StringHelper.isNullOrEmpty((String)pSACHandler.getPSDEId())) {
-            return PSModelFolderKeyHelper.getModelKey((IEntity)pSACHandler, pSSystem, "PSACHANDLER_SYS", "", this.getSessionFactory());
+            return PSModelFolderKeyHelper.getModelKey(pSACHandler, pSSystem, "PSACHANDLER_SYS", "", this.getSessionFactory());
         }
         return super.getEntityFolderKeyValue(pSACHandler, pSSystem);
     }

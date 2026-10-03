@@ -1,20 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSPFPubCode
- */
 package net.ibizsys.model.pub.ionic;
 
-public class PSIonicStyleImpl {
-    IPSPFPubCode partPSPFPubCode;
+import SA.SRFDA.PS.Core.PF.IPSPFPubCode;
+import SA.SRFDA.PS.Core.PF.PSPFStyleImpl;
 
-    public PSIonicStyleImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tPSPFStyleImpl cannot be resolved to a type\n\tIPSPFPubCode cannot be resolved to a type\n\tThe method onInit() of type PSIonicStyleImpl must override or implement a supertype method\n\tPSPFStyleImpl cannot be resolved to a type\n");
-    }
-
-    protected void onInit() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tThe method onInit() of type PSIonicStyleImpl must override or implement a supertype method\n\tPSPFStyleImpl cannot be resolved to a type\n");
-    }
+public class PSIonicStyleImpl extends PSPFStyleImpl {
+	IPSPFPubCode partPSPFPubCode = null;
+	@Override
+	protected void onInit() throws Exception {
+		
+		//this.partPSPFPubCode =this.getPSPF().getPSPFPubCode("PART");
+		super.onInit();
+		
+	}
+	
+//	@Override
+//	public IPSPFCtrlTempl getPSPFCtrlTempl(IPSControlType iPSControlType, IPSPFPubCode iPSPFPubCode) throws Exception {
+//		// 找到对于的 发布器
+//		IPSPFCtrlTempl iPSPFCtrlTempl = super.getPSPFCtrlTempl(iPSControlType, iPSPFPubCode);
+//		if(iPSPFCtrlTempl == null){
+//			if(iPSPFPubCode.getName().equals("HTML")){
+//				return super.getPSPFCtrlTempl(iPSControlType, partPSPFPubCode);
+//			}
+//		}
+//
+//		return iPSPFCtrlTempl;
+//	}
 }
-

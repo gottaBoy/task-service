@@ -2983,7 +2983,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -3009,7 +3009,7 @@ implements Serializable {
                 PSDEMainState pSDEMainState = new PSDEMainState();
                 pSDEMainState.setPSDEMainStateId(this.getPSDEMainStateId());
                 PSDEMainStateService pSDEMainStateService = (PSDEMainStateService)ServiceGlobal.getService(PSDEMainStateService.class, (SessionFactory)this.getSessionFactory());
-                pSDEMainStateService.autoGet((IEntity)pSDEMainState);
+                pSDEMainStateService.autoGet(pSDEMainState);
                 this.psdemainstate = pSDEMainState;
             }
             return this.psdemainstate;
@@ -3035,7 +3035,7 @@ implements Serializable {
                 PSDESampleData pSDESampleData = new PSDESampleData();
                 pSDESampleData.setPSDESampleDataId(this.getPSDESampleDataId());
                 PSDESampleDataService pSDESampleDataService = (PSDESampleDataService)ServiceGlobal.getService(PSDESampleDataService.class, (SessionFactory)this.getSessionFactory());
-                pSDESampleDataService.autoGet((IEntity)pSDESampleData);
+                pSDESampleDataService.autoGet(pSDESampleData);
                 this.psdesampledata = pSDESampleData;
             }
             return this.psdesampledata;
@@ -3061,7 +3061,7 @@ implements Serializable {
                 PSModule pSModule = new PSModule();
                 pSModule.setPSModuleId(this.getPSModuleId());
                 PSModuleService pSModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSModuleService.autoGet((IEntity)pSModule);
+                pSModuleService.autoGet(pSModule);
                 this.psmodule = pSModule;
             }
             return this.psmodule;
@@ -3087,7 +3087,7 @@ implements Serializable {
                 PSSysReqItem pSSysReqItem = new PSSysReqItem();
                 pSSysReqItem.setPSSysReqItemId(this.getPSSysReqItemId());
                 PSSysReqItemService pSSysReqItemService = (PSSysReqItemService)ServiceGlobal.getService(PSSysReqItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysReqItemService.autoGet((IEntity)pSSysReqItem);
+                pSSysReqItemService.autoGet(pSSysReqItem);
                 this.pssysreqitem = pSSysReqItem;
             }
             return this.pssysreqitem;
@@ -3113,7 +3113,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;
@@ -3139,7 +3139,7 @@ implements Serializable {
                 PSSysTestData pSSysTestData = new PSSysTestData();
                 pSSysTestData.setPSSysTestDataId(this.getMainPSSysTDId());
                 PSSysTestDataService pSSysTestDataService = (PSSysTestDataService)ServiceGlobal.getService(PSSysTestDataService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTestDataService.autoGet((IEntity)pSSysTestData);
+                pSSysTestDataService.autoGet(pSSysTestData);
                 this.mainpssystd = pSSysTestData;
             }
             return this.mainpssystd;
@@ -3161,7 +3161,7 @@ implements Serializable {
         Integer n = this.objPSSysTDItemsLock;
         synchronized (n) {
             if (this.pssystditems == null) {
-                this.pssystditems = pSSysTestDataService.isTempData((IEntity)this) ? pSSysTDItemService.selectTempByPSSysTestData(this) : pSSysTDItemService.selectByPSSysTestData(this);
+                this.pssystditems = pSSysTestDataService.isTempData(this) ? pSSysTDItemService.selectTempByPSSysTestData(this) : pSSysTDItemService.selectByPSSysTestData(this);
             }
             return this.pssystditems;
         }

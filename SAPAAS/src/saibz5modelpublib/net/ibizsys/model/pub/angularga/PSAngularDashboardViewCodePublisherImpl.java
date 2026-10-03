@@ -1,36 +1,81 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSDashboard
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.angularga;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.angularga.PSAngularCtrlCodePublisherImpl;
 
-public class PSAngularDashboardViewCodePublisherImpl
-extends PSAngularCtrlCodePublisherImpl {
-    protected IPSDashboard iPSDashboard;
-    public static final String CTRLPART_PART = "PART";
-    public static final String CTRLPART_DEFCONTENT = "DEFCONTENT";
+import net.ibizsys.model.control.dashboard.IPSDBPortletPart;
+import net.ibizsys.model.control.dashboard.IPSDashboard;
+import net.ibizsys.model.pub.IPSGenerateCodeResult;
+import net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher;
+import net.ibizsys.model.pub.PSGenerateCodeResultImpl;
 
-    public PSAngularDashboardViewCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tIPSDashboard cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDashboard cannot be resolved to a type\n\tThe method onClose() of type PSAngularDashboardViewCodePublisherImpl must override or implement a supertype method\n\tIPSDashboard cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSAngularCtrlCodePublisherImpl\n");
-    }
+/**
+ * 数据看版
+ * @author hebao
+ *
+ */
+public class PSAngularDashboardViewCodePublisherImpl extends PSAngularCtrlCodePublisherImpl
+{
+	protected IPSDashboard iPSDashboard = null;
+	public final static String CTRLPART_PART = "PART";
+	public final static String CTRLPART_DEFCONTENT = "DEFCONTENT";
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSDashboard = (IPSDashboard)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSDashboard = (IPSDashboard)this.iPSControl;
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDashboard cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDashboard cannot be resolved to a type\n");
-    }
+		//输出结果集合代码
+		if(true)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(CTRLPART_PART).getPSPFCtrlPartCodePublisher();
+			ArrayList<IPSGenerateCodeResult> gridRecordList = new ArrayList<IPSGenerateCodeResult> ();
+			java.util.Iterator<IPSDBPortletPart> psPortlets = 	iPSDashboard.getPSPortlets();
+			while(psPortlets.hasNext())
+			{
+				IPSDBPortletPart iPSPortlet = psPortlets.next();
+				
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSDashboard, iPSPortlet);
+				gridRecordList.add(iPSGenerateCodeResult);
+			}
+			params.put("parts", gridRecordList);
+		}
+		
+//		if(true)
+//		{
+//			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(CTRLPART_DEFCONTENT).getPSPFCtrlPartCodePublisher();
+//			ArrayList<IPSGenerateCodeResult> gridRecordList = new ArrayList<IPSGenerateCodeResult> ();
+//			java.util.Iterator<IPSPortlet> psPortlets = 	iPSDashboard.getPSPortlets();
+//			while(psPortlets.hasNext())
+//			{
+//				IPSPortlet iPSPortlet = psPortlets.next();
+//				if(iPSPortlet.getDefaultColId()<0)
+//					continue;
+//				
+//				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSDashboard, iPSPortlet);
+//				gridRecordList.add(iPSGenerateCodeResult);
+//			}
+//			iPSPFCtrlPartCodePublisher.close();
+//			params.put("defcontents", gridRecordList);
+//		}
+	}
 
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSAngularDashboardViewCodePublisherImpl must override or implement a supertype method\n\tIPSDashboard cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSAngularCtrlCodePublisherImpl\n");
-    }
+	
+
+	
 }
-

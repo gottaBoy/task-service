@@ -1410,7 +1410,7 @@ implements Serializable {
                 PSSysSQLCmd pSSysSQLCmd = new PSSysSQLCmd();
                 pSSysSQLCmd.setPSSysSQLCmdId(this.getPSSysSQLCmdId());
                 PSSysSQLCmdService pSSysSQLCmdService = (PSSysSQLCmdService)ServiceGlobal.getService(PSSysSQLCmdService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSQLCmdService.autoGet((IEntity)pSSysSQLCmd);
+                pSSysSQLCmdService.autoGet(pSSysSQLCmd);
                 this.pssyssqlcmd = pSSysSQLCmd;
             }
             return this.pssyssqlcmd;

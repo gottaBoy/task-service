@@ -72,7 +72,7 @@ implements IPSSysCalendarItemRVService {
     @Override
     protected List<PSSysCalendarItemRV> onListAll() throws Exception {
         ArrayList<PSSysCalendarItemRV> list = new ArrayList<PSSysCalendarItemRV>();
-        List pssyscalendaritems = PSModelServiceUtil.getInstance().getPSSysCalendarItemService().listAll();
+        List<PSSysCalendarItem> pssyscalendaritems = PSModelServiceUtil.getInstance().getPSSysCalendarItemService().listAll();
         if (pssyscalendaritems != null) {
             for (PSSysCalendarItem parent : pssyscalendaritems) {
                 List<PSSysCalendarItemRV> items = this.listByPSSysCalendarItem(parent);

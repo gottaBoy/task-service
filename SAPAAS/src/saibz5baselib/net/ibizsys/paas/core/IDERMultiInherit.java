@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDERBase;
+/**
+ * 虚拟实体多继承关系
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDERMultiInherit extends IDERBase {
 
-public interface IDERMultiInherit
-extends IDERBase {
 }
-

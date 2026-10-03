@@ -1,131 +1,222 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import java.util.HashMap;
 import java.util.Iterator;
+
+import net.ibizsys.paas.control.ControlTypes;
 import net.ibizsys.paas.control.tree.ITreeNode;
 import net.ibizsys.paas.ctrlhandler.ITreeNodeFetchContext;
-import net.ibizsys.paas.ctrlmodel.CtrlModelBase;
-import net.ibizsys.paas.ctrlmodel.ITreeModel;
-import net.ibizsys.paas.ctrlmodel.ITreeNodeModel;
-import net.ibizsys.paas.ctrlmodel.ITreeNodeRSModel;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
 import net.ibizsys.paas.sysmodel.ICodeListModel;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.web.MDAjaxActionResult;
 import net.ibizsys.paas.web.WebContext;
 
-public abstract class TreeModelBase
-extends CtrlModelBase
-implements ITreeModel {
-    private HashMap<String, ITreeNodeModel> treeNodeModelMap = new HashMap();
-    private boolean bEnableRootSelect = false;
-    private ITreeNodeModel rootTreeNodeModel = null;
-    private boolean bRootVisible = false;
-    private String strCatCodeListId = null;
-    private String strCounterId = null;
+/**
+ * 树部件模型对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class TreeModelBase extends CtrlModelBase implements ITreeModel {
+	
 
-    @Override
-    public String getControlType() {
-        return "TREEVIEW";
-    }
+	private HashMap<String, ITreeNodeModel> treeNodeModelMap = new HashMap<String, ITreeNodeModel>();
+	private boolean bEnableRootSelect = false;
+	private ITreeNodeModel rootTreeNodeModel = null;
+	private boolean bRootVisible = false;
+	private String strCatCodeListId = null;
+	private String strCounterId = null;
 
-    @Override
-    protected void onInit() throws Exception {
-        super.onInit();
-        this.onPrepareTreeMode();
-    }
+	@Override
+	public String getControlType() {
+		return ControlTypes.TreeView;
+	}
 
-    protected void onPrepareTreeMode() throws Exception {
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlmodel.CtrlModelBase#onInit()
+	 */
+	@Override
+	protected void onInit() throws Exception {
+		super.onInit();
 
-    protected void registerTreeNodeModel(ITreeNodeModel iTreeNodeTypeModel) throws Exception {
-        this.treeNodeModelMap.put(iTreeNodeTypeModel.getId(), iTreeNodeTypeModel);
-        if (!StringHelper.isNullOrEmpty(iTreeNodeTypeModel.getNodeType())) {
-            this.treeNodeModelMap.put(iTreeNodeTypeModel.getNodeType(), iTreeNodeTypeModel);
-        }
-        if (iTreeNodeTypeModel.isRootNode()) {
-            this.rootTreeNodeModel = iTreeNodeTypeModel;
-        }
-    }
+		onPrepareTreeMode();
+	}
 
-    @Override
-    public ITreeNodeModel getTreeNodeModel(String strTreeNodeModelId) throws Exception {
-        ITreeNodeModel iTreeNodeModel = this.treeNodeModelMap.get(strTreeNodeModelId);
-        if (iTreeNodeModel == null) {
-            throw new Exception(StringHelper.format("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6811\u8282\u70b9\u6a21\u578b[%1$s]", strTreeNodeModelId));
-        }
-        return iTreeNodeModel;
-    }
+	/**
+	 * 准备树模型
+	 * 
+	 * @throws Exception
+	 */
+	protected void onPrepareTreeMode() throws Exception {
 
-    @Override
-    public Iterator<ITreeNodeModel> getTreeNodeModels() {
-        return this.treeNodeModelMap.values().iterator();
-    }
+	}
 
-    @Override
-    public ITreeNodeModel getRootTreeNodeModel() {
-        return this.rootTreeNodeModel;
-    }
+	/**
+	 * 注树节点模型对象
+	 * 
+	 * @param iTreeNodeTypeModel
+	 * @throws Exception
+	 */
+	protected void registerTreeNodeModel(ITreeNodeModel iTreeNodeTypeModel) throws Exception {
+		treeNodeModelMap.put(iTreeNodeTypeModel.getId(), iTreeNodeTypeModel);
+		if(!StringHelper.isNullOrEmpty(iTreeNodeTypeModel.getNodeType())){
+			//20170322 进一步将节点类型进行注册
+			treeNodeModelMap.put(iTreeNodeTypeModel.getNodeType(), iTreeNodeTypeModel);
+		}
+		if (iTreeNodeTypeModel.isRootNode()) {
+			this.rootTreeNodeModel = iTreeNodeTypeModel;
+		}
+	}
 
-    @Override
-    public boolean isEnableRootSelect() {
-        return this.bEnableRootSelect;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlmodel.ITreeModel#getTreeNodeModel(java.lang.String)
+	 */
+	@Override
+	public ITreeNodeModel getTreeNodeModel(String strTreeNodeModelId) throws Exception {
+		ITreeNodeModel iTreeNodeModel = treeNodeModelMap.get(strTreeNodeModelId);
+		if (iTreeNodeModel == null) {
+			// 无法获取指定树节点模型
+			throw new Exception(StringHelper.format("无法获取指定树节点模型[%1$s]", strTreeNodeModelId));
+		}
+		return iTreeNodeModel;
+	}
 
-    protected void setEnableRootSelect(boolean bEnableRootSelect) {
-        this.bEnableRootSelect = bEnableRootSelect;
-    }
+	
+	
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.ctrlmodel.ITreeModel#getTreeNodeModels()
+	 */
+	@Override
+	public Iterator<ITreeNodeModel> getTreeNodeModels() {
+		return this.treeNodeModelMap.values().iterator();
+	}
 
-    @Override
-    public boolean isRootVisible() {
-        return this.bRootVisible;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlmodel.ITreeModel#getRootTreeNodeModel()
+	 */
+	@Override
+	public ITreeNodeModel getRootTreeNodeModel() {
+		return this.rootTreeNodeModel;
+	}
 
-    protected void setRootVisible(boolean bRootVisible) {
-        this.bRootVisible = bRootVisible;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlmodel.ITreeModel#isEnableRootSelect()
+	 */
+	@Override
+	public boolean isEnableRootSelect() {
+		return this.bEnableRootSelect;
+	}
 
-    @Override
-    public String getCatCodeListId() {
-        return this.strCatCodeListId;
-    }
+	/**
+	 * 设置是否允许根节点选中
+	 * 
+	 * @param bEnableRootSelect
+	 */
+	protected void setEnableRootSelect(boolean bEnableRootSelect) {
+		this.bEnableRootSelect = bEnableRootSelect;
+	}
 
-    protected void setCatCodeListId(String strCatCodeListId) {
-        this.strCatCodeListId = strCatCodeListId;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlmodel.ITreeModel#isRootVisible()
+	 */
+	@Override
+	public boolean isRootVisible() {
+		return this.bRootVisible;
+	}
 
-    @Override
-    public void fillCatFetchResult(MDAjaxActionResult fetchResult) throws Exception {
-        if (StringHelper.isNullOrEmpty(this.getCatCodeListId())) {
-            return;
-        }
-        ICodeListModel iCodeListModel = (ICodeListModel)CodeListGlobal.getCodeList(this.getCatCodeListId());
-        iCodeListModel.fillFetchResult(fetchResult, WebContext.getCurrent());
-    }
+	/**
+	 * 根节点是否可见
+	 * 
+	 * @param bRootVisible
+	 */
+	protected void setRootVisible(boolean bRootVisible) {
+		this.bRootVisible = bRootVisible;
+	}
 
-    @Override
-    public boolean isOutputTreeNodeRS(ITreeNodeFetchContext iTreeNodeFetchContext, ITreeNodeRSModel iTreeNodeRSModel) throws Exception {
-        if (StringHelper.isNullOrEmpty(iTreeNodeFetchContext.getNodeFilter())) {
-            return (iTreeNodeRSModel.getSearchMode() & 2) == 2;
-        }
-        return (iTreeNodeRSModel.getSearchMode() & 1) == 1;
-    }
+	/**
+	 * 获取树分类代码表标识
+	 * 
+	 * @return
+	 */
+	@Override
+	public String getCatCodeListId() {
+		return this.strCatCodeListId;
+	}
 
-    @Override
-    public boolean isOutputTreeNode(ITreeNodeFetchContext iTreeNodeFetchContext, ITreeNode iTreeNode) throws Exception {
-        return true;
-    }
+	/**
+	 * 设置分类代码表标识
+	 * 
+	 * @param bRootVisible
+	 */
+	protected void setCatCodeListId(String strCatCodeListId) {
+		this.strCatCodeListId = strCatCodeListId;
+	}
 
-    @Override
-    public String getCounterId() {
-        return this.strCounterId;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlmodel.ITreeModel#fillCatFetchResult(net.ibizsys.paas.web.MDAjaxActionResult)
+	 */
+	@Override
+	public void fillCatFetchResult(MDAjaxActionResult fetchResult) throws Exception {
+		if (StringHelper.isNullOrEmpty(getCatCodeListId())) return;
 
-    protected void setCounterId(String strCounterId) {
-        this.strCounterId = strCounterId;
-    }
+		ICodeListModel iCodeListModel = (ICodeListModel) CodeListGlobal.getCodeList(getCatCodeListId());
+		iCodeListModel.fillFetchResult(fetchResult, WebContext.getCurrent());
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlmodel.ITreeModel#isOutputTreeNodeRS(net.ibizsys.paas.ctrlhandler.ITreeNodeFetchContext, net.ibizsys.paas.ctrlmodel.ITreeNodeRSModel)
+	 */
+	@Override
+	public boolean isOutputTreeNodeRS(ITreeNodeFetchContext iTreeNodeFetchContext, ITreeNodeRSModel iTreeNodeRSModel) throws Exception {
+		/**
+		 * 判断是否输出关系，20180831修改
+		 */
+		if(StringHelper.isNullOrEmpty(iTreeNodeFetchContext.getNodeFilter())){
+			return ((iTreeNodeRSModel.getSearchMode() & ITreeNodeRSModel.SEARCHMODE_NO) == ITreeNodeRSModel.SEARCHMODE_NO);
+		}
+		else{
+			return ((iTreeNodeRSModel.getSearchMode() & ITreeNodeRSModel.SEARCHMODE_YES) == ITreeNodeRSModel.SEARCHMODE_YES);
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlmodel.ITreeModel#isOutputTreeNode(net.ibizsys.paas.ctrlhandler.ITreeNodeFetchContext, net.ibizsys.paas.control.tree.ITreeNode)
+	 */
+	@Override
+	public boolean isOutputTreeNode(ITreeNodeFetchContext iTreeNodeFetchContext, ITreeNode iTreeNode) throws Exception {
+		return true;
+	}
+
+	@Override
+	public String getCounterId() {
+		return this.strCounterId;
+	}
+	
+	/**
+	 * 设置计数器对象标识
+	 * @param strCounterId
+	 */
+	protected void setCounterId(String strCounterId) {
+		this.strCounterId = strCounterId;
+	}
+	
 }
-

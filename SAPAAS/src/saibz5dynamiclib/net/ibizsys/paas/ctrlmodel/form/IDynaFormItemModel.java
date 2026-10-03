@@ -1,54 +1,173 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.ctrlmodel.IFormItemModel
- */
 package net.ibizsys.paas.ctrlmodel.form;
 
 import net.ibizsys.paas.ctrlmodel.IFormItemModel;
-import net.ibizsys.paas.ctrlmodel.form.IDynaFormDetailModel;
 
-public interface IDynaFormItemModel
-extends IDynaFormDetailModel,
-IFormItemModel {
-    public static final String ATTR_EDITORHEIGHT = "editorheight";
-    public static final String ATTR_EDITORWIDTH = "editorwidth";
-    public static final String ATTR_EDITORSTYLE = "editorstyle";
-    public static final String ATTR_EDITORTYPE = "editortype";
-    public static final String ATTR_LABELPOS = "labelpos";
-    public static final String ATTR_LABELWIDTH = "labelwidth";
-    public static final String ATTR_PLACEHOLDER = "placeholder";
-    public static final String ATTR_ALLOWEMPTY = "allowempty";
-    public static final String ATTR_EDITABLE = "editable";
-    public static final String ATTR_EMPTYCAPTION = "emptycaption";
-    public static final String ATTR_HIDDEN = "hidden";
-    public static final String LABELPOS_LEFT = "LEFT";
-    public static final String LABELPOS_TOP = "TOP";
-    public static final String LABELPOS_RIGHT = "RIGHT";
-    public static final String LABELPOS_BOTTOM = "BOTTOM";
-    public static final String LABELPOS_NONE = "NONE";
+/**
+ * 动态表单项对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDynaFormItemModel extends IDynaFormDetailModel, IFormItemModel {
 
-    public boolean isEmptyCaption();
+	/**
+	 * 模型属性：编辑器高度
+	 */
+	final static String ATTR_EDITORHEIGHT = "editorheight";
+	
+	/**
+	 * 模型属性：编辑器宽度
+	 */
+	final static String ATTR_EDITORWIDTH = "editorwidth";
+	
+	/**
+	 * 模型属性：编辑器样式
+	 */
+	final static String ATTR_EDITORSTYLE = "editorstyle";
+	
+	
+	/**
+	 * 模型属性：编辑器类型
+	 */
+	final static String ATTR_EDITORTYPE = "editortype";
+	
+	/**
+	 * 模型属性：标签位置
+	 */
+	final static String ATTR_LABELPOS = "labelpos";
+	
+	/**
+	 * 模型属性：标签宽度
+	 */
+	final static String ATTR_LABELWIDTH = "labelwidth";
+	
+	/**
+	 * 模型属性：占位提示
+	 */
+	final static String ATTR_PLACEHOLDER = "placeholder";
+	
+	/**
+	 * 模型属性：允许空输入
+	 */
+	final static String ATTR_ALLOWEMPTY = "allowempty";
+	
+	/**
+	 * 模型属性：支持编辑
+	 */
+	final static String ATTR_EDITABLE = "editable";
+	
+	/**
+	 * 模型属性：使用空白标题
+	 */
+	final static String ATTR_EMPTYCAPTION = "emptycaption";
+	
+	
+	/**
+	 * 模型属性：隐藏项
+	 */
+	final static String ATTR_HIDDEN = "hidden";
+	
+	
+	/**
+	 * 标签位置：左边
+	 */
+	public final static String LABELPOS_LEFT = "LEFT";
 
-    public double getEditorWidth();
+	/**
+	 * 标签位置：上方
+	 */
+	public final static String LABELPOS_TOP = "TOP";
 
-    public double getEditorHeight();
+	/**
+	 * 标签位置：右边
+	 */
+	public final static String LABELPOS_RIGHT = "RIGHT";
 
-    public boolean isAllowEmpty();
+	/**
+	 * 标签位置：下方
+	 */
+	public final static String LABELPOS_BOTTOM = "BOTTOM";
 
-    public String getLabelPos();
+	/**
+	 * 标签位置：不显示
+	 */
+	public final static String LABELPOS_NONE = "NONE";
 
-    public int getLabelWidth();
+	/**
+	 * 是否为空白标签
+	 * 
+	 * @return
+	 */
+	boolean isEmptyCaption();
 
-    public boolean isHidden();
+	/**
+	 * 获取编辑器宽度
+	 * 
+	 * @return
+	 */
+	double getEditorWidth();
 
-    public String getEditorType();
+	/**
+	 * 获取编辑器高度
+	 * 
+	 * @return
+	 */
+	double getEditorHeight();
 
-    public boolean isEditable();
+	/**
+	 * 获取是否允许输入
+	 * 
+	 * @return
+	 */
+	boolean isAllowEmpty();
 
-    public String getEditorStyle();
+	/**
+	 * 获取标签位置
+	 * 
+	 * @return
+	 */
+	String getLabelPos();
 
-    public String getPlaceHolder();
+	/**
+	 * 获取标签宽度
+	 * 
+	 * @return
+	 */
+	int getLabelWidth();
+
+	/**
+	 * 是否为隐藏项
+	 * 
+	 * @return
+	 */
+	boolean isHidden();
+
+	/**
+	 * 获取编辑器类型
+	 * 
+	 * @return
+	 */
+	String getEditorType();
+
+	/**
+	 * 是否支持编辑
+	 * 
+	 * @return
+	 */
+	boolean isEditable();
+
+	/**
+	 * 获取编辑器演示
+	 * 
+	 * @return
+	 */
+	String getEditorStyle();
+	
+	
+	
+	/**
+	 * 获取输入提示信息
+	 * @return
+	 */
+	String getPlaceHolder();
 }
-

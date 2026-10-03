@@ -1,9 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
+/**
+ * 值转换器接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IValueTranslator {
-    public Object convert(String var1) throws Exception;
-}
 
+	/**
+	 * 值转换
+	 * 
+	 * @param strValue
+	 * @return
+	 * @throws Exception
+	 */
+	Object convert(String strValue) throws Exception;
+}

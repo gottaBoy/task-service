@@ -210,9 +210,9 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSSysBICube, pSDataEntity);
             return;
@@ -222,9 +222,9 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSDEDataSet pSDEDataSet = (PSDEDataSet)iService.getDEModel().createEntity();
             pSDEDataSet.set("PSDEDATASETID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEDataSet);
+                iService.getTemp(pSDEDataSet);
             } else {
-                iService.get((IEntity)pSDEDataSet);
+                iService.get(pSDEDataSet);
             }
             this.onFillParentInfo_PSDEDataSet(pSSysBICube, pSDEDataSet);
             return;
@@ -234,9 +234,9 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_KeyPSDEF(pSSysBICube, pSDEField);
             return;
@@ -246,9 +246,9 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_TypePSDEF(pSSysBICube, pSDEField);
             return;
@@ -258,9 +258,9 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSDEUAGroup pSDEUAGroup = (PSDEUAGroup)iService.getDEModel().createEntity();
             pSDEUAGroup.set("PSDEUAGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUAGroup);
+                iService.getTemp(pSDEUAGroup);
             } else {
-                iService.get((IEntity)pSDEUAGroup);
+                iService.get(pSDEUAGroup);
             }
             this.onFillParentInfo_PortletPSDEUAGroup(pSSysBICube, pSDEUAGroup);
             return;
@@ -270,9 +270,9 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSDEViewBase pSDEViewBase = (PSDEViewBase)iService.getDEModel().createEntity();
             pSDEViewBase.set("PSDEVIEWBASEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEViewBase);
+                iService.getTemp(pSDEViewBase);
             } else {
-                iService.get((IEntity)pSDEViewBase);
+                iService.get(pSDEViewBase);
             }
             this.onFillParentInfo_DrillDetailPSDEView(pSSysBICube, pSDEViewBase);
             return;
@@ -282,9 +282,9 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSDEViewBase pSDEViewBase = (PSDEViewBase)iService.getDEModel().createEntity();
             pSDEViewBase.set("PSDEVIEWBASEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEViewBase);
+                iService.getTemp(pSDEViewBase);
             } else {
-                iService.get((IEntity)pSDEViewBase);
+                iService.get(pSDEViewBase);
             }
             this.onFillParentInfo_DrillDownPSDEView(pSSysBICube, pSDEViewBase);
             return;
@@ -294,9 +294,9 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSSysBIScheme pSSysBIScheme = (PSSysBIScheme)iService.getDEModel().createEntity();
             pSSysBIScheme.set("PSSYSBISCHEMEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBIScheme);
+                iService.getTemp(pSSysBIScheme);
             } else {
-                iService.get((IEntity)pSSysBIScheme);
+                iService.get(pSSysBIScheme);
             }
             this.onFillParentInfo_PSSysBIScheme(pSSysBICube, pSSysBIScheme);
             return;
@@ -306,9 +306,9 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSSysDynaModel pSSysDynaModel = (PSSysDynaModel)iService.getDEModel().createEntity();
             pSSysDynaModel.set("PSSYSDYNAMODELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDynaModel);
+                iService.getTemp(pSSysDynaModel);
             } else {
-                iService.get((IEntity)pSSysDynaModel);
+                iService.get(pSSysDynaModel);
             }
             this.onFillParentInfo_PSSysDynaModel(pSSysBICube, pSSysDynaModel);
             return;
@@ -318,9 +318,9 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSSysSFPlugin pSSysSFPlugin = (PSSysSFPlugin)iService.getDEModel().createEntity();
             pSSysSFPlugin.set("PSSYSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPlugin);
+                iService.getTemp(pSSysSFPlugin);
             } else {
-                iService.get((IEntity)pSSysSFPlugin);
+                iService.get(pSSysSFPlugin);
             }
             this.onFillParentInfo_PSSysSFPlugin(pSSysBICube, pSSysSFPlugin);
             return;
@@ -330,14 +330,14 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSSysUniRes pSSysUniRes = (PSSysUniRes)iService.getDEModel().createEntity();
             pSSysUniRes.set("PSSYSUNIRESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysUniRes);
+                iService.getTemp(pSSysUniRes);
             } else {
-                iService.get((IEntity)pSSysUniRes);
+                iService.get(pSSysUniRes);
             }
             this.onFillParentInfo_PSSysUniRes(pSSysBICube, pSSysUniRes);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysBICube, string, string2, string3);
+        super.onFillParentInfo(pSSysBICube, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -408,7 +408,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 pSSysBICube.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysBICube, bl);
+        super.onFillEntityFullInfo(pSSysBICube, bl);
         this.onFillEntityFullInfo_PSDE(pSSysBICube, bl);
         this.onFillEntityFullInfo_PSDEDataSet(pSSysBICube, bl);
         this.onFillEntityFullInfo_KeyPSDEF(pSSysBICube, bl);
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
     }
 
     protected void onWriteBackParent(PSSysBICube pSSysBICube, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysBICube, bl);
+        super.onWriteBackParent(pSSysBICube, bl);
     }
 
     public ArrayList<PSSysBICube> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -737,8 +737,8 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -771,7 +771,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSSysBICube pSSysBICube : arrayList) {
-            this.remove((IEntity)pSSysBICube);
+            this.remove(pSSysBICube);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -789,8 +789,8 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPSDEDataSet(pSDEDataSet, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEDATASET");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEDataSet);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDEDATASET_PSDEDATASETID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo((IEntity)pSDEDataSet), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEDataSet);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDEDATASET_PSDEDATASETID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo(pSDEDataSet), arrayList.get(0)));
         }
     }
 
@@ -823,7 +823,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPSDEDataSet(pSDEDataSet);
         this.onBeforeRemoveByPSDEDataSet(pSDEDataSet, arrayList);
         for (PSSysBICube pSSysBICube : arrayList) {
-            this.remove((IEntity)pSSysBICube);
+            this.remove(pSSysBICube);
         }
         this.onAfterRemoveByPSDEDataSet(pSDEDataSet, arrayList);
     }
@@ -841,8 +841,8 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByKeyPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDEFIELD_KEYPSDEFID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDEFIELD_KEYPSDEFID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -875,7 +875,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByKeyPSDEF(pSDEField);
         this.onBeforeRemoveByKeyPSDEF(pSDEField, arrayList);
         for (PSSysBICube pSSysBICube : arrayList) {
-            this.remove((IEntity)pSSysBICube);
+            this.remove(pSSysBICube);
         }
         this.onAfterRemoveByKeyPSDEF(pSDEField, arrayList);
     }
@@ -893,8 +893,8 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByTypePSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDEFIELD_TYPEPSDEFID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDEFIELD_TYPEPSDEFID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -927,7 +927,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByTypePSDEF(pSDEField);
         this.onBeforeRemoveByTypePSDEF(pSDEField, arrayList);
         for (PSSysBICube pSSysBICube : arrayList) {
-            this.remove((IEntity)pSSysBICube);
+            this.remove(pSSysBICube);
         }
         this.onAfterRemoveByTypePSDEF(pSDEField, arrayList);
     }
@@ -945,8 +945,8 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPortletPSDEUAGroup(pSDEUAGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEUAGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEUAGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDEUAGROUP_PORTLETPSDEUAGROUPID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo((IEntity)pSDEUAGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEUAGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDEUAGROUP_PORTLETPSDEUAGROUPID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo(pSDEUAGroup), arrayList.get(0)));
         }
     }
 
@@ -979,7 +979,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPortletPSDEUAGroup(pSDEUAGroup);
         this.onBeforeRemoveByPortletPSDEUAGroup(pSDEUAGroup, arrayList);
         for (PSSysBICube pSSysBICube : arrayList) {
-            this.remove((IEntity)pSSysBICube);
+            this.remove(pSSysBICube);
         }
         this.onAfterRemoveByPortletPSDEUAGroup(pSDEUAGroup, arrayList);
     }
@@ -997,8 +997,8 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByDrillDetailPSDEView(pSDEViewBase, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVIEWBASE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEViewBase);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDEVIEWBASE_DRILLDETAILPSDEVIEWID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo((IEntity)pSDEViewBase), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEViewBase);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDEVIEWBASE_DRILLDETAILPSDEVIEWID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo(pSDEViewBase), arrayList.get(0)));
         }
     }
 
@@ -1031,7 +1031,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByDrillDetailPSDEView(pSDEViewBase);
         this.onBeforeRemoveByDrillDetailPSDEView(pSDEViewBase, arrayList);
         for (PSSysBICube pSSysBICube : arrayList) {
-            this.remove((IEntity)pSSysBICube);
+            this.remove(pSSysBICube);
         }
         this.onAfterRemoveByDrillDetailPSDEView(pSDEViewBase, arrayList);
     }
@@ -1049,8 +1049,8 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByDrillDownPSDEView(pSDEViewBase, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVIEWBASE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEViewBase);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDEVIEWBASE_DRILLDOWNPSDEVIEWID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo((IEntity)pSDEViewBase), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEViewBase);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSDEVIEWBASE_DRILLDOWNPSDEVIEWID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo(pSDEViewBase), arrayList.get(0)));
         }
     }
 
@@ -1083,7 +1083,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByDrillDownPSDEView(pSDEViewBase);
         this.onBeforeRemoveByDrillDownPSDEView(pSDEViewBase, arrayList);
         for (PSSysBICube pSSysBICube : arrayList) {
-            this.remove((IEntity)pSSysBICube);
+            this.remove(pSSysBICube);
         }
         this.onAfterRemoveByDrillDownPSDEView(pSDEViewBase, arrayList);
     }
@@ -1101,8 +1101,8 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPSSysBIScheme(pSSysBIScheme, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSBISCHEME");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysBIScheme);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSSYSBISCHEME_PSSYSBISCHEMEID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo((IEntity)pSSysBIScheme), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysBIScheme);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSSYSBISCHEME_PSSYSBISCHEMEID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo(pSSysBIScheme), arrayList.get(0)));
         }
     }
 
@@ -1135,7 +1135,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPSSysBIScheme(pSSysBIScheme);
         this.onBeforeRemoveByPSSysBIScheme(pSSysBIScheme, arrayList);
         for (PSSysBICube pSSysBICube : arrayList) {
-            this.remove((IEntity)pSSysBICube);
+            this.remove(pSSysBICube);
         }
         this.onAfterRemoveByPSSysBIScheme(pSSysBIScheme, arrayList);
     }
@@ -1153,8 +1153,8 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSDYNAMODEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysDynaModel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo((IEntity)pSSysDynaModel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysDynaModel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo(pSSysDynaModel), arrayList.get(0)));
         }
     }
 
@@ -1187,7 +1187,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel);
         this.onBeforeRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
         for (PSSysBICube pSSysBICube : arrayList) {
-            this.remove((IEntity)pSSysBICube);
+            this.remove(pSSysBICube);
         }
         this.onAfterRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
     }
@@ -1205,8 +1205,8 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo((IEntity)pSSysSFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo(pSSysSFPlugin), arrayList.get(0)));
         }
     }
 
@@ -1239,7 +1239,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin);
         this.onBeforeRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
         for (PSSysBICube pSSysBICube : arrayList) {
-            this.remove((IEntity)pSSysBICube);
+            this.remove(pSSysBICube);
         }
         this.onAfterRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
     }
@@ -1257,8 +1257,8 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPSSysUniRes(pSSysUniRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSUNIRES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysUniRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSSYSUNIRES_PSSYSUNIRESID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo((IEntity)pSSysUniRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysUniRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBE_PSSYSUNIRES_PSSYSUNIRESID", "", iDataEntityModel.getName(), "PSSYSBICUBE", iDataEntityModel.getDataInfo(pSSysUniRes), arrayList.get(0)));
         }
     }
 
@@ -1291,7 +1291,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         ArrayList<PSSysBICube> arrayList = this.selectByPSSysUniRes(pSSysUniRes);
         this.onBeforeRemoveByPSSysUniRes(pSSysUniRes, arrayList);
         for (PSSysBICube pSSysBICube : arrayList) {
-            this.remove((IEntity)pSSysBICube);
+            this.remove(pSSysBICube);
         }
         this.onAfterRemoveByPSSysUniRes(pSSysUniRes, arrayList);
     }
@@ -1329,7 +1329,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
 
     protected void replaceParentInfo(PSSysBICube pSSysBICube, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysBICube, cloneSession);
+        super.replaceParentInfo(pSSysBICube, cloneSession);
         if (pSSysBICube.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSSysBICube.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSSysBICube, (PSDataEntity)iEntity);
         }
@@ -1366,7 +1366,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysBICube pSSysBICube, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysBICube, bl);
+        super.onRemoveEntityUncopyValues(pSSysBICube, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysBICube pSSysBICube, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1453,7 +1453,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysBICube, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysBICube, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysBICube, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BICubeOption(boolean bl, PSSysBICube pSSysBICube, boolean bl2, boolean bl3) throws Exception {
@@ -1466,7 +1466,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BICubeOption_Default((IEntity)pSSysBICube, bl2, bl3);
+            string = this.onTestValueRule_BICubeOption_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BICUBEOPTION");
@@ -1488,7 +1488,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BICubeParams_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_BICubeParams_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BICUBEPARAMS");
@@ -1510,7 +1510,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BICubeTag_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_BICubeTag_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BICUBETAG");
@@ -1532,7 +1532,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BICubeTag2_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_BICubeTag2_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BICUBETAG2");
@@ -1557,7 +1557,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1596,7 +1596,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DrillDetailPSDEViewId_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_DrillDetailPSDEViewId_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DRILLDETAILPSDEVIEWID");
@@ -1618,7 +1618,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DrillDownPSDEViewId_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_DrillDownPSDEViewId_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DRILLDOWNPSDEVIEWID");
@@ -1640,7 +1640,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableCustomized_Default((IEntity)pSSysBICube, bl2, bl3);
+            string = this.onTestValueRule_EnableCustomized_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLECUSTOMIZED");
@@ -1662,7 +1662,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_KeyPSDEFId_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_KeyPSDEFId_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("KEYPSDEFID");
@@ -1684,7 +1684,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1706,7 +1706,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PortletPSDEUAGroupId_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_PortletPSDEUAGroupId_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PORTLETPSDEUAGROUPID");
@@ -1728,7 +1728,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataSetId_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataSetId_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATASETID");
@@ -1753,7 +1753,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -1775,7 +1775,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -1800,7 +1800,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeId_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeId_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBEID");
@@ -1825,7 +1825,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeName_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeName_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBENAME");
@@ -1867,7 +1867,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBISchemeId_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBISchemeId_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBISCHEMEID");
@@ -1889,7 +1889,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDynaModelId_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDynaModelId_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDYNAMODELID");
@@ -1911,7 +1911,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPluginId_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPluginId_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPLUGINID");
@@ -1933,7 +1933,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUniResId_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUniResId_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUNIRESID");
@@ -1955,7 +1955,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypePSDEFId_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_TypePSDEFId_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPSDEFID");
@@ -1977,7 +1977,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1999,7 +1999,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -2021,7 +2021,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -2043,7 +2043,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -2065,7 +2065,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysBICube, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -2090,7 +2090,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysBICube, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysBICube, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -2103,11 +2103,11 @@ extends PSCoreSysServiceBase<PSSysBICube> {
     }
 
     protected void onSyncEntity(PSSysBICube pSSysBICube, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysBICube, bl);
+        super.onSyncEntity(pSSysBICube, bl);
     }
 
     protected void onSyncIndexEntities(PSSysBICube pSSysBICube, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysBICube, bl);
+        super.onSyncIndexEntities(pSSysBICube, bl);
     }
 
     public Object getDataContextValue(PSSysBICube pSSysBICube, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -2115,7 +2115,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysBICube, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysBICube, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysBIScheme pSSysBIScheme = pSSysBICube.getPSSysBIScheme();
@@ -2126,7 +2126,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
     }
 
     protected void onExportMajorModel(PSSysBICube pSSysBICube, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysBICube, arrayList, n);
+        super.onExportMajorModel(pSSysBICube, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2715,14 +2715,14 @@ extends PSCoreSysServiceBase<PSSysBICube> {
 
     protected boolean onMergeChild(String string, String string2, PSSysBICube pSSysBICube) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysBICube)) {
+        if (super.onMergeChild(string, string2, pSSysBICube)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysBICube pSSysBICube) throws Exception {
-        super.onUpdateParent((IEntity)pSSysBICube);
+        super.onUpdateParent(pSSysBICube);
     }
 
     protected void onCopyDetails(PSSysBICube pSSysBICube, Object object) throws Exception {
@@ -2731,24 +2731,24 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         pSSysBICube2.set("PSSYSBICUBEID", object);
         String string = DataObject.getStringValue((Object)pSSysBICube.get("PSSYSBICUBEID"));
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSSysBICubeMeasureService)ServiceGlobal.getService(PSSysBICubeMeasureService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<EntityBase> arrayList = ((PSSysBICubeMeasureServiceBase)pSCoreSysServiceBase).selectByPSSysBICube(pSSysBICube2);
-        for (EntityBase entityBase : arrayList) {
+        ArrayList<PSSysBICubeMeasure> measures = ((PSSysBICubeMeasureServiceBase)pSCoreSysServiceBase).selectByPSSysBICube(pSSysBICube2);
+        for (PSSysBICubeMeasure entityBase : measures) {
             object2 = entityBase.get("PSSYSBICUBEMEASUREID");
-            pSCoreSysServiceBase.getDraftFrom((IEntity)entityBase);
-            pSCoreSysServiceBase.fillParentInfo((IEntity)entityBase, "DER1N", "DER1N_PSSYSBICUBEMEASURE_PSSYSBICUBE_PSSYSBICUBEID", string);
+            pSCoreSysServiceBase.getDraftFrom(entityBase);
+            pSCoreSysServiceBase.fillParentInfo(entityBase, "DER1N", "DER1N_PSSYSBICUBEMEASURE_PSSYSBICUBE_PSSYSBICUBEID", string);
             pSCoreSysServiceBase.create(entityBase);
             pSCoreSysServiceBase.copyDetails(entityBase, object2);
         }
         pSCoreSysServiceBase = (PSSysBICubeDimensionService)ServiceGlobal.getService(PSSysBICubeDimensionService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSSysBICubeDimensionServiceBase)pSCoreSysServiceBase).selectByPSSysBICube(pSSysBICube2);
-        for (EntityBase entityBase : arrayList) {
+        ArrayList<PSSysBICubeDimension> dimensions = ((PSSysBICubeDimensionServiceBase)pSCoreSysServiceBase).selectByPSSysBICube(pSSysBICube2);
+        for (PSSysBICubeDimension entityBase : dimensions) {
             object2 = entityBase.get("PSSYSBICUBEDIMENSIONID");
-            pSCoreSysServiceBase.getDraftFrom((IEntity)entityBase);
-            pSCoreSysServiceBase.fillParentInfo((IEntity)entityBase, "DER1N", "DER1N_PSSYSBICUBEDIMENSION_PSSYSBICUBE_PSSYSBICUBEID", string);
+            pSCoreSysServiceBase.getDraftFrom(entityBase);
+            pSCoreSysServiceBase.fillParentInfo(entityBase, "DER1N", "DER1N_PSSYSBICUBEDIMENSION_PSSYSBICUBE_PSSYSBICUBEID", string);
             pSCoreSysServiceBase.create(entityBase);
             pSCoreSysServiceBase.copyDetails(entityBase, object2);
         }
-        super.onCopyDetails((IEntity)pSSysBICube, object);
+        super.onCopyDetails(pSSysBICube, object);
     }
 
     @Override
@@ -2904,7 +2904,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysBICubeDimensionServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysBICubeDimension)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSBICUBEDIMENSION", (Object)entityBase.getPSSysBICubeDimensionId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSBICUBEDIMENSION", (Object)((PSSysBICubeDimension)entityBase).getPSSysBICubeDimensionId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -2930,7 +2930,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysBICubeMeasureServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysBICubeMeasure)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSBICUBEMEASURE", (Object)entityBase.getPSSysBICubeMeasureId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSSYSBICUBEMEASURE", (Object)((PSSysBICubeMeasure)entityBase).getPSSysBICubeMeasureId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
@@ -2945,46 +2945,29 @@ extends PSCoreSysServiceBase<PSSysBICube> {
 
     @Override
     protected void onExportCurModelV2(PSSysBICube pSSysBICube, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        ArrayNode arrayNode;
-        Object object3;
-        ArrayList<PSSysBICubeDimension> arrayList;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSBICUBEDIMENSION_PSSYSBICUBE_PSSYSBICUBEID")) {
-            pSCoreSysServiceBase = (PSSysBICubeDimensionService)ServiceGlobal.getService(PSSysBICubeDimensionService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSSysBICubeDimensionService service = (PSSysBICubeDimensionService)ServiceGlobal.getService(PSSysBICubeDimensionService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> items = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSBICUBE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBICUBEDIMENSION", (Object)pSSysBICube.getPSSysBICubeId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSBICUBE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBICUBEDIMENSION", (Object)pSSysBICube.getPSSysBICubeId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add((PSSysBICubeDimension)entityBase2);
+                    items = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        items.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysBICubeDimension>();
-                object3 = ((PSSysBICubeDimensionServiceBase)pSCoreSysServiceBase).selectByPSSysBICube(pSSysBICube);
-                arrayNode = StringHelper.format((String)"PSSYSBICUBE#%1$s", (Object)pSSysBICube.getPSSysBICubeId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysBICubeDimension)object2.next();
-                    object = ((PSSysBICubeDimensionServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysBICubeDimension)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                items = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSBICUBE#%1$s", (Object)pSSysBICube.getPSSysBICubeId());
+                for (PSSysBICubeDimension dimension : service.selectByPSSysBICube(pSSysBICube)) {
+                    if (StringHelper.compare(scope, service.getModelV2ResScope(dimension), false) != 0) continue;
+                    items.add(PSModelV2Helper.toJSONObject(dimension, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (items != null && !items.isEmpty()) {
+                ArrayNode arrayNode = objectNode.putArray(service.getModelV2Name(false).toLowerCase());
+                Collections.sort(items, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3011,45 +2994,36 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysBICubeDimension();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode item : items) {
+                    PSSysBICubeDimension dimension = new PSSysBICubeDimension();
+                    PSModelV2Helper.fromJSONObject(dimension, item, false);
+                    arrayNode.add((JsonNode)service.exportModelV2(dimension, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSBICUBEMEASURE_PSSYSBICUBE_PSSYSBICUBEID")) {
-            pSCoreSysServiceBase = (PSSysBICubeMeasureService)ServiceGlobal.getService(PSSysBICubeMeasureService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSSysBICubeMeasureService service = (PSSysBICubeMeasureService)ServiceGlobal.getService(PSSysBICubeMeasureService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> items = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSBICUBE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBICUBEMEASURE", (Object)pSSysBICube.getPSSysBICubeId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSBICUBE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBICUBEMEASURE", (Object)pSSysBICube.getPSSysBICubeId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysBICubeDimension)entityBase2);
+                    items = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        items.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object3 = ((PSSysBICubeMeasureServiceBase)pSCoreSysServiceBase).selectByPSSysBICube(pSSysBICube);
-                arrayNode = StringHelper.format((String)"PSSYSBICUBE#%1$s", (Object)pSSysBICube.getPSSysBICubeId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysBICubeMeasure)object2.next();
-                    object = ((PSSysBICubeMeasureServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysBICubeDimension)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                items = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSBICUBE#%1$s", (Object)pSSysBICube.getPSSysBICubeId());
+                for (PSSysBICubeMeasure measure : service.selectByPSSysBICube(pSSysBICube)) {
+                    if (StringHelper.compare(scope, service.getModelV2ResScope(measure), false) != 0) continue;
+                    items.add(PSModelV2Helper.toJSONObject(measure, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (items != null && !items.isEmpty()) {
+                ArrayNode arrayNode = objectNode.putArray(service.getModelV2Name(false).toLowerCase());
+                Collections.sort(items, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3076,10 +3050,10 @@ extends PSCoreSysServiceBase<PSSysBICube> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysBICubeMeasure();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode item : items) {
+                    PSSysBICubeMeasure measure = new PSSysBICubeMeasure();
+                    PSModelV2Helper.fromJSONObject(measure, item, false);
+                    arrayNode.add((JsonNode)service.exportModelV2(measure, string));
                 }
             }
         }
@@ -3126,76 +3100,72 @@ extends PSCoreSysServiceBase<PSSysBICube> {
 
     @Override
     protected void onCompileRelatedModelV2(PSSysBICube pSSysBICube, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
-        int n2;
-        String string3;
-        ArrayNode arrayNode;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
         if (!PSSysBICubeServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSSysBICubeDimensionService)ServiceGlobal.getService(PSSysBICubeDimensionService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
+            PSSysBICubeDimensionService service = (PSSysBICubeDimensionService)ServiceGlobal.getService(PSSysBICubeDimensionService.class, (SessionFactory)this.getSessionFactory());
+            ArrayNode arrayNode = null;
+            String modelName = service.getModelV2Name(null, false);
             if (objectNode != null) {
-                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
+                arrayNode = JsonNodeHelper.getArray(objectNode, modelName.toLowerCase());
             }
             if (arrayNode != null) {
-                for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSSysBICubeDimension();
-                    ((PSSysBICubeDimensionBase)object).setPSDEId(pSSysBICube.getPSDEId());
-                    ((PSSysBICubeDimensionBase)object).setPSSysBICubeId(pSSysBICube.getPSSysBICubeId());
-                    ((PSSysBICubeDimensionBase)object).setPSSysBICubeName(pSSysBICube.getPSSysBICubeName());
-                    ((PSSysBICubeDimensionBase)object).setPSSysBISchemeId(pSSysBICube.getPSSysBISchemeId());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                for (int i = 0; i < arrayNode.size(); ++i) {
+                    ObjectNode item = (ObjectNode)arrayNode.get(i);
+                    PSSysBICubeDimension dimension = new PSSysBICubeDimension();
+                    dimension.setPSDEId(pSSysBICube.getPSDEId());
+                    dimension.setPSSysBICubeId(pSSysBICube.getPSSysBICubeId());
+                    dimension.setPSSysBICubeName(pSSysBICube.getPSSysBICubeName());
+                    dimension.setPSSysBISchemeId(pSSysBICube.getPSSysBISchemeId());
+                    service.compileModelV2(dimension, item, string, null, n);
                 }
             } else {
-                String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string4);
-                if (((File)object2).exists()) {
-                    object = ((File)object2).listFiles();
-                    for (Object object3 : object) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysBICubeDimension();
-                        entityBase.setPSDEId(pSSysBICube.getPSDEId());
-                        entityBase.setPSSysBICubeId(pSSysBICube.getPSSysBICubeId());
-                        entityBase.setPSSysBICubeName(pSSysBICube.getPSSysBICubeName());
-                        entityBase.setPSSysBISchemeId(pSSysBICube.getPSSysBISchemeId());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File directory = new File(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)modelName));
+                if (directory.exists()) {
+                    File[] folders = directory.listFiles();
+                    if (folders != null) {
+                        for (File folder : folders) {
+                            if (!folder.isDirectory()) continue;
+                            PSSysBICubeDimension dimension = new PSSysBICubeDimension();
+                            dimension.setPSDEId(pSSysBICube.getPSDEId());
+                            dimension.setPSSysBICubeId(pSSysBICube.getPSSysBICubeId());
+                            dimension.setPSSysBICubeName(pSSysBICube.getPSSysBICubeName());
+                            dimension.setPSSysBISchemeId(pSSysBICube.getPSSysBISchemeId());
+                            service.compileModelV2(dimension, null, string, folder.getCanonicalPath(), n);
+                        }
                     }
                 }
             }
         }
         if (!PSSysBICubeServiceBase.isSimpleImportExportMode("")) {
-            pSCoreSysServiceBase = (PSSysBICubeMeasureService)ServiceGlobal.getService(PSSysBICubeMeasureService.class, (SessionFactory)this.getSessionFactory());
-            arrayNode = null;
-            string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
+            PSSysBICubeMeasureService service = (PSSysBICubeMeasureService)ServiceGlobal.getService(PSSysBICubeMeasureService.class, (SessionFactory)this.getSessionFactory());
+            ArrayNode arrayNode = null;
+            String modelName = service.getModelV2Name(null, false);
             if (objectNode != null) {
-                arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
+                arrayNode = JsonNodeHelper.getArray(objectNode, modelName.toLowerCase());
             }
             if (arrayNode != null) {
-                for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSSysBICubeMeasure();
-                    ((PSSysBICubeMeasureBase)object).setPSDEId(pSSysBICube.getPSDEId());
-                    ((PSSysBICubeMeasureBase)object).setPSSysBICubeId(pSSysBICube.getPSSysBICubeId());
-                    ((PSSysBICubeMeasureBase)object).setPSSysBICubeName(pSSysBICube.getPSSysBICubeName());
-                    ((PSSysBICubeMeasureBase)object).setPSSysBISchemeId(pSSysBICube.getPSSysBISchemeId());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                for (int i = 0; i < arrayNode.size(); ++i) {
+                    ObjectNode item = (ObjectNode)arrayNode.get(i);
+                    PSSysBICubeMeasure measure = new PSSysBICubeMeasure();
+                    measure.setPSDEId(pSSysBICube.getPSDEId());
+                    measure.setPSSysBICubeId(pSSysBICube.getPSSysBICubeId());
+                    measure.setPSSysBICubeName(pSSysBICube.getPSSysBICubeName());
+                    measure.setPSSysBISchemeId(pSSysBICube.getPSSysBISchemeId());
+                    service.compileModelV2(measure, item, string, null, n);
                 }
             } else {
-                String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string5);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysBICubeMeasure();
-                        entityBase.setPSDEId(pSSysBICube.getPSDEId());
-                        entityBase.setPSSysBICubeId(pSSysBICube.getPSSysBICubeId());
-                        entityBase.setPSSysBICubeName(pSSysBICube.getPSSysBICubeName());
-                        entityBase.setPSSysBISchemeId(pSSysBICube.getPSSysBISchemeId());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File directory = new File(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)modelName));
+                if (directory.exists()) {
+                    File[] folders = directory.listFiles();
+                    if (folders != null) {
+                        for (File folder : folders) {
+                            if (!folder.isDirectory()) continue;
+                            PSSysBICubeMeasure measure = new PSSysBICubeMeasure();
+                            measure.setPSDEId(pSSysBICube.getPSDEId());
+                            measure.setPSSysBICubeId(pSSysBICube.getPSSysBICubeId());
+                            measure.setPSSysBICubeName(pSSysBICube.getPSSysBICubeName());
+                            measure.setPSSysBISchemeId(pSSysBICube.getPSSysBISchemeId());
+                            service.compileModelV2(measure, null, string, folder.getCanonicalPath(), n);
+                        }
                     }
                 }
             }
@@ -3220,7 +3190,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSSysBICubeDimensionService pSSysBICubeDimensionService = (PSSysBICubeDimensionService)ServiceGlobal.getService(PSSysBICubeDimensionService.class, (SessionFactory)this.getSessionFactory());
             PSSysBICubeDimension pSSysBICubeDimension = new PSSysBICubeDimension();
             pSSysBICubeDimension.setPSSysBICubeDimensionId(pSMOSFile.getPSModelId());
-            if (!pSSysBICubeDimensionService.get((IEntity)pSSysBICubeDimension, true)) {
+            if (!pSSysBICubeDimensionService.get(pSSysBICubeDimension, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysBICubeDimension.getPSSysBICubeId(), (String)pSSysBICube.getPSSysBICubeId(), (boolean)false) == 0) {
@@ -3228,12 +3198,12 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             }
             ObjectNode objectNode = pSSysBICubeDimensionService.exportModelV2(pSSysBICubeDimension);
             pSSysBICubeDimension.reset();
-            if (!pSSysBICubeDimensionService.setModelV2ResScope((IEntity)pSSysBICubeDimension, "PSSYSBICUBE", pSSysBICube.getPSSysBICubeId())) {
+            if (!pSSysBICubeDimensionService.setModelV2ResScope(pSSysBICubeDimension, "PSSYSBICUBE", pSSysBICube.getPSSysBICubeId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysBICubeDimensionService.importModelV2(pSSysBICubeDimension, objectNode);
             SessionFactoryManager.commit();
-            return pSSysBICubeDimensionService.getFile((IEntity)pSSysBICubeDimension);
+            return pSSysBICubeDimensionService.getFile(pSSysBICubeDimension);
         }
         return null;
     }
@@ -3243,7 +3213,7 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             PSSysBICubeMeasureService pSSysBICubeMeasureService = (PSSysBICubeMeasureService)ServiceGlobal.getService(PSSysBICubeMeasureService.class, (SessionFactory)this.getSessionFactory());
             PSSysBICubeMeasure pSSysBICubeMeasure = new PSSysBICubeMeasure();
             pSSysBICubeMeasure.setPSSysBICubeMeasureId(pSMOSFile.getPSModelId());
-            if (!pSSysBICubeMeasureService.get((IEntity)pSSysBICubeMeasure, true)) {
+            if (!pSSysBICubeMeasureService.get(pSSysBICubeMeasure, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysBICubeMeasure.getPSSysBICubeId(), (String)pSSysBICube.getPSSysBICubeId(), (boolean)false) == 0) {
@@ -3251,12 +3221,12 @@ extends PSCoreSysServiceBase<PSSysBICube> {
             }
             ObjectNode objectNode = pSSysBICubeMeasureService.exportModelV2(pSSysBICubeMeasure);
             pSSysBICubeMeasure.reset();
-            if (!pSSysBICubeMeasureService.setModelV2ResScope((IEntity)pSSysBICubeMeasure, "PSSYSBICUBE", pSSysBICube.getPSSysBICubeId())) {
+            if (!pSSysBICubeMeasureService.setModelV2ResScope(pSSysBICubeMeasure, "PSSYSBICUBE", pSSysBICube.getPSSysBICubeId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysBICubeMeasureService.importModelV2(pSSysBICubeMeasure, objectNode);
             SessionFactoryManager.commit();
-            return pSSysBICubeMeasureService.getFile((IEntity)pSSysBICubeMeasure);
+            return pSSysBICubeMeasureService.getFile(pSSysBICubeMeasure);
         }
         return null;
     }
@@ -3295,4 +3265,3 @@ extends PSCoreSysServiceBase<PSSysBICube> {
         defaultValueMap.put("CODENAME", "Cube");
     }
 }
-

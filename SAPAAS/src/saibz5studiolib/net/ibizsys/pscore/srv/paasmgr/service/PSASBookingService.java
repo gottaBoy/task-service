@@ -62,7 +62,7 @@ extends PSASBookingServiceBase {
     @Override
     protected void onAfterUpdate(PSASBooking pSASBooking) throws Exception {
         if (pSASBooking.isBookingStateDirty()) {
-            PSASBooking pSASBooking2 = (PSASBooking)this.getLast((IEntity)pSASBooking);
+            PSASBooking pSASBooking2 = (PSASBooking)this.getLast(pSASBooking);
             this.updatePSDCASReadyTime(pSASBooking2.getPSDevCenterASId());
         }
         super.onAfterUpdate(pSASBooking);
@@ -70,7 +70,7 @@ extends PSASBookingServiceBase {
 
     @Override
     protected void onAfterRemove(PSASBooking pSASBooking) throws Exception {
-        PSASBooking pSASBooking2 = (PSASBooking)this.getLast((IEntity)pSASBooking);
+        PSASBooking pSASBooking2 = (PSASBooking)this.getLast(pSASBooking);
         this.updatePSDCASReadyTime(pSASBooking2.getPSDevCenterASId());
         super.onAfterRemove(pSASBooking);
     }
@@ -89,7 +89,7 @@ extends PSASBookingServiceBase {
         PSDevCenterASService pSDevCenterASService = (PSDevCenterASService)ServiceGlobal.getService(PSDevCenterASService.class, (SessionFactory)this.getSessionFactory());
         PSDevCenterAS pSDevCenterAS = new PSDevCenterAS();
         pSDevCenterAS.setPSDevCenterASId(string);
-        pSDevCenterASService.get((IEntity)pSDevCenterAS);
+        pSDevCenterASService.get(pSDevCenterAS);
         switch (pSDevCenterAS.getResState()) {
             case 10: 
             case 20: 
@@ -105,28 +105,28 @@ extends PSASBookingServiceBase {
                 selectField.setName("ENDTIME");
                 selectContext.addSelectField((ISelectField)selectField);
                 selectContext.set("PSDEVCENTERASID", (Object)string);
-                selectField = new SelectGroupFilter();
-                selectField.setCondOp("AND");
-                Object object = new SelectFieldFilter();
-                object.setDEFName("BEGINTIME");
-                object.setCondOp("GT");
-                object.setCondObjectValue((Object)new Timestamp(new Date().getTime()));
-                selectField.getSelectFilterList(true).add(object);
-                object = new SelectFieldFilter();
-                object.setDEFName("BOOKINGSTATE");
-                object.setCondOp("LT");
-                object.setCondObjectValue((Object)20);
-                selectField.getSelectFilterList(true).add(object);
-                selectContext.setSelectFilter((ISelectFilter)selectField);
-                object = this.select((ISelectCond)selectContext);
+                SelectGroupFilter groupFilter = new SelectGroupFilter();
+                groupFilter.setCondOp("AND");
+                SelectFieldFilter fieldFilter = new SelectFieldFilter();
+                fieldFilter.setDEFName("BEGINTIME");
+                fieldFilter.setCondOp("GT");
+                fieldFilter.setCondObjectValue((Object)new Timestamp(new Date().getTime()));
+                groupFilter.getSelectFilterList(true).add(fieldFilter);
+                fieldFilter = new SelectFieldFilter();
+                fieldFilter.setDEFName("BOOKINGSTATE");
+                fieldFilter.setCondOp("LT");
+                fieldFilter.setCondObjectValue((Object)20);
+                groupFilter.getSelectFilterList(true).add(fieldFilter);
+                selectContext.setSelectFilter((ISelectFilter)groupFilter);
+                ArrayList<PSASBooking> bookings = this.select((ISelectCond)selectContext);
                 int n = pSDevCenterAS.getResState();
                 pSDevCenterAS.reset();
                 pSDevCenterAS.setPSDevCenterASId(string);
-                if (((ArrayList)object).size() > 0) {
+                if (!bookings.isEmpty()) {
                     ArrayList<JSONObject> arrayList = new ArrayList<JSONObject>();
-                    Iterator iterator = ((ArrayList)object).iterator();
+                    Iterator<PSASBooking> iterator = bookings.iterator();
                     while (iterator.hasNext()) {
-                        PSASBooking pSASBooking = (PSASBooking)iterator.next();
+                        PSASBooking pSASBooking = iterator.next();
                         Timestamp timestamp = pSASBooking.getBeginTime();
                         Timestamp timestamp2 = pSASBooking.getEndTime();
                         JSONObject jSONObject = new JSONObject();
@@ -139,7 +139,7 @@ extends PSASBookingServiceBase {
                         jSONObject.put("bkinfo", (Object)string4);
                         arrayList.add(jSONObject);
                     }
-                    pSDevCenterAS.setResReadyTime(((PSASBooking)((ArrayList)object).get(0)).getBeginTime());
+                    pSDevCenterAS.setResReadyTime(bookings.get(0).getBeginTime());
                     pSDevCenterAS.setPSASBKLists(JSONArray.fromArray((Object[])arrayList.toArray()).toString());
                 } else {
                     pSDevCenterAS.setResReadyTime(null);
@@ -153,4 +153,3 @@ extends PSASBookingServiceBase {
         }
     }
 }
-

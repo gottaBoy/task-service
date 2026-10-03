@@ -1612,7 +1612,7 @@ implements Serializable {
                 PSDevCenterServer pSDevCenterServer = new PSDevCenterServer();
                 pSDevCenterServer.setPSDevCenterServerId(this.getPSDevCenterServerId());
                 PSDevCenterServerService pSDevCenterServerService = (PSDevCenterServerService)ServiceGlobal.getService(PSDevCenterServerService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterServerService.autoGet((IEntity)pSDevCenterServer);
+                pSDevCenterServerService.autoGet(pSDevCenterServer);
                 this.psdevcenterserver = pSDevCenterServer;
             }
             return this.psdevcenterserver;
@@ -1638,7 +1638,7 @@ implements Serializable {
                 PSDevSln pSDevSln = new PSDevSln();
                 pSDevSln.setPSDevSlnId(this.getPSDevSlnId());
                 PSDevSlnService pSDevSlnService = (PSDevSlnService)ServiceGlobal.getService(PSDevSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnService.autoGet((IEntity)pSDevSln);
+                pSDevSlnService.autoGet(pSDevSln);
                 this.psdevsln = pSDevSln;
             }
             return this.psdevsln;

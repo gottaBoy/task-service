@@ -1,11 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import net.ibizsys.psba.core.IBATableModel;
 
+/**
+ * 大数据调用上下文
+ * 
+ * @author Administrator
+ *
+ */
 public interface IBACallContext {
-    public IBATableModel getBATableModel();
-}
 
+	/**
+	 * 获取大数据表模型
+	 * 
+	 * @return
+	 */
+	IBATableModel getBATableModel();
+
+}

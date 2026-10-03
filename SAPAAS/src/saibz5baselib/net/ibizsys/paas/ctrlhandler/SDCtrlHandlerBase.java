@@ -1,75 +1,132 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.CtrlHandlerBase;
-import net.ibizsys.paas.ctrlhandler.ISDCtrlHandler;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.web.AjaxActionResult;
 
-public abstract class SDCtrlHandlerBase
-extends CtrlHandlerBase
-implements ISDCtrlHandler {
-    private boolean bEnableItemPriv = false;
+/**
+ * 单数据处理对象基类
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class SDCtrlHandlerBase extends CtrlHandlerBase implements ISDCtrlHandler {
+	private boolean bEnableItemPriv = false;
 
-    @Override
-    protected AjaxActionResult onProcessAction(String strAction) throws Exception {
-        if (StringHelper.isNullOrEmpty(strAction)) {
-            return new AjaxActionResult();
-        }
-        if (StringHelper.compare(strAction, "load", true) == 0) {
-            return this.onLoad();
-        }
-        if (StringHelper.compare(strAction, "create", true) == 0) {
-            return this.onCreate();
-        }
-        if (StringHelper.compare(strAction, "update", true) == 0) {
-            return this.onUpdate();
-        }
-        if (StringHelper.compare(strAction, "remove", true) == 0) {
-            return this.onRemove();
-        }
-        if (StringHelper.compare(strAction, "uiaction", true) == 0) {
-            return this.onUIAction();
-        }
-        if (StringHelper.compare(strAction, "loaduiaction", true) == 0) {
-            return this.onLoadUIAction();
-        }
-        return super.onProcessAction(strAction);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.CtrlHandlerBase#onProcessAction(java.lang .String)
+	 */
+	@Override
+	protected AjaxActionResult onProcessAction(String strAction) throws Exception {
+		if (StringHelper.isNullOrEmpty(strAction)) {
+			// 某些客户端默认请求
+			return new AjaxActionResult();
+		}
 
-    protected AjaxActionResult onLoad() throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
+		if (StringHelper.compare(strAction, ACTION_LOAD, true) == 0) {
+			return onLoad();
+		}
 
-    protected AjaxActionResult onCreate() throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
+		if (StringHelper.compare(strAction, ACTION_CREATE, true) == 0) {
+			return onCreate();
+		}
 
-    protected AjaxActionResult onUpdate() throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
+		if (StringHelper.compare(strAction, ACTION_UPDATE, true) == 0) {
+			return onUpdate();
+		}
 
-    protected AjaxActionResult onRemove() throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
+		if (StringHelper.compare(strAction, ACTION_REMOVE, true) == 0) {
+			return onRemove();
+		}
 
-    protected AjaxActionResult onUIAction() throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
+		if (StringHelper.compare(strAction, ACTION_UIACTION, true) == 0) {
+			return onUIAction();
+		}
+		
+		if (StringHelper.compare(strAction, ACTION_LOADUIACTION, true) == 0) {
+			return onLoadUIAction();
+		}
 
-    protected AjaxActionResult onLoadUIAction() throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
+		return super.onProcessAction(strAction);
+	}
 
-    @Override
-    public boolean isEnableItemPriv() {
-        return this.bEnableItemPriv;
-    }
+	/**
+	 * 数据加载处理
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	protected AjaxActionResult onLoad() throws Exception {
+		throw new Exception("没有实现");
+	}
 
-    protected void setEnableItemPriv(boolean bEnableItemPriv) {
-        this.bEnableItemPriv = bEnableItemPriv;
-    }
+	/**
+	 * 数据建立处理
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	protected AjaxActionResult onCreate() throws Exception {
+		throw new Exception("没有实现");
+	}
+
+	/**
+	 * 数据更新处理
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	protected AjaxActionResult onUpdate() throws Exception {
+		throw new Exception("没有实现");
+	}
+
+	/**
+	 * 数据删除处理
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	protected AjaxActionResult onRemove() throws Exception {
+		throw new Exception("没有实现");
+	}
+
+	/**
+	 * 界面行为处理
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	protected AjaxActionResult onUIAction() throws Exception {
+		throw new Exception("没有实现");
+	}
+
+	
+	/**
+	 * 加载界面行为运行时模型
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	protected AjaxActionResult onLoadUIAction() throws Exception {
+		throw new Exception("没有实现");
+	}
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.ISDCtrlHandler#isEnableItemPriv()
+	 */
+	@Override
+	public boolean isEnableItemPriv() {
+		return this.bEnableItemPriv;
+	}
+
+	/**
+	 * 设置是否启用列权限控制
+	 * 
+	 * @param bEnableItemPriv
+	 */
+	protected void setEnableItemPriv(boolean bEnableItemPriv) {
+		this.bEnableItemPriv = bEnableItemPriv;
+	}
 }
-

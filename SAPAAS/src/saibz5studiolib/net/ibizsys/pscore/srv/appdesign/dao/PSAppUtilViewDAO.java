@@ -75,7 +75,7 @@ extends PSCoreSysDAOBase<PSAppUtilView> {
     }
 
     protected void fillInheritEntity(PSAppUtilView pSAppUtilView) throws Exception {
-        super.fillInheritEntity((IEntity)pSAppUtilView);
+        super.fillInheritEntity(pSAppUtilView);
         PSAppUtilView pSAppUtilView2 = pSAppUtilView;
         pSAppUtilView2.setPSAppViewId(pSAppUtilView.getPSAppUtilViewId());
         if (pSAppUtilView.isPSAppUtilViewNameDirty()) {

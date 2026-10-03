@@ -116,9 +116,9 @@ implements IPSSysSequenceService {
 
     @Override
     protected List<PSSysSequence> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysSequence> list = new ArrayList<PSSysSequence>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysSequence> items = this.listByPSModule(parent);

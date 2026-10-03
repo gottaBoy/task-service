@@ -6,31 +6,48 @@ package SA.SRFDA.EAI.Ctrl.Transformer;
 import java.util.Map;
 
 public abstract class BaseTransformer {
-    public static String TAG_ENCODING;
+    public static final String TAG_ENCODING = "ENCODING";
     private Map<String, String> config;
 
     public BaseTransformer() {
-        throw new Error("Unresolved compilation problems: \n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tAbstractTransformer cannot be resolved to a type\n");
     }
 
     public Map<String, String> getConfig() {
-        throw new Error("Unresolved compilation problem: \n");
+        return this.config;
     }
 
-    public void setConfig(Map<String, String> map) {
-        throw new Error("Unresolved compilation problem: \n");
+    public void setConfig(Map<String, String> config) {
+        this.config = config;
     }
 
-    protected int GetConfig(String string, int n) {
-        throw new Error("Unresolved compilation problem: \n");
+    protected int GetConfig(String key, int defaultValue) {
+        String value = this.GetConfig(key, (String)null);
+        if (value == null) {
+            return defaultValue;
+        }
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException ex) {
+            return defaultValue;
+        }
     }
 
-    protected String GetConfig(String string, String string2) {
-        throw new Error("Unresolved compilation problem: \n");
+    protected String GetConfig(String key, String defaultValue) {
+        if (this.config == null) {
+            return defaultValue;
+        }
+        String value = this.config.get(key);
+        return value == null ? defaultValue : value;
     }
 
-    protected boolean GetConfig(String string, boolean bl) {
-        throw new Error("Unresolved compilation problem: \n");
+    protected boolean GetConfig(String key, boolean defaultValue) {
+        String value = this.GetConfig(key, (String)null);
+        if ("true".equalsIgnoreCase(value)) {
+            return true;
+        }
+        if ("false".equalsIgnoreCase(value)) {
+            return false;
+        }
+        return defaultValue;
     }
 }
-

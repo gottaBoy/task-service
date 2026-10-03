@@ -72,7 +72,7 @@ implements IPSAppUtilPageService {
     @Override
     protected List<PSAppUtilPage> onListAll() throws Exception {
         ArrayList<PSAppUtilPage> list = new ArrayList<PSAppUtilPage>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSAppUtilPage> items = this.listByPSSysApp(parent);

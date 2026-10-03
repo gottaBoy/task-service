@@ -23,6 +23,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Enumeration;
 import java.util.Properties;
 import net.ibizsys.paas.core.IDEDataSetFetchContext;
 import net.ibizsys.paas.data.DataObject;
@@ -59,17 +60,14 @@ extends PSSFStyleServiceBase {
         if (StringHelper.isNullOrEmpty((String)string)) {
             throw new Exception("\u5f53\u524d\u6ca1\u6709\u6307\u5b9a\u9879\u76ee\u76ee\u5f55");
         }
-        this.get((IEntity)pSSFStyle);
+        this.get(pSSFStyle);
         File file = new File(string);
         if (!file.exists()) {
             file.mkdirs();
         }
         if (bl = true) {
-            Object object;
-            Object object2;
-            Object object3;
             Properties properties;
-            HashMap<Object, Object> hashMap = new HashMap<Object, Object>();
+            HashMap<String, String> hashMap = new HashMap<String, String>();
             hashMap.put("${pub.getPKGCodeName()?replace('.','/')}", "%PUBPKG%");
             hashMap.put("${item.getPSSystemModule().codeName?lower_case}", "%MOD%");
             hashMap.put("${de.getPSSystemModule().codeName?lower_case}", "%DEMOD%");
@@ -91,23 +89,19 @@ extends PSSFStyleServiceBase {
             String string2 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string, (Object)File.separator, (Object)"macros.properties");
             File file2 = new File(string2);
             if (file2.exists() && (properties = PropertiesHelper.loadFromFile((String)string2)) != null) {
-                object3 = properties.keys();
-                while (object3.hasMoreElements()) {
-                    object2 = (String)object3.nextElement();
-                    object = PropertiesHelper.getProperty((Properties)properties, (String)object2);
-                    if (StringHelper.isNullOrEmpty((String)object)) continue;
-                    hashMap.put(object2, object);
+                Enumeration<?> keys = properties.keys();
+                while (keys.hasMoreElements()) {
+                    String key = (String)keys.nextElement();
+                    String value = PropertiesHelper.getProperty(properties, key);
+                    if (StringHelper.isNullOrEmpty(value)) continue;
+                    hashMap.put(key, value);
                 }
             }
-            properties = new SelectCond();
-            properties.set("PSSFSTYLEID", pSSFStyle.getPSSFStyleId());
-            object3 = (PSSFCodeTypeService)ServiceGlobal.getService(PSSFCodeTypeService.class, (SessionFactory)this.getSessionFactory());
-            object2 = object3.select((ISelectCond)properties);
-            object = ((ArrayList)object2).iterator();
-            while (object.hasNext()) {
-                Map.Entry entry2;
+            SelectCond selectCond = new SelectCond();
+            selectCond.set("PSSFSTYLEID", pSSFStyle.getPSSFStyleId());
+            PSSFCodeTypeService codeTypeService = (PSSFCodeTypeService)ServiceGlobal.getService(PSSFCodeTypeService.class, (SessionFactory)this.getSessionFactory());
+            for (PSSFCodeType pSSFCodeType : codeTypeService.select(selectCond)) {
                 String string3;
-                PSSFCodeType pSSFCodeType = (PSSFCodeType)object.next();
                 if (!DataObject.getBoolValue((Integer)pSSFCodeType.getValidFlag(), (boolean)true)) continue;
                 StringBuilderEx stringBuilderEx = new StringBuilderEx();
                 stringBuilderEx.append("<#ibiztemplate>\r\n");
@@ -117,9 +111,9 @@ extends PSSFStyleServiceBase {
                     stringBuilderEx.append("MODELS=%1$s\r\n", (Object)pSSFCodeType.getPSModelId());
                 }
                 if (!StringHelper.isNullOrEmpty((String)(string3 = pSSFCodeType.getCodePath()))) {
-                    for (Map.Entry entry2 : hashMap.entrySet()) {
-                        if (!string3.contains((CharSequence)entry2.getKey())) continue;
-                        string3 = string3.replace((CharSequence)entry2.getKey(), (CharSequence)entry2.getValue());
+                    for (Map.Entry<String, String> entry2 : hashMap.entrySet()) {
+                        if (!string3.contains(entry2.getKey())) continue;
+                        string3 = string3.replace(entry2.getKey(), entry2.getValue());
                         stringBuilderEx.append("%1$s=%2$s\r\n", entry2.getValue(), entry2.getKey());
                     }
                 } else {
@@ -131,17 +125,16 @@ extends PSSFStyleServiceBase {
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                entry2 = null;
-                entry2 = StringHelper.isNullOrEmpty((String)pSSFCodeType.getFileExt()) ? StringHelper.format((String)"%1$s.ftl", (Object)pSSFCodeType.getTypeCode()) : StringHelper.format((String)"%1$s.%2$s.ftl", (Object)pSSFCodeType.getTypeCode(), (Object)pSSFCodeType.getFileExt());
-                String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)object4, (Object)File.separator, (Object)entry2);
+                String filename = StringHelper.isNullOrEmpty((String)pSSFCodeType.getFileExt()) ? StringHelper.format((String)"%1$s.ftl", (Object)pSSFCodeType.getTypeCode()) : StringHelper.format((String)"%1$s.%2$s.ftl", (Object)pSSFCodeType.getTypeCode(), (Object)pSSFCodeType.getFileExt());
+                String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)object4, (Object)File.separator, (Object)filename);
                 stringBuilderEx.append("</#ibiztemplate>\r\n");
                 stringBuilderEx.append(pSSFCodeType.getCodeTempl());
                 PSPFStyleService.writeFile(string4, stringBuilderEx.toString());
                 ArrayList<PSSFCodeTempl> arrayList = pSSFCodeType.getPSSFCodeTempls();
                 for (PSSFCodeTempl pSSFCodeTempl : arrayList) {
                     if (!DataObject.getBoolValue((Integer)pSSFCodeTempl.getValidFlag(), (boolean)true)) continue;
-                    entry2 = StringHelper.isNullOrEmpty((String)pSSFCodeType.getFileExt()) ? StringHelper.format((String)"%1$s#%2$s.ftl", (Object)pSSFCodeType.getTypeCode(), (Object)pSSFCodeTempl.getPSSFCodeTemplName()) : StringHelper.format((String)"%1$s.%2$s#%3$s.ftl", (Object)pSSFCodeType.getTypeCode(), (Object)pSSFCodeType.getFileExt(), (Object)pSSFCodeTempl.getPSSFCodeTemplName());
-                    string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)object4, (Object)File.separator, (Object)entry2);
+                    filename = StringHelper.isNullOrEmpty((String)pSSFCodeType.getFileExt()) ? StringHelper.format((String)"%1$s#%2$s.ftl", (Object)pSSFCodeType.getTypeCode(), (Object)pSSFCodeTempl.getPSSFCodeTemplName()) : StringHelper.format((String)"%1$s.%2$s#%3$s.ftl", (Object)pSSFCodeType.getTypeCode(), (Object)pSSFCodeType.getFileExt(), (Object)pSSFCodeTempl.getPSSFCodeTemplName());
+                    string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)object4, (Object)File.separator, (Object)filename);
                     PSPFStyleService.writeFile(string4, pSSFCodeTempl.getTemplCode());
                 }
             }
@@ -149,7 +142,7 @@ extends PSSFStyleServiceBase {
             SelectCond selectCond = new SelectCond();
             selectCond.set("PSSFSTYLEID", (Object)pSSFStyle.getPSSFStyleId());
             PSSFCodeTypeService pSSFCodeTypeService = (PSSFCodeTypeService)ServiceGlobal.getService(PSSFCodeTypeService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList arrayList = pSSFCodeTypeService.select((ISelectCond)selectCond);
+            ArrayList<PSSFCodeType> arrayList = pSSFCodeTypeService.select((ISelectCond)selectCond);
             for (PSSFCodeType pSSFCodeType : arrayList) {
                 if (!DataObject.getBoolValue((Integer)pSSFCodeType.getValidFlag(), (boolean)true)) continue;
                 String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string, (Object)File.separator, (Object)pSSFCodeType.getTypeCode());
@@ -272,4 +265,3 @@ extends PSSFStyleServiceBase {
         return super.fetchCurSF(iDEDataSetFetchContext);
     }
 }
-

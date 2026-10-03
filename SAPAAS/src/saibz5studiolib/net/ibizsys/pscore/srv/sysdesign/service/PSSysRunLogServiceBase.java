@@ -147,9 +147,9 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
             PSSysRunSession pSSysRunSession = (PSSysRunSession)iService.getDEModel().createEntity();
             pSSysRunSession.set("PSSYSRUNSESSIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysRunSession);
+                iService.getTemp(pSSysRunSession);
             } else {
-                iService.get((IEntity)pSSysRunSession);
+                iService.get(pSSysRunSession);
             }
             this.onFillParentInfo_PSSysRunSession(pSSysRunLog, pSSysRunSession);
             return;
@@ -159,14 +159,14 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysRunLog, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysRunLog, string, string2, string3);
+        super.onFillParentInfo(pSSysRunLog, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -188,7 +188,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysRunLog, bl);
+        super.onFillEntityFullInfo(pSSysRunLog, bl);
         this.onFillEntityFullInfo_PSSysRunSession(pSSysRunLog, bl);
         this.onFillEntityFullInfo_PSSystem(pSSysRunLog, bl);
     }
@@ -222,7 +222,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
     }
 
     protected void onWriteBackParent(PSSysRunLog pSSysRunLog, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysRunLog, bl);
+        super.onWriteBackParent(pSSysRunLog, bl);
     }
 
     public ArrayList<PSSysRunLog> selectByPSSysRunSession(PSSysRunSessionBase pSSysRunSessionBase) throws Exception {
@@ -305,7 +305,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
         ArrayList<PSSysRunLog> arrayList = this.selectByPSSysRunSession(pSSysRunSession);
         this.onBeforeRemoveByPSSysRunSession(pSSysRunSession, arrayList);
         for (PSSysRunLog pSSysRunLog : arrayList) {
-            this.remove((IEntity)pSSysRunLog);
+            this.remove(pSSysRunLog);
         }
         this.onAfterRemoveByPSSysRunSession(pSSysRunSession, arrayList);
     }
@@ -351,7 +351,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
         ArrayList<PSSysRunLog> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysRunLog pSSysRunLog : arrayList) {
-            this.remove((IEntity)pSSysRunLog);
+            this.remove(pSSysRunLog);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -372,7 +372,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
 
     protected void replaceParentInfo(PSSysRunLog pSSysRunLog, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysRunLog, cloneSession);
+        super.replaceParentInfo(pSSysRunLog, cloneSession);
         if (pSSysRunLog.getPSSysRunSessionId() != null && (iEntity = cloneSession.getEntity("PSSYSRUNSESSION", (Object)pSSysRunLog.getPSSysRunSessionId())) != null) {
             this.onFillParentInfo_PSSysRunSession(pSSysRunLog, (PSSysRunSession)iEntity);
         }
@@ -382,7 +382,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysRunLog pSSysRunLog, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysRunLog, bl);
+        super.onRemoveEntityUncopyValues(pSSysRunLog, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysRunLog pSSysRunLog, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -421,7 +421,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
         if ((entityFieldError = this.onCheckField_PSSystemName(bl, pSSysRunLog, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysRunLog, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysRunLog, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_LogInfo(boolean bl, PSSysRunLog pSSysRunLog, boolean bl2, boolean bl3) throws Exception {
@@ -434,7 +434,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogInfo_Default((IEntity)pSSysRunLog, bl2, bl3);
+            string2 = this.onTestValueRule_LogInfo_Default(pSSysRunLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGINFO");
@@ -456,7 +456,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogInfo2_Default((IEntity)pSSysRunLog, bl2, bl3);
+            string2 = this.onTestValueRule_LogInfo2_Default(pSSysRunLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGINFO2");
@@ -478,7 +478,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogLevel_Default((IEntity)pSSysRunLog, bl2, bl3);
+            string2 = this.onTestValueRule_LogLevel_Default(pSSysRunLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGLEVEL");
@@ -500,7 +500,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LogLevel2_Default((IEntity)pSSysRunLog, bl2, bl3);
+            string = this.onTestValueRule_LogLevel2_Default(pSSysRunLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGLEVEL2");
@@ -525,7 +525,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_LogTime_Default((IEntity)pSSysRunLog, bl2, bl3);
+            string = this.onTestValueRule_LogTime_Default(pSSysRunLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGTIME");
@@ -550,7 +550,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysRunLogId_Default((IEntity)pSSysRunLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysRunLogId_Default(pSSysRunLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSRUNLOGID");
@@ -575,7 +575,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysRunLogName_Default((IEntity)pSSysRunLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysRunLogName_Default(pSSysRunLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSRUNLOGNAME");
@@ -597,7 +597,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysRunSessionId_Default((IEntity)pSSysRunLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysRunSessionId_Default(pSSysRunLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSRUNSESSIONID");
@@ -619,7 +619,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysRunSessionName_Default((IEntity)pSSysRunLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysRunSessionName_Default(pSSysRunLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSRUNSESSIONNAME");
@@ -641,7 +641,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysRunLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysRunLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -663,7 +663,7 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysRunLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysRunLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -676,11 +676,11 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
     }
 
     protected void onSyncEntity(PSSysRunLog pSSysRunLog, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysRunLog, bl);
+        super.onSyncEntity(pSSysRunLog, bl);
     }
 
     protected void onSyncIndexEntities(PSSysRunLog pSSysRunLog, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysRunLog, bl);
+        super.onSyncIndexEntities(pSSysRunLog, bl);
     }
 
     public Object getDataContextValue(PSSysRunLog pSSysRunLog, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -688,14 +688,14 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysRunLog, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysRunLog, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysRunLog pSSysRunLog, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysRunLog, arrayList, n);
+        super.onExportMajorModel(pSSysRunLog, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -904,14 +904,14 @@ extends PSCoreSysServiceBase<PSSysRunLog> {
 
     protected boolean onMergeChild(String string, String string2, PSSysRunLog pSSysRunLog) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysRunLog)) {
+        if (super.onMergeChild(string, string2, pSSysRunLog)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysRunLog pSSysRunLog) throws Exception {
-        super.onUpdateParent((IEntity)pSSysRunLog);
+        super.onUpdateParent(pSSysRunLog);
     }
 
     @Override

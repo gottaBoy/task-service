@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSWorkspacePolicyDEModelBase;
 
 public class PSWorkspacePolicyDEModel
 extends PSWorkspacePolicyDEModelBase {
+
+    public PSWorkspacePolicyDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

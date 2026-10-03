@@ -1339,7 +1339,7 @@ implements Serializable {
                 PSSysModelFunc pSSysModelFunc = new PSSysModelFunc();
                 pSSysModelFunc.setPSSysModelFuncId(this.getPSSysModelFuncId());
                 PSSysModelFuncService pSSysModelFuncService = (PSSysModelFuncService)ServiceGlobal.getService(PSSysModelFuncService.class, (SessionFactory)this.getSessionFactory());
-                pSSysModelFuncService.autoGet((IEntity)pSSysModelFunc);
+                pSSysModelFuncService.autoGet(pSSysModelFunc);
                 this.pssysmodelfunc = pSSysModelFunc;
             }
             return this.pssysmodelfunc;

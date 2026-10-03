@@ -554,11 +554,11 @@ extends BaseGridViewPage {
                     }
                     DataGridThemeGroupConfig systemGroupConfig = new DataGridThemeGroupConfig();
                     systemGroupConfig.setGroupName(this.GetLocalization("PAGE.COMMON.GRIDVIEW.THEMELIST.SYSTEMVIEW", "\u7cfb\u7edf\u89c6\u56fe"));
-                    this.dataGridThemeList.getDataGridThemeListConfig().GetDataGridThemeGroupsConfig().add((Object)systemGroupConfig);
+                    this.dataGridThemeList.getDataGridThemeListConfig().GetDataGridThemeGroupsConfig().add(systemGroupConfig);
                     DataGridThemeGroupConfig userGroupConfig = new DataGridThemeGroupConfig();
                     userGroupConfig.setGroupName(this.GetLocalization("PAGE.COMMON.GRIDVIEW.THEMELIST.USERVIEW", "\u6211\u7684\u89c6\u56fe"));
                     if (this.bCustomTheme) {
-                        this.dataGridThemeList.getDataGridThemeListConfig().GetDataGridThemeGroupsConfig().add((Object)userGroupConfig);
+                        this.dataGridThemeList.getDataGridThemeListConfig().GetDataGridThemeGroupsConfig().add(userGroupConfig);
                     }
                     for (DataGrid dataGrid : this.list) {
                         String strDataGridId = dataGrid.getDATAGRIDID();
@@ -572,14 +572,14 @@ extends BaseGridViewPage {
                             dataGridThemeConfig.setActive(false);
                         }
                         if (StringHelper.IsNullOrEmpty((String)dataGrid.getOWNERID())) {
-                            systemGroupConfig.add((Object)dataGridThemeConfig);
+                            systemGroupConfig.add(dataGridThemeConfig);
                             continue;
                         }
                         if (this.bCustomTheme) {
-                            userGroupConfig.add((Object)dataGridThemeConfig);
+                            userGroupConfig.add(dataGridThemeConfig);
                             continue;
                         }
-                        systemGroupConfig.add((Object)dataGridThemeConfig);
+                        systemGroupConfig.add(dataGridThemeConfig);
                     }
                     this.dataGridThemeList.getDataGridThemeListConfig().setMgrJSCode("$P.mainview.dgthememgr();");
                 }
@@ -658,7 +658,7 @@ extends BaseGridViewPage {
                 ddlSummaryPage.getDropDownListConfig().setSelectedValue(strSelectPath);
             }
             if (StringHelper.IsNullOrEmpty((String)strDERGroupId)) {
-                Vector der11List = iDEHelper.GetDER11s(true);
+                Vector<DER11> der11List = iDEHelper.GetDER11s(true);
                 for (DER11 der11 : der11List) {
                     if (der11.getSHOWORDER() < 0) continue;
                     String strResourceId = UniResHelper.GetDEDataResId((String)der11.getMINORDEID());
@@ -666,7 +666,7 @@ extends BaseGridViewPage {
                     String strURL = StringHelper.Format((String)"../srfpage/embededitview.jsp?SRFDEID=%1$s&SRFSUMMARYKEY=%2$s", (Object)der11.getMINORDEID(), (Object)iDEHelper.GetKeyDEFHelper().getName());
                     ddlSummaryPage.getDropDownListConfig().getListItems().Add(new ListItem(der11.getMINORDELOGICNAME(), strURL));
                 }
-                Vector derList = iDEHelper.GetDER1Ns(true);
+                Vector<DER1N> derList = iDEHelper.GetDER1Ns(true);
                 for (DER1N der1n : derList) {
                     if (der1n.getSHOWORDER() < 0) continue;
                     String strDefaultPage = "../srfpage/gridview.jsp?";
@@ -700,7 +700,7 @@ extends BaseGridViewPage {
                     String strURL = StringHelper.Format((String)"%1$s%2$s", (Object)strDefaultPage, (Object)URLHelper.GetQueryString(urlParams));
                     ddlSummaryPage.getDropDownListConfig().getListItems().Add(new ListItem(page.getWebContext().getGlobalHelper().getLocalizationHelper().GetLocalization(page.getLanguage(), der1n.getSHOWNAMELANRESID(), der1n.getSHOWNAME1N()), strURL));
                 }
-                Vector list = new Vector();
+                Vector<SummaryPage> list = new Vector<SummaryPage>();
                 CallResult callResult2 = page.getWebContext().getGlobalHelper().getDAModelHelper().GetSummaryPages(page.getPageDataEntityId(), "SUM", list);
                 if (callResult2 == null || callResult2.getRetCode() != 0) {
                     page.PageLog((Object)page, 1, StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u7f29\u7565\u754c\u9762\u5931\u8d25\uff0c%1$s", (Object)callResult2.getErrorInfo()));
@@ -737,7 +737,7 @@ extends BaseGridViewPage {
                     ddlSummaryPage.getDropDownListConfig().getListItems().Add(new ListItem(page.GetLocalization(summaryPage.getNAMELANRESID(), summaryPage.getSUMMARYPAGENAME()), strDefaultPage));
                 }
             } else {
-                Vector derGroupDetails = new Vector();
+                Vector<DERGroupDetail> derGroupDetails = new Vector<DERGroupDetail>();
                 callResult = page.getDAModelHelper().GetDERGroupDetails(strDERGroupId, derGroupDetails);
                 if (callResult == null || callResult.getRetCode() != 0) {
                     page.PageLog((Object)page, 1, StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53\u5206\u7ec4\u5173\u7cfb\u660e\u7ec6\u5931\u8d25\uff0c%1$s", (Object)(callResult == null ? "\u4e0d\u660e" : callResult.getErrorInfo())));
@@ -1474,7 +1474,7 @@ extends BaseGridViewPage {
                 summaryList.add(item);
             }
             if (StringHelper.IsNullOrEmpty((String)strDERGroupId)) {
-                Vector der11List = iDEHelper.GetDER11s(true);
+                Vector<DER11> der11List = iDEHelper.GetDER11s(true);
                 for (DER11 der11 : der11List) {
                     if (der11.getSHOWORDER() < 0) continue;
                     String strResourceId = UniResHelper.GetDEDataResId((String)der11.getMINORDEID());
@@ -1485,7 +1485,7 @@ extends BaseGridViewPage {
                     item.put("value", (Object)strURL);
                     summaryList.add(item);
                 }
-                Vector derList = iDEHelper.GetDER1Ns(true);
+                Vector<DER1N> derList = iDEHelper.GetDER1Ns(true);
                 for (DER1N der1n : derList) {
                     if (der1n.getSHOWORDER() < 0) continue;
                     String strDefaultPage = "../srfpage/gridview.jsp?";
@@ -1522,7 +1522,7 @@ extends BaseGridViewPage {
                     item.put("value", (Object)strURL);
                     summaryList.add(item);
                 }
-                Vector list = new Vector();
+                Vector<SummaryPage> list = new Vector<SummaryPage>();
                 CallResult callResult2 = page.getWebContext().getGlobalHelper().getDAModelHelper().GetSummaryPages(page.getPageDataEntityId(), "SUM", list);
                 if (callResult2 == null || callResult2.getRetCode() != 0) {
                     page.PageLog((Object)page, 1, StringHelper.Format((String)"\u67e5\u8be2\u5b9e\u4f53\u7f29\u7565\u754c\u9762\u5931\u8d25\uff0c%1$s", (Object)callResult2.getErrorInfo()));
@@ -1565,7 +1565,7 @@ extends BaseGridViewPage {
                     summaryList.add(item);
                 }
             } else {
-                Vector derGroupDetails = new Vector();
+                Vector<DERGroupDetail> derGroupDetails = new Vector<DERGroupDetail>();
                 callResult = page.getDAModelHelper().GetDERGroupDetails(strDERGroupId, derGroupDetails);
                 if (callResult == null || callResult.getRetCode() != 0) {
                     page.PageLog((Object)page, 1, StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53\u5206\u7ec4\u5173\u7cfb\u660e\u7ec6\u5931\u8d25\uff0c%1$s", (Object)(callResult == null ? "\u4e0d\u660e" : callResult.getErrorInfo())));

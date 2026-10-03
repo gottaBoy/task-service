@@ -76,7 +76,7 @@ implements IPSDETreeLogicService {
     @Override
     protected List<PSDETreeLogic> onListAll() throws Exception {
         ArrayList<PSDETreeLogic> list = new ArrayList<PSDETreeLogic>();
-        List psdetreeviews = PSModelServiceUtil.getInstance().getPSDETreeViewService().listAll();
+        List<PSDETreeView> psdetreeviews = PSModelServiceUtil.getInstance().getPSDETreeViewService().listAll();
         if (psdetreeviews != null) {
             for (PSDETreeView parent : psdetreeviews) {
                 List<PSDETreeLogic> items = this.listByPSDETreeView(parent);

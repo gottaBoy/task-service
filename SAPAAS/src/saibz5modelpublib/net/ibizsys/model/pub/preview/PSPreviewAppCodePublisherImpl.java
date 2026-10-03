@@ -1,20 +1,32 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.pub.preview;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.preview.PSPreviewFileNameMethod;
 
-public class PSPreviewAppCodePublisherImpl {
-    private static PSPreviewFileNameMethod psPreViewPCFileNameMethod;
+import SA.SRFDA.PS.Core.Pub.PSPFAppCodePublisherImpl;
 
-    public PSPreviewAppCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tPSPFAppCodePublisherImpl cannot be resolved to a type\n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSPreviewAppCodePublisherImpl must override or implement a supertype method\n\tPSPFAppCodePublisherImpl cannot be resolved to a type\n");
-    }
+public class PSPreviewAppCodePublisherImpl extends PSPFAppCodePublisherImpl
+{
+	private static PSPreviewFileNameMethod psPreViewPCFileNameMethod = new PSPreviewFileNameMethod();
 
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSPreviewAppCodePublisherImpl must override or implement a supertype method\n\tPSPFAppCodePublisherImpl cannot be resolved to a type\n");
-    }
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		PSPreviewTemplHelper.fillParams(params);
+		//合成require
+		HashMap<String, String> requireClassMap = new HashMap<String, String>();
+		ArrayList<String> requireClasses = new ArrayList<String> ();
+	
+		
+		requireClasses.addAll(requireClassMap.keySet());
+		params.put("requires", requireClasses);
+		params.put("filename", psPreViewPCFileNameMethod);
+	}	
+	
+	
 }
-

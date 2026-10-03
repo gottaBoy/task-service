@@ -1628,7 +1628,7 @@ implements Serializable {
                 PSDepSysVer pSDepSysVer = new PSDepSysVer();
                 pSDepSysVer.setPSDepSysVerId(this.getPSDepSysVerId());
                 PSDepSysVerService pSDepSysVerService = (PSDepSysVerService)ServiceGlobal.getService(PSDepSysVerService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSysVerService.autoGet((IEntity)pSDepSysVer);
+                pSDepSysVerService.autoGet(pSDepSysVer);
                 this.psdepsysver = pSDepSysVer;
             }
             return this.psdepsysver;
@@ -1654,7 +1654,7 @@ implements Serializable {
                 PSDevSlnSysApp pSDevSlnSysApp = new PSDevSlnSysApp();
                 pSDevSlnSysApp.setPSDevSlnSysAppId(this.getPSDevSlnSysAppId());
                 PSDevSlnSysAppService pSDevSlnSysAppService = (PSDevSlnSysAppService)ServiceGlobal.getService(PSDevSlnSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysAppService.autoGet((IEntity)pSDevSlnSysApp);
+                pSDevSlnSysAppService.autoGet(pSDevSlnSysApp);
                 this.psdevslnsysapp = pSDevSlnSysApp;
             }
             return this.psdevslnsysapp;
@@ -1680,7 +1680,7 @@ implements Serializable {
                 PSSaaSSysApp pSSaaSSysApp = new PSSaaSSysApp();
                 pSSaaSSysApp.setPSSaaSSysAppId(this.getPSSaaSSysAppId());
                 PSSaaSSysAppService pSSaaSSysAppService = (PSSaaSSysAppService)ServiceGlobal.getService(PSSaaSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSaaSSysAppService.autoGet((IEntity)pSSaaSSysApp);
+                pSSaaSSysAppService.autoGet(pSSaaSSysApp);
                 this.pssaassysapp = pSSaaSSysApp;
             }
             return this.pssaassysapp;

@@ -1,39 +1,116 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSControl
- *  IPSDBPortletPart
- *  IPSDashboard
- *  IPSGenerateCodeResult
- *  IPSPublisherContext
- */
 package net.ibizsys.model.pub.ionic;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.ionic.PSIonicCtrlPartCodePublisherImpl;
 
-public class PSIonicDashboardPartVCPublisherImpl
-extends PSIonicCtrlPartCodePublisherImpl {
-    public static final String CTRLPART_PART = "PART";
-    protected IPSDashboard iPSDashboard;
-    protected IPSDBPortletPart iPSPortlet;
+import SA.SRFDA.PS.Core.Control.IPSControl;
+import SA.SRFDA.PS.Core.Control.Dashboard.IPSDBPortletPart;
+import SA.SRFDA.PS.Core.Control.Dashboard.IPSDashboard;
+import SA.SRFDA.PS.Core.PF.IPSPFCtrlTempl;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlCodePublisher;
+import SA.SRFDA.PS.Core.Pub.IPSPublisherContext;
 
-    public PSIonicDashboardPartVCPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSIonicDashboardPartVCPublisherImpl is inconsistent\n\tIPSDashboard cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSPFCtrlTempl cannot be resolved to a type\n\tiPSPFStyle cannot be resolved\n\tThe method getPSPFPubCode() is undefined for the type PSIonicDashboardPartVCPublisherImpl\n\tIPSPFCtrlCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved or is not a field\n\tIPSPFCtrlTempl cannot be resolved to a type\n\tiPSPFStyle cannot be resolved\n\tIPSDBPortletPart cannot be resolved to a type\n\tThe method getPSPFPubCode() is undefined for the type PSIonicDashboardPartVCPublisherImpl\n\tIPSPFCtrlCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved or is not a field\n\tIPSDBPortletPart cannot be resolved to a type\n\tThe method onClose() of type PSIonicDashboardPartVCPublisherImpl must override or implement a supertype method\n\tIPSDashboard cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSIonicCtrlPartCodePublisherImpl\n");
-    }
+/**
+ * 部件代码
+ * @author lionlau
+ *
+ */
+public class PSIonicDashboardPartVCPublisherImpl extends PSIonicCtrlPartCodePublisherImpl
+{
+	public final static String CTRLPART_PART = "PART";
 
-    public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n\tIPSDashboard cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n");
-    }
+	
+	protected IPSDashboard iPSDashboard = null;
+	protected IPSDBPortletPart iPSPortlet = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDashboard = (IPSDashboard)iPSControl;
+		iPSPortlet = (IPSDBPortletPart)object;
+		return super.generateCode(iPSPublisherContext, iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		//部件
+		IPSControl contentPSControl = iPSPortlet.getContentPSControl();
+		if(contentPSControl!=null)
+		{
+			IPSPFCtrlTempl iPSPFCtrlTempl = iPSPFStyle.getPSPFCtrlTempl(contentPSControl.getPSControlType(), this.getPSPFPubCode());
+			if(iPSPFCtrlTempl!=null)
+			{
+				IPSPFCtrlCodePublisher iPSPFCtrlCodePublisher = iPSPFCtrlTempl.getPSPFCtrlCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlCodePublisher.generateCode(this.iPSPublisherContext, contentPSControl);
+				if(iPSGenerateCodeResult!=null)
+				{
+					params.put("content", iPSGenerateCodeResult);
+				}
+				iPSPFCtrlCodePublisher.close();
+			}
+		}
+		
+		if(true)
+		{
+			IPSPFCtrlTempl iPSPFCtrlTempl = iPSPFStyle.getPSPFCtrlTempl(iPSPortlet.getPSControlType(), this.getPSPFPubCode());
+			if(iPSPFCtrlTempl!=null)
+			{
+				IPSPFCtrlCodePublisher iPSPFCtrlCodePublisher = iPSPFCtrlTempl.getPSPFCtrlCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlCodePublisher.generateCode(this.iPSPublisherContext, iPSPortlet);
+				if(iPSGenerateCodeResult!=null)
+				{
+					params.put("portlet", iPSGenerateCodeResult);
+				}
+				iPSPFCtrlCodePublisher.close();
+			}
+		}
+//		if(true)
+//		{
+//			ArrayList<IPSGenerateCodeResult> psGenerateCodeResultList = new ArrayList<IPSGenerateCodeResult> ();
+//			java.util.Iterator<IPSControl> psControls = iPSPortlet.getPSControls();
+//			//找到对应的发布器
+//			while(psControls.hasNext())
+//			{
+//				IPSControl iPSControl = psControls.next();
+//				IPSPFCtrlTempl iPSPFCtrlTempl = iPSPFStyle.getPSPFCtrlTempl(iPSControl, this.getPSPFPubCode());
+//				if(iPSPFCtrlTempl==null)
+//					continue;
+//				
+//				IPSPFCtrlCodePublisher iPSPFCtrlCodePublisher = iPSPFCtrlTempl.getPSPFCtrlCodePublisher();
+//				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlCodePublisher.generateCode(this.iPSPublisherContext, iPSControl);
+//				if(iPSGenerateCodeResult!=null)
+//				{
+//					params.put(iPSControl.getName(), iPSGenerateCodeResult);
+//					psGenerateCodeResultList.add(iPSGenerateCodeResult);
+//				}
+//				
+//				iPSPFCtrlCodePublisher.close();
+//			}
+//		}
+		
+	}
+	
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSControl cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSPFCtrlTempl cannot be resolved to a type\n\tiPSPFStyle cannot be resolved\n\tThe method getPSPFPubCode() is undefined for the type PSIonicDashboardPartVCPublisherImpl\n\tIPSPFCtrlCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved or is not a field\n\tIPSPFCtrlTempl cannot be resolved to a type\n\tiPSPFStyle cannot be resolved\n\tIPSDBPortletPart cannot be resolved to a type\n\tThe method getPSPFPubCode() is undefined for the type PSIonicDashboardPartVCPublisherImpl\n\tIPSPFCtrlCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved or is not a field\n\tIPSDBPortletPart cannot be resolved to a type\n");
-    }
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSDashboard= null;
+		this.iPSPortlet = null;
+		super.onClose();
+	}
 
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSIonicDashboardPartVCPublisherImpl must override or implement a supertype method\n\tIPSDashboard cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSIonicCtrlPartCodePublisherImpl\n");
-    }
+	
+	
 }
-

@@ -150,7 +150,7 @@ implements Serializable {
             PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class);
             PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
             pSDevSlnSys.setPSDevSlnSysId(string);
-            pSDevSlnSysService.get((IEntity)pSDevSlnSys);
+            pSDevSlnSysService.get(pSDevSlnSys);
             Timestamp timestamp = pSDevSlnSys.getExpriedTime();
             IPSDevUser iPSDevUser = null;
             int n = 5;
@@ -187,7 +187,7 @@ implements Serializable {
                         timestamp = pSDevSlnSysKey.getEndTime();
                     } else {
                         pSDevSlnSysKey.setPSDevSlnSysKeyId(string4);
-                        if (!pSDevSlnSysKeyService.get((IEntity)pSDevSlnSysKey, true)) {
+                        if (!pSDevSlnSysKeyService.get(pSDevSlnSysKey, true)) {
                             log.error((Object)StringHelper.format((String)"\u7528\u6237[%1$s][%2$s]\u4f7f\u7528\u7cfb\u7edf\u7ba1\u7406\u6807\u8bc6\u8bbf\u95ee\u5931\u8d25\uff0c\u6570\u636e\u4e0d\u5b58\u5728", (Object)iWebContext.getCurUserId(), (Object)iWebContext.getRealRemoteAddr()));
                             pSSysDevUserUserGlobal.registerPSSysDevUser(pSDevSlnSys.getPSDevSlnSysId(), PSSysDevUser.ACCESSDENY);
                             throw new ErrorException(2, StringHelper.format((String)"\u5f53\u524d\u7528\u6237\u65e0\u6cd5\u8bbf\u95ee\u6307\u5b9a\u7cfb\u7edf"));
@@ -246,10 +246,10 @@ implements Serializable {
                 throw new ErrorException(2, StringHelper.format((String)"\u5f00\u53d1\u7cfb\u7edf\u5df2\u8fc7\u671f"));
             }
             if (StringHelper.compare((String)PSCoreSysModel.getStudioVer(), (String)"S0500", (boolean)false) == 0 && (StringHelper.isNullOrEmpty((String)((PSDevUserBase)object2).getStudioVer()) || StringHelper.compare((String)((PSDevUserBase)object2).getStudioVer(), (String)"S0500", (boolean)false) == 0 || StringHelper.compare((String)((PSDevUserBase)object2).getStudioVer(), (String)"S0600M1", (boolean)false) == 0)) {
-                return object2;
+                return (IPSSysDevUser)object2;
             }
             if (StringHelper.compare((String)PSCoreSysModel.getStudioVer(), (String)"S0600", (boolean)false) == 0 && (StringHelper.isNullOrEmpty((String)((PSDevUserBase)object2).getStudioVer()) || StringHelper.compare((String)((PSDevUserBase)object2).getStudioVer(), (String)"S0600", (boolean)false) == 0 || StringHelper.compare((String)((PSDevUserBase)object2).getStudioVer(), (String)"S0600M1", (boolean)false) == 0)) {
-                return object2;
+                return (IPSSysDevUser)object2;
             }
             object = StudioVerCodeListModel.getInstance().getCodeListText(((PSDevUserBase)object2).getStudioVer(), true);
             throw new ErrorException(2, StringHelper.format((String)"\u5f00\u53d1\u7cfb\u7edf\u65e0\u6cd5\u6253\u5f00\uff0c\u9700\u8981Studio\u7248\u672c[%1$s]", (Object)object));
@@ -305,7 +305,7 @@ implements Serializable {
             PSDevSlnService pSDevSlnService = (PSDevSlnService)ServiceGlobal.getService(PSDevSlnService.class);
             PSDevSln pSDevSln = new PSDevSln();
             pSDevSln.setPSDevSlnId(string);
-            pSDevSlnService.get((IEntity)pSDevSln);
+            pSDevSlnService.get(pSDevSln);
             Timestamp timestamp = null;
             int n = 5;
             if (!PSCoreSysModel.isShareSysMode()) {
@@ -331,7 +331,7 @@ implements Serializable {
             if (((PSDevUserBase)serializable).isExpired()) {
                 throw new ErrorException(2, StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848\u5df2\u8fc7\u671f"));
             }
-            return serializable;
+            return (IPSSysDevUser)serializable;
         }
         return null;
     }
@@ -358,7 +358,7 @@ implements Serializable {
             PSDevSlnTemplService pSDevSlnTemplService = (PSDevSlnTemplService)ServiceGlobal.getService(PSDevSlnTemplService.class);
             PSDevSlnTempl pSDevSlnTempl = new PSDevSlnTempl();
             pSDevSlnTempl.setPSDevSlnTemplId(string);
-            pSDevSlnTemplService.get((IEntity)pSDevSlnTempl);
+            pSDevSlnTemplService.get(pSDevSlnTempl);
             Timestamp timestamp = null;
             int n = 5;
             if (!PSCoreSysModel.isShareSysMode()) {
@@ -385,7 +385,7 @@ implements Serializable {
             if (((PSDevUserBase)serializable).isExpired()) {
                 throw new ErrorException(2, StringHelper.format((String)"\u5f00\u53d1\u6a21\u677f\u5df2\u8fc7\u671f"));
             }
-            return serializable;
+            return (IPSSysDevUser)serializable;
         }
         return null;
     }
@@ -412,7 +412,7 @@ implements Serializable {
             PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class);
             PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
             pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(string);
-            pSDevSlnSysDynaInstService.get((IEntity)pSDevSlnSysDynaInst);
+            pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst);
             Timestamp timestamp = null;
             int n = 5;
             if (!PSCoreSysModel.isShareSysMode()) {
@@ -445,7 +445,7 @@ implements Serializable {
             if (((PSDevUserBase)object).isExpired()) {
                 throw new ErrorException(2, StringHelper.format((String)"\u52a8\u6001\u5b9e\u4f8b\u5df2\u8fc7\u671f"));
             }
-            return object;
+            return (IPSSysDevUser)object;
         }
         return null;
     }
@@ -499,7 +499,7 @@ implements Serializable {
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSDEVSLNID", (Object)string);
         selectCond.set("PSDEVUSEROBJID", (Object)string3);
-        ArrayList arrayList = pSDevSlnUserService.select((ISelectCond)selectCond);
+        ArrayList<PSDevSlnUser> arrayList = pSDevSlnUserService.select((ISelectCond)selectCond);
         if (arrayList.size() > 0) {
             for (PSDevSlnUser pSDevSlnUser : arrayList) {
                 if (pSDevSlnUser.getExpiredTime() != null && pSDevSlnUser.getExpiredTime().getTime() < System.currentTimeMillis() || pSDevSlnUser.getAllSysFlag() == null || pSDevSlnUser.getAccMode() == null) continue;
@@ -542,4 +542,3 @@ implements Serializable {
         return n2;
     }
 }
-

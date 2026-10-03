@@ -137,9 +137,9 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
             PSDESPCode pSDESPCode = (PSDESPCode)iService.getDEModel().createEntity();
             pSDESPCode.set("PSDESPCODEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDESPCode);
+                iService.getTemp(pSDESPCode);
             } else {
-                iService.get((IEntity)pSDESPCode);
+                iService.get(pSDESPCode);
             }
             this.onFillParentInfo_Psdespcode(pSDESPCodePart, pSDESPCode);
             return;
@@ -149,14 +149,14 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
             PSDESysProc pSDESysProc = (PSDESysProc)iService.getDEModel().createEntity();
             pSDESysProc.set("PSDESYSPROCID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDESysProc);
+                iService.getTemp(pSDESysProc);
             } else {
-                iService.get((IEntity)pSDESysProc);
+                iService.get(pSDESysProc);
             }
             this.onFillParentInfo_Psdesysproc(pSDESPCodePart, pSDESysProc);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDESPCodePart, string, string2, string3);
+        super.onFillParentInfo(pSDESPCodePart, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDESPCodePart, bl);
+        super.onFillEntityFullInfo(pSDESPCodePart, bl);
         this.onFillEntityFullInfo_Psdespcode(pSDESPCodePart, bl);
         this.onFillEntityFullInfo_Psdesysproc(pSDESPCodePart, bl);
     }
@@ -209,7 +209,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
     }
 
     protected void onWriteBackParent(PSDESPCodePart pSDESPCodePart, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDESPCodePart, bl);
+        super.onWriteBackParent(pSDESPCodePart, bl);
     }
 
     public ArrayList<PSDESPCodePart> selectByPsdespcode(PSDESPCodeBase pSDESPCodeBase) throws Exception {
@@ -292,7 +292,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
         ArrayList<PSDESPCodePart> arrayList = this.selectByPsdespcode(pSDESPCode);
         this.onBeforeRemoveByPsdespcode(pSDESPCode, arrayList);
         for (PSDESPCodePart pSDESPCodePart : arrayList) {
-            this.remove((IEntity)pSDESPCodePart);
+            this.remove(pSDESPCodePart);
         }
         this.onAfterRemoveByPsdespcode(pSDESPCode, arrayList);
     }
@@ -338,7 +338,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
         ArrayList<PSDESPCodePart> arrayList = this.selectByPsdesysproc(pSDESysProc);
         this.onBeforeRemoveByPsdesysproc(pSDESysProc, arrayList);
         for (PSDESPCodePart pSDESPCodePart : arrayList) {
-            this.remove((IEntity)pSDESPCodePart);
+            this.remove(pSDESPCodePart);
         }
         this.onAfterRemoveByPsdesysproc(pSDESysProc, arrayList);
     }
@@ -359,7 +359,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
 
     protected void replaceParentInfo(PSDESPCodePart pSDESPCodePart, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDESPCodePart, cloneSession);
+        super.replaceParentInfo(pSDESPCodePart, cloneSession);
         if (pSDESPCodePart.getPSDESPCodeId() != null && (iEntity = cloneSession.getEntity("PSDESPCODE", (Object)pSDESPCodePart.getPSDESPCodeId())) != null) {
             this.onFillParentInfo_Psdespcode(pSDESPCodePart, (PSDESPCode)iEntity);
         }
@@ -369,7 +369,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDESPCodePart pSDESPCodePart, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDESPCodePart, bl);
+        super.onRemoveEntityUncopyValues(pSDESPCodePart, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDESPCodePart pSDESPCodePart, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -405,7 +405,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
         if ((entityFieldError = this.onCheckField_PSDESysProcName(bl, pSDESPCodePart, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDESPCodePart, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDESPCodePart, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodePART(boolean bl, PSDESPCodePart pSDESPCodePart, boolean bl2, boolean bl3) throws Exception {
@@ -421,7 +421,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodePART_Default((IEntity)pSDESPCodePart, bl2, bl3);
+            string2 = this.onTestValueRule_CodePART_Default(pSDESPCodePart, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODEPART");
@@ -446,7 +446,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_DangerCode_Default((IEntity)pSDESPCodePart, bl2, bl3);
+            string = this.onTestValueRule_DangerCode_Default(pSDESPCodePart, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DANGERCODE");
@@ -468,7 +468,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDESPCodePart, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDESPCodePart, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -493,7 +493,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSDESPCodePart, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSDESPCodePart, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -518,7 +518,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDESPCodeId_Default((IEntity)pSDESPCodePart, bl2, bl3);
+            string2 = this.onTestValueRule_PSDESPCodeId_Default(pSDESPCodePart, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESPCODEID");
@@ -543,7 +543,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDESPCodeName_Default((IEntity)pSDESPCodePart, bl2, bl3);
+            string2 = this.onTestValueRule_PSDESPCodeName_Default(pSDESPCodePart, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESPCODENAME");
@@ -568,7 +568,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDESPCodePartId_Default((IEntity)pSDESPCodePart, bl2, bl3);
+            string2 = this.onTestValueRule_PSDESPCodePartId_Default(pSDESPCodePart, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESPCODEPARTID");
@@ -593,7 +593,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDESPCodePartName_Default((IEntity)pSDESPCodePart, bl2, bl3);
+            string2 = this.onTestValueRule_PSDESPCodePartName_Default(pSDESPCodePart, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESPCODEPARTNAME");
@@ -618,7 +618,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDESysProcId_Default((IEntity)pSDESPCodePart, bl2, bl3);
+            string2 = this.onTestValueRule_PSDESysProcId_Default(pSDESPCodePart, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESYSPROCID");
@@ -643,7 +643,7 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDESysProcName_Default((IEntity)pSDESPCodePart, bl2, bl3);
+            string2 = this.onTestValueRule_PSDESysProcName_Default(pSDESPCodePart, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESYSPROCNAME");
@@ -656,11 +656,11 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
     }
 
     protected void onSyncEntity(PSDESPCodePart pSDESPCodePart, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDESPCodePart, bl);
+        super.onSyncEntity(pSDESPCodePart, bl);
     }
 
     protected void onSyncIndexEntities(PSDESPCodePart pSDESPCodePart, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDESPCodePart, bl);
+        super.onSyncIndexEntities(pSDESPCodePart, bl);
     }
 
     public Object getDataContextValue(PSDESPCodePart pSDESPCodePart, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -668,14 +668,14 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDESPCodePart, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDESPCodePart, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDESPCodePart pSDESPCodePart, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDESPCodePart, arrayList, n);
+        super.onExportMajorModel(pSDESPCodePart, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -862,14 +862,14 @@ extends PSCoreSysServiceBase<PSDESPCodePart> {
 
     protected boolean onMergeChild(String string, String string2, PSDESPCodePart pSDESPCodePart) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDESPCodePart)) {
+        if (super.onMergeChild(string, string2, pSDESPCodePart)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDESPCodePart pSDESPCodePart) throws Exception {
-        super.onUpdateParent((IEntity)pSDESPCodePart);
+        super.onUpdateParent(pSDESPCodePart);
     }
 
     @Override

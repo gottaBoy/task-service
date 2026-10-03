@@ -1,19 +1,51 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.list;
 
-import net.ibizsys.model.control.list.IPSDEList;
-import net.ibizsys.model.control.list.IPSListItem;
 
-public interface IPSDEListItem
-extends IPSListItem {
-    public IPSDEList getPSDEList();
 
-    public int getWidth();
+/**
+ * 实体列表项对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDEListItem extends IPSListItem
+{
 
-    public String getDataItemName();
+	
+	
+	/**
+	 * 获取实体列表
+	 * @return
+	 */
+	IPSDEList getPSDEList();
+	
+	
 
-    public String getValueFormat();
+	/**
+	 * 获取宽度
+	 * @return
+	 */
+	int getWidth();
+	
+	
+	
+	
+	
+	/**
+	 * 获取数据项名称
+	 * @return
+	 */
+	String getDataItemName();
+	
+	
+	
+	/**
+	 * 获取值格式化
+	 * @return
+	 */
+	String getValueFormat();
+
+	
+	
+
+	
 }
-

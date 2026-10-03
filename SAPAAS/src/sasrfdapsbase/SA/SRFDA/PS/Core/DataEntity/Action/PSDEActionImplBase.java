@@ -541,7 +541,7 @@ IPSModelSortable {
     }
 
     protected void preparePSDEActionParams() throws Exception {
-        Object iPSDEActionParam;
+        IPSDEActionParam iPSDEActionParam;
         if (this.psDEActionParamList == null) {
             this.psDEActionParamList = new ArrayList();
         } else {
@@ -1318,4 +1318,3 @@ IPSModelSortable {
         return this.bNeedResourceKeyDefined;
     }
 }
-

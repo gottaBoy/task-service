@@ -108,7 +108,7 @@ extends PSSysPFPITemplServiceBase {
     }
 
     protected CallResult internalGet(PSSysPFPITempl pSSysPFPITempl, boolean bl) throws Exception {
-        CallResult callResult = super.internalGet((IEntity)pSSysPFPITempl, bl);
+        CallResult callResult = super.internalGet(pSSysPFPITempl, bl);
         if (callResult.isOk()) {
             if (!StringHelper.isNullOrEmpty((String)pSSysPFPITempl.getTemplCode2Ex())) {
                 pSSysPFPITempl.setTemplCode2(pSSysPFPITempl.getTemplCode2Ex());

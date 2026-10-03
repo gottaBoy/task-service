@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSSysLanResDEModelBase;
 
 public class PSSysLanResDEModel
 extends PSSysLanResDEModelBase {
+
+    public PSSysLanResDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

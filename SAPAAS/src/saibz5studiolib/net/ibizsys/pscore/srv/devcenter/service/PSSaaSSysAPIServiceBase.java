@@ -137,14 +137,14 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
             PSSaaSSysVer pSSaaSSysVer = (PSSaaSSysVer)iService.getDEModel().createEntity();
             pSSaaSSysVer.set("PSSAASSYSVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSaaSSysVer);
+                iService.getTemp(pSSaaSSysVer);
             } else {
-                iService.get((IEntity)pSSaaSSysVer);
+                iService.get(pSSaaSSysVer);
             }
             this.onFillParentInfo_PSSaaSSysVer(pSSaaSSysAPI, pSSaaSSysVer);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSaaSSysAPI, string, string2, string3);
+        super.onFillParentInfo(pSSaaSSysAPI, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -160,7 +160,7 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSaaSSysAPI, bl);
+        super.onFillEntityFullInfo(pSSaaSSysAPI, bl);
         this.onFillEntityFullInfo_PSSaaSSysVer(pSSaaSSysAPI, bl);
     }
 
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
     }
 
     protected void onWriteBackParent(PSSaaSSysAPI pSSaaSSysAPI, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSaaSSysAPI, bl);
+        super.onWriteBackParent(pSSaaSSysAPI, bl);
     }
 
     public ArrayList<PSSaaSSysAPI> selectByPSSaaSSysVer(PSSaaSSysVerBase pSSaaSSysVerBase) throws Exception {
@@ -199,8 +199,8 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
         ArrayList<PSSaaSSysAPI> arrayList = this.selectByPSSaaSSysVer(pSSaaSSysVer, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSAASSYSVER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSaaSSysVer);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSAASSYSAPI_PSSAASSYSVER_PSSAASSYSVERID", "", iDataEntityModel.getName(), "PSSAASSYSAPI", iDataEntityModel.getDataInfo((IEntity)pSSaaSSysVer), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSaaSSysVer);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSAASSYSAPI_PSSAASSYSVER_PSSAASSYSVERID", "", iDataEntityModel.getName(), "PSSAASSYSAPI", iDataEntityModel.getDataInfo(pSSaaSSysVer), arrayList.get(0)));
         }
     }
 
@@ -233,7 +233,7 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
         ArrayList<PSSaaSSysAPI> arrayList = this.selectByPSSaaSSysVer(pSSaaSSysVer);
         this.onBeforeRemoveByPSSaaSSysVer(pSSaaSSysVer, arrayList);
         for (PSSaaSSysAPI pSSaaSSysAPI : arrayList) {
-            this.remove((IEntity)pSSaaSSysAPI);
+            this.remove(pSSaaSSysAPI);
         }
         this.onAfterRemoveByPSSaaSSysVer(pSSaaSSysVer, arrayList);
     }
@@ -254,14 +254,14 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
 
     protected void replaceParentInfo(PSSaaSSysAPI pSSaaSSysAPI, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSaaSSysAPI, cloneSession);
+        super.replaceParentInfo(pSSaaSSysAPI, cloneSession);
         if (pSSaaSSysAPI.getPSSaaSSysVerId() != null && (iEntity = cloneSession.getEntity("PSSAASSYSVER", (Object)pSSaaSSysAPI.getPSSaaSSysVerId())) != null) {
             this.onFillParentInfo_PSSaaSSysVer(pSSaaSSysAPI, (PSSaaSSysVer)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSaaSSysAPI pSSaaSSysAPI, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSaaSSysAPI, bl);
+        super.onRemoveEntityUncopyValues(pSSaaSSysAPI, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSaaSSysAPI pSSaaSSysAPI, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -276,7 +276,7 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
         if ((entityFieldError = this.onCheckField_PSSaaSSysVerId(bl, pSSaaSSysAPI, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSaaSSysAPI, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSaaSSysAPI, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSSaaSSysAPIId(boolean bl, PSSaaSSysAPI pSSaaSSysAPI, boolean bl2, boolean bl3) throws Exception {
@@ -292,7 +292,7 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSaaSSysAPIId_Default((IEntity)pSSaaSSysAPI, bl2, bl3);
+            string2 = this.onTestValueRule_PSSaaSSysAPIId_Default(pSSaaSSysAPI, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSAASSYSAPIID");
@@ -317,7 +317,7 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSaaSSysAPIName_Default((IEntity)pSSaaSSysAPI, bl2, bl3);
+            string2 = this.onTestValueRule_PSSaaSSysAPIName_Default(pSSaaSSysAPI, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSAASSYSAPINAME");
@@ -342,7 +342,7 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSaaSSysVerId_Default((IEntity)pSSaaSSysAPI, bl2, bl3);
+            string2 = this.onTestValueRule_PSSaaSSysVerId_Default(pSSaaSSysAPI, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSAASSYSVERID");
@@ -355,11 +355,11 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
     }
 
     protected void onSyncEntity(PSSaaSSysAPI pSSaaSSysAPI, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSaaSSysAPI, bl);
+        super.onSyncEntity(pSSaaSSysAPI, bl);
     }
 
     protected void onSyncIndexEntities(PSSaaSSysAPI pSSaaSSysAPI, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSaaSSysAPI, bl);
+        super.onSyncIndexEntities(pSSaaSSysAPI, bl);
     }
 
     public Object getDataContextValue(PSSaaSSysAPI pSSaaSSysAPI, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -367,7 +367,7 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSaaSSysAPI, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSaaSSysAPI, string, iDataContextParam)) != null) {
             return object;
         }
         PSSaaSSysVer pSSaaSSysVer = pSSaaSSysAPI.getPSSaaSSysVer();
@@ -378,7 +378,7 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
     }
 
     protected void onExportMajorModel(PSSaaSSysAPI pSSaaSSysAPI, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSaaSSysAPI, arrayList, n);
+        super.onExportMajorModel(pSSaaSSysAPI, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -491,14 +491,14 @@ extends PSCoreSysServiceBase<PSSaaSSysAPI> {
 
     protected boolean onMergeChild(String string, String string2, PSSaaSSysAPI pSSaaSSysAPI) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSaaSSysAPI)) {
+        if (super.onMergeChild(string, string2, pSSaaSSysAPI)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSaaSSysAPI pSSaaSSysAPI) throws Exception {
-        super.onUpdateParent((IEntity)pSSaaSSysAPI);
+        super.onUpdateParent(pSSaaSSysAPI);
     }
 
     @Override

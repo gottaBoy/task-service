@@ -1,14 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app.view;
 
-import net.ibizsys.model.app.view.IPSAppDEView;
-import net.ibizsys.model.app.view.IPSAppRedirectView;
-
-public interface IPSAppDERedirectView
-extends IPSAppRedirectView,
-IPSAppDEView {
-    public boolean isEnableWorkflow();
+/**
+ * 应用实体重定向视图对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSAppDERedirectView extends IPSAppRedirectView,IPSAppDEView
+{
+	/**
+	 * 支持工作流
+	 * @return
+	 */
+	boolean isEnableWorkflow();
 }
-

@@ -1,43 +1,103 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFLinkModel
- */
 package net.ibizsys.model.wf;
 
 import net.ibizsys.model.core.IPSModelObject;
 import net.ibizsys.model.res.IPSLanguageRes;
-import net.ibizsys.model.wf.IPSWFLinkGroupCond;
-import net.ibizsys.model.wf.IPSWFProcess;
-import net.ibizsys.model.wf.IPSWFVersion;
 import net.ibizsys.pswf.core.IWFLinkModel;
 
-public interface IPSWFLink
-extends IPSModelObject,
-IWFLinkModel {
-    public static final String WFLINKTYPE_TIMEOUT = "TIMEOUT";
-    public static final String WFLINKTYPE_IAACTION = "IAACTION";
-    public static final String WFLINKTYPE_ROUTE = "ROUTE";
 
-    public IPSWFLinkGroupCond getPSWFLinkGroupCond();
+/**
+ * 工作流处理连接对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSWFLink extends IPSModelObject, IWFLinkModel {
+	/**
+	 * 工作流连接类型：超时连接
+	 */
+	public final static String WFLINKTYPE_TIMEOUT = "TIMEOUT";
 
-    public IPSWFProcess getToPSWFProcess() throws Exception;
+	/**
+	 * 工作流连接类型：交互连接
+	 */
+	public final static String WFLINKTYPE_IAACTION = "IAACTION";
 
-    public IPSWFProcess getFromPSWFProcess() throws Exception;
+	/**
+	 * 工作流连接类型：常规连接
+	 */
+	public final static String WFLINKTYPE_ROUTE = "ROUTE";
 
-    public IPSWFVersion getPSWFVersion();
+	
 
-    public String getWFLinkType();
+	/**
+	 * 获取连接条件对象
+	 * 
+	 * @return
+	 */
+	IPSWFLinkGroupCond getPSWFLinkGroupCond();
 
-    public String getLogicName();
+	/**
+	 * 获取目标处理对象
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	IPSWFProcess getToPSWFProcess() throws Exception;
 
-    public String getMemoField();
+	/**
+	 * 获取源处理对象
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	IPSWFProcess getFromPSWFProcess() throws Exception;
 
-    public IPSLanguageRes getLNPSLanguageRes();
+	/**
+	 * 获取工作流版本对象
+	 */
+	IPSWFVersion getPSWFVersion();
 
-    public boolean isEnableCustomCond();
+	/**
+	 * 获取连接类型，值参考 SA.SRFDA.PS.Core.WF.IPSWFLink.WFLINKTYPE_XXX 定义
+	 * 
+	 * @return
+	 */
+	String getWFLinkType();
 
-    public String getCustomCond();
+	/**
+	 * 获取连接的逻辑名称
+	 * 
+	 * @return
+	 */
+	String getLogicName();
+
+	/**
+	 * 处理意见字段
+	 * 
+	 * @return
+	 */
+	String getMemoField();
+
+	/**
+	 * 获取逻辑名称语言资源对象
+	 * 
+	 * @return
+	 */
+	IPSLanguageRes getLNPSLanguageRes();
+	
+	
+	
+	/**
+	 * 是否启用自定义条件
+	 * @return
+	 */
+	boolean isEnableCustomCond();
+	
+	
+	
+	/**
+	 * 获取自定义条件
+	 * @return
+	 */
+	String getCustomCond();
 }
-

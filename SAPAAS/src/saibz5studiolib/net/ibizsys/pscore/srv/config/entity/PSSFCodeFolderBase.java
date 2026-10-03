@@ -1413,7 +1413,7 @@ implements Serializable {
                 PSSFStylePrj pSSFStylePrj = new PSSFStylePrj();
                 pSSFStylePrj.setPSSFStylePrjId(this.getPSSFStylePrjId());
                 PSSFStylePrjService pSSFStylePrjService = (PSSFStylePrjService)ServiceGlobal.getService(PSSFStylePrjService.class, (SessionFactory)this.getSessionFactory());
-                pSSFStylePrjService.autoGet((IEntity)pSSFStylePrj);
+                pSSFStylePrjService.autoGet(pSSFStylePrj);
                 this.pssfstyleprj = pSSFStylePrj;
             }
             return this.pssfstyleprj;
@@ -1439,7 +1439,7 @@ implements Serializable {
                 PSSFStyle pSSFStyle = new PSSFStyle();
                 pSSFStyle.setPSSFStyleId(this.getPSSFStyleId());
                 PSSFStyleService pSSFStyleService = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.getSessionFactory());
-                pSSFStyleService.autoGet((IEntity)pSSFStyle);
+                pSSFStyleService.autoGet(pSSFStyle);
                 this.pssfstyle = pSSFStyle;
             }
             return this.pssfstyle;

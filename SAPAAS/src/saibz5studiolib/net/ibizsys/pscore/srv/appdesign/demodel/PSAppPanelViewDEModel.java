@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSAppPanelViewDEModelBase;
 
 public class PSAppPanelViewDEModel
 extends PSAppPanelViewDEModelBase {
+
+    public PSAppPanelViewDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

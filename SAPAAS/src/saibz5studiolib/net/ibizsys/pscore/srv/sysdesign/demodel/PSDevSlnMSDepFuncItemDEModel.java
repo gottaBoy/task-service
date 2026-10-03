@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSDevSlnMSDepFuncItemDEModelBase
 
 public class PSDevSlnMSDepFuncItemDEModel
 extends PSDevSlnMSDepFuncItemDEModelBase {
+
+    public PSDevSlnMSDepFuncItemDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

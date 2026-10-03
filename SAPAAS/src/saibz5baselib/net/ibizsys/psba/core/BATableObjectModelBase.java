@@ -1,24 +1,32 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import net.ibizsys.psba.core.BAModelBase;
-import net.ibizsys.psba.core.IBATable;
-import net.ibizsys.psba.core.IBATableObject;
+/**
+ * 大数据表相关模型对象基类
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class BATableObjectModelBase extends BAModelBase implements IBATableObject {
 
-public abstract class BATableObjectModelBase
-extends BAModelBase
-implements IBATableObject {
-    private IBATable iBATable = null;
+	private IBATable iBATable = null;
 
-    protected void setBATable(IBATable iBATable) {
-        this.iBATable = iBATable;
-    }
+	/**
+	 * 设置大数据表对象
+	 * 
+	 * @param iBATable
+	 */
+	protected void setBATable(IBATable iBATable) {
+		this.iBATable = iBATable;
+	}
 
-    @Override
-    public IBATable getBATable() {
-        return this.iBATable;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.psba.core.IBATableObject#getBATable()
+	 */
+	@Override
+	public IBATable getBATable() {
+		return this.iBATable;
+	}
+
 }
-

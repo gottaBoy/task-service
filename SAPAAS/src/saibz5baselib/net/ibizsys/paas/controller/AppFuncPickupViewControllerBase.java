@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.AppUtilViewControllerBase;
+/**
+ * 应用功能选择视图控制器基类
+ * @author Administrator
+ *
+ */
+public abstract class AppFuncPickupViewControllerBase extends AppUtilViewControllerBase {
 
-public abstract class AppFuncPickupViewControllerBase
-extends AppUtilViewControllerBase {
+	public AppFuncPickupViewControllerBase() throws Exception {
+		super();
+	}
 }
-

@@ -1274,7 +1274,7 @@ implements Serializable {
                 PSDevCenterDBInst pSDevCenterDBInst = new PSDevCenterDBInst();
                 pSDevCenterDBInst.setPSDevCenterDBInstId(this.getPSDevCenterDBInstId());
                 PSDevCenterDBInstService pSDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterDBInstService.autoGet((IEntity)pSDevCenterDBInst);
+                pSDevCenterDBInstService.autoGet(pSDevCenterDBInst);
                 this.psdevcenterdbinst = pSDevCenterDBInst;
             }
             return this.psdevcenterdbinst;
@@ -1300,7 +1300,7 @@ implements Serializable {
                 PSDevCenterDBInst pSDevCenterDBInst = new PSDevCenterDBInst();
                 pSDevCenterDBInst.setPSDevCenterDBInstId(this.getSamplePSDCDBInstId());
                 PSDevCenterDBInstService pSDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterDBInstService.autoGet((IEntity)pSDevCenterDBInst);
+                pSDevCenterDBInstService.autoGet(pSDevCenterDBInst);
                 this.samplepsdcdbinst = pSDevCenterDBInst;
             }
             return this.samplepsdcdbinst;
@@ -1326,7 +1326,7 @@ implements Serializable {
                 PSSaaSSysVer pSSaaSSysVer = new PSSaaSSysVer();
                 pSSaaSSysVer.setPSSaaSSysVerId(this.getPSSaaSSysVerId());
                 PSSaaSSysVerService pSSaaSSysVerService = (PSSaaSSysVerService)ServiceGlobal.getService(PSSaaSSysVerService.class, (SessionFactory)this.getSessionFactory());
-                pSSaaSSysVerService.autoGet((IEntity)pSSaaSSysVer);
+                pSSaaSSysVerService.autoGet(pSSaaSSysVer);
                 this.pssaassysver = pSSaaSSysVer;
             }
             return this.pssaassysver;

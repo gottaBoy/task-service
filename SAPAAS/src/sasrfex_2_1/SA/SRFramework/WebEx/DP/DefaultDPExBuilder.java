@@ -603,7 +603,7 @@ extends DPExBuilder {
             iFormItem = (ISRFExFormItem)((Object)control);
         }
         if (iFormItem != null) {
-            Vector focusItems = new Vector();
+            Vector<String> focusItems = new Vector<String>();
             iFormItem.GetFocusItemIds(focusItems);
             for (String strFocusItem : focusItems) {
                 JSONObject obj = new JSONObject();
@@ -831,4 +831,3 @@ extends DPExBuilder {
         super.OnReset();
     }
 }
-

@@ -348,9 +348,9 @@ public class SRFWFService {
             result.addAttribute("processname", processConfig.getName(), omNs);
             result.addAttribute("version", processConfig.GetExtValue("VERSION", "1"), omNs);
             result.addAttribute("usertag", processConfig.GetExtValue("USERTAG", ""), omNs);
-            Iterator<WFAction> iterator = processConfig.getIAActionsConfig().iterator();
+            Iterator<WFInteractiveActionConfig> iterator = processConfig.getIAActionsConfig().iterator();
             while (iterator.hasNext()) {
-                WFInteractiveActionConfig iaActionConfig = (WFInteractiveActionConfig)((Object)iterator.next());
+                WFInteractiveActionConfig iaActionConfig = iterator.next();
                 XMLStreamReader reader = BeanUtil.getPullParser((Object)((Object)iaActionConfig));
                 StreamWrapper parser = new StreamWrapper(reader);
                 StAXOMBuilder stAXOMBuilder = OMXMLBuilderFactory.createStAXOMBuilder((OMFactory)OMAbstractFactory.getOMFactory(), (XMLStreamReader)parser);

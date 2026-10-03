@@ -158,10 +158,10 @@ implements IPSDEGroupService {
 
     @Override
     protected List<PSDEGroup> onListAll() throws Exception {
-        List pssystems;
-        List psmodules;
+        List<PSSystem> pssystems;
+        List<PSModule> psmodules;
         ArrayList<PSDEGroup> list = new ArrayList<PSDEGroup>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEGroup> items = this.listByPSDataEntity(parent);

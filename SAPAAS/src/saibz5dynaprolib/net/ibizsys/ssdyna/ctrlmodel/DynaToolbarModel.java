@@ -1,14 +1,21 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.ctrlmodel;
 
-import net.ibizsys.ssdyna.ctrlmodel.DynaCtrlModelBase;
+import net.ibizsys.paas.control.ControlTypes;
 
-public class DynaToolbarModel
-extends DynaCtrlModelBase {
-    public String getControlType() {
-        return "TOOLBAR";
-    }
+/**
+ * 动态工具栏模型对象
+ * 
+ * @author Administrator
+ *
+ */
+public class DynaToolbarModel extends DynaCtrlModelBase {
+
+	
+	@Override
+	public String getControlType() {
+		return ControlTypes.Toolbar;
+	}
+
+	
+	
 }
-

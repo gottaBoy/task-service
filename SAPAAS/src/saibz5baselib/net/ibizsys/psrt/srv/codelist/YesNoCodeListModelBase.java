@@ -1,29 +1,50 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
-import net.ibizsys.paas.codelist.ICodeList;
-import net.ibizsys.paas.sysmodel.CodeListGlobal;
 import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
+import net.ibizsys.paas.sysmodel.CodeListGlobal;
 
-@CodeList(id="b8982bfa9b13923e7d40ec10a8948a7d", name="\u662f\u5426", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="1", text="\u662f", realtext="\u662f"), @CodeItem(value="0", text="\u5426", realtext="\u5426")})
-public abstract class YesNoCodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String ITEM_1 = "1";
-    public static final String ITEM_0 = "0";
+
+@CodeList(id="b8982bfa9b13923e7d40ec10a8948a7d",name="是否",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="1",text="是",realtext="是")
+    ,@CodeItem(value="0",text="否",realtext="否")
+})
+
+
+/**
+ * 静态代码表[是否]模型基类
+ */
+public abstract class YesNoCodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  是，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_1 = "1";
+    /**
+     *  否，注意：值为对象值，不能直接用于 == 比较
+     */
+    public final static String ITEM_0 = "0";
 
     public YesNoCodeListModelBase() {
+        super();
         this.initAnnotation(YesNoCodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.YesNoCodeListModel", this);
     }
 
-    public static ICodeList getInstance() throws Exception {
+    /**
+     * 获取当前代码表对象实例
+     */
+    public static net.ibizsys.paas.codelist.ICodeList getInstance() throws Exception {
         return CodeListGlobal.getCodeList("net.ibizsys.psrt.srv.codelist.YesNoCodeListModel");
     }
-}
 
+}

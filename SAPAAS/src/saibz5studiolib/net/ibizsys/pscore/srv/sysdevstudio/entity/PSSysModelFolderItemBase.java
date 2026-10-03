@@ -1901,7 +1901,7 @@ implements Serializable {
                 PSSysModelFolder pSSysModelFolder = new PSSysModelFolder();
                 pSSysModelFolder.setPSSysModelFolderId(this.getPSSysModelFolderId());
                 PSSysModelFolderService pSSysModelFolderService = (PSSysModelFolderService)ServiceGlobal.getService(PSSysModelFolderService.class, (SessionFactory)this.getSessionFactory());
-                pSSysModelFolderService.autoGet((IEntity)pSSysModelFolder);
+                pSSysModelFolderService.autoGet(pSSysModelFolder);
                 this.pssysmodelfolder = pSSysModelFolder;
             }
             return this.pssysmodelfolder;

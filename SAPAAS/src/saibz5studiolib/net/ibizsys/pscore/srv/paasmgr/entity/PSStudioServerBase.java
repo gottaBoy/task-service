@@ -1779,7 +1779,7 @@ implements Serializable {
                 PSCorePrdVer pSCorePrdVer = new PSCorePrdVer();
                 pSCorePrdVer.setPSCorePrdVerId(this.getPSCorePrdVerId());
                 PSCorePrdVerService pSCorePrdVerService = (PSCorePrdVerService)ServiceGlobal.getService(PSCorePrdVerService.class, (SessionFactory)this.getSessionFactory());
-                pSCorePrdVerService.autoGet((IEntity)pSCorePrdVer);
+                pSCorePrdVerService.autoGet(pSCorePrdVer);
                 this.pscoreprdver = pSCorePrdVer;
             }
             return this.pscoreprdver;
@@ -1805,7 +1805,7 @@ implements Serializable {
                 PSCorePrd pSCorePrd = new PSCorePrd();
                 pSCorePrd.setPSCorePrdId(this.getPSCorePrdId());
                 PSCorePrdService pSCorePrdService = (PSCorePrdService)ServiceGlobal.getService(PSCorePrdService.class, (SessionFactory)this.getSessionFactory());
-                pSCorePrdService.autoGet((IEntity)pSCorePrd);
+                pSCorePrdService.autoGet(pSCorePrd);
                 this.pscoreprd = pSCorePrd;
             }
             return this.pscoreprd;
@@ -1831,7 +1831,7 @@ implements Serializable {
                 PSStudioServerGrp pSStudioServerGrp = new PSStudioServerGrp();
                 pSStudioServerGrp.setPSStudioServerGrpId(this.getPSStudioServerGrpId());
                 PSStudioServerGrpService pSStudioServerGrpService = (PSStudioServerGrpService)ServiceGlobal.getService(PSStudioServerGrpService.class, (SessionFactory)this.getSessionFactory());
-                pSStudioServerGrpService.autoGet((IEntity)pSStudioServerGrp);
+                pSStudioServerGrpService.autoGet(pSStudioServerGrp);
                 this.psstudioservergrp = pSStudioServerGrp;
             }
             return this.psstudioservergrp;
@@ -1857,7 +1857,7 @@ implements Serializable {
                 PSSvrDomain pSSvrDomain = new PSSvrDomain();
                 pSSvrDomain.setPSSvrDomainId(this.getPSSvrDomainId());
                 PSSvrDomainService pSSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrDomainService.autoGet((IEntity)pSSvrDomain);
+                pSSvrDomainService.autoGet(pSSvrDomain);
                 this.pssvrdomain = pSSvrDomain;
             }
             return this.pssvrdomain;

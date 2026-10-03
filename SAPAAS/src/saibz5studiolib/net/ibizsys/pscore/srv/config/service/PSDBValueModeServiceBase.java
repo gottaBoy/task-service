@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDBValueMode> {
     }
 
     protected void onFillParentInfo(PSDBValueMode pSDBValueMode, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDBValueMode, string, string2, string3);
+        super.onFillParentInfo(pSDBValueMode, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDBValueMode> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDBValueMode, bl);
+        super.onFillEntityFullInfo(pSDBValueMode, bl);
     }
 
     protected void onWriteBackParent(PSDBValueMode pSDBValueMode, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDBValueMode, bl);
+        super.onWriteBackParent(pSDBValueMode, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDBValueMode> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDBValueMode pSDBValueMode, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDBValueMode, bl);
+        super.onRemoveEntityUncopyValues(pSDBValueMode, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDBValueMode pSDBValueMode, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -155,7 +155,7 @@ extends PSCoreSysServiceBase<PSDBValueMode> {
         if ((entityFieldError = this.onCheckField_PSDBValueModeName(bl, pSDBValueMode, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDBValueMode, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDBValueMode, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSDBValueMode pSDBValueMode, boolean bl2, boolean bl3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSDBValueMode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDBValueMode, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDBValueMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSDBValueMode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDBValueModeId_Default((IEntity)pSDBValueMode, bl2, bl3);
+            string2 = this.onTestValueRule_PSDBValueModeId_Default(pSDBValueMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDBVALUEMODEID");
@@ -218,7 +218,7 @@ extends PSCoreSysServiceBase<PSDBValueMode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDBValueModeName_Default((IEntity)pSDBValueMode, bl2, bl3);
+            string2 = this.onTestValueRule_PSDBValueModeName_Default(pSDBValueMode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDBVALUEMODENAME");
@@ -231,11 +231,11 @@ extends PSCoreSysServiceBase<PSDBValueMode> {
     }
 
     protected void onSyncEntity(PSDBValueMode pSDBValueMode, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDBValueMode, bl);
+        super.onSyncEntity(pSDBValueMode, bl);
     }
 
     protected void onSyncIndexEntities(PSDBValueMode pSDBValueMode, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDBValueMode, bl);
+        super.onSyncIndexEntities(pSDBValueMode, bl);
     }
 
     public Object getDataContextValue(PSDBValueMode pSDBValueMode, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -243,14 +243,14 @@ extends PSCoreSysServiceBase<PSDBValueMode> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDBValueMode, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDBValueMode, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDBValueMode pSDBValueMode, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDBValueMode, arrayList, n);
+        super.onExportMajorModel(pSDBValueMode, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -348,14 +348,14 @@ extends PSCoreSysServiceBase<PSDBValueMode> {
 
     protected boolean onMergeChild(String string, String string2, PSDBValueMode pSDBValueMode) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDBValueMode)) {
+        if (super.onMergeChild(string, string2, pSDBValueMode)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDBValueMode pSDBValueMode) throws Exception {
-        super.onUpdateParent((IEntity)pSDBValueMode);
+        super.onUpdateParent(pSDBValueMode);
     }
 
     @Override

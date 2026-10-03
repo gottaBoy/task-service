@@ -103,7 +103,7 @@ extends SRFDAPage {
             callParamList.Add(dataEntity.GetParamValue(this.getDEHelper().GetKeyDEFHelper().getName()));
             callParamList.Add((Object)this.getDEHelper().getId());
             callParamList.Add((Object)strWFId);
-            Vector wfStepDatas = new Vector();
+            Vector<BaseDataEntity> wfStepDatas = new Vector<BaseDataEntity>();
             callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), (String)"", (String)SQL_WFSTEPDATA, (Vector)callParamList.GetList(), wfStepDatas, (String)"");
             if (callResult.IsError()) {
                 this.PageLog((Object)this, 1, StringHelper.Format((String)"\u83b7\u53d6\u7528\u6237\u6570\u636e[%1$s][%2$s]\u6d41\u7a0b\u6570\u636e\u5931\u8d25\uff0c%3$s", (Object)this.getDEHelper().getId(), (Object)strKeyData, (Object)callResult.getErrorInfo()));

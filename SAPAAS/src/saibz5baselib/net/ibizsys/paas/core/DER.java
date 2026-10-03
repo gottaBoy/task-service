@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import java.lang.annotation.Documented;
@@ -9,28 +6,83 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value={ElementType.TYPE})
-@Retention(value=RetentionPolicy.RUNTIME)
+/**
+ * 实体关系注解
+ * 
+ * @author Administrator
+ *
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DER {
-    public String id() default "";
+	/**
+	 * 关系标识
+	 * 
+	 * @return
+	 */
+	String id() default "";
 
-    public String name() default "";
+	/**
+	 * 关系名称
+	 * 
+	 * @return
+	 */
+	String name() default "";
 
-    public String type() default "";
+	/**
+	 * 类型
+	 * 
+	 * @return
+	 */
+	String type() default "";
 
-    public String majordeid() default "";
+	/**
+	 * 主实体标识
+	 * 
+	 * @return
+	 */
+	String majordeid() default "";
 
-    public String majordename() default "";
+	/**
+	 * 主实体名称
+	 * 
+	 * @return
+	 */
+	String majordename() default "";
 
-    public String minordeid() default "";
+	/**
+	 * 从实体标识
+	 * 
+	 * @return
+	 */
+	String minordeid() default "";
 
-    public String minordename() default "";
+	/**
+	 * 从实体名称
+	 * 
+	 * @return
+	 */
+	String minordename() default "";
 
-    public String pickupdefname() default "";
+	/**
+	 * 关系属性
+	 * 
+	 * @return
+	 */
+	String pickupdefname() default "";
 
-    public int masterrs() default 0;
+	/**
+	 * 主从关系
+	 * 
+	 * @return
+	 */
+	int masterrs() default 0;
 
-    public String indexvalue() default "";
+	/**
+	 * 索引值
+	 * 
+	 * @return
+	 */
+	String indexvalue() default "";
 }
-

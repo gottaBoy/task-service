@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.dynasys.demodel.dsdynacodelist.dataset;
 
-import net.ibizsys.psrt.srv.dynasys.demodel.dsdynacodelist.dataset.DSDynaCodeListDefaultDSModelBase;
+/**
+ *  实体数据集合[DEFAULT]模型
+ */
+public class DSDynaCodeListDefaultDSModel extends DSDynaCodeListDefaultDSModelBase {
 
-public class DSDynaCodeListDefaultDSModel
-extends DSDynaCodeListDefaultDSModelBase {
+    public DSDynaCodeListDefaultDSModel() {
+        super();
+    }
+
 }
-

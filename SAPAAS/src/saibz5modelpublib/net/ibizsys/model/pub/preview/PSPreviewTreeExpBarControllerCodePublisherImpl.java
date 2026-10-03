@@ -1,36 +1,51 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSTreeExpBar
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.preview;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.preview.PSPreviewExpBarControllerCodePublisherImpl;
 
-public class PSPreviewTreeExpBarControllerCodePublisherImpl
-extends PSPreviewExpBarControllerCodePublisherImpl {
-    protected IPSTreeExpBar iPSTreeExpBar;
+import SA.SRFDA.PS.Core.Control.ExpBar.IPSTreeExpBar;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
 
-    public PSPreviewTreeExpBarControllerCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSPreviewTreeExpBarControllerCodePublisherImpl is inconsistent\n\tIPSTreeExpBar cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSTreeExpBar cannot be resolved to a type\n\tIPSTreeExpBar cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() from the type PSPreviewExpBarControllerCodePublisherImpl refers to the missing type PSGenerateCodeResultImpl\n\tIPSTreeExpBar cannot be resolved to a type\n");
-    }
+/**
+ * 树导航栏控制代码
+ * @author Administrator
+ *
+ */
+public class PSPreviewTreeExpBarControllerCodePublisherImpl extends PSPreviewExpBarControllerCodePublisherImpl {
 
-    @Override
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSTreeExpBar cannot be resolved to a type\n\tIPSTreeExpBar cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() from the type PSPreviewExpBarControllerCodePublisherImpl refers to the missing type PSGenerateCodeResultImpl\n");
-    }
+	protected IPSTreeExpBar iPSTreeExpBar = null;
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSTreeExpBar = (IPSTreeExpBar)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problem: \n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		//输出结果集合代码
+	
+		
+	}
 
-    @Override
-    protected void onClose() {
-        throw new Error("Unresolved compilation problem: \n\tIPSTreeExpBar cannot be resolved to a type\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSTreeExpBar = null;
+		super.onClose();
+	}
 }
-

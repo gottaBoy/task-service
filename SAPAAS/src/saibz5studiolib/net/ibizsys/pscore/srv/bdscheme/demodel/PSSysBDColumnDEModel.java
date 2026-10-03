@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.bdscheme.demodel.PSSysBDColumnDEModelBase;
 
 public class PSSysBDColumnDEModel
 extends PSSysBDColumnDEModelBase {
+
+    public PSSysBDColumnDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

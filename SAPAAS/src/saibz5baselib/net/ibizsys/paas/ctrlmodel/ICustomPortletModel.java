@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.IPortletModel;
+/**
+ * 自定义门户部件模型接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface ICustomPortletModel extends IPortletModel {
 
-public interface ICustomPortletModel
-extends IPortletModel {
 }
-

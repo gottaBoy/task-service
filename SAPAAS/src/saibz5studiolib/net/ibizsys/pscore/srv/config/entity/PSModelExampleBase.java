@@ -2325,7 +2325,7 @@ implements Serializable {
                 PSModelExampleCat pSModelExampleCat = new PSModelExampleCat();
                 pSModelExampleCat.setPSModelExampleCatId(this.getPSModelExampleCatId());
                 PSModelExampleCatService pSModelExampleCatService = (PSModelExampleCatService)ServiceGlobal.getService(PSModelExampleCatService.class, (SessionFactory)this.getSessionFactory());
-                pSModelExampleCatService.autoGet((IEntity)pSModelExampleCat);
+                pSModelExampleCatService.autoGet(pSModelExampleCat);
                 this.psmodelexamplecat = pSModelExampleCat;
             }
             return this.psmodelexamplecat;
@@ -2351,7 +2351,7 @@ implements Serializable {
                 PSModelExample pSModelExample = new PSModelExample();
                 pSModelExample.setPSModelExampleId(this.getRefPSModelExampleId());
                 PSModelExampleService pSModelExampleService = (PSModelExampleService)ServiceGlobal.getService(PSModelExampleService.class, (SessionFactory)this.getSessionFactory());
-                pSModelExampleService.autoGet((IEntity)pSModelExample);
+                pSModelExampleService.autoGet(pSModelExample);
                 this.refpsmodelexample = pSModelExample;
             }
             return this.refpsmodelexample;
@@ -2377,7 +2377,7 @@ implements Serializable {
                 PSModel pSModel = new PSModel();
                 pSModel.setPSModelId(this.getPSModelId());
                 PSModelService pSModelService = (PSModelService)ServiceGlobal.getService(PSModelService.class, (SessionFactory)this.getSessionFactory());
-                pSModelService.autoGet((IEntity)pSModel);
+                pSModelService.autoGet(pSModel);
                 this.psmodel = pSModel;
             }
             return this.psmodel;

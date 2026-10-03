@@ -229,7 +229,7 @@ IPSDEFormRuntime {
         for (PSDEFormDetail psDEFormDetail : psDEFormPageList) {
             if (StringHelper.isNullOrEmpty((String)psDEFormDetail.getPPSDEFORMDETAILID())) continue;
             PSDEFormDetail psDEFormDetail2 = psDEFormDetail;
-            Object parentPSDEFormDetail = (PSDEFormDetail)((Object)psDEFormDetailMap.get(psDEFormDetail.getPPSDEFORMDETAILID()));
+            PSDEFormDetail parentPSDEFormDetail = psDEFormDetailMap.get(psDEFormDetail.getPPSDEFORMDETAILID());
             if (parentPSDEFormDetail == null) {
                 if (StringHelper.compare((String)this.getId(), (String)strPSDEFormId, (boolean)false) == 0) {
                     throw new Exception(StringHelper.format((String)"\u8868\u5355[%1$s]\u6210\u5458[%2$s]\u7236\u5bf9\u8c61\u65e0\u6548", (Object)this.getLogicName(), (Object)psDEFormDetail2.getPSDEFORMDETAILNAME()));
@@ -562,4 +562,3 @@ IPSDEFormRuntime {
         JsonNodeHelper.put((ObjectNode)objectNode, (String)"items", itemList);
     }
 }
-

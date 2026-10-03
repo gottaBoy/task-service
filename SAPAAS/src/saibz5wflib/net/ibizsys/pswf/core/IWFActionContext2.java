@@ -1,19 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.psrt.srv.wf.entity.WFInstance
- *  net.ibizsys.pswf.core.IWFActionContext
- */
 package net.ibizsys.pswf.core;
 
 import net.ibizsys.psrt.srv.wf.entity.WFInstance;
-import net.ibizsys.pswf.core.IWFActionContext;
 
-public interface IWFActionContext2
-extends IWFActionContext {
-    public WFInstance getActiveWFInstance();
-
-    public String getOpPersonName();
+/**
+ * 流程操作交互上下文对象2接口
+ * @author lionlau
+ *
+ */
+public interface IWFActionContext2 extends IWFActionContext
+{
+	
+	/**
+	 * 获取当前流程实例
+	 * @return
+	 */
+	WFInstance getActiveWFInstance();
+	
+	
+	/**
+	 * 获取操作用户名称
+	 * @return
+	 */
+	String getOpPersonName(); 
 }
-

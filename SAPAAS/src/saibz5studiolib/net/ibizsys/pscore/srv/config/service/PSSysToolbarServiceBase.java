@@ -122,7 +122,7 @@ extends PSCoreSysServiceBase<PSSysToolbar> {
     }
 
     protected void onFillParentInfo(PSSysToolbar pSSysToolbar, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSysToolbar, string, string2, string3);
+        super.onFillParentInfo(pSSysToolbar, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -133,11 +133,11 @@ extends PSCoreSysServiceBase<PSSysToolbar> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysToolbar, bl);
+        super.onFillEntityFullInfo(pSSysToolbar, bl);
     }
 
     protected void onWriteBackParent(PSSysToolbar pSSysToolbar, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysToolbar, bl);
+        super.onWriteBackParent(pSSysToolbar, bl);
     }
 
     @Override
@@ -153,7 +153,7 @@ extends PSCoreSysServiceBase<PSSysToolbar> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysToolbar pSSysToolbar, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysToolbar, bl);
+        super.onRemoveEntityUncopyValues(pSSysToolbar, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysToolbar pSSysToolbar, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSSysToolbar> {
         if ((entityFieldError = this.onCheckField_TBModel(bl, pSSysToolbar, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysToolbar, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysToolbar, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSysToolbar pSSysToolbar, boolean bl2, boolean bl3) throws Exception {
@@ -184,7 +184,7 @@ extends PSCoreSysServiceBase<PSSysToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -209,7 +209,7 @@ extends PSCoreSysServiceBase<PSSysToolbar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysToolbarId_Default((IEntity)pSSysToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysToolbarId_Default(pSSysToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTOOLBARID");
@@ -234,7 +234,7 @@ extends PSCoreSysServiceBase<PSSysToolbar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysToolbarName_Default((IEntity)pSSysToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysToolbarName_Default(pSSysToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTOOLBARNAME");
@@ -256,7 +256,7 @@ extends PSCoreSysServiceBase<PSSysToolbar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TBModel_Default((IEntity)pSSysToolbar, bl2, bl3);
+            string2 = this.onTestValueRule_TBModel_Default(pSSysToolbar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TBMODEL");
@@ -269,11 +269,11 @@ extends PSCoreSysServiceBase<PSSysToolbar> {
     }
 
     protected void onSyncEntity(PSSysToolbar pSSysToolbar, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysToolbar, bl);
+        super.onSyncEntity(pSSysToolbar, bl);
     }
 
     protected void onSyncIndexEntities(PSSysToolbar pSSysToolbar, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysToolbar, bl);
+        super.onSyncIndexEntities(pSSysToolbar, bl);
     }
 
     public Object getDataContextValue(PSSysToolbar pSSysToolbar, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -281,14 +281,14 @@ extends PSCoreSysServiceBase<PSSysToolbar> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysToolbar, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysToolbar, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysToolbar pSSysToolbar, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysToolbar, arrayList, n);
+        super.onExportMajorModel(pSSysToolbar, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -401,14 +401,14 @@ extends PSCoreSysServiceBase<PSSysToolbar> {
 
     protected boolean onMergeChild(String string, String string2, PSSysToolbar pSSysToolbar) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysToolbar)) {
+        if (super.onMergeChild(string, string2, pSSysToolbar)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysToolbar pSSysToolbar) throws Exception {
-        super.onUpdateParent((IEntity)pSSysToolbar);
+        super.onUpdateParent(pSSysToolbar);
     }
 
     @Override

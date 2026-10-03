@@ -112,9 +112,9 @@ implements IPSWXAccountService {
 
     @Override
     protected List<PSWXAccount> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSWXAccount> list = new ArrayList<PSWXAccount>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSWXAccount> items = this.listByPSModule(parent);

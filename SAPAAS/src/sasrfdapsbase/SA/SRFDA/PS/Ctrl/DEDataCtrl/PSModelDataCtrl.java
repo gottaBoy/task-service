@@ -24,7 +24,6 @@ import SA.SRFDA.PS.Ctrl.DEDataCtrl.PSDEDataCtrl;
 import SA.SRFramework.DataEx.BaseDataEntity;
 import SA.SRFramework.DataEx.CallResult;
 import java.util.ArrayList;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.config.entity.PSModel;
@@ -98,26 +97,26 @@ extends PSDEDataCtrl {
         PSSystem psSystem = new PSSystem();
         psSystem.setPSSystemId("86E2A266-4D1E-49F0-A12D-D636905457A3");
         PSDataEntityService psDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class);
-        ArrayList psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDataEntity> psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
         PSModelService psModelService = (PSModelService)ServiceGlobal.getService(PSModelService.class);
         for (PSDataEntity psDataEntity : psDataEntityList) {
             PSModel psModel = new PSModel();
             psModel.setPSModelId(psDataEntity.getPSDataEntityName());
-            if (!psModelService.get((IEntity)psModel, true)) {
+            if (!psModelService.get(psModel, true)) {
                 psModel.setPSModelName(psDataEntity.getLogicName());
                 psModel.setModelDEId(psDataEntity.getDESN());
                 psModel.setValidFlag(Integer.valueOf(1));
                 if (psDataEntity.getPSHelpModule() != null && psDataEntity.getPSHelpModule().getPSHelpPrj() != null && psDataEntity.getPSHelpModule().getPSHelpArticle() != null && !StringHelper.isNullOrEmpty((String)psDataEntity.getPSHelpModule().getPSHelpPrj().getPrjSN()) && !StringHelper.isNullOrEmpty((String)psDataEntity.getPSHelpModule().getPSHelpArticle().getArticleSN())) {
                     psModel.setArticleUrl(StringHelper.format((String)"../prjs/%1$s.htm#%2$s/", (Object)psDataEntity.getPSHelpModule().getPSHelpPrj().getPrjSN().toLowerCase(), (Object)psDataEntity.getPSHelpModule().getPSHelpArticle().getArticleSN().toLowerCase()));
                 }
-                psModelService.create((IEntity)psModel, false);
+                psModelService.create(psModel, false);
                 continue;
             }
             if (StringHelper.isNullOrEmpty((String)psModel.getArticleUrl()) && psDataEntity.getPSHelpModule() != null && psDataEntity.getPSHelpModule() != null && psDataEntity.getPSHelpModule().getPSHelpPrj() != null && psDataEntity.getPSHelpModule().getPSHelpArticle() != null && !StringHelper.isNullOrEmpty((String)psDataEntity.getPSHelpModule().getPSHelpPrj().getPrjSN()) && !StringHelper.isNullOrEmpty((String)psDataEntity.getPSHelpModule().getPSHelpArticle().getArticleSN())) {
                 psModel.setArticleUrl(StringHelper.format((String)"../prjs/%1$s.htm#%2$s/", (Object)psDataEntity.getPSHelpModule().getPSHelpPrj().getPrjSN().toLowerCase(), (Object)psDataEntity.getPSHelpModule().getPSHelpArticle().getArticleSN().toLowerCase()));
             }
             psModel.setModelDEId(psDataEntity.getDESN());
-            psModelService.update((IEntity)psModel, false);
+            psModelService.update(psModel, false);
         }
     }
 
@@ -213,7 +212,6 @@ extends PSDEDataCtrl {
             psModel.setModelInstMode(Integer.valueOf(nMode));
         }
         PSModelService psModelService = (PSModelService)ServiceGlobal.getService(PSModelService.class);
-        psModelService.update((IEntity)psModel, false);
+        psModelService.update(psModel, false);
     }
 }
-

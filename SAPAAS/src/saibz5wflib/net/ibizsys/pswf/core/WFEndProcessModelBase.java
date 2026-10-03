@@ -1,32 +1,50 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFEndProcessModel;
-import net.ibizsys.pswf.core.WFProcessModelBase;
+/**
+ * 流程结束处理模型
+ * @author lionlau
+ *
+ */
+public abstract class WFEndProcessModelBase extends WFProcessModelBase implements IWFEndProcessModel
+{
+	private String strExitStateValue = "";
+	
+	@Override
+	public String getExitStateValue() {
+		return this.strExitStateValue;
+	}
+	
+	/**
+	 * 设置退出状态值
+	 * @param strExitStateValue
+	 */
+	public void setExitStateValue(String strExitStateValue) {
+		this.strExitStateValue = strExitStateValue;
+	}
+	
+	
 
-public abstract class WFEndProcessModelBase
-extends WFProcessModelBase
-implements IWFEndProcessModel {
-    private String strExitStateValue = "";
 
-    @Override
-    public String getExitStateValue() {
-        return this.strExitStateValue;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.WFProcessModelBase#isTerminalProcess()
+	 */
+	@Override
+	public boolean isTerminalProcess()
+	{
+		return true;
+	}
 
-    public void setExitStateValue(String strExitStateValue) {
-        this.strExitStateValue = strExitStateValue;
-    }
 
-    @Override
-    public boolean isTerminalProcess() {
-        return true;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.WFProcessModelBase#getWFProcessType()
+	 */
+	@Override
+	public String getWFProcessType()
+	{
+		return IWFProcessModel.End;
+	}
+	
+	
+	
 
-    public String getWFProcessType() {
-        return "END";
-    }
 }
-

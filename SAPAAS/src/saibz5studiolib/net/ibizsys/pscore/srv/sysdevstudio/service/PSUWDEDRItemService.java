@@ -54,14 +54,14 @@ extends PSUWDEDRItemServiceBase {
                     PSDEFormDetail pSDEFormDetail = new PSDEFormDetail();
                     pSDEFormDetail.setPSDEFormDetailId(string2);
                     PSDEFormDetailService pSDEFormDetailService = (PSDEFormDetailService)ServiceGlobal.getService(PSDEFormDetailService.class, (SessionFactory)this.getSessionFactory());
-                    if (pSDEFormDetailService.autoGet((IEntity)pSDEFormDetail, true) && pSDEFormDetail.getPSDEForm() != null) {
+                    if (pSDEFormDetailService.autoGet(pSDEFormDetail, true) && pSDEFormDetail.getPSDEForm() != null) {
                         pSUWDEDRItem.setPSDEId(pSDEFormDetail.getPSDEForm().getPSDEId());
                     }
                 } else if (StringHelper.compare((String)iDataEntityModel.getName(), (String)"PSDEDRDETAIL", (boolean)true) == 0) {
                     PSDEDRDetail pSDEDRDetail = new PSDEDRDetail();
                     pSDEDRDetail.setPSDEDRDetailId(string2);
                     PSDEDRDetailService pSDEDRDetailService = (PSDEDRDetailService)ServiceGlobal.getService(PSDEDRDetailService.class, (SessionFactory)this.getSessionFactory());
-                    if (pSDEDRDetailService.autoGet((IEntity)pSDEDRDetail, true) && pSDEDRDetail.getPSDEDR() != null) {
+                    if (pSDEDRDetailService.autoGet(pSDEDRDetail, true) && pSDEDRDetail.getPSDEDR() != null) {
                         pSUWDEDRItem.setPSDEId(pSDEDRDetail.getPSDEDR().getPSDEId());
                     }
                 }
@@ -93,7 +93,7 @@ extends PSUWDEDRItemServiceBase {
     protected void onFinishStepSelectView(PSUWDEDRItem pSUWDEDRItem) throws Exception {
         PSUWDEDRItem pSUWDEDRItem2 = new PSUWDEDRItem();
         pSUWDEDRItem2.setPSUWDEDRItemId(pSUWDEDRItem.getPSUWDEDRItemId());
-        this.get((IEntity)pSUWDEDRItem2);
+        this.get(pSUWDEDRItem2);
         PSDER pSDER = null;
         if (!StringHelper.isNullOrEmpty((String)pSUWDEDRItem2.getPSDEId()) && !StringHelper.isNullOrEmpty((String)pSUWDEDRItem.getViewPSDEId())) {
             pSDER = new PSDER();
@@ -136,7 +136,7 @@ extends PSUWDEDRItemServiceBase {
 
     @Override
     protected void onFinishWizard(PSUWDEDRItem pSUWDEDRItem) throws Exception {
-        this.get((IEntity)pSUWDEDRItem);
+        this.get(pSUWDEDRItem);
         PSDEDRItem pSDEDRItem = new PSDEDRItem();
         pSUWDEDRItem.copyTo((IDataObject)pSDEDRItem, false);
         pSDEDRItem.setSessionFactory(this.getSessionFactory());

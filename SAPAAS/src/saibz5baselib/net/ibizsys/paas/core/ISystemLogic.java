@@ -1,11 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IModelBase;
+/**
+ * 系统逻辑处理对象
+ * @author Administrator
+ *
+ */
+public interface ISystemLogic extends IModelBase {
 
-public interface ISystemLogic
-extends IModelBase {
+	
+	
 }
-

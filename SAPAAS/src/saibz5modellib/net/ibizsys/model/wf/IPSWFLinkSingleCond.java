@@ -1,27 +1,59 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFLinkSingleCondModel
- */
 package net.ibizsys.model.wf;
 
-import net.ibizsys.model.wf.IPSWFLinkCond;
 import net.ibizsys.pswf.core.IWFLinkSingleCondModel;
 
-public interface IPSWFLinkSingleCond
-extends IPSWFLinkCond,
-IWFLinkSingleCondModel {
-    public static final String PARAMTYPE_ENTITYFIELD = "ENTITYFIELD";
-    public static final String PARAMTYPE_CURTIME = "CURTIME";
-    public static final String PARAMTYPE_TIMERULE = "TIMERULE";
+/**
+ * 工作流连接单项条件对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IPSWFLinkSingleCond extends IPSWFLinkCond, IWFLinkSingleCondModel {
 
-    public String getFieldName() throws Exception;
+	// 定义参数类型代码表
 
-    public String getPSDBValueOPId();
+	/**
+	 * 参数类型代码表:数据对象属性
+	 */
+	public final static String PARAMTYPE_ENTITYFIELD = "ENTITYFIELD";
 
-    public String getParamType();
+	/**
+	 * 参数类型代码表:当前时间
+	 */
+	public final static String PARAMTYPE_CURTIME = "CURTIME";
 
-    public String getParamValue();
+	/**
+	 * 参数类型代码表:时间规则
+	 */
+	public final static String PARAMTYPE_TIMERULE = "TIMERULE";
+
+	/**
+	 * 获取目标属性名称
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	String getFieldName() throws Exception;
+
+	/**
+	 * 获取值操作符号标识
+	 * 
+	 * @return
+	 */
+	String getPSDBValueOPId();
+
+	/**
+	 * 获取参数类型，值参考 net.ibizsys.pswf.core.IWFLinkSingleCondModel.PARAMTYPE_XXX 定义
+	 * 
+	 * @return
+	 */
+	String getParamType();
+
+	/**
+	 * 获取参数值
+	 * 
+	 * @return
+	 */
+	String getParamValue();
+
 }
-

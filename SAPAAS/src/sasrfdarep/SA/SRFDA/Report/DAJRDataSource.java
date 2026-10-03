@@ -62,7 +62,13 @@ implements JRDataSource {
                 return null;
             }
         }
-        return this.dataTable.GetRow(nRealIndex).Get(strFieldName);
+        try {
+            return this.dataTable.GetRow(nRealIndex).Get(strFieldName);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public boolean next() throws JRException {

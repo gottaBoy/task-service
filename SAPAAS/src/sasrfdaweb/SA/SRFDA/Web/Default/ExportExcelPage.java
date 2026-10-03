@@ -75,6 +75,9 @@ extends SRFDAPage {
                 e.printStackTrace();
             }
         }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
         finally {
             if (fis != null) {
                 try {

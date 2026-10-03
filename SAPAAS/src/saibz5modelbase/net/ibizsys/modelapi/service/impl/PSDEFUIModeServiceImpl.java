@@ -87,7 +87,7 @@ implements IPSDEFUIModeService {
     @Override
     protected List<PSDEFUIMode> onListAll() throws Exception {
         ArrayList<PSDEFUIMode> list = new ArrayList<PSDEFUIMode>();
-        List psdefields = PSModelServiceUtil.getInstance().getPSDEFieldService().listAll();
+        List<PSDEField> psdefields = PSModelServiceUtil.getInstance().getPSDEFieldService().listAll();
         if (psdefields != null) {
             for (PSDEField parent : psdefields) {
                 List<PSDEFUIMode> items = this.listByPSDEField(parent);

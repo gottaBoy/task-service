@@ -1,16 +1,32 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import net.ibizsys.psba.core.IBATableObject;
 
-public interface IBATableDER
-extends IBATableObject {
-    public String getMajorDEName();
+/**
+ * 大数据库架构表实体关系接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IBATableDER extends IBATableObject {
 
-    public String getMinorDEName();
+	/**
+	 * 获取主实体名称
+	 * @return
+	 */
+	String getMajorDEName();
 
-    public String getDERFieldName();
+	
+	/**
+	 * 获取主实体名称
+	 * @return
+	 */
+	String getMinorDEName();
+	
+	
+	
+	/**
+	 * 获取实体关系属性名称
+	 * @return
+	 */
+	String getDERFieldName();
 }
-

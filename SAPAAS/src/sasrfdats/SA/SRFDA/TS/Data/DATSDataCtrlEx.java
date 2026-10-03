@@ -76,7 +76,7 @@ implements ITSDataCtrl {
         callParamList.AddDate((Object)dtEndTime);
         callParamList.AddDateTime((Object)dtEndTime);
         callParamList.AddDateTime((Object)dtStartTime);
-        Vector list2 = new Vector();
+        Vector<TSSchedule> list2 = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)strSqlFormat, (Vector)callParamList.GetList(), list2, (String)TSSchedule.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -97,7 +97,7 @@ implements ITSDataCtrl {
         CallParamList callParamList = new CallParamList();
         callParamList.AddDateTime((Object)dtStartTime);
         callParamList.AddDateTime((Object)dtEndTime);
-        Vector list2 = new Vector();
+        Vector<TSTaskItem> list2 = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)strSqlFormat, (Vector)callParamList.GetList(), list2, (String)TSTaskItem.class.getName());
         if (callResult.IsError()) {
             return callResult;

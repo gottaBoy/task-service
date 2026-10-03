@@ -75,26 +75,20 @@ extends PSDEFormDetailServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                String string;
-                PSDEFDLogic pSDEFDLogic2;
                 PSDEFDLogicService pSDEFDLogicService = (PSDEFDLogicService)ServiceGlobal.getService((String)PSDEFDLogicService.class.getCanonicalName(), (SessionFactory)PSDEFormDetailService.this.getSessionFactory());
                 ArrayList<PSDEFDLogic> arrayList = pSDEFDLogicService.selectTempByPSDEFormDetail(pSDEFormDetail2);
                 HashMap<String, PSDEFDLogic> hashMap = new HashMap<String, PSDEFDLogic>();
                 for (PSDEFDLogic pSDEFDLogic2 : arrayList) {
                     hashMap.put(pSDEFDLogic2.getPSDEFDLogicId(), pSDEFDLogic2);
                 }
-                XmlNode xmlNode = null;
-                pSDEFDLogic2 = null;
                 int n = DataObject.getIntegerValue((Object)pSDEFormDetail2.getModelState(), (Integer)0);
-                String string2 = "";
-                Object object = new XmlNode();
-                object.setNodeName("DEFDLOGIC");
-                object.setAttribute("PSDEFORMDETAILID", pSDEFormDetail2.getPSDEFormDetailId());
-                object.setAttribute("PSDEFORMID", pSDEFormDetail2.getPSDEFormId());
-                string2 = XmlNode.export((XmlNode)object);
+                XmlNode rootNode = new XmlNode();
+                rootNode.setNodeName("DEFDLOGIC");
+                rootNode.setAttribute("PSDEFORMDETAILID", pSDEFormDetail2.getPSDEFormDetailId());
+                rootNode.setAttribute("PSDEFORMID", pSDEFormDetail2.getPSDEFormId());
+                String emptyLogic = XmlNode.export(rootNode);
                 if (StringHelper.compare((String)pSDEFormDetail2.getDetailType(), (String)"FORMITEM", (boolean)true) == 0) {
-                    object = pSDEFormDetail2.getEnableLogic();
-                    xmlNode = XmlNode.loadFromXML((String)object);
+                    XmlNode xmlNode = XmlNode.loadFromXML(pSDEFormDetail2.getEnableLogic());
                     if (xmlNode != null) {
                         PSDEFormDetailService.this.updatePSDEFDLogics(pSDEFormDetail2, "ITEMENABLE", null, xmlNode, hashMap);
                         xmlNode.setAttribute("PSDEFORMDETAILID", pSDEFormDetail2.getPSDEFormDetailId());
@@ -102,45 +96,43 @@ extends PSDEFormDetailServiceBase {
                         pSDEFormDetail2.setEnableLogic(XmlNode.export((XmlNode)xmlNode));
                         n |= 0x400;
                     } else {
-                        pSDEFormDetail2.setEnableLogic(string2);
+                        pSDEFormDetail2.setEnableLogic(emptyLogic);
                         n ^= 0x400;
                     }
-                    string = pSDEFormDetail2.getBlankLogic();
-                    pSDEFDLogic2 = XmlNode.loadFromXML((String)string);
-                    if (pSDEFDLogic2 != null) {
-                        PSDEFormDetailService.this.updatePSDEFDLogics(pSDEFormDetail2, "ITEMBLANK", null, (XmlNode)pSDEFDLogic2, hashMap);
-                        pSDEFDLogic2.setAttribute("PSDEFORMDETAILID", pSDEFormDetail2.getPSDEFormDetailId());
-                        pSDEFDLogic2.setAttribute("PSDEFORMID", pSDEFormDetail2.getPSDEFormId());
-                        pSDEFormDetail2.setBlankLogic(XmlNode.export((XmlNode)pSDEFDLogic2));
+                    XmlNode blankNode = XmlNode.loadFromXML(pSDEFormDetail2.getBlankLogic());
+                    if (blankNode != null) {
+                        PSDEFormDetailService.this.updatePSDEFDLogics(pSDEFormDetail2, "ITEMBLANK", null, blankNode, hashMap);
+                        blankNode.setAttribute("PSDEFORMDETAILID", pSDEFormDetail2.getPSDEFormDetailId());
+                        blankNode.setAttribute("PSDEFORMID", pSDEFormDetail2.getPSDEFormId());
+                        pSDEFormDetail2.setBlankLogic(XmlNode.export(blankNode));
                         n |= 0x1000;
                     } else {
-                        pSDEFormDetail2.setBlankLogic(string2);
+                        pSDEFormDetail2.setBlankLogic(emptyLogic);
                         n ^= 0x1000;
                     }
                 } else {
-                    pSDEFormDetail2.setEnableLogic(string2);
-                    pSDEFormDetail2.setBlankLogic(string2);
+                    pSDEFormDetail2.setEnableLogic(emptyLogic);
+                    pSDEFormDetail2.setBlankLogic(emptyLogic);
                     n ^= 0x400;
                     n ^= 0x1000;
                 }
-                object = pSDEFormDetail2.getVisibleLogic();
-                string = XmlNode.loadFromXML((String)object);
-                if (string != null) {
-                    PSDEFormDetailService.this.updatePSDEFDLogics(pSDEFormDetail2, "PANELVISIBLE", null, (XmlNode)string, hashMap);
-                    string.setAttribute("PSDEFORMDETAILID", pSDEFormDetail2.getPSDEFormDetailId());
-                    string.setAttribute("PSDEFORMID", pSDEFormDetail2.getPSDEFormId());
-                    pSDEFormDetail2.setVisibleLogic(XmlNode.export((XmlNode)string));
+                XmlNode visibleNode = XmlNode.loadFromXML(pSDEFormDetail2.getVisibleLogic());
+                if (visibleNode != null) {
+                    PSDEFormDetailService.this.updatePSDEFDLogics(pSDEFormDetail2, "PANELVISIBLE", null, visibleNode, hashMap);
+                    visibleNode.setAttribute("PSDEFORMDETAILID", pSDEFormDetail2.getPSDEFormDetailId());
+                    visibleNode.setAttribute("PSDEFORMID", pSDEFormDetail2.getPSDEFormId());
+                    pSDEFormDetail2.setVisibleLogic(XmlNode.export(visibleNode));
                     n |= 0x800;
                 } else {
-                    pSDEFormDetail2.setVisibleLogic(string2);
+                    pSDEFormDetail2.setVisibleLogic(emptyLogic);
                     n ^= 0x800;
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEFDLogic pSDEFDLogic3 : hashMap.values()) {
-                        pSDEFDLogicService.removeTemp((IEntity)pSDEFDLogic3);
+                        pSDEFDLogicService.removeTemp(pSDEFDLogic3);
                     }
                 }
-                PSDEFormDetailService.this.updateTemp((IEntity)pSDEFormDetail2);
+                PSDEFormDetailService.this.updateTemp(pSDEFormDetail2);
             }
         });
     }
@@ -148,7 +140,7 @@ extends PSDEFormDetailServiceBase {
     protected void updatePSDEFDLogics(PSDEFormDetail pSDEFormDetail, String string, PSDEFDLogic pSDEFDLogic, XmlNode xmlNode, HashMap<String, PSDEFDLogic> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSDEFDLogicService pSDEFDLogicService = (PSDEFDLogicService)ServiceGlobal.getService((String)PSDEFDLogicService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -185,7 +177,7 @@ extends PSDEFormDetailServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSDEFDLogicService.updateTemp((IEntity)pSDEFDLogic2);
+                    pSDEFDLogicService.updateTemp(pSDEFDLogic2);
                 }
                 xmlNode2.resetAttributes();
                 pSDEFDLogic2.fillXmlNode(xmlNode2, false);
@@ -254,12 +246,12 @@ extends PSDEFormDetailServiceBase {
         this.getTemp(pSDEFormDetail);
         if (StringHelper.isNullOrEmpty((String)pSDEFormDetail.getBlankLogic()) || StringHelper.isNullOrEmpty((String)pSDEFormDetail.getVisibleLogic()) || StringHelper.isNullOrEmpty((String)pSDEFormDetail.getEnableLogic())) {
             this.fillFormDetailModel(pSDEFormDetail);
-            this.updateTemp((IEntity)pSDEFormDetail);
+            this.updateTemp(pSDEFormDetail);
         }
     }
 
     public void getTemp(PSDEFormDetail pSDEFormDetail) throws Exception {
-        super.getTemp((IEntity)pSDEFormDetail);
+        super.getTemp(pSDEFormDetail);
         if (StringHelper.compare((String)pSDEFormDetail.getDetailType(), (String)"RAWITEM", (boolean)false) == 0 && StringHelper.isNullOrEmpty((String)pSDEFormDetail.getContentType())) {
             pSDEFormDetail.setContentType("RAW");
         }
@@ -269,7 +261,7 @@ extends PSDEFormDetailServiceBase {
     }
 
     public void get(PSDEFormDetail pSDEFormDetail) throws Exception {
-        super.get((IEntity)pSDEFormDetail);
+        super.get(pSDEFormDetail);
         if (StringHelper.compare((String)pSDEFormDetail.getDetailType(), (String)"RAWITEM", (boolean)false) == 0 && StringHelper.isNullOrEmpty((String)pSDEFormDetail.getContentType())) {
             pSDEFormDetail.setContentType("RAW");
         }
@@ -283,10 +275,10 @@ extends PSDEFormDetailServiceBase {
         ArrayList<PSDEFDLogic> arrayList = pSDEFDLogicService.selectTempByPSDEFormDetail(pSDEFormDetail, "ORDER BY ORDERVALUE");
         HashMap<String, XmlNode> hashMap = new HashMap<String, XmlNode>();
         for (PSDEFDLogic object22 : arrayList) {
-            Object object = new XmlNode();
-            object.setNodeName(object22.getLogicType());
-            object22.fillXmlNode((XmlNode)object, false);
-            hashMap.put(object22.getPSDEFDLogicId(), (XmlNode)object);
+            XmlNode node = new XmlNode();
+            node.setNodeName(object22.getLogicType());
+            object22.fillXmlNode(node, false);
+            hashMap.put(object22.getPSDEFDLogicId(), node);
         }
         HashMap hashMap2 = new HashMap();
         if (StringHelper.compare((String)pSDEFormDetail.getDetailType(), (String)"FORMITEM", (boolean)true) == 0) {
@@ -375,17 +367,15 @@ extends PSDEFormDetailServiceBase {
         ArrayList<PSDEFormDetail> arrayList = null;
         arrayList = pSDEForm.getPSDEFormId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSDEForm(pSDEForm) : this.selectByPSDEForm(pSDEForm);
         HashMap<String, PSDEFormDetail> hashMap = new HashMap<String, PSDEFormDetail>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSDEFormDetail pSDEFormDetail2 = object.next();
+        for (PSDEFormDetail pSDEFormDetail2 : arrayList) {
             if (StringHelper.isNullOrEmpty((String)pSDEFormDetail2.getPSDEFormDetailName())) continue;
             hashMap.put(pSDEFormDetail2.getPSDEFormDetailName().toLowerCase(), pSDEFormDetail2);
         }
-        while (true) {
-            if (!hashMap.containsKey(object = StringHelper.format((String)"%1$s%2$s", (Object)string2, (Object)(n == 0 ? "" : Integer.valueOf(n))))) break;
+        String name;
+        while (hashMap.containsKey(name = StringHelper.format((String)"%1$s%2$s", (Object)string2, (Object)(n == 0 ? "" : Integer.valueOf(n))))) {
             ++n;
         }
-        pSDEFormDetail.setPSDEFormDetailName((String)object);
+        pSDEFormDetail.setPSDEFormDetailName(name);
         if (StringHelper.isNullOrEmpty((String)pSDEFormDetail.getCaption())) {
             if (StringHelper.compare((String)string, (String)"FORMPAGE", (boolean)true) == 0) {
                 pSDEFormDetail.setCaption("\u8868\u5355\u5206\u9875");
@@ -488,7 +478,7 @@ extends PSDEFormDetailServiceBase {
         pSDEFormDetail2.setBlankLogic(null);
         pSDEFormDetail2.setEnableLogic(null);
         if (pSDEFormDetail2.getPSDEFormDetailId().indexOf("SRFTEMPKEY:") == 0) {
-            this.sysUpdateTemp((IEntity)pSDEFormDetail2, false);
+            this.sysUpdateTemp(pSDEFormDetail2, false);
         } else {
             this.sysUpdate(pSDEFormDetail2, false);
         }
@@ -521,7 +511,7 @@ extends PSDEFormDetailServiceBase {
         PSVarSampleValueService pSVarSampleValueService = (PSVarSampleValueService)ServiceGlobal.getService(PSVarSampleValueService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSVarSampleValue pSVarSampleValue = new PSVarSampleValue();
         pSVarSampleValue.setPSVarSampleValueId(string2);
-        if (pSVarSampleValueService.get((IEntity)pSVarSampleValue, true)) {
+        if (pSVarSampleValueService.get(pSVarSampleValue, true)) {
             if (bl) {
                 pSDEFormDetail.setCreateDVT(pSVarSampleValue.getVarType());
                 pSDEFormDetail.setCreateDV(pSVarSampleValue.getValue());
@@ -595,14 +585,14 @@ extends PSDEFormDetailServiceBase {
 
     @Override
     public void getTempWithPreview(PSDEFormDetail pSDEFormDetail) throws Exception {
-        super.getTemp((IEntity)pSDEFormDetail);
+        super.getTemp(pSDEFormDetail);
         this.fillPreviewHtml(pSDEFormDetail);
     }
 
     @Override
     public void updateTempWithPreview(PSDEFormDetail pSDEFormDetail) throws Exception {
         pSDEFormDetail.resetPreviewHtml();
-        super.updateTemp((IEntity)pSDEFormDetail, true);
+        super.updateTemp(pSDEFormDetail, true);
         this.fillPreviewHtml(pSDEFormDetail);
     }
 
@@ -671,8 +661,7 @@ extends PSDEFormDetailServiceBase {
                         if (bl) {
                             pSDEField = pSDEFormDetail.getPSDEF();
                         } else {
-                            object = PSDEFormDetailService.this.getPSDEFieldMap(pSDEForm);
-                            pSDEField = object.get(pSDEFormDetail.getPSDEFId());
+                            pSDEField = PSDEFormDetailService.this.getPSDEFieldMap(pSDEForm).get(pSDEFormDetail.getPSDEFId());
                         }
                         if (pSDEField == null) {
                             return;
@@ -738,8 +727,7 @@ extends PSDEFormDetailServiceBase {
                         if (bl) {
                             pSDEField = pSDEFormDetail.getPSDEF();
                         } else {
-                            object = PSDEFormDetailService.this.getPSDEFieldMap(pSDEForm);
-                            pSDEField = object.get(pSDEFormDetail.getPSDEFId());
+                            pSDEField = PSDEFormDetailService.this.getPSDEFieldMap(pSDEForm).get(pSDEFormDetail.getPSDEFId());
                         }
                         if (pSDEField == null) {
                             return;
@@ -807,7 +795,7 @@ extends PSDEFormDetailServiceBase {
             PSDEFUIModeService pSDEFUIModeService = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
             SelectContext selectContext = new SelectContext();
             selectContext.set("PSDEID", (Object)pSDEForm.getPSDEId());
-            ArrayList arrayList = pSDEFUIModeService.select((ISelectCond)selectContext);
+            ArrayList<PSDEFUIMode> arrayList = pSDEFUIModeService.select((ISelectCond)selectContext);
             for (PSDEFUIMode pSDEFUIMode : arrayList) {
                 hashMap.put(pSDEFUIMode.getPSDEFUIModeId(), pSDEFUIMode);
                 if (StringHelper.compare((String)pSDEFUIMode.getFTMode(), (String)"DEFAULT", (boolean)true) != 0 && StringHelper.compare((String)pSDEFUIMode.getFTMode(), (String)"MOBILEDEFAULT", (boolean)true) != 0) continue;
@@ -827,7 +815,7 @@ extends PSDEFormDetailServiceBase {
             PSDEFUIModeService pSDEFUIModeService = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
             SelectContext selectContext = new SelectContext();
             selectContext.set("PSDEFID", (Object)string);
-            ArrayList arrayList = pSDEFUIModeService.select((ISelectCond)selectContext);
+            ArrayList<PSDEFUIMode> arrayList = pSDEFUIModeService.select((ISelectCond)selectContext);
             for (PSDEFUIMode pSDEFUIMode : arrayList) {
                 hashMap.put(pSDEFUIMode.getPSDEFUIModeId(), pSDEFUIMode);
                 if (StringHelper.compare((String)pSDEFUIMode.getFTMode(), (String)"DEFAULT", (boolean)true) != 0 && StringHelper.compare((String)pSDEFUIMode.getFTMode(), (String)"MOBILEDEFAULT", (boolean)true) != 0) continue;
@@ -847,7 +835,7 @@ extends PSDEFormDetailServiceBase {
             PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
             SelectContext selectContext = new SelectContext();
             selectContext.set("PSDEID", (Object)pSDEForm.getPSDEId());
-            ArrayList arrayList = pSDEFieldService.select((ISelectCond)selectContext);
+            ArrayList<PSDEField> arrayList = pSDEFieldService.select((ISelectCond)selectContext);
             for (PSDEField pSDEField : arrayList) {
                 hashMap.put(pSDEField.getPSDEFieldId(), pSDEField);
             }
@@ -865,7 +853,7 @@ extends PSDEFormDetailServiceBase {
             PSDEFSFItemService pSDEFSFItemService = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
             SelectContext selectContext = new SelectContext();
             selectContext.set("PSDEID", (Object)pSDEForm.getPSDEId());
-            ArrayList arrayList = pSDEFSFItemService.select((ISelectCond)selectContext);
+            ArrayList<PSDEFSFItem> arrayList = pSDEFSFItemService.select((ISelectCond)selectContext);
             for (PSDEFSFItem pSDEFSFItem : arrayList) {
                 hashMap.put(pSDEFSFItem.getPSDEFSFItemId(), pSDEFSFItem);
             }
@@ -883,7 +871,7 @@ extends PSDEFormDetailServiceBase {
             PSDEFSFItemService pSDEFSFItemService = (PSDEFSFItemService)ServiceGlobal.getService(PSDEFSFItemService.class, (SessionFactory)this.getSessionFactory());
             SelectContext selectContext = new SelectContext();
             selectContext.set("PSDEFID", (Object)string);
-            ArrayList arrayList = pSDEFSFItemService.select((ISelectCond)selectContext);
+            ArrayList<PSDEFSFItem> arrayList = pSDEFSFItemService.select((ISelectCond)selectContext);
             for (PSDEFSFItem pSDEFSFItem : arrayList) {
                 hashMap.put(pSDEFSFItem.getPSDEFSFItemId(), pSDEFSFItem);
             }
@@ -893,4 +881,3 @@ extends PSDEFormDetailServiceBase {
         return (Map)object;
     }
 }
-

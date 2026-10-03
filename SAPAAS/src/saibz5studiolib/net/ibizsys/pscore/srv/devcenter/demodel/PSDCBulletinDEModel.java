@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.devcenter.demodel.PSDCBulletinDEModelBase;
 
 public class PSDCBulletinDEModel
 extends PSDCBulletinDEModelBase {
+
+    public PSDCBulletinDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -1202,7 +1202,7 @@ implements Serializable {
                 PSSFPkgVer pSSFPkgVer = new PSSFPkgVer();
                 pSSFPkgVer.setPSSFPkgVerId(this.getPSSFPkgVerId());
                 PSSFPkgVerService pSSFPkgVerService = (PSSFPkgVerService)ServiceGlobal.getService(PSSFPkgVerService.class, (SessionFactory)this.getSessionFactory());
-                pSSFPkgVerService.autoGet((IEntity)pSSFPkgVer);
+                pSSFPkgVerService.autoGet(pSSFPkgVer);
                 this.pssfpkgver = pSSFPkgVer;
             }
             return this.pssfpkgver;
@@ -1228,7 +1228,7 @@ implements Serializable {
                 PSSFPkg pSSFPkg = new PSSFPkg();
                 pSSFPkg.setPSSFPkgId(this.getPSSFPkgId());
                 PSSFPkgService pSSFPkgService = (PSSFPkgService)ServiceGlobal.getService(PSSFPkgService.class, (SessionFactory)this.getSessionFactory());
-                pSSFPkgService.autoGet((IEntity)pSSFPkg);
+                pSSFPkgService.autoGet(pSSFPkg);
                 this.pssfpkg = pSSFPkg;
             }
             return this.pssfpkg;
@@ -1254,7 +1254,7 @@ implements Serializable {
                 PSSFStyle pSSFStyle = new PSSFStyle();
                 pSSFStyle.setPSSFStyleId(this.getPSSFStyleId());
                 PSSFStyleService pSSFStyleService = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.getSessionFactory());
-                pSSFStyleService.autoGet((IEntity)pSSFStyle);
+                pSSFStyleService.autoGet(pSSFStyle);
                 this.pssfstyle = pSSFStyle;
             }
             return this.pssfstyle;

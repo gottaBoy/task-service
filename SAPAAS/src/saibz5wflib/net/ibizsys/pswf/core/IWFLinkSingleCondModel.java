@@ -1,18 +1,42 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFLinkCondModel;
 
-public interface IWFLinkSingleCondModel
-extends IWFLinkCondModel {
-    public String getFieldName() throws Exception;
+/**
+ * 流程连接单项条件模型接口
+ * @author Administrator
+ *
+ */
+public interface IWFLinkSingleCondModel  extends IWFLinkCondModel
+{
+		
+	/**
+	 * 获取目标属性名称
+	 * @return
+	 * @throws Exception
+	 */
+	String getFieldName() throws Exception;
+	
 
-    public String getCondOP();
-
-    public String getParamType();
-
-    public String getParamValue();
+	/**
+	 * 获取值操作符号标识
+	 * @return
+	 */
+	String getCondOP();
+	
+	
+	/**
+	 * 获取参数类型
+	 * @return
+	 */
+	String getParamType();
+	
+	
+	/**
+	 * 获取参数值
+	 * @return
+	 */
+	String getParamValue();
+	
+	
+	
 }
-

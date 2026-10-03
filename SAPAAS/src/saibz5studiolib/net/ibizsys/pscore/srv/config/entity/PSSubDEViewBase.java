@@ -1201,7 +1201,7 @@ implements Serializable {
                 PSSubDE pSSubDE = new PSSubDE();
                 pSSubDE.setPSSubDEId(this.getPSSubDEId());
                 PSSubDEService pSSubDEService = (PSSubDEService)ServiceGlobal.getService(PSSubDEService.class, (SessionFactory)this.getSessionFactory());
-                pSSubDEService.autoGet((IEntity)pSSubDE);
+                pSSubDEService.autoGet(pSSubDE);
                 this.pssubde = pSSubDE;
             }
             return this.pssubde;
@@ -1227,7 +1227,7 @@ implements Serializable {
                 PSSubSys pSSubSys = new PSSubSys();
                 pSSubSys.setPSSubSysId(this.getPSSubSysId());
                 PSSubSysService pSSubSysService = (PSSubSysService)ServiceGlobal.getService(PSSubSysService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysService.autoGet((IEntity)pSSubSys);
+                pSSubSysService.autoGet(pSSubSys);
                 this.pssubsys = pSSubSys;
             }
             return this.pssubsys;

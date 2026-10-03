@@ -1,16 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.controller.IWFDEViewController
- */
 package net.ibizsys.pswf.controller;
 
-import net.ibizsys.pswf.controller.IDynaWFViewControllerInst;
-import net.ibizsys.pswf.controller.IWFDEViewController;
+/**
+ * 动态工作流实体视图控制器实例对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaWFDEViewControllerInst extends IDynaWFViewControllerInst,IWFDEViewController {
 
-public interface IDynaWFDEViewControllerInst
-extends IDynaWFViewControllerInst,
-IWFDEViewController {
 }
-

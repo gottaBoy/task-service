@@ -29,12 +29,11 @@ extends XMLCollectionExConfig<ListColumnConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = ListColumnsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((ListColumnConfig)childNode))) {
-                this.add((Object)((ListColumnConfig)childNode));
+            if (this.OnChildNodeLoaded((ListColumnConfig)childNode)) {
+                this.add((ListColumnConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

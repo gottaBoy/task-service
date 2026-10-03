@@ -1,72 +1,134 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.controller.ExpViewControllerBase
- *  net.ibizsys.paas.core.IDEWF
- *  net.ibizsys.pswf.core.IWFModel
- *  net.ibizsys.pswf.core.IWFVersionModel
- */
 package net.ibizsys.pswf.controller;
 
 import net.ibizsys.paas.controller.ExpViewControllerBase;
 import net.ibizsys.paas.core.IDEWF;
-import net.ibizsys.pswf.controller.IWFDEViewController;
 import net.ibizsys.pswf.core.IWFModel;
 import net.ibizsys.pswf.core.IWFVersionModel;
 
-public abstract class WFExpViewControllerBase
-extends ExpViewControllerBase
-implements IWFDEViewController {
-    private IWFModel iWFModel = null;
-    private IDEWF iDEWF = null;
-    private String strWFStepValue = "";
-    private int nWFVersion = -1;
+/**
+ * 工作流导航视图控制器
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class WFExpViewControllerBase extends ExpViewControllerBase implements IWFDEViewController {
+	/**
+	 * 工作流模型
+	 */
+	private IWFModel iWFModel = null;
 
-    @Override
-    public IWFModel getWFModel() {
-        return this.iWFModel;
-    }
+	/**
+	 * 实体工作流模型
+	 */
+	private IDEWF iDEWF = null;
 
-    protected void setWFModel(IWFModel iWFModel) {
-        this.iWFModel = iWFModel;
-    }
+	/**
+	 * 交互的流程步骤值
+	 */
+	private String strWFStepValue = "";
 
-    @Override
-    public IWFVersionModel getWFVersionModel() {
-        return this.getWFModel().getLastWFVersionModel();
-    }
+	/**
+	 * 流程版本
+	 */
+	private int nWFVersion = -1;
 
-    @Override
-    public IDEWF getDEWF() {
-        return this.iDEWF;
-    }
+	public WFExpViewControllerBase() throws Exception {
+		super();
+	}
 
-    protected void setDEWF(IDEWF iDEWF) {
-        this.iDEWF = iDEWF;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#getWFModel()
+	 */
+	@Override
+	public IWFModel getWFModel() {
+		return iWFModel;
+	}
 
-    @Override
-    public boolean isWFIAMode() {
-        return false;
-    }
+	/**
+	 * 设置流程模型
+	 * 
+	 * @param iWFModel
+	 */
+	protected void setWFModel(IWFModel iWFModel) {
+		this.iWFModel = iWFModel;
+	}
 
-    @Override
-    public String getWFStepValue() {
-        return this.strWFStepValue;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#getWFVersionModel()
+	 */
+	@Override
+	public IWFVersionModel getWFVersionModel() {
+		return this.getWFModel().getLastWFVersionModel();
+	}
 
-    public void setWFStepValue(String strWFStepValue) {
-        this.strWFStepValue = strWFStepValue;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFDEViewController#getDEWF()
+	 */
+	@Override
+	public IDEWF getDEWF() {
+		return this.iDEWF;
+	}
 
-    @Override
-    public int getWFVersion() {
-        return this.nWFVersion;
-    }
+	/**
+	 * 设置实体工作流对象
+	 * 
+	 * @param iDEWF
+	 */
+	protected void setDEWF(IDEWF iDEWF) {
+		this.iDEWF = iDEWF;
+	}
 
-    public void setWFVersion(int nWFVersion) {
-        this.nWFVersion = nWFVersion;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#isWFIAMode()
+	 */
+	@Override
+	public boolean isWFIAMode() {
+		return false;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#getWFStepValue()
+	 */
+	@Override
+	public String getWFStepValue() {
+		return this.strWFStepValue;
+	}
+
+	/**
+	 * 设置当前的流程步骤值
+	 * 
+	 * @param strWFStepValue
+	 */
+	public void setWFStepValue(String strWFStepValue) {
+		this.strWFStepValue = strWFStepValue;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#getWFVersion()
+	 */
+	@Override
+	public int getWFVersion() {
+		return this.nWFVersion;
+	}
+
+	/**
+	 * 设置流程版本
+	 * 
+	 * @param nWFVersion
+	 */
+	public void setWFVersion(int nWFVersion) {
+		this.nWFVersion = nWFVersion;
+	}
 }
-

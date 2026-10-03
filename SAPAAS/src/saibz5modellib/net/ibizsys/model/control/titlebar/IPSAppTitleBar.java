@@ -1,15 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.titlebar;
 
 import net.ibizsys.model.control.menu.IPSAppMenu;
-import net.ibizsys.model.control.titlebar.IPSTitleBar;
 
-public interface IPSAppTitleBar
-extends IPSTitleBar {
-    public IPSAppMenu getLeftPSAppMenu();
+/**
+ * 应用标题栏对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSAppTitleBar extends IPSTitleBar {
 
-    public IPSAppMenu getRightPSAppMenu();
+	/**
+	 * 获取左侧应用菜单部件
+	 * @return
+	 */
+	IPSAppMenu getLeftPSAppMenu();
+	
+	
+	/**
+	 * 获取右侧应用菜单部件
+	 * @return
+	 */
+	IPSAppMenu getRightPSAppMenu();
 }
-

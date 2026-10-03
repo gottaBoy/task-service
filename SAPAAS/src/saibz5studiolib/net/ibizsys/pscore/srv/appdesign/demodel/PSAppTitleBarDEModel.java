@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSAppTitleBarDEModelBase;
 
 public class PSAppTitleBarDEModel
 extends PSAppTitleBarDEModelBase {
+
+    public PSAppTitleBarDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.devcenter.demodel.PSDCSearchEngineInstDEModelBase;
 
 public class PSDCSearchEngineInstDEModel
 extends PSDCSearchEngineInstDEModelBase {
+
+    public PSDCSearchEngineInstDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -116,9 +116,9 @@ implements IPSDEFInputTipService {
 
     @Override
     protected List<PSDEFInputTip> onListAll() throws Exception {
-        List psdefields;
+        List<PSDEField> psdefields;
         ArrayList<PSDEFInputTip> list = new ArrayList<PSDEFInputTip>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSDEFInputTip> items = this.listByPSModule(parent);

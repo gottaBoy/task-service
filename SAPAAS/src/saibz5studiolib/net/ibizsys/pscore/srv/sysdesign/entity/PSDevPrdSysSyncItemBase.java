@@ -1330,7 +1330,7 @@ implements Serializable {
                 PSDevPrdSysSync pSDevPrdSysSync = new PSDevPrdSysSync();
                 pSDevPrdSysSync.setPSDevPrdSysSyncId(this.getPSDevPrdSysSyncId());
                 PSDevPrdSysSyncService pSDevPrdSysSyncService = (PSDevPrdSysSyncService)ServiceGlobal.getService(PSDevPrdSysSyncService.class, (SessionFactory)this.getSessionFactory());
-                pSDevPrdSysSyncService.autoGet((IEntity)pSDevPrdSysSync);
+                pSDevPrdSysSyncService.autoGet(pSDevPrdSysSync);
                 this.psdevprdsyssync = pSDevPrdSysSync;
             }
             return this.psdevprdsyssync;

@@ -1,16 +1,31 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.appmodel;
 
-import net.ibizsys.paas.appmodel.IApplicationModel;
 
-public interface IAppModeModel
-extends IApplicationModel {
-    public void init(IApplicationModel var1) throws Exception;
+/**
+ * 应用程序模式模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IAppModeModel extends IApplicationModel {
 
-    public IApplicationModel getAppModel();
-
-    public String getMode();
+	/**
+	 * 初始化
+	 * @param iApplicationModel
+	 * @throws Exception
+	 */
+	void init(IApplicationModel iApplicationModel)throws Exception;
+	
+	
+	/**
+	 * 获取应用程序模型对象
+	 * @return
+	 */
+	IApplicationModel getAppModel();
+	
+	/**
+	 * 获取模式标记
+	 * @return
+	 */
+	String getMode();
+	
 }
-

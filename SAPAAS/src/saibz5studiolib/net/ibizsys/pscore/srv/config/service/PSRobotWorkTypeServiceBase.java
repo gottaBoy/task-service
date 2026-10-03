@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
     }
 
     protected void onFillParentInfo(PSRobotWorkType pSRobotWorkType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSRobotWorkType, string, string2, string3);
+        super.onFillParentInfo(pSRobotWorkType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
         if (bl && pSRobotWorkType.getValidFlag() == null) {
             pSRobotWorkType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSRobotWorkType, bl);
+        super.onFillEntityFullInfo(pSRobotWorkType, bl);
     }
 
     protected void onWriteBackParent(PSRobotWorkType pSRobotWorkType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSRobotWorkType, bl);
+        super.onWriteBackParent(pSRobotWorkType, bl);
     }
 
     @Override
@@ -143,7 +143,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSRobotWorkType pSRobotWorkType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSRobotWorkType, bl);
+        super.onRemoveEntityUncopyValues(pSRobotWorkType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSRobotWorkType pSRobotWorkType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -182,7 +182,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
         if ((entityFieldError = this.onCheckField_WorkDesc(bl, pSRobotWorkType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSRobotWorkType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSRobotWorkType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Energy(boolean bl, PSRobotWorkType pSRobotWorkType, boolean bl2, boolean bl3) throws Exception {
@@ -195,7 +195,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Energy_Default((IEntity)pSRobotWorkType, bl2, bl3);
+            string = this.onTestValueRule_Energy_Default(pSRobotWorkType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENERGY");
@@ -217,7 +217,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSRobotWorkType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSRobotWorkType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -242,7 +242,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRobotWorkTypeId_Default((IEntity)pSRobotWorkType, bl2, bl3);
+            string2 = this.onTestValueRule_PSRobotWorkTypeId_Default(pSRobotWorkType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSROBOTWORKTYPEID");
@@ -267,7 +267,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRobotWorkTypeName_Default((IEntity)pSRobotWorkType, bl2, bl3);
+            string2 = this.onTestValueRule_PSRobotWorkTypeName_Default(pSRobotWorkType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSROBOTWORKTYPENAME");
@@ -289,7 +289,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RobotLevel_Default((IEntity)pSRobotWorkType, bl2, bl3);
+            string = this.onTestValueRule_RobotLevel_Default(pSRobotWorkType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ROBOTLEVEL");
@@ -311,7 +311,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeObj_Default((IEntity)pSRobotWorkType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeObj_Default(pSRobotWorkType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEOBJ");
@@ -333,7 +333,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParams_Default((IEntity)pSRobotWorkType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParams_Default(pSRobotWorkType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAMS");
@@ -355,7 +355,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSRobotWorkType, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSRobotWorkType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -377,7 +377,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSRobotWorkType, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSRobotWorkType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -402,7 +402,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSRobotWorkType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSRobotWorkType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -424,7 +424,7 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WorkDesc_Default((IEntity)pSRobotWorkType, bl2, bl3);
+            string2 = this.onTestValueRule_WorkDesc_Default(pSRobotWorkType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WORKDESC");
@@ -437,11 +437,11 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
     }
 
     protected void onSyncEntity(PSRobotWorkType pSRobotWorkType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSRobotWorkType, bl);
+        super.onSyncEntity(pSRobotWorkType, bl);
     }
 
     protected void onSyncIndexEntities(PSRobotWorkType pSRobotWorkType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSRobotWorkType, bl);
+        super.onSyncIndexEntities(pSRobotWorkType, bl);
     }
 
     public Object getDataContextValue(PSRobotWorkType pSRobotWorkType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -449,14 +449,14 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSRobotWorkType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSRobotWorkType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSRobotWorkType pSRobotWorkType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSRobotWorkType, arrayList, n);
+        super.onExportMajorModel(pSRobotWorkType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -650,14 +650,14 @@ extends PSCoreSysServiceBase<PSRobotWorkType> {
 
     protected boolean onMergeChild(String string, String string2, PSRobotWorkType pSRobotWorkType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSRobotWorkType)) {
+        if (super.onMergeChild(string, string2, pSRobotWorkType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSRobotWorkType pSRobotWorkType) throws Exception {
-        super.onUpdateParent((IEntity)pSRobotWorkType);
+        super.onUpdateParent(pSRobotWorkType);
     }
 
     @Override

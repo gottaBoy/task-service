@@ -1912,7 +1912,7 @@ implements Serializable {
                 PSAppMenu pSAppMenu = new PSAppMenu();
                 pSAppMenu.setPSAppMenuId(this.getPSAppMenuId());
                 PSAppMenuService pSAppMenuService = (PSAppMenuService)ServiceGlobal.getService(PSAppMenuService.class, (SessionFactory)this.getSessionFactory());
-                pSAppMenuService.autoGet((IEntity)pSAppMenu);
+                pSAppMenuService.autoGet(pSAppMenu);
                 this.psappmenu = pSAppMenu;
             }
             return this.psappmenu;
@@ -1938,7 +1938,7 @@ implements Serializable {
                 PSDynaApp pSDynaApp = new PSDynaApp();
                 pSDynaApp.setPSDynaAppId(this.getPSDynaAppId());
                 PSDynaAppService pSDynaAppService = (PSDynaAppService)ServiceGlobal.getService(PSDynaAppService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaAppService.autoGet((IEntity)pSDynaApp);
+                pSDynaAppService.autoGet(pSDynaApp);
                 this.psdynaapp = pSDynaApp;
             }
             return this.psdynaapp;
@@ -1964,7 +1964,7 @@ implements Serializable {
                 PSDynaDE pSDynaDE = new PSDynaDE();
                 pSDynaDE.setPSDynaDEId(this.getPSDynaDEId());
                 PSDynaDEService pSDynaDEService = (PSDynaDEService)ServiceGlobal.getService(PSDynaDEService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaDEService.autoGet((IEntity)pSDynaDE);
+                pSDynaDEService.autoGet(pSDynaDE);
                 this.psdynade = pSDynaDE;
             }
             return this.psdynade;
@@ -1990,7 +1990,7 @@ implements Serializable {
                 PSWFDE pSWFDE = new PSWFDE();
                 pSWFDE.setPSWFDEId(this.getPSWFDEId());
                 PSWFDEService pSWFDEService = (PSWFDEService)ServiceGlobal.getService(PSWFDEService.class, (SessionFactory)this.getSessionFactory());
-                pSWFDEService.autoGet((IEntity)pSWFDE);
+                pSWFDEService.autoGet(pSWFDE);
                 this.pswfde = pSWFDE;
             }
             return this.pswfde;

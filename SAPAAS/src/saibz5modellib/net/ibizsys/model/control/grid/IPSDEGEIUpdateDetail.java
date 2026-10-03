@@ -1,17 +1,36 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.grid;
 
-import net.ibizsys.model.control.grid.IPSDEGridEditItemUpdate;
 import net.ibizsys.model.core.IPSModelObject;
 
-public interface IPSDEGEIUpdateDetail
-extends IPSModelObject {
-    public IPSDEGridEditItemUpdate getPSDEGridEditItemUpdate();
 
-    public String getPSDEGridColumnName();
-
-    public String getPSDEGridColumnId();
+/**
+ * 实体表格编辑项值更新处理成员对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEGEIUpdateDetail extends IPSModelObject
+{
+	
+	
+	/**
+	 * 获取表格编辑项更新对象
+	 * @return
+	 */
+	IPSDEGridEditItemUpdate getPSDEGridEditItemUpdate();
+	
+	/**
+	 *  获取表格编辑项名称
+	 * @return
+	 */
+	String getPSDEGridColumnName();
+	
+	
+	/**
+	 * 获取表格编辑项标识
+	 * @return
+	 */
+	String getPSDEGridColumnId();
+	
+	
+	
 }
-

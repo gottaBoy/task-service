@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.data.IDataObject;
-import net.ibizsys.paas.entity.EntityBase;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.StringHelper;
@@ -185,7 +184,7 @@ public class PSCoreEntityKeeperGlobal {
         Object object;
         PSDevCenter pSDevCenter = this.psDevCenterMap.get(string);
         if (pSDevCenter != null) {
-            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSDEVCENTER", (IEntity)pSDevCenter, false)) {
+            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSDEVCENTER", pSDevCenter, false)) {
                 return pSDevCenter;
             }
             object = this.psDevCenterMap;
@@ -195,8 +194,8 @@ public class PSCoreEntityKeeperGlobal {
         }
         pSDevCenter = new PSDevCenter();
         pSDevCenter.setPSDevCenterId(string);
-        object = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-        object.get((IEntity)pSDevCenter);
+        PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
+        pSDevCenterService.get(pSDevCenter);
         if (pSDevCenter.getValidFlag() == null) {
             pSDevCenter.setValidFlag(1);
         }
@@ -211,7 +210,7 @@ public class PSCoreEntityKeeperGlobal {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     public void updatePSDevCenter(PSDevCenter pSDevCenter) throws Exception {
-        PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSDEVCENTER", (IEntity)pSDevCenter, true);
+        PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSDEVCENTER", pSDevCenter, true);
         PSDevCenter pSDevCenter2 = this.psDevCenterMap.get(pSDevCenter.getPSDevCenterId());
         if (pSDevCenter2 != null && pSDevCenter2 != pSDevCenter) {
             pSDevCenter.copyTo((IDataObject)pSDevCenter2, false);
@@ -238,7 +237,7 @@ public class PSCoreEntityKeeperGlobal {
         Object object;
         PSDevSlnSys pSDevSlnSys = this.psDevSlnSysMap.get(string);
         if (pSDevSlnSys != null) {
-            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSDEVSLNSYS", (IEntity)pSDevSlnSys, false)) {
+            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSDEVSLNSYS", pSDevSlnSys, false)) {
                 return pSDevSlnSys;
             }
             object = this.psDevSlnSysMap;
@@ -248,8 +247,8 @@ public class PSCoreEntityKeeperGlobal {
         }
         pSDevSlnSys = new PSDevSlnSys();
         pSDevSlnSys.setPSDevSlnSysId(string);
-        object = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)this.sessionFactory);
-        object.get((IEntity)pSDevSlnSys);
+        PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)this.sessionFactory);
+        pSDevSlnSysService.get(pSDevSlnSys);
         if (pSDevSlnSys.getValidFlag() == null) {
             pSDevSlnSys.setValidFlag(1);
         }
@@ -259,7 +258,7 @@ public class PSCoreEntityKeeperGlobal {
         PSDevCenter pSDevCenter = new PSDevCenter();
         pSDevCenter.setPSDevCenterId(pSDevSlnSys.getPSDevCenterId());
         PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-        pSDevCenterService.get((IEntity)pSDevCenter);
+        pSDevCenterService.get(pSDevCenter);
         String string2 = pSDevCenter.getPSSvrDomainId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             string2 = "DEFAULT";
@@ -276,8 +275,8 @@ public class PSCoreEntityKeeperGlobal {
         block11: {
             try {
                 Object object;
-                EntityBase entityBase;
-                if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSDEVSLNSYS", (IEntity)pSDevSlnSys)) {
+                PSDevSlnSys pSDevSlnSys2;
+                if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSDEVSLNSYS", pSDevSlnSys)) {
                     log.debug((Object)StringHelper.format((String)"[zk]\u66f4\u65b0\u5f00\u53d1\u7cfb\u7edf[%1$s]", (Object)pSDevSlnSys.getPSDevSlnSysId()));
                     if (pSDevSlnSys.getValidFlag() == null) {
                         pSDevSlnSys.setValidFlag(1);
@@ -285,26 +284,26 @@ public class PSCoreEntityKeeperGlobal {
                     if (pSDevSlnSys.getDevSysState() == null) {
                         pSDevSlnSys.setDevSysState(30);
                     }
-                    entityBase = new PSDevCenter();
-                    entityBase.setPSDevCenterId(pSDevSlnSys.getPSDevCenterId());
-                    object = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-                    object.get((IEntity)entityBase);
-                    String string = entityBase.getPSSvrDomainId();
+                    PSDevCenter pSDevCenter = new PSDevCenter();
+                    pSDevCenter.setPSDevCenterId(pSDevSlnSys.getPSDevCenterId());
+                    PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
+                    pSDevCenterService.get(pSDevCenter);
+                    String string = pSDevCenter.getPSSvrDomainId();
                     if (StringHelper.isNullOrEmpty((String)string)) {
                         string = "DEFAULT";
                     }
                     pSDevSlnSys.set("PSSVRDOMAINID", string);
                 }
-                PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSDEVSLNSYS", (IEntity)pSDevSlnSys, true);
-                entityBase = this.psDevSlnSysMap.get(pSDevSlnSys.getPSDevSlnSysId());
-                if (entityBase != null && entityBase != pSDevSlnSys) {
-                    pSDevSlnSys.copyTo((IDataObject)entityBase, false);
+                PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSDEVSLNSYS", pSDevSlnSys, true);
+                pSDevSlnSys2 = this.psDevSlnSysMap.get(pSDevSlnSys.getPSDevSlnSysId());
+                if (pSDevSlnSys2 != null && pSDevSlnSys2 != pSDevSlnSys) {
+                    pSDevSlnSys.copyTo((IDataObject)pSDevSlnSys2, false);
                 }
-                if (entityBase != null) break block11;
+                if (pSDevSlnSys2 != null) break block11;
                 object = this.psDevSlnSysMap;
                 synchronized (object) {
-                    entityBase = this.psDevSlnSysMap.get(pSDevSlnSys.getPSDevSlnSysId());
-                    if (entityBase == null) {
+                    pSDevSlnSys2 = this.psDevSlnSysMap.get(pSDevSlnSys.getPSDevSlnSysId());
+                    if (pSDevSlnSys2 == null) {
                         this.psDevSlnSysMap.put(pSDevSlnSys.getPSDevSlnSysId(), pSDevSlnSys);
                     }
                 }
@@ -363,7 +362,7 @@ public class PSCoreEntityKeeperGlobal {
         Object object;
         PSDCRobot pSDCRobot = this.psDCRobotMap.get(string);
         if (pSDCRobot != null) {
-            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSDCROBOT", (IEntity)pSDCRobot, false)) {
+            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSDCROBOT", pSDCRobot, false)) {
                 return pSDCRobot;
             }
             object = this.psDCRobotMap;
@@ -373,12 +372,12 @@ public class PSCoreEntityKeeperGlobal {
         }
         pSDCRobot = new PSDCRobot();
         pSDCRobot.setPSDCRobotId(string);
-        object = (PSDCRobotService)ServiceGlobal.getService(PSDCRobotService.class, (SessionFactory)this.sessionFactory);
-        object.get((IEntity)pSDCRobot);
+        PSDCRobotService pSDCRobotService = (PSDCRobotService)ServiceGlobal.getService(PSDCRobotService.class, (SessionFactory)this.sessionFactory);
+        pSDCRobotService.get(pSDCRobot);
         PSDevCenter pSDevCenter = new PSDevCenter();
         pSDevCenter.setPSDevCenterId(pSDCRobot.getPSDevCenterId());
         PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-        pSDevCenterService.get((IEntity)pSDevCenter);
+        pSDevCenterService.get(pSDevCenter);
         String string2 = pSDevCenter.getPSSvrDomainId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             string2 = "DEFAULT";
@@ -394,24 +393,24 @@ public class PSCoreEntityKeeperGlobal {
     public void updatePSDCRobot(PSDCRobot pSDCRobot) throws Exception {
         Object object;
         PSDCRobot pSDCRobot2;
-        if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSDCROBOT", (IEntity)pSDCRobot)) {
+        if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSDCROBOT", pSDCRobot)) {
             pSDCRobot2 = new PSDCRobot();
             pSDCRobot2.setPSDCRobotId(pSDCRobot.getPSDCRobotId());
-            object = (PSDCRobotService)ServiceGlobal.getService(PSDCRobotService.class, (SessionFactory)this.sessionFactory);
-            object.get((IEntity)pSDCRobot2);
+            PSDCRobotService pSDCRobotService = (PSDCRobotService)ServiceGlobal.getService(PSDCRobotService.class, (SessionFactory)this.sessionFactory);
+            pSDCRobotService.get(pSDCRobot2);
             pSDCRobot.copyTo((IDataObject)pSDCRobot2, false);
             pSDCRobot2.copyTo((IDataObject)pSDCRobot, true);
             PSDevCenter pSDevCenter = new PSDevCenter();
             pSDevCenter.setPSDevCenterId(pSDCRobot.getPSDevCenterId());
             PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-            pSDevCenterService.get((IEntity)pSDevCenter);
+            pSDevCenterService.get(pSDevCenter);
             String string = pSDevCenter.getPSSvrDomainId();
             if (StringHelper.isNullOrEmpty((String)string)) {
                 string = "DEFAULT";
             }
             pSDCRobot.set("PSSVRDOMAINID", string);
         }
-        PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSDCROBOT", (IEntity)pSDCRobot, true);
+        PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSDCROBOT", pSDCRobot, true);
         pSDCRobot2 = this.psDCRobotMap.get(pSDCRobot.getPSDCRobotId());
         if (pSDCRobot2 != null && pSDCRobot2 != pSDCRobot) {
             pSDCRobot.copyTo((IDataObject)pSDCRobot2, false);
@@ -463,7 +462,7 @@ public class PSCoreEntityKeeperGlobal {
         Object object;
         PSPFStyle pSPFStyle = this.psPFStyleMap.get(string);
         if (pSPFStyle != null) {
-            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSPFSTYLE", (IEntity)pSPFStyle, false)) {
+            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSPFSTYLE", pSPFStyle, false)) {
                 return pSPFStyle;
             }
             object = this.psPFStyleMap;
@@ -473,12 +472,12 @@ public class PSCoreEntityKeeperGlobal {
         }
         pSPFStyle = new PSPFStyle();
         pSPFStyle.setPSPFStyleId(string);
-        object = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)this.sessionFactory);
-        object.get((IEntity)pSPFStyle);
+        PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)this.sessionFactory);
+        pSPFStyleService.get(pSPFStyle);
         PSDevCenter pSDevCenter = new PSDevCenter();
         pSDevCenter.setPSDevCenterId(pSPFStyle.getPSDevCenterId());
         PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-        pSDevCenterService.get((IEntity)pSDevCenter);
+        pSDevCenterService.get(pSDevCenter);
         String string2 = pSDevCenter.getPSSvrDomainId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             string2 = "DEFAULT";
@@ -494,24 +493,24 @@ public class PSCoreEntityKeeperGlobal {
     public void updatePSPFStyle(PSPFStyle pSPFStyle) throws Exception {
         Object object;
         PSPFStyle pSPFStyle2;
-        if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSPFSTYLE", (IEntity)pSPFStyle)) {
+        if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSPFSTYLE", pSPFStyle)) {
             pSPFStyle2 = new PSPFStyle();
             pSPFStyle2.setPSPFStyleId(pSPFStyle.getPSPFStyleId());
-            object = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)this.sessionFactory);
-            object.get((IEntity)pSPFStyle2);
+            PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)this.sessionFactory);
+            pSPFStyleService.get(pSPFStyle2);
             pSPFStyle.copyTo((IDataObject)pSPFStyle2, false);
             pSPFStyle2.copyTo((IDataObject)pSPFStyle, true);
             PSDevCenter pSDevCenter = new PSDevCenter();
             pSDevCenter.setPSDevCenterId(pSPFStyle.getPSDevCenterId());
             PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-            pSDevCenterService.get((IEntity)pSDevCenter);
+            pSDevCenterService.get(pSDevCenter);
             String string = pSDevCenter.getPSSvrDomainId();
             if (StringHelper.isNullOrEmpty((String)string)) {
                 string = "DEFAULT";
             }
             pSPFStyle.set("PSSVRDOMAINID", string);
         }
-        PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSPFSTYLE", (IEntity)pSPFStyle, true);
+        PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSPFSTYLE", pSPFStyle, true);
         pSPFStyle2 = this.psPFStyleMap.get(pSPFStyle.getPSPFStyleId());
         if (pSPFStyle2 != null && pSPFStyle2 != pSPFStyle) {
             pSPFStyle.copyTo((IDataObject)pSPFStyle2, false);
@@ -563,7 +562,7 @@ public class PSCoreEntityKeeperGlobal {
         Object object;
         PSSVNServer pSSVNServer = this.psSVNServerMap.get(string);
         if (pSSVNServer != null) {
-            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSSVNSERVER", (IEntity)pSSVNServer, false)) {
+            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSSVNSERVER", pSSVNServer, false)) {
                 return pSSVNServer;
             }
             object = this.psSVNServerMap;
@@ -573,8 +572,8 @@ public class PSCoreEntityKeeperGlobal {
         }
         pSSVNServer = new PSSVNServer();
         pSSVNServer.setPSSVNServerId(string);
-        object = (PSSVNServerService)ServiceGlobal.getService(PSSVNServerService.class, (SessionFactory)this.sessionFactory);
-        object.get((IEntity)pSSVNServer);
+        PSSVNServerService pSSVNServerService = (PSSVNServerService)ServiceGlobal.getService(PSSVNServerService.class, (SessionFactory)this.sessionFactory);
+        pSSVNServerService.get(pSSVNServer);
         String string2 = pSSVNServer.getPSSvrDomainId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             string2 = "DEFAULT";
@@ -590,11 +589,11 @@ public class PSCoreEntityKeeperGlobal {
     public void updatePSSVNServer(PSSVNServer pSSVNServer) throws Exception {
         Object object;
         PSSVNServer pSSVNServer2;
-        if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSSVNSERVER", (IEntity)pSSVNServer)) {
+        if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSSVNSERVER", pSSVNServer)) {
             pSSVNServer2 = new PSSVNServer();
             pSSVNServer2.setPSSVNServerId(pSSVNServer.getPSSVNServerId());
-            object = (PSSVNServerService)ServiceGlobal.getService(PSSVNServerService.class, (SessionFactory)this.sessionFactory);
-            object.get((IEntity)pSSVNServer2);
+            PSSVNServerService pSSVNServerService = (PSSVNServerService)ServiceGlobal.getService(PSSVNServerService.class, (SessionFactory)this.sessionFactory);
+            pSSVNServerService.get(pSSVNServer2);
             pSSVNServer.copyTo((IDataObject)pSSVNServer2, false);
             pSSVNServer2.copyTo((IDataObject)pSSVNServer, true);
             String string = pSSVNServer2.getPSSvrDomainId();
@@ -603,7 +602,7 @@ public class PSCoreEntityKeeperGlobal {
             }
             pSSVNServer.setPSSvrDomainId(string);
         }
-        PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSSVNSERVER", (IEntity)pSSVNServer, true);
+        PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSSVNSERVER", pSSVNServer, true);
         pSSVNServer2 = this.psSVNServerMap.get(pSSVNServer.getPSSVNServerId());
         if (pSSVNServer2 != null && pSSVNServer2 != pSSVNServer) {
             pSSVNServer.copyTo((IDataObject)pSSVNServer2, false);
@@ -655,7 +654,7 @@ public class PSCoreEntityKeeperGlobal {
         Object object;
         PSSFStyle pSSFStyle = this.psSFStyleMap.get(string);
         if (pSSFStyle != null) {
-            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSSFSTYLE", (IEntity)pSSFStyle, false)) {
+            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSSFSTYLE", pSSFStyle, false)) {
                 return pSSFStyle;
             }
             object = this.psSFStyleMap;
@@ -665,12 +664,12 @@ public class PSCoreEntityKeeperGlobal {
         }
         pSSFStyle = new PSSFStyle();
         pSSFStyle.setPSSFStyleId(string);
-        object = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.sessionFactory);
-        object.get((IEntity)pSSFStyle);
+        PSSFStyleService pSSFStyleService = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.sessionFactory);
+        pSSFStyleService.get(pSSFStyle);
         PSDevCenter pSDevCenter = new PSDevCenter();
         pSDevCenter.setPSDevCenterId(pSSFStyle.getPSDevCenterId());
         PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-        pSDevCenterService.get((IEntity)pSDevCenter);
+        pSDevCenterService.get(pSDevCenter);
         String string2 = pSDevCenter.getPSSvrDomainId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             string2 = "DEFAULT";
@@ -686,24 +685,24 @@ public class PSCoreEntityKeeperGlobal {
     public void updatePSSFStyle(PSSFStyle pSSFStyle) throws Exception {
         Object object;
         PSSFStyle pSSFStyle2;
-        if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSSFSTYLE", (IEntity)pSSFStyle)) {
+        if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSSFSTYLE", pSSFStyle)) {
             pSSFStyle2 = new PSSFStyle();
             pSSFStyle2.setPSSFStyleId(pSSFStyle.getPSSFStyleId());
-            object = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.sessionFactory);
-            object.get((IEntity)pSSFStyle2);
+            PSSFStyleService pSSFStyleService = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.sessionFactory);
+            pSSFStyleService.get(pSSFStyle2);
             pSSFStyle.copyTo((IDataObject)pSSFStyle2, false);
             pSSFStyle2.copyTo((IDataObject)pSSFStyle, true);
             PSDevCenter pSDevCenter = new PSDevCenter();
             pSDevCenter.setPSDevCenterId(pSSFStyle.getPSDevCenterId());
             PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-            pSDevCenterService.get((IEntity)pSDevCenter);
+            pSDevCenterService.get(pSDevCenter);
             String string = pSDevCenter.getPSSvrDomainId();
             if (StringHelper.isNullOrEmpty((String)string)) {
                 string = "DEFAULT";
             }
             pSSFStyle.set("PSSVRDOMAINID", string);
         }
-        PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSSFSTYLE", (IEntity)pSSFStyle, true);
+        PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSSFSTYLE", pSSFStyle, true);
         pSSFStyle2 = this.psSFStyleMap.get(pSSFStyle.getPSSFStyleId());
         if (pSSFStyle2 != null && pSSFStyle2 != pSSFStyle) {
             pSSFStyle.copyTo((IDataObject)pSSFStyle2, false);
@@ -755,7 +754,7 @@ public class PSCoreEntityKeeperGlobal {
         Object object;
         PSDCWorkspace pSDCWorkspace = this.psDCWorkspaceMap.get(string);
         if (pSDCWorkspace != null) {
-            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSDCWORKSPACE", (IEntity)pSDCWorkspace, false)) {
+            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSDCWORKSPACE", pSDCWorkspace, false)) {
                 return pSDCWorkspace;
             }
             object = this.psDCWorkspaceMap;
@@ -765,12 +764,12 @@ public class PSCoreEntityKeeperGlobal {
         }
         pSDCWorkspace = new PSDCWorkspace();
         pSDCWorkspace.setPSDCWorkspaceId(string);
-        object = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)this.sessionFactory);
-        object.get((IEntity)pSDCWorkspace);
+        PSDCWorkspaceService pSDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)this.sessionFactory);
+        pSDCWorkspaceService.get(pSDCWorkspace);
         PSDevCenter pSDevCenter = new PSDevCenter();
         pSDevCenter.setPSDevCenterId(pSDCWorkspace.getPSDevCenterId());
         PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-        pSDevCenterService.get((IEntity)pSDevCenter);
+        pSDevCenterService.get(pSDevCenter);
         String string2 = pSDevCenter.getPSSvrDomainId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             string2 = "DEFAULT";
@@ -788,25 +787,25 @@ public class PSCoreEntityKeeperGlobal {
             try {
                 Object object;
                 PSDCWorkspace pSDCWorkspace2;
-                if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSDCWORKSPACE", (IEntity)pSDCWorkspace)) {
+                if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSDCWORKSPACE", pSDCWorkspace)) {
                     log.debug((Object)StringHelper.format((String)"[zk]\u66f4\u65b0\u4e2d\u5fc3\u751f\u4ea7\u7ebf[%1$s]", (Object)pSDCWorkspace.getPSDCWorkspaceId()));
                     pSDCWorkspace2 = new PSDCWorkspace();
                     pSDCWorkspace2.setPSDCWorkspaceId(pSDCWorkspace.getPSDCWorkspaceId());
-                    object = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)this.sessionFactory);
-                    object.get((IEntity)pSDCWorkspace2);
+                    PSDCWorkspaceService pSDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)this.sessionFactory);
+                    pSDCWorkspaceService.get(pSDCWorkspace2);
                     pSDCWorkspace.copyTo((IDataObject)pSDCWorkspace2, false);
                     pSDCWorkspace2.copyTo((IDataObject)pSDCWorkspace, true);
                     PSDevCenter pSDevCenter = new PSDevCenter();
                     pSDevCenter.setPSDevCenterId(pSDCWorkspace.getPSDevCenterId());
                     PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-                    pSDevCenterService.get((IEntity)pSDevCenter);
+                    pSDevCenterService.get(pSDevCenter);
                     String string = pSDevCenter.getPSSvrDomainId();
                     if (StringHelper.isNullOrEmpty((String)string)) {
                         string = "DEFAULT";
                     }
                     pSDCWorkspace.set("PSSVRDOMAINID", string);
                 }
-                PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSDCWORKSPACE", (IEntity)pSDCWorkspace, true);
+                PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSDCWORKSPACE", pSDCWorkspace, true);
                 pSDCWorkspace2 = this.psDCWorkspaceMap.get(pSDCWorkspace.getPSDCWorkspaceId());
                 if (pSDCWorkspace2 != null && pSDCWorkspace2 != pSDCWorkspace) {
                     pSDCWorkspace.copyTo((IDataObject)pSDCWorkspace2, false);
@@ -878,7 +877,7 @@ public class PSCoreEntityKeeperGlobal {
         Object object;
         PSDevSlnSysDynaInst pSDevSlnSysDynaInst = this.psDevSlnSysDynaInstMap.get(string);
         if (pSDevSlnSysDynaInst != null) {
-            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSDEVSLNSYSDYNAINST", (IEntity)pSDevSlnSysDynaInst, false)) {
+            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSDEVSLNSYSDYNAINST", pSDevSlnSysDynaInst, false)) {
                 return pSDevSlnSysDynaInst;
             }
             object = this.psDevSlnSysDynaInstMap;
@@ -888,12 +887,12 @@ public class PSCoreEntityKeeperGlobal {
         }
         pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
         pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(string);
-        object = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)this.sessionFactory);
-        object.get((IEntity)pSDevSlnSysDynaInst);
+        PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)this.sessionFactory);
+        pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst);
         PSDevCenter pSDevCenter = new PSDevCenter();
         pSDevCenter.setPSDevCenterId(pSDevSlnSysDynaInst.getPSDevCenterId());
         PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-        pSDevCenterService.get((IEntity)pSDevCenter);
+        pSDevCenterService.get(pSDevCenter);
         String string2 = pSDevCenter.getPSSvrDomainId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             string2 = "DEFAULT";
@@ -911,25 +910,25 @@ public class PSCoreEntityKeeperGlobal {
             try {
                 Object object;
                 PSDevSlnSysDynaInst pSDevSlnSysDynaInst2;
-                if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSDEVSLNSYSDYNAINST", (IEntity)pSDevSlnSysDynaInst)) {
+                if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSDEVSLNSYSDYNAINST", pSDevSlnSysDynaInst)) {
                     log.debug((Object)StringHelper.format((String)"[zk]\u66f4\u65b0\u5f00\u53d1\u7cfb\u7edf\u52a8\u6001\u5b9e\u4f8b[%1$s]", (Object)pSDevSlnSysDynaInst.getPSDevSlnSysDynaInstId()));
                     pSDevSlnSysDynaInst2 = new PSDevSlnSysDynaInst();
                     pSDevSlnSysDynaInst2.setPSDevSlnSysDynaInstId(pSDevSlnSysDynaInst.getPSDevSlnSysDynaInstId());
-                    object = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)this.sessionFactory);
-                    object.get((IEntity)pSDevSlnSysDynaInst2);
+                    PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)this.sessionFactory);
+                    pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst2);
                     pSDevSlnSysDynaInst.copyTo((IDataObject)pSDevSlnSysDynaInst2, false);
                     pSDevSlnSysDynaInst2.copyTo((IDataObject)pSDevSlnSysDynaInst, true);
                     PSDevCenter pSDevCenter = new PSDevCenter();
                     pSDevCenter.setPSDevCenterId(pSDevSlnSysDynaInst.getPSDevCenterId());
                     PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.sessionFactory);
-                    pSDevCenterService.get((IEntity)pSDevCenter);
+                    pSDevCenterService.get(pSDevCenter);
                     String string = pSDevCenter.getPSSvrDomainId();
                     if (StringHelper.isNullOrEmpty((String)string)) {
                         string = "DEFAULT";
                     }
                     pSDevSlnSysDynaInst.set("PSSVRDOMAINID", string);
                 }
-                PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSDEVSLNSYSDYNAINST", (IEntity)pSDevSlnSysDynaInst, true);
+                PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSDEVSLNSYSDYNAINST", pSDevSlnSysDynaInst, true);
                 pSDevSlnSysDynaInst2 = this.psDevSlnSysDynaInstMap.get(pSDevSlnSysDynaInst.getPSDevSlnSysDynaInstId());
                 if (pSDevSlnSysDynaInst2 != null && pSDevSlnSysDynaInst2 != pSDevSlnSysDynaInst) {
                     pSDevSlnSysDynaInst.copyTo((IDataObject)pSDevSlnSysDynaInst2, false);
@@ -993,7 +992,7 @@ public class PSCoreEntityKeeperGlobal {
         Object object;
         PSSvrDomain pSSvrDomain = this.psSvrDomainMap.get(string);
         if (pSSvrDomain != null) {
-            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSSVRDOMAIN", (IEntity)pSSvrDomain, false)) {
+            if (PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().getPSEntity("PSSVRDOMAIN", pSSvrDomain, false)) {
                 return pSSvrDomain;
             }
             object = this.psSvrDomainMap;
@@ -1003,8 +1002,8 @@ public class PSCoreEntityKeeperGlobal {
         }
         pSSvrDomain = new PSSvrDomain();
         pSSvrDomain.setPSSvrDomainId(string);
-        object = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.sessionFactory);
-        object.get((IEntity)pSSvrDomain);
+        PSSvrDomainService pSSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.sessionFactory);
+        pSSvrDomainService.get(pSSvrDomain);
         pSSvrDomain.setPSSvrDomainId(string);
         this.updatePSSvrDomain(pSSvrDomain);
         return pSSvrDomain;
@@ -1016,15 +1015,15 @@ public class PSCoreEntityKeeperGlobal {
     public void updatePSSvrDomain(PSSvrDomain pSSvrDomain) throws Exception {
         Object object;
         PSSvrDomain pSSvrDomain2;
-        if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSSVRDOMAIN", (IEntity)pSSvrDomain)) {
+        if (!PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().hasPSEntity("PSSVRDOMAIN", pSSvrDomain)) {
             pSSvrDomain2 = new PSSvrDomain();
             pSSvrDomain2.setPSSvrDomainId(pSSvrDomain.getPSSvrDomainId());
-            object = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.sessionFactory);
-            object.get((IEntity)pSSvrDomain2);
+            PSSvrDomainService pSSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.sessionFactory);
+            pSSvrDomainService.get(pSSvrDomain2);
             pSSvrDomain.copyTo((IDataObject)pSSvrDomain2, false);
             pSSvrDomain2.copyTo((IDataObject)pSSvrDomain, true);
         }
-        PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSSVRDOMAIN", (IEntity)pSSvrDomain, true);
+        PSCoreEntityKeeperGlobal.getPSEntityKeeperGlobal().updatePSEntity("PSSVRDOMAIN", pSSvrDomain, true);
         pSSvrDomain2 = this.psSvrDomainMap.get(pSSvrDomain.getPSSvrDomainId());
         if (pSSvrDomain2 != null && pSSvrDomain2 != pSSvrDomain) {
             pSSvrDomain.copyTo((IDataObject)pSSvrDomain2, false);
@@ -1082,4 +1081,3 @@ public class PSCoreEntityKeeperGlobal {
         PSCoreEntityKeeperGlobal.initPSDevSlnSysDynaInst();
     }
 }
-

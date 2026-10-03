@@ -166,7 +166,7 @@ implements IPSSysSearchBarService {
     @Override
     protected List<PSSysSearchBar> onListAll() throws Exception {
         ArrayList<PSSysSearchBar> list = new ArrayList<PSSysSearchBar>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSSysSearchBar> items = this.listByPSDataEntity(parent);
@@ -418,18 +418,19 @@ implements IPSSysSearchBarService {
         } else {
             dto.setPSSystemName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSSysSearchBarItemService().listByPSSysSearchBar(t);
-        if (list != null && list.size() > 0) {
+        List<PSSysSearchBarItem> pSSysSearchBarItemList = PSModelServiceUtil.getInstance().getPSSysSearchBarItemService().listByPSSysSearchBar(t);
+        if (pSSysSearchBarItemList != null && pSSysSearchBarItemList.size() > 0) {
             ArrayList<PSSysSearchBarItemDTO> pssyssearchbaritems = new ArrayList<PSSysSearchBarItemDTO>();
-            for (PSSysSearchBarItem pSSysSearchBarItem : list) {
+            for (PSSysSearchBarItem pSSysSearchBarItem : pSSysSearchBarItemList) {
                 dstItem = (PSSysSearchBarItemDTO)PSModelServiceUtil.getInstance().getPSSysSearchBarItemService().toDTO(pSSysSearchBarItem);
                 pssyssearchbaritems.add((PSSysSearchBarItemDTO)dstItem);
             }
             dto.setPssyssearchbaritems(pssyssearchbaritems);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSSysSearchBarLogicService().listByPSSysSearchBar(t)) != null && list.size() > 0) {
+        List<PSSysSearchBarLogic> pSSysSearchBarLogicList = PSModelServiceUtil.getInstance().getPSSysSearchBarLogicService().listByPSSysSearchBar(t);
+        if (pSSysSearchBarLogicList != null && pSSysSearchBarLogicList.size() > 0) {
             ArrayList<PSSysSearchBarLogicDTO> pssyssearchbarlogics = new ArrayList<PSSysSearchBarLogicDTO>();
-            for (PSSysSearchBarLogic pSSysSearchBarLogic : list) {
+            for (PSSysSearchBarLogic pSSysSearchBarLogic : pSSysSearchBarLogicList) {
                 dstItem = (PSSysSearchBarLogicDTO)PSModelServiceUtil.getInstance().getPSSysSearchBarLogicService().toDTO(pSSysSearchBarLogic);
                 pssyssearchbarlogics.add((PSSysSearchBarLogicDTO)dstItem);
             }

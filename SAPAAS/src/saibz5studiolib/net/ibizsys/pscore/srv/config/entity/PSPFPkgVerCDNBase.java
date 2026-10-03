@@ -1710,7 +1710,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -1736,7 +1736,7 @@ implements Serializable {
                 PSPFCDN pSPFCDN = new PSPFCDN();
                 pSPFCDN.setPSPFCDNId(this.getPSPFCDNId());
                 PSPFCDNService pSPFCDNService = (PSPFCDNService)ServiceGlobal.getService(PSPFCDNService.class, (SessionFactory)this.getSessionFactory());
-                pSPFCDNService.autoGet((IEntity)pSPFCDN);
+                pSPFCDNService.autoGet(pSPFCDN);
                 this.pspfcdn = pSPFCDN;
             }
             return this.pspfcdn;
@@ -1762,7 +1762,7 @@ implements Serializable {
                 PSPFPkgVer pSPFPkgVer = new PSPFPkgVer();
                 pSPFPkgVer.setPSPFPkgVerId(this.getPSPFPkgVerId());
                 PSPFPkgVerService pSPFPkgVerService = (PSPFPkgVerService)ServiceGlobal.getService(PSPFPkgVerService.class, (SessionFactory)this.getSessionFactory());
-                pSPFPkgVerService.autoGet((IEntity)pSPFPkgVer);
+                pSPFPkgVerService.autoGet(pSPFPkgVer);
                 this.pspfpkgver = pSPFPkgVer;
             }
             return this.pspfpkgver;
@@ -1788,7 +1788,7 @@ implements Serializable {
                 PSPFPkg pSPFPkg = new PSPFPkg();
                 pSPFPkg.setPSPFPkgId(this.getPSPFPkgId());
                 PSPFPkgService pSPFPkgService = (PSPFPkgService)ServiceGlobal.getService(PSPFPkgService.class, (SessionFactory)this.getSessionFactory());
-                pSPFPkgService.autoGet((IEntity)pSPFPkg);
+                pSPFPkgService.autoGet(pSPFPkg);
                 this.pspfpkg = pSPFPkg;
             }
             return this.pspfpkg;
@@ -1814,7 +1814,7 @@ implements Serializable {
                 PSPF pSPF = new PSPF();
                 pSPF.setPSPFId(this.getPSPFId());
                 PSPFService pSPFService = (PSPFService)ServiceGlobal.getService(PSPFService.class, (SessionFactory)this.getSessionFactory());
-                pSPFService.autoGet((IEntity)pSPF);
+                pSPFService.autoGet(pSPF);
                 this.pspf = pSPF;
             }
             return this.pspf;

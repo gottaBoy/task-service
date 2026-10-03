@@ -3062,7 +3062,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -3088,7 +3088,7 @@ implements Serializable {
                 PSDELogic pSDELogic = new PSDELogic();
                 pSDELogic.setPSDELogicId(this.getPSDELogicId());
                 PSDELogicService pSDELogicService = (PSDELogicService)ServiceGlobal.getService(PSDELogicService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicService.autoGet((IEntity)pSDELogic);
+                pSDELogicService.autoGet(pSDELogic);
                 this.psdelogic = pSDELogic;
             }
             return this.psdelogic;
@@ -3114,7 +3114,7 @@ implements Serializable {
                 PSDEUIAction pSDEUIAction = new PSDEUIAction();
                 pSDEUIAction.setPSDEUIActionId(this.getPSDEUIActionId());
                 PSDEUIActionService pSDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEUIActionService.autoGet((IEntity)pSDEUIAction);
+                pSDEUIActionService.autoGet(pSDEUIAction);
                 this.psdeuiaction = pSDEUIAction;
             }
             return this.psdeuiaction;
@@ -3140,7 +3140,7 @@ implements Serializable {
                 PSDEWizardForm pSDEWizardForm = new PSDEWizardForm();
                 pSDEWizardForm.setPSDEWizardFormId(this.getPSDEWizardFormId());
                 PSDEWizardFormService pSDEWizardFormService = (PSDEWizardFormService)ServiceGlobal.getService(PSDEWizardFormService.class, (SessionFactory)this.getSessionFactory());
-                pSDEWizardFormService.autoGet((IEntity)pSDEWizardForm);
+                pSDEWizardFormService.autoGet(pSDEWizardForm);
                 this.psdewizardform = pSDEWizardForm;
             }
             return this.psdewizardform;
@@ -3166,7 +3166,7 @@ implements Serializable {
                 PSDEWizardStep pSDEWizardStep = new PSDEWizardStep();
                 pSDEWizardStep.setPSDEWizardStepId(this.getPSDEWizardStepId());
                 PSDEWizardStepService pSDEWizardStepService = (PSDEWizardStepService)ServiceGlobal.getService(PSDEWizardStepService.class, (SessionFactory)this.getSessionFactory());
-                pSDEWizardStepService.autoGet((IEntity)pSDEWizardStep);
+                pSDEWizardStepService.autoGet(pSDEWizardStep);
                 this.psdewizardstep = pSDEWizardStep;
             }
             return this.psdewizardstep;
@@ -3192,7 +3192,7 @@ implements Serializable {
                 PSDEWizard pSDEWizard = new PSDEWizard();
                 pSDEWizard.setPSDEWizardId(this.getPSDEWizardId());
                 PSDEWizardService pSDEWizardService = (PSDEWizardService)ServiceGlobal.getService(PSDEWizardService.class, (SessionFactory)this.getSessionFactory());
-                pSDEWizardService.autoGet((IEntity)pSDEWizard);
+                pSDEWizardService.autoGet(pSDEWizard);
                 this.psdewizard = pSDEWizard;
             }
             return this.psdewizard;
@@ -3218,7 +3218,7 @@ implements Serializable {
                 PSSysPFPlugin pSSysPFPlugin = new PSSysPFPlugin();
                 pSSysPFPlugin.setPSSysPFPluginId(this.getPSSysPFPluginId());
                 PSSysPFPluginService pSSysPFPluginService = (PSSysPFPluginService)ServiceGlobal.getService(PSSysPFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysPFPluginService.autoGet((IEntity)pSSysPFPlugin);
+                pSSysPFPluginService.autoGet(pSSysPFPlugin);
                 this.pssyspfplugin = pSSysPFPlugin;
             }
             return this.pssyspfplugin;
@@ -3244,7 +3244,7 @@ implements Serializable {
                 PSSysViewLogic pSSysViewLogic = new PSSysViewLogic();
                 pSSysViewLogic.setPSSysViewLogicId(this.getPSSysViewLogicId());
                 PSSysViewLogicService pSSysViewLogicService = (PSSysViewLogicService)ServiceGlobal.getService(PSSysViewLogicService.class, (SessionFactory)this.getSessionFactory());
-                pSSysViewLogicService.autoGet((IEntity)pSSysViewLogic);
+                pSSysViewLogicService.autoGet(pSSysViewLogic);
                 this.pssysviewlogic = pSSysViewLogic;
             }
             return this.pssysviewlogic;

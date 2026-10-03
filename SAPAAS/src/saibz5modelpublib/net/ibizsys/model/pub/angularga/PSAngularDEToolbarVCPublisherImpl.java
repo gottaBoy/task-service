@@ -1,34 +1,59 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSDEToolbar
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.angularga;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.angularga.PSAngularCtrlCodePublisherImpl;
 
-public class PSAngularDEToolbarVCPublisherImpl
-extends PSAngularCtrlCodePublisherImpl {
-    protected IPSDEToolbar iPSDEToolbar;
+import net.ibizsys.model.control.toolbar.IPSDEToolbar;
+import net.ibizsys.model.control.toolbar.IPSDEToolbarItem;
+import net.ibizsys.model.pub.IPSGenerateCodeResult;
+import net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher;
+import net.ibizsys.model.pub.PSGenerateCodeResultImpl;
 
-    public PSAngularDEToolbarVCPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tIPSDEToolbar cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSDEToolbar cannot be resolved to a type\n\tIPSDEToolbar cannot be resolved to a type\n\tIPSDEToolbar cannot be resolved to a type\n\tIPSDEToolbar cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEToolbarItem cannot be resolved to a type\n\tIPSDEToolbar cannot be resolved to a type\n\tIPSDEToolbarItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEToolbar cannot be resolved to a type\n\tThe method onClose() of type PSAngularDEToolbarVCPublisherImpl must override or implement a supertype method\n\tIPSDEToolbar cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSAngularCtrlCodePublisherImpl\n");
-    }
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSDEToolbar cannot be resolved to a type\n\tIPSDEToolbar cannot be resolved to a type\n");
-    }
+public class PSAngularDEToolbarVCPublisherImpl extends PSAngularCtrlCodePublisherImpl
+{
+	protected IPSDEToolbar iPSDEToolbar = null;
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSDEToolbar = (IPSDEToolbar)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDEToolbar cannot be resolved to a type\n\tIPSDEToolbar cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEToolbarItem cannot be resolved to a type\n\tIPSDEToolbar cannot be resolved to a type\n\tIPSDEToolbarItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEToolbar cannot be resolved to a type\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSDEToolbar = (IPSDEToolbar)this.iPSControl;
+		
+		if(true)
+		{
+			ArrayList<IPSGenerateCodeResult> itemList = new ArrayList<IPSGenerateCodeResult> ();
+			java.util.Iterator<IPSDEToolbarItem> psDEToolbarItems = 	iPSDEToolbar.getPSDEToolbarItems();
+			while(psDEToolbarItems.hasNext())
+			{
+				IPSDEToolbarItem iPSDEToolbarItem = psDEToolbarItems.next();
+				IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(iPSDEToolbarItem.getItemType()).getPSPFCtrlPartCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSDEToolbar,iPSDEToolbarItem);
+				if(iPSGenerateCodeResult!=null)
+					itemList.add(iPSGenerateCodeResult);
+			}		
+			
+			params.put("items", itemList);
+		}
+		
+	}
 
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSAngularDEToolbarVCPublisherImpl must override or implement a supertype method\n\tIPSDEToolbar cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSAngularCtrlCodePublisherImpl\n");
-    }
+	
+
+	
 }
-

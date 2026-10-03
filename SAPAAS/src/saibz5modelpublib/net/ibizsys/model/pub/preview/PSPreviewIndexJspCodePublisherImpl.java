@@ -1,28 +1,40 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSAppView
- */
 package net.ibizsys.model.pub.preview;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.preview.PSPreviewViewCodePublisherImpl;
 
-public class PSPreviewIndexJspCodePublisherImpl
-extends PSPreviewViewCodePublisherImpl {
-    public PSPreviewIndexJspCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSPreviewIndexJspCodePublisherImpl is inconsistent\n\tIPSAppView cannot be resolved to a type\n\tiPSApplication cannot be resolved or is not a field\n\tStringHelper cannot be resolved\n\tStringHelper cannot be resolved\n\tStringHelper cannot be resolved\n\tiPSAppView cannot be resolved or is not a field\n");
-    }
+import SA.SRFDA.PS.Core.App.View.IPSAppView;
+import SA.SRFramework.Utility.StringHelper;
 
-    @Override
-    protected String getPSAppViewCodeName(IPSAppView iPSAppView) {
-        throw new Error("Unresolved compilation problem: \n\tIPSAppView cannot be resolved to a type\n");
-    }
-
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tiPSApplication cannot be resolved or is not a field\n\tStringHelper cannot be resolved\n\tStringHelper cannot be resolved\n\tStringHelper cannot be resolved\n\tiPSAppView cannot be resolved or is not a field\n");
-    }
+public class PSPreviewIndexJspCodePublisherImpl extends PSPreviewViewCodePublisherImpl
+{
+	@Override
+	protected String getPSAppViewCodeName(IPSAppView iPSAppView)
+	{
+		return iPSAppView.getCodeName().toLowerCase();
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		//合成require
+//		ArrayList<String> psAppViewIdList = new  ArrayList<String>();
+//		this.iPSAppView.fillRelatedPSAppViewIds(psAppViewIdList);
+		
+		String strFullClassName = this.iPSApplication.getPKGCodeName();
+		strFullClassName += StringHelper.Format(".view");
+		
+		if(!StringHelper.IsNullOrEmpty(strFullClassName))
+		{
+			strFullClassName += StringHelper.Format(".");
+		}
+		strFullClassName+= this.iPSAppView.getFullCodeName();
+		
+		params.put("viewportname", strFullClassName);
+	}
 }
-

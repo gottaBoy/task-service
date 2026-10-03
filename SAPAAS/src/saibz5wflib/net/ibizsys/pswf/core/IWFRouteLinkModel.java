@@ -1,18 +1,23 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFLinkModel
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFLinkGroupCondModel;
-import net.ibizsys.pswf.core.IWFLinkModel;
-
-public interface IWFRouteLinkModel
-extends IWFLinkModel {
-    public boolean isDefault();
-
-    public IWFLinkGroupCondModel getWFLinkGroupCondModel();
+/**
+ * 流程路由连接模块接口
+ * @author lionlau
+ *
+ */
+public interface IWFRouteLinkModel extends IWFLinkModel
+{
+	/**
+	 * 是否是默认连接
+	 * @return
+	 */
+	boolean isDefault();
+	
+	
+	/**
+	 * 获取根连接条件组模型
+	 * @return
+	 */
+	IWFLinkGroupCondModel getWFLinkGroupCondModel();
+	
 }
-

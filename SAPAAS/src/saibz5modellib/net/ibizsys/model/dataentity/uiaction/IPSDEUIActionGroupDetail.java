@@ -1,21 +1,48 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.uiaction;
 
-import net.ibizsys.model.dataentity.uiaction.IPSDEUIAction;
-import net.ibizsys.model.dataentity.uiaction.IPSDEUIActionGroup;
 import net.ibizsys.model.view.IPSUIActionGroupDetail;
 
-public interface IPSDEUIActionGroupDetail
-extends IPSUIActionGroupDetail {
-    public static final String DETAILTYPE_DEUIACTION = "DEUIACTION";
-    public static final String DETAILTYPE_SEPERATOR = "SEPERATOR";
 
-    public IPSDEUIActionGroup getPSDEUIActionGroup();
+/**
+ * 实体界面行为组成员对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IPSDEUIActionGroupDetail extends IPSUIActionGroupDetail {
+	
+	/**
+	*成员类型：实体界面行为
+	*/
+	public final static String DETAILTYPE_DEUIACTION = "DEUIACTION" ;
 
-    public IPSDEUIAction getPSDEUIAction();
+	/**
+	*成员类型：分割线
+	*/
+	public final static String DETAILTYPE_SEPERATOR = "SEPERATOR" ;
+	
+	
+	
+	/**
+	 * 获取界面行为组对象
+	 * 
+	 * @return
+	 */
+	IPSDEUIActionGroup getPSDEUIActionGroup();
 
-    public String getDetailType();
+	/**
+	 * 获取实体界面行为对象
+	 * 
+	 * @return
+	 */
+	IPSDEUIAction getPSDEUIAction();
+	
+	
+	
+	/**
+	 * 获取成员类型，值参考 SA.SRFDA.PS.Core.DataEntity.UIAction.IPSDEUIActionGroupDetail.DETAILTYPE_XXX 定义
+	 * @return
+	 */
+	String getDetailType();
+
 }
-

@@ -116,9 +116,9 @@ implements IPSDEListItemService {
 
     @Override
     protected List<PSDEListItem> onListAll() throws Exception {
-        List psdelists;
+        List<PSDEList> psdelists;
         ArrayList<PSDEListItem> list = new ArrayList<PSDEListItem>();
-        List psdedataviews = PSModelServiceUtil.getInstance().getPSDEDataViewService().listAll();
+        List<PSDEDataView> psdedataviews = PSModelServiceUtil.getInstance().getPSDEDataViewService().listAll();
         if (psdedataviews != null) {
             for (PSDEDataView parent : psdedataviews) {
                 List<PSDEListItem> items = this.listByPSDEDataView(parent);

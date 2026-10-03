@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDepToolType> {
     }
 
     protected void onFillParentInfo(PSDepToolType pSDepToolType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDepToolType, string, string2, string3);
+        super.onFillParentInfo(pSDepToolType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDepToolType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDepToolType, bl);
+        super.onFillEntityFullInfo(pSDepToolType, bl);
     }
 
     protected void onWriteBackParent(PSDepToolType pSDepToolType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDepToolType, bl);
+        super.onWriteBackParent(pSDepToolType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDepToolType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDepToolType pSDepToolType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDepToolType, bl);
+        super.onRemoveEntityUncopyValues(pSDepToolType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDepToolType pSDepToolType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -164,7 +164,7 @@ extends PSCoreSysServiceBase<PSDepToolType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDepToolType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDepToolType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDepToolType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DepObj(boolean bl, PSDepToolType pSDepToolType, boolean bl2, boolean bl3) throws Exception {
@@ -180,7 +180,7 @@ extends PSCoreSysServiceBase<PSDepToolType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DepObj_Default((IEntity)pSDepToolType, bl2, bl3);
+            string2 = this.onTestValueRule_DepObj_Default(pSDepToolType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEPOBJ");
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSDepToolType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDepToolType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDepToolType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -227,7 +227,7 @@ extends PSCoreSysServiceBase<PSDepToolType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PackObj_Default((IEntity)pSDepToolType, bl2, bl3);
+            string2 = this.onTestValueRule_PackObj_Default(pSDepToolType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PACKOBJ");
@@ -252,7 +252,7 @@ extends PSCoreSysServiceBase<PSDepToolType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDepToolTypeId_Default((IEntity)pSDepToolType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDepToolTypeId_Default(pSDepToolType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEPTOOLTYPEID");
@@ -277,7 +277,7 @@ extends PSCoreSysServiceBase<PSDepToolType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDepToolTypeName_Default((IEntity)pSDepToolType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDepToolTypeName_Default(pSDepToolType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEPTOOLTYPENAME");
@@ -302,7 +302,7 @@ extends PSCoreSysServiceBase<PSDepToolType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDepToolType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDepToolType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -315,11 +315,11 @@ extends PSCoreSysServiceBase<PSDepToolType> {
     }
 
     protected void onSyncEntity(PSDepToolType pSDepToolType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDepToolType, bl);
+        super.onSyncEntity(pSDepToolType, bl);
     }
 
     protected void onSyncIndexEntities(PSDepToolType pSDepToolType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDepToolType, bl);
+        super.onSyncIndexEntities(pSDepToolType, bl);
     }
 
     public Object getDataContextValue(PSDepToolType pSDepToolType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -327,14 +327,14 @@ extends PSCoreSysServiceBase<PSDepToolType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDepToolType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDepToolType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDepToolType pSDepToolType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDepToolType, arrayList, n);
+        super.onExportMajorModel(pSDepToolType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -469,14 +469,14 @@ extends PSCoreSysServiceBase<PSDepToolType> {
 
     protected boolean onMergeChild(String string, String string2, PSDepToolType pSDepToolType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDepToolType)) {
+        if (super.onMergeChild(string, string2, pSDepToolType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDepToolType pSDepToolType) throws Exception {
-        super.onUpdateParent((IEntity)pSDepToolType);
+        super.onUpdateParent(pSDepToolType);
     }
 
     @Override

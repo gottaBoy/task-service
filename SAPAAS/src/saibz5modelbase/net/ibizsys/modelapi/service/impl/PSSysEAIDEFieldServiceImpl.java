@@ -74,7 +74,7 @@ implements IPSSysEAIDEFieldService {
     @Override
     protected List<PSSysEAIDEField> onListAll() throws Exception {
         ArrayList<PSSysEAIDEField> list = new ArrayList<PSSysEAIDEField>();
-        List pssyseaides = PSModelServiceUtil.getInstance().getPSSysEAIDEService().listAll();
+        List<PSSysEAIDE> pssyseaides = PSModelServiceUtil.getInstance().getPSSysEAIDEService().listAll();
         if (pssyseaides != null) {
             for (PSSysEAIDE parent : pssyseaides) {
                 List<PSSysEAIDEField> items = this.listByPSSysEAIDE(parent);

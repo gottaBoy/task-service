@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSWorkspaceLogDEModelBase;
 
 public class PSWorkspaceLogDEModel
 extends PSWorkspaceLogDEModelBase {
+
+    public PSWorkspaceLogDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

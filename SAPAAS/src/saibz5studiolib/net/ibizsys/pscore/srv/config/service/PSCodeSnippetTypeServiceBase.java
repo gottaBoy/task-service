@@ -107,7 +107,7 @@ extends PSCoreSysServiceBase<PSCodeSnippetType> {
     }
 
     protected void onFillParentInfo(PSCodeSnippetType pSCodeSnippetType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSCodeSnippetType, string, string2, string3);
+        super.onFillParentInfo(pSCodeSnippetType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -118,11 +118,11 @@ extends PSCoreSysServiceBase<PSCodeSnippetType> {
         if (bl && pSCodeSnippetType.getValidFlag() == null) {
             pSCodeSnippetType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSCodeSnippetType, bl);
+        super.onFillEntityFullInfo(pSCodeSnippetType, bl);
     }
 
     protected void onWriteBackParent(PSCodeSnippetType pSCodeSnippetType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSCodeSnippetType, bl);
+        super.onWriteBackParent(pSCodeSnippetType, bl);
     }
 
     @Override
@@ -131,7 +131,7 @@ extends PSCoreSysServiceBase<PSCodeSnippetType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSCodeSnippetType pSCodeSnippetType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSCodeSnippetType, bl);
+        super.onRemoveEntityUncopyValues(pSCodeSnippetType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSCodeSnippetType pSCodeSnippetType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -152,7 +152,7 @@ extends PSCoreSysServiceBase<PSCodeSnippetType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSCodeSnippetType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSCodeSnippetType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSCodeSnippetType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSCodeSnippetType pSCodeSnippetType, boolean bl2, boolean bl3) throws Exception {
@@ -165,7 +165,7 @@ extends PSCoreSysServiceBase<PSCodeSnippetType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSCodeSnippetType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSCodeSnippetType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -190,7 +190,7 @@ extends PSCoreSysServiceBase<PSCodeSnippetType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCodeSnippetTypeId_Default((IEntity)pSCodeSnippetType, bl2, bl3);
+            string2 = this.onTestValueRule_PSCodeSnippetTypeId_Default(pSCodeSnippetType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCODESNIPPETTYPEID");
@@ -215,7 +215,7 @@ extends PSCoreSysServiceBase<PSCodeSnippetType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCodeSnippetTypeName_Default((IEntity)pSCodeSnippetType, bl2, bl3);
+            string2 = this.onTestValueRule_PSCodeSnippetTypeName_Default(pSCodeSnippetType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCODESNIPPETTYPENAME");
@@ -240,7 +240,7 @@ extends PSCoreSysServiceBase<PSCodeSnippetType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PubObj_Default((IEntity)pSCodeSnippetType, bl2, bl3);
+            string2 = this.onTestValueRule_PubObj_Default(pSCodeSnippetType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PUBOBJ");
@@ -265,7 +265,7 @@ extends PSCoreSysServiceBase<PSCodeSnippetType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSCodeSnippetType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSCodeSnippetType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -278,11 +278,11 @@ extends PSCoreSysServiceBase<PSCodeSnippetType> {
     }
 
     protected void onSyncEntity(PSCodeSnippetType pSCodeSnippetType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSCodeSnippetType, bl);
+        super.onSyncEntity(pSCodeSnippetType, bl);
     }
 
     protected void onSyncIndexEntities(PSCodeSnippetType pSCodeSnippetType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSCodeSnippetType, bl);
+        super.onSyncIndexEntities(pSCodeSnippetType, bl);
     }
 
     public Object getDataContextValue(PSCodeSnippetType pSCodeSnippetType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -290,14 +290,14 @@ extends PSCoreSysServiceBase<PSCodeSnippetType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSCodeSnippetType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSCodeSnippetType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSCodeSnippetType pSCodeSnippetType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSCodeSnippetType, arrayList, n);
+        super.onExportMajorModel(pSCodeSnippetType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -417,14 +417,14 @@ extends PSCoreSysServiceBase<PSCodeSnippetType> {
 
     protected boolean onMergeChild(String string, String string2, PSCodeSnippetType pSCodeSnippetType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSCodeSnippetType)) {
+        if (super.onMergeChild(string, string2, pSCodeSnippetType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSCodeSnippetType pSCodeSnippetType) throws Exception {
-        super.onUpdateParent((IEntity)pSCodeSnippetType);
+        super.onUpdateParent(pSCodeSnippetType);
     }
 
     @Override

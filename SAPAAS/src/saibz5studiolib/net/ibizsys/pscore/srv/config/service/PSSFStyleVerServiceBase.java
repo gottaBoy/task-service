@@ -196,21 +196,21 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
 
     public void expStyleVer(PSSFStyleVer pSSFStyleVer) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_EXPSTYLEVER, 0, (IEntity)pSSFStyleVer, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_EXPSTYLEVER, 0, pSSFStyleVer, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSFStyleVer, ACTION_EXPSTYLEVER);
+        this.testDEMainStateAction(pSSFStyleVer, ACTION_EXPSTYLEVER);
         final PSSFStyleVer pSSFStyleVer2 = pSSFStyleVer;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSFStyleVerServiceBase.this.getService(), PSSFStyleVerServiceBase.ACTION_EXPSTYLEVER, 40, (IEntity)pSSFStyleVer2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSFStyleVerServiceBase.this.getService(), PSSFStyleVerServiceBase.ACTION_EXPSTYLEVER, 40, pSSFStyleVer2, null).getResult() != 1) {
                     PSSFStyleVerServiceBase.this.onExpStyleVer(pSSFStyleVer2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_EXPSTYLEVER, 99, (IEntity)pSSFStyleVer, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_EXPSTYLEVER, 99, pSSFStyleVer, null);
         }
     }
 
@@ -220,21 +220,21 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
 
     public void fixStyleVer(PSSFStyleVer pSSFStyleVer) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_FIXSTYLEVER, 0, (IEntity)pSSFStyleVer, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_FIXSTYLEVER, 0, pSSFStyleVer, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSFStyleVer, ACTION_FIXSTYLEVER);
+        this.testDEMainStateAction(pSSFStyleVer, ACTION_FIXSTYLEVER);
         final PSSFStyleVer pSSFStyleVer2 = pSSFStyleVer;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSFStyleVerServiceBase.this.getService(), PSSFStyleVerServiceBase.ACTION_FIXSTYLEVER, 40, (IEntity)pSSFStyleVer2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSFStyleVerServiceBase.this.getService(), PSSFStyleVerServiceBase.ACTION_FIXSTYLEVER, 40, pSSFStyleVer2, null).getResult() != 1) {
                     PSSFStyleVerServiceBase.this.onFixStyleVer(pSSFStyleVer2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_FIXSTYLEVER, 99, (IEntity)pSSFStyleVer, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_FIXSTYLEVER, 99, pSSFStyleVer, null);
         }
     }
 
@@ -244,21 +244,21 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
 
     public void impStyleVer(PSSFStyleVer pSSFStyleVer) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_IMPSTYLEVER, 0, (IEntity)pSSFStyleVer, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_IMPSTYLEVER, 0, pSSFStyleVer, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSFStyleVer, ACTION_IMPSTYLEVER);
+        this.testDEMainStateAction(pSSFStyleVer, ACTION_IMPSTYLEVER);
         final PSSFStyleVer pSSFStyleVer2 = pSSFStyleVer;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSFStyleVerServiceBase.this.getService(), PSSFStyleVerServiceBase.ACTION_IMPSTYLEVER, 40, (IEntity)pSSFStyleVer2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSFStyleVerServiceBase.this.getService(), PSSFStyleVerServiceBase.ACTION_IMPSTYLEVER, 40, pSSFStyleVer2, null).getResult() != 1) {
                     PSSFStyleVerServiceBase.this.onImpStyleVer(pSSFStyleVer2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_IMPSTYLEVER, 99, (IEntity)pSSFStyleVer, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_IMPSTYLEVER, 99, pSSFStyleVer, null);
         }
     }
 
@@ -268,21 +268,21 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
 
     public void publish(PSSFStyleVer pSSFStyleVer) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PUBLISH, 0, (IEntity)pSSFStyleVer, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PUBLISH, 0, pSSFStyleVer, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSFStyleVer, ACTION_PUBLISH);
+        this.testDEMainStateAction(pSSFStyleVer, ACTION_PUBLISH);
         final PSSFStyleVer pSSFStyleVer2 = pSSFStyleVer;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSFStyleVerServiceBase.this.getService(), PSSFStyleVerServiceBase.ACTION_PUBLISH, 40, (IEntity)pSSFStyleVer2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSFStyleVerServiceBase.this.getService(), PSSFStyleVerServiceBase.ACTION_PUBLISH, 40, pSSFStyleVer2, null).getResult() != 1) {
                     PSSFStyleVerServiceBase.this.onPublish(pSSFStyleVer2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_PUBLISH, 99, (IEntity)pSSFStyleVer, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_PUBLISH, 99, pSSFStyleVer, null);
         }
     }
 
@@ -296,9 +296,9 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
             PSDevCenterSVN pSDevCenterSVN = (PSDevCenterSVN)iService.getDEModel().createEntity();
             pSDevCenterSVN.set("PSDEVCENTERSVNID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenterSVN);
+                iService.getTemp(pSDevCenterSVN);
             } else {
-                iService.get((IEntity)pSDevCenterSVN);
+                iService.get(pSDevCenterSVN);
             }
             this.onFillParentInfo_PSDevCenterSVN(pSSFStyleVer, pSDevCenterSVN);
             return;
@@ -308,9 +308,9 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSSFStyleVer, pSDevCenter);
             return;
@@ -320,14 +320,14 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
             PSSFStyle pSSFStyle = (PSSFStyle)iService.getDEModel().createEntity();
             pSSFStyle.set("PSSFSTYLEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSFStyle);
+                iService.getTemp(pSSFStyle);
             } else {
-                iService.get((IEntity)pSSFStyle);
+                iService.get(pSSFStyle);
             }
             this.onFillParentInfo_PSSFStyle(pSSFStyleVer, pSSFStyle);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSFStyleVer, string, string2, string3);
+        super.onFillParentInfo(pSSFStyleVer, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -362,7 +362,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 pSSFStyleVer.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSFStyleVer, bl);
+        super.onFillEntityFullInfo(pSSFStyleVer, bl);
         this.onFillEntityFullInfo_PSDevCenterSVN(pSSFStyleVer, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSSFStyleVer, bl);
         this.onFillEntityFullInfo_PSSFStyle(pSSFStyleVer, bl);
@@ -388,7 +388,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
     }
 
     protected void onWriteBackParent(PSSFStyleVer pSSFStyleVer, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSFStyleVer, bl);
+        super.onWriteBackParent(pSSFStyleVer, bl);
     }
 
     public ArrayList<PSSFStyleVer> selectByPSDevCenterSVN(PSDevCenterSVNBase pSDevCenterSVNBase) throws Exception {
@@ -495,7 +495,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
         ArrayList<PSSFStyleVer> arrayList = this.selectByPSDevCenterSVN(pSDevCenterSVN);
         this.onBeforeRemoveByPSDevCenterSVN(pSDevCenterSVN, arrayList);
         for (PSSFStyleVer pSSFStyleVer : arrayList) {
-            this.remove((IEntity)pSSFStyleVer);
+            this.remove(pSSFStyleVer);
         }
         this.onAfterRemoveByPSDevCenterSVN(pSDevCenterSVN, arrayList);
     }
@@ -541,7 +541,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
         ArrayList<PSSFStyleVer> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSSFStyleVer pSSFStyleVer : arrayList) {
-            this.remove((IEntity)pSSFStyleVer);
+            this.remove(pSSFStyleVer);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -559,8 +559,8 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
         ArrayList<PSSFStyleVer> arrayList = this.selectByPSSFStyle(pSSFStyle, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSFSTYLE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSFStyle);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSFSTYLEVER_PSSFSTYLE_PSSFSTYLEID", "", iDataEntityModel.getName(), "PSSFSTYLEVER", iDataEntityModel.getDataInfo((IEntity)pSSFStyle), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSFStyle);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSFSTYLEVER_PSSFSTYLE_PSSFSTYLEID", "", iDataEntityModel.getName(), "PSSFSTYLEVER", iDataEntityModel.getDataInfo(pSSFStyle), arrayList.get(0)));
         }
     }
 
@@ -593,7 +593,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
         ArrayList<PSSFStyleVer> arrayList = this.selectByPSSFStyle(pSSFStyle);
         this.onBeforeRemoveByPSSFStyle(pSSFStyle, arrayList);
         for (PSSFStyleVer pSSFStyleVer : arrayList) {
-            this.remove((IEntity)pSSFStyleVer);
+            this.remove(pSSFStyleVer);
         }
         this.onAfterRemoveByPSSFStyle(pSSFStyle, arrayList);
     }
@@ -621,7 +621,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
 
     protected void replaceParentInfo(PSSFStyleVer pSSFStyleVer, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSFStyleVer, cloneSession);
+        super.replaceParentInfo(pSSFStyleVer, cloneSession);
         if (pSSFStyleVer.getPSDevCenterSVNId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTERSVN", (Object)pSSFStyleVer.getPSDevCenterSVNId())) != null) {
             this.onFillParentInfo_PSDevCenterSVN(pSSFStyleVer, (PSDevCenterSVN)iEntity);
         }
@@ -634,7 +634,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSFStyleVer pSSFStyleVer, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSFStyleVer, bl);
+        super.onRemoveEntityUncopyValues(pSSFStyleVer, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSFStyleVer pSSFStyleVer, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -685,7 +685,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
         if ((entityFieldError = this.onCheckField_Version(bl, pSSFStyleVer, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSFStyleVer, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSFStyleVer, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_LastImpTime(boolean bl, PSSFStyleVer pSSFStyleVer, boolean bl2, boolean bl3) throws Exception {
@@ -698,7 +698,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LastImpTime_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string = this.onTestValueRule_LastImpTime_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LASTIMPTIME");
@@ -720,7 +720,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Major_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string = this.onTestValueRule_Major_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAJOR");
@@ -742,7 +742,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -764,7 +764,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Minor_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string = this.onTestValueRule_Minor_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MINOR");
@@ -786,7 +786,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -808,7 +808,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterSVNId_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterSVNId_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERSVNID");
@@ -830,7 +830,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterSVNName_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterSVNName_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERSVNNAME");
@@ -855,7 +855,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFStyleId_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFStyleId_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFSTYLEID");
@@ -880,7 +880,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFStyleVerId_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFStyleVerId_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFSTYLEVERID");
@@ -905,7 +905,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFStyleVerName_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFStyleVerName_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFSTYLEVERNAME");
@@ -927,7 +927,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PubMode_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string = this.onTestValueRule_PubMode_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PUBMODE");
@@ -949,7 +949,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplInfo_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string2 = this.onTestValueRule_TemplInfo_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLINFO");
@@ -971,7 +971,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TemplState_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string = this.onTestValueRule_TemplState_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLSTATE");
@@ -996,7 +996,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1018,7 +1018,7 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Version_Default((IEntity)pSSFStyleVer, bl2, bl3);
+            string2 = this.onTestValueRule_Version_Default(pSSFStyleVer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VERSION");
@@ -1031,11 +1031,11 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
     }
 
     protected void onSyncEntity(PSSFStyleVer pSSFStyleVer, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSFStyleVer, bl);
+        super.onSyncEntity(pSSFStyleVer, bl);
     }
 
     protected void onSyncIndexEntities(PSSFStyleVer pSSFStyleVer, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSFStyleVer, bl);
+        super.onSyncIndexEntities(pSSFStyleVer, bl);
     }
 
     public Object getDataContextValue(PSSFStyleVer pSSFStyleVer, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1043,14 +1043,14 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSFStyleVer, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSFStyleVer, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSFStyleVer pSSFStyleVer, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSFStyleVer, arrayList, n);
+        super.onExportMajorModel(pSSFStyleVer, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1325,14 +1325,14 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
 
     protected boolean onMergeChild(String string, String string2, PSSFStyleVer pSSFStyleVer) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSFStyleVer)) {
+        if (super.onMergeChild(string, string2, pSSFStyleVer)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSFStyleVer pSSFStyleVer) throws Exception {
-        super.onUpdateParent((IEntity)pSSFStyleVer);
+        super.onUpdateParent(pSSFStyleVer);
     }
 
     protected void onCopyDetails(PSSFStyleVer pSSFStyleVer, Object object) throws Exception {
@@ -1343,12 +1343,12 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
         ArrayList<PSSFVerCode> arrayList = pSSFVerCodeService.selectByPSSFStyleVer(pSSFStyleVer2);
         for (PSSFVerCode pSSFVerCode : arrayList) {
             Object object2 = pSSFVerCode.get("PSSFVERCODEID");
-            pSSFVerCodeService.getDraftFrom((IEntity)pSSFVerCode);
-            pSSFVerCodeService.fillParentInfo((IEntity)pSSFVerCode, "DER1N", "DER1N_PSSFVERCODE_PSSFSTYLEVER_PSSFSTYLEVERID", string);
+            pSSFVerCodeService.getDraftFrom(pSSFVerCode);
+            pSSFVerCodeService.fillParentInfo(pSSFVerCode, "DER1N", "DER1N_PSSFVERCODE_PSSFSTYLEVER_PSSFSTYLEVERID", string);
             pSSFVerCodeService.create(pSSFVerCode);
             pSSFVerCodeService.copyDetails(pSSFVerCode, object2);
         }
-        super.onCopyDetails((IEntity)pSSFStyleVer, object);
+        super.onCopyDetails(pSSFStyleVer, object);
     }
 
     @Override
@@ -1365,4 +1365,3 @@ extends PSCoreSysServiceBase<PSSFStyleVer> {
         }
     }
 }
-

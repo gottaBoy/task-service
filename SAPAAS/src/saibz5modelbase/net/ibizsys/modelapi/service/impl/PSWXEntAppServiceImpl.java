@@ -72,7 +72,7 @@ implements IPSWXEntAppService {
     @Override
     protected List<PSWXEntApp> onListAll() throws Exception {
         ArrayList<PSWXEntApp> list = new ArrayList<PSWXEntApp>();
-        List pswxaccounts = PSModelServiceUtil.getInstance().getPSWXAccountService().listAll();
+        List<PSWXAccount> pswxaccounts = PSModelServiceUtil.getInstance().getPSWXAccountService().listAll();
         if (pswxaccounts != null) {
             for (PSWXAccount parent : pswxaccounts) {
                 List<PSWXEntApp> items = this.listByPSWXAccount(parent);

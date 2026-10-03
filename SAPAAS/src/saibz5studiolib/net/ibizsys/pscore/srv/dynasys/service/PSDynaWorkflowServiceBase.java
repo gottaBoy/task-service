@@ -137,14 +137,14 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSDynaWorkflow, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDynaWorkflow, string, string2, string3);
+        super.onFillParentInfo(pSDynaWorkflow, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -160,7 +160,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
         if (bl && pSDynaWorkflow.getValidFlag() == null) {
             pSDynaWorkflow.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDynaWorkflow, bl);
+        super.onFillEntityFullInfo(pSDynaWorkflow, bl);
         this.onFillEntityFullInfo_PSSystem(pSDynaWorkflow, bl);
     }
 
@@ -178,7 +178,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
     }
 
     protected void onWriteBackParent(PSDynaWorkflow pSDynaWorkflow, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDynaWorkflow, bl);
+        super.onWriteBackParent(pSDynaWorkflow, bl);
     }
 
     public ArrayList<PSDynaWorkflow> selectByPSSystem(PSSystemBase pSSystemBase) throws Exception {
@@ -209,8 +209,8 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
         ArrayList<PSDynaWorkflow> arrayList = this.selectByPSSystem(pSSystem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSTEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSystem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDYNAWORKFLOW_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSDYNAWORKFLOW", iDataEntityModel.getDataInfo((IEntity)pSSystem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSystem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDYNAWORKFLOW_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSDYNAWORKFLOW", iDataEntityModel.getDataInfo(pSSystem), arrayList.get(0)));
         }
     }
 
@@ -243,7 +243,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
         ArrayList<PSDynaWorkflow> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSDynaWorkflow pSDynaWorkflow : arrayList) {
-            this.remove((IEntity)pSDynaWorkflow);
+            this.remove(pSDynaWorkflow);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -264,14 +264,14 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
 
     protected void replaceParentInfo(PSDynaWorkflow pSDynaWorkflow, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDynaWorkflow, cloneSession);
+        super.replaceParentInfo(pSDynaWorkflow, cloneSession);
         if (pSDynaWorkflow.getPSSystemId() != null && (iEntity = cloneSession.getEntity("PSSYSTEM", (Object)pSDynaWorkflow.getPSSystemId())) != null) {
             this.onFillParentInfo_PSSystem(pSDynaWorkflow, (PSSystem)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDynaWorkflow pSDynaWorkflow, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDynaWorkflow, bl);
+        super.onRemoveEntityUncopyValues(pSDynaWorkflow, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDynaWorkflow pSDynaWorkflow, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -325,7 +325,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDynaWorkflow, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDynaWorkflow, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDynaWorkflow, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DynaModelFlag(boolean bl, PSDynaWorkflow pSDynaWorkflow, boolean bl2, boolean bl3) throws Exception {
@@ -338,7 +338,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DynaModelFlag_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string = this.onTestValueRule_DynaModelFlag_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNAMODELFLAG");
@@ -360,7 +360,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableMob_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string = this.onTestValueRule_EnableMob_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLEMOB");
@@ -382,7 +382,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -404,7 +404,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -426,7 +426,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -448,7 +448,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -473,7 +473,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaWorkflowId_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaWorkflowId_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAWORKFLOWID");
@@ -498,7 +498,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaWorkflowName_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaWorkflowName_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAWORKFLOWNAME");
@@ -520,7 +520,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -542,7 +542,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -564,7 +564,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SrcPSDynaDETemplId_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_SrcPSDynaDETemplId_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRCPSDYNADETEMPLID");
@@ -586,7 +586,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SrcPSDynaDETemplName_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_SrcPSDynaDETemplName_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRCPSDYNADETEMPLNAME");
@@ -608,7 +608,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SrcPSDynaWorkflowId_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_SrcPSDynaWorkflowId_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRCPSDYNAWORKFLOWID");
@@ -630,7 +630,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SrcPSDynaWorkflowName_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_SrcPSDynaWorkflowName_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRCPSDYNAWORKFLOWNAME");
@@ -652,7 +652,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SrcType_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string2 = this.onTestValueRule_SrcType_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRCTYPE");
@@ -674,7 +674,7 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDynaWorkflow, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDynaWorkflow, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -687,11 +687,11 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
     }
 
     protected void onSyncEntity(PSDynaWorkflow pSDynaWorkflow, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDynaWorkflow, bl);
+        super.onSyncEntity(pSDynaWorkflow, bl);
     }
 
     protected void onSyncIndexEntities(PSDynaWorkflow pSDynaWorkflow, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDynaWorkflow, bl);
+        super.onSyncIndexEntities(pSDynaWorkflow, bl);
     }
 
     public Object getDataContextValue(PSDynaWorkflow pSDynaWorkflow, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -699,14 +699,14 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDynaWorkflow, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDynaWorkflow, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDynaWorkflow pSDynaWorkflow, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDynaWorkflow, arrayList, n);
+        super.onExportMajorModel(pSDynaWorkflow, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -967,14 +967,14 @@ extends PSCoreSysServiceBase<PSDynaWorkflow> {
 
     protected boolean onMergeChild(String string, String string2, PSDynaWorkflow pSDynaWorkflow) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDynaWorkflow)) {
+        if (super.onMergeChild(string, string2, pSDynaWorkflow)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDynaWorkflow pSDynaWorkflow) throws Exception {
-        super.onUpdateParent((IEntity)pSDynaWorkflow);
+        super.onUpdateParent(pSDynaWorkflow);
     }
 
     @Override

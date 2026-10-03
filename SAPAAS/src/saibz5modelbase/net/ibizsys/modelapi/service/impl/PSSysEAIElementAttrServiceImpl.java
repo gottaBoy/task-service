@@ -72,7 +72,7 @@ implements IPSSysEAIElementAttrService {
     @Override
     protected List<PSSysEAIElementAttr> onListAll() throws Exception {
         ArrayList<PSSysEAIElementAttr> list = new ArrayList<PSSysEAIElementAttr>();
-        List pssyseaielements = PSModelServiceUtil.getInstance().getPSSysEAIElementService().listAll();
+        List<PSSysEAIElement> pssyseaielements = PSModelServiceUtil.getInstance().getPSSysEAIElementService().listAll();
         if (pssyseaielements != null) {
             for (PSSysEAIElement parent : pssyseaielements) {
                 List<PSSysEAIElementAttr> items = this.listByPSSysEAIElement(parent);

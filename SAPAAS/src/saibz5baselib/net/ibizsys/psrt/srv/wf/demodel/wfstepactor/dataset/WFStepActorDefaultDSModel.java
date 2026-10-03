@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfstepactor.dataset;
 
-import net.ibizsys.psrt.srv.wf.demodel.wfstepactor.dataset.WFStepActorDefaultDSModelBase;
+/**
+ *  实体数据集合[DEFAULT]模型
+ */
+public class WFStepActorDefaultDSModel extends WFStepActorDefaultDSModelBase {
 
-public class WFStepActorDefaultDSModel
-extends WFStepActorDefaultDSModelBase {
+    public WFStepActorDefaultDSModel() {
+        super();
+    }
+
 }
-

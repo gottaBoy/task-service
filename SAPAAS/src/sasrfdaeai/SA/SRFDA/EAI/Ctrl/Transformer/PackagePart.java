@@ -12,6 +12,15 @@ public class PackagePart {
     protected int nSize = 0;
     protected String strDataType = "";
     protected String strFormat = "";
+    protected String strName = "";
+
+    public String getName() {
+        return this.strName;
+    }
+
+    public void setName(String name) {
+        this.strName = name;
+    }
 
     public int getSize() {
         return this.nSize;
@@ -40,4 +49,3 @@ public class PackagePart {
         this.strFormat = strFormat;
     }
 }
-

@@ -1,27 +1,58 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="e4d7ca43e89e3362ff779839d3226867", name="\u8f93\u5165\u8f85\u52a9_\u63a7\u4ef6\u53c2\u6570", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="CARETTEMPLGROUP_SRFDA_CONTROLPARAM", text="\u63a7\u4ef6\u57fa\u672c\u53c2\u6570", realtext="\u63a7\u4ef6\u57fa\u672c\u53c2\u6570"), @CodeItem(value="CARETTEMPLGROUP_SRFDA_CONTROLPARAM_CARET", text="\u8f85\u52a9\u8f93\u5165\u63a7\u4ef6\u53c2\u6570", realtext="\u8f85\u52a9\u8f93\u5165\u63a7\u4ef6\u53c2\u6570"), @CodeItem(value="CARETTEMPLGROUP_SRFDA_CONTROLPARAM_PICKUP", text="\u9009\u62e9\u63a7\u4ef6\u53c2\u6570", realtext="\u9009\u62e9\u63a7\u4ef6\u53c2\u6570"), @CodeItem(value="CARETTEMPLGROUP_SRFDA_CONTROLPARAM_TEXTBOX", text="\u6587\u672c\u63a7\u4ef6\u53c2\u6570", realtext="\u6587\u672c\u63a7\u4ef6\u53c2\u6570"), @CodeItem(value="CARETTEMPLGROUP_SRFDA_CONTROLPARAM_PICKUPLISTBOX", text="\u9009\u62e9\u5217\u8868\u63a7\u4ef6\u53c2\u6570", realtext="\u9009\u62e9\u5217\u8868\u63a7\u4ef6\u53c2\u6570")})
-public abstract class CodeList101CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String CARETTEMPLGROUP_SRFDA_CONTROLPARAM = "CARETTEMPLGROUP_SRFDA_CONTROLPARAM";
-    public static final String CARETTEMPLGROUP_SRFDA_CONTROLPARAM_CARET = "CARETTEMPLGROUP_SRFDA_CONTROLPARAM_CARET";
-    public static final String CARETTEMPLGROUP_SRFDA_CONTROLPARAM_PICKUP = "CARETTEMPLGROUP_SRFDA_CONTROLPARAM_PICKUP";
-    public static final String CARETTEMPLGROUP_SRFDA_CONTROLPARAM_TEXTBOX = "CARETTEMPLGROUP_SRFDA_CONTROLPARAM_TEXTBOX";
-    public static final String CARETTEMPLGROUP_SRFDA_CONTROLPARAM_PICKUPLISTBOX = "CARETTEMPLGROUP_SRFDA_CONTROLPARAM_PICKUPLISTBOX";
+
+@CodeList(id="e4d7ca43e89e3362ff779839d3226867",name="输入辅助_控件参数",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="CARETTEMPLGROUP_SRFDA_CONTROLPARAM",text="控件基本参数",realtext="控件基本参数" )
+    ,@CodeItem(value="CARETTEMPLGROUP_SRFDA_CONTROLPARAM_CARET",text="辅助输入控件参数",realtext="辅助输入控件参数" )
+    ,@CodeItem(value="CARETTEMPLGROUP_SRFDA_CONTROLPARAM_PICKUP",text="选择控件参数",realtext="选择控件参数" )
+    ,@CodeItem(value="CARETTEMPLGROUP_SRFDA_CONTROLPARAM_TEXTBOX",text="文本控件参数",realtext="文本控件参数" )
+    ,@CodeItem(value="CARETTEMPLGROUP_SRFDA_CONTROLPARAM_PICKUPLISTBOX",text="选择列表控件参数",realtext="选择列表控件参数" )
+})
+
+
+/**
+ * 静态代码表[输入辅助_控件参数]模型基类
+ */
+public abstract class CodeList101CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  控件基本参数
+     */
+    public final static String CARETTEMPLGROUP_SRFDA_CONTROLPARAM = "CARETTEMPLGROUP_SRFDA_CONTROLPARAM";
+    /**
+     *  辅助输入控件参数
+     */
+    public final static String CARETTEMPLGROUP_SRFDA_CONTROLPARAM_CARET = "CARETTEMPLGROUP_SRFDA_CONTROLPARAM_CARET";
+    /**
+     *  选择控件参数
+     */
+    public final static String CARETTEMPLGROUP_SRFDA_CONTROLPARAM_PICKUP = "CARETTEMPLGROUP_SRFDA_CONTROLPARAM_PICKUP";
+    /**
+     *  文本控件参数
+     */
+    public final static String CARETTEMPLGROUP_SRFDA_CONTROLPARAM_TEXTBOX = "CARETTEMPLGROUP_SRFDA_CONTROLPARAM_TEXTBOX";
+    /**
+     *  选择列表控件参数
+     */
+    public final static String CARETTEMPLGROUP_SRFDA_CONTROLPARAM_PICKUPLISTBOX = "CARETTEMPLGROUP_SRFDA_CONTROLPARAM_PICKUPLISTBOX";
+
 
     public CodeList101CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList101CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList101CodeListModel", this);
     }
-}
 
+}

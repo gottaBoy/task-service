@@ -1,21 +1,72 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.entity;
 
-import net.ibizsys.paas.entity.IEntity;
-
+/**
+ * 数据对象操作辅助对象接口
+ * @author Administrator
+ *
+ */
 public interface IEntityActionHelper {
-    public void create(IEntity var1) throws Exception;
+	
+	/**
+	 * 建立数据对象
+	 * @param iEntity
+	 * @throws Exception
+	 */
+	void create(IEntity iEntity)throws Exception;
 
-    public void update(IEntity var1) throws Exception;
-
-    public void save(IEntity var1) throws Exception;
-
-    public void remove(IEntity var1) throws Exception;
-
-    public boolean get(IEntity var1, boolean var2) throws Exception;
-
-    public boolean select(IEntity var1, boolean var2) throws Exception;
+	
+	
+	
+	/**
+	 * 更新数据对象
+	 * @param iEntity
+	 * @throws Exception
+	 */
+	void update(IEntity iEntity)throws Exception;
+	
+	
+	
+	
+	
+	/**
+	 * 保存数据对象
+	 * @param iEntity
+	 * @throws Exception
+	 */
+	void save(IEntity iEntity)throws Exception;
+	
+	
+	
+	
+	/**
+	 * 删除数据对象
+	 * @param iEntity
+	 * @throws Exception
+	 */
+	void remove(IEntity iEntity)throws Exception;
+	
+	
+	
+	
+	/**
+	 * 获取数据对象
+	 * @param iEntity
+	 * @param bTryMode 尝试模式
+	 * @return
+	 * @throws Exception
+	 */
+	boolean get(IEntity iEntity,boolean bTryMode)throws Exception;
+	
+	
+	
+	/**
+	 * 选择数据对象
+	 * @param iEntity
+	 * @param bTryMode 尝试模式
+	 * @return
+	 * @throws Exception
+	 */
+	boolean select(IEntity iEntity,boolean bTryMode)throws Exception;
+	
+	
 }
-

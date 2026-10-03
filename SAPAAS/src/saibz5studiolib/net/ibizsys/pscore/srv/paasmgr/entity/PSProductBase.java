@@ -1055,7 +1055,7 @@ implements Serializable {
                 PSSvrProvider pSSvrProvider = new PSSvrProvider();
                 pSSvrProvider.setPSSvrProviderId(this.getPSSvrProviderId());
                 PSSvrProviderService pSSvrProviderService = (PSSvrProviderService)ServiceGlobal.getService(PSSvrProviderService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrProviderService.autoGet((IEntity)pSSvrProvider);
+                pSSvrProviderService.autoGet(pSSvrProvider);
                 this.pssvrprovider = pSSvrProvider;
             }
             return this.pssvrprovider;

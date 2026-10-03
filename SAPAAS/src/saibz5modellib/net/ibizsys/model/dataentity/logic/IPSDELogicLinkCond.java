@@ -1,19 +1,42 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.logic;
 
 import net.ibizsys.model.core.IPSModelObject;
-import net.ibizsys.model.dataentity.logic.IPSDELogicLink;
 
-public interface IPSDELogicLinkCond
-extends IPSModelObject {
-    public static final String LOGICTYPE_GROUP = "GROUP";
-    public static final String LOGICTYPE_SINGLE = "SINGLE";
-    public static final String LOGICTYPE_CUSTOM = "CUSTOM";
 
-    public IPSDELogicLink getPSDELogicLink();
+/**
+ * 实体逻辑连接条件对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSDELogicLinkCond extends IPSModelObject {
+	/**
+	 * 逻辑类型：组逻辑
+	 */
+	public final static String LOGICTYPE_GROUP = "GROUP";
 
-    public String getLogicType();
+	/**
+	 * 逻辑类型：单项逻辑
+	 */
+	public final static String LOGICTYPE_SINGLE = "SINGLE";
+
+	/**
+	 * 逻辑类型：用户自定义
+	 */
+	public final static String LOGICTYPE_CUSTOM = "CUSTOM";
+
+	
+	/**
+	 * 获取逻辑连接对象
+	 * 
+	 * @return
+	 */
+	IPSDELogicLink getPSDELogicLink();
+
+	/**
+	 * 获取逻辑分类，值参考 SA.SRFDA.PS.Core.DataEntity.Logic.IPSDELogicLinkCond.LOGICTYPE_XXX 定义
+	 * 
+	 * @return
+	 */
+	String getLogicType();
 }
-

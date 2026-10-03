@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.def.demodel.PSDBSysProcTemplDEModelBase;
 
 public class PSDBSysProcTemplDEModel
 extends PSDBSysProcTemplDEModelBase {
+
+    public PSDBSysProcTemplDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

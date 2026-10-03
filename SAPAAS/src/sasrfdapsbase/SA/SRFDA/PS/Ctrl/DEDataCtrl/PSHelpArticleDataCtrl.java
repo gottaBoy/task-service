@@ -94,7 +94,7 @@ extends PSDEDataCtrl {
         IPSSystem iPSSystem = this.getPSSystem(null, strPSSystemId, IPSSystem.LOADLEVEL_CODE);
         PSHelpArticle psHelpArticleCond = new PSHelpArticle();
         psHelpArticleCond.setPSSYSTEMID(strPSSystemId);
-        Vector psHelpArticleList = new Vector();
+        Vector<PSHelpArticle> psHelpArticleList = new Vector<PSHelpArticle>();
         CallResult callResult = this.Select(psHelpArticleCond, psHelpArticleList, PSHelpArticle.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7cfb\u7edf\u5168\u90e8\u5e2e\u52a9\u6587\u6863\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -110,4 +110,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

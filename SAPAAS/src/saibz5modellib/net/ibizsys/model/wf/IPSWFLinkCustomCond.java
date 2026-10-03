@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.wf;
 
-import net.ibizsys.model.wf.IPSWFLinkCond;
+/**
+ * 工作流连接自定义条件对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSWFLinkCustomCond extends IPSWFLinkCond
+{
 
-public interface IPSWFLinkCustomCond
-extends IPSWFLinkCond {
 }
-

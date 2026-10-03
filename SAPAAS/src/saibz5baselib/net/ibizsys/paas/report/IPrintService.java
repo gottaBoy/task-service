@@ -1,47 +1,132 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.report;
+
+import org.hibernate.SessionFactory;
 
 import net.ibizsys.paas.core.IDataEntity;
 import net.ibizsys.paas.core.IDataEntityObject;
 import net.ibizsys.paas.demodel.IDataEntityModel;
 import net.ibizsys.paas.web.IWebContext;
-import org.hibernate.SessionFactory;
 
-public interface IPrintService
-extends IDataEntityObject {
-    public static final String CONTENTTYPE_PDF = "PDF";
-    public static final String CONTENTTYPE_HTML = "HTML";
-    public static final String CONTENTTYPE_EXCEL = "EXCEL";
+/**
+ * 打印服务接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IPrintService extends IDataEntityObject {
+	/**
+	 * 内容类型，PDF
+	 */
+	final static String CONTENTTYPE_PDF = "PDF";
 
-    public void init(IDataEntity var1) throws Exception;
+	/**
+	 * 内容类型，HTML
+	 */
+	final static String CONTENTTYPE_HTML = "HTML";
 
-    public IDataEntityModel getDEModel();
+	/**
+	 * 内容类型，EXCEL
+	 */
+	final static String CONTENTTYPE_EXCEL = "EXCEL";
 
-    public String getDEDataSetName();
+	/**
+	 * 初始化
+	 * 
+	 * @param iDataEntity
+	 * @throws Exception
+	 */
+	void init(IDataEntity iDataEntity) throws Exception;
 
-    public String getDetailDEDataSetName();
+	/**
+	 * 获取实体模型
+	 * 
+	 * @return
+	 */
+	IDataEntityModel getDEModel();
 
-    public String getDetailDEName();
+	/**
+	 * 获取明细数据实体数据结果集名称
+	 * 
+	 * @return
+	 */
+	String getDEDataSetName();
+	
+	
+	
+	/**
+	 * 获取明细数据实体数据结果集名称
+	 * @return
+	 */
+	String getDetailDEDataSetName();
+	
+	
+	
+	/**
+	 * 获取明细数据实体名称
+	 * @return
+	 */
+	String getDetailDEName();
 
-    public boolean isEnableColPriv();
+	/**
+	 * 是否启用列权限
+	 * 
+	 * @return
+	 */
+	boolean isEnableColPriv();
 
-    public boolean isEnableLog();
+	/**
+	 * 是否启用打印日志
+	 * 
+	 * @return
+	 */
+	boolean isEnableLog();
 
-    public boolean isEnableMulitPrint();
+	/**
+	 * 是否启用多数据打印
+	 * 
+	 * @return
+	 */
+	boolean isEnableMulitPrint();
 
-    public String getGetDataDEActionName();
+	/**
+	 * 获取获取数据实体行为对象名称
+	 * 
+	 * @return
+	 */
+	String getGetDataDEActionName();
 
-    public String getGetDataDataAccessAction();
+	/**
+	 * 获取获取数据访问操作
+	 * 
+	 * @return
+	 */
+	String getGetDataDataAccessAction();
 
-    public String getReportFilePath();
+	/**
+	 * 获取报表路径
+	 * 
+	 * @return
+	 */
+	String getReportFilePath();
 
-    public String getPrintFile(String var1, IWebContext var2, SessionFactory var3, String var4, String var5) throws Exception;
+	/**
+	 * 获取打印文件
+	 * 
+	 * @param iWebContext
+	 * @param sessionFactory
+	 * @param strContentType
+	 * @return
+	 * @throws Exception
+	 */
+	String getPrintFile(String strKeys, IWebContext iWebContext, SessionFactory sessionFactory, String strContentType, String strPrintFileFolder) throws Exception;
 
-    public String getCodeListText(String var1, String var2) throws Exception;
+	/**
+	 * 获取代码表文本
+	 * 
+	 * @param strCodeListId 代码表标识
+	 * @param strValue 要转换的值
+	 * @return 转换后文本
+	 * @throws Exception
+	 */
+	String getCodeListText(String strCodeListId, String strValue) throws Exception;
 }
-

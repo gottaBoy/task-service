@@ -1,24 +1,61 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSAppView
- */
 package net.ibizsys.model.pub.preview;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PSPreviewIndexFileListCodePublisherImpl {
-    public PSPreviewIndexFileListCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tPSPFViewCodePublisherImpl cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSPreviewIndexFileListCodePublisherImpl must override or implement a supertype method\n\tPSPFViewCodePublisherImpl cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tiPSAppView cannot be resolved or is not a field\n\tiPSAppView cannot be resolved or is not a field\n\tiPSAppView cannot be resolved to a variable\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n");
-    }
+import SA.SRFDA.PS.Core.App.View.IPSAppView;
+import SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl;
 
-    protected String getPSAppViewCodeName(IPSAppView iPSAppView) {
-        throw new Error("Unresolved compilation problem: \n\tIPSAppView cannot be resolved to a type\n");
-    }
-
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSPreviewIndexFileListCodePublisherImpl must override or implement a supertype method\n\tPSPFViewCodePublisherImpl cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tiPSAppView cannot be resolved or is not a field\n\tiPSAppView cannot be resolved or is not a field\n\tiPSAppView cannot be resolved to a variable\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n");
-    }
+/**
+ * 索引文件清单
+ * @author lionlau
+ *
+ */
+public class PSPreviewIndexFileListCodePublisherImpl extends PSPFViewCodePublisherImpl
+{
+	@Override
+	protected String getPSAppViewCodeName(IPSAppView iPSAppView)
+	{
+		return iPSAppView.getCodeName().toLowerCase();
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		//合成require
+		HashMap<String, IPSAppView> requireAppViewMap = new HashMap<String, IPSAppView>();
+		ArrayList<IPSAppView> requireViewList = new ArrayList<IPSAppView> ();
+		requireViewList.add(this.iPSAppView);
+		requireAppViewMap.put(this.iPSAppView.getId(), iPSAppView);
+		while(requireViewList.size()>0)
+		{
+			IPSAppView iPSAppView = requireViewList.remove(0);
+			//if(requireAppViewMap.containsKey(iPSAppView.getId()))
+			//	continue;
+			//requireAppViewMap.put(iPSAppView.getId(), iPSAppView);
+			
+			ArrayList<IPSAppView> psAppViewList = new  ArrayList<IPSAppView>();
+			iPSAppView.fillRelatedPSAppViews(psAppViewList);
+			
+			for(IPSAppView iPSAppView2 :psAppViewList)
+			{
+				if(requireAppViewMap.containsKey(iPSAppView2.getId()))
+					continue;
+				
+				requireAppViewMap.put(iPSAppView2.getId(), iPSAppView2);
+				requireViewList.add(iPSAppView2);
+			}
+		}
+		
+		requireViewList.clear();
+		requireViewList.addAll(requireAppViewMap.values());
+		params.put("requireviews", requireViewList);
+	
+	}	
 }
-

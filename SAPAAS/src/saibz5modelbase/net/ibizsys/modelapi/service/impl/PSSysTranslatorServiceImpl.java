@@ -116,9 +116,9 @@ implements IPSSysTranslatorService {
 
     @Override
     protected List<PSSysTranslator> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysTranslator> list = new ArrayList<PSSysTranslator>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysTranslator> items = this.listByPSModule(parent);

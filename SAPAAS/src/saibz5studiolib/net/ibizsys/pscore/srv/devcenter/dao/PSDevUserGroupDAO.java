@@ -73,7 +73,7 @@ extends PSCoreSysDAOBase<PSDevUserGroup> {
     }
 
     protected void fillInheritEntity(PSDevUserGroup pSDevUserGroup) throws Exception {
-        super.fillInheritEntity((IEntity)pSDevUserGroup);
+        super.fillInheritEntity(pSDevUserGroup);
         PSDevUserGroup pSDevUserGroup2 = pSDevUserGroup;
         pSDevUserGroup2.setPSDevUserObjectId(pSDevUserGroup.getPSDevUserGroupId());
         if (pSDevUserGroup.isPSDevUserGroupNameDirty()) {

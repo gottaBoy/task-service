@@ -2325,7 +2325,7 @@ implements Serializable {
                 PSDCMobPackCert pSDCMobPackCert = new PSDCMobPackCert();
                 pSDCMobPackCert.setPSDCMobPackCertId(this.getPSDCMobPackCertId());
                 PSDCMobPackCertService pSDCMobPackCertService = (PSDCMobPackCertService)ServiceGlobal.getService(PSDCMobPackCertService.class, (SessionFactory)this.getSessionFactory());
-                pSDCMobPackCertService.autoGet((IEntity)pSDCMobPackCert);
+                pSDCMobPackCertService.autoGet(pSDCMobPackCert);
                 this.psdcmobpackcert = pSDCMobPackCert;
             }
             return this.psdcmobpackcert;
@@ -2351,7 +2351,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;

@@ -1,32 +1,83 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="c47cdacce46ae8a902910751fd93f6d2", name="\u5c5e\u6027\u9884\u5b9a\u4e49\u503c\u89c4\u5219", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="INT", text="\u6574\u6570", realtext="\u6574\u6570"), @CodeItem(value="POSITIVEINT", text="\u6b63\u6574\u6570", realtext="\u6b63\u6574\u6570", parentvalue="INT"), @CodeItem(value="STRING", text="\u5b57\u7b26\u4e32", realtext="\u5b57\u7b26\u4e32"), @CodeItem(value="STRING_EMAIL", text="\u7535\u5b50\u90ae\u4ef6", realtext="\u7535\u5b50\u90ae\u4ef6", parentvalue="STRING"), @CodeItem(value="FLOAT", text="\u6d6e\u70b9\u6570", realtext="\u6d6e\u70b9\u6570"), @CodeItem(value="FLOAT_PERCENT", text="\u767e\u5206\u6bd4\u6570\u503c(0~100)", realtext="\u767e\u5206\u6bd4\u6570\u503c(0~100)", parentvalue="FLOAT"), @CodeItem(value="DATETIME", text="\u65e5\u671f\u65f6\u95f4", realtext="\u65e5\u671f\u65f6\u95f4"), @CodeItem(value="DATETIME_GTNOW", text="\u5927\u4e8e\u5f53\u5929\u65f6\u95f4", realtext="\u5927\u4e8e\u5f53\u5929\u65f6\u95f4", parentvalue="DATETIME"), @CodeItem(value="DATETIME_GTNOWNOHOUR", text="\u5927\u4e8e\u5f53\u5929\u65e5\u671f", realtext="\u5927\u4e8e\u5f53\u5929\u65e5\u671f", parentvalue="DATETIME"), @CodeItem(value="DATETIME_GTNOW3DAY", text="\u540e3\u5929", realtext="\u540e3\u5929", parentvalue="DATETIME")})
-public abstract class CodeList13CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String INT = "INT";
-    public static final String POSITIVEINT = "POSITIVEINT";
-    public static final String STRING = "STRING";
-    public static final String STRING_EMAIL = "STRING_EMAIL";
-    public static final String FLOAT = "FLOAT";
-    public static final String FLOAT_PERCENT = "FLOAT_PERCENT";
-    public static final String DATETIME = "DATETIME";
-    public static final String DATETIME_GTNOW = "DATETIME_GTNOW";
-    public static final String DATETIME_GTNOWNOHOUR = "DATETIME_GTNOWNOHOUR";
-    public static final String DATETIME_GTNOW3DAY = "DATETIME_GTNOW3DAY";
+
+@CodeList(id="c47cdacce46ae8a902910751fd93f6d2",name="属性预定义值规则",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="INT",text="整数",realtext="整数" )
+    ,@CodeItem(value="POSITIVEINT",text="正整数",realtext="正整数" ,parentvalue="INT")
+    ,@CodeItem(value="STRING",text="字符串",realtext="字符串" )
+    ,@CodeItem(value="STRING_EMAIL",text="电子邮件",realtext="电子邮件" ,parentvalue="STRING")
+    ,@CodeItem(value="FLOAT",text="浮点数",realtext="浮点数" )
+    ,@CodeItem(value="FLOAT_PERCENT",text="百分比数值(0~100)",realtext="百分比数值(0~100)" ,parentvalue="FLOAT")
+    ,@CodeItem(value="DATETIME",text="日期时间",realtext="日期时间" )
+    ,@CodeItem(value="DATETIME_GTNOW",text="大于当天时间",realtext="大于当天时间" ,parentvalue="DATETIME")
+    ,@CodeItem(value="DATETIME_GTNOWNOHOUR",text="大于当天日期",realtext="大于当天日期" ,parentvalue="DATETIME")
+    ,@CodeItem(value="DATETIME_GTNOW3DAY",text="后3天",realtext="后3天" ,parentvalue="DATETIME")
+})
+
+
+/**
+ * 静态代码表[属性预定义值规则]模型基类
+ */
+public abstract class CodeList13CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  整数
+     */
+    public final static String INT = "INT";
+    /**
+     *  正整数
+     */
+    public final static String POSITIVEINT = "POSITIVEINT";
+    /**
+     *  字符串
+     */
+    public final static String STRING = "STRING";
+    /**
+     *  电子邮件
+     */
+    public final static String STRING_EMAIL = "STRING_EMAIL";
+    /**
+     *  浮点数
+     */
+    public final static String FLOAT = "FLOAT";
+    /**
+     *  百分比数值(0~100)
+     */
+    public final static String FLOAT_PERCENT = "FLOAT_PERCENT";
+    /**
+     *  日期时间
+     */
+    public final static String DATETIME = "DATETIME";
+    /**
+     *  大于当天时间
+     */
+    public final static String DATETIME_GTNOW = "DATETIME_GTNOW";
+    /**
+     *  大于当天日期
+     */
+    public final static String DATETIME_GTNOWNOHOUR = "DATETIME_GTNOWNOHOUR";
+    /**
+     *  后3天
+     */
+    public final static String DATETIME_GTNOW3DAY = "DATETIME_GTNOW3DAY";
+
 
     public CodeList13CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList13CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList13CodeListModel", this);
     }
-}
 
+}

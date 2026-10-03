@@ -1059,7 +1059,7 @@ implements Serializable {
                 PSCtrlType pSCtrlType = new PSCtrlType();
                 pSCtrlType.setPSCtrlTypeId(this.getPSCtrlTypeId());
                 PSCtrlTypeService pSCtrlTypeService = (PSCtrlTypeService)ServiceGlobal.getService(PSCtrlTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSCtrlTypeService.autoGet((IEntity)pSCtrlType);
+                pSCtrlTypeService.autoGet(pSCtrlType);
                 this.psctrltype = pSCtrlType;
             }
             return this.psctrltype;
@@ -1085,7 +1085,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;

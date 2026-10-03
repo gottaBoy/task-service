@@ -112,9 +112,9 @@ implements IPSSysSampleValueService {
 
     @Override
     protected List<PSSysSampleValue> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysSampleValue> list = new ArrayList<PSSysSampleValue>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysSampleValue> items = this.listByPSModule(parent);

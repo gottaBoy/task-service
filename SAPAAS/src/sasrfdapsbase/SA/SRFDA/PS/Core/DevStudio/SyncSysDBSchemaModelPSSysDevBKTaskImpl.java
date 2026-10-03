@@ -114,7 +114,7 @@ extends PSSysDevBKTaskImplBase {
         PSSysDBSchemeService psSysDBSchemeService = (PSSysDBSchemeService)ServiceGlobal.getService(PSSysDBSchemeService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSysDBScheme psSysDBScheme2 = new PSSysDBScheme();
         psSysDBScheme2.setPSSysDBSchemeId(this.psSysDevBKTask.getTASKPARAM());
-        psSysDBSchemeService.get((IEntity)psSysDBScheme2);
+        psSysDBSchemeService.get(psSysDBScheme2);
         PSLiquibaseChangeLogModelImpl iPSLiquibaseChangeLog = null;
         if (psSysDBScheme2.getPSSysDynaModel() != null && StringHelper.compare((String)psSysDBScheme2.getPSSysDynaModel().getDynaModelUsage(), (String)"LIQUIBASECHANGELOG", (boolean)false) == 0) {
             IPSDevSlnSys iPSDevSlnSys = PSObjectFactory.getPSModelStorage().getPSDevSlnSys(this.getPSDevSlnSysId());
@@ -156,13 +156,13 @@ extends PSSysDevBKTaskImplBase {
         IPSLiquibaseChangeSets iPSLiquibaseChangeSets = iPSLiquibaseChangeLog.getPSLiquibaseChangeSets();
         SessionFactory sessionFactory = PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId());
         PSSysDBTableService psSysDBTableService = (PSSysDBTableService)ServiceGlobal.getService(PSSysDBTableService.class, (SessionFactory)sessionFactory);
-        ArrayList psSysDBTableList = psSysDBTableService.selectByPSSysDBScheme((PSSysDBSchemeBase)psSysDBScheme);
+        ArrayList<PSSysDBTable> psSysDBTableList = psSysDBTableService.selectByPSSysDBScheme((PSSysDBSchemeBase)psSysDBScheme);
         HashMap<String, PSSysDBTable> psSysDBTableMap = new HashMap<String, PSSysDBTable>();
         for (PSSysDBTable psSysDBTable : psSysDBTableList) {
             psSysDBTableMap.put(psSysDBTable.getPSSysDBTableName().toUpperCase(), psSysDBTable);
         }
         PSSysDBColumnService psSysDBColumnService = (PSSysDBColumnService)ServiceGlobal.getService(PSSysDBColumnService.class, (SessionFactory)sessionFactory);
-        ArrayList psSysDBColumnList = psSysDBColumnService.select((ISelectCond)new SelectCond());
+        ArrayList<PSSysDBColumn> psSysDBColumnList = psSysDBColumnService.select((ISelectCond)new SelectCond());
         if (iPSLiquibaseChangeSets.getItems() != null) {
             PSSysDBTable psSysDBTable;
             IPSLiquibaseCreateTable iPSLiquibaseCreateTable;
@@ -185,7 +185,7 @@ extends PSSysDevBKTaskImplBase {
                     psSysDBTable.setTabDesc(iPSLiquibaseCreateTable.getRemarks());
                     psSysDBTable.setPSSysDBSchemeId(psSysDBScheme.getPSSysDBSchemeId());
                     try {
-                        psSysDBTableService.create((IEntity)psSysDBTable);
+                        psSysDBTableService.create(psSysDBTable);
                         psSysDBTableMap.put(psSysDBTable.getPSSysDBTableName().toUpperCase(), psSysDBTable);
                         sb.append(StringHelper.format((String)"\u5efa\u7acb\u6570\u636e\u8868[%1$s]\r\n", (Object)iPSLiquibaseCreateTable.getTableName()));
                     }
@@ -266,7 +266,7 @@ extends PSSysDevBKTaskImplBase {
                                     psSysDBColumn.setPrecision2(nPrecision);
                                 }
                             }
-                            psSysDBColumnService.create((IEntity)psSysDBColumn);
+                            psSysDBColumnService.create(psSysDBColumn);
                             psSysDBColumnList.add(psSysDBColumn);
                             sb.append(StringHelper.format((String)"\u5efa\u7acb\u6570\u636e\u8868[%1$s]\u5217[%2$s]\r\n", (Object)iPSLiquibaseCreateTable.getTableName(), (Object)iPSLiquibaseColumn.getName()));
                         }
@@ -280,4 +280,3 @@ extends PSSysDevBKTaskImplBase {
         return sb.toString();
     }
 }
-

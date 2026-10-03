@@ -754,7 +754,7 @@ extends BaseMainPage {
             if (!StringHelper.IsNullOrEmpty((String)strPSDevSlnSysId)) {
                 PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class);
                 this.psDevSlnSys.setPSDevSlnSysId(strPSDevSlnSysId);
-                psDevSlnSysService.get((IEntity)this.psDevSlnSys);
+                psDevSlnSysService.get(this.psDevSlnSys);
                 String strUserName = this.getRequest().getHeader("X-SRFUSERNAME");
                 if (StringHelper.IsNullOrEmpty((String)strUserId)) {
                     this.processInfo.Append("\u6ca1\u6709\u6307\u5b9a\u5f53\u524d\u7528\u6237\u8eab\u4efd");
@@ -771,7 +771,7 @@ extends BaseMainPage {
                 PSSystem psSystem = new PSSystem();
                 PSSystemService psSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class);
                 psSystem.setPSSystemId(strPSSystemId);
-                psSystemService.get((IEntity)psSystem);
+                psSystemService.get(psSystem);
                 this.psDevSlnSys.setPSSystemId(psSystem.getPSSystemId());
                 this.psDevSlnSys.setPSDevSlnSysName(psSystem.getPSSystemName());
             } else {

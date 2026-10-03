@@ -1,26 +1,71 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.menu;
 
-import java.util.ArrayList;
-import net.ibizsys.paas.control.menu.IMenuItem;
+/**
+ * 应用菜单项接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IAppMenuItem extends IMenuItem {
+	
+	/**
+	 * 菜单状态，新建
+	 */
+	final int STATE_NEW = 1;
+	
+	
+	
+	/**
+	 * 菜单状态，热门
+	 */
+	final int STATE_HOT = 2;
+	
+	
+	/**
+	 * 获取项集合
+	 * 
+	 * @return
+	 */
+	java.util.ArrayList<IAppMenuItem> getItems();
 
-public interface IAppMenuItem
-extends IMenuItem {
-    public static final int STATE_NEW = 1;
-    public static final int STATE_HOT = 2;
+	/**
+	 * 获取应用功能编号
+	 * 
+	 * @return
+	 */
+	String getAppFuncId();
 
-    public ArrayList<IAppMenuItem> getItems();
+	/**
+	 * 是否为分隔项
+	 * 
+	 * @return
+	 */
+	boolean isSeperator();
 
-    public String getAppFuncId();
+	/**
+	 * 是否隐藏边栏
+	 * 
+	 * @return
+	 */
+	boolean isHideSideBar();
 
-    public boolean isSeperator();
+	/**
+	 * 默认打开
+	 * 
+	 * @return
+	 */
+	boolean isOpenDefault();
+	
+	
+	
+	/**
+	 * 获取应用菜单项状态
+	 * @return
+	 */
+	int getAppMenuItemState();
 
-    public boolean isHideSideBar();
+	
+	
+	
 
-    public boolean isOpenDefault();
-
-    public int getAppMenuItemState();
 }
-

@@ -1265,7 +1265,7 @@ implements Serializable {
                 PSDESysProc pSDESysProc = new PSDESysProc();
                 pSDESysProc.setPSDESysProcId(this.getPSDESysProcId());
                 PSDESysProcService pSDESysProcService = (PSDESysProcService)ServiceGlobal.getService(PSDESysProcService.class, (SessionFactory)this.getSessionFactory());
-                pSDESysProcService.autoGet((IEntity)pSDESysProc);
+                pSDESysProcService.autoGet(pSDESysProc);
                 this.psdesysproc = pSDESysProc;
             }
             return this.psdesysproc;

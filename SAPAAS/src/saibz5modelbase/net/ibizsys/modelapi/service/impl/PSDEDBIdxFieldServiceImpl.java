@@ -72,7 +72,7 @@ implements IPSDEDBIdxFieldService {
     @Override
     protected List<PSDEDBIdxField> onListAll() throws Exception {
         ArrayList<PSDEDBIdxField> list = new ArrayList<PSDEDBIdxField>();
-        List psdedbindices = PSModelServiceUtil.getInstance().getPSDEDBIndexService().listAll();
+        List<PSDEDBIndex> psdedbindices = PSModelServiceUtil.getInstance().getPSDEDBIndexService().listAll();
         if (psdedbindices != null) {
             for (PSDEDBIndex parent : psdedbindices) {
                 List<PSDEDBIdxField> items = this.listByPSDEDBIndex(parent);

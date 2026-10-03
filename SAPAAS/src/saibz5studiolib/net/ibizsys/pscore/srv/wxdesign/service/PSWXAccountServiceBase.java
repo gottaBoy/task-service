@@ -205,9 +205,9 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSWXAccount, pSModule);
             return;
@@ -217,9 +217,9 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             PSSysResource pSSysResource = (PSSysResource)iService.getDEModel().createEntity();
             pSSysResource.set("PSSYSRESOURCEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysResource);
+                iService.getTemp(pSSysResource);
             } else {
-                iService.get((IEntity)pSSysResource);
+                iService.get(pSSysResource);
             }
             this.onFillParentInfo_PSSysResource(pSWXAccount, pSSysResource);
             return;
@@ -229,9 +229,9 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             PSSysSFPlugin pSSysSFPlugin = (PSSysSFPlugin)iService.getDEModel().createEntity();
             pSSysSFPlugin.set("PSSYSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPlugin);
+                iService.getTemp(pSSysSFPlugin);
             } else {
-                iService.get((IEntity)pSSysSFPlugin);
+                iService.get(pSSysSFPlugin);
             }
             this.onFillParentInfo_PSSysSFPlugin(pSWXAccount, pSSysSFPlugin);
             return;
@@ -241,14 +241,14 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSWXAccount, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWXAccount, string, string2, string3);
+        super.onFillParentInfo(pSWXAccount, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -290,7 +290,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 pSWXAccount.setPSWXMenusCnt((Integer)this.getDefaultValue(this.getWebContext(), "", "0", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSWXAccount, bl);
+        super.onFillEntityFullInfo(pSWXAccount, bl);
         this.onFillEntityFullInfo_PSModule(pSWXAccount, bl);
         this.onFillEntityFullInfo_PSSysResource(pSWXAccount, bl);
         this.onFillEntityFullInfo_PSSysSFPlugin(pSWXAccount, bl);
@@ -320,7 +320,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
     }
 
     protected void onWriteBackParent(PSWXAccount pSWXAccount, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWXAccount, bl);
+        super.onWriteBackParent(pSWXAccount, bl);
     }
 
     public ArrayList<PSWXAccount> selectByPSModule(PSModuleBase pSModuleBase) throws Exception {
@@ -423,8 +423,8 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         ArrayList<PSWXAccount> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXACCOUNT_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSWXACCOUNT", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXACCOUNT_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSWXACCOUNT", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -457,7 +457,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         ArrayList<PSWXAccount> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSWXAccount pSWXAccount : arrayList) {
-            this.remove((IEntity)pSWXAccount);
+            this.remove(pSWXAccount);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -475,8 +475,8 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         ArrayList<PSWXAccount> arrayList = this.selectByPSSysResource(pSSysResource, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSRESOURCE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysResource);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXACCOUNT_PSSYSRESOURCE_PSSYSRESOURCEID", "", iDataEntityModel.getName(), "PSWXACCOUNT", iDataEntityModel.getDataInfo((IEntity)pSSysResource), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysResource);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXACCOUNT_PSSYSRESOURCE_PSSYSRESOURCEID", "", iDataEntityModel.getName(), "PSWXACCOUNT", iDataEntityModel.getDataInfo(pSSysResource), arrayList.get(0)));
         }
     }
 
@@ -509,7 +509,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         ArrayList<PSWXAccount> arrayList = this.selectByPSSysResource(pSSysResource);
         this.onBeforeRemoveByPSSysResource(pSSysResource, arrayList);
         for (PSWXAccount pSWXAccount : arrayList) {
-            this.remove((IEntity)pSWXAccount);
+            this.remove(pSWXAccount);
         }
         this.onAfterRemoveByPSSysResource(pSSysResource, arrayList);
     }
@@ -527,8 +527,8 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         ArrayList<PSWXAccount> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXACCOUNT_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSWXACCOUNT", iDataEntityModel.getDataInfo((IEntity)pSSysSFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXACCOUNT_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSWXACCOUNT", iDataEntityModel.getDataInfo(pSSysSFPlugin), arrayList.get(0)));
         }
     }
 
@@ -561,7 +561,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         ArrayList<PSWXAccount> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin);
         this.onBeforeRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
         for (PSWXAccount pSWXAccount : arrayList) {
-            this.remove((IEntity)pSWXAccount);
+            this.remove(pSWXAccount);
         }
         this.onAfterRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
     }
@@ -607,7 +607,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         ArrayList<PSWXAccount> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSWXAccount pSWXAccount : arrayList) {
-            this.remove((IEntity)pSWXAccount);
+            this.remove(pSWXAccount);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -642,7 +642,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
 
     protected void replaceParentInfo(PSWXAccount pSWXAccount, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWXAccount, cloneSession);
+        super.replaceParentInfo(pSWXAccount, cloneSession);
         if (pSWXAccount.getPSModuleId() != null && (iEntity = cloneSession.getEntity("PSMODULE", (Object)pSWXAccount.getPSModuleId())) != null) {
             this.onFillParentInfo_PSModule(pSWXAccount, (PSModule)iEntity);
         }
@@ -658,7 +658,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWXAccount pSWXAccount, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWXAccount, bl);
+        super.onRemoveEntityUncopyValues(pSWXAccount, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWXAccount pSWXAccount, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -727,7 +727,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         if ((entityFieldError = this.onCheckField_WXAccountType(bl, pSWXAccount, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWXAccount, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWXAccount, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSWXAccount pSWXAccount, boolean bl2, boolean bl3) throws Exception {
@@ -743,7 +743,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -784,7 +784,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSWXAccount, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -806,7 +806,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -828,7 +828,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -850,7 +850,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysResourceId_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysResourceId_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSRESOURCEID");
@@ -872,7 +872,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPluginId_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPluginId_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPLUGINID");
@@ -897,7 +897,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -922,7 +922,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -947,7 +947,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXAccountId_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXAccountId_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXACCOUNTID");
@@ -972,7 +972,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXAccountName_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXAccountName_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXACCOUNTNAME");
@@ -994,7 +994,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PSWXEntAppsCnt_Default((IEntity)pSWXAccount, bl2, bl3);
+            string = this.onTestValueRule_PSWXEntAppsCnt_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXENTAPPSCNT");
@@ -1016,7 +1016,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PSWXLogicsCnt_Default((IEntity)pSWXAccount, bl2, bl3);
+            string = this.onTestValueRule_PSWXLogicsCnt_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXLOGICSCNT");
@@ -1038,7 +1038,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PSWXMenuFuncsCnt_Default((IEntity)pSWXAccount, bl2, bl3);
+            string = this.onTestValueRule_PSWXMenuFuncsCnt_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXMENUFUNCSCNT");
@@ -1060,7 +1060,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PSWXMenusCnt_Default((IEntity)pSWXAccount, bl2, bl3);
+            string = this.onTestValueRule_PSWXMenusCnt_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXMENUSCNT");
@@ -1082,7 +1082,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1104,7 +1104,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1126,7 +1126,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1148,7 +1148,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1170,7 +1170,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1192,7 +1192,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WXAccountParams_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_WXAccountParams_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WXACCOUNTPARAMS");
@@ -1217,7 +1217,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WXAccountType_Default((IEntity)pSWXAccount, bl2, bl3);
+            string2 = this.onTestValueRule_WXAccountType_Default(pSWXAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WXACCOUNTTYPE");
@@ -1230,11 +1230,11 @@ extends PSCoreSysServiceBase<PSWXAccount> {
     }
 
     protected void onSyncEntity(PSWXAccount pSWXAccount, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWXAccount, bl);
+        super.onSyncEntity(pSWXAccount, bl);
     }
 
     protected void onSyncIndexEntities(PSWXAccount pSWXAccount, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWXAccount, bl);
+        super.onSyncIndexEntities(pSWXAccount, bl);
     }
 
     public Object getDataContextValue(PSWXAccount pSWXAccount, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1242,14 +1242,14 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWXAccount, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWXAccount, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWXAccount pSWXAccount, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWXAccount, arrayList, n);
+        super.onExportMajorModel(pSWXAccount, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1639,7 +1639,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         if ((StringHelper.isNullOrEmpty((String)string) || (StringHelper.compare((String)string, (String)"DER1N", (boolean)true) == 0 || StringHelper.compare((String)string, (String)"SYSDER1N", (boolean)true) == 0) && StringHelper.compare((String)string2, (String)"DER1N_PSWXMENU_PSWXACCOUNT_PSWXACCOUNTID", (boolean)true) == 0) && this.onMergeChild_PSWXMenus(pSWXAccount)) {
             bl = true;
         }
-        if (super.onMergeChild(string, string2, (IEntity)pSWXAccount)) {
+        if (super.onMergeChild(string, string2, pSWXAccount)) {
             bl = true;
         }
         return bl;
@@ -1652,14 +1652,14 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         selectField.setFunc("COUNT");
         selectContext.addSelectField((ISelectField)selectField);
         String string = DataObject.getStringValue((Object)pSWXAccount.getPSWXAccountId());
-        IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.wxdesign.service.PSWXEntAppService", (SessionFactory)this.getSessionFactory());
+        PSWXEntAppService iService = (PSWXEntAppService)ServiceGlobal.getService(PSWXEntAppService.class, (SessionFactory)this.getSessionFactory());
         selectContext.set("PSWXACCOUNTID", (Object)pSWXAccount.getPSWXAccountId());
-        ArrayList arrayList = null;
+        ArrayList<PSWXEntApp> arrayList = null;
         arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        IEntity iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSWXAccount, false);
         return true;
     }
@@ -1671,14 +1671,14 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         selectField.setFunc("COUNT");
         selectContext.addSelectField((ISelectField)selectField);
         String string = DataObject.getStringValue((Object)pSWXAccount.getPSWXAccountId());
-        IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.wxdesign.service.PSWXLogicService", (SessionFactory)this.getSessionFactory());
+        PSWXLogicService iService = (PSWXLogicService)ServiceGlobal.getService(PSWXLogicService.class, (SessionFactory)this.getSessionFactory());
         selectContext.set("PSWXACCOUNTID", (Object)pSWXAccount.getPSWXAccountId());
-        ArrayList arrayList = null;
+        ArrayList<PSWXLogic> arrayList = null;
         arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        IEntity iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSWXAccount, false);
         return true;
     }
@@ -1690,14 +1690,14 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         selectField.setFunc("COUNT");
         selectContext.addSelectField((ISelectField)selectField);
         String string = DataObject.getStringValue((Object)pSWXAccount.getPSWXAccountId());
-        IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.wxdesign.service.PSWXMenuFuncService", (SessionFactory)this.getSessionFactory());
+        PSWXMenuFuncService iService = (PSWXMenuFuncService)ServiceGlobal.getService(PSWXMenuFuncService.class, (SessionFactory)this.getSessionFactory());
         selectContext.set("PSWXACCOUNTID", (Object)pSWXAccount.getPSWXAccountId());
-        ArrayList arrayList = null;
+        ArrayList<PSWXMenuFunc> arrayList = null;
         arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        IEntity iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSWXAccount, false);
         return true;
     }
@@ -1709,20 +1709,20 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         selectField.setFunc("COUNT");
         selectContext.addSelectField((ISelectField)selectField);
         String string = DataObject.getStringValue((Object)pSWXAccount.getPSWXAccountId());
-        IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.wxdesign.service.PSWXMenuService", (SessionFactory)this.getSessionFactory());
+        PSWXMenuService iService = (PSWXMenuService)ServiceGlobal.getService(PSWXMenuService.class, (SessionFactory)this.getSessionFactory());
         selectContext.set("PSWXACCOUNTID", (Object)pSWXAccount.getPSWXAccountId());
-        ArrayList arrayList = null;
+        ArrayList<PSWXMenu> arrayList = null;
         arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        IEntity iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSWXAccount, false);
         return true;
     }
 
     protected void onUpdateParent(PSWXAccount pSWXAccount) throws Exception {
-        super.onUpdateParent((IEntity)pSWXAccount);
+        super.onUpdateParent(pSWXAccount);
     }
 
     @Override
@@ -1878,7 +1878,6 @@ extends PSCoreSysServiceBase<PSWXAccount> {
     @Override
     protected void onExportRelatedModelV2(PSWXAccount pSWXAccount, String string, String string2) throws Exception {
         String string3;
-        EntityBase entityBase;
         ObjectNode objectNode;
         ArrayList<String> arrayList;
         File file;
@@ -1898,7 +1897,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSWXEntApp();
+                PSWXEntApp entityBase = new PSWXEntApp();
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSWXEntAppServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSWXEntApp)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
@@ -1924,7 +1923,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSWXLogic();
+                PSWXLogic entityBase = new PSWXLogic();
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSWXLogicServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSWXLogic)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
@@ -1950,7 +1949,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSWXMenu();
+                PSWXMenu entityBase = new PSWXMenu();
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSWXMenuServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSWXMenu)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
@@ -1976,7 +1975,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSWXMenuFunc();
+                PSWXMenuFunc entityBase = new PSWXMenuFunc();
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSWXMenuFuncServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSWXMenuFunc)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
@@ -1995,12 +1994,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
 
     @Override
     protected void onExportCurModelV2(PSWXAccount pSWXAccount, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        Object object3;
-        Object object4;
-        ArrayList<PSWXEntApp> arrayList;
+        ArrayList<ObjectNode> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSWXENTAPP_PSWXACCOUNT_PSWXACCOUNTID")) {
@@ -2009,31 +2003,23 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWXACCOUNT#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWXENTAPP", (Object)pSWXAccount.getPSWXAccountId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSWXEntApp)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSWXEntApp>();
-                object4 = ((PSWXEntAppServiceBase)pSCoreSysServiceBase).selectByPSWXAccount(pSWXAccount);
-                object3 = StringHelper.format((String)"PSWXACCOUNT#%1$s", (Object)pSWXAccount.getPSWXAccountId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWXEntApp)object2.next();
-                    object = ((PSWXEntAppServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSWXEntApp)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWXACCOUNT#%1$s", (Object)pSWXAccount.getPSWXAccountId());
+                for (PSWXEntApp item : ((PSWXEntAppServiceBase)pSCoreSysServiceBase).selectByPSWXAccount(pSWXAccount)) {
+                    String itemScope = ((PSWXEntAppServiceBase)pSCoreSysServiceBase).getModelV2ResScope(item);
+                    if (StringHelper.compare(scope, itemScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(item, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2061,10 +2047,10 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWXEntApp();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSWXEntApp item = new PSWXEntApp();
+                    PSModelV2Helper.fromJSONObject((IDataObject)item, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(item, string));
                 }
             }
         }
@@ -2074,31 +2060,23 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWXACCOUNT#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWXLOGIC", (Object)pSWXAccount.getPSWXAccountId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSWXEntApp)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWXLogicServiceBase)pSCoreSysServiceBase).selectByPSWXAccount(pSWXAccount);
-                object3 = StringHelper.format((String)"PSWXACCOUNT#%1$s", (Object)pSWXAccount.getPSWXAccountId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWXLogic)object2.next();
-                    object = ((PSWXLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSWXEntApp)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWXACCOUNT#%1$s", (Object)pSWXAccount.getPSWXAccountId());
+                for (PSWXLogic item : ((PSWXLogicServiceBase)pSCoreSysServiceBase).selectByPSWXAccount(pSWXAccount)) {
+                    String itemScope = ((PSWXLogicServiceBase)pSCoreSysServiceBase).getModelV2ResScope(item);
+                    if (StringHelper.compare(scope, itemScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(item, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2126,10 +2104,10 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWXLogic();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSWXLogic item = new PSWXLogic();
+                    PSModelV2Helper.fromJSONObject((IDataObject)item, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(item, string));
                 }
             }
         }
@@ -2139,31 +2117,23 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWXACCOUNT#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWXMENU", (Object)pSWXAccount.getPSWXAccountId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSWXEntApp)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWXMenuServiceBase)pSCoreSysServiceBase).selectByPSWXAccount(pSWXAccount);
-                object3 = StringHelper.format((String)"PSWXACCOUNT#%1$s", (Object)pSWXAccount.getPSWXAccountId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWXMenu)object2.next();
-                    object = ((PSWXMenuServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSWXEntApp)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWXACCOUNT#%1$s", (Object)pSWXAccount.getPSWXAccountId());
+                for (PSWXMenu item : ((PSWXMenuServiceBase)pSCoreSysServiceBase).selectByPSWXAccount(pSWXAccount)) {
+                    String itemScope = ((PSWXMenuServiceBase)pSCoreSysServiceBase).getModelV2ResScope(item);
+                    if (StringHelper.compare(scope, itemScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(item, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2191,10 +2161,10 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWXMenu();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSWXMenu item = new PSWXMenu();
+                    PSModelV2Helper.fromJSONObject((IDataObject)item, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(item, string));
                 }
             }
         }
@@ -2204,31 +2174,23 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWXACCOUNT#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWXMENUFUNC", (Object)pSWXAccount.getPSWXAccountId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSWXEntApp)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSWXMenuFuncServiceBase)pSCoreSysServiceBase).selectByPSWXAccount(pSWXAccount);
-                object3 = StringHelper.format((String)"PSWXACCOUNT#%1$s", (Object)pSWXAccount.getPSWXAccountId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWXMenuFunc)object2.next();
-                    object = ((PSWXMenuFuncServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSWXEntApp)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWXACCOUNT#%1$s", (Object)pSWXAccount.getPSWXAccountId());
+                for (PSWXMenuFunc item : ((PSWXMenuFuncServiceBase)pSCoreSysServiceBase).selectByPSWXAccount(pSWXAccount)) {
+                    String itemScope = ((PSWXMenuFuncServiceBase)pSCoreSysServiceBase).getModelV2ResScope(item);
+                    if (StringHelper.compare(scope, itemScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(item, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2256,10 +2218,10 @@ extends PSCoreSysServiceBase<PSWXAccount> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWXMenuFunc();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSWXMenuFunc item = new PSWXMenuFunc();
+                    PSModelV2Helper.fromJSONObject((IDataObject)item, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(item, string));
                 }
             }
         }
@@ -2328,9 +2290,6 @@ extends PSCoreSysServiceBase<PSWXAccount> {
 
     @Override
     protected void onCompileRelatedModelV2(PSWXAccount pSWXAccount, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
         int n2;
         String string3;
         ArrayNode arrayNode;
@@ -2344,23 +2303,23 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             }
             if (arrayNode != null) {
                 for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSWXEntApp();
-                    ((PSWXEntAppBase)object).setPSWXAccountId(pSWXAccount.getPSWXAccountId());
-                    ((PSWXEntAppBase)object).setPSWXAccountName(pSWXAccount.getPSWXAccountName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode child = (ObjectNode)arrayNode.get(n2);
+                    PSWXEntApp item = new PSWXEntApp();
+                    item.setPSWXAccountId(pSWXAccount.getPSWXAccountId());
+                    item.setPSWXAccountName(pSWXAccount.getPSWXAccountName());
+                    pSCoreSysServiceBase.compileModelV2(item, child, string, null, n);
                 }
             } else {
                 String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string4);
-                if (((File)object2).exists()) {
-                    object = ((File)object2).listFiles();
-                    for (Object object3 : object) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSWXEntApp();
-                        entityBase.setPSWXAccountId(pSWXAccount.getPSWXAccountId());
-                        entityBase.setPSWXAccountName(pSWXAccount.getPSWXAccountName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File folder = new File(string4);
+                if (folder.exists()) {
+                    File[] files = folder.listFiles();
+                    for (File child : files) {
+                        if (!child.isDirectory()) continue;
+                        PSWXEntApp item = new PSWXEntApp();
+                        item.setPSWXAccountId(pSWXAccount.getPSWXAccountId());
+                        item.setPSWXAccountName(pSWXAccount.getPSWXAccountName());
+                        pSCoreSysServiceBase.compileModelV2(item, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -2374,22 +2333,23 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             }
             if (arrayNode != null) {
                 for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSWXLogic();
-                    ((PSWXLogicBase)object).setPSWXAccountId(pSWXAccount.getPSWXAccountId());
-                    ((PSWXLogicBase)object).setPSWXAccountName(pSWXAccount.getPSWXAccountName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode child = (ObjectNode)arrayNode.get(n2);
+                    PSWXLogic item = new PSWXLogic();
+                    item.setPSWXAccountId(pSWXAccount.getPSWXAccountId());
+                    item.setPSWXAccountName(pSWXAccount.getPSWXAccountName());
+                    pSCoreSysServiceBase.compileModelV2(item, child, string, null, n);
                 }
             } else {
                 String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string5);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSWXLogic();
-                        entityBase.setPSWXAccountId(pSWXAccount.getPSWXAccountId());
-                        entityBase.setPSWXAccountName(pSWXAccount.getPSWXAccountName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File folder = new File(string5);
+                if (folder.exists()) {
+                    File[] files = folder.listFiles();
+                    for (File child : files) {
+                        if (!child.isDirectory()) continue;
+                        PSWXLogic item = new PSWXLogic();
+                        item.setPSWXAccountId(pSWXAccount.getPSWXAccountId());
+                        item.setPSWXAccountName(pSWXAccount.getPSWXAccountName());
+                        pSCoreSysServiceBase.compileModelV2(item, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -2403,22 +2363,23 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             }
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
-                    object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSWXMenu();
-                    ((PSWXMenuBase)object).setPSWXAccountId(pSWXAccount.getPSWXAccountId());
-                    ((PSWXMenuBase)object).setPSWXAccountName(pSWXAccount.getPSWXAccountName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode child = (ObjectNode)arrayNode.get(i);
+                    PSWXMenu item = new PSWXMenu();
+                    item.setPSWXAccountId(pSWXAccount.getPSWXAccountId());
+                    item.setPSWXAccountName(pSWXAccount.getPSWXAccountName());
+                    pSCoreSysServiceBase.compileModelV2(item, child, string, null, n);
                 }
             } else {
                 String string6 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string6);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSWXMenu();
-                        entityBase.setPSWXAccountId(pSWXAccount.getPSWXAccountId());
-                        entityBase.setPSWXAccountName(pSWXAccount.getPSWXAccountName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File folder = new File(string6);
+                if (folder.exists()) {
+                    File[] files = folder.listFiles();
+                    for (File child : files) {
+                        if (!child.isDirectory()) continue;
+                        PSWXMenu item = new PSWXMenu();
+                        item.setPSWXAccountId(pSWXAccount.getPSWXAccountId());
+                        item.setPSWXAccountName(pSWXAccount.getPSWXAccountName());
+                        pSCoreSysServiceBase.compileModelV2(item, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -2432,22 +2393,23 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             }
             if (arrayNode != null) {
                 for (int i = 0; i < arrayNode.size(); ++i) {
-                    object2 = (ObjectNode)arrayNode.get(i);
-                    object = new PSWXMenuFunc();
-                    ((PSWXMenuFuncBase)object).setPSWXAccountId(pSWXAccount.getPSWXAccountId());
-                    ((PSWXMenuFuncBase)object).setPSWXAccountName(pSWXAccount.getPSWXAccountName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode child = (ObjectNode)arrayNode.get(i);
+                    PSWXMenuFunc item = new PSWXMenuFunc();
+                    item.setPSWXAccountId(pSWXAccount.getPSWXAccountId());
+                    item.setPSWXAccountName(pSWXAccount.getPSWXAccountName());
+                    pSCoreSysServiceBase.compileModelV2(item, child, string, null, n);
                 }
             } else {
                 String string7 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string7);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSWXMenuFunc();
-                        entityBase.setPSWXAccountId(pSWXAccount.getPSWXAccountId());
-                        entityBase.setPSWXAccountName(pSWXAccount.getPSWXAccountName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File folder = new File(string7);
+                if (folder.exists()) {
+                    File[] files = folder.listFiles();
+                    for (File child : files) {
+                        if (!child.isDirectory()) continue;
+                        PSWXMenuFunc item = new PSWXMenuFunc();
+                        item.setPSWXAccountId(pSWXAccount.getPSWXAccountId());
+                        item.setPSWXAccountName(pSWXAccount.getPSWXAccountName());
+                        pSCoreSysServiceBase.compileModelV2(item, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -2478,7 +2440,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             PSWXEntAppService pSWXEntAppService = (PSWXEntAppService)ServiceGlobal.getService(PSWXEntAppService.class, (SessionFactory)this.getSessionFactory());
             PSWXEntApp pSWXEntApp = new PSWXEntApp();
             pSWXEntApp.setPSWXEntAppId(pSMOSFile.getPSModelId());
-            if (!pSWXEntAppService.get((IEntity)pSWXEntApp, true)) {
+            if (!pSWXEntAppService.get(pSWXEntApp, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWXEntApp.getPSWXAccountId(), (String)pSWXAccount.getPSWXAccountId(), (boolean)false) == 0) {
@@ -2486,12 +2448,12 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             }
             ObjectNode objectNode = pSWXEntAppService.exportModelV2(pSWXEntApp);
             pSWXEntApp.reset();
-            if (!pSWXEntAppService.setModelV2ResScope((IEntity)pSWXEntApp, "PSWXACCOUNT", pSWXAccount.getPSWXAccountId())) {
+            if (!pSWXEntAppService.setModelV2ResScope(pSWXEntApp, "PSWXACCOUNT", pSWXAccount.getPSWXAccountId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWXEntAppService.importModelV2(pSWXEntApp, objectNode);
             SessionFactoryManager.commit();
-            return pSWXEntAppService.getFile((IEntity)pSWXEntApp);
+            return pSWXEntAppService.getFile(pSWXEntApp);
         }
         return null;
     }
@@ -2501,7 +2463,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             PSWXLogicService pSWXLogicService = (PSWXLogicService)ServiceGlobal.getService(PSWXLogicService.class, (SessionFactory)this.getSessionFactory());
             PSWXLogic pSWXLogic = new PSWXLogic();
             pSWXLogic.setPSWXLogicId(pSMOSFile.getPSModelId());
-            if (!pSWXLogicService.get((IEntity)pSWXLogic, true)) {
+            if (!pSWXLogicService.get(pSWXLogic, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWXLogic.getPSWXAccountId(), (String)pSWXAccount.getPSWXAccountId(), (boolean)false) == 0) {
@@ -2509,12 +2471,12 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             }
             ObjectNode objectNode = pSWXLogicService.exportModelV2(pSWXLogic);
             pSWXLogic.reset();
-            if (!pSWXLogicService.setModelV2ResScope((IEntity)pSWXLogic, "PSWXACCOUNT", pSWXAccount.getPSWXAccountId())) {
+            if (!pSWXLogicService.setModelV2ResScope(pSWXLogic, "PSWXACCOUNT", pSWXAccount.getPSWXAccountId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWXLogicService.importModelV2(pSWXLogic, objectNode);
             SessionFactoryManager.commit();
-            return pSWXLogicService.getFile((IEntity)pSWXLogic);
+            return pSWXLogicService.getFile(pSWXLogic);
         }
         return null;
     }
@@ -2524,7 +2486,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             PSWXMenuService pSWXMenuService = (PSWXMenuService)ServiceGlobal.getService(PSWXMenuService.class, (SessionFactory)this.getSessionFactory());
             PSWXMenu pSWXMenu = new PSWXMenu();
             pSWXMenu.setPSWXMenuId(pSMOSFile.getPSModelId());
-            if (!pSWXMenuService.get((IEntity)pSWXMenu, true)) {
+            if (!pSWXMenuService.get(pSWXMenu, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWXMenu.getPSWXAccountId(), (String)pSWXAccount.getPSWXAccountId(), (boolean)false) == 0) {
@@ -2532,12 +2494,12 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             }
             ObjectNode objectNode = pSWXMenuService.exportModelV2(pSWXMenu);
             pSWXMenu.reset();
-            if (!pSWXMenuService.setModelV2ResScope((IEntity)pSWXMenu, "PSWXACCOUNT", pSWXAccount.getPSWXAccountId())) {
+            if (!pSWXMenuService.setModelV2ResScope(pSWXMenu, "PSWXACCOUNT", pSWXAccount.getPSWXAccountId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWXMenuService.importModelV2(pSWXMenu, objectNode);
             SessionFactoryManager.commit();
-            return pSWXMenuService.getFile((IEntity)pSWXMenu);
+            return pSWXMenuService.getFile(pSWXMenu);
         }
         return null;
     }
@@ -2547,7 +2509,7 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             PSWXMenuFuncService pSWXMenuFuncService = (PSWXMenuFuncService)ServiceGlobal.getService(PSWXMenuFuncService.class, (SessionFactory)this.getSessionFactory());
             PSWXMenuFunc pSWXMenuFunc = new PSWXMenuFunc();
             pSWXMenuFunc.setPSWXMenuFuncId(pSMOSFile.getPSModelId());
-            if (!pSWXMenuFuncService.get((IEntity)pSWXMenuFunc, true)) {
+            if (!pSWXMenuFuncService.get(pSWXMenuFunc, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWXMenuFunc.getPSWXAccountId(), (String)pSWXAccount.getPSWXAccountId(), (boolean)false) == 0) {
@@ -2555,12 +2517,12 @@ extends PSCoreSysServiceBase<PSWXAccount> {
             }
             ObjectNode objectNode = pSWXMenuFuncService.exportModelV2(pSWXMenuFunc);
             pSWXMenuFunc.reset();
-            if (!pSWXMenuFuncService.setModelV2ResScope((IEntity)pSWXMenuFunc, "PSWXACCOUNT", pSWXAccount.getPSWXAccountId())) {
+            if (!pSWXMenuFuncService.setModelV2ResScope(pSWXMenuFunc, "PSWXACCOUNT", pSWXAccount.getPSWXAccountId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWXMenuFuncService.importModelV2(pSWXMenuFunc, objectNode);
             SessionFactoryManager.commit();
-            return pSWXMenuFuncService.getFile((IEntity)pSWXMenuFunc);
+            return pSWXMenuFuncService.getFile(pSWXMenuFunc);
         }
         return null;
     }
@@ -2610,4 +2572,3 @@ extends PSCoreSysServiceBase<PSWXAccount> {
         list.add(pSHelpSection);
     }
 }
-

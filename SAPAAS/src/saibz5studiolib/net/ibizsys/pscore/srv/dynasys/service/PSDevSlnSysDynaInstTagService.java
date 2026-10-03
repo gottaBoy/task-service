@@ -27,6 +27,7 @@ package net.ibizsys.pscore.srv.dynasys.service;
 import java.io.File;
 import java.util.ArrayList;
 import net.ibizsys.paas.core.CallResult;
+import net.ibizsys.paas.core.IDEDataSetCond;
 import net.ibizsys.paas.core.IDEDataSetFetchContext;
 import net.ibizsys.paas.data.IDataObject;
 import net.ibizsys.paas.db.DBFetchResult;
@@ -70,15 +71,16 @@ extends PSDevSlnSysDynaInstTagServiceBase {
                 pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstId(stringArray[0]);
                 pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstTagName(stringArray[1]);
             }
-            if (!StringHelper.isNullOrEmpty((String)(stringArray = pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstId()))) {
+            String instId = pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstId();
+            if (!StringHelper.isNullOrEmpty(instId)) {
                 PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
-                pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId((String)stringArray);
+                pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(instId);
                 PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                if (!pSDevSlnSysDynaInstService.get((IEntity)pSDevSlnSysDynaInst, true)) {
-                    throw new Exception(String.format("\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]\u65e0\u6548", new Object[]{stringArray}));
+                if (!pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst, true)) {
+                    throw new Exception(String.format("\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]\u65e0\u6548", instId));
                 }
                 Tag tag = PSDevSlnSysDynaInstTagService.getPSGitLabPlugin().getTagByPSDevSlnSysDynaInstTag(pSDevSlnSysDynaInstTag);
-                String string2 = String.format("%1$s.%2$s", stringArray, tag.getName());
+                String string2 = String.format("%1$s.%2$s", instId, tag.getName());
                 pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstTagId(string2);
                 pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstTagName(tag.getName());
                 pSDevSlnSysDynaInstTag.setMemo(tag.getMessage());
@@ -95,7 +97,7 @@ extends PSDevSlnSysDynaInstTagServiceBase {
             PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
             pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(string);
             PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            if (!pSDevSlnSysDynaInstService.get((IEntity)pSDevSlnSysDynaInst, true)) {
+            if (!pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst, true)) {
                 throw new Exception(String.format("\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]\u65e0\u6548", string));
             }
             Tag tag = PSDevSlnSysDynaInstTagService.getPSGitLabPlugin().createTagByPSDevSlnSysDynaInstTag(pSDevSlnSysDynaInstTag);
@@ -115,15 +117,16 @@ extends PSDevSlnSysDynaInstTagServiceBase {
                 pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstId(stringArray[0]);
                 pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstTagName(stringArray[1]);
             }
-            if (!StringHelper.isNullOrEmpty((String)(stringArray = pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstId()))) {
+            String instId = pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstId();
+            if (!StringHelper.isNullOrEmpty(instId)) {
                 PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
-                pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId((String)stringArray);
+                pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(instId);
                 PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                if (!pSDevSlnSysDynaInstService.get((IEntity)pSDevSlnSysDynaInst, true)) {
-                    throw new Exception(String.format("\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]\u65e0\u6548", new Object[]{stringArray}));
+                if (!pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst, true)) {
+                    throw new Exception(String.format("\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]\u65e0\u6548", instId));
                 }
                 Tag tag = PSDevSlnSysDynaInstTagService.getPSGitLabPlugin().updateTagByPSDevSlnSysDynaInstTag(pSDevSlnSysDynaInstTag);
-                String string2 = String.format("%1$s.%2$s", stringArray, tag.getName());
+                String string2 = String.format("%1$s.%2$s", instId, tag.getName());
                 pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstTagId(string2);
                 return;
             }
@@ -145,12 +148,13 @@ extends PSDevSlnSysDynaInstTagServiceBase {
                 pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstId(stringArray[0]);
                 pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstTagName(stringArray[1]);
             }
-            if (!StringHelper.isNullOrEmpty((String)(stringArray = pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstId()))) {
+            String instId = pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstId();
+            if (!StringHelper.isNullOrEmpty(instId)) {
                 PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
-                pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId((String)stringArray);
+                pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(instId);
                 PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                if (!pSDevSlnSysDynaInstService.get((IEntity)pSDevSlnSysDynaInst, true)) {
-                    throw new Exception(String.format("\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]\u65e0\u6548", new Object[]{stringArray}));
+                if (!pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst, true)) {
+                    throw new Exception(String.format("\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]\u65e0\u6548", instId));
                 }
                 PSDevSlnSysDynaInstTagService.getPSGitLabPlugin().removeTagByPSDevSlnSysDynaInstTag(pSDevSlnSysDynaInstTag);
                 return;
@@ -167,7 +171,7 @@ extends PSDevSlnSysDynaInstTagServiceBase {
             PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
             pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(string);
             PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            if (!pSDevSlnSysDynaInstService.get((IEntity)pSDevSlnSysDynaInst, true)) {
+            if (!pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst, true)) {
                 throw new Exception(String.format("\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]\u65e0\u6548", string));
             }
             Tag[] tagArray = PSDevSlnSysDynaInstTagService.getPSGitLabPlugin().listTagsByPSDevSlnSysDynaInst(pSDevSlnSysDynaInst);
@@ -187,35 +191,31 @@ extends PSDevSlnSysDynaInstTagServiceBase {
 
     @Override
     public DBFetchResult fetchDefault(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        Object object;
-        Object object22;
-        Object object3;
         ArrayList<PSDevSlnSysDynaInstTag> arrayList = new ArrayList<PSDevSlnSysDynaInstTag>();
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory()) && PSDevSlnSysDynaInstTagService.isEnableGitLabPlugin()) {
-            arrayList = new ArrayList();
-            object3 = null;
+            String instId = null;
             if (iDEDataSetFetchContext.getActiveDataObject() != null) {
-                object3 = DataTypeHelper.getStringValue((Object)iDEDataSetFetchContext.getActiveDataObject().get("psdevslnsysdynainstid"));
+                instId = DataTypeHelper.getStringValue((Object)iDEDataSetFetchContext.getActiveDataObject().get("psdevslnsysdynainstid"));
             }
-            if (StringHelper.isNullOrEmpty((String)object3) && iDEDataSetFetchContext.getConditionList() != null) {
-                for (Object object22 : iDEDataSetFetchContext.getConditionList()) {
-                    if (StringHelper.compare((String)"psdevslnsysdynainstid", (String)object22.getDEFName(), (boolean)true) != 0 || StringHelper.compare((String)"EQ", (String)object22.getCondOp(), (boolean)true) != 0) continue;
-                    object3 = object22.getCondValue();
+            if (StringHelper.isNullOrEmpty(instId) && iDEDataSetFetchContext.getConditionList() != null) {
+                for (IDEDataSetCond condition : iDEDataSetFetchContext.getConditionList()) {
+                    if (StringHelper.compare((String)"psdevslnsysdynainstid", condition.getDEFName(), (boolean)true) != 0 || StringHelper.compare((String)"EQ", condition.getCondOp(), (boolean)true) != 0) continue;
+                    instId = condition.getCondValue();
                     break;
                 }
             }
-            if (!StringHelper.isNullOrEmpty((String)object3)) {
-                object = new PSDevSlnSysDynaInst();
-                ((PSDevSlnSysDynaInstBase)object).setPSDevSlnSysDynaInstId((String)object3);
-                object22 = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                if (!object22.get((IEntity)object, true)) {
-                    throw new Exception(String.format("\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]\u65e0\u6548", object3));
+            if (!StringHelper.isNullOrEmpty(instId)) {
+                PSDevSlnSysDynaInst inst = new PSDevSlnSysDynaInst();
+                inst.setPSDevSlnSysDynaInstId(instId);
+                PSDevSlnSysDynaInstService service = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+                if (!service.get(inst, true)) {
+                    throw new Exception(String.format("\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]\u65e0\u6548", instId));
                 }
-                Tag[] tagArray = PSDevSlnSysDynaInstTagService.getPSGitLabPlugin().listTagsByPSDevSlnSysDynaInst((PSDevSlnSysDynaInst)object);
+                Tag[] tagArray = PSDevSlnSysDynaInstTagService.getPSGitLabPlugin().listTagsByPSDevSlnSysDynaInst(inst);
                 if (tagArray != null) {
                     for (Tag tag : tagArray) {
                         PSDevSlnSysDynaInstTag pSDevSlnSysDynaInstTag = new PSDevSlnSysDynaInstTag();
-                        String string = String.format("%1$s.%2$s", object3, tag.getName());
+                        String string = String.format("%1$s.%2$s", instId, tag.getName());
                         pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstTagId(string);
                         pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstTagName(tag.getName());
                         pSDevSlnSysDynaInstTag.setMemo(tag.getMessage());
@@ -224,13 +224,13 @@ extends PSDevSlnSysDynaInstTagServiceBase {
                 }
             }
         }
-        object3 = new DBFetchResult();
-        object = new SimpleDataSetImpl();
-        object22 = new SimpleDataTableImpl((IDataSet)object);
-        object.addDataTable((IDataTable)object22);
-        object3.setDataSet((IDataSet)object);
+        DBFetchResult result = new DBFetchResult();
+        SimpleDataSetImpl dataSet = new SimpleDataSetImpl();
+        SimpleDataTableImpl dataTable = new SimpleDataTableImpl(dataSet);
+        dataSet.addDataTable(dataTable);
+        result.setDataSet(dataSet);
         if (arrayList != null) {
-            object3.setTotalRow(arrayList.size());
+            result.setTotalRow(arrayList.size());
             int n = arrayList.size();
             if (iDEDataSetFetchContext.getPageSize() > 0 && (n = iDEDataSetFetchContext.getStartRow() + iDEDataSetFetchContext.getPageSize()) > arrayList.size()) {
                 n = arrayList.size();
@@ -239,10 +239,10 @@ extends PSDevSlnSysDynaInstTagServiceBase {
                 PSDevSlnSysDynaInstTag pSDevSlnSysDynaInstTag = (PSDevSlnSysDynaInstTag)arrayList.get(i);
                 SimpleDataRowImpl simpleDataRowImpl = new SimpleDataRowImpl();
                 pSDevSlnSysDynaInstTag.copyTo((IDataObject)simpleDataRowImpl, false);
-                object22.addCachedRow((IDataRow)simpleDataRowImpl);
+                dataTable.addCachedRow(simpleDataRowImpl);
             }
         }
-        return object3;
+        return result;
     }
 
     @Override
@@ -254,12 +254,13 @@ extends PSDevSlnSysDynaInstTagServiceBase {
                 pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstId(stringArray[0]);
                 pSDevSlnSysDynaInstTag.setPSDevSlnSysDynaInstTagName(stringArray[1]);
             }
-            if (!StringHelper.isNullOrEmpty((String)(stringArray = pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstId()))) {
+            String instId = pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstId();
+            if (!StringHelper.isNullOrEmpty(instId)) {
                 PSDevSlnSysDynaInst pSDevSlnSysDynaInst = new PSDevSlnSysDynaInst();
-                pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId((String)stringArray);
+                pSDevSlnSysDynaInst.setPSDevSlnSysDynaInstId(instId);
                 PSDevSlnSysDynaInstService pSDevSlnSysDynaInstService = (PSDevSlnSysDynaInstService)ServiceGlobal.getService(PSDevSlnSysDynaInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                if (!pSDevSlnSysDynaInstService.get((IEntity)pSDevSlnSysDynaInst, true)) {
-                    throw new Exception(String.format("\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]\u65e0\u6548", new Object[]{stringArray}));
+                if (!pSDevSlnSysDynaInstService.get(pSDevSlnSysDynaInst, true)) {
+                    throw new Exception(String.format("\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b[%1$s]\u65e0\u6548", instId));
                 }
                 PSDevCenterSVN pSDevCenterSVN = pSDevSlnSysDynaInst.getModelPSDevCenterSVN();
                 if (pSDevCenterSVN == null) {
@@ -273,4 +274,3 @@ extends PSDevSlnSysDynaInstTagServiceBase {
         throw new Exception("\u5f53\u524d\u73af\u5883\u4e0d\u652f\u6301\u6b64\u64cd\u4f5c");
     }
 }
-

@@ -92,10 +92,10 @@ extends PSDEDQJoinServiceBase {
                 pSDEDQJoin2.setModelState(n);
                 if (hashMap.size() > 0) {
                     for (PSDEDQCond pSDEDQCond : hashMap.values()) {
-                        pSDEDQCondService.removeTemp((IEntity)pSDEDQCond);
+                        pSDEDQCondService.removeTemp(pSDEDQCond);
                     }
                 }
-                PSDEDQJoinService.this.updateTemp((IEntity)pSDEDQJoin2);
+                PSDEDQJoinService.this.updateTemp(pSDEDQJoin2);
             }
         });
     }
@@ -103,7 +103,7 @@ extends PSDEDQJoinServiceBase {
     protected void updatePSDEDQConds(PSDEDQJoin pSDEDQJoin, PSDEDQCond pSDEDQCond, XmlNode xmlNode, HashMap<String, PSDEDQCond> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSDEDQCondService pSDEDQCondService = (PSDEDQCondService)ServiceGlobal.getService((String)PSDEDQCondService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -136,7 +136,7 @@ extends PSDEDQJoinServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSDEDQCondService.updateTemp((IEntity)pSDEDQCond2);
+                    pSDEDQCondService.updateTemp(pSDEDQCond2);
                 }
                 xmlNode2.resetAttributes();
                 pSDEDQCond2.fillXmlNode(xmlNode2, false);
@@ -183,10 +183,10 @@ extends PSDEDQJoinServiceBase {
 
     @Override
     public void getWithModel(PSDEDQJoin pSDEDQJoin) throws Exception {
-        this.getTemp((IEntity)pSDEDQJoin);
+        this.getTemp(pSDEDQJoin);
         if (StringHelper.isNullOrEmpty((String)pSDEDQJoin.getCondModel())) {
             this.fillCondModel(pSDEDQJoin);
-            this.updateTemp((IEntity)pSDEDQJoin);
+            this.updateTemp(pSDEDQJoin);
         }
     }
 
@@ -342,7 +342,7 @@ extends PSDEDQJoinServiceBase {
             pSDEDQJoin.setPSDEDQJoinId(pSDEDQJoin.getPSDEDQId());
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)pSDEDQJoin, bl);
+        return super.onFillEntityKeyValue(pSDEDQJoin, bl);
     }
 
     @Override
@@ -350,4 +350,3 @@ extends PSDEDQJoinServiceBase {
         super.onAfterCreateTemp(pSDEDQJoin);
     }
 }
-

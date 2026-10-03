@@ -148,9 +148,9 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
             PSModelBookmark pSModelBookmark2 = (PSModelBookmark)iService.getDEModel().createEntity();
             pSModelBookmark2.set("PSMODELBOOKMARKID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModelBookmark2);
+                iService.getTemp(pSModelBookmark2);
             } else {
-                iService.get((IEntity)pSModelBookmark2);
+                iService.get(pSModelBookmark2);
             }
             this.onFillParentInfo_PPSModelBookmark(pSModelBookmark, pSModelBookmark2);
             return;
@@ -160,14 +160,14 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSModelBookmark, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSModelBookmark, string, string2, string3);
+        super.onFillParentInfo(pSModelBookmark, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -188,7 +188,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSModelBookmark, bl);
+        super.onFillEntityFullInfo(pSModelBookmark, bl);
         this.onFillEntityFullInfo_PPSModelBookmark(pSModelBookmark, bl);
         this.onFillEntityFullInfo_PSSystem(pSModelBookmark, bl);
     }
@@ -210,7 +210,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
     }
 
     protected void onWriteBackParent(PSModelBookmark pSModelBookmark, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSModelBookmark, bl);
+        super.onWriteBackParent(pSModelBookmark, bl);
     }
 
     public ArrayList<PSModelBookmark> selectByPPSModelBookmark(PSModelBookmarkBase pSModelBookmarkBase) throws Exception {
@@ -265,8 +265,8 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
         ArrayList<PSModelBookmark> arrayList = this.selectByPPSModelBookmark(pSModelBookmark, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODELBOOKMARK");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModelBookmark);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODELBOOKMARK_PSMODELBOOKMARK_PPSMODELBOOKMARKID", "", iDataEntityModel.getName(), "PSMODELBOOKMARK", iDataEntityModel.getDataInfo((IEntity)pSModelBookmark), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModelBookmark);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMODELBOOKMARK_PSMODELBOOKMARK_PPSMODELBOOKMARKID", "", iDataEntityModel.getName(), "PSMODELBOOKMARK", iDataEntityModel.getDataInfo(pSModelBookmark), arrayList.get(0)));
         }
     }
 
@@ -299,7 +299,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
         ArrayList<PSModelBookmark> arrayList = this.selectByPPSModelBookmark(pSModelBookmark);
         this.onBeforeRemoveByPPSModelBookmark(pSModelBookmark, arrayList);
         for (PSModelBookmark pSModelBookmark2 : arrayList) {
-            this.remove((IEntity)pSModelBookmark2);
+            this.remove(pSModelBookmark2);
         }
         this.onAfterRemoveByPPSModelBookmark(pSModelBookmark, arrayList);
     }
@@ -345,7 +345,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
         ArrayList<PSModelBookmark> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSModelBookmark pSModelBookmark : arrayList) {
-            this.remove((IEntity)pSModelBookmark);
+            this.remove(pSModelBookmark);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -368,7 +368,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
 
     protected void replaceParentInfo(PSModelBookmark pSModelBookmark, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSModelBookmark, cloneSession);
+        super.replaceParentInfo(pSModelBookmark, cloneSession);
         if (pSModelBookmark.getPPSModelBookmarkId() != null && (iEntity = cloneSession.getEntity("PSMODELBOOKMARK", (Object)pSModelBookmark.getPPSModelBookmarkId())) != null) {
             this.onFillParentInfo_PPSModelBookmark(pSModelBookmark, (PSModelBookmark)iEntity);
         }
@@ -378,7 +378,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
     }
 
     protected void onRemoveEntityUncopyValues(PSModelBookmark pSModelBookmark, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSModelBookmark, bl);
+        super.onRemoveEntityUncopyValues(pSModelBookmark, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSModelBookmark pSModelBookmark, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -417,7 +417,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
         if ((entityFieldError = this.onCheckField_PSSystemName(bl, pSModelBookmark, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSModelBookmark, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSModelBookmark, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_FolderFlag(boolean bl, PSModelBookmark pSModelBookmark, boolean bl2, boolean bl3) throws Exception {
@@ -430,7 +430,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_FolderFlag_Default((IEntity)pSModelBookmark, bl2, bl3);
+            string = this.onTestValueRule_FolderFlag_Default(pSModelBookmark, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FOLDERFLAG");
@@ -452,7 +452,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSModelBookmark, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSModelBookmark, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -474,7 +474,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSModelBookmarkId_Default((IEntity)pSModelBookmark, bl2, bl3);
+            string2 = this.onTestValueRule_PPSModelBookmarkId_Default(pSModelBookmark, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSMODELBOOKMARKID");
@@ -499,7 +499,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelBookmarkId_Default((IEntity)pSModelBookmark, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelBookmarkId_Default(pSModelBookmark, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELBOOKMARKID");
@@ -524,7 +524,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelBookmarkName_Default((IEntity)pSModelBookmark, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelBookmarkName_Default(pSModelBookmark, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELBOOKMARKNAME");
@@ -546,7 +546,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjId_Default((IEntity)pSModelBookmark, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjId_Default(pSModelBookmark, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJID");
@@ -568,7 +568,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjName_Default((IEntity)pSModelBookmark, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjName_Default(pSModelBookmark, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJNAME");
@@ -590,7 +590,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjType_Default((IEntity)pSModelBookmark, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjType_Default(pSModelBookmark, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJTYPE");
@@ -612,7 +612,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjTypeName_Default((IEntity)pSModelBookmark, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjTypeName_Default(pSModelBookmark, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJTYPENAME");
@@ -637,7 +637,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSModelBookmark, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSModelBookmark, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -659,7 +659,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSModelBookmark, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSModelBookmark, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -672,11 +672,11 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
     }
 
     protected void onSyncEntity(PSModelBookmark pSModelBookmark, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSModelBookmark, bl);
+        super.onSyncEntity(pSModelBookmark, bl);
     }
 
     protected void onSyncIndexEntities(PSModelBookmark pSModelBookmark, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSModelBookmark, bl);
+        super.onSyncIndexEntities(pSModelBookmark, bl);
     }
 
     public Object getDataContextValue(PSModelBookmark pSModelBookmark, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -684,7 +684,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSModelBookmark, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSModelBookmark, string, iDataContextParam)) != null) {
             return object;
         }
         PSSystem pSSystem = pSModelBookmark.getPSSystem();
@@ -695,7 +695,7 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
     }
 
     protected void onExportMajorModel(PSModelBookmark pSModelBookmark, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSModelBookmark, arrayList, n);
+        super.onExportMajorModel(pSModelBookmark, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -920,14 +920,14 @@ extends PSCoreSysServiceBase<PSModelBookmark> {
 
     protected boolean onMergeChild(String string, String string2, PSModelBookmark pSModelBookmark) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSModelBookmark)) {
+        if (super.onMergeChild(string, string2, pSModelBookmark)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSModelBookmark pSModelBookmark) throws Exception {
-        super.onUpdateParent((IEntity)pSModelBookmark);
+        super.onUpdateParent(pSModelBookmark);
     }
 
     @Override

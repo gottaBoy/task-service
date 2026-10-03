@@ -1,27 +1,45 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.service;
 
+/**
+ * 事物接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface ITransaction {
-    public boolean isInitiator();
+	// Method descriptor #4 ()Z
+	public abstract boolean isInitiator();
 
-    public void begin();
+	// Method descriptor #6 ()V
+	public abstract void begin();
 
-    public void commit();
+	// Method descriptor #6 ()V
+	public abstract void commit();
 
-    public void rollback();
+	// Method descriptor #6 ()V
+	public abstract void rollback();
 
-    public boolean isActive();
+	// Method descriptor #10 ()Lorg/hibernate/engine/transaction/spi/LocalStatus;
+	// public abstract org.hibernate.engine.transaction.spi.LocalStatus getLocalStatus();
 
-    public boolean isParticipating();
+	// Method descriptor #4 ()Z
+	public abstract boolean isActive();
 
-    public boolean wasCommitted();
+	// Method descriptor #4 ()Z
+	public abstract boolean isParticipating();
 
-    public boolean wasRolledBack();
+	// Method descriptor #4 ()Z
+	public abstract boolean wasCommitted();
 
-    public void setTimeout(int var1);
+	// Method descriptor #4 ()Z
+	public abstract boolean wasRolledBack();
 
-    public int getTimeout();
+	// Method descriptor #16 (Ljavax/transaction/Synchronization;)V
+	// public abstract void registerSynchronization(javax.transaction.Synchronization arg0) throws org.hibernate.HibernateException;
+
+	// Method descriptor #20 (I)V
+	public abstract void setTimeout(int arg0);
+
+	// Method descriptor #22 ()I
+	public abstract int getTimeout();
 }
-

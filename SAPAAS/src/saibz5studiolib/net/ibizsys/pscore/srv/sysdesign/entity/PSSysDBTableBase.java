@@ -2197,7 +2197,7 @@ implements Serializable {
                 PSSysDBScheme pSSysDBScheme = new PSSysDBScheme();
                 pSSysDBScheme.setPSSysDBSchemeId(this.getPSSysDBSchemeId());
                 PSSysDBSchemeService pSSysDBSchemeService = (PSSysDBSchemeService)ServiceGlobal.getService(PSSysDBSchemeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDBSchemeService.autoGet((IEntity)pSSysDBScheme);
+                pSSysDBSchemeService.autoGet(pSSysDBScheme);
                 this.pssysdbscheme = pSSysDBScheme;
             }
             return this.pssysdbscheme;
@@ -2223,7 +2223,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

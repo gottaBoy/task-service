@@ -68,7 +68,7 @@ public class PSDBDevInstGlobal {
         PSDBDevInst psDBDevInst = new PSDBDevInst();
         psDBDevInst.setPSDBDevInstId(strPSDBDevInstId);
         PSDBDevInstService psDBDevInstService = (PSDBDevInstService)ServiceGlobal.getService(PSDBDevInstService.class);
-        psDBDevInstService.get((IEntity)psDBDevInst);
+        psDBDevInstService.get(psDBDevInst);
         return PSDBDevInstGlobal.getSessionFactory(psDBDevInst);
     }
 
@@ -108,8 +108,7 @@ public class PSDBDevInstGlobal {
         }
         Configuration cfg = null;
         boolean bCreateCfg = false;
-        psDBType2 = sessionFactoryConfigurationMap;
-        synchronized (psDBType2) {
+        synchronized (sessionFactoryConfigurationMap) {
             cfg = sessionFactoryConfigurationMap.get(psDBDevInst.getPSDBDevInstId());
             if (cfg == null) {
                 Properties hibernateProperties = new Properties();
@@ -140,8 +139,7 @@ public class PSDBDevInstGlobal {
                 bCreateCfg = true;
             }
         }
-        psDBType2 = sessionFactoryMap;
-        synchronized (psDBType2) {
+        synchronized (sessionFactoryMap) {
             sessionFactory = sessionFactoryMap.get(psDBDevInst.getPSDBDevInstId());
             if (sessionFactory != null) {
                 sessionFactoryLastActiveMap.put(psDBDevInst.getPSDBDevInstId(), System.currentTimeMillis());
@@ -153,8 +151,7 @@ public class PSDBDevInstGlobal {
         }
         sessionFactory = cfg.buildSessionFactory();
         SessionFactory closeSessionFactory = null;
-        HashMap<String, SessionFactory> hashMap4 = sessionFactoryMap;
-        synchronized (hashMap4) {
+        synchronized (sessionFactoryMap) {
             sessionFactoryLastActiveMap.put(psDBDevInst.getPSDBDevInstId(), System.currentTimeMillis());
             SessionFactory sessionFactory2 = sessionFactoryMap.get(psDBDevInst.getPSDBDevInstId());
             if (sessionFactory2 != null) {
@@ -166,8 +163,7 @@ public class PSDBDevInstGlobal {
                 log.debug((Object)StringHelper.format((String)"\u5efa\u7acb\u5f00\u53d1\u6570\u636e\u5e93[%1$s]\u4f1a\u8bdd\u5de5\u5382\uff0c\u5f53\u524d\u6570\u91cf[%2$s]", (Object)psDBDevInst.getPSDBDevInstId(), (Object)sessionFactoryMap.size()));
             }
         }
-        hashMap4 = sessionFactoryConfigurationMap;
-        synchronized (hashMap4) {
+        synchronized (sessionFactoryConfigurationMap) {
             sessionFactoryConfigurationMap.remove(psDBDevInst.getPSDBDevInstId());
         }
         if (closeSessionFactory != null) {
@@ -187,8 +183,7 @@ public class PSDBDevInstGlobal {
             sessionFactoryLastActiveMap.remove(strPSDBDevInstId);
         }
         if (sessionFactory != null) {
-            hashMap = sessionFactoryConfigurationMap;
-            synchronized (hashMap) {
+            synchronized (sessionFactoryConfigurationMap) {
                 sessionFactoryConfigurationMap.remove(strPSDBDevInstId);
             }
             DAOGlobal.unregisterDBDialect((SessionFactory)sessionFactory);
@@ -203,12 +198,10 @@ public class PSDBDevInstGlobal {
      */
     public static void resetAllSessionFactory() throws Exception {
         ArrayList<SessionFactory> sessionFactoryList = new ArrayList<SessionFactory>();
-        HashMap<String, Configuration> hashMap = sessionFactoryConfigurationMap;
-        synchronized (hashMap) {
+        synchronized (sessionFactoryConfigurationMap) {
             sessionFactoryConfigurationMap.clear();
         }
-        hashMap = sessionFactoryMap;
-        synchronized (hashMap) {
+        synchronized (sessionFactoryMap) {
             sessionFactoryList.addAll(sessionFactoryMap.values());
             sessionFactoryMap.clear();
             sessionFactoryLastActiveMap.clear();
@@ -264,4 +257,3 @@ public class PSDBDevInstGlobal {
         }
     }
 }
-

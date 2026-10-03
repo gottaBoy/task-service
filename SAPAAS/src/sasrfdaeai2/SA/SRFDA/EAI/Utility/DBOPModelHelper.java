@@ -24,7 +24,7 @@ public class DBOPModelHelper {
     private static final Log log = LogFactory.getLog(DBOPModelHelper.class);
 
     public static Hashtable<String, IDEDataCtrl> GetRIndexDataCtrls(IDEDataCtrl dataCtrl, ISRFDAGlobalHelper globalHelper) {
-        Vector list = dataCtrl.GetDEHelper().GetDERINDEXs(true);
+        Vector<DERINDEX> list = dataCtrl.GetDEHelper().GetDERINDEXs(true);
         Hashtable<String, IDEDataCtrl> derIndexTable = new Hashtable<String, IDEDataCtrl>();
         for (DERINDEX dERINDEX : list) {
             IDEDataCtrl ctrl = globalHelper.getDAModelStorage().FindDEDataCtrlEx(dERINDEX.getDEID(), dataCtrl);

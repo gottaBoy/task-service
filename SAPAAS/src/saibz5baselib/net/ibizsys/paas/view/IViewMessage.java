@@ -1,28 +1,99 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.view;
 
-public interface IViewMessage {
-    public static final String MSGPOS_TOP = "TOP";
-    public static final String MSGPOS_BODY = "BODY";
-    public static final String MSGPOS_BOTTOM = "BOTTOM";
-    public static final String MSGPOS_POPUP = "POPUP";
-    public static final String MSGTYPE_INFO = "INFO";
-    public static final String MSGTYPE_WARN = "WARN";
-    public static final String MSGTYPE_ERROR = "ERROR";
-    public static final String MSGTYPE_CUSTOM = "CUSTOM";
 
-    public String getId();
+/**
+ * 视图信息对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IViewMessage   {
 
-    public String getPosition();
+	// 定义默认消息位置代码表
 
-    public String getMessage();
+	/**
+	 * 视图上方
+	 */
+	final static String MSGPOS_TOP = "TOP";
 
-    public String getMessageType();
+	/**
+	 * 内容
+	 */
+	final static String MSGPOS_BODY = "BODY";
+	
+	/**
+	 * 视图下方
+	 */
+	final static String MSGPOS_BOTTOM = "BOTTOM";
 
-    public String getTitle();
+	/**
+	 * 弹出
+	 */
+	final static String MSGPOS_POPUP = "POPUP";
 
-    public boolean isEnableRemove();
+	// 定义消息类型代码表
+
+	/**
+	 * 常规信息
+	 */
+	final static String MSGTYPE_INFO = "INFO";
+
+	/**
+	 * 警告信息
+	 */
+	final static String MSGTYPE_WARN = "WARN";
+
+	/**
+	 * 错误信息
+	 */
+	final static String MSGTYPE_ERROR = "ERROR";
+	
+	
+	/**
+	 * 自定义信息
+	 */
+	final static String MSGTYPE_CUSTOM = "CUSTOM";
+	
+	
+	/**
+	 * 获取消息标识
+	 * @return
+	 */
+	String getId();
+
+
+	/**
+	 * 获取显示位置
+	 * 
+	 * @return
+	 */
+	String getPosition();
+
+	/**
+	 * 获取消息
+	 * 
+	 * @return
+	 */
+	String getMessage();
+
+	/**
+	 * 获取消息类型
+	 * 
+	 * @return
+	 */
+	String getMessageType();
+
+	/**
+	 * 获取信息标题
+	 * 
+	 * @return
+	 */
+	String getTitle();
+	
+	
+	/**
+	 * 消息是否支持删除
+	 * @return
+	 */
+	boolean isEnableRemove();
 }
-

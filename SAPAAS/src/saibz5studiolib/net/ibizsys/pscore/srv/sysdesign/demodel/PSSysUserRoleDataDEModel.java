@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysUserRoleDataDEModelBase;
 
 public class PSSysUserRoleDataDEModel
 extends PSSysUserRoleDataDEModelBase {
+
+    public PSSysUserRoleDataDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

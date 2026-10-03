@@ -1,43 +1,66 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package net.ibizsys.paas.view;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.paas.view.IDEDataSetViewMsgModel;
-import net.ibizsys.paas.view.IViewMsgModel;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * 视图消息全局对象
+ * 
+ * @author lionlau
+ *
+ */
 public class ViewMsgModelGlobal {
-    private static final Log log = LogFactory.getLog(ViewMsgModelGlobal.class);
-    private static HashMap<String, IViewMsgModel> viewMsgMap = new HashMap();
+	private static final Log log = LogFactory.getLog(ViewMsgModelGlobal.class);
+	private static HashMap<String, IViewMsgModel> viewMsgMap = new HashMap<String, IViewMsgModel>();
 
-    public static void registerViewMsg(String strViewMsgClsType, IViewMsgModel iViewMsg) {
-        viewMsgMap.put(strViewMsgClsType, iViewMsg);
-        viewMsgMap.put(iViewMsg.getId(), iViewMsg);
-    }
+	/**
+	 * 注册视图消息
+	 * 
+	 * @param strViewMsgClsType
+	 * @param iViewMsg
+	 */
+	public static void registerViewMsg(String strViewMsgClsType, IViewMsgModel iViewMsg) {
+		viewMsgMap.put(strViewMsgClsType, iViewMsg);
+		viewMsgMap.put(iViewMsg.getId(), iViewMsg);
+	}
 
-    public static IViewMsgModel getViewMsg(Class cls) throws Exception {
-        return ViewMsgModelGlobal.getViewMsg(cls.getCanonicalName());
-    }
+	/**
+	 * 获取视图消息对象
+	 * 
+	 * @param cls
+	 * @return
+	 * @throws Exception
+	 */
+	public static IViewMsgModel getViewMsg(Class cls) throws Exception {
+		return getViewMsg(cls.getCanonicalName());
+	}
 
-    public static IViewMsgModel getViewMsg(String strViewMsgClsType) throws Exception {
-        return viewMsgMap.get(strViewMsgClsType);
-    }
+	/**
+	 * 获取视图消息对象
+	 * 
+	 * @param strViewMsgClsType
+	 * @return
+	 * @throws Exception
+	 */
+	public static IViewMsgModel getViewMsg(String strViewMsgClsType) throws Exception {
+		return viewMsgMap.get(strViewMsgClsType);
+	}
+	
+	
+	/**
+	 * 重新加载消息
+	 */
+	public static void reloadAllViewMsgs(){
+		ArrayList<IViewMsgModel> list = new ArrayList<IViewMsgModel>();
+		list.addAll(viewMsgMap.values());
+		for(IViewMsgModel iViewMsgModel:list){
+			if(iViewMsgModel instanceof IDEDataSetViewMsgModel){
+				((IDEDataSetViewMsgModel)iViewMsgModel).resetCache();
+			}
+		}
+	}
 
-    public static void reloadAllViewMsgs() {
-        ArrayList<IViewMsgModel> list = new ArrayList<IViewMsgModel>();
-        list.addAll(viewMsgMap.values());
-        for (IViewMsgModel iViewMsgModel : list) {
-            if (!(iViewMsgModel instanceof IDEDataSetViewMsgModel)) continue;
-            ((IDEDataSetViewMsgModel)iViewMsgModel).resetCache();
-        }
-    }
 }
-

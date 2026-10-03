@@ -1128,7 +1128,7 @@ implements Serializable {
                 PSHelpArticleTempl pSHelpArticleTempl = new PSHelpArticleTempl();
                 pSHelpArticleTempl.setPSHelpArticleTemplId(this.getPSHelpArticleTemplId());
                 PSHelpArticleTemplService pSHelpArticleTemplService = (PSHelpArticleTemplService)ServiceGlobal.getService(PSHelpArticleTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpArticleTemplService.autoGet((IEntity)pSHelpArticleTempl);
+                pSHelpArticleTemplService.autoGet(pSHelpArticleTempl);
                 this.pshelparticletempl = pSHelpArticleTempl;
             }
             return this.pshelparticletempl;

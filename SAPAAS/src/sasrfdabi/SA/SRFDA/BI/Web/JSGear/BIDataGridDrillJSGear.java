@@ -63,7 +63,7 @@ public class BIDataGridDrillJSGear {
                 script.Append("_URL+=Ext.urlEncode(_1);\r\n");
                 script.Append(BrowserJSHelper.getShowWindowScriptEx((String)"_URL", (String)"''", (String)("'" + strWindowStyle + "'"), (boolean)false, (int)nWidth, (int)nHeight));
             } else {
-                Vector cubeSrcList = (Vector)daPage.getPageParam("BICUBESRCLIST");
+                Vector<BICubeSrc> cubeSrcList = (Vector<BICubeSrc>)daPage.getPageParam("BICUBESRCLIST");
                 script.Append("var _R=%1$s;\r\n", (Object)DataGridJSHelper.getSelectedRecord((String)dataGrid.getUniqueID()));
                 script.Append("var _srcid='';\r\n");
                 for (BICubeSrc cubeSrc : cubeSrcList) {

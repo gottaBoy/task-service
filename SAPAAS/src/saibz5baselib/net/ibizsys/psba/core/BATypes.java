@@ -1,9 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
+/**
+ * 大数据体系-数据库类型
+ * 
+ * @author Administrator
+ *
+ */
 public class BATypes {
-    public static final String HBase = "HBASE";
-}
 
+	/**
+	 * HBase
+	 */
+	public final static String HBase = "HBASE";
+
+}

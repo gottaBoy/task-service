@@ -130,7 +130,7 @@ extends PSDBTypeImpl {
             String[] items = strTableName.split("[.]");
             strSQL = StringHelper.Format((String)"SELECT COLUMN_NAME FROM all_tab_columns where UPPER(OWNER)='%1$s' AND  UPPER(TABLE_NAME)='%2$s' ", (Object)items[0], (Object)items[1]);
         }
-        Vector list = new Vector();
+        Vector<BaseDataEntity> list = new Vector();
         CallResult callResult = this.selectMulti(iPSDatabase, strSQL, null, list);
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u6570\u636e\u8868\u5217\u6e05\u5355\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -196,7 +196,7 @@ extends PSDBTypeImpl {
     }
 
     public SqlParamList getDBProcParamList(IPSDatabase iPSDatabase, String strProcName) throws Exception {
-        Vector dataEntities;
+        Vector<BaseDataEntity> dataEntities;
         String strDBSCHEMA = iPSDatabase.getDBName().toUpperCase();
         String strSQL = StringHelper.Format((String)"select argument_name as PARAMETER_NAME,in_out as PARAMETER_MODE,DATA_TYPE from USER_ARGUMENTS where UPPER(object_name)='%2$s'   order by position", (Object)strDBSCHEMA, (Object)strProcName.toUpperCase());
         CallResult callResult = this.selectMulti(iPSDatabase, strSQL, null, dataEntities = new Vector());
@@ -216,7 +216,7 @@ extends PSDBTypeImpl {
                 sqlParam.setDirection(3);
             }
             sqlParam.setDataType(DataTypeHelper.FromString((String)baseDataEntity.getParamStringValue("DATA_TYPE", "")));
-            sqlParamList.add((Object)sqlParam);
+            sqlParamList.add(sqlParam);
         }
         return sqlParamList;
     }

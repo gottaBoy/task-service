@@ -153,9 +153,9 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDCWorkshopServer, pSDevCenter);
             return;
@@ -165,14 +165,14 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
             PSWorkshopServer pSWorkshopServer = (PSWorkshopServer)iService.getDEModel().createEntity();
             pSWorkshopServer.set("PSWORKSHOPSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWorkshopServer);
+                iService.getTemp(pSWorkshopServer);
             } else {
-                iService.get((IEntity)pSWorkshopServer);
+                iService.get(pSWorkshopServer);
             }
             this.onFillParentInfo_PSWorkshopServer(pSDCWorkshopServer, pSWorkshopServer);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCWorkshopServer, string, string2, string3);
+        super.onFillParentInfo(pSDCWorkshopServer, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -198,7 +198,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 pSDCWorkshopServer.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDCWorkshopServer, bl);
+        super.onFillEntityFullInfo(pSDCWorkshopServer, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDCWorkshopServer, bl);
         this.onFillEntityFullInfo_PSWorkshopServer(pSDCWorkshopServer, bl);
     }
@@ -230,7 +230,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
     }
 
     protected void onWriteBackParent(PSDCWorkshopServer pSDCWorkshopServer, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCWorkshopServer, bl);
+        super.onWriteBackParent(pSDCWorkshopServer, bl);
     }
 
     public ArrayList<PSDCWorkshopServer> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -285,8 +285,8 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
         ArrayList<PSDCWorkshopServer> arrayList = this.selectByPSDevCenter(pSDevCenter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVCENTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevCenter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCWORKSHOPSERVER_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSDCWORKSHOPSERVER", iDataEntityModel.getDataInfo((IEntity)pSDevCenter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevCenter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCWORKSHOPSERVER_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSDCWORKSHOPSERVER", iDataEntityModel.getDataInfo(pSDevCenter), arrayList.get(0)));
         }
     }
 
@@ -319,7 +319,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
         ArrayList<PSDCWorkshopServer> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCWorkshopServer pSDCWorkshopServer : arrayList) {
-            this.remove((IEntity)pSDCWorkshopServer);
+            this.remove(pSDCWorkshopServer);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -337,8 +337,8 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
         ArrayList<PSDCWorkshopServer> arrayList = this.selectByPSWorkshopServer(pSWorkshopServer, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSWORKSHOPSERVER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSWorkshopServer);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCWORKSHOPSERVER_PSWORKSHOPSERVER_PSWORKSHOPSERVERID", "", iDataEntityModel.getName(), "PSDCWORKSHOPSERVER", iDataEntityModel.getDataInfo((IEntity)pSWorkshopServer), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSWorkshopServer);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCWORKSHOPSERVER_PSWORKSHOPSERVER_PSWORKSHOPSERVERID", "", iDataEntityModel.getName(), "PSDCWORKSHOPSERVER", iDataEntityModel.getDataInfo(pSWorkshopServer), arrayList.get(0)));
         }
     }
 
@@ -371,7 +371,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
         ArrayList<PSDCWorkshopServer> arrayList = this.selectByPSWorkshopServer(pSWorkshopServer);
         this.onBeforeRemoveByPSWorkshopServer(pSWorkshopServer, arrayList);
         for (PSDCWorkshopServer pSDCWorkshopServer : arrayList) {
-            this.remove((IEntity)pSDCWorkshopServer);
+            this.remove(pSDCWorkshopServer);
         }
         this.onAfterRemoveByPSWorkshopServer(pSWorkshopServer, arrayList);
     }
@@ -396,7 +396,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
 
     protected void replaceParentInfo(PSDCWorkshopServer pSDCWorkshopServer, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCWorkshopServer, cloneSession);
+        super.replaceParentInfo(pSDCWorkshopServer, cloneSession);
         if (pSDCWorkshopServer.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSDCWorkshopServer.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSDCWorkshopServer, (PSDevCenter)iEntity);
         }
@@ -406,7 +406,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCWorkshopServer pSDCWorkshopServer, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCWorkshopServer, bl);
+        super.onRemoveEntityUncopyValues(pSDCWorkshopServer, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCWorkshopServer pSDCWorkshopServer, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -505,7 +505,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
         if ((entityFieldError = this.onCheckField_WorkshopPath(bl, pSDCWorkshopServer, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCWorkshopServer, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCWorkshopServer, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AdminPasswd(boolean bl, PSDCWorkshopServer pSDCWorkshopServer, boolean bl2, boolean bl3) throws Exception {
@@ -518,7 +518,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AdminPasswd_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_AdminPasswd_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ADMINPASSWD");
@@ -540,7 +540,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AdminUserName_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_AdminUserName_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ADMINUSERNAME");
@@ -565,7 +565,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -602,7 +602,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpriedTime_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_ExpriedTime_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPRIEDTIME");
@@ -624,7 +624,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GITPassword_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_GITPassword_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITPASSWORD");
@@ -646,7 +646,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GitPath_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_GitPath_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITPATH");
@@ -668,7 +668,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GITUserName_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_GITUserName_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITUSERNAME");
@@ -690,7 +690,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -712,7 +712,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr2_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr2_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR2");
@@ -734,7 +734,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -756,7 +756,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -778,7 +778,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Port_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_Port_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PORT");
@@ -803,7 +803,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCWorkshopServerId_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCWorkshopServerId_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCWORKSHOPSERVERID");
@@ -828,7 +828,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCWorkshopServerName_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCWorkshopServerName_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCWORKSHOPSERVERNAME");
@@ -850,7 +850,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -872,7 +872,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -894,7 +894,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkshopServerId_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkshopServerId_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKSHOPSERVERID");
@@ -916,7 +916,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkshopServerName_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkshopServerName_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKSHOPSERVERNAME");
@@ -938,7 +938,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RefCount_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_RefCount_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFCOUNT");
@@ -960,7 +960,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResPos_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_ResPos_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESPOS");
@@ -982,7 +982,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResReadyTime_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_ResReadyTime_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESREADYTIME");
@@ -1004,7 +1004,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResState_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_ResState_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESSTATE");
@@ -1026,7 +1026,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResVer_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_ResVer_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESVER");
@@ -1048,7 +1048,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SSHIPAddr_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_SSHIPAddr_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHIPADDR");
@@ -1070,7 +1070,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SSHPort_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_SSHPort_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHPORT");
@@ -1092,7 +1092,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadFileMode_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_UploadFileMode_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADFILEMODE");
@@ -1114,7 +1114,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadPath_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_UploadPath_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADPATH");
@@ -1136,7 +1136,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -1161,7 +1161,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1183,7 +1183,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WebConsolePath_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_WebConsolePath_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WEBCONSOLEPATH");
@@ -1205,7 +1205,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WorkshopPath_Default((IEntity)pSDCWorkshopServer, bl2, bl3);
+            string2 = this.onTestValueRule_WorkshopPath_Default(pSDCWorkshopServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WORKSHOPPATH");
@@ -1218,11 +1218,11 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
     }
 
     protected void onSyncEntity(PSDCWorkshopServer pSDCWorkshopServer, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCWorkshopServer, bl);
+        super.onSyncEntity(pSDCWorkshopServer, bl);
     }
 
     protected void onSyncIndexEntities(PSDCWorkshopServer pSDCWorkshopServer, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCWorkshopServer, bl);
+        super.onSyncIndexEntities(pSDCWorkshopServer, bl);
     }
 
     public Object getDataContextValue(PSDCWorkshopServer pSDCWorkshopServer, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1230,7 +1230,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCWorkshopServer, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCWorkshopServer, string, iDataContextParam)) != null) {
             return object;
         }
         PSDevCenter pSDevCenter = pSDCWorkshopServer.getPSDevCenter();
@@ -1241,7 +1241,7 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
     }
 
     protected void onExportMajorModel(PSDCWorkshopServer pSDCWorkshopServer, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCWorkshopServer, arrayList, n);
+        super.onExportMajorModel(pSDCWorkshopServer, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1684,14 +1684,14 @@ extends PSCoreSysServiceBase<PSDCWorkshopServer> {
 
     protected boolean onMergeChild(String string, String string2, PSDCWorkshopServer pSDCWorkshopServer) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCWorkshopServer)) {
+        if (super.onMergeChild(string, string2, pSDCWorkshopServer)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCWorkshopServer pSDCWorkshopServer) throws Exception {
-        super.onUpdateParent((IEntity)pSDCWorkshopServer);
+        super.onUpdateParent(pSDCWorkshopServer);
     }
 
     @Override

@@ -155,7 +155,7 @@ extends WFInfoFormActionHelper {
         TreeMap<String, String> derIndexMap = null;
         if (this.getPage().getDEHelper().IsIndexDE()) {
             derIndexMap = new TreeMap<String, String>();
-            Vector list = this.getDEHelper().GetDERINDEXs(true);
+            Vector<DERINDEX> list = this.getDEHelper().GetDERINDEXs(true);
             for (DERINDEX derIndex : list) {
                 derIndexMap.put(derIndex.getTYPEVALUE().toUpperCase(), derIndex.getDEID());
             }

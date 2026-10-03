@@ -1,13 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.chart;
 
-import net.ibizsys.model.control.chart.IPSChartGrid;
-import net.ibizsys.model.control.chart.IPSDEChartObject;
+/**
+ * 实体图表表格对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEChartGrid extends IPSChartGrid,IPSDEChartObject
+{
 
-public interface IPSDEChartGrid
-extends IPSChartGrid,
-IPSDEChartObject {
 }
-

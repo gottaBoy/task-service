@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.MobListViewControllerBase;
+/**
+ * 移动端列表视图控制器对象（视图部件）
+ * @author Administrator
+ *
+ */
+public abstract class MobListView9ControllerBase extends MobListViewControllerBase {
 
-public abstract class MobListView9ControllerBase
-extends MobListViewControllerBase {
+	public MobListView9ControllerBase() throws Exception {
+		super();
+	}
+
 }
-

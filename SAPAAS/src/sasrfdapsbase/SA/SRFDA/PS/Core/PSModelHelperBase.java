@@ -711,13 +711,12 @@ implements IPSModelHelper {
                 int nRowCount = selectResult.getMainTable().GetRowCount();
                 int i = 0;
                 while (i < nRowCount) {
-                    IEntity dataEntity;
                     if (bEntityMode) {
-                        dataEntity = (IEntity)objSample.getClass().newInstance();
+                        IEntity dataEntity = (IEntity)objSample.getClass().newInstance();
                         this.fromDataRow(dataEntity, selectResult.getMainTable().GetRow(i), bSystemFields);
                         list.add(dataEntity);
                     } else {
-                        dataEntity = null;
+                        BaseDataEntity dataEntity = null;
                         if (objSample != null) {
                             dataEntity = (BaseDataEntity)objSample.getClass().newInstance();
                         } else {
@@ -750,14 +749,13 @@ implements IPSModelHelper {
             IDataTable iDataTable = dbCallResult.getDataSet().getDataTable(0);
             int i = 0;
             while (i < iDataTable.getCachedRowCount()) {
-                IEntity dataEntity;
                 IDataRow iDataRow = iDataTable.getCachedRow(i);
                 if (bEntityMode) {
-                    dataEntity = (IEntity)objSample.getClass().newInstance();
+                    IEntity dataEntity = (IEntity)objSample.getClass().newInstance();
                     this.fromDataRow(dataEntity, iDataRow, bSystemFields);
                     list.add(dataEntity);
                 } else {
-                    dataEntity = null;
+                    BaseDataEntity dataEntity = null;
                     if (objSample != null) {
                         dataEntity = (BaseDataEntity)objSample.getClass().newInstance();
                     } else {
@@ -769,7 +767,7 @@ implements IPSModelHelper {
                             dataEntity = new BaseDataEntity();
                         }
                     }
-                    this.fromDataRow((BaseDataEntity)dataEntity, iDataRow, bSystemFields);
+                    this.fromDataRow(dataEntity, iDataRow, bSystemFields);
                     list.add(dataEntity);
                 }
                 ++i;
@@ -794,17 +792,16 @@ implements IPSModelHelper {
         if (callResult.isError() || list.size() == 0) {
             return callResult;
         }
-        Vector<BaseDataEntity> list2 = new Vector<BaseDataEntity>();
+        Vector<Object> list2 = new Vector<Object>();
         for (Object obj : list) {
-            BaseDataEntity item;
             if (obj instanceof BaseDataEntity) {
-                item = (BaseDataEntity)obj;
+                BaseDataEntity item = (BaseDataEntity)obj;
                 if (item.GetParamIntValue("VALIDFLAG", 1) == 0) continue;
                 list2.add(item);
                 continue;
             }
             if (!(obj instanceof IEntity)) continue;
-            item = (IEntity)obj;
+            IEntity item = (IEntity)obj;
             try {
                 if (DataObject.getIntegerValue((IDataObject)item, (String)"VALIDFLAG", (int)1) == 0) continue;
                 list2.add(item);
@@ -854,13 +851,12 @@ implements IPSModelHelper {
                 int nRowCount = selectResult.getMainTable().GetRowCount();
                 int i = 0;
                 while (i < nRowCount) {
-                    IEntity dataEntity;
                     if (bEntityMode) {
-                        dataEntity = (IEntity)objSample.getClass().newInstance();
+                        IEntity dataEntity = (IEntity)objSample.getClass().newInstance();
                         this.fromDataRow(dataEntity, selectResult.getMainTable().GetRow(i), bSystemFields);
                         list.add(dataEntity);
                     } else {
-                        dataEntity = null;
+                        BaseDataEntity dataEntity = null;
                         if (objSample != null) {
                             dataEntity = (BaseDataEntity)objSample.getClass().newInstance();
                         } else {
@@ -872,7 +868,7 @@ implements IPSModelHelper {
                                 dataEntity = new BaseDataEntity();
                             }
                         }
-                        this.fromDataRow((BaseDataEntity)dataEntity, selectResult.getMainTable().GetRow(i), bSystemFields);
+                        this.fromDataRow(dataEntity, selectResult.getMainTable().GetRow(i), bSystemFields);
                         list.add(dataEntity);
                     }
                     ++i;
@@ -893,14 +889,13 @@ implements IPSModelHelper {
             IDataTable iDataTable = dbCallResult.getDataSet().getDataTable(0);
             int i = 0;
             while (i < iDataTable.getCachedRowCount()) {
-                IEntity dataEntity;
                 IDataRow iDataRow = iDataTable.getCachedRow(i);
                 if (bEntityMode) {
-                    dataEntity = (IEntity)objSample.getClass().newInstance();
+                    IEntity dataEntity = (IEntity)objSample.getClass().newInstance();
                     this.fromDataRow(dataEntity, iDataRow, bSystemFields);
                     list.add(dataEntity);
                 } else {
-                    dataEntity = null;
+                    BaseDataEntity dataEntity = null;
                     if (objSample != null) {
                         dataEntity = (BaseDataEntity)objSample.getClass().newInstance();
                     } else {
@@ -912,7 +907,7 @@ implements IPSModelHelper {
                             dataEntity = new BaseDataEntity();
                         }
                     }
-                    this.fromDataRow((BaseDataEntity)dataEntity, iDataRow, bSystemFields);
+                    this.fromDataRow(dataEntity, iDataRow, bSystemFields);
                     list.add(dataEntity);
                 }
                 ++i;

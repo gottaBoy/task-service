@@ -74,7 +74,7 @@ implements IPSSysBIAggColumnService {
     @Override
     protected List<PSSysBIAggColumn> onListAll() throws Exception {
         ArrayList<PSSysBIAggColumn> list = new ArrayList<PSSysBIAggColumn>();
-        List pssysbiaggtables = PSModelServiceUtil.getInstance().getPSSysBIAggTableService().listAll();
+        List<PSSysBIAggTable> pssysbiaggtables = PSModelServiceUtil.getInstance().getPSSysBIAggTableService().listAll();
         if (pssysbiaggtables != null) {
             for (PSSysBIAggTable parent : pssysbiaggtables) {
                 List<PSSysBIAggColumn> items = this.listByPSSysBIAggTable(parent);

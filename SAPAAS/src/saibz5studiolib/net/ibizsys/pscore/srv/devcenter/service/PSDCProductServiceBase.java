@@ -134,9 +134,9 @@ extends PSCoreSysServiceBase<ET> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(ET, pSDevCenter);
             return;
@@ -211,7 +211,7 @@ extends PSCoreSysServiceBase<ET> {
             PSDCProduct pSDCProduct2 = (PSDCProduct)this.getDEModel().createEntity();
             pSDCProduct2.setPSDCProductId(pSDCProduct.getPSDCProductId());
             pSDCProduct2.setPSDevCenterId(null);
-            this.update(pSDCProduct2);
+            this.update((ET)pSDCProduct2);
         }
     }
 
@@ -234,7 +234,7 @@ extends PSCoreSysServiceBase<ET> {
         ArrayList<ET> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCProduct pSDCProduct : arrayList) {
-            this.remove((IEntity)pSDCProduct);
+            this.remove((ET)pSDCProduct);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -305,7 +305,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -327,7 +327,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ProductSN_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_ProductSN_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PRODUCTSN");
@@ -352,7 +352,7 @@ extends PSCoreSysServiceBase<ET> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ProductState_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_ProductState_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PRODUCTSTATE");
@@ -377,7 +377,7 @@ extends PSCoreSysServiceBase<ET> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCProductId_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCProductId_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCPRODUCTID");
@@ -402,7 +402,7 @@ extends PSCoreSysServiceBase<ET> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCProductName_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCProductName_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCPRODUCTNAME");
@@ -427,7 +427,7 @@ extends PSCoreSysServiceBase<ET> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCProductType_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCProductType_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCPRODUCTTYPE");
@@ -449,7 +449,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -471,7 +471,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");

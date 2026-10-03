@@ -66,14 +66,14 @@ public class BaseServiceConfigWriter {
         }
         xmlWriter.WriteStartElement("spring:bean");
         xmlWriter.WriteAttributeString("id", "SRFDADATASOURCE");
-        xmlWriter.WriteAttributeString("class", "org.enhydra.jdbc.standard.StandardDataSource");
-        xmlWriter.WriteAttributeString("destroy-method", "shutdown");
+        xmlWriter.WriteAttributeString("class", "com.mchange.v2.c3p0.ComboPooledDataSource");
+        xmlWriter.WriteAttributeString("destroy-method", "close");
         xmlWriter.WriteStartElement("spring:property");
-        xmlWriter.WriteAttributeString("name", "driverName");
+        xmlWriter.WriteAttributeString("name", "driverClass");
         xmlWriter.WriteAttributeString("value", registry.GetParam("DRIVERNAME", ""));
         xmlWriter.WriteEndElement();
         xmlWriter.WriteStartElement("spring:property");
-        xmlWriter.WriteAttributeString("name", "url");
+        xmlWriter.WriteAttributeString("name", "jdbcUrl");
         xmlWriter.WriteAttributeString("value", registry.GetParam("URL", ""));
         xmlWriter.WriteEndElement();
         xmlWriter.WriteStartElement("spring:property");
@@ -86,8 +86,28 @@ public class BaseServiceConfigWriter {
         xmlWriter.WriteEndElement();
         xmlWriter.WriteEndElement();
         xmlWriter.WriteStartElement("spring:bean");
+        xmlWriter.WriteAttributeString("id", "SRFDAEAIDBCALLER");
+        xmlWriter.WriteAttributeString("class", "SA.SRFDA.EAI.Ctrl.EAIDBCallerHelperEx");
+        xmlWriter.WriteStartElement("spring:property");
+        xmlWriter.WriteAttributeString("name", "dataSource");
+        xmlWriter.WriteAttributeString("ref", "SRFDADATASOURCE");
+        xmlWriter.WriteEndElement();
+        xmlWriter.WriteEndElement();
+        xmlWriter.WriteStartElement("spring:bean");
+        xmlWriter.WriteAttributeString("id", "SRFDACONTEXTHELPER");
+        xmlWriter.WriteAttributeString("class", "SA.SRFDA.EAI.Ctrl.EAIDAGlobalHelper");
+        xmlWriter.WriteStartElement("spring:property");
+        xmlWriter.WriteAttributeString("name", "DBCallerEx");
+        xmlWriter.WriteAttributeString("ref", "SRFDAEAIDBCALLER");
+        xmlWriter.WriteEndElement();
+        xmlWriter.WriteEndElement();
+        xmlWriter.WriteStartElement("spring:bean");
         xmlWriter.WriteAttributeString("id", "EAISERVICE");
         xmlWriter.WriteAttributeString("class", "SA.SRFDA.EAI.Ctrl.InstanceMgr");
+        xmlWriter.WriteStartElement("spring:property");
+        xmlWriter.WriteAttributeString("name", "globalHelper");
+        xmlWriter.WriteAttributeString("ref", "SRFDACONTEXTHELPER");
+        xmlWriter.WriteEndElement();
         xmlWriter.WriteStartElement("spring:property");
         xmlWriter.WriteAttributeString("name", "config");
         xmlWriter.WriteStartElement("spring:map");
@@ -101,7 +121,12 @@ public class BaseServiceConfigWriter {
             callResult.ReformatErrorInfo(StringHelper.Format((String)"\u52a0\u8f7d\u6ce8\u518c\u8868[%1$s]\u4fe1\u606f\u5931\u8d25\uff0c%%1$s", (Object)"EAIINSTANCE"));
             return callResult;
         }
+        String configPath = writerContext.getConfig("CONFIGPATH", "");
+        if (!StringHelper.IsNullOrEmpty(configPath)) {
+            registry.GetParams().setProperty("CONFIGPATH", configPath);
+        }
         for (Object strKey : registry.GetParams().keySet()) {
+            if ("SERVICEID".equalsIgnoreCase(strKey.toString())) continue;
             xmlWriter.WriteStartElement("spring:entry");
             xmlWriter.WriteAttributeString("key", strKey.toString());
             xmlWriter.WriteAttributeString("value", registry.GetParam(strKey.toString(), ""));
@@ -284,4 +309,3 @@ public class BaseServiceConfigWriter {
         return configWriter.Export(eaiDataSource, xmlWriter, writerContext);
     }
 }
-

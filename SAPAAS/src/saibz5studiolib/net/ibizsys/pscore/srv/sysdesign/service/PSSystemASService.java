@@ -40,14 +40,14 @@ extends PSSystemASServiceBase {
         if (this.getWebContext() == null || this.getWebContext().getCurAjaxActionResult() == null) {
             throw new Exception("\u5f53\u524d\u8bf7\u6c42\u73af\u5883\u4e0d\u6b63\u786e");
         }
-        this.get((IEntity)pSSystemAS);
+        this.get(pSSystemAS);
         if (StringHelper.isNullOrEmpty((String)pSSystemAS.getPSAppServerId())) {
             throw new Exception("\u5e94\u7528\u5bb9\u5668\u4e0d\u652f\u6301WebConsole");
         }
         PSAppServerService pSAppServerService = (PSAppServerService)ServiceGlobal.getService(PSAppServerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSAppServer pSAppServer = new PSAppServer();
         pSAppServer.setPSAppServerId(pSSystemAS.getPSAppServerId());
-        pSAppServerService.get((IEntity)pSAppServer);
+        pSAppServerService.get(pSAppServer);
         String string = pSAppServer.getWebConsolePath();
         if (StringHelper.isNullOrEmpty((String)string)) {
             if (pSAppServer.getPSSvrServer() == null || StringHelper.isNullOrEmpty((String)pSAppServer.getPSSvrServer().getWebConsolePath())) {

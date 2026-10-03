@@ -140,9 +140,9 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDevSlnSysKey, pSDevCenter);
             return;
@@ -152,14 +152,14 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
             PSDevSlnSys pSDevSlnSys = (PSDevSlnSys)iService.getDEModel().createEntity();
             pSDevSlnSys.set("PSDEVSLNSYSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevSlnSys);
+                iService.getTemp(pSDevSlnSys);
             } else {
-                iService.get((IEntity)pSDevSlnSys);
+                iService.get(pSDevSlnSys);
             }
             this.onFillParentInfo_PSDevSlnSys(pSDevSlnSysKey, pSDevSlnSys);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDevSlnSysKey, string, string2, string3);
+        super.onFillParentInfo(pSDevSlnSysKey, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -185,7 +185,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
                 pSDevSlnSysKey.setKeyState((Integer)this.getDefaultValue(this.getWebContext(), "", "10", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDevSlnSysKey, bl);
+        super.onFillEntityFullInfo(pSDevSlnSysKey, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDevSlnSysKey, bl);
         this.onFillEntityFullInfo_PSDevSlnSys(pSDevSlnSysKey, bl);
     }
@@ -217,7 +217,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
     }
 
     protected void onWriteBackParent(PSDevSlnSysKey pSDevSlnSysKey, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDevSlnSysKey, bl);
+        super.onWriteBackParent(pSDevSlnSysKey, bl);
     }
 
     public ArrayList<PSDevSlnSysKey> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -300,7 +300,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
         ArrayList<PSDevSlnSysKey> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDevSlnSysKey pSDevSlnSysKey : arrayList) {
-            this.remove((IEntity)pSDevSlnSysKey);
+            this.remove(pSDevSlnSysKey);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -318,8 +318,8 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
         ArrayList<PSDevSlnSysKey> arrayList = this.selectByPSDevSlnSys(pSDevSlnSys, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVSLNSYS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevSlnSys);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEVSLNSYSKEY_PSDEVSLNSYS_PSDEVSLNSYSID", "", iDataEntityModel.getName(), "PSDEVSLNSYSKEY", iDataEntityModel.getDataInfo((IEntity)pSDevSlnSys), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevSlnSys);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEVSLNSYSKEY_PSDEVSLNSYS_PSDEVSLNSYSID", "", iDataEntityModel.getName(), "PSDEVSLNSYSKEY", iDataEntityModel.getDataInfo(pSDevSlnSys), arrayList.get(0)));
         }
     }
 
@@ -352,7 +352,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
         ArrayList<PSDevSlnSysKey> arrayList = this.selectByPSDevSlnSys(pSDevSlnSys);
         this.onBeforeRemoveByPSDevSlnSys(pSDevSlnSys, arrayList);
         for (PSDevSlnSysKey pSDevSlnSysKey : arrayList) {
-            this.remove((IEntity)pSDevSlnSysKey);
+            this.remove(pSDevSlnSysKey);
         }
         this.onAfterRemoveByPSDevSlnSys(pSDevSlnSys, arrayList);
     }
@@ -373,7 +373,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
 
     protected void replaceParentInfo(PSDevSlnSysKey pSDevSlnSysKey, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDevSlnSysKey, cloneSession);
+        super.replaceParentInfo(pSDevSlnSysKey, cloneSession);
         if (pSDevSlnSysKey.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSDevSlnSysKey.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSDevSlnSysKey, (PSDevCenter)iEntity);
         }
@@ -383,7 +383,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDevSlnSysKey pSDevSlnSysKey, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDevSlnSysKey, bl);
+        super.onRemoveEntityUncopyValues(pSDevSlnSysKey, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDevSlnSysKey pSDevSlnSysKey, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -422,7 +422,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
         if ((entityFieldError = this.onCheckField_PSDevSlnSysName(bl, pSDevSlnSysKey, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDevSlnSysKey, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDevSlnSysKey, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AdminMode(boolean bl, PSDevSlnSysKey pSDevSlnSysKey, boolean bl2, boolean bl3) throws Exception {
@@ -435,7 +435,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AdminMode_Default((IEntity)pSDevSlnSysKey, bl2, bl3);
+            string = this.onTestValueRule_AdminMode_Default(pSDevSlnSysKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ADMINMODE");
@@ -457,7 +457,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BeginTime_Default((IEntity)pSDevSlnSysKey, bl2, bl3);
+            string = this.onTestValueRule_BeginTime_Default(pSDevSlnSysKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BEGINTIME");
@@ -479,7 +479,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EndTime_Default((IEntity)pSDevSlnSysKey, bl2, bl3);
+            string = this.onTestValueRule_EndTime_Default(pSDevSlnSysKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENDTIME");
@@ -501,7 +501,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_KeyCount_Default((IEntity)pSDevSlnSysKey, bl2, bl3);
+            string = this.onTestValueRule_KeyCount_Default(pSDevSlnSysKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("KEYCOUNT");
@@ -526,7 +526,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_KeyState_Default((IEntity)pSDevSlnSysKey, bl2, bl3);
+            string = this.onTestValueRule_KeyState_Default(pSDevSlnSysKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("KEYSTATE");
@@ -548,7 +548,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDevSlnSysKey, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDevSlnSysKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -570,7 +570,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDevSlnSysKey, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDevSlnSysKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -592,7 +592,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysId_Default((IEntity)pSDevSlnSysKey, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysId_Default(pSDevSlnSysKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSID");
@@ -617,7 +617,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysKeyId_Default((IEntity)pSDevSlnSysKey, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysKeyId_Default(pSDevSlnSysKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSKEYID");
@@ -642,7 +642,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysKeyName_Default((IEntity)pSDevSlnSysKey, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysKeyName_Default(pSDevSlnSysKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSKEYNAME");
@@ -664,7 +664,7 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysName_Default((IEntity)pSDevSlnSysKey, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysName_Default(pSDevSlnSysKey, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSNAME");
@@ -677,11 +677,11 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
     }
 
     protected void onSyncEntity(PSDevSlnSysKey pSDevSlnSysKey, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDevSlnSysKey, bl);
+        super.onSyncEntity(pSDevSlnSysKey, bl);
     }
 
     protected void onSyncIndexEntities(PSDevSlnSysKey pSDevSlnSysKey, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDevSlnSysKey, bl);
+        super.onSyncIndexEntities(pSDevSlnSysKey, bl);
     }
 
     public Object getDataContextValue(PSDevSlnSysKey pSDevSlnSysKey, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -689,14 +689,14 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDevSlnSysKey, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDevSlnSysKey, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDevSlnSysKey pSDevSlnSysKey, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDevSlnSysKey, arrayList, n);
+        super.onExportMajorModel(pSDevSlnSysKey, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -874,14 +874,14 @@ extends PSCoreSysServiceBase<PSDevSlnSysKey> {
 
     protected boolean onMergeChild(String string, String string2, PSDevSlnSysKey pSDevSlnSysKey) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDevSlnSysKey)) {
+        if (super.onMergeChild(string, string2, pSDevSlnSysKey)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDevSlnSysKey pSDevSlnSysKey) throws Exception {
-        super.onUpdateParent((IEntity)pSDevSlnSysKey);
+        super.onUpdateParent(pSDevSlnSysKey);
     }
 
     @Override

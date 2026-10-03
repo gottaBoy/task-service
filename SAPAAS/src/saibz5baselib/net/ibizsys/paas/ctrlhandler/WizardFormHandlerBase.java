@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.EditFormHandlerBase;
+/**
+ * 向导表单处理对象基类
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class WizardFormHandlerBase extends EditFormHandlerBase {
 
-public abstract class WizardFormHandlerBase
-extends EditFormHandlerBase {
 }
-

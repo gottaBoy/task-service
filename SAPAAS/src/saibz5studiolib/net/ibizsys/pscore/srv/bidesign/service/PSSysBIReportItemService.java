@@ -41,11 +41,10 @@ extends PSSysBIReportItemServiceBase {
         ArrayList<PSSysBIReportItem> arrayList = null;
         arrayList = pSSysBIReport.getPSSysBIReportId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSSysBIReport(pSSysBIReport) : this.selectByPSSysBIReport(pSSysBIReport);
         HashMap<String, PSSysBIReportItem> hashMap = new HashMap<String, PSSysBIReportItem>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSSysBIReportItem pSSysBIReportItem2 = object.next();
+        for (PSSysBIReportItem pSSysBIReportItem2 : arrayList) {
             hashMap.put(pSSysBIReportItem2.getPSSysBIReportItemName().toLowerCase(), pSSysBIReportItem2);
         }
+        Object object;
         while (true) {
             if (!hashMap.containsKey(object = StringHelper.format((String)"%1$s%2$s", (Object)string, (Object)(n == 0 ? "" : Integer.valueOf(n))))) break;
             ++n;
@@ -71,4 +70,3 @@ extends PSSysBIReportItemServiceBase {
         super.onBeforeUpdateTemp(pSSysBIReportItem);
     }
 }
-

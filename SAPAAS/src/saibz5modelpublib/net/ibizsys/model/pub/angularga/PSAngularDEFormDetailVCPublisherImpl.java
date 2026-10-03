@@ -1,36 +1,40 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSControl
- *  IPSDEFormDetail
- *  IPSGenerateCodeResult
- *  IPSPublisherContext
- */
 package net.ibizsys.model.pub.angularga;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.angularga.PSAngularCtrlPartCodePublisherImpl;
 
-public class PSAngularDEFormDetailVCPublisherImpl
-extends PSAngularCtrlPartCodePublisherImpl {
-    protected IPSDEFormDetail iPSDEFormDetail;
+import net.ibizsys.model.control.IPSControl;
+import net.ibizsys.model.control.form.IPSDEFormDetail;
+import net.ibizsys.model.pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPublisherContext;
 
-    public PSAngularDEFormDetailVCPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tThe method onClose() of type PSAngularDEFormDetailVCPublisherImpl must override or implement a supertype method\n\tIPSDEFormDetail cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSAngularCtrlPartCodePublisherImpl\n");
-    }
+public class PSAngularDEFormDetailVCPublisherImpl extends PSAngularCtrlPartCodePublisherImpl
+{
+	protected IPSDEFormDetail iPSDEFormDetail = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDEFormDetail = (IPSDEFormDetail)object;
+		return super.generateCode(iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		if(iPSDEFormDetail.getParentPSDEFormDetail()!=null)
+		{
+			params.put("parent", iPSDEFormDetail.getParentPSDEFormDetail());
+		}
+	}
+	
 
-    public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n");
-    }
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n");
-    }
 
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSAngularDEFormDetailVCPublisherImpl must override or implement a supertype method\n\tIPSDEFormDetail cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSAngularCtrlPartCodePublisherImpl\n");
-    }
 }
-

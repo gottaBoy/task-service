@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSTreeNodeTypeDEModelBase;
 
 public class PSTreeNodeTypeDEModel
 extends PSTreeNodeTypeDEModelBase {
+
+    public PSTreeNodeTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

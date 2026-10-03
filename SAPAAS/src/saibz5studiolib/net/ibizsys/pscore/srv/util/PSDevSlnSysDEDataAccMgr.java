@@ -66,7 +66,7 @@ extends DEDataAccMgr {
             if (StringHelper.compare((String)string2, (String)"CREATE", (boolean)true) == 0) {
                 PSDevSln pSDevSln = new PSDevSln();
                 pSDevSln.setPSDevSlnId(DataObject.getStringValue((Object)iEntity.get("PSDEVSLNID")));
-                return iWebContext.getUserPrivilegeMgr().testDataAccessAction(iWebContext, (IDataEntityModel)this.psDevSlnDEModel, (IEntity)pSDevSln, "UPDATE");
+                return iWebContext.getUserPrivilegeMgr().testDataAccessAction(iWebContext, (IDataEntityModel)this.psDevSlnDEModel, pSDevSln, "UPDATE");
             }
             String string3 = DataObject.getStringValue((Object)(iEntity = this.getFullEntity(iWebContext, iEntity, bl)).get("PSDEVSLNID"), null);
             if (StringHelper.isNullOrEmpty((String)string3)) {
@@ -75,7 +75,7 @@ extends DEDataAccMgr {
             Integer n = null;
             PSDevSln pSDevSln = new PSDevSln();
             pSDevSln.setPSDevSlnId(string3);
-            this.psDevSlnService.get((IEntity)pSDevSln);
+            this.psDevSlnService.get(pSDevSln);
             if (StringHelper.compare((String)pSDevSln.getAdminPSDevUserId(), (String)string, (boolean)true) == 0) {
                 n = 2;
             } else {

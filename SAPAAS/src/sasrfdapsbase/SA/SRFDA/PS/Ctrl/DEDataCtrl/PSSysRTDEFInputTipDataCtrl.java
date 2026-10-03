@@ -180,7 +180,7 @@ extends PSDEDataCtrl {
             selectContext.addSelectField("ORDERVALUE");
             selectContext.addSelectField("PSDEID");
             selectContext.set("VALIDFLAG", (Object)1);
-            ArrayList psSysRTDEFInputTipList = psSysRTDEFInputTipService.select((ISelectCond)selectContext);
+            ArrayList<PSSysRTDEFInputTip> psSysRTDEFInputTipList = psSysRTDEFInputTipService.select((ISelectCond)selectContext);
             HashMap<String, PSSysRTDEFInputTip> psSysRTDEFInputTipMap = new HashMap<String, PSSysRTDEFInputTip>();
             for (PSSysRTDEFInputTip psSysRTDEFInputTip : psSysRTDEFInputTipList) {
                 psSysRTDEFInputTipMap.put(psSysRTDEFInputTip.getUniqueTag(), psSysRTDEFInputTip);
@@ -193,7 +193,7 @@ extends PSDEDataCtrl {
             selectContext.addSelectField("PSDEID");
             selectContext.setIsNotNull("MEMO");
             selectContext.set("PSSYSTEMID", (Object)"86E2A266-4D1E-49F0-A12D-D636905457A3");
-            ArrayList psDEFieldList = psDEFieldService.select((ISelectCond)selectContext);
+            ArrayList<PSDEField> psDEFieldList = psDEFieldService.select((ISelectCond)selectContext);
             HashMap<String, PSDEField> psDEFieldMap = new HashMap<String, PSDEField>();
             for (PSDEField psDEField : psDEFieldList) {
                 psDEFieldMap.put(psDEField.getPSDEFieldId(), psDEField);
@@ -207,7 +207,7 @@ extends PSDEDataCtrl {
             selectContext.addSelectField("PSDEFINPUTTIPID");
             selectContext.addSelectField("PSDENAME");
             selectContext.setIsNotNull("PSDEFID");
-            ArrayList psDEFInputTipList = psDEFInputTipService.select((ISelectCond)selectContext);
+            ArrayList<PSDEFInputTip> psDEFInputTipList = psDEFInputTipService.select((ISelectCond)selectContext);
             HashMap<String, PSDEFInputTip> psDEFInputTipMap = new HashMap<String, PSDEFInputTip>();
             HashMap<String, PSDEFInputTip> psDEFInputTipMap2 = new HashMap<String, PSDEFInputTip>();
             for (PSDEFInputTip pSDEFInputTip : psDEFInputTipList) {
@@ -235,13 +235,13 @@ extends PSDEDataCtrl {
                         psDEFInputTip.setDefaultFlag(Integer.valueOf(0));
                     }
                     psDEFInputTip.setCodeName("DefaultEx");
-                    psDEFInputTipService.create((IEntity)psDEFInputTip, false);
+                    psDEFInputTipService.create(psDEFInputTip, false);
                     log.info((Object)StringHelper.Format((String)"\u65b0\u5efa\u5c5e\u6027\u8f93\u5165\u63d0\u793a[%1$s|%2$s]", (Object)pSDEField.getPSDEName(), (Object)pSDEField.getPSDEFieldName()));
                 } else if (!DataObject.getBoolValue((Integer)psDEFInputTip.getValidFlag(), (boolean)true)) {
                     PSDEFInputTip psDEFInputTip2 = new PSDEFInputTip();
                     psDEFInputTip2.setPSDEFInputTipId(psDEFInputTip.getPSDEFInputTipId());
                     psDEFInputTip2.setValidFlag(Integer.valueOf(1));
-                    psDEFInputTipService.sysUpdate((IEntity)psDEFInputTip2, false);
+                    psDEFInputTipService.sysUpdate(psDEFInputTip2, false);
                     log.info((Object)StringHelper.Format((String)"\u66f4\u65b0\u5c5e\u6027\u8f93\u5165\u63d0\u793a[%1$s|%2$s]\u4e3a\u542f\u7528", (Object)pSDEField.getPSDEName(), (Object)pSDEField.getPSDEFieldName()));
                 }
                 PSSysRTDEFInputTip psSysRTDEFInputTip = (PSSysRTDEFInputTip)psSysRTDEFInputTipMap.remove(strTag);
@@ -249,13 +249,13 @@ extends PSDEDataCtrl {
                 PSSysRTDEFInputTip psSysRTDEFInputTip2 = new PSSysRTDEFInputTip();
                 psSysRTDEFInputTip2.setPSSysRTDEFInputTipId(psSysRTDEFInputTip.getPSSysRTDEFInputTipId());
                 psSysRTDEFInputTip2.setValidFlag(Integer.valueOf(0));
-                psSysRTDEFInputTipService.update((IEntity)psSysRTDEFInputTip2, false);
+                psSysRTDEFInputTipService.update(psSysRTDEFInputTip2, false);
             }
             for (Map.Entry entry : psDEFInputTipMap.entrySet()) {
                 PSDEFInputTip psDEFInputTip2 = new PSDEFInputTip();
                 psDEFInputTip2.setPSDEFInputTipId(((PSDEFInputTip)entry.getValue()).getPSDEFInputTipId());
                 psDEFInputTip2.setValidFlag(Integer.valueOf(0));
-                psDEFInputTipService.sysUpdate((IEntity)psDEFInputTip2, false);
+                psDEFInputTipService.sysUpdate(psDEFInputTip2, false);
             }
             for (Map.Entry entry : psSysRTDEFInputTipMap.entrySet()) {
                 PSSysRTDEFInputTip psSysRTDEFInputTip = (PSSysRTDEFInputTip)entry.getValue();
@@ -263,7 +263,7 @@ extends PSDEDataCtrl {
                 PSSysRTDEFInputTip psSysRTDEFInputTip2 = new PSSysRTDEFInputTip();
                 psSysRTDEFInputTip2.setPSSysRTDEFInputTipId(((PSSysRTDEFInputTip)entry.getValue()).getPSSysRTDEFInputTipId());
                 psSysRTDEFInputTip2.setValidFlag(Integer.valueOf(0));
-                psSysRTDEFInputTipService.update((IEntity)psSysRTDEFInputTip2, false);
+                psSysRTDEFInputTipService.update(psSysRTDEFInputTip2, false);
             }
             PSCoreSysServiceBase.endImpSysModel();
         }
@@ -321,7 +321,7 @@ extends PSDEDataCtrl {
             selectContext.setIsNotNull("UNIQUETAG");
             selectContext.setIsNotNull("PSDEFID");
             selectContext.set("VALIDFLAG", (Object)1);
-            ArrayList psDEFInputTipList = psDEFInputTipService.select((ISelectCond)selectContext);
+            ArrayList<PSDEFInputTip> psDEFInputTipList = psDEFInputTipService.select((ISelectCond)selectContext);
             PSDEFInputTipService psDEFInputTipService2 = (PSDEFInputTipService)ServiceGlobal.getService(PSDEFInputTipService.class, (SessionFactory)sessionFactory);
             selectContext.reset();
             selectContext.addSelectField("UNIQUETAG");
@@ -331,7 +331,7 @@ extends PSDEDataCtrl {
             selectContext.addSelectField("PSDEFINPUTTIPID");
             selectContext.addSelectField("PSDENAME");
             selectContext.setIsNotNull("PSDEFID");
-            ArrayList psDEFInputTipList2 = psDEFInputTipService2.select((ISelectCond)selectContext);
+            ArrayList<PSDEFInputTip> psDEFInputTipList2 = psDEFInputTipService2.select((ISelectCond)selectContext);
             HashMap<String, PSDEFInputTip> psDEFInputTipMap = new HashMap<String, PSDEFInputTip>();
             HashMap<String, PSDEFInputTip> psDEFInputTipMap2 = new HashMap<String, PSDEFInputTip>();
             for (PSDEFInputTip pSDEFInputTip : psDEFInputTipList2) {
@@ -360,7 +360,7 @@ extends PSDEDataCtrl {
                     }
                     psDEFInputTip.setCodeName("DefaultEx");
                     try {
-                        psDEFInputTipService2.create((IEntity)psDEFInputTip, false);
+                        psDEFInputTipService2.create(psDEFInputTip, false);
                         log.info((Object)StringHelper.Format((String)"\u5c5e\u6027\u8f93\u5165\u63d0\u793a[%1$s|%2$s]", (Object)pSDEFInputTip.getPSDEName(), (Object)pSDEFInputTip.getPSDEFName()));
                     }
                     catch (Exception ex) {
@@ -372,14 +372,14 @@ extends PSDEDataCtrl {
                 PSDEFInputTip psDEFInputTip2 = new PSDEFInputTip();
                 psDEFInputTip2.setPSDEFInputTipId(psDEFInputTip.getPSDEFInputTipId());
                 psDEFInputTip2.setValidFlag(Integer.valueOf(1));
-                psDEFInputTipService2.sysUpdate((IEntity)psDEFInputTip2, false);
+                psDEFInputTipService2.sysUpdate(psDEFInputTip2, false);
                 log.info((Object)StringHelper.Format((String)"\u66f4\u65b0\u5c5e\u6027\u8f93\u5165\u63d0\u793a[%1$s|%2$s]\u4e3a\u542f\u7528", (Object)pSDEFInputTip.getPSDEName(), (Object)pSDEFInputTip.getPSDEFName()));
             }
             for (Map.Entry entry : psDEFInputTipMap.entrySet()) {
                 PSDEFInputTip psDEFInputTip2 = new PSDEFInputTip();
                 psDEFInputTip2.setPSDEFInputTipId(((PSDEFInputTip)entry.getValue()).getPSDEFInputTipId());
                 psDEFInputTip2.setValidFlag(Integer.valueOf(0));
-                psDEFInputTipService.sysUpdate((IEntity)psDEFInputTip2, false);
+                psDEFInputTipService.sysUpdate(psDEFInputTip2, false);
             }
             PSCoreSysServiceBase.endImpSysModel();
         }
@@ -421,13 +421,13 @@ extends PSDEDataCtrl {
             PSDEDQCondService psDEDQCondService = (PSDEDQCondService)ServiceGlobal.getService(PSDEDQCondService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDataEntity psDataEntity = new PSDataEntity();
             psDataEntity.setPSDataEntityId("850bff46135ea742014684051bf67889");
-            psDataEntityService.get((IEntity)psDataEntity);
-            ArrayList psDEDataSets = psDataEntity.getPSDEDataSets();
-            ArrayList psDEDataQueries = psDataEntity.getPSDEDataQueries();
+            psDataEntityService.get(psDataEntity);
+            ArrayList<PSDEDataSet> psDEDataSets = psDataEntity.getPSDEDataSets();
+            ArrayList<PSDEDataQuery> psDEDataQueries = psDataEntity.getPSDEDataQueries();
             HashMap<String, String> psDEDQCondMap = new HashMap<String, String>();
             HashMap<String, String> psDEDataSetMap = new HashMap<String, String>();
             block2: for (PSDEDataQuery psDEDataQuery : psDEDataQueries) {
-                ArrayList psDEDQCondList = psDEDQCondService.selectByPSDEDQ((PSDEDataQueryBase)psDEDataQuery);
+                ArrayList<PSDEDQCond> psDEDQCondList = psDEDQCondService.selectByPSDEDQ((PSDEDataQueryBase)psDEDataQuery);
                 for (PSDEDQCond psDEDQCond : psDEDQCondList) {
                     if (StringHelper.Compare((String)psDEDQCond.getPSDEFName(), (String)"PLUGINTYPE", (boolean)false) != 0) continue;
                     psDEDQCondMap.put(psDEDQCond.getPSDEDQId(), psDEDQCond.getCondValue());
@@ -435,7 +435,7 @@ extends PSDEDataCtrl {
                 }
             }
             block4: for (PSDEDataSet psDEDataSet : psDEDataSets) {
-                ArrayList psDEDSDQs = psDEDataSet.getPSDEDSDQs();
+                ArrayList<PSDEDSDQ> psDEDSDQs = psDEDataSet.getPSDEDSDQs();
                 for (PSDEDSDQ psDEDSDQ : psDEDSDQs) {
                     String strValue = (String)psDEDQCondMap.get(psDEDSDQ.getPSDEDQId());
                     if (StringHelper.IsNullOrEmpty((String)strValue)) continue;
@@ -455,7 +455,7 @@ extends PSDEDataCtrl {
             selectContext.set("MAJORPSDEID", (Object)"850bff46135ea742014684051bf67889");
             selectContext.set("PSSYSTEMID", (Object)"86E2A266-4D1E-49F0-A12D-D636905457A3");
             PSDERService psDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            ArrayList psDERList = psDERService.select((ISelectCond)selectContext);
+            ArrayList<PSDER> psDERList = psDERService.select((ISelectCond)selectContext);
             for (PSDER psDER : psDERList) {
                 String strValue;
                 if (StringHelper.IsNullOrEmpty((String)psDER.getPSDEDataSetId()) || StringHelper.IsNullOrEmpty((String)(strValue = (String)psDEDataSetMap.get(psDER.getPSDEDataSetId())))) continue;
@@ -476,7 +476,7 @@ extends PSDEDataCtrl {
                 PSDEField psDEField2 = new PSDEField();
                 psDEField2.setPSDEFieldId(psDEField.getPSDEFieldId());
                 psDEField2.setMemo(strMemo);
-                psDEFieldService.sysUpdate((IEntity)psDEField2, false);
+                psDEFieldService.sysUpdate(psDEField2, false);
             }
             PSCoreSysServiceBase.endImpSysModel();
         }
@@ -500,7 +500,7 @@ extends PSDEDataCtrl {
             selectContext.addSelectField("PSDEID");
             selectContext.set("PSSYSTEMID", (Object)psSystem.getPSSystemId());
             selectContext.set("PREDEFINEVIEWTYPE", (Object)"EDITVIEW");
-            ArrayList psDEViewBaseList = psDEViewBaseService.select((ISelectCond)selectContext);
+            ArrayList<PSDEViewBase> psDEViewBaseList = psDEViewBaseService.select((ISelectCond)selectContext);
             HashMap<String, PSDEViewBase> psDEViewBaseMap = new HashMap<String, PSDEViewBase>();
             for (PSDEViewBase psDEViewBase : psDEViewBaseList) {
                 psDEViewBaseMap.put(psDEViewBase.getPSDEViewBaseId(), psDEViewBase);
@@ -509,7 +509,7 @@ extends PSDEDataCtrl {
             PSDEViewCtrlService psDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectContext.reset();
             selectContext.set("PSDEVIEWCTRLTYPE", (Object)"FORM");
-            ArrayList psDEViewCtrlList = psDEViewCtrlService.select((ISelectCond)selectContext);
+            ArrayList<PSDEViewCtrl> psDEViewCtrlList = psDEViewCtrlService.select((ISelectCond)selectContext);
             for (PSDEViewCtrl psDEViewCtrl : psDEViewCtrlList) {
                 PSDEViewBase psDEViewBase = (PSDEViewBase)psDEViewBaseMap.get(psDEViewCtrl.getPSDEViewBaseId());
                 if (psDEViewBase == null || StringHelper.IsNullOrEmpty((String)psDEViewCtrl.getPSDEFormId())) continue;
@@ -539,10 +539,10 @@ extends PSDEDataCtrl {
                 }
                 PSDEFGroup psDEFGroup = new PSDEFGroup();
                 psDEFGroup.setPSDEFGroupId(KeyValueHelper.genUniqueId((String)psDEViewBase.getPSDEId(), (String)strPredefinedParam));
-                if (psDEFGroupService.get((IEntity)psDEFGroup, true)) {
+                if (psDEFGroupService.get(psDEFGroup, true)) {
                     if (StringHelper.Compare((String)strPredefinedParam, (String)"_DEFAULT", (boolean)false) == 0 || StringHelper.IsNullOrEmpty((String)strName) || StringHelper.Compare((String)psDEFGroup.getPSDEFGroupName(), (String)strName, (boolean)false) == 0) continue;
                     psDEFGroup.setPSDEFGroupName(strName);
-                    psDEFGroupService.update((IEntity)psDEFGroup);
+                    psDEFGroupService.update(psDEFGroup);
                     continue;
                 }
                 if (!StringHelper.IsNullOrEmpty((String)strName)) {
@@ -558,7 +558,7 @@ extends PSDEDataCtrl {
                 psDEFGroup.setGroupType("FORMITEMS");
                 psDEFGroup.setPSDEFormId(psDEViewCtrl.getPSDEFormId());
                 try {
-                    psDEFGroupService.create((IEntity)psDEFGroup);
+                    psDEFGroupService.create(psDEFGroup);
                 }
                 catch (Exception ex) {
                     log.error((Object)ex);

@@ -54,7 +54,7 @@ extends PSDEFVRCondServiceBase {
     }
 
     public void getTemp(PSDEFVRCond pSDEFVRCond) throws Exception {
-        super.getTemp((IEntity)pSDEFVRCond);
+        super.getTemp(pSDEFVRCond);
         if ((StringHelper.compare((String)pSDEFVRCond.getCondType(), (String)"SIMPLE", (boolean)true) == 0 || StringHelper.compare((String)pSDEFVRCond.getCondType(), (String)"REGEX", (boolean)true) == 0 || StringHelper.compare((String)pSDEFVRCond.getCondType(), (String)"STRINGLENGTH", (boolean)true) == 0 || StringHelper.compare((String)pSDEFVRCond.getCondType(), (String)"VALUERANGE2", (boolean)true) == 0 || StringHelper.compare((String)pSDEFVRCond.getCondType(), (String)"VALUERANGE3", (boolean)true) == 0 || StringHelper.compare((String)pSDEFVRCond.getCondType(), (String)"SYSVALUERULE", (boolean)true) == 0) && StringHelper.isNullOrEmpty((String)pSDEFVRCond.getCustomDEFName()) && !StringHelper.isNullOrEmpty((String)pSDEFVRCond.getPSDEFName())) {
             pSDEFVRCond.setCustomDEFName(pSDEFVRCond.getPSDEFName());
             pSDEFVRCond.setPSDEFId(null);

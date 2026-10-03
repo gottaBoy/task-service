@@ -87,7 +87,7 @@ extends PSDevCenterBKTaskImplBase {
             psSysDevBKTask.setUseRobotFlag(Integer.valueOf(0));
             psSysDevBKTask.setPSDCRobotId("AUTO");
             psSysDevBKTask.setPSDCRobotName("(\u81ea\u52a8)");
-            psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+            psSysDevBKTaskService.create(psSysDevBKTask);
             parentPSSysDevBKTask = psSysDevBKTask;
             boolean bPubPFCode = true;
             boolean bPubSFCode = true;
@@ -123,7 +123,7 @@ extends PSDevCenterBKTaskImplBase {
             psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
             psSysDevBKTask2.setPSDCRobotId("AUTO");
             psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-            psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+            psSysDevBKTaskService.create(psSysDevBKTask2, false);
             psSysDevBKTask2.set("needtime", (Object)30);
             psSysDevBKTaskList.add(psSysDevBKTask2);
             ++nTaskOrder;
@@ -142,7 +142,7 @@ extends PSDevCenterBKTaskImplBase {
             psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
             psSysDevBKTask2.setPSDCRobotId("AUTO");
             psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-            psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+            psSysDevBKTaskService.create(psSysDevBKTask2, false);
             psSysDevBKTask2.set("needtime", (Object)30);
             psSysDevBKTaskList.add(psSysDevBKTask2);
             if (bPubSFCode) {
@@ -162,7 +162,7 @@ extends PSDevCenterBKTaskImplBase {
                 psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                 psSysDevBKTask2.setPSDCRobotId("AUTO");
                 psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                psSysDevBKTaskService.create(psSysDevBKTask2, false);
                 psSysDevBKTask2.set("needtime", (Object)60);
                 psSysDevBKTaskList.add(psSysDevBKTask2);
             }
@@ -183,7 +183,7 @@ extends PSDevCenterBKTaskImplBase {
                 psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                 psSysDevBKTask2.setPSDCRobotId("AUTO");
                 psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                psSysDevBKTaskService.create(psSysDevBKTask2, false);
                 psSysDevBKTask2.set("needtime", (Object)60);
                 psSysDevBKTaskList.add(psSysDevBKTask2);
             }
@@ -204,7 +204,7 @@ extends PSDevCenterBKTaskImplBase {
                 psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                 psSysDevBKTask2.setPSDCRobotId("AUTO");
                 psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                psSysDevBKTaskService.create(psSysDevBKTask2, false);
                 psSysDevBKTask2.set("needtime", (Object)30);
                 psSysDevBKTaskList.add(psSysDevBKTask2);
                 if (!StringHelper.IsNullOrEmpty((String)psSysRunSession.getPSSysAppId())) {
@@ -224,7 +224,7 @@ extends PSDevCenterBKTaskImplBase {
                     psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                     psSysDevBKTask2.setPSDCRobotId("AUTO");
                     psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask2, false);
                     psSysDevBKTask2.set("needtime", (Object)30);
                     psSysDevBKTaskList.add(psSysDevBKTask2);
                 }
@@ -245,7 +245,7 @@ extends PSDevCenterBKTaskImplBase {
                     psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                     psSysDevBKTask2.setPSDCRobotId("AUTO");
                     psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask2, false);
                     psSysDevBKTask2.set("needtime", (Object)60);
                     psSysDevBKTaskList.add(psSysDevBKTask2);
                 }
@@ -266,7 +266,7 @@ extends PSDevCenterBKTaskImplBase {
                     psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                     psSysDevBKTask2.setPSDCRobotId("AUTO");
                     psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask2, false);
                     psSysDevBKTask2.set("needtime", (Object)60);
                     psSysDevBKTaskList.add(psSysDevBKTask2);
                 }
@@ -291,7 +291,7 @@ extends PSDevCenterBKTaskImplBase {
                 psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                 psSysDevBKTask2.setPSDCRobotId("AUTO");
                 psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                psSysDevBKTaskService.create(psSysDevBKTask2, false);
                 psSysDevBKTask2.set("needtime", (Object)60);
                 psSysDevBKTaskList.add(psSysDevBKTask2);
             }
@@ -312,7 +312,7 @@ extends PSDevCenterBKTaskImplBase {
                 psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                 psSysDevBKTask2.setPSDCRobotId("AUTO");
                 psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                psSysDevBKTaskService.create(psSysDevBKTask2, false);
                 psSysDevBKTask2.set("needtime", (Object)60);
                 psSysDevBKTaskList.add(psSysDevBKTask2);
             }
@@ -333,7 +333,7 @@ extends PSDevCenterBKTaskImplBase {
                 psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                 psSysDevBKTask2.setPSDCRobotId("AUTO");
                 psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                psSysDevBKTaskService.create(psSysDevBKTask2, false);
                 psSysDevBKTask2.set("needtime", (Object)60);
                 psSysDevBKTaskList.add(psSysDevBKTask2);
             }
@@ -354,7 +354,7 @@ extends PSDevCenterBKTaskImplBase {
                 psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                 psSysDevBKTask2.setPSDCRobotId("AUTO");
                 psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                psSysDevBKTaskService.create(psSysDevBKTask2, false);
                 psSysDevBKTask2.set("needtime", (Object)20);
                 psSysDevBKTaskList.add(psSysDevBKTask2);
             }
@@ -375,7 +375,7 @@ extends PSDevCenterBKTaskImplBase {
                 psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                 psSysDevBKTask2.setPSDCRobotId("AUTO");
                 psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                psSysDevBKTaskService.create(psSysDevBKTask2, false);
                 psSysDevBKTask2.set("needtime", (Object)90);
                 psSysDevBKTaskList.add(psSysDevBKTask2);
             }
@@ -396,7 +396,7 @@ extends PSDevCenterBKTaskImplBase {
                 psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                 psSysDevBKTask2.setPSDCRobotId("AUTO");
                 psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                psSysDevBKTaskService.create(psSysDevBKTask2, false);
                 psSysDevBKTask2.set("needtime", (Object)30);
                 psSysDevBKTaskList.add(psSysDevBKTask2);
             }
@@ -422,7 +422,7 @@ extends PSDevCenterBKTaskImplBase {
                 psSysDevBKTask2.setUseRobotFlag(Integer.valueOf(0));
                 psSysDevBKTask2.setPSDCRobotId("AUTO");
                 psSysDevBKTask2.setPSDCRobotName("(\u81ea\u52a8)");
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask2, false);
+                psSysDevBKTaskService.create(psSysDevBKTask2, false);
                 psSysDevBKTask2.set("needtime", (Object)120);
                 psSysDevBKTaskList.add(psSysDevBKTask2);
             }
@@ -431,25 +431,25 @@ extends PSDevCenterBKTaskImplBase {
                 SelectCond selectCond = new SelectCond();
                 selectCond.set("PSSYSTEMID", (Object)psSysRunSession.getPSSystemId());
                 selectCond.set("RUNSTATE", (Object)20);
-                ArrayList psSysRunSessionList = psSysRunSessionService.select((ISelectCond)selectCond);
+                ArrayList<PSSysRunSession> psSysRunSessionList = psSysRunSessionService.select((ISelectCond)selectCond);
                 for (PSSysRunSession lastRunSession : psSysRunSessionList) {
                     PSSysRunSession updateItem = new PSSysRunSession();
                     updateItem.setPSSysRunSessionId(lastRunSession.getPSSysRunSessionId());
                     updateItem.setRunState(Integer.valueOf(30));
                     updateItem.setEndTime(new Timestamp(System.currentTimeMillis()));
-                    psSysRunSessionService.update((IEntity)updateItem);
+                    psSysRunSessionService.update(updateItem);
                 }
                 PSSysRunSession updateItem = new PSSysRunSession();
                 updateItem.setPSSysRunSessionId(psSysRunSession.getPSSysRunSessionId());
                 updateItem.setRunState(Integer.valueOf(20));
                 updateItem.setStartTime(new Timestamp(System.currentTimeMillis()));
-                psSysRunSessionService.update((IEntity)updateItem);
+                psSysRunSessionService.update(updateItem);
             } else {
                 PSSysRunSession updateItem = new PSSysRunSession();
                 updateItem.setPSSysRunSessionId(psSysRunSession.getPSSysRunSessionId());
                 updateItem.setRunState(Integer.valueOf(30));
                 updateItem.setStartTime(new Timestamp(System.currentTimeMillis()));
-                psSysRunSessionService.update((IEntity)updateItem);
+                psSysRunSessionService.update(updateItem);
             }
             int nTotalTime = 0;
             for (PSSysDevBKTask psSysDevBKTask3 : psSysDevBKTaskList) {
@@ -469,4 +469,3 @@ extends PSDevCenterBKTaskImplBase {
         this.runPSSysDevBKTask(iPSDevSlnSys, parentPSSysDevBKTask);
     }
 }
-

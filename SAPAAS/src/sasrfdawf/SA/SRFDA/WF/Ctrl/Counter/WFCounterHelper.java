@@ -85,7 +85,7 @@ extends BaseCounterHelper {
         sql.Append("\tLEFT JOIN T_SRFWFSTEPDATA t5 ON (t5.ACTORID=T4.ACTORID and  t5.WFSTEPID = t2.ACTIVESTEPID AND t5.CONNECTIONNAME<>'SRFWFRESUBMIT'   AND t5.CONNECTIONNAME <> 'SRFWFTIMEOUT')\r\n");
         sql.Append("\twhere t5.WFSTEPDATAID IS NULL AND t4.ACTORID='%1$s' AND t3.WFWORKFLOWID='%2$s' AND t2.USERDATA4='%3$s'\r\n", (Object)iDAActionContext.getWebContext().getCurUserId(), (Object)strWFID, (Object)strDEID);
         sql.Append(") a GROUP BY WFSTEPNAME\r\n");
-        Vector list = new Vector();
+        Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)iDAActionContext.getWebContext().getGlobalHelper(), (String)sql.toString(), null, list, (String)"");
         if (callResult.getRetCode() != 0) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u6d41\u7a0b\u5de5\u4f5c\u6570\u5931\u8d25\uff0c%1$s", (Object)callResult.getErrorInfo()));

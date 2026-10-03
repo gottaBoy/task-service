@@ -27,7 +27,7 @@ extends PSCodeItemServiceBase {
 
     @Override
     protected void onInitPSSysImage(PSCodeItem pSCodeItem) throws Exception {
-        this.autoGet((IEntity)pSCodeItem);
+        this.autoGet(pSCodeItem);
         if (!StringHelper.isNullOrEmpty((String)pSCodeItem.getPSSysImageId())) {
             return;
         }
@@ -56,8 +56,8 @@ extends PSCodeItemServiceBase {
         catch (Exception exception) {
             throw new Exception(StringHelper.format((String)"\u521b\u5efa\u7cfb\u7edf\u56fe\u7247\u8d44\u6e90\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
         }
-        if (this.isTempData((IEntity)pSCodeItem)) {
-            this.updateTemp((IEntity)pSCodeItem);
+        if (this.isTempData(pSCodeItem)) {
+            this.updateTemp(pSCodeItem);
         } else {
             this.update(pSCodeItem);
         }

@@ -195,10 +195,10 @@ implements IPSSysReqItemService {
 
     @Override
     protected List<PSSysReqItem> onListAll() throws Exception {
-        List pssystems;
-        List psmodules;
+        List<PSSystem> pssystems;
+        List<PSModule> psmodules;
         ArrayList<PSSysReqItem> list = new ArrayList<PSSysReqItem>();
-        List pssysreqmodules = PSModelServiceUtil.getInstance().getPSSysReqModuleService().listAll();
+        List<PSSysReqModule> pssysreqmodules = PSModelServiceUtil.getInstance().getPSSysReqModuleService().listAll();
         if (pssysreqmodules != null) {
             for (PSSysReqModule parent : pssysreqmodules) {
                 List<PSSysReqItem> items = this.listByPSSysReqModule(parent);

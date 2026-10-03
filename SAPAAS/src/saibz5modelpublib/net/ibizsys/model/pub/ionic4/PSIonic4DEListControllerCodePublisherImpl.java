@@ -1,37 +1,97 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSDEList
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.ionic4;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.ionic4.PSIonic4CtrlCodePublisherImpl;
 
-public class PSIonic4DEListControllerCodePublisherImpl
-extends PSIonic4CtrlCodePublisherImpl {
-    protected IPSDEList iPSDEList;
-    public static final String CTRLPART_RECORD = "RECORD";
-    public static final String CTRLPART_COLUMN = "COLUMN";
-    public static final String CTRLPART_STORE = "STORE";
+import SA.SRFDA.PS.Core.Control.List.IPSDEList;
+import SA.SRFDA.PS.Core.Control.List.IPSDEListItem;
+import SA.SRFDA.PS.Core.PF.IPSPFCtrlTempl;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlCodePublisher;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
 
-    public PSIonic4DEListControllerCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSIonic4DEListControllerCodePublisherImpl is inconsistent\n\tIPSDEList cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSIonic4DEListControllerCodePublisherImpl must override or implement a supertype method\n\tIPSDEList cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSIonic4CtrlCodePublisherImpl\n\tIPSDEList cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSDEList cannot be resolved to a type\n\tIPSPFCtrlTempl cannot be resolved to a type\n\tiPSPFStyle cannot be resolved\n\tIPSDEList cannot be resolved to a type\n\tThe method getPSPFPubCode() is undefined for the type PSIonic4DEListControllerCodePublisherImpl\n\tIPSPFCtrlCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved or is not a field\n\tIPSDEList cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEListItem cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tIPSDEListItem cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEList cannot be resolved to a type\n\tThe method onClose() of type PSIonic4DEListControllerCodePublisherImpl must override or implement a supertype method\n\tIPSDEList cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSIonic4CtrlCodePublisherImpl\n");
-    }
+/**
+ * 列表控制代码
+ * @author Administrator
+ *
+ */
+public class PSIonic4DEListControllerCodePublisherImpl extends PSIonic4CtrlCodePublisherImpl
+{
+	protected IPSDEList iPSDEList = null;
+	
+	public final static String CTRLPART_RECORD = "RECORD";
+	
+	public final static String CTRLPART_COLUMN = "COLUMN";
+	
+	public final static String CTRLPART_STORE = "STORE";
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSDEList = (IPSDEList)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSIonic4DEListControllerCodePublisherImpl must override or implement a supertype method\n\tIPSDEList cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSIonic4CtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSDEList = (IPSDEList)this.iPSControl;
+		
+		if(this.iPSDEList.getItemPSSysLayoutPanel()!=null){
+			IPSPFCtrlTempl iPSPFCtrlTempl = iPSPFStyle.getPSPFCtrlTempl(this.iPSDEList.getItemPSSysLayoutPanel().getPSControlType(), this.getPSPFPubCode());
+			if(iPSPFCtrlTempl!=null)
+			{
+				HashMap<String,Object> panelParams = new HashMap<String,Object>();
+				panelParams.put("srfctrl", params.get("srfctrl"));
+				IPSPFCtrlCodePublisher iPSPFCtrlCodePublisher = iPSPFCtrlTempl.getPSPFCtrlCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlCodePublisher.generateCode(this.iPSPublisherContext, this.iPSDEList.getItemPSSysLayoutPanel(),panelParams);
+				if(iPSGenerateCodeResult!=null)
+				{
+					params.put(this.iPSDEList.getItemPSSysLayoutPanel().getName(), iPSGenerateCodeResult);
+				}
+				iPSPFCtrlCodePublisher.close();
+			}
+		}
+		
+		
+		if(true)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_COLUMN).getPSPFCtrlPartCodePublisher();
+			ArrayList<IPSGenerateCodeResult> gridColumnList = new ArrayList<IPSGenerateCodeResult> ();
+			java.util.Iterator<IPSDEListItem> psDEListItems = 	iPSDEList.getPSDEListItems();
+			while(psDEListItems.hasNext())
+			{
+				IPSDEListItem iPSDEListItem = psDEListItems.next();
+				
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, iPSDEList,iPSDEListItem);
+				gridColumnList.add(iPSGenerateCodeResult);
+			}
+			
+			iPSPFCtrlPartCodePublisher.close();
+			
+			params.put("columns", gridColumnList);
+		}
+		
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDEList cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSDEList cannot be resolved to a type\n\tIPSPFCtrlTempl cannot be resolved to a type\n\tiPSPFStyle cannot be resolved\n\tIPSDEList cannot be resolved to a type\n\tThe method getPSPFPubCode() is undefined for the type PSIonic4DEListControllerCodePublisherImpl\n\tIPSPFCtrlCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved or is not a field\n\tIPSDEList cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEListItem cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tIPSDEListItem cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEList cannot be resolved to a type\n");
-    }
-
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSIonic4DEListControllerCodePublisherImpl must override or implement a supertype method\n\tIPSDEList cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSIonic4CtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSDEList = null;
+		super.onClose();
+	}
+	
 }
-

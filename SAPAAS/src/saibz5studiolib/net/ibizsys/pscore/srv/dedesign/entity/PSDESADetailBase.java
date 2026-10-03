@@ -3704,7 +3704,7 @@ implements Serializable {
                 PSDEAction pSDEAction = new PSDEAction();
                 pSDEAction.setPSDEActionId(this.getPSDEActionId());
                 PSDEActionService pSDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionService.autoGet((IEntity)pSDEAction);
+                pSDEActionService.autoGet(pSDEAction);
                 this.psdeaction = pSDEAction;
             }
             return this.psdeaction;
@@ -3730,7 +3730,7 @@ implements Serializable {
                 PSDEDataQuery pSDEDataQuery = new PSDEDataQuery();
                 pSDEDataQuery.setPSDEDataQueryId(this.getPSDEDQId());
                 PSDEDataQueryService pSDEDataQueryService = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataQueryService.autoGet((IEntity)pSDEDataQuery);
+                pSDEDataQueryService.autoGet(pSDEDataQuery);
                 this.psdedq = pSDEDataQuery;
             }
             return this.psdedq;
@@ -3756,7 +3756,7 @@ implements Serializable {
                 PSDEDataSet pSDEDataSet = new PSDEDataSet();
                 pSDEDataSet.setPSDEDataSetId(this.getPSDEDSId());
                 PSDEDataSetService pSDEDataSetService = (PSDEDataSetService)ServiceGlobal.getService(PSDEDataSetService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataSetService.autoGet((IEntity)pSDEDataSet);
+                pSDEDataSetService.autoGet(pSDEDataSet);
                 this.psdeds = pSDEDataSet;
             }
             return this.psdeds;
@@ -3782,7 +3782,7 @@ implements Serializable {
                 PSDEOPPriv pSDEOPPriv = new PSDEOPPriv();
                 pSDEOPPriv.setPSDEOPPrivId(this.getPSDEOPPrivId());
                 PSDEOPPrivService pSDEOPPrivService = (PSDEOPPrivService)ServiceGlobal.getService(PSDEOPPrivService.class, (SessionFactory)this.getSessionFactory());
-                pSDEOPPrivService.autoGet((IEntity)pSDEOPPriv);
+                pSDEOPPrivService.autoGet(pSDEOPPriv);
                 this.psdeoppriv = pSDEOPPriv;
             }
             return this.psdeoppriv;
@@ -3808,7 +3808,7 @@ implements Serializable {
                 PSDESARS pSDESARS = new PSDESARS();
                 pSDESARS.setPSDESARSId(this.getPSDESARSId());
                 PSDESARSService pSDESARSService = (PSDESARSService)ServiceGlobal.getService(PSDESARSService.class, (SessionFactory)this.getSessionFactory());
-                pSDESARSService.autoGet((IEntity)pSDESARS);
+                pSDESARSService.autoGet(pSDESARS);
                 this.psdesars = pSDESARS;
             }
             return this.psdesars;
@@ -3834,7 +3834,7 @@ implements Serializable {
                 PSDEServiceAPI pSDEServiceAPI = new PSDEServiceAPI();
                 pSDEServiceAPI.setPSDEServiceAPIId(this.getInPSDEServiceAPIId());
                 PSDEServiceAPIService pSDEServiceAPIService = (PSDEServiceAPIService)ServiceGlobal.getService(PSDEServiceAPIService.class, (SessionFactory)this.getSessionFactory());
-                pSDEServiceAPIService.autoGet((IEntity)pSDEServiceAPI);
+                pSDEServiceAPIService.autoGet(pSDEServiceAPI);
                 this.inpsdeserviceapi = pSDEServiceAPI;
             }
             return this.inpsdeserviceapi;
@@ -3860,7 +3860,7 @@ implements Serializable {
                 PSDEServiceAPI pSDEServiceAPI = new PSDEServiceAPI();
                 pSDEServiceAPI.setPSDEServiceAPIId(this.getOutPSDEServiceAPIId());
                 PSDEServiceAPIService pSDEServiceAPIService = (PSDEServiceAPIService)ServiceGlobal.getService(PSDEServiceAPIService.class, (SessionFactory)this.getSessionFactory());
-                pSDEServiceAPIService.autoGet((IEntity)pSDEServiceAPI);
+                pSDEServiceAPIService.autoGet(pSDEServiceAPI);
                 this.outpsdeserviceapi = pSDEServiceAPI;
             }
             return this.outpsdeserviceapi;
@@ -3886,7 +3886,7 @@ implements Serializable {
                 PSDEServiceAPI pSDEServiceAPI = new PSDEServiceAPI();
                 pSDEServiceAPI.setPSDEServiceAPIId(this.getPSDEServiceAPIId());
                 PSDEServiceAPIService pSDEServiceAPIService = (PSDEServiceAPIService)ServiceGlobal.getService(PSDEServiceAPIService.class, (SessionFactory)this.getSessionFactory());
-                pSDEServiceAPIService.autoGet((IEntity)pSDEServiceAPI);
+                pSDEServiceAPIService.autoGet(pSDEServiceAPI);
                 this.psdeserviceapi = pSDEServiceAPI;
             }
             return this.psdeserviceapi;
@@ -3912,7 +3912,7 @@ implements Serializable {
                 PSSysSFPlugin pSSysSFPlugin = new PSSysSFPlugin();
                 pSSysSFPlugin.setPSSysSFPluginId(this.getPSSysSFPluginId());
                 PSSysSFPluginService pSSysSFPluginService = (PSSysSFPluginService)ServiceGlobal.getService(PSSysSFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPluginService.autoGet((IEntity)pSSysSFPlugin);
+                pSSysSFPluginService.autoGet(pSSysSFPlugin);
                 this.pssyssfplugin = pSSysSFPlugin;
             }
             return this.pssyssfplugin;
@@ -3934,7 +3934,7 @@ implements Serializable {
         Integer n = this.objPSDESADetailParamsLock;
         synchronized (n) {
             if (this.psdesadetailparams == null) {
-                this.psdesadetailparams = pSDESADetailService.isTempData((IEntity)this) ? pSDESADetailParamService.selectTempByPSDESADetail(this) : pSDESADetailParamService.selectByPSDESADetail(this);
+                this.psdesadetailparams = pSDESADetailService.isTempData(this) ? pSDESADetailParamService.selectTempByPSDESADetail(this) : pSDESADetailParamService.selectByPSDESADetail(this);
             }
             return this.psdesadetailparams;
         }

@@ -193,14 +193,14 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
             PSSysSearchScheme pSSysSearchScheme = (PSSysSearchScheme)iService.getDEModel().createEntity();
             pSSysSearchScheme.set("PSSYSSEARCHSCHEMEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSearchScheme);
+                iService.getTemp(pSSysSearchScheme);
             } else {
-                iService.get((IEntity)pSSysSearchScheme);
+                iService.get(pSSysSearchScheme);
             }
             this.onFillParentInfo_PSSysSearchScheme(pSSysSearchDoc, pSSysSearchScheme);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysSearchDoc, string, string2, string3);
+        super.onFillParentInfo(pSSysSearchDoc, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -216,7 +216,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
         if (bl && pSSysSearchDoc.getValidFlag() == null) {
             pSSysSearchDoc.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysSearchDoc, bl);
+        super.onFillEntityFullInfo(pSSysSearchDoc, bl);
         this.onFillEntityFullInfo_PSSysSearchScheme(pSSysSearchDoc, bl);
     }
 
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
     }
 
     protected void onWriteBackParent(PSSysSearchDoc pSSysSearchDoc, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysSearchDoc, bl);
+        super.onWriteBackParent(pSSysSearchDoc, bl);
     }
 
     public ArrayList<PSSysSearchDoc> selectByPSSysSearchScheme(PSSysSearchSchemeBase pSSysSearchSchemeBase) throws Exception {
@@ -255,8 +255,8 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
         ArrayList<PSSysSearchDoc> arrayList = this.selectByPSSysSearchScheme(pSSysSearchScheme, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSEARCHSCHEME");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSearchScheme);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHDOC_PSSYSSEARCHSCHEME_PSSYSSEARCHSCHEMEID", "", iDataEntityModel.getName(), "PSSYSSEARCHDOC", iDataEntityModel.getDataInfo((IEntity)pSSysSearchScheme), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSearchScheme);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSSEARCHDOC_PSSYSSEARCHSCHEME_PSSYSSEARCHSCHEMEID", "", iDataEntityModel.getName(), "PSSYSSEARCHDOC", iDataEntityModel.getDataInfo(pSSysSearchScheme), arrayList.get(0)));
         }
     }
 
@@ -289,7 +289,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
         ArrayList<PSSysSearchDoc> arrayList = this.selectByPSSysSearchScheme(pSSysSearchScheme);
         this.onBeforeRemoveByPSSysSearchScheme(pSSysSearchScheme, arrayList);
         for (PSSysSearchDoc pSSysSearchDoc : arrayList) {
-            this.remove((IEntity)pSSysSearchDoc);
+            this.remove(pSSysSearchDoc);
         }
         this.onAfterRemoveByPSSysSearchScheme(pSSysSearchScheme, arrayList);
     }
@@ -319,14 +319,14 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
 
     protected void replaceParentInfo(PSSysSearchDoc pSSysSearchDoc, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysSearchDoc, cloneSession);
+        super.replaceParentInfo(pSSysSearchDoc, cloneSession);
         if (pSSysSearchDoc.getPSSysSearchSchemeId() != null && (iEntity = cloneSession.getEntity("PSSYSSEARCHSCHEME", (Object)pSSysSearchDoc.getPSSysSearchSchemeId())) != null) {
             this.onFillParentInfo_PSSysSearchScheme(pSSysSearchDoc, (PSSysSearchScheme)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSysSearchDoc pSSysSearchDoc, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysSearchDoc, bl);
+        super.onRemoveEntityUncopyValues(pSSysSearchDoc, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysSearchDoc pSSysSearchDoc, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -386,7 +386,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysSearchDoc, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysSearchDoc, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysSearchDoc, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSSysSearchDoc pSSysSearchDoc, boolean bl2, boolean bl3) throws Exception {
@@ -402,7 +402,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -441,7 +441,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DefaultMode_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string = this.onTestValueRule_DefaultMode_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTMODE");
@@ -463,7 +463,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DocParams_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_DocParams_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOCPARAMS");
@@ -485,7 +485,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DocTag_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_DocTag_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOCTAG");
@@ -507,7 +507,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DocTag2_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_DocTag2_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOCTAG2");
@@ -529,7 +529,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -551,7 +551,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -576,7 +576,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchDocId_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchDocId_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHDOCID");
@@ -601,7 +601,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchDocName_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchDocName_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHDOCNAME");
@@ -643,7 +643,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchSchemeId_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchSchemeId_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHSCHEMEID");
@@ -665,7 +665,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Replicas_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string = this.onTestValueRule_Replicas_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REPLICAS");
@@ -687,7 +687,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Shards_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string = this.onTestValueRule_Shards_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SHARDS");
@@ -709,7 +709,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -731,7 +731,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -753,7 +753,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -775,7 +775,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -797,7 +797,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -822,7 +822,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysSearchDoc, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysSearchDoc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -835,11 +835,11 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
     }
 
     protected void onSyncEntity(PSSysSearchDoc pSSysSearchDoc, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysSearchDoc, bl);
+        super.onSyncEntity(pSSysSearchDoc, bl);
     }
 
     protected void onSyncIndexEntities(PSSysSearchDoc pSSysSearchDoc, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysSearchDoc, bl);
+        super.onSyncIndexEntities(pSSysSearchDoc, bl);
     }
 
     public Object getDataContextValue(PSSysSearchDoc pSSysSearchDoc, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -847,7 +847,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysSearchDoc, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysSearchDoc, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysSearchScheme pSSysSearchScheme = pSSysSearchDoc.getPSSysSearchScheme();
@@ -858,7 +858,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
     }
 
     protected void onExportMajorModel(PSSysSearchDoc pSSysSearchDoc, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysSearchDoc, arrayList, n);
+        super.onExportMajorModel(pSSysSearchDoc, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1169,14 +1169,14 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
 
     protected boolean onMergeChild(String string, String string2, PSSysSearchDoc pSSysSearchDoc) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysSearchDoc)) {
+        if (super.onMergeChild(string, string2, pSSysSearchDoc)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysSearchDoc pSSysSearchDoc) throws Exception {
-        super.onUpdateParent((IEntity)pSSysSearchDoc);
+        super.onUpdateParent(pSSysSearchDoc);
     }
 
     @Override
@@ -1335,41 +1335,27 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
     protected void onExportCurModelV2(PSSysSearchDoc pSSysSearchDoc, ObjectNode objectNode, String string, boolean bl) throws Exception {
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSSEARCHFIELD_PSSYSSEARCHDOC_PSSYSSEARCHDOCID")) {
-            Object object;
-            PSSysSearchField pSSysSearchField2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSSysSearchFieldService pSSysSearchFieldService = (PSSysSearchFieldService)ServiceGlobal.getService(PSSysSearchFieldService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSSysSearchField> arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSSEARCHDOC#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSSEARCHFIELD", (Object)pSSysSearchDoc.getPSSysSearchDocId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSSysSearchField2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSSysSearchField2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysSearchField>();
-                object4 = pSSysSearchFieldService.selectByPSSysSearchDoc(pSSysSearchDoc);
-                object3 = StringHelper.format((String)"PSSYSSEARCHDOC#%1$s", (Object)pSSysSearchDoc.getPSSysSearchDocId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSSysSearchField2 = object2.next();
-                    object = pSSysSearchFieldService.getModelV2ResScope((IEntity)pSSysSearchField2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysSearchField)PSModelV2Helper.toJSONObject((IEntity)pSSysSearchField2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSSEARCHDOC#%1$s", (Object)pSSysSearchDoc.getPSSysSearchDocId());
+                for (PSSysSearchField pSSysSearchField : pSSysSearchFieldService.selectByPSSysSearchDoc(pSSysSearchDoc)) {
+                    if (StringHelper.compare(scope, pSSysSearchFieldService.getModelV2ResScope(pSSysSearchField), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(pSSysSearchField, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSSysSearchFieldService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode fields = objectNode.putArray(pSSysSearchFieldService.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -1397,10 +1383,10 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSSysSearchField pSSysSearchField2 : arrayList) {
-                    object = new PSSysSearchField();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSSysSearchField2, false);
-                    object3.add((JsonNode)pSSysSearchFieldService.exportModelV2(object, string));
+                for (ObjectNode fieldNode : arrayList) {
+                    PSSysSearchField pSSysSearchField = new PSSysSearchField();
+                    PSModelV2Helper.fromJSONObject(pSSysSearchField, fieldNode, false);
+                    fields.add(pSSysSearchFieldService.exportModelV2(pSSysSearchField, string));
                 }
             }
         }
@@ -1483,7 +1469,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
             PSSysSearchFieldService pSSysSearchFieldService = (PSSysSearchFieldService)ServiceGlobal.getService(PSSysSearchFieldService.class, (SessionFactory)this.getSessionFactory());
             PSSysSearchField pSSysSearchField = new PSSysSearchField();
             pSSysSearchField.setPSSysSearchFieldId(pSMOSFile.getPSModelId());
-            if (!pSSysSearchFieldService.get((IEntity)pSSysSearchField, true)) {
+            if (!pSSysSearchFieldService.get(pSSysSearchField, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysSearchField.getPSSysSearchDocId(), (String)pSSysSearchDoc.getPSSysSearchDocId(), (boolean)false) == 0) {
@@ -1491,12 +1477,12 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
             }
             ObjectNode objectNode = pSSysSearchFieldService.exportModelV2(pSSysSearchField);
             pSSysSearchField.reset();
-            if (!pSSysSearchFieldService.setModelV2ResScope((IEntity)pSSysSearchField, "PSSYSSEARCHDOC", pSSysSearchDoc.getPSSysSearchDocId())) {
+            if (!pSSysSearchFieldService.setModelV2ResScope(pSSysSearchField, "PSSYSSEARCHDOC", pSSysSearchDoc.getPSSysSearchDocId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysSearchFieldService.importModelV2(pSSysSearchField, objectNode);
             SessionFactoryManager.commit();
-            return pSSysSearchFieldService.getFile((IEntity)pSSysSearchField);
+            return pSSysSearchFieldService.getFile(pSSysSearchField);
         }
         return null;
     }
@@ -1591,7 +1577,7 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
     @Override
     protected PSMOSFile[] onListDRDataFolders(PSMOSFile pSMOSFile, String string, String string2, IPSMOSFileFilter iPSMOSFileFilter, boolean bl) throws Exception {
         PSMOSFile pSMOSFile2;
-        ArrayList arrayList;
+        ArrayList<? extends IEntity> arrayList;
         SelectContext selectContext;
         PSCoreSysServiceBase pSCoreSysServiceBase;
         ArrayList<PSMOSFile> arrayList2 = new ArrayList<PSMOSFile>();
@@ -1599,8 +1585,8 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
             pSCoreSysServiceBase = (PSSysSearchFieldService)ServiceGlobal.getService(PSSysSearchFieldService.class, (SessionFactory)this.getSessionFactory());
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSSEARCHFIELD_PSSYSSEARCHDOC_PSSYSSEARCHDOCID", "PSSYSSEARCHDOCID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            for (IEntity entityBase : arrayList) {
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -1609,8 +1595,8 @@ extends PSCoreSysServiceBase<PSSysSearchDoc> {
             pSCoreSysServiceBase = (PSSysSearchDEService)ServiceGlobal.getService(PSSysSearchDEService.class, (SessionFactory)this.getSessionFactory());
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSSEARCHDE_PSSYSSEARCHDOC_PSSYSSEARCHDOCID", "PSSYSSEARCHDOCID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            for (IEntity entityBase : arrayList) {
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }

@@ -2547,7 +2547,7 @@ implements Serializable {
                 PSBKTaskLog pSBKTaskLog = new PSBKTaskLog();
                 pSBKTaskLog.setPSBKTaskLogId(this.getPPSBKTaskLogId());
                 PSBKTaskLogService pSBKTaskLogService = (PSBKTaskLogService)ServiceGlobal.getService(PSBKTaskLogService.class, (SessionFactory)this.getSessionFactory());
-                pSBKTaskLogService.autoGet((IEntity)pSBKTaskLog);
+                pSBKTaskLogService.autoGet(pSBKTaskLog);
                 this.ppsbktasklog = pSBKTaskLog;
             }
             return this.ppsbktasklog;
@@ -2573,7 +2573,7 @@ implements Serializable {
                 PSDCRobot pSDCRobot = new PSDCRobot();
                 pSDCRobot.setPSDCRobotId(this.getPSDCRobotId());
                 PSDCRobotService pSDCRobotService = (PSDCRobotService)ServiceGlobal.getService(PSDCRobotService.class, (SessionFactory)this.getSessionFactory());
-                pSDCRobotService.autoGet((IEntity)pSDCRobot);
+                pSDCRobotService.autoGet(pSDCRobot);
                 this.psdcrobot = pSDCRobot;
             }
             return this.psdcrobot;
@@ -2599,7 +2599,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -2625,7 +2625,7 @@ implements Serializable {
                 PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
                 pSDevSlnSys.setPSDevSlnSysId(this.getPSDevSlnSysId());
                 PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysService.autoGet((IEntity)pSDevSlnSys);
+                pSDevSlnSysService.autoGet(pSDevSlnSys);
                 this.psdevslnsys = pSDevSlnSys;
             }
             return this.psdevslnsys;
@@ -2651,7 +2651,7 @@ implements Serializable {
                 PSTaskServer pSTaskServer = new PSTaskServer();
                 pSTaskServer.setPSTaskServerId(this.getPSTaskServerId());
                 PSTaskServerService pSTaskServerService = (PSTaskServerService)ServiceGlobal.getService(PSTaskServerService.class, (SessionFactory)this.getSessionFactory());
-                pSTaskServerService.autoGet((IEntity)pSTaskServer);
+                pSTaskServerService.autoGet(pSTaskServer);
                 this.pstaskserver = pSTaskServer;
             }
             return this.pstaskserver;

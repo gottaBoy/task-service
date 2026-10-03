@@ -159,10 +159,10 @@ implements IPSSysBDSchemeService {
 
     @Override
     protected List<PSSysBDScheme> onListAll() throws Exception {
-        List pssystems;
-        List pssysmodelgroups;
+        List<PSSystem> pssystems;
+        List<PSSysModelGroup> pssysmodelgroups;
         ArrayList<PSSysBDScheme> list = new ArrayList<PSSysBDScheme>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysBDScheme> items = this.listByPSModule(parent);

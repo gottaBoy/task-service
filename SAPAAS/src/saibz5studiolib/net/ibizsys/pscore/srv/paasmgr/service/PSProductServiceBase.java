@@ -136,9 +136,9 @@ extends PSCoreSysServiceBase<ET> {
             PSSvrProvider pSSvrProvider = (PSSvrProvider)iService.getDEModel().createEntity();
             pSSvrProvider.set("PSSVRPROVIDERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrProvider);
+                iService.getTemp(pSSvrProvider);
             } else {
-                iService.get((IEntity)pSSvrProvider);
+                iService.get(pSSvrProvider);
             }
             this.onFillParentInfo_Pssvrprovider(ET, pSSvrProvider);
             return;
@@ -198,15 +198,15 @@ extends PSCoreSysServiceBase<ET> {
         ArrayList<ET> arrayList = this.selectByPssvrprovider(pSSvrProvider, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRPROVIDER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrProvider);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPRODUCT_PSSVRPROVIDER_PSSVRPROVIDERID", "", iDataEntityModel.getName(), "PSPRODUCT", iDataEntityModel.getDataInfo((IEntity)pSSvrProvider), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrProvider);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPRODUCT_PSSVRPROVIDER_PSSVRPROVIDERID", "", iDataEntityModel.getName(), "PSPRODUCT", iDataEntityModel.getDataInfo(pSSvrProvider), arrayList.get(0)));
         }
     }
 
     public void resetPssvrprovider(PSSvrProvider pSSvrProvider) throws Exception {
         ArrayList<ET> arrayList = this.selectByPssvrprovider(pSSvrProvider);
-        for (PSProduct pSProduct : arrayList) {
-            PSProduct pSProduct2 = (PSProduct)this.getDEModel().createEntity();
+        for (ET pSProduct : arrayList) {
+            ET pSProduct2 = (ET)this.getDEModel().createEntity();
             pSProduct2.setPSProductId(pSProduct.getPSProductId());
             pSProduct2.setPSSvrProviderId(null);
             this.update(pSProduct2);
@@ -231,8 +231,8 @@ extends PSCoreSysServiceBase<ET> {
     protected void internalRemoveByPssvrprovider(PSSvrProvider pSSvrProvider) throws Exception {
         ArrayList<ET> arrayList = this.selectByPssvrprovider(pSSvrProvider);
         this.onBeforeRemoveByPssvrprovider(pSSvrProvider, arrayList);
-        for (PSProduct pSProduct : arrayList) {
-            this.remove((IEntity)pSProduct);
+        for (ET pSProduct : arrayList) {
+            this.remove(pSProduct);
         }
         this.onAfterRemoveByPssvrprovider(pSSvrProvider, arrayList);
     }
@@ -300,7 +300,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -322,7 +322,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ProductSN_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_ProductSN_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PRODUCTSN");
@@ -347,7 +347,7 @@ extends PSCoreSysServiceBase<ET> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ProductState_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_ProductState_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PRODUCTSTATE");
@@ -372,7 +372,7 @@ extends PSCoreSysServiceBase<ET> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSProductId_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSProductId_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPRODUCTID");
@@ -397,7 +397,7 @@ extends PSCoreSysServiceBase<ET> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSProductName_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSProductName_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPRODUCTNAME");
@@ -422,7 +422,7 @@ extends PSCoreSysServiceBase<ET> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSProductType_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSProductType_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPRODUCTTYPE");
@@ -444,7 +444,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrProviderId_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrProviderId_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRPROVIDERID");
@@ -675,4 +675,3 @@ extends PSCoreSysServiceBase<ET> {
         return ((PSProductBase)ET).getPSProductType();
     }
 }
-

@@ -120,7 +120,7 @@ extends PSCoreSysServiceBase<PSCssCatTempl> {
     }
 
     protected void onFillParentInfo(PSCssCatTempl pSCssCatTempl, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSCssCatTempl, string, string2, string3);
+        super.onFillParentInfo(pSCssCatTempl, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -131,11 +131,11 @@ extends PSCoreSysServiceBase<PSCssCatTempl> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSCssCatTempl, bl);
+        super.onFillEntityFullInfo(pSCssCatTempl, bl);
     }
 
     protected void onWriteBackParent(PSCssCatTempl pSCssCatTempl, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSCssCatTempl, bl);
+        super.onWriteBackParent(pSCssCatTempl, bl);
     }
 
     @Override
@@ -148,7 +148,7 @@ extends PSCoreSysServiceBase<PSCssCatTempl> {
     }
 
     protected void onRemoveEntityUncopyValues(PSCssCatTempl pSCssCatTempl, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSCssCatTempl, bl);
+        super.onRemoveEntityUncopyValues(pSCssCatTempl, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSCssCatTempl pSCssCatTempl, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -163,7 +163,7 @@ extends PSCoreSysServiceBase<PSCssCatTempl> {
         if ((entityFieldError = this.onCheckField_PSCssCatTemplName(bl, pSCssCatTempl, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSCssCatTempl, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSCssCatTempl, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSCssCatTempl pSCssCatTempl, boolean bl2, boolean bl3) throws Exception {
@@ -176,7 +176,7 @@ extends PSCoreSysServiceBase<PSCssCatTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSCssCatTempl, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSCssCatTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -201,7 +201,7 @@ extends PSCoreSysServiceBase<PSCssCatTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCssCatTemplId_Default((IEntity)pSCssCatTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSCssCatTemplId_Default(pSCssCatTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCSSCATTEMPLID");
@@ -226,7 +226,7 @@ extends PSCoreSysServiceBase<PSCssCatTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCssCatTemplName_Default((IEntity)pSCssCatTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSCssCatTemplName_Default(pSCssCatTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCSSCATTEMPLNAME");
@@ -239,11 +239,11 @@ extends PSCoreSysServiceBase<PSCssCatTempl> {
     }
 
     protected void onSyncEntity(PSCssCatTempl pSCssCatTempl, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSCssCatTempl, bl);
+        super.onSyncEntity(pSCssCatTempl, bl);
     }
 
     protected void onSyncIndexEntities(PSCssCatTempl pSCssCatTempl, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSCssCatTempl, bl);
+        super.onSyncIndexEntities(pSCssCatTempl, bl);
     }
 
     public Object getDataContextValue(PSCssCatTempl pSCssCatTempl, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -251,14 +251,14 @@ extends PSCoreSysServiceBase<PSCssCatTempl> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSCssCatTempl, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSCssCatTempl, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSCssCatTempl pSCssCatTempl, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSCssCatTempl, arrayList, n);
+        super.onExportMajorModel(pSCssCatTempl, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -356,14 +356,14 @@ extends PSCoreSysServiceBase<PSCssCatTempl> {
 
     protected boolean onMergeChild(String string, String string2, PSCssCatTempl pSCssCatTempl) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSCssCatTempl)) {
+        if (super.onMergeChild(string, string2, pSCssCatTempl)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSCssCatTempl pSCssCatTempl) throws Exception {
-        super.onUpdateParent((IEntity)pSCssCatTempl);
+        super.onUpdateParent(pSCssCatTempl);
     }
 
     @Override

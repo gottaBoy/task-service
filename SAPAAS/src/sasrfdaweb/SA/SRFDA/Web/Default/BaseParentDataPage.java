@@ -228,8 +228,8 @@ implements IParentDataPage {
         if (!pickupDEFHelper.GetRealDEFHelper().GetDTColumn().IsPKey()) {
             return;
         }
-        outPickupDEFHelper.setValue((Object)pickupDEFHelper);
-        outParentDEHelper.setValue((Object)pickupDEFHelper.GetRealDEFHelper().getDEHelper());
+        outPickupDEFHelper.setValue(pickupDEFHelper);
+        outParentDEHelper.setValue(pickupDEFHelper.GetRealDEFHelper().getDEHelper());
         boolean bAppendIndexType = false;
         String strIndexType = "";
         String strParamName = "";
@@ -245,7 +245,7 @@ implements IParentDataPage {
                 throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u8f85\u52a9\u5bf9\u8c61", (Object)derIndex.getDEID()));
             }
             strParamName = iDEHelper.GetKeyDEFHelper().getName();
-            outParentDEHelper.setValue((Object)iDEHelper);
+            outParentDEHelper.setValue(iDEHelper);
             IDEHelper indexDEHelper = iPage.getDAModelStorage().FindDEHelper2(derIndex.getINDEXDEID());
             if (indexDEHelper.GetIndexMode() == 1) {
                 bAppendIndexType = true;
@@ -363,4 +363,3 @@ implements IParentDataPage {
         return strParentDataTag;
     }
 }
-

@@ -108,7 +108,7 @@ implements ISRFISIndexGroupHelper {
         try {
             writer = new IndexWriter((Directory)FSDirectory.open((File)new File(strISFolder)), (Analyzer)new StandardAnalyzer(Version.LUCENE_30), bAll, IndexWriter.MaxFieldLength.LIMITED);
             defaultIndexContext.setWriter(writer);
-            Vector isItems = new Vector();
+            Vector<ISItem> isItems = new Vector();
             String strSQL = StringHelper.Format((String)"SELECT * from V_SRFISITEM where UPPER(ISGROUPID)='%1$s'", (Object)strIndexGroupId.toUpperCase());
             callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)iGlobalHelper, (String)iDataCtrl.GetDEHelper().GetDBStorage(), (String)strSQL, isItems, (String)ISItem.class.getName());
             if (callResult.getRetCode() != 0) {

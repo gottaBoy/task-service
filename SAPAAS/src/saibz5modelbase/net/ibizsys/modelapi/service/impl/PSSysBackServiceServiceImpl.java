@@ -118,9 +118,9 @@ implements IPSSysBackServiceService {
 
     @Override
     protected List<PSSysBackService> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysBackService> list = new ArrayList<PSSysBackService>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysBackService> items = this.listByPSModule(parent);

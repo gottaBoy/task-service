@@ -72,7 +72,7 @@ implements IPSSysBDModuleService {
     @Override
     protected List<PSSysBDModule> onListAll() throws Exception {
         ArrayList<PSSysBDModule> list = new ArrayList<PSSysBDModule>();
-        List pssysbdschemes = PSModelServiceUtil.getInstance().getPSSysBDSchemeService().listAll();
+        List<PSSysBDScheme> pssysbdschemes = PSModelServiceUtil.getInstance().getPSSysBDSchemeService().listAll();
         if (pssysbdschemes != null) {
             for (PSSysBDScheme parent : pssysbdschemes) {
                 List<PSSysBDModule> items = this.listByPSSysBDScheme(parent);

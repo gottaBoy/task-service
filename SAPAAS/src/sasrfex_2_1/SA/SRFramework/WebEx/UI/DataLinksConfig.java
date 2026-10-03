@@ -29,12 +29,11 @@ extends XMLCollectionExConfig<DataLinkConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = DataLinksConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((DataLinkConfig)childNode))) {
-                this.add((Object)((DataLinkConfig)childNode));
+            if (this.OnChildNodeLoaded((DataLinkConfig)childNode)) {
+                this.add((DataLinkConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

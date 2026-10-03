@@ -79,7 +79,7 @@ implements IPSSysBICubeService {
     @Override
     protected List<PSSysBICube> onListAll() throws Exception {
         ArrayList<PSSysBICube> list = new ArrayList<PSSysBICube>();
-        List pssysbischemes = PSModelServiceUtil.getInstance().getPSSysBISchemeService().listAll();
+        List<PSSysBIScheme> pssysbischemes = PSModelServiceUtil.getInstance().getPSSysBISchemeService().listAll();
         if (pssysbischemes != null) {
             for (PSSysBIScheme parent : pssysbischemes) {
                 List<PSSysBICube> items = this.listByPSSysBIScheme(parent);
@@ -254,18 +254,19 @@ implements IPSSysBICubeService {
         } else {
             dto.setTypePSDEFName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSSysBICubeDimensionService().listByPSSysBICube(t);
-        if (list != null && list.size() > 0) {
+        List<PSSysBICubeDimension> pSSysBICubeDimensionList = PSModelServiceUtil.getInstance().getPSSysBICubeDimensionService().listByPSSysBICube(t);
+        if (pSSysBICubeDimensionList != null && pSSysBICubeDimensionList.size() > 0) {
             ArrayList<PSSysBICubeDimensionDTO> pssysbicubedimensions = new ArrayList<PSSysBICubeDimensionDTO>();
-            for (PSSysBICubeDimension pSSysBICubeDimension : list) {
+            for (PSSysBICubeDimension pSSysBICubeDimension : pSSysBICubeDimensionList) {
                 dstItem = (PSSysBICubeDimensionDTO)PSModelServiceUtil.getInstance().getPSSysBICubeDimensionService().toDTO(pSSysBICubeDimension);
                 pssysbicubedimensions.add((PSSysBICubeDimensionDTO)dstItem);
             }
             dto.setPssysbicubedimensions(pssysbicubedimensions);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSSysBICubeMeasureService().listByPSSysBICube(t)) != null && list.size() > 0) {
+        List<PSSysBICubeMeasure> pSSysBICubeMeasureList = PSModelServiceUtil.getInstance().getPSSysBICubeMeasureService().listByPSSysBICube(t);
+        if (pSSysBICubeMeasureList != null && pSSysBICubeMeasureList.size() > 0) {
             ArrayList<PSSysBICubeMeasureDTO> pssysbicubemeasures = new ArrayList<PSSysBICubeMeasureDTO>();
-            for (PSSysBICubeMeasure pSSysBICubeMeasure : list) {
+            for (PSSysBICubeMeasure pSSysBICubeMeasure : pSSysBICubeMeasureList) {
                 dstItem = (PSSysBICubeMeasureDTO)PSModelServiceUtil.getInstance().getPSSysBICubeMeasureService().toDTO(pSSysBICubeMeasure);
                 pssysbicubemeasures.add((PSSysBICubeMeasureDTO)dstItem);
             }

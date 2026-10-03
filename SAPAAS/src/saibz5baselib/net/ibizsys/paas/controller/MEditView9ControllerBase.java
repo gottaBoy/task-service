@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.MultiDataViewControllerBase;
+/**
+ * 多编辑嵌入视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MEditView9ControllerBase extends MultiDataViewControllerBase {
 
-public abstract class MEditView9ControllerBase
-extends MultiDataViewControllerBase {
+	public MEditView9ControllerBase() throws Exception {
+		super();
+	}
+
 }
-

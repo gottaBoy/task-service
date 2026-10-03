@@ -26,6 +26,7 @@ package net.ibizsys.pscore.srv.devcenter.demodel.psdevcenterdbinst.dataset;
 import net.ibizsys.paas.core.IDEDataSetFetchContext;
 import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.data.IDataObject;
+import net.ibizsys.paas.data.ISimpleDataObject;
 import net.ibizsys.paas.db.DBFetchResult;
 import net.ibizsys.paas.db.IDataRow;
 import net.ibizsys.paas.db.IDataSet;
@@ -56,16 +57,15 @@ extends PSDevCenterDBInstCurDBTableDSModelBase {
     }
 
     public static DBFetchResult fetchDEDataSet(IDEDataSetFetchContext iDEDataSetFetchContext, String string) throws Exception {
-        PSDBDevInstService pSDBDevInstService;
         String string2;
         DBFetchResult dBFetchResult = new DBFetchResult();
         SimpleDataSetImpl simpleDataSetImpl = new SimpleDataSetImpl();
         SimpleDataTableImpl simpleDataTableImpl = new SimpleDataTableImpl((IDataSet)simpleDataSetImpl);
-        IEntity iEntity = (IEntity)iDEDataSetFetchContext.getActiveDataObject();
-        if (iEntity == null) {
+        ISimpleDataObject activeData = iDEDataSetFetchContext.getActiveDataObject();
+        if (activeData == null) {
             throw new Exception(StringHelper.format((String)"\u5f53\u524d\u4e0a\u4e0b\u6587\u6570\u636e\u5bf9\u8c61\u65e0\u6548"));
         }
-        String string3 = DataObject.getStringValue((IDataObject)iEntity, (String)"NODEID2", null);
+        String string3 = DataObject.getStringValue(activeData.get("NODEID2"), null);
         if (StringHelper.isNullOrEmpty((String)string3)) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5f53\u524d\u5e94\u7528\u4e2d\u5fc3\u6570\u636e\u5e93");
         }
@@ -74,13 +74,17 @@ extends PSDevCenterDBInstCurDBTableDSModelBase {
         pSDevCenterDBInst.setPSDevCenterDBInstId(string3);
         if (string3.indexOf("JITDBINST:") == 0) {
             string2 = string3.substring("JITDBINST:".length());
-            pSDBDevInstService = (PSDBDevInstService)ServiceGlobal.getService(PSDBDevInstService.class);
+            PSDBDevInstService pSDBDevInstService = (PSDBDevInstService)ServiceGlobal.getService(PSDBDevInstService.class);
             PSDBDevInst pSDBDevInst = new PSDBDevInst();
-        } else if (!pSDevCenterDBInstService.get((IEntity)pSDevCenterDBInst, true)) {
+            pSDBDevInst.setPSDBDevInstId(string2);
+            if (!pSDBDevInstService.get(pSDBDevInst, true)) {
+                throw new Exception("\u6307\u5b9a\u5e94\u7528\u4e2d\u5fc3\u6570\u636e\u5e93\u4e0d\u5b58\u5728");
+            }
+        } else if (!pSDevCenterDBInstService.get(pSDevCenterDBInst, true)) {
             throw new Exception("\u6307\u5b9a\u5e94\u7528\u4e2d\u5fc3\u6570\u636e\u5e93\u4e0d\u5b58\u5728");
         }
         try {
-            pSDevCenterDBInstService.executeAction("X2G_" + string, (IEntity)pSDevCenterDBInst);
+            pSDevCenterDBInstService.executeAction("X2G_" + string, pSDevCenterDBInst);
         }
         catch (Exception exception) {
             log.error((Object)exception);
@@ -88,9 +92,9 @@ extends PSDevCenterDBInstCurDBTableDSModelBase {
         }
         string2 = DataObject.getStringValue((IDataObject)pSDevCenterDBInst, (String)"SRFMODELLIST", null);
         if (!StringHelper.isNullOrEmpty((String)string2)) {
-            pSDBDevInstService = JSONArray.fromString((String)new String(Base64Helper.decode((String)string2), "GBK"));
-            for (int i = 0; i < pSDBDevInstService.length(); ++i) {
-                JSONObject jSONObject = pSDBDevInstService.getJSONObject(i);
+            JSONArray models = JSONArray.fromString(new String(Base64Helper.decode(string2), "GBK"));
+            for (int i = 0; i < models.length(); ++i) {
+                JSONObject jSONObject = models.getJSONObject(i);
                 SimpleDataRowImpl simpleDataRowImpl = new SimpleDataRowImpl();
                 simpleDataRowImpl.set("PSDEVCENTERDBINSTID", (Object)jSONObject.optString("name", ""));
                 simpleDataRowImpl.set("PSDEVCENTERDBINSTNAME", (Object)jSONObject.optString("name", ""));
@@ -104,4 +108,3 @@ extends PSDevCenterDBInstCurDBTableDSModelBase {
         return dBFetchResult;
     }
 }
-

@@ -10,5 +10,9 @@ import net.ibizsys.pscore.srv.PSCoreSysModel;
 
 public class PSCoreSysModelEx
 extends PSCoreSysModel {
+
+    public PSCoreSysModelEx() throws Exception {
+        super();
+    }
 }
 

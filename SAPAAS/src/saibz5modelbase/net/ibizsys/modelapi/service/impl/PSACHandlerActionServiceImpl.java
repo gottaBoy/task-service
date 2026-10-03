@@ -73,7 +73,7 @@ implements IPSACHandlerActionService {
     @Override
     protected List<PSACHandlerAction> onListAll() throws Exception {
         ArrayList<PSACHandlerAction> list = new ArrayList<PSACHandlerAction>();
-        List psachandlers = PSModelServiceUtil.getInstance().getPSACHandlerService().listAll();
+        List<PSACHandler> psachandlers = PSModelServiceUtil.getInstance().getPSACHandlerService().listAll();
         if (psachandlers != null) {
             for (PSACHandler parent : psachandlers) {
                 List<PSACHandlerAction> items = this.listByPSACHandler(parent);
@@ -223,4 +223,3 @@ implements IPSACHandlerActionService {
         return new PSACHandlerActionDTO();
     }
 }
-

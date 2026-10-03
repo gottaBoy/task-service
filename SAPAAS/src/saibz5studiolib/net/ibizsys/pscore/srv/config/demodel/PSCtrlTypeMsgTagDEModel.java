@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSCtrlTypeMsgTagDEModelBase;
 
 public class PSCtrlTypeMsgTagDEModel
 extends PSCtrlTypeMsgTagDEModelBase {
+
+    public PSCtrlTypeMsgTagDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

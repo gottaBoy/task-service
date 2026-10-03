@@ -1,15 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.MobPickupViewControllerBase;
+/**
+ * 移动端多数据选择视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MobMPickupViewControllerBase extends MobPickupViewControllerBase {
 
-public abstract class MobMPickupViewControllerBase
-extends MobPickupViewControllerBase {
-    @Override
-    protected boolean isEnableMultiSelect() {
-        return true;
-    }
+	public MobMPickupViewControllerBase() throws Exception {
+		super();
+	}
+
+	/**
+	 * 是否支持多项选择
+	 * 
+	 * @return
+	 */
+	@Override
+	protected boolean isEnableMultiSelect() {
+		return true;
+	}
 }
-

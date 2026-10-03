@@ -1909,7 +1909,7 @@ implements Serializable {
                 PSDEActionGroup pSDEActionGroup = new PSDEActionGroup();
                 pSDEActionGroup.setPSDEActionGroupId(this.getPSDEActionGroupId());
                 PSDEActionGroupService pSDEActionGroupService = (PSDEActionGroupService)ServiceGlobal.getService(PSDEActionGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionGroupService.autoGet((IEntity)pSDEActionGroup);
+                pSDEActionGroupService.autoGet(pSDEActionGroup);
                 this.psdeactiongroup = pSDEActionGroup;
             }
             return this.psdeactiongroup;
@@ -1935,7 +1935,7 @@ implements Serializable {
                 PSDEAction pSDEAction = new PSDEAction();
                 pSDEAction.setPSDEActionId(this.getPSDEActionId());
                 PSDEActionService pSDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionService.autoGet((IEntity)pSDEAction);
+                pSDEActionService.autoGet(pSDEAction);
                 this.psdeaction = pSDEAction;
             }
             return this.psdeaction;
@@ -1961,7 +1961,7 @@ implements Serializable {
                 PSDEDataSet pSDEDataSet = new PSDEDataSet();
                 pSDEDataSet.setPSDEDataSetId(this.getPSDEDataSetId());
                 PSDEDataSetService pSDEDataSetService = (PSDEDataSetService)ServiceGlobal.getService(PSDEDataSetService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataSetService.autoGet((IEntity)pSDEDataSet);
+                pSDEDataSetService.autoGet(pSDEDataSet);
                 this.psdedataset = pSDEDataSet;
             }
             return this.psdedataset;

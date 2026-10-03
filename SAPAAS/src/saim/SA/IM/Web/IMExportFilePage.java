@@ -11,6 +11,7 @@
 package SA.IM.Web;
 
 import SA.IM.Ctrl.DEDataCtrl.IMRemoteDEDataCtrl;
+import SA.SRFDA.Ctrl.IDEDataCtrl;
 import SA.IM.Ctrl.Data.IMFile;
 import SA.SRFDA.Web.SRFDAPage;
 import SA.SRFramework.DataEx.BaseDataEntity;
@@ -41,11 +42,11 @@ extends SRFDAPage {
         boolean bLocalMode = this.getDAGlobalHelper().getWebConfig().GetExtValue("IMLOCALMODE", true);
         if (bLocalMode) {
             imFileDataCtrl = this.GetDEDataCtrl("IM0090");
-            callResult = imFileDataCtrl.Get((BaseDataEntity)imFile);
+            callResult = ((IDEDataCtrl)imFileDataCtrl).Get((BaseDataEntity)imFile);
         } else {
             imFileDataCtrl = new IMRemoteDEDataCtrl();
             ((IMRemoteDEDataCtrl)((Object)imFileDataCtrl)).Init("", "IM0090", "SYSTEM");
-            callResult = imFileDataCtrl.Get((BaseDataEntity)imFile);
+            callResult = ((IMRemoteDEDataCtrl)imFileDataCtrl).Get((BaseDataEntity)imFile);
         }
         if (callResult.getRetCode() != 0) {
             this.PageLog((Object)this, 1, StringHelper.Format((String)"\u83b7\u53d6\u6307\u5b9aIM\u6587\u4ef6[%1$s]\u53d1\u751f\u9519\u8bef\uff0c%2$s", (Object)strFileId, (Object)callResult.getErrorInfo()));

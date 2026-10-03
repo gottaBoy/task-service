@@ -1191,7 +1191,7 @@ implements Serializable {
                 PSSysPolicy pSSysPolicy = new PSSysPolicy();
                 pSSysPolicy.setPSSysPolicyId(this.getPSSysPolicyId());
                 PSSysPolicyService pSSysPolicyService = (PSSysPolicyService)ServiceGlobal.getService(PSSysPolicyService.class, (SessionFactory)this.getSessionFactory());
-                pSSysPolicyService.autoGet((IEntity)pSSysPolicy);
+                pSSysPolicyService.autoGet(pSSysPolicy);
                 this.pssyspolicy = pSSysPolicy;
             }
             return this.pssyspolicy;

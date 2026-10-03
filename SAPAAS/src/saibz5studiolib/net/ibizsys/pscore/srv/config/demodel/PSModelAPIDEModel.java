@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSModelAPIDEModelBase;
 
 public class PSModelAPIDEModel
 extends PSModelAPIDEModelBase {
+
+    public PSModelAPIDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

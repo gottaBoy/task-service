@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEFUIModeDEModelBase;
 
 public class PSDEFUIModeDEModel
 extends PSDEFUIModeDEModelBase {
+
+    public PSDEFUIModeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

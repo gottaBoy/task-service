@@ -1,15 +1,26 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDataEntity;
-import net.ibizsys.paas.core.IDataEntityObject;
 
-public interface IDEUniState
-extends IDataEntityObject {
-    public void init(IDataEntity var1) throws Exception;
+/**
+ * 实体统一状态接口对象
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDEUniState extends IDataEntityObject {
+	/**
+	 * 初始化
+	 * 
+	 * @param iDataEntity
+	 * @throws Exception
+	 */
+	void init(IDataEntity iDataEntity) throws Exception;
 
-    public boolean isDefault();
+	
+	
+	/**
+	 * 是否默认
+	 * @return
+	 */
+	boolean isDefault();
 }
-

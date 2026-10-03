@@ -1,22 +1,61 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IModelBase2;
+/**
+ * 模型基础接口3
+ * @author Administrator
+ *
+ */
+public interface IModelBase3 extends IModelBase2 {
+	
+	/**
+	 * 获取模型属性
+	 * 
+	 * @param strKey
+	 * @return
+	 */
+	Object getAttribute(String strKey) throws Exception;
 
-public interface IModelBase3
-extends IModelBase2 {
-    public Object getAttribute(String var1) throws Exception;
+	/**
+	 * 获取boolean 模型属性
+	 * 
+	 * @param strKey
+	 * @param bDefault 默认值
+	 * @return
+	 */
+	boolean getAttribute(String strKey, boolean bDefault) throws Exception;
 
-    public boolean getAttribute(String var1, boolean var2) throws Exception;
+	/**
+	 * 获取String 模型属性
+	 * 
+	 * @param strKey
+	 * @param strDefault 默认值
+	 * @return
+	 */
+	String getAttribute(String strKey, String strDefault) throws Exception;
 
-    public String getAttribute(String var1, String var2) throws Exception;
+	/**
+	 * 获取Integer 模型属性
+	 * 
+	 * @param strKey
+	 * @param nDefault 默认值
+	 * @return
+	 */
+	int getAttribute(String strKey, int nDefault) throws Exception;
 
-    public int getAttribute(String var1, int var2) throws Exception;
+	/**
+	 * 获取Double 模型属性
+	 * 
+	 * @param strKey
+	 * @param fDefault 默认值
+	 * @return
+	 */
+	double getAttribute(String strKey, double fDefault) throws Exception;
 
-    public double getAttribute(String var1, double var2) throws Exception;
-
-    public void setAttribute(String var1, Object var2) throws Exception;
+	/**
+	 * 设置模型属性
+	 * 
+	 * @param strKey
+	 * @param objValue
+	 */
+	void setAttribute(String strKey, Object objValue) throws Exception;
 }
-

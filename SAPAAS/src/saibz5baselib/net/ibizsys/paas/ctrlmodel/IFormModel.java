@@ -1,26 +1,56 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import net.ibizsys.paas.control.form.IForm;
-import net.ibizsys.paas.ctrlmodel.ICtrlModel;
 import net.ibizsys.paas.data.IDataObject;
 import net.ibizsys.paas.web.IWebContext;
 import net.sf.json.JSONObject;
 
-public interface IFormModel
-extends ICtrlModel,
-IForm {
-    public void fillOutputDatas(IDataObject var1, boolean var2, JSONObject var3, JSONObject var4, JSONObject var5) throws Exception;
+/**
+ * 表单模型接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IFormModel extends ICtrlModel, IForm {
 
-    public void fillInputValues(IDataObject var1, boolean var2, boolean var3) throws Exception;
+	/**
+	 * 通过数据对象填充表单
+	 * 
+	 * @param iDataObject 当前数据对象
+	 * @param bUpdate 更新模式
+	 * @param outputData 输出数据对象
+	 * @param outputState 输出状态对象
+	 * @param outputConfig 输出配置对象
+	 * @throws Exception
+	 */
+	void fillOutputDatas(IDataObject iDataObject, boolean bUpdate, JSONObject outputData, JSONObject outputState, JSONObject outputConfig) throws Exception;
 
-    public Object getItemInputValue(String var1, IWebContext var2) throws Exception;
+	/**
+	 * 填充数据实体对象
+	 * 
+	 * @param iDataObject 数据实体s对象
+	 * @param bIgnoreEmpty 是否忽略空检查
+	 * @param formItemErrors 表单项错误集合
+	 * @return
+	 */
+	void fillInputValues(IDataObject iDataObject, boolean bUpdate, boolean bIgnoreEmpty) throws Exception;
 
-    public void fillDefaultValues(IDataObject var1, boolean var2) throws Exception;
+	/**
+	 * 获取表单项输入的值
+	 * 
+	 * @param strFormItem 表单项
+	 * @param iWebContext
+	 * @return
+	 */
+	Object getItemInputValue(String strFormItem, IWebContext iWebContext) throws Exception;
+
+	/**
+	 * 填充数据实体对象默认值
+	 * 
+	 * @param iDataObject 数据实体s对象
+	 * @param bIgnoreEmpty 是否忽略空检查
+	 * @return
+	 */
+	void fillDefaultValues(IDataObject iDataObject, boolean bUpdate) throws Exception;
+
 }
-

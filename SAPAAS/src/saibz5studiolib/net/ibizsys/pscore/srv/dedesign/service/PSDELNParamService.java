@@ -30,7 +30,6 @@ import net.ibizsys.pscore.srv.codelist.DELogicParamAllValueTypeCodeListModel;
 import net.ibizsys.pscore.srv.codelist.DELogicParamTypeCodeListModel;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDELNParam;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDELogicParam;
-import net.ibizsys.pscore.srv.dedesign.entity.PSDELogicParamBase;
 import net.ibizsys.pscore.srv.dedesign.service.PSDELNParamServiceBase;
 import net.ibizsys.pscore.srv.dedesign.service.PSDELogicParamService;
 import org.apache.commons.logging.Log;
@@ -177,20 +176,20 @@ extends PSDELNParamServiceBase {
 
     @Override
     protected void importCurXmlModel(PSDELNParam pSDELNParam, XmlNode xmlNode) throws Exception {
-        Object object;
         PSDELogicParamService pSDELogicParamService = (PSDELogicParamService)ServiceGlobal.getService(PSDELogicParamService.class, (SessionFactory)this.getSessionFactory());
         String string = xmlNode.getAttribute("SRCPSDLPARAMNAME", "");
         if (!StringHelper.isNullOrEmpty((String)string)) {
-            object = new PSDELogicParam();
-            ((PSDELogicParamBase)object).setPSDELogicParamName(string);
-            ((PSDELogicParamBase)object).setPSDELogicId(pSDELNParam.getPSDELogicId());
-            pSDELogicParamService.selectTemp(object, false);
-            pSDELNParam.setSrcPSDLParamId(((PSDELogicParamBase)object).getPSDELogicParamId());
-            xmlNode.setAttribute("SRCPSDLPARAMID", ((PSDELogicParamBase)object).getPSDELogicParamId());
+            PSDELogicParam srcParam = new PSDELogicParam();
+            srcParam.setPSDELogicParamName(string);
+            srcParam.setPSDELogicId(pSDELNParam.getPSDELogicId());
+            pSDELogicParamService.selectTemp(srcParam, false);
+            pSDELNParam.setSrcPSDLParamId(srcParam.getPSDELogicParamId());
+            xmlNode.setAttribute("SRCPSDLPARAMID", srcParam.getPSDELogicParamId());
         }
-        if (!StringHelper.isNullOrEmpty((String)(object = xmlNode.getAttribute("DSTPSDLPARAMNAME", "")))) {
+        String dstParamName = xmlNode.getAttribute("DSTPSDLPARAMNAME", "");
+        if (!StringHelper.isNullOrEmpty(dstParamName)) {
             PSDELogicParam pSDELogicParam = new PSDELogicParam();
-            pSDELogicParam.setPSDELogicParamName((String)object);
+            pSDELogicParam.setPSDELogicParamName(dstParamName);
             pSDELogicParam.setPSDELogicId(pSDELNParam.getPSDELogicId());
             pSDELogicParamService.selectTemp(pSDELogicParam, false);
             pSDELNParam.setDstPSDLParamId(pSDELogicParam.getPSDELogicParamId());
@@ -200,7 +199,7 @@ extends PSDELNParamServiceBase {
     }
 
     protected CallResult internalGet(PSDELNParam pSDELNParam, boolean bl) throws Exception {
-        CallResult callResult = super.internalGet((IEntity)pSDELNParam, bl);
+        CallResult callResult = super.internalGet(pSDELNParam, bl);
         if (callResult.isOk()) {
             if (StringHelper.isNullOrEmpty((String)pSDELNParam.getCustomDstParam()) && !StringHelper.isNullOrEmpty((String)pSDELNParam.getDstPSDEFName())) {
                 pSDELNParam.setCustomDstParam(pSDELNParam.getDstPSDEFName());
@@ -234,4 +233,3 @@ extends PSDELNParamServiceBase {
         return callResult;
     }
 }
-

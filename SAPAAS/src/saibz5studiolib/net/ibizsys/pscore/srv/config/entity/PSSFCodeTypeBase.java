@@ -2324,7 +2324,7 @@ implements Serializable {
                 PSModel pSModel = new PSModel();
                 pSModel.setPSModelId(this.getPSModelId());
                 PSModelService pSModelService = (PSModelService)ServiceGlobal.getService(PSModelService.class, (SessionFactory)this.getSessionFactory());
-                pSModelService.autoGet((IEntity)pSModel);
+                pSModelService.autoGet(pSModel);
                 this.psmodel = pSModel;
             }
             return this.psmodel;
@@ -2350,7 +2350,7 @@ implements Serializable {
                 PSSFCodeFolder pSSFCodeFolder = new PSSFCodeFolder();
                 pSSFCodeFolder.setPSSFCodeFolderId(this.getPSSFCodeFolderId());
                 PSSFCodeFolderService pSSFCodeFolderService = (PSSFCodeFolderService)ServiceGlobal.getService(PSSFCodeFolderService.class, (SessionFactory)this.getSessionFactory());
-                pSSFCodeFolderService.autoGet((IEntity)pSSFCodeFolder);
+                pSSFCodeFolderService.autoGet(pSSFCodeFolder);
                 this.pssfcodefolder = pSSFCodeFolder;
             }
             return this.pssfcodefolder;

@@ -62,7 +62,7 @@ extends BaseDEDataCtrl {
         CallParamList callParamList = new CallParamList();
         callParamList.AddDateTime((Object)removeDate);
         String strSQL = StringHelper.Format((String)"SELECT * FROM  T_SRFBICacheTable WHERE CREATEDATE<=?");
-        Vector list = new Vector();
+        Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getGlobalHelper(), (String)this.GetDEHelper().GetDBStorage(), (String)strSQL, (Vector)callParamList.GetList(), list, (String)"");
         if (callResult.IsError()) {
             log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u8fc7\u671f\u6570\u636e\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -109,4 +109,3 @@ extends BaseDEDataCtrl {
         return callResult;
     }
 }
-

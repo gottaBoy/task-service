@@ -68,7 +68,7 @@ implements ITMTaskResDataCtrl {
                         IDEDataCtrl tmCRDDataCtrl = this.GetRelatedDataCtrl("TM0131");
                         BaseDataEntity cond = new BaseDataEntity();
                         cond.SetParamValue("PTMRESBOOKINGID", (Object)tmResBookingLast.getTMRESBOOKINGID());
-                        Vector tmCRDBookingList = new Vector();
+                        Vector<BaseDataEntity> tmCRDBookingList = new Vector<BaseDataEntity>();
                         callResult = tmCRDDataCtrl.Select(cond, tmCRDBookingList);
                         if (callResult.IsError()) {
                             log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u590d\u5408\u8d44\u6e90\u660e\u7ec6\u9884\u7ea6\u5931\u8d25\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -156,4 +156,3 @@ implements ITMTaskResDataCtrl {
         return callResult;
     }
 }
-

@@ -60,7 +60,7 @@ extends DELogicModelBase<PSWFProcess> {
         PSWFDE pSWFDE = (PSWFDE)iActionContext.getParam("WFDE");
         SessionFactory sessionFactory = iActionContext.getSessionFactory();
         IService iService = ServiceGlobal.getService(PSWFDEService.class, (SessionFactory)sessionFactory);
-        iService.executeAction("GET", (IEntity)pSWFDE);
+        iService.executeAction("GET", pSWFDE);
         this.executeFillParam(iActionContext);
     }
 

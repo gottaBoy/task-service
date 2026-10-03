@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdevstudio.demodel.PSUWAppViewDEModelBase;
 
 public class PSUWAppViewDEModel
 extends PSUWAppViewDEModelBase {
+
+    public PSUWAppViewDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

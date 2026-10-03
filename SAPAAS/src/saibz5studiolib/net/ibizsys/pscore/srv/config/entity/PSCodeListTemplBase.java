@@ -1617,7 +1617,7 @@ implements Serializable {
                 PSSysLanRes pSSysLanRes = new PSSysLanRes();
                 pSSysLanRes.setPSSysLanResId(this.getEmptyTextPSSyslanResId());
                 PSSysLanResService pSSysLanResService = (PSSysLanResService)ServiceGlobal.getService(PSSysLanResService.class, (SessionFactory)this.getSessionFactory());
-                pSSysLanResService.autoGet((IEntity)pSSysLanRes);
+                pSSysLanResService.autoGet(pSSysLanRes);
                 this.emptytextpssyslanres = pSSysLanRes;
             }
             return this.emptytextpssyslanres;

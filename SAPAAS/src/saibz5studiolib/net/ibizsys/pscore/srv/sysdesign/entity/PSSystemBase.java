@@ -6639,7 +6639,7 @@ implements Serializable {
                 PSDevCenterTS pSDevCenterTS = new PSDevCenterTS();
                 pSDevCenterTS.setPSDevCenterTSId(this.getPSDevCenterTSId());
                 PSDevCenterTSService pSDevCenterTSService = (PSDevCenterTSService)ServiceGlobal.getService(PSDevCenterTSService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterTSService.autoGet((IEntity)pSDevCenterTS);
+                pSDevCenterTSService.autoGet(pSDevCenterTS);
                 this.psdevcenterts = pSDevCenterTS;
             }
             return this.psdevcenterts;
@@ -6665,7 +6665,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -6691,7 +6691,7 @@ implements Serializable {
                 PSDevSln pSDevSln = new PSDevSln();
                 pSDevSln.setPSDevSlnId(this.getPSDevSlnId());
                 PSDevSlnService pSDevSlnService = (PSDevSlnService)ServiceGlobal.getService(PSDevSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnService.autoGet((IEntity)pSDevSln);
+                pSDevSlnService.autoGet(pSDevSln);
                 this.psdevsln = pSDevSln;
             }
             return this.psdevsln;
@@ -6717,7 +6717,7 @@ implements Serializable {
                 PSLanguageRes pSLanguageRes = new PSLanguageRes();
                 pSLanguageRes.setPSLanguageResId(this.getCLEmptyTextPSLanResId());
                 PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
-                pSLanguageResService.autoGet((IEntity)pSLanguageRes);
+                pSLanguageResService.autoGet(pSLanguageRes);
                 this.clemptytextpslanres = pSLanguageRes;
             }
             return this.clemptytextpslanres;
@@ -6743,7 +6743,7 @@ implements Serializable {
                 PSLanguage pSLanguage = new PSLanguage();
                 pSLanguage.setPSLanguageId(this.getPSLanguageId());
                 PSLanguageService pSLanguageService = (PSLanguageService)ServiceGlobal.getService(PSLanguageService.class, (SessionFactory)this.getSessionFactory());
-                pSLanguageService.autoGet((IEntity)pSLanguage);
+                pSLanguageService.autoGet(pSLanguage);
                 this.pslanguage = pSLanguage;
             }
             return this.pslanguage;
@@ -6769,7 +6769,7 @@ implements Serializable {
                 PSSF pSSF = new PSSF();
                 pSSF.setPSSFId(this.getPSSFId());
                 PSSFService pSSFService = (PSSFService)ServiceGlobal.getService(PSSFService.class, (SessionFactory)this.getSessionFactory());
-                pSSFService.autoGet((IEntity)pSSF);
+                pSSFService.autoGet(pSSF);
                 this.pssf = pSSF;
             }
             return this.pssf;
@@ -6795,7 +6795,7 @@ implements Serializable {
                 PSSysEngineCfg pSSysEngineCfg = new PSSysEngineCfg();
                 pSSysEngineCfg.setPSSysEngineCfgId(this.getPSSysEngineCfgId());
                 PSSysEngineCfgService pSSysEngineCfgService = (PSSysEngineCfgService)ServiceGlobal.getService(PSSysEngineCfgService.class, (SessionFactory)this.getSessionFactory());
-                pSSysEngineCfgService.autoGet((IEntity)pSSysEngineCfg);
+                pSSysEngineCfgService.autoGet(pSSysEngineCfg);
                 this.pssysenginecfg = pSSysEngineCfg;
             }
             return this.pssysenginecfg;
@@ -6821,7 +6821,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getSrcPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.srcpssystem = pSSystem;
             }
             return this.srcpssystem;

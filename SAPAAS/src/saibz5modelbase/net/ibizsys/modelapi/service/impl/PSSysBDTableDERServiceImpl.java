@@ -72,7 +72,7 @@ implements IPSSysBDTableDERService {
     @Override
     protected List<PSSysBDTableDER> onListAll() throws Exception {
         ArrayList<PSSysBDTableDER> list = new ArrayList<PSSysBDTableDER>();
-        List pssysbdtables = PSModelServiceUtil.getInstance().getPSSysBDTableService().listAll();
+        List<PSSysBDTable> pssysbdtables = PSModelServiceUtil.getInstance().getPSSysBDTableService().listAll();
         if (pssysbdtables != null) {
             for (PSSysBDTable parent : pssysbdtables) {
                 List<PSSysBDTableDER> items = this.listByPSSysBDTable(parent);

@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSSF> {
     }
 
     protected void onFillParentInfo(PSSF pSSF, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSF, string, string2, string3);
+        super.onFillParentInfo(pSSF, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -178,11 +178,11 @@ extends PSCoreSysServiceBase<PSSF> {
         if (bl && pSSF.getValidFlag() == null) {
             pSSF.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSF, bl);
+        super.onFillEntityFullInfo(pSSF, bl);
     }
 
     protected void onWriteBackParent(PSSF pSSF, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSF, bl);
+        super.onWriteBackParent(pSSF, bl);
     }
 
     @Override
@@ -238,7 +238,7 @@ extends PSCoreSysServiceBase<PSSF> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSF pSSF, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSF, bl);
+        super.onRemoveEntityUncopyValues(pSSF, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSF pSSF, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -283,7 +283,7 @@ extends PSCoreSysServiceBase<PSSF> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSF, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSF, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSF, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ClsFCUpperCase(boolean bl, PSSF pSSF, boolean bl2, boolean bl3) throws Exception {
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ClsFCUpperCase_Default((IEntity)pSSF, bl2, bl3);
+            string = this.onTestValueRule_ClsFCUpperCase_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CLSFCUPPERCASE");
@@ -318,7 +318,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ClsPkgParams_Default((IEntity)pSSF, bl2, bl3);
+            string2 = this.onTestValueRule_ClsPkgParams_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CLSPKGPARAMS");
@@ -340,7 +340,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CodeFlag_Default((IEntity)pSSF, bl2, bl3);
+            string = this.onTestValueRule_CodeFlag_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODEFLAG");
@@ -362,7 +362,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DocFlag_Default((IEntity)pSSF, bl2, bl3);
+            string = this.onTestValueRule_DocFlag_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOCFLAG");
@@ -384,7 +384,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSF, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -406,7 +406,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ModelFlag_Default((IEntity)pSSF, bl2, bl3);
+            string = this.onTestValueRule_ModelFlag_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODELFLAG");
@@ -428,7 +428,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PkgLowerCase_Default((IEntity)pSSF, bl2, bl3);
+            string = this.onTestValueRule_PkgLowerCase_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PKGLOWERCASE");
@@ -453,7 +453,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFId_Default((IEntity)pSSF, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFId_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFID");
@@ -478,7 +478,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFName_Default((IEntity)pSSF, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFName_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFNAME");
@@ -500,7 +500,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SlnFlag_Default((IEntity)pSSF, bl2, bl3);
+            string = this.onTestValueRule_SlnFlag_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SLNFLAG");
@@ -522,7 +522,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_V2Folder_Default((IEntity)pSSF, bl2, bl3);
+            string2 = this.onTestValueRule_V2Folder_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("V2FOLDER");
@@ -544,7 +544,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_V2GitPath_Default((IEntity)pSSF, bl2, bl3);
+            string2 = this.onTestValueRule_V2GitPath_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("V2GITPATH");
@@ -566,7 +566,7 @@ extends PSCoreSysServiceBase<PSSF> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSF, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -579,11 +579,11 @@ extends PSCoreSysServiceBase<PSSF> {
     }
 
     protected void onSyncEntity(PSSF pSSF, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSF, bl);
+        super.onSyncEntity(pSSF, bl);
     }
 
     protected void onSyncIndexEntities(PSSF pSSF, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSF, bl);
+        super.onSyncIndexEntities(pSSF, bl);
     }
 
     public Object getDataContextValue(PSSF pSSF, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -591,14 +591,14 @@ extends PSCoreSysServiceBase<PSSF> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSF, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSF, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSF pSSF, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSF, arrayList, n);
+        super.onExportMajorModel(pSSF, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -790,14 +790,14 @@ extends PSCoreSysServiceBase<PSSF> {
 
     protected boolean onMergeChild(String string, String string2, PSSF pSSF) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSF)) {
+        if (super.onMergeChild(string, string2, pSSF)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSF pSSF) throws Exception {
-        super.onUpdateParent((IEntity)pSSF);
+        super.onUpdateParent(pSSF);
     }
 
     @Override

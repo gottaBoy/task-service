@@ -2515,7 +2515,7 @@ implements Serializable {
                 PSDCContainerSpec pSDCContainerSpec = new PSDCContainerSpec();
                 pSDCContainerSpec.setPSDCContainerSpecId(this.getPSDCContainerSpecId());
                 PSDCContainerSpecService pSDCContainerSpecService = (PSDCContainerSpecService)ServiceGlobal.getService(PSDCContainerSpecService.class, (SessionFactory)this.getSessionFactory());
-                pSDCContainerSpecService.autoGet((IEntity)pSDCContainerSpec);
+                pSDCContainerSpecService.autoGet(pSDCContainerSpec);
                 this.psdccontainerspec = pSDCContainerSpec;
             }
             return this.psdccontainerspec;
@@ -2541,7 +2541,7 @@ implements Serializable {
                 PSDepSln pSDepSln = new PSDepSln();
                 pSDepSln.setPSDepSlnId(this.getPSDepSlnId());
                 PSDepSlnService pSDepSlnService = (PSDepSlnService)ServiceGlobal.getService(PSDepSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnService.autoGet((IEntity)pSDepSln);
+                pSDepSlnService.autoGet(pSDepSln);
                 this.psdepsln = pSDepSln;
             }
             return this.psdepsln;
@@ -2567,7 +2567,7 @@ implements Serializable {
                 PSDepSysAPI pSDepSysAPI = new PSDepSysAPI();
                 pSDepSysAPI.setPSDepSysAPIId(this.getPSDepSysAPIId());
                 PSDepSysAPIService pSDepSysAPIService = (PSDepSysAPIService)ServiceGlobal.getService(PSDepSysAPIService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSysAPIService.autoGet((IEntity)pSDepSysAPI);
+                pSDepSysAPIService.autoGet(pSDepSysAPI);
                 this.psdepsysapi = pSDepSysAPI;
             }
             return this.psdepsysapi;
@@ -2593,7 +2593,7 @@ implements Serializable {
                 PSDepSysApp pSDepSysApp = new PSDepSysApp();
                 pSDepSysApp.setPSDepSysAppId(this.getPSDepSysAppId());
                 PSDepSysAppService pSDepSysAppService = (PSDepSysAppService)ServiceGlobal.getService(PSDepSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSysAppService.autoGet((IEntity)pSDepSysApp);
+                pSDepSysAppService.autoGet(pSDepSysApp);
                 this.psdepsysapp = pSDepSysApp;
             }
             return this.psdepsysapp;
@@ -2619,7 +2619,7 @@ implements Serializable {
                 PSDepSysVer pSDepSysVer = new PSDepSysVer();
                 pSDepSysVer.setPSDepSysVerId(this.getPSDepSysVerId());
                 PSDepSysVerService pSDepSysVerService = (PSDepSysVerService)ServiceGlobal.getService(PSDepSysVerService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSysVerService.autoGet((IEntity)pSDepSysVer);
+                pSDepSysVerService.autoGet(pSDepSysVer);
                 this.psdepsysver = pSDepSysVer;
             }
             return this.psdepsysver;
@@ -2645,7 +2645,7 @@ implements Serializable {
                 PSDepSys pSDepSys = new PSDepSys();
                 pSDepSys.setPSDepSysId(this.getPSDepSysId());
                 PSDepSysService pSDepSysService = (PSDepSysService)ServiceGlobal.getService(PSDepSysService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSysService.autoGet((IEntity)pSDepSys);
+                pSDepSysService.autoGet(pSDepSys);
                 this.psdepsys = pSDepSys;
             }
             return this.psdepsys;
@@ -2671,7 +2671,7 @@ implements Serializable {
                 PSSysModelInst pSSysModelInst = new PSSysModelInst();
                 pSSysModelInst.setPSSysModelInstId(this.getPSSysModelInstId());
                 PSSysModelInstService pSSysModelInstService = (PSSysModelInstService)ServiceGlobal.getService(PSSysModelInstService.class, (SessionFactory)this.getSessionFactory());
-                pSSysModelInstService.autoGet((IEntity)pSSysModelInst);
+                pSSysModelInstService.autoGet(pSSysModelInst);
                 this.pssysmodelinst = pSSysModelInst;
             }
             return this.pssysmodelinst;

@@ -139,9 +139,9 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
             PSPFPlugin pSPFPlugin = (PSPFPlugin)iService.getDEModel().createEntity();
             pSPFPlugin.set("PSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSPFPlugin);
+                iService.getTemp(pSPFPlugin);
             } else {
-                iService.get((IEntity)pSPFPlugin);
+                iService.get(pSPFPlugin);
             }
             this.onFillParentInfo_PSPFPlugin(pSPredefinedType, pSPFPlugin);
             return;
@@ -151,14 +151,14 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
             PSSFPlugin pSSFPlugin = (PSSFPlugin)iService.getDEModel().createEntity();
             pSSFPlugin.set("PSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSFPlugin);
+                iService.getTemp(pSSFPlugin);
             } else {
-                iService.get((IEntity)pSSFPlugin);
+                iService.get(pSSFPlugin);
             }
             this.onFillParentInfo_PSSFPlugin(pSPredefinedType, pSSFPlugin);
             return;
         }
-        super.onFillParentInfo((IEntity)pSPredefinedType, string, string2, string3);
+        super.onFillParentInfo(pSPredefinedType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
         if (bl && pSPredefinedType.getValidFlag() == null) {
             pSPredefinedType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSPredefinedType, bl);
+        super.onFillEntityFullInfo(pSPredefinedType, bl);
         this.onFillEntityFullInfo_PSPFPlugin(pSPredefinedType, bl);
         this.onFillEntityFullInfo_PSSFPlugin(pSPredefinedType, bl);
     }
@@ -211,7 +211,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
     }
 
     protected void onWriteBackParent(PSPredefinedType pSPredefinedType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPredefinedType, bl);
+        super.onWriteBackParent(pSPredefinedType, bl);
     }
 
     public ArrayList<PSPredefinedType> selectByPSPFPlugin(PSPFPluginBase pSPFPluginBase) throws Exception {
@@ -266,8 +266,8 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
         ArrayList<PSPredefinedType> arrayList = this.selectByPSPFPlugin(pSPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPREDEFINEDTYPE_PSPFPLUGIN_PSPFPLUGINID", "", iDataEntityModel.getName(), "PSPREDEFINEDTYPE", iDataEntityModel.getDataInfo((IEntity)pSPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPREDEFINEDTYPE_PSPFPLUGIN_PSPFPLUGINID", "", iDataEntityModel.getName(), "PSPREDEFINEDTYPE", iDataEntityModel.getDataInfo(pSPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -300,7 +300,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
         ArrayList<PSPredefinedType> arrayList = this.selectByPSPFPlugin(pSPFPlugin);
         this.onBeforeRemoveByPSPFPlugin(pSPFPlugin, arrayList);
         for (PSPredefinedType pSPredefinedType : arrayList) {
-            this.remove((IEntity)pSPredefinedType);
+            this.remove(pSPredefinedType);
         }
         this.onAfterRemoveByPSPFPlugin(pSPFPlugin, arrayList);
     }
@@ -318,8 +318,8 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
         ArrayList<PSPredefinedType> arrayList = this.selectByPSSFPlugin(pSSFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPREDEFINEDTYPE_PSSFPLUGIN_PSSFPLUGINID", "", iDataEntityModel.getName(), "PSPREDEFINEDTYPE", iDataEntityModel.getDataInfo((IEntity)pSSFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSPREDEFINEDTYPE_PSSFPLUGIN_PSSFPLUGINID", "", iDataEntityModel.getName(), "PSPREDEFINEDTYPE", iDataEntityModel.getDataInfo(pSSFPlugin), arrayList.get(0)));
         }
     }
 
@@ -352,7 +352,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
         ArrayList<PSPredefinedType> arrayList = this.selectByPSSFPlugin(pSSFPlugin);
         this.onBeforeRemoveByPSSFPlugin(pSSFPlugin, arrayList);
         for (PSPredefinedType pSPredefinedType : arrayList) {
-            this.remove((IEntity)pSPredefinedType);
+            this.remove(pSPredefinedType);
         }
         this.onAfterRemoveByPSSFPlugin(pSSFPlugin, arrayList);
     }
@@ -373,7 +373,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
 
     protected void replaceParentInfo(PSPredefinedType pSPredefinedType, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSPredefinedType, cloneSession);
+        super.replaceParentInfo(pSPredefinedType, cloneSession);
         if (pSPredefinedType.getPSPFPluginId() != null && (iEntity = cloneSession.getEntity("PSPFPLUGIN", (Object)pSPredefinedType.getPSPFPluginId())) != null) {
             this.onFillParentInfo_PSPFPlugin(pSPredefinedType, (PSPFPlugin)iEntity);
         }
@@ -383,7 +383,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSPredefinedType pSPredefinedType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPredefinedType, bl);
+        super.onRemoveEntityUncopyValues(pSPredefinedType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPredefinedType pSPredefinedType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -431,7 +431,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSPredefinedType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPredefinedType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPredefinedType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSPredefinedType pSPredefinedType, boolean bl2, boolean bl3) throws Exception {
@@ -444,7 +444,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -491,7 +491,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PredefinedType_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string2 = this.onTestValueRule_PredefinedType_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PREDEFINEDTYPE");
@@ -513,7 +513,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPluginId_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPluginId_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPLUGINID");
@@ -535,7 +535,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPluginName_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPluginName_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPLUGINNAME");
@@ -560,7 +560,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPredefinedTypeId_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPredefinedTypeId_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPREDEFINEDTYPEID");
@@ -585,7 +585,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPredefinedTypeName_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPredefinedTypeName_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPREDEFINEDTYPENAME");
@@ -607,7 +607,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFPluginId_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFPluginId_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFPLUGINID");
@@ -629,7 +629,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFPluginName_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFPluginName_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFPLUGINNAME");
@@ -651,7 +651,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParams_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParams_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAMS");
@@ -673,7 +673,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeTag_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeTag_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPETAG");
@@ -695,7 +695,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeTag2_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeTag2_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPETAG2");
@@ -720,7 +720,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UsageMode_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string2 = this.onTestValueRule_UsageMode_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USAGEMODE");
@@ -745,7 +745,7 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSPredefinedType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSPredefinedType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -758,11 +758,11 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
     }
 
     protected void onSyncEntity(PSPredefinedType pSPredefinedType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPredefinedType, bl);
+        super.onSyncEntity(pSPredefinedType, bl);
     }
 
     protected void onSyncIndexEntities(PSPredefinedType pSPredefinedType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPredefinedType, bl);
+        super.onSyncIndexEntities(pSPredefinedType, bl);
     }
 
     public Object getDataContextValue(PSPredefinedType pSPredefinedType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -770,14 +770,14 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPredefinedType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPredefinedType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPredefinedType pSPredefinedType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPredefinedType, arrayList, n);
+        super.onExportMajorModel(pSPredefinedType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1024,14 +1024,14 @@ extends PSCoreSysServiceBase<PSPredefinedType> {
 
     protected boolean onMergeChild(String string, String string2, PSPredefinedType pSPredefinedType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPredefinedType)) {
+        if (super.onMergeChild(string, string2, pSPredefinedType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPredefinedType pSPredefinedType) throws Exception {
-        super.onUpdateParent((IEntity)pSPredefinedType);
+        super.onUpdateParent(pSPredefinedType);
     }
 
     @Override

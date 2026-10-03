@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSSysModelInstBKDEModelBase;
 
 public class PSSysModelInstBKDEModel
 extends PSSysModelInstBKDEModelBase {
+
+    public PSSysModelInstBKDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

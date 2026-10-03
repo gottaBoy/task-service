@@ -152,9 +152,9 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysModelLoadLog, pSSystem);
             return;
@@ -164,14 +164,14 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
             PSTaskServer pSTaskServer = (PSTaskServer)iService.getDEModel().createEntity();
             pSTaskServer.set("PSTASKSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSTaskServer);
+                iService.getTemp(pSTaskServer);
             } else {
-                iService.get((IEntity)pSTaskServer);
+                iService.get(pSTaskServer);
             }
             this.onFillParentInfo_PSTaskServer(pSSysModelLoadLog, pSTaskServer);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysModelLoadLog, string, string2, string3);
+        super.onFillParentInfo(pSSysModelLoadLog, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -222,7 +222,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysModelLoadLog, bl);
+        super.onFillEntityFullInfo(pSSysModelLoadLog, bl);
         this.onFillEntityFullInfo_PSSystem(pSSysModelLoadLog, bl);
         this.onFillEntityFullInfo_PSTaskServer(pSSysModelLoadLog, bl);
     }
@@ -254,7 +254,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
     }
 
     protected void onWriteBackParent(PSSysModelLoadLog pSSysModelLoadLog, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysModelLoadLog, bl);
+        super.onWriteBackParent(pSSysModelLoadLog, bl);
     }
 
     public ArrayList<PSSysModelLoadLog> selectByPSSystem(PSSystemBase pSSystemBase) throws Exception {
@@ -309,8 +309,8 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
         ArrayList<PSSysModelLoadLog> arrayList = this.selectByPSSystem(pSSystem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSTEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSystem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSMODELLOADLOG_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSSYSMODELLOADLOG", iDataEntityModel.getDataInfo((IEntity)pSSystem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSystem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSMODELLOADLOG_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSSYSMODELLOADLOG", iDataEntityModel.getDataInfo(pSSystem), arrayList.get(0)));
         }
     }
 
@@ -343,7 +343,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
         ArrayList<PSSysModelLoadLog> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysModelLoadLog pSSysModelLoadLog : arrayList) {
-            this.remove((IEntity)pSSysModelLoadLog);
+            this.remove(pSSysModelLoadLog);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -389,7 +389,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
         ArrayList<PSSysModelLoadLog> arrayList = this.selectByPSTaskServer(pSTaskServer);
         this.onBeforeRemoveByPSTaskServer(pSTaskServer, arrayList);
         for (PSSysModelLoadLog pSSysModelLoadLog : arrayList) {
-            this.remove((IEntity)pSSysModelLoadLog);
+            this.remove(pSSysModelLoadLog);
         }
         this.onAfterRemoveByPSTaskServer(pSTaskServer, arrayList);
     }
@@ -410,7 +410,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
 
     protected void replaceParentInfo(PSSysModelLoadLog pSSysModelLoadLog, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysModelLoadLog, cloneSession);
+        super.replaceParentInfo(pSSysModelLoadLog, cloneSession);
         if (pSSysModelLoadLog.getPSSystemId() != null && (iEntity = cloneSession.getEntity("PSSYSTEM", (Object)pSSysModelLoadLog.getPSSystemId())) != null) {
             this.onFillParentInfo_PSSystem(pSSysModelLoadLog, (PSSystem)iEntity);
         }
@@ -420,7 +420,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysModelLoadLog pSSysModelLoadLog, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysModelLoadLog, bl);
+        super.onRemoveEntityUncopyValues(pSSysModelLoadLog, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysModelLoadLog pSSysModelLoadLog, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -468,7 +468,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
         if ((entityFieldError = this.onCheckField_PSTaskServerName(bl, pSSysModelLoadLog, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysModelLoadLog, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysModelLoadLog, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ExceptionInfo(boolean bl, PSSysModelLoadLog pSSysModelLoadLog, boolean bl2, boolean bl3) throws Exception {
@@ -481,7 +481,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ExceptionInfo_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_ExceptionInfo_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXCEPTIONINFO");
@@ -503,7 +503,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogInfo_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_LogInfo_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGINFO");
@@ -528,7 +528,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogLevel_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_LogLevel_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGLEVEL");
@@ -550,7 +550,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -572,7 +572,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -597,7 +597,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjId_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjId_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJID");
@@ -622,7 +622,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjName_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjName_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJNAME");
@@ -647,7 +647,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjType_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjType_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJTYPE");
@@ -672,7 +672,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelLoadLogId_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelLoadLogId_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELLOADLOGID");
@@ -697,7 +697,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelLoadLogName_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelLoadLogName_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELLOADLOGNAME");
@@ -722,7 +722,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -747,7 +747,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -772,7 +772,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSTaskServerId_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSTaskServerId_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTASKSERVERID");
@@ -797,7 +797,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSTaskServerName_Default((IEntity)pSSysModelLoadLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSTaskServerName_Default(pSSysModelLoadLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTASKSERVERNAME");
@@ -810,11 +810,11 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
     }
 
     protected void onSyncEntity(PSSysModelLoadLog pSSysModelLoadLog, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysModelLoadLog, bl);
+        super.onSyncEntity(pSSysModelLoadLog, bl);
     }
 
     protected void onSyncIndexEntities(PSSysModelLoadLog pSSysModelLoadLog, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysModelLoadLog, bl);
+        super.onSyncIndexEntities(pSSysModelLoadLog, bl);
     }
 
     public Object getDataContextValue(PSSysModelLoadLog pSSysModelLoadLog, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -822,14 +822,14 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysModelLoadLog, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysModelLoadLog, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysModelLoadLog pSSysModelLoadLog, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysModelLoadLog, arrayList, n);
+        super.onExportMajorModel(pSSysModelLoadLog, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1092,14 +1092,14 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
 
     protected boolean onMergeChild(String string, String string2, PSSysModelLoadLog pSSysModelLoadLog) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysModelLoadLog)) {
+        if (super.onMergeChild(string, string2, pSSysModelLoadLog)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysModelLoadLog pSSysModelLoadLog) throws Exception {
-        super.onUpdateParent((IEntity)pSSysModelLoadLog);
+        super.onUpdateParent(pSSysModelLoadLog);
     }
 
     @Override
@@ -1122,7 +1122,7 @@ extends PSCoreSysServiceBase<PSSysModelLoadLog> {
         pSSysModelLoadLog2.setPSTaskServerId(pSSysModelLoadLog.getPSTaskServerId());
         pSSysModelLoadLog2.setPSObjType(pSSysModelLoadLog.getPSObjType());
         pSSysModelLoadLog2.setPSObjId(pSSysModelLoadLog.getPSObjId());
-        if (this.selectOne((IEntity)pSSysModelLoadLog2, true)) {
+        if (this.selectOne(pSSysModelLoadLog2, true)) {
             return pSSysModelLoadLog2.getPSSysModelLoadLogId();
         }
         return super.getEntityFolderKeyValue(pSSysModelLoadLog, pSSystem);

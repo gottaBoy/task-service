@@ -20,7 +20,7 @@ extends XMLCollectionConfig<SearchModelUserItemConfig> {
         if (StringHelper.Compare((String)strName, (String)"SRFEXSEARCHMODELUSERITEM", (boolean)true) == 0) {
             SearchModelUserItemConfig e = new SearchModelUserItemConfig();
             if (e.LoadConfig(xmlNode)) {
-                this.add((Object)e);
+                this.add(e);
             }
             return;
         }

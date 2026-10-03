@@ -1,41 +1,114 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSControl
- *  IPSDEFormItem
- *  IPSGenerateCodeResult
- *  IPSPublisherContext
- *  org.apache.commons.logging.Log
- */
 package net.ibizsys.model.pub.angularga;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.angularga.PSAngularDEFormDetailVCPublisherImpl;
-import org.apache.commons.logging.Log;
 
-public class PSAngularDEFormItemVCPublisherImpl
-extends PSAngularDEFormDetailVCPublisherImpl {
-    private static final Log log;
-    protected IPSDEFormItem iPSDEFormItem;
+import net.ibizsys.paas.util.StringHelper;
+import net.ibizsys.model.control.IPSControl;
+import net.ibizsys.model.control.IPSEditorType;
+import net.ibizsys.model.control.form.IPSDEFormItem;
+import net.ibizsys.model.pf.IPSPFEditorTempl;
+import net.ibizsys.model.pub.IPSGenerateCodeResult;
+import net.ibizsys.model.pub.IPSPFEditorCodePublisher;
+import SA.SRFDA.PS.Core.Pub.IPSPublisherContext;
+import net.ibizsys.model.pub.PSGenerateCodeResultImpl;
+import SA.SRFDA.PS.Core.Pub.PSImportHelper;
+import net.ibizsys.model.res.IPSSysEditorStyleRuntime;
+import net.ibizsys.model.res.IPSSysPFPlugin;
+import net.ibizsys.model.entity.PSPFEditorTempl;
 
-    public PSAngularDEFormItemVCPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSEditorType cannot be resolved to a type\n\tThe method getPSModelStorage() is undefined for the type PSAngularDEFormItemVCPublisherImpl\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSSysPFPlugin cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tPSImportHelper cannot be resolved\n\tPSImportHelper cannot be resolved\n\tIPSDEFormItem cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSPFEditorTempl cannot be resolved to a type\n\tPSPFEditorTempl cannot be resolved to a variable\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSPFEditorCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n");
-    }
+/**
+ * JQ实体表单项视图代码发布对象
+ * @author Administrator
+ *
+ */
+public class PSAngularDEFormItemVCPublisherImpl extends PSAngularDEFormDetailVCPublisherImpl
+{
+	private static final org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(PSAngularDEFormItemVCPublisherImpl.class);
+	protected IPSDEFormItem iPSDEFormItem = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDEFormItem = (IPSDEFormItem)object;
+		return super.generateCode(iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		if(true)
+		{
+			//根据类型，获取对应的编辑器代码
+			IPSEditorType iPSEditorType = this.getPSModelStorageContext().getPSEditorType(iPSDEFormItem.getEditorType());
+			IPSSysPFPlugin iPSSysPFPlugin = null;
+			if(iPSDEFormItem.getPSSysEditorStyle()!=null)
+			{
+				iPSSysPFPlugin = ((IPSSysEditorStyleRuntime)iPSDEFormItem.getPSSysEditorStyle()).getPSSysPFPlugin();
+			}
+			
+			if(iPSSysPFPlugin!=null)
+			{
+				String strCodeName = "";
+				String strCodeName2 = "";
+				if(StringHelper.compare(this.getPSPFPubCode().getName(),"HTML",true)==0)
+				{
+					strCodeName = "CODE";
+				}
+				else if(StringHelper.compare(this.getPSPFPubCode().getName(),"CONTROL_TS",true)==0)
+				{
+					strCodeName = "CODE2";
+					strCodeName2 = "CODE5";
+				}
+				
+				if(!StringHelper.isNullOrEmpty(strCodeName))
+				{
+					if(!StringHelper.isNullOrEmpty(strCodeName2))
+					{
+						String strCode = iPSSysPFPlugin.getCode(strCodeName2, this.iPSPF.getId(), this.iPSPFStyle.getId(), this.iPSAppView, this.iPSControl, iPSDEFormItem);
+						if(!StringHelper.isNullOrEmpty(strCode))
+						{
+							if(PSImportHelper.getCurrent()==null){
+								log.warn(StringHelper.format("当前没有导入辅助对象"));
+							}
+							else{
+								PSImportHelper.getCurrent().register("", strCode);
+							}
+						}
+					}
+					String strCode = iPSSysPFPlugin.getCode(strCodeName, this.iPSPF.getId(), this.iPSPFStyle.getId(), this.iPSAppView, this.iPSControl, iPSDEFormItem);
+					if(!StringHelper.isNullOrEmpty(strCode))
+					{
+						PSGenerateCodeResultImpl psGenerateCodeResult = new PSGenerateCodeResultImpl();
+						psGenerateCodeResult.setObject(iPSDEFormItem);
+						psGenerateCodeResult.setCode(strCode);
+						params.put("editor", psGenerateCodeResult);
+						return;
+					}
+				}
+			}
+			if(true)
+			{
+				IPSPFEditorTempl iPSPFEditorTempl = this.iPSPFStyle.getPSPFEditorTempl(iPSEditorType, PSPFEditorTempl.CONTAINERTYPE_FORMITEM, this.getPSPFPubCode());
+				if(iPSPFEditorTempl != null) {
+					IPSPFEditorCodePublisher psPFEditorCodePublisher = iPSPFEditorTempl.getPSPFEditorCodePublisher();
+					if(psPFEditorCodePublisher != null) {
+						params.put("editor", psPFEditorCodePublisher.generateCode(this.iPSControl, iPSDEFormItem));
+					}
+				}
+			}
+		}
+		
+	}
+	
 
-    @Override
-    public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n");
-    }
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSEditorType cannot be resolved to a type\n\tThe method getPSModelStorage() is undefined for the type PSAngularDEFormItemVCPublisherImpl\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSSysPFPlugin cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tPSImportHelper cannot be resolved\n\tPSImportHelper cannot be resolved\n\tIPSDEFormItem cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSPFEditorTempl cannot be resolved to a type\n\tPSPFEditorTempl cannot be resolved to a variable\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSPFEditorCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEFormItem cannot be resolved to a type\n");
-    }
 
-    @Override
-    protected void onClose() {
-        throw new Error("Unresolved compilation problem: \n\tIPSDEFormItem cannot be resolved to a type\n");
-    }
 }
-

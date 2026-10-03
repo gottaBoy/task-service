@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.wfdesign.demodel.PSWFLinkCondDEModelBase;
 
 public class PSWFLinkCondDEModel
 extends PSWFLinkCondDEModelBase {
+
+    public PSWFLinkCondDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

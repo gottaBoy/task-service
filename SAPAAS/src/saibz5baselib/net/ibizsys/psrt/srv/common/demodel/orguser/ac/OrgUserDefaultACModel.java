@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.orguser.ac;
 
-import net.ibizsys.psrt.srv.common.demodel.orguser.ac.OrgUserDefaultACModelBase;
+/**
+ *  实体自动填充 [DEFAULT]对象模型
+ */
+public class OrgUserDefaultACModel extends OrgUserDefaultACModelBase {
 
-public class OrgUserDefaultACModel
-extends OrgUserDefaultACModelBase {
+    public OrgUserDefaultACModel () {
+        super();
+    }
+
 }
-

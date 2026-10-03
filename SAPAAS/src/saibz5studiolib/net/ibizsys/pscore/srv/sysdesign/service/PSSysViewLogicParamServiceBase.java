@@ -159,14 +159,14 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
             PSSysViewLogic pSSysViewLogic = (PSSysViewLogic)iService.getDEModel().createEntity();
             pSSysViewLogic.set("PSSYSVIEWLOGICID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysViewLogic);
+                iService.getTemp(pSSysViewLogic);
             } else {
-                iService.get((IEntity)pSSysViewLogic);
+                iService.get(pSSysViewLogic);
             }
             this.onFillParentInfo_PSSysViewLogic(pSSysViewLogicParam, pSSysViewLogic);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysViewLogicParam, string, string2, string3);
+        super.onFillParentInfo(pSSysViewLogicParam, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -182,7 +182,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysViewLogicParam, bl);
+        super.onFillEntityFullInfo(pSSysViewLogicParam, bl);
         this.onFillEntityFullInfo_PSSysViewLogic(pSSysViewLogicParam, bl);
     }
 
@@ -200,7 +200,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
     }
 
     protected void onWriteBackParent(PSSysViewLogicParam pSSysViewLogicParam, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysViewLogicParam, bl);
+        super.onWriteBackParent(pSSysViewLogicParam, bl);
     }
 
     public ArrayList<PSSysViewLogicParam> selectByPSSysViewLogic(PSSysViewLogicBase pSSysViewLogicBase) throws Exception {
@@ -261,7 +261,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
             PSSysViewLogicParam pSSysViewLogicParam2 = (PSSysViewLogicParam)this.getDEModel().createEntity();
             pSSysViewLogicParam2.setPSSysViewLogicParamId(pSSysViewLogicParam.getPSSysViewLogicParamId());
             pSSysViewLogicParam2.setPSSysViewLogicId(null);
-            this.updateTemp((IEntity)pSSysViewLogicParam2);
+            this.updateTemp(pSSysViewLogicParam2);
         }
     }
 
@@ -284,7 +284,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
         ArrayList<PSSysViewLogicParam> arrayList = this.selectByPSSysViewLogic(pSSysViewLogic);
         this.onBeforeRemoveByPSSysViewLogic(pSSysViewLogic, arrayList);
         for (PSSysViewLogicParam pSSysViewLogicParam : arrayList) {
-            this.remove((IEntity)pSSysViewLogicParam);
+            this.remove(pSSysViewLogicParam);
         }
         this.onAfterRemoveByPSSysViewLogic(pSSysViewLogic, arrayList);
     }
@@ -322,7 +322,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
         ArrayList<PSSysViewLogicParam> arrayList = this.selectTempByPSSysViewLogic(pSSysViewLogic);
         this.onBeforeRemoveTempByPSSysViewLogic(pSSysViewLogic, arrayList);
         for (PSSysViewLogicParam pSSysViewLogicParam : arrayList) {
-            this.removeTemp((IEntity)pSSysViewLogicParam);
+            this.removeTemp(pSSysViewLogicParam);
         }
         this.onAfterRemoveTempByPSSysViewLogic(pSSysViewLogic, arrayList);
     }
@@ -338,14 +338,14 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
 
     protected void replaceParentInfo(PSSysViewLogicParam pSSysViewLogicParam, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysViewLogicParam, cloneSession);
+        super.replaceParentInfo(pSSysViewLogicParam, cloneSession);
         if (pSSysViewLogicParam.getPSSysViewLogicId() != null && (iEntity = cloneSession.getEntity("PSSYSVIEWLOGIC", (Object)pSSysViewLogicParam.getPSSysViewLogicId())) != null) {
             this.onFillParentInfo_PSSysViewLogic(pSSysViewLogicParam, (PSSysViewLogic)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSysViewLogicParam pSSysViewLogicParam, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysViewLogicParam, bl);
+        super.onRemoveEntityUncopyValues(pSSysViewLogicParam, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysViewLogicParam pSSysViewLogicParam, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -441,7 +441,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSSysViewLogicParam, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysViewLogicParam, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysViewLogicParam, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSysViewLogicParam pSSysViewLogicParam, boolean bl2, boolean bl3) throws Exception {
@@ -454,7 +454,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -476,7 +476,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -498,7 +498,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ParamCat_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_ParamCat_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMCAT");
@@ -520,7 +520,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ParamDesc_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_ParamDesc_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMDESC");
@@ -542,7 +542,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ParamKey_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_ParamKey_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMKEY");
@@ -564,7 +564,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ParamState_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string = this.onTestValueRule_ParamState_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMSTATE");
@@ -586,7 +586,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ParamSubKey_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_ParamSubKey_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMSUBKEY");
@@ -608,7 +608,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ParamType_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_ParamType_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMTYPE");
@@ -630,7 +630,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ParamValue_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_ParamValue_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMVALUE");
@@ -652,7 +652,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ParamValue10_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string = this.onTestValueRule_ParamValue10_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMVALUE10");
@@ -674,7 +674,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ParamValue2_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_ParamValue2_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMVALUE2");
@@ -696,7 +696,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ParamValue3_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_ParamValue3_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMVALUE3");
@@ -718,7 +718,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ParamValue4_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_ParamValue4_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMVALUE4");
@@ -740,7 +740,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ParamValue5_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string = this.onTestValueRule_ParamValue5_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMVALUE5");
@@ -762,7 +762,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ParamValue6_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string = this.onTestValueRule_ParamValue6_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMVALUE6");
@@ -784,7 +784,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ParamValue7_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string = this.onTestValueRule_ParamValue7_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMVALUE7");
@@ -806,7 +806,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ParamValue8_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string = this.onTestValueRule_ParamValue8_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMVALUE8");
@@ -828,7 +828,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ParamValue9_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string = this.onTestValueRule_ParamValue9_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMVALUE9");
@@ -853,7 +853,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewLogicId_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewLogicId_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWLOGICID");
@@ -875,7 +875,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewLogicName_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewLogicName_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWLOGICNAME");
@@ -900,7 +900,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewLogicParamId_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewLogicParamId_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWLOGICPARAMID");
@@ -925,7 +925,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewLogicParamName_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewLogicParamName_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWLOGICPARAMNAME");
@@ -964,7 +964,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefObjId_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_RefObjId_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFOBJID");
@@ -986,7 +986,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefObjName_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_RefObjName_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFOBJNAME");
@@ -1008,7 +1008,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefObjType_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_RefObjType_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFOBJTYPE");
@@ -1030,7 +1030,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1052,7 +1052,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1074,7 +1074,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1096,7 +1096,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1118,7 +1118,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysViewLogicParam, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysViewLogicParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1131,11 +1131,11 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
     }
 
     protected void onSyncEntity(PSSysViewLogicParam pSSysViewLogicParam, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysViewLogicParam, bl);
+        super.onSyncEntity(pSSysViewLogicParam, bl);
     }
 
     protected void onSyncIndexEntities(PSSysViewLogicParam pSSysViewLogicParam, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysViewLogicParam, bl);
+        super.onSyncIndexEntities(pSSysViewLogicParam, bl);
     }
 
     public Object getDataContextValue(PSSysViewLogicParam pSSysViewLogicParam, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1143,7 +1143,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysViewLogicParam, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysViewLogicParam, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysViewLogic pSSysViewLogic = pSSysViewLogicParam.getPSSysViewLogic();
@@ -1154,7 +1154,7 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
     }
 
     protected void onExportMajorModel(PSSysViewLogicParam pSSysViewLogicParam, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysViewLogicParam, arrayList, n);
+        super.onExportMajorModel(pSSysViewLogicParam, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1598,14 +1598,14 @@ extends PSCoreSysServiceBase<PSSysViewLogicParam> {
 
     protected boolean onMergeChild(String string, String string2, PSSysViewLogicParam pSSysViewLogicParam) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysViewLogicParam)) {
+        if (super.onMergeChild(string, string2, pSSysViewLogicParam)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysViewLogicParam pSSysViewLogicParam) throws Exception {
-        super.onUpdateParent((IEntity)pSSysViewLogicParam);
+        super.onUpdateParent(pSSysViewLogicParam);
     }
 
     @Override

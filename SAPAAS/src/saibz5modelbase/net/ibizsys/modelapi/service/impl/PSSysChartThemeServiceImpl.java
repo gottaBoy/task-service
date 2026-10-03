@@ -113,9 +113,9 @@ implements IPSSysChartThemeService {
 
     @Override
     protected List<PSSysChartTheme> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysChartTheme> list = new ArrayList<PSSysChartTheme>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysChartTheme> items = this.listByPSModule(parent);

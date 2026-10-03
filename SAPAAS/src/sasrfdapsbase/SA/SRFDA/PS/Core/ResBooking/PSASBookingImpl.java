@@ -111,7 +111,7 @@ implements IPSASBooking {
             this.setBeginTime(this.psASBooking.getBeginTime().getTime());
             this.setEndTime(this.psASBooking.getEndTime().getTime());
             this.psAppServer.setPSAppServerId(this.psASBooking.getPSAppServerId());
-            this.psAppServerService.get((IEntity)this.psAppServer);
+            this.psAppServerService.get(this.psAppServer);
             this.setBookingResType(this.psAppServer.getTimeShareResType());
             this.setPSBookingResType(this.getPSModelStorage().getPSBookingResType(this.getBookingResType(), false));
         }
@@ -126,7 +126,7 @@ implements IPSASBooking {
         try {
             psASBooking.setPSASBookingId(this.getId());
             EntityBase.setLastUpdateDate((IEntity)psASBooking, (Timestamp)this.getLastUpdateTime());
-            this.psASBookingService.update((IEntity)psASBooking);
+            this.psASBookingService.update(psASBooking);
             this.setLastUpdateTime(psASBooking.getUpdateDate());
         }
         catch (Exception ex) {
@@ -144,14 +144,14 @@ implements IPSASBooking {
                 psASBooking.reset();
                 psASBooking.setPSASBookingId(this.getId());
                 psASBooking.setBookingState(Integer.valueOf(nNewState));
-                this.psASBookingService.update((IEntity)psASBooking);
+                this.psASBookingService.update(psASBooking);
                 this.syncEntity((IEntity)psASBooking);
             }
             catch (Exception ex) {
                 log.error((Object)StringHelper.Format((String)"\u66f4\u65b0\u8d44\u6e90\u9884\u7ea6\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
             }
             try {
-                this.psASBookingLogService.save((IEntity)psASBookingLog);
+                this.psASBookingLogService.save(psASBookingLog);
             }
             catch (Exception ex) {
                 log.error((Object)StringHelper.Format((String)"\u66f4\u65b0\u8d44\u6e90\u9884\u7ea6\u65e5\u5fd7\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
@@ -173,13 +173,13 @@ implements IPSASBooking {
                     int nEndPort = DataObject.getIntegerValue((Object)this.psAppServer.getEndPort(), (Integer)18080);
                     int nHttpPort = nStartPort + random.nextInt(nEndPort - nStartPort);
                     psAppServer2.setHttpPort(Integer.valueOf(nHttpPort));
-                    this.psAppServerService.update((IEntity)psAppServer2);
-                    ArrayList psDBDevInstList = this.psDBDevInstService.selectByPSAppServer((PSAppServerBase)psAppServer2);
+                    this.psAppServerService.update(psAppServer2);
+                    ArrayList<PSDBDevInst> psDBDevInstList = this.psDBDevInstService.selectByPSAppServer((PSAppServerBase)psAppServer2);
                     for (PSDBDevInst psDBDevInst : psDBDevInstList) {
                         PSDBDevInst psDBDevInst2 = new PSDBDevInst();
                         psDBDevInst2.setPSDBDevInstId(psDBDevInst.getPSDBDevInstId());
                         psDBDevInst2.setPasswd(PasswordHelper.generate());
-                        this.psDBDevInstService.update((IEntity)psDBDevInst2, false);
+                        this.psDBDevInstService.update(psDBDevInst2, false);
                     }
                     this.psAppServer = psAppServer2;
                     IPSAppServerType iPSAppServerType = this.getPSModelStorage().getPSAppServerType(this.psAppServer.getASType());
@@ -208,7 +208,7 @@ implements IPSASBooking {
                 }
             }
             try {
-                this.psASBookingLogService.save((IEntity)psASBookingLog);
+                this.psASBookingLogService.save(psASBookingLog);
             }
             catch (Exception ex) {
                 log.error((Object)StringHelper.Format((String)"\u66f4\u65b0\u8d44\u6e90\u9884\u7ea6\u65e5\u5fd7\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
@@ -224,10 +224,10 @@ implements IPSASBooking {
             PSDevCenterDBInstService psDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDevCenterAS psDevCenterAS = new PSDevCenterAS();
             psDevCenterAS.setPSDevCenterASId(this.psASBooking.getPSDevCenterASId());
-            ArrayList psDevCenterDBInstList = psDevCenterDBInstService.selectByPSDevCenterAS((PSDevCenterASBase)psDevCenterAS);
+            ArrayList<PSDevCenterDBInst> psDevCenterDBInstList = psDevCenterDBInstService.selectByPSDevCenterAS((PSDevCenterASBase)psDevCenterAS);
             if (bBind) {
                 PSDBDevInstService psDBDevInstService = (PSDBDevInstService)ServiceGlobal.getService(PSDBDevInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                ArrayList psDBDevInstList = psDBDevInstService.selectByPSAppServer((PSAppServerBase)psAppServer);
+                ArrayList<PSDBDevInst> psDBDevInstList = psDBDevInstService.selectByPSAppServer((PSAppServerBase)psAppServer);
                 HashMap<String, PSDevCenterDBInst> psDevCenterDBInstMap = new HashMap<String, PSDevCenterDBInst>();
                 for (PSDevCenterDBInst psDevCenterDBInst : psDevCenterDBInstList) {
                     psDevCenterDBInstMap.put(psDevCenterDBInst.getDBType(), psDevCenterDBInst);
@@ -253,7 +253,7 @@ implements IPSASBooking {
                     } else {
                         psDevCenterDBInst.setConnStr(psDBDevInst.getConnStr());
                     }
-                    psDevCenterDBInstService.update((IEntity)psDevCenterDBInst, false);
+                    psDevCenterDBInstService.update(psDevCenterDBInst, false);
                 }
                 psDevCenterAS.setPSAppServerId(psAppServer.getPSAppServerId());
                 psDevCenterAS.setPSAppServerName(psAppServer.getPSAppServerName());
@@ -274,7 +274,7 @@ implements IPSASBooking {
                 }
                 psDevCenterAS.setResReadyTime(null);
                 psDevCenterAS.setResState(Integer.valueOf(20));
-                psDevCenterASService.update((IEntity)psDevCenterAS);
+                psDevCenterASService.update(psDevCenterAS);
             } else {
                 for (PSDevCenterDBInst psDevCenterDBInst : psDevCenterDBInstList) {
                     String psDevCenterDBInstId = psDevCenterDBInst.getPSDevCenterDBInstId();
@@ -288,7 +288,7 @@ implements IPSASBooking {
                     psDevCenterDBInst.setExpriedTime(null);
                     psDevCenterDBInst.setConnStr(null);
                     psDevCenterDBInst.setResState(Integer.valueOf(42));
-                    psDevCenterDBInstService.update((IEntity)psDevCenterDBInst, false);
+                    psDevCenterDBInstService.update(psDevCenterDBInst, false);
                 }
                 psDevCenterAS.setPSAppServerId(null);
                 psDevCenterAS.setPSAppServerName(null);
@@ -298,12 +298,12 @@ implements IPSASBooking {
                 psDevCenterAS.setHostPasswd(null);
                 psDevCenterAS.setHostPort(null);
                 psDevCenterAS.setResState(Integer.valueOf(42));
-                psDevCenterASService.update((IEntity)psDevCenterAS);
+                psDevCenterASService.update(psDevCenterAS);
             }
             PSASBooking psASBooking = new PSASBooking();
             psASBooking.setPSASBookingId(this.getId());
             psASBooking.setBookingState(Integer.valueOf(nNewState));
-            this.psASBookingService.update((IEntity)psASBooking);
+            this.psASBookingService.update(psASBooking);
             this.syncEntity((IEntity)psASBooking);
             SessionFactoryManager.releaseRef((boolean)true);
         }

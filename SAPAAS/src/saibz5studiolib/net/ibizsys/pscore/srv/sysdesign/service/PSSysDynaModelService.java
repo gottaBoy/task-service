@@ -70,7 +70,7 @@ extends PSSysDynaModelServiceBase {
     }
 
     protected CallResult internalGet(PSSysDynaModel pSSysDynaModel, boolean bl) throws Exception {
-        CallResult callResult = super.internalGet((IEntity)pSSysDynaModel, bl);
+        CallResult callResult = super.internalGet(pSSysDynaModel, bl);
         if (callResult.isOk() && !StringHelper.isNullOrEmpty((String)pSSysDynaModel.getDynaModel2())) {
             pSSysDynaModel.setDynaModel(pSSysDynaModel.getDynaModel2());
         }

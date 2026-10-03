@@ -89,11 +89,11 @@ extends PSSFTemplDataCtrlBase {
     }
 
     protected void onMergeCode(SA.SRFDA.PS.Data.PSSFStyle psSFStyle) throws Exception {
-        Vector psSFCodeTempls;
+        Vector<PSSFCodeTempl> psSFCodeTempls;
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSSFSTYLEID", (Object)psSFStyle.getPSSFSTYLEID());
         IDEDataCtrl psSFStyleCodeDataCtrl = this.GetRelatedDataCtrl("DE1553");
-        Vector psSFStyleCodes = new Vector();
+        Vector<PSSFStyleCode> psSFStyleCodes = new Vector<PSSFStyleCode>();
         CallResult callResult = psSFStyleCodeDataCtrl.Select(cond, psSFStyleCodes, PSSFStyleCode.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u6846\u67b6\u6837\u5f0f\u5b8f\u4ee3\u7801\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -101,7 +101,7 @@ extends PSSFTemplDataCtrlBase {
         cond.Reset();
         cond.setParamValue("PSSFSTYLEID", (Object)psSFStyle.getPSSFSTYLEID());
         IDEDataCtrl psSFCodeTypeDataCtrl = this.GetRelatedDataCtrl("DE1515");
-        Vector psSFCodeTypes = new Vector();
+        Vector<PSSFCodeType> psSFCodeTypes = new Vector<PSSFCodeType>();
         callResult = psSFCodeTypeDataCtrl.Select(cond, psSFCodeTypes, PSSFCodeType.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u6846\u67b6\u6837\u5f0f\u89c6\u56fe\u6a21\u7248\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -132,7 +132,7 @@ extends PSSFTemplDataCtrlBase {
             throw new Exception(StringHelper.Format((String)"\u5408\u5e76\u6846\u67b6\u6837\u5f0f\u4ee3\u7801\u6a21\u7248\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
         }
         IDEDataCtrl psSFCodeTemplDataCtrl = this.GetRelatedDataCtrl("DE1516");
-        callResult = psSFCodeTemplDataCtrl.Select(cond, psSFCodeTempls = new Vector(), PSSFCodeTempl.class.getName());
+        callResult = psSFCodeTemplDataCtrl.Select(cond, psSFCodeTempls = new Vector<PSSFCodeTempl>(), PSSFCodeTempl.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u6846\u67b6\u6837\u5f0f\u6a21\u7248\u6210\u5458\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
         }
@@ -196,7 +196,7 @@ extends PSSFTemplDataCtrlBase {
         IDEDataCtrl iPSSFStyleCodeDataCtrl = this.GetRelatedDataCtrl("DE1553");
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSSFSTYLEID", (Object)strPSSFStyleId);
-        Vector psSFStyleCodeList = new Vector();
+        Vector<BaseDataEntity> psSFStyleCodeList = new Vector<BaseDataEntity>();
         iPSSFStyleCodeDataCtrl.Select(cond, psSFStyleCodeList);
         for (BaseDataEntity baseDataEntity : psSFStyleCodeList) {
             iPSSFStyleCodeDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
@@ -204,7 +204,7 @@ extends PSSFTemplDataCtrlBase {
         IDEDataCtrl iPSSFCodeTypeDataCtrl = this.GetRelatedDataCtrl("DE1515");
         cond = new BaseDataEntity();
         cond.setParamValue("PSSFSTYLEID", (Object)strPSSFStyleId);
-        Vector psSFCodeTypeList = new Vector();
+        Vector<BaseDataEntity> psSFCodeTypeList = new Vector<BaseDataEntity>();
         iPSSFCodeTypeDataCtrl.Select(cond, psSFCodeTypeList);
         for (BaseDataEntity baseDataEntity : psSFCodeTypeList) {
             iPSSFCodeTypeDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
@@ -212,7 +212,7 @@ extends PSSFTemplDataCtrlBase {
         IDEDataCtrl iPSSFStyleVerDataCtrl = this.GetRelatedDataCtrl("DE1550");
         cond = new BaseDataEntity();
         cond.setParamValue("PSSFSTYLEID", (Object)strPSSFStyleId);
-        Vector psSFStyleVerList = new Vector();
+        Vector<BaseDataEntity> psSFStyleVerList = new Vector<BaseDataEntity>();
         iPSSFStyleVerDataCtrl.Select(cond, psSFStyleVerList);
         for (BaseDataEntity baseDataEntity : psSFStyleVerList) {
             iPSSFStyleVerDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
@@ -231,7 +231,7 @@ extends PSSFTemplDataCtrlBase {
             String strPSSFStyleId = dataEntity.getParamStringValue("PSSFSTYLEID", "");
             BaseDataEntity cond = new BaseDataEntity();
             cond.set("PSSFSTYLEID", srcKey);
-            Vector psSFStyleCodeList = new Vector();
+            Vector<BaseDataEntity> psSFStyleCodeList = new Vector<BaseDataEntity>();
             callResult = psSFStyleCodeDataCtrl.Select(cond, psSFStyleCodeList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4ee3\u7801\u5b8f\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -247,7 +247,7 @@ extends PSSFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSSFSTYLEID", srcKey);
-            Vector psSFStylePrjList = new Vector();
+            Vector<BaseDataEntity> psSFStylePrjList = new Vector<BaseDataEntity>();
             callResult = psSFStylePrjDataCtrl.Select(cond, psSFStylePrjList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u53d1\u5e03\u9879\u76ee\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -266,7 +266,7 @@ extends PSSFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSSFSTYLEID", srcKey);
-            Vector psSFCodeFolderList = new Vector();
+            Vector<BaseDataEntity> psSFCodeFolderList = new Vector<BaseDataEntity>();
             callResult = psSFCodeFolderDataCtrl.Select(cond, psSFCodeFolderList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4ee3\u7801\u76ee\u5f55\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -282,7 +282,7 @@ extends PSSFTemplDataCtrlBase {
                 if ((callResult = psSFCodeFolderDataCtrl.Save(true, (BaseDataEntity)clonePSSFCodeFoler)).isError()) {
                     throw new Exception(StringHelper.Format((String)"\u5efa\u7acb\u4ee3\u7801\u76ee\u5f55\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                 }
-                Vector psSFCodeTypeList = new Vector();
+                Vector<BaseDataEntity> psSFCodeTypeList = new Vector<BaseDataEntity>();
                 cond.Reset();
                 cond.set("PSSFCODEFOLDERID", psSFCodeFolder.getParamValue("PSSFCODEFOLDERID"));
                 callResult = psSFCodeTypeDataCtrl.Select(cond, psSFCodeTypeList);
@@ -299,7 +299,7 @@ extends PSSFTemplDataCtrlBase {
                     if (callResult.isError()) {
                         throw new Exception(StringHelper.Format((String)"\u5efa\u7acb\u4ee3\u7801\u7c7b\u578b\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                     }
-                    Vector psSFCodeTemplList = new Vector();
+                    Vector<BaseDataEntity> psSFCodeTemplList = new Vector<BaseDataEntity>();
                     cond.Reset();
                     cond.set("PSSFCODETYPEID", psSFCodeType.getParamValue("PSSFCODETYPEID"));
                     callResult = psSFCodeTemplDataCtrl.Select(cond, psSFCodeTemplList);
@@ -320,7 +320,7 @@ extends PSSFTemplDataCtrlBase {
             }
             cond.Reset();
             cond.set("PSSFSTYLEID", srcKey);
-            Vector psSFStylePkgList = new Vector();
+            Vector<BaseDataEntity> psSFStylePkgList = new Vector<BaseDataEntity>();
             callResult = psSFStylePkgDataCtrl.Select(cond, psSFStylePkgList);
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7ec4\u4ef6\u6e05\u5355\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));

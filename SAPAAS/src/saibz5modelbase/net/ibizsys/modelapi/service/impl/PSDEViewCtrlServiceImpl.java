@@ -104,7 +104,7 @@ implements IPSDEViewCtrlService {
     @Override
     protected List<PSDEViewCtrl> onListAll() throws Exception {
         ArrayList<PSDEViewCtrl> list = new ArrayList<PSDEViewCtrl>();
-        List psdeviewbases = PSModelServiceUtil.getInstance().getPSDEViewBaseService().listAll();
+        List<PSDEViewBase> psdeviewbases = PSModelServiceUtil.getInstance().getPSDEViewBaseService().listAll();
         if (psdeviewbases != null) {
             for (PSDEViewBase parent : psdeviewbases) {
                 List<PSDEViewCtrl> items = this.listByPSDEViewBase(parent);

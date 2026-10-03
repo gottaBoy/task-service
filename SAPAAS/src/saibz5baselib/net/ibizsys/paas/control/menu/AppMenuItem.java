@@ -1,139 +1,234 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.control.menu;
 
 import java.util.ArrayList;
-import net.ibizsys.paas.control.menu.IAppMenuItem;
-import net.ibizsys.paas.control.menu.MenuItem;
+
 import net.ibizsys.paas.security.AccessUserModes;
 import net.ibizsys.paas.util.JSONObjectHelper;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.web.WebContext;
 import net.sf.json.JSONObject;
 
-public class AppMenuItem
-extends MenuItem
-implements IAppMenuItem {
-    public static final String APPMENUITEM_APPFUNCID = "appfuncid";
-    public static final String APPMENUITEM_HIDESIDEBAR = "hidesidebar";
-    public static final String APPMENUITEM_OPENDEFAULT = "opendefault";
-    public static final String APPMENUITEM_HIDDEN = "hidden";
-    public static final String APPMENUITEM_STATE = "state";
-    private ArrayList<IAppMenuItem> items = new ArrayList();
-    private String strAppFuncId = null;
-    private boolean bSeperator = false;
-    private boolean bHideSideBar = false;
-    private boolean bOpenDefault = false;
-    private String strCounterId = null;
-    private int nAppMenuItemState = 0;
+/**
+ * 应用菜单项
+ * 
+ * @author Administrator
+ *
+ */
+public class AppMenuItem extends MenuItem implements IAppMenuItem {
+	/**
+	 * 应用功能标识
+	 */
+	public final static String APPMENUITEM_APPFUNCID = "appfuncid";
 
-    @Override
-    public String getAppFuncId() {
-        return this.strAppFuncId;
-    }
+	/**
+	 * 隐藏边栏
+	 */
+	public final static String APPMENUITEM_HIDESIDEBAR = "hidesidebar";
 
-    public void setAppFuncId(String strAppFuncId) {
-        this.strAppFuncId = strAppFuncId;
-    }
+	/**
+	 * 默认打开
+	 */
+	public final static String APPMENUITEM_OPENDEFAULT = "opendefault";
+	
+	/**
+	 * 是否隐藏
+	 */
+	public final static String APPMENUITEM_HIDDEN = "hidden";
+	
+	/**
+	 * 应用菜单项状态
+	 */
+	public final static String APPMENUITEM_STATE = "state";
+	 
+	
 
-    @Override
-    public ArrayList<IAppMenuItem> getItems() {
-        return this.items;
-    }
+	private ArrayList<IAppMenuItem> items = new ArrayList<IAppMenuItem>();
 
-    public static JSONObject toJSONObject(IAppMenuItem iAppMenuItem, JSONObject jsonObject) throws Exception {
-        String strPersonId;
-        if (WebContext.getCurrent() != null && !StringHelper.isNullOrEmpty(strPersonId = WebContext.getCurrent().getCurUserId()) && (iAppMenuItem.getAccUserMode() & AccessUserModes.LOGINUSERWITHKEY) > 0 && !WebContext.getCurrent().getUserPrivilegeMgr().test(WebContext.getCurrent(), iAppMenuItem.getAccessKey())) {
-            return null;
-        }
-        jsonObject = MenuItem.toJSONObject(iAppMenuItem, jsonObject);
-        if (!StringHelper.isNullOrEmpty(iAppMenuItem.getAppFuncId())) {
-            jsonObject.put(APPMENUITEM_APPFUNCID, JSONObjectHelper.stripQuotes(iAppMenuItem.getAppFuncId(), true));
-        }
-        if (iAppMenuItem.isHideSideBar()) {
-            jsonObject.put(APPMENUITEM_HIDESIDEBAR, iAppMenuItem.isHideSideBar());
-        }
-        if (iAppMenuItem.isOpenDefault()) {
-            jsonObject.put(APPMENUITEM_OPENDEFAULT, iAppMenuItem.isOpenDefault());
-        }
-        if (iAppMenuItem.isHidden()) {
-            jsonObject.put(APPMENUITEM_HIDDEN, iAppMenuItem.isHidden());
-        }
-        if (iAppMenuItem.getAppMenuItemState() > 0) {
-            jsonObject.put(APPMENUITEM_STATE, iAppMenuItem.getAppMenuItemState());
-        }
-        if (iAppMenuItem.getItems().size() == 0) {
-            jsonObject.put("leaf", true);
-        } else {
-            ArrayList<JSONObject> items = new ArrayList<JSONObject>();
-            for (IAppMenuItem childExpBarItem : iAppMenuItem.getItems()) {
-                if (childExpBarItem.getFiller() != null) {
-                    ArrayList<JSONObject> list = childExpBarItem.getFiller().toJSONObjects(childExpBarItem);
-                    if (list == null) continue;
-                    items.addAll(list);
-                    continue;
-                }
-                JSONObject jsonItem = AppMenuItem.toJSONObject(childExpBarItem, null);
-                if (jsonItem == null) continue;
-                items.add(jsonItem);
-            }
-            if (items.size() == 0) {
-                jsonObject.put("leaf", true);
-            } else {
-                jsonObject.put("items", (Object)items.toArray());
-            }
-        }
-        return jsonObject;
-    }
+	private String strAppFuncId = null;
 
-    @Override
-    public boolean isSeperator() {
-        return this.bSeperator;
-    }
+	private boolean bSeperator = false;
 
-    public void setSeperator(boolean bSeperator) {
-        this.bSeperator = bSeperator;
-    }
+	private boolean bHideSideBar = false;
 
-    @Override
-    public boolean isHideSideBar() {
-        return this.bHideSideBar;
-    }
+	private boolean bOpenDefault = false;
 
-    public void setHideSideBar(boolean bHideSideBar) {
-        this.bHideSideBar = bHideSideBar;
-    }
+	private String strCounterId = null;
+	
+	private int nAppMenuItemState = 0;
 
-    @Override
-    public boolean isOpenDefault() {
-        return this.bOpenDefault;
-    }
+	/**
+	 * 获取应用功能编号
+	 * 
+	 * @return
+	 */
+	@Override
+	public String getAppFuncId() {
+		return this.strAppFuncId;
+	}
 
-    public void setOpenDefault(boolean bOpenDefault) {
-        this.bOpenDefault = bOpenDefault;
-    }
+	/**
+	 * 设置应用功能编号
+	 * 
+	 * @param strAppFuncId
+	 */
+	public void setAppFuncId(String strAppFuncId) {
+		this.strAppFuncId = strAppFuncId;
+	}
 
-    @Override
-    public String getCounterId() {
-        return this.strCounterId;
-    }
+	@Override
+	public ArrayList<IAppMenuItem> getItems() {
+		return items;
+	}
 
-    @Override
-    public void setCounterId(String strCounterId) {
-        this.strCounterId = strCounterId;
-    }
+	/**
+	 * 导出到JSON对象
+	 * 
+	 * @param iAppMenuItem
+	 * @param jsonObject
+	 * @return
+	 * @throws Exception
+	 */
+	public static JSONObject toJSONObject(IAppMenuItem iAppMenuItem, JSONObject jsonObject) throws Exception {
+		if (WebContext.getCurrent() != null) {
+			String strPersonId = WebContext.getCurrent().getCurUserId();
+			if (!StringHelper.isNullOrEmpty(strPersonId)) {
+				if ((iAppMenuItem.getAccUserMode() & AccessUserModes.LOGINUSERWITHKEY) > 0) {
+					if (!WebContext.getCurrent().getUserPrivilegeMgr().test(WebContext.getCurrent(), iAppMenuItem.getAccessKey())) return null;
+				}
+			}
+		}
 
-    @Override
-    public int getAppMenuItemState() {
-        return this.nAppMenuItemState;
-    }
+		jsonObject = MenuItem.toJSONObject(iAppMenuItem, jsonObject);
+		if (!StringHelper.isNullOrEmpty(iAppMenuItem.getAppFuncId())) {
+			jsonObject.put(APPMENUITEM_APPFUNCID,JSONObjectHelper.stripQuotes(iAppMenuItem.getAppFuncId(),true));
+		}
+		if (iAppMenuItem.isHideSideBar()) {
+			jsonObject.put(APPMENUITEM_HIDESIDEBAR, iAppMenuItem.isHideSideBar());
+		}
+		if (iAppMenuItem.isOpenDefault()) {
+			jsonObject.put(APPMENUITEM_OPENDEFAULT, iAppMenuItem.isOpenDefault());
+		}
+		if (iAppMenuItem.isHidden()) {
+			jsonObject.put(APPMENUITEM_HIDDEN, iAppMenuItem.isHidden());
+		}
+		if(iAppMenuItem.getAppMenuItemState()>0)
+			jsonObject.put(APPMENUITEM_STATE, iAppMenuItem.getAppMenuItemState());
+		if (iAppMenuItem.getItems().size() == 0) {
+			jsonObject.put(MENUITEM_LEAF, true);
+		} else {
+			ArrayList<JSONObject> items = new ArrayList<JSONObject>();
+			for (IAppMenuItem childExpBarItem : iAppMenuItem.getItems()) {
+				if(childExpBarItem.getFiller()!=null){
+					ArrayList<JSONObject> list = childExpBarItem.getFiller().toJSONObjects(childExpBarItem);
+					if(list!=null){
+						items.addAll(list);
+					}
+				}
+				else{
+					JSONObject jsonItem = AppMenuItem.toJSONObject(childExpBarItem, null);
+					if (jsonItem == null) continue;
+					items.add(jsonItem);
+				}
+			}
+			if (items.size() == 0) {
+				jsonObject.put(MENUITEM_LEAF, true);
+			} else
+				jsonObject.put(MENUITEM_ITEMS, items.toArray());
+		}
+		return jsonObject;
+	}
 
-    public void setAppMenuItemState(int nAppMenuItemState) {
-        this.nAppMenuItemState = nAppMenuItemState;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.control.menu.IAppMenuItem#isSeperator()
+	 */
+	@Override
+	public boolean isSeperator() {
+		return bSeperator;
+	}
+
+	/**
+	 * 设置是否为分割项
+	 * 
+	 * @param bSeperator
+	 */
+	public void setSeperator(boolean bSeperator) {
+		this.bSeperator = bSeperator;
+	}
+
+	/**
+	 * 获取点击时是否隐藏边栏
+	 * 
+	 * @return the bHideSideBar
+	 */
+	public boolean isHideSideBar() {
+		return bHideSideBar;
+	}
+
+	/**
+	 * 设置点击时是否隐藏边栏
+	 * 
+	 * @param bHideSideBar
+	 */
+	public void setHideSideBar(boolean bHideSideBar) {
+		this.bHideSideBar = bHideSideBar;
+	}
+
+	/**
+	 * 获取是否默认打开
+	 * 
+	 * @return the bOpenDefault
+	 */
+	public boolean isOpenDefault() {
+		return bOpenDefault;
+	}
+
+	/**
+	 * 设置是否默认打开
+	 * 
+	 * @param bOpenDefault
+	 */
+	public void setOpenDefault(boolean bOpenDefault) {
+		this.bOpenDefault = bOpenDefault;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.control.menu.MenuItem#getCounterId()
+	 */
+	public String getCounterId() {
+		return strCounterId;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.control.menu.MenuItem#setCounterId(java.lang.String)
+	 */
+	public void setCounterId(String strCounterId) {
+		this.strCounterId = strCounterId;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.control.menu.IAppMenuItem#getAppMenuItemState()
+	 */
+	@Override
+	public int getAppMenuItemState() {
+		return nAppMenuItemState;
+	}
+	
+	
+	/**
+	 * 设置应用菜单项状态
+	 * @param nAppMenuItemState
+	 */
+	public void setAppMenuItemState(int nAppMenuItemState){
+		this.nAppMenuItemState = nAppMenuItemState;
+	}
+
+	
+	
+	
 }
-

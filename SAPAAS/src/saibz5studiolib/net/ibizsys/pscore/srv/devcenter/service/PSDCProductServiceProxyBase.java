@@ -48,27 +48,27 @@ implements IInheritDEServiceProxy<PSDCProduct> {
 
     public void remove(PSDCProduct pSDCProduct) throws Exception {
         if (pSDCProduct.getPSDCProductType() == null) {
-            this.get((IEntity)pSDCProduct);
+            this.get(pSDCProduct);
         }
         if (StringHelper.compare((String)pSDCProduct.getPSDCProductType(), (String)"SYSTEM", (boolean)true) == 0) {
             PSDCSysProductService pSDCSysProductService = (PSDCSysProductService)ServiceGlobal.getService(PSDCSysProductService.class, (SessionFactory)this.getSessionFactory());
             PSDCSysProduct pSDCSysProduct = new PSDCSysProduct();
             pSDCSysProduct.setPSDCSysProductId(pSDCProduct.getPSDCProductId());
-            pSDCSysProductService.remove((IEntity)pSDCSysProduct);
+            pSDCSysProductService.remove(pSDCSysProduct);
             return;
         }
         throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u7ee7\u627f\u7c7b\u578b[%1$s]", (Object)pSDCProduct.getPSDCProductType()));
     }
 
     public PSDCProduct getReal(PSDCProduct pSDCProduct, boolean bl) throws Exception {
-        if (pSDCProduct.getPSDCProductType() == null && !this.get((IEntity)pSDCProduct, bl)) {
+        if (pSDCProduct.getPSDCProductType() == null && !this.get(pSDCProduct, bl)) {
             return null;
         }
         if (StringHelper.compare((String)pSDCProduct.getPSDCProductType(), (String)"SYSTEM", (boolean)true) == 0) {
             PSDCSysProductService pSDCSysProductService = (PSDCSysProductService)ServiceGlobal.getService(PSDCSysProductService.class, (SessionFactory)this.getSessionFactory());
             PSDCSysProduct pSDCSysProduct = new PSDCSysProduct();
             pSDCSysProduct.setPSDCSysProductId(pSDCProduct.getPSDCProductId());
-            if (!pSDCSysProductService.get((IEntity)pSDCSysProduct, bl)) {
+            if (!pSDCSysProductService.get(pSDCSysProduct, bl)) {
                 return null;
             }
             return pSDCSysProduct;
@@ -78,7 +78,7 @@ implements IInheritDEServiceProxy<PSDCProduct> {
 
     public IService getRealService(PSDCProduct pSDCProduct) throws Exception {
         if (pSDCProduct.getPSDCProductType() == null) {
-            this.get((IEntity)pSDCProduct);
+            this.get(pSDCProduct);
         }
         if (StringHelper.compare((String)pSDCProduct.getPSDCProductType(), (String)"SYSTEM", (boolean)true) == 0) {
             PSDCSysProductService pSDCSysProductService = (PSDCSysProductService)ServiceGlobal.getService(PSDCSysProductService.class, (SessionFactory)this.getSessionFactory());
@@ -92,7 +92,7 @@ implements IInheritDEServiceProxy<PSDCProduct> {
             PSDCSysProductService pSDCSysProductService = (PSDCSysProductService)ServiceGlobal.getService(PSDCSysProductService.class, (SessionFactory)this.getSessionFactory());
             PSDCSysProduct pSDCSysProduct = new PSDCSysProduct();
             pSDCSysProduct.setPSDCSysProductId(pSDCProduct.getPSDCProductId());
-            pSDCSysProductService.exportModel((IEntity)pSDCSysProduct, arrayList);
+            pSDCSysProductService.exportModel(pSDCSysProduct, arrayList);
             return;
         }
         throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u7ee7\u627f\u7c7b\u578b[%1$s]", (Object)pSDCProduct.getPSDCProductType()));

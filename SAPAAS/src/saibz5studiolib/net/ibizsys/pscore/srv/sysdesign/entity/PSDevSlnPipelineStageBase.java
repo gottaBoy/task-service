@@ -2686,7 +2686,7 @@ implements Serializable {
                 PSDCCodeSnippet pSDCCodeSnippet = new PSDCCodeSnippet();
                 pSDCCodeSnippet.setPSDCCodeSnippetId(this.getPSDCCodeSnippetId());
                 PSDCCodeSnippetService pSDCCodeSnippetService = (PSDCCodeSnippetService)ServiceGlobal.getService(PSDCCodeSnippetService.class, (SessionFactory)this.getSessionFactory());
-                pSDCCodeSnippetService.autoGet((IEntity)pSDCCodeSnippet);
+                pSDCCodeSnippetService.autoGet(pSDCCodeSnippet);
                 this.psdccodesnippet = pSDCCodeSnippet;
             }
             return this.psdccodesnippet;
@@ -2712,7 +2712,7 @@ implements Serializable {
                 PSDCRegistryItem pSDCRegistryItem = new PSDCRegistryItem();
                 pSDCRegistryItem.setPSDCRegistryItemId(this.getAgentPSDCRegistryItemId());
                 PSDCRegistryItemService pSDCRegistryItemService = (PSDCRegistryItemService)ServiceGlobal.getService(PSDCRegistryItemService.class, (SessionFactory)this.getSessionFactory());
-                pSDCRegistryItemService.autoGet((IEntity)pSDCRegistryItem);
+                pSDCRegistryItemService.autoGet(pSDCRegistryItem);
                 this.agentpsdcregistryitem = pSDCRegistryItem;
             }
             return this.agentpsdcregistryitem;
@@ -2738,7 +2738,7 @@ implements Serializable {
                 PSDevSlnPipeline pSDevSlnPipeline = new PSDevSlnPipeline();
                 pSDevSlnPipeline.setPSDevSlnPipelineId(this.getPSDevSlnPipelineId());
                 PSDevSlnPipelineService pSDevSlnPipelineService = (PSDevSlnPipelineService)ServiceGlobal.getService(PSDevSlnPipelineService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnPipelineService.autoGet((IEntity)pSDevSlnPipeline);
+                pSDevSlnPipelineService.autoGet(pSDevSlnPipeline);
                 this.psdevslnpipeline = pSDevSlnPipeline;
             }
             return this.psdevslnpipeline;

@@ -46,7 +46,7 @@ extends PSSysSFPluginServiceBase {
             pSSysSFPlugin.setPSSysSFPluginId(KeyValueHelper.genUniqueId((String)pSSysSFPlugin.getPSSystemId(), (String)pSSysSFPlugin.getPSSFPluginId()));
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)pSSysSFPlugin, bl);
+        return super.onFillEntityKeyValue(pSSysSFPlugin, bl);
     }
 
     @Override
@@ -62,7 +62,7 @@ extends PSSysSFPluginServiceBase {
             PSSFPluginService pSSFPluginService = (PSSFPluginService)ServiceGlobal.getService(PSSFPluginService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSSFPlugin pSSFPlugin = new PSSFPlugin();
             pSSFPlugin.setPSSFPluginId(string);
-            pSSFPluginService.get((IEntity)pSSFPlugin);
+            pSSFPluginService.get(pSSFPlugin);
             pSSysSFPlugin.setPluginType(pSSFPlugin.getPluginType());
             if (StringHelper.isNullOrEmpty((String)pSSysSFPlugin.getPSSysSFPluginName())) {
                 pSSysSFPlugin.setPSSysSFPluginName(pSSFPlugin.getPSSFPluginName());

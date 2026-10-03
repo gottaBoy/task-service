@@ -61,7 +61,7 @@ public class PSSysModelInstHelper {
         PSSysModelInstService psSysModelInstService = (PSSysModelInstService)ServiceGlobal.getService(PSSysModelInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSSysModelInst psSysModelInst = new PSSysModelInst();
         psSysModelInst.setPSSysModelInstId(strPSSysModelInstId);
-        psSysModelInstService.get((IEntity)psSysModelInst);
+        psSysModelInstService.get(psSysModelInst);
         if (nTargetVer == -1) {
             nTargetVer = Version.MODEL;
         }
@@ -71,7 +71,7 @@ public class PSSysModelInstHelper {
         psSysModelVer.setDBType(psSysModelInst.getDBType());
         psSysModelVer.setSysType("DEVSYS");
         psSysModelVer.setModelVer(Integer.valueOf(nTargetVer));
-        if (!psSysModelVerService.select((IEntity)psSysModelVer, true)) {
+        if (!psSysModelVerService.select(psSysModelVer, true)) {
             throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e\u5e93\u6a21\u578b\u7248\u672c"));
         }
         int nCurModelVer = nCurVersion;
@@ -102,7 +102,7 @@ public class PSSysModelInstHelper {
             curPSSysModelVer.setDBType(psSysModelInst.getDBType());
             curPSSysModelVer.setModelVer(Integer.valueOf(nCurModelVer));
             curPSSysModelVer.setSysType("DEVSYS");
-            if (!psSysModelVerService.select((IEntity)curPSSysModelVer, true)) {
+            if (!psSysModelVerService.select(curPSSysModelVer, true)) {
                 log.warn((Object)StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b\u7248\u672c[%1$s][%2$s]", (Object)psSysModelInst.getDBType(), (Object)nCurModelVer));
                 curPSSysModelVer = null;
             }
@@ -183,7 +183,7 @@ public class PSSysModelInstHelper {
         PSSysModelInst psSysModelInst3 = new PSSysModelInst();
         psSysModelInst3.setPSSysModelInstId(psSysModelInst.getPSSysModelInstId());
         psSysModelInst3.setModelVer(psSysModelVer.getModelVer());
-        psSysModelInstService.sysUpdate((IEntity)psSysModelInst3, false);
+        psSysModelInstService.sysUpdate(psSysModelInst3, false);
         return psSysModelInst3;
     }
 
@@ -260,7 +260,7 @@ public class PSSysModelInstHelper {
         PSSysModelInstService psSysModelInstService = (PSSysModelInstService)ServiceGlobal.getService(PSSysModelInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSSysModelInst psSysModelInst = new PSSysModelInst();
         psSysModelInst.setPSSysModelInstId(strPSSysModelInstId);
-        if (!psSysModelInstService.get((IEntity)psSysModelInst, true)) {
+        if (!psSysModelInstService.get(psSysModelInst, true)) {
             throw new Exception(StringHelper.Format((String)"\u6a21\u578b\u4ed3\u5e93[%1$s]\u4e0d\u5b58\u5728", (Object)strPSSysModelInstId));
         }
         boolean bBackupMode = DataObject.getBoolValue((Integer)psSysModelInst.getParam5(), (boolean)false);
@@ -272,7 +272,7 @@ public class PSSysModelInstHelper {
         psSysModelInst.reset();
         psSysModelInst.setPSSysModelInstId(strPSSysModelInstId);
         psSysModelInst.setInstState("30");
-        psSysModelInstService.sysUpdate((IEntity)psSysModelInst, true);
+        psSysModelInstService.sysUpdate(psSysModelInst, true);
         return psSysModelInst;
     }
 
@@ -342,12 +342,12 @@ public class PSSysModelInstHelper {
         PSSysModelInstService psSysModelInstService = (PSSysModelInstService)ServiceGlobal.getService(PSSysModelInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSSysModelInst psSysModelInst = new PSSysModelInst();
         psSysModelInst.setPSSysModelInstId(strPSSysModelInstId);
-        if (psSysModelInstService.get((IEntity)psSysModelInst, true)) {
+        if (psSysModelInstService.get(psSysModelInst, true)) {
             PSSysModelInstHelper.dropDatabase(psSysModelInst);
             psSysModelInst.reset();
             psSysModelInst.setPSSysModelInstId(strPSSysModelInstId);
             psSysModelInst.setInstState("35");
-            psSysModelInstService.sysUpdate((IEntity)psSysModelInst, true);
+            psSysModelInstService.sysUpdate(psSysModelInst, true);
         }
         return psSysModelInst;
     }
@@ -365,4 +365,3 @@ public class PSSysModelInstHelper {
         }
     }
 }
-

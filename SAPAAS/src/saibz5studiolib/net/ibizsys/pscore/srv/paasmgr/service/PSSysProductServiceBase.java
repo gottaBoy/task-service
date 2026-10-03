@@ -186,7 +186,7 @@ extends PSProductService<PSSysProduct> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysProductId_Default((IEntity)pSSysProduct, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysProductId_Default(pSSysProduct, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPRODUCTID");
@@ -211,7 +211,7 @@ extends PSProductService<PSSysProduct> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysProductName_Default((IEntity)pSSysProduct, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysProductName_Default(pSSysProduct, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPRODUCTNAME");

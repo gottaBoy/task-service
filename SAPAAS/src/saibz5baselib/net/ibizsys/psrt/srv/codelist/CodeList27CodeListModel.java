@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psrt.srv.codelist;
 
-import net.ibizsys.psrt.srv.codelist.CodeList27CodeListModelBase;
 
-public class CodeList27CodeListModel
-extends CodeList27CodeListModelBase {
+
+
+//@Component
+/**
+ * 审计行为代码表模型
+ */
+public class CodeList27CodeListModel extends CodeList27CodeListModelBase {
+
+
+   public CodeList27CodeListModel(){
+        super();
+   }
+ 
 }
-

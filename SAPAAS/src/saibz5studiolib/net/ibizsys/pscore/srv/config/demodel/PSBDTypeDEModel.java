@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSBDTypeDEModelBase;
 
 public class PSBDTypeDEModel
 extends PSBDTypeDEModelBase {
+
+    public PSBDTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

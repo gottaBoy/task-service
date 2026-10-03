@@ -1,26 +1,53 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="bd51ee96a28f95295901e9ba2c42091f", name="\u5b9e\u4f53\u6570\u636e\u5904\u7406_\u6570\u636e\u5bf9\u8c61\u64cd\u4f5c", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="CREATENEW", text="\u65b0\u5efa\u6570\u636e\u5bf9\u8c61", realtext="\u65b0\u5efa\u6570\u636e\u5bf9\u8c61"), @CodeItem(value="CREATEFROM", text="\u62f7\u8d1d\u65b0\u5efa\u6570\u636e\u5bf9\u8c61", realtext="\u62f7\u8d1d\u65b0\u5efa\u6570\u636e\u5bf9\u8c61"), @CodeItem(value="COPY", text="\u62f7\u8d1d\u6570\u636e\u5bf9\u8c61", realtext="\u62f7\u8d1d\u6570\u636e\u5bf9\u8c61"), @CodeItem(value="COPYRESET", text="\u62f7\u8d1d\u6570\u636e\u5bf9\u8c61(\u91cd\u7f6e)", realtext="\u62f7\u8d1d\u6570\u636e\u5bf9\u8c61(\u91cd\u7f6e)")})
-public abstract class CodeList107CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String CREATENEW = "CREATENEW";
-    public static final String CREATEFROM = "CREATEFROM";
-    public static final String COPY = "COPY";
-    public static final String COPYRESET = "COPYRESET";
+
+@CodeList(id="bd51ee96a28f95295901e9ba2c42091f",name="实体数据处理_数据对象操作",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="CREATENEW",text="新建数据对象",realtext="新建数据对象" )
+    ,@CodeItem(value="CREATEFROM",text="拷贝新建数据对象",realtext="拷贝新建数据对象" )
+    ,@CodeItem(value="COPY",text="拷贝数据对象",realtext="拷贝数据对象" )
+    ,@CodeItem(value="COPYRESET",text="拷贝数据对象(重置)",realtext="拷贝数据对象(重置)" )
+})
+
+
+/**
+ * 静态代码表[实体数据处理_数据对象操作]模型基类
+ */
+public abstract class CodeList107CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  新建数据对象
+     */
+    public final static String CREATENEW = "CREATENEW";
+    /**
+     *  拷贝新建数据对象
+     */
+    public final static String CREATEFROM = "CREATEFROM";
+    /**
+     *  拷贝数据对象
+     */
+    public final static String COPY = "COPY";
+    /**
+     *  拷贝数据对象(重置)
+     */
+    public final static String COPYRESET = "COPYRESET";
+
 
     public CodeList107CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList107CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList107CodeListModel", this);
     }
-}
 
+}

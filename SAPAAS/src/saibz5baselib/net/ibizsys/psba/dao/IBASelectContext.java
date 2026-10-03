@@ -1,29 +1,87 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.dao;
 
-import java.util.Date;
 import net.ibizsys.paas.db.ISelectCond;
 
-public interface IBASelectContext
-extends ISelectCond {
-    public String[] getColSets();
+/**
+ * 大数据数据查询上下文
+ * @author Administrator
+ *
+ */
+public interface IBASelectContext extends ISelectCond {
 
-    public String getRowKeyPrefix();
+	/**
+	 * 获取列族集合
+	 * @return
+	 */
+	String[] getColSets();
+	
+	
+	
+	
+	/**
+	 * 设置行记录前缀
+	 * @return
+	 */
+	String getRowKeyPrefix();
+	
+	
+	
+	/**
+	 * 获取最大的版本数
+	 * @return
+	 */
+	int getMaxVersions();
+	
+	
+	
+	/**
+	 * 获取开始的时间戳
+	 * @return
+	 */
+	java.util.Date getStartTimeStamp();
+	
+	
+	
+	
+	/**
+	 * 获取开始的时间戳
+	 * @return
+	 */
+	java.util.Date getStopTimeStamp();
+	
+	
+	/**
+	 * 获取其实行
+	 * @return
+	 */
+	String getStartRowKey();
+	
+	
+	/**
+	 * 获取其实行
+	 * @return
+	 */
+	String getStopRowKey();
+	
+	
+	
+	/**
+	 * 获取最大的单元格数量，非行记录
+	 * @return
+	 */
+	int getBatchSize();
+	
+	
+	
+	
+	
+	/**
+	 * 获取指定的时间戳
+	 * @return
+	 */
+	java.util.Date getTimeStamp();
+	
 
-    public int getMaxVersions();
+	
 
-    public Date getStartTimeStamp();
-
-    public Date getStopTimeStamp();
-
-    public String getStartRowKey();
-
-    public String getStopRowKey();
-
-    public int getBatchSize();
-
-    public Date getTimeStamp();
 }
-

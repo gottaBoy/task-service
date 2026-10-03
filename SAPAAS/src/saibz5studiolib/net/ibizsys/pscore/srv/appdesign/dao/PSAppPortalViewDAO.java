@@ -75,7 +75,7 @@ extends PSCoreSysDAOBase<PSAppPortalView> {
     }
 
     protected void fillInheritEntity(PSAppPortalView pSAppPortalView) throws Exception {
-        super.fillInheritEntity((IEntity)pSAppPortalView);
+        super.fillInheritEntity(pSAppPortalView);
         PSAppPortalView pSAppPortalView2 = pSAppPortalView;
         pSAppPortalView2.setPSAppViewId(pSAppPortalView.getPSAppPortalViewId());
         if (pSAppPortalView.isPSAppPortalViewNameDirty()) {

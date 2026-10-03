@@ -1063,7 +1063,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -1089,7 +1089,7 @@ implements Serializable {
                 PSWPAppEntity pSWPAppEntity = new PSWPAppEntity();
                 pSWPAppEntity.setPSWPAppEntityId(this.getPSWPAppEntityId());
                 PSWPAppEntityService pSWPAppEntityService = (PSWPAppEntityService)ServiceGlobal.getService(PSWPAppEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSWPAppEntityService.autoGet((IEntity)pSWPAppEntity);
+                pSWPAppEntityService.autoGet(pSWPAppEntity);
                 this.pswpappentity = pSWPAppEntity;
             }
             return this.pswpappentity;
@@ -1115,7 +1115,7 @@ implements Serializable {
                 PSWPDCAppInst pSWPDCAppInst = new PSWPDCAppInst();
                 pSWPDCAppInst.setPSWPDCAppInstId(this.getPSWPDCAppInstId());
                 PSWPDCAppInstService pSWPDCAppInstService = (PSWPDCAppInstService)ServiceGlobal.getService(PSWPDCAppInstService.class, (SessionFactory)this.getSessionFactory());
-                pSWPDCAppInstService.autoGet((IEntity)pSWPDCAppInst);
+                pSWPDCAppInstService.autoGet(pSWPDCAppInst);
                 this.pswpdcappinst = pSWPDCAppInst;
             }
             return this.pswpdcappinst;

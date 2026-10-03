@@ -352,7 +352,7 @@ IPSDevSlnSysRuntime {
         String strKey = KeyValueHelper.genUniqueId((String)psDevCenterFile.getPSDevCenterId(), (String)"PSDEVSLNSYS", (String)this.getId(), (String)"DEVSLNSYS_ROOT");
         psDevCenterFile.setPSDevCenterFileId(strKey);
         psDevCenterFile.setMemo(SA.SRFramework.Utility.StringHelper.Format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s\\%2$s][%3$s]\u6587\u4ef6\u76ee\u5f55", (Object)this.getPSDevSlnName(), (Object)this.getName(), (Object)this.getLogicName()));
-        psDevCenterFileService.save((IEntity)psDevCenterFile, false);
+        psDevCenterFileService.save(psDevCenterFile, false);
     }
 
     protected void reloadPSDevSlnSys(SA.SRFDA.PS.Data.PSDevSlnSys psDevSlnSys) throws Exception {
@@ -1254,7 +1254,7 @@ IPSDevSlnSysRuntime {
                 this.log(1, this, strInfo);
                 throw new Exception(strInfo);
             }
-            ArrayList<PSDevSlnMSDepAPIImpl> psDevSlnMSDepAPIList2 = new ArrayList<PSDevSlnMSDepAPIImpl>();
+            ArrayList<IPSDevSlnMSDepAPI> psDevSlnMSDepAPIList2 = new ArrayList<IPSDevSlnMSDepAPI>();
             for (PSDevSlnMSDepAPI psDevSlnMSDepAPI : psDevSlnMSDepAPIList) {
                 PSDevSlnMSDepAPIImpl iPSDevSlnMSDepAPI = new PSDevSlnMSDepAPIImpl();
                 iPSDevSlnMSDepAPI.init(this.getDAGlobalHelper(), this, psDevSlnMSDepAPI);
@@ -1281,7 +1281,7 @@ IPSDevSlnSysRuntime {
                 this.log(1, this, strInfo);
                 throw new Exception(strInfo);
             }
-            ArrayList<PSDevSlnMSDepAppImpl> psDevSlnMSDepAppList2 = new ArrayList<PSDevSlnMSDepAppImpl>();
+            ArrayList<IPSDevSlnMSDepApp> psDevSlnMSDepAppList2 = new ArrayList<IPSDevSlnMSDepApp>();
             for (PSDevSlnMSDepApp psDevSlnMSDepApp : psDevSlnMSDepAppList) {
                 PSDevSlnMSDepAppImpl iPSDevSlnMSDepApp = new PSDevSlnMSDepAppImpl();
                 iPSDevSlnMSDepApp.init(this.getDAGlobalHelper(), this, psDevSlnMSDepApp);
@@ -1308,7 +1308,7 @@ IPSDevSlnSysRuntime {
                 this.log(1, this, strInfo);
                 throw new Exception(strInfo);
             }
-            ArrayList<PSDevSlnMSDepFuncImpl> psDevSlnMSDepFuncList2 = new ArrayList<PSDevSlnMSDepFuncImpl>();
+            ArrayList<IPSDevSlnMSDepFunc> psDevSlnMSDepFuncList2 = new ArrayList<IPSDevSlnMSDepFunc>();
             for (PSDevSlnMSDepFunc psDevSlnMSDepFunc : psDevSlnMSDepFuncList) {
                 PSDevSlnMSDepFuncImpl iPSDevSlnMSDepFunc = new PSDevSlnMSDepFuncImpl();
                 iPSDevSlnMSDepFunc.init(this.getDAGlobalHelper(), this, psDevSlnMSDepFunc);
@@ -1532,18 +1532,18 @@ IPSDevSlnSysRuntime {
             PSSVNServerService psSVNServerService = (PSSVNServerService)ServiceGlobal.getService(PSSVNServerService.class);
             PSSVNServer psSVNServer = new PSSVNServer();
             psSVNServer.setPSSVNServerId(strGitServerId);
-            psSVNServerService.get((IEntity)psSVNServer);
+            psSVNServerService.get(psSVNServer);
             psDevSlnSysWSGit.setGITUserName(psSVNServer.getGITUserName());
             psDevSlnSysWSGit.setGITPassword(psSVNServer.getGITPassword());
         }
-        if (psDevSlnSysWSGitService.checkKey((IEntity)psDevSlnSysWSGit) == 0) {
+        if (psDevSlnSysWSGitService.checkKey(psDevSlnSysWSGit) == 0) {
             psDevSlnSysWSGit.setPSDevSlnSysId(this.getId());
             psDevSlnSysWSGit.setPSDCWorkshopServerId(this.getPSWorkshopServer().getId());
             String strPSDevSlnSysWSGitName = "ws" + Helper.GenMD5Ex((String)Helper.GenGuid()).substring(0, 10);
             psDevSlnSysWSGit.setPSDevSlnSysWSGitName(strPSDevSlnSysWSGitName);
-            psDevSlnSysWSGitService.create((IEntity)psDevSlnSysWSGit);
+            psDevSlnSysWSGitService.create(psDevSlnSysWSGit);
         } else {
-            psDevSlnSysWSGitService.update((IEntity)psDevSlnSysWSGit);
+            psDevSlnSysWSGitService.update(psDevSlnSysWSGit);
         }
     }
 
@@ -1615,7 +1615,7 @@ IPSDevSlnSysRuntime {
                 ServiceWorkHelper.getInstance().execute(new IServiceWork(){
 
                     public void execute(ITransaction iTransaction) throws Exception {
-                        psSysConsoleService.create((IEntity)psSysConsole, false);
+                        psSysConsoleService.create(psSysConsole, false);
                     }
                 });
             }
@@ -1935,4 +1935,3 @@ IPSDevSlnSysRuntime {
         return this.strSysType;
     }
 }
-

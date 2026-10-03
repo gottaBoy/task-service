@@ -74,7 +74,7 @@ implements IPSDERDEFMapService {
     @Override
     protected List<PSDERDEFMap> onListAll() throws Exception {
         ArrayList<PSDERDEFMap> list = new ArrayList<PSDERDEFMap>();
-        List psders = PSModelServiceUtil.getInstance().getPSDERService().listAll();
+        List<PSDER> psders = PSModelServiceUtil.getInstance().getPSDERService().listAll();
         if (psders != null) {
             for (PSDER parent : psders) {
                 List<PSDERDEFMap> items = this.listByPSDER(parent);

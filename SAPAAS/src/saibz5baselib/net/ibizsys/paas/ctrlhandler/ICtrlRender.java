@@ -1,15 +1,23 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.ctrlhandler;
 
 import net.ibizsys.paas.web.AjaxActionResult;
 import net.sf.json.JSONObject;
 
+/**
+ * 控件绘制器接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface ICtrlRender {
-    public void filteAjaxActionResult(AjaxActionResult var1, JSONObject var2);
-}
+	
+	/**
+	 * 过滤异步操作结果
+	 * 
+	 * @param ajaxActionResult
+	 * @param jo
+	 * @throws Exception
+	 */
+	void filteAjaxActionResult(AjaxActionResult ajaxActionResult, JSONObject jo);
 
+}

@@ -67,7 +67,7 @@ extends BaseGSR2PubTaskHelper {
         }
         BaseDataEntity cond = new BaseDataEntity();
         cond.SetParamValue("TSSDTASKID", (Object)tssdTask.getTSSDTASKID());
-        Vector taskPolicyList = new Vector();
+        Vector<BaseDataEntity> taskPolicyList = new Vector<BaseDataEntity>();
         callResult = tssdTaskPolicyDataCtrl.Select(cond, taskPolicyList);
         if (callResult.IsError()) {
             dedcContext.DebugOutput((Object)this, StringHelper.Format((String)"\u67e5\u8be2\u5b9a\u65f6\u4efb\u52a1\u7b56\u7565\u660e\u7ec6\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));

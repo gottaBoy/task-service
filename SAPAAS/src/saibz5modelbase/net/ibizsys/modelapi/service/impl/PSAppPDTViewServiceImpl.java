@@ -73,7 +73,7 @@ implements IPSAppPDTViewService {
     @Override
     protected List<PSAppPDTView> onListAll() throws Exception {
         ArrayList<PSAppPDTView> list = new ArrayList<PSAppPDTView>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSAppPDTView> items = this.listByPSSysApp(parent);

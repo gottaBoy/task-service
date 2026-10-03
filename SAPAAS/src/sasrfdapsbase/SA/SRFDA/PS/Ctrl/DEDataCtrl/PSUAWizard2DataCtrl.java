@@ -201,7 +201,7 @@ extends PSDEDataCtrl {
         psSysDevBKTask.setTaskParam(psUAWizard2.getACTIONDATA());
         psSysDevBKTask.setModelLevel(IPSSystem.LOADLEVEL_CODE);
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        psSysDevBKTaskService.create(psSysDevBKTask);
         SA.SRFDA.PS.Data.PSSysDevBKTask psSysDevBKTask2 = new SA.SRFDA.PS.Data.PSSysDevBKTask();
         PSUAWizard2DataCtrl.convertEntity((IEntity)psSysDevBKTask, psSysDevBKTask2);
         this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
@@ -246,7 +246,7 @@ extends PSDEDataCtrl {
         psSysDevBKTask.setTaskParam(psUAWizard2.getACTIONDATA());
         psSysDevBKTask.setModelLevel(IPSSystem.LOADLEVEL_CODE);
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        psSysDevBKTaskService.create(psSysDevBKTask);
         SA.SRFDA.PS.Data.PSSysDevBKTask psSysDevBKTask2 = new SA.SRFDA.PS.Data.PSSysDevBKTask();
         PSUAWizard2DataCtrl.convertEntity((IEntity)psSysDevBKTask, psSysDevBKTask2);
         this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
@@ -361,7 +361,7 @@ extends PSDEDataCtrl {
         psSysDevBKTask.setTaskParam(psUAWizard2.getACTIONDATA());
         psSysDevBKTask.setModelLevel(IPSSystem.LOADLEVEL_CODE);
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        psSysDevBKTaskService.create(psSysDevBKTask);
         SA.SRFDA.PS.Data.PSSysDevBKTask psSysDevBKTask2 = new SA.SRFDA.PS.Data.PSSysDevBKTask();
         PSUAWizard2DataCtrl.convertEntity((IEntity)psSysDevBKTask, psSysDevBKTask2);
         this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
@@ -394,7 +394,7 @@ extends PSDEDataCtrl {
         PSSystemDBCfgService psSystemDBCfgService = (PSSystemDBCfgService)ServiceGlobal.getService(PSSystemDBCfgService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
         PSSystem psSystem = new PSSystem();
         psSystem.setPSSystemId(iPSSystem.getId());
-        ArrayList psSystemDBCfgList = psSystemDBCfgService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSystemDBCfg> psSystemDBCfgList = psSystemDBCfgService.selectByPSSystem((PSSystemBase)psSystem);
         for (PSSystemDBCfg psSystemDBCfg : psSystemDBCfgList) {
             PSSysDevBKTask psSysDevBKTask = new PSSysDevBKTask();
             psSysDevBKTask.setPSSysDevBKTaskName(StringHelper.Format((String)"\u540c\u6b65\u5b50\u7cfb\u7edf[%1$s]\u6570\u636e\u5e93\u6a21\u578b", (Object)psSystemDBCfg.getPSSystemDBCfgName()));
@@ -411,7 +411,7 @@ extends PSDEDataCtrl {
             psSysDevBKTask.setTaskParam(psSystemDBCfg.getPSSystemDBCfgId());
             psSysDevBKTask.setModelLevel(IPSSystem.LOADLEVEL_CODE);
             PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-            psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+            psSysDevBKTaskService.create(psSysDevBKTask);
             SA.SRFDA.PS.Data.PSSysDevBKTask psSysDevBKTask2 = new SA.SRFDA.PS.Data.PSSysDevBKTask();
             PSUAWizard2DataCtrl.convertEntity((IEntity)psSysDevBKTask, psSysDevBKTask2);
             this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
@@ -460,7 +460,7 @@ extends PSDEDataCtrl {
         psSysDevBKTask.setTaskParam4(psUAWizard2.getPARAM7());
         psSysDevBKTask.setModelLevel(IPSSystem.LOADLEVEL_CODE);
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        psSysDevBKTaskService.create(psSysDevBKTask);
         SA.SRFDA.PS.Data.PSSysDevBKTask psSysDevBKTask2 = new SA.SRFDA.PS.Data.PSSysDevBKTask();
         PSUAWizard2DataCtrl.convertEntity((IEntity)psSysDevBKTask, psSysDevBKTask2);
         this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
@@ -692,7 +692,7 @@ extends PSDEDataCtrl {
             map.put("DE2837", "PSSYSTCASSERT");
             IDEDataCtrl dataEntityDataCtrl = this.GetRelatedDataCtrl("DE0001");
             IDEDataCtrl deFieldDataCtrl = this.GetRelatedDataCtrl("DE0002");
-            Vector list = new Vector();
+            Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
             dataEntityDataCtrl.Select(new BaseDataEntity(), list);
             for (BaseDataEntity baseDataEntity : list) {
                 String strDEId = baseDataEntity.getParamStringValue("DEID", "");
@@ -776,7 +776,7 @@ extends PSDEDataCtrl {
                 PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class);
                 PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
                 psDevSlnSys.setPSDevSlnSysId(strPSDevSlnSysId);
-                psDevSlnSysService.get((IEntity)psDevSlnSys);
+                psDevSlnSysService.get(psDevSlnSys);
                 sb.append("\r\n\r\n");
                 sb.append("[\u5f00\u53d1\u6570\u636e\u5e93\u5b9e\u4f8b]");
                 if (DataObject.getBoolValue((Integer)psDevSlnSys.getEnableMySQL5(), (boolean)false) && psDevSlnSys.getMySQLPSDCDBInst() != null && (psDBDevInst = psDevSlnSys.getMySQLPSDCDBInst().getPSDBDevInst()) != null) {
@@ -941,8 +941,8 @@ extends PSDEDataCtrl {
         PSSysSFPubService psSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)psDevSlnSys.getPSSysModelInstId()));
         PSSystem psSystem = new PSSystem();
         psSystem.setPSSystemId(psDevSlnSys.getPSSystemId());
-        ArrayList psSysAppList = psSysAppService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psSysSFPubList = psSysSFPubService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysApp> psSysAppList = psSysAppService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysSFPub> psSysSFPubList = psSysSFPubService.selectByPSSystem((PSSystemBase)psSystem);
         ArrayList<JSONObject> sysSFPubJOList = new ArrayList<JSONObject>();
         if (psSysSFPubList.size() > 0) {
             for (PSSysSFPub psSysSFPub : psSysSFPubList) {
@@ -1011,4 +1011,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

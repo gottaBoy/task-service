@@ -73,7 +73,7 @@ implements IPSSysSearchDEFieldService {
     @Override
     protected List<PSSysSearchDEField> onListAll() throws Exception {
         ArrayList<PSSysSearchDEField> list = new ArrayList<PSSysSearchDEField>();
-        List pssyssearchdes = PSModelServiceUtil.getInstance().getPSSysSearchDEService().listAll();
+        List<PSSysSearchDE> pssyssearchdes = PSModelServiceUtil.getInstance().getPSSysSearchDEService().listAll();
         if (pssyssearchdes != null) {
             for (PSSysSearchDE parent : pssyssearchdes) {
                 List<PSSysSearchDEField> items = this.listByPSSysSearchDE(parent);

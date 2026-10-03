@@ -1780,7 +1780,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -1806,7 +1806,7 @@ implements Serializable {
                 PSSysEAIElement pSSysEAIElement = new PSSysEAIElement();
                 pSSysEAIElement.setPSSysEAIElementId(this.getPSSysEAIElementId());
                 PSSysEAIElementService pSSysEAIElementService = (PSSysEAIElementService)ServiceGlobal.getService(PSSysEAIElementService.class, (SessionFactory)this.getSessionFactory());
-                pSSysEAIElementService.autoGet((IEntity)pSSysEAIElement);
+                pSSysEAIElementService.autoGet(pSSysEAIElement);
                 this.pssyseaielement = pSSysEAIElement;
             }
             return this.pssyseaielement;
@@ -1832,7 +1832,7 @@ implements Serializable {
                 PSSysEAIScheme pSSysEAIScheme = new PSSysEAIScheme();
                 pSSysEAIScheme.setPSSysEAISchemeId(this.getPSSysEAISchemeId());
                 PSSysEAISchemeService pSSysEAISchemeService = (PSSysEAISchemeService)ServiceGlobal.getService(PSSysEAISchemeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysEAISchemeService.autoGet((IEntity)pSSysEAIScheme);
+                pSSysEAISchemeService.autoGet(pSSysEAIScheme);
                 this.pssyseaischeme = pSSysEAIScheme;
             }
             return this.pssyseaischeme;
@@ -1854,7 +1854,7 @@ implements Serializable {
         Integer n = this.objPSSysEAIDEFieldsLock;
         synchronized (n) {
             if (this.pssyseaidefields == null) {
-                this.pssyseaidefields = pSSysEAIDEService.isTempData((IEntity)this) ? pSSysEAIDEFieldService.selectTempByPSSysEAIDE(this) : pSSysEAIDEFieldService.selectByPSSysEAIDE(this);
+                this.pssyseaidefields = pSSysEAIDEService.isTempData(this) ? pSSysEAIDEFieldService.selectTempByPSSysEAIDE(this) : pSSysEAIDEFieldService.selectByPSSysEAIDE(this);
             }
             return this.pssyseaidefields;
         }
@@ -1875,7 +1875,7 @@ implements Serializable {
         Integer n = this.objPSSysEAIDERsLock;
         synchronized (n) {
             if (this.pssyseaiders == null) {
-                this.pssyseaiders = pSSysEAIDEService.isTempData((IEntity)this) ? pSSysEAIDERService.selectTempByPSSysEAIDE(this) : pSSysEAIDERService.selectByPSSysEAIDE(this);
+                this.pssyseaiders = pSSysEAIDEService.isTempData(this) ? pSSysEAIDERService.selectTempByPSSysEAIDE(this) : pSSysEAIDERService.selectByPSSysEAIDE(this);
             }
             return this.pssyseaiders;
         }

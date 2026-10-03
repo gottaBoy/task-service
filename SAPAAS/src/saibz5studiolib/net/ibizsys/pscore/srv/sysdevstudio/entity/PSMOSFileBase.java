@@ -2535,7 +2535,7 @@ implements Serializable {
                 PSMOSFile pSMOSFile = new PSMOSFile();
                 pSMOSFile.setPSMOSFileId(this.getPPSMOSFileId());
                 PSMOSFileService pSMOSFileService = (PSMOSFileService)ServiceGlobal.getService(PSMOSFileService.class, (SessionFactory)this.getSessionFactory());
-                pSMOSFileService.autoGet((IEntity)pSMOSFile);
+                pSMOSFileService.autoGet(pSMOSFile);
                 this.ppsmosfile = pSMOSFile;
             }
             return this.ppsmosfile;
@@ -2561,7 +2561,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

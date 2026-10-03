@@ -1,16 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFParallelSubWFProcessModel
- */
 package net.ibizsys.model.wf;
 
-import net.ibizsys.model.wf.IPSWFEmbedWFProcessBase;
 import net.ibizsys.pswf.core.IWFParallelSubWFProcessModel;
 
-public interface IPSWFParallelSubWFProcess
-extends IPSWFEmbedWFProcessBase,
-IWFParallelSubWFProcessModel {
-}
+/**
+ * 流程并行子流程处理对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSWFParallelSubWFProcess extends IPSWFEmbedWFProcessBase,IWFParallelSubWFProcessModel
+{
 
+}

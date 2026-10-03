@@ -327,7 +327,7 @@ implements Serializable {
                 queryConfig.getLogicConfig().InitLogicsConfig();
                 DGModelCustomLogicConfig customLogicConfig = new DGModelCustomLogicConfig();
                 customLogicConfig.setCondition("\"1=1\"");
-                queryConfig.getLogicConfig().getLogicsConfig().add((Object)customLogicConfig);
+                queryConfig.getLogicConfig().getLogicsConfig().add(customLogicConfig);
                 details.add(queryConfig);
                 strDetailsTag = "ALLDATA";
             } else {
@@ -378,7 +378,7 @@ implements Serializable {
                     queryConfig.getLogicConfig().InitLogicsConfig();
                     DGModelCustomLogicConfig customLogicConfig = new DGModelCustomLogicConfig();
                     customLogicConfig.setCondition("\"1=1\"");
-                    queryConfig.getLogicConfig().getLogicsConfig().add((Object)customLogicConfig);
+                    queryConfig.getLogicConfig().getLogicsConfig().add(customLogicConfig);
                     details.add(queryConfig);
                 } else {
                     if (userRoleData.GetDataDetails().size() == 0) continue;
@@ -400,7 +400,7 @@ implements Serializable {
                         joinQueryConfig.setDERType(iDEHelper.GetMajorDERType());
                         joinQueryConfig.SetLogicConfig(queryConfig.getLogicConfig());
                         joinQueryConfig.SetJoinQueriesConfig(queryConfig.getJoinQueriesConfig());
-                        realQueryConfig.getJoinQueriesConfig().add((Object)joinQueryConfig);
+                        realQueryConfig.getJoinQueriesConfig().add(joinQueryConfig);
                         details.add(realQueryConfig);
                     }
                     if (details.size() == 0) continue;
@@ -419,4 +419,3 @@ implements Serializable {
         return daQueryModelHelper;
     }
 }
-

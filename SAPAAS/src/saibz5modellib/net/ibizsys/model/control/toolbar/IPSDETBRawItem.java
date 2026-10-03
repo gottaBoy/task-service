@@ -1,12 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.toolbar;
 
-import net.ibizsys.model.control.toolbar.IPSDEToolbarItem;
-
-public interface IPSDETBRawItem
-extends IPSDEToolbarItem {
-    public String getRawContent();
+/**
+ * 工具栏直接内容项对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDETBRawItem  extends IPSDEToolbarItem
+{ 
+	/**
+	 * 获取直接内容
+	 * @return
+	 */
+	String getRawContent();
 }
-

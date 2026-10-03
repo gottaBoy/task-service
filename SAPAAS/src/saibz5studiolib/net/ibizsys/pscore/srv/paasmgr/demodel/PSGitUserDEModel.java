@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSGitUserDEModelBase;
 
 public class PSGitUserDEModel
 extends PSGitUserDEModelBase {
+
+    public PSGitUserDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

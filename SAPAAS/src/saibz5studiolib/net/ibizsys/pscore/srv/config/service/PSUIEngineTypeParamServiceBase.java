@@ -135,14 +135,14 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
             PSUIEngineType pSUIEngineType = (PSUIEngineType)iService.getDEModel().createEntity();
             pSUIEngineType.set("PSUIENGINETYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSUIEngineType);
+                iService.getTemp(pSUIEngineType);
             } else {
-                iService.get((IEntity)pSUIEngineType);
+                iService.get(pSUIEngineType);
             }
             this.onFillParentInfo_PSUIEngineType(pSUIEngineTypeParam, pSUIEngineType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSUIEngineTypeParam, string, string2, string3);
+        super.onFillParentInfo(pSUIEngineTypeParam, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSUIEngineTypeParam, bl);
+        super.onFillEntityFullInfo(pSUIEngineTypeParam, bl);
         this.onFillEntityFullInfo_PSUIEngineType(pSUIEngineTypeParam, bl);
     }
 
@@ -176,7 +176,7 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
     }
 
     protected void onWriteBackParent(PSUIEngineTypeParam pSUIEngineTypeParam, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUIEngineTypeParam, bl);
+        super.onWriteBackParent(pSUIEngineTypeParam, bl);
     }
 
     public ArrayList<PSUIEngineTypeParam> selectByPSUIEngineType(PSUIEngineTypeBase pSUIEngineTypeBase) throws Exception {
@@ -235,7 +235,7 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
         ArrayList<PSUIEngineTypeParam> arrayList = this.selectByPSUIEngineType(pSUIEngineType);
         this.onBeforeRemoveByPSUIEngineType(pSUIEngineType, arrayList);
         for (PSUIEngineTypeParam pSUIEngineTypeParam : arrayList) {
-            this.remove((IEntity)pSUIEngineTypeParam);
+            this.remove(pSUIEngineTypeParam);
         }
         this.onAfterRemoveByPSUIEngineType(pSUIEngineType, arrayList);
     }
@@ -256,14 +256,14 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
 
     protected void replaceParentInfo(PSUIEngineTypeParam pSUIEngineTypeParam, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSUIEngineTypeParam, cloneSession);
+        super.replaceParentInfo(pSUIEngineTypeParam, cloneSession);
         if (pSUIEngineTypeParam.getPSUIEngineTypeId() != null && (iEntity = cloneSession.getEntity("PSUIENGINETYPE", (Object)pSUIEngineTypeParam.getPSUIEngineTypeId())) != null) {
             this.onFillParentInfo_PSUIEngineType(pSUIEngineTypeParam, (PSUIEngineType)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSUIEngineTypeParam pSUIEngineTypeParam, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUIEngineTypeParam, bl);
+        super.onRemoveEntityUncopyValues(pSUIEngineTypeParam, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUIEngineTypeParam pSUIEngineTypeParam, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -281,7 +281,7 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
         if ((entityFieldError = this.onCheckField_PSUIEngineTypeParamName(bl, pSUIEngineTypeParam, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUIEngineTypeParam, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUIEngineTypeParam, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSUIEngineTypeId(boolean bl, PSUIEngineTypeParam pSUIEngineTypeParam, boolean bl2, boolean bl3) throws Exception {
@@ -297,7 +297,7 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUIEngineTypeId_Default((IEntity)pSUIEngineTypeParam, bl2, bl3);
+            string2 = this.onTestValueRule_PSUIEngineTypeId_Default(pSUIEngineTypeParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUIENGINETYPEID");
@@ -319,7 +319,7 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUIEngineTypeName_Default((IEntity)pSUIEngineTypeParam, bl2, bl3);
+            string2 = this.onTestValueRule_PSUIEngineTypeName_Default(pSUIEngineTypeParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUIENGINETYPENAME");
@@ -344,7 +344,7 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUIEngineTypeParamId_Default((IEntity)pSUIEngineTypeParam, bl2, bl3);
+            string2 = this.onTestValueRule_PSUIEngineTypeParamId_Default(pSUIEngineTypeParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUIENGINETYPEPARAMID");
@@ -369,7 +369,7 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUIEngineTypeParamName_Default((IEntity)pSUIEngineTypeParam, bl2, bl3);
+            string2 = this.onTestValueRule_PSUIEngineTypeParamName_Default(pSUIEngineTypeParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUIENGINETYPEPARAMNAME");
@@ -382,11 +382,11 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
     }
 
     protected void onSyncEntity(PSUIEngineTypeParam pSUIEngineTypeParam, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUIEngineTypeParam, bl);
+        super.onSyncEntity(pSUIEngineTypeParam, bl);
     }
 
     protected void onSyncIndexEntities(PSUIEngineTypeParam pSUIEngineTypeParam, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUIEngineTypeParam, bl);
+        super.onSyncIndexEntities(pSUIEngineTypeParam, bl);
     }
 
     public Object getDataContextValue(PSUIEngineTypeParam pSUIEngineTypeParam, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -394,7 +394,7 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUIEngineTypeParam, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUIEngineTypeParam, string, iDataContextParam)) != null) {
             return object;
         }
         PSUIEngineType pSUIEngineType = pSUIEngineTypeParam.getPSUIEngineType();
@@ -405,7 +405,7 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
     }
 
     protected void onExportMajorModel(PSUIEngineTypeParam pSUIEngineTypeParam, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUIEngineTypeParam, arrayList, n);
+        super.onExportMajorModel(pSUIEngineTypeParam, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -518,14 +518,14 @@ extends PSCoreSysServiceBase<PSUIEngineTypeParam> {
 
     protected boolean onMergeChild(String string, String string2, PSUIEngineTypeParam pSUIEngineTypeParam) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUIEngineTypeParam)) {
+        if (super.onMergeChild(string, string2, pSUIEngineTypeParam)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUIEngineTypeParam pSUIEngineTypeParam) throws Exception {
-        super.onUpdateParent((IEntity)pSUIEngineTypeParam);
+        super.onUpdateParent(pSUIEngineTypeParam);
     }
 
     @Override

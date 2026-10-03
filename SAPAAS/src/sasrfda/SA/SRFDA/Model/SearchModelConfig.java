@@ -29,12 +29,11 @@ extends XMLCollectionExConfig<SearchItemConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = SearchModelConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((SearchItemConfig)childNode))) {
-                this.add((Object)((SearchItemConfig)childNode));
+            if (this.OnChildNodeLoaded((SearchItemConfig)childNode)) {
+                this.add((SearchItemConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

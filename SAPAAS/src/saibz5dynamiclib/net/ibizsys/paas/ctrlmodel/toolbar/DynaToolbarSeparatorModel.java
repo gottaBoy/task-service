@@ -1,17 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel.toolbar;
 
-import net.ibizsys.paas.ctrlmodel.toolbar.DynaToolbarItemModelBase;
-import net.ibizsys.paas.ctrlmodel.toolbar.IDynaToolbarSeparatorModel;
+/**
+ * 默认动态工具栏分隔栏模型对象
+ * @author Administrator
+ *
+ */
+public class DynaToolbarSeparatorModel extends DynaToolbarItemModelBase implements IDynaToolbarSeparatorModel{
 
-public class DynaToolbarSeparatorModel
-extends DynaToolbarItemModelBase
-implements IDynaToolbarSeparatorModel {
-    @Override
-    public String getItemType() {
-        return "SEPARATOR";
-    }
+	@Override
+	public String getItemType() {
+		return ITEMTYPE_SEPARATOR;
+	}
+
 }
-

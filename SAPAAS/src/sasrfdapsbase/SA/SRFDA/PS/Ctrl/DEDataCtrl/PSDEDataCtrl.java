@@ -121,7 +121,7 @@ implements IPSDEDataCtrl {
     }
 
     public static void convertEntity(IEntity iEntity, BaseDataEntity dataEntity) throws Exception {
-        HashMap objMap = new HashMap();
+        HashMap<String, Object> objMap = new HashMap<String, Object>();
         iEntity.fillMap(objMap, true);
         for (String strKey : objMap.keySet()) {
             Object objValue = objMap.get(strKey);
@@ -134,7 +134,7 @@ implements IPSDEDataCtrl {
     }
 
     public static void convertEntity2(BaseDataEntity dataEntity, IEntity iEntity) throws Exception {
-        HashMap objMap = new HashMap();
+        HashMap<String, Object> objMap = new HashMap<String, Object>();
         dataEntity.FillMap(objMap);
         for (String strKey : objMap.keySet()) {
             Object objValue = objMap.get(strKey);
@@ -318,4 +318,3 @@ implements IPSDEDataCtrl {
         }
     }
 }
-

@@ -59,16 +59,17 @@ extends PSDEDRDetailServiceBase {
         ArrayList<PSDEDRDetail> arrayList = null;
         arrayList = pSDEDataRelation.getPSDEDataRelationId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSDEDR(pSDEDataRelation) : this.selectByPSDEDR(pSDEDataRelation);
         HashMap<String, PSDEDRDetail> hashMap = new HashMap<String, PSDEDRDetail>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSDEDRDetail pSDEDRDetail2 = object.next();
+        for (PSDEDRDetail pSDEDRDetail2 : arrayList) {
+            if (StringHelper.isNullOrEmpty((String)pSDEDRDetail2.getPSDEDRDetailName())) continue;
             hashMap.put(pSDEDRDetail2.getPSDEDRDetailName().toLowerCase(), pSDEDRDetail2);
         }
+        String name;
         while (true) {
-            if (!hashMap.containsKey(object = StringHelper.format((String)"%1$s%2$s", (Object)string, (Object)(n == 0 ? "" : Integer.valueOf(n))))) break;
+            name = StringHelper.format((String)"%1$s%2$s", (Object)string, (Object)(n == 0 ? "" : Integer.valueOf(n)));
+            if (!hashMap.containsKey(name)) break;
             ++n;
         }
-        pSDEDRDetail.setPSDEDRDetailName((String)object);
+        pSDEDRDetail.setPSDEDRDetailName(name);
     }
 
     @Override
@@ -130,4 +131,3 @@ extends PSDEDRDetailServiceBase {
         }
     }
 }
-

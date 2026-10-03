@@ -153,9 +153,9 @@ implements IPSSysContentCatService {
 
     @Override
     protected List<PSSysContentCat> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysContentCat> list = new ArrayList<PSSysContentCat>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysContentCat> items = this.listByPSModule(parent);

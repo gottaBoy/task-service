@@ -1205,7 +1205,7 @@ implements Serializable {
                 PSDCMobAppTestDevice pSDCMobAppTestDevice = new PSDCMobAppTestDevice();
                 pSDCMobAppTestDevice.setPSDCMobAppTestDeviceId(this.getPSDCMobAppTestDeviceId());
                 PSDCMobAppTestDeviceService pSDCMobAppTestDeviceService = (PSDCMobAppTestDeviceService)ServiceGlobal.getService(PSDCMobAppTestDeviceService.class, (SessionFactory)this.getSessionFactory());
-                pSDCMobAppTestDeviceService.autoGet((IEntity)pSDCMobAppTestDevice);
+                pSDCMobAppTestDeviceService.autoGet(pSDCMobAppTestDevice);
                 this.psdcmobapptestdevice = pSDCMobAppTestDevice;
             }
             return this.psdcmobapptestdevice;
@@ -1231,7 +1231,7 @@ implements Serializable {
                 PSDCMobPackCert pSDCMobPackCert = new PSDCMobPackCert();
                 pSDCMobPackCert.setPSDCMobPackCertId(this.getPSDCMobPackCertId());
                 PSDCMobPackCertService pSDCMobPackCertService = (PSDCMobPackCertService)ServiceGlobal.getService(PSDCMobPackCertService.class, (SessionFactory)this.getSessionFactory());
-                pSDCMobPackCertService.autoGet((IEntity)pSDCMobPackCert);
+                pSDCMobPackCertService.autoGet(pSDCMobPackCert);
                 this.psdcmobpackcert = pSDCMobPackCert;
             }
             return this.psdcmobpackcert;
@@ -1257,7 +1257,7 @@ implements Serializable {
                 PSMobAppPack pSMobAppPack = new PSMobAppPack();
                 pSMobAppPack.setPSMobAppPackId(this.getPSMobAppPackId());
                 PSMobAppPackService pSMobAppPackService = (PSMobAppPackService)ServiceGlobal.getService(PSMobAppPackService.class, (SessionFactory)this.getSessionFactory());
-                pSMobAppPackService.autoGet((IEntity)pSMobAppPack);
+                pSMobAppPackService.autoGet(pSMobAppPack);
                 this.psmobapppack = pSMobAppPack;
             }
             return this.psmobapppack;

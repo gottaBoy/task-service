@@ -1,23 +1,36 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import java.util.Iterator;
 import net.ibizsys.paas.control.chart.IChart;
-import net.ibizsys.paas.ctrlmodel.IChartAxisModel;
-import net.ibizsys.paas.ctrlmodel.IChartSeriesModel;
-import net.ibizsys.paas.ctrlmodel.ICtrlModel;
 import net.ibizsys.paas.db.IDataTable;
 import net.ibizsys.paas.web.MDAjaxActionResult;
 
-public interface IChartModel
-extends ICtrlModel,
-IChart {
-    public Iterator<IChartAxisModel> getChartAxisModels();
+/**
+ * 图表部件模型接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IChartModel extends ICtrlModel, IChart {
+	/**
+	 * 获取图表坐标轴集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IChartAxisModel> getChartAxisModels();
 
-    public Iterator<IChartSeriesModel> getChartSeriesModels();
+	/**
+	 * 获取图表坐数据序列集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IChartSeriesModel> getChartSeriesModels();
 
-    public void fillFetchResult(MDAjaxActionResult var1, IDataTable var2) throws Exception;
+	/**
+	 * 填充返回结果对象
+	 * 
+	 * @param fetchResult
+	 * @param dt
+	 * @throws Exception
+	 */
+	void fillFetchResult(MDAjaxActionResult fetchResult, IDataTable dt) throws Exception;
 }
-

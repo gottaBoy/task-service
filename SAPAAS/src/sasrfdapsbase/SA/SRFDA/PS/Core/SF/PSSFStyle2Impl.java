@@ -241,7 +241,7 @@ IPSSFStyleUtil {
             PSDevSlnTempl psDevSlnTempl = new PSDevSlnTempl();
             psDevSlnTempl.setPSSFId(this.getPSSF().getId());
             psDevSlnTempl.setPSSFStyleId(this.getId());
-            if (psDevSlnTemplService.selectOne((IEntity)psDevSlnTempl, true) && psDevSlnTempl.getPSDevCenterSVN() != null && psDevSlnTempl.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+            if (psDevSlnTemplService.selectOne(psDevSlnTempl, true) && psDevSlnTempl.getPSDevCenterSVN() != null && psDevSlnTempl.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
                 psSVNServer = psDevSlnTempl.getPSDevCenterSVN().getPSSVNInstRepo().getPSSVNServer();
             }
             if (psSVNServer == null) {
@@ -995,4 +995,3 @@ IPSSFStyleUtil {
         return this.psSFLogicTemplMap2.values().iterator();
     }
 }
-

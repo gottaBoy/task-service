@@ -82,7 +82,7 @@ implements INDFSOTypeHelper {
         NDFSObject cond = new NDFSObject();
         cond.SetParamValue("ROOTNDFSOBJECTID", tempNDFSObject.getROOTNDFSOBJECTID());
         cond.SetParamValue("PNDFSOBJECTID", tempNDFSObject.getNDFSOBJECTID());
-        Vector childNDFSObjectList = new Vector();
+        Vector<NDFSObject> childNDFSObjectList = new Vector();
         callResult = ndFSODataCtrl.Select((BaseDataEntity)cond, childNDFSObjectList, NDFSObject.class.getName());
         for (NDFSObject childNDFSObject : childNDFSObjectList) {
             INDFSOTypeHelper iNDFSOTypeHelper = this.getNDModelStorage().FindNDFSOType(childNDFSObject.getNDFSOBJECTTYPE());
@@ -99,7 +99,7 @@ implements INDFSOTypeHelper {
         NDFSObject cond = new NDFSObject();
         cond.SetParamValue("ROOTNDFSOBJECTID", ndFSObject.getROOTNDFSOBJECTID());
         cond.SetParamValue("PNDFSOBJECTID", ndFSObject.getNDFSOBJECTID());
-        Vector childNDFSObjectList = new Vector();
+        Vector<NDFSObject> childNDFSObjectList = new Vector();
         CallResult callResult = ndFSODataCtrl.Select((BaseDataEntity)cond, childNDFSObjectList, NDFSObject.class.getName());
         for (NDFSObject childNDFSObject : childNDFSObjectList) {
             INDFSOTypeHelper iNDFSOTypeHelper = this.getNDModelStorage().FindNDFSOType(childNDFSObject.getNDFSOBJECTTYPE());
@@ -289,7 +289,7 @@ implements INDFSOTypeHelper {
         BaseDataEntity cond = new BaseDataEntity();
         cond.SetParamValue("PNDFSOBJECTID", (Object)copyNDFSObject.getNDFSOBJECTID());
         IDEDataCtrl ndFSODataCtrl = iNDActionContext.getDEDataCtrl("ND0010");
-        Vector childNDFSObjectList = new Vector();
+        Vector<NDFSObject> childNDFSObjectList = new Vector();
         CallResult callResult = ndFSODataCtrl.Select(cond, childNDFSObjectList, NDFSObject.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u6587\u4ef6\u5bf9\u8c61[%1$s]\u5b50\u5bf9\u8c61\u53d1\u751f\u9519\u8bef\uff0c%2$s", (Object)copyNDFSObject.getNDFSOBJECTID(), (Object)callResult.getErrorInfo()));

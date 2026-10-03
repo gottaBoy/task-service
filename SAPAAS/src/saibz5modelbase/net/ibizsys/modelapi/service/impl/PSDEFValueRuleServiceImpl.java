@@ -78,7 +78,7 @@ implements IPSDEFValueRuleService {
     @Override
     protected List<PSDEFValueRule> onListAll() throws Exception {
         ArrayList<PSDEFValueRule> list = new ArrayList<PSDEFValueRule>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEFValueRule> items = this.listByPSDataEntity(parent);

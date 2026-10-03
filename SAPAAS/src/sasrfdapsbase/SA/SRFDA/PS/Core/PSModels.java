@@ -3538,7 +3538,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
      */
     public static ArrayList<IPSObject> getPSModels(IPSSystem iPSSystem, String strModelType, String strModelId) throws Exception {
         IPSDEFUIMode iPSDEFUIMode;
-        Iterator<IPSDEFUIMode> psDEFUIModes;
+        Iterator<?> psDEFUIModes;
         IPSPFPubSupportable iPSPFPubSupportable;
         IPSCodePublisherParam iPSCodePublisherParam;
         Iterator<IPSCodePublisherParam> params;
@@ -3569,7 +3569,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
         IPSAppBIScheme iPSAppBIScheme;
         IPSSysBIReport iPSSysBIReport;
         IPSSysBICube iPSSysBICube;
-        Iterator<IPSModelObject> psSysBIHierarchies;
+        Iterator<?> psSysBIHierarchies;
         IPSSysBIScheme iPSSysBIScheme;
         IPSSysEAIDE iPSSysEAIDE;
         IPSSysEAIElement iPSSysEAIElement;
@@ -3611,7 +3611,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
         IPSOpenAPI3Components iPSOpenAPI3Components;
         IPSOpenAPI3Schema iPSOpenAPI3Schema;
         IPSModelObject item;
-        Iterator<Object> items;
+        Iterator<?> items;
         IPSJsonObjectSchema iPSJsonObjectSchema;
         IPSSysDynaModel iPSSysDynaModel;
         IPSSysContentCat iPSSysContentCat;
@@ -3625,17 +3625,17 @@ extends net.ibizsys.pscore.srv.util.PSModels {
         IPSDEServiceAPI iPSDEServiceAPI;
         IPSSysMethodDTO iPSSysMethodDTO;
         IPSAppDataEntity iPSAppDataEntity;
-        Iterator<IPSModelObject> psDEMethodDTOFields;
-        Iterator<IPSModelObject> psDEMethodDTOs;
-        Iterator<IPSDEMapDataSet> psDEMapDataSets;
-        Iterator<IPSDEMapAction> psDEMapActions;
+        Iterator<?> psDEMethodDTOFields;
+        Iterator<?> psDEMethodDTOs;
+        Iterator<?> psDEMapDataSets;
+        Iterator<?> psDEMapActions;
         IPSDEMap iPSDEMap;
         Iterator<IPSDEDataSync> psDEDataSyncs;
         ArrayList<IPSObject> layoutList;
         IPSAppView iPSAppView;
         ArrayList<IPSObject> appViewList;
         IPSModelObject iPSPanelLogic;
-        Iterator<? extends IPSSysPanelLogic2> psPanelLogics;
+        Iterator<?> psPanelLogics;
         IPSSysPanel iPSSysPanel;
         Iterator<? extends IPSPanelItem> psPanelItems;
         IPSSysPanel iPSSysPanel2;
@@ -3645,7 +3645,8 @@ extends net.ibizsys.pscore.srv.util.PSModels {
         IPSDEWizard iPSDEWizard;
         IPSDEDBIndex iPSDEDBIndex;
         IPSDEDBConfig iPSDEDBConfig;
-        IPSModelObject iPSDEField;
+        IPSDEField iPSDEField;
+        IPSAppDEField iPSAppDEField;
         IPSDEMainState iPSDEMainState;
         ArrayList<IPSObject> psDEDataExpList;
         IPSSysCalendarItem iPSSysCalendarItem;
@@ -3697,7 +3698,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
         IPSDataEntity iPSDataEntity;
         ArrayList<IPSObject> psObjectList2;
         IPSAppView iPSAppView2;
-        IPSModelObject iPSApplication;
+        IPSApplication iPSApplication;
         Iterator<IPSApplication> psApplications;
         IPSAppUILogic iPSAppUILogic;
         IPSAppViewLogic iPSAppViewLogic;
@@ -3751,7 +3752,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
                 net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession psSysRunSession2 = new net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession();
                 psSysRunSession2.setPSSysSFPubId(iPSSysSFPub2.getId());
                 psSysRunSession2.setDebugMode(Integer.valueOf(1));
-                if (psSysRunSessionService.select((IEntity)psSysRunSession2, true)) {
+                if (psSysRunSessionService.select(psSysRunSession2, true)) {
                     PSSysRunSession psSysRunSession = new PSSysRunSession();
                     PSDEDataCtrl.convertEntity((IEntity)psSysRunSession2, psSysRunSession);
                     PSSysRunSessionImpl2 psSysRunSessionImpl2 = new PSSysRunSessionImpl2();
@@ -4805,7 +4806,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
             PSAppViewServiceProxy psAppViewServiceProxy = (PSAppViewServiceProxy)ServiceGlobal.getService(PSAppViewServiceProxy.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSSystem.getPSSysModelInstId()));
             PSAppView psAppView = new PSAppView();
             psAppView.setPSAppViewId(strModelId);
-            if (psAppViewServiceProxy.get((IEntity)psAppView, true)) {
+            if (psAppViewServiceProxy.get(psAppView, true)) {
                 IPSApplication iPSApplication5 = iPSSystem.getPSApplication(psAppView.getPSSysAppId());
                 iPSAppView2 = iPSApplication5.getPSAppView(strModelId, true);
                 if (iPSAppView2 != null) {
@@ -6803,7 +6804,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
             }
             if (psControlList2 != null && psControlList2.size() > 0 && (psPanelLogics = (iPSSysPanel = (IPSSysPanel)psControlList2.get(0)).getPSSysPanelLogic2s()) != null) {
                 while (psPanelLogics.hasNext()) {
-                    iPSPanelLogic = psPanelLogics.next();
+                    iPSPanelLogic = (IPSModelObject)psPanelLogics.next();
                     if (StringHelper.Compare((String)iPSPanelLogic.getModelId(), (String)strModelId, (boolean)true) != 0) continue;
                     list.add(iPSPanelLogic);
                     return list;
@@ -7184,7 +7185,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
             psObjectList2 = PSModels.getPSModels(iPSSystem, PSDEMAP, PSModels.getParentModelId(strModelId));
             if (psObjectList2.size() > 0 && (psDEMapActions = (iPSDEMap = (IPSDEMap)psObjectList2.get(0)).getPSDEMapActions()) != null) {
                 while (psDEMapActions.hasNext()) {
-                    IPSDEMapAction iPSDEMapAction = psDEMapActions.next();
+                    IPSDEMapAction iPSDEMapAction = (IPSDEMapAction)psDEMapActions.next();
                     if (StringHelper.Compare((String)iPSDEMapAction.getModelId(), (String)strModelId, (boolean)false) != 0) continue;
                     list.add(iPSDEMapAction);
                     return list;
@@ -7196,7 +7197,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
             psObjectList2 = PSModels.getPSModels(iPSSystem, PSDEMAP, PSModels.getParentModelId(strModelId));
             if (psObjectList2.size() > 0 && (psDEMapDataSets = (iPSDEMap = (IPSDEMap)psObjectList2.get(0)).getPSDEMapDataSets()) != null) {
                 while (psDEMapDataSets.hasNext()) {
-                    IPSDEMapDataSet iPSDEMapDataSet = psDEMapDataSets.next();
+                    IPSDEMapDataSet iPSDEMapDataSet = (IPSDEMapDataSet)psDEMapDataSets.next();
                     if (StringHelper.Compare((String)iPSDEMapDataSet.getModelId(), (String)strModelId, (boolean)false) != 0) continue;
                     list.add(iPSDEMapDataSet);
                     return list;
@@ -7308,7 +7309,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
             psObjectList2 = PSModels.getPSModels(iPSSystem, PSDATAENTITY, PSModels.getParentModelId(strModelId));
             if (psObjectList2.size() > 0 && (psDEMethodDTOs = (iPSDataEntity = (IPSDataEntity)psObjectList2.get(0)).getAllPSDEMethodDTOs()) != null) {
                 while (psDEMethodDTOs.hasNext()) {
-                    IPSDEMethodDTO iPSDEMethodDTO = psDEMethodDTOs.next();
+                    IPSDEMethodDTO iPSDEMethodDTO = (IPSDEMethodDTO)psDEMethodDTOs.next();
                     if (StringHelper.Compare((String)iPSDEMethodDTO.getModelId(), (String)strModelId, (boolean)false) != 0) continue;
                     list.add(iPSDEMethodDTO);
                     return list;
@@ -7321,7 +7322,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
             psObjectList2 = PSModels.getPSModels(iPSSystem, PSDEMETHODDTO, PSModels.getParentModelId(strModelId));
             if (psObjectList2.size() > 0 && (psDEMethodDTOFields = (iPSDEMethodDTO = (IPSDEMethodDTO)psObjectList2.get(0)).getPSDEMethodDTOFields()) != null) {
                 while (psDEMethodDTOFields.hasNext()) {
-                    IPSDEMethodDTOField iPSDEMethodDTOField = psDEMethodDTOFields.next();
+                    IPSDEMethodDTOField iPSDEMethodDTOField = (IPSDEMethodDTOField)psDEMethodDTOFields.next();
                     if (StringHelper.Compare((String)iPSDEMethodDTOField.getModelId(), (String)strModelId, (boolean)false) != 0) continue;
                     list.add(iPSDEMethodDTOField);
                     return list;
@@ -8198,9 +8199,9 @@ extends net.ibizsys.pscore.srv.util.PSModels {
             psObjectList2 = PSModels.getPSModels(iPSSystem, PSAPPDATAENTITY, PSModels.getParentModelId(strModelId));
             if (psObjectList2.size() > 0 && (psAppDEFields = (iPSAppDataEntity = (IPSAppDataEntity)psObjectList2.get(0)).getAllPSAppDEFields()) != null) {
                 while (psAppDEFields.hasNext()) {
-                    IPSAppDEField iPSAppDEField = psAppDEFields.next();
-                    if (StringHelper.Compare((String)iPSAppDEField.getModelId(), (String)strModelId, (boolean)false) != 0) continue;
-                    list.add(iPSAppDEField);
+                    IPSAppDEField iPSAppDEField2 = psAppDEFields.next();
+                    if (StringHelper.Compare((String)iPSAppDEField2.getModelId(), (String)strModelId, (boolean)false) != 0) continue;
+                    list.add(iPSAppDEField2);
                     return list;
                 }
             }
@@ -8850,7 +8851,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
         if (StringHelper.Compare((String)strModelType, (String)PSAPPWFUTILUIACTION, (boolean)false) == 0) {
             psObjectList2 = PSModels.getPSModels(iPSSystem, PSAPPWF, PSModels.getParentModelId(strModelId));
             if (psObjectList2.size() > 0) {
-                iPSApplication = (IPSAppWF)psObjectList2.get(0);
+                iPSAppWF = (IPSAppWF)psObjectList2.get(0);
             }
             return list;
         }
@@ -10467,7 +10468,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
             psObjectList2 = ((IPSSystemUtil)((Object)iPSSystem)).getPSModels(PSDEFIELD, PSModels.getParentModelId(strModelId));
             if (psObjectList2.size() > 0 && psObjectList2.get(0) instanceof IPSDEField && (psDEFUIModes = (iPSDEField = (IPSDEField)psObjectList2.get(0)).getAllPSDEFUIModes()) != null) {
                 while (psDEFUIModes.hasNext()) {
-                    IPSDEFUIMode iPSDEFUIMode2 = psDEFUIModes.next();
+                    IPSDEFUIMode iPSDEFUIMode2 = (IPSDEFUIMode)psDEFUIModes.next();
                     if (StringHelper.Compare((String)iPSDEFUIMode2.getModelId(), (String)strModelId, (boolean)true) != 0) continue;
                     list.add(iPSDEFUIMode2);
                     return list;
@@ -10477,7 +10478,7 @@ extends net.ibizsys.pscore.srv.util.PSModels {
         }
         if (StringHelper.Compare((String)strModelType, (String)"PSAPPDEFUIMODE", (boolean)false) == 0) {
             psObjectList2 = ((IPSSystemUtil)((Object)iPSSystem)).getPSModels(PSAPPDEFIELD, PSModels.getParentModelId(strModelId));
-            if (psObjectList2.size() > 0 && psObjectList2.get(0) instanceof IPSAppDEField && (psDEFUIModes = (iPSDEField = (IPSAppDEField)psObjectList2.get(0)).getAllPSAppDEFUIModes()) != null) {
+            if (psObjectList2.size() > 0 && psObjectList2.get(0) instanceof IPSAppDEField && (psDEFUIModes = (iPSAppDEField = (IPSAppDEField)psObjectList2.get(0)).getAllPSAppDEFUIModes()) != null) {
                 while (psDEFUIModes.hasNext()) {
                     IPSAppDEFUIMode iPSAppDEFUIMode = (IPSAppDEFUIMode)psDEFUIModes.next();
                     if (StringHelper.Compare((String)iPSAppDEFUIMode.getModelId(), (String)strModelId, (boolean)true) != 0) continue;
@@ -10642,4 +10643,3 @@ extends net.ibizsys.pscore.srv.util.PSModels {
         return psSysAppId.get();
     }
 }
-

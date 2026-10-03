@@ -1,20 +1,31 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app.view;
 
-import net.ibizsys.model.app.view.IPSAppDEView;
-import net.ibizsys.model.app.view.IPSAppDEXDataView;
-import net.ibizsys.model.app.view.IPSAppDataRelationView;
 
-public interface IPSAppDEEditView
-extends IPSAppDEView,
-IPSAppDataRelationView,
-IPSAppDEXDataView {
-    public static final String VIEWPARAM_UI_SHOWDATAINFOBAR = "UI.SHOWDATAINFOBAR";
-
-    public boolean isShowDataInfoBar();
-
-    public boolean isHideEditForm();
+/**
+ * 应用实体编辑视图对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSAppDEEditView extends IPSAppDEView,IPSAppDataRelationView,IPSAppDEXDataView
+{
+	/**
+	 * 显示数据信息栏
+	 */
+	public final static String VIEWPARAM_UI_SHOWDATAINFOBAR = "UI.SHOWDATAINFOBAR";
+	
+	
+	/**
+	 * 是否显示数据信息栏
+	 * @return
+	 */
+	boolean isShowDataInfoBar();
+	
+	
+	/**
+	 * 是否隐藏编辑表单
+	 * @return
+	 */
+	boolean isHideEditForm();
+	
+	
 }
-

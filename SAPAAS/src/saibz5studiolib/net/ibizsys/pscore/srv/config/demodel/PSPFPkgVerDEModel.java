@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSPFPkgVerDEModelBase;
 
 public class PSPFPkgVerDEModel
 extends PSPFPkgVerDEModelBase {
+
+    public PSPFPkgVerDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

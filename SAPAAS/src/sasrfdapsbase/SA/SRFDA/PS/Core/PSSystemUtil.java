@@ -183,21 +183,21 @@ public class PSSystemUtil {
         PSDEViewBaseService psDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)sessionFactory);
         PSDEViewBase psDEViewBase = new PSDEViewBase();
         psDEViewBase.setPSDEViewBaseId(strPSDEViewId);
-        psDEViewBaseService.get((IEntity)psDEViewBase);
+        psDEViewBaseService.get(psDEViewBase);
         PSModule psModule = psDEViewBase.getPSDE().getPSModule();
         PSAppModuleService psAppModuleService = (PSAppModuleService)ServiceGlobal.getService(PSAppModuleService.class, (SessionFactory)sessionFactory);
         PSAppModule psAppModule = new PSAppModule();
         psAppModule.setPSSysAppId(iPSApplication.getId());
         psAppModule.setPSModuleId(psModule.getPSModuleId());
-        if (!psAppModuleService.select((IEntity)psAppModule, true)) {
+        if (!psAppModuleService.select(psAppModule, true)) {
             psAppModule.reset();
             psAppModule.setPSSysAppId(iPSApplication.getId());
             psAppModule.setCodeName(psModule.getCodeName());
-            if (!psAppModuleService.select((IEntity)psAppModule, true)) {
+            if (!psAppModuleService.select(psAppModule, true)) {
                 psAppModule.reset();
                 psAppModule.setPSSysAppId(iPSApplication.getId());
                 psAppModule.setDefaultFlag(Integer.valueOf(1));
-                if (!psAppModuleService.select((IEntity)psAppModule, true)) {
+                if (!psAppModuleService.select(psAppModule, true)) {
                     ((IPSSystemUtil)((Object)iPSApplication.getPSSystem())).getPSSysConsole().error(iPSApplication.getModelName(), StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u7cfb\u7edf\u6a21\u5757[%1$s]\u5bf9\u5e94\u7684\u5e94\u7528\u6a21\u5757\uff0c\u65e0\u6cd5\u81ea\u52a8\u6dfb\u52a0\u5b9e\u4f53\u89c6\u56fe", (Object)psModule.getPSModuleName(), (Object)iPSApplication.getName()));
                     throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u7cfb\u7edf\u6a21\u5757[%1$s]\u5bf9\u5e94\u7684\u5e94\u7528[%2$s]\u6a21\u5757\uff0c\u65e0\u6cd5\u81ea\u52a8\u6dfb\u52a0\u5b9e\u4f53\u89c6\u56fe", (Object)psModule.getPSModuleName(), (Object)iPSApplication.getName()));
                 }
@@ -212,7 +212,7 @@ public class PSSystemUtil {
         psAppDEView.setPSSysAppId(psAppModule.getPSSysAppId());
         psAppDEView.setPSSysAppName(psAppModule.getPSSysAppName());
         psAppDEView.setMemo("\u7cfb\u7edf\u81ea\u52a8\u6dfb\u52a0");
-        psAppDEViewService.create((IEntity)psAppDEView, false);
+        psAppDEViewService.create(psAppDEView, false);
         ((IPSSystemUtil)((Object)iPSApplication.getPSSystem())).getPSSysConsole().warn(iPSApplication.getModelName(), StringHelper.Format((String)"\u81ea\u52a8\u6dfb\u52a0\u5b9e\u4f53\u89c6\u56fe[%1$s]\u5230\u5e94\u7528\u6a21\u5757[%2$s]", (Object)psDEViewBase.getPSDEViewBaseName(), (Object)psAppModule.getPSAppModuleName()));
     }
 
@@ -429,4 +429,3 @@ public class PSSystemUtil {
         return sb.toString();
     }
 }
-

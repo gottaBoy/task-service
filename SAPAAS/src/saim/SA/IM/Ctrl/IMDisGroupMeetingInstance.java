@@ -126,7 +126,7 @@ extends IMMeetingInstance {
                     imDisGroup.CopyTo(this.imDisGroup, true);
                     this.bValidFlag = imDisGroup.getVALIDFLAG();
                 }
-                HashMap currentMap = new HashMap();
+                HashMap<String, IIMParticipantInstance> currentMap = new HashMap<String, IIMParticipantInstance>();
                 Hashtable hashtable = this.imParticipantMap;
                 synchronized (hashtable) {
                     currentMap.putAll(this.imParticipantMap);

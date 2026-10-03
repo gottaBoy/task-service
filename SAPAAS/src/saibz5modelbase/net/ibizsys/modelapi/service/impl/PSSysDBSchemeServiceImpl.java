@@ -159,10 +159,10 @@ implements IPSSysDBSchemeService {
 
     @Override
     protected List<PSSysDBScheme> onListAll() throws Exception {
-        List pssystems;
-        List pssysmodelgroups;
+        List<PSSystem> pssystems;
+        List<PSSysModelGroup> pssysmodelgroups;
         ArrayList<PSSysDBScheme> list = new ArrayList<PSSysDBScheme>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysDBScheme> items = this.listByPSModule(parent);

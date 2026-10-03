@@ -49,16 +49,16 @@ extends PSDETBItemServiceBase {
         ArrayList<PSDETBItem> arrayList = null;
         arrayList = pSDEToolbar.getPSDEToolbarId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSDEToolbar(pSDEToolbar) : this.selectByPSDEToolbar(pSDEToolbar);
         HashMap<String, PSDETBItem> hashMap = new HashMap<String, PSDETBItem>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSDETBItem pSDETBItem2 = object.next();
+        for (PSDETBItem pSDETBItem2 : arrayList) {
             hashMap.put(pSDETBItem2.getPSDETBItemName().toLowerCase(), pSDETBItem2);
         }
+        String itemName;
         while (true) {
-            if (!hashMap.containsKey(object = StringHelper.format((String)"%1$s%2$s", (Object)string2, (Object)(n == 0 ? "" : Integer.valueOf(n))))) break;
+            itemName = StringHelper.format((String)"%1$s%2$s", (Object)string2, (Object)(n == 0 ? "" : Integer.valueOf(n)));
+            if (!hashMap.containsKey(itemName)) break;
             ++n;
         }
-        pSDETBItem.setPSDETBItemName((String)object);
+        pSDETBItem.setPSDETBItemName(itemName);
     }
 
     @Override
@@ -70,14 +70,14 @@ extends PSDETBItemServiceBase {
     }
 
     public void getTemp(PSDETBItem pSDETBItem) throws Exception {
-        super.getTemp((IEntity)pSDETBItem);
+        super.getTemp(pSDETBItem);
         if (StringHelper.compare((String)pSDETBItem.getTBItemType(), (String)"RAWITEM", (boolean)false) == 0 && StringHelper.isNullOrEmpty((String)pSDETBItem.getContentType())) {
             pSDETBItem.setContentType("RAW");
         }
     }
 
     public void get(PSDETBItem pSDETBItem) throws Exception {
-        super.get((IEntity)pSDETBItem);
+        super.get(pSDETBItem);
         if (StringHelper.compare((String)pSDETBItem.getTBItemType(), (String)"RAWITEM", (boolean)false) == 0 && StringHelper.isNullOrEmpty((String)pSDETBItem.getContentType())) {
             pSDETBItem.setContentType("RAW");
         }
@@ -92,4 +92,3 @@ extends PSDETBItemServiceBase {
         return super.getModelV2Tag(pSDETBItem);
     }
 }
-

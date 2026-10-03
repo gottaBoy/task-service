@@ -29,7 +29,6 @@ import SA.SRFDA.PS.Data.PSDevCenterSVN;
 import SA.SRFDA.Web.Utility.ISRFDAGlobalHelper;
 import SA.SRFramework.DataEx.CallResult;
 import java.io.File;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
@@ -44,7 +43,7 @@ extends PSDevCenterBKTaskImplBase {
         PSSFStyleVerService psSFStyleVerService = (PSSFStyleVerService)ServiceGlobal.getService(PSSFStyleVerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSSFStyleVer psSFStyleVer = new PSSFStyleVer();
         psSFStyleVer.setPSSFStyleVerId(strPSSFStyleVerId);
-        psSFStyleVerService.get((IEntity)psSFStyleVer);
+        psSFStyleVerService.get(psSFStyleVer);
         if (StringHelper.isNullOrEmpty((String)psSFStyleVer.getPSDevCenterSVNId())) {
             throw new Exception(StringHelper.format((String)"\u6ca1\u6709\u6307\u5b9a\u6a21\u677f[%1$s]\u4f7f\u7528\u7684\u7248\u672c\u4ed3\u5e93", (Object)psSFStyleVer.getPSSFStyleVerName()));
         }
@@ -70,4 +69,3 @@ extends PSDevCenterBKTaskImplBase {
         return super.onRun();
     }
 }
-

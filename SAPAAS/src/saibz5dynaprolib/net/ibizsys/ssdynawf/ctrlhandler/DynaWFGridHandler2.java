@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdynawf.ctrlhandler;
 
-import net.ibizsys.ssdynawf.ctrlhandler.DynaWFGridHandler;
+/**
+ * 工作流表格处理对象
+ * （1）不支持父数据条件
+ * @author Administrator
+ *
+ */
+public class DynaWFGridHandler2 extends DynaWFGridHandler {
 
-public class DynaWFGridHandler2
-extends DynaWFGridHandler {
 }
-

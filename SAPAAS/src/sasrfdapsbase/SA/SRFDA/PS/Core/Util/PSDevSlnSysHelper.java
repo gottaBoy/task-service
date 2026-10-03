@@ -50,7 +50,6 @@ import java.util.Map;
 import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.db.ISelectCond;
 import net.ibizsys.paas.db.SelectCond;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.DateHelper;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
@@ -97,7 +96,7 @@ public class PSDevSlnSysHelper {
         PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
         psDevSlnSys.setPSDevSlnSysId(strPSDevSlnSysId);
-        psDevSlnSysService.get((IEntity)psDevSlnSys);
+        psDevSlnSysService.get(psDevSlnSys);
         int nDevSysState = DataObject.getIntegerValue((Object)psDevSlnSys.getDevSysState(), (Integer)30);
         if (nDevSysState != 31) {
             if (DataObject.getIntegerValue((Object)nDevSysState, (Integer)30) != 30) {
@@ -123,7 +122,7 @@ public class PSDevSlnSysHelper {
         psDevSlnSysBak.setPSDevSlnSysName(psDevSlnSys.getPSDevSlnSysName());
         psDevSlnSysBak.setPSTaskServerId(PSTaskServerEnvImpl.getCurrent().getId());
         psDevSlnSysBak.setPSTaskServerName(PSTaskServerEnvImpl.getCurrent().getName());
-        psDevSlnSysBakService.create((IEntity)psDevSlnSysBak, false);
+        psDevSlnSysBakService.create(psDevSlnSysBak, false);
         return PSDevSlnSysHelper.backup(psDevSlnSysBak, bOffline, null);
     }
 
@@ -132,7 +131,7 @@ public class PSDevSlnSysHelper {
         PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
         PSDevSlnSys psDevSlnSys2 = new PSDevSlnSys();
         psDevSlnSys.setPSDevSlnSysId(strPSDevSlnSysId);
-        if (!psDevSlnSysService.get((IEntity)psDevSlnSys, true)) {
+        if (!psDevSlnSysService.get(psDevSlnSys, true)) {
             throw new Exception(StringHelper.Format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u4e0d\u5b58\u5728", (Object)strPSDevSlnSysId));
         }
         int nDevSysState = DataObject.getIntegerValue((Object)psDevSlnSys.getDevSysState(), (Integer)30);
@@ -152,7 +151,7 @@ public class PSDevSlnSysHelper {
                 psDevSlnSys2.setDevSysState(Integer.valueOf(35));
             }
             psDevSlnSys2.setPSDCWorkspaceId(null);
-            psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, true);
+            psDevSlnSysService.sysUpdate(psDevSlnSys2, true);
             return psDevSlnSys2;
         }
         PSSysModelInstService psSysModelInstService = (PSSysModelInstService)ServiceGlobal.getService(PSSysModelInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
@@ -176,7 +175,7 @@ public class PSDevSlnSysHelper {
         psDevSlnSysBak.setPSDevSlnSysName(psDevSlnSys.getPSDevSlnSysName());
         psDevSlnSysBak.setPSTaskServerId(PSTaskServerEnvImpl.getCurrent().getId());
         psDevSlnSysBak.setPSTaskServerName(PSTaskServerEnvImpl.getCurrent().getName());
-        psDevSlnSysBakService.create((IEntity)psDevSlnSysBak, true);
+        psDevSlnSysBakService.create(psDevSlnSysBak, true);
         psDevSlnSysBak = PSDevSlnSysHelper.backup(psDevSlnSysBak, true, strPSDCWorkspaceId);
         if (PSDevSlnSysHelper.isCloudMode()) {
             PSDevSlnSysHelper.exportModel(psDevSlnSys);
@@ -201,13 +200,13 @@ public class PSDevSlnSysHelper {
         psDevSlnSys2.setPSDCWorkspaceId(null);
         psDevSlnSys2.setLastActiveTime(new Timestamp(System.currentTimeMillis()));
         psDevSlnSys2.setOfflineTime(null);
-        psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, true);
+        psDevSlnSysService.sysUpdate(psDevSlnSys2, true);
         return psDevSlnSys2;
     }
 
     public static PSDevSlnSysBak backup(PSDevSlnSysBak psDevSlnSysBak, boolean bOffline, String strPSDCWorkspaceId) throws Exception {
         PSDevSlnSysBakService psDevSlnSysBakService = (PSDevSlnSysBakService)ServiceGlobal.getService(PSDevSlnSysBakService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        psDevSlnSysBakService.get((IEntity)psDevSlnSysBak);
+        psDevSlnSysBakService.get(psDevSlnSysBak);
         String strPSDevSlnSysBakId = psDevSlnSysBak.getPSDevSlnSysBakId();
         String strPSDevSlnSysId = psDevSlnSysBak.getPSDevSlnSysId();
         PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
@@ -215,7 +214,7 @@ public class PSDevSlnSysHelper {
         PSDevSlnSysBak psDevSlnSysBak2 = new PSDevSlnSysBak();
         try {
             psDevSlnSys.setPSDevSlnSysId(strPSDevSlnSysId);
-            psDevSlnSysService.get((IEntity)psDevSlnSys);
+            psDevSlnSysService.get(psDevSlnSys);
             int nDevSysState = DataObject.getIntegerValue((Object)psDevSlnSys.getDevSysState(), (Integer)30);
             if (nDevSysState != 30 && nDevSysState != 31) {
                 throw new Exception(StringHelper.Format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u5f53\u524d\u72b6\u6001[%2$s]\uff0c\u65e0\u6cd5\u8fdb\u884c\u5907\u4efd", (Object)psDevSlnSys.getPSDevSlnSysName(), (Object)DevSysStateCodeListModel.getInstance().getCodeItem(psDevSlnSys.getDevSysState().toString()).getText()));
@@ -223,7 +222,7 @@ public class PSDevSlnSysHelper {
             psDevSlnSysBak2.setPSDevSlnSysBakId(strPSDevSlnSysBakId);
             psDevSlnSysBak2.setBeginBackupTime(DateHelper.getCurTime());
             psDevSlnSysBak2.setBackupState(DBInstBStateCodeListModel.CREATING);
-            psDevSlnSysBakService.sysUpdate((IEntity)psDevSlnSysBak2, false);
+            psDevSlnSysBakService.sysUpdate(psDevSlnSysBak2, false);
             String strNasFile = "";
             String strNasFile2 = "";
             String strNasFolder = StringHelper.Format((String)"%1$s%2$s%3$s%2$ssysbk%2$s%4$s%2$s%5$s%2$s", (Object)PSTaskServerEnvImpl.getCurrent().getBackupFolder(), (Object)File.separator, (Object)psDevSlnSys.getPSDevCenterId(), (Object)psDevSlnSys.getPSDevSlnSysId(), (Object)psDevSlnSysBak.getPSDevSlnSysBakId());
@@ -297,7 +296,7 @@ public class PSDevSlnSysHelper {
             psDevSlnSysBak2.setBackupState(DBInstBStateCodeListModel.CREATED);
             psDevSlnSysBak2.setBackupFilePath(strNasFile2);
             psDevSlnSysBak2.setBackupSize(Integer.valueOf((int)file.length()));
-            psDevSlnSysBakService.sysUpdate((IEntity)psDevSlnSysBak2, true);
+            psDevSlnSysBakService.sysUpdate(psDevSlnSysBak2, true);
             return psDevSlnSysBak2;
         }
         catch (Exception ex) {
@@ -307,7 +306,7 @@ public class PSDevSlnSysHelper {
                 psDevSlnSysBak2.setPSDevSlnSysBakId(strPSDevSlnSysBakId);
                 psDevSlnSysBak2.setEndBackupTime(DateHelper.getCurTime());
                 psDevSlnSysBak2.setBackupState(DBInstBStateCodeListModel.FAILED);
-                psDevSlnSysBakService.sysUpdate((IEntity)psDevSlnSysBak2, false);
+                psDevSlnSysBakService.sysUpdate(psDevSlnSysBak2, false);
             }
             catch (Exception e) {
                 log.error((Object)e);
@@ -320,17 +319,17 @@ public class PSDevSlnSysHelper {
         PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
         psDevSlnSys.setPSDevSlnSysId(strPSDevSlnSysId);
-        psDevSlnSysService.get((IEntity)psDevSlnSys);
+        psDevSlnSysService.get(psDevSlnSys);
         PSDevSlnSysBakService psDevSlnSysBakService = (PSDevSlnSysBakService)ServiceGlobal.getService(PSDevSlnSysBakService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSysBak psDevSlnSysBak = new PSDevSlnSysBak();
         psDevSlnSysBak.setPSDevSlnSysBakId(strPSDevSlnSysBakId);
-        psDevSlnSysBakService.get((IEntity)psDevSlnSysBak);
+        psDevSlnSysBakService.get(psDevSlnSysBak);
         PSDevSlnSysBak realDevSlnSysBak = psDevSlnSysBak;
         if (DataObject.getBoolValue((Integer)psDevSlnSysBak.getLinkFlag(), (boolean)false)) {
             PSDevSlnSysBakLinkService psDevSlnSysBakLinkService = (PSDevSlnSysBakLinkService)ServiceGlobal.getService(PSDevSlnSysBakLinkService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDevSlnSysBakLink psDevSlnSysBakLink = new PSDevSlnSysBakLink();
             psDevSlnSysBakLink.setPSDevSlnSysBakLinkId(psDevSlnSysBak.getPSDevSlnSysBakId());
-            if (!psDevSlnSysBakLinkService.get((IEntity)psDevSlnSysBakLink, true)) {
+            if (!psDevSlnSysBakLinkService.get(psDevSlnSysBakLink, true)) {
                 throw new Exception(StringHelper.Format((String)"\u5f00\u53d1\u7cfb\u7edf\u5907\u4efd[%1$s]\u65e0\u6cd5\u83b7\u53d6\u5907\u4efd\u94fe\u63a5", (Object)psDevSlnSysBak.getPSDevSlnSysBakName()));
             }
             if (DataObject.getIntegerValue((Object)psDevSlnSysBakLink.getLinkState(), (Integer)30) != 30) {
@@ -359,29 +358,29 @@ public class PSDevSlnSysHelper {
         PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
         psDevSlnSys.setPSDevSlnSysId(strPSDevSlnSysId);
-        psDevSlnSysService.get((IEntity)psDevSlnSys);
+        psDevSlnSysService.get(psDevSlnSys);
         PSDevSlnSysBakService psDevSlnSysBakService = (PSDevSlnSysBakService)ServiceGlobal.getService(PSDevSlnSysBakService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSysBak psDevSlnSysBak = new PSDevSlnSysBak();
         psDevSlnSysBak.setPSDevSlnSysBakId(strPSDevSlnSysBakId);
-        psDevSlnSysBakService.get((IEntity)psDevSlnSysBak);
+        psDevSlnSysBakService.get(psDevSlnSysBak);
         PSDevSlnSysBak realDevSlnSysBak = psDevSlnSysBak;
         PSSysModelInstService psSysModelInstService = (PSSysModelInstService)ServiceGlobal.getService(PSSysModelInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSSysModelInst backupPSSysModelInst = new PSSysModelInst();
         backupPSSysModelInst.setPSSysModelInstId(String.valueOf(psDevSlnSys.getPSSysModelInstId()) + "_bak");
-        psSysModelInstService.get((IEntity)backupPSSysModelInst);
+        psSysModelInstService.get(backupPSSysModelInst);
         PSSysModelInst psSysModelInst = psDevSlnSys.getPSSysModelInst();
         try {
             PSDevSlnSysHelper.restore(backupPSSysModelInst, PSSysModelInstHelper.MODELVER_NEW_NOFK_NOVIEW, realDevSlnSysBak);
             PSModelV2Helper psModelV2Helper = new PSModelV2Helper();
             psModelV2Helper.init(null, psSysModelInst.getPSSysModelInstId());
-            Map srcCountMap = psModelV2Helper.count();
+            Map<String, Integer> srcCountMap = psModelV2Helper.count();
             PSModelV2Helper psModelV2Helper2 = new PSModelV2Helper();
             psModelV2Helper2.init(null, backupPSSysModelInst.getPSSysModelInstId());
-            Map backupCountMap = psModelV2Helper2.count();
-            for (Map.Entry entry : srcCountMap.entrySet()) {
-                Integer nBKCnt = (Integer)backupCountMap.get(entry.getKey());
+            Map<String, Integer> backupCountMap = psModelV2Helper2.count();
+            for (Map.Entry<String, Integer> entry : srcCountMap.entrySet()) {
+                Integer nBKCnt = backupCountMap.get(entry.getKey());
                 if (nBKCnt == null) {
-                    if (entry.getValue() == null || (Integer)entry.getValue() == 0) continue;
+                    if (entry.getValue() == null || entry.getValue() == 0) continue;
                     throw new Exception(StringHelper.Format((String)"\u5907\u4efd\u5b9e\u4f8b\u7f3a\u5931\u6a21\u578b[%1$s]\u6570\u636e", entry.getKey()));
                 }
                 if (nBKCnt.equals(entry.getValue())) continue;
@@ -400,7 +399,7 @@ public class PSDevSlnSysHelper {
         PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
         PSDevSlnSys psDevSlnSys2 = new PSDevSlnSys();
         psDevSlnSys.setPSDevSlnSysId(strPSDevSlnSysId);
-        if (!psDevSlnSysService.get((IEntity)psDevSlnSys, true)) {
+        if (!psDevSlnSysService.get(psDevSlnSys, true)) {
             throw new Exception(StringHelper.Format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u4e0d\u5b58\u5728", (Object)strPSDevSlnSysId));
         }
         IPSDCWorkspace iPSDCWorkspace = null;
@@ -446,7 +445,7 @@ public class PSDevSlnSysHelper {
                 psDevSlnSys2.setDevSysState(Integer.valueOf(30));
             }
             psDevSlnSys2.setPSDCWorkspaceId(strPSDCWorkspaceId);
-            psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, false);
+            psDevSlnSysService.sysUpdate(psDevSlnSys2, false);
             return psDevSlnSys2;
         }
         PSSysModelInstHelper.online(psDevSlnSys.getPSSysModelInstId());
@@ -507,7 +506,7 @@ public class PSDevSlnSysHelper {
         } else {
             psDevSlnSys2.setOfflineTime(null);
         }
-        psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, true);
+        psDevSlnSysService.sysUpdate(psDevSlnSys2, true);
         return psDevSlnSys2;
     }
 
@@ -624,7 +623,7 @@ public class PSDevSlnSysHelper {
         PSDevCenterService psDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevCenter psDevCenter = new PSDevCenter();
         psDevCenter.setPSDevCenterId(psDevSlnSys.getPSDevCenterId());
-        psDevCenterService.get((IEntity)psDevCenter);
+        psDevCenterService.get(psDevCenter);
         String strFolder = PSTaskServerEnvImpl.getCurrent().createTempFolder("MODEL");
         File folder = new File(String.valueOf(strFolder) + "MODEL2");
         if (!folder.exists()) {
@@ -656,7 +655,7 @@ public class PSDevSlnSysHelper {
         psDevSlnSysService.rebindSystem(psDevSlnSys2);
         PSSystem psSystem = new PSSystem();
         psSystem.setPSSystemId(psDevSlnSys.getPSSystemId());
-        psSystemService.initModel((IEntity)psSystem);
+        psSystemService.initModel(psSystem);
     }
 
     protected static void exportModel(PSDevSlnSys psDevSlnSys) throws Exception {
@@ -693,7 +692,7 @@ public class PSDevSlnSysHelper {
         PSDevCenterService psDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevCenter psDevCenter = new PSDevCenter();
         psDevCenter.setPSDevCenterId(psDevSlnSys.getPSDevCenterId());
-        psDevCenterService.get((IEntity)psDevCenter);
+        psDevCenterService.get(psDevCenter);
         PSModelV2Helper psModelV2Helper = new PSModelV2Helper();
         psModelV2Helper.init(psDevSlnSys.getPSSystemId(), psDevSlnSys.getPSSysModelInstId(), null, psDevSlnSys.getPSDevSlnSysId());
         String strFolder = PSTaskServerEnvImpl.getCurrent().createTempFolder("MODEL");
@@ -729,4 +728,3 @@ public class PSDevSlnSysHelper {
         }
     }
 }
-

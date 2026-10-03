@@ -1,81 +1,90 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.security;
 
 import java.util.HashMap;
+
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.psrt.srv.common.entity.LoginLog;
 
+/**
+ * 远程登录全局对象
+ * 
+ * @author Administrator
+ *
+ */
 public class RemoteLoginGlobal {
-    private static HashMap<String, LoginLog> loginLogMap = new HashMap();
-    private static HashMap<String, String> userLoginLogMap = new HashMap();
+	private static HashMap<String, LoginLog> loginLogMap = new HashMap<String, LoginLog>();
+	private static HashMap<String, String> userLoginLogMap = new HashMap<String, String>();
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    public static LoginLog setUserLoginLog(String strUserId, LoginLog loginLog) throws Exception {
-        HashMap<String, LoginLog> hashMap = loginLogMap;
-        synchronized (hashMap) {
-            LoginLog lastLoginLog = RemoteLoginGlobal.getUserLoginLog(strUserId);
-            loginLogMap.put(loginLog.getLoginLogId(), loginLog);
-            userLoginLogMap.put(strUserId, loginLog.getLoginLogId());
-            return lastLoginLog;
-        }
-    }
+	/**
+	 * 设置用户登录日志
+	 * 
+	 * @param strUserId
+	 * @param loginLog
+	 * @return
+	 * @throws Exception
+	 */
+	public static LoginLog setUserLoginLog(String strUserId, LoginLog loginLog) throws Exception {
+		synchronized (loginLogMap) {
+			LoginLog lastLoginLog = getUserLoginLog(strUserId);
+			loginLogMap.put(loginLog.getLoginLogId(), loginLog);
+			userLoginLogMap.put(strUserId, loginLog.getLoginLogId());
+			return lastLoginLog;
+		}
+	}
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    public static LoginLog getUserLoginLog(String strUserId) {
-        HashMap<String, LoginLog> hashMap = loginLogMap;
-        synchronized (hashMap) {
-            String strUserLoginId;
-            block4: {
-                strUserLoginId = userLoginLogMap.get(strUserId);
-                if (!StringHelper.isNullOrEmpty(strUserLoginId)) break block4;
-                return null;
-            }
-            return loginLogMap.get(strUserLoginId);
-        }
-    }
+	/**
+	 * 获取用户登录日志
+	 * 
+	 * @param strUserId
+	 * @return
+	 */
+	public static LoginLog getUserLoginLog(String strUserId) {
+		synchronized (loginLogMap) {
+			String strUserLoginId = userLoginLogMap.get(strUserId);
+			if (StringHelper.isNullOrEmpty(strUserLoginId)) return null;
+			return loginLogMap.get(strUserLoginId);
+		}
+	}
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    public static LoginLog getLoginLog(String strLoginLogId) {
-        HashMap<String, LoginLog> hashMap = loginLogMap;
-        synchronized (hashMap) {
-            return loginLogMap.get(strLoginLogId);
-        }
-    }
-
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    public static void removeLoginLog(String strLoginLogId) {
-        HashMap<String, LoginLog> hashMap = loginLogMap;
-        synchronized (hashMap) {
-            if (loginLogMap.containsKey(strLoginLogId)) {
-                loginLogMap.remove(strLoginLogId);
-            }
-        }
-    }
-
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    public static void removeUserLoginLog(String strUserId) {
-        HashMap<String, LoginLog> hashMap = loginLogMap;
-        synchronized (hashMap) {
-            if (userLoginLogMap.containsKey(strUserId)) {
-                String strUserLoginId = userLoginLogMap.get(strUserId);
-                if (loginLogMap.containsKey(strUserLoginId)) {
-                    loginLogMap.remove(strUserLoginId);
-                }
-                userLoginLogMap.remove(strUserId);
-            }
-        }
-    }
+	/**
+	 * 获取用户登录日志
+	 * 
+	 * @param strLoginLogId
+	 * @return
+	 */
+	public static LoginLog getLoginLog(String strLoginLogId) {
+		synchronized (loginLogMap) {
+			return loginLogMap.get(strLoginLogId);
+		}
+	}
+	
+	/**
+	 * 移除用户登录日志
+	 * 
+	 * @param strLoginLogId
+	 * @return
+	 */
+	public static void removeLoginLog(String strLoginLogId) {
+		synchronized (loginLogMap) {
+			if(loginLogMap.containsKey(strLoginLogId))
+				loginLogMap.remove(strLoginLogId);
+		}
+	}
+	
+	/**
+	 * 移除用户登录日志
+	 * 
+	 * @param strUserId
+	 * @return
+	 */
+	public static void removeUserLoginLog(String strUserId) {
+		synchronized (loginLogMap) {
+			if(userLoginLogMap.containsKey(strUserId)) {
+				String strUserLoginId = userLoginLogMap.get(strUserId);
+				if(loginLogMap.containsKey(strUserLoginId))
+						loginLogMap.remove(strUserLoginId);
+				userLoginLogMap.remove(strUserId);
+			}
+		}
+	}
 }
-

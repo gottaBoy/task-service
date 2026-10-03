@@ -55,11 +55,10 @@ extends PSSFTemplDataCtrlBase {
         IDEDataCtrl iPSSFStyleDataCtrl = this.GetRelatedDataCtrl("DE1513");
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSSFID", (Object)strPSSFId);
-        Vector psPFStyleList = new Vector();
+        Vector<BaseDataEntity> psPFStyleList = new Vector<BaseDataEntity>();
         iPSSFStyleDataCtrl.Select(cond, psPFStyleList);
         for (BaseDataEntity baseDataEntity : psPFStyleList) {
             iPSSFStyleDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
         }
     }
 }
-

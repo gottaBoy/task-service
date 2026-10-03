@@ -31,7 +31,7 @@ extends XMLCollectionExConfig<WFEmbedProcessConfig> {
 
     protected boolean OnChildNodeLoaded(WFEmbedProcessConfig childNode) {
         childNode.setParentProcessConfig(this.processConfig);
-        return super.OnChildNodeLoaded((Object)childNode);
+        return super.OnChildNodeLoaded(childNode);
     }
 
     public void OnLoadNode(String strName, Node xmlNode) {
@@ -40,7 +40,7 @@ extends XMLCollectionExConfig<WFEmbedProcessConfig> {
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = WFEmbedProcessesConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
             if (this.OnChildNodeLoaded((WFEmbedProcessConfig)childNode)) {
-                this.add((Object)((WFEmbedProcessConfig)childNode));
+                this.add((WFEmbedProcessConfig)childNode);
                 return;
             }
         }

@@ -1,25 +1,48 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="c821c14e8cbf700654b01dbe618ec7b5", name="\u9875\u9762\u8df3\u8f6c\u5904\u7406_\u9875\u9762\u7c7b\u578b", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="PAGE", text="\u5185\u7f6e\u9875\u9762", realtext="\u5185\u7f6e\u9875\u9762"), @CodeItem(value="URL", text="\u7f51\u9875\u8def\u5f84", realtext="\u7f51\u9875\u8def\u5f84"), @CodeItem(value="SCRIPT", text="\u811a\u672c", realtext="\u811a\u672c")})
-public abstract class CodeList113CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String PAGE = "PAGE";
-    public static final String URL = "URL";
-    public static final String SCRIPT = "SCRIPT";
+
+@CodeList(id="c821c14e8cbf700654b01dbe618ec7b5",name="页面跳转处理_页面类型",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="PAGE",text="内置页面",realtext="内置页面" )
+    ,@CodeItem(value="URL",text="网页路径",realtext="网页路径" )
+    ,@CodeItem(value="SCRIPT",text="脚本",realtext="脚本" )
+})
+
+
+/**
+ * 静态代码表[页面跳转处理_页面类型]模型基类
+ */
+public abstract class CodeList113CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  内置页面
+     */
+    public final static String PAGE = "PAGE";
+    /**
+     *  网页路径
+     */
+    public final static String URL = "URL";
+    /**
+     *  脚本
+     */
+    public final static String SCRIPT = "SCRIPT";
+
 
     public CodeList113CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList113CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList113CodeListModel", this);
     }
-}
 
+}

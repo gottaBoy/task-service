@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSPFEditorTemplDEModelBase;
 
 public class PSPFEditorTemplDEModel
 extends PSPFEditorTemplDEModelBase {
+
+    public PSPFEditorTemplDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

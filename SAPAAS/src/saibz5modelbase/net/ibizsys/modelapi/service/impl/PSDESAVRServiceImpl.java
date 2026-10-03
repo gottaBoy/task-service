@@ -73,7 +73,7 @@ implements IPSDESAVRService {
     @Override
     protected List<PSDESAVR> onListAll() throws Exception {
         ArrayList<PSDESAVR> list = new ArrayList<PSDESAVR>();
-        List psdeserviceapis = PSModelServiceUtil.getInstance().getPSDEServiceAPIService().listAll();
+        List<PSDEServiceAPI> psdeserviceapis = PSModelServiceUtil.getInstance().getPSDEServiceAPIService().listAll();
         if (psdeserviceapis != null) {
             for (PSDEServiceAPI parent : psdeserviceapis) {
                 List<PSDESAVR> items = this.listByPSDEServiceAPI(parent);

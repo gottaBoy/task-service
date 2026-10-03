@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdevstudio.demodel.PSDevSlnSysBakDEModelBase;
 
 public class PSDevSlnSysBakDEModel
 extends PSDevSlnSysBakDEModelBase {
+
+    public PSDevSlnSysBakDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

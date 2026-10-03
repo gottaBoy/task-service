@@ -1,76 +1,121 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
 import java.util.Iterator;
+
 import net.ibizsys.paas.db.IDBDialect;
 import net.ibizsys.paas.db.IProcParam;
 import net.ibizsys.paas.db.ProcParamList;
 import net.ibizsys.paas.db.SqlParam;
 import net.ibizsys.paas.db.SqlParamList;
-import net.ibizsys.paas.demodel.DEDBProcModelBase;
-import net.ibizsys.paas.demodel.IDataEntityModel;
-import net.ibizsys.paas.demodel.ISqlCommandModel;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.web.IWebContext;
 
-public class SqlCommandModel
-implements ISqlCommandModel {
-    protected String strSql = "";
-    protected ProcParamList procParamList = new ProcParamList();
-    protected IDBDialect iDBDialect = null;
-    protected IDataEntityModel iDataEntityModel = null;
+/**
+ * 数据库命令模型对象
+ * 
+ * @author Administrator
+ *
+ */
+public class SqlCommandModel implements ISqlCommandModel {
+	protected String strSql = "";
+	protected ProcParamList procParamList = new ProcParamList();
 
-    @Override
-    public String getSql() {
-        return this.strSql;
-    }
+	protected IDBDialect iDBDialect = null;
 
-    @Override
-    public Iterator<IProcParam> getProcParams() {
-        return this.procParamList.iterator();
-    }
+	protected IDataEntityModel iDataEntityModel = null;
 
-    @Override
-    public void fillSqlParams(IEntity iEntity, IWebContext iWebContext, SqlParamList sqlParamList) throws Exception {
-        Iterator<IProcParam> procParams = this.getProcParams();
-        while (procParams.hasNext()) {
-            IProcParam procParam = procParams.next();
-            SqlParam callParam = this.getProcSqlParam(procParam, iEntity, iWebContext);
-            if (callParam == null) {
-                callParam = new SqlParam();
-            }
-            sqlParamList.add(callParam);
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.ISqlCommand#getSql()
+	 */
+	@Override
+	public String getSql() {
+		return strSql;
+	}
 
-    protected SqlParam getProcSqlParam(IProcParam procParam, IEntity iEntity, IWebContext iWebContext) throws Exception {
-        return DEDBProcModelBase.getProcSqlParam(procParam, iEntity, iWebContext, this.getDataEntityModel());
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.ISqlCommand#getProcParams()
+	 */
+	@Override
+	public Iterator<IProcParam> getProcParams() {
+		return procParamList.iterator();
+	}
 
-    public void setSql(String strSql) {
-        this.strSql = strSql;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.ISqlCommandModel#fillSqlParams(net.ibizsys.paas.entity.IEntity, net.ibizsys.paas.web.IWebContext, net.ibizsys.paas.db.SqlParamList)
+	 */
+	@Override
+	public void fillSqlParams(IEntity iEntity, IWebContext iWebContext, SqlParamList sqlParamList) throws Exception {
+		Iterator<IProcParam> procParams = getProcParams();
+		while (procParams.hasNext()) {
+			IProcParam procParam = procParams.next();
 
-    public void setProcParamList(ProcParamList procParamList) {
-        this.procParamList = procParamList;
-    }
+			SqlParam callParam = getProcSqlParam(procParam, iEntity, iWebContext);
+			if (callParam == null){
+				callParam = new SqlParam();
+			}
+			sqlParamList.add(callParam);
+		}
+	}
 
-    public IDBDialect getDBDialect() {
-        return this.iDBDialect;
-    }
+	/**
+	 * 获取过程命令参数
+	 * 
+	 * @param procParam
+	 * @param iEntity
+	 * @param iWebContext
+	 * @return
+	 * @throws Exception
+	 */
+	protected SqlParam getProcSqlParam(IProcParam procParam, IEntity iEntity, IWebContext iWebContext) throws Exception {
+		return DEDBProcModelBase.getProcSqlParam(procParam, iEntity, iWebContext, this.getDataEntityModel());
+	}
 
-    public void setDBDialect(IDBDialect iDBDialect) {
-        this.iDBDialect = iDBDialect;
-    }
+	/**
+	 * @param strSql the strSql to set
+	 */
+	public void setSql(String strSql) {
+		this.strSql = strSql;
+	}
 
-    public IDataEntityModel getDataEntityModel() {
-        return this.iDataEntityModel;
-    }
+	/**
+	 * @param procParamList the procParamList to set
+	 */
+	public void setProcParamList(ProcParamList procParamList) {
+		this.procParamList = procParamList;
+	}
 
-    public void setDataEntityModel(IDataEntityModel iDataEntityModel) {
-        this.iDataEntityModel = iDataEntityModel;
-    }
+	/**
+	 * @return the iDBDialect
+	 */
+	public IDBDialect getDBDialect() {
+		return iDBDialect;
+	}
+
+	/**
+	 * @param iDBDialect the iDBDialect to set
+	 */
+	public void setDBDialect(IDBDialect iDBDialect) {
+		this.iDBDialect = iDBDialect;
+	}
+
+	/**
+	 * @return the iDataEntityModel
+	 */
+	public IDataEntityModel getDataEntityModel() {
+		return iDataEntityModel;
+	}
+
+	/**
+	 * @param iDataEntityModel the iDataEntityModel to set
+	 */
+	public void setDataEntityModel(IDataEntityModel iDataEntityModel) {
+		this.iDataEntityModel = iDataEntityModel;
+	}
+
 }
-

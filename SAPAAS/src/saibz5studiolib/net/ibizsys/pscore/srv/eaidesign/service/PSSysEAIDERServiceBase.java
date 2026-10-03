@@ -166,9 +166,9 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
             PSDER pSDER = (PSDER)iService.getDEModel().createEntity();
             pSDER.set("PSDERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDER);
+                iService.getTemp(pSDER);
             } else {
-                iService.get((IEntity)pSDER);
+                iService.get(pSDER);
             }
             this.onFillParentInfo_PSDER(pSSysEAIDER, pSDER);
             return;
@@ -178,9 +178,9 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
             PSSysEAIDE pSSysEAIDE = (PSSysEAIDE)iService.getDEModel().createEntity();
             pSSysEAIDE.set("PSSYSEAIDEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysEAIDE);
+                iService.getTemp(pSSysEAIDE);
             } else {
-                iService.get((IEntity)pSSysEAIDE);
+                iService.get(pSSysEAIDE);
             }
             this.onFillParentInfo_PSSysEAIDE(pSSysEAIDER, pSSysEAIDE);
             return;
@@ -190,14 +190,14 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
             PSSysEAIElementRE pSSysEAIElementRE = (PSSysEAIElementRE)iService.getDEModel().createEntity();
             pSSysEAIElementRE.set("PSSYSEAIELEMENTREID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysEAIElementRE);
+                iService.getTemp(pSSysEAIElementRE);
             } else {
-                iService.get((IEntity)pSSysEAIElementRE);
+                iService.get(pSSysEAIElementRE);
             }
             this.onFillParentInfo_PSSysEAIElementRE(pSSysEAIDER, pSSysEAIElementRE);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysEAIDER, string, string2, string3);
+        super.onFillParentInfo(pSSysEAIDER, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -233,7 +233,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 pSSysEAIDER.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysEAIDER, bl);
+        super.onFillEntityFullInfo(pSSysEAIDER, bl);
         this.onFillEntityFullInfo_PSDER(pSSysEAIDER, bl);
         this.onFillEntityFullInfo_PSSysEAIDE(pSSysEAIDER, bl);
         this.onFillEntityFullInfo_PSSysEAIElementRE(pSSysEAIDER, bl);
@@ -259,7 +259,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
     }
 
     protected void onWriteBackParent(PSSysEAIDER pSSysEAIDER, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysEAIDER, bl);
+        super.onWriteBackParent(pSSysEAIDER, bl);
     }
 
     public ArrayList<PSSysEAIDER> selectByPSDER(PSDERBase pSDERBase) throws Exception {
@@ -353,8 +353,8 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
         ArrayList<PSSysEAIDER> arrayList = this.selectByPSDER(pSDER, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDER);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEAIDER_PSDER_PSDERID", "", iDataEntityModel.getName(), "PSSYSEAIDER", iDataEntityModel.getDataInfo((IEntity)pSDER), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDER);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEAIDER_PSDER_PSDERID", "", iDataEntityModel.getName(), "PSSYSEAIDER", iDataEntityModel.getDataInfo(pSDER), arrayList.get(0)));
         }
     }
 
@@ -387,7 +387,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
         ArrayList<PSSysEAIDER> arrayList = this.selectByPSDER(pSDER);
         this.onBeforeRemoveByPSDER(pSDER, arrayList);
         for (PSSysEAIDER pSSysEAIDER : arrayList) {
-            this.remove((IEntity)pSSysEAIDER);
+            this.remove(pSSysEAIDER);
         }
         this.onAfterRemoveByPSDER(pSDER, arrayList);
     }
@@ -420,7 +420,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
             PSSysEAIDER pSSysEAIDER2 = (PSSysEAIDER)this.getDEModel().createEntity();
             pSSysEAIDER2.setPSSysEAIDERId(pSSysEAIDER.getPSSysEAIDERId());
             pSSysEAIDER2.setPSSysEAIDEId(null);
-            this.updateTemp((IEntity)pSSysEAIDER2);
+            this.updateTemp(pSSysEAIDER2);
         }
     }
 
@@ -443,7 +443,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
         ArrayList<PSSysEAIDER> arrayList = this.selectByPSSysEAIDE(pSSysEAIDE);
         this.onBeforeRemoveByPSSysEAIDE(pSSysEAIDE, arrayList);
         for (PSSysEAIDER pSSysEAIDER : arrayList) {
-            this.remove((IEntity)pSSysEAIDER);
+            this.remove(pSSysEAIDER);
         }
         this.onAfterRemoveByPSSysEAIDE(pSSysEAIDE, arrayList);
     }
@@ -461,8 +461,8 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
         ArrayList<PSSysEAIDER> arrayList = this.selectByPSSysEAIElementRE(pSSysEAIElementRE, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSEAIELEMENTRE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysEAIElementRE);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEAIDER_PSSYSEAIELEMENTRE_PSSYSEAIELEMENTREID", "", iDataEntityModel.getName(), "PSSYSEAIDER", iDataEntityModel.getDataInfo((IEntity)pSSysEAIElementRE), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysEAIElementRE);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSEAIDER_PSSYSEAIELEMENTRE_PSSYSEAIELEMENTREID", "", iDataEntityModel.getName(), "PSSYSEAIDER", iDataEntityModel.getDataInfo(pSSysEAIElementRE), arrayList.get(0)));
         }
     }
 
@@ -495,7 +495,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
         ArrayList<PSSysEAIDER> arrayList = this.selectByPSSysEAIElementRE(pSSysEAIElementRE);
         this.onBeforeRemoveByPSSysEAIElementRE(pSSysEAIElementRE, arrayList);
         for (PSSysEAIDER pSSysEAIDER : arrayList) {
-            this.remove((IEntity)pSSysEAIDER);
+            this.remove(pSSysEAIDER);
         }
         this.onAfterRemoveByPSSysEAIElementRE(pSSysEAIElementRE, arrayList);
     }
@@ -533,7 +533,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
         ArrayList<PSSysEAIDER> arrayList = this.selectTempByPSSysEAIDE(pSSysEAIDE);
         this.onBeforeRemoveTempByPSSysEAIDE(pSSysEAIDE, arrayList);
         for (PSSysEAIDER pSSysEAIDER : arrayList) {
-            this.removeTemp((IEntity)pSSysEAIDER);
+            this.removeTemp(pSSysEAIDER);
         }
         this.onAfterRemoveTempByPSSysEAIDE(pSSysEAIDE, arrayList);
     }
@@ -549,7 +549,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
 
     protected void replaceParentInfo(PSSysEAIDER pSSysEAIDER, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysEAIDER, cloneSession);
+        super.replaceParentInfo(pSSysEAIDER, cloneSession);
         if (pSSysEAIDER.getPSDERId() != null && (iEntity = cloneSession.getEntity("PSDER", (Object)pSSysEAIDER.getPSDERId())) != null) {
             this.onFillParentInfo_PSDER(pSSysEAIDER, (PSDER)iEntity);
         }
@@ -562,7 +562,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysEAIDER pSSysEAIDER, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysEAIDER, bl);
+        super.onRemoveEntityUncopyValues(pSSysEAIDER, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysEAIDER pSSysEAIDER, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -616,7 +616,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysEAIDER, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysEAIDER, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysEAIDER, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSSysEAIDER pSSysEAIDER, boolean bl2, boolean bl3) throws Exception {
@@ -632,7 +632,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -671,7 +671,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EAIDERTag_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_EAIDERTag_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EAIDERTAG");
@@ -693,7 +693,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EAIDERTag2_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_EAIDERTag2_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EAIDERTAG2");
@@ -715,7 +715,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -740,7 +740,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDERId_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_PSDERId_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDERID");
@@ -762,7 +762,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDERName_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_PSDERName_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDERNAME");
@@ -787,7 +787,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysEAIDEId_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysEAIDEId_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSEAIDEID");
@@ -812,7 +812,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysEAIDERId_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysEAIDERId_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSEAIDERID");
@@ -837,7 +837,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysEAIDERName_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysEAIDERName_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSEAIDERNAME");
@@ -876,7 +876,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysEAIElementREId_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysEAIElementREId_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSEAIELEMENTREID");
@@ -898,7 +898,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -920,7 +920,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -942,7 +942,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -964,7 +964,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -986,7 +986,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1011,7 +1011,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysEAIDER, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysEAIDER, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1024,11 +1024,11 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
     }
 
     protected void onSyncEntity(PSSysEAIDER pSSysEAIDER, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysEAIDER, bl);
+        super.onSyncEntity(pSSysEAIDER, bl);
     }
 
     protected void onSyncIndexEntities(PSSysEAIDER pSSysEAIDER, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysEAIDER, bl);
+        super.onSyncIndexEntities(pSSysEAIDER, bl);
     }
 
     public Object getDataContextValue(PSSysEAIDER pSSysEAIDER, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1036,7 +1036,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysEAIDER, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysEAIDER, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysEAIDE pSSysEAIDE = pSSysEAIDER.getPSSysEAIDE();
@@ -1047,7 +1047,7 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
     }
 
     protected void onExportMajorModel(PSSysEAIDER pSSysEAIDER, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysEAIDER, arrayList, n);
+        super.onExportMajorModel(pSSysEAIDER, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1397,14 +1397,14 @@ extends PSCoreSysServiceBase<PSSysEAIDER> {
 
     protected boolean onMergeChild(String string, String string2, PSSysEAIDER pSSysEAIDER) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysEAIDER)) {
+        if (super.onMergeChild(string, string2, pSSysEAIDER)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysEAIDER pSSysEAIDER) throws Exception {
-        super.onUpdateParent((IEntity)pSSysEAIDER);
+        super.onUpdateParent(pSSysEAIDER);
     }
 
     @Override

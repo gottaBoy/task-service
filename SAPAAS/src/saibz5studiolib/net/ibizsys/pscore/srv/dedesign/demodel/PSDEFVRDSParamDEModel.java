@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEFVRDSParamDEModelBase;
 
 public class PSDEFVRDSParamDEModel
 extends PSDEFVRDSParamDEModelBase {
+
+    public PSDEFVRDSParamDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

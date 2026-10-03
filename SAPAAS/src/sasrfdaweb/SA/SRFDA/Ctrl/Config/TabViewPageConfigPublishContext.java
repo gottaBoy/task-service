@@ -78,11 +78,11 @@ implements ITabViewPageConfigPublishContext {
         if (StringHelper.IsNullOrEmpty((String)strGroupName)) {
             strGroupName = this.groupNameMap.get("");
         }
-        Vector<Object> tabViewPageNodes = null;
+        Vector<XMLNode> tabViewPageNodes = null;
         if (this.groupNodeListMap.containsKey(strGroupName)) {
             tabViewPageNodes = this.groupNodeListMap.get(strGroupName);
         } else {
-            tabViewPageNodes = new Vector();
+            tabViewPageNodes = new Vector<XMLNode>();
             this.groupNodeListMap.put(strGroupName, tabViewPageNodes);
         }
         tabViewPageNode.SetValue("PAGEORDER", StringHelper.Format((String)"%1$s", (Object)nOrder));
@@ -90,7 +90,7 @@ implements ITabViewPageConfigPublishContext {
         int nCount = tabViewPageNodes.size();
         int i = 0;
         while (i < nCount) {
-            XMLNode item = (XMLNode)tabViewPageNodes.get(i);
+            XMLNode item = tabViewPageNodes.get(i);
             int nPos = item.GetExtValue("PAGEORDER", 0);
             if (nOrder < nPos) {
                 nInsertPos = i;
@@ -152,4 +152,3 @@ implements ITabViewPageConfigPublishContext {
         }
     }
 }
-

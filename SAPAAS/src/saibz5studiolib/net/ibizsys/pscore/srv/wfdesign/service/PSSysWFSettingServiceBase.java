@@ -177,9 +177,9 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
             PSSysMsgTempl pSSysMsgTempl = (PSSysMsgTempl)iService.getDEModel().createEntity();
             pSSysMsgTempl.set("PSSYSMSGTEMPLID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysMsgTempl);
+                iService.getTemp(pSSysMsgTempl);
             } else {
-                iService.get((IEntity)pSSysMsgTempl);
+                iService.get(pSSysMsgTempl);
             }
             this.onFillParentInfo_PSSysMsgTempl(pSSysWFSetting, pSSysMsgTempl);
             return;
@@ -189,14 +189,14 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysWFSetting, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysWFSetting, string, string2, string3);
+        super.onFillParentInfo(pSSysWFSetting, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -217,7 +217,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysWFSetting, bl);
+        super.onFillEntityFullInfo(pSSysWFSetting, bl);
         this.onFillEntityFullInfo_PSSysMsgTempl(pSSysWFSetting, bl);
         this.onFillEntityFullInfo_PSSystem(pSSysWFSetting, bl);
     }
@@ -239,7 +239,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
     }
 
     protected void onWriteBackParent(PSSysWFSetting pSSysWFSetting, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysWFSetting, bl);
+        super.onWriteBackParent(pSSysWFSetting, bl);
     }
 
     public ArrayList<PSSysWFSetting> selectByPSSysMsgTempl(PSSysMsgTemplBase pSSysMsgTemplBase) throws Exception {
@@ -294,8 +294,8 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
         ArrayList<PSSysWFSetting> arrayList = this.selectByPSSysMsgTempl(pSSysMsgTempl, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSMSGTEMPL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysMsgTempl);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSWFSETTING_PSSYSMSGTEMPL_PSSYSMSGTEMPLID", "", iDataEntityModel.getName(), "PSSYSWFSETTING", iDataEntityModel.getDataInfo((IEntity)pSSysMsgTempl), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysMsgTempl);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSWFSETTING_PSSYSMSGTEMPL_PSSYSMSGTEMPLID", "", iDataEntityModel.getName(), "PSSYSWFSETTING", iDataEntityModel.getDataInfo(pSSysMsgTempl), arrayList.get(0)));
         }
     }
 
@@ -328,7 +328,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
         ArrayList<PSSysWFSetting> arrayList = this.selectByPSSysMsgTempl(pSSysMsgTempl);
         this.onBeforeRemoveByPSSysMsgTempl(pSSysMsgTempl, arrayList);
         for (PSSysWFSetting pSSysWFSetting : arrayList) {
-            this.remove((IEntity)pSSysWFSetting);
+            this.remove(pSSysWFSetting);
         }
         this.onAfterRemoveByPSSysMsgTempl(pSSysMsgTempl, arrayList);
     }
@@ -374,7 +374,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
         ArrayList<PSSysWFSetting> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysWFSetting pSSysWFSetting : arrayList) {
-            this.remove((IEntity)pSSysWFSetting);
+            this.remove(pSSysWFSetting);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -397,7 +397,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
 
     protected void replaceParentInfo(PSSysWFSetting pSSysWFSetting, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysWFSetting, cloneSession);
+        super.replaceParentInfo(pSSysWFSetting, cloneSession);
         if (pSSysWFSetting.getPSSysMsgTemplId() != null && (iEntity = cloneSession.getEntity("PSSYSMSGTEMPL", (Object)pSSysWFSetting.getPSSysMsgTemplId())) != null) {
             this.onFillParentInfo_PSSysMsgTempl(pSSysWFSetting, (PSSysMsgTempl)iEntity);
         }
@@ -407,7 +407,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysWFSetting pSSysWFSetting, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysWFSetting, bl);
+        super.onRemoveEntityUncopyValues(pSSysWFSetting, bl);
         pSSysWFSetting.resetCodeName();
     }
 
@@ -438,7 +438,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
         if ((entityFieldError = this.onCheckField_UserParams(bl, pSSysWFSetting, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysWFSetting, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysWFSetting, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSSysWFSetting pSSysWFSetting, boolean bl2, boolean bl3) throws Exception {
@@ -451,7 +451,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysWFSetting, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysWFSetting, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -490,7 +490,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysWFSetting, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysWFSetting, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -512,7 +512,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysMsgTemplId_Default((IEntity)pSSysWFSetting, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysMsgTemplId_Default(pSSysWFSetting, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMSGTEMPLID");
@@ -534,7 +534,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysWFSetting, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysWFSetting, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -556,7 +556,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysWFSetting, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysWFSetting, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -581,7 +581,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysWFSettingId_Default((IEntity)pSSysWFSetting, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysWFSettingId_Default(pSSysWFSetting, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSWFSETTINGID");
@@ -606,7 +606,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysWFSettingName_Default((IEntity)pSSysWFSetting, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysWFSettingName_Default(pSSysWFSetting, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSWFSETTINGNAME");
@@ -628,7 +628,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserParams_Default((IEntity)pSSysWFSetting, bl2, bl3);
+            string2 = this.onTestValueRule_UserParams_Default(pSSysWFSetting, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERPARAMS");
@@ -641,11 +641,11 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
     }
 
     protected void onSyncEntity(PSSysWFSetting pSSysWFSetting, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysWFSetting, bl);
+        super.onSyncEntity(pSSysWFSetting, bl);
     }
 
     protected void onSyncIndexEntities(PSSysWFSetting pSSysWFSetting, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysWFSetting, bl);
+        super.onSyncIndexEntities(pSSysWFSetting, bl);
     }
 
     public Object getDataContextValue(PSSysWFSetting pSSysWFSetting, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -653,14 +653,14 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysWFSetting, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysWFSetting, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysWFSetting pSSysWFSetting, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysWFSetting, arrayList, n);
+        super.onExportMajorModel(pSSysWFSetting, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -853,14 +853,14 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
 
     protected boolean onMergeChild(String string, String string2, PSSysWFSetting pSSysWFSetting) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysWFSetting)) {
+        if (super.onMergeChild(string, string2, pSSysWFSetting)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysWFSetting pSSysWFSetting) throws Exception {
-        super.onUpdateParent((IEntity)pSSysWFSetting);
+        super.onUpdateParent(pSSysWFSetting);
     }
 
     @Override
@@ -1015,41 +1015,28 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
     protected void onExportCurModelV2(PSSysWFSetting pSSysWFSetting, ObjectNode objectNode, String string, boolean bl) throws Exception {
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSWFUTILUIACTION_PSSYSWFSETTING_PSSYSWFSETTINGID")) {
-            Object object;
-            PSWFUtilUIAction pSWFUtilUIAction2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSWFUtilUIActionService pSWFUtilUIActionService = (PSWFUtilUIActionService)ServiceGlobal.getService(PSWFUtilUIActionService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSWFUtilUIAction> arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSWFSETTING#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWFUTILUIACTION", (Object)pSSysWFSetting.getPSSysWFSettingId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSWFUtilUIAction2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSWFUtilUIAction2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString((String)line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSWFUtilUIAction>();
-                object4 = pSWFUtilUIActionService.selectByPSSysWFSetting(pSSysWFSetting);
-                object3 = StringHelper.format((String)"PSSYSWFSETTING#%1$s", (Object)pSSysWFSetting.getPSSysWFSettingId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSWFUtilUIAction2 = object2.next();
-                    object = pSWFUtilUIActionService.getModelV2ResScope((IEntity)pSWFUtilUIAction2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSWFUtilUIAction)PSModelV2Helper.toJSONObject((IEntity)pSWFUtilUIAction2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSWFSETTING#%1$s", (Object)pSSysWFSetting.getPSSysWFSettingId());
+                for (PSWFUtilUIAction action : pSWFUtilUIActionService.selectByPSSysWFSetting(pSSysWFSetting)) {
+                    String actionScope = pSWFUtilUIActionService.getModelV2ResScope(action);
+                    if (StringHelper.compare((String)scope, (String)actionScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(action, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSWFUtilUIActionService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode output = objectNode.putArray(pSWFUtilUIActionService.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -1077,10 +1064,10 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSWFUtilUIAction pSWFUtilUIAction2 : arrayList) {
-                    object = new PSWFUtilUIAction();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSWFUtilUIAction2, false);
-                    object3.add((JsonNode)pSWFUtilUIActionService.exportModelV2(object, string));
+                for (ObjectNode actionNode : arrayList) {
+                    PSWFUtilUIAction action = new PSWFUtilUIAction();
+                    PSModelV2Helper.fromJSONObject((IDataObject)action, actionNode, false);
+                    output.add((JsonNode)pSWFUtilUIActionService.exportModelV2(action, string));
                 }
             }
         }
@@ -1163,7 +1150,7 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
             PSWFUtilUIActionService pSWFUtilUIActionService = (PSWFUtilUIActionService)ServiceGlobal.getService(PSWFUtilUIActionService.class, (SessionFactory)this.getSessionFactory());
             PSWFUtilUIAction pSWFUtilUIAction = new PSWFUtilUIAction();
             pSWFUtilUIAction.setPSWFUtilUIActionId(pSMOSFile.getPSModelId());
-            if (!pSWFUtilUIActionService.get((IEntity)pSWFUtilUIAction, true)) {
+            if (!pSWFUtilUIActionService.get(pSWFUtilUIAction, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWFUtilUIAction.getPSSysWFSettingId(), (String)pSSysWFSetting.getPSSysWFSettingId(), (boolean)false) == 0) {
@@ -1171,12 +1158,12 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
             }
             ObjectNode objectNode = pSWFUtilUIActionService.exportModelV2(pSWFUtilUIAction);
             pSWFUtilUIAction.reset();
-            if (!pSWFUtilUIActionService.setModelV2ResScope((IEntity)pSWFUtilUIAction, "PSSYSWFSETTING", pSSysWFSetting.getPSSysWFSettingId())) {
+            if (!pSWFUtilUIActionService.setModelV2ResScope(pSWFUtilUIAction, "PSSYSWFSETTING", pSSysWFSetting.getPSSysWFSettingId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWFUtilUIActionService.importModelV2(pSWFUtilUIAction, objectNode);
             SessionFactoryManager.commit();
-            return pSWFUtilUIActionService.getFile((IEntity)pSWFUtilUIAction);
+            return pSWFUtilUIActionService.getFile(pSWFUtilUIAction);
         }
         return null;
     }
@@ -1240,9 +1227,9 @@ extends PSCoreSysServiceBase<PSSysWFSetting> {
         if (PSSysWFSettingServiceBase.getMOSVer() == 1 && StringHelper.isNullOrEmpty((String)string) && StringHelper.compare((String)string2, (String)"<\u529f\u80fd\u754c\u9762\u884c\u4e3a>", (boolean)false) == 0 || PSSysWFSettingServiceBase.getMOSVer() == 2 && StringHelper.compare((String)string2, (String)"PSWFUtilUIActions", (boolean)true) == 0) {
             PSWFUtilUIActionService pSWFUtilUIActionService = (PSWFUtilUIActionService)ServiceGlobal.getService(PSWFUtilUIActionService.class, (SessionFactory)this.getSessionFactory());
             SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSWFUtilUIActionService, "DER1N_PSWFUTILUIACTION_PSSYSWFSETTING_PSSYSWFSETTINGID", "PSSYSWFSETTINGID", pSMOSFile.getPSModelId(), "", "");
-            ArrayList arrayList2 = pSWFUtilUIActionService.selectEx((ISelectContext)selectContext);
+            ArrayList<PSWFUtilUIAction> arrayList2 = pSWFUtilUIActionService.selectEx((ISelectContext)selectContext);
             for (PSWFUtilUIAction pSWFUtilUIAction : arrayList2) {
-                PSMOSFile pSMOSFile2 = pSWFUtilUIActionService.getFile(pSMOSFile, (IEntity)pSWFUtilUIAction, bl);
+                PSMOSFile pSMOSFile2 = pSWFUtilUIActionService.getFile(pSMOSFile, pSWFUtilUIAction, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList.add(pSMOSFile2);
             }

@@ -1841,7 +1841,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getSrcPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.srcpsdef = pSDEField;
             }
             return this.srcpsdef;
@@ -1867,7 +1867,7 @@ implements Serializable {
                 PSDEMap pSDEMap = new PSDEMap();
                 pSDEMap.setPSDEMapId(this.getPSDEMapId());
                 PSDEMapService pSDEMapService = (PSDEMapService)ServiceGlobal.getService(PSDEMapService.class, (SessionFactory)this.getSessionFactory());
-                pSDEMapService.autoGet((IEntity)pSDEMap);
+                pSDEMapService.autoGet(pSDEMap);
                 this.psdemap = pSDEMap;
             }
             return this.psdemap;
@@ -1893,7 +1893,7 @@ implements Serializable {
                 PSSysTranslator pSSysTranslator = new PSSysTranslator();
                 pSSysTranslator.setPSSysTranslatorId(this.getPSSysTranslatorId());
                 PSSysTranslatorService pSSysTranslatorService = (PSSysTranslatorService)ServiceGlobal.getService(PSSysTranslatorService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTranslatorService.autoGet((IEntity)pSSysTranslator);
+                pSSysTranslatorService.autoGet(pSSysTranslator);
                 this.pssystranslator = pSSysTranslator;
             }
             return this.pssystranslator;

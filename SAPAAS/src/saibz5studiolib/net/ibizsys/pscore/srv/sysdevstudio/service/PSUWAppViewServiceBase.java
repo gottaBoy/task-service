@@ -229,21 +229,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void calcCtrlFilter(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CALCCTRLFILTER, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CALCCTRLFILTER, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_CALCCTRLFILTER);
+        this.testDEMainStateAction(pSUWAppView, ACTION_CALCCTRLFILTER);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CALCCTRLFILTER, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CALCCTRLFILTER, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onCalcCtrlFilter(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CALCCTRLFILTER, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CALCCTRLFILTER, 99, pSUWAppView, null);
         }
     }
 
@@ -253,21 +253,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void changeChart(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGECHART, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGECHART, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_CHANGECHART);
+        this.testDEMainStateAction(pSUWAppView, ACTION_CHANGECHART);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGECHART, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGECHART, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onChangeChart(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGECHART, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGECHART, 99, pSUWAppView, null);
         }
     }
 
@@ -277,21 +277,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void changeDashboard(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDASHBOARD, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDASHBOARD, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_CHANGEDASHBOARD);
+        this.testDEMainStateAction(pSUWAppView, ACTION_CHANGEDASHBOARD);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGEDASHBOARD, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGEDASHBOARD, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onChangeDashboard(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDASHBOARD, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDASHBOARD, 99, pSUWAppView, null);
         }
     }
 
@@ -301,21 +301,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void changeDataRelation(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDATARELATION, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDATARELATION, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_CHANGEDATARELATION);
+        this.testDEMainStateAction(pSUWAppView, ACTION_CHANGEDATARELATION);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGEDATARELATION, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGEDATARELATION, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onChangeDataRelation(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDATARELATION, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDATARELATION, 99, pSUWAppView, null);
         }
     }
 
@@ -325,21 +325,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void changeDataView(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDATAVIEW, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDATAVIEW, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_CHANGEDATAVIEW);
+        this.testDEMainStateAction(pSUWAppView, ACTION_CHANGEDATAVIEW);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGEDATAVIEW, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGEDATAVIEW, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onChangeDataView(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDATAVIEW, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEDATAVIEW, 99, pSUWAppView, null);
         }
     }
 
@@ -349,21 +349,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void changeEditForm(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEEDITFORM, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEEDITFORM, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_CHANGEEDITFORM);
+        this.testDEMainStateAction(pSUWAppView, ACTION_CHANGEEDITFORM);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGEEDITFORM, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGEEDITFORM, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onChangeEditForm(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEEDITFORM, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEEDITFORM, 99, pSUWAppView, null);
         }
     }
 
@@ -373,21 +373,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void changeGrid(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEGRID, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEGRID, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_CHANGEGRID);
+        this.testDEMainStateAction(pSUWAppView, ACTION_CHANGEGRID);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGEGRID, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGEGRID, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onChangeGrid(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEGRID, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEGRID, 99, pSUWAppView, null);
         }
     }
 
@@ -397,21 +397,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void changeList(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGELIST, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGELIST, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_CHANGELIST);
+        this.testDEMainStateAction(pSUWAppView, ACTION_CHANGELIST);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGELIST, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGELIST, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onChangeList(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGELIST, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGELIST, 99, pSUWAppView, null);
         }
     }
 
@@ -421,21 +421,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void changeSearchForm(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGESEARCHFORM, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGESEARCHFORM, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_CHANGESEARCHFORM);
+        this.testDEMainStateAction(pSUWAppView, ACTION_CHANGESEARCHFORM);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGESEARCHFORM, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGESEARCHFORM, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onChangeSearchForm(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGESEARCHFORM, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGESEARCHFORM, 99, pSUWAppView, null);
         }
     }
 
@@ -445,21 +445,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void changeToolbar(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGETOOLBAR, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGETOOLBAR, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_CHANGETOOLBAR);
+        this.testDEMainStateAction(pSUWAppView, ACTION_CHANGETOOLBAR);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGETOOLBAR, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGETOOLBAR, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onChangeToolbar(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGETOOLBAR, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGETOOLBAR, 99, pSUWAppView, null);
         }
     }
 
@@ -469,21 +469,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void changeTree(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGETREE, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGETREE, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_CHANGETREE);
+        this.testDEMainStateAction(pSUWAppView, ACTION_CHANGETREE);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGETREE, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CHANGETREE, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onChangeTree(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGETREE, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGETREE, 99, pSUWAppView, null);
         }
     }
 
@@ -493,21 +493,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void create4(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATE4, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATE4, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_CREATE4);
+        this.testDEMainStateAction(pSUWAppView, ACTION_CREATE4);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CREATE4, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_CREATE4, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onCreate4(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CREATE4, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CREATE4, 99, pSUWAppView, null);
         }
     }
 
@@ -517,21 +517,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void finishWizard(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_FINISHWIZARD, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_FINISHWIZARD, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_FINISHWIZARD);
+        this.testDEMainStateAction(pSUWAppView, ACTION_FINISHWIZARD);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_FINISHWIZARD, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_FINISHWIZARD, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onFinishWizard(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_FINISHWIZARD, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_FINISHWIZARD, 99, pSUWAppView, null);
         }
     }
 
@@ -541,21 +541,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void finishWizard4(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_FINISHWIZARD4, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_FINISHWIZARD4, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_FINISHWIZARD4);
+        this.testDEMainStateAction(pSUWAppView, ACTION_FINISHWIZARD4);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_FINISHWIZARD4, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_FINISHWIZARD4, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onFinishWizard4(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_FINISHWIZARD4, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_FINISHWIZARD4, 99, pSUWAppView, null);
         }
     }
 
@@ -565,21 +565,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void initViewParam(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_INITVIEWPARAM, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_INITVIEWPARAM, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_INITVIEWPARAM);
+        this.testDEMainStateAction(pSUWAppView, ACTION_INITVIEWPARAM);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_INITVIEWPARAM, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_INITVIEWPARAM, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onInitViewParam(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_INITVIEWPARAM, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_INITVIEWPARAM, 99, pSUWAppView, null);
         }
     }
 
@@ -589,21 +589,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void updateCtrlType(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATECTRLTYPE, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATECTRLTYPE, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_UPDATECTRLTYPE);
+        this.testDEMainStateAction(pSUWAppView, ACTION_UPDATECTRLTYPE);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_UPDATECTRLTYPE, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_UPDATECTRLTYPE, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onUpdateCtrlType(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATECTRLTYPE, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATECTRLTYPE, 99, pSUWAppView, null);
         }
     }
 
@@ -613,21 +613,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void updateEditForm(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEEDITFORM, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEEDITFORM, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_UPDATEEDITFORM);
+        this.testDEMainStateAction(pSUWAppView, ACTION_UPDATEEDITFORM);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_UPDATEEDITFORM, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_UPDATEEDITFORM, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onUpdateEditForm(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEEDITFORM, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEEDITFORM, 99, pSUWAppView, null);
         }
     }
 
@@ -637,21 +637,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void updateGrid(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEGRID, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEGRID, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_UPDATEGRID);
+        this.testDEMainStateAction(pSUWAppView, ACTION_UPDATEGRID);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_UPDATEGRID, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_UPDATEGRID, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onUpdateGrid(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEGRID, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEGRID, 99, pSUWAppView, null);
         }
     }
 
@@ -661,21 +661,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void updateSearchForm(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATESEARCHFORM, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATESEARCHFORM, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_UPDATESEARCHFORM);
+        this.testDEMainStateAction(pSUWAppView, ACTION_UPDATESEARCHFORM);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_UPDATESEARCHFORM, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_UPDATESEARCHFORM, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onUpdateSearchForm(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATESEARCHFORM, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATESEARCHFORM, 99, pSUWAppView, null);
         }
     }
 
@@ -685,21 +685,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void updateToolbar(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATETOOLBAR, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATETOOLBAR, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_UPDATETOOLBAR);
+        this.testDEMainStateAction(pSUWAppView, ACTION_UPDATETOOLBAR);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_UPDATETOOLBAR, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_UPDATETOOLBAR, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onUpdateToolbar(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATETOOLBAR, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATETOOLBAR, 99, pSUWAppView, null);
         }
     }
 
@@ -709,21 +709,21 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     public void updateViewType(PSUWAppView pSUWAppView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEVIEWTYPE, 0, (IEntity)pSUWAppView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEVIEWTYPE, 0, pSUWAppView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSUWAppView, ACTION_UPDATEVIEWTYPE);
+        this.testDEMainStateAction(pSUWAppView, ACTION_UPDATEVIEWTYPE);
         final PSUWAppView pSUWAppView2 = pSUWAppView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_UPDATEVIEWTYPE, 40, (IEntity)pSUWAppView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSUWAppViewServiceBase.this.getService(), PSUWAppViewServiceBase.ACTION_UPDATEVIEWTYPE, 40, pSUWAppView2, null).getResult() != 1) {
                     PSUWAppViewServiceBase.this.onUpdateViewType(pSUWAppView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEVIEWTYPE, 99, (IEntity)pSUWAppView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEVIEWTYPE, 99, pSUWAppView, null);
         }
     }
 
@@ -732,7 +732,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
     }
 
     protected void onFillParentInfo(PSUWAppView pSUWAppView, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSUWAppView, string, string2, string3);
+        super.onFillParentInfo(pSUWAppView, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -748,11 +748,11 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 pSUWAppView.setPSUWAppViewName((String)this.getDefaultValue(this.getWebContext(), "", "\u5e94\u7528\u89c6\u56fe\u5411\u5bfc", 25));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSUWAppView, bl);
+        super.onFillEntityFullInfo(pSUWAppView, bl);
     }
 
     protected void onWriteBackParent(PSUWAppView pSUWAppView, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUWAppView, bl);
+        super.onWriteBackParent(pSUWAppView, bl);
     }
 
     @Override
@@ -761,7 +761,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
     }
 
     protected void onRemoveEntityUncopyValues(PSUWAppView pSUWAppView, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUWAppView, bl);
+        super.onRemoveEntityUncopyValues(pSUWAppView, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUWAppView pSUWAppView, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1013,7 +1013,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
         if ((entityFieldError = this.onCheckField_WizardParam9(bl, pSUWAppView, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUWAppView, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUWAppView, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Caption(boolean bl, PSUWAppView pSUWAppView, boolean bl2, boolean bl3) throws Exception {
@@ -1026,7 +1026,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Caption_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_Caption_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CAPTION");
@@ -1048,7 +1048,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1070,7 +1070,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableSrcPSDEView_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_EnableSrcPSDEView_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLESRCPSDEVIEW");
@@ -1092,7 +1092,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ListCtrlParam_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_ListCtrlParam_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LISTCTRLPARAM");
@@ -1114,7 +1114,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LoadDefault_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_LoadDefault_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOADDEFAULT");
@@ -1136,7 +1136,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MDCtrlParam_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_MDCtrlParam_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MDCTRLPARAM");
@@ -1158,7 +1158,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PredefinedViewType_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PredefinedViewType_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PREDEFINEVIEWTYPE");
@@ -1180,7 +1180,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSACHandlerId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSACHandlerId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSACHANDLERID");
@@ -1202,7 +1202,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSACHandlerName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSACHandlerName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSACHANDLERNAME");
@@ -1224,7 +1224,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppModuleId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppModuleId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMODULEID");
@@ -1246,7 +1246,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppModuleName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppModuleName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMODULENAME");
@@ -1268,7 +1268,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppViewId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppViewId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPVIEWID");
@@ -1290,7 +1290,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppViewName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppViewName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPVIEWNAME");
@@ -1312,7 +1312,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppViewType_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppViewType_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPVIEWTYPE");
@@ -1334,7 +1334,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLID");
@@ -1356,7 +1356,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLNAME");
@@ -1378,7 +1378,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPEID");
@@ -1400,7 +1400,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPENAME");
@@ -1422,7 +1422,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataSetId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataSetId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATASETID");
@@ -1444,7 +1444,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataSetName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataSetName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATASETNAME");
@@ -1466,7 +1466,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataViewId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataViewId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATAVIEWID");
@@ -1488,7 +1488,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataViewName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataViewName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATAVIEWNAME");
@@ -1510,7 +1510,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDRId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDRId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDRID");
@@ -1532,7 +1532,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDRName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDRName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDRNAME");
@@ -1554,7 +1554,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFormId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFormId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFORMID");
@@ -1576,7 +1576,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFormName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFormName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFORMNAME");
@@ -1598,7 +1598,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEGridId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEGridId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEGRIDID");
@@ -1620,7 +1620,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEGridName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEGridName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEGRIDNAME");
@@ -1642,7 +1642,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -1664,7 +1664,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEListId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEListId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDELISTID");
@@ -1686,7 +1686,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEListName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEListName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDELISTNAME");
@@ -1708,7 +1708,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -1730,7 +1730,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDESearchFormId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDESearchFormId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESEARCHFORMID");
@@ -1752,7 +1752,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDESearchFormName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDESearchFormName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESEARCHFORMNAME");
@@ -1774,7 +1774,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEToolbarId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEToolbarId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDETOOLBARID");
@@ -1796,7 +1796,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEToolbarName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEToolbarName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDETOOLBARNAME");
@@ -1818,7 +1818,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEViewBaseId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEViewBaseId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVIEWBASEID");
@@ -1840,7 +1840,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEViewBaseName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEViewBaseName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVIEWBASENAME");
@@ -1862,7 +1862,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEViewBaseType_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEViewBaseType_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVIEWBASETYPE");
@@ -1884,7 +1884,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEViewId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEViewId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVIEWID");
@@ -1906,7 +1906,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEViewName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEViewName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVIEWNAME");
@@ -1928,7 +1928,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -1950,7 +1950,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFACHandlerId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFACHandlerId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFACHANDLERID");
@@ -1972,7 +1972,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFACHandlerName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFACHandlerName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFACHANDLERNAME");
@@ -1994,7 +1994,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -2019,7 +2019,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUWAppViewId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSUWAppViewId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUWAPPVIEWID");
@@ -2044,7 +2044,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUWAppViewName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_PSUWAppViewName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUWAPPVIEWNAME");
@@ -2066,7 +2066,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SrcPSDEViewId_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_SrcPSDEViewId_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRCPSDEVIEWID");
@@ -2088,7 +2088,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SrcPSDEViewName_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_SrcPSDEViewName_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRCPSDEVIEWNAME");
@@ -2110,7 +2110,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SRFNextForm_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_SRFNextForm_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRFNEXTFORM");
@@ -2132,7 +2132,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Title_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_Title_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TITLE");
@@ -2154,7 +2154,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ViewParam_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_ViewParam_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWPARAM");
@@ -2176,7 +2176,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ViewParam10_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_ViewParam10_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWPARAM10");
@@ -2198,7 +2198,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ViewParam2_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_ViewParam2_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWPARAM2");
@@ -2220,7 +2220,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ViewParam3_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_ViewParam3_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWPARAM3");
@@ -2242,7 +2242,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ViewParam4_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_ViewParam4_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWPARAM4");
@@ -2264,7 +2264,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ViewParam5_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_ViewParam5_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWPARAM5");
@@ -2286,7 +2286,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ViewParam6_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_ViewParam6_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWPARAM6");
@@ -2308,7 +2308,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ViewParam7_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_ViewParam7_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWPARAM7");
@@ -2330,7 +2330,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ViewParam8_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_ViewParam8_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWPARAM8");
@@ -2352,7 +2352,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ViewParam9_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_ViewParam9_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWPARAM9");
@@ -2374,7 +2374,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardMode_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_WizardMode_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDMODE");
@@ -2396,7 +2396,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM");
@@ -2418,7 +2418,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam10_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam10_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM10");
@@ -2440,7 +2440,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam11_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_WizardParam11_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM11");
@@ -2462,7 +2462,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam12_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_WizardParam12_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM12");
@@ -2484,7 +2484,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam13_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_WizardParam13_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM13");
@@ -2506,7 +2506,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam14_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_WizardParam14_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM14");
@@ -2528,7 +2528,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam15_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_WizardParam15_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM15");
@@ -2550,7 +2550,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam16_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_WizardParam16_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM16");
@@ -2572,7 +2572,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam17_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_WizardParam17_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM17");
@@ -2594,7 +2594,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam18_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_WizardParam18_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM18");
@@ -2616,7 +2616,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam19_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_WizardParam19_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM19");
@@ -2638,7 +2638,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam2_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam2_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM2");
@@ -2660,7 +2660,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam20_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_WizardParam20_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM20");
@@ -2682,7 +2682,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam3_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_WizardParam3_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM3");
@@ -2704,7 +2704,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_WizardParam4_Default((IEntity)pSUWAppView, bl2, bl3);
+            string = this.onTestValueRule_WizardParam4_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM4");
@@ -2726,7 +2726,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam5_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam5_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM5");
@@ -2748,7 +2748,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam6_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam6_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM6");
@@ -2770,7 +2770,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam7_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam7_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM7");
@@ -2792,7 +2792,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam8_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam8_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM8");
@@ -2814,7 +2814,7 @@ extends PSCoreSysServiceBase<PSUWAppView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardParam9_Default((IEntity)pSUWAppView, bl2, bl3);
+            string2 = this.onTestValueRule_WizardParam9_Default(pSUWAppView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDPARAM9");
@@ -2827,11 +2827,11 @@ extends PSCoreSysServiceBase<PSUWAppView> {
     }
 
     protected void onSyncEntity(PSUWAppView pSUWAppView, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUWAppView, bl);
+        super.onSyncEntity(pSUWAppView, bl);
     }
 
     protected void onSyncIndexEntities(PSUWAppView pSUWAppView, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUWAppView, bl);
+        super.onSyncIndexEntities(pSUWAppView, bl);
     }
 
     public Object getDataContextValue(PSUWAppView pSUWAppView, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -2839,14 +2839,14 @@ extends PSCoreSysServiceBase<PSUWAppView> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUWAppView, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUWAppView, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUWAppView pSUWAppView, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUWAppView, arrayList, n);
+        super.onExportMajorModel(pSUWAppView, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -3969,14 +3969,14 @@ extends PSCoreSysServiceBase<PSUWAppView> {
 
     protected boolean onMergeChild(String string, String string2, PSUWAppView pSUWAppView) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUWAppView)) {
+        if (super.onMergeChild(string, string2, pSUWAppView)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUWAppView pSUWAppView) throws Exception {
-        super.onUpdateParent((IEntity)pSUWAppView);
+        super.onUpdateParent(pSUWAppView);
     }
 
     @Override

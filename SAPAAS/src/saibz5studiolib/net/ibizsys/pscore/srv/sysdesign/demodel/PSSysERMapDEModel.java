@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysERMapDEModelBase;
 
 public class PSSysERMapDEModel
 extends PSSysERMapDEModelBase {
+
+    public PSSysERMapDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

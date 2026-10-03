@@ -168,13 +168,13 @@ implements IPSJITSystemModel {
         psSystemDBConfig.setPSSystemDBCfgName(jitPSDBDevInst.getDBType());
         SessionFactory sessionFactory = PSSysModelInstGlobal.getSessionFactory((String)this.getPSSystem().getPSSysModelInstId());
         PSSystemDBCfgService psSystemDBCfgService = (PSSystemDBCfgService)ServiceGlobal.getService(PSSystemDBCfgService.class, (SessionFactory)sessionFactory);
-        if (!psSystemDBCfgService.select((IEntity)psSystemDBConfig, true)) {
+        if (!psSystemDBCfgService.select(psSystemDBConfig, true)) {
             throw new Exception(StringHelper.format((String)"\u7cfb\u7edf\u6570\u636e\u6e90\u4e0d\u652f\u6301JIT\u6570\u636e\u6e90\u7c7b\u578b[%1$s]", (Object)jitPSDBDevInst.getDBType()));
         }
         PSDataEntityService psDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)sessionFactory);
         PSSysDBDetailService psSysDBDetailService = (PSSysDBDetailService)ServiceGlobal.getService(PSSysDBDetailService.class, (SessionFactory)sessionFactory);
-        ArrayList psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psSysDBDetailList = psSysDBDetailService.selectByPSSystemDBCfg((PSSystemDBCfgBase)psSystemDBConfig);
+        ArrayList<PSDataEntity> psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysDBDetail> psSysDBDetailList = psSysDBDetailService.selectByPSSystemDBCfg((PSSystemDBCfgBase)psSystemDBConfig);
         HashMap<String, PSDataEntity> psDataEntityMap = new HashMap<String, PSDataEntity>();
         for (PSDataEntity psDataEntity : psDataEntityList) {
             psDataEntityMap.put(psDataEntity.getPSDataEntityId(), psDataEntity);
@@ -224,7 +224,7 @@ implements IPSJITSystemModel {
             psSysDBDetail.setPSDEId(psDataEntity.getPSDataEntityId());
             psSysDBDetail.setPSSystemDBCfgId(psSystemDBConfig.getPSSystemDBCfgId());
             psSysDBDetail.setPubDBVer(psDataEntity.getDBVer());
-            psSysDBDetailService.save((IEntity)psSysDBDetail);
+            psSysDBDetailService.save(psSysDBDetail);
         }
         log.debug((Object)sBuilderEx.toString());
         return psDataEntityMap.size();
@@ -502,4 +502,3 @@ implements IPSJITSystemModel {
         return this.bPreviewMode;
     }
 }
-

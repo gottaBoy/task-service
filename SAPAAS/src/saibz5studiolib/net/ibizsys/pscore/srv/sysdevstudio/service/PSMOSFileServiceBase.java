@@ -157,9 +157,9 @@ extends PSCoreSysServiceBase<PSMOSFile> {
             PSMOSFile pSMOSFile2 = (PSMOSFile)iService.getDEModel().createEntity();
             pSMOSFile2.set("PSMOSFILEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSMOSFile2);
+                iService.getTemp(pSMOSFile2);
             } else {
-                iService.get((IEntity)pSMOSFile2);
+                iService.get(pSMOSFile2);
             }
             this.onFillParentInfo_PPSMOSFile(pSMOSFile, pSMOSFile2);
             return;
@@ -169,14 +169,14 @@ extends PSCoreSysServiceBase<PSMOSFile> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSMOSFile, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSMOSFile, string, string2, string3);
+        super.onFillParentInfo(pSMOSFile, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 pSMOSFile.setUserFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSMOSFile, bl);
+        super.onFillEntityFullInfo(pSMOSFile, bl);
         this.onFillEntityFullInfo_PPSMOSFile(pSMOSFile, bl);
         this.onFillEntityFullInfo_PSSystem(pSMOSFile, bl);
     }
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
     }
 
     protected void onWriteBackParent(PSMOSFile pSMOSFile, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSMOSFile, bl);
+        super.onWriteBackParent(pSMOSFile, bl);
     }
 
     public ArrayList<PSMOSFile> selectByPPSMOSFile(PSMOSFileBase pSMOSFileBase) throws Exception {
@@ -279,8 +279,8 @@ extends PSCoreSysServiceBase<PSMOSFile> {
         ArrayList<PSMOSFile> arrayList = this.selectByPPSMOSFile(pSMOSFile, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMOSFILE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSMOSFile);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMOSFILE_PSMOSFILE_PPSMOSFILEID", "", iDataEntityModel.getName(), "PSMOSFILE", iDataEntityModel.getDataInfo((IEntity)pSMOSFile), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSMOSFile);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSMOSFILE_PSMOSFILE_PPSMOSFILEID", "", iDataEntityModel.getName(), "PSMOSFILE", iDataEntityModel.getDataInfo(pSMOSFile), arrayList.get(0)));
         }
     }
 
@@ -313,7 +313,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
         ArrayList<PSMOSFile> arrayList = this.selectByPPSMOSFile(pSMOSFile);
         this.onBeforeRemoveByPPSMOSFile(pSMOSFile, arrayList);
         for (PSMOSFile pSMOSFile2 : arrayList) {
-            this.remove((IEntity)pSMOSFile2);
+            this.remove(pSMOSFile2);
         }
         this.onAfterRemoveByPPSMOSFile(pSMOSFile, arrayList);
     }
@@ -359,7 +359,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
         ArrayList<PSMOSFile> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSMOSFile pSMOSFile : arrayList) {
-            this.remove((IEntity)pSMOSFile);
+            this.remove(pSMOSFile);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -382,7 +382,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
 
     protected void replaceParentInfo(PSMOSFile pSMOSFile, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSMOSFile, cloneSession);
+        super.replaceParentInfo(pSMOSFile, cloneSession);
         if (pSMOSFile.getPPSMOSFileId() != null && (iEntity = cloneSession.getEntity("PSMOSFILE", (Object)pSMOSFile.getPPSMOSFileId())) != null) {
             this.onFillParentInfo_PPSMOSFile(pSMOSFile, (PSMOSFile)iEntity);
         }
@@ -392,7 +392,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
     }
 
     protected void onRemoveEntityUncopyValues(PSMOSFile pSMOSFile, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSMOSFile, bl);
+        super.onRemoveEntityUncopyValues(pSMOSFile, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSMOSFile pSMOSFile, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -482,7 +482,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSMOSFile, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSMOSFile, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSMOSFile, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Color(boolean bl, PSMOSFile pSMOSFile, boolean bl2, boolean bl3) throws Exception {
@@ -495,7 +495,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Color_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_Color_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("COLOR");
@@ -517,7 +517,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Css_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_Css_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CSS");
@@ -539,7 +539,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Data_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_Data_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DATA");
@@ -561,7 +561,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_FileAttr_Default((IEntity)pSMOSFile, bl2, bl3);
+            string = this.onTestValueRule_FileAttr_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FILEATTR");
@@ -583,7 +583,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FileCat_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_FileCat_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FILECAT");
@@ -605,7 +605,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_FileCnt_Default((IEntity)pSMOSFile, bl2, bl3);
+            string = this.onTestValueRule_FileCnt_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FILECNT");
@@ -627,7 +627,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FileTag_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_FileTag_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FILETAG");
@@ -649,7 +649,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FileTag2_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_FileTag2_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FILETAG2");
@@ -671,7 +671,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FileTag3_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_FileTag3_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FILETAG3");
@@ -693,7 +693,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FileTag4_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_FileTag4_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FILETAG4");
@@ -718,7 +718,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_FolderFlag_Default((IEntity)pSMOSFile, bl2, bl3);
+            string = this.onTestValueRule_FolderFlag_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FOLDERFLAG");
@@ -740,7 +740,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FullPath_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_FullPath_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FULLPATH");
@@ -762,7 +762,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -784,7 +784,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModelV2Tag_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_ModelV2Tag_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODELV2TAG");
@@ -806,7 +806,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSMOSFile, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -828,7 +828,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSMOSFileId_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_PPSMOSFileId_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSMOSFILEID");
@@ -850,7 +850,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelId_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelId_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELID");
@@ -872,7 +872,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelSubType_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelSubType_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELSUBTYPE");
@@ -894,7 +894,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelType_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelType_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELTYPE");
@@ -919,7 +919,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMOSFileId_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_PSMOSFileId_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMOSFILEID");
@@ -944,7 +944,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMOSFileName_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_PSMOSFileName_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMOSFILENAME");
@@ -966,7 +966,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -988,7 +988,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -1010,7 +1010,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Tags_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_Tags_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TAGS");
@@ -1032,7 +1032,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UIActionParams_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_UIActionParams_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UIACTIONPARAMS");
@@ -1054,7 +1054,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UIActions_Default((IEntity)pSMOSFile, bl2, bl3);
+            string2 = this.onTestValueRule_UIActions_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UIACTIONS");
@@ -1079,7 +1079,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_UserFlag_Default((IEntity)pSMOSFile, bl2, bl3);
+            string = this.onTestValueRule_UserFlag_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERFLAG");
@@ -1101,7 +1101,7 @@ extends PSCoreSysServiceBase<PSMOSFile> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSMOSFile, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSMOSFile, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1114,11 +1114,11 @@ extends PSCoreSysServiceBase<PSMOSFile> {
     }
 
     protected void onSyncEntity(PSMOSFile pSMOSFile, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSMOSFile, bl);
+        super.onSyncEntity(pSMOSFile, bl);
     }
 
     protected void onSyncIndexEntities(PSMOSFile pSMOSFile, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSMOSFile, bl);
+        super.onSyncIndexEntities(pSMOSFile, bl);
     }
 
     public Object getDataContextValue(PSMOSFile pSMOSFile, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1126,14 +1126,14 @@ extends PSCoreSysServiceBase<PSMOSFile> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSMOSFile, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSMOSFile, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSMOSFile pSMOSFile, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSMOSFile, arrayList, n);
+        super.onExportMajorModel(pSMOSFile, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1573,14 +1573,14 @@ extends PSCoreSysServiceBase<PSMOSFile> {
 
     protected boolean onMergeChild(String string, String string2, PSMOSFile pSMOSFile) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSMOSFile)) {
+        if (super.onMergeChild(string, string2, pSMOSFile)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSMOSFile pSMOSFile) throws Exception {
-        super.onUpdateParent((IEntity)pSMOSFile);
+        super.onUpdateParent(pSMOSFile);
     }
 
     @Override

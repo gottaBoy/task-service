@@ -1,98 +1,123 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  SA.SRFramework.DataEx.BaseDataEntity
- */
 package SA.SRFDA.EAI.Ctrl.Transformer;
 
+import SA.SRFramework.Data.DataTypeParse;
 import SA.SRFramework.DataEx.BaseDataEntity;
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
+import groovy.lang.Script;
+import java.util.Date;
+import java.util.regex.Pattern;
 
-public abstract class GrooveStringEngine {
+public abstract class GrooveStringEngine extends Script {
     protected BaseDataEntity dataEntity;
 
-    public GrooveStringEngine() {
-        throw new Error("Unresolved compilation problems: \n\tThe import groovy cannot be resolved\n\tThe import groovy cannot be resolved\n\tScript cannot be resolved to a type\n\tBinding cannot be resolved to a type\n\tBinding cannot be resolved to a type\n\tThe method evaluate(String) is undefined for the type GrooveStringEngine\n\tThe method run() of type GrooveStringEngine must override or implement a supertype method\n");
-    }
-
-    protected boolean InternalTest(String string, boolean bl) {
-        throw new Error("Unresolved compilation problems: \n\tBinding cannot be resolved to a type\n\tBinding cannot be resolved to a type\n\tThe method evaluate(String) is undefined for the type GrooveStringEngine\n");
+    protected boolean InternalTest(String expression, boolean onError) {
+        try {
+            Binding binding = new Binding();
+            binding.setVariable("dp", this);
+            Object result = new GroovyShell(getClass().getClassLoader(), binding).evaluate(expression);
+            return result instanceof Boolean ? ((Boolean)result).booleanValue() : onError;
+        } catch (Exception ex) {
+            return onError;
+        }
     }
 
     public Object run() {
-        throw new Error("Unresolved compilation problem: \n\tThe method run() of type GrooveStringEngine must override or implement a supertype method\n");
+        return null;
     }
 
-    public void Part(int n, int n2, String string, String string2) {
-        throw new Error("Unresolved compilation problem: \n");
+    public void Part(int offset, int width, String field, String source) {
+        if (dataEntity == null || source == null || offset < 0 || width < 0
+                || offset > source.length() || width > source.length() - offset) {
+            throw new IllegalArgumentException("Invalid string part");
+        }
+        dataEntity.SetParamValue(field, source.substring(offset, offset + width));
     }
 
-    public boolean IsNull(String string) {
-        throw new Error("Unresolved compilation problem: \n");
+    public boolean IsNull(String field) {
+        return dataEntity.GetParamValue(field) == null;
     }
 
-    public int Int(String string, int n) {
-        throw new Error("Unresolved compilation problem: \n");
+    public int Int(String field, int fallback) {
+        return dataEntity.GetParamIntValue(field, fallback);
     }
 
-    public String Val(String string, String string2) {
-        throw new Error("Unresolved compilation problem: \n");
+    public String Val(String field, String fallback) {
+        return dataEntity.GetParamStringValue(field, fallback);
     }
 
-    public String Val(String string) {
-        throw new Error("Unresolved compilation problem: \n");
+    public String Val(String field) {
+        return Val(field, "");
     }
 
-    public String String(String string, String string2) {
-        throw new Error("Unresolved compilation problem: \n");
+    public String String(String field, String fallback) {
+        return Val(field, fallback);
     }
 
-    public double Double(String string, double d) {
-        throw new Error("Unresolved compilation problem: \n");
+    public double Double(String field, double fallback) {
+        return dataEntity.GetParamDoubleValue(field, fallback);
     }
 
-    public float Float(String string, float f) {
-        throw new Error("Unresolved compilation problem: \n");
+    public float Float(String field, float fallback) {
+        return dataEntity.GetParamFloatValue(field, fallback);
     }
 
-    public boolean Bool(String string, boolean bl) {
-        throw new Error("Unresolved compilation problem: \n");
+    public boolean Bool(String field, boolean fallback) {
+        return dataEntity.GetParamBoolValue(field, fallback);
     }
 
-    public long GetTime(String string) {
-        throw new Error("Unresolved compilation problem: \n");
+    public long GetTime(String value) {
+        if (value == null || value.length() == 0) return System.currentTimeMillis();
+        Date now = new Date();
+        String text;
+        if ("NOHOUR".equalsIgnoreCase(value)) text = String.format("%1$tY-%1$tm-%1$td 00:00:00", now);
+        else if ("NOMINUTE".equalsIgnoreCase(value)) text = String.format("%1$tY-%1$tm-%1$td %1$tH:00:00", now);
+        else if ("NOSECOND".equalsIgnoreCase(value)) text = String.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:00", now);
+        else text = value;
+        try {
+            return ((Date)StringTransformer.ParseValue(text, "DATETIME", "")).getTime();
+        } catch (java.text.ParseException ex) {
+            throw new IllegalArgumentException("Invalid time: " + value, ex);
+        }
     }
 
-    public long Time(String string) {
-        throw new Error("Unresolved compilation problem: \n");
+    public long Time(String field) {
+        Date date = dataEntity.GetParamDateValue(field, null);
+        if (date == null) throw new IllegalArgumentException("Missing date: " + field);
+        return date.getTime();
     }
 
-    public long TimeDiff(String string, String string2) {
-        throw new Error("Unresolved compilation problem: \n");
+    public long TimeDiff(String left, String right) {
+        return Compare(5, left, right);
     }
 
-    public long IntDiff(String string, String string2) {
-        throw new Error("Unresolved compilation problem: \n");
+    public long IntDiff(String left, String right) {
+        return Compare(9, left, right);
     }
 
-    public long FloatDiff(String string, String string2) {
-        throw new Error("Unresolved compilation problem: \n");
+    public long FloatDiff(String left, String right) {
+        return Compare(7, left, right);
     }
 
-    public long DoubleDiff(String string, String string2) {
-        throw new Error("Unresolved compilation problem: \n");
+    public long DoubleDiff(String left, String right) {
+        return Compare(6, left, right);
     }
 
-    public long StringDiff(String string, String string2) {
-        throw new Error("Unresolved compilation problem: \n");
+    public long StringDiff(String left, String right) {
+        return Compare(25, left, right);
     }
 
-    public long Compare(int n, String string, String string2) {
-        throw new Error("Unresolved compilation problem: \n");
+    public long Compare(int type, String left, String right) {
+        Object first = dataEntity.GetParamValue(left);
+        Object second = dataEntity.GetParamValue(right);
+        if (first == null && second == null) return 0;
+        if (first == null) return 1;
+        if (second == null) return -1;
+        if (!first.getClass().equals(second.getClass())) return -100;
+        return DataTypeParse.Compare(type, first, second);
     }
 
-    public boolean RegEx(String string, String string2) {
-        throw new Error("Unresolved compilation problem: \n");
+    public boolean RegEx(String field, String pattern) {
+        return Pattern.compile(pattern).matcher(Val(field)).matches();
     }
 }
-

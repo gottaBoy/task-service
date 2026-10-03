@@ -1,63 +1,78 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IModelBase3;
-import net.ibizsys.paas.core.ModelBase2Impl;
 import net.ibizsys.paas.data.DataObject;
 
-public abstract class ModelBase3Impl
-extends ModelBase2Impl
-implements IModelBase3 {
-    private DataObject dataObject = null;
+/**
+ * 模型对象基础接口3实现
+ * @author Administrator
+ *
+ */
+public abstract class ModelBase3Impl extends ModelBase2Impl implements IModelBase3 {
 
-    @Override
-    public Object getAttribute(String strKey) throws Exception {
-        if (this.dataObject == null) {
-            return null;
-        }
-        return this.dataObject.get(strKey);
-    }
+	private DataObject dataObject = null;
+	
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.core.IModelBase3#getAttribute(java.lang.String)
+	 */
+	@Override
+	public Object getAttribute(String strKey) throws Exception {
+		if(dataObject == null)
+			return null;
+		return dataObject.get(strKey);
+	}
 
-    @Override
-    public boolean getAttribute(String strKey, boolean bDefault) throws Exception {
-        if (this.dataObject == null) {
-            return bDefault;
-        }
-        return DataObject.getBoolValue(this.dataObject, strKey, bDefault);
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.core.IModelBase3#getAttribute(java.lang.String, boolean)
+	 */
+	@Override
+	public boolean getAttribute(String strKey, boolean bDefault) throws Exception {
+		if(dataObject == null)
+			return bDefault;
+		return DataObject.getBoolValue(dataObject,strKey,bDefault);
+	}
 
-    @Override
-    public String getAttribute(String strKey, String strDefault) throws Exception {
-        if (this.dataObject == null) {
-            return strDefault;
-        }
-        return DataObject.getStringValue(this.dataObject, strKey, strDefault);
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.core.IModelBase3#getAttribute(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getAttribute(String strKey, String strDefault) throws Exception {
+		if(dataObject == null)
+			return strDefault;
+		return DataObject.getStringValue(dataObject,strKey,strDefault);
+	}
 
-    @Override
-    public int getAttribute(String strKey, int nDefault) throws Exception {
-        if (this.dataObject == null) {
-            return nDefault;
-        }
-        return DataObject.getIntegerValue(this.dataObject, strKey, nDefault);
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.core.IModelBase3#getAttribute(java.lang.String, int)
+	 */
+	@Override
+	public int getAttribute(String strKey, int nDefault) throws Exception {
+		if(dataObject == null)
+			return nDefault;
+		return DataObject.getIntegerValue(dataObject,strKey,nDefault);
+	}
 
-    @Override
-    public double getAttribute(String strKey, double fDefault) throws Exception {
-        if (this.dataObject == null) {
-            return fDefault;
-        }
-        return DataObject.getDoubleValue(this.dataObject, strKey, fDefault);
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.core.IModelBase3#getAttribute(java.lang.String, double)
+	 */
+	@Override
+	public double getAttribute(String strKey, double fDefault) throws Exception {
+		if(dataObject == null)
+			return fDefault;
+		return DataObject.getDoubleValue(dataObject,strKey,fDefault);
+	}
 
-    @Override
-    public void setAttribute(String strKey, Object objValue) throws Exception {
-        if (this.dataObject == null) {
-            this.dataObject = new DataObject();
-        }
-        this.dataObject.set(strKey, objValue);
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.core.IModelBase3#setAttribute(java.lang.String, java.lang.Object)
+	 */
+	@Override
+	public void setAttribute(String strKey, Object objValue) throws Exception {
+		if(dataObject==null){
+			dataObject = new DataObject();
+		}
+		dataObject.set(strKey, objValue);
+	}
+
+	
+
 }
-

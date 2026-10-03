@@ -1,19 +1,30 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.IViewController;
-
+/**
+ * 视图控制器静态对象
+ * 
+ * @author Administrator
+ *
+ */
 public class ViewController {
-    private static ThreadLocal<IViewController> viewController = new ThreadLocal();
+	
+	private static ThreadLocal<IViewController> viewController = new ThreadLocal<IViewController>();
 
-    public static IViewController getCurrent() {
-        return viewController.get();
-    }
+	/**
+	 * 获取当前视图控制器
+	 * 
+	 * @return
+	 */
+	public static IViewController getCurrent() {
+		return viewController.get();
+	}
 
-    public static void setCurrent(IViewController value) {
-        viewController.set(value);
-    }
+	/**
+	 * 设置当前视图控制器
+	 * 
+	 * @param value
+	 */
+	public static void setCurrent(IViewController value) {
+		viewController.set(value);
+	}
 }
-

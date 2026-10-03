@@ -2057,7 +2057,7 @@ implements Serializable {
                 PSModule pSModule = new PSModule();
                 pSModule.setPSModuleId(this.getPSModuleId());
                 PSModuleService pSModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSModuleService.autoGet((IEntity)pSModule);
+                pSModuleService.autoGet(pSModule);
                 this.psmodule = pSModule;
             }
             return this.psmodule;
@@ -2083,7 +2083,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;
@@ -2109,7 +2109,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;
@@ -2131,7 +2131,7 @@ implements Serializable {
         Integer n = this.objPSSysERMapNodesLock;
         synchronized (n) {
             if (this.pssysermapnodes == null) {
-                this.pssysermapnodes = pSSysERMapService.isTempData((IEntity)this) ? pSSysERMapNodeService.selectTempByPSSysERMap(this) : pSSysERMapNodeService.selectByPSSysERMap(this);
+                this.pssysermapnodes = pSSysERMapService.isTempData(this) ? pSSysERMapNodeService.selectTempByPSSysERMap(this) : pSSysERMapNodeService.selectByPSSysERMap(this);
             }
             return this.pssysermapnodes;
         }

@@ -73,7 +73,7 @@ implements IPSSysUserRoleDataService {
     @Override
     protected List<PSSysUserRoleData> onListAll() throws Exception {
         ArrayList<PSSysUserRoleData> list = new ArrayList<PSSysUserRoleData>();
-        List pssysopprivs = PSModelServiceUtil.getInstance().getPSSysOPPrivService().listAll();
+        List<PSSysOPPriv> pssysopprivs = PSModelServiceUtil.getInstance().getPSSysOPPrivService().listAll();
         if (pssysopprivs != null) {
             for (PSSysOPPriv parent : pssysopprivs) {
                 List<PSSysUserRoleData> items = this.listByPSSysOPPriv(parent);

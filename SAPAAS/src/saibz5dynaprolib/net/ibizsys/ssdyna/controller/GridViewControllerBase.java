@@ -1,11 +1,18 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.MultiDataViewControllerBase;
+import net.ibizsys.ssdyna.view.IDynaViewInstModel;
 
-public abstract class GridViewControllerBase
-extends MultiDataViewControllerBase {
+/**
+ * 常规表格视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class GridViewControllerBase extends MultiDataViewControllerBase {
+	
+	public GridViewControllerBase() throws Exception {
+		super();
+	}
+
+
 }
-

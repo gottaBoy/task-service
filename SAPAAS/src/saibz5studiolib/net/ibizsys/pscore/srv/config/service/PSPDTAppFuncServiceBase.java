@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSPDTAppFunc> {
     }
 
     protected void onFillParentInfo(PSPDTAppFunc pSPDTAppFunc, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSPDTAppFunc, string, string2, string3);
+        super.onFillParentInfo(pSPDTAppFunc, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSPDTAppFunc> {
         if (bl && pSPDTAppFunc.getValidFlag() == null) {
             pSPDTAppFunc.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSPDTAppFunc, bl);
+        super.onFillEntityFullInfo(pSPDTAppFunc, bl);
     }
 
     protected void onWriteBackParent(PSPDTAppFunc pSPDTAppFunc, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPDTAppFunc, bl);
+        super.onWriteBackParent(pSPDTAppFunc, bl);
     }
 
     @Override
@@ -143,7 +143,7 @@ extends PSCoreSysServiceBase<PSPDTAppFunc> {
     }
 
     protected void onRemoveEntityUncopyValues(PSPDTAppFunc pSPDTAppFunc, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPDTAppFunc, bl);
+        super.onRemoveEntityUncopyValues(pSPDTAppFunc, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPDTAppFunc pSPDTAppFunc, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSPDTAppFunc> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSPDTAppFunc, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPDTAppFunc, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPDTAppFunc, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSPDTAppFunc pSPDTAppFunc, boolean bl2, boolean bl3) throws Exception {
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSPDTAppFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPDTAppFunc, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPDTAppFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -199,7 +199,7 @@ extends PSCoreSysServiceBase<PSPDTAppFunc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPDTAppFuncId_Default((IEntity)pSPDTAppFunc, bl2, bl3);
+            string2 = this.onTestValueRule_PSPDTAppFuncId_Default(pSPDTAppFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPDTAPPFUNCID");
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSPDTAppFunc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPDTAppFuncName_Default((IEntity)pSPDTAppFunc, bl2, bl3);
+            string2 = this.onTestValueRule_PSPDTAppFuncName_Default(pSPDTAppFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPDTAPPFUNCNAME");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSPDTAppFunc> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSPDTAppFunc, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSPDTAppFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -262,11 +262,11 @@ extends PSCoreSysServiceBase<PSPDTAppFunc> {
     }
 
     protected void onSyncEntity(PSPDTAppFunc pSPDTAppFunc, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPDTAppFunc, bl);
+        super.onSyncEntity(pSPDTAppFunc, bl);
     }
 
     protected void onSyncIndexEntities(PSPDTAppFunc pSPDTAppFunc, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPDTAppFunc, bl);
+        super.onSyncIndexEntities(pSPDTAppFunc, bl);
     }
 
     public Object getDataContextValue(PSPDTAppFunc pSPDTAppFunc, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -274,14 +274,14 @@ extends PSCoreSysServiceBase<PSPDTAppFunc> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPDTAppFunc, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPDTAppFunc, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPDTAppFunc pSPDTAppFunc, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPDTAppFunc, arrayList, n);
+        super.onExportMajorModel(pSPDTAppFunc, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -386,14 +386,14 @@ extends PSCoreSysServiceBase<PSPDTAppFunc> {
 
     protected boolean onMergeChild(String string, String string2, PSPDTAppFunc pSPDTAppFunc) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPDTAppFunc)) {
+        if (super.onMergeChild(string, string2, pSPDTAppFunc)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPDTAppFunc pSPDTAppFunc) throws Exception {
-        super.onUpdateParent((IEntity)pSPDTAppFunc);
+        super.onUpdateParent(pSPDTAppFunc);
     }
 
     @Override

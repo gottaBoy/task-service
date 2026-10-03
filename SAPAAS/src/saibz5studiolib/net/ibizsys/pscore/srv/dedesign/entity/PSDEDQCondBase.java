@@ -3201,7 +3201,7 @@ implements Serializable {
                 PSDBValueOP pSDBValueOP = new PSDBValueOP();
                 pSDBValueOP.setPSDBValueOPId(this.getPSDBValueOPId());
                 PSDBValueOPService pSDBValueOPService = (PSDBValueOPService)ServiceGlobal.getService(PSDBValueOPService.class, (SessionFactory)this.getSessionFactory());
-                pSDBValueOPService.autoGet((IEntity)pSDBValueOP);
+                pSDBValueOPService.autoGet(pSDBValueOP);
                 this.psdbvalueop = pSDBValueOP;
             }
             return this.psdbvalueop;
@@ -3227,7 +3227,7 @@ implements Serializable {
                 PSDEDataQuery pSDEDataQuery = new PSDEDataQuery();
                 pSDEDataQuery.setPSDEDataQueryId(this.getPSDEDQId());
                 PSDEDataQueryService pSDEDataQueryService = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataQueryService.autoGet((IEntity)pSDEDataQuery);
+                pSDEDataQueryService.autoGet(pSDEDataQuery);
                 this.psdedq = pSDEDataQuery;
             }
             return this.psdedq;
@@ -3253,7 +3253,7 @@ implements Serializable {
                 PSDEDQCond pSDEDQCond = new PSDEDQCond();
                 pSDEDQCond.setPSDEDQCondId(this.getPPSDEDQCondId());
                 PSDEDQCondService pSDEDQCondService = (PSDEDQCondService)ServiceGlobal.getService(PSDEDQCondService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDQCondService.autoGet((IEntity)pSDEDQCond);
+                pSDEDQCondService.autoGet(pSDEDQCond);
                 this.ppsdedqcond = pSDEDQCond;
             }
             return this.ppsdedqcond;
@@ -3279,7 +3279,7 @@ implements Serializable {
                 PSDEDQJoin pSDEDQJoin = new PSDEDQJoin();
                 pSDEDQJoin.setPSDEDQJoinId(this.getPSDEDQJoinId());
                 PSDEDQJoinService pSDEDQJoinService = (PSDEDQJoinService)ServiceGlobal.getService(PSDEDQJoinService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDQJoinService.autoGet((IEntity)pSDEDQJoin);
+                pSDEDQJoinService.autoGet(pSDEDQJoin);
                 this.psdedqjoin = pSDEDQJoin;
             }
             return this.psdedqjoin;
@@ -3305,7 +3305,7 @@ implements Serializable {
                 PSDEDQPDCond pSDEDQPDCond = new PSDEDQPDCond();
                 pSDEDQPDCond.setPSDEDQPDCondId(this.getPSDEDQPDCondId());
                 PSDEDQPDCondService pSDEDQPDCondService = (PSDEDQPDCondService)ServiceGlobal.getService(PSDEDQPDCondService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDQPDCondService.autoGet((IEntity)pSDEDQPDCond);
+                pSDEDQPDCondService.autoGet(pSDEDQPDCond);
                 this.psdedqpdcond = pSDEDQPDCond;
             }
             return this.psdedqpdcond;
@@ -3331,7 +3331,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.psdefield = pSDEField;
             }
             return this.psdefield;
@@ -3357,7 +3357,7 @@ implements Serializable {
                 PSSysDBVF pSSysDBVF = new PSSysDBVF();
                 pSSysDBVF.setPSSysDBVFId(this.getPSSysDBVFId());
                 PSSysDBVFService pSSysDBVFService = (PSSysDBVFService)ServiceGlobal.getService(PSSysDBVFService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDBVFService.autoGet((IEntity)pSSysDBVF);
+                pSSysDBVFService.autoGet(pSSysDBVF);
                 this.pssysdbvf = pSSysDBVF;
             }
             return this.pssysdbvf;
@@ -3383,7 +3383,7 @@ implements Serializable {
                 PSVarType pSVarType = new PSVarType();
                 pSVarType.setPSVarTypeId(this.getPSVARTypeId());
                 PSVarTypeService pSVarTypeService = (PSVarTypeService)ServiceGlobal.getService(PSVarTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSVarTypeService.autoGet((IEntity)pSVarType);
+                pSVarTypeService.autoGet(pSVarType);
                 this.psvartype = pSVarType;
             }
             return this.psvartype;

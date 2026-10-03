@@ -110,19 +110,19 @@ extends PSDEUAWizardCurDEFDCondValueDSModelBase {
             dEDataSetFetchContext.getConditionList().add(iDEDataSetCond);
         }
         if (!StringHelper.isNullOrEmpty((String)string3)) {
-            iDEDataSetCond = new DEDataSetCond();
-            iDEDataSetCond.setCondType("DEFIELD");
-            iDEDataSetCond.setCondOp("EQ");
-            iDEDataSetCond.setDEFName("PSCODELISTID");
-            iDEDataSetCond.setCondValue(string3);
-            dEDataSetFetchContext.getConditionList().add(iDEDataSetCond);
+            DEDataSetCond codeListCondition = new DEDataSetCond();
+            codeListCondition.setCondType("DEFIELD");
+            codeListCondition.setCondOp("EQ");
+            codeListCondition.setDEFName("PSCODELISTID");
+            codeListCondition.setCondValue(string3);
+            dEDataSetFetchContext.getConditionList().add(codeListCondition);
         }
         dEDataSetFetchContext.setSort("ORDERVALUE");
-        iDEDataSetCond = pSCodeItemService.fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
-        if (iDEDataSetCond.isError()) {
-            return iDEDataSetCond;
+        DBFetchResult codeItemResult = pSCodeItemService.fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
+        if (codeItemResult.isError()) {
+            return codeItemResult;
         }
-        IDataTable iDataTable = iDEDataSetCond.getDataSet().getDataTable(0);
+        IDataTable iDataTable = codeItemResult.getDataSet().getDataTable(0);
         int n = iDataTable.getCachedRowCount();
         if (n > 0) {
             simpleDataTableImpl.reset();
@@ -139,4 +139,3 @@ extends PSDEUAWizardCurDEFDCondValueDSModelBase {
         return dBFetchResult;
     }
 }
-

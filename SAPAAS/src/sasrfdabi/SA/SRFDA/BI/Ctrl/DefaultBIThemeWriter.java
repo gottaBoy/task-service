@@ -96,7 +96,7 @@ implements ISRFDABIThemeWriter {
     }
 
     protected CallResult OnExportGlobalDimension(SimpleXMLWriter xmlWriter) throws Exception {
-        Vector list = new Vector();
+        Vector<BIDimension> list = new Vector<BIDimension>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_GlobalDimension(), list, (String)BIDimension.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -122,7 +122,7 @@ implements ISRFDABIThemeWriter {
             if (!StringHelper.IsNullOrEmpty((String)dimension.getCAPTION())) {
                 xmlWriter.WriteAttributeString("caption", dimension.getCAPTION());
             }
-            Vector list = new Vector();
+            Vector<BIHierarchy> list = new Vector<BIHierarchy>();
             CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_Hierarchy(dimension.getBIDIMENSIONID()), list, (String)BIHierarchy.class.getName());
             if (callResult.IsError()) {
                 return callResult;
@@ -165,7 +165,7 @@ implements ISRFDABIThemeWriter {
         xmlWriter.WriteStartElement("Table");
         xmlWriter.WriteAttributeString("name", hierachyDEHelper.GetMainTable().toUpperCase());
         xmlWriter.WriteEndElement();
-        Vector list = new Vector();
+        Vector<BILevel> list = new Vector<BILevel>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_Level(hierarchy.getBIHIERARCHYID()), list, (String)BILevel.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -232,7 +232,7 @@ implements ISRFDABIThemeWriter {
     }
 
     protected CallResult OnExportCube(SimpleXMLWriter xmlWriter) throws Exception {
-        Vector list = new Vector();
+        Vector<BICube> list = new Vector<BICube>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_Cube(), list, (String)BICube.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -284,13 +284,13 @@ implements ISRFDABIThemeWriter {
     }
 
     protected CallResult OnExportCubeAggTable(SimpleXMLWriter xmlWriter, BICube cube, IDEHelper cubeDEHelper) {
-        Vector list = new Vector();
+        Vector<BIAggTable> list = new Vector<BIAggTable>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_CubeAggTable(cube.getBICUBEID()), list, (String)BIAggTable.class.getName());
         if (callResult.IsError()) {
             return callResult;
         }
         for (BIAggTable aggTable : list) {
-            Vector list2 = new Vector();
+            Vector<BIAggTabDetail> list2 = new Vector<BIAggTabDetail>();
             if (aggTable.getENABLEAUTOAGG() && (callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_AggTabDetail(aggTable.getBIAGGTABLEID()), list2, (String)BIAggTabDetail.class.getName())).IsError()) {
                 return callResult;
             }
@@ -308,7 +308,7 @@ implements ISRFDABIThemeWriter {
                 tableList.add(aggTableDetail.getBIAGGTABDETAILNAME());
             }
             if (tableList.size() == 0) continue;
-            Vector list3 = new Vector();
+            Vector<BIAggColumn> list3 = new Vector<BIAggColumn>();
             callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_AggColumn(aggTable.getBIAGGTABLEID()), list3, (String)BIAggColumn.class.getName());
             if (callResult.IsError()) {
                 return callResult;
@@ -360,7 +360,7 @@ implements ISRFDABIThemeWriter {
     }
 
     protected CallResult OnExportCubeDimension(SimpleXMLWriter xmlWriter, BICube cube) throws Exception {
-        Vector list = new Vector();
+        Vector<BICubeDimension> list = new Vector<BICubeDimension>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_CubeDimension(cube.getBICUBEID()), list, (String)BICubeDimension.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -439,32 +439,31 @@ implements ISRFDABIThemeWriter {
     }
 
     protected CallResult OnExportCubeMeasure(SimpleXMLWriter xmlWriter, BICube cube) {
-        Vector list3 = new Vector();
+        Vector<BICubeMeasure> list3 = new Vector<BICubeMeasure>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_CubeAllMeasure(cube.getBICUBEID()), list3, (String)BICubeMeasure.class.getName());
         if (callResult.IsError()) {
             return callResult;
         }
-        Vector list = new Vector();
+        Vector<BIMeasure> list = new Vector<BIMeasure>();
         callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_CubeMeasure(cube.getBICUBEID()), list, (String)BIMeasure.class.getName());
         if (callResult.IsError()) {
             return callResult;
         }
-        Vector list2 = new Vector();
+        Vector<BICalculatedMeasure> list2 = new Vector<BICalculatedMeasure>();
         callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_CubeCalculatedMeasure(cube.getBICUBEID()), list2, (String)BICalculatedMeasure.class.getName());
         if (callResult.IsError()) {
             return callResult;
         }
         HashMap<String, BaseDataEntity> cubeMeasureMap = new HashMap<String, BaseDataEntity>();
-        for (BaseDataEntity measure : list) {
+        for (BIMeasure measure : list) {
             cubeMeasureMap.put(measure.getBIMEASUREID(), measure);
         }
-        for (BaseDataEntity measure : list2) {
+        for (BICalculatedMeasure measure : list2) {
             cubeMeasureMap.put(measure.getBICALCULATEDMEASUREID(), measure);
         }
         for (BICubeMeasure cubeMeasure : list3) {
-            BaseDataEntity measure;
             if (StringHelper.Compare((String)cubeMeasure.getBICUBEMEASURETYPE(), (String)"NORMAL", (boolean)true) == 0) {
-                measure = (BIMeasure)((Object)cubeMeasureMap.get(cubeMeasure.getBICUBEMEASUREID()));
+                BIMeasure measure = (BIMeasure)cubeMeasureMap.get(cubeMeasure.getBICUBEMEASUREID());
                 xmlWriter.WriteStartElement("Measure");
                 xmlWriter.WriteAttributeString("name", measure.getBIMEASURENAME());
                 xmlWriter.WriteAttributeString("column", measure.getMEASUREFIELNAME());
@@ -485,7 +484,7 @@ implements ISRFDABIThemeWriter {
                 xmlWriter.WriteEndElement();
                 continue;
             }
-            measure = (BICalculatedMeasure)((Object)cubeMeasureMap.get(cubeMeasure.getBICUBEMEASUREID()));
+            BICalculatedMeasure measure = (BICalculatedMeasure)cubeMeasureMap.get(cubeMeasure.getBICUBEMEASUREID());
             xmlWriter.WriteStartElement("CalculatedMember");
             xmlWriter.WriteAttributeString("name", measure.getBICALCULATEDMEASURENAME());
             xmlWriter.WriteAttributeString("dimension", "Measures");
@@ -517,8 +516,7 @@ implements ISRFDABIThemeWriter {
     }
 
     protected CallResult OnExportUserRoles(SimpleXMLWriter xmlWriter) throws Exception {
-        Vector roleList;
-        Vector list = new Vector();
+        Vector<BICatalogRole> list = new Vector<BICatalogRole>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_UserRoles(), list, (String)BICatalogRole.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -535,16 +533,16 @@ implements ISRFDABIThemeWriter {
             xmlWriter.WriteEndElement();
             xmlWriter.WriteEndElement();
         }
-        Vector list2 = new Vector();
+        Vector<BIUserRoleDetail> list2 = new Vector<BIUserRoleDetail>();
         callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_UserRoleDetails(), list2, (String)BIUserRoleDetail.class.getName());
         if (callResult.IsError()) {
             return callResult;
         }
-        HashMap<String, Vector> userRoleMap = new HashMap<String, Vector>();
+        HashMap<String, Vector<String>> userRoleMap = new HashMap<String, Vector<String>>();
         for (BIUserRoleDetail userRoleDetail : list2) {
-            roleList = null;
-            if (!userRoleMap.containsKey(userRoleDetail.getUSERID())) {
-                roleList = new Vector();
+            Vector<String> roleList = userRoleMap.get(userRoleDetail.getUSERID());
+            if (roleList == null) {
+                roleList = new Vector<String>();
                 userRoleMap.put(userRoleDetail.getUSERID(), roleList);
             }
             roleList.add(userRoleDetail.getBIUSERROLEID());
@@ -553,8 +551,7 @@ implements ISRFDABIThemeWriter {
             xmlWriter.WriteStartElement("Role");
             xmlWriter.WriteAttributeString("name", "USER_" + strUserId);
             xmlWriter.WriteStartElement("Union");
-            roleList = (Vector)userRoleMap.get(strUserId);
-            for (String strUserRoleId : roleList) {
+            for (String strUserRoleId : userRoleMap.get(strUserId)) {
                 xmlWriter.WriteStartElement("RoleUsage");
                 xmlWriter.WriteAttributeString("roleName", "ROLE_" + strUserRoleId);
                 xmlWriter.WriteEndElement();
@@ -576,7 +573,7 @@ implements ISRFDABIThemeWriter {
     }
 
     protected CallResult OnExportCubeRoles(SimpleXMLWriter xmlWriter, BICatalogRole cataLogRole) throws Exception {
-        Vector list = new Vector();
+        Vector<BICubeRole> list = new Vector<BICubeRole>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_CubeRoles(cataLogRole), list, (String)BICubeRole.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -603,7 +600,7 @@ implements ISRFDABIThemeWriter {
     }
 
     protected CallResult OnExportHRCRoles(SimpleXMLWriter xmlWriter, BICubeRole cubeRole) throws Exception {
-        Vector list = new Vector();
+        Vector<BIHierarchyRole> list = new Vector<BIHierarchyRole>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_HierarchyRoles(cubeRole), list, (String)BIHierarchyRole.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -626,7 +623,7 @@ implements ISRFDABIThemeWriter {
     }
 
     protected CallResult OnExportHRCMemberRoles(SimpleXMLWriter xmlWriter, BIHierarchyRole bierarchyRole) throws Exception {
-        Vector list = new Vector();
+        Vector<BIHRCMemberRole> list = new Vector<BIHRCMemberRole>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_HRCMemberRoles(bierarchyRole), list, (String)BIHRCMemberRole.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -645,7 +642,7 @@ implements ISRFDABIThemeWriter {
     }
 
     protected CallResult OnExportCubeDimensionRoles(SimpleXMLWriter xmlWriter, BICubeRole cubeRole) throws Exception {
-        Vector list = new Vector();
+        Vector<BICubeDimensionRole> list = new Vector<BICubeDimensionRole>();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.OnGetSQL_CubeDimensionRoles(cubeRole), list, (String)BICubeDimensionRole.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -659,4 +656,3 @@ implements ISRFDABIThemeWriter {
         return callResult;
     }
 }
-

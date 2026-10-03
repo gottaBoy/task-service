@@ -1,33 +1,105 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.service;
 
-import net.ibizsys.paas.service.IService;
 import org.hibernate.SessionFactory;
 
+/**
+ * 服务对象全局存储插件
+ * 
+ * @author Administrator
+ *
+ */
 public interface IServiceGlobalPlugin {
-    public void registerService(String var1, IService var2);
+	/**
+	 * 注册服务对象
+	 * 
+	 * @param strServiceClsType
+	 * @param iService
+	 */
+	void registerService(String strServiceClsType, IService iService);
 
-    public IService getService(Class var1) throws Exception;
+	/**
+	 * 获取服务对象
+	 * 
+	 * @param strServiceClsType
+	 * @return
+	 * @throws Exception
+	 */
+	IService getService(Class cls) throws Exception;
 
-    public IService getService(String var1) throws Exception;
+	/**
+	 * 获取服务对象
+	 * 
+	 * @param strServiceClsType
+	 * @return
+	 * @throws Exception
+	 */
+	IService getService(String strServiceClsType) throws Exception;
 
-    public void registerService(String var1, String var2, IService var3);
+	/**
+	 * 注册服务对象
+	 * 
+	 * @param strServiceClsType
+	 * @param strDSLink
+	 * @param iService
+	 */
+	void registerService(String strServiceClsType, String strDSLink, IService iService);
 
-    public IService getService(Class var1, String var2) throws Exception;
+	/**
+	 * 获取服务对象
+	 * 
+	 * @param cls
+	 * @param strDSLink
+	 * @return
+	 * @throws Exception
+	 */
+	IService getService(Class cls, String strDSLink) throws Exception;
 
-    public IService getService(String var1, String var2) throws Exception;
+	/**
+	 * 获取服务对象
+	 * 
+	 * @param strServiceClsType
+	 * @param strDSLink
+	 * @return
+	 * @throws Exception
+	 */
+	IService getService(String strServiceClsType, String strDSLink) throws Exception;
 
-    public IService getService(Class var1, SessionFactory var2) throws Exception;
+	/**
+	 * 获取服务对象
+	 * 
+	 * @param cls
+	 * @param sessionFactory
+	 * @return
+	 * @throws Exception
+	 */
+	IService getService(Class cls, SessionFactory sessionFactory) throws Exception;
 
-    public IService getService(String var1, SessionFactory var2) throws Exception;
+	/**
+	 * 获取服务对象
+	 * 
+	 * @param strServiceClsType
+	 * @param sessionFactory
+	 * @return
+	 * @throws Exception
+	 */
+	IService getService(String strServiceClsType, SessionFactory sessionFactory) throws Exception;
 
-    public void resetServices(SessionFactory var1) throws Exception;
+	/**
+	 * 重置会话工厂的相关服务对象
+	 * 
+	 * @param sessionFactory
+	 * @return
+	 * @throws Exception
+	 */
+	void resetServices(SessionFactory sessionFactory) throws Exception;
 
-    public void resetServiceCache(SessionFactory var1) throws Exception;
+	/**
+	 * 重置会话工厂的服务对象缓存
+	 * 
+	 * @param sessionFactory
+	 * @return
+	 * @throws Exception
+	 */
+	void resetServiceCache(SessionFactory sessionFactory) throws Exception;
+
 }
-

@@ -1,24 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.pub.ionic4;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.ionic4.PSIonic4LogicMethod;
-import net.ibizsys.model.pub.ionic4.PSIonic4LogicNodeMethod;
-import net.ibizsys.model.pub.ionic4.PSIonic4PanelItemLogicMethod;
 
-public class PSIonic4CtrlPartCodePublisherImpl {
-    private static PSIonic4LogicMethod psIonic4LogicMethod;
-    private static PSIonic4LogicNodeMethod psIonic4LogicNodeMethod;
-    private static PSIonic4PanelItemLogicMethod psIonic4PanelItemLogicMethod;
+import SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl;
 
-    public PSIonic4CtrlPartCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tPSPFCtrlPartCodePublisherImpl cannot be resolved to a type\n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSIonic4CtrlPartCodePublisherImpl must override or implement a supertype method\n\tPSPFCtrlPartCodePublisherImpl cannot be resolved to a type\n");
-    }
-
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSIonic4CtrlPartCodePublisherImpl must override or implement a supertype method\n\tPSPFCtrlPartCodePublisherImpl cannot be resolved to a type\n");
-    }
+public class PSIonic4CtrlPartCodePublisherImpl extends PSPFCtrlPartCodePublisherImpl
+{
+	private static PSIonic4LogicMethod psIonic4LogicMethod = new PSIonic4LogicMethod();
+	private static PSIonic4LogicNodeMethod psIonic4LogicNodeMethod = new PSIonic4LogicNodeMethod();
+	private static PSIonic4PanelItemLogicMethod psIonic4PanelItemLogicMethod = new PSIonic4PanelItemLogicMethod();
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		params.put("srfpanellogic", psIonic4LogicMethod);
+		params.put("srflogicnode", psIonic4LogicNodeMethod);
+		params.put("srfpanelitemlogic", psIonic4PanelItemLogicMethod);
+		PSIonic4TemplHelper.fillParams(params);
+	}
 }
-

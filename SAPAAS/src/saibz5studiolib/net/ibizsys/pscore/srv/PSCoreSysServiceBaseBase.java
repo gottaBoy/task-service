@@ -92,14 +92,14 @@ extends ServiceBase<ET> {
         } else {
             log.warn((Object)"\u83b7\u53d6\u64cd\u4f5c\u7f13\u5b58\u6570\u636e\u5931\u8d25\uff0c\u5f53\u524d\u6ca1\u6709\u64cd\u4f5c\u4f1a\u8bdd");
         }
-        object = iService.getDEModel().createEntity();
-        object.set(iService.getDEModel().getKeyDEField().getName(), (Object)string);
+        IEntity entity = iService.getDEModel().createEntity();
+        entity.set(iService.getDEModel().getKeyDEField().getName(), (Object)string);
         try {
-            if (iService.get((IEntity)object, bl)) {
+            if (iService.get(entity, bl)) {
                 if (ActionSessionManager.getCurrentSession() != null) {
-                    ActionSessionManager.getCurrentSession().setActionParam(string2, object);
+                    ActionSessionManager.getCurrentSession().setActionParam(string2, entity);
                 }
-                return object;
+                return entity;
             }
             if (ActionSessionManager.getCurrentSession() != null) {
                 ActionSessionManager.getCurrentSession().setActionParam(string2, DataObject.EMPTY);
@@ -132,14 +132,14 @@ extends ServiceBase<ET> {
         SelectCond selectCond = new SelectCond();
         ET.copyTo((IDataObject)selectCond, false);
         selectCond.setFetchFirst(true);
-        ArrayList arrayList = this.select(PSCoreSysServiceBaseBase.convertSelectCondNull((ISelectCond)selectCond));
+        ArrayList<ET> arrayList = this.select(PSCoreSysServiceBaseBase.convertSelectCondNull((ISelectCond)selectCond));
         if (arrayList.size() == 0) {
             if (bl) {
                 return false;
             }
             throw new ErrorException(3, (IDataEntity)this.getDEModel());
         }
-        ((IEntity)arrayList.get(0)).copyTo(ET, true);
+        (arrayList.get(0)).copyTo(ET, true);
         return true;
     }
 
@@ -147,21 +147,21 @@ extends ServiceBase<ET> {
         SelectCond selectCond = new SelectCond();
         ET.copyTo((IDataObject)selectCond, false);
         selectCond.setFetchFirst(true);
-        ArrayList arrayList = this.selectTemp(PSCoreSysServiceBaseBase.convertSelectCondNull((ISelectCond)selectCond));
+        ArrayList<ET> arrayList = this.selectTemp(PSCoreSysServiceBaseBase.convertSelectCondNull((ISelectCond)selectCond));
         if (arrayList.size() == 0) {
             if (bl) {
                 return false;
             }
             throw new ErrorException(3, (IDataEntity)this.getDEModel());
         }
-        ((IEntity)arrayList.get(0)).copyTo(ET, true);
+        (arrayList.get(0)).copyTo(ET, true);
         return true;
     }
 
     public static ISelectCond convertSelectCondNull(ISelectCond iSelectCond) throws Exception {
-        HashMap hashMap = new HashMap();
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
         iSelectCond.fillMap(hashMap, true);
-        for (Map.Entry entry : hashMap.entrySet()) {
+        for (Map.Entry<String, Object> entry : hashMap.entrySet()) {
             if (entry.getValue() != null && entry.getValue() != DataObject.EMPTY) continue;
             iSelectCond.set((String)entry.getKey(), SelectCond.ISNULL);
         }
@@ -199,14 +199,14 @@ extends ServiceBase<ET> {
         } else {
             log.warn((Object)"\u83b7\u53d6Web\u4e0a\u4e0b\u6587\u7f13\u5b58\u6570\u636e\u5931\u8d25\uff0c\u5f53\u524d\u6ca1\u6709\u64cd\u4f5c\u4f1a\u8bdd");
         }
-        object = iService.getDEModel().createEntity();
-        object.set(iService.getDEModel().getKeyDEField().getName(), (Object)string);
+        IEntity entity = iService.getDEModel().createEntity();
+        entity.set(iService.getDEModel().getKeyDEField().getName(), (Object)string);
         try {
-            if (iService.get((IEntity)object, bl)) {
+            if (iService.get(entity, bl)) {
                 if (WebContext.getCurrent() != null) {
-                    WebContext.getCurrent().setAttribute(string2, object);
+                    WebContext.getCurrent().setAttribute(string2, entity);
                 }
-                return object;
+                return entity;
             }
             if (WebContext.getCurrent() != null) {
                 WebContext.getCurrent().setAttribute(string2, DataObject.EMPTY);
@@ -247,19 +247,19 @@ extends ServiceBase<ET> {
         if (iServicePlugin != null && iServicePlugin.doCreate(this.getService(), 0, ET, null).getResult() == 1) {
             return;
         }
-        this.onTestCreate((IEntity)ET);
-        if (this.fillEntityKeyValue((IEntity)ET, false) && !EntityBase.isIgnoreCheckKey(ET)) {
-            int n = this.checkKey((IEntity)ET);
+        this.onTestCreate(ET);
+        if (this.fillEntityKeyValue(ET, false) && !EntityBase.isIgnoreCheckKey(ET)) {
+            int n = this.checkKey(ET);
             switch (n) {
                 case 2: {
                     throw new ErrorException(6, this.getLocalization("CTRL.SERVICE.CHECKKEYSTATE_DELETE", StringHelper.format((String)"\u6570\u636e\u5df2\u7ecf\u88ab\u5220\u9664\uff0c\u65e0\u6cd5\u518d\u6b21\u5efa\u7acb")), (IDataEntity)this.getDEModel());
                 }
                 case 1: {
-                    Iterator iterator = this.getDEModel().getUnionKeyValueDEFields();
+                    Iterator<IDEField> iterator = this.getDEModel().getUnionKeyValueDEFields();
                     if (iterator != null) {
                         EntityError entityError = new EntityError();
                         while (iterator.hasNext()) {
-                            IDEField iDEField = (IDEField)iterator.next();
+                            IDEField iDEField = iterator.next();
                             EntityFieldError entityFieldError = new EntityFieldError();
                             entityFieldError.setFieldName(iDEField.getName());
                             if (this.getWebContext() != null) {
@@ -277,70 +277,62 @@ extends ServiceBase<ET> {
                 }
             }
         }
-        ET ET2 = ET;
+        final ET ET2 = ET;
         boolean bl3 = bl || this.isNeedUpdateParent();
-        this.doServiceWork(new IServiceWork((IEntity)ET2, iServicePlugin, bl2, bl3, object){
-            final /* synthetic */ IEntity val$et2;
-            final /* synthetic */ IServicePlugin val$iServicePlugin;
-            final /* synthetic */ boolean val$bIgnoreCheck;
-            final /* synthetic */ boolean val$bGet2;
-            final /* synthetic */ Object val$strSourceKey;
-            {
-                this.val$et2 = iEntity;
-                this.val$iServicePlugin = iServicePlugin;
-                this.val$bIgnoreCheck = bl;
-                this.val$bGet2 = bl2;
-                this.val$strSourceKey = object;
-            }
+        final IServicePlugin plugin = iServicePlugin;
+        final boolean ignoreCheck = bl2;
+        final boolean returnData = bl3;
+        final Object sourceKey = object;
+        this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSCoreSysServiceBaseBase.this.setLast(this.val$et2, (IEntity)EMPTYLAST, true);
-                PSCoreSysServiceBaseBase.this.writeBackParent(this.val$et2, true);
-                PSCoreSysServiceBaseBase.this.fillEntityFullInfo(this.val$et2, true);
-                if (this.val$iServicePlugin != null) {
-                    this.val$iServicePlugin.doCreate(PSCoreSysServiceBaseBase.this.getService(), 30, this.val$et2, null);
+                PSCoreSysServiceBaseBase.this.setLast(ET2, EMPTYLAST, true);
+                PSCoreSysServiceBaseBase.this.writeBackParent(ET2, true);
+                PSCoreSysServiceBaseBase.this.fillEntityFullInfo(ET2, true);
+                if (plugin != null) {
+                    plugin.doCreate(PSCoreSysServiceBaseBase.this.getService(), 30, ET2, null);
                 }
-                PSCoreSysServiceBaseBase.this.onBeforeCreate(this.val$et2);
-                if (this.val$iServicePlugin != null) {
-                    this.val$iServicePlugin.doCreate(PSCoreSysServiceBaseBase.this.getService(), 31, this.val$et2, null);
+                PSCoreSysServiceBaseBase.this.onBeforeCreate(ET2);
+                if (plugin != null) {
+                    plugin.doCreate(PSCoreSysServiceBaseBase.this.getService(), 31, ET2, null);
                 }
-                if (!this.val$bIgnoreCheck) {
-                    PSCoreSysServiceBaseBase.this.checkEntity(this.val$et2, true, false);
+                if (!ignoreCheck) {
+                    PSCoreSysServiceBaseBase.this.checkEntity(ET2, true, false);
                 } else {
-                    PSCoreSysServiceBaseBase.this.checkEntity(this.val$et2, true, false, true);
+                    PSCoreSysServiceBaseBase.this.checkEntity(ET2, true, false, true);
                 }
-                if (this.val$iServicePlugin == null || this.val$iServicePlugin.doCreate(PSCoreSysServiceBaseBase.this.getService(), 40, this.val$et2, null).getResult() != 1) {
-                    PSCoreSysServiceBaseBase.this.internalCreate(this.val$et2);
+                if (plugin == null || plugin.doCreate(PSCoreSysServiceBaseBase.this.getService(), 40, ET2, null).getResult() != 1) {
+                    PSCoreSysServiceBaseBase.this.internalCreate(ET2);
                 }
-                if (this.val$bGet2) {
-                    PSCoreSysServiceBaseBase.this.internalGet(this.val$et2, false);
+                if (returnData) {
+                    PSCoreSysServiceBaseBase.this.internalGet(ET2, false);
                 }
-                if (!StringHelper.isNullOrEmpty((Object)this.val$strSourceKey)) {
-                    PSCoreSysServiceBaseBase.this.copyDetails(this.val$et2, this.val$strSourceKey);
+                if (!StringHelper.isNullOrEmpty((Object)sourceKey)) {
+                    PSCoreSysServiceBaseBase.this.copyDetails(ET2, sourceKey);
                 }
                 if (PSCoreSysServiceBaseBase.this.isNeedUpdateParent()) {
-                    PSCoreSysServiceBaseBase.this.updateParent(this.val$et2);
+                    PSCoreSysServiceBaseBase.this.updateParent(ET2);
                 }
-                IEntity iEntity = this.val$et2;
-                if ((PSCoreSysServiceBaseBase.this.getDEModel().isEnableAudit() || PSCoreSysServiceBaseBase.this.getDEModel().getDataChangeLogMode() != 0) && !this.val$bGet2) {
+                ET iEntity = ET2;
+                if ((PSCoreSysServiceBaseBase.this.getDEModel().isEnableAudit() || PSCoreSysServiceBaseBase.this.getDEModel().getDataChangeLogMode() != 0) && !returnData) {
                     iEntity = PSCoreSysServiceBaseBase.this.getDEModel().createEntity();
-                    this.val$et2.copyTo((IDataObject)iEntity, true);
+                    ET2.copyTo((IDataObject)iEntity, true);
                     PSCoreSysServiceBaseBase.this.internalGet(iEntity, false);
                 }
                 if (PSCoreSysServiceBaseBase.this.getDEModel().isEnableAudit()) {
                     PSCoreSysServiceBaseBase.this.getDEModel().getDEDataAccMgr().audit(null, PSCoreSysServiceBaseBase.this.getWebContext(), iEntity, null, "CREATE");
                 }
-                PSCoreSysServiceBaseBase.this.syncEntity(this.val$et2, false);
-                PSCoreSysServiceBaseBase.this.pushDTSQueue(this.val$et2);
+                PSCoreSysServiceBaseBase.this.syncEntity(ET2, false);
+                PSCoreSysServiceBaseBase.this.pushDTSQueue(ET2);
                 PSCoreSysServiceBaseBase.this.logDataChanged(1, iEntity);
-                if (this.val$iServicePlugin != null) {
-                    this.val$iServicePlugin.doCreate(PSCoreSysServiceBaseBase.this.getService(), 60, this.val$et2, null);
+                if (plugin != null) {
+                    plugin.doCreate(PSCoreSysServiceBaseBase.this.getService(), 60, ET2, null);
                 }
-                PSCoreSysServiceBaseBase.this.onAfterCreate(this.val$et2);
-                if (this.val$iServicePlugin != null) {
-                    this.val$iServicePlugin.doCreate(PSCoreSysServiceBaseBase.this.getService(), 61, this.val$et2, null);
+                PSCoreSysServiceBaseBase.this.onAfterCreate(ET2);
+                if (plugin != null) {
+                    plugin.doCreate(PSCoreSysServiceBaseBase.this.getService(), 61, ET2, null);
                 }
-                PSCoreSysServiceBaseBase.this.resetLast(this.val$et2);
+                PSCoreSysServiceBaseBase.this.resetLast(ET2);
             }
         });
         if (iServicePlugin != null) {
@@ -357,10 +349,10 @@ extends ServiceBase<ET> {
     }
 
     public void create(final IServiceCreateParam<ET> iServiceCreateParam) throws Exception {
-        IEntity iEntity = iServiceCreateParam.getEntity();
+        final ET iEntity = iServiceCreateParam.getEntity();
         iEntity.setSessionFactory(this.getSessionFactory());
         final Object object = iEntity.get("SRFSOURCEKEY");
-        final boolean bl = EntityBase.isIgnoreCheck((IEntity)iEntity);
+        final boolean bl = EntityBase.isIgnoreCheck(iEntity);
         final IServicePlugin iServicePlugin = this.getPlugin();
         if (iServicePlugin != null && iServicePlugin.doCreate(this.getService(), 0, iServiceCreateParam, null).getResult() == 1) {
             return;
@@ -368,18 +360,18 @@ extends ServiceBase<ET> {
         if (!iServiceCreateParam.testAction(iEntity)) {
             return;
         }
-        if (this.fillEntityKeyValue(iEntity, false) && !EntityBase.isIgnoreCheckKey((IEntity)iEntity)) {
+        if (this.fillEntityKeyValue(iEntity, false) && !EntityBase.isIgnoreCheckKey(iEntity)) {
             int n = this.checkKey(iEntity);
             switch (n) {
                 case 2: {
                     throw new ErrorException(6, this.getLocalization("CTRL.SERVICE.CHECKKEYSTATE_DELETE", StringHelper.format((String)"\u6570\u636e\u5df2\u7ecf\u88ab\u5220\u9664\uff0c\u65e0\u6cd5\u518d\u6b21\u5efa\u7acb")), (IDataEntity)this.getDEModel());
                 }
                 case 1: {
-                    Iterator iterator = this.getDEModel().getUnionKeyValueDEFields();
+                    Iterator<IDEField> iterator = this.getDEModel().getUnionKeyValueDEFields();
                     if (iterator != null) {
                         EntityError entityError = new EntityError();
                         while (iterator.hasNext()) {
-                            IDEField iDEField = (IDEField)iterator.next();
+                            IDEField iDEField = iterator.next();
                             EntityFieldError entityFieldError = new EntityFieldError();
                             entityFieldError.setFieldName(iDEField.getName());
                             if (this.getWebContext() != null) {
@@ -397,12 +389,12 @@ extends ServiceBase<ET> {
                 }
             }
         }
-        final IEntity iEntity2 = iEntity;
+        final ET iEntity2 = iEntity;
         final boolean bl2 = iServiceCreateParam.isReturnData() || this.isNeedUpdateParent();
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSCoreSysServiceBaseBase.this.setLast(iEntity2, (IEntity)EMPTYLAST, true);
+                PSCoreSysServiceBaseBase.this.setLast(iEntity2, EMPTYLAST, true);
                 PSCoreSysServiceBaseBase.this.writeBackParent(iEntity2, true);
                 PSCoreSysServiceBaseBase.this.fillEntityFullInfo(iEntity2, true);
                 if (iServicePlugin != null) {
@@ -429,7 +421,7 @@ extends ServiceBase<ET> {
                 if (PSCoreSysServiceBaseBase.this.isNeedUpdateParent()) {
                     PSCoreSysServiceBaseBase.this.updateParent(iEntity2);
                 }
-                IEntity iEntity = iEntity2;
+                ET iEntity = iEntity2;
                 if ((PSCoreSysServiceBaseBase.this.getDEModel().isEnableAudit() || PSCoreSysServiceBaseBase.this.getDEModel().getDataChangeLogMode() != 0) && !bl2) {
                     iEntity = PSCoreSysServiceBaseBase.this.getDEModel().createEntity();
                     iEntity2.copyTo((IDataObject)iEntity, true);
@@ -461,7 +453,7 @@ extends ServiceBase<ET> {
             this.getServiceAPIClientModel().execute(this.getDEModel().getServiceAPIActionTag("DEACTION", "UPDATE"), ET);
             return;
         }
-        ET ET2 = ET;
+        final ET ET2 = ET;
         boolean bl2 = bl || this.isNeedUpdateParent();
         boolean bl3 = EntityBase.isIgnoreCheck(ET2);
         ET2.setSessionFactory(this.getSessionFactory());
@@ -469,72 +461,65 @@ extends ServiceBase<ET> {
         if (iServicePlugin != null && iServicePlugin.doUpdate(this.getService(), 0, ET2, null).getResult() == 1) {
             return;
         }
-        if (ET2.get(this.getDEModel().getKeyDEField().getName()) == null && !this.fillEntityKeyValue((IEntity)ET2, false)) {
+        if (ET2.get(this.getDEModel().getKeyDEField().getName()) == null && !this.fillEntityKeyValue(ET2, false)) {
             throw new ErrorException(4, (IDataEntity)this.getDEModel());
         }
-        this.testDEMainStateAction((IEntity)ET, "UPDATE");
-        this.onTestUpdate((IEntity)ET2);
+        this.testDEMainStateAction(ET, "UPDATE");
+        this.onTestUpdate(ET2);
         log.debug((Object)"\u5f00\u59cb[update]\u4f5c\u4e1a");
-        this.doServiceWork(new IServiceWork((IEntity)ET2, iServicePlugin, bl3, bl2){
-            final /* synthetic */ IEntity val$et;
-            final /* synthetic */ IServicePlugin val$iServicePlugin;
-            final /* synthetic */ boolean val$bIgnoreCheck;
-            final /* synthetic */ boolean val$bGet2;
-            {
-                this.val$et = iEntity;
-                this.val$iServicePlugin = iServicePlugin;
-                this.val$bIgnoreCheck = bl;
-                this.val$bGet2 = bl2;
-            }
+        final IServicePlugin plugin = iServicePlugin;
+        final boolean ignoreCheck = bl3;
+        final boolean returnData = bl2;
+        this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
                 IEntity iEntity = null;
                 if (PSCoreSysServiceBaseBase.this.isPrepareLastForUpdate()) {
-                    iEntity = PSCoreSysServiceBaseBase.this.getLast(this.val$et);
+                    iEntity = PSCoreSysServiceBaseBase.this.getLast(ET2);
                 }
-                PSCoreSysServiceBaseBase.this.updateTestNewOldData(this.val$et);
-                PSCoreSysServiceBaseBase.this.writeBackParent(this.val$et, false);
-                PSCoreSysServiceBaseBase.this.fillEntityFullInfo(this.val$et, false);
-                if (this.val$iServicePlugin != null) {
-                    this.val$iServicePlugin.doUpdate(PSCoreSysServiceBaseBase.this.getService(), 30, this.val$et, (Object)iEntity);
+                PSCoreSysServiceBaseBase.this.updateTestNewOldData(ET2);
+                PSCoreSysServiceBaseBase.this.writeBackParent(ET2, false);
+                PSCoreSysServiceBaseBase.this.fillEntityFullInfo(ET2, false);
+                if (plugin != null) {
+                    plugin.doUpdate(PSCoreSysServiceBaseBase.this.getService(), 30, ET2, (Object)iEntity);
                 }
-                PSCoreSysServiceBaseBase.this.onBeforeUpdate(this.val$et);
-                if (this.val$iServicePlugin != null) {
-                    this.val$iServicePlugin.doUpdate(PSCoreSysServiceBaseBase.this.getService(), 31, this.val$et, (Object)iEntity);
+                PSCoreSysServiceBaseBase.this.onBeforeUpdate(ET2);
+                if (plugin != null) {
+                    plugin.doUpdate(PSCoreSysServiceBaseBase.this.getService(), 31, ET2, (Object)iEntity);
                 }
-                if (!this.val$bIgnoreCheck) {
-                    PSCoreSysServiceBaseBase.this.checkEntity(this.val$et, false, false);
+                if (!ignoreCheck) {
+                    PSCoreSysServiceBaseBase.this.checkEntity(ET2, false, false);
                 } else {
-                    PSCoreSysServiceBaseBase.this.checkEntity(this.val$et, false, false, true);
+                    PSCoreSysServiceBaseBase.this.checkEntity(ET2, false, false, true);
                 }
-                PSCoreSysServiceBaseBase.this.setLast(this.val$et, (IEntity)INVALIDLAST, false);
-                if (this.val$iServicePlugin == null || this.val$iServicePlugin.doUpdate(PSCoreSysServiceBaseBase.this.getService(), 40, this.val$et, (Object)iEntity).getResult() != 1) {
-                    PSCoreSysServiceBaseBase.this.internalUpdate(this.val$et);
+                PSCoreSysServiceBaseBase.this.setLast(ET2, INVALIDLAST, false);
+                if (plugin == null || plugin.doUpdate(PSCoreSysServiceBaseBase.this.getService(), 40, ET2, (Object)iEntity).getResult() != 1) {
+                    PSCoreSysServiceBaseBase.this.internalUpdate(ET2);
                 }
-                if (this.val$bGet2) {
-                    PSCoreSysServiceBaseBase.this.internalGet(this.val$et, false);
+                if (returnData) {
+                    PSCoreSysServiceBaseBase.this.internalGet(ET2, false);
                 }
-                PSCoreSysServiceBaseBase.this.syncDEUniState(this.val$et, this.val$bGet2, "UPDATE");
+                PSCoreSysServiceBaseBase.this.syncDEUniState(ET2, returnData, "UPDATE");
                 if (PSCoreSysServiceBaseBase.this.isNeedUpdateParent()) {
-                    PSCoreSysServiceBaseBase.this.updateParent(this.val$et);
+                    PSCoreSysServiceBaseBase.this.updateParent(ET2);
                 }
-                IEntity iEntity2 = this.val$et;
-                if ((PSCoreSysServiceBaseBase.this.getDEModel().isEnableAudit() || PSCoreSysServiceBaseBase.this.getDEModel().getDataChangeLogMode() != 0) && !this.val$bGet2) {
+                ET iEntity2 = ET2;
+                if ((PSCoreSysServiceBaseBase.this.getDEModel().isEnableAudit() || PSCoreSysServiceBaseBase.this.getDEModel().getDataChangeLogMode() != 0) && !returnData) {
                     iEntity2 = PSCoreSysServiceBaseBase.this.getDEModel().createEntity();
-                    this.val$et.copyTo((IDataObject)iEntity2, true);
+                    ET2.copyTo((IDataObject)iEntity2, true);
                     PSCoreSysServiceBaseBase.this.internalGet(iEntity2, false);
                 }
                 if (PSCoreSysServiceBaseBase.this.getDEModel().isEnableAudit()) {
-                    PSCoreSysServiceBaseBase.this.getDEModel().getDEDataAccMgr().audit(null, PSCoreSysServiceBaseBase.this.getWebContext(), iEntity2, PSCoreSysServiceBaseBase.this.getLast(this.val$et), "UPDATE");
+                    PSCoreSysServiceBaseBase.this.getDEModel().getDEDataAccMgr().audit(null, PSCoreSysServiceBaseBase.this.getWebContext(), iEntity2, PSCoreSysServiceBaseBase.this.getLast(ET2), "UPDATE");
                 }
-                PSCoreSysServiceBaseBase.this.syncEntity(this.val$et, false);
+                PSCoreSysServiceBaseBase.this.syncEntity(ET2, false);
                 PSCoreSysServiceBaseBase.this.logDataChanged(2, iEntity2);
-                if (this.val$iServicePlugin != null) {
-                    this.val$iServicePlugin.doUpdate(PSCoreSysServiceBaseBase.this.getService(), 60, this.val$et, (Object)iEntity);
+                if (plugin != null) {
+                    plugin.doUpdate(PSCoreSysServiceBaseBase.this.getService(), 60, ET2, (Object)iEntity);
                 }
-                PSCoreSysServiceBaseBase.this.onAfterUpdate(this.val$et);
-                if (this.val$iServicePlugin != null) {
-                    this.val$iServicePlugin.doUpdate(PSCoreSysServiceBaseBase.this.getService(), 61, this.val$et, (Object)iEntity);
+                PSCoreSysServiceBaseBase.this.onAfterUpdate(ET2);
+                if (plugin != null) {
+                    plugin.doUpdate(PSCoreSysServiceBaseBase.this.getService(), 61, ET2, (Object)iEntity);
                 }
             }
         });
@@ -544,9 +529,9 @@ extends ServiceBase<ET> {
     }
 
     public void update(final IServiceUpdateParam<ET> iServiceUpdateParam) throws Exception {
-        final IEntity iEntity = iServiceUpdateParam.getEntity();
+        final ET iEntity = iServiceUpdateParam.getEntity();
         final boolean bl = iServiceUpdateParam.isReturnData() || this.isNeedUpdateParent();
-        final boolean bl2 = EntityBase.isIgnoreCheck((IEntity)iEntity);
+        final boolean bl2 = EntityBase.isIgnoreCheck(iEntity);
         iEntity.setSessionFactory(this.getSessionFactory());
         final IServicePlugin iServicePlugin = this.getPlugin();
         if (iServicePlugin != null && iServicePlugin.doUpdate(this.getService(), 0, iServiceUpdateParam, null).getResult() == 1) {
@@ -584,7 +569,7 @@ extends ServiceBase<ET> {
                 } else {
                     PSCoreSysServiceBaseBase.this.checkEntity(iEntity, false, false, true);
                 }
-                PSCoreSysServiceBaseBase.this.setLast(iEntity, (IEntity)INVALIDLAST, false);
+                PSCoreSysServiceBaseBase.this.setLast(iEntity, INVALIDLAST, false);
                 if (iServicePlugin == null || iServicePlugin.doUpdate(PSCoreSysServiceBaseBase.this.getService(), 40, iServiceUpdateParam, (Object)iEntity3).getResult() != 1) {
                     if (!iServiceUpdateParam.isSysUpdate()) {
                         PSCoreSysServiceBaseBase.this.internalUpdate(iEntity);
@@ -599,7 +584,7 @@ extends ServiceBase<ET> {
                 if (PSCoreSysServiceBaseBase.this.isNeedUpdateParent()) {
                     PSCoreSysServiceBaseBase.this.updateParent(iEntity);
                 }
-                IEntity iEntity2 = iEntity;
+                ET iEntity2 = iEntity;
                 if (!iServiceUpdateParam.isSysUpdate()) {
                     if ((PSCoreSysServiceBaseBase.this.getDEModel().isEnableAudit() || PSCoreSysServiceBaseBase.this.getDEModel().getDataChangeLogMode() != 0) && !bl) {
                         iEntity2 = PSCoreSysServiceBaseBase.this.getDEModel().createEntity();
@@ -627,42 +612,36 @@ extends ServiceBase<ET> {
     }
 
     public void sysUpdate(ET ET, boolean bl) throws Exception {
-        ET ET2 = ET;
+        final ET ET2 = ET;
         boolean bl2 = bl || this.isNeedUpdateParent();
         boolean bl3 = EntityBase.isIgnoreCheck(ET2);
         ET2.setSessionFactory(this.getSessionFactory());
-        if (ET2.get(this.getDEModel().getKeyDEField().getName()) == null && !this.fillEntityKeyValue((IEntity)ET2, false)) {
+        if (ET2.get(this.getDEModel().getKeyDEField().getName()) == null && !this.fillEntityKeyValue(ET2, false)) {
             throw new ErrorException(4, (IDataEntity)this.getDEModel());
         }
-        this.onTestUpdate((IEntity)ET2);
+        this.onTestUpdate(ET2);
         log.debug((Object)"\u5f00\u59cb[sysupdate]\u4f5c\u4e1a");
-        this.doServiceWork(new IServiceWork((IEntity)ET2, bl3, bl2){
-            final /* synthetic */ IEntity val$et;
-            final /* synthetic */ boolean val$bIgnoreCheck;
-            final /* synthetic */ boolean val$bGet2;
-            {
-                this.val$et = iEntity;
-                this.val$bIgnoreCheck = bl;
-                this.val$bGet2 = bl2;
-            }
+        final boolean ignoreCheck = bl3;
+        final boolean returnData = bl2;
+        this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSCoreSysServiceBaseBase.this.writeBackParent(this.val$et, false);
-                PSCoreSysServiceBaseBase.this.fillEntityFullInfo(this.val$et, false);
-                if (!this.val$bIgnoreCheck) {
-                    PSCoreSysServiceBaseBase.this.checkEntity(this.val$et, false, false);
+                PSCoreSysServiceBaseBase.this.writeBackParent(ET2, false);
+                PSCoreSysServiceBaseBase.this.fillEntityFullInfo(ET2, false);
+                if (!ignoreCheck) {
+                    PSCoreSysServiceBaseBase.this.checkEntity(ET2, false, false);
                 } else {
-                    PSCoreSysServiceBaseBase.this.checkEntity(this.val$et, false, false, true);
+                    PSCoreSysServiceBaseBase.this.checkEntity(ET2, false, false, true);
                 }
-                PSCoreSysServiceBaseBase.this.internalSysUpdate(this.val$et);
-                if (this.val$bGet2) {
-                    PSCoreSysServiceBaseBase.this.internalGet(this.val$et, false);
+                PSCoreSysServiceBaseBase.this.internalSysUpdate(ET2);
+                if (returnData) {
+                    PSCoreSysServiceBaseBase.this.internalGet(ET2, false);
                 }
-                PSCoreSysServiceBaseBase.this.syncDEUniState(this.val$et, this.val$bGet2, "UPDATE");
+                PSCoreSysServiceBaseBase.this.syncDEUniState(ET2, returnData, "UPDATE");
                 if (PSCoreSysServiceBaseBase.this.isNeedUpdateParent()) {
-                    PSCoreSysServiceBaseBase.this.updateParent(this.val$et);
+                    PSCoreSysServiceBaseBase.this.updateParent(ET2);
                 }
-                PSCoreSysServiceBaseBase.this.syncEntity(this.val$et, false);
+                PSCoreSysServiceBaseBase.this.syncEntity(ET2, false);
             }
         });
     }
@@ -682,7 +661,7 @@ extends ServiceBase<ET> {
             return;
         }
         if (iServicePlugin == null || iServicePlugin.doCheckEntity(this.getService(), 40, ET, bl, bl2, entityError, null).getResult() != 1) {
-            this.onCheckEntity(true, (IEntity)ET, bl, bl2, entityError);
+            this.onCheckEntity(true, ET, bl, bl2, entityError);
         }
         if (entityError.hasError()) {
             this.convertEntityError(entityError);
@@ -690,7 +669,7 @@ extends ServiceBase<ET> {
         }
         if (!bl3) {
             if (iServicePlugin == null || iServicePlugin.doCheckEntity(this.getService(), 45, ET, bl, bl2, entityError, null).getResult() != 1) {
-                this.onCheckEntity(false, (IEntity)ET, bl, bl2, entityError);
+                this.onCheckEntity(false, ET, bl, bl2, entityError);
             }
             if (entityError.hasError()) {
                 this.convertEntityError(entityError);
@@ -706,4 +685,3 @@ extends ServiceBase<ET> {
         this.checkEntity(ET, bl, bl2, false);
     }
 }
-

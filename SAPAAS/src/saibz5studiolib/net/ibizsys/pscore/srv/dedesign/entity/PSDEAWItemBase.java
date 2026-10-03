@@ -1272,7 +1272,7 @@ implements Serializable {
                 PSDEActionWizard pSDEActionWizard = new PSDEActionWizard();
                 pSDEActionWizard.setPSDEActionWizardId(this.getPSDEActionWizardId());
                 PSDEActionWizardService pSDEActionWizardService = (PSDEActionWizardService)ServiceGlobal.getService(PSDEActionWizardService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionWizardService.autoGet((IEntity)pSDEActionWizard);
+                pSDEActionWizardService.autoGet(pSDEActionWizard);
                 this.psdeactionwizard = pSDEActionWizard;
             }
             return this.psdeactionwizard;
@@ -1298,7 +1298,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getPSDEFID());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.psdef = pSDEField;
             }
             return this.psdef;

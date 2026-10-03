@@ -28,7 +28,12 @@ ICodeListQuery {
         block9: {
             block8: {
                 block7: {
-                    selectResult = dbCallerHelper.CallRaw3(this.GetQueryTotalSQL(), null);
+                    try {
+                        selectResult = dbCallerHelper.CallRaw3(this.GetQueryTotalSQL(), null);
+                    }
+                    catch (Exception exception) {
+                        return false;
+                    }
                     if (selectResult != null) break block7;
                     return false;
                 }

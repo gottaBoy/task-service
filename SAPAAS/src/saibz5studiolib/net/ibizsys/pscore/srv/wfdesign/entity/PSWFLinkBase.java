@@ -5195,7 +5195,7 @@ implements Serializable {
                 PSCodeList pSCodeList = new PSCodeList();
                 pSCodeList.setPSCodeListId(this.getActionPSCodeListId());
                 PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.getSessionFactory());
-                pSCodeListService.autoGet((IEntity)pSCodeList);
+                pSCodeListService.autoGet(pSCodeList);
                 this.actionpscodelist = pSCodeList;
             }
             return this.actionpscodelist;
@@ -5221,7 +5221,7 @@ implements Serializable {
                 PSDEForm pSDEForm = new PSDEForm();
                 pSDEForm.setPSDEFormId(this.getMobPSDEFormId());
                 PSDEFormService pSDEFormService = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFormService.autoGet((IEntity)pSDEForm);
+                pSDEFormService.autoGet(pSDEForm);
                 this.mobpsdeform = pSDEForm;
             }
             return this.mobpsdeform;
@@ -5247,7 +5247,7 @@ implements Serializable {
                 PSDEForm pSDEForm = new PSDEForm();
                 pSDEForm.setPSDEFormId(this.getPSDEFormId());
                 PSDEFormService pSDEFormService = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFormService.autoGet((IEntity)pSDEForm);
+                pSDEFormService.autoGet(pSDEForm);
                 this.psdeform = pSDEForm;
             }
             return this.psdeform;
@@ -5273,7 +5273,7 @@ implements Serializable {
                 PSDEViewBase pSDEViewBase = new PSDEViewBase();
                 pSDEViewBase.setPSDEViewBaseId(this.getMobPSDEViewId());
                 PSDEViewBaseService pSDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewBaseService.autoGet((IEntity)pSDEViewBase);
+                pSDEViewBaseService.autoGet(pSDEViewBase);
                 this.mobpsdeview = pSDEViewBase;
             }
             return this.mobpsdeview;
@@ -5299,7 +5299,7 @@ implements Serializable {
                 PSDEViewBase pSDEViewBase = new PSDEViewBase();
                 pSDEViewBase.setPSDEViewBaseId(this.getPSDEViewBaseId());
                 PSDEViewBaseService pSDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewBaseService.autoGet((IEntity)pSDEViewBase);
+                pSDEViewBaseService.autoGet(pSDEViewBase);
                 this.psdeviewbase = pSDEViewBase;
             }
             return this.psdeviewbase;
@@ -5325,7 +5325,7 @@ implements Serializable {
                 PSLanguageRes pSLanguageRes = new PSLanguageRes();
                 pSLanguageRes.setPSLanguageResId(this.getLNPSLanResId());
                 PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
-                pSLanguageResService.autoGet((IEntity)pSLanguageRes);
+                pSLanguageResService.autoGet(pSLanguageRes);
                 this.lnpslanres = pSLanguageRes;
             }
             return this.lnpslanres;
@@ -5351,7 +5351,7 @@ implements Serializable {
                 PSLanguageRes pSLanguageRes = new PSLanguageRes();
                 pSLanguageRes.setPSLanguageResId(this.getTipPSLanResId());
                 PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
-                pSLanguageResService.autoGet((IEntity)pSLanguageRes);
+                pSLanguageResService.autoGet(pSLanguageRes);
                 this.tippslanres = pSLanguageRes;
             }
             return this.tippslanres;
@@ -5377,7 +5377,7 @@ implements Serializable {
                 PSWFProcess pSWFProcess = new PSWFProcess();
                 pSWFProcess.setPSWFProcessId(this.getFromPSWFProcId());
                 PSWFProcessService pSWFProcessService = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
-                pSWFProcessService.autoGet((IEntity)pSWFProcess);
+                pSWFProcessService.autoGet(pSWFProcess);
                 this.frompswfproc = pSWFProcess;
             }
             return this.frompswfproc;
@@ -5403,7 +5403,7 @@ implements Serializable {
                 PSWFProcess pSWFProcess = new PSWFProcess();
                 pSWFProcess.setPSWFProcessId(this.getToPSWFProcId());
                 PSWFProcessService pSWFProcessService = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
-                pSWFProcessService.autoGet((IEntity)pSWFProcess);
+                pSWFProcessService.autoGet(pSWFProcess);
                 this.topswfproc = pSWFProcess;
             }
             return this.topswfproc;
@@ -5429,7 +5429,7 @@ implements Serializable {
                 PSWFRole pSWFRole = new PSWFRole();
                 pSWFRole.setPSWFRoleId(this.getPSWFRoleId());
                 PSWFRoleService pSWFRoleService = (PSWFRoleService)ServiceGlobal.getService(PSWFRoleService.class, (SessionFactory)this.getSessionFactory());
-                pSWFRoleService.autoGet((IEntity)pSWFRole);
+                pSWFRoleService.autoGet(pSWFRole);
                 this.pswfrole = pSWFRole;
             }
             return this.pswfrole;
@@ -5455,7 +5455,7 @@ implements Serializable {
                 PSWFVersion pSWFVersion = new PSWFVersion();
                 pSWFVersion.setPSWFVersionId(this.getPSWFVersionId());
                 PSWFVersionService pSWFVersionService = (PSWFVersionService)ServiceGlobal.getService(PSWFVersionService.class, (SessionFactory)this.getSessionFactory());
-                pSWFVersionService.autoGet((IEntity)pSWFVersion);
+                pSWFVersionService.autoGet(pSWFVersion);
                 this.pswfversion = pSWFVersion;
             }
             return this.pswfversion;
@@ -5481,7 +5481,7 @@ implements Serializable {
                 PSWorkflow pSWorkflow = new PSWorkflow();
                 pSWorkflow.setPSWorkflowId(this.getPSWFId());
                 PSWorkflowService pSWorkflowService = (PSWorkflowService)ServiceGlobal.getService(PSWorkflowService.class, (SessionFactory)this.getSessionFactory());
-                pSWorkflowService.autoGet((IEntity)pSWorkflow);
+                pSWorkflowService.autoGet(pSWorkflow);
                 this.pswf = pSWorkflow;
             }
             return this.pswf;
@@ -5503,7 +5503,7 @@ implements Serializable {
         Integer n = this.objPSWFLinkCondsLock;
         synchronized (n) {
             if (this.pswflinkconds == null) {
-                this.pswflinkconds = pSWFLinkService.isTempData((IEntity)this) ? pSWFLinkCondService.selectTempByPSWFLink(this) : pSWFLinkCondService.selectByPSWFLink(this);
+                this.pswflinkconds = pSWFLinkService.isTempData(this) ? pSWFLinkCondService.selectTempByPSWFLink(this) : pSWFLinkCondService.selectByPSWFLink(this);
             }
             return this.pswflinkconds;
         }
@@ -5524,7 +5524,7 @@ implements Serializable {
         Integer n = this.objPSWFLinkRolesLock;
         synchronized (n) {
             if (this.pswflinkroles == null) {
-                this.pswflinkroles = pSWFLinkService.isTempData((IEntity)this) ? pSWFLinkRoleService.selectTempByPSWFLink(this) : pSWFLinkRoleService.selectByPSWFLink(this);
+                this.pswflinkroles = pSWFLinkService.isTempData(this) ? pSWFLinkRoleService.selectTempByPSWFLink(this) : pSWFLinkRoleService.selectByPSWFLink(this);
             }
             return this.pswflinkroles;
         }

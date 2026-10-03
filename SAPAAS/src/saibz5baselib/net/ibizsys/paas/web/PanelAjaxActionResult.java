@@ -1,37 +1,46 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.web;
 
-import net.ibizsys.paas.web.SDAjaxActionResult;
+import net.ibizsys.paas.core.Errors;
 import net.sf.json.JSONObject;
 
-public class PanelAjaxActionResult
-extends SDAjaxActionResult {
-    protected JSONObject config = null;
+/**
+ * 面板异步请求处理结果对象
+ * 
+ * @author lionlau
+ *
+ */
+public class PanelAjaxActionResult extends SDAjaxActionResult {
+	
+	protected JSONObject config = null;
 
-    public JSONObject getConfig(boolean bCreate) {
-        if (this.config != null) {
-            return this.config;
-        }
-        if (bCreate) {
-            this.config = new JSONObject();
-        }
-        return this.config;
-    }
+	/**
+	 * 获取配置对象
+	 * 
+	 * @param bCreate 不存在时是否建立
+	 * @return
+	 */
+	public JSONObject getConfig(boolean bCreate) {
+		if (config != null) return config;
 
-    @Override
-    protected void fillJSONObject(JSONObject objJSON) {
-        super.fillJSONObject(objJSON);
-        if (this.getRetCode() != 0) {
-            return;
-        }
-        if (this.getConfig(false) != null) {
-            objJSON.put("config", (Object)this.getConfig(false));
-        }
-    }
+		if (bCreate) config = new JSONObject();
+		return config;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.web.SDAjaxActionResult#fillJSONObject(net.sf.json.JSONObject)
+	 */
+	@Override
+	protected void fillJSONObject(JSONObject objJSON) {
+		super.fillJSONObject(objJSON);
+
+		if (this.getRetCode() != Errors.OK) {
+			return;
+		}
+
+
+		if (this.getConfig(false) != null) {
+			objJSON.put("config", this.getConfig(false));
+		}
+	}
 }
-

@@ -122,9 +122,9 @@ implements IPSViewMsgService {
 
     @Override
     protected List<PSViewMsg> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSViewMsg> list = new ArrayList<PSViewMsg>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSViewMsg> items = this.listByPSModule(parent);

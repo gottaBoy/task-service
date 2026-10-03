@@ -134,11 +134,23 @@ extends SRFPage {
                     }
                 }
                 Class[] paramTypes = new Class[]{SRFExPage.class};
-                method = cl.getMethod("Current", paramTypes);
+                try {
+                    method = cl.getMethod("Current", paramTypes);
+                }
+                catch (Exception ex) {
+                    page.PageLog((Object)page, 1, "\u65e0\u6cd5\u5efa\u7acb\u7f51\u9875\u4e0a\u4e0b\u6587\u5bf9\u8c61", (Throwable)ex);
+                    return null;
+                }
                 if (method != null) break block7;
                 return null;
             }
-            obj = method.invoke(null, page);
+            try {
+                obj = method.invoke(null, page);
+            }
+            catch (Exception ex) {
+                page.PageLog((Object)page, 1, "\u65e0\u6cd5\u5efa\u7acb\u7f51\u9875\u4e0a\u4e0b\u6587\u5bf9\u8c61", (Throwable)ex);
+                return null;
+            }
             if (obj != null) break block8;
             return null;
         }

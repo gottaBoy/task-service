@@ -915,7 +915,7 @@ implements Serializable {
                 PSDESampleData pSDESampleData = new PSDESampleData();
                 pSDESampleData.setPSDESampleDataId(this.getPSDESampleDataId());
                 PSDESampleDataService pSDESampleDataService = (PSDESampleDataService)ServiceGlobal.getService(PSDESampleDataService.class, (SessionFactory)this.getSessionFactory());
-                pSDESampleDataService.autoGet((IEntity)pSDESampleData);
+                pSDESampleDataService.autoGet(pSDESampleData);
                 this.psdesampledata = pSDESampleData;
             }
             return this.psdesampledata;
@@ -941,7 +941,7 @@ implements Serializable {
                 PSDESampleData pSDESampleData = new PSDESampleData();
                 pSDESampleData.setPSDESampleDataId(this.getRefPSDESampleDataId());
                 PSDESampleDataService pSDESampleDataService = (PSDESampleDataService)ServiceGlobal.getService(PSDESampleDataService.class, (SessionFactory)this.getSessionFactory());
-                pSDESampleDataService.autoGet((IEntity)pSDESampleData);
+                pSDESampleDataService.autoGet(pSDESampleData);
                 this.refpsdesampledata = pSDESampleData;
             }
             return this.refpsdesampledata;

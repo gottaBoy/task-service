@@ -1626,7 +1626,7 @@ implements Serializable {
                 PSSysModelFolder pSSysModelFolder = new PSSysModelFolder();
                 pSSysModelFolder.setPSSysModelFolderId(this.getPPSSysModelFolderId());
                 PSSysModelFolderService pSSysModelFolderService = (PSSysModelFolderService)ServiceGlobal.getService(PSSysModelFolderService.class, (SessionFactory)this.getSessionFactory());
-                pSSysModelFolderService.autoGet((IEntity)pSSysModelFolder);
+                pSSysModelFolderService.autoGet(pSSysModelFolder);
                 this.ppssysmodelfolder = pSSysModelFolder;
             }
             return this.ppssysmodelfolder;
@@ -1652,7 +1652,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

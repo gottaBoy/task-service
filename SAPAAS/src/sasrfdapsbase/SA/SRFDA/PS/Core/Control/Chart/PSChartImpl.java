@@ -312,10 +312,10 @@ IPSEChartsRuntime {
             ((IPSEChartsObjectRuntime)((Object)iPSChartDataSet)).setIndex(nIndex);
         }
         this.psChartDataSetList.add(iPSChartDataSet);
-        for (PSDEChartDataSetGroupImpl psDEChartDataSetGroupImpl2 : this.psChartDataSetGroupList) {
-            if (StringHelper.compare((String)psDEChartDataSetGroupImpl2.getPSDEDataSet().getId(), (String)iPSChartDataSet.getPSDEDataSet().getId(), (boolean)false) != 0) continue;
-            psDEChartDataSetGroupImpl2.registerPSDEChartDataSet((IPSDEChartDataSet)iPSChartDataSet);
-            ((IPSDEChartDataSetRuntime)((Object)iPSChartDataSet)).setPSDEChartDataSetGroup(psDEChartDataSetGroupImpl2);
+        for (PSDEChartDataSetGroupImpl group : this.psChartDataSetGroupList) {
+            if (StringHelper.compare((String)group.getPSDEDataSet().getId(), (String)iPSChartDataSet.getPSDEDataSet().getId(), (boolean)false) != 0) continue;
+            group.registerPSDEChartDataSet((IPSDEChartDataSet)iPSChartDataSet);
+            ((IPSDEChartDataSetRuntime)((Object)iPSChartDataSet)).setPSDEChartDataSetGroup(group);
             return;
         }
         psDEChartDataSetGroupImpl2 = new PSDEChartDataSetGroupImpl();
@@ -394,4 +394,3 @@ IPSEChartsRuntime {
         return null;
     }
 }
-

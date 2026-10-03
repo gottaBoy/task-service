@@ -1,12 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control;
 
 import net.ibizsys.model.core.IPSModelObject;
 
-public interface IPSControlType
-extends IPSModelObject {
-    public boolean isAjaxControl();
-}
 
+/**
+ * 云平台部件类型对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IPSControlType extends IPSModelObject {
+	
+
+	/**
+	 * 是否为Ajax控件
+	 * 
+	 * @return
+	 */
+	boolean isAjaxControl();
+
+	
+
+}

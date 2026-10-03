@@ -1,16 +1,26 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ICtrlHandler;
-import net.ibizsys.paas.ctrlhandler.ICtrlItemHandler;
 import net.ibizsys.paas.ctrlmodel.IGridModel;
 
-public interface IGridEditItemHandler
-extends ICtrlItemHandler {
-    public static final String ACTION_ITEMFETCH = "itemfetch";
+/**
+ * 表格项处理对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IGridEditItemHandler extends ICtrlItemHandler {
+	
+	/**
+	 * 表格项获取数据
+	 */
+	final static String ACTION_ITEMFETCH = "itemfetch";
 
-    public void init(IGridModel var1, ICtrlHandler var2) throws Exception;
+	/**
+	 * 初始化
+	 * 
+	 * @param iGridModel
+	 * @param iCtrlHandler
+	 * @throws Exception
+	 */
+	void init(IGridModel iGridModel, ICtrlHandler iCtrlHandler) throws Exception;
 }
-

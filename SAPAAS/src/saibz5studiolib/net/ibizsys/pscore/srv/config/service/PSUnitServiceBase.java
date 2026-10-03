@@ -120,7 +120,7 @@ extends PSCoreSysServiceBase<PSUnit> {
     }
 
     protected void onFillParentInfo(PSUnit pSUnit, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSUnit, string, string2, string3);
+        super.onFillParentInfo(pSUnit, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -131,11 +131,11 @@ extends PSCoreSysServiceBase<PSUnit> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSUnit, bl);
+        super.onFillEntityFullInfo(pSUnit, bl);
     }
 
     protected void onWriteBackParent(PSUnit pSUnit, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUnit, bl);
+        super.onWriteBackParent(pSUnit, bl);
     }
 
     @Override
@@ -148,7 +148,7 @@ extends PSCoreSysServiceBase<PSUnit> {
     }
 
     protected void onRemoveEntityUncopyValues(PSUnit pSUnit, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUnit, bl);
+        super.onRemoveEntityUncopyValues(pSUnit, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUnit pSUnit, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -166,7 +166,7 @@ extends PSCoreSysServiceBase<PSUnit> {
         if ((entityFieldError = this.onCheckField_UnitWidth(bl, pSUnit, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUnit, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUnit, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSUnit pSUnit, boolean bl2, boolean bl3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSUnit> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSUnit, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSUnit, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -204,7 +204,7 @@ extends PSCoreSysServiceBase<PSUnit> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUnitId_Default((IEntity)pSUnit, bl2, bl3);
+            string2 = this.onTestValueRule_PSUnitId_Default(pSUnit, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUNITID");
@@ -229,7 +229,7 @@ extends PSCoreSysServiceBase<PSUnit> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUnitName_Default((IEntity)pSUnit, bl2, bl3);
+            string2 = this.onTestValueRule_PSUnitName_Default(pSUnit, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUNITNAME");
@@ -251,7 +251,7 @@ extends PSCoreSysServiceBase<PSUnit> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UnitWidth_Default((IEntity)pSUnit, bl2, bl3);
+            string = this.onTestValueRule_UnitWidth_Default(pSUnit, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UNITWIDTH");
@@ -264,11 +264,11 @@ extends PSCoreSysServiceBase<PSUnit> {
     }
 
     protected void onSyncEntity(PSUnit pSUnit, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUnit, bl);
+        super.onSyncEntity(pSUnit, bl);
     }
 
     protected void onSyncIndexEntities(PSUnit pSUnit, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUnit, bl);
+        super.onSyncIndexEntities(pSUnit, bl);
     }
 
     public Object getDataContextValue(PSUnit pSUnit, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -276,14 +276,14 @@ extends PSCoreSysServiceBase<PSUnit> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUnit, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUnit, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUnit pSUnit, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUnit, arrayList, n);
+        super.onExportMajorModel(pSUnit, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -388,14 +388,14 @@ extends PSCoreSysServiceBase<PSUnit> {
 
     protected boolean onMergeChild(String string, String string2, PSUnit pSUnit) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUnit)) {
+        if (super.onMergeChild(string, string2, pSUnit)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUnit pSUnit) throws Exception {
-        super.onUpdateParent((IEntity)pSUnit);
+        super.onUpdateParent(pSUnit);
     }
 
     @Override

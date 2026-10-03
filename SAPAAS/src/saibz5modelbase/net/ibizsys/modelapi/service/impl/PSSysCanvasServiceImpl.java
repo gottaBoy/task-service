@@ -114,9 +114,9 @@ implements IPSSysCanvasService {
 
     @Override
     protected List<PSSysCanvas> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysCanvas> list = new ArrayList<PSSysCanvas>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysCanvas> items = this.listByPSModule(parent);

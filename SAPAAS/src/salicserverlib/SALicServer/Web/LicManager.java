@@ -75,7 +75,7 @@ extends TimerTask {
         this.licNode = null;
         this.licNode = new XMLNode();
         XMLConfig.LoadFromXML((String)strContent, (XMLConfig)this.licNode);
-        ArrayList appList = new ArrayList();
+        ArrayList<XMLNode> appList = new ArrayList<XMLNode>();
         this.licNode.GetChildNodeByNodeName("SAGAAPPLICATION", appList);
         this.gaAppMap.clear();
         for (XMLNode appNode : appList) {
@@ -153,22 +153,20 @@ extends TimerTask {
                 ret.SetValue("RETINFO", "\u5e94\u7528\u6388\u6743\u8d85\u65f6");
                 return this.EncryptResult(ret);
             }
-            TreeMap<Object, Object> appSessionMap = null;
-            TreeMap<String, Object> treeMap = this.gaAppSessionMap;
-            synchronized (treeMap) {
+            TreeMap<String, String> appSessionMap;
+            synchronized (this.gaAppSessionMap) {
                 if (this.gaAppSessionMap.containsKey(strAppId)) {
                     appSessionMap = this.gaAppSessionMap.get(strAppId);
                 } else {
-                    appSessionMap = new TreeMap();
+                    appSessionMap = new TreeMap<String, String>();
                     this.gaAppSessionMap.put(strAppId, appSessionMap);
                 }
             }
-            treeMap = appSessionMap;
-            synchronized (treeMap) {
+            synchronized (appSessionMap) {
                 while (appSessionMap.size() >= nAppCount) {
                     String strLastSessionId = "";
                     String strRemoveSessionId = "";
-                    Iterator<Object> iterator = appSessionMap.keySet().iterator();
+                    Iterator<String> iterator = appSessionMap.keySet().iterator();
                     while (iterator.hasNext()) {
                         String strTempSessionId;
                         strLastSessionId = strTempSessionId = (String)iterator.next();
@@ -219,18 +217,16 @@ extends TimerTask {
                 ret.SetValue("RETINFO", "\u5e94\u7528\u6388\u6743\u8d85\u65f6");
                 return this.EncryptResult(ret);
             }
-            TreeMap<Object, Object> appSessionMap = null;
-            TreeMap<String, Object> treeMap = this.gaAppSessionMap;
-            synchronized (treeMap) {
+            TreeMap<String, String> appSessionMap;
+            synchronized (this.gaAppSessionMap) {
                 if (this.gaAppSessionMap.containsKey(strAppId)) {
                     appSessionMap = this.gaAppSessionMap.get(strAppId);
                 } else {
-                    appSessionMap = new TreeMap();
+                    appSessionMap = new TreeMap<String, String>();
                     this.gaAppSessionMap.put(strAppId, appSessionMap);
                 }
             }
-            treeMap = appSessionMap;
-            synchronized (treeMap) {
+            synchronized (appSessionMap) {
                 if (appSessionMap.containsKey(strSessionId)) {
                     ret.SetValue("RETCODE", "0");
                 } else {
@@ -419,4 +415,3 @@ extends TimerTask {
         this.LoadLicenseFile(this.strLastLicenseFile);
     }
 }
-

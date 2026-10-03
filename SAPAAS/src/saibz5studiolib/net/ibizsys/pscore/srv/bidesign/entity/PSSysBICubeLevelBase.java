@@ -2126,7 +2126,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.psdef = pSDEField;
             }
             return this.psdef;
@@ -2152,7 +2152,7 @@ implements Serializable {
                 PSSysBICubeDimension pSSysBICubeDimension = new PSSysBICubeDimension();
                 pSSysBICubeDimension.setPSSysBICubeDimensionId(this.getPSSysBICubeDimensionId());
                 PSSysBICubeDimensionService pSSysBICubeDimensionService = (PSSysBICubeDimensionService)ServiceGlobal.getService(PSSysBICubeDimensionService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBICubeDimensionService.autoGet((IEntity)pSSysBICubeDimension);
+                pSSysBICubeDimensionService.autoGet(pSSysBICubeDimension);
                 this.pssysbicubedimension = pSSysBICubeDimension;
             }
             return this.pssysbicubedimension;
@@ -2178,7 +2178,7 @@ implements Serializable {
                 PSSysBIHierarchy pSSysBIHierarchy = new PSSysBIHierarchy();
                 pSSysBIHierarchy.setPSSysBIHierarchyId(this.getPSSysBIHierarchyId());
                 PSSysBIHierarchyService pSSysBIHierarchyService = (PSSysBIHierarchyService)ServiceGlobal.getService(PSSysBIHierarchyService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBIHierarchyService.autoGet((IEntity)pSSysBIHierarchy);
+                pSSysBIHierarchyService.autoGet(pSSysBIHierarchy);
                 this.pssysbihierarchy = pSSysBIHierarchy;
             }
             return this.pssysbihierarchy;
@@ -2204,7 +2204,7 @@ implements Serializable {
                 PSSysBILevel pSSysBILevel = new PSSysBILevel();
                 pSSysBILevel.setPSSysBILevelId(this.getPSSysBILevelId());
                 PSSysBILevelService pSSysBILevelService = (PSSysBILevelService)ServiceGlobal.getService(PSSysBILevelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBILevelService.autoGet((IEntity)pSSysBILevel);
+                pSSysBILevelService.autoGet(pSSysBILevel);
                 this.pssysbilevel = pSSysBILevel;
             }
             return this.pssysbilevel;

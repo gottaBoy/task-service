@@ -913,7 +913,7 @@ implements Serializable {
                 PSModelAPIInt pSModelAPIInt = new PSModelAPIInt();
                 pSModelAPIInt.setPSModelAPIIntId(this.getPSModelAPIIntId());
                 PSModelAPIIntService pSModelAPIIntService = (PSModelAPIIntService)ServiceGlobal.getService(PSModelAPIIntService.class, (SessionFactory)this.getSessionFactory());
-                pSModelAPIIntService.autoGet((IEntity)pSModelAPIInt);
+                pSModelAPIIntService.autoGet(pSModelAPIInt);
                 this.psmodelapiint = pSModelAPIInt;
             }
             return this.psmodelapiint;

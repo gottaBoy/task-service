@@ -1,22 +1,30 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.CtrlActionHandlerBase;
-import net.ibizsys.paas.ctrlhandler.IGridActionHandler;
-import net.ibizsys.paas.ctrlhandler.IGridHandler;
 import net.ibizsys.paas.ctrlmodel.IGridModel;
 
-public abstract class GridActionHandlerBase
-extends CtrlActionHandlerBase
-implements IGridActionHandler {
-    protected IGridHandler getGridHandler() {
-        return (IGridHandler)this.getCtrlHandler();
-    }
+/**
+ * 表格操作处理器对象接口
+ * @author Administrator
+ *
+ */
+public  abstract class GridActionHandlerBase extends CtrlActionHandlerBase implements IGridActionHandler{
 
-    protected IGridModel getGridModel() {
-        return (IGridModel)this.getGridHandler().getCtrlModel();
-    }
+	/**
+	 * 获取表格处理器对象
+	 * @return
+	 */
+	protected IGridHandler getGridHandler(){
+		return (IGridHandler)this.getCtrlHandler();
+	}
+	
+	/**
+	 * 获取表格模型对象
+	 * @return
+	 */
+	protected IGridModel getGridModel(){
+		return (IGridModel)getGridHandler().getCtrlModel();
+	}
+	
+	
+	
 }
-

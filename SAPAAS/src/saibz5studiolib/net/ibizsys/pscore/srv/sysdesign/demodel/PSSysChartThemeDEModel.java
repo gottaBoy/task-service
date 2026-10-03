@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysChartThemeDEModelBase;
 
 public class PSSysChartThemeDEModel
 extends PSSysChartThemeDEModelBase {
+
+    public PSSysChartThemeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

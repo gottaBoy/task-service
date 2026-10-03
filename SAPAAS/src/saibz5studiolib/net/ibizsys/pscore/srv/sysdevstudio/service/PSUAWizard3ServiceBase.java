@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
     }
 
     protected void onFillParentInfo(PSUAWizard3 pSUAWizard3, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSUAWizard3, string, string2, string3);
+        super.onFillParentInfo(pSUAWizard3, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSUAWizard3, bl);
+        super.onFillEntityFullInfo(pSUAWizard3, bl);
     }
 
     protected void onWriteBackParent(PSUAWizard3 pSUAWizard3, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUAWizard3, bl);
+        super.onWriteBackParent(pSUAWizard3, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
     }
 
     protected void onRemoveEntityUncopyValues(PSUAWizard3 pSUAWizard3, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUAWizard3, bl);
+        super.onRemoveEntityUncopyValues(pSUAWizard3, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUAWizard3 pSUAWizard3, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -191,7 +191,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
         if ((entityFieldError = this.onCheckField_UserName(bl, pSUAWizard3, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUAWizard3, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUAWizard3, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ActionResult(boolean bl, PSUAWizard3 pSUAWizard3, boolean bl2, boolean bl3) throws Exception {
@@ -204,7 +204,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionResult_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string2 = this.onTestValueRule_ActionResult_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONRESULT");
@@ -226,7 +226,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DevServerCount_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string = this.onTestValueRule_DevServerCount_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEVSERVERCOUNT");
@@ -248,7 +248,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DevSlnCodeName_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string2 = this.onTestValueRule_DevSlnCodeName_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEVSLNCODENAME");
@@ -270,7 +270,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DevSlnCount_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string = this.onTestValueRule_DevSlnCount_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEVSLNCOUNT");
@@ -292,7 +292,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DevSlnName_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string2 = this.onTestValueRule_DevSlnName_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEVSLNNAME");
@@ -314,7 +314,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MSSqlInstCount_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string = this.onTestValueRule_MSSqlInstCount_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MSSQLINSTCOUNT");
@@ -336,7 +336,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MySQL5InstCount_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string = this.onTestValueRule_MySQL5InstCount_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MYSQL5INSTCOUNT");
@@ -358,7 +358,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OraInstCount_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string = this.onTestValueRule_OraInstCount_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORAINSTCOUNT");
@@ -380,7 +380,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSConsoleId_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSConsoleId_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSCONSOLEID");
@@ -405,7 +405,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUAWizard3Id_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string2 = this.onTestValueRule_PSUAWizard3Id_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUAWIZARD3ID");
@@ -430,7 +430,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUAWizard3Name_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string2 = this.onTestValueRule_PSUAWizard3Name_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUAWIZARD3NAME");
@@ -452,7 +452,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Tomcat7ASCount_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string = this.onTestValueRule_Tomcat7ASCount_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TOMCAT7ASCOUNT");
@@ -474,7 +474,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UserCountPerSys_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string = this.onTestValueRule_UserCountPerSys_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCOUNTPERSYS");
@@ -496,7 +496,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserLoginName_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string2 = this.onTestValueRule_UserLoginName_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERLOGINNAME");
@@ -518,7 +518,7 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSUAWizard3, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSUAWizard3, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -531,11 +531,11 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
     }
 
     protected void onSyncEntity(PSUAWizard3 pSUAWizard3, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUAWizard3, bl);
+        super.onSyncEntity(pSUAWizard3, bl);
     }
 
     protected void onSyncIndexEntities(PSUAWizard3 pSUAWizard3, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUAWizard3, bl);
+        super.onSyncIndexEntities(pSUAWizard3, bl);
     }
 
     public Object getDataContextValue(PSUAWizard3 pSUAWizard3, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -543,14 +543,14 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUAWizard3, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUAWizard3, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUAWizard3 pSUAWizard3, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUAWizard3, arrayList, n);
+        super.onExportMajorModel(pSUAWizard3, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -772,14 +772,14 @@ extends PSCoreSysServiceBase<PSUAWizard3> {
 
     protected boolean onMergeChild(String string, String string2, PSUAWizard3 pSUAWizard3) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUAWizard3)) {
+        if (super.onMergeChild(string, string2, pSUAWizard3)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUAWizard3 pSUAWizard3) throws Exception {
-        super.onUpdateParent((IEntity)pSUAWizard3);
+        super.onUpdateParent(pSUAWizard3);
     }
 
     @Override

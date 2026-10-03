@@ -1,11 +1,9 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdynawf.controller;
 
-import net.ibizsys.ssdynawf.controller.DynaWFEditViewControllerBase;
+public abstract class DynaWFStartViewControllerBase extends DynaWFEditViewControllerBase {
 
-public abstract class DynaWFStartViewControllerBase
-extends DynaWFEditViewControllerBase {
+	public DynaWFStartViewControllerBase() throws Exception {
+		super();
+	}
+
 }
-

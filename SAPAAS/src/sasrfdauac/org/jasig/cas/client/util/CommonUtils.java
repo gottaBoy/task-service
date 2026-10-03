@@ -145,36 +145,21 @@ public final class CommonUtils {
         return request.getQueryString() == null || request.getQueryString().indexOf(parameter) == -1 ? null : request.getParameter(parameter);
     }
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
     public static String getResponseFromServer(URL constructedUrl) {
         HttpURLConnection conn = null;
         try {
-            StringBuffer stringBuffer;
             conn = (HttpURLConnection)constructedUrl.openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            StringBuffer stringBuffer2 = stringBuffer = new StringBuffer(255);
-            synchronized (stringBuffer2) {
-                try {
-                    String line;
-                    while ((line = in.readLine()) != null) {
-                        stringBuffer.append(line);
-                        stringBuffer.append("\n");
-                    }
-                    String string = stringBuffer.toString();
-                    return string;
-                }
-                catch (Throwable throwable) {
-                    try {
-                        throw throwable;
-                    }
-                    catch (Exception e) {
-                        LOG.error((Object)e.getMessage(), (Throwable)e);
-                        throw new RuntimeException(e);
-                    }
+            StringBuilder response = new StringBuilder(255);
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                String line;
+                while ((line = in.readLine()) != null) {
+                    response.append(line).append('\n');
                 }
             }
+            return response.toString();
+        } catch (IOException e) {
+            LOG.error(e.getMessage(), e);
+            throw new RuntimeException(e);
         }
         finally {
             if (conn != null) {
@@ -192,4 +177,3 @@ public final class CommonUtils {
         }
     }
 }
-

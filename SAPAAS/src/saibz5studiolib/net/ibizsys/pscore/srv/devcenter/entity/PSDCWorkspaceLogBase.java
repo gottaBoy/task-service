@@ -1973,7 +1973,7 @@ implements Serializable {
                 PSDCWorkspace pSDCWorkspace = new PSDCWorkspace();
                 pSDCWorkspace.setPSDCWorkspaceId(this.getPSDCWorkspaceId());
                 PSDCWorkspaceService pSDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)this.getSessionFactory());
-                pSDCWorkspaceService.autoGet((IEntity)pSDCWorkspace);
+                pSDCWorkspaceService.autoGet(pSDCWorkspace);
                 this.psdcworkspace = pSDCWorkspace;
             }
             return this.psdcworkspace;
@@ -1999,7 +1999,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;

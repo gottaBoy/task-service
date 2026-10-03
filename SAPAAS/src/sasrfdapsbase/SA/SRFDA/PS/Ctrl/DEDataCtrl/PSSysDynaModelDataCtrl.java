@@ -81,7 +81,7 @@ extends PSDEDataCtrl {
         PSSysDynaModelService psSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
         PSSysDynaModel psSysDynaModel2 = new PSSysDynaModel();
         psSysDynaModel2.setPSSysDynaModelId(psSysDynaModel.getPSSYSDYNAMODELID());
-        psSysDynaModelService.get((IEntity)psSysDynaModel2);
+        psSysDynaModelService.get(psSysDynaModel2);
         String strUsage = psSysDynaModel2.getDynaModelUsage();
         if (StringHelper.IsNullOrEmpty((String)strUsage) || strUsage.indexOf(DYNAMODELUSAGE_IMPORTMODEL_PREFIX) != 0) {
             throw new Exception(String.format("\u672a\u652f\u6301\u7684\u6a21\u578b\u7528\u9014[%1$s]", strUsage));
@@ -103,10 +103,9 @@ extends PSDEDataCtrl {
         psSysDevBKTask.setTaskParam(psSysDynaModel.getPSSYSDYNAMODELID());
         psSysDevBKTask.setModelLevel(IPSSystem.LOADLEVEL_CODE);
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        psSysDevBKTaskService.create(psSysDevBKTask);
         SA.SRFDA.PS.Data.PSSysDevBKTask psSysDevBKTask2 = new SA.SRFDA.PS.Data.PSSysDevBKTask();
         PSSysDynaModelDataCtrl.convertEntity((IEntity)psSysDevBKTask, psSysDevBKTask2);
         this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
     }
 }
-

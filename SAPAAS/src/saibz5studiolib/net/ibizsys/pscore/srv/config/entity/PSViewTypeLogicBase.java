@@ -988,7 +988,7 @@ implements Serializable {
                 PSViewLogicType pSViewLogicType = new PSViewLogicType();
                 pSViewLogicType.setPSViewLogicTypeId(this.getPSViewLogicTypeId());
                 PSViewLogicTypeService pSViewLogicTypeService = (PSViewLogicTypeService)ServiceGlobal.getService(PSViewLogicTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSViewLogicTypeService.autoGet((IEntity)pSViewLogicType);
+                pSViewLogicTypeService.autoGet(pSViewLogicType);
                 this.psviewlogictype = pSViewLogicType;
             }
             return this.psviewlogictype;
@@ -1014,7 +1014,7 @@ implements Serializable {
                 PSViewType pSViewType = new PSViewType();
                 pSViewType.setPSViewTypeId(this.getPSViewTypeId());
                 PSViewTypeService pSViewTypeService = (PSViewTypeService)ServiceGlobal.getService(PSViewTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSViewTypeService.autoGet((IEntity)pSViewType);
+                pSViewTypeService.autoGet(pSViewType);
                 this.psviewtype = pSViewType;
             }
             return this.psviewtype;

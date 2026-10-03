@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSSysIssueType> {
     }
 
     protected void onFillParentInfo(PSSysIssueType pSSysIssueType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSysIssueType, string, string2, string3);
+        super.onFillParentInfo(pSSysIssueType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSSysIssueType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysIssueType, bl);
+        super.onFillEntityFullInfo(pSSysIssueType, bl);
     }
 
     protected void onWriteBackParent(PSSysIssueType pSSysIssueType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysIssueType, bl);
+        super.onWriteBackParent(pSSysIssueType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSSysIssueType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysIssueType pSSysIssueType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysIssueType, bl);
+        super.onRemoveEntityUncopyValues(pSSysIssueType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysIssueType pSSysIssueType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSSysIssueType> {
         if ((entityFieldError = this.onCheckField_PSSysIssueTypeName(bl, pSSysIssueType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysIssueType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysIssueType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSSysIssueType pSSysIssueType, boolean bl2, boolean bl3) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSSysIssueType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysIssueType, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysIssueType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSSysIssueType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysIssueType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysIssueType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -218,7 +218,7 @@ extends PSCoreSysServiceBase<PSSysIssueType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysIssueTypeId_Default((IEntity)pSSysIssueType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysIssueTypeId_Default(pSSysIssueType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSISSUETYPEID");
@@ -243,7 +243,7 @@ extends PSCoreSysServiceBase<PSSysIssueType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysIssueTypeName_Default((IEntity)pSSysIssueType, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysIssueTypeName_Default(pSSysIssueType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSISSUETYPENAME");
@@ -256,11 +256,11 @@ extends PSCoreSysServiceBase<PSSysIssueType> {
     }
 
     protected void onSyncEntity(PSSysIssueType pSSysIssueType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysIssueType, bl);
+        super.onSyncEntity(pSSysIssueType, bl);
     }
 
     protected void onSyncIndexEntities(PSSysIssueType pSSysIssueType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysIssueType, bl);
+        super.onSyncIndexEntities(pSSysIssueType, bl);
     }
 
     public Object getDataContextValue(PSSysIssueType pSSysIssueType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -268,14 +268,14 @@ extends PSCoreSysServiceBase<PSSysIssueType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysIssueType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysIssueType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysIssueType pSSysIssueType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysIssueType, arrayList, n);
+        super.onExportMajorModel(pSSysIssueType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -388,14 +388,14 @@ extends PSCoreSysServiceBase<PSSysIssueType> {
 
     protected boolean onMergeChild(String string, String string2, PSSysIssueType pSSysIssueType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysIssueType)) {
+        if (super.onMergeChild(string, string2, pSSysIssueType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysIssueType pSSysIssueType) throws Exception {
-        super.onUpdateParent((IEntity)pSSysIssueType);
+        super.onUpdateParent(pSSysIssueType);
     }
 
     @Override

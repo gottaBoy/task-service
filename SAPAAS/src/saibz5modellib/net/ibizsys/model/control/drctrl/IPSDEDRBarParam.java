@@ -1,19 +1,41 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.drctrl;
 
-import net.ibizsys.model.control.drctrl.IPSDEDRCtrlParam;
 
-public interface IPSDEDRBarParam
-extends IPSDEDRCtrlParam {
-    @Override
-    public String getPSSysCounterId();
+/**
+ * 实体关系栏参数对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDEDRBarParam extends IPSDEDRCtrlParam
+{
+	/**
+	 * 获取界面计数器标识
+	 * @return
+	 */
+	String getPSSysCounterId();
+	
+	
+	
+	
+	/**
+	 * 获取导航栏标题
+	 * @return
+	 */
+	String getTitle();
 
-    public String getTitle();
-
-    public String getTitlePSLanguageResId();
-
-    public Boolean isShowTitle();
+	
+	
+	/**
+	 * 获取标题语言资源标识
+	 * @return
+	 */
+	String getTitlePSLanguageResId();
+	
+	
+	
+	/**
+	 * 是否显示标题
+	 * @return
+	 */
+	Boolean isShowTitle(); 
 }
-

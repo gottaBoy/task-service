@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.DynaViewControllerInstBase;
+/**
+ * 动态数据看板视图控制器实例基类
+ * @author Administrator
+ *
+ */
+public abstract class DynaDashboardViewControllerInstBase  extends DynaViewControllerInstBase{
 
-public abstract class DynaDashboardViewControllerInstBase
-extends DynaViewControllerInstBase {
+	public DynaDashboardViewControllerInstBase() throws Exception {
+		super();
+	}
 }
-

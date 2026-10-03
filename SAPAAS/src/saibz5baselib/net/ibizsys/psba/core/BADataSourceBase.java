@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import net.ibizsys.psba.core.IBADataSource;
+/**
+ * 大数据体系数据源
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class BADataSourceBase implements IBADataSource {
 
-public abstract class BADataSourceBase
-implements IBADataSource {
 }
-

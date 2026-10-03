@@ -2917,7 +2917,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getInheritPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.inheritpsde = pSDataEntity;
             }
             return this.inheritpsde;
@@ -2943,7 +2943,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getMinorPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.minorpsde = pSDataEntity;
             }
             return this.minorpsde;
@@ -2969,7 +2969,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -2995,7 +2995,7 @@ implements Serializable {
                 PSDER pSDER = new PSDER();
                 pSDER.setPSDERId(this.getPSDERId());
                 PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
-                pSDERService.autoGet((IEntity)pSDER);
+                pSDERService.autoGet(pSDER);
                 this.psder = pSDER;
             }
             return this.psder;
@@ -3021,7 +3021,7 @@ implements Serializable {
                 PSSysBDModule pSSysBDModule = new PSSysBDModule();
                 pSSysBDModule.setPSSysBDModuleId(this.getPSSysBDModuleId());
                 PSSysBDModuleService pSSysBDModuleService = (PSSysBDModuleService)ServiceGlobal.getService(PSSysBDModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDModuleService.autoGet((IEntity)pSSysBDModule);
+                pSSysBDModuleService.autoGet(pSSysBDModule);
                 this.pssysbdmodule = pSSysBDModule;
             }
             return this.pssysbdmodule;
@@ -3047,7 +3047,7 @@ implements Serializable {
                 PSSysBDPart pSSysBDPart = new PSSysBDPart();
                 pSSysBDPart.setPSSysBDPartId(this.getPSSysBDPartId());
                 PSSysBDPartService pSSysBDPartService = (PSSysBDPartService)ServiceGlobal.getService(PSSysBDPartService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDPartService.autoGet((IEntity)pSSysBDPart);
+                pSSysBDPartService.autoGet(pSSysBDPart);
                 this.pssysbdpart = pSSysBDPart;
             }
             return this.pssysbdpart;
@@ -3073,7 +3073,7 @@ implements Serializable {
                 PSSysBDScheme pSSysBDScheme = new PSSysBDScheme();
                 pSSysBDScheme.setPSSysBDSchemeId(this.getPSSysBDSchemeId());
                 PSSysBDSchemeService pSSysBDSchemeService = (PSSysBDSchemeService)ServiceGlobal.getService(PSSysBDSchemeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDSchemeService.autoGet((IEntity)pSSysBDScheme);
+                pSSysBDSchemeService.autoGet(pSSysBDScheme);
                 this.pssysbdscheme = pSSysBDScheme;
             }
             return this.pssysbdscheme;

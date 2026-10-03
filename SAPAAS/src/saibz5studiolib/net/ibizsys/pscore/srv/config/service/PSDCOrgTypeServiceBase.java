@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
     }
 
     protected void onFillParentInfo(PSDCOrgType pSDCOrgType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDCOrgType, string, string2, string3);
+        super.onFillParentInfo(pSDCOrgType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCOrgType, bl);
+        super.onFillEntityFullInfo(pSDCOrgType, bl);
     }
 
     protected void onWriteBackParent(PSDCOrgType pSDCOrgType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCOrgType, bl);
+        super.onWriteBackParent(pSDCOrgType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCOrgType pSDCOrgType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCOrgType, bl);
+        super.onRemoveEntityUncopyValues(pSDCOrgType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCOrgType pSDCOrgType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -164,7 +164,7 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDCOrgType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCOrgType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCOrgType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSDCOrgType pSDCOrgType, boolean bl2, boolean bl3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCOrgType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCOrgType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCOrgTypeId_Default((IEntity)pSDCOrgType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCOrgTypeId_Default(pSDCOrgType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCORGTYPEID");
@@ -227,7 +227,7 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCOrgTypeName_Default((IEntity)pSDCOrgType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCOrgTypeName_Default(pSDCOrgType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCORGTYPENAME");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserData_Default((IEntity)pSDCOrgType, bl2, bl3);
+            string2 = this.onTestValueRule_UserData_Default(pSDCOrgType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERDATA");
@@ -271,7 +271,7 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserData2_Default((IEntity)pSDCOrgType, bl2, bl3);
+            string2 = this.onTestValueRule_UserData2_Default(pSDCOrgType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERDATA2");
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDCOrgType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDCOrgType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -309,11 +309,11 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
     }
 
     protected void onSyncEntity(PSDCOrgType pSDCOrgType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCOrgType, bl);
+        super.onSyncEntity(pSDCOrgType, bl);
     }
 
     protected void onSyncIndexEntities(PSDCOrgType pSDCOrgType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCOrgType, bl);
+        super.onSyncIndexEntities(pSDCOrgType, bl);
     }
 
     public Object getDataContextValue(PSDCOrgType pSDCOrgType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -321,14 +321,14 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCOrgType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCOrgType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCOrgType pSDCOrgType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCOrgType, arrayList, n);
+        super.onExportMajorModel(pSDCOrgType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -463,14 +463,14 @@ extends PSCoreSysServiceBase<PSDCOrgType> {
 
     protected boolean onMergeChild(String string, String string2, PSDCOrgType pSDCOrgType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCOrgType)) {
+        if (super.onMergeChild(string, string2, pSDCOrgType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCOrgType pSDCOrgType) throws Exception {
-        super.onUpdateParent((IEntity)pSDCOrgType);
+        super.onUpdateParent(pSDCOrgType);
     }
 
     @Override

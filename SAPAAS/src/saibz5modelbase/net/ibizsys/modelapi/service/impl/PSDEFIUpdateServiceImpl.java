@@ -75,7 +75,7 @@ implements IPSDEFIUpdateService {
     @Override
     protected List<PSDEFIUpdate> onListAll() throws Exception {
         ArrayList<PSDEFIUpdate> list = new ArrayList<PSDEFIUpdate>();
-        List psdeforms = PSModelServiceUtil.getInstance().getPSDEFormService().listAll();
+        List<PSDEForm> psdeforms = PSModelServiceUtil.getInstance().getPSDEFormService().listAll();
         if (psdeforms != null) {
             for (PSDEForm parent : psdeforms) {
                 List<PSDEFIUpdate> items = this.listByPSDEForm(parent);

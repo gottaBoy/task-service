@@ -157,9 +157,9 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
             PSCodeList pSCodeList = (PSCodeList)iService.getDEModel().createEntity();
             pSCodeList.set("PSCODELISTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCodeList);
+                iService.getTemp(pSCodeList);
             } else {
-                iService.get((IEntity)pSCodeList);
+                iService.get(pSCodeList);
             }
             this.onFillParentInfo_StepPSCodeList(pSSysAIPipelineJob, pSCodeList);
             return;
@@ -169,9 +169,9 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
             PSDEDataSet pSDEDataSet = (PSDEDataSet)iService.getDEModel().createEntity();
             pSDEDataSet.set("PSDEDATASETID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEDataSet);
+                iService.getTemp(pSDEDataSet);
             } else {
-                iService.get((IEntity)pSDEDataSet);
+                iService.get(pSDEDataSet);
             }
             this.onFillParentInfo_PSDEDataSet(pSSysAIPipelineJob, pSDEDataSet);
             return;
@@ -181,9 +181,9 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
             PSSysAIFactory pSSysAIFactory = (PSSysAIFactory)iService.getDEModel().createEntity();
             pSSysAIFactory.set("PSSYSAIFACTORYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysAIFactory);
+                iService.getTemp(pSSysAIFactory);
             } else {
-                iService.get((IEntity)pSSysAIFactory);
+                iService.get(pSSysAIFactory);
             }
             this.onFillParentInfo_PSSysAIFactory(pSSysAIPipelineJob, pSSysAIFactory);
             return;
@@ -193,9 +193,9 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
             PSSysAIPipelineAgent pSSysAIPipelineAgent = (PSSysAIPipelineAgent)iService.getDEModel().createEntity();
             pSSysAIPipelineAgent.set("PSSYSAIPIPELINEAGENTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysAIPipelineAgent);
+                iService.getTemp(pSSysAIPipelineAgent);
             } else {
-                iService.get((IEntity)pSSysAIPipelineAgent);
+                iService.get(pSSysAIPipelineAgent);
             }
             this.onFillParentInfo_PSSysAIPipelineAgent(pSSysAIPipelineJob, pSSysAIPipelineAgent);
             return;
@@ -205,14 +205,14 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
             PSSysAIWorkerAgent pSSysAIWorkerAgent = (PSSysAIWorkerAgent)iService.getDEModel().createEntity();
             pSSysAIWorkerAgent.set("PSSYSAIWORKERAGENTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysAIWorkerAgent);
+                iService.getTemp(pSSysAIWorkerAgent);
             } else {
-                iService.get((IEntity)pSSysAIWorkerAgent);
+                iService.get(pSSysAIWorkerAgent);
             }
             this.onFillParentInfo_PSSysAIWorkerAgent(pSSysAIPipelineJob, pSSysAIWorkerAgent);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysAIPipelineJob, string, string2, string3);
+        super.onFillParentInfo(pSSysAIPipelineJob, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -252,7 +252,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         if (bl && pSSysAIPipelineJob.getValidFlag() == null) {
             pSSysAIPipelineJob.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysAIPipelineJob, bl);
+        super.onFillEntityFullInfo(pSSysAIPipelineJob, bl);
         this.onFillEntityFullInfo_StepPSCodeList(pSSysAIPipelineJob, bl);
         this.onFillEntityFullInfo_PSDEDataSet(pSSysAIPipelineJob, bl);
         this.onFillEntityFullInfo_PSSysAIFactory(pSSysAIPipelineJob, bl);
@@ -276,7 +276,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
     }
 
     protected void onWriteBackParent(PSSysAIPipelineJob pSSysAIPipelineJob, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysAIPipelineJob, bl);
+        super.onWriteBackParent(pSSysAIPipelineJob, bl);
     }
 
     public ArrayList<PSSysAIPipelineJob> selectByStepPSCodeList(PSCodeListBase pSCodeListBase) throws Exception {
@@ -418,8 +418,8 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         ArrayList<PSSysAIPipelineJob> arrayList = this.selectByStepPSCodeList(pSCodeList, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCODELIST");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCodeList);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIPIPELINEJOB_PSCODELIST_STEPPSCODELISTID", "", iDataEntityModel.getName(), "PSSYSAIPIPELINEJOB", iDataEntityModel.getDataInfo((IEntity)pSCodeList), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCodeList);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIPIPELINEJOB_PSCODELIST_STEPPSCODELISTID", "", iDataEntityModel.getName(), "PSSYSAIPIPELINEJOB", iDataEntityModel.getDataInfo(pSCodeList), arrayList.get(0)));
         }
     }
 
@@ -452,7 +452,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         ArrayList<PSSysAIPipelineJob> arrayList = this.selectByStepPSCodeList(pSCodeList);
         this.onBeforeRemoveByStepPSCodeList(pSCodeList, arrayList);
         for (PSSysAIPipelineJob pSSysAIPipelineJob : arrayList) {
-            this.remove((IEntity)pSSysAIPipelineJob);
+            this.remove(pSSysAIPipelineJob);
         }
         this.onAfterRemoveByStepPSCodeList(pSCodeList, arrayList);
     }
@@ -470,8 +470,8 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         ArrayList<PSSysAIPipelineJob> arrayList = this.selectByPSDEDataSet(pSDEDataSet, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEDATASET");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEDataSet);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIPIPELINEJOB_PSDEDATASET_PSDEDATASETID", "", iDataEntityModel.getName(), "PSSYSAIPIPELINEJOB", iDataEntityModel.getDataInfo((IEntity)pSDEDataSet), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEDataSet);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIPIPELINEJOB_PSDEDATASET_PSDEDATASETID", "", iDataEntityModel.getName(), "PSSYSAIPIPELINEJOB", iDataEntityModel.getDataInfo(pSDEDataSet), arrayList.get(0)));
         }
     }
 
@@ -504,7 +504,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         ArrayList<PSSysAIPipelineJob> arrayList = this.selectByPSDEDataSet(pSDEDataSet);
         this.onBeforeRemoveByPSDEDataSet(pSDEDataSet, arrayList);
         for (PSSysAIPipelineJob pSSysAIPipelineJob : arrayList) {
-            this.remove((IEntity)pSSysAIPipelineJob);
+            this.remove(pSSysAIPipelineJob);
         }
         this.onAfterRemoveByPSDEDataSet(pSDEDataSet, arrayList);
     }
@@ -522,8 +522,8 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         ArrayList<PSSysAIPipelineJob> arrayList = this.selectByPSSysAIFactory(pSSysAIFactory, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSAIFACTORY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysAIFactory);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIPIPELINEJOB_PSSYSAIFACTORY_PSSYSAIFACTORYID", "", iDataEntityModel.getName(), "PSSYSAIPIPELINEJOB", iDataEntityModel.getDataInfo((IEntity)pSSysAIFactory), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysAIFactory);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIPIPELINEJOB_PSSYSAIFACTORY_PSSYSAIFACTORYID", "", iDataEntityModel.getName(), "PSSYSAIPIPELINEJOB", iDataEntityModel.getDataInfo(pSSysAIFactory), arrayList.get(0)));
         }
     }
 
@@ -556,7 +556,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         ArrayList<PSSysAIPipelineJob> arrayList = this.selectByPSSysAIFactory(pSSysAIFactory);
         this.onBeforeRemoveByPSSysAIFactory(pSSysAIFactory, arrayList);
         for (PSSysAIPipelineJob pSSysAIPipelineJob : arrayList) {
-            this.remove((IEntity)pSSysAIPipelineJob);
+            this.remove(pSSysAIPipelineJob);
         }
         this.onAfterRemoveByPSSysAIFactory(pSSysAIFactory, arrayList);
     }
@@ -574,8 +574,8 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         ArrayList<PSSysAIPipelineJob> arrayList = this.selectByPSSysAIPipelineAgent(pSSysAIPipelineAgent, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSAIPIPELINEAGENT");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysAIPipelineAgent);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIPIPELINEJOB_PSSYSAIPIPELINEAGENT_PSSYSAIPIPELINEAGENTID", "", iDataEntityModel.getName(), "PSSYSAIPIPELINEJOB", iDataEntityModel.getDataInfo((IEntity)pSSysAIPipelineAgent), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysAIPipelineAgent);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIPIPELINEJOB_PSSYSAIPIPELINEAGENT_PSSYSAIPIPELINEAGENTID", "", iDataEntityModel.getName(), "PSSYSAIPIPELINEJOB", iDataEntityModel.getDataInfo(pSSysAIPipelineAgent), arrayList.get(0)));
         }
     }
 
@@ -595,7 +595,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
             PSSysAIPipelineJob pSSysAIPipelineJob2 = (PSSysAIPipelineJob)this.getDEModel().createEntity();
             pSSysAIPipelineJob2.setPSSysAIPipelineJobId(pSSysAIPipelineJob.getPSSysAIPipelineJobId());
             pSSysAIPipelineJob2.setPSSysAIPipelineAgentId(null);
-            this.updateTemp((IEntity)pSSysAIPipelineJob2);
+            this.updateTemp(pSSysAIPipelineJob2);
         }
     }
 
@@ -618,7 +618,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         ArrayList<PSSysAIPipelineJob> arrayList = this.selectByPSSysAIPipelineAgent(pSSysAIPipelineAgent);
         this.onBeforeRemoveByPSSysAIPipelineAgent(pSSysAIPipelineAgent, arrayList);
         for (PSSysAIPipelineJob pSSysAIPipelineJob : arrayList) {
-            this.remove((IEntity)pSSysAIPipelineJob);
+            this.remove(pSSysAIPipelineJob);
         }
         this.onAfterRemoveByPSSysAIPipelineAgent(pSSysAIPipelineAgent, arrayList);
     }
@@ -636,8 +636,8 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         ArrayList<PSSysAIPipelineJob> arrayList = this.selectByPSSysAIWorkerAgent(pSSysAIWorkerAgent, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSAIWORKERAGENT");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysAIWorkerAgent);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIPIPELINEJOB_PSSYSAIWORKERAGENT_PSSYSAIWORKERAGENTID", "", iDataEntityModel.getName(), "PSSYSAIPIPELINEJOB", iDataEntityModel.getDataInfo((IEntity)pSSysAIWorkerAgent), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysAIWorkerAgent);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIPIPELINEJOB_PSSYSAIWORKERAGENT_PSSYSAIWORKERAGENTID", "", iDataEntityModel.getName(), "PSSYSAIPIPELINEJOB", iDataEntityModel.getDataInfo(pSSysAIWorkerAgent), arrayList.get(0)));
         }
     }
 
@@ -670,7 +670,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         ArrayList<PSSysAIPipelineJob> arrayList = this.selectByPSSysAIWorkerAgent(pSSysAIWorkerAgent);
         this.onBeforeRemoveByPSSysAIWorkerAgent(pSSysAIWorkerAgent, arrayList);
         for (PSSysAIPipelineJob pSSysAIPipelineJob : arrayList) {
-            this.remove((IEntity)pSSysAIPipelineJob);
+            this.remove(pSSysAIPipelineJob);
         }
         this.onAfterRemoveByPSSysAIWorkerAgent(pSSysAIWorkerAgent, arrayList);
     }
@@ -708,7 +708,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         ArrayList<PSSysAIPipelineJob> arrayList = this.selectTempByPSSysAIPipelineAgent(pSSysAIPipelineAgent);
         this.onBeforeRemoveTempByPSSysAIPipelineAgent(pSSysAIPipelineAgent, arrayList);
         for (PSSysAIPipelineJob pSSysAIPipelineJob : arrayList) {
-            this.removeTemp((IEntity)pSSysAIPipelineJob);
+            this.removeTemp(pSSysAIPipelineJob);
         }
         this.onAfterRemoveTempByPSSysAIPipelineAgent(pSSysAIPipelineAgent, arrayList);
     }
@@ -724,7 +724,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
 
     protected void replaceParentInfo(PSSysAIPipelineJob pSSysAIPipelineJob, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysAIPipelineJob, cloneSession);
+        super.replaceParentInfo(pSSysAIPipelineJob, cloneSession);
         if (pSSysAIPipelineJob.getStepPSCodeListId() != null && (iEntity = cloneSession.getEntity("PSCODELIST", (Object)pSSysAIPipelineJob.getStepPSCodeListId())) != null) {
             this.onFillParentInfo_StepPSCodeList(pSSysAIPipelineJob, (PSCodeList)iEntity);
         }
@@ -743,7 +743,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysAIPipelineJob pSSysAIPipelineJob, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysAIPipelineJob, bl);
+        super.onRemoveEntityUncopyValues(pSSysAIPipelineJob, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysAIPipelineJob pSSysAIPipelineJob, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -800,7 +800,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysAIPipelineJob, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysAIPipelineJob, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysAIPipelineJob, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_JobParams(boolean bl, PSSysAIPipelineJob pSSysAIPipelineJob, boolean bl2, boolean bl3) throws Exception {
@@ -813,7 +813,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JobParams_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_JobParams_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JOBPARAMS");
@@ -835,7 +835,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JobTag_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_JobTag_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JOBTAG");
@@ -857,7 +857,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -879,7 +879,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -901,7 +901,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataSetId_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataSetId_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATASETID");
@@ -923,7 +923,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIFactoryId_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIFactoryId_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAIFACTORYID");
@@ -945,7 +945,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIPipelineAgentId_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIPipelineAgentId_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAIPIPELINEAGENTID");
@@ -970,7 +970,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIPipelineJobId_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIPipelineJobId_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAIPIPELINEJOBID");
@@ -995,7 +995,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIPipelineJobName_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIPipelineJobName_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAIPIPELINEJOBNAME");
@@ -1017,7 +1017,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIWorkerAgentId_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIWorkerAgentId_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAIWORKERAGENTID");
@@ -1039,7 +1039,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StepPSCodeListId_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_StepPSCodeListId_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STEPPSCODELISTID");
@@ -1061,7 +1061,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1083,7 +1083,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1105,7 +1105,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1127,7 +1127,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1149,7 +1149,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1174,7 +1174,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysAIPipelineJob, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysAIPipelineJob, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1187,11 +1187,11 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
     }
 
     protected void onSyncEntity(PSSysAIPipelineJob pSSysAIPipelineJob, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysAIPipelineJob, bl);
+        super.onSyncEntity(pSSysAIPipelineJob, bl);
     }
 
     protected void onSyncIndexEntities(PSSysAIPipelineJob pSSysAIPipelineJob, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysAIPipelineJob, bl);
+        super.onSyncIndexEntities(pSSysAIPipelineJob, bl);
     }
 
     public Object getDataContextValue(PSSysAIPipelineJob pSSysAIPipelineJob, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1199,7 +1199,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysAIPipelineJob, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysAIPipelineJob, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysAIPipelineAgent pSSysAIPipelineAgent = pSSysAIPipelineJob.getPSSysAIPipelineAgent();
@@ -1210,7 +1210,7 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
     }
 
     protected void onExportMajorModel(PSSysAIPipelineJob pSSysAIPipelineJob, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysAIPipelineJob, arrayList, n);
+        super.onExportMajorModel(pSSysAIPipelineJob, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1592,14 +1592,14 @@ extends PSCoreSysServiceBase<PSSysAIPipelineJob> {
 
     protected boolean onMergeChild(String string, String string2, PSSysAIPipelineJob pSSysAIPipelineJob) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysAIPipelineJob)) {
+        if (super.onMergeChild(string, string2, pSSysAIPipelineJob)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysAIPipelineJob pSSysAIPipelineJob) throws Exception {
-        super.onUpdateParent((IEntity)pSSysAIPipelineJob);
+        super.onUpdateParent(pSSysAIPipelineJob);
     }
 
     @Override

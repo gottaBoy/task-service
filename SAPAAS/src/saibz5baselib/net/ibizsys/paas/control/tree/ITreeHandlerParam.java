@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.tree;
 
 import net.ibizsys.paas.control.IMDAjaxControlHandlerParam;
 
-public interface ITreeHandlerParam
-extends IMDAjaxControlHandlerParam {
-}
+/**
+ * 树后台处理对象参数
+ * 
+ * @author Administrator
+ *
+ */
+public interface ITreeHandlerParam extends IMDAjaxControlHandlerParam {
 
+}

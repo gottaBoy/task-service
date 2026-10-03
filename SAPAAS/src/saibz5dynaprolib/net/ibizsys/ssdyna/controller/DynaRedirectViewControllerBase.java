@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.DynaViewControllerBase;
+/**
+ * 动态重定向视图控制器基类
+ * @author Administrator
+ *
+ */
+public abstract class DynaRedirectViewControllerBase extends DynaViewControllerBase {
 
-public abstract class DynaRedirectViewControllerBase
-extends DynaViewControllerBase {
+	public DynaRedirectViewControllerBase() throws Exception {
+		super();
+	}
+
 }
-

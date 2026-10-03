@@ -27,8 +27,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Vector;
 import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.entity.EntityBase;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.DataTypeHelper;
 import net.ibizsys.paas.util.StringHelper;
@@ -66,31 +64,27 @@ public class PSWFVersionHelper {
      * WARNING - void declaration
      */
     protected void updatePSWFVersionModel2(PSWFVersion pSWFVersion, JSONArray jSONArray, HashMap<String, PSWFProcess> hashMap, HashMap<String, PSWFLink> hashMap2) throws Exception {
-        void var16_25;
+        int var16_25 = 0;
         Object object;
-        EntityBase entityBase;
         Object object2;
         Object object3;
         Object object4;
-        Object object5;
-        Object object6;
-        Object object72;
         HashMap<String, String> hashMap3 = new HashMap<String, String>();
-        HashMap<Object, Object> hashMap4 = new HashMap<Object, Object>();
+        HashMap<String, String> hashMap4 = new HashMap<String, String>();
         HashMap<PSWFProcessBase, JSONObject> hashMap5 = new HashMap<PSWFProcessBase, JSONObject>();
-        HashMap<Object, EntityBase> hashMap6 = new HashMap<Object, EntityBase>();
-        HashMap<String, EntityBase> hashMap7 = new HashMap<String, EntityBase>();
+        HashMap<String, PSWFProcess> hashMap6 = new HashMap<String, PSWFProcess>();
+        HashMap<String, PSWFProcess> hashMap7 = new HashMap<String, PSWFProcess>();
         int n = jSONArray.size();
         PSWFProcessService pSWFProcessService = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
         PSWFLinkService pSWFLinkService = (PSWFLinkService)ServiceGlobal.getService(PSWFLinkService.class, (SessionFactory)this.getSessionFactory());
-        HashMap<Object, JSONObject> hashMap8 = new HashMap<Object, JSONObject>();
+        HashMap<String, HashMap<String, JSONObject>> hashMap8 = new HashMap<String, HashMap<String, JSONObject>>();
         for (int i = 0; i < n; ++i) {
             JSONObject jSONObject;
             int n2;
             JSONObject jSONObject2 = jSONArray.getJSONObject(i);
             String object82 = jSONObject2.getString("resourceId");
-            object72 = jSONObject2.getJSONObject("properties");
-            object6 = jSONObject2.getJSONArray("outgoing");
+            JSONObject object72 = jSONObject2.getJSONObject("properties");
+            JSONArray object6 = jSONObject2.getJSONArray("outgoing");
             if (object6 != null) {
                 int n3 = object6.size();
                 for (n2 = 0; n2 < n3; ++n2) {
@@ -100,7 +94,7 @@ public class PSWFVersionHelper {
                     hashMap3.put(string, object82);
                 }
             }
-            object5 = jSONObject2.getJSONObject("bounds");
+            JSONObject object5 = jSONObject2.getJSONObject("bounds");
             n2 = -1;
             int n4 = -1;
             int n5 = -1;
@@ -109,24 +103,24 @@ public class PSWFVersionHelper {
                 object4 = object5.getJSONObject("upperLeft");
                 object3 = object5.getJSONObject("lowerRight");
                 if (object4 != null) {
-                    n2 = object4.getIntValue("x");
-                    n4 = object4.getIntValue("y");
+                    n2 = ((JSONObject)object4).getIntValue("x");
+                    n4 = ((JSONObject)object4).getIntValue("y");
                     if (object3 != null) {
-                        n5 = object3.getIntValue("x") - n2;
-                        n6 = object3.getIntValue("y") - n4;
+                        n5 = ((JSONObject)object3).getIntValue("x") - n2;
+                        n6 = ((JSONObject)object3).getIntValue("y") - n4;
                     }
                 }
             }
             object4 = object72.getString("documentation");
             object3 = object72.getString("name");
             object2 = jSONObject2.getJSONObject("stencil").getString("id");
-            entityBase = null;
+            PSWFProcess entityBase = null;
             if (!(StringHelper.isNullOrEmpty((String)object4) || StringHelper.compare((String)object2, (String)"StartNoneEvent", (boolean)true) != 0 && StringHelper.compare((String)object2, (String)"EndNoneEvent", (boolean)true) != 0 && StringHelper.compare((String)object2, (String)"UserTask", (boolean)true) != 0 && StringHelper.compare((String)object2, (String)"ServiceTask", (boolean)true) != 0 && StringHelper.compare((String)object2, (String)"ExclusiveGateway", (boolean)true) != 0 && StringHelper.compare((String)object2, (String)"InclusiveGateway", (boolean)true) != 0 && StringHelper.compare((String)object2, (String)"ParallelGateway", (boolean)true) != 0 && StringHelper.compare((String)object2, (String)"SubProcess", (boolean)true) != 0 && StringHelper.compare((String)object2, (String)"CatchTimerEvent", (boolean)true) != 0 && StringHelper.compare((String)object2, (String)"CallActivity", (boolean)true) != 0)) {
                 entityBase = hashMap.remove(object4);
                 if (entityBase == null) {
                     object4 = null;
                 } else {
-                    hashMap6.put(object4, entityBase);
+                    hashMap6.put((String)object4, entityBase);
                     hashMap7.put(object82, entityBase);
                 }
             }
@@ -193,7 +187,7 @@ public class PSWFVersionHelper {
                     pSWFProcessService.createTemp(entityBase);
                     object72.put("documentation", (Object)entityBase.getPSWFProcessId());
                     object4 = entityBase.getPSWFProcessId();
-                    hashMap6.put(object4, entityBase);
+                    hashMap6.put((String)object4, entityBase);
                     hashMap7.put(object82, entityBase);
                 }
             } else if (entityBase != null) {
@@ -212,10 +206,10 @@ public class PSWFVersionHelper {
                 } else {
                     entityBase.resetTopPos();
                 }
-                pSWFProcessService.updateTemp((IEntity)entityBase);
+                pSWFProcessService.updateTemp(entityBase);
             }
             if (!StringHelper.isNullOrEmpty((String)object4)) {
-                hashMap4.put(object82, object4);
+                hashMap4.put(object82, (String)object4);
             }
             if (entityBase != null) {
                 object = entityBase.getMultiInstMode();
@@ -232,8 +226,8 @@ public class PSWFVersionHelper {
                 if (arrayList == 0) {
                     object = ((String)object).substring(4);
                 }
-                jSONObject = this.fillSubProcessModel((PSWFProcess)entityBase, jSONObject2, (String)object);
-                hashMap8.put(object, jSONObject);
+                HashMap<String, JSONObject> subProcessFlows = this.fillSubProcessModel(entityBase, jSONObject2, (String)object);
+                hashMap8.put((String)object, subProcessFlows);
             }
             if (entityBase != null && StringHelper.compare((String)object2, (String)"CatchTimerEvent", (boolean)true) == 0) {
                 object72.put("timerdatedefinition", (Object)StringHelper.format((String)"${ACVTIVEDATA.%1$s}", (Object)entityBase.getTimeoutPSDEFName()));
@@ -288,17 +282,17 @@ public class PSWFVersionHelper {
         for (int i = 0; i < jSONArray.size(); ++i) {
             JSONObject jSONObject;
             JSONObject iterator = jSONArray.getJSONObject(i);
-            object72 = iterator.getJSONObject("stencil").getString("id");
+            String object72 = iterator.getJSONObject("stencil").getString("id");
             if (StringHelper.compare((String)object72, (String)"SequenceFlow", (boolean)true) != 0 && StringHelper.compare((String)object72, (String)"MessageFlow", (boolean)true) != 0) continue;
-            object6 = iterator.getString("resourceId");
-            object5 = iterator.getJSONObject("properties");
+            String object6 = iterator.getString("resourceId");
+            JSONObject object5 = iterator.getJSONObject("properties");
             String string = object5.getString("documentation");
             JSONObject jSONObject4 = iterator.getJSONObject("executionlisteners");
             String string2 = "";
             JSONArray jSONArray2 = iterator.getJSONArray("outgoing");
             if (jSONArray2 != null && jSONArray2.size() > 0) {
                 object4 = jSONArray2.getJSONObject(0);
-                string2 = object4.getString("resourceId");
+                string2 = ((JSONObject)object4).getString("resourceId");
             }
             object4 = null;
             if (!StringHelper.isNullOrEmpty((String)string2)) {
@@ -309,7 +303,7 @@ public class PSWFVersionHelper {
             if (!StringHelper.isNullOrEmpty((String)object3)) {
                 object2 = (PSWFProcess)hashMap7.get(object3);
             }
-            entityBase = null;
+            PSWFLink entityBase = null;
             object = object5.getString("name");
             if (!StringHelper.isNullOrEmpty((String)string) && (entityBase = hashMap2.remove(string)) == null) {
                 string = null;
@@ -361,7 +355,7 @@ public class PSWFVersionHelper {
                     string = entityBase.getPSWFLinkId();
                 }
             } else {
-                EntityBase entityBase2;
+                PSWFLink entityBase2;
                 Object object8;
                 boolean bl = false;
                 boolean bl2 = false;
@@ -376,8 +370,7 @@ public class PSWFVersionHelper {
                     } else {
                         object8 = entityBase.getCustomCond();
                         if (StringHelper.isNullOrEmpty((String)object8) && pSWFVersion.getPSWF() != null && pSWFVersion.getPSWF().getPSWFDEs().size() > 0) {
-                            entityBase2 = pSWFVersion.getPSWF().getPSWFDEs().get(0);
-                            object8 = this.getActivitiCustomCond((PSWFLink)entityBase, (PSWFDE)entityBase2);
+                            object8 = this.getActivitiCustomCond(entityBase, pSWFVersion.getPSWF().getPSWFDEs().get(0));
                         }
                     }
                     if (!StringHelper.isNullOrEmpty((String)object8)) {
@@ -430,7 +423,7 @@ public class PSWFVersionHelper {
                     entityBase.setWFLinkType("ROUTE");
                 }
                 if (bl2 || bl) {
-                    pSWFLinkService.updateTemp((IEntity)entityBase);
+                    pSWFLinkService.updateTemp(entityBase);
                 }
                 if (bl && !StringHelper.isNullOrEmpty((Object)(object8 = entityBase.get("SRFORIKEY")))) {
                     entityBase2 = new PSWFLink();
@@ -478,10 +471,10 @@ public class PSWFVersionHelper {
             jSONObject.put("executionListeners", (Object)arrayList.toArray());
             object5.put("executionlisteners", (Object)jSONObject);
         }
-        for (Map.Entry entry : hashMap5.entrySet()) {
-            object72 = ((PSWFProcess)entry.getKey()).getMultiInstMode();
-            object6 = (JSONObject)entry.getValue();
-            object5 = new PSWFLink();
+        for (Map.Entry<PSWFProcessBase, JSONObject> entry : hashMap5.entrySet()) {
+            String object72 = ((PSWFProcess)entry.getKey()).getMultiInstMode();
+            JSONObject object6 = entry.getValue();
+            PSWFLink object5 = new PSWFLink();
             ((PSWFLinkBase)object5).setFromPSWFProcId(((PSWFProcess)entry.getKey()).getPSWFProcessId());
             pSWFLinkService.selectTemp(object5, false);
             if (StringHelper.compare((String)object72, (String)"PARALLEL", (boolean)true) == 0) {
@@ -504,59 +497,57 @@ public class PSWFVersionHelper {
             object6.put("multiinstance_condition", (Object)string);
             JSONArray jSONArray3 = new JSONArray();
             object4 = new JSONObject();
-            object4.put("event", (Object)"all");
-            object4.put("implementation", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstInteractiveProcessListener");
-            object4.put("className", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstInteractiveProcessListener");
-            object4.put("expression", (Object)"");
-            object4.put("delegateExpression", (Object)"");
+            ((JSONObject)object4).put("event", (Object)"all");
+            ((JSONObject)object4).put("implementation", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstInteractiveProcessListener");
+            ((JSONObject)object4).put("className", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstInteractiveProcessListener");
+            ((JSONObject)object4).put("expression", (Object)"");
+            ((JSONObject)object4).put("delegateExpression", (Object)"");
             jSONArray3.add(object4);
             object3 = new JSONObject();
-            object3.put("taskListeners", (Object)jSONArray3);
+            ((JSONObject)object3).put("taskListeners", (Object)jSONArray3);
             object6.put("tasklisteners", object3);
             object2 = new JSONObject();
-            entityBase = new JSONArray();
+            JSONArray executionListeners = new JSONArray();
             object = new JSONObject();
-            object.put("event", (Object)"start");
-            object.put("implementation", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstStartListener");
-            object.put("className", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstStartListener");
-            object.put("expression", (Object)"");
-            object.put("delegateExpression", (Object)"");
-            entityBase.add(object);
+            ((JSONObject)object).put("event", (Object)"start");
+            ((JSONObject)object).put("implementation", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstStartListener");
+            ((JSONObject)object).put("className", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstStartListener");
+            ((JSONObject)object).put("expression", (Object)"");
+            ((JSONObject)object).put("delegateExpression", (Object)"");
+            executionListeners.add(object);
             JSONObject jSONObject6 = new JSONObject();
             jSONObject6.put("event", (Object)"end");
             jSONObject6.put("implementation", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstEndListener");
             jSONObject6.put("className", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstEndListener");
             jSONObject6.put("expression", (Object)"");
             jSONObject6.put("delegateExpression", (Object)"");
-            entityBase.add((Object)jSONObject6);
-            object2.put("executionListeners", (Object)entityBase);
+            executionListeners.add((Object)jSONObject6);
+            ((JSONObject)object2).put("executionListeners", (Object)executionListeners);
             object6.put("executionlisteners", object2);
         }
-        Vector vector = new Vector();
-        boolean bl = false;
+        Vector<JSONObject> vector = new Vector<JSONObject>();
         while (var16_25 < n) {
             String[] stringArray;
-            object72 = jSONArray.getJSONObject((int)var16_25);
-            object6 = object72.getJSONObject("stencil").getString("id");
-            if ((StringHelper.compare((String)object6, (String)"SequenceFlow", (boolean)true) == 0 || StringHelper.compare((String)object6, (String)"MessageFlow", (boolean)true) == 0) && ((String)(object5 = object72.getString("resourceId"))).indexOf("sf_") == 0 && (stringArray = ((String)object5).split("_")).length > 1) {
+            JSONObject object72 = jSONArray.getJSONObject(var16_25);
+            String object6 = object72.getJSONObject("stencil").getString("id");
+            String object5 = object72.getString("resourceId");
+            if ((StringHelper.compare((String)object6, (String)"SequenceFlow", (boolean)true) == 0 || StringHelper.compare((String)object6, (String)"MessageFlow", (boolean)true) == 0) && object5.indexOf("sf_") == 0 && (stringArray = object5.split("_")).length > 1) {
                 String string = stringArray[1];
-                if (hashMap8.containsKey(string) && ((HashMap)hashMap8.get(string)).containsKey(object5)) {
-                    ((HashMap)hashMap8.get(string)).remove(object5);
+                if (hashMap8.containsKey(string) && hashMap8.get(string).containsKey(object5)) {
+                    hashMap8.get(string).remove(object5);
                 } else {
                     vector.add(object72);
                 }
             }
             ++var16_25;
         }
-        Iterator iterator = vector.iterator();
+        Iterator<JSONObject> iterator = vector.iterator();
         while (iterator.hasNext()) {
-            object72 = (JSONObject)iterator.next();
-            jSONArray.remove(object72);
+            jSONArray.remove(iterator.next());
         }
-        for (Object object72 : hashMap8.keySet()) {
-            object6 = (HashMap)hashMap8.get(object72);
-            for (String string : ((HashMap)object6).keySet()) {
-                jSONArray.add(((HashMap)object6).get(string));
+        for (HashMap<String, JSONObject> flows : hashMap8.values()) {
+            for (JSONObject flow : flows.values()) {
+                jSONArray.add(flow);
             }
         }
     }
@@ -565,35 +556,33 @@ public class PSWFVersionHelper {
      * WARNING - void declaration
      */
     protected void updatePSWFVersionModel3(PSWFVersion pSWFVersion, JSONArray jSONArray, HashMap<String, PSWFProcess> hashMap, HashMap<String, PSWFLink> hashMap2) throws Exception {
-        void var16_25;
+        int var16_25 = 0;
         Object object;
         Object object2;
         Object object32;
         Object object4;
         String string;
         Object object5;
-        Object object6;
-        Object object72;
         HashMap<String, String> hashMap3 = new HashMap<String, String>();
-        HashMap<Object, Iterator<Object>> hashMap4 = new HashMap<Object, Iterator<Object>>();
-        HashMap<Object, JSONObject> hashMap5 = new HashMap<Object, JSONObject>();
-        HashMap<Object, Object> hashMap6 = new HashMap<Object, Object>();
-        HashMap<String, Object> hashMap7 = new HashMap<String, Object>();
+        HashMap<String, String> hashMap4 = new HashMap<String, String>();
+        HashMap<PSWFProcess, JSONObject> hashMap5 = new HashMap<PSWFProcess, JSONObject>();
+        HashMap<String, PSWFProcess> hashMap6 = new HashMap<String, PSWFProcess>();
+        HashMap<String, PSWFProcess> hashMap7 = new HashMap<String, PSWFProcess>();
         int n = jSONArray.size();
         PSWFProcessService pSWFProcessService = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
         PSWFLinkService pSWFLinkService = (PSWFLinkService)ServiceGlobal.getService(PSWFLinkService.class, (SessionFactory)this.getSessionFactory());
-        HashMap<Object, JSONObject> hashMap8 = new HashMap<Object, JSONObject>();
+        HashMap<String, HashMap<String, JSONObject>> hashMap8 = new HashMap<String, HashMap<String, JSONObject>>();
         for (int i = 0; i < n; ++i) {
             JSONObject jSONObject;
             JSONObject jSONObject2 = jSONArray.getJSONObject(i);
             String object82 = jSONObject2.getString("resourceId");
-            object72 = jSONObject2.getJSONObject("properties");
-            object6 = jSONObject2.getJSONArray("outgoing");
+            JSONObject object72 = jSONObject2.getJSONObject("properties");
+            JSONArray object6 = jSONObject2.getJSONArray("outgoing");
             if (object6 != null) {
                 int n2 = object6.size();
                 for (int j = 0; j < n2; ++j) {
                     object5 = object6.getJSONObject(j);
-                    string = object5.getString("resourceId");
+                    string = ((JSONObject)object5).getString("resourceId");
                     if (StringHelper.isNullOrEmpty((String)string)) continue;
                     hashMap3.put(string, object82);
                 }
@@ -601,20 +590,20 @@ public class PSWFVersionHelper {
             object4 = object72.getString("documentation");
             object32 = object72.getString("name");
             object5 = jSONObject2.getJSONObject("stencil").getString("id");
-            string = jSONObject2.getJSONObject("bounds");
+            JSONObject bounds = jSONObject2.getJSONObject("bounds");
             int n3 = -1;
             int n4 = -1;
             int n5 = -1;
             int n6 = -1;
-            if (string != null) {
-                object2 = string.getJSONObject("upperLeft");
-                object = string.getJSONObject("lowerRight");
+            if (bounds != null) {
+                object2 = bounds.getJSONObject("upperLeft");
+                object = bounds.getJSONObject("lowerRight");
                 if (object2 != null) {
-                    n3 = object2.getIntValue("x");
-                    n4 = object2.getIntValue("y");
+                    n3 = ((JSONObject)object2).getIntValue("x");
+                    n4 = ((JSONObject)object2).getIntValue("y");
                     if (object != null) {
-                        n5 = object.getIntValue("x") - n3;
-                        n6 = object.getIntValue("y") - n4;
+                        n5 = ((JSONObject)object).getIntValue("x") - n3;
+                        n6 = ((JSONObject)object).getIntValue("y") - n4;
                     }
                 }
             }
@@ -624,8 +613,8 @@ public class PSWFVersionHelper {
                 if (object2 == null) {
                     object4 = null;
                 } else {
-                    hashMap6.put(object4, object2);
-                    hashMap7.put(object82, object2);
+                    hashMap6.put((String)object4, (PSWFProcess)object2);
+                    hashMap7.put(object82, (PSWFProcess)object2);
                 }
             }
             if (StringHelper.isNullOrEmpty(object4)) {
@@ -688,11 +677,11 @@ public class PSWFVersionHelper {
                     if (n4 >= 0) {
                         ((PSWFProcessBase)object2).setTopPos(n4);
                     }
-                    pSWFProcessService.createTemp(object2);
+                    pSWFProcessService.createTemp((PSWFProcess)object2);
                     object72.put("documentation", (Object)((PSWFProcessBase)object2).getPSWFProcessId());
                     object4 = ((PSWFProcessBase)object2).getPSWFProcessId();
-                    hashMap6.put(object4, object2);
-                    hashMap7.put(object82, object2);
+                    hashMap6.put((String)object4, (PSWFProcess)object2);
+                    hashMap7.put(object82, (PSWFProcess)object2);
                 }
             } else if (object2 != null) {
                 ((PSWFProcessBase)object2).setPSWFVersionId(pSWFVersion.getPSWFVersionId());
@@ -710,15 +699,15 @@ public class PSWFVersionHelper {
                 } else {
                     ((PSWFProcessBase)object2).resetTopPos();
                 }
-                pSWFProcessService.updateTemp((IEntity)object2);
+                pSWFProcessService.updateTemp((PSWFProcess)object2);
             }
             if (!StringHelper.isNullOrEmpty(object4)) {
-                hashMap4.put(object82, (Iterator<Object>)object4);
+                hashMap4.put(object82, (String)object4);
             }
             if (object2 != null) {
                 object = ((PSWFProcessBase)object2).getMultiInstMode();
                 if (StringHelper.compare((String)object5, (String)"UserTask", (boolean)true) == 0 && (StringHelper.compare((String)object, (String)"PARALLEL", (boolean)true) == 0 || StringHelper.compare((String)object, (String)"SEQUENTIAL", (boolean)true) == 0)) {
-                    hashMap5.put(object2, (JSONObject)object72);
+                    hashMap5.put((PSWFProcess)object2, object72);
                 }
             }
             if (StringHelper.compare((String)object5, (String)"ServiceTask", (boolean)true) == 0) {
@@ -734,8 +723,8 @@ public class PSWFVersionHelper {
                 if (arrayList == 0) {
                     object = ((String)object).substring(4);
                 }
-                jSONObject = this.fillSubProcessModel((PSWFProcess)object2, jSONObject2, (String)object);
-                hashMap8.put(object, jSONObject);
+                HashMap<String, JSONObject> subProcessFlows = this.fillSubProcessModel((PSWFProcess)object2, jSONObject2, (String)object);
+                hashMap8.put((String)object, subProcessFlows);
             }
             if (object2 != null && StringHelper.compare((String)object5, (String)"CatchTimerEvent", (boolean)true) == 0) {
                 object72.put("timerdatedefinition", (Object)StringHelper.format((String)"${ACVTIVEDATA.%1$s}", (Object)((PSWFProcessBase)object2).getTimeoutPSDEFName()));
@@ -791,17 +780,17 @@ public class PSWFVersionHelper {
             JSONObject jSONObject;
             Object object8;
             JSONObject iterator = jSONArray.getJSONObject(i);
-            object72 = iterator.getJSONObject("stencil").getString("id");
+            String object72 = iterator.getJSONObject("stencil").getString("id");
             if (StringHelper.compare((String)object72, (String)"SequenceFlow", (boolean)true) != 0 && StringHelper.compare((String)object72, (String)"MessageFlow", (boolean)true) != 0) continue;
-            object6 = iterator.getString("resourceId");
+            String object6 = iterator.getString("resourceId");
             object4 = iterator.getJSONObject("properties");
-            object32 = object4.getString("documentation");
+            object32 = ((JSONObject)object4).getString("documentation");
             object5 = iterator.getJSONObject("executionlisteners");
             string = "";
             JSONArray jSONArray2 = iterator.getJSONArray("outgoing");
             if (jSONArray2 != null && jSONArray2.size() > 0) {
                 object8 = jSONArray2.getJSONObject(0);
-                string = object8.getString("resourceId");
+                string = ((JSONObject)object8).getString("resourceId");
             }
             object8 = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
@@ -813,7 +802,7 @@ public class PSWFVersionHelper {
                 pSWFProcess = (PSWFProcess)hashMap7.get(string2);
             }
             object2 = null;
-            object = object4.getString("name");
+            object = ((JSONObject)object4).getString("name");
             if (!StringHelper.isNullOrEmpty((String)object32) && (object2 = hashMap2.remove(object32)) == null) {
                 object32 = null;
             }
@@ -859,32 +848,31 @@ public class PSWFVersionHelper {
                         ((PSWFLinkBase)object2).setToPSWFProcId(((PSWFProcessBase)object8).getPSWFProcessId());
                         ((PSWFLinkBase)object2).setToPSWFProcName(((PSWFProcessBase)object8).getPSWFProcessName());
                     }
-                    pSWFLinkService.createTemp(object2);
-                    object4.put("documentation", (Object)((PSWFLinkBase)object2).getPSWFLinkId());
+                    pSWFLinkService.createTemp((PSWFLink)object2);
+                    ((JSONObject)object4).put("documentation", (Object)((PSWFLinkBase)object2).getPSWFLinkId());
                     object32 = ((PSWFLinkBase)object2).getPSWFLinkId();
                 }
             } else {
-                EntityBase entityBase;
+                PSWFLink entityBase;
                 Object object9;
                 boolean bl = false;
                 boolean bl2 = false;
                 int n10 = DataObject.getIntegerValue((Object)((PSWFLinkBase)object2).getDefaultLink(), (Integer)0);
                 if (n10 == 1) {
-                    object4.put("defaultflow", (Object)true);
+                    ((JSONObject)object4).put("defaultflow", (Object)true);
                 } else {
-                    object4.put("defaultflow", (Object)false);
+                    ((JSONObject)object4).put("defaultflow", (Object)false);
                     object9 = "";
                     if (StringHelper.compare((String)((PSWFLinkBase)object2).getWFLinkType(), (String)"IAACTION", (boolean)true) == 0) {
                         object9 = StringHelper.format((String)"${CONNECTION == '%1$s'}", (Object)((PSWFLinkBase)object2).getPSWFLinkName());
                     } else {
                         object9 = ((PSWFLinkBase)object2).getCustomCond();
                         if (StringHelper.isNullOrEmpty((String)object9) && pSWFVersion.getPSWF() != null && pSWFVersion.getPSWF().getPSWFDEs().size() > 0) {
-                            entityBase = pSWFVersion.getPSWF().getPSWFDEs().get(0);
-                            object9 = this.getActivitiCustomCond((PSWFLink)object2, (PSWFDE)entityBase);
+                            object9 = this.getActivitiCustomCond((PSWFLink)object2, pSWFVersion.getPSWF().getPSWFDEs().get(0));
                         }
                     }
                     if (!StringHelper.isNullOrEmpty((String)object9)) {
-                        object4.put("conditionsequenceflow", object9);
+                        ((JSONObject)object4).put("conditionsequenceflow", object9);
                     }
                 }
                 if (StringHelper.compare((String)((PSWFLinkBase)object2).getModelId(), (String)object6, (boolean)false) != 0) {
@@ -933,7 +921,7 @@ public class PSWFVersionHelper {
                     ((PSWFLinkBase)object2).setWFLinkType("ROUTE");
                 }
                 if (bl2 || bl) {
-                    pSWFLinkService.updateTemp((IEntity)object2);
+                    pSWFLinkService.updateTemp((PSWFLink)object2);
                 }
                 if (bl && !StringHelper.isNullOrEmpty((Object)(object9 = ((PSWFLinkBase)object2).get("SRFORIKEY")))) {
                     entityBase = new PSWFLink();
@@ -944,7 +932,7 @@ public class PSWFVersionHelper {
                 }
             }
             if (!StringHelper.isNullOrEmpty((String)object32)) {
-                hashMap4.put(object6, (Iterator<Object>)object32);
+                hashMap4.put(object6, (String)object32);
             }
             if (object2 == null) continue;
             ArrayList<JSONObject> arrayList = new ArrayList<JSONObject>();
@@ -973,20 +961,20 @@ public class PSWFVersionHelper {
                 jSONObject.put("delegateExpression", (Object)"");
                 arrayList.add(jSONObject);
             }
-            if (object4.containsKey((Object)"executionlisteners")) {
-                object4.remove((Object)"executionlisteners");
+            if (((JSONObject)object4).containsKey((Object)"executionlisteners")) {
+                ((JSONObject)object4).remove((Object)"executionlisteners");
             }
             if (arrayList.size() <= 0) continue;
             jSONObject = new JSONObject();
             jSONObject.put("executionListeners", (Object)arrayList.toArray());
-            object4.put("executionlisteners", (Object)jSONObject);
+            ((JSONObject)object4).put("executionlisteners", (Object)jSONObject);
         }
-        for (Map.Entry entry : hashMap5.entrySet()) {
-            object72 = ((PSWFProcess)entry.getKey()).getMultiInstMode();
-            object6 = (JSONObject)entry.getValue();
+        for (Map.Entry<PSWFProcess, JSONObject> entry : hashMap5.entrySet()) {
+            String object72 = entry.getKey().getMultiInstMode();
+            JSONObject object6 = entry.getValue();
             object4 = new PSWFLink();
             ((PSWFLinkBase)object4).setFromPSWFProcId(((PSWFProcess)entry.getKey()).getPSWFProcessId());
-            pSWFLinkService.selectTemp(object4, false);
+            pSWFLinkService.selectTemp((PSWFLink)object4, false);
             if (StringHelper.compare((String)object72, (String)"PARALLEL", (boolean)true) == 0) {
                 object6.put("multiinstance_type", (Object)"Parallel");
             }
@@ -996,9 +984,9 @@ public class PSWFVersionHelper {
             object6.put("multiinstance_collection", (Object)"SRFASSIGNEELIST");
             object6.put("multiinstance_variable", (Object)"SRFASSIGNEE");
             object32 = new JSONObject();
-            object32.put("assignee", (Object)"${SRFASSIGNEE}");
+            ((JSONObject)object32).put("assignee", (Object)"${SRFASSIGNEE}");
             object5 = new JSONObject();
-            object5.put("assignment", object32);
+            ((JSONObject)object5).put("assignment", object32);
             object6.put("usertaskassignment", object5);
             string = ((PSWFLinkBase)object4).getCustomCond();
             if (StringHelper.isNullOrEmpty((String)string)) {
@@ -1017,48 +1005,47 @@ public class PSWFVersionHelper {
             jSONObject2.put("taskListeners", (Object)jSONArray3);
             object6.put("tasklisteners", (Object)jSONObject2);
             JSONObject jSONObject3 = new JSONObject();
-            object2 = new JSONArray();
+            JSONArray executionListeners = new JSONArray();
             object = new JSONObject();
-            object.put("event", (Object)"start");
-            object.put("implementation", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstStartListener");
-            object.put("className", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstStartListener");
-            object.put("expression", (Object)"");
-            object.put("delegateExpression", (Object)"");
-            object2.add(object);
+            ((JSONObject)object).put("event", (Object)"start");
+            ((JSONObject)object).put("implementation", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstStartListener");
+            ((JSONObject)object).put("className", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstStartListener");
+            ((JSONObject)object).put("expression", (Object)"");
+            ((JSONObject)object).put("delegateExpression", (Object)"");
+            executionListeners.add(object);
             JSONObject jSONObject4 = new JSONObject();
             jSONObject4.put("event", (Object)"end");
             jSONObject4.put("implementation", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstEndListener");
             jSONObject4.put("className", (Object)"net.ibizsys.pswf.core.ActivitiWFMultiInstEndListener");
             jSONObject4.put("expression", (Object)"");
             jSONObject4.put("delegateExpression", (Object)"");
-            object2.add((Object)jSONObject4);
-            jSONObject3.put("executionListeners", object2);
+            executionListeners.add((Object)jSONObject4);
+            jSONObject3.put("executionListeners", executionListeners);
             object6.put("executionlisteners", (Object)jSONObject3);
         }
-        Vector vector = new Vector();
-        boolean bl = false;
+        Vector<JSONObject> vector = new Vector<JSONObject>();
         while (var16_25 < n) {
-            object72 = jSONArray.getJSONObject((int)var16_25);
-            object6 = object72.getJSONObject("stencil").getString("id");
-            if ((StringHelper.compare((String)object6, (String)"SequenceFlow", (boolean)true) == 0 || StringHelper.compare((String)object6, (String)"MessageFlow", (boolean)true) == 0) && ((String)(object4 = object72.getString("resourceId"))).indexOf("sf_") == 0 && ((String[])(object32 = ((String)object4).split("_"))).length > 1) {
-                object5 = object32[1];
-                if (hashMap8.containsKey(object5) && ((HashMap)hashMap8.get(object5)).containsKey(object4)) {
-                    ((HashMap)hashMap8.get(object5)).remove(object4);
+            JSONObject object72 = jSONArray.getJSONObject(var16_25);
+            String object6 = object72.getJSONObject("stencil").getString("id");
+            String resourceId = object72.getString("resourceId");
+            String[] parts;
+            if ((StringHelper.compare((String)object6, (String)"SequenceFlow", (boolean)true) == 0 || StringHelper.compare((String)object6, (String)"MessageFlow", (boolean)true) == 0) && resourceId.indexOf("sf_") == 0 && (parts = resourceId.split("_")).length > 1) {
+                String subProcessId = parts[1];
+                if (hashMap8.containsKey(subProcessId) && hashMap8.get(subProcessId).containsKey(resourceId)) {
+                    hashMap8.get(subProcessId).remove(resourceId);
                 } else {
                     vector.add(object72);
                 }
             }
             ++var16_25;
         }
-        Iterator iterator = vector.iterator();
+        Iterator<JSONObject> iterator = vector.iterator();
         while (iterator.hasNext()) {
-            object72 = (JSONObject)iterator.next();
-            jSONArray.remove(object72);
+            jSONArray.remove(iterator.next());
         }
-        for (Object object72 : hashMap8.keySet()) {
-            object6 = (HashMap)hashMap8.get(object72);
-            for (Object object32 : ((HashMap)object6).keySet()) {
-                jSONArray.add(((HashMap)object6).get(object32));
+        for (HashMap<String, JSONObject> flows : hashMap8.values()) {
+            for (JSONObject flow : flows.values()) {
+                jSONArray.add(flow);
             }
         }
     }
@@ -1444,4 +1431,3 @@ public class PSWFVersionHelper {
         condOpMap.put("NOTEQ", "!=");
     }
 }
-

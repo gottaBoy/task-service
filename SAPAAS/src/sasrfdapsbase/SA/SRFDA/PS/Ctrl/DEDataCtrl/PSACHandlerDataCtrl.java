@@ -73,7 +73,7 @@ implements IPSModelInitDataCtrl {
                 IDEDataCtrl pssfACHandlerDataCtrl = this.GetRelatedDataCtrl("DE1650");
                 BaseDataEntity cond = new BaseDataEntity();
                 cond.setParamValue("PSSFID", (Object)psSystem.getPSSFID());
-                Vector psSFACHandlerList = new Vector();
+                Vector<PSSFACHandler> psSFACHandlerList = new Vector<PSSFACHandler>();
                 callResult = pssfACHandlerDataCtrl.Select(cond, psSFACHandlerList, PSSFACHandler.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7cfb\u7edf\u670d\u52a1\u90e8\u4ef6\u5904\u7406\u5668\u53d1\u751f\u9519\u8bef, %1$s", (Object)callResult.getErrorInfo()));
@@ -103,4 +103,3 @@ implements IPSModelInitDataCtrl {
         }
     }
 }
-

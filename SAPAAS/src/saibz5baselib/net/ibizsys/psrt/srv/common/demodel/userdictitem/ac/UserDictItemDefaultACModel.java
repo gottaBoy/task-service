@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.userdictitem.ac;
 
-import net.ibizsys.psrt.srv.common.demodel.userdictitem.ac.UserDictItemDefaultACModelBase;
+/**
+ *  实体自动填充 [DEFAULT]对象模型
+ */
+public class UserDictItemDefaultACModel extends UserDictItemDefaultACModelBase {
 
-public class UserDictItemDefaultACModel
-extends UserDictItemDefaultACModelBase {
+    public UserDictItemDefaultACModel () {
+        super();
+    }
+
 }
-

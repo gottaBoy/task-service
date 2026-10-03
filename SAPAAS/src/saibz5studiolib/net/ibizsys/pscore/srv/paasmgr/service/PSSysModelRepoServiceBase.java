@@ -125,7 +125,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
     }
 
     protected void onFillParentInfo(PSSysModelRepo pSSysModelRepo, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSysModelRepo, string, string2, string3);
+        super.onFillParentInfo(pSSysModelRepo, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -136,11 +136,11 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
         if (bl && pSSysModelRepo.getValidFlag() == null) {
             pSSysModelRepo.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysModelRepo, bl);
+        super.onFillEntityFullInfo(pSSysModelRepo, bl);
     }
 
     protected void onWriteBackParent(PSSysModelRepo pSSysModelRepo, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysModelRepo, bl);
+        super.onWriteBackParent(pSSysModelRepo, bl);
     }
 
     @Override
@@ -149,7 +149,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysModelRepo pSSysModelRepo, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysModelRepo, bl);
+        super.onRemoveEntityUncopyValues(pSSysModelRepo, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysModelRepo pSSysModelRepo, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -194,7 +194,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysModelRepo, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysModelRepo, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysModelRepo, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_GitBranch(boolean bl, PSSysModelRepo pSSysModelRepo, boolean bl2, boolean bl3) throws Exception {
@@ -207,7 +207,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GitBranch_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string2 = this.onTestValueRule_GitBranch_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITBRANCH");
@@ -229,7 +229,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GitPath_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string2 = this.onTestValueRule_GitPath_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GITPATH");
@@ -251,7 +251,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -276,7 +276,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelRepoId_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelRepoId_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELREPOID");
@@ -301,7 +301,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelRepoName_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelRepoName_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELREPONAME");
@@ -323,7 +323,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RepoTag_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string2 = this.onTestValueRule_RepoTag_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REPOTAG");
@@ -345,7 +345,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RepoTag2_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string2 = this.onTestValueRule_RepoTag2_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REPOTAG2");
@@ -370,7 +370,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RepoType_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string2 = this.onTestValueRule_RepoType_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REPOTYPE");
@@ -392,7 +392,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -414,7 +414,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -436,7 +436,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -458,7 +458,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -483,7 +483,7 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysModelRepo, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysModelRepo, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -496,11 +496,11 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
     }
 
     protected void onSyncEntity(PSSysModelRepo pSSysModelRepo, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysModelRepo, bl);
+        super.onSyncEntity(pSSysModelRepo, bl);
     }
 
     protected void onSyncIndexEntities(PSSysModelRepo pSSysModelRepo, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysModelRepo, bl);
+        super.onSyncIndexEntities(pSSysModelRepo, bl);
     }
 
     public Object getDataContextValue(PSSysModelRepo pSSysModelRepo, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -508,14 +508,14 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysModelRepo, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysModelRepo, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysModelRepo pSSysModelRepo, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysModelRepo, arrayList, n);
+        super.onExportMajorModel(pSSysModelRepo, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -755,14 +755,14 @@ extends PSCoreSysServiceBase<PSSysModelRepo> {
 
     protected boolean onMergeChild(String string, String string2, PSSysModelRepo pSSysModelRepo) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysModelRepo)) {
+        if (super.onMergeChild(string, string2, pSSysModelRepo)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysModelRepo pSSysModelRepo) throws Exception {
-        super.onUpdateParent((IEntity)pSSysModelRepo);
+        super.onUpdateParent(pSSysModelRepo);
     }
 
     @Override

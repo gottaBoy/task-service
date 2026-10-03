@@ -561,7 +561,7 @@ extends BaseDEHelper {
     }
 
     protected String GETSQL_INSERTPROC_BODY_INSERT(boolean bInheritTable) {
-        OraDEHelper iDEHelper = bInheritTable ? this.GetInheritDEHelper() : this;
+        IDEHelper iDEHelper = bInheritTable ? this.GetInheritDEHelper() : this;
         String strMainTable = iDEHelper.GetMainTable();
         String strMinorDataTable = iDEHelper.getDataEntity().getMINORTABLENAME();
         String strUserDataTable = iDEHelper.GetUserTable();
@@ -586,7 +586,7 @@ extends BaseDEHelper {
 
     protected String GETSQL_UPDATEPROC_BODY_UPDATE(boolean bInheritTable) {
         String strCondition;
-        OraDEHelper iDEHelper = bInheritTable ? this.GetInheritDEHelper() : this;
+        IDEHelper iDEHelper = bInheritTable ? this.GetInheritDEHelper() : this;
         String strMainTable = iDEHelper.GetMainTable();
         String strMinorDataTable = iDEHelper.getDataEntity().getMINORTABLENAME();
         String strUserDataTable = iDEHelper.GetUserTable();
@@ -619,7 +619,7 @@ extends BaseDEHelper {
 
     protected String GETSQL_DELETEPROC_BODY_DELETE(boolean bInheritTable) {
         String strCondition;
-        OraDEHelper iDEHelper = bInheritTable ? this.GetInheritDEHelper() : this;
+        IDEHelper iDEHelper = bInheritTable ? this.GetInheritDEHelper() : this;
         String strMainTable = iDEHelper.GetMainTable();
         String strMinorDataTable = iDEHelper.getDataEntity().getMINORTABLENAME();
         String strUserDataTable = iDEHelper.GetUserTable();
@@ -651,12 +651,12 @@ extends BaseDEHelper {
     protected void GetTableInsertFields(String strTableName, TreeMap<String, String> fields, boolean bLogicEnable, boolean bInheritTable) {
         IDEFHelper iValidDEFHelper;
         IDEFHelper iDEFHelper2;
-        OraDEHelper iDEHelper = this;
+        IDEHelper iDEHelper = this;
         if (bInheritTable) {
             iDEHelper = this.GetInheritDEHelper();
         }
-        for (IDEFHelper iDEFHelper2 : this.GetDEFHelpers()) {
-            this.GetTableInsertField(strTableName, iDEFHelper2, fields, bInheritTable);
+        for (IDEFHelper defHelper : this.GetDEFHelpers()) {
+            this.GetTableInsertField(strTableName, defHelper, fields, bInheritTable);
         }
         if (bLogicEnable && (iValidDEFHelper = iDEHelper.GetDEFHelperByPreDefineType("LOGICVALID")) != null) {
             fields.put(iValidDEFHelper.GetDTColumn().GetColumnName(), this.GetProperty("VALIDVALUE"));
@@ -691,9 +691,9 @@ extends BaseDEHelper {
 
     protected void GetTableUpdateFields(String strTableName, TreeMap<String, String> fields, boolean bInheritTable) {
         IDEFHelper iDEFHelper2;
-        for (IDEFHelper iDEFHelper2 : this.GetDEFHelpers()) {
-            if (iDEFHelper2.IsKeyDEField()) continue;
-            this.GetTableUpdateField(strTableName, iDEFHelper2, fields, bInheritTable);
+        for (IDEFHelper defHelper : this.GetDEFHelpers()) {
+            if (defHelper.IsKeyDEField()) continue;
+            this.GetTableUpdateField(strTableName, defHelper, fields, bInheritTable);
         }
         iDEFHelper2 = this.GetDEFHelperByPreDefineType("UPDATEMAN");
         if (iDEFHelper2 != null) {
@@ -992,7 +992,7 @@ extends BaseDEHelper {
         }
         stringBuilder.Append("\n");
         stringBuilder.Append(this.GetDBActionStepCode("UPDATE", "INPUTCHECK"));
-        Vector dbActions = new Vector();
+        Vector<DBAction> dbActions = new Vector<DBAction>();
         CallResult callResult = this.contextHelperEx.getDAModelHelper().GetDBActions(this.getId(), this.GetDBType(), "UPDATE", dbActions);
         if (callResult.getRetCode() != 0) {
             log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u6570\u636e\u5e93\u64cd\u4f5c\u6a21\u5f0f\u96c6\u5408\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -1703,7 +1703,7 @@ extends BaseDEHelper {
     }
 
     protected String GetDBActionStepCode(String strAction, String strActionStep) {
-        Vector dbActionSteps = new Vector();
+        Vector<DBActionStep> dbActionSteps = new Vector<DBActionStep>();
         CallResult callResult = this.contextHelperEx.getDAModelHelper().GetDBActionSteps(this.getId(), this.GetDBType(), strAction, strActionStep, dbActionSteps);
         if (callResult.IsError()) {
             log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u6570\u636e\u5e93\u64cd\u4f5c\u6b65\u9aa4\u9644\u52a0\u4ee3\u7801\u5931\u8d25\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -1738,8 +1738,7 @@ extends BaseDEHelper {
 
     protected String GETSQL_SAVEPROC_BODY_UPDATEPHISICALFORMULA(boolean bInheritTable, boolean bInsert) {
         String strCondition;
-        OraDEHelper iDEHelper;
-        OraDEHelper oraDEHelper = iDEHelper = bInheritTable ? this.GetInheritDEHelper() : this;
+        IDEHelper iDEHelper = bInheritTable ? this.GetInheritDEHelper() : this;
         if (!iDEHelper.HasPhisicalFormulaField()) {
             return "";
         }
@@ -1839,4 +1838,3 @@ extends BaseDEHelper {
         fields.put(iDTColumn.GetColumnName().toUpperCase(), "");
     }
 }
-

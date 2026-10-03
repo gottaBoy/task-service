@@ -1833,7 +1833,7 @@ implements Serializable {
                 PSSysSearchScheme pSSysSearchScheme = new PSSysSearchScheme();
                 pSSysSearchScheme.setPSSysSearchSchemeId(this.getPSSysSearchSchemeId());
                 PSSysSearchSchemeService pSSysSearchSchemeService = (PSSysSearchSchemeService)ServiceGlobal.getService(PSSysSearchSchemeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSearchSchemeService.autoGet((IEntity)pSSysSearchScheme);
+                pSSysSearchSchemeService.autoGet(pSSysSearchScheme);
                 this.pssyssearchscheme = pSSysSearchScheme;
             }
             return this.pssyssearchscheme;

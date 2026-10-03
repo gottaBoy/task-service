@@ -231,7 +231,7 @@ extends BaseWSMainPage {
         if (selectResult == null) {
             throw new Exception(StringHelper.Format((String)"\u6267\u884c\u547d\u4ee4[%1$s]\uff0c\u67e5\u8be2\u4fe1\u606f\u5217\u8868\u6570\u636e\u8bb0\u5f55\u4e3a\u7a7a", (Object)strPaginSql));
         }
-        Vector iDEFHelpers = this.iDEHelper.GetDEFHelpers();
+        Vector<IDEFHelper> iDEFHelpers = this.iDEHelper.GetDEFHelpers();
         Vector<SimpleHash> datas = new Vector<SimpleHash>();
         int nRowNumber = 0;
         for (Object obj : selectResult.getMainTable().getRows()) {

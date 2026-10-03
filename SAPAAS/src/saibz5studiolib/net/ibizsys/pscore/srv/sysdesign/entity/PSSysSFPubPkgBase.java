@@ -1841,7 +1841,7 @@ implements Serializable {
                 PSSFPkgVer pSSFPkgVer = new PSSFPkgVer();
                 pSSFPkgVer.setPSSFPkgVerId(this.getPSSFPkgVerId());
                 PSSFPkgVerService pSSFPkgVerService = (PSSFPkgVerService)ServiceGlobal.getService(PSSFPkgVerService.class, (SessionFactory)this.getSessionFactory());
-                pSSFPkgVerService.autoGet((IEntity)pSSFPkgVer);
+                pSSFPkgVerService.autoGet(pSSFPkgVer);
                 this.pssfpkgver = pSSFPkgVer;
             }
             return this.pssfpkgver;
@@ -1867,7 +1867,7 @@ implements Serializable {
                 PSSFPkg pSSFPkg = new PSSFPkg();
                 pSSFPkg.setPSSFPkgId(this.getPSSFPkgId());
                 PSSFPkgService pSSFPkgService = (PSSFPkgService)ServiceGlobal.getService(PSSFPkgService.class, (SessionFactory)this.getSessionFactory());
-                pSSFPkgService.autoGet((IEntity)pSSFPkg);
+                pSSFPkgService.autoGet(pSSFPkg);
                 this.pssfpkg = pSSFPkg;
             }
             return this.pssfpkg;
@@ -1893,7 +1893,7 @@ implements Serializable {
                 PSSysSFPub pSSysSFPub = new PSSysSFPub();
                 pSSysSFPub.setPSSysSFPubId(this.getPSSysSFPubId());
                 PSSysSFPubService pSSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPubService.autoGet((IEntity)pSSysSFPub);
+                pSSysSFPubService.autoGet(pSSysSFPub);
                 this.pssyssfpub = pSSysSFPub;
             }
             return this.pssyssfpub;

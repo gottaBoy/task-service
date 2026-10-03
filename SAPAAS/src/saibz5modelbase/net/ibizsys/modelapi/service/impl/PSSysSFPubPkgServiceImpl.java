@@ -70,7 +70,7 @@ implements IPSSysSFPubPkgService {
     @Override
     protected List<PSSysSFPubPkg> onListAll() throws Exception {
         ArrayList<PSSysSFPubPkg> list = new ArrayList<PSSysSFPubPkg>();
-        List pssyssfpubs = PSModelServiceUtil.getInstance().getPSSysSFPubService().listAll();
+        List<PSSysSFPub> pssyssfpubs = PSModelServiceUtil.getInstance().getPSSysSFPubService().listAll();
         if (pssyssfpubs != null) {
             for (PSSysSFPub parent : pssyssfpubs) {
                 List<PSSysSFPubPkg> items = this.listByPSSysSFPub(parent);

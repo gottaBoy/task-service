@@ -1,42 +1,86 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.ctrlmodel.IDynaCtrlModel
- *  net.ibizsys.paas.ctrlmodel.IPortletModel
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import net.ibizsys.paas.core.IDynaModelJsonExporter;
 import net.ibizsys.paas.core.IDynaModelJsonLoader;
-import net.ibizsys.paas.ctrlmodel.IDynaCtrlModel;
-import net.ibizsys.paas.ctrlmodel.IPortletModel;
 
-public interface IDynaPortletModel
-extends IPortletModel,
-IDynaCtrlModel,
-IDynaModelJsonExporter,
-IDynaModelJsonLoader {
-    public int getColXS();
+/**
+ * 动态门户部件模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaPortletModel extends IPortletModel,IDynaCtrlModel,IDynaModelJsonExporter,IDynaModelJsonLoader {
 
-    public int getColSM();
+	
+	/**
+	 * 
+	 * @return
+	 */
+	int getColXS();
 
-    public int getColMD();
+	
+	/**
+	 * @return
+	 */
+	int getColSM();
+	
+	
+	/**
+	 * @return
+	 */
+	int getColMD();
+	
+	
+	/**
+	 * @return
+	 */
+	int getColLG();
+	
+	
+	/**
+	 * @return
+	 */
+	int getColXSOffset();
 
-    public int getColLG();
-
-    public int getColXSOffset();
-
-    public int getColSMOffset();
-
-    public int getColMDOffset();
-
-    public int getColLGOffset();
-
-    public double getWidth();
-
-    public double getHeight();
-
-    public boolean isShowTitle();
+	/**
+	 * @return
+	 */
+	int getColSMOffset();
+	
+	
+	/**
+	 * @return
+	 */
+	int getColMDOffset();
+	
+	
+	/**
+	 * 获取列偏移（大型界面）
+	 * @return
+	 */
+	int getColLGOffset();
+	
+	
+	
+	/**
+	 * 获取宽度
+	 * @return
+	 */
+	double getWidth();
+	
+	
+	
+	/**
+	 * 获取高度
+	 * @return
+	 */
+	double getHeight();
+	
+	
+	
+	/**
+	 * 是否显示标题
+	 * @return
+	 */
+	boolean isShowTitle();
+	
 }
-

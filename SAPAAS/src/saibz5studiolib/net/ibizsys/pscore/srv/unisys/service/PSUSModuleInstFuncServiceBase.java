@@ -138,14 +138,14 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
             PSUSModuleInst pSUSModuleInst = (PSUSModuleInst)iService.getDEModel().createEntity();
             pSUSModuleInst.set("PSUSMODULEINSTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSUSModuleInst);
+                iService.getTemp(pSUSModuleInst);
             } else {
-                iService.get((IEntity)pSUSModuleInst);
+                iService.get(pSUSModuleInst);
             }
             this.onFillParentInfo_PSUSModuleInst(pSUSModuleInstFunc, pSUSModuleInst);
             return;
         }
-        super.onFillParentInfo((IEntity)pSUSModuleInstFunc, string, string2, string3);
+        super.onFillParentInfo(pSUSModuleInstFunc, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSUSModuleInstFunc, bl);
+        super.onFillEntityFullInfo(pSUSModuleInstFunc, bl);
         this.onFillEntityFullInfo_PSUSModuleInst(pSUSModuleInstFunc, bl);
     }
 
@@ -169,7 +169,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
     }
 
     protected void onWriteBackParent(PSUSModuleInstFunc pSUSModuleInstFunc, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUSModuleInstFunc, bl);
+        super.onWriteBackParent(pSUSModuleInstFunc, bl);
     }
 
     public ArrayList<PSUSModuleInstFunc> selectByPSUSModuleInst(PSUSModuleInstBase pSUSModuleInstBase) throws Exception {
@@ -200,8 +200,8 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
         ArrayList<PSUSModuleInstFunc> arrayList = this.selectByPSUSModuleInst(pSUSModuleInst, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSUSMODULEINST");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSUSModuleInst);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSUSMODULEINSTFUNC_PSUSMODULEINST_PSUSMODULEINSTID", "", iDataEntityModel.getName(), "PSUSMODULEINSTFUNC", iDataEntityModel.getDataInfo((IEntity)pSUSModuleInst), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSUSModuleInst);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSUSMODULEINSTFUNC_PSUSMODULEINST_PSUSMODULEINSTID", "", iDataEntityModel.getName(), "PSUSMODULEINSTFUNC", iDataEntityModel.getDataInfo(pSUSModuleInst), arrayList.get(0)));
         }
     }
 
@@ -234,7 +234,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
         ArrayList<PSUSModuleInstFunc> arrayList = this.selectByPSUSModuleInst(pSUSModuleInst);
         this.onBeforeRemoveByPSUSModuleInst(pSUSModuleInst, arrayList);
         for (PSUSModuleInstFunc pSUSModuleInstFunc : arrayList) {
-            this.remove((IEntity)pSUSModuleInstFunc);
+            this.remove(pSUSModuleInstFunc);
         }
         this.onAfterRemoveByPSUSModuleInst(pSUSModuleInst, arrayList);
     }
@@ -257,14 +257,14 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
 
     protected void replaceParentInfo(PSUSModuleInstFunc pSUSModuleInstFunc, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSUSModuleInstFunc, cloneSession);
+        super.replaceParentInfo(pSUSModuleInstFunc, cloneSession);
         if (pSUSModuleInstFunc.getPSUSModuleInstId() != null && (iEntity = cloneSession.getEntity("PSUSMODULEINST", (Object)pSUSModuleInstFunc.getPSUSModuleInstId())) != null) {
             this.onFillParentInfo_PSUSModuleInst(pSUSModuleInstFunc, (PSUSModuleInst)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSUSModuleInstFunc pSUSModuleInstFunc, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUSModuleInstFunc, bl);
+        super.onRemoveEntityUncopyValues(pSUSModuleInstFunc, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUSModuleInstFunc pSUSModuleInstFunc, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -294,7 +294,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
         if ((entityFieldError = this.onCheckField_Url(bl, pSUSModuleInstFunc, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUSModuleInstFunc, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUSModuleInstFunc, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_FuncTag(boolean bl, PSUSModuleInstFunc pSUSModuleInstFunc, boolean bl2, boolean bl3) throws Exception {
@@ -307,7 +307,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FuncTag_Default((IEntity)pSUSModuleInstFunc, bl2, bl3);
+            string2 = this.onTestValueRule_FuncTag_Default(pSUSModuleInstFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCTAG");
@@ -332,7 +332,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FuncType_Default((IEntity)pSUSModuleInstFunc, bl2, bl3);
+            string2 = this.onTestValueRule_FuncType_Default(pSUSModuleInstFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCTYPE");
@@ -354,7 +354,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSUSModuleInstFunc, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSUSModuleInstFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -376,7 +376,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MobileAppFlag_Default((IEntity)pSUSModuleInstFunc, bl2, bl3);
+            string = this.onTestValueRule_MobileAppFlag_Default(pSUSModuleInstFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MOBILEAPPFLAG");
@@ -401,7 +401,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUSModuleInstFuncId_Default((IEntity)pSUSModuleInstFunc, bl2, bl3);
+            string2 = this.onTestValueRule_PSUSModuleInstFuncId_Default(pSUSModuleInstFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUSMODULEINSTFUNCID");
@@ -426,7 +426,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUSModuleInstFuncName_Default((IEntity)pSUSModuleInstFunc, bl2, bl3);
+            string2 = this.onTestValueRule_PSUSModuleInstFuncName_Default(pSUSModuleInstFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUSMODULEINSTFUNCNAME");
@@ -448,7 +448,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUSModuleInstId_Default((IEntity)pSUSModuleInstFunc, bl2, bl3);
+            string2 = this.onTestValueRule_PSUSModuleInstId_Default(pSUSModuleInstFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUSMODULEINSTID");
@@ -470,7 +470,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Url_Default((IEntity)pSUSModuleInstFunc, bl2, bl3);
+            string2 = this.onTestValueRule_Url_Default(pSUSModuleInstFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("URL");
@@ -483,11 +483,11 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
     }
 
     protected void onSyncEntity(PSUSModuleInstFunc pSUSModuleInstFunc, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUSModuleInstFunc, bl);
+        super.onSyncEntity(pSUSModuleInstFunc, bl);
     }
 
     protected void onSyncIndexEntities(PSUSModuleInstFunc pSUSModuleInstFunc, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUSModuleInstFunc, bl);
+        super.onSyncIndexEntities(pSUSModuleInstFunc, bl);
     }
 
     public Object getDataContextValue(PSUSModuleInstFunc pSUSModuleInstFunc, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -495,7 +495,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUSModuleInstFunc, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUSModuleInstFunc, string, iDataContextParam)) != null) {
             return object;
         }
         PSUSModuleInst pSUSModuleInst = pSUSModuleInstFunc.getPSUSModuleInst();
@@ -506,7 +506,7 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
     }
 
     protected void onExportMajorModel(PSUSModuleInstFunc pSUSModuleInstFunc, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUSModuleInstFunc, arrayList, n);
+        super.onExportMajorModel(pSUSModuleInstFunc, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -686,14 +686,14 @@ extends PSCoreSysServiceBase<PSUSModuleInstFunc> {
 
     protected boolean onMergeChild(String string, String string2, PSUSModuleInstFunc pSUSModuleInstFunc) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUSModuleInstFunc)) {
+        if (super.onMergeChild(string, string2, pSUSModuleInstFunc)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUSModuleInstFunc pSUSModuleInstFunc) throws Exception {
-        super.onUpdateParent((IEntity)pSUSModuleInstFunc);
+        super.onUpdateParent(pSUSModuleInstFunc);
     }
 
     @Override

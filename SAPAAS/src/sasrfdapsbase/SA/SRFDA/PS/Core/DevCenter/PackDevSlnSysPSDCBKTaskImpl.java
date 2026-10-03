@@ -57,16 +57,16 @@ extends PSSysRunSessionDCBKTaskImplBase {
         PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class);
         PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
         psDevSlnSys.setPSDevSlnSysId(this.getTaskParam());
-        psDevSlnSysService.get((IEntity)psDevSlnSys);
+        psDevSlnSysService.get(psDevSlnSys);
         SessionFactory sessionFactory = PSSysModelInstGlobal.getSessionFactory((String)psDevSlnSys.getPSSysModelInstId());
         PSSystem psSystem = new PSSystem();
         psSystem.setPSSystemId(psDevSlnSys.getPSSystemId());
         PSSysAppService psSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)sessionFactory);
-        ArrayList psSysAppList = psSysAppService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysApp> psSysAppList = psSysAppService.selectByPSSystem((PSSystemBase)psSystem);
         PSSysSFPubService psSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)sessionFactory);
-        ArrayList psSysSFPubList = psSysSFPubService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysSFPub> psSysSFPubList = psSysSFPubService.selectByPSSystem((PSSystemBase)psSystem);
         PSSystemDBCfgService psSystemDBCfgService = (PSSystemDBCfgService)ServiceGlobal.getService(PSSystemDBCfgService.class, (SessionFactory)sessionFactory);
-        ArrayList psSystemDBCfgList = psSystemDBCfgService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSystemDBCfg> psSystemDBCfgList = psSystemDBCfgService.selectByPSSystem((PSSystemBase)psSystem);
         PSSysRunSessionService psSysRunSessionService = (PSSysRunSessionService)ServiceGlobal.getService(PSSysRunSessionService.class, (SessionFactory)sessionFactory);
         PSSysRunSession psSysRunSession = new PSSysRunSession();
         psSysRunSession.setPSSystemId(psDevSlnSys.getPSSystemId());
@@ -129,9 +129,8 @@ extends PSSysRunSessionDCBKTaskImplBase {
         strDownloadFile = String.valueOf(strDownloadFile) + strFileName;
         psSysRunSession.setRunParam3(strDownloadFile);
         psSysRunSession.setRunParam4(strRemoteFolder);
-        psSysRunSessionService.create((IEntity)psSysRunSession);
+        psSysRunSessionService.create(psSysRunSession);
         this.executePackSysTask(psDevSlnSys, psSysRunSession);
         return StringHelper.Format((String)"http://download.ibiz5.com/sys/%1$s/%2$s/%3$s", (Object)this.getPSDevCenterId(), (Object)strDate, (Object)strFileName);
     }
 }
-

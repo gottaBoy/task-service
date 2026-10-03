@@ -112,9 +112,9 @@ implements IPSSysWFCatService {
 
     @Override
     protected List<PSSysWFCat> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysWFCat> list = new ArrayList<PSSysWFCat>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysWFCat> items = this.listByPSModule(parent);

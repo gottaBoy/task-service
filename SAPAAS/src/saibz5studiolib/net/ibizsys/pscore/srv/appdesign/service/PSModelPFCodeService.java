@@ -73,7 +73,7 @@ extends PSModelPFCodeServiceBase {
         pSModelPFCode2.set("psdevslnsysid", jSONObject.optString("psdevslnsysid", ""));
         pSModelPFCode2.setPSModelPFCodeId(pSModelPFCode.getPSModelPFCodeId());
         try {
-            this.executeAction("XG_GETCODE", (IEntity)pSModelPFCode2);
+            this.executeAction("XG_GETCODE", pSModelPFCode2);
         }
         catch (Exception exception) {
             log.error((Object)exception);
@@ -89,7 +89,7 @@ extends PSModelPFCodeServiceBase {
             PSAppViewCodeService pSAppViewCodeService = (PSAppViewCodeService)ServiceGlobal.getService(PSAppViewCodeService.class, (SessionFactory)this.getSessionFactory());
             PSAppViewCode pSAppViewCode = new PSAppViewCode();
             pSAppViewCode.setPSAppViewCodeId(pSModelPFCode.getPSModelPFCodeId());
-            if (pSAppViewCodeService.get((IEntity)pSAppViewCode, true)) {
+            if (pSAppViewCodeService.get(pSAppViewCode, true)) {
                 pSModelPFCode.setCustomFlag(1);
                 pSModelPFCode.setUserCode(pSAppViewCode.getUserCode());
             } else {
@@ -112,9 +112,9 @@ extends PSModelPFCodeServiceBase {
             pSAppViewCode.setPSAppViewCodeName(pSModelPFCode.getPSModelPFCodeName());
             pSAppViewCode.setCodePath(pSModelPFCode.getCodePath());
             pSAppViewCode.setUserCode(pSModelPFCode.getUserCode());
-            pSAppViewCodeService.save((IEntity)pSAppViewCode);
+            pSAppViewCodeService.save(pSAppViewCode);
         } else if (pSAppViewCodeService.checkKey(pSAppViewCode) == 1) {
-            pSAppViewCodeService.remove((IEntity)pSAppViewCode);
+            pSAppViewCodeService.remove(pSAppViewCode);
         }
     }
 
@@ -123,7 +123,7 @@ extends PSModelPFCodeServiceBase {
         if (WebContext.getCurrent() == null || WebContext.getCurrent().getCurAjaxActionResult() == null) {
             throw new Exception(StringHelper.format((String)"\u5f53\u524d\u8bf7\u6c42\u73af\u5883\u65e0\u6548"));
         }
-        this.get((IEntity)pSModelPFCode);
+        this.get(pSModelPFCode);
         WebContext.getCurrent().getCurAjaxActionResult().setJSCode(StringHelper.format((String)"IBizApp.locateCode('%1$s/%2$s','pf')", (Object)pSModelPFCode.getCodePath(), (Object)pSModelPFCode.getPSModelPFCodeName()));
     }
 }

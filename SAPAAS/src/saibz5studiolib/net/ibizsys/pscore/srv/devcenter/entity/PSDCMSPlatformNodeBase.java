@@ -4012,7 +4012,7 @@ implements Serializable {
                 PSDCMSPlatform pSDCMSPlatform = new PSDCMSPlatform();
                 pSDCMSPlatform.setPSDCMSPlatformId(this.getPSDCMSPlatformId());
                 PSDCMSPlatformService pSDCMSPlatformService = (PSDCMSPlatformService)ServiceGlobal.getService(PSDCMSPlatformService.class, (SessionFactory)this.getSessionFactory());
-                pSDCMSPlatformService.autoGet((IEntity)pSDCMSPlatform);
+                pSDCMSPlatformService.autoGet(pSDCMSPlatform);
                 this.psdcmsplatform = pSDCMSPlatform;
             }
             return this.psdcmsplatform;
@@ -4038,7 +4038,7 @@ implements Serializable {
                 PSDCRegistryItem pSDCRegistryItem = new PSDCRegistryItem();
                 pSDCRegistryItem.setPSDCRegistryItemId(this.getPSDCRegistryItemId());
                 PSDCRegistryItemService pSDCRegistryItemService = (PSDCRegistryItemService)ServiceGlobal.getService(PSDCRegistryItemService.class, (SessionFactory)this.getSessionFactory());
-                pSDCRegistryItemService.autoGet((IEntity)pSDCRegistryItem);
+                pSDCRegistryItemService.autoGet(pSDCRegistryItem);
                 this.psdcregistryitem = pSDCRegistryItem;
             }
             return this.psdcregistryitem;
@@ -4064,7 +4064,7 @@ implements Serializable {
                 PSMSPlatformNode pSMSPlatformNode = new PSMSPlatformNode();
                 pSMSPlatformNode.setPSMSPlatformNodeId(this.getPSMSPlatformNodeId());
                 PSMSPlatformNodeService pSMSPlatformNodeService = (PSMSPlatformNodeService)ServiceGlobal.getService(PSMSPlatformNodeService.class, (SessionFactory)this.getSessionFactory());
-                pSMSPlatformNodeService.autoGet((IEntity)pSMSPlatformNode);
+                pSMSPlatformNodeService.autoGet(pSMSPlatformNode);
                 this.psmsplatformnode = pSMSPlatformNode;
             }
             return this.psmsplatformnode;

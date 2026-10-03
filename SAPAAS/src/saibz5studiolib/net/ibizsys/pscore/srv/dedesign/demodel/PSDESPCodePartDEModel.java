@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDESPCodePartDEModelBase;
 
 public class PSDESPCodePartDEModel
 extends PSDESPCodePartDEModelBase {
+
+    public PSDESPCodePartDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

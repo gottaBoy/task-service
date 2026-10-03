@@ -1,14 +1,23 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDEField;
+/**
+ * 链接属性接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface ILinkDEField extends IDEField {
+	/**
+	 * 获取关系标识
+	 * 
+	 * @return
+	 */
+	String getDERId();
 
-public interface ILinkDEField
-extends IDEField {
-    public String getDERId();
-
-    public IDEField getRelatedDEField();
+	/**
+	 * 获取链接的属性
+	 * 
+	 * @return
+	 */
+	IDEField getRelatedDEField();
 }
-

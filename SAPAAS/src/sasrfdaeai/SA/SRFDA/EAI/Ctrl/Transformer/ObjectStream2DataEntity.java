@@ -1,21 +1,45 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  TransformerException
- */
 package SA.SRFDA.EAI.Ctrl.Transformer;
 
-import SA.SRFDA.EAI.Ctrl.Transformer.BaseTransformer;
+import SA.SRFramework.DataEx.BaseDataEntity;
+import SA.SRFramework.Utility.Base64;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import org.mule.api.transformer.TransformerException;
+import org.mule.config.i18n.MessageFactory;
 
-public class ObjectStream2DataEntity
-extends BaseTransformer {
-    public ObjectStream2DataEntity() {
-        throw new Error("Unresolved compilation problems: \n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe hierarchy of the type ObjectStream2DataEntity is inconsistent\n\tThe method doTransform(Object, String) of type ObjectStream2DataEntity must override or implement a supertype method\n\tTransformerException cannot be resolved to a type\n\tThe method GetString(BaseTransformer, Object, String) from the type TransformerHelper refers to the missing type TransformerException\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n");
-    }
-
-    protected Object doTransform(Object object, String string) throws TransformerException {
-        throw new Error("Unresolved compilation problems: \n\tThe method doTransform(Object, String) of type ObjectStream2DataEntity must override or implement a supertype method\n\tTransformerException cannot be resolved to a type\n\tThe method GetString(BaseTransformer, Object, String) from the type TransformerHelper refers to the missing type TransformerException\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n");
+public class ObjectStream2DataEntity extends BaseTransformer {
+    protected Object doTransform(Object object, String encoding) throws TransformerException {
+        String encoded = TransformerHelper.GetString(this, object, encoding);
+        try {
+            byte[] bytes = Base64.decode(encoded);
+            ObjectInputStream stream = new ObjectInputStream(new ByteArrayInputStream(bytes));
+            Object countObject = stream.readObject();
+            if (!(countObject instanceof Integer) || ((Integer)countObject).intValue() < 0
+                    || ((Integer)countObject).intValue() > 100000) {
+                throw new IOException("Invalid object stream field count");
+            }
+            BaseDataEntity entity = new BaseDataEntity();
+            int count = ((Integer)countObject).intValue();
+            for (int i = 0; i < count; i++) {
+                Object key = stream.readObject();
+                Object value = stream.readObject();
+                if (!(key instanceof String)) {
+                    throw new IOException("Invalid object stream field name");
+                }
+                entity.SetParamValue((String)key, value);
+            }
+            if (stream.read() != -1) {
+                throw new IOException("Trailing object stream data");
+            }
+            stream.close();
+            return entity;
+        } catch (IOException ex) {
+            throw new TransformerException(MessageFactory.createStaticMessage("Invalid entity object stream"), ex);
+        } catch (ClassNotFoundException ex) {
+            throw new TransformerException(MessageFactory.createStaticMessage("Unknown object stream type"), ex);
+        } catch (RuntimeException ex) {
+            throw new TransformerException(MessageFactory.createStaticMessage("Invalid entity object stream"), ex);
+        }
     }
 }
-

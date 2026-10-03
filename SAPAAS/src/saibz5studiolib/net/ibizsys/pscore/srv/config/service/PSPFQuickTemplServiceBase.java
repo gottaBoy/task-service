@@ -140,14 +140,14 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
             PSPF pSPF = (PSPF)iService.getDEModel().createEntity();
             pSPF.set("PSPFID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSPF);
+                iService.getTemp(pSPF);
             } else {
-                iService.get((IEntity)pSPF);
+                iService.get(pSPF);
             }
             this.onFillParentInfo_PSPF(pSPFQuickTempl, pSPF);
             return;
         }
-        super.onFillParentInfo((IEntity)pSPFQuickTempl, string, string2, string3);
+        super.onFillParentInfo(pSPFQuickTempl, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -181,7 +181,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSPFQuickTempl, bl);
+        super.onFillEntityFullInfo(pSPFQuickTempl, bl);
         this.onFillEntityFullInfo_PSPF(pSPFQuickTempl, bl);
     }
 
@@ -199,7 +199,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
     }
 
     protected void onWriteBackParent(PSPFQuickTempl pSPFQuickTempl, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPFQuickTempl, bl);
+        super.onWriteBackParent(pSPFQuickTempl, bl);
     }
 
     public ArrayList<PSPFQuickTempl> selectByPSPF(PSPFBase pSPFBase) throws Exception {
@@ -258,7 +258,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
         ArrayList<PSPFQuickTempl> arrayList = this.selectByPSPF(pSPF);
         this.onBeforeRemoveByPSPF(pSPF, arrayList);
         for (PSPFQuickTempl pSPFQuickTempl : arrayList) {
-            this.remove((IEntity)pSPFQuickTempl);
+            this.remove(pSPFQuickTempl);
         }
         this.onAfterRemoveByPSPF(pSPF, arrayList);
     }
@@ -279,14 +279,14 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
 
     protected void replaceParentInfo(PSPFQuickTempl pSPFQuickTempl, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSPFQuickTempl, cloneSession);
+        super.replaceParentInfo(pSPFQuickTempl, cloneSession);
         if (pSPFQuickTempl.getPSPFId() != null && (iEntity = cloneSession.getEntity("PSPF", (Object)pSPFQuickTempl.getPSPFId())) != null) {
             this.onFillParentInfo_PSPF(pSPFQuickTempl, (PSPF)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSPFQuickTempl pSPFQuickTempl, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPFQuickTempl, bl);
+        super.onRemoveEntityUncopyValues(pSPFQuickTempl, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPFQuickTempl pSPFQuickTempl, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -316,7 +316,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSPFQuickTempl, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPFQuickTempl, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPFQuickTempl, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSPFQuickTempl pSPFQuickTempl, boolean bl2, boolean bl3) throws Exception {
@@ -329,7 +329,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPFQuickTempl, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPFQuickTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -354,7 +354,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFId_Default((IEntity)pSPFQuickTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFId_Default(pSPFQuickTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFID");
@@ -379,7 +379,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFName_Default((IEntity)pSPFQuickTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFName_Default(pSPFQuickTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFNAME");
@@ -404,7 +404,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFQuickTemplId_Default((IEntity)pSPFQuickTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFQuickTemplId_Default(pSPFQuickTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFQUICKTEMPLID");
@@ -429,7 +429,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFQuickTemplName_Default((IEntity)pSPFQuickTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFQuickTemplName_Default(pSPFQuickTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFQUICKTEMPLNAME");
@@ -454,7 +454,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StyleCode_Default((IEntity)pSPFQuickTempl, bl2, bl3);
+            string2 = this.onTestValueRule_StyleCode_Default(pSPFQuickTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STYLECODE");
@@ -476,7 +476,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode_Default((IEntity)pSPFQuickTempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode_Default(pSPFQuickTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE");
@@ -501,7 +501,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSPFQuickTempl, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSPFQuickTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -514,11 +514,11 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
     }
 
     protected void onSyncEntity(PSPFQuickTempl pSPFQuickTempl, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPFQuickTempl, bl);
+        super.onSyncEntity(pSPFQuickTempl, bl);
     }
 
     protected void onSyncIndexEntities(PSPFQuickTempl pSPFQuickTempl, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPFQuickTempl, bl);
+        super.onSyncIndexEntities(pSPFQuickTempl, bl);
     }
 
     public Object getDataContextValue(PSPFQuickTempl pSPFQuickTempl, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -526,14 +526,14 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPFQuickTempl, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPFQuickTempl, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPFQuickTempl pSPFQuickTempl, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPFQuickTempl, arrayList, n);
+        super.onExportMajorModel(pSPFQuickTempl, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -698,14 +698,14 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
 
     protected boolean onMergeChild(String string, String string2, PSPFQuickTempl pSPFQuickTempl) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPFQuickTempl)) {
+        if (super.onMergeChild(string, string2, pSPFQuickTempl)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPFQuickTempl pSPFQuickTempl) throws Exception {
-        super.onUpdateParent((IEntity)pSPFQuickTempl);
+        super.onUpdateParent(pSPFQuickTempl);
     }
 
     @Override
@@ -727,7 +727,7 @@ extends PSCoreSysServiceBase<PSPFQuickTempl> {
         PSPFQuickTempl pSPFQuickTempl2 = new PSPFQuickTempl();
         pSPFQuickTempl2.setPSPFId(pSPFQuickTempl.getPSPFId());
         pSPFQuickTempl2.setStyleCode(pSPFQuickTempl.getStyleCode());
-        if (this.selectOne((IEntity)pSPFQuickTempl2, true)) {
+        if (this.selectOne(pSPFQuickTempl2, true)) {
             return pSPFQuickTempl2.getPSPFQuickTemplId();
         }
         return super.getEntityFolderKeyValue(pSPFQuickTempl, pSSystem);

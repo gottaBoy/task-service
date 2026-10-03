@@ -1,43 +1,114 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFActionContext
- *  net.ibizsys.pswf.core.IWFRoleModel
- *  net.ibizsys.pswf.core.IWFRoleUser
- */
 package net.ibizsys.pswf.core;
 
-import java.util.Iterator;
-import net.ibizsys.pswf.core.IWFActionContext;
-import net.ibizsys.pswf.core.IWFInteractiveProcessModel;
-import net.ibizsys.pswf.core.IWFRoleModel;
-import net.ibizsys.pswf.core.IWFRoleUser;
+/**
+ * 流程处理角色模型接口
+ * 
+ * @author lionlau
+ * 
+ */
+public interface IWFProcRoleModel
+{
 
-public interface IWFProcRoleModel {
-    public static final String ROLETYPE_WFROLE = "WFROLE";
-    public static final String ROLETYPE_LASTTWOSTEPACTOR = "LASTTWOSTEPACTOR";
-    public static final String ROLETYPE_LASTTHREESTEPACTOR = "LASTTHREESTEPACTOR";
-    public static final String ROLETYPE_LASTSTEPACTOR = "LASTSTEPACTOR";
-    public static final String ROLETYPE_UDACTOR = "UDACTOR";
-    public static final String ROLETYPE_CURACTOR = "CURACTOR";
+	// 定义角色类型代码表
 
-    public String getId();
+	/**
+	 * 工作流角色
+	 */
+	public final static String ROLETYPE_WFROLE = "WFROLE";
 
-    public String getName();
+	/**
+	 * 上两个步骤操作者
+	 */
+	public final static String ROLETYPE_LASTTWOSTEPACTOR = "LASTTWOSTEPACTOR";
 
-    public void init(IWFInteractiveProcessModel var1) throws Exception;
+	/**
+	 * 上三个步骤操作者
+	 */
+	public final static String ROLETYPE_LASTTHREESTEPACTOR = "LASTTHREESTEPACTOR";
 
-    public IWFInteractiveProcessModel getWFInteractiveProcessModel();
+	/**
+	 * 上一步骤操作者
+	 */
+	public final static String ROLETYPE_LASTSTEPACTOR = "LASTSTEPACTOR";
+	
+	
+	/**
+	 * 用户数据操作者
+	 */
+	public final static String ROLETYPE_UDACTOR = "UDACTOR";
+	
+	
+	/**
+	 * 当前操作者
+	 */
+	public final static String ROLETYPE_CURACTOR = "CURACTOR";
+	
+	/**
+	 * 获取标识
+	 * 
+	 * @return
+	 */
+	String getId();
 
-    public String getWFProcRoleType();
+	/**
+	 * 获取名称
+	 * 
+	 * @return
+	 */
+	String getName();
 
-    public String getWFRoleId();
+	/**
+	 * 初始化
+	 * 
+	 * @param iWFInteractiveProcessModel
+	 * @throws Exception
+	 */
+	void init(IWFInteractiveProcessModel iWFInteractiveProcessModel) throws Exception;
 
-    public IWFRoleModel getWFRoleModel();
+	/**
+	 * 获取交互处理模型对象
+	 * @return
+	 */
+	IWFInteractiveProcessModel getWFInteractiveProcessModel();
+	
+	
+	/**
+	 * 获取流程角色类型
+	 * 
+	 * @return
+	 */
+	String getWFProcRoleType();
 
-    public String[] getUDFields();
-
-    public Iterator<IWFRoleUser> getWFRoleUserModels(IWFActionContext var1) throws Exception;
+	/**
+	 * 获取流程角色标识
+	 * 
+	 * @return
+	 */
+	String getWFRoleId();
+	
+	
+	
+	/**
+	 * 获取流程角色模型
+	 * @return
+	 */
+	IWFRoleModel getWFRoleModel();
+	
+	
+	/**
+	 * 获取用户数据属性
+	 * @return
+	 */
+	String[] getUDFields(); 
+	
+	
+	
+	
+	/**
+	 * 获取用户集合
+	 * @param iWFActionContext
+	 * @return
+	 * @throws Exception
+	 */
+	java.util.Iterator<IWFRoleUser> getWFRoleUserModels(IWFActionContext iWFActionContext)throws Exception;
 }
-

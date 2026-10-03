@@ -2268,7 +2268,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -2294,7 +2294,7 @@ implements Serializable {
                 PSSysDMItem pSSysDMItem = new PSSysDMItem();
                 pSSysDMItem.setPSSysDMItemId(this.getPSSysDMItemId());
                 PSSysDMItemService pSSysDMItemService = (PSSysDMItemService)ServiceGlobal.getService(PSSysDMItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDMItemService.autoGet((IEntity)pSSysDMItem);
+                pSSysDMItemService.autoGet(pSSysDMItem);
                 this.pssysdmitem = pSSysDMItem;
             }
             return this.pssysdmitem;
@@ -2320,7 +2320,7 @@ implements Serializable {
                 PSSysDMVer pSSysDMVer = new PSSysDMVer();
                 pSSysDMVer.setPSSysDMVerId(this.getPSSysDMVerId());
                 PSSysDMVerService pSSysDMVerService = (PSSysDMVerService)ServiceGlobal.getService(PSSysDMVerService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDMVerService.autoGet((IEntity)pSSysDMVer);
+                pSSysDMVerService.autoGet(pSSysDMVer);
                 this.pssysdmver = pSSysDMVer;
             }
             return this.pssysdmver;
@@ -2346,7 +2346,7 @@ implements Serializable {
                 PSSystemDBCfg pSSystemDBCfg = new PSSystemDBCfg();
                 pSSystemDBCfg.setPSSystemDBCfgId(this.getPSSystemDBCfgId());
                 PSSystemDBCfgService pSSystemDBCfgService = (PSSystemDBCfgService)ServiceGlobal.getService(PSSystemDBCfgService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemDBCfgService.autoGet((IEntity)pSSystemDBCfg);
+                pSSystemDBCfgService.autoGet(pSSystemDBCfg);
                 this.pssystemdbcfg = pSSystemDBCfg;
             }
             return this.pssystemdbcfg;

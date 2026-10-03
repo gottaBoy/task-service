@@ -189,9 +189,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSAppLocalDE pSAppLocalDE = (PSAppLocalDE)iService.getDEModel().createEntity();
             pSAppLocalDE.set("PSAPPLOCALDEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppLocalDE);
+                iService.getTemp(pSAppLocalDE);
             } else {
-                iService.get((IEntity)pSAppLocalDE);
+                iService.get(pSAppLocalDE);
             }
             this.onFillParentInfo_PSAppLocalDE(pSSysERMapNode, pSAppLocalDE);
             return;
@@ -201,9 +201,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSSysERMapNode, pSDataEntity);
             return;
@@ -213,9 +213,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSDEServiceAPI pSDEServiceAPI = (PSDEServiceAPI)iService.getDEModel().createEntity();
             pSDEServiceAPI.set("PSDESERVICEAPIID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEServiceAPI);
+                iService.getTemp(pSDEServiceAPI);
             } else {
-                iService.get((IEntity)pSDEServiceAPI);
+                iService.get(pSDEServiceAPI);
             }
             this.onFillParentInfo_PSDEServiceAPI(pSSysERMapNode, pSDEServiceAPI);
             return;
@@ -225,9 +225,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSubSysSADE pSSubSysSADE = (PSSubSysSADE)iService.getDEModel().createEntity();
             pSSubSysSADE.set("PSSUBSYSSADEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSubSysSADE);
+                iService.getTemp(pSSubSysSADE);
             } else {
-                iService.get((IEntity)pSSubSysSADE);
+                iService.get(pSSubSysSADE);
             }
             this.onFillParentInfo_PSSubSysSADE(pSSysERMapNode, pSSubSysSADE);
             return;
@@ -237,9 +237,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSubSysServiceAPI pSSubSysServiceAPI = (PSSubSysServiceAPI)iService.getDEModel().createEntity();
             pSSubSysServiceAPI.set("PSSUBSYSSERVICEAPIID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSubSysServiceAPI);
+                iService.getTemp(pSSubSysServiceAPI);
             } else {
-                iService.get((IEntity)pSSubSysServiceAPI);
+                iService.get(pSSubSysServiceAPI);
             }
             this.onFillParentInfo_PSSubSysServiceAPI(pSSysERMapNode, pSSubSysServiceAPI);
             return;
@@ -249,9 +249,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSSysERMapNode, pSSysApp);
             return;
@@ -261,9 +261,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSysBDScheme pSSysBDScheme = (PSSysBDScheme)iService.getDEModel().createEntity();
             pSSysBDScheme.set("PSSYSBDSCHEMEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBDScheme);
+                iService.getTemp(pSSysBDScheme);
             } else {
-                iService.get((IEntity)pSSysBDScheme);
+                iService.get(pSSysBDScheme);
             }
             this.onFillParentInfo_PSSysBDScheme(pSSysERMapNode, pSSysBDScheme);
             return;
@@ -273,9 +273,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSysBDTable pSSysBDTable = (PSSysBDTable)iService.getDEModel().createEntity();
             pSSysBDTable.set("PSSYSBDTABLEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBDTable);
+                iService.getTemp(pSSysBDTable);
             } else {
-                iService.get((IEntity)pSSysBDTable);
+                iService.get(pSSysBDTable);
             }
             this.onFillParentInfo_PSSysBDTable(pSSysERMapNode, pSSysBDTable);
             return;
@@ -285,9 +285,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSysDBScheme pSSysDBScheme = (PSSysDBScheme)iService.getDEModel().createEntity();
             pSSysDBScheme.set("PSSYSDBSCHEMEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDBScheme);
+                iService.getTemp(pSSysDBScheme);
             } else {
-                iService.get((IEntity)pSSysDBScheme);
+                iService.get(pSSysDBScheme);
             }
             this.onFillParentInfo_PSSysDBScheme(pSSysERMapNode, pSSysDBScheme);
             return;
@@ -297,9 +297,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSysDBTable pSSysDBTable = (PSSysDBTable)iService.getDEModel().createEntity();
             pSSysDBTable.set("PSSYSDBTABLEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDBTable);
+                iService.getTemp(pSSysDBTable);
             } else {
-                iService.get((IEntity)pSSysDBTable);
+                iService.get(pSSysDBTable);
             }
             this.onFillParentInfo_PSSysDBTable(pSSysERMapNode, pSSysDBTable);
             return;
@@ -309,9 +309,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSysDynaModel pSSysDynaModel = (PSSysDynaModel)iService.getDEModel().createEntity();
             pSSysDynaModel.set("PSSYSDYNAMODELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDynaModel);
+                iService.getTemp(pSSysDynaModel);
             } else {
-                iService.get((IEntity)pSSysDynaModel);
+                iService.get(pSSysDynaModel);
             }
             this.onFillParentInfo_RefPSSysDynaModel(pSSysERMapNode, pSSysDynaModel);
             return;
@@ -321,9 +321,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSysERMap pSSysERMap = (PSSysERMap)iService.getDEModel().createEntity();
             pSSysERMap.set("PSSYSERMAPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysERMap);
+                iService.getTemp(pSSysERMap);
             } else {
-                iService.get((IEntity)pSSysERMap);
+                iService.get(pSSysERMap);
             }
             this.onFillParentInfo_PSSysERMap(pSSysERMapNode, pSSysERMap);
             return;
@@ -333,9 +333,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSysSearchDoc pSSysSearchDoc = (PSSysSearchDoc)iService.getDEModel().createEntity();
             pSSysSearchDoc.set("PSSYSSEARCHDOCID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSearchDoc);
+                iService.getTemp(pSSysSearchDoc);
             } else {
-                iService.get((IEntity)pSSysSearchDoc);
+                iService.get(pSSysSearchDoc);
             }
             this.onFillParentInfo_PSSysSearchDoc(pSSysERMapNode, pSSysSearchDoc);
             return;
@@ -345,9 +345,9 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSysSearchScheme pSSysSearchScheme = (PSSysSearchScheme)iService.getDEModel().createEntity();
             pSSysSearchScheme.set("PSSYSSEARCHSCHEMEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSearchScheme);
+                iService.getTemp(pSSysSearchScheme);
             } else {
-                iService.get((IEntity)pSSysSearchScheme);
+                iService.get(pSSysSearchScheme);
             }
             this.onFillParentInfo_PSSysSearchScheme(pSSysERMapNode, pSSysSearchScheme);
             return;
@@ -357,14 +357,14 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSysServiceAPI pSSysServiceAPI = (PSSysServiceAPI)iService.getDEModel().createEntity();
             pSSysServiceAPI.set("PSSYSSERVICEAPIID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysServiceAPI);
+                iService.getTemp(pSSysServiceAPI);
             } else {
-                iService.get((IEntity)pSSysServiceAPI);
+                iService.get(pSSysServiceAPI);
             }
             this.onFillParentInfo_PSSysSerrviceAPI(pSSysERMapNode, pSSysServiceAPI);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysERMapNode, string, string2, string3);
+        super.onFillParentInfo(pSSysERMapNode, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -460,7 +460,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 pSSysERMapNode.setTopPos((Integer)this.getDefaultValue(this.getWebContext(), "", "100", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysERMapNode, bl);
+        super.onFillEntityFullInfo(pSSysERMapNode, bl);
         this.onFillEntityFullInfo_PSAppLocalDE(pSSysERMapNode, bl);
         this.onFillEntityFullInfo_PSDE(pSSysERMapNode, bl);
         this.onFillEntityFullInfo_PSDEServiceAPI(pSSysERMapNode, bl);
@@ -664,7 +664,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
     }
 
     protected void onWriteBackParent(PSSysERMapNode pSSysERMapNode, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysERMapNode, bl);
+        super.onWriteBackParent(pSSysERMapNode, bl);
     }
 
     public ArrayList<PSSysERMapNode> selectByPSAppLocalDE(PSAppLocalDEBase pSAppLocalDEBase) throws Exception {
@@ -1074,7 +1074,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSAppLocalDE(pSAppLocalDE);
         this.onBeforeRemoveByPSAppLocalDE(pSAppLocalDE, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSAppLocalDE(pSAppLocalDE, arrayList);
     }
@@ -1120,7 +1120,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -1166,7 +1166,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSDEServiceAPI(pSDEServiceAPI);
         this.onBeforeRemoveByPSDEServiceAPI(pSDEServiceAPI, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSDEServiceAPI(pSDEServiceAPI, arrayList);
     }
@@ -1212,7 +1212,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSSubSysSADE(pSSubSysSADE);
         this.onBeforeRemoveByPSSubSysSADE(pSSubSysSADE, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSSubSysSADE(pSSubSysSADE, arrayList);
     }
@@ -1258,7 +1258,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSSubSysServiceAPI(pSSubSysServiceAPI);
         this.onBeforeRemoveByPSSubSysServiceAPI(pSSubSysServiceAPI, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSSubSysServiceAPI(pSSubSysServiceAPI, arrayList);
     }
@@ -1304,7 +1304,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -1350,7 +1350,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSSysBDScheme(pSSysBDScheme);
         this.onBeforeRemoveByPSSysBDScheme(pSSysBDScheme, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSSysBDScheme(pSSysBDScheme, arrayList);
     }
@@ -1396,7 +1396,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSSysBDTable(pSSysBDTable);
         this.onBeforeRemoveByPSSysBDTable(pSSysBDTable, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSSysBDTable(pSSysBDTable, arrayList);
     }
@@ -1442,7 +1442,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSSysDBScheme(pSSysDBScheme);
         this.onBeforeRemoveByPSSysDBScheme(pSSysDBScheme, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSSysDBScheme(pSSysDBScheme, arrayList);
     }
@@ -1488,7 +1488,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSSysDBTable(pSSysDBTable);
         this.onBeforeRemoveByPSSysDBTable(pSSysDBTable, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSSysDBTable(pSSysDBTable, arrayList);
     }
@@ -1506,8 +1506,8 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByRefPSSysDynaModel(pSSysDynaModel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSDYNAMODEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysDynaModel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSERMAPNODE_PSSYSDYNAMODEL_REFPSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSSYSERMAPNODE", iDataEntityModel.getDataInfo((IEntity)pSSysDynaModel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysDynaModel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSERMAPNODE_PSSYSDYNAMODEL_REFPSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSSYSERMAPNODE", iDataEntityModel.getDataInfo(pSSysDynaModel), arrayList.get(0)));
         }
     }
 
@@ -1540,7 +1540,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByRefPSSysDynaModel(pSSysDynaModel);
         this.onBeforeRemoveByRefPSSysDynaModel(pSSysDynaModel, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByRefPSSysDynaModel(pSSysDynaModel, arrayList);
     }
@@ -1573,7 +1573,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
             PSSysERMapNode pSSysERMapNode2 = (PSSysERMapNode)this.getDEModel().createEntity();
             pSSysERMapNode2.setPSSysERMapNodeId(pSSysERMapNode.getPSSysERMapNodeId());
             pSSysERMapNode2.setPSSysERMapId(null);
-            this.updateTemp((IEntity)pSSysERMapNode2);
+            this.updateTemp(pSSysERMapNode2);
         }
     }
 
@@ -1596,7 +1596,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSSysERMap(pSSysERMap);
         this.onBeforeRemoveByPSSysERMap(pSSysERMap, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSSysERMap(pSSysERMap, arrayList);
     }
@@ -1642,7 +1642,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSSysSearchDoc(pSSysSearchDoc);
         this.onBeforeRemoveByPSSysSearchDoc(pSSysSearchDoc, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSSysSearchDoc(pSSysSearchDoc, arrayList);
     }
@@ -1688,7 +1688,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSSysSearchScheme(pSSysSearchScheme);
         this.onBeforeRemoveByPSSysSearchScheme(pSSysSearchScheme, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSSysSearchScheme(pSSysSearchScheme, arrayList);
     }
@@ -1734,7 +1734,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectByPSSysSerrviceAPI(pSSysServiceAPI);
         this.onBeforeRemoveByPSSysSerrviceAPI(pSSysServiceAPI, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.remove((IEntity)pSSysERMapNode);
+            this.remove(pSSysERMapNode);
         }
         this.onAfterRemoveByPSSysSerrviceAPI(pSSysServiceAPI, arrayList);
     }
@@ -1772,7 +1772,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         ArrayList<PSSysERMapNode> arrayList = this.selectTempByPSSysERMap(pSSysERMap);
         this.onBeforeRemoveTempByPSSysERMap(pSSysERMap, arrayList);
         for (PSSysERMapNode pSSysERMapNode : arrayList) {
-            this.removeTemp((IEntity)pSSysERMapNode);
+            this.removeTemp(pSSysERMapNode);
         }
         this.onAfterRemoveTempByPSSysERMap(pSSysERMap, arrayList);
     }
@@ -1788,7 +1788,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
 
     protected void replaceParentInfo(PSSysERMapNode pSSysERMapNode, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysERMapNode, cloneSession);
+        super.replaceParentInfo(pSSysERMapNode, cloneSession);
         if (pSSysERMapNode.getPSAppLocalDEId() != null && (iEntity = cloneSession.getEntity("PSAPPLOCALDE", (Object)pSSysERMapNode.getPSAppLocalDEId())) != null) {
             this.onFillParentInfo_PSAppLocalDE(pSSysERMapNode, (PSAppLocalDE)iEntity);
         }
@@ -1837,7 +1837,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysERMapNode pSSysERMapNode, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysERMapNode, bl);
+        super.onRemoveEntityUncopyValues(pSSysERMapNode, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysERMapNode pSSysERMapNode, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1975,7 +1975,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSSysERMapNode, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysERMapNode, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysERMapNode, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DetailMode(boolean bl, PSSysERMapNode pSSysERMapNode, boolean bl2, boolean bl3) throws Exception {
@@ -1988,7 +1988,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DetailMode_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string = this.onTestValueRule_DetailMode_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DETAILMODE");
@@ -2010,7 +2010,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LeftPos_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string = this.onTestValueRule_LeftPos_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LEFTPOS");
@@ -2032,7 +2032,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -2054,7 +2054,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NodeTag_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_NodeTag_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NODETAG");
@@ -2076,7 +2076,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NodeTag2_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_NodeTag2_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NODETAG2");
@@ -2098,7 +2098,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NodeType_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_NodeType_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NODETYPE");
@@ -2120,7 +2120,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppLocalDEId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppLocalDEId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPLOCALDEID");
@@ -2159,7 +2159,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppLocalDEName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppLocalDEName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPLOCALDENAME");
@@ -2181,7 +2181,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -2220,7 +2220,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -2242,7 +2242,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEServiceAPIId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEServiceAPIId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESERVICEAPIID");
@@ -2281,7 +2281,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEServiceAPIName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEServiceAPIName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDESERVICEAPINAME");
@@ -2303,7 +2303,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSubSysSADEId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSubSysSADEId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSUBSYSSADEID");
@@ -2342,7 +2342,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSubSysSADEName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSubSysSADEName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSUBSYSSADENAME");
@@ -2364,7 +2364,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSubSysServiceAPIId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSubSysServiceAPIId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSUBSYSSERVICEAPIID");
@@ -2386,7 +2386,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSubSysServiceAPIName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSubSysServiceAPIName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSUBSYSSERVICEAPINAME");
@@ -2408,7 +2408,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -2430,7 +2430,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPNAME");
@@ -2452,7 +2452,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBDSchemeId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBDSchemeId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBDSCHEMEID");
@@ -2474,7 +2474,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBDSchemeName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBDSchemeName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBDSCHEMENAME");
@@ -2496,7 +2496,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBDTableId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBDTableId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBDTABLEID");
@@ -2518,7 +2518,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBDTableName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBDTableName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBDTABLENAME");
@@ -2540,7 +2540,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDBSchemeId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDBSchemeId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDBSCHEMEID");
@@ -2562,7 +2562,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDBSchemeName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDBSchemeName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDBSCHEMENAME");
@@ -2584,7 +2584,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDBTableId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDBTableId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDBTABLEID");
@@ -2623,7 +2623,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDBTableName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDBTableName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDBTABLENAME");
@@ -2645,7 +2645,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysERMapId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysERMapId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSERMAPID");
@@ -2670,7 +2670,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysERMapNodeId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysERMapNodeId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSERMAPNODEID");
@@ -2695,7 +2695,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysERMapNodeName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysERMapNodeName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSERMAPNODENAME");
@@ -2717,7 +2717,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchDocId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchDocId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHDOCID");
@@ -2739,7 +2739,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchDocName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchDocName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHDOCNAME");
@@ -2761,7 +2761,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchSchemeId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchSchemeId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHSCHEMEID");
@@ -2783,7 +2783,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSearchSchemeName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSearchSchemeName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSEARCHSCHEMENAME");
@@ -2805,7 +2805,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysServiceAPIId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysServiceAPIId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSERVICEAPIID");
@@ -2827,7 +2827,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysServiceAPIName_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysServiceAPIName_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSERVICEAPINAME");
@@ -2849,7 +2849,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefPSSysDynaModelId_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_RefPSSysDynaModelId_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFPSSYSDYNAMODELID");
@@ -2871,7 +2871,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ShapeParams_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_ShapeParams_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SHAPEPARAMS");
@@ -2893,7 +2893,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ShowDEFields_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_ShowDEFields_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SHOWDEFIELDS");
@@ -2915,7 +2915,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TopPos_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string = this.onTestValueRule_TopPos_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TOPPOS");
@@ -2937,7 +2937,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -2959,7 +2959,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -2981,7 +2981,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -3003,7 +3003,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -3025,7 +3025,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysERMapNode, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysERMapNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -3038,11 +3038,11 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
     }
 
     protected void onSyncEntity(PSSysERMapNode pSSysERMapNode, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysERMapNode, bl);
+        super.onSyncEntity(pSSysERMapNode, bl);
     }
 
     protected void onSyncIndexEntities(PSSysERMapNode pSSysERMapNode, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysERMapNode, bl);
+        super.onSyncIndexEntities(pSSysERMapNode, bl);
     }
 
     public Object getDataContextValue(PSSysERMapNode pSSysERMapNode, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -3050,7 +3050,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysERMapNode, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysERMapNode, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysERMap pSSysERMap = pSSysERMapNode.getPSSysERMap();
@@ -3061,7 +3061,7 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
     }
 
     protected void onExportMajorModel(PSSysERMapNode pSSysERMapNode, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysERMapNode, arrayList, n);
+        super.onExportMajorModel(pSSysERMapNode, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -3860,14 +3860,14 @@ extends PSCoreSysServiceBase<PSSysERMapNode> {
 
     protected boolean onMergeChild(String string, String string2, PSSysERMapNode pSSysERMapNode) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysERMapNode)) {
+        if (super.onMergeChild(string, string2, pSSysERMapNode)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysERMapNode pSSysERMapNode) throws Exception {
-        super.onUpdateParent((IEntity)pSSysERMapNode);
+        super.onUpdateParent(pSSysERMapNode);
     }
 
     @Override

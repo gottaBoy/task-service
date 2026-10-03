@@ -179,9 +179,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
             PSCodeList pSCodeList = (PSCodeList)iService.getDEModel().createEntity();
             pSCodeList.set("PSCODELISTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCodeList);
+                iService.getTemp(pSCodeList);
             } else {
-                iService.get((IEntity)pSCodeList);
+                iService.get(pSCodeList);
             }
             this.onFillParentInfo_PSCodeList(pSSysBICubeMeasure, pSCodeList);
             return;
@@ -191,9 +191,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_PSDEF(pSSysBICubeMeasure, pSDEField);
             return;
@@ -203,9 +203,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
             PSDEUIAction pSDEUIAction = (PSDEUIAction)iService.getDEModel().createEntity();
             pSDEUIAction.set("PSDEUIACTIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUIAction);
+                iService.getTemp(pSDEUIAction);
             } else {
-                iService.get((IEntity)pSDEUIAction);
+                iService.get(pSDEUIAction);
             }
             this.onFillParentInfo_ParamPSDEUIAction(pSSysBICubeMeasure, pSDEUIAction);
             return;
@@ -215,9 +215,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
             PSDEViewBase pSDEViewBase = (PSDEViewBase)iService.getDEModel().createEntity();
             pSDEViewBase.set("PSDEVIEWBASEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEViewBase);
+                iService.getTemp(pSDEViewBase);
             } else {
-                iService.get((IEntity)pSDEViewBase);
+                iService.get(pSDEViewBase);
             }
             this.onFillParentInfo_DrillDetailPSDEView(pSSysBICubeMeasure, pSDEViewBase);
             return;
@@ -227,9 +227,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
             PSDEViewBase pSDEViewBase = (PSDEViewBase)iService.getDEModel().createEntity();
             pSDEViewBase.set("PSDEVIEWBASEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEViewBase);
+                iService.getTemp(pSDEViewBase);
             } else {
-                iService.get((IEntity)pSDEViewBase);
+                iService.get(pSDEViewBase);
             }
             this.onFillParentInfo_DrillDownPSDEView(pSSysBICubeMeasure, pSDEViewBase);
             return;
@@ -239,9 +239,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
             PSSysBICube pSSysBICube = (PSSysBICube)iService.getDEModel().createEntity();
             pSSysBICube.set("PSSYSBICUBEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBICube);
+                iService.getTemp(pSSysBICube);
             } else {
-                iService.get((IEntity)pSSysBICube);
+                iService.get(pSSysBICube);
             }
             this.onFillParentInfo_PSSysBICube(pSSysBICubeMeasure, pSSysBICube);
             return;
@@ -251,9 +251,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
             PSSysTranslator pSSysTranslator = (PSSysTranslator)iService.getDEModel().createEntity();
             pSSysTranslator.set("PSSYSTRANSLATORID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysTranslator);
+                iService.getTemp(pSSysTranslator);
             } else {
-                iService.get((IEntity)pSSysTranslator);
+                iService.get(pSSysTranslator);
             }
             this.onFillParentInfo_PSSysTranslator(pSSysBICubeMeasure, pSSysTranslator);
             return;
@@ -263,14 +263,14 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
             PSThresholdGroup pSThresholdGroup = (PSThresholdGroup)iService.getDEModel().createEntity();
             pSThresholdGroup.set("PSTHRESHOLDGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSThresholdGroup);
+                iService.getTemp(pSThresholdGroup);
             } else {
-                iService.get((IEntity)pSThresholdGroup);
+                iService.get(pSThresholdGroup);
             }
             this.onFillParentInfo_PSThresholdGroup(pSSysBICubeMeasure, pSThresholdGroup);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysBICubeMeasure, string, string2, string3);
+        super.onFillParentInfo(pSSysBICubeMeasure, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -328,7 +328,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 pSSysBICubeMeasure.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysBICubeMeasure, bl);
+        super.onFillEntityFullInfo(pSSysBICubeMeasure, bl);
         this.onFillEntityFullInfo_PSCodeList(pSSysBICubeMeasure, bl);
         this.onFillEntityFullInfo_PSDEF(pSSysBICubeMeasure, bl);
         this.onFillEntityFullInfo_ParamPSDEUIAction(pSSysBICubeMeasure, bl);
@@ -364,7 +364,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
     }
 
     protected void onWriteBackParent(PSSysBICubeMeasure pSSysBICubeMeasure, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysBICubeMeasure, bl);
+        super.onWriteBackParent(pSSysBICubeMeasure, bl);
     }
 
     public ArrayList<PSSysBICubeMeasure> selectByPSCodeList(PSCodeListBase pSCodeListBase) throws Exception {
@@ -563,8 +563,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByPSCodeList(pSCodeList, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCODELIST");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCodeList);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSCODELIST_PSCODELISTID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo((IEntity)pSCodeList), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCodeList);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSCODELIST_PSCODELISTID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo(pSCodeList), arrayList.get(0)));
         }
     }
 
@@ -597,7 +597,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByPSCodeList(pSCodeList);
         this.onBeforeRemoveByPSCodeList(pSCodeList, arrayList);
         for (PSSysBICubeMeasure pSSysBICubeMeasure : arrayList) {
-            this.remove((IEntity)pSSysBICubeMeasure);
+            this.remove(pSSysBICubeMeasure);
         }
         this.onAfterRemoveByPSCodeList(pSCodeList, arrayList);
     }
@@ -615,8 +615,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSDEFIELD_PSDEFID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSDEFIELD_PSDEFID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -649,7 +649,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByPSDEF(pSDEField);
         this.onBeforeRemoveByPSDEF(pSDEField, arrayList);
         for (PSSysBICubeMeasure pSSysBICubeMeasure : arrayList) {
-            this.remove((IEntity)pSSysBICubeMeasure);
+            this.remove(pSSysBICubeMeasure);
         }
         this.onAfterRemoveByPSDEF(pSDEField, arrayList);
     }
@@ -667,8 +667,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByParamPSDEUIAction(pSDEUIAction, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEUIACTION");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEUIAction);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSDEUIACTION_PARAMPSDEUIACTIONID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo((IEntity)pSDEUIAction), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEUIAction);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSDEUIACTION_PARAMPSDEUIACTIONID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo(pSDEUIAction), arrayList.get(0)));
         }
     }
 
@@ -701,7 +701,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByParamPSDEUIAction(pSDEUIAction);
         this.onBeforeRemoveByParamPSDEUIAction(pSDEUIAction, arrayList);
         for (PSSysBICubeMeasure pSSysBICubeMeasure : arrayList) {
-            this.remove((IEntity)pSSysBICubeMeasure);
+            this.remove(pSSysBICubeMeasure);
         }
         this.onAfterRemoveByParamPSDEUIAction(pSDEUIAction, arrayList);
     }
@@ -719,8 +719,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByDrillDetailPSDEView(pSDEViewBase, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVIEWBASE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEViewBase);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSDEVIEWBASE_DRILLDETAILPSDEVIEWID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo((IEntity)pSDEViewBase), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEViewBase);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSDEVIEWBASE_DRILLDETAILPSDEVIEWID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo(pSDEViewBase), arrayList.get(0)));
         }
     }
 
@@ -753,7 +753,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByDrillDetailPSDEView(pSDEViewBase);
         this.onBeforeRemoveByDrillDetailPSDEView(pSDEViewBase, arrayList);
         for (PSSysBICubeMeasure pSSysBICubeMeasure : arrayList) {
-            this.remove((IEntity)pSSysBICubeMeasure);
+            this.remove(pSSysBICubeMeasure);
         }
         this.onAfterRemoveByDrillDetailPSDEView(pSDEViewBase, arrayList);
     }
@@ -771,8 +771,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByDrillDownPSDEView(pSDEViewBase, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVIEWBASE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEViewBase);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSDEVIEWBASE_DRILLDOWNPSDEVIEWID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo((IEntity)pSDEViewBase), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEViewBase);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSDEVIEWBASE_DRILLDOWNPSDEVIEWID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo(pSDEViewBase), arrayList.get(0)));
         }
     }
 
@@ -805,7 +805,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByDrillDownPSDEView(pSDEViewBase);
         this.onBeforeRemoveByDrillDownPSDEView(pSDEViewBase, arrayList);
         for (PSSysBICubeMeasure pSSysBICubeMeasure : arrayList) {
-            this.remove((IEntity)pSSysBICubeMeasure);
+            this.remove(pSSysBICubeMeasure);
         }
         this.onAfterRemoveByDrillDownPSDEView(pSDEViewBase, arrayList);
     }
@@ -851,7 +851,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByPSSysBICube(pSSysBICube);
         this.onBeforeRemoveByPSSysBICube(pSSysBICube, arrayList);
         for (PSSysBICubeMeasure pSSysBICubeMeasure : arrayList) {
-            this.remove((IEntity)pSSysBICubeMeasure);
+            this.remove(pSSysBICubeMeasure);
         }
         this.onAfterRemoveByPSSysBICube(pSSysBICube, arrayList);
     }
@@ -869,8 +869,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByPSSysTranslator(pSSysTranslator, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSTRANSLATOR");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysTranslator);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSSYSTRANSLATOR_PSSYSTRANSLATORID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo((IEntity)pSSysTranslator), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysTranslator);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSSYSTRANSLATOR_PSSYSTRANSLATORID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo(pSSysTranslator), arrayList.get(0)));
         }
     }
 
@@ -903,7 +903,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByPSSysTranslator(pSSysTranslator);
         this.onBeforeRemoveByPSSysTranslator(pSSysTranslator, arrayList);
         for (PSSysBICubeMeasure pSSysBICubeMeasure : arrayList) {
-            this.remove((IEntity)pSSysBICubeMeasure);
+            this.remove(pSSysBICubeMeasure);
         }
         this.onAfterRemoveByPSSysTranslator(pSSysTranslator, arrayList);
     }
@@ -921,8 +921,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByPSThresholdGroup(pSThresholdGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSTHRESHOLDGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSThresholdGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSTHRESHOLDGROUP_PSTHRESHOLDGROUPID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo((IEntity)pSThresholdGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSThresholdGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMEASURE_PSTHRESHOLDGROUP_PSTHRESHOLDGROUPID", "", iDataEntityModel.getName(), "PSSYSBICUBEMEASURE", iDataEntityModel.getDataInfo(pSThresholdGroup), arrayList.get(0)));
         }
     }
 
@@ -955,7 +955,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         ArrayList<PSSysBICubeMeasure> arrayList = this.selectByPSThresholdGroup(pSThresholdGroup);
         this.onBeforeRemoveByPSThresholdGroup(pSThresholdGroup, arrayList);
         for (PSSysBICubeMeasure pSSysBICubeMeasure : arrayList) {
-            this.remove((IEntity)pSSysBICubeMeasure);
+            this.remove(pSSysBICubeMeasure);
         }
         this.onAfterRemoveByPSThresholdGroup(pSThresholdGroup, arrayList);
     }
@@ -988,7 +988,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
 
     protected void replaceParentInfo(PSSysBICubeMeasure pSSysBICubeMeasure, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysBICubeMeasure, cloneSession);
+        super.replaceParentInfo(pSSysBICubeMeasure, cloneSession);
         if (pSSysBICubeMeasure.getPSCodeListId() != null && (iEntity = cloneSession.getEntity("PSCODELIST", (Object)pSSysBICubeMeasure.getPSCodeListId())) != null) {
             this.onFillParentInfo_PSCodeList(pSSysBICubeMeasure, (PSCodeList)iEntity);
         }
@@ -1016,7 +1016,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysBICubeMeasure pSSysBICubeMeasure, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysBICubeMeasure, bl);
+        super.onRemoveEntityUncopyValues(pSSysBICubeMeasure, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysBICubeMeasure pSSysBICubeMeasure, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1127,7 +1127,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         if ((entityFieldError = this.onCheckField_ValueFormat(bl, pSSysBICubeMeasure, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysBICubeMeasure, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysBICubeMeasure, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AggType(boolean bl, PSSysBICubeMeasure pSSysBICubeMeasure, boolean bl2, boolean bl3) throws Exception {
@@ -1140,7 +1140,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AggType_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_AggType_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AGGTYPE");
@@ -1162,7 +1162,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BICubeMeasureTag_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_BICubeMeasureTag_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BICUBEMEASURETAG");
@@ -1184,7 +1184,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BICubeMeasureTag2_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_BICubeMeasureTag2_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BICUBEMEASURETAG2");
@@ -1206,7 +1206,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIMeasureGroup_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_BIMeasureGroup_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIMEASUREGROUP");
@@ -1231,7 +1231,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIMeasureType_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_BIMeasureType_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIMEASURETYPE");
@@ -1256,7 +1256,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1295,7 +1295,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DrillDetailCustomCond_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_DrillDetailCustomCond_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DRILLDETAILCUSTOMCOND");
@@ -1317,7 +1317,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DrillDetailCustomType_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_DrillDetailCustomType_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DRILLDETAILCUSTOMTYPE");
@@ -1339,7 +1339,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DrillDetailPSDEViewId_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_DrillDetailPSDEViewId_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DRILLDETAILPSDEVIEWID");
@@ -1361,7 +1361,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DrillDownCustomCond_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_DrillDownCustomCond_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DRILLDOWNCUSTOMCOND");
@@ -1383,7 +1383,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DrillDownCustomType_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_DrillDownCustomType_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DRILLDOWNCUSTOMTYPE");
@@ -1405,7 +1405,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DrillDownPSDEViewId_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_DrillDownPSDEViewId_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DRILLDOWNPSDEVIEWID");
@@ -1427,7 +1427,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_HiddenDataItem_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string = this.onTestValueRule_HiddenDataItem_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HIDDENDATAITEM");
@@ -1449,7 +1449,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JsonFormat_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_JsonFormat_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JSONFORMAT");
@@ -1471,7 +1471,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MeasureFormula_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_MeasureFormula_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEASUREFORMULA");
@@ -1493,7 +1493,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1515,7 +1515,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -1537,7 +1537,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ParamPSDEUIActionId_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_ParamPSDEUIActionId_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMPSDEUIACTIONID");
@@ -1559,7 +1559,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCodeListId_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_PSCodeListId_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCODELISTID");
@@ -1581,7 +1581,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFId_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFId_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFID");
@@ -1603,7 +1603,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeId_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeId_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBEID");
@@ -1628,7 +1628,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeMeasureId_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeMeasureId_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBEMEASUREID");
@@ -1653,7 +1653,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeMeasureName_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeMeasureName_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBEMEASURENAME");
@@ -1692,7 +1692,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysTranslatorId_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysTranslatorId_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTRANSLATORID");
@@ -1714,7 +1714,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSThresholdGroupId_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_PSThresholdGroupId_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTHRESHOLDGROUPID");
@@ -1736,7 +1736,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_StdDataType_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string = this.onTestValueRule_StdDataType_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STDDATATYPE");
@@ -1758,7 +1758,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TextTemplate_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_TextTemplate_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEXTTEMPLATE");
@@ -1780,7 +1780,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TipTemplate_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_TipTemplate_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TIPTEMPLATE");
@@ -1802,7 +1802,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1824,7 +1824,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1846,7 +1846,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1868,7 +1868,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1890,7 +1890,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1915,7 +1915,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1937,7 +1937,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ValueFormat_Default((IEntity)pSSysBICubeMeasure, bl2, bl3);
+            string2 = this.onTestValueRule_ValueFormat_Default(pSSysBICubeMeasure, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALUEFORMAT");
@@ -1950,11 +1950,11 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
     }
 
     protected void onSyncEntity(PSSysBICubeMeasure pSSysBICubeMeasure, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysBICubeMeasure, bl);
+        super.onSyncEntity(pSSysBICubeMeasure, bl);
     }
 
     protected void onSyncIndexEntities(PSSysBICubeMeasure pSSysBICubeMeasure, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysBICubeMeasure, bl);
+        super.onSyncIndexEntities(pSSysBICubeMeasure, bl);
     }
 
     public Object getDataContextValue(PSSysBICubeMeasure pSSysBICubeMeasure, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1962,7 +1962,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysBICubeMeasure, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysBICubeMeasure, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysBICube pSSysBICube = pSSysBICubeMeasure.getPSSysBICube();
@@ -1973,7 +1973,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
     }
 
     protected void onExportMajorModel(PSSysBICubeMeasure pSSysBICubeMeasure, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysBICubeMeasure, arrayList, n);
+        super.onExportMajorModel(pSSysBICubeMeasure, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2674,14 +2674,14 @@ extends PSCoreSysServiceBase<PSSysBICubeMeasure> {
 
     protected boolean onMergeChild(String string, String string2, PSSysBICubeMeasure pSSysBICubeMeasure) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysBICubeMeasure)) {
+        if (super.onMergeChild(string, string2, pSSysBICubeMeasure)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysBICubeMeasure pSSysBICubeMeasure) throws Exception {
-        super.onUpdateParent((IEntity)pSSysBICubeMeasure);
+        super.onUpdateParent(pSSysBICubeMeasure);
     }
 
     @Override

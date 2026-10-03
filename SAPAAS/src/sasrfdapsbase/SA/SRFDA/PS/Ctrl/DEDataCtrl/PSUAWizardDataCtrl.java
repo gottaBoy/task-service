@@ -116,7 +116,7 @@ extends PSDEDataCtrl {
         UserService userService = (UserService)ServiceGlobal.getService(UserService.class, (SessionFactory)SessionFactory2);
         SelectCond selectCond = new SelectCond();
         selectCond.set("VALIDFLAG", (Object)1);
-        ArrayList userList = userService.select((ISelectCond)selectCond);
+        ArrayList<User> userList = userService.select((ISelectCond)selectCond);
         ArrayList<PSUAWizard> psUAWizardList = new ArrayList<PSUAWizard>();
         if (userList.size() > 0) {
             for (User user : userList) {
@@ -129,4 +129,3 @@ extends PSDEDataCtrl {
         psUAWizard.set(TAG_MODELLIST, Base64Helper.encodeBytes((byte[])PSUAWizardDataCtrl.toJsonString(psUAWizardList).getBytes("GBK")));
     }
 }
-

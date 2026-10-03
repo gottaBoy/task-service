@@ -35,8 +35,8 @@ extends XMLCollectionExConfig<WFConnectionConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = WFConnectionsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((WFConnectionConfig)childNode))) {
-                this.add((Object)((WFConnectionConfig)childNode));
+            if (this.OnChildNodeLoaded((WFConnectionConfig)childNode)) {
+                this.add((WFConnectionConfig)childNode);
                 return;
             }
         }

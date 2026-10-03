@@ -164,10 +164,10 @@ implements IPSDEToolbarService {
 
     @Override
     protected List<PSDEToolbar> onListAll() throws Exception {
-        List pssystems;
-        List psmodules;
+        List<PSSystem> pssystems;
+        List<PSModule> psmodules;
         ArrayList<PSDEToolbar> list = new ArrayList<PSDEToolbar>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEToolbar> items = this.listByPSDataEntity(parent);
@@ -488,18 +488,19 @@ implements IPSDEToolbarService {
         } else {
             dto.setPSSystemName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDETBItemService().listByPSDEToolbar(t);
-        if (list != null && list.size() > 0) {
+        List<PSDETBItem> pSDETBItemList = PSModelServiceUtil.getInstance().getPSDETBItemService().listByPSDEToolbar(t);
+        if (pSDETBItemList != null && pSDETBItemList.size() > 0) {
             ArrayList<PSDETBItemDTO> psdetbitems = new ArrayList<PSDETBItemDTO>();
-            for (PSDETBItem pSDETBItem : list) {
+            for (PSDETBItem pSDETBItem : pSDETBItemList) {
                 dstItem = (PSDETBItemDTO)PSModelServiceUtil.getInstance().getPSDETBItemService().toDTO(pSDETBItem);
                 psdetbitems.add((PSDETBItemDTO)dstItem);
             }
             dto.setPsdetbitems(psdetbitems);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEToolbarLogicService().listByPSDEToolbar(t)) != null && list.size() > 0) {
+        List<PSDEToolbarLogic> pSDEToolbarLogicList = PSModelServiceUtil.getInstance().getPSDEToolbarLogicService().listByPSDEToolbar(t);
+        if (pSDEToolbarLogicList != null && pSDEToolbarLogicList.size() > 0) {
             ArrayList<PSDEToolbarLogicDTO> psdetoolbarlogics = new ArrayList<PSDEToolbarLogicDTO>();
-            for (PSDEToolbarLogic pSDEToolbarLogic : list) {
+            for (PSDEToolbarLogic pSDEToolbarLogic : pSDEToolbarLogicList) {
                 dstItem = (PSDEToolbarLogicDTO)PSModelServiceUtil.getInstance().getPSDEToolbarLogicService().toDTO(pSDEToolbarLogic);
                 psdetoolbarlogics.add((PSDEToolbarLogicDTO)dstItem);
             }

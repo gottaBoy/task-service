@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSWFEngineInstDEModelBase;
 
 public class PSWFEngineInstDEModel
 extends PSWFEngineInstDEModelBase {
+
+    public PSWFEngineInstDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

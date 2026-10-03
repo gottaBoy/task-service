@@ -99,8 +99,14 @@ implements IPSZooKeeper {
             }
         }
         this.close();
-        this.open();
-        return true;
+        try {
+            this.open();
+            return true;
+        }
+        catch (Exception ex) {
+            log.error((Object)ex);
+            return false;
+        }
     }
 
     protected void processEvent(WatchedEvent event) {
@@ -191,4 +197,3 @@ implements IPSZooKeeper {
         return zk != null && (zk.getState() == ZooKeeper.States.CONNECTED || zk.getState() == ZooKeeper.States.CONNECTEDREADONLY);
     }
 }
-

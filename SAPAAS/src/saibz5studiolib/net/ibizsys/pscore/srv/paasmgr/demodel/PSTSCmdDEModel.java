@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSTSCmdDEModelBase;
 
 public class PSTSCmdDEModel
 extends PSTSCmdDEModelBase {
+
+    public PSTSCmdDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

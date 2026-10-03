@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdevstudio.demodel.PSViewRTMsgDEModelBase;
 
 public class PSViewRTMsgDEModel
 extends PSViewRTMsgDEModelBase {
+
+    public PSViewRTMsgDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

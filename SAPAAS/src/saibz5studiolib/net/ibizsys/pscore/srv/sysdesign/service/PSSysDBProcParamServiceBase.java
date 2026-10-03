@@ -147,14 +147,14 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
             PSSysDBProc pSSysDBProc = (PSSysDBProc)iService.getDEModel().createEntity();
             pSSysDBProc.set("PSSYSDBPROCID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDBProc);
+                iService.getTemp(pSSysDBProc);
             } else {
-                iService.get((IEntity)pSSysDBProc);
+                iService.get(pSSysDBProc);
             }
             this.onFillParentInfo_PSSysDBProc(pSSysDBProcParam, pSSysDBProc);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysDBProcParam, string, string2, string3);
+        super.onFillParentInfo(pSSysDBProcParam, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -170,7 +170,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysDBProcParam, bl);
+        super.onFillEntityFullInfo(pSSysDBProcParam, bl);
         this.onFillEntityFullInfo_PSSysDBProc(pSSysDBProcParam, bl);
     }
 
@@ -178,7 +178,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
     }
 
     protected void onWriteBackParent(PSSysDBProcParam pSSysDBProcParam, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysDBProcParam, bl);
+        super.onWriteBackParent(pSSysDBProcParam, bl);
     }
 
     public ArrayList<PSSysDBProcParam> selectByPSSysDBProc(PSSysDBProcBase pSSysDBProcBase) throws Exception {
@@ -237,7 +237,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
         ArrayList<PSSysDBProcParam> arrayList = this.selectByPSSysDBProc(pSSysDBProc);
         this.onBeforeRemoveByPSSysDBProc(pSSysDBProc, arrayList);
         for (PSSysDBProcParam pSSysDBProcParam : arrayList) {
-            this.remove((IEntity)pSSysDBProcParam);
+            this.remove(pSSysDBProcParam);
         }
         this.onAfterRemoveByPSSysDBProc(pSSysDBProc, arrayList);
     }
@@ -258,14 +258,14 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
 
     protected void replaceParentInfo(PSSysDBProcParam pSSysDBProcParam, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysDBProcParam, cloneSession);
+        super.replaceParentInfo(pSSysDBProcParam, cloneSession);
         if (pSSysDBProcParam.getPSSysDBProcId() != null && (iEntity = cloneSession.getEntity("PSSYSDBPROC", (Object)pSSysDBProcParam.getPSSysDBProcId())) != null) {
             this.onFillParentInfo_PSSysDBProc(pSSysDBProcParam, (PSSysDBProc)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSysDBProcParam pSSysDBProcParam, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysDBProcParam, bl);
+        super.onRemoveEntityUncopyValues(pSSysDBProcParam, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysDBProcParam pSSysDBProcParam, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -313,7 +313,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
         if ((entityFieldError = this.onCheckField_UserTag2(bl, pSSysDBProcParam, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysDBProcParam, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysDBProcParam, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DefaultValue(boolean bl, PSSysDBProcParam pSSysDBProcParam, boolean bl2, boolean bl3) throws Exception {
@@ -326,7 +326,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DefaultValue_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string2 = this.onTestValueRule_DefaultValue_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTVALUE");
@@ -348,7 +348,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Length_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string = this.onTestValueRule_Length_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LENGTH");
@@ -370,7 +370,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -392,7 +392,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -417,7 +417,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -442,7 +442,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ParamDIR_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string = this.onTestValueRule_ParamDIR_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMDIR");
@@ -464,7 +464,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Precision2_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string = this.onTestValueRule_Precision2_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PRECISION2");
@@ -489,7 +489,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDBProcId_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDBProcId_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDBPROCID");
@@ -514,7 +514,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDBProcParamId_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDBProcParamId_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDBPROCPARAMID");
@@ -539,7 +539,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDBProcParamName_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDBProcParamName_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDBPROCPARAMNAME");
@@ -581,7 +581,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_StdDataType_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string = this.onTestValueRule_StdDataType_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STDDATATYPE");
@@ -603,7 +603,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -625,7 +625,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -647,7 +647,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysDBProcParam, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysDBProcParam, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -660,11 +660,11 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
     }
 
     protected void onSyncEntity(PSSysDBProcParam pSSysDBProcParam, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysDBProcParam, bl);
+        super.onSyncEntity(pSSysDBProcParam, bl);
     }
 
     protected void onSyncIndexEntities(PSSysDBProcParam pSSysDBProcParam, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysDBProcParam, bl);
+        super.onSyncIndexEntities(pSSysDBProcParam, bl);
     }
 
     public Object getDataContextValue(PSSysDBProcParam pSSysDBProcParam, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -672,7 +672,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysDBProcParam, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysDBProcParam, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysDBProc pSSysDBProc = pSSysDBProcParam.getPSSysDBProc();
@@ -683,7 +683,7 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
     }
 
     protected void onExportMajorModel(PSSysDBProcParam pSSysDBProcParam, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysDBProcParam, arrayList, n);
+        super.onExportMajorModel(pSSysDBProcParam, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -926,14 +926,14 @@ extends PSCoreSysServiceBase<PSSysDBProcParam> {
 
     protected boolean onMergeChild(String string, String string2, PSSysDBProcParam pSSysDBProcParam) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysDBProcParam)) {
+        if (super.onMergeChild(string, string2, pSSysDBProcParam)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysDBProcParam pSSysDBProcParam) throws Exception {
-        super.onUpdateParent((IEntity)pSSysDBProcParam);
+        super.onUpdateParent(pSSysDBProcParam);
     }
 
     @Override

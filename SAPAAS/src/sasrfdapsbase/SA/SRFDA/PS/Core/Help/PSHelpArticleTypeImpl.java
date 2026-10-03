@@ -114,7 +114,7 @@ implements IPSHelpArticleType {
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSHELPARTICLEID", (Object)psHelpArticle.getPSHelpArticleId());
         selectCond.set("PPSHELPSECTIONID", SelectCond.ISNULL);
-        ArrayList psHelpSectionList = psHelpSectionService.select((ISelectCond)selectCond);
+        ArrayList<PSHelpSection> psHelpSectionList = psHelpSectionService.select((ISelectCond)selectCond);
         for (PSHelpSection psHelpSection : psHelpSectionList) {
             SA.SRFDA.PS.Data.PSHelpSection psHelpSection2 = new SA.SRFDA.PS.Data.PSHelpSection();
             PSDEDataCtrl.convertEntity((IEntity)psHelpSection, psHelpSection2);
@@ -144,4 +144,3 @@ implements IPSHelpArticleType {
         return (IPSHelpArticlePublisher)ObjectHelper.Create((String)this.strPubObj);
     }
 }
-

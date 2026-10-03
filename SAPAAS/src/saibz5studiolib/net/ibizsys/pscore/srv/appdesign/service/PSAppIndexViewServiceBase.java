@@ -228,21 +228,21 @@ extends PSAppViewService<PSAppIndexView> {
 
     public void changeAppMenu(PSAppIndexView pSAppIndexView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEAPPMENU, 0, (IEntity)pSAppIndexView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEAPPMENU, 0, pSAppIndexView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppIndexView, ACTION_CHANGEAPPMENU);
+        this.testDEMainStateAction(pSAppIndexView, ACTION_CHANGEAPPMENU);
         final PSAppIndexView pSAppIndexView2 = pSAppIndexView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_CHANGEAPPMENU, 40, (IEntity)pSAppIndexView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_CHANGEAPPMENU, 40, pSAppIndexView2, null).getResult() != 1) {
                     PSAppIndexViewServiceBase.this.onChangeAppMenu(pSAppIndexView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEAPPMENU, 99, (IEntity)pSAppIndexView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CHANGEAPPMENU, 99, pSAppIndexView, null);
         }
     }
 
@@ -252,21 +252,21 @@ extends PSAppViewService<PSAppIndexView> {
 
     public void createWithModel(PSAppIndexView pSAppIndexView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, (IEntity)pSAppIndexView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, pSAppIndexView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppIndexView, ACTION_CREATEWITHMODEL);
+        this.testDEMainStateAction(pSAppIndexView, ACTION_CREATEWITHMODEL);
         final PSAppIndexView pSAppIndexView2 = pSAppIndexView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_CREATEWITHMODEL, 40, (IEntity)pSAppIndexView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_CREATEWITHMODEL, 40, pSAppIndexView2, null).getResult() != 1) {
                     PSAppIndexViewServiceBase.this.onCreateWithModel(pSAppIndexView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, (IEntity)pSAppIndexView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, pSAppIndexView, null);
         }
     }
 
@@ -276,21 +276,21 @@ extends PSAppViewService<PSAppIndexView> {
 
     public void getDraftFromWithModel(PSAppIndexView pSAppIndexView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, (IEntity)pSAppIndexView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, pSAppIndexView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppIndexView, ACTION_GETDRAFTFROMWITHMODEL);
+        this.testDEMainStateAction(pSAppIndexView, ACTION_GETDRAFTFROMWITHMODEL);
         final PSAppIndexView pSAppIndexView2 = pSAppIndexView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, (IEntity)pSAppIndexView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, pSAppIndexView2, null).getResult() != 1) {
                     PSAppIndexViewServiceBase.this.onGetDraftFromWithModel(pSAppIndexView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, (IEntity)pSAppIndexView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, pSAppIndexView, null);
         }
     }
 
@@ -300,21 +300,21 @@ extends PSAppViewService<PSAppIndexView> {
 
     public void getDraftWithModel(PSAppIndexView pSAppIndexView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, (IEntity)pSAppIndexView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, pSAppIndexView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppIndexView, ACTION_GETDRAFTWITHMODEL);
+        this.testDEMainStateAction(pSAppIndexView, ACTION_GETDRAFTWITHMODEL);
         final PSAppIndexView pSAppIndexView2 = pSAppIndexView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_GETDRAFTWITHMODEL, 40, (IEntity)pSAppIndexView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_GETDRAFTWITHMODEL, 40, pSAppIndexView2, null).getResult() != 1) {
                     PSAppIndexViewServiceBase.this.onGetDraftWithModel(pSAppIndexView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, (IEntity)pSAppIndexView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, pSAppIndexView, null);
         }
     }
 
@@ -324,21 +324,21 @@ extends PSAppViewService<PSAppIndexView> {
 
     public void getWithModel(PSAppIndexView pSAppIndexView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, (IEntity)pSAppIndexView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, pSAppIndexView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppIndexView, ACTION_GETWITHMODEL);
+        this.testDEMainStateAction(pSAppIndexView, ACTION_GETWITHMODEL);
         final PSAppIndexView pSAppIndexView2 = pSAppIndexView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_GETWITHMODEL, 40, (IEntity)pSAppIndexView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_GETWITHMODEL, 40, pSAppIndexView2, null).getResult() != 1) {
                     PSAppIndexViewServiceBase.this.onGetWithModel(pSAppIndexView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, (IEntity)pSAppIndexView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, pSAppIndexView, null);
         }
     }
 
@@ -348,21 +348,21 @@ extends PSAppViewService<PSAppIndexView> {
 
     public void previewSave(PSAppIndexView pSAppIndexView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 0, (IEntity)pSAppIndexView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 0, pSAppIndexView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppIndexView, ACTION_PREVIEWSAVE);
+        this.testDEMainStateAction(pSAppIndexView, ACTION_PREVIEWSAVE);
         final PSAppIndexView pSAppIndexView2 = pSAppIndexView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_PREVIEWSAVE, 40, (IEntity)pSAppIndexView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_PREVIEWSAVE, 40, pSAppIndexView2, null).getResult() != 1) {
                     PSAppIndexViewServiceBase.this.onPreviewSave(pSAppIndexView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 99, (IEntity)pSAppIndexView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_PREVIEWSAVE, 99, pSAppIndexView, null);
         }
     }
 
@@ -372,21 +372,21 @@ extends PSAppViewService<PSAppIndexView> {
 
     public void updateWithModel(PSAppIndexView pSAppIndexView) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, (IEntity)pSAppIndexView, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, pSAppIndexView, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSAppIndexView, ACTION_UPDATEWITHMODEL);
+        this.testDEMainStateAction(pSAppIndexView, ACTION_UPDATEWITHMODEL);
         final PSAppIndexView pSAppIndexView2 = pSAppIndexView;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_UPDATEWITHMODEL, 40, (IEntity)pSAppIndexView2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSAppIndexViewServiceBase.this.getService(), PSAppIndexViewServiceBase.ACTION_UPDATEWITHMODEL, 40, pSAppIndexView2, null).getResult() != 1) {
                     PSAppIndexViewServiceBase.this.onUpdateWithModel(pSAppIndexView2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, (IEntity)pSAppIndexView, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, pSAppIndexView, null);
         }
     }
 
@@ -401,9 +401,9 @@ extends PSAppViewService<PSAppIndexView> {
             PSAppMenu pSAppMenu = (PSAppMenu)iService.getDEModel().createEntity();
             pSAppMenu.set("PSAPPMENUID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppMenu);
+                iService.getTemp(pSAppMenu);
             } else {
-                iService.get((IEntity)pSAppMenu);
+                iService.get(pSAppMenu);
             }
             this.onFillParentInfo_BottomSidePSAppMenu(pSAppIndexView, pSAppMenu);
             return;
@@ -413,9 +413,9 @@ extends PSAppViewService<PSAppIndexView> {
             PSAppMenu pSAppMenu = (PSAppMenu)iService.getDEModel().createEntity();
             pSAppMenu.set("PSAPPMENUID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppMenu);
+                iService.getTemp(pSAppMenu);
             } else {
-                iService.get((IEntity)pSAppMenu);
+                iService.get(pSAppMenu);
             }
             this.onFillParentInfo_LeftSidePSAppMenu(pSAppIndexView, pSAppMenu);
             return;
@@ -425,9 +425,9 @@ extends PSAppViewService<PSAppIndexView> {
             PSAppMenu pSAppMenu = (PSAppMenu)iService.getDEModel().createEntity();
             pSAppMenu.set("PSAPPMENUID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppMenu);
+                iService.getTemp(pSAppMenu);
             } else {
-                iService.get((IEntity)pSAppMenu);
+                iService.get(pSAppMenu);
             }
             this.onFillParentInfo_PSAppMenu(pSAppIndexView, pSAppMenu);
             return;
@@ -437,9 +437,9 @@ extends PSAppViewService<PSAppIndexView> {
             PSAppMenu pSAppMenu = (PSAppMenu)iService.getDEModel().createEntity();
             pSAppMenu.set("PSAPPMENUID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppMenu);
+                iService.getTemp(pSAppMenu);
             } else {
-                iService.get((IEntity)pSAppMenu);
+                iService.get(pSAppMenu);
             }
             this.onFillParentInfo_RightSidePSAppMenu(pSAppIndexView, pSAppMenu);
             return;
@@ -449,9 +449,9 @@ extends PSAppViewService<PSAppIndexView> {
             PSAppMenu pSAppMenu = (PSAppMenu)iService.getDEModel().createEntity();
             pSAppMenu.set("PSAPPMENUID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppMenu);
+                iService.getTemp(pSAppMenu);
             } else {
-                iService.get((IEntity)pSAppMenu);
+                iService.get(pSAppMenu);
             }
             this.onFillParentInfo_TopSidePSAppMenu(pSAppIndexView, pSAppMenu);
             return;
@@ -461,9 +461,9 @@ extends PSAppViewService<PSAppIndexView> {
             PSAppView pSAppView = (PSAppView)iService.getDEModel().createEntity();
             pSAppView.set("PSAPPVIEWID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppView);
+                iService.getTemp(pSAppView);
             } else {
-                iService.get((IEntity)pSAppView);
+                iService.get(pSAppView);
             }
             this.onFillParentInfo_DefPSAppView(pSAppIndexView, pSAppView);
             return;
@@ -473,9 +473,9 @@ extends PSAppViewService<PSAppIndexView> {
             PSSysCounter pSSysCounter = (PSSysCounter)iService.getDEModel().createEntity();
             pSSysCounter.set("PSSYSCOUNTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCounter);
+                iService.getTemp(pSSysCounter);
             } else {
-                iService.get((IEntity)pSSysCounter);
+                iService.get(pSSysCounter);
             }
             this.onFillParentInfo_PSSysCounter(pSAppIndexView, pSSysCounter);
             return;
@@ -736,8 +736,8 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByBottomSidePSAppMenu(pSAppMenu, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSAPPMENU");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSAppMenu);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSAPPMENU_BOTTOMSIDEPSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo((IEntity)pSAppMenu), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSAppMenu);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSAPPMENU_BOTTOMSIDEPSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo(pSAppMenu), arrayList.get(0)));
         }
     }
 
@@ -770,7 +770,7 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByBottomSidePSAppMenu(pSAppMenu);
         this.onBeforeRemoveByBottomSidePSAppMenu(pSAppMenu, arrayList);
         for (PSAppIndexView pSAppIndexView : arrayList) {
-            this.remove((IEntity)pSAppIndexView);
+            this.remove(pSAppIndexView);
         }
         this.onAfterRemoveByBottomSidePSAppMenu(pSAppMenu, arrayList);
     }
@@ -788,8 +788,8 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByLeftSidePSAppMenu(pSAppMenu, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSAPPMENU");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSAppMenu);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSAPPMENU_LEFTSIDEPSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo((IEntity)pSAppMenu), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSAppMenu);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSAPPMENU_LEFTSIDEPSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo(pSAppMenu), arrayList.get(0)));
         }
     }
 
@@ -822,7 +822,7 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByLeftSidePSAppMenu(pSAppMenu);
         this.onBeforeRemoveByLeftSidePSAppMenu(pSAppMenu, arrayList);
         for (PSAppIndexView pSAppIndexView : arrayList) {
-            this.remove((IEntity)pSAppIndexView);
+            this.remove(pSAppIndexView);
         }
         this.onAfterRemoveByLeftSidePSAppMenu(pSAppMenu, arrayList);
     }
@@ -840,8 +840,8 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByPSAppMenu(pSAppMenu, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSAPPMENU");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSAppMenu);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSAPPMENU_PSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo((IEntity)pSAppMenu), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSAppMenu);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSAPPMENU_PSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo(pSAppMenu), arrayList.get(0)));
         }
     }
 
@@ -874,7 +874,7 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByPSAppMenu(pSAppMenu);
         this.onBeforeRemoveByPSAppMenu(pSAppMenu, arrayList);
         for (PSAppIndexView pSAppIndexView : arrayList) {
-            this.remove((IEntity)pSAppIndexView);
+            this.remove(pSAppIndexView);
         }
         this.onAfterRemoveByPSAppMenu(pSAppMenu, arrayList);
     }
@@ -892,8 +892,8 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByRightSidePSAppMenu(pSAppMenu, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSAPPMENU");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSAppMenu);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSAPPMENU_RIGHTSIDEPSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo((IEntity)pSAppMenu), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSAppMenu);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSAPPMENU_RIGHTSIDEPSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo(pSAppMenu), arrayList.get(0)));
         }
     }
 
@@ -926,7 +926,7 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByRightSidePSAppMenu(pSAppMenu);
         this.onBeforeRemoveByRightSidePSAppMenu(pSAppMenu, arrayList);
         for (PSAppIndexView pSAppIndexView : arrayList) {
-            this.remove((IEntity)pSAppIndexView);
+            this.remove(pSAppIndexView);
         }
         this.onAfterRemoveByRightSidePSAppMenu(pSAppMenu, arrayList);
     }
@@ -944,8 +944,8 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByTopSidePSAppMenu(pSAppMenu, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSAPPMENU");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSAppMenu);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSAPPMENU_TOPSIDEPSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo((IEntity)pSAppMenu), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSAppMenu);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSAPPMENU_TOPSIDEPSAPPMENUID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo(pSAppMenu), arrayList.get(0)));
         }
     }
 
@@ -978,7 +978,7 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByTopSidePSAppMenu(pSAppMenu);
         this.onBeforeRemoveByTopSidePSAppMenu(pSAppMenu, arrayList);
         for (PSAppIndexView pSAppIndexView : arrayList) {
-            this.remove((IEntity)pSAppIndexView);
+            this.remove(pSAppIndexView);
         }
         this.onAfterRemoveByTopSidePSAppMenu(pSAppMenu, arrayList);
     }
@@ -996,8 +996,8 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByDefPSAppView(pSAppView, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSAPPVIEW");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSAppView);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSAPPVIEW_DEFPSAPPVIEWID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo((IEntity)pSAppView), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSAppView);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSAPPVIEW_DEFPSAPPVIEWID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo(pSAppView), arrayList.get(0)));
         }
     }
 
@@ -1030,7 +1030,7 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByDefPSAppView(pSAppView);
         this.onBeforeRemoveByDefPSAppView(pSAppView, arrayList);
         for (PSAppIndexView pSAppIndexView : arrayList) {
-            this.remove((IEntity)pSAppIndexView);
+            this.remove(pSAppIndexView);
         }
         this.onAfterRemoveByDefPSAppView(pSAppView, arrayList);
     }
@@ -1048,8 +1048,8 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByPSSysCounter(pSSysCounter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCOUNTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCounter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSSYSCOUNTER_PSSYSCOUNTERID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo((IEntity)pSSysCounter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCounter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPINDEXVIEW_PSSYSCOUNTER_PSSYSCOUNTERID", "", iDataEntityModel.getName(), "PSAPPINDEXVIEW", iDataEntityModel.getDataInfo(pSSysCounter), arrayList.get(0)));
         }
     }
 
@@ -1082,7 +1082,7 @@ extends PSAppViewService<PSAppIndexView> {
         ArrayList<PSAppIndexView> arrayList = this.selectByPSSysCounter(pSSysCounter);
         this.onBeforeRemoveByPSSysCounter(pSSysCounter, arrayList);
         for (PSAppIndexView pSAppIndexView : arrayList) {
-            this.remove((IEntity)pSAppIndexView);
+            this.remove(pSAppIndexView);
         }
         this.onAfterRemoveByPSSysCounter(pSSysCounter, arrayList);
     }
@@ -1201,7 +1201,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AppIconPath_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_AppIconPath_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APPICONPATH");
@@ -1223,7 +1223,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AppIconPath2_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_AppIconPath2_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APPICONPATH2");
@@ -1245,7 +1245,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AppSwitchMode_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string = this.onTestValueRule_AppSwitchMode_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APPSWITCHMODE");
@@ -1267,7 +1267,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BlankMode_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string = this.onTestValueRule_BlankMode_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BLANKMODE");
@@ -1289,7 +1289,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BottomSidePSAppMenuId_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_BottomSidePSAppMenuId_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BOTTOMSIDEPSAPPMENUID");
@@ -1311,7 +1311,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DefaultPage_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string = this.onTestValueRule_DefaultPage_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTPAGE");
@@ -1333,7 +1333,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DefPSAppViewId_DefPSAppView((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_DefPSAppViewId_DefPSAppView(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFPSAPPVIEWID");
@@ -1341,7 +1341,7 @@ extends PSAppViewService<PSAppIndexView> {
                 entityFieldError.setErrorInfo(string2);
                 return entityFieldError;
             }
-            string2 = this.onTestValueRule_DefPSAppViewId_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_DefPSAppViewId_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFPSAPPVIEWID");
@@ -1363,7 +1363,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableCounter_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string = this.onTestValueRule_EnableCounter_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLECOUNTER");
@@ -1385,7 +1385,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LeftSidePSAppMenuId_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_LeftSidePSAppMenuId_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LEFTSIDEPSAPPMENUID");
@@ -1407,7 +1407,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MainMenuSide_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_MainMenuSide_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAINMENUSIDE");
@@ -1429,7 +1429,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MenuModel_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_MenuModel_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MENUMODEL");
@@ -1454,7 +1454,7 @@ extends PSAppViewService<PSAppIndexView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppIndexViewId_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppIndexViewId_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPINDEXVIEWID");
@@ -1479,7 +1479,7 @@ extends PSAppViewService<PSAppIndexView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppIndexViewName_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppIndexViewName_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPINDEXVIEWNAME");
@@ -1501,7 +1501,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppMenuId_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppMenuId_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMENUID");
@@ -1523,7 +1523,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCounterId_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCounterId_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCOUNTERID");
@@ -1545,7 +1545,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RightSidePSAppMenuId_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_RightSidePSAppMenuId_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RIGHTSIDEPSAPPMENUID");
@@ -1567,7 +1567,7 @@ extends PSAppViewService<PSAppIndexView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TopSidePSAppMenuId_Default((IEntity)pSAppIndexView, bl2, bl3);
+            string2 = this.onTestValueRule_TopSidePSAppMenuId_Default(pSAppIndexView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TOPSIDEPSAPPMENUID");

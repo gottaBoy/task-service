@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSOpenPlatformTypeDEModelBase;
 
 public class PSOpenPlatformTypeDEModel
 extends PSOpenPlatformTypeDEModelBase {
+
+    public PSOpenPlatformTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

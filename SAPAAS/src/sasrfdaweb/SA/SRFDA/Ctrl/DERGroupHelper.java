@@ -49,7 +49,7 @@ implements IDERGroupHelper {
     }
 
     protected void OnPrepareDetails() throws Exception {
-        Vector list = new Vector();
+        Vector<DERGroupDetail> list = new Vector<DERGroupDetail>();
         CallResult callResult = this.getDAModelHelper().GetDERGroupDetails(this.getId(), list);
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u5206\u7ec4\u660e\u7ec6\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -109,4 +109,3 @@ implements IDERGroupHelper {
         this.setFormName(item.getFORMNAME());
     }
 }
-

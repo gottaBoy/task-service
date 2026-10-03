@@ -1,89 +1,139 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
 import net.ibizsys.paas.core.IDEDataSet;
 import net.ibizsys.paas.core.IDEDataSetGroupParam;
 import net.ibizsys.paas.core.ModelBase3Impl;
 
-public class DEDataSetGroupParamModel
-extends ModelBase3Impl
-implements IDEDataSetGroupParam {
-    private IDEDataSet iDEDataSet = null;
-    private String strGroupCode = null;
-    private String strSortDir = null;
-    private int nSortOrder = -1;
-    private boolean bEnableGroup = false;
-    private String[] groupFields = null;
-    private boolean bReCalc = false;
+/**
+ * 数据集合分组参数集合
+ * 
+ * @author lionlau
+ *
+ */
+public class DEDataSetGroupParamModel extends ModelBase3Impl implements IDEDataSetGroupParam {
+	private IDEDataSet iDEDataSet = null;
+	private String strGroupCode = null;
+	private String strSortDir = null;
+	private int nSortOrder = -1;
+	private boolean bEnableGroup = false;
+	private String[] groupFields = null;
+	private boolean bReCalc = false;
 
-    public void init(IDEDataSet iDEDataSet) throws Exception {
-        this.iDEDataSet = iDEDataSet;
-        this.onInit();
-    }
+	public void init(IDEDataSet iDEDataSet) throws Exception {
+		this.iDEDataSet = iDEDataSet;
+		this.onInit();
+	}
 
-    @Override
-    public String getGroupCode() {
-        return this.strGroupCode;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataSetGroupParam#getGroupCode()
+	 */
+	@Override
+	public String getGroupCode() {
+		return this.strGroupCode;
+	}
 
-    @Override
-    public String getSortDir() {
-        return this.strSortDir;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataSetGroupParam#getSortDir()
+	 */
+	@Override
+	public String getSortDir() {
+		return this.strSortDir;
+	}
 
-    @Override
-    public int getSortOrder() {
-        return this.nSortOrder;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataSetGroupParam#getSortOrder()
+	 */
+	@Override
+	public int getSortOrder() {
+		return this.nSortOrder;
+	}
 
-    public void setGroupCode(String strGroupCode) {
-        this.strGroupCode = strGroupCode;
-    }
+	/**
+	 * @param strGroupCode the strGroupCode to set
+	 */
+	public void setGroupCode(String strGroupCode) {
+		this.strGroupCode = strGroupCode;
+	}
 
-    public void setSortDir(String strSortDir) {
-        this.strSortDir = strSortDir;
-    }
+	/**
+	 * @param strSortDir the strSortDir to set
+	 */
+	public void setSortDir(String strSortDir) {
+		this.strSortDir = strSortDir;
+	}
 
-    public void setSortOrder(int nSortOrder) {
-        this.nSortOrder = nSortOrder;
-    }
+	/**
+	 * @param nSortOrder the nSortOrder to set
+	 */
+	public void setSortOrder(int nSortOrder) {
+		this.nSortOrder = nSortOrder;
+	}
 
-    @Override
-    public IDEDataSet getDEDataSet() {
-        return this.iDEDataSet;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataSetGroupParam#getDEDataSet()
+	 */
+	@Override
+	public IDEDataSet getDEDataSet() {
+		return this.iDEDataSet;
+	}
 
-    public void setName(String strName) {
-        this.strName = strName;
-    }
+	/**
+	 * 设置名称
+	 * 
+	 * @param strName
+	 */
+	public void setName(String strName) {
+		this.strName = strName;
+	}
 
-    @Override
-    public String[] getGroupFields() {
-        return this.groupFields;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataSetGroupParam#getGroupFields()
+	 */
+	@Override
+	public String[] getGroupFields() {
+		return groupFields;
+	}
 
-    public void setGroupFields(String[] groupFields) {
-        this.groupFields = groupFields;
-    }
+	public void setGroupFields(String[] groupFields) {
+		this.groupFields = groupFields;
+	}
 
-    @Override
-    public boolean isReCalc() {
-        return this.bReCalc;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataSetGroupParam#isReCalc()
+	 */
+	@Override
+	public boolean isReCalc() {
+		return this.bReCalc;
+	}
 
-    public void setReCalc(boolean bRecalc) {
-        this.bReCalc = bRecalc;
-    }
+	public void setReCalc(boolean bRecalc) {
+		this.bReCalc = bRecalc;
+	}
 
-    @Override
-    public boolean isEnableGroup() {
-        return this.bEnableGroup;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataSetGroupParam#isEnableGroup()
+	 */
+	@Override
+	public boolean isEnableGroup() {
+		return this.bEnableGroup;
+	}
 
-    public void setEnableGroup(boolean bEnableGroup) {
-        this.bEnableGroup = bEnableGroup;
-    }
+	public void setEnableGroup(boolean bEnableGroup) {
+		this.bEnableGroup = bEnableGroup;
+	}
+
 }
-

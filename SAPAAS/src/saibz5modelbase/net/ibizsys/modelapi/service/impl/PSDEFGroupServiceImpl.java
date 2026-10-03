@@ -76,7 +76,7 @@ implements IPSDEFGroupService {
     @Override
     protected List<PSDEFGroup> onListAll() throws Exception {
         ArrayList<PSDEFGroup> list = new ArrayList<PSDEFGroup>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEFGroup> items = this.listByPSDataEntity(parent);

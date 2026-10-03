@@ -88,10 +88,10 @@ extends DGExBaseCellConfig {
                     if (++i < params.length) {
                         paramConfig.setNullValue(params[i]);
                     }
-                    macroConfig.getMacroParamsConfig().add((Object)paramConfig);
+                    macroConfig.getMacroParamsConfig().add(paramConfig);
                     ++i;
                 }
-                this.macrosConfig.add((Object)macroConfig);
+                this.macrosConfig.add(macroConfig);
             }
         }
         catch (Exception e) {
@@ -99,4 +99,3 @@ extends DGExBaseCellConfig {
         }
     }
 }
-

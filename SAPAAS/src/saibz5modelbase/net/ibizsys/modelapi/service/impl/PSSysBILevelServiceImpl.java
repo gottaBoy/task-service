@@ -72,7 +72,7 @@ implements IPSSysBILevelService {
     @Override
     protected List<PSSysBILevel> onListAll() throws Exception {
         ArrayList<PSSysBILevel> list = new ArrayList<PSSysBILevel>();
-        List pssysbihierarchies = PSModelServiceUtil.getInstance().getPSSysBIHierarchyService().listAll();
+        List<PSSysBIHierarchy> pssysbihierarchies = PSModelServiceUtil.getInstance().getPSSysBIHierarchyService().listAll();
         if (pssysbihierarchies != null) {
             for (PSSysBIHierarchy parent : pssysbihierarchies) {
                 List<PSSysBILevel> items = this.listByPSSysBIHierarchy(parent);

@@ -80,7 +80,7 @@ public class MOSHelper {
             }
             modelV2Map.put("PSAPPVIEW", null);
             PSDataEntityService psDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class);
-            ArrayList psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
+            ArrayList<PSDataEntity> psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
             for (PSDataEntity psDataEntity : psDataEntityList) {
                 if (!modelV2Map.containsKey(psDataEntity.getPSDataEntityName())) continue;
                 modelV2Map.put(psDataEntity.getPSDataEntityName(), psDataEntity);
@@ -101,7 +101,7 @@ public class MOSHelper {
             if (psDataEntity == null) continue;
             PSHelpArticle psHelpArticle = new PSHelpArticle();
             psHelpArticle.setPSHelpArticleId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"DEUIACTION"));
-            if (psHelpArticleService.checkKey((IEntity)psHelpArticle) == 1) continue;
+            if (psHelpArticleService.checkKey(psHelpArticle) == 1) continue;
             psHelpArticle.setPSHelpArticleName(StringHelper.Format((String)"%1$s\u754c\u9762\u884c\u4e3a\u5e2e\u52a9\u6587\u6863", (Object)psDataEntity.getLogicName()));
             psHelpArticle.setArticleType("MANUAL");
             psHelpArticle.setCodeName("DEUIAction");
@@ -109,21 +109,21 @@ public class MOSHelper {
             psHelpArticle.setPSDEName(psDataEntity.getPSDataEntityName());
             psHelpArticle.setPSSystemId(psDataEntity.getPSSystemId());
             psHelpArticle.setPSSystemName(psDataEntity.getPSSystemName());
-            psHelpArticleService.create((IEntity)psHelpArticle, false);
+            psHelpArticleService.create(psHelpArticle, false);
         }
     }
 
     protected void onInitModelV2UAHelpArticleContents(Map<String, PSDataEntity> modelV2Map) throws Exception {
         PSDEUIActionService psDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.v6sessionFactory);
         SelectCond selectCond = new SelectCond();
-        ArrayList psDEUIActionList = psDEUIActionService.select((ISelectCond)selectCond);
+        ArrayList<PSDEUIAction> psDEUIActionList = psDEUIActionService.select((ISelectCond)selectCond);
         PSDEViewBaseService psDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)this.v6sessionFactory);
         SelectContext selectCond2 = new SelectContext();
         selectCond2.addSelectField("TITLE");
         selectCond2.addSelectField("CAPTION");
         selectCond2.addSelectField("CODENAME");
         selectCond2.addSelectField("PSDEVIEWBASEID");
-        ArrayList psDEViewBaseList = psDEViewBaseService.select((ISelectCond)selectCond2);
+        ArrayList<PSDEViewBase> psDEViewBaseList = psDEViewBaseService.select((ISelectCond)selectCond2);
         HashMap<String, PSDEViewBase> psDEViewBaseMap = new HashMap<String, PSDEViewBase>();
         for (PSDEViewBase psDEViewBase : psDEViewBaseList) {
             psDEViewBaseMap.put(psDEViewBase.getPSDEViewBaseId(), psDEViewBase);
@@ -135,10 +135,10 @@ public class MOSHelper {
             if (psDataEntity == null) continue;
             PSHelpArticle psHelpArticle = new PSHelpArticle();
             psHelpArticle.setPSHelpArticleId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)"DEUIACTION"));
-            if (psHelpArticleService.checkKey((IEntity)psHelpArticle) != 1) continue;
+            if (psHelpArticleService.checkKey(psHelpArticle) != 1) continue;
             PSHelpSection psHelpSection = new PSHelpSection();
             psHelpSection.setPSHelpSectionId(KeyValueHelper.genUniqueId((String)psDataEntity.getPSDataEntityId(), (String)psDEUIAction.getCodeName().toUpperCase()));
-            if (psHelpSectionService.checkKey((IEntity)psHelpSection) == 1) continue;
+            if (psHelpSectionService.checkKey(psHelpSection) == 1) continue;
             psHelpSection.setPSHelpSectionName(psDEUIAction.getPSDEUIActionName());
             psHelpSection.setSectionType("USER");
             psHelpSection.setCodeName(psDEUIAction.getCodeName());
@@ -168,8 +168,7 @@ public class MOSHelper {
             }
             psHelpSection.setBottomContent(psDEUIAction.getTooltipInfo());
             psHelpSection.setMemo(psDEUIAction.getMemo());
-            psHelpSectionService.create((IEntity)psHelpSection, false);
+            psHelpSectionService.create(psHelpSection, false);
         }
     }
 }
-

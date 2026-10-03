@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel;
 
-import net.ibizsys.psrt.srv.wf.demodel.WFUserCandidateDEModelBase;
 
-public class WFUserCandidateDEModel
-extends WFUserCandidateDEModelBase {
+/**
+ * 实体[WFUSERCANDIDATE]模型对象
+ */
+public class WFUserCandidateDEModel extends WFUserCandidateDEModelBase {
+
     private static final long serialVersionUID = -1L;
-}
 
+    public WFUserCandidateDEModel() throws Exception {
+        super();
+    }
+
+}

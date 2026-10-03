@@ -1,17 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.IListPortletModel;
-import net.ibizsys.paas.ctrlmodel.PortletModelBase;
+/**
+ * 列表门户部件模型
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class ListPortletModelBase extends PortletModelBase implements IListPortletModel {
+	@Override
+	public String getPortletType() {
+		return PORTLETTYPE_LIST;
+	}
 
-public abstract class ListPortletModelBase
-extends PortletModelBase
-implements IListPortletModel {
-    @Override
-    public String getPortletType() {
-        return "LIST";
-    }
 }
-

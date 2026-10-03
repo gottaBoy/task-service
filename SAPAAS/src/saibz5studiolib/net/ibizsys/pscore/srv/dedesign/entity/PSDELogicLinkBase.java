@@ -2621,7 +2621,7 @@ implements Serializable {
                 PSDELogicNode pSDELogicNode = new PSDELogicNode();
                 pSDELogicNode.setPSDELogicNodeId(this.getDstPSDELogicNodeId());
                 PSDELogicNodeService pSDELogicNodeService = (PSDELogicNodeService)ServiceGlobal.getService(PSDELogicNodeService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicNodeService.autoGet((IEntity)pSDELogicNode);
+                pSDELogicNodeService.autoGet(pSDELogicNode);
                 this.dstpsdelogicnode = pSDELogicNode;
             }
             return this.dstpsdelogicnode;
@@ -2647,7 +2647,7 @@ implements Serializable {
                 PSDELogicNode pSDELogicNode = new PSDELogicNode();
                 pSDELogicNode.setPSDELogicNodeId(this.getSrcPSDELogicNodeId());
                 PSDELogicNodeService pSDELogicNodeService = (PSDELogicNodeService)ServiceGlobal.getService(PSDELogicNodeService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicNodeService.autoGet((IEntity)pSDELogicNode);
+                pSDELogicNodeService.autoGet(pSDELogicNode);
                 this.srcpsdelogicnode = pSDELogicNode;
             }
             return this.srcpsdelogicnode;
@@ -2673,7 +2673,7 @@ implements Serializable {
                 PSDELogicParam pSDELogicParam = new PSDELogicParam();
                 pSDELogicParam.setPSDELogicParamId(this.getDstPSDLParamId());
                 PSDELogicParamService pSDELogicParamService = (PSDELogicParamService)ServiceGlobal.getService(PSDELogicParamService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicParamService.autoGet((IEntity)pSDELogicParam);
+                pSDELogicParamService.autoGet(pSDELogicParam);
                 this.dstpsdlparam = pSDELogicParam;
             }
             return this.dstpsdlparam;
@@ -2699,7 +2699,7 @@ implements Serializable {
                 PSDELogic pSDELogic = new PSDELogic();
                 pSDELogic.setPSDELogicId(this.getPSDELogicId());
                 PSDELogicService pSDELogicService = (PSDELogicService)ServiceGlobal.getService(PSDELogicService.class, (SessionFactory)this.getSessionFactory());
-                pSDELogicService.autoGet((IEntity)pSDELogic);
+                pSDELogicService.autoGet(pSDELogic);
                 this.psdelogic = pSDELogic;
             }
             return this.psdelogic;
@@ -2721,7 +2721,7 @@ implements Serializable {
         Integer n = this.objPSDELLCondsLock;
         synchronized (n) {
             if (this.psdellconds == null) {
-                this.psdellconds = pSDELogicLinkService.isTempData((IEntity)this) ? pSDELLCondService.selectTempByPSDELogicLink(this) : pSDELLCondService.selectByPSDELogicLink(this);
+                this.psdellconds = pSDELogicLinkService.isTempData(this) ? pSDELLCondService.selectTempByPSDELogicLink(this) : pSDELLCondService.selectByPSDELogicLink(this);
             }
             return this.psdellconds;
         }

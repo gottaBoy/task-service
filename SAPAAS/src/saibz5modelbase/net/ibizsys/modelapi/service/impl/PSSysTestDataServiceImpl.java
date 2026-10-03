@@ -159,7 +159,7 @@ implements IPSSysTestDataService {
     @Override
     protected List<PSSysTestData> onListAll() throws Exception {
         ArrayList<PSSysTestData> list = new ArrayList<PSSysTestData>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSSysTestData> items = this.listByPSDataEntity(parent);

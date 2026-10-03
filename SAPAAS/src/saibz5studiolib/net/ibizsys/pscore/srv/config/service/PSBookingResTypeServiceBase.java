@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
     }
 
     protected void onFillParentInfo(PSBookingResType pSBookingResType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSBookingResType, string, string2, string3);
+        super.onFillParentInfo(pSBookingResType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSBookingResType> {
         if (bl && pSBookingResType.getValidFlag() == null) {
             pSBookingResType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSBookingResType, bl);
+        super.onFillEntityFullInfo(pSBookingResType, bl);
     }
 
     protected void onWriteBackParent(PSBookingResType pSBookingResType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSBookingResType, bl);
+        super.onWriteBackParent(pSBookingResType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSBookingResType pSBookingResType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSBookingResType, bl);
+        super.onRemoveEntityUncopyValues(pSBookingResType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSBookingResType pSBookingResType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -194,7 +194,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSBookingResType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSBookingResType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSBookingResType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSBookingResType pSBookingResType, boolean bl2, boolean bl3) throws Exception {
@@ -207,7 +207,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -232,7 +232,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSBookingResTypeId_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_PSBookingResTypeId_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSBOOKINGRESTYPEID");
@@ -257,7 +257,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSBookingResTypeName_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_PSBookingResTypeName_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSBOOKINGRESTYPENAME");
@@ -282,7 +282,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ResCat_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_ResCat_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESCAT");
@@ -307,7 +307,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeHelper_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeHelper_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEHELPER");
@@ -329,7 +329,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParam_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParam_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAM");
@@ -351,7 +351,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParam2_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParam2_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAM2");
@@ -373,7 +373,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParam3_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParam3_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAM3");
@@ -395,7 +395,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParam4_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParam4_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAM4");
@@ -417,7 +417,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParam5_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParam5_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAM5");
@@ -439,7 +439,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParam6_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParam6_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAM6");
@@ -461,7 +461,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParam7_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParam7_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAM7");
@@ -483,7 +483,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParam8_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParam8_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAM8");
@@ -505,7 +505,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -527,7 +527,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSBookingResType, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -552,7 +552,7 @@ extends PSCoreSysServiceBase<PSBookingResType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSBookingResType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSBookingResType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -565,11 +565,11 @@ extends PSCoreSysServiceBase<PSBookingResType> {
     }
 
     protected void onSyncEntity(PSBookingResType pSBookingResType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSBookingResType, bl);
+        super.onSyncEntity(pSBookingResType, bl);
     }
 
     protected void onSyncIndexEntities(PSBookingResType pSBookingResType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSBookingResType, bl);
+        super.onSyncIndexEntities(pSBookingResType, bl);
     }
 
     public Object getDataContextValue(PSBookingResType pSBookingResType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -577,14 +577,14 @@ extends PSCoreSysServiceBase<PSBookingResType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSBookingResType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSBookingResType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSBookingResType pSBookingResType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSBookingResType, arrayList, n);
+        super.onExportMajorModel(pSBookingResType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -869,14 +869,14 @@ extends PSCoreSysServiceBase<PSBookingResType> {
 
     protected boolean onMergeChild(String string, String string2, PSBookingResType pSBookingResType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSBookingResType)) {
+        if (super.onMergeChild(string, string2, pSBookingResType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSBookingResType pSBookingResType) throws Exception {
-        super.onUpdateParent((IEntity)pSBookingResType);
+        super.onUpdateParent(pSBookingResType);
     }
 
     @Override

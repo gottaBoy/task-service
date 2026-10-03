@@ -1493,7 +1493,7 @@ implements Serializable {
                 PSDCMSPlatform pSDCMSPlatform = new PSDCMSPlatform();
                 pSDCMSPlatform.setPSDCMSPlatformId(this.getPSDCMSPlatformId());
                 PSDCMSPlatformService pSDCMSPlatformService = (PSDCMSPlatformService)ServiceGlobal.getService(PSDCMSPlatformService.class, (SessionFactory)this.getSessionFactory());
-                pSDCMSPlatformService.autoGet((IEntity)pSDCMSPlatform);
+                pSDCMSPlatformService.autoGet(pSDCMSPlatform);
                 this.psdcmsplatform = pSDCMSPlatform;
             }
             return this.psdcmsplatform;
@@ -1519,7 +1519,7 @@ implements Serializable {
                 PSDevSln pSDevSln = new PSDevSln();
                 pSDevSln.setPSDevSlnId(this.getPSDevSlnId());
                 PSDevSlnService pSDevSlnService = (PSDevSlnService)ServiceGlobal.getService(PSDevSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnService.autoGet((IEntity)pSDevSln);
+                pSDevSlnService.autoGet(pSDevSln);
                 this.psdevsln = pSDevSln;
             }
             return this.psdevsln;

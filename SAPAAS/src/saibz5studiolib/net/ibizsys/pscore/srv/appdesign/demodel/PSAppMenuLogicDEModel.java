@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSAppMenuLogicDEModelBase;
 
 public class PSAppMenuLogicDEModel
 extends PSAppMenuLogicDEModelBase {
+
+    public PSAppMenuLogicDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

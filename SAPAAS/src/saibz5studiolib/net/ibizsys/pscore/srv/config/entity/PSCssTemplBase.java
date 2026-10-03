@@ -984,7 +984,7 @@ implements Serializable {
                 PSCssCatTempl pSCssCatTempl = new PSCssCatTempl();
                 pSCssCatTempl.setPSCssCatTemplId(this.getPSCssCatTemplId());
                 PSCssCatTemplService pSCssCatTemplService = (PSCssCatTemplService)ServiceGlobal.getService(PSCssCatTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSCssCatTemplService.autoGet((IEntity)pSCssCatTempl);
+                pSCssCatTemplService.autoGet(pSCssCatTempl);
                 this.pscsscattempl = pSCssCatTempl;
             }
             return this.pscsscattempl;

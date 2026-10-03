@@ -75,7 +75,7 @@ extends PSCoreSysDAOBase<PSAppDEView> {
     }
 
     protected void fillInheritEntity(PSAppDEView pSAppDEView) throws Exception {
-        super.fillInheritEntity((IEntity)pSAppDEView);
+        super.fillInheritEntity(pSAppDEView);
         PSAppDEView pSAppDEView2 = pSAppDEView;
         pSAppDEView2.setPSAppViewId(pSAppDEView.getPSAppDEViewId());
         if (pSAppDEView.isPSAppDEViewNameDirty()) {

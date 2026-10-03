@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSAppViewTemplDEModelBase;
 
 public class PSAppViewTemplDEModel
 extends PSAppViewTemplDEModelBase {
+
+    public PSAppViewTemplDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

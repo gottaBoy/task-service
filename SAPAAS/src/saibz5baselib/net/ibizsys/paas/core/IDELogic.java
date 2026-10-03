@@ -1,15 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDataEntity;
-import net.ibizsys.paas.core.IDataEntityObject;
+/**
+ * 实体逻辑接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDELogic extends IDataEntityObject {
+	/**
+	 * 初始化
+	 * 
+	 * @param iDataEntity
+	 * @throws Exception
+	 */
+	void init(IDataEntity iDataEntity) throws Exception;
 
-public interface IDELogic
-extends IDataEntityObject {
-    public void init(IDataEntity var1) throws Exception;
-
-    public String getDefaultParamName();
+	/**
+	 * 获取默认参数名称
+	 * 
+	 * @return
+	 */
+	String getDefaultParamName();
 }
-

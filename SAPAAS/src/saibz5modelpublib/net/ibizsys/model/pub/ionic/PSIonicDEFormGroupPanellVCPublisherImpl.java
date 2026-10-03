@@ -1,52 +1,176 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSControl
- *  IPSDEFormGroupPanel
- *  IPSGenerateCodeResult
- *  IPSPublisherContext
- */
 package net.ibizsys.model.pub.ionic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.ionic.PSIonicDEFormDetailVCPublisherImpl;
 
-public class PSIonicDEFormGroupPanellVCPublisherImpl
-extends PSIonicDEFormDetailVCPublisherImpl {
-    protected IPSDEFormGroupPanel iPSDEFormGroupPanel;
+import SA.SRFDA.PS.Core.Control.IPSControl;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEFormDetail;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEFormGroupPanel;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEFormItem;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.IPSPublisherContext;
+import SA.SRFramework.Utility.StringHelper;
 
-    public PSIonicDEFormGroupPanellVCPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSIonicDEFormGroupPanellVCPublisherImpl is inconsistent\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tStringHelper cannot be resolved\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSIonicDEFormGroupPanellVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tIPSDEFormGroupPanel cannot be resolved to a type\n");
-    }
+public class PSIonicDEFormGroupPanellVCPublisherImpl extends PSIonicDEFormDetailVCPublisherImpl
+{
+	public class ColumnLayoutGroup
+	{
+		private ArrayList<IPSGenerateCodeResult> itemCodeList = new  ArrayList<IPSGenerateCodeResult>();
+		
+		public ArrayList<IPSGenerateCodeResult> getItems()
+		{
+			return this.itemCodeList;
+		}
+	}
+	
+	protected IPSDEFormGroupPanel iPSDEFormGroupPanel = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDEFormGroupPanel = (IPSDEFormGroupPanel)object;
+		return super.generateCode(iPSPublisherContext, iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		if(true)
+		{
+			ArrayList<IPSDEFormDetail> psDEFormDetailList = new ArrayList<IPSDEFormDetail>();
+			java.util.Iterator<IPSDEFormDetail> psDEFormDetails = iPSDEFormGroupPanel.getPSDEFormDetails();
+			while(psDEFormDetails.hasNext())
+			{
+				IPSDEFormDetail iPSDEFormDetail = psDEFormDetails.next();
+				if(iPSDEFormDetail instanceof IPSDEFormItem)
+				{
+					IPSDEFormItem iPSDEFormItem = (IPSDEFormItem)iPSDEFormDetail;
+					if(StringHelper.Compare(iPSDEFormItem.getEditorType(),"HIDDEN",true) == 0)
+						continue;
+				}
+				psDEFormDetailList.add(iPSDEFormDetail);
+			}
+			
+//			
+//			
+//			String strLayoutType = iPSDEFormGroupPanel.getLayoutMode();
+//			if(StringHelper.Compare(strLayoutType, PSDEFormDetail.LAYOUTMODE_TABLE_12COL, true)!=0)
+//			{
+//				throw new Exception(StringHelper.Format("当前仅支持栅格（12列均分）布局"));
+//			}
+			
+			if(true)
+			{
+//				int nColPos = 0 ;
+//				int nRowId = 0;
+				
+				//HashMap<Integer,ColumnLayoutGroup> columnLayoutGroupMap = new HashMap<Integer,ColumnLayoutGroup>();
+				ArrayList<IPSGenerateCodeResult> formDetailCodeList = new ArrayList<IPSGenerateCodeResult>();
+				
+				//产生集合代码
+				for( IPSDEFormDetail iPSDEFormDetail :psDEFormDetailList)
+				{
+//					int nColSpan = iPSDEFormDetail.getColSpan();
+//					if(nColSpan == 0 || nColSpan> iPSDEFormGroupPanel.getColumnCount() )
+//						nColSpan = iPSDEFormGroupPanel.getColumnCount();
+//					if(nColPos + nColSpan >  iPSDEFormGroupPanel.getColumnCount())
+//					{
+//						//换行
+//						nRowId ++;
+//						nColPos = 0;
+//					}
+//					else
+//					{
+//						nColPos += nColSpan;
+//					}
+//					
+//					ColumnLayoutGroup columnLayoutGroup = null;
+//					if(columnLayoutGroupMap.containsKey(nRowId))
+//					{
+//						columnLayoutGroup = columnLayoutGroupMap.get(nRowId);
+//					}
+//					else
+//					{
+//						columnLayoutGroup = new ColumnLayoutGroup();
+//						columnLayoutGroupMap.put(nRowId, columnLayoutGroup);
+//					}
+					
+					//根据类型，获取对应的编辑器代码
+					IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(iPSDEFormDetail.getDetailType()).getPSPFCtrlPartCodePublisher();
+					IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, this.iPSControl,iPSDEFormDetail);		
+					iPSPFCtrlPartCodePublisher.close();
+					
+					formDetailCodeList.add(iPSGenerateCodeResult);
+					//columnLayoutGroup.getItems().add(iPSGenerateCodeResult);
+				}	
+				
+//				ArrayList<ColumnLayoutGroup> columnLayoutGroupList = new ArrayList<ColumnLayoutGroup>();
+//				for(int i=0;i<1000;i++)
+//				{
+//					ColumnLayoutGroup columnLayoutGroup = columnLayoutGroupMap.get(i);
+//					if(columnLayoutGroup==null)
+//						break;
+//					columnLayoutGroupList.add(columnLayoutGroup);
+//				}
+//				params.put("rows", columnLayoutGroupList);
+				params.put("items", formDetailCodeList);
+//				ArrayList<IPSGenerateCodeResult> psGenerateCodeResultList = new ArrayList<IPSGenerateCodeResult>();
+//				for( IPSDEFormDetail iPSDEFormDetail :psDEFormDetailList)
+//				{
+//					//根据类型，获取对应的编辑器代码
+//					IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(iPSDEFormDetail.getDetailType()).getPSPFCtrlPartCodePublisher();
+//					IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, this.iPSControl,iPSDEFormDetail);		
+//					iPSPFCtrlPartCodePublisher.close();
+//					
+//					psGenerateCodeResultList.add(iPSGenerateCodeResult);
+//				}	
+//				params.put("items", psGenerateCodeResultList);
+			}
+			else
+			{
+//				//输出列集合
+//				
+//				ArrayList<String> itemCodeList = new  ArrayList<String>();
+//				//产生集合代码
+//				NUActionContextImpl2 nuActionContextImpl2  = new NUActionContextImpl2(iNUActionContext);
+//				nuActionContextImpl2.setUserTag("CODETYPE", nuPFCTCode.getNUFPCTCODENAME());
+//				
+//				for( IPSDEFormDetail iPSDEFormDetail :psDEFormDetailList)
+//				{
+//					String strItemPublisherId = StringHelper.Format("ITEM:%1$s",iPSDEFormDetail.getNUFormItemType().toUpperCase());
+//					
+//					INUCtrlTypeDetailPublisher iNUCtrlTypeDetailPublisher= 	this.getNUCtrlTypePublisher().getNUCtrlTypeDetailPublisher(strItemPublisherId);
+//					
+//					nuActionContextImpl2.setUserTag("NUFORMITEMBASE", iPSDEFormDetail);
+//					itemCodeList.add(iNUCtrlTypeDetailPublisher.generateCode(nuActionContextImpl2));
+//				}
+//			
+//				
+//				params.put("items", itemCodeList);
+			}
+			
+		
+		}
+		
+	}
+	
 
-    @Override
-    public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n");
-    }
-
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tStringHelper cannot be resolved\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSIonicDEFormGroupPanellVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n");
-    }
-
-    @Override
-    protected void onClose() {
-        throw new Error("Unresolved compilation problem: \n\tIPSDEFormGroupPanel cannot be resolved to a type\n");
-    }
-
-    public class ColumnLayoutGroup {
-        private ArrayList<IPSGenerateCodeResult> itemCodeList;
-        final /* synthetic */ PSIonicDEFormGroupPanellVCPublisherImpl this$0;
-
-        public ColumnLayoutGroup(PSIonicDEFormGroupPanellVCPublisherImpl pSIonicDEFormGroupPanellVCPublisherImpl) {
-            throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSIonicDEFormGroupPanellVCPublisherImpl is inconsistent\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tStringHelper cannot be resolved\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSIonicDEFormGroupPanellVCPublisherImpl\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tIPSDEFormGroupPanel cannot be resolved to a type\n");
-        }
-
-        public ArrayList<IPSGenerateCodeResult> getItems() {
-            throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n");
-        }
-    }
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSDEFormGroupPanel = null;
+		super.onClose();
+	}
 }
-

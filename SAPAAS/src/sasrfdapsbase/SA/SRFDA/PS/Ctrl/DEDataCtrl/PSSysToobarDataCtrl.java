@@ -43,7 +43,7 @@ extends PSDEDataCtrl {
     }
 
     protected void modifyLayoutFromXML(XMLNode xmlNode, PSSysToolbar psSysToolbar, HashMap<String, PSSysToolbarItem> validMap) throws Exception {
-        ArrayList xmlNodes = xmlNode.getChildNodes();
+        ArrayList<XMLNode> xmlNodes = xmlNode.getChildNodes();
         if (xmlNodes == null) {
             return;
         }
@@ -84,7 +84,7 @@ extends PSDEDataCtrl {
         }
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSSYSTOOLBARID", (Object)psSysToolbar.getPSSYSTOOLBARID());
-        Vector psSysToolbarItemList = new Vector();
+        Vector<PSSysToolbarItem> psSysToolbarItemList = new Vector<PSSysToolbarItem>();
         IDEDataCtrl psSysToolbarItemDataCtrl = this.GetRelatedDataCtrl("DE1621");
         CallResult callResult = psSysToolbarItemDataCtrl.Select(cond, psSysToolbarItemList, PSSysToolbarItem.class.getName(), "ORDER BY ORDERVALUE");
         if (callResult.isError()) {
@@ -303,4 +303,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

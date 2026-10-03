@@ -1,20 +1,101 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.dynasys.demodel.dsdynaview.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="1590A40E-2173-487D-BE66-E4CC4CF88538", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DEID, t1.DEWFID, t1.DSDYNAVIEWID, t1.DSDYNAVIEWNAME, t1.PDVTPARAM, t1.PREDEFINEDVIEWTYPE, t1.UPDATEDATE, t1.UPDATEMAN, t1.VIEWDESC, t1.VIEWINSTOBJ, t1.VIEWTYPE, t1.VIEWVER FROM T_SRFDSDYNAVIEW t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DEID", expression="t1.DEID", showorder=2), @DEDataQueryCodeExp(name="DEWFID", expression="t1.DEWFID", showorder=3), @DEDataQueryCodeExp(name="DSDYNAVIEWID", expression="t1.DSDYNAVIEWID", showorder=4), @DEDataQueryCodeExp(name="DSDYNAVIEWNAME", expression="t1.DSDYNAVIEWNAME", showorder=5), @DEDataQueryCodeExp(name="PDVTPARAM", expression="t1.PDVTPARAM", showorder=6), @DEDataQueryCodeExp(name="PREDEFINEDVIEWTYPE", expression="t1.PREDEFINEDVIEWTYPE", showorder=7), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=8), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=9), @DEDataQueryCodeExp(name="VIEWDESC", expression="t1.VIEWDESC", showorder=10), @DEDataQueryCodeExp(name="VIEWINSTOBJ", expression="t1.VIEWINSTOBJ", showorder=11), @DEDataQueryCodeExp(name="VIEWTYPE", expression="t1.VIEWTYPE", showorder=12), @DEDataQueryCodeExp(name="VIEWVER", expression="t1.VIEWVER", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`deid`, t1.`dewfid`, t1.`dsdynaviewid`, t1.`dsdynaviewname`, t1.`pdvtparam`, t1.`predefinedviewtype`, t1.`updatedate`, t1.`updateman`, t1.`viewdesc`, t1.`viewinstobj`, t1.`viewtype`, t1.`viewver` FROM `t_srfdsdynaview` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=1), @DEDataQueryCodeExp(name="DEID", expression="t1.`deid`", showorder=2), @DEDataQueryCodeExp(name="DEWFID", expression="t1.`dewfid`", showorder=3), @DEDataQueryCodeExp(name="DSDYNAVIEWID", expression="t1.`dsdynaviewid`", showorder=4), @DEDataQueryCodeExp(name="DSDYNAVIEWNAME", expression="t1.`dsdynaviewname`", showorder=5), @DEDataQueryCodeExp(name="PDVTPARAM", expression="t1.`pdvtparam`", showorder=6), @DEDataQueryCodeExp(name="PREDEFINEDVIEWTYPE", expression="t1.`predefinedviewtype`", showorder=7), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=8), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=9), @DEDataQueryCodeExp(name="VIEWDESC", expression="t1.`viewdesc`", showorder=10), @DEDataQueryCodeExp(name="VIEWINSTOBJ", expression="t1.`viewinstobj`", showorder=11), @DEDataQueryCodeExp(name="VIEWTYPE", expression="t1.`viewtype`", showorder=12), @DEDataQueryCodeExp(name="VIEWVER", expression="t1.`viewver`", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DEID, t1.DEWFID, t1.DSDYNAVIEWID, t1.DSDYNAVIEWNAME, t1.PDVTPARAM, t1.PREDEFINEDVIEWTYPE, t1.UPDATEDATE, t1.UPDATEMAN, t1.VIEWDESC, t1.VIEWINSTOBJ, t1.VIEWTYPE, t1.VIEWVER FROM T_SRFDSDYNAVIEW t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DEID", expression="t1.DEID", showorder=2), @DEDataQueryCodeExp(name="DEWFID", expression="t1.DEWFID", showorder=3), @DEDataQueryCodeExp(name="DSDYNAVIEWID", expression="t1.DSDYNAVIEWID", showorder=4), @DEDataQueryCodeExp(name="DSDYNAVIEWNAME", expression="t1.DSDYNAVIEWNAME", showorder=5), @DEDataQueryCodeExp(name="PDVTPARAM", expression="t1.PDVTPARAM", showorder=6), @DEDataQueryCodeExp(name="PREDEFINEDVIEWTYPE", expression="t1.PREDEFINEDVIEWTYPE", showorder=7), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=8), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=9), @DEDataQueryCodeExp(name="VIEWDESC", expression="t1.VIEWDESC", showorder=10), @DEDataQueryCodeExp(name="VIEWINSTOBJ", expression="t1.VIEWINSTOBJ", showorder=11), @DEDataQueryCodeExp(name="VIEWTYPE", expression="t1.VIEWTYPE", showorder=12), @DEDataQueryCodeExp(name="VIEWVER", expression="t1.VIEWVER", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[DEID], t1.[DEWFID], t1.[DSDYNAVIEWID], t1.[DSDYNAVIEWNAME], t1.[PDVTPARAM], t1.[PREDEFINEDVIEWTYPE], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[VIEWDESC], t1.[VIEWINSTOBJ], t1.[VIEWTYPE], t1.[VIEWVER] FROM [T_SRFDSDYNAVIEW] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=1), @DEDataQueryCodeExp(name="DEID", expression="t1.[DEID]", showorder=2), @DEDataQueryCodeExp(name="DEWFID", expression="t1.[DEWFID]", showorder=3), @DEDataQueryCodeExp(name="DSDYNAVIEWID", expression="t1.[DSDYNAVIEWID]", showorder=4), @DEDataQueryCodeExp(name="DSDYNAVIEWNAME", expression="t1.[DSDYNAVIEWNAME]", showorder=5), @DEDataQueryCodeExp(name="PDVTPARAM", expression="t1.[PDVTPARAM]", showorder=6), @DEDataQueryCodeExp(name="PREDEFINEDVIEWTYPE", expression="t1.[PREDEFINEDVIEWTYPE]", showorder=7), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=8), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=9), @DEDataQueryCodeExp(name="VIEWDESC", expression="t1.[VIEWDESC]", showorder=10), @DEDataQueryCodeExp(name="VIEWINSTOBJ", expression="t1.[VIEWINSTOBJ]", showorder=11), @DEDataQueryCodeExp(name="VIEWTYPE", expression="t1.[VIEWTYPE]", showorder=12), @DEDataQueryCodeExp(name="VIEWVER", expression="t1.[VIEWVER]", showorder=13)}, conds={})})
-public abstract class DSDynaViewDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="1590A40E-2173-487D-BE66-E4CC4CF88538",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DEID, t1.DEWFID, t1.DSDYNAVIEWID, t1.DSDYNAVIEWNAME, t1.PDVTPARAM, t1.PREDEFINEDVIEWTYPE, t1.UPDATEDATE, t1.UPDATEMAN, t1.VIEWDESC, t1.VIEWINSTOBJ, t1.VIEWTYPE, t1.VIEWVER FROM T_SRFDSDYNAVIEW t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DEID",expression="t1.DEID",showorder=2)
+        ,@DEDataQueryCodeExp(name="DEWFID",expression="t1.DEWFID",showorder=3)
+        ,@DEDataQueryCodeExp(name="DSDYNAVIEWID",expression="t1.DSDYNAVIEWID",showorder=4)
+        ,@DEDataQueryCodeExp(name="DSDYNAVIEWNAME",expression="t1.DSDYNAVIEWNAME",showorder=5)
+        ,@DEDataQueryCodeExp(name="PDVTPARAM",expression="t1.PDVTPARAM",showorder=6)
+        ,@DEDataQueryCodeExp(name="PREDEFINEDVIEWTYPE",expression="t1.PREDEFINEDVIEWTYPE",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=9)
+        ,@DEDataQueryCodeExp(name="VIEWDESC",expression="t1.VIEWDESC",showorder=10)
+        ,@DEDataQueryCodeExp(name="VIEWINSTOBJ",expression="t1.VIEWINSTOBJ",showorder=11)
+        ,@DEDataQueryCodeExp(name="VIEWTYPE",expression="t1.VIEWTYPE",showorder=12)
+        ,@DEDataQueryCodeExp(name="VIEWVER",expression="t1.VIEWVER",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`deid`, t1.`dewfid`, t1.`dsdynaviewid`, t1.`dsdynaviewname`, t1.`pdvtparam`, t1.`predefinedviewtype`, t1.`updatedate`, t1.`updateman`, t1.`viewdesc`, t1.`viewinstobj`, t1.`viewtype`, t1.`viewver` FROM `t_srfdsdynaview` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=1)
+        ,@DEDataQueryCodeExp(name="DEID",expression="t1.`deid`",showorder=2)
+        ,@DEDataQueryCodeExp(name="DEWFID",expression="t1.`dewfid`",showorder=3)
+        ,@DEDataQueryCodeExp(name="DSDYNAVIEWID",expression="t1.`dsdynaviewid`",showorder=4)
+        ,@DEDataQueryCodeExp(name="DSDYNAVIEWNAME",expression="t1.`dsdynaviewname`",showorder=5)
+        ,@DEDataQueryCodeExp(name="PDVTPARAM",expression="t1.`pdvtparam`",showorder=6)
+        ,@DEDataQueryCodeExp(name="PREDEFINEDVIEWTYPE",expression="t1.`predefinedviewtype`",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=9)
+        ,@DEDataQueryCodeExp(name="VIEWDESC",expression="t1.`viewdesc`",showorder=10)
+        ,@DEDataQueryCodeExp(name="VIEWINSTOBJ",expression="t1.`viewinstobj`",showorder=11)
+        ,@DEDataQueryCodeExp(name="VIEWTYPE",expression="t1.`viewtype`",showorder=12)
+        ,@DEDataQueryCodeExp(name="VIEWVER",expression="t1.`viewver`",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DEID, t1.DEWFID, t1.DSDYNAVIEWID, t1.DSDYNAVIEWNAME, t1.PDVTPARAM, t1.PREDEFINEDVIEWTYPE, t1.UPDATEDATE, t1.UPDATEMAN, t1.VIEWDESC, t1.VIEWINSTOBJ, t1.VIEWTYPE, t1.VIEWVER FROM T_SRFDSDYNAVIEW t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DEID",expression="t1.DEID",showorder=2)
+        ,@DEDataQueryCodeExp(name="DEWFID",expression="t1.DEWFID",showorder=3)
+        ,@DEDataQueryCodeExp(name="DSDYNAVIEWID",expression="t1.DSDYNAVIEWID",showorder=4)
+        ,@DEDataQueryCodeExp(name="DSDYNAVIEWNAME",expression="t1.DSDYNAVIEWNAME",showorder=5)
+        ,@DEDataQueryCodeExp(name="PDVTPARAM",expression="t1.PDVTPARAM",showorder=6)
+        ,@DEDataQueryCodeExp(name="PREDEFINEDVIEWTYPE",expression="t1.PREDEFINEDVIEWTYPE",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=9)
+        ,@DEDataQueryCodeExp(name="VIEWDESC",expression="t1.VIEWDESC",showorder=10)
+        ,@DEDataQueryCodeExp(name="VIEWINSTOBJ",expression="t1.VIEWINSTOBJ",showorder=11)
+        ,@DEDataQueryCodeExp(name="VIEWTYPE",expression="t1.VIEWTYPE",showorder=12)
+        ,@DEDataQueryCodeExp(name="VIEWVER",expression="t1.VIEWVER",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[DEID], t1.[DEWFID], t1.[DSDYNAVIEWID], t1.[DSDYNAVIEWNAME], t1.[PDVTPARAM], t1.[PREDEFINEDVIEWTYPE], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[VIEWDESC], t1.[VIEWINSTOBJ], t1.[VIEWTYPE], t1.[VIEWVER] FROM [T_SRFDSDYNAVIEW] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=1)
+        ,@DEDataQueryCodeExp(name="DEID",expression="t1.[DEID]",showorder=2)
+        ,@DEDataQueryCodeExp(name="DEWFID",expression="t1.[DEWFID]",showorder=3)
+        ,@DEDataQueryCodeExp(name="DSDYNAVIEWID",expression="t1.[DSDYNAVIEWID]",showorder=4)
+        ,@DEDataQueryCodeExp(name="DSDYNAVIEWNAME",expression="t1.[DSDYNAVIEWNAME]",showorder=5)
+        ,@DEDataQueryCodeExp(name="PDVTPARAM",expression="t1.[PDVTPARAM]",showorder=6)
+        ,@DEDataQueryCodeExp(name="PREDEFINEDVIEWTYPE",expression="t1.[PREDEFINEDVIEWTYPE]",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=9)
+        ,@DEDataQueryCodeExp(name="VIEWDESC",expression="t1.[VIEWDESC]",showorder=10)
+        ,@DEDataQueryCodeExp(name="VIEWINSTOBJ",expression="t1.[VIEWINSTOBJ]",showorder=11)
+        ,@DEDataQueryCodeExp(name="VIEWTYPE",expression="t1.[VIEWTYPE]",showorder=12)
+        ,@DEDataQueryCodeExp(name="VIEWVER",expression="t1.[VIEWVER]",showorder=13)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class DSDynaViewDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public DSDynaViewDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(DSDynaViewDefaultDQModelBase.class);
     }
-}
 
+}

@@ -72,7 +72,7 @@ implements IPSDESampleDataService {
     @Override
     protected List<PSDESampleData> onListAll() throws Exception {
         ArrayList<PSDESampleData> list = new ArrayList<PSDESampleData>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDESampleData> items = this.listByPSDataEntity(parent);

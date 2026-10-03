@@ -2117,7 +2117,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getTextPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.textpsdef = pSDEField;
             }
             return this.textpsdef;
@@ -2143,7 +2143,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getValuePSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.valuepsdef = pSDEField;
             }
             return this.valuepsdef;
@@ -2169,7 +2169,7 @@ implements Serializable {
                 PSSysBIHierarchy pSSysBIHierarchy = new PSSysBIHierarchy();
                 pSSysBIHierarchy.setPSSysBIHierarchyId(this.getPSSysBIHierarchyId());
                 PSSysBIHierarchyService pSSysBIHierarchyService = (PSSysBIHierarchyService)ServiceGlobal.getService(PSSysBIHierarchyService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBIHierarchyService.autoGet((IEntity)pSSysBIHierarchy);
+                pSSysBIHierarchyService.autoGet(pSSysBIHierarchy);
                 this.pssysbihierarchy = pSSysBIHierarchy;
             }
             return this.pssysbihierarchy;

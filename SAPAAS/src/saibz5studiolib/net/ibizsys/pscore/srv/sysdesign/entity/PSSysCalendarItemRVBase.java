@@ -1201,7 +1201,7 @@ implements Serializable {
                 PSDEViewBase pSDEViewBase = new PSDEViewBase();
                 pSDEViewBase.setPSDEViewBaseId(this.getPSDEViewBaseId());
                 PSDEViewBaseService pSDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewBaseService.autoGet((IEntity)pSDEViewBase);
+                pSDEViewBaseService.autoGet(pSDEViewBase);
                 this.psdeviewbase = pSDEViewBase;
             }
             return this.psdeviewbase;
@@ -1227,7 +1227,7 @@ implements Serializable {
                 PSSysCalendarItem pSSysCalendarItem = new PSSysCalendarItem();
                 pSSysCalendarItem.setPSSysCalendarItemId(this.getPSSysCalendarItemId());
                 PSSysCalendarItemService pSSysCalendarItemService = (PSSysCalendarItemService)ServiceGlobal.getService(PSSysCalendarItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysCalendarItemService.autoGet((IEntity)pSSysCalendarItem);
+                pSSysCalendarItemService.autoGet(pSSysCalendarItem);
                 this.pssyscalendaritem = pSSysCalendarItem;
             }
             return this.pssyscalendaritem;

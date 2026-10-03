@@ -1,126 +1,207 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.ctrlhandler;
 
 import java.util.HashMap;
-import java.util.Iterator;
+
+import org.hibernate.SessionFactory;
+
 import net.ibizsys.paas.controller.IViewController;
 import net.ibizsys.paas.core.ISystem;
 import net.ibizsys.paas.core.ModelBaseImpl;
-import net.ibizsys.paas.ctrlhandler.ICounterHandler;
 import net.ibizsys.paas.sysmodel.ISystemModel;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.web.AjaxActionResult;
 import net.ibizsys.paas.web.IWebContext;
-import org.hibernate.SessionFactory;
 
-public abstract class CounterHandlerBase
-extends ModelBaseImpl
-implements ICounterHandler {
-    private ThreadLocal<IWebContext> webContext = new ThreadLocal();
-    private ThreadLocal<IViewController> viewController = new ThreadLocal();
-    private ISystem iSystem = null;
-    private HashMap<String, String> counterItemMap = new HashMap();
-    private SessionFactory sessionFactory = null;
+/**
+ * 计数器处理基类
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class CounterHandlerBase extends ModelBaseImpl implements ICounterHandler {
+	
 
-    @Override
-    public void init(ISystem iSystem) throws Exception {
-        this.iSystem = iSystem;
-        this.onInit();
-    }
 
-    protected void setId(String strId) {
-        this.strId = strId;
-    }
+	private ThreadLocal<IWebContext> webContext = new ThreadLocal<IWebContext>();
 
-    protected void setName(String strName) {
-        this.strName = strName;
-    }
+	private ThreadLocal<IViewController> viewController = new ThreadLocal<IViewController>();
 
-    protected ISystemModel getSystemModel() {
-        return (ISystemModel)this.iSystem;
-    }
+	private ISystem iSystem = null;
 
-    public IWebContext getWebContext() {
-        return this.webContext.get();
-    }
+	private HashMap<String, String> counterItemMap = new HashMap<String, String>();
 
-    private void setWebContext(IWebContext value) {
-        this.webContext.set(value);
-    }
+	private SessionFactory sessionFactory = null;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.ICounterHandler#init(net.ibizsys.paas.core.ISystem)
+	 */
+	@Override
+	public void init(ISystem iSystem) throws Exception {
+		this.iSystem = iSystem;
+		this.onInit();
+	}
 
-    public IViewController getViewController() {
-        return this.viewController.get();
-    }
+	/**
+	 * 设置计数器处理对象标识
+	 * 
+	 * @param strId
+	 */
+	protected void setId(String strId) {
+		this.strId = strId;
+	}
 
-    private void setViewController(IViewController value) {
-        this.viewController.set(value);
-    }
+	/**
+	 * 设置计数器处理对象名称
+	 * 
+	 * @param strName
+	 */
+	protected void setName(String strName) {
+		this.strName = strName;
+	}
 
-    @Override
-    public AjaxActionResult processAction(String strAction, IViewController iViewController, IWebContext iWebContext) throws Exception {
-        this.setWebContext(iWebContext);
-        this.setViewController(iViewController);
-        AjaxActionResult ajaxActionResult = this.onProcessAction(strAction);
-        return ajaxActionResult;
-    }
+	/**
+	 * 获取系统模型
+	 * 
+	 * @return
+	 */
+	protected ISystemModel getSystemModel() {
+		return (ISystemModel) this.iSystem;
+	}
 
-    @Override
-    public int getCounterItemValue(String strCounterItem, IViewController iViewController, IWebContext iWebContext) throws Exception {
-        this.setWebContext(iWebContext);
-        this.setViewController(iViewController);
-        return this.getCounterItemValue(strCounterItem);
-    }
+	/**
+	 * 获取上下文对象
+	 * 
+	 * @return
+	 */
+	public IWebContext getWebContext() {
+		return webContext.get();
+	}
 
-    protected int getCounterItemValue(String strCounterItem) throws Exception {
-        return 0;
-    }
+	/**
+	 * 设置上下文对象
+	 * 
+	 * @param value
+	 */
+	private void setWebContext(IWebContext value) {
+		webContext.set(value);
+	}
 
-    protected AjaxActionResult onProcessAction(String strAction) throws Exception {
-        if (StringHelper.compare(strAction, "fetch", true) == 0) {
-            return this.onFetch();
-        }
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
+	/**
+	 * 获取当前视图控制器
+	 * 
+	 * @return
+	 */
+	public IViewController getViewController() {
+		return viewController.get();
+	}
 
-    protected AjaxActionResult onFetch() throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
+	/**
+	 * 设置当前视图控制器
+	 * 
+	 * @param value
+	 */
+	private void setViewController(IViewController value) {
+		viewController.set(value);
+	}
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    protected void registerCounterItem(String strItem, String strMemo) {
-        strItem = strItem.toUpperCase();
-        if (StringHelper.isNullOrEmpty(strMemo)) {
-            strMemo = "";
-        }
-        HashMap<String, String> hashMap = this.counterItemMap;
-        synchronized (hashMap) {
-            this.counterItemMap.put(strItem, strMemo);
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.ICounterHandler#processAction(java.lang.String, net.ibizsys.paas.controller.IViewController, net.ibizsys.paas.web.IWebContext)
+	 */
+	@Override
+	public AjaxActionResult processAction(String strAction, IViewController iViewController, IWebContext iWebContext) throws Exception {
+		this.setWebContext(iWebContext);
+		this.setViewController(iViewController);
+		AjaxActionResult ajaxActionResult = onProcessAction(strAction);
+		return ajaxActionResult;
+	}
 
-    protected Iterator<String> getCounterItems() {
-        return this.counterItemMap.keySet().iterator();
-    }
+	@Override
+	public int getCounterItemValue(String strCounterItem,IViewController iViewController, IWebContext iWebContext) throws Exception {
+		this.setWebContext(iWebContext);
+		this.setViewController(iViewController);
+		return getCounterItemValue(strCounterItem);
+	}
+	
+	protected int getCounterItemValue(String strCounterItem) throws Exception{
+		return 0;
+	}
+	
+	/**
+	 * 后台处理
+	 * 
+	 * @param strAction 行为
+	 * @return
+	 * @throws Exception
+	 */
+	protected AjaxActionResult onProcessAction(String strAction) throws Exception {
+		if (StringHelper.compare(strAction, ACTION_FETCH, true) == 0) {
+			return onFetch();
+		}
 
-    public SessionFactory getSessionFactory() {
-        if (this.sessionFactory != null) {
-            return this.sessionFactory;
-        }
-        if (this.getViewController() != null) {
-            return this.getViewController().getSessionFactory();
-        }
-        return null;
-    }
+		throw new Exception("没有实现");
+	}
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+	/**
+	 * 数据获取处理
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	protected AjaxActionResult onFetch() throws Exception {
+		throw new Exception("没有实现");
+	}
+
+	/**
+	 * 注册计数项
+	 * 
+	 * @param strItem 计数项
+	 * @param strMemo 说明
+	 */
+	protected void registerCounterItem(String strItem, String strMemo) {
+		strItem = strItem.toUpperCase();
+
+		if (StringHelper.isNullOrEmpty(strMemo)) {
+			strMemo = "";
+		}
+		synchronized (counterItemMap) {
+			counterItemMap.put(strItem, strMemo);
+		}
+	}
+
+	/**
+	 * 获取计数项
+	 * 
+	 * @return
+	 */
+	protected java.util.Iterator<String> getCounterItems() {
+		return this.counterItemMap.keySet().iterator();
+	}
+
+	
+	/**
+	 * 获取会话工厂
+	 * @return
+	 */
+	public SessionFactory getSessionFactory(){
+		if(this.sessionFactory!=null)
+			return this.sessionFactory;
+		if(this.getViewController()!=null)
+			return this.getViewController().getSessionFactory();
+		return null;
+	}
+	
+	
+	/**
+	 * 设置会话工厂
+	 * @param sessionFactory
+	 */
+	public void setSessionFactory(SessionFactory sessionFactory){
+		this.sessionFactory = sessionFactory;
+	}
+	
+	
+	
 }
-

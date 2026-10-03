@@ -139,17 +139,15 @@ extends SRFExControl {
         super.OnReloadConfig();
         this.RemoveControls();
         if (this.dpConfig != null) {
-            ArrayList<Object> ctrlList;
             if (this.dpConfig.getDPHiddenGroupConfig() != null) {
-                ctrlList = this.dpConfig.getDPHiddenGroupConfig().getHiddenConfigs();
-                for (HiddenConfig hiddenConfig : ctrlList) {
+                for (HiddenConfig hiddenConfig : this.dpConfig.getDPHiddenGroupConfig().getHiddenConfigs()) {
                     SRFExControl childControl = this.CreateControl((Object)hiddenConfig);
                     if (childControl == null) continue;
                     childControl.setConfig(hiddenConfig);
                     this.AddControl(childControl);
                 }
             }
-            ctrlList = new ArrayList();
+            ArrayList<Object> ctrlList = new ArrayList<Object>();
             this.dpConfig.GetFormCtrlConfig(ctrlList);
             int n = ctrlList.size();
             int i = 0;
@@ -402,4 +400,3 @@ extends SRFExControl {
         return null;
     }
 }
-

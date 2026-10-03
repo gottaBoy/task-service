@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
     }
 
     protected void onFillParentInfo(PSUWAsyncAction pSUWAsyncAction, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSUWAsyncAction, string, string2, string3);
+        super.onFillParentInfo(pSUWAsyncAction, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSUWAsyncAction, bl);
+        super.onFillEntityFullInfo(pSUWAsyncAction, bl);
     }
 
     protected void onWriteBackParent(PSUWAsyncAction pSUWAsyncAction, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUWAsyncAction, bl);
+        super.onWriteBackParent(pSUWAsyncAction, bl);
     }
 
     @Override
@@ -141,7 +141,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
     }
 
     protected void onRemoveEntityUncopyValues(PSUWAsyncAction pSUWAsyncAction, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUWAsyncAction, bl);
+        super.onRemoveEntityUncopyValues(pSUWAsyncAction, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUWAsyncAction pSUWAsyncAction, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -216,7 +216,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
         if ((entityFieldError = this.onCheckField_RemoteAddr(bl, pSUWAsyncAction, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUWAsyncAction, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUWAsyncAction, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ActionInfo(boolean bl, PSUWAsyncAction pSUWAsyncAction, boolean bl2, boolean bl3) throws Exception {
@@ -229,7 +229,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionInfo_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionInfo_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONINFO");
@@ -251,7 +251,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionOption_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionOption_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONOPTION");
@@ -273,7 +273,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM");
@@ -295,7 +295,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam2_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam2_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM2");
@@ -317,7 +317,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam3_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam3_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM3");
@@ -339,7 +339,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam4_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam4_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM4");
@@ -361,7 +361,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionResult_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionResult_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONRESULT");
@@ -386,7 +386,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ActionState_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string = this.onTestValueRule_ActionState_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONSTATE");
@@ -408,7 +408,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionType_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_ActionType_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONTYPE");
@@ -430,7 +430,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BeginTime_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string = this.onTestValueRule_BeginTime_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BEGINTIME");
@@ -452,7 +452,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EndTime_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string = this.onTestValueRule_EndTime_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENDTIME");
@@ -474,7 +474,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FullResultInfo_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_FullResultInfo_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FULLRESULTINFO");
@@ -496,7 +496,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LinkInfo_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_LinkInfo_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LINKINFO");
@@ -518,7 +518,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModelAction_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_ModelAction_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODELACTION");
@@ -540,7 +540,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModelName_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_ModelName_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODELNAME");
@@ -562,7 +562,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysId_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysId_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSID");
@@ -584,7 +584,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSConsoleId_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSConsoleId_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSCONSOLEID");
@@ -606,7 +606,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -628,7 +628,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -653,7 +653,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUWAsyncActionId_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSUWAsyncActionId_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUWASYNCACTIONID");
@@ -678,7 +678,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUWAsyncActionName_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSUWAsyncActionName_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUWASYNCACTIONNAME");
@@ -700,7 +700,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_QueueInfo_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_QueueInfo_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("QUEUEINFO");
@@ -722,7 +722,7 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RemoteAddr_Default((IEntity)pSUWAsyncAction, bl2, bl3);
+            string2 = this.onTestValueRule_RemoteAddr_Default(pSUWAsyncAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REMOTEADDR");
@@ -735,11 +735,11 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
     }
 
     protected void onSyncEntity(PSUWAsyncAction pSUWAsyncAction, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUWAsyncAction, bl);
+        super.onSyncEntity(pSUWAsyncAction, bl);
     }
 
     protected void onSyncIndexEntities(PSUWAsyncAction pSUWAsyncAction, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUWAsyncAction, bl);
+        super.onSyncIndexEntities(pSUWAsyncAction, bl);
     }
 
     public Object getDataContextValue(PSUWAsyncAction pSUWAsyncAction, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -747,14 +747,14 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUWAsyncAction, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUWAsyncAction, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUWAsyncAction pSUWAsyncAction, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUWAsyncAction, arrayList, n);
+        super.onExportMajorModel(pSUWAsyncAction, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1128,14 +1128,14 @@ extends PSCoreSysServiceBase<PSUWAsyncAction> {
 
     protected boolean onMergeChild(String string, String string2, PSUWAsyncAction pSUWAsyncAction) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUWAsyncAction)) {
+        if (super.onMergeChild(string, string2, pSUWAsyncAction)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUWAsyncAction pSUWAsyncAction) throws Exception {
-        super.onUpdateParent((IEntity)pSUWAsyncAction);
+        super.onUpdateParent(pSUWAsyncAction);
     }
 
     @Override

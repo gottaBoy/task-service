@@ -143,12 +143,12 @@ implements IIMParticipantInstance {
                 if (this.cometEvent == null) {
                     return;
                 }
-                Vector<Object> sendList = null;
+                Vector<IMMessageBase> sendList = null;
                 Vector<IMMessageBase> vector = this.imMessageList;
                 synchronized (vector) {
                     if (this.imMessageList.size() > 0) {
-                        void var4_5;
-                        sendList = new Vector<Object>();
+                        int var4_5 = 0;
+                        sendList = new Vector<IMMessageBase>();
                         boolean bl = false;
                         while (this.imMessageList.size() > 0 && var4_5 < 50) {
                             IMMessageBase imMessageBase = this.imMessageList.remove(0);
@@ -193,8 +193,8 @@ implements IIMParticipantInstance {
                             ++i;
                         }
                     }
+                    log.error((Object)StringHelper.Format((String)"\u53d1\u751f\u6d88\u606f\u5230\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
                 }
-                log.error((Object)StringHelper.Format((String)"\u53d1\u751f\u6d88\u606f\u5230\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
             }
             try {
                 this.cometEvent.close();
@@ -381,4 +381,3 @@ implements IIMParticipantInstance {
         return this.imParticipant.getADMINFLAG();
     }
 }
-

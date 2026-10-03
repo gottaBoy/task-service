@@ -139,9 +139,9 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
             PSHelpArticleType pSHelpArticleType = (PSHelpArticleType)iService.getDEModel().createEntity();
             pSHelpArticleType.set("PSHELPARTICLETYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSHelpArticleType);
+                iService.getTemp(pSHelpArticleType);
             } else {
-                iService.get((IEntity)pSHelpArticleType);
+                iService.get(pSHelpArticleType);
             }
             this.onFillParentInfo_PSHelpArticleType(pSHelpArtSec, pSHelpArticleType);
             return;
@@ -151,14 +151,14 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
             PSHelpSectionType pSHelpSectionType = (PSHelpSectionType)iService.getDEModel().createEntity();
             pSHelpSectionType.set("PSHELPSECTIONTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSHelpSectionType);
+                iService.getTemp(pSHelpSectionType);
             } else {
-                iService.get((IEntity)pSHelpSectionType);
+                iService.get(pSHelpSectionType);
             }
             this.onFillParentInfo_PSHelpSectionType(pSHelpArtSec, pSHelpSectionType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSHelpArtSec, string, string2, string3);
+        super.onFillParentInfo(pSHelpArtSec, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
         if (bl && pSHelpArtSec.getValidFlag() == null) {
             pSHelpArtSec.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSHelpArtSec, bl);
+        super.onFillEntityFullInfo(pSHelpArtSec, bl);
         this.onFillEntityFullInfo_PSHelpArticleType(pSHelpArtSec, bl);
         this.onFillEntityFullInfo_PSHelpSectionType(pSHelpArtSec, bl);
     }
@@ -191,7 +191,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
     }
 
     protected void onWriteBackParent(PSHelpArtSec pSHelpArtSec, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSHelpArtSec, bl);
+        super.onWriteBackParent(pSHelpArtSec, bl);
     }
 
     public ArrayList<PSHelpArtSec> selectByPSHelpArticleType(PSHelpArticleTypeBase pSHelpArticleTypeBase) throws Exception {
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
         ArrayList<PSHelpArtSec> arrayList = this.selectByPSHelpArticleType(pSHelpArticleType);
         this.onBeforeRemoveByPSHelpArticleType(pSHelpArticleType, arrayList);
         for (PSHelpArtSec pSHelpArtSec : arrayList) {
-            this.remove((IEntity)pSHelpArtSec);
+            this.remove(pSHelpArtSec);
         }
         this.onAfterRemoveByPSHelpArticleType(pSHelpArticleType, arrayList);
     }
@@ -292,8 +292,8 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
         ArrayList<PSHelpArtSec> arrayList = this.selectByPSHelpSectionType(pSHelpSectionType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSHELPSECTIONTYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSHelpSectionType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPARTSEC_PSHELPSECTIONTYPE_PSHELPSECTIONTYPEID", "", iDataEntityModel.getName(), "PSHELPARTSEC", iDataEntityModel.getDataInfo((IEntity)pSHelpSectionType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSHelpSectionType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPARTSEC_PSHELPSECTIONTYPE_PSHELPSECTIONTYPEID", "", iDataEntityModel.getName(), "PSHELPARTSEC", iDataEntityModel.getDataInfo(pSHelpSectionType), arrayList.get(0)));
         }
     }
 
@@ -326,7 +326,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
         ArrayList<PSHelpArtSec> arrayList = this.selectByPSHelpSectionType(pSHelpSectionType);
         this.onBeforeRemoveByPSHelpSectionType(pSHelpSectionType, arrayList);
         for (PSHelpArtSec pSHelpArtSec : arrayList) {
-            this.remove((IEntity)pSHelpArtSec);
+            this.remove(pSHelpArtSec);
         }
         this.onAfterRemoveByPSHelpSectionType(pSHelpSectionType, arrayList);
     }
@@ -347,7 +347,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
 
     protected void replaceParentInfo(PSHelpArtSec pSHelpArtSec, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSHelpArtSec, cloneSession);
+        super.replaceParentInfo(pSHelpArtSec, cloneSession);
         if (pSHelpArtSec.getPSHelpArticleTypeId() != null && (iEntity = cloneSession.getEntity("PSHELPARTICLETYPE", (Object)pSHelpArtSec.getPSHelpArticleTypeId())) != null) {
             this.onFillParentInfo_PSHelpArticleType(pSHelpArtSec, (PSHelpArticleType)iEntity);
         }
@@ -357,7 +357,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
     }
 
     protected void onRemoveEntityUncopyValues(PSHelpArtSec pSHelpArtSec, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSHelpArtSec, bl);
+        super.onRemoveEntityUncopyValues(pSHelpArtSec, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSHelpArtSec pSHelpArtSec, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -384,7 +384,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSHelpArtSec, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSHelpArtSec, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSHelpArtSec, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSHelpArtSec pSHelpArtSec, boolean bl2, boolean bl3) throws Exception {
@@ -397,7 +397,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSHelpArtSec, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSHelpArtSec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -422,7 +422,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSHelpArtSec, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSHelpArtSec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -447,7 +447,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpArticleTypeId_Default((IEntity)pSHelpArtSec, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpArticleTypeId_Default(pSHelpArtSec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPARTICLETYPEID");
@@ -472,7 +472,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpArtSecId_Default((IEntity)pSHelpArtSec, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpArtSecId_Default(pSHelpArtSec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPARTSECID");
@@ -497,7 +497,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpArtSecName_Default((IEntity)pSHelpArtSec, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpArtSecName_Default(pSHelpArtSec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPARTSECNAME");
@@ -522,7 +522,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpSectionTypeId_Default((IEntity)pSHelpArtSec, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpSectionTypeId_Default(pSHelpArtSec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPSECTIONTYPEID");
@@ -547,7 +547,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSHelpArtSec, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSHelpArtSec, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -560,11 +560,11 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
     }
 
     protected void onSyncEntity(PSHelpArtSec pSHelpArtSec, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSHelpArtSec, bl);
+        super.onSyncEntity(pSHelpArtSec, bl);
     }
 
     protected void onSyncIndexEntities(PSHelpArtSec pSHelpArtSec, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSHelpArtSec, bl);
+        super.onSyncIndexEntities(pSHelpArtSec, bl);
     }
 
     public Object getDataContextValue(PSHelpArtSec pSHelpArtSec, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -572,7 +572,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSHelpArtSec, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSHelpArtSec, string, iDataContextParam)) != null) {
             return object;
         }
         PSHelpArticleType pSHelpArticleType = pSHelpArtSec.getPSHelpArticleType();
@@ -583,7 +583,7 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
     }
 
     protected void onExportMajorModel(PSHelpArtSec pSHelpArtSec, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSHelpArtSec, arrayList, n);
+        super.onExportMajorModel(pSHelpArtSec, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -755,14 +755,14 @@ extends PSCoreSysServiceBase<PSHelpArtSec> {
 
     protected boolean onMergeChild(String string, String string2, PSHelpArtSec pSHelpArtSec) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSHelpArtSec)) {
+        if (super.onMergeChild(string, string2, pSHelpArtSec)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSHelpArtSec pSHelpArtSec) throws Exception {
-        super.onUpdateParent((IEntity)pSHelpArtSec);
+        super.onUpdateParent(pSHelpArtSec);
     }
 
     @Override

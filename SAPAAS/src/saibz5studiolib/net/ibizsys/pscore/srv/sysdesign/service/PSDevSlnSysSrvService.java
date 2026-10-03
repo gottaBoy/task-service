@@ -27,7 +27,7 @@ extends PSDevSlnSysSrvServiceBase {
 
     @Override
     protected void onGetWithToken(PSDevSlnSysSrv pSDevSlnSysSrv) throws Exception {
-        this.get((IEntity)pSDevSlnSysSrv);
+        this.get(pSDevSlnSysSrv);
         if (StringHelper.isNullOrEmpty((String)pSDevSlnSysSrv.getAccessToken())) {
             pSDevSlnSysSrv.setAccessToken(KeyValueHelper.genGuidEx());
             this.update(pSDevSlnSysSrv);
@@ -38,7 +38,7 @@ extends PSDevSlnSysSrvServiceBase {
     protected void onUpdateEnableLink(PSDevSlnSysSrv pSDevSlnSysSrv) throws Exception {
         PSDevSlnSysSrv pSDevSlnSysSrv2 = new PSDevSlnSysSrv();
         pSDevSlnSysSrv2.setPSDevSlnSysSrvId(pSDevSlnSysSrv.getPSDevSlnSysSrvId());
-        this.get((IEntity)pSDevSlnSysSrv2);
+        this.get(pSDevSlnSysSrv2);
         this.update(pSDevSlnSysSrv);
     }
 }

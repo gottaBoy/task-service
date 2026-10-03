@@ -1692,7 +1692,7 @@ implements Serializable {
                 PSDEFValueRule pSDEFValueRule = new PSDEFValueRule();
                 pSDEFValueRule.setPSDEFValueRuleId(this.getPSDEFValueRuleId());
                 PSDEFValueRuleService pSDEFValueRuleService = (PSDEFValueRuleService)ServiceGlobal.getService(PSDEFValueRuleService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFValueRuleService.autoGet((IEntity)pSDEFValueRule);
+                pSDEFValueRuleService.autoGet(pSDEFValueRule);
                 this.psdefvaluerule = pSDEFValueRule;
             }
             return this.psdefvaluerule;
@@ -1718,7 +1718,7 @@ implements Serializable {
                 PSDEVRGroup pSDEVRGroup = new PSDEVRGroup();
                 pSDEVRGroup.setPSDEVRGroupId(this.getPSDEVRGroupId());
                 PSDEVRGroupService pSDEVRGroupService = (PSDEVRGroupService)ServiceGlobal.getService(PSDEVRGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSDEVRGroupService.autoGet((IEntity)pSDEVRGroup);
+                pSDEVRGroupService.autoGet(pSDEVRGroup);
                 this.psdevrgroup = pSDEVRGroup;
             }
             return this.psdevrgroup;

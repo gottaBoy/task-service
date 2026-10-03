@@ -62,7 +62,7 @@ implements IMobileAppDataDataCtrl {
             BaseDataEntity cond = new BaseDataEntity();
             cond.SetParamValue("MOBAPPDATAID", (Object)mobileAppData.getMOBAPPDATAID());
             IDEDataCtrl mobileAppDataDetailDataCtrl = this.GetRelatedDataCtrl("DE0390");
-            Vector mobileAppDataDetailList = new Vector();
+            Vector<MobileAppDataDetail> mobileAppDataDetailList = new Vector();
             callResult = mobileAppDataDetailDataCtrl.Select(cond, mobileAppDataDetailList, MobileAppDataDetail.class.getName(), "ORDER BY ORDERFLAG");
             if (callResult.IsError()) {
                 log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u79fb\u52a8\u5e94\u7528\u6570\u636e\u5305\u660e\u7ec6\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));

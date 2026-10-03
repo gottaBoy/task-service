@@ -74,7 +74,7 @@ extends PSModelPFCodeCurModelDSModelBase {
         SimpleDataTableImpl simpleDataTableImpl = new SimpleDataTableImpl((IDataSet)simpleDataSetImpl);
         PSModelPFCodeService pSModelPFCodeService = (PSModelPFCodeService)ServiceGlobal.getService(PSModelPFCodeService.class, (SessionFactory)iDEDataSetFetchContext.getSessionFactory());
         try {
-            pSModelPFCodeService.executeAction("XG_LISTCODES", (IEntity)pSModelPFCode);
+            pSModelPFCodeService.executeAction("XG_LISTCODES", pSModelPFCode);
         }
         catch (Exception exception) {
             log.error((Object)exception);

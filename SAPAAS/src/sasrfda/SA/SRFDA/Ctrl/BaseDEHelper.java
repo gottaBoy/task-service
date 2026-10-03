@@ -2136,7 +2136,7 @@ implements IDEHelper {
      */
     @Override
     public CallResult GetProcParams(String strProcName, Vector<ProcParam> params) {
-        Vector<Object> curParams = null;
+        Vector<ProcParam> curParams = null;
         Hashtable<String, Vector<ProcParam>> hashtable = this.procParamMap;
         synchronized (hashtable) {
             if (this.procParamMap.containsKey(strProcName)) {
@@ -2144,7 +2144,7 @@ implements IDEHelper {
             }
         }
         if (curParams == null) {
-            curParams = new Vector();
+            curParams = new Vector<ProcParam>();
             CallResult callResult = this.InternalGetProcParams(strProcName, curParams);
             if (callResult.IsError()) {
                 return callResult;
@@ -2481,7 +2481,7 @@ implements IDEHelper {
         String strPreFixProcName = this.GetPreFixProcName();
         strPreFixProcName = strPreFixProcName.toUpperCase();
         String strSQL = this.GetDEDataCtrlHelper().GetSQL_AutoGenProcs(strPreFixProcName);
-        Vector procNames = new Vector();
+        Vector<BaseDataEntity> procNames = new Vector<BaseDataEntity>();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx(this.getGlobalHelper(), this.GetDBStorage(), strSQL, null, procNames, null);
         if (callResult.IsError()) {
             return callResult;
@@ -3369,4 +3369,3 @@ implements IDEHelper {
         }
     }
 }
-

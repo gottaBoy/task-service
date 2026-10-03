@@ -89,7 +89,7 @@ implements ISRFISIndexGroupEraseHelper {
         IndexWriter writer = null;
         try {
             writer = new IndexWriter((Directory)FSDirectory.open((File)new File(strISFolder)), (Analyzer)new StandardAnalyzer(Version.LUCENE_30), false, IndexWriter.MaxFieldLength.LIMITED);
-            Vector isEraseItems = new Vector();
+            Vector<ISEraseItem> isEraseItems = new Vector();
             String strSQL = StringHelper.Format((String)"SELECT * from V_SRFISERASEITEM where UPPER(ISGROUPID)='%1$s'", (Object)strIndexGroupId.toUpperCase());
             callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)iGlobalHelper, (String)iDataCtrl.GetDEHelper().GetDBStorage(), (String)strSQL, isEraseItems, (String)ISEraseItem.class.getName());
             if (callResult.getRetCode() != 0) {

@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.DynaWFSettingModelBase;
 
-public class DefaultDynaWFSettingModel
-extends DynaWFSettingModelBase {
+/**
+ * 默认动态工作流设置模型对象
+ * @author Administrator
+ *
+ */
+public class DefaultDynaWFSettingModel extends DynaWFSettingModelBase {
+
+	
+	
 }
-

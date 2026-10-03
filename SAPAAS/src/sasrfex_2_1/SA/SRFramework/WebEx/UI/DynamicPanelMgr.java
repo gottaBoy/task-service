@@ -79,7 +79,7 @@ extends ConfigMgr {
                     parser.parse(strDPConfigPath);
                 }
                 Document doc = parser.getDocument();
-                Map<Object, Object> map = this.fileList;
+                Map<?, ?> map = this.fileList;
                 synchronized (map) {
                     this.fileList.put(strDPConfigPath, doc);
                     this.modifydateList.put(strDPConfigPath, nLastModify);
@@ -242,4 +242,3 @@ extends ConfigMgr {
         return "dynamicpanel";
     }
 }
-

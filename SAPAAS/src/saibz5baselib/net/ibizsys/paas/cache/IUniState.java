@@ -1,50 +1,177 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.cache;
 
 import net.ibizsys.paas.core.IModelBase2;
 
-public interface IUniState
-extends IModelBase2 {
-    public static final String UNISTATETYPE_DE = "DE";
-    public static final String STATE = "STATE";
-    public static final String STATE2 = "STATE2";
-    public static final String STATE3 = "STATE3";
-    public static final String STATE4 = "STATE4";
-    public static final String STATE5 = "STATE5";
-    public static final String STATE6 = "STATE6";
-    public static final String STATE7 = "STATE7";
-    public static final String STATE8 = "STATE8";
+/**
+ * 系统统一状态协同对象接口
+ * @author Administrator
+ *
+ */
+public interface IUniState extends IModelBase2 {
 
-    public String getUniqueTag();
+	/**
+	 * 统一状态类型：实体
+	 */
+	final static String UNISTATETYPE_DE = "DE"; 
+	
+	/**
+	 * 状态标识
+	 */
+	final static String STATE = "STATE";
+	
+	/**
+	 * 状态2标识
+	 */
+	final static String STATE2 = "STATE2";
+	
+	/**
+	 * 状态3标识
+	 */
+	final static String STATE3 = "STATE3";
+	
+	/**
+	 * 状态4标识
+	 */
+	final static String STATE4 = "STATE4";
+	
+	/**
+	 * 状态5标识
+	 */
+	final static String STATE5 = "STATE5";
+	
+	/**
+	 * 状态6标识
+	 */
+	final static String STATE6 = "STATE6";
+	
+	/**
+	 * 状态7标识
+	 */
+	final static String STATE7 = "STATE7";
+	
+	/**
+	 * 状态8标识
+	 */
+	final static String STATE8 = "STATE8";
+	
+	
+	
+	/**
+	 * 获取唯一业务标识
+	 * @return
+	 */
+	String getUniqueTag();
+	
+	
+	
+	/**
+	 * 获取相关的实体名称
+	 * @return
+	 */
+	String getDEName();
+	
+	
+	
+	
+	/**
+	 * 获取主键属性
+	 * @return
+	 */
+	String getKeyField();
+	
+	
+	/**
+	 * 获取目录属性
+	 * @return
+	 */
+	String getFolderField();
+	
+	
+	
+	/**
+	 * 获取目录2属性
+	 * @return
+	 */
+	String getFolder2Field();
+	
+	
+	/**
+	 * 获取目录3属性
+	 * @return
+	 */
+	String getFolder3Field();
+	
+	/**
+	 * 获取状态属性
+	 * @return
+	 */
+	String getStateField();
+	
+	
+	/**
+	 * 获取状态2属性
+	 * @return
+	 */
+	String getState2Field();
+	
+	
+	/**
+	 * 获取状态3属性
+	 * @return
+	 */
+	String getState3Field();
+	
+	
+	
+	/**
+	 * 获取状态4属性
+	 * @return
+	 */
+	String getState4Field();
+	
+	
+	
+	
+	/**
+	 * 获取状态5属性
+	 * @return
+	 */
+	String getState5Field();
+	
+	
+	
+	
+	/**
+	 * 获取状态6属性
+	 * @return
+	 */
+	String getState6Field();
+	
+	
+	
+	
 
-    public String getDEName();
+	/**
+	 * 获取状态7属性
+	 * @return
+	 */
+	String getState7Field();
+	
+	
+	
+	
 
-    public String getKeyField();
-
-    public String getFolderField();
-
-    public String getFolder2Field();
-
-    public String getFolder3Field();
-
-    public String getStateField();
-
-    public String getState2Field();
-
-    public String getState3Field();
-
-    public String getState4Field();
-
-    public String getState5Field();
-
-    public String getState6Field();
-
-    public String getState7Field();
-
-    public String getState8Field();
-
-    public String getUniStateType();
+	/**
+	 * 获取状态8属性
+	 * @return
+	 */
+	String getState8Field();
+	
+	
+	
+	/**
+	 * 获取统一状态类型，参考net.ibizsys.paas.cache.IUniState.UNISTATETYPE定义
+	 * @return
+	 */
+	String getUniStateType();
 }
-

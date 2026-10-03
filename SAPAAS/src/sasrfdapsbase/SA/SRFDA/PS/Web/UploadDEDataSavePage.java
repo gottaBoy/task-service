@@ -50,12 +50,12 @@ extends net.ibizsys.paas.web.util.UploadDEDataSavePage {
         PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class);
         PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
         psDevSlnSys.setPSDevSlnSysId(strPSDevSlnSysId);
-        psDevSlnSysService.get((IEntity)psDevSlnSys);
+        psDevSlnSysService.get(psDevSlnSys);
         this.setSessionFactory(PSSysModelInstGlobal.getSessionFactory((String)psDevSlnSys.getPSSysModelInstId()));
         PSSystem psSystem = new PSSystem();
         PSSystemService psSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
         psSystem.setPSSystemId(psDevSlnSys.getPSSystemId());
-        psSystemService.get((IEntity)psSystem);
+        psSystemService.get(psSystem);
         psSystem.setPSSysModelInstId(psDevSlnSys.getPSSysModelInstId());
         this.getWebContext().setAttribute("__SYSTEM", (Object)psSystem);
         PSCoreSysServiceBase.setCurrentPSSystemId((String)psDevSlnSys.getPSSystemId());

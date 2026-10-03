@@ -1,17 +1,40 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.sysmodel;
 
-import net.ibizsys.paas.sysmodel.ISystemModel;
-
+/**
+ * 系统辅助功能接口
+ * @author Administrator
+ *
+ */
 public interface ISystemUtil {
-    public void init(ISystemModel var1) throws Exception;
 
-    public String getUtilType();
-
-    public void setUtilParam(String var1, Object var2);
-
-    public ISystemModel getSystemModel();
+	
+	/**
+	 * 初始化
+	 * @param iSystemModel
+	 * @throws Exception
+	 */
+	void init(ISystemModel iSystemModel)throws Exception;
+	
+	
+	/**
+	 * 获取辅助类型
+	 * @return
+	 */
+	String getUtilType();
+	
+	
+	/**
+	 * 设置辅助功能参数
+	 * @param strParamKey
+	 * @param objValue
+	 */
+	void setUtilParam(String strParamKey,Object objValue);
+	
+	
+	
+	/**
+	 * 获取系统功能对象
+	 * @return
+	 */
+	ISystemModel getSystemModel();
 }
-

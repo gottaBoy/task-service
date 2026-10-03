@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSUAPolicyType> {
     }
 
     protected void onFillParentInfo(PSUAPolicyType pSUAPolicyType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSUAPolicyType, string, string2, string3);
+        super.onFillParentInfo(pSUAPolicyType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSUAPolicyType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSUAPolicyType, bl);
+        super.onFillEntityFullInfo(pSUAPolicyType, bl);
     }
 
     protected void onWriteBackParent(PSUAPolicyType pSUAPolicyType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUAPolicyType, bl);
+        super.onWriteBackParent(pSUAPolicyType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSUAPolicyType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSUAPolicyType pSUAPolicyType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUAPolicyType, bl);
+        super.onRemoveEntityUncopyValues(pSUAPolicyType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUAPolicyType pSUAPolicyType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSUAPolicyType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSUAPolicyType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUAPolicyType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUAPolicyType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSUAPolicyType pSUAPolicyType, boolean bl2, boolean bl3) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSUAPolicyType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSUAPolicyType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSUAPolicyType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSUAPolicyType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUACPolicyTypeId_Default((IEntity)pSUAPolicyType, bl2, bl3);
+            string2 = this.onTestValueRule_PSUACPolicyTypeId_Default(pSUAPolicyType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUACPOLICYTYPEID");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSUAPolicyType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUACPolicyTypeName_Default((IEntity)pSUAPolicyType, bl2, bl3);
+            string2 = this.onTestValueRule_PSUACPolicyTypeName_Default(pSUAPolicyType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUACPOLICYTYPENAME");
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSUAPolicyType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSUAPolicyType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSUAPolicyType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -259,11 +259,11 @@ extends PSCoreSysServiceBase<PSUAPolicyType> {
     }
 
     protected void onSyncEntity(PSUAPolicyType pSUAPolicyType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUAPolicyType, bl);
+        super.onSyncEntity(pSUAPolicyType, bl);
     }
 
     protected void onSyncIndexEntities(PSUAPolicyType pSUAPolicyType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUAPolicyType, bl);
+        super.onSyncIndexEntities(pSUAPolicyType, bl);
     }
 
     public Object getDataContextValue(PSUAPolicyType pSUAPolicyType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -271,14 +271,14 @@ extends PSCoreSysServiceBase<PSUAPolicyType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUAPolicyType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUAPolicyType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUAPolicyType pSUAPolicyType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUAPolicyType, arrayList, n);
+        super.onExportMajorModel(pSUAPolicyType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -383,14 +383,14 @@ extends PSCoreSysServiceBase<PSUAPolicyType> {
 
     protected boolean onMergeChild(String string, String string2, PSUAPolicyType pSUAPolicyType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUAPolicyType)) {
+        if (super.onMergeChild(string, string2, pSUAPolicyType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUAPolicyType pSUAPolicyType) throws Exception {
-        super.onUpdateParent((IEntity)pSUAPolicyType);
+        super.onUpdateParent(pSUAPolicyType);
     }
 
     @Override

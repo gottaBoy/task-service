@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSRobotWork> {
     }
 
     protected void onFillParentInfo(PSRobotWork pSRobotWork, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSRobotWork, string, string2, string3);
+        super.onFillParentInfo(pSRobotWork, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSRobotWork> {
         if (bl && pSRobotWork.getValidFlag() == null) {
             pSRobotWork.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSRobotWork, bl);
+        super.onFillEntityFullInfo(pSRobotWork, bl);
     }
 
     protected void onWriteBackParent(PSRobotWork pSRobotWork, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSRobotWork, bl);
+        super.onWriteBackParent(pSRobotWork, bl);
     }
 
     @Override
@@ -143,7 +143,7 @@ extends PSCoreSysServiceBase<PSRobotWork> {
     }
 
     protected void onRemoveEntityUncopyValues(PSRobotWork pSRobotWork, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSRobotWork, bl);
+        super.onRemoveEntityUncopyValues(pSRobotWork, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSRobotWork pSRobotWork, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -164,7 +164,7 @@ extends PSCoreSysServiceBase<PSRobotWork> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSRobotWork, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSRobotWork, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSRobotWork, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSRobotWork pSRobotWork, boolean bl2, boolean bl3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSRobotWork> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSRobotWork, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSRobotWork, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSRobotWork> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRobotWorkId_Default((IEntity)pSRobotWork, bl2, bl3);
+            string2 = this.onTestValueRule_PSRobotWorkId_Default(pSRobotWork, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSROBOTWORKID");
@@ -227,7 +227,7 @@ extends PSCoreSysServiceBase<PSRobotWork> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRobotWorkName_Default((IEntity)pSRobotWork, bl2, bl3);
+            string2 = this.onTestValueRule_PSRobotWorkName_Default(pSRobotWork, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSROBOTWORKNAME");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSRobotWork> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeObj_Default((IEntity)pSRobotWork, bl2, bl3);
+            string2 = this.onTestValueRule_TypeObj_Default(pSRobotWork, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEOBJ");
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSRobotWork> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSRobotWork, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSRobotWork, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -287,11 +287,11 @@ extends PSCoreSysServiceBase<PSRobotWork> {
     }
 
     protected void onSyncEntity(PSRobotWork pSRobotWork, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSRobotWork, bl);
+        super.onSyncEntity(pSRobotWork, bl);
     }
 
     protected void onSyncIndexEntities(PSRobotWork pSRobotWork, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSRobotWork, bl);
+        super.onSyncIndexEntities(pSRobotWork, bl);
     }
 
     public Object getDataContextValue(PSRobotWork pSRobotWork, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -299,14 +299,14 @@ extends PSCoreSysServiceBase<PSRobotWork> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSRobotWork, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSRobotWork, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSRobotWork pSRobotWork, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSRobotWork, arrayList, n);
+        super.onExportMajorModel(pSRobotWork, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -426,14 +426,14 @@ extends PSCoreSysServiceBase<PSRobotWork> {
 
     protected boolean onMergeChild(String string, String string2, PSRobotWork pSRobotWork) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSRobotWork)) {
+        if (super.onMergeChild(string, string2, pSRobotWork)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSRobotWork pSRobotWork) throws Exception {
-        super.onUpdateParent((IEntity)pSRobotWork);
+        super.onUpdateParent(pSRobotWork);
     }
 
     @Override

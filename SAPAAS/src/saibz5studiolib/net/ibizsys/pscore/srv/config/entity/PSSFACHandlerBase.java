@@ -1553,7 +1553,7 @@ implements Serializable {
                 PSSF pSSF = new PSSF();
                 pSSF.setPSSFId(this.getPSSFId());
                 PSSFService pSSFService = (PSSFService)ServiceGlobal.getService(PSSFService.class, (SessionFactory)this.getSessionFactory());
-                pSSFService.autoGet((IEntity)pSSF);
+                pSSFService.autoGet(pSSF);
                 this.pssf = pSSF;
             }
             return this.pssf;
@@ -1579,7 +1579,7 @@ implements Serializable {
                 PSSysACHandler pSSysACHandler = new PSSysACHandler();
                 pSSysACHandler.setPSSysACHandlerId(this.getPSSysACHandlerId());
                 PSSysACHandlerService pSSysACHandlerService = (PSSysACHandlerService)ServiceGlobal.getService(PSSysACHandlerService.class, (SessionFactory)this.getSessionFactory());
-                pSSysACHandlerService.autoGet((IEntity)pSSysACHandler);
+                pSSysACHandlerService.autoGet(pSSysACHandler);
                 this.pssysachandler = pSSysACHandler;
             }
             return this.pssysachandler;

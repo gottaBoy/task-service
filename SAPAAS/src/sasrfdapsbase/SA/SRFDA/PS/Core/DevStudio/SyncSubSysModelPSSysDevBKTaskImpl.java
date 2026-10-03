@@ -76,7 +76,7 @@ extends PSSysDevBKTaskImplBase {
         PSSubSysService psSubSysService = (PSSubSysService)ServiceGlobal.getService(PSSubSysService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         net.ibizsys.pscore.srv.config.entity.PSSubSys psSubSys2 = new net.ibizsys.pscore.srv.config.entity.PSSubSys();
         psSubSys2.setPSSubSysId(this.psSysDevBKTask.getTASKPARAM());
-        psSubSysService.get((IEntity)psSubSys2);
+        psSubSysService.get(psSubSys2);
         try {
             SessionFactoryManager.addRef();
             String strResult = this.syncSubSysModel(psSubSys2);
@@ -113,7 +113,7 @@ extends PSSysDevBKTaskImplBase {
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSSUBSYSID", (Object)psSubSys2.getPSSUBSYSID());
         IDEDataCtrl psSubDEDataCtrl = this.getDAModelStorage().FindDEDataCtrl("DE1951", "SYSTEM", null);
-        Vector psSubDEList = new Vector();
+        Vector<PSSubDE> psSubDEList = new Vector<PSSubDE>();
         callResult = psSubDEDataCtrl.Select(cond, psSubDEList, PSSubDE.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b50\u7cfb\u7edf\u5b9e\u4f53\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -128,7 +128,7 @@ extends PSSysDevBKTaskImplBase {
         for (PSSubDE psSubDE2 : psSubDEList) {
             net.ibizsys.pscore.srv.config.entity.PSSubDE psSubDE = new net.ibizsys.pscore.srv.config.entity.PSSubDE();
             PSDEDataCtrl.convertEntity2(psSubDE2, (IEntity)psSubDE);
-            psSubDEService.save((IEntity)psSubDE);
+            psSubDEService.save(psSubDE);
             cond.Reset();
             cond.setParamValue("PSSUBDEID", (Object)psSubDE2.getPSSUBDEID());
             Vector psSubDEActionList = new Vector();
@@ -141,13 +141,13 @@ extends PSSysDevBKTaskImplBase {
                 SA.SRFDA.PS.Data.PSSubDEAction psSubDEAction2 = (SA.SRFDA.PS.Data.PSSubDEAction)((Object)iterator.next());
                 PSSubDEAction psSubDEAction = new PSSubDEAction();
                 PSDEDataCtrl.convertEntity2(psSubDEAction2, (IEntity)psSubDEAction);
-                psSubDEActionService.save((IEntity)psSubDEAction);
+                psSubDEActionService.save(psSubDEAction);
             }
         }
         cond.Reset();
         cond.setParamValue("PSSUBSYSID", (Object)psSubSys2.getPSSUBSYSID());
         IDEDataCtrl psSubDEViewDataCtrl = this.getDAModelStorage().FindDEDataCtrl("DE1955", "SYSTEM", null);
-        Vector psSubDEViewList = new Vector();
+        Vector<SA.SRFDA.PS.Data.PSSubDEView> psSubDEViewList = new Vector<SA.SRFDA.PS.Data.PSSubDEView>();
         callResult = psSubDEViewDataCtrl.Select(cond, psSubDEViewList, SA.SRFDA.PS.Data.PSSubDEView.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b50\u7cfb\u7edf\u5b9e\u4f53\u89c6\u56fe\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -155,12 +155,12 @@ extends PSSysDevBKTaskImplBase {
         for (SA.SRFDA.PS.Data.PSSubDEView psSubDEView2 : psSubDEViewList) {
             PSSubDEView psSubDEView = new PSSubDEView();
             PSDEDataCtrl.convertEntity2(psSubDEView2, (IEntity)psSubDEView);
-            psSubDEViewService.save((IEntity)psSubDEView);
+            psSubDEViewService.save(psSubDEView);
         }
         cond.Reset();
         cond.setParamValue("PSSUBSYSID", (Object)psSubSys2.getPSSUBSYSID());
         IDEDataCtrl psSubSysSFDataCtrl = this.getDAModelStorage().FindDEDataCtrl("DE1953", "SYSTEM", null);
-        Vector psSubSysSFList = new Vector();
+        Vector<PSSubSysSF> psSubSysSFList = new Vector<PSSubSysSF>();
         callResult = psSubSysSFDataCtrl.Select(cond, psSubSysSFList, PSSubSysSF.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b50\u7cfb\u7edf\u670d\u52a1\u4f53\u7cfb\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -168,12 +168,12 @@ extends PSSysDevBKTaskImplBase {
         for (PSSubSysSF psSubSysSF2 : psSubSysSFList) {
             net.ibizsys.pscore.srv.config.entity.PSSubSysSF psSubSysSF = new net.ibizsys.pscore.srv.config.entity.PSSubSysSF();
             PSDEDataCtrl.convertEntity2(psSubSysSF2, (IEntity)psSubSysSF);
-            psSubSysSFService.save((IEntity)psSubSysSF);
+            psSubSysSFService.save(psSubSysSF);
         }
         cond.Reset();
         cond.setParamValue("PSSUBSYSID", (Object)psSubSys2.getPSSUBSYSID());
         IDEDataCtrl psSubAppDataCtrl = this.getDAModelStorage().FindDEDataCtrl("DE1960", "SYSTEM", null);
-        Vector psSubAppList = new Vector();
+        Vector<SA.SRFDA.PS.Data.PSSubApp> psSubAppList = new Vector<SA.SRFDA.PS.Data.PSSubApp>();
         callResult = psSubAppDataCtrl.Select(cond, psSubAppList, SA.SRFDA.PS.Data.PSSubApp.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b50\u7cfb\u7edf\u5e94\u7528\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -182,10 +182,10 @@ extends PSSysDevBKTaskImplBase {
         for (SA.SRFDA.PS.Data.PSSubApp psSubApp2 : psSubAppList) {
             PSSubApp psSubApp = new PSSubApp();
             PSDEDataCtrl.convertEntity2(psSubApp2, (IEntity)psSubApp);
-            psSubAppService.save((IEntity)psSubApp);
+            psSubAppService.save(psSubApp);
             cond.Reset();
             cond.setParamValue("PSSUBAPPID", (Object)psSubApp2.getPSSUBAPPID());
-            Vector psSubAppViewList = new Vector();
+            Vector<PSSubAppView> psSubAppViewList = new Vector<PSSubAppView>();
             callResult = psSubAppViewDataCtrl.Select(cond, psSubAppViewList, PSSubAppView.class.getName());
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5b50\u7cfb\u7edf\u5e94\u7528\u89c6\u56fe\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -193,11 +193,11 @@ extends PSSysDevBKTaskImplBase {
             for (PSSubAppView psSubAppView2 : psSubAppViewList) {
                 net.ibizsys.pscore.srv.config.entity.PSSubAppView psSubAppView = new net.ibizsys.pscore.srv.config.entity.PSSubAppView();
                 PSDEDataCtrl.convertEntity2(psSubAppView2, (IEntity)psSubAppView);
-                psSubAppViewService.save((IEntity)psSubAppView);
+                psSubAppViewService.save(psSubAppView);
             }
         }
         psSubSys.setVersion(Integer.valueOf(psSubSys2.getVERSION()));
-        psSubSysService.update((IEntity)psSubSys);
+        psSubSysService.update(psSubSys);
         sBuilderEx.append("\u5b50\u7cfb\u7edf\u5df2\u66f4\u65b0\u4e3a\u6700\u65b0\u3002");
         return sBuilderEx.toString();
     }

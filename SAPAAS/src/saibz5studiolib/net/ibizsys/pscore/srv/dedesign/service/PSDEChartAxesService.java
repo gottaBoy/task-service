@@ -48,24 +48,23 @@ extends PSDEChartAxesServiceBase {
             return;
         }
         string = string.toLowerCase();
-        ArrayList<PSDEChartAxes> arrayList = null;
+        ArrayList<PSDEChartAxes> arrayList = new ArrayList<PSDEChartAxes>();
         if (!StringHelper.isNullOrEmpty((String)pSDEChartAxes.getPSDEChartId())) {
             serializable = new PSDEChart();
             ((PSDEChartBase)serializable).setPSDEChartId(pSDEChartAxes.getPSDEChartId());
             arrayList = ((PSDEChartBase)serializable).getPSDEChartId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSDEChart((PSDEChartBase)serializable) : this.selectByPSDEChart((PSDEChartBase)serializable);
         }
         serializable = new HashMap();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSDEChartAxes pSDEChartAxes2 = (PSDEChartAxes)object.next();
+        for (PSDEChartAxes pSDEChartAxes2 : arrayList) {
             if (StringHelper.isNullOrEmpty((String)pSDEChartAxes2.getPSDEChartAxesName())) continue;
             ((HashMap)serializable).put(pSDEChartAxes2.getPSDEChartAxesName().toLowerCase(), pSDEChartAxes2);
         }
+        String name;
         while (true) {
-            if (!((HashMap)serializable).containsKey(object = StringHelper.format((String)"%1$s%2$s", (Object)string, (Object)(n == 0 ? "" : Integer.valueOf(n))))) break;
+            name = StringHelper.format((String)"%1$s%2$s", (Object)string, (Object)(n == 0 ? "" : Integer.valueOf(n)));
+            if (!((HashMap)serializable).containsKey(name)) break;
             ++n;
         }
-        pSDEChartAxes.setPSDEChartAxesName((String)object);
+        pSDEChartAxes.setPSDEChartAxesName(name);
     }
 }
-

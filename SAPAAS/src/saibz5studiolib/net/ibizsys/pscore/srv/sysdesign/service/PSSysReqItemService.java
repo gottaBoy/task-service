@@ -23,7 +23,6 @@ import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSysReqItem;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSysReqItemData;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSysReqItemHis;
-import net.ibizsys.pscore.srv.sysdesign.entity.PSSysReqItemHisBase;
 import net.ibizsys.pscore.srv.sysdesign.service.PSSysReqItemDataService;
 import net.ibizsys.pscore.srv.sysdesign.service.PSSysReqItemHisService;
 import net.ibizsys.pscore.srv.sysdesign.service.PSSysReqItemServiceBase;
@@ -43,15 +42,15 @@ extends PSSysReqItemServiceBase {
         Object object;
         Object object2;
         int n;
-        PSSysReqItem pSSysReqItem2 = (PSSysReqItem)this.getLast((IEntity)pSSysReqItem);
+        PSSysReqItem pSSysReqItem2 = (PSSysReqItem)this.getLast(pSSysReqItem);
         int n2 = DataObject.getIntegerValue((Object)pSSysReqItem2.getVer(), (Integer)1);
         if (n2 != (n = DataObject.getIntegerValue((Object)pSSysReqItem.getVer(), (Integer)1).intValue())) {
-            object2 = (PSSysReqItemHisService)ServiceGlobal.getService(PSSysReqItemHisService.class, (SessionFactory)this.getSessionFactory());
-            object = new PSSysReqItemHis();
-            pSSysReqItem2.copyTo((IDataObject)object, false);
-            ((PSSysReqItemHisBase)object).setPSSysReqItemHisName(pSSysReqItem2.getPSSysReqItemName());
-            ((PSSysReqItemHisBase)object).setVer(n2);
-            ((PSCoreSysServiceBase)object2).create(object, false);
+            PSSysReqItemHisService pSSysReqItemHisService = (PSSysReqItemHisService)ServiceGlobal.getService(PSSysReqItemHisService.class, (SessionFactory)this.getSessionFactory());
+            PSSysReqItemHis pSSysReqItemHis = new PSSysReqItemHis();
+            pSSysReqItem2.copyTo((IDataObject)pSSysReqItemHis, false);
+            pSSysReqItemHis.setPSSysReqItemHisName(pSSysReqItem2.getPSSysReqItemName());
+            pSSysReqItemHis.setVer(n2);
+            pSSysReqItemHisService.create(pSSysReqItemHis, false);
         }
         if (!StringHelper.isNullOrEmpty((String)(object2 = DataObject.getStringValue((IDataObject)pSSysReqItem, (String)"srfmemo", (String)"")))) {
             object = (PSSysReqItemDataService)ServiceGlobal.getService(PSSysReqItemDataService.class, (SessionFactory)this.getSessionFactory());
@@ -88,7 +87,7 @@ extends PSSysReqItemServiceBase {
 
     protected void syncMOSFileWiki(PSSysReqItem pSSysReqItem) throws Exception {
         PSMOSFile pSMOSFile;
-        if (PSSysReqItemService.getMOSVer() == 2 && PSSysReqItemService.isEnableGitLabPlugin() && !StringHelper.isNullOrEmpty((String)pSSysReqItem.getCodeName()) && (pSMOSFile = this.getFile((IEntity)pSSysReqItem)) != null && pSSysReqItem.isReqContentDirty()) {
+        if (PSSysReqItemService.getMOSVer() == 2 && PSSysReqItemService.isEnableGitLabPlugin() && !StringHelper.isNullOrEmpty((String)pSSysReqItem.getCodeName()) && (pSMOSFile = this.getFile(pSSysReqItem)) != null && pSSysReqItem.isReqContentDirty()) {
             this.internalUpdateFileWiki(pSMOSFile, pSSysReqItem.getReqContent());
         }
     }
@@ -96,10 +95,9 @@ extends PSSysReqItemServiceBase {
     protected void onAfterGet(PSSysReqItem pSSysReqItem) throws Exception {
         String string;
         PSMOSFile pSMOSFile;
-        if (PSSysReqItemService.getMOSVer() == 2 && PSSysReqItemService.isEnableGitLabPlugin() && !StringHelper.isNullOrEmpty((String)pSSysReqItem.getCodeName()) && (pSMOSFile = this.getFile((IEntity)pSSysReqItem)) != null && !StringHelper.isNullOrEmpty((String)(string = this.internalGetFileWiki(pSMOSFile)))) {
+        if (PSSysReqItemService.getMOSVer() == 2 && PSSysReqItemService.isEnableGitLabPlugin() && !StringHelper.isNullOrEmpty((String)pSSysReqItem.getCodeName()) && (pSMOSFile = this.getFile(pSSysReqItem)) != null && !StringHelper.isNullOrEmpty((String)(string = this.internalGetFileWiki(pSMOSFile)))) {
             pSSysReqItem.setReqContent(string);
         }
-        super.onAfterGet((IEntity)pSSysReqItem);
+        super.onAfterGet(pSSysReqItem);
     }
 }
-

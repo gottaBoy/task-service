@@ -1,42 +1,73 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.servlet.ServletContext
- */
 package net.ibizsys.paas.util;
 
 import javax.servlet.ServletContext;
-import net.ibizsys.paas.util.IGlobalContext;
 
-public class GlobalContext
-implements IGlobalContext {
-    protected ServletContext servletContext = null;
-    protected static IGlobalContext globalContext = null;
+/**
+ * 上下文对象辅助类
+ * 
+ * @author LionLau
+ *
+ */
+public class GlobalContext implements IGlobalContext {
+	protected ServletContext servletContext = null;
 
-    public ServletContext getServletContext() {
-        return this.servletContext;
-    }
+	protected static IGlobalContext globalContext = null;
 
-    public static IGlobalContext getCurrent() {
-        return globalContext;
-    }
+	// protected IDynamicModelStorage iDynamicModelStorage = null;
 
-    protected void onInit() throws Exception {
-    }
+	/**
+	 * 获取 ServletContext 对象
+	 * 
+	 * @return
+	 */
+	public ServletContext getServletContext() {
+		return this.servletContext;
+	}
 
-    @Override
-    public Object getValue(String strKey) {
-        return this.servletContext.getAttribute(strKey);
-    }
+	public static IGlobalContext getCurrent() {
+		return globalContext;
+	}
 
-    @Override
-    public void setValue(String strKey, Object objValue) {
-        if (objValue == null) {
-            this.servletContext.removeAttribute(strKey);
-        } else {
-            this.servletContext.setAttribute(strKey, objValue);
-        }
-    }
+	/**
+	 * 初始化触发
+	 * 
+	 * @throws Exception
+	 */
+	protected void onInit() throws Exception {
+		// strModelPath = getServletContext().getRealPath("/")+"WEB-INF"+File.separator +"model" +File.separator;
+		//
+		// modelStorageImpl.init(this);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.util.IGlobalContext#getValue(java.lang.String)
+	 */
+	@Override
+	public Object getValue(String strKey) {
+		return servletContext.getAttribute(strKey);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.util.IGlobalContext#setValue(java.lang.String, java.lang.Object)
+	 */
+	@Override
+	public void setValue(String strKey, Object objValue) {
+		if (objValue == null)
+			servletContext.removeAttribute(strKey);
+		else
+			servletContext.setAttribute(strKey, objValue);
+	}
+
+	// @Override
+	// public IDynamicModelStorage getDynamicModelStorage()
+	// {
+	// return iDynamicModelStorage;
+	// }
+	//
+	//
+
 }
-

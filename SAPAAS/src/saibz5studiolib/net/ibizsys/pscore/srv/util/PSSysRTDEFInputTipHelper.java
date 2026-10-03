@@ -116,7 +116,7 @@ public class PSSysRTDEFInputTipHelper {
         object = (PSSysRTDEFInputTipService)ServiceGlobal.getService(PSSysRTDEFInputTipService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         SelectCond selectCond = new SelectCond();
         selectCond.set("VALIDFLAG", (Object)1);
-        ArrayList arrayList = object.select((ISelectCond)selectCond);
+        ArrayList<PSSysRTDEFInputTip> arrayList = ((PSSysRTDEFInputTipService)object).select((ISelectCond)selectCond);
         for (PSSysRTDEFInputTip pSSysRTDEFInputTip : arrayList) {
             if (DataObject.getIntegerValue((Object)pSSysRTDEFInputTip.getOrderValue(), (Integer)0) < 1000 || StringHelper.isNullOrEmpty((String)pSSysRTDEFInputTip.getUniqueTag())) continue;
             psSysRTDEFInputTipMap.put(pSSysRTDEFInputTip.getUniqueTag(), pSSysRTDEFInputTip);
@@ -262,13 +262,13 @@ public class PSSysRTDEFInputTipHelper {
             return "";
         }
         try {
-            string3 = new MutableDataSet();
-            string3.setFrom((MutableDataSetter)ParserEmulationProfile.MARKDOWN);
-            string3.set(Parser.EXTENSIONS, Arrays.asList(TablesExtension.create()));
-            pSSysRTDEFInputTip = Parser.builder((DataHolder)string3).build();
-            template = HtmlRenderer.builder((DataHolder)string3).build();
-            stringWriter = pSSysRTDEFInputTip.parse(string4);
-            String string6 = template.render((Node)stringWriter);
+            MutableDataSet options = new MutableDataSet();
+            options.setFrom((MutableDataSetter)ParserEmulationProfile.MARKDOWN);
+            options.set(Parser.EXTENSIONS, Arrays.asList(TablesExtension.create()));
+            Parser parser = Parser.builder((DataHolder)options).build();
+            HtmlRenderer renderer = HtmlRenderer.builder((DataHolder)options).build();
+            Node document = parser.parse(string4);
+            String string6 = renderer.render(document);
             string6 = "<div class='markdown-body' >" + string6 + "</div>";
             return string6;
         }
@@ -291,13 +291,13 @@ public class PSSysRTDEFInputTipHelper {
             return template;
         }
         Integer n = string.hashCode();
-        Configuration configuration = templateCacheMap;
-        synchronized (configuration) {
+        HashMap<Integer, Template> cache = templateCacheMap;
+        synchronized (cache) {
             template = templateCacheMap.get(n);
         }
         if (template == null) {
-            configuration = new Configuration();
-            EntityTemplateLoader entityTemplateLoader = new EntityTemplateLoader((IEntity)pSSysRTDEFInputTip);
+            Configuration configuration = new Configuration();
+            EntityTemplateLoader entityTemplateLoader = new EntityTemplateLoader(pSSysRTDEFInputTip);
             configuration.setTemplateLoader((TemplateLoader)entityTemplateLoader);
             template = configuration.getTemplate("CONTENT");
             HashMap<Integer, Template> hashMap = templateCacheMap;
@@ -311,4 +311,3 @@ public class PSSysRTDEFInputTipHelper {
         return template;
     }
 }
-

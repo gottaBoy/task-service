@@ -163,7 +163,7 @@ extends PSDEDataCtrl {
                 PSSysRunSessionService psSysRunSessionService = (PSSysRunSessionService)ServiceGlobal.getService(PSSysRunSessionService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)psDevSlnSys.getPSSysModelInstId()));
                 net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession psSysRunSession2 = new net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession();
                 psSysRunSession2.setPSSysRunSessionId(psSysRunSession.getPSSYSRUNSESSIONID());
-                psSysRunSessionService.remove((IEntity)psSysRunSession2);
+                psSysRunSessionService.remove(psSysRunSession2);
                 throw new Exception(StringHelper.Format((String)"\u5f53\u524d\u7cfb\u7edf\u4f5c\u4e1a\u961f\u5217\u5df2\u6392\u961f[%1$s]\uff0c\u8bf7\u7b49\u5f85\u5f53\u524d\u4f5c\u4e1a\u5b8c\u6210\u6216\u8bbe\u7f6e\u53d6\u6d88\u5f53\u524d\u4f5c\u4e1a", (Object)nTaskCount));
             }
             catch (Exception ex) {
@@ -204,12 +204,12 @@ extends PSDEDataCtrl {
         PSSysRunSessionService psSysRunSessionService = (PSSysRunSessionService)ServiceGlobal.getService(PSSysRunSessionService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)strPSSysModelInstId));
         net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession psSysRunSession2 = new net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession();
         psSysRunSession2.setPSSysRunSessionId(psSysRunSession.getPSSYSRUNSESSIONID());
-        if (!psSysRunSessionService.get((IEntity)psSysRunSession2, true)) {
+        if (!psSysRunSessionService.get(psSysRunSession2, true)) {
             if (StringHelper.IsNullOrEmpty((String)strPSDynaInstId)) throw new Exception(String.format("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u7cfb\u7edf\u8fd0\u884c\u4f1a\u8bdd", new Object[0]));
             PSDEDataCtrl.convertEntity2(psSysRunSession, (IEntity)psSysRunSession2);
             psSysRunSession2.setPSSystemId(iPSDevSlnSys.getPSSystemId());
             psSysRunSession2.setPSSystemName(iPSDevSlnSys.getPSSystemName());
-            psSysRunSessionService.create((IEntity)psSysRunSession2);
+            psSysRunSessionService.create(psSysRunSession2);
         }
         if (((nRebuildMode = DataObject.getIntegerValue((Object)psSysRunSession2.getRebuildMode(), (Integer)0).intValue()) & 4) == 4) {
             nRebuildMode = 0;
@@ -342,7 +342,7 @@ extends PSDEDataCtrl {
                 psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                 psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
             }
-            psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+            psSysDevBKTaskService.create(psSysDevBKTask);
             parentPSSysDevBKTask = psSysDevBKTask;
             if (StringHelper.Compare((String)psSysRunSession.getRUNMODE(), (String)"PUBCODE", (boolean)true) == 0 || StringHelper.Compare((String)psSysRunSession.getRUNMODE(), (String)"PUBCODE2", (boolean)true) == 0 || StringHelper.Compare((String)psSysRunSession.getRUNMODE(), (String)"PUBDOC", (boolean)true) == 0 || StringHelper.Compare((String)psSysRunSession.getRUNMODE(), (String)"PUBMODEL", (boolean)true) == 0 || StringHelper.Compare((String)psSysRunSession.getRUNMODE(), (String)"PACKVER", (boolean)true) == 0 || StringHelper.Compare((String)psSysRunSession.getRUNMODE(), (String)"PACKMOBAPP", (boolean)true) == 0) {
                 bDeploySys = false;
@@ -437,7 +437,7 @@ extends PSDEDataCtrl {
                 psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                 psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
             }
-            psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+            psSysDevBKTaskService.create(psSysDevBKTask, false);
             if (bSyncDBModel && (bDeployMSAPI || bDeployMSApp || !StringHelper.IsNullOrEmpty((String)psSysRunSession2.getPSSystemDBCfgId()))) {
                 ++nTaskOrder;
                 psSysDevBKTask = new PSSysDevBKTask();
@@ -464,7 +464,7 @@ extends PSDEDataCtrl {
                     psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                     psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                 }
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                psSysDevBKTaskService.create(psSysDevBKTask, false);
             }
             if (bTemplEngineV2 && (bPubSFCode || bPubPFCode)) {
                 ++nTaskOrder;
@@ -492,7 +492,7 @@ extends PSDEDataCtrl {
                     psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                     psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                 }
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                psSysDevBKTaskService.create(psSysDevBKTask, false);
             }
             if (bPubSFCode) {
                 ++nTaskOrder;
@@ -516,7 +516,7 @@ extends PSDEDataCtrl {
                     psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                     psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                 }
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                psSysDevBKTaskService.create(psSysDevBKTask, false);
             }
             if (bPubPFCode && !StringHelper.IsNullOrEmpty((String)psSysRunSession2.getPSSysAppId())) {
                 ++nTaskOrder;
@@ -540,7 +540,7 @@ extends PSDEDataCtrl {
                     psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                     psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                 }
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                psSysDevBKTaskService.create(psSysDevBKTask, false);
             }
             if (bPubDynaInstModel) {
                 ++nTaskOrder;
@@ -564,7 +564,7 @@ extends PSDEDataCtrl {
                     psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                     psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                 }
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                psSysDevBKTaskService.create(psSysDevBKTask, false);
             }
             if (nRebuildMode > 0) {
                 ++nTaskOrder;
@@ -588,7 +588,7 @@ extends PSDEDataCtrl {
                     psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                     psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                 }
-                psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                psSysDevBKTaskService.create(psSysDevBKTask, false);
                 if (!StringHelper.IsNullOrEmpty((String)psSysRunSession2.getPSSysAppId())) {
                     ++nTaskOrder;
                     psSysDevBKTask = new PSSysDevBKTask();
@@ -611,7 +611,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
                 if (bPubSFCode) {
                     ++nTaskOrder;
@@ -635,7 +635,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
                 if (bPubPFCode && !StringHelper.IsNullOrEmpty((String)psSysRunSession2.getPSSysAppId())) {
                     ++nTaskOrder;
@@ -659,7 +659,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
             }
             if (nRebuildMode > 0) {
@@ -692,7 +692,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
             } else {
                 if (bPackSFCode) {
@@ -721,7 +721,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
                 if (bPackPFCode && !StringHelper.IsNullOrEmpty((String)psSysRunSession2.getPSSysAppId())) {
                     ++nTaskOrder;
@@ -749,7 +749,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
                 if (bPackPFCode && !StringHelper.IsNullOrEmpty((String)psSysRunSession2.getPSSysAppId2())) {
                     ++nTaskOrder;
@@ -777,7 +777,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
                 if (bPackAndroidApp && !StringHelper.IsNullOrEmpty((String)psSysRunSession2.getPSSysAppId())) {
                     ++nTaskOrder;
@@ -801,7 +801,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
                 if (bPackIOSApp && !StringHelper.IsNullOrEmpty((String)psSysRunSession2.getPSSysAppId())) {
                     ++nTaskOrder;
@@ -825,7 +825,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
                 if (bDeploySys && bRemotePack) {
                     ++nTaskOrder;
@@ -849,7 +849,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
                 if (bDeploySys) {
                     ++nTaskOrder;
@@ -879,7 +879,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
                 if (bDeploySys) {
                     ++nTaskOrder;
@@ -909,7 +909,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
                 if (bDeployPkg) {
                     ++nTaskOrder;
@@ -933,7 +933,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
                 if (bDeploySys) {
                     ++nTaskOrder;
@@ -963,7 +963,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
                 if (bPackVer) {
                     ++nTaskOrder;
@@ -988,7 +988,7 @@ extends PSDEDataCtrl {
                         psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
                         psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
                     }
-                    psSysDevBKTaskService.create((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.create(psSysDevBKTask, false);
                 }
             }
             if (bDeploySys) {
@@ -996,25 +996,25 @@ extends PSDEDataCtrl {
                 SelectCond selectCond = new SelectCond();
                 selectCond.set("PSSYSTEMID", (Object)psSysRunSession.getPSSYSTEMID());
                 selectCond.set("RUNSTATE", (Object)20);
-                ArrayList psSysRunSessionList = psSysRunSessionService.select((ISelectCond)selectCond);
+                ArrayList<net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession> psSysRunSessionList = psSysRunSessionService.select((ISelectCond)selectCond);
                 for (net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession lastRunSession : psSysRunSessionList) {
                     net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession updateItem = new net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession();
                     updateItem.setPSSysRunSessionId(lastRunSession.getPSSysRunSessionId());
                     updateItem.setRunState(Integer.valueOf(30));
                     updateItem.setEndTime(new Timestamp(System.currentTimeMillis()));
-                    psSysRunSessionService.update((IEntity)updateItem);
+                    psSysRunSessionService.update(updateItem);
                 }
                 net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession updateItem = new net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession();
                 updateItem.setPSSysRunSessionId(psSysRunSession.getPSSYSRUNSESSIONID());
                 updateItem.setRunState(Integer.valueOf(20));
                 updateItem.setStartTime(new Timestamp(System.currentTimeMillis()));
-                psSysRunSessionService.update((IEntity)updateItem);
+                psSysRunSessionService.update(updateItem);
             } else {
                 net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession updateItem = new net.ibizsys.pscore.srv.sysdesign.entity.PSSysRunSession();
                 updateItem.setPSSysRunSessionId(psSysRunSession.getPSSYSRUNSESSIONID());
                 updateItem.setRunState(Integer.valueOf(30));
                 updateItem.setStartTime(new Timestamp(System.currentTimeMillis()));
-                psSysRunSessionService.update((IEntity)updateItem);
+                psSysRunSessionService.update(updateItem);
             }
             SessionFactoryManager.releaseRef((boolean)true);
         }
@@ -1031,7 +1031,7 @@ extends PSDEDataCtrl {
         catch (Exception ex) {
             try {
                 PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)strPSSysModelInstId));
-                psSysDevBKTaskService.remove((IEntity)parentPSSysDevBKTask);
+                psSysDevBKTaskService.remove(parentPSSysDevBKTask);
                 throw ex;
             }
             catch (Exception e) {

@@ -1,26 +1,6 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  SA.SRFramework.Utility.Helper
- *  SA.SRFramework.Utility.StringHelper
- *  SA.SRFramework.UtilityEx.StringBuilderEx
- *  net.ibizsys.paas.codelist.ICodeList
- *  net.ibizsys.paas.control.grid.IGEIDEACMode
- *  net.ibizsys.paas.control.grid.IGEIDEFValueRule
- *  net.ibizsys.paas.control.grid.IGrid
- *  net.ibizsys.paas.core.IDEField
- *  net.ibizsys.paas.data.IDataItem
- *  net.ibizsys.paas.data.IDataObject
- *  net.ibizsys.paas.util.DataTypeHelper
- *  net.ibizsys.paas.web.IWebContext
- *  net.ibizsys.pscore.srv.util.PropertiesHelper
- *  net.sf.json.JSONObject
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package SA.SRFDA.PS.Core.Control.Grid;
 
+import SA.SRFDA.PS.Core.PSModelRTMeta;
 import SA.SRFDA.PS.Core.App.CodeList.IPSAppCodeList;
 import SA.SRFDA.PS.Core.App.DataEntity.IPSAppDEField;
 import SA.SRFDA.PS.Core.App.DataEntity.IPSAppDEMethodDTO;
@@ -32,37 +12,27 @@ import SA.SRFDA.PS.Core.App.View.IPSAppViewUIAction;
 import SA.SRFDA.PS.Core.App.View.PSAppViewLogicImpl;
 import SA.SRFDA.PS.Core.App.View.PSAppViewUIActionProxy;
 import SA.SRFDA.PS.Core.CodeList.IPSCodeList;
-import SA.SRFDA.PS.Core.Control.Ajax.IPSAjaxHandler;
-import SA.SRFDA.PS.Core.Control.Form.IPSDEFFormItem;
-import SA.SRFDA.PS.Core.Control.Grid.IPSDEFGridColumn;
-import SA.SRFDA.PS.Core.Control.Grid.IPSDEGridColumn;
-import SA.SRFDA.PS.Core.Control.Grid.IPSDEGridDataItem;
-import SA.SRFDA.PS.Core.Control.Grid.IPSDEGridEditItem;
-import SA.SRFDA.PS.Core.Control.Grid.IPSDEGridEditItemUpdate;
-import SA.SRFDA.PS.Core.Control.Grid.IPSDEGridFieldColumn;
-import SA.SRFDA.PS.Core.Control.Grid.IPSGEIDEFValueRule;
-import SA.SRFDA.PS.Core.Control.Grid.PSDEGridColumnImpl;
-import SA.SRFDA.PS.Core.Control.Grid.PSDEGridEditItemAjaxHandlerImpl;
 import SA.SRFDA.PS.Core.Control.IPSControlContainer;
 import SA.SRFDA.PS.Core.Control.IPSEditor;
 import SA.SRFDA.PS.Core.Control.IPSEditorType;
 import SA.SRFDA.PS.Core.Control.PSEditorContainerImpl;
+import SA.SRFDA.PS.Core.Control.Ajax.IPSAjaxHandler;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEFFormItem;
 import SA.SRFDA.PS.Core.DEField.IPSDEFSearchMode;
 import SA.SRFDA.PS.Core.DEField.IPSDEFUIMode;
 import SA.SRFDA.PS.Core.DEField.IPSDEField;
-import SA.SRFDA.PS.Core.DEField.IPSPickupObjectDEField;
+import SA.SRFDA.PS.Core.DEField.IPSDEFieldBase;
 import SA.SRFDA.PS.Core.Data.PSDataItemImpl;
+import SA.SRFDA.PS.Core.DataEntity.IPSDataEntity;
 import SA.SRFDA.PS.Core.DataEntity.AC.IPSDEACMode;
 import SA.SRFDA.PS.Core.DataEntity.DER.IPSDER1N;
 import SA.SRFDA.PS.Core.DataEntity.DER.IPSDERBase;
 import SA.SRFDA.PS.Core.DataEntity.DER.IPSDERCustom;
 import SA.SRFDA.PS.Core.DataEntity.DER.IPSDERNN;
 import SA.SRFDA.PS.Core.DataEntity.DS.IPSDEDataSet;
-import SA.SRFDA.PS.Core.DataEntity.IPSDataEntity;
 import SA.SRFDA.PS.Core.DataEntity.Service.IPSDEMethodDTOField;
 import SA.SRFDA.PS.Core.DataEntity.UIAction.IPSDEUIAction;
 import SA.SRFDA.PS.Core.DataEntity.UIAction.IPSDEUIActionGroup;
-import SA.SRFDA.PS.Core.PSModelRTMeta;
 import SA.SRFDA.PS.Core.Res.IPSLanguageRes;
 import SA.SRFDA.PS.Core.Res.IPSSysCss;
 import SA.SRFDA.PS.Core.Res.IPSSysEditorStyle;
@@ -91,1653 +61,1816 @@ import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class PSDEGridFieldColumnImpl
-extends PSDEGridColumnImpl
-implements IPSDEGridFieldColumn,
-IPSDEGridEditItem {
-    private static final Log log = LogFactory.getLog(PSDEGridFieldColumnImpl.class);
-    protected IPSDEFGridColumn iPSDEFGridColumn = null;
-    protected IPSDEField iPSDEField = null;
-    private IPSAppDEField iPSAppDEField = null;
-    protected String strPSCodeListId = "";
-    protected IPSCodeList iPSCodeList = null;
-    private String strValueFormat = "";
-    private String[] fields = null;
-    protected String strEditorType = "";
-    protected String strEditorStyle = "";
-    private boolean bEditable = false;
-    private boolean bRowEditable = false;
-    private Properties editorParams = null;
-    private boolean bDefineEditorType = false;
-    protected boolean bHidden = false;
-    private IPSEditorType iPSEditorType = null;
-    protected boolean bAllowEmpty = true;
-    private String strValueProcessor = "";
-    private String strResetItemName = null;
-    private String strPlaceHolder = null;
-    private IPSSysEditorStyle iPSSysEditorStyle = null;
-    private String strPSSysValueRuleId = null;
-    private int nIgnoreInput = 0;
-    protected GEIDEACModeImpl geiDEACModeImpl = null;
-    private int nEnableCond = 3;
-    private String strCreateDVT = "";
-    private String strCreateDV = "";
-    private String strUpdateDVT = "";
-    private String strUpdateDV = "";
-    private String strEditorCssStyle = "";
-    private ArrayList<String> resetItemNameList = null;
-    private ArrayList<String> valueItemNameList = null;
-    private ArrayList<IGEIDEFValueRule> geiDEFValueRuleList = null;
-    private boolean bNeedCodeListConfig = false;
-    private int nOutputCodeListConfigMode = 0;
-    private String strValueItemName = "";
-    private boolean bEnableItemPriv = false;
-    private String strItemPrivId = null;
-    protected PSDataItemImpl psDataItemImpl = new PSDataItemImpl();
-    protected ArrayList<IPSDEGridDataItem> psDEGridDataItemList = null;
-    private String strGroupItem = null;
-    private String strDataItemName = null;
-    private String strItemHandlerType = null;
-    private IPSAjaxHandler itemPSAjaxHandler = null;
-    private IPSDEUIAction iPSDEUIAction = null;
-    private String strCLConvertMode = null;
-    private boolean bGenerateDataItems = true;
-    boolean bTreeColumn = false;
-    private int nTreeNodeMode = 0;
-    private IPSEditor iPSEditor = null;
-    private int nEnableLink = 2;
-    private IPSAppView linkPSAppView = null;
-    private boolean bEnableLinkView = false;
-    private String strPSSysDictCatId = "";
-    private String strUnitName = null;
-    private int nUnitNameWidth = 0;
-    private boolean bEnableUnitName = false;
-    private PSEditorContainerImpl psEditorContainerImpl = null;
-    private IPSDEUIActionGroup iPSDEUIActionGroup = null;
+public class PSDEGridFieldColumnImpl extends PSDEGridColumnImpl implements IPSDEGridFieldColumn, IPSDEGridEditItem {
+   private static final Log log = LogFactory.getLog(PSDEGridFieldColumnImpl.class);
+   protected IPSDEFGridColumn iPSDEFGridColumn = null;
+   protected IPSDEField iPSDEField = null;
+   private IPSAppDEField iPSAppDEField = null;
+   protected String strPSCodeListId = "";
+   protected IPSCodeList iPSCodeList = null;
+   private String strValueFormat = "";
+   private String[] fields = null;
+   protected String strEditorType = "";
+   protected String strEditorStyle = "";
+   private boolean bEditable = false;
+   private boolean bRowEditable = false;
+   private Properties editorParams = null;
+   private boolean bDefineEditorType = false;
+   protected boolean bHidden = false;
+   private IPSEditorType iPSEditorType = null;
+   protected boolean bAllowEmpty = true;
+   private String strValueProcessor = "";
+   private String strResetItemName = null;
+   private String strPlaceHolder = null;
+   private IPSSysEditorStyle iPSSysEditorStyle = null;
+   private String strPSSysValueRuleId = null;
+   private int nIgnoreInput = 0;
+   protected PSDEGridFieldColumnImpl.GEIDEACModeImpl geiDEACModeImpl = null;
+   private int nEnableCond = 3;
+   private String strCreateDVT = "";
+   private String strCreateDV = "";
+   private String strUpdateDVT = "";
+   private String strUpdateDV = "";
+   private String strEditorCssStyle = "";
+   private ArrayList<String> resetItemNameList = null;
+   private ArrayList<String> valueItemNameList = null;
+   private ArrayList<IGEIDEFValueRule> geiDEFValueRuleList = null;
+   private boolean bNeedCodeListConfig = false;
+   private int nOutputCodeListConfigMode = 0;
+   private String strValueItemName = "";
+   private boolean bEnableItemPriv = false;
+   private String strItemPrivId = null;
+   protected PSDataItemImpl psDataItemImpl = new PSDataItemImpl();
+   protected ArrayList<IPSDEGridDataItem> psDEGridDataItemList = null;
+   private String strGroupItem = null;
+   private String strDataItemName = null;
+   private String strItemHandlerType = null;
+   private IPSAjaxHandler itemPSAjaxHandler = null;
+   private IPSDEUIAction iPSDEUIAction = null;
+   private String strCLConvertMode = null;
+   private boolean bGenerateDataItems = true;
+   boolean bTreeColumn = false;
+   private int nTreeNodeMode = 0;
+   private IPSEditor iPSEditor = null;
+   private int nEnableLink = 2;
+   private IPSAppView linkPSAppView = null;
+   private boolean bEnableLinkView = false;
+   private String strPSSysDictCatId = "";
+   private String strUnitName = null;
+   private int nUnitNameWidth = 0;
+   private boolean bEnableUnitName = false;
+   private PSEditorContainerImpl psEditorContainerImpl = null;
+   private IPSDEUIActionGroup iPSDEUIActionGroup = null;
 
-    /*
-     * WARNING - void declaration
-     */
-    @Override
-    protected void onInit() throws Exception {
-        IPSAppView linkPSAppView;
-        if (StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getPSDEFID())) {
-            throw new Exception(StringHelper.Format((String)"\u8868\u683c\u5c5e\u6027\u5217[%1$s]\u6ca1\u6709\u6307\u5b9a\u5b9e\u4f53\u5c5e\u6027", (Object)this.getName()));
-        }
-        boolean bUseDTO = false;
-        if (this.getPSDEGrid().getPSAppView() != null && this.getPSDEGrid().getPSAppView().getPSApplication() != null) {
-            bUseDTO = this.getPSDEGrid().getPSAppView().getPSApplication().isUseServiceApi();
-        }
-        if (!bUseDTO) {
-            if (this.getPSSystemSetting() != null) {
-                this.psDataItemImpl.setFormat(this.getPSSystemSetting().getValueFormat());
+   @Override
+   protected void onInit() throws Exception {
+      if (StringHelper.IsNullOrEmpty(this.psDEGridColumn.getPSDEFID())) {
+         throw new Exception(StringHelper.Format("表格属性列[%1$s]没有指定实体属性", this.getName()));
+      }
+
+      boolean bUseDTO = false;
+      if (this.getPSDEGrid().getPSAppView() != null && this.getPSDEGrid().getPSAppView().getPSApplication() != null) {
+         bUseDTO = this.getPSDEGrid().getPSAppView().getPSApplication().isUseServiceApi();
+      }
+
+      if (!bUseDTO) {
+         if (this.getPSSystemSetting() != null) {
+            this.psDataItemImpl.setFormat(this.getPSSystemSetting().getValueFormat());
+         }
+      } else {
+         this.psDataItemImpl.setFormat("");
+      }
+
+      this.iPSDEField = this.getPSDEGrid().getPSDataEntity().getPSDEField(this.psDEGridColumn.getPSDEFID(), false);
+      if (this.iPSDEField != null && this.getPSDEGrid().getPSAppDataEntity() != null) {
+         this.iPSAppDEField = this.getPSDEGrid().getPSAppDataEntity().getPSAppDEField(this.iPSDEField.getId(), true);
+      }
+
+      IPSDEFUIMode iPSDEFUIMode = null;
+      if (StringHelper.IsNullOrEmpty(this.psDEGridColumn.getPSDEFUIMODEID())) {
+         String strDEFUIMode = StringHelper.Format("APPDEFAULT:%1$s", this.getPSDEGrid().getPSAppView().getPSApplication().getId());
+         iPSDEFUIMode = this.getPSDEField().getPSDEFUIMode(strDEFUIMode, true);
+         if (iPSDEFUIMode == null) {
+            iPSDEFUIMode = this.iPSDEField.getPSDEFUIMode("DEFAULT");
+         }
+      } else {
+         iPSDEFUIMode = this.iPSDEField.getPSDEFUIMode(this.psDEGridColumn.getPSDEFUIMODEID());
+      }
+
+      this.iPSDEFGridColumn = iPSDEFUIMode.getPSDEFGridColumn();
+      if (!this.psDEGridColumn.isENABLELINKNull()) {
+         this.nEnableLink = this.psDEGridColumn.getENABLELINK();
+      } else {
+         this.nEnableLink = this.getPSDEGrid().getColumnEnableLink();
+      }
+
+      this.strPSCodeListId = this.psDEGridColumn.getPSCODELISTID();
+      this.strCLConvertMode = this.psDEGridColumn.getCLCONVERTMODE();
+      if (this.iPSDEFGridColumn != null) {
+         if (StringHelper.IsNullOrEmpty(this.strPSCodeListId)) {
+            this.strPSCodeListId = this.iPSDEFGridColumn.getPSCodeListId();
+         }
+
+         if (StringHelper.IsNullOrEmpty(this.strCLConvertMode)) {
+            this.strCLConvertMode = this.iPSDEFGridColumn.getCLConvertMode();
+         }
+
+         if (this.getRenderPSSysPFPlugin() == null) {
+            this.setRenderPSSysPFPlugin(this.iPSDEFGridColumn.getRenderPSSysPFPlugin());
+         }
+
+         if (!this.isDefineEnableSort()) {
+            this.setEnableSort(this.iPSDEFGridColumn.isEnableSort());
+         }
+      }
+
+      if (StringHelper.Compare(this.getCLConvertMode(), "NONE", true) == 0) {
+         this.strPSCodeListId = "";
+      }
+
+      if (!StringHelper.IsNullOrEmpty(this.getPSCodeListId())) {
+         this.iPSCodeList = this.getPSDEGrid().getPSDataEntity().getPSSystem().getPSCodeList(this.getPSCodeListId());
+         if (this.iPSCodeList != null) {
+            this.iPSCodeList = this.getPSDEGrid().getPSAppView().getPSApplication().getPSCodeList(this.iPSCodeList, true);
+         }
+
+         if (StringHelper.IsNullOrEmpty(this.getCLConvertMode())) {
+            if (this.getPSDEGrid().getPSAppView().getPSApplication().isUseServiceApi()) {
+               this.strCLConvertMode = "FRONT";
+            } else if (!this.iPSCodeList.isEnableDynaSys() && StringHelper.Compare(this.iPSCodeList.getCodeListType(), "DYNAMIC", true) != 0) {
+               this.strCLConvertMode = "FRONT";
+            } else {
+               this.strCLConvertMode = "BACKEND";
             }
-        } else {
-            this.psDataItemImpl.setFormat("");
-        }
-        this.iPSDEField = this.getPSDEGrid().getPSDataEntity().getPSDEField(this.psDEGridColumn.getPSDEFID(), false);
-        if (this.iPSDEField != null && this.getPSDEGrid().getPSAppDataEntity() != null) {
-            this.iPSAppDEField = this.getPSDEGrid().getPSAppDataEntity().getPSAppDEField(this.iPSDEField.getId(), true);
-        }
-        IPSDEFUIMode iPSDEFUIMode = null;
-        if (StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getPSDEFUIMODEID())) {
-            String strDEFUIMode = StringHelper.Format((String)"APPDEFAULT:%1$s", (Object)this.getPSDEGrid().getPSAppView().getPSApplication().getId());
-            iPSDEFUIMode = this.getPSDEField().getPSDEFUIMode(strDEFUIMode, true);
-            if (iPSDEFUIMode == null) {
-                iPSDEFUIMode = this.iPSDEField.getPSDEFUIMode("DEFAULT");
+         }
+      }
+
+      if (this.iPSCodeList == null) {
+         this.strCLConvertMode = "NONE";
+      }
+
+      if (StringHelper.IsNullOrEmpty(this.getAlign()) && this.iPSDEFGridColumn != null) {
+         this.setAlign(this.iPSDEFGridColumn.getColumnAlign());
+      }
+
+      if (this.isFixColDataItemBug()) {
+         if (!StringHelper.IsNullOrEmpty(this.psDEGridColumn.getDATAITEMS())) {
+            this.strDataItemName = this.psDEGridColumn.getDATAITEMS().toLowerCase();
+            this.bGenerateDataItems = false;
+         }
+      } else {
+         String strDataItems = this.psDEGridColumn.getDATAITEMS();
+         if (!StringHelper.IsNullOrEmpty(strDataItems)) {
+            strDataItems = strDataItems.toLowerCase();
+            this.fields = StringHelper.SplitEx(strDataItems);
+         }
+      }
+
+      if (!StringHelper.IsNullOrEmpty(this.psDEGridColumn.getVALUEFORMAT())) {
+         this.strValueFormat = this.psDEGridColumn.getVALUEFORMAT();
+      }
+
+      if (StringHelper.IsNullOrEmpty(this.strValueFormat) && this.iPSDEFGridColumn != null) {
+         if (!bUseDTO) {
+            this.strValueFormat = this.iPSDEFGridColumn.getValueFormat();
+         } else {
+            this.strValueFormat = this.iPSDEFGridColumn.getOriginValueFormat();
+         }
+      }
+
+      if (StringHelper.IsNullOrEmpty(this.strValueFormat) && bUseDTO && this.iPSAppDEField != null) {
+         this.strValueFormat = this.iPSAppDEField.getValueFormat();
+      }
+
+      if (this.getPSDEGrid().getColumnEnableFilter() == 2 || this.getPSDEGrid().getColumnEnableFilter() == 1) {
+         IPSDEFSearchMode iPSDEFSearchMode = null;
+         if (!StringHelper.IsNullOrEmpty(this.psDEGridColumn.getPSDEFSFITEMID())) {
+            iPSDEFSearchMode = this.getPSDEField().getPSDEFSearchMode(this.psDEGridColumn.getPSDEFSFITEMID());
+         } else if (this.getPSDEGrid().getColumnEnableFilter() == 2) {
+            iPSDEFSearchMode = this.getPSDEField().getDefaultPSDEFSearchMode();
+         }
+
+         if (iPSDEFSearchMode != null) {
+            IPSDEFFormItem iPSDEFFormItem = iPSDEFSearchMode.getPSDEFFormItem(
+               this.getPSDEGrid().getPSAppView().getPSApplication().isMobileApp() ? "MOBILEDEFAULT" : "DEFAULT"
+            );
+            PSEditorContainerImpl psEditorContainerImpl = new PSEditorContainerImpl();
+            psEditorContainerImpl.init(this.getDAGlobalHelper(), this, this.getPSDEGrid(), iPSDEFSearchMode.getCodeName().toLowerCase(), iPSDEFFormItem);
+            this.psEditorContainerImpl = psEditorContainerImpl;
+         }
+      }
+
+      this.editorParams = PropertiesHelper.load(this.psDEGridColumn.getEDITORPARAMS());
+      if (!this.psDEGridColumn.isENABLEROWEDITNull() && this.psDEGridColumn.getENABLEROWEDIT()) {
+         this.bRowEditable = true;
+         this.strEditorType = this.psDEGridColumn.getEDITORTYPE();
+         this.strEditorStyle = this.psDEGridColumn.getPSSYSEDITORSTYLEID();
+         if (!StringHelper.IsNullOrEmpty(this.strEditorType)) {
+            this.bDefineEditorType = true;
+         }
+
+         String strItemPSACHandlerId = null;
+         if (this.getPSDEFGridColumn() != null) {
+            strItemPSACHandlerId = this.getPSDEFGridColumn().getPSAjaxHandlerId();
+            boolean bAppendParam = false;
+            if (StringHelper.IsNullOrEmpty(this.strEditorType)) {
+               this.strEditorType = this.iPSDEFGridColumn.getEditorType();
+               bAppendParam = true;
+            } else if (StringHelper.Compare(this.strEditorType, this.iPSDEFGridColumn.getEditorType(), true) == 0) {
+               bAppendParam = true;
             }
-        } else {
-            iPSDEFUIMode = this.iPSDEField.getPSDEFUIMode(this.psDEGridColumn.getPSDEFUIMODEID());
-        }
-        this.iPSDEFGridColumn = iPSDEFUIMode.getPSDEFGridColumn();
-        this.nEnableLink = !this.psDEGridColumn.isENABLELINKNull() ? this.psDEGridColumn.getENABLELINK() : this.getPSDEGrid().getColumnEnableLink();
-        this.strPSCodeListId = this.psDEGridColumn.getPSCODELISTID();
-        this.strCLConvertMode = this.psDEGridColumn.getCLCONVERTMODE();
-        if (this.iPSDEFGridColumn != null) {
-            if (StringHelper.IsNullOrEmpty((String)this.strPSCodeListId)) {
-                this.strPSCodeListId = this.iPSDEFGridColumn.getPSCodeListId();
+
+            if (bAppendParam) {
+               for (Object objKey : this.iPSDEFGridColumn.getEditorParams().keySet()) {
+                  if (!this.editorParams.containsKey(objKey)) {
+                     this.editorParams.put(objKey, this.iPSDEFGridColumn.getEditorParams().get(objKey));
+                  }
+               }
             }
-            if (StringHelper.IsNullOrEmpty((String)this.strCLConvertMode)) {
-                this.strCLConvertMode = this.iPSDEFGridColumn.getCLConvertMode();
+
+            if (StringHelper.IsNullOrEmpty(this.strEditorStyle)) {
+               this.strEditorStyle = this.iPSDEFGridColumn.getEditorStyle();
             }
-            if (this.getRenderPSSysPFPlugin() == null) {
-                this.setRenderPSSysPFPlugin(this.iPSDEFGridColumn.getRenderPSSysPFPlugin());
+         }
+
+         if (this.isDesignMode() && StringHelper.Compare(this.getEditorType(), "USERCONTROL", true) == 0) {
+            this.strEditorType = "SPAN";
+            this.bDefineEditorType = true;
+            this.strEditorStyle = "";
+         }
+
+         if (StringHelper.IsNullOrEmpty(this.strEditorType)) {
+            this.strEditorType = "TEXTBOX";
+            if (this.getPSDEGrid().getPSAppView() != null
+               && this.getPSDEGrid().getPSAppView().getPSApplication() != null
+               && this.getPSDEGrid().getPSAppView().getPSApplication().isMobileApp()) {
+               this.strEditorType = "MOBTEXT";
             }
-            if (!this.isDefineEnableSort()) {
-                this.setEnableSort(this.iPSDEFGridColumn.isEnableSort());
+         }
+
+         this.bHidden = StringHelper.Compare(this.strEditorType, "HIDDEN", true) == 0;
+         if (!StringHelper.IsNullOrEmpty(this.getEditorType())) {
+            this.iPSEditorType = this.getPSModelStorage().getPSEditorType(this.getEditorType());
+            this.bEditable = this.iPSEditorType.isEditable();
+            if (!this.iPSEditorType.isEditable()) {
+               this.bAllowEmpty = true;
             }
-        }
-        if (StringHelper.Compare((String)this.getCLConvertMode(), (String)"NONE", (boolean)true) == 0) {
-            this.strPSCodeListId = "";
-        }
-        if (!StringHelper.IsNullOrEmpty((String)this.getPSCodeListId())) {
+
+            this.strValueProcessor = this.iPSEditorType.getValueProcessor();
+            if (!StringHelper.IsNullOrEmpty(this.strEditorStyle)) {
+               this.iPSSysEditorStyle = this.getPSDEGrid().getPSAppView().getPSApplication().getPSSysEditorStyle(this.strEditorStyle, "GRIDCOLUMN");
+            } else if (!this.isDesignMode()) {
+               this.iPSSysEditorStyle = this.getPSDEGrid().getPSAppView().getPSApplication().getDefaultPSSysEditorStyle(this.getEditorType(), "GRIDCOLUMN");
+            }
+
+            if (this.getPSSysEditorStyle() != null) {
+               this.strItemHandlerType = this.getPSSysEditorStyle().getAjaxHandlerType();
+               if (StringHelper.IsNullOrEmpty(strItemPSACHandlerId)) {
+                  strItemPSACHandlerId = this.getPSSysEditorStyle().getPSAjaxHandlerId();
+               }
+
+               for (Object objKey : this.getPSSysEditorStyle().getEditorParams().keySet()) {
+                  if (!this.editorParams.containsKey(objKey)) {
+                     this.editorParams.put(objKey, this.getPSSysEditorStyle().getEditorParams().get(objKey));
+                  }
+               }
+            }
+
+            if (StringHelper.IsNullOrEmpty(this.strItemHandlerType)) {
+               this.strItemHandlerType = this.getPSEditorType().getAjaxHandlerType();
+            }
+
+            for (Object objKey : this.iPSEditorType.getEditorParams().keySet()) {
+               if (!this.editorParams.containsKey(objKey)) {
+                  this.editorParams.put(objKey, this.iPSEditorType.getEditorParams().get(objKey));
+               }
+            }
+         }
+
+         if (!StringHelper.IsNullOrEmpty(strItemPSACHandlerId)) {
+            this.itemPSAjaxHandler = this.createItemPSAjaxHandler(strItemPSACHandlerId);
+         }
+
+         if (!this.psDEGridColumn.isENABLECONDNull()) {
+            this.nEnableCond = this.psDEGridColumn.getENABLECOND();
+         } else if (this.iPSDEFGridColumn != null) {
+            this.nEnableCond = this.iPSDEFGridColumn.getEnableCond();
+         }
+
+         this.strPSCodeListId = this.psDEGridColumn.getPSCODELISTID();
+         if (StringHelper.IsNullOrEmpty(this.strPSCodeListId) && this.iPSDEFGridColumn != null) {
+            this.strPSCodeListId = this.iPSDEFGridColumn.getPSCodeListId();
+         }
+
+         if (!StringHelper.IsNullOrEmpty(this.psDEGridColumn.getPLACEHOLDER())) {
+            this.strPlaceHolder = this.psDEGridColumn.getPLACEHOLDER();
+         } else if (this.getPSDEFGridColumn() != null) {
+            this.strPlaceHolder = this.getPSDEFGridColumn().getPlaceHolder();
+         }
+
+         if (!StringHelper.IsNullOrEmpty(this.psDEGridColumn.getPSSYSDICTCATID())) {
+            this.strPSSysDictCatId = this.psDEGridColumn.getPSSYSDICTCATID();
+         } else if (this.getPSDEFGridColumn() != null) {
+            this.strPSSysDictCatId = this.getPSDEFGridColumn().getPSSysDictCatId();
+         }
+
+         if (this.iPSDEFGridColumn != null) {
+            this.strPSSysValueRuleId = this.iPSDEFGridColumn.getPSSysValueRuleId();
+         }
+
+         if (this.iPSDEFGridColumn != null && this.iPSDEFGridColumn.getPSGEIDEFValueRules() != null) {
+            for (Iterator<IPSGEIDEFValueRule> psGEIDEFValueRules = this.iPSDEFGridColumn.getPSGEIDEFValueRules();
+               psGEIDEFValueRules.hasNext();
+               this.geiDEFValueRuleList.add(psGEIDEFValueRules.next())
+            ) {
+               if (this.geiDEFValueRuleList == null) {
+                  this.geiDEFValueRuleList = new ArrayList<>();
+               }
+            }
+         }
+
+         if (this.iPSDEFGridColumn != null
+            && !StringHelper.IsNullOrEmpty(this.iPSDEFGridColumn.getRefPSDEId())
+            && !StringHelper.IsNullOrEmpty(this.iPSDEFGridColumn.getRefPSDEACModeId())) {
+            this.geiDEACModeImpl = new PSDEGridFieldColumnImpl.GEIDEACModeImpl();
+            this.geiDEACModeImpl.setDEACModeName(this.iPSDEFGridColumn.getRefPSDEACModeName());
+            this.geiDEACModeImpl.setDEName(this.iPSDEFGridColumn.getRefPSDEName());
+         }
+
+         if (!StringHelper.IsNullOrEmpty(this.getPSCodeListId())) {
             this.iPSCodeList = this.getPSDEGrid().getPSDataEntity().getPSSystem().getPSCodeList(this.getPSCodeListId());
             if (this.iPSCodeList != null) {
-                this.iPSCodeList = this.getPSDEGrid().getPSAppView().getPSApplication().getPSCodeList(this.iPSCodeList, true);
+               this.iPSCodeList = this.getPSDEGrid().getPSAppView().getPSApplication().getPSCodeList(this.iPSCodeList, true);
             }
-            if (StringHelper.IsNullOrEmpty((String)this.getCLConvertMode())) {
-                this.strCLConvertMode = this.getPSDEGrid().getPSAppView().getPSApplication().isUseServiceApi() ? "FRONT" : (this.iPSCodeList.isEnableDynaSys() || StringHelper.Compare((String)this.iPSCodeList.getCodeListType(), (String)"DYNAMIC", (boolean)true) == 0 ? "BACKEND" : "FRONT");
+         }
+
+         this.strCreateDVT = this.psDEGridColumn.getCREATEDVT();
+         this.strCreateDV = this.psDEGridColumn.getCREATEDV();
+         this.strUpdateDVT = this.psDEGridColumn.getUPDATEDVT();
+         this.strUpdateDV = this.psDEGridColumn.getUPDATEDV();
+         if (this.iPSDEFGridColumn != null) {
+            if (StringHelper.IsNullOrEmpty(this.strCreateDVT)) {
+               this.strCreateDVT = this.iPSDEFGridColumn.getCreateDVT();
             }
-        }
-        if (this.iPSCodeList == null) {
-            this.strCLConvertMode = "NONE";
-        }
-        if (StringHelper.IsNullOrEmpty((String)this.getAlign()) && this.iPSDEFGridColumn != null) {
-            this.setAlign(this.iPSDEFGridColumn.getColumnAlign());
-        }
-        if (this.isFixColDataItemBug()) {
-            if (!StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getDATAITEMS())) {
-                this.strDataItemName = this.psDEGridColumn.getDATAITEMS().toLowerCase();
-                this.bGenerateDataItems = false;
+
+            if (StringHelper.IsNullOrEmpty(this.strCreateDV)) {
+               this.strCreateDV = this.iPSDEFGridColumn.getCreateDV();
             }
-        } else {
-            String strDataItems = this.psDEGridColumn.getDATAITEMS();
-            if (!StringHelper.IsNullOrEmpty((String)strDataItems)) {
-                strDataItems = strDataItems.toLowerCase();
-                this.fields = StringHelper.SplitEx((String)strDataItems);
+
+            if (StringHelper.IsNullOrEmpty(this.strUpdateDVT)) {
+               this.strUpdateDVT = this.iPSDEFGridColumn.getUpdateDVT();
             }
-        }
-        if (!StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getVALUEFORMAT())) {
-            this.strValueFormat = this.psDEGridColumn.getVALUEFORMAT();
-        }
-        if (StringHelper.IsNullOrEmpty((String)this.strValueFormat) && this.iPSDEFGridColumn != null) {
-            this.strValueFormat = !bUseDTO ? this.iPSDEFGridColumn.getValueFormat() : this.iPSDEFGridColumn.getOriginValueFormat();
-        }
-        if (StringHelper.IsNullOrEmpty((String)this.strValueFormat) && bUseDTO && this.iPSAppDEField != null) {
-            this.strValueFormat = this.iPSAppDEField.getValueFormat();
-        }
-        if (this.getPSDEGrid().getColumnEnableFilter() == 2 || this.getPSDEGrid().getColumnEnableFilter() == 1) {
-            IPSDEFSearchMode iPSDEFSearchMode = null;
-            if (!StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getPSDEFSFITEMID())) {
-                iPSDEFSearchMode = this.getPSDEField().getPSDEFSearchMode(this.psDEGridColumn.getPSDEFSFITEMID());
-            } else if (this.getPSDEGrid().getColumnEnableFilter() == 2) {
-                iPSDEFSearchMode = this.getPSDEField().getDefaultPSDEFSearchMode();
+
+            if (StringHelper.IsNullOrEmpty(this.strUpdateDV)) {
+               this.strUpdateDV = this.iPSDEFGridColumn.getUpdateDV();
             }
-            if (iPSDEFSearchMode != null) {
-                IPSDEFFormItem iPSDEFFormItem = iPSDEFSearchMode.getPSDEFFormItem(this.getPSDEGrid().getPSAppView().getPSApplication().isMobileApp() ? "MOBILEDEFAULT" : "DEFAULT");
-                PSEditorContainerImpl pSEditorContainerImpl = new PSEditorContainerImpl();
-                pSEditorContainerImpl.init(this.getDAGlobalHelper(), this, this.getPSDEGrid(), iPSDEFSearchMode.getCodeName().toLowerCase(), iPSDEFFormItem);
-                this.psEditorContainerImpl = pSEditorContainerImpl;
-            }
-        }
-        this.editorParams = PropertiesHelper.load((String)this.psDEGridColumn.getEDITORPARAMS());
-        if (!this.psDEGridColumn.isENABLEROWEDITNull() && this.psDEGridColumn.getENABLEROWEDIT()) {
-            void var5_17;
-            String string;
-            int n;
-            this.bRowEditable = true;
-            this.strEditorType = this.psDEGridColumn.getEDITORTYPE();
-            this.strEditorStyle = this.psDEGridColumn.getPSSYSEDITORSTYLEID();
-            if (!StringHelper.IsNullOrEmpty((String)this.strEditorType)) {
-                this.bDefineEditorType = true;
-            }
-            String strItemPSACHandlerId = null;
-            if (this.getPSDEFGridColumn() != null) {
-                strItemPSACHandlerId = this.getPSDEFGridColumn().getPSAjaxHandlerId();
-                boolean bAppendParam = false;
-                if (StringHelper.IsNullOrEmpty((String)this.strEditorType)) {
-                    this.strEditorType = this.iPSDEFGridColumn.getEditorType();
-                    bAppendParam = true;
-                } else if (StringHelper.Compare((String)this.strEditorType, (String)this.iPSDEFGridColumn.getEditorType(), (boolean)true) == 0) {
-                    bAppendParam = true;
-                }
-                if (bAppendParam) {
-                    for (Object object : this.iPSDEFGridColumn.getEditorParams().keySet()) {
-                        if (this.editorParams.containsKey(object)) continue;
-                        this.editorParams.put(object, this.iPSDEFGridColumn.getEditorParams().get(object));
-                    }
-                }
-                if (StringHelper.IsNullOrEmpty((String)this.strEditorStyle)) {
-                    this.strEditorStyle = this.iPSDEFGridColumn.getEditorStyle();
-                }
-            }
-            if (this.isDesignMode() && StringHelper.Compare((String)this.getEditorType(), (String)"USERCONTROL", (boolean)true) == 0) {
-                this.strEditorType = "SPAN";
-                this.bDefineEditorType = true;
-                this.strEditorStyle = "";
-            }
-            if (StringHelper.IsNullOrEmpty((String)this.strEditorType)) {
-                this.strEditorType = "TEXTBOX";
-                if (this.getPSDEGrid().getPSAppView() != null && this.getPSDEGrid().getPSAppView().getPSApplication() != null && this.getPSDEGrid().getPSAppView().getPSApplication().isMobileApp()) {
-                    this.strEditorType = "MOBTEXT";
-                }
-            }
-            boolean bl = this.bHidden = StringHelper.Compare((String)this.strEditorType, (String)"HIDDEN", (boolean)true) == 0;
-            if (!StringHelper.IsNullOrEmpty((String)this.getEditorType())) {
-                this.iPSEditorType = this.getPSModelStorage().getPSEditorType(this.getEditorType());
-                this.bEditable = this.iPSEditorType.isEditable();
-                if (!this.iPSEditorType.isEditable()) {
-                    this.bAllowEmpty = true;
-                }
-                this.strValueProcessor = this.iPSEditorType.getValueProcessor();
-                if (!StringHelper.IsNullOrEmpty((String)this.strEditorStyle)) {
-                    this.iPSSysEditorStyle = this.getPSDEGrid().getPSAppView().getPSApplication().getPSSysEditorStyle(this.strEditorStyle, "GRIDCOLUMN");
-                } else if (!this.isDesignMode()) {
-                    this.iPSSysEditorStyle = this.getPSDEGrid().getPSAppView().getPSApplication().getDefaultPSSysEditorStyle(this.getEditorType(), "GRIDCOLUMN");
-                }
-                if (this.getPSSysEditorStyle() != null) {
-                    this.strItemHandlerType = this.getPSSysEditorStyle().getAjaxHandlerType();
-                    if (StringHelper.IsNullOrEmpty((String)strItemPSACHandlerId)) {
-                        strItemPSACHandlerId = this.getPSSysEditorStyle().getPSAjaxHandlerId();
-                    }
-                    for (Object objKey : this.getPSSysEditorStyle().getEditorParams().keySet()) {
-                        if (this.editorParams.containsKey(objKey)) continue;
-                        this.editorParams.put(objKey, this.getPSSysEditorStyle().getEditorParams().get(objKey));
-                    }
-                }
-                if (StringHelper.IsNullOrEmpty((String)this.strItemHandlerType)) {
-                    this.strItemHandlerType = this.getPSEditorType().getAjaxHandlerType();
-                }
-                for (Object objKey : this.iPSEditorType.getEditorParams().keySet()) {
-                    if (this.editorParams.containsKey(objKey)) continue;
-                    this.editorParams.put(objKey, this.iPSEditorType.getEditorParams().get(objKey));
-                }
-            }
-            if (!StringHelper.IsNullOrEmpty((String)strItemPSACHandlerId)) {
-                this.itemPSAjaxHandler = this.createItemPSAjaxHandler(strItemPSACHandlerId);
-            }
-            if (!this.psDEGridColumn.isENABLECONDNull()) {
-                this.nEnableCond = this.psDEGridColumn.getENABLECOND();
-            } else if (this.iPSDEFGridColumn != null) {
-                this.nEnableCond = this.iPSDEFGridColumn.getEnableCond();
-            }
-            this.strPSCodeListId = this.psDEGridColumn.getPSCODELISTID();
-            if (StringHelper.IsNullOrEmpty((String)this.strPSCodeListId) && this.iPSDEFGridColumn != null) {
-                this.strPSCodeListId = this.iPSDEFGridColumn.getPSCodeListId();
-            }
-            if (!StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getPLACEHOLDER())) {
-                this.strPlaceHolder = this.psDEGridColumn.getPLACEHOLDER();
-            } else if (this.getPSDEFGridColumn() != null) {
-                this.strPlaceHolder = this.getPSDEFGridColumn().getPlaceHolder();
-            }
-            if (!StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getPSSYSDICTCATID())) {
-                this.strPSSysDictCatId = this.psDEGridColumn.getPSSYSDICTCATID();
-            } else if (this.getPSDEFGridColumn() != null) {
-                this.strPSSysDictCatId = this.getPSDEFGridColumn().getPSSysDictCatId();
-            }
-            if (this.iPSDEFGridColumn != null) {
-                this.strPSSysValueRuleId = this.iPSDEFGridColumn.getPSSysValueRuleId();
-            }
-            if (this.iPSDEFGridColumn != null && this.iPSDEFGridColumn.getPSGEIDEFValueRules() != null) {
-                Iterator<IPSGEIDEFValueRule> psGEIDEFValueRules = this.iPSDEFGridColumn.getPSGEIDEFValueRules();
-                while (psGEIDEFValueRules.hasNext()) {
-                    if (this.geiDEFValueRuleList == null) {
-                        this.geiDEFValueRuleList = new ArrayList();
-                    }
-                    this.geiDEFValueRuleList.add(psGEIDEFValueRules.next());
-                }
-            }
-            if (this.iPSDEFGridColumn != null && !StringHelper.IsNullOrEmpty((String)this.iPSDEFGridColumn.getRefPSDEId()) && !StringHelper.IsNullOrEmpty((String)this.iPSDEFGridColumn.getRefPSDEACModeId())) {
-                this.geiDEACModeImpl = new GEIDEACModeImpl();
-                this.geiDEACModeImpl.setDEACModeName(this.iPSDEFGridColumn.getRefPSDEACModeName());
-                this.geiDEACModeImpl.setDEName(this.iPSDEFGridColumn.getRefPSDEName());
-            }
-            if (!StringHelper.IsNullOrEmpty((String)this.getPSCodeListId())) {
-                this.iPSCodeList = this.getPSDEGrid().getPSDataEntity().getPSSystem().getPSCodeList(this.getPSCodeListId());
-                if (this.iPSCodeList != null) {
-                    this.iPSCodeList = this.getPSDEGrid().getPSAppView().getPSApplication().getPSCodeList(this.iPSCodeList, true);
-                }
-            }
-            this.strCreateDVT = this.psDEGridColumn.getCREATEDVT();
-            this.strCreateDV = this.psDEGridColumn.getCREATEDV();
-            this.strUpdateDVT = this.psDEGridColumn.getUPDATEDVT();
-            this.strUpdateDV = this.psDEGridColumn.getUPDATEDV();
-            if (this.iPSDEFGridColumn != null) {
-                if (StringHelper.IsNullOrEmpty((String)this.strCreateDVT)) {
-                    this.strCreateDVT = this.iPSDEFGridColumn.getCreateDVT();
-                }
-                if (StringHelper.IsNullOrEmpty((String)this.strCreateDV)) {
-                    this.strCreateDV = this.iPSDEFGridColumn.getCreateDV();
-                }
-                if (StringHelper.IsNullOrEmpty((String)this.strUpdateDVT)) {
-                    this.strUpdateDVT = this.iPSDEFGridColumn.getUpdateDVT();
-                }
-                if (StringHelper.IsNullOrEmpty((String)this.strUpdateDV)) {
-                    this.strUpdateDV = this.iPSDEFGridColumn.getUpdateDV();
-                }
-            }
-            if (!this.psDEGridColumn.isIGNOREINPUTNull()) {
-                this.nIgnoreInput = this.psDEGridColumn.getIGNOREINPUT();
-            } else if (this.iPSDEFGridColumn != null) {
-                this.nIgnoreInput = this.iPSDEFGridColumn.getIgnoreInput();
-            }
-            if (this.isConvertToCodeItemText()) {
-                this.nIgnoreInput = 3;
-            }
-            if (!this.isDesignMode()) {
-                if (!this.psDEGridColumn.isNEEDCODELISTCONFIGNull()) {
-                    this.bNeedCodeListConfig = this.psDEGridColumn.getNEEDCODELISTCONFIG();
-                } else {
-                    this.bNeedCodeListConfig = this.getPSEditorType().isNeedCodeListConfig();
-                    if (this.getPSDEFGridColumn() != null && StringHelper.Compare((String)this.strEditorType, (String)this.getPSDEFGridColumn().getEditorType(), (boolean)true) == 0) {
-                        this.bNeedCodeListConfig = this.getPSDEFGridColumn().isNeedCodeListConfig();
-                    }
-                }
-                if (!this.psDEGridColumn.isCODELISTCONFIGMODENull()) {
-                    this.nOutputCodeListConfigMode = this.psDEGridColumn.getCODELISTCONFIGMODE();
-                } else {
-                    this.nOutputCodeListConfigMode = this.getPSEditorType().getOutputCodeListConfigMode();
-                    if (this.getPSDEFGridColumn() != null && StringHelper.Compare((String)this.strEditorType, (String)this.getPSDEFGridColumn().getEditorType(), (boolean)true) == 0) {
-                        this.nOutputCodeListConfigMode = this.getPSDEFGridColumn().getOutputCodeListConfigMode();
-                    }
-                }
-            }
-            this.strEditorCssStyle = this.calcEditorCssStyle();
-            String strValueItemName = this.psDEGridColumn.getVALUEITEMNAME();
-            if (StringHelper.IsNullOrEmpty((String)strValueItemName) && this.iPSDEFGridColumn != null) {
-                strValueItemName = this.iPSDEFGridColumn.getValueItemName(this);
-            }
-            if (!StringHelper.IsNullOrEmpty((String)strValueItemName)) {
-                String[] stringArray;
-                this.valueItemNameList = new ArrayList();
-                String[] stringArray2 = stringArray = StringHelper.SplitEx((String)strValueItemName);
-                n = stringArray.length;
-                int n2 = 0;
-                while (n2 < n) {
-                    String strItem = stringArray2[n2];
-                    if (!this.valueItemNameList.contains(strItem = strItem.trim())) {
-                        this.valueItemNameList.add(strItem);
-                    }
-                    ++n2;
-                }
-                if (this.valueItemNameList.size() > 0) {
-                    this.strValueItemName = this.valueItemNameList.get(0);
-                }
-            }
-            if (StringHelper.IsNullOrEmpty((String)(string = this.psDEGridColumn.getRESETITEMNAME())) && this.getPSDEField() != null && this.getPSDEField().getRestrictedPSDEField() != null) {
-                String string2 = this.getPSDEField().getRestrictedPSDEField().getName().toLowerCase();
-            }
-            if (!StringHelper.IsNullOrEmpty((String)var5_17)) {
-                String[] items;
-                this.resetItemNameList = new ArrayList();
-                String[] stringArray = items = StringHelper.SplitEx((String)var5_17);
-                int n3 = items.length;
-                n = 0;
-                while (n < n3) {
-                    String strItem = stringArray[n];
-                    if (!this.resetItemNameList.contains(strItem = strItem.trim())) {
-                        this.resetItemNameList.add(strItem);
-                    }
-                    ++n;
-                }
-                if (this.resetItemNameList.size() > 0) {
-                    this.strResetItemName = this.resetItemNameList.get(0);
-                }
-            }
-            if (!this.psDEGridColumn.isALLOWEMPTYNull()) {
-                this.bAllowEmpty = this.psDEGridColumn.getALLOWEMPTY();
-            } else if (!this.bHidden && this.iPSDEFGridColumn != null && this.bAllowEmpty) {
-                this.bAllowEmpty = this.iPSDEFGridColumn.getAllowEmpty(this);
-            }
-            if (!this.bAllowEmpty && this.iPSDEFGridColumn != null && this.iPSDEFGridColumn.getPSDEField().isKeyDEField()) {
-                this.bAllowEmpty = true;
-            }
-            this.getRefPickupPSAppView();
-            this.getRefLinkPSAppView();
-        }
-        if (this.iPSDEField != null) {
-            this.bEnableItemPriv = this.iPSDEField.isEnablePrivilege();
-        }
-        if (!this.psDEGridColumn.isENABLEITEMPRIVNull()) {
-            this.bEnableItemPriv = this.psDEGridColumn.getENABLEITEMPRIV();
-        }
-        if (this.bEnableItemPriv && this.iPSDEField != null) {
-            this.strItemPrivId = StringHelper.Format((String)"%1$s|%2$s", (Object)this.iPSDEField.getPSDataEntity().getName(), (Object)this.iPSDEField.getName());
-        }
-        this.bTreeColumn = (this.psDEGridColumn.getTREEITEM() & 1) == 1;
-        this.nTreeNodeMode = this.psDEGridColumn.getTREEITEM();
-        this.psDEGridDataItemList = this.iPSDEFGridColumn.getPSDEGridDataItems(this);
-        this.strDataItemName = this.iPSDEFGridColumn.getDataItemName(this);
-        this.strGroupItem = this.psDEGridColumn.getGROUPITEM();
-        if (this.getEnableLink() == 1) {
-            linkPSAppView = this.onGetLinkPSAppView(false);
-            if (linkPSAppView == null) {
-                throw new Exception("\u8868\u683c\u5217\u542f\u7528\u94fe\u63a5\uff0c\u4f46\u6ca1\u6709\u6307\u5b9a\u94fe\u63a5\u89c6\u56fe");
-            }
-            this.bEnableLinkView = true;
-            this.linkPSAppView = linkPSAppView;
-        } else if (this.getEnableLink() == 2 && (linkPSAppView = this.onGetLinkPSAppView(true)) != null) {
-            this.bEnableLinkView = true;
-            this.linkPSAppView = linkPSAppView;
-        }
-        if (!StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getPSDEUIACTIONID())) {
-            if (this.iPSDEUIAction == null && this.getPSDEGrid().getPSAppDataEntity() != null) {
-                this.iPSDEUIAction = this.getPSDEGrid().getPSAppDataEntity().getPSAppDEUIAction(this.psDEGridColumn.getPSDEUIACTIONID(), true, this.getOwnedPSControl());
-            }
-            if (this.iPSDEUIAction == null) {
-                this.iPSDEUIAction = this.getPSDEGrid().getPSDataEntity().getPSDEUIAction(this.psDEGridColumn.getPSDEUIACTIONID());
-            }
-            if (this.getPSDEGrid().isPrepareTemplV2logic()) {
-                PSAppViewUIActionProxy iPSAppViewUIAction = new PSAppViewUIActionProxy(this, this.iPSDEUIAction, this.getPSDEGrid());
-                this.getPSDEGrid().registerPSAppViewUIAction(iPSAppViewUIAction);
-                this.registerPSAppViewLogic(iPSAppViewUIAction);
+         }
+
+         if (!this.psDEGridColumn.isIGNOREINPUTNull()) {
+            this.nIgnoreInput = this.psDEGridColumn.getIGNOREINPUT();
+         } else if (this.iPSDEFGridColumn != null) {
+            this.nIgnoreInput = this.iPSDEFGridColumn.getIgnoreInput();
+         }
+
+         if (this.isConvertToCodeItemText()) {
+            this.nIgnoreInput = 3;
+         }
+
+         if (!this.isDesignMode()) {
+            if (!this.psDEGridColumn.isNEEDCODELISTCONFIGNull()) {
+               this.bNeedCodeListConfig = this.psDEGridColumn.getNEEDCODELISTCONFIG();
             } else {
-                this.getPSDEGrid().getPSAppView().registerPSUIAction(this.iPSDEUIAction);
+               this.bNeedCodeListConfig = this.getPSEditorType().isNeedCodeListConfig();
+               if (this.getPSDEFGridColumn() != null && StringHelper.Compare(this.strEditorType, this.getPSDEFGridColumn().getEditorType(), true) == 0) {
+                  this.bNeedCodeListConfig = this.getPSDEFGridColumn().isNeedCodeListConfig();
+               }
             }
-        }
-        if (!StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getPSDEUAGROUPID())) {
-            Iterator psUIActionGroupDetails;
-            if (this.iPSDEUIActionGroup == null && this.getPSDEGrid().getPSAppDataEntity() != null) {
-                this.iPSDEUIActionGroup = this.getPSDEGrid().getPSAppDataEntity().getPSAppDEUIActionGroup(this.psDEGridColumn.getPSDEUAGROUPID(), true, this.getOwnedPSControl());
+
+            if (!this.psDEGridColumn.isCODELISTCONFIGMODENull()) {
+               this.nOutputCodeListConfigMode = this.psDEGridColumn.getCODELISTCONFIGMODE();
+            } else {
+               this.nOutputCodeListConfigMode = this.getPSEditorType().getOutputCodeListConfigMode();
+               if (this.getPSDEFGridColumn() != null && StringHelper.Compare(this.strEditorType, this.getPSDEFGridColumn().getEditorType(), true) == 0) {
+                  this.nOutputCodeListConfigMode = this.getPSDEFGridColumn().getOutputCodeListConfigMode();
+               }
             }
-            if (this.iPSDEUIActionGroup == null) {
-                this.iPSDEUIActionGroup = this.getPSDEGrid().getPSDataEntity().getPSDEUIActionGroup(this.psDEGridColumn.getPSDEUAGROUPID());
+         }
+
+         this.strEditorCssStyle = this.calcEditorCssStyle();
+         String strValueItemName = this.psDEGridColumn.getVALUEITEMNAME();
+         if (StringHelper.IsNullOrEmpty(strValueItemName) && this.iPSDEFGridColumn != null) {
+            strValueItemName = this.iPSDEFGridColumn.getValueItemName(this);
+         }
+
+         if (!StringHelper.IsNullOrEmpty(strValueItemName)) {
+            this.valueItemNameList = new ArrayList<>();
+            String[] items = StringHelper.SplitEx(strValueItemName);
+            String[] var9 = items;
+            int var8 = items.length;
+
+            for (int strItem = 0; strItem < var8; strItem++) {
+               String strItemx = var9[strItem];
+               strItemx = strItemx.trim();
+               if (!this.valueItemNameList.contains(strItemx)) {
+                  this.valueItemNameList.add(strItemx);
+               }
             }
-            if ((psUIActionGroupDetails = this.iPSDEUIActionGroup.getPSUIActionGroupDetails()) != null) {
-                while (psUIActionGroupDetails.hasNext()) {
-                    IPSUIActionGroupDetail iPSUIActionGroupDetail = (IPSUIActionGroupDetail)psUIActionGroupDetails.next();
-                    IPSUIAction iPSUIAction = iPSUIActionGroupDetail.getPSUIAction();
-                    if (iPSUIAction == null) continue;
-                    if (this.getPSDEGrid().isPrepareTemplV2logic()) {
-                        PSAppViewUIActionProxy iPSAppViewUIAction = new PSAppViewUIActionProxy(this, iPSUIAction, this.getPSDEGrid());
-                        this.getPSDEGrid().registerPSAppViewUIAction(iPSAppViewUIAction);
-                        this.registerPSAppViewLogic(iPSAppViewUIAction, iPSUIActionGroupDetail);
-                        continue;
-                    }
-                    this.getPSDEGrid().getPSAppView().registerPSUIAction(iPSUIAction);
-                }
+
+            if (this.valueItemNameList.size() > 0) {
+               this.strValueItemName = this.valueItemNameList.get(0);
             }
-        }
-        this.bEnableUnitName = true;
-        if (this.iPSDEFGridColumn != null) {
-            if (StringHelper.IsNullOrEmpty((String)this.strUnitName)) {
-                this.strUnitName = this.iPSDEFGridColumn.getUnitName();
+         }
+
+         String strResetItemName = this.psDEGridColumn.getRESETITEMNAME();
+         if (StringHelper.IsNullOrEmpty(strResetItemName) && this.getPSDEField() != null && this.getPSDEField().getRestrictedPSDEField() != null) {
+            strResetItemName = this.getPSDEField().getRestrictedPSDEField().getName().toLowerCase();
+         }
+
+         if (!StringHelper.IsNullOrEmpty(strResetItemName)) {
+            this.resetItemNameList = new ArrayList<>();
+            String[] items = StringHelper.SplitEx(strResetItemName);
+            String[] var10 = items;
+            int var39 = items.length;
+
+            for (int var38 = 0; var38 < var39; var38++) {
+               String strItem = var10[var38];
+               strItem = strItem.trim();
+               if (!this.resetItemNameList.contains(strItem)) {
+                  this.resetItemNameList.add(strItem);
+               }
             }
-            if (this.nUnitNameWidth <= 0) {
-                this.nUnitNameWidth = this.iPSDEFGridColumn.getUnitNameWidth();
+
+            if (this.resetItemNameList.size() > 0) {
+               this.strResetItemName = this.resetItemNameList.get(0);
             }
-        }
-        if (StringHelper.IsNullOrEmpty((String)this.strUnitName)) {
-            this.bEnableUnitName = false;
-        }
-        super.onInit();
-        this.preparePSEditor();
-    }
+         }
 
-    protected void preparePSEditor() throws Exception {
-        this.getPSEditor();
-    }
+         if (!this.psDEGridColumn.isALLOWEMPTYNull()) {
+            this.bAllowEmpty = this.psDEGridColumn.getALLOWEMPTY();
+         } else if (!this.bHidden && this.iPSDEFGridColumn != null && this.bAllowEmpty) {
+            this.bAllowEmpty = this.iPSDEFGridColumn.getAllowEmpty(this);
+         }
 
-    @Override
-    @PSModelRTMeta(description="\u5217\u6570\u636e\u9879\u96c6\u5408", outputdoc="false")
-    public Iterator<IPSDEGridDataItem> getPSDEGridDataItems() {
-        return this.psDEGridDataItemList.iterator();
-    }
+         if (!this.bAllowEmpty && this.iPSDEFGridColumn != null && this.iPSDEFGridColumn.getPSDEField().isKeyDEField()) {
+            this.bAllowEmpty = true;
+         }
 
-    @Override
-    @PSModelRTMeta(description="\u5217\u6570\u636e\u9879\u540d\u79f0", fields={"DATAITEMS"})
-    public String getDataItemName() {
-        return this.strDataItemName;
-    }
+         this.getRefPickupPSAppView();
+         this.getRefLinkPSAppView();
+      }
 
-    @Override
-    protected int onGetWidth() {
-        if (this.getPSDEFGridColumn() == null) {
-            return 100;
-        }
-        return this.iPSDEFGridColumn.getColumnWidth();
-    }
+      if (this.iPSDEField != null) {
+         this.bEnableItemPriv = this.iPSDEField.isEnablePrivilege();
+      }
 
-    @Override
-    protected String onGetCaption() {
-        if (this.getPSDEFGridColumn() == null) {
-            if (this.getPSDEField() == null) {
-                return this.getName();
+      if (!this.psDEGridColumn.isENABLEITEMPRIVNull()) {
+         this.bEnableItemPriv = this.psDEGridColumn.getENABLEITEMPRIV();
+      }
+
+      if (this.bEnableItemPriv && this.iPSDEField != null) {
+         this.strItemPrivId = StringHelper.Format("%1$s|%2$s", this.iPSDEField.getPSDataEntity().getName(), this.iPSDEField.getName());
+      }
+
+      this.bTreeColumn = (this.psDEGridColumn.getTREEITEM() & 1) == 1;
+      this.nTreeNodeMode = this.psDEGridColumn.getTREEITEM();
+      this.psDEGridDataItemList = this.iPSDEFGridColumn.getPSDEGridDataItems(this);
+      this.strDataItemName = this.iPSDEFGridColumn.getDataItemName(this);
+      this.strGroupItem = this.psDEGridColumn.getGROUPITEM();
+      if (this.getEnableLink() == 1) {
+         IPSAppView linkPSAppView = this.onGetLinkPSAppView(false);
+         if (linkPSAppView == null) {
+            throw new Exception("表格列启用链接，但没有指定链接视图");
+         }
+
+         this.bEnableLinkView = true;
+         this.linkPSAppView = linkPSAppView;
+      } else if (this.getEnableLink() == 2) {
+         IPSAppView linkPSAppView = this.onGetLinkPSAppView(true);
+         if (linkPSAppView != null) {
+            this.bEnableLinkView = true;
+            this.linkPSAppView = linkPSAppView;
+         }
+      }
+
+      if (!StringHelper.IsNullOrEmpty(this.psDEGridColumn.getPSDEUIACTIONID())) {
+         if (this.iPSDEUIAction == null && this.getPSDEGrid().getPSAppDataEntity() != null) {
+            this.iPSDEUIAction = this.getPSDEGrid()
+               .getPSAppDataEntity()
+               .getPSAppDEUIAction(this.psDEGridColumn.getPSDEUIACTIONID(), true, this.getOwnedPSControl());
+         }
+
+         if (this.iPSDEUIAction == null) {
+            this.iPSDEUIAction = this.getPSDEGrid().getPSDataEntity().getPSDEUIAction(this.psDEGridColumn.getPSDEUIACTIONID());
+         }
+
+         if (this.getPSDEGrid().isPrepareTemplV2logic()) {
+            IPSAppViewUIAction iPSAppViewUIAction = new PSAppViewUIActionProxy(this, this.iPSDEUIAction, this.getPSDEGrid());
+            this.getPSDEGrid().registerPSAppViewUIAction(iPSAppViewUIAction);
+            this.registerPSAppViewLogic(iPSAppViewUIAction);
+         } else {
+            this.getPSDEGrid().getPSAppView().registerPSUIAction(this.iPSDEUIAction);
+         }
+      }
+
+      if (!StringHelper.IsNullOrEmpty(this.psDEGridColumn.getPSDEUAGROUPID())) {
+         if (this.iPSDEUIActionGroup == null && this.getPSDEGrid().getPSAppDataEntity() != null) {
+            this.iPSDEUIActionGroup = this.getPSDEGrid()
+               .getPSAppDataEntity()
+               .getPSAppDEUIActionGroup(this.psDEGridColumn.getPSDEUAGROUPID(), true, this.getOwnedPSControl());
+         }
+
+         if (this.iPSDEUIActionGroup == null) {
+            this.iPSDEUIActionGroup = this.getPSDEGrid().getPSDataEntity().getPSDEUIActionGroup(this.psDEGridColumn.getPSDEUAGROUPID());
+         }
+
+         Iterator<IPSUIActionGroupDetail> psUIActionGroupDetails = this.iPSDEUIActionGroup.getPSUIActionGroupDetails();
+         if (psUIActionGroupDetails != null) {
+            while (psUIActionGroupDetails.hasNext()) {
+               IPSUIActionGroupDetail iPSUIActionGroupDetail = psUIActionGroupDetails.next();
+               IPSUIAction iPSUIAction = iPSUIActionGroupDetail.getPSUIAction();
+               if (iPSUIAction != null) {
+                  if (this.getPSDEGrid().isPrepareTemplV2logic()) {
+                     IPSAppViewUIAction iPSAppViewUIAction = new PSAppViewUIActionProxy(this, iPSUIAction, this.getPSDEGrid());
+                     this.getPSDEGrid().registerPSAppViewUIAction(iPSAppViewUIAction);
+                     this.registerPSAppViewLogic(iPSAppViewUIAction, iPSUIActionGroupDetail);
+                  } else {
+                     this.getPSDEGrid().getPSAppView().registerPSUIAction(iPSUIAction);
+                  }
+               }
             }
-            return this.getPSDEField().getLogicName(this.getPSDEGrid().getPSAppView().getLanguage());
-        }
-        return this.getPSDEFGridColumn().getCaption(this.getPSDEGrid().getPSAppView().getLanguage());
-    }
+         }
+      }
 
-    @Override
-    protected IPSLanguageRes onGetCapPSLanguageRes() {
-        if (this.getPSDEFGridColumn() == null) {
-            return null;
-        }
-        return this.iPSDEFGridColumn.getCapPSLanguageRes();
-    }
+      this.bEnableUnitName = true;
+      if (this.iPSDEFGridColumn != null) {
+         if (StringHelper.IsNullOrEmpty(this.strUnitName)) {
+            this.strUnitName = this.iPSDEFGridColumn.getUnitName();
+         }
 
-    @Override
-    @PSModelRTMeta(description="\u5217\u5b9e\u4f53\u5c5e\u6027", outputdoc="false")
-    public IPSDEField getPSDEField() {
-        return this.iPSDEField;
-    }
+         if (this.nUnitNameWidth <= 0) {
+            this.nUnitNameWidth = this.iPSDEFGridColumn.getUnitNameWidth();
+         }
+      }
 
-    @Override
-    @PSModelRTMeta(description="\u5217\u5e94\u7528\u5b9e\u4f53\u5c5e\u6027", dumpref=true, fields={"PSDEFID"})
-    public IPSAppDEField getPSAppDEField() {
-        return this.iPSAppDEField;
-    }
+      if (StringHelper.IsNullOrEmpty(this.strUnitName)) {
+         this.bEnableUnitName = false;
+      }
 
-    @Override
-    @PSModelRTMeta(description="\u4ee3\u7801\u8868\u5bf9\u8c61", hideempty=true, dump=false)
-    public IPSCodeList getPSCodeList() {
-        return this.iPSCodeList;
-    }
+      super.onInit();
+      this.preparePSEditor();
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5e94\u7528\u4ee3\u7801\u8868", hideempty=true, dumpref=true, fields={"PSCODELISTID"})
-    public IPSAppCodeList getPSAppCodeList() {
-        if (this.getPSCodeList() != null && this.getPSCodeList() instanceof IPSAppCodeList) {
-            return (IPSAppCodeList)this.getPSCodeList();
-        }
-        return null;
-    }
+   protected void preparePSEditor() throws Exception {
+      this.getPSEditor();
+   }
 
-    @Override
-    public String getPSCodeListId() {
-        return this.strPSCodeListId;
-    }
+   @PSModelRTMeta(description = "列数据项集合", outputdoc = "false")
+   @Override
+   public Iterator<IPSDEGridDataItem> getPSDEGridDataItems() {
+      return this.psDEGridDataItemList.iterator();
+   }
 
-    @Override
-    @PSModelRTMeta(description="Excel\u5bfc\u51fa\u6807\u9898")
-    public String getExcelCaption() {
-        return this.getCaption();
-    }
+   @PSModelRTMeta(description = "列数据项名称", fields = "DATAITEMS")
+   @Override
+   public String getDataItemName() {
+      return this.strDataItemName;
+   }
 
-    @Override
-    public String getCodeListId() {
-        return this.getPSCodeListId();
-    }
+   @Override
+   protected int onGetWidth() {
+      return this.getPSDEFGridColumn() == null ? 100 : this.iPSDEFGridColumn.getColumnWidth();
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u503c\u683c\u5f0f\u5316", fields={"VALUEFORMAT"})
-    public String getValueFormat() {
-        return this.strValueFormat;
-    }
+   @Override
+   protected String onGetCaption() {
+      if (this.getPSDEFGridColumn() == null) {
+         return this.getPSDEField() == null ? this.getName() : this.getPSDEField().getLogicName(this.getPSDEGrid().getPSAppView().getLanguage());
+      } else {
+         return this.getPSDEFGridColumn().getCaption(this.getPSDEGrid().getPSAppView().getLanguage());
+      }
+   }
 
-    @Override
-    public String[] getFields() {
-        return this.fields;
-    }
+   @Override
+   protected IPSLanguageRes onGetCapPSLanguageRes() {
+      return this.getPSDEFGridColumn() == null ? null : this.iPSDEFGridColumn.getCapPSLanguageRes();
+   }
 
-    protected String calcEditorCssStyle() throws Exception {
-        StringBuilderEx editorCssStyle = new StringBuilderEx();
-        return editorCssStyle.toString();
-    }
+   @PSModelRTMeta(description = "列实体属性", outputdoc = "false")
+   @Override
+   public IPSDEField getPSDEField() {
+      return this.iPSDEField;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u7f16\u8f91\u5668\u7c7b\u578b", dump=false)
-    public String getEditorType() {
-        return this.strEditorType;
-    }
+   @PSModelRTMeta(description = "列应用实体属性", dumpref = true, fields = "PSDEFID")
+   @Override
+   public IPSAppDEField getPSAppDEField() {
+      return this.iPSAppDEField;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u7f16\u8f91\u5668\u6837\u5f0f", dump=false)
-    public String getEditorStyle() {
-        if (this.getPSSysEditorStyle() != null && this.getPSDEGrid().getPSAppView().getPSPFStyle().isEnableEditorStyleCode()) {
-            return this.getPSSysEditorStyle().getStyleCode();
-        }
-        return this.strEditorStyle;
-    }
+   @PSModelRTMeta(description = "代码表对象", hideempty = true, dump = false)
+   @Override
+   public IPSCodeList getPSCodeList() {
+      return this.iPSCodeList;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5141\u8bb8\u7a7a\u503c\u8f93\u5165", fields={"ALLOWEMPTY"})
-    public boolean isAllowEmpty() {
-        if (this.isEditable()) {
-            return this.bAllowEmpty;
-        }
-        return true;
-    }
+   @PSModelRTMeta(description = "应用代码表", hideempty = true, dumpref = true, fields = "PSCODELISTID")
+   @Override
+   public IPSAppCodeList getPSAppCodeList() {
+      return this.getPSCodeList() != null && this.getPSCodeList() instanceof IPSAppCodeList ? (IPSAppCodeList)this.getPSCodeList() : null;
+   }
 
-    public Object getInputValue(IWebContext iWebContext) throws Exception {
-        return null;
-    }
+   @Override
+   public String getPSCodeListId() {
+      return this.strPSCodeListId;
+   }
 
-    public Object getOutputValue(IWebContext iWebContext, IDataObject iDataObject, boolean bString) throws Exception {
-        return null;
-    }
+   @PSModelRTMeta(description = "Excel导出标题")
+   @Override
+   public String getExcelCaption() {
+      return this.getCaption();
+   }
 
-    public String getPrivilegeId() {
-        return null;
-    }
+   @Override
+   public String getCodeListId() {
+      return this.getPSCodeListId();
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u503c\u9879\u540d\u79f0", fields={"VALUEITEMNAME"}, ignorert=3)
-    public String getValueItemName() {
-        return this.strValueItemName;
-    }
+   @PSModelRTMeta(description = "值格式化", fields = "VALUEFORMAT")
+   @Override
+   public String getValueFormat() {
+      return this.strValueFormat;
+   }
 
-    public IGEIDEACMode getGEIDEACMode() {
-        return this.geiDEACModeImpl;
-    }
+   @Override
+   public String[] getFields() {
+      return this.fields;
+   }
 
-    public String getDEFName() {
-        if (this.getPSDEField() != null) {
-            return this.getPSDEField().getName();
-        }
-        return "";
-    }
+   protected String calcEditorCssStyle() throws Exception {
+      StringBuilderEx editorCssStyle = new StringBuilderEx();
+      return editorCssStyle.toString();
+   }
 
-    public IGrid getGrid() {
-        return this.getPSDEGrid();
-    }
+   @PSModelRTMeta(description = "编辑器类型", dump = false)
+   @Override
+   public String getEditorType() {
+      return this.strEditorType;
+   }
 
-    public IDEField getDEField() {
-        return this.getPSDEField();
-    }
+   @PSModelRTMeta(description = "编辑器样式", dump = false)
+   @Override
+   public String getEditorStyle() {
+      return this.getPSSysEditorStyle() != null && this.getPSDEGrid().getPSAppView().getPSPFStyle().isEnableEditorStyleCode()
+         ? this.getPSSysEditorStyle().getStyleCode()
+         : this.strEditorStyle;
+   }
 
-    public Iterator<IGEIDEFValueRule> getGEIDEFValueRules() {
-        if (this.geiDEFValueRuleList == null || this.geiDEFValueRuleList.size() == 0) {
-            return null;
-        }
-        return this.geiDEFValueRuleList.iterator();
-    }
+   @PSModelRTMeta(description = "允许空值输入", fields = "ALLOWEMPTY")
+   @Override
+   public boolean isAllowEmpty() {
+      return this.isEditable() ? this.bAllowEmpty : true;
+   }
 
-    @Override
-    public Iterator<IPSGEIDEFValueRule> getPSGEIDEFValueRules() {
-        if (this.iPSDEFGridColumn != null) {
-            return this.iPSDEFGridColumn.getPSGEIDEFValueRules();
-        }
-        return null;
-    }
+   @Override
+   public Object getInputValue(IWebContext iWebContext) throws Exception {
+      return null;
+   }
 
-    @Override
-    public IPSDEFGridColumn getPSDEFGridColumn() {
-        return this.iPSDEFGridColumn;
-    }
+   @Override
+   public Object getOutputValue(IWebContext iWebContext, IDataObject iDataObject, boolean bString) throws Exception {
+      return null;
+   }
 
-    protected void setPSDEFGridColumn(IPSDEFGridColumn iPSDEFGridColumn) {
-        this.iPSDEFGridColumn = iPSDEFGridColumn;
-    }
+   @Override
+   public String getPrivilegeId() {
+      return null;
+   }
 
-    @Override
-    public void fillRelatedPSAppViews(ArrayList<IPSAppView> relatedAppViewList) throws Exception {
-        super.fillRelatedPSAppViews(relatedAppViewList);
-        IPSAppView iPSAppView = this.getRefPickupPSAppView();
-        if (iPSAppView != null) {
-            relatedAppViewList.add(iPSAppView);
-        }
-        if ((iPSAppView = this.getRefLinkPSAppView()) != null) {
-            relatedAppViewList.add(iPSAppView);
-        }
-        if (this.getPSDEUIAction() != null && this.getPSDEUIAction().getFrontPSAppView(this) != null) {
-            relatedAppViewList.add(this.getPSDEUIAction().getFrontPSAppView(this));
-        }
-    }
+   @PSModelRTMeta(description = "值项名称", fields = "VALUEITEMNAME", ignorert = 3)
+   @Override
+   public String getValueItemName() {
+      return this.strValueItemName;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5f15\u7528\u9009\u62e9\u89c6\u56fe", hideempty=true)
-    public IPSAppView getRefPickupPSAppView() throws Exception {
-        if (!this.getPSDEGrid().isEnableRowEdit() || !this.isEnableRowEdit()) {
-            return null;
-        }
-        String strPickupPSDEViewId = this.psDEGridColumn.getPICKUPPSDEVIEWID();
-        if (StringHelper.IsNullOrEmpty((String)strPickupPSDEViewId) && this.getPSEditorType().hasPickupView() && this.iPSDEFGridColumn != null) {
+   @Override
+   public IGEIDEACMode getGEIDEACMode() {
+      return this.geiDEACModeImpl;
+   }
+
+   @Override
+   public String getDEFName() {
+      return this.getPSDEField() != null ? this.getPSDEField().getName() : "";
+   }
+
+   @Override
+   public IGrid getGrid() {
+      return this.getPSDEGrid();
+   }
+
+   @Override
+   public IDEField getDEField() {
+      return this.getPSDEField();
+   }
+
+   @Override
+   public Iterator<IGEIDEFValueRule> getGEIDEFValueRules() {
+      return this.geiDEFValueRuleList != null && this.geiDEFValueRuleList.size() != 0 ? this.geiDEFValueRuleList.iterator() : null;
+   }
+
+   @Override
+   public Iterator<IPSGEIDEFValueRule> getPSGEIDEFValueRules() {
+      return this.iPSDEFGridColumn != null ? this.iPSDEFGridColumn.getPSGEIDEFValueRules() : null;
+   }
+
+   @Override
+   public IPSDEFGridColumn getPSDEFGridColumn() {
+      return this.iPSDEFGridColumn;
+   }
+
+   protected void setPSDEFGridColumn(IPSDEFGridColumn iPSDEFGridColumn) {
+      this.iPSDEFGridColumn = iPSDEFGridColumn;
+   }
+
+   @Override
+   public void fillRelatedPSAppViews(ArrayList<IPSAppView> relatedAppViewList) throws Exception {
+      super.fillRelatedPSAppViews(relatedAppViewList);
+      IPSAppView iPSAppView = this.getRefPickupPSAppView();
+      if (iPSAppView != null) {
+         relatedAppViewList.add(iPSAppView);
+      }
+
+      iPSAppView = this.getRefLinkPSAppView();
+      if (iPSAppView != null) {
+         relatedAppViewList.add(iPSAppView);
+      }
+
+      if (this.getPSDEUIAction() != null && this.getPSDEUIAction().getFrontPSAppView(this) != null) {
+         relatedAppViewList.add(this.getPSDEUIAction().getFrontPSAppView(this));
+      }
+   }
+
+   @PSModelRTMeta(description = "引用选择视图", hideempty = true)
+   @Override
+   public IPSAppView getRefPickupPSAppView() throws Exception {
+      if (this.getPSDEGrid().isEnableRowEdit() && this.isEnableRowEdit()) {
+         String strPickupPSDEViewId = this.psDEGridColumn.getPICKUPPSDEVIEWID();
+         if (StringHelper.IsNullOrEmpty(strPickupPSDEViewId) && this.getPSEditorType().hasPickupView() && this.iPSDEFGridColumn != null) {
             strPickupPSDEViewId = this.iPSDEFGridColumn.getRefPickupPSDEViewId(this.getPSDEGrid().getPSAppView().getPSApplication());
-        }
-        if (!StringHelper.IsNullOrEmpty((String)strPickupPSDEViewId)) {
-            String strPSAppViewId = Helper.GenUniqueId((String)this.getPSDEGrid().getPSAppView().getPSApplication().getId(), (String)strPickupPSDEViewId);
+         }
+
+         if (!StringHelper.IsNullOrEmpty(strPickupPSDEViewId)) {
+            String strPSAppViewId = Helper.GenUniqueId(this.getPSDEGrid().getPSAppView().getPSApplication().getId(), strPickupPSDEViewId);
             return this.getPSDEGrid().getPSAppView().getPSApplication().getPSAppView(strPSAppViewId, strPickupPSDEViewId, this.getPSDEGrid().getPSAppView());
-        }
-        return null;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u5f15\u7528\u6570\u636e\u94fe\u63a5\u89c6\u56fe", hideempty=true)
-    public IPSAppView getRefLinkPSAppView() throws Exception {
-        if (!this.getPSDEGrid().isEnableRowEdit() || !this.isEnableRowEdit()) {
+         } else {
             return null;
-        }
-        String strLinkPSDEViewId = this.psDEGridColumn.getLINKPSDEVIEWID();
-        if (StringHelper.IsNullOrEmpty((String)strLinkPSDEViewId) && this.getPSEditorType().hasLinkView() && this.iPSDEFGridColumn != null) {
+         }
+      } else {
+         return null;
+      }
+   }
+
+   @PSModelRTMeta(description = "引用数据链接视图", hideempty = true)
+   @Override
+   public IPSAppView getRefLinkPSAppView() throws Exception {
+      if (this.getPSDEGrid().isEnableRowEdit() && this.isEnableRowEdit()) {
+         String strLinkPSDEViewId = this.psDEGridColumn.getLINKPSDEVIEWID();
+         if (StringHelper.IsNullOrEmpty(strLinkPSDEViewId) && this.getPSEditorType().hasLinkView() && this.iPSDEFGridColumn != null) {
             strLinkPSDEViewId = this.iPSDEFGridColumn.getRefLinkPSDEViewId(this.getPSDEGrid().getPSAppView().getPSApplication());
-        }
-        if (!StringHelper.IsNullOrEmpty((String)strLinkPSDEViewId)) {
-            String strPSAppViewId = Helper.GenUniqueId((String)this.getPSDEGrid().getPSAppView().getPSApplication().getId(), (String)strLinkPSDEViewId);
+         }
+
+         if (!StringHelper.IsNullOrEmpty(strLinkPSDEViewId)) {
+            String strPSAppViewId = Helper.GenUniqueId(this.getPSDEGrid().getPSAppView().getPSApplication().getId(), strLinkPSDEViewId);
             return this.getPSDEGrid().getPSAppView().getPSApplication().getPSAppView(strPSAppViewId, strLinkPSDEViewId, this.getPSDEGrid().getPSAppView());
-        }
-        return null;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u7f16\u8f91\u9879\u5f02\u6b65\u5904\u7406\u5668\u7c7b\u578b", hideempty=true, dump=false)
-    public String getItemHandlerType() {
-        if (!this.getPSDEGrid().isEnableRowEdit() || !this.isEnableRowEdit()) {
-            return "";
-        }
-        if (!StringHelper.IsNullOrEmpty((String)this.strItemHandlerType)) {
-            if (StringHelper.Compare((String)this.strItemHandlerType, (String)"None", (boolean)true) == 0) {
-                return "";
-            }
-            return this.strItemHandlerType;
-        }
-        if (this.iPSDEFGridColumn != null) {
-            return this.iPSDEFGridColumn.getItemHandlerType(this);
-        }
-        if (StringHelper.Compare((String)this.getPSEditorType().getStandardPSEditorType(), (String)"DROPDOWNLIST", (boolean)true) == 0 && this.getPSCodeList() != null && StringHelper.Compare((String)this.getPSCodeList().getCodeListType(), (String)"DYNAMIC", (boolean)true) == 0) {
-            return "CodeList";
-        }
-        if (StringHelper.Compare((String)this.getPSEditorType().getStandardPSEditorType(), (String)"AC", (boolean)true) == 0) {
-            return "AC";
-        }
-        return "";
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u542f\u7528\u6761\u4ef6", codelist="FormItemEnableCond", fields={"ENABLECOND"})
-    public int getEnableCond() {
-        return this.nEnableCond;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u5efa\u7acb\u9ed8\u8ba4\u503c\u7c7b\u578b", codelist="FieldDefaultValueType", fields={"CREATEDVT"})
-    public String getCreateDVT() {
-        return this.strCreateDVT;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u5efa\u7acb\u9ed8\u8ba4\u503c", fields={"CREATEDV"})
-    public String getCreateDV() {
-        return this.strCreateDV;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u66f4\u65b0\u9ed8\u8ba4\u503c\u7c7b\u578b", codelist="FieldDefaultValueType", fields={"UPDATEDVT"})
-    public String getUpdateDVT() {
-        return this.strUpdateDVT;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u66f4\u65b0\u9ed8\u8ba4\u503c", fields={"UPDATEDV"})
-    public String getUpdateDV() {
-        return this.strUpdateDV;
-    }
-
-    public ICodeList getCodeList() throws Exception {
-        return this.getPSCodeList();
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u652f\u6301\u7f16\u8f91", dump=false)
-    public boolean isEditable() {
-        return this.bEditable;
-    }
-
-    public String getCapLanId() {
-        return "";
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u9879\u53c2\u6570", hideempty=true, dump=false)
-    public JSONObject getItemParam() throws Exception {
-        if (this.iPSDEFGridColumn != null) {
-            return this.iPSDEFGridColumn.getItemParam(this);
-        }
-        return null;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u5f15\u7528\u5b9e\u4f53\u6570\u636e\u96c6", hideempty=true)
-    public IPSDEDataSet getRefPSDEDataSet() throws Exception {
-        if (!StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getREFPSDEID())) {
-            IPSDataEntity refPSDataEntity = this.getPSSystem().getPSDataEntity2(this.psDEGridColumn.getREFPSDEID());
-            if (!StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getREFPSDEDATASETID())) {
-                return refPSDataEntity.getPSDEDataSet(this.psDEGridColumn.getREFPSDEDATASETID());
-            }
-            if (this.getPSDEGrid().isRegisterToPSAppDataEntity()) {
-                return refPSDataEntity.getDefaultPSDEDataSet();
-            }
+         } else {
             return null;
-        }
-        if (this.iPSDEFGridColumn != null && this.iPSDEFGridColumn.getRefPSDataEntity() != null) {
-            if (!StringHelper.IsNullOrEmpty((String)this.iPSDEFGridColumn.getRefPSDEDataSetId())) {
-                return this.iPSDEFGridColumn.getRefPSDataEntity().getPSDEDataSet(this.iPSDEFGridColumn.getRefPSDEDataSetId());
+         }
+      } else {
+         return null;
+      }
+   }
+
+   @PSModelRTMeta(description = "编辑项异步处理器类型", hideempty = true, dump = false)
+   @Override
+   public String getItemHandlerType() {
+      if (!this.getPSDEGrid().isEnableRowEdit() || !this.isEnableRowEdit()) {
+         return "";
+      } else if (!StringHelper.IsNullOrEmpty(this.strItemHandlerType)) {
+         return StringHelper.Compare(this.strItemHandlerType, "None", true) == 0 ? "" : this.strItemHandlerType;
+      } else if (this.iPSDEFGridColumn != null) {
+         return this.iPSDEFGridColumn.getItemHandlerType(this);
+      } else if (StringHelper.Compare(this.getPSEditorType().getStandardPSEditorType(), "DROPDOWNLIST", true) == 0
+         && this.getPSCodeList() != null
+         && StringHelper.Compare(this.getPSCodeList().getCodeListType(), "DYNAMIC", true) == 0) {
+         return "CodeList";
+      } else {
+         return StringHelper.Compare(this.getPSEditorType().getStandardPSEditorType(), "AC", true) == 0 ? "AC" : "";
+      }
+   }
+
+   @PSModelRTMeta(description = "启用条件", codelist = "FormItemEnableCond", fields = "ENABLECOND")
+   @Override
+   public int getEnableCond() {
+      return this.nEnableCond;
+   }
+
+   @PSModelRTMeta(description = "建立默认值类型", codelist = "FieldDefaultValueType", fields = "CREATEDVT")
+   @Override
+   public String getCreateDVT() {
+      return this.strCreateDVT;
+   }
+
+   @PSModelRTMeta(description = "建立默认值", fields = "CREATEDV")
+   @Override
+   public String getCreateDV() {
+      return this.strCreateDV;
+   }
+
+   @PSModelRTMeta(description = "更新默认值类型", codelist = "FieldDefaultValueType", fields = "UPDATEDVT")
+   @Override
+   public String getUpdateDVT() {
+      return this.strUpdateDVT;
+   }
+
+   @PSModelRTMeta(description = "更新默认值", fields = "UPDATEDV")
+   @Override
+   public String getUpdateDV() {
+      return this.strUpdateDV;
+   }
+
+   @Override
+   public ICodeList getCodeList() throws Exception {
+      return this.getPSCodeList();
+   }
+
+   @PSModelRTMeta(description = "支持编辑", dump = false)
+   @Override
+   public boolean isEditable() {
+      return this.bEditable;
+   }
+
+   @Override
+   public String getCapLanId() {
+      return "";
+   }
+
+   @PSModelRTMeta(description = "项参数", hideempty = true, dump = false)
+   @Override
+   public JSONObject getItemParam() throws Exception {
+      return this.iPSDEFGridColumn != null ? this.iPSDEFGridColumn.getItemParam(this) : null;
+   }
+
+   @PSModelRTMeta(description = "引用实体数据集", hideempty = true)
+   @Override
+   public IPSDEDataSet getRefPSDEDataSet() throws Exception {
+      if (!StringHelper.IsNullOrEmpty(this.psDEGridColumn.getREFPSDEID())) {
+         IPSDataEntity refPSDataEntity = this.getPSSystem().getPSDataEntity2(this.psDEGridColumn.getREFPSDEID());
+         if (!StringHelper.IsNullOrEmpty(this.psDEGridColumn.getREFPSDEDATASETID())) {
+            return refPSDataEntity.getPSDEDataSet(this.psDEGridColumn.getREFPSDEDATASETID());
+         } else {
+            return this.getPSDEGrid().isRegisterToPSAppDataEntity() ? refPSDataEntity.getDefaultPSDEDataSet() : null;
+         }
+      } else {
+         if (this.iPSDEFGridColumn != null && this.iPSDEFGridColumn.getRefPSDataEntity() != null) {
+            if (!StringHelper.IsNullOrEmpty(this.iPSDEFGridColumn.getRefPSDEDataSetId())) {
+               return this.iPSDEFGridColumn.getRefPSDataEntity().getPSDEDataSet(this.iPSDEFGridColumn.getRefPSDEDataSetId());
             }
+
             if (this.getPSDEGrid().isRegisterToPSAppDataEntity()) {
-                return this.iPSDEFGridColumn.getRefPSDataEntity().getDefaultPSDEDataSet();
+               return this.iPSDEFGridColumn.getRefPSDataEntity().getDefaultPSDEDataSet();
             }
-        }
-        return null;
-    }
+         }
 
-    @Override
-    @PSModelRTMeta(description="\u5f15\u7528\u81ea\u52a8\u586b\u5145\u6a21\u5f0f", hideempty=true)
-    public IPSDEACMode getRefPSDEACMode() throws Exception {
-        if (!StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getREFPSDEID())) {
-            IPSDataEntity refPSDataEntity = this.getPSSystem().getPSDataEntity2(this.psDEGridColumn.getREFPSDEID());
-            if (!StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getREFPSDEACMODEID())) {
-                return refPSDataEntity.getPSDEACMode(this.psDEGridColumn.getREFPSDEACMODEID());
+         return null;
+      }
+   }
+
+   @PSModelRTMeta(description = "引用自动填充模式", hideempty = true)
+   @Override
+   public IPSDEACMode getRefPSDEACMode() throws Exception {
+      if (!StringHelper.IsNullOrEmpty(this.psDEGridColumn.getREFPSDEID())) {
+         IPSDataEntity refPSDataEntity = this.getPSSystem().getPSDataEntity2(this.psDEGridColumn.getREFPSDEID());
+         if (!StringHelper.IsNullOrEmpty(this.psDEGridColumn.getREFPSDEACMODEID())) {
+            return refPSDataEntity.getPSDEACMode(this.psDEGridColumn.getREFPSDEACMODEID());
+         } else {
+            return this.getPSDEGrid().isRegisterToPSAppDataEntity() ? refPSDataEntity.getDefaultPSDEACMode() : null;
+         }
+      } else {
+         if (this.iPSDEFGridColumn != null && this.iPSDEFGridColumn.getRefPSDataEntity() != null) {
+            if (!StringHelper.IsNullOrEmpty(this.iPSDEFGridColumn.getRefPSDEACModeId())) {
+               return this.iPSDEFGridColumn.getRefPSDataEntity().getPSDEACMode(this.iPSDEFGridColumn.getRefPSDEACModeId());
             }
+
             if (this.getPSDEGrid().isRegisterToPSAppDataEntity()) {
-                return refPSDataEntity.getDefaultPSDEACMode();
+               return this.iPSDEFGridColumn.getRefPSDataEntity().getDefaultPSDEACMode();
             }
-            return null;
-        }
-        if (this.iPSDEFGridColumn != null && this.iPSDEFGridColumn.getRefPSDataEntity() != null) {
-            if (!StringHelper.IsNullOrEmpty((String)this.iPSDEFGridColumn.getRefPSDEACModeId())) {
-                return this.iPSDEFGridColumn.getRefPSDataEntity().getPSDEACMode(this.iPSDEFGridColumn.getRefPSDEACModeId());
-            }
-            if (this.getPSDEGrid().isRegisterToPSAppDataEntity()) {
-                return this.iPSDEFGridColumn.getRefPSDataEntity().getDefaultPSDEACMode();
-            }
-        }
-        return null;
-    }
+         }
 
-    @Override
-    @PSModelRTMeta(description="\u7f16\u8f91\u5668\u7c7b\u578b")
-    public IPSEditorType getPSEditorType() {
-        return this.iPSEditorType;
-    }
+         return null;
+      }
+   }
 
-    public Object getDefaultValue(IWebContext iWebContext, boolean bUpdate) throws Exception {
-        return null;
-    }
+   @PSModelRTMeta(description = "编辑器类型")
+   @Override
+   public IPSEditorType getPSEditorType() {
+      return this.iPSEditorType;
+   }
 
-    @Override
-    public String getPSDEGEIUpdateId() {
-        return this.psDEGridColumn.getPSDEGEIUPDATEID();
-    }
+   @Override
+   public Object getDefaultValue(IWebContext iWebContext, boolean bUpdate) throws Exception {
+      return null;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u8868\u683c\u7f16\u8f91\u9879\u66f4\u65b0\u5bf9\u8c61", hideempty=true, dumpref=true, from="IPSDEGrid", fields={"PSDEGEIUPDATEID"})
-    public IPSDEGridEditItemUpdate getPSDEGridEditItemUpdate() throws Exception {
-        if (StringHelper.IsNullOrEmpty((String)this.getPSDEGEIUpdateId())) {
-            return null;
-        }
-        return this.getPSDEGrid().getPSDEGridEditItemUpdate(this.getPSDEGEIUpdateId());
-    }
+   @Override
+   public String getPSDEGEIUpdateId() {
+      return this.psDEGridColumn.getPSDEGEIUPDATEID();
+   }
 
-    @Override
-    public Properties getEditorParams() {
-        return this.editorParams;
-    }
+   @PSModelRTMeta(description = "表格编辑项更新对象", hideempty = true, dumpref = true, from = "IPSDEGrid", fields = "PSDEGEIUPDATEID")
+   @Override
+   public IPSDEGridEditItemUpdate getPSDEGridEditItemUpdate() throws Exception {
+      return StringHelper.IsNullOrEmpty(this.getPSDEGEIUpdateId()) ? null : this.getPSDEGrid().getPSDEGridEditItemUpdate(this.getPSDEGEIUpdateId());
+   }
 
-    @Override
-    public int getEditorParam(String strParam, int nDefault) {
-        return PropertiesHelper.getProperty((Properties)this.getEditorParams(), (String)strParam, (int)nDefault);
-    }
+   @Override
+   public Properties getEditorParams() {
+      return this.editorParams;
+   }
 
-    @Override
-    public String getEditorParam(String strParam, String strDefault) {
-        String strValue = PropertiesHelper.getProperty((Properties)this.getEditorParams(), (String)strParam, (String)strDefault);
-        if (!this.isHiddenDataItem() && StringHelper.IsNullOrEmpty((String)strDefault) && StringHelper.IsNullOrEmpty((String)strValue) && strDefault != null && (StringHelper.Compare((String)strParam, (String)"DEFAULTVALUETYPE", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTOBJECTIDFIELD", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTOBJECTNAMEFIELD", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTOBJECTVALUEFIELD", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTTEXTSEPARATOR", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTVALUESEPARATOR", (boolean)false) == 0)) {
-            String strValue2 = PropertiesHelper.getProperty((Properties)this.getEditorParams(), (String)strParam, null);
-            if (strValue2 != null) {
-                return strValue2;
+   @Override
+   public int getEditorParam(String strParam, int nDefault) {
+      return PropertiesHelper.getProperty(this.getEditorParams(), strParam, nDefault);
+   }
+
+   @Override
+   public String getEditorParam(String strParam, String strDefault) {
+      String strValue = PropertiesHelper.getProperty(this.getEditorParams(), strParam, strDefault);
+      if (this.isHiddenDataItem()
+         || !StringHelper.IsNullOrEmpty(strDefault)
+         || !StringHelper.IsNullOrEmpty(strValue)
+         || strDefault == null
+         || StringHelper.Compare(strParam, "DEFAULTVALUETYPE", false) != 0
+            && StringHelper.Compare(strParam, "DEFAULTOBJECTIDFIELD", false) != 0
+            && StringHelper.Compare(strParam, "DEFAULTOBJECTNAMEFIELD", false) != 0
+            && StringHelper.Compare(strParam, "DEFAULTOBJECTVALUEFIELD", false) != 0
+            && StringHelper.Compare(strParam, "DEFAULTTEXTSEPARATOR", false) != 0
+            && StringHelper.Compare(strParam, "DEFAULTVALUESEPARATOR", false) != 0) {
+         if (this.isEditable() && StringHelper.IsNullOrEmpty(strDefault) && StringHelper.IsNullOrEmpty(strValue) && strDefault != null) {
+            if (StringHelper.Compare(strParam, "DEFAULTMAXLENGTH", false) == 0
+               || StringHelper.Compare(strParam, "DEFAULTMINLENGTH", false) == 0
+               || StringHelper.Compare(strParam, "DEFAULTMAXVALUE", false) == 0
+               || StringHelper.Compare(strParam, "DEFAULTMINVALUE", false) == 0
+               || StringHelper.Compare(strParam, "DEFAULTPRECISION", false) == 0
+               || StringHelper.Compare(strParam, "DEFAULTARRAY", false) == 0
+               || StringHelper.Compare(strParam, "DEFAULTARRAYDATATYPE", false) == 0) {
+               String strValue2 = PropertiesHelper.getProperty(this.getEditorParams(), strParam, null);
+               if (strValue2 != null) {
+                  return strValue2;
+               }
+
+               IPSDEGridDataItem iPSDEDataGridItem = null;
+
+               try {
+                  iPSDEDataGridItem = this.getPSDEGrid().getPSDEGridDataItem(this.getDataItemName(), true);
+               } catch (Exception ex) {
+                  log.error(ex);
+               }
+
+               if (iPSDEDataGridItem == null || iPSDEDataGridItem.getPSAppDEField() == null) {
+                  return strValue;
+               }
+
+               IPSDEFieldBase iPSDEFieldBase = iPSDEDataGridItem.getPSAppDEField();
+               if (this.getPSDEFGridColumn() == null && iPSDEFieldBase == null) {
+                  return strValue;
+               }
+
+               if (StringHelper.Compare(strParam, "DEFAULTMAXLENGTH", false) == 0) {
+                  int nLength = -1;
+                  if (this.getPSDEFGridColumn() != null) {
+                     nLength = this.getPSDEFGridColumn().getStringLength(iPSDEFieldBase);
+                  } else {
+                     nLength = iPSDEFieldBase.getStringLength();
+                  }
+
+                  if (nLength <= 0) {
+                     return null;
+                  }
+
+                  return String.format("%1$s", nLength);
+               }
+
+               if (StringHelper.Compare(strParam, "DEFAULTMINLENGTH", false) == 0) {
+                  int nLength = -1;
+                  if (this.getPSDEFGridColumn() != null) {
+                     nLength = this.getPSDEFGridColumn().getMinStringLength(iPSDEFieldBase);
+                  } else {
+                     nLength = iPSDEFieldBase.getMinStringLength();
+                  }
+
+                  if (nLength <= 0) {
+                     return null;
+                  }
+
+                  return String.format("%1$s", nLength);
+               }
+
+               if (StringHelper.Compare(strParam, "DEFAULTMAXVALUE", false) == 0) {
+                  if (this.getPSDEFGridColumn() != null) {
+                     return this.getPSDEFGridColumn().getMaxValueString(iPSDEFieldBase);
+                  }
+
+                  return iPSDEFieldBase.getMaxValueString();
+               }
+
+               if (StringHelper.Compare(strParam, "DEFAULTMINVALUE", false) == 0) {
+                  if (this.getPSDEFGridColumn() != null) {
+                     return this.getPSDEFGridColumn().getMinValueString(iPSDEFieldBase);
+                  }
+
+                  return iPSDEFieldBase.getMinValueString();
+               }
+
+               if (StringHelper.Compare(strParam, "DEFAULTPRECISION", false) == 0) {
+                  int nLength = -1;
+                  if (this.getPSDEFGridColumn() != null) {
+                     nLength = this.getPSDEFGridColumn().getPrecision(iPSDEFieldBase);
+                  } else {
+                     nLength = iPSDEFieldBase.getPrecision();
+                  }
+
+                  if (nLength <= 0) {
+                     return null;
+                  }
+
+                  return String.format("%1$s", nLength);
+               }
+
+               if (this.getPSAppDEField() != null && StringHelper.Compare(strParam, "DEFAULTARRAYDATATYPE", false) == 0) {
+                  try {
+                     IPSAppDEMethodDTO iPSAppDEMethodDTO = this.getPSAppDEMethodDTO();
+                     if (iPSAppDEMethodDTO != null) {
+                        IPSAppDEMethodDTOField iPSAppDEMethodDTOField = iPSAppDEMethodDTO.getPSAppDEMethodDTOField(this.getPSAppDEField(), true);
+                        if (iPSAppDEMethodDTOField != null && "SIMPLES".equals(iPSAppDEMethodDTOField.getType())) {
+                           if (!DataTypeHelper.isBigIntType(iPSAppDEMethodDTOField.getStdDataType())
+                              && !DataTypeHelper.isBigDecimalType(iPSAppDEMethodDTOField.getStdDataType())
+                              && !DataTypeHelper.isDoubleType(iPSAppDEMethodDTOField.getStdDataType())) {
+                              if (DataTypeHelper.isIntType(iPSAppDEMethodDTOField.getStdDataType())) {
+                                 return "INTEGER";
+                              }
+
+                              return "STRING";
+                           }
+
+                           return "NUMBER";
+                        }
+                     }
+                  } catch (Exception ex) {
+                     log.error(ex);
+                  }
+
+                  return strValue;
+               }
+
+               if (this.getPSAppDEField() != null && StringHelper.Compare(strParam, "DEFAULTARRAY", false) == 0) {
+                  try {
+                     IPSAppDEMethodDTO iPSAppDEMethodDTO = this.getPSAppDEMethodDTO();
+                     if (iPSAppDEMethodDTO != null) {
+                        IPSAppDEMethodDTOField iPSAppDEMethodDTOField = iPSAppDEMethodDTO.getPSAppDEMethodDTOField(this.getPSAppDEField(), true);
+                        if (iPSAppDEMethodDTOField != null && "SIMPLES".equals(iPSAppDEMethodDTOField.getType())) {
+                           return "true";
+                        }
+                     }
+                  } catch (Exception ex) {
+                     log.error(ex);
+                  }
+
+                  return strValue;
+               }
             }
-            if (StringHelper.IsNullOrEmpty((String)this.getDataItemName())) {
-                return strValue;
-            }
-            IPSDEGridDataItem iPSDEDataGridItem = null;
-            try {
-                iPSDEDataGridItem = this.getPSDEGrid().getPSDEGridDataItem(this.getDataItemName(), true);
-            }
-            catch (Exception ex) {
-                log.error((Object)ex);
-            }
-            if (iPSDEDataGridItem == null || iPSDEDataGridItem.getPSAppDEField() == null) {
-                return strValue;
-            }
+
+            return strValue;
+         } else {
+            return strValue;
+         }
+      } else {
+         String strValue2 = PropertiesHelper.getProperty(this.getEditorParams(), strParam, null);
+         if (strValue2 != null) {
+            return strValue2;
+         }
+
+         if (StringHelper.IsNullOrEmpty(this.getDataItemName())) {
+            return strValue;
+         }
+
+         IPSDEGridDataItem iPSDEDataGridItem = null;
+
+         try {
+            iPSDEDataGridItem = this.getPSDEGrid().getPSDEGridDataItem(this.getDataItemName(), true);
+         } catch (Exception ex) {
+            log.error(ex);
+         }
+
+         if (iPSDEDataGridItem != null && iPSDEDataGridItem.getPSAppDEField() != null) {
             IPSAppDEField iPSAppDEField = iPSDEDataGridItem.getPSAppDEField();
-            if (StringHelper.Compare((String)strParam, (String)"DEFAULTVALUETYPE", (boolean)false) == 0) {
-                return iPSDEDataGridItem.getValueType();
+            if (StringHelper.Compare(strParam, "DEFAULTVALUETYPE", false) == 0) {
+               return iPSDEDataGridItem.getValueType();
             }
-            if (StringHelper.Compare((String)strParam, (String)"DEFAULTOBJECTIDFIELD", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTOBJECTNAMEFIELD", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTOBJECTVALUEFIELD", (boolean)false) == 0) {
-                block62: {
-                    try {
-                        IPSAppDEMethodDTOField dstPSAppDEMethodDTOField;
-                        IPSAppDEField dstPSAppDEField;
-                        IPSDEMethodDTOField iPSDEMethodDTOField;
-                        IPSAppDEMethodDTOField iPSAppDEMethodDTOField;
-                        IPSAppDEMethodDTO iPSAppDEMethodDTO = this.getPSAppDEMethodDTO();
-                        if (iPSAppDEMethodDTO == null || (iPSAppDEMethodDTOField = iPSAppDEMethodDTO.getPSAppDEMethodDTOField(iPSAppDEField, true)) == null || iPSAppDEMethodDTOField.getPSDEMethodDTOField() == null || (iPSDEMethodDTOField = iPSAppDEMethodDTOField.getPSDEMethodDTOField()).getPSDER() == null || !"DTO".equals(iPSAppDEMethodDTOField.getType()) && !"DTOS".equals(iPSAppDEMethodDTOField.getType()) || iPSAppDEMethodDTOField.getRefPSAppDEMethodDTO() == null || iPSAppDEMethodDTOField.getRefPSAppDataEntity() == null) break block62;
+
+            if (StringHelper.Compare(strParam, "DEFAULTOBJECTIDFIELD", false) != 0
+               && StringHelper.Compare(strParam, "DEFAULTOBJECTNAMEFIELD", false) != 0
+               && StringHelper.Compare(strParam, "DEFAULTOBJECTVALUEFIELD", false) != 0) {
+               return strValue;
+            }
+
+            try {
+               IPSAppDEMethodDTO iPSAppDEMethodDTO = this.getPSAppDEMethodDTO();
+               if (iPSAppDEMethodDTO != null) {
+                  IPSAppDEMethodDTOField iPSAppDEMethodDTOField = iPSAppDEMethodDTO.getPSAppDEMethodDTOField(iPSAppDEField, true);
+                  if (iPSAppDEMethodDTOField != null && iPSAppDEMethodDTOField.getPSDEMethodDTOField() != null) {
+                     IPSDEMethodDTOField iPSDEMethodDTOField = iPSAppDEMethodDTOField.getPSDEMethodDTOField();
+                     if (iPSDEMethodDTOField.getPSDER() != null
+                        && ("DTO".equals(iPSAppDEMethodDTOField.getType()) || "DTOS".equals(iPSAppDEMethodDTOField.getType()))
+                        && iPSAppDEMethodDTOField.getRefPSAppDEMethodDTO() != null
+                        && iPSAppDEMethodDTOField.getRefPSAppDataEntity() != null) {
                         IPSDER1N iPSDER1N = null;
                         IPSDERCustom iPSDERCustom = null;
                         IPSDEField pickupPSDEField = null;
                         IPSDEField pickupTextPSDEField = null;
-                        IPSPickupObjectDEField pickupObjectPSDEField = null;
+                        IPSDEField pickupObjectPSDEField = null;
                         IPSDataEntity dstPSDataEntity = iPSAppDEMethodDTOField.getRefPSAppDataEntity().getPSDataEntity();
                         IPSDataEntity refPSDataEntity = this.getRefPSDataEntity();
                         if (refPSDataEntity != null) {
-                            Iterator<IPSDERBase> psDERs = dstPSDataEntity.getMinorPSDERs();
-                            if (psDERs != null) {
-                                while (psDERs.hasNext()) {
-                                    IPSDERBase iPSDERBase = psDERs.next();
-                                    if (StringHelper.Compare((String)refPSDataEntity.getId(), (String)iPSDERBase.getMajorDEId(), (boolean)false) != 0) continue;
+                           Iterator<IPSDERBase> psDERs = dstPSDataEntity.getMinorPSDERs();
+                           if (psDERs != null) {
+                              while (psDERs.hasNext()) {
+                                 IPSDERBase iPSDERBase = psDERs.next();
+                                 if (StringHelper.Compare(refPSDataEntity.getId(), iPSDERBase.getMajorDEId(), false) == 0) {
                                     if ("DER1N".equals(iPSDERBase.getDERType())) {
-                                        iPSDER1N = (IPSDER1N)iPSDERBase;
-                                    } else if ("DER11".equals(iPSDERBase.getDERType())) {
-                                        iPSDER1N = (IPSDER1N)iPSDERBase;
-                                    } else {
-                                        if (!"DERCUSTOM".equals(iPSDERBase.getDERType()) || ((IPSDERCustom)iPSDERBase).getPickupPSDEField() == null) continue;
-                                        iPSDERCustom = (IPSDERCustom)iPSDERBase;
+                                       iPSDER1N = (IPSDER1N)iPSDERBase;
+                                       break;
                                     }
-                                    break;
-                                }
-                            }
+
+                                    if ("DER11".equals(iPSDERBase.getDERType())) {
+                                       iPSDER1N = (IPSDER1N)iPSDERBase;
+                                       break;
+                                    }
+
+                                    if ("DERCUSTOM".equals(iPSDERBase.getDERType()) && ((IPSDERCustom)iPSDERBase).getPickupPSDEField() != null) {
+                                       iPSDERCustom = (IPSDERCustom)iPSDERBase;
+                                       break;
+                                    }
+                                 }
+                              }
+                           }
                         } else if (dstPSDataEntity.getDEType() == 3) {
-                            IPSDERNN iPSDERNN = dstPSDataEntity.getPSDERNN();
-                            if (StringHelper.Compare((String)iPSDERNN.getFirstPSDER().getMajorDEId(), (String)iPSAppDEField.getPSAppDataEntity().getPSDataEntity().getId(), (boolean)false) == 0) {
-                                if (iPSDERNN.getSecondPSDER() instanceof IPSDER1N) {
-                                    iPSDER1N = (IPSDER1N)iPSDERNN.getSecondPSDER();
-                                } else {
-                                    iPSDERCustom = (IPSDERCustom)iPSDERNN.getSecondPSDER();
-                                }
-                            } else if (iPSDERNN.getFirstPSDER() instanceof IPSDER1N) {
-                                iPSDER1N = (IPSDER1N)iPSDERNN.getFirstPSDER();
-                            } else {
-                                iPSDERCustom = (IPSDERCustom)iPSDERNN.getFirstPSDER();
-                            }
+                           IPSDERNN iPSDERNN = dstPSDataEntity.getPSDERNN();
+                           if (StringHelper.Compare(
+                                 iPSDERNN.getFirstPSDER().getMajorDEId(), iPSAppDEField.getPSAppDataEntity().getPSDataEntity().getId(), false
+                              )
+                              == 0) {
+                              if (iPSDERNN.getSecondPSDER() instanceof IPSDER1N) {
+                                 iPSDER1N = (IPSDER1N)iPSDERNN.getSecondPSDER();
+                              } else {
+                                 iPSDERCustom = (IPSDERCustom)iPSDERNN.getSecondPSDER();
+                              }
+                           } else if (iPSDERNN.getFirstPSDER() instanceof IPSDER1N) {
+                              iPSDER1N = (IPSDER1N)iPSDERNN.getFirstPSDER();
+                           } else {
+                              iPSDERCustom = (IPSDERCustom)iPSDERNN.getFirstPSDER();
+                           }
                         }
+
                         if (iPSDER1N != null) {
-                            pickupPSDEField = iPSDER1N.getPickupPSDEField();
-                            pickupTextPSDEField = iPSDER1N.getPSPickupTextDEField();
-                            pickupObjectPSDEField = iPSDER1N.getPSPickupObjectDEField();
+                           pickupPSDEField = iPSDER1N.getPickupPSDEField();
+                           pickupTextPSDEField = iPSDER1N.getPSPickupTextDEField();
+                           pickupObjectPSDEField = iPSDER1N.getPSPickupObjectDEField();
                         } else if (iPSDERCustom != null) {
-                            iPSDERCustom = (IPSDERCustom)iPSDEMethodDTOField.getPSDER();
-                            pickupPSDEField = iPSDERCustom.getPickupPSDEField();
-                            pickupTextPSDEField = iPSDERCustom.getPickupTextPSDEField();
+                           iPSDERCustom = (IPSDERCustom)iPSDEMethodDTOField.getPSDER();
+                           pickupPSDEField = iPSDERCustom.getPickupPSDEField();
+                           pickupTextPSDEField = iPSDERCustom.getPickupTextPSDEField();
                         } else {
-                            pickupPSDEField = dstPSDataEntity.getKeyPSDEField();
-                            pickupTextPSDEField = dstPSDataEntity.getMajorPSDEField();
+                           pickupPSDEField = dstPSDataEntity.getKeyPSDEField();
+                           pickupTextPSDEField = dstPSDataEntity.getMajorPSDEField();
                         }
+
                         if (pickupPSDEField != null && pickupTextPSDEField == null) {
-                            pickupTextPSDEField = dstPSDataEntity.getMajorPSDEField();
+                           pickupTextPSDEField = dstPSDataEntity.getMajorPSDEField();
                         }
+
                         IPSDEField dstPSDEField = null;
-                        if (StringHelper.Compare((String)strParam, (String)"DEFAULTOBJECTIDFIELD", (boolean)false) == 0) {
-                            dstPSDEField = pickupPSDEField;
-                        } else if (StringHelper.Compare((String)strParam, (String)"DEFAULTOBJECTNAMEFIELD", (boolean)false) == 0) {
-                            dstPSDEField = pickupTextPSDEField;
-                        } else if (StringHelper.Compare((String)strParam, (String)"DEFAULTOBJECTVALUEFIELD", (boolean)false) == 0) {
-                            dstPSDEField = pickupObjectPSDEField;
+                        if (StringHelper.Compare(strParam, "DEFAULTOBJECTIDFIELD", false) == 0) {
+                           dstPSDEField = pickupPSDEField;
+                        } else if (StringHelper.Compare(strParam, "DEFAULTOBJECTNAMEFIELD", false) == 0) {
+                           dstPSDEField = pickupTextPSDEField;
+                        } else if (StringHelper.Compare(strParam, "DEFAULTOBJECTVALUEFIELD", false) == 0) {
+                           dstPSDEField = pickupObjectPSDEField;
                         }
-                        if (dstPSDEField != null && (dstPSAppDEField = iPSAppDEMethodDTOField.getRefPSAppDataEntity().getPSAppDEField(dstPSDEField, true)) != null && (dstPSAppDEMethodDTOField = iPSAppDEMethodDTOField.getRefPSAppDEMethodDTO().getPSAppDEMethodDTOField(dstPSAppDEField, true)) != null) {
-                            return dstPSAppDEMethodDTOField.getName();
+
+                        if (dstPSDEField != null) {
+                           IPSAppDEField dstPSAppDEField = iPSAppDEMethodDTOField.getRefPSAppDataEntity().getPSAppDEField(dstPSDEField, true);
+                           if (dstPSAppDEField != null) {
+                              IPSAppDEMethodDTOField dstPSAppDEMethodDTOField = iPSAppDEMethodDTOField.getRefPSAppDEMethodDTO()
+                                 .getPSAppDEMethodDTOField(dstPSAppDEField, true);
+                              if (dstPSAppDEMethodDTOField != null) {
+                                 return dstPSAppDEMethodDTOField.getName();
+                              }
+                           }
                         }
-                    }
-                    catch (Exception ex) {
-                        log.error((Object)ex);
-                    }
-                }
-                return strValue;
+                     }
+                  }
+               }
+            } catch (Exception ex) {
+               log.error(ex);
             }
+
             return strValue;
-        }
-        if (this.isEditable() && StringHelper.IsNullOrEmpty((String)strDefault) && StringHelper.IsNullOrEmpty((String)strValue) && strDefault != null) {
-            if (StringHelper.Compare((String)strParam, (String)"DEFAULTMAXLENGTH", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTMINLENGTH", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTMAXVALUE", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTMINVALUE", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTPRECISION", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTARRAY", (boolean)false) == 0 || StringHelper.Compare((String)strParam, (String)"DEFAULTARRAYDATATYPE", (boolean)false) == 0) {
-                String strValue2 = PropertiesHelper.getProperty((Properties)this.getEditorParams(), (String)strParam, null);
-                if (strValue2 != null) {
-                    return strValue2;
-                }
-                IPSDEGridDataItem iPSDEDataGridItem = null;
-                try {
-                    iPSDEDataGridItem = this.getPSDEGrid().getPSDEGridDataItem(this.getDataItemName(), true);
-                }
-                catch (Exception ex) {
-                    log.error((Object)ex);
-                }
-                if (iPSDEDataGridItem == null || iPSDEDataGridItem.getPSAppDEField() == null) {
-                    return strValue;
-                }
-                IPSAppDEField iPSDEFieldBase = iPSDEDataGridItem.getPSAppDEField();
-                if (this.getPSDEFGridColumn() == null && iPSDEFieldBase == null) {
-                    return strValue;
-                }
-                if (StringHelper.Compare((String)strParam, (String)"DEFAULTMAXLENGTH", (boolean)false) == 0) {
-                    int nLength = -1;
-                    nLength = this.getPSDEFGridColumn() != null ? this.getPSDEFGridColumn().getStringLength(iPSDEFieldBase) : iPSDEFieldBase.getStringLength();
-                    if (nLength <= 0) {
-                        return null;
-                    }
-                    return String.format("%1$s", nLength);
-                }
-                if (StringHelper.Compare((String)strParam, (String)"DEFAULTMINLENGTH", (boolean)false) == 0) {
-                    int nLength = -1;
-                    nLength = this.getPSDEFGridColumn() != null ? this.getPSDEFGridColumn().getMinStringLength(iPSDEFieldBase) : iPSDEFieldBase.getMinStringLength();
-                    if (nLength <= 0) {
-                        return null;
-                    }
-                    return String.format("%1$s", nLength);
-                }
-                if (StringHelper.Compare((String)strParam, (String)"DEFAULTMAXVALUE", (boolean)false) == 0) {
-                    if (this.getPSDEFGridColumn() != null) {
-                        return this.getPSDEFGridColumn().getMaxValueString(iPSDEFieldBase);
-                    }
-                    return iPSDEFieldBase.getMaxValueString();
-                }
-                if (StringHelper.Compare((String)strParam, (String)"DEFAULTMINVALUE", (boolean)false) == 0) {
-                    if (this.getPSDEFGridColumn() != null) {
-                        return this.getPSDEFGridColumn().getMinValueString(iPSDEFieldBase);
-                    }
-                    return iPSDEFieldBase.getMinValueString();
-                }
-                if (StringHelper.Compare((String)strParam, (String)"DEFAULTPRECISION", (boolean)false) == 0) {
-                    int nLength = -1;
-                    nLength = this.getPSDEFGridColumn() != null ? this.getPSDEFGridColumn().getPrecision(iPSDEFieldBase) : iPSDEFieldBase.getPrecision();
-                    if (nLength <= 0) {
-                        return null;
-                    }
-                    return String.format("%1$s", nLength);
-                }
-                if (this.getPSAppDEField() != null && StringHelper.Compare((String)strParam, (String)"DEFAULTARRAYDATATYPE", (boolean)false) == 0) {
-                    block64: {
-                        IPSAppDEMethodDTOField iPSAppDEMethodDTOField;
-                        block65: {
-                            IPSAppDEMethodDTO iPSAppDEMethodDTO = this.getPSAppDEMethodDTO();
-                            if (iPSAppDEMethodDTO == null || (iPSAppDEMethodDTOField = iPSAppDEMethodDTO.getPSAppDEMethodDTOField(this.getPSAppDEField(), true)) == null || !"SIMPLES".equals(iPSAppDEMethodDTOField.getType())) break block64;
-                            if (!DataTypeHelper.isBigIntType((int)iPSAppDEMethodDTOField.getStdDataType()) && !DataTypeHelper.isBigDecimalType((int)iPSAppDEMethodDTOField.getStdDataType()) && !DataTypeHelper.isDoubleType((int)iPSAppDEMethodDTOField.getStdDataType())) break block65;
-                            return "NUMBER";
-                        }
-                        try {
-                            if (DataTypeHelper.isIntType((int)iPSAppDEMethodDTOField.getStdDataType())) {
-                                return "INTEGER";
-                            }
-                            return "STRING";
-                        }
-                        catch (Exception ex) {
-                            log.error((Object)ex);
-                        }
-                    }
-                    return strValue;
-                }
-                if (this.getPSAppDEField() != null && StringHelper.Compare((String)strParam, (String)"DEFAULTARRAY", (boolean)false) == 0) {
-                    try {
-                        IPSAppDEMethodDTOField iPSAppDEMethodDTOField;
-                        IPSAppDEMethodDTO iPSAppDEMethodDTO = this.getPSAppDEMethodDTO();
-                        if (iPSAppDEMethodDTO != null && (iPSAppDEMethodDTOField = iPSAppDEMethodDTO.getPSAppDEMethodDTOField(this.getPSAppDEField(), true)) != null && "SIMPLES".equals(iPSAppDEMethodDTOField.getType())) {
-                            return "true";
-                        }
-                    }
-                    catch (Exception ex) {
-                        log.error((Object)ex);
-                    }
-                    return strValue;
-                }
-            }
+         } else {
             return strValue;
-        }
-        return strValue;
-    }
+         }
+      }
+   }
 
-    @Override
-    public double getEditorParam(String strParam, double fDefault) {
-        return PropertiesHelper.getProperty((Properties)this.getEditorParams(), (String)strParam, (double)fDefault);
-    }
+   @Override
+   public double getEditorParam(String strParam, double fDefault) {
+      return PropertiesHelper.getProperty(this.getEditorParams(), strParam, fDefault);
+   }
 
-    @Override
-    public boolean getEditorParam(String strParam, boolean bDefault) {
-        return PropertiesHelper.getProperty((Properties)this.getEditorParams(), (String)strParam, (boolean)bDefault);
-    }
+   @Override
+   public boolean getEditorParam(String strParam, boolean bDefault) {
+      return PropertiesHelper.getProperty(this.getEditorParams(), strParam, bDefault);
+   }
 
-    @Override
-    public String getPSSysValueRuleId() {
-        return this.strPSSysValueRuleId;
-    }
+   @Override
+   public String getPSSysValueRuleId() {
+      return this.strPSSysValueRuleId;
+   }
 
-    public String getValueRuleId() {
-        return this.getPSSysValueRuleId();
-    }
+   @Override
+   public String getValueRuleId() {
+      return this.getPSSysValueRuleId();
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5ffd\u7565\u8f93\u5165\u6a21\u5f0f", codelist="FormItemEnableCond", fields={"IGNOREINPUT"})
-    public int getIgnoreInput() {
-        return this.nIgnoreInput;
-    }
+   @PSModelRTMeta(description = "忽略输入模式", codelist = "FormItemEnableCond", fields = "IGNOREINPUT")
+   @Override
+   public int getIgnoreInput() {
+      return this.nIgnoreInput;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u8f6c\u5316\u4e3a\u4ee3\u7801\u9879\u6587\u672c", ignoredumpvalues="false")
-    public boolean isConvertToCodeItemText() {
-        if (StringHelper.IsNullOrEmpty((String)this.getPSCodeListId())) {
-            return false;
-        }
-        if (this.getPSEditorType() != null) {
-            return this.getPSEditorType().isConvertToCodeItemText();
-        }
-        return false;
-    }
+   @PSModelRTMeta(description = "转化为代码项文本", ignoredumpvalues = "false")
+   @Override
+   public boolean isConvertToCodeItemText() {
+      if (StringHelper.IsNullOrEmpty(this.getPSCodeListId())) {
+         return false;
+      } else {
+         return this.getPSEditorType() != null ? this.getPSEditorType().isConvertToCodeItemText() : false;
+      }
+   }
 
-    public JSONObject getConfig(IWebContext iWebContext, IDataObject iDataObject, boolean bUpdate) throws Exception {
-        return null;
-    }
+   @Override
+   public JSONObject getConfig(IWebContext iWebContext, IDataObject iDataObject, boolean bUpdate) throws Exception {
+      return null;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u9700\u8981\u4ee3\u7801\u8868\u914d\u7f6e", ignoredumpvalues="false", fields={"NEEDCODELISTCONFIG"})
-    public boolean isNeedCodeListConfig() {
-        return this.bNeedCodeListConfig;
-    }
+   @PSModelRTMeta(description = "需要代码表配置", ignoredumpvalues = "false", fields = "NEEDCODELISTCONFIG")
+   @Override
+   public boolean isNeedCodeListConfig() {
+      return this.bNeedCodeListConfig;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u8f93\u51fa\u4ee3\u7801\u8868\u914d\u7f6e\u6a21\u5f0f", codelist="OutputCodeListConfigMode", ignoredumpvalues="0", fields={"CODELISTCONFIGMODE"})
-    public int getOutputCodeListConfigMode() {
-        return this.nOutputCodeListConfigMode;
-    }
+   @PSModelRTMeta(description = "输出代码表配置模式", codelist = "OutputCodeListConfigMode", ignoredumpvalues = "0", fields = "CODELISTCONFIGMODE")
+   @Override
+   public int getOutputCodeListConfigMode() {
+      return this.nOutputCodeListConfigMode;
+   }
 
-    @Override
-    public String getEditorCssStyle() {
-        return this.strEditorCssStyle;
-    }
+   @Override
+   public String getEditorCssStyle() {
+      return this.strEditorCssStyle;
+   }
 
-    @Override
-    public String getValueTranslator() {
-        return this.strValueProcessor;
-    }
+   @Override
+   public String getValueTranslator() {
+      return this.strValueProcessor;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u91cd\u7f6e\u9879\u540d\u79f0", ignorert=3, hideempty2=true, fields={"RESETITEMNAME"})
-    public String getResetItemName() {
-        return this.strResetItemName;
-    }
+   @PSModelRTMeta(description = "重置项名称", ignorert = 3, hideempty2 = true, fields = "RESETITEMNAME")
+   @Override
+   public String getResetItemName() {
+      return this.strResetItemName;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u91cd\u7f6e\u9879\u96c6\u5408", hideempty2=true, child=true, outputdoc="false", fields={"RESETITEMNAME"})
-    public Iterator<String> getResetItemNames() {
-        if (this.resetItemNameList == null || this.resetItemNameList.size() == 0) {
-            return null;
-        }
-        return this.resetItemNameList.iterator();
-    }
+   @PSModelRTMeta(description = "重置项集合", hideempty2 = true, child = true, outputdoc = "false", fields = "RESETITEMNAME")
+   @Override
+   public Iterator<String> getResetItemNames() {
+      return this.resetItemNameList != null && this.resetItemNameList.size() != 0 ? this.resetItemNameList.iterator() : null;
+   }
 
-    public String getUserDictCatId() {
-        return this.strPSSysDictCatId;
-    }
+   @Override
+   public String getUserDictCatId() {
+      return this.strPSSysDictCatId;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u8f93\u5165\u63d0\u793a\u4fe1\u606f", dump=false)
-    public String getPlaceHolder() {
-        return this.strPlaceHolder;
-    }
+   @PSModelRTMeta(description = "输入提示信息", dump = false)
+   @Override
+   public String getPlaceHolder() {
+      return this.strPlaceHolder;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u7cfb\u7edf\u7f16\u8f91\u5668\u6837\u5f0f")
-    public IPSSysEditorStyle getPSSysEditorStyle() {
-        return this.iPSSysEditorStyle;
-    }
+   @PSModelRTMeta(description = "系统编辑器样式")
+   @Override
+   public IPSSysEditorStyle getPSSysEditorStyle() {
+      return this.iPSSysEditorStyle;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u8868\u683c\u5217\u5bf9\u8c61", outputdoc="false")
-    public IPSDEGridColumn getPSDEGridColumn() {
-        return this;
-    }
+   @PSModelRTMeta(description = "表格列对象", outputdoc = "false")
+   @Override
+   public IPSDEGridColumn getPSDEGridColumn() {
+      return this;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u652f\u6301\u884c\u7f16\u8f91", ignoredumpvalues="false", fields={"ENABLEROWEDIT"})
-    public boolean isEnableRowEdit() {
-        return this.bRowEditable;
-    }
+   @PSModelRTMeta(description = "支持行编辑", ignoredumpvalues = "false", fields = "ENABLEROWEDIT")
+   @Override
+   public boolean isEnableRowEdit() {
+      return this.bRowEditable;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u8868\u683c\u7f16\u8f91\u9879\u5bf9\u8c61", hideempty=true, modelcls="SA.SRFDA.PS.Core.Control.Grid.IPSDEGridEditItem")
-    public IPSDEGridEditItem getPSDEGridEditItem() {
-        if (this.isEnableRowEdit()) {
-            return this;
-        }
-        return super.getPSDEGridEditItem();
-    }
+   @PSModelRTMeta(description = "表格编辑项对象", hideempty = true, modelcls = "SA.SRFDA.PS.Core.Control.Grid.IPSDEGridEditItem")
+   @Override
+   public IPSDEGridEditItem getPSDEGridEditItem() {
+      return this.isEnableRowEdit() ? this : super.getPSDEGridEditItem();
+   }
 
-    @PSModelRTMeta(description="\u6570\u636e\u9879")
-    public IDataItem getDataItem() {
-        if (this.psDEGridDataItemList != null && this.psDEGridDataItemList.size() > 0) {
-            return this.psDEGridDataItemList.get(0);
-        }
-        return this.psDataItemImpl;
-    }
+   @PSModelRTMeta(description = "数据项")
+   @Override
+   public IDataItem getDataItem() {
+      return this.psDEGridDataItemList != null && this.psDEGridDataItemList.size() > 0 ? this.psDEGridDataItemList.get(0) : this.psDataItemImpl;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u542f\u7528\u9879\u6743\u9650\u63a7\u5236", ignoredumpvalues="false", fields={"ENABLEITEMPRIV"})
-    public boolean isEnableItemPriv() {
-        return this.bEnableItemPriv;
-    }
+   @PSModelRTMeta(description = "启用项权限控制", ignoredumpvalues = "false", fields = "ENABLEITEMPRIV")
+   @Override
+   public boolean isEnableItemPriv() {
+      return this.bEnableItemPriv;
+   }
 
-    protected void setEnableItemPriv(boolean bEnableItemPriv) {
-        this.bEnableItemPriv = bEnableItemPriv;
-    }
+   protected void setEnableItemPriv(boolean bEnableItemPriv) {
+      this.bEnableItemPriv = bEnableItemPriv;
+   }
 
-    @Override
-    public String getItemPrivId() {
-        return this.strItemPrivId;
-    }
+   @Override
+   public String getItemPrivId() {
+      return this.strItemPrivId;
+   }
 
-    protected void setItemPrivId(String strItemPrivId) {
-        this.strItemPrivId = strItemPrivId;
-    }
+   protected void setItemPrivId(String strItemPrivId) {
+      this.strItemPrivId = strItemPrivId;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u6570\u636e\u5206\u7ec4\u9879", fields={"GROUPITEM"})
-    public String getGroupItem() {
-        return this.strGroupItem;
-    }
+   @PSModelRTMeta(description = "数据分组项", fields = "GROUPITEM")
+   @Override
+   public String getGroupItem() {
+      return this.strGroupItem;
+   }
 
-    protected void setGroupItem(String strGroupItem) {
-        this.strGroupItem = strGroupItem;
-    }
+   protected void setGroupItem(String strGroupItem) {
+      this.strGroupItem = strGroupItem;
+   }
 
-    protected IPSAjaxHandler createItemPSAjaxHandler(String strPSACHandlerId) throws Exception {
-        PSACHandler psACHandler = this.getPSDEGrid().getPSDataEntity().getPSAjaxControlHandlerData(strPSACHandlerId);
-        PSDEGridEditItemAjaxHandlerImpl psAjaxHandlerImpl = new PSDEGridEditItemAjaxHandlerImpl();
-        psAjaxHandlerImpl.init(this.getDAGlobalHelper(), this, psACHandler);
-        return psAjaxHandlerImpl;
-    }
+   protected IPSAjaxHandler createItemPSAjaxHandler(String strPSACHandlerId) throws Exception {
+      PSACHandler psACHandler = this.getPSDEGrid().getPSDataEntity().getPSAjaxControlHandlerData(strPSACHandlerId);
+      PSDEGridEditItemAjaxHandlerImpl psAjaxHandlerImpl = new PSDEGridEditItemAjaxHandlerImpl();
+      psAjaxHandlerImpl.init(this.getDAGlobalHelper(), this, psACHandler);
+      return psAjaxHandlerImpl;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u7f16\u8f91\u9879\u540e\u53f0\u5904\u7406\u5bf9\u8c61")
-    public IPSAjaxHandler getItemPSAjaxHandler() {
-        return this.itemPSAjaxHandler;
-    }
+   @PSModelRTMeta(description = "编辑项后台处理对象")
+   @Override
+   public IPSAjaxHandler getItemPSAjaxHandler() {
+      return this.itemPSAjaxHandler;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5185\u7f6e\u754c\u9762\u884c\u4e3a", hideempty2=true, child=true, fields={"PSDEUIACTIONID"})
-    public IPSDEUIAction getPSDEUIAction() {
-        return this.iPSDEUIAction;
-    }
+   @PSModelRTMeta(description = "内置界面行为", hideempty2 = true, child = true, fields = "PSDEUIACTIONID")
+   @Override
+   public IPSDEUIAction getPSDEUIAction() {
+      return this.iPSDEUIAction;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u754c\u9762\u884c\u4e3a\u7ec4", child=true, fields={"PSDEUAGROUPID"})
-    public IPSDEUIActionGroup getPSDEUIActionGroup() {
-        return this.iPSDEUIActionGroup;
-    }
+   @PSModelRTMeta(description = "界面行为组", child = true, fields = "PSDEUAGROUPID")
+   @Override
+   public IPSDEUIActionGroup getPSDEUIActionGroup() {
+      return this.iPSDEUIActionGroup;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u4ee3\u7801\u8868\u8f93\u51fa\u6a21\u5f0f", codelist="CLConvertModes", hideempty2=true, fields={"CLCONVERTMODE"})
-    public String getCLConvertMode() {
-        return this.strCLConvertMode;
-    }
+   @PSModelRTMeta(description = "代码表输出模式", codelist = "CLConvertModes", hideempty2 = true, fields = "CLCONVERTMODE")
+   @Override
+   public String getCLConvertMode() {
+      return this.strCLConvertMode;
+   }
 
-    protected boolean isFixColDataItemBug() {
-        return (this.getPSSystemSetting().getEngineBugFixs() & 2) == 2;
-    }
+   protected boolean isFixColDataItemBug() {
+      return (this.getPSSystemSetting().getEngineBugFixs() & 2) == 2;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u81ea\u52a8\u4ea7\u751f\u6570\u636e\u9879", dump=false)
-    public boolean isGenerateDataItems() {
-        return this.bGenerateDataItems;
-    }
+   @PSModelRTMeta(description = "自动产生数据项", dump = false)
+   @Override
+   public boolean isGenerateDataItems() {
+      return this.bGenerateDataItems;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u6811\u8282\u70b9\u5217", dump=false)
-    public boolean isTreeNodeColumn() {
-        return this.bTreeColumn;
-    }
+   @PSModelRTMeta(description = "树节点列", dump = false)
+   @Override
+   public boolean isTreeNodeColumn() {
+      return this.bTreeColumn;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u6811\u5217\u6a21\u5f0f", codelist="GridTreeColMode", ignoredumpvalues="0", outputdoc="false")
-    public int getTreeColumnMode() {
-        return this.nTreeNodeMode;
-    }
+   @PSModelRTMeta(description = "树列模式", codelist = "GridTreeColMode", ignoredumpvalues = "0", outputdoc = "false")
+   @Override
+   public int getTreeColumnMode() {
+      return this.nTreeNodeMode;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u7ed1\u5b9a\u503c\u9879\u540d\u79f0\u96c6\u5408", fields={"VALUEITEMNAME"})
-    public String[] getValueItemNames() {
-        if (this.valueItemNameList == null || this.valueItemNameList.size() == 0) {
-            return null;
-        }
-        return this.valueItemNameList.toArray(new String[this.valueItemNameList.size()]);
-    }
+   @PSModelRTMeta(description = "绑定值项名称集合", fields = "VALUEITEMNAME")
+   @Override
+   public String[] getValueItemNames() {
+      return this.valueItemNameList != null && this.valueItemNameList.size() != 0
+         ? this.valueItemNameList.toArray(new String[this.valueItemNameList.size()])
+         : null;
+   }
 
-    @Override
-    public String getEditorContainer() {
-        return "GRIDCOLUMN";
-    }
+   @Override
+   public String getEditorContainer() {
+      return "GRIDCOLUMN";
+   }
 
-    @Override
-    public double getEditorHeight() {
-        return 0.0;
-    }
+   @Override
+   public double getEditorHeight() {
+      return 0.0;
+   }
 
-    @Override
-    public double getEditorWidth() {
-        return 0.0;
-    }
+   @Override
+   public double getEditorWidth() {
+      return 0.0;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5f15\u7528\u5b9e\u4f53\u5bf9\u8c61", hideempty=true)
-    public IPSDataEntity getRefPSDataEntity() throws Exception {
-        if (!StringHelper.IsNullOrEmpty((String)this.psDEGridColumn.getREFPSDEID())) {
-            return this.getPSSystem().getPSDataEntity2(this.psDEGridColumn.getREFPSDEID());
-        }
-        if (this.iPSDEFGridColumn != null) {
-            return this.iPSDEFGridColumn.getRefPSDataEntity();
-        }
-        return null;
-    }
+   @PSModelRTMeta(description = "引用实体对象", hideempty = true)
+   @Override
+   public IPSDataEntity getRefPSDataEntity() throws Exception {
+      if (!StringHelper.IsNullOrEmpty(this.psDEGridColumn.getREFPSDEID())) {
+         return this.getPSSystem().getPSDataEntity2(this.psDEGridColumn.getREFPSDEID());
+      } else {
+         return this.iPSDEFGridColumn != null ? this.iPSDEFGridColumn.getRefPSDataEntity() : null;
+      }
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u7f16\u8f91\u5668\u5bf9\u8c61", hideempty=true, child=true)
-    public IPSEditor getPSEditor() throws Exception {
-        if (this.iPSEditor == null && this.getPSEditorType() != null) {
-            this.iPSEditor = this.getPSEditorType().createPSEditor(this);
-        }
-        return this.iPSEditor;
-    }
+   @PSModelRTMeta(description = "编辑器对象", hideempty = true, child = true)
+   @Override
+   public IPSEditor getPSEditor() throws Exception {
+      if (this.iPSEditor == null && this.getPSEditorType() != null) {
+         this.iPSEditor = this.getPSEditorType().createPSEditor(this);
+      }
 
-    @Override
-    public String getEditorName() {
-        return this.getCodeName();
-    }
+      return this.iPSEditor;
+   }
 
-    @Override
-    public IPSControlContainer getPSControlContainer() {
-        return this.getPSDEGrid();
-    }
+   @Override
+   public String getEditorName() {
+      return this.getCodeName();
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u652f\u6301\u94fe\u63a5\u89c6\u56fe", ignoredumpvalues="false")
-    public boolean isEnableLinkView() {
-        return this.bEnableLinkView;
-    }
+   @Override
+   public IPSControlContainer getPSControlContainer() {
+      return this.getPSDEGrid();
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u542f\u7528\u94fe\u63a5\u6a21\u5f0f", codelist="DEGridColLinkMode", dump=false)
-    public int getEnableLink() {
-        return this.nEnableLink;
-    }
+   @PSModelRTMeta(description = "支持链接视图", ignoredumpvalues = "false")
+   @Override
+   public boolean isEnableLinkView() {
+      return this.bEnableLinkView;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u94fe\u63a5\u503c\u9879", fields={"VALUEITEMNAME"})
-    public String getLinkValueItem() {
-        if (!this.isEnableLinkView()) {
-            return "";
-        }
-        String strLinkValueItem = this.psDEGridColumn.getVALUEITEMNAME();
-        if (!StringHelper.IsNullOrEmpty((String)strLinkValueItem)) {
+   @PSModelRTMeta(description = "启用链接模式", codelist = "DEGridColLinkMode", dump = false)
+   @Override
+   public int getEnableLink() {
+      return this.nEnableLink;
+   }
+
+   @PSModelRTMeta(description = "链接值项", fields = "VALUEITEMNAME")
+   @Override
+   public String getLinkValueItem() {
+      if (!this.isEnableLinkView()) {
+         return "";
+      }
+
+      String strLinkValueItem = this.psDEGridColumn.getVALUEITEMNAME();
+      if (!StringHelper.IsNullOrEmpty(strLinkValueItem)) {
+         return strLinkValueItem;
+      }
+
+      if (this.iPSDEFGridColumn != null) {
+         strLinkValueItem = this.iPSDEFGridColumn.getLinkValueItem(this);
+         if (!StringHelper.IsNullOrEmpty(strLinkValueItem)) {
             return strLinkValueItem;
-        }
-        if (this.iPSDEFGridColumn != null && !StringHelper.IsNullOrEmpty((String)(strLinkValueItem = this.iPSDEFGridColumn.getLinkValueItem(this)))) {
-            return strLinkValueItem;
-        }
-        if (this.getPSDEField() != null && this.getPSDEField().isMajorDEField()) {
-            return "srfkey";
-        }
-        return this.getDataItemName();
-    }
+         }
+      }
 
-    @Override
-    @PSModelRTMeta(description="\u94fe\u63a5\u89c6\u56fe", dumpref=true, fields={"LINKPSDEVIEWID"})
-    public IPSAppView getLinkPSAppView() throws Exception {
-        if (!this.isEnableLinkView()) {
-            return null;
-        }
-        if (this.linkPSAppView == null) {
-            this.linkPSAppView = this.onGetLinkPSAppView(false);
-        }
-        return this.linkPSAppView;
-    }
+      return this.getPSDEField() != null && this.getPSDEField().isMajorDEField() ? "srfkey" : this.getDataItemName();
+   }
 
-    protected IPSAppView onGetLinkPSAppView(boolean bTryMode) throws Exception {
-        String strLinkPSDEViewId = this.psDEGridColumn.getLINKPSDEVIEWID();
-        if (StringHelper.IsNullOrEmpty((String)strLinkPSDEViewId) && this.getPSDEFGridColumn() != null) {
-            strLinkPSDEViewId = this.getPSDEFGridColumn().getRefLinkPSDEViewId(this.getPSDEGrid().getPSAppView().getPSApplication());
-        }
-        if (StringHelper.IsNullOrEmpty((String)strLinkPSDEViewId) && this.getPSCodeList() != null) {
-            strLinkPSDEViewId = this.getPSCodeList().getLinkPSDEViewId();
-        }
-        if (StringHelper.IsNullOrEmpty((String)strLinkPSDEViewId) && this.getPSDEField() != null && this.getPSDEField().isMajorDEField() && this.getPSDEGrid().getPSAppDataEntity() != null) {
-            strLinkPSDEViewId = this.getPSDEGrid().getPSAppDataEntity().getRefLinkPSDEViewId();
-        }
-        if (!StringHelper.IsNullOrEmpty((String)strLinkPSDEViewId)) {
-            return this.getPSDEGrid().getPSAppView().getPSApplication().getPSAppViewByDEViewId(strLinkPSDEViewId, bTryMode);
-        }
-        return null;
-    }
+   @PSModelRTMeta(description = "链接视图", dumpref = true, fields = "LINKPSDEVIEWID")
+   @Override
+   public IPSAppView getLinkPSAppView() throws Exception {
+      if (!this.isEnableLinkView()) {
+         return null;
+      }
 
-    protected void registerPSAppViewLogic(IPSAppViewUIAction iPSAppViewUIAction) throws Exception {
-        String strCtrlName = this.getPSDEGrid().getName();
-        String strLogicTag = StringHelper.Format((String)"%1$s_%2$s_click", (Object)strCtrlName, (Object)this.getName()).toLowerCase();
-        PSAppViewLogic psAppViewLogic = new PSAppViewLogic();
-        psAppViewLogic.setPSAPPVIEWLOGICID(strLogicTag);
-        psAppViewLogic.setPSAPPVIEWLOGICNAME(strLogicTag);
-        psAppViewLogic.setDSTLOGICTYPE("APPVIEWUIACTION");
-        psAppViewLogic.setPSAPPVIEWLOGICTYPE("CUSTOM");
-        PSAppViewLogicImpl psAppDEViewLogicImpl = new PSAppViewLogicImpl();
-        psAppDEViewLogicImpl.init(this.getDAGlobalHelper(), (Object)this.getPSDEGrid(), psAppViewLogic, iPSAppViewUIAction);
-        this.getPSDEGrid().registerPSAppViewLogic(psAppDEViewLogicImpl);
-    }
+      if (this.linkPSAppView == null) {
+         this.linkPSAppView = this.onGetLinkPSAppView(false);
+      }
 
-    protected void registerPSAppViewLogic(IPSAppViewUIAction iPSAppViewUIAction, IPSUIActionGroupDetail iPSUIActionGroupDetail) throws Exception {
-        String strCtrlName = this.getPSDEGrid().getName();
-        String strLogicTag = StringHelper.Format((String)"%1$s_%2$s_%3$s_click", (Object)strCtrlName, (Object)this.getName(), (Object)iPSUIActionGroupDetail.getName()).toLowerCase();
-        PSAppViewLogic psAppViewLogic = new PSAppViewLogic();
-        psAppViewLogic.setPSAPPVIEWLOGICID(strLogicTag);
-        psAppViewLogic.setPSAPPVIEWLOGICNAME(strLogicTag);
-        psAppViewLogic.setDSTLOGICTYPE("APPVIEWUIACTION");
-        psAppViewLogic.setPSAPPVIEWLOGICTYPE("CUSTOM");
-        PSAppViewLogicImpl psAppDEViewLogicImpl = new PSAppViewLogicImpl();
-        psAppDEViewLogicImpl.init(this.getDAGlobalHelper(), (Object)this.getPSDEGrid(), psAppViewLogic, iPSAppViewUIAction);
-        this.getPSDEGrid().registerPSAppViewLogic(psAppDEViewLogicImpl);
-    }
+      return this.linkPSAppView;
+   }
 
-    @Override
-    public String getPSSysDictCatId() {
-        return this.strPSSysDictCatId;
-    }
+   protected IPSAppView onGetLinkPSAppView(boolean bTryMode) throws Exception {
+      String strLinkPSDEViewId = this.psDEGridColumn.getLINKPSDEVIEWID();
+      if (StringHelper.IsNullOrEmpty(strLinkPSDEViewId) && this.getPSDEFGridColumn() != null) {
+         strLinkPSDEViewId = this.getPSDEFGridColumn().getRefLinkPSDEViewId(this.getPSDEGrid().getPSAppView().getPSApplication());
+      }
 
-    @Override
-    protected String onGetRenderPSSysPFPluginId() {
-        String strRenderPSSysPFPluginId = super.onGetRenderPSSysPFPluginId();
-        if (StringHelper.IsNullOrEmpty((String)strRenderPSSysPFPluginId) && this.getPSDEFGridColumn() != null && this.getPSDEFGridColumn().getRenderPSSysPFPlugin() != null) {
-            return this.getPSDEFGridColumn().getRenderPSSysPFPlugin().getId();
-        }
-        return strRenderPSSysPFPluginId;
-    }
+      if (StringHelper.IsNullOrEmpty(strLinkPSDEViewId) && this.getPSCodeList() != null) {
+         strLinkPSDEViewId = this.getPSCodeList().getLinkPSDEViewId();
+      }
 
-    @Override
-    public IPSSysValueRule getPSSysValueRule() throws Exception {
-        if (!this.isEditable()) {
-            return null;
-        }
-        IPSSysValueRule iPSSysValueRule = this.onGetPSSysValueRule();
-        if (iPSSysValueRule != null) {
-            if (iPSSysValueRule instanceof IPSAppValueRule) {
-                return iPSSysValueRule;
-            }
-            return this.getPSDEGrid().getPSAppView().getPSApplication().getPSAppValueRule(iPSSysValueRule.getId());
-        }
-        return iPSSysValueRule;
-    }
+      if (StringHelper.IsNullOrEmpty(strLinkPSDEViewId)
+         && this.getPSDEField() != null
+         && this.getPSDEField().isMajorDEField()
+         && this.getPSDEGrid().getPSAppDataEntity() != null) {
+         strLinkPSDEViewId = this.getPSDEGrid().getPSAppDataEntity().getRefLinkPSDEViewId();
+      }
 
-    protected IPSSysValueRule onGetPSSysValueRule() throws Exception {
-        if (this.getPSDEFGridColumn() != null) {
-            if (this.getPSAppDEField() != null) {
-                return this.getPSDEFGridColumn().getPSSysValueRule(this.getPSAppDEField());
-            }
-            if (this.getPSDEField() != null) {
-                return this.getPSDEFGridColumn().getPSSysValueRule(this.getPSDEField());
-            }
-        } else {
-            if (this.getPSAppDEField() != null) {
-                return this.getPSAppDEField().getPSSysValueRule();
-            }
-            if (this.getPSDEField() != null) {
-                return this.getPSDEField().getPSSysValueRule();
-            }
-        }
-        return null;
-    }
+      return !StringHelper.IsNullOrEmpty(strLinkPSDEViewId)
+         ? this.getPSDEGrid().getPSAppView().getPSApplication().getPSAppViewByDEViewId(strLinkPSDEViewId, bTryMode)
+         : null;
+   }
 
-    @Override
-    public String getEditorDynaClass() {
-        return null;
-    }
+   protected void registerPSAppViewLogic(IPSAppViewUIAction iPSAppViewUIAction) throws Exception {
+      String strCtrlName = this.getPSDEGrid().getName();
+      String strLogicTag = StringHelper.Format("%1$s_%2$s_click", strCtrlName, this.getName()).toLowerCase();
+      PSAppViewLogic psAppViewLogic = new PSAppViewLogic();
+      psAppViewLogic.setPSAPPVIEWLOGICID(strLogicTag);
+      psAppViewLogic.setPSAPPVIEWLOGICNAME(strLogicTag);
+      psAppViewLogic.setDSTLOGICTYPE("APPVIEWUIACTION");
+      psAppViewLogic.setPSAPPVIEWLOGICTYPE("CUSTOM");
+      PSAppViewLogicImpl psAppDEViewLogicImpl = new PSAppViewLogicImpl();
+      psAppDEViewLogicImpl.init(this.getDAGlobalHelper(), this.getPSDEGrid(), psAppViewLogic, iPSAppViewUIAction);
+      this.getPSDEGrid().registerPSAppViewLogic(psAppDEViewLogicImpl);
+   }
 
-    @Override
-    public String getEditorCssStyle2() {
-        return null;
-    }
+   protected void registerPSAppViewLogic(IPSAppViewUIAction iPSAppViewUIAction, IPSUIActionGroupDetail iPSUIActionGroupDetail) throws Exception {
+      String strCtrlName = this.getPSDEGrid().getName();
+      String strLogicTag = StringHelper.Format("%1$s_%2$s_%3$s_click", strCtrlName, this.getName(), iPSUIActionGroupDetail.getName()).toLowerCase();
+      PSAppViewLogic psAppViewLogic = new PSAppViewLogic();
+      psAppViewLogic.setPSAPPVIEWLOGICID(strLogicTag);
+      psAppViewLogic.setPSAPPVIEWLOGICNAME(strLogicTag);
+      psAppViewLogic.setDSTLOGICTYPE("APPVIEWUIACTION");
+      psAppViewLogic.setPSAPPVIEWLOGICTYPE("CUSTOM");
+      PSAppViewLogicImpl psAppDEViewLogicImpl = new PSAppViewLogicImpl();
+      psAppDEViewLogicImpl.init(this.getDAGlobalHelper(), this.getPSDEGrid(), psAppViewLogic, iPSAppViewUIAction);
+      this.getPSDEGrid().registerPSAppViewLogic(psAppDEViewLogicImpl);
+   }
 
-    @Override
-    public IPSSysCss getEditorPSSysCss() {
-        return null;
-    }
+   @Override
+   public String getPSSysDictCatId() {
+      return this.strPSSysDictCatId;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5355\u4f4d\u540d\u79f0")
-    public String getUnitName() {
-        return this.strUnitName;
-    }
+   @Override
+   protected String onGetRenderPSSysPFPluginId() {
+      String strRenderPSSysPFPluginId = super.onGetRenderPSSysPFPluginId();
+      return StringHelper.IsNullOrEmpty(strRenderPSSysPFPluginId)
+            && this.getPSDEFGridColumn() != null
+            && this.getPSDEFGridColumn().getRenderPSSysPFPlugin() != null
+         ? this.getPSDEFGridColumn().getRenderPSSysPFPlugin().getId()
+         : strRenderPSSysPFPluginId;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5355\u4f4d\u5bbd\u5ea6", ignoredumpvalues="0")
-    public int getUnitNameWidth() {
-        return this.nUnitNameWidth;
-    }
+   @Override
+   public IPSSysValueRule getPSSysValueRule() throws Exception {
+      if (!this.isEditable()) {
+         return null;
+      } else {
+         IPSSysValueRule iPSSysValueRule = this.onGetPSSysValueRule();
+         if (iPSSysValueRule != null) {
+            return iPSSysValueRule instanceof IPSAppValueRule
+               ? iPSSysValueRule
+               : this.getPSDEGrid().getPSAppView().getPSApplication().getPSAppValueRule(iPSSysValueRule.getId());
+         } else {
+            return iPSSysValueRule;
+         }
+      }
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u652f\u6301\u5355\u4f4d", ignoredumpvalues="false")
-    public boolean isEnableUnitName() {
-        return this.bEnableUnitName;
-    }
+   protected IPSSysValueRule onGetPSSysValueRule() throws Exception {
+      if (this.getPSDEFGridColumn() != null) {
+         if (this.getPSAppDEField() != null) {
+            return this.getPSDEFGridColumn().getPSSysValueRule(this.getPSAppDEField());
+         }
 
-    @Override
-    @PSModelRTMeta(description="\u8fc7\u6ee4\u5668\u7f16\u8f91\u5668\u5bf9\u8c61", hideempty=true, child=true)
-    public IPSEditor getFilterPSEditor() throws Exception {
-        if (this.psEditorContainerImpl != null) {
-            return this.psEditorContainerImpl.getPSEditor();
-        }
-        return null;
-    }
+         if (this.getPSDEField() != null) {
+            return this.getPSDEFGridColumn().getPSSysValueRule(this.getPSDEField());
+         }
+      } else {
+         if (this.getPSAppDEField() != null) {
+            return this.getPSAppDEField().getPSSysValueRule();
+         }
 
-    @Override
-    @PSModelRTMeta(description="\u503c\u7c7b\u578b[VALUETYPE]{SIMPLE|SIMPLES|OBJECT|OBJECTS}", codelist="EditorValueType", ignoredumpvalues="SIMPLE")
-    public String getValueType() {
-        return this.getEditorParam("VALUETYPE", this.getDefaultValueType());
-    }
+         if (this.getPSDEField() != null) {
+            return this.getPSDEField().getPSSysValueRule();
+         }
+      }
 
-    protected String getDefaultValueType() {
-        String strValue = this.getEditorParam("DEFAULTVALUETYPE", "");
-        if (StringHelper.IsNullOrEmpty((String)strValue)) {
-            return null;
-        }
-        return strValue;
-    }
+      return null;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5bf9\u8c61\u6807\u8bc6\u5c5e\u6027[OBJECTIDFIELD]")
-    public String getObjectIdField() {
-        return this.getEditorParam("OBJECTIDFIELD", this.getDefaultObjectIdField());
-    }
+   @Override
+   public String getEditorDynaClass() {
+      return null;
+   }
 
-    protected String getDefaultObjectIdField() {
-        String strValueType = this.getValueType();
-        if (!"OBJECT".equalsIgnoreCase(strValueType) && !"OBJECTS".equalsIgnoreCase(strValueType)) {
-            return null;
-        }
-        String strValue = this.getEditorParam("DEFAULTOBJECTIDFIELD", "");
-        if (StringHelper.IsNullOrEmpty((String)strValue)) {
-            return null;
-        }
-        return strValue;
-    }
+   @Override
+   public String getEditorCssStyle2() {
+      return null;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5bf9\u8c61\u540d\u79f0\u5c5e\u6027[OBJECTNAMEFIELD]")
-    public String getObjectNameField() {
-        return this.getEditorParam("OBJECTNAMEFIELD", this.getDefaultObjectNameField());
-    }
+   @Override
+   public IPSSysCss getEditorPSSysCss() {
+      return null;
+   }
 
-    protected String getDefaultObjectNameField() {
-        String strValueType = this.getValueType();
-        if (!"OBJECT".equalsIgnoreCase(strValueType) && !"OBJECTS".equalsIgnoreCase(strValueType)) {
-            return null;
-        }
-        String strValue = this.getEditorParam("DEFAULTOBJECTNAMEFIELD", "");
-        if (StringHelper.IsNullOrEmpty((String)strValue)) {
-            return null;
-        }
-        return strValue;
-    }
+   @PSModelRTMeta(description = "单位名称")
+   @Override
+   public String getUnitName() {
+      return this.strUnitName;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5bf9\u8c61\u503c\u5c5e\u6027[OBJECTVALUEFIELD]")
-    public String getObjectValueField() {
-        return this.getEditorParam("OBJECTVALUEFIELD", this.getDefaultObjectValueField());
-    }
+   @PSModelRTMeta(description = "单位宽度", ignoredumpvalues = "0")
+   @Override
+   public int getUnitNameWidth() {
+      return this.nUnitNameWidth;
+   }
 
-    protected String getDefaultObjectValueField() {
-        String strValueType = this.getValueType();
-        if (!"OBJECT".equalsIgnoreCase(strValueType) && !"OBJECTS".equalsIgnoreCase(strValueType)) {
-            return null;
-        }
-        String strValue = this.getEditorParam("DEFAULTOBJECTVALUEFIELD", "");
-        if (StringHelper.IsNullOrEmpty((String)strValue)) {
-            return null;
-        }
-        return strValue;
-    }
+   @PSModelRTMeta(description = "支持单位", ignoredumpvalues = "false")
+   @Override
+   public boolean isEnableUnitName() {
+      return this.bEnableUnitName;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u591a\u9879\u503c\u5206\u9694\u7b26[VALUESEPARATOR]")
-    public String getValueSeparator() {
-        return this.getEditorParam("VALUESEPARATOR", this.getDefaultValueSeparator());
-    }
+   @PSModelRTMeta(description = "过滤器编辑器对象", hideempty = true, child = true)
+   @Override
+   public IPSEditor getFilterPSEditor() throws Exception {
+      return this.psEditorContainerImpl != null ? this.psEditorContainerImpl.getPSEditor() : null;
+   }
 
-    protected String getDefaultValueSeparator() {
-        String strValueType = this.getValueType();
-        if (!"SIMPLE".equalsIgnoreCase(strValueType) && !StringHelper.IsNullOrEmpty((String)strValueType)) {
-            return null;
-        }
-        String strValue = this.getEditorParam("DEFAULTVALUESEPARATOR", "");
-        if (StringHelper.IsNullOrEmpty((String)strValue)) {
-            return null;
-        }
-        return strValue;
-    }
+   @PSModelRTMeta(description = "值类型[VALUETYPE]{SIMPLE|SIMPLES|OBJECT|OBJECTS}", codelist = "EditorValueType", ignoredumpvalues = "SIMPLE")
+   @Override
+   public String getValueType() {
+      return this.getEditorParam("VALUETYPE", this.getDefaultValueType());
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u591a\u9879\u6587\u672c\u5206\u9694\u7b26[TEXTSEPARATOR]")
-    public String getTextSeparator() {
-        return this.getEditorParam("TEXTSEPARATOR", this.getDefaultTextSeparator());
-    }
+   protected String getDefaultValueType() {
+      String strValue = this.getEditorParam("DEFAULTVALUETYPE", "");
+      return StringHelper.IsNullOrEmpty(strValue) ? null : strValue;
+   }
 
-    protected String getDefaultTextSeparator() {
-        String strValue = this.getEditorParam("DEFAULTTEXTSEPARATOR", "");
-        if (StringHelper.IsNullOrEmpty((String)strValue)) {
-            return null;
-        }
-        return strValue;
-    }
+   @PSModelRTMeta(description = "对象标识属性[OBJECTIDFIELD]")
+   @Override
+   public String getObjectIdField() {
+      return this.getEditorParam("OBJECTIDFIELD", this.getDefaultObjectIdField());
+   }
 
-    protected IPSAppDEMethodDTO getPSAppDEMethodDTO() throws Exception {
-        if (this.getPSDEGrid().getFetchPSControlAction() == null || this.getPSDEGrid().getFetchPSControlAction().getPSAppDEMethod() == null || this.getPSDEGrid().getFetchPSControlAction().getPSAppDEMethod().getPSAppDEMethodReturn() == null) {
-            return null;
-        }
-        IPSAppDEMethodReturn iPSAppDEMethodReturn = this.getPSDEGrid().getFetchPSControlAction().getPSAppDEMethod().getPSAppDEMethodReturn();
-        if ("DTO".equals(iPSAppDEMethodReturn.getType()) || "DTOS".equals(iPSAppDEMethodReturn.getType()) || "PAGE".equals(iPSAppDEMethodReturn.getType())) {
-            return iPSAppDEMethodReturn.getPSAppDEMethodDTO();
-        }
-        return null;
-    }
+   protected String getDefaultObjectIdField() {
+      String strValueType = this.getValueType();
+      if (!"OBJECT".equalsIgnoreCase(strValueType) && !"OBJECTS".equalsIgnoreCase(strValueType)) {
+         return null;
+      }
 
-    @Override
-    protected void onFillRelatedPSAppViews(ArrayList<IPSAppView> relatedAppViewList) throws Exception {
-        Iterator<IPSDEUIAction> psDEUIActions;
-        if (this.getPSDEUIActionGroup() != null && (psDEUIActions = this.getPSDEUIActionGroup().getPSDEUIActions()) != null) {
+      String strValue = this.getEditorParam("DEFAULTOBJECTIDFIELD", "");
+      return StringHelper.IsNullOrEmpty(strValue) ? null : strValue;
+   }
+
+   @PSModelRTMeta(description = "对象名称属性[OBJECTNAMEFIELD]")
+   @Override
+   public String getObjectNameField() {
+      return this.getEditorParam("OBJECTNAMEFIELD", this.getDefaultObjectNameField());
+   }
+
+   protected String getDefaultObjectNameField() {
+      String strValueType = this.getValueType();
+      if (!"OBJECT".equalsIgnoreCase(strValueType) && !"OBJECTS".equalsIgnoreCase(strValueType)) {
+         return null;
+      }
+
+      String strValue = this.getEditorParam("DEFAULTOBJECTNAMEFIELD", "");
+      return StringHelper.IsNullOrEmpty(strValue) ? null : strValue;
+   }
+
+   @PSModelRTMeta(description = "对象值属性[OBJECTVALUEFIELD]")
+   @Override
+   public String getObjectValueField() {
+      return this.getEditorParam("OBJECTVALUEFIELD", this.getDefaultObjectValueField());
+   }
+
+   protected String getDefaultObjectValueField() {
+      String strValueType = this.getValueType();
+      if (!"OBJECT".equalsIgnoreCase(strValueType) && !"OBJECTS".equalsIgnoreCase(strValueType)) {
+         return null;
+      }
+
+      String strValue = this.getEditorParam("DEFAULTOBJECTVALUEFIELD", "");
+      return StringHelper.IsNullOrEmpty(strValue) ? null : strValue;
+   }
+
+   @PSModelRTMeta(description = "多项值分隔符[VALUESEPARATOR]")
+   @Override
+   public String getValueSeparator() {
+      return this.getEditorParam("VALUESEPARATOR", this.getDefaultValueSeparator());
+   }
+
+   protected String getDefaultValueSeparator() {
+      String strValueType = this.getValueType();
+      if (!"SIMPLE".equalsIgnoreCase(strValueType) && !StringHelper.IsNullOrEmpty(strValueType)) {
+         return null;
+      }
+
+      String strValue = this.getEditorParam("DEFAULTVALUESEPARATOR", "");
+      return StringHelper.IsNullOrEmpty(strValue) ? null : strValue;
+   }
+
+   @PSModelRTMeta(description = "多项文本分隔符[TEXTSEPARATOR]")
+   @Override
+   public String getTextSeparator() {
+      return this.getEditorParam("TEXTSEPARATOR", this.getDefaultTextSeparator());
+   }
+
+   protected String getDefaultTextSeparator() {
+      String strValue = this.getEditorParam("DEFAULTTEXTSEPARATOR", "");
+      return StringHelper.IsNullOrEmpty(strValue) ? null : strValue;
+   }
+
+   protected IPSAppDEMethodDTO getPSAppDEMethodDTO() throws Exception {
+      if (this.getPSDEGrid().getFetchPSControlAction() != null
+         && this.getPSDEGrid().getFetchPSControlAction().getPSAppDEMethod() != null
+         && this.getPSDEGrid().getFetchPSControlAction().getPSAppDEMethod().getPSAppDEMethodReturn() != null) {
+         IPSAppDEMethodReturn iPSAppDEMethodReturn = this.getPSDEGrid().getFetchPSControlAction().getPSAppDEMethod().getPSAppDEMethodReturn();
+         return !"DTO".equals(iPSAppDEMethodReturn.getType())
+               && !"DTOS".equals(iPSAppDEMethodReturn.getType())
+               && !"PAGE".equals(iPSAppDEMethodReturn.getType())
+            ? null
+            : iPSAppDEMethodReturn.getPSAppDEMethodDTO();
+      } else {
+         return null;
+      }
+   }
+
+   @Override
+   protected void onFillRelatedPSAppViews(ArrayList<IPSAppView> relatedAppViewList) throws Exception {
+      if (this.getPSDEUIActionGroup() != null) {
+         Iterator<IPSDEUIAction> psDEUIActions = this.getPSDEUIActionGroup().getPSDEUIActions();
+         if (psDEUIActions != null) {
             while (psDEUIActions.hasNext()) {
-                IPSDEUIAction iPSDEUIAction = psDEUIActions.next();
-                if (iPSDEUIAction.getFrontPSAppView(this) == null) continue;
-                relatedAppViewList.add(iPSDEUIAction.getFrontPSAppView(this));
+               IPSDEUIAction iPSDEUIAction = psDEUIActions.next();
+               if (iPSDEUIAction.getFrontPSAppView(this) != null) {
+                  relatedAppViewList.add(iPSDEUIAction.getFrontPSAppView(this));
+               }
             }
-        }
-        if (this.getPSDEUIAction() != null && this.getPSDEUIAction().getFrontPSAppView(this) != null) {
-            relatedAppViewList.add(this.getPSDEUIAction().getFrontPSAppView(this));
-        }
-        super.onFillRelatedPSAppViews(relatedAppViewList);
-    }
+         }
+      }
 
-    protected class GEIDEACModeImpl
-    implements IGEIDEACMode {
-        private String strDEName = "";
-        private String strDEACModeName = "";
+      if (this.getPSDEUIAction() != null && this.getPSDEUIAction().getFrontPSAppView(this) != null) {
+         relatedAppViewList.add(this.getPSDEUIAction().getFrontPSAppView(this));
+      }
 
-        protected GEIDEACModeImpl() {
-        }
+      super.onFillRelatedPSAppViews(relatedAppViewList);
+   }
 
-        public String getDEName() {
-            return this.strDEName;
-        }
+   protected class GEIDEACModeImpl implements IGEIDEACMode {
+      private String strDEName = "";
+      private String strDEACModeName = "";
 
-        public String getDEACModeName() {
-            return this.strDEACModeName;
-        }
+      @Override
+      public String getDEName() {
+         return this.strDEName;
+      }
 
-        public void setDEName(String strDEName) {
-            this.strDEName = strDEName;
-        }
+      @Override
+      public String getDEACModeName() {
+         return this.strDEACModeName;
+      }
 
-        public void setDEACModeName(String strDEACModeName) {
-            this.strDEACModeName = strDEACModeName;
-        }
-    }
+      public void setDEName(String strDEName) {
+         this.strDEName = strDEName;
+      }
+
+      public void setDEACModeName(String strDEACModeName) {
+         this.strDEACModeName = strDEACModeName;
+      }
+   }
 }
-

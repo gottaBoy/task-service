@@ -72,7 +72,7 @@ implements IPSSysEAIDataTypeService {
     @Override
     protected List<PSSysEAIDataType> onListAll() throws Exception {
         ArrayList<PSSysEAIDataType> list = new ArrayList<PSSysEAIDataType>();
-        List pssyseaischemes = PSModelServiceUtil.getInstance().getPSSysEAISchemeService().listAll();
+        List<PSSysEAIScheme> pssyseaischemes = PSModelServiceUtil.getInstance().getPSSysEAISchemeService().listAll();
         if (pssyseaischemes != null) {
             for (PSSysEAIScheme parent : pssyseaischemes) {
                 List<PSSysEAIDataType> items = this.listByPSSysEAIScheme(parent);

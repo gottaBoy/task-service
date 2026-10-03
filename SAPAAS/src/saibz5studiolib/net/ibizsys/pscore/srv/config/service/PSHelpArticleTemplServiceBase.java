@@ -140,9 +140,9 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSHelpArticleTempl, pSDevCenter);
             return;
@@ -152,14 +152,14 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
             PSHelpArticleType pSHelpArticleType = (PSHelpArticleType)iService.getDEModel().createEntity();
             pSHelpArticleType.set("PSHELPARTICLETYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSHelpArticleType);
+                iService.getTemp(pSHelpArticleType);
             } else {
-                iService.get((IEntity)pSHelpArticleType);
+                iService.get(pSHelpArticleType);
             }
             this.onFillParentInfo_PSHelpArticleType(pSHelpArticleTempl, pSHelpArticleType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSHelpArticleTempl, string, string2, string3);
+        super.onFillParentInfo(pSHelpArticleTempl, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -185,7 +185,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 pSHelpArticleTempl.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSHelpArticleTempl, bl);
+        super.onFillEntityFullInfo(pSHelpArticleTempl, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSHelpArticleTempl, bl);
         this.onFillEntityFullInfo_PSHelpArticleType(pSHelpArticleTempl, bl);
     }
@@ -207,7 +207,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
     }
 
     protected void onWriteBackParent(PSHelpArticleTempl pSHelpArticleTempl, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSHelpArticleTempl, bl);
+        super.onWriteBackParent(pSHelpArticleTempl, bl);
     }
 
     public ArrayList<PSHelpArticleTempl> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -262,8 +262,8 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
         ArrayList<PSHelpArticleTempl> arrayList = this.selectByPSDevCenter(pSDevCenter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVCENTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevCenter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPARTICLETEMPL_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSHELPARTICLETEMPL", iDataEntityModel.getDataInfo((IEntity)pSDevCenter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevCenter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPARTICLETEMPL_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSHELPARTICLETEMPL", iDataEntityModel.getDataInfo(pSDevCenter), arrayList.get(0)));
         }
     }
 
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
         ArrayList<PSHelpArticleTempl> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSHelpArticleTempl pSHelpArticleTempl : arrayList) {
-            this.remove((IEntity)pSHelpArticleTempl);
+            this.remove(pSHelpArticleTempl);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -314,8 +314,8 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
         ArrayList<PSHelpArticleTempl> arrayList = this.selectByPSHelpArticleType(pSHelpArticleType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSHELPARTICLETYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSHelpArticleType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPARTICLETEMPL_PSHELPARTICLETYPE_PSHELPARTICLETYPEID", "", iDataEntityModel.getName(), "PSHELPARTICLETEMPL", iDataEntityModel.getDataInfo((IEntity)pSHelpArticleType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSHelpArticleType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSHELPARTICLETEMPL_PSHELPARTICLETYPE_PSHELPARTICLETYPEID", "", iDataEntityModel.getName(), "PSHELPARTICLETEMPL", iDataEntityModel.getDataInfo(pSHelpArticleType), arrayList.get(0)));
         }
     }
 
@@ -348,7 +348,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
         ArrayList<PSHelpArticleTempl> arrayList = this.selectByPSHelpArticleType(pSHelpArticleType);
         this.onBeforeRemoveByPSHelpArticleType(pSHelpArticleType, arrayList);
         for (PSHelpArticleTempl pSHelpArticleTempl : arrayList) {
-            this.remove((IEntity)pSHelpArticleTempl);
+            this.remove(pSHelpArticleTempl);
         }
         this.onAfterRemoveByPSHelpArticleType(pSHelpArticleType, arrayList);
     }
@@ -371,7 +371,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
 
     protected void replaceParentInfo(PSHelpArticleTempl pSHelpArticleTempl, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSHelpArticleTempl, cloneSession);
+        super.replaceParentInfo(pSHelpArticleTempl, cloneSession);
         if (pSHelpArticleTempl.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSHelpArticleTempl.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSHelpArticleTempl, (PSDevCenter)iEntity);
         }
@@ -381,7 +381,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
     }
 
     protected void onRemoveEntityUncopyValues(PSHelpArticleTempl pSHelpArticleTempl, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSHelpArticleTempl, bl);
+        super.onRemoveEntityUncopyValues(pSHelpArticleTempl, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSHelpArticleTempl pSHelpArticleTempl, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -423,7 +423,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSHelpArticleTempl, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSHelpArticleTempl, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSHelpArticleTempl, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DefaultFlag(boolean bl, PSHelpArticleTempl pSHelpArticleTempl, boolean bl2, boolean bl3) throws Exception {
@@ -439,7 +439,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)pSHelpArticleTempl, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(pSHelpArticleTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -461,7 +461,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSHelpArticleTempl, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSHelpArticleTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -483,7 +483,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSHelpArticleTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSHelpArticleTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -505,7 +505,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSHelpArticleTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSHelpArticleTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -530,7 +530,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpArticleTemplId_Default((IEntity)pSHelpArticleTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpArticleTemplId_Default(pSHelpArticleTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPARTICLETEMPLID");
@@ -555,7 +555,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpArticleTemplName_Default((IEntity)pSHelpArticleTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpArticleTemplName_Default(pSHelpArticleTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPARTICLETEMPLNAME");
@@ -577,7 +577,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSHelpArticleTypeId_Default((IEntity)pSHelpArticleTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSHelpArticleTypeId_Default(pSHelpArticleTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSHELPARTICLETYPEID");
@@ -599,7 +599,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PubMode_Default((IEntity)pSHelpArticleTempl, bl2, bl3);
+            string = this.onTestValueRule_PubMode_Default(pSHelpArticleTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PUBMODE");
@@ -621,7 +621,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PubObj_Default((IEntity)pSHelpArticleTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PubObj_Default(pSHelpArticleTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PUBOBJ");
@@ -643,7 +643,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode_Default((IEntity)pSHelpArticleTempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode_Default(pSHelpArticleTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE");
@@ -665,7 +665,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode2_Default((IEntity)pSHelpArticleTempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode2_Default(pSHelpArticleTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE2");
@@ -690,7 +690,7 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSHelpArticleTempl, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSHelpArticleTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -703,11 +703,11 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
     }
 
     protected void onSyncEntity(PSHelpArticleTempl pSHelpArticleTempl, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSHelpArticleTempl, bl);
+        super.onSyncEntity(pSHelpArticleTempl, bl);
     }
 
     protected void onSyncIndexEntities(PSHelpArticleTempl pSHelpArticleTempl, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSHelpArticleTempl, bl);
+        super.onSyncIndexEntities(pSHelpArticleTempl, bl);
     }
 
     public Object getDataContextValue(PSHelpArticleTempl pSHelpArticleTempl, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -715,14 +715,14 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSHelpArticleTempl, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSHelpArticleTempl, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSHelpArticleTempl pSHelpArticleTempl, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSHelpArticleTempl, arrayList, n);
+        super.onExportMajorModel(pSHelpArticleTempl, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -946,14 +946,14 @@ extends PSCoreSysServiceBase<PSHelpArticleTempl> {
 
     protected boolean onMergeChild(String string, String string2, PSHelpArticleTempl pSHelpArticleTempl) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSHelpArticleTempl)) {
+        if (super.onMergeChild(string, string2, pSHelpArticleTempl)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSHelpArticleTempl pSHelpArticleTempl) throws Exception {
-        super.onUpdateParent((IEntity)pSHelpArticleTempl);
+        super.onUpdateParent(pSHelpArticleTempl);
     }
 
     @Override

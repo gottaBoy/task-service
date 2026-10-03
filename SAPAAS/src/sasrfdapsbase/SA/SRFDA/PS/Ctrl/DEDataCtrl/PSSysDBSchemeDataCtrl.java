@@ -80,7 +80,7 @@ extends PSDEDataCtrl {
         PSSysDBSchemeService psSysDBSchemeService = (PSSysDBSchemeService)ServiceGlobal.getService(PSSysDBSchemeService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
         PSSysDBScheme psSysDBScheme2 = new PSSysDBScheme();
         psSysDBScheme2.setPSSysDBSchemeId(psSysDBScheme.getPSSYSDBSCHEMEID());
-        psSysDBSchemeService.get((IEntity)psSysDBScheme2);
+        psSysDBSchemeService.get(psSysDBScheme2);
         iPSSystem = iPSDevSlnSys.getPSSystem(false);
         PSSysDevBKTask psSysDevBKTask = new PSSysDevBKTask();
         psSysDevBKTask.setPSSysDevBKTaskName(StringHelper.Format((String)"\u540c\u6b65[%1$s]\u6570\u636e\u5e93\u6a21\u578b", (Object)psSysDBScheme2.getPSSysDBSchemeName()));
@@ -97,10 +97,9 @@ extends PSDEDataCtrl {
         psSysDevBKTask.setTaskParam(psSysDBScheme.getPSSYSDBSCHEMEID());
         psSysDevBKTask.setModelLevel(IPSSystem.LOADLEVEL_CODE);
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        psSysDevBKTaskService.create(psSysDevBKTask);
         SA.SRFDA.PS.Data.PSSysDevBKTask psSysDevBKTask2 = new SA.SRFDA.PS.Data.PSSysDevBKTask();
         PSSysDBSchemeDataCtrl.convertEntity((IEntity)psSysDevBKTask, psSysDevBKTask2);
         this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
     }
 }
-

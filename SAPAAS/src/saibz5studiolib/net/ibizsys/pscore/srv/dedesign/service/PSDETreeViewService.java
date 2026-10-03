@@ -20,8 +20,6 @@ package net.ibizsys.pscore.srv.dedesign.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import net.ibizsys.paas.entity.EntityBase;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.IServiceWork;
 import net.ibizsys.paas.service.ITransaction;
 import net.ibizsys.paas.service.ServiceGlobal;
@@ -64,7 +62,7 @@ extends PSDETreeViewServiceBase {
 
     @Override
     public void getDraftWithModel(PSDETreeView pSDETreeView) throws Exception {
-        this.getDraftTempMajor((IEntity)pSDETreeView);
+        this.getDraftTempMajor(pSDETreeView);
         pSDETreeView.setTreeModel(this.getTreeModel(pSDETreeView));
     }
 
@@ -73,7 +71,7 @@ extends PSDETreeViewServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSDETreeView.getPSDETreeViewId())) {
             this.getTempMajor(pSDETreeView);
         } else {
-            this.getTemp((IEntity)pSDETreeView);
+            this.getTemp(pSDETreeView);
         }
         pSDETreeView.setTreeModel(this.getTreeModel(pSDETreeView));
     }
@@ -110,7 +108,6 @@ extends PSDETreeViewServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDETreeNodeRS pSDETreeNodeRS2;
                 PSDETreeNodeService pSDETreeNodeService = (PSDETreeNodeService)ServiceGlobal.getService((String)PSDETreeNodeService.class.getCanonicalName(), (SessionFactory)PSDETreeViewService.this.getSessionFactory());
                 ArrayList<PSDETreeNode> arrayList = pSDETreeNodeService.selectTempByPSDETreeView(pSDETreeView2);
                 HashMap<String, PSDETreeNode> hashMap = new HashMap<String, PSDETreeNode>();
@@ -124,26 +121,26 @@ extends PSDETreeViewServiceBase {
                     hashMap2.put(pSDETreeNodeRS2.getPSDETreeNodeRSId(), pSDETreeNodeRS2);
                 }
                 String string = pSDETreeView2.getTreeModel();
-                pSDETreeNodeRS2 = XmlNode.loadFromXML((String)string);
-                if (pSDETreeNodeRS2 != null) {
-                    pSDETreeNodeRS2.setAttribute("PSDEID", pSDETreeView2.getPSDEId());
-                    pSDETreeNodeRS2.setAttribute("PSDETREEVIEWID", pSDETreeView2.getPSDETreeViewId());
-                    PSDETreeViewService.this.updatePSDETreeViewModel(pSDETreeView2, (XmlNode)pSDETreeNodeRS2, hashMap, hashMap2);
-                    pSDETreeView2.setTreeModel(XmlNode.export((XmlNode)pSDETreeNodeRS2));
+                XmlNode treeModel = XmlNode.loadFromXML(string);
+                if (treeModel != null) {
+                    treeModel.setAttribute("PSDEID", pSDETreeView2.getPSDEId());
+                    treeModel.setAttribute("PSDETREEVIEWID", pSDETreeView2.getPSDETreeViewId());
+                    PSDETreeViewService.this.updatePSDETreeViewModel(pSDETreeView2, treeModel, hashMap, hashMap2);
+                    pSDETreeView2.setTreeModel(XmlNode.export(treeModel));
                 } else {
                     pSDETreeView2.setTreeModel(null);
                 }
                 if (hashMap2.size() > 0) {
-                    for (EntityBase entityBase : hashMap2.values()) {
-                        pSDETreeNodeRSService.removeTemp((IEntity)entityBase);
+                    for (PSDETreeNodeRS treeNodeRS : hashMap2.values()) {
+                        pSDETreeNodeRSService.removeTemp(treeNodeRS);
                     }
                 }
                 if (hashMap.size() > 0) {
-                    for (EntityBase entityBase : hashMap.values()) {
-                        pSDETreeNodeService.removeTemp((IEntity)entityBase);
+                    for (PSDETreeNode treeNode : hashMap.values()) {
+                        pSDETreeNodeService.removeTemp(treeNode);
                     }
                 }
-                PSDETreeViewService.this.createTempMajor((IEntity)pSDETreeView2);
+                PSDETreeViewService.this.createTempMajor(pSDETreeView2);
             }
         });
     }
@@ -156,8 +153,6 @@ extends PSDETreeViewServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDETreeNodeRS pSDETreeNodeRS;
-                Object object = null;
                 PSDETreeNodeService pSDETreeNodeService = (PSDETreeNodeService)ServiceGlobal.getService((String)PSDETreeNodeService.class.getCanonicalName(), (SessionFactory)PSDETreeViewService.this.getSessionFactory());
                 ArrayList<PSDETreeNode> arrayList = pSDETreeNodeService.selectTempByPSDETreeView(pSDETreeView2);
                 HashMap<String, PSDETreeNode> hashMap = new HashMap<String, PSDETreeNode>();
@@ -167,31 +162,28 @@ extends PSDETreeViewServiceBase {
                 PSDETreeNodeRSService pSDETreeNodeRSService = (PSDETreeNodeRSService)ServiceGlobal.getService((String)PSDETreeNodeRSService.class.getCanonicalName(), (SessionFactory)PSDETreeViewService.this.getSessionFactory());
                 ArrayList<PSDETreeNodeRS> arrayList2 = pSDETreeNodeRSService.selectTempByPSDETreeView(pSDETreeView2);
                 HashMap<String, PSDETreeNodeRS> hashMap2 = new HashMap<String, PSDETreeNodeRS>();
-                Object object2 = arrayList2.iterator();
-                while (object2.hasNext()) {
-                    pSDETreeNodeRS = object2.next();
+                for (PSDETreeNodeRS pSDETreeNodeRS : arrayList2) {
                     hashMap2.put(pSDETreeNodeRS.getPSDETreeNodeRSId(), pSDETreeNodeRS);
                 }
-                object = object2 = pSDETreeView2.getTreeModel();
-                pSDETreeNodeRS = XmlNode.loadFromXML((String)object2);
-                if (pSDETreeNodeRS != null) {
-                    pSDETreeNodeRS.setAttribute("PSDEID", pSDETreeView2.getPSDEId());
-                    pSDETreeNodeRS.setAttribute("PSDETREEVIEWID", pSDETreeView2.getPSDETreeViewId());
-                    PSDETreeViewService.this.updatePSDETreeViewModel(pSDETreeView2, (XmlNode)pSDETreeNodeRS, hashMap, hashMap2);
-                    pSDETreeView2.setTreeModel(XmlNode.export((XmlNode)pSDETreeNodeRS));
+                XmlNode treeModel = XmlNode.loadFromXML(pSDETreeView2.getTreeModel());
+                if (treeModel != null) {
+                    treeModel.setAttribute("PSDEID", pSDETreeView2.getPSDEId());
+                    treeModel.setAttribute("PSDETREEVIEWID", pSDETreeView2.getPSDETreeViewId());
+                    PSDETreeViewService.this.updatePSDETreeViewModel(pSDETreeView2, treeModel, hashMap, hashMap2);
+                    pSDETreeView2.setTreeModel(XmlNode.export(treeModel));
                 } else {
                     pSDETreeView2.setTreeModel(null);
                 }
                 boolean bl = false;
                 if (hashMap2.size() > 0) {
-                    for (EntityBase entityBase : hashMap2.values()) {
-                        pSDETreeNodeRSService.removeTemp((IEntity)entityBase);
+                    for (PSDETreeNodeRS treeNodeRS : hashMap2.values()) {
+                        pSDETreeNodeRSService.removeTemp(treeNodeRS);
                         bl = true;
                     }
                 }
                 if (hashMap.size() > 0) {
-                    for (EntityBase entityBase : hashMap.values()) {
-                        pSDETreeNodeService.removeTemp((IEntity)entityBase);
+                    for (PSDETreeNode treeNode : hashMap.values()) {
+                        pSDETreeNodeService.removeTemp(treeNode);
                         bl = true;
                     }
                 }
@@ -203,8 +195,8 @@ extends PSDETreeViewServiceBase {
     protected void updatePSDETreeViewModel(PSDETreeView pSDETreeView, XmlNode xmlNode, HashMap<String, PSDETreeNode> hashMap, HashMap<String, PSDETreeNodeRS> hashMap2) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
-            ArrayList<Object> arrayList2 = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
+            ArrayList<XmlNode> arrayList2 = new ArrayList<XmlNode>();
             PSDETreeNodeService pSDETreeNodeService = (PSDETreeNodeService)ServiceGlobal.getService((String)PSDETreeNodeService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             PSDETreeNodeRSService pSDETreeNodeRSService = (PSDETreeNodeRSService)ServiceGlobal.getService((String)PSDETreeNodeRSService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             HashMap<String, Integer> hashMap3 = new HashMap<String, Integer>();
@@ -212,52 +204,55 @@ extends PSDETreeViewServiceBase {
                 Integer n;
                 String string;
                 boolean bl;
-                EntityBase entityBase;
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_DETREENODE, (boolean)true) == 0) {
                     String string2 = xmlNode2.getAttribute("PSDETREENODEID", "");
-                    if (StringHelper.isNullOrEmpty((String)string2) || (entityBase = hashMap.remove(string2)) == null) continue;
+                    if (StringHelper.isNullOrEmpty((String)string2)) continue;
+                    PSDETreeNode treeNode = hashMap.remove(string2);
+                    if (treeNode == null) continue;
                     bl = false;
-                    if (StringHelper.compare((String)entityBase.getPSDETreeViewId(), (String)pSDETreeView.getPSDETreeViewId(), (boolean)false) != 0) {
-                        entityBase.setPSDETreeViewId(pSDETreeView.getPSDETreeViewId());
+                    if (StringHelper.compare((String)treeNode.getPSDETreeViewId(), (String)pSDETreeView.getPSDETreeViewId(), (boolean)false) != 0) {
+                        treeNode.setPSDETreeViewId(pSDETreeView.getPSDETreeViewId());
                         bl = true;
                     }
-                    if (StringHelper.compare((String)entityBase.getPSDETreeViewName(), (String)pSDETreeView.getPSDETreeViewName(), (boolean)false) != 0) {
-                        entityBase.setPSDETreeViewName(pSDETreeView.getPSDETreeViewName());
+                    if (StringHelper.compare((String)treeNode.getPSDETreeViewName(), (String)pSDETreeView.getPSDETreeViewName(), (boolean)false) != 0) {
+                        treeNode.setPSDETreeViewName(pSDETreeView.getPSDETreeViewName());
                         bl = true;
                     }
                     if (bl) {
-                        pSDETreeNodeService.updateTemp((IEntity)entityBase);
+                        pSDETreeNodeService.updateTemp(treeNode);
                     }
                     xmlNode2.resetAttributes();
-                    entityBase.fillXmlNode(xmlNode2, false);
+                    treeNode.fillXmlNode(xmlNode2, false);
                     arrayList.add(xmlNode2);
                     continue;
                 }
-                if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_DETREENODERS, (boolean)true) != 0 || StringHelper.isNullOrEmpty((String)(string = xmlNode2.getAttribute("PSDETREENODERSID", ""))) || (entityBase = hashMap2.remove(string)) == null) continue;
+                if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_DETREENODERS, (boolean)true) != 0 || StringHelper.isNullOrEmpty((String)(string = xmlNode2.getAttribute("PSDETREENODERSID", "")))) continue;
+                PSDETreeNodeRS treeNodeRS = hashMap2.remove(string);
+                if (treeNodeRS == null) continue;
                 bl = false;
-                if (StringHelper.compare((String)entityBase.getPSDETreeViewId(), (String)pSDETreeView.getPSDETreeViewId(), (boolean)false) != 0) {
-                    entityBase.setPSDETreeViewId(pSDETreeView.getPSDETreeViewId());
+                if (StringHelper.compare((String)treeNodeRS.getPSDETreeViewId(), (String)pSDETreeView.getPSDETreeViewId(), (boolean)false) != 0) {
+                    treeNodeRS.setPSDETreeViewId(pSDETreeView.getPSDETreeViewId());
                     bl = true;
                 }
-                if (StringHelper.compare((String)entityBase.getPSDETreeViewName(), (String)pSDETreeView.getPSDETreeViewName(), (boolean)false) != 0) {
-                    entityBase.setPSDETreeViewName(pSDETreeView.getPSDETreeViewName());
+                if (StringHelper.compare((String)treeNodeRS.getPSDETreeViewName(), (String)pSDETreeView.getPSDETreeViewName(), (boolean)false) != 0) {
+                    treeNodeRS.setPSDETreeViewName(pSDETreeView.getPSDETreeViewName());
                     bl = true;
                 }
-                if ((n = (Integer)hashMap3.get(entityBase.getPPSDETreeNodeId())) == null) {
+                if ((n = (Integer)hashMap3.get(treeNodeRS.getPPSDETreeNodeId())) == null) {
                     n = 0;
                 }
                 n = n + 10;
-                hashMap3.put(entityBase.getPPSDETreeNodeId(), n);
-                if (entityBase.getOrderValue() == null || entityBase.getOrderValue() != n) {
-                    entityBase.setOrderValue(n);
+                hashMap3.put(treeNodeRS.getPPSDETreeNodeId(), n);
+                if (treeNodeRS.getOrderValue() == null || treeNodeRS.getOrderValue() != n) {
+                    treeNodeRS.setOrderValue(n);
                     bl = true;
                 }
                 if (bl) {
-                    pSDETreeNodeRSService.updateTemp((IEntity)entityBase);
+                    pSDETreeNodeRSService.updateTemp(treeNodeRS);
                 }
                 xmlNode2.resetAttributes();
-                entityBase.fillXmlNode(xmlNode2, false);
+                treeNodeRS.fillXmlNode(xmlNode2, false);
                 arrayList2.add(xmlNode2);
             }
             xmlNode.resetChildNodes();
@@ -276,4 +271,3 @@ extends PSDETreeViewServiceBase {
         pSDETreeView.setTreeModel(this.getTreeModel(pSDETreeView));
     }
 }
-

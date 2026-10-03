@@ -78,7 +78,7 @@ implements IPSDEPrintService {
     @Override
     protected List<PSDEPrint> onListAll() throws Exception {
         ArrayList<PSDEPrint> list = new ArrayList<PSDEPrint>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEPrint> items = this.listByPSDataEntity(parent);

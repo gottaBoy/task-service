@@ -87,7 +87,7 @@ implements IPSDEActionService {
     @Override
     protected List<PSDEAction> onListAll() throws Exception {
         ArrayList<PSDEAction> list = new ArrayList<PSDEAction>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEAction> items = this.listByPSDataEntity(parent);
@@ -585,18 +585,19 @@ implements IPSDEActionService {
         } else {
             dto.setPSSysSFPluginName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEActionParamService().listByPSDEAction(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEActionParam> pSDEActionParamList = PSModelServiceUtil.getInstance().getPSDEActionParamService().listByPSDEAction(t);
+        if (pSDEActionParamList != null && pSDEActionParamList.size() > 0) {
             ArrayList<PSDEActionParamDTO> psdeactionparams = new ArrayList<PSDEActionParamDTO>();
-            for (PSDEActionParam pSDEActionParam : list) {
+            for (PSDEActionParam pSDEActionParam : pSDEActionParamList) {
                 dstItem = (PSDEActionParamDTO)PSModelServiceUtil.getInstance().getPSDEActionParamService().toDTO(pSDEActionParam);
                 psdeactionparams.add((PSDEActionParamDTO)dstItem);
             }
             dto.setPsdeactionparams(psdeactionparams);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEActionVRService().listByPSDEAction(t)) != null && list.size() > 0) {
+        List<PSDEActionVR> pSDEActionVRList = PSModelServiceUtil.getInstance().getPSDEActionVRService().listByPSDEAction(t);
+        if (pSDEActionVRList != null && pSDEActionVRList.size() > 0) {
             ArrayList<PSDEActionVRDTO> psdeactionvrs = new ArrayList<PSDEActionVRDTO>();
-            for (PSDEActionVR pSDEActionVR : list) {
+            for (PSDEActionVR pSDEActionVR : pSDEActionVRList) {
                 dstItem = (PSDEActionVRDTO)PSModelServiceUtil.getInstance().getPSDEActionVRService().toDTO(pSDEActionVR);
                 psdeactionvrs.add((PSDEActionVRDTO)dstItem);
             }

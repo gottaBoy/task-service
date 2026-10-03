@@ -3738,7 +3738,7 @@ implements Serializable {
                 PSROSServer pSROSServer = new PSROSServer();
                 pSROSServer.setPSROSServerId(this.getPSROSServerId());
                 PSROSServerService pSROSServerService = (PSROSServerService)ServiceGlobal.getService(PSROSServerService.class, (SessionFactory)this.getSessionFactory());
-                pSROSServerService.autoGet((IEntity)pSROSServer);
+                pSROSServerService.autoGet(pSROSServer);
                 this.psrosserver = pSROSServer;
             }
             return this.psrosserver;
@@ -3764,7 +3764,7 @@ implements Serializable {
                 PSSvrDomain pSSvrDomain = new PSSvrDomain();
                 pSSvrDomain.setPSSvrDomainId(this.getPSSvrDomainId());
                 PSSvrDomainService pSSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrDomainService.autoGet((IEntity)pSSvrDomain);
+                pSSvrDomainService.autoGet(pSSvrDomain);
                 this.pssvrdomain = pSSvrDomain;
             }
             return this.pssvrdomain;
@@ -3790,7 +3790,7 @@ implements Serializable {
                 PSSvrServer pSSvrServer = new PSSvrServer();
                 pSSvrServer.setPSSvrServerId(this.getPSSvrServerId());
                 PSSvrServerService pSSvrServerService = (PSSvrServerService)ServiceGlobal.getService(PSSvrServerService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrServerService.autoGet((IEntity)pSSvrServer);
+                pSSvrServerService.autoGet(pSSvrServer);
                 this.pssvrserver = pSSvrServer;
             }
             return this.pssvrserver;
@@ -3816,7 +3816,7 @@ implements Serializable {
                 PSTaskServer pSTaskServer = new PSTaskServer();
                 pSTaskServer.setPSTaskServerId(this.getPSTaskServerId());
                 PSTaskServerService pSTaskServerService = (PSTaskServerService)ServiceGlobal.getService(PSTaskServerService.class, (SessionFactory)this.getSessionFactory());
-                pSTaskServerService.autoGet((IEntity)pSTaskServer);
+                pSTaskServerService.autoGet(pSTaskServer);
                 this.pstaskserver = pSTaskServer;
             }
             return this.pstaskserver;

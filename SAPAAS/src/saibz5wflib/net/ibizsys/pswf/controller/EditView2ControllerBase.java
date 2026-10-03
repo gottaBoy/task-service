@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.controller;
 
-import net.ibizsys.pswf.controller.WFEditView2ControllerBase;
+/**
+ * 流程编辑器视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class EditView2ControllerBase extends WFEditView2ControllerBase {
 
-public abstract class EditView2ControllerBase
-extends WFEditView2ControllerBase {
+	public EditView2ControllerBase() throws Exception {
+		super();
+	}
+
 }
-

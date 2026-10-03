@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.entity;
 
-import net.ibizsys.psrt.srv.common.entity.LoginAccountBase;
+/**
+ * 实体[LoginAccount] 数据对象
+ */
+//@Entity
+public class LoginAccount extends LoginAccountBase {
 
-public class LoginAccount
-extends LoginAccountBase {
+    public LoginAccount() {
+        super();
+    }
+
 }
-

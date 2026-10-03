@@ -1,32 +1,115 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- */
 package net.ibizsys.model;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+/**
+ * 模型Json导出器
+ * @author Administrator
+ *
+ */
 public interface IPSModelJsonExporter {
-    public static final String ATTR_ID = "id";
-    public static final String ATTR_NAME = "name";
-    public static final String ATTR_TYPE = "type";
-    public static final String ATTR_ITEMS = "items";
-    public static final String ATTR_CAPTION = "caption";
-    public static final String ATTR_SHOWCAP = "showcap";
-    public static final String ATTR_WIDTH = "width";
-    public static final String ATTR_HEIGHT = "height";
-    public static final String ATTR_MODE = "mode";
-    public static final String ATTR_TITLE = "title";
-    public static final String ATTR_VIEW = "view";
-    public static final String ATTR_URL = "url";
-    public static final String ATTR_OPENMODE = "OPENMODE";
-    public static final String ATTR_REDIRECTVIEW = "redirectview";
-    public static final String ATTR_TAG = "tag";
-    public static final String ATTR_VALUE = "value";
-    public static final String ATTR_TEXT = "text";
 
-    public ObjectNode toJsonObject(ObjectNode var1) throws Exception;
+	/**
+	 * 标识
+	 */
+	final static String ATTR_ID = "id";
+	
+	
+	/**
+	 * 名称
+	 */
+	final static String ATTR_NAME = "name";
+	
+	/**
+	 * 类型
+	 */
+	final static String ATTR_TYPE = "type";
+	
+	/**
+	 * 子项集合
+	 */
+	final static String ATTR_ITEMS = "items";
+	
+	/**
+	 * 标题
+	 */
+	final static String ATTR_CAPTION = "caption";
+	
+	/**
+	 * 显示标题
+	 */
+	final static String ATTR_SHOWCAP = "showcap";
+	
+	/**
+	 * 宽度
+	 */
+	final static String ATTR_WIDTH = "width";
+	
+	/**
+	 * 高度
+	 */
+	final static String ATTR_HEIGHT = "height";
+	
+	/**
+	 * 模式
+	 */
+	final static String ATTR_MODE = "mode";
+	
+	
+	/**
+	 * 抬头
+	 */
+	final static String ATTR_TITLE = "title";
+	
+	
+	/**
+	 * 视图节点
+	 */
+	final static String ATTR_VIEW = "view";
+	
+	
+	/**
+	 * 路径
+	 */
+	final static String ATTR_URL = "url";
+	
+	
+	/**
+	 * 视图打开模式
+	 */
+	final static String ATTR_OPENMODE = "OPENMODE";
+	
+	
+	/**
+	 * 重定向视图
+	 */
+	final static String ATTR_REDIRECTVIEW = "redirectview";
+	
+	
+	/**
+	 * 标记
+	 */
+	final static String ATTR_TAG = "tag";
+	
+
+	/**
+	 * 值
+	 */
+	final static String ATTR_VALUE = "value";
+	
+	
+	
+	/**
+	 * 文本
+	 */
+	final static String ATTR_TEXT = "text";
+	
+	
+	/**
+	 * 将模型导出到JsonObject
+	 * @param objectNode
+	 * @return
+	 * @throws Exception
+	 */
+	ObjectNode toJsonObject(ObjectNode objectNode)throws Exception;
 }
-

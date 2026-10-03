@@ -3369,7 +3369,7 @@ implements Serializable {
                 PSCodeList pSCodeList = new PSCodeList();
                 pSCodeList.setPSCodeListId(this.getPSCodeListId());
                 PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.getSessionFactory());
-                pSCodeListService.autoGet((IEntity)pSCodeList);
+                pSCodeListService.autoGet(pSCodeList);
                 this.pscodelist = pSCodeList;
             }
             return this.pscodelist;
@@ -3395,7 +3395,7 @@ implements Serializable {
                 PSDEFType pSDEFType = new PSDEFType();
                 pSDEFType.setPSDEFTypeId(this.getPSDEFTypeId());
                 PSDEFTypeService pSDEFTypeService = (PSDEFTypeService)ServiceGlobal.getService(PSDEFTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFTypeService.autoGet((IEntity)pSDEFType);
+                pSDEFTypeService.autoGet(pSDEFType);
                 this.psdeftype = pSDEFType;
             }
             return this.psdeftype;
@@ -3421,7 +3421,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;
@@ -3447,7 +3447,7 @@ implements Serializable {
                 PSSysUnit pSSysUnit = new PSSysUnit();
                 pSSysUnit.setPSSysUnitId(this.getPSSysUnitId());
                 PSSysUnitService pSSysUnitService = (PSSysUnitService)ServiceGlobal.getService(PSSysUnitService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUnitService.autoGet((IEntity)pSSysUnit);
+                pSSysUnitService.autoGet(pSSysUnit);
                 this.pssysunit = pSSysUnit;
             }
             return this.pssysunit;
@@ -3473,7 +3473,7 @@ implements Serializable {
                 PSSysValueRule pSSysValueRule = new PSSysValueRule();
                 pSSysValueRule.setPSSysValueRuleId(this.getPSSysValueRuleId());
                 PSSysValueRuleService pSSysValueRuleService = (PSSysValueRuleService)ServiceGlobal.getService(PSSysValueRuleService.class, (SessionFactory)this.getSessionFactory());
-                pSSysValueRuleService.autoGet((IEntity)pSSysValueRule);
+                pSSysValueRuleService.autoGet(pSSysValueRule);
                 this.pssysvaluerule = pSSysValueRule;
             }
             return this.pssysvaluerule;

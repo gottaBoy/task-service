@@ -162,9 +162,9 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
             PSWXAccount pSWXAccount = (PSWXAccount)iService.getDEModel().createEntity();
             pSWXAccount.set("PSWXACCOUNTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWXAccount);
+                iService.getTemp(pSWXAccount);
             } else {
-                iService.get((IEntity)pSWXAccount);
+                iService.get(pSWXAccount);
             }
             this.onFillParentInfo_PSWXAccount(pSWXMenuFunc, pSWXAccount);
             return;
@@ -174,14 +174,14 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
             PSWXEntApp pSWXEntApp = (PSWXEntApp)iService.getDEModel().createEntity();
             pSWXEntApp.set("PSWXENTAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWXEntApp);
+                iService.getTemp(pSWXEntApp);
             } else {
-                iService.get((IEntity)pSWXEntApp);
+                iService.get(pSWXEntApp);
             }
             this.onFillParentInfo_PSWXEntApp(pSWXMenuFunc, pSWXEntApp);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWXMenuFunc, string, string2, string3);
+        super.onFillParentInfo(pSWXMenuFunc, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -205,7 +205,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSWXMenuFunc, bl);
+        super.onFillEntityFullInfo(pSWXMenuFunc, bl);
         this.onFillEntityFullInfo_PSWXAccount(pSWXMenuFunc, bl);
         this.onFillEntityFullInfo_PSWXEntApp(pSWXMenuFunc, bl);
     }
@@ -217,7 +217,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
     }
 
     protected void onWriteBackParent(PSWXMenuFunc pSWXMenuFunc, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWXMenuFunc, bl);
+        super.onWriteBackParent(pSWXMenuFunc, bl);
     }
 
     public ArrayList<PSWXMenuFunc> selectByPSWXAccount(PSWXAccountBase pSWXAccountBase) throws Exception {
@@ -300,7 +300,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
         ArrayList<PSWXMenuFunc> arrayList = this.selectByPSWXAccount(pSWXAccount);
         this.onBeforeRemoveByPSWXAccount(pSWXAccount, arrayList);
         for (PSWXMenuFunc pSWXMenuFunc : arrayList) {
-            this.remove((IEntity)pSWXMenuFunc);
+            this.remove(pSWXMenuFunc);
         }
         this.onAfterRemoveByPSWXAccount(pSWXAccount, arrayList);
     }
@@ -346,7 +346,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
         ArrayList<PSWXMenuFunc> arrayList = this.selectByPSWXEntApp(pSWXEntApp);
         this.onBeforeRemoveByPSWXEntApp(pSWXEntApp, arrayList);
         for (PSWXMenuFunc pSWXMenuFunc : arrayList) {
-            this.remove((IEntity)pSWXMenuFunc);
+            this.remove(pSWXMenuFunc);
         }
         this.onAfterRemoveByPSWXEntApp(pSWXEntApp, arrayList);
     }
@@ -371,7 +371,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
 
     protected void replaceParentInfo(PSWXMenuFunc pSWXMenuFunc, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWXMenuFunc, cloneSession);
+        super.replaceParentInfo(pSWXMenuFunc, cloneSession);
         if (pSWXMenuFunc.getPSWXAccountId() != null && (iEntity = cloneSession.getEntity("PSWXACCOUNT", (Object)pSWXMenuFunc.getPSWXAccountId())) != null) {
             this.onFillParentInfo_PSWXAccount(pSWXMenuFunc, (PSWXAccount)iEntity);
         }
@@ -381,7 +381,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWXMenuFunc pSWXMenuFunc, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWXMenuFunc, bl);
+        super.onRemoveEntityUncopyValues(pSWXMenuFunc, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWXMenuFunc pSWXMenuFunc, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -429,7 +429,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
         if ((entityFieldError = this.onCheckField_ViewURL(bl, pSWXMenuFunc, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWXMenuFunc, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWXMenuFunc, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ClickTag(boolean bl, PSWXMenuFunc pSWXMenuFunc, boolean bl2, boolean bl3) throws Exception {
@@ -442,7 +442,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ClickTag_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_ClickTag_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CLICKTAG");
@@ -464,7 +464,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -508,7 +508,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FuncType_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_FuncType_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FUNCTYPE");
@@ -530,7 +530,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -555,7 +555,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXAccountId_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXAccountId_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXACCOUNTID");
@@ -577,7 +577,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXEntAppId_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXEntAppId_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXENTAPPID");
@@ -602,7 +602,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXMenuFuncId_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXMenuFuncId_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXMENUFUNCID");
@@ -627,7 +627,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXMenuFuncName_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXMenuFuncName_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXMENUFUNCNAME");
@@ -649,7 +649,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -671,7 +671,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -693,7 +693,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -715,7 +715,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -737,7 +737,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -759,7 +759,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ViewURL_Default((IEntity)pSWXMenuFunc, bl2, bl3);
+            string2 = this.onTestValueRule_ViewURL_Default(pSWXMenuFunc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VIEWURL");
@@ -772,11 +772,11 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
     }
 
     protected void onSyncEntity(PSWXMenuFunc pSWXMenuFunc, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWXMenuFunc, bl);
+        super.onSyncEntity(pSWXMenuFunc, bl);
     }
 
     protected void onSyncIndexEntities(PSWXMenuFunc pSWXMenuFunc, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWXMenuFunc, bl);
+        super.onSyncIndexEntities(pSWXMenuFunc, bl);
     }
 
     public Object getDataContextValue(PSWXMenuFunc pSWXMenuFunc, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -784,7 +784,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWXMenuFunc, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWXMenuFunc, string, iDataContextParam)) != null) {
             return object;
         }
         PSWXAccount pSWXAccount = pSWXMenuFunc.getPSWXAccount();
@@ -799,7 +799,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
     }
 
     protected void onExportMajorModel(PSWXMenuFunc pSWXMenuFunc, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWXMenuFunc, arrayList, n);
+        super.onExportMajorModel(pSWXMenuFunc, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1097,7 +1097,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
 
     protected boolean onMergeChild(String string, String string2, PSWXMenuFunc pSWXMenuFunc) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWXMenuFunc)) {
+        if (super.onMergeChild(string, string2, pSWXMenuFunc)) {
             bl = true;
         }
         return bl;
@@ -1114,7 +1114,7 @@ extends PSCoreSysServiceBase<PSWXMenuFunc> {
             iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.wxdesign.service.PSWXEntAppService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSWXMENUFUNC_PSWXENTAPP_PSWXENTAPPID", object);
         }
-        super.onUpdateParent((IEntity)pSWXMenuFunc);
+        super.onUpdateParent(pSWXMenuFunc);
     }
 
     protected boolean isNeedUpdateParent() {

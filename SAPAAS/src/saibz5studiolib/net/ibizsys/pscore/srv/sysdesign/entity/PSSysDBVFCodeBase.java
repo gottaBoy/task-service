@@ -1055,7 +1055,7 @@ implements Serializable {
                 PSSysDBVF pSSysDBVF = new PSSysDBVF();
                 pSSysDBVF.setPSSysDBVFId(this.getPSSysDBVFId());
                 PSSysDBVFService pSSysDBVFService = (PSSysDBVFService)ServiceGlobal.getService(PSSysDBVFService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDBVFService.autoGet((IEntity)pSSysDBVF);
+                pSSysDBVFService.autoGet(pSSysDBVF);
                 this.pssysdbvf = pSSysDBVF;
             }
             return this.pssysdbvf;

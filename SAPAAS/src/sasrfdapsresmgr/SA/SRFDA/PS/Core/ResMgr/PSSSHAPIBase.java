@@ -73,9 +73,14 @@ public abstract class PSSSHAPIBase {
         if (!inputFile.exists()) {
             inputFile.mkdirs();
         }
-        SCPClient scpClient = conn.createSCPClient();
-        scpClient.get(romoteFileName, localDir);
-        conn.close();
+        try {
+            SCPClient scpClient = conn.createSCPClient();
+            scpClient.get(romoteFileName, localDir);
+            conn.close();
+        }
+        catch (IOException e) {
+            return "\u51fa\u73b0\u4e86IO\u9519\u8bef!";
+        }
         return msg;
     }
 

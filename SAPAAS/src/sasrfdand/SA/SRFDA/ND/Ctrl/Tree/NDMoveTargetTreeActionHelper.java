@@ -90,9 +90,20 @@ extends NDTreeActionHelperEx {
                 }
                 bAutoExpand = StringHelper.Compare((String)strAutoExpand, (String)"TRUE", (boolean)true) == 0;
             }
-            iNDUserModelStorage = SRFDANDWebCTXHelper.GetNDUserModelStorage((ISRFDAWebContext)this.getWebContext());
+            try {
+                iNDUserModelStorage = SRFDANDWebCTXHelper.GetNDUserModelStorage((ISRFDAWebContext)this.getWebContext());
+            }
+            catch (Exception exception) {
+                return false;
+            }
             if (StringHelper.Compare((String)strTreeNodeRSId, (String)TREENODERSID_MYDISK, (boolean)false) != 0) break block10;
-            NDDisk ndDisk = iNDUserModelStorage.FindNDDisk(false);
+            NDDisk ndDisk;
+            try {
+                ndDisk = iNDUserModelStorage.FindNDDisk(false);
+            }
+            catch (Exception exception) {
+                return false;
+            }
             TreeNodeConfig treeNodeConfig = new TreeNodeConfig();
             this.FillNDDiskTreeNodeConfig(treeNodeConfig, ndDisk, strRealNodeId, treeNode, bAutoExpand);
             treeNodeLoadResult.getItems().add(TreeNodeConfig.ToJSON((TreeNodeConfig)treeNodeConfig, (boolean)this.bSimpleMode));

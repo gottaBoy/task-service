@@ -3530,7 +3530,7 @@ implements Serializable {
                 PSDCDeployCenter pSDCDeployCenter = new PSDCDeployCenter();
                 pSDCDeployCenter.setPSDCDeployCenterId(this.getPSDCDeployCenterId());
                 PSDCDeployCenterService pSDCDeployCenterService = (PSDCDeployCenterService)ServiceGlobal.getService(PSDCDeployCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDCDeployCenterService.autoGet((IEntity)pSDCDeployCenter);
+                pSDCDeployCenterService.autoGet(pSDCDeployCenter);
                 this.psdcdeploycenter = pSDCDeployCenter;
             }
             return this.psdcdeploycenter;
@@ -3556,7 +3556,7 @@ implements Serializable {
                 PSDCMavenRepo pSDCMavenRepo = new PSDCMavenRepo();
                 pSDCMavenRepo.setPSDCMavenRepoId(this.getPSDCMavenRepoId());
                 PSDCMavenRepoService pSDCMavenRepoService = (PSDCMavenRepoService)ServiceGlobal.getService(PSDCMavenRepoService.class, (SessionFactory)this.getSessionFactory());
-                pSDCMavenRepoService.autoGet((IEntity)pSDCMavenRepo);
+                pSDCMavenRepoService.autoGet(pSDCMavenRepo);
                 this.psdcmavenrepo = pSDCMavenRepo;
             }
             return this.psdcmavenrepo;
@@ -3582,7 +3582,7 @@ implements Serializable {
                 PSDCWorkshopServer pSDCWorkshopServer = new PSDCWorkshopServer();
                 pSDCWorkshopServer.setPSDCWorkshopServerId(this.getPSDCWorkshopServerId());
                 PSDCWorkshopServerService pSDCWorkshopServerService = (PSDCWorkshopServerService)ServiceGlobal.getService(PSDCWorkshopServerService.class, (SessionFactory)this.getSessionFactory());
-                pSDCWorkshopServerService.autoGet((IEntity)pSDCWorkshopServer);
+                pSDCWorkshopServerService.autoGet(pSDCWorkshopServer);
                 this.psdcworkshopserver = pSDCWorkshopServer;
             }
             return this.psdcworkshopserver;
@@ -3608,7 +3608,7 @@ implements Serializable {
                 PSDevCenterSVN pSDevCenterSVN = new PSDevCenterSVN();
                 pSDevCenterSVN.setPSDevCenterSVNId(this.getPSDevCenterSVNId());
                 PSDevCenterSVNService pSDevCenterSVNService = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterSVNService.autoGet((IEntity)pSDevCenterSVN);
+                pSDevCenterSVNService.autoGet(pSDevCenterSVN);
                 this.psdevcentersvn = pSDevCenterSVN;
             }
             return this.psdevcentersvn;
@@ -3634,7 +3634,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -3660,7 +3660,7 @@ implements Serializable {
                 PSDevUser pSDevUser = new PSDevUser();
                 pSDevUser.setPSDevUserId(this.getAdminPSDevUserId());
                 PSDevUserService pSDevUserService = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class, (SessionFactory)this.getSessionFactory());
-                pSDevUserService.autoGet((IEntity)pSDevUser);
+                pSDevUserService.autoGet(pSDevUser);
                 this.adminpsdevuser = pSDevUser;
             }
             return this.adminpsdevuser;

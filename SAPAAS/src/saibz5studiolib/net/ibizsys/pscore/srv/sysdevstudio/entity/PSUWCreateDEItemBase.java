@@ -1617,7 +1617,7 @@ implements Serializable {
                 PSUWCreateDE pSUWCreateDE = new PSUWCreateDE();
                 pSUWCreateDE.setPSUWCreateDEId(this.getPSUWCreateDEId());
                 PSUWCreateDEService pSUWCreateDEService = (PSUWCreateDEService)ServiceGlobal.getService(PSUWCreateDEService.class, (SessionFactory)this.getSessionFactory());
-                pSUWCreateDEService.autoGet((IEntity)pSUWCreateDE);
+                pSUWCreateDEService.autoGet(pSUWCreateDE);
                 this.psuwcreatede = pSUWCreateDE;
             }
             return this.psuwcreatede;

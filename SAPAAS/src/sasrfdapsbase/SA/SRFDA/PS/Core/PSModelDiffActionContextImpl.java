@@ -108,7 +108,7 @@ implements IPSModelDiffActionContext {
             }
             psDevSysDiffItem2.setMemo(strInfo);
         }
-        this.psDevSysDiffItemService.create((IEntity)psDevSysDiffItem2, false);
+        this.psDevSysDiffItemService.create(psDevSysDiffItem2, false);
     }
 
     @Override
@@ -116,4 +116,3 @@ implements IPSModelDiffActionContext {
         this.addDiffItem(psDevSysDiffItem, iPSModelDiffable, null);
     }
 }
-

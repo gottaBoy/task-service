@@ -38,7 +38,7 @@ extends PSSubSysServiceAPIServiceBase {
         }
         PSSubSysServiceAPI pSSubSysServiceAPI2 = new PSSubSysServiceAPI();
         pSSubSysServiceAPI2.setPSSubSysServiceAPIId(pSSubSysServiceAPI.getPSSubSysServiceAPIId());
-        this.get((IEntity)pSSubSysServiceAPI2);
+        this.get(pSSubSysServiceAPI2);
         if (StringHelper.isNullOrEmpty((String)pSSubSysServiceAPI2.getServicePath())) {
             throw new Exception("\u5916\u90e8\u63a5\u53e3\u672a\u6307\u5b9a\u670d\u52a1\u9ed8\u8ba4\u8def\u5f84");
         }

@@ -70,7 +70,7 @@ implements IPSLanguageService {
     @Override
     protected List<PSLanguage> onListAll() throws Exception {
         ArrayList<PSLanguage> list = new ArrayList<PSLanguage>();
-        List pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
+        List<PSSystem> pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
         if (pssystems != null) {
             for (PSSystem parent : pssystems) {
                 List<PSLanguage> items = this.listByPSSystem(parent);

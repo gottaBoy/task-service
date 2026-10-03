@@ -21,7 +21,7 @@ import SA.SRFramework.Data.MySQL.MySQLDBProcCaller;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.CallableStatement;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
@@ -39,7 +39,7 @@ implements IDBInsertProcCaller {
             dbResult.setErrorInfo("\u6253\u5f00\u6570\u636e\u5e93\u8fde\u63a5\u5931\u8d25");
             return dbResult;
         }
-        Statement cstmt = null;
+        CallableStatement cstmt = null;
         try {
             try {
                 int nParamCount;

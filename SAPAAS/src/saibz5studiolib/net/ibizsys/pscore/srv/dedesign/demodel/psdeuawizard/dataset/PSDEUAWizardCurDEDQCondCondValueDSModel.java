@@ -93,7 +93,7 @@ extends PSDEUAWizardCurDEDQCondCondValueDSModelBase {
             PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)sessionFactory);
             PSDEField pSDEField = new PSDEField();
             pSDEField.setPSDEFieldId(string);
-            if (!pSDEFieldService.get((IEntity)pSDEField, true)) {
+            if (!pSDEFieldService.get(pSDEField, true)) {
                 log.error((Object)StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u5236\u5b9a\u5c5e\u6027[%1$s]", (Object)pSDEField.getPSDEFieldId()));
                 return dBFetchResult;
             }
@@ -114,19 +114,19 @@ extends PSDEUAWizardCurDEDQCondCondValueDSModelBase {
                 dEDataSetFetchContext.getConditionList().add(iDEDataSetCond);
             }
             if (!StringHelper.isNullOrEmpty((String)string4)) {
-                iDEDataSetCond = new DEDataSetCond();
-                iDEDataSetCond.setCondType("DEFIELD");
-                iDEDataSetCond.setCondOp("EQ");
-                iDEDataSetCond.setDEFName("PSCODELISTID");
-                iDEDataSetCond.setCondValue(string4);
-                dEDataSetFetchContext.getConditionList().add(iDEDataSetCond);
+                DEDataSetCond codeListCondition = new DEDataSetCond();
+                codeListCondition.setCondType("DEFIELD");
+                codeListCondition.setCondOp("EQ");
+                codeListCondition.setDEFName("PSCODELISTID");
+                codeListCondition.setCondValue(string4);
+                dEDataSetFetchContext.getConditionList().add(codeListCondition);
             }
             dEDataSetFetchContext.setSort("ORDERVALUE");
-            iDEDataSetCond = pSCodeItemService.fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
-            if (iDEDataSetCond.isError()) {
-                return iDEDataSetCond;
+            DBFetchResult codeItemResult = pSCodeItemService.fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
+            if (codeItemResult.isError()) {
+                return codeItemResult;
             }
-            IDataTable iDataTable = iDEDataSetCond.getDataSet().getDataTable(0);
+            IDataTable iDataTable = codeItemResult.getDataSet().getDataTable(0);
             int n = iDataTable.getCachedRowCount();
             if (n > 0) {
                 simpleDataTableImpl.reset();
@@ -146,7 +146,7 @@ extends PSDEUAWizardCurDEDQCondCondValueDSModelBase {
             PSCoreSysServiceBase pSCoreSysServiceBase = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)sessionFactory);
             PSDEField pSDEField = new PSDEField();
             pSDEField.setPSDEFieldId(string);
-            if (pSCoreSysServiceBase.get((IEntity)pSDEField, true) && (StringHelper.isNullOrEmpty((String)string6) || pSDEField.getPSDEFieldName().toLowerCase().indexOf(string6.toLowerCase()) != -1)) {
+            if (pSCoreSysServiceBase.get(pSDEField, true) && (StringHelper.isNullOrEmpty((String)string6) || pSDEField.getPSDEFieldName().toLowerCase().indexOf(string6.toLowerCase()) != -1)) {
                 simpleDataRowImpl = new SimpleDataRowImpl();
                 simpleDataRowImpl.set("PSUAWIZARDID", (Object)pSDEField.getLogicName());
                 simpleDataRowImpl.set("PSUAWIZARDNAME", (Object)pSDEField.getPSDEFieldName().toLowerCase());
@@ -154,23 +154,24 @@ extends PSDEUAWizardCurDEDQCondCondValueDSModelBase {
                 simpleDataTableImpl.addCachedRow((IDataRow)simpleDataRowImpl);
                 dBFetchResult.setTotalRow(1);
             }
-            pSCoreSysServiceBase = (PSVarSampleValueService)ServiceGlobal.getService(PSVarSampleValueService.class);
-            pSDEField = new DEDataSetFetchContext();
-            if (!StringHelper.isNullOrEmpty((String)string6) && (simpleDataRowImpl = ((PSVarSampleValueServiceBase)pSCoreSysServiceBase).getDEModel().getFetchQuickSearchCondition(string6)) != null) {
-                pSDEField.getConditionList().add(simpleDataRowImpl);
+            PSVarSampleValueService sampleValueService = (PSVarSampleValueService)ServiceGlobal.getService(PSVarSampleValueService.class);
+            DEDataSetFetchContext sampleValueContext = new DEDataSetFetchContext();
+            IDEDataSetCond quickSearchCondition;
+            if (!StringHelper.isNullOrEmpty((String)string6) && (quickSearchCondition = sampleValueService.getDEModel().getFetchQuickSearchCondition(string6)) != null) {
+                sampleValueContext.getConditionList().add(quickSearchCondition);
             }
-            simpleDataRowImpl = new DEDataSetCond();
-            simpleDataRowImpl.setCondType("DEFIELD");
-            simpleDataRowImpl.setCondOp("EQ");
-            simpleDataRowImpl.setDEFName("VARTYPE");
-            simpleDataRowImpl.setCondValue(string3);
-            pSDEField.getConditionList().add(simpleDataRowImpl);
-            pSDEField.setSort("PSVARSAMPLEVALUENAME");
-            simpleDataRowImpl = ((PSVarSampleValueServiceBase)pSCoreSysServiceBase).fetchDefault((IDEDataSetFetchContext)pSDEField);
-            if (simpleDataRowImpl.isError()) {
-                return simpleDataRowImpl;
+            DEDataSetCond varTypeCondition = new DEDataSetCond();
+            varTypeCondition.setCondType("DEFIELD");
+            varTypeCondition.setCondOp("EQ");
+            varTypeCondition.setDEFName("VARTYPE");
+            varTypeCondition.setCondValue(string3);
+            sampleValueContext.getConditionList().add(varTypeCondition);
+            sampleValueContext.setSort("PSVARSAMPLEVALUENAME");
+            DBFetchResult sampleValueResult = sampleValueService.fetchDefault((IDEDataSetFetchContext)sampleValueContext);
+            if (sampleValueResult.isError()) {
+                return sampleValueResult;
             }
-            IDataTable iDataTable = simpleDataRowImpl.getDataSet().getDataTable(0);
+            IDataTable iDataTable = sampleValueResult.getDataSet().getDataTable(0);
             int n = iDataTable.getCachedRowCount();
             if (n > 0) {
                 for (int i = 0; i < n; ++i) {
@@ -187,4 +188,3 @@ extends PSDEUAWizardCurDEDQCondCondValueDSModelBase {
         return dBFetchResult;
     }
 }
-

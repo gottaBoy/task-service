@@ -43,11 +43,10 @@ extends PSAppMenuItemServiceBase {
         ArrayList<PSAppMenuItem> arrayList = null;
         arrayList = pSAppMenu.getPSAppMenuId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSAppMenu(pSAppMenu) : this.selectByPSAppMenu(pSAppMenu);
         HashMap<String, PSAppMenuItem> hashMap = new HashMap<String, PSAppMenuItem>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSAppMenuItem pSAppMenuItem2 = object.next();
+        for (PSAppMenuItem pSAppMenuItem2 : arrayList) {
             hashMap.put(pSAppMenuItem2.getPSAppMenuItemName().toLowerCase(), pSAppMenuItem2);
         }
+        Object object;
         while (true) {
             if (!hashMap.containsKey(object = StringHelper.format((String)"%1$s%2$s", (Object)string2, (Object)(n == 0 ? "" : Integer.valueOf(n))))) break;
             ++n;
@@ -98,4 +97,3 @@ extends PSAppMenuItemServiceBase {
         }
     }
 }
-

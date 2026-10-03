@@ -73,7 +73,7 @@ implements IPSSysUCMapNodeService {
     @Override
     protected List<PSSysUCMapNode> onListAll() throws Exception {
         ArrayList<PSSysUCMapNode> list = new ArrayList<PSSysUCMapNode>();
-        List pssysucmaps = PSModelServiceUtil.getInstance().getPSSysUCMapService().listAll();
+        List<PSSysUCMap> pssysucmaps = PSModelServiceUtil.getInstance().getPSSysUCMapService().listAll();
         if (pssysucmaps != null) {
             for (PSSysUCMap parent : pssysucmaps) {
                 List<PSSysUCMapNode> items = this.listByPSSysUCMap(parent);

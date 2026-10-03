@@ -1,28 +1,50 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import net.ibizsys.paas.data.DataObject;
 
+/**
+ * 调用参数对象
+ * 
+ * @author lionlau
+ *
+ */
 public class CallArg {
-    private String strActionMode;
-    private DataObject dataObject;
+	private String strActionMode;
+	private DataObject dataObject;
 
-    public String getActionMode() {
-        return this.strActionMode;
-    }
+	/**
+	 * 获取操作模式
+	 * 
+	 * @return the strActionMode
+	 */
+	public String getActionMode() {
+		return strActionMode;
+	}
 
-    public void setActionMode(String strActionMode) {
-        this.strActionMode = strActionMode;
-    }
+	/**
+	 * 设置操作模式
+	 * 
+	 * @param strActionMode the strActionMode to set
+	 */
+	public void setActionMode(String strActionMode) {
+		this.strActionMode = strActionMode;
+	}
 
-    public DataObject getDataObject() {
-        return this.dataObject;
-    }
+	/**
+	 * 获取数据对象
+	 * 
+	 * @return the dataObject
+	 */
+	public DataObject getDataObject() {
+		return dataObject;
+	}
 
-    public void setDataObject(DataObject dataObject) {
-        this.dataObject = dataObject;
-    }
+	/**
+	 * 设置数据对象
+	 * 
+	 * @param dataObject the dataObject to set
+	 */
+	public void setDataObject(DataObject dataObject) {
+		this.dataObject = dataObject;
+	}
 }
-

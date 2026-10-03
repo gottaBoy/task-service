@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSCssTemplDEModelBase;
 
 public class PSCssTemplDEModel
 extends PSCssTemplDEModelBase {
+
+    public PSCssTemplDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -1,16 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.ctrlhandler.IEditFormHandler
- */
 package net.ibizsys.pswf.ctrlhandler;
 
 import net.ibizsys.paas.ctrlhandler.IEditFormHandler;
-import net.ibizsys.pswf.ctrlhandler.IWFCtrlHandler;
 
-public interface IWFActionFormHandler
-extends IEditFormHandler,
-IWFCtrlHandler {
+/**
+ * 流程操作表单处理对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IWFActionFormHandler extends IEditFormHandler, IWFCtrlHandler {
+
 }
-

@@ -1,21 +1,239 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfworkflow.dataquery;
 
-import net.ibizsys.paas.core.DEDataQuery;
-import net.ibizsys.paas.core.DEDataQueryCode;
-import net.ibizsys.paas.core.DEDataQueryCodeCond;
-import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
 
-@DEDataQuery(id="18EFC399-B211-44D6-B9AF-AF182EE81D53", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.ENABLE, t1.MEMO, t1.REMINDMSGTEMPLID, t11.MSGTEMPLATENAME AS REMINDMSGTEMPLNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATACMD, t1.USERDATACMD10, t1.USERDATACMD2, t1.USERDATACMD3, t1.USERDATACMD4, t1.USERDATACMD5, t1.USERDATACMD6, t1.USERDATACMD7, t1.USERDATACMD8, t1.USERDATACMD9, t1.USERDATANAME, t1.WFHELPER, t1.WFHELPERPARAM, t1.WFLANRESTAG, t1.WFLOGICNAME, t1.WFSTATE, t1.WFTYPE, t1.WFVERSION, t1.WFWORKFLOWID, t1.WFWORKFLOWNAME FROM T_SRFWFWORKFLOW t1  LEFT JOIN T_SRFMSGTEMPLATE t11 ON t1.REMINDMSGTEMPLID = t11.MSGTEMPLATEID  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="WFMODEL", expression="t1.WFMODEL", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="ENABLE", expression="t1.ENABLE", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="REMINDMSGTEMPLID", expression="t1.REMINDMSGTEMPLID", showorder=4), @DEDataQueryCodeExp(name="REMINDMSGTEMPLNAME", expression="t11.MSGTEMPLATENAME", showorder=5), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=6), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=7), @DEDataQueryCodeExp(name="USERDATACMD", expression="t1.USERDATACMD", showorder=8), @DEDataQueryCodeExp(name="USERDATACMD10", expression="t1.USERDATACMD10", showorder=9), @DEDataQueryCodeExp(name="USERDATACMD2", expression="t1.USERDATACMD2", showorder=10), @DEDataQueryCodeExp(name="USERDATACMD3", expression="t1.USERDATACMD3", showorder=11), @DEDataQueryCodeExp(name="USERDATACMD4", expression="t1.USERDATACMD4", showorder=12), @DEDataQueryCodeExp(name="USERDATACMD5", expression="t1.USERDATACMD5", showorder=13), @DEDataQueryCodeExp(name="USERDATACMD6", expression="t1.USERDATACMD6", showorder=14), @DEDataQueryCodeExp(name="USERDATACMD7", expression="t1.USERDATACMD7", showorder=15), @DEDataQueryCodeExp(name="USERDATACMD8", expression="t1.USERDATACMD8", showorder=16), @DEDataQueryCodeExp(name="USERDATACMD9", expression="t1.USERDATACMD9", showorder=17), @DEDataQueryCodeExp(name="USERDATANAME", expression="t1.USERDATANAME", showorder=18), @DEDataQueryCodeExp(name="WFHELPER", expression="t1.WFHELPER", showorder=19), @DEDataQueryCodeExp(name="WFHELPERPARAM", expression="t1.WFHELPERPARAM", showorder=20), @DEDataQueryCodeExp(name="WFLANRESTAG", expression="t1.WFLANRESTAG", showorder=21), @DEDataQueryCodeExp(name="WFLOGICNAME", expression="t1.WFLOGICNAME", showorder=22), @DEDataQueryCodeExp(name="WFSTATE", expression="t1.WFSTATE", showorder=23), @DEDataQueryCodeExp(name="WFTYPE", expression="t1.WFTYPE", showorder=24), @DEDataQueryCodeExp(name="WFVERSION", expression="t1.WFVERSION", showorder=25), @DEDataQueryCodeExp(name="WFWORKFLOWID", expression="t1.WFWORKFLOWID", showorder=26), @DEDataQueryCodeExp(name="WFWORKFLOWNAME", expression="t1.WFWORKFLOWNAME", showorder=27)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")}), @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`enable`, t1.`memo`, t1.`remindmsgtemplid`, t11.`msgtemplatename` AS `remindmsgtemplname`, t1.`updatedate`, t1.`updateman`, t1.`userdatacmd`, t1.`userdatacmd10`, t1.`userdatacmd2`, t1.`userdatacmd3`, t1.`userdatacmd4`, t1.`userdatacmd5`, t1.`userdatacmd6`, t1.`userdatacmd7`, t1.`userdatacmd8`, t1.`userdatacmd9`, t1.`userdataname`, t1.`wfhelper`, t1.`wfhelperparam`, t1.`wflanrestag`, t1.`wflogicname`, t1.`wfstate`, t1.`wftype`, t1.`wfversion`, t1.`wfworkflowid`, t1.`wfworkflowname` FROM `t_srfwfworkflow` t1  LEFT JOIN t_srfmsgtemplate t11 ON t1.remindmsgtemplid = t11.msgtemplateid  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="WFMODEL", expression="t1.`wfmodel`", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=1), @DEDataQueryCodeExp(name="ENABLE", expression="t1.`enable`", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.`memo`", showorder=3), @DEDataQueryCodeExp(name="REMINDMSGTEMPLID", expression="t1.`remindmsgtemplid`", showorder=4), @DEDataQueryCodeExp(name="REMINDMSGTEMPLNAME", expression="t11.`msgtemplatename`", showorder=5), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=6), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=7), @DEDataQueryCodeExp(name="USERDATACMD", expression="t1.`userdatacmd`", showorder=8), @DEDataQueryCodeExp(name="USERDATACMD10", expression="t1.`userdatacmd10`", showorder=9), @DEDataQueryCodeExp(name="USERDATACMD2", expression="t1.`userdatacmd2`", showorder=10), @DEDataQueryCodeExp(name="USERDATACMD3", expression="t1.`userdatacmd3`", showorder=11), @DEDataQueryCodeExp(name="USERDATACMD4", expression="t1.`userdatacmd4`", showorder=12), @DEDataQueryCodeExp(name="USERDATACMD5", expression="t1.`userdatacmd5`", showorder=13), @DEDataQueryCodeExp(name="USERDATACMD6", expression="t1.`userdatacmd6`", showorder=14), @DEDataQueryCodeExp(name="USERDATACMD7", expression="t1.`userdatacmd7`", showorder=15), @DEDataQueryCodeExp(name="USERDATACMD8", expression="t1.`userdatacmd8`", showorder=16), @DEDataQueryCodeExp(name="USERDATACMD9", expression="t1.`userdatacmd9`", showorder=17), @DEDataQueryCodeExp(name="USERDATANAME", expression="t1.`userdataname`", showorder=18), @DEDataQueryCodeExp(name="WFHELPER", expression="t1.`wfhelper`", showorder=19), @DEDataQueryCodeExp(name="WFHELPERPARAM", expression="t1.`wfhelperparam`", showorder=20), @DEDataQueryCodeExp(name="WFLANRESTAG", expression="t1.`wflanrestag`", showorder=21), @DEDataQueryCodeExp(name="WFLOGICNAME", expression="t1.`wflogicname`", showorder=22), @DEDataQueryCodeExp(name="WFSTATE", expression="t1.`wfstate`", showorder=23), @DEDataQueryCodeExp(name="WFTYPE", expression="t1.`wftype`", showorder=24), @DEDataQueryCodeExp(name="WFVERSION", expression="t1.`wfversion`", showorder=25), @DEDataQueryCodeExp(name="WFWORKFLOWID", expression="t1.`wfworkflowid`", showorder=26), @DEDataQueryCodeExp(name="WFWORKFLOWNAME", expression="t1.`wfworkflowname`", showorder=27)}, conds={@DEDataQueryCodeCond(condition="t1.enable = 1")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.ENABLE, t1.MEMO, t1.REMINDMSGTEMPLID, t11.MSGTEMPLATENAME AS REMINDMSGTEMPLNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATACMD, t1.USERDATACMD10, t1.USERDATACMD2, t1.USERDATACMD3, t1.USERDATACMD4, t1.USERDATACMD5, t1.USERDATACMD6, t1.USERDATACMD7, t1.USERDATACMD8, t1.USERDATACMD9, t1.USERDATANAME, t1.WFHELPER, t1.WFHELPERPARAM, t1.WFLANRESTAG, t1.WFLOGICNAME, t1.WFSTATE, t1.WFTYPE, t1.WFVERSION, t1.WFWORKFLOWID, t1.WFWORKFLOWNAME FROM T_SRFWFWORKFLOW t1  LEFT JOIN T_SRFMSGTEMPLATE t11 ON t1.REMINDMSGTEMPLID = t11.MSGTEMPLATEID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="WFMODEL", expression="t1.WFMODEL", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="ENABLE", expression="t1.ENABLE", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="REMINDMSGTEMPLID", expression="t1.REMINDMSGTEMPLID", showorder=4), @DEDataQueryCodeExp(name="REMINDMSGTEMPLNAME", expression="t11.MSGTEMPLATENAME", showorder=5), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=6), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=7), @DEDataQueryCodeExp(name="USERDATACMD", expression="t1.USERDATACMD", showorder=8), @DEDataQueryCodeExp(name="USERDATACMD10", expression="t1.USERDATACMD10", showorder=9), @DEDataQueryCodeExp(name="USERDATACMD2", expression="t1.USERDATACMD2", showorder=10), @DEDataQueryCodeExp(name="USERDATACMD3", expression="t1.USERDATACMD3", showorder=11), @DEDataQueryCodeExp(name="USERDATACMD4", expression="t1.USERDATACMD4", showorder=12), @DEDataQueryCodeExp(name="USERDATACMD5", expression="t1.USERDATACMD5", showorder=13), @DEDataQueryCodeExp(name="USERDATACMD6", expression="t1.USERDATACMD6", showorder=14), @DEDataQueryCodeExp(name="USERDATACMD7", expression="t1.USERDATACMD7", showorder=15), @DEDataQueryCodeExp(name="USERDATACMD8", expression="t1.USERDATACMD8", showorder=16), @DEDataQueryCodeExp(name="USERDATACMD9", expression="t1.USERDATACMD9", showorder=17), @DEDataQueryCodeExp(name="USERDATANAME", expression="t1.USERDATANAME", showorder=18), @DEDataQueryCodeExp(name="WFHELPER", expression="t1.WFHELPER", showorder=19), @DEDataQueryCodeExp(name="WFHELPERPARAM", expression="t1.WFHELPERPARAM", showorder=20), @DEDataQueryCodeExp(name="WFLANRESTAG", expression="t1.WFLANRESTAG", showorder=21), @DEDataQueryCodeExp(name="WFLOGICNAME", expression="t1.WFLOGICNAME", showorder=22), @DEDataQueryCodeExp(name="WFSTATE", expression="t1.WFSTATE", showorder=23), @DEDataQueryCodeExp(name="WFTYPE", expression="t1.WFTYPE", showorder=24), @DEDataQueryCodeExp(name="WFVERSION", expression="t1.WFVERSION", showorder=25), @DEDataQueryCodeExp(name="WFWORKFLOWID", expression="t1.WFWORKFLOWID", showorder=26), @DEDataQueryCodeExp(name="WFWORKFLOWNAME", expression="t1.WFWORKFLOWNAME", showorder=27)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.ENABLE, t1.MEMO, t1.REMINDMSGTEMPLID, t11.MSGTEMPLATENAME AS REMINDMSGTEMPLNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATACMD, t1.USERDATACMD10, t1.USERDATACMD2, t1.USERDATACMD3, t1.USERDATACMD4, t1.USERDATACMD5, t1.USERDATACMD6, t1.USERDATACMD7, t1.USERDATACMD8, t1.USERDATACMD9, t1.USERDATANAME, t1.WFHELPER, t1.WFHELPERPARAM, t1.WFLANRESTAG, t1.WFLOGICNAME, t1.WFSTATE, t1.WFTYPE, t1.WFVERSION, t1.WFWORKFLOWID, t1.WFWORKFLOWNAME FROM T_SRFWFWORKFLOW t1  LEFT JOIN T_SRFMSGTEMPLATE t11 ON t1.REMINDMSGTEMPLID = t11.MSGTEMPLATEID  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="WFMODEL", expression="t1.WFMODEL", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="ENABLE", expression="t1.ENABLE", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="REMINDMSGTEMPLID", expression="t1.REMINDMSGTEMPLID", showorder=4), @DEDataQueryCodeExp(name="REMINDMSGTEMPLNAME", expression="t11.MSGTEMPLATENAME", showorder=5), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=6), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=7), @DEDataQueryCodeExp(name="USERDATACMD", expression="t1.USERDATACMD", showorder=8), @DEDataQueryCodeExp(name="USERDATACMD10", expression="t1.USERDATACMD10", showorder=9), @DEDataQueryCodeExp(name="USERDATACMD2", expression="t1.USERDATACMD2", showorder=10), @DEDataQueryCodeExp(name="USERDATACMD3", expression="t1.USERDATACMD3", showorder=11), @DEDataQueryCodeExp(name="USERDATACMD4", expression="t1.USERDATACMD4", showorder=12), @DEDataQueryCodeExp(name="USERDATACMD5", expression="t1.USERDATACMD5", showorder=13), @DEDataQueryCodeExp(name="USERDATACMD6", expression="t1.USERDATACMD6", showorder=14), @DEDataQueryCodeExp(name="USERDATACMD7", expression="t1.USERDATACMD7", showorder=15), @DEDataQueryCodeExp(name="USERDATACMD8", expression="t1.USERDATACMD8", showorder=16), @DEDataQueryCodeExp(name="USERDATACMD9", expression="t1.USERDATACMD9", showorder=17), @DEDataQueryCodeExp(name="USERDATANAME", expression="t1.USERDATANAME", showorder=18), @DEDataQueryCodeExp(name="WFHELPER", expression="t1.WFHELPER", showorder=19), @DEDataQueryCodeExp(name="WFHELPERPARAM", expression="t1.WFHELPERPARAM", showorder=20), @DEDataQueryCodeExp(name="WFLANRESTAG", expression="t1.WFLANRESTAG", showorder=21), @DEDataQueryCodeExp(name="WFLOGICNAME", expression="t1.WFLOGICNAME", showorder=22), @DEDataQueryCodeExp(name="WFSTATE", expression="t1.WFSTATE", showorder=23), @DEDataQueryCodeExp(name="WFTYPE", expression="t1.WFTYPE", showorder=24), @DEDataQueryCodeExp(name="WFVERSION", expression="t1.WFVERSION", showorder=25), @DEDataQueryCodeExp(name="WFWORKFLOWID", expression="t1.WFWORKFLOWID", showorder=26), @DEDataQueryCodeExp(name="WFWORKFLOWNAME", expression="t1.WFWORKFLOWNAME", showorder=27)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.ENABLE, t1.MEMO, t1.REMINDMSGTEMPLID, t11.MSGTEMPLATENAME AS REMINDMSGTEMPLNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATACMD, t1.USERDATACMD10, t1.USERDATACMD2, t1.USERDATACMD3, t1.USERDATACMD4, t1.USERDATACMD5, t1.USERDATACMD6, t1.USERDATACMD7, t1.USERDATACMD8, t1.USERDATACMD9, t1.USERDATANAME, t1.WFHELPER, t1.WFHELPERPARAM, t1.WFLANRESTAG, t1.WFLOGICNAME, t1.WFSTATE, t1.WFTYPE, t1.WFVERSION, t1.WFWORKFLOWID, t1.WFWORKFLOWNAME FROM T_SRFWFWORKFLOW t1  LEFT JOIN T_SRFMSGTEMPLATE t11 ON t1.REMINDMSGTEMPLID = t11.MSGTEMPLATEID  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="WFMODEL", expression="t1.WFMODEL", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="ENABLE", expression="t1.ENABLE", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="REMINDMSGTEMPLID", expression="t1.REMINDMSGTEMPLID", showorder=4), @DEDataQueryCodeExp(name="REMINDMSGTEMPLNAME", expression="t11.MSGTEMPLATENAME", showorder=5), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=6), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=7), @DEDataQueryCodeExp(name="USERDATACMD", expression="t1.USERDATACMD", showorder=8), @DEDataQueryCodeExp(name="USERDATACMD10", expression="t1.USERDATACMD10", showorder=9), @DEDataQueryCodeExp(name="USERDATACMD2", expression="t1.USERDATACMD2", showorder=10), @DEDataQueryCodeExp(name="USERDATACMD3", expression="t1.USERDATACMD3", showorder=11), @DEDataQueryCodeExp(name="USERDATACMD4", expression="t1.USERDATACMD4", showorder=12), @DEDataQueryCodeExp(name="USERDATACMD5", expression="t1.USERDATACMD5", showorder=13), @DEDataQueryCodeExp(name="USERDATACMD6", expression="t1.USERDATACMD6", showorder=14), @DEDataQueryCodeExp(name="USERDATACMD7", expression="t1.USERDATACMD7", showorder=15), @DEDataQueryCodeExp(name="USERDATACMD8", expression="t1.USERDATACMD8", showorder=16), @DEDataQueryCodeExp(name="USERDATACMD9", expression="t1.USERDATACMD9", showorder=17), @DEDataQueryCodeExp(name="USERDATANAME", expression="t1.USERDATANAME", showorder=18), @DEDataQueryCodeExp(name="WFHELPER", expression="t1.WFHELPER", showorder=19), @DEDataQueryCodeExp(name="WFHELPERPARAM", expression="t1.WFHELPERPARAM", showorder=20), @DEDataQueryCodeExp(name="WFLANRESTAG", expression="t1.WFLANRESTAG", showorder=21), @DEDataQueryCodeExp(name="WFLOGICNAME", expression="t1.WFLOGICNAME", showorder=22), @DEDataQueryCodeExp(name="WFSTATE", expression="t1.WFSTATE", showorder=23), @DEDataQueryCodeExp(name="WFTYPE", expression="t1.WFTYPE", showorder=24), @DEDataQueryCodeExp(name="WFVERSION", expression="t1.WFVERSION", showorder=25), @DEDataQueryCodeExp(name="WFWORKFLOWID", expression="t1.WFWORKFLOWID", showorder=26), @DEDataQueryCodeExp(name="WFWORKFLOWNAME", expression="t1.WFWORKFLOWNAME", showorder=27)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")}), @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[ENABLE], t1.[MEMO], t1.[REMINDMSGTEMPLID], t11.[MSGTEMPLATENAME] AS [REMINDMSGTEMPLNAME], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[USERDATACMD], t1.[USERDATACMD10], t1.[USERDATACMD2], t1.[USERDATACMD3], t1.[USERDATACMD4], t1.[USERDATACMD5], t1.[USERDATACMD6], t1.[USERDATACMD7], t1.[USERDATACMD8], t1.[USERDATACMD9], t1.[USERDATANAME], t1.[WFHELPER], t1.[WFHELPERPARAM], t1.[WFLANRESTAG], t1.[WFLOGICNAME], t1.[WFSTATE], t1.[WFTYPE], t1.[WFVERSION], t1.[WFWORKFLOWID], t1.[WFWORKFLOWNAME] FROM [T_SRFWFWORKFLOW] t1  LEFT JOIN T_SRFMSGTEMPLATE t11 ON t1.REMINDMSGTEMPLID = t11.MSGTEMPLATEID  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="WFMODEL", expression="t1.[WFMODEL]", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=1), @DEDataQueryCodeExp(name="ENABLE", expression="t1.[ENABLE]", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.[MEMO]", showorder=3), @DEDataQueryCodeExp(name="REMINDMSGTEMPLID", expression="t1.[REMINDMSGTEMPLID]", showorder=4), @DEDataQueryCodeExp(name="REMINDMSGTEMPLNAME", expression="t11.[MSGTEMPLATENAME]", showorder=5), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=6), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=7), @DEDataQueryCodeExp(name="USERDATACMD", expression="t1.[USERDATACMD]", showorder=8), @DEDataQueryCodeExp(name="USERDATACMD10", expression="t1.[USERDATACMD10]", showorder=9), @DEDataQueryCodeExp(name="USERDATACMD2", expression="t1.[USERDATACMD2]", showorder=10), @DEDataQueryCodeExp(name="USERDATACMD3", expression="t1.[USERDATACMD3]", showorder=11), @DEDataQueryCodeExp(name="USERDATACMD4", expression="t1.[USERDATACMD4]", showorder=12), @DEDataQueryCodeExp(name="USERDATACMD5", expression="t1.[USERDATACMD5]", showorder=13), @DEDataQueryCodeExp(name="USERDATACMD6", expression="t1.[USERDATACMD6]", showorder=14), @DEDataQueryCodeExp(name="USERDATACMD7", expression="t1.[USERDATACMD7]", showorder=15), @DEDataQueryCodeExp(name="USERDATACMD8", expression="t1.[USERDATACMD8]", showorder=16), @DEDataQueryCodeExp(name="USERDATACMD9", expression="t1.[USERDATACMD9]", showorder=17), @DEDataQueryCodeExp(name="USERDATANAME", expression="t1.[USERDATANAME]", showorder=18), @DEDataQueryCodeExp(name="WFHELPER", expression="t1.[WFHELPER]", showorder=19), @DEDataQueryCodeExp(name="WFHELPERPARAM", expression="t1.[WFHELPERPARAM]", showorder=20), @DEDataQueryCodeExp(name="WFLANRESTAG", expression="t1.[WFLANRESTAG]", showorder=21), @DEDataQueryCodeExp(name="WFLOGICNAME", expression="t1.[WFLOGICNAME]", showorder=22), @DEDataQueryCodeExp(name="WFSTATE", expression="t1.[WFSTATE]", showorder=23), @DEDataQueryCodeExp(name="WFTYPE", expression="t1.[WFTYPE]", showorder=24), @DEDataQueryCodeExp(name="WFVERSION", expression="t1.[WFVERSION]", showorder=25), @DEDataQueryCodeExp(name="WFWORKFLOWID", expression="t1.[WFWORKFLOWID]", showorder=26), @DEDataQueryCodeExp(name="WFWORKFLOWNAME", expression="t1.[WFWORKFLOWNAME]", showorder=27)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")})})
-public abstract class WFWorkflowDefaultDQModelBase
-extends DEDataQueryModelBase {
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
+
+@DEDataQuery(id="18EFC399-B211-44D6-B9AF-AF182EE81D53",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.ENABLE, t1.MEMO, t1.REMINDMSGTEMPLID, t11.MSGTEMPLATENAME AS REMINDMSGTEMPLNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATACMD, t1.USERDATACMD10, t1.USERDATACMD2, t1.USERDATACMD3, t1.USERDATACMD4, t1.USERDATACMD5, t1.USERDATACMD6, t1.USERDATACMD7, t1.USERDATACMD8, t1.USERDATACMD9, t1.USERDATANAME, t1.WFHELPER, t1.WFHELPERPARAM, t1.WFLANRESTAG, t1.WFLOGICNAME, t1.WFSTATE, t1.WFTYPE, t1.WFVERSION, t1.WFWORKFLOWID, t1.WFWORKFLOWNAME FROM T_SRFWFWORKFLOW t1  LEFT JOIN T_SRFMSGTEMPLATE t11 ON t1.REMINDMSGTEMPLID = t11.MSGTEMPLATEID  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="WFMODEL",expression="t1.WFMODEL",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.ENABLE",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="REMINDMSGTEMPLID",expression="t1.REMINDMSGTEMPLID",showorder=4)
+        ,@DEDataQueryCodeExp(name="REMINDMSGTEMPLNAME",expression="t11.MSGTEMPLATENAME",showorder=5)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=7)
+        ,@DEDataQueryCodeExp(name="USERDATACMD",expression="t1.USERDATACMD",showorder=8)
+        ,@DEDataQueryCodeExp(name="USERDATACMD10",expression="t1.USERDATACMD10",showorder=9)
+        ,@DEDataQueryCodeExp(name="USERDATACMD2",expression="t1.USERDATACMD2",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERDATACMD3",expression="t1.USERDATACMD3",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERDATACMD4",expression="t1.USERDATACMD4",showorder=12)
+        ,@DEDataQueryCodeExp(name="USERDATACMD5",expression="t1.USERDATACMD5",showorder=13)
+        ,@DEDataQueryCodeExp(name="USERDATACMD6",expression="t1.USERDATACMD6",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDATACMD7",expression="t1.USERDATACMD7",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDATACMD8",expression="t1.USERDATACMD8",showorder=16)
+        ,@DEDataQueryCodeExp(name="USERDATACMD9",expression="t1.USERDATACMD9",showorder=17)
+        ,@DEDataQueryCodeExp(name="USERDATANAME",expression="t1.USERDATANAME",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFHELPER",expression="t1.WFHELPER",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFHELPERPARAM",expression="t1.WFHELPERPARAM",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFLANRESTAG",expression="t1.WFLANRESTAG",showorder=21)
+        ,@DEDataQueryCodeExp(name="WFLOGICNAME",expression="t1.WFLOGICNAME",showorder=22)
+        ,@DEDataQueryCodeExp(name="WFSTATE",expression="t1.WFSTATE",showorder=23)
+        ,@DEDataQueryCodeExp(name="WFTYPE",expression="t1.WFTYPE",showorder=24)
+        ,@DEDataQueryCodeExp(name="WFVERSION",expression="t1.WFVERSION",showorder=25)
+        ,@DEDataQueryCodeExp(name="WFWORKFLOWID",expression="t1.WFWORKFLOWID",showorder=26)
+        ,@DEDataQueryCodeExp(name="WFWORKFLOWNAME",expression="t1.WFWORKFLOWNAME",showorder=27)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`enable`, t1.`memo`, t1.`remindmsgtemplid`, t11.`msgtemplatename` AS `remindmsgtemplname`, t1.`updatedate`, t1.`updateman`, t1.`userdatacmd`, t1.`userdatacmd10`, t1.`userdatacmd2`, t1.`userdatacmd3`, t1.`userdatacmd4`, t1.`userdatacmd5`, t1.`userdatacmd6`, t1.`userdatacmd7`, t1.`userdatacmd8`, t1.`userdatacmd9`, t1.`userdataname`, t1.`wfhelper`, t1.`wfhelperparam`, t1.`wflanrestag`, t1.`wflogicname`, t1.`wfstate`, t1.`wftype`, t1.`wfversion`, t1.`wfworkflowid`, t1.`wfworkflowname` FROM `t_srfwfworkflow` t1  LEFT JOIN t_srfmsgtemplate t11 ON t1.remindmsgtemplid = t11.msgtemplateid  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="WFMODEL",expression="t1.`wfmodel`",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=1)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.`enable`",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.`memo`",showorder=3)
+        ,@DEDataQueryCodeExp(name="REMINDMSGTEMPLID",expression="t1.`remindmsgtemplid`",showorder=4)
+        ,@DEDataQueryCodeExp(name="REMINDMSGTEMPLNAME",expression="t11.`msgtemplatename`",showorder=5)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=7)
+        ,@DEDataQueryCodeExp(name="USERDATACMD",expression="t1.`userdatacmd`",showorder=8)
+        ,@DEDataQueryCodeExp(name="USERDATACMD10",expression="t1.`userdatacmd10`",showorder=9)
+        ,@DEDataQueryCodeExp(name="USERDATACMD2",expression="t1.`userdatacmd2`",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERDATACMD3",expression="t1.`userdatacmd3`",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERDATACMD4",expression="t1.`userdatacmd4`",showorder=12)
+        ,@DEDataQueryCodeExp(name="USERDATACMD5",expression="t1.`userdatacmd5`",showorder=13)
+        ,@DEDataQueryCodeExp(name="USERDATACMD6",expression="t1.`userdatacmd6`",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDATACMD7",expression="t1.`userdatacmd7`",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDATACMD8",expression="t1.`userdatacmd8`",showorder=16)
+        ,@DEDataQueryCodeExp(name="USERDATACMD9",expression="t1.`userdatacmd9`",showorder=17)
+        ,@DEDataQueryCodeExp(name="USERDATANAME",expression="t1.`userdataname`",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFHELPER",expression="t1.`wfhelper`",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFHELPERPARAM",expression="t1.`wfhelperparam`",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFLANRESTAG",expression="t1.`wflanrestag`",showorder=21)
+        ,@DEDataQueryCodeExp(name="WFLOGICNAME",expression="t1.`wflogicname`",showorder=22)
+        ,@DEDataQueryCodeExp(name="WFSTATE",expression="t1.`wfstate`",showorder=23)
+        ,@DEDataQueryCodeExp(name="WFTYPE",expression="t1.`wftype`",showorder=24)
+        ,@DEDataQueryCodeExp(name="WFVERSION",expression="t1.`wfversion`",showorder=25)
+        ,@DEDataQueryCodeExp(name="WFWORKFLOWID",expression="t1.`wfworkflowid`",showorder=26)
+        ,@DEDataQueryCodeExp(name="WFWORKFLOWNAME",expression="t1.`wfworkflowname`",showorder=27)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.enable = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.ENABLE, t1.MEMO, t1.REMINDMSGTEMPLID, t11.MSGTEMPLATENAME AS REMINDMSGTEMPLNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATACMD, t1.USERDATACMD10, t1.USERDATACMD2, t1.USERDATACMD3, t1.USERDATACMD4, t1.USERDATACMD5, t1.USERDATACMD6, t1.USERDATACMD7, t1.USERDATACMD8, t1.USERDATACMD9, t1.USERDATANAME, t1.WFHELPER, t1.WFHELPERPARAM, t1.WFLANRESTAG, t1.WFLOGICNAME, t1.WFSTATE, t1.WFTYPE, t1.WFVERSION, t1.WFWORKFLOWID, t1.WFWORKFLOWNAME FROM T_SRFWFWORKFLOW t1  LEFT JOIN T_SRFMSGTEMPLATE t11 ON t1.REMINDMSGTEMPLID = t11.MSGTEMPLATEID  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="WFMODEL",expression="t1.WFMODEL",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.ENABLE",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="REMINDMSGTEMPLID",expression="t1.REMINDMSGTEMPLID",showorder=4)
+        ,@DEDataQueryCodeExp(name="REMINDMSGTEMPLNAME",expression="t11.MSGTEMPLATENAME",showorder=5)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=7)
+        ,@DEDataQueryCodeExp(name="USERDATACMD",expression="t1.USERDATACMD",showorder=8)
+        ,@DEDataQueryCodeExp(name="USERDATACMD10",expression="t1.USERDATACMD10",showorder=9)
+        ,@DEDataQueryCodeExp(name="USERDATACMD2",expression="t1.USERDATACMD2",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERDATACMD3",expression="t1.USERDATACMD3",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERDATACMD4",expression="t1.USERDATACMD4",showorder=12)
+        ,@DEDataQueryCodeExp(name="USERDATACMD5",expression="t1.USERDATACMD5",showorder=13)
+        ,@DEDataQueryCodeExp(name="USERDATACMD6",expression="t1.USERDATACMD6",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDATACMD7",expression="t1.USERDATACMD7",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDATACMD8",expression="t1.USERDATACMD8",showorder=16)
+        ,@DEDataQueryCodeExp(name="USERDATACMD9",expression="t1.USERDATACMD9",showorder=17)
+        ,@DEDataQueryCodeExp(name="USERDATANAME",expression="t1.USERDATANAME",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFHELPER",expression="t1.WFHELPER",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFHELPERPARAM",expression="t1.WFHELPERPARAM",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFLANRESTAG",expression="t1.WFLANRESTAG",showorder=21)
+        ,@DEDataQueryCodeExp(name="WFLOGICNAME",expression="t1.WFLOGICNAME",showorder=22)
+        ,@DEDataQueryCodeExp(name="WFSTATE",expression="t1.WFSTATE",showorder=23)
+        ,@DEDataQueryCodeExp(name="WFTYPE",expression="t1.WFTYPE",showorder=24)
+        ,@DEDataQueryCodeExp(name="WFVERSION",expression="t1.WFVERSION",showorder=25)
+        ,@DEDataQueryCodeExp(name="WFWORKFLOWID",expression="t1.WFWORKFLOWID",showorder=26)
+        ,@DEDataQueryCodeExp(name="WFWORKFLOWNAME",expression="t1.WFWORKFLOWNAME",showorder=27)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.ENABLE, t1.MEMO, t1.REMINDMSGTEMPLID, t11.MSGTEMPLATENAME AS REMINDMSGTEMPLNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATACMD, t1.USERDATACMD10, t1.USERDATACMD2, t1.USERDATACMD3, t1.USERDATACMD4, t1.USERDATACMD5, t1.USERDATACMD6, t1.USERDATACMD7, t1.USERDATACMD8, t1.USERDATACMD9, t1.USERDATANAME, t1.WFHELPER, t1.WFHELPERPARAM, t1.WFLANRESTAG, t1.WFLOGICNAME, t1.WFSTATE, t1.WFTYPE, t1.WFVERSION, t1.WFWORKFLOWID, t1.WFWORKFLOWNAME FROM T_SRFWFWORKFLOW t1  LEFT JOIN T_SRFMSGTEMPLATE t11 ON t1.REMINDMSGTEMPLID = t11.MSGTEMPLATEID  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="WFMODEL",expression="t1.WFMODEL",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.ENABLE",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="REMINDMSGTEMPLID",expression="t1.REMINDMSGTEMPLID",showorder=4)
+        ,@DEDataQueryCodeExp(name="REMINDMSGTEMPLNAME",expression="t11.MSGTEMPLATENAME",showorder=5)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=7)
+        ,@DEDataQueryCodeExp(name="USERDATACMD",expression="t1.USERDATACMD",showorder=8)
+        ,@DEDataQueryCodeExp(name="USERDATACMD10",expression="t1.USERDATACMD10",showorder=9)
+        ,@DEDataQueryCodeExp(name="USERDATACMD2",expression="t1.USERDATACMD2",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERDATACMD3",expression="t1.USERDATACMD3",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERDATACMD4",expression="t1.USERDATACMD4",showorder=12)
+        ,@DEDataQueryCodeExp(name="USERDATACMD5",expression="t1.USERDATACMD5",showorder=13)
+        ,@DEDataQueryCodeExp(name="USERDATACMD6",expression="t1.USERDATACMD6",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDATACMD7",expression="t1.USERDATACMD7",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDATACMD8",expression="t1.USERDATACMD8",showorder=16)
+        ,@DEDataQueryCodeExp(name="USERDATACMD9",expression="t1.USERDATACMD9",showorder=17)
+        ,@DEDataQueryCodeExp(name="USERDATANAME",expression="t1.USERDATANAME",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFHELPER",expression="t1.WFHELPER",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFHELPERPARAM",expression="t1.WFHELPERPARAM",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFLANRESTAG",expression="t1.WFLANRESTAG",showorder=21)
+        ,@DEDataQueryCodeExp(name="WFLOGICNAME",expression="t1.WFLOGICNAME",showorder=22)
+        ,@DEDataQueryCodeExp(name="WFSTATE",expression="t1.WFSTATE",showorder=23)
+        ,@DEDataQueryCodeExp(name="WFTYPE",expression="t1.WFTYPE",showorder=24)
+        ,@DEDataQueryCodeExp(name="WFVERSION",expression="t1.WFVERSION",showorder=25)
+        ,@DEDataQueryCodeExp(name="WFWORKFLOWID",expression="t1.WFWORKFLOWID",showorder=26)
+        ,@DEDataQueryCodeExp(name="WFWORKFLOWNAME",expression="t1.WFWORKFLOWNAME",showorder=27)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.ENABLE, t1.MEMO, t1.REMINDMSGTEMPLID, t11.MSGTEMPLATENAME AS REMINDMSGTEMPLNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERDATACMD, t1.USERDATACMD10, t1.USERDATACMD2, t1.USERDATACMD3, t1.USERDATACMD4, t1.USERDATACMD5, t1.USERDATACMD6, t1.USERDATACMD7, t1.USERDATACMD8, t1.USERDATACMD9, t1.USERDATANAME, t1.WFHELPER, t1.WFHELPERPARAM, t1.WFLANRESTAG, t1.WFLOGICNAME, t1.WFSTATE, t1.WFTYPE, t1.WFVERSION, t1.WFWORKFLOWID, t1.WFWORKFLOWNAME FROM T_SRFWFWORKFLOW t1  LEFT JOIN T_SRFMSGTEMPLATE t11 ON t1.REMINDMSGTEMPLID = t11.MSGTEMPLATEID  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="WFMODEL",expression="t1.WFMODEL",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.ENABLE",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="REMINDMSGTEMPLID",expression="t1.REMINDMSGTEMPLID",showorder=4)
+        ,@DEDataQueryCodeExp(name="REMINDMSGTEMPLNAME",expression="t11.MSGTEMPLATENAME",showorder=5)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=7)
+        ,@DEDataQueryCodeExp(name="USERDATACMD",expression="t1.USERDATACMD",showorder=8)
+        ,@DEDataQueryCodeExp(name="USERDATACMD10",expression="t1.USERDATACMD10",showorder=9)
+        ,@DEDataQueryCodeExp(name="USERDATACMD2",expression="t1.USERDATACMD2",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERDATACMD3",expression="t1.USERDATACMD3",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERDATACMD4",expression="t1.USERDATACMD4",showorder=12)
+        ,@DEDataQueryCodeExp(name="USERDATACMD5",expression="t1.USERDATACMD5",showorder=13)
+        ,@DEDataQueryCodeExp(name="USERDATACMD6",expression="t1.USERDATACMD6",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDATACMD7",expression="t1.USERDATACMD7",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDATACMD8",expression="t1.USERDATACMD8",showorder=16)
+        ,@DEDataQueryCodeExp(name="USERDATACMD9",expression="t1.USERDATACMD9",showorder=17)
+        ,@DEDataQueryCodeExp(name="USERDATANAME",expression="t1.USERDATANAME",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFHELPER",expression="t1.WFHELPER",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFHELPERPARAM",expression="t1.WFHELPERPARAM",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFLANRESTAG",expression="t1.WFLANRESTAG",showorder=21)
+        ,@DEDataQueryCodeExp(name="WFLOGICNAME",expression="t1.WFLOGICNAME",showorder=22)
+        ,@DEDataQueryCodeExp(name="WFSTATE",expression="t1.WFSTATE",showorder=23)
+        ,@DEDataQueryCodeExp(name="WFTYPE",expression="t1.WFTYPE",showorder=24)
+        ,@DEDataQueryCodeExp(name="WFVERSION",expression="t1.WFVERSION",showorder=25)
+        ,@DEDataQueryCodeExp(name="WFWORKFLOWID",expression="t1.WFWORKFLOWID",showorder=26)
+        ,@DEDataQueryCodeExp(name="WFWORKFLOWNAME",expression="t1.WFWORKFLOWNAME",showorder=27)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[ENABLE], t1.[MEMO], t1.[REMINDMSGTEMPLID], t11.[MSGTEMPLATENAME] AS [REMINDMSGTEMPLNAME], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[USERDATACMD], t1.[USERDATACMD10], t1.[USERDATACMD2], t1.[USERDATACMD3], t1.[USERDATACMD4], t1.[USERDATACMD5], t1.[USERDATACMD6], t1.[USERDATACMD7], t1.[USERDATACMD8], t1.[USERDATACMD9], t1.[USERDATANAME], t1.[WFHELPER], t1.[WFHELPERPARAM], t1.[WFLANRESTAG], t1.[WFLOGICNAME], t1.[WFSTATE], t1.[WFTYPE], t1.[WFVERSION], t1.[WFWORKFLOWID], t1.[WFWORKFLOWNAME] FROM [T_SRFWFWORKFLOW] t1  LEFT JOIN T_SRFMSGTEMPLATE t11 ON t1.REMINDMSGTEMPLID = t11.MSGTEMPLATEID  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="WFMODEL",expression="t1.[WFMODEL]",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=1)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.[ENABLE]",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.[MEMO]",showorder=3)
+        ,@DEDataQueryCodeExp(name="REMINDMSGTEMPLID",expression="t1.[REMINDMSGTEMPLID]",showorder=4)
+        ,@DEDataQueryCodeExp(name="REMINDMSGTEMPLNAME",expression="t11.[MSGTEMPLATENAME]",showorder=5)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=7)
+        ,@DEDataQueryCodeExp(name="USERDATACMD",expression="t1.[USERDATACMD]",showorder=8)
+        ,@DEDataQueryCodeExp(name="USERDATACMD10",expression="t1.[USERDATACMD10]",showorder=9)
+        ,@DEDataQueryCodeExp(name="USERDATACMD2",expression="t1.[USERDATACMD2]",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERDATACMD3",expression="t1.[USERDATACMD3]",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERDATACMD4",expression="t1.[USERDATACMD4]",showorder=12)
+        ,@DEDataQueryCodeExp(name="USERDATACMD5",expression="t1.[USERDATACMD5]",showorder=13)
+        ,@DEDataQueryCodeExp(name="USERDATACMD6",expression="t1.[USERDATACMD6]",showorder=14)
+        ,@DEDataQueryCodeExp(name="USERDATACMD7",expression="t1.[USERDATACMD7]",showorder=15)
+        ,@DEDataQueryCodeExp(name="USERDATACMD8",expression="t1.[USERDATACMD8]",showorder=16)
+        ,@DEDataQueryCodeExp(name="USERDATACMD9",expression="t1.[USERDATACMD9]",showorder=17)
+        ,@DEDataQueryCodeExp(name="USERDATANAME",expression="t1.[USERDATANAME]",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFHELPER",expression="t1.[WFHELPER]",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFHELPERPARAM",expression="t1.[WFHELPERPARAM]",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFLANRESTAG",expression="t1.[WFLANRESTAG]",showorder=21)
+        ,@DEDataQueryCodeExp(name="WFLOGICNAME",expression="t1.[WFLOGICNAME]",showorder=22)
+        ,@DEDataQueryCodeExp(name="WFSTATE",expression="t1.[WFSTATE]",showorder=23)
+        ,@DEDataQueryCodeExp(name="WFTYPE",expression="t1.[WFTYPE]",showorder=24)
+        ,@DEDataQueryCodeExp(name="WFVERSION",expression="t1.[WFVERSION]",showorder=25)
+        ,@DEDataQueryCodeExp(name="WFWORKFLOWID",expression="t1.[WFWORKFLOWID]",showorder=26)
+        ,@DEDataQueryCodeExp(name="WFWORKFLOWNAME",expression="t1.[WFWORKFLOWNAME]",showorder=27)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    })
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class WFWorkflowDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public WFWorkflowDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(WFWorkflowDefaultDQModelBase.class);
     }
-}
 
+}

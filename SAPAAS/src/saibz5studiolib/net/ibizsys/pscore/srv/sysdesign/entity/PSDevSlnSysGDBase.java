@@ -988,7 +988,7 @@ implements Serializable {
                 PSDevSlnSysGroup pSDevSlnSysGroup = new PSDevSlnSysGroup();
                 pSDevSlnSysGroup.setPSDevSlnSysGroupId(this.getPSDevSlnSysGroupId());
                 PSDevSlnSysGroupService pSDevSlnSysGroupService = (PSDevSlnSysGroupService)ServiceGlobal.getService(PSDevSlnSysGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysGroupService.autoGet((IEntity)pSDevSlnSysGroup);
+                pSDevSlnSysGroupService.autoGet(pSDevSlnSysGroup);
                 this.psdevslnsysgroup = pSDevSlnSysGroup;
             }
             return this.psdevslnsysgroup;
@@ -1014,7 +1014,7 @@ implements Serializable {
                 PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
                 pSDevSlnSys.setPSDevSlnSysId(this.getPSDevSlnSysId());
                 PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysService.autoGet((IEntity)pSDevSlnSys);
+                pSDevSlnSysService.autoGet(pSDevSlnSys);
                 this.psdevslnsys = pSDevSlnSys;
             }
             return this.psdevslnsys;

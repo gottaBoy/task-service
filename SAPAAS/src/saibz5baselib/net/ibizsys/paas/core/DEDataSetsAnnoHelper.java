@@ -1,36 +1,47 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import java.util.HashMap;
-import net.ibizsys.paas.core.DEDataSet;
-import net.ibizsys.paas.core.DEDataSets;
+
 import net.ibizsys.paas.util.StringHelper;
 
+/**
+ * 数据对象集合集合注解辅助对象
+ * 
+ * @author lionlau
+ *
+ */
 public class DEDataSetsAnnoHelper {
-    private HashMap<String, DEDataSet> deDataSetMap = new HashMap();
-    private DEDataSets dedatasets = null;
 
-    public DEDataSetsAnnoHelper(DEDataSets dedatasets) {
-        this.dedatasets = dedatasets;
-        DEDataSet[] dEDataSetArray = this.dedatasets.value();
-        int n = dEDataSetArray.length;
-        int n2 = 0;
-        while (n2 < n) {
-            DEDataSet dedataset = dEDataSetArray[n2];
-            this.deDataSetMap.put(dedataset.id(), dedataset);
-            this.deDataSetMap.put(dedataset.name(), dedataset);
-            ++n2;
-        }
-    }
+	private HashMap<String, DEDataSet> deDataSetMap = new HashMap<String, DEDataSet>();
 
-    public DEDataSet getDEDataSet(String strName, boolean bTry) throws Exception {
-        DEDataSet dedataset = this.deDataSetMap.get(strName);
-        if (dedataset == null && !bTry) {
-            throw new Exception(StringHelper.format("\u65e0\u6cd5\u83b7\u53d6\u6570\u636e\u96c6\u5408[%1$s]", strName));
-        }
-        return dedataset;
-    }
+	private DEDataSets dedatasets = null;
+
+	public DEDataSetsAnnoHelper(DEDataSets dedatasets) {
+		this.dedatasets = dedatasets;
+
+		for (DEDataSet dedataset : this.dedatasets.value()) {
+			deDataSetMap.put(dedataset.id(), dedataset);
+			deDataSetMap.put(dedataset.name(), dedataset);
+		}
+	}
+
+	/**
+	 * 获取指定数据集合对象
+	 * 
+	 * @param strName
+	 * @param bTry
+	 * @return
+	 * @throws Exception
+	 */
+	public DEDataSet getDEDataSet(String strName, boolean bTry) throws Exception {
+		DEDataSet dedataset = deDataSetMap.get(strName);
+		if (dedataset == null) {
+			if (!bTry) {
+				throw new Exception(StringHelper.format("无法获取数据集合[%1$s]", strName));
+			}
+		}
+
+		return dedataset;
+	}
+
 }
-

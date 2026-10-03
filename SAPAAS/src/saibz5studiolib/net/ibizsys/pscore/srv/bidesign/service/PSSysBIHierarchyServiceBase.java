@@ -183,9 +183,9 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
             PSCodeList pSCodeList = (PSCodeList)iService.getDEModel().createEntity();
             pSCodeList.set("PSCODELISTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCodeList);
+                iService.getTemp(pSCodeList);
             } else {
-                iService.get((IEntity)pSCodeList);
+                iService.get(pSCodeList);
             }
             this.onFillParentInfo_PSCodeList(pSSysBIHierarchy, pSCodeList);
             return;
@@ -195,9 +195,9 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSSysBIHierarchy, pSDataEntity);
             return;
@@ -207,14 +207,14 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
             PSSysBIDimension pSSysBIDimension = (PSSysBIDimension)iService.getDEModel().createEntity();
             pSSysBIDimension.set("PSSYSBIDIMENSIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBIDimension);
+                iService.getTemp(pSSysBIDimension);
             } else {
-                iService.get((IEntity)pSSysBIDimension);
+                iService.get(pSSysBIDimension);
             }
             this.onFillParentInfo_PSSysBIDimension(pSSysBIHierarchy, pSSysBIDimension);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysBIHierarchy, string, string2, string3);
+        super.onFillParentInfo(pSSysBIHierarchy, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -240,7 +240,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
         if (bl && pSSysBIHierarchy.getCodeName() == null) {
             pSSysBIHierarchy.setCodeName((String)this.getDefaultValue(this.getWebContext(), "USER", "Hierarchy", 25));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysBIHierarchy, bl);
+        super.onFillEntityFullInfo(pSSysBIHierarchy, bl);
         this.onFillEntityFullInfo_PSCodeList(pSSysBIHierarchy, bl);
         this.onFillEntityFullInfo_PSDE(pSSysBIHierarchy, bl);
         this.onFillEntityFullInfo_PSSysBIDimension(pSSysBIHierarchy, bl);
@@ -266,7 +266,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
     }
 
     protected void onWriteBackParent(PSSysBIHierarchy pSSysBIHierarchy, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysBIHierarchy, bl);
+        super.onWriteBackParent(pSSysBIHierarchy, bl);
     }
 
     public ArrayList<PSSysBIHierarchy> selectByPSCodeList(PSCodeListBase pSCodeListBase) throws Exception {
@@ -345,8 +345,8 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
         ArrayList<PSSysBIHierarchy> arrayList = this.selectByPSCodeList(pSCodeList, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCODELIST");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCodeList);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIHIERARCHY_PSCODELIST_PSCODELISTID", "", iDataEntityModel.getName(), "PSSYSBIHIERARCHY", iDataEntityModel.getDataInfo((IEntity)pSCodeList), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCodeList);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIHIERARCHY_PSCODELIST_PSCODELISTID", "", iDataEntityModel.getName(), "PSSYSBIHIERARCHY", iDataEntityModel.getDataInfo(pSCodeList), arrayList.get(0)));
         }
     }
 
@@ -379,7 +379,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
         ArrayList<PSSysBIHierarchy> arrayList = this.selectByPSCodeList(pSCodeList);
         this.onBeforeRemoveByPSCodeList(pSCodeList, arrayList);
         for (PSSysBIHierarchy pSSysBIHierarchy : arrayList) {
-            this.remove((IEntity)pSSysBIHierarchy);
+            this.remove(pSSysBIHierarchy);
         }
         this.onAfterRemoveByPSCodeList(pSCodeList, arrayList);
     }
@@ -397,8 +397,8 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
         ArrayList<PSSysBIHierarchy> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIHIERARCHY_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSBIHIERARCHY", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIHIERARCHY_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSBIHIERARCHY", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -431,7 +431,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
         ArrayList<PSSysBIHierarchy> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSSysBIHierarchy pSSysBIHierarchy : arrayList) {
-            this.remove((IEntity)pSSysBIHierarchy);
+            this.remove(pSSysBIHierarchy);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -477,7 +477,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
         ArrayList<PSSysBIHierarchy> arrayList = this.selectByPSSysBIDimension(pSSysBIDimension);
         this.onBeforeRemoveByPSSysBIDimension(pSSysBIDimension, arrayList);
         for (PSSysBIHierarchy pSSysBIHierarchy : arrayList) {
-            this.remove((IEntity)pSSysBIHierarchy);
+            this.remove(pSSysBIHierarchy);
         }
         this.onAfterRemoveByPSSysBIDimension(pSSysBIDimension, arrayList);
     }
@@ -503,7 +503,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
 
     protected void replaceParentInfo(PSSysBIHierarchy pSSysBIHierarchy, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysBIHierarchy, cloneSession);
+        super.replaceParentInfo(pSSysBIHierarchy, cloneSession);
         if (pSSysBIHierarchy.getPSCodeListId() != null && (iEntity = cloneSession.getEntity("PSCODELIST", (Object)pSSysBIHierarchy.getPSCodeListId())) != null) {
             this.onFillParentInfo_PSCodeList(pSSysBIHierarchy, (PSCodeList)iEntity);
         }
@@ -516,7 +516,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysBIHierarchy pSSysBIHierarchy, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysBIHierarchy, bl);
+        super.onRemoveEntityUncopyValues(pSSysBIHierarchy, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysBIHierarchy pSSysBIHierarchy, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -582,7 +582,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysBIHierarchy, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysBIHierarchy, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysBIHierarchy, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AllCaption(boolean bl, PSSysBIHierarchy pSSysBIHierarchy, boolean bl2, boolean bl3) throws Exception {
@@ -595,7 +595,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AllCaption_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_AllCaption_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALLCAPTION");
@@ -617,7 +617,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIHierarchyTag_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_BIHierarchyTag_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIHIERARCHYTAG");
@@ -639,7 +639,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIHierarchyTag2_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_BIHierarchyTag2_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIHIERARCHYTAG2");
@@ -664,7 +664,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIHierarchyType_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_BIHierarchyType_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIHIERARCHYTYPE");
@@ -689,7 +689,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -728,7 +728,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_HasAll_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string = this.onTestValueRule_HasAll_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HASALL");
@@ -750,7 +750,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -772,7 +772,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -794,7 +794,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCodeListId_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_PSCodeListId_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCODELISTID");
@@ -816,7 +816,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -838,7 +838,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -860,7 +860,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBIDimensionId_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBIDimensionId_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBIDIMENSIONID");
@@ -885,7 +885,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBIHierarchyId_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBIHierarchyId_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBIHIERARCHYID");
@@ -910,7 +910,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBIHierarchyName_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBIHierarchyName_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBIHIERARCHYNAME");
@@ -949,7 +949,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -971,7 +971,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -993,7 +993,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1015,7 +1015,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1037,7 +1037,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1062,7 +1062,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysBIHierarchy, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysBIHierarchy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1075,11 +1075,11 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
     }
 
     protected void onSyncEntity(PSSysBIHierarchy pSSysBIHierarchy, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysBIHierarchy, bl);
+        super.onSyncEntity(pSSysBIHierarchy, bl);
     }
 
     protected void onSyncIndexEntities(PSSysBIHierarchy pSSysBIHierarchy, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysBIHierarchy, bl);
+        super.onSyncIndexEntities(pSSysBIHierarchy, bl);
     }
 
     public Object getDataContextValue(PSSysBIHierarchy pSSysBIHierarchy, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1087,7 +1087,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysBIHierarchy, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysBIHierarchy, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysBIDimension pSSysBIDimension = pSSysBIHierarchy.getPSSysBIDimension();
@@ -1098,7 +1098,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
     }
 
     protected void onExportMajorModel(PSSysBIHierarchy pSSysBIHierarchy, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysBIHierarchy, arrayList, n);
+        super.onExportMajorModel(pSSysBIHierarchy, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1462,14 +1462,14 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
 
     protected boolean onMergeChild(String string, String string2, PSSysBIHierarchy pSSysBIHierarchy) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysBIHierarchy)) {
+        if (super.onMergeChild(string, string2, pSSysBIHierarchy)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysBIHierarchy pSSysBIHierarchy) throws Exception {
-        super.onUpdateParent((IEntity)pSSysBIHierarchy);
+        super.onUpdateParent(pSSysBIHierarchy);
     }
 
     protected void onCopyDetails(PSSysBIHierarchy pSSysBIHierarchy, Object object) throws Exception {
@@ -1480,12 +1480,12 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
         ArrayList<PSSysBILevel> arrayList = pSSysBILevelService.selectByPSSysBIHierarchy(pSSysBIHierarchy2);
         for (PSSysBILevel pSSysBILevel : arrayList) {
             Object object2 = pSSysBILevel.get("PSSYSBILEVELID");
-            pSSysBILevelService.getDraftFrom((IEntity)pSSysBILevel);
-            pSSysBILevelService.fillParentInfo((IEntity)pSSysBILevel, "DER1N", "DER1N_PSSYSBILEVEL_PSSYSBIHIERARCHY_PSSYSBIHIERARCHYID", string);
+            pSSysBILevelService.getDraftFrom(pSSysBILevel);
+            pSSysBILevelService.fillParentInfo(pSSysBILevel, "DER1N", "DER1N_PSSYSBILEVEL_PSSYSBIHIERARCHY_PSSYSBIHIERARCHYID", string);
             pSSysBILevelService.create(pSSysBILevel);
             pSSysBILevelService.copyDetails(pSSysBILevel, object2);
         }
-        super.onCopyDetails((IEntity)pSSysBIHierarchy, object);
+        super.onCopyDetails(pSSysBIHierarchy, object);
     }
 
     @Override
@@ -1647,41 +1647,29 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
     protected void onExportCurModelV2(PSSysBIHierarchy pSSysBIHierarchy, ObjectNode objectNode, String string, boolean bl) throws Exception {
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSBILEVEL_PSSYSBIHIERARCHY_PSSYSBIHIERARCHYID")) {
-            Object object;
-            PSSysBILevel pSSysBILevel2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSSysBILevelService pSSysBILevelService = (PSSysBILevelService)ServiceGlobal.getService(PSSysBILevelService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSSysBILevel> arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSBIHIERARCHY#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBILEVEL", (Object)pSSysBIHierarchy.getPSSysBIHierarchyId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSSysBILevel2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSSysBILevel2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString((String)line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysBILevel>();
-                object4 = pSSysBILevelService.selectByPSSysBIHierarchy(pSSysBIHierarchy);
-                object3 = StringHelper.format((String)"PSSYSBIHIERARCHY#%1$s", (Object)pSSysBIHierarchy.getPSSysBIHierarchyId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSSysBILevel2 = object2.next();
-                    object = pSSysBILevelService.getModelV2ResScope((IEntity)pSSysBILevel2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysBILevel)PSModelV2Helper.toJSONObject((IEntity)pSSysBILevel2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String resScope = StringHelper.format((String)"PSSYSBIHIERARCHY#%1$s", (Object)pSSysBIHierarchy.getPSSysBIHierarchyId());
+                for (PSSysBILevel level : pSSysBILevelService.selectByPSSysBIHierarchy(pSSysBIHierarchy)) {
+                    String levelResScope = pSSysBILevelService.getModelV2ResScope(level);
+                    if (StringHelper.compare((String)resScope, (String)levelResScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(level, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSSysBILevelService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                String modelV2Name = pSSysBILevelService.getModelV2Name(false);
+                ArrayNode levels = objectNode.putArray(modelV2Name.toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -1709,10 +1697,10 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSSysBILevel pSSysBILevel2 : arrayList) {
-                    object = new PSSysBILevel();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSSysBILevel2, false);
-                    object3.add((JsonNode)pSSysBILevelService.exportModelV2(object, string));
+                for (ObjectNode levelNode : arrayList) {
+                    PSSysBILevel level = new PSSysBILevel();
+                    PSModelV2Helper.fromJSONObject(level, levelNode, false);
+                    levels.add(pSSysBILevelService.exportModelV2(level, string));
                 }
             }
         }
@@ -1797,7 +1785,7 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
             PSSysBILevelService pSSysBILevelService = (PSSysBILevelService)ServiceGlobal.getService(PSSysBILevelService.class, (SessionFactory)this.getSessionFactory());
             PSSysBILevel pSSysBILevel = new PSSysBILevel();
             pSSysBILevel.setPSSysBILevelId(pSMOSFile.getPSModelId());
-            if (!pSSysBILevelService.get((IEntity)pSSysBILevel, true)) {
+            if (!pSSysBILevelService.get(pSSysBILevel, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysBILevel.getPSSysBIHierarchyId(), (String)pSSysBIHierarchy.getPSSysBIHierarchyId(), (boolean)false) == 0) {
@@ -1805,12 +1793,12 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
             }
             ObjectNode objectNode = pSSysBILevelService.exportModelV2(pSSysBILevel);
             pSSysBILevel.reset();
-            if (!pSSysBILevelService.setModelV2ResScope((IEntity)pSSysBILevel, "PSSYSBIHIERARCHY", pSSysBIHierarchy.getPSSysBIHierarchyId())) {
+            if (!pSSysBILevelService.setModelV2ResScope(pSSysBILevel, "PSSYSBIHIERARCHY", pSSysBIHierarchy.getPSSysBIHierarchyId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysBILevelService.importModelV2(pSSysBILevel, objectNode);
             SessionFactoryManager.commit();
-            return pSSysBILevelService.getFile((IEntity)pSSysBILevel);
+            return pSSysBILevelService.getFile(pSSysBILevel);
         }
         return null;
     }
@@ -1839,4 +1827,3 @@ extends PSCoreSysServiceBase<PSSysBIHierarchy> {
         defaultValueMap.put("CODENAME", "Hierarchy");
     }
 }
-

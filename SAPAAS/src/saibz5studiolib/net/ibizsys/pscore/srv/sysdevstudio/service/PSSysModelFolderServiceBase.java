@@ -87,7 +87,6 @@ import net.ibizsys.pscore.srv.sysdevstudio.entity.PSMOSFile;
 import net.ibizsys.pscore.srv.sysdevstudio.entity.PSSysModelFolder;
 import net.ibizsys.pscore.srv.sysdevstudio.entity.PSSysModelFolderBase;
 import net.ibizsys.pscore.srv.sysdevstudio.entity.PSSysModelFolderItem;
-import net.ibizsys.pscore.srv.sysdevstudio.entity.PSSysModelFolderItemBase;
 import net.ibizsys.pscore.srv.sysdevstudio.service.PSSysModelFolderItemService;
 import net.ibizsys.pscore.srv.sysdevstudio.service.PSSysModelFolderItemServiceBase;
 import net.ibizsys.pscore.srv.sysdevstudio.service.PSSysModelFolderService;
@@ -217,9 +216,9 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
             PSSysModelFolder pSSysModelFolder2 = (PSSysModelFolder)iService.getDEModel().createEntity();
             pSSysModelFolder2.set("PSSYSMODELFOLDERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysModelFolder2);
+                iService.getTemp(pSSysModelFolder2);
             } else {
-                iService.get((IEntity)pSSysModelFolder2);
+                iService.get(pSSysModelFolder2);
             }
             this.onFillParentInfo_PPSSysModelFolder(pSSysModelFolder, pSSysModelFolder2);
             return;
@@ -229,14 +228,14 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysModelFolder, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysModelFolder, string, string2, string3);
+        super.onFillParentInfo(pSSysModelFolder, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -262,7 +261,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 pSSysModelFolder.setFolderType((String)this.getDefaultValue(this.getWebContext(), "", "CUSTOM", 25));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysModelFolder, bl);
+        super.onFillEntityFullInfo(pSSysModelFolder, bl);
         this.onFillEntityFullInfo_PPSSysModelFolder(pSSysModelFolder, bl);
         this.onFillEntityFullInfo_PSSystem(pSSysModelFolder, bl);
     }
@@ -284,7 +283,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
     }
 
     protected void onWriteBackParent(PSSysModelFolder pSSysModelFolder, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysModelFolder, bl);
+        super.onWriteBackParent(pSSysModelFolder, bl);
     }
 
     public ArrayList<PSSysModelFolder> selectByPPSSysModelFolder(PSSysModelFolderBase pSSysModelFolderBase) throws Exception {
@@ -339,8 +338,8 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
         ArrayList<PSSysModelFolder> arrayList = this.selectByPPSSysModelFolder(pSSysModelFolder, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSMODELFOLDER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysModelFolder);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSMODELFOLDER_PSSYSMODELFOLDER_PPSSYSMODELFOLDERID", "", iDataEntityModel.getName(), "PSSYSMODELFOLDER", iDataEntityModel.getDataInfo((IEntity)pSSysModelFolder), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysModelFolder);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSMODELFOLDER_PSSYSMODELFOLDER_PPSSYSMODELFOLDERID", "", iDataEntityModel.getName(), "PSSYSMODELFOLDER", iDataEntityModel.getDataInfo(pSSysModelFolder), arrayList.get(0)));
         }
     }
 
@@ -373,7 +372,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
         ArrayList<PSSysModelFolder> arrayList = this.selectByPPSSysModelFolder(pSSysModelFolder);
         this.onBeforeRemoveByPPSSysModelFolder(pSSysModelFolder, arrayList);
         for (PSSysModelFolder pSSysModelFolder2 : arrayList) {
-            this.remove((IEntity)pSSysModelFolder2);
+            this.remove(pSSysModelFolder2);
         }
         this.onAfterRemoveByPPSSysModelFolder(pSSysModelFolder, arrayList);
     }
@@ -391,8 +390,8 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
         ArrayList<PSSysModelFolder> arrayList = this.selectByPSSystem(pSSystem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSTEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSystem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSMODELFOLDER_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSSYSMODELFOLDER", iDataEntityModel.getDataInfo((IEntity)pSSystem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSystem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSMODELFOLDER_PSSYSTEM_PSSYSTEMID", "", iDataEntityModel.getName(), "PSSYSMODELFOLDER", iDataEntityModel.getDataInfo(pSSystem), arrayList.get(0)));
         }
     }
 
@@ -425,7 +424,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
         ArrayList<PSSysModelFolder> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysModelFolder pSSysModelFolder : arrayList) {
-            this.remove((IEntity)pSSysModelFolder);
+            this.remove(pSSysModelFolder);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -450,7 +449,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
 
     protected void replaceParentInfo(PSSysModelFolder pSSysModelFolder, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysModelFolder, cloneSession);
+        super.replaceParentInfo(pSSysModelFolder, cloneSession);
         if (pSSysModelFolder.getPPSSysModelFolderId() != null && (iEntity = cloneSession.getEntity("PSSYSMODELFOLDER", (Object)pSSysModelFolder.getPPSSysModelFolderId())) != null) {
             this.onFillParentInfo_PPSSysModelFolder(pSSysModelFolder, (PSSysModelFolder)iEntity);
         }
@@ -460,7 +459,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysModelFolder pSSysModelFolder, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysModelFolder, bl);
+        super.onRemoveEntityUncopyValues(pSSysModelFolder, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysModelFolder pSSysModelFolder, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -511,7 +510,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
         if ((entityFieldError = this.onCheckField_UserTag2(bl, pSSysModelFolder, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysModelFolder, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysModelFolder, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AllUserFlag(boolean bl, PSSysModelFolder pSSysModelFolder, boolean bl2, boolean bl3) throws Exception {
@@ -527,7 +526,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_AllUserFlag_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string = this.onTestValueRule_AllUserFlag_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALLUSERFLAG");
@@ -552,7 +551,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FolderType_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_FolderType_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FOLDERTYPE");
@@ -574,7 +573,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -596,7 +595,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -618,7 +617,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSSysModelFolderId_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_PPSSysModelFolderId_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSSYSMODELFOLDERID");
@@ -640,7 +639,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjId_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjId_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJID");
@@ -662,7 +661,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjName_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjName_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJNAME");
@@ -684,7 +683,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjType_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjType_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJTYPE");
@@ -706,7 +705,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -731,7 +730,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelFolderId_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelFolderId_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELFOLDERID");
@@ -756,7 +755,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelFolderName_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelFolderName_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELFOLDERNAME");
@@ -797,7 +796,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -819,7 +818,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -841,7 +840,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -863,7 +862,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysModelFolder, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysModelFolder, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -876,11 +875,11 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
     }
 
     protected void onSyncEntity(PSSysModelFolder pSSysModelFolder, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysModelFolder, bl);
+        super.onSyncEntity(pSSysModelFolder, bl);
     }
 
     protected void onSyncIndexEntities(PSSysModelFolder pSSysModelFolder, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysModelFolder, bl);
+        super.onSyncIndexEntities(pSSysModelFolder, bl);
     }
 
     public Object getDataContextValue(PSSysModelFolder pSSysModelFolder, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -888,14 +887,14 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysModelFolder, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysModelFolder, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysModelFolder pSSysModelFolder, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysModelFolder, arrayList, n);
+        super.onExportMajorModel(pSSysModelFolder, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1177,14 +1176,14 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
 
     protected boolean onMergeChild(String string, String string2, PSSysModelFolder pSSysModelFolder) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysModelFolder)) {
+        if (super.onMergeChild(string, string2, pSSysModelFolder)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysModelFolder pSSysModelFolder) throws Exception {
-        super.onUpdateParent((IEntity)pSSysModelFolder);
+        super.onUpdateParent(pSSysModelFolder);
     }
 
     @Override
@@ -1326,7 +1325,6 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
     @Override
     protected void onExportRelatedModelV2(PSSysModelFolder pSSysModelFolder, String string, String string2) throws Exception {
         String string3;
-        EntityBase entityBase;
         ObjectNode objectNode;
         ArrayList<String> arrayList;
         File file;
@@ -1346,7 +1344,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSSysModelFolderItem();
+                PSSysModelFolderItem entityBase = new PSSysModelFolderItem();
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysModelFolderItemServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysModelFolderItem)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
@@ -1372,7 +1370,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSSysModelFolder();
+                PSSysModelFolder entityBase = new PSSysModelFolder();
                 PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
                 string3 = ((PSSysModelFolderServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSSysModelFolder)entityBase);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
@@ -1391,45 +1389,31 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
 
     @Override
     protected void onExportCurModelV2(PSSysModelFolder pSSysModelFolder, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        ArrayNode arrayNode;
-        Object object3;
-        ArrayList<PSSysModelFolderItem> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSMODELFOLDERITEM_PSSYSMODELFOLDER_PSSYSMODELFOLDERID")) {
             pSCoreSysServiceBase = (PSSysModelFolderItemService)ServiceGlobal.getService(PSSysModelFolderItemService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSMODELFOLDER#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSMODELFOLDERITEM", (Object)pSSysModelFolder.getPSSysModelFolderId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSMODELFOLDER#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSMODELFOLDERITEM", (Object)pSSysModelFolder.getPSSysModelFolderId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add((PSSysModelFolderItem)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysModelFolderItem>();
-                object3 = ((PSSysModelFolderItemServiceBase)pSCoreSysServiceBase).selectByPSSysModelFolder(pSSysModelFolder);
-                arrayNode = StringHelper.format((String)"PSSYSMODELFOLDER#%1$s", (Object)pSSysModelFolder.getPSSysModelFolderId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysModelFolderItem)object2.next();
-                    object = ((PSSysModelFolderItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysModelFolderItem)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSMODELFOLDER#%1$s", (Object)pSSysModelFolder.getPSSysModelFolderId());
+                for (PSSysModelFolderItem item : ((PSSysModelFolderItemServiceBase)pSCoreSysServiceBase).selectByPSSysModelFolder(pSSysModelFolder)) {
+                    String itemScope = ((PSSysModelFolderItemServiceBase)pSCoreSysServiceBase).getModelV2ResScope(item);
+                    if (StringHelper.compare(scope, itemScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(item, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
+                String modelName = pSCoreSysServiceBase.getModelV2Name(false);
+                ArrayNode arrayNode = objectNode.putArray(modelName.toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -1457,44 +1441,37 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysModelFolderItem();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode modelNode : arrayList) {
+                    PSSysModelFolderItem item = new PSSysModelFolderItem();
+                    PSModelV2Helper.fromJSONObject(item, modelNode, false);
+                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(item, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSMODELFOLDER_PSSYSMODELFOLDER_PPSSYSMODELFOLDERID")) {
             pSCoreSysServiceBase = (PSSysModelFolderService)ServiceGlobal.getService(PSSysModelFolderService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSMODELFOLDER#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSMODELFOLDER", (Object)pSSysModelFolder.getPSSysModelFolderId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSMODELFOLDER#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSMODELFOLDER", (Object)pSSysModelFolder.getPSSysModelFolderId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysModelFolderItem)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object3 = ((PSSysModelFolderServiceBase)pSCoreSysServiceBase).selectByPPSSysModelFolder(pSSysModelFolder);
-                arrayNode = StringHelper.format((String)"PSSYSMODELFOLDER#%1$s", (Object)pSSysModelFolder.getPSSysModelFolderId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysModelFolder)object2.next();
-                    object = ((PSSysModelFolderServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysModelFolderItem)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSMODELFOLDER#%1$s", (Object)pSSysModelFolder.getPSSysModelFolderId());
+                for (PSSysModelFolder folder : ((PSSysModelFolderServiceBase)pSCoreSysServiceBase).selectByPPSSysModelFolder(pSSysModelFolder)) {
+                    String folderScope = ((PSSysModelFolderServiceBase)pSCoreSysServiceBase).getModelV2ResScope(folder);
+                    if (StringHelper.compare(scope, folderScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(folder, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
+                String modelName = pSCoreSysServiceBase.getModelV2Name(false);
+                ArrayNode arrayNode = objectNode.putArray(modelName.toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -1522,10 +1499,10 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysModelFolder();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode modelNode : arrayList) {
+                    PSSysModelFolder folder = new PSSysModelFolder();
+                    PSModelV2Helper.fromJSONObject(folder, modelNode, false);
+                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(folder, string));
                 }
             }
         }
@@ -1572,9 +1549,6 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
 
     @Override
     protected void onCompileRelatedModelV2(PSSysModelFolder pSSysModelFolder, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
         int n2;
         String string3;
         ArrayNode arrayNode;
@@ -1588,23 +1562,22 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
             }
             if (arrayNode != null) {
                 for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSSysModelFolderItem();
-                    ((PSSysModelFolderItemBase)object).setPSSysModelFolderId(pSSysModelFolder.getPSSysModelFolderId());
-                    ((PSSysModelFolderItemBase)object).setPSSysModelFolderName(pSSysModelFolder.getPSSysModelFolderName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode modelNode = (ObjectNode)arrayNode.get(n2);
+                    PSSysModelFolderItem item = new PSSysModelFolderItem();
+                    item.setPSSysModelFolderId(pSSysModelFolder.getPSSysModelFolderId());
+                    item.setPSSysModelFolderName(pSSysModelFolder.getPSSysModelFolderName());
+                    pSCoreSysServiceBase.compileModelV2(item, modelNode, string, null, n);
                 }
             } else {
                 String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string4);
-                if (((File)object2).exists()) {
-                    object = ((File)object2).listFiles();
-                    for (Object object3 : object) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysModelFolderItem();
-                        entityBase.setPSSysModelFolderId(pSSysModelFolder.getPSSysModelFolderId());
-                        entityBase.setPSSysModelFolderName(pSSysModelFolder.getPSSysModelFolderName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File directory = new File(string4);
+                if (directory.exists()) {
+                    for (File child : directory.listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysModelFolderItem item = new PSSysModelFolderItem();
+                        item.setPSSysModelFolderId(pSSysModelFolder.getPSSysModelFolderId());
+                        item.setPSSysModelFolderName(pSSysModelFolder.getPSSysModelFolderName());
+                        pSCoreSysServiceBase.compileModelV2(item, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -1618,22 +1591,22 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
             }
             if (arrayNode != null) {
                 for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSSysModelFolder();
-                    ((PSSysModelFolderBase)object).setPPSSysModelFolderId(pSSysModelFolder.getPSSysModelFolderId());
-                    ((PSSysModelFolderBase)object).setPPSSysModelFolderName(pSSysModelFolder.getPSSysModelFolderName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode modelNode = (ObjectNode)arrayNode.get(n2);
+                    PSSysModelFolder folder = new PSSysModelFolder();
+                    folder.setPPSSysModelFolderId(pSSysModelFolder.getPSSysModelFolderId());
+                    folder.setPPSSysModelFolderName(pSSysModelFolder.getPSSysModelFolderName());
+                    pSCoreSysServiceBase.compileModelV2(folder, modelNode, string, null, n);
                 }
             } else {
                 String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string5);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSSysModelFolder();
-                        entityBase.setPPSSysModelFolderId(pSSysModelFolder.getPSSysModelFolderId());
-                        entityBase.setPPSSysModelFolderName(pSSysModelFolder.getPSSysModelFolderName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File directory = new File(string5);
+                if (directory.exists()) {
+                    for (File child : directory.listFiles()) {
+                        if (!child.isDirectory()) continue;
+                        PSSysModelFolder folder = new PSSysModelFolder();
+                        folder.setPPSSysModelFolderId(pSSysModelFolder.getPSSysModelFolderId());
+                        folder.setPPSSysModelFolderName(pSSysModelFolder.getPSSysModelFolderName());
+                        pSCoreSysServiceBase.compileModelV2(folder, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -1655,7 +1628,7 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
             PSSysModelFolderItemService pSSysModelFolderItemService = (PSSysModelFolderItemService)ServiceGlobal.getService(PSSysModelFolderItemService.class, (SessionFactory)this.getSessionFactory());
             PSSysModelFolderItem pSSysModelFolderItem = new PSSysModelFolderItem();
             pSSysModelFolderItem.setPSSysModelFolderItemId(pSMOSFile.getPSModelId());
-            if (!pSSysModelFolderItemService.get((IEntity)pSSysModelFolderItem, true)) {
+            if (!pSSysModelFolderItemService.get(pSSysModelFolderItem, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysModelFolderItem.getPSSysModelFolderId(), (String)pSSysModelFolder.getPSSysModelFolderId(), (boolean)false) == 0) {
@@ -1663,12 +1636,12 @@ extends PSCoreSysServiceBase<PSSysModelFolder> {
             }
             ObjectNode objectNode = pSSysModelFolderItemService.exportModelV2(pSSysModelFolderItem);
             pSSysModelFolderItem.reset();
-            if (!pSSysModelFolderItemService.setModelV2ResScope((IEntity)pSSysModelFolderItem, "PSSYSMODELFOLDER", pSSysModelFolder.getPSSysModelFolderId())) {
+            if (!pSSysModelFolderItemService.setModelV2ResScope(pSSysModelFolderItem, "PSSYSMODELFOLDER", pSSysModelFolder.getPSSysModelFolderId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysModelFolderItemService.importModelV2(pSSysModelFolderItem, objectNode);
             SessionFactoryManager.commit();
-            return pSSysModelFolderItemService.getFile((IEntity)pSSysModelFolderItem);
+            return pSSysModelFolderItemService.getFile(pSSysModelFolderItem);
         }
         return null;
     }

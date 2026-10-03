@@ -44,7 +44,7 @@ extends PSVueMobViewCodePublisherImpl {
     @Override
     protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
         super.onFillGenerateCodeParams(params);
-        ArrayList list = this.iPSAppView.getAllPSControls();
+        ArrayList<IPSControl> list = this.iPSAppView.getAllPSControls();
         if (list != null) {
             for (IPSControl iPSControl : list) {
                 if (!(iPSControl instanceof IPSDEForm)) continue;
@@ -208,4 +208,3 @@ extends PSVueMobViewCodePublisherImpl {
         throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u903b\u8f91\u4ee3\u7801");
     }
 }
-

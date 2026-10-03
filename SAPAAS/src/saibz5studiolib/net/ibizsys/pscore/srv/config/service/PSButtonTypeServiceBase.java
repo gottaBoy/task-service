@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSButtonType> {
     }
 
     protected void onFillParentInfo(PSButtonType pSButtonType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSButtonType, string, string2, string3);
+        super.onFillParentInfo(pSButtonType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSButtonType> {
         if (bl && pSButtonType.getValidFlag() == null) {
             pSButtonType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSButtonType, bl);
+        super.onFillEntityFullInfo(pSButtonType, bl);
     }
 
     protected void onWriteBackParent(PSButtonType pSButtonType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSButtonType, bl);
+        super.onWriteBackParent(pSButtonType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSButtonType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSButtonType pSButtonType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSButtonType, bl);
+        super.onRemoveEntityUncopyValues(pSButtonType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSButtonType pSButtonType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSButtonType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSButtonType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSButtonType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSButtonType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ButtonParams(boolean bl, PSButtonType pSButtonType, boolean bl2, boolean bl3) throws Exception {
@@ -180,7 +180,7 @@ extends PSCoreSysServiceBase<PSButtonType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ButtonParams_Default((IEntity)pSButtonType, bl2, bl3);
+            string2 = this.onTestValueRule_ButtonParams_Default(pSButtonType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BUTTONPARAMS");
@@ -205,7 +205,7 @@ extends PSCoreSysServiceBase<PSButtonType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlObj_Default((IEntity)pSButtonType, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlObj_Default(pSButtonType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLOBJ");
@@ -227,7 +227,7 @@ extends PSCoreSysServiceBase<PSButtonType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSButtonType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSButtonType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSButtonType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSButtonType, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSButtonType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSButtonType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSButtonTypeId_Default((IEntity)pSButtonType, bl2, bl3);
+            string2 = this.onTestValueRule_PSButtonTypeId_Default(pSButtonType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSBUTTONTYPEID");
@@ -299,7 +299,7 @@ extends PSCoreSysServiceBase<PSButtonType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSButtonTypeName_Default((IEntity)pSButtonType, bl2, bl3);
+            string2 = this.onTestValueRule_PSButtonTypeName_Default(pSButtonType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSBUTTONTYPENAME");
@@ -324,7 +324,7 @@ extends PSCoreSysServiceBase<PSButtonType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSButtonType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSButtonType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -337,11 +337,11 @@ extends PSCoreSysServiceBase<PSButtonType> {
     }
 
     protected void onSyncEntity(PSButtonType pSButtonType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSButtonType, bl);
+        super.onSyncEntity(pSButtonType, bl);
     }
 
     protected void onSyncIndexEntities(PSButtonType pSButtonType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSButtonType, bl);
+        super.onSyncIndexEntities(pSButtonType, bl);
     }
 
     public Object getDataContextValue(PSButtonType pSButtonType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -349,14 +349,14 @@ extends PSCoreSysServiceBase<PSButtonType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSButtonType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSButtonType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSButtonType pSButtonType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSButtonType, arrayList, n);
+        super.onExportMajorModel(pSButtonType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -498,14 +498,14 @@ extends PSCoreSysServiceBase<PSButtonType> {
 
     protected boolean onMergeChild(String string, String string2, PSButtonType pSButtonType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSButtonType)) {
+        if (super.onMergeChild(string, string2, pSButtonType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSButtonType pSButtonType) throws Exception {
-        super.onUpdateParent((IEntity)pSButtonType);
+        super.onUpdateParent(pSButtonType);
     }
 
     @Override

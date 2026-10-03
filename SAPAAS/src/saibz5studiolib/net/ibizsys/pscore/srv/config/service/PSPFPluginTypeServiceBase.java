@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
     }
 
     protected void onFillParentInfo(PSPFPluginType pSPFPluginType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSPFPluginType, string, string2, string3);
+        super.onFillParentInfo(pSPFPluginType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
         if (bl && pSPFPluginType.getValidFlag() == null) {
             pSPFPluginType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSPFPluginType, bl);
+        super.onFillEntityFullInfo(pSPFPluginType, bl);
     }
 
     protected void onWriteBackParent(PSPFPluginType pSPFPluginType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPFPluginType, bl);
+        super.onWriteBackParent(pSPFPluginType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSPFPluginType pSPFPluginType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPFPluginType, bl);
+        super.onRemoveEntityUncopyValues(pSPFPluginType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPFPluginType pSPFPluginType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -173,7 +173,7 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSPFPluginType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPFPluginType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPFPluginType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DemoURL(boolean bl, PSPFPluginType pSPFPluginType, boolean bl2, boolean bl3) throws Exception {
@@ -186,7 +186,7 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DemoURL_Default((IEntity)pSPFPluginType, bl2, bl3);
+            string2 = this.onTestValueRule_DemoURL_Default(pSPFPluginType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEMOURL");
@@ -208,7 +208,7 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPFPluginType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPFPluginType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -230,7 +230,7 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSPFPluginType, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSPFPluginType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -252,7 +252,7 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PluginObj_Default((IEntity)pSPFPluginType, bl2, bl3);
+            string2 = this.onTestValueRule_PluginObj_Default(pSPFPluginType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PLUGINOBJ");
@@ -277,7 +277,7 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPluginTypeId_Default((IEntity)pSPFPluginType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPluginTypeId_Default(pSPFPluginType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPLUGINTYPEID");
@@ -302,7 +302,7 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPluginTypeName_Default((IEntity)pSPFPluginType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPluginTypeName_Default(pSPFPluginType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPLUGINTYPENAME");
@@ -324,7 +324,7 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeObj_Default((IEntity)pSPFPluginType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeObj_Default(pSPFPluginType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEOBJ");
@@ -346,7 +346,7 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParams_Default((IEntity)pSPFPluginType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParams_Default(pSPFPluginType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAMS");
@@ -368,7 +368,7 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSPFPluginType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSPFPluginType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -381,11 +381,11 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
     }
 
     protected void onSyncEntity(PSPFPluginType pSPFPluginType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPFPluginType, bl);
+        super.onSyncEntity(pSPFPluginType, bl);
     }
 
     protected void onSyncIndexEntities(PSPFPluginType pSPFPluginType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPFPluginType, bl);
+        super.onSyncIndexEntities(pSPFPluginType, bl);
     }
 
     public Object getDataContextValue(PSPFPluginType pSPFPluginType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -393,14 +393,14 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPFPluginType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPFPluginType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPFPluginType pSPFPluginType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPFPluginType, arrayList, n);
+        super.onExportMajorModel(pSPFPluginType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -572,14 +572,14 @@ extends PSCoreSysServiceBase<PSPFPluginType> {
 
     protected boolean onMergeChild(String string, String string2, PSPFPluginType pSPFPluginType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPFPluginType)) {
+        if (super.onMergeChild(string, string2, pSPFPluginType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPFPluginType pSPFPluginType) throws Exception {
-        super.onUpdateParent((IEntity)pSPFPluginType);
+        super.onUpdateParent(pSPFPluginType);
     }
 
     @Override

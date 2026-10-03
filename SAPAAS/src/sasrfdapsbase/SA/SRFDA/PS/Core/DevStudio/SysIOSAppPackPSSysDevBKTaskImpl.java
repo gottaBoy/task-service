@@ -45,7 +45,7 @@ extends PSSysDevBKTaskImplBase {
         PSSysAppService psSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSysApp psSysApp = new PSSysApp();
         psSysApp.setPSSysAppId(this.psSysDevBKTask.getTASKPARAM());
-        psSysAppService.get((IEntity)psSysApp);
+        psSysAppService.get(psSysApp);
         return this.generateCode(psSysApp);
     }
 
@@ -95,4 +95,3 @@ extends PSSysDevBKTaskImplBase {
         return StringHelper.format((String)"\u6253\u5305\u6210\u529f, \u8017\u65f6[%1$s]ms", (Object)nBeginTime);
     }
 }
-

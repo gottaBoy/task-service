@@ -74,7 +74,7 @@ implements IPSDEACModeItemService {
     @Override
     protected List<PSDEACModeItem> onListAll() throws Exception {
         ArrayList<PSDEACModeItem> list = new ArrayList<PSDEACModeItem>();
-        List psdeacmodes = PSModelServiceUtil.getInstance().getPSDEACModeService().listAll();
+        List<PSDEACMode> psdeacmodes = PSModelServiceUtil.getInstance().getPSDEACModeService().listAll();
         if (psdeacmodes != null) {
             for (PSDEACMode parent : psdeacmodes) {
                 List<PSDEACModeItem> items = this.listByPSDEACMode(parent);

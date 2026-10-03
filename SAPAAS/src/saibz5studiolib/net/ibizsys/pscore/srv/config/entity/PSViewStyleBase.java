@@ -1337,7 +1337,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDCId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdc = pSDevCenter;
             }
             return this.psdc;
@@ -1363,7 +1363,7 @@ implements Serializable {
                 PSPFPlugin pSPFPlugin = new PSPFPlugin();
                 pSPFPlugin.setPSPFPluginId(this.getPSPFPluginId());
                 PSPFPluginService pSPFPluginService = (PSPFPluginService)ServiceGlobal.getService(PSPFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSPFPluginService.autoGet((IEntity)pSPFPlugin);
+                pSPFPluginService.autoGet(pSPFPlugin);
                 this.pspfplugin = pSPFPlugin;
             }
             return this.pspfplugin;

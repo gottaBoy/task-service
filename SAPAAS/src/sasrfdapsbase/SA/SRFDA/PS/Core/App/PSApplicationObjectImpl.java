@@ -116,9 +116,15 @@ IPSPFPubSupportable {
         if (this.iPSSFPubHelp != null) {
             return this.iPSSFPubHelp;
         }
-        HashMap<String, IPSCodePublisherParam> publisherParamMap = new HashMap<String, IPSCodePublisherParam>();
-        this.fillPSSFCodePublisherParams(publisherParamMap);
-        this.iPSSFPubHelp = PSSFPubHelpImpl.createPSSFPubHelp(this.getPSSFPubObjTarget(), this.getPSSystem(), this, publisherParamMap);
+        try {
+            HashMap<String, IPSCodePublisherParam> publisherParamMap = new HashMap<String, IPSCodePublisherParam>();
+            this.fillPSSFCodePublisherParams(publisherParamMap);
+            this.iPSSFPubHelp = PSSFPubHelpImpl.createPSSFPubHelp(this.getPSSFPubObjTarget(), this.getPSSystem(), this, publisherParamMap);
+        }
+        catch (Exception exception) {
+            log.error((Object)exception);
+            return null;
+        }
         return this.iPSSFPubHelp;
     }
 
@@ -145,9 +151,15 @@ IPSPFPubSupportable {
         if (this.iPSPFPubHelp != null) {
             return this.iPSPFPubHelp;
         }
-        HashMap<String, IPSCodePublisherParam> publisherParamMap = new HashMap<String, IPSCodePublisherParam>();
-        this.fillPSPFCodePublisherParams(publisherParamMap);
-        this.iPSPFPubHelp = PSPFPubHelpImpl.createPSPFPubHelp(this.getPSPFPubObjTarget(), this.getPSApplication(), this, publisherParamMap);
+        try {
+            HashMap<String, IPSCodePublisherParam> publisherParamMap = new HashMap<String, IPSCodePublisherParam>();
+            this.fillPSPFCodePublisherParams(publisherParamMap);
+            this.iPSPFPubHelp = PSPFPubHelpImpl.createPSPFPubHelp(this.getPSPFPubObjTarget(), this.getPSApplication(), this, publisherParamMap);
+        }
+        catch (Exception exception) {
+            log.error((Object)exception);
+            return null;
+        }
         return this.iPSPFPubHelp;
     }
 

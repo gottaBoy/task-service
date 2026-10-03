@@ -46,12 +46,11 @@ extends XMLCollectionExConfig<EAIRouteConnectionConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = EAIRouteConnectionsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((EAIRouteConnectionConfig)childNode))) {
-                this.add((Object)((EAIRouteConnectionConfig)childNode));
+            if (this.OnChildNodeLoaded((EAIRouteConnectionConfig)childNode)) {
+                this.add((EAIRouteConnectionConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

@@ -1692,7 +1692,7 @@ implements Serializable {
                 PSHelpArticle pSHelpArticle = new PSHelpArticle();
                 pSHelpArticle.setPSHelpArticleId(this.getPSHelpArticleId());
                 PSHelpArticleService pSHelpArticleService = (PSHelpArticleService)ServiceGlobal.getService(PSHelpArticleService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpArticleService.autoGet((IEntity)pSHelpArticle);
+                pSHelpArticleService.autoGet(pSHelpArticle);
                 this.pshelparticle = pSHelpArticle;
             }
             return this.pshelparticle;
@@ -1718,7 +1718,7 @@ implements Serializable {
                 PSHelpModule pSHelpModule = new PSHelpModule();
                 pSHelpModule.setPSHelpModuleId(this.getPSHelpModuleId());
                 PSHelpModuleService pSHelpModuleService = (PSHelpModuleService)ServiceGlobal.getService(PSHelpModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpModuleService.autoGet((IEntity)pSHelpModule);
+                pSHelpModuleService.autoGet(pSHelpModule);
                 this.pshelpmodule = pSHelpModule;
             }
             return this.pshelpmodule;

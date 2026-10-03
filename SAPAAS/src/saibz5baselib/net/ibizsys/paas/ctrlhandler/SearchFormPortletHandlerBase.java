@@ -1,27 +1,40 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.IPortletHandler;
-import net.ibizsys.paas.ctrlhandler.PortletHandlerBase;
 import net.ibizsys.paas.ctrlmodel.ICtrlModel;
 import net.ibizsys.paas.ctrlmodel.IPortletModel;
 import net.ibizsys.paas.ctrlmodel.ISearchFormPortletModel;
 
-public abstract class SearchFormPortletHandlerBase
-extends PortletHandlerBase
-implements IPortletHandler {
-    @Override
-    protected abstract IPortletModel getPortletModel();
+/**
+ * 搜索表单门户部件模型后台处理对象
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class SearchFormPortletHandlerBase extends PortletHandlerBase implements IPortletHandler {
+	/**
+	 * 获取部件模型
+	 * 
+	 * @return
+	 */
+	protected abstract IPortletModel getPortletModel();
 
-    @Override
-    public ICtrlModel getCtrlModel() {
-        return this.getPortletModel();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.ICtrlHandler#getCtrlModel()
+	 */
+	@Override
+	public ICtrlModel getCtrlModel() {
+		return getPortletModel();
+	}
 
-    protected ISearchFormPortletModel getSearchFormPortletModel() {
-        return (ISearchFormPortletModel)this.getPortletModel();
-    }
+	/**
+	 * 搜索表单门户部件模型
+	 * 
+	 * @return
+	 */
+	protected ISearchFormPortletModel getSearchFormPortletModel() {
+		return (ISearchFormPortletModel) getPortletModel();
+	}
+
 }
-

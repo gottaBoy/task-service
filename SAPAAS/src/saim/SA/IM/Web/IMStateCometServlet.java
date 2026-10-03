@@ -1,105 +1,117 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  SA.SRFDA.Web.SRFDAHttpServlet
- *  SA.SRFramework.Utility.StringHelper
- *  javax.servlet.ServletException
- *  org.apache.catalina.CometEvent
- *  org.apache.catalina.CometEvent$EventType
- *  org.apache.catalina.CometProcessor
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package SA.IM.Web;
 
 import SA.IM.Ctrl.IIMStateServerInstance;
 import SA.IM.Ctrl.IMException;
 import SA.IM.Ctrl.IMMessagePackage;
-import SA.IM.Ctrl.IMTomcat6CometEvent;
+import SA.IM.Ctrl.IMAsyncCometEvent;
 import SA.SRFDA.Web.SRFDAHttpServlet;
 import SA.SRFramework.Utility.StringHelper;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
-import org.apache.catalina.CometEvent;
-import org.apache.catalina.CometProcessor;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class IMStateCometServlet
-extends SRFDAHttpServlet
-implements CometProcessor {
+public class IMStateCometServlet extends SRFDAHttpServlet {
     private static final Log log = LogFactory.getLog(IMStateCometServlet.class);
+    private final Map<String, IMAsyncCometEvent> connections = new HashMap<String, IMAsyncCometEvent>();
     protected IIMStateServerInstance imStateServerInstance = null;
 
-    public void event(CometEvent arg0) throws IOException, ServletException {
-        if (arg0.getEventType() == CometEvent.EventType.BEGIN) {
-            block14: {
-                arg0.setTimeout(15000);
-                arg0.getHttpServletResponse().setCharacterEncoding("utf-8");
-                arg0.getHttpServletResponse().setContentType("text/html; charset=utf-8");
-                String strUserSessionId = arg0.getHttpServletRequest().getParameter("USERSESSIONID");
-                if (StringHelper.IsNullOrEmpty((String)strUserSessionId)) {
-                    arg0.close();
-                    return;
-                }
-                String strUserId = arg0.getHttpServletRequest().getParameter("USERID");
-                if (StringHelper.IsNullOrEmpty((String)strUserId)) {
-                    arg0.close();
-                    return;
-                }
-                try {
-                    IMTomcat6CometEvent imTomcat6CometEvent = new IMTomcat6CometEvent(arg0);
-                    if (this.getStateServerInstance().RegisterUserConnection(strUserId, strUserSessionId, imTomcat6CometEvent)) break block14;
-                    IMMessagePackage imMessagePackage = new IMMessagePackage();
-                    imMessagePackage.setRetCode(10001);
-                    try {
-                        arg0.getHttpServletResponse().getWriter().print(imMessagePackage.toJSONString());
-                    }
-                    catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    arg0.close();
-                    return;
-                }
-                catch (Exception ex) {
-                    IMMessagePackage imMessagePackage = new IMMessagePackage();
-                    if (ex instanceof IMException) {
-                        IMException e = (IMException)ex;
-                        imMessagePackage.setRetCode(e.getErrorCode());
-                        imMessagePackage.setRetInfo(e.getMessage());
-                    } else {
-                        imMessagePackage.setRetCode(1);
-                        imMessagePackage.setRetInfo(ex.getMessage());
-                    }
-                    try {
-                        arg0.getHttpServletResponse().getWriter().print(imMessagePackage.toJSONString());
-                    }
-                    catch (Exception e) {
-                        log.error((Object)e);
-                    }
-                    arg0.close();
-                    return;
-                }
-            }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html; charset=utf-8");
+        final String sessionId = request.getParameter("USERSESSIONID");
+        final String userId = request.getParameter("USERID");
+        if (StringHelper.IsNullOrEmpty(sessionId) || StringHelper.IsNullOrEmpty(userId)) {
             return;
         }
-        if (arg0.getEventType() == CometEvent.EventType.END || arg0.getEventType() == CometEvent.EventType.ERROR) {
-            String strUserSessionId = arg0.getHttpServletRequest().getParameter("USERSESSIONID");
-            if (StringHelper.IsNullOrEmpty((String)strUserSessionId)) {
-                arg0.close();
+
+        final IIMStateServerInstance server = getStateServerInstance();
+        AsyncContext context = request.startAsync();
+        context.setTimeout(15000);
+        final IMAsyncCometEvent[] holder = new IMAsyncCometEvent[1];
+        IMAsyncCometEvent connection = new IMAsyncCometEvent(context, new Runnable() {
+            @Override
+            public void run() {
+                synchronized (connections) {
+                    if (connections.get(userId) != holder[0]) {
+                        return;
+                    }
+                    connections.remove(userId);
+                    try {
+                        server.UnregisterUserConnection(userId, sessionId);
+                    } catch (RuntimeException ex) {
+                        log.error(ex);
+                    }
+                    log.debug(StringHelper.Format("Comet Timeout [%1$s][%2$s]", userId, sessionId));
+                }
+            }
+        });
+        holder[0] = connection;
+
+        synchronized (connections) {
+            if (connection.isClosed()) {
                 return;
             }
-            String strUserId = arg0.getHttpServletRequest().getParameter("USERID");
-            if (StringHelper.IsNullOrEmpty((String)strUserId)) {
-                arg0.close();
+            IMAsyncCometEvent previous = connections.put(userId, connection);
+            try {
+                if (!server.RegisterUserConnection(userId, sessionId, connection)) {
+                    IMMessagePackage message = new IMMessagePackage();
+                    message.setRetCode(10001);
+                    writeMessage(response, message);
+                    restoreConnection(userId, connection, previous);
+                    connection.close();
+                    return;
+                }
+            } catch (Exception ex) {
+                restoreConnection(userId, connection, previous);
+                writeError(response, ex);
+                connection.close();
                 return;
             }
-            this.getStateServerInstance().UnregisterUserConnection(strUserId, strUserSessionId);
-            arg0.getHttpServletResponse().getWriter().flush();
-            arg0.close();
-            log.debug((Object)StringHelper.Format((String)"Comet Timeout [%1$s][%2$s]", (Object)strUserId, (Object)strUserSessionId));
+            if (previous != null) {
+                previous.close();
+            }
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        doGet(request, response);
+    }
+
+    private void restoreConnection(String userId, IMAsyncCometEvent connection, IMAsyncCometEvent previous) {
+        if (connections.get(userId) != connection) {
             return;
+        }
+        if (previous == null || previous.isClosed()) {
+            connections.remove(userId);
+        } else {
+            connections.put(userId, previous);
+        }
+    }
+
+    private void writeError(HttpServletResponse response, Exception ex) {
+        IMMessagePackage message = new IMMessagePackage();
+        if (ex instanceof IMException) {
+            message.setRetCode(((IMException) ex).getErrorCode());
+        } else {
+            message.setRetCode(1);
+        }
+        message.setRetInfo(ex.getMessage());
+        writeMessage(response, message);
+    }
+
+    private void writeMessage(HttpServletResponse response, IMMessagePackage message) {
+        try {
+            response.getWriter().print(message.toJSONString());
+        } catch (Exception ex) {
+            log.error(ex);
         }
     }
 
@@ -128,4 +140,3 @@ implements CometProcessor {
         this.imStateServerInstance = (IIMStateServerInstance)objStateServerInstance;
     }
 }
-

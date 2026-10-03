@@ -1,18 +1,44 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFActionContext;
-import net.ibizsys.pswf.core.IWFProcessModel;
-
-public interface IWFProcess {
-    public void init(IWFProcessModel var1) throws Exception;
-
-    public void execute(IWFActionContext var1) throws Exception;
-
-    public void executeBefore(IWFActionContext var1) throws Exception;
-
-    public void executeAfter(IWFActionContext var1) throws Exception;
+/**
+ * 流程处理接口对象
+ * @author lionlau
+ *
+ */
+public interface IWFProcess
+{
+	/**
+	 * 初始化
+	 * @param iWFProcessModel
+	 * @throws Exception
+	 */
+	void init(IWFProcessModel iWFProcessModel)throws Exception;
+	
+	/**
+	 * 执行处理
+	 * @param iWFActionContext
+	 * @return
+	 * @throws Exception
+	 */
+	void execute(IWFActionContext iWFActionContext)throws Exception;
+	
+	
+	/**
+	 * 执行处理之前触发
+	 * @param iWFActionContext
+	 * @return
+	 * @throws Exception
+	 */
+	void executeBefore(IWFActionContext iWFActionContext)throws Exception;
+	
+	
+	
+	/**
+	 * 执行处理之后触发
+	 * @param iWFActionContext
+	 * @return
+	 * @throws Exception
+	 */
+	void executeAfter(IWFActionContext iWFActionContext)throws Exception;
+	
 }
-

@@ -46,7 +46,7 @@ extends PSSysPFPluginServiceBase {
             pSSysPFPlugin.setPSSysPFPluginId(KeyValueHelper.genUniqueId((String)pSSysPFPlugin.getPSSystemId(), (String)pSSysPFPlugin.getPSPFPluginId()));
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)pSSysPFPlugin, bl);
+        return super.onFillEntityKeyValue(pSSysPFPlugin, bl);
     }
 
     @Override
@@ -62,7 +62,7 @@ extends PSSysPFPluginServiceBase {
             PSPFPluginService pSPFPluginService = (PSPFPluginService)ServiceGlobal.getService(PSPFPluginService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSPFPlugin pSPFPlugin = new PSPFPlugin();
             pSPFPlugin.setPSPFPluginId(string);
-            pSPFPluginService.get((IEntity)pSPFPlugin);
+            pSPFPluginService.get(pSPFPlugin);
             pSSysPFPlugin.setPluginType(pSPFPlugin.getPluginType());
             if (StringHelper.isNullOrEmpty((String)pSSysPFPlugin.getPSSysPFPluginName())) {
                 pSSysPFPlugin.setPSSysPFPluginName(pSPFPlugin.getPSPFPluginName());
@@ -116,4 +116,3 @@ extends PSSysPFPluginServiceBase {
         super.onCompileRelatedModelV2(pSSysPFPlugin, objectNode, string, string2, n);
     }
 }
-

@@ -1,35 +1,54 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSExpBar
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.angularga;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.angularga.PSAngularCtrlCodePublisherImpl;
 
-public class PSAngularExpBarViewCodePublisherImpl
-extends PSAngularCtrlCodePublisherImpl {
-    protected IPSExpBar iPSExpBar;
-    public static final String CTRLPART_STORE = "STORE";
+import net.ibizsys.model.control.expbar.IPSExpBar;
+import net.ibizsys.model.pub.IPSGenerateCodeResult;
+import net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher;
+import net.ibizsys.model.pub.PSGenerateCodeResultImpl;
 
-    public PSAngularExpBarViewCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tIPSExpBar cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSExpBar cannot be resolved to a type\n\tThe method onClose() of type PSAngularExpBarViewCodePublisherImpl must override or implement a supertype method\n\tIPSExpBar cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSAngularCtrlCodePublisherImpl\n");
-    }
+/**
+ * 导航栏
+ * @author lionlau
+ *
+ */
+public class PSAngularExpBarViewCodePublisherImpl extends PSAngularCtrlCodePublisherImpl
+{
+	protected IPSExpBar iPSExpBar = null;
+	public final static String CTRLPART_STORE = "STORE";
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSExpBar = (IPSExpBar)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSExpBar = (IPSExpBar)this.iPSControl;
+		
+		//输出结果集合代码
+		if(true)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_STORE).getPSPFCtrlPartCodePublisher();
+			IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSExpBar, null);
+			params.put("store", iPSGenerateCodeResult);
+		}
+		
+		
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSExpBar cannot be resolved to a type\n\tIPSExpBar cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSExpBar cannot be resolved to a type\n");
-    }
+	
 
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSAngularExpBarViewCodePublisherImpl must override or implement a supertype method\n\tIPSExpBar cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSAngularCtrlCodePublisherImpl\n");
-    }
+	
 }
-

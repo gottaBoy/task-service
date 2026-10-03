@@ -120,7 +120,7 @@ extends PSCoreSysServiceBase<PSSysPolicy> {
     }
 
     protected void onFillParentInfo(PSSysPolicy pSSysPolicy, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSysPolicy, string, string2, string3);
+        super.onFillParentInfo(pSSysPolicy, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -131,11 +131,11 @@ extends PSCoreSysServiceBase<PSSysPolicy> {
         if (bl && pSSysPolicy.getValidFlag() == null) {
             pSSysPolicy.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysPolicy, bl);
+        super.onFillEntityFullInfo(pSSysPolicy, bl);
     }
 
     protected void onWriteBackParent(PSSysPolicy pSSysPolicy, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysPolicy, bl);
+        super.onWriteBackParent(pSSysPolicy, bl);
     }
 
     @Override
@@ -149,7 +149,7 @@ extends PSCoreSysServiceBase<PSSysPolicy> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysPolicy pSSysPolicy, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysPolicy, bl);
+        super.onRemoveEntityUncopyValues(pSSysPolicy, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysPolicy pSSysPolicy, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSSysPolicy> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysPolicy, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysPolicy, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysPolicy, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSysPolicy pSSysPolicy, boolean bl2, boolean bl3) throws Exception {
@@ -180,7 +180,7 @@ extends PSCoreSysServiceBase<PSSysPolicy> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysPolicy, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysPolicy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -205,7 +205,7 @@ extends PSCoreSysServiceBase<PSSysPolicy> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPolicyId_Default((IEntity)pSSysPolicy, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPolicyId_Default(pSSysPolicy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPOLICYID");
@@ -230,7 +230,7 @@ extends PSCoreSysServiceBase<PSSysPolicy> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPolicyName_Default((IEntity)pSSysPolicy, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPolicyName_Default(pSSysPolicy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPOLICYNAME");
@@ -255,7 +255,7 @@ extends PSCoreSysServiceBase<PSSysPolicy> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysPolicy, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysPolicy, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -268,11 +268,11 @@ extends PSCoreSysServiceBase<PSSysPolicy> {
     }
 
     protected void onSyncEntity(PSSysPolicy pSSysPolicy, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysPolicy, bl);
+        super.onSyncEntity(pSSysPolicy, bl);
     }
 
     protected void onSyncIndexEntities(PSSysPolicy pSSysPolicy, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysPolicy, bl);
+        super.onSyncIndexEntities(pSSysPolicy, bl);
     }
 
     public Object getDataContextValue(PSSysPolicy pSSysPolicy, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -280,14 +280,14 @@ extends PSCoreSysServiceBase<PSSysPolicy> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysPolicy, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysPolicy, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysPolicy pSSysPolicy, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysPolicy, arrayList, n);
+        super.onExportMajorModel(pSSysPolicy, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -392,14 +392,14 @@ extends PSCoreSysServiceBase<PSSysPolicy> {
 
     protected boolean onMergeChild(String string, String string2, PSSysPolicy pSSysPolicy) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysPolicy)) {
+        if (super.onMergeChild(string, string2, pSSysPolicy)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysPolicy pSSysPolicy) throws Exception {
-        super.onUpdateParent((IEntity)pSSysPolicy);
+        super.onUpdateParent(pSSysPolicy);
     }
 
     @Override

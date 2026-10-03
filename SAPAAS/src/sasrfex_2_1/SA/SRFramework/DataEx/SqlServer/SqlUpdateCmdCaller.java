@@ -29,7 +29,7 @@ import SA.SRFramework.UtilityEx.StringBuilderEx;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -209,7 +209,7 @@ implements IDBUpdateCmdCaller {
             updateResult = new UpdateResult();
             updateResult.setRetCode(1);
             updateResult.setDatabase(2);
-            Statement cstmt = null;
+            PreparedStatement cstmt = null;
             try {
                 try {
                     DataTable dt;

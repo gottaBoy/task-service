@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.portalpage.ac;
 
-import net.ibizsys.psrt.srv.common.demodel.portalpage.ac.PortalPageDefaultACModelBase;
+/**
+ *  实体自动填充 [DEFAULT]对象模型
+ */
+public class PortalPageDefaultACModel extends PortalPageDefaultACModelBase {
 
-public class PortalPageDefaultACModel
-extends PortalPageDefaultACModelBase {
+    public PortalPageDefaultACModel () {
+        super();
+    }
+
 }
-

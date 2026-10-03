@@ -1,22 +1,52 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDEDataExport;
 import net.ibizsys.paas.data.IDataItem;
 import net.ibizsys.paas.web.IWebContext;
 
-public interface IDEDataExportItem
-extends IDataItem {
-    public IDEDataExport getDEDataExport();
+/**
+ * 实体数据导出项接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDEDataExportItem extends IDataItem {
+	/**
+	 * 获取实体数据导出对象
+	 * 
+	 * @return
+	 */
+	IDEDataExport getDEDataExport();
 
-    public String getPrivilegeId();
+	/**
+	 * 获取权限标识
+	 * 
+	 * @return
+	 */
+	String getPrivilegeId();
 
-    public String getCaption();
+	/**
+	 * 获取项标题
+	 * 
+	 * @return
+	 */
+	String getCaption();
 
-    public String getText(IWebContext var1, Object var2, boolean var3) throws Exception;
-
-    public String getCapLanResTag();
+	/**
+	 * 获取Excel文本值
+	 * 
+	 * @param iWebContext
+	 * @param object
+	 * @param bEnableItemPrivilege 是否启用列权限
+	 * @return
+	 * @throws Exception
+	 */
+	String getText(IWebContext iWebContext, Object object, boolean bEnableItemPrivilege) throws Exception;
+	
+	
+	
+	/**
+	 * 获取标题语言资源标识
+	 * @return
+	 */
+	String getCapLanResTag();
 }
-

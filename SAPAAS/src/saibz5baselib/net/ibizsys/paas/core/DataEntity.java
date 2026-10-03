@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import java.lang.annotation.Documented;
@@ -9,24 +6,69 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value={ElementType.TYPE})
-@Retention(value=RetentionPolicy.RUNTIME)
+/**
+ * 实体对象模型注解
+ * 
+ * @author Administrator
+ *
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DataEntity {
-    public String id() default "";
+	/**
+	 * 实体标识
+	 * 
+	 * @return
+	 */
+	String id() default "";
 
-    public String name() default "";
+	/**
+	 * 实体名称
+	 * 
+	 * @return
+	 */
+	String name() default "";
 
-    public String logicname() default "";
+	/**
+	 * 实体逻辑名称
+	 * 
+	 * @return
+	 */
+	String logicname() default "";
 
-    public String tablename() default "";
+	/**
+	 * 表名词
+	 * 
+	 * @return
+	 */
+	String tablename() default "";
 
-    public String viewname() default "";
+	/**
+	 * 视图名称
+	 * 
+	 * @return
+	 */
+	String viewname() default "";
 
-    public boolean logicvalid() default false;
+	/**
+	 * 逻辑有效
+	 * 
+	 * @return
+	 */
+	boolean logicvalid() default false;
 
-    public String validvalue() default "1";
+	/**
+	 * 有效值
+	 * 
+	 * @return
+	 */
+	String validvalue() default "1";
 
-    public String invalidvalue() default "0";
+	/**
+	 * 无效值
+	 * 
+	 * @return
+	 */
+	String invalidvalue() default "0";
 }
-

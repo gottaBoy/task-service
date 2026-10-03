@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEDataImpItemDEModelBase;
 
 public class PSDEDataImpItemDEModel
 extends PSDEDataImpItemDEModelBase {
+
+    public PSDEDataImpItemDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

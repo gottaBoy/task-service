@@ -1407,7 +1407,7 @@ implements Serializable {
                 PSSysBDTable pSSysBDTable = new PSSysBDTable();
                 pSSysBDTable.setPSSysBDTableId(this.getPSSysBDTableId());
                 PSSysBDTableService pSSysBDTableService = (PSSysBDTableService)ServiceGlobal.getService(PSSysBDTableService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDTableService.autoGet((IEntity)pSSysBDTable);
+                pSSysBDTableService.autoGet(pSSysBDTable);
                 this.pssysbdtable = pSSysBDTable;
             }
             return this.pssysbdtable;

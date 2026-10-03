@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSAMItemType> {
     }
 
     protected void onFillParentInfo(PSAMItemType pSAMItemType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSAMItemType, string, string2, string3);
+        super.onFillParentInfo(pSAMItemType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSAMItemType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSAMItemType, bl);
+        super.onFillEntityFullInfo(pSAMItemType, bl);
     }
 
     protected void onWriteBackParent(PSAMItemType pSAMItemType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSAMItemType, bl);
+        super.onWriteBackParent(pSAMItemType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSAMItemType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSAMItemType pSAMItemType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSAMItemType, bl);
+        super.onRemoveEntityUncopyValues(pSAMItemType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSAMItemType pSAMItemType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSAMItemType> {
         if ((entityFieldError = this.onCheckField_PSAMItemTypeName(bl, pSAMItemType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSAMItemType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSAMItemType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ITEMOBJ(boolean bl, PSAMItemType pSAMItemType, boolean bl2, boolean bl3) throws Exception {
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSAMItemType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ITEMOBJ_Default((IEntity)pSAMItemType, bl2, bl3);
+            string2 = this.onTestValueRule_ITEMOBJ_Default(pSAMItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSAMItemType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSAMItemType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSAMItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSAMItemType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAMItemTypeId_Default((IEntity)pSAMItemType, bl2, bl3);
+            string2 = this.onTestValueRule_PSAMItemTypeId_Default(pSAMItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAMITEMTYPEID");
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSAMItemType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAMItemTypeName_Default((IEntity)pSAMItemType, bl2, bl3);
+            string2 = this.onTestValueRule_PSAMItemTypeName_Default(pSAMItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAMITEMTYPENAME");
@@ -259,11 +259,11 @@ extends PSCoreSysServiceBase<PSAMItemType> {
     }
 
     protected void onSyncEntity(PSAMItemType pSAMItemType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSAMItemType, bl);
+        super.onSyncEntity(pSAMItemType, bl);
     }
 
     protected void onSyncIndexEntities(PSAMItemType pSAMItemType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSAMItemType, bl);
+        super.onSyncIndexEntities(pSAMItemType, bl);
     }
 
     public Object getDataContextValue(PSAMItemType pSAMItemType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -271,14 +271,14 @@ extends PSCoreSysServiceBase<PSAMItemType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSAMItemType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSAMItemType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSAMItemType pSAMItemType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSAMItemType, arrayList, n);
+        super.onExportMajorModel(pSAMItemType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -391,14 +391,14 @@ extends PSCoreSysServiceBase<PSAMItemType> {
 
     protected boolean onMergeChild(String string, String string2, PSAMItemType pSAMItemType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSAMItemType)) {
+        if (super.onMergeChild(string, string2, pSAMItemType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSAMItemType pSAMItemType) throws Exception {
-        super.onUpdateParent((IEntity)pSAMItemType);
+        super.onUpdateParent(pSAMItemType);
     }
 
     @Override

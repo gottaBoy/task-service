@@ -2543,7 +2543,7 @@ implements Serializable {
                 PSAppStoryBoard pSAppStoryBoard = new PSAppStoryBoard();
                 pSAppStoryBoard.setPSAppStoryBoardId(this.getPSAppStoryBoardId());
                 PSAppStoryBoardService pSAppStoryBoardService = (PSAppStoryBoardService)ServiceGlobal.getService(PSAppStoryBoardService.class, (SessionFactory)this.getSessionFactory());
-                pSAppStoryBoardService.autoGet((IEntity)pSAppStoryBoard);
+                pSAppStoryBoardService.autoGet(pSAppStoryBoard);
                 this.psappstoryboard = pSAppStoryBoard;
             }
             return this.psappstoryboard;
@@ -2569,7 +2569,7 @@ implements Serializable {
                 PSAppView pSAppView = new PSAppView();
                 pSAppView.setPSAppViewId(this.getPSAppViewId());
                 PSAppViewService pSAppViewService = (PSAppViewService)ServiceGlobal.getService(PSAppViewService.class, (SessionFactory)this.getSessionFactory());
-                pSAppViewService.autoGet((IEntity)pSAppView);
+                pSAppViewService.autoGet(pSAppView);
                 this.psappview = pSAppView;
             }
             return this.psappview;
@@ -2595,7 +2595,7 @@ implements Serializable {
                 PSSysReqItem pSSysReqItem = new PSSysReqItem();
                 pSSysReqItem.setPSSysReqItemId(this.getPSSysReqItemId());
                 PSSysReqItemService pSSysReqItemService = (PSSysReqItemService)ServiceGlobal.getService(PSSysReqItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysReqItemService.autoGet((IEntity)pSSysReqItem);
+                pSSysReqItemService.autoGet(pSSysReqItem);
                 this.pssysreqitem = pSSysReqItem;
             }
             return this.pssysreqitem;
@@ -2621,7 +2621,7 @@ implements Serializable {
                 PSSysUserCase pSSysUserCase = new PSSysUserCase();
                 pSSysUserCase.setPSSysUserCaseId(this.getPSSysUserCaseId());
                 PSSysUserCaseService pSSysUserCaseService = (PSSysUserCaseService)ServiceGlobal.getService(PSSysUserCaseService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUserCaseService.autoGet((IEntity)pSSysUserCase);
+                pSSysUserCaseService.autoGet(pSSysUserCase);
                 this.pssysusercase = pSSysUserCase;
             }
             return this.pssysusercase;

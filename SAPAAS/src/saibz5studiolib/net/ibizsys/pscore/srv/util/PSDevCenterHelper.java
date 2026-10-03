@@ -200,7 +200,7 @@ public class PSDevCenterHelper {
     public static PSDevCenterType getPSDevCenterType(PSDevCenter pSDevCenter) throws Exception {
         Object object;
         if (!StringHelper.isNullOrEmpty((String)pSDevCenter.getLicKey()) && (object = PSDevCenterHelper.fillPSDevCenter(pSDevCenter, null)) != null) {
-            return object;
+            return (PSDevCenterType)object;
         }
         if (PSCoreSysServiceBase.isCloudMode()) {
             // empty if block
@@ -243,7 +243,7 @@ public class PSDevCenterHelper {
     }
 
     public static PSDCWorkspace getPSDCWorkspace(PSDevCenter pSDevCenter, String string, boolean bl, boolean bl2) throws Exception {
-        ArrayList arrayList;
+        ArrayList<PSDCWorkspace> arrayList;
         PSDCWorkspaceService pSDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSDEVCENTERID", (Object)pSDevCenter.getPSDevCenterId());
@@ -301,7 +301,7 @@ public class PSDevCenterHelper {
                 dumperOptions.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
                 String string2 = PSDevCenterHelper.decrypt(string, KEY);
                 Yaml yaml = new Yaml(dumperOptions);
-                Map map = (Map)yaml.loadAs(string2, Map.class);
+                Map<String, Object> map = (Map<String, Object>)yaml.loadAs(string2, Map.class);
                 if (map != null) {
                     Object v;
                     Object v2 = map.get("PSDEVCENTERNAME");
@@ -358,4 +358,3 @@ public class PSDevCenterHelper {
         return new String(byteArrayOutputStream.toByteArray(), "UTF-8");
     }
 }
-

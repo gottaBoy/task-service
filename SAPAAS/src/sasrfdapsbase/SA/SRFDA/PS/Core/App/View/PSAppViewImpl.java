@@ -2295,9 +2295,15 @@ IPSAppViewPreview {
         if (this.iPSPFPubHelp != null) {
             return this.iPSPFPubHelp;
         }
-        LinkedHashMap<String, IPSCodePublisherParam> publisherParamMap = new LinkedHashMap<String, IPSCodePublisherParam>();
-        this.fillPSPFCodePublisherParams(publisherParamMap);
-        this.iPSPFPubHelp = PSPFViewPubHelpImpl.createPSPFPubHelp(this, publisherParamMap);
+        try {
+            LinkedHashMap<String, IPSCodePublisherParam> publisherParamMap = new LinkedHashMap<String, IPSCodePublisherParam>();
+            this.fillPSPFCodePublisherParams(publisherParamMap);
+            this.iPSPFPubHelp = PSPFViewPubHelpImpl.createPSPFPubHelp(this, publisherParamMap);
+        }
+        catch (Exception exception) {
+            log.error((Object)exception);
+            return null;
+        }
         return this.iPSPFPubHelp;
     }
 

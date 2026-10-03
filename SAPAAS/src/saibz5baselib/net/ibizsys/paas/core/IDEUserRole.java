@@ -1,15 +1,23 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDataEntity;
-import net.ibizsys.paas.core.IDataEntityObject;
+/**
+ * 实体相关用户角色对象接口
+ * @author Administrator
+ *
+ */
+public interface IDEUserRole extends IDataEntityObject {
 
-public interface IDEUserRole
-extends IDataEntityObject {
-    public void init(IDataEntity var1) throws Exception;
-
-    public String getRoleTag();
+	/**
+	 * 初始化
+	 * 
+	 * @param iDataEntity
+	 * @throws Exception
+	 */
+	void init(IDataEntity iDataEntity) throws Exception;
+	
+	/**
+	 * 获取角色标识
+	 * @return
+	 */
+	String getRoleTag();
 }
-

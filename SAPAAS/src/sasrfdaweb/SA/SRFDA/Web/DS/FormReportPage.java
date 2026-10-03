@@ -55,7 +55,7 @@ extends SRFDAPage {
         super.OnInitComponents();
         try {
             String strSQL = "select * from V_SRFFORM where (DEID LIKE 'DE%' OR DEID LIKE 'EAI%' OR DEID LIKE 'WF%' OR DEID LIKE 'UAC%' OR DEID LIKE 'TS%') and ISMAJOR = 1 ORDER BY DEID ";
-            Vector forms = new Vector();
+            Vector<Form> forms = new Vector<Form>();
             CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), (String)strSQL, null, forms, (String)Form.class.getName());
             if (callResult.IsError()) {
                 this.PageLog((Object)this, 1, StringHelper.Format((String)"\u67e5\u8be2\u62a5\u8868\u8868\u5355\u9879\u5931\u8d25\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -185,4 +185,3 @@ extends SRFDAPage {
         sw.write("</table>");
     }
 }
-

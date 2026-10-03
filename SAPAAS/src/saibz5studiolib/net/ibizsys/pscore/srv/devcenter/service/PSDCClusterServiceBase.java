@@ -167,9 +167,9 @@ extends PSCoreSysServiceBase<PSDCCluster> {
             PSCredential pSCredential = (PSCredential)iService.getDEModel().createEntity();
             pSCredential.set("PSCREDENTIALID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCredential);
+                iService.getTemp(pSCredential);
             } else {
-                iService.get((IEntity)pSCredential);
+                iService.get(pSCredential);
             }
             this.onFillParentInfo_PSCredential(pSDCCluster, pSCredential);
             return;
@@ -179,14 +179,14 @@ extends PSCoreSysServiceBase<PSDCCluster> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDCCluster, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCCluster, string, string2, string3);
+        super.onFillParentInfo(pSDCCluster, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -207,7 +207,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCCluster, bl);
+        super.onFillEntityFullInfo(pSDCCluster, bl);
         this.onFillEntityFullInfo_PSCredential(pSDCCluster, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDCCluster, bl);
     }
@@ -229,7 +229,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
     }
 
     protected void onWriteBackParent(PSDCCluster pSDCCluster, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCCluster, bl);
+        super.onWriteBackParent(pSDCCluster, bl);
     }
 
     public ArrayList<PSDCCluster> selectByPSCredential(PSCredentialBase pSCredentialBase) throws Exception {
@@ -284,8 +284,8 @@ extends PSCoreSysServiceBase<PSDCCluster> {
         ArrayList<PSDCCluster> arrayList = this.selectByPSCredential(pSCredential, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCREDENTIAL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCredential);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCCLUSTER_PSCREDENTIAL_PSCREDENTIALID", "", iDataEntityModel.getName(), "PSDCCLUSTER", iDataEntityModel.getDataInfo((IEntity)pSCredential), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCredential);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCCLUSTER_PSCREDENTIAL_PSCREDENTIALID", "", iDataEntityModel.getName(), "PSDCCLUSTER", iDataEntityModel.getDataInfo(pSCredential), arrayList.get(0)));
         }
     }
 
@@ -318,7 +318,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
         ArrayList<PSDCCluster> arrayList = this.selectByPSCredential(pSCredential);
         this.onBeforeRemoveByPSCredential(pSCredential, arrayList);
         for (PSDCCluster pSDCCluster : arrayList) {
-            this.remove((IEntity)pSDCCluster);
+            this.remove(pSDCCluster);
         }
         this.onAfterRemoveByPSCredential(pSCredential, arrayList);
     }
@@ -364,7 +364,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
         ArrayList<PSDCCluster> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCCluster pSDCCluster : arrayList) {
-            this.remove((IEntity)pSDCCluster);
+            this.remove(pSDCCluster);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -403,7 +403,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
 
     protected void replaceParentInfo(PSDCCluster pSDCCluster, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCCluster, cloneSession);
+        super.replaceParentInfo(pSDCCluster, cloneSession);
         if (pSDCCluster.getPSCredentialId() != null && (iEntity = cloneSession.getEntity("PSCREDENTIAL", (Object)pSDCCluster.getPSCredentialId())) != null) {
             this.onFillParentInfo_PSCredential(pSDCCluster, (PSCredential)iEntity);
         }
@@ -413,7 +413,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCCluster pSDCCluster, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCCluster, bl);
+        super.onRemoveEntityUncopyValues(pSDCCluster, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCCluster pSDCCluster, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -506,7 +506,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSDCCluster, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCCluster, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCCluster, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ClusterCfg(boolean bl, PSDCCluster pSDCCluster, boolean bl2, boolean bl3) throws Exception {
@@ -519,7 +519,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ClusterCfg_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_ClusterCfg_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CLUSTERCFG");
@@ -541,7 +541,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ClusterParams_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_ClusterParams_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CLUSTERPARAMS");
@@ -566,7 +566,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ClusterType_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_ClusterType_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CLUSTERTYPE");
@@ -588,7 +588,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CredentialSyncMode_Default((IEntity)pSDCCluster, bl2, bl3);
+            string = this.onTestValueRule_CredentialSyncMode_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CREDENTIALSYNCMODE");
@@ -610,7 +610,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DomainName_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_DomainName_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOMAINNAME");
@@ -632,7 +632,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpriedTime_Default((IEntity)pSDCCluster, bl2, bl3);
+            string = this.onTestValueRule_ExpriedTime_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPRIEDTIME");
@@ -657,7 +657,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -679,7 +679,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr2_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr2_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR2");
@@ -701,7 +701,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -723,7 +723,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_Param_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM");
@@ -745,7 +745,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param2_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_Param2_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM2");
@@ -767,7 +767,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param3_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_Param3_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM3");
@@ -789,7 +789,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param4_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_Param4_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM4");
@@ -811,7 +811,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Port_Default((IEntity)pSDCCluster, bl2, bl3);
+            string = this.onTestValueRule_Port_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PORT");
@@ -833,7 +833,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCredentialId_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_PSCredentialId_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCREDENTIALID");
@@ -858,7 +858,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCClusterId_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCClusterId_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCCLUSTERID");
@@ -883,7 +883,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCClusterName_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCClusterName_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCCLUSTERNAME");
@@ -922,7 +922,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -944,7 +944,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -966,7 +966,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResPos_Default((IEntity)pSDCCluster, bl2, bl3);
+            string = this.onTestValueRule_ResPos_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESPOS");
@@ -988,7 +988,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResReadyTime_Default((IEntity)pSDCCluster, bl2, bl3);
+            string = this.onTestValueRule_ResReadyTime_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESREADYTIME");
@@ -1010,7 +1010,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResState_Default((IEntity)pSDCCluster, bl2, bl3);
+            string = this.onTestValueRule_ResState_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESSTATE");
@@ -1032,7 +1032,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResVer_Default((IEntity)pSDCCluster, bl2, bl3);
+            string = this.onTestValueRule_ResVer_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESVER");
@@ -1054,7 +1054,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Url_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_Url_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("URL");
@@ -1076,7 +1076,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -1098,7 +1098,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1120,7 +1120,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1142,7 +1142,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1164,7 +1164,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDCCluster, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDCCluster, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1177,11 +1177,11 @@ extends PSCoreSysServiceBase<PSDCCluster> {
     }
 
     protected void onSyncEntity(PSDCCluster pSDCCluster, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCCluster, bl);
+        super.onSyncEntity(pSDCCluster, bl);
     }
 
     protected void onSyncIndexEntities(PSDCCluster pSDCCluster, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCCluster, bl);
+        super.onSyncIndexEntities(pSDCCluster, bl);
     }
 
     public Object getDataContextValue(PSDCCluster pSDCCluster, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1189,7 +1189,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCCluster, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCCluster, string, iDataContextParam)) != null) {
             return object;
         }
         PSDevCenter pSDevCenter = pSDCCluster.getPSDevCenter();
@@ -1200,7 +1200,7 @@ extends PSCoreSysServiceBase<PSDCCluster> {
     }
 
     protected void onExportMajorModel(PSDCCluster pSDCCluster, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCCluster, arrayList, n);
+        super.onExportMajorModel(pSDCCluster, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1652,14 +1652,14 @@ extends PSCoreSysServiceBase<PSDCCluster> {
 
     protected boolean onMergeChild(String string, String string2, PSDCCluster pSDCCluster) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCCluster)) {
+        if (super.onMergeChild(string, string2, pSDCCluster)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCCluster pSDCCluster) throws Exception {
-        super.onUpdateParent((IEntity)pSDCCluster);
+        super.onUpdateParent(pSDCCluster);
     }
 
     @Override

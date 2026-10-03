@@ -171,11 +171,10 @@ implements IPSGlobalModel<KT, VT, HT> {
      */
     @Override
     public void resetModel(KT objObjectId) {
-        Hashtable<KT, VT> hashtable = this.allModelHelperListLock;
-        synchronized (hashtable) {
+        synchronized (this.allModelHelperListLock) {
             this.allModelHelperList = null;
         }
-        hashtable = this.objMap;
+        Hashtable<KT, VT> hashtable = this.objMap;
         synchronized (hashtable) {
             HT ht;
             this.objMap.remove(objObjectId);
@@ -196,11 +195,10 @@ implements IPSGlobalModel<KT, VT, HT> {
      */
     @Override
     public void resetAll() {
-        Hashtable<KT, VT> hashtable = this.allModelHelperListLock;
-        synchronized (hashtable) {
+        synchronized (this.allModelHelperListLock) {
             this.allModelHelperList = null;
         }
-        hashtable = this.objMap;
+        Hashtable<KT, VT> hashtable = this.objMap;
         synchronized (hashtable) {
             this.bPreloadModels = true;
             this.objMap.clear();
@@ -220,7 +218,7 @@ implements IPSGlobalModel<KT, VT, HT> {
 
     @Override
     public HT findModelHelper(KT objObjectId) throws Exception {
-        return this.findModelHelper(objObjectId, (VT)false);
+        return this.findModelHelper(objObjectId, false);
     }
 
     public Enumeration<HT> getModelHelpers() {
@@ -302,11 +300,11 @@ implements IPSGlobalModel<KT, VT, HT> {
     public int getAllModelHelperCount() throws Exception {
         Object object = this.allModelHelperListLock;
         synchronized (object) {
-            ArrayList<Object> allModelHelperList = this.allModelHelperList;
+            ArrayList<HT> allModelHelperList = this.allModelHelperList;
             if (allModelHelperList != null) {
                 return allModelHelperList.size();
             }
-            allModelHelperList = new ArrayList();
+            allModelHelperList = new ArrayList<HT>();
             this.setPreloadModels(false);
             Vector<VT> list = this.getAllModels();
             for (VT vt : list) {
@@ -462,4 +460,3 @@ implements IPSGlobalModel<KT, VT, HT> {
         return 0;
     }
 }
-

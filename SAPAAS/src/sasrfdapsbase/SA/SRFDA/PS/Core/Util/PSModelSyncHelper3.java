@@ -220,8 +220,8 @@ extends PSModelSyncHelperBase {
                 pSSubSysSADERS2.setTypeFilter(iPSDEServiceAPIRS.getParentTypeFilter());
                 pSSubSysSADERS2.setOrderValue(Integer.valueOf(iPSDEServiceAPIRS.getOrderValue()));
                 pSSubSysSADERS2.setValidFlag(Integer.valueOf(1));
-                Iterator<Object> parentPSSubSysSADE = (PSSubSysSADE)psSubSysSADEMap.get(iPSDEServiceAPIRS.getMajorPSDEServiceAPI().getName());
-                Iterator<Object> childPSSubSysSADE = (PSSubSysSADE)psSubSysSADEMap.get(iPSDEServiceAPIRS.getMinorPSDEServiceAPI().getName());
+                PSSubSysSADE parentPSSubSysSADE = (PSSubSysSADE)psSubSysSADEMap.get(iPSDEServiceAPIRS.getMajorPSDEServiceAPI().getName());
+                PSSubSysSADE childPSSubSysSADE = (PSSubSysSADE)psSubSysSADEMap.get(iPSDEServiceAPIRS.getMinorPSDEServiceAPI().getName());
                 if (parentPSSubSysSADE == null) {
                     throw new Exception(String.format("\u65e0\u6cd5\u83b7\u53d6\u670d\u52a1\u63a5\u53e3\u5b9e\u4f53[%1$s]\u5bf9\u5e94\u7684\u5916\u90e8\u670d\u52a1\u63a5\u53e3\u5b9e\u4f53", iPSDEServiceAPIRS.getMajorPSDEServiceAPI().getName()));
                 }

@@ -1419,7 +1419,7 @@ implements Serializable {
                 PSDCSysRes pSDCSysRes = new PSDCSysRes();
                 pSDCSysRes.setPSDCSysResId(this.getPSDCSysResId());
                 PSDCSysResService pSDCSysResService = (PSDCSysResService)ServiceGlobal.getService(PSDCSysResService.class, (SessionFactory)this.getSessionFactory());
-                pSDCSysResService.autoGet((IEntity)pSDCSysRes);
+                pSDCSysResService.autoGet(pSDCSysRes);
                 this.psdcsysres = pSDCSysRes;
             }
             return this.psdcsysres;
@@ -1445,7 +1445,7 @@ implements Serializable {
                 PSDepSln pSDepSln = new PSDepSln();
                 pSDepSln.setPSDepSlnId(this.getPSDepSlnId());
                 PSDepSlnService pSDepSlnService = (PSDepSlnService)ServiceGlobal.getService(PSDepSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnService.autoGet((IEntity)pSDepSln);
+                pSDepSlnService.autoGet(pSDepSln);
                 this.psdepsln = pSDepSln;
             }
             return this.psdepsln;
@@ -1471,7 +1471,7 @@ implements Serializable {
                 PSDevSlnSysVer pSDevSlnSysVer = new PSDevSlnSysVer();
                 pSDevSlnSysVer.setPSDevSlnSysVerId(this.getPSDevSlnSysVerId());
                 PSDevSlnSysVerService pSDevSlnSysVerService = (PSDevSlnSysVerService)ServiceGlobal.getService(PSDevSlnSysVerService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysVerService.autoGet((IEntity)pSDevSlnSysVer);
+                pSDevSlnSysVerService.autoGet(pSDevSlnSysVer);
                 this.psdevslnsysver = pSDevSlnSysVer;
             }
             return this.psdevslnsysver;
@@ -1497,7 +1497,7 @@ implements Serializable {
                 PSSysModelInst pSSysModelInst = new PSSysModelInst();
                 pSSysModelInst.setPSSysModelInstId(this.getPSSysModelInstId());
                 PSSysModelInstService pSSysModelInstService = (PSSysModelInstService)ServiceGlobal.getService(PSSysModelInstService.class, (SessionFactory)this.getSessionFactory());
-                pSSysModelInstService.autoGet((IEntity)pSSysModelInst);
+                pSSysModelInstService.autoGet(pSSysModelInst);
                 this.pssysmodelinst = pSSysModelInst;
             }
             return this.pssysmodelinst;

@@ -140,14 +140,14 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
             PSSysModelInst pSSysModelInst = (PSSysModelInst)iService.getDEModel().createEntity();
             pSSysModelInst.set("PSSYSMODELINSTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysModelInst);
+                iService.getTemp(pSSysModelInst);
             } else {
-                iService.get((IEntity)pSSysModelInst);
+                iService.get(pSSysModelInst);
             }
             this.onFillParentInfo_PSSysModelInst(pSSysModelInstSum, pSSysModelInst);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysModelInstSum, string, string2, string3);
+        super.onFillParentInfo(pSSysModelInstSum, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -192,7 +192,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
                 pSSysModelInstSum.setUsedSize((Integer)this.getDefaultValue(this.getWebContext(), "", "0", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysModelInstSum, bl);
+        super.onFillEntityFullInfo(pSSysModelInstSum, bl);
         this.onFillEntityFullInfo_PSSysModelInst(pSSysModelInstSum, bl);
     }
 
@@ -210,7 +210,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
     }
 
     protected void onWriteBackParent(PSSysModelInstSum pSSysModelInstSum, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysModelInstSum, bl);
+        super.onWriteBackParent(pSSysModelInstSum, bl);
     }
 
     public ArrayList<PSSysModelInstSum> selectByPSSysModelInst(PSSysModelInstBase pSSysModelInstBase) throws Exception {
@@ -269,7 +269,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
         ArrayList<PSSysModelInstSum> arrayList = this.selectByPSSysModelInst(pSSysModelInst);
         this.onBeforeRemoveByPSSysModelInst(pSSysModelInst, arrayList);
         for (PSSysModelInstSum pSSysModelInstSum : arrayList) {
-            this.remove((IEntity)pSSysModelInstSum);
+            this.remove(pSSysModelInstSum);
         }
         this.onAfterRemoveByPSSysModelInst(pSSysModelInst, arrayList);
     }
@@ -290,14 +290,14 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
 
     protected void replaceParentInfo(PSSysModelInstSum pSSysModelInstSum, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysModelInstSum, cloneSession);
+        super.replaceParentInfo(pSSysModelInstSum, cloneSession);
         if (pSSysModelInstSum.getPSSysModelInstId() != null && (iEntity = cloneSession.getEntity("PSSYSMODELINST", (Object)pSSysModelInstSum.getPSSysModelInstId())) != null) {
             this.onFillParentInfo_PSSysModelInst(pSSysModelInstSum, (PSSysModelInst)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSysModelInstSum pSSysModelInstSum, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysModelInstSum, bl);
+        super.onRemoveEntityUncopyValues(pSSysModelInstSum, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysModelInstSum pSSysModelInstSum, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -330,7 +330,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
         if ((entityFieldError = this.onCheckField_UsedSize(bl, pSSysModelInstSum, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysModelInstSum, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysModelInstSum, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Cnt(boolean bl, PSSysModelInstSum pSSysModelInstSum, boolean bl2, boolean bl3) throws Exception {
@@ -343,7 +343,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Cnt_Default((IEntity)pSSysModelInstSum, bl2, bl3);
+            string = this.onTestValueRule_Cnt_Default(pSSysModelInstSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CNT");
@@ -365,7 +365,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModelLogicName_Default((IEntity)pSSysModelInstSum, bl2, bl3);
+            string2 = this.onTestValueRule_ModelLogicName_Default(pSSysModelInstSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODELLOGICNAME");
@@ -390,7 +390,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelInstId_Default((IEntity)pSSysModelInstSum, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelInstId_Default(pSSysModelInstSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELINSTID");
@@ -412,7 +412,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelInstName_Default((IEntity)pSSysModelInstSum, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelInstName_Default(pSSysModelInstSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELINSTNAME");
@@ -437,7 +437,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelInstSumId_Default((IEntity)pSSysModelInstSum, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelInstSumId_Default(pSSysModelInstSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELINSTSUMID");
@@ -462,7 +462,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelInstSumName_Default((IEntity)pSSysModelInstSum, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelInstSumName_Default(pSSysModelInstSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELINSTSUMNAME");
@@ -484,7 +484,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TmpCnt_Default((IEntity)pSSysModelInstSum, bl2, bl3);
+            string = this.onTestValueRule_TmpCnt_Default(pSSysModelInstSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TMPCNT");
@@ -506,7 +506,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TmpUsedSize_Default((IEntity)pSSysModelInstSum, bl2, bl3);
+            string = this.onTestValueRule_TmpUsedSize_Default(pSSysModelInstSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TMPUSEDSIZE");
@@ -528,7 +528,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UsedSize_Default((IEntity)pSSysModelInstSum, bl2, bl3);
+            string = this.onTestValueRule_UsedSize_Default(pSSysModelInstSum, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USEDSIZE");
@@ -541,11 +541,11 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
     }
 
     protected void onSyncEntity(PSSysModelInstSum pSSysModelInstSum, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysModelInstSum, bl);
+        super.onSyncEntity(pSSysModelInstSum, bl);
     }
 
     protected void onSyncIndexEntities(PSSysModelInstSum pSSysModelInstSum, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysModelInstSum, bl);
+        super.onSyncIndexEntities(pSSysModelInstSum, bl);
     }
 
     public Object getDataContextValue(PSSysModelInstSum pSSysModelInstSum, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -553,14 +553,14 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysModelInstSum, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysModelInstSum, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysModelInstSum pSSysModelInstSum, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysModelInstSum, arrayList, n);
+        super.onExportMajorModel(pSSysModelInstSum, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -716,14 +716,14 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
 
     protected boolean onMergeChild(String string, String string2, PSSysModelInstSum pSSysModelInstSum) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysModelInstSum)) {
+        if (super.onMergeChild(string, string2, pSSysModelInstSum)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysModelInstSum pSSysModelInstSum) throws Exception {
-        super.onUpdateParent((IEntity)pSSysModelInstSum);
+        super.onUpdateParent(pSSysModelInstSum);
     }
 
     @Override
@@ -744,7 +744,7 @@ extends PSCoreSysServiceBase<PSSysModelInstSum> {
         PSSysModelInstSum pSSysModelInstSum2 = new PSSysModelInstSum();
         pSSysModelInstSum2.setPSSysModelInstId(pSSysModelInstSum.getPSSysModelInstId());
         pSSysModelInstSum2.setPSSysModelInstSumName(pSSysModelInstSum.getPSSysModelInstSumName());
-        if (this.selectOne((IEntity)pSSysModelInstSum2, true)) {
+        if (this.selectOne(pSSysModelInstSum2, true)) {
             return pSSysModelInstSum2.getPSSysModelInstSumId();
         }
         return super.getEntityFolderKeyValue(pSSysModelInstSum, pSSystem);

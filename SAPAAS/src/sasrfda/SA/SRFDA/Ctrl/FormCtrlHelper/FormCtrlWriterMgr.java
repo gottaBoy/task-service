@@ -81,8 +81,8 @@ extends XMLCollectionExConfig<FormCtrlWriterConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = FormCtrlWriterMgr.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((FormCtrlWriterConfig)childNode))) {
-                this.add((Object)((FormCtrlWriterConfig)childNode));
+            if (this.OnChildNodeLoaded((FormCtrlWriterConfig)childNode)) {
+                this.add((FormCtrlWriterConfig)childNode);
                 return;
             }
         }

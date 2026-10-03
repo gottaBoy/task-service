@@ -210,9 +210,9 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSSysBIAggTable, pSDataEntity);
             return;
@@ -222,9 +222,9 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
             PSDEDataQuery pSDEDataQuery = (PSDEDataQuery)iService.getDEModel().createEntity();
             pSDEDataQuery.set("PSDEDATAQUERYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEDataQuery);
+                iService.getTemp(pSDEDataQuery);
             } else {
-                iService.get((IEntity)pSDEDataQuery);
+                iService.get(pSDEDataQuery);
             }
             this.onFillParentInfo_PSDEDataQuery(pSSysBIAggTable, pSDEDataQuery);
             return;
@@ -234,9 +234,9 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
             PSDEDataSet pSDEDataSet = (PSDEDataSet)iService.getDEModel().createEntity();
             pSDEDataSet.set("PSDEDATASETID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEDataSet);
+                iService.getTemp(pSDEDataSet);
             } else {
-                iService.get((IEntity)pSDEDataSet);
+                iService.get(pSDEDataSet);
             }
             this.onFillParentInfo_PSDEDataSet(pSSysBIAggTable, pSDEDataSet);
             return;
@@ -246,9 +246,9 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
             PSSysBICube pSSysBICube = (PSSysBICube)iService.getDEModel().createEntity();
             pSSysBICube.set("PSSYSBICUBEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBICube);
+                iService.getTemp(pSSysBICube);
             } else {
-                iService.get((IEntity)pSSysBICube);
+                iService.get(pSSysBICube);
             }
             this.onFillParentInfo_PSSysBICube(pSSysBIAggTable, pSSysBICube);
             return;
@@ -258,14 +258,14 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
             PSSysBIScheme pSSysBIScheme = (PSSysBIScheme)iService.getDEModel().createEntity();
             pSSysBIScheme.set("PSSYSBISCHEMEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBIScheme);
+                iService.getTemp(pSSysBIScheme);
             } else {
-                iService.get((IEntity)pSSysBIScheme);
+                iService.get(pSSysBIScheme);
             }
             this.onFillParentInfo_PSSysBIScheme(pSSysBIAggTable, pSSysBIScheme);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysBIAggTable, string, string2, string3);
+        super.onFillParentInfo(pSSysBIAggTable, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -309,7 +309,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 pSSysBIAggTable.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysBIAggTable, bl);
+        super.onFillEntityFullInfo(pSSysBIAggTable, bl);
         this.onFillEntityFullInfo_PSDE(pSSysBIAggTable, bl);
         this.onFillEntityFullInfo_PSDEDataQuery(pSSysBIAggTable, bl);
         this.onFillEntityFullInfo_PSDEDataSet(pSSysBIAggTable, bl);
@@ -343,7 +343,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
     }
 
     protected void onWriteBackParent(PSSysBIAggTable pSSysBIAggTable, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysBIAggTable, bl);
+        super.onWriteBackParent(pSSysBIAggTable, bl);
     }
 
     public ArrayList<PSSysBIAggTable> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -470,8 +470,8 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         ArrayList<PSSysBIAggTable> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIAGGTABLE_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSBIAGGTABLE", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIAGGTABLE_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSBIAGGTABLE", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -504,7 +504,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         ArrayList<PSSysBIAggTable> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSSysBIAggTable pSSysBIAggTable : arrayList) {
-            this.remove((IEntity)pSSysBIAggTable);
+            this.remove(pSSysBIAggTable);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -522,8 +522,8 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         ArrayList<PSSysBIAggTable> arrayList = this.selectByPSDEDataQuery(pSDEDataQuery, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEDATAQUERY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEDataQuery);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIAGGTABLE_PSDEDATAQUERY_PSDEDATAQUERYID", "", iDataEntityModel.getName(), "PSSYSBIAGGTABLE", iDataEntityModel.getDataInfo((IEntity)pSDEDataQuery), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEDataQuery);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIAGGTABLE_PSDEDATAQUERY_PSDEDATAQUERYID", "", iDataEntityModel.getName(), "PSSYSBIAGGTABLE", iDataEntityModel.getDataInfo(pSDEDataQuery), arrayList.get(0)));
         }
     }
 
@@ -556,7 +556,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         ArrayList<PSSysBIAggTable> arrayList = this.selectByPSDEDataQuery(pSDEDataQuery);
         this.onBeforeRemoveByPSDEDataQuery(pSDEDataQuery, arrayList);
         for (PSSysBIAggTable pSSysBIAggTable : arrayList) {
-            this.remove((IEntity)pSSysBIAggTable);
+            this.remove(pSSysBIAggTable);
         }
         this.onAfterRemoveByPSDEDataQuery(pSDEDataQuery, arrayList);
     }
@@ -574,8 +574,8 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         ArrayList<PSSysBIAggTable> arrayList = this.selectByPSDEDataSet(pSDEDataSet, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEDATASET");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEDataSet);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIAGGTABLE_PSDEDATASET_PSDEDATASETID", "", iDataEntityModel.getName(), "PSSYSBIAGGTABLE", iDataEntityModel.getDataInfo((IEntity)pSDEDataSet), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEDataSet);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIAGGTABLE_PSDEDATASET_PSDEDATASETID", "", iDataEntityModel.getName(), "PSSYSBIAGGTABLE", iDataEntityModel.getDataInfo(pSDEDataSet), arrayList.get(0)));
         }
     }
 
@@ -608,7 +608,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         ArrayList<PSSysBIAggTable> arrayList = this.selectByPSDEDataSet(pSDEDataSet);
         this.onBeforeRemoveByPSDEDataSet(pSDEDataSet, arrayList);
         for (PSSysBIAggTable pSSysBIAggTable : arrayList) {
-            this.remove((IEntity)pSSysBIAggTable);
+            this.remove(pSSysBIAggTable);
         }
         this.onAfterRemoveByPSDEDataSet(pSDEDataSet, arrayList);
     }
@@ -654,7 +654,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         ArrayList<PSSysBIAggTable> arrayList = this.selectByPSSysBICube(pSSysBICube);
         this.onBeforeRemoveByPSSysBICube(pSSysBICube, arrayList);
         for (PSSysBIAggTable pSSysBIAggTable : arrayList) {
-            this.remove((IEntity)pSSysBIAggTable);
+            this.remove(pSSysBIAggTable);
         }
         this.onAfterRemoveByPSSysBICube(pSSysBICube, arrayList);
     }
@@ -672,8 +672,8 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         ArrayList<PSSysBIAggTable> arrayList = this.selectByPSSysBIScheme(pSSysBIScheme, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSBISCHEME");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysBIScheme);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIAGGTABLE_PSSYSBISCHEME_PSSYSBISCHEMEID", "", iDataEntityModel.getName(), "PSSYSBIAGGTABLE", iDataEntityModel.getDataInfo((IEntity)pSSysBIScheme), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysBIScheme);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIAGGTABLE_PSSYSBISCHEME_PSSYSBISCHEMEID", "", iDataEntityModel.getName(), "PSSYSBIAGGTABLE", iDataEntityModel.getDataInfo(pSSysBIScheme), arrayList.get(0)));
         }
     }
 
@@ -706,7 +706,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         ArrayList<PSSysBIAggTable> arrayList = this.selectByPSSysBIScheme(pSSysBIScheme);
         this.onBeforeRemoveByPSSysBIScheme(pSSysBIScheme, arrayList);
         for (PSSysBIAggTable pSSysBIAggTable : arrayList) {
-            this.remove((IEntity)pSSysBIAggTable);
+            this.remove(pSSysBIAggTable);
         }
         this.onAfterRemoveByPSSysBIScheme(pSSysBIScheme, arrayList);
     }
@@ -733,12 +733,12 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
     protected void onBeforeRemoveTemp(PSSysBIAggTable pSSysBIAggTable) throws Exception {
         PSSysBIAggColumnService pSSysBIAggColumnService = (PSSysBIAggColumnService)ServiceGlobal.getService(PSSysBIAggColumnService.class, (SessionFactory)this.getSessionFactory());
         pSSysBIAggColumnService.removeTempByPSSysBIAggTable(pSSysBIAggTable);
-        super.onBeforeRemoveTemp((IEntity)pSSysBIAggTable);
+        super.onBeforeRemoveTemp(pSSysBIAggTable);
     }
 
     protected void getRelatedDataTempMajor(PSSysBIAggTable pSSysBIAggTable) throws Exception {
         this.getRelatedDataTempMajor_PSSysBIAggColumn(pSSysBIAggTable);
-        super.getRelatedDataTempMajor((IEntity)pSSysBIAggTable);
+        super.getRelatedDataTempMajor(pSSysBIAggTable);
     }
 
     protected void getRelatedDataTempMajor_PSSysBIAggColumn(PSSysBIAggTable pSSysBIAggTable) throws Exception {
@@ -754,7 +754,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
     protected void updateRelatedDataTempMajor(PSSysBIAggTable pSSysBIAggTable, PSSysBIAggTable pSSysBIAggTable2) throws Exception {
         ArrayList<PSSysBIAggColumn> arrayList = this.updateRelatedDataTempMajor_removePSSysBIAggColumn(pSSysBIAggTable, pSSysBIAggTable2);
         this.updateRelatedDataTempMajor_updatePSSysBIAggColumn(pSSysBIAggTable, pSSysBIAggTable2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSSysBIAggTable, (IEntity)pSSysBIAggTable2);
+        super.updateRelatedDataTempMajor(pSSysBIAggTable, pSSysBIAggTable2);
     }
 
     protected ArrayList<PSSysBIAggColumn> updateRelatedDataTempMajor_removePSSysBIAggColumn(PSSysBIAggTable pSSysBIAggTable, PSSysBIAggTable pSSysBIAggTable2) throws Exception {
@@ -770,7 +770,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
             hashMap.remove(object);
         }
         for (PSSysBIAggColumn pSSysBIAggColumn : hashMap.values()) {
-            pSSysBIAggColumnService.remove((IEntity)pSSysBIAggColumn);
+            pSSysBIAggColumnService.remove(pSSysBIAggColumn);
         }
         return arrayList;
     }
@@ -787,7 +787,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
 
     protected void replaceParentInfo(PSSysBIAggTable pSSysBIAggTable, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysBIAggTable, cloneSession);
+        super.replaceParentInfo(pSSysBIAggTable, cloneSession);
         if (pSSysBIAggTable.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSSysBIAggTable.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSSysBIAggTable, (PSDataEntity)iEntity);
         }
@@ -806,7 +806,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysBIAggTable pSSysBIAggTable, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysBIAggTable, bl);
+        super.onRemoveEntityUncopyValues(pSSysBIAggTable, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysBIAggTable pSSysBIAggTable, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -878,7 +878,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysBIAggTable, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysBIAggTable, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysBIAggTable, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BIAggTableMode(boolean bl, PSSysBIAggTable pSSysBIAggTable, boolean bl2, boolean bl3) throws Exception {
@@ -891,7 +891,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIAggTableMode_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_BIAggTableMode_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIAGGTABLEMODE");
@@ -913,7 +913,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BIAggTableOption_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string = this.onTestValueRule_BIAggTableOption_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIAGGTABLEOPTION");
@@ -935,7 +935,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIAggTableParams_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_BIAggTableParams_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIAGGTABLEPARAMS");
@@ -957,7 +957,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIAggTableTag_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_BIAggTableTag_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIAGGTABLETAG");
@@ -979,7 +979,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIAggTableTag2_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_BIAggTableTag2_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIAGGTABLETAG2");
@@ -1004,7 +1004,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1043,7 +1043,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1065,7 +1065,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataQueryId_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataQueryId_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATAQUERYID");
@@ -1087,7 +1087,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataSetId_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataSetId_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATASETID");
@@ -1112,7 +1112,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -1134,7 +1134,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -1159,7 +1159,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBIAggTableId_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBIAggTableId_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBIAGGTABLEID");
@@ -1184,7 +1184,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBIAggTableName_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBIAggTableName_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBIAGGTABLENAME");
@@ -1226,7 +1226,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeId_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeId_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBEID");
@@ -1251,7 +1251,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBISchemeId_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBISchemeId_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBISCHEMEID");
@@ -1273,7 +1273,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RealTimeMode_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string = this.onTestValueRule_RealTimeMode_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REALTIMEMODE");
@@ -1295,7 +1295,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1317,7 +1317,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1339,7 +1339,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1361,7 +1361,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1383,7 +1383,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1408,7 +1408,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysBIAggTable, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysBIAggTable, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1421,11 +1421,11 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
     }
 
     protected void onSyncEntity(PSSysBIAggTable pSSysBIAggTable, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysBIAggTable, bl);
+        super.onSyncEntity(pSSysBIAggTable, bl);
     }
 
     protected void onSyncIndexEntities(PSSysBIAggTable pSSysBIAggTable, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysBIAggTable, bl);
+        super.onSyncIndexEntities(pSSysBIAggTable, bl);
     }
 
     public Object getDataContextValue(PSSysBIAggTable pSSysBIAggTable, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1433,7 +1433,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysBIAggTable, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysBIAggTable, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysBIScheme pSSysBIScheme = pSSysBIAggTable.getPSSysBIScheme();
@@ -1444,7 +1444,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
     }
 
     protected void onExportMajorModel(PSSysBIAggTable pSSysBIAggTable, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysBIAggTable, arrayList, n);
+        super.onExportMajorModel(pSSysBIAggTable, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1868,21 +1868,21 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
 
     protected boolean onMergeChild(String string, String string2, PSSysBIAggTable pSSysBIAggTable) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysBIAggTable)) {
+        if (super.onMergeChild(string, string2, pSSysBIAggTable)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysBIAggTable pSSysBIAggTable) throws Exception {
-        super.onUpdateParent((IEntity)pSSysBIAggTable);
+        super.onUpdateParent(pSSysBIAggTable);
     }
 
     protected void onCopyDetails(PSSysBIAggTable pSSysBIAggTable, Object object) throws Exception {
         PSSysBIAggTable pSSysBIAggTable2 = new PSSysBIAggTable();
         pSSysBIAggTable2.set("PSSYSBIAGGTABLEID", object);
         String string = DataObject.getStringValue((Object)pSSysBIAggTable.get("PSSYSBIAGGTABLEID"));
-        super.onCopyDetails((IEntity)pSSysBIAggTable, object);
+        super.onCopyDetails(pSSysBIAggTable, object);
     }
 
     @Override
@@ -1942,7 +1942,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSSysBIAggColumn pSSysBIAggColumn = new PSSysBIAggColumn();
-                pSSysBIAggColumnService.fillParentInfo((IEntity)pSSysBIAggColumn, "DER1N", "DER1N_PSSYSBIAGGCOLUMN_PSSYSBIAGGTABLE_PSSYSBIAGGTABLEID", pSSysBIAggTable.getPSSysBIAggTableId());
+                pSSysBIAggColumnService.fillParentInfo(pSSysBIAggColumn, "DER1N", "DER1N_PSSYSBIAGGCOLUMN_PSSYSBIAGGTABLE_PSSYSBIAGGTABLEID", pSSysBIAggTable.getPSSysBIAggTableId());
                 pSSysBIAggColumnService.importXmlModel(pSSysBIAggColumn, xmlNode2);
             }
         }
@@ -2063,44 +2063,26 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
 
     @Override
     protected void onExportCurModelV2(PSSysBIAggTable pSSysBIAggTable, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSBIAGGCOLUMN_PSSYSBIAGGTABLE_PSSYSBIAGGTABLEID")) {
-            Object object;
-            PSSysBIAggColumn pSSysBIAggColumn2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSSysBIAggColumnService pSSysBIAggColumnService = (PSSysBIAggColumnService)ServiceGlobal.getService(PSSysBIAggColumnService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSSysBIAggColumn> arrayList = null;
+            ArrayList<ObjectNode> items = new ArrayList<ObjectNode>();
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSBIAGGTABLE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBIAGGCOLUMN", (Object)pSSysBIAggTable.getPSSysBIAggTableId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSBIAGGTABLE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBIAGGCOLUMN", (Object)pSSysBIAggTable.getPSSysBIAggTableId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSSysBIAggColumn2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSSysBIAggColumn2);
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        items.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysBIAggColumn>();
-                object4 = pSSysBIAggColumnService.selectByPSSysBIAggTable(pSSysBIAggTable);
-                object3 = StringHelper.format((String)"PSSYSBIAGGTABLE#%1$s", (Object)pSSysBIAggTable.getPSSysBIAggTableId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSSysBIAggColumn2 = object2.next();
-                    object = pSSysBIAggColumnService.getModelV2ResScope((IEntity)pSSysBIAggColumn2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysBIAggColumn)PSModelV2Helper.toJSONObject((IEntity)pSSysBIAggColumn2, false));
+                String scope = StringHelper.format((String)"PSSYSBIAGGTABLE#%1$s", (Object)pSSysBIAggTable.getPSSysBIAggTableId());
+                for (PSSysBIAggColumn column : pSSysBIAggColumnService.selectByPSSysBIAggTable(pSSysBIAggTable)) {
+                    if (StringHelper.compare((String)scope, (String)pSSysBIAggColumnService.getModelV2ResScope(column), (boolean)false) != 0) continue;
+                    items.add(PSModelV2Helper.toJSONObject(column, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSSysBIAggColumnService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (!items.isEmpty()) {
+                Collections.sort(items, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -2127,10 +2109,11 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSSysBIAggColumn pSSysBIAggColumn2 : arrayList) {
-                    object = new PSSysBIAggColumn();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSSysBIAggColumn2, false);
-                    object3.add((JsonNode)pSSysBIAggColumnService.exportModelV2(object, string));
+                ArrayNode exported = objectNode.putArray(pSSysBIAggColumnService.getModelV2Name(false).toLowerCase());
+                for (ObjectNode item : items) {
+                    PSSysBIAggColumn column = new PSSysBIAggColumn();
+                    PSModelV2Helper.fromJSONObject((IDataObject)column, item, false);
+                    exported.add((JsonNode)pSSysBIAggColumnService.exportModelV2(column, string));
                 }
             }
         }
@@ -2143,7 +2126,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         ArrayList<PSSysBIAggColumn> arrayList = pSSysBIAggColumnService.selectByPSSysBIAggTable(pSSysBIAggTable);
         String string = StringHelper.format((String)"PSSYSBIAGGTABLE#%1$s", (Object)pSSysBIAggTable.getPSSysBIAggTableId());
         for (PSSysBIAggColumn pSSysBIAggColumn : arrayList) {
-            String string2 = pSSysBIAggColumnService.getModelV2ResScope((IEntity)pSSysBIAggColumn);
+            String string2 = pSSysBIAggColumnService.getModelV2ResScope(pSSysBIAggColumn);
             if (StringHelper.compare((String)string, (String)string2, (boolean)false) != 0) continue;
             pSSysBIAggColumnService.emptyModelV2(pSSysBIAggColumn);
         }
@@ -2227,7 +2210,7 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
             PSSysBIAggColumnService pSSysBIAggColumnService = (PSSysBIAggColumnService)ServiceGlobal.getService(PSSysBIAggColumnService.class, (SessionFactory)this.getSessionFactory());
             PSSysBIAggColumn pSSysBIAggColumn = new PSSysBIAggColumn();
             pSSysBIAggColumn.setPSSysBIAggColumnId(pSMOSFile.getPSModelId());
-            if (!pSSysBIAggColumnService.get((IEntity)pSSysBIAggColumn, true)) {
+            if (!pSSysBIAggColumnService.get(pSSysBIAggColumn, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysBIAggColumn.getPSSysBIAggTableId(), (String)pSSysBIAggTable.getPSSysBIAggTableId(), (boolean)false) == 0) {
@@ -2235,12 +2218,12 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
             }
             ObjectNode objectNode = pSSysBIAggColumnService.exportModelV2(pSSysBIAggColumn);
             pSSysBIAggColumn.reset();
-            if (!pSSysBIAggColumnService.setModelV2ResScope((IEntity)pSSysBIAggColumn, "PSSYSBIAGGTABLE", pSSysBIAggTable.getPSSysBIAggTableId())) {
+            if (!pSSysBIAggColumnService.setModelV2ResScope(pSSysBIAggColumn, "PSSYSBIAGGTABLE", pSSysBIAggTable.getPSSysBIAggTableId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysBIAggColumnService.importModelV2(pSSysBIAggColumn, objectNode);
             SessionFactoryManager.commit();
-            return pSSysBIAggColumnService.getFile((IEntity)pSSysBIAggColumn);
+            return pSSysBIAggColumnService.getFile(pSSysBIAggColumn);
         }
         return null;
     }
@@ -2270,4 +2253,3 @@ extends PSCoreSysServiceBase<PSSysBIAggTable> {
         defaultValueMap.put("PSSYSBIAGGTABLENAME", "\u805a\u5408\u6570\u636e");
     }
 }
-

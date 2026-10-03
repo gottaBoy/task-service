@@ -70,7 +70,7 @@ implements IPSSysRefService {
     @Override
     protected List<PSSysRef> onListAll() throws Exception {
         ArrayList<PSSysRef> list = new ArrayList<PSSysRef>();
-        List pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
+        List<PSSystem> pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
         if (pssystems != null) {
             for (PSSystem parent : pssystems) {
                 List<PSSysRef> items = this.listByPSSystem(parent);

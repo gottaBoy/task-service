@@ -158,10 +158,10 @@ implements IPSCtrlMsgService {
 
     @Override
     protected List<PSCtrlMsg> onListAll() throws Exception {
-        List pssystems;
-        List psmodules;
+        List<PSSystem> pssystems;
+        List<PSModule> psmodules;
         ArrayList<PSCtrlMsg> list = new ArrayList<PSCtrlMsg>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSCtrlMsg> items = this.listByPSDataEntity(parent);

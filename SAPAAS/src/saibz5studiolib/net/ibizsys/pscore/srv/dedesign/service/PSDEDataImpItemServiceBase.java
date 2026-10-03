@@ -174,9 +174,9 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
             PSCodeList pSCodeList = (PSCodeList)iService.getDEModel().createEntity();
             pSCodeList.set("PSCODELISTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCodeList);
+                iService.getTemp(pSCodeList);
             } else {
-                iService.get((IEntity)pSCodeList);
+                iService.get(pSCodeList);
             }
             this.onFillParentInfo_PSCodeList(pSDEDataImpItem, pSCodeList);
             return;
@@ -186,9 +186,9 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
             PSDEDataImp pSDEDataImp = (PSDEDataImp)iService.getDEModel().createEntity();
             pSDEDataImp.set("PSDEDATAIMPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEDataImp);
+                iService.getTemp(pSDEDataImp);
             } else {
-                iService.get((IEntity)pSDEDataImp);
+                iService.get(pSDEDataImp);
             }
             this.onFillParentInfo_PSDEDataImp(pSDEDataImpItem, pSDEDataImp);
             return;
@@ -198,9 +198,9 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_PSDEF(pSDEDataImpItem, pSDEField);
             return;
@@ -210,9 +210,9 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
             PSLanguageRes pSLanguageRes = (PSLanguageRes)iService.getDEModel().createEntity();
             pSLanguageRes.set("PSLANGUAGERESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSLanguageRes);
+                iService.getTemp(pSLanguageRes);
             } else {
-                iService.get((IEntity)pSLanguageRes);
+                iService.get(pSLanguageRes);
             }
             this.onFillParentInfo_CapPSLanRes(pSDEDataImpItem, pSLanguageRes);
             return;
@@ -222,14 +222,14 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
             PSSysTranslator pSSysTranslator = (PSSysTranslator)iService.getDEModel().createEntity();
             pSSysTranslator.set("PSSYSTRANSLATORID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysTranslator);
+                iService.getTemp(pSSysTranslator);
             } else {
-                iService.get((IEntity)pSSysTranslator);
+                iService.get(pSSysTranslator);
             }
             this.onFillParentInfo_PSSysTranslator(pSDEDataImpItem, pSSysTranslator);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEDataImpItem, string, string2, string3);
+        super.onFillParentInfo(pSDEDataImpItem, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -289,7 +289,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 pSDEDataImpItem.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDEDataImpItem, bl);
+        super.onFillEntityFullInfo(pSDEDataImpItem, bl);
         this.onFillEntityFullInfo_PSCodeList(pSDEDataImpItem, bl);
         this.onFillEntityFullInfo_PSDEDataImp(pSDEDataImpItem, bl);
         this.onFillEntityFullInfo_PSDEF(pSDEDataImpItem, bl);
@@ -345,7 +345,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
     }
 
     protected void onWriteBackParent(PSDEDataImpItem pSDEDataImpItem, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEDataImpItem, bl);
+        super.onWriteBackParent(pSDEDataImpItem, bl);
     }
 
     public ArrayList<PSDEDataImpItem> selectByPSCodeList(PSCodeListBase pSCodeListBase) throws Exception {
@@ -487,8 +487,8 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         ArrayList<PSDEDataImpItem> arrayList = this.selectByPSCodeList(pSCodeList, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCODELIST");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCodeList);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDATAIMPITEM_PSCODELIST_PSCODELISTID", "", iDataEntityModel.getName(), "PSDEDATAIMPITEM", iDataEntityModel.getDataInfo((IEntity)pSCodeList), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCodeList);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDATAIMPITEM_PSCODELIST_PSCODELISTID", "", iDataEntityModel.getName(), "PSDEDATAIMPITEM", iDataEntityModel.getDataInfo(pSCodeList), arrayList.get(0)));
         }
     }
 
@@ -521,7 +521,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         ArrayList<PSDEDataImpItem> arrayList = this.selectByPSCodeList(pSCodeList);
         this.onBeforeRemoveByPSCodeList(pSCodeList, arrayList);
         for (PSDEDataImpItem pSDEDataImpItem : arrayList) {
-            this.remove((IEntity)pSDEDataImpItem);
+            this.remove(pSDEDataImpItem);
         }
         this.onAfterRemoveByPSCodeList(pSCodeList, arrayList);
     }
@@ -554,7 +554,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
             PSDEDataImpItem pSDEDataImpItem2 = (PSDEDataImpItem)this.getDEModel().createEntity();
             pSDEDataImpItem2.setPSDEDataImpItemId(pSDEDataImpItem.getPSDEDataImpItemId());
             pSDEDataImpItem2.setPSDEDataImpId(null);
-            this.updateTemp((IEntity)pSDEDataImpItem2);
+            this.updateTemp(pSDEDataImpItem2);
         }
     }
 
@@ -577,7 +577,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         ArrayList<PSDEDataImpItem> arrayList = this.selectByPSDEDataImp(pSDEDataImp);
         this.onBeforeRemoveByPSDEDataImp(pSDEDataImp, arrayList);
         for (PSDEDataImpItem pSDEDataImpItem : arrayList) {
-            this.remove((IEntity)pSDEDataImpItem);
+            this.remove(pSDEDataImpItem);
         }
         this.onAfterRemoveByPSDEDataImp(pSDEDataImp, arrayList);
     }
@@ -595,8 +595,8 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         ArrayList<PSDEDataImpItem> arrayList = this.selectByPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDATAIMPITEM_PSDEFIELD_PSDEFID", "", iDataEntityModel.getName(), "PSDEDATAIMPITEM", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDATAIMPITEM_PSDEFIELD_PSDEFID", "", iDataEntityModel.getName(), "PSDEDATAIMPITEM", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -629,7 +629,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         ArrayList<PSDEDataImpItem> arrayList = this.selectByPSDEF(pSDEField);
         this.onBeforeRemoveByPSDEF(pSDEField, arrayList);
         for (PSDEDataImpItem pSDEDataImpItem : arrayList) {
-            this.remove((IEntity)pSDEDataImpItem);
+            this.remove(pSDEDataImpItem);
         }
         this.onAfterRemoveByPSDEF(pSDEField, arrayList);
     }
@@ -647,8 +647,8 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         ArrayList<PSDEDataImpItem> arrayList = this.selectByCapPSLanRes(pSLanguageRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSLANGUAGERES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSLanguageRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDATAIMPITEM_PSLANGUAGERES_CAPPSLANRESID", "", iDataEntityModel.getName(), "PSDEDATAIMPITEM", iDataEntityModel.getDataInfo((IEntity)pSLanguageRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSLanguageRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDATAIMPITEM_PSLANGUAGERES_CAPPSLANRESID", "", iDataEntityModel.getName(), "PSDEDATAIMPITEM", iDataEntityModel.getDataInfo(pSLanguageRes), arrayList.get(0)));
         }
     }
 
@@ -681,7 +681,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         ArrayList<PSDEDataImpItem> arrayList = this.selectByCapPSLanRes(pSLanguageRes);
         this.onBeforeRemoveByCapPSLanRes(pSLanguageRes, arrayList);
         for (PSDEDataImpItem pSDEDataImpItem : arrayList) {
-            this.remove((IEntity)pSDEDataImpItem);
+            this.remove(pSDEDataImpItem);
         }
         this.onAfterRemoveByCapPSLanRes(pSLanguageRes, arrayList);
     }
@@ -699,8 +699,8 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         ArrayList<PSDEDataImpItem> arrayList = this.selectByPSSysTranslator(pSSysTranslator, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSTRANSLATOR");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysTranslator);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDATAIMPITEM_PSSYSTRANSLATOR_PSSYSTRANSLATORID", "", iDataEntityModel.getName(), "PSDEDATAIMPITEM", iDataEntityModel.getDataInfo((IEntity)pSSysTranslator), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysTranslator);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEDATAIMPITEM_PSSYSTRANSLATOR_PSSYSTRANSLATORID", "", iDataEntityModel.getName(), "PSDEDATAIMPITEM", iDataEntityModel.getDataInfo(pSSysTranslator), arrayList.get(0)));
         }
     }
 
@@ -733,7 +733,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         ArrayList<PSDEDataImpItem> arrayList = this.selectByPSSysTranslator(pSSysTranslator);
         this.onBeforeRemoveByPSSysTranslator(pSSysTranslator, arrayList);
         for (PSDEDataImpItem pSDEDataImpItem : arrayList) {
-            this.remove((IEntity)pSDEDataImpItem);
+            this.remove(pSDEDataImpItem);
         }
         this.onAfterRemoveByPSSysTranslator(pSSysTranslator, arrayList);
     }
@@ -771,7 +771,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         ArrayList<PSDEDataImpItem> arrayList = this.selectTempByPSDEDataImp(pSDEDataImp);
         this.onBeforeRemoveTempByPSDEDataImp(pSDEDataImp, arrayList);
         for (PSDEDataImpItem pSDEDataImpItem : arrayList) {
-            this.removeTemp((IEntity)pSDEDataImpItem);
+            this.removeTemp(pSDEDataImpItem);
         }
         this.onAfterRemoveTempByPSDEDataImp(pSDEDataImp, arrayList);
     }
@@ -787,7 +787,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
 
     protected void replaceParentInfo(PSDEDataImpItem pSDEDataImpItem, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEDataImpItem, cloneSession);
+        super.replaceParentInfo(pSDEDataImpItem, cloneSession);
         if (pSDEDataImpItem.getPSCodeListId() != null && (iEntity = cloneSession.getEntity("PSCODELIST", (Object)pSDEDataImpItem.getPSCodeListId())) != null) {
             this.onFillParentInfo_PSCodeList(pSDEDataImpItem, (PSCodeList)iEntity);
         }
@@ -806,7 +806,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEDataImpItem pSDEDataImpItem, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEDataImpItem, bl);
+        super.onRemoveEntityUncopyValues(pSDEDataImpItem, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEDataImpItem pSDEDataImpItem, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -893,7 +893,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDEDataImpItem, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEDataImpItem, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEDataImpItem, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CapPSLanResId(boolean bl, PSDEDataImpItem pSDEDataImpItem, boolean bl2, boolean bl3) throws Exception {
@@ -906,7 +906,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CapPSLanResId_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_CapPSLanResId_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CAPPSLANRESID");
@@ -928,7 +928,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CapPSLanResName_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_CapPSLanResName_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CAPPSLANRESNAME");
@@ -950,7 +950,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Caption_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_Caption_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CAPTION");
@@ -972,7 +972,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CreateDV_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_CreateDV_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CREATEDV");
@@ -994,7 +994,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CreateDVT_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_CreateDVT_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CREATEDVT");
@@ -1016,7 +1016,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DynaModelFlag_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string = this.onTestValueRule_DynaModelFlag_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNAMODELFLAG");
@@ -1038,7 +1038,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_HiddenDataItem_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string = this.onTestValueRule_HiddenDataItem_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HIDDENDATAITEM");
@@ -1063,7 +1063,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_KeyFlag_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string = this.onTestValueRule_KeyFlag_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("KEYFLAG");
@@ -1085,7 +1085,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1107,7 +1107,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -1129,7 +1129,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCodeListId_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSCodeListId_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCODELISTID");
@@ -1154,7 +1154,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataImpId_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataImpId_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATAIMPID");
@@ -1179,7 +1179,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataImpItemId_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataImpItemId_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATAIMPITEMID");
@@ -1204,7 +1204,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataImpItemName_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataImpItemName_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATAIMPITEMNAME");
@@ -1226,7 +1226,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataImpName_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataImpName_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATAIMPNAME");
@@ -1251,7 +1251,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFId_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFId_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFID");
@@ -1276,7 +1276,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFName_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFName_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFNAME");
@@ -1298,7 +1298,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -1320,7 +1320,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysTranslatorId_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysTranslatorId_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTRANSLATORID");
@@ -1342,7 +1342,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UpdateDV_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_UpdateDV_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPDATEDV");
@@ -1364,7 +1364,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UpdateDVT_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_UpdateDVT_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPDATEDVT");
@@ -1386,7 +1386,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1408,7 +1408,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1430,7 +1430,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1452,7 +1452,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1474,7 +1474,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1499,7 +1499,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDEDataImpItem, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDEDataImpItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1512,11 +1512,11 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
     }
 
     protected void onSyncEntity(PSDEDataImpItem pSDEDataImpItem, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEDataImpItem, bl);
+        super.onSyncEntity(pSDEDataImpItem, bl);
     }
 
     protected void onSyncIndexEntities(PSDEDataImpItem pSDEDataImpItem, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEDataImpItem, bl);
+        super.onSyncIndexEntities(pSDEDataImpItem, bl);
     }
 
     public Object getDataContextValue(PSDEDataImpItem pSDEDataImpItem, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1524,7 +1524,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEDataImpItem, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEDataImpItem, string, iDataContextParam)) != null) {
             return object;
         }
         PSDEDataImp pSDEDataImp = pSDEDataImpItem.getPSDEDataImp();
@@ -1540,13 +1540,13 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
 
     protected void onExportMajorModel(PSDEDataImpItem pSDEDataImpItem, ArrayList<JSONObject> arrayList, int n) throws Exception {
         this.onExportMajorModel_CapPSLanRes(pSDEDataImpItem, arrayList, n);
-        super.onExportMajorModel((IEntity)pSDEDataImpItem, arrayList, n);
+        super.onExportMajorModel(pSDEDataImpItem, arrayList, n);
     }
 
     protected void onExportMajorModel_CapPSLanRes(PSDEDataImpItem pSDEDataImpItem, ArrayList<JSONObject> arrayList, int n) throws Exception {
         if (pSDEDataImpItem.getCapPSLanRes() != null) {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.sysdesign.service.PSLanguageResService", (SessionFactory)this.getSessionFactory());
-            iService.exportModel((IEntity)pSDEDataImpItem.getCapPSLanRes(), arrayList, n);
+            iService.exportModel(pSDEDataImpItem.getCapPSLanRes(), arrayList, n);
         }
     }
 
@@ -2010,14 +2010,14 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
 
     protected boolean onMergeChild(String string, String string2, PSDEDataImpItem pSDEDataImpItem) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEDataImpItem)) {
+        if (super.onMergeChild(string, string2, pSDEDataImpItem)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEDataImpItem pSDEDataImpItem) throws Exception {
-        super.onUpdateParent((IEntity)pSDEDataImpItem);
+        super.onUpdateParent(pSDEDataImpItem);
     }
 
     @Override
@@ -2041,7 +2041,7 @@ extends PSCoreSysServiceBase<PSDEDataImpItem> {
         PSDEDataImpItem pSDEDataImpItem2 = new PSDEDataImpItem();
         pSDEDataImpItem2.setPSDEDataImpId(pSDEDataImpItem.getPSDEDataImpId());
         pSDEDataImpItem2.setPSDEFId(pSDEDataImpItem.getPSDEFId());
-        if (this.selectOne((IEntity)pSDEDataImpItem2, true)) {
+        if (this.selectOne(pSDEDataImpItem2, true)) {
             return pSDEDataImpItem2.getPSDEDataImpItemId();
         }
         return super.getEntityFolderKeyValue(pSDEDataImpItem, pSSystem);

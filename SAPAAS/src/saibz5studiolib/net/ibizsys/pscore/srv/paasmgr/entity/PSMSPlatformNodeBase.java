@@ -1614,7 +1614,7 @@ implements Serializable {
                 PSMSPlatform pSMSPlatform = new PSMSPlatform();
                 pSMSPlatform.setPSMSPlatformId(this.getPSMSPlatformId());
                 PSMSPlatformService pSMSPlatformService = (PSMSPlatformService)ServiceGlobal.getService(PSMSPlatformService.class, (SessionFactory)this.getSessionFactory());
-                pSMSPlatformService.autoGet((IEntity)pSMSPlatform);
+                pSMSPlatformService.autoGet(pSMSPlatform);
                 this.psmsplatform = pSMSPlatform;
             }
             return this.psmsplatform;

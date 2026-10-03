@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSConsoleServerDEModelBase;
 
 public class PSConsoleServerDEModel
 extends PSConsoleServerDEModelBase {
+
+    public PSConsoleServerDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -1,12 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ICtrlHandler;
-
-public interface IAppMenuHandler
-extends ICtrlHandler {
-    public static final String ACTION_FETCH = "fetch";
+/**
+ * 应用菜单后台处理对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IAppMenuHandler extends ICtrlHandler {
+	/**
+	 * 获取数据
+	 */
+	final static String ACTION_FETCH = "fetch";
 }
-

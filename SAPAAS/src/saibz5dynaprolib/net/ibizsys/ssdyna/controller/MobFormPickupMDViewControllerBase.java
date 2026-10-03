@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.MobPickupMDViewControllerBase;
+/**
+ * 移动端多表单选择多数据视图控制器对象基类
+ * @author Administrator
+ *
+ */
+public abstract class MobFormPickupMDViewControllerBase extends MobPickupMDViewControllerBase {
 
-public abstract class MobFormPickupMDViewControllerBase
-extends MobPickupMDViewControllerBase {
+	public MobFormPickupMDViewControllerBase() throws Exception {
+		super();
+		
+	}
+
 }
-

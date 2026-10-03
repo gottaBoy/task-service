@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdevstudio.demodel.PSUAWizard3DEModelBase;
 
 public class PSUAWizard3DEModel
 extends PSUAWizard3DEModelBase {
+
+    public PSUAWizard3DEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

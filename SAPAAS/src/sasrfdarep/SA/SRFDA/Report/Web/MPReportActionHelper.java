@@ -34,6 +34,7 @@ import SA.SRFramework.UtilityEx.ObjectHelper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
@@ -73,7 +74,7 @@ extends ReportActionHelper {
                 return null;
             }
         }
-        Vector reports = new Vector();
+        Vector<Report> reports = new Vector<Report>();
         CallResult callResult = globalHelper.getDAModelHelper().GetChildReports(report.getREPORTID(), reports);
         if (callResult.getRetCode() != 0) {
             log.error((Object)StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u62a5\u8868[%1$s]\u5b50\u62a5\u8868\uff0c%2$s", (Object)report.getREPORTID(), (Object)callResult.getErrorInfo()));
@@ -115,7 +116,7 @@ extends ReportActionHelper {
         this.report = report;
         this.webContext = webContext;
         this.strReportType = strReportType;
-        Vector<Object> dataEntities = new Vector<Object>();
+        Vector<BaseDataEntity> dataEntities = new Vector<BaseDataEntity>();
         String strQueryModelId = report.getQUERYMODELID();
         if (StringHelper.IsNullOrEmpty((String)strQueryModelId)) {
             dataEntities.add(new BaseDataEntity());
@@ -137,7 +138,7 @@ extends ReportActionHelper {
                 return null;
             }
         }
-        Vector reports = new Vector();
+        Vector<Report> reports = new Vector<Report>();
         CallResult callResult = globalHelper.getDAModelHelper().GetChildReports(report.getREPORTID(), reports);
         if (callResult.getRetCode() != 0) {
             log.error((Object)StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u62a5\u8868[%1$s]\u5b50\u62a5\u8868\uff0c%2$s", (Object)report.getREPORTID(), (Object)callResult.getErrorInfo()));
@@ -172,7 +173,7 @@ extends ReportActionHelper {
         }
         String string = this.GetTmpFilePath();
         try {
-            Object exporter = null;
+            JRExporter exporter = null;
             exporter = StringHelper.Compare((String)this.strReportType, (String)"PDF", (boolean)true) == 0 ? new JRPdfExporter() : (StringHelper.Compare((String)this.strReportType, (String)"EXCEL", (boolean)true) == 0 ? new JRXlsExporter() : (StringHelper.Compare((String)this.strReportType, (String)"HTML", (boolean)true) == 0 ? new JRXhtmlExporter() : new JRPdfExporter()));
             exporter.setParameter(JRExporterParameter.JASPER_PRINT_LIST, jasperPrintList);
             exporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, (Object)string);

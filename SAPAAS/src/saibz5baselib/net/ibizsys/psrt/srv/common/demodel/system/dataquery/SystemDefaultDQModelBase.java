@@ -1,20 +1,143 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.system.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="02A70D34-9714-4ADE-B08D-A36D94C080AD", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.AURLOGINADDR, t1.AURLOGOUTADDR, t1.BIGICON, t1.CREATEDATE, t1.CREATEMAN, t1.FUNLIC, t1.SERVICE, t1.SYSTEMADDR, t1.SYSTEMFUN, t1.SYSTEMID, t1.SYSTEMNAME, t1.SYSTEMTYPE, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFSYSTEM t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="SYSTEMPARAM", expression="t1.SYSTEMPARAM", showorder=-1), @DEDataQueryCodeExp(name="AURLOGINADDR", expression="t1.AURLOGINADDR", showorder=0), @DEDataQueryCodeExp(name="AURLOGOUTADDR", expression="t1.AURLOGOUTADDR", showorder=1), @DEDataQueryCodeExp(name="BIGICON", expression="t1.BIGICON", showorder=2), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=3), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=4), @DEDataQueryCodeExp(name="FUNLIC", expression="t1.FUNLIC", showorder=5), @DEDataQueryCodeExp(name="SERVICE", expression="t1.SERVICE", showorder=6), @DEDataQueryCodeExp(name="SYSTEMADDR", expression="t1.SYSTEMADDR", showorder=7), @DEDataQueryCodeExp(name="SYSTEMFUN", expression="t1.SYSTEMFUN", showorder=8), @DEDataQueryCodeExp(name="SYSTEMID", expression="t1.SYSTEMID", showorder=9), @DEDataQueryCodeExp(name="SYSTEMNAME", expression="t1.SYSTEMNAME", showorder=10), @DEDataQueryCodeExp(name="SYSTEMTYPE", expression="t1.SYSTEMTYPE", showorder=11), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=12), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`aurloginaddr`, t1.`aurlogoutaddr`, t1.`bigicon`, t1.`createdate`, t1.`createman`, t1.`funlic`, t1.`service`, t1.`systemaddr`, t1.`systemfun`, t1.`systemid`, t1.`systemname`, t1.`systemtype`, t1.`updatedate`, t1.`updateman` FROM `t_srfsystem` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="SYSTEMPARAM", expression="t1.`systemparam`", showorder=-1), @DEDataQueryCodeExp(name="AURLOGINADDR", expression="t1.`aurloginaddr`", showorder=0), @DEDataQueryCodeExp(name="AURLOGOUTADDR", expression="t1.`aurlogoutaddr`", showorder=1), @DEDataQueryCodeExp(name="BIGICON", expression="t1.`bigicon`", showorder=2), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=3), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=4), @DEDataQueryCodeExp(name="FUNLIC", expression="t1.`funlic`", showorder=5), @DEDataQueryCodeExp(name="SERVICE", expression="t1.`service`", showorder=6), @DEDataQueryCodeExp(name="SYSTEMADDR", expression="t1.`systemaddr`", showorder=7), @DEDataQueryCodeExp(name="SYSTEMFUN", expression="t1.`systemfun`", showorder=8), @DEDataQueryCodeExp(name="SYSTEMID", expression="t1.`systemid`", showorder=9), @DEDataQueryCodeExp(name="SYSTEMNAME", expression="t1.`systemname`", showorder=10), @DEDataQueryCodeExp(name="SYSTEMTYPE", expression="t1.`systemtype`", showorder=11), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=12), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.AURLOGINADDR, t1.AURLOGOUTADDR, t1.BIGICON, t1.CREATEDATE, t1.CREATEMAN, t1.FUNLIC, t1.SERVICE, t1.SYSTEMADDR, t1.SYSTEMFUN, t1.SYSTEMID, t1.SYSTEMNAME, t1.SYSTEMTYPE, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFSYSTEM t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="SYSTEMPARAM", expression="t1.SYSTEMPARAM", showorder=-1), @DEDataQueryCodeExp(name="AURLOGINADDR", expression="t1.AURLOGINADDR", showorder=0), @DEDataQueryCodeExp(name="AURLOGOUTADDR", expression="t1.AURLOGOUTADDR", showorder=1), @DEDataQueryCodeExp(name="BIGICON", expression="t1.BIGICON", showorder=2), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=3), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=4), @DEDataQueryCodeExp(name="FUNLIC", expression="t1.FUNLIC", showorder=5), @DEDataQueryCodeExp(name="SERVICE", expression="t1.SERVICE", showorder=6), @DEDataQueryCodeExp(name="SYSTEMADDR", expression="t1.SYSTEMADDR", showorder=7), @DEDataQueryCodeExp(name="SYSTEMFUN", expression="t1.SYSTEMFUN", showorder=8), @DEDataQueryCodeExp(name="SYSTEMID", expression="t1.SYSTEMID", showorder=9), @DEDataQueryCodeExp(name="SYSTEMNAME", expression="t1.SYSTEMNAME", showorder=10), @DEDataQueryCodeExp(name="SYSTEMTYPE", expression="t1.SYSTEMTYPE", showorder=11), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=12), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.AURLOGINADDR, t1.AURLOGOUTADDR, t1.BIGICON, t1.CREATEDATE, t1.CREATEMAN, t1.FUNLIC, t1.SERVICE, t1.SYSTEMADDR, t1.SYSTEMFUN, t1.SYSTEMID, t1.SYSTEMNAME, t1.SYSTEMTYPE, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFSYSTEM t1  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="SYSTEMPARAM", expression="t1.SYSTEMPARAM", showorder=-1), @DEDataQueryCodeExp(name="AURLOGINADDR", expression="t1.AURLOGINADDR", showorder=0), @DEDataQueryCodeExp(name="AURLOGOUTADDR", expression="t1.AURLOGOUTADDR", showorder=1), @DEDataQueryCodeExp(name="BIGICON", expression="t1.BIGICON", showorder=2), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=3), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=4), @DEDataQueryCodeExp(name="FUNLIC", expression="t1.FUNLIC", showorder=5), @DEDataQueryCodeExp(name="SERVICE", expression="t1.SERVICE", showorder=6), @DEDataQueryCodeExp(name="SYSTEMADDR", expression="t1.SYSTEMADDR", showorder=7), @DEDataQueryCodeExp(name="SYSTEMFUN", expression="t1.SYSTEMFUN", showorder=8), @DEDataQueryCodeExp(name="SYSTEMID", expression="t1.SYSTEMID", showorder=9), @DEDataQueryCodeExp(name="SYSTEMNAME", expression="t1.SYSTEMNAME", showorder=10), @DEDataQueryCodeExp(name="SYSTEMTYPE", expression="t1.SYSTEMTYPE", showorder=11), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=12), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.AURLOGINADDR, t1.AURLOGOUTADDR, t1.BIGICON, t1.CREATEDATE, t1.CREATEMAN, t1.FUNLIC, t1.SERVICE, t1.SYSTEMADDR, t1.SYSTEMFUN, t1.SYSTEMID, t1.SYSTEMNAME, t1.SYSTEMTYPE, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFSYSTEM t1  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="SYSTEMPARAM", expression="t1.SYSTEMPARAM", showorder=-1), @DEDataQueryCodeExp(name="AURLOGINADDR", expression="t1.AURLOGINADDR", showorder=0), @DEDataQueryCodeExp(name="AURLOGOUTADDR", expression="t1.AURLOGOUTADDR", showorder=1), @DEDataQueryCodeExp(name="BIGICON", expression="t1.BIGICON", showorder=2), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=3), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=4), @DEDataQueryCodeExp(name="FUNLIC", expression="t1.FUNLIC", showorder=5), @DEDataQueryCodeExp(name="SERVICE", expression="t1.SERVICE", showorder=6), @DEDataQueryCodeExp(name="SYSTEMADDR", expression="t1.SYSTEMADDR", showorder=7), @DEDataQueryCodeExp(name="SYSTEMFUN", expression="t1.SYSTEMFUN", showorder=8), @DEDataQueryCodeExp(name="SYSTEMID", expression="t1.SYSTEMID", showorder=9), @DEDataQueryCodeExp(name="SYSTEMNAME", expression="t1.SYSTEMNAME", showorder=10), @DEDataQueryCodeExp(name="SYSTEMTYPE", expression="t1.SYSTEMTYPE", showorder=11), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=12), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=13)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[AURLOGINADDR], t1.[AURLOGOUTADDR], t1.[BIGICON], t1.[CREATEDATE], t1.[CREATEMAN], t1.[FUNLIC], t1.[SERVICE], t1.[SYSTEMADDR], t1.[SYSTEMFUN], t1.[SYSTEMID], t1.[SYSTEMNAME], t1.[SYSTEMTYPE], t1.[UPDATEDATE], t1.[UPDATEMAN] FROM [T_SRFSYSTEM] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="SYSTEMPARAM", expression="t1.[SYSTEMPARAM]", showorder=-1), @DEDataQueryCodeExp(name="AURLOGINADDR", expression="t1.[AURLOGINADDR]", showorder=0), @DEDataQueryCodeExp(name="AURLOGOUTADDR", expression="t1.[AURLOGOUTADDR]", showorder=1), @DEDataQueryCodeExp(name="BIGICON", expression="t1.[BIGICON]", showorder=2), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=3), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=4), @DEDataQueryCodeExp(name="FUNLIC", expression="t1.[FUNLIC]", showorder=5), @DEDataQueryCodeExp(name="SERVICE", expression="t1.[SERVICE]", showorder=6), @DEDataQueryCodeExp(name="SYSTEMADDR", expression="t1.[SYSTEMADDR]", showorder=7), @DEDataQueryCodeExp(name="SYSTEMFUN", expression="t1.[SYSTEMFUN]", showorder=8), @DEDataQueryCodeExp(name="SYSTEMID", expression="t1.[SYSTEMID]", showorder=9), @DEDataQueryCodeExp(name="SYSTEMNAME", expression="t1.[SYSTEMNAME]", showorder=10), @DEDataQueryCodeExp(name="SYSTEMTYPE", expression="t1.[SYSTEMTYPE]", showorder=11), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=12), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=13)}, conds={})})
-public abstract class SystemDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="02A70D34-9714-4ADE-B08D-A36D94C080AD",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.AURLOGINADDR, t1.AURLOGOUTADDR, t1.BIGICON, t1.CREATEDATE, t1.CREATEMAN, t1.FUNLIC, t1.SERVICE, t1.SYSTEMADDR, t1.SYSTEMFUN, t1.SYSTEMID, t1.SYSTEMNAME, t1.SYSTEMTYPE, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFSYSTEM t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="SYSTEMPARAM",expression="t1.SYSTEMPARAM",showorder=-1)
+        ,@DEDataQueryCodeExp(name="AURLOGINADDR",expression="t1.AURLOGINADDR",showorder=0)
+        ,@DEDataQueryCodeExp(name="AURLOGOUTADDR",expression="t1.AURLOGOUTADDR",showorder=1)
+        ,@DEDataQueryCodeExp(name="BIGICON",expression="t1.BIGICON",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=3)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=4)
+        ,@DEDataQueryCodeExp(name="FUNLIC",expression="t1.FUNLIC",showorder=5)
+        ,@DEDataQueryCodeExp(name="SERVICE",expression="t1.SERVICE",showorder=6)
+        ,@DEDataQueryCodeExp(name="SYSTEMADDR",expression="t1.SYSTEMADDR",showorder=7)
+        ,@DEDataQueryCodeExp(name="SYSTEMFUN",expression="t1.SYSTEMFUN",showorder=8)
+        ,@DEDataQueryCodeExp(name="SYSTEMID",expression="t1.SYSTEMID",showorder=9)
+        ,@DEDataQueryCodeExp(name="SYSTEMNAME",expression="t1.SYSTEMNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="SYSTEMTYPE",expression="t1.SYSTEMTYPE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=12)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`aurloginaddr`, t1.`aurlogoutaddr`, t1.`bigicon`, t1.`createdate`, t1.`createman`, t1.`funlic`, t1.`service`, t1.`systemaddr`, t1.`systemfun`, t1.`systemid`, t1.`systemname`, t1.`systemtype`, t1.`updatedate`, t1.`updateman` FROM `t_srfsystem` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="SYSTEMPARAM",expression="t1.`systemparam`",showorder=-1)
+        ,@DEDataQueryCodeExp(name="AURLOGINADDR",expression="t1.`aurloginaddr`",showorder=0)
+        ,@DEDataQueryCodeExp(name="AURLOGOUTADDR",expression="t1.`aurlogoutaddr`",showorder=1)
+        ,@DEDataQueryCodeExp(name="BIGICON",expression="t1.`bigicon`",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=3)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=4)
+        ,@DEDataQueryCodeExp(name="FUNLIC",expression="t1.`funlic`",showorder=5)
+        ,@DEDataQueryCodeExp(name="SERVICE",expression="t1.`service`",showorder=6)
+        ,@DEDataQueryCodeExp(name="SYSTEMADDR",expression="t1.`systemaddr`",showorder=7)
+        ,@DEDataQueryCodeExp(name="SYSTEMFUN",expression="t1.`systemfun`",showorder=8)
+        ,@DEDataQueryCodeExp(name="SYSTEMID",expression="t1.`systemid`",showorder=9)
+        ,@DEDataQueryCodeExp(name="SYSTEMNAME",expression="t1.`systemname`",showorder=10)
+        ,@DEDataQueryCodeExp(name="SYSTEMTYPE",expression="t1.`systemtype`",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=12)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.AURLOGINADDR, t1.AURLOGOUTADDR, t1.BIGICON, t1.CREATEDATE, t1.CREATEMAN, t1.FUNLIC, t1.SERVICE, t1.SYSTEMADDR, t1.SYSTEMFUN, t1.SYSTEMID, t1.SYSTEMNAME, t1.SYSTEMTYPE, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFSYSTEM t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="SYSTEMPARAM",expression="t1.SYSTEMPARAM",showorder=-1)
+        ,@DEDataQueryCodeExp(name="AURLOGINADDR",expression="t1.AURLOGINADDR",showorder=0)
+        ,@DEDataQueryCodeExp(name="AURLOGOUTADDR",expression="t1.AURLOGOUTADDR",showorder=1)
+        ,@DEDataQueryCodeExp(name="BIGICON",expression="t1.BIGICON",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=3)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=4)
+        ,@DEDataQueryCodeExp(name="FUNLIC",expression="t1.FUNLIC",showorder=5)
+        ,@DEDataQueryCodeExp(name="SERVICE",expression="t1.SERVICE",showorder=6)
+        ,@DEDataQueryCodeExp(name="SYSTEMADDR",expression="t1.SYSTEMADDR",showorder=7)
+        ,@DEDataQueryCodeExp(name="SYSTEMFUN",expression="t1.SYSTEMFUN",showorder=8)
+        ,@DEDataQueryCodeExp(name="SYSTEMID",expression="t1.SYSTEMID",showorder=9)
+        ,@DEDataQueryCodeExp(name="SYSTEMNAME",expression="t1.SYSTEMNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="SYSTEMTYPE",expression="t1.SYSTEMTYPE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=12)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.AURLOGINADDR, t1.AURLOGOUTADDR, t1.BIGICON, t1.CREATEDATE, t1.CREATEMAN, t1.FUNLIC, t1.SERVICE, t1.SYSTEMADDR, t1.SYSTEMFUN, t1.SYSTEMID, t1.SYSTEMNAME, t1.SYSTEMTYPE, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFSYSTEM t1  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="SYSTEMPARAM",expression="t1.SYSTEMPARAM",showorder=-1)
+        ,@DEDataQueryCodeExp(name="AURLOGINADDR",expression="t1.AURLOGINADDR",showorder=0)
+        ,@DEDataQueryCodeExp(name="AURLOGOUTADDR",expression="t1.AURLOGOUTADDR",showorder=1)
+        ,@DEDataQueryCodeExp(name="BIGICON",expression="t1.BIGICON",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=3)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=4)
+        ,@DEDataQueryCodeExp(name="FUNLIC",expression="t1.FUNLIC",showorder=5)
+        ,@DEDataQueryCodeExp(name="SERVICE",expression="t1.SERVICE",showorder=6)
+        ,@DEDataQueryCodeExp(name="SYSTEMADDR",expression="t1.SYSTEMADDR",showorder=7)
+        ,@DEDataQueryCodeExp(name="SYSTEMFUN",expression="t1.SYSTEMFUN",showorder=8)
+        ,@DEDataQueryCodeExp(name="SYSTEMID",expression="t1.SYSTEMID",showorder=9)
+        ,@DEDataQueryCodeExp(name="SYSTEMNAME",expression="t1.SYSTEMNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="SYSTEMTYPE",expression="t1.SYSTEMTYPE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=12)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.AURLOGINADDR, t1.AURLOGOUTADDR, t1.BIGICON, t1.CREATEDATE, t1.CREATEMAN, t1.FUNLIC, t1.SERVICE, t1.SYSTEMADDR, t1.SYSTEMFUN, t1.SYSTEMID, t1.SYSTEMNAME, t1.SYSTEMTYPE, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFSYSTEM t1  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="SYSTEMPARAM",expression="t1.SYSTEMPARAM",showorder=-1)
+        ,@DEDataQueryCodeExp(name="AURLOGINADDR",expression="t1.AURLOGINADDR",showorder=0)
+        ,@DEDataQueryCodeExp(name="AURLOGOUTADDR",expression="t1.AURLOGOUTADDR",showorder=1)
+        ,@DEDataQueryCodeExp(name="BIGICON",expression="t1.BIGICON",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=3)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=4)
+        ,@DEDataQueryCodeExp(name="FUNLIC",expression="t1.FUNLIC",showorder=5)
+        ,@DEDataQueryCodeExp(name="SERVICE",expression="t1.SERVICE",showorder=6)
+        ,@DEDataQueryCodeExp(name="SYSTEMADDR",expression="t1.SYSTEMADDR",showorder=7)
+        ,@DEDataQueryCodeExp(name="SYSTEMFUN",expression="t1.SYSTEMFUN",showorder=8)
+        ,@DEDataQueryCodeExp(name="SYSTEMID",expression="t1.SYSTEMID",showorder=9)
+        ,@DEDataQueryCodeExp(name="SYSTEMNAME",expression="t1.SYSTEMNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="SYSTEMTYPE",expression="t1.SYSTEMTYPE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=12)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=13)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[AURLOGINADDR], t1.[AURLOGOUTADDR], t1.[BIGICON], t1.[CREATEDATE], t1.[CREATEMAN], t1.[FUNLIC], t1.[SERVICE], t1.[SYSTEMADDR], t1.[SYSTEMFUN], t1.[SYSTEMID], t1.[SYSTEMNAME], t1.[SYSTEMTYPE], t1.[UPDATEDATE], t1.[UPDATEMAN] FROM [T_SRFSYSTEM] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="SYSTEMPARAM",expression="t1.[SYSTEMPARAM]",showorder=-1)
+        ,@DEDataQueryCodeExp(name="AURLOGINADDR",expression="t1.[AURLOGINADDR]",showorder=0)
+        ,@DEDataQueryCodeExp(name="AURLOGOUTADDR",expression="t1.[AURLOGOUTADDR]",showorder=1)
+        ,@DEDataQueryCodeExp(name="BIGICON",expression="t1.[BIGICON]",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=3)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=4)
+        ,@DEDataQueryCodeExp(name="FUNLIC",expression="t1.[FUNLIC]",showorder=5)
+        ,@DEDataQueryCodeExp(name="SERVICE",expression="t1.[SERVICE]",showorder=6)
+        ,@DEDataQueryCodeExp(name="SYSTEMADDR",expression="t1.[SYSTEMADDR]",showorder=7)
+        ,@DEDataQueryCodeExp(name="SYSTEMFUN",expression="t1.[SYSTEMFUN]",showorder=8)
+        ,@DEDataQueryCodeExp(name="SYSTEMID",expression="t1.[SYSTEMID]",showorder=9)
+        ,@DEDataQueryCodeExp(name="SYSTEMNAME",expression="t1.[SYSTEMNAME]",showorder=10)
+        ,@DEDataQueryCodeExp(name="SYSTEMTYPE",expression="t1.[SYSTEMTYPE]",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=12)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=13)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class SystemDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public SystemDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(SystemDefaultDQModelBase.class);
     }
-}
 
+}

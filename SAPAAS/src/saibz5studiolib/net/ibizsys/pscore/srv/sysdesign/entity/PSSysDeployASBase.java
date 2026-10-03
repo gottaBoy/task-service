@@ -771,7 +771,7 @@ implements Serializable {
                 PSSysDeploy pSSysDeploy = new PSSysDeploy();
                 pSSysDeploy.setPSSysDeployId(this.getPSSysDeployId());
                 PSSysDeployService pSSysDeployService = (PSSysDeployService)ServiceGlobal.getService(PSSysDeployService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDeployService.autoGet((IEntity)pSSysDeploy);
+                pSSysDeployService.autoGet(pSSysDeploy);
                 this.pssysdeploy = pSSysDeploy;
             }
             return this.pssysdeploy;

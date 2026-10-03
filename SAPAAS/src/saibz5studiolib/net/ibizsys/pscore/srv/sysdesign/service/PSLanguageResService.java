@@ -21,7 +21,6 @@
  */
 package net.ibizsys.pscore.srv.sysdesign.service;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import net.ibizsys.paas.core.CallResult;
@@ -120,7 +119,7 @@ extends PSLanguageResServiceBase {
     }
 
     protected CallResult internalGet(PSLanguageRes pSLanguageRes, boolean bl) throws Exception {
-        CallResult callResult = super.internalGet((IEntity)pSLanguageRes, bl);
+        CallResult callResult = super.internalGet(pSLanguageRes, bl);
         if (callResult.isOk() && !StringHelper.isNullOrEmpty((String)pSLanguageRes.getContent2())) {
             pSLanguageRes.setContent(pSLanguageRes.getContent2());
         }
@@ -129,41 +128,38 @@ extends PSLanguageResServiceBase {
 
     @Override
     protected void onInitLanItem(PSLanguageRes pSLanguageRes) throws Exception {
-        Object object;
-        Object object2;
         String string = "__SYSAPPLANMAP__";
-        HashMap hashMap = null;
+        HashMap<String, PSAppLan> hashMap = null;
         IWebContext iWebContext = this.getWebContext();
-        if (iWebContext != null && (object2 = iWebContext.getAttribute(string)) != null) {
-            hashMap = (HashMap)object2;
+        Object cached = iWebContext == null ? null : iWebContext.getAttribute(string);
+        if (cached != null) {
+            hashMap = (HashMap<String, PSAppLan>)cached;
         }
         if (hashMap == null) {
-            hashMap = new HashMap();
-            object2 = new SelectContext();
-            object2.set("pssystemid", (Object)pSLanguageRes.getPSSystemId());
-            object2.setDEDataQueryName("CurSys");
+            hashMap = new HashMap<String, PSAppLan>();
+            SelectContext selectContext = new SelectContext();
+            selectContext.set("pssystemid", (Object)pSLanguageRes.getPSSystemId());
+            selectContext.setDEDataQueryName("CurSys");
             PSAppLanService pSAppLanService = (PSAppLanService)ServiceGlobal.getService(PSAppLanService.class, (SessionFactory)this.getSessionFactory());
-            Serializable serializable = pSAppLanService.select((ISelectCond)object2);
-            object = ((ArrayList)serializable).iterator();
-            while (object.hasNext()) {
-                PSAppLan pSAppLan = (PSAppLan)object.next();
+            ArrayList<PSAppLan> appLanguages = pSAppLanService.select((ISelectCond)selectContext);
+            for (PSAppLan pSAppLan : appLanguages) {
                 hashMap.put(pSAppLan.getPSLanguageId(), pSAppLan);
             }
             if (iWebContext != null) {
                 iWebContext.setAttribute(string, (Object)hashMap);
             }
         }
-        object2 = (PSLanguageItemService)ServiceGlobal.getService(PSLanguageItemService.class, (SessionFactory)this.getSessionFactory());
-        for (Serializable serializable : hashMap.values()) {
-            object = new PSLanguageItem();
-            ((PSLanguageItemBase)object).setPSSystemId(pSLanguageRes.getPSSystemId());
-            ((PSLanguageItemBase)object).setPSLanguageResId(pSLanguageRes.getPSLanguageResId());
-            ((PSLanguageItemBase)object).setPSLanguageId(((PSAppLanBase)serializable).getPSLanguageId());
-            if (((PSCoreSysServiceBaseBase)((Object)object2)).select(object, true)) continue;
-            ((PSLanguageItemBase)object).setPSLanguageName(((PSAppLanBase)serializable).getPSLanguageName());
-            ((PSLanguageItemBase)object).setPSLanguageResName(pSLanguageRes.getPSLanguageResName());
-            ((PSLanguageItemBase)object).setPSSystemName(pSLanguageRes.getPSSystemName());
-            ((PSCoreSysServiceBase)object2).create(object, false);
+        PSLanguageItemService itemService = (PSLanguageItemService)ServiceGlobal.getService(PSLanguageItemService.class, (SessionFactory)this.getSessionFactory());
+        for (PSAppLan appLanguage : hashMap.values()) {
+            PSLanguageItem item = new PSLanguageItem();
+            item.setPSSystemId(pSLanguageRes.getPSSystemId());
+            item.setPSLanguageResId(pSLanguageRes.getPSLanguageResId());
+            item.setPSLanguageId(appLanguage.getPSLanguageId());
+            if (itemService.select(item, true)) continue;
+            item.setPSLanguageName(appLanguage.getPSLanguageName());
+            item.setPSLanguageResName(pSLanguageRes.getPSLanguageResName());
+            item.setPSSystemName(pSLanguageRes.getPSSystemName());
+            itemService.create(item, false);
         }
     }
 
@@ -172,7 +168,7 @@ extends PSLanguageResServiceBase {
         String string;
         PSLanguageRes pSLanguageRes2;
         if (!pSLanguageRes.isFullEntity()) {
-            this.get((IEntity)pSLanguageRes);
+            this.get(pSLanguageRes);
         }
         if (!StringHelper.isNullOrEmpty((String)pSLanguageRes.getShortTag())) {
             return;
@@ -181,7 +177,7 @@ extends PSLanguageResServiceBase {
         PSSystem pSSystem = new PSSystem();
         pSSystem.setPSSystemId(string2);
         PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-        pSSystemService.get((IEntity)pSSystem);
+        pSSystemService.get(pSSystem);
         int n = DataObject.getIntegerValue((Object)pSSystem.getLanResMaxTag(), (Integer)1000);
         do {
             string = StringHelper.format((String)"U%1$s", (Object)(++n));
@@ -199,17 +195,17 @@ extends PSLanguageResServiceBase {
 
     @Override
     protected void onAutoFillModule(PSLanguageRes pSLanguageRes) throws Exception {
-        PSSystem pSSystem = PSLanguageResService.getCurrentPSSystem((IEntity)pSLanguageRes, this.getSessionFactory());
+        PSSystem pSSystem = PSLanguageResService.getCurrentPSSystem(pSLanguageRes, this.getSessionFactory());
         PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
         selectCond.setIsNull("PSMODULEID");
         selectCond.set("PSSYSTEMID", (Object)pSSystem.getPSSystemId());
-        ArrayList arrayList = this.select((ISelectCond)selectCond);
+        ArrayList<PSLanguageRes> arrayList = this.select((ISelectCond)selectCond);
         for (PSLanguageRes pSLanguageRes2 : arrayList) {
             if (StringHelper.isNullOrEmpty((String)pSLanguageRes2.getPSDEId())) continue;
             PSDataEntity pSDataEntity = new PSDataEntity();
             pSDataEntity.setPSDataEntityId(pSLanguageRes2.getPSDEId());
-            if (!pSDataEntityService.get((IEntity)pSDataEntity, true)) continue;
+            if (!pSDataEntityService.get(pSDataEntity, true)) continue;
             PSLanguageRes pSLanguageRes3 = new PSLanguageRes();
             pSLanguageRes3.setPSLanguageResId(pSLanguageRes2.getPSLanguageResId());
             pSLanguageRes3.setPSModuleId(pSDataEntity.getPSModuleId());
@@ -229,4 +225,3 @@ extends PSLanguageResServiceBase {
         return super.getModelV2Tag(pSLanguageRes);
     }
 }
-

@@ -3283,7 +3283,7 @@ implements Serializable {
                 PSDER pSDER = new PSDER();
                 pSDER.setPSDERId(this.getPSDERId());
                 PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
-                pSDERService.autoGet((IEntity)pSDER);
+                pSDERService.autoGet(pSDER);
                 this.psder = pSDER;
             }
             return this.psder;
@@ -3309,7 +3309,7 @@ implements Serializable {
                 PSDEServiceAPI pSDEServiceAPI = new PSDEServiceAPI();
                 pSDEServiceAPI.setPSDEServiceAPIId(this.getCPSDEServiceAPIId());
                 PSDEServiceAPIService pSDEServiceAPIService = (PSDEServiceAPIService)ServiceGlobal.getService(PSDEServiceAPIService.class, (SessionFactory)this.getSessionFactory());
-                pSDEServiceAPIService.autoGet((IEntity)pSDEServiceAPI);
+                pSDEServiceAPIService.autoGet(pSDEServiceAPI);
                 this.cpsdeserviceapi = pSDEServiceAPI;
             }
             return this.cpsdeserviceapi;
@@ -3335,7 +3335,7 @@ implements Serializable {
                 PSDEServiceAPI pSDEServiceAPI = new PSDEServiceAPI();
                 pSDEServiceAPI.setPSDEServiceAPIId(this.getPPSDEServiceAPIId());
                 PSDEServiceAPIService pSDEServiceAPIService = (PSDEServiceAPIService)ServiceGlobal.getService(PSDEServiceAPIService.class, (SessionFactory)this.getSessionFactory());
-                pSDEServiceAPIService.autoGet((IEntity)pSDEServiceAPI);
+                pSDEServiceAPIService.autoGet(pSDEServiceAPI);
                 this.ppsdeserviceapi = pSDEServiceAPI;
             }
             return this.ppsdeserviceapi;
@@ -3361,7 +3361,7 @@ implements Serializable {
                 PSSysServiceAPI pSSysServiceAPI = new PSSysServiceAPI();
                 pSSysServiceAPI.setPSSysServiceAPIId(this.getPSSysServiceAPIId());
                 PSSysServiceAPIService pSSysServiceAPIService = (PSSysServiceAPIService)ServiceGlobal.getService(PSSysServiceAPIService.class, (SessionFactory)this.getSessionFactory());
-                pSSysServiceAPIService.autoGet((IEntity)pSSysServiceAPI);
+                pSSysServiceAPIService.autoGet(pSSysServiceAPI);
                 this.pssysserviceapi = pSSysServiceAPI;
             }
             return this.pssysserviceapi;

@@ -1201,7 +1201,7 @@ implements Serializable {
                 PSDCWorkshopServer pSDCWorkshopServer = new PSDCWorkshopServer();
                 pSDCWorkshopServer.setPSDCWorkshopServerId(this.getPSDCWorkshopServerId());
                 PSDCWorkshopServerService pSDCWorkshopServerService = (PSDCWorkshopServerService)ServiceGlobal.getService(PSDCWorkshopServerService.class, (SessionFactory)this.getSessionFactory());
-                pSDCWorkshopServerService.autoGet((IEntity)pSDCWorkshopServer);
+                pSDCWorkshopServerService.autoGet(pSDCWorkshopServer);
                 this.psdcworkshopserver = pSDCWorkshopServer;
             }
             return this.psdcworkshopserver;
@@ -1227,7 +1227,7 @@ implements Serializable {
                 PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
                 pSDevSlnSys.setPSDevSlnSysId(this.getPSDevSlnSysId());
                 PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysService.autoGet((IEntity)pSDevSlnSys);
+                pSDevSlnSysService.autoGet(pSDevSlnSys);
                 this.psdevslnsys = pSDevSlnSys;
             }
             return this.psdevslnsys;

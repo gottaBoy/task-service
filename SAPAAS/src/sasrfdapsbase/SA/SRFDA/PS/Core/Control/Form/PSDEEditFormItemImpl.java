@@ -212,7 +212,7 @@ implements IPSDEEditFormItem {
             if (strValue2 != null) {
                 return strValue2;
             }
-            IPSModelObject iPSDEFieldBase = null;
+            IPSDEFieldBase iPSDEFieldBase = null;
             if (this.getPSAppDEField() != null) {
                 iPSDEFieldBase = this.getPSAppDEField();
             } else if (this.getPSDEField() != null) {
@@ -264,8 +264,15 @@ implements IPSDEEditFormItem {
                     if (iPSDEEditForm.getGetPSControlAction() != null && iPSDEEditForm.getGetPSControlAction().getPSAppDEMethod() != null && (iPSAppDEMethodReturn = iPSDEEditForm.getGetPSControlAction().getPSAppDEMethod().getPSAppDEMethodReturn()) != null && "DTO".equals(iPSAppDEMethodReturn.getType())) {
                         IPSAppDEMethodDTOField iPSAppDEMethodDTOField;
                         block64: {
-                            IPSAppDEMethodDTO iPSAppDEMethodDTO = iPSAppDEMethodReturn.getPSAppDEMethodDTO();
-                            if (iPSAppDEMethodDTO == null || (iPSAppDEMethodDTOField = iPSAppDEMethodDTO.getPSAppDEMethodDTOField(this.getPSAppDEField(), true)) == null || !"SIMPLES".equals(iPSAppDEMethodDTOField.getType())) break block63;
+                            IPSAppDEMethodDTO iPSAppDEMethodDTO;
+                            try {
+                                iPSAppDEMethodDTO = iPSAppDEMethodReturn.getPSAppDEMethodDTO();
+                                if (iPSAppDEMethodDTO == null || (iPSAppDEMethodDTOField = iPSAppDEMethodDTO.getPSAppDEMethodDTOField(this.getPSAppDEField(), true)) == null || !"SIMPLES".equals(iPSAppDEMethodDTOField.getType())) break block63;
+                            }
+                            catch (Exception ex) {
+                                log.error((Object)ex);
+                                break block63;
+                            }
                             if (!DataTypeHelper.isBigIntType((int)iPSAppDEMethodDTOField.getStdDataType()) && !DataTypeHelper.isBigDecimalType((int)iPSAppDEMethodDTOField.getStdDataType()) && !DataTypeHelper.isDoubleType((int)iPSAppDEMethodDTOField.getStdDataType())) break block64;
                             return "NUMBER";
                         }
@@ -305,8 +312,15 @@ implements IPSDEEditFormItem {
                     block68: {
                         block67: {
                             block66: {
-                                IPSAppDEMethodDTO iPSAppDEMethodDTO = this.getPSAppDEMethodDTO();
-                                if (iPSAppDEMethodDTO == null || (iPSAppDEMethodDTOField = iPSAppDEMethodDTO.getPSAppDEMethodDTOField(this.getPSAppDEField(), true)) == null) break block65;
+                                IPSAppDEMethodDTO iPSAppDEMethodDTO;
+                                try {
+                                    iPSAppDEMethodDTO = this.getPSAppDEMethodDTO();
+                                    if (iPSAppDEMethodDTO == null || (iPSAppDEMethodDTOField = iPSAppDEMethodDTO.getPSAppDEMethodDTOField(this.getPSAppDEField(), true)) == null) break block65;
+                                }
+                                catch (Exception ex) {
+                                    log.error((Object)ex);
+                                    break block65;
+                                }
                                 if (!"SIMPLE".equals(iPSAppDEMethodDTOField.getType())) break block66;
                                 return "SIMPLE";
                             }
@@ -420,4 +434,3 @@ implements IPSDEEditFormItem {
         return null;
     }
 }
-

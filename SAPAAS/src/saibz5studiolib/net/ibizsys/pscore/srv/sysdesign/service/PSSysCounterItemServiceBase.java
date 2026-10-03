@@ -147,14 +147,14 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
             PSSysCounter pSSysCounter = (PSSysCounter)iService.getDEModel().createEntity();
             pSSysCounter.set("PSSYSCOUNTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCounter);
+                iService.getTemp(pSSysCounter);
             } else {
-                iService.get((IEntity)pSSysCounter);
+                iService.get(pSSysCounter);
             }
             this.onFillParentInfo_PSSysCounter(pSSysCounterItem, pSSysCounter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysCounterItem, string, string2, string3);
+        super.onFillParentInfo(pSSysCounterItem, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -170,7 +170,7 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysCounterItem, bl);
+        super.onFillEntityFullInfo(pSSysCounterItem, bl);
         this.onFillEntityFullInfo_PSSysCounter(pSSysCounterItem, bl);
     }
 
@@ -178,7 +178,7 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
     }
 
     protected void onWriteBackParent(PSSysCounterItem pSSysCounterItem, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysCounterItem, bl);
+        super.onWriteBackParent(pSSysCounterItem, bl);
     }
 
     public ArrayList<PSSysCounterItem> selectByPSSysCounter(PSSysCounterBase pSSysCounterBase) throws Exception {
@@ -237,7 +237,7 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
         ArrayList<PSSysCounterItem> arrayList = this.selectByPSSysCounter(pSSysCounter);
         this.onBeforeRemoveByPSSysCounter(pSSysCounter, arrayList);
         for (PSSysCounterItem pSSysCounterItem : arrayList) {
-            this.remove((IEntity)pSSysCounterItem);
+            this.remove(pSSysCounterItem);
         }
         this.onAfterRemoveByPSSysCounter(pSSysCounter, arrayList);
     }
@@ -258,14 +258,14 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
 
     protected void replaceParentInfo(PSSysCounterItem pSSysCounterItem, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysCounterItem, cloneSession);
+        super.replaceParentInfo(pSSysCounterItem, cloneSession);
         if (pSSysCounterItem.getPSSysCounterId() != null && (iEntity = cloneSession.getEntity("PSSYSCOUNTER", (Object)pSSysCounterItem.getPSSysCounterId())) != null) {
             this.onFillParentInfo_PSSysCounter(pSSysCounterItem, (PSSysCounter)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSysCounterItem pSSysCounterItem, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysCounterItem, bl);
+        super.onRemoveEntityUncopyValues(pSSysCounterItem, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysCounterItem pSSysCounterItem, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -286,7 +286,7 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
         if ((entityFieldError = this.onCheckField_PSSysCounterItemName(bl, pSSysCounterItem, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysCounterItem, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysCounterItem, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_LogicName(boolean bl, PSSysCounterItem pSSysCounterItem, boolean bl2, boolean bl3) throws Exception {
@@ -299,7 +299,7 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSSysCounterItem, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSSysCounterItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -321,7 +321,7 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysCounterItem, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysCounterItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -343,7 +343,7 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCounterId_Default((IEntity)pSSysCounterItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCounterId_Default(pSSysCounterItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCOUNTERID");
@@ -368,7 +368,7 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCounterItemId_Default((IEntity)pSSysCounterItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCounterItemId_Default(pSSysCounterItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCOUNTERITEMID");
@@ -393,7 +393,7 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCounterItemName_Default((IEntity)pSSysCounterItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCounterItemName_Default(pSSysCounterItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCOUNTERITEMNAME");
@@ -423,11 +423,11 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
     }
 
     protected void onSyncEntity(PSSysCounterItem pSSysCounterItem, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysCounterItem, bl);
+        super.onSyncEntity(pSSysCounterItem, bl);
     }
 
     protected void onSyncIndexEntities(PSSysCounterItem pSSysCounterItem, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysCounterItem, bl);
+        super.onSyncIndexEntities(pSSysCounterItem, bl);
     }
 
     public Object getDataContextValue(PSSysCounterItem pSSysCounterItem, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -435,7 +435,7 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysCounterItem, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysCounterItem, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysCounter pSSysCounter = pSSysCounterItem.getPSSysCounter();
@@ -446,7 +446,7 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
     }
 
     protected void onExportMajorModel(PSSysCounterItem pSSysCounterItem, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysCounterItem, arrayList, n);
+        super.onExportMajorModel(pSSysCounterItem, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -594,14 +594,14 @@ extends PSCoreSysServiceBase<PSSysCounterItem> {
 
     protected boolean onMergeChild(String string, String string2, PSSysCounterItem pSSysCounterItem) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysCounterItem)) {
+        if (super.onMergeChild(string, string2, pSSysCounterItem)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysCounterItem pSSysCounterItem) throws Exception {
-        super.onUpdateParent((IEntity)pSSysCounterItem);
+        super.onUpdateParent(pSSysCounterItem);
     }
 
     @Override

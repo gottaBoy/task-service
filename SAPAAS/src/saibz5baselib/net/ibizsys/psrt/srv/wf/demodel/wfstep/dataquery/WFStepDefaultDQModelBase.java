@@ -1,20 +1,185 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfstep.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="AA5AE176-2F5B-4651-A48F-4AC799C44D82", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DEADLINE, t1.ENDTIME, t1.FROMWFSTEPID, t1.ISFINISH, t1.ISINTERACTIVE, t1.LASTACTORID, t1.MEMO, t1.STARTTIME, t1.TRACESTEP, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t11.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFPNAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME, t1.WFVERSION FROM T_SRFWFSTEP t1  LEFT JOIN T_SRFWFINSTANCE t11 ON t1.WFINSTANCEID = t11.WFINSTANCEID  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="WFPMODEL", expression="t1.WFPMODEL", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DEADLINE", expression="t1.DEADLINE", showorder=2), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.ENDTIME", showorder=3), @DEDataQueryCodeExp(name="FROMWFSTEPID", expression="t1.FROMWFSTEPID", showorder=4), @DEDataQueryCodeExp(name="ISFINISH", expression="t1.ISFINISH", showorder=5), @DEDataQueryCodeExp(name="ISINTERACTIVE", expression="t1.ISINTERACTIVE", showorder=6), @DEDataQueryCodeExp(name="LASTACTORID", expression="t1.LASTACTORID", showorder=7), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=8), @DEDataQueryCodeExp(name="STARTTIME", expression="t1.STARTTIME", showorder=9), @DEDataQueryCodeExp(name="TRACESTEP", expression="t1.TRACESTEP", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.WFINSTANCEID", showorder=13), @DEDataQueryCodeExp(name="WFINSTANCENAME", expression="t11.WFINSTANCENAME", showorder=14), @DEDataQueryCodeExp(name="WFPLOGICNAME", expression="t1.WFPLOGICNAME", showorder=15), @DEDataQueryCodeExp(name="WFPNAME", expression="t1.WFPNAME", showorder=16), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=17), @DEDataQueryCodeExp(name="WFSTEPLANRESTAG", expression="t1.WFSTEPLANRESTAG", showorder=18), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=19), @DEDataQueryCodeExp(name="WFVERSION", expression="t1.WFVERSION", showorder=20)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`deadline`, t1.`endtime`, t1.`fromwfstepid`, t1.`isfinish`, t1.`isinteractive`, t1.`lastactorid`, t1.`memo`, t1.`starttime`, t1.`tracestep`, t1.`updatedate`, t1.`updateman`, t1.`wfinstanceid`, t11.`wfinstancename`, t1.`wfplogicname`, t1.`wfpname`, t1.`wfstepid`, t1.`wfsteplanrestag`, t1.`wfstepname`, t1.`wfversion` FROM `t_srfwfstep` t1  LEFT JOIN t_srfwfinstance t11 ON t1.wfinstanceid = t11.wfinstanceid  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="WFPMODEL", expression="t1.`wfpmodel`", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=1), @DEDataQueryCodeExp(name="DEADLINE", expression="t1.`deadline`", showorder=2), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.`endtime`", showorder=3), @DEDataQueryCodeExp(name="FROMWFSTEPID", expression="t1.`fromwfstepid`", showorder=4), @DEDataQueryCodeExp(name="ISFINISH", expression="t1.`isfinish`", showorder=5), @DEDataQueryCodeExp(name="ISINTERACTIVE", expression="t1.`isinteractive`", showorder=6), @DEDataQueryCodeExp(name="LASTACTORID", expression="t1.`lastactorid`", showorder=7), @DEDataQueryCodeExp(name="MEMO", expression="t1.`memo`", showorder=8), @DEDataQueryCodeExp(name="STARTTIME", expression="t1.`starttime`", showorder=9), @DEDataQueryCodeExp(name="TRACESTEP", expression="t1.`tracestep`", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=12), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.`wfinstanceid`", showorder=13), @DEDataQueryCodeExp(name="WFINSTANCENAME", expression="t11.`wfinstancename`", showorder=14), @DEDataQueryCodeExp(name="WFPLOGICNAME", expression="t1.`wfplogicname`", showorder=15), @DEDataQueryCodeExp(name="WFPNAME", expression="t1.`wfpname`", showorder=16), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.`wfstepid`", showorder=17), @DEDataQueryCodeExp(name="WFSTEPLANRESTAG", expression="t1.`wfsteplanrestag`", showorder=18), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.`wfstepname`", showorder=19), @DEDataQueryCodeExp(name="WFVERSION", expression="t1.`wfversion`", showorder=20)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DEADLINE, t1.ENDTIME, t1.FROMWFSTEPID, t1.ISFINISH, t1.ISINTERACTIVE, t1.LASTACTORID, t1.MEMO, t1.STARTTIME, t1.TRACESTEP, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t11.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFPNAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME, t1.WFVERSION FROM T_SRFWFSTEP t1  LEFT JOIN T_SRFWFINSTANCE t11 ON t1.WFINSTANCEID = t11.WFINSTANCEID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="WFPMODEL", expression="t1.WFPMODEL", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DEADLINE", expression="t1.DEADLINE", showorder=2), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.ENDTIME", showorder=3), @DEDataQueryCodeExp(name="FROMWFSTEPID", expression="t1.FROMWFSTEPID", showorder=4), @DEDataQueryCodeExp(name="ISFINISH", expression="t1.ISFINISH", showorder=5), @DEDataQueryCodeExp(name="ISINTERACTIVE", expression="t1.ISINTERACTIVE", showorder=6), @DEDataQueryCodeExp(name="LASTACTORID", expression="t1.LASTACTORID", showorder=7), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=8), @DEDataQueryCodeExp(name="STARTTIME", expression="t1.STARTTIME", showorder=9), @DEDataQueryCodeExp(name="TRACESTEP", expression="t1.TRACESTEP", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.WFINSTANCEID", showorder=13), @DEDataQueryCodeExp(name="WFINSTANCENAME", expression="t11.WFINSTANCENAME", showorder=14), @DEDataQueryCodeExp(name="WFPLOGICNAME", expression="t1.WFPLOGICNAME", showorder=15), @DEDataQueryCodeExp(name="WFPNAME", expression="t1.WFPNAME", showorder=16), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=17), @DEDataQueryCodeExp(name="WFSTEPLANRESTAG", expression="t1.WFSTEPLANRESTAG", showorder=18), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=19), @DEDataQueryCodeExp(name="WFVERSION", expression="t1.WFVERSION", showorder=20)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DEADLINE, t1.ENDTIME, t1.FROMWFSTEPID, t1.ISFINISH, t1.ISINTERACTIVE, t1.LASTACTORID, t1.MEMO, t1.STARTTIME, t1.TRACESTEP, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t11.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFPNAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME, t1.WFVERSION FROM T_SRFWFSTEP t1  LEFT JOIN T_SRFWFINSTANCE t11 ON t1.WFINSTANCEID = t11.WFINSTANCEID  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="WFPMODEL", expression="t1.WFPMODEL", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DEADLINE", expression="t1.DEADLINE", showorder=2), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.ENDTIME", showorder=3), @DEDataQueryCodeExp(name="FROMWFSTEPID", expression="t1.FROMWFSTEPID", showorder=4), @DEDataQueryCodeExp(name="ISFINISH", expression="t1.ISFINISH", showorder=5), @DEDataQueryCodeExp(name="ISINTERACTIVE", expression="t1.ISINTERACTIVE", showorder=6), @DEDataQueryCodeExp(name="LASTACTORID", expression="t1.LASTACTORID", showorder=7), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=8), @DEDataQueryCodeExp(name="STARTTIME", expression="t1.STARTTIME", showorder=9), @DEDataQueryCodeExp(name="TRACESTEP", expression="t1.TRACESTEP", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.WFINSTANCEID", showorder=13), @DEDataQueryCodeExp(name="WFINSTANCENAME", expression="t11.WFINSTANCENAME", showorder=14), @DEDataQueryCodeExp(name="WFPLOGICNAME", expression="t1.WFPLOGICNAME", showorder=15), @DEDataQueryCodeExp(name="WFPNAME", expression="t1.WFPNAME", showorder=16), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=17), @DEDataQueryCodeExp(name="WFSTEPLANRESTAG", expression="t1.WFSTEPLANRESTAG", showorder=18), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=19), @DEDataQueryCodeExp(name="WFVERSION", expression="t1.WFVERSION", showorder=20)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DEADLINE, t1.ENDTIME, t1.FROMWFSTEPID, t1.ISFINISH, t1.ISINTERACTIVE, t1.LASTACTORID, t1.MEMO, t1.STARTTIME, t1.TRACESTEP, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t11.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFPNAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME, t1.WFVERSION FROM T_SRFWFSTEP t1  LEFT JOIN T_SRFWFINSTANCE t11 ON t1.WFINSTANCEID = t11.WFINSTANCEID  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="WFPMODEL", expression="t1.WFPMODEL", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DEADLINE", expression="t1.DEADLINE", showorder=2), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.ENDTIME", showorder=3), @DEDataQueryCodeExp(name="FROMWFSTEPID", expression="t1.FROMWFSTEPID", showorder=4), @DEDataQueryCodeExp(name="ISFINISH", expression="t1.ISFINISH", showorder=5), @DEDataQueryCodeExp(name="ISINTERACTIVE", expression="t1.ISINTERACTIVE", showorder=6), @DEDataQueryCodeExp(name="LASTACTORID", expression="t1.LASTACTORID", showorder=7), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=8), @DEDataQueryCodeExp(name="STARTTIME", expression="t1.STARTTIME", showorder=9), @DEDataQueryCodeExp(name="TRACESTEP", expression="t1.TRACESTEP", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.WFINSTANCEID", showorder=13), @DEDataQueryCodeExp(name="WFINSTANCENAME", expression="t11.WFINSTANCENAME", showorder=14), @DEDataQueryCodeExp(name="WFPLOGICNAME", expression="t1.WFPLOGICNAME", showorder=15), @DEDataQueryCodeExp(name="WFPNAME", expression="t1.WFPNAME", showorder=16), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=17), @DEDataQueryCodeExp(name="WFSTEPLANRESTAG", expression="t1.WFSTEPLANRESTAG", showorder=18), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=19), @DEDataQueryCodeExp(name="WFVERSION", expression="t1.WFVERSION", showorder=20)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[DEADLINE], t1.[ENDTIME], t1.[FROMWFSTEPID], t1.[ISFINISH], t1.[ISINTERACTIVE], t1.[LASTACTORID], t1.[MEMO], t1.[STARTTIME], t1.[TRACESTEP], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[WFINSTANCEID], t11.[WFINSTANCENAME], t1.[WFPLOGICNAME], t1.[WFPNAME], t1.[WFSTEPID], t1.[WFSTEPLANRESTAG], t1.[WFSTEPNAME], t1.[WFVERSION] FROM [T_SRFWFSTEP] t1  LEFT JOIN T_SRFWFINSTANCE t11 ON t1.WFINSTANCEID = t11.WFINSTANCEID  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="WFPMODEL", expression="t1.[WFPMODEL]", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=1), @DEDataQueryCodeExp(name="DEADLINE", expression="t1.[DEADLINE]", showorder=2), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.[ENDTIME]", showorder=3), @DEDataQueryCodeExp(name="FROMWFSTEPID", expression="t1.[FROMWFSTEPID]", showorder=4), @DEDataQueryCodeExp(name="ISFINISH", expression="t1.[ISFINISH]", showorder=5), @DEDataQueryCodeExp(name="ISINTERACTIVE", expression="t1.[ISINTERACTIVE]", showorder=6), @DEDataQueryCodeExp(name="LASTACTORID", expression="t1.[LASTACTORID]", showorder=7), @DEDataQueryCodeExp(name="MEMO", expression="t1.[MEMO]", showorder=8), @DEDataQueryCodeExp(name="STARTTIME", expression="t1.[STARTTIME]", showorder=9), @DEDataQueryCodeExp(name="TRACESTEP", expression="t1.[TRACESTEP]", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=12), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.[WFINSTANCEID]", showorder=13), @DEDataQueryCodeExp(name="WFINSTANCENAME", expression="t11.[WFINSTANCENAME]", showorder=14), @DEDataQueryCodeExp(name="WFPLOGICNAME", expression="t1.[WFPLOGICNAME]", showorder=15), @DEDataQueryCodeExp(name="WFPNAME", expression="t1.[WFPNAME]", showorder=16), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.[WFSTEPID]", showorder=17), @DEDataQueryCodeExp(name="WFSTEPLANRESTAG", expression="t1.[WFSTEPLANRESTAG]", showorder=18), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.[WFSTEPNAME]", showorder=19), @DEDataQueryCodeExp(name="WFVERSION", expression="t1.[WFVERSION]", showorder=20)}, conds={})})
-public abstract class WFStepDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="AA5AE176-2F5B-4651-A48F-4AC799C44D82",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DEADLINE, t1.ENDTIME, t1.FROMWFSTEPID, t1.ISFINISH, t1.ISINTERACTIVE, t1.LASTACTORID, t1.MEMO, t1.STARTTIME, t1.TRACESTEP, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t11.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFPNAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME, t1.WFVERSION FROM T_SRFWFSTEP t1  LEFT JOIN T_SRFWFINSTANCE t11 ON t1.WFINSTANCEID = t11.WFINSTANCEID  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="WFPMODEL",expression="t1.WFPMODEL",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DEADLINE",expression="t1.DEADLINE",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENDTIME",expression="t1.ENDTIME",showorder=3)
+        ,@DEDataQueryCodeExp(name="FROMWFSTEPID",expression="t1.FROMWFSTEPID",showorder=4)
+        ,@DEDataQueryCodeExp(name="ISFINISH",expression="t1.ISFINISH",showorder=5)
+        ,@DEDataQueryCodeExp(name="ISINTERACTIVE",expression="t1.ISINTERACTIVE",showorder=6)
+        ,@DEDataQueryCodeExp(name="LASTACTORID",expression="t1.LASTACTORID",showorder=7)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=8)
+        ,@DEDataQueryCodeExp(name="STARTTIME",expression="t1.STARTTIME",showorder=9)
+        ,@DEDataQueryCodeExp(name="TRACESTEP",expression="t1.TRACESTEP",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.WFINSTANCEID",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFINSTANCENAME",expression="t11.WFINSTANCENAME",showorder=14)
+        ,@DEDataQueryCodeExp(name="WFPLOGICNAME",expression="t1.WFPLOGICNAME",showorder=15)
+        ,@DEDataQueryCodeExp(name="WFPNAME",expression="t1.WFPNAME",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFSTEPLANRESTAG",expression="t1.WFSTEPLANRESTAG",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFVERSION",expression="t1.WFVERSION",showorder=20)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`deadline`, t1.`endtime`, t1.`fromwfstepid`, t1.`isfinish`, t1.`isinteractive`, t1.`lastactorid`, t1.`memo`, t1.`starttime`, t1.`tracestep`, t1.`updatedate`, t1.`updateman`, t1.`wfinstanceid`, t11.`wfinstancename`, t1.`wfplogicname`, t1.`wfpname`, t1.`wfstepid`, t1.`wfsteplanrestag`, t1.`wfstepname`, t1.`wfversion` FROM `t_srfwfstep` t1  LEFT JOIN t_srfwfinstance t11 ON t1.wfinstanceid = t11.wfinstanceid  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="WFPMODEL",expression="t1.`wfpmodel`",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=1)
+        ,@DEDataQueryCodeExp(name="DEADLINE",expression="t1.`deadline`",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENDTIME",expression="t1.`endtime`",showorder=3)
+        ,@DEDataQueryCodeExp(name="FROMWFSTEPID",expression="t1.`fromwfstepid`",showorder=4)
+        ,@DEDataQueryCodeExp(name="ISFINISH",expression="t1.`isfinish`",showorder=5)
+        ,@DEDataQueryCodeExp(name="ISINTERACTIVE",expression="t1.`isinteractive`",showorder=6)
+        ,@DEDataQueryCodeExp(name="LASTACTORID",expression="t1.`lastactorid`",showorder=7)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.`memo`",showorder=8)
+        ,@DEDataQueryCodeExp(name="STARTTIME",expression="t1.`starttime`",showorder=9)
+        ,@DEDataQueryCodeExp(name="TRACESTEP",expression="t1.`tracestep`",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.`wfinstanceid`",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFINSTANCENAME",expression="t11.`wfinstancename`",showorder=14)
+        ,@DEDataQueryCodeExp(name="WFPLOGICNAME",expression="t1.`wfplogicname`",showorder=15)
+        ,@DEDataQueryCodeExp(name="WFPNAME",expression="t1.`wfpname`",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.`wfstepid`",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFSTEPLANRESTAG",expression="t1.`wfsteplanrestag`",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.`wfstepname`",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFVERSION",expression="t1.`wfversion`",showorder=20)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DEADLINE, t1.ENDTIME, t1.FROMWFSTEPID, t1.ISFINISH, t1.ISINTERACTIVE, t1.LASTACTORID, t1.MEMO, t1.STARTTIME, t1.TRACESTEP, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t11.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFPNAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME, t1.WFVERSION FROM T_SRFWFSTEP t1  LEFT JOIN T_SRFWFINSTANCE t11 ON t1.WFINSTANCEID = t11.WFINSTANCEID  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="WFPMODEL",expression="t1.WFPMODEL",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DEADLINE",expression="t1.DEADLINE",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENDTIME",expression="t1.ENDTIME",showorder=3)
+        ,@DEDataQueryCodeExp(name="FROMWFSTEPID",expression="t1.FROMWFSTEPID",showorder=4)
+        ,@DEDataQueryCodeExp(name="ISFINISH",expression="t1.ISFINISH",showorder=5)
+        ,@DEDataQueryCodeExp(name="ISINTERACTIVE",expression="t1.ISINTERACTIVE",showorder=6)
+        ,@DEDataQueryCodeExp(name="LASTACTORID",expression="t1.LASTACTORID",showorder=7)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=8)
+        ,@DEDataQueryCodeExp(name="STARTTIME",expression="t1.STARTTIME",showorder=9)
+        ,@DEDataQueryCodeExp(name="TRACESTEP",expression="t1.TRACESTEP",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.WFINSTANCEID",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFINSTANCENAME",expression="t11.WFINSTANCENAME",showorder=14)
+        ,@DEDataQueryCodeExp(name="WFPLOGICNAME",expression="t1.WFPLOGICNAME",showorder=15)
+        ,@DEDataQueryCodeExp(name="WFPNAME",expression="t1.WFPNAME",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFSTEPLANRESTAG",expression="t1.WFSTEPLANRESTAG",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFVERSION",expression="t1.WFVERSION",showorder=20)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DEADLINE, t1.ENDTIME, t1.FROMWFSTEPID, t1.ISFINISH, t1.ISINTERACTIVE, t1.LASTACTORID, t1.MEMO, t1.STARTTIME, t1.TRACESTEP, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t11.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFPNAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME, t1.WFVERSION FROM T_SRFWFSTEP t1  LEFT JOIN T_SRFWFINSTANCE t11 ON t1.WFINSTANCEID = t11.WFINSTANCEID  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="WFPMODEL",expression="t1.WFPMODEL",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DEADLINE",expression="t1.DEADLINE",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENDTIME",expression="t1.ENDTIME",showorder=3)
+        ,@DEDataQueryCodeExp(name="FROMWFSTEPID",expression="t1.FROMWFSTEPID",showorder=4)
+        ,@DEDataQueryCodeExp(name="ISFINISH",expression="t1.ISFINISH",showorder=5)
+        ,@DEDataQueryCodeExp(name="ISINTERACTIVE",expression="t1.ISINTERACTIVE",showorder=6)
+        ,@DEDataQueryCodeExp(name="LASTACTORID",expression="t1.LASTACTORID",showorder=7)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=8)
+        ,@DEDataQueryCodeExp(name="STARTTIME",expression="t1.STARTTIME",showorder=9)
+        ,@DEDataQueryCodeExp(name="TRACESTEP",expression="t1.TRACESTEP",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.WFINSTANCEID",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFINSTANCENAME",expression="t11.WFINSTANCENAME",showorder=14)
+        ,@DEDataQueryCodeExp(name="WFPLOGICNAME",expression="t1.WFPLOGICNAME",showorder=15)
+        ,@DEDataQueryCodeExp(name="WFPNAME",expression="t1.WFPNAME",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFSTEPLANRESTAG",expression="t1.WFSTEPLANRESTAG",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFVERSION",expression="t1.WFVERSION",showorder=20)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.DEADLINE, t1.ENDTIME, t1.FROMWFSTEPID, t1.ISFINISH, t1.ISINTERACTIVE, t1.LASTACTORID, t1.MEMO, t1.STARTTIME, t1.TRACESTEP, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t11.WFINSTANCENAME, t1.WFPLOGICNAME, t1.WFPNAME, t1.WFSTEPID, t1.WFSTEPLANRESTAG, t1.WFSTEPNAME, t1.WFVERSION FROM T_SRFWFSTEP t1  LEFT JOIN T_SRFWFINSTANCE t11 ON t1.WFINSTANCEID = t11.WFINSTANCEID  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="WFPMODEL",expression="t1.WFPMODEL",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DEADLINE",expression="t1.DEADLINE",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENDTIME",expression="t1.ENDTIME",showorder=3)
+        ,@DEDataQueryCodeExp(name="FROMWFSTEPID",expression="t1.FROMWFSTEPID",showorder=4)
+        ,@DEDataQueryCodeExp(name="ISFINISH",expression="t1.ISFINISH",showorder=5)
+        ,@DEDataQueryCodeExp(name="ISINTERACTIVE",expression="t1.ISINTERACTIVE",showorder=6)
+        ,@DEDataQueryCodeExp(name="LASTACTORID",expression="t1.LASTACTORID",showorder=7)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=8)
+        ,@DEDataQueryCodeExp(name="STARTTIME",expression="t1.STARTTIME",showorder=9)
+        ,@DEDataQueryCodeExp(name="TRACESTEP",expression="t1.TRACESTEP",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.WFINSTANCEID",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFINSTANCENAME",expression="t11.WFINSTANCENAME",showorder=14)
+        ,@DEDataQueryCodeExp(name="WFPLOGICNAME",expression="t1.WFPLOGICNAME",showorder=15)
+        ,@DEDataQueryCodeExp(name="WFPNAME",expression="t1.WFPNAME",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFSTEPLANRESTAG",expression="t1.WFSTEPLANRESTAG",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFVERSION",expression="t1.WFVERSION",showorder=20)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[DEADLINE], t1.[ENDTIME], t1.[FROMWFSTEPID], t1.[ISFINISH], t1.[ISINTERACTIVE], t1.[LASTACTORID], t1.[MEMO], t1.[STARTTIME], t1.[TRACESTEP], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[WFINSTANCEID], t11.[WFINSTANCENAME], t1.[WFPLOGICNAME], t1.[WFPNAME], t1.[WFSTEPID], t1.[WFSTEPLANRESTAG], t1.[WFSTEPNAME], t1.[WFVERSION] FROM [T_SRFWFSTEP] t1  LEFT JOIN T_SRFWFINSTANCE t11 ON t1.WFINSTANCEID = t11.WFINSTANCEID  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="WFPMODEL",expression="t1.[WFPMODEL]",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=1)
+        ,@DEDataQueryCodeExp(name="DEADLINE",expression="t1.[DEADLINE]",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENDTIME",expression="t1.[ENDTIME]",showorder=3)
+        ,@DEDataQueryCodeExp(name="FROMWFSTEPID",expression="t1.[FROMWFSTEPID]",showorder=4)
+        ,@DEDataQueryCodeExp(name="ISFINISH",expression="t1.[ISFINISH]",showorder=5)
+        ,@DEDataQueryCodeExp(name="ISINTERACTIVE",expression="t1.[ISINTERACTIVE]",showorder=6)
+        ,@DEDataQueryCodeExp(name="LASTACTORID",expression="t1.[LASTACTORID]",showorder=7)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.[MEMO]",showorder=8)
+        ,@DEDataQueryCodeExp(name="STARTTIME",expression="t1.[STARTTIME]",showorder=9)
+        ,@DEDataQueryCodeExp(name="TRACESTEP",expression="t1.[TRACESTEP]",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.[WFINSTANCEID]",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFINSTANCENAME",expression="t11.[WFINSTANCENAME]",showorder=14)
+        ,@DEDataQueryCodeExp(name="WFPLOGICNAME",expression="t1.[WFPLOGICNAME]",showorder=15)
+        ,@DEDataQueryCodeExp(name="WFPNAME",expression="t1.[WFPNAME]",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.[WFSTEPID]",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFSTEPLANRESTAG",expression="t1.[WFSTEPLANRESTAG]",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.[WFSTEPNAME]",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFVERSION",expression="t1.[WFVERSION]",showorder=20)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class WFStepDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public WFStepDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(WFStepDefaultDQModelBase.class);
     }
-}
 
+}

@@ -1,37 +1,78 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSDEList
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.vuemob;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.vuemob.PSVueMobCtrlCodePublisherImpl;
 
-public class PSVueMobDEListControllerCodePublisherImpl
-extends PSVueMobCtrlCodePublisherImpl {
-    protected IPSDEList iPSDEList;
-    public static final String CTRLPART_RECORD = "RECORD";
-    public static final String CTRLPART_COLUMN = "COLUMN";
-    public static final String CTRLPART_STORE = "STORE";
+import net.ibizsys.model.control.list.IPSDEList;
+import net.ibizsys.model.control.list.IPSDEListItem;
+import net.ibizsys.model.pub.IPSGenerateCodeResult;
+import net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher;
+import net.ibizsys.model.pub.PSGenerateCodeResultImpl;
 
-    public PSVueMobDEListControllerCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tIPSDEList cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEList cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEListItem cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tIPSDEListItem cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEList cannot be resolved to a type\n\tThe method onClose() of type PSVueMobDEListControllerCodePublisherImpl must override or implement a supertype method\n\tIPSDEList cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSVueMobCtrlCodePublisherImpl\n");
-    }
+/**
+ * 列表控制代码
+ * @author Administrator
+ *
+ */
+public class PSVueMobDEListControllerCodePublisherImpl extends PSVueMobCtrlCodePublisherImpl
+{
+	protected IPSDEList iPSDEList = null;
+	
+	public final static String CTRLPART_RECORD = "RECORD";
+	
+	public final static String CTRLPART_COLUMN = "COLUMN";
+	
+	public final static String CTRLPART_STORE = "STORE";
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSDEList = (IPSDEList)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSDEList = (IPSDEList)this.iPSControl;
+		
+		//输出结果集合代码
+		if(false)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_STORE).getPSPFCtrlPartCodePublisher();
+			IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSDEList, null);
+			params.put("store", iPSGenerateCodeResult);
+		}
+		
+		
+		if(true)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_COLUMN).getPSPFCtrlPartCodePublisher();
+			ArrayList<IPSGenerateCodeResult> gridColumnList = new ArrayList<IPSGenerateCodeResult> ();
+			java.util.Iterator<IPSDEListItem> psDEListItems = 	iPSDEList.getPSDEListItems();
+			while(psDEListItems.hasNext())
+			{
+				IPSDEListItem iPSDEListItem = psDEListItems.next();
+				
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSDEList,iPSDEListItem);
+				gridColumnList.add(iPSGenerateCodeResult);
+			}
+			
+			
+			params.put("columns", gridColumnList);
+		}
+		
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDEList cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEList cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEListItem cannot be resolved to a type\n\tIPSDEList cannot be resolved to a type\n\tIPSDEListItem cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEList cannot be resolved to a type\n");
-    }
+	
 
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSVueMobDEListControllerCodePublisherImpl must override or implement a supertype method\n\tIPSDEList cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSVueMobCtrlCodePublisherImpl\n");
-    }
+	
 }
-

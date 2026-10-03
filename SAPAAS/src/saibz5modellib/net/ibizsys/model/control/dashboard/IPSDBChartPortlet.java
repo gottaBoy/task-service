@@ -1,13 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.dashboard;
 
 import net.ibizsys.model.control.chart.IPSChart;
-import net.ibizsys.model.control.dashboard.IPSDBSysPortletPart;
 
-public interface IPSDBChartPortlet
-extends IPSDBSysPortletPart {
-    public IPSChart getPSChart();
+/**
+ * 图表部件
+ * @author lionlau
+ *
+ */
+public interface IPSDBChartPortlet extends IPSDBSysPortletPart
+{
+	/**
+	 * 获取图形部件
+	 * @return
+	 */
+	IPSChart getPSChart();
 }
-

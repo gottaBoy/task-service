@@ -1,63 +1,126 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.control.form;
 
 import net.ibizsys.paas.util.JSONObjectHelper;
 import net.sf.json.JSONObject;
 
+/**
+ * 表单项错误信息
+ * 
+ * @author liuzhi
+ *
+ */
 public class FormItemError {
-    public static final int ERROR_OK = 0;
-    public static final int ERROR_EMPTY = 1;
-    public static final int ERROR_DATATYPE = 2;
-    public static final int ERROR_VALUERULE = 3;
-    protected String strFormItemId = "";
-    protected String strFormErrorId = "";
-    protected int nErrorType = 0;
-    protected String strErrorInfo = "";
 
-    public String getFormItemId() {
-        return this.strFormItemId;
-    }
+	public final static int ERROR_OK = 0;
 
-    public void setFormItemId(String strFormItemId) {
-        this.strFormItemId = strFormItemId;
-    }
+	/**
+	 * 数据输入为空错误
+	 */
+	public final static int ERROR_EMPTY = 1;
 
-    public String getFormErrorId() {
-        return this.strFormErrorId;
-    }
+	/**
+	 * 数据类型不正确错误
+	 */
+	public final static int ERROR_DATATYPE = 2;
 
-    public void setFormErrorId(String strFormErrorId) {
-        this.strFormErrorId = strFormErrorId;
-    }
+	/**
+	 * 值规则错误
+	 */
+	public final static int ERROR_VALUERULE = 3;
 
-    public String getErrorInfo() {
-        return this.strErrorInfo;
-    }
+	protected String strFormItemId = "";
+	protected String strFormErrorId = "";
+	protected int nErrorType = ERROR_OK;
+	protected String strErrorInfo = "";
 
-    public void setErrorInfo(String strErrorInfo) {
-        this.strErrorInfo = strErrorInfo;
-    }
+	public FormItemError() {
 
-    public int getErrorType() {
-        return this.nErrorType;
-    }
+	}
 
-    public void setErrorType(int nErrorType) {
-        this.nErrorType = nErrorType;
-    }
+	/**
+	 * 获取表单项编号
+	 * 
+	 * @return
+	 */
+	public String getFormItemId() {
+		return this.strFormItemId;
+	}
 
-    public JSONObject toJSONObject() throws Exception {
-        JSONObject obj = new JSONObject();
-        obj.put("id", JSONObjectHelper.stripQuotes(this.strFormItemId, true));
-        obj.put("errid", JSONObjectHelper.stripQuotes(this.strFormErrorId, true));
-        obj.put("type", this.nErrorType);
-        obj.put("info", JSONObjectHelper.stripQuotes(this.strErrorInfo, true));
-        return obj;
-    }
+	/**
+	 * 设置表单项编号
+	 * 
+	 * @param strFormItemId
+	 */
+	public void setFormItemId(String strFormItemId) {
+		this.strFormItemId = strFormItemId;
+	}
+
+	/**
+	 * 获取表单错误编号
+	 * 
+	 * @return
+	 */
+	public String getFormErrorId() {
+		return this.strFormErrorId;
+	}
+
+	/**
+	 * 设置表单错误编号
+	 * 
+	 * @param strFormErrorId
+	 */
+	public void setFormErrorId(String strFormErrorId) {
+		this.strFormErrorId = strFormErrorId;
+	}
+
+	/**
+	 * 获取表单项错误信息
+	 * 
+	 * @return
+	 */
+	public String getErrorInfo() {
+		return this.strErrorInfo;
+	}
+
+	/**
+	 * 设置表单项错误信息
+	 * 
+	 * @param strErrorInfo
+	 */
+	public void setErrorInfo(String strErrorInfo) {
+		this.strErrorInfo = strErrorInfo;
+	}
+
+	/**
+	 * 获取表单项错误类型
+	 * 
+	 * @return
+	 */
+	public int getErrorType() {
+		return this.nErrorType;
+	}
+
+	/**
+	 * 设置表单项错误类型
+	 * 
+	 * @param nErrorType
+	 */
+	public void setErrorType(int nErrorType) {
+		this.nErrorType = nErrorType;
+	}
+
+	/**
+	 * 导出到Json对象
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject toJSONObject() throws Exception {
+		JSONObject obj = new JSONObject();
+		obj.put("id", JSONObjectHelper.stripQuotes(strFormItemId,true));
+		obj.put("errid", JSONObjectHelper.stripQuotes(strFormErrorId,true));
+		obj.put("type", nErrorType);
+		obj.put("info", JSONObjectHelper.stripQuotes(strErrorInfo,true));
+		return obj;
+	}
 }
-

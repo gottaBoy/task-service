@@ -58,16 +58,16 @@ extends PSSysModelChgLogServiceBase {
         try {
             if (PSSysModelChgLogService.isEnableKafkaPlugin()) {
                 Object object;
-                Map.Entry entry2;
-                HashMap hashMap = new HashMap();
+                String entry2;
+                HashMap<String, Object> hashMap = new HashMap<String, Object>();
                 pSSysModelChgLog.fillMap(hashMap, true);
                 hashMap.remove("CREATEDATE");
                 hashMap.remove("UPDATEDATE");
                 HashMap<String, Object> hashMap2 = new HashMap<String, Object>();
-                for (Map.Entry entry2 : hashMap.entrySet()) {
-                    object = entry2.getValue();
+                for (Map.Entry entry : hashMap.entrySet()) {
+                    object = entry.getValue();
                     if (object == null || object == EntityBase.EMPTY) continue;
-                    hashMap2.put(((String)entry2.getKey()).toLowerCase(), object);
+                    hashMap2.put(((String)entry.getKey()).toLowerCase(), object);
                 }
                 String string = PSSysModelChgLogService.getCurrentPSDCId();
                 if (!StringHelper.isNullOrEmpty((String)string)) {

@@ -302,7 +302,7 @@ extends BaseMainPage {
             dgColumnConfig2.setHideable(false);
             dgColumnConfig2.setMenuDisabled(true);
             this.dataGrid.getDataGridConfig().getDataGridColumnsConfig().getList().add(dgColumnConfig2);
-            Object dsItemConfig2 = new DataGridDSItemConfig();
+            DataGridDSItemConfig dsItemConfig2 = new DataGridDSItemConfig();
             dsItemConfig2.setID("SRFROWSN");
             this.dataGrid.getDataGridConfig().getDataGridDSConfig().getList().add(dsItemConfig2);
             if (this.groupStatisticsRep.getENABLETIMEGROUP()) {

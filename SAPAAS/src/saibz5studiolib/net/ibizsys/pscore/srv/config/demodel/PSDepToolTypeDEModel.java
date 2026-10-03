@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSDepToolTypeDEModelBase;
 
 public class PSDepToolTypeDEModel
 extends PSDepToolTypeDEModelBase {
+
+    public PSDepToolTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

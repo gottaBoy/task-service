@@ -135,14 +135,14 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
             PSCtrlType pSCtrlType = (PSCtrlType)iService.getDEModel().createEntity();
             pSCtrlType.set("PSCTRLTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCtrlType);
+                iService.getTemp(pSCtrlType);
             } else {
-                iService.get((IEntity)pSCtrlType);
+                iService.get(pSCtrlType);
             }
             this.onFillParentInfo_PSCtrlType(pSCtrlTypeCallback, pSCtrlType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSCtrlTypeCallback, string, string2, string3);
+        super.onFillParentInfo(pSCtrlTypeCallback, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
         if (bl && pSCtrlTypeCallback.getValidFlag() == null) {
             pSCtrlTypeCallback.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSCtrlTypeCallback, bl);
+        super.onFillEntityFullInfo(pSCtrlTypeCallback, bl);
         this.onFillEntityFullInfo_PSCtrlType(pSCtrlTypeCallback, bl);
     }
 
@@ -166,7 +166,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
     }
 
     protected void onWriteBackParent(PSCtrlTypeCallback pSCtrlTypeCallback, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSCtrlTypeCallback, bl);
+        super.onWriteBackParent(pSCtrlTypeCallback, bl);
     }
 
     public ArrayList<PSCtrlTypeCallback> selectByPSCtrlType(PSCtrlTypeBase pSCtrlTypeBase) throws Exception {
@@ -225,7 +225,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
         ArrayList<PSCtrlTypeCallback> arrayList = this.selectByPSCtrlType(pSCtrlType);
         this.onBeforeRemoveByPSCtrlType(pSCtrlType, arrayList);
         for (PSCtrlTypeCallback pSCtrlTypeCallback : arrayList) {
-            this.remove((IEntity)pSCtrlTypeCallback);
+            this.remove(pSCtrlTypeCallback);
         }
         this.onAfterRemoveByPSCtrlType(pSCtrlType, arrayList);
     }
@@ -246,14 +246,14 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
 
     protected void replaceParentInfo(PSCtrlTypeCallback pSCtrlTypeCallback, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSCtrlTypeCallback, cloneSession);
+        super.replaceParentInfo(pSCtrlTypeCallback, cloneSession);
         if (pSCtrlTypeCallback.getPSCtrlTypeId() != null && (iEntity = cloneSession.getEntity("PSCTRLTYPE", (Object)pSCtrlTypeCallback.getPSCtrlTypeId())) != null) {
             this.onFillParentInfo_PSCtrlType(pSCtrlTypeCallback, (PSCtrlType)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSCtrlTypeCallback pSCtrlTypeCallback, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSCtrlTypeCallback, bl);
+        super.onRemoveEntityUncopyValues(pSCtrlTypeCallback, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSCtrlTypeCallback pSCtrlTypeCallback, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -277,7 +277,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSCtrlTypeCallback, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSCtrlTypeCallback, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSCtrlTypeCallback, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_OrderValue(boolean bl, PSCtrlTypeCallback pSCtrlTypeCallback, boolean bl2, boolean bl3) throws Exception {
@@ -290,7 +290,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSCtrlTypeCallback, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSCtrlTypeCallback, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -315,7 +315,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeCallbackId_Default((IEntity)pSCtrlTypeCallback, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeCallbackId_Default(pSCtrlTypeCallback, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPECALLBACKID");
@@ -340,7 +340,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeCallbackName_Default((IEntity)pSCtrlTypeCallback, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeCallbackName_Default(pSCtrlTypeCallback, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPECALLBACKNAME");
@@ -362,7 +362,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeId_Default((IEntity)pSCtrlTypeCallback, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeId_Default(pSCtrlTypeCallback, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPEID");
@@ -384,7 +384,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_R7DExample_Default((IEntity)pSCtrlTypeCallback, bl2, bl3);
+            string2 = this.onTestValueRule_R7DExample_Default(pSCtrlTypeCallback, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("R7DEXAMPLE");
@@ -409,7 +409,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSCtrlTypeCallback, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSCtrlTypeCallback, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -422,11 +422,11 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
     }
 
     protected void onSyncEntity(PSCtrlTypeCallback pSCtrlTypeCallback, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSCtrlTypeCallback, bl);
+        super.onSyncEntity(pSCtrlTypeCallback, bl);
     }
 
     protected void onSyncIndexEntities(PSCtrlTypeCallback pSCtrlTypeCallback, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSCtrlTypeCallback, bl);
+        super.onSyncIndexEntities(pSCtrlTypeCallback, bl);
     }
 
     public Object getDataContextValue(PSCtrlTypeCallback pSCtrlTypeCallback, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -434,7 +434,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSCtrlTypeCallback, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSCtrlTypeCallback, string, iDataContextParam)) != null) {
             return object;
         }
         PSCtrlType pSCtrlType = pSCtrlTypeCallback.getPSCtrlType();
@@ -445,7 +445,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
     }
 
     protected void onExportMajorModel(PSCtrlTypeCallback pSCtrlTypeCallback, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSCtrlTypeCallback, arrayList, n);
+        super.onExportMajorModel(pSCtrlTypeCallback, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -587,14 +587,14 @@ extends PSCoreSysServiceBase<PSCtrlTypeCallback> {
 
     protected boolean onMergeChild(String string, String string2, PSCtrlTypeCallback pSCtrlTypeCallback) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSCtrlTypeCallback)) {
+        if (super.onMergeChild(string, string2, pSCtrlTypeCallback)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSCtrlTypeCallback pSCtrlTypeCallback) throws Exception {
-        super.onUpdateParent((IEntity)pSCtrlTypeCallback);
+        super.onUpdateParent(pSCtrlTypeCallback);
     }
 
     @Override

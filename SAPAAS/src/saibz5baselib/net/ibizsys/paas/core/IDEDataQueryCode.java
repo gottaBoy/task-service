@@ -1,49 +1,156 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
+import java.util.HashMap;
 import java.util.Iterator;
-import net.ibizsys.paas.core.IDEDataQuery;
-import net.ibizsys.paas.core.IDEDataQueryCodeCond;
-import net.ibizsys.paas.core.IDEDataQueryCodeExp;
-import net.ibizsys.paas.core.IDEDataSetFetchContext;
-import net.ibizsys.paas.core.IModelBase;
+
 import net.ibizsys.paas.data.IDataObject;
 import net.ibizsys.paas.db.IDBDialect;
 import net.ibizsys.paas.db.SqlParamList;
 import net.ibizsys.paas.web.IWebContext;
 
-public interface IDEDataQueryCode
-extends IModelBase {
-    public IDEDataQuery getDEDataQuery();
+/**
+ * 实体数据查询代码接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDEDataQueryCode extends IModelBase {
+	/**
+	 * 获取实体数据查询
+	 * 
+	 * @return
+	 */
+	IDEDataQuery getDEDataQuery();
 
-    public String getDBType();
+	/**
+	 * 获取数据库类型
+	 * 
+	 * @return
+	 */
+	String getDBType();
 
-    public String getQueryCode();
+	/**
+	 * 获取查询代码
+	 * 
+	 * @return
+	 */
+	String getQueryCode();
 
-    public String getQueryCodeTemp();
+	/**
+	 * 获取查询代码(临时数据）
+	 * 
+	 * @return
+	 */
+	String getQueryCodeTemp();
 
-    public String getDeclareCode();
+	/**
+	 * 获取定义代码
+	 * 
+	 * @return
+	 */
+	String getDeclareCode();
 
-    public String getQueryCode(IDEDataSetFetchContext var1, IDBDialect var2, SqlParamList var3) throws Exception;
+	/**
+	 * 获取查询代码
+	 * 
+	 * @param iDEDataSetFetchContext
+	 * @param iDBDialect
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	String getQueryCode(IDEDataSetFetchContext iDEDataSetFetchContext, IDBDialect iDBDialect, SqlParamList list) throws Exception;
 
-    public String getQueryCodeTemp(IDEDataSetFetchContext var1, IDBDialect var2, SqlParamList var3) throws Exception;
+	/**
+	 * 获取查询代码(临时数据)
+	 * 
+	 * @param iDEDataSetFetchContext
+	 * @param iDBDialect
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	String getQueryCodeTemp(IDEDataSetFetchContext iDEDataSetFetchContext, IDBDialect iDBDialect, SqlParamList list) throws Exception;
 
-    public String getDeclareCode(IDEDataSetFetchContext var1, IDBDialect var2, SqlParamList var3) throws Exception;
+	/**
+	 * 获取定义代码
+	 * 
+	 * @param iDEDataSetFetchContext
+	 * @param iDBDialect
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	String getDeclareCode(IDEDataSetFetchContext iDEDataSetFetchContext, IDBDialect iDBDialect, SqlParamList list) throws Exception;
 
-    public void fillDeclareParams(IWebContext var1, IDataObject var2, SqlParamList var3) throws Exception;
+	/**
+	 * 填充定义参数
+	 * 
+	 * @param webContext
+	 * @param iDataObject
+	 * @param sqlParamList
+	 * @throws Exception
+	 */
+	void fillDeclareParams(IWebContext webContext, IDataObject iDataObject, SqlParamList sqlParamList) throws Exception;
 
-    public void fillQueryParams(IWebContext var1, IDataObject var2, SqlParamList var3) throws Exception;
+	/**
+	 * 填充查询参数
+	 * 
+	 * @param webContext
+	 * @param iDataObject
+	 * @param sqlParamList
+	 * @throws Exception
+	 */
+	void fillQueryParams(IWebContext webContext, IDataObject iDataObject, SqlParamList sqlParamList) throws Exception;
 
-    public String getConditionSQL(IDEDataSetFetchContext var1, IDEDataQueryCodeCond var2, IDBDialect var3, SqlParamList var4) throws Exception;
+	/**
+	 * 获取连接条件代码
+	 * 
+	 * @param iDEDataSetFetchContext
+	 * @param iDEDataQueryCond
+	 * @param iDBDialect
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	String getConditionSQL(IDEDataSetFetchContext iDEDataSetFetchContext, IDEDataQueryCodeCond iDEDataQueryCond, IDBDialect iDBDialect, SqlParamList list) throws Exception;
 
-    public String getExtJoinSQL(IDEDataSetFetchContext var1, String var2, IDBDialect var3, SqlParamList var4) throws Exception;
+	/**
+	 * 获取扩展的连接代码
+	 * 
+	 * @param iDEDataSetFetchContext
+	 * @param strCode
+	 * @param iDBDialect
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	String getExtJoinSQL(IDEDataSetFetchContext iDEDataSetFetchContext, String strCode, IDBDialect iDBDialect, SqlParamList list) throws Exception;
 
-    public Iterator<IDEDataQueryCodeCond> getDEDataQueryCodeConds();
+	/**
+	 * 获取条件集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IDEDataQueryCodeCond> getDEDataQueryCodeConds();
 
-    public String getDEFieldExp(String var1, boolean var2) throws Exception;
-
-    public Iterator<IDEDataQueryCodeExp> getDEDataQueryCodeExps();
+	/**
+	 * 获取属性表达式
+	 * 
+	 * @param strName
+	 * @param bTry
+	 * @return
+	 * @throws Exception
+	 */
+	String getDEFieldExp(String strName, boolean bTry) throws Exception;
+	
+	/**
+	 * 获取全部表达式
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	Iterator<IDEDataQueryCodeExp> getDEDataQueryCodeExps();
+	
+	
 }
-

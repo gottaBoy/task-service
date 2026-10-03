@@ -1,15 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.titlebar;
 
-import net.ibizsys.model.control.titlebar.IPSTitleBar;
 import net.ibizsys.model.control.toolbar.IPSDEToolbar;
 
-public interface IPSSysTitleBar
-extends IPSTitleBar {
-    public IPSDEToolbar getLeftPSDEToolbar();
+/**
+ * 系统标题栏对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSSysTitleBar extends IPSTitleBar {
 
-    public IPSDEToolbar getRightPSDEToolbar();
+	/**
+	 * 获取左侧实体工具栏
+	 * @return
+	 */
+	IPSDEToolbar getLeftPSDEToolbar();
+	
+	
+	/**
+	 * 获取右侧实体工具栏
+	 * @return
+	 */
+	IPSDEToolbar getRightPSDEToolbar();
+	
 }
-

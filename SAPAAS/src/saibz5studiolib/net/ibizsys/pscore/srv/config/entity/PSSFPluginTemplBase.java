@@ -1130,7 +1130,7 @@ implements Serializable {
                 PSSFPlugin pSSFPlugin = new PSSFPlugin();
                 pSSFPlugin.setPSSFPluginId(this.getPSSFPluginId());
                 PSSFPluginService pSSFPluginService = (PSSFPluginService)ServiceGlobal.getService(PSSFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSFPluginService.autoGet((IEntity)pSSFPlugin);
+                pSSFPluginService.autoGet(pSSFPlugin);
                 this.pssfplugin = pSSFPlugin;
             }
             return this.pssfplugin;
@@ -1156,7 +1156,7 @@ implements Serializable {
                 PSSF pSSF = new PSSF();
                 pSSF.setPSSFId(this.getPSSFId());
                 PSSFService pSSFService = (PSSFService)ServiceGlobal.getService(PSSFService.class, (SessionFactory)this.getSessionFactory());
-                pSSFService.autoGet((IEntity)pSSF);
+                pSSFService.autoGet(pSSF);
                 this.pssf = pSSF;
             }
             return this.pssf;

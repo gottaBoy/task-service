@@ -77,12 +77,12 @@ extends PSSysDevBKTaskImplBase {
         PSSystemASService psSystemASService = (PSSystemASService)ServiceGlobal.getService(PSSystemASService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSystemAS psSystemAS = new PSSystemAS();
         psSystemAS.setPSSystemASId(this.psSysDevBKTask.getTASKPARAM());
-        psSystemASService.get((IEntity)psSystemAS);
+        psSystemASService.get(psSystemAS);
         if (StringHelper.isNullOrEmpty((String)psSystemAS.getPSAppServerId())) {
             PSDevCenterASService psDevCenterASService = (PSDevCenterASService)ServiceGlobal.getService(PSDevCenterASService.class);
             PSDevCenterAS psDevCenterAS = new PSDevCenterAS();
             psDevCenterAS.setPSDevCenterASId(psSystemAS.getPSDevCenterASId());
-            if (!psDevCenterASService.get((IEntity)psDevCenterAS, true)) {
+            if (!psDevCenterASService.get(psDevCenterAS, true)) {
                 throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u5e94\u7528\u670d\u52a1\u5668");
             }
             return this.shutdownAS(psDevCenterAS);
@@ -90,7 +90,7 @@ extends PSSysDevBKTaskImplBase {
         PSAppServerService psAppServerService = (PSAppServerService)ServiceGlobal.getService(PSAppServerService.class);
         PSAppServer psAppServer = new PSAppServer();
         psAppServer.setPSAppServerId(psSystemAS.getPSAppServerId());
-        if (!psAppServerService.get((IEntity)psAppServer, true)) {
+        if (!psAppServerService.get(psAppServer, true)) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u5e94\u7528\u670d\u52a1\u5668");
         }
         return this.shutdownAS(psAppServer);
@@ -139,4 +139,3 @@ extends PSSysDevBKTaskImplBase {
         return strResult;
     }
 }
-

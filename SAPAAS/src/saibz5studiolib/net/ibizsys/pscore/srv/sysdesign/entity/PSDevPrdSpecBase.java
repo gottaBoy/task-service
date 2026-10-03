@@ -1203,7 +1203,7 @@ implements Serializable {
                 PSDevPrdVer pSDevPrdVer = new PSDevPrdVer();
                 pSDevPrdVer.setPSDevPrdVerId(this.getPSDevPrdVerId());
                 PSDevPrdVerService pSDevPrdVerService = (PSDevPrdVerService)ServiceGlobal.getService(PSDevPrdVerService.class, (SessionFactory)this.getSessionFactory());
-                pSDevPrdVerService.autoGet((IEntity)pSDevPrdVer);
+                pSDevPrdVerService.autoGet(pSDevPrdVer);
                 this.psdevprdver = pSDevPrdVer;
             }
             return this.psdevprdver;
@@ -1229,7 +1229,7 @@ implements Serializable {
                 PSDevPrd pSDevPrd = new PSDevPrd();
                 pSDevPrd.setPSDevPrdId(this.getPSDevPrdId());
                 PSDevPrdService pSDevPrdService = (PSDevPrdService)ServiceGlobal.getService(PSDevPrdService.class, (SessionFactory)this.getSessionFactory());
-                pSDevPrdService.autoGet((IEntity)pSDevPrd);
+                pSDevPrdService.autoGet(pSDevPrd);
                 this.psdevprd = pSDevPrd;
             }
             return this.psdevprd;

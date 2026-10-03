@@ -137,14 +137,14 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
             PSDCOrgUser pSDCOrgUser = (PSDCOrgUser)iService.getDEModel().createEntity();
             pSDCOrgUser.set("PSDCORGUSERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDCOrgUser);
+                iService.getTemp(pSDCOrgUser);
             } else {
-                iService.get((IEntity)pSDCOrgUser);
+                iService.get(pSDCOrgUser);
             }
             this.onFillParentInfo_PSDCOrgUser(pSDCMsgAccount, pSDCOrgUser);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCMsgAccount, string, string2, string3);
+        super.onFillParentInfo(pSDCMsgAccount, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -160,7 +160,7 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCMsgAccount, bl);
+        super.onFillEntityFullInfo(pSDCMsgAccount, bl);
         this.onFillEntityFullInfo_PSDCOrgUser(pSDCMsgAccount, bl);
     }
 
@@ -178,7 +178,7 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
     }
 
     protected void onWriteBackParent(PSDCMsgAccount pSDCMsgAccount, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCMsgAccount, bl);
+        super.onWriteBackParent(pSDCMsgAccount, bl);
     }
 
     public ArrayList<PSDCMsgAccount> selectByPSDCOrgUser(PSDCOrgUserBase pSDCOrgUserBase) throws Exception {
@@ -209,8 +209,8 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
         ArrayList<PSDCMsgAccount> arrayList = this.selectByPSDCOrgUser(pSDCOrgUser, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDCORGUSER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDCOrgUser);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCMSGACCOUNT_PSDCORGUSER_PSDCORGUSERID", "", iDataEntityModel.getName(), "PSDCMSGACCOUNT", iDataEntityModel.getDataInfo((IEntity)pSDCOrgUser), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDCOrgUser);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCMSGACCOUNT_PSDCORGUSER_PSDCORGUSERID", "", iDataEntityModel.getName(), "PSDCMSGACCOUNT", iDataEntityModel.getDataInfo(pSDCOrgUser), arrayList.get(0)));
         }
     }
 
@@ -243,7 +243,7 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
         ArrayList<PSDCMsgAccount> arrayList = this.selectByPSDCOrgUser(pSDCOrgUser);
         this.onBeforeRemoveByPSDCOrgUser(pSDCOrgUser, arrayList);
         for (PSDCMsgAccount pSDCMsgAccount : arrayList) {
-            this.remove((IEntity)pSDCMsgAccount);
+            this.remove(pSDCMsgAccount);
         }
         this.onAfterRemoveByPSDCOrgUser(pSDCOrgUser, arrayList);
     }
@@ -264,14 +264,14 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
 
     protected void replaceParentInfo(PSDCMsgAccount pSDCMsgAccount, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCMsgAccount, cloneSession);
+        super.replaceParentInfo(pSDCMsgAccount, cloneSession);
         if (pSDCMsgAccount.getPSDCOrgUserId() != null && (iEntity = cloneSession.getEntity("PSDCORGUSER", (Object)pSDCMsgAccount.getPSDCOrgUserId())) != null) {
             this.onFillParentInfo_PSDCOrgUser(pSDCMsgAccount, (PSDCOrgUser)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDCMsgAccount pSDCMsgAccount, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCMsgAccount, bl);
+        super.onRemoveEntityUncopyValues(pSDCMsgAccount, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCMsgAccount pSDCMsgAccount, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -292,7 +292,7 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDCMsgAccount, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCMsgAccount, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCMsgAccount, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDCMsgAccountId(boolean bl, PSDCMsgAccount pSDCMsgAccount, boolean bl2, boolean bl3) throws Exception {
@@ -308,7 +308,7 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCMsgAccountId_Default((IEntity)pSDCMsgAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCMsgAccountId_Default(pSDCMsgAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCMSGACCOUNTID");
@@ -333,7 +333,7 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCMsgAccountName_Default((IEntity)pSDCMsgAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCMsgAccountName_Default(pSDCMsgAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCMSGACCOUNTNAME");
@@ -355,7 +355,7 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCOrgUserId_Default((IEntity)pSDCMsgAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCOrgUserId_Default(pSDCMsgAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCORGUSERID");
@@ -377,7 +377,7 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCOrgUserName_Default((IEntity)pSDCMsgAccount, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCOrgUserName_Default(pSDCMsgAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCORGUSERNAME");
@@ -402,7 +402,7 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDCMsgAccount, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDCMsgAccount, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -415,11 +415,11 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
     }
 
     protected void onSyncEntity(PSDCMsgAccount pSDCMsgAccount, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCMsgAccount, bl);
+        super.onSyncEntity(pSDCMsgAccount, bl);
     }
 
     protected void onSyncIndexEntities(PSDCMsgAccount pSDCMsgAccount, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCMsgAccount, bl);
+        super.onSyncIndexEntities(pSDCMsgAccount, bl);
     }
 
     public Object getDataContextValue(PSDCMsgAccount pSDCMsgAccount, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -427,14 +427,14 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCMsgAccount, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCMsgAccount, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCMsgAccount pSDCMsgAccount, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCMsgAccount, arrayList, n);
+        super.onExportMajorModel(pSDCMsgAccount, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -554,14 +554,14 @@ extends PSCoreSysServiceBase<PSDCMsgAccount> {
 
     protected boolean onMergeChild(String string, String string2, PSDCMsgAccount pSDCMsgAccount) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCMsgAccount)) {
+        if (super.onMergeChild(string, string2, pSDCMsgAccount)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCMsgAccount pSDCMsgAccount) throws Exception {
-        super.onUpdateParent((IEntity)pSDCMsgAccount);
+        super.onUpdateParent(pSDCMsgAccount);
     }
 
     @Override

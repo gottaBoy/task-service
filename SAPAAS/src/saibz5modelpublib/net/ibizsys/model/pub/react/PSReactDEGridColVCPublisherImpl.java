@@ -1,36 +1,129 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSControl
- *  IPSDEGridColumn
- *  IPSGenerateCodeResult
- *  IPSPublisherContext
- */
 package net.ibizsys.model.pub.react;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.react.PSReactCtrlPartCodePublisherImpl;
 
-public class PSReactDEGridColVCPublisherImpl
-extends PSReactCtrlPartCodePublisherImpl {
-    protected IPSDEGridColumn iPSDEGridColumn;
+import net.ibizsys.paas.util.StringHelper;
+import SA.SRFDA.PS.Core.Control.IPSControl;
+import SA.SRFDA.PS.Core.Control.IPSEditorType;
+import SA.SRFDA.PS.Core.Control.Grid.IPSDEGridColumn;
+import SA.SRFDA.PS.Core.Control.Grid.IPSDEGridEditItem;
+import SA.SRFDA.PS.Core.Control.Grid.IPSDEGridGroupColumn;
+import SA.SRFDA.PS.Core.PF.IPSPFEditorTempl;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.IPSPFEditorCodePublisher;
+import SA.SRFDA.PS.Core.Pub.IPSPublisherContext;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
+import SA.SRFDA.PS.Core.Pub.PSJQDEGridViewCodePublisherImpl;
+import SA.SRFDA.PS.Core.Res.IPSSysPFPlugin;
+import SA.SRFDA.PS.Data.PSPFEditorTempl;
 
-    public PSReactDEGridColVCPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSReactDEGridColVCPublisherImpl is inconsistent\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSDEGridEditItem cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSSysPFPlugin cannot be resolved to a type\n\tIPSEditorType cannot be resolved to a type\n\tThe method getPSModelStorage() is undefined for the type PSReactDEGridColVCPublisherImpl\n\tThe method getPSPFPubCode() is undefined for the type PSReactDEGridColVCPublisherImpl\n\tThe method getPSPFPubCode() is undefined for the type PSReactDEGridColVCPublisherImpl\n\tiPSPF cannot be resolved or is not a field\n\tiPSPFStyle cannot be resolved or is not a field\n\tiPSAppView cannot be resolved or is not a field\n\tiPSControl cannot be resolved or is not a field\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSPFEditorTempl cannot be resolved to a type\n\tiPSApplication cannot be resolved or is not a field\n\tPSPFEditorTempl cannot be resolved to a variable\n\tThe method getPSPFPubCode() is undefined for the type PSReactDEGridColVCPublisherImpl\n\tIPSPFEditorCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSDEGridGroupColumn cannot be resolved to a type\n\tIPSDEGridGroupColumn cannot be resolved to a type\n\tIPSDEGridGroupColumn cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSReactDEGridColVCPublisherImpl\n\tPSJQDEGridViewCodePublisherImpl cannot be resolved to a variable\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tThe method onClose() of type PSReactDEGridColVCPublisherImpl must override or implement a supertype method\n\tIPSDEGridColumn cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSReactCtrlPartCodePublisherImpl\n");
-    }
+/**
+ * JQ实体表格列视图代码发布器对象
+ * 
+ * @author Administrator
+ *
+ */
+public class PSReactDEGridColVCPublisherImpl extends PSReactCtrlPartCodePublisherImpl {
+	protected IPSDEGridColumn iPSDEGridColumn = null;
 
-    public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n");
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.
+	 * Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl,
+	 * java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl,
+			Object object) throws Exception {
+		iPSDEGridColumn = (IPSDEGridColumn) object;
+		return super.generateCode(iPSPublisherContext, iPSControl, object);
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSDEGridEditItem cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSSysPFPlugin cannot be resolved to a type\n\tIPSEditorType cannot be resolved to a type\n\tThe method getPSModelStorage() is undefined for the type PSReactDEGridColVCPublisherImpl\n\tThe method getPSPFPubCode() is undefined for the type PSReactDEGridColVCPublisherImpl\n\tThe method getPSPFPubCode() is undefined for the type PSReactDEGridColVCPublisherImpl\n\tiPSPF cannot be resolved or is not a field\n\tiPSPFStyle cannot be resolved or is not a field\n\tiPSAppView cannot be resolved or is not a field\n\tiPSControl cannot be resolved or is not a field\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSPFEditorTempl cannot be resolved to a type\n\tiPSApplication cannot be resolved or is not a field\n\tPSPFEditorTempl cannot be resolved to a variable\n\tThe method getPSPFPubCode() is undefined for the type PSReactDEGridColVCPublisherImpl\n\tIPSPFEditorCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSDEGridGroupColumn cannot be resolved to a type\n\tIPSDEGridGroupColumn cannot be resolved to a type\n\tIPSDEGridGroupColumn cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tThe method getPSPFCtrlTempl() is undefined for the type PSReactDEGridColVCPublisherImpl\n\tPSJQDEGridViewCodePublisherImpl cannot be resolved to a variable\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n");
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.
+	 * util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
+		super.onFillGenerateCodeParams(params);
 
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSReactDEGridColVCPublisherImpl must override or implement a supertype method\n\tIPSDEGridColumn cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSReactCtrlPartCodePublisherImpl\n");
-    }
+		if (iPSDEGridColumn.isEnableRowEdit()) {
+			IPSDEGridEditItem iPSDEGridEditItem = iPSDEGridColumn.getPSDEGridEditItem();
+			// 根据类型，获取对应的编辑器代码
+			IPSSysPFPlugin iPSSysPFPlugin = null;
+			IPSEditorType iPSEditorType = this.getPSModelStorage().getPSEditorType(iPSDEGridEditItem.getEditorType());
+			if (iPSDEGridEditItem.getPSSysEditorStyle() != null) {
+				iPSSysPFPlugin = iPSDEGridEditItem.getPSSysEditorStyle().getPSSysPFPlugin();
+			}
+
+			if (iPSSysPFPlugin != null) {
+				String strCodeName = "";
+				if (StringHelper.compare(this.getPSPFPubCode().getName(), "HTML", true) == 0) {
+					strCodeName = "CODE";
+				} else if (StringHelper.compare(this.getPSPFPubCode().getName(), "SERVICE_TS", true) == 0) {
+					strCodeName = "CODE2";
+				}
+
+				if (!StringHelper.isNullOrEmpty(strCodeName)) {
+					String strCode = iPSSysPFPlugin.getCode(strCodeName, this.iPSPF.getId(), this.iPSPFStyle.getId(),
+							this.iPSAppView, this.iPSControl, iPSDEGridEditItem);
+					if (!StringHelper.isNullOrEmpty(strCode)) {
+						PSGenerateCodeResultImpl psGenerateCodeResult = new PSGenerateCodeResultImpl();
+						psGenerateCodeResult.setObject(iPSDEGridEditItem);
+						psGenerateCodeResult.setCode(strCode);
+						params.put("editor", psGenerateCodeResult);
+						return;
+					}
+				}
+			}
+
+			if (true) {
+				IPSPFEditorTempl iPSPFEditorTempl = this.iPSApplication.getPSPFEditorTempl(iPSEditorType,
+						PSPFEditorTempl.CONTAINERTYPE_GRIDCOLUMN, this.getPSPFPubCode(),
+						iPSDEGridEditItem.getEditorStyle());
+				IPSPFEditorCodePublisher psPFEditorCodePublisher = iPSPFEditorTempl.getPSPFEditorCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = psPFEditorCodePublisher.generateCode(iPSPublisherContext,
+						this.iPSControl, iPSDEGridEditItem);
+				params.put("editor", iPSGenerateCodeResult);
+				psPFEditorCodePublisher.close();
+			}
+
+		} else if (iPSDEGridColumn instanceof IPSDEGridGroupColumn) {
+			IPSDEGridGroupColumn iPSDEGridGroupColumn = (IPSDEGridGroupColumn) iPSDEGridColumn;
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl()
+					.getPSPFCtrlTemplDetail(PSJQDEGridViewCodePublisherImpl.CTRLPART_COLUMN)
+					.getPSPFCtrlPartCodePublisher();
+			ArrayList<IPSGenerateCodeResult> gridColumnList = new ArrayList<IPSGenerateCodeResult>();
+			java.util.Iterator<IPSDEGridColumn> psDEGridColumns = iPSDEGridGroupColumn.getPSDEGridColumns();
+			while (psDEGridColumns.hasNext()) {
+				IPSDEGridColumn iPSDEGridColumn = psDEGridColumns.next();
+
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher
+						.generateCode(iPSPublisherContext, iPSDEGridGroupColumn.getPSDEGrid(), iPSDEGridColumn);
+				gridColumnList.add(iPSGenerateCodeResult);
+			}
+
+			iPSPFCtrlPartCodePublisher.close();
+			params.put("columns", gridColumnList);
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose() {
+		this.iPSDEGridColumn = null;
+		super.onClose();
+	}
+
 }
-

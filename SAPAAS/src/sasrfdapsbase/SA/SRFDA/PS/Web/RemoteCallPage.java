@@ -1216,7 +1216,7 @@ extends SRFDAPSPage {
                 return ajaxActionResult;
             }
             if (StringHelper.Compare((String)strCall, (String)"SELECT", (boolean)false) == 0) {
-                Vector list = new Vector();
+                Vector<BaseDataEntity> list = new Vector();
                 String strArg = this.getWebContext().GetPostValue("srfarg");
                 if (StringHelper.IsNullOrEmpty((String)strArg)) {
                     strArg = this.getWebContext().GetParamValue("SRFARG");
@@ -1251,7 +1251,7 @@ extends SRFDAPSPage {
                 return ajaxActionResult;
             }
             if (StringHelper.Compare((String)strCall, (String)"SELECTEX", (boolean)false) == 0) {
-                Vector list = new Vector();
+                Vector<BaseDataEntity> list = new Vector();
                 String strActionMode = this.getWebContext().GetPostValue("srfarg");
                 String strArg2 = this.getWebContext().GetPostValue("srfarg2");
                 BaseDataEntity dataEntity = BaseDataEntity.FromString((String)strArg2);
@@ -1336,7 +1336,7 @@ extends SRFDAPSPage {
             if (StringHelper.IsNullOrEmpty((String)strBody)) {
                 strBody = "{}";
             }
-            Map map = (Map)MAPPER.readValue(strBody, Map.class);
+            Map<String, Object> map = (Map<String, Object>)MAPPER.readValue(strBody, Map.class);
             if (DEID_PSSYSDEVUSERUSERGLOBAL.equalsIgnoreCase(strDEId)) {
                 ObjectNode retNode = MAPPER.createObjectNode();
                 retNode.put("ret", 0);
@@ -1460,7 +1460,7 @@ extends SRFDAPSPage {
                     IEntity iEntity2 = iDataEntityModel.createEntity();
                     String strValue = String.format("<%1$s>", items[0]);
                     ((IPSModelV2Service)iService).setModelV2ResScope(iEntity2, items[0], strValue);
-                    HashMap params = new HashMap();
+                    HashMap<String, Object> params = new HashMap<String, Object>();
                     iEntity2.fillMap(params);
                     for (Map.Entry entry : params.entrySet()) {
                         if (!strValue.equals(entry.getValue())) continue;
@@ -1507,7 +1507,7 @@ extends SRFDAPSPage {
             DataObject dataObject = new DataObject();
             iEntity.copyTo((IDataObject)dataObject, false, false);
             LinkedHashMap<String, Integer> map2 = new LinkedHashMap<String, Integer>();
-            dataObject.fillMap(map2);
+            dataObject.fillMap((HashMap)map2);
             iService.translate(map2);
             if (iDataEntityModel.getName().equals("PSDEVSLNSYS") && "GET".equalsIgnoreCase(strCall)) {
                 map2.put("activemodelinstver", Version.MODEL);

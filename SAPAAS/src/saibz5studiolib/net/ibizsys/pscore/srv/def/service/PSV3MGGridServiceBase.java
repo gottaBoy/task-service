@@ -135,14 +135,14 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
             PSV3Migrate pSV3Migrate = (PSV3Migrate)iService.getDEModel().createEntity();
             pSV3Migrate.set("PSV3MIGRATEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSV3Migrate);
+                iService.getTemp(pSV3Migrate);
             } else {
-                iService.get((IEntity)pSV3Migrate);
+                iService.get(pSV3Migrate);
             }
             this.onFillParentInfo_Psv3migrate(pSV3MGGrid, pSV3Migrate);
             return;
         }
-        super.onFillParentInfo((IEntity)pSV3MGGrid, string, string2, string3);
+        super.onFillParentInfo(pSV3MGGrid, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSV3MGGrid, bl);
+        super.onFillEntityFullInfo(pSV3MGGrid, bl);
         this.onFillEntityFullInfo_Psv3migrate(pSV3MGGrid, bl);
     }
 
@@ -166,7 +166,7 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
     }
 
     protected void onWriteBackParent(PSV3MGGrid pSV3MGGrid, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSV3MGGrid, bl);
+        super.onWriteBackParent(pSV3MGGrid, bl);
     }
 
     public ArrayList<PSV3MGGrid> selectByPsv3migrate(PSV3MigrateBase pSV3MigrateBase) throws Exception {
@@ -225,7 +225,7 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
         ArrayList<PSV3MGGrid> arrayList = this.selectByPsv3migrate(pSV3Migrate);
         this.onBeforeRemoveByPsv3migrate(pSV3Migrate, arrayList);
         for (PSV3MGGrid pSV3MGGrid : arrayList) {
-            this.remove((IEntity)pSV3MGGrid);
+            this.remove(pSV3MGGrid);
         }
         this.onAfterRemoveByPsv3migrate(pSV3Migrate, arrayList);
     }
@@ -246,14 +246,14 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
 
     protected void replaceParentInfo(PSV3MGGrid pSV3MGGrid, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSV3MGGrid, cloneSession);
+        super.replaceParentInfo(pSV3MGGrid, cloneSession);
         if (pSV3MGGrid.getPSV3MigrateId() != null && (iEntity = cloneSession.getEntity("PSV3MIGRATE", (Object)pSV3MGGrid.getPSV3MigrateId())) != null) {
             this.onFillParentInfo_Psv3migrate(pSV3MGGrid, (PSV3Migrate)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSV3MGGrid pSV3MGGrid, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSV3MGGrid, bl);
+        super.onRemoveEntityUncopyValues(pSV3MGGrid, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSV3MGGrid pSV3MGGrid, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -280,7 +280,7 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
         if ((entityFieldError = this.onCheckField_PSV3MigrateId(bl, pSV3MGGrid, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSV3MGGrid, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSV3MGGrid, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DEGRIDID(boolean bl, PSV3MGGrid pSV3MGGrid, boolean bl2, boolean bl3) throws Exception {
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEGRIDID_Default((IEntity)pSV3MGGrid, bl2, bl3);
+            string2 = this.onTestValueRule_DEGRIDID_Default(pSV3MGGrid, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEGRIDID");
@@ -321,7 +321,7 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEID_Default((IEntity)pSV3MGGrid, bl2, bl3);
+            string2 = this.onTestValueRule_DEID_Default(pSV3MGGrid, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEID");
@@ -346,7 +346,7 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEName_Default((IEntity)pSV3MGGrid, bl2, bl3);
+            string2 = this.onTestValueRule_DEName_Default(pSV3MGGrid, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DENAME");
@@ -368,7 +368,7 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IgnoreFlag_Default((IEntity)pSV3MGGrid, bl2, bl3);
+            string = this.onTestValueRule_IgnoreFlag_Default(pSV3MGGrid, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IGNOREFLAG");
@@ -393,7 +393,7 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSV3MGGridId_Default((IEntity)pSV3MGGrid, bl2, bl3);
+            string2 = this.onTestValueRule_PSV3MGGridId_Default(pSV3MGGrid, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSV3MGGRIDID");
@@ -418,7 +418,7 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSV3MGGridName_Default((IEntity)pSV3MGGrid, bl2, bl3);
+            string2 = this.onTestValueRule_PSV3MGGridName_Default(pSV3MGGrid, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSV3MGGRIDNAME");
@@ -443,7 +443,7 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSV3MigrateId_Default((IEntity)pSV3MGGrid, bl2, bl3);
+            string2 = this.onTestValueRule_PSV3MigrateId_Default(pSV3MGGrid, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSV3MIGRATEID");
@@ -456,11 +456,11 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
     }
 
     protected void onSyncEntity(PSV3MGGrid pSV3MGGrid, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSV3MGGrid, bl);
+        super.onSyncEntity(pSV3MGGrid, bl);
     }
 
     protected void onSyncIndexEntities(PSV3MGGrid pSV3MGGrid, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSV3MGGrid, bl);
+        super.onSyncIndexEntities(pSV3MGGrid, bl);
     }
 
     public Object getDataContextValue(PSV3MGGrid pSV3MGGrid, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -468,14 +468,14 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSV3MGGrid, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSV3MGGrid, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSV3MGGrid pSV3MGGrid, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSV3MGGrid, arrayList, n);
+        super.onExportMajorModel(pSV3MGGrid, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -640,14 +640,14 @@ extends PSCoreSysServiceBase<PSV3MGGrid> {
 
     protected boolean onMergeChild(String string, String string2, PSV3MGGrid pSV3MGGrid) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSV3MGGrid)) {
+        if (super.onMergeChild(string, string2, pSV3MGGrid)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSV3MGGrid pSV3MGGrid) throws Exception {
-        super.onUpdateParent((IEntity)pSV3MGGrid);
+        super.onUpdateParent(pSV3MGGrid);
     }
 
     @Override

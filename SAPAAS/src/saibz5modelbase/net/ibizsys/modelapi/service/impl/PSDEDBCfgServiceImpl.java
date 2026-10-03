@@ -70,7 +70,7 @@ implements IPSDEDBCfgService {
     @Override
     protected List<PSDEDBCfg> onListAll() throws Exception {
         ArrayList<PSDEDBCfg> list = new ArrayList<PSDEDBCfg>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEDBCfg> items = this.listByPSDataEntity(parent);

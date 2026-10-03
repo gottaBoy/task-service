@@ -1555,7 +1555,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -1577,7 +1577,7 @@ implements Serializable {
         Integer n = this.objPSDEAGDetailsLock;
         synchronized (n) {
             if (this.psdeagdetails == null) {
-                this.psdeagdetails = pSDEActionGroupService.isTempData((IEntity)this) ? pSDEAGDetailService.selectTempByPSDEActionGroup(this) : pSDEAGDetailService.selectByPSDEActionGroup(this);
+                this.psdeagdetails = pSDEActionGroupService.isTempData(this) ? pSDEAGDetailService.selectTempByPSDEActionGroup(this) : pSDEAGDetailService.selectByPSDEActionGroup(this);
             }
             return this.psdeagdetails;
         }

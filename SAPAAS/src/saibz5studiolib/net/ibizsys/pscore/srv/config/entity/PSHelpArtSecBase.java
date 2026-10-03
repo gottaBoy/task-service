@@ -1124,7 +1124,7 @@ implements Serializable {
                 PSHelpArticleType pSHelpArticleType = new PSHelpArticleType();
                 pSHelpArticleType.setPSHelpArticleTypeId(this.getPSHelpArticleTypeId());
                 PSHelpArticleTypeService pSHelpArticleTypeService = (PSHelpArticleTypeService)ServiceGlobal.getService(PSHelpArticleTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpArticleTypeService.autoGet((IEntity)pSHelpArticleType);
+                pSHelpArticleTypeService.autoGet(pSHelpArticleType);
                 this.pshelparticletype = pSHelpArticleType;
             }
             return this.pshelparticletype;
@@ -1150,7 +1150,7 @@ implements Serializable {
                 PSHelpSectionType pSHelpSectionType = new PSHelpSectionType();
                 pSHelpSectionType.setPSHelpSectionTypeId(this.getPSHelpSectionTypeId());
                 PSHelpSectionTypeService pSHelpSectionTypeService = (PSHelpSectionTypeService)ServiceGlobal.getService(PSHelpSectionTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpSectionTypeService.autoGet((IEntity)pSHelpSectionType);
+                pSHelpSectionTypeService.autoGet(pSHelpSectionType);
                 this.pshelpsectiontype = pSHelpSectionType;
             }
             return this.pshelpsectiontype;

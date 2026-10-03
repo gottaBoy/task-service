@@ -1123,7 +1123,7 @@ implements Serializable {
                 PSUSModuleInst pSUSModuleInst = new PSUSModuleInst();
                 pSUSModuleInst.setPSUSModuleInstId(this.getPSUSModuleInstId());
                 PSUSModuleInstService pSUSModuleInstService = (PSUSModuleInstService)ServiceGlobal.getService(PSUSModuleInstService.class, (SessionFactory)this.getSessionFactory());
-                pSUSModuleInstService.autoGet((IEntity)pSUSModuleInst);
+                pSUSModuleInstService.autoGet(pSUSModuleInst);
                 this.psusmoduleinst = pSUSModuleInst;
             }
             return this.psusmoduleinst;

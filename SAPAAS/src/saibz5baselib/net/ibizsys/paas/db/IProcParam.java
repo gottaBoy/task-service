@@ -1,50 +1,181 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
 import net.ibizsys.paas.core.IModelBase;
 
-public interface IProcParam
-extends IModelBase {
-    public static final String TAG_DRAFTFLAG = "SRF_DRAFTFLAG";
-    public static final String TAG_PERSONID = "SRF_PERSONID";
-    public static final String TAG_LOGINNAME = "SRF_LOGINNAME";
-    public static final String TAG_PERSONNAME = "SRF_PERSONNAME";
-    public static final String TAG_CURTIME = "SRF_CURTIME";
-    public static final String TAG_ORGID = "SRF_ORGID";
-    public static final String TAG_ORGNAME = "SRF_ORGNAME";
-    public static final String TAG_ORGSECTORID = "SRF_ORGSECTORID";
-    public static final String TAG_ORGSECTORNAME = "SRF_ORGSECTORNAME";
-    public static final String TAG_CHECKKEY = "SRF_CHECKKEY";
-    public static final String TAG_DALOG = "SRF_DALOG";
-    public static final String TAG_SAASDCID = "SRF_SAASDCID";
-    public static final String TAG_RETDATA = "SRF_RETDATA";
-    public static final String TAG_RETCODE = "SRF_RETCODE";
-    public static final String TAG_RETINFO = "SRF_RETINFO";
-    public static final String TAG_RETINFORES = "SRF_RETINFORES";
-    public static final String TAG_RETINFORESARG = "SRF_RETINFORESARG";
-    public static final String TAG_TAG = "SRF_TAG";
-    public static final String TAG_ACTIONMODE = "SRF_ACTIONMODE";
-    public static final String TAG_ACTIONARG = "SRF_ACTIONARG";
-    public static final String TAG_RD = "SRF_RD";
-    public static final String TAG_VAR = "VAR_";
-    public static final String TAG_VF = "VF_";
-    public static final String TAG_CREATEDATE = "SRF_CREATEDATE";
-    public static final String TAG_UPDATEDATE = "SRF_UPDATEDATE";
-    public static final String TAG_CREATEMAN = "SRF_CREATEMAN";
-    public static final String TAG_UPDATEMAN = "SRF_UPDATEMAN";
-    public static final String TAG_CREATEMANNAME = "SRF_CREATEMANNAME";
-    public static final String TAG_UPDATEMANNAME = "SRF_UPDATEMANNAME";
+/**
+ * 存储过程变量
+ * 
+ * @author Administrator
+ *
+ */
+public interface IProcParam extends IModelBase {
+	/**
+	 * 数据草稿标志
+	 */
+	final static String TAG_DRAFTFLAG = "SRF_DRAFTFLAG";
 
-    public Object getDefaultValue();
+	/**
+	 * 操作用户标识
+	 */
+	final static String TAG_PERSONID = "SRF_PERSONID";
+	
+	
+	/**
+	 * 操作用户登录名称
+	 */
+	final static String TAG_LOGINNAME = "SRF_LOGINNAME";
+	
+	
+	/**
+	 * 操作用户名称
+	 */
+	final static String TAG_PERSONNAME = "SRF_PERSONNAME";
+	
 
-    public int getDirection();
+	/**
+	 * 当前时间
+	 */
+	final static String TAG_CURTIME = "SRF_CURTIME";
 
-    public String getOutputParamName();
+	/**
+	 * 组织机构标识
+	 */
+	final static String TAG_ORGID = "SRF_ORGID";
 
-    public int getDataType();
+	/**
+	 * 组织机构名称
+	 */
+	final static String TAG_ORGNAME = "SRF_ORGNAME";
 
-    public String getParamName();
+	/**
+	 * 组织部门标识
+	 */
+	final static String TAG_ORGSECTORID = "SRF_ORGSECTORID";
+
+	/**
+	 * 组织部门名称
+	 */
+	final static String TAG_ORGSECTORNAME = "SRF_ORGSECTORNAME";
+
+	/**
+	 * 对输入的键值做检查
+	 */
+	final static String TAG_CHECKKEY = "SRF_CHECKKEY";
+
+	/**
+	 * 存储DALOG
+	 */
+	final static String TAG_DALOG = "SRF_DALOG";
+	
+	
+	/**
+	 * SaaS 中心标识
+	 */
+	final static String TAG_SAASDCID = "SRF_SAASDCID";
+	
+
+	/**
+	 * 返回插入或更新的数据
+	 */
+	final static String TAG_RETDATA = "SRF_RETDATA";
+
+	final static String TAG_RETCODE = "SRF_RETCODE";
+
+	final static String TAG_RETINFO = "SRF_RETINFO";
+
+	final static String TAG_RETINFORES = "SRF_RETINFORES";
+
+	final static String TAG_RETINFORESARG = "SRF_RETINFORESARG";
+
+	final static String TAG_TAG = "SRF_TAG";
+
+	final static String TAG_ACTIONMODE = "SRF_ACTIONMODE";
+
+	final static String TAG_ACTIONARG = "SRF_ACTIONARG";
+
+	final static String TAG_RD = "SRF_RD";
+
+	/**
+	 * 变量
+	 */
+	public final static String TAG_VAR = "VAR_";
+
+	/**
+	 * 变量有效标志
+	 */
+	public final static String TAG_VF = "VF_";
+	
+	
+	/**
+	 * 创建时间
+	 */
+	final static String TAG_CREATEDATE = "SRF_CREATEDATE";
+	
+	
+	/**
+	 * 更新时间
+	 */
+	final static String TAG_UPDATEDATE = "SRF_UPDATEDATE";
+	
+	
+	/**
+	 * 创建人标识
+	 */
+	final static String TAG_CREATEMAN = "SRF_CREATEMAN";
+	
+	
+	/**
+	 * 更新人标识
+	 */
+	final static String TAG_UPDATEMAN = "SRF_UPDATEMAN";
+	
+	
+	/**
+	 * 创建人名称
+	 */
+	final static String TAG_CREATEMANNAME = "SRF_CREATEMANNAME";
+	
+	
+	/**
+	 * 更新人名称
+	 */
+	final static String TAG_UPDATEMANNAME = "SRF_UPDATEMANNAME";
+	
+	
+
+	/**
+	 * 获取默认值
+	 * 
+	 * @return
+	 */
+	Object getDefaultValue();
+
+	/**
+	 * 获取参数方向
+	 * 
+	 * @return
+	 */
+	int getDirection();
+
+	/**
+	 * 获取输出的参数名称
+	 * 
+	 * @return the strOutputParamName
+	 */
+	String getOutputParamName();
+
+	/**
+	 * 获取标准数据类型
+	 * 
+	 * @return the nDataType
+	 */
+	int getDataType();
+
+	/**
+	 * 获取参数名称
+	 * 
+	 * @return the strParamName
+	 */
+	String getParamName();
+
 }
-

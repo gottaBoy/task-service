@@ -70,7 +70,7 @@ implements IPSSysCanvasModelService {
     @Override
     protected List<PSSysCanvasModel> onListAll() throws Exception {
         ArrayList<PSSysCanvasModel> list = new ArrayList<PSSysCanvasModel>();
-        List pssyscanvas = PSModelServiceUtil.getInstance().getPSSysCanvasService().listAll();
+        List<PSSysCanvas> pssyscanvas = PSModelServiceUtil.getInstance().getPSSysCanvasService().listAll();
         if (pssyscanvas != null) {
             for (PSSysCanvas parent : pssyscanvas) {
                 List<PSSysCanvasModel> items = this.listByPSSysCanvas(parent);

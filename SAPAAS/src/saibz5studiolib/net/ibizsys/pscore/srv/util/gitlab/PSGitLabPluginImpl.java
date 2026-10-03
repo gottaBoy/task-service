@@ -1,26 +1,9 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.data.DataObject
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.paas.service.ServiceGlobal
- *  net.ibizsys.paas.util.KeyValueHelper
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.paas.web.WebContext
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.pscore.srv.util.gitlab;
 
-import java.io.Serializable;
 import java.net.URLEncoder;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.KeyValueHelper;
 import net.ibizsys.paas.util.StringHelper;
@@ -37,12 +20,10 @@ import net.ibizsys.pscore.srv.paasmgr.entity.PSSVNInstRepo;
 import net.ibizsys.pscore.srv.paasmgr.entity.PSSVNServer;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSln;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSlnSys;
-import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSlnSysBase;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSlnTempl;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSlnUser;
 import net.ibizsys.pscore.srv.util.PSCoreEntityKeeperGlobal;
 import net.ibizsys.pscore.srv.util.PSDevCenterHelper;
-import net.ibizsys.pscore.srv.util.gitlab.PSGitLabPluginImplBase;
 import net.ibizsys.pscore.srv.util.gitlab.model.Branch;
 import net.ibizsys.pscore.srv.util.gitlab.model.Group;
 import net.ibizsys.pscore.srv.util.gitlab.model.Member;
@@ -54,1315 +35,1460 @@ import net.ibizsys.pscore.srv.util.gitlab.model.WikiPage;
 import net.ibizsys.pscore.srv.util.gitlab.util.JacksonJson;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.SessionFactory;
 
-public class PSGitLabPluginImpl
-extends PSGitLabPluginImplBase {
-    private static final Log log = LogFactory.getLog(PSGitLabPluginImpl.class);
-    private JacksonJson jacksonJson = new JacksonJson();
-    protected static final int ACTION_CREATE = 1;
-    protected static final int ACTION_UPDATE = 2;
-    protected static final int ACTION_REMOVE = 3;
-    protected static final int PROJECT_CODE = 1;
-    protected static final int PROJECT_MODEL = 0;
-    protected static final int PROJECT_RUNTIME = 2;
-    protected static final int PROJECT_DOCUMENT = 3;
-    private static Random random = new Random();
+public class PSGitLabPluginImpl extends PSGitLabPluginImplBase {
+   private static final Log log = LogFactory.getLog(PSGitLabPluginImpl.class);
+   private JacksonJson jacksonJson = new JacksonJson();
+   protected static final int ACTION_CREATE = 1;
+   protected static final int ACTION_UPDATE = 2;
+   protected static final int ACTION_REMOVE = 3;
+   protected static final int PROJECT_CODE = 1;
+   protected static final int PROJECT_MODEL = 0;
+   protected static final int PROJECT_RUNTIME = 2;
+   protected static final int PROJECT_DOCUMENT = 3;
+   private static Random random = new Random();
 
-    protected PSSVNServer getPSSVNServer(String string) throws Exception {
-        return PSCoreEntityKeeperGlobal.getCurrent(PSCoreSysServiceBase.getCurMajorSessionFactory()).getPSSVNServer(string);
-    }
+   protected PSSVNServer getPSSVNServer(String var1) throws Exception {
+      return PSCoreEntityKeeperGlobal.getCurrent(PSCoreSysServiceBase.getCurMajorSessionFactory()).getPSSVNServer(var1);
+   }
 
-    @Override
-    public User createUserByPSDevUser(PSDevUser pSDevUser) throws Exception {
-        if (pSDevUser.getPSDevCenter() == null) {
-            throw new Exception(StringHelper.format((String)"\u4f20\u5165\u5f00\u53d1\u7528\u6237\u5e94\u7528\u4e2d\u5fc3\u65e0\u6548"));
-        }
-        if (pSDevUser.getPSDevCenter().getV6PSSvnInstRepo() == null) {
-            throw new Exception(StringHelper.format((String)"\u4f20\u5165\u5f00\u53d1\u7528\u6237\u5e94\u7528\u4e2d\u5fc3\u7248\u672c\u4ed3\u5e93\u65e0\u6548"));
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(pSDevUser.getPSDevCenter().getV6PSSvnInstRepo().getPSSVNServerId());
-        return this.createUserByPSDevUser(pSSVNServer, pSDevUser, null, false);
-    }
+   @Override
+   public User createUserByPSDevUser(PSDevUser var1) throws Exception {
+      if (var1.getPSDevCenter() == null) {
+         throw new Exception(StringHelper.format("传入开发用户应用中心无效"));
+      }
 
-    protected User createUserByPSDevUser(PSSVNServer pSSVNServer, PSDevUser pSDevUser, String string, boolean bl) throws Exception {
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            string = this.getUserNameByPSDevUser(pSDevUser);
-        }
-        User user = null;
-        try {
-            user = this.getUser(pSSVNServer, string);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u83b7\u53d6\u4ed3\u5e93\u670d\u52a1\u5668\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u83b7\u53d6\u4ed3\u5e93\u670d\u52a1\u5668\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-        if (user != null) {
-            if (bl) {
-                return user;
+      if (var1.getPSDevCenter().getV6PSSvnInstRepo() == null) {
+         throw new Exception(StringHelper.format("传入开发用户应用中心版本仓库无效"));
+      }
+
+      PSSVNServer var2 = this.getPSSVNServer(var1.getPSDevCenter().getV6PSSvnInstRepo().getPSSVNServerId());
+      return this.createUserByPSDevUser(var2, var1, null, false);
+   }
+
+   protected User createUserByPSDevUser(PSSVNServer var1, PSDevUser var2, String var3, boolean var4) throws Exception {
+      if (StringHelper.isNullOrEmpty(var3)) {
+         var3 = this.getUserNameByPSDevUser(var2);
+      }
+
+      User var5 = null;
+
+      try {
+         var5 = this.getUser(var1, var3);
+      } catch (Exception var10) {
+         log.error(StringHelper.format("获取仓库服务器用户发生异常，%1$s", var10.getMessage()), var10);
+         throw new Exception(StringHelper.format("获取仓库服务器用户发生异常，%1$s", var10.getMessage()), var10);
+      }
+
+      if (var5 != null) {
+         if (var4) {
+            return var5;
+         } else {
+            throw new Exception(StringHelper.format("仓库服务器已存在指定用户[%1$s]", var3));
+         }
+      } else {
+         HashMap var6 = new HashMap();
+         var6.put("username", var3);
+         var6.put("name", var2.getPSDevUserName());
+         var6.put("email", var3 + "@ibizlab.cn");
+         var6.put("password", "w1" + KeyValueHelper.genUniqueId(var2.getPSDevUserId()).substring(0, 10).toUpperCase());
+         if (!StringHelper.isNullOrEmpty(var1.getUserTag())) {
+            var6.put("provider", "ldap");
+            var6.put("extern_uid", StringHelper.format(var1.getUserTag(), var3));
+         }
+
+         var6.put("skip_confirmation", "true");
+         String var7 = null;
+
+         try {
+            var7 = this.executePost(var1, "users", var6, null, null);
+         } catch (Exception var9) {
+            log.error(StringHelper.format("建立用户发生异常，%1$s", var9.getMessage()), var9);
+            throw new Exception(StringHelper.format("建立用户发生异常，%1$s", var9.getMessage()), var9);
+         }
+
+         return this.jacksonJson.unmarshal(User.class, var7);
+      }
+   }
+
+   @Override
+   public Group createGroupByPSDevSln(PSDevSln var1) throws Exception {
+      HashMap var2 = new HashMap();
+      String var3 = var1.getCodeName();
+      String var4 = var1.getPSDevSlnName();
+      if (PSDevCenterHelper.isLabDC(var1.getPSDevCenter())) {
+         String var5 = var1.getPSDevCenter().getDCTag4();
+         if (StringHelper.isNullOrEmpty(var5) || !var5.contentEquals("PRO")) {
+            var3 = "t" + KeyValueHelper.genUniqueId(var3, Long.toString(random.nextLong()), Long.toString(System.currentTimeMillis()));
+         }
+      }
+
+      var2.put("path", var3);
+      var2.put("name", var4);
+      String var12 = null;
+      PSSVNServer var6 = this.getPSSVNServer(var1.getSlnTag());
+      User var7 = null;
+
+      try {
+         if (!StringHelper.isNullOrEmpty(var6.getGITUserName())) {
+            var7 = this.getUser(var6, var6.getGITUserName());
+            if (var7 == null) {
+               throw new Exception(StringHelper.format("无法获取代码提交用户账户"));
             }
-            throw new Exception(StringHelper.format((String)"\u4ed3\u5e93\u670d\u52a1\u5668\u5df2\u5b58\u5728\u6307\u5b9a\u7528\u6237[%1$s]", (Object)string));
-        }
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        hashMap.put("username", string);
-        hashMap.put("name", pSDevUser.getPSDevUserName());
-        hashMap.put("email", string + "@ibizlab.cn");
-        hashMap.put("password", "w1" + KeyValueHelper.genUniqueId((String)pSDevUser.getPSDevUserId()).substring(0, 10).toUpperCase());
-        if (!StringHelper.isNullOrEmpty((String)pSSVNServer.getUserTag())) {
-            hashMap.put("provider", "ldap");
-            hashMap.put("extern_uid", StringHelper.format((String)pSSVNServer.getUserTag(), (Object)string));
-        }
-        hashMap.put("skip_confirmation", "true");
-        String string2 = null;
-        try {
-            string2 = this.executePost(pSSVNServer, "users", hashMap, null, null);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-        user = this.jacksonJson.unmarshal(User.class, string2);
-        return user;
-    }
+         }
 
-    @Override
-    public Group createGroupByPSDevSln(PSDevSln pSDevSln) throws Exception {
-        String string;
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        String string2 = pSDevSln.getCodeName();
-        String string3 = pSDevSln.getPSDevSlnName();
-        if (PSDevCenterHelper.isLabDC(pSDevSln.getPSDevCenter()) && (StringHelper.isNullOrEmpty((String)(string = pSDevSln.getPSDevCenter().getDCTag4())) || !string.contentEquals("PRO"))) {
-            string2 = "t" + KeyValueHelper.genUniqueId((String)string2, (String)Long.toString(random.nextLong()), (String)Long.toString(System.currentTimeMillis()));
-        }
-        hashMap.put("path", string2);
-        hashMap.put("name", string3);
-        string = null;
-        PSSVNServer pSSVNServer = this.getPSSVNServer(pSDevSln.getSlnTag());
-        User user = null;
-        try {
-            if (!StringHelper.isNullOrEmpty((String)pSSVNServer.getGITUserName()) && (user = this.getUser(pSSVNServer, pSSVNServer.getGITUserName())) == null) {
-                throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u4ee3\u7801\u63d0\u4ea4\u7528\u6237\u8d26\u6237"));
+         var12 = this.executePost(var6, "groups", var2, this.getCurUserName(var1.getPSDevCenter()), null);
+      } catch (Exception var11) {
+         log.error(StringHelper.format("建立开发方案群组发生异常，%1$s", var11.getMessage()), var11);
+         throw new Exception(StringHelper.format("建立开发方案群组发生异常，%1$s", var11.getMessage()), var11);
+      }
+
+      Group var8 = this.jacksonJson.unmarshal(Group.class, var12);
+      var1.setSlnTag2(Integer.toString(var8.getId()));
+      if (var7 != null && !PSDevCenterHelper.isRecycleDC(var1.getPSDevCenter()) && !PSCoreSysServiceBase.isCloudMode()) {
+         var2.clear();
+         var2.put("user_id", Integer.toString(var7.getId()));
+         var2.put("access_level", Integer.toString(40));
+
+         try {
+            var12 = this.executePost(var6, StringHelper.format("groups/%1$s/members", var8.getId()), var2, this.getCurUserName(var1.getPSDevCenter()), null);
+         } catch (Exception var10) {
+            log.error(StringHelper.format("建立群组成员发生异常，%1$s", var10.getMessage()), var10);
+            throw new Exception(StringHelper.format("建立群组成员发生异常，%1$s", var10.getMessage()), var10);
+         }
+      }
+
+      return var8;
+   }
+
+   protected Group createSubGroupByPSDevSlnSysDynaInst(PSDevSln var1, PSDevSlnSysDynaInst var2) throws Exception {
+      HashMap var3 = new HashMap();
+      String var4 = "DynaInst"
+         + KeyValueHelper.genUniqueId(var2.getPSDevSlnSysDynaInstId(), Long.toString(random.nextLong()), Long.toString(System.currentTimeMillis()));
+      String var5 = var2.getPSDevSlnSysDynaInstName();
+      var3.put("path", var4);
+      var3.put("name", var5);
+      var3.put("parent_id", var1.getSlnTag2());
+      String var6 = null;
+      PSSVNServer var7 = this.getPSSVNServer(var1.getSlnTag());
+      User var8 = null;
+
+      try {
+         if (!StringHelper.isNullOrEmpty(var7.getGITUserName())) {
+            var8 = this.getUser(var7, var7.getGITUserName());
+            if (var8 == null) {
+               throw new Exception(StringHelper.format("无法获取代码提交用户账户"));
             }
-            string = this.executePost(pSSVNServer, "groups", hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u5f00\u53d1\u65b9\u6848\u7fa4\u7ec4\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u5f00\u53d1\u65b9\u6848\u7fa4\u7ec4\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-        Group group = this.jacksonJson.unmarshal(Group.class, string);
-        pSDevSln.setSlnTag2(Integer.toString(group.getId()));
-        if (user != null && !PSDevCenterHelper.isRecycleDC(pSDevSln.getPSDevCenter()) && !PSCoreSysServiceBase.isCloudMode()) {
-            hashMap.clear();
-            hashMap.put("user_id", Integer.toString(user.getId()));
-            hashMap.put("access_level", Integer.toString(40));
+         }
+
+         var6 = this.executePost(var7, "groups", var3, this.getCurUserName(var1.getPSDevCenter()), null);
+      } catch (Exception var12) {
+         log.error(StringHelper.format("建立动态实例子群组发生异常，%1$s", var12.getMessage()), var12);
+         throw new Exception(StringHelper.format("建立动态实例子群组发生异常，%1$s", var12.getMessage()), var12);
+      }
+
+      Group var9 = this.jacksonJson.unmarshal(Group.class, var6);
+      var2.setInstTag3(Integer.toString(var9.getId()));
+      if (var8 != null && !PSDevCenterHelper.isRecycleDC(var1.getPSDevCenter())) {
+         var3.clear();
+         var3.put("user_id", Integer.toString(var8.getId()));
+         var3.put("access_level", Integer.toString(40));
+
+         try {
+            var6 = this.executePost(var7, StringHelper.format("groups/%1$s/members", var9.getId()), var3, this.getCurUserName(var1.getPSDevCenter()), null);
+         } catch (Exception var11) {
+            log.error(StringHelper.format("建立群组成员发生异常，%1$s", var11.getMessage()), var11);
+            throw new Exception(StringHelper.format("建立群组成员发生异常，%1$s", var11.getMessage()), var11);
+         }
+      }
+
+      return var9;
+   }
+
+   @Override
+   public Project createCodeProjectByPSDevSlnSys(PSDevSlnSys var1) throws Exception {
+      return this.createProjectByPSDevSlnSys(var1, true);
+   }
+
+   @Override
+   public Project createModelProjectByPSDevSlnSys(PSDevSlnSys var1) throws Exception {
+      return this.createProjectByPSDevSlnSys(var1, false);
+   }
+
+   @Override
+   public Project createRuntimeProjectByPSDevSlnSys(PSDevSlnSys var1) throws Exception {
+      return this.createProjectByPSDevSlnSys(var1, 2);
+   }
+
+   @Override
+   public Project createDocProjectByPSDevSlnSys(PSDevSlnSys var1) throws Exception {
+      return this.createProjectByPSDevSlnSys(var1, 3);
+   }
+
+   protected Project createProjectByPSDevSlnSys(PSDevSlnSys var1, boolean var2) throws Exception {
+      return this.createProjectByPSDevSlnSys(var1, var2 ? 1 : 0);
+   }
+
+   protected Project createProjectByPSDevSlnSys(PSDevSlnSys var1, int var2) throws Exception {
+      PSDevSln var3 = var1.getPSDevSln();
+      if (var3 == null) {
+         throw new Exception(StringHelper.format("开发系统没有指定开发方案"));
+      }
+
+      String var4 = null;
+      String var5 = null;
+      if (var3.getPSDevCenterSVN() != null && var3.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+         var4 = var3.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+         var5 = var3.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+      } else {
+         var4 = var3.getSlnTag();
+         var5 = var3.getSlnTag2();
+      }
+
+      if (StringHelper.isNullOrEmpty(var4)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定版本仓库", var3.getPSDevSlnName()));
+      }
+
+      if (StringHelper.isNullOrEmpty(var5)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定群组标识", var3.getPSDevSlnName()));
+      }
+
+      PSSVNServer var6 = this.getPSSVNServer(var4);
+      Namespace var7 = this.getNamespace(var6, var5);
+      if (PSCoreSysServiceBase.isEnableGitBranch()) {
+         PSDevSlnSys var8 = var1.getPPSDevSlnSys();
+         if (var8 == null) {
+            var8 = var1.getMainPSDevSlnSys();
+         }
+
+         if (var8 != null) {
+            PSDevCenterSVN var22 = null;
+            switch (var2) {
+               case 0:
+                  var22 = var8.getModelPSDevCenterSVN();
+                  break;
+               case 1:
+                  var22 = var8.getPSDevCenterSVN();
+                  break;
+               case 2:
+                  var22 = var8.getRTModelPSDevCenterSVN();
+                  break;
+               case 3:
+                  var22 = var8.getDocPSDevCenterSVN();
+            }
+
+            PSSVNInstRepo var23 = null;
+            if (var22 != null) {
+               var23 = var22.getPSSVNInstRepo();
+            }
+
+            if (var23 == null) {
+               throw new Exception(String.format("无法获取父系统[%1$s]相关仓库", var1.getPPSDevSlnSys().getPSDevSlnSysName()));
+            }
+
+            HashMap var24 = new HashMap();
+            var24.put("branch", var1.getPSDevSlnSysName().toLowerCase());
+            String var27 = var23.getGitBranch();
+            if (StringHelper.isNullOrEmpty(var27)) {
+               var27 = "master";
+            }
+
+            var24.put("branch", var1.getPSDevSlnSysName().toLowerCase());
+            var24.put("ref", var27);
+            String var31 = null;
+            String var34 = var23.getRepoTag2();
+
             try {
-                string = this.executePost(pSSVNServer, StringHelper.format((String)"groups/%1$s/members", (Object)group.getId()), hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
+               var31 = this.executePost(
+                  var6, StringHelper.format("projects/%1$s/repository/branches", var34), var24, this.getCurUserName(var3.getPSDevCenter()), null
+               );
+            } catch (Exception var17) {
+               log.error(StringHelper.format("建立项目分支发生异常，%1$s", var17.getMessage()), var17);
+               throw new Exception(StringHelper.format("建立项目分支发生异常，%1$s", var17.getMessage()), var17);
             }
-            catch (Exception exception) {
-                log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u7fa4\u7ec4\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-                throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u7fa4\u7ec4\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-            }
-        }
-        return group;
-    }
 
-    protected Group createSubGroupByPSDevSlnSysDynaInst(PSDevSln pSDevSln, PSDevSlnSysDynaInst pSDevSlnSysDynaInst) throws Exception {
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        String string = "DynaInst" + KeyValueHelper.genUniqueId((String)pSDevSlnSysDynaInst.getPSDevSlnSysDynaInstId(), (String)Long.toString(random.nextLong()), (String)Long.toString(System.currentTimeMillis()));
-        String string2 = pSDevSlnSysDynaInst.getPSDevSlnSysDynaInstName();
-        hashMap.put("path", string);
-        hashMap.put("name", string2);
-        hashMap.put("parent_id", pSDevSln.getSlnTag2());
-        String string3 = null;
-        PSSVNServer pSSVNServer = this.getPSSVNServer(pSDevSln.getSlnTag());
-        User user = null;
-        try {
-            if (!StringHelper.isNullOrEmpty((String)pSSVNServer.getGITUserName()) && (user = this.getUser(pSSVNServer, pSSVNServer.getGITUserName())) == null) {
-                throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u4ee3\u7801\u63d0\u4ea4\u7528\u6237\u8d26\u6237"));
-            }
-            string3 = this.executePost(pSSVNServer, "groups", hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u52a8\u6001\u5b9e\u4f8b\u5b50\u7fa4\u7ec4\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u52a8\u6001\u5b9e\u4f8b\u5b50\u7fa4\u7ec4\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-        Group group = this.jacksonJson.unmarshal(Group.class, string3);
-        pSDevSlnSysDynaInst.setInstTag3(Integer.toString(group.getId()));
-        if (user != null && !PSDevCenterHelper.isRecycleDC(pSDevSln.getPSDevCenter())) {
-            hashMap.clear();
-            hashMap.put("user_id", Integer.toString(user.getId()));
-            hashMap.put("access_level", Integer.toString(40));
-            try {
-                string3 = this.executePost(pSSVNServer, StringHelper.format((String)"groups/%1$s/members", (Object)group.getId()), hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-            }
-            catch (Exception exception) {
-                log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u7fa4\u7ec4\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-                throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u7fa4\u7ec4\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-            }
-        }
-        return group;
-    }
+            Branch var36 = this.jacksonJson.unmarshal(Branch.class, var31);
+            Project var16 = new Project();
+            var16.setId(Integer.valueOf(var34));
+            var16.setDefaultBranch(var1.getPSDevSlnSysName().toLowerCase());
+            var16.setHttpUrlToRepo(var23.getGitPath());
+            var16.setPath(var23.getPSSVNInstRepoName());
+            return var16;
+         }
+      }
 
-    @Override
-    public Project createCodeProjectByPSDevSlnSys(PSDevSlnSys pSDevSlnSys) throws Exception {
-        return this.createProjectByPSDevSlnSys(pSDevSlnSys, true);
-    }
+      HashMap var21 = new HashMap();
+      String var9 = var1.getPSDevSlnSysName();
+      String var10 = var1.getLogicName();
+      if (StringHelper.isNullOrEmpty(var10)) {
+         var10 = var9;
+      }
 
-    @Override
-    public Project createModelProjectByPSDevSlnSys(PSDevSlnSys pSDevSlnSys) throws Exception {
-        return this.createProjectByPSDevSlnSys(pSDevSlnSys, false);
-    }
+      if (var2 == 0) {
+         var9 = StringHelper.format(StringHelper.format("%1$s_model", var9));
+         var10 = StringHelper.format(StringHelper.format("%1$s模型", var10));
+      } else if (var2 == 2) {
+         var9 = StringHelper.format(StringHelper.format("%1$s_runtime", var9));
+         var10 = StringHelper.format(StringHelper.format("%1$s运行时", var10));
+      } else if (var2 == 3) {
+         var9 = StringHelper.format(StringHelper.format("%1$s_document", var9));
+         var10 = StringHelper.format(StringHelper.format("%1$s文档", var10));
+      }
 
-    @Override
-    public Project createRuntimeProjectByPSDevSlnSys(PSDevSlnSys pSDevSlnSys) throws Exception {
-        return this.createProjectByPSDevSlnSys(pSDevSlnSys, 2);
-    }
-
-    @Override
-    public Project createDocProjectByPSDevSlnSys(PSDevSlnSys pSDevSlnSys) throws Exception {
-        return this.createProjectByPSDevSlnSys(pSDevSlnSys, 3);
-    }
-
-    protected Project createProjectByPSDevSlnSys(PSDevSlnSys pSDevSlnSys, boolean bl) throws Exception {
-        return this.createProjectByPSDevSlnSys(pSDevSlnSys, bl ? 1 : 0);
-    }
-
-    /*
-     * WARNING - void declaration
-     */
-    protected Project createProjectByPSDevSlnSys(PSDevSlnSys pSDevSlnSys, int n) throws Exception {
-        Serializable serializable;
-        PSDevSln pSDevSln = pSDevSlnSys.getPSDevSln();
-        if (pSDevSln == null) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u7cfb\u7edf\u6ca1\u6709\u6307\u5b9a\u5f00\u53d1\u65b9\u6848"));
-        }
-        String string = null;
-        String string2 = null;
-        if (pSDevSln.getPSDevCenterSVN() != null && pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
-            string = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-            string2 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        } else {
-            string = pSDevSln.getSlnTag();
-            string2 = pSDevSln.getSlnTag2();
-        }
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7248\u672c\u4ed3\u5e93", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7fa4\u7ec4\u6807\u8bc6", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string);
-        Namespace namespace = this.getNamespace(pSSVNServer, string2);
-        if (PSCoreSysServiceBase.isEnableGitBranch()) {
-            serializable = pSDevSlnSys.getPPSDevSlnSys();
-            if (serializable == null) {
-                serializable = pSDevSlnSys.getMainPSDevSlnSys();
+      Project[] var11 = this.listProjectsByPSDevSln(var6, var7);
+      if (var11 != null && var11.length > 0) {
+         for (Project var15 : var11) {
+            if (StringHelper.compare(var15.getPath(), var9, true) == 0) {
+               throw new Exception(StringHelper.format("仓库项目路径[%1$s]已存在", var9));
             }
-            if (serializable != null) {
-                void var12_17;
-                PSDevCenterSVN pSDevCenterSVN = null;
-                switch (n) {
-                    case 1: {
-                        pSDevCenterSVN = ((PSDevSlnSysBase)serializable).getPSDevCenterSVN();
-                        break;
-                    }
-                    case 0: {
-                        pSDevCenterSVN = ((PSDevSlnSysBase)serializable).getModelPSDevCenterSVN();
-                        break;
-                    }
-                    case 2: {
-                        pSDevCenterSVN = ((PSDevSlnSysBase)serializable).getRTModelPSDevCenterSVN();
-                        break;
-                    }
-                    case 3: {
-                        pSDevCenterSVN = ((PSDevSlnSysBase)serializable).getDocPSDevCenterSVN();
-                    }
-                }
-                PSSVNInstRepo pSSVNInstRepo = null;
-                if (pSDevCenterSVN != null) {
-                    pSSVNInstRepo = pSDevCenterSVN.getPSSVNInstRepo();
-                }
-                if (pSSVNInstRepo == null) {
-                    throw new Exception(String.format("\u65e0\u6cd5\u83b7\u53d6\u7236\u7cfb\u7edf[%1$s]\u76f8\u5173\u4ed3\u5e93", pSDevSlnSys.getPPSDevSlnSys().getPSDevSlnSysName()));
-                }
-                HashMap<String, Object> hashMap = new HashMap<String, Object>();
-                hashMap.put("branch", pSDevSlnSys.getPSDevSlnSysName().toLowerCase());
-                String string3 = pSSVNInstRepo.getGitBranch();
-                if (StringHelper.isNullOrEmpty((String)string3)) {
-                    String object = "master";
-                }
-                hashMap.put("branch", pSDevSlnSys.getPSDevSlnSysName().toLowerCase());
-                hashMap.put("ref", var12_17);
-                String string4 = null;
-                String string5 = pSSVNInstRepo.getRepoTag2();
-                try {
-                    string4 = this.executePost(pSSVNServer, StringHelper.format((String)"projects/%1$s/repository/branches", (Object)string5), hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-                }
-                catch (Exception exception) {
-                    log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u9879\u76ee\u5206\u652f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-                    throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u9879\u76ee\u5206\u652f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-                }
-                Branch branch = this.jacksonJson.unmarshal(Branch.class, string4);
-                Project project = new Project();
-                project.setId(Integer.valueOf(string5));
-                project.setDefaultBranch(pSDevSlnSys.getPSDevSlnSysName().toLowerCase());
-                project.setHttpUrlToRepo(pSSVNInstRepo.getGitPath());
-                project.setPath(pSSVNInstRepo.getPSSVNInstRepoName());
-                return project;
-            }
-        }
-        serializable = new HashMap();
-        String string6 = pSDevSlnSys.getPSDevSlnSysName();
-        String string7 = pSDevSlnSys.getLogicName();
-        if (StringHelper.isNullOrEmpty((String)string7)) {
-            string7 = string6;
-        }
-        if (n == 0) {
-            string6 = StringHelper.format((String)StringHelper.format((String)"%1$s_model", (Object)string6));
-            string7 = StringHelper.format((String)StringHelper.format((String)"%1$s\u6a21\u578b", (Object)string7));
-        } else if (n == 2) {
-            string6 = StringHelper.format((String)StringHelper.format((String)"%1$s_runtime", (Object)string6));
-            string7 = StringHelper.format((String)StringHelper.format((String)"%1$s\u8fd0\u884c\u65f6", (Object)string7));
-        } else if (n == 3) {
-            string6 = StringHelper.format((String)StringHelper.format((String)"%1$s_document", (Object)string6));
-            string7 = StringHelper.format((String)StringHelper.format((String)"%1$s\u6587\u6863", (Object)string7));
-        }
-        Project[] projectArray = this.listProjectsByPSDevSln(pSSVNServer, namespace);
-        if (projectArray != null && projectArray.length > 0) {
-            for (Project project : projectArray) {
-                if (StringHelper.compare((String)project.getPath(), (String)string6, (boolean)true) != 0) continue;
-                throw new Exception(StringHelper.format((String)"\u4ed3\u5e93\u9879\u76ee\u8def\u5f84[%1$s]\u5df2\u5b58\u5728", (Object)string6));
-            }
-            for (Project project : projectArray) {
-                if (StringHelper.compare((String)project.getName(), (String)string7, (boolean)true) != 0) continue;
-                string7 = null;
-                break;
-            }
-        }
-        serializable.put("path", string6);
-        if (!StringHelper.isNullOrEmpty((String)string7)) {
-            serializable.put("name", string7);
-        }
-        serializable.put("namespace_id", Integer.toString(namespace.getId()));
-        Object object = pSDevSlnSys.get("importurl");
-        if (!StringHelper.isNullOrEmpty((Object)object)) {
-            serializable.put("import_url", object);
-        } else {
-            serializable.put("import_url", "");
-            serializable.put("initialize_with_readme", "true");
-        }
-        serializable.put("description", "");
-        serializable.put("issues_enabled", "true");
-        serializable.put("merge_requests_enabled", "true");
-        serializable.put("wiki_enabled", "true");
-        serializable.put("snippets_enabled", "true");
-        serializable.put("visibility_level", "20");
-        String string8 = null;
-        try {
-            string8 = this.executePost(pSSVNServer, "projects", (Map<String, Object>)((Object)serializable), this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u5f00\u53d1\u7cfb\u7edf\u9879\u76ee\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u5f00\u53d1\u7cfb\u7edf\u9879\u76ee\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-        Project project = this.jacksonJson.unmarshal(Project.class, string8);
-        return project;
-    }
+         }
 
-    @Override
-    public Project createProjectByPSDevSlnTempl(PSDevSlnTempl pSDevSlnTempl) throws Exception {
-        String string;
-        Project[] projectArray;
-        PSDevSln pSDevSln = pSDevSlnTempl.getPSDevSln();
-        if (pSDevSln == null) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u6a21\u677f\u6ca1\u6709\u6307\u5b9a\u5f00\u53d1\u65b9\u6848"));
-        }
-        String string2 = null;
-        String string22 = null;
-        if (pSDevSln.getPSDevCenterSVN() != null && pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
-            string2 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-            string22 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        } else {
-            string2 = pSDevSln.getSlnTag();
-            string22 = pSDevSln.getSlnTag2();
-        }
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7248\u672c\u4ed3\u5e93", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        if (StringHelper.isNullOrEmpty((String)string22)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7fa4\u7ec4\u6807\u8bc6", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string2);
-        Namespace namespace = this.getNamespace(pSSVNServer, string22);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        String string3 = pSDevSlnTempl.getPSDevSlnTemplName();
-        String string4 = pSDevSlnTempl.getLogicName();
-        if (StringHelper.isNullOrEmpty((String)string4)) {
-            string4 = string3;
-        }
-        if ((projectArray = this.listProjectsByPSDevSln(pSSVNServer, namespace)) != null && projectArray.length > 0) {
-            for (Project project : projectArray) {
-                if (StringHelper.compare((String)project.getPath(), (String)string3, (boolean)true) != 0) continue;
-                throw new Exception(StringHelper.format((String)"\u4ed3\u5e93\u9879\u76ee\u8def\u5f84[%1$s]\u5df2\u5b58\u5728", (Object)string3));
+         for (Project var35 : var11) {
+            if (StringHelper.compare(var35.getName(), var10, true) == 0) {
+               var10 = null;
+               break;
             }
-            for (Project project : projectArray) {
-                if (StringHelper.compare((String)project.getName(), (String)string4, (boolean)true) != 0) continue;
-                string4 = null;
-                break;
-            }
-        }
-        hashMap.put("path", string3);
-        if (!StringHelper.isNullOrEmpty((String)string4)) {
-            hashMap.put("name", string4);
-        }
-        hashMap.put("namespace_id", Integer.toString(namespace.getId()));
-        hashMap.put("import_url", "");
-        hashMap.put("description", "");
-        hashMap.put("issues_enabled", "true");
-        hashMap.put("merge_requests_enabled", "true");
-        hashMap.put("wiki_enabled", "true");
-        hashMap.put("snippets_enabled", "true");
-        hashMap.put("visibility_level", "20");
-        hashMap.put("initialize_with_readme", "true");
-        Object var11_13 = null;
-        try {
-            string = this.executePost(pSSVNServer, "projects", hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u5f00\u53d1\u6a21\u677f\u9879\u76ee\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u5f00\u53d1\u6a21\u677f\u9879\u76ee\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-        Project project = this.jacksonJson.unmarshal(Project.class, string);
-        return project;
-    }
+         }
+      }
 
-    @Override
-    public Project[] listProjectsByPSDevSln(PSDevSln pSDevSln) throws Exception {
-        String string = null;
-        String string2 = null;
-        if (pSDevSln.getPSDevCenterSVN() != null && pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
-            string = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-            string2 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        } else {
-            string = pSDevSln.getSlnTag();
-            string2 = pSDevSln.getSlnTag2();
-        }
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7248\u672c\u4ed3\u5e93", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7fa4\u7ec4\u6807\u8bc6", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string);
-        Namespace namespace = this.getNamespace(pSSVNServer, string2);
-        try {
-            return this.listProjectsByPSDevSln(pSSVNServer, namespace);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u67e5\u8be2\u7fa4\u7ec4\u9879\u76ee\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u7fa4\u7ec4\u9879\u76ee\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-    }
+      var21.put("path", var9);
+      if (!StringHelper.isNullOrEmpty(var10)) {
+         var21.put("name", var10);
+      }
 
-    @Override
-    public Member createMemberByPSDevSlnUser(PSDevSlnUser pSDevSlnUser) throws Exception {
-        return this.dealMemberByPSDevSlnUser(pSDevSlnUser, 1);
-    }
+      var21.put("namespace_id", Integer.toString(var7.getId()));
+      Object var26 = var1.get("importurl");
+      if (!StringHelper.isNullOrEmpty(var26)) {
+         var21.put("import_url", var26);
+      } else {
+         var21.put("import_url", "");
+         var21.put("initialize_with_readme", "true");
+      }
 
-    @Override
-    public Member updateMemberByPSDevSlnUser(PSDevSlnUser pSDevSlnUser) throws Exception {
-        return this.dealMemberByPSDevSlnUser(pSDevSlnUser, 2);
-    }
+      var21.put("description", "");
+      var21.put("issues_enabled", "true");
+      var21.put("merge_requests_enabled", "true");
+      var21.put("wiki_enabled", "true");
+      var21.put("snippets_enabled", "true");
+      var21.put("visibility_level", "20");
+      String var29 = null;
 
-    @Override
-    public void removeMemberByPSDevSlnUser(PSDevSlnUser pSDevSlnUser) throws Exception {
-        this.dealMemberByPSDevSlnUser(pSDevSlnUser, 3);
-    }
+      try {
+         var29 = this.executePost(var6, "projects", var21, this.getCurUserName(var3.getPSDevCenter()), null);
+      } catch (Exception var18) {
+         log.error(StringHelper.format("建立开发系统项目发生异常，%1$s", var18.getMessage()), var18);
+         throw new Exception(StringHelper.format("建立开发系统项目发生异常，%1$s", var18.getMessage()), var18);
+      }
 
-    protected Member dealMemberByPSDevSlnUser(PSDevSlnUser pSDevSlnUser, int n) throws Exception {
-        Object object;
-        if (pSDevSlnUser.getAllSysFlag() == null) {
-            throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e");
-        }
-        PSDevUser pSDevUser = null;
-        if (StringHelper.compare((String)pSDevSlnUser.getDevUserObjType(), (String)"USER", (boolean)false) == 0) {
-            object = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            pSDevUser = new PSDevUser();
-            pSDevUser.setPSDevUserId(pSDevSlnUser.getPSDevUserObjId());
-            if (!object.get((IEntity)pSDevUser, true)) {
-                pSDevUser = null;
+      return this.jacksonJson.unmarshal(Project.class, var29);
+   }
+
+   @Override
+   public Project createProjectByPSDevSlnTempl(PSDevSlnTempl var1) throws Exception {
+      PSDevSln var2 = var1.getPSDevSln();
+      if (var2 == null) {
+         throw new Exception(StringHelper.format("开发模板没有指定开发方案"));
+      }
+
+      String var3 = null;
+      String var4 = null;
+      if (var2.getPSDevCenterSVN() != null && var2.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+         var3 = var2.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+         var4 = var2.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+      } else {
+         var3 = var2.getSlnTag();
+         var4 = var2.getSlnTag2();
+      }
+
+      if (StringHelper.isNullOrEmpty(var3)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定版本仓库", var2.getPSDevSlnName()));
+      }
+
+      if (StringHelper.isNullOrEmpty(var4)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定群组标识", var2.getPSDevSlnName()));
+      }
+
+      PSSVNServer var5 = this.getPSSVNServer(var3);
+      Namespace var6 = this.getNamespace(var5, var4);
+      HashMap var7 = new HashMap();
+      String var8 = var1.getPSDevSlnTemplName();
+      String var9 = var1.getLogicName();
+      if (StringHelper.isNullOrEmpty(var9)) {
+         var9 = var8;
+      }
+
+      Project[] var10 = this.listProjectsByPSDevSln(var5, var6);
+      if (var10 != null && var10.length > 0) {
+         for (Project var14 : var10) {
+            if (StringHelper.compare(var14.getPath(), var8, true) == 0) {
+               throw new Exception(StringHelper.format("仓库项目路径[%1$s]已存在", var8));
             }
-        }
-        if (pSDevUser == null) {
-            log.error((Object)StringHelper.format((String)"\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c[%1$s|%2$s]\u5f00\u53d1\u7528\u6237\u65e0\u6548", (Object)pSDevSlnUser.getPSDevUserObjId(), (Object)pSDevSlnUser.getPSDevUserObjName()));
-            throw new Exception(StringHelper.format((String)"\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c[%1$s]\u5f00\u53d1\u7528\u6237\u65e0\u6548", (Object)pSDevSlnUser.getPSDevUserObjName()));
-        }
-        object = this.getUserNameByPSDevUser(pSDevUser);
-        if (StringHelper.isNullOrEmpty((String)object)) {
-            throw new Exception(StringHelper.format((String)"\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c[%1$s]\u7528\u6237\u540d\u79f0\u65e0\u6548", (Object)pSDevUser.getPSDevUserName()));
-        }
-        boolean bl = false;
-        String string = "";
-        String string2 = "";
-        String string3 = "";
-        String string4 = "";
-        String string5 = "";
-        switch (pSDevSlnUser.getAllSysFlag()) {
-            case 0: {
-                if (pSDevSlnUser.getPSDevSlnSys() == null || pSDevSlnUser.getPSDevSlnSys().getPSDevCenterSVN() == null || pSDevSlnUser.getPSDevSlnSys().getPSDevCenterSVN().getPSSVNInstRepo() == null) {
-                    throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c\u5f00\u53d1\u7cfb\u7edf\u4ee3\u7801\u4ed3\u5e93\u65e0\u6548");
-                }
-                string2 = pSDevSlnUser.getPSDevSlnSys().getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-                if (StringHelper.isNullOrEmpty((String)string2)) {
-                    throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c\u5f00\u53d1\u7cfb\u7edf\u4ee3\u7801\u4ed3\u5e93\u6807\u8bc6\u65e0\u6548");
-                }
-                if (pSDevSlnUser.getPSDevSlnSys() == null || pSDevSlnUser.getPSDevSlnSys().getModelPSDevCenterSVN() == null || pSDevSlnUser.getPSDevSlnSys().getModelPSDevCenterSVN().getPSSVNInstRepo() == null) {
-                    throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c\u5f00\u53d1\u7cfb\u7edf\u6a21\u578b\u4ed3\u5e93\u65e0\u6548");
-                }
-                string3 = pSDevSlnUser.getPSDevSlnSys().getModelPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-                if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c\u5f00\u53d1\u7cfb\u7edf\u6a21\u578b\u4ed3\u5e93\u6807\u8bc6\u65e0\u6548");
-                }
-                if (pSDevSlnUser.getPSDevSlnSys().getRTModelPSDevCenterSVN() != null && pSDevSlnUser.getPSDevSlnSys().getRTModelPSDevCenterSVN().getPSSVNInstRepo() != null) {
-                    string4 = pSDevSlnUser.getPSDevSlnSys().getRTModelPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-                }
-                if (pSDevSlnUser.getPSDevSlnSys().getDocPSDevCenterSVN() == null || pSDevSlnUser.getPSDevSlnSys().getDocPSDevCenterSVN().getPSSVNInstRepo() == null) break;
-                string5 = pSDevSlnUser.getPSDevSlnSys().getDocPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-                break;
+         }
+
+         for (Project var23 : var10) {
+            if (StringHelper.compare(var23.getName(), var9, true) == 0) {
+               var9 = null;
+               break;
             }
-            case 2: {
-                if (pSDevSlnUser.getPSDevSlnTempl() == null || pSDevSlnUser.getPSDevSlnTempl().getPSDevCenterSVN() == null || pSDevSlnUser.getPSDevSlnTempl().getPSDevCenterSVN().getPSSVNInstRepo() == null) {
-                    throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c\u5f00\u53d1\u6a21\u677f\u65e0\u6548");
-                }
-                string2 = pSDevSlnUser.getPSDevSlnTempl().getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-                if (!StringHelper.isNullOrEmpty((String)string2)) break;
-                throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c\u5f00\u53d1\u6a21\u677f\u4ed3\u5e93\u6807\u8bc6\u65e0\u6548");
+         }
+      }
+
+      var7.put("path", var8);
+      if (!StringHelper.isNullOrEmpty(var9)) {
+         var7.put("name", var9);
+      }
+
+      var7.put("namespace_id", Integer.toString(var6.getId()));
+      var7.put("import_url", "");
+      var7.put("description", "");
+      var7.put("issues_enabled", "true");
+      var7.put("merge_requests_enabled", "true");
+      var7.put("wiki_enabled", "true");
+      var7.put("snippets_enabled", "true");
+      var7.put("visibility_level", "20");
+      var7.put("initialize_with_readme", "true");
+      String var19 = null;
+
+      try {
+         var19 = this.executePost(var5, "projects", var7, this.getCurUserName(var2.getPSDevCenter()), null);
+      } catch (Exception var15) {
+         log.error(StringHelper.format("建立开发模板项目发生异常，%1$s", var15.getMessage()), var15);
+         throw new Exception(StringHelper.format("建立开发模板项目发生异常，%1$s", var15.getMessage()), var15);
+      }
+
+      return this.jacksonJson.unmarshal(Project.class, var19);
+   }
+
+   @Override
+   public Project[] listProjectsByPSDevSln(PSDevSln var1) throws Exception {
+      String var2 = null;
+      String var3 = null;
+      if (var1.getPSDevCenterSVN() != null && var1.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+         var2 = var1.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+         var3 = var1.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+      } else {
+         var2 = var1.getSlnTag();
+         var3 = var1.getSlnTag2();
+      }
+
+      if (StringHelper.isNullOrEmpty(var2)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定版本仓库", var1.getPSDevSlnName()));
+      }
+
+      if (StringHelper.isNullOrEmpty(var3)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定群组标识", var1.getPSDevSlnName()));
+      }
+
+      PSSVNServer var4 = this.getPSSVNServer(var2);
+      Namespace var5 = this.getNamespace(var4, var3);
+
+      try {
+         return this.listProjectsByPSDevSln(var4, var5);
+      } catch (Exception var7) {
+         log.error(StringHelper.format("查询群组项目发生异常，%1$s", var7.getMessage()), var7);
+         throw new Exception(StringHelper.format("查询群组项目发生异常，%1$s", var7.getMessage()), var7);
+      }
+   }
+
+   @Override
+   public Member createMemberByPSDevSlnUser(PSDevSlnUser var1) throws Exception {
+      return this.dealMemberByPSDevSlnUser(var1, 1);
+   }
+
+   @Override
+   public Member updateMemberByPSDevSlnUser(PSDevSlnUser var1) throws Exception {
+      return this.dealMemberByPSDevSlnUser(var1, 2);
+   }
+
+   @Override
+   public void removeMemberByPSDevSlnUser(PSDevSlnUser var1) throws Exception {
+      this.dealMemberByPSDevSlnUser(var1, 3);
+   }
+
+   protected Member dealMemberByPSDevSlnUser(PSDevSlnUser var1, int var2) throws Exception {
+      if (var1.getAllSysFlag() == null) {
+         throw new Exception("传入开发方案成员不正确");
+      }
+
+      PSDevUser var3 = null;
+      if (StringHelper.compare(var1.getDevUserObjType(), "USER", false) == 0) {
+         PSDevUserService var4 = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+         var3 = new PSDevUser();
+         var3.setPSDevUserId(var1.getPSDevUserObjId());
+         if (!var4.get(var3, true)) {
+            var3 = null;
+         }
+      }
+
+      if (var3 == null) {
+         log.error(StringHelper.format("传入开发方案成员不正确，[%1$s|%2$s]开发用户无效", var1.getPSDevUserObjId(), var1.getPSDevUserObjName()));
+         throw new Exception(StringHelper.format("传入开发方案成员不正确，[%1$s]开发用户无效", var1.getPSDevUserObjName()));
+      }
+
+      String var18 = this.getUserNameByPSDevUser(var3);
+      if (StringHelper.isNullOrEmpty(var18)) {
+         throw new Exception(StringHelper.format("传入开发方案成员不正确，[%1$s]用户名称无效", var3.getPSDevUserName()));
+      }
+
+      boolean var5 = false;
+      String var6 = "";
+      String var7 = "";
+      String var8 = "";
+      String var9 = "";
+      String var10 = "";
+      switch (var1.getAllSysFlag()) {
+         case 0:
+            if (var1.getPSDevSlnSys() == null
+               || var1.getPSDevSlnSys().getPSDevCenterSVN() == null
+               || var1.getPSDevSlnSys().getPSDevCenterSVN().getPSSVNInstRepo() == null) {
+               throw new Exception("传入开发方案成员不正确，开发系统代码仓库无效");
             }
-            case 3: {
-                if (pSDevSlnUser.getPSDevSlnSysDynaInst() == null || pSDevSlnUser.getPSDevSlnSysDynaInst().getCfgPSDevCenterSVN() == null || pSDevSlnUser.getPSDevSlnSysDynaInst().getCfgPSDevCenterSVN().getPSSVNInstRepo() == null) {
-                    throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c\u52a8\u6001\u5b9e\u4f8b\u914d\u7f6e\u4ed3\u5e93\u65e0\u6548");
-                }
-                string2 = pSDevSlnUser.getPSDevSlnSysDynaInst().getCfgPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-                if (StringHelper.isNullOrEmpty((String)string2)) {
-                    throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c\u52a8\u6001\u5b9e\u4f8b\u914d\u7f6e\u4ed3\u5e93\u6807\u8bc6\u65e0\u6548");
-                }
-                if (pSDevSlnUser.getPSDevSlnSysDynaInst() == null || pSDevSlnUser.getPSDevSlnSysDynaInst().getModelPSDevCenterSVN() == null || pSDevSlnUser.getPSDevSlnSysDynaInst().getModelPSDevCenterSVN().getPSSVNInstRepo() == null) {
-                    throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c\u52a8\u6001\u5b9e\u4f8b\u6a21\u578b\u4ed3\u5e93\u65e0\u6548");
-                }
-                string3 = pSDevSlnUser.getPSDevSlnSysDynaInst().getModelPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-                if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c\u52a8\u6001\u5b9e\u4f8b\u6a21\u578b\u4ed3\u5e93\u6807\u8bc6\u65e0\u6548");
-                }
-                string = pSDevSlnUser.getPSDevSlnSysDynaInst().getInstTag3();
-                if (StringHelper.isNullOrEmpty((String)string)) {
-                    if (pSDevSlnUser.getPSDevSlnSysDynaInst().getPPSDevSlnSysDynaInst() != null) {
-                        string = pSDevSlnUser.getPSDevSlnSysDynaInst().getPPSDevSlnSysDynaInst().getInstTag3();
-                    }
-                    if (StringHelper.isNullOrEmpty((String)string)) {
-                        throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u6210\u5458\u4e0d\u6b63\u786e\uff0c\u52a8\u6001\u5b9e\u4f8b\u5b50\u5206\u7ec4\u6807\u8bc6\u65e0\u6548");
-                    }
-                }
-                if (StringHelper.isNullOrEmpty((String)pSDevSlnUser.getPSDevSlnSysDynaInst().getPPSDevSlnSysDynaInstId())) {
-                    string2 = "";
-                    string3 = "";
-                }
-                bl = true;
+
+            var7 = var1.getPSDevSlnSys().getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+            if (StringHelper.isNullOrEmpty(var7)) {
+               throw new Exception("传入开发方案成员不正确，开发系统代码仓库标识无效");
             }
-        }
-        String string6 = null;
-        String string7 = null;
-        PSDevSln pSDevSln = pSDevSlnUser.getPSDevSln();
-        if (pSDevSln == null || pSDevSln.getPSDevCenter() == null) {
-            throw new Exception("\u4f20\u5165\u5f00\u53d1\u65b9\u6848\u7528\u6237\u4e0d\u6b63\u786e\uff0c\u5f00\u53d1\u65b9\u6848\u65e0\u6548");
-        }
-        if (pSDevSln.getPSDevCenterSVN() != null && pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
-            string6 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-            string7 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        } else {
-            string6 = pSDevSln.getSlnTag();
-            string7 = pSDevSln.getSlnTag2();
-        }
-        if (StringHelper.isNullOrEmpty((String)string6)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7248\u672c\u4ed3\u5e93", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        if (StringHelper.isNullOrEmpty((String)string7)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7fa4\u7ec4\u6807\u8bc6", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string6);
-        User user = null;
-        try {
-            if (n == 3) {
-                user = this.getUser(pSSVNServer, object);
-                if (user == null) {
-                    return null;
-                }
+
+            if (var1.getPSDevSlnSys() == null
+               || var1.getPSDevSlnSys().getModelPSDevCenterSVN() == null
+               || var1.getPSDevSlnSys().getModelPSDevCenterSVN().getPSSVNInstRepo() == null) {
+               throw new Exception("传入开发方案成员不正确，开发系统模型仓库无效");
+            }
+
+            var8 = var1.getPSDevSlnSys().getModelPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+            if (StringHelper.isNullOrEmpty(var8)) {
+               throw new Exception("传入开发方案成员不正确，开发系统模型仓库标识无效");
+            }
+
+            if (var1.getPSDevSlnSys().getRTModelPSDevCenterSVN() != null && var1.getPSDevSlnSys().getRTModelPSDevCenterSVN().getPSSVNInstRepo() != null) {
+               var9 = var1.getPSDevSlnSys().getRTModelPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+            }
+
+            if (var1.getPSDevSlnSys().getDocPSDevCenterSVN() != null && var1.getPSDevSlnSys().getDocPSDevCenterSVN().getPSSVNInstRepo() != null) {
+               var10 = var1.getPSDevSlnSys().getDocPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+            }
+         case 1:
+         default:
+            break;
+         case 2:
+            if (var1.getPSDevSlnTempl() == null
+               || var1.getPSDevSlnTempl().getPSDevCenterSVN() == null
+               || var1.getPSDevSlnTempl().getPSDevCenterSVN().getPSSVNInstRepo() == null) {
+               throw new Exception("传入开发方案成员不正确，开发模板无效");
+            }
+
+            var7 = var1.getPSDevSlnTempl().getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+            if (StringHelper.isNullOrEmpty(var7)) {
+               throw new Exception("传入开发方案成员不正确，开发模板仓库标识无效");
+            }
+            break;
+         case 3:
+            if (var1.getPSDevSlnSysDynaInst() == null
+               || var1.getPSDevSlnSysDynaInst().getCfgPSDevCenterSVN() == null
+               || var1.getPSDevSlnSysDynaInst().getCfgPSDevCenterSVN().getPSSVNInstRepo() == null) {
+               throw new Exception("传入开发方案成员不正确，动态实例配置仓库无效");
+            }
+
+            var7 = var1.getPSDevSlnSysDynaInst().getCfgPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+            if (StringHelper.isNullOrEmpty(var7)) {
+               throw new Exception("传入开发方案成员不正确，动态实例配置仓库标识无效");
+            }
+
+            if (var1.getPSDevSlnSysDynaInst() == null
+               || var1.getPSDevSlnSysDynaInst().getModelPSDevCenterSVN() == null
+               || var1.getPSDevSlnSysDynaInst().getModelPSDevCenterSVN().getPSSVNInstRepo() == null) {
+               throw new Exception("传入开发方案成员不正确，动态实例模型仓库无效");
+            }
+
+            var8 = var1.getPSDevSlnSysDynaInst().getModelPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+            if (StringHelper.isNullOrEmpty(var8)) {
+               throw new Exception("传入开发方案成员不正确，动态实例模型仓库标识无效");
+            }
+
+            var6 = var1.getPSDevSlnSysDynaInst().getInstTag3();
+            if (StringHelper.isNullOrEmpty(var6)) {
+               if (var1.getPSDevSlnSysDynaInst().getPPSDevSlnSysDynaInst() != null) {
+                  var6 = var1.getPSDevSlnSysDynaInst().getPPSDevSlnSysDynaInst().getInstTag3();
+               }
+
+               if (StringHelper.isNullOrEmpty(var6)) {
+                  throw new Exception("传入开发方案成员不正确，动态实例子分组标识无效");
+               }
+            }
+
+            if (StringHelper.isNullOrEmpty(var1.getPSDevSlnSysDynaInst().getPPSDevSlnSysDynaInstId())) {
+               var7 = "";
+               var8 = "";
+            }
+
+            var5 = true;
+      }
+
+      String var11 = null;
+      String var12 = null;
+      PSDevSln var13 = var1.getPSDevSln();
+      if (var13 != null && var13.getPSDevCenter() != null) {
+         if (var13.getPSDevCenterSVN() != null && var13.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+            var11 = var13.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+            var12 = var13.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+         } else {
+            var11 = var13.getSlnTag();
+            var12 = var13.getSlnTag2();
+         }
+
+         if (StringHelper.isNullOrEmpty(var11)) {
+            throw new Exception(StringHelper.format("开发方案[%1$s]没有指定版本仓库", var13.getPSDevSlnName()));
+         }
+
+         if (StringHelper.isNullOrEmpty(var12)) {
+            throw new Exception(StringHelper.format("开发方案[%1$s]没有指定群组标识", var13.getPSDevSlnName()));
+         }
+
+         PSSVNServer var14 = this.getPSSVNServer(var11);
+         User var15 = null;
+
+         try {
+            if (var2 == 3) {
+               var15 = this.getUser(var14, var18);
+               if (var15 == null) {
+                  return null;
+               }
             } else {
-                user = this.createUserByPSDevUser(pSSVNServer, pSDevUser, (String)object, true);
+               var15 = this.createUserByPSDevUser(var14, var3, var18, true);
             }
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u83b7\u53d6\u4ed3\u5e93\u670d\u52a1\u5668\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u83b7\u53d6\u4ed3\u5e93\u670d\u52a1\u5668\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-        if (user == null) {
-            throw new Exception(StringHelper.format((String)"\u4ed3\u5e93\u670d\u52a1\u5668\u4e0d\u5b58\u5728\u6307\u5b9a\u7528\u6237[%1$s]", (Object)object));
-        }
-        int n2 = DataObject.getIntegerValue((Object)pSDevSlnUser.getAccMode(), (Integer)SlnSysAccModeCodeListModel.READ);
-        if (PSDevCenterHelper.isLabDC(pSDevSln.getPSDevCenter())) {
-            n2 = PSDevCenterHelper.isLabDCRepoReadonly(pSDevSln.getPSDevCenter()) ? 1 : ((n2 & 3) == 3 ? 3 : 1);
-        }
-        if (bl) {
-            n2 = 1;
-        }
-        if (!StringHelper.isNullOrEmpty((String)string)) {
-            string7 = string;
-        }
-        if (StringHelper.isNullOrEmpty((String)string2) && StringHelper.isNullOrEmpty((String)string3)) {
-            return this.dealMember(pSSVNServer, pSDevSln, n, string7, null, user, n2);
-        }
-        if (!StringHelper.isNullOrEmpty((String)string4)) {
-            this.dealMember(pSSVNServer, pSDevSln, n, string7, string4, user, n2);
-        }
-        if (!StringHelper.isNullOrEmpty((String)string5)) {
-            this.dealMember(pSSVNServer, pSDevSln, n, string7, string5, user, n2);
-        }
-        if (!StringHelper.isNullOrEmpty((String)string3)) {
-            this.dealMember(pSSVNServer, pSDevSln, n, string7, string3, user, n2);
-        }
-        return this.dealMember(pSSVNServer, pSDevSln, n, string7, string2, user, n2);
-    }
+         } catch (Exception var17) {
+            log.error(StringHelper.format("获取仓库服务器用户发生异常，%1$s", var17.getMessage()), var17);
+            throw new Exception(StringHelper.format("获取仓库服务器用户发生异常，%1$s", var17.getMessage()), var17);
+         }
 
-    protected Member dealMember(PSSVNServer pSSVNServer, PSDevSln pSDevSln, int n, String string, String string2, User user, int n2) throws Exception {
-        Integer n3 = 0;
-        switch (n2) {
-            case 1: {
-                n3 = 20;
-                break;
-            }
-            case 3: {
-                n3 = 30;
-                break;
-            }
-            case 7: {
-                n3 = 40;
-                break;
-            }
-            default: {
-                throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u8bbf\u95ee\u6a21\u5f0f[%1$s]", (Object)n2));
-            }
-        }
-        Member[] memberArray = null;
-        if (!StringHelper.isNullOrEmpty((String)string2)) {
-            try {
-                memberArray = this.listProjectMembers(pSSVNServer, string2);
-            }
-            catch (Exception exception) {
-                log.error((Object)StringHelper.format((String)"\u67e5\u8be2\u9879\u76ee\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-                throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u9879\u76ee\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-            }
-        }
-        try {
-            memberArray = this.listGroupMembers(pSSVNServer, string);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u67e5\u8be2\u7fa4\u7ec4\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u7fa4\u7ec4\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-        Member member = null;
-        if (memberArray != null) {
-            for (Member member2 : memberArray) {
-                if (StringHelper.compare((String)member2.getUsername(), (String)user.getUsername(), (boolean)false) != 0) continue;
-                member = member2;
-                break;
-            }
-        }
-        if (n == 3) {
-            if (member == null) {
-                return null;
-            }
-        } else if (member == null) {
-            n = 1;
-        } else {
-            n = 2;
-            if (member.getAccessLevel().value >= 50) {
-                return member;
-            }
-        }
-        HashMap hashMap = new HashMap();
-        String string3 = null;
-        if (n == 1) {
-            hashMap.put("user_id", Integer.toString(user.getId()));
-            hashMap.put("access_level", Integer.toString(n3));
-            if (!StringHelper.isNullOrEmpty((String)string2)) {
-                try {
-                    string3 = this.executePost(pSSVNServer, StringHelper.format((String)"projects/%1$s/members", (Object)string2), hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-                }
-                catch (Exception exception) {
-                    log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u9879\u76ee\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-                    throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u9879\u76ee\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-                }
-            }
-            try {
-                string3 = this.executePost(pSSVNServer, StringHelper.format((String)"groups/%1$s/members", (Object)string), hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-            }
-            catch (Exception exception) {
-                log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u7fa4\u7ec4\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-                throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u7fa4\u7ec4\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-            }
-            Member member3 = this.jacksonJson.unmarshal(Member.class, string3);
-            return member3;
-        }
-        if (n == 2) {
-            hashMap.put("access_level", Integer.toString(n3));
-            if (!StringHelper.isNullOrEmpty((String)string2)) {
-                try {
-                    string3 = this.executePut(pSSVNServer, StringHelper.format((String)"projects/%1$s/members/%2$s", (Object)string2, (Object)user.getId()), hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-                }
-                catch (Exception exception) {
-                    log.error((Object)StringHelper.format((String)"\u66f4\u65b0\u9879\u76ee\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-                    throw new Exception(StringHelper.format((String)"\u66f4\u65b0\u9879\u76ee\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-                }
-            }
-            try {
-                string3 = this.executePut(pSSVNServer, StringHelper.format((String)"groups/%1$s/members/%2$s", (Object)string, (Object)user.getId()), hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-            }
-            catch (Exception exception) {
-                log.error((Object)StringHelper.format((String)"\u66f4\u65b0\u7fa4\u7ec4\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-                throw new Exception(StringHelper.format((String)"\u66f4\u65b0\u7fa4\u7ec4\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-            }
-            Member member4 = this.jacksonJson.unmarshal(Member.class, string3);
-            return member4;
-        }
-        if (n == 3) {
-            if (!StringHelper.isNullOrEmpty((String)string2)) {
-                try {
-                    string3 = this.executeDelete(pSSVNServer, StringHelper.format((String)"projects/%1$s/members/%2$s", (Object)string2, (Object)user.getId()), hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-                }
-                catch (Exception exception) {
-                    log.error((Object)StringHelper.format((String)"\u5220\u9664\u9879\u76ee\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-                    throw new Exception(StringHelper.format((String)"\u5220\u9664\u9879\u76ee\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-                }
-            }
-            try {
-                string3 = this.executeDelete(pSSVNServer, StringHelper.format((String)"groups/%1$s/members/%2$s", (Object)string, (Object)user.getId()), hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-            }
-            catch (Exception exception) {
-                log.error((Object)StringHelper.format((String)"\u5220\u9664\u7fa4\u7ec4\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-                throw new Exception(StringHelper.format((String)"\u5220\u9664\u7fa4\u7ec4\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-            }
-            return null;
-        }
-        return null;
-    }
+         if (var15 == null) {
+            throw new Exception(StringHelper.format("仓库服务器不存在指定用户[%1$s]", var18));
+         }
 
-    protected Project[] listProjectsByPSDevSln(PSSVNServer pSSVNServer, Namespace namespace) throws Exception {
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        hashMap.put("per_page", "1000");
-        String string = this.executeGet(pSSVNServer, String.format("groups/%1$s/projects", namespace.getId()), hashMap, null);
-        Project[] projectArray = this.jacksonJson.unmarshal(Project[].class, string);
-        return projectArray;
-    }
-
-    protected Member[] listGroupMembers(PSSVNServer pSSVNServer, Object object) throws Exception {
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        hashMap.put("per_page", "1000");
-        String string = this.executeGet(pSSVNServer, String.format("groups/%1$s/members", object), hashMap, null);
-        Member[] memberArray = this.jacksonJson.unmarshal(Member[].class, string);
-        return memberArray;
-    }
-
-    protected Member[] listProjectMembers(PSSVNServer pSSVNServer, Object object) throws Exception {
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        hashMap.put("per_page", "1000");
-        String string = this.executeGet(pSSVNServer, String.format("projects/%1$s/members", object), hashMap, null);
-        Member[] memberArray = this.jacksonJson.unmarshal(Member[].class, string);
-        return memberArray;
-    }
-
-    protected Tag[] listTags(PSSVNServer pSSVNServer, String string) throws Exception {
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        hashMap.put("per_page", "1000");
-        String string2 = this.executeGet(pSSVNServer, String.format("projects/%1$s/repository/tags", string), hashMap, null);
-        Tag[] tagArray = this.jacksonJson.unmarshal(Tag[].class, string2);
-        return tagArray;
-    }
-
-    protected Namespace getNamespace(PSSVNServer pSSVNServer, Object object) throws Exception {
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        String string = this.executeGet(pSSVNServer, String.format("namespaces/%1$s", object), hashMap, null);
-        Namespace namespace = this.jacksonJson.unmarshal(Namespace.class, string);
-        if (namespace == null || namespace.getId() == null) {
-            return null;
-        }
-        return namespace;
-    }
-
-    @Override
-    public User getUserByPSDevUser(PSDevUser pSDevUser, boolean bl) throws Exception {
-        if (pSDevUser.getPSDevCenter() == null) {
-            throw new Exception(StringHelper.format((String)"\u4f20\u5165\u5f00\u53d1\u7528\u6237\u5e94\u7528\u4e2d\u5fc3\u65e0\u6548"));
-        }
-        if (pSDevUser.getPSDevCenter().getV6PSSvnInstRepo() == null) {
-            throw new Exception(StringHelper.format((String)"\u4f20\u5165\u5f00\u53d1\u7528\u6237\u5e94\u7528\u4e2d\u5fc3\u7248\u672c\u4ed3\u5e93\u65e0\u6548"));
-        }
-        String string = this.getUserNameByPSDevUser(pSDevUser);
-        PSSVNServer pSSVNServer = this.getPSSVNServer(pSDevUser.getPSDevCenter().getV6PSSvnInstRepo().getPSSVNServerId());
-        try {
-            User user = this.getUser(pSSVNServer, string);
-            if (user == null && !bl) {
-                throw new Exception(StringHelper.format((String)"\u4ed3\u5e93\u670d\u52a1\u5668\u4e0d\u5b58\u5728\u7528\u6237[%1$s]", (Object)pSDevUser.getLoginName()));
-            }
-            return user;
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u83b7\u53d6\u4ed3\u5e93\u670d\u52a1\u5668\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u83b7\u53d6\u4ed3\u5e93\u670d\u52a1\u5668\u7528\u6237\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-    }
-
-    protected User getUser(PSSVNServer pSSVNServer, Object object) throws Exception {
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        String string = this.executeGet(pSSVNServer, String.format("users?username=%1$s", object), hashMap, null);
-        User[] userArray = this.jacksonJson.unmarshal(User[].class, string);
-        if (userArray == null || userArray.length == 0) {
-            return null;
-        }
-        if (userArray[0].getId() == null) {
-            return null;
-        }
-        return userArray[0];
-    }
-
-    protected String getCurUserName(PSDevCenter pSDevCenter) {
-        if (pSDevCenter != null && PSDevCenterHelper.isLabDC(pSDevCenter)) {
-            return null;
-        }
-        if (WebContext.getCurrent() == null) {
-            return "@";
-        }
-        return WebContext.getCurrent().getCurLoginName();
-    }
-
-    protected boolean isAutoCreateUser(PSDevCenter pSDevCenter, PSDevUser pSDevUser) {
-        return pSDevCenter != null && PSDevCenterHelper.isLabDC(pSDevCenter);
-    }
-
-    protected String getUserNameByPSDevUser(PSDevUser pSDevUser) throws Exception {
-        String string = null;
-        if (StringHelper.isNullOrEmpty(string)) {
-            string = DataObject.getIntegerValue((Object)pSDevUser.getFromUserMode(), (Integer)0) == 1 ? pSDevUser.getFromLoginName() : pSDevUser.getLoginName();
-        }
-        if (StringHelper.compare(string, (String)"admin", (boolean)true) == 0 && StringHelper.compare((String)pSDevUser.getFullLoginName(), (String)"admin@demo.com", (boolean)true) == 0) {
-            string = "admin_demo_com";
-        }
-        return string;
-    }
-
-    @Override
-    public void removeGroupByPSDevSln(PSDevSln pSDevSln) throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
-
-    @Override
-    public void removeCodeProjectByPSDevSlnSys(PSDevSlnSys pSDevSlnSys) throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
-
-    @Override
-    public void removeModelProjectByPSDevSlnSys(PSDevSlnSys pSDevSlnSys) throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
-
-    @Override
-    public void removeProjectByPSDevSlnTempl(PSDevSlnTempl pSDevSlnTempl) throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
-
-    @Override
-    public Project moveCodeProjectByPSDevSlnSys(PSDevSlnSys pSDevSlnSys, PSDevSln pSDevSln) throws Exception {
-        PSDevCenterSVN pSDevCenterSVN = pSDevSlnSys.getPSDevCenterSVN();
-        if (pSDevCenterSVN != null) {
-            return this.moveProject(pSDevCenterSVN, pSDevSln);
-        }
-        return null;
-    }
-
-    @Override
-    public Project moveModelProjectByPSDevSlnSys(PSDevSlnSys pSDevSlnSys, PSDevSln pSDevSln) throws Exception {
-        PSDevCenterSVN pSDevCenterSVN = pSDevSlnSys.getModelPSDevCenterSVN();
-        if (pSDevCenterSVN != null) {
-            return this.moveProject(pSDevCenterSVN, pSDevSln);
-        }
-        return null;
-    }
-
-    @Override
-    public Project moveProjectByPSDevSlnTempl(PSDevSlnTempl pSDevSlnTempl, PSDevSln pSDevSln) throws Exception {
-        PSDevCenterSVN pSDevCenterSVN = pSDevSlnTempl.getPSDevCenterSVN();
-        if (pSDevCenterSVN != null) {
-            return this.moveProject(pSDevCenterSVN, pSDevSln);
-        }
-        return null;
-    }
-
-    protected Project moveProject(PSDevCenterSVN pSDevCenterSVN, PSDevSln pSDevSln) throws Exception {
-        String string = null;
-        String string2 = null;
-        if (pSDevSln.getPSDevCenterSVN() != null && pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
-            string = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-            string2 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        } else {
-            string = pSDevSln.getSlnTag();
-            string2 = pSDevSln.getSlnTag2();
-        }
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7248\u672c\u4ed3\u5e93", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7fa4\u7ec4\u6807\u8bc6", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        String string3 = null;
-        if (pSDevCenterSVN.getPSSVNInstRepo() != null) {
-            string3 = pSDevCenterSVN.getPSSVNInstRepo().getRepoTag2();
-            if (StringHelper.isNullOrEmpty((String)string3)) {
-                return null;
-            }
-            if (StringHelper.compare((String)pSDevCenterSVN.getPSSVNInstRepo().getRepoTag(), (String)string, (boolean)false) != 0) {
-                throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8de8\u7248\u672c\u4ed3\u5e93\u8f6c\u79fb\u7fa4\u7ec4"));
-            }
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string);
-        Namespace namespace = this.getNamespace(pSSVNServer, string2);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        hashMap.put("namespace", Integer.toString(namespace.getId()));
-        if (!StringHelper.isNullOrEmpty((String)string3)) {
-            String string4 = null;
-            try {
-                string4 = this.executePut(pSSVNServer, StringHelper.format((String)"projects/%1$s/transfer", (Object)string3), hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-            }
-            catch (Exception exception) {
-                log.error((Object)StringHelper.format((String)"\u66f4\u65b0\u9879\u76ee\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-                throw new Exception(StringHelper.format((String)"\u66f4\u65b0\u9879\u76ee\u6210\u5458\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-            }
-            Project project = this.jacksonJson.unmarshal(Project.class, string4);
-            return project;
-        }
-        return null;
-    }
-
-    @Override
-    public Project createProjectByPSDevSlnSysDynaInst(PSDevSln pSDevSln, PSDevSlnSysDynaInst pSDevSlnSysDynaInst, boolean bl) throws Exception {
-        String string = null;
-        String string2 = null;
-        if (pSDevSln.getPSDevCenterSVN() != null && pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
-            string = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-            string2 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        } else {
-            string = pSDevSln.getSlnTag();
-            string2 = pSDevSln.getSlnTag2();
-        }
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7248\u672c\u4ed3\u5e93", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7fa4\u7ec4\u6807\u8bc6", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string);
-        if (StringHelper.isNullOrEmpty((String)pSDevSlnSysDynaInst.getPPSDevSlnSysDynaInstId())) {
-            if (StringHelper.isNullOrEmpty((String)pSDevSlnSysDynaInst.getInstTag3())) {
-                if (StringHelper.isNullOrEmpty((String)pSDevSln.getSlnTag2())) {
-                    pSDevSln.setSlnTag2(string2);
-                }
-                this.createSubGroupByPSDevSlnSysDynaInst(pSDevSln, pSDevSlnSysDynaInst);
-            }
-            string2 = pSDevSlnSysDynaInst.getInstTag3();
-        } else {
-            string2 = pSDevSlnSysDynaInst.getPPSDevSlnSysDynaInst().getInstTag3();
-            pSDevSlnSysDynaInst.setInstTag3(string2);
-        }
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            throw new Exception(StringHelper.format((String)"\u52a8\u6001\u5b9e\u4f8b[%1$s]\u6ca1\u6709\u6307\u5b9a\u7fa4\u7ec4\u6807\u8bc6", (Object)pSDevSlnSysDynaInst.getPSDevSlnSysDynaInstName()));
-        }
-        Namespace namespace = this.getNamespace(pSSVNServer, string2);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        String string3 = (bl ? "Model" : "Cfg") + KeyValueHelper.genUniqueId((String)pSDevSlnSysDynaInst.getPSDevSlnSysDynaInstId(), (String)Long.toString(random.nextLong()), (String)Long.toString(System.currentTimeMillis()));
-        String string4 = pSDevSlnSysDynaInst.getPSDevSlnSysDynaInstName();
-        string4 = bl ? string4 + "\uff08\u6a21\u578b\uff09" : string4 + "\uff08\u914d\u7f6e\uff09";
-        if (StringHelper.isNullOrEmpty((String)string4)) {
-            string4 = string3;
-        }
-        hashMap.put("path", string3);
-        if (!StringHelper.isNullOrEmpty((String)string4)) {
-            hashMap.put("name", string4);
-        }
-        hashMap.put("namespace_id", Integer.toString(namespace.getId()));
-        hashMap.put("import_url", "");
-        hashMap.put("description", "");
-        hashMap.put("issues_enabled", "true");
-        hashMap.put("merge_requests_enabled", "true");
-        hashMap.put("wiki_enabled", "true");
-        hashMap.put("snippets_enabled", "true");
-        hashMap.put("visibility_level", "20");
-        String string5 = null;
-        try {
-            string5 = this.executePost(pSSVNServer, "projects", hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-        }
-        catch (Exception exception) {
-            if (bl) {
-                log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u52a8\u6001\u5b9e\u4f8b\u6a21\u578b\u9879\u76ee\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-                throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u52a8\u6001\u5b9e\u4f8b\u6a21\u578b\u9879\u76ee\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-            }
-            log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u52a8\u6001\u5b9e\u4f8b\u914d\u7f6e\u9879\u76ee\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u52a8\u6001\u5b9e\u4f8b\u914d\u7f6e\u9879\u76ee\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-        Project project = this.jacksonJson.unmarshal(Project.class, string5);
-        return project;
-    }
-
-    @Override
-    public Tag[] listTagsByPSDevSlnSysDynaInst(PSDevSlnSysDynaInst pSDevSlnSysDynaInst) throws Exception {
-        PSDevSln pSDevSln = pSDevSlnSysDynaInst.getPSDevSln();
-        if (pSDevSln == null) {
-            throw new Exception(StringHelper.format((String)"\u52a8\u6001\u5b9e\u4f8b\u6ca1\u6709\u6307\u5b9a\u5f00\u53d1\u65b9\u6848"));
-        }
-        String string = null;
-        String string2 = null;
-        if (pSDevSln.getPSDevCenterSVN() != null && pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
-            string = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-            string2 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        } else {
-            string = pSDevSln.getSlnTag();
-            string2 = pSDevSln.getSlnTag2();
-        }
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7248\u672c\u4ed3\u5e93", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7fa4\u7ec4\u6807\u8bc6", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string);
-        PSDevCenterSVN pSDevCenterSVN = pSDevSlnSysDynaInst.getModelPSDevCenterSVN();
-        if (pSDevCenterSVN == null || pSDevCenterSVN.getPSSVNInstRepo() == null) {
-            throw new Exception("\u52a8\u6001\u5b9e\u4f8b\u6a21\u578b\u4ed3\u5e93\u65e0\u6548");
-        }
-        String string3 = pSDevCenterSVN.getPSSVNInstRepo().getRepoTag2();
-        try {
-            return this.listTags(pSSVNServer, string3);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u67e5\u8be2\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u67e5\u8be2\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-    }
-
-    @Override
-    public Tag getTagByPSDevSlnSysDynaInstTag(PSDevSlnSysDynaInstTag pSDevSlnSysDynaInstTag) throws Exception {
-        PSDevSlnSysDynaInst pSDevSlnSysDynaInst = pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInst();
-        if (pSDevSlnSysDynaInst == null) {
-            throw new Exception(StringHelper.format((String)"\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u6ca1\u6709\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b"));
-        }
-        PSDevSln pSDevSln = pSDevSlnSysDynaInst.getPSDevSln();
-        if (pSDevSln == null) {
-            throw new Exception(StringHelper.format((String)"\u52a8\u6001\u5b9e\u4f8b\u6ca1\u6709\u6307\u5b9a\u5f00\u53d1\u65b9\u6848"));
-        }
-        String string = null;
-        String string2 = null;
-        if (pSDevSln.getPSDevCenterSVN() != null && pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
-            string = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-            string2 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        } else {
-            string = pSDevSln.getSlnTag();
-            string2 = pSDevSln.getSlnTag2();
-        }
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7248\u672c\u4ed3\u5e93", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7fa4\u7ec4\u6807\u8bc6", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string);
-        PSDevCenterSVN pSDevCenterSVN = pSDevSlnSysDynaInst.getModelPSDevCenterSVN();
-        if (pSDevCenterSVN == null || pSDevCenterSVN.getPSSVNInstRepo() == null) {
-            throw new Exception("\u52a8\u6001\u5b9e\u4f8b\u6a21\u578b\u4ed3\u5e93\u65e0\u6548");
-        }
-        String string3 = pSDevCenterSVN.getPSSVNInstRepo().getRepoTag2();
-        try {
-            HashMap<String, Object> hashMap = new HashMap<String, Object>();
-            String string4 = this.executeGet(pSSVNServer, String.format("projects/%1$s/repository/tags/%2$s", string3, pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstTagName()), hashMap, null);
-            Tag tag = this.jacksonJson.unmarshal(Tag.class, string4);
-            if (tag == null || tag.getName() == null) {
-                return null;
-            }
-            return tag;
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u83b7\u53d6\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u83b7\u53d6\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-    }
-
-    @Override
-    public Tag createTagByPSDevSlnSysDynaInstTag(PSDevSlnSysDynaInstTag pSDevSlnSysDynaInstTag) throws Exception {
-        PSDevSlnSysDynaInst pSDevSlnSysDynaInst = pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInst();
-        if (pSDevSlnSysDynaInst == null) {
-            throw new Exception(StringHelper.format((String)"\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u6ca1\u6709\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b"));
-        }
-        PSDevSln pSDevSln = pSDevSlnSysDynaInst.getPSDevSln();
-        if (pSDevSln == null) {
-            throw new Exception(StringHelper.format((String)"\u52a8\u6001\u5b9e\u4f8b\u6ca1\u6709\u6307\u5b9a\u5f00\u53d1\u65b9\u6848"));
-        }
-        String string = null;
-        String string2 = null;
-        if (pSDevSln.getPSDevCenterSVN() != null && pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
-            string = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-            string2 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        } else {
-            string = pSDevSln.getSlnTag();
-            string2 = pSDevSln.getSlnTag2();
-        }
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7248\u672c\u4ed3\u5e93", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7fa4\u7ec4\u6807\u8bc6", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string);
-        PSDevCenterSVN pSDevCenterSVN = pSDevSlnSysDynaInst.getModelPSDevCenterSVN();
-        if (pSDevCenterSVN == null || pSDevCenterSVN.getPSSVNInstRepo() == null) {
-            throw new Exception("\u52a8\u6001\u5b9e\u4f8b\u6a21\u578b\u4ed3\u5e93\u65e0\u6548");
-        }
-        String string3 = pSDevCenterSVN.getPSSVNInstRepo().getRepoTag2();
-        Tag[] tagArray = this.listTags(pSSVNServer, string3);
-        if (tagArray != null && tagArray.length > 0) {
-            for (Tag tag : tagArray) {
-                if (StringHelper.compare((String)tag.getName(), (String)pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstTagName(), (boolean)true) != 0) continue;
-                throw new Exception(StringHelper.format((String)"\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0[%1$s]\u5df2\u5b58\u5728", (Object)pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstTagName()));
-            }
-        }
-        Tag[] tagArray2 = new HashMap();
-        tagArray2.put("tag_name", pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstTagName());
-        tagArray2.put("ref", "master");
-        if (!StringHelper.isNullOrEmpty((String)pSDevSlnSysDynaInstTag.getMemo())) {
-            tagArray2.put("message", pSDevSlnSysDynaInstTag.getMemo());
-        }
-        String string4 = null;
-        try {
-            string4 = this.executePost(pSSVNServer, String.format("projects/%1$s/repository/tags", string3), (Map<String, Object>)tagArray2, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u5efa\u7acb\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-        Tag tag = this.jacksonJson.unmarshal(Tag.class, string4);
-        return tag;
-    }
-
-    @Override
-    public Tag updateTagByPSDevSlnSysDynaInstTag(PSDevSlnSysDynaInstTag pSDevSlnSysDynaInstTag) throws Exception {
-        return null;
-    }
-
-    @Override
-    public void removeTagByPSDevSlnSysDynaInstTag(PSDevSlnSysDynaInstTag pSDevSlnSysDynaInstTag) throws Exception {
-        PSDevSlnSysDynaInst pSDevSlnSysDynaInst = pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInst();
-        if (pSDevSlnSysDynaInst == null) {
-            throw new Exception(StringHelper.format((String)"\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u6ca1\u6709\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b"));
-        }
-        PSDevSln pSDevSln = pSDevSlnSysDynaInst.getPSDevSln();
-        if (pSDevSln == null) {
-            throw new Exception(StringHelper.format((String)"\u52a8\u6001\u5b9e\u4f8b\u6ca1\u6709\u6307\u5b9a\u5f00\u53d1\u65b9\u6848"));
-        }
-        String string = null;
-        String string2 = null;
-        if (pSDevSln.getPSDevCenterSVN() != null && pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
-            string = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-            string2 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        } else {
-            string = pSDevSln.getSlnTag();
-            string2 = pSDevSln.getSlnTag2();
-        }
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7248\u672c\u4ed3\u5e93", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7fa4\u7ec4\u6807\u8bc6", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string);
-        PSDevCenterSVN pSDevCenterSVN = pSDevSlnSysDynaInst.getModelPSDevCenterSVN();
-        if (pSDevCenterSVN == null || pSDevCenterSVN.getPSSVNInstRepo() == null) {
-            throw new Exception("\u52a8\u6001\u5b9e\u4f8b\u6a21\u578b\u4ed3\u5e93\u65e0\u6548");
-        }
-        String string3 = pSDevCenterSVN.getPSSVNInstRepo().getRepoTag2();
-        try {
-            HashMap<String, Object> hashMap = new HashMap<String, Object>();
-            String string4 = this.executeDelete(pSSVNServer, String.format("projects/%1$s/repository/tags/%2$s", string3, pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstTagName()), hashMap, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u5220\u9664\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u5220\u9664\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-    }
-
-    @Override
-    public void revertTagByPSDevSlnSysDynaInstTag(PSDevSlnSysDynaInstTag pSDevSlnSysDynaInstTag) throws Exception {
-        Object object;
-        Object object2;
-        PSDevSlnSysDynaInst pSDevSlnSysDynaInst = pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInst();
-        if (pSDevSlnSysDynaInst == null) {
-            throw new Exception(StringHelper.format((String)"\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u6ca1\u6709\u6307\u5b9a\u52a8\u6001\u5b9e\u4f8b"));
-        }
-        PSDevSln pSDevSln = pSDevSlnSysDynaInst.getPSDevSln();
-        if (pSDevSln == null) {
-            throw new Exception(StringHelper.format((String)"\u52a8\u6001\u5b9e\u4f8b\u6ca1\u6709\u6307\u5b9a\u5f00\u53d1\u65b9\u6848"));
-        }
-        String string = null;
-        String string2 = null;
-        if (pSDevSln.getPSDevCenterSVN() != null && pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
-            string = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-            string2 = pSDevSln.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        } else {
-            string = pSDevSln.getSlnTag();
-            string2 = pSDevSln.getSlnTag2();
-        }
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7248\u672c\u4ed3\u5e93", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u65b9\u6848[%1$s]\u6ca1\u6709\u6307\u5b9a\u7fa4\u7ec4\u6807\u8bc6", (Object)pSDevSln.getPSDevSlnName()));
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string);
-        PSDevCenterSVN pSDevCenterSVN = pSDevSlnSysDynaInst.getModelPSDevCenterSVN();
-        if (pSDevCenterSVN == null || pSDevCenterSVN.getPSSVNInstRepo() == null) {
-            throw new Exception("\u52a8\u6001\u5b9e\u4f8b\u6a21\u578b\u4ed3\u5e93\u65e0\u6548");
-        }
-        String string3 = pSDevCenterSVN.getPSSVNInstRepo().getRepoTag2();
-        Tag tag = null;
-        try {
-            object2 = new HashMap<String, Object>();
-            object = this.executeGet(pSSVNServer, String.format("projects/%1$s/repository/tags/%2$s", string3, pSDevSlnSysDynaInstTag.getPSDevSlnSysDynaInstTagName()), (Map<String, Object>)object2, null);
-            tag = this.jacksonJson.unmarshal(Tag.class, (String)object);
-            if (tag == null || tag.getCommit() == null || StringHelper.isNullOrEmpty((String)tag.getCommit().getId())) {
-                throw new Exception("\u6307\u5b9a\u6807\u8bb0\u65e0\u6548");
-            }
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u53cd\u505a\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u53cd\u505a\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-        object2 = null;
-        try {
-            object = new HashMap();
-            object.put("branch", "master");
-            object2 = this.executePost(pSSVNServer, String.format("projects/%1$s/repository/commits/%2$s/revert", string3, tag.getCommit().getId()), (Map<String, Object>)object, this.getCurUserName(pSDevSln.getPSDevCenter()), null);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u53cd\u505a\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            throw new Exception(StringHelper.format((String)"\u53cd\u505a\u52a8\u6001\u5b9e\u4f8b\u6807\u8bb0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-    }
-
-    @Override
-    public WikiPage getWikiPage(PSDevSlnSys pSDevSlnSys, String string, boolean bl) throws Exception {
-        if (pSDevSlnSys.getPSDevCenterSVN() == null || pSDevSlnSys.getPSDevCenterSVN().getPSSVNInstRepo() == null) {
-            if (bl) {
-                return null;
-            }
-            throw new Exception("\u5f00\u53d1\u7cfb\u7edf\u4ee3\u7801\u4ed3\u5e93\u65e0\u6548");
-        }
-        String string2 = pSDevSlnSys.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            if (bl) {
-                return null;
-            }
-            throw new Exception("\u5f00\u53d1\u7cfb\u7edf\u4ee3\u7801\u4ed3\u5e93\u6807\u8bc6\u65e0\u6548");
-        }
-        String string3 = pSDevSlnSys.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-        if (StringHelper.isNullOrEmpty((String)string3)) {
-            if (bl) {
-                return null;
-            }
-            throw new Exception("\u5f00\u53d1\u7cfb\u7edf\u4ee3\u7801\u4ed3\u5e93\u65e0\u6548");
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string3);
-        WikiPage wikiPage = null;
-        try {
-            HashMap<String, Object> hashMap = new HashMap<String, Object>();
-            String string4 = this.executeGet(pSSVNServer, String.format("projects/%1$s/wikis/%2$s", string2, URLEncoder.encode(string, "UTF-8")), hashMap, null, null);
-            wikiPage = this.jacksonJson.unmarshal(WikiPage.class, string4);
-            if (wikiPage == null) {
-                throw new Exception("\u6307\u5b9aWiki\u8def\u5f84\u65e0\u6548");
-            }
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u83b7\u53d6\u6307\u5b9aWiki\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            if (bl) {
-                return null;
-            }
-            throw new Exception(StringHelper.format((String)"\u83b7\u53d6\u6307\u5b9aWiki\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-        return wikiPage;
-    }
-
-    @Override
-    public void updateWikiPage(PSDevSlnSys pSDevSlnSys, String string, String string2, String string3, boolean bl) throws Exception {
-        String string4;
-        HashMap<String, Object> hashMap;
-        if (pSDevSlnSys.getPSDevCenterSVN() == null || pSDevSlnSys.getPSDevCenterSVN().getPSSVNInstRepo() == null) {
-            if (bl) {
-                return;
-            }
-            throw new Exception("\u5f00\u53d1\u7cfb\u7edf\u4ee3\u7801\u4ed3\u5e93\u65e0\u6548");
-        }
-        String string5 = pSDevSlnSys.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
-        if (StringHelper.isNullOrEmpty((String)string5)) {
-            if (bl) {
-                return;
-            }
-            throw new Exception("\u5f00\u53d1\u7cfb\u7edf\u4ee3\u7801\u4ed3\u5e93\u6807\u8bc6\u65e0\u6548");
-        }
-        String string6 = pSDevSlnSys.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
-        if (StringHelper.isNullOrEmpty((String)string6)) {
-            if (bl) {
-                return;
-            }
-            throw new Exception("\u5f00\u53d1\u7cfb\u7edf\u4ee3\u7801\u4ed3\u5e93\u65e0\u6548");
-        }
-        PSSVNServer pSSVNServer = this.getPSSVNServer(string6);
-        PSDevCenter pSDevCenter = pSDevSlnSys.getPSDevSln().getPSDevCenter();
-        WikiPage wikiPage = null;
-        try {
-            hashMap = new HashMap<String, Object>();
-            string4 = this.executeGet(pSSVNServer, String.format("projects/%1$s/wikis/%2$s", string5, URLEncoder.encode(string, "UTF-8")), hashMap, null, null);
-            wikiPage = this.jacksonJson.unmarshal(WikiPage.class, string4);
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u83b7\u53d6\u6307\u5b9aWiki\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-        }
-        try {
-            hashMap = new HashMap();
-            if (!StringHelper.isNullOrEmpty((String)string2)) {
-                hashMap.put("title", string2);
-            }
-            if (!StringHelper.isNullOrEmpty((String)string3)) {
-                hashMap.put("content", string3);
-            }
-            if (wikiPage == null) {
-                hashMap.put("title", string);
-                string4 = this.executePost(pSSVNServer, String.format("projects/%1$s/wikis", string5), hashMap, this.getCurUserName(pSDevCenter), null);
-                wikiPage = this.jacksonJson.unmarshal(WikiPage.class, string4);
+         int var16 = DataObject.getIntegerValue(var1.getAccMode(), SlnSysAccModeCodeListModel.READ);
+         if (PSDevCenterHelper.isLabDC(var13.getPSDevCenter())) {
+            if (PSDevCenterHelper.isLabDCRepoReadonly(var13.getPSDevCenter())) {
+               var16 = 1;
+            } else if ((var16 & 3) == 3) {
+               var16 = 3;
             } else {
-                hashMap.put("title", string);
-                string4 = this.executePut(pSSVNServer, String.format("projects/%1$s/wikis/%2$s", string5, URLEncoder.encode(string, "UTF-8")), hashMap, this.getCurUserName(pSDevCenter), null);
-                wikiPage = this.jacksonJson.unmarshal(WikiPage.class, string4);
+               var16 = 1;
             }
-        }
-        catch (Exception exception) {
-            log.error((Object)StringHelper.format((String)"\u66f4\u65b0\u6307\u5b9aWiki\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
-            if (bl) {
-                return;
+         }
+
+         if (var5) {
+            var16 = 1;
+         }
+
+         if (!StringHelper.isNullOrEmpty(var6)) {
+            var12 = var6;
+         }
+
+         if (StringHelper.isNullOrEmpty(var7) && StringHelper.isNullOrEmpty(var8)) {
+            return this.dealMember(var14, var13, var2, var12, null, var15, var16);
+         }
+
+         if (!StringHelper.isNullOrEmpty(var9)) {
+            this.dealMember(var14, var13, var2, var12, var9, var15, var16);
+         }
+
+         if (!StringHelper.isNullOrEmpty(var10)) {
+            this.dealMember(var14, var13, var2, var12, var10, var15, var16);
+         }
+
+         if (!StringHelper.isNullOrEmpty(var8)) {
+            this.dealMember(var14, var13, var2, var12, var8, var15, var16);
+         }
+
+         return this.dealMember(var14, var13, var2, var12, var7, var15, var16);
+      } else {
+         throw new Exception("传入开发方案用户不正确，开发方案无效");
+      }
+   }
+
+   protected Member dealMember(PSSVNServer var1, PSDevSln var2, int var3, String var4, String var5, User var6, int var7) throws Exception {
+      Integer var8 = 0;
+      switch (var7) {
+         case 1:
+            var8 = 20;
+            break;
+         case 3:
+            var8 = 30;
+            break;
+         case 7:
+            var8 = 40;
+            break;
+         default:
+            throw new Exception(StringHelper.format("无法识别的访问模式[%1$s]", var7));
+      }
+
+      Member[] var9 = null;
+      if (!StringHelper.isNullOrEmpty(var5)) {
+         try {
+            var9 = this.listProjectMembers(var1, var5);
+         } catch (Exception var22) {
+            log.error(StringHelper.format("查询项目成员发生异常，%1$s", var22.getMessage()), var22);
+            throw new Exception(StringHelper.format("查询项目成员发生异常，%1$s", var22.getMessage()), var22);
+         }
+      } else {
+         try {
+            var9 = this.listGroupMembers(var1, var4);
+         } catch (Exception var21) {
+            log.error(StringHelper.format("查询群组成员发生异常，%1$s", var21.getMessage()), var21);
+            throw new Exception(StringHelper.format("查询群组成员发生异常，%1$s", var21.getMessage()), var21);
+         }
+      }
+
+      Member var10 = null;
+      if (var9 != null) {
+         for (Member var14 : var9) {
+            if (StringHelper.compare(var14.getUsername(), var6.getUsername(), false) == 0) {
+               var10 = var14;
+               break;
             }
-            throw new Exception(StringHelper.format((String)"\u66f4\u65b0\u6307\u5b9aWiki\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-        }
-    }
+         }
+      }
+
+      if (var3 == 3) {
+         if (var10 == null) {
+            return null;
+         }
+      } else if (var10 == null) {
+         var3 = 1;
+      } else {
+         var3 = 2;
+         if (var10.getAccessLevel().value >= 50) {
+            return var10;
+         }
+      }
+
+      HashMap var25 = new HashMap();
+      String var26 = null;
+      if (var3 == 1) {
+         var25.put("user_id", Integer.toString(var6.getId()));
+         var25.put("access_level", Integer.toString(var8));
+         if (!StringHelper.isNullOrEmpty(var5)) {
+            try {
+               var26 = this.executePost(var1, StringHelper.format("projects/%1$s/members", var5), var25, this.getCurUserName(var2.getPSDevCenter()), null);
+            } catch (Exception var16) {
+               log.error(StringHelper.format("建立项目成员发生异常，%1$s", var16.getMessage()), var16);
+               throw new Exception(StringHelper.format("建立项目成员发生异常，%1$s", var16.getMessage()), var16);
+            }
+         } else {
+            try {
+               var26 = this.executePost(var1, StringHelper.format("groups/%1$s/members", var4), var25, this.getCurUserName(var2.getPSDevCenter()), null);
+            } catch (Exception var15) {
+               log.error(StringHelper.format("建立群组成员发生异常，%1$s", var15.getMessage()), var15);
+               throw new Exception(StringHelper.format("建立群组成员发生异常，%1$s", var15.getMessage()), var15);
+            }
+         }
+
+         return this.jacksonJson.unmarshal(Member.class, var26);
+      } else if (var3 == 2) {
+         var25.put("access_level", Integer.toString(var8));
+         if (!StringHelper.isNullOrEmpty(var5)) {
+            try {
+               var26 = this.executePut(
+                  var1, StringHelper.format("projects/%1$s/members/%2$s", var5, var6.getId()), var25, this.getCurUserName(var2.getPSDevCenter()), null
+               );
+            } catch (Exception var18) {
+               log.error(StringHelper.format("更新项目成员发生异常，%1$s", var18.getMessage()), var18);
+               throw new Exception(StringHelper.format("更新项目成员发生异常，%1$s", var18.getMessage()), var18);
+            }
+         } else {
+            try {
+               var26 = this.executePut(
+                  var1, StringHelper.format("groups/%1$s/members/%2$s", var4, var6.getId()), var25, this.getCurUserName(var2.getPSDevCenter()), null
+               );
+            } catch (Exception var17) {
+               log.error(StringHelper.format("更新群组成员发生异常，%1$s", var17.getMessage()), var17);
+               throw new Exception(StringHelper.format("更新群组成员发生异常，%1$s", var17.getMessage()), var17);
+            }
+         }
+
+         return this.jacksonJson.unmarshal(Member.class, var26);
+      } else if (var3 == 3) {
+         if (!StringHelper.isNullOrEmpty(var5)) {
+            try {
+               var26 = this.executeDelete(
+                  var1, StringHelper.format("projects/%1$s/members/%2$s", var5, var6.getId()), var25, this.getCurUserName(var2.getPSDevCenter()), null
+               );
+            } catch (Exception var20) {
+               log.error(StringHelper.format("删除项目成员发生异常，%1$s", var20.getMessage()), var20);
+               throw new Exception(StringHelper.format("删除项目成员发生异常，%1$s", var20.getMessage()), var20);
+            }
+         } else {
+            try {
+               var26 = this.executeDelete(
+                  var1, StringHelper.format("groups/%1$s/members/%2$s", var4, var6.getId()), var25, this.getCurUserName(var2.getPSDevCenter()), null
+               );
+            } catch (Exception var19) {
+               log.error(StringHelper.format("删除群组成员发生异常，%1$s", var19.getMessage()), var19);
+               throw new Exception(StringHelper.format("删除群组成员发生异常，%1$s", var19.getMessage()), var19);
+            }
+         }
+
+         return null;
+      } else {
+         return null;
+      }
+   }
+
+   protected Project[] listProjectsByPSDevSln(PSSVNServer var1, Namespace var2) throws Exception {
+      HashMap var3 = new HashMap();
+      var3.put("per_page", "1000");
+      String var4 = this.executeGet(var1, String.format("groups/%1$s/projects", var2.getId()), var3, null);
+      return this.jacksonJson.unmarshal(Project[].class, var4);
+   }
+
+   protected Member[] listGroupMembers(PSSVNServer var1, Object var2) throws Exception {
+      HashMap var3 = new HashMap();
+      var3.put("per_page", "1000");
+      String var4 = this.executeGet(var1, String.format("groups/%1$s/members", var2), var3, null);
+      return this.jacksonJson.unmarshal(Member[].class, var4);
+   }
+
+   protected Member[] listProjectMembers(PSSVNServer var1, Object var2) throws Exception {
+      HashMap var3 = new HashMap();
+      var3.put("per_page", "1000");
+      String var4 = this.executeGet(var1, String.format("projects/%1$s/members", var2), var3, null);
+      return this.jacksonJson.unmarshal(Member[].class, var4);
+   }
+
+   protected Tag[] listTags(PSSVNServer var1, String var2) throws Exception {
+      HashMap var3 = new HashMap();
+      var3.put("per_page", "1000");
+      String var4 = this.executeGet(var1, String.format("projects/%1$s/repository/tags", var2), var3, null);
+      return this.jacksonJson.unmarshal(Tag[].class, var4);
+   }
+
+   protected Namespace getNamespace(PSSVNServer var1, Object var2) throws Exception {
+      HashMap var3 = new HashMap();
+      String var4 = this.executeGet(var1, String.format("namespaces/%1$s", var2), var3, null);
+      Namespace var5 = this.jacksonJson.unmarshal(Namespace.class, var4);
+      return var5 != null && var5.getId() != null ? var5 : null;
+   }
+
+   @Override
+   public User getUserByPSDevUser(PSDevUser var1, boolean var2) throws Exception {
+      if (var1.getPSDevCenter() == null) {
+         throw new Exception(StringHelper.format("传入开发用户应用中心无效"));
+      }
+
+      if (var1.getPSDevCenter().getV6PSSvnInstRepo() == null) {
+         throw new Exception(StringHelper.format("传入开发用户应用中心版本仓库无效"));
+      }
+
+      String var3 = this.getUserNameByPSDevUser(var1);
+      PSSVNServer var4 = this.getPSSVNServer(var1.getPSDevCenter().getV6PSSvnInstRepo().getPSSVNServerId());
+
+      try {
+         User var5 = this.getUser(var4, var3);
+         if (var5 == null && !var2) {
+            throw new Exception(StringHelper.format("仓库服务器不存在用户[%1$s]", var1.getLoginName()));
+         } else {
+            return var5;
+         }
+      } catch (Exception var6) {
+         log.error(StringHelper.format("获取仓库服务器用户发生异常，%1$s", var6.getMessage()), var6);
+         throw new Exception(StringHelper.format("获取仓库服务器用户发生异常，%1$s", var6.getMessage()), var6);
+      }
+   }
+
+   protected User getUser(PSSVNServer var1, Object var2) throws Exception {
+      HashMap var3 = new HashMap();
+      String var4 = this.executeGet(var1, String.format("users?username=%1$s", var2), var3, null);
+      User[] var5 = this.jacksonJson.unmarshal(User[].class, var4);
+      if (var5 == null || var5.length == 0) {
+         return null;
+      } else {
+         return var5[0].getId() == null ? null : var5[0];
+      }
+   }
+
+   protected String getCurUserName(PSDevCenter var1) {
+      if (var1 != null && PSDevCenterHelper.isLabDC(var1)) {
+         return null;
+      } else {
+         return WebContext.getCurrent() == null ? "@" : WebContext.getCurrent().getCurLoginName();
+      }
+   }
+
+   protected boolean isAutoCreateUser(PSDevCenter var1, PSDevUser var2) {
+      return var1 != null && PSDevCenterHelper.isLabDC(var1);
+   }
+
+   protected String getUserNameByPSDevUser(PSDevUser var1) throws Exception {
+      String var2 = null;
+      if (StringHelper.isNullOrEmpty(var2)) {
+         if (DataObject.getIntegerValue(var1.getFromUserMode(), 0) == 1) {
+            var2 = var1.getFromLoginName();
+         } else {
+            var2 = var1.getLoginName();
+         }
+      }
+
+      if (StringHelper.compare(var2, "admin", true) == 0 && StringHelper.compare(var1.getFullLoginName(), "admin@demo.com", true) == 0) {
+         var2 = "admin_demo_com";
+      }
+
+      return var2;
+   }
+
+   @Override
+   public void removeGroupByPSDevSln(PSDevSln var1) throws Exception {
+      throw new Exception("没有实现");
+   }
+
+   @Override
+   public void removeCodeProjectByPSDevSlnSys(PSDevSlnSys var1) throws Exception {
+      throw new Exception("没有实现");
+   }
+
+   @Override
+   public void removeModelProjectByPSDevSlnSys(PSDevSlnSys var1) throws Exception {
+      throw new Exception("没有实现");
+   }
+
+   @Override
+   public void removeProjectByPSDevSlnTempl(PSDevSlnTempl var1) throws Exception {
+      throw new Exception("没有实现");
+   }
+
+   @Override
+   public Project moveCodeProjectByPSDevSlnSys(PSDevSlnSys var1, PSDevSln var2) throws Exception {
+      PSDevCenterSVN var3 = var1.getPSDevCenterSVN();
+      return var3 != null ? this.moveProject(var3, var2) : null;
+   }
+
+   @Override
+   public Project moveModelProjectByPSDevSlnSys(PSDevSlnSys var1, PSDevSln var2) throws Exception {
+      PSDevCenterSVN var3 = var1.getModelPSDevCenterSVN();
+      return var3 != null ? this.moveProject(var3, var2) : null;
+   }
+
+   @Override
+   public Project moveProjectByPSDevSlnTempl(PSDevSlnTempl var1, PSDevSln var2) throws Exception {
+      PSDevCenterSVN var3 = var1.getPSDevCenterSVN();
+      return var3 != null ? this.moveProject(var3, var2) : null;
+   }
+
+   protected Project moveProject(PSDevCenterSVN var1, PSDevSln var2) throws Exception {
+      String var3 = null;
+      String var4 = null;
+      if (var2.getPSDevCenterSVN() != null && var2.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+         var3 = var2.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+         var4 = var2.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+      } else {
+         var3 = var2.getSlnTag();
+         var4 = var2.getSlnTag2();
+      }
+
+      if (StringHelper.isNullOrEmpty(var3)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定版本仓库", var2.getPSDevSlnName()));
+      }
+
+      if (StringHelper.isNullOrEmpty(var4)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定群组标识", var2.getPSDevSlnName()));
+      }
+
+      String var5 = null;
+      if (var1.getPSSVNInstRepo() != null) {
+         var5 = var1.getPSSVNInstRepo().getRepoTag2();
+         if (StringHelper.isNullOrEmpty(var5)) {
+            return null;
+         }
+
+         if (StringHelper.compare(var1.getPSSVNInstRepo().getRepoTag(), var3, false) != 0) {
+            throw new Exception(StringHelper.format("无法跨版本仓库转移群组"));
+         }
+      }
+
+      PSSVNServer var6 = this.getPSSVNServer(var3);
+      Namespace var7 = this.getNamespace(var6, var4);
+      HashMap var8 = new HashMap();
+      var8.put("namespace", Integer.toString(var7.getId()));
+      if (!StringHelper.isNullOrEmpty(var5)) {
+         String var9 = null;
+
+         try {
+            var9 = this.executePut(var6, StringHelper.format("projects/%1$s/transfer", var5), var8, this.getCurUserName(var2.getPSDevCenter()), null);
+         } catch (Exception var11) {
+            log.error(StringHelper.format("更新项目成员发生异常，%1$s", var11.getMessage()), var11);
+            throw new Exception(StringHelper.format("更新项目成员发生异常，%1$s", var11.getMessage()), var11);
+         }
+
+         return this.jacksonJson.unmarshal(Project.class, var9);
+      } else {
+         return null;
+      }
+   }
+
+   @Override
+   public Project createProjectByPSDevSlnSysDynaInst(PSDevSln var1, PSDevSlnSysDynaInst var2, boolean var3) throws Exception {
+      String var4 = null;
+      String var5 = null;
+      if (var1.getPSDevCenterSVN() != null && var1.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+         var4 = var1.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+         var5 = var1.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+      } else {
+         var4 = var1.getSlnTag();
+         var5 = var1.getSlnTag2();
+      }
+
+      if (StringHelper.isNullOrEmpty(var4)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定版本仓库", var1.getPSDevSlnName()));
+      }
+
+      if (StringHelper.isNullOrEmpty(var5)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定群组标识", var1.getPSDevSlnName()));
+      }
+
+      PSSVNServer var6 = this.getPSSVNServer(var4);
+      if (StringHelper.isNullOrEmpty(var2.getPPSDevSlnSysDynaInstId())) {
+         if (StringHelper.isNullOrEmpty(var2.getInstTag3())) {
+            if (StringHelper.isNullOrEmpty(var1.getSlnTag2())) {
+               var1.setSlnTag2(var5);
+            }
+
+            this.createSubGroupByPSDevSlnSysDynaInst(var1, var2);
+         }
+
+         var5 = var2.getInstTag3();
+      } else {
+         var5 = var2.getPPSDevSlnSysDynaInst().getInstTag3();
+         var2.setInstTag3(var5);
+      }
+
+      if (StringHelper.isNullOrEmpty(var5)) {
+         throw new Exception(StringHelper.format("动态实例[%1$s]没有指定群组标识", var2.getPSDevSlnSysDynaInstName()));
+      }
+
+      Namespace var7 = this.getNamespace(var6, var5);
+      HashMap var8 = new HashMap();
+      String var9 = (var3 ? "Model" : "Cfg")
+         + KeyValueHelper.genUniqueId(var2.getPSDevSlnSysDynaInstId(), Long.toString(random.nextLong()), Long.toString(System.currentTimeMillis()));
+      String var10 = var2.getPSDevSlnSysDynaInstName();
+      if (var3) {
+         var10 = var10 + "（模型）";
+      } else {
+         var10 = var10 + "（配置）";
+      }
+
+      if (StringHelper.isNullOrEmpty(var10)) {
+         var10 = var9;
+      }
+
+      var8.put("path", var9);
+      if (!StringHelper.isNullOrEmpty(var10)) {
+         var8.put("name", var10);
+      }
+
+      var8.put("namespace_id", Integer.toString(var7.getId()));
+      var8.put("import_url", "");
+      var8.put("description", "");
+      var8.put("issues_enabled", "true");
+      var8.put("merge_requests_enabled", "true");
+      var8.put("wiki_enabled", "true");
+      var8.put("snippets_enabled", "true");
+      var8.put("visibility_level", "20");
+      String var11 = null;
+
+      try {
+         var11 = this.executePost(var6, "projects", var8, this.getCurUserName(var1.getPSDevCenter()), null);
+      } catch (Exception var13) {
+         if (var3) {
+            log.error(StringHelper.format("建立动态实例模型项目发生异常，%1$s", var13.getMessage()), var13);
+            throw new Exception(StringHelper.format("建立动态实例模型项目发生异常，%1$s", var13.getMessage()), var13);
+         }
+
+         log.error(StringHelper.format("建立动态实例配置项目发生异常，%1$s", var13.getMessage()), var13);
+         throw new Exception(StringHelper.format("建立动态实例配置项目发生异常，%1$s", var13.getMessage()), var13);
+      }
+
+      return this.jacksonJson.unmarshal(Project.class, var11);
+   }
+
+   @Override
+   public Tag[] listTagsByPSDevSlnSysDynaInst(PSDevSlnSysDynaInst var1) throws Exception {
+      PSDevSln var2 = var1.getPSDevSln();
+      if (var2 == null) {
+         throw new Exception(StringHelper.format("动态实例没有指定开发方案"));
+      }
+
+      String var3 = null;
+      String var4 = null;
+      if (var2.getPSDevCenterSVN() != null && var2.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+         var3 = var2.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+         var4 = var2.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+      } else {
+         var3 = var2.getSlnTag();
+         var4 = var2.getSlnTag2();
+      }
+
+      if (StringHelper.isNullOrEmpty(var3)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定版本仓库", var2.getPSDevSlnName()));
+      }
+
+      if (StringHelper.isNullOrEmpty(var4)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定群组标识", var2.getPSDevSlnName()));
+      }
+
+      PSSVNServer var5 = this.getPSSVNServer(var3);
+      PSDevCenterSVN var6 = var1.getModelPSDevCenterSVN();
+      if (var6 != null && var6.getPSSVNInstRepo() != null) {
+         String var7 = var6.getPSSVNInstRepo().getRepoTag2();
+
+         try {
+            return this.listTags(var5, var7);
+         } catch (Exception var9) {
+            log.error(StringHelper.format("查询动态实例标记发生异常，%1$s", var9.getMessage()), var9);
+            throw new Exception(StringHelper.format("查询动态实例标记发生异常，%1$s", var9.getMessage()), var9);
+         }
+      } else {
+         throw new Exception("动态实例模型仓库无效");
+      }
+   }
+
+   @Override
+   public Tag getTagByPSDevSlnSysDynaInstTag(PSDevSlnSysDynaInstTag var1) throws Exception {
+      PSDevSlnSysDynaInst var2 = var1.getPSDevSlnSysDynaInst();
+      if (var2 == null) {
+         throw new Exception(StringHelper.format("动态实例标记没有指定动态实例"));
+      }
+
+      PSDevSln var3 = var2.getPSDevSln();
+      if (var3 == null) {
+         throw new Exception(StringHelper.format("动态实例没有指定开发方案"));
+      }
+
+      String var4 = null;
+      String var5 = null;
+      if (var3.getPSDevCenterSVN() != null && var3.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+         var4 = var3.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+         var5 = var3.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+      } else {
+         var4 = var3.getSlnTag();
+         var5 = var3.getSlnTag2();
+      }
+
+      if (StringHelper.isNullOrEmpty(var4)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定版本仓库", var3.getPSDevSlnName()));
+      }
+
+      if (StringHelper.isNullOrEmpty(var5)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定群组标识", var3.getPSDevSlnName()));
+      }
+
+      PSSVNServer var6 = this.getPSSVNServer(var4);
+      PSDevCenterSVN var7 = var2.getModelPSDevCenterSVN();
+      if (var7 != null && var7.getPSSVNInstRepo() != null) {
+         String var8 = var7.getPSSVNInstRepo().getRepoTag2();
+
+         try {
+            HashMap var9 = new HashMap();
+            String var10 = this.executeGet(var6, String.format("projects/%1$s/repository/tags/%2$s", var8, var1.getPSDevSlnSysDynaInstTagName()), var9, null);
+            Tag var11 = this.jacksonJson.unmarshal(Tag.class, var10);
+            return var11 != null && var11.getName() != null ? var11 : null;
+         } catch (Exception var12) {
+            log.error(StringHelper.format("获取动态实例标记发生异常，%1$s", var12.getMessage()), var12);
+            throw new Exception(StringHelper.format("获取动态实例标记发生异常，%1$s", var12.getMessage()), var12);
+         }
+      } else {
+         throw new Exception("动态实例模型仓库无效");
+      }
+   }
+
+   @Override
+   public Tag createTagByPSDevSlnSysDynaInstTag(PSDevSlnSysDynaInstTag var1) throws Exception {
+      PSDevSlnSysDynaInst var2 = var1.getPSDevSlnSysDynaInst();
+      if (var2 == null) {
+         throw new Exception(StringHelper.format("动态实例标记没有指定动态实例"));
+      }
+
+      PSDevSln var3 = var2.getPSDevSln();
+      if (var3 == null) {
+         throw new Exception(StringHelper.format("动态实例没有指定开发方案"));
+      }
+
+      String var4 = null;
+      String var5 = null;
+      if (var3.getPSDevCenterSVN() != null && var3.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+         var4 = var3.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+         var5 = var3.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+      } else {
+         var4 = var3.getSlnTag();
+         var5 = var3.getSlnTag2();
+      }
+
+      if (StringHelper.isNullOrEmpty(var4)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定版本仓库", var3.getPSDevSlnName()));
+      }
+
+      if (StringHelper.isNullOrEmpty(var5)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定群组标识", var3.getPSDevSlnName()));
+      }
+
+      PSSVNServer var6 = this.getPSSVNServer(var4);
+      PSDevCenterSVN var7 = var2.getModelPSDevCenterSVN();
+      if (var7 != null && var7.getPSSVNInstRepo() != null) {
+         String var8 = var7.getPSSVNInstRepo().getRepoTag2();
+         Tag[] var9 = this.listTags(var6, var8);
+         if (var9 != null && var9.length > 0) {
+            for (Tag var13 : var9) {
+               if (StringHelper.compare(var13.getName(), var1.getPSDevSlnSysDynaInstTagName(), true) == 0) {
+                  throw new Exception(StringHelper.format("动态实例标记[%1$s]已存在", var1.getPSDevSlnSysDynaInstTagName()));
+               }
+            }
+         }
+
+         HashMap var17 = new HashMap();
+         var17.put("tag_name", var1.getPSDevSlnSysDynaInstTagName());
+         var17.put("ref", "master");
+         if (!StringHelper.isNullOrEmpty(var1.getMemo())) {
+            var17.put("message", var1.getMemo());
+         }
+
+         String var18 = null;
+
+         try {
+            var18 = this.executePost(var6, String.format("projects/%1$s/repository/tags", var8), var17, this.getCurUserName(var3.getPSDevCenter()), null);
+         } catch (Exception var14) {
+            log.error(StringHelper.format("建立动态实例标记发生异常，%1$s", var14.getMessage()), var14);
+            throw new Exception(StringHelper.format("建立动态实例标记发生异常，%1$s", var14.getMessage()), var14);
+         }
+
+         return this.jacksonJson.unmarshal(Tag.class, var18);
+      } else {
+         throw new Exception("动态实例模型仓库无效");
+      }
+   }
+
+   @Override
+   public Tag updateTagByPSDevSlnSysDynaInstTag(PSDevSlnSysDynaInstTag var1) throws Exception {
+      return null;
+   }
+
+   @Override
+   public void removeTagByPSDevSlnSysDynaInstTag(PSDevSlnSysDynaInstTag var1) throws Exception {
+      PSDevSlnSysDynaInst var2 = var1.getPSDevSlnSysDynaInst();
+      if (var2 == null) {
+         throw new Exception(StringHelper.format("动态实例标记没有指定动态实例"));
+      }
+
+      PSDevSln var3 = var2.getPSDevSln();
+      if (var3 == null) {
+         throw new Exception(StringHelper.format("动态实例没有指定开发方案"));
+      }
+
+      String var4 = null;
+      String var5 = null;
+      if (var3.getPSDevCenterSVN() != null && var3.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+         var4 = var3.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+         var5 = var3.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+      } else {
+         var4 = var3.getSlnTag();
+         var5 = var3.getSlnTag2();
+      }
+
+      if (StringHelper.isNullOrEmpty(var4)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定版本仓库", var3.getPSDevSlnName()));
+      }
+
+      if (StringHelper.isNullOrEmpty(var5)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定群组标识", var3.getPSDevSlnName()));
+      }
+
+      PSSVNServer var6 = this.getPSSVNServer(var4);
+      PSDevCenterSVN var7 = var2.getModelPSDevCenterSVN();
+      if (var7 != null && var7.getPSSVNInstRepo() != null) {
+         String var8 = var7.getPSSVNInstRepo().getRepoTag2();
+
+         try {
+            HashMap var9 = new HashMap();
+            String var10 = this.executeDelete(
+               var6,
+               String.format("projects/%1$s/repository/tags/%2$s", var8, var1.getPSDevSlnSysDynaInstTagName()),
+               var9,
+               this.getCurUserName(var3.getPSDevCenter()),
+               null
+            );
+         } catch (Exception var11) {
+            log.error(StringHelper.format("删除动态实例标记发生异常，%1$s", var11.getMessage()), var11);
+            throw new Exception(StringHelper.format("删除动态实例标记发生异常，%1$s", var11.getMessage()), var11);
+         }
+      } else {
+         throw new Exception("动态实例模型仓库无效");
+      }
+   }
+
+   @Override
+   public void revertTagByPSDevSlnSysDynaInstTag(PSDevSlnSysDynaInstTag var1) throws Exception {
+      PSDevSlnSysDynaInst var2 = var1.getPSDevSlnSysDynaInst();
+      if (var2 == null) {
+         throw new Exception(StringHelper.format("动态实例标记没有指定动态实例"));
+      }
+
+      PSDevSln var3 = var2.getPSDevSln();
+      if (var3 == null) {
+         throw new Exception(StringHelper.format("动态实例没有指定开发方案"));
+      }
+
+      String var4 = null;
+      String var5 = null;
+      if (var3.getPSDevCenterSVN() != null && var3.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+         var4 = var3.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+         var5 = var3.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+      } else {
+         var4 = var3.getSlnTag();
+         var5 = var3.getSlnTag2();
+      }
+
+      if (StringHelper.isNullOrEmpty(var4)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定版本仓库", var3.getPSDevSlnName()));
+      }
+
+      if (StringHelper.isNullOrEmpty(var5)) {
+         throw new Exception(StringHelper.format("开发方案[%1$s]没有指定群组标识", var3.getPSDevSlnName()));
+      }
+
+      PSSVNServer var6 = this.getPSSVNServer(var4);
+      PSDevCenterSVN var7 = var2.getModelPSDevCenterSVN();
+      if (var7 != null && var7.getPSSVNInstRepo() != null) {
+         String var8 = var7.getPSSVNInstRepo().getRepoTag2();
+         Tag var9 = null;
+
+         try {
+            HashMap var10 = new HashMap();
+            String var11 = this.executeGet(var6, String.format("projects/%1$s/repository/tags/%2$s", var8, var1.getPSDevSlnSysDynaInstTagName()), var10, null);
+            var9 = this.jacksonJson.unmarshal(Tag.class, var11);
+            if (var9 == null || var9.getCommit() == null || StringHelper.isNullOrEmpty(var9.getCommit().getId())) {
+               throw new Exception("指定标记无效");
+            }
+         } catch (Exception var13) {
+            log.error(StringHelper.format("反做动态实例标记发生异常，%1$s", var13.getMessage()), var13);
+            throw new Exception(StringHelper.format("反做动态实例标记发生异常，%1$s", var13.getMessage()), var13);
+         }
+
+         Object var17 = null;
+
+         try {
+            HashMap var19 = new HashMap();
+            var19.put("branch", "master");
+            var17 = this.executePost(
+               var6,
+               String.format("projects/%1$s/repository/commits/%2$s/revert", var8, var9.getCommit().getId()),
+               var19,
+               this.getCurUserName(var3.getPSDevCenter()),
+               null
+            );
+         } catch (Exception var12) {
+            log.error(StringHelper.format("反做动态实例标记发生异常，%1$s", var12.getMessage()), var12);
+            throw new Exception(StringHelper.format("反做动态实例标记发生异常，%1$s", var12.getMessage()), var12);
+         }
+      } else {
+         throw new Exception("动态实例模型仓库无效");
+      }
+   }
+
+   @Override
+   public WikiPage getWikiPage(PSDevSlnSys var1, String var2, boolean var3) throws Exception {
+      if (var1.getPSDevCenterSVN() != null && var1.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+         String var4 = var1.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+         if (!StringHelper.isNullOrEmpty(var4)) {
+            String var5 = var1.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+            if (!StringHelper.isNullOrEmpty(var5)) {
+               PSSVNServer var6 = this.getPSSVNServer(var5);
+               WikiPage var7 = null;
+
+               try {
+                  HashMap var8 = new HashMap();
+                  String var9 = this.executeGet(var6, String.format("projects/%1$s/wikis/%2$s", var4, URLEncoder.encode(var2, "UTF-8")), var8, null, null);
+                  var7 = this.jacksonJson.unmarshal(WikiPage.class, var9);
+                  if (var7 == null) {
+                     throw new Exception("指定Wiki路径无效");
+                  } else {
+                     return var7;
+                  }
+               } catch (Exception var10) {
+                  log.error(StringHelper.format("获取指定Wiki发生异常，%1$s", var10.getMessage()), var10);
+                  if (var3) {
+                     return null;
+                  } else {
+                     throw new Exception(StringHelper.format("获取指定Wiki发生异常，%1$s", var10.getMessage()), var10);
+                  }
+               }
+            } else if (var3) {
+               return null;
+            } else {
+               throw new Exception("开发系统代码仓库无效");
+            }
+         } else if (var3) {
+            return null;
+         } else {
+            throw new Exception("开发系统代码仓库标识无效");
+         }
+      } else if (var3) {
+         return null;
+      } else {
+         throw new Exception("开发系统代码仓库无效");
+      }
+   }
+
+   @Override
+   public void updateWikiPage(PSDevSlnSys var1, String var2, String var3, String var4, boolean var5) throws Exception {
+      if (var1.getPSDevCenterSVN() != null && var1.getPSDevCenterSVN().getPSSVNInstRepo() != null) {
+         String var6 = var1.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag2();
+         if (!StringHelper.isNullOrEmpty(var6)) {
+            String var7 = var1.getPSDevCenterSVN().getPSSVNInstRepo().getRepoTag();
+            if (!StringHelper.isNullOrEmpty(var7)) {
+               PSSVNServer var8 = this.getPSSVNServer(var7);
+               PSDevCenter var9 = var1.getPSDevSln().getPSDevCenter();
+               WikiPage var10 = null;
+
+               try {
+                  HashMap var11 = new HashMap();
+                  String var12 = this.executeGet(var8, String.format("projects/%1$s/wikis/%2$s", var6, URLEncoder.encode(var2, "UTF-8")), var11, null, null);
+                  var10 = this.jacksonJson.unmarshal(WikiPage.class, var12);
+               } catch (Exception var13) {
+                  log.error(StringHelper.format("获取指定Wiki发生异常，%1$s", var13.getMessage()), var13);
+               }
+
+               try {
+                  HashMap var17 = new HashMap();
+                  if (!StringHelper.isNullOrEmpty(var3)) {
+                     var17.put("title", var3);
+                  }
+
+                  if (!StringHelper.isNullOrEmpty(var4)) {
+                     var17.put("content", var4);
+                  }
+
+                  if (var10 == null) {
+                     var17.put("title", var2);
+                     String var18 = this.executePost(var8, String.format("projects/%1$s/wikis", var6), var17, this.getCurUserName(var9), null);
+                     var10 = this.jacksonJson.unmarshal(WikiPage.class, var18);
+                  } else {
+                     var17.put("title", var2);
+                     String var19 = this.executePut(
+                        var8, String.format("projects/%1$s/wikis/%2$s", var6, URLEncoder.encode(var2, "UTF-8")), var17, this.getCurUserName(var9), null
+                     );
+                     var10 = this.jacksonJson.unmarshal(WikiPage.class, var19);
+                  }
+               } catch (Exception var14) {
+                  log.error(StringHelper.format("更新指定Wiki发生异常，%1$s", var14.getMessage()), var14);
+                  if (!var5) {
+                     throw new Exception(StringHelper.format("更新指定Wiki发生异常，%1$s", var14.getMessage()), var14);
+                  }
+               }
+            } else if (!var5) {
+               throw new Exception("开发系统代码仓库无效");
+            }
+         } else if (!var5) {
+            throw new Exception("开发系统代码仓库标识无效");
+         }
+      } else if (!var5) {
+         throw new Exception("开发系统代码仓库无效");
+      }
+   }
 }
-

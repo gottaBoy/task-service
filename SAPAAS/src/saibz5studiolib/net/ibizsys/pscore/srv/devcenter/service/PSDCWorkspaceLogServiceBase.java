@@ -147,9 +147,9 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
             PSDCWorkspace pSDCWorkspace = (PSDCWorkspace)iService.getDEModel().createEntity();
             pSDCWorkspace.set("PSDCWORKSPACEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDCWorkspace);
+                iService.getTemp(pSDCWorkspace);
             } else {
-                iService.get((IEntity)pSDCWorkspace);
+                iService.get(pSDCWorkspace);
             }
             this.onFillParentInfo_PSDCWorkspace(pSDCWorkspaceLog, pSDCWorkspace);
             return;
@@ -159,14 +159,14 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDCWorkspaceLog, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCWorkspaceLog, string, string2, string3);
+        super.onFillParentInfo(pSDCWorkspaceLog, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -187,7 +187,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCWorkspaceLog, bl);
+        super.onFillEntityFullInfo(pSDCWorkspaceLog, bl);
         this.onFillEntityFullInfo_PSDCWorkspace(pSDCWorkspaceLog, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDCWorkspaceLog, bl);
     }
@@ -219,7 +219,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
     }
 
     protected void onWriteBackParent(PSDCWorkspaceLog pSDCWorkspaceLog, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCWorkspaceLog, bl);
+        super.onWriteBackParent(pSDCWorkspaceLog, bl);
     }
 
     public ArrayList<PSDCWorkspaceLog> selectByPSDCWorkspace(PSDCWorkspaceBase pSDCWorkspaceBase) throws Exception {
@@ -302,7 +302,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
         ArrayList<PSDCWorkspaceLog> arrayList = this.selectByPSDCWorkspace(pSDCWorkspace);
         this.onBeforeRemoveByPSDCWorkspace(pSDCWorkspace, arrayList);
         for (PSDCWorkspaceLog pSDCWorkspaceLog : arrayList) {
-            this.remove((IEntity)pSDCWorkspaceLog);
+            this.remove(pSDCWorkspaceLog);
         }
         this.onAfterRemoveByPSDCWorkspace(pSDCWorkspace, arrayList);
     }
@@ -348,7 +348,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
         ArrayList<PSDCWorkspaceLog> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCWorkspaceLog pSDCWorkspaceLog : arrayList) {
-            this.remove((IEntity)pSDCWorkspaceLog);
+            this.remove(pSDCWorkspaceLog);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -369,7 +369,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
 
     protected void replaceParentInfo(PSDCWorkspaceLog pSDCWorkspaceLog, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCWorkspaceLog, cloneSession);
+        super.replaceParentInfo(pSDCWorkspaceLog, cloneSession);
         if (pSDCWorkspaceLog.getPSDCWorkspaceId() != null && (iEntity = cloneSession.getEntity("PSDCWORKSPACE", (Object)pSDCWorkspaceLog.getPSDCWorkspaceId())) != null) {
             this.onFillParentInfo_PSDCWorkspace(pSDCWorkspaceLog, (PSDCWorkspace)iEntity);
         }
@@ -379,7 +379,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCWorkspaceLog pSDCWorkspaceLog, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCWorkspaceLog, bl);
+        super.onRemoveEntityUncopyValues(pSDCWorkspaceLog, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCWorkspaceLog pSDCWorkspaceLog, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -448,7 +448,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSDCWorkspaceLog, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCWorkspaceLog, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCWorkspaceLog, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BeginTime(boolean bl, PSDCWorkspaceLog pSDCWorkspaceLog, boolean bl2, boolean bl3) throws Exception {
@@ -461,7 +461,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BeginTime_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string = this.onTestValueRule_BeginTime_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BEGINTIME");
@@ -483,7 +483,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EndTime_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string = this.onTestValueRule_EndTime_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENDTIME");
@@ -505,7 +505,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogInfo_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_LogInfo_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGINFO");
@@ -527,7 +527,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogInfo2_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_LogInfo2_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGINFO2");
@@ -549,7 +549,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogLevel_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_LogLevel_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGLEVEL");
@@ -571,7 +571,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LogLevel2_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string = this.onTestValueRule_LogLevel2_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGLEVEL2");
@@ -596,7 +596,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogType_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_LogType_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGTYPE");
@@ -618,7 +618,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCWorkspaceId_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCWorkspaceId_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCWORKSPACEID");
@@ -643,7 +643,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCWorkspaceLogId_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCWorkspaceLogId_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCWORKSPACELOGID");
@@ -668,7 +668,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCWorkspaceLogName_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCWorkspaceLogName_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCWORKSPACELOGNAME");
@@ -690,7 +690,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCWorkspaceName_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCWorkspaceName_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCWORKSPACENAME");
@@ -712,7 +712,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -734,7 +734,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -756,7 +756,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnId_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnId_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNID");
@@ -778,7 +778,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnName_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnName_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNNAME");
@@ -800,7 +800,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysId_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysId_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSID");
@@ -822,7 +822,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysName_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysName_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSNAME");
@@ -844,7 +844,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -866,7 +866,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -888,7 +888,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -910,7 +910,7 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDCWorkspaceLog, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDCWorkspaceLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -923,11 +923,11 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
     }
 
     protected void onSyncEntity(PSDCWorkspaceLog pSDCWorkspaceLog, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCWorkspaceLog, bl);
+        super.onSyncEntity(pSDCWorkspaceLog, bl);
     }
 
     protected void onSyncIndexEntities(PSDCWorkspaceLog pSDCWorkspaceLog, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCWorkspaceLog, bl);
+        super.onSyncIndexEntities(pSDCWorkspaceLog, bl);
     }
 
     public Object getDataContextValue(PSDCWorkspaceLog pSDCWorkspaceLog, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -935,14 +935,14 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCWorkspaceLog, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCWorkspaceLog, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCWorkspaceLog pSDCWorkspaceLog, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCWorkspaceLog, arrayList, n);
+        super.onExportMajorModel(pSDCWorkspaceLog, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1286,14 +1286,14 @@ extends PSCoreSysServiceBase<PSDCWorkspaceLog> {
 
     protected boolean onMergeChild(String string, String string2, PSDCWorkspaceLog pSDCWorkspaceLog) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCWorkspaceLog)) {
+        if (super.onMergeChild(string, string2, pSDCWorkspaceLog)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCWorkspaceLog pSDCWorkspaceLog) throws Exception {
-        super.onUpdateParent((IEntity)pSDCWorkspaceLog);
+        super.onUpdateParent(pSDCWorkspaceLog);
     }
 
     @Override

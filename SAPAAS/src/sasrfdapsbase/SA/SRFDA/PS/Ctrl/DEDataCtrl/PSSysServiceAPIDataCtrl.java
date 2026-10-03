@@ -128,7 +128,7 @@ extends PSDEDataCtrl {
         PSDevSlnSysAPI psDevSlnSysAPI = new PSDevSlnSysAPI();
         psDevSlnSysAPI.setPSDevSlnSysId(strPSDevSlnSysId);
         psDevSlnSysAPI.setPSSysServiceAPIId(psSysServiceAPI.getPSSYSSERVICEAPIID());
-        if (!psDevSlnSysAPIService.select((IEntity)psDevSlnSysAPI, true)) {
+        if (!psDevSlnSysAPIService.select(psDevSlnSysAPI, true)) {
             throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u7684\u5f00\u53d1\u7cfb\u7edf\u670d\u52a1\u63a5\u53e3"));
         }
         ArrayList<PSDevSlnSys> psDevSlnSysList = new ArrayList<PSDevSlnSys>();
@@ -155,7 +155,7 @@ extends PSDEDataCtrl {
         PSSysServiceAPIService psSysServiceAPIService = (PSSysServiceAPIService)ServiceGlobal.getService(PSSysServiceAPIService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
         net.ibizsys.pscore.srv.sysdesign.entity.PSSysServiceAPI psSysServiceAPI2 = new net.ibizsys.pscore.srv.sysdesign.entity.PSSysServiceAPI();
         psSysServiceAPI2.setPSSysServiceAPIId(psSysServiceAPI.getPSSYSSERVICEAPIID());
-        psSysServiceAPIService.get((IEntity)psSysServiceAPI2);
+        psSysServiceAPIService.get(psSysServiceAPI2);
         iPSSystem = iPSDevSlnSys.getPSSystem(false);
         PSSysDevBKTask psSysDevBKTask = new PSSysDevBKTask();
         psSysDevBKTask.setPSSysDevBKTaskName(StringHelper.Format((String)"\u540c\u6b65\u670d\u52a1\u63a5\u53e3[%1$s]\u5ba2\u6237\u7aef\u6a21\u578b", (Object)psSysServiceAPI2.getPSSysServiceAPIName()));
@@ -172,7 +172,7 @@ extends PSDEDataCtrl {
         psSysDevBKTask.setTaskParam(psSysServiceAPI.getPSSYSSERVICEAPIID());
         psSysDevBKTask.setModelLevel(IPSSystem.LOADLEVEL_CODE);
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        psSysDevBKTaskService.create(psSysDevBKTask);
         SA.SRFDA.PS.Data.PSSysDevBKTask psSysDevBKTask2 = new SA.SRFDA.PS.Data.PSSysDevBKTask();
         PSSysServiceAPIDataCtrl.convertEntity((IEntity)psSysDevBKTask, psSysDevBKTask2);
         this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
@@ -206,7 +206,7 @@ extends PSDEDataCtrl {
         net.ibizsys.pscore.srv.sysdesign.entity.PSSysServiceAPI psSysServiceAPI = new net.ibizsys.pscore.srv.sysdesign.entity.PSSysServiceAPI();
         PSDEDataCtrl.convertEntity2(dataEntity, (IEntity)psSysServiceAPI);
         PSSysServiceAPIService psSysServiceAPIService = (PSSysServiceAPIService)ServiceGlobal.getService(PSSysServiceAPIService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        psSysServiceAPIService.get((IEntity)psSysServiceAPI);
+        psSysServiceAPIService.get(psSysServiceAPI);
         HashMap<String, String> dataMap = new HashMap<String, String>();
         dataMap.put("PSSYSUNISTATE", "T_SRFPSSYSUNISTATE");
         dataMap.put("PSSYSERMAP", "T_SRFPSSYSERMAP");
@@ -552,10 +552,10 @@ extends PSDEDataCtrl {
         PSDERService psDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDESARSService psDESARSService = (PSDESARSService)ServiceGlobal.getService(PSDESARSService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDESADetailService psDESADetailService = (PSDESADetailService)ServiceGlobal.getService(PSDESADetailService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        ArrayList psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psDEServiceAPIList = psDEServiceAPIService.selectByPSSysServiceAPI((PSSysServiceAPIBase)psSysServiceAPI);
-        ArrayList psDERList = psDERService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psDESARSList = psDESARSService.selectByPSSysServiceAPI((PSSysServiceAPIBase)psSysServiceAPI);
+        ArrayList<PSDataEntity> psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDEServiceAPI> psDEServiceAPIList = psDEServiceAPIService.selectByPSSysServiceAPI((PSSysServiceAPIBase)psSysServiceAPI);
+        ArrayList<PSDER> psDERList = psDERService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDESARS> psDESARSList = psDESARSService.selectByPSSysServiceAPI((PSSysServiceAPIBase)psSysServiceAPI);
         HashMap<String, PSDataEntity> psDataEntityMap = new HashMap<String, PSDataEntity>();
         for (PSDataEntity pSDataEntity : psDataEntityList) {
             if (!dataMap.containsKey(pSDataEntity.getPSDataEntityName())) continue;
@@ -564,7 +564,7 @@ extends PSDEDataCtrl {
         for (PSDEServiceAPI pSDEServiceAPI : psDEServiceAPIList) {
             psDataEntityMap.remove(pSDEServiceAPI.getPSDEId());
         }
-        for (Map.Entry entry : psDataEntityMap.entrySet()) {
+        for (Map.Entry<String, PSDataEntity> entry : psDataEntityMap.entrySet()) {
             PSDEServiceAPI psDEServiceAPI = new PSDEServiceAPI();
             psDEServiceAPI.setPSSysServiceAPIId(psSysServiceAPI.getPSSysServiceAPIId());
             psDEServiceAPI.setPSSysServiceAPIName(psSysServiceAPI.getPSSysServiceAPIName());
@@ -573,7 +573,7 @@ extends PSDEDataCtrl {
             psDEServiceAPI.setPSDEName(((PSDataEntity)entry.getValue()).getPSDataEntityName());
             psDEServiceAPI.setCodeName(((PSDataEntity)entry.getValue()).getCodeName());
             psDEServiceAPI.setMajorFlag(Integer.valueOf(0));
-            psDEServiceAPIService.create((IEntity)psDEServiceAPI);
+            psDEServiceAPIService.create(psDEServiceAPI);
             psDEServiceAPIList.add(psDEServiceAPI);
         }
         HashMap<String, PSDEServiceAPI> hashMap = new HashMap<String, PSDEServiceAPI>();
@@ -582,8 +582,8 @@ extends PSDEDataCtrl {
         }
         String[] stdActions = new String[]{"Create", "Update", "Remove", "Get"};
         for (PSDEServiceAPI psDEServiceAPI : psDEServiceAPIList) {
-            ArrayList psDESADetailList = psDEServiceAPI.getPSDESADetails();
-            ArrayList psDEActionList = psDEServiceAPI.getPSDE().getPSDEActions();
+            ArrayList<PSDESADetail> psDESADetailList = psDEServiceAPI.getPSDESADetails();
+            ArrayList<PSDEAction> psDEActionList = psDEServiceAPI.getPSDE().getPSDEActions();
             boolean bSelectAction = true;
             for (PSDESADetail psDESADetail : psDESADetailList) {
                 if (StringHelper.Compare((String)psDESADetail.getDetailType(), (String)"SELECT", (boolean)false) != 0) continue;
@@ -597,7 +597,7 @@ extends PSDEDataCtrl {
                 psDESADetail.setPSDEServiceAPIId(psDEServiceAPI.getPSDEServiceAPIId());
                 psDESADetail.setPSDEServiceAPIName(psDEServiceAPI.getPSDEServiceAPIName());
                 psDESADetail.setOrderValue(Integer.valueOf(5000));
-                psDESADetailService.create((IEntity)psDESADetail, false);
+                psDESADetailService.create(psDESADetail, false);
             }
             String[] stringArray = stdActions;
             int n = stdActions.length;
@@ -634,7 +634,7 @@ extends PSDEDataCtrl {
                         } else if (StringHelper.Compare((String)strAction, (String)"Remove", (boolean)true) == 0) {
                             psDESADetail.setOrderValue(Integer.valueOf(4000));
                         }
-                        psDESADetailService.create((IEntity)psDESADetail, false);
+                        psDESADetailService.create(psDESADetail, false);
                     }
                 }
                 ++n2;
@@ -651,7 +651,7 @@ extends PSDEDataCtrl {
             if (majorPSDEServiceAPI == null && minorPSDEServiceAPI != null) {
                 if (StringHelper.Compare((String)psDER.getMajorPSDEName(), (String)"PSSYSTEM", (boolean)true) != 0 || DataObject.getBoolValue((Integer)minorPSDEServiceAPI.getMajorFlag(), (boolean)false)) continue;
                 minorPSDEServiceAPI.setMajorFlag(Integer.valueOf(1));
-                psDEServiceAPIService.update((IEntity)minorPSDEServiceAPI);
+                psDEServiceAPIService.update(minorPSDEServiceAPI);
                 continue;
             }
             if (majorPSDEServiceAPI == null || minorPSDEServiceAPI == null || StringHelper.Compare((String)psDER.getMajorPSDEName(), (String)"PSSYSREF", (boolean)true) == 0 || StringHelper.Compare((String)psDER.getMajorPSDEName(), (String)"PSMODULE", (boolean)true) == 0) continue;
@@ -665,11 +665,10 @@ extends PSDEDataCtrl {
             psDESARS.setPSDERName(psDER.getPSDERName());
             psDESARS.setPSSysServiceAPIId(psSysServiceAPI.getPSSysServiceAPIId());
             psDESARS.setPSSysServiceAPIName(psSysServiceAPI.getPSSysServiceAPIName());
-            if (DataObject.getIntegerValue((Object)psDER.getTempOrderValue(), (Integer)-1) >= 0) {
+            if (DataObject.getIntegerValue((Object)psDER.getTempOrderValue(), Integer.valueOf(-1)) >= 0) {
                 psDESARS.setDataRSMode(Integer.valueOf(7));
             }
-            psDESARSService.create((IEntity)psDESARS);
+            psDESARSService.create(psDESARS);
         }
     }
 }
-

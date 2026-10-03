@@ -88,7 +88,7 @@ extends net.ibizsys.paas.web.WebContext {
                 LoginAccount loginAccount = new LoginAccount();
                 loginAccount.setLoginAccountName(string);
                 loginAccount.setIsEnable(Integer.valueOf(1));
-                if (loginAccountService.select((IEntity)loginAccount, true)) {
+                if (loginAccountService.select(loginAccount, true)) {
                     this.setSessionValue("SRFPERSONID", loginAccount.getLoginAccountId());
                     this.setSessionValue("SRFUSERID", loginAccount.getLoginAccountId());
                     this.setSessionValue("SRFUSERNAME", loginAccount.getLoginAccountName());
@@ -227,15 +227,16 @@ extends net.ibizsys.paas.web.WebContext {
             if (StringHelper.isNullOrEmpty((String)object)) {
                 object = jSONObject.optString("pssystemid");
             }
-            string = object;
+            string = (String)object;
         }
         if (StringHelper.isNullOrEmpty(string)) {
             return super.getUserPrivilegeMgr();
         }
         object = null;
-        HashMap<String, IUserPrivilegeMgr> hashMap = this.getSessionValue(USERPRIVILEGEMGRS, false);
+        HashMap<String, IUserPrivilegeMgr> hashMap = (HashMap<String, IUserPrivilegeMgr>)this.getSessionValue(USERPRIVILEGEMGRS, false);
         if (hashMap == null) {
-            hashMap = object = new HashMap<String, IUserPrivilegeMgr>();
+            hashMap = new HashMap<String, IUserPrivilegeMgr>();
+            object = hashMap;
             this.setSessionValue(USERPRIVILEGEMGRS, object, false);
         } else {
             object = hashMap;

@@ -80,7 +80,7 @@ implements IPSDENotifyService {
     @Override
     protected List<PSDENotify> onListAll() throws Exception {
         ArrayList<PSDENotify> list = new ArrayList<PSDENotify>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDENotify> items = this.listByPSDataEntity(parent);

@@ -38,7 +38,6 @@ import SA.SRFDA.PS.Core.Util.PSDevSlnSysHelper;
 import SA.SRFDA.PS.Core.Util.PSSysModelInstHelper;
 import java.sql.Timestamp;
 import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.DateHelper;
 import net.ibizsys.paas.util.StringHelper;
@@ -78,7 +77,7 @@ public class PSWorkspaceHelper {
         PSDCWorkspace psDCWorkspace = new PSDCWorkspace();
         PSWorkspace psWorkspace2 = new PSWorkspace();
         psWorkspace.setPSWorkspaceId(strPSWorkspaceId);
-        psWorkspaceService.get((IEntity)psWorkspace);
+        psWorkspaceService.get(psWorkspace);
         int nWorkspaceState = DataObject.getIntegerValue((Object)psWorkspace.getWorkspaceState(), (Integer)30);
         if (nWorkspaceState == 30) {
             throw new Exception(StringHelper.format((String)"\u751f\u4ea7\u7ebf[%1$s]\u5f53\u524d\u72b6\u6001[%2$s]\uff0c\u65e0\u6cd5\u542f\u52a8", (Object)psWorkspace.getPSWorkspaceName(), (Object)SVNRepoState2CodeListModel.getInstance().getCodeItem(Integer.toString(nWorkspaceState)).getText()));
@@ -95,12 +94,12 @@ public class PSWorkspaceHelper {
             psDCWorkspace.setPSWorkspaceName(psWorkspace.getPSWorkspaceName());
             psDCWorkspace.setPSDCWorkspaceName(psWorkspace.getPSWorkspaceName());
             psDCWorkspace.setResState(Integer.valueOf(42));
-            psDCWorkspaceService.create((IEntity)psDCWorkspace);
+            psDCWorkspaceService.create(psDCWorkspace);
             strPSDCWorkspaceId = psDCWorkspace.getPSDCWorkspaceId();
             psWorkspace.reset();
             psWorkspace.setPSWorkspaceId(strPSWorkspaceId);
             psWorkspace.setPSDCWorkspaceId(strPSDCWorkspaceId);
-            psWorkspaceService.update((IEntity)psWorkspace);
+            psWorkspaceService.update(psWorkspace);
         }
         PSWorkspaceLog psWorkspaceLog = new PSWorkspaceLog();
         psWorkspaceLog.setPSWorkspaceLogName("\u542f\u52a8\u751f\u4ea7\u7ebf");
@@ -113,11 +112,11 @@ public class PSWorkspaceHelper {
         psWorkspaceLog.setPSTaskServerName(PSTaskServerEnvImpl.getCurrent().getName());
         psWorkspaceLog.setPSSvrDomainId(psWorkspace.getPSSvrDomainId());
         psWorkspaceLog.setPSSvrDomainName(psWorkspace.getPSSvrDomainName());
-        psWorkspaceLogService.create((IEntity)psWorkspaceLog);
+        psWorkspaceLogService.create(psWorkspaceLog);
         psWorkspace.reset();
         psWorkspace.setPSWorkspaceId(strPSWorkspaceId);
         psWorkspace.setWorkspaceState(Integer.valueOf(30));
-        psWorkspaceService.update((IEntity)psWorkspace);
+        psWorkspaceService.update(psWorkspace);
         PSDCWorkspaceLog psDCWorkspaceLog = new PSDCWorkspaceLog();
         psDCWorkspaceLog.setPSDCWorkspaceLogName("\u542f\u52a8\u751f\u4ea7\u7ebf");
         psDCWorkspaceLog.setPSDCWorkspaceId(psDCWorkspace.getPSDCWorkspaceId());
@@ -127,11 +126,11 @@ public class PSWorkspaceHelper {
         psDCWorkspaceLog.setLogType("STARTUP");
         psDCWorkspaceLog.setLogLevel("INFO");
         psDCWorkspaceLog.setLogLevel2(Integer.valueOf(20000));
-        psDCWorkspaceLogService.create((IEntity)psDCWorkspaceLog);
+        psDCWorkspaceLogService.create(psDCWorkspaceLog);
         PSDCWorkspace psDCWorkspace2 = new PSDCWorkspace();
         psDCWorkspace2.setPSDCWorkspaceId(strPSDCWorkspaceId);
         psDCWorkspace2.setResState(Integer.valueOf(20));
-        psDCWorkspaceService.sysUpdate((IEntity)psDCWorkspace2, false);
+        psDCWorkspaceService.sysUpdate(psDCWorkspace2, false);
     }
 
     public static void shutdown(String strPSWorkspaceId) throws Exception {
@@ -140,7 +139,7 @@ public class PSWorkspaceHelper {
         PSWorkspaceLogService psWorkspaceLogService = (PSWorkspaceLogService)ServiceGlobal.getService(PSWorkspaceLogService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDCWorkspaceLogService psDCWorkspaceLogService = (PSDCWorkspaceLogService)ServiceGlobal.getService(PSDCWorkspaceLogService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         psWorkspace.setPSWorkspaceId(strPSWorkspaceId);
-        psWorkspaceService.get((IEntity)psWorkspace);
+        psWorkspaceService.get(psWorkspace);
         int nWorkspaceState = DataObject.getIntegerValue((Object)psWorkspace.getWorkspaceState(), (Integer)30);
         if (nWorkspaceState != 30) {
             throw new Exception(StringHelper.format((String)"\u751f\u4ea7\u7ebf[%1$s]\u5f53\u524d\u72b6\u6001[%2$s]\uff0c\u65e0\u6cd5\u8fdb\u884c\u5173\u95ed", (Object)psWorkspace.getPSWorkspaceName(), (Object)SVNRepoState2CodeListModel.getInstance().getCodeItem(Integer.toString(nWorkspaceState)).getText()));
@@ -150,7 +149,7 @@ public class PSWorkspaceHelper {
             PSDCWorkspaceService psDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDCWorkspace psDCWorkspace = new PSDCWorkspace();
             psDCWorkspace.setPSDCWorkspaceId(strPSDCWorkspaceId);
-            psDCWorkspaceService.get((IEntity)psDCWorkspace);
+            psDCWorkspaceService.get(psDCWorkspace);
             String strPSDevSlnSysId = psDCWorkspace.getPSDevSlnSysId();
             if (!StringHelper.isNullOrEmpty((String)strPSDevSlnSysId)) {
                 PSWorkspaceHelper.unintallSys(psDCWorkspace);
@@ -166,11 +165,11 @@ public class PSWorkspaceHelper {
             psWorkspaceLog.setPSTaskServerName(PSTaskServerEnvImpl.getCurrent().getName());
             psWorkspaceLog.setPSSvrDomainId(psWorkspace.getPSSvrDomainId());
             psWorkspaceLog.setPSSvrDomainName(psWorkspace.getPSSvrDomainName());
-            psWorkspaceLogService.create((IEntity)psWorkspaceLog);
+            psWorkspaceLogService.create(psWorkspaceLog);
             PSWorkspace psWorkspace2 = new PSWorkspace();
             psWorkspace2.setPSWorkspaceId(strPSWorkspaceId);
             psWorkspace2.setWorkspaceState(Integer.valueOf(40));
-            psWorkspaceService.update((IEntity)psWorkspace2);
+            psWorkspaceService.update(psWorkspace2);
             PSDCWorkspaceLog psDCWorkspaceLog = new PSDCWorkspaceLog();
             psDCWorkspaceLog.setPSDCWorkspaceLogName("\u5173\u95ed\u751f\u4ea7\u7ebf");
             psDCWorkspaceLog.setPSDCWorkspaceId(psDCWorkspace.getPSDCWorkspaceId());
@@ -180,11 +179,11 @@ public class PSWorkspaceHelper {
             psDCWorkspaceLog.setLogType("SHUTDOWN");
             psDCWorkspaceLog.setLogLevel("INFO");
             psDCWorkspaceLog.setLogLevel2(Integer.valueOf(20000));
-            psDCWorkspaceLogService.create((IEntity)psDCWorkspaceLog);
+            psDCWorkspaceLogService.create(psDCWorkspaceLog);
             PSDCWorkspace psDCWorkspace2 = new PSDCWorkspace();
             psDCWorkspace2.setPSDCWorkspaceId(strPSDCWorkspaceId);
             psDCWorkspace2.setResState(Integer.valueOf(40));
-            psDCWorkspaceService.sysUpdate((IEntity)psDCWorkspace2, false);
+            psDCWorkspaceService.sysUpdate(psDCWorkspace2, false);
         } else {
             PSWorkspaceLog psWorkspaceLog = new PSWorkspaceLog();
             psWorkspaceLog.setPSWorkspaceLogName("\u5173\u95ed\u751f\u4ea7\u7ebf");
@@ -197,11 +196,11 @@ public class PSWorkspaceHelper {
             psWorkspaceLog.setPSTaskServerName(PSTaskServerEnvImpl.getCurrent().getName());
             psWorkspaceLog.setPSSvrDomainId(psWorkspace.getPSSvrDomainId());
             psWorkspaceLog.setPSSvrDomainName(psWorkspace.getPSSvrDomainName());
-            psWorkspaceLogService.create((IEntity)psWorkspaceLog);
+            psWorkspaceLogService.create(psWorkspaceLog);
             PSWorkspace psWorkspace2 = new PSWorkspace();
             psWorkspace2.setPSWorkspaceId(strPSWorkspaceId);
             psWorkspace2.setWorkspaceState(Integer.valueOf(40));
-            psWorkspaceService.update((IEntity)psWorkspace2);
+            psWorkspaceService.update(psWorkspace2);
         }
     }
 
@@ -219,7 +218,7 @@ public class PSWorkspaceHelper {
         psDCWorkspaceAction.setPSDCWorkspaceActionName(psDCWorkspaceAction.getPSDCWorkspaceActionName());
         psDCWorkspaceAction.setPSTaskServerId(PSTaskServerEnvImpl.getCurrent().getId());
         psDCWorkspaceAction.setPSTaskServerName(PSTaskServerEnvImpl.getCurrent().getName());
-        psDCWorkspaceActionService.create((IEntity)psDCWorkspaceAction, true);
+        psDCWorkspaceActionService.create(psDCWorkspaceAction, true);
         return PSWorkspaceHelper.executeDCAction(psDCWorkspaceAction);
     }
 
@@ -246,23 +245,23 @@ public class PSWorkspaceHelper {
                 psWorkspace2.setPSWorkspaceId(psDCWorkspace.getPSWorkspaceId());
                 psWorkspace2.setCurAction(psDCWorkspaceAction.getActionType());
                 psWorkspace2.setActionOwner(strOwnerId);
-                psWorkspaceService.sysUpdate((IEntity)psWorkspace2, false);
+                psWorkspaceService.sysUpdate(psWorkspace2, false);
             }
             PSWorkspaceHelper.executeDCAction(psDCWorkspace, psDCWorkspaceAction);
             psDCWorkspaceAction2.reset();
             psDCWorkspaceAction2.setPSDCWorkspaceActionId(strPSDCWorkspaceActionId);
             psDCWorkspaceAction2.setEndTime(DateHelper.getCurTime());
             psDCWorkspaceAction2.setActionState(DBInstBStateCodeListModel.CREATED);
-            psDCWorkspaceActionService.sysUpdate((IEntity)psDCWorkspaceAction2, true);
+            psDCWorkspaceActionService.sysUpdate(psDCWorkspaceAction2, true);
             psDCWorkspace.reset();
             psDCWorkspace.setPSDCWorkspaceId(psDCWorkspaceAction.getPSDCWorkspaceId());
-            psDCWorkspaceService.get((IEntity)psDCWorkspace);
+            psDCWorkspaceService.get(psDCWorkspace);
             if (StringHelper.compare((String)psDCWorkspace.getActionOwner(), (String)strOwnerId, (boolean)false) == 0) {
                 psWorkspace2.reset();
                 psWorkspace2.setPSWorkspaceId(psDCWorkspace.getPSWorkspaceId());
                 psWorkspace2.setCurAction(null);
                 psWorkspace2.setActionOwner(null);
-                psWorkspaceService.sysUpdate((IEntity)psWorkspace2, true);
+                psWorkspaceService.sysUpdate(psWorkspace2, true);
             }
             return psDCWorkspaceAction2;
         }
@@ -272,13 +271,13 @@ public class PSWorkspaceHelper {
                 if (!StringHelper.isNullOrEmpty((String)psDCWorkspaceAction.getPSDCWorkspaceId())) {
                     psDCWorkspace.reset();
                     psDCWorkspace.setPSDCWorkspaceId(psDCWorkspaceAction.getPSDCWorkspaceId());
-                    psDCWorkspaceService.get((IEntity)psDCWorkspace);
+                    psDCWorkspaceService.get(psDCWorkspace);
                     if (StringHelper.compare((String)psDCWorkspace.getActionOwner(), (String)strOwnerId, (boolean)false) == 0) {
                         psWorkspace2.reset();
                         psWorkspace2.setPSWorkspaceId(psDCWorkspace.getPSWorkspaceId());
                         psWorkspace2.setCurAction(null);
                         psWorkspace2.setActionOwner(null);
-                        psWorkspaceService.sysUpdate((IEntity)psWorkspace2, false);
+                        psWorkspaceService.sysUpdate(psWorkspace2, false);
                     }
                 }
             }
@@ -289,7 +288,7 @@ public class PSWorkspaceHelper {
                 psDCWorkspaceAction2.setPSDCWorkspaceActionId(strPSDCWorkspaceActionId);
                 psDCWorkspaceAction2.setEndTime(DateHelper.getCurTime());
                 psDCWorkspaceAction2.setActionState(DBInstBStateCodeListModel.FAILED);
-                psDCWorkspaceActionService.sysUpdate((IEntity)psDCWorkspaceAction2, false);
+                psDCWorkspaceActionService.sysUpdate(psDCWorkspaceAction2, false);
             }
             catch (Exception e) {
                 log.error((Object)e);
@@ -312,7 +311,7 @@ public class PSWorkspaceHelper {
                 throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5b89\u88c5\u7cfb\u7edf");
             }
             installPSDevSlnSys.setPSDevSlnSysId(strPSDevSlnSysId);
-            psDevSlnSysService.get((IEntity)installPSDevSlnSys);
+            psDevSlnSysService.get(installPSDevSlnSys);
             nDevSysState = DataObject.getIntegerValue((Object)installPSDevSlnSys.getDevSysState(), (Integer)30);
             if (nDevSysState == 30) {
                 throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u5f53\u524d\u72b6\u6001[%2$s]\uff0c\u65e0\u6cd5\u518d\u6b21\u8fde\u7ebf", (Object)installPSDevSlnSys.getPSDevSlnSysName(), (Object)DevSysStateCodeListModel.getInstance().getCodeItem(Integer.toString(nDevSysState)).getText()));
@@ -323,7 +322,7 @@ public class PSWorkspaceHelper {
                 throw new Exception("\u751f\u4ea7\u7ebf\u672a\u5b89\u88c5\u7cfb\u7edf");
             }
             installPSDevSlnSys.setPSDevSlnSysId(strPSDevSlnSysId);
-            psDevSlnSysService.get((IEntity)installPSDevSlnSys);
+            psDevSlnSysService.get(installPSDevSlnSys);
             nDevSysState = DataObject.getIntegerValue((Object)installPSDevSlnSys.getDevSysState(), (Integer)30);
             if (nDevSysState == 35) {
                 throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u5f53\u524d\u72b6\u6001[%2$s]\uff0c\u65e0\u6cd5\u79bb\u7ebf", (Object)installPSDevSlnSys.getPSDevSlnSysName(), (Object)DevSysStateCodeListModel.getInstance().getCodeItem(Integer.toString(nDevSysState)).getText()));
@@ -343,14 +342,14 @@ public class PSWorkspaceHelper {
         if (!StringHelper.isNullOrEmpty((String)psDCWorkspace.getPSDevSlnSysId())) {
             PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
             psDevSlnSys.setPSDevSlnSysId(psDCWorkspace.getPSDevSlnSysId());
-            psDevSlnSysService.get((IEntity)psDevSlnSys);
+            psDevSlnSysService.get(psDevSlnSys);
             PSSysModelInstHelper.updateVersion(psDevSlnSys.getPSSysModelInstId(), -1, -1);
             PSDevSlnSysHelper.offline(psDCWorkspace.getPSDevSlnSysId(), psDCWorkspaceAction.getPSDCWorkspaceId());
             psDCWorkspace2.reset();
             psDCWorkspace2.setPSDCWorkspaceId(psDCWorkspaceAction.getPSDCWorkspaceId());
             psDCWorkspace2.setPSDevSlnSysId(null);
             psDCWorkspace2.setPSDevSlnSysName(null);
-            psDCWorkspaceService.sysUpdate((IEntity)psDCWorkspace2, false);
+            psDCWorkspaceService.sysUpdate(psDCWorkspace2, false);
             psDCWorkspaceLog.setPSDevSlnId(psDevSlnSys.getPSDevSlnId());
             psDCWorkspaceLog.setPSDevSlnName(psDevSlnSys.getPSDevSlnName());
             psDCWorkspaceLog.setPSDevSlnSysId(psDevSlnSys.getPSDevSlnSysId());
@@ -363,7 +362,7 @@ public class PSWorkspaceHelper {
             psDCWorkspace2.setPSDCWorkspaceId(psDCWorkspaceAction.getPSDCWorkspaceId());
             psDCWorkspace2.setPSDevSlnSysId(installPSDevSlnSys.getPSDevSlnSysId());
             psDCWorkspace2.setPSDevSlnSysName(installPSDevSlnSys.getPSDevSlnSysName());
-            psDCWorkspaceService.sysUpdate((IEntity)psDCWorkspace2, false);
+            psDCWorkspaceService.sysUpdate(psDCWorkspace2, false);
             psDCWorkspaceLog.setPSDevSlnId(installPSDevSlnSys.getPSDevSlnId());
             psDCWorkspaceLog.setPSDevSlnName(installPSDevSlnSys.getPSDevSlnName());
             psDCWorkspaceLog.setPSDevSlnSysId(installPSDevSlnSys.getPSDevSlnSysId());
@@ -372,11 +371,10 @@ public class PSWorkspaceHelper {
         try {
             psDCWorkspaceLog.setEndTime(new Timestamp(System.currentTimeMillis()));
             PSDCWorkspaceLogService psDCWorkspaceLogService = (PSDCWorkspaceLogService)ServiceGlobal.getService(PSDCWorkspaceLogService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            psDCWorkspaceLogService.create((IEntity)psDCWorkspaceLog, false);
+            psDCWorkspaceLogService.create(psDCWorkspaceLog, false);
         }
         catch (Exception ex) {
             log.error((Object)StringHelper.format((String)"\u8bb0\u5f55\u4e2d\u5fc3\u751f\u4ea7\u7ebf\u65e5\u5fd7\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
         }
     }
 }
-

@@ -72,7 +72,7 @@ implements IPSDEMSOPPrivService {
     @Override
     protected List<PSDEMSOPPriv> onListAll() throws Exception {
         ArrayList<PSDEMSOPPriv> list = new ArrayList<PSDEMSOPPriv>();
-        List psdemainstates = PSModelServiceUtil.getInstance().getPSDEMainStateService().listAll();
+        List<PSDEMainState> psdemainstates = PSModelServiceUtil.getInstance().getPSDEMainStateService().listAll();
         if (psdemainstates != null) {
             for (PSDEMainState parent : psdemainstates) {
                 List<PSDEMSOPPriv> items = this.listByPSDEMainState(parent);

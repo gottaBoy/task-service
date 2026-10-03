@@ -58,14 +58,14 @@ extends PSDEGroupServiceBase {
 
     @Override
     protected void onInitModel(PSDEGroup pSDEGroup) throws Exception {
-        this.get((IEntity)pSDEGroup);
+        this.get(pSDEGroup);
         if (StringHelper.isNullOrEmpty((String)pSDEGroup.getLogicMode()) || StringHelper.compare((String)pSDEGroup.getLogicMode(), (String)"INITMODEL", (boolean)false) == 0) {
             Object object;
             PSSysDynaModelService pSSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)this.getSessionFactory());
             PSSysDynaModel pSSysDynaModel = new PSSysDynaModel();
             if (!StringHelper.isNullOrEmpty((String)pSDEGroup.getInitPSSysDynaModelId())) {
                 pSSysDynaModel.setPSSysDynaModelId(pSDEGroup.getInitPSSysDynaModelId());
-                if (!pSSysDynaModelService.get((IEntity)pSSysDynaModel, true)) {
+                if (!pSSysDynaModelService.get(pSSysDynaModel, true)) {
                     this.sendStudioConsole(true, "ERROR", StringHelper.format((String)"\u5b9e\u4f53\u7ec4[%1$s]\u65e0\u6cd5\u6ce8\u5165\u6a21\u578b\uff0c\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u52a8\u6001\u6a21\u578b[%2$s]", (Object)pSDEGroup.getPSDEGroupName(), (Object)pSDEGroup.getInitPSSysDynaModelId()), false);
                     return;
                 }
@@ -75,7 +75,7 @@ extends PSDEGroupServiceBase {
                     this.sendStudioConsole(true, "WARN", StringHelper.format((String)"\u6ca1\u6709\u6307\u5b9a\u521d\u59cb\u5316\u6a21\u578b"), false);
                     return;
                 }
-                String string = this.getCurrentPSSystemId((IEntity)pSDEGroup);
+                String string = this.getCurrentPSSystemId(pSDEGroup);
                 if (StringHelper.isNullOrEmpty((String)string)) {
                     log.warn((Object)StringHelper.format((String)"\u5f53\u524d\u7cfb\u7edf\u6807\u8bc6\u65e0\u6548"));
                     return;
@@ -87,9 +87,9 @@ extends PSDEGroupServiceBase {
                     return;
                 }
             }
-            object = new ArrayList();
-            ((ArrayList)object).addAll(pSSysDynaModel.getPSSysDynaModelAttrs());
-            Collections.sort(object, new Comparator<PSSysDynaModelAttr>(){
+            ArrayList<PSSysDynaModelAttr> attrs = new ArrayList<PSSysDynaModelAttr>();
+            attrs.addAll(pSSysDynaModel.getPSSysDynaModelAttrs());
+            Collections.sort(attrs, new Comparator<PSSysDynaModelAttr>(){
 
                 @Override
                 public int compare(PSSysDynaModelAttr pSSysDynaModelAttr, PSSysDynaModelAttr pSSysDynaModelAttr2) {
@@ -97,7 +97,7 @@ extends PSDEGroupServiceBase {
                 }
             });
             for (PSDEGroupDetail pSDEGroupDetail : pSDEGroup.getPSDEGroupDetails()) {
-                if (this.initDEModel(pSDEGroupDetail, (ArrayList<PSSysDynaModelAttr>)object, pSSysDynaModel)) continue;
+                if (this.initDEModel(pSDEGroupDetail, attrs, pSSysDynaModel)) continue;
                 return;
             }
             return;
@@ -207,9 +207,8 @@ extends PSDEGroupServiceBase {
         Object object2 = null;
         Object object3 = null;
         Object object4 = null;
-        Object object5 = arrayList2.iterator();
-        while (object5.hasNext()) {
-            object = object5.next();
+        for (PSDEField field : arrayList2) {
+            object = field;
             hashMap.put(((PSDEFieldBase)object).getPSDEFieldName(), object);
             int n2 = DataObject.getIntegerValue((Object)((PSDEFieldBase)object).getPKey(), (Integer)0);
             if (n2 == 1) {
@@ -221,11 +220,11 @@ extends PSDEGroupServiceBase {
             object4 = object;
         }
         if (!StringHelper.isNullOrEmpty((String)pSDEGroupDetail.getDetailParam())) {
-            for (Object object6 : object5 = pSDEGroupDetail.getDetailParam().toUpperCase().split("[;]")) {
+            for (String object6 : pSDEGroupDetail.getDetailParam().toUpperCase().split("[;]")) {
                 hashMap.put(object6, null);
             }
         }
-        object5 = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
+        PSDEFieldService object5 = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
         for (PSDEField pSDEField : arrayList) {
             if (hashMap.containsKey(pSDEField.getPSDEFieldName()) || map != null && map.containsKey(pSDEField.getPSDEFieldName()) || !StringHelper.isNullOrEmpty((String)pSDEField.getPSDERId()) || !StringHelper.isNullOrEmpty((String)pSDEField.getO2MPSDERId())) continue;
             n = DataObject.getIntegerValue((Object)pSDEField.getPKey(), (Integer)0);
@@ -306,4 +305,3 @@ extends PSDEGroupServiceBase {
         return true;
     }
 }
-

@@ -1059,7 +1059,7 @@ implements Serializable {
                 PSCounterType pSCounterType = new PSCounterType();
                 pSCounterType.setPSCounterTypeId(this.getPSCounterTypeId());
                 PSCounterTypeService pSCounterTypeService = (PSCounterTypeService)ServiceGlobal.getService(PSCounterTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSCounterTypeService.autoGet((IEntity)pSCounterType);
+                pSCounterTypeService.autoGet(pSCounterType);
                 this.pscountertype = pSCounterType;
             }
             return this.pscountertype;
@@ -1085,7 +1085,7 @@ implements Serializable {
                 PSSF pSSF = new PSSF();
                 pSSF.setPSSFId(this.getPSSFId());
                 PSSFService pSSFService = (PSSFService)ServiceGlobal.getService(PSSFService.class, (SessionFactory)this.getSessionFactory());
-                pSSFService.autoGet((IEntity)pSSF);
+                pSSFService.autoGet(pSSF);
                 this.pssf = pSSF;
             }
             return this.pssf;

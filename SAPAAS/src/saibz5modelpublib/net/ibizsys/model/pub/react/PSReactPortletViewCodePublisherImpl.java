@@ -1,34 +1,91 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSDBPortletPart
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.react;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.react.PSReactCtrlCodePublisherImpl;
 
-public class PSReactPortletViewCodePublisherImpl
-extends PSReactCtrlCodePublisherImpl {
-    protected IPSDBPortletPart iPSPortlet;
+import SA.SRFDA.PS.Core.Control.Dashboard.IPSDBChartPortlet;
+import SA.SRFDA.PS.Core.Control.Dashboard.IPSDBListPortletPart;
+import SA.SRFDA.PS.Core.Control.Dashboard.IPSDBPortletPart;
+import SA.SRFDA.PS.Core.PF.IPSPFCtrlTempl;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlCodePublisher;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
 
-    public PSReactPortletViewCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSReactPortletViewCodePublisherImpl is inconsistent\n\tIPSDBPortletPart cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSReactPortletViewCodePublisherImpl must override or implement a supertype method\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSReactCtrlCodePublisherImpl\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSDBChartPortlet cannot be resolved to a type\n\tIPSDBChartPortlet cannot be resolved to a type\n\tIPSDBChartPortlet cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSPFCtrlTempl cannot be resolved to a type\n\tiPSPFStyle cannot be resolved\n\tThe method getPSPFPubCode() is undefined for the type PSReactPortletViewCodePublisherImpl\n\tIPSPFCtrlCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved or is not a field\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSDBListPortletPart cannot be resolved to a type\n\tIPSDBListPortletPart cannot be resolved to a type\n\tIPSDBListPortletPart cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSPFCtrlTempl cannot be resolved to a type\n\tiPSPFStyle cannot be resolved\n\tThe method getPSPFPubCode() is undefined for the type PSReactPortletViewCodePublisherImpl\n\tIPSPFCtrlCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved or is not a field\n\tThe method onClose() of type PSReactPortletViewCodePublisherImpl must override or implement a supertype method\n\tIPSDBPortletPart cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSReactCtrlCodePublisherImpl\n");
-    }
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSReactPortletViewCodePublisherImpl must override or implement a supertype method\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSReactCtrlCodePublisherImpl\n");
-    }
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSDBChartPortlet cannot be resolved to a type\n\tIPSDBChartPortlet cannot be resolved to a type\n\tIPSDBChartPortlet cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSPFCtrlTempl cannot be resolved to a type\n\tiPSPFStyle cannot be resolved\n\tThe method getPSPFPubCode() is undefined for the type PSReactPortletViewCodePublisherImpl\n\tIPSPFCtrlCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved or is not a field\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSDBListPortletPart cannot be resolved to a type\n\tIPSDBListPortletPart cannot be resolved to a type\n\tIPSDBListPortletPart cannot be resolved to a type\n\tIPSDBPortletPart cannot be resolved to a type\n\tIPSPFCtrlTempl cannot be resolved to a type\n\tiPSPFStyle cannot be resolved\n\tThe method getPSPFPubCode() is undefined for the type PSReactPortletViewCodePublisherImpl\n\tIPSPFCtrlCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved or is not a field\n");
-    }
+/**
+ * 门户部件
+ * @author lionlau
+ *
+ */
+public class PSReactPortletViewCodePublisherImpl extends PSReactCtrlCodePublisherImpl
+{             
+	protected IPSDBPortletPart iPSPortlet = null;
+	//public final static String CTRLPART_STORE = "STORE";
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSPortlet = (IPSDBPortletPart)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSReactPortletViewCodePublisherImpl must override or implement a supertype method\n\tIPSDBPortletPart cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSReactCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSPortlet = (IPSDBPortletPart)this.iPSControl;
+		
+		//输出结果集合代码
+		if(this.iPSPortlet instanceof IPSDBChartPortlet)
+		{
+			IPSDBChartPortlet iPSChartPortlet = (IPSDBChartPortlet)this.iPSPortlet;
+			IPSPFCtrlTempl iPSPFCtrlTempl = iPSPFStyle.getPSPFCtrlTempl(iPSChartPortlet.getPSChart().getPSControlType(), this.getPSPFPubCode());
+			if(iPSPFCtrlTempl!=null)
+			{
+				IPSPFCtrlCodePublisher iPSPFCtrlCodePublisher = iPSPFCtrlTempl.getPSPFCtrlCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlCodePublisher.generateCode(this.iPSPublisherContext, iPSChartPortlet.getPSChart());
+				if(iPSGenerateCodeResult!=null)
+				{
+					params.put("chart", iPSGenerateCodeResult);
+				}
+				iPSPFCtrlCodePublisher.close();
+			}
+		}
+		else
+		if(this.iPSPortlet instanceof IPSDBListPortletPart)
+		{
+			IPSDBListPortletPart iPSListPortlet = (IPSDBListPortletPart)this.iPSPortlet;
+			IPSPFCtrlTempl iPSPFCtrlTempl = iPSPFStyle.getPSPFCtrlTempl(iPSListPortlet.getPSList().getPSControlType(), this.getPSPFPubCode());
+			if(iPSPFCtrlTempl!=null)
+			{
+				IPSPFCtrlCodePublisher iPSPFCtrlCodePublisher = iPSPFCtrlTempl.getPSPFCtrlCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlCodePublisher.generateCode(this.iPSPublisherContext, iPSListPortlet.getPSList());
+				if(iPSGenerateCodeResult!=null)
+				{
+					params.put("list", iPSGenerateCodeResult);
+				}
+				iPSPFCtrlCodePublisher.close();
+			}
+		}
+		
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSPortlet = null;
+		super.onClose();
+	}
+	
 }
-

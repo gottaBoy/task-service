@@ -139,14 +139,14 @@ extends PSCoreSysServiceBase<PSModelStorage> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_Pssystem(pSModelStorage, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSModelStorage, string, string2, string3);
+        super.onFillParentInfo(pSModelStorage, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -186,7 +186,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSModelStorage, bl);
+        super.onFillEntityFullInfo(pSModelStorage, bl);
         this.onFillEntityFullInfo_Pssystem(pSModelStorage, bl);
     }
 
@@ -204,7 +204,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
     }
 
     protected void onWriteBackParent(PSModelStorage pSModelStorage, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSModelStorage, bl);
+        super.onWriteBackParent(pSModelStorage, bl);
     }
 
     public ArrayList<PSModelStorage> selectByPssystem(PSSystemBase pSSystemBase) throws Exception {
@@ -263,7 +263,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
         ArrayList<PSModelStorage> arrayList = this.selectByPssystem(pSSystem);
         this.onBeforeRemoveByPssystem(pSSystem, arrayList);
         for (PSModelStorage pSModelStorage : arrayList) {
-            this.remove((IEntity)pSModelStorage);
+            this.remove(pSModelStorage);
         }
         this.onAfterRemoveByPssystem(pSSystem, arrayList);
     }
@@ -284,14 +284,14 @@ extends PSCoreSysServiceBase<PSModelStorage> {
 
     protected void replaceParentInfo(PSModelStorage pSModelStorage, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSModelStorage, cloneSession);
+        super.replaceParentInfo(pSModelStorage, cloneSession);
         if (pSModelStorage.getPSSystemId() != null && (iEntity = cloneSession.getEntity("PSSYSTEM", (Object)pSModelStorage.getPSSystemId())) != null) {
             this.onFillParentInfo_Pssystem(pSModelStorage, (PSSystem)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSModelStorage pSModelStorage, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSModelStorage, bl);
+        super.onRemoveEntityUncopyValues(pSModelStorage, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSModelStorage pSModelStorage, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -324,7 +324,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
         if ((entityFieldError = this.onCheckField_StorageType(bl, pSModelStorage, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSModelStorage, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSModelStorage, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Content(boolean bl, PSModelStorage pSModelStorage, boolean bl2, boolean bl3) throws Exception {
@@ -337,7 +337,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Content_Default((IEntity)pSModelStorage, bl2, bl3);
+            string2 = this.onTestValueRule_Content_Default(pSModelStorage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTENT");
@@ -362,7 +362,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelId_Default((IEntity)pSModelStorage, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelId_Default(pSModelStorage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELID");
@@ -384,7 +384,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelName_Default((IEntity)pSModelStorage, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelName_Default(pSModelStorage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELNAME");
@@ -409,7 +409,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelStorageId_Default((IEntity)pSModelStorage, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelStorageId_Default(pSModelStorage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELSTORAGEID");
@@ -434,7 +434,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelStorageName_Default((IEntity)pSModelStorage, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelStorageName_Default(pSModelStorage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELSTORAGENAME");
@@ -459,7 +459,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModelType_Default((IEntity)pSModelStorage, bl2, bl3);
+            string2 = this.onTestValueRule_PSModelType_Default(pSModelStorage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODELTYPE");
@@ -481,7 +481,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSModelStorage, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSModelStorage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -503,7 +503,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSModelStorage, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSModelStorage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -528,7 +528,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StorageType_Default((IEntity)pSModelStorage, bl2, bl3);
+            string2 = this.onTestValueRule_StorageType_Default(pSModelStorage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STORAGETYPE");
@@ -541,11 +541,11 @@ extends PSCoreSysServiceBase<PSModelStorage> {
     }
 
     protected void onSyncEntity(PSModelStorage pSModelStorage, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSModelStorage, bl);
+        super.onSyncEntity(pSModelStorage, bl);
     }
 
     protected void onSyncIndexEntities(PSModelStorage pSModelStorage, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSModelStorage, bl);
+        super.onSyncIndexEntities(pSModelStorage, bl);
     }
 
     public Object getDataContextValue(PSModelStorage pSModelStorage, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -553,14 +553,14 @@ extends PSCoreSysServiceBase<PSModelStorage> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSModelStorage, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSModelStorage, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSModelStorage pSModelStorage, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSModelStorage, arrayList, n);
+        super.onExportMajorModel(pSModelStorage, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -748,14 +748,14 @@ extends PSCoreSysServiceBase<PSModelStorage> {
 
     protected boolean onMergeChild(String string, String string2, PSModelStorage pSModelStorage) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSModelStorage)) {
+        if (super.onMergeChild(string, string2, pSModelStorage)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSModelStorage pSModelStorage) throws Exception {
-        super.onUpdateParent((IEntity)pSModelStorage);
+        super.onUpdateParent(pSModelStorage);
     }
 
     @Override
@@ -777,7 +777,7 @@ extends PSCoreSysServiceBase<PSModelStorage> {
         pSModelStorage2.setPSModelType(pSModelStorage.getPSModelType());
         pSModelStorage2.setPSModelId(pSModelStorage.getPSModelId());
         pSModelStorage2.setStorageType(pSModelStorage.getStorageType());
-        if (this.selectOne((IEntity)pSModelStorage2, true)) {
+        if (this.selectOne(pSModelStorage2, true)) {
             return pSModelStorage2.getPSModelStorageId();
         }
         return super.getEntityFolderKeyValue(pSModelStorage, pSSystem);

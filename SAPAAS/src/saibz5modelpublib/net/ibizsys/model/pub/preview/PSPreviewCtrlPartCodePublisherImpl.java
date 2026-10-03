@@ -1,24 +1,29 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.pub.preview;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.preview.PSPreviewLogicMethod;
-import net.ibizsys.model.pub.preview.PSPreviewLogicNodeMethod;
-import net.ibizsys.model.pub.preview.PSPreviewPanelItemLogicMethod;
 
-public class PSPreviewCtrlPartCodePublisherImpl {
-    private static PSPreviewLogicMethod psPreviewLogicMethod;
-    private static PSPreviewLogicNodeMethod psPreviewLogicNodeMethod;
-    private static PSPreviewPanelItemLogicMethod psPreviewPanelItemLogicMethod;
+import SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl;
 
-    public PSPreviewCtrlPartCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tPSPFCtrlPartCodePublisherImpl cannot be resolved to a type\n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSPreviewCtrlPartCodePublisherImpl must override or implement a supertype method\n\tPSPFCtrlPartCodePublisherImpl cannot be resolved to a type\n");
-    }
-
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSPreviewCtrlPartCodePublisherImpl must override or implement a supertype method\n\tPSPFCtrlPartCodePublisherImpl cannot be resolved to a type\n");
-    }
+/**
+ * PreViewPCuery部件成员代码发布器对象
+ * @author Administrator
+ *
+ */
+public class PSPreviewCtrlPartCodePublisherImpl extends PSPFCtrlPartCodePublisherImpl
+{
+	private static PSPreviewLogicMethod psPreviewLogicMethod = new PSPreviewLogicMethod();
+	private static PSPreviewLogicNodeMethod psPreviewLogicNodeMethod = new PSPreviewLogicNodeMethod();
+	private static PSPreviewPanelItemLogicMethod psPreviewPanelItemLogicMethod = new PSPreviewPanelItemLogicMethod();
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		params.put("srfpanellogic", psPreviewLogicMethod);
+		params.put("srflogicnode", psPreviewLogicNodeMethod);
+		params.put("srfpanelitemlogic", psPreviewPanelItemLogicMethod);
+		PSPreviewTemplHelper.fillParams(params);
+	}
 }
-

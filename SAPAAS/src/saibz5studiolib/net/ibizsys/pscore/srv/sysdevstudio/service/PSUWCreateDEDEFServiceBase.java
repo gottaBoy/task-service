@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
     }
 
     protected void onFillParentInfo(PSUWCreateDEDEF pSUWCreateDEDEF, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSUWCreateDEDEF, string, string2, string3);
+        super.onFillParentInfo(pSUWCreateDEDEF, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSUWCreateDEDEF, bl);
+        super.onFillEntityFullInfo(pSUWCreateDEDEF, bl);
     }
 
     protected void onWriteBackParent(PSUWCreateDEDEF pSUWCreateDEDEF, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUWCreateDEDEF, bl);
+        super.onWriteBackParent(pSUWCreateDEDEF, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
     }
 
     protected void onRemoveEntityUncopyValues(PSUWCreateDEDEF pSUWCreateDEDEF, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUWCreateDEDEF, bl);
+        super.onRemoveEntityUncopyValues(pSUWCreateDEDEF, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUWCreateDEDEF pSUWCreateDEDEF, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -191,7 +191,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
         if ((entityFieldError = this.onCheckField_WizardMode(bl, pSUWCreateDEDEF, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUWCreateDEDEF, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUWCreateDEDEF, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSUWCreateDEDEF pSUWCreateDEDEF, boolean bl2, boolean bl3) throws Exception {
@@ -204,7 +204,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -226,7 +226,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEFParam_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_DEFParam_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFPARAM");
@@ -248,7 +248,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEFParam2_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_DEFParam2_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFPARAM2");
@@ -270,7 +270,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEFParam3_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string = this.onTestValueRule_DEFParam3_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFPARAM3");
@@ -292,7 +292,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DEFParam4_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string = this.onTestValueRule_DEFParam4_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFPARAM4");
@@ -314,7 +314,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NewCodeName_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_NewCodeName_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NEWCODENAME");
@@ -336,7 +336,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NewDEFLogicName_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_NewDEFLogicName_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NEWDEFLOGICNAME");
@@ -358,7 +358,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NewDEFName_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_NewDEFName_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NEWDEFNAME");
@@ -380,7 +380,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFId_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFId_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFID");
@@ -402,7 +402,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFName_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFName_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFNAME");
@@ -424,7 +424,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -449,7 +449,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUWCreateDEDEFId_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_PSUWCreateDEDEFId_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUWCREATEDEDEFID");
@@ -474,7 +474,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUWCreateDEDEFName_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_PSUWCreateDEDEFName_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUWCREATEDEDEFNAME");
@@ -496,7 +496,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUWCreateDEId_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_PSUWCreateDEId_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUWCREATEDEID");
@@ -518,7 +518,7 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WizardMode_Default((IEntity)pSUWCreateDEDEF, bl2, bl3);
+            string2 = this.onTestValueRule_WizardMode_Default(pSUWCreateDEDEF, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIZARDMODE");
@@ -531,11 +531,11 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
     }
 
     protected void onSyncEntity(PSUWCreateDEDEF pSUWCreateDEDEF, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUWCreateDEDEF, bl);
+        super.onSyncEntity(pSUWCreateDEDEF, bl);
     }
 
     protected void onSyncIndexEntities(PSUWCreateDEDEF pSUWCreateDEDEF, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUWCreateDEDEF, bl);
+        super.onSyncIndexEntities(pSUWCreateDEDEF, bl);
     }
 
     public Object getDataContextValue(PSUWCreateDEDEF pSUWCreateDEDEF, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -543,14 +543,14 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUWCreateDEDEF, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUWCreateDEDEF, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUWCreateDEDEF pSUWCreateDEDEF, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUWCreateDEDEF, arrayList, n);
+        super.onExportMajorModel(pSUWCreateDEDEF, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -812,14 +812,14 @@ extends PSCoreSysServiceBase<PSUWCreateDEDEF> {
 
     protected boolean onMergeChild(String string, String string2, PSUWCreateDEDEF pSUWCreateDEDEF) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUWCreateDEDEF)) {
+        if (super.onMergeChild(string, string2, pSUWCreateDEDEF)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUWCreateDEDEF pSUWCreateDEDEF) throws Exception {
-        super.onUpdateParent((IEntity)pSUWCreateDEDEF);
+        super.onUpdateParent(pSUWCreateDEDEF);
     }
 
     @Override

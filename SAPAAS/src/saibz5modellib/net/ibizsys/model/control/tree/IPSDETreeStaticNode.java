@@ -1,12 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.tree;
 
-import net.ibizsys.model.control.tree.IPSDETreeNode;
 
-public interface IPSDETreeStaticNode
-extends IPSDETreeNode {
-    public String getNodeValue();
+/**
+ * 实体树视图静态节点对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDETreeStaticNode extends IPSDETreeNode
+{
+	/**
+	 * 获取节点值
+	 * @return
+	 */
+	String getNodeValue();
 }
-

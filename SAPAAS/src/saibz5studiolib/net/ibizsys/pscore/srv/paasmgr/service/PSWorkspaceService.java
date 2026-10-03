@@ -48,12 +48,12 @@ extends PSWorkspaceServiceBase {
                 try {
                     PSWorkspace pSWorkspace = new PSWorkspace();
                     pSWorkspace.setPSWorkspaceId(string);
-                    PSWorkspaceService.this.get((IEntity)pSWorkspace);
+                    PSWorkspaceService.this.get(pSWorkspace);
                     if (!StringHelper.isNullOrEmpty((String)pSWorkspace.getPSDCWorkspaceId())) {
                         PSDCWorkspace pSDCWorkspace = new PSDCWorkspace();
                         pSDCWorkspace.setPSDCWorkspaceId(pSWorkspace.getPSDCWorkspaceId());
                         PSDCWorkspaceService pSDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)PSWorkspaceService.this.getSessionFactory());
-                        pSDCWorkspaceService.get((IEntity)pSDCWorkspace);
+                        pSDCWorkspaceService.get(pSDCWorkspace);
                         PSCoreEntityKeeperGlobal.getCurrent(PSWorkspaceService.this.getSessionFactory()).updatePSDCWorkspace(pSDCWorkspace);
                     }
                 }
@@ -84,7 +84,7 @@ extends PSWorkspaceServiceBase {
     @Override
     protected void onBeforeRemove(PSWorkspace pSWorkspace) throws Exception {
         PSWorkspace pSWorkspace2;
-        if (this.isMajorSessionFactory() && !StringHelper.isNullOrEmpty((String)(pSWorkspace2 = (PSWorkspace)this.getLast((IEntity)pSWorkspace)).getPSDCWorkspaceId())) {
+        if (this.isMajorSessionFactory() && !StringHelper.isNullOrEmpty((String)(pSWorkspace2 = (PSWorkspace)this.getLast(pSWorkspace)).getPSDCWorkspaceId())) {
             throw new Exception("\u751f\u4ea7\u7ebf\u5df2\u7ecf\u5206\u914d\u5230\u5e94\u7528\u4e2d\u5fc3\uff0c\u65e0\u6cd5\u5220\u9664");
         }
         super.onBeforeRemove(pSWorkspace);
@@ -102,7 +102,7 @@ extends PSWorkspaceServiceBase {
         }
         PSWorkspace pSWorkspace2 = new PSWorkspace();
         pSWorkspace2.setPSWorkspaceId(pSWorkspace.getPSWorkspaceId());
-        this.get((IEntity)pSWorkspace2);
+        this.get(pSWorkspace2);
         if (!StringHelper.isNullOrEmpty((String)pSWorkspace2.getPSDCWorkspaceId())) {
             throw new Exception("\u751f\u4ea7\u7ebf\u5df2\u7ecf\u5206\u914d\u5230\u5e94\u7528\u4e2d\u5fc3");
         }
@@ -141,13 +141,13 @@ extends PSWorkspaceServiceBase {
 
     @Override
     protected void onResetDC(PSWorkspace pSWorkspace) throws Exception {
-        this.get((IEntity)pSWorkspace);
+        this.get(pSWorkspace);
         if (!StringHelper.isNullOrEmpty((String)pSWorkspace.getPSDCWorkspaceId())) {
             PSDCWorkspace pSDCWorkspace = new PSDCWorkspace();
             pSDCWorkspace.setPSDCWorkspaceId(pSWorkspace.getPSDCWorkspaceId());
             PSDCWorkspaceService pSDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)this.getSessionFactory());
             try {
-                pSDCWorkspaceService.remove((IEntity)pSDCWorkspace);
+                pSDCWorkspaceService.remove(pSDCWorkspace);
             }
             catch (Exception exception) {
                 log.error((Object)StringHelper.format((String)"\u5220\u9664\u4e2d\u5fc3\u751f\u4ea7\u7ebf\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
@@ -158,13 +158,13 @@ extends PSWorkspaceServiceBase {
 
     @Override
     protected void onUninstallSys(PSWorkspace pSWorkspace) throws Exception {
-        this.get((IEntity)pSWorkspace);
+        this.get(pSWorkspace);
         if (!StringHelper.isNullOrEmpty((String)pSWorkspace.getPSDCWorkspaceId())) {
             PSDCWorkspace pSDCWorkspace = new PSDCWorkspace();
             pSDCWorkspace.setPSDCWorkspaceId(pSWorkspace.getPSDCWorkspaceId());
             PSDCWorkspaceService pSDCWorkspaceService = (PSDCWorkspaceService)ServiceGlobal.getService(PSDCWorkspaceService.class, (SessionFactory)this.getSessionFactory());
             try {
-                pSDCWorkspaceService.get((IEntity)pSDCWorkspace);
+                pSDCWorkspaceService.get(pSDCWorkspace);
             }
             catch (Exception exception) {
                 log.error((Object)StringHelper.format((String)"\u83b7\u53d6\u4e2d\u5fc3\u751f\u4ea7\u7ebf\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);

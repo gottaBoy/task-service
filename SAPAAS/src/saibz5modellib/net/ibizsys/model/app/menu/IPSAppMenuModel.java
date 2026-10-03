@@ -1,25 +1,52 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.control.menu.AppMenuRootItem
- */
 package net.ibizsys.model.app.menu;
 
-import java.util.Iterator;
 import net.ibizsys.model.app.IPSApplicationObject;
 import net.ibizsys.model.app.func.IPSAppFunc;
 import net.ibizsys.model.control.menu.IPSAppMenuItem;
 import net.ibizsys.paas.control.menu.AppMenuRootItem;
 
-public interface IPSAppMenuModel
-extends IPSApplicationObject {
-    public Iterator<IPSAppMenuItem> getPSAppMenuItems() throws Exception;
+/**
+ * 应用菜单模型对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IPSAppMenuModel extends IPSApplicationObject {
+	
 
-    public AppMenuRootItem getRootItem();
+	/**
+	 * 获取应用菜单项集合
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	java.util.Iterator<IPSAppMenuItem> getPSAppMenuItems() throws Exception;
 
-    public Iterator<IPSAppFunc> getPSAppFuncs();
+	/**
+	 * 获取应用菜单项根节点
+	 * 
+	 * @return
+	 */
+	AppMenuRootItem getRootItem();
 
-    public String getCodeName();
+	/**
+	 * 获取应用功能集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IPSAppFunc> getPSAppFuncs();
+
+//	/**
+//	 * 获取指定系统计数器
+//	 * 
+//	 * @return
+//	 */
+//	IPSSysCounter getPSSysCounter();
+
+	/**
+	 * 获取代码名称
+	 * 
+	 * @return
+	 */
+	String getCodeName();
 }
-

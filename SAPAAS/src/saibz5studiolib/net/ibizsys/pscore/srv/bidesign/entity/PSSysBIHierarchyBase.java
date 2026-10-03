@@ -2053,7 +2053,7 @@ implements Serializable {
                 PSCodeList pSCodeList = new PSCodeList();
                 pSCodeList.setPSCodeListId(this.getPSCodeListId());
                 PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.getSessionFactory());
-                pSCodeListService.autoGet((IEntity)pSCodeList);
+                pSCodeListService.autoGet(pSCodeList);
                 this.pscodelist = pSCodeList;
             }
             return this.pscodelist;
@@ -2079,7 +2079,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -2105,7 +2105,7 @@ implements Serializable {
                 PSSysBIDimension pSSysBIDimension = new PSSysBIDimension();
                 pSSysBIDimension.setPSSysBIDimensionId(this.getPSSysBIDimensionId());
                 PSSysBIDimensionService pSSysBIDimensionService = (PSSysBIDimensionService)ServiceGlobal.getService(PSSysBIDimensionService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBIDimensionService.autoGet((IEntity)pSSysBIDimension);
+                pSSysBIDimensionService.autoGet(pSSysBIDimension);
                 this.pssysbidimension = pSSysBIDimension;
             }
             return this.pssysbidimension;

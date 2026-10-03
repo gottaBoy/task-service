@@ -85,7 +85,7 @@ implements IPSDEMainStateService {
     @Override
     protected List<PSDEMainState> onListAll() throws Exception {
         ArrayList<PSDEMainState> list = new ArrayList<PSDEMainState>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEMainState> items = this.listByPSDataEntity(parent);
@@ -518,26 +518,28 @@ implements IPSDEMainStateService {
             dto.setUtilFormCodeName(null);
             dto.setUtilPSDEFormName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEMSOPPrivService().listByPSDEMainState(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEMSOPPriv> pSDEMSOPPrivList = PSModelServiceUtil.getInstance().getPSDEMSOPPrivService().listByPSDEMainState(t);
+        if (pSDEMSOPPrivList != null && pSDEMSOPPrivList.size() > 0) {
             ArrayList<PSDEMSOPPrivDTO> psdemsopprivs = new ArrayList<PSDEMSOPPrivDTO>();
-            for (PSDEMSOPPriv pSDEMSOPPriv : list) {
+            for (PSDEMSOPPriv pSDEMSOPPriv : pSDEMSOPPrivList) {
                 dstItem = (PSDEMSOPPrivDTO)PSModelServiceUtil.getInstance().getPSDEMSOPPrivService().toDTO(pSDEMSOPPriv);
                 psdemsopprivs.add((PSDEMSOPPrivDTO)dstItem);
             }
             dto.setPsdemsopprivs(psdemsopprivs);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEMSActionService().listByPSDEMainState(t)) != null && list.size() > 0) {
+        List<PSDEMSAction> pSDEMSActionList = PSModelServiceUtil.getInstance().getPSDEMSActionService().listByPSDEMainState(t);
+        if (pSDEMSActionList != null && pSDEMSActionList.size() > 0) {
             ArrayList<PSDEMSActionDTO> psdemsactions = new ArrayList<PSDEMSActionDTO>();
-            for (PSDEMSAction pSDEMSAction : list) {
+            for (PSDEMSAction pSDEMSAction : pSDEMSActionList) {
                 dstItem = (PSDEMSActionDTO)PSModelServiceUtil.getInstance().getPSDEMSActionService().toDTO(pSDEMSAction);
                 psdemsactions.add((PSDEMSActionDTO)dstItem);
             }
             dto.setPsdemsactions(psdemsactions);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEMainStateRSService().listByPSDEMainState(t)) != null && list.size() > 0) {
+        List<PSDEMainStateRS> pSDEMainStateRSList = PSModelServiceUtil.getInstance().getPSDEMainStateRSService().listByPSDEMainState(t);
+        if (pSDEMainStateRSList != null && pSDEMainStateRSList.size() > 0) {
             ArrayList<PSDEMainStateRSDTO> psdemainstaters = new ArrayList<PSDEMainStateRSDTO>();
-            for (PSDEMainStateRS pSDEMainStateRS : list) {
+            for (PSDEMainStateRS pSDEMainStateRS : pSDEMainStateRSList) {
                 dstItem = (PSDEMainStateRSDTO)PSModelServiceUtil.getInstance().getPSDEMainStateRSService().toDTO(pSDEMainStateRS);
                 psdemainstaters.add((PSDEMainStateRSDTO)dstItem);
             }

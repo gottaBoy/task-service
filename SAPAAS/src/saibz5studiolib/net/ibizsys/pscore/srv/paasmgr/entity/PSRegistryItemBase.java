@@ -1407,7 +1407,7 @@ implements Serializable {
                 PSRegistryRepo pSRegistryRepo = new PSRegistryRepo();
                 pSRegistryRepo.setPSRegistryRepoId(this.getPSRegistryRepoId());
                 PSRegistryRepoService pSRegistryRepoService = (PSRegistryRepoService)ServiceGlobal.getService(PSRegistryRepoService.class, (SessionFactory)this.getSessionFactory());
-                pSRegistryRepoService.autoGet((IEntity)pSRegistryRepo);
+                pSRegistryRepoService.autoGet(pSRegistryRepo);
                 this.psregistryrepo = pSRegistryRepo;
             }
             return this.psregistryrepo;

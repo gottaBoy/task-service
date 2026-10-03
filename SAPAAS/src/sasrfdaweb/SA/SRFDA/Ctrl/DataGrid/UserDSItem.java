@@ -53,7 +53,12 @@ ISRFExDataGridDSItem4 {
                     return "";
                 }
             }
-            strValue = dr.Get(dsItemConfig.getID()).toString();
+            try {
+                strValue = dr.Get(dsItemConfig.getID()).toString();
+            }
+            catch (Exception exception) {
+                return "";
+            }
             codeListConfig = webContext.getCodeListMgr().GetCodeListConfig("SRFDA.CODELIST_USER");
             if (codeListConfig != null) break block5;
             return "";

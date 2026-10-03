@@ -1,18 +1,40 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.service;
 
-import net.ibizsys.model.service.IPSRESTfulAPI;
+/**
+ * 实体行为 REST风格的服务接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IPSDEActionRESTfulAPI extends IPSRESTfulAPI {
 
-public interface IPSDEActionRESTfulAPI
-extends IPSRESTfulAPI {
-    public static final String REQUESTPARAMTYPE_NONE = "NONE";
-    public static final String REQUESTPARAMTYPE_FIELD = "FIELD";
-    public static final String REQUESTPARAMTYPE_ENTITY = "ENTITY";
+	/**
+	 * 请求参数类型：无参数
+	 */
+	public final static String REQUESTPARAMTYPE_NONE = "NONE";
 
-    public String getRequestParamType();
+	/**
+	 * 请求参数类型：指定属性
+	 */
+	public final static String REQUESTPARAMTYPE_FIELD = "FIELD";
 
-    public String getRequestField();
+	/**
+	 * 请求参数类型：数据对象
+	 */
+	public final static String REQUESTPARAMTYPE_ENTITY = "ENTITY";
+	
+	
+	/**
+	 * 获取请求的参数类型
+	 * @return
+	 */
+	String getRequestParamType();
+	
+	
+	
+	/**
+	 * 获取请求的属性名称，请求参数类型为 FIELD 时启用
+	 * @return
+	 */
+	String getRequestField();
 }
-

@@ -1,19 +1,46 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import net.ibizsys.paas.util.IGlobalContext;
 
+/**
+ * 框架全局模型对象，
+ * 
+ * @author Administrator
+ *
+ */
 public interface IGlobalModel<KT, VT, HT> {
-    public void init(IGlobalContext var1) throws Exception;
+	/**
+	 * 初始化
+	 * 
+	 * @param iGlobalContext
+	 */
+	void init(IGlobalContext iGlobalContext) throws Exception;
 
-    public VT getObjectData(KT var1) throws Exception;
+	/**
+	 * 查找对应的模型
+	 * 
+	 * @param objObjectId
+	 * @return
+	 */
+	VT getObjectData(KT objObjectId) throws Exception;
 
-    public HT getObject(KT var1) throws Exception;
+	/**
+	 * 查找模型辅助对象
+	 * 
+	 * @param objObjectId
+	 * @return
+	 */
+	HT getObject(KT objObjectId) throws Exception;
 
-    public void resetObject(KT var1);
+	/**
+	 * 重置模型
+	 * 
+	 * @param objObjectId
+	 */
+	void resetObject(KT objObjectId);
 
-    public void resetAll();
+	/**
+	 * 重置全部模型
+	 */
+	void resetAll();
 }
-

@@ -262,10 +262,10 @@ extends WFBaseProcessConfig {
         wfInteractiveProcessConfig.setMsgTemplateName(this.getMsgTemplateName());
         wfInteractiveProcessConfig.setMsgType(this.getMsgType());
         if (this.iaActionsConfig != null) {
-            Iterator<WFAction> iterator = this.iaActionsConfig.iterator();
+            Iterator<WFInteractiveActionConfig> iterator = this.iaActionsConfig.iterator();
             while (iterator.hasNext()) {
-                WFInteractiveActionConfig wfInteractiveActionConfig = (WFInteractiveActionConfig)((Object)iterator.next());
-                wfInteractiveProcessConfig.getIAActionsConfig().add((Object)wfInteractiveActionConfig);
+                WFInteractiveActionConfig wfInteractiveActionConfig = iterator.next();
+                wfInteractiveProcessConfig.getIAActionsConfig().add(wfInteractiveActionConfig);
             }
         }
         if (this.userActionList != null) {

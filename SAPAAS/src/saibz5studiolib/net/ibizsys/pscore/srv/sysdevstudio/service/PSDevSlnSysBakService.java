@@ -27,6 +27,7 @@ import net.ibizsys.paas.util.KeyValueHelper;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
 import net.ibizsys.pscore.srv.codelist.DevSysStateCodeListModel;
+import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSlnSys;
 import net.ibizsys.pscore.srv.sysdevstudio.entity.PSDevSlnSysBak;
 import net.ibizsys.pscore.srv.sysdevstudio.entity.PSDevSlnSysBakLink;
 import net.ibizsys.pscore.srv.sysdevstudio.service.PSDevSlnSysBakLinkService;
@@ -52,22 +53,22 @@ extends PSDevSlnSysBakServiceBase {
 
     @Override
     protected void onBeforeRemove(PSDevSlnSysBak pSDevSlnSysBak) throws Exception {
-        EntityBase entityBase;
-        PSDevSlnSysBak pSDevSlnSysBak2 = (PSDevSlnSysBak)this.getLast((IEntity)pSDevSlnSysBak);
+        PSDevSlnSys entityBase;
+        PSDevSlnSysBak pSDevSlnSysBak2 = (PSDevSlnSysBak)this.getLast(pSDevSlnSysBak);
         if (pSDevSlnSysBak2.getPSDevSlnSys() != null && DataObject.getIntegerValue((Object)(entityBase = pSDevSlnSysBak2.getPSDevSlnSys()).getDevSysState(), (Integer)30) != 30) {
             throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u5f53\u524d\u72b6\u6001[%2$s]\uff0c\u5fc5\u987b\u5728\u72b6\u6001[%3$s]\u624d\u53ef\u5220\u9664\u5907\u4efd", (Object)entityBase.getPSDevSlnSysName(), (Object)DevSysStateCodeListModel.getInstance().getCodeItem(entityBase.getDevSysState().toString()).getText(), (Object)DevSysStateCodeListModel.getInstance().getCodeItem(Integer.toString(30)).getText()));
         }
         if (DataObject.getBoolValue((Integer)pSDevSlnSysBak2.getLinkFlag(), (boolean)false)) {
-            entityBase = new PSDevSlnSysBakLink();
-            entityBase.setPSDevSlnSysBakLinkId(pSDevSlnSysBak2.getPSDevSlnSysBakId());
-            entityBase.setSessionFactory(this.getSessionFactory());
-            if (entityBase.get(true)) {
-                entityBase.reset();
-                entityBase.setPSDevSlnSysBakLinkId(pSDevSlnSysBak2.getPSDevSlnSysBakId());
+            PSDevSlnSysBakLink link = new PSDevSlnSysBakLink();
+            link.setPSDevSlnSysBakLinkId(pSDevSlnSysBak2.getPSDevSlnSysBakId());
+            link.setSessionFactory(this.getSessionFactory());
+            if (link.get(true)) {
+                link.reset();
+                link.setPSDevSlnSysBakLinkId(pSDevSlnSysBak2.getPSDevSlnSysBakId());
                 PSDevSlnSysBakLinkService pSDevSlnSysBakLinkService = (PSDevSlnSysBakLinkService)ServiceGlobal.getService(PSDevSlnSysBakLinkService.class, (SessionFactory)this.getSessionFactory());
-                entityBase.setSessionFactory(this.getSessionFactory());
-                entityBase.setLinkState(41);
-                pSDevSlnSysBakLinkService.sysUpdate(entityBase, false);
+                link.setSessionFactory(this.getSessionFactory());
+                link.setLinkState(41);
+                pSDevSlnSysBakLinkService.sysUpdate(link, false);
             }
         }
         super.onBeforeRemove(pSDevSlnSysBak);
@@ -80,7 +81,7 @@ extends PSDevSlnSysBakServiceBase {
 
     @Override
     protected void onGetWithToken(PSDevSlnSysBak pSDevSlnSysBak) throws Exception {
-        this.get((IEntity)pSDevSlnSysBak);
+        this.get(pSDevSlnSysBak);
         if (StringHelper.isNullOrEmpty((String)pSDevSlnSysBak.getAccessToken()) && !DataObject.getBoolValue((Integer)pSDevSlnSysBak.getLinkFlag(), (boolean)false)) {
             pSDevSlnSysBak.setAccessToken(KeyValueHelper.genGuidEx());
             this.update(pSDevSlnSysBak);
@@ -91,7 +92,7 @@ extends PSDevSlnSysBakServiceBase {
     protected void onUpdateEnableLink(PSDevSlnSysBak pSDevSlnSysBak) throws Exception {
         PSDevSlnSysBak pSDevSlnSysBak2 = new PSDevSlnSysBak();
         pSDevSlnSysBak2.setPSDevSlnSysBakId(pSDevSlnSysBak.getPSDevSlnSysBakId());
-        this.get((IEntity)pSDevSlnSysBak2);
+        this.get(pSDevSlnSysBak2);
         if (DataObject.getBoolValue((Integer)pSDevSlnSysBak.getEnableLink(), (boolean)false)) {
             if (DataObject.getBoolValue((Integer)pSDevSlnSysBak2.getLinkFlag(), (boolean)false)) {
                 throw new Exception("\u94fe\u63a5\u6a21\u5f0f\u7684\u7cfb\u7edf\u6a21\u578b\u5907\u4efd\u65e0\u6cd5\u542f\u7528\u5916\u90e8\u94fe\u63a5");
@@ -154,12 +155,12 @@ extends PSDevSlnSysBakServiceBase {
             if (this.getSessionFactory() == PSCoreSysServiceBase.getCurMajorSessionFactory()) {
                 PSDevSlnSysBak pSDevSlnSysBak = new PSDevSlnSysBak();
                 iEntity.copyTo((IDataObject)pSDevSlnSysBak, false);
-                if (this.get((IEntity)pSDevSlnSysBak, true)) {
+                if (this.get(pSDevSlnSysBak, true)) {
                     if (DataObject.getBoolValue((Integer)pSDevSlnSysBak.getLinkFlag(), (boolean)false)) {
                         PSDevSlnSysBakLink pSDevSlnSysBakLink = new PSDevSlnSysBakLink();
                         pSDevSlnSysBakLink.setPSDevSlnSysBakLinkId(pSDevSlnSysBak.getPSDevSlnSysBakId());
                         PSDevSlnSysBakLinkService pSDevSlnSysBakLinkService = (PSDevSlnSysBakLinkService)ServiceGlobal.getService(PSDevSlnSysBakLinkService.class, (SessionFactory)this.getSessionFactory());
-                        if (pSDevSlnSysBakLinkService.get((IEntity)pSDevSlnSysBakLink, true) && pSDevSlnSysBakLink.getPSDevSlnSysBak() != null && pSDevSlnSysBakLink.getPSDevSlnSysBak().getPSDevSlnSys() != null && pSDevSlnSysBakLink.getPSDevSlnSysBak().getPSDevSlnSys().getPSDevCenterTS() != null && pSDevSlnSysBakLink.getPSDevSlnSysBak().getPSDevSlnSys().getPSDevCenterTS().getPSTaskServer() != null) {
+                        if (pSDevSlnSysBakLinkService.get(pSDevSlnSysBakLink, true) && pSDevSlnSysBakLink.getPSDevSlnSysBak() != null && pSDevSlnSysBakLink.getPSDevSlnSysBak().getPSDevSlnSys() != null && pSDevSlnSysBakLink.getPSDevSlnSysBak().getPSDevSlnSys().getPSDevCenterTS() != null && pSDevSlnSysBakLink.getPSDevSlnSysBak().getPSDevSlnSys().getPSDevCenterTS().getPSTaskServer() != null) {
                             return super.executeRemoteCall(pSDevSlnSysBakLink.getPSDevSlnSysBak().getPSDevSlnSys().getPSDevCenterTS().getPSTaskServer(), string, iEntity, bl);
                         }
                     } else if (pSDevSlnSysBak.getPSDevSlnSys() != null && pSDevSlnSysBak.getPSDevSlnSys().getPSDevCenterTS() != null && pSDevSlnSysBak.getPSDevSlnSys().getPSDevCenterTS().getPSTaskServer() != null) {
@@ -185,10 +186,9 @@ extends PSDevSlnSysBakServiceBase {
     @Override
     protected void onAfterRemove(PSDevSlnSysBak pSDevSlnSysBak) throws Exception {
         if (this.isMajorSessionFactory()) {
-            PSDevSlnSysBak pSDevSlnSysBak2 = (PSDevSlnSysBak)this.getLast((IEntity)pSDevSlnSysBak);
+            PSDevSlnSysBak pSDevSlnSysBak2 = (PSDevSlnSysBak)this.getLast(pSDevSlnSysBak);
             PSDevCenterHelper.updatetPSDCResRep(pSDevSlnSysBak2.getPSDevCenter(), "SYSBAKCNT");
         }
         super.onAfterRemove(pSDevSlnSysBak);
     }
 }
-

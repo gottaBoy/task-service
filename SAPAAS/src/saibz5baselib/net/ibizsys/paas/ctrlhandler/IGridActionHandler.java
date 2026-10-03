@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ICtrlActionHandler;
+/**
+ * 表格操作处理处理器对象接口
+ * @author Administrator
+ *
+ */
+public interface IGridActionHandler extends ICtrlActionHandler {
 
-public interface IGridActionHandler
-extends ICtrlActionHandler {
 }
-

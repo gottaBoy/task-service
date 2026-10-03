@@ -185,14 +185,14 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
             PSSysModelFolder pSSysModelFolder = (PSSysModelFolder)iService.getDEModel().createEntity();
             pSSysModelFolder.set("PSSYSMODELFOLDERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysModelFolder);
+                iService.getTemp(pSSysModelFolder);
             } else {
-                iService.get((IEntity)pSSysModelFolder);
+                iService.get(pSSysModelFolder);
             }
             this.onFillParentInfo_PSSysModelFolder(pSSysModelFolderItem, pSSysModelFolder);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysModelFolderItem, string, string2, string3);
+        super.onFillParentInfo(pSSysModelFolderItem, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -208,7 +208,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
         if (bl && pSSysModelFolderItem.getAllUserFlag() == null) {
             pSSysModelFolderItem.setAllUserFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysModelFolderItem, bl);
+        super.onFillEntityFullInfo(pSSysModelFolderItem, bl);
         this.onFillEntityFullInfo_PSSysModelFolder(pSSysModelFolderItem, bl);
     }
 
@@ -226,7 +226,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
     }
 
     protected void onWriteBackParent(PSSysModelFolderItem pSSysModelFolderItem, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysModelFolderItem, bl);
+        super.onWriteBackParent(pSSysModelFolderItem, bl);
     }
 
     public ArrayList<PSSysModelFolderItem> selectByPSSysModelFolder(PSSysModelFolderBase pSSysModelFolderBase) throws Exception {
@@ -257,8 +257,8 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
         ArrayList<PSSysModelFolderItem> arrayList = this.selectByPSSysModelFolder(pSSysModelFolder, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSMODELFOLDER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysModelFolder);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSMODELFOLDERITEM_PSSYSMODELFOLDER_PSSYSMODELFOLDERID", "", iDataEntityModel.getName(), "PSSYSMODELFOLDERITEM", iDataEntityModel.getDataInfo((IEntity)pSSysModelFolder), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysModelFolder);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSMODELFOLDERITEM_PSSYSMODELFOLDER_PSSYSMODELFOLDERID", "", iDataEntityModel.getName(), "PSSYSMODELFOLDERITEM", iDataEntityModel.getDataInfo(pSSysModelFolder), arrayList.get(0)));
         }
     }
 
@@ -291,7 +291,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
         ArrayList<PSSysModelFolderItem> arrayList = this.selectByPSSysModelFolder(pSSysModelFolder);
         this.onBeforeRemoveByPSSysModelFolder(pSSysModelFolder, arrayList);
         for (PSSysModelFolderItem pSSysModelFolderItem : arrayList) {
-            this.remove((IEntity)pSSysModelFolderItem);
+            this.remove(pSSysModelFolderItem);
         }
         this.onAfterRemoveByPSSysModelFolder(pSSysModelFolder, arrayList);
     }
@@ -312,14 +312,14 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
 
     protected void replaceParentInfo(PSSysModelFolderItem pSSysModelFolderItem, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysModelFolderItem, cloneSession);
+        super.replaceParentInfo(pSSysModelFolderItem, cloneSession);
         if (pSSysModelFolderItem.getPSSysModelFolderId() != null && (iEntity = cloneSession.getEntity("PSSYSMODELFOLDER", (Object)pSSysModelFolderItem.getPSSysModelFolderId())) != null) {
             this.onFillParentInfo_PSSysModelFolder(pSSysModelFolderItem, (PSSysModelFolder)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSysModelFolderItem pSSysModelFolderItem, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysModelFolderItem, bl);
+        super.onRemoveEntityUncopyValues(pSSysModelFolderItem, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysModelFolderItem pSSysModelFolderItem, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -385,7 +385,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
         if ((entityFieldError = this.onCheckField_UserTag2(bl, pSSysModelFolderItem, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysModelFolderItem, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysModelFolderItem, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AllUserFlag(boolean bl, PSSysModelFolderItem pSSysModelFolderItem, boolean bl2, boolean bl3) throws Exception {
@@ -401,7 +401,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_AllUserFlag_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string = this.onTestValueRule_AllUserFlag_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALLUSERFLAG");
@@ -423,7 +423,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Data_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_Data_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DATA");
@@ -445,7 +445,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconCls_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_IconCls_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONCLS");
@@ -467,7 +467,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemParam_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_ItemParam_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMPARAM");
@@ -489,7 +489,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemParam2_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_ItemParam2_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMPARAM2");
@@ -511,7 +511,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -533,7 +533,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -555,7 +555,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjId_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjId_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJID");
@@ -577,7 +577,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjName_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjName_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJNAME");
@@ -602,7 +602,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjType_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjType_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJTYPE");
@@ -624,7 +624,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjTypeName_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjTypeName_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJTYPENAME");
@@ -649,7 +649,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelFolderId_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelFolderId_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELFOLDERID");
@@ -674,7 +674,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelFolderItemId_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelFolderItemId_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELFOLDERITEMID");
@@ -699,7 +699,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelFolderItemName_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelFolderItemName_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELFOLDERITEMNAME");
@@ -738,7 +738,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysModelFolderName_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysModelFolderName_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSMODELFOLDERNAME");
@@ -760,7 +760,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StudioTag_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_StudioTag_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STUDIOTAG");
@@ -782,7 +782,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StudioTag2_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_StudioTag2_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STUDIOTAG2");
@@ -804,7 +804,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_StudioType_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_StudioType_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("STUDIOTYPE");
@@ -826,7 +826,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -848,7 +848,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysModelFolderItem, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysModelFolderItem, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -861,11 +861,11 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
     }
 
     protected void onSyncEntity(PSSysModelFolderItem pSSysModelFolderItem, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysModelFolderItem, bl);
+        super.onSyncEntity(pSSysModelFolderItem, bl);
     }
 
     protected void onSyncIndexEntities(PSSysModelFolderItem pSSysModelFolderItem, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysModelFolderItem, bl);
+        super.onSyncIndexEntities(pSSysModelFolderItem, bl);
     }
 
     public Object getDataContextValue(PSSysModelFolderItem pSSysModelFolderItem, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -873,7 +873,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysModelFolderItem, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysModelFolderItem, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysModelFolder pSSysModelFolder = pSSysModelFolderItem.getPSSysModelFolder();
@@ -884,7 +884,7 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
     }
 
     protected void onExportMajorModel(PSSysModelFolderItem pSSysModelFolderItem, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysModelFolderItem, arrayList, n);
+        super.onExportMajorModel(pSSysModelFolderItem, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1226,14 +1226,14 @@ extends PSCoreSysServiceBase<PSSysModelFolderItem> {
 
     protected boolean onMergeChild(String string, String string2, PSSysModelFolderItem pSSysModelFolderItem) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysModelFolderItem)) {
+        if (super.onMergeChild(string, string2, pSSysModelFolderItem)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysModelFolderItem pSSysModelFolderItem) throws Exception {
-        super.onUpdateParent((IEntity)pSSysModelFolderItem);
+        super.onUpdateParent(pSSysModelFolderItem);
     }
 
     @Override

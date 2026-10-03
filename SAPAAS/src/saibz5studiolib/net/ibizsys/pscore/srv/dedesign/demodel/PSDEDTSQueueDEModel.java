@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEDTSQueueDEModelBase;
 
 public class PSDEDTSQueueDEModel
 extends PSDEDTSQueueDEModelBase {
+
+    public PSDEDTSQueueDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

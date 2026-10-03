@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.ICtrlModel;
+/**
+ * 向导面板模型接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IWizardPanelModel extends ICtrlModel {
 
-public interface IWizardPanelModel
-extends ICtrlModel {
 }
-

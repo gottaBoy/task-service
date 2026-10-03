@@ -114,9 +114,9 @@ implements IPSSysUserModeService {
 
     @Override
     protected List<PSSysUserMode> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysUserMode> list = new ArrayList<PSSysUserMode>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysUserMode> items = this.listByPSModule(parent);

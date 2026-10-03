@@ -72,7 +72,7 @@ implements IPSDEDSGrpParamService {
     @Override
     protected List<PSDEDSGrpParam> onListAll() throws Exception {
         ArrayList<PSDEDSGrpParam> list = new ArrayList<PSDEDSGrpParam>();
-        List psdedatasets = PSModelServiceUtil.getInstance().getPSDEDataSetService().listAll();
+        List<PSDEDataSet> psdedatasets = PSModelServiceUtil.getInstance().getPSDEDataSetService().listAll();
         if (psdedatasets != null) {
             for (PSDEDataSet parent : psdedatasets) {
                 List<PSDEDSGrpParam> items = this.listByPSDEDataSet(parent);

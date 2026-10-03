@@ -1,88 +1,107 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- *  net.ibizsys.paas.controller.IDynaViewControllerInst
- *  net.ibizsys.paas.controller.IViewController
- *  net.ibizsys.paas.ctrlmodel.CtrlModelBase
- *  net.ibizsys.paas.ctrlmodel.IDynaCtrlModel
- *  net.ibizsys.paas.util.JsonNodeHelper
- *  net.ibizsys.paas.util.StringHelper
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import net.ibizsys.paas.controller.IDynaViewControllerInst;
-import net.ibizsys.paas.controller.IViewController;
 import net.ibizsys.paas.core.IDynaModelJsonExporter;
 import net.ibizsys.paas.core.IDynaModelJsonLoader;
-import net.ibizsys.paas.ctrlmodel.CtrlModelBase;
-import net.ibizsys.paas.ctrlmodel.IDynaCtrlModel;
 import net.ibizsys.paas.util.JsonNodeHelper;
 import net.ibizsys.paas.util.StringHelper;
 
-public abstract class DynaCtrlModelBase
-extends CtrlModelBase
-implements IDynaCtrlModel,
-IDynaModelJsonExporter,
-IDynaModelJsonLoader {
-    private IDynaViewControllerInst iDynaViewControllerInst = null;
-    private ObjectNode modelJsonObject = null;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-    public void init(IDynaViewControllerInst iDynaViewControllerInst, Object modelObject) throws Exception {
-        this.setEnableDynaCtrl(true);
-        super.init((IViewController)iDynaViewControllerInst);
-        if (modelObject != null && modelObject instanceof ObjectNode) {
-            this.loadJsonObject((ObjectNode)modelObject);
-        }
-    }
+/**
+ * 动态部件模型对象基类
+ * @author Administrator
+ *
+ */
+public abstract class DynaCtrlModelBase extends CtrlModelBase implements IDynaCtrlModel,IDynaModelJsonExporter,IDynaModelJsonLoader {
 
-    protected void onInit() throws Exception {
-        if (this.getViewController() instanceof IDynaViewControllerInst) {
-            this.iDynaViewControllerInst = (IDynaViewControllerInst)this.getViewController();
-        }
-        super.onInit();
-    }
+	private IDynaViewControllerInst iDynaViewControllerInst = null;
+	private ObjectNode modelJsonObject = null;
+	
+	
+	@Override
+	public void init(IDynaViewControllerInst iDynaViewControllerInst, Object modelObject) throws Exception {
+		this.setEnableDynaCtrl(true);
+		super.init(iDynaViewControllerInst);
+		if(modelObject!=null){
+			if(modelObject instanceof ObjectNode){
+				this.loadJsonObject((ObjectNode)modelObject);
+			}
+		}
+	}
 
-    public IDynaViewControllerInst getDynaViewControllerInst() {
-        return this.iDynaViewControllerInst;
-    }
 
-    @Override
-    public ObjectNode toJsonObject(ObjectNode jo) throws Exception {
-        if (jo == null) {
-            jo = JsonNodeHelper.createObjectNode();
-        }
-        DynaCtrlModelBase.fillJsonObject(this, jo);
-        this.onFillJsonObject(jo);
-        return jo;
-    }
+	@Override
+	protected void onInit() throws Exception {
+		if(this.getViewController() instanceof IDynaViewControllerInst){
+			iDynaViewControllerInst = (IDynaViewControllerInst)this.getViewController();
+		}
+		super.onInit();
+	}
 
-    protected void onFillJsonObject(ObjectNode jo) throws Exception {
-    }
+	
+	
+	@Override
+	public IDynaViewControllerInst getDynaViewControllerInst() {
+		return this.iDynaViewControllerInst;
+	}
 
-    public static void fillJsonObject(IDynaCtrlModel iDynaCtrlModel, ObjectNode jo) throws Exception {
-        JsonNodeHelper.put((ObjectNode)jo, (String)"type", (Object)iDynaCtrlModel.getControlType());
-        JsonNodeHelper.put((ObjectNode)jo, (String)"name", (Object)iDynaCtrlModel.getName());
-    }
 
-    @Override
-    public void loadJsonObject(ObjectNode jsonObject) throws Exception {
-        this.modelJsonObject = jsonObject;
-        this.onLoadJsonObject(jsonObject);
-    }
+	@Override
+	public ObjectNode toJsonObject(ObjectNode jo) throws Exception {
+		if(jo==null)
+		{
+			jo = JsonNodeHelper.createObjectNode();
+		}
+		
+		fillJsonObject(this,jo);
+		onFillJsonObject(jo);
+		return jo;
+	}
+	
 
-    protected void onLoadJsonObject(ObjectNode jsonObject) throws Exception {
-        String strName = JsonNodeHelper.getString((ObjectNode)jsonObject, (String)"name", null);
-        if (StringHelper.isNullOrEmpty((String)strName)) {
-            throw new Exception("\u90e8\u4ef6\u6a21\u578b\u4e2d\u6ca1\u6709\u6307\u5b9a\u90e8\u4ef6\u540d\u79f0");
-        }
-        this.setName(strName);
-    }
+	/**
+	 * 填充JSON对象
+	 * @param jo
+	 * @throws Exception
+	 */
+	protected void onFillJsonObject(ObjectNode jo) throws Exception {
+		
+	}
 
-    protected ObjectNode getModelJsonObject() {
-        return this.modelJsonObject;
-    }
+
+	
+	public static void fillJsonObject(IDynaCtrlModel iDynaCtrlModel,ObjectNode jo) throws Exception {
+		JsonNodeHelper.put(jo, ATTR_TYPE, iDynaCtrlModel.getControlType());
+		JsonNodeHelper.put(jo, ATTR_NAME, iDynaCtrlModel.getName());
+	}
+
+	@Override
+	public void loadJsonObject(ObjectNode jsonObject) throws Exception {
+		this.modelJsonObject = jsonObject;
+		onLoadJsonObject(jsonObject);
+	}
+	
+	
+	
+	/**
+	 * 加载Json对象模型
+	 * @param jsonObject
+	 * @throws Exception
+	 */
+	protected void onLoadJsonObject(ObjectNode jsonObject) throws Exception {
+		String strName = JsonNodeHelper.getString(jsonObject, ATTR_NAME, null);
+		if(StringHelper.isNullOrEmpty(strName)){
+			throw new Exception("部件模型中没有指定部件名称");
+		}
+		this.setName(strName);
+	}
+	
+	/**
+	 * 获取最后导入的模型对象（json）
+	 * @return
+	 */
+	protected ObjectNode getModelJsonObject(){
+		return this.modelJsonObject;
+	}
 }
-

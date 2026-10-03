@@ -162,8 +162,7 @@ implements IPSSysDevBKTaskSessionContext {
         }
         try {
             ArrayList<IPSSysDevBKTask> psSysDevBKTaskList2 = null;
-            list = this.psSysDevBKTaskList;
-            synchronized (list) {
+            synchronized (this.psSysDevBKTaskList) {
                 if (this.psSysDevBKTaskList.size() > 0) {
                     psSysDevBKTaskList2 = new ArrayList<IPSSysDevBKTask>();
                     psSysDevBKTaskList2.addAll(this.psSysDevBKTaskList);
@@ -216,13 +215,13 @@ implements IPSSysDevBKTaskSessionContext {
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSysDevBKTask psSysDevBKTask = new PSSysDevBKTask();
         psSysDevBKTask.setPSSysDevBKTaskId(strPSSysDevBKTaskId);
-        if (!psSysDevBKTaskService.get((IEntity)psSysDevBKTask, true)) {
+        if (!psSysDevBKTaskService.get(psSysDevBKTask, true)) {
             return;
         }
         if (!StringHelper.isNullOrEmpty((String)psSysDevBKTask.getPPSSysDevBKTaskId())) {
             PSSysDevBKTask parentPSSysDevBKTask = new PSSysDevBKTask();
             parentPSSysDevBKTask.setPSSysDevBKTaskId(psSysDevBKTask.getPPSSysDevBKTaskId());
-            if (psSysDevBKTaskService.get((IEntity)parentPSSysDevBKTask, true) && (parentPSSysDevBKTask.getTaskState() == 10 || parentPSSysDevBKTask.getTaskState() == 20)) {
+            if (psSysDevBKTaskService.get(parentPSSysDevBKTask, true) && (parentPSSysDevBKTask.getTaskState() == 10 || parentPSSysDevBKTask.getTaskState() == 20)) {
                 this.cancelPSSysDevBKTask(psSysDevBKTask.getPPSSysDevBKTaskId());
                 return;
             }
@@ -251,7 +250,7 @@ implements IPSSysDevBKTaskSessionContext {
                     psSysDevBKTask.setPSSysDevBKTaskId(strPSSysDevBKTaskId);
                     psSysDevBKTask.setTaskState(SysDevBKTaskStateCodeListModel.CANCELLED);
                     psSysDevBKTask.setResultInfo(null);
-                    psSysDevBKTaskService.update((IEntity)psSysDevBKTask, false);
+                    psSysDevBKTaskService.update(psSysDevBKTask, false);
                 }
             }
             catch (Exception ex) {
@@ -499,4 +498,3 @@ implements IPSSysDevBKTaskSessionContext {
         return this.iPSDevCenter;
     }
 }
-

@@ -47,8 +47,8 @@ extends XMLCollectionExConfig<DEFHelperConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = DEFHelperMgr.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((DEFHelperConfig)childNode))) {
-                this.add((Object)((DEFHelperConfig)childNode));
+            if (this.OnChildNodeLoaded((DEFHelperConfig)childNode)) {
+                this.add((DEFHelperConfig)childNode);
                 DEFHelperConfig defHelperConfig = (DEFHelperConfig)childNode;
                 this.defHelperMap.put(defHelperConfig.getID().toUpperCase(), defHelperConfig);
                 return;

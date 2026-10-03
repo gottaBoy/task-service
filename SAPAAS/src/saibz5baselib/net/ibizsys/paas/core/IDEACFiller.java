@@ -1,19 +1,37 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDEACMode;
 import net.ibizsys.paas.db.IDataTable;
 import net.ibizsys.paas.util.IGlobalContext;
 import net.ibizsys.paas.web.IWebContext;
 import net.ibizsys.paas.web.MDAjaxActionResult;
 
+/**
+ * 实体自填填充器接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IDEACFiller {
-    public void init(IGlobalContext var1, IDEACMode var2) throws Exception;
+	/**
+	 * 初始化
+	 * 
+	 * @param iGlobalContext
+	 * @param iDEACMode
+	 * @throws Exception
+	 */
+	void init(IGlobalContext iGlobalContext, IDEACMode iDEACMode) throws Exception;
 
-    public void fillAjaxFetchActionResult(MDAjaxActionResult var1, IDataTable var2, IWebContext var3) throws Exception;
+	/**
+	 * 填充异步请求结果对象
+	 * 
+	 * @param fetchResult
+	 * @param dt
+	 * @throws Exception
+	 */
+	void fillAjaxFetchActionResult(MDAjaxActionResult fetchResult, IDataTable dt, IWebContext iWebContext) throws Exception;
 
-    public void close();
+	/**
+	 * 关闭
+	 */
+	void close();
 }
-

@@ -142,9 +142,9 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
             PSDevUser pSDevUser = (PSDevUser)iService.getDEModel().createEntity();
             pSDevUser.set("PSDEVUSERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevUser);
+                iService.getTemp(pSDevUser);
             } else {
-                iService.get((IEntity)pSDevUser);
+                iService.get(pSDevUser);
             }
             this.onFillParentInfo_PSDevUser(pSSysDevStudio, pSDevUser);
             return;
@@ -154,14 +154,14 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_Pssystem(pSSysDevStudio, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysDevStudio, string, string2, string3);
+        super.onFillParentInfo(pSSysDevStudio, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -200,7 +200,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysDevStudio, bl);
+        super.onFillEntityFullInfo(pSSysDevStudio, bl);
         this.onFillEntityFullInfo_PSDevUser(pSSysDevStudio, bl);
         this.onFillEntityFullInfo_Pssystem(pSSysDevStudio, bl);
     }
@@ -232,7 +232,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
     }
 
     protected void onWriteBackParent(PSSysDevStudio pSSysDevStudio, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysDevStudio, bl);
+        super.onWriteBackParent(pSSysDevStudio, bl);
     }
 
     public ArrayList<PSSysDevStudio> selectByPSDevUser(PSDevUserBase pSDevUserBase) throws Exception {
@@ -315,7 +315,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
         ArrayList<PSSysDevStudio> arrayList = this.selectByPSDevUser(pSDevUser);
         this.onBeforeRemoveByPSDevUser(pSDevUser, arrayList);
         for (PSSysDevStudio pSSysDevStudio : arrayList) {
-            this.remove((IEntity)pSSysDevStudio);
+            this.remove(pSSysDevStudio);
         }
         this.onAfterRemoveByPSDevUser(pSDevUser, arrayList);
     }
@@ -361,7 +361,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
         ArrayList<PSSysDevStudio> arrayList = this.selectByPssystem(pSSystem);
         this.onBeforeRemoveByPssystem(pSSystem, arrayList);
         for (PSSysDevStudio pSSysDevStudio : arrayList) {
-            this.remove((IEntity)pSSysDevStudio);
+            this.remove(pSSysDevStudio);
         }
         this.onAfterRemoveByPssystem(pSSystem, arrayList);
     }
@@ -385,7 +385,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
 
     protected void replaceParentInfo(PSSysDevStudio pSSysDevStudio, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysDevStudio, cloneSession);
+        super.replaceParentInfo(pSSysDevStudio, cloneSession);
         if (pSSysDevStudio.getPSDevUserId() != null && (iEntity = cloneSession.getEntity("PSDEVUSER", (Object)pSSysDevStudio.getPSDevUserId())) != null) {
             this.onFillParentInfo_PSDevUser(pSSysDevStudio, (PSDevUser)iEntity);
         }
@@ -395,7 +395,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysDevStudio pSSysDevStudio, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysDevStudio, bl);
+        super.onRemoveEntityUncopyValues(pSSysDevStudio, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysDevStudio pSSysDevStudio, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -419,7 +419,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
         if ((entityFieldError = this.onCheckField_PSSystemName(bl, pSSysDevStudio, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysDevStudio, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysDevStudio, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDevUserId(boolean bl, PSSysDevStudio pSSysDevStudio, boolean bl2, boolean bl3) throws Exception {
@@ -435,7 +435,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevUserId_Default((IEntity)pSSysDevStudio, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevUserId_Default(pSSysDevStudio, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVUSERID");
@@ -460,7 +460,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevUserName_Default((IEntity)pSSysDevStudio, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevUserName_Default(pSSysDevStudio, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVUSERNAME");
@@ -485,7 +485,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDevStudioId_Default((IEntity)pSSysDevStudio, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDevStudioId_Default(pSSysDevStudio, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDEVSTUDIOID");
@@ -510,7 +510,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDevStudioName_Default((IEntity)pSSysDevStudio, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDevStudioName_Default(pSSysDevStudio, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDEVSTUDIONAME");
@@ -532,7 +532,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysDevStudio, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysDevStudio, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -554,7 +554,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysDevStudio, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysDevStudio, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -567,11 +567,11 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
     }
 
     protected void onSyncEntity(PSSysDevStudio pSSysDevStudio, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysDevStudio, bl);
+        super.onSyncEntity(pSSysDevStudio, bl);
     }
 
     protected void onSyncIndexEntities(PSSysDevStudio pSSysDevStudio, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysDevStudio, bl);
+        super.onSyncIndexEntities(pSSysDevStudio, bl);
     }
 
     public Object getDataContextValue(PSSysDevStudio pSSysDevStudio, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -579,14 +579,14 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysDevStudio, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysDevStudio, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysDevStudio pSSysDevStudio, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysDevStudio, arrayList, n);
+        super.onExportMajorModel(pSSysDevStudio, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -729,14 +729,14 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
 
     protected boolean onMergeChild(String string, String string2, PSSysDevStudio pSSysDevStudio) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysDevStudio)) {
+        if (super.onMergeChild(string, string2, pSSysDevStudio)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysDevStudio pSSysDevStudio) throws Exception {
-        super.onUpdateParent((IEntity)pSSysDevStudio);
+        super.onUpdateParent(pSSysDevStudio);
     }
 
     @Override
@@ -752,7 +752,7 @@ extends PSCoreSysServiceBase<PSSysDevStudio> {
         PSSysDevStudio pSSysDevStudio2 = new PSSysDevStudio();
         pSSysDevStudio2.setPSSystemId(pSSysDevStudio.getPSSystemId());
         pSSysDevStudio2.setPSDevUserId(pSSysDevStudio.getPSDevUserId());
-        if (this.selectOne((IEntity)pSSysDevStudio2, true)) {
+        if (this.selectOne(pSSysDevStudio2, true)) {
             return pSSysDevStudio2.getPSSysDevStudioId();
         }
         return super.getEntityFolderKeyValue(pSSysDevStudio, pSSystem);

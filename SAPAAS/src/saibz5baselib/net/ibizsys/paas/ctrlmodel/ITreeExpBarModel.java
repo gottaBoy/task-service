@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.IExpBarModel;
+/**
+ * 树导航栏部件模型接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface ITreeExpBarModel extends IExpBarModel {
 
-public interface ITreeExpBarModel
-extends IExpBarModel {
 }
-

@@ -224,7 +224,7 @@ extends PSModelDEDataCtrl {
         PSDevSln psDevSln = new PSDevSln();
         PSDEDataCtrl.convertEntity2(dataEntity2, (IEntity)psDevSln);
         PSDevSlnService psDevSlnService = (PSDevSlnService)ServiceGlobal.getService(PSDevSlnService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        psDevSlnService.get((IEntity)psDevSln);
+        psDevSlnService.get(psDevSln);
         PSDevSlnGitLabHelper psDevSlnGitLabHelper = new PSDevSlnGitLabHelper();
         psDevSlnGitLabHelper.convertV6toV7(psDevSln);
     }
@@ -263,4 +263,3 @@ extends PSModelDEDataCtrl {
         psDevSlnService.fixPSDCSVNs(psDevSln);
     }
 }
-

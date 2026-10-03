@@ -114,9 +114,9 @@ implements IPSSysDBVFService {
 
     @Override
     protected List<PSSysDBVF> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysDBVF> list = new ArrayList<PSSysDBVF>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysDBVF> items = this.listByPSModule(parent);

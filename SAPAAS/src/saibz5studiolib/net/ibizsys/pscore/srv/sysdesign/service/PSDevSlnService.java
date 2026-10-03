@@ -169,26 +169,23 @@ extends PSDevSlnServiceBase {
     @Override
     protected void onBeforeRemove(PSDevSln pSDevSln) throws Exception {
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
-            PSDevSln pSDevSln2 = (PSDevSln)this.getLast((IEntity)pSDevSln);
-            Object object = (PSDevSlnUserService)ServiceGlobal.getService(PSDevSlnUserService.class, (SessionFactory)this.getSessionFactory());
-            Object object2 = new SelectCond();
-            object2.set("PSDEVSLNID", (Object)pSDevSln2.getPSDevSlnId());
-            object2.set("ALLSYSFLAG", (Object)1);
-            object2.set("DEFAULTFLAG", (Object)1);
-            Object object3 = object.select((ISelectCond)object2);
-            Iterator iterator = ((ArrayList)object3).iterator();
-            while (iterator.hasNext()) {
-                PSDevSlnUser pSDevSlnUser = (PSDevSlnUser)iterator.next();
+            PSDevSln pSDevSln2 = (PSDevSln)this.getLast(pSDevSln);
+            PSDevSlnUserService userService = (PSDevSlnUserService)ServiceGlobal.getService(PSDevSlnUserService.class, (SessionFactory)this.getSessionFactory());
+            SelectCond selectCond = new SelectCond();
+            selectCond.set("PSDEVSLNID", (Object)pSDevSln2.getPSDevSlnId());
+            selectCond.set("ALLSYSFLAG", (Object)1);
+            selectCond.set("DEFAULTFLAG", (Object)1);
+            for (PSDevSlnUser pSDevSlnUser : userService.select((ISelectCond)selectCond)) {
                 PSDevSlnUser pSDevSlnUser2 = new PSDevSlnUser();
                 pSDevSlnUser2.setPSDevSlnUserId(pSDevSlnUser.getPSDevSlnUserId());
                 pSDevSlnUser2.setDefaultFlag(0);
-                ((PSCoreSysServiceBaseBase)((Object)object)).sysUpdate(pSDevSlnUser2, false);
+                userService.sysUpdate(pSDevSlnUser2, false);
             }
-            object = pSDevSln2.getPSDevCenter();
+            Object object = pSDevSln2.getPSDevCenter();
             if (!(PSDevCenterHelper.isRecycleDC((PSDevCenter)object) || PSDevCenterHelper.isLabDC((PSDevCenter)object) || ((PSDevCenterBase)object).getPSSvnInstRepo() == null || StringHelper.isNullOrEmpty((String)((PSDevCenterBase)object).getPSSvnInstRepo().getPSSVNServerId()))) {
-                object2 = new PSUAWizard2();
+                Object object2 = new PSUAWizard2();
                 ((PSUAWizard2Base)object2).set("pssvnserverid", ((PSDevCenterBase)object).getPSSvnInstRepo().getPSSVNServerId());
-                object3 = (PSUAWizard2Service)ServiceGlobal.getService(PSUAWizard2Service.class, (SessionFactory)this.getSessionFactory());
+                Object object3 = (PSUAWizard2Service)ServiceGlobal.getService(PSUAWizard2Service.class, (SessionFactory)this.getSessionFactory());
                 ((PSUAWizard2Service)object3).doUpdateSVNAuthZ((PSUAWizard2)object2);
                 if (((PSDevCenterBase)object).getROPSSvnInstRepo() != null && !StringHelper.isNullOrEmpty((String)((PSDevCenterBase)object).getROPSSvnInstRepo().getPSSVNServerId()) && StringHelper.compare((String)((PSDevCenterBase)object).getROPSSvnInstRepo().getPSSVNServerId(), (String)((PSDevCenterBase)object).getPSSvnInstRepo().getPSSVNServerId(), (boolean)false) != 0) {
                     ((PSUAWizard2Base)object2).set("pssvnserverid", ((PSDevCenterBase)object).getROPSSvnInstRepo().getPSSVNServerId());
@@ -210,7 +207,7 @@ extends PSDevSlnServiceBase {
     @Override
     protected void onAfterRemove(PSDevSln pSDevSln) throws Exception {
         if (this.isMajorSessionFactory()) {
-            PSDevSln pSDevSln2 = (PSDevSln)this.getLast((IEntity)pSDevSln);
+            PSDevSln pSDevSln2 = (PSDevSln)this.getLast(pSDevSln);
             PSDevCenterHelper.updatetPSDCResRep(pSDevSln2.getPSDevCenter(), "DEVSLNCNT");
         }
         super.onAfterRemove(pSDevSln);
@@ -225,7 +222,7 @@ extends PSDevSlnServiceBase {
         if (!PSDevSlnService.isEnableGitLabPlugin()) {
             return;
         }
-        this.get((IEntity)pSDevSln);
+        this.get(pSDevSln);
         if (StringHelper.isNullOrEmpty((String)pSDevSln.getSlnTag()) && StringHelper.isNullOrEmpty((String)pSDevSln.getPSDevCenterSVNId())) {
             return;
         }
@@ -266,4 +263,3 @@ extends PSDevSlnServiceBase {
         }
     }
 }
-

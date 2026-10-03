@@ -266,7 +266,7 @@ implements ISRFDATreeActionHelperEx {
                     strSortDir = treeNode.getSORTDIR();
                 }
             }
-            Vector list = new Vector();
+            Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
             String strQueryModelId = "";
             if (!StringHelper.IsNullOrEmpty((String)strNodeFilter)) {
                 strQueryModelId = treeNode.getFILTERQMID();
@@ -656,7 +656,7 @@ implements ISRFDATreeActionHelperEx {
 
     public CallResult Select(IDEDataCtrl iDEDataCtrl, BaseDataEntity dataEntity, Vector list, String strObject, String strOrderInfo, String strDistinct) {
         CallResult callResult = new CallResult();
-        Vector selectParams = new Vector();
+        Vector<ProcParam> selectParams = new Vector<ProcParam>();
         String strSQL_SELECT = iDEDataCtrl.GetDEHelper().GetSelectCode(dataEntity, selectParams);
         if (StringHelper.IsNullOrEmpty((String)strSQL_SELECT)) {
             callResult.setRetCode(1);
@@ -852,7 +852,7 @@ implements ISRFDATreeActionHelperEx {
                     strSortDir = treeNode.getSORTDIR();
                 }
             }
-            Vector list = new Vector();
+            Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
             String strQueryModelId = "";
             if (!StringHelper.IsNullOrEmpty((String)strNodeFilter)) {
                 strQueryModelId = treeNode.getFILTERQMID();
@@ -1023,4 +1023,3 @@ implements ISRFDATreeActionHelperEx {
         throw new Exception(StringHelper.Format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u6811\u8282\u70b9\u7c7b\u578b[%1$s]", (Object)treeNode.getTREENODETYPE()));
     }
 }
-

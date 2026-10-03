@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.dalog.ac;
 
-import net.ibizsys.psrt.srv.common.demodel.dalog.ac.DALogDefaultACModelBase;
+/**
+ *  实体自动填充 [DEFAULT]对象模型
+ */
+public class DALogDefaultACModel extends DALogDefaultACModelBase {
 
-public class DALogDefaultACModel
-extends DALogDefaultACModelBase {
+    public DALogDefaultACModel () {
+        super();
+    }
+
 }
-

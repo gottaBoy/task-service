@@ -1,19 +1,26 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFProcessModel
- */
 package net.ibizsys.pswf.core;
 
-import java.util.Iterator;
-import net.ibizsys.pswf.core.IWFDEActionProcessParamModel;
-import net.ibizsys.pswf.core.IWFProcessModel;
+/**
+ * 实体行为流程处理模型接口
+ * @author lionlau
+ *
+ */
+public interface IWFDEActionProcessModel  extends IWFProcessModel
+{
+	/**
+	 * 获取操作参数集合
+	 * @return
+	 */
+	java.util.Iterator<IWFDEActionProcessParamModel> getWFDEActionProcessParamModels();
+	
+	
+	
+	/**
+	 * 获取实体操作名称
+	 * @return
+	 */
+	String getDEActionName();
+	
+	
 
-public interface IWFDEActionProcessModel
-extends IWFProcessModel {
-    public Iterator<IWFDEActionProcessParamModel> getWFDEActionProcessParamModels();
-
-    public String getDEActionName();
 }
-

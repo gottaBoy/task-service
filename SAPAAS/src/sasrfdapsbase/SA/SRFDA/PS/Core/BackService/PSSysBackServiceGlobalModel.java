@@ -75,9 +75,9 @@ extends PSSystemGlobalModelBase<String, PSSysBackService, IPSSysBackService> {
         if (this.getPSSystem().isEnableModelRT()) {
             PSSysBackService psSysBackService2;
             HashMap<String, PSSysBackService> psSysBackServiceMap = new HashMap<String, PSSysBackService>();
-            for (PSSysBackService psSysBackService2 : list) {
-                if (StringHelper.Compare((String)psSysBackService2.getTASKTYPE(), (String)"PREDEFINED", (boolean)false) != 0 || StringHelper.IsNullOrEmpty((String)psSysBackService2.getPREDEFINEDTYPE())) continue;
-                psSysBackServiceMap.put(psSysBackService2.getPREDEFINEDTYPE(), psSysBackService2);
+            for (PSSysBackService service : list) {
+                if (StringHelper.Compare((String)service.getTASKTYPE(), (String)"PREDEFINED", (boolean)false) != 0 || StringHelper.IsNullOrEmpty((String)service.getPREDEFINEDTYPE())) continue;
+                psSysBackServiceMap.put(service.getPREDEFINEDTYPE(), service);
             }
             if (!psSysBackServiceMap.containsKey("DENOTIFY")) {
                 psSysBackService2 = new PSSysBackService();
@@ -165,4 +165,3 @@ extends PSSystemGlobalModelBase<String, PSSysBackService, IPSSysBackService> {
         return (String[])super.getObjectAliases(vt);
     }
 }
-

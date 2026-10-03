@@ -262,8 +262,8 @@ implements IPSDCWorkspace {
             psWorkspaceSum.setSumTag(strSumTag);
             psWorkspaceSum.setSumTag2(null);
             psWorkspaceSum.setPSDCWorkspaceId(this.getId());
-            psWorkspaceSumService.fillEntityKeyValue((IEntity)psWorkspaceSum);
-            if (!psWorkspaceSumService.get((IEntity)psWorkspaceSum, true) || DataObject.getIntegerValue((Object)psWorkspaceSum.getValue(), (Integer)0) + nAmount2 <= nLimit) continue;
+            psWorkspaceSumService.fillEntityKeyValue(psWorkspaceSum);
+            if (!psWorkspaceSumService.get(psWorkspaceSum, true) || DataObject.getIntegerValue((Object)psWorkspaceSum.getValue(), (Integer)0) + nAmount2 <= nLimit) continue;
             if (bTryMode) {
                 return false;
             }
@@ -316,21 +316,21 @@ implements IPSDCWorkspace {
                         psWorkspaceSum.setSumTag(strSumTag);
                         psWorkspaceSum.setSumTag2(null);
                         psWorkspaceSum.setPSDCWorkspaceId(PSDCWorkspaceImpl.this.getId());
-                        psWorkspaceSumService.fillEntityKeyValue((IEntity)psWorkspaceSum);
+                        psWorkspaceSumService.fillEntityKeyValue(psWorkspaceSum);
                         int nTotal = nAmount2;
-                        if (psWorkspaceSumService.get((IEntity)psWorkspaceSum, true)) {
+                        if (psWorkspaceSumService.get(psWorkspaceSum, true)) {
                             psWorkspaceSum.setValue(Integer.valueOf(nTotal += DataObject.getIntegerValue((Object)psWorkspaceSum.getValue(), (Integer)0).intValue()));
-                            psWorkspaceSumService.update((IEntity)psWorkspaceSum, false);
+                            psWorkspaceSumService.update(psWorkspaceSum, false);
                             continue;
                         }
                         psWorkspaceSum.setPSWorkspaceName(PSDCWorkspaceImpl.this.getName());
                         psWorkspaceSum.setPSWorkspaceSumName(StringHelper.Format((String)"%1$s[%2$s][%3$s]", (Object)PSDCWorkspaceImpl.this.getName(), (Object)strAction3, (Object)strSumTag));
                         psWorkspaceSum.setValue(Integer.valueOf(nTotal));
-                        psWorkspaceSumService.create((IEntity)psWorkspaceSum, false);
+                        psWorkspaceSumService.create(psWorkspaceSum, false);
                     }
                     PSWorkspace psWorkspace = new PSWorkspace();
                     psWorkspace.setPSWorkspaceId(strPSWorkspaceId2);
-                    if (psWorkspaceService.get((IEntity)psWorkspace, true)) {
+                    if (psWorkspaceService.get(psWorkspace, true)) {
                         long nTotal = (long)nExp2 + DataObject.getLongValue((Object)psWorkspace.getExp(), (Long)0L);
                         psWorkspace.reset();
                         psWorkspace.setPSWorkspaceId(strPSWorkspaceId2);
@@ -344,7 +344,7 @@ implements IPSDCWorkspace {
                                 bUpdateLevel = true;
                             }
                         }
-                        psWorkspaceService.update((IEntity)psWorkspace);
+                        psWorkspaceService.update(psWorkspace);
                         if (bUpdateLevel) {
                             psDCWorkspace2.setWORKSPACELEVEL(psWorkspace.getWorkspaceLevel());
                             PSDCWorkspaceImpl.this.reloadPSDCWorkspace();
@@ -448,4 +448,3 @@ implements IPSDCWorkspace {
         return this.getResPos() == 1;
     }
 }
-

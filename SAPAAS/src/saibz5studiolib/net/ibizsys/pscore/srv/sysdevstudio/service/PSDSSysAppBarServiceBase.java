@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
     }
 
     protected void onFillParentInfo(PSDSSysAppBar pSDSSysAppBar, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDSSysAppBar, string, string2, string3);
+        super.onFillParentInfo(pSDSSysAppBar, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDSSysAppBar, bl);
+        super.onFillEntityFullInfo(pSDSSysAppBar, bl);
     }
 
     protected void onWriteBackParent(PSDSSysAppBar pSDSSysAppBar, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDSSysAppBar, bl);
+        super.onWriteBackParent(pSDSSysAppBar, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDSSysAppBar pSDSSysAppBar, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDSSysAppBar, bl);
+        super.onRemoveEntityUncopyValues(pSDSSysAppBar, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDSSysAppBar pSDSSysAppBar, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -203,7 +203,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
         if ((entityFieldError = this.onCheckField_UserTag2(bl, pSDSSysAppBar, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDSSysAppBar, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDSSysAppBar, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BarParam(boolean bl, PSDSSysAppBar pSDSSysAppBar, boolean bl2, boolean bl3) throws Exception {
@@ -216,7 +216,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BarParam_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_BarParam_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BARPARAM");
@@ -238,7 +238,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BarParam10_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string = this.onTestValueRule_BarParam10_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BARPARAM10");
@@ -260,7 +260,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BarParam2_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_BarParam2_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BARPARAM2");
@@ -282,7 +282,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BarParam3_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_BarParam3_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BARPARAM3");
@@ -304,7 +304,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BarParam4_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_BarParam4_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BARPARAM4");
@@ -326,7 +326,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BarParam5_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string = this.onTestValueRule_BarParam5_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BARPARAM5");
@@ -348,7 +348,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BarParam6_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string = this.onTestValueRule_BarParam6_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BARPARAM6");
@@ -370,7 +370,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BarParam7_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string = this.onTestValueRule_BarParam7_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BARPARAM7");
@@ -392,7 +392,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BarParam8_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string = this.onTestValueRule_BarParam8_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BARPARAM8");
@@ -414,7 +414,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BarParam9_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string = this.onTestValueRule_BarParam9_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BARPARAM9");
@@ -436,7 +436,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NodeFilter_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_NodeFilter_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NODEFILTER");
@@ -461,7 +461,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSSysAppBarId_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSSysAppBarId_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSSYSAPPBARID");
@@ -486,7 +486,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDSSysAppBarName_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_PSDSSysAppBarName_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDSSYSAPPBARNAME");
@@ -508,7 +508,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -530,7 +530,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppName_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppName_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPNAME");
@@ -552,7 +552,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -574,7 +574,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ShowMode_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_ShowMode_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SHOWMODE");
@@ -596,7 +596,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -618,7 +618,7 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDSSysAppBar, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDSSysAppBar, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -631,11 +631,11 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
     }
 
     protected void onSyncEntity(PSDSSysAppBar pSDSSysAppBar, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDSSysAppBar, bl);
+        super.onSyncEntity(pSDSSysAppBar, bl);
     }
 
     protected void onSyncIndexEntities(PSDSSysAppBar pSDSSysAppBar, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDSSysAppBar, bl);
+        super.onSyncIndexEntities(pSDSSysAppBar, bl);
     }
 
     public Object getDataContextValue(PSDSSysAppBar pSDSSysAppBar, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -643,14 +643,14 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDSSysAppBar, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDSSysAppBar, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDSSysAppBar pSDSSysAppBar, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDSSysAppBar, arrayList, n);
+        super.onExportMajorModel(pSDSSysAppBar, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -940,14 +940,14 @@ extends PSCoreSysServiceBase<PSDSSysAppBar> {
 
     protected boolean onMergeChild(String string, String string2, PSDSSysAppBar pSDSSysAppBar) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDSSysAppBar)) {
+        if (super.onMergeChild(string, string2, pSDSSysAppBar)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDSSysAppBar pSDSSysAppBar) throws Exception {
-        super.onUpdateParent((IEntity)pSDSSysAppBar);
+        super.onUpdateParent(pSDSSysAppBar);
     }
 
     @Override

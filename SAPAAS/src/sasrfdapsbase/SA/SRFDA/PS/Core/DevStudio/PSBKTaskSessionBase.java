@@ -137,7 +137,6 @@ implements IPSBKTaskSessionContext {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     public void stop() {
-        ArrayList<IPSBKTask> singleThreadExecutor;
         if (!this.isStarted()) {
             return;
         }
@@ -150,9 +149,9 @@ implements IPSBKTaskSessionContext {
                 ThreadPoolExecutor threadPoolExecutor;
                 this.onSetStarted(false);
                 this.onStop();
-                singleThreadExecutor = this.singleThreadExecutor;
+                ThreadPoolExecutor singleThreadExecutor = this.singleThreadExecutor;
                 if (singleThreadExecutor != null) {
-                    list2 = ((ThreadPoolExecutor)((Object)singleThreadExecutor)).shutdownNow();
+                    list2 = singleThreadExecutor.shutdownNow();
                 }
                 if ((threadPoolExecutor = this.threadPoolExecutor) != null) {
                     List<Runnable> list = threadPoolExecutor.shutdownNow();
@@ -171,8 +170,8 @@ implements IPSBKTaskSessionContext {
         try {
             ArrayList<IPSBKTask> psBKTaskList2 = null;
             this.waitLock(this.lock_psBKTaskList, ThreadLockChecker.getCodeInfo());
-            singleThreadExecutor = this.psBKTaskList;
-            synchronized (singleThreadExecutor) {
+            ArrayList<IPSBKTask> psBKTaskList = this.psBKTaskList;
+            synchronized (psBKTaskList) {
                 if (this.psBKTaskList.size() > 0) {
                     psBKTaskList2 = new ArrayList<IPSBKTask>();
                     psBKTaskList2.addAll(this.psBKTaskList);

@@ -3316,7 +3316,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDevCenterId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdevcenter = pSDevCenter;
             }
             return this.psdevcenter;
@@ -3342,7 +3342,7 @@ implements Serializable {
                 PSStudioPlugin pSStudioPlugin = new PSStudioPlugin();
                 pSStudioPlugin.setPSStudioPluginId(this.getPSStudioPluginId());
                 PSStudioPluginService pSStudioPluginService = (PSStudioPluginService)ServiceGlobal.getService(PSStudioPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSStudioPluginService.autoGet((IEntity)pSStudioPlugin);
+                pSStudioPluginService.autoGet(pSStudioPlugin);
                 this.psstudioplugin = pSStudioPlugin;
             }
             return this.psstudioplugin;

@@ -1,13 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IModelBase;
-import net.ibizsys.paas.core.ISystem;
-
-public interface ISystemObject
-extends IModelBase {
-    public ISystem getSystem();
+/**
+ * 系统相关对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface ISystemObject extends IModelBase {
+	/**
+	 * @return
+	 */
+	ISystem getSystem();
 }
-

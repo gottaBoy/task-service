@@ -54,7 +54,7 @@ extends PSModelCloneHelper {
 
     public String cloneDataEntities(PSUWCreateDE psUWCreateDE) throws Exception {
         SessionFactoryManager.releaseAndAddRef((boolean)true);
-        ArrayList psUWCreateDEItemList = psUWCreateDE.getPSUWCreateDEItems();
+        ArrayList<PSUWCreateDEItem> psUWCreateDEItemList = psUWCreateDE.getPSUWCreateDEItems();
         for (PSUWCreateDEItem psUWCreateDEItem : psUWCreateDEItemList) {
             this.newDENameMap.put(psUWCreateDEItem.getPSDEName(), psUWCreateDEItem.getNewDEName());
             this.newDENameMap.put(psUWCreateDEItem.getPSDEId(), psUWCreateDEItem.getNewDEName());
@@ -75,7 +75,7 @@ extends PSModelCloneHelper {
             this.newDEMap.put(psUWCreateDEItem.getPSDEId(), newDEDataEntity);
         }
         PSModuleService psModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.srcSessionFactory);
-        ArrayList psModuleList = psModuleService.selectByPSSystem((PSSystemBase)this.psSystem);
+        ArrayList<PSModule> psModuleList = psModuleService.selectByPSSystem((PSSystemBase)this.psSystem);
         String strTag = StringHelper.format((String)"%1$s||%2$s", (Object)"PSSYSTEM", (Object)this.getPSSystem().getPSSystemId());
         this.existsDEDataMap.put(strTag, 2);
         this.newDEDataIdMap.put(strTag, this.psSystem.getPSSystemId());
@@ -120,11 +120,11 @@ extends PSModelCloneHelper {
             }
             psDataEntity.resetLNPSLanResId();
             psDataEntity.resetPSDataEntityId();
-            if (psDataEntityService2.checkKey((IEntity)psDataEntity) != 0) {
+            if (psDataEntityService2.checkKey(psDataEntity) != 0) {
                 throw new Exception(StringHelper.format((String)"\u7cfb\u7edf\u5df2\u5b58\u5728\u5b9e\u4f53[%1$s]", (Object)psDataEntity.getPSDataEntityName()));
             }
             psDataEntity.setDEType(Integer.valueOf(1));
-            psDataEntityService2.create((IEntity)psDataEntity, false);
+            psDataEntityService2.create(psDataEntity, false);
             psDataEntity.setDEType(psDataEntitySrc.getDEType());
             this.existsDEDataMap.put(strTag3, 0);
             this.newDEDataIdMap.put(strTag3, psDataEntity.getPSDataEntityId());
@@ -158,4 +158,3 @@ extends PSModelCloneHelper {
         return true;
     }
 }
-

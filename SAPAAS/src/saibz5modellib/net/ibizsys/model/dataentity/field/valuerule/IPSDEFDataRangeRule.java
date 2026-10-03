@@ -1,16 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.valuerule.IDEFDataRangeRule
- */
 package net.ibizsys.model.dataentity.field.valuerule;
 
-import net.ibizsys.model.dataentity.field.valuerule.IPSDEFValueRule;
 import net.ibizsys.paas.core.valuerule.IDEFDataRangeRule;
 
-public interface IPSDEFDataRangeRule
-extends IPSDEFValueRule,
-IDEFDataRangeRule {
-}
+/**
+ * 实体属性数据范围值规则对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEFDataRangeRule extends IPSDEFValueRule,IDEFDataRangeRule
+{
 
+}

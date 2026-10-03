@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.entity;
 
-import net.ibizsys.psrt.srv.common.entity.OrgSecUserBase;
+/**
+ * 实体[OrgSecUser] 数据对象
+ */
+//@Entity
+public class OrgSecUser extends OrgSecUserBase {
 
-public class OrgSecUser
-extends OrgSecUserBase {
+    public OrgSecUser() {
+        super();
+    }
+
 }
-

@@ -51,7 +51,7 @@ extends PSSysDashboardServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSSysDashboard.getPSSysDashboardId())) {
             this.getTempMajor(pSSysDashboard);
         } else {
-            this.getTemp((IEntity)pSSysDashboard);
+            this.getTemp(pSSysDashboard);
         }
         pSSysDashboard.setDBModel(this.getDashboardModel(pSSysDashboard));
     }
@@ -102,7 +102,6 @@ extends PSSysDashboardServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysDBPart pSSysDBPart2;
                 PSSysDBPartService pSSysDBPartService = (PSSysDBPartService)ServiceGlobal.getService((String)PSSysDBPartService.class.getCanonicalName(), (SessionFactory)PSSysDashboardService.this.getSessionFactory());
                 ArrayList<PSSysDBPart> arrayList = pSSysDBPartService.selectTempByPSSysDashboard(pSSysDashboard2);
                 HashMap<String, PSSysDBPart> hashMap = new HashMap<String, PSSysDBPart>();
@@ -110,18 +109,18 @@ extends PSSysDashboardServiceBase {
                     hashMap.put(pSSysDBPart2.getPSSysDBPartId(), pSSysDBPart2);
                 }
                 String string = pSSysDashboard2.getDBModel();
-                pSSysDBPart2 = XmlNode.loadFromXML((String)string);
-                if (pSSysDBPart2 != null) {
-                    pSSysDBPart2.setAttribute("PSDEID", pSSysDashboard2.getPSDEId());
-                    pSSysDBPart2.setAttribute("PSSYSDASHBOARDID", pSSysDashboard2.getPSSysDashboardId());
-                    PSSysDashboardService.this.updatePSSysDBParts(pSSysDashboard2, null, (XmlNode)pSSysDBPart2, hashMap);
-                    pSSysDashboard2.setDBModel(XmlNode.export((XmlNode)pSSysDBPart2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)string);
+                if (xmlNode != null) {
+                    xmlNode.setAttribute("PSDEID", pSSysDashboard2.getPSDEId());
+                    xmlNode.setAttribute("PSSYSDASHBOARDID", pSSysDashboard2.getPSSysDashboardId());
+                    PSSysDashboardService.this.updatePSSysDBParts(pSSysDashboard2, null, xmlNode, hashMap);
+                    pSSysDashboard2.setDBModel(XmlNode.export(xmlNode));
                 } else {
                     pSSysDashboard2.setDBModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSSysDBPart pSSysDBPart3 : hashMap.values()) {
-                        pSSysDBPartService.removeTemp((IEntity)pSSysDBPart3);
+                        pSSysDBPartService.removeTemp(pSSysDBPart3);
                     }
                 }
                 PSSysDashboardService.this.updateTempMajor(pSSysDashboard2);
@@ -132,7 +131,7 @@ extends PSSysDashboardServiceBase {
     protected void updatePSSysDBParts(PSSysDashboard pSSysDashboard, PSSysDBPart pSSysDBPart, XmlNode xmlNode, HashMap<String, PSSysDBPart> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSSysDBPartService pSSysDBPartService = (PSSysDBPartService)ServiceGlobal.getService((String)PSSysDBPartService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -165,7 +164,7 @@ extends PSSysDashboardServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSSysDBPartService.updateTemp((IEntity)pSSysDBPart2);
+                    pSSysDBPartService.updateTemp(pSSysDBPart2);
                 }
                 xmlNode2.resetAttributes();
                 pSSysDBPart2.fillXmlNode(xmlNode2, false);
@@ -186,7 +185,6 @@ extends PSSysDashboardServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysDBPart pSSysDBPart2;
                 PSSysDBPartService pSSysDBPartService = (PSSysDBPartService)ServiceGlobal.getService((String)PSSysDBPartService.class.getCanonicalName(), (SessionFactory)PSSysDashboardService.this.getSessionFactory());
                 ArrayList<PSSysDBPart> arrayList = pSSysDBPartService.selectTempByPSSysDashboard(pSSysDashboard2);
                 HashMap<String, PSSysDBPart> hashMap = new HashMap<String, PSSysDBPart>();
@@ -194,21 +192,21 @@ extends PSSysDashboardServiceBase {
                     hashMap.put(pSSysDBPart2.getPSSysDBPartId(), pSSysDBPart2);
                 }
                 String string = pSSysDashboard2.getDBModel();
-                pSSysDBPart2 = XmlNode.loadFromXML((String)string);
-                if (pSSysDBPart2 != null) {
-                    pSSysDBPart2.setAttribute("PSDEID", pSSysDashboard2.getPSDEId());
-                    pSSysDBPart2.setAttribute("PSSYSDASHBOARDID", pSSysDashboard2.getPSSysDashboardId());
-                    PSSysDashboardService.this.updatePSSysDBParts(pSSysDashboard2, null, (XmlNode)pSSysDBPart2, hashMap);
-                    pSSysDashboard2.setDBModel(XmlNode.export((XmlNode)pSSysDBPart2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)string);
+                if (xmlNode != null) {
+                    xmlNode.setAttribute("PSDEID", pSSysDashboard2.getPSDEId());
+                    xmlNode.setAttribute("PSSYSDASHBOARDID", pSSysDashboard2.getPSSysDashboardId());
+                    PSSysDashboardService.this.updatePSSysDBParts(pSSysDashboard2, null, xmlNode, hashMap);
+                    pSSysDashboard2.setDBModel(XmlNode.export(xmlNode));
                 } else {
                     pSSysDashboard2.setDBModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSSysDBPart pSSysDBPart3 : hashMap.values()) {
-                        pSSysDBPartService.removeTemp((IEntity)pSSysDBPart3);
+                        pSSysDBPartService.removeTemp(pSSysDBPart3);
                     }
                 }
-                PSSysDashboardService.this.createTempMajor((IEntity)pSSysDashboard2);
+                PSSysDashboardService.this.createTempMajor(pSSysDashboard2);
             }
         });
     }
@@ -220,7 +218,6 @@ extends PSSysDashboardServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSSysDBPart pSSysDBPart2;
                 PSSysDBPartService pSSysDBPartService = (PSSysDBPartService)ServiceGlobal.getService((String)PSSysDBPartService.class.getCanonicalName(), (SessionFactory)PSSysDashboardService.this.getSessionFactory());
                 ArrayList<PSSysDBPart> arrayList = pSSysDBPartService.selectTempByPSSysDashboard(pSSysDashboard2);
                 HashMap<String, PSSysDBPart> hashMap = new HashMap<String, PSSysDBPart>();
@@ -231,15 +228,16 @@ extends PSSysDashboardServiceBase {
                 if (StringHelper.isNullOrEmpty((String)object)) {
                     object = WebContext.getCurrent().getPostValue("dbmodel");
                 }
-                if ((pSSysDBPart2 = XmlNode.loadFromXML((String)object)) != null) {
-                    PSSysDashboardService.this.updatePSSysDBParts(pSSysDashboard2, null, (XmlNode)pSSysDBPart2, hashMap);
-                    pSSysDashboard2.setDBModel(XmlNode.export((XmlNode)pSSysDBPart2));
+                XmlNode xmlNode = XmlNode.loadFromXML((String)object);
+                if (xmlNode != null) {
+                    PSSysDashboardService.this.updatePSSysDBParts(pSSysDashboard2, null, xmlNode, hashMap);
+                    pSSysDashboard2.setDBModel(XmlNode.export(xmlNode));
                 } else {
                     pSSysDashboard2.setDBModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSSysDBPart pSSysDBPart3 : hashMap.values()) {
-                        pSSysDBPartService.removeTemp((IEntity)pSSysDBPart3);
+                        pSSysDBPartService.removeTemp(pSSysDBPart3);
                     }
                 }
             }
@@ -248,7 +246,7 @@ extends PSSysDashboardServiceBase {
 
     @Override
     public void getDraftWithModel(PSSysDashboard pSSysDashboard) throws Exception {
-        this.getDraftTempMajor((IEntity)pSSysDashboard);
+        this.getDraftTempMajor(pSSysDashboard);
         pSSysDashboard.setDBModel(this.getDashboardModel(pSSysDashboard));
     }
 
@@ -277,7 +275,7 @@ extends PSSysDashboardServiceBase {
 
     @Override
     public void getDraftTempMajorFrom(PSSysDashboard pSSysDashboard) throws Exception {
-        Object object = EntityBase.getOriginKey((IEntity)pSSysDashboard);
+        Object object = EntityBase.getOriginKey(pSSysDashboard);
         if (StringHelper.isNullOrEmpty((Object)object)) {
             object = pSSysDashboard.getPSSysDashboardId();
         }
@@ -304,4 +302,3 @@ extends PSSysDashboardServiceBase {
         }
     }
 }
-

@@ -1,38 +1,59 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSControl
- *  IPSDEFormTabPanel
- *  IPSGenerateCodeResult
- *  IPSPublisherContext
- */
 package net.ibizsys.model.pub.angularga;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.angularga.PSAngularDEFormDetailVCPublisherImpl;
+import java.util.Iterator;
 
-public class PSAngularDEFormTabPanellVCPublisherImpl
-extends PSAngularDEFormDetailVCPublisherImpl {
-    protected IPSDEFormTabPanel iPSDEFormTabPanel;
+import net.ibizsys.model.control.IPSControl;
+import net.ibizsys.model.control.form.IPSDEFormTabPage;
+import net.ibizsys.model.control.form.IPSDEFormTabPanel;
+import net.ibizsys.model.pub.IPSGenerateCodeResult;
+import net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.IPSPublisherContext;
+import net.ibizsys.model.entity.PSDEFormDetail;
 
-    public PSAngularDEFormTabPanellVCPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tIPSDEFormTabPanel cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEFormTabPanel cannot be resolved to a type\n\tIPSDEFormTabPanel cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tPSDEFormDetail cannot be resolved to a variable\n\tIPSDEFormTabPage cannot be resolved to a type\n\tIPSDEFormTabPanel cannot be resolved to a type\n\tIPSDEFormTabPage cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEFormTabPanel cannot be resolved to a type\n");
-    }
+public class PSAngularDEFormTabPanellVCPublisherImpl extends PSAngularDEFormDetailVCPublisherImpl
+{
+	
+	protected IPSDEFormTabPanel iPSDEFormTabPanel = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDEFormTabPanel = (IPSDEFormTabPanel)object;
+		return super.generateCode(iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
 
-    @Override
-    public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSDEFormTabPanel cannot be resolved to a type\n\tIPSDEFormTabPanel cannot be resolved to a type\n");
-    }
+		if(true)
+		{
+			ArrayList<IPSGenerateCodeResult> formPageList = new ArrayList<IPSGenerateCodeResult> ();
+			IPSPFCtrlPartCodePublisher	iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(PSDEFormDetail.DETAILTYPE_FORMPAGE).getPSPFCtrlPartCodePublisher();
+			Iterator<IPSDEFormTabPage> psDEFormTabPages =  iPSDEFormTabPanel.getPSDEFormTabPages();
+			while(psDEFormTabPages.hasNext())
+			{
+				IPSDEFormTabPage iPSDEFormTabPage  = psDEFormTabPages.next();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(this.iPSControl,iPSDEFormTabPage);
+				formPageList.add(iPSGenerateCodeResult);
+				
+			}
+			
+			params.put("tabpages", formPageList);
+		}
+		
+	}
+	
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tPSDEFormDetail cannot be resolved to a variable\n\tIPSDEFormTabPage cannot be resolved to a type\n\tIPSDEFormTabPanel cannot be resolved to a type\n\tIPSDEFormTabPage cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n");
-    }
 
-    @Override
-    protected void onClose() {
-        throw new Error("Unresolved compilation problem: \n\tIPSDEFormTabPanel cannot be resolved to a type\n");
-    }
 }
-

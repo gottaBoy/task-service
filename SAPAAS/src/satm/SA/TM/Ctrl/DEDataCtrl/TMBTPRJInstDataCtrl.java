@@ -71,7 +71,7 @@ extends BaseDEDataCtrl {
         BaseDataEntity cond = new BaseDataEntity();
         cond.SetParamValue("TMBTPRJINSTID", (Object)tmBTPRJInst.getTMBTPRJINSTID());
         IDEDataCtrl tmBookingTestDataCtrl = this.GetRelatedDataCtrl("TM0150");
-        Vector tmBookingTests = new Vector();
+        Vector<TMBookingTest> tmBookingTests = new Vector<TMBookingTest>();
         callResult = tmBookingTestDataCtrl.Select(cond, tmBookingTests, TMBookingTest.class.getName(), " ORDER BY ORDERFLAG ASC");
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u8bd5\u7b97\u9879\u76ee\u4e3b\u4efb\u52a1\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -128,4 +128,3 @@ extends BaseDEDataCtrl {
         return new CallResult();
     }
 }
-

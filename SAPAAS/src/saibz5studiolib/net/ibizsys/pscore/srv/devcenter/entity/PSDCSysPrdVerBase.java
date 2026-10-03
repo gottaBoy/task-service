@@ -1059,7 +1059,7 @@ implements Serializable {
                 PSDCSysProduct pSDCSysProduct = new PSDCSysProduct();
                 pSDCSysProduct.setPSDCSysProductId(this.getPSDCSysProductId());
                 PSDCSysProductService pSDCSysProductService = (PSDCSysProductService)ServiceGlobal.getService(PSDCSysProductService.class, (SessionFactory)this.getSessionFactory());
-                pSDCSysProductService.autoGet((IEntity)pSDCSysProduct);
+                pSDCSysProductService.autoGet(pSDCSysProduct);
                 this.psdcsysproduct = pSDCSysProduct;
             }
             return this.psdcsysproduct;
@@ -1085,7 +1085,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

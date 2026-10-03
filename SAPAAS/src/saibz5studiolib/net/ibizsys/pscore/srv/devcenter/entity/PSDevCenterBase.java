@@ -4781,7 +4781,7 @@ implements Serializable {
                 PSDCInst pSDCInst = new PSDCInst();
                 pSDCInst.setPSDCInstId(this.getPSDCInstId());
                 PSDCInstService pSDCInstService = (PSDCInstService)ServiceGlobal.getService(PSDCInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDCInstService.autoGet((IEntity)pSDCInst);
+                pSDCInstService.autoGet(pSDCInst);
                 this.psdcinst = pSDCInst;
             }
             return this.psdcinst;
@@ -4807,7 +4807,7 @@ implements Serializable {
                 PSPMSServer pSPMSServer = new PSPMSServer();
                 pSPMSServer.setPSPMSServerId(this.getPSPMSServerId());
                 PSPMSServerService pSPMSServerService = (PSPMSServerService)ServiceGlobal.getService(PSPMSServerService.class, (SessionFactory)this.getSessionFactory());
-                pSPMSServerService.autoGet((IEntity)pSPMSServer);
+                pSPMSServerService.autoGet(pSPMSServer);
                 this.pspmsserver = pSPMSServer;
             }
             return this.pspmsserver;
@@ -4833,7 +4833,7 @@ implements Serializable {
                 PSRTWXAccount pSRTWXAccount = new PSRTWXAccount();
                 pSRTWXAccount.setPSRTWXAccountId(this.getPSRTWXAccountId());
                 PSRTWXAccountService pSRTWXAccountService = (PSRTWXAccountService)ServiceGlobal.getService(PSRTWXAccountService.class, (SessionFactory)this.getSessionFactory());
-                pSRTWXAccountService.autoGet((IEntity)pSRTWXAccount);
+                pSRTWXAccountService.autoGet(pSRTWXAccount);
                 this.psrtwxaccount = pSRTWXAccount;
             }
             return this.psrtwxaccount;
@@ -4859,7 +4859,7 @@ implements Serializable {
                 PSStudioServerGrp pSStudioServerGrp = new PSStudioServerGrp();
                 pSStudioServerGrp.setPSStudioServerGrpId(this.getPSStudioServerGrpId());
                 PSStudioServerGrpService pSStudioServerGrpService = (PSStudioServerGrpService)ServiceGlobal.getService(PSStudioServerGrpService.class, (SessionFactory)this.getSessionFactory());
-                pSStudioServerGrpService.autoGet((IEntity)pSStudioServerGrp);
+                pSStudioServerGrpService.autoGet(pSStudioServerGrp);
                 this.psstudioservergrp = pSStudioServerGrp;
             }
             return this.psstudioservergrp;
@@ -4885,7 +4885,7 @@ implements Serializable {
                 PSSVNInstRepo pSSVNInstRepo = new PSSVNInstRepo();
                 pSSVNInstRepo.setPSSVNInstRepoId(this.getPSSvnInstRepoId());
                 PSSVNInstRepoService pSSVNInstRepoService = (PSSVNInstRepoService)ServiceGlobal.getService(PSSVNInstRepoService.class, (SessionFactory)this.getSessionFactory());
-                pSSVNInstRepoService.autoGet((IEntity)pSSVNInstRepo);
+                pSSVNInstRepoService.autoGet(pSSVNInstRepo);
                 this.pssvninstrepo = pSSVNInstRepo;
             }
             return this.pssvninstrepo;
@@ -4911,7 +4911,7 @@ implements Serializable {
                 PSSVNInstRepo pSSVNInstRepo = new PSSVNInstRepo();
                 pSSVNInstRepo.setPSSVNInstRepoId(this.getROPSSvnInstRepoId());
                 PSSVNInstRepoService pSSVNInstRepoService = (PSSVNInstRepoService)ServiceGlobal.getService(PSSVNInstRepoService.class, (SessionFactory)this.getSessionFactory());
-                pSSVNInstRepoService.autoGet((IEntity)pSSVNInstRepo);
+                pSSVNInstRepoService.autoGet(pSSVNInstRepo);
                 this.ropssvninstrepo = pSSVNInstRepo;
             }
             return this.ropssvninstrepo;
@@ -4937,7 +4937,7 @@ implements Serializable {
                 PSSVNInstRepo pSSVNInstRepo = new PSSVNInstRepo();
                 pSSVNInstRepo.setPSSVNInstRepoId(this.getV6PSSvnInstRepoId());
                 PSSVNInstRepoService pSSVNInstRepoService = (PSSVNInstRepoService)ServiceGlobal.getService(PSSVNInstRepoService.class, (SessionFactory)this.getSessionFactory());
-                pSSVNInstRepoService.autoGet((IEntity)pSSVNInstRepo);
+                pSSVNInstRepoService.autoGet(pSSVNInstRepo);
                 this.v6pssvninstrepo = pSSVNInstRepo;
             }
             return this.v6pssvninstrepo;
@@ -4963,7 +4963,7 @@ implements Serializable {
                 PSSvrDomain pSSvrDomain = new PSSvrDomain();
                 pSSvrDomain.setPSSvrDomainId(this.getPSSvrDomainId());
                 PSSvrDomainService pSSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrDomainService.autoGet((IEntity)pSSvrDomain);
+                pSSvrDomainService.autoGet(pSSvrDomain);
                 this.pssvrdomain = pSSvrDomain;
             }
             return this.pssvrdomain;
@@ -4989,7 +4989,7 @@ implements Serializable {
                 PSSvrProvider pSSvrProvider = new PSSvrProvider();
                 pSSvrProvider.setPSSvrProviderId(this.getPSSvrProviderId());
                 PSSvrProviderService pSSvrProviderService = (PSSvrProviderService)ServiceGlobal.getService(PSSvrProviderService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrProviderService.autoGet((IEntity)pSSvrProvider);
+                pSSvrProviderService.autoGet(pSSvrProvider);
                 this.pssvrprovider = pSSvrProvider;
             }
             return this.pssvrprovider;

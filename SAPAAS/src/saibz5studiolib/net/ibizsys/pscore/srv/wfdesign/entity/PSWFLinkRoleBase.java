@@ -1415,7 +1415,7 @@ implements Serializable {
                 PSSysMsgTempl pSSysMsgTempl = new PSSysMsgTempl();
                 pSSysMsgTempl.setPSSysMsgTemplId(this.getPSSysMsgTemplId());
                 PSSysMsgTemplService pSSysMsgTemplService = (PSSysMsgTemplService)ServiceGlobal.getService(PSSysMsgTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSSysMsgTemplService.autoGet((IEntity)pSSysMsgTempl);
+                pSSysMsgTemplService.autoGet(pSSysMsgTempl);
                 this.pssysmsgtempl = pSSysMsgTempl;
             }
             return this.pssysmsgtempl;
@@ -1441,7 +1441,7 @@ implements Serializable {
                 PSWFLink pSWFLink = new PSWFLink();
                 pSWFLink.setPSWFLinkId(this.getPSWFLinkId());
                 PSWFLinkService pSWFLinkService = (PSWFLinkService)ServiceGlobal.getService(PSWFLinkService.class, (SessionFactory)this.getSessionFactory());
-                pSWFLinkService.autoGet((IEntity)pSWFLink);
+                pSWFLinkService.autoGet(pSWFLink);
                 this.pswflink = pSWFLink;
             }
             return this.pswflink;
@@ -1467,7 +1467,7 @@ implements Serializable {
                 PSWFProcRole pSWFProcRole = new PSWFProcRole();
                 pSWFProcRole.setPSWFProcRoleId(this.getPSWFProcRoleId());
                 PSWFProcRoleService pSWFProcRoleService = (PSWFProcRoleService)ServiceGlobal.getService(PSWFProcRoleService.class, (SessionFactory)this.getSessionFactory());
-                pSWFProcRoleService.autoGet((IEntity)pSWFProcRole);
+                pSWFProcRoleService.autoGet(pSWFProcRole);
                 this.pswfprocrole = pSWFProcRole;
             }
             return this.pswfprocrole;

@@ -1,20 +1,26 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.grid;
 
-import net.ibizsys.paas.control.grid.GridRowError;
+/**
+ * 表格行处理异常对象
+ * 
+ * @author lionlau
+ *
+ */
+public class GridRowException extends Exception {
+	private GridRowError gridRowError = null;
 
-public class GridRowException
-extends Exception {
-    private GridRowError gridRowError = null;
+	public GridRowException(GridRowError gridRowError) {
+		super();
+		this.gridRowError = gridRowError;
 
-    public GridRowException(GridRowError gridRowError) {
-        this.gridRowError = gridRowError;
-    }
+	}
 
-    public GridRowError getGridRowError() {
-        return this.gridRowError;
-    }
+	/**
+	 * 获取表格行错误对象
+	 * 
+	 * @return
+	 */
+	public GridRowError getGridRowError() {
+		return this.gridRowError;
+	}
 }
-

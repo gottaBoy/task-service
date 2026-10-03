@@ -50,16 +50,15 @@ extends PSBKTaskLogServiceBase {
     protected void sendToKafka(PSBKTaskLog pSBKTaskLog, boolean bl) {
         try {
             if (PSBKTaskLogService.isEnableKafkaPlugin()) {
-                Map.Entry entry2;
-                HashMap hashMap = new HashMap();
+                HashMap<String, Object> hashMap = new HashMap<String, Object>();
                 pSBKTaskLog.fillMap(hashMap, true);
                 hashMap.remove("CREATEDATE");
                 hashMap.remove("UPDATEDATE");
                 HashMap<String, Object> hashMap2 = new HashMap<String, Object>();
-                for (Map.Entry entry2 : hashMap.entrySet()) {
-                    Object v = entry2.getValue();
+                for (Map.Entry<String, Object> entry : hashMap.entrySet()) {
+                    Object v = entry.getValue();
                     if (v == null || v == EntityBase.EMPTY) continue;
-                    hashMap2.put(((String)entry2.getKey()).toLowerCase(), v);
+                    hashMap2.put(entry.getKey().toLowerCase(), v);
                 }
                 String string = PSBKTaskLogService.getCurrentPSSvrDomainId();
                 if (!StringHelper.isNullOrEmpty((String)string)) {
@@ -86,15 +85,10 @@ extends PSBKTaskLogServiceBase {
                         hashMap2.put("updateman", WebContext.getCurrent().getCurLoginName());
                     }
                 }
-                entry2 = MAPPER.writeValueAsString(hashMap2);
-                SessionFactoryManager.getCurrentSFS().registerSFSAction(this.getRealSessionFactory(), new ISFSAction((String)((Object)entry2)){
-                    final /* synthetic */ String val$strContent;
-                    {
-                        this.val$strContent = string;
-                    }
-
+                final String content = MAPPER.writeValueAsString(hashMap2);
+                SessionFactoryManager.getCurrentSFS().registerSFSAction(this.getRealSessionFactory(), new ISFSAction(){
                     public void commit() {
-                        PSCoreSysServiceBase.getPSKafkaPlugin().sendPSBKTaskLog(this.val$strContent);
+                        PSCoreSysServiceBase.getPSKafkaPlugin().sendPSBKTaskLog(content);
                     }
 
                     public void rollback() {
@@ -107,4 +101,3 @@ extends PSBKTaskLogServiceBase {
         }
     }
 }
-

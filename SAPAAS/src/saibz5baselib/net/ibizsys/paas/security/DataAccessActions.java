@@ -1,22 +1,82 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.security;
 
+/**
+ * 数据访问行为
+ * 
+ * @author Administrator
+ *
+ */
 public class DataAccessActions {
-    public static final String ALL = "ALL";
-    public static final String NONE = "NONE";
-    public static final String DENY = "DENY";
-    public static final String CREATE = "CREATE";
-    public static final String READ = "READ";
-    public static final String UPDATE = "UPDATE";
-    public static final String WFACTION = "WFACTION";
-    public static final String DELETE = "DELETE";
-    public static final String MODIFYCHILD = "MODIFYCHILD";
-    public static final String WFSTART = "WFSTART";
-    public static final String WFRESTART = "WFRESTART";
-    public static final String WFCANCEL = "WFCANCEL";
-    public static final String WFVIEWSTEPACTOR = "WFVIEWSTEPACTOR";
-    public static final String WFVIEWSTEPDATA = "WFVIEWSTEPDATA";
-}
+	
+	/**
+	 * 全部操作，用于映射关系数据操作
+	 */
+	public final static String ALL = "ALL";
 
+	/**
+	 * 无操作，对于此操作标识返回成功
+	 */
+	public final static String NONE = "NONE";
+	
+	
+	/**
+	 * 无操作，对于此操作标识返回禁止
+	 */
+	public final static String DENY = "DENY";
+	
+	/**
+	 * 建立
+	 */
+	public final static String CREATE = "CREATE";
+
+	/**
+	 * 读取
+	 */
+	public final static String READ = "READ";
+
+	/**
+	 * 更新
+	 */
+	public final static String UPDATE = "UPDATE";
+
+	/**
+	 * 工作流操作模式,权限相当于UPDATE
+	 */
+	public final static String WFACTION = "WFACTION";
+
+	/**
+	 * 删除
+	 */
+	public final static String DELETE = "DELETE";
+
+	/**
+	 * 修改子数据
+	 */
+	public final static String MODIFYCHILD = "MODIFYCHILD";
+
+	/**
+	 * 工作流启动
+	 */
+	public final static String WFSTART = "WFSTART";
+
+	/**
+	 * 工作流重新启动
+	 */
+	public final static String WFRESTART = "WFRESTART";
+
+	/**
+	 * 工作流取消
+	 */
+	public final static String WFCANCEL = "WFCANCEL";
+
+	/**
+	 * 查看当前工作节点
+	 */
+	public final static String WFVIEWSTEPACTOR = "WFVIEWSTEPACTOR";
+
+	/**
+	 * 查看当前流程历史步骤
+	 */
+	public final static String WFVIEWSTEPDATA = "WFVIEWSTEPDATA";
+
+}

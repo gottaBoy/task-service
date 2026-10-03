@@ -136,14 +136,14 @@ extends PSCoreSysServiceBase<PSPortlet> {
             PSPFPlugin pSPFPlugin = (PSPFPlugin)iService.getDEModel().createEntity();
             pSPFPlugin.set("PSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSPFPlugin);
+                iService.getTemp(pSPFPlugin);
             } else {
-                iService.get((IEntity)pSPFPlugin);
+                iService.get(pSPFPlugin);
             }
             this.onFillParentInfo_PSPFPlugin(pSPortlet, pSPFPlugin);
             return;
         }
-        super.onFillParentInfo((IEntity)pSPortlet, string, string2, string3);
+        super.onFillParentInfo(pSPortlet, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -159,7 +159,7 @@ extends PSCoreSysServiceBase<PSPortlet> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSPortlet, bl);
+        super.onFillEntityFullInfo(pSPortlet, bl);
         this.onFillEntityFullInfo_PSPFPlugin(pSPortlet, bl);
     }
 
@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSPortlet> {
     }
 
     protected void onWriteBackParent(PSPortlet pSPortlet, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPortlet, bl);
+        super.onWriteBackParent(pSPortlet, bl);
     }
 
     public ArrayList<PSPortlet> selectByPSPFPlugin(PSPFPluginBase pSPFPluginBase) throws Exception {
@@ -226,7 +226,7 @@ extends PSCoreSysServiceBase<PSPortlet> {
         ArrayList<PSPortlet> arrayList = this.selectByPSPFPlugin(pSPFPlugin);
         this.onBeforeRemoveByPSPFPlugin(pSPFPlugin, arrayList);
         for (PSPortlet pSPortlet : arrayList) {
-            this.remove((IEntity)pSPortlet);
+            this.remove(pSPortlet);
         }
         this.onAfterRemoveByPSPFPlugin(pSPFPlugin, arrayList);
     }
@@ -249,14 +249,14 @@ extends PSCoreSysServiceBase<PSPortlet> {
 
     protected void replaceParentInfo(PSPortlet pSPortlet, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSPortlet, cloneSession);
+        super.replaceParentInfo(pSPortlet, cloneSession);
         if (pSPortlet.getPSPFPluginId() != null && (iEntity = cloneSession.getEntity("PSPFPLUGIN", (Object)pSPortlet.getPSPFPluginId())) != null) {
             this.onFillParentInfo_PSPFPlugin(pSPortlet, (PSPFPlugin)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSPortlet pSPortlet, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPortlet, bl);
+        super.onRemoveEntityUncopyValues(pSPortlet, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPortlet pSPortlet, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -283,7 +283,7 @@ extends PSCoreSysServiceBase<PSPortlet> {
         if ((entityFieldError = this.onCheckField_PSPortletName(bl, pSPortlet, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPortlet, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPortlet, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BaseClsParams(boolean bl, PSPortlet pSPortlet, boolean bl2, boolean bl3) throws Exception {
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSPortlet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BaseClsParams_Default((IEntity)pSPortlet, bl2, bl3);
+            string2 = this.onTestValueRule_BaseClsParams_Default(pSPortlet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BASECLSPARAMS");
@@ -321,7 +321,7 @@ extends PSCoreSysServiceBase<PSPortlet> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSPortlet, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSPortlet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -343,7 +343,7 @@ extends PSCoreSysServiceBase<PSPortlet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPortlet, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPortlet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -368,7 +368,7 @@ extends PSCoreSysServiceBase<PSPortlet> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PortletType_Default((IEntity)pSPortlet, bl2, bl3);
+            string2 = this.onTestValueRule_PortletType_Default(pSPortlet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PORTLETTYPE");
@@ -393,7 +393,7 @@ extends PSCoreSysServiceBase<PSPortlet> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFPluginId_Default((IEntity)pSPortlet, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFPluginId_Default(pSPortlet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFPLUGINID");
@@ -418,7 +418,7 @@ extends PSCoreSysServiceBase<PSPortlet> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPortletId_Default((IEntity)pSPortlet, bl2, bl3);
+            string2 = this.onTestValueRule_PSPortletId_Default(pSPortlet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPORTLETID");
@@ -443,7 +443,7 @@ extends PSCoreSysServiceBase<PSPortlet> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPortletName_Default((IEntity)pSPortlet, bl2, bl3);
+            string2 = this.onTestValueRule_PSPortletName_Default(pSPortlet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPORTLETNAME");
@@ -456,11 +456,11 @@ extends PSCoreSysServiceBase<PSPortlet> {
     }
 
     protected void onSyncEntity(PSPortlet pSPortlet, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPortlet, bl);
+        super.onSyncEntity(pSPortlet, bl);
     }
 
     protected void onSyncIndexEntities(PSPortlet pSPortlet, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPortlet, bl);
+        super.onSyncIndexEntities(pSPortlet, bl);
     }
 
     public Object getDataContextValue(PSPortlet pSPortlet, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -468,14 +468,14 @@ extends PSCoreSysServiceBase<PSPortlet> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPortlet, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPortlet, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPortlet pSPortlet, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPortlet, arrayList, n);
+        super.onExportMajorModel(pSPortlet, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -648,14 +648,14 @@ extends PSCoreSysServiceBase<PSPortlet> {
 
     protected boolean onMergeChild(String string, String string2, PSPortlet pSPortlet) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPortlet)) {
+        if (super.onMergeChild(string, string2, pSPortlet)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPortlet pSPortlet) throws Exception {
-        super.onUpdateParent((IEntity)pSPortlet);
+        super.onUpdateParent(pSPortlet);
     }
 
     @Override

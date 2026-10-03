@@ -988,7 +988,7 @@ implements Serializable {
                 PSDEForm pSDEForm = new PSDEForm();
                 pSDEForm.setPSDEFormId(this.getPSDEFormId());
                 PSDEFormService pSDEFormService = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFormService.autoGet((IEntity)pSDEForm);
+                pSDEFormService.autoGet(pSDEForm);
                 this.psdeform = pSDEForm;
             }
             return this.psdeform;
@@ -1014,7 +1014,7 @@ implements Serializable {
                 PSDynaDETempl pSDynaDETempl = new PSDynaDETempl();
                 pSDynaDETempl.setPSDynaDETemplId(this.getPSDynaDETemplId());
                 PSDynaDETemplService pSDynaDETemplService = (PSDynaDETemplService)ServiceGlobal.getService(PSDynaDETemplService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaDETemplService.autoGet((IEntity)pSDynaDETempl);
+                pSDynaDETemplService.autoGet(pSDynaDETempl);
                 this.psdynadetempl = pSDynaDETempl;
             }
             return this.psdynadetempl;

@@ -186,7 +186,7 @@ implements IPSWFVersion {
             throw new Exception(SA.SRFramework.Utility.StringHelper.Format((String)"\u67e5\u8be2\u6d41\u7a0b\u5904\u7406\u53c2\u6570\u96c6\u5408\u53d1\u751f\u9519\u8bef, %1$s", (Object)callResult.getErrorInfo()));
         }
         for (PSWFProcParam psWFProcParam : psWFProcParamList) {
-            Object psWFProcess = (PSWFProcess)((Object)psWFProcessMap.get(psWFProcParam.getPSWFPROCESSID()));
+            PSWFProcess psWFProcess = (PSWFProcess)((Object)psWFProcessMap.get(psWFProcParam.getPSWFPROCESSID()));
             if (psWFProcess == null) {
                 throw new Exception(SA.SRFramework.Utility.StringHelper.Format((String)"\u5de5\u4f5c\u6d41\u7248\u672c[%1$s]\u8fc7\u7a0b\u53c2\u6570[%2$s]\u65e0\u6cd5\u5b9a\u4f4d\u5904\u7406[%3$s]", (Object)this.getName(), (Object)psWFProcParam.getPSWFPROCPARAMNAME(), (Object)psWFProcParam.getPSWFPROCESSID()));
             }
@@ -198,7 +198,7 @@ implements IPSWFVersion {
             throw new Exception(SA.SRFramework.Utility.StringHelper.Format((String)"\u67e5\u8be2\u6d41\u7a0b\u5904\u7406\u5b50\u6d41\u7a0b\u96c6\u5408\u53d1\u751f\u9519\u8bef, %1$s", (Object)callResult.getErrorInfo()));
         }
         for (PSWFProcSubWF psWFProcSubWF : psWFProcSubWFList) {
-            Object psWFProcess = (PSWFProcess)((Object)psWFProcessMap.get(psWFProcSubWF.getPSWFPROCESSID()));
+            PSWFProcess psWFProcess = (PSWFProcess)((Object)psWFProcessMap.get(psWFProcSubWF.getPSWFPROCESSID()));
             if (psWFProcess == null) {
                 throw new Exception(SA.SRFramework.Utility.StringHelper.Format((String)"\u5de5\u4f5c\u6d41\u7248\u672c[%1$s]\u5904\u7406\u5b50\u6d41\u7a0b[%2$s]\u65e0\u6cd5\u5b9a\u4f4d\u5904\u7406[%3$s]", (Object)this.getName(), (Object)psWFProcSubWF.getPSWFPROCSUBWFNAME(), (Object)psWFProcSubWF.getPSWFPROCESSID()));
             }
@@ -210,7 +210,7 @@ implements IPSWFVersion {
             throw new Exception(SA.SRFramework.Utility.StringHelper.Format((String)"\u67e5\u8be2\u6d41\u7a0b\u5904\u7406\u89d2\u8272\u96c6\u5408\u53d1\u751f\u9519\u8bef, %1$s", (Object)callResult.getErrorInfo()));
         }
         for (PSWFProcRole psWFProcRole : psWFProcRoleList) {
-            Object psWFProcess = (PSWFProcess)((Object)psWFProcessMap.get(psWFProcRole.getPSWFPROCESSID()));
+            PSWFProcess psWFProcess = (PSWFProcess)((Object)psWFProcessMap.get(psWFProcRole.getPSWFPROCESSID()));
             if (psWFProcess == null) {
                 throw new Exception(SA.SRFramework.Utility.StringHelper.Format((String)"\u5de5\u4f5c\u6d41\u7248\u672c[%1$s]\u5904\u7406\u89d2\u8272[%2$s]\u65e0\u6cd5\u5b9a\u4f4d\u5904\u7406[%3$s]", (Object)this.getName(), (Object)psWFProcRole.getPSWFPROCROLENAME(), (Object)psWFProcRole.getPSWFPROCESSID()));
             }

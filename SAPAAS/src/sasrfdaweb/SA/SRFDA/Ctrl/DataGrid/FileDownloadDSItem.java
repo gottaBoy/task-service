@@ -41,11 +41,21 @@ ISRFExDataGridDSItem3 {
         }
         ISRFDAGlobalHelper iGlobalHelper = (ISRFDAGlobalHelper)webContext.getGlobalHelper();
         if (iGlobalHelper.getDAModelVersion() >= 11092100) {
-            return StringHelper.Format((String)"%1$s||SRF||%2$s", (Object)dr.Get("FILE_NAME"), (Object)dr.Get("FILE_ID"));
+            try {
+                return StringHelper.Format((String)"%1$s||SRF||%2$s", (Object)dr.Get("FILE_NAME"), (Object)dr.Get("FILE_ID"));
+            }
+            catch (Exception exception) {
+                return "";
+            }
         }
         String strDownloadFilePath = webContext.getWebExConfig().GetValue("SRFEXWEB", "DOWNLOADPAGEPATH", "");
         strDownloadFilePath = URLHelper.AppendURLSeperator((String)strDownloadFilePath);
-        return StringHelper.Format((String)"<a href='#' onclick=\"javascript:SRFUtility.download('%1$sFILEID=%2$s');\"><span class='sx-normaltext'>%3$s</span></a>", (Object)strDownloadFilePath, (Object)dr.Get("FILE_ID"), (Object)dr.Get("FILE_NAME"));
+        try {
+            return StringHelper.Format((String)"<a href='#' onclick=\"javascript:SRFUtility.download('%1$sFILEID=%2$s');\"><span class='sx-normaltext'>%3$s</span></a>", (Object)strDownloadFilePath, (Object)dr.Get("FILE_ID"), (Object)dr.Get("FILE_NAME"));
+        }
+        catch (Exception exception) {
+            return "";
+        }
     }
 }
 

@@ -232,7 +232,7 @@ extends BaseScheduleEngineTask {
         }
         BaseDataEntity cond = new BaseDataEntity();
         cond.SetParamValue("PUBGROUPID", (Object)strPublishGroupId);
-        Vector pubFtpList = new Vector();
+        Vector<BaseDataEntity> pubFtpList = new Vector<BaseDataEntity>();
         callResult = pubFtpDataCtrl.Select(cond, pubFtpList);
         if (callResult.IsError()) {
             return callResult;

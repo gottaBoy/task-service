@@ -1,12 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.wf;
 
-import net.ibizsys.model.wf.IPSWFProcess;
+/**
+ * 工作流结束处理对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSWFEndProcess extends IPSWFProcess {
 
-public interface IPSWFEndProcess
-extends IPSWFProcess {
-    public String getExitStateValue();
+	/**
+	 * 获取退出状态值
+	 * @return
+	 */
+	String getExitStateValue();
 }
-

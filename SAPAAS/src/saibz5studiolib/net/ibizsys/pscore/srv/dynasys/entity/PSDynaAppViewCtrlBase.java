@@ -1059,7 +1059,7 @@ implements Serializable {
                 PSDynaAppView pSDynaAppView = new PSDynaAppView();
                 pSDynaAppView.setPSDynaAppViewId(this.getPSDynaAppViewId());
                 PSDynaAppViewService pSDynaAppViewService = (PSDynaAppViewService)ServiceGlobal.getService(PSDynaAppViewService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaAppViewService.autoGet((IEntity)pSDynaAppView);
+                pSDynaAppViewService.autoGet(pSDynaAppView);
                 this.psdynaappview = pSDynaAppView;
             }
             return this.psdynaappview;
@@ -1085,7 +1085,7 @@ implements Serializable {
                 PSDynaDEForm pSDynaDEForm = new PSDynaDEForm();
                 pSDynaDEForm.setPSDynaDEFormId(this.getPSDynaDEFormId());
                 PSDynaDEFormService pSDynaDEFormService = (PSDynaDEFormService)ServiceGlobal.getService(PSDynaDEFormService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaDEFormService.autoGet((IEntity)pSDynaDEForm);
+                pSDynaDEFormService.autoGet(pSDynaDEForm);
                 this.psdynadeform = pSDynaDEForm;
             }
             return this.psdynadeform;

@@ -81,7 +81,7 @@ extends PSSysDevBKTaskImplBase {
         PSSystemDBCfgService psSystemDBCfgService = (PSSystemDBCfgService)ServiceGlobal.getService(PSSystemDBCfgService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSystemDBCfg psSystemDBConfig2 = new PSSystemDBCfg();
         psSystemDBConfig2.setPSSystemDBCfgId(this.psSysDevBKTask.getTASKPARAM());
-        psSystemDBCfgService.get((IEntity)psSystemDBConfig2);
+        psSystemDBCfgService.get(psSystemDBConfig2);
         return this.syncSubSysDBModel(psSystemDBConfig2);
     }
 
@@ -93,7 +93,7 @@ extends PSSysDevBKTaskImplBase {
         SessionFactory sessionFactory = PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId());
         ArrayList modelList = new ArrayList();
         PSSysRefService psSysRefService = (PSSysRefService)ServiceGlobal.getService(PSSysRefService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psSysRefList = psSysRefService.selectByPSSystem((PSSystemBase)psSystem, "ORDER BY ORDERVALUE");
+        ArrayList<PSSysRef> psSysRefList = psSysRefService.selectByPSSystem((PSSystemBase)psSystem, "ORDER BY ORDERVALUE");
         psSystem.setSessionFactory(sessionFactory);
         psSystem.get();
         for (PSSysRef psSysRef : psSysRefList) {
@@ -113,14 +113,14 @@ extends PSSysDevBKTaskImplBase {
             PSSubSysService psSubSysService = (PSSubSysService)ServiceGlobal.getService(PSSubSysService.class);
             PSSubSys psSubSys = new PSSubSys();
             psSubSys.setPSSubSysId(psSysRef.getPSSubSysId());
-            if (!psSubSysService.get((IEntity)psSubSys, true)) {
+            if (!psSubSysService.get(psSubSys, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b50\u7cfb\u7edf[%1$s]", (Object)psSysRef.getPSSysRefName()));
             }
             PSSubSysVerService psSubSysVerService = (PSSubSysVerService)ServiceGlobal.getService(PSSubSysVerService.class);
             PSSubSysVer psSubSysVer = new PSSubSysVer();
             psSubSysVer.setPSSubSysId(psSubSys.getPSSubSysId());
             psSubSysVer.setVersion(psSubSys.getVersion());
-            if (!psSubSysVerService.select((IEntity)psSubSysVer, true)) {
+            if (!psSubSysVerService.select(psSubSysVer, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b50\u7cfb\u7edf[%1$s]\u7248\u672c[%2$s]", (Object)psSysRef.getPSSysRefName(), (Object)psSubSys.getVersion()));
             }
             nCurVersion = psSubSys.getVersion();
@@ -266,4 +266,3 @@ extends PSSysDevBKTaskImplBase {
         }
     }
 }
-

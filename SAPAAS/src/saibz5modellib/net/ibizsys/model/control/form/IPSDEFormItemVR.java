@@ -1,27 +1,68 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.form;
 
-import net.ibizsys.model.control.form.IPSDEForm;
-import net.ibizsys.model.control.form.IPSDEFormItem;
 import net.ibizsys.model.core.IPSModelObject;
 import net.ibizsys.model.dataentity.field.valuerule.IPSDEFValueRule;
 
-public interface IPSDEFormItemVR
-extends IPSModelObject {
-    public static final int CHECKMODE_FRONT = 1;
-    public static final int CHECKMODE_BACKEND = 2;
-    public static final int CHECKMODE_ALL = 3;
 
-    public String getPSDEFormItemName();
+/**
+ * 实体表单项值规则对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSDEFormItemVR extends IPSModelObject {
+	// 定义检查方式代码表
 
-    public IPSDEForm getPSDEForm();
+	/**
+	 * 检查方式：前台
+	 */
+	public final static int CHECKMODE_FRONT = 1;
 
-    public IPSDEFValueRule getPSDEFValueRule();
+	/**
+	 * 检查方式：后台
+	 */
+	public final static int CHECKMODE_BACKEND = 2;
 
-    public IPSDEFormItem getPSDEFormItem();
+	/**
+	 * 检查方式：前后台
+	 */
+	public final static int CHECKMODE_ALL = 3;
 
-    public int getCheckMode();
+	
+
+	/**
+	 * 获取表单项名称
+	 * 
+	 * @return
+	 */
+	String getPSDEFormItemName();
+
+	/**
+	 * 获取表单对象
+	 * 
+	 * @return
+	 */
+	IPSDEForm getPSDEForm();
+
+	/**
+	 * 获取对应的实体属性规则对象
+	 * 
+	 * @return
+	 */
+	IPSDEFValueRule getPSDEFValueRule();
+
+	/**
+	 * 获取表单项对象
+	 * 
+	 * @return
+	 */
+	IPSDEFormItem getPSDEFormItem();
+	
+	
+	/**
+	 * 获取检查模式，值参考 SA.SRFDA.PS.Core.Control.Form.IPSDEFormItemVR.CHECKMODE_XXX 定义
+	 * @return
+	 */
+	int getCheckMode();
+
 }
-

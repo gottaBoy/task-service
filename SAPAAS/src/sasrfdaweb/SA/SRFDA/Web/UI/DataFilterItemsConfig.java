@@ -20,10 +20,9 @@ extends XMLCollectionExConfig<DataFilterItemConfig> {
         if (StringHelper.Compare((String)"DATAFILTERITEM", (String)strName, (boolean)true) == 0) {
             DataFilterItemConfig dataFilterItemConfig = new DataFilterItemConfig();
             dataFilterItemConfig.LoadConfig(xmlNode);
-            this.add((Object)dataFilterItemConfig);
+            this.add(dataFilterItemConfig);
             return;
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

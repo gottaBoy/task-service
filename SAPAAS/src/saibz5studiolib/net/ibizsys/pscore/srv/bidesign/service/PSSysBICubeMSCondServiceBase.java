@@ -147,9 +147,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
             PSDBValueOP pSDBValueOP = (PSDBValueOP)iService.getDEModel().createEntity();
             pSDBValueOP.set("PSDBVALUEOPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDBValueOP);
+                iService.getTemp(pSDBValueOP);
             } else {
-                iService.get((IEntity)pSDBValueOP);
+                iService.get(pSDBValueOP);
             }
             this.onFillParentInfo_PSDBValueOP(pSSysBICubeMSCond, pSDBValueOP);
             return;
@@ -159,9 +159,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_PSDEF(pSSysBICubeMSCond, pSDEField);
             return;
@@ -171,9 +171,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
             PSSysBICubeMeasure pSSysBICubeMeasure = (PSSysBICubeMeasure)iService.getDEModel().createEntity();
             pSSysBICubeMeasure.set("PSSYSBICUBEMEASUREID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBICubeMeasure);
+                iService.getTemp(pSSysBICubeMeasure);
             } else {
-                iService.get((IEntity)pSSysBICubeMeasure);
+                iService.get(pSSysBICubeMeasure);
             }
             this.onFillParentInfo_PSSysBICubeMeasure(pSSysBICubeMSCond, pSSysBICubeMeasure);
             return;
@@ -183,9 +183,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
             PSSysBICubeMSCond pSSysBICubeMSCond2 = (PSSysBICubeMSCond)iService.getDEModel().createEntity();
             pSSysBICubeMSCond2.set("PSSYSBICUBEMSCONDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBICubeMSCond2);
+                iService.getTemp(pSSysBICubeMSCond2);
             } else {
-                iService.get((IEntity)pSSysBICubeMSCond2);
+                iService.get(pSSysBICubeMSCond2);
             }
             this.onFillParentInfo_PPSSysBICubeMSCond(pSSysBICubeMSCond, pSSysBICubeMSCond2);
             return;
@@ -195,9 +195,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
             PSSysDBVF pSSysDBVF = (PSSysDBVF)iService.getDEModel().createEntity();
             pSSysDBVF.set("PSSYSDBVFID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDBVF);
+                iService.getTemp(pSSysDBVF);
             } else {
-                iService.get((IEntity)pSSysDBVF);
+                iService.get(pSSysDBVF);
             }
             this.onFillParentInfo_PSSysDBVF(pSSysBICubeMSCond, pSSysDBVF);
             return;
@@ -207,14 +207,14 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
             PSVarType pSVarType = (PSVarType)iService.getDEModel().createEntity();
             pSVarType.set("PSVARTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSVarType);
+                iService.getTemp(pSVarType);
             } else {
-                iService.get((IEntity)pSVarType);
+                iService.get(pSVarType);
             }
             this.onFillParentInfo_PSVarType(pSSysBICubeMSCond, pSVarType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysBICubeMSCond, string, string2, string3);
+        super.onFillParentInfo(pSSysBICubeMSCond, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -255,7 +255,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysBICubeMSCond, bl);
+        super.onFillEntityFullInfo(pSSysBICubeMSCond, bl);
         this.onFillEntityFullInfo_PSDBValueOP(pSSysBICubeMSCond, bl);
         this.onFillEntityFullInfo_PSDEF(pSSysBICubeMSCond, bl);
         this.onFillEntityFullInfo_PSSysBICubeMeasure(pSSysBICubeMSCond, bl);
@@ -323,7 +323,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
     }
 
     protected void onWriteBackParent(PSSysBICubeMSCond pSSysBICubeMSCond, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysBICubeMSCond, bl);
+        super.onWriteBackParent(pSSysBICubeMSCond, bl);
     }
 
     public ArrayList<PSSysBICubeMSCond> selectByPSDBValueOP(PSDBValueOPBase pSDBValueOPBase) throws Exception {
@@ -474,8 +474,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         ArrayList<PSSysBICubeMSCond> arrayList = this.selectByPSDBValueOP(pSDBValueOP, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDBVALUEOP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDBValueOP);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSCOND_PSDBVALUEOP_PSDBVALUEOPID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSCOND", iDataEntityModel.getDataInfo((IEntity)pSDBValueOP), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDBValueOP);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSCOND_PSDBVALUEOP_PSDBVALUEOPID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSCOND", iDataEntityModel.getDataInfo(pSDBValueOP), arrayList.get(0)));
         }
     }
 
@@ -508,7 +508,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         ArrayList<PSSysBICubeMSCond> arrayList = this.selectByPSDBValueOP(pSDBValueOP);
         this.onBeforeRemoveByPSDBValueOP(pSDBValueOP, arrayList);
         for (PSSysBICubeMSCond pSSysBICubeMSCond : arrayList) {
-            this.remove((IEntity)pSSysBICubeMSCond);
+            this.remove(pSSysBICubeMSCond);
         }
         this.onAfterRemoveByPSDBValueOP(pSDBValueOP, arrayList);
     }
@@ -526,8 +526,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         ArrayList<PSSysBICubeMSCond> arrayList = this.selectByPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSCOND_PSDEFIELD_PSDEFID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSCOND", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSCOND_PSDEFIELD_PSDEFID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSCOND", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -560,7 +560,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         ArrayList<PSSysBICubeMSCond> arrayList = this.selectByPSDEF(pSDEField);
         this.onBeforeRemoveByPSDEF(pSDEField, arrayList);
         for (PSSysBICubeMSCond pSSysBICubeMSCond : arrayList) {
-            this.remove((IEntity)pSSysBICubeMSCond);
+            this.remove(pSSysBICubeMSCond);
         }
         this.onAfterRemoveByPSDEF(pSDEField, arrayList);
     }
@@ -606,7 +606,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         ArrayList<PSSysBICubeMSCond> arrayList = this.selectByPSSysBICubeMeasure(pSSysBICubeMeasure);
         this.onBeforeRemoveByPSSysBICubeMeasure(pSSysBICubeMeasure, arrayList);
         for (PSSysBICubeMSCond pSSysBICubeMSCond : arrayList) {
-            this.remove((IEntity)pSSysBICubeMSCond);
+            this.remove(pSSysBICubeMSCond);
         }
         this.onAfterRemoveByPSSysBICubeMeasure(pSSysBICubeMeasure, arrayList);
     }
@@ -652,7 +652,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         ArrayList<PSSysBICubeMSCond> arrayList = this.selectByPPSSysBICubeMSCond(pSSysBICubeMSCond);
         this.onBeforeRemoveByPPSSysBICubeMSCond(pSSysBICubeMSCond, arrayList);
         for (PSSysBICubeMSCond pSSysBICubeMSCond2 : arrayList) {
-            this.remove((IEntity)pSSysBICubeMSCond2);
+            this.remove(pSSysBICubeMSCond2);
         }
         this.onAfterRemoveByPPSSysBICubeMSCond(pSSysBICubeMSCond, arrayList);
     }
@@ -670,8 +670,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         ArrayList<PSSysBICubeMSCond> arrayList = this.selectByPSSysDBVF(pSSysDBVF, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSDBVF");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysDBVF);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSCOND_PSSYSDBVF_PSSYSDBVFID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSCOND", iDataEntityModel.getDataInfo((IEntity)pSSysDBVF), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysDBVF);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSCOND_PSSYSDBVF_PSSYSDBVFID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSCOND", iDataEntityModel.getDataInfo(pSSysDBVF), arrayList.get(0)));
         }
     }
 
@@ -704,7 +704,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         ArrayList<PSSysBICubeMSCond> arrayList = this.selectByPSSysDBVF(pSSysDBVF);
         this.onBeforeRemoveByPSSysDBVF(pSSysDBVF, arrayList);
         for (PSSysBICubeMSCond pSSysBICubeMSCond : arrayList) {
-            this.remove((IEntity)pSSysBICubeMSCond);
+            this.remove(pSSysBICubeMSCond);
         }
         this.onAfterRemoveByPSSysDBVF(pSSysDBVF, arrayList);
     }
@@ -722,8 +722,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         ArrayList<PSSysBICubeMSCond> arrayList = this.selectByPSVarType(pSVarType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSVARTYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSVarType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSCOND_PSVARTYPE_PSVARTYPEID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSCOND", iDataEntityModel.getDataInfo((IEntity)pSVarType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSVarType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSCOND_PSVARTYPE_PSVARTYPEID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSCOND", iDataEntityModel.getDataInfo(pSVarType), arrayList.get(0)));
         }
     }
 
@@ -756,7 +756,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         ArrayList<PSSysBICubeMSCond> arrayList = this.selectByPSVarType(pSVarType);
         this.onBeforeRemoveByPSVarType(pSVarType, arrayList);
         for (PSSysBICubeMSCond pSSysBICubeMSCond : arrayList) {
-            this.remove((IEntity)pSSysBICubeMSCond);
+            this.remove(pSSysBICubeMSCond);
         }
         this.onAfterRemoveByPSVarType(pSVarType, arrayList);
     }
@@ -780,7 +780,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
 
     protected void replaceParentInfo(PSSysBICubeMSCond pSSysBICubeMSCond, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysBICubeMSCond, cloneSession);
+        super.replaceParentInfo(pSSysBICubeMSCond, cloneSession);
         if (pSSysBICubeMSCond.getPSDBValueOPId() != null && (iEntity = cloneSession.getEntity("PSDBVALUEOP", (Object)pSSysBICubeMSCond.getPSDBValueOPId())) != null) {
             this.onFillParentInfo_PSDBValueOP(pSSysBICubeMSCond, (PSDBValueOP)iEntity);
         }
@@ -802,7 +802,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysBICubeMSCond pSSysBICubeMSCond, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysBICubeMSCond, bl);
+        super.onRemoveEntityUncopyValues(pSSysBICubeMSCond, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysBICubeMSCond pSSysBICubeMSCond, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -892,7 +892,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSSysBICubeMSCond, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysBICubeMSCond, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysBICubeMSCond, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CondType(boolean bl, PSSysBICubeMSCond pSSysBICubeMSCond, boolean bl2, boolean bl3) throws Exception {
@@ -908,7 +908,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CondType_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_CondType_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONDTYPE");
@@ -930,7 +930,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CondValue_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_CondValue_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONDVALUE");
@@ -952,7 +952,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CondValueText_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_CondValueText_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONDVALUETEXT");
@@ -974,7 +974,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CustomCond_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_CustomCond_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMCOND");
@@ -996,7 +996,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CustomType_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_CustomType_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMTYPE");
@@ -1018,7 +1018,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_GroupNotFlag_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string = this.onTestValueRule_GroupNotFlag_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPNOTFLAG");
@@ -1040,7 +1040,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_GroupOP_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_GroupOP_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GROUPOP");
@@ -1062,7 +1062,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IgnoreEmpty_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string = this.onTestValueRule_IgnoreEmpty_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IGNOREEMPTY");
@@ -1084,7 +1084,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1106,7 +1106,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -1128,7 +1128,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSSysBICubeMSCondId_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PPSSysBICubeMSCondId_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSSYSBICUBEMSCONDID");
@@ -1150,7 +1150,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDBValueOPId_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSDBValueOPId_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDBVALUEOPID");
@@ -1172,7 +1172,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDBValueOPName_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSDBValueOPName_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDBVALUEOPNAME");
@@ -1194,7 +1194,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFId_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFId_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFID");
@@ -1216,7 +1216,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFName_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFName_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFNAME");
@@ -1238,7 +1238,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -1260,7 +1260,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeMeasureId_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeMeasureId_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBEMEASUREID");
@@ -1285,7 +1285,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeMSCondId_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeMSCondId_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBEMSCONDID");
@@ -1310,7 +1310,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeMSCondName_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeMSCondName_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBEMSCONDNAME");
@@ -1332,7 +1332,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDBVFId_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDBVFId_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDBVFID");
@@ -1354,7 +1354,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDBVFName_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDBVFName_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDBVFNAME");
@@ -1376,7 +1376,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSVarTypeId_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSVarTypeId_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVARTYPEID");
@@ -1398,7 +1398,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSVARTypeName_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_PSVARTypeName_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVARTYPENAME");
@@ -1420,7 +1420,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1442,7 +1442,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1464,7 +1464,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1486,7 +1486,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1508,7 +1508,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysBICubeMSCond, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysBICubeMSCond, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1521,11 +1521,11 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
     }
 
     protected void onSyncEntity(PSSysBICubeMSCond pSSysBICubeMSCond, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysBICubeMSCond, bl);
+        super.onSyncEntity(pSSysBICubeMSCond, bl);
     }
 
     protected void onSyncIndexEntities(PSSysBICubeMSCond pSSysBICubeMSCond, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysBICubeMSCond, bl);
+        super.onSyncIndexEntities(pSSysBICubeMSCond, bl);
     }
 
     public Object getDataContextValue(PSSysBICubeMSCond pSSysBICubeMSCond, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1533,14 +1533,14 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysBICubeMSCond, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysBICubeMSCond, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysBICubeMSCond pSSysBICubeMSCond, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysBICubeMSCond, arrayList, n);
+        super.onExportMajorModel(pSSysBICubeMSCond, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2019,14 +2019,14 @@ extends PSCoreSysServiceBase<PSSysBICubeMSCond> {
 
     protected boolean onMergeChild(String string, String string2, PSSysBICubeMSCond pSSysBICubeMSCond) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysBICubeMSCond)) {
+        if (super.onMergeChild(string, string2, pSSysBICubeMSCond)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysBICubeMSCond pSSysBICubeMSCond) throws Exception {
-        super.onUpdateParent((IEntity)pSSysBICubeMSCond);
+        super.onUpdateParent(pSSysBICubeMSCond);
     }
 
     @Override

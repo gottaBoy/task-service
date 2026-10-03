@@ -771,7 +771,7 @@ implements Serializable {
                 PSDEDUPRule pSDEDUPRule = new PSDEDUPRule();
                 pSDEDUPRule.setPSDEDUPRuleId(this.getPSDEDUPRuleId());
                 PSDEDUPRuleService pSDEDUPRuleService = (PSDEDUPRuleService)ServiceGlobal.getService(PSDEDUPRuleService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDUPRuleService.autoGet((IEntity)pSDEDUPRule);
+                pSDEDUPRuleService.autoGet(pSDEDUPRule);
                 this.psdeduprule = pSDEDUPRule;
             }
             return this.psdeduprule;

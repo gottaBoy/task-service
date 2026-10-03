@@ -1,24 +1,29 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.api;
 
-import net.ibizsys.paas.api.IRestCallContext;
-import net.ibizsys.paas.api.RestCallResult;
 import net.ibizsys.paas.web.util.SimpleWebContext;
 
-public class RestCallContext
-extends SimpleWebContext
-implements IRestCallContext {
-    private RestCallResult restCallResult = null;
+/**
+ * RESTful 调用Web请求上下文对象
+ * @author Administrator
+ *
+ */
+public class RestCallContext extends SimpleWebContext implements IRestCallContext {
 
-    @Override
-    public RestCallResult getRestCallResult() {
-        return this.restCallResult;
-    }
+	private RestCallResult restCallResult = null;
 
-    public void setRestCallResult(RestCallResult restCallResult) {
-        this.restCallResult = restCallResult;
-    }
+	@Override
+	public RestCallResult getRestCallResult() {
+		return this.restCallResult;
+	}
+	
+	
+	/**
+	 * 设置Rest调用结果
+	 * @param restCallResult
+	 */
+	public void setRestCallResult(RestCallResult restCallResult){
+		this.restCallResult = restCallResult;
+	}
+	
+	
 }
-

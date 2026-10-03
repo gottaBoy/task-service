@@ -1,30 +1,73 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.sysmodel.IDynaSystemSetting
- *  net.ibizsys.paas.sysmodel.ISystemModel
- */
 package net.ibizsys.paas.sysmodel;
 
-import net.ibizsys.paas.sysmodel.IDynaInst;
-import net.ibizsys.paas.sysmodel.IDynaSystemSetting;
-import net.ibizsys.paas.sysmodel.ISystemModel;
 
-public interface IDynaSystemSettingModel
-extends IDynaSystemSetting {
-    public void init(ISystemModel var1) throws Exception;
+/**
+ * 动态系统设置模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaSystemSettingModel extends IDynaSystemSetting {
 
-    public ISystemModel getSystemModel();
+	/**
+	 * 初始化
+	 * @param iSystemModel
+	 * @throws Exception
+	 */
+	void init(ISystemModel iSystemModel)throws Exception;
+	
+	
+	/**
+	 * 获取系统模型对象
+	 * @return
+	 */
+	ISystemModel getSystemModel();
+	
+	
 
-    public void syncAllViews() throws Exception;
-
-    public void syncAllWorkflows() throws Exception;
-
-    public void syncView(String var1) throws Exception;
-
-    public void syncWorkflow(String var1) throws Exception;
-
-    public IDynaInst getDynaInst(String var1, boolean var2) throws Exception;
+	
+	
+	/**
+	 * 同步全部视图
+	 * @throws Exception
+	 */
+	void syncAllViews()throws Exception;
+	
+	
+	
+	/**
+	 * 同步全部工作流
+	 * @throws Exception
+	 */
+	void syncAllWorkflows()throws Exception;
+	
+	
+	/**
+	 * 同步指定视图
+	 * @param strViewId 视图标识
+	 *  
+	 * @throws Exception
+	 */
+	void syncView(String strViewId)throws Exception;
+	
+	
+	
+	/**
+	 * 同步指定工作流
+	 * @param strWorkflowId 工作流标识
+	 * @throws Exception
+	 */
+	void syncWorkflow(String strWorkflowId)throws Exception;
+	
+	
+	
+	/**
+	 * 获取指定动态实例对象
+	 * @param strDynaSystemId
+	 * @param bTryMode
+	 * @return
+	 * @throws Exception
+	 */
+	IDynaInst getDynaInst(String strDynaSystemId,boolean bTryMode)throws Exception;
+	
+	
 }
-

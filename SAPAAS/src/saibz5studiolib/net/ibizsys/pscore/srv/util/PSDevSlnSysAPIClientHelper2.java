@@ -107,18 +107,13 @@ public class PSDevSlnSysAPIClientHelper2 {
         this.srcSessionFactory = PSSysModelInstGlobal.getSessionFactory(pSDevSlnSysAPI.getPSDevSlnSys().getPSSysModelInstId());
         PSSysServiceAPIService pSSysServiceAPIService = (PSSysServiceAPIService)ServiceGlobal.getService(PSSysServiceAPIService.class, (SessionFactory)this.srcSessionFactory);
         this.srcPSSysServiceAPI.setPSSysServiceAPIId(pSDevSlnSysAPI.getPSSysServiceAPIId());
-        pSSysServiceAPIService.get((IEntity)this.srcPSSysServiceAPI);
+        pSSysServiceAPIService.get(this.srcPSSysServiceAPI);
         this.srcPSDevSlnSys = pSDevSlnSysAPI.getPSDevSlnSys();
         this.dstPSDevSlnSys = pSDevSlnSys;
         this.dstSessionFactory = PSSysModelInstGlobal.getSessionFactory(pSDevSlnSys.getPSSysModelInstId());
     }
 
     public void sync() throws Exception {
-        EntityBase entityBase;
-        Serializable serializable;
-        Serializable serializable222;
-        Object object422;
-        Object object522;
         this.activeSessionFactory();
         PSSysModelInstGlobal.getSessionFactory(this.dstPSDevSlnSys.getPSSysModelInstId());
         PSSysServiceAPIService pSSysServiceAPIService = (PSSysServiceAPIService)ServiceGlobal.getService(PSSysServiceAPIService.class, (SessionFactory)this.dstSessionFactory);
@@ -173,134 +168,117 @@ public class PSDevSlnSysAPIClientHelper2 {
         selectCond.reset();
         selectCond.set("PSSYSTEMID", (Object)this.srcPSDevSlnSys.getPSSystemId());
         PSSysModelInstGlobal.getSessionFactory(this.srcPSDevSlnSys.getPSSysModelInstId());
-        ArrayList arrayList = pSModuleService.select((ISelectCond)selectCond);
-        for (Object object522 : arrayList) {
-            this.srcPSModuleMap.put(((PSModuleBase)object522).getPSModuleId(), (PSModule)object522);
+        ArrayList<PSModule> modules = pSModuleService.select((ISelectCond)selectCond);
+        for (PSModule module : modules) {
+            this.srcPSModuleMap.put(module.getPSModuleId(), module);
         }
         selectCond.reset();
         selectCond.set("PSSYSTEMID", (Object)this.dstPSDevSlnSys.getPSSystemId());
         PSSysModelInstGlobal.getSessionFactory(this.dstPSDevSlnSys.getPSSysModelInstId());
-        arrayList = pSModuleService2.select((ISelectCond)selectCond);
-        for (Object object522 : arrayList) {
-            this.dstPSModuleMap.put(((PSModuleBase)object522).getCodeName(), (PSModule)object522);
+        modules = pSModuleService2.select((ISelectCond)selectCond);
+        for (PSModule module : modules) {
+            this.dstPSModuleMap.put(module.getCodeName(), module);
         }
         PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.srcSessionFactory);
-        object522 = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.dstSessionFactory);
+        PSCodeListService dstCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.dstSessionFactory);
         selectCond.reset();
         selectCond.set("PSSYSTEMID", (Object)this.srcPSDevSlnSys.getPSSystemId());
         PSSysModelInstGlobal.getSessionFactory(this.srcPSDevSlnSys.getPSSysModelInstId());
-        ArrayList arrayList2 = pSCodeListService.select((ISelectCond)selectCond);
-        for (Object object422 : arrayList2) {
-            this.srcPSCodeListMap.put(((PSCodeListBase)object422).getPSCodeListId(), (PSCodeList)object422);
+        ArrayList<PSCodeList> codeLists = pSCodeListService.select((ISelectCond)selectCond);
+        for (PSCodeList codeList : codeLists) {
+            this.srcPSCodeListMap.put(codeList.getPSCodeListId(), codeList);
         }
         selectCond.reset();
         selectCond.set("PSSYSTEMID", (Object)this.dstPSDevSlnSys.getPSSystemId());
         PSSysModelInstGlobal.getSessionFactory(this.dstPSDevSlnSys.getPSSysModelInstId());
-        arrayList2 = object522.select((ISelectCond)selectCond);
-        for (Object object422 : arrayList2) {
-            this.dstPSCodeListMap.put(((PSCodeListBase)object422).getCodeName(), (PSCodeList)object422);
+        codeLists = dstCodeListService.select((ISelectCond)selectCond);
+        for (PSCodeList codeList : codeLists) {
+            this.dstPSCodeListMap.put(codeList.getCodeName(), codeList);
         }
         PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.srcSessionFactory);
-        object422 = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.dstSessionFactory);
+        PSDataEntityService dstDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.dstSessionFactory);
         selectCond.reset();
         selectCond.set("PSSYSTEMID", (Object)this.srcPSDevSlnSys.getPSSystemId());
         PSSysModelInstGlobal.getSessionFactory(this.srcPSDevSlnSys.getPSSysModelInstId());
-        ArrayList arrayList3 = pSDataEntityService.select((ISelectCond)selectCond);
-        for (Serializable serializable222 : arrayList3) {
-            this.srcPSDataEntityMap.put(((PSDataEntityBase)serializable222).getPSDataEntityId(), (PSDataEntity)serializable222);
+        ArrayList<PSDataEntity> dataEntities = pSDataEntityService.select((ISelectCond)selectCond);
+        for (PSDataEntity dataEntity : dataEntities) {
+            this.srcPSDataEntityMap.put(dataEntity.getPSDataEntityId(), dataEntity);
         }
         selectCond.reset();
         selectCond.set("PSSYSTEMID", (Object)this.dstPSDevSlnSys.getPSSystemId());
         PSSysModelInstGlobal.getSessionFactory(this.dstPSDevSlnSys.getPSSysModelInstId());
-        arrayList3 = object422.select((ISelectCond)selectCond);
-        for (Serializable serializable222 : arrayList3) {
-            this.dstPSDataEntityMap.put(((PSDataEntityBase)serializable222).getPSDataEntityName(), (PSDataEntity)serializable222);
+        dataEntities = dstDataEntityService.select((ISelectCond)selectCond);
+        for (PSDataEntity dataEntity : dataEntities) {
+            this.dstPSDataEntityMap.put(dataEntity.getPSDataEntityName(), dataEntity);
         }
-        HashMap hashMap = new HashMap();
+        HashMap<String, PSDataEntity> relevantEntities = new HashMap<String, PSDataEntity>();
         PSSysModelInstGlobal.getSessionFactory(this.srcPSDevSlnSys.getPSSysModelInstId());
-        serializable222 = this.srcPSSysServiceAPI.getPSDEServiceAPIs();
-        Object object6 = ((ArrayList)serializable222).iterator();
-        while (object6.hasNext()) {
-            PSDEServiceAPI object32 = (PSDEServiceAPI)object6.next();
-            this.srcPSDEServiceAPIMap.put(object32.getPSDEServiceAPIName(), object32);
-            serializable = this.srcPSDataEntityMap.get(object32.getPSDEId());
-            if (serializable == null) {
-                throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6e90\u5b9e\u4f53\u670d\u52a1\u63a5\u53e3[%1$s]\u76f8\u5173\u5b9e\u4f53", (Object)object32.getPSDEServiceAPIName()));
+        for (PSDEServiceAPI deServiceAPI : this.srcPSSysServiceAPI.getPSDEServiceAPIs()) {
+            this.srcPSDEServiceAPIMap.put(deServiceAPI.getPSDEServiceAPIName(), deServiceAPI);
+            PSDataEntity dataEntity = this.srcPSDataEntityMap.get(deServiceAPI.getPSDEId());
+            if (dataEntity == null) {
+                throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6e90\u5b9e\u4f53\u670d\u52a1\u63a5\u53e3[%1$s]\u76f8\u5173\u5b9e\u4f53", (Object)deServiceAPI.getPSDEServiceAPIName()));
             }
-            hashMap.put(((PSDataEntityBase)serializable).getPSDataEntityId(), serializable);
+            relevantEntities.put(dataEntity.getPSDataEntityId(), dataEntity);
         }
-        for (Map.Entry entry : hashMap.entrySet()) {
-            serializable = this.dstPSDataEntityMap.get(((PSDataEntity)entry.getValue()).getPSDataEntityName());
-            if (serializable != null) continue;
-            serializable = this.getDstPSDataEntity((PSDataEntity)entry.getValue());
+        for (PSDataEntity dataEntity : relevantEntities.values()) {
+            if (this.dstPSDataEntityMap.containsKey(dataEntity.getPSDataEntityName())) continue;
+            this.getDstPSDataEntity(dataEntity);
         }
-        object6 = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.srcSessionFactory);
+        PSDERService srcDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.srcSessionFactory);
         PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.dstSessionFactory);
         selectCond.reset();
         selectCond.set("PSSYSTEMID", (Object)this.srcPSDevSlnSys.getPSSystemId());
         PSSysModelInstGlobal.getSessionFactory(this.srcPSDevSlnSys.getPSSysModelInstId());
-        serializable = object6.select((ISelectCond)selectCond);
-        ArrayList<PSDESARS> arrayList4 = ((ArrayList)serializable).iterator();
-        while (arrayList4.hasNext()) {
-            PSDER pSDER = (PSDER)arrayList4.next();
+        for (PSDER pSDER : srcDERService.select((ISelectCond)selectCond)) {
             if (!this.srcPSDataEntityMap.containsKey(pSDER.getMajorPSDEId()) || !this.srcPSDataEntityMap.containsKey(pSDER.getMinorPSDEId())) continue;
             this.srcPSDERMap.put(pSDER.getPSDERId(), pSDER);
         }
         selectCond.reset();
         selectCond.set("PSSYSTEMID", (Object)this.dstPSDevSlnSys.getPSSystemId());
         PSSysModelInstGlobal.getSessionFactory(this.dstPSDevSlnSys.getPSSysModelInstId());
-        serializable = pSDERService.select((ISelectCond)selectCond);
-        arrayList4 = ((ArrayList)serializable).iterator();
-        while (arrayList4.hasNext()) {
-            PSDER pSDER = (PSDER)arrayList4.next();
+        for (PSDER pSDER : pSDERService.select((ISelectCond)selectCond)) {
             this.dstPSDERMap.put(pSDER.getPSDERName(), pSDER);
         }
-        for (Map.Entry entry : this.srcPSDERMap.entrySet()) {
-            PSDER pSDER = this.dstPSDERMap.get(((PSDER)entry.getValue()).getPSDERName());
+        for (Map.Entry<String, PSDER> entry : this.srcPSDERMap.entrySet()) {
+            PSDER pSDER = this.dstPSDERMap.get(entry.getValue().getPSDERName());
             if (pSDER != null) continue;
-            entityBase = this.dstPSDataEntityMap.get(((PSDER)entry.getValue()).getMajorPSDEName());
-            PSDataEntity pSDataEntity = this.dstPSDataEntityMap.get(((PSDER)entry.getValue()).getMinorPSDEName());
-            if (entityBase == null || pSDataEntity == null) continue;
-            PSDER pSDER2 = this.getDstPSDER((PSDER)entry.getValue());
+            PSDataEntity majorEntity = this.dstPSDataEntityMap.get(entry.getValue().getMajorPSDEName());
+            PSDataEntity minorEntity = this.dstPSDataEntityMap.get(entry.getValue().getMinorPSDEName());
+            if (majorEntity == null || minorEntity == null) continue;
+            this.getDstPSDER(entry.getValue());
         }
-        for (Map.Entry entry : hashMap.entrySet()) {
-            PSDataEntity pSDataEntity = this.dstPSDataEntityMap.get(((PSDataEntity)entry.getValue()).getPSDataEntityName());
-            this.syncPSDataEntity((PSDataEntity)entry.getValue(), pSDataEntity);
+        for (PSDataEntity dataEntity : relevantEntities.values()) {
+            PSDataEntity dstEntity = this.dstPSDataEntityMap.get(dataEntity.getPSDataEntityName());
+            this.syncPSDataEntity(dataEntity, dstEntity);
         }
-        for (Map.Entry entry : hashMap.entrySet()) {
-            PSDataEntity pSDataEntity = this.dstPSDataEntityMap.get(((PSDataEntity)entry.getValue()).getPSDataEntityName());
-            this.syncPSDataEntity2((PSDataEntity)entry.getValue(), pSDataEntity);
+        for (PSDataEntity dataEntity : relevantEntities.values()) {
+            PSDataEntity dstEntity = this.dstPSDataEntityMap.get(dataEntity.getPSDataEntityName());
+            this.syncPSDataEntity2(dataEntity, dstEntity);
         }
         PSSysModelInstGlobal.getSessionFactory(this.dstPSDevSlnSys.getPSSysModelInstId());
-        serializable222 = this.dstPSSysServiceAPI.getPSDEServiceAPIs();
-        arrayList4 = ((ArrayList)serializable222).iterator();
-        while (arrayList4.hasNext()) {
-            PSDEServiceAPI pSDEServiceAPI = (PSDEServiceAPI)arrayList4.next();
+        for (PSDEServiceAPI pSDEServiceAPI : this.dstPSSysServiceAPI.getPSDEServiceAPIs()) {
             this.dstPSDEServiceAPIMap.put(pSDEServiceAPI.getPSDEServiceAPIName(), pSDEServiceAPI);
         }
-        for (Map.Entry entry : this.srcPSDEServiceAPIMap.entrySet()) {
+        for (Map.Entry<String, PSDEServiceAPI> entry : this.srcPSDEServiceAPIMap.entrySet()) {
             PSDEServiceAPI pSDEServiceAPI = this.dstPSDEServiceAPIMap.get(entry.getKey());
             if (pSDEServiceAPI != null) continue;
-            PSDEServiceAPI pSDEServiceAPI2 = this.getDstPSDEServiceAPI((PSDEServiceAPI)entry.getValue());
+            this.getDstPSDEServiceAPI(entry.getValue());
         }
         PSSysModelInstGlobal.getSessionFactory(this.srcPSDevSlnSys.getPSSysModelInstId());
-        arrayList4 = this.srcPSSysServiceAPI.getPSDESARSes();
-        for (PSDESARS pSDESARS : arrayList4) {
+        for (PSDESARS pSDESARS : this.srcPSSysServiceAPI.getPSDESARSes()) {
             this.srcPSDESARSMap.put(pSDESARS.getPSDESARSName(), pSDESARS);
         }
         PSSysModelInstGlobal.getSessionFactory(this.dstPSDevSlnSys.getPSSysModelInstId());
-        arrayList4 = this.dstPSSysServiceAPI.getPSDESARSes();
-        for (PSDESARS pSDESARS : arrayList4) {
+        for (PSDESARS pSDESARS : this.dstPSSysServiceAPI.getPSDESARSes()) {
             this.dstPSDESARSMap.put(pSDESARS.getPSDESARSName(), pSDESARS);
         }
         for (Map.Entry<String, PSDESARS> entry : this.srcPSDESARSMap.entrySet()) {
-            entityBase = this.dstPSDESARSMap.get(entry.getKey());
-            if (entityBase != null) continue;
-            entityBase = this.getDstPSDESARS(entry.getValue());
+            if (this.dstPSDESARSMap.containsKey(entry.getKey())) continue;
+            this.getDstPSDESARS(entry.getValue());
         }
         for (Map.Entry<String, PSDEServiceAPI> entry : this.srcPSDEServiceAPIMap.entrySet()) {
-            entityBase = this.dstPSDEServiceAPIMap.get(entry.getKey());
-            this.syncPSDEServiceAPI(entry.getValue(), (PSDEServiceAPI)entityBase);
+            this.syncPSDEServiceAPI(entry.getValue(), this.dstPSDEServiceAPIMap.get(entry.getKey()));
         }
     }
 
@@ -364,7 +342,6 @@ public class PSDevSlnSysAPIClientHelper2 {
         PSDEServiceAPI pSDEServiceAPI2 = this.dstPSDEServiceAPIMap.get(pSDEServiceAPI.getPSDEServiceAPIName());
         if (pSDEServiceAPI2 == null) {
             try {
-                EntityBase entityBase;
                 pSDEServiceAPI2 = new PSDEServiceAPI();
                 pSDEServiceAPI2.setPSDEServiceAPIName(pSDEServiceAPI.getPSDEServiceAPIName());
                 pSDEServiceAPI2.setCodeName(pSDEServiceAPI.getCodeName());
@@ -373,9 +350,10 @@ public class PSDevSlnSysAPIClientHelper2 {
                 pSDEServiceAPI2.setMajorFlag(pSDEServiceAPI.getMajorFlag());
                 pSDEServiceAPI2.setValidFlag(pSDEServiceAPI.getValidFlag());
                 pSDEServiceAPI2.setDEFGroupMode(pSDEServiceAPI.getDEFGroupMode());
-                if (!StringHelper.isNullOrEmpty((String)pSDEServiceAPI.getPSDEFGroupId()) && (entityBase = this.psDEFGroupMap.get(pSDEServiceAPI.getPSDEFGroupId())) != null) {
-                    pSDEServiceAPI2.setPSDEFGroupId(entityBase.getPSDEFGroupId());
-                    pSDEServiceAPI2.setPSDEFGroupName(entityBase.getPSDEFGroupName());
+                PSDEFGroup group = this.psDEFGroupMap.get(pSDEServiceAPI.getPSDEFGroupId());
+                if (!StringHelper.isNullOrEmpty((String)pSDEServiceAPI.getPSDEFGroupId()) && group != null) {
+                    pSDEServiceAPI2.setPSDEFGroupId(group.getPSDEFGroupId());
+                    pSDEServiceAPI2.setPSDEFGroupName(group.getPSDEFGroupName());
                 }
                 pSDEServiceAPI2.setEnableDEAction(pSDEServiceAPI.getEnableDEAction());
                 pSDEServiceAPI2.setEnableDEDataSet(pSDEServiceAPI.getEnableDEDataSet());
@@ -383,9 +361,9 @@ public class PSDevSlnSysAPIClientHelper2 {
                 pSDEServiceAPI2.setAccCtrlArch(pSDEServiceAPI.getAccCtrlArch());
                 pSDEServiceAPI2.setDataAccMode(pSDEServiceAPI.getDataAccMode());
                 pSDEServiceAPI2.setEnaTempData(pSDEServiceAPI.getEnaTempData());
-                entityBase = this.getDstPSDataEntity(this.srcPSDataEntityMap.get(pSDEServiceAPI.getPSDEId()));
-                pSDEServiceAPI2.setPSDEId(entityBase.getPSDataEntityId());
-                pSDEServiceAPI2.setPSDEName(entityBase.getPSDataEntityName());
+                PSDataEntity dataEntity = this.getDstPSDataEntity(this.srcPSDataEntityMap.get(pSDEServiceAPI.getPSDEId()));
+                pSDEServiceAPI2.setPSDEId(dataEntity.getPSDataEntityId());
+                pSDEServiceAPI2.setPSDEName(dataEntity.getPSDataEntityName());
                 pSDEServiceAPIService.create(pSDEServiceAPI2);
                 this.dstPSDEServiceAPIMap.put(pSDEServiceAPI2.getPSDEServiceAPIName(), pSDEServiceAPI2);
             }
@@ -487,7 +465,6 @@ public class PSDevSlnSysAPIClientHelper2 {
 
     protected void syncPSDataEntity(PSDataEntity pSDataEntity, PSDataEntity pSDataEntity2) throws Exception {
         try {
-            Serializable serializable;
             this.activeSessionFactory();
             PSSysModelInstGlobal.getSessionFactory(this.srcPSDevSlnSys.getPSSysModelInstId());
             ArrayList<PSDEAction> arrayList = pSDataEntity.getPSDEActions();
@@ -496,21 +473,19 @@ public class PSDevSlnSysAPIClientHelper2 {
             PSSysModelInstGlobal.getSessionFactory(this.dstPSDevSlnSys.getPSSysModelInstId());
             ArrayList<PSDEAction> arrayList4 = pSDataEntity2.getPSDEActions();
             HashMap<String, PSDEAction> hashMap = new HashMap<String, PSDEAction>();
-            for (PSDEAction serializable32 : arrayList4) {
-                hashMap.put(serializable32.getPSDEActionName(), serializable32);
+            for (PSDEAction action : arrayList4) {
+                hashMap.put(action.getPSDEActionName(), action);
             }
             for (PSDEAction pSDEAction : arrayList) {
-                serializable = (PSDEAction)hashMap.get(pSDEAction.getPSDEActionName());
-                if (serializable == null) {
-                    serializable = this.getDstPSDEAction(pSDataEntity2, pSDEAction);
+                PSDEAction dstAction = hashMap.get(pSDEAction.getPSDEActionName());
+                if (dstAction == null) {
+                    dstAction = this.getDstPSDEAction(pSDataEntity2, pSDEAction);
                 }
-                this.psDEActionMap.put(pSDEAction.getPSDEActionId(), (PSDEAction)serializable);
+                this.psDEActionMap.put(pSDEAction.getPSDEActionId(), dstAction);
             }
             ArrayList<PSDEDataSet> arrayList5 = pSDataEntity2.getPSDEDataSets();
             HashMap<String, PSDEDataSet> hashMap2 = new HashMap<String, PSDEDataSet>();
-            serializable = arrayList5.iterator();
-            while (serializable.hasNext()) {
-                PSDEDataSet pSDEDataSet = (PSDEDataSet)serializable.next();
+            for (PSDEDataSet pSDEDataSet : arrayList5) {
                 hashMap2.put(pSDEDataSet.getPSDEDataSetName(), pSDEDataSet);
             }
             for (PSDEDataSet pSDEDataSet : arrayList2) {
@@ -520,9 +495,9 @@ public class PSDevSlnSysAPIClientHelper2 {
                 }
                 this.psDEDataSetMap.put(pSDEDataSet.getPSDEDataSetId(), (PSDEDataSet)object);
             }
-            serializable = pSDataEntity2.getPSDEFields();
+            ArrayList<PSDEField> dstFields = pSDataEntity2.getPSDEFields();
             HashMap<String, PSDEField> hashMap3 = new HashMap<String, PSDEField>();
-            for (PSDEField pSDEField : serializable) {
+            for (PSDEField pSDEField : dstFields) {
                 hashMap3.put(pSDEField.getPSDEFieldName(), pSDEField);
             }
             for (PSDEField pSDEField : arrayList3) {
@@ -543,7 +518,6 @@ public class PSDevSlnSysAPIClientHelper2 {
 
     protected void syncPSDataEntity2(PSDataEntity pSDataEntity, PSDataEntity pSDataEntity2) throws Exception {
         try {
-            Object object;
             this.activeSessionFactory();
             PSSysModelInstGlobal.getSessionFactory(this.srcPSDevSlnSys.getPSSysModelInstId());
             ArrayList<PSDEFGroup> arrayList = pSDataEntity.getPSDEFGroups();
@@ -557,17 +531,15 @@ public class PSDevSlnSysAPIClientHelper2 {
             for (PSDEField pSDEField : arrayList2) {
                 this.srcPSDEFieldMap.put(pSDEField.getPSDEFieldId(), pSDEField);
                 if (StringHelper.isNullOrEmpty((String)pSDEField.getPSDERId()) && StringHelper.isNullOrEmpty((String)pSDEField.getO2MPSDERId())) continue;
-                object = (PSDEField)hashMap.get(pSDEField.getPSDEFieldName());
-                if (object == null) {
-                    object = this.getDstPSDEField(pSDataEntity2, pSDEField);
+                PSDEField dstField = hashMap.get(pSDEField.getPSDEFieldName());
+                if (dstField == null) {
+                    dstField = this.getDstPSDEField(pSDataEntity2, pSDEField);
                 }
-                this.psDEFieldMap.put(pSDEField.getPSDEFieldId(), (PSDEField)object);
+                this.psDEFieldMap.put(pSDEField.getPSDEFieldId(), dstField);
             }
             ArrayList<PSDEFGroup> arrayList4 = pSDataEntity2.getPSDEFGroups();
             HashMap<String, PSDEFGroup> hashMap2 = new HashMap<String, PSDEFGroup>();
-            object = arrayList4.iterator();
-            while (object.hasNext()) {
-                PSDEFGroup pSDEFGroup = (PSDEFGroup)object.next();
+            for (PSDEFGroup pSDEFGroup : arrayList4) {
                 hashMap2.put(pSDEFGroup.getCodeName(), pSDEFGroup);
             }
             for (PSDEFGroup pSDEFGroup : arrayList) {
@@ -689,7 +661,6 @@ public class PSDevSlnSysAPIClientHelper2 {
         PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.dstSessionFactory);
         PSDEField pSDEField2 = new PSDEField();
         try {
-            EntityBase entityBase;
             pSDEField2.setPSDEFieldName(pSDEField.getPSDEFieldName());
             pSDEField2.setCodeName(pSDEField.getCodeName());
             pSDEField2.setLogicName(pSDEField.getLogicName());
@@ -716,22 +687,22 @@ public class PSDevSlnSysAPIClientHelper2 {
             pSDEField2.setEnableColPriv(pSDEField.getEnableColPriv());
             pSDEField2.setOrderValue(pSDEField.getOrderValue());
             if (!StringHelper.isNullOrEmpty((String)pSDEField.getPSCodeListId())) {
-                entityBase = this.getDstPSCodeList(this.srcPSCodeListMap.get(pSDEField.getPSCodeListId()));
-                pSDEField2.setPSCodeListId(entityBase.getPSCodeListId());
-                pSDEField2.setPSCodeListName(entityBase.getPSCodeListName());
+                PSCodeList dstCodeList = this.getDstPSCodeList(this.srcPSCodeListMap.get(pSDEField.getPSCodeListId()));
+                pSDEField2.setPSCodeListId(dstCodeList.getPSCodeListId());
+                pSDEField2.setPSCodeListName(dstCodeList.getPSCodeListName());
             }
             if (pSDEField2.getDEFType() == 2) {
                 pSDEField2.setDEFType(5);
             }
             if (!StringHelper.isNullOrEmpty((String)pSDEField.getPSDERId())) {
-                entityBase = this.srcPSDERMap.get(pSDEField.getPSDERId());
-                if (entityBase != null) {
-                    entityBase = this.dstPSDERMap.get(entityBase.getPSDERName());
+                PSDER dstDER = this.srcPSDERMap.get(pSDEField.getPSDERId());
+                if (dstDER != null) {
+                    dstDER = this.dstPSDERMap.get(dstDER.getPSDERName());
                 }
                 PSDEField pSDEField3 = this.psDEFieldMap.get(pSDEField.getDERPSDEFId());
-                if (entityBase != null && pSDEField3 != null) {
-                    pSDEField2.setPSDERId(entityBase.getPSDERId());
-                    pSDEField2.setPSDERName(entityBase.getPSDERName());
+                if (dstDER != null && pSDEField3 != null) {
+                    pSDEField2.setPSDERId(dstDER.getPSDERId());
+                    pSDEField2.setPSDERName(dstDER.getPSDERName());
                     pSDEField2.setDERPSDEFId(pSDEField3.getPSDEFieldId());
                     pSDEField2.setDERPSDEFName(pSDEField3.getPSDEFieldName());
                 } else {
@@ -746,13 +717,13 @@ public class PSDevSlnSysAPIClientHelper2 {
                     }
                 }
             } else if (!StringHelper.isNullOrEmpty((String)pSDEField.getO2MPSDERId())) {
-                entityBase = this.srcPSDERMap.get(pSDEField.getO2MPSDERId());
-                if (entityBase != null) {
-                    entityBase = this.dstPSDERMap.get(entityBase.getPSDERName());
+                PSDER dstDER = this.srcPSDERMap.get(pSDEField.getO2MPSDERId());
+                if (dstDER != null) {
+                    dstDER = this.dstPSDERMap.get(dstDER.getPSDERName());
                 }
-                if (entityBase != null) {
-                    pSDEField2.setO2MPSDERId(entityBase.getPSDERId());
-                    pSDEField2.setO2MPSDERName(entityBase.getPSDERName());
+                if (dstDER != null) {
+                    pSDEField2.setO2MPSDERId(dstDER.getPSDERId());
+                    pSDEField2.setO2MPSDERName(dstDER.getPSDERName());
                 } else {
                     pSDEField2.setO2MPSDERId(null);
                     pSDEField2.setO2MPSDERName(null);
@@ -874,7 +845,6 @@ public class PSDevSlnSysAPIClientHelper2 {
         PSDESADetailService pSDESADetailService = (PSDESADetailService)ServiceGlobal.getService(PSDESADetailService.class, (SessionFactory)this.dstSessionFactory);
         PSDESADetail pSDESADetail2 = new PSDESADetail();
         try {
-            EntityBase entityBase;
             pSDESADetail2.setPSDESADetailName(pSDESADetail.getPSDESADetailName());
             pSDESADetail2.setCodeName(pSDESADetail.getCodeName());
             pSDESADetail2.setCodeName2(pSDESADetail.getCodeName2());
@@ -886,28 +856,28 @@ public class PSDevSlnSysAPIClientHelper2 {
             pSDESADetail2.setOrderValue(pSDESADetail.getOrderValue());
             pSDESADetail2.setParentKeyMode(pSDESADetail.getParentKeyMode());
             if (!StringHelper.isNullOrEmpty((String)pSDESADetail.getPSDESARSName())) {
-                entityBase = this.dstPSDESARSMap.get(pSDESADetail.getPSDESARSName());
-                if (entityBase == null) {
+                PSDESARS dstDESARS = this.dstPSDESARSMap.get(pSDESADetail.getPSDESARSName());
+                if (dstDESARS == null) {
                     throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u5b9e\u4f53\u670d\u52a1\u63a5\u53e3\u5173\u7cfb[%1$s]", (Object)pSDESADetail.getPSDESARSName()));
                 }
-                pSDESADetail2.setPSDESARSId(entityBase.getPSDESARSId());
-                pSDESADetail2.setPSDESARSName(entityBase.getPSDESARSName());
+                pSDESADetail2.setPSDESARSId(dstDESARS.getPSDESARSId());
+                pSDESADetail2.setPSDESARSName(dstDESARS.getPSDESARSName());
             }
             if (!StringHelper.isNullOrEmpty((String)pSDESADetail.getPSDEActionName())) {
-                entityBase = this.psDEActionMap.get(pSDESADetail.getPSDEActionId());
-                if (entityBase == null) {
+                PSDEAction dstAction = this.psDEActionMap.get(pSDESADetail.getPSDEActionId());
+                if (dstAction == null) {
                     throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u5b9e\u4f53\u884c\u4e3a[%1$s]", (Object)pSDESADetail.getPSDEActionName()));
                 }
-                pSDESADetail2.setPSDEActionId(entityBase.getPSDEActionId());
-                pSDESADetail2.setPSDEActionName(entityBase.getPSDEActionName());
+                pSDESADetail2.setPSDEActionId(dstAction.getPSDEActionId());
+                pSDESADetail2.setPSDEActionName(dstAction.getPSDEActionName());
             }
             if (!StringHelper.isNullOrEmpty((String)pSDESADetail.getPSDEDSName())) {
-                entityBase = this.psDEDataSetMap.get(pSDESADetail.getPSDEDSId());
-                if (entityBase == null) {
+                PSDEDataSet dstDataSet = this.psDEDataSetMap.get(pSDESADetail.getPSDEDSId());
+                if (dstDataSet == null) {
                     throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u5b9e\u4f53\u6570\u636e\u96c6[%1$s]", (Object)pSDESADetail.getPSDEDSName()));
                 }
-                pSDESADetail2.setPSDEDSId(entityBase.getPSDEDataSetId());
-                pSDESADetail2.setPSDEDSName(entityBase.getPSDEDataSetName());
+                pSDESADetail2.setPSDEDSId(dstDataSet.getPSDEDataSetId());
+                pSDESADetail2.setPSDEDSName(dstDataSet.getPSDEDataSetName());
             }
             pSDESADetail2.setPSDEServiceAPIId(pSDEServiceAPI.getPSDEServiceAPIId());
             pSDESADetail2.setPSDEServiceAPIName(pSDEServiceAPI.getPSDEServiceAPIName());
@@ -937,4 +907,3 @@ public class PSDevSlnSysAPIClientHelper2 {
         PSSysModelInstGlobal.active(this.getDstPSysModelInstId());
     }
 }
-

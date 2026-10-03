@@ -136,14 +136,14 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
             PSStudioServer pSStudioServer = (PSStudioServer)iService.getDEModel().createEntity();
             pSStudioServer.set("PSSTUDIOSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSStudioServer);
+                iService.getTemp(pSStudioServer);
             } else {
-                iService.get((IEntity)pSStudioServer);
+                iService.get(pSStudioServer);
             }
             this.onFillParentInfo_PSStudioServer(pSStudioServerLog, pSStudioServer);
             return;
         }
-        super.onFillParentInfo((IEntity)pSStudioServerLog, string, string2, string3);
+        super.onFillParentInfo(pSStudioServerLog, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -159,7 +159,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSStudioServerLog, bl);
+        super.onFillEntityFullInfo(pSStudioServerLog, bl);
         this.onFillEntityFullInfo_PSStudioServer(pSStudioServerLog, bl);
     }
 
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
     }
 
     protected void onWriteBackParent(PSStudioServerLog pSStudioServerLog, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSStudioServerLog, bl);
+        super.onWriteBackParent(pSStudioServerLog, bl);
     }
 
     public ArrayList<PSStudioServerLog> selectByPSStudioServer(PSStudioServerBase pSStudioServerBase) throws Exception {
@@ -236,7 +236,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
         ArrayList<PSStudioServerLog> arrayList = this.selectByPSStudioServer(pSStudioServer);
         this.onBeforeRemoveByPSStudioServer(pSStudioServer, arrayList);
         for (PSStudioServerLog pSStudioServerLog : arrayList) {
-            this.remove((IEntity)pSStudioServerLog);
+            this.remove(pSStudioServerLog);
         }
         this.onAfterRemoveByPSStudioServer(pSStudioServer, arrayList);
     }
@@ -257,14 +257,14 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
 
     protected void replaceParentInfo(PSStudioServerLog pSStudioServerLog, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSStudioServerLog, cloneSession);
+        super.replaceParentInfo(pSStudioServerLog, cloneSession);
         if (pSStudioServerLog.getPSStudioServerId() != null && (iEntity = cloneSession.getEntity("PSSTUDIOSERVER", (Object)pSStudioServerLog.getPSStudioServerId())) != null) {
             this.onFillParentInfo_PSStudioServer(pSStudioServerLog, (PSStudioServer)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSStudioServerLog pSStudioServerLog, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSStudioServerLog, bl);
+        super.onRemoveEntityUncopyValues(pSStudioServerLog, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSStudioServerLog pSStudioServerLog, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -312,7 +312,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
         if ((entityFieldError = this.onCheckField_UserCnt(bl, pSStudioServerLog, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSStudioServerLog, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSStudioServerLog, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DCCnt(boolean bl, PSStudioServerLog pSStudioServerLog, boolean bl2, boolean bl3) throws Exception {
@@ -325,7 +325,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DCCnt_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string = this.onTestValueRule_DCCnt_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DCCNT");
@@ -350,7 +350,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -372,7 +372,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_FreeMemory_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string = this.onTestValueRule_FreeMemory_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FREEMEMORY");
@@ -394,7 +394,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LogTime_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string = this.onTestValueRule_LogTime_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGTIME");
@@ -416,7 +416,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxMemory_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string = this.onTestValueRule_MaxMemory_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXMEMORY");
@@ -438,7 +438,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSStudioServerId_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSStudioServerId_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSTUDIOSERVERID");
@@ -463,7 +463,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSStudioServerLogId_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSStudioServerLogId_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSTUDIOSERVERLOGID");
@@ -488,7 +488,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSStudioServerLogName_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSStudioServerLogName_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSTUDIOSERVERLOGNAME");
@@ -510,7 +510,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSStudioServerName_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string2 = this.onTestValueRule_PSStudioServerName_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSTUDIOSERVERNAME");
@@ -532,7 +532,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SysModelCnt_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string = this.onTestValueRule_SysModelCnt_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYSMODELCNT");
@@ -554,7 +554,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SysModelInstCnt_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string = this.onTestValueRule_SysModelInstCnt_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYSMODELINSTCNT");
@@ -576,7 +576,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ThreadCnt_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string = this.onTestValueRule_ThreadCnt_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THREADCNT");
@@ -598,7 +598,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TotalMemory_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string = this.onTestValueRule_TotalMemory_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TOTALMEMORY");
@@ -620,7 +620,7 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_UserCnt_Default((IEntity)pSStudioServerLog, bl2, bl3);
+            string = this.onTestValueRule_UserCnt_Default(pSStudioServerLog, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCNT");
@@ -633,11 +633,11 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
     }
 
     protected void onSyncEntity(PSStudioServerLog pSStudioServerLog, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSStudioServerLog, bl);
+        super.onSyncEntity(pSStudioServerLog, bl);
     }
 
     protected void onSyncIndexEntities(PSStudioServerLog pSStudioServerLog, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSStudioServerLog, bl);
+        super.onSyncIndexEntities(pSStudioServerLog, bl);
     }
 
     public Object getDataContextValue(PSStudioServerLog pSStudioServerLog, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -645,14 +645,14 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSStudioServerLog, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSStudioServerLog, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSStudioServerLog pSStudioServerLog, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSStudioServerLog, arrayList, n);
+        super.onExportMajorModel(pSStudioServerLog, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -835,14 +835,14 @@ extends PSCoreSysServiceBase<PSStudioServerLog> {
 
     protected boolean onMergeChild(String string, String string2, PSStudioServerLog pSStudioServerLog) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSStudioServerLog)) {
+        if (super.onMergeChild(string, string2, pSStudioServerLog)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSStudioServerLog pSStudioServerLog) throws Exception {
-        super.onUpdateParent((IEntity)pSStudioServerLog);
+        super.onUpdateParent(pSStudioServerLog);
     }
 
     @Override

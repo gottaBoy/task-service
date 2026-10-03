@@ -1,16 +1,23 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ICtrlHandler;
-import net.ibizsys.paas.ctrlhandler.ICtrlItemHandler;
 import net.ibizsys.paas.ctrlmodel.IFormModel;
 
-public interface IFormItemUpdateHandler
-extends ICtrlItemHandler {
-    public static final String ACTION_UPDATEFORMITEM = "updateformitem";
+/**
+ * 表单项更新后台处理接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IFormItemUpdateHandler extends ICtrlItemHandler {
+	/**
+	 * 更新表单项
+	 */
+	final static String ACTION_UPDATEFORMITEM = "updateformitem";
 
-    public void init(IFormModel var1, ICtrlHandler var2) throws Exception;
+	/**
+	 * @param iFormModel
+	 * @param iCtrlHandler
+	 * @throws Exception
+	 */
+	void init(IFormModel iFormModel, ICtrlHandler iCtrlHandler) throws Exception;
 }
-

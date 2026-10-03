@@ -1,15 +1,35 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ICounterHandler;
 
+/**
+ * 计数器全局对象插件
+ * @author Administrator
+ *
+ */
 public interface ICounterGlobalPlugin {
-    public void registerCounterHandler(String var1, ICounterHandler var2);
+	/**
+	 * 注册计数器
+	 * 
+	 * @param strCounterHandlerClsType
+	 * @param iCounterHandler
+	 */
+	  void registerCounterHandler(String strCounterHandlerClsType, ICounterHandler iCounterHandler) ;
 
-    public ICounterHandler getCounterHandler(Class var1) throws Exception;
+	/**
+	 * 获取计数器
+	 * 
+	 * @param strCounterHandlerClsType
+	 * @return
+	 * @throws Exception
+	 */
+	  ICounterHandler getCounterHandler(Class cls) throws Exception ;
 
-    public ICounterHandler getCounterHandler(String var1) throws Exception;
+	/**
+	 * 获取计数器
+	 * 
+	 * @param strCounterHandlerClsType
+	 * @return
+	 * @throws Exception
+	 */
+	ICounterHandler getCounterHandler(String strCounterHandlerClsType) throws Exception;
 }
-

@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psrt.srv.codelist;
 
-import net.ibizsys.psrt.srv.codelist.CodeList42CodeListModelBase;
 
-public class CodeList42CodeListModel
-extends CodeList42CodeListModelBase {
+
+
+//@Component
+/**
+ * 消息模板内容类型代码表模型
+ */
+public class CodeList42CodeListModel extends CodeList42CodeListModelBase {
+
+
+   public CodeList42CodeListModel(){
+        super();
+   }
+ 
 }
-

@@ -174,21 +174,21 @@ extends PSDevUserObjService<PSDevUser> {
 
     public void initAliasUser(PSDevUser pSDevUser) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_INITALIASUSER, 0, (IEntity)pSDevUser, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_INITALIASUSER, 0, pSDevUser, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDevUser, ACTION_INITALIASUSER);
+        this.testDEMainStateAction(pSDevUser, ACTION_INITALIASUSER);
         final PSDevUser pSDevUser2 = pSDevUser;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevUserServiceBase.this.getService(), PSDevUserServiceBase.ACTION_INITALIASUSER, 40, (IEntity)pSDevUser2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevUserServiceBase.this.getService(), PSDevUserServiceBase.ACTION_INITALIASUSER, 40, pSDevUser2, null).getResult() != 1) {
                     PSDevUserServiceBase.this.onInitAliasUser(pSDevUser2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_INITALIASUSER, 99, (IEntity)pSDevUser, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_INITALIASUSER, 99, pSDevUser, null);
         }
     }
 
@@ -198,21 +198,21 @@ extends PSDevUserObjService<PSDevUser> {
 
     public void toggleInvalid(PSDevUser pSDevUser) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEINVALID, 0, (IEntity)pSDevUser, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEINVALID, 0, pSDevUser, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDevUser, ACTION_TOGGLEINVALID);
+        this.testDEMainStateAction(pSDevUser, ACTION_TOGGLEINVALID);
         final PSDevUser pSDevUser2 = pSDevUser;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevUserServiceBase.this.getService(), PSDevUserServiceBase.ACTION_TOGGLEINVALID, 40, (IEntity)pSDevUser2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevUserServiceBase.this.getService(), PSDevUserServiceBase.ACTION_TOGGLEINVALID, 40, pSDevUser2, null).getResult() != 1) {
                     PSDevUserServiceBase.this.onToggleInvalid(pSDevUser2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEINVALID, 99, (IEntity)pSDevUser, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEINVALID, 99, pSDevUser, null);
         }
     }
 
@@ -222,21 +222,21 @@ extends PSDevUserObjService<PSDevUser> {
 
     public void toggleValid(PSDevUser pSDevUser) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEVALID, 0, (IEntity)pSDevUser, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEVALID, 0, pSDevUser, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSDevUser, ACTION_TOGGLEVALID);
+        this.testDEMainStateAction(pSDevUser, ACTION_TOGGLEVALID);
         final PSDevUser pSDevUser2 = pSDevUser;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevUserServiceBase.this.getService(), PSDevUserServiceBase.ACTION_TOGGLEVALID, 40, (IEntity)pSDevUser2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSDevUserServiceBase.this.getService(), PSDevUserServiceBase.ACTION_TOGGLEVALID, 40, pSDevUser2, null).getResult() != 1) {
                     PSDevUserServiceBase.this.onToggleValid(pSDevUser2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEVALID, 99, (IEntity)pSDevUser, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_TOGGLEVALID, 99, pSDevUser, null);
         }
     }
 
@@ -388,7 +388,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AdminMode_Default((IEntity)pSDevUser, bl2, bl3);
+            string = this.onTestValueRule_AdminMode_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ADMINMODE");
@@ -410,7 +410,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIAgentMode_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_AIAgentMode_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AIAGENTMODE");
@@ -432,7 +432,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AliasPSDevUserId_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_AliasPSDevUserId_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALIASPSDEVUSERID");
@@ -454,7 +454,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AliasPSDevUserName_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_AliasPSDevUserName_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALIASPSDEVUSERNAME");
@@ -476,7 +476,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AliasUserMode_Default((IEntity)pSDevUser, bl2, bl3);
+            string = this.onTestValueRule_AliasUserMode_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALIASUSERMODE");
@@ -498,7 +498,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FromLoginName_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_FromLoginName_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FROMLOGINNAME");
@@ -520,7 +520,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FromPSDCId_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_FromPSDCId_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FROMPSDCID");
@@ -542,7 +542,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FromPSDCName_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_FromPSDCName_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FROMPSDCNAME");
@@ -564,7 +564,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FromPSDevUserId_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_FromPSDevUserId_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FROMPSDEVUSERID");
@@ -586,7 +586,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FromPSDevUserName_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_FromPSDevUserName_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FROMPSDEVUSERNAME");
@@ -608,7 +608,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_FromUserMode_Default((IEntity)pSDevUser, bl2, bl3);
+            string = this.onTestValueRule_FromUserMode_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FROMUSERMODE");
@@ -630,7 +630,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FullLoginName_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_FullLoginName_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FULLLOGINNAME");
@@ -652,7 +652,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FullLoginName2_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_FullLoginName2_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FULLLOGINNAME2");
@@ -674,7 +674,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LoginName_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_LoginName_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGINNAME");
@@ -713,7 +713,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LoginPwd_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_LoginPwd_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGINPWD");
@@ -738,7 +738,7 @@ extends PSDevUserObjService<PSDevUser> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevUserId_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevUserId_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVUSERID");
@@ -763,7 +763,7 @@ extends PSDevUserObjService<PSDevUser> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevUserName_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevUserName_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVUSERNAME");
@@ -802,7 +802,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserMode_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_UserMode_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERMODE");
@@ -824,7 +824,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -846,7 +846,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -868,7 +868,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -890,7 +890,7 @@ extends PSDevUserObjService<PSDevUser> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDevUser, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDevUser, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");

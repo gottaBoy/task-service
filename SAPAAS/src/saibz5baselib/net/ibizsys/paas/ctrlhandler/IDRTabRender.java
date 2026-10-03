@@ -1,14 +1,21 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ICtrlRender;
 import net.ibizsys.paas.ctrlmodel.IDRTabModel;
 import net.ibizsys.paas.web.MDAjaxActionResult;
 
-public interface IDRTabRender
-extends ICtrlRender {
-    public void fillFetchResult(IDRTabModel var1, MDAjaxActionResult var2) throws Exception;
+/**
+ * 数据关系分布自定义绘制器接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDRTabRender extends ICtrlRender {
+	/**
+	 * 获取填充结果
+	 * 
+	 * @param IDRTabModel
+	 * @param fetchResult
+	 * @throws Exception
+	 */
+	void fillFetchResult(IDRTabModel iDRTabModel, MDAjaxActionResult fetchResult) throws Exception;
 }
-

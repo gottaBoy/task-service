@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSDBDevInstDEModelBase;
 
 public class PSDBDevInstDEModel
 extends PSDBDevInstDEModelBase {
+
+    public PSDBDevInstDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

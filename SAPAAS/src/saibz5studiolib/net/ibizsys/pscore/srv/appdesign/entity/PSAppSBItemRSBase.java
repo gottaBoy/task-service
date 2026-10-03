@@ -2693,7 +2693,7 @@ implements Serializable {
                 PSAppSBItem pSAppSBItem = new PSAppSBItem();
                 pSAppSBItem.setPSAppSBItemId(this.getCPSAppSBItemId());
                 PSAppSBItemService pSAppSBItemService = (PSAppSBItemService)ServiceGlobal.getService(PSAppSBItemService.class, (SessionFactory)this.getSessionFactory());
-                pSAppSBItemService.autoGet((IEntity)pSAppSBItem);
+                pSAppSBItemService.autoGet(pSAppSBItem);
                 this.cpsappsbitem = pSAppSBItem;
             }
             return this.cpsappsbitem;
@@ -2719,7 +2719,7 @@ implements Serializable {
                 PSAppSBItem pSAppSBItem = new PSAppSBItem();
                 pSAppSBItem.setPSAppSBItemId(this.getPPSAppSBItemId());
                 PSAppSBItemService pSAppSBItemService = (PSAppSBItemService)ServiceGlobal.getService(PSAppSBItemService.class, (SessionFactory)this.getSessionFactory());
-                pSAppSBItemService.autoGet((IEntity)pSAppSBItem);
+                pSAppSBItemService.autoGet(pSAppSBItem);
                 this.ppsappsbitem = pSAppSBItem;
             }
             return this.ppsappsbitem;
@@ -2745,7 +2745,7 @@ implements Serializable {
                 PSAppStoryBoard pSAppStoryBoard = new PSAppStoryBoard();
                 pSAppStoryBoard.setPSAppStoryBoardId(this.getPSAppStoryBoardId());
                 PSAppStoryBoardService pSAppStoryBoardService = (PSAppStoryBoardService)ServiceGlobal.getService(PSAppStoryBoardService.class, (SessionFactory)this.getSessionFactory());
-                pSAppStoryBoardService.autoGet((IEntity)pSAppStoryBoard);
+                pSAppStoryBoardService.autoGet(pSAppStoryBoard);
                 this.psappstoryboard = pSAppStoryBoard;
             }
             return this.psappstoryboard;
@@ -2771,7 +2771,7 @@ implements Serializable {
                 PSSysReqItem pSSysReqItem = new PSSysReqItem();
                 pSSysReqItem.setPSSysReqItemId(this.getPSSysReqItemId());
                 PSSysReqItemService pSSysReqItemService = (PSSysReqItemService)ServiceGlobal.getService(PSSysReqItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysReqItemService.autoGet((IEntity)pSSysReqItem);
+                pSSysReqItemService.autoGet(pSSysReqItem);
                 this.pssysreqitem = pSSysReqItem;
             }
             return this.pssysreqitem;
@@ -2797,7 +2797,7 @@ implements Serializable {
                 PSSysUserCase pSSysUserCase = new PSSysUserCase();
                 pSSysUserCase.setPSSysUserCaseId(this.getPSSysUserCaseId());
                 PSSysUserCaseService pSSysUserCaseService = (PSSysUserCaseService)ServiceGlobal.getService(PSSysUserCaseService.class, (SessionFactory)this.getSessionFactory());
-                pSSysUserCaseService.autoGet((IEntity)pSSysUserCase);
+                pSSysUserCaseService.autoGet(pSSysUserCase);
                 this.pssysusercase = pSSysUserCase;
             }
             return this.pssysusercase;

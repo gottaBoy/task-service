@@ -1688,7 +1688,7 @@ implements Serializable {
                 PSSysEAIDataType pSSysEAIDataType = new PSSysEAIDataType();
                 pSSysEAIDataType.setPSSysEAIDataTypeId(this.getPSSysEAIDataTypeId());
                 PSSysEAIDataTypeService pSSysEAIDataTypeService = (PSSysEAIDataTypeService)ServiceGlobal.getService(PSSysEAIDataTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysEAIDataTypeService.autoGet((IEntity)pSSysEAIDataType);
+                pSSysEAIDataTypeService.autoGet(pSSysEAIDataType);
                 this.pssyseaidatatype = pSSysEAIDataType;
             }
             return this.pssyseaidatatype;

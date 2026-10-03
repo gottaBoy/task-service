@@ -1,11 +1,9 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.DynaViewControllerBase;
+public abstract class DynaPickupView2ControllerBase extends DynaViewControllerBase {
 
-public abstract class DynaPickupView2ControllerBase
-extends DynaViewControllerBase {
+	public DynaPickupView2ControllerBase() throws Exception {
+		super();
+	}
+
 }
-

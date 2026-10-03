@@ -1,17 +1,30 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.form;
 
-import java.util.Iterator;
-import net.ibizsys.model.control.form.IPSDEFDLogic;
-
-public interface IPSDEFDGroupLogic
-extends IPSDEFDLogic {
-    public String getGroupOP();
-
-    public boolean isNotMode();
-
-    public Iterator<IPSDEFDLogic> getPSDEFDLogics();
+/**
+ * 实体表单成员组合逻辑对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDEFDGroupLogic extends IPSDEFDLogic
+{
+	/**
+	 * 获取组逻辑
+	 * @return
+	 */
+	String getGroupOP();
+	
+	
+	/**
+	 * 是否取反
+	 * @return
+	 */
+	boolean isNotMode();
+	
+	
+	
+	/**
+	 * 获取子逻辑集合
+	 * @return
+	 */
+	java.util.Iterator<IPSDEFDLogic> getPSDEFDLogics();
 }
-

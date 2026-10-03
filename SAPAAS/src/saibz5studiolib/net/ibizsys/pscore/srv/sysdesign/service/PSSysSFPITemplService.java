@@ -63,7 +63,7 @@ extends PSSysSFPITemplServiceBase {
     }
 
     protected CallResult internalGet(PSSysSFPITempl pSSysSFPITempl, boolean bl) throws Exception {
-        CallResult callResult = super.internalGet((IEntity)pSSysSFPITempl, bl);
+        CallResult callResult = super.internalGet(pSSysSFPITempl, bl);
         if (callResult.isOk()) {
             if (!StringHelper.isNullOrEmpty((String)pSSysSFPITempl.getTemplCodeEx())) {
                 pSSysSFPITempl.setTemplCode(pSSysSFPITempl.getTemplCodeEx());

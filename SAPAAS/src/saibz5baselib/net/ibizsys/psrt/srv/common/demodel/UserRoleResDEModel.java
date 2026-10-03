@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel;
 
-import net.ibizsys.psrt.srv.common.demodel.UserRoleResDEModelBase;
 
-public class UserRoleResDEModel
-extends UserRoleResDEModelBase {
+/**
+ * 实体[USERROLERES]模型对象
+ */
+public class UserRoleResDEModel extends UserRoleResDEModelBase {
+
     private static final long serialVersionUID = -1L;
-}
 
+    public UserRoleResDEModel() throws Exception {
+        super();
+    }
+
+}

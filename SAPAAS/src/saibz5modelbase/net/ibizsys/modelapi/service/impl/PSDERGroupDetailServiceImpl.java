@@ -72,7 +72,7 @@ implements IPSDERGroupDetailService {
     @Override
     protected List<PSDERGroupDetail> onListAll() throws Exception {
         ArrayList<PSDERGroupDetail> list = new ArrayList<PSDERGroupDetail>();
-        List psdergroups = PSModelServiceUtil.getInstance().getPSDERGroupService().listAll();
+        List<PSDERGroup> psdergroups = PSModelServiceUtil.getInstance().getPSDERGroupService().listAll();
         if (psdergroups != null) {
             for (PSDERGroup parent : psdergroups) {
                 List<PSDERGroupDetail> items = this.listByPSDERGroup(parent);

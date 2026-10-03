@@ -118,9 +118,9 @@ implements IPSThresholdGroupService {
 
     @Override
     protected List<PSThresholdGroup> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSThresholdGroup> list = new ArrayList<PSThresholdGroup>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSThresholdGroup> items = this.listByPSModule(parent);

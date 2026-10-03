@@ -1130,7 +1130,7 @@ implements Serializable {
                 PSDEFUIMode pSDEFUIMode = new PSDEFUIMode();
                 pSDEFUIMode.setPSDEFUIModeId(this.getPSDEFUIModeId());
                 PSDEFUIModeService pSDEFUIModeService = (PSDEFUIModeService)ServiceGlobal.getService(PSDEFUIModeService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFUIModeService.autoGet((IEntity)pSDEFUIMode);
+                pSDEFUIModeService.autoGet(pSDEFUIMode);
                 this.psdefuimode = pSDEFUIMode;
             }
             return this.psdefuimode;
@@ -1156,7 +1156,7 @@ implements Serializable {
                 PSModelAPIMethod pSModelAPIMethod = new PSModelAPIMethod();
                 pSModelAPIMethod.setPSModelAPIMethodId(this.getPSModelAPIMethodId());
                 PSModelAPIMethodService pSModelAPIMethodService = (PSModelAPIMethodService)ServiceGlobal.getService(PSModelAPIMethodService.class, (SessionFactory)this.getSessionFactory());
-                pSModelAPIMethodService.autoGet((IEntity)pSModelAPIMethod);
+                pSModelAPIMethodService.autoGet(pSModelAPIMethod);
                 this.psmodelapimethod = pSModelAPIMethod;
             }
             return this.psmodelapimethod;

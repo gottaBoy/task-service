@@ -1,20 +1,143 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfreminder.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="548A4C67-01EF-472F-B095-FB46063B074D", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t11.ACTORID, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t11.REMINDERCOUNT, t1.REMINDERTIME, t1.UPDATEDATE, t1.UPDATEMAN, t11.CREATEDATE AS WFCREATEDATE, t1.WFREMINDERID, t1.WFREMINDERNAME, t1.WFSTEPACTORID, t11.WFSTEPACTORNAME, t1.WFUSERID, t1.WFUSERNAME FROM T_SRFWFREMINDER t1  LEFT JOIN T_SRFWFSTEPACTOR t11 ON t1.WFSTEPACTORID = t11.WFSTEPACTORID  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="ACTORID", expression="t11.ACTORID", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="REMINDERCOUNT", expression="t11.REMINDERCOUNT", showorder=4), @DEDataQueryCodeExp(name="REMINDERTIME", expression="t1.REMINDERTIME", showorder=5), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=6), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=7), @DEDataQueryCodeExp(name="WFCREATEDATE", expression="t11.CREATEDATE", showorder=8), @DEDataQueryCodeExp(name="WFREMINDERID", expression="t1.WFREMINDERID", showorder=9), @DEDataQueryCodeExp(name="WFREMINDERNAME", expression="t1.WFREMINDERNAME", showorder=10), @DEDataQueryCodeExp(name="WFSTEPACTORID", expression="t1.WFSTEPACTORID", showorder=11), @DEDataQueryCodeExp(name="WFSTEPACTORNAME", expression="t11.WFSTEPACTORNAME", showorder=12), @DEDataQueryCodeExp(name="WFUSERID", expression="t1.WFUSERID", showorder=13), @DEDataQueryCodeExp(name="WFUSERNAME", expression="t1.WFUSERNAME", showorder=14)}, conds={}), @DEDataQueryCode(querycode="SELECT t11.`actorid`, t1.`createdate`, t1.`createman`, t1.`memo`, t11.`remindercount`, t1.`remindertime`, t1.`updatedate`, t1.`updateman`, t11.`createdate` AS `wfcreatedate`, t1.`wfreminderid`, t1.`wfremindername`, t1.`wfstepactorid`, t11.`wfstepactorname`, t1.`wfuserid`, t1.`wfusername` FROM `t_srfwfreminder` t1  LEFT JOIN t_srfwfstepactor t11 ON t1.wfstepactorid = t11.wfstepactorid  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="ACTORID", expression="t11.`actorid`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.`memo`", showorder=3), @DEDataQueryCodeExp(name="REMINDERCOUNT", expression="t11.`remindercount`", showorder=4), @DEDataQueryCodeExp(name="REMINDERTIME", expression="t1.`remindertime`", showorder=5), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=6), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=7), @DEDataQueryCodeExp(name="WFCREATEDATE", expression="t11.`createdate`", showorder=8), @DEDataQueryCodeExp(name="WFREMINDERID", expression="t1.`wfreminderid`", showorder=9), @DEDataQueryCodeExp(name="WFREMINDERNAME", expression="t1.`wfremindername`", showorder=10), @DEDataQueryCodeExp(name="WFSTEPACTORID", expression="t1.`wfstepactorid`", showorder=11), @DEDataQueryCodeExp(name="WFSTEPACTORNAME", expression="t11.`wfstepactorname`", showorder=12), @DEDataQueryCodeExp(name="WFUSERID", expression="t1.`wfuserid`", showorder=13), @DEDataQueryCodeExp(name="WFUSERNAME", expression="t1.`wfusername`", showorder=14)}, conds={}), @DEDataQueryCode(querycode="SELECT t11.ACTORID, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t11.REMINDERCOUNT, t1.REMINDERTIME, t1.UPDATEDATE, t1.UPDATEMAN, t11.CREATEDATE AS WFCREATEDATE, t1.WFREMINDERID, t1.WFREMINDERNAME, t1.WFSTEPACTORID, t11.WFSTEPACTORNAME, t1.WFUSERID, t1.WFUSERNAME FROM T_SRFWFREMINDER t1  LEFT JOIN T_SRFWFSTEPACTOR t11 ON t1.WFSTEPACTORID = t11.WFSTEPACTORID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="ACTORID", expression="t11.ACTORID", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="REMINDERCOUNT", expression="t11.REMINDERCOUNT", showorder=4), @DEDataQueryCodeExp(name="REMINDERTIME", expression="t1.REMINDERTIME", showorder=5), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=6), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=7), @DEDataQueryCodeExp(name="WFCREATEDATE", expression="t11.CREATEDATE", showorder=8), @DEDataQueryCodeExp(name="WFREMINDERID", expression="t1.WFREMINDERID", showorder=9), @DEDataQueryCodeExp(name="WFREMINDERNAME", expression="t1.WFREMINDERNAME", showorder=10), @DEDataQueryCodeExp(name="WFSTEPACTORID", expression="t1.WFSTEPACTORID", showorder=11), @DEDataQueryCodeExp(name="WFSTEPACTORNAME", expression="t11.WFSTEPACTORNAME", showorder=12), @DEDataQueryCodeExp(name="WFUSERID", expression="t1.WFUSERID", showorder=13), @DEDataQueryCodeExp(name="WFUSERNAME", expression="t1.WFUSERNAME", showorder=14)}, conds={}), @DEDataQueryCode(querycode="SELECT t11.ACTORID, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t11.REMINDERCOUNT, t1.REMINDERTIME, t1.UPDATEDATE, t1.UPDATEMAN, t11.CREATEDATE AS WFCREATEDATE, t1.WFREMINDERID, t1.WFREMINDERNAME, t1.WFSTEPACTORID, t11.WFSTEPACTORNAME, t1.WFUSERID, t1.WFUSERNAME FROM T_SRFWFREMINDER t1  LEFT JOIN T_SRFWFSTEPACTOR t11 ON t1.WFSTEPACTORID = t11.WFSTEPACTORID  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="ACTORID", expression="t11.ACTORID", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="REMINDERCOUNT", expression="t11.REMINDERCOUNT", showorder=4), @DEDataQueryCodeExp(name="REMINDERTIME", expression="t1.REMINDERTIME", showorder=5), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=6), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=7), @DEDataQueryCodeExp(name="WFCREATEDATE", expression="t11.CREATEDATE", showorder=8), @DEDataQueryCodeExp(name="WFREMINDERID", expression="t1.WFREMINDERID", showorder=9), @DEDataQueryCodeExp(name="WFREMINDERNAME", expression="t1.WFREMINDERNAME", showorder=10), @DEDataQueryCodeExp(name="WFSTEPACTORID", expression="t1.WFSTEPACTORID", showorder=11), @DEDataQueryCodeExp(name="WFSTEPACTORNAME", expression="t11.WFSTEPACTORNAME", showorder=12), @DEDataQueryCodeExp(name="WFUSERID", expression="t1.WFUSERID", showorder=13), @DEDataQueryCodeExp(name="WFUSERNAME", expression="t1.WFUSERNAME", showorder=14)}, conds={}), @DEDataQueryCode(querycode="SELECT t11.ACTORID, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t11.REMINDERCOUNT, t1.REMINDERTIME, t1.UPDATEDATE, t1.UPDATEMAN, t11.CREATEDATE AS WFCREATEDATE, t1.WFREMINDERID, t1.WFREMINDERNAME, t1.WFSTEPACTORID, t11.WFSTEPACTORNAME, t1.WFUSERID, t1.WFUSERNAME FROM T_SRFWFREMINDER t1  LEFT JOIN T_SRFWFSTEPACTOR t11 ON t1.WFSTEPACTORID = t11.WFSTEPACTORID  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="ACTORID", expression="t11.ACTORID", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="REMINDERCOUNT", expression="t11.REMINDERCOUNT", showorder=4), @DEDataQueryCodeExp(name="REMINDERTIME", expression="t1.REMINDERTIME", showorder=5), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=6), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=7), @DEDataQueryCodeExp(name="WFCREATEDATE", expression="t11.CREATEDATE", showorder=8), @DEDataQueryCodeExp(name="WFREMINDERID", expression="t1.WFREMINDERID", showorder=9), @DEDataQueryCodeExp(name="WFREMINDERNAME", expression="t1.WFREMINDERNAME", showorder=10), @DEDataQueryCodeExp(name="WFSTEPACTORID", expression="t1.WFSTEPACTORID", showorder=11), @DEDataQueryCodeExp(name="WFSTEPACTORNAME", expression="t11.WFSTEPACTORNAME", showorder=12), @DEDataQueryCodeExp(name="WFUSERID", expression="t1.WFUSERID", showorder=13), @DEDataQueryCodeExp(name="WFUSERNAME", expression="t1.WFUSERNAME", showorder=14)}, conds={}), @DEDataQueryCode(querycode="SELECT t11.[ACTORID], t1.[CREATEDATE], t1.[CREATEMAN], t1.[MEMO], t11.[REMINDERCOUNT], t1.[REMINDERTIME], t1.[UPDATEDATE], t1.[UPDATEMAN], t11.[CREATEDATE] AS [WFCREATEDATE], t1.[WFREMINDERID], t1.[WFREMINDERNAME], t1.[WFSTEPACTORID], t11.[WFSTEPACTORNAME], t1.[WFUSERID], t1.[WFUSERNAME] FROM [T_SRFWFREMINDER] t1  LEFT JOIN T_SRFWFSTEPACTOR t11 ON t1.WFSTEPACTORID = t11.WFSTEPACTORID  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="ACTORID", expression="t11.[ACTORID]", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.[MEMO]", showorder=3), @DEDataQueryCodeExp(name="REMINDERCOUNT", expression="t11.[REMINDERCOUNT]", showorder=4), @DEDataQueryCodeExp(name="REMINDERTIME", expression="t1.[REMINDERTIME]", showorder=5), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=6), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=7), @DEDataQueryCodeExp(name="WFCREATEDATE", expression="t11.[CREATEDATE]", showorder=8), @DEDataQueryCodeExp(name="WFREMINDERID", expression="t1.[WFREMINDERID]", showorder=9), @DEDataQueryCodeExp(name="WFREMINDERNAME", expression="t1.[WFREMINDERNAME]", showorder=10), @DEDataQueryCodeExp(name="WFSTEPACTORID", expression="t1.[WFSTEPACTORID]", showorder=11), @DEDataQueryCodeExp(name="WFSTEPACTORNAME", expression="t11.[WFSTEPACTORNAME]", showorder=12), @DEDataQueryCodeExp(name="WFUSERID", expression="t1.[WFUSERID]", showorder=13), @DEDataQueryCodeExp(name="WFUSERNAME", expression="t1.[WFUSERNAME]", showorder=14)}, conds={})})
-public abstract class WFReminderDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="548A4C67-01EF-472F-B095-FB46063B074D",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t11.ACTORID, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t11.REMINDERCOUNT, t1.REMINDERTIME, t1.UPDATEDATE, t1.UPDATEMAN, t11.CREATEDATE AS WFCREATEDATE, t1.WFREMINDERID, t1.WFREMINDERNAME, t1.WFSTEPACTORID, t11.WFSTEPACTORNAME, t1.WFUSERID, t1.WFUSERNAME FROM T_SRFWFREMINDER t1  LEFT JOIN T_SRFWFSTEPACTOR t11 ON t1.WFSTEPACTORID = t11.WFSTEPACTORID  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTORID",expression="t11.ACTORID",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="REMINDERCOUNT",expression="t11.REMINDERCOUNT",showorder=4)
+        ,@DEDataQueryCodeExp(name="REMINDERTIME",expression="t1.REMINDERTIME",showorder=5)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFCREATEDATE",expression="t11.CREATEDATE",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFREMINDERID",expression="t1.WFREMINDERID",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFREMINDERNAME",expression="t1.WFREMINDERNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORID",expression="t1.WFSTEPACTORID",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORNAME",expression="t11.WFSTEPACTORNAME",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFUSERID",expression="t1.WFUSERID",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFUSERNAME",expression="t1.WFUSERNAME",showorder=14)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t11.`actorid`, t1.`createdate`, t1.`createman`, t1.`memo`, t11.`remindercount`, t1.`remindertime`, t1.`updatedate`, t1.`updateman`, t11.`createdate` AS `wfcreatedate`, t1.`wfreminderid`, t1.`wfremindername`, t1.`wfstepactorid`, t11.`wfstepactorname`, t1.`wfuserid`, t1.`wfusername` FROM `t_srfwfreminder` t1  LEFT JOIN t_srfwfstepactor t11 ON t1.wfstepactorid = t11.wfstepactorid  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTORID",expression="t11.`actorid`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.`memo`",showorder=3)
+        ,@DEDataQueryCodeExp(name="REMINDERCOUNT",expression="t11.`remindercount`",showorder=4)
+        ,@DEDataQueryCodeExp(name="REMINDERTIME",expression="t1.`remindertime`",showorder=5)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFCREATEDATE",expression="t11.`createdate`",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFREMINDERID",expression="t1.`wfreminderid`",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFREMINDERNAME",expression="t1.`wfremindername`",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORID",expression="t1.`wfstepactorid`",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORNAME",expression="t11.`wfstepactorname`",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFUSERID",expression="t1.`wfuserid`",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFUSERNAME",expression="t1.`wfusername`",showorder=14)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t11.ACTORID, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t11.REMINDERCOUNT, t1.REMINDERTIME, t1.UPDATEDATE, t1.UPDATEMAN, t11.CREATEDATE AS WFCREATEDATE, t1.WFREMINDERID, t1.WFREMINDERNAME, t1.WFSTEPACTORID, t11.WFSTEPACTORNAME, t1.WFUSERID, t1.WFUSERNAME FROM T_SRFWFREMINDER t1  LEFT JOIN T_SRFWFSTEPACTOR t11 ON t1.WFSTEPACTORID = t11.WFSTEPACTORID  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTORID",expression="t11.ACTORID",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="REMINDERCOUNT",expression="t11.REMINDERCOUNT",showorder=4)
+        ,@DEDataQueryCodeExp(name="REMINDERTIME",expression="t1.REMINDERTIME",showorder=5)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFCREATEDATE",expression="t11.CREATEDATE",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFREMINDERID",expression="t1.WFREMINDERID",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFREMINDERNAME",expression="t1.WFREMINDERNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORID",expression="t1.WFSTEPACTORID",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORNAME",expression="t11.WFSTEPACTORNAME",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFUSERID",expression="t1.WFUSERID",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFUSERNAME",expression="t1.WFUSERNAME",showorder=14)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t11.ACTORID, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t11.REMINDERCOUNT, t1.REMINDERTIME, t1.UPDATEDATE, t1.UPDATEMAN, t11.CREATEDATE AS WFCREATEDATE, t1.WFREMINDERID, t1.WFREMINDERNAME, t1.WFSTEPACTORID, t11.WFSTEPACTORNAME, t1.WFUSERID, t1.WFUSERNAME FROM T_SRFWFREMINDER t1  LEFT JOIN T_SRFWFSTEPACTOR t11 ON t1.WFSTEPACTORID = t11.WFSTEPACTORID  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTORID",expression="t11.ACTORID",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="REMINDERCOUNT",expression="t11.REMINDERCOUNT",showorder=4)
+        ,@DEDataQueryCodeExp(name="REMINDERTIME",expression="t1.REMINDERTIME",showorder=5)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFCREATEDATE",expression="t11.CREATEDATE",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFREMINDERID",expression="t1.WFREMINDERID",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFREMINDERNAME",expression="t1.WFREMINDERNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORID",expression="t1.WFSTEPACTORID",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORNAME",expression="t11.WFSTEPACTORNAME",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFUSERID",expression="t1.WFUSERID",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFUSERNAME",expression="t1.WFUSERNAME",showorder=14)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t11.ACTORID, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t11.REMINDERCOUNT, t1.REMINDERTIME, t1.UPDATEDATE, t1.UPDATEMAN, t11.CREATEDATE AS WFCREATEDATE, t1.WFREMINDERID, t1.WFREMINDERNAME, t1.WFSTEPACTORID, t11.WFSTEPACTORNAME, t1.WFUSERID, t1.WFUSERNAME FROM T_SRFWFREMINDER t1  LEFT JOIN T_SRFWFSTEPACTOR t11 ON t1.WFSTEPACTORID = t11.WFSTEPACTORID  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTORID",expression="t11.ACTORID",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="REMINDERCOUNT",expression="t11.REMINDERCOUNT",showorder=4)
+        ,@DEDataQueryCodeExp(name="REMINDERTIME",expression="t1.REMINDERTIME",showorder=5)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFCREATEDATE",expression="t11.CREATEDATE",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFREMINDERID",expression="t1.WFREMINDERID",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFREMINDERNAME",expression="t1.WFREMINDERNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORID",expression="t1.WFSTEPACTORID",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORNAME",expression="t11.WFSTEPACTORNAME",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFUSERID",expression="t1.WFUSERID",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFUSERNAME",expression="t1.WFUSERNAME",showorder=14)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t11.[ACTORID], t1.[CREATEDATE], t1.[CREATEMAN], t1.[MEMO], t11.[REMINDERCOUNT], t1.[REMINDERTIME], t1.[UPDATEDATE], t1.[UPDATEMAN], t11.[CREATEDATE] AS [WFCREATEDATE], t1.[WFREMINDERID], t1.[WFREMINDERNAME], t1.[WFSTEPACTORID], t11.[WFSTEPACTORNAME], t1.[WFUSERID], t1.[WFUSERNAME] FROM [T_SRFWFREMINDER] t1  LEFT JOIN T_SRFWFSTEPACTOR t11 ON t1.WFSTEPACTORID = t11.WFSTEPACTORID  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTORID",expression="t11.[ACTORID]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.[MEMO]",showorder=3)
+        ,@DEDataQueryCodeExp(name="REMINDERCOUNT",expression="t11.[REMINDERCOUNT]",showorder=4)
+        ,@DEDataQueryCodeExp(name="REMINDERTIME",expression="t1.[REMINDERTIME]",showorder=5)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFCREATEDATE",expression="t11.[CREATEDATE]",showorder=8)
+        ,@DEDataQueryCodeExp(name="WFREMINDERID",expression="t1.[WFREMINDERID]",showorder=9)
+        ,@DEDataQueryCodeExp(name="WFREMINDERNAME",expression="t1.[WFREMINDERNAME]",showorder=10)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORID",expression="t1.[WFSTEPACTORID]",showorder=11)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORNAME",expression="t11.[WFSTEPACTORNAME]",showorder=12)
+        ,@DEDataQueryCodeExp(name="WFUSERID",expression="t1.[WFUSERID]",showorder=13)
+        ,@DEDataQueryCodeExp(name="WFUSERNAME",expression="t1.[WFUSERNAME]",showorder=14)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class WFReminderDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public WFReminderDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(WFReminderDefaultDQModelBase.class);
     }
-}
 
+}

@@ -112,9 +112,9 @@ implements IPSSysCssCatService {
 
     @Override
     protected List<PSSysCssCat> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysCssCat> list = new ArrayList<PSSysCssCat>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysCssCat> items = this.listByPSModule(parent);

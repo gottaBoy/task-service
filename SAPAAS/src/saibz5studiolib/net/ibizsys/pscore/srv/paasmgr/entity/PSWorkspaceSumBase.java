@@ -1327,7 +1327,7 @@ implements Serializable {
                 PSWorkspace pSWorkspace = new PSWorkspace();
                 pSWorkspace.setPSWorkspaceId(this.getPSWorkspaceId());
                 PSWorkspaceService pSWorkspaceService = (PSWorkspaceService)ServiceGlobal.getService(PSWorkspaceService.class, (SessionFactory)this.getSessionFactory());
-                pSWorkspaceService.autoGet((IEntity)pSWorkspace);
+                pSWorkspaceService.autoGet(pSWorkspace);
                 this.psworkspace = pSWorkspace;
             }
             return this.psworkspace;

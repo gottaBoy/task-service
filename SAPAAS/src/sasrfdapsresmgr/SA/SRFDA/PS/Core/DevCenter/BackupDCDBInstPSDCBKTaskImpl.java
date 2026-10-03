@@ -47,7 +47,7 @@ extends PSDevCenterBKTaskImplBase {
         PSDevCenterDBInstService psDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevCenterDBInst psDevCenterDBInst = new PSDevCenterDBInst();
         psDevCenterDBInst.setPSDevCenterDBInstId(strPSDCDBInstId);
-        psDevCenterDBInstService.get((IEntity)psDevCenterDBInst);
+        psDevCenterDBInstService.get(psDevCenterDBInst);
         IPSTaskServerEnv iPSTaskServerEnv = this.getPSModelStorage().getPSTaskServerEnv();
         IPSDBType iPSDBType = this.getPSModelStorage().getPSDBType(psDevCenterDBInst.getDBType());
         if (!(iPSDBType instanceof IPSDBType4)) {
@@ -71,17 +71,17 @@ extends PSDevCenterBKTaskImplBase {
             psDCDBInstBK.setBKTime(new Timestamp(System.currentTimeMillis()));
             psDCDBInstBK.setPSTaskServerId(this.getPSTaskServerEnv().getId());
             psDCDBInstBK.setPSTaskServerName(this.getPSTaskServerEnv().getName());
-            psDCDBInstBKService.create((IEntity)psDCDBInstBK);
+            psDCDBInstBKService.create(psDCDBInstBK);
         } else {
             psDCDBInstBK.setPSDCDBInstBKId(strPSDCDBInstBKId);
-            psDCDBInstBKService.get((IEntity)psDCDBInstBK);
+            psDCDBInstBKService.get(psDCDBInstBK);
             psDCDBInstBK.reset();
             psDCDBInstBK.setPSDCDBInstBKId(strPSDCDBInstBKId);
             psDCDBInstBK.setBKState(Integer.valueOf(20));
             psDCDBInstBK.setBKTime(new Timestamp(System.currentTimeMillis()));
             psDCDBInstBK.setPSTaskServerId(this.getPSTaskServerEnv().getId());
             psDCDBInstBK.setPSTaskServerName(this.getPSTaskServerEnv().getName());
-            psDCDBInstBKService.update((IEntity)psDCDBInstBK);
+            psDCDBInstBKService.update(psDCDBInstBK);
         }
         BaseDataEntity psDCDBInstBKData = new BaseDataEntity();
         PSDEDataCtrl.convertEntity((IEntity)psDCDBInstBK, (BaseDataEntity)psDCDBInstBKData);
@@ -93,15 +93,14 @@ extends PSDevCenterBKTaskImplBase {
             psDCDBInstBK.setBKState(Integer.valueOf(30));
             psDCDBInstBK.setPSTaskServerId(iPSTaskServerEnv.getId());
             psDCDBInstBK.setPSTaskServerName(iPSTaskServerEnv.getName());
-            psDCDBInstBKService.update((IEntity)psDCDBInstBK);
+            psDCDBInstBKService.update(psDCDBInstBK);
         }
         catch (Exception ex) {
             psDCDBInstBK.setBKState(Integer.valueOf(40));
             psDCDBInstBK.setBKInfo(ex.getMessage());
-            psDCDBInstBKService.update((IEntity)psDCDBInstBK);
+            psDCDBInstBKService.update(psDCDBInstBK);
             throw ex;
         }
         return super.onRun();
     }
 }
-

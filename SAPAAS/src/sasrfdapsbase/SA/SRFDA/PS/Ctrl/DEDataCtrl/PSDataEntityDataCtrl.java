@@ -208,7 +208,7 @@ extends PSModelDEDataCtrl {
             iPSDataEntity.getPSDEDBConfig(strDBType).publishDBModel2(psPublishContextImpl, iPSDBDevInst);
         }
         log.info((Object)StringHelper.Format((String)"\u53d1\u5e03\u5b9e\u4f53[%1$s]\u6570\u636e\u5e93\u6a21\u578b2", (Object)psDataEntity.getPSDATAENTITYNAME()));
-        Vector psDEDataQueryList = new Vector();
+        Vector<PSDEDataQuery> psDEDataQueryList = new Vector<PSDEDataQuery>();
         IDEDataCtrl psDEDataQueryDataCtrl = this.GetRelatedDataCtrl("DE2057");
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSDEID", (Object)psDataEntity.getPSDATAENTITYID());
@@ -250,12 +250,12 @@ extends PSModelDEDataCtrl {
         cond.setParamValue("DEFAULTPUB", (Object)1);
         IDEDataCtrl psAppViewDataCtrl = this.GetRelatedDataCtrl("DE2506");
         IDEDataCtrl psSysAppDataCtrl = this.GetRelatedDataCtrl("DE2500");
-        Vector psSysAppList = new Vector();
+        Vector<PSSysApp> psSysAppList = new Vector<PSSysApp>();
         CallResult callResult = psSysAppDataCtrl.Select(cond, psSysAppList, PSSysApp.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u9ed8\u8ba4\u5e94\u7528\u53d1\u5e03\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
         }
-        Vector psAppDEViewList = new Vector();
+        Vector<PSAppDEView> psAppDEViewList = new Vector<PSAppDEView>();
         String strSQL = "select t1.* from v_srfpsappdeview t1 inner join T_SRFPSDEVIEWBASE t2 on t1.PSDEVIEWBASEID = t2.PSDEVIEWBASEID where t2.PSDEID=? and t1.PSSYSAPPID=?";
         for (PSSysApp psSysApp : psSysAppList) {
             CallParamList callParamList = new CallParamList();
@@ -287,7 +287,7 @@ extends PSModelDEDataCtrl {
         cond.setParamValue("DEFAULTPUB", (Object)1);
         IDEDataCtrl psAppViewDataCtrl = this.GetRelatedDataCtrl("DE2506");
         IDEDataCtrl psSysSFPubDataCtrl = this.GetRelatedDataCtrl("DE2800");
-        Vector psSysSFPubList = new Vector();
+        Vector<PSSysSFPub> psSysSFPubList = new Vector<PSSysSFPub>();
         CallResult callResult = psSysSFPubDataCtrl.Select(cond, psSysSFPubList, PSSysSFPub.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u9ed8\u8ba4\u670d\u52a1\u53d1\u5e03\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -317,4 +317,3 @@ extends PSModelDEDataCtrl {
         }
     }
 }
-

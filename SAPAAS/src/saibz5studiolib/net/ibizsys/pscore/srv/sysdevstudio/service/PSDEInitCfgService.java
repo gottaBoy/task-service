@@ -19,10 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import net.ibizsys.paas.db.ISelectCond;
 import net.ibizsys.paas.db.SelectCond;
-import net.ibizsys.paas.entity.EntityBase;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.freemarker.DataContextMethod;
+import net.ibizsys.pscore.srv.dedesign.entity.PSDataEntity;
 import net.ibizsys.pscore.srv.dedesign.service.PSDataEntityService;
 import net.ibizsys.pscore.srv.sysdevstudio.entity.PSDEInitCfg;
 import net.ibizsys.pscore.srv.sysdevstudio.service.PSDEInitCfgServiceBase;
@@ -44,24 +43,24 @@ extends PSDEInitCfgServiceBase {
         if (object != null) {
             selectCond.set("PSSYSTEMID", object);
         }
-        ArrayList arrayList = pSDataEntityService.select((ISelectCond)selectCond);
-        ArrayList arrayList2 = this.select((ISelectCond)selectCond);
+        ArrayList<PSDataEntity> arrayList = pSDataEntityService.select((ISelectCond)selectCond);
+        ArrayList<PSDEInitCfg> arrayList2 = this.select((ISelectCond)selectCond);
         HashMap<String, PSDEInitCfg> hashMap = new HashMap<String, PSDEInitCfg>();
-        for (EntityBase entityBase : arrayList2) {
-            hashMap.put(entityBase.getPSDEInitCfgId(), (PSDEInitCfg)entityBase);
+        for (PSDEInitCfg entity : arrayList2) {
+            hashMap.put(entity.getPSDEInitCfgId(), entity);
         }
-        for (EntityBase entityBase : arrayList) {
-            PSDEInitCfg pSDEInitCfg2 = (PSDEInitCfg)hashMap.remove(entityBase.getPSDataEntityId());
+        for (PSDataEntity entity : arrayList) {
+            PSDEInitCfg pSDEInitCfg2 = hashMap.remove(entity.getPSDataEntityId());
             if (pSDEInitCfg2 != null) continue;
             pSDEInitCfg2 = new PSDEInitCfg();
-            pSDEInitCfg2.setPSDEInitCfgId(entityBase.getPSDataEntityId());
-            pSDEInitCfg2.setPSDEInitCfgName(entityBase.getPSDataEntityName());
-            pSDEInitCfg2.setPSSystemId(entityBase.getPSSystemId());
-            pSDEInitCfg2.setMemo(entityBase.getLogicName());
+            pSDEInitCfg2.setPSDEInitCfgId(entity.getPSDataEntityId());
+            pSDEInitCfg2.setPSDEInitCfgName(entity.getPSDataEntityName());
+            pSDEInitCfg2.setPSSystemId(entity.getPSSystemId());
+            pSDEInitCfg2.setMemo(entity.getLogicName());
             this.create(pSDEInitCfg2, false);
         }
-        for (EntityBase entityBase : hashMap.values()) {
-            this.remove((IEntity)entityBase);
+        for (PSDEInitCfg entity : hashMap.values()) {
+            this.remove(entity);
         }
     }
 
@@ -73,29 +72,28 @@ extends PSDEInitCfgServiceBase {
         if (object != null) {
             selectCond.set("PSSYSTEMID", object);
         }
-        ArrayList arrayList = pSDataEntityService.select((ISelectCond)selectCond);
-        ArrayList arrayList2 = this.select((ISelectCond)selectCond);
+        ArrayList<PSDataEntity> arrayList = pSDataEntityService.select((ISelectCond)selectCond);
+        ArrayList<PSDEInitCfg> arrayList2 = this.select((ISelectCond)selectCond);
         HashMap<String, PSDEInitCfg> hashMap = new HashMap<String, PSDEInitCfg>();
-        for (EntityBase entityBase : arrayList2) {
-            hashMap.put(entityBase.getPSDEInitCfgId(), (PSDEInitCfg)entityBase);
+        for (PSDEInitCfg entity : arrayList2) {
+            hashMap.put(entity.getPSDEInitCfgId(), entity);
         }
-        for (EntityBase entityBase : arrayList) {
-            PSDEInitCfg pSDEInitCfg2 = (PSDEInitCfg)hashMap.remove(entityBase.getPSDataEntityId());
+        for (PSDataEntity entity : arrayList) {
+            PSDEInitCfg pSDEInitCfg2 = hashMap.remove(entity.getPSDataEntityId());
             if (pSDEInitCfg2 != null) continue;
             pSDEInitCfg2 = new PSDEInitCfg();
-            pSDEInitCfg2.setPSDEInitCfgId(entityBase.getPSDataEntityId());
-            pSDEInitCfg2.setPSDEInitCfgName(entityBase.getPSDataEntityName());
-            pSDEInitCfg2.setPSSystemId(entityBase.getPSSystemId());
+            pSDEInitCfg2.setPSDEInitCfgId(entity.getPSDataEntityId());
+            pSDEInitCfg2.setPSDEInitCfgName(entity.getPSDataEntityName());
+            pSDEInitCfg2.setPSSystemId(entity.getPSSystemId());
             pSDEInitCfg2.setIgnoreDBModel(1);
             pSDEInitCfg2.setIgnoreExtModel(1);
             pSDEInitCfg2.setIgnoreMgrModel(1);
             pSDEInitCfg2.setIgnoreUIModel(1);
-            pSDEInitCfg2.setMemo(entityBase.getLogicName());
+            pSDEInitCfg2.setMemo(entity.getLogicName());
             this.create(pSDEInitCfg2, false);
         }
-        for (EntityBase entityBase : hashMap.values()) {
-            this.remove((IEntity)entityBase);
+        for (PSDEInitCfg entity : hashMap.values()) {
+            this.remove(entity);
         }
     }
 }
-

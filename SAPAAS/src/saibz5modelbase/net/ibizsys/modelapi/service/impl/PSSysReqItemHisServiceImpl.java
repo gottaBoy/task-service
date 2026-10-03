@@ -70,7 +70,7 @@ implements IPSSysReqItemHisService {
     @Override
     protected List<PSSysReqItemHis> onListAll() throws Exception {
         ArrayList<PSSysReqItemHis> list = new ArrayList<PSSysReqItemHis>();
-        List pssysreqitems = PSModelServiceUtil.getInstance().getPSSysReqItemService().listAll();
+        List<PSSysReqItem> pssysreqitems = PSModelServiceUtil.getInstance().getPSSysReqItemService().listAll();
         if (pssysreqitems != null) {
             for (PSSysReqItem parent : pssysreqitems) {
                 List<PSSysReqItemHis> items = this.listByPSSysReqItem(parent);

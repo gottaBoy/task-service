@@ -85,10 +85,10 @@ public class PSModelSummaryHelper {
         synchronized (object) {
             templateCacheMap.clear();
         }
-        object = (PSModelSummaryTemplService)ServiceGlobal.getService(PSModelSummaryTemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+        PSModelSummaryTemplService service = (PSModelSummaryTemplService)ServiceGlobal.getService(PSModelSummaryTemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         SelectCond selectCond = new SelectCond();
         selectCond.set("VALIDFLAG", (Object)1);
-        ArrayList arrayList = object.select((ISelectCond)selectCond);
+        ArrayList<PSModelSummaryTempl> arrayList = service.select((ISelectCond)selectCond);
         for (PSModelSummaryTempl pSModelSummaryTempl : arrayList) {
             psModelSummaryTemplMap.put(pSModelSummaryTempl.getPSModelSummaryTemplId(), pSModelSummaryTempl);
         }
@@ -99,8 +99,6 @@ public class PSModelSummaryHelper {
     }
 
     public static String getPSModelSummary(IDataEntityModel iDataEntityModel, IEntity iEntity, boolean bl) throws Exception {
-        StringWriter stringWriter;
-        HtmlRenderer htmlRenderer;
         Template template;
         PSModelSummaryTempl pSModelSummaryTempl;
         if (bFirstTime) {
@@ -117,11 +115,11 @@ public class PSModelSummaryHelper {
             if (template == null) {
                 return null;
             }
-            htmlRenderer = new HashMap();
-            htmlRenderer.put("demodel", iDataEntityModel);
-            htmlRenderer.put("data", iEntity);
-            stringWriter = new StringWriter();
-            template.process(htmlRenderer, (Writer)stringWriter);
+            HashMap<String, Object> templateData = new HashMap<String, Object>();
+            templateData.put("demodel", iDataEntityModel);
+            templateData.put("data", iEntity);
+            StringWriter stringWriter = new StringWriter();
+            template.process(templateData, (Writer)stringWriter);
             string = stringWriter.toString();
             if (PSModelSummaryHelper.isOutputMD()) {
                 return string;
@@ -135,13 +133,13 @@ public class PSModelSummaryHelper {
             return null;
         }
         try {
-            pSModelSummaryTempl = new MutableDataSet();
-            pSModelSummaryTempl.setFrom((MutableDataSetter)ParserEmulationProfile.MARKDOWN);
-            pSModelSummaryTempl.set(Parser.EXTENSIONS, Arrays.asList(TablesExtension.create()));
-            template = Parser.builder((DataHolder)pSModelSummaryTempl).build();
-            htmlRenderer = HtmlRenderer.builder((DataHolder)pSModelSummaryTempl).build();
-            stringWriter = template.parse(string);
-            String string2 = htmlRenderer.render((Node)stringWriter);
+            MutableDataSet options = new MutableDataSet();
+            options.setFrom((MutableDataSetter)ParserEmulationProfile.MARKDOWN);
+            options.set(Parser.EXTENSIONS, Arrays.asList(TablesExtension.create()));
+            Parser parser = Parser.builder((DataHolder)options).build();
+            HtmlRenderer htmlRenderer = HtmlRenderer.builder((DataHolder)options).build();
+            Node document = parser.parse(string);
+            String string2 = htmlRenderer.render(document);
             string2 = "<div class='markdown-body' >" + string2 + "</div>";
             return string2;
         }
@@ -164,13 +162,12 @@ public class PSModelSummaryHelper {
             return template;
         }
         Integer n = string.hashCode();
-        Configuration configuration = templateCacheMap;
-        synchronized (configuration) {
+        synchronized (templateCacheMap) {
             template = templateCacheMap.get(n);
         }
         if (template == null) {
-            configuration = new Configuration();
-            EntityTemplateLoader entityTemplateLoader = new EntityTemplateLoader((IEntity)pSModelSummaryTempl);
+            Configuration configuration = new Configuration();
+            EntityTemplateLoader entityTemplateLoader = new EntityTemplateLoader(pSModelSummaryTempl);
             configuration.setTemplateLoader((TemplateLoader)entityTemplateLoader);
             template = configuration.getTemplate("TEMPLCONTENT");
             HashMap<Integer, Template> hashMap = templateCacheMap;
@@ -184,4 +181,3 @@ public class PSModelSummaryHelper {
         return template;
     }
 }
-

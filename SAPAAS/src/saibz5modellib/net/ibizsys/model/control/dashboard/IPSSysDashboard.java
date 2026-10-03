@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.dashboard;
 
-import net.ibizsys.model.control.dashboard.IPSDashboard;
+/**
+ * 系统数据看板对象
+ * @author Administrator
+ *
+ */
+public interface IPSSysDashboard extends IPSDashboard {
 
-public interface IPSSysDashboard
-extends IPSDashboard {
 }
-

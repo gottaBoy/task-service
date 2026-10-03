@@ -51,10 +51,10 @@ IPSControlParamRuntime {
         this.setPSDEViewCtrlData(psDEViewCtrl);
         this.setName(this.psDEViewCtrl.getPSDEVIEWCTRLNAME());
         if (!psDEViewCtrl.isWIDTHNull()) {
-            this.fWidth = psDEViewCtrl.getWIDTH();
+            this.fWidth = (double)psDEViewCtrl.getWIDTH();
         }
         if (!psDEViewCtrl.isHEIGHTNull()) {
-            this.fHeight = psDEViewCtrl.getHEIGHT();
+            this.fHeight = (double)psDEViewCtrl.getHEIGHT();
         }
         if (!psDEViewCtrl.isORDERVALUENull() && psDEViewCtrl.getORDERVALUE() >= 0) {
             this.nOrderValue = psDEViewCtrl.getORDERVALUE();
@@ -288,4 +288,3 @@ IPSControlParamRuntime {
         this.bDynamicCtrl = bDynamicCtrl;
     }
 }
-

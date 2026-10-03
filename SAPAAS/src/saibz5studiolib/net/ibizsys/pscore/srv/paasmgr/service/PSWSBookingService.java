@@ -42,7 +42,7 @@ extends PSWSBookingServiceBase {
         if (pSDCWorkspace == null) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u9884\u7ea6\u7684\u4e2d\u5fc3\u751f\u4ea7\u7ebf");
         }
-        if (DataObject.getIntegerValue((Object)pSWSBooking.getDuration(), (Integer)-1) <= 0) {
+        if (DataObject.getIntegerValue((Object)pSWSBooking.getDuration(), Integer.valueOf(-1)) <= 0) {
             throw new Exception("\u6ca1\u6709\u6307\u5b9a\u9884\u7ea6\u65f6\u957f");
         }
         if (pSDCWorkspace.getWorkspaceType().indexOf("T") != 0) {
@@ -54,7 +54,7 @@ extends PSWSBookingServiceBase {
         selectContext.set("PSDCWORKSPACEID", (Object)pSDCWorkspace.getPSDCWorkspaceId());
         selectContext.set("BOOKINGTYPE", (Object)"DCRES");
         selectContext.setOrderInfo("ORDER BY BEGINTIME");
-        ArrayList arrayList = this.selectEx((ISelectContext)selectContext);
+        ArrayList<PSWSBooking> arrayList = this.selectEx((ISelectContext)selectContext);
         for (PSWSBooking pSWSBooking2 : arrayList) {
             int n;
             if (pSWSBooking2.getBeginTime() == null || pSWSBooking2.getEndTime() == null || l > pSWSBooking2.getEndTime().getTime() || (n = DataObject.getIntegerValue((Object)pSWSBooking2.getBookingState(), (Integer)20).intValue()) < 10) continue;
@@ -99,4 +99,3 @@ extends PSWSBookingServiceBase {
         }
     }
 }
-

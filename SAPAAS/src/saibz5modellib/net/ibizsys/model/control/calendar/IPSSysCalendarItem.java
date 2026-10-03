@@ -1,56 +1,172 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.calendar;
 
 import java.util.Iterator;
-import net.ibizsys.model.control.calendar.IPSCalendarItem;
-import net.ibizsys.model.control.calendar.IPSSysCalendar;
-import net.ibizsys.model.control.calendar.IPSSysCalendarItemRV;
+
 import net.ibizsys.model.dataentity.action.IPSDEAction;
 import net.ibizsys.model.dataentity.ds.IPSDEDataSet;
 import net.ibizsys.model.dataentity.field.IPSDEField;
 import net.ibizsys.model.dataentity.logic.IPSDELogic;
 import net.ibizsys.model.dataentity.priv.IPSDEOPPriv;
+/* INTERNAL-BEGIN */
 
-public interface IPSSysCalendarItem
-extends IPSCalendarItem {
-    public IPSSysCalendar getPSSysCalendar();
+/* INTERNAL-END */
 
-    public IPSDEDataSet getPSDEDataSet();
+/**
+ * 系统日历视图项接口
+ * @author Administrator
+ *
+ */
+public interface IPSSysCalendarItem extends IPSCalendarItem{
 
-    public IPSDEAction getCreatePSDEAction();
 
-    public IPSDEOPPriv getCreatePSDEOPPriv();
+	/**
+	 * 获取系统日历部件
+	 * @return
+	 */
+	IPSSysCalendar getPSSysCalendar();
+	
+	
+	
+	/**
+	 * 获取数据集合
+	 * @return
+	 */
+	IPSDEDataSet getPSDEDataSet();
+	
+	
+	/**
+	 * 获取建立实体行为
+	 * @return
+	 */
+	IPSDEAction getCreatePSDEAction();
+	
+	
+	
+	/**
+	 * 获取建立实体行为权限标识
+	 * @return
+	 */
+	IPSDEOPPriv getCreatePSDEOPPriv();
+	
+	
+	/**
+	 * 获取更新实体行为
+	 * @return
+	 */
+	IPSDEAction getUpdatePSDEAction();
+	
+	
+	
+	/**
+	 * 获取更新实体行为权限标识
+	 * @return
+	 */
+	IPSDEOPPriv getUpdatePSDEOPPriv();
+	
+	
 
-    public IPSDEAction getUpdatePSDEAction();
+	
+	
+	
+	/**
+	 * 获取删除实体行为
+	 * @return
+	 */
+	IPSDEAction getRemovePSDEAction();
+	
+	
+	
+	/**
+	 * 获取删除实体行为权限标识
+	 * @return
+	 */
+	IPSDEOPPriv getRemovePSDEOPPriv();
+	
+	
 
-    public IPSDEOPPriv getUpdatePSDEOPPriv();
+	
+	
+	/**
+	 * 获取上下文数据转化逻辑
+	 * @return
+	 */
+	IPSDELogic getActiveDataPSDELogic();
+	
+	
+	
+	/**
+	 * 获取ID属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getIdPSDEField();
 
-    public IPSDEAction getRemovePSDEAction();
+	/**
+	 * 获取文本属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getTextPSDEField();
 
-    public IPSDEOPPriv getRemovePSDEOPPriv();
+	/**
+	 * 获取图标属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getIconPSDEField();
 
-    public IPSDELogic getActiveDataPSDELogic();
-
-    public IPSDEField getIdPSDEField();
-
-    public IPSDEField getTextPSDEField();
-
-    public IPSDEField getIconPSDEField();
-
-    public IPSDEField getContentPSDEField();
-
-    public IPSDEField getBeginTimePSDEField();
-
-    public IPSDEField getEndTimePSDEField();
-
-    public IPSDEField getColorPSDEField();
-
-    public IPSDEField getBKColorPSDEField();
-
-    public IPSDEField getTipsPSDEField();
-
-    public Iterator<IPSSysCalendarItemRV> getPSSysCalendarItemRVs();
+	/**
+	 * 获取内容属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getContentPSDEField();
+	
+	
+	/**
+	 * 获取开始时间属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getBeginTimePSDEField();
+	
+	
+	/**
+	 * 获取结束时间属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getEndTimePSDEField();
+	
+	
+	/**
+	 * 获取字体颜色属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getColorPSDEField();
+	
+	
+	
+	/**
+	 * 获取背景颜色属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getBKColorPSDEField();
+	
+	/**
+	 * 获取提示信息属性对象
+	 * 
+	 * @return
+	 */
+	IPSDEField getTipsPSDEField();
+	
+	
+	
+	/**
+	 * 获取日历项相关视图
+	 * @return
+	 */
+	Iterator<IPSSysCalendarItemRV> getPSSysCalendarItemRVs();
 }
-

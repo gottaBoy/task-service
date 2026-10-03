@@ -149,9 +149,9 @@ extends PSCoreSysServiceBase<ET> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(ET, pSDevCenter);
             return;
@@ -216,8 +216,8 @@ extends PSCoreSysServiceBase<ET> {
         ArrayList<ET> arrayList = this.selectByPSDevCenter(pSDevCenter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVCENTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevCenter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEVUSEROBJ_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSDEVUSEROBJ", iDataEntityModel.getDataInfo((IEntity)pSDevCenter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevCenter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEVUSEROBJ_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSDEVUSEROBJ", iDataEntityModel.getDataInfo(pSDevCenter), arrayList.get(0)));
         }
     }
 
@@ -227,7 +227,7 @@ extends PSCoreSysServiceBase<ET> {
             PSDevUserObj pSDevUserObj2 = (PSDevUserObj)this.getDEModel().createEntity();
             pSDevUserObj2.setPSDevUserObjectId(pSDevUserObj.getPSDevUserObjectId());
             pSDevUserObj2.setPSDevCenterId(null);
-            this.update(pSDevUserObj2);
+            this.update((ET)pSDevUserObj2);
         }
     }
 
@@ -250,7 +250,7 @@ extends PSCoreSysServiceBase<ET> {
         ArrayList<ET> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDevUserObj pSDevUserObj : arrayList) {
-            this.remove((IEntity)pSDevUserObj);
+            this.remove((ET)pSDevUserObj);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -334,7 +334,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)ET, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -373,7 +373,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DUTag_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_DUTag_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DUTAG");
@@ -395,7 +395,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DUTag2_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_DUTag2_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DUTAG2");
@@ -417,7 +417,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DUTag3_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_DUTag3_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DUTAG3");
@@ -439,7 +439,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DUTag4_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_DUTag4_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DUTAG4");
@@ -461,7 +461,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -483,7 +483,7 @@ extends PSCoreSysServiceBase<ET> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -508,7 +508,7 @@ extends PSCoreSysServiceBase<ET> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevUserObjectId_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevUserObjectId_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVUSEROBJID");
@@ -533,7 +533,7 @@ extends PSCoreSysServiceBase<ET> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevUserObjName_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevUserObjName_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVUSEROBJNAME");
@@ -558,7 +558,7 @@ extends PSCoreSysServiceBase<ET> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevUserObjType_Default((IEntity)ET, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevUserObjType_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVUSEROBJTYPE");
@@ -583,7 +583,7 @@ extends PSCoreSysServiceBase<ET> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)ET, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(ET, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");

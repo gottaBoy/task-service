@@ -3340,7 +3340,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getDSTPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.dstpsde = pSDataEntity;
             }
             return this.dstpsde;
@@ -3366,7 +3366,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -3392,7 +3392,7 @@ implements Serializable {
                 PSSysDynaModel pSSysDynaModel = new PSSysDynaModel();
                 pSSysDynaModel.setPSSysDynaModelId(this.getPSSysDynaModelId());
                 PSSysDynaModelService pSSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDynaModelService.autoGet((IEntity)pSSysDynaModel);
+                pSSysDynaModelService.autoGet(pSSysDynaModel);
                 this.pssysdynamodel = pSSysDynaModel;
             }
             return this.pssysdynamodel;
@@ -3418,7 +3418,7 @@ implements Serializable {
                 PSSysPFPlugin pSSysPFPlugin = new PSSysPFPlugin();
                 pSSysPFPlugin.setPSSysPFPluginId(this.getPSSysPFPluginId());
                 PSSysPFPluginService pSSysPFPluginService = (PSSysPFPluginService)ServiceGlobal.getService(PSSysPFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysPFPluginService.autoGet((IEntity)pSSysPFPlugin);
+                pSSysPFPluginService.autoGet(pSSysPFPlugin);
                 this.pssyspfplugin = pSSysPFPlugin;
             }
             return this.pssyspfplugin;
@@ -3444,7 +3444,7 @@ implements Serializable {
                 PSSysRefDE pSSysRefDE = new PSSysRefDE();
                 pSSysRefDE.setPSSysRefDEId(this.getDstPSSysRefDEId());
                 PSSysRefDEService pSSysRefDEService = (PSSysRefDEService)ServiceGlobal.getService(PSSysRefDEService.class, (SessionFactory)this.getSessionFactory());
-                pSSysRefDEService.autoGet((IEntity)pSSysRefDE);
+                pSSysRefDEService.autoGet(pSSysRefDE);
                 this.dstpssysrefde = pSSysRefDE;
             }
             return this.dstpssysrefde;
@@ -3470,7 +3470,7 @@ implements Serializable {
                 PSSysRef pSSysRef = new PSSysRef();
                 pSSysRef.setPSSysRefId(this.getPSSysRefId());
                 PSSysRefService pSSysRefService = (PSSysRefService)ServiceGlobal.getService(PSSysRefService.class, (SessionFactory)this.getSessionFactory());
-                pSSysRefService.autoGet((IEntity)pSSysRef);
+                pSSysRefService.autoGet(pSSysRef);
                 this.pssysref = pSSysRef;
             }
             return this.pssysref;
@@ -3496,7 +3496,7 @@ implements Serializable {
                 PSSysReqItem pSSysReqItem = new PSSysReqItem();
                 pSSysReqItem.setPSSysReqItemId(this.getPSSysReqItemId());
                 PSSysReqItemService pSSysReqItemService = (PSSysReqItemService)ServiceGlobal.getService(PSSysReqItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysReqItemService.autoGet((IEntity)pSSysReqItem);
+                pSSysReqItemService.autoGet(pSSysReqItem);
                 this.pssysreqitem = pSSysReqItem;
             }
             return this.pssysreqitem;
@@ -3522,7 +3522,7 @@ implements Serializable {
                 PSSysSFPlugin pSSysSFPlugin = new PSSysSFPlugin();
                 pSSysSFPlugin.setPSSysSFPluginId(this.getPSSysSFPluginId());
                 PSSysSFPluginService pSSysSFPluginService = (PSSysSFPluginService)ServiceGlobal.getService(PSSysSFPluginService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPluginService.autoGet((IEntity)pSSysSFPlugin);
+                pSSysSFPluginService.autoGet(pSSysSFPlugin);
                 this.pssyssfplugin = pSSysSFPlugin;
             }
             return this.pssyssfplugin;
@@ -3544,7 +3544,7 @@ implements Serializable {
         Integer n = this.objPSDEMapActionsLock;
         synchronized (n) {
             if (this.psdemapactions == null) {
-                this.psdemapactions = pSDEMapService.isTempData((IEntity)this) ? pSDEMapActionService.selectTempByPSDEMap(this) : pSDEMapActionService.selectByPSDEMap(this);
+                this.psdemapactions = pSDEMapService.isTempData(this) ? pSDEMapActionService.selectTempByPSDEMap(this) : pSDEMapActionService.selectByPSDEMap(this);
             }
             return this.psdemapactions;
         }
@@ -3565,7 +3565,7 @@ implements Serializable {
         Integer n = this.objPSDEMapDetailsLock;
         synchronized (n) {
             if (this.psdemapdetails == null) {
-                this.psdemapdetails = pSDEMapService.isTempData((IEntity)this) ? pSDEMapDetailService.selectTempByPSDEMap(this) : pSDEMapDetailService.selectByPSDEMap(this);
+                this.psdemapdetails = pSDEMapService.isTempData(this) ? pSDEMapDetailService.selectTempByPSDEMap(this) : pSDEMapDetailService.selectByPSDEMap(this);
             }
             return this.psdemapdetails;
         }
@@ -3586,7 +3586,7 @@ implements Serializable {
         Integer n = this.objPSDEMapDQsLock;
         synchronized (n) {
             if (this.psdemapdqs == null) {
-                this.psdemapdqs = pSDEMapService.isTempData((IEntity)this) ? pSDEMapDQService.selectTempByPSDEMap(this) : pSDEMapDQService.selectByPSDEMap(this);
+                this.psdemapdqs = pSDEMapService.isTempData(this) ? pSDEMapDQService.selectTempByPSDEMap(this) : pSDEMapDQService.selectByPSDEMap(this);
             }
             return this.psdemapdqs;
         }

@@ -50,7 +50,7 @@ extends PSDEDataCtrl {
                     this.modifyLayoutFromXML(xmlNode, psAppMenu, validMap);
                     BaseDataEntity cond = new BaseDataEntity();
                     cond.setParamValue("PSAPPMENUID", (Object)psAppMenu.getPSAPPMENUID());
-                    Vector psAppMenuItemList = new Vector();
+                    Vector<PSAppMenuItem> psAppMenuItemList = new Vector<>();
                     IDEDataCtrl psAppMenuItemDataCtrl = this.GetRelatedDataCtrl("DE2521");
                     callResult = psAppMenuItemDataCtrl.Select(cond, psAppMenuItemList, PSAppMenuItem.class.getName());
                     if (callResult.isError()) {
@@ -79,7 +79,7 @@ extends PSDEDataCtrl {
     }
 
     protected void modifyLayoutFromXML(XMLNode xmlNode, PSAppMenu psAppMenu, HashMap<String, PSAppMenuItem> validMap) throws Exception {
-        ArrayList xmlNodes = xmlNode.getChildNodes();
+        ArrayList<XMLNode> xmlNodes = xmlNode.getChildNodes();
         if (xmlNodes == null) {
             return;
         }
@@ -121,7 +121,7 @@ extends PSDEDataCtrl {
         }
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSAPPMENUID", (Object)psAppMenu.getPSAPPMENUID());
-        Vector psAppMenuItemList = new Vector();
+        Vector<PSAppMenuItem> psAppMenuItemList = new Vector<>();
         IDEDataCtrl psAppMenuItemDataCtrl = this.GetRelatedDataCtrl("DE2521");
         CallResult callResult = psAppMenuItemDataCtrl.Select(cond, psAppMenuItemList, PSAppMenuItem.class.getName(), "ORDER BY ORDERVALUE");
         if (callResult.isError()) {
@@ -234,4 +234,3 @@ extends PSDEDataCtrl {
         return callResult;
     }
 }
-

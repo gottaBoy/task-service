@@ -1,13 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import net.ibizsys.psba.core.IBAModelBase;
-import net.ibizsys.psba.core.IBATableDER;
+/**
+ * 大数据库架构表关系模型对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IBATableDERModel extends IBAModelBase, IBATableDER {
 
-public interface IBATableDERModel
-extends IBAModelBase,
-IBATableDER {
 }
-

@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.field;
 
-import net.ibizsys.model.dataentity.field.IPSPickupDataDEField;
+/**
+ * 实体外键文本属性对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSPickupTextDEField extends IPSPickupDataDEField 
+{
 
-public interface IPSPickupTextDEField
-extends IPSPickupDataDEField {
 }
-

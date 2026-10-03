@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.DynaXDataViewControllerInstBase;
+/**
+ * 多项数据视图控制器实现基类
+ * @author Administrator
+ *
+ */
+public abstract class DynaMultiDataViewControllerInstBase extends DynaXDataViewControllerInstBase {
 
-public abstract class DynaMultiDataViewControllerInstBase
-extends DynaXDataViewControllerInstBase {
+	public DynaMultiDataViewControllerInstBase() throws Exception {
+		super();
+	}
+
 }
-

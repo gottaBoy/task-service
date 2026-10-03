@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSMavenServerType> {
     }
 
     protected void onFillParentInfo(PSMavenServerType pSMavenServerType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSMavenServerType, string, string2, string3);
+        super.onFillParentInfo(pSMavenServerType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSMavenServerType> {
         if (bl && pSMavenServerType.getValidFlag() == null) {
             pSMavenServerType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSMavenServerType, bl);
+        super.onFillEntityFullInfo(pSMavenServerType, bl);
     }
 
     protected void onWriteBackParent(PSMavenServerType pSMavenServerType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSMavenServerType, bl);
+        super.onWriteBackParent(pSMavenServerType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSMavenServerType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSMavenServerType pSMavenServerType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSMavenServerType, bl);
+        super.onRemoveEntityUncopyValues(pSMavenServerType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSMavenServerType pSMavenServerType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSMavenServerType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSMavenServerType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSMavenServerType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSMavenServerType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSMavenServerType pSMavenServerType, boolean bl2, boolean bl3) throws Exception {
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSMavenServerType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSMavenServerType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSMavenServerType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -199,7 +199,7 @@ extends PSCoreSysServiceBase<PSMavenServerType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMavenServerTypeId_Default((IEntity)pSMavenServerType, bl2, bl3);
+            string2 = this.onTestValueRule_PSMavenServerTypeId_Default(pSMavenServerType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMAVENSERVERTYPEID");
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSMavenServerType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMavenServerTypeName_Default((IEntity)pSMavenServerType, bl2, bl3);
+            string2 = this.onTestValueRule_PSMavenServerTypeName_Default(pSMavenServerType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMAVENSERVERTYPENAME");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSMavenServerType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeObj_Default((IEntity)pSMavenServerType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeObj_Default(pSMavenServerType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEOBJ");
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSMavenServerType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSMavenServerType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSMavenServerType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -287,11 +287,11 @@ extends PSCoreSysServiceBase<PSMavenServerType> {
     }
 
     protected void onSyncEntity(PSMavenServerType pSMavenServerType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSMavenServerType, bl);
+        super.onSyncEntity(pSMavenServerType, bl);
     }
 
     protected void onSyncIndexEntities(PSMavenServerType pSMavenServerType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSMavenServerType, bl);
+        super.onSyncIndexEntities(pSMavenServerType, bl);
     }
 
     public Object getDataContextValue(PSMavenServerType pSMavenServerType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -299,14 +299,14 @@ extends PSCoreSysServiceBase<PSMavenServerType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSMavenServerType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSMavenServerType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSMavenServerType pSMavenServerType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSMavenServerType, arrayList, n);
+        super.onExportMajorModel(pSMavenServerType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -426,14 +426,14 @@ extends PSCoreSysServiceBase<PSMavenServerType> {
 
     protected boolean onMergeChild(String string, String string2, PSMavenServerType pSMavenServerType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSMavenServerType)) {
+        if (super.onMergeChild(string, string2, pSMavenServerType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSMavenServerType pSMavenServerType) throws Exception {
-        super.onUpdateParent((IEntity)pSMavenServerType);
+        super.onUpdateParent(pSMavenServerType);
     }
 
     @Override

@@ -137,9 +137,9 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
             PSDCCodeSnippet pSDCCodeSnippet = (PSDCCodeSnippet)iService.getDEModel().createEntity();
             pSDCCodeSnippet.set("PSDCCODESNIPPETID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDCCodeSnippet);
+                iService.getTemp(pSDCCodeSnippet);
             } else {
-                iService.get((IEntity)pSDCCodeSnippet);
+                iService.get(pSDCCodeSnippet);
             }
             this.onFillParentInfo_PSDCCodeSnippet(pSDCCodeSnippetRef, pSDCCodeSnippet);
             return;
@@ -149,14 +149,14 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
             PSDCCodeSnippet pSDCCodeSnippet = (PSDCCodeSnippet)iService.getDEModel().createEntity();
             pSDCCodeSnippet.set("PSDCCODESNIPPETID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDCCodeSnippet);
+                iService.getTemp(pSDCCodeSnippet);
             } else {
-                iService.get((IEntity)pSDCCodeSnippet);
+                iService.get(pSDCCodeSnippet);
             }
             this.onFillParentInfo_RefPSDCCodeSnippet(pSDCCodeSnippetRef, pSDCCodeSnippet);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCCodeSnippetRef, string, string2, string3);
+        super.onFillParentInfo(pSDCCodeSnippetRef, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCCodeSnippetRef, bl);
+        super.onFillEntityFullInfo(pSDCCodeSnippetRef, bl);
         this.onFillEntityFullInfo_PSDCCodeSnippet(pSDCCodeSnippetRef, bl);
         this.onFillEntityFullInfo_RefPSDCCodeSnippet(pSDCCodeSnippetRef, bl);
     }
@@ -189,7 +189,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
     }
 
     protected void onWriteBackParent(PSDCCodeSnippetRef pSDCCodeSnippetRef, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCCodeSnippetRef, bl);
+        super.onWriteBackParent(pSDCCodeSnippetRef, bl);
     }
 
     public ArrayList<PSDCCodeSnippetRef> selectByPSDCCodeSnippet(PSDCCodeSnippetBase pSDCCodeSnippetBase) throws Exception {
@@ -272,7 +272,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
         ArrayList<PSDCCodeSnippetRef> arrayList = this.selectByPSDCCodeSnippet(pSDCCodeSnippet);
         this.onBeforeRemoveByPSDCCodeSnippet(pSDCCodeSnippet, arrayList);
         for (PSDCCodeSnippetRef pSDCCodeSnippetRef : arrayList) {
-            this.remove((IEntity)pSDCCodeSnippetRef);
+            this.remove(pSDCCodeSnippetRef);
         }
         this.onAfterRemoveByPSDCCodeSnippet(pSDCCodeSnippet, arrayList);
     }
@@ -290,8 +290,8 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
         ArrayList<PSDCCodeSnippetRef> arrayList = this.selectByRefPSDCCodeSnippet(pSDCCodeSnippet, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDCCODESNIPPET");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDCCodeSnippet);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCCODESNIPPETREF_PSDCCODESNIPPET_REFPSDCCODESNIPPETID", "", iDataEntityModel.getName(), "PSDCCODESNIPPETREF", iDataEntityModel.getDataInfo((IEntity)pSDCCodeSnippet), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDCCodeSnippet);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCCODESNIPPETREF_PSDCCODESNIPPET_REFPSDCCODESNIPPETID", "", iDataEntityModel.getName(), "PSDCCODESNIPPETREF", iDataEntityModel.getDataInfo(pSDCCodeSnippet), arrayList.get(0)));
         }
     }
 
@@ -324,7 +324,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
         ArrayList<PSDCCodeSnippetRef> arrayList = this.selectByRefPSDCCodeSnippet(pSDCCodeSnippet);
         this.onBeforeRemoveByRefPSDCCodeSnippet(pSDCCodeSnippet, arrayList);
         for (PSDCCodeSnippetRef pSDCCodeSnippetRef : arrayList) {
-            this.remove((IEntity)pSDCCodeSnippetRef);
+            this.remove(pSDCCodeSnippetRef);
         }
         this.onAfterRemoveByRefPSDCCodeSnippet(pSDCCodeSnippet, arrayList);
     }
@@ -345,7 +345,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
 
     protected void replaceParentInfo(PSDCCodeSnippetRef pSDCCodeSnippetRef, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCCodeSnippetRef, cloneSession);
+        super.replaceParentInfo(pSDCCodeSnippetRef, cloneSession);
         if (pSDCCodeSnippetRef.getPSDCCodeSnippetId() != null && (iEntity = cloneSession.getEntity("PSDCCODESNIPPET", (Object)pSDCCodeSnippetRef.getPSDCCodeSnippetId())) != null) {
             this.onFillParentInfo_PSDCCodeSnippet(pSDCCodeSnippetRef, (PSDCCodeSnippet)iEntity);
         }
@@ -355,7 +355,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCCodeSnippetRef pSDCCodeSnippetRef, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCCodeSnippetRef, bl);
+        super.onRemoveEntityUncopyValues(pSDCCodeSnippetRef, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCCodeSnippetRef pSDCCodeSnippetRef, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -376,7 +376,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
         if ((entityFieldError = this.onCheckField_RefPSDCCodeSnippetId(bl, pSDCCodeSnippetRef, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCCodeSnippetRef, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCCodeSnippetRef, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSDCCodeSnippetRef pSDCCodeSnippetRef, boolean bl2, boolean bl3) throws Exception {
@@ -389,7 +389,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCCodeSnippetRef, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCCodeSnippetRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -411,7 +411,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCCodeSnippetId_Default((IEntity)pSDCCodeSnippetRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCCodeSnippetId_Default(pSDCCodeSnippetRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCCODESNIPPETID");
@@ -436,7 +436,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCCodeSnippetRefId_Default((IEntity)pSDCCodeSnippetRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCCodeSnippetRefId_Default(pSDCCodeSnippetRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCCODESNIPPETREFID");
@@ -461,7 +461,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCCodeSnippetRefName_Default((IEntity)pSDCCodeSnippetRef, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCCodeSnippetRefName_Default(pSDCCodeSnippetRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCCODESNIPPETREFNAME");
@@ -500,7 +500,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefPSDCCodeSnippetId_Default((IEntity)pSDCCodeSnippetRef, bl2, bl3);
+            string2 = this.onTestValueRule_RefPSDCCodeSnippetId_Default(pSDCCodeSnippetRef, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFPSDCCODESNIPPETID");
@@ -513,11 +513,11 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
     }
 
     protected void onSyncEntity(PSDCCodeSnippetRef pSDCCodeSnippetRef, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCCodeSnippetRef, bl);
+        super.onSyncEntity(pSDCCodeSnippetRef, bl);
     }
 
     protected void onSyncIndexEntities(PSDCCodeSnippetRef pSDCCodeSnippetRef, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCCodeSnippetRef, bl);
+        super.onSyncIndexEntities(pSDCCodeSnippetRef, bl);
     }
 
     public Object getDataContextValue(PSDCCodeSnippetRef pSDCCodeSnippetRef, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -525,7 +525,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCCodeSnippetRef, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCCodeSnippetRef, string, iDataContextParam)) != null) {
             return object;
         }
         PSDCCodeSnippet pSDCCodeSnippet = pSDCCodeSnippetRef.getPSDCCodeSnippet();
@@ -536,7 +536,7 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
     }
 
     protected void onExportMajorModel(PSDCCodeSnippetRef pSDCCodeSnippetRef, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCCodeSnippetRef, arrayList, n);
+        super.onExportMajorModel(pSDCCodeSnippetRef, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -699,14 +699,14 @@ extends PSCoreSysServiceBase<PSDCCodeSnippetRef> {
 
     protected boolean onMergeChild(String string, String string2, PSDCCodeSnippetRef pSDCCodeSnippetRef) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCCodeSnippetRef)) {
+        if (super.onMergeChild(string, string2, pSDCCodeSnippetRef)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCCodeSnippetRef pSDCCodeSnippetRef) throws Exception {
-        super.onUpdateParent((IEntity)pSDCCodeSnippetRef);
+        super.onUpdateParent(pSDCCodeSnippetRef);
     }
 
     @Override

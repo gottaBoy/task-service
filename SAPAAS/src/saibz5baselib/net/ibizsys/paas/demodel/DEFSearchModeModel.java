@@ -1,60 +1,116 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
 import net.ibizsys.paas.core.IDEFSearchMode;
 import net.ibizsys.paas.core.IDEField;
 import net.ibizsys.paas.core.ModelBase3Impl;
 
-public class DEFSearchModeModel
-extends ModelBase3Impl
-implements IDEFSearchMode {
-    private IDEField iDEField = null;
-    private String strValueFunc = null;
-    private String strValueOp = null;
+/**
+ * 属性搜索模式
+ * 
+ * @author lionlau
+ *
+ */
+public class DEFSearchModeModel extends ModelBase3Impl implements IDEFSearchMode {
+	private IDEField iDEField = null;
 
-    public void init() throws Exception {
-        this.onInit();
-    }
+	private String strValueFunc = null;
+	private String strValueOp = null;
 
-    public void setId(String strId) {
-        this.strId = strId;
-    }
+	public DEFSearchModeModel() {
 
-    public void setName(String strName) {
-        this.strName = strName;
-    }
+	}
 
-    @Override
-    public String getValueFunc() {
-        return this.strValueFunc;
-    }
+	/**
+	 * 初始化
+	 * 
+	 * @throws Exception
+	 */
+	public void init() throws Exception {
+		onInit();
+	}
 
-    @Override
-    public String getValueOp() {
-        return this.strValueOp;
-    }
+	/**
+	 * 设置标识
+	 * 
+	 * @param strId
+	 */
+	public void setId(String strId) {
+		this.strId = strId;
+	}
 
-    @Override
-    public String getDEFName() {
-        return this.iDEField.getName();
-    }
+	/**
+	 * 设置名称
+	 * 
+	 * @param strName
+	 */
+	public void setName(String strName) {
+		this.strName = strName;
+	}
 
-    public IDEField getDEField() {
-        return this.iDEField;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDEFSearchModeModel#getValueFunc()
+	 */
+	@Override
+	public String getValueFunc() {
+		return this.strValueFunc;
+	}
 
-    public void setDEField(IDEField iDEField) {
-        this.iDEField = iDEField;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDEFSearchModeModel#getValueOp()
+	 */
+	@Override
+	public String getValueOp() {
+		return this.strValueOp;
+	}
 
-    public void setValueFunc(String strValueFunc) {
-        this.strValueFunc = strValueFunc;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEFSearchMode#getDEFName()
+	 */
+	@Override
+	public String getDEFName() {
+		return iDEField.getName();
+	}
 
-    public void setValueOp(String strValueOp) {
-        this.strValueOp = strValueOp;
-    }
+	/**
+	 * 获取属性对象
+	 * 
+	 * @return
+	 */
+	public IDEField getDEField() {
+		return iDEField;
+	}
+
+	/**
+	 * 设置属性对象
+	 * 
+	 * @param iDEField the iDEField to set
+	 */
+	public void setDEField(IDEField iDEField) {
+		this.iDEField = iDEField;
+	}
+
+	/**
+	 * 设置值函数
+	 * 
+	 * @param strValueFunc the strValueFunc to set
+	 */
+	public void setValueFunc(String strValueFunc) {
+		this.strValueFunc = strValueFunc;
+	}
+
+	/**
+	 * 设置值操作
+	 * 
+	 * @param strValueOp the strValueOp to set
+	 */
+	public void setValueOp(String strValueOp) {
+		this.strValueOp = strValueOp;
+	}
+
 }
-

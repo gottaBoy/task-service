@@ -52,7 +52,7 @@ public class MsgTemplateHelper {
             callResult.setErrorInfo(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u8f85\u52a9\u5bf9\u8c61", (Object)msgTemplate.getDEID()));
             return callResult;
         }
-        TreeMap<String, String> params = new TreeMap<String, String>();
+        TreeMap<String, Object> params = new TreeMap<String, Object>();
         MacroHelper.FillMacroParams(params, (ISRFDAWebContext)iWebContext, (ISRFDAGlobalHelper)iDAGlobalHelper, (String)strCurPersonId, (IDEHelper)iDEHelper, (BaseDataEntity)dataEntity, (String)strLanguage);
         if (oldDataEntity != null) {
             MacroHelper.FillDEMacroParams(params, (String)"odef", (IDEHelper)iDEHelper, (BaseDataEntity)oldDataEntity, (String)strLanguage);

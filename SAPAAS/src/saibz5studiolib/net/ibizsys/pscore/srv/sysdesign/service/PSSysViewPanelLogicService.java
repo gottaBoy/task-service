@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import net.ibizsys.paas.data.IDataObject;
-import net.ibizsys.paas.entity.EntityBase;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.CloneSession;
 import net.ibizsys.paas.service.CloneSessionManager;
@@ -54,7 +53,7 @@ extends PSSysViewPanelLogicServiceBase {
 
     @Override
     public void getWithModel(PSSysViewPanelLogic pSSysViewPanelLogic) throws Exception {
-        this.getTemp((IEntity)pSSysViewPanelLogic);
+        this.getTemp(pSSysViewPanelLogic);
         pSSysViewPanelLogic.setLogicModel(this.getLogicModel(pSSysViewPanelLogic));
     }
 
@@ -91,13 +90,12 @@ extends PSSysViewPanelLogicServiceBase {
     public void updateWithModel(PSSysViewPanelLogic pSSysViewPanelLogic) throws Exception {
         PSSysViewPanelLogic pSSysViewPanelLogic2 = new PSSysViewPanelLogic();
         pSSysViewPanelLogic.copyTo((IDataObject)pSSysViewPanelLogic2, false);
-        this.getTemp((IEntity)pSSysViewPanelLogic2);
+        this.getTemp(pSSysViewPanelLogic2);
         final PSSysViewPanelLogic pSSysViewPanelLogic3 = pSSysViewPanelLogic;
         log.debug((Object)"\u5f00\u59cb[updateWithModel]\u4f5c\u4e1a");
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSPanelLogicLink pSPanelLogicLink2;
                 PSPanelLogicNodeService pSPanelLogicNodeService = (PSPanelLogicNodeService)ServiceGlobal.getService((String)PSPanelLogicNodeService.class.getCanonicalName(), (SessionFactory)PSSysViewPanelLogicService.this.getSessionFactory());
                 ArrayList<PSPanelLogicNode> arrayList = pSPanelLogicNodeService.selectTempByPSSysViewPanelLogic(pSSysViewPanelLogic3);
                 HashMap<String, PSPanelLogicNode> hashMap = new HashMap<String, PSPanelLogicNode>();
@@ -111,31 +109,31 @@ extends PSSysViewPanelLogicServiceBase {
                     hashMap2.put(pSPanelLogicLink2.getPSPanelLogicLinkId(), pSPanelLogicLink2);
                 }
                 String string = pSSysViewPanelLogic3.getLogicModel();
-                pSPanelLogicLink2 = XmlNode.loadFromXML((String)string);
-                if (pSPanelLogicLink2 != null) {
-                    pSPanelLogicLink2.setAttribute("PSDEID", pSSysViewPanelLogic3.getPSDEId());
-                    pSPanelLogicLink2.setAttribute("PSSYSVIEWPANELLOGICID", pSSysViewPanelLogic3.getPSSysViewPanelLogicId());
+                XmlNode modelNode = XmlNode.loadFromXML((String)string);
+                if (modelNode != null) {
+                    modelNode.setAttribute("PSDEID", pSSysViewPanelLogic3.getPSDEId());
+                    modelNode.setAttribute("PSSYSVIEWPANELLOGICID", pSSysViewPanelLogic3.getPSSysViewPanelLogicId());
                     Object object = pSSysViewPanelLogic3.getLogicType();
                     if (StringHelper.isNullOrEmpty((String)object)) {
                         object = "CUSTOM";
                     }
-                    pSPanelLogicLink2.setAttribute("LOGICTYPE", (String)object);
-                    PSSysViewPanelLogicService.this.updatePSSysViewPanelLogicModel(pSSysViewPanelLogic3, (XmlNode)pSPanelLogicLink2, hashMap, hashMap2);
-                    pSSysViewPanelLogic3.setLogicModel(XmlNode.export((XmlNode)pSPanelLogicLink2));
+                    modelNode.setAttribute("LOGICTYPE", (String)object);
+                    PSSysViewPanelLogicService.this.updatePSSysViewPanelLogicModel(pSSysViewPanelLogic3, modelNode, hashMap, hashMap2);
+                    pSSysViewPanelLogic3.setLogicModel(XmlNode.export(modelNode));
                 } else {
                     pSSysViewPanelLogic3.setLogicModel(null);
                 }
                 if (hashMap2.size() > 0) {
-                    for (EntityBase entityBase : hashMap2.values()) {
-                        pSPanelLogicLinkService.removeTemp((IEntity)entityBase);
+                    for (PSPanelLogicLink link : hashMap2.values()) {
+                        pSPanelLogicLinkService.removeTemp(link);
                     }
                 }
                 if (hashMap.size() > 0) {
-                    for (EntityBase entityBase : hashMap.values()) {
-                        pSPanelLogicNodeService.removeTemp((IEntity)entityBase);
+                    for (PSPanelLogicNode node : hashMap.values()) {
+                        pSPanelLogicNodeService.removeTemp(node);
                     }
                 }
-                PSSysViewPanelLogicService.this.updateTemp((IEntity)pSSysViewPanelLogic3);
+                PSSysViewPanelLogicService.this.updateTemp(pSSysViewPanelLogic3);
             }
         });
     }
@@ -143,8 +141,8 @@ extends PSSysViewPanelLogicServiceBase {
     protected void updatePSSysViewPanelLogicModel(PSSysViewPanelLogic pSSysViewPanelLogic, XmlNode xmlNode, HashMap<String, PSPanelLogicNode> hashMap, HashMap<String, PSPanelLogicLink> hashMap2) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
-            ArrayList<Object> arrayList2 = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
+            ArrayList<XmlNode> arrayList2 = new ArrayList<XmlNode>();
             PSPanelLogicNodeService pSPanelLogicNodeService = (PSPanelLogicNodeService)ServiceGlobal.getService((String)PSPanelLogicNodeService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             PSPanelLogicLinkService pSPanelLogicLinkService = (PSPanelLogicLinkService)ServiceGlobal.getService((String)PSPanelLogicLinkService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             while (iterator.hasNext()) {
@@ -152,80 +150,82 @@ extends PSSysViewPanelLogicServiceBase {
                 String string2;
                 String string3;
                 boolean bl;
-                EntityBase entityBase;
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_PANELLOGICNODE, (boolean)true) == 0) {
                     int n;
                     String string4 = xmlNode2.getAttribute("PSPANELLOGICNODEID", "");
-                    if (StringHelper.isNullOrEmpty((String)string4) || (entityBase = hashMap.remove(string4)) == null) continue;
+                    PSPanelLogicNode node = hashMap.remove(string4);
+                    if (StringHelper.isNullOrEmpty((String)string4) || node == null) continue;
                     bl = false;
-                    if (StringHelper.compare((String)entityBase.getPSSysViewPanelLogicId(), (String)pSSysViewPanelLogic.getPSSysViewPanelLogicId(), (boolean)false) != 0) {
-                        entityBase.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                    if (StringHelper.compare((String)node.getPSSysViewPanelLogicId(), (String)pSSysViewPanelLogic.getPSSysViewPanelLogicId(), (boolean)false) != 0) {
+                        node.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
                         bl = true;
                     }
-                    if (StringHelper.compare((String)entityBase.getPSSysViewPanelLogicName(), (String)pSSysViewPanelLogic.getPSSysViewPanelLogicName(), (boolean)false) != 0) {
-                        entityBase.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
+                    if (StringHelper.compare((String)node.getPSSysViewPanelLogicName(), (String)pSSysViewPanelLogic.getPSSysViewPanelLogicName(), (boolean)false) != 0) {
+                        node.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
                         bl = true;
                     }
                     string3 = xmlNode2.getAttribute("LEFTPOS", "");
                     string2 = xmlNode2.getAttribute("TOPPOS", "");
                     if (!StringHelper.isNullOrEmpty((String)string3)) {
                         n = Integer.parseInt(string3);
-                        if (entityBase.getLeftPos() == null || entityBase.getLeftPos() != n) {
-                            entityBase.setLeftPos(n);
+                        if (node.getLeftPos() == null || node.getLeftPos() != n) {
+                            node.setLeftPos(n);
                             bl = true;
                         }
                     }
                     if (!StringHelper.isNullOrEmpty((String)string2)) {
                         n = Integer.parseInt(string2);
-                        if (entityBase.getTopPos() == null || entityBase.getTopPos() != n) {
-                            entityBase.setTopPos(n);
+                        if (node.getTopPos() == null || node.getTopPos() != n) {
+                            node.setTopPos(n);
                             bl = true;
                         }
                     }
                     if (bl) {
-                        pSPanelLogicNodeService.updateTemp((IEntity)entityBase);
+                        pSPanelLogicNodeService.updateTemp(node);
                     }
                     xmlNode2.resetAttributes();
-                    entityBase.fillXmlNode(xmlNode2, false);
+                    node.fillXmlNode(xmlNode2, false);
                     arrayList.add(xmlNode2);
                     continue;
                 }
-                if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_PANELLOGICLINK, (boolean)true) != 0 || StringHelper.isNullOrEmpty((String)(string = xmlNode2.getAttribute("PSPANELLOGICLINKID", ""))) || (entityBase = hashMap2.remove(string)) == null) continue;
+                if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_PANELLOGICLINK, (boolean)true) != 0 || StringHelper.isNullOrEmpty((String)(string = xmlNode2.getAttribute("PSPANELLOGICLINKID", "")))) continue;
+                PSPanelLogicLink link = hashMap2.remove(string);
+                if (link == null) continue;
                 bl = false;
-                if (StringHelper.compare((String)entityBase.getPSSysViewPanelLogicId(), (String)pSSysViewPanelLogic.getPSSysViewPanelLogicId(), (boolean)false) != 0) {
-                    entityBase.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                if (StringHelper.compare((String)link.getPSSysViewPanelLogicId(), (String)pSSysViewPanelLogic.getPSSysViewPanelLogicId(), (boolean)false) != 0) {
+                    link.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
                     bl = true;
                 }
-                if (StringHelper.compare((String)entityBase.getPSSysViewPanelLogicName(), (String)pSSysViewPanelLogic.getPSSysViewPanelLogicName(), (boolean)false) != 0) {
-                    entityBase.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
+                if (StringHelper.compare((String)link.getPSSysViewPanelLogicName(), (String)pSSysViewPanelLogic.getPSSysViewPanelLogicName(), (boolean)false) != 0) {
+                    link.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
                     bl = true;
                 }
                 string3 = xmlNode2.getAttribute("SRCENDPOINT", "");
                 string2 = xmlNode2.getAttribute("DSTENDPOINT", "");
                 String string5 = xmlNode2.getAttribute("SRCPSPANELLOGICNODEID", "");
                 String string6 = xmlNode2.getAttribute("DSTPSPANELLOGICNODEID", "");
-                if (StringHelper.compare((String)entityBase.getSrcEndPoint(), (String)string3, (boolean)false) != 0) {
-                    entityBase.setSrcEndPoint(string3);
+                if (StringHelper.compare((String)link.getSrcEndPoint(), (String)string3, (boolean)false) != 0) {
+                    link.setSrcEndPoint(string3);
                     bl = true;
                 }
-                if (StringHelper.compare((String)entityBase.getDstEndPoint(), (String)string2, (boolean)false) != 0) {
-                    entityBase.setDstEndPoint(string2);
+                if (StringHelper.compare((String)link.getDstEndPoint(), (String)string2, (boolean)false) != 0) {
+                    link.setDstEndPoint(string2);
                     bl = true;
                 }
-                if (StringHelper.compare((String)entityBase.getSrcPSPanelLogicNodeId(), (String)string5, (boolean)false) != 0) {
-                    entityBase.setSrcPSPanelLogicNodeId(string5);
+                if (StringHelper.compare((String)link.getSrcPSPanelLogicNodeId(), (String)string5, (boolean)false) != 0) {
+                    link.setSrcPSPanelLogicNodeId(string5);
                     bl = true;
                 }
-                if (StringHelper.compare((String)entityBase.getDstPSPanelLogicNodeId(), (String)string6, (boolean)false) != 0) {
-                    entityBase.setDstPSPanelLogicNodeId(string6);
+                if (StringHelper.compare((String)link.getDstPSPanelLogicNodeId(), (String)string6, (boolean)false) != 0) {
+                    link.setDstPSPanelLogicNodeId(string6);
                     bl = true;
                 }
                 if (bl) {
-                    pSPanelLogicLinkService.updateTemp((IEntity)entityBase);
+                    pSPanelLogicLinkService.updateTemp(link);
                 }
                 xmlNode2.resetAttributes();
-                entityBase.fillXmlNode(xmlNode2, false);
+                link.fillXmlNode(xmlNode2, false);
                 arrayList2.add(xmlNode2);
             }
             xmlNode.resetChildNodes();
@@ -245,7 +245,6 @@ extends PSSysViewPanelLogicServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSPanelLogicLink pSPanelLogicLink2;
                 PSPanelLogicNodeService pSPanelLogicNodeService = (PSPanelLogicNodeService)ServiceGlobal.getService((String)PSPanelLogicNodeService.class.getCanonicalName(), (SessionFactory)PSSysViewPanelLogicService.this.getSessionFactory());
                 ArrayList<PSPanelLogicNode> arrayList = pSPanelLogicNodeService.selectTempByPSSysViewPanelLogic(pSSysViewPanelLogic2);
                 HashMap<String, PSPanelLogicNode> hashMap = new HashMap<String, PSPanelLogicNode>();
@@ -259,23 +258,23 @@ extends PSSysViewPanelLogicServiceBase {
                     hashMap2.put(pSPanelLogicLink2.getPSPanelLogicLinkId(), pSPanelLogicLink2);
                 }
                 String string = pSSysViewPanelLogic2.getLogicModel();
-                pSPanelLogicLink2 = XmlNode.loadFromXML((String)string);
-                if (pSPanelLogicLink2 != null) {
-                    pSPanelLogicLink2.setAttribute("PSDEID", pSSysViewPanelLogic2.getPSDEId());
-                    pSPanelLogicLink2.setAttribute("PSSYSVIEWPANELLOGICID", pSSysViewPanelLogic2.getPSSysViewPanelLogicId());
-                    PSSysViewPanelLogicService.this.updatePSSysViewPanelLogicModel(pSSysViewPanelLogic2, (XmlNode)pSPanelLogicLink2, hashMap, hashMap2);
-                    pSSysViewPanelLogic2.setLogicModel(XmlNode.export((XmlNode)pSPanelLogicLink2));
+                XmlNode modelNode = XmlNode.loadFromXML((String)string);
+                if (modelNode != null) {
+                    modelNode.setAttribute("PSDEID", pSSysViewPanelLogic2.getPSDEId());
+                    modelNode.setAttribute("PSSYSVIEWPANELLOGICID", pSSysViewPanelLogic2.getPSSysViewPanelLogicId());
+                    PSSysViewPanelLogicService.this.updatePSSysViewPanelLogicModel(pSSysViewPanelLogic2, modelNode, hashMap, hashMap2);
+                    pSSysViewPanelLogic2.setLogicModel(XmlNode.export(modelNode));
                 } else {
                     pSSysViewPanelLogic2.setLogicModel(null);
                 }
                 if (hashMap2.size() > 0) {
-                    for (EntityBase entityBase : hashMap2.values()) {
-                        pSPanelLogicLinkService.removeTemp((IEntity)entityBase);
+                    for (PSPanelLogicLink link : hashMap2.values()) {
+                        pSPanelLogicLinkService.removeTemp(link);
                     }
                 }
                 if (hashMap.size() > 0) {
-                    for (EntityBase entityBase : hashMap.values()) {
-                        pSPanelLogicNodeService.removeTemp((IEntity)entityBase);
+                    for (PSPanelLogicNode node : hashMap.values()) {
+                        pSPanelLogicNodeService.removeTemp(node);
                     }
                 }
                 PSSysViewPanelLogicService.this.createTemp(pSSysViewPanelLogic2);
@@ -405,4 +404,3 @@ extends PSSysViewPanelLogicServiceBase {
         super.getRelatedDataTempMajor_PSPanelLogicParam(pSSysViewPanelLogic);
     }
 }
-

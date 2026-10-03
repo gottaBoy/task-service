@@ -72,7 +72,7 @@ implements IPSDEDBIndexService {
     @Override
     protected List<PSDEDBIndex> onListAll() throws Exception {
         ArrayList<PSDEDBIndex> list = new ArrayList<PSDEDBIndex>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEDBIndex> items = this.listByPSDataEntity(parent);

@@ -70,7 +70,7 @@ implements IPSAppPkgService {
     @Override
     protected List<PSAppPkg> onListAll() throws Exception {
         ArrayList<PSAppPkg> list = new ArrayList<PSAppPkg>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSAppPkg> items = this.listByPSSysApp(parent);

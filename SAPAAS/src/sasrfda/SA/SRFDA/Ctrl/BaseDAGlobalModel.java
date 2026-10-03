@@ -228,7 +228,7 @@ implements IDAGlobalModel<KT, VT, HT> {
 
     @Override
     public HT FindModelHelper(KT objObjectId) throws Exception {
-        return this.FindModelHelper(objObjectId, (VT)false);
+        return this.FindModelHelper(objObjectId, false);
     }
 
     /*

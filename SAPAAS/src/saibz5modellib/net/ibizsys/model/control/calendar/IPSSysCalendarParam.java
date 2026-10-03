@@ -1,12 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.calendar;
 
-import net.ibizsys.model.control.calendar.IPSCalendarParam;
-
-public interface IPSSysCalendarParam
-extends IPSCalendarParam {
-    public String getPSSysCalendarId();
+/**
+ * 系统日历部件参数对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSSysCalendarParam extends IPSCalendarParam {
+	
+	/**
+	 * 获取系统日历部件标识
+	 * @return
+	 */
+	String getPSSysCalendarId();
 }
-

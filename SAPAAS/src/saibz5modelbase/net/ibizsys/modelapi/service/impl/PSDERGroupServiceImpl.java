@@ -158,10 +158,10 @@ implements IPSDERGroupService {
 
     @Override
     protected List<PSDERGroup> onListAll() throws Exception {
-        List pssystems;
-        List psmodules;
+        List<PSSystem> pssystems;
+        List<PSModule> psmodules;
         ArrayList<PSDERGroup> list = new ArrayList<PSDERGroup>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDERGroup> items = this.listByPSDataEntity(parent);

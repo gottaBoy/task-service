@@ -1612,7 +1612,7 @@ implements Serializable {
                 PSDevSlnSysSrc pSDevSlnSysSrc = new PSDevSlnSysSrc();
                 pSDevSlnSysSrc.setPSDevSlnSysSrcId(this.getPSDevSlnSysSrcId());
                 PSDevSlnSysSrcService pSDevSlnSysSrcService = (PSDevSlnSysSrcService)ServiceGlobal.getService(PSDevSlnSysSrcService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysSrcService.autoGet((IEntity)pSDevSlnSysSrc);
+                pSDevSlnSysSrcService.autoGet(pSDevSlnSysSrc);
                 this.psdevslnsyssrc = pSDevSlnSysSrc;
             }
             return this.psdevslnsyssrc;
@@ -1638,7 +1638,7 @@ implements Serializable {
                 PSSysModelSync pSSysModelSync = new PSSysModelSync();
                 pSSysModelSync.setPSSysModelSyncId(this.getPPSSysModelSyncId());
                 PSSysModelSyncService pSSysModelSyncService = (PSSysModelSyncService)ServiceGlobal.getService(PSSysModelSyncService.class, (SessionFactory)this.getSessionFactory());
-                pSSysModelSyncService.autoGet((IEntity)pSSysModelSync);
+                pSSysModelSyncService.autoGet(pSSysModelSync);
                 this.ppsysmodelsync = pSSysModelSync;
             }
             return this.ppsysmodelsync;

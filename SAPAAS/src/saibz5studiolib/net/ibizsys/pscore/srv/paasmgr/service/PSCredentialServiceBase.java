@@ -180,9 +180,9 @@ extends PSCoreSysServiceBase<PSCredential> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSCredential, pSDevCenter);
             return;
@@ -192,9 +192,9 @@ extends PSCoreSysServiceBase<PSCredential> {
             PSDevSln pSDevSln = (PSDevSln)iService.getDEModel().createEntity();
             pSDevSln.set("PSDEVSLNID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevSln);
+                iService.getTemp(pSDevSln);
             } else {
-                iService.get((IEntity)pSDevSln);
+                iService.get(pSDevSln);
             }
             this.onFillParentInfo_PSDevSln(pSCredential, pSDevSln);
             return;
@@ -204,14 +204,14 @@ extends PSCoreSysServiceBase<PSCredential> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_PSSvrDomain(pSCredential, pSSvrDomain);
             return;
         }
-        super.onFillParentInfo((IEntity)pSCredential, string, string2, string3);
+        super.onFillParentInfo(pSCredential, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -242,7 +242,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 pSCredential.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSCredential, bl);
+        super.onFillEntityFullInfo(pSCredential, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSCredential, bl);
         this.onFillEntityFullInfo_PSDevSln(pSCredential, bl);
         this.onFillEntityFullInfo_PSSvrDomain(pSCredential, bl);
@@ -268,7 +268,7 @@ extends PSCoreSysServiceBase<PSCredential> {
     }
 
     protected void onWriteBackParent(PSCredential pSCredential, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSCredential, bl);
+        super.onWriteBackParent(pSCredential, bl);
     }
 
     public ArrayList<PSCredential> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -375,7 +375,7 @@ extends PSCoreSysServiceBase<PSCredential> {
         ArrayList<PSCredential> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSCredential pSCredential : arrayList) {
-            this.remove((IEntity)pSCredential);
+            this.remove(pSCredential);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -393,8 +393,8 @@ extends PSCoreSysServiceBase<PSCredential> {
         ArrayList<PSCredential> arrayList = this.selectByPSDevSln(pSDevSln, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVSLN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevSln);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCREDENTIAL_PSDEVSLN_PSDEVSLNID", "", iDataEntityModel.getName(), "PSCREDENTIAL", iDataEntityModel.getDataInfo((IEntity)pSDevSln), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevSln);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCREDENTIAL_PSDEVSLN_PSDEVSLNID", "", iDataEntityModel.getName(), "PSCREDENTIAL", iDataEntityModel.getDataInfo(pSDevSln), arrayList.get(0)));
         }
     }
 
@@ -427,7 +427,7 @@ extends PSCoreSysServiceBase<PSCredential> {
         ArrayList<PSCredential> arrayList = this.selectByPSDevSln(pSDevSln);
         this.onBeforeRemoveByPSDevSln(pSDevSln, arrayList);
         for (PSCredential pSCredential : arrayList) {
-            this.remove((IEntity)pSCredential);
+            this.remove(pSCredential);
         }
         this.onAfterRemoveByPSDevSln(pSDevSln, arrayList);
     }
@@ -445,8 +445,8 @@ extends PSCoreSysServiceBase<PSCredential> {
         ArrayList<PSCredential> arrayList = this.selectByPSSvrDomain(pSSvrDomain, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRDOMAIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrDomain);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCREDENTIAL_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSCREDENTIAL", iDataEntityModel.getDataInfo((IEntity)pSSvrDomain), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrDomain);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCREDENTIAL_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSCREDENTIAL", iDataEntityModel.getDataInfo(pSSvrDomain), arrayList.get(0)));
         }
     }
 
@@ -479,7 +479,7 @@ extends PSCoreSysServiceBase<PSCredential> {
         ArrayList<PSCredential> arrayList = this.selectByPSSvrDomain(pSSvrDomain);
         this.onBeforeRemoveByPSSvrDomain(pSSvrDomain, arrayList);
         for (PSCredential pSCredential : arrayList) {
-            this.remove((IEntity)pSCredential);
+            this.remove(pSCredential);
         }
         this.onAfterRemoveByPSSvrDomain(pSSvrDomain, arrayList);
     }
@@ -518,7 +518,7 @@ extends PSCoreSysServiceBase<PSCredential> {
 
     protected void replaceParentInfo(PSCredential pSCredential, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSCredential, cloneSession);
+        super.replaceParentInfo(pSCredential, cloneSession);
         if (pSCredential.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSCredential.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSCredential, (PSDevCenter)iEntity);
         }
@@ -531,7 +531,7 @@ extends PSCoreSysServiceBase<PSCredential> {
     }
 
     protected void onRemoveEntityUncopyValues(PSCredential pSCredential, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSCredential, bl);
+        super.onRemoveEntityUncopyValues(pSCredential, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSCredential pSCredential, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -588,7 +588,7 @@ extends PSCoreSysServiceBase<PSCredential> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSCredential, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSCredential, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSCredential, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AllDCFlag(boolean bl, PSCredential pSCredential, boolean bl2, boolean bl3) throws Exception {
@@ -601,7 +601,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AllDCFlag_Default((IEntity)pSCredential, bl2, bl3);
+            string = this.onTestValueRule_AllDCFlag_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALLDCFLAG");
@@ -623,7 +623,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CredentialData_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_CredentialData_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CREDENTIALDATA");
@@ -645,7 +645,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CredentialTag_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_CredentialTag_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CREDENTIALTAG");
@@ -667,7 +667,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CredentialTag2_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_CredentialTag2_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CREDENTIALTAG2");
@@ -692,7 +692,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CredentialType_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_CredentialType_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CREDENTIALTYPE");
@@ -714,7 +714,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -739,7 +739,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -761,7 +761,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PasswdData_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_PasswdData_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWDDATA");
@@ -786,7 +786,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCredentialId_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_PSCredentialId_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCREDENTIALID");
@@ -811,7 +811,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCredentialName_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_PSCredentialName_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCREDENTIALNAME");
@@ -850,7 +850,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -872,7 +872,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -894,7 +894,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnId_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnId_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNID");
@@ -916,7 +916,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -938,7 +938,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SyncMode_Default((IEntity)pSCredential, bl2, bl3);
+            string = this.onTestValueRule_SyncMode_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCMODE");
@@ -963,7 +963,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSCredential, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -988,7 +988,7 @@ extends PSCoreSysServiceBase<PSCredential> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSCredential, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSCredential, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1001,11 +1001,11 @@ extends PSCoreSysServiceBase<PSCredential> {
     }
 
     protected void onSyncEntity(PSCredential pSCredential, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSCredential, bl);
+        super.onSyncEntity(pSCredential, bl);
     }
 
     protected void onSyncIndexEntities(PSCredential pSCredential, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSCredential, bl);
+        super.onSyncIndexEntities(pSCredential, bl);
     }
 
     public Object getDataContextValue(PSCredential pSCredential, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1013,14 +1013,14 @@ extends PSCoreSysServiceBase<PSCredential> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSCredential, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSCredential, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSCredential pSCredential, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSCredential, arrayList, n);
+        super.onExportMajorModel(pSCredential, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1339,14 +1339,14 @@ extends PSCoreSysServiceBase<PSCredential> {
 
     protected boolean onMergeChild(String string, String string2, PSCredential pSCredential) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSCredential)) {
+        if (super.onMergeChild(string, string2, pSCredential)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSCredential pSCredential) throws Exception {
-        super.onUpdateParent((IEntity)pSCredential);
+        super.onUpdateParent(pSCredential);
     }
 
     @Override

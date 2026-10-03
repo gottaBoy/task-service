@@ -129,7 +129,7 @@ implements IPSDEActionLogicService {
     @Override
     protected List<PSDEActionLogic> onListAll() throws Exception {
         ArrayList<PSDEActionLogic> list = new ArrayList<PSDEActionLogic>();
-        List psdeactions = PSModelServiceUtil.getInstance().getPSDEActionService().listAll();
+        List<PSDEAction> psdeactions = PSModelServiceUtil.getInstance().getPSDEActionService().listAll();
         if (psdeactions != null) {
             for (PSDEAction parent : psdeactions) {
                 List<PSDEActionLogic> items = this.listByPSDEAction(parent);

@@ -60,7 +60,7 @@ extends PSIBiz5SysDECodePublisherImpl {
             String strTagName = StringHelper.Format((String)"%1$s_%2$s", (Object)CODETEMPL_DEACTION, (Object)iPSDEAction.getActionType());
             String strMethodName = iPSDEAction.getCodeName();
             String strNewMethodName = String.valueOf(strMethodName.substring(0, 1).toLowerCase()) + strMethodName.substring(1);
-            HashMap<String, String> map = new HashMap<String, String>();
+            HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("methodname", strNewMethodName);
             IPSGenerateCodeResult iPSGenerateCodeResult = this.generateCode(strTagName, iPSDEAction, map);
             deActions.add(iPSGenerateCodeResult);

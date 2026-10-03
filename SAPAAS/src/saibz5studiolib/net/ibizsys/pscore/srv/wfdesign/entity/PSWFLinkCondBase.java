@@ -2059,7 +2059,7 @@ implements Serializable {
                 PSDBValueOP pSDBValueOP = new PSDBValueOP();
                 pSDBValueOP.setPSDBValueOPId(this.getPSDBValueOPId());
                 PSDBValueOPService pSDBValueOPService = (PSDBValueOPService)ServiceGlobal.getService(PSDBValueOPService.class, (SessionFactory)this.getSessionFactory());
-                pSDBValueOPService.autoGet((IEntity)pSDBValueOP);
+                pSDBValueOPService.autoGet(pSDBValueOP);
                 this.psdbvalueop = pSDBValueOP;
             }
             return this.psdbvalueop;
@@ -2085,7 +2085,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getDstPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.dstpsdef = pSDEField;
             }
             return this.dstpsdef;
@@ -2111,7 +2111,7 @@ implements Serializable {
                 PSWFLinkCond pSWFLinkCond = new PSWFLinkCond();
                 pSWFLinkCond.setPSWFLinkCondId(this.getPPSWFLinkCondId());
                 PSWFLinkCondService pSWFLinkCondService = (PSWFLinkCondService)ServiceGlobal.getService(PSWFLinkCondService.class, (SessionFactory)this.getSessionFactory());
-                pSWFLinkCondService.autoGet((IEntity)pSWFLinkCond);
+                pSWFLinkCondService.autoGet(pSWFLinkCond);
                 this.ppwflinkcond = pSWFLinkCond;
             }
             return this.ppwflinkcond;
@@ -2137,7 +2137,7 @@ implements Serializable {
                 PSWFLink pSWFLink = new PSWFLink();
                 pSWFLink.setPSWFLinkId(this.getPSWFLinkId());
                 PSWFLinkService pSWFLinkService = (PSWFLinkService)ServiceGlobal.getService(PSWFLinkService.class, (SessionFactory)this.getSessionFactory());
-                pSWFLinkService.autoGet((IEntity)pSWFLink);
+                pSWFLinkService.autoGet(pSWFLink);
                 this.pswflink = pSWFLink;
             }
             return this.pswflink;
@@ -2163,7 +2163,7 @@ implements Serializable {
                 PSWFVersion pSWFVersion = new PSWFVersion();
                 pSWFVersion.setPSWFVersionId(this.getPSWFVersionId());
                 PSWFVersionService pSWFVersionService = (PSWFVersionService)ServiceGlobal.getService(PSWFVersionService.class, (SessionFactory)this.getSessionFactory());
-                pSWFVersionService.autoGet((IEntity)pSWFVersion);
+                pSWFVersionService.autoGet(pSWFVersion);
                 this.pswfversion = pSWFVersion;
             }
             return this.pswfversion;

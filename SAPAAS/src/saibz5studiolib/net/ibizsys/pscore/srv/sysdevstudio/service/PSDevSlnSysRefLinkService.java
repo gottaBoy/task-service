@@ -35,7 +35,7 @@ extends PSDevSlnSysRefLinkServiceBase {
     protected void onUpdateLinkState(PSDevSlnSysRefLink pSDevSlnSysRefLink) throws Exception {
         PSDevSlnSysRefLink pSDevSlnSysRefLink2 = new PSDevSlnSysRefLink();
         pSDevSlnSysRefLink2.setPSDevSlnSysRefLinkId(pSDevSlnSysRefLink.getPSDevSlnSysRefLinkId());
-        this.get((IEntity)pSDevSlnSysRefLink2);
+        this.get(pSDevSlnSysRefLink2);
         PSDevSlnSysRef pSDevSlnSysRef = new PSDevSlnSysRef();
         pSDevSlnSysRef.setPSDevSlnSysRefId(pSDevSlnSysRefLink.getPSDevSlnSysRefLinkId());
         pSDevSlnSysRef.setSessionFactory(this.getSessionFactory());

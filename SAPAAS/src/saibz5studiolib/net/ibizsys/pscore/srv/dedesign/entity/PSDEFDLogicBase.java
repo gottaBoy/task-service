@@ -1913,7 +1913,7 @@ implements Serializable {
                 PSDBValueOP pSDBValueOP = new PSDBValueOP();
                 pSDBValueOP.setPSDBValueOPId(this.getPSDBValueOPId());
                 PSDBValueOPService pSDBValueOPService = (PSDBValueOPService)ServiceGlobal.getService(PSDBValueOPService.class, (SessionFactory)this.getSessionFactory());
-                pSDBValueOPService.autoGet((IEntity)pSDBValueOP);
+                pSDBValueOPService.autoGet(pSDBValueOP);
                 this.psdbvalueop = pSDBValueOP;
             }
             return this.psdbvalueop;
@@ -1939,7 +1939,7 @@ implements Serializable {
                 PSDEFDLogic pSDEFDLogic = new PSDEFDLogic();
                 pSDEFDLogic.setPSDEFDLogicId(this.getPPSDEFDLogicId());
                 PSDEFDLogicService pSDEFDLogicService = (PSDEFDLogicService)ServiceGlobal.getService(PSDEFDLogicService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFDLogicService.autoGet((IEntity)pSDEFDLogic);
+                pSDEFDLogicService.autoGet(pSDEFDLogic);
                 this.ppsdefdlogic = pSDEFDLogic;
             }
             return this.ppsdefdlogic;
@@ -1965,7 +1965,7 @@ implements Serializable {
                 PSDEFormDetail pSDEFormDetail = new PSDEFormDetail();
                 pSDEFormDetail.setPSDEFormDetailId(this.getPSDEFormDetailId());
                 PSDEFormDetailService pSDEFormDetailService = (PSDEFormDetailService)ServiceGlobal.getService(PSDEFormDetailService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFormDetailService.autoGet((IEntity)pSDEFormDetail);
+                pSDEFormDetailService.autoGet(pSDEFormDetail);
                 this.psdeformdetail = pSDEFormDetail;
             }
             return this.psdeformdetail;
@@ -1991,7 +1991,7 @@ implements Serializable {
                 PSDEForm pSDEForm = new PSDEForm();
                 pSDEForm.setPSDEFormId(this.getPSDEFormId());
                 PSDEFormService pSDEFormService = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFormService.autoGet((IEntity)pSDEForm);
+                pSDEFormService.autoGet(pSDEForm);
                 this.psdeform = pSDEForm;
             }
             return this.psdeform;

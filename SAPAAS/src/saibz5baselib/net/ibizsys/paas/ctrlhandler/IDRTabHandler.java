@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.IDRCtrlHandler;
+/**
+ * 数据关系分页部件后台处理对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDRTabHandler extends IDRCtrlHandler {
 
-public interface IDRTabHandler
-extends IDRCtrlHandler {
 }
-

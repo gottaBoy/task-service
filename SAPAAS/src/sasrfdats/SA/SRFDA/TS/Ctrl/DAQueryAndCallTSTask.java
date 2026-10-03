@@ -95,7 +95,7 @@ extends BaseDATSTask {
         qmUserContext.FillQMDeclareParams(list, null, iDAGlobalHelper, "SYSTEM", paramDataEntity);
         queryModelHelper.FillCallParams(list, null, iDAGlobalHelper, "SYSTEM", paramDataEntity);
         log.info((Object)CallParamList.toDebugInfo(list));
-        Vector results = new Vector();
+        Vector<BaseDataEntity> results = new Vector();
         String strSQL = script.toString();
         callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)iDAGlobalHelper, (String)queryModelHelper.GetMajorDEHelper().GetDBStorage(), (String)strSQL, list, results, (String)"");
         if (callResult.getRetCode() != 0) {

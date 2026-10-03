@@ -56,7 +56,7 @@ extends DEDCProcess {
     @Override
     public CallResult Execute(IDEDataCtrlEngineContext dedcContext, DEDCBaseProcessConfig processConfig) {
         BaseDAQueryModelHelper daQueryModelHelper;
-        Vector dedcs;
+        Vector<DEDataCtrl> dedcs;
         CallResult callResult = super.Execute(dedcContext, processConfig);
         if (callResult.IsError()) {
             return callResult;
@@ -245,7 +245,7 @@ extends DEDCProcess {
                 dedcContext.DebugOutput((Object)this, StringHelper.Format((String)"\u6267\u884c\u5206\u9875\u67e5\u8be2{\r\n%1$s\r\n}", (Object)strPageSQL));
                 log.debug((Object)StringHelper.Format((String)"\u6267\u884c\u5206\u9875\u67e5\u8be2{\r\n%1$s\r\n}", (Object)strPageSQL));
                 System.out.print(StringHelper.Format((String)"\u6267\u884c\u5206\u9875\u67e5\u8be2{\r\n%1$s\r\n}\r\n", (Object)strPageSQL));
-                Vector dataEntities = new Vector();
+                Vector<BaseDataEntity> dataEntities = new Vector();
                 callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)dedcContext.GetGlobalHelper(), (Connection)conn, (String)strDBStorage, (String)strPageSQL, (Vector)callParamList.GetList(), dataEntities, (String)"");
                 if (callResult.IsError()) {
                     log.error((Object)StringHelper.Format((String)"\u6267\u884cSQL\u67e5\u8be2\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));

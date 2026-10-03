@@ -75,7 +75,7 @@ implements IPSSysTDItemService {
     @Override
     protected List<PSSysTDItem> onListAll() throws Exception {
         ArrayList<PSSysTDItem> list = new ArrayList<PSSysTDItem>();
-        List pssystestdata = PSModelServiceUtil.getInstance().getPSSysTestDataService().listAll();
+        List<PSSysTestData> pssystestdata = PSModelServiceUtil.getInstance().getPSSysTestDataService().listAll();
         if (pssystestdata != null) {
             for (PSSysTestData parent : pssystestdata) {
                 List<PSSysTDItem> items = this.listByPSSysTestData(parent);

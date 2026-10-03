@@ -55,7 +55,7 @@ IPSJsonNodeSchemaOwner {
      */
     @Override
     protected void onPreparePSSysDynaModelAttrs() throws Exception {
-        ObjectNode jsonNode;
+        JsonNode jsonNode;
         ObjectNode objectNode = null;
         objectNode = !StringHelper.isNullOrEmpty((String)this.getJOString()) ? (ObjectNode)MAPPER.readTree(this.getJOString()) : MAPPER.createObjectNode();
         if (objectNode.has("$id")) {
@@ -64,10 +64,10 @@ IPSJsonNodeSchemaOwner {
         if (objectNode.has("$defs")) {
             jsonNode = objectNode.get("$defs");
             if (!(jsonNode instanceof ObjectNode)) throw new Exception(String.format("\u8282\u70b9[%1$s]\u683c\u5f0f\u4e0d\u6b63\u786e", "$defs"));
-            this.setPSJsonDefs(this.getPSJsonDefs("$defs", jsonNode));
+            this.setPSJsonDefs(this.getPSJsonDefs("$defs", (ObjectNode)jsonNode));
         } else {
             jsonNode = MAPPER.createObjectNode();
-            this.setPSJsonDefs(this.getPSJsonDefs("$defs", jsonNode));
+            this.setPSJsonDefs(this.getPSJsonDefs("$defs", (ObjectNode)jsonNode));
         }
         Vector<PSSysDynaModelAttr> psSysDynaModelAttrList = new Vector<PSSysDynaModelAttr>();
         CallResult callResult = this.getPSModelHelper().getPSSysDynaModelAttrs(this.getId(), psSysDynaModelAttrList);
@@ -186,4 +186,3 @@ IPSJsonNodeSchemaOwner {
         return null;
     }
 }
-

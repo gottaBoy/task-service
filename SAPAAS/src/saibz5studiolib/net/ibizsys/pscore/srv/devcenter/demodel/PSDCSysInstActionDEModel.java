@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.devcenter.demodel.PSDCSysInstActionDEModelBase;
 
 public class PSDCSysInstActionDEModel
 extends PSDCSysInstActionDEModelBase {
+
+    public PSDCSysInstActionDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

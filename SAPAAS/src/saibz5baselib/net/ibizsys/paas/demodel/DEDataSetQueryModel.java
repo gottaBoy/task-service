@@ -1,22 +1,29 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
 import net.ibizsys.paas.core.DEDataSetQuery;
 import net.ibizsys.paas.core.IDEDataSetQuery;
 
-public class DEDataSetQueryModel
-implements IDEDataSetQuery {
-    private DEDataSetQuery deDataSetQuery = null;
+/**
+ * 数据集合查询模型对象
+ * 
+ * @author Administrator
+ *
+ */
+public class DEDataSetQueryModel implements IDEDataSetQuery {
+	private DEDataSetQuery deDataSetQuery = null;
 
-    public DEDataSetQueryModel(DEDataSetQuery deDataSetQuery) {
-        this.deDataSetQuery = deDataSetQuery;
-    }
+	public DEDataSetQueryModel(DEDataSetQuery deDataSetQuery) {
+		this.deDataSetQuery = deDataSetQuery;
+	}
 
-    @Override
-    public String getDEDataQueryId() {
-        return this.deDataSetQuery.queryid();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataSetQuery#getDEDataQueryId()
+	 */
+	@Override
+	public String getDEDataQueryId() {
+		return this.deDataSetQuery.queryid();
+	}
+
 }
-

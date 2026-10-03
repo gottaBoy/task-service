@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdynawf.controller;
 
-import net.ibizsys.ssdynawf.controller.DynaWFProxyDataViewControllerInstBase;
+/**
+ * 动态工作流代理数据视图控制器实例
+ * @author Administrator
+ *
+ */
+public class DynaWFProxyDataViewControllerInst extends DynaWFProxyDataViewControllerInstBase {
 
-public class DynaWFProxyDataViewControllerInst
-extends DynaWFProxyDataViewControllerInstBase {
+	public DynaWFProxyDataViewControllerInst() throws Exception {
+		super();
+	}
+
 }
-

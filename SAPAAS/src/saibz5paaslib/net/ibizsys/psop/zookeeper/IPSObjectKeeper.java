@@ -1,8 +1,30 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psop.zookeeper;
 
-public interface IPSObjectKeeper {
+/**
+ * 对象监控者
+ * @author Administrator
+ *
+ */
+public interface IPSObjectKeeper
+{
+//	/**
+//	 * 获取对象类型
+//	 * @return
+//	 */
+//	String getObjectType();
+//	
+//	
+//	/**
+//	 * 获取对象路径
+//	 * @return
+//	 */
+//	String getObjectPath();
+//	
+//	
+//	
+//	/**
+//	 * 获取对象键值
+//	 * @return
+//	 */
+//	String getObjectKey();
 }
-

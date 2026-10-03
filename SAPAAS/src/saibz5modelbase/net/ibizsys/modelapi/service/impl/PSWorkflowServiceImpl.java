@@ -120,9 +120,9 @@ implements IPSWorkflowService {
 
     @Override
     protected List<PSWorkflow> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSWorkflow> list = new ArrayList<PSWorkflow>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSWorkflow> items = this.listByPSModule(parent);

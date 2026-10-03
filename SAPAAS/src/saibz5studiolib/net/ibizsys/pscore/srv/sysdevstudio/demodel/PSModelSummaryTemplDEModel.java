@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdevstudio.demodel.PSModelSummaryTemplDEModelBas
 
 public class PSModelSummaryTemplDEModel
 extends PSModelSummaryTemplDEModelBase {
+
+    public PSModelSummaryTemplDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

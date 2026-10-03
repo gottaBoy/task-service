@@ -76,7 +76,7 @@ implements IPSDEListLogicService {
     @Override
     protected List<PSDEListLogic> onListAll() throws Exception {
         ArrayList<PSDEListLogic> list = new ArrayList<PSDEListLogic>();
-        List psdelists = PSModelServiceUtil.getInstance().getPSDEListService().listAll();
+        List<PSDEList> psdelists = PSModelServiceUtil.getInstance().getPSDEListService().listAll();
         if (psdelists != null) {
             for (PSDEList parent : psdelists) {
                 List<PSDEListLogic> items = this.listByPSDEList(parent);

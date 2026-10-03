@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSDEGCTypeDEModelBase;
 
 public class PSDEGCTypeDEModel
 extends PSDEGCTypeDEModelBase {
+
+    public PSDEGCTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

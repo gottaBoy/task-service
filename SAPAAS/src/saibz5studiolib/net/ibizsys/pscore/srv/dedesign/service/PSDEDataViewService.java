@@ -75,7 +75,7 @@ implements IPSModelService<PSDEDataView> {
     }
 
     protected void initIndexDEDataView(PSDataEntity pSDataEntity) throws Exception {
-        boolean bl = this.isEnableFolderKey((IEntity)pSDataEntity);
+        boolean bl = this.isEnableFolderKey(pSDataEntity);
         String string = null;
         string = bl ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_INDEXTYPE) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"INDEXDETYPE", (String)pSDataEntity.getIndexDEType());
         PSDEDataView pSDEDataView = new PSDEDataView();
@@ -84,7 +84,7 @@ implements IPSModelService<PSDEDataView> {
             pSDEDataView.reset();
             pSDEDataView.setPSDEId(pSDataEntity.getPSDataEntityId());
             pSDEDataView.setCodeName("IndexType");
-            if (this.selectOne((IEntity)pSDEDataView, true)) {
+            if (this.selectOne(pSDEDataView, true)) {
                 return;
             }
             pSDEDataView.reset();
@@ -98,7 +98,7 @@ implements IPSModelService<PSDEDataView> {
     }
 
     protected void initMultiFormDataView(PSDataEntity pSDataEntity) throws Exception {
-        boolean bl = this.isEnableFolderKey((IEntity)pSDataEntity);
+        boolean bl = this.isEnableFolderKey(pSDataEntity);
         String string = null;
         string = bl ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_FORMTYPE) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"FORMTYPE", (String)"");
         PSDEDataView pSDEDataView = new PSDEDataView();
@@ -107,7 +107,7 @@ implements IPSModelService<PSDEDataView> {
             pSDEDataView.reset();
             pSDEDataView.setPSDEId(pSDataEntity.getPSDataEntityId());
             pSDEDataView.setCodeName("FormType");
-            if (this.selectOne((IEntity)pSDEDataView, true)) {
+            if (this.selectOne(pSDEDataView, true)) {
                 return;
             }
             pSDEDataView.reset();
@@ -122,7 +122,7 @@ implements IPSModelService<PSDEDataView> {
 
     @Override
     public void getDraftWithModel(PSDEDataView pSDEDataView) throws Exception {
-        this.getDraftTempMajor((IEntity)pSDEDataView);
+        this.getDraftTempMajor(pSDEDataView);
         pSDEDataView.setViewModel(this.getViewModel(pSDEDataView));
     }
 
@@ -131,7 +131,7 @@ implements IPSModelService<PSDEDataView> {
         if (!KeyValueHelper.isTempKey((String)pSDEDataView.getPSDEDataViewId())) {
             this.getTempMajor(pSDEDataView);
         } else {
-            this.getTemp((IEntity)pSDEDataView);
+            this.getTemp(pSDEDataView);
         }
         pSDEDataView.setViewModel(this.getViewModel(pSDEDataView));
     }
@@ -160,7 +160,6 @@ implements IPSModelService<PSDEDataView> {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEListItem pSDEListItem2;
                 PSDEListItemService pSDEListItemService = (PSDEListItemService)ServiceGlobal.getService((String)PSDEListItemService.class.getCanonicalName(), (SessionFactory)PSDEDataViewService.this.getSessionFactory());
                 ArrayList<PSDEListItem> arrayList = pSDEListItemService.selectTempByPSDEDataView(pSDEDataView2);
                 HashMap<String, PSDEListItem> hashMap = new HashMap<String, PSDEListItem>();
@@ -168,21 +167,21 @@ implements IPSModelService<PSDEDataView> {
                     hashMap.put(pSDEListItem2.getPSDEListItemId(), pSDEListItem2);
                 }
                 String string = pSDEDataView2.getViewModel();
-                pSDEListItem2 = XmlNode.loadFromXML((String)string);
-                if (pSDEListItem2 != null) {
-                    pSDEListItem2.setAttribute("PSDEID", pSDEDataView2.getPSDEId());
-                    pSDEListItem2.setAttribute("PSDEDATAVIEWID", pSDEDataView2.getPSDEDataViewId());
-                    PSDEDataViewService.this.updatePSDEDataViewModel(pSDEDataView2, (XmlNode)pSDEListItem2, hashMap);
-                    pSDEDataView2.setViewModel(XmlNode.export((XmlNode)pSDEListItem2));
+                XmlNode viewModel = XmlNode.loadFromXML(string);
+                if (viewModel != null) {
+                    viewModel.setAttribute("PSDEID", pSDEDataView2.getPSDEId());
+                    viewModel.setAttribute("PSDEDATAVIEWID", pSDEDataView2.getPSDEDataViewId());
+                    PSDEDataViewService.this.updatePSDEDataViewModel(pSDEDataView2, viewModel, hashMap);
+                    pSDEDataView2.setViewModel(XmlNode.export(viewModel));
                 } else {
                     pSDEDataView2.setViewModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSDEListItem pSDEListItem3 : hashMap.values()) {
-                        pSDEListItemService.removeTemp((IEntity)pSDEListItem3);
+                        pSDEListItemService.removeTemp(pSDEListItem3);
                     }
                 }
-                PSDEDataViewService.this.createTempMajor((IEntity)pSDEDataView2);
+                PSDEDataViewService.this.createTempMajor(pSDEDataView2);
             }
         });
     }
@@ -195,30 +194,25 @@ implements IPSModelService<PSDEDataView> {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSDEListItem pSDEListItem;
-                Object object = null;
                 PSDEListItemService pSDEListItemService = (PSDEListItemService)ServiceGlobal.getService((String)PSDEListItemService.class.getCanonicalName(), (SessionFactory)PSDEDataViewService.this.getSessionFactory());
                 ArrayList<PSDEListItem> arrayList = pSDEListItemService.selectTempByPSDEDataView(pSDEDataView2);
                 HashMap<String, PSDEListItem> hashMap = new HashMap<String, PSDEListItem>();
-                Object object2 = arrayList.iterator();
-                while (object2.hasNext()) {
-                    pSDEListItem = object2.next();
+                for (PSDEListItem pSDEListItem : arrayList) {
                     hashMap.put(pSDEListItem.getPSDEListItemId(), pSDEListItem);
                 }
-                object = object2 = pSDEDataView2.getViewModel();
-                pSDEListItem = XmlNode.loadFromXML((String)object2);
-                if (pSDEListItem != null) {
-                    pSDEListItem.setAttribute("PSDEID", pSDEDataView2.getPSDEId());
-                    pSDEListItem.setAttribute("PSDEDATAVIEWID", pSDEDataView2.getPSDEDataViewId());
-                    PSDEDataViewService.this.updatePSDEDataViewModel(pSDEDataView2, (XmlNode)pSDEListItem, hashMap);
-                    pSDEDataView2.setViewModel(XmlNode.export((XmlNode)pSDEListItem));
+                XmlNode viewModel = XmlNode.loadFromXML(pSDEDataView2.getViewModel());
+                if (viewModel != null) {
+                    viewModel.setAttribute("PSDEID", pSDEDataView2.getPSDEId());
+                    viewModel.setAttribute("PSDEDATAVIEWID", pSDEDataView2.getPSDEDataViewId());
+                    PSDEDataViewService.this.updatePSDEDataViewModel(pSDEDataView2, viewModel, hashMap);
+                    pSDEDataView2.setViewModel(XmlNode.export(viewModel));
                 } else {
                     pSDEDataView2.setViewModel(null);
                 }
                 boolean bl = false;
                 if (hashMap.size() > 0) {
                     for (PSDEListItem pSDEListItem2 : hashMap.values()) {
-                        pSDEListItemService.removeTemp((IEntity)pSDEListItem2);
+                        pSDEListItemService.removeTemp(pSDEListItem2);
                         bl = true;
                     }
                 }
@@ -230,7 +224,7 @@ implements IPSModelService<PSDEDataView> {
     protected void updatePSDEDataViewModel(PSDEDataView pSDEDataView, XmlNode xmlNode, HashMap<String, PSDEListItem> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSDEListItemService pSDEListItemService = (PSDEListItemService)ServiceGlobal.getService((String)PSDEListItemService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             HashMap<String, Integer> hashMap2 = new HashMap<String, Integer>();
             while (iterator.hasNext()) {
@@ -258,7 +252,7 @@ implements IPSModelService<PSDEDataView> {
                     bl = true;
                 }
                 if (bl) {
-                    pSDEListItemService.updateTemp((IEntity)pSDEListItem);
+                    pSDEListItemService.updateTemp(pSDEListItem);
                 }
                 xmlNode2.resetAttributes();
                 pSDEListItem.fillXmlNode(xmlNode2, false);
@@ -277,4 +271,3 @@ implements IPSModelService<PSDEDataView> {
         pSDEDataView.setViewModel(this.getViewModel(pSDEDataView));
     }
 }
-

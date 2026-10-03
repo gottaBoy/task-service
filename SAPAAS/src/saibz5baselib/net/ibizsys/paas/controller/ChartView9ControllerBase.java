@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.ChartViewControllerBase;
+/**
+ * 数据图表视图（部件视图）控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class ChartView9ControllerBase extends ChartViewControllerBase {
 
-public abstract class ChartView9ControllerBase
-extends ChartViewControllerBase {
+	public ChartView9ControllerBase() throws Exception {
+		super();
+	}
+
 }
-

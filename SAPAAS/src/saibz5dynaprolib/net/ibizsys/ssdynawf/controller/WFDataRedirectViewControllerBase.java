@@ -1,19 +1,7 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IDEWF
- *  net.ibizsys.paas.demodel.IDataEntityModel
- *  net.ibizsys.paas.service.IService
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.paas.web.AjaxActionResult
- *  net.ibizsys.pswf.controller.IWFDEViewController
- *  net.ibizsys.pswf.core.IWFModel
- *  net.ibizsys.pswf.core.IWFVersionModel
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package net.ibizsys.ssdynawf.controller;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import net.ibizsys.paas.core.IDEWF;
 import net.ibizsys.paas.demodel.IDataEntityModel;
@@ -24,103 +12,205 @@ import net.ibizsys.pswf.controller.IWFDEViewController;
 import net.ibizsys.pswf.core.IWFModel;
 import net.ibizsys.pswf.core.IWFVersionModel;
 import net.ibizsys.ssdyna.controller.RedirectViewControllerBase;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
-public abstract class WFDataRedirectViewControllerBase
-extends RedirectViewControllerBase
-implements IWFDEViewController {
-    private ThreadLocal<IDataEntityModel> curDEModel = new ThreadLocal();
-    private static final Log log = LogFactory.getLog(WFDataRedirectViewControllerBase.class);
-    private IWFModel iWFModel = null;
-    private IDEWF iDEWF = null;
-    private boolean bWFIAMode = false;
-    private String strWFStepValue = "";
-    private int nWFVersion = -1;
+/**
+ * 流程实体数据重定向视图控制器基类
+ * @author Administrator
+ *
+ */
+public abstract class WFDataRedirectViewControllerBase  extends RedirectViewControllerBase  implements IWFDEViewController{
 
-    public WFDataRedirectViewControllerBase() throws Exception {
-        this.setEnableWorkflow(true);
-    }
+	private ThreadLocal<IDataEntityModel> curDEModel = new ThreadLocal<IDataEntityModel>();
+	private static final Log log = LogFactory.getLog(WFDataRedirectViewControllerBase.class);
+	
+	/**
+	 * 工作流模型
+	 */
+	private IWFModel iWFModel = null;
 
-    @Override
-    protected AjaxActionResult onGetRDView(boolean bUrlMode) throws Exception {
-        String strDEId = this.getWebContext().getViewParamValue("srfdeid");
-        if (StringHelper.isNullOrEmpty((String)strDEId)) {
-            strDEId = this.getWebContext().getPostOrParamValue("srfdeid");
-        }
-        if (StringHelper.isNullOrEmpty((String)strDEId)) {
-            throw new Exception(StringHelper.format((String)"\u6ca1\u6709\u6307\u5b9a\u6570\u636e\u5b9e\u4f53"));
-        }
-        this.curDEModel.set(this.getSystemModel().getDataEntityModel(strDEId));
-        return super.onGetRDView(bUrlMode);
-    }
+	/**
+	 * 实体工作流模型
+	 */
+	private IDEWF iDEWF = null;
 
-    public IDataEntityModel getDEModel() {
-        return this.getRealDEModel();
-    }
+	/**
+	 * 是否为工作模式
+	 */
+	private boolean bWFIAMode = false;
 
-    public IService getService() {
-        return this.getRealService();
-    }
+	/**
+	 * 交互的流程步骤值
+	 */
+	private String strWFStepValue = "";
 
-    @Override
-    public IDataEntityModel getRealDEModel() {
-        return this.curDEModel.get();
-    }
+	/**
+	 * 流程版本
+	 */
+	private int nWFVersion = -1;
+	
+	
+	public WFDataRedirectViewControllerBase() throws Exception {
+		super();
+		this.setEnableWorkflow(true);
+	}
 
-    @Override
-    public IService getRealService() {
-        try {
-            return this.getRealDEModel().getService(this.getSessionFactory());
-        }
-        catch (Exception e) {
-            log.error((Object)e.getMessage(), (Throwable)e);
-            return null;
-        }
-    }
+	@Override
+	protected AjaxActionResult onGetRDView(boolean bUrlMode) throws Exception {
+	
+		String strDEId = this.getWebContext().getViewParamValue("srfdeid");
+		
+		/**
+		 * 20190123 增加，支持进一步从Url或Post取值
+		 */
+		if (StringHelper.isNullOrEmpty(strDEId)) {
+			strDEId = this.getWebContext().getPostOrParamValue("srfdeid");
+		}
+		
+		if (StringHelper.isNullOrEmpty(strDEId)) {
+			throw new Exception(StringHelper.format("没有指定数据实体"));
+		}
+		
+		curDEModel.set(this.getSystemModel().getDataEntityModel(strDEId));
+		return super.onGetRDView(bUrlMode);
+	}
+	
+	@Override
+	public IDataEntityModel getDEModel() {
+		return getRealDEModel();
+	}
 
-    public IWFModel getWFModel() {
-        return this.iWFModel;
-    }
 
-    protected void setWFModel(IWFModel iWFModel) {
-        this.iWFModel = iWFModel;
-    }
 
-    public IWFVersionModel getWFVersionModel() {
-        return this.getWFModel().getLastWFVersionModel();
-    }
+	@Override
+	public IService getService() {
+		return getRealService();
+	}
+	
+	
+	/**
+	 * 获取实际的实体模型（从上下文传入），getDEModel 方法可能会被子类覆盖
+	 * @return
+	 */
+	public IDataEntityModel getRealDEModel() {
+		return curDEModel.get();
+	}
+	
+	/**
+	 * 获取实际的实体服务对象
+	 * @return
+	 */
+	public IService getRealService() {
+		try {
+			return getRealDEModel().getService(this.getSessionFactory());
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
+			return null;
+		}
+	}
+	
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#getWFModel()
+	 */
+	public IWFModel getWFModel() {
+		return iWFModel;
+	}
 
-    public boolean isWFIAMode() {
-        return this.bWFIAMode;
-    }
+	/**
+	 * 设置流程模型
+	 * 
+	 * @param iWFModel
+	 */
+	protected void setWFModel(IWFModel iWFModel) {
+		this.iWFModel = iWFModel;
+	}
 
-    protected void setWFIAMode(boolean bWFIAMode) {
-        this.bWFIAMode = bWFIAMode;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#getWFVersionModel()
+	 */
+	@Override
+	public IWFVersionModel getWFVersionModel() {
+		return this.getWFModel().getLastWFVersionModel();
+	}
 
-    public IDEWF getDEWF() {
-        return this.iDEWF;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#isWFIAMode()
+	 */
+	@Override
+	public boolean isWFIAMode() {
+		return this.bWFIAMode;
+	}
 
-    protected void setDEWF(IDEWF iDEWF) {
-        this.iDEWF = iDEWF;
-    }
+	/**
+	 * 设置是否为流程交互模式
+	 * 
+	 * @param bWFIAMode
+	 */
+	protected void setWFIAMode(boolean bWFIAMode) {
+		this.bWFIAMode = bWFIAMode;
+	}
 
-    public String getWFStepValue() {
-        return this.strWFStepValue;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFDEViewController#getDEWF()
+	 */
+	@Override
+	public IDEWF getDEWF() {
+		return this.iDEWF;
+	}
 
-    public void setWFStepValue(String strWFStepValue) {
-        this.strWFStepValue = strWFStepValue;
-    }
+	/**
+	 * 设置流程实体对象
+	 * 
+	 * @param iDEWF
+	 */
+	protected void setDEWF(IDEWF iDEWF) {
+		this.iDEWF = iDEWF;
+	}
 
-    public int getWFVersion() {
-        return this.nWFVersion;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#getWFStepValue()
+	 */
+	@Override
+	public String getWFStepValue() {
+		return this.strWFStepValue;
+	}
 
-    public void setWFVersion(int nWFVersion) {
-        this.nWFVersion = nWFVersion;
-    }
+	/**
+	 * 设置当前的流程步骤值
+	 * 
+	 * @param strWFStepValue
+	 */
+	public void setWFStepValue(String strWFStepValue) {
+		this.strWFStepValue = strWFStepValue;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.pswf.controller.IWFViewController#getWFVersion()
+	 */
+	@Override
+	public int getWFVersion() {
+		return this.nWFVersion;
+	}
+
+	/**
+	 * 设置流程版本
+	 * 
+	 * @param nWFVersion
+	 */
+	public void setWFVersion(int nWFVersion) {
+		this.nWFVersion = nWFVersion;
+	}
 }
-

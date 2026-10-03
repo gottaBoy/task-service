@@ -41,7 +41,7 @@ extends PSUWDEUnionKeyServiceBase {
         SelectContext selectContext = new SelectContext();
         selectContext.set("PSDEID", (Object)pSUWDEUnionKey.getPSUWDEUnionKeyId());
         selectContext.set("UNIONKEYVALUE", SelectContext.ISNOTNULL);
-        ArrayList arrayList = pSDEFieldService.select((ISelectCond)selectContext);
+        ArrayList<PSDEField> arrayList = pSDEFieldService.select((ISelectCond)selectContext);
         for (PSDEField pSDEField : arrayList) {
             if (StringHelper.compare((String)pSDEField.getUnionKeyValue(), (String)"KEY1", (boolean)true) == 0) {
                 pSUWDEUnionKey.setKeyPSDEFId(pSDEField.getPSDEFieldId());
@@ -77,12 +77,12 @@ extends PSUWDEUnionKeyServiceBase {
     }
 
     protected void internalCreateOrUpdate(PSUWDEUnionKey pSUWDEUnionKey) throws Exception {
-        Object object;
+        PSDEField object;
         PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
         SelectContext selectContext = new SelectContext();
         selectContext.set("PSDEID", (Object)pSUWDEUnionKey.getPSUWDEUnionKeyId());
         selectContext.set("UNIONKEYVALUE", SelectContext.ISNOTNULL);
-        ArrayList arrayList = pSDEFieldService.select((ISelectCond)selectContext);
+        ArrayList<PSDEField> arrayList = pSDEFieldService.select((ISelectCond)selectContext);
         for (PSDEField pSDEField : arrayList) {
             PSDEField pSDEField2 = new PSDEField();
             pSDEField2.setPSDEFieldId(pSDEField.getPSDEFieldId());
@@ -115,4 +115,3 @@ extends PSUWDEUnionKeyServiceBase {
         }
     }
 }
-

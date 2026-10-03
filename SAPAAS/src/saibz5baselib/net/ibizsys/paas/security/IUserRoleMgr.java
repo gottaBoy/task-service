@@ -1,9 +1,7 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.security;
 
 import java.util.ArrayList;
+
 import net.ibizsys.paas.core.IDEDataRange;
 import net.ibizsys.paas.core.IDEDataSetFetchContext;
 import net.ibizsys.paas.demodel.IDataEntityModel;
@@ -14,31 +12,150 @@ import net.ibizsys.psrt.srv.common.entity.Org;
 import net.ibizsys.psrt.srv.common.entity.OrgSector;
 import net.ibizsys.psrt.srv.common.entity.UserRoleData;
 
+/**
+ * 用户角色管理对象接口
+ * 
+ * @author lionlau
+ *
+ */
 public interface IUserRoleMgr {
-    public void init(IWebContext var1) throws Exception;
+	/**
+	 * 初始化
+	 * 
+	 * @param strCurUserId
+	 * @throws Exception
+	 */
+	void init(IWebContext iWebContext) throws Exception;
 
-    public String getUserId();
+	/**
+	 * 获取当前用户标识
+	 * 
+	 * @return
+	 */
+	String getUserId();
 
-    public Org getOrg() throws Exception;
+	/**
+	 * 获取当前组织
+	 * 
+	 * @return
+	 */
+	Org getOrg() throws Exception;
 
-    public OrgSector getOrgSector() throws Exception;
+	/**
+	 * 获取当前组织部门
+	 * 
+	 * @return
+	 */
+	OrgSector getOrgSector() throws Exception;
 
-    public ArrayList<UserRoleData> getUserRoleDatas(String var1, String var2) throws Exception;
+	/**
+	 * 获取用户数据对象能力
+	 * 
+	 * @param strDEId
+	 * @param strAction
+	 * @return
+	 */
+	ArrayList<UserRoleData> getUserRoleDatas(String strDEId, String strAction) throws Exception;
 
-    public boolean testUserRoleUniRes(String var1, String var2) throws Exception;
+	// /**
+	// * 获取用户
+	// *
+	// * @param strDEId
+	// * @param strAction
+	// * @param userRoleDatas
+	// * @return
+	// */
+	// CallResult GetUserRoleData(String strDEId, String strAction, Vector<UserRoleData> userRoleDatas);
+	//
+	/**
+	 * 获取用户角色资源能力
+	 * 
+	 * @param strResType
+	 * @param strResId
+	 * @return
+	 */
+	boolean testUserRoleUniRes(String strResType, String strResId) throws Exception;
 
-    public boolean testUserRoleDataAction(IDataEntityModel var1, IEntity var2, String var3) throws Exception;
+	/**
+	 * 判断用户访问数据能力
+	 * 
+	 * @param iDEModel
+	 * @param dataEntity
+	 * @param strAction
+	 * @return
+	 * @throws Exception
+	 */
+	boolean testUserRoleDataAction(IDataEntityModel iDEModel, IEntity dataEntity, String strAction) throws Exception;
 
-    public boolean testUserRoleDataAction(String var1, IEntity var2, String var3) throws Exception;
+	/**
+	 * 判断用户访问数据能力
+	 * 
+	 * @param strDEId
+	 * @param dataEntity
+	 * @param strAction
+	 * @return
+	 * @throws Exception
+	 */
+	boolean testUserRoleDataAction(String strDEId, IEntity dataEntity, String strAction) throws Exception;
 
-    public int testUserRoleDEField(String var1, String var2) throws Exception;
+	//
+	// /**
+	// * 获取当前用户拥有的所有角色
+	// *
+	// * @param userRoles
+	// * @return
+	// */
+	// boolean GetUserRoles(Vector<UserRole> userRoles);
+	//
+	/**
+	 * 判断用户角色是否允许访问实体属性
+	 * 
+	 * @param strDEName
+	 * @param strField
+	 * @return
+	 */
+	int testUserRoleDEField(String strDEName, String strField) throws Exception;
 
-    public String getUserRoleDataCond(IService var1, UserRoleData var2) throws Exception;
+	/**
+	 * 获取数据能力条件
+	 * 
+	 * @param iService
+	 * @param userRoleData
+	 * @return
+	 * @throws Exception
+	 */
+	String getUserRoleDataCond(IService iService, UserRoleData userRoleData) throws Exception;
 
-    public String getUserRoleDataCond(IService var1, UserRoleData var2, IDEDataSetFetchContext var3) throws Exception;
+	/**
+	 * 获取数据能力条件
+	 * 
+	 * @param iService
+	 * @param userRoleData
+	 * @param iDEDataSetFetchContext
+	 * @return
+	 * @throws Exception
+	 */
+	String getUserRoleDataCond(IService iService, UserRoleData userRoleData, IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception;
 
-    public String getDEDataRangeCond(IService var1, IDEDataRange var2) throws Exception;
+	/**
+	 * 获取数据能力条件
+	 * 
+	 * @param iService
+	 * @param iDEDataRange
+	 * @return
+	 * @throws Exception
+	 */
+	String getDEDataRangeCond(IService iService, IDEDataRange iDEDataRange) throws Exception;
 
-    public String getDEDataRangeCond(IService var1, IDEDataRange var2, IDEDataSetFetchContext var3) throws Exception;
+	/**
+	 * 获取数据能力条件
+	 * 
+	 * @param iService
+	 * @param iDEDataRange
+	 * @param iDEDataSetFetchContext
+	 * @return
+	 * @throws Exception
+	 */
+	String getDEDataRangeCond(IService iService, IDEDataRange iDEDataRange, IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception;
+
 }
-

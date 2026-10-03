@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEDRGroupDEModelBase;
 
 public class PSDEDRGroupDEModel
 extends PSDEDRGroupDEModelBase {
+
+    public PSDEDRGroupDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

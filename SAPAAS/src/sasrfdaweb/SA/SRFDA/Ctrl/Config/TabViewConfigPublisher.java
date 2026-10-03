@@ -78,7 +78,7 @@ implements ITabViewConfigPublisherContext {
             BaseDataEntity formParam = new BaseDataEntity();
             String strFormName = "";
             String strFormPageId = "";
-            Object strFormState = "";
+            String strFormState = "";
             if (ppEVTabView != null) {
                 strFormName = ppEVTabView.getFORMID();
                 strFormPageId = ppEVTabView.getFORMPAGEID();
@@ -101,9 +101,9 @@ implements ITabViewConfigPublisherContext {
         }
         if (StringHelper.IsNullOrEmpty((String)strDERGroupId)) {
             ITabViewPageConfigPublisher iTabViewPageConfigPublisher;
-            Vector der1NList;
+            Vector<IDER1NHelper> der1NList;
             ITabViewPageConfigPublisher iTabViewPageConfigPublisher2;
-            Vector der11List = iDEHelper.GetDER11s();
+            Vector<IDER11Helper> der11List = iDEHelper.GetDER11s();
             if (der11List.size() > 0) {
                 iTabViewPageConfigPublisher2 = this.getTabViewPageConfigPublisher("DER11");
                 for (IDER11Helper der11Helper : der11List) {
@@ -126,10 +126,10 @@ implements ITabViewConfigPublisherContext {
                     iTabViewPageConfigPublisher2.Publish(tabViewPageConfigPublishContext);
                 }
             }
-            Vector derIndexs = iDEHelper.GetDERINDEXs(false);
+            Vector<DERINDEX> derIndexs = iDEHelper.GetDERINDEXs(false);
             for (DERINDEX derIndex : derIndexs) {
                 IDEHelper iIndexDEHelper = this.getDAModelStorage().FindDEHelper2(derIndex.getINDEXDEID());
-                Vector der1NList2 = iIndexDEHelper.GetDER1Ns();
+                Vector<IDER1NHelper> der1NList2 = iIndexDEHelper.GetDER1Ns();
                 if (der1NList2.size() <= 0) continue;
                 ITabViewPageConfigPublisher iTabViewPageConfigPublisher3 = this.getTabViewPageConfigPublisher("DER1N");
                 for (IDER1NHelper der1NHelper : der1NList2) {
@@ -144,7 +144,7 @@ implements ITabViewConfigPublisherContext {
                     iTabViewPageConfigPublisher3.Publish(tabViewPageConfigPublishContext);
                 }
             }
-            Vector summaryPageHelperList = iDEHelper.GetSummaryPages();
+            Vector<ISummaryPageHelper> summaryPageHelperList = iDEHelper.GetSummaryPages();
             if (summaryPageHelperList.size() > 0) {
                 iTabViewPageConfigPublisher = this.getTabViewPageConfigPublisher("SUMMARYPAGE");
                 for (ISummaryPageHelper ISummaryPageHelper2 : summaryPageHelperList) {
@@ -213,7 +213,7 @@ implements ITabViewConfigPublisherContext {
 
     protected void OnPublishDERGroup(TabViewPageConfigPublishContext tabViewPageConfigPublishContext, String strDERGroupId) throws Exception {
         IDERGroupHelper iDERGroupHelper = tabViewPageConfigPublishContext.getDEHelper().FindDERGroup(strDERGroupId);
-        Vector derGroupDetails = iDERGroupHelper.getDetails();
+        Vector<IDERGroupDetailHelper> derGroupDetails = iDERGroupHelper.getDetails();
         for (IDERGroupDetailHelper derGroupDetailHelper : derGroupDetails) {
             ITabViewPageConfigPublisher iTabViewPageConfigPublisher;
             String strDetailType = derGroupDetailHelper.getDetailType();
@@ -300,4 +300,3 @@ implements ITabViewConfigPublisherContext {
         return (ITabViewPageConfigPublisher)objTabViewPageConfigPublisher;
     }
 }
-

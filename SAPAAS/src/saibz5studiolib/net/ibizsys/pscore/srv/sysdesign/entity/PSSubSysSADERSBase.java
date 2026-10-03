@@ -2117,7 +2117,7 @@ implements Serializable {
                 PSSubSysSADE pSSubSysSADE = new PSSubSysSADE();
                 pSSubSysSADE.setPSSubSysSADEId(this.getCPSSubSysSADEId());
                 PSSubSysSADEService pSSubSysSADEService = (PSSubSysSADEService)ServiceGlobal.getService(PSSubSysSADEService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysSADEService.autoGet((IEntity)pSSubSysSADE);
+                pSSubSysSADEService.autoGet(pSSubSysSADE);
                 this.cpssubsyssade = pSSubSysSADE;
             }
             return this.cpssubsyssade;
@@ -2143,7 +2143,7 @@ implements Serializable {
                 PSSubSysSADE pSSubSysSADE = new PSSubSysSADE();
                 pSSubSysSADE.setPSSubSysSADEId(this.getPPSSubSysSADEId());
                 PSSubSysSADEService pSSubSysSADEService = (PSSubSysSADEService)ServiceGlobal.getService(PSSubSysSADEService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysSADEService.autoGet((IEntity)pSSubSysSADE);
+                pSSubSysSADEService.autoGet(pSSubSysSADE);
                 this.ppssubsyssade = pSSubSysSADE;
             }
             return this.ppssubsyssade;
@@ -2169,7 +2169,7 @@ implements Serializable {
                 PSSubSysServiceAPI pSSubSysServiceAPI = new PSSubSysServiceAPI();
                 pSSubSysServiceAPI.setPSSubSysServiceAPIId(this.getPSSubSysServiceAPIId());
                 PSSubSysServiceAPIService pSSubSysServiceAPIService = (PSSubSysServiceAPIService)ServiceGlobal.getService(PSSubSysServiceAPIService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysServiceAPIService.autoGet((IEntity)pSSubSysServiceAPI);
+                pSSubSysServiceAPIService.autoGet(pSSubSysServiceAPI);
                 this.pssubsysserviceapi = pSSubSysServiceAPI;
             }
             return this.pssubsysserviceapi;

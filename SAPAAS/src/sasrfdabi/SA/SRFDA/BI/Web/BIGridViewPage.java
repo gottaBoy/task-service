@@ -302,11 +302,11 @@ extends BaseMainPage {
                     }
                     DataGridThemeGroupConfig systemGroupConfig = new DataGridThemeGroupConfig();
                     systemGroupConfig.setGroupName(this.GetLocalization("PAGE.COMMON.GRIDVIEW.THEMELIST.SYSTEMVIEW", "\u7cfb\u7edf\u89c6\u56fe"));
-                    this.dataGridThemeList.getDataGridThemeListConfig().GetDataGridThemeGroupsConfig().add((Object)systemGroupConfig);
+                    this.dataGridThemeList.getDataGridThemeListConfig().GetDataGridThemeGroupsConfig().add(systemGroupConfig);
                     DataGridThemeGroupConfig userGroupConfig = new DataGridThemeGroupConfig();
                     userGroupConfig.setGroupName(this.GetLocalization("PAGE.COMMON.GRIDVIEW.THEMELIST.USERVIEW", "\u6211\u7684\u89c6\u56fe"));
                     if (this.bCustomTheme) {
-                        this.dataGridThemeList.getDataGridThemeListConfig().GetDataGridThemeGroupsConfig().add((Object)userGroupConfig);
+                        this.dataGridThemeList.getDataGridThemeListConfig().GetDataGridThemeGroupsConfig().add(userGroupConfig);
                     }
                     for (DataGrid dataGrid : this.list) {
                         String strDataGridId = dataGrid.getDATAGRIDID();
@@ -320,14 +320,14 @@ extends BaseMainPage {
                             dataGridThemeConfig.setActive(false);
                         }
                         if (StringHelper.IsNullOrEmpty((String)dataGrid.getOWNERID())) {
-                            systemGroupConfig.add((Object)dataGridThemeConfig);
+                            systemGroupConfig.add(dataGridThemeConfig);
                             continue;
                         }
                         if (this.bCustomTheme) {
-                            userGroupConfig.add((Object)dataGridThemeConfig);
+                            userGroupConfig.add(dataGridThemeConfig);
                             continue;
                         }
-                        systemGroupConfig.add((Object)dataGridThemeConfig);
+                        systemGroupConfig.add(dataGridThemeConfig);
                     }
                     this.dataGridThemeList.getDataGridThemeListConfig().setMgrJSCode("$P.mainview.dgthememgr();");
                 }

@@ -8,5 +8,8 @@ import net.ibizsys.pscore.srv.aidesign.demodel.PSSysAIWorkerAgentDEModelBase;
 public class PSSysAIWorkerAgentDEModel
 extends PSSysAIWorkerAgentDEModelBase {
     private static final long serialVersionUID = -1L;
-}
 
+    public PSSysAIWorkerAgentDEModel() throws Exception {
+        super();
+    }
+}

@@ -27,7 +27,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -167,13 +166,13 @@ implements IDBRawProcCaller3 {
                 dbResult.setErrorInfo("\u6253\u5f00\u6570\u636e\u5e93\u8fde\u63a5\u5931\u8d25");
                 return dbResult;
             }
-            Statement cstmt = null;
-            if (nTimeOut > 0) {
-                cstmt.setQueryTimeout(nTimeOut);
-            }
+            PreparedStatement cstmt = null;
             try {
                 try {
                     cstmt = DB2Conn.prepareStatement(strCommand);
+                    if (nTimeOut > 0) {
+                        cstmt.setQueryTimeout(nTimeOut);
+                    }
                     if (list != null) {
                         int i = 0;
                         while (i < list.size()) {
@@ -259,4 +258,3 @@ implements IDBRawProcCaller3 {
         return this.Invoke3(strCommand, list, -1);
     }
 }
-

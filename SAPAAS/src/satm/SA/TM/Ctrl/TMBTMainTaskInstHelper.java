@@ -71,7 +71,7 @@ implements ITMBTMainTaskInstHelper {
         CallParamList callParamList = new CallParamList();
         callParamList.Add((Object)this.getId());
         String strSQL = "select t1.* FROM SRFV_TMBTTASK t1 where t1.TMBOOKINGTESTID =? ORDER BY t1.TASKSN ";
-        Vector tmBTTasks = new Vector();
+        Vector<TMBTTask> tmBTTasks = new Vector<TMBTTask>();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getDAGlobalHelper(), null, (String)this.getDBStorage(), (String)strSQL, (Vector)callParamList.GetList(), tmBTTasks, (String)TMBTTask.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8bd5\u7b97\u4efb\u52a1\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -150,4 +150,3 @@ implements ITMBTMainTaskInstHelper {
         return this.iTMBTPRJInstHelper;
     }
 }
-

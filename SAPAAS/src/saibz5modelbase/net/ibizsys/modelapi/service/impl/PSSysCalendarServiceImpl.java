@@ -168,7 +168,7 @@ implements IPSSysCalendarService {
     @Override
     protected List<PSSysCalendar> onListAll() throws Exception {
         ArrayList<PSSysCalendar> list = new ArrayList<PSSysCalendar>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSSysCalendar> items = this.listByPSDataEntity(parent);
@@ -513,18 +513,19 @@ implements IPSSysCalendarService {
         } else {
             dto.setQuickPSDEToolbarName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSSysCalendarItemService().listByPSSysCalendar(t);
-        if (list != null && list.size() > 0) {
+        List<PSSysCalendarItem> pSSysCalendarItemList = PSModelServiceUtil.getInstance().getPSSysCalendarItemService().listByPSSysCalendar(t);
+        if (pSSysCalendarItemList != null && pSSysCalendarItemList.size() > 0) {
             ArrayList<PSSysCalendarItemDTO> pssyscalendaritems = new ArrayList<PSSysCalendarItemDTO>();
-            for (PSSysCalendarItem pSSysCalendarItem : list) {
+            for (PSSysCalendarItem pSSysCalendarItem : pSSysCalendarItemList) {
                 dstItem = (PSSysCalendarItemDTO)PSModelServiceUtil.getInstance().getPSSysCalendarItemService().toDTO(pSSysCalendarItem);
                 pssyscalendaritems.add((PSSysCalendarItemDTO)dstItem);
             }
             dto.setPssyscalendaritems(pssyscalendaritems);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSSysCalendarLogicService().listByPSSysCalendar(t)) != null && list.size() > 0) {
+        List<PSSysCalendarLogic> pSSysCalendarLogicList = PSModelServiceUtil.getInstance().getPSSysCalendarLogicService().listByPSSysCalendar(t);
+        if (pSSysCalendarLogicList != null && pSSysCalendarLogicList.size() > 0) {
             ArrayList<PSSysCalendarLogicDTO> pssyscalendarlogics = new ArrayList<PSSysCalendarLogicDTO>();
-            for (PSSysCalendarLogic pSSysCalendarLogic : list) {
+            for (PSSysCalendarLogic pSSysCalendarLogic : pSSysCalendarLogicList) {
                 dstItem = (PSSysCalendarLogicDTO)PSModelServiceUtil.getInstance().getPSSysCalendarLogicService().toDTO(pSSysCalendarLogic);
                 pssyscalendarlogics.add((PSSysCalendarLogicDTO)dstItem);
             }

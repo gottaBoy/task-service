@@ -35,9 +35,9 @@ extends PSStudioCLIHelperBase {
 
     @Override
     protected void registerDefault() {
-        this.registerDCCmdDataItems(CMD_DEVSLN_CREATE, new PSStudioCLIHelperBase.CLIDataItem[]{new PSStudioCLIHelperBase.CLIDataItem(this, "codename", "CODENAME", true, null), new PSStudioCLIHelperBase.CLIDataItem(this, "name", "PSDEVSLNNAME", true, null), new PSStudioCLIHelperBase.CLIDataItem(this, "memo", "MEMO", false, null)});
-        this.registerDCCmdDataItems(CMD_DEVSLN_ASSIGNWORKSPACE, new PSStudioCLIHelperBase.CLIDataItem[]{new PSStudioCLIHelperBase.CLIDataItem(this, "workspace", "PSDCWORKSPACEID", true, null)});
-        this.registerSlnCmdDataItems(CMD_DEVSLN_UPDATE, new PSStudioCLIHelperBase.CLIDataItem[]{new PSStudioCLIHelperBase.CLIDataItem(this, "name", "PSDEVSLNNAME", true, null), new PSStudioCLIHelperBase.CLIDataItem(this, "memo", "MEMO", false, null)});
+        this.registerDCCmdDataItems(CMD_DEVSLN_CREATE, new PSStudioCLIHelperBase.CLIDataItem[]{new CLIDataItem("codename", "CODENAME", true, null), new CLIDataItem("name", "PSDEVSLNNAME", true, null), new CLIDataItem("memo", "MEMO", false, null)});
+        this.registerDCCmdDataItems(CMD_DEVSLN_ASSIGNWORKSPACE, new PSStudioCLIHelperBase.CLIDataItem[]{new CLIDataItem("workspace", "PSDCWORKSPACEID", true, null)});
+        this.registerSlnCmdDataItems(CMD_DEVSLN_UPDATE, new PSStudioCLIHelperBase.CLIDataItem[]{new CLIDataItem("name", "PSDEVSLNNAME", true, null), new CLIDataItem("memo", "MEMO", false, null)});
         super.registerDefault();
     }
 
@@ -52,7 +52,7 @@ extends PSStudioCLIHelperBase {
             psDevSln.setPSDevCenterName(psTaskServerCmd.getPSDEVCENTERNAME());
             PSDevSlnService psDevSlnService = (PSDevSlnService)ServiceGlobal.getService(PSDevSlnService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             try {
-                psDevSlnService.create((IEntity)psDevSln);
+                psDevSlnService.create(psDevSln);
             }
             catch (Exception ex) {
                 throw new Exception(String.format("\u5efa\u7acb\u5f00\u53d1\u65b9\u6848\u53d1\u751f\u5f02\u5e38\uff0c%1$s", ex.getMessage()));
@@ -73,11 +73,11 @@ extends PSStudioCLIHelperBase {
         try {
             psDCWorkspace.setPSDevCenterId(psTaskServerCmd.getPSDEVCENTERID());
             psDCWorkspace.setPSDCWorkspaceId(strPSDCWorkspaceName);
-            if (!psDCWorkspaceService.select((IEntity)psDCWorkspace, true)) {
+            if (!psDCWorkspaceService.select(psDCWorkspace, true)) {
                 psDCWorkspace.reset();
                 psDCWorkspace.setPSDevCenterId(psTaskServerCmd.getPSDEVCENTERID());
                 psDCWorkspace.setPSDCWorkspaceName(strPSDCWorkspaceName);
-                if (!psDCWorkspaceService.select((IEntity)psDCWorkspace, true)) {
+                if (!psDCWorkspaceService.select(psDCWorkspace, true)) {
                     throw new Exception("\u6570\u636e\u4e0d\u5b58\u5728");
                 }
             }
@@ -97,4 +97,3 @@ extends PSStudioCLIHelperBase {
         }
     }
 }
-

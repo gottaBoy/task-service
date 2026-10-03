@@ -1,11 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.der;
 
-import net.ibizsys.model.der.IPSDER1N;
+/**
+ * 实体1:1关系对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDER11 extends IPSDER1N
+{
 
-public interface IPSDER11
-extends IPSDER1N {
+	
 }
-

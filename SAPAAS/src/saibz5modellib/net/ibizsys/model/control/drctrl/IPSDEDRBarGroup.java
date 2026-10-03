@@ -1,27 +1,63 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.drctrl;
 
-import java.util.Iterator;
-import net.ibizsys.model.control.drctrl.IPSDEDRBar;
-import net.ibizsys.model.control.drctrl.IPSDEDRBarItem;
 import net.ibizsys.model.core.IPSModelObject;
 import net.ibizsys.model.dataentity.dr.IPSDEDRGroup;
 import net.ibizsys.model.res.IPSLanguageRes;
 
-public interface IPSDEDRBarGroup
-extends IPSModelObject {
-    public IPSDEDRBar getPSDEDRBar();
 
-    public String getCaption();
+/**
+ * 实体数据关系栏分组对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEDRBarGroup extends IPSModelObject
+{
 
-    public Iterator<IPSDEDRBarItem> getPSDEDRBarItems();
+	
+	
+	/**
+	 * 实体数据关系栏对象
+	 * @return
+	 */
+	IPSDEDRBar getPSDEDRBar();
+	
+	/**
+	 * 获取标题
+	 * @return
+	 */
+	String getCaption();
 
-    public IPSDEDRGroup getPSDEDRGroup();
-
-    public boolean isHidden();
-
-    public IPSLanguageRes getCapPSLanguageRes();
+	
+	
+	
+	/**
+	 * 获取分组项
+	 * @return
+	 */
+	java.util.Iterator<IPSDEDRBarItem> getPSDEDRBarItems();
+	
+	
+	
+	
+	
+	/**
+	 * 获取实体关系分组对象
+	 * @return
+	 */
+	IPSDEDRGroup getPSDEDRGroup();
+	
+	
+	
+	/**
+	 * 是否为隐藏分组
+	 * @return
+	 */
+	boolean isHidden();
+	
+	
+	/**
+	 * 获取标题语言资源
+	 * @return
+	 */
+	IPSLanguageRes getCapPSLanguageRes();
 }
-

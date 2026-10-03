@@ -92,7 +92,7 @@ implements IIMRemoteAction {
         }
         this.setAction(strAction);
         this.setRemoteAddress(webContext.getRemoteAddr());
-        Hashtable params = webContext.GetParams();
+        Hashtable<String, String> params = webContext.GetParams();
         for (String strKey : params.keySet()) {
             if (StringHelper.Compare((String)strKey, (String)"IMACTION", (boolean)true) == 0) continue;
             if (StringHelper.Compare((String)"SERVERID", (String)strKey, (boolean)true) == 0) {
@@ -129,4 +129,3 @@ implements IIMRemoteAction {
         return this.getParam("SERVERID", "");
     }
 }
-

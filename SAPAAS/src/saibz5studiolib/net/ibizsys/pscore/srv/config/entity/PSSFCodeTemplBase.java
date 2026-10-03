@@ -1265,7 +1265,7 @@ implements Serializable {
                 PSSFCodeType pSSFCodeType = new PSSFCodeType();
                 pSSFCodeType.setPSSFCodeTypeId(this.getPSSFCodeTypeId());
                 PSSFCodeTypeService pSSFCodeTypeService = (PSSFCodeTypeService)ServiceGlobal.getService(PSSFCodeTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSSFCodeTypeService.autoGet((IEntity)pSSFCodeType);
+                pSSFCodeTypeService.autoGet(pSSFCodeType);
                 this.pssfcodetype = pSSFCodeType;
             }
             return this.pssfcodetype;

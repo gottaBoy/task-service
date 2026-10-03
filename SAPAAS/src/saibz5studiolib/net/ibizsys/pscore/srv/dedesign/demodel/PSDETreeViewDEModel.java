@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDETreeViewDEModelBase;
 
 public class PSDETreeViewDEModel
 extends PSDETreeViewDEModelBase {
+
+    public PSDETreeViewDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

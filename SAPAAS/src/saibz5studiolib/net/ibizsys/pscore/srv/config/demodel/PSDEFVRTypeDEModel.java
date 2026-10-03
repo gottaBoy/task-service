@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSDEFVRTypeDEModelBase;
 
 public class PSDEFVRTypeDEModel
 extends PSDEFVRTypeDEModelBase {
+
+    public PSDEFVRTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

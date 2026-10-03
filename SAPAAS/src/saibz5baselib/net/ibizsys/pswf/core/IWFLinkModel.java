@@ -1,49 +1,158 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFVersionModel;
-
+/**
+ * 流程连接模型
+ * 
+ * @author lionlau
+ *
+ */
 public interface IWFLinkModel {
-    public static final String Timeout = "TIMEOUT";
-    public static final String IAAction = "IAACTION";
-    public static final String Route = "ROUTE";
-    public static final String WFReturn = "WFRETURN";
-    public static final int THREADLINKMODE_NONE = 0;
-    public static final int THREADLINKMODE_MAJOR = 1;
-    public static final int THREADLINKMODE_MINOR = 2;
 
-    public void init(IWFVersionModel var1) throws Exception;
+	/**
+	 * 超时连接
+	 */
+	public final static String Timeout = "TIMEOUT";
 
-    public String getId();
+	/**
+	 * 交互连接
+	 */
+	public final static String IAAction = "IAACTION";
 
-    public String getName();
+	/**
+	 * 常规连接
+	 */
+	public final static String Route = "ROUTE";
 
-    public String getLogicName();
+	/**
+	 * 嵌入流程提交
+	 */
+	public final static String WFReturn = "WFRETURN";
 
-    public String getLNLanResTag();
+	/**
+	 * 业务连接模式：无
+	 */
+	final int THREADLINKMODE_NONE = 0;
 
-    public IWFVersionModel getWFVersionModel();
+	/**
+	 * 业务连接模式：主线
+	 */
+	final int THREADLINKMODE_MAJOR = 1;
 
-    public String getNext();
+	/**
+	 * 业务连接模式：从线
+	 */
+	final int THREADLINKMODE_MINOR = 2;
 
-    public String getFrom();
+	/**
+	 * 初始化
+	 * 
+	 * @param iWFVersionModel
+	 * @throws Exception
+	 */
+	void init(IWFVersionModel iWFVersionModel) throws Exception;
 
-    public String getSrcEndPoint();
+	/**
+	 * 获取标识
+	 * 
+	 * @return
+	 */
+	String getId();
 
-    public String getDstEndPoint();
+	/**
+	 * 获取名称
+	 * 
+	 * @return
+	 */
+	String getName();
 
-    public String getUserData();
+	/**
+	 * 获取逻辑名称
+	 * 
+	 * @return
+	 */
+	String getLogicName();
 
-    public String getUserData2();
+	/**
+	 * 获取逻辑名称的语言资源标记
+	 * 
+	 * @return
+	 */
+	String getLNLanResTag();
 
-    public String getThreadShowName();
+	/**
+	 * 获取版本模型对象
+	 * 
+	 * @return
+	 */
+	IWFVersionModel getWFVersionModel();
 
-    public int getThreadLinkMode();
+	/**
+	 * 获取连接到目标标识
+	 * 
+	 * @return
+	 */
+	String getNext();
 
-    public String getBPMNModelId();
+	/**
+	 * 获取源点
+	 * 
+	 * @return
+	 */
+	String getFrom();
 
-    public String getNextCondition();
+	/**
+	 * 获取源端点
+	 * 
+	 * @return
+	 */
+	String getSrcEndPoint();
+
+	/**
+	 * 获取目标端点
+	 * 
+	 * @return
+	 */
+	String getDstEndPoint();
+
+	/**
+	 * 获取用户数据
+	 * 
+	 * @return
+	 */
+	String getUserData();
+
+	/**
+	 * 获取用户数据2
+	 * 
+	 * @return
+	 */
+	String getUserData2();
+
+	/**
+	 * 获取流程主线节点显示名称
+	 * 
+	 * @return
+	 */
+	String getThreadShowName();
+
+	/**
+	 * 是否为业务流程主线
+	 * 
+	 * @return
+	 */
+	int getThreadLinkMode();
+
+	/**
+	 * 获取标准业务流程模型标识
+	 * 
+	 * @return
+	 */
+	String getBPMNModelId();
+
+	/**
+	 * 获取下一步的条件
+	 * 
+	 * @return
+	 */
+	String getNextCondition();
 }
-

@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDEGCType> {
     }
 
     protected void onFillParentInfo(PSDEGCType pSDEGCType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDEGCType, string, string2, string3);
+        super.onFillParentInfo(pSDEGCType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDEGCType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEGCType, bl);
+        super.onFillEntityFullInfo(pSDEGCType, bl);
     }
 
     protected void onWriteBackParent(PSDEGCType pSDEGCType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEGCType, bl);
+        super.onWriteBackParent(pSDEGCType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDEGCType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEGCType pSDEGCType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEGCType, bl);
+        super.onRemoveEntityUncopyValues(pSDEGCType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEGCType pSDEGCType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSDEGCType> {
         if ((entityFieldError = this.onCheckField_TreeColumnObj(bl, pSDEGCType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEGCType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEGCType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_COLUMNOBJ(boolean bl, PSDEGCType pSDEGCType, boolean bl2, boolean bl3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSDEGCType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_COLUMNOBJ_Default((IEntity)pSDEGCType, bl2, bl3);
+            string2 = this.onTestValueRule_COLUMNOBJ_Default(pSDEGCType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("COLUMNOBJ");
@@ -199,7 +199,7 @@ extends PSCoreSysServiceBase<PSDEGCType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEGCType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEGCType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSDEGCType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEGCTypeId_Default((IEntity)pSDEGCType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEGCTypeId_Default(pSDEGCType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEGCTYPEID");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSDEGCType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEGCTypeName_Default((IEntity)pSDEGCType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEGCTypeName_Default(pSDEGCType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEGCTYPENAME");
@@ -271,7 +271,7 @@ extends PSCoreSysServiceBase<PSDEGCType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TreeColumnObj_Default((IEntity)pSDEGCType, bl2, bl3);
+            string2 = this.onTestValueRule_TreeColumnObj_Default(pSDEGCType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TREECOLUMNOBJ");
@@ -284,11 +284,11 @@ extends PSCoreSysServiceBase<PSDEGCType> {
     }
 
     protected void onSyncEntity(PSDEGCType pSDEGCType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEGCType, bl);
+        super.onSyncEntity(pSDEGCType, bl);
     }
 
     protected void onSyncIndexEntities(PSDEGCType pSDEGCType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEGCType, bl);
+        super.onSyncIndexEntities(pSDEGCType, bl);
     }
 
     public Object getDataContextValue(PSDEGCType pSDEGCType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -296,14 +296,14 @@ extends PSCoreSysServiceBase<PSDEGCType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEGCType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEGCType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEGCType pSDEGCType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEGCType, arrayList, n);
+        super.onExportMajorModel(pSDEGCType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -431,14 +431,14 @@ extends PSCoreSysServiceBase<PSDEGCType> {
 
     protected boolean onMergeChild(String string, String string2, PSDEGCType pSDEGCType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEGCType)) {
+        if (super.onMergeChild(string, string2, pSDEGCType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEGCType pSDEGCType) throws Exception {
-        super.onUpdateParent((IEntity)pSDEGCType);
+        super.onUpdateParent(pSDEGCType);
     }
 
     @Override

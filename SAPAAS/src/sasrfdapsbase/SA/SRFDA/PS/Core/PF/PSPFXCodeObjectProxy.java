@@ -116,7 +116,12 @@ implements IPSPFXCodeObject {
             if (!codeNameMap.containsKey(strCodeType.toUpperCase())) break block6;
             return false;
         }
-        return this.getPSSysPFPlugin().hasCode(strCodeType);
+        try {
+            return this.getPSSysPFPlugin().hasCode(strCodeType);
+        }
+        catch (Exception ex) {
+            return false;
+        }
     }
 
     @Override

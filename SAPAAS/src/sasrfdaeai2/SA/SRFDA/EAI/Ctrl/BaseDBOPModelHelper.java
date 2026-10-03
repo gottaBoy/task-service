@@ -164,7 +164,7 @@ implements IDBOPModelHelper {
 
     @Override
     public CallResult GetDBOPSysParams(String strDBOPSettingId, Vector<DBOPPKGParam> list) {
-        Vector tempList = new Vector();
+        Vector<DBOPSysParam> tempList = new Vector<DBOPSysParam>();
         CallResult callResult = this.SelectMulti(this.GetSQL_GetDBOPSysParams(strDBOPSettingId), tempList, DBOPSysParam.class, "SYSTEM");
         if (callResult.IsOk()) {
             for (DBOPSysParam param : tempList) {
@@ -190,4 +190,3 @@ implements IDBOPModelHelper {
         return StringHelper.Format((String)"select t1.* from T_SRFEAIDBOPPKGPARAM t1 where t1.eaidboppkgid='%1$s'", (Object)strDBOPPkgId);
     }
 }
-

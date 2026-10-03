@@ -742,69 +742,61 @@ IIMStateServerContext {
         }
     }
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     * Unable to fully structure code
-     */
     protected void OnDispatchMessage() {
-        imUserSessionInstanceList = new Vector<Object>();
-        block15: while (true) {
-            imMessageBase = null;
-            bImmediately = false;
-            var4_4 = this.imMessageList2;
-            synchronized (var4_4) {
+        Vector<IIMUserSessionInstance> imUserSessionInstanceList = new Vector<IIMUserSessionInstance>();
+        while (true) {
+            IMMessageBase imMessageBase = null;
+            boolean bImmediately = false;
+            synchronized (this.imMessageList2) {
                 if (this.imMessageList2.size() > 0) {
                     imMessageBase = this.imMessageList2.remove(0);
                     bImmediately = true;
                 }
             }
             if (imMessageBase == null) {
-                var4_4 = this.imMessageList;
-                synchronized (var4_4) {
+                synchronized (this.imMessageList) {
                     if (this.imMessageList.size() > 0) {
                         imMessageBase = this.imMessageList.remove(0);
                         bImmediately = false;
                     }
                 }
             }
-            if (imMessageBase == null) break;
+
+            if (imMessageBase == null) {
+                return;
+            }
+
             imUserSessionInstanceList.clear();
             if (imMessageBase.getMsgTargetType() == 2) {
-                imUserSessionInstance = null;
-                var5_5 = this.imUserSessionInstanceMap;
-                synchronized (var5_5) {
+                IIMUserSessionInstance imUserSessionInstance = null;
+                synchronized (this.imUserSessionInstanceMap) {
                     imUserSessionInstance = this.imUserSessionInstanceMap.get(imMessageBase.getMsgTarget());
                 }
                 if (imUserSessionInstance != null) {
                     imUserSessionInstanceList.add(imUserSessionInstance);
                 }
             } else if (imMessageBase.getMsgTargetType() == 1) {
-                imUserSessionInstance = this.imUserSessionInstanceMap;
-                synchronized (imUserSessionInstance) {
-                    for (IIMUserSessionInstance imUserSessionInstance : this.imUserSessionInstanceMap.values()) {
-                        imUserSessionInstanceList.add(imUserSessionInstance);
+                synchronized (this.imUserSessionInstanceMap) {
+                    for (IIMUserSessionInstance item : this.imUserSessionInstanceMap.values()) {
+                        imUserSessionInstanceList.add(item);
                     }
                 }
             } else if (imMessageBase.getMsgTargetType() == 3) {
-                imUserSessionInstance = this.imUserSessionInstanceMap;
-                synchronized (imUserSessionInstance) {
-                    for (IIMUserSessionInstance imUserSessionInstance : this.imUserSessionInstanceMap.values()) {
-                        if (StringHelper.Compare((String)imUserSessionInstance.getUserId(), (String)imMessageBase.getMsgTarget(), (boolean)true) == 0) continue;
-                        imUserSessionInstanceList.add(imUserSessionInstance);
+                synchronized (this.imUserSessionInstanceMap) {
+                    for (IIMUserSessionInstance item : this.imUserSessionInstanceMap.values()) {
+                        if (StringHelper.Compare((String)item.getUserId(), (String)imMessageBase.getMsgTarget(), (boolean)true) != 0) {
+                            imUserSessionInstanceList.add(item);
+                        }
                     }
                 }
             } else {
                 IMStateServerInstance.log.error((Object)StringHelper.Format((String)"\u672a\u77e5\u7684\u6d88\u606f\u76ee\u6807\u7c7b\u578b[%1$s]", (Object)imMessageBase.getMsgTargetType()));
                 continue;
             }
-            var5_5 = imUserSessionInstanceList.iterator();
-            while (true) {
-                if (var5_5.hasNext()) ** break;
-                continue block15;
-                imUserSessionInstance = (IIMUserSessionInstance)var5_5.next();
+
+            for (IIMUserSessionInstance imUserSessionInstance : imUserSessionInstanceList) {
                 imUserSessionInstance.AddMessageToQueue(imMessageBase, bImmediately);
             }
-            break;
         }
     }
 
@@ -1238,4 +1230,3 @@ IIMStateServerContext {
         }
     }
 }
-

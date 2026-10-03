@@ -31,7 +31,7 @@ extends SRFDAPageEx {
                 return "";
             }
             BaseDataEntity dataEntity = new BaseDataEntity();
-            Vector list = new Vector();
+            Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
             CallResult callResult = iDataCtrl.Select(dataEntity, list);
             if (callResult.IsError()) {
                 this.PageLog((Object)this, 1, StringHelper.Format((String)"\u67e5\u8be2\u5de5\u4f5c\u65f6\u95f4\u5931\u8d25\uff0c %1$s", (Object)callResult.getErrorInfo()));

@@ -77,7 +77,7 @@ implements IPSWFDEService {
     @Override
     protected List<PSWFDE> onListAll() throws Exception {
         ArrayList<PSWFDE> list = new ArrayList<PSWFDE>();
-        List psworkflows = PSModelServiceUtil.getInstance().getPSWorkflowService().listAll();
+        List<PSWorkflow> psworkflows = PSModelServiceUtil.getInstance().getPSWorkflowService().listAll();
         if (psworkflows != null) {
             for (PSWorkflow parent : psworkflows) {
                 List<PSWFDE> items = this.listByPSWorkflow(parent);

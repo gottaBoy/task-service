@@ -1,51 +1,161 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.menu;
 
-import net.ibizsys.paas.control.menu.IMenuItemFiller;
-
+/**
+ * 菜单项接口
+ * 
+ * @author lionlau
+ *
+ */
 public interface IMenuItem {
-    public static final String MENUITEMTYPE_SEPERATOR = "SEPERATOR";
-    public static final String MENUITEMTYPE_MENUITEM = "MENUITEM";
-    public static final String MENUITEMTYPE_USERITEM = "USERITEM";
+	/**
+	 * 菜单项类型：分割项
+	 */
+	public final static String MENUITEMTYPE_SEPERATOR = "SEPERATOR";
 
-    public String getItemType();
+	/**
+	 * 菜单项类型：菜单项
+	 */
+	public final static String MENUITEMTYPE_MENUITEM = "MENUITEM";
 
-    public String getId();
+	/**
+	 * 菜单项类型：用户自定义项
+	 */
+	public final static String MENUITEMTYPE_USERITEM = "USERITEM";
 
-    public String getPId();
+	/**
+	 * 获取菜单项类型，值参考 net.ibizsys.paas.control.menu.IMenuItem.MENUITEMTYPE_XXX 定义
+	 * 
+	 * @return
+	 */
+	String getItemType();
 
-    public String getText();
+	/**
+	 * 获取标识
+	 * 
+	 * @return
+	 */
+	String getId();
 
-    public boolean isExpanded();
+	/**
+	 * 获取父标识
+	 * 
+	 * @return
+	 */
+	String getPId();
 
-    public String getTextCls();
+	/**
+	 * 获取文本
+	 * 
+	 * @return
+	 */
+	String getText();
 
-    public String getIconCls();
+	/**
+	 * 是否展开
+	 * 
+	 * @return
+	 */
+	boolean isExpanded();
 
-    public String getIconPath();
+	/**
+	 * 获取文本样式
+	 * 
+	 * @return
+	 */
+	String getTextCls();
 
-    public String getCounterId();
+	/**
+	 * 获取图标样式
+	 * 
+	 * @return
+	 */
+	String getIconCls();
 
-    public void setAttribute(String var1, Object var2);
+	/**
+	 * 获取图标路径
+	 * 
+	 * @return
+	 */
+	String getIconPath();
 
-    public Object getAttribute(String var1);
+	/**
+	 * 获取计数器标识
+	 * 
+	 * @return
+	 */
+	String getCounterId();
 
-    public int getAccUserMode();
+	/**
+	 * 设置属性
+	 * 
+	 * @param strName
+	 * @param objValue
+	 */
+	void setAttribute(String strName, Object objValue);
 
-    public String getAccessKey();
+	/**
+	 * 获取属性
+	 * 
+	 * @param strName
+	 * @return
+	 */
+	Object getAttribute(String strName);
 
-    public String getTextLanResTag();
+	/**
+	 * 获取功能访问模式
+	 * 
+	 * @return
+	 */
+	int getAccUserMode();
 
-    public String getTooltip();
+	/**
+	 * 获取功能访问资源标识
+	 * 
+	 * @return
+	 */
+	String getAccessKey();
 
-    public String getTooltipLanResTag();
-
-    public boolean isHidden();
-
-    public String getFillerObj();
-
-    public IMenuItemFiller getFiller() throws Exception;
+	
+	
+	/**
+	 * 获取文本语言资源标识
+	 * @return
+	 */
+	String getTextLanResTag();
+	
+	
+	
+	/**
+	 * 获取菜单项提示
+	 * @return
+	 */
+	String getTooltip();
+	
+	
+	/**
+	 * 获取提示语言资源标识
+	 * @return
+	 */
+	String getTooltipLanResTag();
+	
+	
+	
+	/**
+	 * 是否隐藏
+	 * @return
+	 */
+	boolean isHidden();
+	
+	
+	/**
+	 * 获取填充器对象
+	 * @return
+	 */
+	String getFillerObj();
+	
+	/**
+	 * 获取菜单项填充器
+	 * @return
+	 */
+	IMenuItemFiller getFiller() throws Exception;
 }
-

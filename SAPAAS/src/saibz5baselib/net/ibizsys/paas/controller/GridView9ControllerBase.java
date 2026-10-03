@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.GridViewControllerBase;
-
-public abstract class GridView9ControllerBase
-extends GridViewControllerBase {
+/**
+ * 嵌入表格视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class GridView9ControllerBase extends GridViewControllerBase {
+	public GridView9ControllerBase() throws Exception {
+		super();
+	}
 }
-

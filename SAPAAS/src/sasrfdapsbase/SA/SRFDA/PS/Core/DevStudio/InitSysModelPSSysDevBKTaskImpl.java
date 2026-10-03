@@ -45,7 +45,7 @@ extends PSSysDevBKTaskImplBase {
         PSSystemService psSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSystem psSystem2 = new PSSystem();
         psSystem2.setPSSystemId(this.psSysDevBKTask.getTASKPARAM());
-        psSystemService.get((IEntity)psSystem2);
+        psSystemService.get(psSystem2);
         try {
             PSCoreSysServiceBase.setCurrentPSDevSlnSysId((String)this.getPSDevSlnSysId());
             PSCoreSysServiceBase.setCurrentPSSystemId((String)psSystem2.getPSSystemId());
@@ -82,4 +82,3 @@ extends PSSysDevBKTaskImplBase {
         }
     }
 }
-

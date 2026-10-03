@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSMobAppPackSessionDEModelBase;
 
 public class PSMobAppPackSessionDEModel
 extends PSMobAppPackSessionDEModelBase {
+
+    public PSMobAppPackSessionDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

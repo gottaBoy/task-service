@@ -1,14 +1,23 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.form;
 
-import net.ibizsys.model.control.form.IPSDEFormGroupPanel;
-
-public interface IPSDEFormPage
-extends IPSDEFormGroupPanel {
-    public int getFirstLabelColSpan();
-
-    public int getPageIndex();
+/**
+ * 实体表单分页对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEFormPage extends IPSDEFormGroupPanel
+{
+	/**
+	 * 获取首列标签列合并数量
+	 * @return
+	 */
+	int getFirstLabelColSpan();
+	
+	
+	
+	/**
+	 * 获取分页次序
+	 * @return
+	 */
+	int getPageIndex();
 }
-

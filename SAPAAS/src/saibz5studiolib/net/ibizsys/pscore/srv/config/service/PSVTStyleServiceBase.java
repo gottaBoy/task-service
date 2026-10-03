@@ -136,14 +136,14 @@ extends PSCoreSysServiceBase<PSVTStyle> {
             PSViewType pSViewType = (PSViewType)iService.getDEModel().createEntity();
             pSViewType.set("PSVIEWTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSViewType);
+                iService.getTemp(pSViewType);
             } else {
-                iService.get((IEntity)pSViewType);
+                iService.get(pSViewType);
             }
             this.onFillParentInfo_PSViewType(pSVTStyle, pSViewType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSVTStyle, string, string2, string3);
+        super.onFillParentInfo(pSVTStyle, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -159,7 +159,7 @@ extends PSCoreSysServiceBase<PSVTStyle> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSVTStyle, bl);
+        super.onFillEntityFullInfo(pSVTStyle, bl);
         this.onFillEntityFullInfo_PSViewType(pSVTStyle, bl);
     }
 
@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSVTStyle> {
     }
 
     protected void onWriteBackParent(PSVTStyle pSVTStyle, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSVTStyle, bl);
+        super.onWriteBackParent(pSVTStyle, bl);
     }
 
     public ArrayList<PSVTStyle> selectByPSViewType(PSViewTypeBase pSViewTypeBase) throws Exception {
@@ -226,7 +226,7 @@ extends PSCoreSysServiceBase<PSVTStyle> {
         ArrayList<PSVTStyle> arrayList = this.selectByPSViewType(pSViewType);
         this.onBeforeRemoveByPSViewType(pSViewType, arrayList);
         for (PSVTStyle pSVTStyle : arrayList) {
-            this.remove((IEntity)pSVTStyle);
+            this.remove(pSVTStyle);
         }
         this.onAfterRemoveByPSViewType(pSViewType, arrayList);
     }
@@ -249,14 +249,14 @@ extends PSCoreSysServiceBase<PSVTStyle> {
 
     protected void replaceParentInfo(PSVTStyle pSVTStyle, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSVTStyle, cloneSession);
+        super.replaceParentInfo(pSVTStyle, cloneSession);
         if (pSVTStyle.getPSViewTypeId() != null && (iEntity = cloneSession.getEntity("PSVIEWTYPE", (Object)pSVTStyle.getPSViewTypeId())) != null) {
             this.onFillParentInfo_PSViewType(pSVTStyle, (PSViewType)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSVTStyle pSVTStyle, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSVTStyle, bl);
+        super.onRemoveEntityUncopyValues(pSVTStyle, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSVTStyle pSVTStyle, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -277,7 +277,7 @@ extends PSCoreSysServiceBase<PSVTStyle> {
         if ((entityFieldError = this.onCheckField_PSVTStyleName(bl, pSVTStyle, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSVTStyle, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSVTStyle, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_LogicName(boolean bl, PSVTStyle pSVTStyle, boolean bl2, boolean bl3) throws Exception {
@@ -293,7 +293,7 @@ extends PSCoreSysServiceBase<PSVTStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicName_Default((IEntity)pSVTStyle, bl2, bl3);
+            string2 = this.onTestValueRule_LogicName_Default(pSVTStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNAME");
@@ -315,7 +315,7 @@ extends PSCoreSysServiceBase<PSVTStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSVTStyle, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSVTStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -340,7 +340,7 @@ extends PSCoreSysServiceBase<PSVTStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewTypeId_Default((IEntity)pSVTStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewTypeId_Default(pSVTStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWTYPEID");
@@ -365,7 +365,7 @@ extends PSCoreSysServiceBase<PSVTStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSVTStyleId_Default((IEntity)pSVTStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSVTStyleId_Default(pSVTStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVTSTYLEID");
@@ -390,7 +390,7 @@ extends PSCoreSysServiceBase<PSVTStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSVTStyleName_Default((IEntity)pSVTStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSVTStyleName_Default(pSVTStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVTSTYLENAME");
@@ -403,11 +403,11 @@ extends PSCoreSysServiceBase<PSVTStyle> {
     }
 
     protected void onSyncEntity(PSVTStyle pSVTStyle, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSVTStyle, bl);
+        super.onSyncEntity(pSVTStyle, bl);
     }
 
     protected void onSyncIndexEntities(PSVTStyle pSVTStyle, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSVTStyle, bl);
+        super.onSyncIndexEntities(pSVTStyle, bl);
     }
 
     public Object getDataContextValue(PSVTStyle pSVTStyle, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -415,14 +415,14 @@ extends PSCoreSysServiceBase<PSVTStyle> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSVTStyle, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSVTStyle, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSVTStyle pSVTStyle, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSVTStyle, arrayList, n);
+        super.onExportMajorModel(pSVTStyle, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -565,14 +565,14 @@ extends PSCoreSysServiceBase<PSVTStyle> {
 
     protected boolean onMergeChild(String string, String string2, PSVTStyle pSVTStyle) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSVTStyle)) {
+        if (super.onMergeChild(string, string2, pSVTStyle)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSVTStyle pSVTStyle) throws Exception {
-        super.onUpdateParent((IEntity)pSVTStyle);
+        super.onUpdateParent(pSVTStyle);
     }
 
     @Override

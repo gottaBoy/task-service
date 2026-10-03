@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEFIUpdateDEModelBase;
 
 public class PSDEFIUpdateDEModel
 extends PSDEFIUpdateDEModelBase {
+
+    public PSDEFIUpdateDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

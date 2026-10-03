@@ -212,9 +212,9 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSThresholdGroup, pSDataEntity);
             return;
@@ -224,9 +224,9 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSDEDataSet pSDEDataSet = (PSDEDataSet)iService.getDEModel().createEntity();
             pSDEDataSet.set("PSDEDATASETID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEDataSet);
+                iService.getTemp(pSDEDataSet);
             } else {
-                iService.get((IEntity)pSDEDataSet);
+                iService.get(pSDEDataSet);
             }
             this.onFillParentInfo_PSDEDS(pSThresholdGroup, pSDEDataSet);
             return;
@@ -236,9 +236,9 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_BeginValuePSDEF(pSThresholdGroup, pSDEField);
             return;
@@ -248,9 +248,9 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_BKColorPSDEF(pSThresholdGroup, pSDEField);
             return;
@@ -260,9 +260,9 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_ColorPSDEF(pSThresholdGroup, pSDEField);
             return;
@@ -272,9 +272,9 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_DataPSDEF(pSThresholdGroup, pSDEField);
             return;
@@ -284,9 +284,9 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_EndValuePSDEF(pSThresholdGroup, pSDEField);
             return;
@@ -296,9 +296,9 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_IconClsPSDEF(pSThresholdGroup, pSDEField);
             return;
@@ -308,9 +308,9 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_TextPSDEF(pSThresholdGroup, pSDEField);
             return;
@@ -320,9 +320,9 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSThresholdGroup, pSModule);
             return;
@@ -332,9 +332,9 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSSysDynaModel pSSysDynaModel = (PSSysDynaModel)iService.getDEModel().createEntity();
             pSSysDynaModel.set("PSSYSDYNAMODELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDynaModel);
+                iService.getTemp(pSSysDynaModel);
             } else {
-                iService.get((IEntity)pSSysDynaModel);
+                iService.get(pSSysDynaModel);
             }
             this.onFillParentInfo_PSSysDynaModel(pSThresholdGroup, pSSysDynaModel);
             return;
@@ -344,14 +344,14 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSThresholdGroup, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSThresholdGroup, string, string2, string3);
+        super.onFillParentInfo(pSThresholdGroup, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -430,7 +430,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 pSThresholdGroup.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSThresholdGroup, bl);
+        super.onFillEntityFullInfo(pSThresholdGroup, bl);
         this.onFillEntityFullInfo_PSDE(pSThresholdGroup, bl);
         this.onFillEntityFullInfo_PSDEDS(pSThresholdGroup, bl);
         this.onFillEntityFullInfo_BeginValuePSDEF(pSThresholdGroup, bl);
@@ -562,7 +562,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
     }
 
     protected void onWriteBackParent(PSThresholdGroup pSThresholdGroup, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSThresholdGroup, bl);
+        super.onWriteBackParent(pSThresholdGroup, bl);
     }
 
     public ArrayList<PSThresholdGroup> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -857,8 +857,8 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -891,7 +891,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSThresholdGroup pSThresholdGroup : arrayList) {
-            this.remove((IEntity)pSThresholdGroup);
+            this.remove(pSThresholdGroup);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -909,8 +909,8 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByPSDEDS(pSDEDataSet, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEDATASET");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEDataSet);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEDATASET_PSDEDSID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo((IEntity)pSDEDataSet), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEDataSet);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEDATASET_PSDEDSID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo(pSDEDataSet), arrayList.get(0)));
         }
     }
 
@@ -943,7 +943,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByPSDEDS(pSDEDataSet);
         this.onBeforeRemoveByPSDEDS(pSDEDataSet, arrayList);
         for (PSThresholdGroup pSThresholdGroup : arrayList) {
-            this.remove((IEntity)pSThresholdGroup);
+            this.remove(pSThresholdGroup);
         }
         this.onAfterRemoveByPSDEDS(pSDEDataSet, arrayList);
     }
@@ -961,8 +961,8 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByBeginValuePSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_BEGINVALUEPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_BEGINVALUEPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -995,7 +995,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByBeginValuePSDEF(pSDEField);
         this.onBeforeRemoveByBeginValuePSDEF(pSDEField, arrayList);
         for (PSThresholdGroup pSThresholdGroup : arrayList) {
-            this.remove((IEntity)pSThresholdGroup);
+            this.remove(pSThresholdGroup);
         }
         this.onAfterRemoveByBeginValuePSDEF(pSDEField, arrayList);
     }
@@ -1013,8 +1013,8 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByBKColorPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_BKCOLORPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_BKCOLORPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -1047,7 +1047,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByBKColorPSDEF(pSDEField);
         this.onBeforeRemoveByBKColorPSDEF(pSDEField, arrayList);
         for (PSThresholdGroup pSThresholdGroup : arrayList) {
-            this.remove((IEntity)pSThresholdGroup);
+            this.remove(pSThresholdGroup);
         }
         this.onAfterRemoveByBKColorPSDEF(pSDEField, arrayList);
     }
@@ -1065,8 +1065,8 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByColorPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_COLORPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_COLORPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -1099,7 +1099,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByColorPSDEF(pSDEField);
         this.onBeforeRemoveByColorPSDEF(pSDEField, arrayList);
         for (PSThresholdGroup pSThresholdGroup : arrayList) {
-            this.remove((IEntity)pSThresholdGroup);
+            this.remove(pSThresholdGroup);
         }
         this.onAfterRemoveByColorPSDEF(pSDEField, arrayList);
     }
@@ -1117,8 +1117,8 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByDataPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_DATAPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_DATAPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -1151,7 +1151,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByDataPSDEF(pSDEField);
         this.onBeforeRemoveByDataPSDEF(pSDEField, arrayList);
         for (PSThresholdGroup pSThresholdGroup : arrayList) {
-            this.remove((IEntity)pSThresholdGroup);
+            this.remove(pSThresholdGroup);
         }
         this.onAfterRemoveByDataPSDEF(pSDEField, arrayList);
     }
@@ -1169,8 +1169,8 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByEndValuePSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_ENDVALUEPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_ENDVALUEPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -1203,7 +1203,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByEndValuePSDEF(pSDEField);
         this.onBeforeRemoveByEndValuePSDEF(pSDEField, arrayList);
         for (PSThresholdGroup pSThresholdGroup : arrayList) {
-            this.remove((IEntity)pSThresholdGroup);
+            this.remove(pSThresholdGroup);
         }
         this.onAfterRemoveByEndValuePSDEF(pSDEField, arrayList);
     }
@@ -1221,8 +1221,8 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByIconClsPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_ICONCLSPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_ICONCLSPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -1255,7 +1255,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByIconClsPSDEF(pSDEField);
         this.onBeforeRemoveByIconClsPSDEF(pSDEField, arrayList);
         for (PSThresholdGroup pSThresholdGroup : arrayList) {
-            this.remove((IEntity)pSThresholdGroup);
+            this.remove(pSThresholdGroup);
         }
         this.onAfterRemoveByIconClsPSDEF(pSDEField, arrayList);
     }
@@ -1273,8 +1273,8 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByTextPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_TEXTPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSDEFIELD_TEXTPSDEFID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -1307,7 +1307,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByTextPSDEF(pSDEField);
         this.onBeforeRemoveByTextPSDEF(pSDEField, arrayList);
         for (PSThresholdGroup pSThresholdGroup : arrayList) {
-            this.remove((IEntity)pSThresholdGroup);
+            this.remove(pSThresholdGroup);
         }
         this.onAfterRemoveByTextPSDEF(pSDEField, arrayList);
     }
@@ -1325,8 +1325,8 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -1359,7 +1359,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSThresholdGroup pSThresholdGroup : arrayList) {
-            this.remove((IEntity)pSThresholdGroup);
+            this.remove(pSThresholdGroup);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -1377,8 +1377,8 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSDYNAMODEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysDynaModel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo((IEntity)pSSysDynaModel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysDynaModel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSTHRESHOLDGROUP_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSTHRESHOLDGROUP", iDataEntityModel.getDataInfo(pSSysDynaModel), arrayList.get(0)));
         }
     }
 
@@ -1411,7 +1411,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel);
         this.onBeforeRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
         for (PSThresholdGroup pSThresholdGroup : arrayList) {
-            this.remove((IEntity)pSThresholdGroup);
+            this.remove(pSThresholdGroup);
         }
         this.onAfterRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
     }
@@ -1457,7 +1457,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThresholdGroup> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSThresholdGroup pSThresholdGroup : arrayList) {
-            this.remove((IEntity)pSThresholdGroup);
+            this.remove(pSThresholdGroup);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -1484,12 +1484,12 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
     protected void onBeforeRemoveTemp(PSThresholdGroup pSThresholdGroup) throws Exception {
         PSThresholdService pSThresholdService = (PSThresholdService)ServiceGlobal.getService(PSThresholdService.class, (SessionFactory)this.getSessionFactory());
         pSThresholdService.removeTempByPSThresholdGroup(pSThresholdGroup);
-        super.onBeforeRemoveTemp((IEntity)pSThresholdGroup);
+        super.onBeforeRemoveTemp(pSThresholdGroup);
     }
 
     protected void getRelatedDataTempMajor(PSThresholdGroup pSThresholdGroup) throws Exception {
         this.getRelatedDataTempMajor_PSThreshold(pSThresholdGroup);
-        super.getRelatedDataTempMajor((IEntity)pSThresholdGroup);
+        super.getRelatedDataTempMajor(pSThresholdGroup);
     }
 
     protected void getRelatedDataTempMajor_PSThreshold(PSThresholdGroup pSThresholdGroup) throws Exception {
@@ -1505,7 +1505,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
     protected void updateRelatedDataTempMajor(PSThresholdGroup pSThresholdGroup, PSThresholdGroup pSThresholdGroup2) throws Exception {
         ArrayList<PSThreshold> arrayList = this.updateRelatedDataTempMajor_removePSThreshold(pSThresholdGroup, pSThresholdGroup2);
         this.updateRelatedDataTempMajor_updatePSThreshold(pSThresholdGroup, pSThresholdGroup2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSThresholdGroup, (IEntity)pSThresholdGroup2);
+        super.updateRelatedDataTempMajor(pSThresholdGroup, pSThresholdGroup2);
     }
 
     protected ArrayList<PSThreshold> updateRelatedDataTempMajor_removePSThreshold(PSThresholdGroup pSThresholdGroup, PSThresholdGroup pSThresholdGroup2) throws Exception {
@@ -1521,7 +1521,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             hashMap.remove(object);
         }
         for (PSThreshold pSThreshold : hashMap.values()) {
-            pSThresholdService.remove((IEntity)pSThreshold);
+            pSThresholdService.remove(pSThreshold);
         }
         return arrayList;
     }
@@ -1538,7 +1538,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
 
     protected void replaceParentInfo(PSThresholdGroup pSThresholdGroup, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSThresholdGroup, cloneSession);
+        super.replaceParentInfo(pSThresholdGroup, cloneSession);
         if (pSThresholdGroup.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSThresholdGroup.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSThresholdGroup, (PSDataEntity)iEntity);
         }
@@ -1578,7 +1578,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
     }
 
     protected void onRemoveEntityUncopyValues(PSThresholdGroup pSThresholdGroup, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSThresholdGroup, bl);
+        super.onRemoveEntityUncopyValues(pSThresholdGroup, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSThresholdGroup pSThresholdGroup, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1692,7 +1692,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSThresholdGroup, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSThresholdGroup, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSThresholdGroup, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BeginValuePSDEFId(boolean bl, PSThresholdGroup pSThresholdGroup, boolean bl2, boolean bl3) throws Exception {
@@ -1705,7 +1705,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BeginValuePSDEFId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_BeginValuePSDEFId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BEGINVALUEPSDEFID");
@@ -1727,7 +1727,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BeginValuePSDEFName_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_BeginValuePSDEFName_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BEGINVALUEPSDEFNAME");
@@ -1749,7 +1749,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BKColorPSDEFId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_BKColorPSDEFId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BKCOLORPSDEFID");
@@ -1771,7 +1771,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BKColorPSDEFName_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_BKColorPSDEFName_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BKCOLORPSDEFNAME");
@@ -1796,7 +1796,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1837,7 +1837,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ColorPSDEFId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_ColorPSDEFId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("COLORPSDEFID");
@@ -1859,7 +1859,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ColorPSDEFName_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_ColorPSDEFName_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("COLORPSDEFNAME");
@@ -1881,7 +1881,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CustomCond_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_CustomCond_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMCOND");
@@ -1903,7 +1903,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DataPSDEFId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_DataPSDEFId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DATAPSDEFID");
@@ -1925,7 +1925,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DataPSDEFName_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_DataPSDEFName_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DATAPSDEFNAME");
@@ -1947,7 +1947,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EndValuePSDEFId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_EndValuePSDEFId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENDVALUEPSDEFID");
@@ -1969,7 +1969,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EndValuePSDEFName_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_EndValuePSDEFName_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENDVALUEPSDEFNAME");
@@ -1991,7 +1991,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconClsPSDEFId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_IconClsPSDEFId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONCLSPSDEFID");
@@ -2013,7 +2013,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconClsPSDEFName_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_IconClsPSDEFName_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONCLSPSDEFNAME");
@@ -2035,7 +2035,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IncBeginValue_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string = this.onTestValueRule_IncBeginValue_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INCBEGINVALUE");
@@ -2057,7 +2057,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_IncEndValue_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string = this.onTestValueRule_IncEndValue_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INCENDVALUE");
@@ -2079,7 +2079,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -2101,7 +2101,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDSId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDSId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDSID");
@@ -2123,7 +2123,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -2145,7 +2145,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -2167,7 +2167,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -2189,7 +2189,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDynaModelId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDynaModelId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDYNAMODELID");
@@ -2211,7 +2211,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -2236,7 +2236,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSThresholdGroupId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSThresholdGroupId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTHRESHOLDGROUPID");
@@ -2261,7 +2261,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSThresholdGroupName_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_PSThresholdGroupName_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTHRESHOLDGROUPNAME");
@@ -2302,7 +2302,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TextPSDEFId_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_TextPSDEFId_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEXTPSDEFID");
@@ -2324,7 +2324,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TextPSDEFName_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_TextPSDEFName_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEXTPSDEFNAME");
@@ -2346,7 +2346,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThresholdGroupTag_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_ThresholdGroupTag_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THRESHOLDGROUPTAG");
@@ -2368,7 +2368,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThresholdGroupTag2_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_ThresholdGroupTag2_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THRESHOLDGROUPTAG2");
@@ -2393,7 +2393,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ThresholdGroupType_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_ThresholdGroupType_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("THRESHOLDGROUPTYPE");
@@ -2415,7 +2415,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -2437,7 +2437,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -2459,7 +2459,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -2481,7 +2481,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -2503,7 +2503,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -2528,7 +2528,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSThresholdGroup, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSThresholdGroup, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -2541,11 +2541,11 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
     }
 
     protected void onSyncEntity(PSThresholdGroup pSThresholdGroup, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSThresholdGroup, bl);
+        super.onSyncEntity(pSThresholdGroup, bl);
     }
 
     protected void onSyncIndexEntities(PSThresholdGroup pSThresholdGroup, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSThresholdGroup, bl);
+        super.onSyncIndexEntities(pSThresholdGroup, bl);
     }
 
     public Object getDataContextValue(PSThresholdGroup pSThresholdGroup, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -2553,14 +2553,14 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSThresholdGroup, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSThresholdGroup, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSThresholdGroup pSThresholdGroup, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSThresholdGroup, arrayList, n);
+        super.onExportMajorModel(pSThresholdGroup, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -3194,21 +3194,21 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
 
     protected boolean onMergeChild(String string, String string2, PSThresholdGroup pSThresholdGroup) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSThresholdGroup)) {
+        if (super.onMergeChild(string, string2, pSThresholdGroup)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSThresholdGroup pSThresholdGroup) throws Exception {
-        super.onUpdateParent((IEntity)pSThresholdGroup);
+        super.onUpdateParent(pSThresholdGroup);
     }
 
     protected void onCopyDetails(PSThresholdGroup pSThresholdGroup, Object object) throws Exception {
         PSThresholdGroup pSThresholdGroup2 = new PSThresholdGroup();
         pSThresholdGroup2.set("PSTHRESHOLDGROUPID", object);
         String string = DataObject.getStringValue((Object)pSThresholdGroup.get("PSTHRESHOLDGROUPID"));
-        super.onCopyDetails((IEntity)pSThresholdGroup, object);
+        super.onCopyDetails(pSThresholdGroup, object);
     }
 
     @Override
@@ -3268,7 +3268,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSThreshold pSThreshold = new PSThreshold();
-                pSThresholdService.fillParentInfo((IEntity)pSThreshold, "DER1N", "DER1N_PSTHRESHOLD_PSTHRESHOLDGROUP_PSTHRESHOLDGROUPID", pSThresholdGroup.getPSThresholdGroupId());
+                pSThresholdService.fillParentInfo(pSThreshold, "DER1N", "DER1N_PSTHRESHOLD_PSTHRESHOLDGROUP_PSTHRESHOLDGROUPID", pSThresholdGroup.getPSThresholdGroupId());
                 pSThresholdService.importXmlModel(pSThreshold, xmlNode2);
             }
         }
@@ -3409,41 +3409,27 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
     protected void onExportCurModelV2(PSThresholdGroup pSThresholdGroup, ObjectNode objectNode, String string, boolean bl) throws Exception {
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSTHRESHOLD_PSTHRESHOLDGROUP_PSTHRESHOLDGROUPID")) {
-            Object object;
-            PSThreshold pSThreshold2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSThresholdService pSThresholdService = (PSThresholdService)ServiceGlobal.getService(PSThresholdService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSThreshold> arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSTHRESHOLDGROUP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSTHRESHOLD", (Object)pSThresholdGroup.getPSThresholdGroupId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSThreshold2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSThreshold2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString((String)line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSThreshold>();
-                object4 = pSThresholdService.selectByPSThresholdGroup(pSThresholdGroup);
-                object3 = StringHelper.format((String)"PSTHRESHOLDGROUP#%1$s", (Object)pSThresholdGroup.getPSThresholdGroupId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSThreshold2 = object2.next();
-                    object = pSThresholdService.getModelV2ResScope((IEntity)pSThreshold2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSThreshold)PSModelV2Helper.toJSONObject((IEntity)pSThreshold2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSTHRESHOLDGROUP#%1$s", (Object)pSThresholdGroup.getPSThresholdGroupId());
+                for (PSThreshold item : pSThresholdService.selectByPSThresholdGroup(pSThresholdGroup)) {
+                    if (StringHelper.compare((String)scope, (String)pSThresholdService.getModelV2ResScope(item), (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(item, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSThresholdService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode related = objectNode.putArray(pSThresholdService.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -3471,10 +3457,10 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSThreshold pSThreshold2 : arrayList) {
-                    object = new PSThreshold();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSThreshold2, false);
-                    object3.add((JsonNode)pSThresholdService.exportModelV2(object, string));
+                for (ObjectNode itemNode : arrayList) {
+                    PSThreshold item = new PSThreshold();
+                    PSModelV2Helper.fromJSONObject((IDataObject)item, itemNode, false);
+                    related.add((JsonNode)pSThresholdService.exportModelV2(item, string));
                 }
             }
         }
@@ -3487,7 +3473,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
         ArrayList<PSThreshold> arrayList = pSThresholdService.selectByPSThresholdGroup(pSThresholdGroup);
         String string = StringHelper.format((String)"PSTHRESHOLDGROUP#%1$s", (Object)pSThresholdGroup.getPSThresholdGroupId());
         for (PSThreshold pSThreshold : arrayList) {
-            String string2 = pSThresholdService.getModelV2ResScope((IEntity)pSThreshold);
+            String string2 = pSThresholdService.getModelV2ResScope(pSThreshold);
             if (StringHelper.compare((String)string, (String)string2, (boolean)false) != 0) continue;
             pSThresholdService.emptyModelV2(pSThreshold);
         }
@@ -3567,7 +3553,7 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             PSThresholdService pSThresholdService = (PSThresholdService)ServiceGlobal.getService(PSThresholdService.class, (SessionFactory)this.getSessionFactory());
             PSThreshold pSThreshold = new PSThreshold();
             pSThreshold.setPSThresholdId(pSMOSFile.getPSModelId());
-            if (!pSThresholdService.get((IEntity)pSThreshold, true)) {
+            if (!pSThresholdService.get(pSThreshold, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSThreshold.getPSThresholdGroupId(), (String)pSThresholdGroup.getPSThresholdGroupId(), (boolean)false) == 0) {
@@ -3575,12 +3561,12 @@ extends PSCoreSysServiceBase<PSThresholdGroup> {
             }
             ObjectNode objectNode = pSThresholdService.exportModelV2(pSThreshold);
             pSThreshold.reset();
-            if (!pSThresholdService.setModelV2ResScope((IEntity)pSThreshold, "PSTHRESHOLDGROUP", pSThresholdGroup.getPSThresholdGroupId())) {
+            if (!pSThresholdService.setModelV2ResScope(pSThreshold, "PSTHRESHOLDGROUP", pSThresholdGroup.getPSThresholdGroupId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSThresholdService.importModelV2(pSThreshold, objectNode);
             SessionFactoryManager.commit();
-            return pSThresholdService.getFile((IEntity)pSThreshold);
+            return pSThresholdService.getFile(pSThreshold);
         }
         return null;
     }

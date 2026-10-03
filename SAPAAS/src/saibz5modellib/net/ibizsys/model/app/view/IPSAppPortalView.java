@@ -1,17 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app.view;
 
-import java.util.Iterator;
 import net.ibizsys.model.app.func.IPSAppFunc;
-import net.ibizsys.model.app.view.IPSAppView;
 
-public interface IPSAppPortalView
-extends IPSAppView {
-    @Override
-    public Iterator<IPSAppFunc> getPSAppFuncs();
+/**
+ * 应用门户视图对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSAppPortalView extends IPSAppView
+{
+	/**
+	 * 获取应用功能集合
+	 * @return
+	 */
+	java.util.Iterator<IPSAppFunc> getPSAppFuncs();
 
-    public boolean isDefaultPage();
+	
+	
+	/**
+	 * 是否为默认视图
+	 * @return
+	 */
+	boolean isDefaultPage();
 }
-

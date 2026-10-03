@@ -44,7 +44,7 @@ extends AppMenuModelBase {
     }
 
     protected void onPrepareRootItem(AppMenuRootItem appMenuRootItem) throws Exception {
-        ArrayList appMenuItems = this.getPSAppMenuModel().getRootItem().getAllItems();
+        ArrayList<IAppMenuItem> appMenuItems = this.getPSAppMenuModel().getRootItem().getAllItems();
         for (IAppMenuItem iAppMenuItem : appMenuItems) {
             IPSAppMenuItem iPSAppMenuItem = (IPSAppMenuItem)iAppMenuItem;
             AppMenuItem appMenuItemModel = appMenuRootItem.addItem(iPSAppMenuItem.getId(), iPSAppMenuItem.getPId());
@@ -83,4 +83,3 @@ extends AppMenuModelBase {
         }
     }
 }
-

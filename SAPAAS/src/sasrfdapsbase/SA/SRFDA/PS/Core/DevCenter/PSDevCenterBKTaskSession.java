@@ -84,7 +84,7 @@ implements IPSDevCenterBKTaskSessionContext {
         PSDCBKTaskService psDCBKTaskService = (PSDCBKTaskService)ServiceGlobal.getService(PSDCBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSDCBKTask psDevCenterBKTask = new PSDCBKTask();
         psDevCenterBKTask.setPSDCBKTaskId(strPSBKTaskId);
-        if (!psDCBKTaskService.get((IEntity)psDevCenterBKTask, true)) {
+        if (!psDCBKTaskService.get(psDevCenterBKTask, true)) {
             return false;
         }
         return super.onBeforeCancelPSBKTask(strPSBKTaskId);
@@ -97,13 +97,13 @@ implements IPSDevCenterBKTaskSessionContext {
                 PSDCBKTaskService psDCBKTaskService = (PSDCBKTaskService)ServiceGlobal.getService(PSDCBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
                 PSDCBKTask psDevCenterBKTask = new PSDCBKTask();
                 psDevCenterBKTask.setPSDCBKTaskId(strPSBKTaskId);
-                psDCBKTaskService.get((IEntity)psDevCenterBKTask);
+                psDCBKTaskService.get(psDevCenterBKTask);
                 if (psDevCenterBKTask.getTaskState() == 10 || psDevCenterBKTask.getTaskState() == 20) {
                     psDevCenterBKTask.reset();
                     psDevCenterBKTask.setPSDCBKTaskId(strPSBKTaskId);
                     psDevCenterBKTask.setTaskState(Integer.valueOf(40));
                     psDevCenterBKTask.setResultInfo(null);
-                    psDCBKTaskService.update((IEntity)psDevCenterBKTask, false);
+                    psDCBKTaskService.update(psDevCenterBKTask, false);
                 }
             }
             catch (Exception ex) {
@@ -189,4 +189,3 @@ implements IPSDevCenterBKTaskSessionContext {
         super.onSetQueuePos(nPos, nTotal, iPSBKTask);
     }
 }
-

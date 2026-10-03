@@ -166,9 +166,9 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSSysAIChatAgent, pSDataEntity);
             return;
@@ -178,9 +178,9 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
             PSSysAIFactory pSSysAIFactory = (PSSysAIFactory)iService.getDEModel().createEntity();
             pSSysAIFactory.set("PSSYSAIFACTORYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysAIFactory);
+                iService.getTemp(pSSysAIFactory);
             } else {
-                iService.get((IEntity)pSSysAIFactory);
+                iService.get(pSSysAIFactory);
             }
             this.onFillParentInfo_PSSysAIFactory(pSSysAIChatAgent, pSSysAIFactory);
             return;
@@ -190,14 +190,14 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
             PSSysSFPlugin pSSysSFPlugin = (PSSysSFPlugin)iService.getDEModel().createEntity();
             pSSysSFPlugin.set("PSSYSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPlugin);
+                iService.getTemp(pSSysSFPlugin);
             } else {
-                iService.get((IEntity)pSSysSFPlugin);
+                iService.get(pSSysSFPlugin);
             }
             this.onFillParentInfo_PSSysSFPlugin(pSSysAIChatAgent, pSSysSFPlugin);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysAIChatAgent, string, string2, string3);
+        super.onFillParentInfo(pSSysAIChatAgent, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -223,7 +223,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
         if (bl && pSSysAIChatAgent.getValidFlag() == null) {
             pSSysAIChatAgent.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysAIChatAgent, bl);
+        super.onFillEntityFullInfo(pSSysAIChatAgent, bl);
         this.onFillEntityFullInfo_PSDE(pSSysAIChatAgent, bl);
         this.onFillEntityFullInfo_PSSysAIFactory(pSSysAIChatAgent, bl);
         this.onFillEntityFullInfo_PSSysSFPlugin(pSSysAIChatAgent, bl);
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
     }
 
     protected void onWriteBackParent(PSSysAIChatAgent pSSysAIChatAgent, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysAIChatAgent, bl);
+        super.onWriteBackParent(pSSysAIChatAgent, bl);
     }
 
     public ArrayList<PSSysAIChatAgent> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -328,8 +328,8 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
         ArrayList<PSSysAIChatAgent> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAICHATAGENT_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSAICHATAGENT", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAICHATAGENT_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSAICHATAGENT", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -362,7 +362,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
         ArrayList<PSSysAIChatAgent> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSSysAIChatAgent pSSysAIChatAgent : arrayList) {
-            this.remove((IEntity)pSSysAIChatAgent);
+            this.remove(pSSysAIChatAgent);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -380,8 +380,8 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
         ArrayList<PSSysAIChatAgent> arrayList = this.selectByPSSysAIFactory(pSSysAIFactory, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSAIFACTORY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysAIFactory);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAICHATAGENT_PSSYSAIFACTORY_PSSYSAIFACTORYID", "", iDataEntityModel.getName(), "PSSYSAICHATAGENT", iDataEntityModel.getDataInfo((IEntity)pSSysAIFactory), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysAIFactory);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAICHATAGENT_PSSYSAIFACTORY_PSSYSAIFACTORYID", "", iDataEntityModel.getName(), "PSSYSAICHATAGENT", iDataEntityModel.getDataInfo(pSSysAIFactory), arrayList.get(0)));
         }
     }
 
@@ -414,7 +414,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
         ArrayList<PSSysAIChatAgent> arrayList = this.selectByPSSysAIFactory(pSSysAIFactory);
         this.onBeforeRemoveByPSSysAIFactory(pSSysAIFactory, arrayList);
         for (PSSysAIChatAgent pSSysAIChatAgent : arrayList) {
-            this.remove((IEntity)pSSysAIChatAgent);
+            this.remove(pSSysAIChatAgent);
         }
         this.onAfterRemoveByPSSysAIFactory(pSSysAIFactory, arrayList);
     }
@@ -432,8 +432,8 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
         ArrayList<PSSysAIChatAgent> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAICHATAGENT_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSAICHATAGENT", iDataEntityModel.getDataInfo((IEntity)pSSysSFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAICHATAGENT_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSAICHATAGENT", iDataEntityModel.getDataInfo(pSSysSFPlugin), arrayList.get(0)));
         }
     }
 
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
         ArrayList<PSSysAIChatAgent> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin);
         this.onBeforeRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
         for (PSSysAIChatAgent pSSysAIChatAgent : arrayList) {
-            this.remove((IEntity)pSSysAIChatAgent);
+            this.remove(pSSysAIChatAgent);
         }
         this.onAfterRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
     }
@@ -491,7 +491,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
 
     protected void replaceParentInfo(PSSysAIChatAgent pSSysAIChatAgent, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysAIChatAgent, cloneSession);
+        super.replaceParentInfo(pSSysAIChatAgent, cloneSession);
         if (pSSysAIChatAgent.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSSysAIChatAgent.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSSysAIChatAgent, (PSDataEntity)iEntity);
         }
@@ -504,7 +504,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysAIChatAgent pSSysAIChatAgent, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysAIChatAgent, bl);
+        super.onRemoveEntityUncopyValues(pSSysAIChatAgent, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysAIChatAgent pSSysAIChatAgent, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -579,7 +579,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysAIChatAgent, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysAIChatAgent, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysAIChatAgent, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AgentInfo(boolean bl, PSSysAIChatAgent pSSysAIChatAgent, boolean bl2, boolean bl3) throws Exception {
@@ -592,7 +592,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AgentInfo_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_AgentInfo_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AGENTINFO");
@@ -614,7 +614,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIChatAgentParams_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_AIChatAgentParams_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AICHATAGENTPARAMS");
@@ -636,7 +636,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIChatAgentTag_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_AIChatAgentTag_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AICHATAGENTTAG");
@@ -658,7 +658,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIChatAgentTag2_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_AIChatAgentTag2_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AICHATAGENTTAG2");
@@ -683,7 +683,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIChatAgentType_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_AIChatAgentType_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AICHATAGENTTYPE");
@@ -705,7 +705,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIPlatformType_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_AIPlatformType_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AIPLATFORMTYPE");
@@ -730,7 +730,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -769,7 +769,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CustomCode_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_CustomCode_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMCODE");
@@ -791,7 +791,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CustomMode_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string = this.onTestValueRule_CustomMode_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMMODE");
@@ -813,7 +813,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -835,7 +835,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PromptSource_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PromptSource_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PROMPTSOURCE");
@@ -857,7 +857,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -879,7 +879,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -904,7 +904,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIChatAgentId_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIChatAgentId_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAICHATAGENTID");
@@ -929,7 +929,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIChatAgentName_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIChatAgentName_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAICHATAGENTNAME");
@@ -968,7 +968,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIFactoryId_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIFactoryId_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAIFACTORYID");
@@ -990,7 +990,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPluginId_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPluginId_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPLUGINID");
@@ -1012,7 +1012,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1034,7 +1034,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1056,7 +1056,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1078,7 +1078,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1100,7 +1100,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1125,7 +1125,7 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysAIChatAgent, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysAIChatAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1138,11 +1138,11 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
     }
 
     protected void onSyncEntity(PSSysAIChatAgent pSSysAIChatAgent, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysAIChatAgent, bl);
+        super.onSyncEntity(pSSysAIChatAgent, bl);
     }
 
     protected void onSyncIndexEntities(PSSysAIChatAgent pSSysAIChatAgent, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysAIChatAgent, bl);
+        super.onSyncIndexEntities(pSSysAIChatAgent, bl);
     }
 
     public Object getDataContextValue(PSSysAIChatAgent pSSysAIChatAgent, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1150,14 +1150,14 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysAIChatAgent, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysAIChatAgent, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysAIChatAgent pSSysAIChatAgent, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysAIChatAgent, arrayList, n);
+        super.onExportMajorModel(pSSysAIChatAgent, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1574,14 +1574,14 @@ extends PSCoreSysServiceBase<PSSysAIChatAgent> {
 
     protected boolean onMergeChild(String string, String string2, PSSysAIChatAgent pSSysAIChatAgent) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysAIChatAgent)) {
+        if (super.onMergeChild(string, string2, pSSysAIChatAgent)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysAIChatAgent pSSysAIChatAgent) throws Exception {
-        super.onUpdateParent((IEntity)pSSysAIChatAgent);
+        super.onUpdateParent(pSSysAIChatAgent);
     }
 
     @Override

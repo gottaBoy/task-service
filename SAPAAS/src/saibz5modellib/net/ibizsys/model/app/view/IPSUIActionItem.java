@@ -1,20 +1,34 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- */
 package net.ibizsys.model.app.view;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import net.ibizsys.model.app.view.IPSAppView;
 import net.ibizsys.model.view.IPSUIAction;
 
-public interface IPSUIActionItem {
-    public IPSUIAction getPSUIAction();
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-    public IPSAppView getPSAppView();
-
-    public ObjectNode getUIActionParamJO();
+/**
+ * 界面行为项对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSUIActionItem 
+{
+	/**
+	 * 获取界面行为对象
+	 * @return
+	 */
+	IPSUIAction getPSUIAction();
+	
+	
+	/**
+	 * 获取当前视图对象
+	 * @return
+	 */
+	IPSAppView getPSAppView();
+	
+	
+	
+	/**
+	 * 获取实体界面行为Json参数对象
+	 * @return
+	 */
+	ObjectNode getUIActionParamJO();
 }
-

@@ -1998,7 +1998,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;
@@ -2024,7 +2024,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId2());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp2 = pSSysApp;
             }
             return this.pssysapp2;
@@ -2050,7 +2050,7 @@ implements Serializable {
                 PSSysBDInstCfg pSSysBDInstCfg = new PSSysBDInstCfg();
                 pSSysBDInstCfg.setPSSysBDInstCfgId(this.getPSSysBDInstCfgId());
                 PSSysBDInstCfgService pSSysBDInstCfgService = (PSSysBDInstCfgService)ServiceGlobal.getService(PSSysBDInstCfgService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDInstCfgService.autoGet((IEntity)pSSysBDInstCfg);
+                pSSysBDInstCfgService.autoGet(pSSysBDInstCfg);
                 this.pssysbdinstcfg = pSSysBDInstCfg;
             }
             return this.pssysbdinstcfg;
@@ -2076,7 +2076,7 @@ implements Serializable {
                 PSSysDynaModel pSSysDynaModel = new PSSysDynaModel();
                 pSSysDynaModel.setPSSysDynaModelId(this.getRunPSSysDynaModelId());
                 PSSysDynaModelService pSSysDynaModelService = (PSSysDynaModelService)ServiceGlobal.getService(PSSysDynaModelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDynaModelService.autoGet((IEntity)pSSysDynaModel);
+                pSSysDynaModelService.autoGet(pSSysDynaModel);
                 this.runpssysdynamodel = pSSysDynaModel;
             }
             return this.runpssysdynamodel;
@@ -2102,7 +2102,7 @@ implements Serializable {
                 PSSysSFPub pSSysSFPub = new PSSysSFPub();
                 pSSysSFPub.setPSSysSFPubId(this.getPSSysSFPubId());
                 PSSysSFPubService pSSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSFPubService.autoGet((IEntity)pSSysSFPub);
+                pSSysSFPubService.autoGet(pSSysSFPub);
                 this.pssyssfpub = pSSysSFPub;
             }
             return this.pssyssfpub;
@@ -2128,7 +2128,7 @@ implements Serializable {
                 PSSystemAS pSSystemAS = new PSSystemAS();
                 pSSystemAS.setPSSystemASId(this.getPSSystemASId());
                 PSSystemASService pSSystemASService = (PSSystemASService)ServiceGlobal.getService(PSSystemASService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemASService.autoGet((IEntity)pSSystemAS);
+                pSSystemASService.autoGet(pSSystemAS);
                 this.pssystemas = pSSystemAS;
             }
             return this.pssystemas;
@@ -2154,7 +2154,7 @@ implements Serializable {
                 PSSystemDBCfg pSSystemDBCfg = new PSSystemDBCfg();
                 pSSystemDBCfg.setPSSystemDBCfgId(this.getPSSystemDBCfgId());
                 PSSystemDBCfgService pSSystemDBCfgService = (PSSystemDBCfgService)ServiceGlobal.getService(PSSystemDBCfgService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemDBCfgService.autoGet((IEntity)pSSystemDBCfg);
+                pSSystemDBCfgService.autoGet(pSSystemDBCfg);
                 this.pssystemdbcfg = pSSystemDBCfg;
             }
             return this.pssystemdbcfg;
@@ -2180,7 +2180,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

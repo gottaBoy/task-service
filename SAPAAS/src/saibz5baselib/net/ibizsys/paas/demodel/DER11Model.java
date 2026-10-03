@@ -1,13 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.demodel;
 
-import net.ibizsys.paas.demodel.DER1NModel;
-import net.ibizsys.paas.demodel.IDER11Model;
+/**
+ * 实体1：1关系模型对象
+ * 
+ * @author Administrator
+ *
+ */
+public class DER11Model extends DER1NModel implements IDER11Model {
 
-public class DER11Model
-extends DER1NModel
-implements IDER11Model {
 }
-

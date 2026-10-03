@@ -1,13 +1,20 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ICtrlHandler;
+/**
+ * 向导面板处理对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IWizardPanelHandler extends ICtrlHandler {
+	/**
+	 * 初始化向导
+	 */
+	final static String ACTION_INIT = "init";
 
-public interface IWizardPanelHandler
-extends ICtrlHandler {
-    public static final String ACTION_INIT = "init";
-    public static final String ACTION_FINISH = "finish";
+	/**
+	 * 完成向导
+	 */
+	final static String ACTION_FINISH = "finish";
+
 }
-

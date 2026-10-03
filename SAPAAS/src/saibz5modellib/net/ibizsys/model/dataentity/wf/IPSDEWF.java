@@ -1,9 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IDEWF
- */
 package net.ibizsys.model.dataentity.wf;
 
 import net.ibizsys.model.codelist.IPSCodeList;
@@ -14,55 +8,186 @@ import net.ibizsys.model.res.IPSLanguageRes;
 import net.ibizsys.model.wf.IPSWorkflow;
 import net.ibizsys.paas.core.IDEWF;
 
-public interface IPSDEWF
-extends IPSDataEntityObject,
-IDEWF {
-    public boolean isValid();
 
-    public IPSWorkflow getPSWorkflow();
+/**
+ * 实体工作流对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSDEWF extends IPSDataEntityObject, IDEWF {
+	
 
-    public String getCodeName();
+	/**
+	 * 是否启用
+	 * 
+	 * @return
+	 */
+	boolean isValid();
 
-    public IPSDEField getWFStepPSDEField();
+	/**
+	 * 获取工作流
+	 * 
+	 * @return
+	 */
+	IPSWorkflow getPSWorkflow();
 
-    public IPSDEField getWFStatePSDEField();
+	/**
+	 * 获取代码名称
+	 * 
+	 * @return
+	 */
+	String getCodeName();
 
-    public IPSDEField getUDStatePSDEField();
+	/**
+	 * 获取流程步骤实体属性
+	 * 
+	 * @return
+	 */
+	IPSDEField getWFStepPSDEField();
 
-    public IPSDEField getWFInstPSDEField();
+	/**
+	 * 获取流程状态实体属性
+	 * 
+	 * @return
+	 */
+	IPSDEField getWFStatePSDEField();
 
-    public IPSDEField getWFActorsPSDEField();
+	/**
+	 * 获取用户状态实体属性
+	 * 
+	 * @return
+	 */
+	IPSDEField getUDStatePSDEField();
 
-    public IPSDEField getWFRetPSDEField();
+	/**
+	 * 获取流程实例属性
+	 * 
+	 * @return
+	 */
+	IPSDEField getWFInstPSDEField();
 
-    public IPSCodeList getWFStepPSCodeList() throws Exception;
+	/**
+	 * 获取流程操作者属性
+	 * 
+	 * @return
+	 */
+	IPSDEField getWFActorsPSDEField();
 
-    public IPSCodeList getEntityStatePSCodeList() throws Exception;
+	/**
+	 * 获取流程结果属性
+	 * 
+	 * @return
+	 */
+	IPSDEField getWFRetPSDEField();
 
-    public boolean isDefaultMode();
+	/**
+	 * 获取流程步骤代码表
+	 * 
+	 * @return
+	 */
+	IPSCodeList getWFStepPSCodeList() throws Exception;
 
-    public boolean isEnableUserStart();
+	/**
+	 * 获取业务状态步骤代码表
+	 * 
+	 * @return
+	 */
+	IPSCodeList getEntityStatePSCodeList() throws Exception;
 
-    public IPSDEAction getInitPSDEAction();
+	/**
+	 * 是否为实体的默认流程
+	 * 
+	 * @return
+	 */
+	boolean isDefaultMode();
 
-    public IPSDEAction getFinishPSDEAction();
+	/**
+	 * 是否支持用户启动
+	 * 
+	 * @return
+	 */
+	boolean isEnableUserStart();
 
-    public IPSDEField getWFVerPSDEField();
+	/**
+	 * 获取流程初始化的实体行为
+	 * 
+	 * @return
+	 */
+	IPSDEAction getInitPSDEAction();
 
-    public IPSDEField getWorkflowPSDEField();
+	/**
+	 * 获取流程完成的实体行为
+	 * 
+	 * @return
+	 */
+	IPSDEAction getFinishPSDEAction();
 
-    public String getMyWFWorkCaption();
+	/**
+	 * 获取流程版本属性
+	 * 
+	 * @return
+	 */
+	IPSDEField getWFVerPSDEField();
 
-    public IPSLanguageRes getMyWFWorkCapPSLanguageRes();
+	/**
+	 * 获取流程标识存储属性
+	 * 
+	 * @return
+	 */
+	IPSDEField getWorkflowPSDEField();
 
-    public String getMyWFDataCaption();
+	/**
+	 * 获取我的流程工作标题
+	 * 
+	 * @return
+	 */
+	String getMyWFWorkCaption();
 
-    public IPSLanguageRes getMyWFDataCapPSLanguageRes();
+	/**
+	 * 获取我的流程工作标题语言资源
+	 * 
+	 * @return
+	 */
+	IPSLanguageRes getMyWFWorkCapPSLanguageRes();
 
-    public int getWFProxyMode();
+	/**
+	 * 获取我的流程数据标题
+	 * 
+	 * @return
+	 */
+	String getMyWFDataCaption();
 
-    public IPSDEField getProxyModulePSDEField();
+	/**
+	 * 获取我的流程工作标题语言资源
+	 * 
+	 * @return
+	 */
+	IPSLanguageRes getMyWFDataCapPSLanguageRes();
+	
+	
+	
+	/**
+	 * 获取工作流代理模式，值参考 net.ibizsys.model.wf.IPSWorkflow.WFPROXYMODE_XXX 定义
+	 * @return
+	 */
+	int getWFProxyMode();
+	
+	
+	/**
+	 * 获取代理模块属性
+	 * 
+	 * @return
+	 */
+	IPSDEField getProxyModulePSDEField();
+	
+	
+	/**
+	 * 获取代理数据属性
+	 * 
+	 * @return
+	 */
+	IPSDEField getProxyDataPSDEField();
+		
 
-    public IPSDEField getProxyDataPSDEField();
 }
-

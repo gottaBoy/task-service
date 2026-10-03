@@ -145,9 +145,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_JoinPSDE(pSSysBICubeMSJoin, pSDataEntity);
             return;
@@ -157,9 +157,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
             PSDEJoinType pSDEJoinType = (PSDEJoinType)iService.getDEModel().createEntity();
             pSDEJoinType.set("PSDEJOINTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEJoinType);
+                iService.getTemp(pSDEJoinType);
             } else {
-                iService.get((IEntity)pSDEJoinType);
+                iService.get(pSDEJoinType);
             }
             this.onFillParentInfo_PSDEJoinType(pSSysBICubeMSJoin, pSDEJoinType);
             return;
@@ -169,9 +169,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
             PSDER pSDER = (PSDER)iService.getDEModel().createEntity();
             pSDER.set("PSDERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDER);
+                iService.getTemp(pSDER);
             } else {
-                iService.get((IEntity)pSDER);
+                iService.get(pSDER);
             }
             this.onFillParentInfo_PSDER(pSSysBICubeMSJoin, pSDER);
             return;
@@ -181,9 +181,9 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
             PSSysBICubeMeasure pSSysBICubeMeasure = (PSSysBICubeMeasure)iService.getDEModel().createEntity();
             pSSysBICubeMeasure.set("PSSYSBICUBEMEASUREID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBICubeMeasure);
+                iService.getTemp(pSSysBICubeMeasure);
             } else {
-                iService.get((IEntity)pSSysBICubeMeasure);
+                iService.get(pSSysBICubeMeasure);
             }
             this.onFillParentInfo_PSSysBICubeMeasure(pSSysBICubeMSJoin, pSSysBICubeMeasure);
             return;
@@ -193,14 +193,14 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
             PSSysBICubeMSJoin pSSysBICubeMSJoin2 = (PSSysBICubeMSJoin)iService.getDEModel().createEntity();
             pSSysBICubeMSJoin2.set("PSSYSBICUBEMSJOINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBICubeMSJoin2);
+                iService.getTemp(pSSysBICubeMSJoin2);
             } else {
-                iService.get((IEntity)pSSysBICubeMSJoin2);
+                iService.get(pSSysBICubeMSJoin2);
             }
             this.onFillParentInfo_PPSSysBICubeMSJoin(pSSysBICubeMSJoin, pSSysBICubeMSJoin2);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysBICubeMSJoin, string, string2, string3);
+        super.onFillParentInfo(pSSysBICubeMSJoin, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -237,7 +237,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysBICubeMSJoin, bl);
+        super.onFillEntityFullInfo(pSSysBICubeMSJoin, bl);
         this.onFillEntityFullInfo_JoinPSDE(pSSysBICubeMSJoin, bl);
         this.onFillEntityFullInfo_PSDEJoinType(pSSysBICubeMSJoin, bl);
         this.onFillEntityFullInfo_PSDER(pSSysBICubeMSJoin, bl);
@@ -281,7 +281,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
     }
 
     protected void onWriteBackParent(PSSysBICubeMSJoin pSSysBICubeMSJoin, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysBICubeMSJoin, bl);
+        super.onWriteBackParent(pSSysBICubeMSJoin, bl);
     }
 
     public ArrayList<PSSysBICubeMSJoin> selectByJoinPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -408,8 +408,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
         ArrayList<PSSysBICubeMSJoin> arrayList = this.selectByJoinPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSJOIN_PSDATAENTITY_JOINPSDEID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSJOIN", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSJOIN_PSDATAENTITY_JOINPSDEID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSJOIN", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -442,7 +442,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
         ArrayList<PSSysBICubeMSJoin> arrayList = this.selectByJoinPSDE(pSDataEntity);
         this.onBeforeRemoveByJoinPSDE(pSDataEntity, arrayList);
         for (PSSysBICubeMSJoin pSSysBICubeMSJoin : arrayList) {
-            this.remove((IEntity)pSSysBICubeMSJoin);
+            this.remove(pSSysBICubeMSJoin);
         }
         this.onAfterRemoveByJoinPSDE(pSDataEntity, arrayList);
     }
@@ -460,8 +460,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
         ArrayList<PSSysBICubeMSJoin> arrayList = this.selectByPSDEJoinType(pSDEJoinType, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEJOINTYPE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEJoinType);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSJOIN_PSDEJOINTYPE_PSDEJOINTYPEID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSJOIN", iDataEntityModel.getDataInfo((IEntity)pSDEJoinType), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEJoinType);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSJOIN_PSDEJOINTYPE_PSDEJOINTYPEID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSJOIN", iDataEntityModel.getDataInfo(pSDEJoinType), arrayList.get(0)));
         }
     }
 
@@ -494,7 +494,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
         ArrayList<PSSysBICubeMSJoin> arrayList = this.selectByPSDEJoinType(pSDEJoinType);
         this.onBeforeRemoveByPSDEJoinType(pSDEJoinType, arrayList);
         for (PSSysBICubeMSJoin pSSysBICubeMSJoin : arrayList) {
-            this.remove((IEntity)pSSysBICubeMSJoin);
+            this.remove(pSSysBICubeMSJoin);
         }
         this.onAfterRemoveByPSDEJoinType(pSDEJoinType, arrayList);
     }
@@ -512,8 +512,8 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
         ArrayList<PSSysBICubeMSJoin> arrayList = this.selectByPSDER(pSDER, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDER);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSJOIN_PSDER_PSDERID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSJOIN", iDataEntityModel.getDataInfo((IEntity)pSDER), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDER);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBICUBEMSJOIN_PSDER_PSDERID", "", iDataEntityModel.getName(), "PSSYSBICUBEMSJOIN", iDataEntityModel.getDataInfo(pSDER), arrayList.get(0)));
         }
     }
 
@@ -546,7 +546,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
         ArrayList<PSSysBICubeMSJoin> arrayList = this.selectByPSDER(pSDER);
         this.onBeforeRemoveByPSDER(pSDER, arrayList);
         for (PSSysBICubeMSJoin pSSysBICubeMSJoin : arrayList) {
-            this.remove((IEntity)pSSysBICubeMSJoin);
+            this.remove(pSSysBICubeMSJoin);
         }
         this.onAfterRemoveByPSDER(pSDER, arrayList);
     }
@@ -592,7 +592,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
         ArrayList<PSSysBICubeMSJoin> arrayList = this.selectByPSSysBICubeMeasure(pSSysBICubeMeasure);
         this.onBeforeRemoveByPSSysBICubeMeasure(pSSysBICubeMeasure, arrayList);
         for (PSSysBICubeMSJoin pSSysBICubeMSJoin : arrayList) {
-            this.remove((IEntity)pSSysBICubeMSJoin);
+            this.remove(pSSysBICubeMSJoin);
         }
         this.onAfterRemoveByPSSysBICubeMeasure(pSSysBICubeMeasure, arrayList);
     }
@@ -638,7 +638,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
         ArrayList<PSSysBICubeMSJoin> arrayList = this.selectByPPSSysBICubeMSJoin(pSSysBICubeMSJoin);
         this.onBeforeRemoveByPPSSysBICubeMSJoin(pSSysBICubeMSJoin, arrayList);
         for (PSSysBICubeMSJoin pSSysBICubeMSJoin2 : arrayList) {
-            this.remove((IEntity)pSSysBICubeMSJoin2);
+            this.remove(pSSysBICubeMSJoin2);
         }
         this.onAfterRemoveByPPSSysBICubeMSJoin(pSSysBICubeMSJoin, arrayList);
     }
@@ -662,7 +662,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
 
     protected void replaceParentInfo(PSSysBICubeMSJoin pSSysBICubeMSJoin, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysBICubeMSJoin, cloneSession);
+        super.replaceParentInfo(pSSysBICubeMSJoin, cloneSession);
         if (pSSysBICubeMSJoin.getJoinPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSSysBICubeMSJoin.getJoinPSDEId())) != null) {
             this.onFillParentInfo_JoinPSDE(pSSysBICubeMSJoin, (PSDataEntity)iEntity);
         }
@@ -681,7 +681,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysBICubeMSJoin pSSysBICubeMSJoin, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysBICubeMSJoin, bl);
+        super.onRemoveEntityUncopyValues(pSSysBICubeMSJoin, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysBICubeMSJoin pSSysBICubeMSJoin, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -741,7 +741,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSSysBICubeMSJoin, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysBICubeMSJoin, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysBICubeMSJoin, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_JoinPSDEId(boolean bl, PSSysBICubeMSJoin pSSysBICubeMSJoin, boolean bl2, boolean bl3) throws Exception {
@@ -754,7 +754,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JoinPSDEId_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_JoinPSDEId_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JOINPSDEID");
@@ -776,7 +776,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JoinPSDEName_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_JoinPSDEName_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JOINPSDENAME");
@@ -798,7 +798,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JoinTag_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_JoinTag_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JOINTAG");
@@ -820,7 +820,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_JoinTag2_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_JoinTag2_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("JOINTAG2");
@@ -842,7 +842,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -864,7 +864,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -886,7 +886,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSSysBICubeMSJoinId_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PPSSysBICubeMSJoinId_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSSYSBICUBEMSJOINID");
@@ -908,7 +908,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEJoinTypeId_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEJoinTypeId_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEJOINTYPEID");
@@ -930,7 +930,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEJoinTypeName_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEJoinTypeName_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEJOINTYPENAME");
@@ -952,7 +952,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDERId_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PSDERId_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDERID");
@@ -974,7 +974,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeMeasureId_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeMeasureId_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBEMEASUREID");
@@ -999,7 +999,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeMSJoinId_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeMSJoinId_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBEMSJOINID");
@@ -1024,7 +1024,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeMSJoinName_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeMSJoinName_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBEMSJOINNAME");
@@ -1046,7 +1046,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1068,7 +1068,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1090,7 +1090,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1112,7 +1112,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1134,7 +1134,7 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysBICubeMSJoin, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysBICubeMSJoin, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1147,11 +1147,11 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
     }
 
     protected void onSyncEntity(PSSysBICubeMSJoin pSSysBICubeMSJoin, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysBICubeMSJoin, bl);
+        super.onSyncEntity(pSSysBICubeMSJoin, bl);
     }
 
     protected void onSyncIndexEntities(PSSysBICubeMSJoin pSSysBICubeMSJoin, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysBICubeMSJoin, bl);
+        super.onSyncIndexEntities(pSSysBICubeMSJoin, bl);
     }
 
     public Object getDataContextValue(PSSysBICubeMSJoin pSSysBICubeMSJoin, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1159,14 +1159,14 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysBICubeMSJoin, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysBICubeMSJoin, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysBICubeMSJoin pSSysBICubeMSJoin, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysBICubeMSJoin, arrayList, n);
+        super.onExportMajorModel(pSSysBICubeMSJoin, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1541,14 +1541,14 @@ extends PSCoreSysServiceBase<PSSysBICubeMSJoin> {
 
     protected boolean onMergeChild(String string, String string2, PSSysBICubeMSJoin pSSysBICubeMSJoin) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysBICubeMSJoin)) {
+        if (super.onMergeChild(string, string2, pSSysBICubeMSJoin)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysBICubeMSJoin pSSysBICubeMSJoin) throws Exception {
-        super.onUpdateParent((IEntity)pSSysBICubeMSJoin);
+        super.onUpdateParent(pSSysBICubeMSJoin);
     }
 
     @Override

@@ -1,33 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.dataentity.ds.IPSDEDataQueryCode
- *  net.ibizsys.model.dataentity.ds.IPSDEDataQueryCodeCond
- *  net.ibizsys.model.dataentity.ds.IPSDEDataQueryCodeExp
- *  net.ibizsys.paas.core.IDEDataQuery
- *  net.ibizsys.paas.core.IDEDataQueryCode
- *  net.ibizsys.paas.core.IDEDataQueryCodeCond
- *  net.ibizsys.paas.core.IDEDataQueryCodeExp
- *  net.ibizsys.paas.core.IDEDataSetFetchContext
- *  net.ibizsys.paas.core.IDEField
- *  net.ibizsys.paas.data.IDataObject
- *  net.ibizsys.paas.db.IDBDialect
- *  net.ibizsys.paas.db.SqlParamList
- *  net.ibizsys.paas.demodel.IDataEntityModel
- *  net.ibizsys.paas.util.StringBuilderEx
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.paas.util.freemarker.SqlCodeHelper
- *  net.ibizsys.paas.web.IWebContext
- */
 package net.ibizsys.ssdyna.demodel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+
 import net.ibizsys.model.dataentity.ds.IPSDEDataQueryCode;
 import net.ibizsys.model.dataentity.ds.IPSDEDataQueryCodeCond;
 import net.ibizsys.model.dataentity.ds.IPSDEDataQueryCodeExp;
+import net.ibizsys.paas.core.DataTypes;
 import net.ibizsys.paas.core.IDEDataQuery;
 import net.ibizsys.paas.core.IDEDataQueryCode;
 import net.ibizsys.paas.core.IDEDataQueryCodeCond;
@@ -42,205 +22,325 @@ import net.ibizsys.paas.util.StringBuilderEx;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.util.freemarker.SqlCodeHelper;
 import net.ibizsys.paas.web.IWebContext;
-import net.ibizsys.ssdyna.demodel.DynaDEDataQueryCodeCondModel;
-import net.ibizsys.ssdyna.demodel.DynaDEDataQueryCodeExpModel;
 
-public class DynaDEDataQueryCodeModel
-implements IDEDataQueryCode {
-    private IPSDEDataQueryCode deDataQueryCode = null;
-    private IDEDataQuery iDEDataQuery = null;
-    private HashMap<String, IDEDataQueryCodeExp> fieldExpMap = new HashMap();
-    private ArrayList<IDEDataQueryCodeCond> deDataQueryCodeCondList = new ArrayList();
-    private HashMap<String, SqlCodeHelper> sqlCodeHelperMap = new HashMap();
-    private IDataEntityModel iDEModel = null;
+/**
+ * 实体查询代码模型
+ * 
+ * @author lionlau
+ *
+ */
+public class DynaDEDataQueryCodeModel implements IDEDataQueryCode {
 
-    public DynaDEDataQueryCodeModel(IDEDataQuery iDEDataQuery, IPSDEDataQueryCode deDataQueryCode) throws Exception {
-        this.iDEDataQuery = iDEDataQuery;
-        this.deDataQueryCode = deDataQueryCode;
-        if (this.iDEDataQuery.getDataEntity() != null && this.iDEDataQuery.getDataEntity() instanceof IDataEntityModel) {
-            this.iDEModel = (IDataEntityModel)this.iDEDataQuery.getDataEntity();
-        }
-        this.prepareDEDataQueryCodeExps();
-        this.prepareDEDataQueryCodeConds();
-    }
 
-    protected void prepareDEDataQueryCodeExps() throws Exception {
-        Iterator psDEDataQueryCodeExps = this.deDataQueryCode.getPSDEDataQueryCodeExps();
-        while (psDEDataQueryCodeExps.hasNext()) {
-            DynaDEDataQueryCodeExpModel deDataQueryCodeExpModel = new DynaDEDataQueryCodeExpModel((IPSDEDataQueryCodeExp)psDEDataQueryCodeExps.next());
-            this.fieldExpMap.put(deDataQueryCodeExpModel.getName().toUpperCase(), deDataQueryCodeExpModel);
-        }
-    }
+	private IPSDEDataQueryCode deDataQueryCode = null;
+	private IDEDataQuery iDEDataQuery = null;
+	private HashMap<String, IDEDataQueryCodeExp> fieldExpMap = new HashMap<String, IDEDataQueryCodeExp>();
+	private ArrayList<IDEDataQueryCodeCond> deDataQueryCodeCondList = new ArrayList<IDEDataQueryCodeCond>();
+	private HashMap<String, SqlCodeHelper> sqlCodeHelperMap = new HashMap<String, SqlCodeHelper>();
+	private IDataEntityModel iDEModel = null;
 
-    protected void prepareDEDataQueryCodeConds() throws Exception {
-        Iterator psDEDataQueryCodeConds = this.deDataQueryCode.getPSDEDataQueryCodeConds();
-        while (psDEDataQueryCodeConds.hasNext()) {
-            DynaDEDataQueryCodeCondModel deDataQueryCodeCondModel = new DynaDEDataQueryCodeCondModel((IPSDEDataQueryCodeCond)psDEDataQueryCodeConds.next());
-            this.deDataQueryCodeCondList.add(deDataQueryCodeCondModel);
-        }
-    }
+	public DynaDEDataQueryCodeModel(IDEDataQuery iDEDataQuery, IPSDEDataQueryCode deDataQueryCode) throws Exception{
+		this.iDEDataQuery = iDEDataQuery;
+		this.deDataQueryCode = deDataQueryCode;
+		if (this.iDEDataQuery.getDataEntity() != null && this.iDEDataQuery.getDataEntity() instanceof IDataEntityModel) {
+			this.iDEModel = (IDataEntityModel) this.iDEDataQuery.getDataEntity();
+		}
+		this.prepareDEDataQueryCodeExps();
+		this.prepareDEDataQueryCodeConds();
+	}
 
-    public IDEDataQuery getDEDataQuery() {
-        return this.iDEDataQuery;
-    }
+	/**
+	 * 准备实体数据查询代码表达式
+	 */
+	protected void prepareDEDataQueryCodeExps() throws Exception{
+		java.util.Iterator<IPSDEDataQueryCodeExp > psDEDataQueryCodeExps = this.deDataQueryCode.getPSDEDataQueryCodeExps();
+		while(psDEDataQueryCodeExps.hasNext()){
+			DynaDEDataQueryCodeExpModel deDataQueryCodeExpModel = new DynaDEDataQueryCodeExpModel(psDEDataQueryCodeExps.next());
+			fieldExpMap.put(deDataQueryCodeExpModel.getName().toUpperCase(), deDataQueryCodeExpModel);
+		}
+		
 
-    public String getId() {
-        return null;
-    }
+	}
 
-    public String getName() {
-        return null;
-    }
+	/**
+	 * 准备实体数据查询代码条件
+	 */
+	protected void prepareDEDataQueryCodeConds() throws Exception{
+		java.util.Iterator<IPSDEDataQueryCodeCond > psDEDataQueryCodeConds = this.deDataQueryCode.getPSDEDataQueryCodeConds();
+		while(psDEDataQueryCodeConds.hasNext()){
+			
+			DynaDEDataQueryCodeCondModel deDataQueryCodeCondModel = new DynaDEDataQueryCodeCondModel(psDEDataQueryCodeConds.next());
+			deDataQueryCodeCondList.add(deDataQueryCodeCondModel);
 
-    public String getDBType() {
-        return this.deDataQueryCode.getDBType();
-    }
+		}
 
-    public String getQueryCode() {
-        return this.deDataQueryCode.getQueryCode();
-    }
+	}
 
-    public String getQueryCodeTemp() {
-        return this.deDataQueryCode.getQueryCodeTemp();
-    }
+	/**
+	 * 获取实体数据查询
+	 * 
+	 * @return
+	 */
+	@Override
+	public IDEDataQuery getDEDataQuery() {
+		return this.iDEDataQuery;
+	}
 
-    public String getDeclareCode() {
-        return this.deDataQueryCode.getDeclareCode();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IModelBase#getId()
+	 */
+	@Override
+	public String getId() {
+		return null;
+	}
 
-    public void fillDeclareParams(IWebContext webContext, IDataObject iDataObject, SqlParamList sqlParamList) throws Exception {
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IModelBase#getName()
+	 */
+	@Override
+	public String getName() {
+		return null;
+	}
 
-    public void fillQueryParams(IWebContext webContext, IDataObject iDataObject, SqlParamList sqlParamList) throws Exception {
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDEDataQueryModel#getDBType()
+	 */
+	@Override
+	public String getDBType() {
+		return deDataQueryCode.getDBType();
+	}
 
-    public String getConditionSQL(IDEDataSetFetchContext iDEDataSetFetchContext, IDEDataQueryCodeCond iDEDataQueryCond, IDBDialect iDBDialect, SqlParamList list) throws Exception {
-        if (StringHelper.compare((String)iDEDataQueryCond.getCondType(), (String)"GROUP", (boolean)true) == 0) {
-            ArrayList<String> condList = new ArrayList<String>();
-            Iterator childDEDataQueryConds = iDEDataQueryCond.getChildDEDataQueryConds();
-            if (childDEDataQueryConds != null) {
-                while (childDEDataQueryConds.hasNext()) {
-                    IDEDataQueryCodeCond childDEDataQueryCond = (IDEDataQueryCodeCond)childDEDataQueryConds.next();
-                    String strCond = this.getConditionSQL(iDEDataSetFetchContext, childDEDataQueryCond, iDBDialect, list);
-                    if (StringHelper.isNullOrEmpty((String)strCond)) continue;
-                    condList.add(strCond);
-                }
-            }
-            if (condList.size() == 0) {
-                return null;
-            }
-            StringBuilderEx sb = new StringBuilderEx();
-            boolean bFirst = true;
-            for (String strCond : condList) {
-                if (bFirst) {
-                    bFirst = false;
-                } else {
-                    sb.append(" %1$s ", (Object)iDEDataQueryCond.getCondOp());
-                }
-                sb.append("( %1$s )", (Object)strCond);
-            }
-            if (iDEDataQueryCond.isNotMode()) {
-                return StringHelper.format((String)" NOT( %1$s )", (Object)sb.toString());
-            }
-            return sb.toString();
-        }
-        if (StringHelper.compare((String)iDEDataQueryCond.getCondType(), (String)"DEFIELD", (boolean)true) == 0) {
-            String strDEFieldExp = iDEDataQueryCond.getDEFieldExp();
-            int nStdDataType = iDEDataQueryCond.getStdDataType();
-            if (StringHelper.isNullOrEmpty((String)strDEFieldExp)) {
-                strDEFieldExp = this.getDEFieldExp(iDEDataQueryCond.getDEFName(), false);
-            }
-            if (nStdDataType == 0) {
-                IDEField iDEField = this.iDEDataQuery.getDataEntity().getDEField(iDEDataQueryCond.getDEFName(), false);
-                nStdDataType = iDEField.getStdDataType();
-            }
-            if (this.getDEModel() != null) {
-                return this.getDEModel().getDEFieldConditionSql(iDBDialect, iDEDataQueryCond.getDEFName(), strDEFieldExp, nStdDataType, iDEDataQueryCond.getCondOp(), iDEDataQueryCond.getCondValue());
-            }
-            return iDBDialect.getConditionSQL(strDEFieldExp, nStdDataType, iDEDataQueryCond.getCondOp(), iDEDataQueryCond.getCondValue(), false, null);
-        }
-        if (StringHelper.compare((String)iDEDataQueryCond.getCondType(), (String)"CUSTOM", (boolean)true) == 0) {
-            SqlCodeHelper sqlCodeHelper = this.sqlCodeHelperMap.get(iDEDataQueryCond.getCustomCond());
-            if (sqlCodeHelper == null) {
-                sqlCodeHelper = new SqlCodeHelper();
-                sqlCodeHelper.init((IDEDataQueryCode)this, iDEDataQueryCond.getCustomCond());
-                this.sqlCodeHelperMap.put(iDEDataQueryCond.getCustomCond(), sqlCodeHelper);
-            }
-            return sqlCodeHelper.generateCode(list, iDEDataSetFetchContext.getSessionFactory());
-        }
-        throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u6761\u4ef6\u7c7b\u578b[%1$s]", (Object)iDEDataQueryCond.getCondType()));
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDEDataQueryModel#getQueryCode()
+	 */
+	@Override
+	public String getQueryCode() {
+		return deDataQueryCode.getQueryCode();
+	}
 
-    public String getDEFieldExp(String strName, boolean bTry) throws Exception {
-        IDEDataQueryCodeExp iDEDataQueryCodeExp = this.fieldExpMap.get(strName = strName.toUpperCase());
-        if (iDEDataQueryCodeExp == null) {
-            IDEField iDEField = this.getDEDataQuery().getDataEntity().getDEField(strName, true);
-            if (iDEField != null) {
-                if (StringHelper.compare((String)iDEField.getDataType(), (String)"INHERIT", (boolean)true) == 0) {
-                    return StringHelper.format((String)"t11.%1$s", (Object)iDEField.getName());
-                }
-                return StringHelper.format((String)"t1.%1$s", (Object)iDEField.getName());
-            }
-            if (!bTry) {
-                throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u5c5e\u6027\u8868\u8fbe\u5f0f[%1$s]", (Object)strName));
-            }
-        }
-        return iDEDataQueryCodeExp.getExpression();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDEDataQueryModel#getQueryCode()
+	 */
+	@Override
+	public String getQueryCodeTemp() {
+		return deDataQueryCode.getQueryCodeTemp();
+	}
 
-    public Iterator<IDEDataQueryCodeCond> getDEDataQueryCodeConds() {
-        return this.deDataQueryCodeCondList.iterator();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDEDataQueryModel#getDeclareCode()
+	 */
+	@Override
+	public String getDeclareCode() {
+		return deDataQueryCode.getDeclareCode();
+	}
 
-    public String getExtJoinSQL(IDEDataSetFetchContext iDEDataSetFetchContext, String strCode, IDBDialect iDBDialect, SqlParamList list) throws Exception {
-        SqlCodeHelper sqlCodeHelper = this.sqlCodeHelperMap.get(strCode);
-        if (sqlCodeHelper == null) {
-            sqlCodeHelper = new SqlCodeHelper();
-            sqlCodeHelper.init((IDEDataQueryCode)this, strCode);
-            this.sqlCodeHelperMap.put(strCode, sqlCodeHelper);
-        }
-        return sqlCodeHelper.generateCode(list, iDEDataSetFetchContext.getSessionFactory());
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDEDataQueryModel#fillDeclareParams(net.ibizsys.paas.web.IWebContext, net.ibizsys.paas.data.IDataObject, net.ibizsys.paas.db.SqlParamList)
+	 */
+	@Override
+	public void fillDeclareParams(IWebContext webContext, IDataObject iDataObject, SqlParamList sqlParamList) throws Exception {
+		// TODO Auto-generated method stub
 
-    public String getQueryCode(IDEDataSetFetchContext iDEDataSetFetchContext, IDBDialect iDBDialect, SqlParamList list) throws Exception {
-        String strCode = this.getQueryCode();
-        SqlCodeHelper sqlCodeHelper = this.sqlCodeHelperMap.get(strCode);
-        if (sqlCodeHelper == null) {
-            sqlCodeHelper = new SqlCodeHelper();
-            sqlCodeHelper.init((IDEDataQueryCode)this, strCode);
-            this.sqlCodeHelperMap.put(strCode, sqlCodeHelper);
-        }
-        return sqlCodeHelper.generateCode(list, iDEDataSetFetchContext.getSessionFactory());
-    }
+	}
 
-    public String getQueryCodeTemp(IDEDataSetFetchContext iDEDataSetFetchContext, IDBDialect iDBDialect, SqlParamList list) throws Exception {
-        String strCode = this.getQueryCodeTemp();
-        SqlCodeHelper sqlCodeHelper = this.sqlCodeHelperMap.get(strCode);
-        if (sqlCodeHelper == null) {
-            sqlCodeHelper = new SqlCodeHelper();
-            sqlCodeHelper.init((IDEDataQueryCode)this, strCode);
-            this.sqlCodeHelperMap.put(strCode, sqlCodeHelper);
-        }
-        return sqlCodeHelper.generateCode(list, iDEDataSetFetchContext.getSessionFactory());
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDEDataQueryModel#fillQueryParams(net.ibizsys.paas.web.IWebContext, net.ibizsys.paas.data.IDataObject, net.ibizsys.paas.db.SqlParamList)
+	 */
+	@Override
+	public void fillQueryParams(IWebContext webContext, IDataObject iDataObject, SqlParamList sqlParamList) throws Exception {
+		// TODO Auto-generated method stub
 
-    public String getDeclareCode(IDEDataSetFetchContext iDEDataSetFetchContext, IDBDialect iDBDialect, SqlParamList list) throws Exception {
-        String strCode = this.getDeclareCode();
-        SqlCodeHelper sqlCodeHelper = this.sqlCodeHelperMap.get(strCode);
-        if (sqlCodeHelper == null) {
-            sqlCodeHelper = new SqlCodeHelper();
-            sqlCodeHelper.init((IDEDataQueryCode)this, strCode);
-            this.sqlCodeHelperMap.put(strCode, sqlCodeHelper);
-        }
-        return sqlCodeHelper.generateCode(list, iDEDataSetFetchContext.getSessionFactory());
-    }
+	}
 
-    protected IDataEntityModel getDEModel() {
-        return this.iDEModel;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.demodel.IDEDataQueryModel#getConditionSQL(net.ibizsys.paas.core.IDEDataSetFetchContext, net.ibizsys.paas.core.IDEDataQueryCodeCond, net.ibizsys.paas.db.SqlParamList)
+	 */
+	@Override
+	public String getConditionSQL(IDEDataSetFetchContext iDEDataSetFetchContext, IDEDataQueryCodeCond iDEDataQueryCond, IDBDialect iDBDialect, SqlParamList list) throws Exception {
+		if (StringHelper.compare(iDEDataQueryCond.getCondType(), IDEDataQueryCodeCond.CONDTYPE_GROUP, true) == 0) {
+			ArrayList<String> condList = new ArrayList<String>();
+			java.util.Iterator<IDEDataQueryCodeCond> childDEDataQueryConds = iDEDataQueryCond.getChildDEDataQueryConds();
+			if (childDEDataQueryConds != null) {
+				while (childDEDataQueryConds.hasNext()) {
+					IDEDataQueryCodeCond childDEDataQueryCond = childDEDataQueryConds.next();
+					String strCond = getConditionSQL(iDEDataSetFetchContext, childDEDataQueryCond, iDBDialect, list);
+					if (!StringHelper.isNullOrEmpty(strCond)) {
+						condList.add(strCond);
+					}
+				}
+			}
 
-    public Iterator<IDEDataQueryCodeExp> getDEDataQueryCodeExps() {
-        return null;
-    }
+			if (condList.size() == 0) return null;
+
+			StringBuilderEx sb = new StringBuilderEx();
+
+			boolean bFirst = true;
+			for (String strCond : condList) {
+				if (bFirst)
+					bFirst = false;
+				else
+					sb.append(" %1$s ", iDEDataQueryCond.getCondOp());
+				sb.append("( %1$s )", strCond);
+			}
+
+			if (iDEDataQueryCond.isNotMode()) {
+				return StringHelper.format(" NOT( %1$s )", sb.toString());
+			} else
+				return sb.toString();
+		}
+
+		if (StringHelper.compare(iDEDataQueryCond.getCondType(), IDEDataQueryCodeCond.CONDTYPE_DEFIELD, true) == 0) {
+			String strDEFieldExp = iDEDataQueryCond.getDEFieldExp();
+			int nStdDataType = iDEDataQueryCond.getStdDataType();
+			if (StringHelper.isNullOrEmpty(strDEFieldExp)) {
+				strDEFieldExp = getDEFieldExp(iDEDataQueryCond.getDEFName(), false);
+			}
+			if (nStdDataType == DataTypes.UNKNOWN) {
+				IDEField iDEField = this.iDEDataQuery.getDataEntity().getDEField(iDEDataQueryCond.getDEFName(), false);
+				nStdDataType = iDEField.getStdDataType();
+			}
+			if (this.getDEModel() != null) return this.getDEModel().getDEFieldConditionSql(iDBDialect, iDEDataQueryCond.getDEFName(), strDEFieldExp, nStdDataType, iDEDataQueryCond.getCondOp(), iDEDataQueryCond.getCondValue());
+			return iDBDialect.getConditionSQL(strDEFieldExp, nStdDataType, iDEDataQueryCond.getCondOp(), iDEDataQueryCond.getCondValue(), false, null);
+		}
+
+		if (StringHelper.compare(iDEDataQueryCond.getCondType(), IDEDataQueryCodeCond.CONDTYPE_CUSTOM, true) == 0) {
+			// 自定义代码，要分析是否有参数
+			SqlCodeHelper sqlCodeHelper = this.sqlCodeHelperMap.get(iDEDataQueryCond.getCustomCond());
+			if (sqlCodeHelper == null) {
+				sqlCodeHelper = new SqlCodeHelper();
+				sqlCodeHelper.init(this, iDEDataQueryCond.getCustomCond());
+				sqlCodeHelperMap.put(iDEDataQueryCond.getCustomCond(), sqlCodeHelper);
+			}
+			return sqlCodeHelper.generateCode(list, iDEDataSetFetchContext.getSessionFactory());
+		}
+
+		throw new Exception(StringHelper.format("无法识别的条件类型[%1$s]", iDEDataQueryCond.getCondType()));
+	}
+
+	/**
+	 * 获取属性表达式
+	 * 
+	 * @param strName
+	 * @param bTry
+	 * @return
+	 * @throws Exception
+	 */
+	public String getDEFieldExp(String strName, boolean bTry) throws Exception {
+		strName = strName.toUpperCase();
+		IDEDataQueryCodeExp iDEDataQueryCodeExp = fieldExpMap.get(strName);
+		if (iDEDataQueryCodeExp == null) {
+			// 猜测
+			IDEField iDEField = this.getDEDataQuery().getDataEntity().getDEField(strName, true);
+			if (iDEField != null) {
+				if (StringHelper.compare(iDEField.getDataType(), IDEField.DATATYPE_INHERIT, true) == 0) {
+					return StringHelper.format("t11.%1$s", iDEField.getName());
+				} else
+					return StringHelper.format("t1.%1$s", iDEField.getName());
+			}
+			if (!bTry) {
+				throw new Exception(StringHelper.format("无法获取属性表达式[%1$s]", strName));
+			}
+		}
+
+		return iDEDataQueryCodeExp.getExpression();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.core.IDEDataQueryCode#getDEDataQueryCodeConds()
+	 */
+	@Override
+	public Iterator<IDEDataQueryCodeCond> getDEDataQueryCodeConds() {
+		return deDataQueryCodeCondList.iterator();
+	}
+
+	/**
+	 * @param iDEDataSetFetchContext
+	 * @param iDEField
+	 * @param strFunc
+	 * @param strAction
+	 * @param strValue
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public String getExtJoinSQL(IDEDataSetFetchContext iDEDataSetFetchContext, String strCode, IDBDialect iDBDialect, SqlParamList list) throws Exception {
+		// 自定义代码，要分析是否有参数
+		SqlCodeHelper sqlCodeHelper = this.sqlCodeHelperMap.get(strCode);
+		if (sqlCodeHelper == null) {
+			sqlCodeHelper = new SqlCodeHelper();
+			sqlCodeHelper.init(this, strCode);
+			sqlCodeHelperMap.put(strCode, sqlCodeHelper);
+		}
+		return sqlCodeHelper.generateCode(list, iDEDataSetFetchContext.getSessionFactory());
+	}
+
+	@Override
+	public String getQueryCode(IDEDataSetFetchContext iDEDataSetFetchContext, IDBDialect iDBDialect, SqlParamList list) throws Exception {
+		String strCode = this.getQueryCode();
+		SqlCodeHelper sqlCodeHelper = this.sqlCodeHelperMap.get(strCode);
+		if (sqlCodeHelper == null) {
+			sqlCodeHelper = new SqlCodeHelper();
+			sqlCodeHelper.init(this, strCode);
+			sqlCodeHelperMap.put(strCode, sqlCodeHelper);
+		}
+		return sqlCodeHelper.generateCode(list, iDEDataSetFetchContext.getSessionFactory());
+	}
+
+	@Override
+	public String getQueryCodeTemp(IDEDataSetFetchContext iDEDataSetFetchContext, IDBDialect iDBDialect, SqlParamList list) throws Exception {
+		String strCode = this.getQueryCodeTemp();
+		SqlCodeHelper sqlCodeHelper = this.sqlCodeHelperMap.get(strCode);
+		if (sqlCodeHelper == null) {
+			sqlCodeHelper = new SqlCodeHelper();
+			sqlCodeHelper.init(this, strCode);
+			sqlCodeHelperMap.put(strCode, sqlCodeHelper);
+		}
+		return sqlCodeHelper.generateCode(list, iDEDataSetFetchContext.getSessionFactory());
+	}
+
+	@Override
+	public String getDeclareCode(IDEDataSetFetchContext iDEDataSetFetchContext, IDBDialect iDBDialect, SqlParamList list) throws Exception {
+		String strCode = this.getDeclareCode();
+		SqlCodeHelper sqlCodeHelper = this.sqlCodeHelperMap.get(strCode);
+		if (sqlCodeHelper == null) {
+			sqlCodeHelper = new SqlCodeHelper();
+			sqlCodeHelper.init(this, strCode);
+			sqlCodeHelperMap.put(strCode, sqlCodeHelper);
+		}
+		return sqlCodeHelper.generateCode(list, iDEDataSetFetchContext.getSessionFactory());
+	}
+
+	/**
+	 * 获取实体模型
+	 * 
+	 * @return
+	 */
+	protected IDataEntityModel getDEModel() {
+		return this.iDEModel;
+	}
+
+	@Override
+	public Iterator<IDEDataQueryCodeExp> getDEDataQueryCodeExps() {
+		return null;
+	}
 }
-

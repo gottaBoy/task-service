@@ -97,8 +97,7 @@ public class PSModelHotCodeHelper {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     protected ArrayList<PSModelHotCodeEngine> getHotCodes(String string, String string2) throws Exception {
-        HashMap<String, ArrayList<PSModelHotCodeEngine>> hashMap = this.psModelHotCodeMapObject;
-        synchronized (hashMap) {
+        synchronized (this.psModelHotCodeMapObject) {
             if (this.psModelHotCodeMap == null) {
                 try {
                     this.psModelHotCodeMap = new HashMap();
@@ -106,7 +105,7 @@ public class PSModelHotCodeHelper {
                     SelectCond selectCond = new SelectCond();
                     selectCond.set("VALIDFLAG", (Object)1);
                     selectCond.setOrderInfo("ORDER BY ORDERVALUE");
-                    ArrayList arrayList = pSModelHotCodeService.select((ISelectCond)selectCond);
+                    ArrayList<PSModelHotCode> arrayList = pSModelHotCodeService.select((ISelectCond)selectCond);
                     for (PSModelHotCode pSModelHotCode : arrayList) {
                         ArrayList<PSModelHotCodeEngine> arrayList2;
                         String string3 = pSModelHotCode.getPSModelId();
@@ -129,7 +128,7 @@ public class PSModelHotCodeHelper {
                 }
             }
         }
-        hashMap = this.psModelHotCodeMap.get(string);
+        HashMap<String, ArrayList<PSModelHotCodeEngine>> hashMap = this.psModelHotCodeMap.get(string);
         if (hashMap == null) {
             return null;
         }
@@ -176,7 +175,7 @@ public class PSModelHotCodeHelper {
         }
 
         public IEntity getEntity() {
-            return (IEntity)PSModelHotCodeHelper.this.entity.get();
+            return PSModelHotCodeHelper.this.entity.get();
         }
     }
 
@@ -196,4 +195,3 @@ public class PSModelHotCodeHelper {
         }
     }
 }
-

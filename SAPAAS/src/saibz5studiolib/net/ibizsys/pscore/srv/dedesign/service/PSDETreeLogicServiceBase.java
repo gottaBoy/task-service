@@ -177,9 +177,9 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSDETreeLogic, pSDataEntity);
             return;
@@ -189,9 +189,9 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             PSDELogic pSDELogic = (PSDELogic)iService.getDEModel().createEntity();
             pSDELogic.set("PSDELOGICID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDELogic);
+                iService.getTemp(pSDELogic);
             } else {
-                iService.get((IEntity)pSDELogic);
+                iService.get(pSDELogic);
             }
             this.onFillParentInfo_PSDELogic(pSDETreeLogic, pSDELogic);
             return;
@@ -201,9 +201,9 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             PSDETreeCol pSDETreeCol = (PSDETreeCol)iService.getDEModel().createEntity();
             pSDETreeCol.set("PSDETREECOLID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDETreeCol);
+                iService.getTemp(pSDETreeCol);
             } else {
-                iService.get((IEntity)pSDETreeCol);
+                iService.get(pSDETreeCol);
             }
             this.onFillParentInfo_PSDETreeCol(pSDETreeLogic, pSDETreeCol);
             return;
@@ -213,9 +213,9 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             PSDETreeNode pSDETreeNode = (PSDETreeNode)iService.getDEModel().createEntity();
             pSDETreeNode.set("PSDETREENODEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDETreeNode);
+                iService.getTemp(pSDETreeNode);
             } else {
-                iService.get((IEntity)pSDETreeNode);
+                iService.get(pSDETreeNode);
             }
             this.onFillParentInfo_PSDETreeNode(pSDETreeLogic, pSDETreeNode);
             return;
@@ -225,9 +225,9 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             PSDETreeView pSDETreeView = (PSDETreeView)iService.getDEModel().createEntity();
             pSDETreeView.set("PSDETREEVIEWID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDETreeView);
+                iService.getTemp(pSDETreeView);
             } else {
-                iService.get((IEntity)pSDETreeView);
+                iService.get(pSDETreeView);
             }
             this.onFillParentInfo_PSDETreeView(pSDETreeLogic, pSDETreeView);
             return;
@@ -237,9 +237,9 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             PSDEUIAction pSDEUIAction = (PSDEUIAction)iService.getDEModel().createEntity();
             pSDEUIAction.set("PSDEUIACTIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUIAction);
+                iService.getTemp(pSDEUIAction);
             } else {
-                iService.get((IEntity)pSDEUIAction);
+                iService.get(pSDEUIAction);
             }
             this.onFillParentInfo_PSDEUIAction(pSDETreeLogic, pSDEUIAction);
             return;
@@ -249,9 +249,9 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_PSSysPFPlugin(pSDETreeLogic, pSSysPFPlugin);
             return;
@@ -261,9 +261,9 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             PSSysViewLogic pSSysViewLogic = (PSSysViewLogic)iService.getDEModel().createEntity();
             pSSysViewLogic.set("PSSYSVIEWLOGICID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysViewLogic);
+                iService.getTemp(pSSysViewLogic);
             } else {
-                iService.get((IEntity)pSSysViewLogic);
+                iService.get(pSSysViewLogic);
             }
             this.onFillParentInfo_PSSysViewLogic(pSDETreeLogic, pSSysViewLogic);
             return;
@@ -273,14 +273,14 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             PSSysViewPanel pSSysViewPanel = (PSSysViewPanel)iService.getDEModel().createEntity();
             pSSysViewPanel.set("PSSYSVIEWPANELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysViewPanel);
+                iService.getTemp(pSSysViewPanel);
             } else {
-                iService.get((IEntity)pSSysViewPanel);
+                iService.get(pSSysViewPanel);
             }
             this.onFillParentInfo_PSSysViewPanel(pSDETreeLogic, pSSysViewPanel);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDETreeLogic, string, string2, string3);
+        super.onFillParentInfo(pSDETreeLogic, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -333,7 +333,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             ArrayList<PSDETreeLogic> arrayList = this.selectByPSDETreeView(pSDETreeView);
             for (PSDETreeLogic pSDETreeLogic : arrayList) {
                 if (hashMap.containsKey(DataObject.getStringValue((IDataObject)pSDETreeLogic, (String)"PSDETREELOGICID", (String)""))) continue;
-                this.remove((IEntity)pSDETreeLogic);
+                this.remove(pSDETreeLogic);
             }
         }
         return null;
@@ -363,7 +363,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         if (bl && pSDETreeLogic.getValidFlag() == null) {
             pSDETreeLogic.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDETreeLogic, bl);
+        super.onFillEntityFullInfo(pSDETreeLogic, bl);
         this.onFillEntityFullInfo_PSDE(pSDETreeLogic, bl);
         this.onFillEntityFullInfo_PSDELogic(pSDETreeLogic, bl);
         this.onFillEntityFullInfo_PSDETreeCol(pSDETreeLogic, bl);
@@ -413,7 +413,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
     }
 
     protected void onWriteBackParent(PSDETreeLogic pSDETreeLogic, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDETreeLogic, bl);
+        super.onWriteBackParent(pSDETreeLogic, bl);
     }
 
     public ArrayList<PSDETreeLogic> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -681,8 +681,8 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -715,7 +715,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSDETreeLogic pSDETreeLogic : arrayList) {
-            this.remove((IEntity)pSDETreeLogic);
+            this.remove(pSDETreeLogic);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -733,8 +733,8 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSDELogic(pSDELogic, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDELOGIC");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDELogic);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSDELOGIC_PSDELOGICID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo((IEntity)pSDELogic), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDELogic);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSDELOGIC_PSDELOGICID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo(pSDELogic), arrayList.get(0)));
         }
     }
 
@@ -767,7 +767,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSDELogic(pSDELogic);
         this.onBeforeRemoveByPSDELogic(pSDELogic, arrayList);
         for (PSDETreeLogic pSDETreeLogic : arrayList) {
-            this.remove((IEntity)pSDETreeLogic);
+            this.remove(pSDETreeLogic);
         }
         this.onAfterRemoveByPSDELogic(pSDELogic, arrayList);
     }
@@ -785,8 +785,8 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSDETreeCol(pSDETreeCol, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDETREECOL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDETreeCol);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSDETREECOL_PSDETREECOLID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo((IEntity)pSDETreeCol), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDETreeCol);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSDETREECOL_PSDETREECOLID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo(pSDETreeCol), arrayList.get(0)));
         }
     }
 
@@ -806,7 +806,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             PSDETreeLogic pSDETreeLogic2 = (PSDETreeLogic)this.getDEModel().createEntity();
             pSDETreeLogic2.setPSDETreeLogicId(pSDETreeLogic.getPSDETreeLogicId());
             pSDETreeLogic2.setPSDETreeColId(null);
-            this.updateTemp((IEntity)pSDETreeLogic2);
+            this.updateTemp(pSDETreeLogic2);
         }
     }
 
@@ -829,7 +829,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSDETreeCol(pSDETreeCol);
         this.onBeforeRemoveByPSDETreeCol(pSDETreeCol, arrayList);
         for (PSDETreeLogic pSDETreeLogic : arrayList) {
-            this.remove((IEntity)pSDETreeLogic);
+            this.remove(pSDETreeLogic);
         }
         this.onAfterRemoveByPSDETreeCol(pSDETreeCol, arrayList);
     }
@@ -847,8 +847,8 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSDETreeNode(pSDETreeNode, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDETREENODE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDETreeNode);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSDETREENODE_PSDETREENODEID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo((IEntity)pSDETreeNode), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDETreeNode);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSDETREENODE_PSDETREENODEID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo(pSDETreeNode), arrayList.get(0)));
         }
     }
 
@@ -868,7 +868,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             PSDETreeLogic pSDETreeLogic2 = (PSDETreeLogic)this.getDEModel().createEntity();
             pSDETreeLogic2.setPSDETreeLogicId(pSDETreeLogic.getPSDETreeLogicId());
             pSDETreeLogic2.setPSDETreeNodeId(null);
-            this.updateTemp((IEntity)pSDETreeLogic2);
+            this.updateTemp(pSDETreeLogic2);
         }
     }
 
@@ -891,7 +891,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSDETreeNode(pSDETreeNode);
         this.onBeforeRemoveByPSDETreeNode(pSDETreeNode, arrayList);
         for (PSDETreeLogic pSDETreeLogic : arrayList) {
-            this.remove((IEntity)pSDETreeLogic);
+            this.remove(pSDETreeLogic);
         }
         this.onAfterRemoveByPSDETreeNode(pSDETreeNode, arrayList);
     }
@@ -924,7 +924,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
             PSDETreeLogic pSDETreeLogic2 = (PSDETreeLogic)this.getDEModel().createEntity();
             pSDETreeLogic2.setPSDETreeLogicId(pSDETreeLogic.getPSDETreeLogicId());
             pSDETreeLogic2.setPSDETreeViewId(null);
-            this.updateTemp((IEntity)pSDETreeLogic2);
+            this.updateTemp(pSDETreeLogic2);
         }
     }
 
@@ -947,7 +947,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSDETreeView(pSDETreeView);
         this.onBeforeRemoveByPSDETreeView(pSDETreeView, arrayList);
         for (PSDETreeLogic pSDETreeLogic : arrayList) {
-            this.remove((IEntity)pSDETreeLogic);
+            this.remove(pSDETreeLogic);
         }
         this.onAfterRemoveByPSDETreeView(pSDETreeView, arrayList);
     }
@@ -965,8 +965,8 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSDEUIAction(pSDEUIAction, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEUIACTION");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEUIAction);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSDEUIACTION_PSDEUIACTIONID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo((IEntity)pSDEUIAction), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEUIAction);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSDEUIACTION_PSDEUIACTIONID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo(pSDEUIAction), arrayList.get(0)));
         }
     }
 
@@ -999,7 +999,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSDEUIAction(pSDEUIAction);
         this.onBeforeRemoveByPSDEUIAction(pSDEUIAction, arrayList);
         for (PSDETreeLogic pSDETreeLogic : arrayList) {
-            this.remove((IEntity)pSDETreeLogic);
+            this.remove(pSDETreeLogic);
         }
         this.onAfterRemoveByPSDEUIAction(pSDEUIAction, arrayList);
     }
@@ -1017,8 +1017,8 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -1051,7 +1051,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSDETreeLogic pSDETreeLogic : arrayList) {
-            this.remove((IEntity)pSDETreeLogic);
+            this.remove(pSDETreeLogic);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -1069,8 +1069,8 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSSysViewLogic(pSSysViewLogic, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSVIEWLOGIC");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysViewLogic);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSSYSVIEWLOGIC_PSSYSVIEWLOGICID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo((IEntity)pSSysViewLogic), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysViewLogic);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSSYSVIEWLOGIC_PSSYSVIEWLOGICID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo(pSSysViewLogic), arrayList.get(0)));
         }
     }
 
@@ -1103,7 +1103,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSSysViewLogic(pSSysViewLogic);
         this.onBeforeRemoveByPSSysViewLogic(pSSysViewLogic, arrayList);
         for (PSDETreeLogic pSDETreeLogic : arrayList) {
-            this.remove((IEntity)pSDETreeLogic);
+            this.remove(pSDETreeLogic);
         }
         this.onAfterRemoveByPSSysViewLogic(pSSysViewLogic, arrayList);
     }
@@ -1121,8 +1121,8 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSSysViewPanel(pSSysViewPanel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSVIEWPANEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysViewPanel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSSYSVIEWPANEL_PSSYSVIEWPANELID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo((IEntity)pSSysViewPanel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysViewPanel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDETREELOGIC_PSSYSVIEWPANEL_PSSYSVIEWPANELID", "", iDataEntityModel.getName(), "PSDETREELOGIC", iDataEntityModel.getDataInfo(pSSysViewPanel), arrayList.get(0)));
         }
     }
 
@@ -1155,7 +1155,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectByPSSysViewPanel(pSSysViewPanel);
         this.onBeforeRemoveByPSSysViewPanel(pSSysViewPanel, arrayList);
         for (PSDETreeLogic pSDETreeLogic : arrayList) {
-            this.remove((IEntity)pSDETreeLogic);
+            this.remove(pSDETreeLogic);
         }
         this.onAfterRemoveByPSSysViewPanel(pSSysViewPanel, arrayList);
     }
@@ -1193,7 +1193,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectTempByPSDETreeCol(pSDETreeCol);
         this.onBeforeRemoveTempByPSDETreeCol(pSDETreeCol, arrayList);
         for (PSDETreeLogic pSDETreeLogic : arrayList) {
-            this.removeTemp((IEntity)pSDETreeLogic);
+            this.removeTemp(pSDETreeLogic);
         }
         this.onAfterRemoveTempByPSDETreeCol(pSDETreeCol, arrayList);
     }
@@ -1226,7 +1226,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectTempByPSDETreeNode(pSDETreeNode);
         this.onBeforeRemoveTempByPSDETreeNode(pSDETreeNode, arrayList);
         for (PSDETreeLogic pSDETreeLogic : arrayList) {
-            this.removeTemp((IEntity)pSDETreeLogic);
+            this.removeTemp(pSDETreeLogic);
         }
         this.onAfterRemoveTempByPSDETreeNode(pSDETreeNode, arrayList);
     }
@@ -1259,7 +1259,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         ArrayList<PSDETreeLogic> arrayList = this.selectTempByPSDETreeView(pSDETreeView);
         this.onBeforeRemoveTempByPSDETreeView(pSDETreeView, arrayList);
         for (PSDETreeLogic pSDETreeLogic : arrayList) {
-            this.removeTemp((IEntity)pSDETreeLogic);
+            this.removeTemp(pSDETreeLogic);
         }
         this.onAfterRemoveTempByPSDETreeView(pSDETreeView, arrayList);
     }
@@ -1275,7 +1275,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
 
     protected void replaceParentInfo(PSDETreeLogic pSDETreeLogic, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDETreeLogic, cloneSession);
+        super.replaceParentInfo(pSDETreeLogic, cloneSession);
         if (pSDETreeLogic.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSDETreeLogic.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSDETreeLogic, (PSDataEntity)iEntity);
         }
@@ -1306,7 +1306,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDETreeLogic pSDETreeLogic, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDETreeLogic, bl);
+        super.onRemoveEntityUncopyValues(pSDETreeLogic, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDETreeLogic pSDETreeLogic, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1402,7 +1402,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDETreeLogic, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDETreeLogic, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDETreeLogic, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AttrName(boolean bl, PSDETreeLogic pSDETreeLogic, boolean bl2, boolean bl3) throws Exception {
@@ -1415,7 +1415,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AttrName_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_AttrName_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ATTRNAME");
@@ -1437,7 +1437,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CustomCode_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_CustomCode_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMCODE");
@@ -1462,7 +1462,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DstLogicType_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_DstLogicType_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DSTLOGICTYPE");
@@ -1484,7 +1484,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EventArg_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_EventArg_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EVENTARG");
@@ -1506,7 +1506,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EventArg2_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_EventArg2_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EVENTARG2");
@@ -1528,7 +1528,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EventNames_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_EventNames_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EVENTNAMES");
@@ -1550,7 +1550,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicParam_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_LogicParam_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICPARAM");
@@ -1572,7 +1572,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicParam2_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_LogicParam2_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICPARAM2");
@@ -1594,7 +1594,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1616,7 +1616,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -1638,7 +1638,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -1660,7 +1660,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDELogicId_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDELogicId_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDELOGICID");
@@ -1682,7 +1682,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -1704,7 +1704,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDETreeColId_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDETreeColId_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDETREECOLID");
@@ -1729,7 +1729,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDETreeLogicId_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDETreeLogicId_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDETREELOGICID");
@@ -1754,7 +1754,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDETreeLogicName_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDETreeLogicName_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDETREELOGICNAME");
@@ -1793,7 +1793,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDETreeNodeId_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDETreeNodeId_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDETREENODEID");
@@ -1818,7 +1818,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDETreeViewId_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDETreeViewId_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDETREEVIEWID");
@@ -1840,7 +1840,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEUIActionId_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEUIActionId_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEUIACTIONID");
@@ -1862,7 +1862,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPluginId_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPluginId_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPLUGINID");
@@ -1884,7 +1884,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewLogicId_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewLogicId_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWLOGICID");
@@ -1906,7 +1906,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewPanelId_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewPanelId_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWPANELID");
@@ -1928,7 +1928,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Timer_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string = this.onTestValueRule_Timer_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TIMER");
@@ -1953,7 +1953,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TriggerType_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_TriggerType_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TRIGGERTYPE");
@@ -1975,7 +1975,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1997,7 +1997,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -2019,7 +2019,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -2041,7 +2041,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -2063,7 +2063,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -2088,7 +2088,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDETreeLogic, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDETreeLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -2101,11 +2101,11 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
     }
 
     protected void onSyncEntity(PSDETreeLogic pSDETreeLogic, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDETreeLogic, bl);
+        super.onSyncEntity(pSDETreeLogic, bl);
     }
 
     protected void onSyncIndexEntities(PSDETreeLogic pSDETreeLogic, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDETreeLogic, bl);
+        super.onSyncIndexEntities(pSDETreeLogic, bl);
     }
 
     public Object getDataContextValue(PSDETreeLogic pSDETreeLogic, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -2113,7 +2113,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDETreeLogic, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDETreeLogic, string, iDataContextParam)) != null) {
             return object;
         }
         PSDETreeView pSDETreeView = pSDETreeLogic.getPSDETreeView();
@@ -2124,7 +2124,7 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
     }
 
     protected void onExportMajorModel(PSDETreeLogic pSDETreeLogic, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDETreeLogic, arrayList, n);
+        super.onExportMajorModel(pSDETreeLogic, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2728,14 +2728,14 @@ extends PSCoreSysServiceBase<PSDETreeLogic> {
 
     protected boolean onMergeChild(String string, String string2, PSDETreeLogic pSDETreeLogic) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDETreeLogic)) {
+        if (super.onMergeChild(string, string2, pSDETreeLogic)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDETreeLogic pSDETreeLogic) throws Exception {
-        super.onUpdateParent((IEntity)pSDETreeLogic);
+        super.onUpdateParent(pSDETreeLogic);
     }
 
     @Override

@@ -68,7 +68,7 @@ extends DEDCProcess {
         } else if (nRet > 0L) {
             envDataEntity.SetParamValue(strEnvDEF, (Object)1);
         } else {
-            envDataEntity.SetParamValue(strEnvDEF, (Object)-1);
+            envDataEntity.SetParamValue(strEnvDEF, (Object)(-1));
         }
         dedcContext.DebugOutput((Object)this, StringHelper.Format((String)"\u56de\u5199\u73af\u5883\u53d8\u91cf\u5bf9\u8c61\u5c5e\u6027[%1$s]\u503c\u4e3a[%2$s]", (Object)strEnvDEF, (Object)envDataEntity.GetParamValue(strEnvDEF)));
         return callResult;

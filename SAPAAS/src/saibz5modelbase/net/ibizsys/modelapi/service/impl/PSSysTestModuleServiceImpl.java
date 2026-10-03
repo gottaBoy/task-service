@@ -70,7 +70,7 @@ implements IPSSysTestModuleService {
     @Override
     protected List<PSSysTestModule> onListAll() throws Exception {
         ArrayList<PSSysTestModule> list = new ArrayList<PSSysTestModule>();
-        List pssystestprjs = PSModelServiceUtil.getInstance().getPSSysTestPrjService().listAll();
+        List<PSSysTestPrj> pssystestprjs = PSModelServiceUtil.getInstance().getPSSysTestPrjService().listAll();
         if (pssystestprjs != null) {
             for (PSSysTestPrj parent : pssystestprjs) {
                 List<PSSysTestModule> items = this.listByPSSysTestPrj(parent);

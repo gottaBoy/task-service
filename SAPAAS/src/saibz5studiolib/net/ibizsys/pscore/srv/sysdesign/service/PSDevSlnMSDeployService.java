@@ -1,173 +1,156 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- *  net.ibizsys.paas.data.DataObject
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.paas.service.ServiceGlobal
- *  net.ibizsys.paas.util.DataTypeHelper
- *  net.ibizsys.paas.util.JsonNodeHelper
- *  net.ibizsys.paas.util.StringHelper
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.hibernate.SessionFactory
- *  org.springframework.stereotype.Component
- */
 package net.ibizsys.pscore.srv.sysdesign.service;
 
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.DataTypeHelper;
 import net.ibizsys.paas.util.JsonNodeHelper;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.devcenter.entity.PSDCMSPlatform;
 import net.ibizsys.pscore.srv.devcenter.entity.PSDCMSPlatformFunc;
-import net.ibizsys.pscore.srv.devcenter.entity.PSDCMSPlatformFuncBase;
 import net.ibizsys.pscore.srv.devcenter.entity.PSDevCenterDBInst;
-import net.ibizsys.pscore.srv.devcenter.entity.PSDevCenterDBInstBase;
 import net.ibizsys.pscore.srv.devcenter.service.PSDCMSPlatformFuncService;
-import net.ibizsys.pscore.srv.devcenter.service.PSDCMSPlatformFuncServiceBase;
 import net.ibizsys.pscore.srv.devcenter.service.PSDevCenterDBInstService;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSln;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSlnMSDepAPI;
-import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSlnMSDepAPIBase;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSlnMSDeploy;
-import net.ibizsys.pscore.srv.sysdesign.service.PSDevSlnMSDeployServiceBase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PSDevSlnMSDeployService
-extends PSDevSlnMSDeployServiceBase {
-    private static final Log log = LogFactory.getLog(PSDevSlnMSDeployService.class);
-    public static final String CONFIG_DBINST = "dbinst";
-    public static final String CONFIG_DBINST_DBTYPE = "dbtype";
-    public static final String CONFIG_DBINST_DBNAME = "dbname";
-    public static final String CONFIG_DBINST_USERNAME = "username";
-    public static final String CONFIG_DBINST_PASSWORD = "password";
-    public static final String CONFIG_DBINST_URL = "url";
-    public static final String CONFIG_CLOUDUTIL = "cloudutil";
-    public static final String CONFIG_CLOUDCONF = "cloudconf";
-    public static final String CONFIG_CLOUDNODE = "cloudnode";
+public class PSDevSlnMSDeployService extends PSDevSlnMSDeployServiceBase {
+   private static final Log log = LogFactory.getLog(PSDevSlnMSDeployService.class);
+   public static final String CONFIG_DBINST = "dbinst";
+   public static final String CONFIG_DBINST_DBTYPE = "dbtype";
+   public static final String CONFIG_DBINST_DBNAME = "dbname";
+   public static final String CONFIG_DBINST_USERNAME = "username";
+   public static final String CONFIG_DBINST_PASSWORD = "password";
+   public static final String CONFIG_DBINST_URL = "url";
+   public static final String CONFIG_CLOUDUTIL = "cloudutil";
+   public static final String CONFIG_CLOUDCONF = "cloudconf";
+   public static final String CONFIG_CLOUDNODE = "cloudnode";
 
-    /*
-     * WARNING - void declaration
-     */
-    @Override
-    protected void onPubConfigs(PSDevSlnMSDeploy pSDevSlnMSDeploy) throws Exception {
-        Object object;
-        String string;
-        Object object2;
-        ObjectNode objectNode;
-        Object object3;
-        Serializable serializable;
-        Object object4;
-        Object object5;
-        this.get((IEntity)pSDevSlnMSDeploy);
-        if (StringHelper.isNullOrEmpty((String)pSDevSlnMSDeploy.getPSDevSlnId())) {
-            throw new Exception(String.format("\u5fae\u670d\u52a1\u90e8\u7f72\u65b9\u6848\u672a\u6307\u5b9a\u5f00\u53d1\u65b9\u6848", new Object[0]));
-        }
-        if (StringHelper.isNullOrEmpty((String)pSDevSlnMSDeploy.getPSDCMSPlatformId())) {
-            throw new Exception(String.format("\u5fae\u670d\u52a1\u90e8\u7f72\u65b9\u6848\u672a\u6307\u5b9a\u5fae\u670d\u52a1\u5e73\u53f0", new Object[0]));
-        }
-        PSDevSln pSDevSln = pSDevSlnMSDeploy.getPSDevSln();
-        PSDCMSPlatform pSDCMSPlatform = pSDevSlnMSDeploy.getPSDCMSPlatform();
-        if (DataTypeHelper.getIntegerValue((Object)pSDevSln.getEnableCallback(), (Integer)1) != 1) {
-            throw new Exception(String.format("\u5f00\u53d1\u65b9\u6848\u672a\u542f\u7528\u56de\u8c03", new Object[0]));
-        }
-        String string2 = pSDevSln.getCallbackUrl();
-        if (StringHelper.isNullOrEmpty((String)string2)) {
-            throw new Exception(String.format("\u5f00\u53d1\u65b9\u6848\u672a\u5b9a\u4e49\u56de\u8c03\u8def\u5f84", new Object[0]));
-        }
-        PSDevCenterDBInstService pSDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)this.getSessionFactory());
-        ObjectNode objectNode2 = JsonNodeHelper.createObjectNode();
-        ArrayList<PSDevCenterDBInst> arrayList = pSDevCenterDBInstService.selectByPSDevSln(pSDevSln);
-        if (arrayList != null) {
-            object5 = objectNode2.putObject(CONFIG_DBINST);
-            object4 = arrayList.iterator();
-            while (object4.hasNext()) {
-                serializable = (PSDevCenterDBInst)object4.next();
-                object3 = object5.putObject(((PSDevCenterDBInstBase)serializable).getPSDevCenterDBInstName());
-                object3.put(CONFIG_DBINST_DBTYPE, ((PSDevCenterDBInstBase)serializable).getDBType());
-                if (!StringHelper.isNullOrEmpty((String)((PSDevCenterDBInstBase)serializable).getUserName())) {
-                    object3.put(CONFIG_DBINST_USERNAME, ((PSDevCenterDBInstBase)serializable).getUserName());
-                }
-                if (!StringHelper.isNullOrEmpty((String)((PSDevCenterDBInstBase)serializable).getPasswd())) {
-                    object3.put(CONFIG_DBINST_PASSWORD, ((PSDevCenterDBInstBase)serializable).getPasswd());
-                }
-                if (StringHelper.isNullOrEmpty((String)((PSDevCenterDBInstBase)serializable).getConnStr())) continue;
-                object3.put(CONFIG_DBINST_URL, ((PSDevCenterDBInstBase)serializable).getConnStr());
+   @Override
+   protected void onPubConfigs(PSDevSlnMSDeploy var1) throws Exception {
+      this.get(var1);
+      if (StringHelper.isNullOrEmpty(var1.getPSDevSlnId())) {
+         throw new Exception(String.format("微服务部署方案未指定开发方案"));
+      }
+
+      if (StringHelper.isNullOrEmpty(var1.getPSDCMSPlatformId())) {
+         throw new Exception(String.format("微服务部署方案未指定微服务平台"));
+      }
+
+      PSDevSln var2 = var1.getPSDevSln();
+      PSDCMSPlatform var3 = var1.getPSDCMSPlatform();
+      if (DataTypeHelper.getIntegerValue(var2.getEnableCallback(), 1) != 1) {
+         throw new Exception(String.format("开发方案未启用回调"));
+      }
+
+      String var4 = var2.getCallbackUrl();
+      if (StringHelper.isNullOrEmpty(var4)) {
+         throw new Exception(String.format("开发方案未定义回调路径"));
+      }
+
+      PSDevCenterDBInstService var5 = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, this.getSessionFactory());
+      ObjectNode var6 = JsonNodeHelper.createObjectNode();
+      ArrayList<PSDevCenterDBInst> var7 = var5.selectByPSDevSln(var2);
+      if (var7 != null) {
+         ObjectNode var8 = var6.putObject("dbinst");
+
+         for (PSDevCenterDBInst var10 : var7) {
+            ObjectNode var11 = var8.putObject(var10.getPSDevCenterDBInstName());
+            var11.put("dbtype", var10.getDBType());
+            if (!StringHelper.isNullOrEmpty(var10.getUserName())) {
+               var11.put("username", var10.getUserName());
             }
-        }
-        if ((object4 = ((PSDCMSPlatformFuncServiceBase)(object5 = (PSDCMSPlatformFuncService)ServiceGlobal.getService(PSDCMSPlatformFuncService.class, (SessionFactory)this.getSessionFactory()))).selectByPSDCMSPlatform(pSDCMSPlatform)) != null) {
-            serializable = objectNode2.putObject(CONFIG_CLOUDUTIL);
-            object3 = objectNode2.putObject(CONFIG_CLOUDCONF);
-            objectNode = ((ArrayList)object4).iterator();
-            while (objectNode.hasNext()) {
-                String list2;
-                object2 = (PSDCMSPlatformFunc)objectNode.next();
-                if (DataObject.getIntegerValue((Object)((PSDCMSPlatformFuncBase)object2).getValidFlag(), (Integer)1) != 1 || StringHelper.isNullOrEmpty((String)(list2 = ((PSDCMSPlatformFuncBase)object2).getMSFuncType())) || list2.indexOf("CLOUD") != 0) continue;
-                string = ((PSDCMSPlatformFuncBase)object2).getFuncParam9();
-                if (!StringHelper.isNullOrEmpty((String)string) && !StringHelper.isNullOrEmpty((String)((PSDCMSPlatformFuncBase)object2).getFuncParam10())) {
-                    string = string + "\r\n";
-                    string = string + ((PSDCMSPlatformFuncBase)object2).getFuncParam10();
-                }
-                if (StringHelper.isNullOrEmpty((String)string)) continue;
-                if ("CLOUDCONFITEM".equals(list2)) {
-                    if (StringHelper.isNullOrEmpty((String)((PSDCMSPlatformFuncBase)object2).getPSDCMSPlatformFuncName())) continue;
-                    object3.put(((PSDCMSPlatformFuncBase)object2).getPSDCMSPlatformFuncName(), string);
-                    continue;
-                }
-                object = list2.replace("CLOUD", "").replace("UTIL", "").toLowerCase();
-                serializable.put((String)object, string);
+
+            if (!StringHelper.isNullOrEmpty(var10.getPasswd())) {
+               var11.put("password", var10.getPasswd());
             }
-        }
-        if ((serializable = pSDevSlnMSDeploy.getPSDevSlnMSDepAPIs()) != null) {
-            object3 = new HashMap();
-            objectNode = ((ArrayList)serializable).iterator();
-            while (objectNode.hasNext()) {
-                void var14_18;
-                object2 = (PSDevSlnMSDepAPI)objectNode.next();
-                if (DataObject.getIntegerValue((Object)((PSDevSlnMSDepAPIBase)object2).getValidFlag(), (Integer)1) != 1 || ((PSDevSlnMSDepAPIBase)object2).getPSDCMSPlatformNode() == null || ((PSDevSlnMSDepAPIBase)object2).getPSDevSlnSys() == null || ((PSDevSlnMSDepAPIBase)object2).getPSDevSlnSysAPI() == null) continue;
-                if (StringHelper.isNullOrEmpty((String)((PSDevSlnMSDepAPIBase)object2).getPSDevSlnSys().getDeploySysId())) {
-                    log.warn((Object)String.format("\u5f00\u53d1\u7cfb\u7edf[%1$s]\u672a\u6307\u5b9a\u90e8\u7f72\u7cfb\u7edf\u6807\u8bc6", ((PSDevSlnMSDepAPIBase)object2).getPSDevSlnSys().getPSDevSlnSysName()));
-                    continue;
-                }
-                List list = (List)object3.get(((PSDevSlnMSDepAPIBase)object2).getPSDCMSPlatformNode().getPSDCMSPlatformNodeName());
-                if (list == null) {
-                    ArrayList arrayList2 = new ArrayList();
-                    object3.put(((PSDevSlnMSDepAPIBase)object2).getPSDCMSPlatformNode().getPSDCMSPlatformNodeName(), arrayList2);
-                }
-                var14_18.add(object2);
+
+            if (!StringHelper.isNullOrEmpty(var10.getConnStr())) {
+               var11.put("url", var10.getConnStr());
             }
-            if (object3.size() > 0) {
-                objectNode = objectNode2.putObject(CONFIG_CLOUDNODE);
-                for (Map.Entry entry : object3.entrySet()) {
-                    string = objectNode.putArray((String)entry.getKey());
-                    object = (List)entry.getValue();
-                    Iterator iterator = object.iterator();
-                    while (iterator.hasNext()) {
-                        PSDevSlnMSDepAPI pSDevSlnMSDepAPI = (PSDevSlnMSDepAPI)iterator.next();
-                        ObjectNode objectNode3 = string.addObject();
-                        objectNode3.put("systemid", pSDevSlnMSDepAPI.getPSDevSlnSys().getDeploySysId());
-                        objectNode3.put("apiname", pSDevSlnMSDepAPI.getPSDevSlnSysAPI().getPSDevSlnSysAPIName());
-                    }
-                }
+         }
+      }
+
+      PSDCMSPlatformFuncService var20 = (PSDCMSPlatformFuncService)ServiceGlobal.getService(PSDCMSPlatformFuncService.class, this.getSessionFactory());
+      ArrayList<PSDCMSPlatformFunc> var21 = var20.selectByPSDCMSPlatform(var3);
+      if (var21 != null) {
+         ObjectNode var22 = var6.putObject("cloudutil");
+         ObjectNode var24 = var6.putObject("cloudconf");
+
+         for (PSDCMSPlatformFunc var13 : var21) {
+            if (DataObject.getIntegerValue(var13.getValidFlag(), 1) == 1) {
+               String var14 = var13.getMSFuncType();
+               if (!StringHelper.isNullOrEmpty(var14) && var14.indexOf("CLOUD") == 0) {
+                  String var15 = var13.getFuncParam9();
+                  if (!StringHelper.isNullOrEmpty(var15) && !StringHelper.isNullOrEmpty(var13.getFuncParam10())) {
+                     var15 = var15 + "\r\n";
+                     var15 = var15 + var13.getFuncParam10();
+                  }
+
+                  if (!StringHelper.isNullOrEmpty(var15)) {
+                     if ("CLOUDCONFITEM".equals(var14)) {
+                        if (!StringHelper.isNullOrEmpty(var13.getPSDCMSPlatformFuncName())) {
+                           var24.put(var13.getPSDCMSPlatformFuncName(), var15);
+                        }
+                     } else {
+                        String var16 = var14.replace("CLOUD", "").replace("UTIL", "").toLowerCase();
+                        var22.put(var16, var15);
+                     }
+                  }
+               }
             }
-        }
-        object3 = pSDevSln.getCallbackTag() == null ? "" : pSDevSln.getCallbackTag();
-        this.executeCallback(this.getRealCallbackUrl(string2, "", pSDevSln.getPSDevSlnId(), "PUBCONFIG", "srfcloudplatform", "", (String)object3), objectNode2.toString());
-    }
+         }
+      }
+
+      ArrayList<PSDevSlnMSDepAPI> var23 = var1.getPSDevSlnMSDepAPIs();
+      if (var23 != null) {
+         HashMap<String, List> var25 = new HashMap<String, List>();
+
+         for (PSDevSlnMSDepAPI var29 : var23) {
+            if (DataObject.getIntegerValue(var29.getValidFlag(), 1) == 1
+               && var29.getPSDCMSPlatformNode() != null
+               && var29.getPSDevSlnSys() != null
+               && var29.getPSDevSlnSysAPI() != null) {
+               if (StringHelper.isNullOrEmpty(var29.getPSDevSlnSys().getDeploySysId())) {
+                  log.warn(String.format("开发系统[%1$s]未指定部署系统标识", var29.getPSDevSlnSys().getPSDevSlnSysName()));
+               } else {
+                  List var31 = (List)var25.get(var29.getPSDCMSPlatformNode().getPSDCMSPlatformNodeName());
+                  if (var31 == null) {
+                     var31 = new ArrayList();
+                     var25.put(var29.getPSDCMSPlatformNode().getPSDCMSPlatformNodeName(), var31);
+                  }
+
+                  var31.add(var29);
+               }
+            }
+         }
+
+         if (var25.size() > 0) {
+            ObjectNode var28 = var6.putObject("cloudnode");
+
+            for (Entry var32 : var25.entrySet()) {
+               ArrayNode var34 = var28.putArray((String)var32.getKey());
+
+               for (PSDevSlnMSDepAPI var18 : (List<PSDevSlnMSDepAPI>)var32.getValue()) {
+                  ObjectNode var19 = var34.addObject();
+                  var19.put("systemid", var18.getPSDevSlnSys().getDeploySysId());
+                  var19.put("apiname", var18.getPSDevSlnSysAPI().getPSDevSlnSysAPIName());
+               }
+            }
+         }
+      }
+
+      String var26 = var2.getCallbackTag() == null ? "" : var2.getCallbackTag();
+      this.executeCallback(this.getRealCallbackUrl(var4, "", var2.getPSDevSlnId(), "PUBCONFIG", "srfcloudplatform", "", var26), var6.toString());
+   }
 }
-

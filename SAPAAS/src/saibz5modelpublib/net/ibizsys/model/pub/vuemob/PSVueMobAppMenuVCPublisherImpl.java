@@ -1,33 +1,58 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.control.menu.IPSAppMenu
- *  net.ibizsys.model.pub.PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.vuemob;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+
 import net.ibizsys.model.control.menu.IPSAppMenu;
+import net.ibizsys.model.control.menu.IPSAppMenuItem;
+import net.ibizsys.model.pub.IPSGenerateCodeResult;
+import net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher;
 import net.ibizsys.model.pub.PSGenerateCodeResultImpl;
-import net.ibizsys.model.pub.vuemob.PSVueMobCtrlCodePublisherImpl;
 
-public class PSVueMobAppMenuVCPublisherImpl
-extends PSVueMobCtrlCodePublisherImpl {
-    protected IPSAppMenu iPSAppMenu = null;
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        this.iPSAppMenu = (IPSAppMenu)this.iPSControl;
-        return super.onGenerateCode();
-    }
+public class PSVueMobAppMenuVCPublisherImpl extends PSVueMobCtrlCodePublisherImpl
+{
+	protected IPSAppMenu iPSAppMenu = null;
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSAppMenu = (IPSAppMenu)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tiPSPublisherContext cannot be resolved to a variable\n\tThe method close() is undefined for the type IPSPFCtrlPartCodePublisher\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSAppMenu = (IPSAppMenu)this.iPSControl;
+		
+		if(true)
+		{
+			ArrayList<IPSGenerateCodeResult> itemList = new ArrayList<IPSGenerateCodeResult> ();
+			java.util.Iterator<IPSAppMenuItem> psAppMenuItems = 	iPSAppMenu.getPSAppMenuItems();
+			while(psAppMenuItems.hasNext())
+			{
+				IPSAppMenuItem iPSAppMenuItem = psAppMenuItems.next();
+				IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(iPSAppMenuItem.getItemType()).getPSPFCtrlPartCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSAppMenu,iPSAppMenuItem);
+				itemList.add(iPSGenerateCodeResult);
+			}		
+			
+			params.put("items", itemList);
+		}
+		
+	}
 
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSVueMobAppMenuVCPublisherImpl must override or implement a supertype method\n\tThe method onClose() is undefined for the type PSVueMobCtrlCodePublisherImpl\n");
-    }
+	
+
+	
 }
-

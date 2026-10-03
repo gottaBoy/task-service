@@ -135,14 +135,14 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
             PSDevCenterDBInst pSDevCenterDBInst = (PSDevCenterDBInst)iService.getDEModel().createEntity();
             pSDevCenterDBInst.set("PSDEVCENTERDBINSTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenterDBInst);
+                iService.getTemp(pSDevCenterDBInst);
             } else {
-                iService.get((IEntity)pSDevCenterDBInst);
+                iService.get(pSDevCenterDBInst);
             }
             this.onFillParentInfo_Psdcdbinst(pSDCDBProc, pSDevCenterDBInst);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCDBProc, string, string2, string3);
+        super.onFillParentInfo(pSDCDBProc, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCDBProc, bl);
+        super.onFillEntityFullInfo(pSDCDBProc, bl);
         this.onFillEntityFullInfo_Psdcdbinst(pSDCDBProc, bl);
     }
 
@@ -176,7 +176,7 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
     }
 
     protected void onWriteBackParent(PSDCDBProc pSDCDBProc, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCDBProc, bl);
+        super.onWriteBackParent(pSDCDBProc, bl);
     }
 
     public ArrayList<PSDCDBProc> selectByPsdcdbinst(PSDevCenterDBInstBase pSDevCenterDBInstBase) throws Exception {
@@ -235,7 +235,7 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
         ArrayList<PSDCDBProc> arrayList = this.selectByPsdcdbinst(pSDevCenterDBInst);
         this.onBeforeRemoveByPsdcdbinst(pSDevCenterDBInst, arrayList);
         for (PSDCDBProc pSDCDBProc : arrayList) {
-            this.remove((IEntity)pSDCDBProc);
+            this.remove(pSDCDBProc);
         }
         this.onAfterRemoveByPsdcdbinst(pSDevCenterDBInst, arrayList);
     }
@@ -256,14 +256,14 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
 
     protected void replaceParentInfo(PSDCDBProc pSDCDBProc, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCDBProc, cloneSession);
+        super.replaceParentInfo(pSDCDBProc, cloneSession);
         if (pSDCDBProc.getPSDCDBInstId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTERDBINST", (Object)pSDCDBProc.getPSDCDBInstId())) != null) {
             this.onFillParentInfo_Psdcdbinst(pSDCDBProc, (PSDevCenterDBInst)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDCDBProc pSDCDBProc, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCDBProc, bl);
+        super.onRemoveEntityUncopyValues(pSDCDBProc, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCDBProc pSDCDBProc, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -287,7 +287,7 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
         if ((entityFieldError = this.onCheckField_SQL(bl, pSDCDBProc, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCDBProc, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCDBProc, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSDCDBProc pSDCDBProc, boolean bl2, boolean bl3) throws Exception {
@@ -300,7 +300,7 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCDBProc, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCDBProc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -322,7 +322,7 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCDBInstId_Default((IEntity)pSDCDBProc, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCDBInstId_Default(pSDCDBProc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCDBINSTID");
@@ -344,7 +344,7 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCDBInstName_Default((IEntity)pSDCDBProc, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCDBInstName_Default(pSDCDBProc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCDBINSTNAME");
@@ -369,7 +369,7 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCDBProcId_Default((IEntity)pSDCDBProc, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCDBProcId_Default(pSDCDBProc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCDBPROCID");
@@ -394,7 +394,7 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCDBProcName_Default((IEntity)pSDCDBProc, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCDBProcName_Default(pSDCDBProc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCDBPROCNAME");
@@ -416,7 +416,7 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SQL_Default((IEntity)pSDCDBProc, bl2, bl3);
+            string2 = this.onTestValueRule_SQL_Default(pSDCDBProc, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SQL");
@@ -429,11 +429,11 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
     }
 
     protected void onSyncEntity(PSDCDBProc pSDCDBProc, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCDBProc, bl);
+        super.onSyncEntity(pSDCDBProc, bl);
     }
 
     protected void onSyncIndexEntities(PSDCDBProc pSDCDBProc, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCDBProc, bl);
+        super.onSyncIndexEntities(pSDCDBProc, bl);
     }
 
     public Object getDataContextValue(PSDCDBProc pSDCDBProc, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -441,14 +441,14 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCDBProc, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCDBProc, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCDBProc pSDCDBProc, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCDBProc, arrayList, n);
+        super.onExportMajorModel(pSDCDBProc, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -591,14 +591,14 @@ extends PSCoreSysServiceBase<PSDCDBProc> {
 
     protected boolean onMergeChild(String string, String string2, PSDCDBProc pSDCDBProc) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCDBProc)) {
+        if (super.onMergeChild(string, string2, pSDCDBProc)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCDBProc pSDCDBProc) throws Exception {
-        super.onUpdateParent((IEntity)pSDCDBProc);
+        super.onUpdateParent(pSDCDBProc);
     }
 
     @Override

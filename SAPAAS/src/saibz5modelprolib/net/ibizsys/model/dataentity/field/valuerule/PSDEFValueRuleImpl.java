@@ -30,6 +30,7 @@ import net.ibizsys.model.dataentity.field.valuerule.PSDEFVRGroupConditionImpl;
 import net.ibizsys.model.entity.PSDEFValueRule;
 import net.ibizsys.model.entity.PSDEFValueRuleCond;
 import net.ibizsys.model.valuerule.IPSSysValueRule;
+import net.ibizsys.paas.core.CallResult;
 import net.ibizsys.paas.util.StringHelper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -87,7 +88,11 @@ implements IPSDEFValueRuleRuntime {
     protected void onPreparePSDEFVRConds() throws Exception {
         this.iPSDEFVRGroupCondition = null;
         this.allPSDEFVRConditionList.clear();
-        Vector psDEFValueRuleCondList = new Vector();
+        Vector<PSDEFValueRuleCond> psDEFValueRuleCondList = new Vector<PSDEFValueRuleCond>();
+        CallResult callResult = this.getPSModelQueryHelper().getPSDEFValueRuleConds(this.getId(), psDEFValueRuleCondList);
+        if (callResult.isError()) {
+            throw new Exception(StringHelper.format((String)"查询值规则条件集合发生错误, %1$s", (Object)callResult.getErrorInfo()));
+        }
         HashMap<String, PSDEFValueRuleCond> psDEFValueRuleCondMap = new HashMap<String, PSDEFValueRuleCond>();
         for (PSDEFValueRuleCond psDEFValueRuleCond : psDEFValueRuleCondList) {
             psDEFValueRuleCondMap.put(psDEFValueRuleCond.getPSDEFVRCONDID(), psDEFValueRuleCond);
@@ -196,4 +201,3 @@ implements IPSDEFValueRuleRuntime {
         return this.allPSDEFVRConditionList.iterator();
     }
 }
-

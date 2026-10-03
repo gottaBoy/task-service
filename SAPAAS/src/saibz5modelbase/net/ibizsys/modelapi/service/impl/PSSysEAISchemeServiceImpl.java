@@ -116,9 +116,9 @@ implements IPSSysEAISchemeService {
 
     @Override
     protected List<PSSysEAIScheme> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysEAIScheme> list = new ArrayList<PSSysEAIScheme>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysEAIScheme> items = this.listByPSModule(parent);

@@ -139,9 +139,9 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSSysDeployApp, pSSysApp);
             return;
@@ -151,14 +151,14 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
             PSSysDeploy pSSysDeploy = (PSSysDeploy)iService.getDEModel().createEntity();
             pSSysDeploy.set("PSSYSDEPLOYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDeploy);
+                iService.getTemp(pSSysDeploy);
             } else {
-                iService.get((IEntity)pSSysDeploy);
+                iService.get(pSSysDeploy);
             }
             this.onFillParentInfo_Pssysdeploy(pSSysDeployApp, pSSysDeploy);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysDeployApp, string, string2, string3);
+        super.onFillParentInfo(pSSysDeployApp, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysDeployApp, bl);
+        super.onFillEntityFullInfo(pSSysDeployApp, bl);
         this.onFillEntityFullInfo_PSSysApp(pSSysDeployApp, bl);
         this.onFillEntityFullInfo_Pssysdeploy(pSSysDeployApp, bl);
     }
@@ -191,7 +191,7 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
     }
 
     protected void onWriteBackParent(PSSysDeployApp pSSysDeployApp, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysDeployApp, bl);
+        super.onWriteBackParent(pSSysDeployApp, bl);
     }
 
     public ArrayList<PSSysDeployApp> selectByPSSysApp(PSSysAppBase pSSysAppBase) throws Exception {
@@ -246,8 +246,8 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
         ArrayList<PSSysDeployApp> arrayList = this.selectByPSSysApp(pSSysApp, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSAPP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysApp);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDEPLOYAPP_PSSYSAPP_PSSYSAPPID", "", iDataEntityModel.getName(), "PSSYSDEPLOYAPP", iDataEntityModel.getDataInfo((IEntity)pSSysApp), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysApp);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSDEPLOYAPP_PSSYSAPP_PSSYSAPPID", "", iDataEntityModel.getName(), "PSSYSDEPLOYAPP", iDataEntityModel.getDataInfo(pSSysApp), arrayList.get(0)));
         }
     }
 
@@ -280,7 +280,7 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
         ArrayList<PSSysDeployApp> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSSysDeployApp pSSysDeployApp : arrayList) {
-            this.remove((IEntity)pSSysDeployApp);
+            this.remove(pSSysDeployApp);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -326,7 +326,7 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
         ArrayList<PSSysDeployApp> arrayList = this.selectByPssysdeploy(pSSysDeploy);
         this.onBeforeRemoveByPssysdeploy(pSSysDeploy, arrayList);
         for (PSSysDeployApp pSSysDeployApp : arrayList) {
-            this.remove((IEntity)pSSysDeployApp);
+            this.remove(pSSysDeployApp);
         }
         this.onAfterRemoveByPssysdeploy(pSSysDeploy, arrayList);
     }
@@ -347,7 +347,7 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
 
     protected void replaceParentInfo(PSSysDeployApp pSSysDeployApp, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysDeployApp, cloneSession);
+        super.replaceParentInfo(pSSysDeployApp, cloneSession);
         if (pSSysDeployApp.getPSSysAppId() != null && (iEntity = cloneSession.getEntity("PSSYSAPP", (Object)pSSysDeployApp.getPSSysAppId())) != null) {
             this.onFillParentInfo_PSSysApp(pSSysDeployApp, (PSSysApp)iEntity);
         }
@@ -357,7 +357,7 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysDeployApp pSSysDeployApp, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysDeployApp, bl);
+        super.onRemoveEntityUncopyValues(pSSysDeployApp, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysDeployApp pSSysDeployApp, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -378,7 +378,7 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
         if ((entityFieldError = this.onCheckField_PSSysDeployId(bl, pSSysDeployApp, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysDeployApp, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysDeployApp, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSysDeployApp pSSysDeployApp, boolean bl2, boolean bl3) throws Exception {
@@ -391,7 +391,7 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysDeployApp, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysDeployApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -416,7 +416,7 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSSysDeployApp, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSSysDeployApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -441,7 +441,7 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDeployAppId_Default((IEntity)pSSysDeployApp, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDeployAppId_Default(pSSysDeployApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDEPLOYAPPID");
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDeployAppName_Default((IEntity)pSSysDeployApp, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDeployAppName_Default(pSSysDeployApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDEPLOYAPPNAME");
@@ -491,7 +491,7 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDeployId_Default((IEntity)pSSysDeployApp, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDeployId_Default(pSSysDeployApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDEPLOYID");
@@ -504,11 +504,11 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
     }
 
     protected void onSyncEntity(PSSysDeployApp pSSysDeployApp, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysDeployApp, bl);
+        super.onSyncEntity(pSSysDeployApp, bl);
     }
 
     protected void onSyncIndexEntities(PSSysDeployApp pSSysDeployApp, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysDeployApp, bl);
+        super.onSyncIndexEntities(pSSysDeployApp, bl);
     }
 
     public Object getDataContextValue(PSSysDeployApp pSSysDeployApp, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -516,14 +516,14 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysDeployApp, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysDeployApp, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysDeployApp pSSysDeployApp, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysDeployApp, arrayList, n);
+        super.onExportMajorModel(pSSysDeployApp, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -681,14 +681,14 @@ extends PSCoreSysServiceBase<PSSysDeployApp> {
 
     protected boolean onMergeChild(String string, String string2, PSSysDeployApp pSSysDeployApp) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysDeployApp)) {
+        if (super.onMergeChild(string, string2, pSSysDeployApp)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysDeployApp pSSysDeployApp) throws Exception {
-        super.onUpdateParent((IEntity)pSSysDeployApp);
+        super.onUpdateParent(pSSysDeployApp);
     }
 
     @Override

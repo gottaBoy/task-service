@@ -1614,7 +1614,7 @@ implements Serializable {
                 PSSubSysSADetail pSSubSysSADetail = new PSSubSysSADetail();
                 pSSubSysSADetail.setPSSubSysSADetailId(this.getPSSubSysSADetailId());
                 PSSubSysSADetailService pSSubSysSADetailService = (PSSubSysSADetailService)ServiceGlobal.getService(PSSubSysSADetailService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysSADetailService.autoGet((IEntity)pSSubSysSADetail);
+                pSSubSysSADetailService.autoGet(pSSubSysSADetail);
                 this.pssubsyssadetail = pSSubSysSADetail;
             }
             return this.pssubsyssadetail;

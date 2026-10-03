@@ -1,31 +1,39 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSAppVfiew
- *  net.ibizsys.model.control.IPSControl
- *  net.ibizsys.model.pub.PSPFCtrlCodePublisherImpl
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package net.ibizsys.model.pub.vuemob;
 
 import java.util.HashMap;
-import net.ibizsys.model.control.IPSControl;
-import net.ibizsys.model.pub.PSPFCtrlCodePublisherImpl;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class PSVueMobCtrlCodePublisherImpl
-extends PSPFCtrlCodePublisherImpl {
-    private static final Log log = LogFactory.getLog(PSPFCtrlCodePublisherImpl.class);
+import SA.SRFDA.PS.Core.Pub.PSFR7TemplHelper;
+import net.ibizsys.model.app.view.IPSAppView;
+import net.ibizsys.model.app.view.IPSAppViewRuntime;
+import net.ibizsys.model.control.IPSControl;
+import net.ibizsys.model.pub.PSPFCtrlCodePublisherImpl;
+import net.ibizsys.paas.util.StringHelper;
 
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problem: \n\tPSFR7TemplHelper cannot be resolved\n");
-    }
+public class PSVueMobCtrlCodePublisherImpl extends PSPFCtrlCodePublisherImpl
+{
+	private static final Log log = LogFactory.getLog(PSPFCtrlCodePublisherImpl.class);
 
-    protected String getPSControlCodeName(IPSAppVfiew iPSAppVfiew, IPSControl iPSControl) {
-        throw new Error("Unresolved compilation problems: \n\tIPSAppVfiew cannot be resolved to a type\n\tThe method ormat(String, String, String) is undefined for the type StringHelper\n");
-    }
+	
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+
+		PSFR7TemplHelper.fillParams(params);
+
+	}
+
+	protected String getPSControlCodeName(IPSAppView iPSAppView,IPSControl iPSControl)
+	{
+		String strFullName = ((IPSAppViewRuntime)iPSAppView).getFullCodeName();
+		int nPos = strFullName.lastIndexOf(".");
+		if(nPos != -1){
+			strFullName = strFullName.substring(0, nPos).toLowerCase() + "." + strFullName.substring(nPos+1);
+		}
+		
+		return strFullName+"_"+iPSControl.getName().toLowerCase();
+	}
 }
-

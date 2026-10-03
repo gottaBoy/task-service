@@ -41,7 +41,7 @@ extends PSDevCenterBKTaskImplBase {
         PSDevCenterDBInstService psDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevCenterDBInst psDevCenterDBInst = new PSDevCenterDBInst();
         psDevCenterDBInst.setPSDevCenterDBInstId(strPSDCDBInstId);
-        psDevCenterDBInstService.get((IEntity)psDevCenterDBInst);
+        psDevCenterDBInstService.get(psDevCenterDBInst);
         IPSDBType iPSDBType = this.getPSModelStorage().getPSDBType(psDevCenterDBInst.getDBType());
         if (!(iPSDBType instanceof IPSDBType4)) {
             throw new Exception(StringHelper.format((String)"\u6570\u636e\u5e93[%1$s]\u4e0d\u652f\u6301\u6570\u636e\u5e93\u6062\u590d\u64cd\u4f5c", (Object)iPSDBType.getName()));
@@ -53,7 +53,7 @@ extends PSDevCenterBKTaskImplBase {
         PSDCDBInstBK psDCDBInstBK = new PSDCDBInstBK();
         String strPSDCDBInstBKId = this.getTaskParam2();
         psDCDBInstBK.setPSDCDBInstBKId(strPSDCDBInstBKId);
-        psDCDBInstBKService.get((IEntity)psDCDBInstBK);
+        psDCDBInstBKService.get(psDCDBInstBK);
         BaseDataEntity psDCDBInstBKData = new BaseDataEntity();
         PSDEDataCtrl.convertEntity((IEntity)psDCDBInstBK, (BaseDataEntity)psDCDBInstBKData);
         this.updatePSDCBKTaskStep("\u6b63\u5728\u6062\u590d", 300, 300);
@@ -62,4 +62,3 @@ extends PSDevCenterBKTaskImplBase {
         return super.onRun();
     }
 }
-

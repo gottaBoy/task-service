@@ -1,68 +1,199 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.control.grid.IGrid
- */
 package net.ibizsys.model.control.grid;
 
 import java.util.Iterator;
+
 import net.ibizsys.model.control.IPSMDAjaxControl;
-import net.ibizsys.model.control.grid.IPSDEGridColumn;
-import net.ibizsys.model.control.grid.IPSDEGridDataItem;
-import net.ibizsys.model.control.grid.IPSDEGridEditItem;
-import net.ibizsys.model.control.grid.IPSDEGridEditItemUpdate;
 import net.ibizsys.model.dataentity.field.IPSDEField;
 import net.ibizsys.paas.control.grid.IGrid;
 
-public interface IPSDEGrid
-extends IPSMDAjaxControl,
-IGrid {
-    public static final String GRIDSTYLE_TREEGRID = "TREEGRID";
-    public static final String GRIDSTYLE_GROUPGRID = "GROUPGRID";
-    public static final String GRIDSTYLE_LIST = "LIST";
-    public static final String GRIDSTYLE_LIST_SORT = "LIST_SORT";
-    public static final String SORTMODE_REMOTE = "REMOTE";
-    public static final String SORTMODE_LOCAL = "LOCAL";
+/**
+ * 实体表格对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IPSDEGrid extends IPSMDAjaxControl, IGrid {
+	/**
+	 * 表格样式：树表格
+	 */
+	public final static String GRIDSTYLE_TREEGRID = "TREEGRID";
 
-    public Iterator<IPSDEGridColumn> getPSDEGridColumns();
+	/**
+	 * 表格样式：分组表格
+	 */
+	public final static String GRIDSTYLE_GROUPGRID = "GROUPGRID";
 
-    public Iterator<IPSDEGridColumn> getAllPSDEGridColumns();
+	/**
+	 * 表格样式：无头单列（列表）
+	 */
+	public final static String GRIDSTYLE_LIST = "LIST";
 
-    public Iterator<IPSDEGridDataItem> getPSDEGridDataItems();
+	/**
+	 * 表格样式：无头单列（列表）,支持排序
+	 */
+	public final static String GRIDSTYLE_LIST_SORT = "LIST_SORT";
+	
+	
+	//定义排序模式代码表
+	/**
+	*远程排序
+	*/
+	public final static String SORTMODE_REMOTE = "REMOTE" ;
 
-    public Iterator<IPSDEGridEditItem> getPSDEGridEditItems();
+	/**
+	*本地排序
+	*/
+	public final static String SORTMODE_LOCAL = "LOCAL" ;
+	
 
-    public boolean isEnablePagingBar();
+	/**
+	 * 获取实体表格列集合
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	java.util.Iterator<IPSDEGridColumn> getPSDEGridColumns();
 
-    public boolean isEnableRowEdit();
+	/**
+	 * 获取实体表格全部列集合（包括分组列子列）
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	java.util.Iterator<IPSDEGridColumn> getAllPSDEGridColumns();
 
-    public int getPagingSize();
+	/**
+	 * 获取实体表格数据项集合
+	 * 
+	 * @return
+	 */
+	Iterator<IPSDEGridDataItem> getPSDEGridDataItems();
 
-    public boolean isSingleSelect();
+	/**
+	 * 获取实体表格编辑项集合
+	 * 
+	 * @return
+	 */
+	Iterator<IPSDEGridEditItem> getPSDEGridEditItems();
 
-    public boolean isForceFit();
+	/**
+	 * 是否支持分页工具栏
+	 * 
+	 * @return
+	 */
+	boolean isEnablePagingBar();
 
-    public String getGridStyle();
+	/**
+	 * 是否支持行编辑
+	 * 
+	 * @return
+	 */
+	boolean isEnableRowEdit();
 
-    public boolean isNoSort();
+	/**
+	 * 获取分页大小
+	 * 
+	 * @return
+	 */
+	int getPagingSize();
 
-    public IPSDEField getMinorSortPSDEF();
+	/**
+	 * 是否为单项选择表格
+	 * 
+	 * @return
+	 */
+	boolean isSingleSelect();
 
-    public String getMinorSortDir();
+	/**
+	 * 是否适应屏幕宽度
+	 * 
+	 * @return
+	 */
+	boolean isForceFit();
 
-    public boolean isHideHeader();
+	/**
+	 * 获取表格样式，值参考 SA.SRFDA.PS.Core.Control.Grid.IPSDEGrid.GRIDSTYLE_XXX 定义
+	 * 
+	 * @return
+	 */
+	String getGridStyle();
 
-    public boolean isStateful();
+	/**
+	 * 是否禁用排序
+	 * 
+	 * @return
+	 */
+	boolean isNoSort();
 
-    public Iterator<IPSDEGridEditItemUpdate> getPSDEGridEditItemUpdates();
+	/**
+	 * 获取二级排序属性
+	 * 
+	 * @return
+	 */
+	IPSDEField getMinorSortPSDEF();
 
-    public IPSDEGridEditItemUpdate getPSDEGridEditItemUpdate(String var1) throws Exception;
+	/**
+	 * 获取二级排序方向
+	 * 
+	 * @return
+	 */
+	String getMinorSortDir();
 
-    public Iterator<IPSDEGridDataItem> getGroupPSDEGridDataItems();
+	/**
+	 * 是否隐藏头部
+	 * 
+	 * @return
+	 */
+	boolean isHideHeader();
 
-    public String getEmptyText();
+	/**
+	 * 是否支持用户状态
+	 * 
+	 * @return
+	 */
+	boolean isStateful();
 
-    public String getSortMode();
+	/**
+	 * 获取表格编辑项更新集合
+	 * 
+	 * @return
+	 */
+	Iterator<IPSDEGridEditItemUpdate> getPSDEGridEditItemUpdates();
+
+	/**
+	 * 获取指定表格编辑项更新
+	 * 
+	 * @param strPSDEGridEditItemUpdateId
+	 * @return
+	 * @throws Exception
+	 */
+	IPSDEGridEditItemUpdate getPSDEGridEditItemUpdate(String strPSDEGridEditItemUpdateId) throws Exception;
+
+	/**
+	 * 获取分组数据项集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IPSDEGridDataItem> getGroupPSDEGridDataItems();
+
+//	/**
+//	 * 获取无值显示内容语言资源对象
+//	 * 
+//	 * @return
+//	 */
+//	IPSLanguageRes getEmptyTextPSLanguageRes();
+
+	/**
+	 * 获取无值显示内容
+	 * 
+	 * @return
+	 */
+	String getEmptyText();
+	
+	
+	/**
+	 * 获取排序模式
+	 * @return
+	 */
+	String getSortMode();
 }
-

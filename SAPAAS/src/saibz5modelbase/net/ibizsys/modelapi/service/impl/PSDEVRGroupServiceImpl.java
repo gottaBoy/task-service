@@ -70,7 +70,7 @@ implements IPSDEVRGroupService {
     @Override
     protected List<PSDEVRGroup> onListAll() throws Exception {
         ArrayList<PSDEVRGroup> list = new ArrayList<PSDEVRGroup>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEVRGroup> items = this.listByPSDataEntity(parent);

@@ -1,13 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app.view;
 
-import net.ibizsys.model.app.view.IPSUIActionItem;
 import net.ibizsys.model.wf.uiaction.IPSWFUIAction;
 
-public interface IPSWFUIActionItem
-extends IPSUIActionItem {
-    public IPSWFUIAction getPSWFUIAction();
-}
 
+/**
+ * 流程界面行为项对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSWFUIActionItem extends IPSUIActionItem
+{
+	/**
+	 * 获取
+	 * @return
+	 */
+	IPSWFUIAction getPSWFUIAction();
+
+}

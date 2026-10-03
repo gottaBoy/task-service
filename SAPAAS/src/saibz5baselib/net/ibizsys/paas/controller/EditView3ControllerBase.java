@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.EditViewControllerBase;
-
-public abstract class EditView3ControllerBase
-extends EditViewControllerBase {
+/**
+ * 编辑视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class EditView3ControllerBase extends EditViewControllerBase {
+	public EditView3ControllerBase() throws Exception {
+		super();
+	}
 }
-

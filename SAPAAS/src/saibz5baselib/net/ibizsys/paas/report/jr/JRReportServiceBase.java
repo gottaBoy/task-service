@@ -1,29 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.jasperreports.engine.JRDataSource
- *  net.sf.jasperreports.engine.JRExporterParameter
- *  net.sf.jasperreports.engine.JasperFillManager
- *  net.sf.jasperreports.engine.JasperPrint
- *  net.sf.jasperreports.engine.JasperRunManager
- *  net.sf.jasperreports.engine.export.JExcelApiExporter
- *  net.sf.jasperreports.engine.export.JRPdfExporter
- *  net.sf.jasperreports.engine.export.JRXhtmlExporter
- *  net.sf.jasperreports.engine.export.JRXlsExporter
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.report.jr;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hibernate.SessionFactory;
+
 import net.ibizsys.paas.core.DEDataSetFetchContext;
+import net.ibizsys.paas.core.Errors;
 import net.ibizsys.paas.core.ISystem;
 import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.db.DBFetchResult;
@@ -31,19 +19,19 @@ import net.ibizsys.paas.db.IDataSet;
 import net.ibizsys.paas.db.IDataTable;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.entity.SimpleEntity;
+import net.ibizsys.paas.report.IPrintService;
+import net.ibizsys.paas.report.IReportService;
 import net.ibizsys.paas.report.ReportServiceBase;
 import net.ibizsys.paas.report.ReportServiceGlobal;
-import net.ibizsys.paas.report.jr.DataTableJRDataSource;
-import net.ibizsys.paas.report.jr.EntitiesJRDataSource;
-import net.ibizsys.paas.report.jr.IJRReportService;
-import net.ibizsys.paas.report.jr.IJRReportServiceParamFiller;
 import net.ibizsys.paas.service.IService;
 import net.ibizsys.paas.service.SessionFactoryManager;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
 import net.ibizsys.paas.sysmodel.SysModelGlobal;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.web.IWebContext;
+import net.sf.jasperreports.engine.JRAbstractExporter;
 import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -52,328 +40,522 @@ import net.sf.jasperreports.engine.export.JExcelApiExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRXhtmlExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.hibernate.SessionFactory;
 
-public abstract class JRReportServiceBase
-extends ReportServiceBase
-implements IJRReportService {
-    private static final Log log = LogFactory.getLog(JRReportServiceBase.class);
-    public static final String PARAM_ACTIVEENTITY = "SRFAE";
-    public static final String PARAM_WEBCONTEXT = "SRFWC";
-    public static final String PARAM_REPORTSERVICE = "SRFRS";
+/**
+ * JasperReport打印服务对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class JRReportServiceBase extends ReportServiceBase implements IJRReportService {
+	private static final Log log = LogFactory.getLog(JRReportServiceBase.class);
 
-    @Override
-    public String getReportFile(IWebContext iWebContext, SessionFactory sessionFactory, String strContentType, String strPrintFileFolder) throws Exception {
-        String strTempFilePath = this.createTempFilePath(strContentType);
-        IService iService = this.getDEModel().getService(sessionFactory);
-        if (this.hasSubReport()) {
-            ArrayList<JasperPrint> jasperPrintList = new ArrayList<JasperPrint>();
-            SimpleEntity iEntity = new SimpleEntity();
-            ArrayList<SimpleEntity> entityList = new ArrayList<SimpleEntity>();
-            if (!StringHelper.isNullOrEmpty(this.getDEDataSetName())) {
-                DEDataSetFetchContext dEDataSetFetchContext = new DEDataSetFetchContext(iWebContext);
-                dEDataSetFetchContext.setSessionFactory(sessionFactory);
-                dEDataSetFetchContext.setActiveDataObject(iEntity);
-                this.fillFetchConditions(dEDataSetFetchContext);
-                this.fillDEDataSetFetchContext(dEDataSetFetchContext);
-                DBFetchResult fetchResult = iService.fetchDataSet(this.getDEDataSetName(), dEDataSetFetchContext);
-                if (fetchResult.getRetCode() == 0) {
-                    try {
-                        fetchResult.getDataSet().cacheDataRow();
-                        IDataTable iDataTable = fetchResult.getDataSet().getDataTable(0);
-                        int i = 0;
-                        while (i < iDataTable.getCachedRowCount()) {
-                            SimpleEntity simpleEntity = new SimpleEntity();
-                            DataObject.fromDataRow(simpleEntity, iDataTable.getCachedRow(i));
-                            entityList.add(simpleEntity);
-                            ++i;
-                        }
-                        fetchResult.getDataSet().close();
-                    }
-                    catch (Exception ex) {
-                        fetchResult.getDataSet().close();
-                        throw ex;
-                    }
-                }
-            } else {
-                entityList.add(iEntity);
-            }
-            for (IEntity iEntity2 : entityList) {
-                Iterator<String> subReportIds = this.getSubReportIds();
-                while (subReportIds.hasNext()) {
-                    String strSubReportId = subReportIds.next();
-                    IJRReportService childJRReportService = (IJRReportService)ReportServiceGlobal.getReportService(strSubReportId);
-                    List<JasperPrint> list = childJRReportService.getReportJasperPrints(iEntity2, iWebContext, sessionFactory, strContentType, strPrintFileFolder);
-                    jasperPrintList.addAll(list);
-                }
-            }
-            this.generateReportFile(jasperPrintList, strTempFilePath, strContentType);
-            return strTempFilePath;
-        }
-        if (StringHelper.isNullOrEmpty(this.getDEDataSetName())) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u62a5\u8868\u6570\u636e\u96c6\u5408");
-        }
-        String strReportFile = String.valueOf(strPrintFileFolder) + this.getReportFilePath();
-        strReportFile = iWebContext.getRequest().getRealPath(strReportFile);
-        HashMap<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put(PARAM_WEBCONTEXT, iWebContext);
-        parameters.put(PARAM_REPORTSERVICE, this);
-        parameters.put("SRFPS", this);
-        this.fillParameters(parameters);
-        this.fillParametersEx(parameters);
-        DEDataSetFetchContext deDataSetFetchContextImpl = new DEDataSetFetchContext(iWebContext);
-        deDataSetFetchContextImpl.setSessionFactory(iService.getSessionFactory());
-        this.fillFetchConditions(deDataSetFetchContextImpl);
-        this.fillDEDataSetFetchContext(deDataSetFetchContextImpl);
-        this.generateReportFile(strReportFile, strTempFilePath, parameters, strContentType, iService, deDataSetFetchContextImpl, this.getDEDataSetName());
-        return strTempFilePath;
-    }
+	public final static String PARAM_ACTIVEENTITY = "SRFAE";
+	public final static String PARAM_WEBCONTEXT = "SRFWC";
+	public final static String PARAM_REPORTSERVICE = "SRFRS";
 
-    @Override
-    public List<JasperPrint> getReportJasperPrints(IEntity iEntity, IWebContext iWebContext, SessionFactory sessionFactory, String strContentType, String strPrintFileFolder) throws Exception {
-        IService iService = this.getDEModel().getService(sessionFactory);
-        ArrayList<JasperPrint> jasperPrintList = new ArrayList<JasperPrint>();
-        if (this.hasSubReport()) {
-            ArrayList<IEntity> entityList = new ArrayList<IEntity>();
-            if (!StringHelper.isNullOrEmpty(this.getDEDataSetName())) {
-                DEDataSetFetchContext deDataSetFetchContextImpl = new DEDataSetFetchContext(iWebContext);
-                deDataSetFetchContextImpl.setSessionFactory(sessionFactory);
-                deDataSetFetchContextImpl.setActiveDataObject(iEntity);
-                this.fillFetchConditions(deDataSetFetchContextImpl);
-                this.fillDEDataSetFetchContext(deDataSetFetchContextImpl);
-                DBFetchResult fetchResult = iService.fetchDataSet(this.getDEDataSetName(), deDataSetFetchContextImpl);
-                if (fetchResult.getRetCode() == 0) {
-                    try {
-                        fetchResult.getDataSet().cacheDataRow();
-                        IDataTable iDataTable = fetchResult.getDataSet().getDataTable(0);
-                        int i = 0;
-                        while (i < iDataTable.getCachedRowCount()) {
-                            SimpleEntity simpleEntity = new SimpleEntity();
-                            DataObject.fromDataRow(simpleEntity, iDataTable.getCachedRow(i));
-                            entityList.add(simpleEntity);
-                            ++i;
-                        }
-                        fetchResult.getDataSet().close();
-                    }
-                    catch (Exception ex) {
-                        fetchResult.getDataSet().close();
-                        throw ex;
-                    }
-                }
-            } else {
-                entityList.add(iEntity);
-            }
-            for (IEntity childItem : entityList) {
-                Iterator<String> subReportIds = this.getSubReportIds();
-                while (subReportIds.hasNext()) {
-                    String strSubReportId = subReportIds.next();
-                    IJRReportService childJRReportService = (IJRReportService)ReportServiceGlobal.getReportService(strSubReportId);
-                    List<JasperPrint> list = childJRReportService.getReportJasperPrints(childItem, iWebContext, sessionFactory, strContentType, strPrintFileFolder);
-                    jasperPrintList.addAll(list);
-                }
-            }
-        } else {
-            String strReportFile = String.valueOf(strPrintFileFolder) + this.getReportFilePath();
-            strReportFile = iWebContext.getRequest().getRealPath(strReportFile);
-            HashMap<String, Object> parameters = new HashMap<String, Object>();
-            parameters.put(PARAM_WEBCONTEXT, iWebContext);
-            parameters.put(PARAM_ACTIVEENTITY, iEntity);
-            parameters.put(PARAM_REPORTSERVICE, this);
-            parameters.put("SRFPS", this);
-            this.fillParameters(parameters);
-            this.fillParametersEx(parameters);
-            if (!StringHelper.isNullOrEmpty(this.getDEDataSetName())) {
-                DEDataSetFetchContext deDataSetFetchContextImpl = new DEDataSetFetchContext(iWebContext);
-                deDataSetFetchContextImpl.setSessionFactory(iService.getSessionFactory());
-                deDataSetFetchContextImpl.setActiveDataObject(iEntity);
-                this.fillFetchConditions(deDataSetFetchContextImpl);
-                this.fillDEDataSetFetchContext(deDataSetFetchContextImpl);
-                jasperPrintList.add(this.createJasperPrint(strReportFile, parameters, iService, deDataSetFetchContextImpl, this.getDEDataSetName()));
-            }
-        }
-        return jasperPrintList;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.report.IReportService#getReportFile(net.ibizsys.paas.web.IWebContext, org.hibernate.SessionFactory, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getReportFile(IWebContext iWebContext, SessionFactory sessionFactory, String strContentType, String strPrintFileFolder) throws Exception {
+		String strTempFilePath = this.createTempFilePath(strContentType);
 
-    protected void fillParameters(Map parameters) {
-    }
+		IService iService = this.getDEModel().getService(sessionFactory);
+		if (this.hasSubReport()) {
+			ArrayList<JasperPrint> jasperPrintList = new ArrayList<JasperPrint>();
+			SimpleEntity iEntity = new SimpleEntity();
+			ArrayList<IEntity> entityList = new ArrayList<IEntity>();
+			if (!StringHelper.isNullOrEmpty(this.getDEDataSetName())) {
+				// 指定了结果集合
+				DEDataSetFetchContext deDataSetFetchContextImpl = new DEDataSetFetchContext(iWebContext);
+				deDataSetFetchContextImpl.setSessionFactory(sessionFactory);
+				deDataSetFetchContextImpl.setActiveDataObject(iEntity);
 
-    protected void fillParametersEx(Map parameters) throws Exception {
-        Iterator<ISystem> sysModels = SysModelGlobal.getAllSystems();
-        while (sysModels.hasNext()) {
-            ISystem iSystem = sysModels.next();
-            if (!(iSystem instanceof IJRReportServiceParamFiller)) continue;
-            ((IJRReportServiceParamFiller)((Object)iSystem)).fillParameters(parameters, this);
-        }
-    }
+				fillFetchConditions(deDataSetFetchContextImpl);
+				fillDEDataSetFetchContext(deDataSetFetchContextImpl);
 
-    protected JasperPrint createJasperPrint(String strReportFullPath, Map parameters, IService iService, DEDataSetFetchContext deDataSetFetchContextImpl, String strDEDataSetName) throws Exception {
-        long nBeginTime = System.currentTimeMillis();
-        DBFetchResult dbFetchResult = null;
-        try {
-            deDataSetFetchContextImpl.setCacheDataSet(false);
-            SessionFactoryManager.addRef();
-            dbFetchResult = iService.getDAO().fetchDEDataSet(deDataSetFetchContextImpl, strDEDataSetName, false);
-            JasperPrint jasperPrint = this.createJasperPrint(strReportFullPath, parameters, dbFetchResult.getDataSet());
-            dbFetchResult.getDataSet().close();
-            SessionFactoryManager.releaseRef(false);
-            long nTime = System.currentTimeMillis() - nBeginTime;
-            log.debug((Object)StringHelper.format("\u67e5\u8be2\u8017\u65f6[%1$s]", nTime));
-            return jasperPrint;
-        }
-        catch (Exception ex) {
-            log.error((Object)StringHelper.format("\u4ea7\u751f\u62a5\u8868\u6587\u4ef6\u53d1\u751f\u5f02\u5e38\uff0c%1$s", ex.getMessage()), (Throwable)ex);
-            if (dbFetchResult != null && dbFetchResult.getDataSet() != null) {
-                dbFetchResult.getDataSet().close();
-            }
-            SessionFactoryManager.releaseRef(false);
-            throw ex;
-        }
-    }
+				// fillDEDataSetFetchDataRange(deDataSetFetchContextImpl);
 
-    protected JasperPrint createJasperPrint(String strReportFullPath, Map parameters, Object objData) throws Exception {
-        try {
-            if (objData != null) {
-                if (objData instanceof IDataSet) {
-                    IDataSet iDataSet = (IDataSet)objData;
-                    JasperPrint jasperPrint = JasperFillManager.fillReport((String)strReportFullPath, (Map)parameters, (JRDataSource)this.getJRDataSource(iDataSet.getDataTable(0)));
-                    return jasperPrint;
-                }
-                if (objData instanceof ArrayList) {
-                    ArrayList dataEntities = (ArrayList)objData;
-                    JasperPrint jasperPrint = JasperFillManager.fillReport((String)strReportFullPath, (Map)parameters, (JRDataSource)this.getJRDataSource(dataEntities));
-                    return jasperPrint;
-                }
-            }
-            throw new Exception(StringHelper.format("\u65e0\u6cd5\u8bc6\u522b\u6570\u636e\u5bf9\u8c61"));
-        }
-        catch (Exception e) {
-            log.error((Object)e);
-            throw e;
-        }
-    }
+				DBFetchResult fetchResult = iService.fetchDataSet(this.getDEDataSetName(), deDataSetFetchContextImpl);
+				if (fetchResult.getRetCode() == Errors.OK) {
+					try {
+						fetchResult.getDataSet().cacheDataRow();
+						IDataTable iDataTable = fetchResult.getDataSet().getDataTable(0);
+						for (int i = 0; i < iDataTable.getCachedRowCount(); i++) {
+							SimpleEntity simpleEntity = new SimpleEntity();
+							DataObject.fromDataRow(simpleEntity, iDataTable.getCachedRow(i));
+							entityList.add(simpleEntity);
+						}
+						fetchResult.getDataSet().close();
+					} catch (Exception ex) {
+						fetchResult.getDataSet().close();
+						throw ex;
+					}
+				}
+			} else {
+				entityList.add(iEntity);
+			}
 
-    protected void generateReportFile(ArrayList<JasperPrint> jasperPrintList, String strTempPath, String strContentType) throws Exception {
-        try {
-            Object exporter = null;
-            exporter = StringHelper.compare(strContentType, "PDF", true) == 0 ? new JRPdfExporter() : (StringHelper.compare(strContentType, "EXCEL", true) == 0 ? new JRXlsExporter() : (StringHelper.compare(strContentType, "HTML", true) == 0 ? new JRXhtmlExporter() : new JRPdfExporter()));
-            exporter.setParameter(JRExporterParameter.JASPER_PRINT_LIST, jasperPrintList);
-            exporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, (Object)strTempPath);
-            exporter.exportReport();
-        }
-        catch (Exception ex) {
-            log.error((Object)StringHelper.format("\u5bfc\u51fa\u62a5\u8868\u53d1\u751f\u5f02\u5e38\uff0c%1$s", ex.getMessage()), (Throwable)ex);
-            log.error((Object)ex);
-            throw ex;
-        }
-    }
+			for (IEntity childItem : entityList) {
+				java.util.Iterator<String> subReportIds = this.getSubReportIds();
+				while (subReportIds.hasNext()) {
+					String strSubReportId = subReportIds.next();
+					IJRReportService childJRReportService = (IJRReportService) ReportServiceGlobal.getReportService(strSubReportId);
+					List<JasperPrint> list = childJRReportService.getReportJasperPrints(childItem, iWebContext, sessionFactory, strContentType, strPrintFileFolder);
+					jasperPrintList.addAll(list);
+				}
+			}
 
-    protected void generateReportFile(String strPrintFormPath, String strTempPath, Map parameters, String strContentType, IService iService, DEDataSetFetchContext deDataSetFetchContextImpl, String strDEDataSetName) throws Exception {
-        long nBeginTime = System.currentTimeMillis();
-        DBFetchResult dbFetchResult = null;
-        try {
-            deDataSetFetchContextImpl.setCacheDataSet(false);
-            SessionFactoryManager.addRef();
-            dbFetchResult = iService.getDAO().fetchDEDataSet(deDataSetFetchContextImpl, strDEDataSetName, false);
-            this.generateReportFile(strPrintFormPath, strTempPath, parameters, strContentType, dbFetchResult.getDataSet());
-            dbFetchResult.getDataSet().close();
-            SessionFactoryManager.releaseRef(false);
-            long nTime = System.currentTimeMillis() - nBeginTime;
-            log.debug((Object)StringHelper.format("\u67e5\u8be2\u8017\u65f6[%1$s]", nTime));
-        }
-        catch (Exception ex) {
-            log.error((Object)StringHelper.format("\u4ea7\u751f\u62a5\u8868\u6587\u4ef6\u53d1\u751f\u5f02\u5e38\uff0c%1$s", ex.getMessage()), (Throwable)ex);
-            if (dbFetchResult != null && dbFetchResult.getDataSet() != null) {
-                dbFetchResult.getDataSet().close();
-            }
-            SessionFactoryManager.releaseRef(false);
-            throw ex;
-        }
-    }
+			generateReportFile(jasperPrintList, strTempFilePath, strContentType);
+			return strTempFilePath;
+		} else {
+			if (StringHelper.isNullOrEmpty(this.getDEDataSetName())) {
+				throw new Exception("没有指定报表数据集合");
+			}
 
-    protected void generateReportFile(String strPrintFormPath, String strTempPath, Map parameters, String strContentType, Object objData) throws Exception {
-        try {
-            if (objData == null) {
-                if (StringHelper.compare(strContentType, "PDF", true) == 0) {
-                    JasperRunManager.runReportToPdfFile((String)strPrintFormPath, (String)strTempPath, (Map)parameters);
-                    return;
-                }
-                if (StringHelper.compare(strContentType, "HTML", true) == 0) {
-                    JasperRunManager.runReportToHtmlFile((String)strPrintFormPath, (String)strTempPath, (Map)parameters);
-                    return;
-                }
-                if (StringHelper.compare(strContentType, "EXCEL", true) == 0) {
-                    JasperPrint report = JasperFillManager.fillReport((String)strPrintFormPath, (Map)parameters);
-                    JExcelApiExporter exporter = new JExcelApiExporter();
-                    exporter.setParameter(JRExporterParameter.JASPER_PRINT, (Object)report);
-                    exporter.setParameter(JRExporterParameter.OUTPUT_FILE, (Object)new File(strTempPath));
-                    exporter.exportReport();
-                    return;
-                }
-            } else if (objData instanceof IDataSet) {
-                IDataSet iDataSet = (IDataSet)objData;
-                if (StringHelper.compare(strContentType, "PDF", true) == 0) {
-                    JasperRunManager.runReportToPdfFile((String)strPrintFormPath, (String)strTempPath, (Map)parameters, (JRDataSource)this.getJRDataSource(iDataSet.getDataTable(0)));
-                    return;
-                }
-                if (StringHelper.compare(strContentType, "HTML", true) == 0) {
-                    JasperRunManager.runReportToHtmlFile((String)strPrintFormPath, (String)strTempPath, (Map)parameters, (JRDataSource)this.getJRDataSource(iDataSet.getDataTable(0)));
-                    return;
-                }
-                if (StringHelper.compare(strContentType, "EXCEL", true) == 0) {
-                    JasperPrint report = JasperFillManager.fillReport((String)strPrintFormPath, (Map)parameters, iDataSet == null ? null : this.getJRDataSource(iDataSet.getDataTable(0)));
-                    JExcelApiExporter exporter = new JExcelApiExporter();
-                    exporter.setParameter(JRExporterParameter.JASPER_PRINT, (Object)report);
-                    exporter.setParameter(JRExporterParameter.OUTPUT_FILE, (Object)new File(strTempPath));
-                    exporter.exportReport();
-                    return;
-                }
-            } else if (objData instanceof ArrayList) {
-                ArrayList dataEntities = (ArrayList)objData;
-                if (StringHelper.compare(strContentType, "PDF", true) == 0) {
-                    JasperRunManager.runReportToPdfFile((String)strPrintFormPath, (String)strTempPath, (Map)parameters, dataEntities == null ? null : this.getJRDataSource(dataEntities));
-                    return;
-                }
-                if (StringHelper.compare(strContentType, "HTML", true) == 0) {
-                    JasperRunManager.runReportToHtmlFile((String)strPrintFormPath, (String)strTempPath, (Map)parameters, dataEntities == null ? null : this.getJRDataSource(dataEntities));
-                    return;
-                }
-                if (StringHelper.compare(strContentType, "EXCEL", true) == 0) {
-                    JasperPrint report = JasperFillManager.fillReport((String)strPrintFormPath, (Map)parameters, dataEntities == null ? null : this.getJRDataSource(dataEntities));
-                    JExcelApiExporter exporter = new JExcelApiExporter();
-                    exporter.setParameter(JRExporterParameter.JASPER_PRINT, (Object)report);
-                    exporter.setParameter(JRExporterParameter.OUTPUT_FILE, (Object)new File(strTempPath));
-                    exporter.exportReport();
-                    return;
-                }
-            }
-            throw new Exception(StringHelper.format("\u65e0\u6cd5\u8bc6\u522b\u7684\u6253\u5370\u5185\u5bb9\u683c\u5f0f[%1$s]", strContentType));
-        }
-        catch (Exception e) {
-            log.error((Object)e);
-            throw e;
-        }
-    }
+			String strReportFile = strPrintFileFolder + getReportFilePath();
+			strReportFile = iWebContext.getRequest().getRealPath(strReportFile);
 
-    protected JRDataSource getJRDataSource(IDataTable dataTable) {
-        return new DataTableJRDataSource(dataTable);
-    }
+			Map parameters = new HashMap();
 
-    protected JRDataSource getJRDataSource(ArrayList<IEntity> dataEntities) {
-        return new EntitiesJRDataSource(dataEntities);
-    }
+			parameters.put(PARAM_WEBCONTEXT, iWebContext);
+			parameters.put(PARAM_REPORTSERVICE, this);
+			parameters.put(JRPrintServiceBase.PARAM_PRINTSERVICE, this);
+			this.fillParameters(parameters);
+			this.fillParametersEx(parameters);
+			// 指定了结果集合
+			DEDataSetFetchContext deDataSetFetchContextImpl = new DEDataSetFetchContext(iWebContext);
+			deDataSetFetchContextImpl.setSessionFactory(iService.getSessionFactory());
 
-    protected String createTempFilePath(String strContentType) throws Exception {
-        String strExt = "";
-        strExt = StringHelper.compare(strContentType, "PDF", true) == 0 ? ".pdf" : (StringHelper.compare(strContentType, "EXCEL", true) == 0 ? ".xls" : (StringHelper.compare(strContentType, "HTML", true) == 0 ? ".html" : ".pdf"));
-        String strTempFilePath = File.createTempFile("report_", strExt).getPath();
-        return strTempFilePath;
-    }
+			fillFetchConditions(deDataSetFetchContextImpl);
+			fillDEDataSetFetchContext(deDataSetFetchContextImpl);
 
-    @Override
-    public String getCodeListText(String strCodeListId, String strValue) throws Exception {
-        return CodeListGlobal.getCodeList(strCodeListId).getCodeListText(strValue, true);
-    }
+			// DBFetchResult fetchResult = iService.fetchDataSet(this.getDEDataSetName(), deDataSetFetchContextImpl);
+			// if (fetchResult.getRetCode() == Errors.OK) {
+			// try {
+			// this.generateReportFile(strReportFile, strTempFilePath, parameters, strContentType, fetchResult.getDataSet());
+			// fetchResult.getDataSet().close();
+			// } catch (Exception ex) {
+			// fetchResult.getDataSet().close();
+			// throw ex;
+			// }
+			// }
+
+			this.generateReportFile(strReportFile, strTempFilePath, parameters, strContentType, iService, deDataSetFetchContextImpl, this.getDEDataSetName());
+			return strTempFilePath;
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.report.jr.IJRReportService#getReportJasperPrints(net.ibizsys.paas.entity.IEntity, net.ibizsys.paas.web.IWebContext, org.hibernate.SessionFactory, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public List<JasperPrint> getReportJasperPrints(IEntity iEntity, IWebContext iWebContext, SessionFactory sessionFactory, String strContentType, String strPrintFileFolder) throws Exception {
+		IService iService = this.getDEModel().getService(sessionFactory);
+		ArrayList<JasperPrint> jasperPrintList = new ArrayList<JasperPrint>();
+		if (hasSubReport()) {
+			ArrayList<IEntity> entityList = new ArrayList<IEntity>();
+			if (!StringHelper.isNullOrEmpty(this.getDEDataSetName())) {
+				// 指定了结果集合
+				DEDataSetFetchContext deDataSetFetchContextImpl = new DEDataSetFetchContext(iWebContext);
+				deDataSetFetchContextImpl.setSessionFactory(sessionFactory);
+				deDataSetFetchContextImpl.setActiveDataObject(iEntity);
+
+				fillFetchConditions(deDataSetFetchContextImpl);
+				fillDEDataSetFetchContext(deDataSetFetchContextImpl);
+
+				// fillDEDataSetFetchDataRange(deDataSetFetchContextImpl);
+
+				DBFetchResult fetchResult = iService.fetchDataSet(this.getDEDataSetName(), deDataSetFetchContextImpl);
+				if (fetchResult.getRetCode() == Errors.OK) {
+					try {
+						fetchResult.getDataSet().cacheDataRow();
+						IDataTable iDataTable = fetchResult.getDataSet().getDataTable(0);
+						for (int i = 0; i < iDataTable.getCachedRowCount(); i++) {
+							SimpleEntity simpleEntity = new SimpleEntity();
+							DataObject.fromDataRow(simpleEntity, iDataTable.getCachedRow(i));
+							entityList.add(simpleEntity);
+						}
+						fetchResult.getDataSet().close();
+					} catch (Exception ex) {
+						fetchResult.getDataSet().close();
+						throw ex;
+					}
+				}
+			} else {
+				entityList.add(iEntity);
+			}
+
+			for (IEntity childItem : entityList) {
+				java.util.Iterator<String> subReportIds = this.getSubReportIds();
+				while (subReportIds.hasNext()) {
+					String strSubReportId = subReportIds.next();
+					IJRReportService childJRReportService = (IJRReportService) ReportServiceGlobal.getReportService(strSubReportId);
+					List<JasperPrint> list = childJRReportService.getReportJasperPrints(childItem, iWebContext, sessionFactory, strContentType, strPrintFileFolder);
+					jasperPrintList.addAll(list);
+				}
+			}
+		} else {
+			String strReportFile = strPrintFileFolder + getReportFilePath();
+			strReportFile = iWebContext.getRequest().getRealPath(strReportFile);
+
+			Map parameters = new HashMap();
+
+			parameters.put(PARAM_WEBCONTEXT, iWebContext);
+			parameters.put(PARAM_ACTIVEENTITY, iEntity);
+			parameters.put(PARAM_REPORTSERVICE, this);
+			parameters.put(JRPrintServiceBase.PARAM_PRINTSERVICE, this);
+			this.fillParameters(parameters);
+			this.fillParametersEx(parameters);
+			if (!StringHelper.isNullOrEmpty(this.getDEDataSetName())) {
+
+				// 指定了结果集合
+				DEDataSetFetchContext deDataSetFetchContextImpl = new DEDataSetFetchContext(iWebContext);
+				deDataSetFetchContextImpl.setSessionFactory(iService.getSessionFactory());
+				deDataSetFetchContextImpl.setActiveDataObject(iEntity);
+
+				fillFetchConditions(deDataSetFetchContextImpl);
+				fillDEDataSetFetchContext(deDataSetFetchContextImpl);
+
+				jasperPrintList.add(createJasperPrint(strReportFile, parameters, iService, deDataSetFetchContextImpl, this.getDEDataSetName()));
+				// DBFetchResult fetchResult = iService.fetchDataSet(this.getDEDataSetName(), deDataSetFetchContextImpl);
+				// if (fetchResult.getRetCode() == Errors.OK) {
+				// try {
+				// jasperPrintList.add(this.createJasperPrint(strReportFile, parameters, fetchResult.getDataSet()));
+				// fetchResult.getDataSet().close();
+				// } catch (Exception ex) {
+				// fetchResult.getDataSet().close();
+				// throw ex;
+				// }
+				// }
+			}
+		}
+
+		return jasperPrintList;
+	}
+
+	protected void fillParameters(Map parameters) {
+
+	}
+
+	/**
+	 * 填充参数扩展
+	 * @param parameters
+	 * @throws Exception
+	 */
+	protected void fillParametersEx(Map parameters) throws Exception{
+
+		java.util.Iterator<ISystem> sysModels = SysModelGlobal.getAllSystems();
+		while(sysModels.hasNext()){
+			ISystem iSystem = sysModels.next();
+			if(iSystem instanceof IJRReportServiceParamFiller){
+				((IJRReportServiceParamFiller)iSystem).fillParameters(parameters, this);
+			}
+		}
+	}
+	
+	/**
+	 * 建立Jasper打印
+	 * 
+	 * @param strReportFullPath
+	 * @param parameters
+	 * @param iService
+	 * @param deDataSetFetchContextImpl
+	 * @param strDEDataSetName
+	 * @return
+	 * @throws Exception
+	 */
+	protected JasperPrint createJasperPrint(String strReportFullPath, Map parameters, IService iService, DEDataSetFetchContext deDataSetFetchContextImpl, String strDEDataSetName) throws Exception {
+		// 查询并输出报表
+		long nBeginTime = java.lang.System.currentTimeMillis();
+		DBFetchResult dbFetchResult = null;
+		try {
+			deDataSetFetchContextImpl.setCacheDataSet(false);
+
+			SessionFactoryManager.addRef();
+			dbFetchResult = iService.getDAO().fetchDEDataSet(deDataSetFetchContextImpl, strDEDataSetName, false);
+
+			// 产生报表
+			JasperPrint jasperPrint = this.createJasperPrint(strReportFullPath, parameters, dbFetchResult.getDataSet());
+
+			// 关闭结果集合
+			dbFetchResult.getDataSet().close();
+
+			SessionFactoryManager.releaseRef(false);
+			long nTime = java.lang.System.currentTimeMillis() - nBeginTime;
+			log.debug(StringHelper.format("查询耗时[%1$s]", nTime));
+
+			return jasperPrint;
+		} catch (Exception ex) {
+			log.error(StringHelper.format("产生报表文件发生异常，%1$s", ex.getMessage()), ex);
+
+			// 关闭结果集合
+			if (dbFetchResult != null && dbFetchResult.getDataSet() != null) {
+				dbFetchResult.getDataSet().close();
+			}
+
+			SessionFactoryManager.releaseRef(false);
+			throw ex;
+		}
+	}
+
+	/**
+	 * 建立Jasper打印
+	 * 
+	 * @param strReportFullPath
+	 * @param parameters
+	 * @param objData
+	 * @return
+	 * @throws Exception
+	 */
+	protected JasperPrint createJasperPrint(String strReportFullPath, Map parameters, Object objData) throws Exception {
+		try {
+			if (objData == null) {
+				// if(StringHelper.compare(strContentType,
+				// IPrintService.CONTENTTYPE_PDF, true) == 0)
+				// {
+				// JasperRunManager.runReportToPdfFile(strPrintFormPath,strTempPath,
+				// parameters);
+				// return;
+				// }
+				//
+				// if(StringHelper.compare(strContentType,
+				// IPrintService.CONTENTTYPE_EXCEL, true) == 0)
+				// {
+				// JasperPrint report =
+				// JasperFillManager.fillReport(strPrintFormPath,parameters);
+				// JRAbstractExporter exporter = new JExcelApiExporter();
+				// exporter.setParameter(JRExporterParameter.JASPER_PRINT,
+				// report);
+				// exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new
+				// File(strTempPath));
+				// exporter.exportReport();
+				// return;
+				// }
+			} else {
+				if (objData instanceof IDataSet) {
+					IDataSet iDataSet = (IDataSet) objData;
+					JasperPrint jasperPrint = JasperFillManager.fillReport(strReportFullPath, parameters, getJRDataSource(iDataSet.getDataTable(0)));
+					return jasperPrint;
+				} else if (objData instanceof ArrayList) {
+					ArrayList<IEntity> dataEntities = (ArrayList<IEntity>) objData;
+					JasperPrint jasperPrint = JasperFillManager.fillReport(strReportFullPath, parameters, getJRDataSource(dataEntities));
+					return jasperPrint;
+				}
+			}
+
+			throw new Exception(StringHelper.format("无法识别数据对象"));
+		} catch (Exception e) {
+			log.error(e);
+			throw e;
+		}
+
+	}
+
+	/**
+	 * 产生报表文件
+	 * 
+	 * @param jasperPrintList
+	 * @param strTempPath
+	 * @param strContentType
+	 * @throws Exception
+	 */
+	protected void generateReportFile(ArrayList<JasperPrint> jasperPrintList, String strTempPath, String strContentType) throws Exception {
+		try {
+			JRExporter exporter = null;
+			if (StringHelper.compare(strContentType, IReportService.CONTENTTYPE_PDF, true) == 0) {
+				exporter = new JRPdfExporter();
+			} else if (StringHelper.compare(strContentType, IReportService.CONTENTTYPE_EXCEL, true) == 0) {
+				exporter = new JRXlsExporter();
+			} else if (StringHelper.compare(strContentType, IReportService.CONTENTTYPE_HTML, true) == 0) {
+				exporter = new JRXhtmlExporter();
+			} else
+				exporter = new JRPdfExporter();
+
+			exporter.setParameter(JRExporterParameter.JASPER_PRINT_LIST, jasperPrintList);
+			exporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, strTempPath);
+			exporter.exportReport();
+		} catch (Exception ex) {
+			log.error(StringHelper.format("导出报表发生异常，%1$s", ex.getMessage()), ex);
+			log.error(ex);
+			throw ex;
+		}
+	}
+
+	/**
+	 * 产生报表文件，通过游标的方式解决问题
+	 * 
+	 * @param strPrintFormPath
+	 * @param strTempPath
+	 * @param parameters
+	 * @param strContentType
+	 * @param iService
+	 * @param iDEDataSetFetchContext
+	 * @param strDEDataSetName
+	 * @throws Exception
+	 */
+	protected void generateReportFile(String strPrintFormPath, String strTempPath, Map parameters, String strContentType, IService iService, DEDataSetFetchContext deDataSetFetchContextImpl, String strDEDataSetName) throws Exception {
+		// 查询并输出报表
+		long nBeginTime = java.lang.System.currentTimeMillis();
+		DBFetchResult dbFetchResult = null;
+		try {
+			deDataSetFetchContextImpl.setCacheDataSet(false);
+
+			SessionFactoryManager.addRef();
+			dbFetchResult = iService.getDAO().fetchDEDataSet(deDataSetFetchContextImpl, strDEDataSetName, false);
+
+			// 产生报表
+			this.generateReportFile(strPrintFormPath, strTempPath, parameters, strContentType, dbFetchResult.getDataSet());
+
+			// 关闭结果集合
+			dbFetchResult.getDataSet().close();
+
+			SessionFactoryManager.releaseRef(false);
+			long nTime = java.lang.System.currentTimeMillis() - nBeginTime;
+			log.debug(StringHelper.format("查询耗时[%1$s]", nTime));
+		} catch (Exception ex) {
+			log.error(StringHelper.format("产生报表文件发生异常，%1$s", ex.getMessage()), ex);
+
+			// 关闭结果集合
+			if (dbFetchResult != null && dbFetchResult.getDataSet() != null) {
+				dbFetchResult.getDataSet().close();
+			}
+
+			SessionFactoryManager.releaseRef(false);
+			throw ex;
+		}
+	}
+
+	/**
+	 * 导出打印报表
+	 * 
+	 * @param strPrintFormPath
+	 * @param strTempPath
+	 * @param parameters
+	 * @param strContentType
+	 * @param objData
+	 * @throws Exception
+	 */
+	protected void generateReportFile(String strPrintFormPath, String strTempPath, Map parameters, String strContentType, Object objData) throws Exception {
+		try {
+			if (objData == null) {
+				if (StringHelper.compare(strContentType, IPrintService.CONTENTTYPE_PDF, true) == 0) {
+					JasperRunManager.runReportToPdfFile(strPrintFormPath, strTempPath, parameters);
+					return;
+				}
+
+				if (StringHelper.compare(strContentType, IPrintService.CONTENTTYPE_HTML, true) == 0) {
+					JasperRunManager.runReportToHtmlFile(strPrintFormPath, strTempPath, parameters);
+					return;
+				}
+
+				if (StringHelper.compare(strContentType, IPrintService.CONTENTTYPE_EXCEL, true) == 0) {
+					JasperPrint report = JasperFillManager.fillReport(strPrintFormPath, parameters);
+					JRAbstractExporter exporter = new JExcelApiExporter();
+					exporter.setParameter(JRExporterParameter.JASPER_PRINT, report);
+					exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File(strTempPath));
+					exporter.exportReport();
+					return;
+				}
+			} else {
+				if (objData instanceof IDataSet) {
+					IDataSet iDataSet = (IDataSet) objData;
+					if (StringHelper.compare(strContentType, IPrintService.CONTENTTYPE_PDF, true) == 0) {
+						JasperRunManager.runReportToPdfFile(strPrintFormPath, strTempPath, parameters, getJRDataSource(iDataSet.getDataTable(0)));
+						return;
+					}
+
+					if (StringHelper.compare(strContentType, IPrintService.CONTENTTYPE_HTML, true) == 0) {
+						JasperRunManager.runReportToHtmlFile(strPrintFormPath, strTempPath, parameters, getJRDataSource(iDataSet.getDataTable(0)));
+						return;
+					}
+
+					if (StringHelper.compare(strContentType, IPrintService.CONTENTTYPE_EXCEL, true) == 0) {
+						JasperPrint report = JasperFillManager.fillReport(strPrintFormPath, parameters, (iDataSet == null) ? null : getJRDataSource(iDataSet.getDataTable(0)));
+						JRAbstractExporter exporter = new JExcelApiExporter();
+						exporter.setParameter(JRExporterParameter.JASPER_PRINT, report);
+						exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File(strTempPath));
+						exporter.exportReport();
+						return;
+					}
+				} else if (objData instanceof ArrayList) {
+					ArrayList<IEntity> dataEntities = (ArrayList<IEntity>) objData;
+					if (StringHelper.compare(strContentType, IPrintService.CONTENTTYPE_PDF, true) == 0) {
+						JasperRunManager.runReportToPdfFile(strPrintFormPath, strTempPath, parameters, (dataEntities == null) ? null : getJRDataSource(dataEntities));
+						return;
+					}
+
+					if (StringHelper.compare(strContentType, IPrintService.CONTENTTYPE_HTML, true) == 0) {
+						JasperRunManager.runReportToHtmlFile(strPrintFormPath, strTempPath, parameters, (dataEntities == null) ? null : getJRDataSource(dataEntities));
+						return;
+					}
+
+					if (StringHelper.compare(strContentType, IPrintService.CONTENTTYPE_EXCEL, true) == 0) {
+						JasperPrint report = JasperFillManager.fillReport(strPrintFormPath, parameters, (dataEntities == null) ? null : getJRDataSource(dataEntities));
+						JRAbstractExporter exporter = new JExcelApiExporter();
+						exporter.setParameter(JRExporterParameter.JASPER_PRINT, report);
+						exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File(strTempPath));
+						exporter.exportReport();
+						return;
+					}
+				}
+			}
+
+			throw new Exception(StringHelper.format("无法识别的打印内容格式[%1$s]", strContentType));
+		} catch (Exception e) {
+			log.error(e);
+			throw e;
+		}
+	}
+
+	/**
+	 * 获取报表数据源
+	 * 
+	 * @param dataTable
+	 * @return
+	 */
+	protected JRDataSource getJRDataSource(IDataTable dataTable) {
+		return new DataTableJRDataSource(dataTable);
+	}
+
+	/**
+	 * 获取报表数据源
+	 * 
+	 * @param dataTable
+	 * @return
+	 */
+	protected JRDataSource getJRDataSource(ArrayList<IEntity> dataEntities) {
+		return new EntitiesJRDataSource(dataEntities);
+	}
+
+	protected String createTempFilePath(String strContentType) throws Exception {
+		String strExt = "";
+		if (StringHelper.compare(strContentType, IReportService.CONTENTTYPE_PDF, true) == 0) {
+			strExt = ".pdf";
+		} else if (StringHelper.compare(strContentType, IReportService.CONTENTTYPE_EXCEL, true) == 0) {
+			strExt = ".xls";
+		} else if (StringHelper.compare(strContentType, IReportService.CONTENTTYPE_HTML, true) == 0) {
+			strExt = ".html";
+		} else
+			strExt = ".pdf";
+
+		String strTempFilePath = java.io.File.createTempFile("report_", strExt).getPath();
+		return strTempFilePath;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.report.jr.IJRReportService#getCodeListText(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getCodeListText(String strCodeListId, String strValue) throws Exception {
+		return CodeListGlobal.getCodeList(strCodeListId).getCodeListText(strValue, true);
+	}
+
 }
-

@@ -89,29 +89,29 @@ extends PSDEDataCtrl {
         PSSysDevBTTypeService psSysDevBTTypeService = (PSSysDevBTTypeService)ServiceGlobal.getService(PSSysDevBTTypeService.class);
         PSDCBKTypeService psDCBKTypeService = (PSDCBKTypeService)ServiceGlobal.getService(PSDCBKTypeService.class);
         PSRobotWorkTypeService psRobotWorkTypeService = (PSRobotWorkTypeService)ServiceGlobal.getService(PSRobotWorkTypeService.class);
-        ArrayList psSysDevBTTypeList = psSysDevBTTypeService.select((ISelectCond)new SelectCond());
+        ArrayList<PSSysDevBTType> psSysDevBTTypeList = psSysDevBTTypeService.select((ISelectCond)new SelectCond());
         for (PSSysDevBTType psSysDevBTType : psSysDevBTTypeList) {
             PSRobotWorkType psRobotWorkType = new PSRobotWorkType();
             psRobotWorkType.setPSRobotWorkTypeId("SYSBKTASK|" + psSysDevBTType.getPSSysDevBTTypeId());
-            if (psRobotWorkTypeService.checkKey((IEntity)psRobotWorkType) != 0) continue;
+            if (psRobotWorkTypeService.checkKey(psRobotWorkType) != 0) continue;
             psRobotWorkType.setPSRobotWorkTypeName(psSysDevBTType.getPSSysDevBTTypeName());
             psRobotWorkType.setValidFlag(Integer.valueOf(1));
             psRobotWorkType.setUserTag("SYSBKTASK");
             psRobotWorkType.setUserTag2(psSysDevBTType.getPSSysDevBTTypeId());
             psRobotWorkType.setEnergy(Integer.valueOf(0));
-            psRobotWorkTypeService.create((IEntity)psRobotWorkType);
+            psRobotWorkTypeService.create(psRobotWorkType);
         }
-        ArrayList psDCBKTypeList = psDCBKTypeService.select((ISelectCond)new SelectCond());
+        ArrayList<PSDCBKType> psDCBKTypeList = psDCBKTypeService.select((ISelectCond)new SelectCond());
         for (PSDCBKType psDCBKType : psDCBKTypeList) {
             PSRobotWorkType psRobotWorkType = new PSRobotWorkType();
             psRobotWorkType.setPSRobotWorkTypeId("DCBKTASK|" + psDCBKType.getPSDCBKTypeId());
-            if (psRobotWorkTypeService.checkKey((IEntity)psRobotWorkType) != 0) continue;
+            if (psRobotWorkTypeService.checkKey(psRobotWorkType) != 0) continue;
             psRobotWorkType.setPSRobotWorkTypeName(psDCBKType.getPSDCBKTypeName());
             psRobotWorkType.setValidFlag(Integer.valueOf(1));
             psRobotWorkType.setUserTag("DCBKTASK");
             psRobotWorkType.setUserTag2(psDCBKType.getPSDCBKTypeId());
             psRobotWorkType.setEnergy(Integer.valueOf(0));
-            psRobotWorkTypeService.create((IEntity)psRobotWorkType);
+            psRobotWorkTypeService.create(psRobotWorkType);
         }
     }
 
@@ -122,4 +122,3 @@ extends PSDEDataCtrl {
         this.getPSModelStorage().getPSRobotWorkType(strPSRobotWorkTypeId, false);
     }
 }
-

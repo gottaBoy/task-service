@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfworklist.ac;
 
-import net.ibizsys.psrt.srv.wf.demodel.wfworklist.ac.WFWorkListDefaultACModelBase;
+/**
+ *  实体自动填充 [DEFAULT]对象模型
+ */
+public class WFWorkListDefaultACModel extends WFWorkListDefaultACModelBase {
 
-public class WFWorkListDefaultACModel
-extends WFWorkListDefaultACModelBase {
+    public WFWorkListDefaultACModel () {
+        super();
+    }
+
 }
-

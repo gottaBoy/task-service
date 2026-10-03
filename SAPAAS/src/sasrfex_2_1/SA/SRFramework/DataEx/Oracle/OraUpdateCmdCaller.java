@@ -32,7 +32,7 @@ import SA.SRFramework.UtilityEx.StringBuilderEx;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.CallableStatement;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -81,7 +81,7 @@ implements IDBUpdateCmdCaller {
                 return updateResult;
             }
         }
-        Statement cstmt = null;
+        CallableStatement cstmt = null;
         Hashtable<Integer, String> outputParamList = new Hashtable<Integer, String>();
         try {
             try {

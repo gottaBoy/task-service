@@ -72,7 +72,7 @@ implements IPSSysSFPubService {
     @Override
     protected List<PSSysSFPub> onListAll() throws Exception {
         ArrayList<PSSysSFPub> list = new ArrayList<PSSysSFPub>();
-        List pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
+        List<PSSystem> pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
         if (pssystems != null) {
             for (PSSystem parent : pssystems) {
                 List<PSSysSFPub> items = this.listByPSSystem(parent);

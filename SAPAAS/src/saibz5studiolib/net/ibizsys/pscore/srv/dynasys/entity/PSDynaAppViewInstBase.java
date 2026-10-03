@@ -2965,7 +2965,7 @@ implements Serializable {
                 PSDynaAppView pSDynaAppView = new PSDynaAppView();
                 pSDynaAppView.setPSDynaAppViewId(this.getPSDynaAppViewId());
                 PSDynaAppViewService pSDynaAppViewService = (PSDynaAppViewService)ServiceGlobal.getService(PSDynaAppViewService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaAppViewService.autoGet((IEntity)pSDynaAppView);
+                pSDynaAppViewService.autoGet(pSDynaAppView);
                 this.psdynaappview = pSDynaAppView;
             }
             return this.psdynaappview;
@@ -2991,7 +2991,7 @@ implements Serializable {
                 PSDynaApp pSDynaApp = new PSDynaApp();
                 pSDynaApp.setPSDynaAppId(this.getPSDynaAppId());
                 PSDynaAppService pSDynaAppService = (PSDynaAppService)ServiceGlobal.getService(PSDynaAppService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaAppService.autoGet((IEntity)pSDynaApp);
+                pSDynaAppService.autoGet(pSDynaApp);
                 this.psdynaapp = pSDynaApp;
             }
             return this.psdynaapp;
@@ -3017,7 +3017,7 @@ implements Serializable {
                 PSDynaInst pSDynaInst = new PSDynaInst();
                 pSDynaInst.setPSDynaInstId(this.getPSDynaInstId());
                 PSDynaInstService pSDynaInstService = (PSDynaInstService)ServiceGlobal.getService(PSDynaInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaInstService.autoGet((IEntity)pSDynaInst);
+                pSDynaInstService.autoGet(pSDynaInst);
                 this.psdynainst = pSDynaInst;
             }
             return this.psdynainst;
@@ -3043,7 +3043,7 @@ implements Serializable {
                 PSDynaWFVerInst pSDynaWFVerInst = new PSDynaWFVerInst();
                 pSDynaWFVerInst.setPSDynaWFVerInstId(this.getPSDynaWFVerInstId());
                 PSDynaWFVerInstService pSDynaWFVerInstService = (PSDynaWFVerInstService)ServiceGlobal.getService(PSDynaWFVerInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDynaWFVerInstService.autoGet((IEntity)pSDynaWFVerInst);
+                pSDynaWFVerInstService.autoGet(pSDynaWFVerInst);
                 this.psdynawfverinst = pSDynaWFVerInst;
             }
             return this.psdynawfverinst;

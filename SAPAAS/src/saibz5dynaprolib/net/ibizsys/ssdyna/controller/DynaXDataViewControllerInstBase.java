@@ -1,25 +1,33 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.controller.IXDataViewController
- */
 package net.ibizsys.ssdyna.controller;
 
 import net.ibizsys.paas.controller.IXDataViewController;
-import net.ibizsys.ssdyna.controller.DynaViewControllerInstBase;
 
-public abstract class DynaXDataViewControllerInstBase
-extends DynaViewControllerInstBase
-implements IXDataViewController {
-    private boolean bReadOnly = false;
+/**
+ *  态视数据相关动图控制器实例对象实现基类
+ * @author Administrator
+ *
+ */
+public abstract class DynaXDataViewControllerInstBase extends DynaViewControllerInstBase implements IXDataViewController {
 
-    public boolean isReadOnly() {
-        return this.bReadOnly;
-    }
+	public DynaXDataViewControllerInstBase() throws Exception {
+		super();
+	}
 
-    protected void setReadOnly(boolean bReadOnly) {
-        this.bReadOnly = bReadOnly;
-    }
+	private boolean bReadOnly = false;
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.controller.IXDataViewController#isReadOnly()
+	 */
+	@Override
+	public boolean isReadOnly() {
+		return this.bReadOnly;
+	}
+
+	/**
+	 * 设置视图是否处于只读模式
+	 * @param bReadOnly
+	 */
+	protected void setReadOnly(boolean bReadOnly){
+		this.bReadOnly = bReadOnly;
+	}
 }
-

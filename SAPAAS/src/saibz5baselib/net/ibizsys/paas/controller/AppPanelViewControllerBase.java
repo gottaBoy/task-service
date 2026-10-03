@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.ViewControllerBase;
+/**
+ * 应用面板视图控制类基类
+ * @author Administrator
+ *
+ */
+public abstract class AppPanelViewControllerBase extends ViewControllerBase {
 
-public abstract class AppPanelViewControllerBase
-extends ViewControllerBase {
+	public AppPanelViewControllerBase() throws Exception {
+		super();
+		
+	}
+
 }
-

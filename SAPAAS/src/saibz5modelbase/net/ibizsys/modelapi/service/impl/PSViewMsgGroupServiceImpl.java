@@ -117,9 +117,9 @@ implements IPSViewMsgGroupService {
 
     @Override
     protected List<PSViewMsgGroup> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSViewMsgGroup> list = new ArrayList<PSViewMsgGroup>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSViewMsgGroup> items = this.listByPSModule(parent);

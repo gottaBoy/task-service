@@ -279,7 +279,6 @@ extends BaseDEDataCtrl {
                                 eaiSQL2DECtrl.SetParamValue("EXECUTECOUNT", nExecuteCount);
                                 ++i2;
                             }
-                            break;
                         }
                     }
                     catch (Exception ex) {

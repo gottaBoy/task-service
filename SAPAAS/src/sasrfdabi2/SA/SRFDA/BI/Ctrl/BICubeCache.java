@@ -311,7 +311,7 @@ implements IBICubeCache {
             allConditions.add(strAllCondition);
         }
         for (String strTempCondition : allConditions) {
-            Vector list = new Vector();
+            Vector<BaseDataEntity> list = new Vector();
             String strSQL = StringHelper.Format((String)"SELECT * FROM %1$s where %2$s", (Object)this.getCacheTableName(), (Object)strTempCondition);
             CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.strDBStorage, (String)(strSQL = strSQL.replace("='null'", " IS NULL")), list, (String)"");
             if (callResult == null || callResult.getRetCode() != 0) {
@@ -404,7 +404,7 @@ implements IBICubeCache {
             }
             strTotalCondition = String.valueOf(strTotalCondition) + StringHelper.Format((String)"(%1$s)", (Object)strTempCondition);
         }
-        Vector list = new Vector();
+        Vector<BaseDataEntity> list = new Vector();
         String strSQL = StringHelper.Format((String)"SELECT * FROM %1$s ", (Object)this.getCacheTableName());
         if (!StringHelper.IsNullOrEmpty((String)strTotalCondition)) {
             strSQL = String.valueOf(strSQL) + StringHelper.Format((String)" WHERE %1$s", (Object)strTotalCondition);

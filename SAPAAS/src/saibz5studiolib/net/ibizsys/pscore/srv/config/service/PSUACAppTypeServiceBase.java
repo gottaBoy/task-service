@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSUACAppType> {
     }
 
     protected void onFillParentInfo(PSUACAppType pSUACAppType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSUACAppType, string, string2, string3);
+        super.onFillParentInfo(pSUACAppType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSUACAppType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSUACAppType, bl);
+        super.onFillEntityFullInfo(pSUACAppType, bl);
     }
 
     protected void onWriteBackParent(PSUACAppType pSUACAppType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUACAppType, bl);
+        super.onWriteBackParent(pSUACAppType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSUACAppType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSUACAppType pSUACAppType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUACAppType, bl);
+        super.onRemoveEntityUncopyValues(pSUACAppType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUACAppType pSUACAppType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSUACAppType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSUACAppType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUACAppType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUACAppType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSUACAppType pSUACAppType, boolean bl2, boolean bl3) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSUACAppType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSUACAppType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSUACAppType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSUACAppType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUACAppTypeId_Default((IEntity)pSUACAppType, bl2, bl3);
+            string2 = this.onTestValueRule_PSUACAppTypeId_Default(pSUACAppType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUACAPPTYPEID");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSUACAppType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUACAppTypeName_Default((IEntity)pSUACAppType, bl2, bl3);
+            string2 = this.onTestValueRule_PSUACAppTypeName_Default(pSUACAppType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUACAPPTYPENAME");
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSUACAppType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSUACAppType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSUACAppType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -259,11 +259,11 @@ extends PSCoreSysServiceBase<PSUACAppType> {
     }
 
     protected void onSyncEntity(PSUACAppType pSUACAppType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUACAppType, bl);
+        super.onSyncEntity(pSUACAppType, bl);
     }
 
     protected void onSyncIndexEntities(PSUACAppType pSUACAppType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUACAppType, bl);
+        super.onSyncIndexEntities(pSUACAppType, bl);
     }
 
     public Object getDataContextValue(PSUACAppType pSUACAppType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -271,14 +271,14 @@ extends PSCoreSysServiceBase<PSUACAppType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUACAppType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUACAppType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUACAppType pSUACAppType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUACAppType, arrayList, n);
+        super.onExportMajorModel(pSUACAppType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -383,14 +383,14 @@ extends PSCoreSysServiceBase<PSUACAppType> {
 
     protected boolean onMergeChild(String string, String string2, PSUACAppType pSUACAppType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUACAppType)) {
+        if (super.onMergeChild(string, string2, pSUACAppType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUACAppType pSUACAppType) throws Exception {
-        super.onUpdateParent((IEntity)pSUACAppType);
+        super.onUpdateParent(pSUACAppType);
     }
 
     @Override

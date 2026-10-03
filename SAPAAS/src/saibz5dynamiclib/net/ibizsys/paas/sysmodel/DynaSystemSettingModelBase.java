@@ -1,112 +1,158 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.controller.IDynaViewController
- *  net.ibizsys.paas.controller.IDynaViewControllerInst
- *  net.ibizsys.paas.core.ModelBaseImpl
- *  net.ibizsys.paas.sysmodel.ISystemModel
- *  net.ibizsys.paas.util.StringHelper
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.sysmodel;
 
 import java.util.HashMap;
+
 import net.ibizsys.paas.controller.IDynaViewController;
 import net.ibizsys.paas.controller.IDynaViewControllerInst;
 import net.ibizsys.paas.core.ModelBaseImpl;
-import net.ibizsys.paas.sysmodel.IDynaInst;
-import net.ibizsys.paas.sysmodel.IDynaSystemSettingModel;
-import net.ibizsys.paas.sysmodel.IDynaSystemStorage;
-import net.ibizsys.paas.sysmodel.ISystemModel;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.view.IDynaViewSettingModel;
+
 import org.hibernate.SessionFactory;
 
-public abstract class DynaSystemSettingModelBase
-extends ModelBaseImpl
-implements IDynaSystemSettingModel {
-    private String strDynaInstId = null;
-    private SessionFactory sessionFactory = null;
-    private ISystemModel iSystemModel = null;
-    private HashMap<String, IDynaInst> dynaInstMap = new HashMap();
+/**
+ * 动态系统设置模型对象基类
+ * @author Administrator
+ *
+ */
+public abstract class DynaSystemSettingModelBase extends ModelBaseImpl implements IDynaSystemSettingModel {
 
-    @Override
-    public void init(ISystemModel iSystemModel) throws Exception {
-        this.iSystemModel = iSystemModel;
-        this.onInit();
-    }
+	private String strDynaInstId = null;
+	private SessionFactory sessionFactory = null;
+	private ISystemModel iSystemModel = null;
+	private HashMap<String, IDynaInst> dynaInstMap = new HashMap<String, IDynaInst>();
+	
+	@Override
+	public void init(ISystemModel iSystemModel) throws Exception {
+		this.iSystemModel = iSystemModel;
+		this.onInit();
+	}
+	
+	
+	
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.sysmodel.IDynaSystemSettingModel#getSystemModel()
+	 */
+	@Override
+	public ISystemModel getSystemModel() {
+		return this.iSystemModel;
+	}
 
-    @Override
-    public ISystemModel getSystemModel() {
-        return this.iSystemModel;
-    }
 
-    public String getDynaInstId() {
-        return this.strDynaInstId;
-    }
 
-    protected void setDynaInstId(String strDynaInstId) {
-        this.strDynaInstId = strDynaInstId;
-    }
 
-    public IDynaViewControllerInst createDynaViewControllerInst(IDynaViewController iDynaViewController, String strDynaViewInstId) throws Exception {
-        return this.getDynaViewSettingModel().createDynaViewControllerInst(iDynaViewController, strDynaViewInstId);
-    }
+	@Override
+	public String getDynaInstId() {
+		return this.strDynaInstId;
+	}
+	
+	/**
+	 * 设置动态实例标识
+	 * @param strDynaInstId
+	 */
+	protected void setDynaInstId(String strDynaInstId){
+		this.strDynaInstId = strDynaInstId;
+	}
 
-    protected abstract IDynaSystemStorage getDynaSystemStorage() throws Exception;
 
-    public void syncAll() throws Exception {
-        this.getDynaSystemStorage().syncAll();
-    }
 
-    @Override
-    public void syncAllViews() throws Exception {
-        this.getDynaSystemStorage().syncAllViews();
-    }
+	@Override
+	public IDynaViewControllerInst createDynaViewControllerInst(IDynaViewController iDynaViewController, String strDynaViewInstId) throws Exception {
+		return getDynaViewSettingModel().createDynaViewControllerInst(iDynaViewController, strDynaViewInstId);
+	}
+	
+	
+	
+	/**
+	 * 获取动态系统存储对象
+	 * @return
+	 * @throws Exception
+	 */
+	protected abstract IDynaSystemStorage getDynaSystemStorage()throws Exception;
+	
+	
 
-    @Override
-    public void syncAllWorkflows() throws Exception {
-        this.getDynaSystemStorage().syncAllWorkflows();
-    }
+	@Override
+	public void syncAll() throws Exception {
+		getDynaSystemStorage().syncAll();
+	}
 
-    @Override
-    public void syncView(String strViewId) throws Exception {
-        this.getDynaSystemStorage().syncView(strViewId);
-    }
+	@Override
+	public void syncAllViews() throws Exception {
+		getDynaSystemStorage().syncAllViews();
+	}
 
-    @Override
-    public void syncWorkflow(String strWorkflowId) throws Exception {
-        this.getDynaSystemStorage().syncWorkflow(strWorkflowId);
-    }
+	@Override
+	public void syncAllWorkflows() throws Exception {
+		getDynaSystemStorage().syncAllWorkflows();
+	}
 
-    public IDynaViewSettingModel getDynaViewSettingModel() {
-        return (IDynaViewSettingModel)this.getDynaViewSetting();
-    }
+	@Override
+	public void syncView(String strViewId) throws Exception {
+		getDynaSystemStorage().syncView(strViewId);
+	}
 
-    public SessionFactory getSessionFactory() {
-        return this.sessionFactory;
-    }
+	@Override
+	public void syncWorkflow(String strWorkflowId) throws Exception {
+		getDynaSystemStorage().syncWorkflow(strWorkflowId);
+	}
+	
+	
+	/**
+	 * 获取动态视图设置模型对象
+	 * @return
+	 */
+	public IDynaViewSettingModel getDynaViewSettingModel(){
+		return (IDynaViewSettingModel)this.getDynaViewSetting();
+	}
 
-    protected void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.sysmodel.IDynaSystemSetting#getSessionFactory()
+	 */
+	@Override
+	public SessionFactory getSessionFactory() {
+		return this.sessionFactory;
+	}
 
-    public void installAll() throws Exception {
-        this.getDynaSystemStorage().installAll();
-    }
+	/**
+	 * 设置数据库会话工厂
+	 * @param sessionFactory
+	 */
+	protected void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
-    @Override
-    public IDynaInst getDynaInst(String strDynaSystemId, boolean bTryMode) throws Exception {
-        IDynaInst iDynaInst = this.dynaInstMap.get(strDynaSystemId);
-        if (iDynaInst == null && !bTryMode) {
-            throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u52a8\u6001\u7cfb\u7edf\u5b9e\u4f8b\u5bf9\u8c61, \u6807\u8bc6\u4e3a[%1$s]", (Object)strDynaSystemId));
-        }
-        return iDynaInst;
-    }
 
-    protected void registerDynaInst(IDynaInst iDynaInst) {
-        this.dynaInstMap.put(iDynaInst.getId(), iDynaInst);
-    }
+
+
+	@Override
+	public void installAll() throws Exception {
+		getDynaSystemStorage().installAll();
+	}
+
+
+
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.paas.sysmodel.IDynaSystemSettingModel#getDynaInst(java.lang.String, boolean)
+	 */
+	@Override
+	public IDynaInst getDynaInst(String strDynaSystemId, boolean bTryMode) throws Exception {
+		IDynaInst iDynaInst = this.dynaInstMap.get(strDynaSystemId);
+		if(iDynaInst == null && !bTryMode){
+			throw new Exception(StringHelper.format("无法获取指定动态系统实例对象, 标识为[%1$s]",strDynaSystemId));
+		}
+		return iDynaInst;
+	}
+
+	/**
+	 * 注册动态系统实例对象
+	 * @param iDynaInst
+	 */
+	protected void registerDynaInst(IDynaInst iDynaInst){
+		this.dynaInstMap.put(iDynaInst.getId(), iDynaInst);
+	}
+	
+
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.systest.demodel.PSSysTestDataDEModelBase;
 
 public class PSSysTestDataDEModel
 extends PSSysTestDataDEModelBase {
+
+    public PSSysTestDataDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

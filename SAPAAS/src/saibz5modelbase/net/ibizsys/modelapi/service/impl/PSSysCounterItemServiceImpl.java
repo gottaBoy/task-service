@@ -70,7 +70,7 @@ implements IPSSysCounterItemService {
     @Override
     protected List<PSSysCounterItem> onListAll() throws Exception {
         ArrayList<PSSysCounterItem> list = new ArrayList<PSSysCounterItem>();
-        List pssyscounters = PSModelServiceUtil.getInstance().getPSSysCounterService().listAll();
+        List<PSSysCounter> pssyscounters = PSModelServiceUtil.getInstance().getPSSysCounterService().listAll();
         if (pssyscounters != null) {
             for (PSSysCounter parent : pssyscounters) {
                 List<PSSysCounterItem> items = this.listByPSSysCounter(parent);

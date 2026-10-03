@@ -70,7 +70,7 @@ implements IPSSysBDInstCfgService {
     @Override
     protected List<PSSysBDInstCfg> onListAll() throws Exception {
         ArrayList<PSSysBDInstCfg> list = new ArrayList<PSSysBDInstCfg>();
-        List pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
+        List<PSSystem> pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
         if (pssystems != null) {
             for (PSSystem parent : pssystems) {
                 List<PSSysBDInstCfg> items = this.listByPSSystem(parent);

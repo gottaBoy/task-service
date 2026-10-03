@@ -30,7 +30,13 @@ ICodeListQuery {
         block8: {
             block7: {
                 block6: {
-                    selectResult = dbCallerHelper.CallRaw3("select * from t_SRFWFUSER", null);
+                    try {
+                        selectResult = dbCallerHelper.CallRaw3("select * from t_SRFWFUSER", null);
+                    }
+                    catch (Exception ex) {
+                        ex.printStackTrace();
+                        return false;
+                    }
                     if (selectResult != null) break block6;
                     return false;
                 }
@@ -85,11 +91,17 @@ ICodeListQuery {
             if (nRowCount != 0) break block9;
             return null;
         }
-        DataRow dr = selectResult.getMainTable().GetRow(0);
-        CodeItemConfig codeItemConfig = new CodeItemConfig();
-        codeItemConfig.setValue(dr.Get("WFUSERID").toString());
-        codeItemConfig.setText(dr.Get("WFUSERNAME").toString());
-        return codeItemConfig;
+        try {
+            DataRow dr = selectResult.getMainTable().GetRow(0);
+            CodeItemConfig codeItemConfig = new CodeItemConfig();
+            codeItemConfig.setValue(dr.Get("WFUSERID").toString());
+            codeItemConfig.setText(dr.Get("WFUSERNAME").toString());
+            return codeItemConfig;
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 }
 

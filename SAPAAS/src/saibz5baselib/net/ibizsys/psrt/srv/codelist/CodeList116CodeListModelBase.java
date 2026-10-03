@@ -1,23 +1,38 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="f4eba8faeb176761d0a128944afae743", name="\u4ee3\u7801\u53d1\u5e03\u8def\u5f84", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="DEFAULT", text="\u9ed8\u8ba4", realtext="\u9ed8\u8ba4")})
-public abstract class CodeList116CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String DEFAULT = "DEFAULT";
+
+@CodeList(id="f4eba8faeb176761d0a128944afae743",name="代码发布路径",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="DEFAULT",text="默认",realtext="默认" )
+})
+
+
+/**
+ * 静态代码表[代码发布路径]模型基类
+ */
+public abstract class CodeList116CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  默认
+     */
+    public final static String DEFAULT = "DEFAULT";
+
 
     public CodeList116CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList116CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList116CodeListModel", this);
     }
-}
 
+}

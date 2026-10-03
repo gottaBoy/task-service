@@ -101,7 +101,7 @@ extends BaseTMBTPlanResViewActionHelper {
         list.add(new CallParam((Object)tmResViewFilter.getBeginTime(), 5));
         list.add(new CallParam((Object)tmResViewFilter.getEndTime(), 5));
         String strSQL = String.valueOf(daQueryModelHelper.GetQMDeclareScript()) + this.qmUserContext.GetQMDeclareScript() + script.toString();
-        Vector tmBTPlanCals = new Vector();
+        Vector<TMBTPlanCal> tmBTPlanCals = new Vector<TMBTPlanCal>();
         CallResult callResult2 = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), null, (String)iDEHelper.GetDBStorage(), (String)strSQL, list, tmBTPlanCals, (String)TMBTPlanCal.class.getName());
         if (callResult2.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8d44\u6e90\u9884\u7ea6\u6570\u636e\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult2.getErrorInfo()));
@@ -120,4 +120,3 @@ extends BaseTMBTPlanResViewActionHelper {
         return daQueryModelHelper.GetQueryModelScript();
     }
 }
-

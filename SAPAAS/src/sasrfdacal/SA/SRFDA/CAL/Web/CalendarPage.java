@@ -114,7 +114,7 @@ extends BaseMainPage {
         String strSQL = "";
         String strCalendarGroup = this.GetCalendarGroup();
         strSQL = StringHelper.IsNullOrEmpty((String)strCalendarGroup) ? StringHelper.Format((String)"select * from t_SRFCalendarType where CalendarGroup = '' OR CalendarGroup IS NULL") : StringHelper.Format((String)"select * from t_SRFCalendarType where UPPER(CalendarGroup) = '%1$s'", (Object)strCalendarGroup.toUpperCase());
-        Vector list = new Vector();
+        Vector<CalendarType> list = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), (String)strSQL, null, list, (String)CalendarType.class.getName());
         if (callResult.IsError()) {
             this.PageLog((Object)this, 1, StringHelper.Format((String)"\u67e5\u8be2\u65e5\u5386\u7c7b\u578b\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -148,7 +148,7 @@ extends BaseMainPage {
         String strSQL = "";
         String strCalendarGroup = this.GetCalendarGroup();
         strSQL = StringHelper.IsNullOrEmpty((String)strCalendarGroup) ? StringHelper.Format((String)"select * from t_SRFCalendarType where CalendarGroup = '' OR CalendarGroup IS NULL") : StringHelper.Format((String)"select * from t_SRFCalendarType where UPPER(CalendarGroup) = '%1$s'", (Object)strCalendarGroup.toUpperCase());
-        Vector list = new Vector();
+        Vector<CalendarType> list = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), (String)strSQL, null, list, (String)CalendarType.class.getName());
         if (callResult.IsError()) {
             this.PageLog((Object)this, 1, StringHelper.Format((String)"\u67e5\u8be2\u65e5\u5386\u7c7b\u578b\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));

@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.PickupViewControllerBase;
+/**
+ * 选择视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class PickupView3ControllerBase extends PickupViewControllerBase {
 
-public abstract class PickupView3ControllerBase
-extends PickupViewControllerBase {
+	public PickupView3ControllerBase() throws Exception {
+		super();
+	}
+
 }
-

@@ -1,21 +1,32 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFTimerEventProcessModel;
-import net.ibizsys.pswf.core.WFProcessModelBase;
 
-public abstract class WFTimerEventProcessModelBase
-extends WFProcessModelBase
-implements IWFTimerEventProcessModel {
-    @Override
-    public boolean isSuspendProcess() {
-        return true;
-    }
+/**
+ * 时间定时处理流程对象
+ * @author lionlau
+ *
+ */
+public abstract class WFTimerEventProcessModelBase extends WFProcessModelBase implements IWFTimerEventProcessModel
+{
 
-    public String getWFProcessType() {
-        return "TIMEREVENT";
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.WFProcessModelBase#isSuspendProcess()
+	 */
+	@Override
+	public boolean isSuspendProcess()
+	{
+		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFProcessModel#getWFProcessType()
+	 */
+	@Override
+	public String getWFProcessType()
+	{
+		return IWFProcessModel.TimerEvent;
+	}
+
+
+	
 }
-

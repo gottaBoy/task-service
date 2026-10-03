@@ -107,7 +107,7 @@ extends PSCoreSysServiceBase<PSDCRTMsg> {
     }
 
     protected void onFillParentInfo(PSDCRTMsg pSDCRTMsg, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDCRTMsg, string, string2, string3);
+        super.onFillParentInfo(pSDCRTMsg, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -118,11 +118,11 @@ extends PSCoreSysServiceBase<PSDCRTMsg> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCRTMsg, bl);
+        super.onFillEntityFullInfo(pSDCRTMsg, bl);
     }
 
     protected void onWriteBackParent(PSDCRTMsg pSDCRTMsg, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCRTMsg, bl);
+        super.onWriteBackParent(pSDCRTMsg, bl);
     }
 
     @Override
@@ -131,7 +131,7 @@ extends PSCoreSysServiceBase<PSDCRTMsg> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCRTMsg pSDCRTMsg, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCRTMsg, bl);
+        super.onRemoveEntityUncopyValues(pSDCRTMsg, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCRTMsg pSDCRTMsg, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -143,7 +143,7 @@ extends PSCoreSysServiceBase<PSDCRTMsg> {
         if ((entityFieldError = this.onCheckField_PSDCRTMsgName(bl, pSDCRTMsg, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCRTMsg, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCRTMsg, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDCRTMsgId(boolean bl, PSDCRTMsg pSDCRTMsg, boolean bl2, boolean bl3) throws Exception {
@@ -159,7 +159,7 @@ extends PSCoreSysServiceBase<PSDCRTMsg> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCRTMsgId_Default((IEntity)pSDCRTMsg, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCRTMsgId_Default(pSDCRTMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCRTMSGID");
@@ -184,7 +184,7 @@ extends PSCoreSysServiceBase<PSDCRTMsg> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCRTMsgName_Default((IEntity)pSDCRTMsg, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCRTMsgName_Default(pSDCRTMsg, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCRTMSGNAME");
@@ -197,11 +197,11 @@ extends PSCoreSysServiceBase<PSDCRTMsg> {
     }
 
     protected void onSyncEntity(PSDCRTMsg pSDCRTMsg, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCRTMsg, bl);
+        super.onSyncEntity(pSDCRTMsg, bl);
     }
 
     protected void onSyncIndexEntities(PSDCRTMsg pSDCRTMsg, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCRTMsg, bl);
+        super.onSyncIndexEntities(pSDCRTMsg, bl);
     }
 
     public Object getDataContextValue(PSDCRTMsg pSDCRTMsg, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -209,14 +209,14 @@ extends PSCoreSysServiceBase<PSDCRTMsg> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCRTMsg, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCRTMsg, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCRTMsg pSDCRTMsg, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCRTMsg, arrayList, n);
+        super.onExportMajorModel(pSDCRTMsg, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -299,14 +299,14 @@ extends PSCoreSysServiceBase<PSDCRTMsg> {
 
     protected boolean onMergeChild(String string, String string2, PSDCRTMsg pSDCRTMsg) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCRTMsg)) {
+        if (super.onMergeChild(string, string2, pSDCRTMsg)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCRTMsg pSDCRTMsg) throws Exception {
-        super.onUpdateParent((IEntity)pSDCRTMsg);
+        super.onUpdateParent(pSDCRTMsg);
     }
 
     @Override

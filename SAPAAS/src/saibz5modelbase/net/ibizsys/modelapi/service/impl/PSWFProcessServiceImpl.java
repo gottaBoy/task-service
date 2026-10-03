@@ -90,7 +90,7 @@ implements IPSWFProcessService {
     @Override
     protected List<PSWFProcess> onListAll() throws Exception {
         ArrayList<PSWFProcess> list = new ArrayList<PSWFProcess>();
-        List pswfversions = PSModelServiceUtil.getInstance().getPSWFVersionService().listAll();
+        List<PSWFVersion> pswfversions = PSModelServiceUtil.getInstance().getPSWFVersionService().listAll();
         if (pswfversions != null) {
             for (PSWFVersion parent : pswfversions) {
                 List<PSWFProcess> items = this.listByPSWFVersion(parent);
@@ -812,26 +812,28 @@ implements IPSWFProcessService {
             dto.setUtilFormCodeName(null);
             dto.setUtilPSDEFormName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSWFProcRoleService().listByPSWFProcess(t);
-        if (list != null && list.size() > 0) {
+        List<PSWFProcRole> pSWFProcRoleList = PSModelServiceUtil.getInstance().getPSWFProcRoleService().listByPSWFProcess(t);
+        if (pSWFProcRoleList != null && pSWFProcRoleList.size() > 0) {
             ArrayList<PSWFProcRoleDTO> pswfprocroles = new ArrayList<PSWFProcRoleDTO>();
-            for (PSWFProcRole pSWFProcRole : list) {
+            for (PSWFProcRole pSWFProcRole : pSWFProcRoleList) {
                 dstItem = (PSWFProcRoleDTO)PSModelServiceUtil.getInstance().getPSWFProcRoleService().toDTO(pSWFProcRole);
                 pswfprocroles.add((PSWFProcRoleDTO)dstItem);
             }
             dto.setPswfprocroles(pswfprocroles);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSWFProcSubWFService().listByPSWFProcess(t)) != null && list.size() > 0) {
+        List<PSWFProcSubWF> pSWFProcSubWFList = PSModelServiceUtil.getInstance().getPSWFProcSubWFService().listByPSWFProcess(t);
+        if (pSWFProcSubWFList != null && pSWFProcSubWFList.size() > 0) {
             ArrayList<PSWFProcSubWFDTO> pswfprocsubwfs = new ArrayList<PSWFProcSubWFDTO>();
-            for (PSWFProcSubWF pSWFProcSubWF : list) {
+            for (PSWFProcSubWF pSWFProcSubWF : pSWFProcSubWFList) {
                 dstItem = (PSWFProcSubWFDTO)PSModelServiceUtil.getInstance().getPSWFProcSubWFService().toDTO(pSWFProcSubWF);
                 pswfprocsubwfs.add((PSWFProcSubWFDTO)dstItem);
             }
             dto.setPswfprocsubwfs(pswfprocsubwfs);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSWFProcParamService().listByPSWFProcess(t)) != null && list.size() > 0) {
+        List<PSWFProcParam> pSWFProcParamList = PSModelServiceUtil.getInstance().getPSWFProcParamService().listByPSWFProcess(t);
+        if (pSWFProcParamList != null && pSWFProcParamList.size() > 0) {
             ArrayList<PSWFProcParamDTO> pswfprocparams = new ArrayList<PSWFProcParamDTO>();
-            for (PSWFProcParam pSWFProcParam : list) {
+            for (PSWFProcParam pSWFProcParam : pSWFProcParamList) {
                 dstItem = (PSWFProcParamDTO)PSModelServiceUtil.getInstance().getPSWFProcParamService().toDTO(pSWFProcParam);
                 pswfprocparams.add((PSWFProcParamDTO)dstItem);
             }

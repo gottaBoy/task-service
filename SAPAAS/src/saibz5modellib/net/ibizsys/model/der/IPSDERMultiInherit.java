@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.der;
 
-import net.ibizsys.model.der.IPSDERInherit;
+/**
+ * 实体多继承关系对象接口（用在虚拟实体中）对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDERMultiInherit extends IPSDERInherit {
 
-public interface IPSDERMultiInherit
-extends IPSDERInherit {
 }
-

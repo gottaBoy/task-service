@@ -1,34 +1,71 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSDEWizardPanel
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.vuemob;
 
+
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.vuemob.PSVueMobCtrlCodePublisherImpl;
 
-public class PSVueMobDEWizardCodePublisherImpl
-extends PSVueMobCtrlCodePublisherImpl {
-    protected IPSDEWizardPanel iPSDEWizardPanel;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEEditForm;
+import SA.SRFDA.PS.Core.Control.WizardPanel.IPSDEWizardPanel;
+import SA.SRFDA.PS.Core.PF.IPSPFCtrlTempl;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlCodePublisher;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
 
-    public PSVueMobDEWizardCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tIPSDEWizardPanel cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSDEWizardPanel cannot be resolved to a type\n\tIPSDEWizardPanel cannot be resolved to a type\n\tIPSDEWizardPanel cannot be resolved to a type\n\tIPSDEWizardPanel cannot be resolved to a type\n\tIPSDEEditForm cannot be resolved to a type\n\tIPSDEWizardPanel cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEEditForm cannot be resolved to a type\n\tIPSPFCtrlTempl cannot be resolved to a type\n\tIPSPFCtrlCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved or is not a field\n\tThe method onClose() of type PSVueMobDEWizardCodePublisherImpl must override or implement a supertype method\n\tIPSDEWizardPanel cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSVueMobCtrlCodePublisherImpl\n");
-    }
+/**
+ * 实体向导部件代码发布器
+ * @author lionlau
+ *
+ */
+public class PSVueMobDEWizardCodePublisherImpl extends SA.SRFDA.PS.Core.Pub.VueMob.PSVueMobCtrlCodePublisherImpl
+{
+	protected IPSDEWizardPanel iPSDEWizardPanel = null;
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSDEWizardPanel cannot be resolved to a type\n\tIPSDEWizardPanel cannot be resolved to a type\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSDEWizardPanel = (IPSDEWizardPanel)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDEWizardPanel cannot be resolved to a type\n\tIPSDEWizardPanel cannot be resolved to a type\n\tIPSDEEditForm cannot be resolved to a type\n\tIPSDEWizardPanel cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEEditForm cannot be resolved to a type\n\tIPSPFCtrlTempl cannot be resolved to a type\n\tIPSPFCtrlCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved or is not a field\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSDEWizardPanel = (IPSDEWizardPanel)this.iPSControl;
 
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSVueMobDEWizardCodePublisherImpl must override or implement a supertype method\n\tIPSDEWizardPanel cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSVueMobCtrlCodePublisherImpl\n");
-    }
+		//杈撳嚭缁撴灉闆嗗悎浠ｇ爜
+		java.util.Iterator<SA.SRFDA.PS.Core.Control.Form.IPSDEEditForm> psDEEditForms = this.iPSDEWizardPanel.getPSDEEditForms();
+		if(psDEEditForms!=null)
+		{
+			ArrayList<IPSGenerateCodeResult> wizardFormList = new ArrayList<IPSGenerateCodeResult> ();
+			while(psDEEditForms.hasNext()){
+				IPSDEEditForm iPSDEEditForm = psDEEditForms.next();
+				IPSPFCtrlTempl iPSPFCtrlTempl = iPSPFStyle.getPSPFCtrlTempl(iPSDEEditForm.getPSControlType(), this.getPSPFPubCode());
+				if(iPSPFCtrlTempl!=null)
+				{
+					IPSPFCtrlCodePublisher iPSPFCtrlCodePublisher = iPSPFCtrlTempl.getPSPFCtrlCodePublisher();
+					IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlCodePublisher.generateCode(this.iPSPublisherContext, iPSDEEditForm);
+					if(iPSGenerateCodeResult!=null)
+					{
+						wizardFormList.add(iPSGenerateCodeResult);
+					}
+				}
+			}
+			
+			params.put("wizardforms", wizardFormList);
+		}
+
+	}
+
+	
+
+	
 }
-

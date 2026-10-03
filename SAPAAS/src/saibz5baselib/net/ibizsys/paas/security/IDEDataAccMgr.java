@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.security;
 
 import net.ibizsys.paas.core.CallResult;
@@ -8,19 +5,104 @@ import net.ibizsys.paas.demodel.IDataEntityModel;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.web.IWebContext;
 
+/**
+ * 数据访问管理对象接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IDEDataAccMgr {
-    public void init(IDataEntityModel var1) throws Exception;
+	/**
+	 * 初始化数据访问辅助对象
+	 * 
+	 * @param iDEModel
+	 */
+	void init(IDataEntityModel iDEModel) throws Exception;
 
-    public CallResult test(IWebContext var1, Object var2, String var3) throws Exception;
+	/**
+	 * 测试当前用户对指定数据的是否具备指定的操作能力
+	 * 
+	 * @param webContext
+	 * @param objKey
+	 * @param strAction
+	 * @return
+	 * @throws Exception
+	 */
+	CallResult test(IWebContext webContext, Object objKey, String strAction) throws Exception;
 
-    public CallResult test(IWebContext var1, IEntity var2, String var3) throws Exception;
+	/**
+	 * 测试当前用户对指定数据的是否具备指定的操作能力
+	 * 
+	 * @param webContext
+	 * @param dataEntity
+	 * @param strAction
+	 * @return
+	 * @throws Exception
+	 */
+	CallResult test(IWebContext webContext, IEntity dataEntity, String strAction) throws Exception;
 
-    public CallResult test(IWebContext var1, Object var2, String var3, boolean var4) throws Exception;
+	/**
+	 * 测试当前用户对指定数据的是否具备指定的操作能力
+	 * 
+	 * @param webContext
+	 * @param objKey
+	 * @param strAction
+	 * @param bCache 在当前的上下文请求中缓存
+	 * @return
+	 * @throws Exception
+	 */
+	CallResult test(IWebContext webContext, Object objKey, String strAction, boolean bCache) throws Exception;
 
-    public CallResult test(IWebContext var1, IEntity var2, String var3, boolean var4) throws Exception;
+	/**
+	 * 测试当前用户对指定数据的是否具备指定的操作能力
+	 * 
+	 * @param webContext
+	 * @param dataEntity
+	 * @param strAction
+	 * @param bCache 在当前的上下文请求中缓存
+	 * @return
+	 * @throws Exception
+	 */
+	CallResult test(IWebContext webContext, IEntity dataEntity, String strAction, boolean bCache) throws Exception;
 
-    public void audit(String var1, IWebContext var2, IEntity var3, IEntity var4, String var5) throws Exception;
+	/**
+	 * 数据审计
+	 * 
+	 * @param strAuditInfo
+	 * @param webContext
+	 * @param dataEntity
+	 * @param lastDataEntity
+	 * @param strAction
+	 * @throws Exception
+	 */
+	void audit(String strAuditInfo, IWebContext webContext, IEntity dataEntity, IEntity lastDataEntity, String strAction) throws Exception;
 
-    public void audit(String var1, String var2, String var3, String var4, IEntity var5, IEntity var6, String var7) throws Exception;
+	/**
+	 * 数据审计
+	 * 
+	 * @param strAuditInfo
+	 * @param strOpPersonId
+	 * @param strOpPersonName
+	 * @param strFromIpAddress
+	 * @param dataEntity
+	 * @param lastDataEntity
+	 * @param strAction
+	 * @throws Exception
+	 */
+	void audit(String strAuditInfo, String strOpPersonId, String strOpPersonName, String strFromIpAddress, IEntity dataEntity, IEntity lastDataEntity, String strAction) throws Exception;
+
+	// /**
+	// * 获取实体定义的数据操作标识
+	// * @return
+	// */
+	// String getDataActions();
+	//
+	//
+	//
+	// /**
+	// * 查找数据的字段控制
+	// * @param dataEntity
+	// * @return
+	// */
+	// DEDSCtrl findFieldCtrl( IEntity dataEntity);
 }
-

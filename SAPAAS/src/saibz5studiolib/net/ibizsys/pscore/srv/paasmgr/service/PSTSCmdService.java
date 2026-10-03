@@ -23,8 +23,8 @@ extends PSTSCmdServiceBase {
 
     @Override
     protected void onEndTask(PSTSCmd pSTSCmd) throws Exception {
-        this.get((IEntity)pSTSCmd);
-        this.executeRemoteCall3("KILLCMD", (IEntity)pSTSCmd);
+        this.get(pSTSCmd);
+        this.executeRemoteCall3("KILLCMD", pSTSCmd);
     }
 }
 

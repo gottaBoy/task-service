@@ -113,7 +113,7 @@ extends PSModelDEDataCtrl {
         IDEDataCtrl psSysUIActionDataCtrl = this.GetRelatedDataCtrl("DE1508");
         IDEDataCtrl psDEUIActionDataCtrl = this.GetRelatedDataCtrl("DE2080");
         BaseDataEntity cond = new BaseDataEntity();
-        Vector psSysUIActionList = new Vector();
+        Vector<PSSysUIAction> psSysUIActionList = new Vector<PSSysUIAction>();
         CallResult callResult = psSysUIActionDataCtrl.Select(cond, psSysUIActionList, PSSysUIAction.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4e91\u5e73\u53f0\u9884\u7f6e\u5b9e\u4f53\u754c\u9762\u884c\u4e3a\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -155,7 +155,7 @@ extends PSModelDEDataCtrl {
         IDEDataCtrl psValueRuleDataCtrl = this.GetRelatedDataCtrl("DE1543");
         IDEDataCtrl psSysValueRuleDataCtrl = this.GetRelatedDataCtrl("DE2034");
         BaseDataEntity cond = new BaseDataEntity();
-        Vector psValueRuleList = new Vector();
+        Vector<PSValueRule> psValueRuleList = new Vector<PSValueRule>();
         CallResult callResult = psValueRuleDataCtrl.Select(cond, psValueRuleList, PSValueRule.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4e91\u5e73\u53f0\u9884\u7f6e\u503c\u89c4\u5219\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -180,14 +180,14 @@ extends PSModelDEDataCtrl {
         IDEDataCtrl psImageTemplDataCtrl = this.GetRelatedDataCtrl("DE1531");
         IDEDataCtrl psSysImageDataCtrl = this.GetRelatedDataCtrl("DE2120");
         BaseDataEntity cond = new BaseDataEntity();
-        Vector psImageTemplList = new Vector();
+        Vector<PSImageTempl> psImageTemplList = new Vector<PSImageTempl>();
         CallResult callResult = psImageTemplDataCtrl.Select(cond, psImageTemplList, PSImageTempl.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4e91\u5e73\u53f0\u56fe\u7247\u8d44\u6e90\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
         }
         cond.Reset();
         cond.setParamValue("PSSYSTEMID", (Object)psSystem.getPSSYSTEMID());
-        Vector psSysImageList = new Vector();
+        Vector<PSSysImage> psSysImageList = new Vector<PSSysImage>();
         callResult = psSysImageDataCtrl.Select(cond, psSysImageList, PSSysImage.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7cfb\u7edf\u56fe\u7247\u8d44\u6e90\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -215,7 +215,7 @@ extends PSModelDEDataCtrl {
         IDEDataCtrl psSysToolbarDataCtrl = this.GetRelatedDataCtrl("DE1620");
         IDEDataCtrl psDEToolbarDataCtrl = this.GetRelatedDataCtrl("DE2206");
         BaseDataEntity cond = new BaseDataEntity();
-        Vector psSysToolbarList = new Vector();
+        Vector<PSSysToolbar> psSysToolbarList = new Vector<PSSysToolbar>();
         CallResult callResult = psSysToolbarDataCtrl.Select(cond, psSysToolbarList, PSSysToolbar.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4e91\u5e73\u53f0\u9884\u7f6e\u5de5\u5177\u680f\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -268,7 +268,7 @@ extends PSModelDEDataCtrl {
         IDEDataCtrl psCodeListTemplDataCtrl = this.GetRelatedDataCtrl("DE1530");
         IDEDataCtrl psCodeListDataCtrl = this.GetRelatedDataCtrl("DE2040");
         BaseDataEntity cond = new BaseDataEntity();
-        Vector psCodeListTemplList = new Vector();
+        Vector<PSCodeListTempl> psCodeListTemplList = new Vector<PSCodeListTempl>();
         CallResult callResult = psCodeListTemplDataCtrl.Select(cond, psCodeListTemplList, PSCodeListTempl.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u4e91\u5e73\u53f0\u4ee3\u7801\u8868\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -410,12 +410,12 @@ extends PSModelDEDataCtrl {
         IPSModelInitDataCtrl psDEFDTColDataCtrl = (IPSModelInitDataCtrl)this.GetRelatedDataCtrl("DE2060");
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSSYSTEMID", (Object)strPSSystemId);
-        Vector psDataEntityList = new Vector();
+        Vector<PSDataEntity> psDataEntityList = new Vector<PSDataEntity>();
         CallResult callResult = psDataEntityDataCtrl.Select(cond, psDataEntityList, PSDataEntity.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7cfb\u7edf\u5b9e\u4f53\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
         }
-        Vector psDEFieldList = new Vector();
+        Vector<PSDEField> psDEFieldList = new Vector<PSDEField>();
         callResult = psDEFieldDataCtrl.Select(cond, psDEFieldList, PSDEField.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7cfb\u7edf\u5b9e\u4f53\u5c5e\u6027\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -438,4 +438,3 @@ extends PSModelDEDataCtrl {
         }
     }
 }
-

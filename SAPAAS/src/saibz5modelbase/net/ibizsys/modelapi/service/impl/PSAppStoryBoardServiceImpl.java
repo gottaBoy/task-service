@@ -76,7 +76,7 @@ implements IPSAppStoryBoardService {
     @Override
     protected List<PSAppStoryBoard> onListAll() throws Exception {
         ArrayList<PSAppStoryBoard> list = new ArrayList<PSAppStoryBoard>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSAppStoryBoard> items = this.listByPSSysApp(parent);
@@ -193,18 +193,19 @@ implements IPSAppStoryBoardService {
         } else {
             dto.setPSSysAppName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSAppSBItemService().listByPSAppStoryBoard(t);
-        if (list != null && list.size() > 0) {
+        List<PSAppSBItem> pSAppSBItemList = PSModelServiceUtil.getInstance().getPSAppSBItemService().listByPSAppStoryBoard(t);
+        if (pSAppSBItemList != null && pSAppSBItemList.size() > 0) {
             ArrayList<PSAppSBItemDTO> psappsbitems = new ArrayList<PSAppSBItemDTO>();
-            for (PSAppSBItem pSAppSBItem : list) {
+            for (PSAppSBItem pSAppSBItem : pSAppSBItemList) {
                 dstItem = (PSAppSBItemDTO)PSModelServiceUtil.getInstance().getPSAppSBItemService().toDTO(pSAppSBItem);
                 psappsbitems.add((PSAppSBItemDTO)dstItem);
             }
             dto.setPsappsbitems(psappsbitems);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSAppSBItemRSService().listByPSAppStoryBoard(t)) != null && list.size() > 0) {
+        List<PSAppSBItemRS> pSAppSBItemRSList = PSModelServiceUtil.getInstance().getPSAppSBItemRSService().listByPSAppStoryBoard(t);
+        if (pSAppSBItemRSList != null && pSAppSBItemRSList.size() > 0) {
             ArrayList<PSAppSBItemRSDTO> psappsbitemrs = new ArrayList<PSAppSBItemRSDTO>();
-            for (PSAppSBItemRS pSAppSBItemRS : list) {
+            for (PSAppSBItemRS pSAppSBItemRS : pSAppSBItemRSList) {
                 dstItem = (PSAppSBItemRSDTO)PSModelServiceUtil.getInstance().getPSAppSBItemRSService().toDTO(pSAppSBItemRS);
                 psappsbitemrs.add((PSAppSBItemRSDTO)dstItem);
             }

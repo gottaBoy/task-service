@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSTreeNodeType> {
     }
 
     protected void onFillParentInfo(PSTreeNodeType pSTreeNodeType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSTreeNodeType, string, string2, string3);
+        super.onFillParentInfo(pSTreeNodeType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSTreeNodeType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSTreeNodeType, bl);
+        super.onFillEntityFullInfo(pSTreeNodeType, bl);
     }
 
     protected void onWriteBackParent(PSTreeNodeType pSTreeNodeType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSTreeNodeType, bl);
+        super.onWriteBackParent(pSTreeNodeType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSTreeNodeType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSTreeNodeType pSTreeNodeType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSTreeNodeType, bl);
+        super.onRemoveEntityUncopyValues(pSTreeNodeType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSTreeNodeType pSTreeNodeType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSTreeNodeType> {
         if ((entityFieldError = this.onCheckField_TreeNodeObj(bl, pSTreeNodeType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSTreeNodeType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSTreeNodeType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSTreeNodeType pSTreeNodeType, boolean bl2, boolean bl3) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSTreeNodeType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSTreeNodeType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSTreeNodeType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSTreeNodeType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSTreeNodeTypeId_Default((IEntity)pSTreeNodeType, bl2, bl3);
+            string2 = this.onTestValueRule_PSTreeNodeTypeId_Default(pSTreeNodeType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTREENODETYPEID");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSTreeNodeType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSTreeNodeTypeName_Default((IEntity)pSTreeNodeType, bl2, bl3);
+            string2 = this.onTestValueRule_PSTreeNodeTypeName_Default(pSTreeNodeType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSTREENODETYPENAME");
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSTreeNodeType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TreeNodeObj_Default((IEntity)pSTreeNodeType, bl2, bl3);
+            string2 = this.onTestValueRule_TreeNodeObj_Default(pSTreeNodeType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TREENODEOBJ");
@@ -259,11 +259,11 @@ extends PSCoreSysServiceBase<PSTreeNodeType> {
     }
 
     protected void onSyncEntity(PSTreeNodeType pSTreeNodeType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSTreeNodeType, bl);
+        super.onSyncEntity(pSTreeNodeType, bl);
     }
 
     protected void onSyncIndexEntities(PSTreeNodeType pSTreeNodeType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSTreeNodeType, bl);
+        super.onSyncIndexEntities(pSTreeNodeType, bl);
     }
 
     public Object getDataContextValue(PSTreeNodeType pSTreeNodeType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -271,14 +271,14 @@ extends PSCoreSysServiceBase<PSTreeNodeType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSTreeNodeType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSTreeNodeType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSTreeNodeType pSTreeNodeType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSTreeNodeType, arrayList, n);
+        super.onExportMajorModel(pSTreeNodeType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -391,14 +391,14 @@ extends PSCoreSysServiceBase<PSTreeNodeType> {
 
     protected boolean onMergeChild(String string, String string2, PSTreeNodeType pSTreeNodeType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSTreeNodeType)) {
+        if (super.onMergeChild(string, string2, pSTreeNodeType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSTreeNodeType pSTreeNodeType) throws Exception {
-        super.onUpdateParent((IEntity)pSTreeNodeType);
+        super.onUpdateParent(pSTreeNodeType);
     }
 
     @Override

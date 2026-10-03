@@ -73,7 +73,7 @@ implements IPSDESARSService {
     @Override
     protected List<PSDESARS> onListAll() throws Exception {
         ArrayList<PSDESARS> list = new ArrayList<PSDESARS>();
-        List pssysserviceapis = PSModelServiceUtil.getInstance().getPSSysServiceAPIService().listAll();
+        List<PSSysServiceAPI> pssysserviceapis = PSModelServiceUtil.getInstance().getPSSysServiceAPIService().listAll();
         if (pssysserviceapis != null) {
             for (PSSysServiceAPI parent : pssysserviceapis) {
                 List<PSDESARS> items = this.listByPSSysServiceAPI(parent);

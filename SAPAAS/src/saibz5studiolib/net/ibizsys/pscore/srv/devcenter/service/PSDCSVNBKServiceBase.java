@@ -132,9 +132,9 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
             PSDCSVNBK pSDCSVNBK2 = (PSDCSVNBK)iService.getDEModel().createEntity();
             pSDCSVNBK2.set("PSDCSVNBKID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDCSVNBK2);
+                iService.getTemp(pSDCSVNBK2);
             } else {
-                iService.get((IEntity)pSDCSVNBK2);
+                iService.get(pSDCSVNBK2);
             }
             this.onFillParentInfo_PPSDCSVNBK(pSDCSVNBK, pSDCSVNBK2);
             return;
@@ -144,9 +144,9 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
             PSDevCenterSVN pSDevCenterSVN = (PSDevCenterSVN)iService.getDEModel().createEntity();
             pSDevCenterSVN.set("PSDEVCENTERSVNID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenterSVN);
+                iService.getTemp(pSDevCenterSVN);
             } else {
-                iService.get((IEntity)pSDevCenterSVN);
+                iService.get(pSDevCenterSVN);
             }
             this.onFillParentInfo_PSDevCenterSVN(pSDCSVNBK, pSDevCenterSVN);
             return;
@@ -156,14 +156,14 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDCSVNBK, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCSVNBK, string, string2, string3);
+        super.onFillParentInfo(pSDCSVNBK, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -189,7 +189,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDCSVNBK, bl);
+        super.onFillEntityFullInfo(pSDCSVNBK, bl);
         this.onFillEntityFullInfo_PPSDCSVNBK(pSDCSVNBK, bl);
         this.onFillEntityFullInfo_PSDevCenterSVN(pSDCSVNBK, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDCSVNBK, bl);
@@ -225,7 +225,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
     }
 
     protected void onWriteBackParent(PSDCSVNBK pSDCSVNBK, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCSVNBK, bl);
+        super.onWriteBackParent(pSDCSVNBK, bl);
     }
 
     public ArrayList<PSDCSVNBK> selectByPPSDCSVNBK(PSDCSVNBKBase pSDCSVNBKBase) throws Exception {
@@ -304,8 +304,8 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
         ArrayList<PSDCSVNBK> arrayList = this.selectByPPSDCSVNBK(pSDCSVNBK, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDCSVNBK");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDCSVNBK);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCSVNBK_PSDCSVNBK_PPSDCSVNBKID", "", iDataEntityModel.getName(), "PSDCSVNBK", iDataEntityModel.getDataInfo((IEntity)pSDCSVNBK), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDCSVNBK);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCSVNBK_PSDCSVNBK_PPSDCSVNBKID", "", iDataEntityModel.getName(), "PSDCSVNBK", iDataEntityModel.getDataInfo(pSDCSVNBK), arrayList.get(0)));
         }
     }
 
@@ -338,7 +338,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
         ArrayList<PSDCSVNBK> arrayList = this.selectByPPSDCSVNBK(pSDCSVNBK);
         this.onBeforeRemoveByPPSDCSVNBK(pSDCSVNBK, arrayList);
         for (PSDCSVNBK pSDCSVNBK2 : arrayList) {
-            this.remove((IEntity)pSDCSVNBK2);
+            this.remove(pSDCSVNBK2);
         }
         this.onAfterRemoveByPPSDCSVNBK(pSDCSVNBK, arrayList);
     }
@@ -384,7 +384,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
         ArrayList<PSDCSVNBK> arrayList = this.selectByPSDevCenterSVN(pSDevCenterSVN);
         this.onBeforeRemoveByPSDevCenterSVN(pSDevCenterSVN, arrayList);
         for (PSDCSVNBK pSDCSVNBK : arrayList) {
-            this.remove((IEntity)pSDCSVNBK);
+            this.remove(pSDCSVNBK);
         }
         this.onAfterRemoveByPSDevCenterSVN(pSDevCenterSVN, arrayList);
     }
@@ -402,8 +402,8 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
         ArrayList<PSDCSVNBK> arrayList = this.selectByPSDevCenter(pSDevCenter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVCENTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevCenter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCSVNBK_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSDCSVNBK", iDataEntityModel.getDataInfo((IEntity)pSDevCenter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevCenter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCSVNBK_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSDCSVNBK", iDataEntityModel.getDataInfo(pSDevCenter), arrayList.get(0)));
         }
     }
 
@@ -436,7 +436,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
         ArrayList<PSDCSVNBK> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCSVNBK pSDCSVNBK : arrayList) {
-            this.remove((IEntity)pSDCSVNBK);
+            this.remove(pSDCSVNBK);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -459,7 +459,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
 
     protected void replaceParentInfo(PSDCSVNBK pSDCSVNBK, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCSVNBK, cloneSession);
+        super.replaceParentInfo(pSDCSVNBK, cloneSession);
         if (pSDCSVNBK.getPPSDCSVNBKId() != null && (iEntity = cloneSession.getEntity("PSDCSVNBK", (Object)pSDCSVNBK.getPPSDCSVNBKId())) != null) {
             this.onFillParentInfo_PPSDCSVNBK(pSDCSVNBK, (PSDCSVNBK)iEntity);
         }
@@ -472,7 +472,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCSVNBK pSDCSVNBK, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCSVNBK, bl);
+        super.onRemoveEntityUncopyValues(pSDCSVNBK, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCSVNBK pSDCSVNBK, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -508,7 +508,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
         if ((entityFieldError = this.onCheckField_PSDevCenterSVNName(bl, pSDCSVNBK, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCSVNBK, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCSVNBK, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BackupSize(boolean bl, PSDCSVNBK pSDCSVNBK, boolean bl2, boolean bl3) throws Exception {
@@ -521,7 +521,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BackupSize_Default((IEntity)pSDCSVNBK, bl2, bl3);
+            string = this.onTestValueRule_BackupSize_Default(pSDCSVNBK, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BACKUPSIZE");
@@ -546,7 +546,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_BackupMode_Default((IEntity)pSDCSVNBK, bl2, bl3);
+            string = this.onTestValueRule_BackupMode_Default(pSDCSVNBK, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BKMODE");
@@ -568,7 +568,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCSVNBK, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCSVNBK, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -590,7 +590,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSDCSVNBKId_Default((IEntity)pSDCSVNBK, bl2, bl3);
+            string2 = this.onTestValueRule_PPSDCSVNBKId_Default(pSDCSVNBK, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSDCSVNBKID");
@@ -615,7 +615,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCSVNBKId_Default((IEntity)pSDCSVNBK, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCSVNBKId_Default(pSDCSVNBK, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCSVNBKID");
@@ -640,7 +640,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCSVNBKName_Default((IEntity)pSDCSVNBK, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCSVNBKName_Default(pSDCSVNBK, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCSVNBKNAME");
@@ -662,7 +662,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDCSVNBK, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDCSVNBK, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -684,7 +684,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDCSVNBK, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDCSVNBK, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -706,7 +706,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterSVNId_Default((IEntity)pSDCSVNBK, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterSVNId_Default(pSDCSVNBK, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERSVNID");
@@ -728,7 +728,7 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterSVNName_Default((IEntity)pSDCSVNBK, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterSVNName_Default(pSDCSVNBK, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERSVNNAME");
@@ -741,11 +741,11 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
     }
 
     protected void onSyncEntity(PSDCSVNBK pSDCSVNBK, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCSVNBK, bl);
+        super.onSyncEntity(pSDCSVNBK, bl);
     }
 
     protected void onSyncIndexEntities(PSDCSVNBK pSDCSVNBK, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCSVNBK, bl);
+        super.onSyncIndexEntities(pSDCSVNBK, bl);
     }
 
     public Object getDataContextValue(PSDCSVNBK pSDCSVNBK, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -753,14 +753,14 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCSVNBK, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCSVNBK, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCSVNBK pSDCSVNBK, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCSVNBK, arrayList, n);
+        super.onExportMajorModel(pSDCSVNBK, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -962,14 +962,14 @@ extends PSCoreSysServiceBase<PSDCSVNBK> {
 
     protected boolean onMergeChild(String string, String string2, PSDCSVNBK pSDCSVNBK) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCSVNBK)) {
+        if (super.onMergeChild(string, string2, pSDCSVNBK)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCSVNBK pSDCSVNBK) throws Exception {
-        super.onUpdateParent((IEntity)pSDCSVNBK);
+        super.onUpdateParent(pSDCSVNBK);
     }
 
     @Override

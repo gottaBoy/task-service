@@ -63,7 +63,7 @@ extends PSDCPFPITemplServiceBase {
     }
 
     protected CallResult internalGet(PSDCPFPITempl pSDCPFPITempl, boolean bl) throws Exception {
-        CallResult callResult = super.internalGet((IEntity)pSDCPFPITempl, bl);
+        CallResult callResult = super.internalGet(pSDCPFPITempl, bl);
         if (callResult.isOk() && !StringHelper.isNullOrEmpty((String)pSDCPFPITempl.getTemplCode2Ex())) {
             pSDCPFPITempl.setTemplCode2(pSDCPFPITempl.getTemplCode2Ex());
         }
@@ -78,7 +78,7 @@ extends PSDCPFPITemplServiceBase {
 
     @Override
     protected void onGetWithTips(PSDCPFPITempl pSDCPFPITempl) throws Exception {
-        this.get((IEntity)pSDCPFPITempl);
+        this.get(pSDCPFPITempl);
         this.calcTemplCodeInfo(pSDCPFPITempl);
     }
 
@@ -126,7 +126,7 @@ extends PSDCPFPITemplServiceBase {
             SelectCond selectCond = new SelectCond();
             selectCond.set("PSPFID", (Object)pSDCPFPITempl.getPSPFId());
             selectCond.set("PITEMPLCODE", SelectCond.ISNOTNULL);
-            ArrayList arrayList = pSPFPubCodeService.select((ISelectCond)selectCond);
+            ArrayList<PSPFPubCode> arrayList = pSPFPubCodeService.select((ISelectCond)selectCond);
             HashMap<String, PSPFPubCode> hashMap = new HashMap<String, PSPFPubCode>();
             for (PSPFPubCode pSPFPubCode : arrayList) {
                 hashMap.put(pSPFPubCode.getPITemplCode(), pSPFPubCode);
@@ -170,4 +170,3 @@ extends PSDCPFPITemplServiceBase {
         }
     }
 }
-

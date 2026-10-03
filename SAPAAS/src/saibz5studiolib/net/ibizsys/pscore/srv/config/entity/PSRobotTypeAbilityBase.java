@@ -1192,7 +1192,7 @@ implements Serializable {
                 PSRobotType pSRobotType = new PSRobotType();
                 pSRobotType.setPSRobotTypeId(this.getPSRobotTypeId());
                 PSRobotTypeService pSRobotTypeService = (PSRobotTypeService)ServiceGlobal.getService(PSRobotTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSRobotTypeService.autoGet((IEntity)pSRobotType);
+                pSRobotTypeService.autoGet(pSRobotType);
                 this.psrobottype = pSRobotType;
             }
             return this.psrobottype;
@@ -1218,7 +1218,7 @@ implements Serializable {
                 PSRobotWorkType pSRobotWorkType = new PSRobotWorkType();
                 pSRobotWorkType.setPSRobotWorkTypeId(this.getPSRobotWorkTypeId());
                 PSRobotWorkTypeService pSRobotWorkTypeService = (PSRobotWorkTypeService)ServiceGlobal.getService(PSRobotWorkTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSRobotWorkTypeService.autoGet((IEntity)pSRobotWorkType);
+                pSRobotWorkTypeService.autoGet(pSRobotWorkType);
                 this.psrobotworktype = pSRobotWorkType;
             }
             return this.psrobotworktype;

@@ -1,21 +1,68 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
+/**
+ * 实体数据库配置模型
+ * @author Administrator
+ *
+ */
 public interface IDEDBConfig {
-    public String getTableName();
 
-    public String getUserTable();
 
-    public String getViewName();
+	/**
+	 * 获取主数据表名
+	 * 
+	 * @return
+	 */
+	String getTableName();
 
-    public String getView2Name();
+	/**
+	 * 获取扩展数据表名
+	 * 
+	 * @return
+	 */
+	String getUserTable();
 
-    public String getView3Name();
+	/**
+	 * 获取视图名称
+	 * 
+	 * @return
+	 */
+	String getViewName();
 
-    public String getView4Name();
-
-    public String getViewName(int var1);
+	
+	/**
+	 * 获取级别2视图名称
+	 * 
+	 * @return
+	 */
+	String getView2Name();
+	
+	
+	
+	/**
+	 * 获取级别3视图名称
+	 * 
+	 * @return
+	 */
+	String getView3Name();
+	
+	
+	
+	/**
+	 * 获取级别4视图名称
+	 * 
+	 * @return
+	 */
+	String getView4Name();
+	
+	
+	/**
+	 * 获取指定级别的视图名称
+	 * @param nViewLevel
+	 * @return
+	 */
+	String getViewName(int nViewLevel);
+	
+	
+	
 }
-

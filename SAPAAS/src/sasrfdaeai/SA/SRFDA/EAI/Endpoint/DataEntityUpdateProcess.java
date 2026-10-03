@@ -1,21 +1,31 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  MuleEventContext
- */
 package SA.SRFDA.EAI.Endpoint;
 
-import SA.SRFDA.EAI.Endpoint.BaseProcessEndpoint;
+import SA.SRFramework.DataEx.BaseDataEntity;
+import java.util.HashMap;
+import java.util.Map;
+import org.mule.api.MuleEventContext;
+import org.mule.api.lifecycle.Callable;
 
-public class DataEntityUpdateProcess
-extends BaseProcessEndpoint {
-    public DataEntityUpdateProcess() {
-        throw new Error("Unresolved compilation problems: \n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tCallable cannot be resolved to a type\n\tMuleEventContext cannot be resolved to a type\n");
-    }
-
-    public Object onCall(MuleEventContext muleEventContext) throws Exception {
-        throw new Error("Unresolved compilation problem: \n\tMuleEventContext cannot be resolved to a type\n");
+public class DataEntityUpdateProcess extends BaseProcessEndpoint implements Callable {
+    public Object onCall(MuleEventContext event) throws Exception {
+        Object original = EndpointRuntime.payload(event);
+        BaseDataEntity entity = GetDataEntity(original);
+        Object changes = event.getMessage().getProperty("UPDATES");
+        if (!(changes instanceof Map) && !(changes instanceof BaseDataEntity)) {
+            throw new IllegalArgumentException("UPDATES must be a Map or BaseDataEntity");
+        }
+        Map values = new HashMap();
+        if (changes instanceof Map) {
+            values.putAll((Map) changes);
+        } else {
+            ((BaseDataEntity) changes).FillMap(values);
+        }
+        for (Object key : values.keySet()) {
+            if (!(key instanceof String)) {
+                throw new IllegalArgumentException("UPDATES keys must be strings");
+            }
+            entity.SetParamValue((String) key, values.get(key));
+        }
+        return EndpointRuntime.output(original, entity);
     }
 }
-

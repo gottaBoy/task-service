@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSPDTView> {
     }
 
     protected void onFillParentInfo(PSPDTView pSPDTView, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSPDTView, string, string2, string3);
+        super.onFillParentInfo(pSPDTView, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSPDTView> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSPDTView, bl);
+        super.onFillEntityFullInfo(pSPDTView, bl);
     }
 
     protected void onWriteBackParent(PSPDTView pSPDTView, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPDTView, bl);
+        super.onWriteBackParent(pSPDTView, bl);
     }
 
     @Override
@@ -143,7 +143,7 @@ extends PSCoreSysServiceBase<PSPDTView> {
     }
 
     protected void onRemoveEntityUncopyValues(PSPDTView pSPDTView, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPDTView, bl);
+        super.onRemoveEntityUncopyValues(pSPDTView, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPDTView pSPDTView, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSPDTView> {
         if ((entityFieldError = this.onCheckField_PSPDTViewName(bl, pSPDTView, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPDTView, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPDTView, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSPDTView pSPDTView, boolean bl2, boolean bl3) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSPDTView> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPDTView, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPDTView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSPDTView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPDTViewId_Default((IEntity)pSPDTView, bl2, bl3);
+            string2 = this.onTestValueRule_PSPDTViewId_Default(pSPDTView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPDTVIEWID");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSPDTView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPDTViewName_Default((IEntity)pSPDTView, bl2, bl3);
+            string2 = this.onTestValueRule_PSPDTViewName_Default(pSPDTView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPDTVIEWNAME");
@@ -234,11 +234,11 @@ extends PSCoreSysServiceBase<PSPDTView> {
     }
 
     protected void onSyncEntity(PSPDTView pSPDTView, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPDTView, bl);
+        super.onSyncEntity(pSPDTView, bl);
     }
 
     protected void onSyncIndexEntities(PSPDTView pSPDTView, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPDTView, bl);
+        super.onSyncIndexEntities(pSPDTView, bl);
     }
 
     public Object getDataContextValue(PSPDTView pSPDTView, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -246,14 +246,14 @@ extends PSCoreSysServiceBase<PSPDTView> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPDTView, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPDTView, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPDTView pSPDTView, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPDTView, arrayList, n);
+        super.onExportMajorModel(pSPDTView, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -351,14 +351,14 @@ extends PSCoreSysServiceBase<PSPDTView> {
 
     protected boolean onMergeChild(String string, String string2, PSPDTView pSPDTView) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPDTView)) {
+        if (super.onMergeChild(string, string2, pSPDTView)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPDTView pSPDTView) throws Exception {
-        super.onUpdateParent((IEntity)pSPDTView);
+        super.onUpdateParent(pSPDTView);
     }
 
     @Override

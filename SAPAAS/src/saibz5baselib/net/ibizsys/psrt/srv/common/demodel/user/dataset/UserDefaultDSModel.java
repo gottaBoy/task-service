@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.user.dataset;
 
-import net.ibizsys.psrt.srv.common.demodel.user.dataset.UserDefaultDSModelBase;
+/**
+ *  实体数据集合[DEFAULT]模型
+ */
+public class UserDefaultDSModel extends UserDefaultDSModelBase {
 
-public class UserDefaultDSModel
-extends UserDefaultDSModelBase {
+    public UserDefaultDSModel() {
+        super();
+    }
+
 }
-

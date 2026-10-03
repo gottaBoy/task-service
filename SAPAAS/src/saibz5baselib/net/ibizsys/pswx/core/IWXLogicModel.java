@@ -1,16 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswx.core;
 
-import net.ibizsys.pswx.core.IWXAccountModel;
-import net.ibizsys.pswx.core.IWXEntAppModel;
-import net.ibizsys.pswx.core.IWXLogic;
+/**
+ * 微信处理逻辑
+ * 
+ * @author Administrator
+ * 
+ */
+public interface IWXLogicModel extends IWXLogic {
 
-public interface IWXLogicModel
-extends IWXLogic {
-    public IWXAccountModel getWXAccountModel();
+	/**
+	 * 获取微信公众号对象
+	 * 
+	 * @return
+	 */
+	IWXAccountModel getWXAccountModel();
 
-    public IWXEntAppModel getWXEntAppModel();
+	/**
+	 * 获取微信企业应用模型
+	 * 
+	 * @return
+	 */
+	IWXEntAppModel getWXEntAppModel();
+
 }
-

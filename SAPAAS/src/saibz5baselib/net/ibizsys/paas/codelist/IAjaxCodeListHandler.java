@@ -1,17 +1,32 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.codelist;
 
 import net.ibizsys.paas.ajax.IAjaxHandler;
-import net.ibizsys.paas.codelist.ICodeList;
 import net.ibizsys.paas.web.AjaxActionResult;
 import net.ibizsys.paas.web.IAjaxActionContext;
 
-public interface IAjaxCodeListHandler
-extends IAjaxHandler {
-    public ICodeList getCodeList();
+/**
+ * 代码表后台处理对象
+ * 
+ * @author Administrator
+ *
+ */
+public interface IAjaxCodeListHandler extends IAjaxHandler {
 
-    public AjaxActionResult process(ICodeList var1, IAjaxActionContext var2) throws Exception;
+	/**
+	 * 获取代码表
+	 * 
+	 * @return
+	 */
+	ICodeList getCodeList();
+
+	/**
+	 * 处理
+	 * 
+	 * @param iCodeList 代码表
+	 * @param iAjaxActionContext 请求上下文
+	 * @return
+	 * @throws Exception
+	 */
+	AjaxActionResult process(ICodeList iCodeList, IAjaxActionContext iAjaxActionContext) throws Exception;
+
 }
-

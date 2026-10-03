@@ -1,17 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import java.util.Iterator;
-import net.ibizsys.paas.core.IDEDataExportItem;
-import net.ibizsys.paas.core.IDataEntity;
-import net.ibizsys.paas.core.IDataEntityObject;
+/**
+ * 实体数据导出接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDEDataExport extends IDataEntityObject {
+	/**
+	 * 初始化
+	 * 
+	 * @param iDataEntity
+	 * @throws Exception
+	 */
+	void init(IDataEntity iDataEntity) throws Exception;
 
-public interface IDEDataExport
-extends IDataEntityObject {
-    public void init(IDataEntity var1) throws Exception;
-
-    public Iterator<IDEDataExportItem> getDEDataExportItems();
+	/**
+	 * 获取导出项集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IDEDataExportItem> getDEDataExportItems();
 }
-

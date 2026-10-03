@@ -1,49 +1,168 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import net.ibizsys.paas.core.IModelBase;
 
-public interface IChartSeriesModel
-extends IModelBase {
-    public static final String SERIESTYPE_AREA = "area";
-    public static final String SERIESTYPE_BAR = "bar";
-    public static final String SERIESTYPE_BAR3D = "bar3d";
-    public static final String SERIESTYPE_COLUMN = "column";
-    public static final String SERIESTYPE_CANDLESTICK = "candlestick";
-    public static final String SERIESTYPE_GAUGE = "gauge";
-    public static final String SERIESTYPE_LINE = "line";
-    public static final String SERIESTYPE_PIE = "pie";
-    public static final String SERIESTYPE_PIE3D = "pie3d";
-    public static final String SERIESTYPE_RADAR = "radar";
-    public static final String SERIESTYPE_SCATTER = "scatter";
-    public static final String TIMEGROUP_YEAR = "YEAR";
-    public static final String TIMEGROUP_QUARTER = "QUARTER";
-    public static final String TIMEGROUP_MONTH = "MONTH";
-    public static final String TIMEGROUP_YEARWEEK = "YEARWEEK";
-    public static final String TIMEGROUP_DAY = "DAY";
+/**
+ * 图表序列接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IChartSeriesModel extends IModelBase {
+	/**
+	 * area
+	 */
+	static String SERIESTYPE_AREA = "area";
 
-    public String getCaption();
+	/**
+	 * bar
+	 */
+	static String SERIESTYPE_BAR = "bar";
 
-    public String getSeriesType();
+	/**
+	 * bar3d
+	 */
+	static String SERIESTYPE_BAR3D = "bar3d";
 
-    public String getCatalogField();
+	/**
+	 * column
+	 */
+	static String SERIESTYPE_COLUMN = "column";
 
-    public String getCatalogFieldCodeListId();
+	/**
+	 * candlestick
+	 */
+	static String SERIESTYPE_CANDLESTICK = "candlestick";
 
-    public String getValueField();
+	/**
+	 * gauge
+	 */
+	static String SERIESTYPE_GAUGE = "gauge";
 
-    public String getValue2Field();
+	/**
+	 * line
+	 */
+	static String SERIESTYPE_LINE = "line";
 
-    public String getValue3Field();
+	/**
+	 * pie
+	 */
+	static String SERIESTYPE_PIE = "pie";
 
-    public String getValue4Field();
+	/**
+	 * pie3d
+	 */
+	static String SERIESTYPE_PIE3D = "pie3d";
 
-    public String getSeriesField();
+	/**
+	 * radar
+	 */
+	static String SERIESTYPE_RADAR = "radar";
 
-    public String getSeriesFieldCodeListId();
+	/**
+	 * scatter
+	 */
+	static String SERIESTYPE_SCATTER = "scatter";
 
-    public String getTimeGroupMode();
+	/**
+	 * 年
+	 */
+	static String TIMEGROUP_YEAR = "YEAR";
+
+	/**
+	 * 季度
+	 */
+	static String TIMEGROUP_QUARTER = "QUARTER";
+
+	/**
+	 * 月份
+	 */
+	static String TIMEGROUP_MONTH = "MONTH";
+
+	/**
+	 * 年周
+	 */
+	static String TIMEGROUP_YEARWEEK = "YEARWEEK";
+
+	/**
+	 * 日
+	 */
+	static String TIMEGROUP_DAY = "DAY";
+
+	/**
+	 * 获取标题
+	 * 
+	 * @return
+	 */
+	String getCaption();
+
+	/**
+	 * 获取数据序列类型
+	 * 
+	 * @return
+	 */
+	String getSeriesType();
+
+	/**
+	 * 获取分类值属性
+	 * 
+	 * @return
+	 */
+	String getCatalogField();
+
+	/**
+	 * 获取分类值属性代码表标识
+	 * 
+	 * @return
+	 */
+	String getCatalogFieldCodeListId();
+
+	/**
+	 * 获取值属性
+	 * 
+	 * @return
+	 */
+	String getValueField();
+
+	/**
+	 * 获取值2属性
+	 * 
+	 * @return
+	 */
+	String getValue2Field();
+	
+	/**
+	 * 获取值3属性
+	 * 
+	 * @return
+	 */
+	String getValue3Field();
+
+	/**
+	 * 获取值4属性
+	 * 
+	 * @return
+	 */
+	String getValue4Field();
+
+	/**
+	 * 获取序列属性
+	 * 
+	 * @return
+	 */
+	String getSeriesField();
+	
+	/**
+	 * 获取序列属性代码表标识
+	 * 
+	 * @return
+	 */
+	String getSeriesFieldCodeListId();
+
+	/**
+	 * 获取时间自动分组模式
+	 * 
+	 * @return
+	 */
+	String getTimeGroupMode();
 }
-

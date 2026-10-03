@@ -93,9 +93,9 @@ extends PSDEUAWizardCurSrcDELNParamKeyDSModelBase {
             pSDELogicParam.setPSDELogicParamId(string2);
             PSDELogicParamService pSDELogicParamService = (PSDELogicParamService)ServiceGlobal.getService(PSDELogicParamService.class, (SessionFactory)sessionFactory);
             if (KeyValueHelper.isTempKey((String)string2)) {
-                pSDELogicParamService.getTemp((IEntity)pSDELogicParam);
+                pSDELogicParamService.getTemp(pSDELogicParam);
             } else {
-                pSDELogicParamService.get((IEntity)pSDELogicParam);
+                pSDELogicParamService.get(pSDELogicParam);
             }
             String string3 = pSDELogicParam.getParamPSDEId();
             if (StringHelper.isNullOrEmpty((String)string3)) {
@@ -108,19 +108,19 @@ extends PSDEUAWizardCurSrcDELNParamKeyDSModelBase {
                 dEDataSetFetchContext.getConditionList().add(iDEDataSetCond);
             }
             if (!StringHelper.isNullOrEmpty((String)string3)) {
-                iDEDataSetCond = new DEDataSetCond();
-                iDEDataSetCond.setCondType("DEFIELD");
-                iDEDataSetCond.setCondOp("EQ");
-                iDEDataSetCond.setDEFName("PSDEID");
-                iDEDataSetCond.setCondValue(string3);
-                dEDataSetFetchContext.getConditionList().add(iDEDataSetCond);
+                DEDataSetCond dataEntityCondition = new DEDataSetCond();
+                dataEntityCondition.setCondType("DEFIELD");
+                dataEntityCondition.setCondOp("EQ");
+                dataEntityCondition.setDEFName("PSDEID");
+                dataEntityCondition.setCondValue(string3);
+                dEDataSetFetchContext.getConditionList().add(dataEntityCondition);
             }
             dEDataSetFetchContext.setSort("PSDEFIELDNAME");
-            iDEDataSetCond = ((PSDEFieldServiceBase)pSCoreSysServiceBase).fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
-            if (iDEDataSetCond.isError()) {
-                return iDEDataSetCond;
+            DBFetchResult fieldResult = ((PSDEFieldServiceBase)pSCoreSysServiceBase).fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
+            if (fieldResult.isError()) {
+                return fieldResult;
             }
-            IDataTable iDataTable = iDEDataSetCond.getDataSet().getDataTable(0);
+            IDataTable iDataTable = fieldResult.getDataSet().getDataTable(0);
             int n2 = iDataTable.getCachedRowCount();
             if (n2 > 0) {
                 simpleDataTableImpl.reset();
@@ -139,18 +139,18 @@ extends PSDEUAWizardCurSrcDELNParamKeyDSModelBase {
             if (!StringHelper.isNullOrEmpty((String)string4) && (iDEDataSetCond = ((PSVarSampleValueServiceBase)pSCoreSysServiceBase).getDEModel().getFetchQuickSearchCondition(string4)) != null) {
                 dEDataSetFetchContext.getConditionList().add(iDEDataSetCond);
             }
-            iDEDataSetCond = new DEDataSetCond();
-            iDEDataSetCond.setCondType("DEFIELD");
-            iDEDataSetCond.setCondOp("EQ");
-            iDEDataSetCond.setDEFName("VARTYPE");
-            iDEDataSetCond.setCondValue("DATACONTEXT");
-            dEDataSetFetchContext.getConditionList().add(iDEDataSetCond);
+            DEDataSetCond varTypeCondition = new DEDataSetCond();
+            varTypeCondition.setCondType("DEFIELD");
+            varTypeCondition.setCondOp("EQ");
+            varTypeCondition.setDEFName("VARTYPE");
+            varTypeCondition.setCondValue("DATACONTEXT");
+            dEDataSetFetchContext.getConditionList().add(varTypeCondition);
             dEDataSetFetchContext.setSort("PSVARSAMPLEVALUENAME");
-            iDEDataSetCond = ((PSVarSampleValueServiceBase)pSCoreSysServiceBase).fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
-            if (iDEDataSetCond.isError()) {
-                return iDEDataSetCond;
+            DBFetchResult sampleResult = ((PSVarSampleValueServiceBase)pSCoreSysServiceBase).fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
+            if (sampleResult.isError()) {
+                return sampleResult;
             }
-            iDataTable = iDEDataSetCond.getDataSet().getDataTable(0);
+            iDataTable = sampleResult.getDataSet().getDataTable(0);
             n2 = iDataTable.getCachedRowCount();
             if (n2 > 0) {
                 for (n = 0; n < n2; ++n) {
@@ -167,4 +167,3 @@ extends PSDEUAWizardCurSrcDELNParamKeyDSModelBase {
         return dBFetchResult;
     }
 }
-

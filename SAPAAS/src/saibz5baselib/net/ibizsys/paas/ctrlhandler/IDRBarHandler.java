@@ -1,12 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.IDRCtrlHandler;
-
-public interface IDRBarHandler
-extends IDRCtrlHandler {
-    public static final String PARAM_DATATREEID = "datatreeid";
+/**
+ * 数据关系栏后台处理对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDRBarHandler extends IDRCtrlHandler {
+	
+	/**
+	 * 获取数据参数，数据树标识
+	 */
+	final static String PARAM_DATATREEID = "datatreeid";
+	
 }
-

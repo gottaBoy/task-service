@@ -38,7 +38,6 @@ extends SysIndexViewCounterHandlerBase {
     private static final Log log = LogFactory.getLog(SysIndexViewCounterHandler.class);
 
     protected AjaxActionResult onFetch() throws Exception {
-        Object object;
         MDAjaxActionResult mDAjaxActionResult = new MDAjaxActionResult();
         WebContext.getCurrent().setCurAjaxActionResult((AjaxActionResult)mDAjaxActionResult);
         JSONObject jSONObject = WebContext.getAppData((IWebContext)WebContext.getCurrent());
@@ -50,7 +49,7 @@ extends SysIndexViewCounterHandlerBase {
         String string2 = jSONObject.optString("pssystemid");
         String string3 = jSONObject.optString("pssysmodelinstid");
         try {
-            object = PSSysDevUserUserGlobal.getPSSysDevUser(WebContext.getCurrent(), string, string2);
+            PSSysDevUserUserGlobal.getPSSysDevUser(WebContext.getCurrent(), string, string2);
         }
         catch (Exception exception) {
             log.error((Object)exception);
@@ -58,11 +57,11 @@ extends SysIndexViewCounterHandlerBase {
             return mDAjaxActionResult;
         }
         try {
-            object = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory(string3));
+            PSSystemService service = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory(string3));
             PSSystem pSSystem = new PSSystem();
             pSSystem.setPSSystemId(string2);
-            object.get((IEntity)pSSystem);
-            mDAjaxActionResult.getData(true).put("MAXENTITYCNT", (Object)DataObject.getIntegerValue((Object)pSSystem.getMaxEntityCnt(), (Integer)-1));
+            service.get(pSSystem);
+            mDAjaxActionResult.getData(true).put("MAXENTITYCNT", (Object)DataObject.getIntegerValue((Object)pSSystem.getMaxEntityCnt(), Integer.valueOf(-1)));
             mDAjaxActionResult.getData(true).put("ENTITYCNT", (Object)DataObject.getIntegerValue((Object)pSSystem.getEntityCnt(), (Integer)0));
             mDAjaxActionResult.getData(true).put("TASKCNT", (Object)DataObject.getIntegerValue((Object)pSSystem.getPSSysTasksCnt(), (Integer)0));
             mDAjaxActionResult.getData(true).put("ISSUECNT", (Object)DataObject.getIntegerValue((Object)pSSystem.getPSSysIssuesCnt(), (Integer)0));
@@ -77,4 +76,3 @@ extends SysIndexViewCounterHandlerBase {
         }
     }
 }
-

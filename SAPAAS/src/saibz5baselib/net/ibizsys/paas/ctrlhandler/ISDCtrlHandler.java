@@ -1,19 +1,47 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ICtrlHandler;
+/**
+ * 单数据处理对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface ISDCtrlHandler extends ICtrlHandler {
+	/**
+	 * 获取数据
+	 */
+	final static String ACTION_LOAD = "load";
 
-public interface ISDCtrlHandler
-extends ICtrlHandler {
-    public static final String ACTION_LOAD = "load";
-    public static final String ACTION_CREATE = "create";
-    public static final String ACTION_UPDATE = "update";
-    public static final String ACTION_REMOVE = "remove";
-    public static final String ACTION_UIACTION = "uiaction";
-    public static final String ACTION_LOADUIACTION = "loaduiaction";
+	/**
+	 * 建立数据
+	 */
+	final static String ACTION_CREATE = "create";
 
-    public boolean isEnableItemPriv();
+	/**
+	 * 更新数据
+	 */
+	final static String ACTION_UPDATE = "update";
+
+	/**
+	 * 删除数据
+	 */
+	final static String ACTION_REMOVE = "remove";
+
+	/**
+	 * 用户界面行为
+	 */
+	final static String ACTION_UIACTION = "uiaction";
+	
+	
+	/**
+	 * 加载运行时界面行为模型
+	 */
+	final static String ACTION_LOADUIACTION = "loaduiaction";
+
+	/**
+	 * 是否启用列权限控制
+	 * 
+	 * @return
+	 */
+	boolean isEnableItemPriv();
 }
-

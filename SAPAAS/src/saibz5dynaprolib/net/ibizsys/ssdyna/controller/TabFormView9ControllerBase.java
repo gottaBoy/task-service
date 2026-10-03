@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.MultiDataViewControllerBase;
-
-public abstract class TabFormView9ControllerBase
-extends MultiDataViewControllerBase {
+/**
+ * 分页表单多数据视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class TabFormView9ControllerBase extends MultiDataViewControllerBase {
+	public TabFormView9ControllerBase() throws Exception {
+		super();
+	}
 }
-

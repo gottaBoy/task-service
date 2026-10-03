@@ -294,7 +294,7 @@ extends SRFExFormActionHelper {
         }
         if (StringHelper.IsNullOrEmpty((String)strKeyValue)) {
             if (!pickupDEFHelper.GetRealDEFHelper().getDEHelper().IsIndexDE()) return;
-            Vector list = pickupDEFHelper.GetRealDEFHelper().getDEHelper().GetDERINDEXs(true);
+            Vector<DERINDEX> list = pickupDEFHelper.GetRealDEFHelper().getDEHelper().GetDERINDEXs(true);
             boolean bFind = false;
             for (DERINDEX dERINDEX : list) {
                 IDEHelper iDEHelper = this.getPage().getDAModelStorage().FindDEHelper(dERINDEX.getDEID());
@@ -400,7 +400,7 @@ extends SRFExFormActionHelper {
         String strKeyValue = this.getWebContext().GetParamValue(pickupDEFHelper.GetRelatedDEFHelper().getName());
         if (StringHelper.IsNullOrEmpty((String)strKeyValue)) {
             if (!pickupDEFHelper.GetRealDEFHelper().getDEHelper().IsIndexDE()) return false;
-            Vector list = pickupDEFHelper.GetRealDEFHelper().getDEHelper().GetDERINDEXs(true);
+            Vector<DERINDEX> list = pickupDEFHelper.GetRealDEFHelper().getDEHelper().GetDERINDEXs(true);
             boolean bFind = false;
             for (DERINDEX dERINDEX : list) {
                 IDEHelper iDEHelper = this.getPage().getDAModelStorage().FindDEHelper(dERINDEX.getDEID());
@@ -952,7 +952,7 @@ extends SRFExFormActionHelper {
 
     protected boolean OnSaveActionAfterFillDataEntity(BaseDataEntity dataEntity, boolean bInsert, SRFExFormItemErrors formItemErrors) {
         CallResult callResult;
-        Vector errors = new Vector();
+        Vector<ValueError> errors = new Vector<ValueError>();
         String strActionMode = "DEFAULT";
         if (this.formView != null) {
             strActionMode = bInsert ? this.formView.getINSERTMODE() : this.formView.getUPDATEMODE();
@@ -1616,4 +1616,3 @@ extends SRFExFormActionHelper {
         return this.bTempDataMode;
     }
 }
-

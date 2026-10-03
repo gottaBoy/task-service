@@ -78,7 +78,7 @@ implements IPSSysEAIDEService {
     @Override
     protected List<PSSysEAIDE> onListAll() throws Exception {
         ArrayList<PSSysEAIDE> list = new ArrayList<PSSysEAIDE>();
-        List pssyseaischemes = PSModelServiceUtil.getInstance().getPSSysEAISchemeService().listAll();
+        List<PSSysEAIScheme> pssyseaischemes = PSModelServiceUtil.getInstance().getPSSysEAISchemeService().listAll();
         if (pssyseaischemes != null) {
             for (PSSysEAIScheme parent : pssyseaischemes) {
                 List<PSSysEAIDE> items = this.listByPSSysEAIScheme(parent);
@@ -226,18 +226,19 @@ implements IPSSysEAIDEService {
         } else {
             dto.setPSSysEAISchemeName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSSysEAIDEFieldService().listByPSSysEAIDE(t);
-        if (list != null && list.size() > 0) {
+        List<PSSysEAIDEField> pSSysEAIDEFieldList = PSModelServiceUtil.getInstance().getPSSysEAIDEFieldService().listByPSSysEAIDE(t);
+        if (pSSysEAIDEFieldList != null && pSSysEAIDEFieldList.size() > 0) {
             ArrayList<PSSysEAIDEFieldDTO> pssyseaidefields = new ArrayList<PSSysEAIDEFieldDTO>();
-            for (PSSysEAIDEField pSSysEAIDEField : list) {
+            for (PSSysEAIDEField pSSysEAIDEField : pSSysEAIDEFieldList) {
                 dstItem = (PSSysEAIDEFieldDTO)PSModelServiceUtil.getInstance().getPSSysEAIDEFieldService().toDTO(pSSysEAIDEField);
                 pssyseaidefields.add((PSSysEAIDEFieldDTO)dstItem);
             }
             dto.setPssyseaidefields(pssyseaidefields);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSSysEAIDERService().listByPSSysEAIDE(t)) != null && list.size() > 0) {
+        List<PSSysEAIDER> pSSysEAIDERList = PSModelServiceUtil.getInstance().getPSSysEAIDERService().listByPSSysEAIDE(t);
+        if (pSSysEAIDERList != null && pSSysEAIDERList.size() > 0) {
             ArrayList<PSSysEAIDERDTO> pssyseaiders = new ArrayList<PSSysEAIDERDTO>();
-            for (PSSysEAIDER pSSysEAIDER : list) {
+            for (PSSysEAIDER pSSysEAIDER : pSSysEAIDERList) {
                 dstItem = (PSSysEAIDERDTO)PSModelServiceUtil.getInstance().getPSSysEAIDERService().toDTO(pSSysEAIDER);
                 pssyseaiders.add((PSSysEAIDERDTO)dstItem);
             }

@@ -135,14 +135,14 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
             PSDEFVRType pSDEFVRType = (PSDEFVRType)iService.getDEModel().createEntity();
             pSDEFVRType.set("PSDEFVRTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEFVRType);
+                iService.getTemp(pSDEFVRType);
             } else {
-                iService.get((IEntity)pSDEFVRType);
+                iService.get(pSDEFVRType);
             }
             this.onFillParentInfo_PSDEFVRType(pSDEFVRTypeDetail, pSDEFVRType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEFVRTypeDetail, string, string2, string3);
+        super.onFillParentInfo(pSDEFVRTypeDetail, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEFVRTypeDetail, bl);
+        super.onFillEntityFullInfo(pSDEFVRTypeDetail, bl);
         this.onFillEntityFullInfo_PSDEFVRType(pSDEFVRTypeDetail, bl);
     }
 
@@ -166,7 +166,7 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
     }
 
     protected void onWriteBackParent(PSDEFVRTypeDetail pSDEFVRTypeDetail, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEFVRTypeDetail, bl);
+        super.onWriteBackParent(pSDEFVRTypeDetail, bl);
     }
 
     public ArrayList<PSDEFVRTypeDetail> selectByPSDEFVRType(PSDEFVRTypeBase pSDEFVRTypeBase) throws Exception {
@@ -225,7 +225,7 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
         ArrayList<PSDEFVRTypeDetail> arrayList = this.selectByPSDEFVRType(pSDEFVRType);
         this.onBeforeRemoveByPSDEFVRType(pSDEFVRType, arrayList);
         for (PSDEFVRTypeDetail pSDEFVRTypeDetail : arrayList) {
-            this.remove((IEntity)pSDEFVRTypeDetail);
+            this.remove(pSDEFVRTypeDetail);
         }
         this.onAfterRemoveByPSDEFVRType(pSDEFVRType, arrayList);
     }
@@ -246,14 +246,14 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
 
     protected void replaceParentInfo(PSDEFVRTypeDetail pSDEFVRTypeDetail, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEFVRTypeDetail, cloneSession);
+        super.replaceParentInfo(pSDEFVRTypeDetail, cloneSession);
         if (pSDEFVRTypeDetail.getPSDEFVRTypeId() != null && (iEntity = cloneSession.getEntity("PSDEFVRTYPE", (Object)pSDEFVRTypeDetail.getPSDEFVRTypeId())) != null) {
             this.onFillParentInfo_PSDEFVRType(pSDEFVRTypeDetail, (PSDEFVRType)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDEFVRTypeDetail pSDEFVRTypeDetail, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEFVRTypeDetail, bl);
+        super.onRemoveEntityUncopyValues(pSDEFVRTypeDetail, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEFVRTypeDetail pSDEFVRTypeDetail, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
         if ((entityFieldError = this.onCheckField_PSDEFVRTypeId(bl, pSDEFVRTypeDetail, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEFVRTypeDetail, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEFVRTypeDetail, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSDEFVRTypeDetail pSDEFVRTypeDetail, boolean bl2, boolean bl3) throws Exception {
@@ -287,7 +287,7 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEFVRTypeDetail, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEFVRTypeDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -312,7 +312,7 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ProcessObj_Default((IEntity)pSDEFVRTypeDetail, bl2, bl3);
+            string2 = this.onTestValueRule_ProcessObj_Default(pSDEFVRTypeDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PROCESSOBJ");
@@ -337,7 +337,7 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFVRTypeDetailId_Default((IEntity)pSDEFVRTypeDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFVRTypeDetailId_Default(pSDEFVRTypeDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFVRTYPEDETAILID");
@@ -362,7 +362,7 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFVRTypeDetailName_Default((IEntity)pSDEFVRTypeDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFVRTypeDetailName_Default(pSDEFVRTypeDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFVRTYPEDETAILNAME");
@@ -387,7 +387,7 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFVRTypeId_Default((IEntity)pSDEFVRTypeDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFVRTypeId_Default(pSDEFVRTypeDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFVRTYPEID");
@@ -400,11 +400,11 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
     }
 
     protected void onSyncEntity(PSDEFVRTypeDetail pSDEFVRTypeDetail, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEFVRTypeDetail, bl);
+        super.onSyncEntity(pSDEFVRTypeDetail, bl);
     }
 
     protected void onSyncIndexEntities(PSDEFVRTypeDetail pSDEFVRTypeDetail, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEFVRTypeDetail, bl);
+        super.onSyncIndexEntities(pSDEFVRTypeDetail, bl);
     }
 
     public Object getDataContextValue(PSDEFVRTypeDetail pSDEFVRTypeDetail, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -412,14 +412,14 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEFVRTypeDetail, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEFVRTypeDetail, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEFVRTypeDetail pSDEFVRTypeDetail, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEFVRTypeDetail, arrayList, n);
+        super.onExportMajorModel(pSDEFVRTypeDetail, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -562,14 +562,14 @@ extends PSCoreSysServiceBase<PSDEFVRTypeDetail> {
 
     protected boolean onMergeChild(String string, String string2, PSDEFVRTypeDetail pSDEFVRTypeDetail) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEFVRTypeDetail)) {
+        if (super.onMergeChild(string, string2, pSDEFVRTypeDetail)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEFVRTypeDetail pSDEFVRTypeDetail) throws Exception {
-        super.onUpdateParent((IEntity)pSDEFVRTypeDetail);
+        super.onUpdateParent(pSDEFVRTypeDetail);
     }
 
     @Override

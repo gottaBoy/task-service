@@ -169,9 +169,9 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
             PSDEUIAction pSDEUIAction = (PSDEUIAction)iService.getDEModel().createEntity();
             pSDEUIAction.set("PSDEUIACTIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUIAction);
+                iService.getTemp(pSDEUIAction);
             } else {
-                iService.get((IEntity)pSDEUIAction);
+                iService.get(pSDEUIAction);
             }
             this.onFillParentInfo_PSDEUIAction(pSWFUtilUIAction, pSDEUIAction);
             return;
@@ -181,9 +181,9 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
             PSSysWFSetting pSSysWFSetting = (PSSysWFSetting)iService.getDEModel().createEntity();
             pSSysWFSetting.set("PSSYSWFSETTINGID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysWFSetting);
+                iService.getTemp(pSSysWFSetting);
             } else {
-                iService.get((IEntity)pSSysWFSetting);
+                iService.get(pSSysWFSetting);
             }
             this.onFillParentInfo_PSSysWFSetting(pSWFUtilUIAction, pSSysWFSetting);
             return;
@@ -193,9 +193,9 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
             PSWFVersion pSWFVersion = (PSWFVersion)iService.getDEModel().createEntity();
             pSWFVersion.set("PSWFVERSIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWFVersion);
+                iService.getTemp(pSWFVersion);
             } else {
-                iService.get((IEntity)pSWFVersion);
+                iService.get(pSWFVersion);
             }
             this.onFillParentInfo_PSWFVersion(pSWFUtilUIAction, pSWFVersion);
             return;
@@ -205,14 +205,14 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
             PSWorkflow pSWorkflow = (PSWorkflow)iService.getDEModel().createEntity();
             pSWorkflow.set("PSWORKFLOWID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWorkflow);
+                iService.getTemp(pSWorkflow);
             } else {
-                iService.get((IEntity)pSWorkflow);
+                iService.get(pSWorkflow);
             }
             this.onFillParentInfo_PSWorkflow(pSWFUtilUIAction, pSWorkflow);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWFUtilUIAction, string, string2, string3);
+        super.onFillParentInfo(pSWFUtilUIAction, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -273,7 +273,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
         if (bl && pSWFUtilUIAction.getValidFlag() == null) {
             pSWFUtilUIAction.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSWFUtilUIAction, bl);
+        super.onFillEntityFullInfo(pSWFUtilUIAction, bl);
         this.onFillEntityFullInfo_PSDEUIAction(pSWFUtilUIAction, bl);
         this.onFillEntityFullInfo_PSSysWFSetting(pSWFUtilUIAction, bl);
         this.onFillEntityFullInfo_PSWFVersion(pSWFUtilUIAction, bl);
@@ -303,7 +303,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
     }
 
     protected void onWriteBackParent(PSWFUtilUIAction pSWFUtilUIAction, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWFUtilUIAction, bl);
+        super.onWriteBackParent(pSWFUtilUIAction, bl);
     }
 
     public ArrayList<PSWFUtilUIAction> selectByPSDEUIAction(PSDEUIActionBase pSDEUIActionBase) throws Exception {
@@ -406,8 +406,8 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
         ArrayList<PSWFUtilUIAction> arrayList = this.selectByPSDEUIAction(pSDEUIAction, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEUIACTION");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEUIAction);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWFUTILUIACTION_PSDEUIACTION_PSDEUIACTIONID", "", iDataEntityModel.getName(), "PSWFUTILUIACTION", iDataEntityModel.getDataInfo((IEntity)pSDEUIAction), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEUIAction);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWFUTILUIACTION_PSDEUIACTION_PSDEUIACTIONID", "", iDataEntityModel.getName(), "PSWFUTILUIACTION", iDataEntityModel.getDataInfo(pSDEUIAction), arrayList.get(0)));
         }
     }
 
@@ -440,7 +440,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
         ArrayList<PSWFUtilUIAction> arrayList = this.selectByPSDEUIAction(pSDEUIAction);
         this.onBeforeRemoveByPSDEUIAction(pSDEUIAction, arrayList);
         for (PSWFUtilUIAction pSWFUtilUIAction : arrayList) {
-            this.remove((IEntity)pSWFUtilUIAction);
+            this.remove(pSWFUtilUIAction);
         }
         this.onAfterRemoveByPSDEUIAction(pSDEUIAction, arrayList);
     }
@@ -458,8 +458,8 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
         ArrayList<PSWFUtilUIAction> arrayList = this.selectByPSSysWFSetting(pSSysWFSetting, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSWFSETTING");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysWFSetting);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWFUTILUIACTION_PSSYSWFSETTING_PSSYSWFSETTINGID", "", iDataEntityModel.getName(), "PSWFUTILUIACTION", iDataEntityModel.getDataInfo((IEntity)pSSysWFSetting), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysWFSetting);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWFUTILUIACTION_PSSYSWFSETTING_PSSYSWFSETTINGID", "", iDataEntityModel.getName(), "PSWFUTILUIACTION", iDataEntityModel.getDataInfo(pSSysWFSetting), arrayList.get(0)));
         }
     }
 
@@ -492,7 +492,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
         ArrayList<PSWFUtilUIAction> arrayList = this.selectByPSSysWFSetting(pSSysWFSetting);
         this.onBeforeRemoveByPSSysWFSetting(pSSysWFSetting, arrayList);
         for (PSWFUtilUIAction pSWFUtilUIAction : arrayList) {
-            this.remove((IEntity)pSWFUtilUIAction);
+            this.remove(pSWFUtilUIAction);
         }
         this.onAfterRemoveByPSSysWFSetting(pSSysWFSetting, arrayList);
     }
@@ -510,8 +510,8 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
         ArrayList<PSWFUtilUIAction> arrayList = this.selectByPSWFVersion(pSWFVersion, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSWFVERSION");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSWFVersion);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWFUTILUIACTION_PSWFVERSION_PSWFVERSIONID", "", iDataEntityModel.getName(), "PSWFUTILUIACTION", iDataEntityModel.getDataInfo((IEntity)pSWFVersion), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSWFVersion);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWFUTILUIACTION_PSWFVERSION_PSWFVERSIONID", "", iDataEntityModel.getName(), "PSWFUTILUIACTION", iDataEntityModel.getDataInfo(pSWFVersion), arrayList.get(0)));
         }
     }
 
@@ -544,7 +544,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
         ArrayList<PSWFUtilUIAction> arrayList = this.selectByPSWFVersion(pSWFVersion);
         this.onBeforeRemoveByPSWFVersion(pSWFVersion, arrayList);
         for (PSWFUtilUIAction pSWFUtilUIAction : arrayList) {
-            this.remove((IEntity)pSWFUtilUIAction);
+            this.remove(pSWFUtilUIAction);
         }
         this.onAfterRemoveByPSWFVersion(pSWFVersion, arrayList);
     }
@@ -562,8 +562,8 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
         ArrayList<PSWFUtilUIAction> arrayList = this.selectByPSWorkflow(pSWorkflow, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSWORKFLOW");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSWorkflow);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWFUTILUIACTION_PSWORKFLOW_PSWORKFLOWID", "", iDataEntityModel.getName(), "PSWFUTILUIACTION", iDataEntityModel.getDataInfo((IEntity)pSWorkflow), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSWorkflow);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWFUTILUIACTION_PSWORKFLOW_PSWORKFLOWID", "", iDataEntityModel.getName(), "PSWFUTILUIACTION", iDataEntityModel.getDataInfo(pSWorkflow), arrayList.get(0)));
         }
     }
 
@@ -596,7 +596,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
         ArrayList<PSWFUtilUIAction> arrayList = this.selectByPSWorkflow(pSWorkflow);
         this.onBeforeRemoveByPSWorkflow(pSWorkflow, arrayList);
         for (PSWFUtilUIAction pSWFUtilUIAction : arrayList) {
-            this.remove((IEntity)pSWFUtilUIAction);
+            this.remove(pSWFUtilUIAction);
         }
         this.onAfterRemoveByPSWorkflow(pSWorkflow, arrayList);
     }
@@ -617,7 +617,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
 
     protected void replaceParentInfo(PSWFUtilUIAction pSWFUtilUIAction, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWFUtilUIAction, cloneSession);
+        super.replaceParentInfo(pSWFUtilUIAction, cloneSession);
         if (pSWFUtilUIAction.getPSDEUIActionId() != null && (iEntity = cloneSession.getEntity("PSDEUIACTION", (Object)pSWFUtilUIAction.getPSDEUIActionId())) != null) {
             this.onFillParentInfo_PSDEUIAction(pSWFUtilUIAction, (PSDEUIAction)iEntity);
         }
@@ -633,7 +633,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWFUtilUIAction pSWFUtilUIAction, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWFUtilUIAction, bl);
+        super.onRemoveEntityUncopyValues(pSWFUtilUIAction, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWFUtilUIAction pSWFUtilUIAction, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -675,7 +675,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSWFUtilUIAction, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWFUtilUIAction, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWFUtilUIAction, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DynaModelFlag(boolean bl, PSWFUtilUIAction pSWFUtilUIAction, boolean bl2, boolean bl3) throws Exception {
@@ -688,7 +688,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DynaModelFlag_Default((IEntity)pSWFUtilUIAction, bl2, bl3);
+            string = this.onTestValueRule_DynaModelFlag_Default(pSWFUtilUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DYNAMODELFLAG");
@@ -710,7 +710,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSWFUtilUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSWFUtilUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -735,7 +735,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEUIActionId_Default((IEntity)pSWFUtilUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEUIActionId_Default(pSWFUtilUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEUIACTIONID");
@@ -757,7 +757,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDynaInstId_Default((IEntity)pSWFUtilUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDynaInstId_Default(pSWFUtilUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDYNAINSTID");
@@ -782,7 +782,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysWFSettingId_Default((IEntity)pSWFUtilUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysWFSettingId_Default(pSWFUtilUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSWFSETTINGID");
@@ -807,7 +807,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysWFSettingName_Default((IEntity)pSWFUtilUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysWFSettingName_Default(pSWFUtilUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSWFSETTINGNAME");
@@ -832,7 +832,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFUtilUIActionId_Default((IEntity)pSWFUtilUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFUtilUIActionId_Default(pSWFUtilUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFUTILUIACTIONID");
@@ -857,7 +857,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFUtilUIActionName_Default((IEntity)pSWFUtilUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFUtilUIActionName_Default(pSWFUtilUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFUTILUIACTIONNAME");
@@ -879,7 +879,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFVersionId_Default((IEntity)pSWFUtilUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFVersionId_Default(pSWFUtilUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFVERSIONID");
@@ -901,7 +901,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWorkflowId_Default((IEntity)pSWFUtilUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSWorkflowId_Default(pSWFUtilUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWORKFLOWID");
@@ -926,7 +926,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UtilType_Default((IEntity)pSWFUtilUIAction, bl2, bl3);
+            string2 = this.onTestValueRule_UtilType_Default(pSWFUtilUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UTILTYPE");
@@ -951,7 +951,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSWFUtilUIAction, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSWFUtilUIAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -964,11 +964,11 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
     }
 
     protected void onSyncEntity(PSWFUtilUIAction pSWFUtilUIAction, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWFUtilUIAction, bl);
+        super.onSyncEntity(pSWFUtilUIAction, bl);
     }
 
     protected void onSyncIndexEntities(PSWFUtilUIAction pSWFUtilUIAction, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWFUtilUIAction, bl);
+        super.onSyncIndexEntities(pSWFUtilUIAction, bl);
     }
 
     public Object getDataContextValue(PSWFUtilUIAction pSWFUtilUIAction, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -976,14 +976,14 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWFUtilUIAction, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWFUtilUIAction, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWFUtilUIAction pSWFUtilUIAction, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWFUtilUIAction, arrayList, n);
+        super.onExportMajorModel(pSWFUtilUIAction, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1245,14 +1245,14 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
 
     protected boolean onMergeChild(String string, String string2, PSWFUtilUIAction pSWFUtilUIAction) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWFUtilUIAction)) {
+        if (super.onMergeChild(string, string2, pSWFUtilUIAction)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWFUtilUIAction pSWFUtilUIAction) throws Exception {
-        super.onUpdateParent((IEntity)pSWFUtilUIAction);
+        super.onUpdateParent(pSWFUtilUIAction);
     }
 
     @Override
@@ -1275,7 +1275,7 @@ extends PSCoreSysServiceBase<PSWFUtilUIAction> {
         pSWFUtilUIAction2.setUtilType(pSWFUtilUIAction.getUtilType());
         pSWFUtilUIAction2.setPSWorkflowId(pSWFUtilUIAction.getPSWorkflowId());
         pSWFUtilUIAction2.setPSWFVersionId(pSWFUtilUIAction.getPSWFVersionId());
-        if (this.selectOne((IEntity)pSWFUtilUIAction2, true)) {
+        if (this.selectOne(pSWFUtilUIAction2, true)) {
             return pSWFUtilUIAction2.getPSWFUtilUIActionId();
         }
         return super.getEntityFolderKeyValue(pSWFUtilUIAction, pSSystem);

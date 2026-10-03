@@ -142,9 +142,9 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
             PSSFPlugin pSSFPlugin = (PSSFPlugin)iService.getDEModel().createEntity();
             pSSFPlugin.set("PSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSFPlugin);
+                iService.getTemp(pSSFPlugin);
             } else {
-                iService.get((IEntity)pSSFPlugin);
+                iService.get(pSSFPlugin);
             }
             this.onFillParentInfo_PSSFPlugin(pSSFPluginTempl, pSSFPlugin);
             return;
@@ -154,14 +154,14 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
             PSSF pSSF = (PSSF)iService.getDEModel().createEntity();
             pSSF.set("PSSFID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSF);
+                iService.getTemp(pSSF);
             } else {
-                iService.get((IEntity)pSSF);
+                iService.get(pSSF);
             }
             this.onFillParentInfo_PSSF(pSSFPluginTempl, pSSF);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSFPluginTempl, string, string2, string3);
+        super.onFillParentInfo(pSSFPluginTempl, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -200,7 +200,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSFPluginTempl, bl);
+        super.onFillEntityFullInfo(pSSFPluginTempl, bl);
         this.onFillEntityFullInfo_PSSFPlugin(pSSFPluginTempl, bl);
         this.onFillEntityFullInfo_PSSF(pSSFPluginTempl, bl);
     }
@@ -222,7 +222,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
     }
 
     protected void onWriteBackParent(PSSFPluginTempl pSSFPluginTempl, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSFPluginTempl, bl);
+        super.onWriteBackParent(pSSFPluginTempl, bl);
     }
 
     public ArrayList<PSSFPluginTempl> selectByPSSFPlugin(PSSFPluginBase pSSFPluginBase) throws Exception {
@@ -305,7 +305,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
         ArrayList<PSSFPluginTempl> arrayList = this.selectByPSSFPlugin(pSSFPlugin);
         this.onBeforeRemoveByPSSFPlugin(pSSFPlugin, arrayList);
         for (PSSFPluginTempl pSSFPluginTempl : arrayList) {
-            this.remove((IEntity)pSSFPluginTempl);
+            this.remove(pSSFPluginTempl);
         }
         this.onAfterRemoveByPSSFPlugin(pSSFPlugin, arrayList);
     }
@@ -351,7 +351,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
         ArrayList<PSSFPluginTempl> arrayList = this.selectByPSSF(pSSF);
         this.onBeforeRemoveByPSSF(pSSF, arrayList);
         for (PSSFPluginTempl pSSFPluginTempl : arrayList) {
-            this.remove((IEntity)pSSFPluginTempl);
+            this.remove(pSSFPluginTempl);
         }
         this.onAfterRemoveByPSSF(pSSF, arrayList);
     }
@@ -372,7 +372,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
 
     protected void replaceParentInfo(PSSFPluginTempl pSSFPluginTempl, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSFPluginTempl, cloneSession);
+        super.replaceParentInfo(pSSFPluginTempl, cloneSession);
         if (pSSFPluginTempl.getPSSFPluginId() != null && (iEntity = cloneSession.getEntity("PSSFPLUGIN", (Object)pSSFPluginTempl.getPSSFPluginId())) != null) {
             this.onFillParentInfo_PSSFPlugin(pSSFPluginTempl, (PSSFPlugin)iEntity);
         }
@@ -382,7 +382,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSFPluginTempl pSSFPluginTempl, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSFPluginTempl, bl);
+        super.onRemoveEntityUncopyValues(pSSFPluginTempl, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSFPluginTempl pSSFPluginTempl, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -412,7 +412,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
         if ((entityFieldError = this.onCheckField_TemplCode2(bl, pSSFPluginTempl, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSFPluginTempl, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSFPluginTempl, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSFPluginTempl pSSFPluginTempl, boolean bl2, boolean bl3) throws Exception {
@@ -425,7 +425,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSFPluginTempl, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSFPluginTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -450,7 +450,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFId_Default((IEntity)pSSFPluginTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFId_Default(pSSFPluginTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFID");
@@ -475,7 +475,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFName_Default((IEntity)pSSFPluginTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFName_Default(pSSFPluginTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFNAME");
@@ -500,7 +500,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFPluginId_Default((IEntity)pSSFPluginTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFPluginId_Default(pSSFPluginTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFPLUGINID");
@@ -525,7 +525,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFPluginTemplId_Default((IEntity)pSSFPluginTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFPluginTemplId_Default(pSSFPluginTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFPLUGINTEMPLID");
@@ -550,7 +550,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFPluginTemplName_Default((IEntity)pSSFPluginTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFPluginTemplName_Default(pSSFPluginTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFPLUGINTEMPLNAME");
@@ -575,7 +575,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode_Default((IEntity)pSSFPluginTempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode_Default(pSSFPluginTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE");
@@ -597,7 +597,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TemplCode2_Default((IEntity)pSSFPluginTempl, bl2, bl3);
+            string2 = this.onTestValueRule_TemplCode2_Default(pSSFPluginTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPLCODE2");
@@ -610,11 +610,11 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
     }
 
     protected void onSyncEntity(PSSFPluginTempl pSSFPluginTempl, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSFPluginTempl, bl);
+        super.onSyncEntity(pSSFPluginTempl, bl);
     }
 
     protected void onSyncIndexEntities(PSSFPluginTempl pSSFPluginTempl, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSFPluginTempl, bl);
+        super.onSyncIndexEntities(pSSFPluginTempl, bl);
     }
 
     public Object getDataContextValue(PSSFPluginTempl pSSFPluginTempl, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -622,7 +622,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSFPluginTempl, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSFPluginTempl, string, iDataContextParam)) != null) {
             return object;
         }
         PSSFPlugin pSSFPlugin = pSSFPluginTempl.getPSSFPlugin();
@@ -633,7 +633,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
     }
 
     protected void onExportMajorModel(PSSFPluginTempl pSSFPluginTempl, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSFPluginTempl, arrayList, n);
+        super.onExportMajorModel(pSSFPluginTempl, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -821,14 +821,14 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
 
     protected boolean onMergeChild(String string, String string2, PSSFPluginTempl pSSFPluginTempl) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSFPluginTempl)) {
+        if (super.onMergeChild(string, string2, pSSFPluginTempl)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSFPluginTempl pSSFPluginTempl) throws Exception {
-        super.onUpdateParent((IEntity)pSSFPluginTempl);
+        super.onUpdateParent(pSSFPluginTempl);
     }
 
     @Override
@@ -849,7 +849,7 @@ extends PSCoreSysServiceBase<PSSFPluginTempl> {
         PSSFPluginTempl pSSFPluginTempl2 = new PSSFPluginTempl();
         pSSFPluginTempl2.setPSSFPluginId(pSSFPluginTempl.getPSSFPluginId());
         pSSFPluginTempl2.setPSSFId(pSSFPluginTempl.getPSSFId());
-        if (this.selectOne((IEntity)pSSFPluginTempl2, true)) {
+        if (this.selectOne(pSSFPluginTempl2, true)) {
             return pSSFPluginTempl2.getPSSFPluginTemplId();
         }
         return super.getEntityFolderKeyValue(pSSFPluginTempl, pSSystem);

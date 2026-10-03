@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app.view;
 
-import net.ibizsys.model.app.view.IPSAppDERedirectView;
+/**
+ * 系统全部实体工作流视图重定向视图对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSAppDEWFDataRedirectView extends IPSAppDERedirectView {
 
-public interface IPSAppDEWFDataRedirectView
-extends IPSAppDERedirectView {
 }
-

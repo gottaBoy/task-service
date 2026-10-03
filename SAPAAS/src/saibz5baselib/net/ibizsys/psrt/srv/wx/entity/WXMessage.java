@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wx.entity;
 
-import net.ibizsys.psrt.srv.wx.entity.WXMessageBase;
+/**
+ * 实体[WXMessage] 数据对象
+ */
+//@Entity
+public class WXMessage extends WXMessageBase {
 
-public class WXMessage
-extends WXMessageBase {
+    public WXMessage() {
+        super();
+    }
+
 }
-

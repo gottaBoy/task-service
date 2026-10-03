@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.IMDCtrlHandler;
 
-public interface IMapHandler
-extends IMDCtrlHandler {
+/**
+ * 地图视图后台处理接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IMapHandler extends IMDCtrlHandler {
+	
+	
 }
-

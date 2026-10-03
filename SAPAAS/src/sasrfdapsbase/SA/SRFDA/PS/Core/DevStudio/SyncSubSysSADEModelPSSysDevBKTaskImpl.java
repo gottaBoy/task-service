@@ -105,7 +105,7 @@ extends PSSysDevBKTaskImplBase {
         PSSubSysServiceAPIService psSubSysServiceAPIService = (PSSubSysServiceAPIService)ServiceGlobal.getService(PSSubSysServiceAPIService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSubSysServiceAPI psSubSysServiceAPI2 = new PSSubSysServiceAPI();
         psSubSysServiceAPI2.setPSSubSysServiceAPIId(this.psSysDevBKTask.getTASKPARAM());
-        psSubSysServiceAPIService.get((IEntity)psSubSysServiceAPI2);
+        psSubSysServiceAPIService.get(psSubSysServiceAPI2);
         PSOpenAPI3SchemaModelImpl iPSOpenAPI3Schema = null;
         if (psSubSysServiceAPI2.getPSSysDynaModel() != null && StringHelper.compare((String)psSubSysServiceAPI2.getPSSysDynaModel().getDynaModelUsage(), (String)"OPENAPI3SCHEMA", (boolean)false) == 0) {
             IPSDevSlnSys iPSDevSlnSys = PSObjectFactory.getPSModelStorage().getPSDevSlnSys(this.getPSDevSlnSysId());
@@ -149,8 +149,8 @@ extends PSSysDevBKTaskImplBase {
         SessionFactory sessionFactory = PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId());
         PSDataEntityService psDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)sessionFactory);
         PSSubSysSADEService psSubSysSADEService = (PSSubSysSADEService)ServiceGlobal.getService(PSSubSysSADEService.class, (SessionFactory)sessionFactory);
-        ArrayList psDataEntityList = psDataEntityService.selectByPSSubSysServiceAPI((PSSubSysServiceAPIBase)psSubSysServiceAPI);
-        ArrayList psSubSysSADEList = psSubSysSADEService.selectByPSSubSysServiceAPI((PSSubSysServiceAPIBase)psSubSysServiceAPI);
+        ArrayList<PSDataEntity> psDataEntityList = psDataEntityService.selectByPSSubSysServiceAPI((PSSubSysServiceAPIBase)psSubSysServiceAPI);
+        ArrayList<PSSubSysSADE> psSubSysSADEList = psSubSysSADEService.selectByPSSubSysServiceAPI((PSSubSysServiceAPIBase)psSubSysServiceAPI);
         for (PSSubSysSADE psSubSysSADE : psSubSysSADEList) {
             String strSyncMode = psSubSysSADE.getSyncModelMode();
             if (StringHelper.compare((String)strSyncMode, (String)"FROMDE", (boolean)true) == 0 || StringHelper.compare((String)strSyncMode, (String)"TODE", (boolean)true) != 0) continue;
@@ -174,25 +174,25 @@ extends PSSysDevBKTaskImplBase {
         PSDEFieldService psDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)sessionFactory);
         PSDEActionService psDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)sessionFactory);
         PSDEDataSetService psDEDataSetService = (PSDEDataSetService)ServiceGlobal.getService(PSDEDataSetService.class, (SessionFactory)sessionFactory);
-        ArrayList psSubSysSADEFieldList = psSubSysSADE.getPSSubSysSADEFields();
-        ArrayList psDEFieldList = psDataEntity.getPSDEFields();
+        ArrayList<PSSubSysSADEField> psSubSysSADEFieldList = psSubSysSADE.getPSSubSysSADEFields();
+        ArrayList<PSDEField> psDEFieldList = psDataEntity.getPSDEFields();
         for (PSSubSysSADEField psSubSysSADEField : psSubSysSADEFieldList) {
             PSDEField psDEField2;
             if (!DataObject.getBoolValue((Integer)psSubSysSADEField.getValidFlag(), (boolean)true)) continue;
             boolean bCreate = true;
-            for (PSDEField psDEField2 : psDEFieldList) {
-                if (StringHelper.isNullOrEmpty((String)psDEField2.getPSSubSysSADEFieldId()) || StringHelper.compare((String)psDEField2.getPSSubSysSADEFieldId(), (String)psSubSysSADEField.getPSSubSysSADEFieldId(), (boolean)false) != 0) continue;
+            for (PSDEField psExistingDEField : psDEFieldList) {
+                if (StringHelper.isNullOrEmpty((String)psExistingDEField.getPSSubSysSADEFieldId()) || StringHelper.compare((String)psExistingDEField.getPSSubSysSADEFieldId(), (String)psSubSysSADEField.getPSSubSysSADEFieldId(), (boolean)false) != 0) continue;
                 bCreate = false;
                 break;
             }
             if (!bCreate) continue;
-            for (PSDEField psDEField2 : psDEFieldList) {
-                if (!StringHelper.isNullOrEmpty((String)psDEField2.getPSSubSysSADEFieldId()) || StringHelper.compare((String)psDEField2.getPSDEFieldName(), (String)psSubSysSADEField.getPSSubSysSADEFieldName(), (boolean)true) != 0) continue;
+            for (PSDEField psExistingDEField : psDEFieldList) {
+                if (!StringHelper.isNullOrEmpty((String)psExistingDEField.getPSSubSysSADEFieldId()) || StringHelper.compare((String)psExistingDEField.getPSDEFieldName(), (String)psSubSysSADEField.getPSSubSysSADEFieldName(), (boolean)true) != 0) continue;
                 PSDEField psDEField22 = new PSDEField();
-                psDEField22.setPSDEFieldId(psDEField2.getPSDEFieldId());
+                psDEField22.setPSDEFieldId(psExistingDEField.getPSDEFieldId());
                 psDEField22.setPSSubSysSADEFieldId(psSubSysSADEField.getPSSubSysSADEFieldId());
-                psDEFieldService.sysUpdate((IEntity)psDEField22, false);
-                sBuilderEx.append(StringHelper.format((String)"\u5b9e\u4f53[%1$s]\u7ed1\u5b9a\u5c5e\u6027[%2$s]\r\n", (Object)psDataEntity.getPSDataEntityName(), (Object)psDEField2.getPSDEFieldName()));
+                psDEFieldService.sysUpdate(psDEField22, false);
+                sBuilderEx.append(StringHelper.format((String)"\u5b9e\u4f53[%1$s]\u7ed1\u5b9a\u5c5e\u6027[%2$s]\r\n", (Object)psDataEntity.getPSDataEntityName(), (Object)psExistingDEField.getPSDEFieldName()));
                 bCreate = false;
                 break;
             }
@@ -226,30 +226,30 @@ extends PSSysDevBKTaskImplBase {
             psDEField2.setLength(psSubSysSADEField.getLength());
             psDEField2.setPrecision2(psSubSysSADEField.getPrecision2());
             psDEField2.setOrderValue(psSubSysSADEField.getOrderValue());
-            psDEFieldService.create((IEntity)psDEField2, false);
+            psDEFieldService.create(psDEField2, false);
             sBuilderEx.append(StringHelper.format((String)"\u5b9e\u4f53[%1$s]\u5efa\u7acb\u5c5e\u6027[%2$s]\r\n", (Object)psDataEntity.getPSDataEntityName(), (Object)psDEField2.getPSDEFieldName()));
             PSSysModelInstGlobal.active((String)this.getPSSysModelInstId());
         }
-        ArrayList psSubSysSADetailList = psSubSysSADE.getPSSubSysSADetails();
-        ArrayList psDEActionList = psDataEntity.getPSDEActions();
-        ArrayList psDEDataSetList = psDataEntity.getPSDEDataSets();
+        ArrayList<PSSubSysSADetail> psSubSysSADetailList = psSubSysSADE.getPSSubSysSADetails();
+        ArrayList<PSDEAction> psDEActionList = psDataEntity.getPSDEActions();
+        ArrayList<PSDEDataSet> psDEDataSetList = psDataEntity.getPSDEDataSets();
         for (PSSubSysSADetail psSubSysSADetail : psSubSysSADetailList) {
             PSDEAction psDEAction2;
             if (!DataObject.getBoolValue((Integer)psSubSysSADetail.getValidFlag(), (boolean)true) || StringHelper.compare((String)psSubSysSADetail.getDetailType(), (String)"DEACTION", (boolean)false) != 0) continue;
             boolean bCreate = true;
-            for (PSDEAction psDEAction2 : psDEActionList) {
-                if (StringHelper.isNullOrEmpty((String)psDEAction2.getPSSubSysSADetailId()) || StringHelper.compare((String)psDEAction2.getPSSubSysSADetailId(), (String)psSubSysSADetail.getPSSubSysSADetailId(), (boolean)false) != 0) continue;
+            for (PSDEAction psExistingDEAction : psDEActionList) {
+                if (StringHelper.isNullOrEmpty((String)psExistingDEAction.getPSSubSysSADetailId()) || StringHelper.compare((String)psExistingDEAction.getPSSubSysSADetailId(), (String)psSubSysSADetail.getPSSubSysSADetailId(), (boolean)false) != 0) continue;
                 bCreate = false;
                 break;
             }
             if (!bCreate) continue;
-            for (PSDEAction psDEAction2 : psDEActionList) {
-                if (!StringHelper.isNullOrEmpty((String)psDEAction2.getPSSubSysSADetailId()) || StringHelper.compare((String)psDEAction2.getCodeName(), (String)psSubSysSADetail.getCodeName(), (boolean)true) != 0) continue;
+            for (PSDEAction psExistingDEAction : psDEActionList) {
+                if (!StringHelper.isNullOrEmpty((String)psExistingDEAction.getPSSubSysSADetailId()) || StringHelper.compare((String)psExistingDEAction.getCodeName(), (String)psSubSysSADetail.getCodeName(), (boolean)true) != 0) continue;
                 PSDEAction psDEAction22 = new PSDEAction();
-                psDEAction22.setPSDEActionId(psDEAction2.getPSDEActionId());
+                psDEAction22.setPSDEActionId(psExistingDEAction.getPSDEActionId());
                 psDEAction22.setPSSubSysSADetailId(psSubSysSADetail.getPSSubSysSADetailId());
-                psDEActionService.sysUpdate((IEntity)psDEAction22, false);
-                sBuilderEx.append(StringHelper.format((String)"\u5b9e\u4f53[%1$s]\u7ed1\u5b9a\u884c\u4e3a[%2$s]\r\n", (Object)psDataEntity.getPSDataEntityName(), (Object)psDEAction2.getPSDEActionName()));
+                psDEActionService.sysUpdate(psDEAction22, false);
+                sBuilderEx.append(StringHelper.format((String)"\u5b9e\u4f53[%1$s]\u7ed1\u5b9a\u884c\u4e3a[%2$s]\r\n", (Object)psDataEntity.getPSDataEntityName(), (Object)psExistingDEAction.getPSDEActionName()));
                 bCreate = false;
                 break;
             }
@@ -262,7 +262,7 @@ extends PSSysDevBKTaskImplBase {
             psDEAction2.setCodeName(psSubSysSADetail.getCodeName());
             psDEAction2.setPSSubSysSADetailId(psSubSysSADetail.getPSSubSysSADetailId());
             psDEAction2.setActionType("USERCUSTOM");
-            psDEActionService.create((IEntity)psDEAction2, false);
+            psDEActionService.create(psDEAction2, false);
             sBuilderEx.append(StringHelper.format((String)"\u5b9e\u4f53[%1$s]\u5efa\u7acb\u884c\u4e3a[%2$s]\r\n", (Object)psDataEntity.getPSDataEntityName(), (Object)psDEAction2.getPSDEActionName()));
             PSSysModelInstGlobal.active((String)this.getPSSysModelInstId());
         }
@@ -270,19 +270,19 @@ extends PSSysDevBKTaskImplBase {
             PSDEDataSet psDEDataSet2;
             if (!DataObject.getBoolValue((Integer)psSubSysSADetail.getValidFlag(), (boolean)true) || StringHelper.compare((String)psSubSysSADetail.getDetailType(), (String)"FETCH", (boolean)false) != 0 || StringHelper.isNullOrEmpty((String)psSubSysSADetail.getCodeName2())) continue;
             boolean bCreate = true;
-            for (PSDEDataSet psDEDataSet2 : psDEDataSetList) {
-                if (StringHelper.isNullOrEmpty((String)psDEDataSet2.getPSSubSysSADetailId()) || StringHelper.compare((String)psDEDataSet2.getPSSubSysSADetailId(), (String)psSubSysSADetail.getPSSubSysSADetailId(), (boolean)false) != 0) continue;
+            for (PSDEDataSet psExistingDEDataSet : psDEDataSetList) {
+                if (StringHelper.isNullOrEmpty((String)psExistingDEDataSet.getPSSubSysSADetailId()) || StringHelper.compare((String)psExistingDEDataSet.getPSSubSysSADetailId(), (String)psSubSysSADetail.getPSSubSysSADetailId(), (boolean)false) != 0) continue;
                 bCreate = false;
                 break;
             }
             if (!bCreate) continue;
-            for (PSDEDataSet psDEDataSet2 : psDEDataSetList) {
-                if (!StringHelper.isNullOrEmpty((String)psDEDataSet2.getPSSubSysSADetailId()) || StringHelper.compare((String)psDEDataSet2.getCodeName(), (String)psSubSysSADetail.getCodeName2(), (boolean)true) != 0) continue;
+            for (PSDEDataSet psExistingDEDataSet : psDEDataSetList) {
+                if (!StringHelper.isNullOrEmpty((String)psExistingDEDataSet.getPSSubSysSADetailId()) || StringHelper.compare((String)psExistingDEDataSet.getCodeName(), (String)psSubSysSADetail.getCodeName2(), (boolean)true) != 0) continue;
                 PSDEDataSet psDEDataSet22 = new PSDEDataSet();
-                psDEDataSet22.setPSDEDataSetId(psDEDataSet2.getPSDEDataSetId());
+                psDEDataSet22.setPSDEDataSetId(psExistingDEDataSet.getPSDEDataSetId());
                 psDEDataSet22.setPSSubSysSADetailId(psSubSysSADetail.getPSSubSysSADetailId());
-                psDEDataSetService.sysUpdate((IEntity)psDEDataSet22, false);
-                sBuilderEx.append(StringHelper.format((String)"\u5b9e\u4f53[%1$s]\u7ed1\u5b9a\u6570\u636e\u96c6[%2$s]\r\n", (Object)psDataEntity.getPSDataEntityName(), (Object)psDEDataSet2.getPSDEDataSetName()));
+                psDEDataSetService.sysUpdate(psDEDataSet22, false);
+                sBuilderEx.append(StringHelper.format((String)"\u5b9e\u4f53[%1$s]\u7ed1\u5b9a\u6570\u636e\u96c6[%2$s]\r\n", (Object)psDataEntity.getPSDataEntityName(), (Object)psExistingDEDataSet.getPSDEDataSetName()));
                 bCreate = false;
                 break;
             }
@@ -294,7 +294,7 @@ extends PSSysDevBKTaskImplBase {
             psDEDataSet2.setLogicName(psSubSysSADetail.getPSSubSysSADetailName());
             psDEDataSet2.setCodeName(psSubSysSADetail.getCodeName2());
             psDEDataSet2.setPSSubSysSADetailId(psSubSysSADetail.getPSSubSysSADetailId());
-            psDEDataSetService.create((IEntity)psDEDataSet2, false);
+            psDEDataSetService.create(psDEDataSet2, false);
             sBuilderEx.append(StringHelper.format((String)"\u5b9e\u4f53[%1$s]\u5efa\u7acb\u6570\u636e\u96c6[%2$s]\r\n", (Object)psDataEntity.getPSDataEntityName(), (Object)psDEDataSet2.getPSDEDataSetName()));
             PSSysModelInstGlobal.active((String)this.getPSSysModelInstId());
         }
@@ -310,13 +310,13 @@ extends PSSysDevBKTaskImplBase {
         }
         SessionFactory sessionFactory = PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId());
         PSSubSysSADEService psSubSysSADEService = (PSSubSysSADEService)ServiceGlobal.getService(PSSubSysSADEService.class, (SessionFactory)sessionFactory);
-        ArrayList psSubSysSADEList = psSubSysSADEService.selectByPSSubSysServiceAPI((PSSubSysServiceAPIBase)psSubSysServiceAPI);
+        ArrayList<PSSubSysSADE> psSubSysSADEList = psSubSysSADEService.selectByPSSubSysServiceAPI((PSSubSysServiceAPIBase)psSubSysServiceAPI);
         HashMap<String, PSSubSysSADE> psSubSysSADEMap = new HashMap<String, PSSubSysSADE>();
         for (PSSubSysSADE psSubSysSADE : psSubSysSADEList) {
             psSubSysSADEMap.put(psSubSysSADE.getPSSubSysSADEName().toUpperCase(), psSubSysSADE);
         }
         PSSubSysSADEFieldService psSubSysSADEFieldService = (PSSubSysSADEFieldService)ServiceGlobal.getService(PSSubSysSADEFieldService.class, (SessionFactory)sessionFactory);
-        ArrayList psSubSysSADEFieldList = psSubSysSADEFieldService.select((ISelectCond)new SelectCond());
+        ArrayList<PSSubSysSADEField> psSubSysSADEFieldList = psSubSysSADEFieldService.select((ISelectCond)new SelectCond());
         if (iPSOpenAPI3JsonNodeSchemas != null && iPSOpenAPI3JsonNodeSchemas.getItemNames() != null) {
             IPSJsonObjectSchema iPSJsonObjectSchema;
             IPSJsonNodeSchema iPSJsonNodeSchema;
@@ -337,7 +337,7 @@ extends PSSysDevBKTaskImplBase {
                 psSubSysSADE.setSyncModelMode("TODE");
                 psSubSysSADE.setPSSubSysServiceAPIId(psSubSysServiceAPI.getPSSubSysServiceAPIId());
                 try {
-                    psSubSysSADEService.create((IEntity)psSubSysSADE);
+                    psSubSysSADEService.create(psSubSysSADE);
                     psSubSysSADEMap.put(psSubSysSADE.getPSSubSysSADEName().toUpperCase(), psSubSysSADE);
                     sb.append(StringHelper.format((String)"\u5efa\u7acb\u5916\u90e8\u63a5\u53e3\u5b9e\u4f53[%1$s]\r\n", (Object)strName));
                 }
@@ -380,7 +380,7 @@ extends PSSysDevBKTaskImplBase {
                         StringHelper.compare((String)strType, (String)"object", (boolean)false);
                     }
                     try {
-                        psSubSysSADEFieldService.create((IEntity)psSubSysSADEField);
+                        psSubSysSADEFieldService.create(psSubSysSADEField);
                         sb.append(StringHelper.format((String)"\u5efa\u7acb\u5916\u90e8\u63a5\u53e3\u5b9e\u4f53[%1$s]\u5c5e\u6027[%2$s]\r\n", (Object)strName, (Object)strField));
                     }
                     catch (Exception ex) {
@@ -391,7 +391,7 @@ extends PSSysDevBKTaskImplBase {
         }
         if ((iPSOpenAPI3Paths = iPSOpenAPI3Schema.getPSOpenAPI3Paths()) != null && iPSOpenAPI3Paths.getItemNames() != null) {
             PSSubSysSADetailService psSubSysSADetailService = (PSSubSysSADetailService)ServiceGlobal.getService(PSSubSysSADetailService.class, (SessionFactory)sessionFactory);
-            ArrayList psSubSysSADetailList = psSubSysSADetailService.selectByPSSubSysServiceAPI((PSSubSysServiceAPIBase)psSubSysServiceAPI);
+            ArrayList<PSSubSysSADetail> psSubSysSADetailList = psSubSysSADetailService.selectByPSSubSysServiceAPI((PSSubSysServiceAPIBase)psSubSysServiceAPI);
             HashMap<String, PSSubSysSADetail> psSubSysSADetailMap = new HashMap<String, PSSubSysSADetail>();
             HashMap psCodeNameMap = new HashMap();
             for (PSSubSysSADetail psSubSysSADetail : psSubSysSADetailList) {
@@ -445,7 +445,7 @@ extends PSSysDevBKTaskImplBase {
                     psSubSysSADetail.setMemo(iPSOpenAPI3Path.getDescription());
                     psSubSysSADetail.setPSSubSysServiceAPIId(psSubSysServiceAPI.getPSSubSysServiceAPIId());
                     try {
-                        psSubSysSADetailService.create((IEntity)psSubSysSADetail);
+                        psSubSysSADetailService.create(psSubSysSADetail);
                         psSubSysSADetailMap.put(strKey.toUpperCase(), psSubSysSADetail);
                         if (!StringHelper.isNullOrEmpty((String)psSubSysSADetail.getCodeName())) {
                             psCodeNameMap.put(psSubSysSADetail.getCodeName().toUpperCase(), null);

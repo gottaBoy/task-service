@@ -1,19 +1,40 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
-import net.ibizsys.paas.db.ISelectFilter;
 import net.ibizsys.paas.entity.IEntity;
 
-public interface ISelectCond
-extends IEntity {
-    public String getOrderInfo();
+/**
+ * 简单查询条件对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface ISelectCond extends IEntity {
+	/**
+	 * 获取排序信息
+	 * 
+	 * @return
+	 */
+	String getOrderInfo();
 
-    public boolean isFetchFirst();
+	/**
+	 * 只获取第一行
+	 * 
+	 * @return
+	 */
+	boolean isFetchFirst();
 
-    public int getMaxRowCount();
-
-    public ISelectFilter getSelectFilter();
+	/**
+	 * 设置最大行记录
+	 * 
+	 * @return
+	 */
+	int getMaxRowCount();
+	
+	
+	
+	/**
+	 * 获取过滤条件
+	 * @return
+	 */
+	ISelectFilter getSelectFilter();
 }
-

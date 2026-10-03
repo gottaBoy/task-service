@@ -1,19 +1,30 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.appmodel.AppViewModel
- */
 package net.ibizsys.ssdyna.core;
 
-import java.util.Iterator;
 import net.ibizsys.paas.appmodel.AppViewModel;
-import net.ibizsys.ssdyna.core.IDynaDEViewTempl;
 
-public interface IDynaDEViewTemplModel
-extends IDynaDEViewTempl {
-    public void registerAppDynaDEView(String var1, String var2, String var3, Object var4) throws Exception;
+/**
+ * 动态实体视图模板对象模型接口
+ * @author Administrator
+ *
+ */
+public interface IDynaDEViewTemplModel extends IDynaDEViewTempl {
 
-    public Iterator<AppViewModel> getAppDynaDEViews();
+	/**
+	 * 注册应用动态实体视图
+	 * @param strAppId
+	 * @param strAppViewId
+	 * @param strUrl
+	 * @param userData
+	 * @throws Exception
+	 */
+	void registerAppDynaDEView(String strAppId,String strAppViewId,String strUrl,Object userData) throws Exception;
+	
+	
+	
+	
+	/**
+	 * 获取应用视图集合
+	 * @return
+	 */
+	java.util.Iterator<AppViewModel> getAppDynaDEViews();
 }
-

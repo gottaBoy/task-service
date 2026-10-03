@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dynasys.demodel.PSDynaCodeListDEModelBase;
 
 public class PSDynaCodeListDEModel
 extends PSDynaCodeListDEModelBase {
+
+    public PSDynaCodeListDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

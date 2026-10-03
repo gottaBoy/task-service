@@ -23,8 +23,6 @@ extends BaseService {
 
     protected CallResult OnInit() {
         CallResult callResult = super.OnInit();
-        this.eaiServiceMgr = new EAIServiceMgr(this.iDAGlobalHelper);
-        this.iDAGlobalHelper.SetGlobalValue(TAG_SRFDAEAISERVICEMGR, (Object)this.eaiServiceMgr);
         String strConfigPath = this.GetServiceParam(TAG_CONFIGPATH);
         if (StringHelper.IsNullOrEmpty((String)strConfigPath)) {
             callResult.setRetCode(1);
@@ -42,6 +40,7 @@ extends BaseService {
         this.eaiServiceMgr.setConfigPath(strConfigPath);
         this.eaiServiceMgr.setEAICommand(strEAICommand);
         this.eaiServiceMgr.setEAIDataCtrl(this.GetServiceParam(TAG_EAIDATACTRL));
+        this.iDAGlobalHelper.SetGlobalValue(TAG_SRFDAEAISERVICEMGR, (Object)this.eaiServiceMgr);
         return callResult;
     }
 
@@ -75,4 +74,3 @@ extends BaseService {
         return super.OnStop();
     }
 }
-

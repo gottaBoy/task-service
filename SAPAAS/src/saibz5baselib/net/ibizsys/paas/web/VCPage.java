@@ -1,104 +1,180 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.servlet.jsp.PageContext
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.web;
 
 import javax.servlet.jsp.PageContext;
+
 import net.ibizsys.paas.appmodel.IApplicationModel;
 import net.ibizsys.paas.controller.IDynaViewController;
 import net.ibizsys.paas.controller.IViewController;
 import net.ibizsys.paas.controller.ViewControllerGlobal;
+import net.ibizsys.paas.core.Errors;
 import net.ibizsys.paas.ctrlmodel.IAppMenuModel;
 import net.ibizsys.paas.ctrlmodel.ICtrlModel;
+import net.ibizsys.paas.demodel.IDataEntityModel;
 import net.ibizsys.paas.util.JSONObjectHelper;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.paas.web.Page;
 import net.sf.json.JSONObject;
 
-public class VCPage
-extends Page {
-    private static final JSONObject EMPTYJSON = new JSONObject();
-    private IViewController iViewController = null;
+/**
+ * 视图控制器页面对象
+ * 
+ * @author Administrator
+ *
+ */
+public class VCPage extends Page {
+	/**
+	 * 
+	 */
+	private final static JSONObject EMPTYJSON = new JSONObject();
 
-    public final boolean init(PageContext context, String strViewControllerId) throws Exception {
-        if (this.iViewController == null) {
-            this.iViewController = ViewControllerGlobal.getViewController(strViewControllerId);
-            this.iViewController.prepareViewController();
-            this.setAccessUserMode(this.iViewController.getAccessUserMode());
-            this.setAccessKey(this.iViewController.getAccessKey());
-        }
-        boolean bRet = this.init(context);
-        if (this.iViewController instanceof IDynaViewController && ((IDynaViewController)this.iViewController).isEnableDynaView()) {
-            ((IDynaViewController)this.iViewController).prepareDynaViewControllerInst();
-        }
-        return bRet;
-    }
+	/**
+	 * 视图控制类
+	 */
+	private IViewController iViewController = null;
 
-    @Override
-    protected void onInit() throws Exception {
-        super.onInit();
-    }
+	
+	
+	
+	/**
+	 * 初始化页面对象
+	 * 
+	 * @param context
+	 */
+	final public boolean init(PageContext context, String strViewControllerId) throws Exception {
+		if (iViewController == null) {
+			iViewController = ViewControllerGlobal.getViewController(strViewControllerId);
+			iViewController.prepareViewController();
+			this.setAccessUserMode(iViewController.getAccessUserMode());
+			this.setAccessKey(iViewController.getAccessKey());
+		}
+		boolean bRet = init(context);
+		if(iViewController instanceof IDynaViewController){
+			if(((IDynaViewController)iViewController).isEnableDynaView()){
+				((IDynaViewController)iViewController).prepareDynaViewControllerInst();
+			}
+		}
+		return bRet;
+	}
 
-    public IViewController getViewController() {
-        return this.iViewController;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.web.Page#onInit()
+	 */
+	@Override
+	protected void onInit() throws Exception {
+		super.onInit();
+	}
 
-    public IAppMenuModel getAppMenuModel() throws Exception {
-        return this.getApplicationModel().getAppMenuModel(this.getWebContext().getCurUserMode());
-    }
+	/**
+	 * 获取视图控制类
+	 * 
+	 * @return
+	 */
+	public IViewController getViewController() {
+		return this.iViewController;
+	}
 
-    public ICtrlModel getCtrlModel(String strName) throws Exception {
-        return this.getViewController().getCtrlModel(strName);
-    }
+	/**
+	 * 获取当前应用菜单模型
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public IAppMenuModel getAppMenuModel() throws Exception {
+		return this.getApplicationModel().getAppMenuModel(this.getWebContext().getCurUserMode());
+	}
 
-    public JSONObject getParentData() {
-        String strParentData = this.getWebContext().getParamValue("SRFPARENTDATA");
-        if (!StringHelper.isNullOrEmpty(strParentData)) {
-            return JSONObjectHelper.fromString(strParentData);
-        }
-        return EMPTYJSON;
-    }
+	/**
+	 * 获取控件模型
+	 * 
+	 * @param strName
+	 * @return
+	 * @throws Exception
+	 */
+	public ICtrlModel getCtrlModel(String strName) throws Exception {
+		return getViewController().getCtrlModel(strName);
+	}
 
-    public JSONObject getParentMode() {
-        String strParentMode = this.getWebContext().getParamValue("SRFPARENTMODE");
-        if (!StringHelper.isNullOrEmpty(strParentMode)) {
-            return JSONObjectHelper.fromString(strParentMode);
-        }
-        return EMPTYJSON;
-    }
+	/**
+	 * 获取传入的父数据对象
+	 * 
+	 * @return
+	 */
+	public JSONObject getParentData() {
+		String strParentData = this.getWebContext().getParamValue(WebContext.PARAM_PARENTDATA);
+		if (!StringHelper.isNullOrEmpty(strParentData)) {
+			return JSONObjectHelper.fromString(strParentData);
+		}
+		return EMPTYJSON;
+	}
 
-    @Override
-    protected IApplicationModel getApplicationModel() throws Exception {
-        return this.getViewController().getAppModel();
-    }
+	/**
+	 * 获取传入的父数据模式
+	 * 
+	 * @return
+	 */
+	public JSONObject getParentMode() {
+		String strParentMode = this.getWebContext().getParamValue(WebContext.PARAM_PARENTMODE);
+		if (!StringHelper.isNullOrEmpty(strParentMode)) {
+			return JSONObjectHelper.fromString(strParentMode);
+		}
+		return EMPTYJSON;
+	}
 
-    @Override
-    protected String mapRealPageUrl(String strPageUrl) throws Exception {
-        if (strPageUrl.charAt(0) == '/') {
-            return "../.." + strPageUrl;
-        }
-        return strPageUrl;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.web.Page#getApplicationModel()
+	 */
+	@Override
+	protected IApplicationModel getApplicationModel() throws Exception {
+		return getViewController().getAppModel();
+	}
 
-    public boolean testDEDataAccessAction(String strAction) throws Exception {
-        return this.getViewController().testDEDataAccessAction(null, null, strAction, true).getRetCode() == 0;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.web.Page#mapRealPageUrl(java.lang.String)
+	 */
+	@Override
+	protected String mapRealPageUrl(String strPageUrl) throws Exception {
+		if (strPageUrl.charAt(0) == '/') {
+			return "../.." + strPageUrl;
+		}
+		return strPageUrl;
+	}
+	
+	
+	/**
+	 * 测试实体数据操作标识
+	 * @param strAction
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean testDEDataAccessAction(String strAction) throws Exception {
+		return getViewController().testDEDataAccessAction(null, null, strAction, true).getRetCode() == Errors.OK;
+	}
+	
+	
+	
+	
+	
+	@Override
+	public boolean isShowAction(String strActionPrivTag) throws Exception{
+		if(!StringHelper.isNullOrEmpty(strActionPrivTag)){
+			String strDataTarget = getViewController().getDEModel().getDEOPPrivTarget(strActionPrivTag);
+			if(StringHelper.compare(strDataTarget, IDataEntityModel.DEOPPRIVTARGET_NONE,false) == 0){
+				return testDEDataAccessAction(strActionPrivTag);
+			}
+		}
+		return super.isShowAction(strActionPrivTag);
+	}
 
-    @Override
-    public boolean isShowAction(String strActionPrivTag) throws Exception {
-        String strDataTarget;
-        if (!StringHelper.isNullOrEmpty(strActionPrivTag) && StringHelper.compare(strDataTarget = this.getViewController().getDEModel().getDEOPPrivTarget(strActionPrivTag), "NONE", false) == 0) {
-            return this.testDEDataAccessAction(strActionPrivTag);
-        }
-        return super.isShowAction(strActionPrivTag);
-    }
-
-    public static VCPage getCurrentVCPage() {
-        return (VCPage)Page.getCurrent();
-    }
+	/**
+	 * 获取当前VC页面
+	 * @return
+	 */
+	public static VCPage getCurrentVCPage(){
+		return (VCPage) Page.getCurrent();
+	}
 }
-

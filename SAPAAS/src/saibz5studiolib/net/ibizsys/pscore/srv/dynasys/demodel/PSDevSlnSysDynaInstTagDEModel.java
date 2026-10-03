@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dynasys.demodel.PSDevSlnSysDynaInstTagDEModelBase;
 
 public class PSDevSlnSysDynaInstTagDEModel
 extends PSDevSlnSysDynaInstTagDEModelBase {
+
+    public PSDevSlnSysDynaInstTagDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

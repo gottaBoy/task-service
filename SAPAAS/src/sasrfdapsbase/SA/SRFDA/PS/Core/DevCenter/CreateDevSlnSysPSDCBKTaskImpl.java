@@ -79,7 +79,7 @@ extends PSDevCenterBKTaskImplBase {
             psDevSlnSys.set("dstpssysmodelinstid", (Object)strDstPSSysModelInstId);
         }
         this.updatePSDCBKTaskStep("\u6b63\u5728\u521b\u5efa\u7cfb\u7edf", 300, 300);
-        psDevSlnSysService.create((IEntity)psDevSlnSys);
+        psDevSlnSysService.create(psDevSlnSys);
         SessionFactory sessionFactory = PSSysModelInstGlobal.getSessionFactory((String)psDevSlnSys.getPSSysModelInstId());
         PSDevSln psDevSln = psDevSlnSys.getPSDevSln();
         PSDevSlnSysVerService psDevSlnSysVerService = (PSDevSlnSysVerService)ServiceGlobal.getService(PSDevSlnSysVerService.class);
@@ -93,7 +93,7 @@ extends PSDevCenterBKTaskImplBase {
         psDevSlnSysVer.setPSDevSlnSysName(psDevSlnSys.getPSDevSlnSysName());
         psDevSlnSysVer.setPSDevSlnSysVerId(psDevSlnSys.getPSDevSlnSysId());
         psDevSlnSysVer.setMemo("\u9ed8\u8ba4\u7248\u672c");
-        psDevSlnSysVerService.create((IEntity)psDevSlnSysVer);
+        psDevSlnSysVerService.create(psDevSlnSysVer);
         this.updatePSDCBKTaskRemainingTime(180);
         this.executeInitSysModelTask(psDevSlnSys);
         this.updatePSDCBKTaskRemainingTime(120);
@@ -124,7 +124,7 @@ extends PSDevCenterBKTaskImplBase {
         psSysDevBKTask.setPSTaskServerId(this.getPSTaskServerEnv().getId());
         psSysDevBKTask.setPSTaskServerName(this.getPSTaskServerEnv().getName());
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        psSysDevBKTaskService.create(psSysDevBKTask);
         this.runPSSysDevBKTask(iPSDevSlnSys, psSysDevBKTask);
     }
 
@@ -136,7 +136,7 @@ extends PSDevCenterBKTaskImplBase {
         IPSSystem iPSSystem = iPSDevSlnSys.getPSSystem(false);
         PSSystem psSystem = new PSSystem();
         psSystem.setPSSystemId(psDevSlnSys.getPSSystemId());
-        ArrayList psSystemDBCfgList = psSystemDBCfgService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSystemDBCfg> psSystemDBCfgList = psSystemDBCfgService.selectByPSSystem((PSSystemBase)psSystem);
         IPSDBDevInst jitPSDBDevInst = iPSSystem.getJITPSDBDevInst();
         for (PSSystemDBCfg psSystemDBConfig2 : psSystemDBCfgList) {
             if (StringHelper.IsNullOrEmpty((String)psSystemDBConfig2.getPSDBDevInstId()) && (jitPSDBDevInst == null || StringHelper.Compare((String)jitPSDBDevInst.getDBType(), (String)psSystemDBConfig2.getPSSystemDBCfgName(), (boolean)false) != 0)) continue;
@@ -156,7 +156,7 @@ extends PSDevCenterBKTaskImplBase {
             psSysDevBKTask.setPSTaskServerId(this.getPSTaskServerEnv().getId());
             psSysDevBKTask.setPSTaskServerName(this.getPSTaskServerEnv().getName());
             psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-            psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+            psSysDevBKTaskService.create(psSysDevBKTask);
             this.runPSSysDevBKTask(iPSDevSlnSys, psSysDevBKTask);
         }
         for (PSSystemDBCfg psSystemDBConfig2 : psSystemDBCfgList) {
@@ -177,7 +177,7 @@ extends PSDevCenterBKTaskImplBase {
             psSysDevBKTask.setPSTaskServerId(this.getPSTaskServerEnv().getId());
             psSysDevBKTask.setPSTaskServerName(this.getPSTaskServerEnv().getName());
             psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-            psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+            psSysDevBKTaskService.create(psSysDevBKTask);
             this.runPSSysDevBKTask(iPSDevSlnSys, psSysDevBKTask);
         }
     }
@@ -207,8 +207,7 @@ extends PSDevCenterBKTaskImplBase {
         psSysDevBKTask.setPSTaskServerId(this.getPSTaskServerEnv().getId());
         psSysDevBKTask.setPSTaskServerName(this.getPSTaskServerEnv().getName());
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        psSysDevBKTaskService.create(psSysDevBKTask);
         this.runPSSysDevBKTask(iPSDevSlnSys, psSysDevBKTask);
     }
 }
-

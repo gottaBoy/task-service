@@ -39,7 +39,7 @@ extends BaseMainPage {
     }
 
     public String OutputIconView() {
-        Vector list;
+        Vector<DEDCProcType> list;
         IDEDCProcTypeDataCtrl procTypeDataCtrl = (IDEDCProcTypeDataCtrl)this.getDAModelStorage().FindDEDataCtrl("DE0213", (ISRFDAWebContext)this.getWebContext());
         CallResult callResult = procTypeDataCtrl.GetProcessTypes(list = new Vector());
         if (callResult.IsError()) {

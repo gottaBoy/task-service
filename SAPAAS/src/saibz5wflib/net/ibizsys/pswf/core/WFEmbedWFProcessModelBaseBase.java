@@ -1,60 +1,82 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.pswf.core.IWFLinkModel
- */
 package net.ibizsys.pswf.core;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.pswf.core.IWFEmbedWFProcessModelBase;
-import net.ibizsys.pswf.core.IWFEmbedWFReturnModel;
-import net.ibizsys.pswf.core.IWFLinkModel;
-import net.ibizsys.pswf.core.IWFProcSubWFModel;
-import net.ibizsys.pswf.core.WFProcessModelBase;
+                       
+/**
+ * 嵌入流程处理基类
+ * @author Administrator
+ *
+ */
+public  abstract class WFEmbedWFProcessModelBaseBase extends WFProcessModelBase implements IWFEmbedWFProcessModelBase
+{
+	
+	private ArrayList<IWFEmbedWFReturnModel> wfEmbedWFReturnModelList = new ArrayList<IWFEmbedWFReturnModel>();
+	private HashMap<String, IWFEmbedWFReturnModel> wfEmbedWFReturnModelMap = new HashMap<String, IWFEmbedWFReturnModel>();
+	private ArrayList<IWFProcSubWFModel> wfProcSubWFModelList = new ArrayList<IWFProcSubWFModel>();
+	
+	
+	
 
-public abstract class WFEmbedWFProcessModelBaseBase
-extends WFProcessModelBase
-implements IWFEmbedWFProcessModelBase {
-    private ArrayList<IWFEmbedWFReturnModel> wfEmbedWFReturnModelList = new ArrayList();
-    private HashMap<String, IWFEmbedWFReturnModel> wfEmbedWFReturnModelMap = new HashMap();
-    private ArrayList<IWFProcSubWFModel> wfProcSubWFModelList = new ArrayList();
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.WFProcessModelBase#registerWFLinkModel(net.ibizsys.pswf.core.IWFLinkModel)
+	 */
+	@Override
+	public void registerWFLinkModel(IWFLinkModel iWFLinkModel) throws Exception
+	{
+		super.registerWFLinkModel(iWFLinkModel);
+		if(iWFLinkModel instanceof IWFEmbedWFReturnModel)
+		{
+			IWFEmbedWFReturnModel iWFEmbedWFReturnModel = (IWFEmbedWFReturnModel)iWFLinkModel;
+			wfEmbedWFReturnModelList.add(iWFEmbedWFReturnModel);
+			wfEmbedWFReturnModelMap.put(iWFEmbedWFReturnModel.getReturnValue(), iWFEmbedWFReturnModel);
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFEmbedWFProcessModelBase#getWFEmbedWFReturnModelByValue(java.lang.String, boolean)
+	 */
+	@Override
+	public IWFEmbedWFReturnModel getWFEmbedWFReturnModelByValue(String strValue,boolean bTryMode) throws Exception
+	{
+		IWFEmbedWFReturnModel iWFEmbedWFReturnModel = wfEmbedWFReturnModelMap.get(strValue);
+		if(iWFEmbedWFReturnModel == null &&!bTryMode)
+		{
+			throw new Exception(StringHelper.format("无法获取指定嵌入流程返回连接，返回值为[%1$s]",strValue));
+		}
+		return iWFEmbedWFReturnModel;
+	}
 
-    @Override
-    public void registerWFLinkModel(IWFLinkModel iWFLinkModel) throws Exception {
-        super.registerWFLinkModel(iWFLinkModel);
-        if (iWFLinkModel instanceof IWFEmbedWFReturnModel) {
-            IWFEmbedWFReturnModel iWFEmbedWFReturnModel = (IWFEmbedWFReturnModel)iWFLinkModel;
-            this.wfEmbedWFReturnModelList.add(iWFEmbedWFReturnModel);
-            this.wfEmbedWFReturnModelMap.put(iWFEmbedWFReturnModel.getReturnValue(), iWFEmbedWFReturnModel);
-        }
-    }
 
-    @Override
-    public IWFEmbedWFReturnModel getWFEmbedWFReturnModelByValue(String strValue, boolean bTryMode) throws Exception {
-        IWFEmbedWFReturnModel iWFEmbedWFReturnModel = this.wfEmbedWFReturnModelMap.get(strValue);
-        if (iWFEmbedWFReturnModel == null && !bTryMode) {
-            throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u5d4c\u5165\u6d41\u7a0b\u8fd4\u56de\u8fde\u63a5\uff0c\u8fd4\u56de\u503c\u4e3a[%1$s]", (Object)strValue));
-        }
-        return iWFEmbedWFReturnModel;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFEmbedWFProcessModelBase#getWFProcSubWFModels()
+	 */
+	@Override
+	public Iterator<IWFProcSubWFModel> getWFProcSubWFModels() {
+		return this.wfProcSubWFModelList.iterator();
+	}
+	
+	
+	/**
+	 * 注册流程处理子流程模型
+	 * @param iWFProcSubWFModel
+	 * @throws Exception
+	 */
+	public void registerWFProcSubWFModel(IWFProcSubWFModel iWFProcSubWFModel) throws Exception
+	{
+		this.wfProcSubWFModelList.add(iWFProcSubWFModel);
+	}
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.WFProcessModelBase#isSuspendProcess()
+	 */
+	@Override
+	public boolean isSuspendProcess()
+	{
+		return true;
+	}
 
-    @Override
-    public Iterator<IWFProcSubWFModel> getWFProcSubWFModels() {
-        return this.wfProcSubWFModelList.iterator();
-    }
-
-    public void registerWFProcSubWFModel(IWFProcSubWFModel iWFProcSubWFModel) throws Exception {
-        this.wfProcSubWFModelList.add(iWFProcSubWFModel);
-    }
-
-    @Override
-    public boolean isSuspendProcess() {
-        return true;
-    }
 }
-

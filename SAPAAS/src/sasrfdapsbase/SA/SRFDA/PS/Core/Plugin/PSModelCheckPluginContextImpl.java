@@ -107,7 +107,6 @@ implements IPSModelCheckPluginContext {
         psSysIssue.setPSObjName(this.getPSModelObject().getName());
         psSysIssue.setObjType(this.getPSModelObject().getModelType());
         PSSysIssueService psSysIssueService = (PSSysIssueService)ServiceGlobal.getService(PSSysIssueService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSystem().getPSSysModelInstId()));
-        psSysIssueService.create((IEntity)psSysIssue, false);
+        psSysIssueService.create(psSysIssue, false);
     }
 }
-

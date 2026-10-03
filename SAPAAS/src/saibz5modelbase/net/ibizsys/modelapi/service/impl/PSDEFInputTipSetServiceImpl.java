@@ -115,9 +115,9 @@ implements IPSDEFInputTipSetService {
 
     @Override
     protected List<PSDEFInputTipSet> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSDEFInputTipSet> list = new ArrayList<PSDEFInputTipSet>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSDEFInputTipSet> items = this.listByPSModule(parent);

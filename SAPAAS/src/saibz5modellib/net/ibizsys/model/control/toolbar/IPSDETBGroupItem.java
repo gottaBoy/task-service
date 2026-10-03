@@ -1,21 +1,35 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.toolbar;
 
-import java.util.Iterator;
-import net.ibizsys.model.control.toolbar.IPSDEToolbarItem;
 import net.ibizsys.model.res.IPSSysCss;
 import net.ibizsys.model.res.IPSSysImage;
 
-public interface IPSDETBGroupItem
-extends IPSDEToolbarItem {
-    public Iterator<IPSDEToolbarItem> getPSDEToolbarItems() throws Exception;
-
-    @Override
-    public IPSSysImage getPSSysImage();
-
-    @Override
-    public IPSSysCss getPSSysCss();
+/**
+ * 实体工具栏分组项对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDETBGroupItem extends IPSDEToolbarItem
+{
+	/**
+	 * 获取工具栏集合
+	 * @return
+	 * @throws Exception
+	 */
+	java.util.Iterator<IPSDEToolbarItem> getPSDEToolbarItems()throws Exception;
+	
+	
+	
+	/**
+	 * 获取系统图标对象
+	 * @return
+	 */
+	IPSSysImage getPSSysImage();
+	
+	
+	
+	/**
+	 * 获取样式表对象
+	 * @return
+	 */
+	IPSSysCss getPSSysCss();
 }
-

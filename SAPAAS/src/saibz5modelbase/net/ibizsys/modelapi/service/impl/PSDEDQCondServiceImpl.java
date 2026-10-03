@@ -114,7 +114,7 @@ implements IPSDEDQCondService {
     @Override
     protected List<PSDEDQCond> onListAll() throws Exception {
         ArrayList<PSDEDQCond> list = new ArrayList<PSDEDQCond>();
-        List psdedqjoins = PSModelServiceUtil.getInstance().getPSDEDQJoinService().listAll();
+        List<PSDEDQJoin> psdedqjoins = PSModelServiceUtil.getInstance().getPSDEDQJoinService().listAll();
         if (psdedqjoins != null) {
             for (PSDEDQJoin parent : psdedqjoins) {
                 List<PSDEDQCond> items = this.listByPSDEDQJoin(parent);

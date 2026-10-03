@@ -135,11 +135,7 @@ implements IPSCoreSysDAO {
     }
 
     public DBCallResult fetchDEDataQuery(ISelectContext iSelectContext, boolean bl) throws Exception {
-        Object object;
-        Object object2;
         String string;
-        Object object3;
-        Object object4;
         DEDataSetFetchContext dEDataSetFetchContext = new DEDataSetFetchContext();
         dEDataSetFetchContext.setWebContext(iSelectContext.getWebContext());
         dEDataSetFetchContext.setFetchTotalRow(false);
@@ -171,11 +167,11 @@ implements IPSCoreSysDAO {
         }
         boolean bl2 = false;
         boolean bl3 = true;
-        Iterator iterator = iDEDataQueryCode.getDEDataQueryCodeConds();
+        Iterator<IDEDataQueryCodeCond> iterator = iDEDataQueryCode.getDEDataQueryCodeConds();
         while (iterator.hasNext()) {
-            object4 = (IDEDataQueryCodeCond)iterator.next();
-            object3 = iDEDataQueryCode.getConditionSQL((IDEDataSetFetchContext)dEDataSetFetchContext, (IDEDataQueryCodeCond)object4, this.getRealDBDialect(), sqlParamList);
-            if (StringHelper.isNullOrEmpty((String)object3)) continue;
+            IDEDataQueryCodeCond condition = iterator.next();
+            String conditionSQL = iDEDataQueryCode.getConditionSQL(dEDataSetFetchContext, condition, this.getRealDBDialect(), sqlParamList);
+            if (StringHelper.isNullOrEmpty(conditionSQL)) continue;
             if (!bl2) {
                 stringBuilderEx.append(" WHERE ");
                 bl2 = true;
@@ -185,15 +181,13 @@ implements IPSCoreSysDAO {
             } else {
                 stringBuilderEx.append(" AND ");
             }
-            stringBuilderEx.append("(%1$s)", object3);
+            stringBuilderEx.append("(%1$s)", conditionSQL);
         }
-        object4 = new HashMap();
-        iSelectContext.fillMap((HashMap)object4);
-        object3 = ((HashMap)object4).keySet().iterator();
-        while (object3.hasNext()) {
-            string = (String)object3.next();
-            object2 = this.getDEModel().getDEField(string, true);
-            if (object2 == null) continue;
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        iSelectContext.fillMap(params);
+        for (String fieldName : params.keySet()) {
+            IDEField field = this.getDEModel().getDEField(fieldName, true);
+            if (field == null) continue;
             if (!bl2) {
                 stringBuilderEx.append(" WHERE ");
                 bl2 = true;
@@ -203,23 +197,23 @@ implements IPSCoreSysDAO {
             } else {
                 stringBuilderEx.append(" AND ");
             }
-            object = ((HashMap)object4).get(string);
-            if (object == SelectCond.ISNOTNULL) {
-                stringBuilderEx.append(" %1$s IS NOT NULL ", (Object)iDEDataQueryCode.getDEFieldExp(object2.getName(), false));
+            Object value = params.get(fieldName);
+            if (value == SelectCond.ISNOTNULL) {
+                stringBuilderEx.append(" %1$s IS NOT NULL ", iDEDataQueryCode.getDEFieldExp(field.getName(), false));
                 continue;
             }
-            if (object == SelectCond.ISNULL) {
-                stringBuilderEx.append(" %1$s IS NULL ", (Object)iDEDataQueryCode.getDEFieldExp(object2.getName(), false));
+            if (value == SelectCond.ISNULL) {
+                stringBuilderEx.append(" %1$s IS NULL ", iDEDataQueryCode.getDEFieldExp(field.getName(), false));
                 continue;
             }
             SqlParam sqlParam = new SqlParam();
-            sqlParam.setDataType(object2.getStdDataType());
-            sqlParam.setParamName(StringHelper.format((String)"VAR_%1$s", (Object)object2.getName().toUpperCase()));
-            sqlParam.setValue(object);
-            sqlParamList.add((Object)sqlParam);
-            stringBuilderEx.append(" %1$s = ? ", (Object)iDEDataQueryCode.getDEFieldExp(object2.getName(), false));
+            sqlParam.setDataType(field.getStdDataType());
+            sqlParam.setParamName(StringHelper.format("VAR_%1$s", field.getName().toUpperCase()));
+            sqlParam.setValue(value);
+            sqlParamList.add(sqlParam);
+            stringBuilderEx.append(" %1$s = ? ", iDEDataQueryCode.getDEFieldExp(field.getName(), false));
         }
-        if (iSelectContext.getSelectFilter() != null && iSelectContext.getSelectFilter() instanceof IDEDataQueryCodeCond && !StringHelper.isNullOrEmpty((String)(string = iDEDataQueryCode.getConditionSQL((IDEDataSetFetchContext)dEDataSetFetchContext, (IDEDataQueryCodeCond)(object3 = (IDEDataQueryCodeCond)iSelectContext.getSelectFilter()), this.getRealDBDialect(), sqlParamList)))) {
+        if (iSelectContext.getSelectFilter() instanceof IDEDataQueryCodeCond && !StringHelper.isNullOrEmpty(string = iDEDataQueryCode.getConditionSQL(dEDataSetFetchContext, (IDEDataQueryCodeCond)iSelectContext.getSelectFilter(), this.getRealDBDialect(), sqlParamList))) {
             if (!bl2) {
                 stringBuilderEx.append(" WHERE ");
                 bl2 = true;
@@ -231,30 +225,29 @@ implements IPSCoreSysDAO {
             }
             stringBuilderEx.append("(%1$s)", (Object)string);
         }
-        object3 = "";
         string = "";
         string = stringBuilderEx.toString();
-        object2 = iSelectContext.getSelectFields();
-        if (object2 != null) {
-            object = new StringBuilderEx();
-            object.append("SELECT ");
+        Iterator<ISelectField> selectFields = iSelectContext.getSelectFields();
+        if (selectFields != null) {
+            StringBuilderEx projection = new StringBuilderEx();
+            projection.append("SELECT ");
             int n = 0;
-            while (object2.hasNext()) {
+            while (selectFields.hasNext()) {
                 if (n != 0) {
-                    object.append(",");
+                    projection.append(",");
                 }
                 ++n;
-                ISelectField iSelectField = (ISelectField)object2.next();
+                ISelectField iSelectField = selectFields.next();
                 String string2 = iSelectField.getAlias();
                 if (StringHelper.isNullOrEmpty((String)iSelectField.getFunc())) {
                     if (StringHelper.isNullOrEmpty((String)iSelectField.getName())) {
                         throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5b57\u6bb5\u540d\u79f0");
                     }
                     if (StringHelper.isNullOrEmpty((String)string2)) {
-                        object.append("%1$s", (Object)this.getRealDBDialect().getDBObjStandardName(iSelectField.getName()));
+                        projection.append("%1$s", this.getRealDBDialect().getDBObjStandardName(iSelectField.getName()));
                         continue;
                     }
-                    object.append("%1$s AS %2$s", (Object)this.getRealDBDialect().getDBObjStandardName(iSelectField.getName()), (Object)this.getRealDBDialect().getDBObjStandardName(string2));
+                    projection.append("%1$s AS %2$s", this.getRealDBDialect().getDBObjStandardName(iSelectField.getName()), this.getRealDBDialect().getDBObjStandardName(string2));
                     continue;
                 }
                 String[] stringArray = null;
@@ -264,75 +257,66 @@ implements IPSCoreSysDAO {
                 if (StringHelper.isNullOrEmpty((String)string2)) {
                     string2 = stringArray != null && stringArray.length > 0 ? stringArray[0] : StringHelper.format((String)"A%1$s", (Object)string2);
                 }
-                object.append("%1$s AS %2$s", (Object)this.getRealDBDialect().getFuncSQL(iSelectField.getFunc(), stringArray), (Object)this.getRealDBDialect().getDBObjStandardName(string2));
+                projection.append("%1$s AS %2$s", this.getRealDBDialect().getFuncSQL(iSelectField.getFunc(), stringArray), this.getRealDBDialect().getDBObjStandardName(string2));
             }
-            object.append(" FROM (%1$s) m1  ", (Object)string);
-            string = object.toString();
+            projection.append(" FROM (%1$s) m1  ", string);
+            string = projection.toString();
         }
-        object = this.fetchDataSet(session, (String)object3, string, dEDataSetFetchContext.getStartRow(), dEDataSetFetchContext.getPageSize(), sqlParamList);
-        return object;
+        return this.fetchDataSet(session, "", string, dEDataSetFetchContext.getStartRow(), dEDataSetFetchContext.getPageSize(), sqlParamList);
     }
 
     public DBFetchResult fetchDEDataSet(IDEDataSetFetchContext iDEDataSetFetchContext, String string, boolean bl) throws Exception {
-        Object object;
-        Object object2;
-        Object object3;
-        Object object4;
-        IDEDataSetModel iDEDataSetModel;
         DEDataSetFetchContext.setCurrent((IDEDataSetFetchContext)iDEDataSetFetchContext);
-        ArrayList arrayList = iDEDataSetFetchContext.getConditionList();
+        ArrayList<IDEDataSetCond> conditions = iDEDataSetFetchContext.getConditionList();
         IDEDataSet iDEDataSet = this.getDEModel().getDEDataSet(string);
-        if (iDEDataSet instanceof IDEDataSetModel && (iDEDataSetModel = (IDEDataSetModel)iDEDataSet).isCustomDS()) {
-            return iDEDataSetModel.fetchDEDataSet(iDEDataSetFetchContext);
+        if (iDEDataSet instanceof IDEDataSetModel && ((IDEDataSetModel)iDEDataSet).isCustomDS()) {
+            return ((IDEDataSetModel)iDEDataSet).fetchDEDataSet(iDEDataSetFetchContext);
         }
-        iDEDataSetModel = this.getCurrentSession();
+        Session session = this.getCurrentSession();
         StringBuilderEx stringBuilderEx = new StringBuilderEx();
         StringBuilderEx stringBuilderEx2 = new StringBuilderEx();
         SqlParamList sqlParamList = new SqlParamList();
-        Iterator iterator = iDEDataSet.getDEDataSetQueries();
-        Object object5 = null;
+        Iterator<IDEDataSetQuery> iterator = iDEDataSet.getDEDataSetQueries();
+        IDEDataQueryCode pagingQueryCode = null;
         while (iterator.hasNext()) {
-            IDEDataSetQuery iDEDataSetQuery = (IDEDataSetQuery)iterator.next();
-            object4 = this.getDEModel().getDEDataQuery(iDEDataSetQuery.getDEDataQueryId()).getDEDataQueryCode(this.getRealDBDialect().getDBType());
-            if (object5 == null) {
-                object5 = object4;
+            IDEDataSetQuery iDEDataSetQuery = iterator.next();
+            IDEDataQueryCode queryCode = this.getDEModel().getDEDataQuery(iDEDataSetQuery.getDEDataQueryId()).getDEDataQueryCode(this.getRealDBDialect().getDBType());
+            if (pagingQueryCode == null) {
+                pagingQueryCode = queryCode;
             }
-            if (StringHelper.isNullOrEmpty((String)object4.getDeclareCode())) continue;
-            stringBuilderEx2.append(object4.getDeclareCode());
+            if (StringHelper.isNullOrEmpty(queryCode.getDeclareCode())) continue;
+            stringBuilderEx2.append(queryCode.getDeclareCode());
             stringBuilderEx2.append("\n");
-            object4.fillDeclareParams(iDEDataSetFetchContext.getWebContext(), null, sqlParamList);
+            queryCode.fillDeclareParams(iDEDataSetFetchContext.getWebContext(), null, sqlParamList);
         }
         iDEDataSetFetchContext.fillDeclareParams(sqlParamList);
         boolean bl2 = true;
         iterator = iDEDataSet.getDEDataSetQueries();
         while (iterator.hasNext()) {
-            Object object6;
-            String string2;
-            Object object7;
-            object4 = (IDEDataSetQuery)iterator.next();
-            object3 = this.getDEModel().getDEDataQuery(object4.getDEDataQueryId());
-            object2 = object3.getDEDataQueryCode(this.getRealDBDialect().getDBType());
-            object2.fillQueryParams(iDEDataSetFetchContext.getWebContext(), null, sqlParamList);
+            IDEDataSetQuery dataSetQuery = iterator.next();
+            IDEDataQuery dataQuery = this.getDEModel().getDEDataQuery(dataSetQuery.getDEDataQueryId());
+            IDEDataQueryCode queryCode = dataQuery.getDEDataQueryCode(this.getRealDBDialect().getDBType());
+            queryCode.fillQueryParams(iDEDataSetFetchContext.getWebContext(), null, sqlParamList);
             if (bl2) {
                 bl2 = false;
             } else {
                 stringBuilderEx.append(" UNION \n");
             }
             if (bl) {
-                stringBuilderEx.append(object2.getQueryCodeTemp(iDEDataSetFetchContext, this.getRealDBDialect(), sqlParamList));
+                stringBuilderEx.append(queryCode.getQueryCodeTemp(iDEDataSetFetchContext, this.getRealDBDialect(), sqlParamList));
             } else {
-                stringBuilderEx.append(object2.getQueryCode(iDEDataSetFetchContext, this.getRealDBDialect(), sqlParamList));
+                stringBuilderEx.append(queryCode.getQueryCode(iDEDataSetFetchContext, this.getRealDBDialect(), sqlParamList));
             }
             if (!StringHelper.isNullOrEmpty((String)iDEDataSetFetchContext.getJoinScript())) {
-                stringBuilderEx.append(object2.getExtJoinSQL(iDEDataSetFetchContext, iDEDataSetFetchContext.getJoinScript(), this.getRealDBDialect(), sqlParamList));
+                stringBuilderEx.append(queryCode.getExtJoinSQL(iDEDataSetFetchContext, iDEDataSetFetchContext.getJoinScript(), this.getRealDBDialect(), sqlParamList));
             }
             boolean bl3 = false;
             boolean bl4 = true;
-            object = object2.getDEDataQueryCodeConds();
-            while (object.hasNext()) {
-                object7 = (IDEDataQueryCodeCond)object.next();
-                string2 = object2.getConditionSQL(iDEDataSetFetchContext, (IDEDataQueryCodeCond)object7, this.getRealDBDialect(), sqlParamList);
-                if (StringHelper.isNullOrEmpty((String)string2)) continue;
+            Iterator<IDEDataQueryCodeCond> queryConditions = queryCode.getDEDataQueryCodeConds();
+            while (queryConditions.hasNext()) {
+                IDEDataQueryCodeCond condition = queryConditions.next();
+                String conditionSQL = queryCode.getConditionSQL(iDEDataSetFetchContext, condition, this.getRealDBDialect(), sqlParamList);
+                if (StringHelper.isNullOrEmpty(conditionSQL)) continue;
                 if (!bl3) {
                     stringBuilderEx.append(" WHERE ");
                     bl3 = true;
@@ -342,21 +326,22 @@ implements IPSCoreSysDAO {
                 } else {
                     stringBuilderEx.append(" AND ");
                 }
-                stringBuilderEx.append("(%1$s)", (Object)string2);
+                stringBuilderEx.append("(%1$s)", conditionSQL);
             }
             if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
                 String string3;
-                if (PSCoreSysServiceBase.isEnableCurDCLimit() && !StringHelper.isNullOrEmpty((String)(object7 = this.getPSDevCenterDEField(this.getDEModel(), (IDEDataQuery)object3)))) {
-                    string2 = PSCoreSysServiceBase.getCurrentPSDCId();
-                    if (StringHelper.isNullOrEmpty((String)string2)) {
-                        string2 = "__INVALIDDCID__";
+                String devCenterField = PSCoreSysServiceBase.isEnableCurDCLimit() ? this.getPSDevCenterDEField(this.getDEModel(), dataQuery) : null;
+                if (!StringHelper.isNullOrEmpty(devCenterField)) {
+                    String dcId = PSCoreSysServiceBase.getCurrentPSDCId();
+                    if (StringHelper.isNullOrEmpty(dcId)) {
+                        dcId = "__INVALIDDCID__";
                     }
-                    object6 = new DEDataSetCond();
-                    object6.setCondType("DEFIELD");
-                    object6.setDEFName((String)object7);
-                    object6.setCondOp("EQ");
-                    object6.setCondValue(string2);
-                    string3 = object2.getConditionSQL(iDEDataSetFetchContext, (IDEDataQueryCodeCond)object6, this.getRealDBDialect(), sqlParamList);
+                    DEDataSetCond dcCondition = new DEDataSetCond();
+                    dcCondition.setCondType("DEFIELD");
+                    dcCondition.setDEFName(devCenterField);
+                    dcCondition.setCondOp("EQ");
+                    dcCondition.setCondValue(dcId);
+                    string3 = queryCode.getConditionSQL(iDEDataSetFetchContext, dcCondition, this.getRealDBDialect(), sqlParamList);
                     if (!StringHelper.isNullOrEmpty((String)string3)) {
                         if (!bl3) {
                             stringBuilderEx.append(" WHERE ");
@@ -370,17 +355,18 @@ implements IPSCoreSysDAO {
                         stringBuilderEx.append("(%1$s)", (Object)string3);
                     }
                 }
-                if (PSCoreSysServiceBase.isEnableCurDevSlnLimit() && !StringHelper.isNullOrEmpty((String)(object7 = this.getPSDevSlnDEField(this.getDEModel(), (IDEDataQuery)object3)))) {
-                    string2 = PSCoreSysServiceBase.getCurrentPSDevSlnId();
-                    if (StringHelper.isNullOrEmpty((String)string2)) {
-                        string2 = "__INVALIDSLNID__";
+                String devSlnField = PSCoreSysServiceBase.isEnableCurDevSlnLimit() ? this.getPSDevSlnDEField(this.getDEModel(), dataQuery) : null;
+                if (!StringHelper.isNullOrEmpty(devSlnField)) {
+                    String slnId = PSCoreSysServiceBase.getCurrentPSDevSlnId();
+                    if (StringHelper.isNullOrEmpty(slnId)) {
+                        slnId = "__INVALIDSLNID__";
                     }
-                    object6 = new DEDataSetCond();
-                    object6.setCondType("DEFIELD");
-                    object6.setDEFName((String)object7);
-                    object6.setCondOp("EQ");
-                    object6.setCondValue(string2);
-                    string3 = object2.getConditionSQL(iDEDataSetFetchContext, (IDEDataQueryCodeCond)object6, this.getRealDBDialect(), sqlParamList);
+                    DEDataSetCond slnCondition = new DEDataSetCond();
+                    slnCondition.setCondType("DEFIELD");
+                    slnCondition.setDEFName(devSlnField);
+                    slnCondition.setCondOp("EQ");
+                    slnCondition.setCondValue(slnId);
+                    string3 = queryCode.getConditionSQL(iDEDataSetFetchContext, slnCondition, this.getRealDBDialect(), sqlParamList);
                     if (!StringHelper.isNullOrEmpty((String)string3)) {
                         if (!bl3) {
                             stringBuilderEx.append(" WHERE ");
@@ -395,59 +381,60 @@ implements IPSCoreSysDAO {
                     }
                 }
             }
-            if (arrayList.size() == 0) continue;
+            if (conditions.isEmpty()) continue;
             if (!bl3) {
                 stringBuilderEx.append(" WHERE ");
                 bl3 = true;
             }
-            object7 = arrayList.iterator();
-            while (object7.hasNext()) {
-                string2 = (IDEDataSetCond)object7.next();
-                if (!StringHelper.isNullOrEmpty((String)string2.getDEDataQueryName()) && StringHelper.compare((String)object2.getName(), (String)string2.getDEDataQueryName(), (boolean)false) != 0 || StringHelper.isNullOrEmpty((String)(object6 = object2.getConditionSQL(iDEDataSetFetchContext, (IDEDataQueryCodeCond)string2, this.getRealDBDialect(), sqlParamList)))) continue;
+            for (IDEDataSetCond condition : conditions) {
+                if (!StringHelper.isNullOrEmpty(condition.getDEDataQueryName()) && StringHelper.compare(queryCode.getName(), condition.getDEDataQueryName(), false) != 0) continue;
+                String conditionSQL = queryCode.getConditionSQL(iDEDataSetFetchContext, condition, this.getRealDBDialect(), sqlParamList);
+                if (StringHelper.isNullOrEmpty(conditionSQL)) continue;
                 if (bl4) {
                     bl4 = false;
                 } else {
                     stringBuilderEx.append(" AND ");
                 }
-                stringBuilderEx.append("(%1$s)", object6);
+                stringBuilderEx.append("(%1$s)", conditionSQL);
             }
         }
         if (iDEDataSet.isEnableGroup()) {
-            object4 = stringBuilderEx2.toString() + iDEDataSetFetchContext.getDeclareScript() + this.getGroupSQL(stringBuilderEx.toString(), iDEDataSet);
-            object3 = this.fetchDataSet((Session)iDEDataSetModel, null, (String)object4, iDEDataSetFetchContext.getStartRow(), iDEDataSetFetchContext.getPageSize(), sqlParamList);
-            if (object3.isOk() && object3.getDataSet() != null && iDEDataSetFetchContext.isCacheDataSet()) {
-                object3.getDataSet().cacheDataRow();
+            String groupSQL = stringBuilderEx2.toString() + iDEDataSetFetchContext.getDeclareScript() + this.getGroupSQL(stringBuilderEx.toString(), iDEDataSet);
+            DBFetchResult result = this.fetchDataSet(session, null, groupSQL, iDEDataSetFetchContext.getStartRow(), iDEDataSetFetchContext.getPageSize(), sqlParamList);
+            if (result.isOk() && result.getDataSet() != null && iDEDataSetFetchContext.isCacheDataSet()) {
+                result.getDataSet().cacheDataRow();
             }
-            return object3;
+            return result;
         }
-        object4 = "";
+        String countSQL = "";
         if (iDEDataSetFetchContext.isFetchTotalRow()) {
-            object4 = stringBuilderEx2.toString() + iDEDataSetFetchContext.getDeclareScript() + this.getRealDBDialect().getCountSQL(stringBuilderEx.toString());
+            countSQL = stringBuilderEx2.toString() + iDEDataSetFetchContext.getDeclareScript() + this.getRealDBDialect().getCountSQL(stringBuilderEx.toString());
         }
-        object3 = "";
+        String pagingSQL = "";
         if (iDEDataSetFetchContext.isFetchData()) {
-            object2 = iDEDataSetFetchContext.getSort();
+            String sort = iDEDataSetFetchContext.getSort();
             String string4 = iDEDataSetFetchContext.getSortDir();
             String string5 = iDEDataSetFetchContext.getSort2();
-            object = iDEDataSetFetchContext.getSort2Dir();
-            if (StringHelper.isNullOrEmpty((String)object2) && StringHelper.isNullOrEmpty((String)string5)) {
-                object2 = iDEDataSet.getMajorSortField();
+            String sort2Dir = iDEDataSetFetchContext.getSort2Dir();
+            if (StringHelper.isNullOrEmpty(sort) && StringHelper.isNullOrEmpty(string5)) {
+                sort = iDEDataSet.getMajorSortField();
                 string4 = iDEDataSet.getMajorSortDir();
                 string5 = iDEDataSet.getMinorSortField();
-                object = iDEDataSet.getMinorSortDir();
+                sort2Dir = iDEDataSet.getMinorSortDir();
             }
-            if (StringHelper.isNullOrEmpty((String)object2)) {
+            if (StringHelper.isNullOrEmpty(sort)) {
                 string4 = null;
             }
             if (StringHelper.isNullOrEmpty((String)string5)) {
-                object = null;
+                sort2Dir = null;
             }
-            object3 = StringHelper.isNullOrEmpty((String)object2) && StringHelper.isNullOrEmpty((String)string5) && !iDEDataSetFetchContext.isPaging() ? stringBuilderEx.toString() : this.getRealDBDialect().getPagingSQL(stringBuilderEx.toString(), iDEDataSetFetchContext.getStartRow(), iDEDataSetFetchContext.getPageSize(), (String)object2, string4, string5, (String)object, object5);
+            pagingSQL = StringHelper.isNullOrEmpty(sort) && StringHelper.isNullOrEmpty(string5) && !iDEDataSetFetchContext.isPaging() ? stringBuilderEx.toString() : this.getRealDBDialect().getPagingSQL(stringBuilderEx.toString(), iDEDataSetFetchContext.getStartRow(), iDEDataSetFetchContext.getPageSize(), sort, string4, string5, sort2Dir, pagingQueryCode);
         }
-        if ((object2 = this.fetchDataSet((Session)iDEDataSetModel, (String)object4, (String)object3, iDEDataSetFetchContext.getStartRow(), iDEDataSetFetchContext.getPageSize(), sqlParamList)).isOk() && object2.getDataSet() != null && iDEDataSetFetchContext.isCacheDataSet()) {
-            object2.getDataSet().cacheDataRow();
+        DBFetchResult result = this.fetchDataSet(session, countSQL, pagingSQL, iDEDataSetFetchContext.getStartRow(), iDEDataSetFetchContext.getPageSize(), sqlParamList);
+        if (result.isOk() && result.getDataSet() != null && iDEDataSetFetchContext.isCacheDataSet()) {
+            result.getDataSet().cacheDataRow();
         }
-        return object2;
+        return result;
     }
 
     protected String getPSDevCenterDEField(IDataEntityModel iDataEntityModel, IDEDataQuery iDEDataQuery) throws Exception {
@@ -531,4 +518,3 @@ implements IPSCoreSysDAO {
         psDevCenterDEFieldMap.put("PSSTUDIOPLUGIN|AllDC", "");
     }
 }
-

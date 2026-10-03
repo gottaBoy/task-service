@@ -1,15 +1,35 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswx.core;
 
-import net.ibizsys.pswx.core.IWXAccountModel;
-
+/**
+ * 微信模块全局对象插件
+ * 
+ * @author Administrator
+ * 
+ */
 public interface IWXGlobalPlugin {
-    public void registerWXAccountModel(String var1, IWXAccountModel var2);
+	/**
+	 * 注册微信公众号
+	 * 
+	 * @param strWXAccountModelClsType
+	 * @param iWXAccountModel
+	 */
+	void registerWXAccountModel(String strWXAccountModelClsType, IWXAccountModel iWXAccountModel);
 
-    public IWXAccountModel getWXAccountModel(Class<?> var1) throws Exception;
+	/**
+	 * 获取微信公众号
+	 * 
+	 * @param strWXAccountModelClsType
+	 * @return
+	 * @throws Exception
+	 */
+	IWXAccountModel getWXAccountModel(Class<?> cls) throws Exception;
 
-    public IWXAccountModel getWXAccountModel(String var1) throws Exception;
+	/**
+	 * 获取微信公众号
+	 * 
+	 * @param strWXAccountModelClsType
+	 * @return
+	 * @throws Exception
+	 */
+	IWXAccountModel getWXAccountModel(String strWXAccountModelClsType) throws Exception;
 }
-

@@ -112,7 +112,7 @@ extends PSDEDataCtrl {
         PSDevSlnSysBakService psDevSlnSysBakService = (PSDevSlnSysBakService)ServiceGlobal.getService(PSDevSlnSysBakService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSysBak psDevSlnSysBak = new PSDevSlnSysBak();
         PSDEDataCtrl.convertEntity2(dataEntity, (IEntity)psDevSlnSysBak);
-        psDevSlnSysBakService.get((IEntity)psDevSlnSysBak);
+        psDevSlnSysBakService.get(psDevSlnSysBak);
         if (DataObject.getIntegerValue((Object)psDevSlnSysBak.getBackupState(), (Integer)30) != 30) {
             throw new Exception(StringHelper.Format((String)"\u5f00\u53d1\u7cfb\u7edf\u5907\u4efd[%1$s]\u5f53\u524d\u72b6\u6001[%2$s]\uff0c\u65e0\u6cd5\u5efa\u7acb\u6062\u590d\u4efb\u52a1", (Object)psDevSlnSysBak.getPSDevSlnSysBakName(), (Object)DBInstBStateCodeListModel.getInstance().getCodeItem(psDevSlnSysBak.getBackupState().toString()).getText()));
         }
@@ -120,7 +120,7 @@ extends PSDEDataCtrl {
             PSDevSlnSysBakLinkService psDevSlnSysBakLinkService = (PSDevSlnSysBakLinkService)ServiceGlobal.getService(PSDevSlnSysBakLinkService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDevSlnSysBakLink psDevSlnSysBakLink = new PSDevSlnSysBakLink();
             psDevSlnSysBakLink.setPSDevSlnSysBakLinkId(psDevSlnSysBak.getPSDevSlnSysBakId());
-            if (!psDevSlnSysBakLinkService.get((IEntity)psDevSlnSysBakLink, true)) {
+            if (!psDevSlnSysBakLinkService.get(psDevSlnSysBakLink, true)) {
                 throw new Exception(StringHelper.Format((String)"\u5f00\u53d1\u7cfb\u7edf\u5907\u4efd[%1$s]\u65e0\u6cd5\u83b7\u53d6\u5907\u4efd\u94fe\u63a5\uff0c\u65e0\u6cd5\u5efa\u7acb\u6062\u590d\u4efb\u52a1", (Object)psDevSlnSysBak.getPSDevSlnSysBakName()));
             }
             if (DataObject.getIntegerValue((Object)psDevSlnSysBakLink.getLinkState(), (Integer)30) != 30) {
@@ -139,7 +139,7 @@ extends PSDEDataCtrl {
         final PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         final PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
         psDevSlnSys.setPSDevSlnSysId(psDevSlnSysBak.getPSDevSlnSysId());
-        psDevSlnSysService.get((IEntity)psDevSlnSys);
+        psDevSlnSysService.get(psDevSlnSys);
         if (DataObject.getBoolValue((Integer)psDevSlnSys.getShareFlag(), (boolean)false)) {
             throw new Exception(StringHelper.Format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u4e3a\u5171\u4eab\u6a21\u578b\u7cfb\u7edf\uff0c\u65e0\u6cd5\u5efa\u7acb\u6062\u590d\u4efb\u52a1", (Object)psDevSlnSys.getPSDevSlnSysName()));
         }
@@ -154,7 +154,7 @@ extends PSDEDataCtrl {
         psDevSlnSys2.setCurAction("RECOVER");
         psDevSlnSys2.setActionOwner(StringHelper.Format((String)"%1$s|%2$s", (Object)psDevSlnSysBakService.getDEModel().getName(), (Object)psDevSlnSysBak.getPSDevSlnSysBakId()));
         EntityBase.setLastUpdateDate((IEntity)psDevSlnSys2, (Timestamp)psDevSlnSys.getUpdateDate());
-        psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, true);
+        psDevSlnSysService.sysUpdate(psDevSlnSys2, true);
         PSDCBKTaskService psDCBKTaskService = (PSDCBKTaskService)ServiceGlobal.getService(PSDCBKTaskService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDCBKTask psDCBKTask = new PSDCBKTask();
         psDCBKTask.setPSDevCenterId(psDevSlnSysBak.getPSDevCenterId());
@@ -168,7 +168,7 @@ extends PSDEDataCtrl {
         psDCBKTask.setTaskType("RESTOREDEVSLNSYS");
         psDCBKTask.setTaskParam(psDevSlnSysBak.getPSDevSlnSysId());
         psDCBKTask.setTaskParam2(psDevSlnSysBak.getPSDevSlnSysBakId());
-        psDCBKTaskService.create((IEntity)psDCBKTask);
+        psDCBKTaskService.create(psDCBKTask);
         final SA.SRFDA.PS.Data.PSDCBKTask psDCBKTask2 = new SA.SRFDA.PS.Data.PSDCBKTask();
         PSDEDataCtrl.convertEntity((IEntity)psDCBKTask, psDCBKTask2);
         SessionFactoryManager.getCurrentSFS().registerSFSAction(psDCBKTaskService.getRealSessionFactory(), new ISFSAction(){
@@ -183,7 +183,7 @@ extends PSDEDataCtrl {
                         psDevSlnSys2.reset();
                         psDevSlnSys2.setPSDevSlnSysId(psDevSlnSys.getPSDevSlnSysId());
                         psDevSlnSys2.setCurAction("NONE");
-                        psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, false);
+                        psDevSlnSysService.sysUpdate(psDevSlnSys2, false);
                     }
                     catch (Exception ex2) {
                         log.error((Object)ex2);
@@ -196,4 +196,3 @@ extends PSDEDataCtrl {
         });
     }
 }
-

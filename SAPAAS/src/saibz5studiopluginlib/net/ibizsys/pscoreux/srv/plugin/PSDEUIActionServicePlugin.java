@@ -1,26 +1,7 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.PluginActionResult
- *  net.ibizsys.paas.data.IDataObject
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.paas.service.IService
- *  net.ibizsys.paas.service.ServiceGlobal
- *  net.ibizsys.paas.service.ServicePluginBase
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.pscore.srv.dedesign.entity.PSDEUAGroup
- *  net.ibizsys.pscore.srv.dedesign.entity.PSDEUAGroupDetail
- *  net.ibizsys.pscore.srv.dedesign.entity.PSDEUIAction
- *  net.ibizsys.pscore.srv.dedesign.service.PSDEUAGroupDetailService
- *  net.ibizsys.pscore.srv.dedesign.service.PSDEUAGroupService
- *  net.ibizsys.pscore.srv.dedesign.service.PSDEUIActionService
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.pscoreux.srv.plugin;
 
+import net.ibizsys.paas.core.IPlugin;
 import net.ibizsys.paas.core.PluginActionResult;
-import net.ibizsys.paas.data.IDataObject;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.IService;
 import net.ibizsys.paas.service.ServiceGlobal;
@@ -32,40 +13,68 @@ import net.ibizsys.pscore.srv.dedesign.entity.PSDEUIAction;
 import net.ibizsys.pscore.srv.dedesign.service.PSDEUAGroupDetailService;
 import net.ibizsys.pscore.srv.dedesign.service.PSDEUAGroupService;
 import net.ibizsys.pscore.srv.dedesign.service.PSDEUIActionService;
-import org.hibernate.SessionFactory;
 
-public class PSDEUIActionServicePlugin
-extends ServicePluginBase {
-    public PluginActionResult doCustomAction(IService iService, String strActionName, int nActionPos, IEntity iEntity, Object objParam) throws Exception {
-        if (nActionPos == 0 && StringHelper.compare((String)strActionName, (String)"CreateDEUAGroup", (boolean)true) == 0) {
-            PSDEUIActionService psDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)iService.getSessionFactory());
-            PSDEUIAction psDEUIAction = new PSDEUIAction();
-            iEntity.copyTo((IDataObject)psDEUIAction, true);
-            if (!psDEUIActionService.get((IEntity)psDEUIAction, true)) {
-                throw new Exception(StringHelper.format((String)"\u754c\u9762\u884c\u4e3a[%1$s]\u672a\u627e\u5230\uff0c\u65e0\u6cd5\u521b\u5efa\u9ed8\u8ba4\u884c\u4e3a\u7ec4\uff01", (Object)psDEUIAction.getPSDEUIActionId()));
-            }
-            String strPSDEUIActionId = psDEUIAction.getPSDEUIActionId();
-            String strPSDEId = psDEUIAction.getPSDEId();
-            String strPSDEName = psDEUIAction.getPSDEName();
-            String strPSDEUIActionName = psDEUIAction.getPSDEUIActionName();
-            String strPSSystemId = psDEUIAction.getPSSystemId();
-            PSDEUAGroup psDEUAGroup = new PSDEUAGroup();
-            PSDEUAGroupService psDEUAGroupService = (PSDEUAGroupService)ServiceGlobal.getService(PSDEUAGroupService.class, (SessionFactory)iService.getSessionFactory());
-            psDEUAGroup.setPSDEId(strPSDEId);
-            psDEUAGroup.setPSDEName(strPSDEName);
-            psDEUAGroup.setPSDEUAGroupName(strPSDEUIActionName);
-            psDEUAGroup.setPSSystemId(strPSSystemId);
-            psDEUAGroupService.create((IEntity)psDEUAGroup);
-            PSDEUAGroupDetail psDEUAGroupDetail = new PSDEUAGroupDetail();
-            PSDEUAGroupDetailService psDEUAGroupDetailService = (PSDEUAGroupDetailService)ServiceGlobal.getService(PSDEUAGroupDetailService.class, (SessionFactory)iService.getSessionFactory());
-            boolean bPSDEUAGrop = psDEUAGroupService.get((IEntity)psDEUAGroup, true);
-            String strPSDEUAGropId = psDEUAGroup.getPSDEUAGroupId();
-            psDEUAGroupDetail.setPSDEUAGroupId(strPSDEUAGropId);
-            psDEUAGroupDetail.setPSDEUIActionId(strPSDEUIActionId);
-            psDEUAGroupDetailService.create((IEntity)psDEUAGroupDetail);
-            return PluginActionResult.Replace;
-        }
-        return super.doCustomAction(iService, strActionName, nActionPos, iEntity, objParam);
-    }
+public class PSDEUIActionServicePlugin extends ServicePluginBase {
+
+	@Override
+	public PluginActionResult doCustomAction(IService iService, String strActionName, int nActionPos, IEntity iEntity, Object objParam) throws Exception {
+		if(nActionPos == IPlugin.ACTIONPOS_ENTER) {
+			if(StringHelper.compare(strActionName, PSDEUIActionService.ACTION_CREATEDEUAGROUP, true) == 0){
+				//界面行为的Service
+				PSDEUIActionService psDEUIActionService = (PSDEUIActionService) ServiceGlobal.getService(PSDEUIActionService.class, iService.getSessionFactory());
+				//界面行为的实体
+				PSDEUIAction psDEUIAction = new PSDEUIAction();
+				iEntity.copyTo(psDEUIAction, true);
+				
+				if(psDEUIActionService.get(psDEUIAction, true)){
+					//界面行为的ID
+					String strPSDEUIActionId = psDEUIAction.getPSDEUIActionId();
+					//实体的ID
+					String strPSDEId = psDEUIAction.getPSDEId();
+					//实体的名称
+					String strPSDEName = psDEUIAction.getPSDEName();
+					//界面行为的名称
+					String strPSDEUIActionName = psDEUIAction.getPSDEUIActionName();
+					//系统的ID
+					String strPSSystemId = psDEUIAction.getPSSystemId();
+					
+					//界面行为组的实体
+					PSDEUAGroup psDEUAGroup = new PSDEUAGroup();
+					//界面行为组的Service
+					PSDEUAGroupService psDEUAGroupService = (PSDEUAGroupService) ServiceGlobal.getService(PSDEUAGroupService.class,  iService.getSessionFactory());
+					//设置界面行为组所在实体的ID
+					psDEUAGroup.setPSDEId(strPSDEId);
+					//设置界面行为组所在实体的名称
+					psDEUAGroup.setPSDEName(strPSDEName);
+					//设置界面行为组的名称
+					psDEUAGroup.setPSDEUAGroupName(strPSDEUIActionName);
+					//设置系统的ID
+					psDEUAGroup.setPSSystemId(strPSSystemId);
+					//新建界面行为组
+					psDEUAGroupService.create(psDEUAGroup);
+					
+					//界面行为组成员的实体
+					PSDEUAGroupDetail psDEUAGroupDetail = new PSDEUAGroupDetail();
+					//界面行为组的Service
+					PSDEUAGroupDetailService psDEUAGroupDetailService = (PSDEUAGroupDetailService) ServiceGlobal.getService(PSDEUAGroupDetailService.class, iService.getSessionFactory());
+					//判断界面行为组是否保存成功
+					boolean bPSDEUAGrop = psDEUAGroupService.get(psDEUAGroup, true);
+					//界面行为组的ID
+					String strPSDEUAGropId = psDEUAGroup.getPSDEUAGroupId();
+					//设置界面行为组的ID
+					psDEUAGroupDetail.setPSDEUAGroupId(strPSDEUAGropId);
+					//设置界面行为的ID
+					psDEUAGroupDetail.setPSDEUIActionId(strPSDEUIActionId);
+					//新建界面行为组成员
+					psDEUAGroupDetailService.create(psDEUAGroupDetail);
+				}else {
+					throw new Exception(StringHelper.format("界面行为[%1$s]未找到，无法创建默认行为组！", psDEUIAction.getPSDEUIActionId()));
+				}
+				
+				return PluginActionResult.Replace;				
+			}
+		}
+		return super.doCustomAction(iService, strActionName, nActionPos, iEntity, objParam);
+	}
+	
 }
-

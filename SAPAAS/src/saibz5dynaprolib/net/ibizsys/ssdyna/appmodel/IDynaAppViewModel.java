@@ -1,14 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.appmodel.IAppViewModel
- */
 package net.ibizsys.ssdyna.appmodel;
 
 import net.ibizsys.paas.appmodel.IAppViewModel;
 
-public interface IDynaAppViewModel
-extends IAppViewModel {
-}
+/**
+ * 动态应用视图模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IDynaAppViewModel extends IAppViewModel{
 
+}

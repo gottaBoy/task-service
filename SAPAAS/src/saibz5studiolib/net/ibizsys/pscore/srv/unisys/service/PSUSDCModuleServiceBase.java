@@ -138,14 +138,14 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSUSDCModule, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSUSDCModule, string, string2, string3);
+        super.onFillParentInfo(pSUSDCModule, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSUSDCModule, bl);
+        super.onFillEntityFullInfo(pSUSDCModule, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSUSDCModule, bl);
     }
 
@@ -169,7 +169,7 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
     }
 
     protected void onWriteBackParent(PSUSDCModule pSUSDCModule, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUSDCModule, bl);
+        super.onWriteBackParent(pSUSDCModule, bl);
     }
 
     public ArrayList<PSUSDCModule> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -200,8 +200,8 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
         ArrayList<PSUSDCModule> arrayList = this.selectByPSDevCenter(pSDevCenter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVCENTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevCenter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSUSDCMODULE_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSUSDCMODULE", iDataEntityModel.getDataInfo((IEntity)pSDevCenter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevCenter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSUSDCMODULE_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSUSDCMODULE", iDataEntityModel.getDataInfo(pSDevCenter), arrayList.get(0)));
         }
     }
 
@@ -234,7 +234,7 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
         ArrayList<PSUSDCModule> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSUSDCModule pSUSDCModule : arrayList) {
-            this.remove((IEntity)pSUSDCModule);
+            this.remove(pSUSDCModule);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -257,14 +257,14 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
 
     protected void replaceParentInfo(PSUSDCModule pSUSDCModule, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSUSDCModule, cloneSession);
+        super.replaceParentInfo(pSUSDCModule, cloneSession);
         if (pSUSDCModule.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSUSDCModule.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSUSDCModule, (PSDevCenter)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSUSDCModule pSUSDCModule, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUSDCModule, bl);
+        super.onRemoveEntityUncopyValues(pSUSDCModule, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUSDCModule pSUSDCModule, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -282,7 +282,7 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSUSDCModule, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUSDCModule, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUSDCModule, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDevCenterId(boolean bl, PSUSDCModule pSUSDCModule, boolean bl2, boolean bl3) throws Exception {
@@ -295,7 +295,7 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSUSDCModule, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSUSDCModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -320,7 +320,7 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUSDCModuleId_Default((IEntity)pSUSDCModule, bl2, bl3);
+            string2 = this.onTestValueRule_PSUSDCModuleId_Default(pSUSDCModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUSDCMODULEID");
@@ -345,7 +345,7 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUSDCModuleName_Default((IEntity)pSUSDCModule, bl2, bl3);
+            string2 = this.onTestValueRule_PSUSDCModuleName_Default(pSUSDCModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUSDCMODULENAME");
@@ -370,7 +370,7 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSUSDCModule, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSUSDCModule, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -383,11 +383,11 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
     }
 
     protected void onSyncEntity(PSUSDCModule pSUSDCModule, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUSDCModule, bl);
+        super.onSyncEntity(pSUSDCModule, bl);
     }
 
     protected void onSyncIndexEntities(PSUSDCModule pSUSDCModule, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUSDCModule, bl);
+        super.onSyncIndexEntities(pSUSDCModule, bl);
     }
 
     public Object getDataContextValue(PSUSDCModule pSUSDCModule, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -395,14 +395,14 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUSDCModule, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUSDCModule, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUSDCModule pSUSDCModule, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUSDCModule, arrayList, n);
+        super.onExportMajorModel(pSUSDCModule, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -522,14 +522,14 @@ extends PSCoreSysServiceBase<PSUSDCModule> {
 
     protected boolean onMergeChild(String string, String string2, PSUSDCModule pSUSDCModule) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUSDCModule)) {
+        if (super.onMergeChild(string, string2, pSUSDCModule)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUSDCModule pSUSDCModule) throws Exception {
-        super.onUpdateParent((IEntity)pSUSDCModule);
+        super.onUpdateParent(pSUSDCModule);
     }
 
     @Override

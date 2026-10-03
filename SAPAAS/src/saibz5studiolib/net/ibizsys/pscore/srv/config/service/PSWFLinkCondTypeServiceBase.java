@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSWFLinkCondType> {
     }
 
     protected void onFillParentInfo(PSWFLinkCondType pSWFLinkCondType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSWFLinkCondType, string, string2, string3);
+        super.onFillParentInfo(pSWFLinkCondType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSWFLinkCondType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSWFLinkCondType, bl);
+        super.onFillEntityFullInfo(pSWFLinkCondType, bl);
     }
 
     protected void onWriteBackParent(PSWFLinkCondType pSWFLinkCondType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWFLinkCondType, bl);
+        super.onWriteBackParent(pSWFLinkCondType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSWFLinkCondType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWFLinkCondType pSWFLinkCondType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWFLinkCondType, bl);
+        super.onRemoveEntityUncopyValues(pSWFLinkCondType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWFLinkCondType pSWFLinkCondType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSWFLinkCondType> {
         if ((entityFieldError = this.onCheckField_PSWFLinkCondTypeName(bl, pSWFLinkCondType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWFLinkCondType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWFLinkCondType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ItemObj(boolean bl, PSWFLinkCondType pSWFLinkCondType, boolean bl2, boolean bl3) throws Exception {
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSWFLinkCondType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj_Default((IEntity)pSWFLinkCondType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj_Default(pSWFLinkCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSWFLinkCondType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSWFLinkCondType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSWFLinkCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSWFLinkCondType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFLinkCondTypeId_Default((IEntity)pSWFLinkCondType, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFLinkCondTypeId_Default(pSWFLinkCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFLINKCONDTYPEID");
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSWFLinkCondType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWFLinkCondTypeName_Default((IEntity)pSWFLinkCondType, bl2, bl3);
+            string2 = this.onTestValueRule_PSWFLinkCondTypeName_Default(pSWFLinkCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWFLINKCONDTYPENAME");
@@ -259,11 +259,11 @@ extends PSCoreSysServiceBase<PSWFLinkCondType> {
     }
 
     protected void onSyncEntity(PSWFLinkCondType pSWFLinkCondType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWFLinkCondType, bl);
+        super.onSyncEntity(pSWFLinkCondType, bl);
     }
 
     protected void onSyncIndexEntities(PSWFLinkCondType pSWFLinkCondType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWFLinkCondType, bl);
+        super.onSyncIndexEntities(pSWFLinkCondType, bl);
     }
 
     public Object getDataContextValue(PSWFLinkCondType pSWFLinkCondType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -271,14 +271,14 @@ extends PSCoreSysServiceBase<PSWFLinkCondType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWFLinkCondType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWFLinkCondType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWFLinkCondType pSWFLinkCondType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWFLinkCondType, arrayList, n);
+        super.onExportMajorModel(pSWFLinkCondType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -391,14 +391,14 @@ extends PSCoreSysServiceBase<PSWFLinkCondType> {
 
     protected boolean onMergeChild(String string, String string2, PSWFLinkCondType pSWFLinkCondType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWFLinkCondType)) {
+        if (super.onMergeChild(string, string2, pSWFLinkCondType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWFLinkCondType pSWFLinkCondType) throws Exception {
-        super.onUpdateParent((IEntity)pSWFLinkCondType);
+        super.onUpdateParent(pSWFLinkCondType);
     }
 
     @Override

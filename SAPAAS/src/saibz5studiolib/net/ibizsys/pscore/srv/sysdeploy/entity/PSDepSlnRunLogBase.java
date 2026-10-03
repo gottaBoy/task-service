@@ -1558,7 +1558,7 @@ implements Serializable {
                 PSDepSlnAS pSDepSlnAS = new PSDepSlnAS();
                 pSDepSlnAS.setPSDepSlnASId(this.getPSDeSlnASId());
                 PSDepSlnASService pSDepSlnASService = (PSDepSlnASService)ServiceGlobal.getService(PSDepSlnASService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnASService.autoGet((IEntity)pSDepSlnAS);
+                pSDepSlnASService.autoGet(pSDepSlnAS);
                 this.psdepslnas = pSDepSlnAS;
             }
             return this.psdepslnas;
@@ -1584,7 +1584,7 @@ implements Serializable {
                 PSDepSlnMode pSDepSlnMode = new PSDepSlnMode();
                 pSDepSlnMode.setPSDepSlnModeId(this.getPSDepSlnModeId());
                 PSDepSlnModeService pSDepSlnModeService = (PSDepSlnModeService)ServiceGlobal.getService(PSDepSlnModeService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnModeService.autoGet((IEntity)pSDepSlnMode);
+                pSDepSlnModeService.autoGet(pSDepSlnMode);
                 this.psdepslnmode = pSDepSlnMode;
             }
             return this.psdepslnmode;
@@ -1610,7 +1610,7 @@ implements Serializable {
                 PSDepSlnPrd pSDepSlnPrd = new PSDepSlnPrd();
                 pSDepSlnPrd.setPSDepSlnPrdId(this.getPSDepSlnPrdId());
                 PSDepSlnPrdService pSDepSlnPrdService = (PSDepSlnPrdService)ServiceGlobal.getService(PSDepSlnPrdService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnPrdService.autoGet((IEntity)pSDepSlnPrd);
+                pSDepSlnPrdService.autoGet(pSDepSlnPrd);
                 this.psdepslnprd = pSDepSlnPrd;
             }
             return this.psdepslnprd;
@@ -1636,7 +1636,7 @@ implements Serializable {
                 PSDepSln pSDepSln = new PSDepSln();
                 pSDepSln.setPSDepSlnId(this.getPSDepSlnId());
                 PSDepSlnService pSDepSlnService = (PSDepSlnService)ServiceGlobal.getService(PSDepSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDepSlnService.autoGet((IEntity)pSDepSln);
+                pSDepSlnService.autoGet(pSDepSln);
                 this.psdepsln = pSDepSln;
             }
             return this.psdepsln;

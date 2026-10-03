@@ -64,7 +64,7 @@ extends DELogicModelBase<PSDEDRItem> {
         PSDER pSDER = (PSDER)iActionContext.getParam("DER");
         SessionFactory sessionFactory = iActionContext.getSessionFactory();
         IService iService = ServiceGlobal.getService(PSDERService.class, (SessionFactory)sessionFactory);
-        iService.executeAction("GET", (IEntity)pSDER);
+        iService.executeAction("GET", pSDER);
         this.executeSetViewDEId(iActionContext);
     }
 

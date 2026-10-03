@@ -47,7 +47,7 @@ extends PSDepSlnPrdServiceBase {
     @Override
     protected void onBeforeUpdate(PSDepSlnPrd pSDepSlnPrd) throws Exception {
         PSDepSlnPrd pSDepSlnPrd2;
-        if (DataObject.getBoolValue((Integer)pSDepSlnPrd.getEnaDynamicMode(), (boolean)false) && StringHelper.isNullOrEmpty((String)(pSDepSlnPrd2 = (PSDepSlnPrd)this.getLast((IEntity)pSDepSlnPrd)).getPSSysModelInstId())) {
+        if (DataObject.getBoolValue((Integer)pSDepSlnPrd.getEnaDynamicMode(), (boolean)false) && StringHelper.isNullOrEmpty((String)(pSDepSlnPrd2 = (PSDepSlnPrd)this.getLast(pSDepSlnPrd)).getPSSysModelInstId())) {
             this.fillPSSysModelInst(pSDepSlnPrd);
         }
         super.onBeforeUpdate(pSDepSlnPrd);

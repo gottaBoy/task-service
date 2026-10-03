@@ -202,8 +202,7 @@ public class PSSysModelInstGlobal {
                 log.debug((Object)StringHelper.format((String)"\u6302\u63a5\u7cfb\u7edf\u6a21\u578b\u5e93[%1$s]\u4f1a\u8bdd\u5de5\u5382\uff0c\u5f53\u524d\u6570\u91cf[%2$s]", (Object)psSysModelInst.getPSSYSMODELINSTID(), (Object)sessionFactoryMap.size()));
             }
         }
-        hashMap = sessionFactoryConfigurationMap;
-        synchronized (hashMap) {
+        synchronized (sessionFactoryConfigurationMap) {
             sessionFactoryConfigurationMap.remove(psSysModelInst.getPSSYSMODELINSTID());
         }
         if (closeSessionFactory != null) {
@@ -224,8 +223,7 @@ public class PSSysModelInstGlobal {
             sessionFactoryPSSysModelInstMap.remove(strPSSysModelInstId);
         }
         if (sessionFactory != null) {
-            hashMap = sessionFactoryConfigurationMap;
-            synchronized (hashMap) {
+            synchronized (sessionFactoryConfigurationMap) {
                 sessionFactoryConfigurationMap.remove(strPSSysModelInstId);
             }
             DAOGlobal.unregisterDBDialect((SessionFactory)sessionFactory);
@@ -240,12 +238,10 @@ public class PSSysModelInstGlobal {
      */
     public static void resetAllSessionFactory() throws Exception {
         ArrayList<SessionFactory> sessionFactoryList = new ArrayList<SessionFactory>();
-        HashMap<String, Configuration> hashMap = sessionFactoryConfigurationMap;
-        synchronized (hashMap) {
+        synchronized (sessionFactoryConfigurationMap) {
             sessionFactoryConfigurationMap.clear();
         }
-        hashMap = sessionFactoryMap;
-        synchronized (hashMap) {
+        synchronized (sessionFactoryMap) {
             sessionFactoryList.addAll(sessionFactoryMap.values());
             sessionFactoryMap.clear();
             sessionFactoryLastActiveMap.clear();
@@ -323,4 +319,3 @@ public class PSSysModelInstGlobal {
         }
     }
 }
-

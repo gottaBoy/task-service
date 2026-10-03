@@ -115,7 +115,7 @@ implements IPSSysCss {
                 thicknessImpl2 = new ThicknessImpl(psSysCss.getPADDING());
                 styleMap.put("padding", thicknessImpl2.toString(" "));
             }
-            catch (Exception thicknessImpl2) {
+            catch (Exception ignored) {
                 // empty catch block
             }
         }

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSAppIndexViewDEModelBase;
 
 public class PSAppIndexViewDEModel
 extends PSAppIndexViewDEModelBase {
+
+    public PSAppIndexViewDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

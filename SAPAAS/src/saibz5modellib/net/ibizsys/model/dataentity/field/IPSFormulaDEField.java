@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.field;
 
-import net.ibizsys.model.dataentity.field.IPSDEField;
+/**
+ * 实体公式属性对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSFormulaDEField extends IPSDEField
+{
 
-public interface IPSFormulaDEField
-extends IPSDEField {
 }
-

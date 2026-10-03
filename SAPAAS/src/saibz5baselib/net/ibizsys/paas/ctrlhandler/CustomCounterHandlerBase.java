@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.CounterHandlerBase;
+/**
+ * 自定义计数器处理对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class CustomCounterHandlerBase extends CounterHandlerBase {
 
-public abstract class CustomCounterHandlerBase
-extends CounterHandlerBase {
 }
-

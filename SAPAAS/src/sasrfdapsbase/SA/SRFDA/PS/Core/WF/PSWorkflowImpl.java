@@ -1,37 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  SA.SRFDA.Web.Utility.ISRFDAGlobalHelper
- *  SA.SRFramework.Utility.StringHelper
- *  net.ibizsys.paas.codelist.ICodeList
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.paas.sysmodel.ISystemModel
- *  net.ibizsys.paas.util.KeyValueHelper
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.pswf.core.IWFService
- *  net.ibizsys.pswf.core.IWFVersionModel
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package SA.SRFDA.PS.Core.WF;
 
-import SA.SRFDA.PS.Core.App.IPSApplication;
-import SA.SRFDA.PS.Core.App.WF.IPSAppWF;
-import SA.SRFDA.PS.Core.CodeList.IPSCodeList;
-import SA.SRFDA.PS.Core.DataEntity.WF.IPSDEWF;
 import SA.SRFDA.PS.Core.IPSSystem;
 import SA.SRFDA.PS.Core.PSModelRTMeta;
 import SA.SRFDA.PS.Core.PSModels;
 import SA.SRFDA.PS.Core.PSSystemObjectImpl;
+import SA.SRFDA.PS.Core.App.IPSApplication;
+import SA.SRFDA.PS.Core.App.WF.IPSAppWF;
+import SA.SRFDA.PS.Core.CodeList.IPSCodeList;
+import SA.SRFDA.PS.Core.DataEntity.WF.IPSDEWF;
 import SA.SRFDA.PS.Core.Pub.IPSSysSFPub;
 import SA.SRFDA.PS.Core.Res.IPSLanguageRes;
 import SA.SRFDA.PS.Core.System.IPSSystemModule;
-import SA.SRFDA.PS.Core.WF.IPSWFDE;
-import SA.SRFDA.PS.Core.WF.IPSWFVersion;
-import SA.SRFDA.PS.Core.WF.IPSWorkflow;
-import SA.SRFDA.PS.Core.WF.PSWFDEGlobalModel;
-import SA.SRFDA.PS.Core.WF.PSWFVersionGlobalModel;
 import SA.SRFDA.PS.Core.WF.UIAction.IPSWFUIAction;
 import SA.SRFDA.PS.Core.WF.UIAction.IPSWFUIActionGroup;
 import SA.SRFDA.PS.Core.WF.UIAction.PSWFUIActionGlobalModel;
@@ -40,6 +19,7 @@ import SA.SRFDA.PS.Core.WX.IPSWXAccount;
 import SA.SRFDA.PS.Core.WX.IPSWXEntApp;
 import SA.SRFDA.PS.Data.PSWorkflow;
 import SA.SRFDA.Web.Utility.ISRFDAGlobalHelper;
+import SA.SRFramework.Utility.StringHelper;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -48,562 +28,571 @@ import net.ibizsys.paas.codelist.ICodeList;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.sysmodel.ISystemModel;
 import net.ibizsys.paas.util.KeyValueHelper;
-import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pswf.core.IWFService;
 import net.ibizsys.pswf.core.IWFVersionModel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class PSWorkflowImpl
-extends PSSystemObjectImpl
-implements IPSWorkflow {
-    private static final Log log = LogFactory.getLog(PSWorkflowImpl.class);
-    protected PSWorkflow psWorkflow;
-    private String strCodeName = "";
-    private PSWFVersionGlobalModel psWFVersionGlobalModel = null;
-    private PSWFDEGlobalModel psWFDEGlobalModel = null;
-    private IPSCodeList wfStepPSCodeList = null;
-    private IPSCodeList entityStatePSCodeList = null;
-    private Map<String, String> entityWFStateMap = new LinkedHashMap<String, String>();
-    private IPSWFVersion lastPSWFVersion = null;
-    private String strEntityWFState = "";
-    private String strEntityWFFinishState = "";
-    private String strEntityWFErrorState = "";
-    private String strEntityWFCancelState = "";
-    private String strRemindMsgTemplId = null;
-    private boolean bValidFlag = true;
-    private IPSWXAccount iPSWXAccount = null;
-    private IPSWXEntApp iPSWXEntApp = null;
-    private String strWFEngineCat = "EMBEDDED";
-    private String strWFEngineType = "EMBEDDED";
-    private boolean bDynamicWorkflow = false;
-    private IPSLanguageRes namePSLanguageRes = null;
-    private IPSSystemModule iPSSystemModule = null;
-    private boolean bUseRemoteEngine = false;
-    private boolean bUseWFProxyApp = false;
-    private int nWFProxyMode = 0;
-    protected PSWFUIActionGlobalModel psWFUIActionGlobalModel = new PSWFUIActionGlobalModel();
-    protected PSWFUIActionGroupGlobalModel psWFUIActionGroupGlobalModel = new PSWFUIActionGroupGlobalModel();
-    private ArrayList<IPSAppWF> psAppWFList = null;
-    private String strWFType = "DEFAULT";
-    private int nDynaInstMode = 0;
-    private int nDynaSysMode = 0;
+public class PSWorkflowImpl extends PSSystemObjectImpl implements IPSWorkflow {
+   private static final Log log = LogFactory.getLog(PSWorkflowImpl.class);
+   protected PSWorkflow psWorkflow;
+   private String strCodeName = "";
+   private PSWFVersionGlobalModel psWFVersionGlobalModel = null;
+   private PSWFDEGlobalModel psWFDEGlobalModel = null;
+   private IPSCodeList wfStepPSCodeList = null;
+   private IPSCodeList entityStatePSCodeList = null;
+   private Map<String, String> entityWFStateMap = new LinkedHashMap<>();
+   private IPSWFVersion lastPSWFVersion = null;
+   private String strEntityWFState = "";
+   private String strEntityWFFinishState = "";
+   private String strEntityWFErrorState = "";
+   private String strEntityWFCancelState = "";
+   private String strRemindMsgTemplId = null;
+   private boolean bValidFlag = true;
+   private IPSWXAccount iPSWXAccount = null;
+   private IPSWXEntApp iPSWXEntApp = null;
+   private String strWFEngineCat = "EMBEDDED";
+   private String strWFEngineType = "EMBEDDED";
+   private boolean bDynamicWorkflow = false;
+   private IPSLanguageRes namePSLanguageRes = null;
+   private IPSSystemModule iPSSystemModule = null;
+   private boolean bUseRemoteEngine = false;
+   private boolean bUseWFProxyApp = false;
+   private int nWFProxyMode = 0;
+   protected PSWFUIActionGlobalModel psWFUIActionGlobalModel = new PSWFUIActionGlobalModel();
+   protected PSWFUIActionGroupGlobalModel psWFUIActionGroupGlobalModel = new PSWFUIActionGroupGlobalModel();
+   private ArrayList<IPSAppWF> psAppWFList = null;
+   private String strWFType = "DEFAULT";
+   private int nDynaInstMode = 0;
+   private int nDynaSysMode = 0;
 
-    @Override
-    public void init(ISRFDAGlobalHelper iDAGlobalHelper, IPSSystem iPSSystem, PSWorkflow psWorkflow) throws Exception {
-        try {
-            this.setDAGlobalHelper(iDAGlobalHelper);
-            this.setPSSystem(iPSSystem);
-            this.psWorkflow = psWorkflow;
-            this.setId(this.psWorkflow.getPSWORKFLOWID());
-            this.setName(this.psWorkflow.getPSWORKFLOWNAME());
-            this.setPSObjectData(this.psWorkflow);
-            this.strCodeName = this.psWorkflow.getCODENAME();
-            if (!this.psWorkflow.isWFPROXYMODENull()) {
-                this.nWFProxyMode = this.psWorkflow.getWFPROXYMODE();
-                boolean bl = this.bUseWFProxyApp = (this.getWFProxyMode() & 1) == 1;
-            }
-            if (!this.isUseWFProxyApp() && !SA.SRFramework.Utility.StringHelper.IsNullOrEmpty((String)this.psWorkflow.getWFSTEPCODELISTID())) {
-                this.wfStepPSCodeList = iPSSystem.getPSCodeList(this.psWorkflow.getWFSTEPCODELISTID());
-            }
-            if (!SA.SRFramework.Utility.StringHelper.IsNullOrEmpty((String)this.psWorkflow.getSTATECODELISTID())) {
-                this.entityStatePSCodeList = iPSSystem.getPSCodeList(this.psWorkflow.getSTATECODELISTID());
-            }
-            if (!SA.SRFramework.Utility.StringHelper.IsNullOrEmpty((String)this.psWorkflow.getPSMODULEID())) {
-                this.iPSSystemModule = this.getPSSystem().getPSSystemModule(this.psWorkflow.getPSMODULEID());
-            }
-            if (!SA.SRFramework.Utility.StringHelper.IsNullOrEmpty((String)this.psWorkflow.getREMINDPSSYSMSGTEMPLID())) {
-                this.strRemindMsgTemplId = this.psWorkflow.getREMINDPSSYSMSGTEMPLID();
-            }
-            if (!this.psWorkflow.isVALIDFLAGNull()) {
-                this.bValidFlag = this.psWorkflow.getVALIDFLAG();
-            }
-            if (!SA.SRFramework.Utility.StringHelper.IsNullOrEmpty((String)this.psWorkflow.getWFENGINETYPE())) {
-                this.strWFEngineType = this.psWorkflow.getWFENGINETYPE();
-            }
-            if (!SA.SRFramework.Utility.StringHelper.IsNullOrEmpty((String)this.psWorkflow.getWFTYPE())) {
-                this.strWFType = this.psWorkflow.getWFTYPE();
-            }
-            this.strWFEngineCat = this.strWFEngineType;
-            if (!this.psWorkflow.isENABLEDYNASYSNull()) {
-                this.bDynamicWorkflow = this.psWorkflow.getENABLEDYNASYS();
-                if (this.psWorkflow.getENABLEDYNASYS()) {
-                    this.nDynaSysMode = 1;
-                }
-            }
-            if (!this.psWorkflow.isREMOTEENGINEFLAGNull()) {
-                this.bUseRemoteEngine = this.psWorkflow.getREMOTEENGINEFLAG();
-            }
-            if (SA.SRFramework.Utility.StringHelper.Compare((String)this.getWFEngineCat(), (String)"ACTIVITI", (boolean)true) == 0 && this.isUseRemoteEngine()) {
-                this.strWFEngineType = "ACTIVITI_REMOTE";
-            }
-            if (this.getPSSystemModule() != null && this.getPSSystemModule().getDynaInstMode() != 0) {
-                this.nDynaInstMode = this.getPSSystemModule().getDynaInstMode();
-                if (!this.psWorkflow.isENABLEDYNASYSNull() && !this.psWorkflow.getENABLEDYNASYS()) {
-                    this.nDynaInstMode = 0;
-                }
-            }
-            this.psWFUIActionGlobalModel.Init(this.getDAGlobalHelper(), this);
-            this.psWFUIActionGroupGlobalModel.Init(this.getDAGlobalHelper(), this);
-            this.onInit();
-        }
-        catch (Exception ex) {
-            String strLogName = StringHelper.format((String)"%1$s[%2$s]", (Object)PSModels.getModelName((String)this.getModelType()), (Object)this.getFullModelName());
-            String strExInfo = StringHelper.format((String)"\u521d\u59cb\u5316\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage());
-            log.error((Object)StringHelper.format((String)"%1$s%2$s", (Object)strLogName, (Object)strExInfo), (Throwable)ex);
-            if (this.getPSSystemUtil() != null) {
-                this.getPSSystemUtil().getPSSysConsole().error(strLogName, strExInfo);
-            }
-            this.throwInitException(ex);
-        }
-    }
+   @Override
+   public void init(ISRFDAGlobalHelper iDAGlobalHelper, IPSSystem iPSSystem, PSWorkflow psWorkflow) throws Exception {
+      try {
+         this.setDAGlobalHelper(iDAGlobalHelper);
+         this.setPSSystem(iPSSystem);
+         this.psWorkflow = psWorkflow;
+         this.setId(this.psWorkflow.getPSWORKFLOWID());
+         this.setName(this.psWorkflow.getPSWORKFLOWNAME());
+         this.setPSObjectData(this.psWorkflow);
+         this.strCodeName = this.psWorkflow.getCODENAME();
+         if (!this.psWorkflow.isWFPROXYMODENull()) {
+            this.nWFProxyMode = this.psWorkflow.getWFPROXYMODE();
+            this.bUseWFProxyApp = (this.getWFProxyMode() & 1) == 1;
+         }
 
-    @Override
-    protected void onInit() throws Exception {
-        super.onInit();
-        if (!SA.SRFramework.Utility.StringHelper.IsNullOrEmpty((String)this.psWorkflow.getNAMEPSLANRESID())) {
-            this.namePSLanguageRes = this.getPSSystem().getPSLanguageRes(this.psWorkflow.getNAMEPSLANRESID());
-        }
-        this.strEntityWFState = this.psWorkflow.getWFSTATEVALUE();
-        if (!SA.SRFramework.Utility.StringHelper.IsNullOrEmpty((String)this.strEntityWFState)) {
-            String[] items;
-            String[] stringArray = items = this.strEntityWFState.split("[;]");
-            int n = items.length;
-            int n2 = 0;
-            while (n2 < n) {
-                String strItem = stringArray[n2];
-                if (!SA.SRFramework.Utility.StringHelper.IsNullOrEmpty((String)strItem)) {
-                    this.entityWFStateMap.put(strItem, strItem);
-                }
-                ++n2;
+         if (!this.isUseWFProxyApp() && !StringHelper.IsNullOrEmpty(this.psWorkflow.getWFSTEPCODELISTID())) {
+            this.wfStepPSCodeList = iPSSystem.getPSCodeList(this.psWorkflow.getWFSTEPCODELISTID());
+         }
+
+         if (!StringHelper.IsNullOrEmpty(this.psWorkflow.getSTATECODELISTID())) {
+            this.entityStatePSCodeList = iPSSystem.getPSCodeList(this.psWorkflow.getSTATECODELISTID());
+         }
+
+         if (!StringHelper.IsNullOrEmpty(this.psWorkflow.getPSMODULEID())) {
+            this.iPSSystemModule = this.getPSSystem().getPSSystemModule(this.psWorkflow.getPSMODULEID());
+         }
+
+         if (!StringHelper.IsNullOrEmpty(this.psWorkflow.getREMINDPSSYSMSGTEMPLID())) {
+            this.strRemindMsgTemplId = this.psWorkflow.getREMINDPSSYSMSGTEMPLID();
+         }
+
+         if (!this.psWorkflow.isVALIDFLAGNull()) {
+            this.bValidFlag = this.psWorkflow.getVALIDFLAG();
+         }
+
+         if (!StringHelper.IsNullOrEmpty(this.psWorkflow.getWFENGINETYPE())) {
+            this.strWFEngineType = this.psWorkflow.getWFENGINETYPE();
+         }
+
+         if (!StringHelper.IsNullOrEmpty(this.psWorkflow.getWFTYPE())) {
+            this.strWFType = this.psWorkflow.getWFTYPE();
+         }
+
+         this.strWFEngineCat = this.strWFEngineType;
+         if (!this.psWorkflow.isENABLEDYNASYSNull()) {
+            this.bDynamicWorkflow = this.psWorkflow.getENABLEDYNASYS();
+            if (this.psWorkflow.getENABLEDYNASYS()) {
+               this.nDynaSysMode = 1;
             }
-        }
-        this.strEntityWFErrorState = this.psWorkflow.getWFERRORVALUE();
-        this.strEntityWFFinishState = this.psWorkflow.getWFFINISHEVALUE();
-        this.strEntityWFCancelState = this.psWorkflow.getWFCANCELVALUE();
-        this.psWFVersionGlobalModel = new PSWFVersionGlobalModel();
-        this.psWFVersionGlobalModel.Init(this.getDAGlobalHelper(), this);
-        this.psWFDEGlobalModel = new PSWFDEGlobalModel();
-        this.psWFDEGlobalModel.Init(this.getDAGlobalHelper(), this);
-        if (!SA.SRFramework.Utility.StringHelper.IsNullOrEmpty((String)this.psWorkflow.getPSWXACCOUNTID())) {
-            this.iPSWXAccount = this.getPSSystem().getPSWXAccount(this.psWorkflow.getPSWXACCOUNTID());
-        }
-        if (this.getPSWXAccount() != null && !SA.SRFramework.Utility.StringHelper.IsNullOrEmpty((String)this.psWorkflow.getPSWXENTAPPID())) {
-            this.iPSWXEntApp = this.getPSWXAccount().getPSWXEntApp(this.psWorkflow.getPSWXENTAPPID());
-        }
-    }
+         }
 
-    @Override
-    @PSModelRTMeta(description="\u903b\u8f91\u540d\u79f0", fields={"PSWORKFLOWNAME"})
-    public String getLogicName() {
-        return this.getName();
-    }
+         if (!this.psWorkflow.isREMOTEENGINEFLAGNull()) {
+            this.bUseRemoteEngine = this.psWorkflow.getREMOTEENGINEFLAG();
+         }
 
-    @Override
-    @PSModelRTMeta(description="\u4ee3\u7801\u6807\u8bc6")
-    public String getCodeName() {
-        return this.onGetCodeName();
-    }
+         if (StringHelper.Compare(this.getWFEngineCat(), "ACTIVITI", true) == 0 && this.isUseRemoteEngine()) {
+            this.strWFEngineType = "ACTIVITI_REMOTE";
+         }
 
-    protected String onGetCodeName() {
-        return this.calcCodeName();
-    }
+         if (this.getPSSystemModule() != null && this.getPSSystemModule().getDynaInstMode() != 0) {
+            this.nDynaInstMode = this.getPSSystemModule().getDynaInstMode();
+            if (!this.psWorkflow.isENABLEDYNASYSNull() && !this.psWorkflow.getENABLEDYNASYS()) {
+               this.nDynaInstMode = 0;
+            }
+         }
 
-    protected String calcCodeName() {
-        return this.strCodeName;
-    }
+         this.psWFUIActionGlobalModel.Init(this.getDAGlobalHelper(), this);
+         this.psWFUIActionGroupGlobalModel.Init(this.getDAGlobalHelper(), this);
+         this.onInit();
+      } catch (Exception ex) {
+         String strLogName = net.ibizsys.paas.util.StringHelper.format("%1$s[%2$s]", PSModels.getModelName(this.getModelType()), this.getFullModelName());
+         String strExInfo = net.ibizsys.paas.util.StringHelper.format("初始化发生异常，%1$s", ex.getMessage());
+         log.error(net.ibizsys.paas.util.StringHelper.format("%1$s%2$s", strLogName, strExInfo), ex);
+         if (this.getPSSystemUtil() != null) {
+            this.getPSSystemUtil().getPSSysConsole().error(strLogName, strExInfo);
+         }
 
-    @Override
-    public IPSWFVersion getPSWFVersion(String strWFVersionId) throws Exception {
-        return (IPSWFVersion)this.psWFVersionGlobalModel.FindModelHelper(strWFVersionId);
-    }
+         this.throwInitException(ex);
+      }
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u6d41\u7a0b\u7248\u672c\u96c6\u5408", child=true, dumpref=true, rtdump=2, group="\u57fa\u672c", order=135)
-    public Iterator<IPSWFVersion> getPSWFVersions() throws Exception {
-        return this.psWFVersionGlobalModel.getAllModelHelpers();
-    }
+   @Override
+   protected void onInit() throws Exception {
+      super.onInit();
+      if (!StringHelper.IsNullOrEmpty(this.psWorkflow.getNAMEPSLANRESID())) {
+         this.namePSLanguageRes = this.getPSSystem().getPSLanguageRes(this.psWorkflow.getNAMEPSLANRESID());
+      }
 
-    @Override
-    @PSModelRTMeta(description="\u6d41\u7a0b\u5b9e\u4f53\u96c6\u5408", child=true, dynamodelmode=5, group="\u57fa\u672c", order=130)
-    public Iterator<IPSWFDE> getPSWFDEs() throws Exception {
-        return this.psWFDEGlobalModel.getAllModelHelpers();
-    }
+      this.strEntityWFState = this.psWorkflow.getWFSTATEVALUE();
+      if (!StringHelper.IsNullOrEmpty(this.strEntityWFState)) {
+         String[] items = this.strEntityWFState.split("[;]");
+         String[] var5 = items;
+         int var4 = items.length;
 
-    @Override
-    @PSModelRTMeta(description="\u6d41\u7a0b\u6b65\u9aa4\u4ee3\u7801\u8868", fields={"WFSTEPCODELISTID"})
-    public IPSCodeList getWFStepPSCodeList() {
-        return this.wfStepPSCodeList;
-    }
+         for (int var3 = 0; var3 < var4; var3++) {
+            String strItem = var5[var3];
+            if (!StringHelper.IsNullOrEmpty(strItem)) {
+               this.entityWFStateMap.put(strItem, strItem);
+            }
+         }
+      }
 
-    @Override
-    @PSModelRTMeta(description="\u4e1a\u52a1\u72b6\u6001\u4ee3\u7801\u8868", fields={"STATECODELISTID"})
-    public IPSCodeList getEntityStatePSCodeList() {
-        return this.entityStatePSCodeList;
-    }
+      this.strEntityWFErrorState = this.psWorkflow.getWFERRORVALUE();
+      this.strEntityWFFinishState = this.psWorkflow.getWFFINISHEVALUE();
+      this.strEntityWFCancelState = this.psWorkflow.getWFCANCELVALUE();
+      this.psWFVersionGlobalModel = new PSWFVersionGlobalModel();
+      this.psWFVersionGlobalModel.Init(this.getDAGlobalHelper(), this);
+      this.psWFDEGlobalModel = new PSWFDEGlobalModel();
+      this.psWFDEGlobalModel.Init(this.getDAGlobalHelper(), this);
+      if (!StringHelper.IsNullOrEmpty(this.psWorkflow.getPSWXACCOUNTID())) {
+         this.iPSWXAccount = this.getPSSystem().getPSWXAccount(this.psWorkflow.getPSWXACCOUNTID());
+      }
 
-    @Override
-    @PSModelRTMeta(description="\u6d41\u7a0b\u4e2d\u4e1a\u52a1\u72b6\u6001\u96c6\u5408")
-    public Iterator<String> getEntityWFStates() {
-        return this.entityWFStateMap.keySet().iterator();
-    }
+      if (this.getPSWXAccount() != null && !StringHelper.IsNullOrEmpty(this.psWorkflow.getPSWXENTAPPID())) {
+         this.iPSWXEntApp = this.getPSWXAccount().getPSWXEntApp(this.psWorkflow.getPSWXENTAPPID());
+      }
+   }
 
-    /*
-     * Unable to fully structure code
-     */
-    @Override
-    @PSModelRTMeta(description="\u6700\u65b0\u6d41\u7a0b\u7248\u672c")
-    public IPSWFVersion getLastPSWFVersion() throws Exception {
-        if (this.lastPSWFVersion != null) {
-            return this.lastPSWFVersion;
-        }
-        psWFVersions = this.getPSWFVersions();
-        if (psWFVersions != null) ** GOTO lbl9
-        return null;
-lbl-1000:
-        // 1 sources
+   @PSModelRTMeta(description = "逻辑名称", fields = "PSWORKFLOWNAME")
+   @Override
+   public String getLogicName() {
+      return this.getName();
+   }
 
-        {
-            iPSWFVersion = psWFVersions.next();
-            if (this.lastPSWFVersion != null && iPSWFVersion.getWFVersion() <= this.lastPSWFVersion.getWFVersion()) continue;
+   @PSModelRTMeta(description = "代码标识")
+   @Override
+   public String getCodeName() {
+      return this.onGetCodeName();
+   }
+
+   protected String onGetCodeName() {
+      return this.calcCodeName();
+   }
+
+   protected String calcCodeName() {
+      return this.strCodeName;
+   }
+
+   @Override
+   public IPSWFVersion getPSWFVersion(String strWFVersionId) throws Exception {
+      return this.psWFVersionGlobalModel.FindModelHelper(strWFVersionId);
+   }
+
+   @PSModelRTMeta(description = "流程版本集合", child = true, dumpref = true, rtdump = 2, group = "基本", order = 135)
+   @Override
+   public Iterator<IPSWFVersion> getPSWFVersions() throws Exception {
+      return this.psWFVersionGlobalModel.getAllModelHelpers();
+   }
+
+   @PSModelRTMeta(description = "流程实体集合", child = true, dynamodelmode = 5, group = "基本", order = 130)
+   @Override
+   public Iterator<IPSWFDE> getPSWFDEs() throws Exception {
+      return this.psWFDEGlobalModel.getAllModelHelpers();
+   }
+
+   @PSModelRTMeta(description = "流程步骤代码表", fields = "WFSTEPCODELISTID")
+   @Override
+   public IPSCodeList getWFStepPSCodeList() {
+      return this.wfStepPSCodeList;
+   }
+
+   @PSModelRTMeta(description = "业务状态代码表", fields = "STATECODELISTID")
+   @Override
+   public IPSCodeList getEntityStatePSCodeList() {
+      return this.entityStatePSCodeList;
+   }
+
+   @PSModelRTMeta(description = "流程中业务状态集合")
+   @Override
+   public Iterator<String> getEntityWFStates() {
+      return this.entityWFStateMap.keySet().iterator();
+   }
+
+   @PSModelRTMeta(description = "最新流程版本")
+   @Override
+   public IPSWFVersion getLastPSWFVersion() throws Exception {
+      if (this.lastPSWFVersion != null) {
+         return this.lastPSWFVersion;
+      }
+
+      Iterator<IPSWFVersion> psWFVersions = this.getPSWFVersions();
+      if (psWFVersions == null) {
+         return null;
+      }
+
+      while (psWFVersions.hasNext()) {
+         IPSWFVersion iPSWFVersion = psWFVersions.next();
+         if (this.lastPSWFVersion == null || iPSWFVersion.getWFVersion() > this.lastPSWFVersion.getWFVersion()) {
             this.lastPSWFVersion = iPSWFVersion;
-lbl9:
-            // 3 sources
+         }
+      }
 
-            ** while (psWFVersions.hasNext())
-        }
-lbl10:
-        // 1 sources
+      return this.lastPSWFVersion;
+   }
 
-        return this.lastPSWFVersion;
-    }
+   @Override
+   public ISystemModel getSystemModel() {
+      return null;
+   }
 
-    public ISystemModel getSystemModel() {
-        return null;
-    }
+   @Override
+   public IEntity createEntity(String strDEName) throws Exception {
+      return null;
+   }
 
-    public IEntity createEntity(String strDEName) throws Exception {
-        return null;
-    }
+   @Override
+   public ICodeList getWFStepCodeList() {
+      return this.getWFStepPSCodeList();
+   }
 
-    public ICodeList getWFStepCodeList() {
-        return this.getWFStepPSCodeList();
-    }
+   @Override
+   public ICodeList getEntityStateCodeList() {
+      return this.getEntityStatePSCodeList();
+   }
 
-    public ICodeList getEntityStateCodeList() {
-        return this.getEntityStatePSCodeList();
-    }
+   @Override
+   public IWFVersionModel getLastWFVersionModel() {
+      return null;
+   }
 
-    public IWFVersionModel getLastWFVersionModel() {
-        return null;
-    }
+   @Override
+   public IWFVersionModel getLastWFVersionModel(String strWFMode) throws Exception {
+      return null;
+   }
 
-    public IWFVersionModel getLastWFVersionModel(String strWFMode) throws Exception {
-        return null;
-    }
+   @Override
+   public IWFVersionModel getWFVersionModelByWFVersion(int nVersion) throws Exception {
+      return null;
+   }
 
-    public IWFVersionModel getWFVersionModelByWFVersion(int nVersion) throws Exception {
-        return null;
-    }
+   @Override
+   public boolean isEntityWFState(String strWFState) {
+      return this.entityWFStateMap.containsKey(strWFState);
+   }
 
-    public boolean isEntityWFState(String strWFState) {
-        return this.entityWFStateMap.containsKey(strWFState);
-    }
+   @Override
+   public IWFService getWFService() {
+      return null;
+   }
 
-    public IWFService getWFService() {
-        return null;
-    }
+   @PSModelRTMeta(description = "实体流程中状态值", fields = "WFSTATEVALUE")
+   @Override
+   public String getEntityWFState() {
+      return this.strEntityWFState;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5b9e\u4f53\u6d41\u7a0b\u4e2d\u72b6\u6001\u503c", fields={"WFSTATEVALUE"})
-    public String getEntityWFState() {
-        return this.strEntityWFState;
-    }
+   @Override
+   public IPSDEWF getPSDEWF(String strPSDEWFId) throws Exception {
+      return this.psWFDEGlobalModel.FindModelHelper(strPSDEWFId);
+   }
 
-    @Override
-    public IPSDEWF getPSDEWF(String strPSDEWFId) throws Exception {
-        return (IPSDEWF)this.psWFDEGlobalModel.FindModelHelper(strPSDEWFId);
-    }
+   @Override
+   public IPSDEWF getPSDEWF(String strPSDEWFId, boolean bTryMode) throws Exception {
+      return this.psWFDEGlobalModel.FindModelHelper(strPSDEWFId, bTryMode);
+   }
 
-    @Override
-    public IPSDEWF getPSDEWF(String strPSDEWFId, boolean bTryMode) throws Exception {
-        return (IPSDEWF)this.psWFDEGlobalModel.FindModelHelper(strPSDEWFId, bTryMode);
-    }
+   @Override
+   public String getRemindMsgTemplId() {
+      return this.strRemindMsgTemplId;
+   }
 
-    public String getRemindMsgTemplId() {
-        return this.strRemindMsgTemplId;
-    }
+   @PSModelRTMeta(description = "启用")
+   @Override
+   public boolean isValid() {
+      return this.bValidFlag;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u542f\u7528")
-    public boolean isValid() {
-        return this.bValidFlag;
-    }
+   @PSModelRTMeta(description = "工作流编号", group = "基本", order = 105, fields = "WFSN")
+   @Override
+   public String getWFSN() {
+      return this.psWorkflow.getWFSN();
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5de5\u4f5c\u6d41\u7f16\u53f7", group="\u57fa\u672c", order=105, fields={"WFSN"})
-    public String getWFSN() {
-        return this.psWorkflow.getWFSN();
-    }
+   @Override
+   public String getModelType() {
+      return "PSWORKFLOW";
+   }
 
-    @Override
-    public String getModelType() {
-        return "PSWORKFLOW";
-    }
+   @Override
+   public void loadAll() throws Exception {
+      this.getPSWFVersions();
+      this.getPSSystemUtil().testPSModelLimit(this, "PSWFVERSION", this.psWFVersionGlobalModel.getAllModelHelperCount());
+      this.psWFDEGlobalModel.getAllModelHelpers();
+      this.psWFUIActionGlobalModel.getAllModelHelpers();
+      this.psWFUIActionGroupGlobalModel.getAllModelHelpers();
+   }
 
-    @Override
-    public void loadAll() throws Exception {
-        this.getPSWFVersions();
-        this.getPSSystemUtil().testPSModelLimit(this, "PSWFVERSION", this.psWFVersionGlobalModel.getAllModelHelperCount());
-        this.psWFDEGlobalModel.getAllModelHelpers();
-        this.psWFUIActionGlobalModel.getAllModelHelpers();
-        this.psWFUIActionGroupGlobalModel.getAllModelHelpers();
-    }
+   @Override
+   public String getWXAccountId() {
+      return this.getPSWXAccount() == null ? null : this.getPSWXAccount().getId();
+   }
 
-    public String getWXAccountId() {
-        if (this.getPSWXAccount() == null) {
-            return null;
-        }
-        return this.getPSWXAccount().getId();
-    }
+   @Override
+   public String getWXEntAppId() {
+      return this.getPSWXEntApp() == null ? null : this.getPSWXEntApp().getId();
+   }
 
-    public String getWXEntAppId() {
-        if (this.getPSWXEntApp() == null) {
-            return null;
-        }
-        return this.getPSWXEntApp().getId();
-    }
+   @PSModelRTMeta(description = "通知微信企业账号")
+   @Override
+   public IPSWXAccount getPSWXAccount() {
+      return this.iPSWXAccount;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u901a\u77e5\u5fae\u4fe1\u4f01\u4e1a\u8d26\u53f7")
-    public IPSWXAccount getPSWXAccount() {
-        return this.iPSWXAccount;
-    }
+   @PSModelRTMeta(description = "通知微信企业应用")
+   @Override
+   public IPSWXEntApp getPSWXEntApp() {
+      return this.iPSWXEntApp;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u901a\u77e5\u5fae\u4fe1\u4f01\u4e1a\u5e94\u7528")
-    public IPSWXEntApp getPSWXEntApp() {
-        return this.iPSWXEntApp;
-    }
+   @Override
+   public Object getRuntimeId() {
+      return this.getId();
+   }
 
-    public Object getRuntimeId() {
-        return this.getId();
-    }
+   @Override
+   public void setRuntimeId(Object objId) {
+   }
 
-    public void setRuntimeId(Object objId) {
-    }
+   @Override
+   public boolean isEnableDynamicView() {
+      return this.isDynamicWorkflow();
+   }
 
-    @Override
-    public boolean isEnableDynamicView() {
-        return this.isDynamicWorkflow();
-    }
+   @PSModelRTMeta(description = "流程引擎类型", fields = "WFENGINETYPE")
+   @Override
+   public String getWFEngineType() {
+      return this.strWFEngineType;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u6d41\u7a0b\u5f15\u64ce\u7c7b\u578b", fields={"WFENGINETYPE"})
-    public String getWFEngineType() {
-        return this.strWFEngineType;
-    }
+   @PSModelRTMeta(description = "流程引擎类别")
+   @Override
+   public String getWFEngineCat() {
+      return this.strWFEngineCat;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u6d41\u7a0b\u5f15\u64ce\u7c7b\u522b")
-    public String getWFEngineCat() {
-        return this.strWFEngineCat;
-    }
+   @Override
+   public IWFVersionModel getWFVersionModel(String strWFVesionId) throws Exception {
+      return null;
+   }
 
-    public IWFVersionModel getWFVersionModel(String strWFVesionId) throws Exception {
-        return null;
-    }
+   @Override
+   public boolean isDynamicWorkflow() {
+      return this.bDynamicWorkflow;
+   }
 
-    @Override
-    public boolean isDynamicWorkflow() {
-        return this.bDynamicWorkflow;
-    }
+   @PSModelRTMeta(description = "名称语言资源", hideempty = true, fields = "NAMEPSLANRESID")
+   @Override
+   public IPSLanguageRes getNamePSLanguageRes() {
+      return this.namePSLanguageRes;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u540d\u79f0\u8bed\u8a00\u8d44\u6e90", hideempty=true, fields={"NAMEPSLANRESID"})
-    public IPSLanguageRes getNamePSLanguageRes() {
-        return this.namePSLanguageRes;
-    }
+   @Override
+   public String getNameLanResTag() {
+      return this.getNamePSLanguageRes() != null ? this.getNamePSLanguageRes().getLanResTag() : null;
+   }
 
-    @Override
-    public String getNameLanResTag() {
-        if (this.getNamePSLanguageRes() != null) {
-            return this.getNamePSLanguageRes().getLanResTag();
-        }
-        return null;
-    }
+   @PSModelRTMeta(description = "系统模块", dumpref = true, hideempty = true, dynamodelmode = 4, fields = "PSMODULEID")
+   @Override
+   public IPSSystemModule getPSSystemModule() {
+      return this.iPSSystemModule;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u7cfb\u7edf\u6a21\u5757", dumpref=true, hideempty=true, dynamodelmode=4, fields={"PSMODULEID"})
-    public IPSSystemModule getPSSystemModule() {
-        return this.iPSSystemModule;
-    }
+   @PSModelRTMeta(description = "后台服务发布对象", hideempty = true)
+   @Override
+   public IPSSysSFPub getPSSysSFPub() {
+      return this.getPSSystemModule() != null ? this.getPSSystemModule().getPSSysSFPub() : this.getPSSystem().getDefaultPSSysSFPub();
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u540e\u53f0\u670d\u52a1\u53d1\u5e03\u5bf9\u8c61", hideempty=true)
-    public IPSSysSFPub getPSSysSFPub() {
-        if (this.getPSSystemModule() != null) {
-            return this.getPSSystemModule().getPSSysSFPub();
-        }
-        return this.getPSSystem().getDefaultPSSysSFPub();
-    }
+   @PSModelRTMeta(description = "使用远程引擎", fields = "REMOTEENGINEFLAG")
+   @Override
+   public boolean isUseRemoteEngine() {
+      return this.bUseRemoteEngine;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u4f7f\u7528\u8fdc\u7a0b\u5f15\u64ce", fields={"REMOTEENGINEFLAG"})
-    public boolean isUseRemoteEngine() {
-        return this.bUseRemoteEngine;
-    }
+   @PSModelRTMeta(description = "使用工作流代理应用")
+   @Override
+   public boolean isUseWFProxyApp() {
+      return this.bUseWFProxyApp;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u4f7f\u7528\u5de5\u4f5c\u6d41\u4ee3\u7406\u5e94\u7528")
-    public boolean isUseWFProxyApp() {
-        return this.bUseWFProxyApp;
-    }
+   @Override
+   public IPSWFUIAction getPSWFUIAction(String strDEUIActionId) throws Exception {
+      return this.psWFUIActionGlobalModel.FindModelHelper(strDEUIActionId);
+   }
 
-    @Override
-    public IPSWFUIAction getPSWFUIAction(String strDEUIActionId) throws Exception {
-        return (IPSWFUIAction)this.psWFUIActionGlobalModel.FindModelHelper(strDEUIActionId);
-    }
+   @Override
+   public IPSWFUIAction getPSWFUIAction(String strDEUIActionId, boolean bTryMode) throws Exception {
+      return this.psWFUIActionGlobalModel.FindModelHelper(strDEUIActionId, bTryMode);
+   }
 
-    @Override
-    public IPSWFUIAction getPSWFUIAction(String strDEUIActionId, boolean bTryMode) throws Exception {
-        return (IPSWFUIAction)this.psWFUIActionGlobalModel.FindModelHelper(strDEUIActionId, bTryMode);
-    }
+   @Override
+   public void resetPSWFUIAction(String strDEUIActionId) throws Exception {
+      this.psWFUIActionGlobalModel.ResetModel(strDEUIActionId);
+   }
 
-    @Override
-    public void resetPSWFUIAction(String strDEUIActionId) throws Exception {
-        this.psWFUIActionGlobalModel.ResetModel(strDEUIActionId);
-    }
+   @Override
+   public Iterator<IPSWFUIAction> getAllPSWFUIActions() throws Exception {
+      return this.psWFUIActionGlobalModel.getAllModelHelpers();
+   }
 
-    @Override
-    public Iterator<IPSWFUIAction> getAllPSWFUIActions() throws Exception {
-        return this.psWFUIActionGlobalModel.getAllModelHelpers();
-    }
+   @Override
+   public IPSWFUIActionGroup getPSWFUIActionGroup(String strDEUIActionGroupId) throws Exception {
+      return this.psWFUIActionGroupGlobalModel.FindModelHelper(strDEUIActionGroupId);
+   }
 
-    @Override
-    public IPSWFUIActionGroup getPSWFUIActionGroup(String strDEUIActionGroupId) throws Exception {
-        return (IPSWFUIActionGroup)this.psWFUIActionGroupGlobalModel.FindModelHelper(strDEUIActionGroupId);
-    }
+   @Override
+   public IPSWFUIActionGroup getPSWFUIActionGroup(String strDEUIActionGroupId, boolean bTryMode) throws Exception {
+      return this.psWFUIActionGroupGlobalModel.FindModelHelper(strDEUIActionGroupId, bTryMode);
+   }
 
-    @Override
-    public IPSWFUIActionGroup getPSWFUIActionGroup(String strDEUIActionGroupId, boolean bTryMode) throws Exception {
-        return (IPSWFUIActionGroup)this.psWFUIActionGroupGlobalModel.FindModelHelper(strDEUIActionGroupId, bTryMode);
-    }
+   @Override
+   public void resetPSWFUIActionGroup(String strDEUIActionGroupId) throws Exception {
+      this.psWFUIActionGroupGlobalModel.ResetModel(strDEUIActionGroupId);
+   }
 
-    @Override
-    public void resetPSWFUIActionGroup(String strDEUIActionGroupId) throws Exception {
-        this.psWFUIActionGroupGlobalModel.ResetModel(strDEUIActionGroupId);
-    }
+   @Override
+   public String getDefaultDEName() {
+      try {
+         Iterator<IPSWFDE> psDEWFs = this.getPSWFDEs();
+         return psDEWFs.hasNext() ? psDEWFs.next().getPSDataEntity().getName() : null;
+      } catch (Exception ex) {
+         log.error(StringHelper.Format("获取工作流默认实体名称发生异常，%1$s", ex.getMessage()), ex);
+         return null;
+      }
+   }
 
-    @Override
-    public String getDefaultDEName() {
-        try {
-            Iterator<IPSWFDE> psDEWFs = this.getPSWFDEs();
-            if (psDEWFs.hasNext()) {
-                return psDEWFs.next().getPSDataEntity().getName();
-            }
-            return null;
-        }
-        catch (Exception ex) {
-            log.error((Object)SA.SRFramework.Utility.StringHelper.Format((String)"\u83b7\u53d6\u5de5\u4f5c\u6d41\u9ed8\u8ba4\u5b9e\u4f53\u540d\u79f0\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
-            return null;
-        }
-    }
+   @PSModelRTMeta(description = "工作流代理模式", codelist = "WFProxyMode", fields = "WFPROXYMODE")
+   @Override
+   public int getWFProxyMode() {
+      return this.nWFProxyMode;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5de5\u4f5c\u6d41\u4ee3\u7406\u6a21\u5f0f", codelist="WFProxyMode", fields={"WFPROXYMODE"})
-    public int getWFProxyMode() {
-        return this.nWFProxyMode;
-    }
-
-    @Override
-    @PSModelRTMeta(description="\u5e94\u7528\u5de5\u4f5c\u6d41\u96c6\u5408")
-    public Iterator<IPSAppWF> getPSAppWFs() throws Exception {
-        if (this.psAppWFList == null) {
-            ArrayList<IPSAppWF> psAppWFList = new ArrayList<IPSAppWF>();
-            Iterator<IPSApplication> psApplications = this.getPSSystem().getAllPSApps();
-            if (psApplications != null) {
-                while (psApplications.hasNext()) {
-                    IPSApplication iPSApplication = psApplications.next();
-                    Iterator<IPSAppWF> psAppWFs = iPSApplication.getAllPSAppWFs();
-                    if (psAppWFs == null) continue;
-                    while (psAppWFs.hasNext()) {
-                        IPSAppWF iPSAppWF = psAppWFs.next();
-                        if (SA.SRFramework.Utility.StringHelper.Compare((String)iPSAppWF.getPSWorkflow().getId(), (String)this.getId(), (boolean)false) != 0) continue;
+   @PSModelRTMeta(description = "应用工作流集合")
+   @Override
+   public Iterator<IPSAppWF> getPSAppWFs() throws Exception {
+      if (this.psAppWFList == null) {
+         ArrayList<IPSAppWF> psAppWFList = new ArrayList<>();
+         Iterator<IPSApplication> psApplications = this.getPSSystem().getAllPSApps();
+         if (psApplications != null) {
+            while (psApplications.hasNext()) {
+               IPSApplication iPSApplication = psApplications.next();
+               Iterator<IPSAppWF> psAppWFs = iPSApplication.getAllPSAppWFs();
+               if (psAppWFs != null) {
+                  while (psAppWFs.hasNext()) {
+                     IPSAppWF iPSAppWF = psAppWFs.next();
+                     if (StringHelper.Compare(iPSAppWF.getPSWorkflow().getId(), this.getId(), false) == 0) {
                         psAppWFList.add(iPSAppWF);
-                    }
-                }
+                     }
+                  }
+               }
             }
-            if (this.psAppWFList == null) {
-                this.psAppWFList = psAppWFList;
-            }
-        }
-        return this.psAppWFList.iterator();
-    }
+         }
 
-    @Override
-    @PSModelRTMeta(description="\u90e8\u7f72\u6570\u636e\u6807\u8bc6", dump=false)
-    public String getDeployId() {
-        if (this.getPSSystemModule() != null) {
-            return KeyValueHelper.genUniqueId((String)this.getPSSystemModule().getDeployId(), (String)this.getCodeName());
-        }
-        return KeyValueHelper.genUniqueId((String)this.getPSSystem().getDeployId(), (String)this.getCodeName());
-    }
+         if (this.psAppWFList == null) {
+            this.psAppWFList = psAppWFList;
+         }
+      }
 
-    @Override
-    @PSModelRTMeta(description="\u5de5\u4f5c\u6d41\u7c7b\u578b", codelist="WFType", fields={"WFTYPE"})
-    public String getWFType() {
-        return this.strWFType;
-    }
+      return this.psAppWFList.iterator();
+   }
 
-    @Override
-    protected int onGetDynaInstMode() {
-        return this.nDynaInstMode;
-    }
+   @PSModelRTMeta(description = "部署数据标识", dump = false)
+   @Override
+   public String getDeployId() {
+      return this.getPSSystemModule() != null
+         ? KeyValueHelper.genUniqueId(this.getPSSystemModule().getDeployId(), this.getCodeName())
+         : KeyValueHelper.genUniqueId(this.getPSSystem().getDeployId(), this.getCodeName());
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5b9e\u4f53\u6d41\u7a0b\u7ed3\u675f\u72b6\u6001\u503c", fields={"WFFINISHEVALUE"})
-    public String getEntityWFFinishState() {
-        return this.strEntityWFFinishState;
-    }
+   @PSModelRTMeta(description = "工作流类型", codelist = "WFType", fields = "WFTYPE")
+   @Override
+   public String getWFType() {
+      return this.strWFType;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5b9e\u4f53\u6d41\u7a0b\u9519\u8bef\u72b6\u6001\u503c", fields={"WFERRORVALUE"})
-    public String getEntityWFErrorState() {
-        return this.strEntityWFErrorState;
-    }
+   @Override
+   protected int onGetDynaInstMode() {
+      return this.nDynaInstMode;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5b9e\u4f53\u6d41\u7a0b\u53d6\u6d88\u72b6\u6001\u503c", fields={"WFCANCELVALUE"})
-    public String getEntityWFCancelState() {
-        return this.strEntityWFCancelState;
-    }
+   @PSModelRTMeta(description = "实体流程结束状态值", fields = "WFFINISHEVALUE")
+   @Override
+   public String getEntityWFFinishState() {
+      return this.strEntityWFFinishState;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u52a8\u6001\u7cfb\u7edf\u6a21\u5f0f", codelist="DynaSysMode", ignoredumpvalues="0", fields={"ENABLEDYNASYS"})
-    public int getDynaSysMode() {
-        return this.nDynaSysMode;
-    }
+   @PSModelRTMeta(description = "实体流程错误状态值", fields = "WFERRORVALUE")
+   @Override
+   public String getEntityWFErrorState() {
+      return this.strEntityWFErrorState;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u6d41\u7a0b\u5206\u7c7b\u4ee3\u7801", fields={"WFCATCODE"})
-    public String getWFCatCode() {
-        return this.psWorkflow.getWFCATCODE();
-    }
+   @PSModelRTMeta(description = "实体流程取消状态值", fields = "WFCANCELVALUE")
+   @Override
+   public String getEntityWFCancelState() {
+      return this.strEntityWFCancelState;
+   }
 
-    @Override
-    @PSModelRTMeta(description="\u5de5\u4f5c\u6d41\u552f\u4e00\u6807\u8bb0")
-    public String getUniqueTag() {
-        if (this.getPSSystemModule() != null) {
-            if (this.getPSSystemModule().getPSSysModelGroup() != null) {
-                return String.format("%1$s__%2$s__%3$s", this.getPSSystemModule().getPSSysModelGroup().getCodeName(), this.getPSSystemModule().getCodeName(), this.getCodeName());
-            }
-            if (this.getPSSystemModule().getPSSysRef() != null) {
-                return String.format("%1$s__%2$s__%3$s", this.getPSSystemModule().getPSSysRef().getSysRefTag(), this.getPSSystemModule().getCodeName(), this.getCodeName());
-            }
-            return String.format("%1$s__%2$s", this.getPSSystemModule().getCodeName(), this.getCodeName());
-        }
-        return this.getCodeName();
-    }
+   @PSModelRTMeta(description = "动态系统模式", codelist = "DynaSysMode", ignoredumpvalues = "0", fields = "ENABLEDYNASYS")
+   @Override
+   public int getDynaSysMode() {
+      return this.nDynaSysMode;
+   }
+
+   @PSModelRTMeta(description = "流程分类代码", fields = "WFCATCODE")
+   @Override
+   public String getWFCatCode() {
+      return this.psWorkflow.getWFCATCODE();
+   }
+
+   @PSModelRTMeta(description = "工作流唯一标记")
+   @Override
+   public String getUniqueTag() {
+      if (this.getPSSystemModule() != null) {
+         if (this.getPSSystemModule().getPSSysModelGroup() != null) {
+            return String.format(
+               "%1$s__%2$s__%3$s", this.getPSSystemModule().getPSSysModelGroup().getCodeName(), this.getPSSystemModule().getCodeName(), this.getCodeName()
+            );
+         } else {
+            return this.getPSSystemModule().getPSSysRef() != null
+               ? String.format(
+                  "%1$s__%2$s__%3$s", this.getPSSystemModule().getPSSysRef().getSysRefTag(), this.getPSSystemModule().getCodeName(), this.getCodeName()
+               )
+               : String.format("%1$s__%2$s", this.getPSSystemModule().getCodeName(), this.getCodeName());
+         }
+      } else {
+         return this.getCodeName();
+      }
+   }
 }
-

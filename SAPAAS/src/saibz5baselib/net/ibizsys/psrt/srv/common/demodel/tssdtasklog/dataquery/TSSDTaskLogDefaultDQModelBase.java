@@ -1,20 +1,131 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.tssdtasklog.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="966CF9BD-AE11-4915-B195-7DA3DEEE7E0E", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.DURATION AS DURATION, t1.ENDTIME AS ENDTIME, t1.RETCODE AS RETCODE, t1.RETINFO AS RETINFO, t1.STARTTIME AS STARTTIME, t1.TSSDTASKID AS TSSDTASKID, t1.TSSDTASKLOGID AS TSSDTASKLOGID, t1.TSSDTASKLOGNAME AS TSSDTASKLOGNAME, t1.TSSDTASKNAME AS TSSDTASKNAME, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFTSSDTASKLOG t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DURATION", expression="t1.DURATION", showorder=2), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.ENDTIME", showorder=3), @DEDataQueryCodeExp(name="RETCODE", expression="t1.RETCODE", showorder=4), @DEDataQueryCodeExp(name="RETINFO", expression="t1.RETINFO", showorder=5), @DEDataQueryCodeExp(name="STARTTIME", expression="t1.STARTTIME", showorder=6), @DEDataQueryCodeExp(name="TSSDTASKID", expression="t1.TSSDTASKID", showorder=7), @DEDataQueryCodeExp(name="TSSDTASKLOGID", expression="t1.TSSDTASKLOGID", showorder=8), @DEDataQueryCodeExp(name="TSSDTASKLOGNAME", expression="t1.TSSDTASKLOGNAME", showorder=9), @DEDataQueryCodeExp(name="TSSDTASKNAME", expression="t1.TSSDTASKNAME", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`duration`, t1.`endtime`, t1.`retcode`, t1.`retinfo`, t1.`starttime`, t1.`tssdtaskid`, t1.`tssdtasklogid`, t1.`tssdtasklogname`, t1.`tssdtaskname`, t1.`updatedate`, t1.`updateman` FROM `t_srftssdtasklog` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=1), @DEDataQueryCodeExp(name="DURATION", expression="t1.`duration`", showorder=2), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.`endtime`", showorder=3), @DEDataQueryCodeExp(name="RETCODE", expression="t1.`retcode`", showorder=4), @DEDataQueryCodeExp(name="RETINFO", expression="t1.`retinfo`", showorder=5), @DEDataQueryCodeExp(name="STARTTIME", expression="t1.`starttime`", showorder=6), @DEDataQueryCodeExp(name="TSSDTASKID", expression="t1.`tssdtaskid`", showorder=7), @DEDataQueryCodeExp(name="TSSDTASKLOGID", expression="t1.`tssdtasklogid`", showorder=8), @DEDataQueryCodeExp(name="TSSDTASKLOGNAME", expression="t1.`tssdtasklogname`", showorder=9), @DEDataQueryCodeExp(name="TSSDTASKNAME", expression="t1.`tssdtaskname`", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.DURATION AS DURATION, t1.ENDTIME AS ENDTIME, t1.RETCODE AS RETCODE, t1.RETINFO AS RETINFO, t1.STARTTIME AS STARTTIME, t1.TSSDTASKID AS TSSDTASKID, t1.TSSDTASKLOGID AS TSSDTASKLOGID, t1.TSSDTASKLOGNAME AS TSSDTASKLOGNAME, t1.TSSDTASKNAME AS TSSDTASKNAME, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFTSSDTASKLOG t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DURATION", expression="t1.DURATION", showorder=2), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.ENDTIME", showorder=3), @DEDataQueryCodeExp(name="RETCODE", expression="t1.RETCODE", showorder=4), @DEDataQueryCodeExp(name="RETINFO", expression="t1.RETINFO", showorder=5), @DEDataQueryCodeExp(name="STARTTIME", expression="t1.STARTTIME", showorder=6), @DEDataQueryCodeExp(name="TSSDTASKID", expression="t1.TSSDTASKID", showorder=7), @DEDataQueryCodeExp(name="TSSDTASKLOGID", expression="t1.TSSDTASKLOGID", showorder=8), @DEDataQueryCodeExp(name="TSSDTASKLOGNAME", expression="t1.TSSDTASKLOGNAME", showorder=9), @DEDataQueryCodeExp(name="TSSDTASKNAME", expression="t1.TSSDTASKNAME", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.DURATION AS DURATION, t1.ENDTIME AS ENDTIME, t1.RETCODE AS RETCODE, t1.RETINFO AS RETINFO, t1.STARTTIME AS STARTTIME, t1.TSSDTASKID AS TSSDTASKID, t1.TSSDTASKLOGID AS TSSDTASKLOGID, t1.TSSDTASKLOGNAME AS TSSDTASKLOGNAME, t1.TSSDTASKNAME AS TSSDTASKNAME, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFTSSDTASKLOG t1  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DURATION", expression="t1.DURATION", showorder=2), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.ENDTIME", showorder=3), @DEDataQueryCodeExp(name="RETCODE", expression="t1.RETCODE", showorder=4), @DEDataQueryCodeExp(name="RETINFO", expression="t1.RETINFO", showorder=5), @DEDataQueryCodeExp(name="STARTTIME", expression="t1.STARTTIME", showorder=6), @DEDataQueryCodeExp(name="TSSDTASKID", expression="t1.TSSDTASKID", showorder=7), @DEDataQueryCodeExp(name="TSSDTASKLOGID", expression="t1.TSSDTASKLOGID", showorder=8), @DEDataQueryCodeExp(name="TSSDTASKLOGNAME", expression="t1.TSSDTASKLOGNAME", showorder=9), @DEDataQueryCodeExp(name="TSSDTASKNAME", expression="t1.TSSDTASKNAME", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.DURATION AS DURATION, t1.ENDTIME AS ENDTIME, t1.RETCODE AS RETCODE, t1.RETINFO AS RETINFO, t1.STARTTIME AS STARTTIME, t1.TSSDTASKID AS TSSDTASKID, t1.TSSDTASKLOGID AS TSSDTASKLOGID, t1.TSSDTASKLOGNAME AS TSSDTASKLOGNAME, t1.TSSDTASKNAME AS TSSDTASKNAME, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFTSSDTASKLOG t1  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="DURATION", expression="t1.DURATION", showorder=2), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.ENDTIME", showorder=3), @DEDataQueryCodeExp(name="RETCODE", expression="t1.RETCODE", showorder=4), @DEDataQueryCodeExp(name="RETINFO", expression="t1.RETINFO", showorder=5), @DEDataQueryCodeExp(name="STARTTIME", expression="t1.STARTTIME", showorder=6), @DEDataQueryCodeExp(name="TSSDTASKID", expression="t1.TSSDTASKID", showorder=7), @DEDataQueryCodeExp(name="TSSDTASKLOGID", expression="t1.TSSDTASKLOGID", showorder=8), @DEDataQueryCodeExp(name="TSSDTASKLOGNAME", expression="t1.TSSDTASKLOGNAME", showorder=9), @DEDataQueryCodeExp(name="TSSDTASKNAME", expression="t1.TSSDTASKNAME", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE] AS [CREATEDATE], t1.[CREATEMAN] AS [CREATEMAN], t1.[DURATION] AS [DURATION], t1.[ENDTIME] AS [ENDTIME], t1.[RETCODE] AS [RETCODE], t1.[RETINFO] AS [RETINFO], t1.[STARTTIME] AS [STARTTIME], t1.[TSSDTASKID] AS [TSSDTASKID], t1.[TSSDTASKLOGID] AS [TSSDTASKLOGID], t1.[TSSDTASKLOGNAME] AS [TSSDTASKLOGNAME], t1.[TSSDTASKNAME] AS [TSSDTASKNAME], t1.[UPDATEDATE] AS [UPDATEDATE], t1.[UPDATEMAN] AS [UPDATEMAN] FROM [T_SRFTSSDTASKLOG] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=1), @DEDataQueryCodeExp(name="DURATION", expression="t1.[DURATION]", showorder=2), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.[ENDTIME]", showorder=3), @DEDataQueryCodeExp(name="RETCODE", expression="t1.[RETCODE]", showorder=4), @DEDataQueryCodeExp(name="RETINFO", expression="t1.[RETINFO]", showorder=5), @DEDataQueryCodeExp(name="STARTTIME", expression="t1.[STARTTIME]", showorder=6), @DEDataQueryCodeExp(name="TSSDTASKID", expression="t1.[TSSDTASKID]", showorder=7), @DEDataQueryCodeExp(name="TSSDTASKLOGID", expression="t1.[TSSDTASKLOGID]", showorder=8), @DEDataQueryCodeExp(name="TSSDTASKLOGNAME", expression="t1.[TSSDTASKLOGNAME]", showorder=9), @DEDataQueryCodeExp(name="TSSDTASKNAME", expression="t1.[TSSDTASKNAME]", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=12)}, conds={})})
-public abstract class TSSDTaskLogDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="966CF9BD-AE11-4915-B195-7DA3DEEE7E0E",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.DURATION AS DURATION, t1.ENDTIME AS ENDTIME, t1.RETCODE AS RETCODE, t1.RETINFO AS RETINFO, t1.STARTTIME AS STARTTIME, t1.TSSDTASKID AS TSSDTASKID, t1.TSSDTASKLOGID AS TSSDTASKLOGID, t1.TSSDTASKLOGNAME AS TSSDTASKLOGNAME, t1.TSSDTASKNAME AS TSSDTASKNAME, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFTSSDTASKLOG t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DURATION",expression="t1.DURATION",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENDTIME",expression="t1.ENDTIME",showorder=3)
+        ,@DEDataQueryCodeExp(name="RETCODE",expression="t1.RETCODE",showorder=4)
+        ,@DEDataQueryCodeExp(name="RETINFO",expression="t1.RETINFO",showorder=5)
+        ,@DEDataQueryCodeExp(name="STARTTIME",expression="t1.STARTTIME",showorder=6)
+        ,@DEDataQueryCodeExp(name="TSSDTASKID",expression="t1.TSSDTASKID",showorder=7)
+        ,@DEDataQueryCodeExp(name="TSSDTASKLOGID",expression="t1.TSSDTASKLOGID",showorder=8)
+        ,@DEDataQueryCodeExp(name="TSSDTASKLOGNAME",expression="t1.TSSDTASKLOGNAME",showorder=9)
+        ,@DEDataQueryCodeExp(name="TSSDTASKNAME",expression="t1.TSSDTASKNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`duration`, t1.`endtime`, t1.`retcode`, t1.`retinfo`, t1.`starttime`, t1.`tssdtaskid`, t1.`tssdtasklogid`, t1.`tssdtasklogname`, t1.`tssdtaskname`, t1.`updatedate`, t1.`updateman` FROM `t_srftssdtasklog` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=1)
+        ,@DEDataQueryCodeExp(name="DURATION",expression="t1.`duration`",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENDTIME",expression="t1.`endtime`",showorder=3)
+        ,@DEDataQueryCodeExp(name="RETCODE",expression="t1.`retcode`",showorder=4)
+        ,@DEDataQueryCodeExp(name="RETINFO",expression="t1.`retinfo`",showorder=5)
+        ,@DEDataQueryCodeExp(name="STARTTIME",expression="t1.`starttime`",showorder=6)
+        ,@DEDataQueryCodeExp(name="TSSDTASKID",expression="t1.`tssdtaskid`",showorder=7)
+        ,@DEDataQueryCodeExp(name="TSSDTASKLOGID",expression="t1.`tssdtasklogid`",showorder=8)
+        ,@DEDataQueryCodeExp(name="TSSDTASKLOGNAME",expression="t1.`tssdtasklogname`",showorder=9)
+        ,@DEDataQueryCodeExp(name="TSSDTASKNAME",expression="t1.`tssdtaskname`",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.DURATION AS DURATION, t1.ENDTIME AS ENDTIME, t1.RETCODE AS RETCODE, t1.RETINFO AS RETINFO, t1.STARTTIME AS STARTTIME, t1.TSSDTASKID AS TSSDTASKID, t1.TSSDTASKLOGID AS TSSDTASKLOGID, t1.TSSDTASKLOGNAME AS TSSDTASKLOGNAME, t1.TSSDTASKNAME AS TSSDTASKNAME, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFTSSDTASKLOG t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DURATION",expression="t1.DURATION",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENDTIME",expression="t1.ENDTIME",showorder=3)
+        ,@DEDataQueryCodeExp(name="RETCODE",expression="t1.RETCODE",showorder=4)
+        ,@DEDataQueryCodeExp(name="RETINFO",expression="t1.RETINFO",showorder=5)
+        ,@DEDataQueryCodeExp(name="STARTTIME",expression="t1.STARTTIME",showorder=6)
+        ,@DEDataQueryCodeExp(name="TSSDTASKID",expression="t1.TSSDTASKID",showorder=7)
+        ,@DEDataQueryCodeExp(name="TSSDTASKLOGID",expression="t1.TSSDTASKLOGID",showorder=8)
+        ,@DEDataQueryCodeExp(name="TSSDTASKLOGNAME",expression="t1.TSSDTASKLOGNAME",showorder=9)
+        ,@DEDataQueryCodeExp(name="TSSDTASKNAME",expression="t1.TSSDTASKNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.DURATION AS DURATION, t1.ENDTIME AS ENDTIME, t1.RETCODE AS RETCODE, t1.RETINFO AS RETINFO, t1.STARTTIME AS STARTTIME, t1.TSSDTASKID AS TSSDTASKID, t1.TSSDTASKLOGID AS TSSDTASKLOGID, t1.TSSDTASKLOGNAME AS TSSDTASKLOGNAME, t1.TSSDTASKNAME AS TSSDTASKNAME, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFTSSDTASKLOG t1  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DURATION",expression="t1.DURATION",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENDTIME",expression="t1.ENDTIME",showorder=3)
+        ,@DEDataQueryCodeExp(name="RETCODE",expression="t1.RETCODE",showorder=4)
+        ,@DEDataQueryCodeExp(name="RETINFO",expression="t1.RETINFO",showorder=5)
+        ,@DEDataQueryCodeExp(name="STARTTIME",expression="t1.STARTTIME",showorder=6)
+        ,@DEDataQueryCodeExp(name="TSSDTASKID",expression="t1.TSSDTASKID",showorder=7)
+        ,@DEDataQueryCodeExp(name="TSSDTASKLOGID",expression="t1.TSSDTASKLOGID",showorder=8)
+        ,@DEDataQueryCodeExp(name="TSSDTASKLOGNAME",expression="t1.TSSDTASKLOGNAME",showorder=9)
+        ,@DEDataQueryCodeExp(name="TSSDTASKNAME",expression="t1.TSSDTASKNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.DURATION AS DURATION, t1.ENDTIME AS ENDTIME, t1.RETCODE AS RETCODE, t1.RETINFO AS RETINFO, t1.STARTTIME AS STARTTIME, t1.TSSDTASKID AS TSSDTASKID, t1.TSSDTASKLOGID AS TSSDTASKLOGID, t1.TSSDTASKLOGNAME AS TSSDTASKLOGNAME, t1.TSSDTASKNAME AS TSSDTASKNAME, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN FROM T_SRFTSSDTASKLOG t1  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="DURATION",expression="t1.DURATION",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENDTIME",expression="t1.ENDTIME",showorder=3)
+        ,@DEDataQueryCodeExp(name="RETCODE",expression="t1.RETCODE",showorder=4)
+        ,@DEDataQueryCodeExp(name="RETINFO",expression="t1.RETINFO",showorder=5)
+        ,@DEDataQueryCodeExp(name="STARTTIME",expression="t1.STARTTIME",showorder=6)
+        ,@DEDataQueryCodeExp(name="TSSDTASKID",expression="t1.TSSDTASKID",showorder=7)
+        ,@DEDataQueryCodeExp(name="TSSDTASKLOGID",expression="t1.TSSDTASKLOGID",showorder=8)
+        ,@DEDataQueryCodeExp(name="TSSDTASKLOGNAME",expression="t1.TSSDTASKLOGNAME",showorder=9)
+        ,@DEDataQueryCodeExp(name="TSSDTASKNAME",expression="t1.TSSDTASKNAME",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=12)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE] AS [CREATEDATE], t1.[CREATEMAN] AS [CREATEMAN], t1.[DURATION] AS [DURATION], t1.[ENDTIME] AS [ENDTIME], t1.[RETCODE] AS [RETCODE], t1.[RETINFO] AS [RETINFO], t1.[STARTTIME] AS [STARTTIME], t1.[TSSDTASKID] AS [TSSDTASKID], t1.[TSSDTASKLOGID] AS [TSSDTASKLOGID], t1.[TSSDTASKLOGNAME] AS [TSSDTASKLOGNAME], t1.[TSSDTASKNAME] AS [TSSDTASKNAME], t1.[UPDATEDATE] AS [UPDATEDATE], t1.[UPDATEMAN] AS [UPDATEMAN] FROM [T_SRFTSSDTASKLOG] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=1)
+        ,@DEDataQueryCodeExp(name="DURATION",expression="t1.[DURATION]",showorder=2)
+        ,@DEDataQueryCodeExp(name="ENDTIME",expression="t1.[ENDTIME]",showorder=3)
+        ,@DEDataQueryCodeExp(name="RETCODE",expression="t1.[RETCODE]",showorder=4)
+        ,@DEDataQueryCodeExp(name="RETINFO",expression="t1.[RETINFO]",showorder=5)
+        ,@DEDataQueryCodeExp(name="STARTTIME",expression="t1.[STARTTIME]",showorder=6)
+        ,@DEDataQueryCodeExp(name="TSSDTASKID",expression="t1.[TSSDTASKID]",showorder=7)
+        ,@DEDataQueryCodeExp(name="TSSDTASKLOGID",expression="t1.[TSSDTASKLOGID]",showorder=8)
+        ,@DEDataQueryCodeExp(name="TSSDTASKLOGNAME",expression="t1.[TSSDTASKLOGNAME]",showorder=9)
+        ,@DEDataQueryCodeExp(name="TSSDTASKNAME",expression="t1.[TSSDTASKNAME]",showorder=10)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=11)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=12)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class TSSDTaskLogDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public TSSDTaskLogDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(TSSDTaskLogDefaultDQModelBase.class);
     }
-}
 
+}

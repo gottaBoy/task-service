@@ -1411,7 +1411,7 @@ implements Serializable {
                 PSDER pSDER = new PSDER();
                 pSDER.setPSDERId(this.getPSDERId());
                 PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
-                pSDERService.autoGet((IEntity)pSDER);
+                pSDERService.autoGet(pSDER);
                 this.psder = pSDER;
             }
             return this.psder;
@@ -1437,7 +1437,7 @@ implements Serializable {
                 PSSysBDTable pSSysBDTable = new PSSysBDTable();
                 pSSysBDTable.setPSSysBDTableId(this.getPSSysBDTableId());
                 PSSysBDTableService pSSysBDTableService = (PSSysBDTableService)ServiceGlobal.getService(PSSysBDTableService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDTableService.autoGet((IEntity)pSSysBDTable);
+                pSSysBDTableService.autoGet(pSSysBDTable);
                 this.pssysbdtable = pSSysBDTable;
             }
             return this.pssysbdtable;

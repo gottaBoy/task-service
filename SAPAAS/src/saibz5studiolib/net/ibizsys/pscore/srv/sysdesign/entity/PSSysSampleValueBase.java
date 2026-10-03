@@ -2045,7 +2045,7 @@ implements Serializable {
                 PSModule pSModule = new PSModule();
                 pSModule.setPSModuleId(this.getPSModuleId());
                 PSModuleService pSModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSModuleService.autoGet((IEntity)pSModule);
+                pSModuleService.autoGet(pSModule);
                 this.psmodule = pSModule;
             }
             return this.psmodule;
@@ -2071,7 +2071,7 @@ implements Serializable {
                 PSSampleValue pSSampleValue = new PSSampleValue();
                 pSSampleValue.setPSSampleValueId(this.getPSSampleValueId());
                 PSSampleValueService pSSampleValueService = (PSSampleValueService)ServiceGlobal.getService(PSSampleValueService.class, (SessionFactory)this.getSessionFactory());
-                pSSampleValueService.autoGet((IEntity)pSSampleValue);
+                pSSampleValueService.autoGet(pSSampleValue);
                 this.pssamplevalue = pSSampleValue;
             }
             return this.pssamplevalue;
@@ -2097,7 +2097,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

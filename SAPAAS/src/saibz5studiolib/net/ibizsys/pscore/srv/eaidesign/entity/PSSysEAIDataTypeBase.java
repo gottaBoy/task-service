@@ -2173,7 +2173,7 @@ implements Serializable {
                 PSSysEAIScheme pSSysEAIScheme = new PSSysEAIScheme();
                 pSSysEAIScheme.setPSSysEAISchemeId(this.getPSSysEAISchemeId());
                 PSSysEAISchemeService pSSysEAISchemeService = (PSSysEAISchemeService)ServiceGlobal.getService(PSSysEAISchemeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysEAISchemeService.autoGet((IEntity)pSSysEAIScheme);
+                pSSysEAISchemeService.autoGet(pSSysEAIScheme);
                 this.pssyseaischeme = pSSysEAIScheme;
             }
             return this.pssyseaischeme;
@@ -2195,7 +2195,7 @@ implements Serializable {
         Integer n = this.objPSSysEAIDataTypeItemsLock;
         synchronized (n) {
             if (this.pssyseaidatatypeitems == null) {
-                this.pssyseaidatatypeitems = pSSysEAIDataTypeService.isTempData((IEntity)this) ? pSSysEAIDataTypeItemService.selectTempByPSSysEAIDataType(this) : pSSysEAIDataTypeItemService.selectByPSSysEAIDataType(this);
+                this.pssyseaidatatypeitems = pSSysEAIDataTypeService.isTempData(this) ? pSSysEAIDataTypeItemService.selectTempByPSSysEAIDataType(this) : pSSysEAIDataTypeItemService.selectByPSSysEAIDataType(this);
             }
             return this.pssyseaidatatypeitems;
         }

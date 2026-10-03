@@ -1,19 +1,44 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.data;
 
 import net.ibizsys.paas.core.IModelBase;
 import net.ibizsys.paas.web.IWebContext;
 
-public interface IDataItemParam
-extends IModelBase {
-    public String getFormat();
+/**
+ * 数据项参数接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDataItemParam extends IModelBase {
+	/**
+	 * 获取格式化
+	 * 
+	 * @return
+	 */
+	String getFormat();
 
-    public Object getDefaultValue();
+	/**
+	 * 获取默认值
+	 * 
+	 * @return
+	 */
+	Object getDefaultValue();
 
-    public String getCodeListId();
+	/**
+	 * 获取代码表标识
+	 * 
+	 * @return
+	 */
+	String getCodeListId();
 
-    public Object getValue(IWebContext var1, Object var2) throws Exception;
+	/**
+	 * 获取值
+	 * 
+	 * @param iWebContext 网络请求上下文对象
+	 * @param object 当前数据对象
+	 * @return
+	 * @throws Exception
+	 */
+	Object getValue(IWebContext iWebContext, Object object) throws Exception;
+
 }
-

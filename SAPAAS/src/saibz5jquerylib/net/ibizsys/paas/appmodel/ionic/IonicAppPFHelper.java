@@ -1,42 +1,44 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.appmodel.AppPFHelperBase
- *  net.ibizsys.paas.appmodel.IAppViewModel
- *  net.ibizsys.paas.util.JSONObjectHelper
- *  net.ibizsys.paas.util.StringHelper
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.appmodel.ionic;
 
 import net.ibizsys.paas.appmodel.AppPFHelperBase;
 import net.ibizsys.paas.appmodel.IAppViewModel;
+import net.ibizsys.paas.core.IApplication;
 import net.ibizsys.paas.util.JSONObjectHelper;
 import net.ibizsys.paas.util.StringHelper;
 import net.sf.json.JSONObject;
 
-public class IonicAppPFHelper
-extends AppPFHelperBase {
-    protected void onFillAppViewJSONObject(IAppViewModel iAppViewModel, JSONObject jsonObj) throws Exception {
-        jsonObj.put("viewurl", JSONObjectHelper.stripQuotes((String)StringHelper.format((String)"%1$s_%2$s", (Object)iAppViewModel.getModuleName(), (Object)iAppViewModel.getName()).toLowerCase()));
-        jsonObj.put("className", JSONObjectHelper.stripQuotes((String)StringHelper.format((String)"%1$s", (Object)iAppViewModel.getName())));
-        jsonObj.put("title", JSONObjectHelper.stripQuotes((String)iAppViewModel.getTitle()));
-        if (!StringHelper.isNullOrEmpty((String)iAppViewModel.getOpenMode())) {
-            jsonObj.put("openMode", JSONObjectHelper.stripQuotes((String)iAppViewModel.getOpenMode()));
-        }
-    }
+/**
+ * Ionic应用模型辅助对象
+ * 
+ * @author Administrator
+ *
+ */
+public class IonicAppPFHelper extends AppPFHelperBase {
 
-    protected String mapRealAppUrl(String strUrl) throws Exception {
-        return "../../" + strUrl;
-    }
+	@Override
+	protected void onFillAppViewJSONObject(IAppViewModel iAppViewModel, JSONObject jsonObj) throws Exception {
+		jsonObj.put("viewurl",JSONObjectHelper.stripQuotes(StringHelper.format("%1$s_%2$s", iAppViewModel.getModuleName(), iAppViewModel.getName()).toLowerCase()));
+		jsonObj.put("className", JSONObjectHelper.stripQuotes(StringHelper.format("%1$s", iAppViewModel.getName())));
+		jsonObj.put("title", JSONObjectHelper.stripQuotes(iAppViewModel.getTitle()));
+		if (!StringHelper.isNullOrEmpty(iAppViewModel.getOpenMode())) {
+			jsonObj.put("openMode",JSONObjectHelper.stripQuotes( iAppViewModel.getOpenMode()));
+		}
+	}
 
-    public int getAppType() {
-        return 2;
-    }
+	@Override
+	protected String mapRealAppUrl(String strUrl) throws Exception {
+		return "../../" + strUrl;
+	}
 
-    public String getAppViewTag(IAppViewModel iAppViewModel) throws Exception {
-        return StringHelper.format((String)"%1$s", (Object)iAppViewModel.getName());
-    }
+	
+	@Override
+	public int getAppType() {
+		return IApplication.APPTYPE_MOBILE;
+	}
+	
+	
+	@Override
+	public String getAppViewTag(IAppViewModel iAppViewModel) throws Exception {
+		return StringHelper.format("%1$s", iAppViewModel.getName());
+	}
 }
-

@@ -108,7 +108,7 @@ extends PSCoreSysServiceBase<PSWFEngine> {
     }
 
     protected void onFillParentInfo(PSWFEngine pSWFEngine, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSWFEngine, string, string2, string3);
+        super.onFillParentInfo(pSWFEngine, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -119,11 +119,11 @@ extends PSCoreSysServiceBase<PSWFEngine> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSWFEngine, bl);
+        super.onFillEntityFullInfo(pSWFEngine, bl);
     }
 
     protected void onWriteBackParent(PSWFEngine pSWFEngine, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWFEngine, bl);
+        super.onWriteBackParent(pSWFEngine, bl);
     }
 
     @Override
@@ -134,7 +134,7 @@ extends PSCoreSysServiceBase<PSWFEngine> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWFEngine pSWFEngine, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWFEngine, bl);
+        super.onRemoveEntityUncopyValues(pSWFEngine, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWFEngine pSWFEngine, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -146,7 +146,7 @@ extends PSCoreSysServiceBase<PSWFEngine> {
         if ((entityFieldError = this.onCheckField_PSWPEngineName(bl, pSWFEngine, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWFEngine, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWFEngine, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSWPEngineId(boolean bl, PSWFEngine pSWFEngine, boolean bl2, boolean bl3) throws Exception {
@@ -162,7 +162,7 @@ extends PSCoreSysServiceBase<PSWFEngine> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWPEngineId_Default((IEntity)pSWFEngine, bl2, bl3);
+            string2 = this.onTestValueRule_PSWPEngineId_Default(pSWFEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWPENGINEID");
@@ -187,7 +187,7 @@ extends PSCoreSysServiceBase<PSWFEngine> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWPEngineName_Default((IEntity)pSWFEngine, bl2, bl3);
+            string2 = this.onTestValueRule_PSWPEngineName_Default(pSWFEngine, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWPENGINENAME");
@@ -200,11 +200,11 @@ extends PSCoreSysServiceBase<PSWFEngine> {
     }
 
     protected void onSyncEntity(PSWFEngine pSWFEngine, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWFEngine, bl);
+        super.onSyncEntity(pSWFEngine, bl);
     }
 
     protected void onSyncIndexEntities(PSWFEngine pSWFEngine, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWFEngine, bl);
+        super.onSyncIndexEntities(pSWFEngine, bl);
     }
 
     public Object getDataContextValue(PSWFEngine pSWFEngine, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -212,14 +212,14 @@ extends PSCoreSysServiceBase<PSWFEngine> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWFEngine, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWFEngine, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWFEngine pSWFEngine, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWFEngine, arrayList, n);
+        super.onExportMajorModel(pSWFEngine, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -302,14 +302,14 @@ extends PSCoreSysServiceBase<PSWFEngine> {
 
     protected boolean onMergeChild(String string, String string2, PSWFEngine pSWFEngine) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWFEngine)) {
+        if (super.onMergeChild(string, string2, pSWFEngine)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWFEngine pSWFEngine) throws Exception {
-        super.onUpdateParent((IEntity)pSWFEngine);
+        super.onUpdateParent(pSWFEngine);
     }
 
     @Override

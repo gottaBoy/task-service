@@ -1,20 +1,58 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.pub.reactmob;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.reactmob.PSReactMobFileNameMethod;
 
-public class PSReactMobAppCodePublisherImpl {
-    private static PSReactMobFileNameMethod psIonicFileNameMethod;
+import SA.SRFDA.PS.Core.Pub.PSPFAppCodePublisherImpl;
 
-    public PSReactMobAppCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tPSPFAppCodePublisherImpl cannot be resolved to a type\n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSReactMobAppCodePublisherImpl must override or implement a supertype method\n\tPSPFAppCodePublisherImpl cannot be resolved to a type\n");
-    }
+public class PSReactMobAppCodePublisherImpl extends PSPFAppCodePublisherImpl
+{
+	private static PSReactMobFileNameMethod psIonicFileNameMethod = new PSReactMobFileNameMethod();
 
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tThe method onFillGenerateCodeParams(HashMap<String,Object>) of type PSReactMobAppCodePublisherImpl must override or implement a supertype method\n\tPSPFAppCodePublisherImpl cannot be resolved to a type\n");
-    }
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		PSReactMobTemplHelper.fillParams(params);
+		//合成require
+		HashMap<String, String> requireClassMap = new HashMap<String, String>();
+		ArrayList<String> requireClasses = new ArrayList<String> ();
+		
+//		java.util.Iterator<IPSAppView> psAppViews =   this.iPSApplication.getAllPSAppViews();
+//		while(psAppViews.hasNext())
+//		{
+//			IPSAppView iPSAppView = psAppViews.next();
+//			
+//			ArrayList<String> psAppViewIdList = new  ArrayList<String>();
+//			iPSAppView.fillRelatedPSAppViewIds(psAppViewIdList);
+//			
+//			String strFullClassName = this.iPSApplication.getPKGCodeName();
+//			if(!StringHelper.IsNullOrEmpty(this.getPSPFPubCode().getPKGCodeName()))
+//			{
+//				strFullClassName += StringHelper.Format(".%1$s",this.getPSPFPubCode().getPKGCodeName());
+//			}
+//			
+//			if(!StringHelper.IsNullOrEmpty(strFullClassName))
+//			{
+//				strFullClassName += StringHelper.Format(".");
+//			}
+//			
+//			for(String strPSAppViewId :psAppViewIdList)
+//			{
+//				IPSAppView iPSAppView2 = this.iPSApplication.getPSAppView(strPSAppViewId);
+//				String strAppViewClassName = strFullClassName + iPSAppView2.getFullCodeName();
+//				requireClassMap.put(strAppViewClassName, "");
+//			}
+//		}
+		
+		requireClasses.addAll(requireClassMap.keySet());
+		params.put("requires", requireClasses);
+		params.put("filename", psIonicFileNameMethod);
+	}	
+	
+	
 }
-

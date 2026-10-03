@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSystemMQDEModelBase;
 
 public class PSSystemMQDEModel
 extends PSSystemMQDEModelBase {
+
+    public PSSystemMQDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

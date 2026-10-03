@@ -29,12 +29,11 @@ extends XMLCollectionExConfig<DGModelColumnConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = DGModelColumnsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((DGModelColumnConfig)childNode))) {
-                this.add((Object)((DGModelColumnConfig)childNode));
+            if (this.OnChildNodeLoaded((DGModelColumnConfig)childNode)) {
+                this.add((DGModelColumnConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

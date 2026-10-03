@@ -50,7 +50,7 @@ extends PSDevSlnMSDepFuncServiceBase {
     @Override
     protected void onBeforeUpdate(PSDevSlnMSDepFunc pSDevSlnMSDepFunc) throws Exception {
         String string;
-        PSDevSlnMSDepFunc pSDevSlnMSDepFunc2 = (PSDevSlnMSDepFunc)this.getLast((IEntity)pSDevSlnMSDepFunc);
+        PSDevSlnMSDepFunc pSDevSlnMSDepFunc2 = (PSDevSlnMSDepFunc)this.getLast(pSDevSlnMSDepFunc);
         if (!pSDevSlnMSDepFunc.isPSDCMSPlatformNodeIdDirty()) {
             pSDevSlnMSDepFunc.setPSDCMSPlatformNodeId(pSDevSlnMSDepFunc2.getPSDCMSPlatformNodeId());
             pSDevSlnMSDepFunc.setPSDCMSPlatformNodeName(pSDevSlnMSDepFunc2.getPSDCMSPlatformNodeName());
@@ -69,7 +69,7 @@ extends PSDevSlnMSDepFuncServiceBase {
         PSDCMSPlatformNodeService pSDCMSPlatformNodeService = (PSDCMSPlatformNodeService)ServiceGlobal.getService(PSDCMSPlatformNodeService.class, (SessionFactory)this.getSessionFactory());
         PSDCMSPlatformNode pSDCMSPlatformNode = new PSDCMSPlatformNode();
         pSDCMSPlatformNode.setPSDCMSPlatformNodeId(string);
-        if (!pSDCMSPlatformNodeService.get((IEntity)pSDCMSPlatformNode, true)) {
+        if (!pSDCMSPlatformNodeService.get(pSDCMSPlatformNode, true)) {
             throw new Exception(String.format("\u4f20\u5165Cloud\u670d\u52a1\u65e0\u6548", new Object[0]));
         }
         SelectCond selectCond = new SelectCond();
@@ -86,7 +86,7 @@ extends PSDevSlnMSDepFuncServiceBase {
             throw new Exception(String.format("Cloud\u670d\u52a1[%1$s]\u5df2\u7ecf\u88ab\u670d\u52a1\u63a5\u53e3[%2$s@%3$s]\u4f7f\u7528", pSDCMSPlatformNode.getPSDCMSPlatformNodeName(), pSDevSlnMSDepAPI.getPSDevSlnSysAPIName(), pSDevSlnMSDepAPI.getPSDevSlnSysName()));
         }
         PSDevSlnMSDepFuncService pSDevSlnMSDepFuncService = (PSDevSlnMSDepFuncService)ServiceGlobal.getService(PSDevSlnMSDepFuncService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList arrayList3 = pSDevSlnMSDepFuncService.select((ISelectCond)selectCond);
+        ArrayList<PSDevSlnMSDepFunc> arrayList3 = pSDevSlnMSDepFuncService.select((ISelectCond)selectCond);
         if (arrayList3 != null) {
             for (PSDevSlnMSDepFunc pSDevSlnMSDepFunc2 : arrayList3) {
                 if (StringHelper.compare((String)pSDevSlnMSDepFunc2.getPSDevSlnMSDepFuncId(), (String)pSDevSlnMSDepFunc.getPSDevSlnMSDepFuncId(), (boolean)false) == 0) continue;
@@ -109,7 +109,7 @@ extends PSDevSlnMSDepFuncServiceBase {
 
     @Override
     protected void onAfterUpdate(PSDevSlnMSDepFunc pSDevSlnMSDepFunc) throws Exception {
-        PSDevSlnMSDepFunc pSDevSlnMSDepFunc2 = (PSDevSlnMSDepFunc)this.getLast((IEntity)pSDevSlnMSDepFunc);
+        PSDevSlnMSDepFunc pSDevSlnMSDepFunc2 = (PSDevSlnMSDepFunc)this.getLast(pSDevSlnMSDepFunc);
         String string = pSDevSlnMSDepFunc.getPSDCMSPlatformNodeId();
         String string2 = pSDevSlnMSDepFunc2.getPSDCMSPlatformNodeId();
         if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) {
@@ -133,14 +133,14 @@ extends PSDevSlnMSDepFuncServiceBase {
 
     @Override
     protected void onBeforeRemove(PSDevSlnMSDepFunc pSDevSlnMSDepFunc) throws Exception {
-        PSDevSlnMSDepFunc pSDevSlnMSDepFunc2 = (PSDevSlnMSDepFunc)this.getLast((IEntity)pSDevSlnMSDepFunc);
+        PSDevSlnMSDepFunc pSDevSlnMSDepFunc2 = (PSDevSlnMSDepFunc)this.getLast(pSDevSlnMSDepFunc);
         super.onBeforeRemove(pSDevSlnMSDepFunc);
     }
 
     @Override
     protected void onAfterRemove(PSDevSlnMSDepFunc pSDevSlnMSDepFunc) throws Exception {
         String string;
-        PSDevSlnMSDepFunc pSDevSlnMSDepFunc2 = (PSDevSlnMSDepFunc)this.getLast((IEntity)pSDevSlnMSDepFunc);
+        PSDevSlnMSDepFunc pSDevSlnMSDepFunc2 = (PSDevSlnMSDepFunc)this.getLast(pSDevSlnMSDepFunc);
         if (pSDevSlnMSDepFunc2 != null && !StringHelper.isNullOrEmpty((String)(string = pSDevSlnMSDepFunc2.getPSDCMSPlatformNodeId()))) {
             PSDCMSPlatformNodeService pSDCMSPlatformNodeService = (PSDCMSPlatformNodeService)ServiceGlobal.getService(PSDCMSPlatformNodeService.class, (SessionFactory)this.getSessionFactory());
             PSDCMSPlatformNode pSDCMSPlatformNode = new PSDCMSPlatformNode();

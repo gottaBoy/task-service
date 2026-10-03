@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel;
 
-import net.ibizsys.psrt.srv.common.demodel.SystemDEModelBase;
 
-public class SystemDEModel
-extends SystemDEModelBase {
+/**
+ * 实体[SYSTEM]模型对象
+ */
+public class SystemDEModel extends SystemDEModelBase {
+
     private static final long serialVersionUID = -1L;
-}
 
+    public SystemDEModel() throws Exception {
+        super();
+    }
+
+}

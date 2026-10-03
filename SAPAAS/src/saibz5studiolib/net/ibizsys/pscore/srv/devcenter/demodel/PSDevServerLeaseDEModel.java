@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.devcenter.demodel.PSDevServerLeaseDEModelBase;
 
 public class PSDevServerLeaseDEModel
 extends PSDevServerLeaseDEModelBase {
+
+    public PSDevServerLeaseDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

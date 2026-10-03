@@ -145,14 +145,14 @@ extends PSCoreSysServiceBase<PSPFCDN> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSPFCDN, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSPFCDN, string, string2, string3);
+        super.onFillParentInfo(pSPFCDN, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSPFCDN> {
         if (bl && pSPFCDN.getValidFlag() == null) {
             pSPFCDN.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSPFCDN, bl);
+        super.onFillEntityFullInfo(pSPFCDN, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSPFCDN, bl);
     }
 
@@ -186,7 +186,7 @@ extends PSCoreSysServiceBase<PSPFCDN> {
     }
 
     protected void onWriteBackParent(PSPFCDN pSPFCDN, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPFCDN, bl);
+        super.onWriteBackParent(pSPFCDN, bl);
     }
 
     public ArrayList<PSPFCDN> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -245,7 +245,7 @@ extends PSCoreSysServiceBase<PSPFCDN> {
         ArrayList<PSPFCDN> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSPFCDN pSPFCDN : arrayList) {
-            this.remove((IEntity)pSPFCDN);
+            this.remove(pSPFCDN);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -268,14 +268,14 @@ extends PSCoreSysServiceBase<PSPFCDN> {
 
     protected void replaceParentInfo(PSPFCDN pSPFCDN, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSPFCDN, cloneSession);
+        super.replaceParentInfo(pSPFCDN, cloneSession);
         if (pSPFCDN.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSPFCDN.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSPFCDN, (PSDevCenter)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSPFCDN pSPFCDN, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPFCDN, bl);
+        super.onRemoveEntityUncopyValues(pSPFCDN, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPFCDN pSPFCDN, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -302,7 +302,7 @@ extends PSCoreSysServiceBase<PSPFCDN> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSPFCDN, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPFCDN, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPFCDN, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CDNURL(boolean bl, PSPFCDN pSPFCDN, boolean bl2, boolean bl3) throws Exception {
@@ -315,7 +315,7 @@ extends PSCoreSysServiceBase<PSPFCDN> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CDNURL_Default((IEntity)pSPFCDN, bl2, bl3);
+            string2 = this.onTestValueRule_CDNURL_Default(pSPFCDN, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CDNURL");
@@ -337,7 +337,7 @@ extends PSCoreSysServiceBase<PSPFCDN> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPFCDN, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPFCDN, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -359,7 +359,7 @@ extends PSCoreSysServiceBase<PSPFCDN> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSPFCDN, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSPFCDN, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -381,7 +381,7 @@ extends PSCoreSysServiceBase<PSPFCDN> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSPFCDN, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSPFCDN, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -406,7 +406,7 @@ extends PSCoreSysServiceBase<PSPFCDN> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFCDNId_Default((IEntity)pSPFCDN, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFCDNId_Default(pSPFCDN, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFCDNID");
@@ -431,7 +431,7 @@ extends PSCoreSysServiceBase<PSPFCDN> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPFCDNName_Default((IEntity)pSPFCDN, bl2, bl3);
+            string2 = this.onTestValueRule_PSPFCDNName_Default(pSPFCDN, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPFCDNNAME");
@@ -456,7 +456,7 @@ extends PSCoreSysServiceBase<PSPFCDN> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSPFCDN, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSPFCDN, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -469,11 +469,11 @@ extends PSCoreSysServiceBase<PSPFCDN> {
     }
 
     protected void onSyncEntity(PSPFCDN pSPFCDN, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPFCDN, bl);
+        super.onSyncEntity(pSPFCDN, bl);
     }
 
     protected void onSyncIndexEntities(PSPFCDN pSPFCDN, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPFCDN, bl);
+        super.onSyncIndexEntities(pSPFCDN, bl);
     }
 
     public Object getDataContextValue(PSPFCDN pSPFCDN, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -481,14 +481,14 @@ extends PSCoreSysServiceBase<PSPFCDN> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPFCDN, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPFCDN, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPFCDN pSPFCDN, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPFCDN, arrayList, n);
+        super.onExportMajorModel(pSPFCDN, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -638,14 +638,14 @@ extends PSCoreSysServiceBase<PSPFCDN> {
 
     protected boolean onMergeChild(String string, String string2, PSPFCDN pSPFCDN) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPFCDN)) {
+        if (super.onMergeChild(string, string2, pSPFCDN)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPFCDN pSPFCDN) throws Exception {
-        super.onUpdateParent((IEntity)pSPFCDN);
+        super.onUpdateParent(pSPFCDN);
     }
 
     @Override

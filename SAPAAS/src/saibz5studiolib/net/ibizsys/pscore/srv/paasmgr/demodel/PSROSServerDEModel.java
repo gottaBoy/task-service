@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSROSServerDEModelBase;
 
 public class PSROSServerDEModel
 extends PSROSServerDEModelBase {
+
+    public PSROSServerDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

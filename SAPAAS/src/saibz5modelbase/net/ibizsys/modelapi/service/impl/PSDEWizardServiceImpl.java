@@ -86,7 +86,7 @@ implements IPSDEWizardService {
     @Override
     protected List<PSDEWizard> onListAll() throws Exception {
         ArrayList<PSDEWizard> list = new ArrayList<PSDEWizard>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEWizard> items = this.listByPSDataEntity(parent);
@@ -378,26 +378,28 @@ implements IPSDEWizardService {
         } else {
             dto.setStatePSDEFName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEWizardStepService().listByPSDEWizard(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEWizardStep> pSDEWizardStepList = PSModelServiceUtil.getInstance().getPSDEWizardStepService().listByPSDEWizard(t);
+        if (pSDEWizardStepList != null && pSDEWizardStepList.size() > 0) {
             ArrayList<PSDEWizardStepDTO> psdewizardsteps = new ArrayList<PSDEWizardStepDTO>();
-            for (PSDEWizardStep pSDEWizardStep : list) {
+            for (PSDEWizardStep pSDEWizardStep : pSDEWizardStepList) {
                 dstItem = (PSDEWizardStepDTO)PSModelServiceUtil.getInstance().getPSDEWizardStepService().toDTO(pSDEWizardStep);
                 psdewizardsteps.add((PSDEWizardStepDTO)dstItem);
             }
             dto.setPsdewizardsteps(psdewizardsteps);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEWizardFormService().listByPSDEWizard(t)) != null && list.size() > 0) {
+        List<PSDEWizardForm> pSDEWizardFormList = PSModelServiceUtil.getInstance().getPSDEWizardFormService().listByPSDEWizard(t);
+        if (pSDEWizardFormList != null && pSDEWizardFormList.size() > 0) {
             ArrayList<PSDEWizardFormDTO> psdewizardforms = new ArrayList<PSDEWizardFormDTO>();
-            for (PSDEWizardForm pSDEWizardForm : list) {
+            for (PSDEWizardForm pSDEWizardForm : pSDEWizardFormList) {
                 dstItem = (PSDEWizardFormDTO)PSModelServiceUtil.getInstance().getPSDEWizardFormService().toDTO(pSDEWizardForm);
                 psdewizardforms.add((PSDEWizardFormDTO)dstItem);
             }
             dto.setPsdewizardforms(psdewizardforms);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEWizardLogicService().listByPSDEWizard(t)) != null && list.size() > 0) {
+        List<PSDEWizardLogic> pSDEWizardLogicList = PSModelServiceUtil.getInstance().getPSDEWizardLogicService().listByPSDEWizard(t);
+        if (pSDEWizardLogicList != null && pSDEWizardLogicList.size() > 0) {
             ArrayList<PSDEWizardLogicDTO> psdewizardlogics = new ArrayList<PSDEWizardLogicDTO>();
-            for (PSDEWizardLogic pSDEWizardLogic : list) {
+            for (PSDEWizardLogic pSDEWizardLogic : pSDEWizardLogicList) {
                 dstItem = (PSDEWizardLogicDTO)PSModelServiceUtil.getInstance().getPSDEWizardLogicService().toDTO(pSDEWizardLogic);
                 psdewizardlogics.add((PSDEWizardLogicDTO)dstItem);
             }

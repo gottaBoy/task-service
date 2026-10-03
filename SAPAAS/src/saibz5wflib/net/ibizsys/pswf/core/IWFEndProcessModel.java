@@ -1,15 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFProcessModel
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFProcessModel;
+/**
+ * 工作流结束处理模型对象接口
+ * @author Administrator
+ *
+ */
+public interface IWFEndProcessModel extends IWFProcessModel {
 
-public interface IWFEndProcessModel
-extends IWFProcessModel {
-    public String getExitStateValue();
+	/**
+	 * 获取退出状态值
+	 * @return
+	 */
+	String getExitStateValue();
 }
-

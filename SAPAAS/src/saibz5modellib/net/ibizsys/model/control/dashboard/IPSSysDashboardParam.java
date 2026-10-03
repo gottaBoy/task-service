@@ -1,12 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.dashboard;
 
-import net.ibizsys.model.control.dashboard.IPSDashboardParam;
-
-public interface IPSSysDashboardParam
-extends IPSDashboardParam {
-    public String getPSSysDashboardId();
+/**
+ * 系统数据看板参数对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSSysDashboardParam extends IPSDashboardParam {
+	
+	/**
+	 * 获取系统数据看板标识
+	 * @return
+	 */
+	String getPSSysDashboardId();
 }
-

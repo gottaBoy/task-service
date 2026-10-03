@@ -70,7 +70,7 @@ implements IPSDEDQCodeService {
     @Override
     protected List<PSDEDQCode> onListAll() throws Exception {
         ArrayList<PSDEDQCode> list = new ArrayList<PSDEDQCode>();
-        List psdedataqueries = PSModelServiceUtil.getInstance().getPSDEDataQueryService().listAll();
+        List<PSDEDataQuery> psdedataqueries = PSModelServiceUtil.getInstance().getPSDEDataQueryService().listAll();
         if (psdedataqueries != null) {
             for (PSDEDataQuery parent : psdedataqueries) {
                 List<PSDEDQCode> items = this.listByPSDEDataQuery(parent);

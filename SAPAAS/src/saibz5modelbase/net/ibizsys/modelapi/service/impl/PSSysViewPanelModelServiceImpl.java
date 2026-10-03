@@ -73,7 +73,7 @@ implements IPSSysViewPanelModelService {
     @Override
     protected List<PSSysViewPanelModel> onListAll() throws Exception {
         ArrayList<PSSysViewPanelModel> list = new ArrayList<PSSysViewPanelModel>();
-        List pssysviewpanels = PSModelServiceUtil.getInstance().getPSSysViewPanelService().listAll();
+        List<PSSysViewPanel> pssysviewpanels = PSModelServiceUtil.getInstance().getPSSysViewPanelService().listAll();
         if (pssysviewpanels != null) {
             for (PSSysViewPanel parent : pssysviewpanels) {
                 List<PSSysViewPanelModel> items = this.listByPSSysViewPanel(parent);

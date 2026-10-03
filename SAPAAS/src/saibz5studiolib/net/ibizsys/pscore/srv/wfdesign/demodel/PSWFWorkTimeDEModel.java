@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.wfdesign.demodel.PSWFWorkTimeDEModelBase;
 
 public class PSWFWorkTimeDEModel
 extends PSWFWorkTimeDEModelBase {
+
+    public PSWFWorkTimeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

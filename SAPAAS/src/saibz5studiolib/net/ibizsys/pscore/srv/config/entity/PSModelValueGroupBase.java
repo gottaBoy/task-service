@@ -1201,7 +1201,7 @@ implements Serializable {
                 PSModelField pSModelField = new PSModelField();
                 pSModelField.setPSModelFieldId(this.getPSModelFieldId());
                 PSModelFieldService pSModelFieldService = (PSModelFieldService)ServiceGlobal.getService(PSModelFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSModelFieldService.autoGet((IEntity)pSModelField);
+                pSModelFieldService.autoGet(pSModelField);
                 this.psmodelfield = pSModelField;
             }
             return this.psmodelfield;
@@ -1227,7 +1227,7 @@ implements Serializable {
                 PSModel pSModel = new PSModel();
                 pSModel.setPSModelId(this.getPSModelId());
                 PSModelService pSModelService = (PSModelService)ServiceGlobal.getService(PSModelService.class, (SessionFactory)this.getSessionFactory());
-                pSModelService.autoGet((IEntity)pSModel);
+                pSModelService.autoGet(pSModel);
                 this.psmodel = pSModel;
             }
             return this.psmodel;

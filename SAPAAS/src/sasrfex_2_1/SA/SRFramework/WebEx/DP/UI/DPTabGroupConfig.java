@@ -74,7 +74,7 @@ extends DPItemConfig {
         if (StringHelper.Compare((String)strName, (String)"SRFEXDPPAGEGROUP", (boolean)true) == 0) {
             DPPageGroupConfig pageGroupConfig = new DPPageGroupConfig();
             if (pageGroupConfig.LoadConfig(xmlNode)) {
-                this.pageGroupsConfig.add((Object)pageGroupConfig);
+                this.pageGroupsConfig.add(pageGroupConfig);
             }
             return;
         }
@@ -149,4 +149,3 @@ extends DPItemConfig {
         this.strTabGroupId = strTabGroupId;
     }
 }
-

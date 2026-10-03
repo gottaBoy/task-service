@@ -114,9 +114,9 @@ implements IPSSysUCMapService {
 
     @Override
     protected List<PSSysUCMap> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysUCMap> list = new ArrayList<PSSysUCMap>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysUCMap> items = this.listByPSModule(parent);

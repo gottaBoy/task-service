@@ -1,14 +1,27 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.sysmodel;
 
 import net.ibizsys.paas.codelist.IUserCodeList;
 
-public interface IUserCodeListModel
-extends IUserCodeList {
-    public void setCurUserId(String var1);
+/**
+ * 用户代码表模型接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IUserCodeListModel extends IUserCodeList {
+	/**
+	 * 设置当前用户标识
+	 * 
+	 * @param strUserId
+	 * @return
+	 */
+	void setCurUserId(String strUserId);
 
-    public String getCurUserId();
+	/**
+	 * 获取当前用户标识
+	 * 
+	 * @return
+	 */
+	String getCurUserId();
+
 }
-

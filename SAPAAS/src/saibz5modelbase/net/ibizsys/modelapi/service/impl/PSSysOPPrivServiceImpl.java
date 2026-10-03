@@ -122,9 +122,9 @@ implements IPSSysOPPrivService {
 
     @Override
     protected List<PSSysOPPriv> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysOPPriv> list = new ArrayList<PSSysOPPriv>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysOPPriv> items = this.listByPSModule(parent);
@@ -363,18 +363,19 @@ implements IPSSysOPPrivService {
         } else {
             dto.setUserIdPSDEFName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSSysUserRoleResService().listByPSSysOPPriv(t);
-        if (list != null && list.size() > 0) {
+        List<PSSysUserRoleRes> pSSysUserRoleResList = PSModelServiceUtil.getInstance().getPSSysUserRoleResService().listByPSSysOPPriv(t);
+        if (pSSysUserRoleResList != null && pSSysUserRoleResList.size() > 0) {
             ArrayList<PSSysUserRoleResDTO> pssysuserroleres = new ArrayList<PSSysUserRoleResDTO>();
-            for (PSSysUserRoleRes pSSysUserRoleRes : list) {
+            for (PSSysUserRoleRes pSSysUserRoleRes : pSSysUserRoleResList) {
                 dstItem = (PSSysUserRoleResDTO)PSModelServiceUtil.getInstance().getPSSysUserRoleResService().toDTO(pSSysUserRoleRes);
                 pssysuserroleres.add((PSSysUserRoleResDTO)dstItem);
             }
             dto.setPssysuserroleres(pssysuserroleres);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSSysUserRoleDataService().listByPSSysOPPriv(t)) != null && list.size() > 0) {
+        List<PSSysUserRoleData> pSSysUserRoleDataList = PSModelServiceUtil.getInstance().getPSSysUserRoleDataService().listByPSSysOPPriv(t);
+        if (pSSysUserRoleDataList != null && pSSysUserRoleDataList.size() > 0) {
             ArrayList<PSSysUserRoleDataDTO> pssysuserroledata = new ArrayList<PSSysUserRoleDataDTO>();
-            for (PSSysUserRoleData pSSysUserRoleData : list) {
+            for (PSSysUserRoleData pSSysUserRoleData : pSSysUserRoleDataList) {
                 dstItem = (PSSysUserRoleDataDTO)PSModelServiceUtil.getInstance().getPSSysUserRoleDataService().toDTO(pSSysUserRoleData);
                 pssysuserroledata.add((PSSysUserRoleDataDTO)dstItem);
             }

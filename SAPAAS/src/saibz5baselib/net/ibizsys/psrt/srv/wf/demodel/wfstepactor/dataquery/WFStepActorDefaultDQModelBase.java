@@ -1,20 +1,185 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfstepactor.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="06AE28C4-AF90-4C78-ABF0-C20F3396AF6E", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.ACTORID, t1.ACTORTYPE, t1.CREATEDATE, t1.CREATEMAN, t1.FINISHDATE, t1.FIRSTREADTIME, t1.IAACTIONS, t1.ISFINISH, t1.ISREADONLY, t1.MEMO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.READFLAG, t1.REMINDERCOUNT, t1.ROLEID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t1.WFSTEPACTORID, t1.WFSTEPACTORNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFSTEPACTOR t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="ACTORID", expression="t1.ACTORID", showorder=0), @DEDataQueryCodeExp(name="ACTORTYPE", expression="t1.ACTORTYPE", showorder=1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=2), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=3), @DEDataQueryCodeExp(name="FINISHDATE", expression="t1.FINISHDATE", showorder=4), @DEDataQueryCodeExp(name="FIRSTREADTIME", expression="t1.FIRSTREADTIME", showorder=5), @DEDataQueryCodeExp(name="IAACTIONS", expression="t1.IAACTIONS", showorder=6), @DEDataQueryCodeExp(name="ISFINISH", expression="t1.ISFINISH", showorder=7), @DEDataQueryCodeExp(name="ISREADONLY", expression="t1.ISREADONLY", showorder=8), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=9), @DEDataQueryCodeExp(name="ORIGINALWFUSERID", expression="t1.ORIGINALWFUSERID", showorder=10), @DEDataQueryCodeExp(name="ORIGINALWFUSERNAME", expression="t1.ORIGINALWFUSERNAME", showorder=11), @DEDataQueryCodeExp(name="READFLAG", expression="t1.READFLAG", showorder=12), @DEDataQueryCodeExp(name="REMINDERCOUNT", expression="t1.REMINDERCOUNT", showorder=13), @DEDataQueryCodeExp(name="ROLEID", expression="t1.ROLEID", showorder=14), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=15), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=16), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.WFINSTANCEID", showorder=17), @DEDataQueryCodeExp(name="WFSTEPACTORID", expression="t1.WFSTEPACTORID", showorder=18), @DEDataQueryCodeExp(name="WFSTEPACTORNAME", expression="t1.WFSTEPACTORNAME", showorder=19), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=20), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=21)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`actorid`, t1.`actortype`, t1.`createdate`, t1.`createman`, t1.`finishdate`, t1.`firstreadtime`, t1.`iaactions`, t1.`isfinish`, t1.`isreadonly`, t1.`memo`, t1.`originalwfuserid`, t1.`originalwfusername`, t1.`readflag`, t1.`remindercount`, t1.`roleid`, t1.`updatedate`, t1.`updateman`, t1.`wfinstanceid`, t1.`wfstepactorid`, t1.`wfstepactorname`, t1.`wfstepid`, t1.`wfstepname` FROM `t_srfwfstepactor` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="ACTORID", expression="t1.`actorid`", showorder=0), @DEDataQueryCodeExp(name="ACTORTYPE", expression="t1.`actortype`", showorder=1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=2), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=3), @DEDataQueryCodeExp(name="FINISHDATE", expression="t1.`finishdate`", showorder=4), @DEDataQueryCodeExp(name="FIRSTREADTIME", expression="t1.`firstreadtime`", showorder=5), @DEDataQueryCodeExp(name="IAACTIONS", expression="t1.`iaactions`", showorder=6), @DEDataQueryCodeExp(name="ISFINISH", expression="t1.`isfinish`", showorder=7), @DEDataQueryCodeExp(name="ISREADONLY", expression="t1.`isreadonly`", showorder=8), @DEDataQueryCodeExp(name="MEMO", expression="t1.`memo`", showorder=9), @DEDataQueryCodeExp(name="ORIGINALWFUSERID", expression="t1.`originalwfuserid`", showorder=10), @DEDataQueryCodeExp(name="ORIGINALWFUSERNAME", expression="t1.`originalwfusername`", showorder=11), @DEDataQueryCodeExp(name="READFLAG", expression="t1.`readflag`", showorder=12), @DEDataQueryCodeExp(name="REMINDERCOUNT", expression="t1.`remindercount`", showorder=13), @DEDataQueryCodeExp(name="ROLEID", expression="t1.`roleid`", showorder=14), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=15), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=16), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.`wfinstanceid`", showorder=17), @DEDataQueryCodeExp(name="WFSTEPACTORID", expression="t1.`wfstepactorid`", showorder=18), @DEDataQueryCodeExp(name="WFSTEPACTORNAME", expression="t1.`wfstepactorname`", showorder=19), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.`wfstepid`", showorder=20), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.`wfstepname`", showorder=21)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.ACTORID, t1.ACTORTYPE, t1.CREATEDATE, t1.CREATEMAN, t1.FINISHDATE, t1.FIRSTREADTIME, t1.IAACTIONS, t1.ISFINISH, t1.ISREADONLY, t1.MEMO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.READFLAG, t1.REMINDERCOUNT, t1.ROLEID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t1.WFSTEPACTORID, t1.WFSTEPACTORNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFSTEPACTOR t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="ACTORID", expression="t1.ACTORID", showorder=0), @DEDataQueryCodeExp(name="ACTORTYPE", expression="t1.ACTORTYPE", showorder=1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=2), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=3), @DEDataQueryCodeExp(name="FINISHDATE", expression="t1.FINISHDATE", showorder=4), @DEDataQueryCodeExp(name="FIRSTREADTIME", expression="t1.FIRSTREADTIME", showorder=5), @DEDataQueryCodeExp(name="IAACTIONS", expression="t1.IAACTIONS", showorder=6), @DEDataQueryCodeExp(name="ISFINISH", expression="t1.ISFINISH", showorder=7), @DEDataQueryCodeExp(name="ISREADONLY", expression="t1.ISREADONLY", showorder=8), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=9), @DEDataQueryCodeExp(name="ORIGINALWFUSERID", expression="t1.ORIGINALWFUSERID", showorder=10), @DEDataQueryCodeExp(name="ORIGINALWFUSERNAME", expression="t1.ORIGINALWFUSERNAME", showorder=11), @DEDataQueryCodeExp(name="READFLAG", expression="t1.READFLAG", showorder=12), @DEDataQueryCodeExp(name="REMINDERCOUNT", expression="t1.REMINDERCOUNT", showorder=13), @DEDataQueryCodeExp(name="ROLEID", expression="t1.ROLEID", showorder=14), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=15), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=16), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.WFINSTANCEID", showorder=17), @DEDataQueryCodeExp(name="WFSTEPACTORID", expression="t1.WFSTEPACTORID", showorder=18), @DEDataQueryCodeExp(name="WFSTEPACTORNAME", expression="t1.WFSTEPACTORNAME", showorder=19), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=20), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=21)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.ACTORID, t1.ACTORTYPE, t1.CREATEDATE, t1.CREATEMAN, t1.FINISHDATE, t1.FIRSTREADTIME, t1.IAACTIONS, t1.ISFINISH, t1.ISREADONLY, t1.MEMO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.READFLAG, t1.REMINDERCOUNT, t1.ROLEID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t1.WFSTEPACTORID, t1.WFSTEPACTORNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFSTEPACTOR t1  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="ACTORID", expression="t1.ACTORID", showorder=0), @DEDataQueryCodeExp(name="ACTORTYPE", expression="t1.ACTORTYPE", showorder=1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=2), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=3), @DEDataQueryCodeExp(name="FINISHDATE", expression="t1.FINISHDATE", showorder=4), @DEDataQueryCodeExp(name="FIRSTREADTIME", expression="t1.FIRSTREADTIME", showorder=5), @DEDataQueryCodeExp(name="IAACTIONS", expression="t1.IAACTIONS", showorder=6), @DEDataQueryCodeExp(name="ISFINISH", expression="t1.ISFINISH", showorder=7), @DEDataQueryCodeExp(name="ISREADONLY", expression="t1.ISREADONLY", showorder=8), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=9), @DEDataQueryCodeExp(name="ORIGINALWFUSERID", expression="t1.ORIGINALWFUSERID", showorder=10), @DEDataQueryCodeExp(name="ORIGINALWFUSERNAME", expression="t1.ORIGINALWFUSERNAME", showorder=11), @DEDataQueryCodeExp(name="READFLAG", expression="t1.READFLAG", showorder=12), @DEDataQueryCodeExp(name="REMINDERCOUNT", expression="t1.REMINDERCOUNT", showorder=13), @DEDataQueryCodeExp(name="ROLEID", expression="t1.ROLEID", showorder=14), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=15), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=16), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.WFINSTANCEID", showorder=17), @DEDataQueryCodeExp(name="WFSTEPACTORID", expression="t1.WFSTEPACTORID", showorder=18), @DEDataQueryCodeExp(name="WFSTEPACTORNAME", expression="t1.WFSTEPACTORNAME", showorder=19), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=20), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=21)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.ACTORID, t1.ACTORTYPE, t1.CREATEDATE, t1.CREATEMAN, t1.FINISHDATE, t1.FIRSTREADTIME, t1.IAACTIONS, t1.ISFINISH, t1.ISREADONLY, t1.MEMO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.READFLAG, t1.REMINDERCOUNT, t1.ROLEID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t1.WFSTEPACTORID, t1.WFSTEPACTORNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFSTEPACTOR t1  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="ACTORID", expression="t1.ACTORID", showorder=0), @DEDataQueryCodeExp(name="ACTORTYPE", expression="t1.ACTORTYPE", showorder=1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=2), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=3), @DEDataQueryCodeExp(name="FINISHDATE", expression="t1.FINISHDATE", showorder=4), @DEDataQueryCodeExp(name="FIRSTREADTIME", expression="t1.FIRSTREADTIME", showorder=5), @DEDataQueryCodeExp(name="IAACTIONS", expression="t1.IAACTIONS", showorder=6), @DEDataQueryCodeExp(name="ISFINISH", expression="t1.ISFINISH", showorder=7), @DEDataQueryCodeExp(name="ISREADONLY", expression="t1.ISREADONLY", showorder=8), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=9), @DEDataQueryCodeExp(name="ORIGINALWFUSERID", expression="t1.ORIGINALWFUSERID", showorder=10), @DEDataQueryCodeExp(name="ORIGINALWFUSERNAME", expression="t1.ORIGINALWFUSERNAME", showorder=11), @DEDataQueryCodeExp(name="READFLAG", expression="t1.READFLAG", showorder=12), @DEDataQueryCodeExp(name="REMINDERCOUNT", expression="t1.REMINDERCOUNT", showorder=13), @DEDataQueryCodeExp(name="ROLEID", expression="t1.ROLEID", showorder=14), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=15), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=16), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.WFINSTANCEID", showorder=17), @DEDataQueryCodeExp(name="WFSTEPACTORID", expression="t1.WFSTEPACTORID", showorder=18), @DEDataQueryCodeExp(name="WFSTEPACTORNAME", expression="t1.WFSTEPACTORNAME", showorder=19), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.WFSTEPID", showorder=20), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.WFSTEPNAME", showorder=21)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[ACTORID], t1.[ACTORTYPE], t1.[CREATEDATE], t1.[CREATEMAN], t1.[FINISHDATE], t1.[FIRSTREADTIME], t1.[IAACTIONS], t1.[ISFINISH], t1.[ISREADONLY], t1.[MEMO], t1.[ORIGINALWFUSERID], t1.[ORIGINALWFUSERNAME], t1.[READFLAG], t1.[REMINDERCOUNT], t1.[ROLEID], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[WFINSTANCEID], t1.[WFSTEPACTORID], t1.[WFSTEPACTORNAME], t1.[WFSTEPID], t1.[WFSTEPNAME] FROM [T_SRFWFSTEPACTOR] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="ACTORID", expression="t1.[ACTORID]", showorder=0), @DEDataQueryCodeExp(name="ACTORTYPE", expression="t1.[ACTORTYPE]", showorder=1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=2), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=3), @DEDataQueryCodeExp(name="FINISHDATE", expression="t1.[FINISHDATE]", showorder=4), @DEDataQueryCodeExp(name="FIRSTREADTIME", expression="t1.[FIRSTREADTIME]", showorder=5), @DEDataQueryCodeExp(name="IAACTIONS", expression="t1.[IAACTIONS]", showorder=6), @DEDataQueryCodeExp(name="ISFINISH", expression="t1.[ISFINISH]", showorder=7), @DEDataQueryCodeExp(name="ISREADONLY", expression="t1.[ISREADONLY]", showorder=8), @DEDataQueryCodeExp(name="MEMO", expression="t1.[MEMO]", showorder=9), @DEDataQueryCodeExp(name="ORIGINALWFUSERID", expression="t1.[ORIGINALWFUSERID]", showorder=10), @DEDataQueryCodeExp(name="ORIGINALWFUSERNAME", expression="t1.[ORIGINALWFUSERNAME]", showorder=11), @DEDataQueryCodeExp(name="READFLAG", expression="t1.[READFLAG]", showorder=12), @DEDataQueryCodeExp(name="REMINDERCOUNT", expression="t1.[REMINDERCOUNT]", showorder=13), @DEDataQueryCodeExp(name="ROLEID", expression="t1.[ROLEID]", showorder=14), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=15), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=16), @DEDataQueryCodeExp(name="WFINSTANCEID", expression="t1.[WFINSTANCEID]", showorder=17), @DEDataQueryCodeExp(name="WFSTEPACTORID", expression="t1.[WFSTEPACTORID]", showorder=18), @DEDataQueryCodeExp(name="WFSTEPACTORNAME", expression="t1.[WFSTEPACTORNAME]", showorder=19), @DEDataQueryCodeExp(name="WFSTEPID", expression="t1.[WFSTEPID]", showorder=20), @DEDataQueryCodeExp(name="WFSTEPNAME", expression="t1.[WFSTEPNAME]", showorder=21)}, conds={})})
-public abstract class WFStepActorDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="06AE28C4-AF90-4C78-ABF0-C20F3396AF6E",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.ACTORID, t1.ACTORTYPE, t1.CREATEDATE, t1.CREATEMAN, t1.FINISHDATE, t1.FIRSTREADTIME, t1.IAACTIONS, t1.ISFINISH, t1.ISREADONLY, t1.MEMO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.READFLAG, t1.REMINDERCOUNT, t1.ROLEID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t1.WFSTEPACTORID, t1.WFSTEPACTORNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFSTEPACTOR t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTORID",expression="t1.ACTORID",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTORTYPE",expression="t1.ACTORTYPE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=3)
+        ,@DEDataQueryCodeExp(name="FINISHDATE",expression="t1.FINISHDATE",showorder=4)
+        ,@DEDataQueryCodeExp(name="FIRSTREADTIME",expression="t1.FIRSTREADTIME",showorder=5)
+        ,@DEDataQueryCodeExp(name="IAACTIONS",expression="t1.IAACTIONS",showorder=6)
+        ,@DEDataQueryCodeExp(name="ISFINISH",expression="t1.ISFINISH",showorder=7)
+        ,@DEDataQueryCodeExp(name="ISREADONLY",expression="t1.ISREADONLY",showorder=8)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=9)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERID",expression="t1.ORIGINALWFUSERID",showorder=10)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERNAME",expression="t1.ORIGINALWFUSERNAME",showorder=11)
+        ,@DEDataQueryCodeExp(name="READFLAG",expression="t1.READFLAG",showorder=12)
+        ,@DEDataQueryCodeExp(name="REMINDERCOUNT",expression="t1.REMINDERCOUNT",showorder=13)
+        ,@DEDataQueryCodeExp(name="ROLEID",expression="t1.ROLEID",showorder=14)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=15)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.WFINSTANCEID",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORID",expression="t1.WFSTEPACTORID",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORNAME",expression="t1.WFSTEPACTORNAME",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=21)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`actorid`, t1.`actortype`, t1.`createdate`, t1.`createman`, t1.`finishdate`, t1.`firstreadtime`, t1.`iaactions`, t1.`isfinish`, t1.`isreadonly`, t1.`memo`, t1.`originalwfuserid`, t1.`originalwfusername`, t1.`readflag`, t1.`remindercount`, t1.`roleid`, t1.`updatedate`, t1.`updateman`, t1.`wfinstanceid`, t1.`wfstepactorid`, t1.`wfstepactorname`, t1.`wfstepid`, t1.`wfstepname` FROM `t_srfwfstepactor` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTORID",expression="t1.`actorid`",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTORTYPE",expression="t1.`actortype`",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=3)
+        ,@DEDataQueryCodeExp(name="FINISHDATE",expression="t1.`finishdate`",showorder=4)
+        ,@DEDataQueryCodeExp(name="FIRSTREADTIME",expression="t1.`firstreadtime`",showorder=5)
+        ,@DEDataQueryCodeExp(name="IAACTIONS",expression="t1.`iaactions`",showorder=6)
+        ,@DEDataQueryCodeExp(name="ISFINISH",expression="t1.`isfinish`",showorder=7)
+        ,@DEDataQueryCodeExp(name="ISREADONLY",expression="t1.`isreadonly`",showorder=8)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.`memo`",showorder=9)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERID",expression="t1.`originalwfuserid`",showorder=10)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERNAME",expression="t1.`originalwfusername`",showorder=11)
+        ,@DEDataQueryCodeExp(name="READFLAG",expression="t1.`readflag`",showorder=12)
+        ,@DEDataQueryCodeExp(name="REMINDERCOUNT",expression="t1.`remindercount`",showorder=13)
+        ,@DEDataQueryCodeExp(name="ROLEID",expression="t1.`roleid`",showorder=14)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=15)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.`wfinstanceid`",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORID",expression="t1.`wfstepactorid`",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORNAME",expression="t1.`wfstepactorname`",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.`wfstepid`",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.`wfstepname`",showorder=21)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.ACTORID, t1.ACTORTYPE, t1.CREATEDATE, t1.CREATEMAN, t1.FINISHDATE, t1.FIRSTREADTIME, t1.IAACTIONS, t1.ISFINISH, t1.ISREADONLY, t1.MEMO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.READFLAG, t1.REMINDERCOUNT, t1.ROLEID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t1.WFSTEPACTORID, t1.WFSTEPACTORNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFSTEPACTOR t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTORID",expression="t1.ACTORID",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTORTYPE",expression="t1.ACTORTYPE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=3)
+        ,@DEDataQueryCodeExp(name="FINISHDATE",expression="t1.FINISHDATE",showorder=4)
+        ,@DEDataQueryCodeExp(name="FIRSTREADTIME",expression="t1.FIRSTREADTIME",showorder=5)
+        ,@DEDataQueryCodeExp(name="IAACTIONS",expression="t1.IAACTIONS",showorder=6)
+        ,@DEDataQueryCodeExp(name="ISFINISH",expression="t1.ISFINISH",showorder=7)
+        ,@DEDataQueryCodeExp(name="ISREADONLY",expression="t1.ISREADONLY",showorder=8)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=9)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERID",expression="t1.ORIGINALWFUSERID",showorder=10)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERNAME",expression="t1.ORIGINALWFUSERNAME",showorder=11)
+        ,@DEDataQueryCodeExp(name="READFLAG",expression="t1.READFLAG",showorder=12)
+        ,@DEDataQueryCodeExp(name="REMINDERCOUNT",expression="t1.REMINDERCOUNT",showorder=13)
+        ,@DEDataQueryCodeExp(name="ROLEID",expression="t1.ROLEID",showorder=14)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=15)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.WFINSTANCEID",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORID",expression="t1.WFSTEPACTORID",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORNAME",expression="t1.WFSTEPACTORNAME",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=21)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.ACTORID, t1.ACTORTYPE, t1.CREATEDATE, t1.CREATEMAN, t1.FINISHDATE, t1.FIRSTREADTIME, t1.IAACTIONS, t1.ISFINISH, t1.ISREADONLY, t1.MEMO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.READFLAG, t1.REMINDERCOUNT, t1.ROLEID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t1.WFSTEPACTORID, t1.WFSTEPACTORNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFSTEPACTOR t1  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTORID",expression="t1.ACTORID",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTORTYPE",expression="t1.ACTORTYPE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=3)
+        ,@DEDataQueryCodeExp(name="FINISHDATE",expression="t1.FINISHDATE",showorder=4)
+        ,@DEDataQueryCodeExp(name="FIRSTREADTIME",expression="t1.FIRSTREADTIME",showorder=5)
+        ,@DEDataQueryCodeExp(name="IAACTIONS",expression="t1.IAACTIONS",showorder=6)
+        ,@DEDataQueryCodeExp(name="ISFINISH",expression="t1.ISFINISH",showorder=7)
+        ,@DEDataQueryCodeExp(name="ISREADONLY",expression="t1.ISREADONLY",showorder=8)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=9)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERID",expression="t1.ORIGINALWFUSERID",showorder=10)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERNAME",expression="t1.ORIGINALWFUSERNAME",showorder=11)
+        ,@DEDataQueryCodeExp(name="READFLAG",expression="t1.READFLAG",showorder=12)
+        ,@DEDataQueryCodeExp(name="REMINDERCOUNT",expression="t1.REMINDERCOUNT",showorder=13)
+        ,@DEDataQueryCodeExp(name="ROLEID",expression="t1.ROLEID",showorder=14)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=15)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.WFINSTANCEID",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORID",expression="t1.WFSTEPACTORID",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORNAME",expression="t1.WFSTEPACTORNAME",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=21)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.ACTORID, t1.ACTORTYPE, t1.CREATEDATE, t1.CREATEMAN, t1.FINISHDATE, t1.FIRSTREADTIME, t1.IAACTIONS, t1.ISFINISH, t1.ISREADONLY, t1.MEMO, t1.ORIGINALWFUSERID, t1.ORIGINALWFUSERNAME, t1.READFLAG, t1.REMINDERCOUNT, t1.ROLEID, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFINSTANCEID, t1.WFSTEPACTORID, t1.WFSTEPACTORNAME, t1.WFSTEPID, t1.WFSTEPNAME FROM T_SRFWFSTEPACTOR t1  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTORID",expression="t1.ACTORID",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTORTYPE",expression="t1.ACTORTYPE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=3)
+        ,@DEDataQueryCodeExp(name="FINISHDATE",expression="t1.FINISHDATE",showorder=4)
+        ,@DEDataQueryCodeExp(name="FIRSTREADTIME",expression="t1.FIRSTREADTIME",showorder=5)
+        ,@DEDataQueryCodeExp(name="IAACTIONS",expression="t1.IAACTIONS",showorder=6)
+        ,@DEDataQueryCodeExp(name="ISFINISH",expression="t1.ISFINISH",showorder=7)
+        ,@DEDataQueryCodeExp(name="ISREADONLY",expression="t1.ISREADONLY",showorder=8)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.MEMO",showorder=9)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERID",expression="t1.ORIGINALWFUSERID",showorder=10)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERNAME",expression="t1.ORIGINALWFUSERNAME",showorder=11)
+        ,@DEDataQueryCodeExp(name="READFLAG",expression="t1.READFLAG",showorder=12)
+        ,@DEDataQueryCodeExp(name="REMINDERCOUNT",expression="t1.REMINDERCOUNT",showorder=13)
+        ,@DEDataQueryCodeExp(name="ROLEID",expression="t1.ROLEID",showorder=14)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=15)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.WFINSTANCEID",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORID",expression="t1.WFSTEPACTORID",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORNAME",expression="t1.WFSTEPACTORNAME",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.WFSTEPID",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.WFSTEPNAME",showorder=21)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[ACTORID], t1.[ACTORTYPE], t1.[CREATEDATE], t1.[CREATEMAN], t1.[FINISHDATE], t1.[FIRSTREADTIME], t1.[IAACTIONS], t1.[ISFINISH], t1.[ISREADONLY], t1.[MEMO], t1.[ORIGINALWFUSERID], t1.[ORIGINALWFUSERNAME], t1.[READFLAG], t1.[REMINDERCOUNT], t1.[ROLEID], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[WFINSTANCEID], t1.[WFSTEPACTORID], t1.[WFSTEPACTORNAME], t1.[WFSTEPID], t1.[WFSTEPNAME] FROM [T_SRFWFSTEPACTOR] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="ACTORID",expression="t1.[ACTORID]",showorder=0)
+        ,@DEDataQueryCodeExp(name="ACTORTYPE",expression="t1.[ACTORTYPE]",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=2)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=3)
+        ,@DEDataQueryCodeExp(name="FINISHDATE",expression="t1.[FINISHDATE]",showorder=4)
+        ,@DEDataQueryCodeExp(name="FIRSTREADTIME",expression="t1.[FIRSTREADTIME]",showorder=5)
+        ,@DEDataQueryCodeExp(name="IAACTIONS",expression="t1.[IAACTIONS]",showorder=6)
+        ,@DEDataQueryCodeExp(name="ISFINISH",expression="t1.[ISFINISH]",showorder=7)
+        ,@DEDataQueryCodeExp(name="ISREADONLY",expression="t1.[ISREADONLY]",showorder=8)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t1.[MEMO]",showorder=9)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERID",expression="t1.[ORIGINALWFUSERID]",showorder=10)
+        ,@DEDataQueryCodeExp(name="ORIGINALWFUSERNAME",expression="t1.[ORIGINALWFUSERNAME]",showorder=11)
+        ,@DEDataQueryCodeExp(name="READFLAG",expression="t1.[READFLAG]",showorder=12)
+        ,@DEDataQueryCodeExp(name="REMINDERCOUNT",expression="t1.[REMINDERCOUNT]",showorder=13)
+        ,@DEDataQueryCodeExp(name="ROLEID",expression="t1.[ROLEID]",showorder=14)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=15)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=16)
+        ,@DEDataQueryCodeExp(name="WFINSTANCEID",expression="t1.[WFINSTANCEID]",showorder=17)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORID",expression="t1.[WFSTEPACTORID]",showorder=18)
+        ,@DEDataQueryCodeExp(name="WFSTEPACTORNAME",expression="t1.[WFSTEPACTORNAME]",showorder=19)
+        ,@DEDataQueryCodeExp(name="WFSTEPID",expression="t1.[WFSTEPID]",showorder=20)
+        ,@DEDataQueryCodeExp(name="WFSTEPNAME",expression="t1.[WFSTEPNAME]",showorder=21)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class WFStepActorDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public WFStepActorDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(WFStepActorDefaultDQModelBase.class);
     }
-}
 
+}

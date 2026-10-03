@@ -2628,7 +2628,7 @@ implements Serializable {
                 PSDBValueOP pSDBValueOP = new PSDBValueOP();
                 pSDBValueOP.setPSDBValueOPId(this.getPSDBValueOPId());
                 PSDBValueOPService pSDBValueOPService = (PSDBValueOPService)ServiceGlobal.getService(PSDBValueOPService.class, (SessionFactory)this.getSessionFactory());
-                pSDBValueOPService.autoGet((IEntity)pSDBValueOP);
+                pSDBValueOPService.autoGet(pSDBValueOP);
                 this.psdbvalueop = pSDBValueOP;
             }
             return this.psdbvalueop;
@@ -2654,7 +2654,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.psdef = pSDEField;
             }
             return this.psdef;
@@ -2680,7 +2680,7 @@ implements Serializable {
                 PSSysBICubeMeasure pSSysBICubeMeasure = new PSSysBICubeMeasure();
                 pSSysBICubeMeasure.setPSSysBICubeMeasureId(this.getPSSysBICubeMeasureId());
                 PSSysBICubeMeasureService pSSysBICubeMeasureService = (PSSysBICubeMeasureService)ServiceGlobal.getService(PSSysBICubeMeasureService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBICubeMeasureService.autoGet((IEntity)pSSysBICubeMeasure);
+                pSSysBICubeMeasureService.autoGet(pSSysBICubeMeasure);
                 this.pssysbicubemeasure = pSSysBICubeMeasure;
             }
             return this.pssysbicubemeasure;
@@ -2706,7 +2706,7 @@ implements Serializable {
                 PSSysBICubeMSCond pSSysBICubeMSCond = new PSSysBICubeMSCond();
                 pSSysBICubeMSCond.setPSSysBICubeMSCondId(this.getPPSSysBICubeMSCondId());
                 PSSysBICubeMSCondService pSSysBICubeMSCondService = (PSSysBICubeMSCondService)ServiceGlobal.getService(PSSysBICubeMSCondService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBICubeMSCondService.autoGet((IEntity)pSSysBICubeMSCond);
+                pSSysBICubeMSCondService.autoGet(pSSysBICubeMSCond);
                 this.ppssysbicubemscond = pSSysBICubeMSCond;
             }
             return this.ppssysbicubemscond;
@@ -2732,7 +2732,7 @@ implements Serializable {
                 PSSysDBVF pSSysDBVF = new PSSysDBVF();
                 pSSysDBVF.setPSSysDBVFId(this.getPSSysDBVFId());
                 PSSysDBVFService pSSysDBVFService = (PSSysDBVFService)ServiceGlobal.getService(PSSysDBVFService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDBVFService.autoGet((IEntity)pSSysDBVF);
+                pSSysDBVFService.autoGet(pSSysDBVF);
                 this.pssysdbvf = pSSysDBVF;
             }
             return this.pssysdbvf;
@@ -2758,7 +2758,7 @@ implements Serializable {
                 PSVarType pSVarType = new PSVarType();
                 pSVarType.setPSVarTypeId(this.getPSVarTypeId());
                 PSVarTypeService pSVarTypeService = (PSVarTypeService)ServiceGlobal.getService(PSVarTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSVarTypeService.autoGet((IEntity)pSVarType);
+                pSVarTypeService.autoGet(pSVarType);
                 this.psvartype = pSVarType;
             }
             return this.psvartype;

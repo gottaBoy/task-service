@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.PickupViewControllerBase;
+/**
+ * 移动端单数据选择视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MobPickupViewControllerBase extends PickupViewControllerBase {
 
-public abstract class MobPickupViewControllerBase
-extends PickupViewControllerBase {
+	public MobPickupViewControllerBase() throws Exception {
+		super();
+	}
+
 }
-

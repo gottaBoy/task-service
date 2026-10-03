@@ -74,7 +74,7 @@ extends PSCoreSysDAOBase<PSDCSysProduct> {
     }
 
     protected void fillInheritEntity(PSDCSysProduct pSDCSysProduct) throws Exception {
-        super.fillInheritEntity((IEntity)pSDCSysProduct);
+        super.fillInheritEntity(pSDCSysProduct);
         PSDCSysProduct pSDCSysProduct2 = pSDCSysProduct;
         pSDCSysProduct2.setPSDCProductId(pSDCSysProduct.getPSDCSysProductId());
         if (pSDCSysProduct.isPSDCSysProductNameDirty()) {

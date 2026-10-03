@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.ACGridEditItemHandlerBase;
+/**
+ * 拾取文本表格编辑项后台处理对象
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class PickupTextGridEditItemHandlerBase extends ACGridEditItemHandlerBase {
 
-public abstract class PickupTextGridEditItemHandlerBase
-extends ACGridEditItemHandlerBase {
 }
-

@@ -1,34 +1,99 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import java.util.Iterator;
 import net.ibizsys.paas.sysmodel.ISystemModel;
-import net.ibizsys.pswf.core.IWFActionContext;
-import net.ibizsys.pswf.core.IWFRoleUser;
 
+/**
+ * 流程角色模型接口
+ * 
+ * @author lionlau
+ *
+ */
 public interface IWFRoleModel {
-    public static final String WFROLETYPE_USERGROUP = "USERGROUP";
-    public static final String WFROLETYPE_CUSTOM = "CUSTOM";
-    public static final String WFROLETYPE_DEDATASET = "DEDATASET";
-    public static final String User = "USER";
-    public static final String UserGroup = "USERGROUP";
-    public static final String SystemUser = "SYSTEMUSER";
-    public static final String DynamicUser = "DYNAMICUSER";
+	// 定义流程角色类型代码表
 
-    public String getId();
+	/**
+	 * 用户组
+	 */
+	public final static String WFROLETYPE_USERGROUP = "USERGROUP";
 
-    public String getName();
+	/**
+	 * 自定义
+	 */
+	public final static String WFROLETYPE_CUSTOM = "CUSTOM";
 
-    public ISystemModel getSystemModel();
+	/**
+	 * 实体数据集合
+	 */
+	public final static String WFROLETYPE_DEDATASET = "DEDATASET";
 
-    public String getWFRoleType();
+	/**
+	 * 常规用户
+	 */
+	public final static String User = "USER";
 
-    public Iterator<IWFRoleUser> getWFRoleUserModels(IWFActionContext var1) throws Exception;
+	/**
+	 * 用户组
+	 */
+	public final static String UserGroup = "USERGROUP";
 
-    public Object getRuntimeId();
+	/**
+	 * 系统用户
+	 */
+	public final static String SystemUser = "SYSTEMUSER";
 
-    public void setRuntimeId(Object var1);
+	/**
+	 * 动态用户
+	 */
+	public final static String DynamicUser = "DYNAMICUSER";
+
+	/**
+	 * 获取标识
+	 * 
+	 * @return
+	 */
+	String getId();
+
+	/**
+	 * 获取名称
+	 * 
+	 * @return
+	 */
+	String getName();
+
+	/**
+	 * 获取系统模型
+	 * 
+	 * @return
+	 */
+	ISystemModel getSystemModel();
+
+	/**
+	 * 获取流程角色类型
+	 * 
+	 * @return
+	 */
+	String getWFRoleType();
+
+	/**
+	 * 获取角色用户集合
+	 * 
+	 * @param iWFActionContext
+	 * @return
+	 * @throws Exception
+	 */
+	java.util.Iterator<IWFRoleUser> getWFRoleUserModels(IWFActionContext iWFActionContext) throws Exception;
+
+	/**
+	 * 获取运行时标识
+	 * 
+	 * @return
+	 */
+	Object getRuntimeId();
+
+	/**
+	 * 设置运行时标识
+	 * 
+	 * @param objId
+	 */
+	void setRuntimeId(Object objId);
 }
-

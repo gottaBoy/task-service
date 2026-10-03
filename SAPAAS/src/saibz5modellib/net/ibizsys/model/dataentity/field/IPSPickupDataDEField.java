@@ -1,18 +1,33 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.field;
 
-import net.ibizsys.model.dataentity.field.IPSLinkDEField;
-import net.ibizsys.model.dataentity.field.IPSPickupDEField;
 import net.ibizsys.model.der.IPSDER1N;
 
-public interface IPSPickupDataDEField
-extends IPSLinkDEField {
-    public IPSPickupDEField getPSPickupDEField() throws Exception;
+/**
+ * 外键附加数据实体属性对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSPickupDataDEField extends IPSLinkDEField 
+{
+	/**
+	 * 获取拾取文本属性辅助对象
+	 * @return
+	 */
+	IPSPickupDEField getPSPickupDEField() throws Exception;
+	
 
-    public IPSDER1N getPSDER1N() throws Exception;
-
-    public boolean isEnableWriteBack();
+	/**
+	 * 获取1：N关系对象
+	 * @return
+	 */
+	IPSDER1N getPSDER1N() throws Exception;
+	
+	
+	
+	
+	/**
+	 * 支持回写属性值
+	 * @return
+	 */
+	boolean isEnableWriteBack();
 }
-

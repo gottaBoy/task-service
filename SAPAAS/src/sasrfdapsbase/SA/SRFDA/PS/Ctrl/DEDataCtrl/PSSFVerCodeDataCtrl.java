@@ -52,11 +52,10 @@ extends PSSFTemplDataCtrlBase {
         IDEDataCtrl iPSSFVerCodeItemDataCtrl = this.GetRelatedDataCtrl("DE1552");
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSSFVERCODEID", (Object)strPSSFVerCodeId);
-        Vector psSFVerCodeItemList = new Vector();
+        Vector<BaseDataEntity> psSFVerCodeItemList = new Vector<BaseDataEntity>();
         iPSSFVerCodeItemDataCtrl.Select(cond, psSFVerCodeItemList);
         for (BaseDataEntity baseDataEntity : psSFVerCodeItemList) {
             iPSSFVerCodeItemDataCtrl.CustomCall("EXPORTTEMPL", baseDataEntity);
         }
     }
 }
-

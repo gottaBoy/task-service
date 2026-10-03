@@ -39,7 +39,6 @@
  */
 package net.ibizsys.pscore.srv.sysdesign.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.File;
@@ -201,9 +200,9 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSSysCanvas, pSModule);
             return;
@@ -213,14 +212,14 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysCanvas, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysCanvas, string, string2, string3);
+        super.onFillParentInfo(pSSysCanvas, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -249,7 +248,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 pSSysCanvas.setPSSysCanvasName((String)this.getDefaultValue(this.getWebContext(), "USER", "\u753b\u5e03", 25));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysCanvas, bl);
+        super.onFillEntityFullInfo(pSSysCanvas, bl);
         this.onFillEntityFullInfo_PSModule(pSSysCanvas, bl);
         this.onFillEntityFullInfo_PSSystem(pSSysCanvas, bl);
     }
@@ -271,7 +270,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
     }
 
     protected void onWriteBackParent(PSSysCanvas pSSysCanvas, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysCanvas, bl);
+        super.onWriteBackParent(pSSysCanvas, bl);
     }
 
     public ArrayList<PSSysCanvas> selectByPSModule(PSModuleBase pSModuleBase) throws Exception {
@@ -326,8 +325,8 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
         ArrayList<PSSysCanvas> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCANVAS_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSCANVAS", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSCANVAS_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSCANVAS", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -360,7 +359,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
         ArrayList<PSSysCanvas> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSSysCanvas pSSysCanvas : arrayList) {
-            this.remove((IEntity)pSSysCanvas);
+            this.remove(pSSysCanvas);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -406,7 +405,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
         ArrayList<PSSysCanvas> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysCanvas pSSysCanvas : arrayList) {
-            this.remove((IEntity)pSSysCanvas);
+            this.remove(pSSysCanvas);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -431,12 +430,12 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
     protected void onBeforeRemoveTemp(PSSysCanvas pSSysCanvas) throws Exception {
         PSSysCanvasModelService pSSysCanvasModelService = (PSSysCanvasModelService)ServiceGlobal.getService(PSSysCanvasModelService.class, (SessionFactory)this.getSessionFactory());
         pSSysCanvasModelService.removeTempByPSSysCanvas(pSSysCanvas);
-        super.onBeforeRemoveTemp((IEntity)pSSysCanvas);
+        super.onBeforeRemoveTemp(pSSysCanvas);
     }
 
     protected void getRelatedDataTempMajor(PSSysCanvas pSSysCanvas) throws Exception {
         this.getRelatedDataTempMajor_PSSysCanvasModel(pSSysCanvas);
-        super.getRelatedDataTempMajor((IEntity)pSSysCanvas);
+        super.getRelatedDataTempMajor(pSSysCanvas);
     }
 
     protected void getRelatedDataTempMajor_PSSysCanvasModel(PSSysCanvas pSSysCanvas) throws Exception {
@@ -452,7 +451,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
     protected void updateRelatedDataTempMajor(PSSysCanvas pSSysCanvas, PSSysCanvas pSSysCanvas2) throws Exception {
         ArrayList<PSSysCanvasModel> arrayList = this.updateRelatedDataTempMajor_removePSSysCanvasModel(pSSysCanvas, pSSysCanvas2);
         this.updateRelatedDataTempMajor_updatePSSysCanvasModel(pSSysCanvas, pSSysCanvas2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSSysCanvas, (IEntity)pSSysCanvas2);
+        super.updateRelatedDataTempMajor(pSSysCanvas, pSSysCanvas2);
     }
 
     protected ArrayList<PSSysCanvasModel> updateRelatedDataTempMajor_removePSSysCanvasModel(PSSysCanvas pSSysCanvas, PSSysCanvas pSSysCanvas2) throws Exception {
@@ -468,7 +467,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
             hashMap.remove(object);
         }
         for (PSSysCanvasModel pSSysCanvasModel : hashMap.values()) {
-            pSSysCanvasModelService.remove((IEntity)pSSysCanvasModel);
+            pSSysCanvasModelService.remove(pSSysCanvasModel);
         }
         return arrayList;
     }
@@ -485,7 +484,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
 
     protected void replaceParentInfo(PSSysCanvas pSSysCanvas, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysCanvas, cloneSession);
+        super.replaceParentInfo(pSSysCanvas, cloneSession);
         if (pSSysCanvas.getPSModuleId() != null && (iEntity = cloneSession.getEntity("PSMODULE", (Object)pSSysCanvas.getPSModuleId())) != null) {
             this.onFillParentInfo_PSModule(pSSysCanvas, (PSModule)iEntity);
         }
@@ -495,7 +494,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysCanvas pSSysCanvas, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysCanvas, bl);
+        super.onRemoveEntityUncopyValues(pSSysCanvas, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysCanvas pSSysCanvas, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -555,7 +554,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSSysCanvas, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysCanvas, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysCanvas, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CanvasModel(boolean bl, PSSysCanvas pSSysCanvas, boolean bl2, boolean bl3) throws Exception {
@@ -568,7 +567,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CanvasModel_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CanvasModel_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANVASMODEL");
@@ -590,7 +589,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CanvasTag_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CanvasTag_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANVASTAG");
@@ -612,7 +611,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CanvasTag2_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CanvasTag2_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANVASTAG2");
@@ -634,7 +633,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CanvasTag3_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CanvasTag3_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANVASTAG3");
@@ -656,7 +655,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CanvasTag4_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CanvasTag4_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANVASTAG4");
@@ -681,7 +680,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CanvasType_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CanvasType_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANVASTYPE");
@@ -706,7 +705,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -747,7 +746,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -769,7 +768,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -794,7 +793,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCanvasId_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCanvasId_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCANVASID");
@@ -819,7 +818,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCanvasName_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCanvasName_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCANVASNAME");
@@ -857,7 +856,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -879,7 +878,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -901,7 +900,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -923,7 +922,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -945,7 +944,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -967,7 +966,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -989,7 +988,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1002,11 +1001,11 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
     }
 
     protected void onSyncEntity(PSSysCanvas pSSysCanvas, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysCanvas, bl);
+        super.onSyncEntity(pSSysCanvas, bl);
     }
 
     protected void onSyncIndexEntities(PSSysCanvas pSSysCanvas, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysCanvas, bl);
+        super.onSyncIndexEntities(pSSysCanvas, bl);
     }
 
     public Object getDataContextValue(PSSysCanvas pSSysCanvas, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1014,14 +1013,14 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysCanvas, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysCanvas, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysCanvas pSSysCanvas, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysCanvas, arrayList, n);
+        super.onExportMajorModel(pSSysCanvas, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1364,14 +1363,14 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
 
     protected boolean onMergeChild(String string, String string2, PSSysCanvas pSSysCanvas) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysCanvas)) {
+        if (super.onMergeChild(string, string2, pSSysCanvas)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysCanvas pSSysCanvas) throws Exception {
-        super.onUpdateParent((IEntity)pSSysCanvas);
+        super.onUpdateParent(pSSysCanvas);
     }
 
     @Override
@@ -1431,7 +1430,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSSysCanvasModel pSSysCanvasModel = new PSSysCanvasModel();
-                pSSysCanvasModelService.fillParentInfo((IEntity)pSSysCanvasModel, "DER1N", "DER1N_PSSYSCANVASMODEL_PSSYSCANVAS_PSSYSCANVASID", pSSysCanvas.getPSSysCanvasId());
+                pSSysCanvasModelService.fillParentInfo(pSSysCanvasModel, "DER1N", "DER1N_PSSYSCANVASMODEL_PSSYSCANVAS_PSSYSCANVASID", pSSysCanvas.getPSSysCanvasId());
                 pSSysCanvasModelService.importXmlModel(pSSysCanvasModel, xmlNode2);
             }
         }
@@ -1571,42 +1570,29 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
     protected void onExportCurModelV2(PSSysCanvas pSSysCanvas, ObjectNode objectNode, String string, boolean bl) throws Exception {
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSCANVASMODEL_PSSYSCANVAS_PSSYSCANVASID")) {
-            Object object;
-            PSSysCanvasModel pSSysCanvasModel2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSSysCanvasModelService pSSysCanvasModelService = (PSSysCanvasModelService)ServiceGlobal.getService(PSSysCanvasModelService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSSysCanvasModel> arrayList = null;
+            ArrayList<ObjectNode> modelNodes = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSCANVAS#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSCANVASMODEL", (Object)pSSysCanvas.getPSSysCanvasId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSSysCanvasModel2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSSysCanvasModel2);
+                    modelNodes = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        modelNodes.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysCanvasModel>();
-                object4 = pSSysCanvasModelService.selectByPSSysCanvas(pSSysCanvas);
-                object3 = StringHelper.format((String)"PSSYSCANVAS#%1$s", (Object)pSSysCanvas.getPSSysCanvasId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSSysCanvasModel2 = object2.next();
-                    object = pSSysCanvasModelService.getModelV2ResScope((IEntity)pSSysCanvasModel2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysCanvasModel)PSModelV2Helper.toJSONObject((IEntity)pSSysCanvasModel2, false));
+                modelNodes = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSCANVAS#%1$s", (Object)pSSysCanvas.getPSSysCanvasId());
+                for (PSSysCanvasModel model : pSSysCanvasModelService.selectByPSSysCanvas(pSSysCanvas)) {
+                    String modelScope = pSSysCanvasModelService.getModelV2ResScope(model);
+                    if (StringHelper.compare(scope, modelScope, false) != 0) continue;
+                    modelNodes.add(PSModelV2Helper.toJSONObject(model, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSSysCanvasModelService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (modelNodes != null && modelNodes.size() > 0) {
+                ArrayNode childNodes = objectNode.putArray(pSSysCanvasModelService.getModelV2Name(false).toLowerCase());
+                Collections.sort(modelNodes, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -1633,10 +1619,10 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSSysCanvasModel pSSysCanvasModel2 : arrayList) {
-                    object = new PSSysCanvasModel();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSSysCanvasModel2, false);
-                    object3.add((JsonNode)pSSysCanvasModelService.exportModelV2(object, string));
+                for (ObjectNode modelNode : modelNodes) {
+                    PSSysCanvasModel model = new PSSysCanvasModel();
+                    PSModelV2Helper.fromJSONObject(model, modelNode, false);
+                    childNodes.add(pSSysCanvasModelService.exportModelV2(model, string));
                 }
             }
         }
@@ -1649,7 +1635,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
         ArrayList<PSSysCanvasModel> arrayList = pSSysCanvasModelService.selectByPSSysCanvas(pSSysCanvas);
         String string = StringHelper.format((String)"PSSYSCANVAS#%1$s", (Object)pSSysCanvas.getPSSysCanvasId());
         for (PSSysCanvasModel pSSysCanvasModel : arrayList) {
-            String string2 = pSSysCanvasModelService.getModelV2ResScope((IEntity)pSSysCanvasModel);
+            String string2 = pSSysCanvasModelService.getModelV2ResScope(pSSysCanvasModel);
             if (StringHelper.compare((String)string, (String)string2, (boolean)false) != 0) continue;
             pSSysCanvasModelService.emptyModelV2(pSSysCanvasModel);
         }
@@ -1729,7 +1715,7 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
             PSSysCanvasModelService pSSysCanvasModelService = (PSSysCanvasModelService)ServiceGlobal.getService(PSSysCanvasModelService.class, (SessionFactory)this.getSessionFactory());
             PSSysCanvasModel pSSysCanvasModel = new PSSysCanvasModel();
             pSSysCanvasModel.setPSSysCanvasModelId(pSMOSFile.getPSModelId());
-            if (!pSSysCanvasModelService.get((IEntity)pSSysCanvasModel, true)) {
+            if (!pSSysCanvasModelService.get(pSSysCanvasModel, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysCanvasModel.getPSSysCanvasId(), (String)pSSysCanvas.getPSSysCanvasId(), (boolean)false) == 0) {
@@ -1737,12 +1723,12 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
             }
             ObjectNode objectNode = pSSysCanvasModelService.exportModelV2(pSSysCanvasModel);
             pSSysCanvasModel.reset();
-            if (!pSSysCanvasModelService.setModelV2ResScope((IEntity)pSSysCanvasModel, "PSSYSCANVAS", pSSysCanvas.getPSSysCanvasId())) {
+            if (!pSSysCanvasModelService.setModelV2ResScope(pSSysCanvasModel, "PSSYSCANVAS", pSSysCanvas.getPSSysCanvasId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysCanvasModelService.importModelV2(pSSysCanvasModel, objectNode);
             SessionFactoryManager.commit();
-            return pSSysCanvasModelService.getFile((IEntity)pSSysCanvasModel);
+            return pSSysCanvasModelService.getFile(pSSysCanvasModel);
         }
         return null;
     }
@@ -1772,4 +1758,3 @@ extends PSCoreSysServiceBase<PSSysCanvas> {
         defaultValueMap.put("PSSYSCANVASNAME", "\u753b\u5e03");
     }
 }
-

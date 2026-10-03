@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysDBTableDEModelBase;
 
 public class PSSysDBTableDEModel
 extends PSSysDBTableDEModelBase {
+
+    public PSSysDBTableDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

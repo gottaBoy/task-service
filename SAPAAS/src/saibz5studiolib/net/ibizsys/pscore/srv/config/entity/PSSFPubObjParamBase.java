@@ -1123,7 +1123,7 @@ implements Serializable {
                 PSSFPubOjb pSSFPubOjb = new PSSFPubOjb();
                 pSSFPubOjb.setPSSFPubObjId(this.getPSSFPubObjId());
                 PSSFPubOjbService pSSFPubOjbService = (PSSFPubOjbService)ServiceGlobal.getService(PSSFPubOjbService.class, (SessionFactory)this.getSessionFactory());
-                pSSFPubOjbService.autoGet((IEntity)pSSFPubOjb);
+                pSSFPubOjbService.autoGet(pSSFPubOjb);
                 this.pssfpubobj = pSSFPubOjb;
             }
             return this.pssfpubobj;

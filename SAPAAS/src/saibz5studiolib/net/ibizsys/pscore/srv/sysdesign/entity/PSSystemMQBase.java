@@ -1266,7 +1266,7 @@ implements Serializable {
                 PSDevCenterMQ pSDevCenterMQ = new PSDevCenterMQ();
                 pSDevCenterMQ.setPSDevCenterMQId(this.getPSDevCenterMQId());
                 PSDevCenterMQService pSDevCenterMQService = (PSDevCenterMQService)ServiceGlobal.getService(PSDevCenterMQService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterMQService.autoGet((IEntity)pSDevCenterMQ);
+                pSDevCenterMQService.autoGet(pSDevCenterMQ);
                 this.psdevcentermq = pSDevCenterMQ;
             }
             return this.psdevcentermq;
@@ -1292,7 +1292,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

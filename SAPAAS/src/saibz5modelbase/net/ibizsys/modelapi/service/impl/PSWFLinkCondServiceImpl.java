@@ -153,9 +153,9 @@ implements IPSWFLinkCondService {
 
     @Override
     protected List<PSWFLinkCond> onListAll() throws Exception {
-        List pswfversions;
+        List<PSWFVersion> pswfversions;
         ArrayList<PSWFLinkCond> list = new ArrayList<PSWFLinkCond>();
-        List pswflinks = PSModelServiceUtil.getInstance().getPSWFLinkService().listAll();
+        List<PSWFLink> pswflinks = PSModelServiceUtil.getInstance().getPSWFLinkService().listAll();
         if (pswflinks != null) {
             for (PSWFLink parent : pswflinks) {
                 List<PSWFLinkCond> items = this.listByPSWFLink(parent);

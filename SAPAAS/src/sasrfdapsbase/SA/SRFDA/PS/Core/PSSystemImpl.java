@@ -3790,7 +3790,7 @@ IPSDynaInstSupportable {
                     psSysModelLoadLog.setPSSysModelLoadLogName(StringHelper.Format((String)"[%1$s]\u52a0\u8f7d\u65e5\u5fd7", (Object)PSSystemImpl.this.getName()));
                     psSysModelLoadLog.setLogInfo(sb.toString());
                     psSysModelLoadLog.setExceptionInfo(sb2.toString());
-                    psSysModelLoadLogService.save((IEntity)psSysModelLoadLog);
+                    psSysModelLoadLogService.save(psSysModelLoadLog);
                 }
             });
         }
@@ -4183,7 +4183,7 @@ IPSDynaInstSupportable {
             ServiceWorkHelper.getInstance().execute(new IServiceWork(){
 
                 public void execute(ITransaction iTransaction) throws Exception {
-                    psSysConsoleService.create((IEntity)psSysConsole, false);
+                    psSysConsoleService.create(psSysConsole, false);
                 }
             });
         }
@@ -4871,9 +4871,15 @@ IPSDynaInstSupportable {
         if (this.iPSSFPubHelp != null) {
             return this.iPSSFPubHelp;
         }
-        HashMap<String, IPSCodePublisherParam> publisherParamMap = new HashMap<String, IPSCodePublisherParam>();
-        this.fillPSSFCodePublisherParams(publisherParamMap);
-        this.iPSSFPubHelp = PSSFPubHelpImpl.createPSSFPubHelp(this.getPSSFPubObjTarget(), this, this, publisherParamMap);
+        try {
+            HashMap<String, IPSCodePublisherParam> publisherParamMap = new HashMap<String, IPSCodePublisherParam>();
+            this.fillPSSFCodePublisherParams(publisherParamMap);
+            this.iPSSFPubHelp = PSSFPubHelpImpl.createPSSFPubHelp(this.getPSSFPubObjTarget(), this, this, publisherParamMap);
+        }
+        catch (Exception exception) {
+            log.error((Object)exception);
+            return null;
+        }
         return this.iPSSFPubHelp;
     }
 
@@ -5563,4 +5569,3 @@ IPSDynaInstSupportable {
         return false;
     }
 }
-

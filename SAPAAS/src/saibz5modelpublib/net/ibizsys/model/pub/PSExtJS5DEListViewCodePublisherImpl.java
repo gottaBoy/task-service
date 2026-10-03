@@ -1,54 +1,66 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.control.IPSControl
- *  net.ibizsys.model.control.list.IPSDEList
- *  net.ibizsys.model.control.list.IPSDEListItem
- *  net.ibizsys.model.pub.IPSGenerateCodeResult
- *  net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher
- *  net.ibizsys.model.pub.PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import net.ibizsys.model.control.IPSControl;
+
 import net.ibizsys.model.control.list.IPSDEList;
 import net.ibizsys.model.control.list.IPSDEListItem;
-import net.ibizsys.model.pub.IPSGenerateCodeResult;
-import net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher;
-import net.ibizsys.model.pub.PSExtJS5CtrlCodePublisherImpl;
-import net.ibizsys.model.pub.PSGenerateCodeResultImpl;
 
-public class PSExtJS5DEListViewCodePublisherImpl
-extends PSExtJS5CtrlCodePublisherImpl {
-    protected IPSDEList iPSDEList = null;
-    public static final String CTRLPART_RECORD = "RECORD";
-    public static final String CTRLPART_COLUMN = "COLUMN";
-    public static final String CTRLPART_STORE = "STORE";
+public class PSExtJS5DEListViewCodePublisherImpl extends PSExtJS5CtrlCodePublisherImpl
+{
+	protected IPSDEList iPSDEList = null;
+	
+	public final static String CTRLPART_RECORD = "RECORD";
+	
+	public final static String CTRLPART_COLUMN = "COLUMN";
+	
+	public final static String CTRLPART_STORE = "STORE";
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSDEList = (IPSDEList)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        this.iPSDEList = (IPSDEList)this.iPSControl;
-        return super.onGenerateCode();
-    }
-
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
-        super.onFillGenerateCodeParams(params);
-        IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_STORE).getPSPFCtrlPartCodePublisher();
-        IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode((IPSControl)this.iPSDEList, null);
-        params.put("store", iPSGenerateCodeResult);
-        iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_COLUMN).getPSPFCtrlPartCodePublisher();
-        ArrayList<IPSGenerateCodeResult> gridColumnList = new ArrayList<IPSGenerateCodeResult>();
-        Iterator psDEListItems = this.iPSDEList.getPSDEListItems();
-        while (psDEListItems.hasNext()) {
-            IPSDEListItem iPSDEListItem = (IPSDEListItem)psDEListItems.next();
-            IPSGenerateCodeResult iPSGenerateCodeResult2 = iPSPFCtrlPartCodePublisher.generateCode((IPSControl)this.iPSDEList, (Object)iPSDEListItem);
-            gridColumnList.add(iPSGenerateCodeResult2);
-        }
-        params.put("columns", gridColumnList);
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		//输出结果集合代码
+		if(true)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_STORE).getPSPFCtrlPartCodePublisher();
+			IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSDEList, null);
+			params.put("store", iPSGenerateCodeResult);
+		}
+		
+		
+		if(true)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_COLUMN).getPSPFCtrlPartCodePublisher();
+			ArrayList<IPSGenerateCodeResult> gridColumnList = new ArrayList<IPSGenerateCodeResult> ();
+			java.util.Iterator<IPSDEListItem> psDEListItems = 	iPSDEList.getPSDEListItems();
+			while(psDEListItems.hasNext())
+			{
+				IPSDEListItem iPSDEListItem = psDEListItems.next();
+				
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode( iPSDEList,iPSDEListItem);
+				gridColumnList.add(iPSGenerateCodeResult);
+			}
+			
+			params.put("columns", gridColumnList);
+		}
+		
+	}
+	
+	
 }
-

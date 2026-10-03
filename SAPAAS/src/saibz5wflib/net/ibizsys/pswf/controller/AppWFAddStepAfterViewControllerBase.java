@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.controller;
 
-import net.ibizsys.pswf.controller.WFViewControllerBase;
+/**
+ * 应用流程后加签操作视图控制器基类
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class AppWFAddStepAfterViewControllerBase extends WFViewControllerBase {
 
-public abstract class AppWFAddStepAfterViewControllerBase
-extends WFViewControllerBase {
+	public AppWFAddStepAfterViewControllerBase() throws Exception {
+		super();
+
+	}
+
+	
 }
-

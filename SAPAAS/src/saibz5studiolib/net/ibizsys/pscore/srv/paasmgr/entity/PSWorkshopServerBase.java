@@ -2109,7 +2109,7 @@ implements Serializable {
                 PSSVNServer pSSVNServer = new PSSVNServer();
                 pSSVNServer.setPSSVNServerId(this.getPSSVNServerId());
                 PSSVNServerService pSSVNServerService = (PSSVNServerService)ServiceGlobal.getService(PSSVNServerService.class, (SessionFactory)this.getSessionFactory());
-                pSSVNServerService.autoGet((IEntity)pSSVNServer);
+                pSSVNServerService.autoGet(pSSVNServer);
                 this.pssvnserver = pSSVNServer;
             }
             return this.pssvnserver;
@@ -2135,7 +2135,7 @@ implements Serializable {
                 PSSvrDomain pSSvrDomain = new PSSvrDomain();
                 pSSvrDomain.setPSSvrDomainId(this.getPSSvrDomainId());
                 PSSvrDomainService pSSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrDomainService.autoGet((IEntity)pSSvrDomain);
+                pSSvrDomainService.autoGet(pSSvrDomain);
                 this.pssvrdomain = pSSvrDomain;
             }
             return this.pssvrdomain;

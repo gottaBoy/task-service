@@ -1,17 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.ISearchFormPortletModel;
-import net.ibizsys.paas.ctrlmodel.PortletModelBase;
+/**
+ * 搜索表单门户部件模型
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class SearchFormPortletModelBase extends PortletModelBase implements ISearchFormPortletModel {
+	@Override
+	public String getPortletType() {
+		return PORTLETTYPE_SEARCHFORM;
+	}
 
-public abstract class SearchFormPortletModelBase
-extends PortletModelBase
-implements ISearchFormPortletModel {
-    @Override
-    public String getPortletType() {
-        return "SEARCHFORM";
-    }
 }
-

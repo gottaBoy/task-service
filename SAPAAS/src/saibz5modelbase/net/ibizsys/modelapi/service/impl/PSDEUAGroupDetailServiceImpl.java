@@ -75,7 +75,7 @@ implements IPSDEUAGroupDetailService {
     @Override
     protected List<PSDEUAGroupDetail> onListAll() throws Exception {
         ArrayList<PSDEUAGroupDetail> list = new ArrayList<PSDEUAGroupDetail>();
-        List psdeuagroups = PSModelServiceUtil.getInstance().getPSDEUAGroupService().listAll();
+        List<PSDEUAGroup> psdeuagroups = PSModelServiceUtil.getInstance().getPSDEUAGroupService().listAll();
         if (psdeuagroups != null) {
             for (PSDEUAGroup parent : psdeuagroups) {
                 List<PSDEUAGroupDetail> items = this.listByPSDEUAGroup(parent);

@@ -137,9 +137,9 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
             PSDevSlnSys pSDevSlnSys = (PSDevSlnSys)iService.getDEModel().createEntity();
             pSDevSlnSys.set("PSDEVSLNSYSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevSlnSys);
+                iService.getTemp(pSDevSlnSys);
             } else {
-                iService.get((IEntity)pSDevSlnSys);
+                iService.get(pSDevSlnSys);
             }
             this.onFillParentInfo_PSDevSlnSys(pSDevSlnCanvas, pSDevSlnSys);
             return;
@@ -149,14 +149,14 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
             PSDevSln pSDevSln = (PSDevSln)iService.getDEModel().createEntity();
             pSDevSln.set("PSDEVSLNID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevSln);
+                iService.getTemp(pSDevSln);
             } else {
-                iService.get((IEntity)pSDevSln);
+                iService.get(pSDevSln);
             }
             this.onFillParentInfo_PSDevSln(pSDevSlnCanvas, pSDevSln);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDevSlnCanvas, string, string2, string3);
+        super.onFillParentInfo(pSDevSlnCanvas, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDevSlnCanvas, bl);
+        super.onFillEntityFullInfo(pSDevSlnCanvas, bl);
         this.onFillEntityFullInfo_PSDevSlnSys(pSDevSlnCanvas, bl);
         this.onFillEntityFullInfo_PSDevSln(pSDevSlnCanvas, bl);
     }
@@ -189,7 +189,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
     }
 
     protected void onWriteBackParent(PSDevSlnCanvas pSDevSlnCanvas, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDevSlnCanvas, bl);
+        super.onWriteBackParent(pSDevSlnCanvas, bl);
     }
 
     public ArrayList<PSDevSlnCanvas> selectByPSDevSlnSys(PSDevSlnSysBase pSDevSlnSysBase) throws Exception {
@@ -272,7 +272,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
         ArrayList<PSDevSlnCanvas> arrayList = this.selectByPSDevSlnSys(pSDevSlnSys);
         this.onBeforeRemoveByPSDevSlnSys(pSDevSlnSys, arrayList);
         for (PSDevSlnCanvas pSDevSlnCanvas : arrayList) {
-            this.remove((IEntity)pSDevSlnCanvas);
+            this.remove(pSDevSlnCanvas);
         }
         this.onAfterRemoveByPSDevSlnSys(pSDevSlnSys, arrayList);
     }
@@ -318,7 +318,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
         ArrayList<PSDevSlnCanvas> arrayList = this.selectByPSDevSln(pSDevSln);
         this.onBeforeRemoveByPSDevSln(pSDevSln, arrayList);
         for (PSDevSlnCanvas pSDevSlnCanvas : arrayList) {
-            this.remove((IEntity)pSDevSlnCanvas);
+            this.remove(pSDevSlnCanvas);
         }
         this.onAfterRemoveByPSDevSln(pSDevSln, arrayList);
     }
@@ -339,7 +339,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
 
     protected void replaceParentInfo(PSDevSlnCanvas pSDevSlnCanvas, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDevSlnCanvas, cloneSession);
+        super.replaceParentInfo(pSDevSlnCanvas, cloneSession);
         if (pSDevSlnCanvas.getPSDevSlnSysId() != null && (iEntity = cloneSession.getEntity("PSDEVSLNSYS", (Object)pSDevSlnCanvas.getPSDevSlnSysId())) != null) {
             this.onFillParentInfo_PSDevSlnSys(pSDevSlnCanvas, (PSDevSlnSys)iEntity);
         }
@@ -349,7 +349,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDevSlnCanvas pSDevSlnCanvas, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDevSlnCanvas, bl);
+        super.onRemoveEntityUncopyValues(pSDevSlnCanvas, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDevSlnCanvas pSDevSlnCanvas, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -409,7 +409,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSDevSlnCanvas, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDevSlnCanvas, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDevSlnCanvas, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CanvasModel(boolean bl, PSDevSlnCanvas pSDevSlnCanvas, boolean bl2, boolean bl3) throws Exception {
@@ -422,7 +422,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CanvasModel_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CanvasModel_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANVASMODEL");
@@ -444,7 +444,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CanvasTag_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CanvasTag_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANVASTAG");
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CanvasTag2_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CanvasTag2_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANVASTAG2");
@@ -488,7 +488,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CanvasTag3_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CanvasTag3_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANVASTAG3");
@@ -510,7 +510,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CanvasTag4_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CanvasTag4_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANVASTAG4");
@@ -532,7 +532,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CanvasType_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CanvasType_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CANVASTYPE");
@@ -554,7 +554,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -593,7 +593,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -615,7 +615,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Model_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_Model_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODEL");
@@ -640,7 +640,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnCanvasId_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnCanvasId_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNCANVASID");
@@ -665,7 +665,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnCanvasName_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnCanvasName_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNCANVASNAME");
@@ -704,7 +704,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnId_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnId_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNID");
@@ -726,7 +726,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysId_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysId_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSID");
@@ -748,7 +748,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -770,7 +770,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -792,7 +792,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -814,7 +814,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -836,7 +836,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDevSlnCanvas, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDevSlnCanvas, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -849,11 +849,11 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
     }
 
     protected void onSyncEntity(PSDevSlnCanvas pSDevSlnCanvas, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDevSlnCanvas, bl);
+        super.onSyncEntity(pSDevSlnCanvas, bl);
     }
 
     protected void onSyncIndexEntities(PSDevSlnCanvas pSDevSlnCanvas, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDevSlnCanvas, bl);
+        super.onSyncIndexEntities(pSDevSlnCanvas, bl);
     }
 
     public Object getDataContextValue(PSDevSlnCanvas pSDevSlnCanvas, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -861,7 +861,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDevSlnCanvas, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDevSlnCanvas, string, iDataContextParam)) != null) {
             return object;
         }
         PSDevSln pSDevSln = pSDevSlnCanvas.getPSDevSln();
@@ -872,7 +872,7 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
     }
 
     protected void onExportMajorModel(PSDevSlnCanvas pSDevSlnCanvas, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDevSlnCanvas, arrayList, n);
+        super.onExportMajorModel(pSDevSlnCanvas, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1230,14 +1230,14 @@ extends PSCoreSysServiceBase<PSDevSlnCanvas> {
 
     protected boolean onMergeChild(String string, String string2, PSDevSlnCanvas pSDevSlnCanvas) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDevSlnCanvas)) {
+        if (super.onMergeChild(string, string2, pSDevSlnCanvas)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDevSlnCanvas pSDevSlnCanvas) throws Exception {
-        super.onUpdateParent((IEntity)pSDevSlnCanvas);
+        super.onUpdateParent(pSDevSlnCanvas);
     }
 
     @Override

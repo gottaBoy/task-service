@@ -69,7 +69,7 @@ extends BaseDEDataCtrl {
             log.error((Object)StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u6570\u636e\u64cd\u4f5c\u5bf9\u8c61", (Object)"EAI0010"));
             return callResult;
         }
-        ArrayList childs = processesNode.getChildNodes();
+        ArrayList<XMLNode> childs = processesNode.getChildNodes();
         if (childs == null) {
             return callResult;
         }

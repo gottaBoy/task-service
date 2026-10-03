@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSCorePrdFuncDEModelBase;
 
 public class PSCorePrdFuncDEModel
 extends PSCorePrdFuncDEModelBase {
+
+    public PSCorePrdFuncDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

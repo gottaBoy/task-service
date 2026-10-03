@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db.impl;
 
 import java.sql.Connection;
@@ -8,98 +5,181 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import net.ibizsys.paas.db.DataSetCache;
 import net.ibizsys.paas.db.IDataSet;
 import net.ibizsys.paas.db.IDataTable;
-import net.ibizsys.paas.db.impl.DataTableImpl;
 
-public class DataSetImpl
-implements IDataSet {
-    protected ArrayList<IDataTable> dataTableList = new ArrayList();
-    protected Connection conn;
-    protected PreparedStatement cstmt;
-    private String strSqlInfo = null;
+/**
+ * 数据集合实现对象
+ * 
+ * @author Administrator
+ *
+ */
+public class DataSetImpl implements IDataSet {
+	protected ArrayList<IDataTable> dataTableList = new ArrayList<IDataTable>();
 
-    public DataSetImpl(Connection conn, PreparedStatement cstmt) {
-        this.conn = conn;
-        this.cstmt = cstmt;
-        DataSetCache.register(this);
-    }
+	// /**
+	// * 未关闭数据连接数量
+	// */
+	// private static Integer connCount = 0;
+	//
 
-    public void addResultSet(ResultSet rs) throws SQLException {
-        IDataTable dataTable = this.createDataTable(rs);
-        this.dataTableList.add(dataTable);
-    }
+	protected Connection conn;
+	protected PreparedStatement cstmt;
 
-    @Override
-    public int getDataTableCount() {
-        return this.dataTableList.size();
-    }
+	private String strSqlInfo = null;
 
-    @Override
-    public IDataTable getDataTable(int nIndex) {
-        if (nIndex < 0) {
-            return null;
-        }
-        if (nIndex > this.dataTableList.size() - 1) {
-            return null;
-        }
-        return this.dataTableList.get(nIndex);
-    }
+	/**
+	 * 数据集合实现对象
+	 * 
+	 * @param conn
+	 * @param cstmt
+	 */
+	public DataSetImpl(Connection conn, PreparedStatement cstmt) {
+		this.conn = conn;
+		this.cstmt = cstmt;
+		// if(this.conn!=null)
+		// {
+		// synchronized(connCount)
+		// {
+		// connCount ++;
+		// }
+		// }
+		DataSetCache.register(this);
+	}
 
-    protected IDataTable createDataTable(ResultSet rs) throws SQLException {
-        return new DataTableImpl(this, rs);
-    }
+	/**
+	 * 增加结果集合
+	 * 
+	 * @param rs
+	 * @throws SQLException
+	 */
+	public void addResultSet(ResultSet rs) throws SQLException {
+		IDataTable dataTable = createDataTable(rs);
+		dataTableList.add(dataTable);
+	}
 
-    @Override
-    public void close() {
-        for (IDataTable iDataTable : this.dataTableList) {
-            iDataTable.close();
-        }
-        this.dataTableList.clear();
-        this.closeDBLink();
-        DataSetCache.unregister(this);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.IDataSet#getDataTableCount()
+	 */
+	@Override
+	public int getDataTableCount() {
+		return dataTableList.size();
+	}
 
-    @Override
-    public void cacheDataRow() throws SQLException {
-        for (IDataTable iDataTable : this.dataTableList) {
-            if (iDataTable.getCachedRowCount() != -1) continue;
-            iDataTable.cacheRows(-1);
-        }
-        this.closeDBLink();
-        DataSetCache.unregister(this);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.IDataSet#getDataTable(int)
+	 */
+	@Override
+	public IDataTable getDataTable(int nIndex) {
+		if (nIndex < 0) return null;
 
-    protected void closeDBLink() {
-        try {
-            if (this.cstmt != null) {
-                this.cstmt.close();
-            }
-        }
-        catch (Exception exception) {
-            // empty catch block
-        }
-        try {
-            if (this.conn != null) {
-                this.conn.close();
-                this.conn = null;
-            }
-        }
-        catch (Exception exception) {
-            // empty catch block
-        }
-        this.cstmt = null;
-        this.conn = null;
-    }
+		if (nIndex > (dataTableList.size() - 1)) return null;
+		return (IDataTable) dataTableList.get(nIndex);
+	}
 
-    @Override
-    public String getSqlInfo() {
-        return this.strSqlInfo;
-    }
+	/**
+	 * 从结果集中建立数据表
+	 * 
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
+	protected IDataTable createDataTable(ResultSet rs) throws SQLException {
+		return new DataTableImpl(this, rs);
+	}
 
-    public void setSqlInfo(String strSqlInfo) {
-        this.strSqlInfo = strSqlInfo;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.IDataSet#close()
+	 */
+	@Override
+	public void close() {
+		for (IDataTable iDataTable : this.dataTableList) {
+			iDataTable.close();
+		}
+		dataTableList.clear();
+		closeDBLink();
+		DataSetCache.unregister(this);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.IDataSet#cacheDataRow()
+	 */
+	@Override
+	public void cacheDataRow() throws SQLException {
+		for (IDataTable iDataTable : this.dataTableList) {
+			if(iDataTable.getCachedRowCount() == -1)
+				iDataTable.cacheRows(-1);
+		}
+		closeDBLink();
+		DataSetCache.unregister(this);
+	}
+
+	/**
+	 * 关闭数据连接
+	 */
+	protected void closeDBLink() {
+		try {
+			if (cstmt != null) {
+				cstmt.close();
+			}
+		} catch (Exception e) {
+			// log.e
+		}
+
+		try {
+			if (conn != null) {
+				conn.close();
+				conn = null;
+				//
+				// synchronized(connCount)
+				// {
+				// connCount --;
+				// }
+			}
+		} catch (Exception e) {
+			// log.e
+		}
+
+		cstmt = null;
+		conn = null;
+	}
+
+	// /**
+	// * 获取未关闭的数据库连接数量
+	// * @return
+	// */
+	// public static int getUnclosedConnCount()
+	// {
+	// return connCount;
+	// }
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.db.IDataSet#getSqlInfo()
+	 */
+	@Override
+	public String getSqlInfo() {
+		return strSqlInfo;
+	}
+
+	/**
+	 * 设置相关的SQL信息
+	 * 
+	 * @param strSqlInfo the strSqlInfo to set
+	 */
+	public void setSqlInfo(String strSqlInfo) {
+		this.strSqlInfo = strSqlInfo;
+	}
+
 }
-

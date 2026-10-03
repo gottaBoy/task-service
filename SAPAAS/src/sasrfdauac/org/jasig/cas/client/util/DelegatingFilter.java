@@ -32,7 +32,7 @@ public final class DelegatingFilter
 implements Filter {
     private final Log log = LogFactory.getLog(this.getClass());
     private final String requestParameterName;
-    private final Map delegators;
+    private final Map<String, Filter> delegators;
     private final Filter defaultFilter;
     private final boolean exactMatch;
 

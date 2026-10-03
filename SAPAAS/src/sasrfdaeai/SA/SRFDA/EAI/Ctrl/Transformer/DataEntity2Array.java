@@ -1,24 +1,27 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  TransformerException
- */
 package SA.SRFDA.EAI.Ctrl.Transformer;
 
-import SA.SRFDA.EAI.Ctrl.Transformer.BaseTransformer;
+import SA.SRFramework.DataEx.BaseDataEntity;
+import org.mule.api.transformer.TransformerException;
+import org.mule.config.i18n.MessageFactory;
 
-public class DataEntity2Array
-extends BaseTransformer {
+public class DataEntity2Array extends BaseTransformer {
     public static final String TAG_ARRAYSIZE = "ARRAYSIZE";
     public static final String TAG_ITEM = "ITEM";
 
-    public DataEntity2Array() {
-        throw new Error("Unresolved compilation problems: \n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe hierarchy of the type DataEntity2Array is inconsistent\n\tThe method doTransform(Object, String) of type DataEntity2Array must override or implement a supertype method\n\tTransformerException cannot be resolved to a type\n\tThe method GetDataEntity(BaseTransformer, Object) from the type TransformerHelper refers to the missing type TransformerException\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n");
-    }
-
-    protected Object doTransform(Object object, String string) throws TransformerException {
-        throw new Error("Unresolved compilation problems: \n\tThe method doTransform(Object, String) of type DataEntity2Array must override or implement a supertype method\n\tTransformerException cannot be resolved to a type\n\tThe method GetDataEntity(BaseTransformer, Object) from the type TransformerHelper refers to the missing type TransformerException\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n");
+    protected Object doTransform(Object object, String encoding) throws TransformerException {
+        BaseDataEntity entity = TransformerHelper.GetDataEntity(this, object);
+        int size = GetConfig(TAG_ARRAYSIZE, -1);
+        if (size < 0 || size > 100000) {
+            throw new TransformerException(MessageFactory.createStaticMessage("Invalid ARRAYSIZE"));
+        }
+        Object[] values = new Object[size];
+        for (int i = 0; i < size; i++) {
+            String field = GetConfig(TAG_ITEM + (i + 1), null);
+            if (field == null || field.length() == 0) {
+                throw new TransformerException(MessageFactory.createStaticMessage("Missing ITEM" + (i + 1)));
+            }
+            values[i] = entity.GetParamValue(field);
+        }
+        return values;
     }
 }
-

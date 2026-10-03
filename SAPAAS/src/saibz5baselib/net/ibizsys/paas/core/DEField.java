@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import java.lang.annotation.Documented;
@@ -8,36 +5,104 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import net.ibizsys.paas.core.DEFSearchMode;
 
-@Target(value={ElementType.TYPE})
-@Retention(value=RetentionPolicy.RUNTIME)
+/**
+ * 实体属性注解
+ * 
+ * @author Administrator
+ *
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DEField {
-    public String id() default "";
+	/**
+	 * 属性标识
+	 * 
+	 * @return
+	 */
+	String id() default "";
 
-    public String name() default "";
+	/**
+	 * 属性名称
+	 * 
+	 * @return
+	 */
+	String name() default "";
 
-    public String logicname() default "";
+	/**
+	 * 属性逻辑名称
+	 * 
+	 * @return
+	 */
+	String logicname() default "";
 
-    public String datatype() default "";
+	/**
+	 * 数据类型
+	 * 
+	 * @return
+	 */
+	String datatype() default "";
 
-    public int stddatatype() default 0;
+	/**
+	 * 标准数据类型
+	 * 
+	 * @return
+	 */
+	int stddatatype() default 0;
 
-    public DEFSearchMode[] defsearchmodes();
+	/**
+	 * 属性搜索模型
+	 * 
+	 * @return
+	 */
+	DEFSearchMode[] defsearchmodes();
 
-    public boolean keyfield() default false;
+	/**
+	 * 主键属性
+	 * 
+	 * @return
+	 */
+	boolean keyfield() default false;
 
-    public boolean majorfield() default false;
+	/**
+	 * 主属性
+	 * 
+	 * @return
+	 */
+	boolean majorfield() default false;
 
-    public boolean linkfield() default false;
+	/**
+	 * 链接属性
+	 * 
+	 * @return
+	 */
+	boolean linkfield() default false;
 
-    public String pdt() default "";
+	/**
+	 * 属性的预定义类型
+	 */
+	String pdt() default "";
 
-    public boolean formulafield() default false;
+	/**
+	 * 公式属性
+	 * 
+	 * @return
+	 */
+	boolean formulafield() default false;
 
-    public boolean phisicalfield() default true;
+	/**
+	 * 物理化属性
+	 * 
+	 * @return
+	 */
+	boolean phisicalfield() default true;
 
-    public boolean inheritfield() default false;
+	/**
+	 * 继承属性
+	 * 
+	 * @return
+	 */
+	boolean inheritfield() default false;
+
 }
-

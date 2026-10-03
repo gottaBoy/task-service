@@ -1,15 +1,26 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.datasync;
 
-import net.ibizsys.paas.datasync.IDataSyncEngine;
-import net.ibizsys.paas.datasync.IDataSyncParam;
+/**
+ * 数据同步输出引擎接口
+ * 
+ * @author LionLau
+ *
+ */
+public interface IDataSyncOutEngine extends IDataSyncEngine {
 
-public interface IDataSyncOutEngine
-extends IDataSyncEngine {
-    public boolean checkSend() throws Exception;
+	/**
+	 * 检查发送功能是否正常
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	boolean checkSend() throws Exception;
 
-    public void send(IDataSyncParam var1) throws Exception;
+	/**
+	 * 发送数据
+	 * 
+	 * @param iDataSyncParam
+	 * @throws Exception
+	 */
+	void send(IDataSyncParam iDataSyncParam) throws Exception;
 }
-

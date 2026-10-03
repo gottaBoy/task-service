@@ -214,21 +214,21 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
 
     public void syncDomainData(PSSvrDomain pSSvrDomain) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_SYNCDOMAINDATA, 0, (IEntity)pSSvrDomain, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_SYNCDOMAINDATA, 0, pSSvrDomain, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSvrDomain, ACTION_SYNCDOMAINDATA);
+        this.testDEMainStateAction(pSSvrDomain, ACTION_SYNCDOMAINDATA);
         final PSSvrDomain pSSvrDomain2 = pSSvrDomain;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSvrDomainServiceBase.this.getService(), PSSvrDomainServiceBase.ACTION_SYNCDOMAINDATA, 40, (IEntity)pSSvrDomain2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSvrDomainServiceBase.this.getService(), PSSvrDomainServiceBase.ACTION_SYNCDOMAINDATA, 40, pSSvrDomain2, null).getResult() != 1) {
                     PSSvrDomainServiceBase.this.onSyncDomainData(pSSvrDomain2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_SYNCDOMAINDATA, 99, (IEntity)pSSvrDomain, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_SYNCDOMAINDATA, 99, pSSvrDomain, null);
         }
     }
 
@@ -237,7 +237,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
     }
 
     protected void onFillParentInfo(PSSvrDomain pSSvrDomain, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSvrDomain, string, string2, string3);
+        super.onFillParentInfo(pSSvrDomain, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -248,11 +248,11 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
         if (bl && pSSvrDomain.getValidFlag() == null) {
             pSSvrDomain.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSvrDomain, bl);
+        super.onFillEntityFullInfo(pSSvrDomain, bl);
     }
 
     protected void onWriteBackParent(PSSvrDomain pSSvrDomain, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSvrDomain, bl);
+        super.onWriteBackParent(pSSvrDomain, bl);
     }
 
     @Override
@@ -351,7 +351,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSvrDomain pSSvrDomain, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSvrDomain, bl);
+        super.onRemoveEntityUncopyValues(pSSvrDomain, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSvrDomain pSSvrDomain, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -429,7 +429,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSvrDomain, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSvrDomain, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSvrDomain, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DomainCode(boolean bl, PSSvrDomain pSSvrDomain, boolean bl2, boolean bl3) throws Exception {
@@ -442,7 +442,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DomainCode_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string2 = this.onTestValueRule_DomainCode_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOMAINCODE");
@@ -464,7 +464,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DomainParam_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string2 = this.onTestValueRule_DomainParam_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOMAINPARAM");
@@ -486,7 +486,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DomainParam2_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string2 = this.onTestValueRule_DomainParam2_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOMAINPARAM2");
@@ -508,7 +508,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DomainParam3_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string2 = this.onTestValueRule_DomainParam3_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOMAINPARAM3");
@@ -530,7 +530,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DomainParam4_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string2 = this.onTestValueRule_DomainParam4_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOMAINPARAM4");
@@ -552,7 +552,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DomainParam5_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_DomainParam5_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOMAINPARAM5");
@@ -574,7 +574,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DomainParam6_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_DomainParam6_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOMAINPARAM6");
@@ -596,7 +596,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DomainParams_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string2 = this.onTestValueRule_DomainParams_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOMAINPARAMS");
@@ -618,7 +618,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -640,7 +640,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr2_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr2_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR2");
@@ -662,7 +662,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -687,7 +687,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -712,7 +712,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainName_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainName_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINNAME");
@@ -734,7 +734,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SyncData_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_SyncData_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCDATA");
@@ -756,7 +756,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SyncData10_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_SyncData10_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCDATA10");
@@ -778,7 +778,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SyncData2_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_SyncData2_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCDATA2");
@@ -800,7 +800,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SyncData3_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_SyncData3_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCDATA3");
@@ -822,7 +822,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SyncData4_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_SyncData4_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCDATA4");
@@ -844,7 +844,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SyncData5_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_SyncData5_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCDATA5");
@@ -866,7 +866,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SyncData6_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_SyncData6_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCDATA6");
@@ -888,7 +888,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SyncData7_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_SyncData7_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCDATA7");
@@ -910,7 +910,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SyncData8_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_SyncData8_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCDATA8");
@@ -932,7 +932,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SyncData9_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_SyncData9_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYNCDATA9");
@@ -957,7 +957,7 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSvrDomain, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSvrDomain, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -970,11 +970,11 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
     }
 
     protected void onSyncEntity(PSSvrDomain pSSvrDomain, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSvrDomain, bl);
+        super.onSyncEntity(pSSvrDomain, bl);
     }
 
     protected void onSyncIndexEntities(PSSvrDomain pSSvrDomain, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSvrDomain, bl);
+        super.onSyncIndexEntities(pSSvrDomain, bl);
     }
 
     public Object getDataContextValue(PSSvrDomain pSSvrDomain, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -982,14 +982,14 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSvrDomain, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSvrDomain, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSvrDomain pSSvrDomain, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSvrDomain, arrayList, n);
+        super.onExportMajorModel(pSSvrDomain, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1298,14 +1298,14 @@ extends PSCoreSysServiceBase<PSSvrDomain> {
 
     protected boolean onMergeChild(String string, String string2, PSSvrDomain pSSvrDomain) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSvrDomain)) {
+        if (super.onMergeChild(string, string2, pSSvrDomain)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSvrDomain pSSvrDomain) throws Exception {
-        super.onUpdateParent((IEntity)pSSvrDomain);
+        super.onUpdateParent(pSSvrDomain);
     }
 
     @Override

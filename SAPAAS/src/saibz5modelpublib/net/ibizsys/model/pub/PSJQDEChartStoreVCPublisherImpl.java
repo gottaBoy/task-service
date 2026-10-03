@@ -1,32 +1,37 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.control.IPSControl
- *  net.ibizsys.model.control.chart.IPSDEChart
- *  net.ibizsys.model.pub.IPSGenerateCodeResult
- */
 package net.ibizsys.model.pub;
 
 import java.util.HashMap;
+
 import net.ibizsys.model.control.IPSControl;
 import net.ibizsys.model.control.chart.IPSDEChart;
-import net.ibizsys.model.pub.IPSGenerateCodeResult;
-import net.ibizsys.model.pub.PSJQCtrlPartCodePublisherImpl;
 
-public class PSJQDEChartStoreVCPublisherImpl
-extends PSJQCtrlPartCodePublisherImpl {
-    public static final String CTRLPART_RECORD = "RECORD";
-    protected IPSDEChart iPSDEChart = null;
+public class PSJQDEChartStoreVCPublisherImpl extends PSJQCtrlPartCodePublisherImpl
+{
+	public final static String CTRLPART_RECORD = "RECORD";
 
-    public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception {
-        this.iPSDEChart = (IPSDEChart)iPSControl;
-        return super.generateCode(iPSControl, object);
-    }
+	
+	protected IPSDEChart iPSDEChart = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDEChart = (IPSDEChart)iPSControl;
+		return super.generateCode(iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
-        super.onFillGenerateCodeParams(params);
-    }
+	}
+	
+
+	
 }
-

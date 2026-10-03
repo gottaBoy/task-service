@@ -19,7 +19,7 @@ extends PSReactViewCodePublisherImpl {
     protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
         String[] imports;
         super.onFillGenerateCodeParams(params);
-        ArrayList psGenerateCodeResultList = (ArrayList)params.get("ctrls");
+        ArrayList<IPSGenerateCodeResult> psGenerateCodeResultList = (ArrayList<IPSGenerateCodeResult>)params.get("ctrls");
         ArrayList<String> strList = new ArrayList<String>();
         StringBuffer ctrlImports = new StringBuffer();
         for (IPSGenerateCodeResult ipsGenerateCodeResult : psGenerateCodeResultList) {
@@ -38,4 +38,3 @@ extends PSReactViewCodePublisherImpl {
         params.put("imports", strList);
     }
 }
-

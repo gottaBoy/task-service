@@ -69,7 +69,7 @@ extends PSSysDevBKTaskImplBase {
         PSAppStoryBoardService psAppStoryBoardService = (PSAppStoryBoardService)ServiceGlobal.getService(PSAppStoryBoardService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSAppStoryBoard psppStoryBoard2 = new PSAppStoryBoard();
         psppStoryBoard2.setPSAppStoryBoardId(this.psSysDevBKTask.getTASKPARAM());
-        psAppStoryBoardService.get((IEntity)psppStoryBoard2);
+        psAppStoryBoardService.get(psppStoryBoard2);
         IPSDevSlnSys iPSDevSlnSys = this.getPSModelStorage().getPSDevSlnSys(this.psSysDevBKTask.getPSDEVSLNSYSID());
         IPSSystem iPSSystem = iPSDevSlnSys.getPSSystem(false);
         if (iPSSystem.getLoadedLevel() < this.getModelLoadLevel()) {
@@ -100,7 +100,7 @@ extends PSSysDevBKTaskImplBase {
         PSAppSBItemRSService psAppSBItemRSService = (PSAppSBItemRSService)ServiceGlobal.getService(PSAppSBItemRSService.class, (SessionFactory)sessionFactory);
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSAPPSTORYBOARDID", (Object)psAppStoryBoard2.getPSAppStoryBoardId());
-        ArrayList psAppSBItemList = psAppSBItemService.select((ISelectCond)selectCond);
+        ArrayList<PSAppSBItem> psAppSBItemList = psAppSBItemService.select((ISelectCond)selectCond);
         PSAppStoryBoardHelper psAppStoryBoardHelper = new PSAppStoryBoardHelper();
         HashMap<String, PSAppSBItem> psAppSBItemMap = new HashMap<String, PSAppSBItem>();
         ArrayList<PSAppSBItemRS> psAppSBItemRSList = new ArrayList<PSAppSBItemRS>();
@@ -154,10 +154,9 @@ extends PSSysDevBKTaskImplBase {
             psAppSBItemRSList2.add(psAppSBItemRS);
         }
         PSSysModelInstGlobal.active((String)this.getPSSysModelInstId());
-        psAppSBItemService.executeBatchCreate(psAppSBItemList2, 2000);
+        psAppSBItemService.executeBatchCreate(new ArrayList<IEntity>(psAppSBItemList2), 2000);
         PSSysModelInstGlobal.active((String)this.getPSSysModelInstId());
-        psAppSBItemRSService.executeBatchCreate(psAppSBItemRSList2, 2000);
+        psAppSBItemRSService.executeBatchCreate(new ArrayList<IEntity>(psAppSBItemRSList2), 2000);
         return sBuilderEx.toString();
     }
 }
-

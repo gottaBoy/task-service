@@ -1,26 +1,79 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import net.ibizsys.paas.core.IModelBase;
 
-public interface IChartAxisModel
-extends IModelBase {
-    public static final String AXISPOS_LEFT = "left";
-    public static final String AXISPOS_BOTTOM = "bottom";
-    public static final String AXISPOS_RIGHT = "right";
-    public static final String AXISPOS_TOP = "top";
-    public static final String AXISPOS_RADIAL = "radial";
-    public static final String AXISPOS_ANGULAR = "angular";
-    public static final String AXISTYPE_NUMERIC = "numeric";
-    public static final String AXISTYPE_TIME = "time";
-    public static final String AXISTYPE_CATEGORY = "category";
+/**
+ * 图表坐标轴接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IChartAxisModel extends IModelBase {
+	/**
+	 * left
+	 */
+	static String AXISPOS_LEFT = "left";
 
-    public String getCaption();
+	/**
+	 * bottom
+	 */
+	static String AXISPOS_BOTTOM = "bottom";
 
-    public String getAxisType();
+	/**
+	 * right
+	 */
+	static String AXISPOS_RIGHT = "right";
 
-    public String getAxisPos();
+	/**
+	 * top
+	 */
+	static String AXISPOS_TOP = "top";
+
+	/**
+	 * radial
+	 */
+	static String AXISPOS_RADIAL = "radial";
+
+	/**
+	 * angular
+	 */
+	static String AXISPOS_ANGULAR = "angular";
+
+	// 定义类型代码表
+
+	/**
+	 * numeric
+	 */
+	static String AXISTYPE_NUMERIC = "numeric";
+
+	/**
+	 * time
+	 */
+	static String AXISTYPE_TIME = "time";
+
+	/**
+	 * category
+	 */
+	static String AXISTYPE_CATEGORY = "category";
+
+	/**
+	 * 获取标题
+	 * 
+	 * @return
+	 */
+	String getCaption();
+
+	/**
+	 * 获取坐标轴类型
+	 * 
+	 * @return
+	 */
+	String getAxisType();
+
+	/**
+	 * 获取坐标轴位置
+	 * 
+	 * @return
+	 */
+	String getAxisPos();
 }
-

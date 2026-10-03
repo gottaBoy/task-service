@@ -157,10 +157,10 @@ implements IPSCtrlLogicGroupService {
 
     @Override
     protected List<PSCtrlLogicGroup> onListAll() throws Exception {
-        List pssystems;
-        List psmodules;
+        List<PSSystem> pssystems;
+        List<PSModule> psmodules;
         ArrayList<PSCtrlLogicGroup> list = new ArrayList<PSCtrlLogicGroup>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSCtrlLogicGroup> items = this.listByPSDataEntity(parent);

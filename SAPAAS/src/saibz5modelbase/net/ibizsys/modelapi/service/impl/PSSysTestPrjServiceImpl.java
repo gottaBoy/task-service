@@ -199,11 +199,11 @@ implements IPSSysTestPrjService {
 
     @Override
     protected List<PSSysTestPrj> onListAll() throws Exception {
-        List pssystems;
-        List psmodules;
-        List pssysserviceapis;
+        List<PSSystem> pssystems;
+        List<PSModule> psmodules;
+        List<PSSysServiceAPI> pssysserviceapis;
         ArrayList<PSSysTestPrj> list = new ArrayList<PSSysTestPrj>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSSysTestPrj> items = this.listByPSSysApp(parent);

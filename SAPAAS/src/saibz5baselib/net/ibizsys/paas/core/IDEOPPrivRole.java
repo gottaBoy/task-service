@@ -1,27 +1,69 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDataEntity;
-import net.ibizsys.paas.core.IDataEntityObject;
+/**
+ * 实体数据操作标识相关角色接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDEOPPrivRole extends IDataEntityObject {
 
-public interface IDEOPPrivRole
-extends IDataEntityObject {
-    public static final String ROLETYPE_SYSROLE = "SYSROLE";
-    public static final String ROLETYPE_DEROLE = "DEROLE";
-    public static final String ROLETYPE_NONE = "NONE";
+	/**
+	*角色类型：系统角色
+	*/
+	public final static String ROLETYPE_SYSROLE = "SYSROLE" ;
 
-    public void init(IDataEntity var1) throws Exception;
+	/**
+	*角色类型：实体角色
+	*/
+	public final static String ROLETYPE_DEROLE = "DEROLE" ;
+	
+	/**
+	*角色类型：无角色，仅定义能力
+	*/
+	public final static String ROLETYPE_NONE = "NONE" ;
+	
+	/**
+	 * 初始化
+	 * 
+	 * @param iDataEntity
+	 * @throws Exception
+	 */
+	void init(IDataEntity iDataEntity) throws Exception;
+	
+	/**
+	 * 获取实体操作标识
+	 * @return
+	 */
+	String getDEOPPrivTag();
+	
+	/**
+	 * 获取角色类型，值参考net.ibizsys.paas.core.IDEOPPrivRole.ROLETYPE_XXX 定义
+	 * @return
+	 */
+	String getRoleType();
+	
+	
+	/**
+	 * 获取数据查询标识
+	 * 
+	 * @return
+	 */
+	String getDEDataQueryId();
+	
+	
+	
+	/**
+	 * 获取系统用户角色标识
+	 * @return
+	 */
+	String getSysUserRoleId();
 
-    public String getDEOPPrivTag();
-
-    public String getRoleType();
-
-    public String getDEDataQueryId();
-
-    public String getSysUserRoleId();
-
-    public String getDEUserRoleId();
+	
+	
+	/**
+	 * 获取实体用户角色标识
+	 * @return
+	 */
+	String getDEUserRoleId();
 }
-

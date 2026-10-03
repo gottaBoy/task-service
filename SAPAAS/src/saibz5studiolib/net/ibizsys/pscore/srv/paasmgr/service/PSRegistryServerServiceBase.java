@@ -138,14 +138,14 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_PSSvrDomain(pSRegistryServer, pSSvrDomain);
             return;
         }
-        super.onFillParentInfo((IEntity)pSRegistryServer, string, string2, string3);
+        super.onFillParentInfo(pSRegistryServer, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
         if (bl && pSRegistryServer.getValidFlag() == null) {
             pSRegistryServer.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSRegistryServer, bl);
+        super.onFillEntityFullInfo(pSRegistryServer, bl);
         this.onFillEntityFullInfo_PSSvrDomain(pSRegistryServer, bl);
     }
 
@@ -169,7 +169,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
     }
 
     protected void onWriteBackParent(PSRegistryServer pSRegistryServer, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSRegistryServer, bl);
+        super.onWriteBackParent(pSRegistryServer, bl);
     }
 
     public ArrayList<PSRegistryServer> selectByPSSvrDomain(PSSvrDomainBase pSSvrDomainBase) throws Exception {
@@ -200,8 +200,8 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
         ArrayList<PSRegistryServer> arrayList = this.selectByPSSvrDomain(pSSvrDomain, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRDOMAIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrDomain);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSREGISTRYSERVER_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSREGISTRYSERVER", iDataEntityModel.getDataInfo((IEntity)pSSvrDomain), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrDomain);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSREGISTRYSERVER_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSREGISTRYSERVER", iDataEntityModel.getDataInfo(pSSvrDomain), arrayList.get(0)));
         }
     }
 
@@ -234,7 +234,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
         ArrayList<PSRegistryServer> arrayList = this.selectByPSSvrDomain(pSSvrDomain);
         this.onBeforeRemoveByPSSvrDomain(pSSvrDomain, arrayList);
         for (PSRegistryServer pSRegistryServer : arrayList) {
-            this.remove((IEntity)pSRegistryServer);
+            this.remove(pSRegistryServer);
         }
         this.onAfterRemoveByPSSvrDomain(pSSvrDomain, arrayList);
     }
@@ -257,14 +257,14 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
 
     protected void replaceParentInfo(PSRegistryServer pSRegistryServer, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSRegistryServer, cloneSession);
+        super.replaceParentInfo(pSRegistryServer, cloneSession);
         if (pSRegistryServer.getPSSvrDomainId() != null && (iEntity = cloneSession.getEntity("PSSVRDOMAIN", (Object)pSRegistryServer.getPSSvrDomainId())) != null) {
             this.onFillParentInfo_PSSvrDomain(pSRegistryServer, (PSSvrDomain)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSRegistryServer pSRegistryServer, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSRegistryServer, bl);
+        super.onRemoveEntityUncopyValues(pSRegistryServer, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSRegistryServer pSRegistryServer, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -315,7 +315,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSRegistryServer, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSRegistryServer, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSRegistryServer, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_APIPath(boolean bl, PSRegistryServer pSRegistryServer, boolean bl2, boolean bl3) throws Exception {
@@ -328,7 +328,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_APIPath_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_APIPath_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APIPATH");
@@ -353,7 +353,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -375,7 +375,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr2_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr2_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR2");
@@ -397,7 +397,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -419,7 +419,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -441,7 +441,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Port_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string = this.onTestValueRule_Port_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PORT");
@@ -466,7 +466,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRegistryServerId_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSRegistryServerId_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSREGISTRYSERVERID");
@@ -491,7 +491,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSRegistryServerName_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSRegistryServerName_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSREGISTRYSERVERNAME");
@@ -513,7 +513,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -535,7 +535,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RegistryPasswd_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_RegistryPasswd_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REGISTRYPASSWD");
@@ -560,7 +560,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RegistryType_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_RegistryType_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REGISTRYTYPE");
@@ -585,7 +585,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RegistryUrl_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_RegistryUrl_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REGISTRYURL");
@@ -607,7 +607,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RegistryUserName_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_RegistryUserName_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REGISTRYUSERNAME");
@@ -629,7 +629,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -654,7 +654,7 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSRegistryServer, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSRegistryServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -667,11 +667,11 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
     }
 
     protected void onSyncEntity(PSRegistryServer pSRegistryServer, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSRegistryServer, bl);
+        super.onSyncEntity(pSRegistryServer, bl);
     }
 
     protected void onSyncIndexEntities(PSRegistryServer pSRegistryServer, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSRegistryServer, bl);
+        super.onSyncIndexEntities(pSRegistryServer, bl);
     }
 
     public Object getDataContextValue(PSRegistryServer pSRegistryServer, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -679,14 +679,14 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSRegistryServer, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSRegistryServer, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSRegistryServer pSRegistryServer, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSRegistryServer, arrayList, n);
+        super.onExportMajorModel(pSRegistryServer, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -963,14 +963,14 @@ extends PSCoreSysServiceBase<PSRegistryServer> {
 
     protected boolean onMergeChild(String string, String string2, PSRegistryServer pSRegistryServer) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSRegistryServer)) {
+        if (super.onMergeChild(string, string2, pSRegistryServer)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSRegistryServer pSRegistryServer) throws Exception {
-        super.onUpdateParent((IEntity)pSRegistryServer);
+        super.onUpdateParent(pSRegistryServer);
     }
 
     @Override

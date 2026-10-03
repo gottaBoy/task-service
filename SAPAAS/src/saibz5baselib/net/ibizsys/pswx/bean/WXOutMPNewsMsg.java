@@ -1,122 +1,130 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSON
- *  net.sf.json.JSONArray
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.pswx.bean;
 
 import java.util.List;
-import net.ibizsys.pswx.bean.WXOutMsg;
-import net.sf.json.JSON;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class WXOutMPNewsMsg
-extends WXOutMsg {
-    private List<Article> articles = null;
+/**
+ * file消息
+ * 
+ * @author Enmaai
+ *
+ */
+public class WXOutMPNewsMsg extends WXOutMsg {
 
-    public List<Article> getArticles() {
-        return this.articles;
-    }
+	private List<Article> articles = null;
 
-    public void setArticles(List<Article> articles) {
-        this.articles = articles;
-    }
+	public List<Article> getArticles() {
+		return articles;
+	}
 
-    @Override
-    protected void fillJSON(JSONObject json) {
-        super.fillJSON(json);
-        JSONObject text = new JSONObject();
-        JSONArray array = new JSONArray();
-        if (this.articles != null) {
-            for (Article article : this.articles) {
-                array.put((JSON)article.toJSON());
-            }
-        }
-        text.put("articles", (Object)array);
-        json.put("msgtype", (Object)"mpnews");
-        json.put("mpnews", (Object)text);
-    }
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
 
-    public static class Article {
-        private String title;
-        private String thumb_media_id;
-        private String author;
-        private String content_source_url;
-        private String content;
-        private String digest;
-        private int show_cover_pic;
+	@Override
+	protected void fillJSON(JSONObject json) {
+		super.fillJSON(json);
 
-        public String getTitle() {
-            return this.title;
-        }
+		JSONObject text = new JSONObject();
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
+		JSONArray array = new JSONArray();
+		if (articles != null) {
+			for (Article article : articles) {
+				array.put(article.toJSON());
+			}
+		}
+		text.put("articles", array);
 
-        public String getThumb_media_id() {
-            return this.thumb_media_id;
-        }
+		json.put("msgtype", "mpnews");
+		json.put("mpnews", text);
+	}
 
-        public void setThumb_media_id(String thumb_media_id) {
-            this.thumb_media_id = thumb_media_id;
-        }
+	/**
+	 * 文章
+	 * 
+	 * @author Enmaai
+	 *
+	 */
+	public static class Article {
+		private String title;
+		private String thumb_media_id;
+		private String author;
+		private String content_source_url;
+		private String content;
+		private String digest;
+		private int show_cover_pic;
 
-        public String getAuthor() {
-            return this.author;
-        }
+		public String getTitle() {
+			return title;
+		}
 
-        public void setAuthor(String author) {
-            this.author = author;
-        }
+		public void setTitle(String title) {
+			this.title = title;
+		}
 
-        public String getContent_source_url() {
-            return this.content_source_url;
-        }
+		public String getThumb_media_id() {
+			return thumb_media_id;
+		}
 
-        public void setContent_source_url(String content_source_url) {
-            this.content_source_url = content_source_url;
-        }
+		public void setThumb_media_id(String thumb_media_id) {
+			this.thumb_media_id = thumb_media_id;
+		}
 
-        public String getContent() {
-            return this.content;
-        }
+		public String getAuthor() {
+			return author;
+		}
 
-        public void setContent(String content) {
-            this.content = content;
-        }
+		public void setAuthor(String author) {
+			this.author = author;
+		}
 
-        public String getDigest() {
-            return this.digest;
-        }
+		public String getContent_source_url() {
+			return content_source_url;
+		}
 
-        public void setDigest(String digest) {
-            this.digest = digest;
-        }
+		public void setContent_source_url(String content_source_url) {
+			this.content_source_url = content_source_url;
+		}
 
-        public int getShow_cover_pic() {
-            return this.show_cover_pic;
-        }
+		public String getContent() {
+			return content;
+		}
 
-        public void setShow_cover_pic(int show_cover_pic) {
-            this.show_cover_pic = show_cover_pic;
-        }
+		public void setContent(String content) {
+			this.content = content;
+		}
 
-        public JSONObject toJSON() {
-            JSONObject json = new JSONObject();
-            json.put("title", (Object)this.getTitle());
-            json.put("thumb_media_id", (Object)this.getThumb_media_id());
-            json.put("author", (Object)this.getAuthor());
-            json.put("content_source_url", (Object)this.getContent_source_url());
-            json.put("content", (Object)this.getContent());
-            json.put("digest", (Object)this.getDigest());
-            json.put("show_cover_pic", this.getShow_cover_pic());
-            return json;
-        }
-    }
+		public String getDigest() {
+			return digest;
+		}
+
+		public void setDigest(String digest) {
+			this.digest = digest;
+		}
+
+		public int getShow_cover_pic() {
+			return show_cover_pic;
+		}
+
+		public void setShow_cover_pic(int show_cover_pic) {
+			this.show_cover_pic = show_cover_pic;
+		}
+
+		public JSONObject toJSON() {
+			JSONObject json = new JSONObject();
+
+			json.put("title", this.getTitle());
+			json.put("thumb_media_id", this.getThumb_media_id());
+			json.put("author", this.getAuthor());
+			json.put("content_source_url", this.getContent_source_url());
+			json.put("content", this.getContent());
+			json.put("digest", this.getDigest());
+			json.put("show_cover_pic", this.getShow_cover_pic());
+
+			return json;
+		}
+
+	}
 }
-

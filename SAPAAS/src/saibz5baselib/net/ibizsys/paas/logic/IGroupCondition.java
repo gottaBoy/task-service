@@ -1,15 +1,27 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.logic;
 
-import java.util.Iterator;
-import net.ibizsys.paas.logic.ICondition;
+/**
+ * 组条件接口
+ * 
+ * @author Administrator
+ *
+ * @param <CT>
+ */
+public interface IGroupCondition<CT extends ICondition> extends ICondition {
+	
+	
+	
+	/**
+	 * 取反操作
+	 * 
+	 * @return
+	 */
+	boolean isNotMode();
 
-public interface IGroupCondition<CT extends ICondition>
-extends ICondition {
-    public boolean isNotMode();
-
-    public Iterator<CT> getChildConditions();
+	/**
+	 * 获取全部子条件
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<CT> getChildConditions();
 }
-

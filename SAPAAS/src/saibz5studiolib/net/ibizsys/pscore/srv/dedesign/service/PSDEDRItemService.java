@@ -65,13 +65,11 @@ implements IPSModelService<PSDEDRItem> {
         PSDEDRItem pSDEDRItem = new PSDEDRItem();
         pSDEDRItem.setPSDEDRItemId(pSDER.getPSDERId());
         if (this.checkKey(pSDEDRItem) == 0) {
-            EntityBase entityBase;
             pSDEDRItem.setDRItemType("DER1N");
             pSDEDRItem.setPSDEId(pSDER.getMajorPSDEId());
             pSDEDRItem.setPSDEDRItemName(pSDER.getLogicName());
             if (StringHelper.isNullOrEmpty((String)pSDEDRItem.getPSDEDRItemName())) {
-                entityBase = pSDER.getMinorPSDE();
-                pSDEDRItem.setPSDEDRItemName(entityBase.getLogicName());
+                pSDEDRItem.setPSDEDRItemName(pSDER.getMinorPSDE().getLogicName());
             }
             pSDEDRItem.setPSDEDRGroupId(pSDER.getMajorPSDEId());
             pSDEDRItem.setPSDERId(pSDER.getPSDERId());
@@ -81,14 +79,14 @@ implements IPSModelService<PSDEDRItem> {
                 pSDEDRItem.setPSDEViewBaseId(KeyValueHelper.genUniqueId((String)pSDER.getMinorPSDEId(), (String)"DEGRIDVIEW"));
             }
             this.create(pSDEDRItem);
-            entityBase = new PSDEDRGroup();
-            entityBase.setPSDEDRGroupId(pSDER.getMajorPSDEId());
+            PSDEDRGroup group = new PSDEDRGroup();
+            group.setPSDEDRGroupId(pSDER.getMajorPSDEId());
             PSDEDRGroupService pSDEDRGroupService = (PSDEDRGroupService)ServiceGlobal.getService(PSDEDRGroupService.class, (SessionFactory)this.getSessionFactory());
-            if (!pSDEDRGroupService.get((IEntity)entityBase, true)) {
+            if (!pSDEDRGroupService.get(group, true)) {
                 return;
             }
             PSDEDRDetailService pSDEDRDetailService = (PSDEDRDetailService)ServiceGlobal.getService(PSDEDRDetailService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSDEDRDetail> arrayList = pSDEDRDetailService.selectByPSDEDRGroup((PSDEDRGroupBase)entityBase, "ORDER BY ORDERVALUE DESC");
+            ArrayList<PSDEDRDetail> arrayList = pSDEDRDetailService.selectByPSDEDRGroup(group, "ORDER BY ORDERVALUE DESC");
             PSDEDRDetail pSDEDRDetail = new PSDEDRDetail();
             pSDEDRDetail.setPSDEDRId(pSDER.getMajorPSDEId());
             pSDEDRDetail.setPSDEDRItemId(pSDEDRItem.getPSDEDRItemId());
@@ -165,4 +163,3 @@ implements IPSModelService<PSDEDRItem> {
         return bl2;
     }
 }
-

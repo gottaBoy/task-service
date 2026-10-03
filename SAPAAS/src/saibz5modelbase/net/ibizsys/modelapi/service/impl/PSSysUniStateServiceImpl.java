@@ -114,9 +114,9 @@ implements IPSSysUniStateService {
 
     @Override
     protected List<PSSysUniState> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysUniState> list = new ArrayList<PSSysUniState>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysUniState> items = this.listByPSModule(parent);

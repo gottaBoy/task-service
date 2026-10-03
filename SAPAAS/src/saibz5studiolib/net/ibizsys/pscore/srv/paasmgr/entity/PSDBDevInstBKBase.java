@@ -1541,7 +1541,7 @@ implements Serializable {
                 PSDBDevInst pSDBDevInst = new PSDBDevInst();
                 pSDBDevInst.setPSDBDevInstId(this.getPSDBDevInstId());
                 PSDBDevInstService pSDBDevInstService = (PSDBDevInstService)ServiceGlobal.getService(PSDBDevInstService.class, (SessionFactory)this.getSessionFactory());
-                pSDBDevInstService.autoGet((IEntity)pSDBDevInst);
+                pSDBDevInstService.autoGet(pSDBDevInst);
                 this.psdbdevinst = pSDBDevInst;
             }
             return this.psdbdevinst;
@@ -1567,7 +1567,7 @@ implements Serializable {
                 PSTaskServer pSTaskServer = new PSTaskServer();
                 pSTaskServer.setPSTaskServerId(this.getPSTaskServerId());
                 PSTaskServerService pSTaskServerService = (PSTaskServerService)ServiceGlobal.getService(PSTaskServerService.class, (SessionFactory)this.getSessionFactory());
-                pSTaskServerService.autoGet((IEntity)pSTaskServer);
+                pSTaskServerService.autoGet(pSTaskServer);
                 this.pstaskserver = pSTaskServer;
             }
             return this.pstaskserver;

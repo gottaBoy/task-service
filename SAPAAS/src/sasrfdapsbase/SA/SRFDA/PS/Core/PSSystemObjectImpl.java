@@ -107,9 +107,15 @@ IPSDynaInstSupportable {
         if (this.iPSSFPubHelp != null) {
             return this.iPSSFPubHelp;
         }
-        HashMap<String, IPSCodePublisherParam> publisherParamMap = new HashMap<String, IPSCodePublisherParam>();
-        this.fillPSCodePublisherParams(publisherParamMap);
-        this.iPSSFPubHelp = PSSFPubHelpImpl.createPSSFPubHelp(this.getPSSFPubObjTarget(), this.getPSSystem(), this, publisherParamMap);
+        try {
+            HashMap<String, IPSCodePublisherParam> publisherParamMap = new HashMap<String, IPSCodePublisherParam>();
+            this.fillPSCodePublisherParams(publisherParamMap);
+            this.iPSSFPubHelp = PSSFPubHelpImpl.createPSSFPubHelp(this.getPSSFPubObjTarget(), this.getPSSystem(), this, publisherParamMap);
+        }
+        catch (Exception exception) {
+            log.error((Object)exception);
+            return null;
+        }
         return this.iPSSFPubHelp;
     }
 

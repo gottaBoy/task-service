@@ -1,177 +1,329 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.codelist.ICodeList
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.pswf.core.IWFLinkModel
- *  net.ibizsys.pswf.core.IWFModel
- *  net.ibizsys.pswf.core.IWFProcessModel
- *  net.ibizsys.pswf.core.IWFVersionModel
- */
 package net.ibizsys.pswf.core;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+
 import net.ibizsys.paas.codelist.ICodeList;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.pswf.core.IWFLinkModel;
-import net.ibizsys.pswf.core.IWFModel;
-import net.ibizsys.pswf.core.IWFParallelSubWFProcessModel;
-import net.ibizsys.pswf.core.IWFProcessModel;
-import net.ibizsys.pswf.core.IWFVersionModel;
 
-public abstract class WFVersionModelBase
-implements IWFVersionModel {
-    private String strId = "";
-    private String strName = "";
-    private IWFModel iWFModel = null;
-    private IWFProcessModel startWFProcessModel = null;
-    private ArrayList<IWFProcessModel> wfProcessModelList = new ArrayList();
-    private ArrayList<IWFLinkModel> wfLinkModelList = new ArrayList();
-    private HashMap<String, IWFProcessModel> wfProcessModelMap = new HashMap();
-    private HashMap<String, IWFProcessModel> wfProcessModelMap2 = new HashMap();
-    private int nWFVersion = 0;
-    private boolean bWFParallelSubWFProcessModel = false;
-    private String strWFMode = "";
-    private String strBPMNModel = "";
 
-    public void init(IWFModel iWFModel) throws Exception {
-        this.iWFModel = iWFModel;
-        this.onInit();
-    }
+/**
+ * 工作流版本基类
+ * @author lionlau
+ *
+ */
+public abstract class WFVersionModelBase implements IWFVersionModel
+{	
+	private String strId = "";
+	private String strName = "";
+	private IWFModel iWFModel = null;
+	private IWFProcessModel startWFProcessModel = null;
+	private ArrayList<IWFProcessModel> wfProcessModelList = new ArrayList<IWFProcessModel>();
+	private ArrayList<IWFLinkModel> wfLinkModelList = new ArrayList<IWFLinkModel>();
+	private HashMap<String, IWFProcessModel> wfProcessModelMap = new HashMap<String, IWFProcessModel>();
+	private HashMap<String, IWFProcessModel> wfProcessModelMap2 = new HashMap<String, IWFProcessModel>();
+	private int nWFVersion = 0;
+	private boolean bWFParallelSubWFProcessModel = false;
+	private String strWFMode = "";
+	private String strBPMNModel = "";
+	
 
-    protected void onInit() throws Exception {
-        this.prepareWFProcessModels();
-        this.prepareWFLinkModels();
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#init(net.ibizsys.pswf.core.IWFModel)
+	 */
+	@Override
+	public void init(IWFModel iWFModel) throws Exception
+	{
+		this.iWFModel = iWFModel;
+		this.onInit();
+	}
+	
+	/**
+	 * 初始化触发
+	 * @throws Exception
+	 */
+	protected void onInit()throws Exception
+	{
+		prepareWFProcessModels();
+		prepareWFLinkModels();
+	}
+	
+	
+	/**
+	 * 注册处理模型
+	 * @throws Exception
+	 */
+	protected void prepareWFProcessModels()throws Exception
+	{
+		
+	}
+	
+	/**
+	 * 注册连接模型
+	 * @throws Exception
+	 */
+	protected void prepareWFLinkModels()throws Exception
+	{
+		
+	}
+	
+	
+	/**
+	 * 注册处理模型
+	 * @param iWFProcessModel
+	 * @throws Exception
+	 */
+	protected void registerWFProcessModel(IWFProcessModel iWFProcessModel)throws Exception
+	{
+		if(iWFProcessModel.isStartProcess())
+		{
+			if(this.getStartWFProcessModel()!=null)
+			{
+				throw new Exception(StringHelper.format("流程模型中已经存在开始处理，不能重复定义"));
+			}
+			this.setStartWFProcessModel(iWFProcessModel);
+		}
+		
+		String strId = iWFProcessModel.getId();
+		if(wfProcessModelMap.containsKey(strId))
+		{
+			throw new Exception(StringHelper.format("流程模型中已经存在标识为[%1$s]的处理，不能重复定义",strId));
+		}
+		wfProcessModelMap.put(strId, iWFProcessModel);
+		if(!StringHelper.isNullOrEmpty(iWFProcessModel.getBPMNModelId())){
+			if(wfProcessModelMap.containsKey(iWFProcessModel.getBPMNModelId()))
+			{
+				throw new Exception(StringHelper.format("流程模型中已经存在BPMN标识为[%1$s]的处理，不能重复定义",iWFProcessModel.getBPMNModelId()));
+			}
+			wfProcessModelMap.put(iWFProcessModel.getBPMNModelId(), iWFProcessModel);
+		}
+//		String strName = iWFProcessModel.getName();
+//		if(!StringHelper.isNullOrEmpty(strName) && StringHelper.compare(strId, strName, false)!=0)
+//		{
+//			if(wfProcessModelMap.containsKey(strName))
+//			{
+//				throw new Exception(StringHelper.format("流程模型中已经存在标识为[%1$s]的处理，不能重复定义",strName));
+//			}
+//			wfProcessModelMap.put(strName, iWFProcessModel);
+//		}
+		
+		String strWFStepValue = iWFProcessModel.getWFStepValue();
+		if(!StringHelper.isNullOrEmpty(strWFStepValue))
+		{
+			if(wfProcessModelMap2.containsKey(strWFStepValue))
+			{
+				throw new Exception(StringHelper.format("流程模型中已经存在步骤值为[%1$s]的处理，不能重复定义",strWFStepValue));
+			}
+			wfProcessModelMap2.put(strWFStepValue, iWFProcessModel);
+		}
+		
+		wfProcessModelList.add(iWFProcessModel);
+		
+		if(!this.bWFParallelSubWFProcessModel)
+		{
+			if(iWFProcessModel instanceof IWFParallelSubWFProcessModel){
+				this.bWFParallelSubWFProcessModel = true;
+			}
+		}
+	}
+	
+	
+	/**
+	 * 注册处理模型
+	 * @param iWFProcessModel
+	 * @throws Exception
+	 */
+	protected void registerWFLinkModel(IWFLinkModel iWFLinkModel)throws Exception
+	{
+		IWFProcessModel iWFProcessModel = this.getWFProcessModel(iWFLinkModel.getFrom(), false);
+		iWFProcessModel.registerWFLinkModel(iWFLinkModel);
+		this.wfLinkModelList.add(iWFLinkModel);
+	}
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#getId()
+	 */
+	@Override
+	public String getId()
+	{
+		return this.strId;
+	}
 
-    protected void prepareWFProcessModels() throws Exception {
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#getName()
+	 */
+	@Override
+	public String getName()
+	{
+		return this.strName;
+	}
 
-    protected void prepareWFLinkModels() throws Exception {
-    }
+	/**
+	 * 设置流程版本标识
+	 * @param strId the strId to set
+	 */
+	protected void setId(String strId)
+	{
+		this.strId = strId;
+	}
 
-    protected void registerWFProcessModel(IWFProcessModel iWFProcessModel) throws Exception {
-        String strWFStepValue;
-        String strId;
-        if (iWFProcessModel.isStartProcess()) {
-            if (this.getStartWFProcessModel() != null) {
-                throw new Exception(StringHelper.format((String)"\u6d41\u7a0b\u6a21\u578b\u4e2d\u5df2\u7ecf\u5b58\u5728\u5f00\u59cb\u5904\u7406\uff0c\u4e0d\u80fd\u91cd\u590d\u5b9a\u4e49"));
-            }
-            this.setStartWFProcessModel(iWFProcessModel);
-        }
-        if (this.wfProcessModelMap.containsKey(strId = iWFProcessModel.getId())) {
-            throw new Exception(StringHelper.format((String)"\u6d41\u7a0b\u6a21\u578b\u4e2d\u5df2\u7ecf\u5b58\u5728\u6807\u8bc6\u4e3a[%1$s]\u7684\u5904\u7406\uff0c\u4e0d\u80fd\u91cd\u590d\u5b9a\u4e49", (Object)strId));
-        }
-        this.wfProcessModelMap.put(strId, iWFProcessModel);
-        if (!StringHelper.isNullOrEmpty((String)iWFProcessModel.getBPMNModelId())) {
-            if (this.wfProcessModelMap.containsKey(iWFProcessModel.getBPMNModelId())) {
-                throw new Exception(StringHelper.format((String)"\u6d41\u7a0b\u6a21\u578b\u4e2d\u5df2\u7ecf\u5b58\u5728BPMN\u6807\u8bc6\u4e3a[%1$s]\u7684\u5904\u7406\uff0c\u4e0d\u80fd\u91cd\u590d\u5b9a\u4e49", (Object)iWFProcessModel.getBPMNModelId()));
-            }
-            this.wfProcessModelMap.put(iWFProcessModel.getBPMNModelId(), iWFProcessModel);
-        }
-        if (!StringHelper.isNullOrEmpty((String)(strWFStepValue = iWFProcessModel.getWFStepValue()))) {
-            if (this.wfProcessModelMap2.containsKey(strWFStepValue)) {
-                throw new Exception(StringHelper.format((String)"\u6d41\u7a0b\u6a21\u578b\u4e2d\u5df2\u7ecf\u5b58\u5728\u6b65\u9aa4\u503c\u4e3a[%1$s]\u7684\u5904\u7406\uff0c\u4e0d\u80fd\u91cd\u590d\u5b9a\u4e49", (Object)strWFStepValue));
-            }
-            this.wfProcessModelMap2.put(strWFStepValue, iWFProcessModel);
-        }
-        this.wfProcessModelList.add(iWFProcessModel);
-        if (!this.bWFParallelSubWFProcessModel && iWFProcessModel instanceof IWFParallelSubWFProcessModel) {
-            this.bWFParallelSubWFProcessModel = true;
-        }
-    }
+	/**
+	 * 设置流程版本名称
+	 * @param strName the strName to set
+	 */
+	protected void setName(String strName)
+	{
+		this.strName = strName;
+	}
+	
+	
+	 
 
-    protected void registerWFLinkModel(IWFLinkModel iWFLinkModel) throws Exception {
-        IWFProcessModel iWFProcessModel = this.getWFProcessModel(iWFLinkModel.getFrom(), false);
-        iWFProcessModel.registerWFLinkModel(iWFLinkModel);
-        this.wfLinkModelList.add(iWFLinkModel);
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#getWFMode()
+	 */
+	@Override
+	public String getWFMode() {
+		return this.strWFMode;
+	}
 
-    public String getId() {
-        return this.strId;
-    }
+	/**
+	 * 设置流程模式
+	 * @param strWFMode the strWFMode to set
+	 */
+	protected void setWFMode(String strWFMode)
+	{
+		this.strWFMode = strWFMode;
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#getWFModel()
+	 */
+	@Override
+	public IWFModel getWFModel()
+	{
+		return this.iWFModel;
+	}
 
-    public String getName() {
-        return this.strName;
-    }
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#getWFProcessModels()
+	 */
+	@Override
+	public Iterator<IWFProcessModel> getWFProcessModels()
+	{
+		return wfProcessModelList.iterator();
+	}
 
-    protected void setId(String strId) {
-        this.strId = strId;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#getWFLinkModels()
+	 */
+	@Override
+	public Iterator<IWFLinkModel> getWFLinkModels()
+	{
+		return wfLinkModelList.iterator();
+	}
 
-    protected void setName(String strName) {
-        this.strName = strName;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#getWFProcessModel(java.lang.String, boolean)
+	 */
+	@Override
+	public IWFProcessModel getWFProcessModel(String strWFProcessModelName,boolean bTryMode)throws Exception
+	{
+		IWFProcessModel iWFProcessModel =  wfProcessModelMap.get(strWFProcessModelName);
+		if(iWFProcessModel == null && !bTryMode)
+		{
+			throw new Exception(StringHelper.format("无法获取工作流[%1$s]指定处理，标识为[%2$s]", this.getName(), strWFProcessModelName));
+		}
+		return iWFProcessModel;
+	}
 
-    public String getWFMode() {
-        return this.strWFMode;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#getWFVersion()
+	 */
+	@Override
+	public int getWFVersion()
+	{
+		return this.nWFVersion;
+	}
 
-    protected void setWFMode(String strWFMode) {
-        this.strWFMode = strWFMode;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#getWFProcessModelByWFStepValue(java.lang.String, boolean)
+	 */
+	@Override
+	public IWFProcessModel getWFProcessModelByWFStepValue(String strWFStepValue, boolean bTryMode) throws Exception
+	{
+		IWFProcessModel iWFProcessModel =  wfProcessModelMap2.get(strWFStepValue);
+		if(iWFProcessModel == null && !bTryMode)
+		{
+			throw new Exception(StringHelper.format("无法获取指定处理，步骤值为[%1$s]",strWFStepValue));
+		}
+		return iWFProcessModel;
+	}
 
-    public IWFModel getWFModel() {
-        return this.iWFModel;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#getStartWFProcessModel()
+	 */
+	@Override
+	public IWFProcessModel getStartWFProcessModel()
+	{
+		return this.startWFProcessModel;
+	}
 
-    public Iterator<IWFProcessModel> getWFProcessModels() {
-        return this.wfProcessModelList.iterator();
-    }
+	/**
+	 * 设置开始处理模型对象
+	 * @param startWFProcessModel the startWFProcessModel to set
+	 */
+	protected void setStartWFProcessModel(IWFProcessModel startWFProcessModel)
+	{
+		this.startWFProcessModel = startWFProcessModel;
+	}
 
-    public Iterator<IWFLinkModel> getWFLinkModels() {
-        return this.wfLinkModelList.iterator();
-    }
+	
+	/**
+	 * 设置流程版本
+	 * @param nWFVersion the nWFVersion to set
+	 */
+	protected void setWFVersion(int nWFVersion)
+	{
+		this.nWFVersion = nWFVersion;
+	}
 
-    public IWFProcessModel getWFProcessModel(String strWFProcessModelName, boolean bTryMode) throws Exception {
-        IWFProcessModel iWFProcessModel = this.wfProcessModelMap.get(strWFProcessModelName);
-        if (iWFProcessModel == null && !bTryMode) {
-            throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u5de5\u4f5c\u6d41[%1$s]\u6307\u5b9a\u5904\u7406\uff0c\u6807\u8bc6\u4e3a[%2$s]", (Object)this.getName(), (Object)strWFProcessModelName));
-        }
-        return iWFProcessModel;
-    }
 
-    public int getWFVersion() {
-        return this.nWFVersion;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#hasWFParallelSubWFProcessModel()
+	 */
+	@Override
+	public boolean hasWFParallelSubWFProcessModel()
+	{
+		return this.bWFParallelSubWFProcessModel;
+	}
 
-    public IWFProcessModel getWFProcessModelByWFStepValue(String strWFStepValue, boolean bTryMode) throws Exception {
-        IWFProcessModel iWFProcessModel = this.wfProcessModelMap2.get(strWFStepValue);
-        if (iWFProcessModel == null && !bTryMode) {
-            throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u5904\u7406\uff0c\u6b65\u9aa4\u503c\u4e3a[%1$s]", (Object)strWFStepValue));
-        }
-        return iWFProcessModel;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFVersionModel#getBPMNModel()
+	 */
+	@Override
+	public String getBPMNModel() {
+		return this.strBPMNModel;
+	}
+	
+	/**
+	 * 设置BPMN模型
+	 * @param strBPMNModel
+	 */
+	protected void setBPMNModel(String strBPMNModel){
+		this.strBPMNModel = strBPMNModel;
+	}
 
-    public IWFProcessModel getStartWFProcessModel() {
-        return this.startWFProcessModel;
-    }
-
-    protected void setStartWFProcessModel(IWFProcessModel startWFProcessModel) {
-        this.startWFProcessModel = startWFProcessModel;
-    }
-
-    protected void setWFVersion(int nWFVersion) {
-        this.nWFVersion = nWFVersion;
-    }
-
-    public boolean hasWFParallelSubWFProcessModel() {
-        return this.bWFParallelSubWFProcessModel;
-    }
-
-    public String getBPMNModel() {
-        return this.strBPMNModel;
-    }
-
-    protected void setBPMNModel(String strBPMNModel) {
-        this.strBPMNModel = strBPMNModel;
-    }
-
-    public ICodeList getWFStepCodeList() {
-        return this.getWFModel().getWFStepCodeList();
-    }
+	
+	@Override
+	public ICodeList getWFStepCodeList() {
+		return this.getWFModel().getWFStepCodeList();
+	}
+	
+	
+	
+	
 }
-

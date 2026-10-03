@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDEActionType> {
     }
 
     protected void onFillParentInfo(PSDEActionType pSDEActionType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDEActionType, string, string2, string3);
+        super.onFillParentInfo(pSDEActionType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDEActionType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEActionType, bl);
+        super.onFillEntityFullInfo(pSDEActionType, bl);
     }
 
     protected void onWriteBackParent(PSDEActionType pSDEActionType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEActionType, bl);
+        super.onWriteBackParent(pSDEActionType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDEActionType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEActionType pSDEActionType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEActionType, bl);
+        super.onRemoveEntityUncopyValues(pSDEActionType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEActionType pSDEActionType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -164,7 +164,7 @@ extends PSCoreSysServiceBase<PSDEActionType> {
         if ((entityFieldError = this.onCheckField_TypeParam(bl, pSDEActionType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEActionType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEActionType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_IconPath(boolean bl, PSDEActionType pSDEActionType, boolean bl2, boolean bl3) throws Exception {
@@ -177,7 +177,7 @@ extends PSCoreSysServiceBase<PSDEActionType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconPath_Default((IEntity)pSDEActionType, bl2, bl3);
+            string2 = this.onTestValueRule_IconPath_Default(pSDEActionType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONPATH");
@@ -199,7 +199,7 @@ extends PSCoreSysServiceBase<PSDEActionType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEActionType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEActionType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSDEActionType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ProcessObj_Default((IEntity)pSDEActionType, bl2, bl3);
+            string2 = this.onTestValueRule_ProcessObj_Default(pSDEActionType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PROCESSOBJ");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSDEActionType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEActionTypeId_Default((IEntity)pSDEActionType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEActionTypeId_Default(pSDEActionType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEACTIONTYPEID");
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSDEActionType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEActionTypeName_Default((IEntity)pSDEActionType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEActionTypeName_Default(pSDEActionType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEACTIONTYPENAME");
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSDEActionType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeParam_Default((IEntity)pSDEActionType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeParam_Default(pSDEActionType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEPARAM");
@@ -309,11 +309,11 @@ extends PSCoreSysServiceBase<PSDEActionType> {
     }
 
     protected void onSyncEntity(PSDEActionType pSDEActionType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEActionType, bl);
+        super.onSyncEntity(pSDEActionType, bl);
     }
 
     protected void onSyncIndexEntities(PSDEActionType pSDEActionType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEActionType, bl);
+        super.onSyncIndexEntities(pSDEActionType, bl);
     }
 
     public Object getDataContextValue(PSDEActionType pSDEActionType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -321,14 +321,14 @@ extends PSCoreSysServiceBase<PSDEActionType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEActionType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEActionType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEActionType pSDEActionType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEActionType, arrayList, n);
+        super.onExportMajorModel(pSDEActionType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -471,14 +471,14 @@ extends PSCoreSysServiceBase<PSDEActionType> {
 
     protected boolean onMergeChild(String string, String string2, PSDEActionType pSDEActionType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEActionType)) {
+        if (super.onMergeChild(string, string2, pSDEActionType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEActionType pSDEActionType) throws Exception {
-        super.onUpdateParent((IEntity)pSDEActionType);
+        super.onUpdateParent(pSDEActionType);
     }
 
     @Override

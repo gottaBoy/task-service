@@ -1,38 +1,63 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.datasync;
 
 import java.util.ArrayList;
-import net.ibizsys.paas.datasync.IDataSyncParam;
+
 import net.ibizsys.psrt.srv.common.entity.DataSyncIn;
 import net.ibizsys.psrt.srv.common.entity.DataSyncOut;
 
-public class DefaultDataSyncParam
-implements IDataSyncParam {
-    private DataSyncOut dataSyncOut = null;
-    private ArrayList<DataSyncIn> dataSyncInList = new ArrayList();
+/**
+ * 数据同步参数对象
+ * 
+ * @author LionLau
+ *
+ */
+public class DefaultDataSyncParam implements IDataSyncParam {
+	private DataSyncOut dataSyncOut = null;
+	private ArrayList<DataSyncIn> dataSyncInList = new ArrayList<DataSyncIn>();
 
-    @Override
-    public DataSyncOut getDataSyncOut() {
-        return this.dataSyncOut;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.datasync.IDataSyncParam#getDataSyncOut()
+	 */
+	@Override
+	public DataSyncOut getDataSyncOut() {
+		return this.dataSyncOut;
+	}
 
-    public void setDataSyncOut(DataSyncOut dataSyncOut) {
-        this.dataSyncOut = dataSyncOut;
-    }
+	/**
+	 * 设置输出数据对象
+	 * 
+	 * @param dataSyncOut
+	 */
+	public void setDataSyncOut(DataSyncOut dataSyncOut) {
+		this.dataSyncOut = dataSyncOut;
+	}
 
-    @Override
-    public void addDataSyncIn(DataSyncIn dataSyncIn) {
-        this.dataSyncInList.add(dataSyncIn);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.datasync.IDataSyncParam#addDataSyncIn(net.ibizsys.psrt.srv.common.entity.DataSyncIn)
+	 */
+	@Override
+	public void addDataSyncIn(DataSyncIn dataSyncIn) {
+		dataSyncInList.add(dataSyncIn);
+	}
 
-    public void resetDataSyncIns() {
-        this.dataSyncInList.clear();
-    }
+	/**
+	 * 重置数据输入集合
+	 */
+	public void resetDataSyncIns() {
+		dataSyncInList.clear();
+	}
 
-    public ArrayList<DataSyncIn> getDataSyncIns() {
-        return this.dataSyncInList;
-    }
+	/**
+	 * 获取数据输入集合
+	 * 
+	 * @return
+	 */
+	public ArrayList<DataSyncIn> getDataSyncIns() {
+		return dataSyncInList;
+	}
+
 }
-

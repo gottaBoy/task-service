@@ -9,10 +9,10 @@ import SA.SRFramework.Data.DataSet;
 import SA.SRFramework.Data.IDBSelectProcCaller;
 import SA.SRFramework.Data.MySQL.MySQLDBProcCaller;
 import SA.SRFramework.Data.SelectResult;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
@@ -31,7 +31,7 @@ implements IDBSelectProcCaller {
             dbResult.setErrorInfo("\u6253\u5f00\u6570\u636e\u5e93\u8fde\u63a5\u5931\u8d25");
             return dbResult;
         }
-        Statement cstmt = null;
+        CallableStatement cstmt = null;
         try {
             try {
                 int nParamCount;
@@ -106,4 +106,3 @@ implements IDBSelectProcCaller {
         return dbResult;
     }
 }
-

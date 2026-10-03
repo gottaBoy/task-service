@@ -1130,7 +1130,7 @@ implements Serializable {
                 PSDBSysProcType pSDBSysProcType = new PSDBSysProcType();
                 pSDBSysProcType.setPSDBSysProcTypeId(this.getPSDBSysProcTypeId());
                 PSDBSysProcTypeService pSDBSysProcTypeService = (PSDBSysProcTypeService)ServiceGlobal.getService(PSDBSysProcTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSDBSysProcTypeService.autoGet((IEntity)pSDBSysProcType);
+                pSDBSysProcTypeService.autoGet(pSDBSysProcType);
                 this.psdbsysproctype = pSDBSysProcType;
             }
             return this.psdbsysproctype;
@@ -1156,7 +1156,7 @@ implements Serializable {
                 PSDBType pSDBType = new PSDBType();
                 pSDBType.setPSDBTypeId(this.getPSDBTypeId());
                 PSDBTypeService pSDBTypeService = (PSDBTypeService)ServiceGlobal.getService(PSDBTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSDBTypeService.autoGet((IEntity)pSDBType);
+                pSDBTypeService.autoGet(pSDBType);
                 this.psdbtype = pSDBType;
             }
             return this.psdbtype;

@@ -81,8 +81,6 @@ import org.apache.ftpserver.FtpServer;
 import org.apache.ftpserver.FtpServerFactory;
 import org.apache.ftpserver.ftplet.UserManager;
 import org.apache.ftpserver.listener.ListenerFactory;
-import org.apache.ftpserver.usermanager.ClearTextPasswordEncryptor;
-import org.apache.ftpserver.usermanager.PasswordEncryptor;
 
 public class IMCatalogServerInstance
 extends IMServerInstance
@@ -726,7 +724,6 @@ implements IIMCatalogServerInstance {
                     log.error((Object)StringHelper.Format((String)"\u53d1\u9001\u8fdc\u7a0b\u64cd\u4f5c\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()));
                 }
             }
-            break;
         }
     }
 
@@ -954,6 +951,7 @@ implements IIMCatalogServerInstance {
         imFile.setIMUSERID(strUserId);
         imFile.setIMMTSERVERID(iIMRemoteActionContext.getFromServerId());
         this.OnCreateFile(imFile);
+        String uploadPassword = IMMTFtpUserManager.issueConfiguredUploadPassword(imFile.getIMFILEID());
         Hashtable<String, String> hashtable = this.fileNameMap;
         synchronized (hashtable) {
             this.fileNameMap.put(imFile.getIMFILEID(), strFileName);
@@ -961,24 +959,30 @@ implements IIMCatalogServerInstance {
         imMessagePackage.setExtInfo("FILEID", imFile.getIMFILEID());
         imMessagePackage.setExtInfo("SERVERPATH", this.imCatalogServer.getFTPSERVERPATH());
         imMessagePackage.setExtInfo("LOGINNAME", imFile.getIMFILEID());
+        imMessagePackage.setExtInfo("PASSWORD", uploadPassword);
         imMessagePackage.setExtInfo("FILENAME", imFile.getIMFILENAME());
         return imMessagePackage;
     }
 
     protected void OnCreateFile(IMFile imFile) throws Exception {
-        IMRemoteDEDataCtrl imFileDataCtrl;
         Date date = new Date();
         if (StringHelper.IsNullOrEmpty((String)imFile.getIMFILEID())) {
             imFile.setIMFILEID(Helper.GenGuidEx());
         }
         imFile.SetParamValue("SENDTIME", new Timestamp(date.getTime()));
         if (this.isLocalMode()) {
-            imFileDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl2("IM0090", "SYSTEM", null);
-            imFileDataCtrl.Save(true, imFile);
+            IDEDataCtrl imFileDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl2("IM0090", "SYSTEM", null);
+            CallResult result = imFileDataCtrl.Save(true, imFile);
+            if (result.IsError()) {
+                throw new Exception(result.getErrorInfo());
+            }
         } else {
-            imFileDataCtrl = new IMRemoteDEDataCtrl();
+            IMRemoteDEDataCtrl imFileDataCtrl = new IMRemoteDEDataCtrl();
             imFileDataCtrl.Init("", "IM0090", "SYSTEM");
-            imFileDataCtrl.Save(true, imFile);
+            CallResult result = imFileDataCtrl.Save(true, imFile);
+            if (result.IsError()) {
+                throw new Exception(result.getErrorInfo());
+            }
         }
         IMUserFile imUserFile = new IMUserFile();
         imUserFile.setIMFILEID(StringHelper.Format((String)"%1$s_%2$s", (Object)imFile.getIMFILEID(), (Object)imFile.getIMUSERID()));
@@ -987,15 +991,22 @@ implements IIMCatalogServerInstance {
         imUserFile.setIMUSERID(imFile.getIMUSERID());
         if (this.isLocalMode()) {
             IDEDataCtrl imUserFileDataCtrl = this.getGlobalHelper().getDAModelStorage().FindDEDataCtrl2("IM0091", "SYSTEM", null);
-            imUserFileDataCtrl.Save(true, (BaseDataEntity)imUserFile);
+            CallResult result = imUserFileDataCtrl.Save(true, (BaseDataEntity)imUserFile);
+            if (result.IsError()) {
+                throw new Exception(result.getErrorInfo());
+            }
         } else {
             IMRemoteDEDataCtrl imFileDataCtrl2 = new IMRemoteDEDataCtrl();
             imFileDataCtrl2.Init("", "IM0091", "SYSTEM");
-            imFileDataCtrl2.Save(true, imUserFile);
+            CallResult result = imFileDataCtrl2.Save(true, imUserFile);
+            if (result.IsError()) {
+                throw new Exception(result.getErrorInfo());
+            }
         }
     }
 
     protected IMMessagePackage OnMeetingFileUploaded(IIMRemoteAction iIMRemoteActionContext) throws Exception {
+        IMMTFtpUserManager.revokeConfiguredUploadPassword(iIMRemoteActionContext.getParam("FILEID", ""));
         return new IMMessagePackage();
     }
 
@@ -1215,7 +1226,7 @@ implements IIMCatalogServerInstance {
         factory.setDataConnectionConfiguration(dataConnectionConfigurationFactory.createDataConnectionConfiguration());
         factory.setPort(nPort);
         serverFactory.addListener("default", factory.createListener());
-        IMMTFtpUserManager imMTFtpUserManager = new IMMTFtpUserManager("", (PasswordEncryptor)new ClearTextPasswordEncryptor());
+        IMMTFtpUserManager imMTFtpUserManager = IMMTFtpUserManager.fromConfiguredCredentials();
         imMTFtpUserManager.setRootFolder(this.imCatalogServer.getFTPROOT());
         serverFactory.setUserManager((UserManager)imMTFtpUserManager);
         this.ftpServer = serverFactory.createServer();
@@ -1327,4 +1338,3 @@ implements IIMCatalogServerInstance {
         }
     }
 }
-

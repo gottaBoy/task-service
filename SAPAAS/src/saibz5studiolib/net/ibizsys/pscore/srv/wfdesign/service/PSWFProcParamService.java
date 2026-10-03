@@ -49,7 +49,7 @@ extends PSWFProcParamServiceBase {
         String string2 = "";
         if (!StringHelper.isNullOrEmpty((String)pSWFProcParam.getSrcValueType())) {
             object = (WFProcParamValueTypeCodeListModel)CodeListGlobal.getCodeList(WFProcParamValueTypeCodeListModel.class);
-            string2 = object.getCodeListText(pSWFProcParam.getSrcValueType(), true);
+            string2 = ((WFProcParamValueTypeCodeListModel)object).getCodeListText(pSWFProcParam.getSrcValueType(), true);
         }
         object = pSWFProcParam.getSrcValue();
         if (StringHelper.isNullOrEmpty((String)string2)) {

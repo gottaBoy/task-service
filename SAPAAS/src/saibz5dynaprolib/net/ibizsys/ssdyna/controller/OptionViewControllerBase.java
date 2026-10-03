@@ -1,11 +1,14 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.EditViewControllerBase;
+/**
+ * 选项视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class OptionViewControllerBase extends EditViewControllerBase {
+	public OptionViewControllerBase() throws Exception {
+		super();
+	}
 
-public abstract class OptionViewControllerBase
-extends EditViewControllerBase {
 }
-

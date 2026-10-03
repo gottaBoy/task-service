@@ -74,192 +74,182 @@ implements IPSModelService<PSDEDataSet> {
     public void initModel(String string, IEntity iEntity, String string2) throws Exception {
         if (StringHelper.compare((String)string, (String)"PSDATAENTITY", (boolean)true) == 0) {
             String string3;
-            Object object;
-            Object object2;
-            Object object3;
-            Serializable serializable;
-            Object object4;
-            Object object5;
-            Serializable serializable2;
             PSDataEntity pSDataEntity = new PSDataEntity();
             pSDataEntity.proxy((IDataObject)iEntity);
-            boolean bl = this.isEnableFolderKey((IEntity)pSDataEntity);
-            boolean bl2 = this.isEnableNoViewMode((IEntity)pSDataEntity);
+            boolean bl = this.isEnableFolderKey(pSDataEntity);
+            boolean bl2 = this.isEnableNoViewMode(pSDataEntity);
             if (DataObject.getBoolValue((Integer)pSDataEntity.getNoViewMode(), (boolean)bl2)) {
-                serializable2 = new HashMap();
+                HashMap<String, Integer> viewLevels = new HashMap<String, Integer>();
                 int n = DataObject.getIntegerValue((Object)pSDataEntity.getViewLevel(), (Integer)DEFieldViewColLevelCodeListModel.DEFAULT);
-                object5 = (DEFieldViewColLevelCodeListModel)CodeListGlobal.getCodeList(DEFieldViewColLevelCodeListModel.class);
+                DEFieldViewColLevelCodeListModel codeList = (DEFieldViewColLevelCodeListModel)CodeListGlobal.getCodeList(DEFieldViewColLevelCodeListModel.class);
                 if (n >= DEFieldViewColLevelCodeListModel.LEVEL3) {
-                    ((HashMap)serializable2).put("View4", DEFieldViewColLevelCodeListModel.LEVEL3);
+                    viewLevels.put("View4", DEFieldViewColLevelCodeListModel.LEVEL3);
                 }
                 if (n >= DEFieldViewColLevelCodeListModel.LEVEL2) {
-                    ((HashMap)serializable2).put("View3", DEFieldViewColLevelCodeListModel.LEVEL2);
+                    viewLevels.put("View3", DEFieldViewColLevelCodeListModel.LEVEL2);
                 }
                 if (n >= DEFieldViewColLevelCodeListModel.LEVEL1) {
-                    ((HashMap)serializable2).put("View2", DEFieldViewColLevelCodeListModel.LEVEL1);
+                    viewLevels.put("View2", DEFieldViewColLevelCodeListModel.LEVEL1);
                 }
                 if (n >= DEFieldViewColLevelCodeListModel.DEFAULT) {
-                    ((HashMap)serializable2).put("View", DEFieldViewColLevelCodeListModel.DEFAULT);
+                    viewLevels.put("View", DEFieldViewColLevelCodeListModel.DEFAULT);
                 }
-                object4 = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)this.getSessionFactory());
-                for (Object object6 : ((HashMap)serializable2).keySet()) {
-                    EntityBase entityBase;
-                    serializable = (Integer)((HashMap)serializable2).get(object6);
-                    object3 = object5.getCodeListText(Integer.toString((Integer)serializable), true);
-                    object2 = new PSDEDataQuery();
-                    object = null;
-                    object = bl ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)viewReserverMap.get(((String)object6).toUpperCase())) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)((String)object6).toUpperCase());
+                PSDEDataQueryService queryService = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)this.getSessionFactory());
+                for (String view : viewLevels.keySet()) {
+                    Integer level = viewLevels.get(view);
+                    String logicName = codeList.getCodeListText(Integer.toString(level), true);
+                    PSDEDataQuery query = new PSDEDataQuery();
+                    String queryId = bl ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)viewReserverMap.get(view.toUpperCase())) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), view.toUpperCase());
                     boolean bl3 = false;
-                    ((PSDEDataQueryBase)object2).setPSDEDataQueryId((String)object);
-                    if (((PSCoreSysServiceBase)object4).checkKey(object2) == 0) {
-                        entityBase = new PSDEDataQuery();
-                        entityBase.setPSDEId(pSDataEntity.getPSDataEntityId());
-                        entityBase.setViewColLevel((Integer)serializable);
-                        if (!object4.selectOne((IEntity)entityBase, true)) {
-                            entityBase.reset();
-                            entityBase.setPSDEId(pSDataEntity.getPSDataEntityId());
-                            entityBase.setCodeName((String)object6);
-                            if (!object4.selectOne((IEntity)entityBase, true)) {
+                    query.setPSDEDataQueryId(queryId);
+                    if (queryService.checkKey(query) == 0) {
+                        PSDEDataQuery existing = new PSDEDataQuery();
+                        existing.setPSDEId(pSDataEntity.getPSDataEntityId());
+                        existing.setViewColLevel(level);
+                        if (!queryService.selectOne(existing, true)) {
+                            existing.reset();
+                            existing.setPSDEId(pSDataEntity.getPSDataEntityId());
+                            existing.setCodeName(view);
+                            if (!queryService.selectOne(existing, true)) {
                                 bl3 = true;
                             }
                         }
                     }
                     if (!bl3) continue;
-                    ((PSDEDataQueryBase)object2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEDataQueryBase)object2).setPSDEName(pSDataEntity.getPSDataEntityName());
-                    ((PSDEDataQueryBase)object2).setPSDEDataQueryName(((String)object6).toUpperCase());
-                    ((PSDEDataQueryBase)object2).setLogicName((String)object3);
-                    ((PSDEDataQueryBase)object2).setCodeName((String)object6);
-                    ((PSDEDataQueryBase)object2).setCustomMode(0);
-                    ((PSDEDataQueryBase)object2).setDefaultMode(0);
-                    ((PSDEDataQueryBase)object2).setViewColLevel((Integer)serializable);
-                    ((PSCoreSysServiceBaseBase)((Object)object4)).create(object2);
-                    entityBase = new PSDEDQJoin();
-                    entityBase.setPSDEDQId(((PSDEDataQueryBase)object2).getPSDEDataQueryId());
-                    entityBase.setPSDEDQName(((PSDEDataQueryBase)object2).getPSDEDataQueryName());
-                    entityBase.setJoinPSDEId(((PSDEDataQueryBase)object2).getPSDEId());
-                    entityBase.setJoinPSDEName(((PSDEDataQueryBase)object2).getPSDEName());
-                    entityBase.setMainFlag(1);
-                    entityBase.setPSDEJoinTypeId("MAIN");
-                    entityBase.setPSDEDQJoinName(((PSDEDataQueryBase)object2).getPSDEName());
+                    query.setPSDEId(pSDataEntity.getPSDataEntityId());
+                    query.setPSDEName(pSDataEntity.getPSDataEntityName());
+                    query.setPSDEDataQueryName(view.toUpperCase());
+                    query.setLogicName(logicName);
+                    query.setCodeName(view);
+                    query.setCustomMode(0);
+                    query.setDefaultMode(0);
+                    query.setViewColLevel(level);
+                    queryService.create(query);
+                    PSDEDQJoin join = new PSDEDQJoin();
+                    join.setPSDEDQId(query.getPSDEDataQueryId());
+                    join.setPSDEDQName(query.getPSDEDataQueryName());
+                    join.setJoinPSDEId(query.getPSDEId());
+                    join.setJoinPSDEName(query.getPSDEName());
+                    join.setMainFlag(1);
+                    join.setPSDEJoinTypeId("MAIN");
+                    join.setPSDEDQJoinName(query.getPSDEName());
                     PSDEDQJoinService pSDEDQJoinService = (PSDEDQJoinService)ServiceGlobal.getService(PSDEDQJoinService.class, (SessionFactory)this.getSessionFactory());
-                    pSDEDQJoinService.create(entityBase);
+                    pSDEDQJoinService.create(join);
                 }
             }
             bl2 = false;
-            serializable2 = new PSDEDataSet();
+            PSDEDataSet dataSet = new PSDEDataSet();
             String string4 = null;
             string4 = bl ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_DEFAULT) : pSDataEntity.getPSDataEntityId();
-            ((PSDEDataSetBase)serializable2).setPSDEDataSetId(string4);
-            if (this.checkKey(serializable2) == 0) {
-                object5 = new PSDEDataSet();
-                ((PSDEDataSetBase)object5).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEDataSetBase)object5).setDefaultMode(1);
-                if (!this.selectOne((IEntity)object5, true)) {
-                    object5.reset();
-                    ((PSDEDataSetBase)object5).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEDataSetBase)object5).setCodeName("Default");
-                    if (!this.selectOne((IEntity)object5, true)) {
+            dataSet.setPSDEDataSetId(string4);
+            if (this.checkKey(dataSet) == 0) {
+                PSDEDataSet existing = new PSDEDataSet();
+                existing.setPSDEId(pSDataEntity.getPSDataEntityId());
+                existing.setDefaultMode(1);
+                if (!this.selectOne(existing, true)) {
+                    existing.reset();
+                    existing.setPSDEId(pSDataEntity.getPSDataEntityId());
+                    existing.setCodeName("Default");
+                    if (!this.selectOne(existing, true)) {
                         bl2 = true;
                     }
                 }
             }
             if (bl2) {
-                Object object6;
-                serializable2.reset();
-                ((PSDEDataSetBase)serializable2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEDataSetBase)serializable2).setDefaultMode(1);
+                dataSet.reset();
+                dataSet.setPSDEId(pSDataEntity.getPSDataEntityId());
+                dataSet.setDefaultMode(1);
                 boolean bl4 = true;
-                object4 = new SelectCond();
-                object4.setFetchFirst(true);
-                object4.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-                object4.set("DEFAULTMODE", (Object)1);
-                ArrayList arrayList = this.select((ISelectCond)object4);
+                SelectCond cond = new SelectCond();
+                cond.setFetchFirst(true);
+                cond.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
+                cond.set("DEFAULTMODE", (Object)1);
+                ArrayList<PSDEDataSet> arrayList = this.select((ISelectCond)cond);
                 if (arrayList.size() > 0) {
                     bl4 = false;
                 }
-                serializable2.reset();
-                ((PSDEDataSetBase)serializable2).setPSDEDataSetId(string4);
-                ((PSDEDataSetBase)serializable2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEDataSetBase)serializable2).setDefaultMode(bl4 ? 1 : 0);
-                ((PSDEDataSetBase)serializable2).setPSDEDataSetName("DEFAULT");
-                ((PSDEDataSetBase)serializable2).setCodeName("Default");
-                this.create(serializable2);
-                object6 = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)this.getSessionFactory());
-                serializable = new PSDEDataQuery();
-                ((PSDEDataQueryBase)serializable).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEDataQueryBase)serializable).setPSDEName(pSDataEntity.getPSDataEntityName());
-                ((PSDEDataQueryBase)serializable).setPSDEDataQueryName("DEFAULT");
-                ((PSDEDataQueryBase)serializable).setCodeName("Default");
-                ((PSDEDataQueryBase)serializable).setCustomMode(0);
+                dataSet.reset();
+                dataSet.setPSDEDataSetId(string4);
+                dataSet.setPSDEId(pSDataEntity.getPSDataEntityId());
+                dataSet.setDefaultMode(bl4 ? 1 : 0);
+                dataSet.setPSDEDataSetName("DEFAULT");
+                dataSet.setCodeName("Default");
+                this.create(dataSet);
+                PSDEDataQueryService queryService = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)this.getSessionFactory());
+                PSDEDataQuery query = new PSDEDataQuery();
+                query.setPSDEId(pSDataEntity.getPSDataEntityId());
+                query.setPSDEName(pSDataEntity.getPSDataEntityName());
+                query.setPSDEDataQueryName("DEFAULT");
+                query.setCodeName("Default");
+                query.setCustomMode(0);
                 if (bl) {
-                    ((PSDEDataQueryBase)serializable).setPSDEDataQueryId(string4);
+                    query.setPSDEDataQueryId(string4);
                 }
-                ((PSCoreSysServiceBaseBase)((Object)object6)).create(serializable);
-                object3 = new PSDEDQJoin();
-                ((PSDEDQJoinBase)object3).setPSDEDQId(((PSDEDataQueryBase)serializable).getPSDEDataQueryId());
-                ((PSDEDQJoinBase)object3).setPSDEDQName(((PSDEDataQueryBase)serializable).getPSDEDataQueryName());
-                ((PSDEDQJoinBase)object3).setJoinPSDEId(((PSDEDataQueryBase)serializable).getPSDEId());
-                ((PSDEDQJoinBase)object3).setJoinPSDEName(((PSDEDataQueryBase)serializable).getPSDEName());
-                ((PSDEDQJoinBase)object3).setMainFlag(1);
-                ((PSDEDQJoinBase)object3).setPSDEJoinTypeId("MAIN");
-                ((PSDEDQJoinBase)object3).setPSDEDQJoinName(((PSDEDataQueryBase)serializable).getPSDEName());
-                object2 = (PSDEDQJoinService)ServiceGlobal.getService(PSDEDQJoinService.class, (SessionFactory)this.getSessionFactory());
-                ((PSCoreSysServiceBaseBase)((Object)object2)).create(object3);
-                object = new PSDEDSDQ();
-                ((PSDEDSDQBase)object).setPSDEDataSetId(((PSDEDataSetBase)serializable2).getPSDEDataSetId());
-                ((PSDEDSDQBase)object).setPSDEDQId(((PSDEDataQueryBase)serializable).getPSDEDataQueryId());
+                queryService.create(query);
+                PSDEDQJoin join = new PSDEDQJoin();
+                join.setPSDEDQId(query.getPSDEDataQueryId());
+                join.setPSDEDQName(query.getPSDEDataQueryName());
+                join.setJoinPSDEId(query.getPSDEId());
+                join.setJoinPSDEName(query.getPSDEName());
+                join.setMainFlag(1);
+                join.setPSDEJoinTypeId("MAIN");
+                join.setPSDEDQJoinName(query.getPSDEName());
+                PSDEDQJoinService joinService = (PSDEDQJoinService)ServiceGlobal.getService(PSDEDQJoinService.class, (SessionFactory)this.getSessionFactory());
+                joinService.create(join);
+                PSDEDSDQ link = new PSDEDSDQ();
+                link.setPSDEDataSetId(dataSet.getPSDEDataSetId());
+                link.setPSDEDQId(query.getPSDEDataQueryId());
                 PSDEDSDQService pSDEDSDQService = (PSDEDSDQService)ServiceGlobal.getService(PSDEDSDQService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDSDQService.create(object);
+                pSDEDSDQService.create(link);
             }
             if (!StringHelper.isNullOrEmpty((String)(string3 = pSDataEntity.getIndexDEType()))) {
-                serializable2 = new PSDEDataSet();
+                dataSet = new PSDEDataSet();
                 string4 = null;
                 string4 = bl ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_INDEXTYPE) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"INDEXDETYPE", (String)string3);
-                ((PSDEDataSetBase)serializable2).setPSDEDataSetId(string4);
+                dataSet.setPSDEDataSetId(string4);
                 boolean bl5 = false;
-                if (this.checkKey(serializable2) == 0) {
-                    object4 = new PSDEDataSet();
-                    ((PSDEDataSetBase)object4).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEDataSetBase)object4).setPredefineType("INDEXDE");
-                    if (!this.selectOne((IEntity)object4, true)) {
+                if (this.checkKey(dataSet) == 0) {
+                    PSDEDataSet existing = new PSDEDataSet();
+                    existing.setPSDEId(pSDataEntity.getPSDataEntityId());
+                    existing.setPredefineType("INDEXDE");
+                    if (!this.selectOne(existing, true)) {
                         bl5 = true;
                     }
                 }
                 if (bl5) {
-                    serializable2.reset();
-                    ((PSDEDataSetBase)serializable2).setPSDEDataSetId(string4);
-                    ((PSDEDataSetBase)serializable2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEDataSetBase)serializable2).setDefaultMode(0);
-                    ((PSDEDataSetBase)serializable2).setPredefineType("INDEXDE");
-                    ((PSDEDataSetBase)serializable2).setPSDEDataSetName("IndexDER");
-                    ((PSDEDataSetBase)serializable2).setCodeName("IndexDER");
-                    this.create(serializable2);
+                    dataSet.reset();
+                    dataSet.setPSDEDataSetId(string4);
+                    dataSet.setPSDEId(pSDataEntity.getPSDataEntityId());
+                    dataSet.setDefaultMode(0);
+                    dataSet.setPredefineType("INDEXDE");
+                    dataSet.setPSDEDataSetName("IndexDER");
+                    dataSet.setCodeName("IndexDER");
+                    this.create(dataSet);
                 }
             }
             if (DataObject.getIntegerValue((Object)pSDataEntity.getEnaMultiForm(), (Integer)0) > 0) {
-                serializable2 = new PSDEDataSet();
+                dataSet = new PSDEDataSet();
                 string4 = null;
                 string4 = bl ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)RESERVERTAG_FORMTYPE) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"FORMTYPE", (String)"");
-                ((PSDEDataSetBase)serializable2).setPSDEDataSetId(string4);
+                dataSet.setPSDEDataSetId(string4);
                 boolean bl6 = false;
-                if (this.checkKey(serializable2) == 0) {
-                    object4 = new PSDEDataSet();
-                    ((PSDEDataSetBase)object4).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEDataSetBase)object4).setPredefineType("MULTIFORM");
-                    if (!this.selectOne((IEntity)object4, true)) {
+                if (this.checkKey(dataSet) == 0) {
+                    PSDEDataSet existing = new PSDEDataSet();
+                    existing.setPSDEId(pSDataEntity.getPSDataEntityId());
+                    existing.setPredefineType("MULTIFORM");
+                    if (!this.selectOne(existing, true)) {
                         bl6 = true;
                     }
                 }
                 if (bl6) {
-                    serializable2.reset();
-                    ((PSDEDataSetBase)serializable2).setPSDEDataSetId(string4);
-                    ((PSDEDataSetBase)serializable2).setPSDEId(pSDataEntity.getPSDataEntityId());
-                    ((PSDEDataSetBase)serializable2).setDefaultMode(0);
-                    ((PSDEDataSetBase)serializable2).setPredefineType("MULTIFORM");
-                    ((PSDEDataSetBase)serializable2).setPSDEDataSetName("FormType");
-                    ((PSDEDataSetBase)serializable2).setCodeName("FormType");
-                    this.create(serializable2);
+                    dataSet.reset();
+                    dataSet.setPSDEDataSetId(string4);
+                    dataSet.setPSDEId(pSDataEntity.getPSDataEntityId());
+                    dataSet.setDefaultMode(0);
+                    dataSet.setPredefineType("MULTIFORM");
+                    dataSet.setPSDEDataSetName("FormType");
+                    dataSet.setCodeName("FormType");
+                    this.create(dataSet);
                 }
             }
         }
@@ -276,7 +266,7 @@ implements IPSModelService<PSDEDataSet> {
             if (DataTypeHelper.compare((int)9, (Object)pSDEDataQuery.getViewColLevel(), (Object)pSDEDSDQ.getPSDEDQ().getViewColLevel()) == 0L) continue;
             throw new Exception(StringHelper.format((String)"\u6570\u636e\u67e5\u8be2[%1$s]\u4e0e[%2$s]\u89c6\u56fe\u7ea7\u522b\u4e0d\u4e00\u81f4", (Object)pSDEDataQuery.getLogicName(), (Object)pSDEDSDQ.getPSDEDQ().getLogicName()));
         }
-        super.onAfterUpdateTempMajor((IEntity)pSDEDataSet);
+        super.onAfterUpdateTempMajor(pSDEDataSet);
     }
 
     static {
@@ -286,4 +276,3 @@ implements IPSModelService<PSDEDataSet> {
         viewReserverMap.put("VIEW4", RESERVERTAG_VIEW4);
     }
 }
-

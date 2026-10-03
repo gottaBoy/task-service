@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSSysReport> {
     }
 
     protected void onFillParentInfo(PSSysReport pSSysReport, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSSysReport, string, string2, string3);
+        super.onFillParentInfo(pSSysReport, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSSysReport> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysReport, bl);
+        super.onFillEntityFullInfo(pSSysReport, bl);
     }
 
     protected void onWriteBackParent(PSSysReport pSSysReport, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysReport, bl);
+        super.onWriteBackParent(pSSysReport, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSSysReport> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysReport pSSysReport, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysReport, bl);
+        super.onRemoveEntityUncopyValues(pSSysReport, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysReport pSSysReport, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -152,7 +152,7 @@ extends PSCoreSysServiceBase<PSSysReport> {
         if ((entityFieldError = this.onCheckField_PSSYSReportName(bl, pSSysReport, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysReport, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysReport, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSSysReportId(boolean bl, PSSysReport pSSysReport, boolean bl2, boolean bl3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSSysReport> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysReportId_Default((IEntity)pSSysReport, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysReportId_Default(pSSysReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSREPORTID");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSSysReport> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSYSReportName_Default((IEntity)pSSysReport, bl2, bl3);
+            string2 = this.onTestValueRule_PSSYSReportName_Default(pSSysReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSREPORTNAME");
@@ -206,11 +206,11 @@ extends PSCoreSysServiceBase<PSSysReport> {
     }
 
     protected void onSyncEntity(PSSysReport pSSysReport, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysReport, bl);
+        super.onSyncEntity(pSSysReport, bl);
     }
 
     protected void onSyncIndexEntities(PSSysReport pSSysReport, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysReport, bl);
+        super.onSyncIndexEntities(pSSysReport, bl);
     }
 
     public Object getDataContextValue(PSSysReport pSSysReport, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -218,14 +218,14 @@ extends PSCoreSysServiceBase<PSSysReport> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysReport, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysReport, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysReport pSSysReport, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysReport, arrayList, n);
+        super.onExportMajorModel(pSSysReport, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -308,14 +308,14 @@ extends PSCoreSysServiceBase<PSSysReport> {
 
     protected boolean onMergeChild(String string, String string2, PSSysReport pSSysReport) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysReport)) {
+        if (super.onMergeChild(string, string2, pSSysReport)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysReport pSSysReport) throws Exception {
-        super.onUpdateParent((IEntity)pSSysReport);
+        super.onUpdateParent(pSSysReport);
     }
 
     @Override

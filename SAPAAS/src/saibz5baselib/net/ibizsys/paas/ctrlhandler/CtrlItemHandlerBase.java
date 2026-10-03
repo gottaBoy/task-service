@@ -1,63 +1,103 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.servlet.ServletContext
- *  org.springframework.web.context.WebApplicationContext
- *  org.springframework.web.context.support.WebApplicationContextUtils
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import javax.servlet.ServletContext;
-import net.ibizsys.paas.controller.IViewController;
-import net.ibizsys.paas.ctrlhandler.ICtrlHandler;
-import net.ibizsys.paas.ctrlhandler.ICtrlItemHandler;
-import net.ibizsys.paas.web.AjaxActionResult;
-import net.ibizsys.paas.web.IWebContext;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-public class CtrlItemHandlerBase
-implements ICtrlItemHandler {
-    private ICtrlHandler iCtrlHandler = null;
+import net.ibizsys.paas.controller.IViewController;
+import net.ibizsys.paas.web.AjaxActionResult;
+import net.ibizsys.paas.web.IWebContext;
 
-    public void init(ICtrlHandler iCtrlHandler) throws Exception {
-        this.setCtrlHandler(iCtrlHandler);
-        this.onInit();
-    }
+/**
+ * 控件子项处理对象基类
+ * 
+ * @author lionlau
+ *
+ */
+public class CtrlItemHandlerBase implements ICtrlItemHandler {
+	private ICtrlHandler iCtrlHandler = null;
 
-    protected void onInit() throws Exception {
-    }
+	/**
+	 * 初始化
+	 * 
+	 * @param iCtrlHandler
+	 * @throws Exception
+	 */
+	public void init(ICtrlHandler iCtrlHandler) throws Exception {
+		this.setCtrlHandler(iCtrlHandler);
+		onInit();
+	}
 
-    public ICtrlHandler getCtrlHandler() {
-        return this.iCtrlHandler;
-    }
+	protected void onInit() throws Exception {
 
-    public void setCtrlHandler(ICtrlHandler iCtrlHandler) {
-        this.iCtrlHandler = iCtrlHandler;
-    }
+	}
 
-    public IWebContext getWebContext() {
-        return this.getCtrlHandler().getWebContext();
-    }
+	/**
+	 * 获取部件处理对象
+	 * 
+	 * @return
+	 */
+	public ICtrlHandler getCtrlHandler() {
+		return iCtrlHandler;
+	}
 
-    public IViewController getViewController() {
-        return this.getCtrlHandler().getViewController();
-    }
+	/**
+	 * 设置部件处理对象
+	 * 
+	 * @param iCtrlHandler
+	 */
+	public void setCtrlHandler(ICtrlHandler iCtrlHandler) {
+		this.iCtrlHandler = iCtrlHandler;
+	}
 
-    @Override
-    public AjaxActionResult processAction(String strAction) throws Exception {
-        AjaxActionResult ajaxActionResult = this.onProcessAction(strAction);
-        return ajaxActionResult;
-    }
+	/**
+	 * 获取Web请求上下文对象
+	 * 
+	 * @return
+	 */
+	public IWebContext getWebContext() {
+		return getCtrlHandler().getWebContext();
+	}
 
-    protected AjaxActionResult onProcessAction(String strAction) throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
+	/**
+	 * 获取视图控制器
+	 * 
+	 * @return
+	 */
+	public IViewController getViewController() {
+		return this.getCtrlHandler().getViewController();
+	}
 
-    protected Object getBean(String strName) {
-        WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext((ServletContext)this.getWebContext().getRequest().getSession().getServletContext());
-        return ctx.getBean(strName);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.ICtrlHandler#handlerAction(java.lang.String, net.ibizsys.paas.web.IWebContext)
+	 */
+	@Override
+	public AjaxActionResult processAction(String strAction) throws Exception {
+		AjaxActionResult ajaxActionResult = onProcessAction(strAction);
+		return ajaxActionResult;
+	}
+
+	/**
+	 * 执行处理
+	 * 
+	 * @param strAction
+	 * @return
+	 * @throws Exception
+	 */
+	protected AjaxActionResult onProcessAction(String strAction) throws Exception {
+		throw new Exception("没有实现");
+	}
+
+	/**
+	 * 获取对象
+	 * 
+	 * @param strBeanName
+	 * @return
+	 */
+	protected Object getBean(String strName) {
+		WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(getWebContext().getRequest().getSession().getServletContext());
+		return ctx.getBean(strName);
+	}
+
 }
-

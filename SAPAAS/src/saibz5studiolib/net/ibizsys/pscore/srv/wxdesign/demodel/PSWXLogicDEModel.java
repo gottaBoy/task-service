@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.wxdesign.demodel.PSWXLogicDEModelBase;
 
 public class PSWXLogicDEModel
 extends PSWXLogicDEModelBase {
+
+    public PSWXLogicDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -40,7 +40,7 @@ public abstract class BaseConfigStorageFactory<T2 extends BaseConfigStorage> {
         }
         hashtable = this.configStorageMap;
         synchronized (hashtable) {
-            this.configStorageMap.put(strTag, t2);
+            this.configStorageMap.put(strTag, (T2)t2);
         }
         return (T2)t2;
     }

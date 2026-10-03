@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.controller;
 
-import net.ibizsys.pswf.controller.WFGridViewControllerBase;
+/**
+ * 移动端工作流多项数据视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class MobWFMDViewControllerBase extends WFGridViewControllerBase {
 
-public abstract class MobWFMDViewControllerBase
-extends WFGridViewControllerBase {
+	public MobWFMDViewControllerBase() throws Exception {
+		super();
+	}
+
 }
-

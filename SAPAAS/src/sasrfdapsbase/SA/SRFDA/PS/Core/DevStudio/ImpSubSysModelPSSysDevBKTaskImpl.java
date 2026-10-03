@@ -159,7 +159,7 @@ extends PSSysDevBKTaskImplBase {
         PSSystemService psSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSystem psSystem2 = new PSSystem();
         psSystem2.setPSSystemId(this.psSysDevBKTask.getTASKPARAM());
-        psSystemService.get((IEntity)psSystem2);
+        psSystemService.get(psSystem2);
         try {
             PSCoreSysServiceBase.setCurrentPSSystemId((String)psSystem2.getPSSystemId());
             PSCoreSysServiceBase.setCurrentPSDevSlnSysId((String)this.getPSDevSlnSysId());
@@ -190,7 +190,7 @@ extends PSSysDevBKTaskImplBase {
             throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u5f53\u524d\u5f00\u53d1\u7cfb\u7edf[%1$s]", (Object)this.getPSDevSlnSysId()));
         }
         PSSysRefService psSysRefService = (PSSysRefService)ServiceGlobal.getService(PSSysRefService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psSysRefList = psSysRefService.selectByPSSystem((PSSystemBase)psSystem, "ORDER BY ORDERVALUE");
+        ArrayList<PSSysRef> psSysRefList = psSysRefService.selectByPSSystem((PSSystemBase)psSystem, "ORDER BY ORDERVALUE");
         for (PSSysRef psSysRef : psSysRefList) {
             if (!DataObject.getBoolValue((Integer)psSysRef.getValidFlag(), (boolean)true) || !StringHelper.isNullOrEmpty((String)this.psSysDevBKTask.getTASKPARAM2()) && StringHelper.compare((String)this.psSysDevBKTask.getTASKPARAM2(), (String)psSysRef.getPSSysRefId(), (boolean)false) != 0) continue;
             sBuilderEx.append("\u5bfc\u5165\u7cfb\u7edf\u5f15\u7528[%1$s]\r\n", (Object)psSysRef.getPSSysRefName());
@@ -214,14 +214,14 @@ extends PSSysDevBKTaskImplBase {
             PSSubSysService psSubSysService = (PSSubSysService)ServiceGlobal.getService(PSSubSysService.class);
             PSSubSys psSubSys = new PSSubSys();
             psSubSys.setPSSubSysId(psSysRef.getPSSubSysId());
-            if (!psSubSysService.get((IEntity)psSubSys, true)) {
+            if (!psSubSysService.get(psSubSys, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b50\u7cfb\u7edf[%1$s]", (Object)psSysRef.getPSSysRefName()));
             }
             PSSubSysVerService psSubSysVerService = (PSSubSysVerService)ServiceGlobal.getService(PSSubSysVerService.class);
             PSSubSysVer psSubSysVer = new PSSubSysVer();
             psSubSysVer.setPSSubSysId(psSubSys.getPSSubSysId());
             psSubSysVer.setVersion(psSubSys.getVersion());
-            if (!psSubSysVerService.select((IEntity)psSubSysVer, true)) {
+            if (!psSubSysVerService.select(psSubSysVer, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b50\u7cfb\u7edf[%1$s]\u7248\u672c[%2$s]", (Object)psSysRef.getPSSysRefName(), (Object)psSubSys.getVersion()));
             }
             nCurVersion = psSubSys.getVersion();
@@ -335,7 +335,7 @@ extends PSSysDevBKTaskImplBase {
             }
             SessionFactoryManager.releaseRef((boolean)true);
             SessionFactoryManager.addRef();
-            ArrayList<Object> allJsonList = new ArrayList<Object>();
+            ArrayList<JSONObject> allJsonList = new ArrayList<JSONObject>();
             ArrayList<JSONObject> jsonList = this.impPSLanguageRes(sysRefSessionFactory, psSysRef, psSystem, true, psModuleMap);
             allJsonList.addAll(jsonList);
             if (!bSubSys) {
@@ -489,7 +489,7 @@ extends PSSysDevBKTaskImplBase {
                 }
             } else {
                 PSSysSFPubService psSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)sysRefSessionFactory);
-                ArrayList psSysSFPubList = psSysSFPubService.selectByPSSystem((PSSystemBase)psSystem);
+                ArrayList<PSSysSFPub> psSysSFPubList = psSysSFPubService.selectByPSSystem((PSSystemBase)psSystem);
                 for (PSSysSFPub psSysSFPub : psSysSFPubList) {
                     if (!DataObject.getBoolValue((Integer)psSysSFPub.getDefaultPub(), (boolean)false)) continue;
                     pkgMap.put(StringHelper.format((String)"PKG.%1$s", (Object)psSysSFPub.getPSSFStyleId()), psSysSFPub.getPKGCodeName());
@@ -512,7 +512,7 @@ extends PSSysDevBKTaskImplBase {
         psSysRef2.setPSSysRefId(psSysRef.getPSSysRefId());
         psSysRef2.setVersion(Integer.valueOf(nCurVersion));
         psSysRef2.setClsPkgParams(strClsPkgParams);
-        psSysRefService.update((IEntity)psSysRef2);
+        psSysRefService.update(psSysRef2);
         DBCallResult dbCallResult = psSysRefService.executeRaw("DELETE FROM T_SRFPSSYSMODELLOG", null);
         if (dbCallResult.isError()) {
             sBuilderEx.append("\u6e05\u9664\u6a21\u578b\u65e5\u5fd7\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)dbCallResult.getErrorInfo());
@@ -527,8 +527,8 @@ extends PSSysDevBKTaskImplBase {
         if (psSysSFPub != null) {
             bDefaultSysSFPub = DataObject.getBoolValue((Integer)psSysSFPub.getDefaultPub(), (boolean)true);
         }
-        ArrayList psModuleList = psModuleService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psModuleList2 = psModuleService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSModule> psModuleList = psModuleService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSModule> psModuleList2 = psModuleService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSModule> psModuleMap = new HashMap<String, PSModule>();
         HashMap<String, PSModule> psModuleMap2 = new HashMap<String, PSModule>();
         for (PSModule psModule2 : psModuleList2) {
@@ -549,10 +549,10 @@ extends PSSysDevBKTaskImplBase {
             psModule.setPSSysRefName(psSysRef.getPSSysRefName());
             psModule.setLockFlag(Integer.valueOf(1));
             if (bExists) {
-                psModuleService2.update((IEntity)psModule, false);
+                psModuleService2.update(psModule, false);
                 continue;
             }
-            psModuleService2.create((IEntity)psModule, false);
+            psModuleService2.create(psModule, false);
         }
         return psModuleMap;
     }
@@ -560,8 +560,8 @@ extends PSSysDevBKTaskImplBase {
     protected HashMap<String, PSSubSysServiceAPI> impPSSubSysServiceAPI(SessionFactory sysRefSessionFactory, PSSysRef psSysRef, PSSystem psSystem, HashMap<String, PSModule> psModuleMap) throws Exception {
         PSSubSysServiceAPIService psSubSysServiceAPIService = (PSSubSysServiceAPIService)ServiceGlobal.getService(PSSubSysServiceAPIService.class, (SessionFactory)sysRefSessionFactory);
         PSSubSysServiceAPIService psSubSysServiceAPIService2 = (PSSubSysServiceAPIService)ServiceGlobal.getService(PSSubSysServiceAPIService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psSubSysServiceAPIList = psSubSysServiceAPIService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psSubSysServiceAPIList2 = psSubSysServiceAPIService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSubSysServiceAPI> psSubSysServiceAPIList = psSubSysServiceAPIService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSubSysServiceAPI> psSubSysServiceAPIList2 = psSubSysServiceAPIService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSSubSysServiceAPI> psSubSysServiceAPIMap = new HashMap<String, PSSubSysServiceAPI>();
         HashMap<String, PSSubSysServiceAPI> psSubSysServiceAPIMap2 = new HashMap<String, PSSubSysServiceAPI>();
         for (PSSubSysServiceAPI psSubSysServiceAPI2 : psSubSysServiceAPIList2) {
@@ -571,7 +571,7 @@ extends PSSysDevBKTaskImplBase {
             if (!psModuleMap.containsKey(psSubSysServiceAPI.getPSModuleId())) continue;
             psSubSysServiceAPIMap.put(psSubSysServiceAPI.getPSSubSysServiceAPIId(), psSubSysServiceAPI);
             if (psSubSysServiceAPIMap2.containsKey(psSubSysServiceAPI.getPSSubSysServiceAPIId())) continue;
-            psSubSysServiceAPIService2.create((IEntity)psSubSysServiceAPI, false);
+            psSubSysServiceAPIService2.create(psSubSysServiceAPI, false);
         }
         return psSubSysServiceAPIMap;
     }
@@ -579,8 +579,8 @@ extends PSSysDevBKTaskImplBase {
     protected HashMap<String, PSDataEntity> impPSDataEntity(SessionFactory sysRefSessionFactory, PSSysRef psSysRef, PSSystem psSystem, HashMap<String, PSModule> psModuleMap) throws Exception {
         PSDataEntityService psDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)sysRefSessionFactory);
         PSDataEntityService psDataEntityService2 = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psDataEntityList2 = psDataEntityService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDataEntity> psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDataEntity> psDataEntityList2 = psDataEntityService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSDataEntity> psDataEntityMap = new HashMap<String, PSDataEntity>();
         HashMap<String, PSDataEntity> psDataEntityMap2 = new HashMap<String, PSDataEntity>();
         for (PSDataEntity psDataEntity2 : psDataEntityList2) {
@@ -592,7 +592,7 @@ extends PSSysDevBKTaskImplBase {
             if (psDataEntityMap2.containsKey(psDataEntity.getPSDataEntityId())) continue;
             psDataEntity.resetLNPSLanResId();
             psDataEntity.setDEType(Integer.valueOf(1));
-            psDataEntityService2.create((IEntity)psDataEntity, false);
+            psDataEntityService2.create(psDataEntity, false);
         }
         return psDataEntityMap;
     }
@@ -600,8 +600,8 @@ extends PSSysDevBKTaskImplBase {
     protected ArrayList<JSONObject> impPSLanguageRes(SessionFactory sysRefSessionFactory, PSSysRef psSysRef, PSSystem psSystem, boolean bIgnoreExist, HashMap<String, PSModule> psModuleMap) throws Exception {
         PSLanguageResService psLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)sysRefSessionFactory);
         PSLanguageResService psLanguageResService2 = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psLanguageResList = psLanguageResService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psLanguageResList2 = psLanguageResService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSLanguageRes> psLanguageResList = psLanguageResService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSLanguageRes> psLanguageResList2 = psLanguageResService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSLanguageRes> psLanguageResMap = new HashMap<String, PSLanguageRes>();
         HashMap<String, PSLanguageRes> psLanguageResMap2 = new HashMap<String, PSLanguageRes>();
         for (PSLanguageRes psLanguageRes2 : psLanguageResList2) {
@@ -616,7 +616,7 @@ extends PSSysDevBKTaskImplBase {
                 if (bIgnoreExist) continue;
                 bExists = true;
             }
-            psLanguageResService.exportModel((IEntity)psLanguageRes, list);
+            psLanguageResService.exportModel(psLanguageRes, list);
         }
         return list;
     }
@@ -628,8 +628,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSCodeListService psCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)sysRefSessionFactory);
         PSCodeListService psCodeListService2 = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psCodeListList = psCodeListService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psCodeListList2 = psCodeListService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSCodeList> psCodeListList = psCodeListService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSCodeList> psCodeListList2 = psCodeListService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSCodeList> psCodeListMap = new HashMap<String, PSCodeList>();
         HashMap<String, PSCodeList> psCodeListMap2 = new HashMap<String, PSCodeList>();
         for (PSCodeList psCodeList2 : psCodeListList2) {
@@ -644,7 +644,7 @@ extends PSSysDevBKTaskImplBase {
                 if (bIgnoreExist) continue;
                 bExists = true;
             }
-            psCodeListService.exportModel((IEntity)psCodeList, list);
+            psCodeListService.exportModel(psCodeList, list);
         }
         return list;
     }
@@ -656,8 +656,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSSysPFPluginService psSysPFPluginService = (PSSysPFPluginService)ServiceGlobal.getService(PSSysPFPluginService.class, (SessionFactory)sysRefSessionFactory);
         PSSysPFPluginService psSysPFPluginService2 = (PSSysPFPluginService)ServiceGlobal.getService(PSSysPFPluginService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psSysPFPluginList = psSysPFPluginService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psSysPFPluginList2 = psSysPFPluginService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysPFPlugin> psSysPFPluginList = psSysPFPluginService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysPFPlugin> psSysPFPluginList2 = psSysPFPluginService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSSysPFPlugin> psSysPFPluginMap = new HashMap<String, PSSysPFPlugin>();
         HashMap<String, PSSysPFPlugin> psSysPFPluginMap2 = new HashMap<String, PSSysPFPlugin>();
         for (PSSysPFPlugin psSysPFPlugin2 : psSysPFPluginList2) {
@@ -668,7 +668,7 @@ extends PSSysDevBKTaskImplBase {
             if (!psModuleMap.containsKey(psSysPFPlugin.getPSModuleId())) continue;
             psSysPFPluginMap.put(psSysPFPlugin.getPSSysPFPluginId(), psSysPFPlugin);
             if (psSysPFPluginMap2.containsKey(psSysPFPlugin.getPSSysPFPluginId()) && bIgnoreExist) continue;
-            psSysPFPluginService.exportModel((IEntity)psSysPFPlugin, list);
+            psSysPFPluginService.exportModel(psSysPFPlugin, list);
         }
         return list;
     }
@@ -680,8 +680,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSSysCounterService psSysCounterService = (PSSysCounterService)ServiceGlobal.getService(PSSysCounterService.class, (SessionFactory)sysRefSessionFactory);
         PSSysCounterService psSysCounterService2 = (PSSysCounterService)ServiceGlobal.getService(PSSysCounterService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psSysCounterList = psSysCounterService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psSysCounterList2 = psSysCounterService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysCounter> psSysCounterList = psSysCounterService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysCounter> psSysCounterList2 = psSysCounterService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSSysCounter> psSysCounterMap = new HashMap<String, PSSysCounter>();
         HashMap<String, PSSysCounter> psSysCounterMap2 = new HashMap<String, PSSysCounter>();
         for (PSSysCounter psSysCounter2 : psSysCounterList2) {
@@ -692,7 +692,7 @@ extends PSSysDevBKTaskImplBase {
             if (!psModuleMap.containsKey(psSysCounter.getPSModuleId())) continue;
             psSysCounterMap.put(psSysCounter.getPSSysCounterId(), psSysCounter);
             if (psSysCounterMap2.containsKey(psSysCounter.getPSSysCounterId()) && bIgnoreExist) continue;
-            psSysCounterService.exportModel((IEntity)psSysCounter, list);
+            psSysCounterService.exportModel(psSysCounter, list);
         }
         return list;
     }
@@ -704,8 +704,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSDEUIActionService psDEUIActionService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)sysRefSessionFactory);
         PSDEUIActionService psDEUIActionService2 = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psDEUIActionList = psDEUIActionService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psDEUIActionList2 = psDEUIActionService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDEUIAction> psDEUIActionList = psDEUIActionService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDEUIAction> psDEUIActionList2 = psDEUIActionService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSDEUIAction> psDEUIActionMap = new HashMap<String, PSDEUIAction>();
         HashMap<String, PSDEUIAction> psDEUIActionMap2 = new HashMap<String, PSDEUIAction>();
         for (PSDEUIAction psDEUIAction2 : psDEUIActionList2) {
@@ -716,7 +716,7 @@ extends PSSysDevBKTaskImplBase {
             if (!bSubSys && (StringHelper.isNullOrEmpty((String)psDEUIAction.getPSModuleId()) || !psModuleMap.containsKey(psDEUIAction.getPSModuleId()) || !StringHelper.isNullOrEmpty((String)psDEUIAction.getPSWFId()))) continue;
             psDEUIActionMap.put(psDEUIAction.getPSDEUIActionId(), psDEUIAction);
             if (psDEUIActionMap2.containsKey(psDEUIAction.getPSDEUIActionId()) && bIgnoreExist) continue;
-            psDEUIActionService.exportModel((IEntity)psDEUIAction, list);
+            psDEUIActionService.exportModel(psDEUIAction, list);
         }
         return list;
     }
@@ -731,8 +731,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSDEUAGroupService psDEUAGroupService = (PSDEUAGroupService)ServiceGlobal.getService(PSDEUAGroupService.class, (SessionFactory)sysRefSessionFactory);
         PSDEUAGroupService psDEUAGroupService2 = (PSDEUAGroupService)ServiceGlobal.getService(PSDEUAGroupService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psDEUAGroupList = psDEUAGroupService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psDEUAGroupList2 = psDEUAGroupService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDEUAGroup> psDEUAGroupList = psDEUAGroupService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDEUAGroup> psDEUAGroupList2 = psDEUAGroupService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSDEUAGroup> psDEUAGroupMap = new HashMap<String, PSDEUAGroup>();
         HashMap<String, PSDEUAGroup> psDEUAGroupMap2 = new HashMap<String, PSDEUAGroup>();
         for (PSDEUAGroup psDEUAGroup2 : psDEUAGroupList2) {
@@ -743,7 +743,7 @@ extends PSSysDevBKTaskImplBase {
             if (!bSubSys && (StringHelper.isNullOrEmpty((String)psDEUAGroup.getPSModuleId()) || !psModuleMap.containsKey(psDEUAGroup.getPSModuleId()) || !StringHelper.isNullOrEmpty((String)psDEUAGroup.getPSWFId()))) continue;
             psDEUAGroupMap.put(psDEUAGroup.getPSDEUAGroupId(), psDEUAGroup);
             if (psDEUAGroupMap2.containsKey(psDEUAGroup.getPSDEUAGroupId()) && bIgnoreExist) continue;
-            psDEUAGroupService.exportModel((IEntity)psDEUAGroup, list);
+            psDEUAGroupService.exportModel(psDEUAGroup, list);
         }
         return list;
     }
@@ -755,8 +755,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSDEToolbarService psDEToolbarService = (PSDEToolbarService)ServiceGlobal.getService(PSDEToolbarService.class, (SessionFactory)sysRefSessionFactory);
         PSDEToolbarService psDEToolbarService2 = (PSDEToolbarService)ServiceGlobal.getService(PSDEToolbarService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psDEToolbarList = psDEToolbarService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psDEToolbarList2 = psDEToolbarService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDEToolbar> psDEToolbarList = psDEToolbarService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDEToolbar> psDEToolbarList2 = psDEToolbarService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSDEToolbar> psDEToolbarMap = new HashMap<String, PSDEToolbar>();
         HashMap<String, PSDEToolbar> psDEToolbarMap2 = new HashMap<String, PSDEToolbar>();
         for (PSDEToolbar psDEToolbar2 : psDEToolbarList2) {
@@ -766,7 +766,7 @@ extends PSSysDevBKTaskImplBase {
         for (PSDEToolbar psDEToolbar : psDEToolbarList) {
             psDEToolbarMap.put(psDEToolbar.getPSDEToolbarId(), psDEToolbar);
             if (psDEToolbarMap2.containsKey(psDEToolbar.getPSDEToolbarId()) && bIgnoreExist) continue;
-            psDEToolbarService.exportModel((IEntity)psDEToolbar, list);
+            psDEToolbarService.exportModel(psDEToolbar, list);
         }
         return list;
     }
@@ -778,8 +778,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSSubViewTypeService psSubViewTypeService = (PSSubViewTypeService)ServiceGlobal.getService(PSSubViewTypeService.class, (SessionFactory)sysRefSessionFactory);
         PSSubViewTypeService psSubViewTypeService2 = (PSSubViewTypeService)ServiceGlobal.getService(PSSubViewTypeService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psSubViewTypeList = psSubViewTypeService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psSubViewTypeList2 = psSubViewTypeService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSubViewType> psSubViewTypeList = psSubViewTypeService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSubViewType> psSubViewTypeList2 = psSubViewTypeService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSSubViewType> psSubViewTypeMap = new HashMap<String, PSSubViewType>();
         HashMap<String, PSSubViewType> psSubViewTypeMap2 = new HashMap<String, PSSubViewType>();
         for (PSSubViewType psSubViewType2 : psSubViewTypeList2) {
@@ -790,7 +790,7 @@ extends PSSysDevBKTaskImplBase {
             if (!psModuleMap.containsKey(psSubViewType.getPSModuleId())) continue;
             psSubViewTypeMap.put(psSubViewType.getPSSubViewTypeId(), psSubViewType);
             if (psSubViewTypeMap2.containsKey(psSubViewType.getPSSubViewTypeId()) && bIgnoreExist) continue;
-            psSubViewTypeService.exportModel((IEntity)psSubViewType, list);
+            psSubViewTypeService.exportModel(psSubViewType, list);
         }
         return list;
     }
@@ -802,8 +802,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSSysEditorStyleService psSysEditorStyleService = (PSSysEditorStyleService)ServiceGlobal.getService(PSSysEditorStyleService.class, (SessionFactory)sysRefSessionFactory);
         PSSysEditorStyleService psSysEditorStyleService2 = (PSSysEditorStyleService)ServiceGlobal.getService(PSSysEditorStyleService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psSysEditorStyleList = psSysEditorStyleService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psSysEditorStyleList2 = psSysEditorStyleService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysEditorStyle> psSysEditorStyleList = psSysEditorStyleService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysEditorStyle> psSysEditorStyleList2 = psSysEditorStyleService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSSysEditorStyle> psSysEditorStyleMap = new HashMap<String, PSSysEditorStyle>();
         HashMap<String, PSSysEditorStyle> psSysEditorStyleMap2 = new HashMap<String, PSSysEditorStyle>();
         for (PSSysEditorStyle psSysEditorStyle2 : psSysEditorStyleList2) {
@@ -813,7 +813,7 @@ extends PSSysDevBKTaskImplBase {
         for (PSSysEditorStyle psSysEditorStyle : psSysEditorStyleList) {
             psSysEditorStyleMap.put(psSysEditorStyle.getPSSysEditorStyleId(), psSysEditorStyle);
             if (psSysEditorStyleMap2.containsKey(psSysEditorStyle.getPSSysEditorStyleId()) && bIgnoreExist) continue;
-            psSysEditorStyleService.exportModel((IEntity)psSysEditorStyle, list);
+            psSysEditorStyleService.exportModel(psSysEditorStyle, list);
         }
         return list;
     }
@@ -825,8 +825,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSSysPDTViewService psSysPDTViewService = (PSSysPDTViewService)ServiceGlobal.getService(PSSysPDTViewService.class, (SessionFactory)sysRefSessionFactory);
         PSSysPDTViewService psSysPDTViewService2 = (PSSysPDTViewService)ServiceGlobal.getService(PSSysPDTViewService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psSysPDTViewList = psSysPDTViewService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psSysPDTViewList2 = psSysPDTViewService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysPDTView> psSysPDTViewList = psSysPDTViewService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysPDTView> psSysPDTViewList2 = psSysPDTViewService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSSysPDTView> psSysPDTViewMap = new HashMap<String, PSSysPDTView>();
         HashMap<String, PSSysPDTView> psSysPDTViewMap2 = new HashMap<String, PSSysPDTView>();
         for (PSSysPDTView psSysPDTView2 : psSysPDTViewList2) {
@@ -836,7 +836,7 @@ extends PSSysDevBKTaskImplBase {
         for (PSSysPDTView psSysPDTView : psSysPDTViewList) {
             psSysPDTViewMap.put(psSysPDTView.getPSSysPDTViewId(), psSysPDTView);
             if (psSysPDTViewMap2.containsKey(psSysPDTView.getPSSysPDTViewId()) && bIgnoreExist) continue;
-            psSysPDTViewService.exportModel((IEntity)psSysPDTView, list);
+            psSysPDTViewService.exportModel(psSysPDTView, list);
         }
         return list;
     }
@@ -848,8 +848,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSSysImageService psSysImageService = (PSSysImageService)ServiceGlobal.getService(PSSysImageService.class, (SessionFactory)sysRefSessionFactory);
         PSSysImageService psSysImageService2 = (PSSysImageService)ServiceGlobal.getService(PSSysImageService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psSysImageList = psSysImageService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psSysImageList2 = psSysImageService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysImage> psSysImageList = psSysImageService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysImage> psSysImageList2 = psSysImageService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSSysImage> psSysImageMap = new HashMap<String, PSSysImage>();
         HashMap<String, PSSysImage> psSysImageMap2 = new HashMap<String, PSSysImage>();
         for (PSSysImage psSysImage2 : psSysImageList2) {
@@ -859,7 +859,7 @@ extends PSSysDevBKTaskImplBase {
         for (PSSysImage psSysImage : psSysImageList) {
             psSysImageMap.put(psSysImage.getPSSysImageId(), psSysImage);
             if (psSysImageMap2.containsKey(psSysImage.getPSSysImageId()) && bIgnoreExist) continue;
-            psSysImageService.exportModel((IEntity)psSysImage, list);
+            psSysImageService.exportModel(psSysImage, list);
         }
         return list;
     }
@@ -871,8 +871,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSSysCssCatService psSysCssCatService = (PSSysCssCatService)ServiceGlobal.getService(PSSysCssCatService.class, (SessionFactory)sysRefSessionFactory);
         PSSysCssCatService psSysCssCatService2 = (PSSysCssCatService)ServiceGlobal.getService(PSSysCssCatService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psSysCssCatList = psSysCssCatService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psSysCssCatList2 = psSysCssCatService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysCssCat> psSysCssCatList = psSysCssCatService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysCssCat> psSysCssCatList2 = psSysCssCatService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSSysCssCat> psSysCssCatMap = new HashMap<String, PSSysCssCat>();
         HashMap<String, PSSysCssCat> psSysCssCatMap2 = new HashMap<String, PSSysCssCat>();
         for (PSSysCssCat psSysCssCat2 : psSysCssCatList2) {
@@ -882,7 +882,7 @@ extends PSSysDevBKTaskImplBase {
         for (PSSysCssCat psSysCssCat : psSysCssCatList) {
             psSysCssCatMap.put(psSysCssCat.getPSSysCssCatId(), psSysCssCat);
             if (psSysCssCatMap2.containsKey(psSysCssCat.getPSSysCssCatId()) && bIgnoreExist) continue;
-            psSysCssCatService.exportModel((IEntity)psSysCssCat, list);
+            psSysCssCatService.exportModel(psSysCssCat, list);
         }
         return list;
     }
@@ -894,8 +894,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSSysCssService psSysCssService = (PSSysCssService)ServiceGlobal.getService(PSSysCssService.class, (SessionFactory)sysRefSessionFactory);
         PSSysCssService psSysCssService2 = (PSSysCssService)ServiceGlobal.getService(PSSysCssService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psSysCssList = psSysCssService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psSysCssList2 = psSysCssService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysCss> psSysCssList = psSysCssService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysCss> psSysCssList2 = psSysCssService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSSysCss> psSysCssMap = new HashMap<String, PSSysCss>();
         HashMap<String, PSSysCss> psSysCssMap2 = new HashMap<String, PSSysCss>();
         for (PSSysCss psSysCss2 : psSysCssList2) {
@@ -905,7 +905,7 @@ extends PSSysDevBKTaskImplBase {
         for (PSSysCss psSysCss : psSysCssList) {
             psSysCssMap.put(psSysCss.getPSSysCssId(), psSysCss);
             if (psSysCssMap2.containsKey(psSysCss.getPSSysCssId()) && bIgnoreExist) continue;
-            psSysCssService.exportModel((IEntity)psSysCss, list);
+            psSysCssService.exportModel(psSysCss, list);
         }
         return list;
     }
@@ -917,8 +917,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSACHandlerService psACHandlerService = (PSACHandlerService)ServiceGlobal.getService(PSACHandlerService.class, (SessionFactory)sysRefSessionFactory);
         PSACHandlerService psACHandlerService2 = (PSACHandlerService)ServiceGlobal.getService(PSACHandlerService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psACHandlerList = psACHandlerService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psACHandlerList2 = psACHandlerService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSACHandler> psACHandlerList = psACHandlerService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSACHandler> psACHandlerList2 = psACHandlerService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSACHandler> psACHandlerMap = new HashMap<String, PSACHandler>();
         HashMap<String, PSACHandler> psACHandlerMap2 = new HashMap<String, PSACHandler>();
         for (PSACHandler psACHandler2 : psACHandlerList2) {
@@ -928,7 +928,7 @@ extends PSSysDevBKTaskImplBase {
         for (PSACHandler psACHandler : psACHandlerList) {
             psACHandlerMap.put(psACHandler.getPSACHandlerId(), psACHandler);
             if (psACHandlerMap2.containsKey(psACHandler.getPSACHandlerId()) && bIgnoreExist) continue;
-            psACHandlerService.exportModel((IEntity)psACHandler, list);
+            psACHandlerService.exportModel(psACHandler, list);
         }
         return list;
     }
@@ -940,8 +940,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSSysPortletService psSysPortletService = (PSSysPortletService)ServiceGlobal.getService(PSSysPortletService.class, (SessionFactory)sysRefSessionFactory);
         PSSysPortletService psSysPortletService2 = (PSSysPortletService)ServiceGlobal.getService(PSSysPortletService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psSysPortletList = psSysPortletService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psSysPortletList2 = psSysPortletService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysPortlet> psSysPortletList = psSysPortletService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSSysPortlet> psSysPortletList2 = psSysPortletService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSSysPortlet> psSysPortletMap = new HashMap<String, PSSysPortlet>();
         HashMap<String, PSSysPortlet> psSysPortletMap2 = new HashMap<String, PSSysPortlet>();
         for (PSSysPortlet psSysPortlet2 : psSysPortletList2) {
@@ -951,7 +951,7 @@ extends PSSysDevBKTaskImplBase {
         for (PSSysPortlet psSysPortlet : psSysPortletList) {
             psSysPortletMap.put(psSysPortlet.getPSSysPortletId(), psSysPortlet);
             if (psSysPortletMap2.containsKey(psSysPortlet.getPSSysPortletId()) && bIgnoreExist) continue;
-            psSysPortletService.exportModel((IEntity)psSysPortlet, list);
+            psSysPortletService.exportModel(psSysPortlet, list);
         }
         return list;
     }
@@ -963,8 +963,8 @@ extends PSSysDevBKTaskImplBase {
         }
         PSDataEntityService psDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)sysRefSessionFactory);
         PSDataEntityService psDataEntityService2 = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
-        ArrayList psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
-        ArrayList psDataEntityList2 = psDataEntityService2.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDataEntity> psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
+        ArrayList<PSDataEntity> psDataEntityList2 = psDataEntityService2.selectByPSSystem((PSSystemBase)psSystem);
         HashMap<String, PSDataEntity> psDataEntityMap = new HashMap<String, PSDataEntity>();
         HashMap<String, PSDataEntity> psDataEntityMap2 = new HashMap<String, PSDataEntity>();
         for (PSDataEntity psDataEntity2 : psDataEntityList2) {
@@ -975,9 +975,8 @@ extends PSSysDevBKTaskImplBase {
             if (!psModuleMap.containsKey(psDataEntity.getPSModuleId())) continue;
             psDataEntityMap.put(psDataEntity.getPSDataEntityId(), psDataEntity);
             if (psDataEntityMap2.containsKey(psDataEntity.getPSDataEntityId()) && bIgnoreExist) continue;
-            psDataEntityService.exportModel((IEntity)psDataEntity, list);
+            psDataEntityService.exportModel(psDataEntity, list);
         }
         return list;
     }
 }
-

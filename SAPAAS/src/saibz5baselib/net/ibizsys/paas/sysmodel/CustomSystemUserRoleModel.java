@@ -1,22 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.sysmodel;
 
-import net.ibizsys.paas.sysmodel.SystemUserRoleModelBase;
 import net.ibizsys.paas.web.IWebContext;
 import net.ibizsys.paas.web.WebContext;
 
-public class CustomSystemUserRoleModel
-extends SystemUserRoleModelBase {
-    @Override
-    public String getRoleType() {
-        return "CUSTOM";
-    }
+/**
+ * 自定义系统用户角色对象模型
+ * @author Administrator
+ *
+ */
+public class CustomSystemUserRoleModel extends SystemUserRoleModelBase {
 
-    @Override
-    public boolean testCurUser(IWebContext iWebContext) throws Exception {
-        return WebContext.getUserRoleMgr2().testSysUserRole(this.getRoleTag());
-    }
+	@Override
+	public String getRoleType() {
+		return ISystemUserRoleModel.ROLETYPE_CUSTOM;
+	}
+
+	@Override
+	public boolean testCurUser(IWebContext iWebContext) throws Exception {
+		return WebContext.getUserRoleMgr2().testSysUserRole(this.getRoleTag());
+	}
+
+	
+	
 }
-

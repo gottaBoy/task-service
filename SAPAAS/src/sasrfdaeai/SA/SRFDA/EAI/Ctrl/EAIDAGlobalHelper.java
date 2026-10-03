@@ -81,6 +81,8 @@ import SA.SRFramework.WebEx.UI.ValueTransformMgr;
 import SA.SRFramework.WebEx.UI.WebExConfig;
 import SA.SRFramework.WebEx.Utility.ISRFExPOLogger;
 import SA.SRFramework.Workflow.WFConfigMgr;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class EAIDAGlobalHelper
 implements ISRFDAGlobalHelper {
@@ -91,6 +93,7 @@ implements ISRFDAGlobalHelper {
     protected RegisterMgr registerMgr = new RegisterMgr((ISRFDAGlobalHelper)this);
     private DAConfigMgr daConfigMgr = null;
     private GlobalConfigMgr globalConfigMgr = null;
+    private final Map<String, Object> globalValues = new ConcurrentHashMap<String, Object>();
 
     public DACodeListMgr getCodeListMgr() {
         return null;
@@ -137,10 +140,15 @@ implements ISRFDAGlobalHelper {
     }
 
     public Object GetGlobalValue(String strKey) {
-        return null;
+        return this.globalValues.get(strKey);
     }
 
     public void SetGlobalValue(String strKey, Object objValue) {
+        if (objValue == null) {
+            this.globalValues.remove(strKey);
+        } else {
+            this.globalValues.put(strKey, objValue);
+        }
     }
 
     public String GetTempPath() {
@@ -295,8 +303,8 @@ implements ISRFDAGlobalHelper {
         return PasswordStorageFactory.Create((ISRFDAGlobalHelper)this);
     }
 
-    public /* synthetic */ String getAppMode() {
-        throw new Error("Unresolved compilation problem: \n\tThe type EAIDAGlobalHelper must implement the inherited abstract method ISRFDAGlobalHelper.getAppMode()\n");
+    public String getAppMode() {
+        Object appMode = this.GetGlobalValue("SRFDAAPPMODE");
+        return appMode == null ? "" : (String)appMode;
     }
 }
-

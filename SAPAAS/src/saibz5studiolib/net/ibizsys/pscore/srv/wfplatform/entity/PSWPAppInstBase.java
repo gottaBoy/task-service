@@ -771,7 +771,7 @@ implements Serializable {
                 PSWPApp pSWPApp = new PSWPApp();
                 pSWPApp.setPSWPAppId(this.getPSWPAppId());
                 PSWPAppService pSWPAppService = (PSWPAppService)ServiceGlobal.getService(PSWPAppService.class, (SessionFactory)this.getSessionFactory());
-                pSWPAppService.autoGet((IEntity)pSWPApp);
+                pSWPAppService.autoGet(pSWPApp);
                 this.pswpapp = pSWPApp;
             }
             return this.pswpapp;

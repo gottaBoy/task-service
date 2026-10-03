@@ -255,10 +255,9 @@ extends BaseDataEntity {
                 String strKey = StringHelper.Format((String)"%1$s.%2$s.%3$s", (Object)TAG_LISTPARAM_LIST_ITEM, (Object)(i + 1), (Object)strColumnAttr);
                 listColumnConfig.SetProperty(strColumnAttr, this.GetListProperty(strKey, listColumnAttrMap.get(strColumnAttr)));
             }
-            this.listConfig.getListColumnsConfig().add((Object)listColumnConfig);
+            this.listConfig.getListColumnsConfig().add(listColumnConfig);
             ++i;
         }
         return this.listConfig;
     }
 }
-

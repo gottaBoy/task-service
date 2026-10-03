@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel;
 
-import net.ibizsys.psrt.srv.common.demodel.UserGroupDetailDEModelBase;
 
-public class UserGroupDetailDEModel
-extends UserGroupDetailDEModelBase {
+/**
+ * 实体[USERGROUPDETAIL]模型对象
+ */
+public class UserGroupDetailDEModel extends UserGroupDetailDEModelBase {
+
     private static final long serialVersionUID = -1L;
-}
 
+    public UserGroupDetailDEModel() throws Exception {
+        super();
+    }
+
+}

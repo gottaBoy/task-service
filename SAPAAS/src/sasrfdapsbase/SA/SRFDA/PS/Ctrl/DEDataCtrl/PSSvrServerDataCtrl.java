@@ -118,7 +118,7 @@ extends PSDEDataCtrl {
             }
             BaseDataEntity cond = new BaseDataEntity();
             cond.setParamValue("PSAPPSERVERID", (Object)srcPSPSAppServer.getPSAPPSERVERID());
-            Vector psDBServerList = new Vector();
+            Vector<PSDBServer> psDBServerList = new Vector<PSDBServer>();
             callResult = psDBServerDataCtrl.Select(cond, psDBServerList, PSDBServer.class.getName());
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5e94\u7528\u5bb9\u5668\u6570\u636e\u5e93\u670d\u52a1\u5668\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -126,7 +126,7 @@ extends PSDEDataCtrl {
             for (PSDBServer psDBServer : psDBServerList) {
                 cond.Reset();
                 cond.setParamValue("PSDBSERVERID", (Object)psDBServer.getPSDBSERVERID());
-                Vector psDBDevInstList = new Vector();
+                Vector<PSDBDevInst> psDBDevInstList = new Vector<PSDBDevInst>();
                 callResult = psDBDevInstDataCtrl.Select(cond, psDBDevInstList, PSDBDevInst.class.getName());
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u5e94\u7528\u5bb9\u5668\u6570\u636e\u5e93\u5b9e\u4f8b\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -224,4 +224,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

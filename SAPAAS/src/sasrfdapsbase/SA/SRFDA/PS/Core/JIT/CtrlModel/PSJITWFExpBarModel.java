@@ -58,7 +58,7 @@ implements IPSJITCtrlModel {
     }
 
     protected void onPrepareRootItem(ExpBarRootItem expBarRootItem) throws Exception {
-        ArrayList items = this.getPSWFExpBar().getRootItem().getAllItems();
+        ArrayList<IExpBarItem> items = this.getPSWFExpBar().getRootItem().getAllItems();
         for (IExpBarItem expitem : items) {
             ExpBarItem expBarItem = expBarRootItem.addItem(expitem.getId(), expitem.getPId());
             expBarItem.setText(expitem.getText());
@@ -84,4 +84,3 @@ implements IPSJITCtrlModel {
         }
     }
 }
-

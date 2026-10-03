@@ -43,7 +43,7 @@ extends PSDCMobPackCertServiceBase {
 
     @Override
     protected void onAfterUpdate(PSDCMobPackCert pSDCMobPackCert) throws Exception {
-        PSDCMobPackCert pSDCMobPackCert2 = (PSDCMobPackCert)this.getLast((IEntity)pSDCMobPackCert);
+        PSDCMobPackCert pSDCMobPackCert2 = (PSDCMobPackCert)this.getLast(pSDCMobPackCert);
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
             PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
             PSDevCenter pSDevCenter = new PSDevCenter();
@@ -56,7 +56,7 @@ extends PSDCMobPackCertServiceBase {
 
     @Override
     protected void onAfterRemove(PSDCMobPackCert pSDCMobPackCert) throws Exception {
-        PSDCMobPackCert pSDCMobPackCert2 = (PSDCMobPackCert)this.getLast((IEntity)pSDCMobPackCert);
+        PSDCMobPackCert pSDCMobPackCert2 = (PSDCMobPackCert)this.getLast(pSDCMobPackCert);
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
             PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
             PSDevCenter pSDevCenter = new PSDevCenter();

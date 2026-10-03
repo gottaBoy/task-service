@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel;
 
-import net.ibizsys.psrt.srv.common.demodel.UserDictCatDEModelBase;
 
-public class UserDictCatDEModel
-extends UserDictCatDEModelBase {
+/**
+ * 实体[USERDICTCAT]模型对象
+ */
+public class UserDictCatDEModel extends UserDictCatDEModelBase {
+
     private static final long serialVersionUID = -1L;
-}
 
+    public UserDictCatDEModel() throws Exception {
+        super();
+    }
+
+}

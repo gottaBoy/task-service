@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSChartType> {
     }
 
     protected void onFillParentInfo(PSChartType pSChartType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSChartType, string, string2, string3);
+        super.onFillParentInfo(pSChartType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSChartType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSChartType, bl);
+        super.onFillEntityFullInfo(pSChartType, bl);
     }
 
     protected void onWriteBackParent(PSChartType pSChartType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSChartType, bl);
+        super.onWriteBackParent(pSChartType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSChartType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSChartType pSChartType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSChartType, bl);
+        super.onRemoveEntityUncopyValues(pSChartType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSChartType pSChartType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -164,7 +164,7 @@ extends PSCoreSysServiceBase<PSChartType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSChartType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSChartType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSChartType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CtrlObj(boolean bl, PSChartType pSChartType, boolean bl2, boolean bl3) throws Exception {
@@ -180,7 +180,7 @@ extends PSCoreSysServiceBase<PSChartType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlObj_Default((IEntity)pSChartType, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlObj_Default(pSChartType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLOBJ");
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSChartType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IconPath_Default((IEntity)pSChartType, bl2, bl3);
+            string2 = this.onTestValueRule_IconPath_Default(pSChartType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ICONPATH");
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSChartType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSChartType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSChartType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSChartType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSChartTypeId_Default((IEntity)pSChartType, bl2, bl3);
+            string2 = this.onTestValueRule_PSChartTypeId_Default(pSChartType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCHARTTYPEID");
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSChartType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSChartTypeName_Default((IEntity)pSChartType, bl2, bl3);
+            string2 = this.onTestValueRule_PSChartTypeName_Default(pSChartType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCHARTTYPENAME");
@@ -296,7 +296,7 @@ extends PSCoreSysServiceBase<PSChartType> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSChartType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSChartType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -309,11 +309,11 @@ extends PSCoreSysServiceBase<PSChartType> {
     }
 
     protected void onSyncEntity(PSChartType pSChartType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSChartType, bl);
+        super.onSyncEntity(pSChartType, bl);
     }
 
     protected void onSyncIndexEntities(PSChartType pSChartType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSChartType, bl);
+        super.onSyncIndexEntities(pSChartType, bl);
     }
 
     public Object getDataContextValue(PSChartType pSChartType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -321,14 +321,14 @@ extends PSCoreSysServiceBase<PSChartType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSChartType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSChartType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSChartType pSChartType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSChartType, arrayList, n);
+        super.onExportMajorModel(pSChartType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -470,14 +470,14 @@ extends PSCoreSysServiceBase<PSChartType> {
 
     protected boolean onMergeChild(String string, String string2, PSChartType pSChartType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSChartType)) {
+        if (super.onMergeChild(string, string2, pSChartType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSChartType pSChartType) throws Exception {
-        super.onUpdateParent((IEntity)pSChartType);
+        super.onUpdateParent(pSChartType);
     }
 
     @Override

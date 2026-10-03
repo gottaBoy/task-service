@@ -73,7 +73,7 @@ implements IPSDEMainStateRSService {
     @Override
     protected List<PSDEMainStateRS> onListAll() throws Exception {
         ArrayList<PSDEMainStateRS> list = new ArrayList<PSDEMainStateRS>();
-        List psdemainstates = PSModelServiceUtil.getInstance().getPSDEMainStateService().listAll();
+        List<PSDEMainState> psdemainstates = PSModelServiceUtil.getInstance().getPSDEMainStateService().listAll();
         if (psdemainstates != null) {
             for (PSDEMainState parent : psdemainstates) {
                 List<PSDEMainStateRS> items = this.listByPSDEMainState(parent);

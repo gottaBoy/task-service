@@ -1,19 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.view;
 
 import net.ibizsys.paas.core.IModelBase;
-import net.ibizsys.paas.view.IUIAction;
 import net.sf.json.JSONObject;
 
-public interface IUIActionGroupDetail
-extends IModelBase {
-    public IUIAction getUIAction();
+/**
+ * 界面行为组成员对象接口
+ * @author Administrator
+ *
+ */
+public interface IUIActionGroupDetail extends IModelBase  {
 
-    public JSONObject getUIActionParam();
+	/**
+	 * 获取界面行为对象
+	 * @return
+	 */
+	IUIAction getUIAction();
+	
+	
+	/**
+	 * 获取界面行为参数
+	 * @return
+	 */
+	JSONObject getUIActionParam();
 }
-

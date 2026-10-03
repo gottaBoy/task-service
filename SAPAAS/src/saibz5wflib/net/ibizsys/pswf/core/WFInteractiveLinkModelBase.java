@@ -1,130 +1,235 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.codelist.ICodeList
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.pswf.core.IWFActionContext
- *  net.ibizsys.pswf.core.IWFRoleModel
- *  net.ibizsys.pswf.core.IWFRoleUser
- */
 package net.ibizsys.pswf.core;
 
 import java.util.Iterator;
+
 import net.ibizsys.paas.codelist.ICodeList;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.pswf.core.IWFActionContext;
-import net.ibizsys.pswf.core.IWFInteractiveLinkModel;
-import net.ibizsys.pswf.core.IWFProcRoleModel;
-import net.ibizsys.pswf.core.IWFRoleModel;
-import net.ibizsys.pswf.core.IWFRoleUser;
-import net.ibizsys.pswf.core.WFLinkModelBase;
 
-public abstract class WFInteractiveLinkModelBase
-extends WFLinkModelBase
-implements IWFInteractiveLinkModel {
-    private String strNextCondition = "ALL";
-    private int nActionCount = 0;
-    private boolean bActorIAActionControl = false;
-    private String strMemoField = "";
-    private String strActionField = "";
-    private String strAddWFRoleId = "";
-    private ICodeList actionCodeList = null;
-    private IWFRoleModel addedWFRoleModel = null;
+/**
+ * 流程交互连接模型基类
+ * @author lionlau
+ *
+ */
+public abstract class WFInteractiveLinkModelBase extends WFLinkModelBase implements IWFInteractiveLinkModel
+{
+	private String strNextCondition = IWFInteractiveLinkModel.NEXTCOND_ALL;
+	private int nActionCount = 0;
+	private boolean bActorIAActionControl = false;
+	private String strMemoField = "";
+	private String strActionField = "";
+	private String strAddWFRoleId = "";
+	private ICodeList actionCodeList = null;
+//	private String[] actorFields = null;
+	private IWFRoleModel addedWFRoleModel = null;
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.WFLinkModelBase#onInit()
+	 */
+	@Override
+	protected void onInit() throws Exception
+	{
+		if(!StringHelper.isNullOrEmpty(this.getAddedWFRoleId()))
+		{
+			addedWFRoleModel = this.getWFVersionModel().getWFModel().getSystemModel().getWFRoleModel(this.getAddedWFRoleId());
+		}
+		super.onInit();
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFInteractiveLinkModel#isActorIAActionControl()
+	 */
+	@Override
+	public boolean isActorIAActionControl()
+	{
+		return  this.bActorIAActionControl;
+	}
 
-    @Override
-    protected void onInit() throws Exception {
-        if (!StringHelper.isNullOrEmpty((String)this.getAddedWFRoleId())) {
-            this.addedWFRoleModel = this.getWFVersionModel().getWFModel().getSystemModel().getWFRoleModel(this.getAddedWFRoleId());
-        }
-        super.onInit();
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFInteractiveLinkModel#containsWFProcRole(net.ibizsys.pswf.core.IWFProcRoleModel)
+	 */
+	@Override
+	public boolean containsWFProcRole(IWFProcRoleModel iWFProcRoleModel)
+	{
+		return true;
+	}
 
-    @Override
-    public boolean isActorIAActionControl() {
-        return this.bActorIAActionControl;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFInteractiveLinkModel#containsUDActor(java.lang.String)
+	 */
+	@Override
+	public boolean containsUDActor(String strUDActorId)
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    @Override
-    public boolean containsWFProcRole(IWFProcRoleModel iWFProcRoleModel) {
-        return true;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFInteractiveLinkModel#getActionCount()
+	 */
+	@Override
+	public int getActionCount()
+	{
+		return nActionCount;
+	}
 
-    @Override
-    public boolean containsUDActor(String strUDActorId) {
-        return false;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFInteractiveLinkModel#getNextCondition()
+	 */
+	@Override
+	public String getNextCondition()
+	{
+		return strNextCondition;
+	}
 
-    @Override
-    public int getActionCount() {
-        return this.nActionCount;
-    }
+	/**
+	 * 设置下一步的到达条件
+	 * @param strNextCondition the strNextCondition to set
+	 */
+	protected void setNextCondition(String strNextCondition)
+	{
+		this.strNextCondition = strNextCondition;
+	}
 
-    @Override
-    public String getNextCondition() {
-        return this.strNextCondition;
-    }
+	/**
+	 * @param nActionCount the nActionCount to set
+	 */
+	protected void setActionCount(int nActionCount)
+	{
+		this.nActionCount = nActionCount;
+	}
 
-    @Override
-    protected void setNextCondition(String strNextCondition) {
-        this.strNextCondition = strNextCondition;
-    }
+	/**
+	 * @param bActorIAActionControl the bActorIAActionControl to set
+	 */
+	protected void setActorIAActionControl(boolean bActorIAActionControl)
+	{
+		this.bActorIAActionControl = bActorIAActionControl;
+	}
 
-    protected void setActionCount(int nActionCount) {
-        this.nActionCount = nActionCount;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFLinkModel#getMemoField()
+	 */
+	@Override
+	public String getMemoField()
+	{
+		return strMemoField;
+	}
 
-    protected void setActorIAActionControl(boolean bActorIAActionControl) {
-        this.bActorIAActionControl = bActorIAActionControl;
-    }
+	/**
+	 * 获取处理意见属性
+	 * @param strMemoField
+	 */
+	protected void setMemoField(String strMemoField)
+	{
+		this.strMemoField = strMemoField;
+	}
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFLinkModel#getActionField()
+	 */
+	@Override
+	public String getActionField()
+	{
+		return strActionField;
+	}
 
-    @Override
-    public String getMemoField() {
-        return this.strMemoField;
-    }
+	/**
+	 * 获取操作属性
+	 * @param strActionField
+	 */
+	protected void setActionField(String strActionField)
+	{
+		this.strActionField = strActionField;
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFModel#getActionCodeList()
+	 */
+	@Override
+	public ICodeList getActionCodeList()
+	{
+		return this.actionCodeList;
+	}
+	
+	
+	/**
+	 * 设置操作代码表对象
+	 * @param actionCodeList
+	 */
+	protected void setActionCodeList(ICodeList actionCodeList)
+	{
+		this.actionCodeList = actionCodeList;
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFLinkModel#getAddedWFRoleId()
+	 */
+	@Override
+	public String getAddedWFRoleId()
+	{
+		return strAddWFRoleId;
+	}
+	
+	
+	
 
-    protected void setMemoField(String strMemoField) {
-        this.strMemoField = strMemoField;
-    }
+	/**
+	 * 设置附加流程角色标识
+	 * @param strAddedWFRoleId
+	 */
+	protected void setAddedWFRoleId(String strAddWFRoleId)
+	{
+		this.strAddWFRoleId = strAddWFRoleId;
+	}
+	
+	
 
-    @Override
-    public String getActionField() {
-        return this.strActionField;
-    }
+//	/**
+//	 * 获取操作属性
+//	 * @param strAddActorFields
+//	 */
+//	protected void setAddActorFields(String strAddActorFields)
+//	{
+//		this.strAddActorFields = strAddActorFields;
+//		if(!StringHelper.isNullOrEmpty(this.strAddActorFields))
+//		{
+//			actorFields = StringHelper.splitEx(this.strAddActorFields);
+//		}
+//	}
+//	
+//	
+//	/* (non-Javadoc)
+//	 * @see net.ibizsys.pswf.core.IWFProcRoleModel#getUDFields()
+//	 */
+//	@Override
+//	public String[] getAddActorFields()
+//	{
+//		return actorFields;
+//	}
 
-    protected void setActionField(String strActionField) {
-        this.strActionField = strActionField;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFProcRoleModel#getWFRoleUserModels(net.ibizsys.pswf.core.IWFActionContext)
+	 */
+	@Override
+	public Iterator<IWFRoleUser> getAddedWFRoleUserModels(IWFActionContext iWFActionContext) throws Exception
+	{
+		if(getAddedWFRoleModel()==null)
+			return null;
+		return getAddedWFRoleModel().getWFRoleUserModels(iWFActionContext);
 
-    @Override
-    public ICodeList getActionCodeList() {
-        return this.actionCodeList;
-    }
+	}
 
-    protected void setActionCodeList(ICodeList actionCodeList) {
-        this.actionCodeList = actionCodeList;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFInteractiveLinkModel#getAddWFRoleModel()
+	 */
+	@Override
+	public IWFRoleModel getAddedWFRoleModel()
+	{
+		return addedWFRoleModel;
+	}
 
-    @Override
-    public String getAddedWFRoleId() {
-        return this.strAddWFRoleId;
-    }
-
-    protected void setAddedWFRoleId(String strAddWFRoleId) {
-        this.strAddWFRoleId = strAddWFRoleId;
-    }
-
-    @Override
-    public Iterator<IWFRoleUser> getAddedWFRoleUserModels(IWFActionContext iWFActionContext) throws Exception {
-        if (this.getAddedWFRoleModel() == null) {
-            return null;
-        }
-        return this.getAddedWFRoleModel().getWFRoleUserModels(iWFActionContext);
-    }
-
-    @Override
-    public IWFRoleModel getAddedWFRoleModel() {
-        return this.addedWFRoleModel;
-    }
+	
 }
-

@@ -209,7 +209,7 @@ IPSModelSortable {
         this.psDEWizardFormList.clear();
         IPSDEMainState firstPSDEMainState = this.getPSDEMSLogic().getDefaultPSDEMSLogicNode().getPSDEMainState();
         LinkedHashMap<String, IPSDEMainState> psDEMainStateMap = new LinkedHashMap<String, IPSDEMainState>();
-        ArrayList<Object> psDEMainStateList = new ArrayList<Object>();
+        ArrayList<IPSDEMainState> psDEMainStateList = new ArrayList<IPSDEMainState>();
         Iterator<? extends IPSDEMSLogicNode> psDEMSLogicNodes = this.getPSDEMSLogic().getPSDEMSLogicNodes();
         if (psDEMSLogicNodes != null) {
             while (psDEMSLogicNodes.hasNext()) {
@@ -436,4 +436,3 @@ IPSModelSortable {
         return this.psDEWizardLogicList.iterator();
     }
 }
-

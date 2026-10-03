@@ -1,14 +1,24 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IModelBase;
+/**
+ * 实体查询代码表达式接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDEDataQueryCodeExp extends IModelBase {
 
-public interface IDEDataQueryCodeExp
-extends IModelBase {
-    public String getExpression();
+	/**
+	 * 获取表单式
+	 * 
+	 * @return
+	 */
+	String getExpression();
 
-    public int getShowOrder();
+	/**
+	 * 获取显示次序
+	 * 
+	 * @return
+	 */
+	int getShowOrder();
 }
-

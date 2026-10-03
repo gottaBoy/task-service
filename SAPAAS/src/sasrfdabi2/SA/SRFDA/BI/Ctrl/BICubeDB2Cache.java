@@ -290,7 +290,7 @@ extends BICubeCache {
                 } else {
                     stringBuilder.Append(",");
                 }
-                Iterator strLevelGroup = groupData3.GetParamStringValue(iBILevelHelper.getShortId(), "(ALL)");
+                String strLevelGroup = groupData3.GetParamStringValue(iBILevelHelper.getShortId(), "(ALL)");
                 if (StringHelper.Compare((String)"GROUP", (String)((Object)strLevelGroup), (boolean)true) == 0) {
                     stringBuilder.Append("%1$s", (Object)iBILevelHelper.getShortId());
                     continue;
@@ -416,7 +416,7 @@ extends BICubeCache {
         stringBuilder.Append(" FROM %1$s %2$s\n", (Object)iBIHierarchyHelper.getTableName(), (Object)iBIHierarchyHelper.getShortId());
         if (!StringHelper.IsNullOrEmpty((String)biHierarchyFilter.getFilters()) || !StringHelper.IsNullOrEmpty((String)strExtQuery)) {
             String strCondition = this.OnGetAllBIHierarchySqlCondition(iBIHierarchyHelper, biHierarchyFilter.getFilters());
-            Iterator strCondition2 = this.OnGetAllBIHierarchySqlCondition(iBIHierarchyHelper, strExtQuery);
+            String strCondition2 = this.OnGetAllBIHierarchySqlCondition(iBIHierarchyHelper, strExtQuery);
             String strTotalCondition = "";
             if (!StringHelper.IsNullOrEmpty((String)strCondition)) {
                 strTotalCondition = String.valueOf(strTotalCondition) + StringHelper.Format((String)"(%1$s)", (Object)strCondition);
@@ -458,7 +458,7 @@ extends BICubeCache {
             }
             stringBuilder.Append(iBILevelHelper.getSortColumnName());
         }
-        Vector dataEntities = new Vector();
+        Vector<BaseDataEntity> dataEntities = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.iDAGlobalHelper, (String)this.strDBStorage, (String)stringBuilder.toString(), dataEntities, (String)"");
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7ef4\u5ea6\u660e\u7ec6\u6570\u636e\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));

@@ -122,7 +122,7 @@ implements IPSAppMenuItemService {
     @Override
     protected List<PSAppMenuItem> onListAll() throws Exception {
         ArrayList<PSAppMenuItem> list = new ArrayList<PSAppMenuItem>();
-        List psappmenus = PSModelServiceUtil.getInstance().getPSAppMenuService().listAll();
+        List<PSAppMenu> psappmenus = PSModelServiceUtil.getInstance().getPSAppMenuService().listAll();
         if (psappmenus != null) {
             for (PSAppMenu parent : psappmenus) {
                 List<PSAppMenuItem> items = this.listByPSAppMenu(parent);

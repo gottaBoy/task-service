@@ -144,9 +144,9 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
             PSCtrlMsgTag pSCtrlMsgTag = (PSCtrlMsgTag)iService.getDEModel().createEntity();
             pSCtrlMsgTag.set("PSCTRLMSGTAGID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCtrlMsgTag);
+                iService.getTemp(pSCtrlMsgTag);
             } else {
-                iService.get((IEntity)pSCtrlMsgTag);
+                iService.get(pSCtrlMsgTag);
             }
             this.onFillParentInfo_PSCtrlMsg(pSCtrlTypeMsgTag, pSCtrlMsgTag);
             return;
@@ -156,14 +156,14 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
             PSCtrlType pSCtrlType = (PSCtrlType)iService.getDEModel().createEntity();
             pSCtrlType.set("PSCTRLTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCtrlType);
+                iService.getTemp(pSCtrlType);
             } else {
-                iService.get((IEntity)pSCtrlType);
+                iService.get(pSCtrlType);
             }
             this.onFillParentInfo_PSCtrlType(pSCtrlTypeMsgTag, pSCtrlType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSCtrlTypeMsgTag, string, string2, string3);
+        super.onFillParentInfo(pSCtrlTypeMsgTag, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -202,7 +202,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
         if (bl && pSCtrlTypeMsgTag.getValidFlag() == null) {
             pSCtrlTypeMsgTag.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSCtrlTypeMsgTag, bl);
+        super.onFillEntityFullInfo(pSCtrlTypeMsgTag, bl);
         this.onFillEntityFullInfo_PSCtrlMsg(pSCtrlTypeMsgTag, bl);
         this.onFillEntityFullInfo_PSCtrlType(pSCtrlTypeMsgTag, bl);
     }
@@ -214,7 +214,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
     }
 
     protected void onWriteBackParent(PSCtrlTypeMsgTag pSCtrlTypeMsgTag, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSCtrlTypeMsgTag, bl);
+        super.onWriteBackParent(pSCtrlTypeMsgTag, bl);
     }
 
     public ArrayList<PSCtrlTypeMsgTag> selectByPSCtrlMsg(PSCtrlMsgTagBase pSCtrlMsgTagBase) throws Exception {
@@ -269,8 +269,8 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
         ArrayList<PSCtrlTypeMsgTag> arrayList = this.selectByPSCtrlMsg(pSCtrlMsgTag, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCTRLMSGTAG");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCtrlMsgTag);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCTRLTYPEMSGTAG_PSCTRLMSGTAG_PSCTRLMSGTAGID", "", iDataEntityModel.getName(), "PSCTRLTYPEMSGTAG", iDataEntityModel.getDataInfo((IEntity)pSCtrlMsgTag), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCtrlMsgTag);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCTRLTYPEMSGTAG_PSCTRLMSGTAG_PSCTRLMSGTAGID", "", iDataEntityModel.getName(), "PSCTRLTYPEMSGTAG", iDataEntityModel.getDataInfo(pSCtrlMsgTag), arrayList.get(0)));
         }
     }
 
@@ -303,7 +303,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
         ArrayList<PSCtrlTypeMsgTag> arrayList = this.selectByPSCtrlMsg(pSCtrlMsgTag);
         this.onBeforeRemoveByPSCtrlMsg(pSCtrlMsgTag, arrayList);
         for (PSCtrlTypeMsgTag pSCtrlTypeMsgTag : arrayList) {
-            this.remove((IEntity)pSCtrlTypeMsgTag);
+            this.remove(pSCtrlTypeMsgTag);
         }
         this.onAfterRemoveByPSCtrlMsg(pSCtrlMsgTag, arrayList);
     }
@@ -349,7 +349,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
         ArrayList<PSCtrlTypeMsgTag> arrayList = this.selectByPSCtrlType(pSCtrlType);
         this.onBeforeRemoveByPSCtrlType(pSCtrlType, arrayList);
         for (PSCtrlTypeMsgTag pSCtrlTypeMsgTag : arrayList) {
-            this.remove((IEntity)pSCtrlTypeMsgTag);
+            this.remove(pSCtrlTypeMsgTag);
         }
         this.onAfterRemoveByPSCtrlType(pSCtrlType, arrayList);
     }
@@ -370,7 +370,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
 
     protected void replaceParentInfo(PSCtrlTypeMsgTag pSCtrlTypeMsgTag, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSCtrlTypeMsgTag, cloneSession);
+        super.replaceParentInfo(pSCtrlTypeMsgTag, cloneSession);
         if (pSCtrlTypeMsgTag.getPSCtrlMsgTagId() != null && (iEntity = cloneSession.getEntity("PSCTRLMSGTAG", (Object)pSCtrlTypeMsgTag.getPSCtrlMsgTagId())) != null) {
             this.onFillParentInfo_PSCtrlMsg(pSCtrlTypeMsgTag, (PSCtrlMsgTag)iEntity);
         }
@@ -380,7 +380,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
     }
 
     protected void onRemoveEntityUncopyValues(PSCtrlTypeMsgTag pSCtrlTypeMsgTag, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSCtrlTypeMsgTag, bl);
+        super.onRemoveEntityUncopyValues(pSCtrlTypeMsgTag, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSCtrlTypeMsgTag pSCtrlTypeMsgTag, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -407,7 +407,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSCtrlTypeMsgTag, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSCtrlTypeMsgTag, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSCtrlTypeMsgTag, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Content(boolean bl, PSCtrlTypeMsgTag pSCtrlTypeMsgTag, boolean bl2, boolean bl3) throws Exception {
@@ -420,7 +420,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Content_Default((IEntity)pSCtrlTypeMsgTag, bl2, bl3);
+            string2 = this.onTestValueRule_Content_Default(pSCtrlTypeMsgTag, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTENT");
@@ -442,7 +442,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSCtrlTypeMsgTag, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSCtrlTypeMsgTag, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -467,7 +467,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlMsgTagId_Default((IEntity)pSCtrlTypeMsgTag, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlMsgTagId_Default(pSCtrlTypeMsgTag, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLMSGTAGID");
@@ -492,7 +492,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeId_Default((IEntity)pSCtrlTypeMsgTag, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeId_Default(pSCtrlTypeMsgTag, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPEID");
@@ -517,7 +517,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeMsgTagId_Default((IEntity)pSCtrlTypeMsgTag, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeMsgTagId_Default(pSCtrlTypeMsgTag, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPEMSGTAGID");
@@ -542,7 +542,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeMsgTagName_Default((IEntity)pSCtrlTypeMsgTag, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeMsgTagName_Default(pSCtrlTypeMsgTag, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPEMSGTAGNAME");
@@ -567,7 +567,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSCtrlTypeMsgTag, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSCtrlTypeMsgTag, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -580,11 +580,11 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
     }
 
     protected void onSyncEntity(PSCtrlTypeMsgTag pSCtrlTypeMsgTag, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSCtrlTypeMsgTag, bl);
+        super.onSyncEntity(pSCtrlTypeMsgTag, bl);
     }
 
     protected void onSyncIndexEntities(PSCtrlTypeMsgTag pSCtrlTypeMsgTag, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSCtrlTypeMsgTag, bl);
+        super.onSyncIndexEntities(pSCtrlTypeMsgTag, bl);
     }
 
     public Object getDataContextValue(PSCtrlTypeMsgTag pSCtrlTypeMsgTag, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -592,7 +592,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSCtrlTypeMsgTag, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSCtrlTypeMsgTag, string, iDataContextParam)) != null) {
             return object;
         }
         PSCtrlMsgTag pSCtrlMsgTag = pSCtrlTypeMsgTag.getPSCtrlMsg();
@@ -607,7 +607,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
     }
 
     protected void onExportMajorModel(PSCtrlTypeMsgTag pSCtrlTypeMsgTag, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSCtrlTypeMsgTag, arrayList, n);
+        super.onExportMajorModel(pSCtrlTypeMsgTag, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -787,14 +787,14 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
 
     protected boolean onMergeChild(String string, String string2, PSCtrlTypeMsgTag pSCtrlTypeMsgTag) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSCtrlTypeMsgTag)) {
+        if (super.onMergeChild(string, string2, pSCtrlTypeMsgTag)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSCtrlTypeMsgTag pSCtrlTypeMsgTag) throws Exception {
-        super.onUpdateParent((IEntity)pSCtrlTypeMsgTag);
+        super.onUpdateParent(pSCtrlTypeMsgTag);
     }
 
     @Override
@@ -815,7 +815,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeMsgTag> {
         PSCtrlTypeMsgTag pSCtrlTypeMsgTag2 = new PSCtrlTypeMsgTag();
         pSCtrlTypeMsgTag2.setPSCtrlTypeId(pSCtrlTypeMsgTag.getPSCtrlTypeId());
         pSCtrlTypeMsgTag2.setPSCtrlMsgTagId(pSCtrlTypeMsgTag.getPSCtrlMsgTagId());
-        if (this.selectOne((IEntity)pSCtrlTypeMsgTag2, true)) {
+        if (this.selectOne(pSCtrlTypeMsgTag2, true)) {
             return pSCtrlTypeMsgTag2.getPSCtrlTypeMsgTagId();
         }
         return super.getEntityFolderKeyValue(pSCtrlTypeMsgTag, pSSystem);

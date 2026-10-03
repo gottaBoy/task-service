@@ -1,32 +1,92 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import net.ibizsys.paas.db.IDataColumn;
-import net.ibizsys.paas.db.IDataRow;
 
+/**
+ * 数据表对象接口
+ * <p>
+ * 数据表类似jdbc查询的结果表，其中包含了行记录树，以及列的描述等信息
+ * <P>
+ * 注意它并不是指表格，不要和DataGrid混淆。
+ * 
+ * @author Administrator
+ *
+ */
 public interface IDataTable {
-    public int getColumnCount();
+	/**
+	 * 获取数据表列数量
+	 * 
+	 * @return
+	 */
+	int getColumnCount();
 
-    public int getColumnIndex(String var1);
+	/**
+	 * 通过名称获取数据表列位置
+	 * 
+	 * @param strColumnName
+	 * @return
+	 */
+	int getColumnIndex(String strColumnName);
 
-    public IDataColumn getDataColumn(int var1);
+	/**
+	 * 获取数据列
+	 * 
+	 * @param nIndex
+	 * @return
+	 */
+	IDataColumn getDataColumn(int nIndex);
 
-    public IDataRow next() throws SQLException;
+	/**
+	 * 下一台数据
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
+	IDataRow next() throws SQLException;
 
-    public ResultSet getResultSet();
+	/**
+	 * 获取结果集合
+	 * 
+	 * @return
+	 */
+	java.sql.ResultSet getResultSet();
 
-    public void close();
+	/**
+	 * 关闭数据表
+	 */
+	void close();
 
-    public int cacheRows(int var1) throws SQLException;
+	/**
+	 * 读记录
+	 * 
+	 * @param nSize
+	 * @return
+	 * @throws SQLException
+	 */
+	int cacheRows(int nSize) throws SQLException;
 
-    public IDataRow getCachedRow(int var1) throws Exception;
+	/**
+	 * 读记录
+	 * 
+	 * @param nIndex 行记录标识
+	 * @return
+	 * @throws SQLException
+	 */
+	IDataRow getCachedRow(int nIndex) throws Exception;
 
-    public int getCachedRowCount();
-
-    public int cacheAllRows() throws SQLException;
+	/**
+	 * 获取缓存的数据记录数
+	 * 
+	 * @return
+	 */
+	int getCachedRowCount();
+	
+	
+	
+	/**
+	 * 缓冲全部行记录
+	 * @return
+	 * @throws SQLException
+	 */
+	int cacheAllRows() throws SQLException;
 }
-

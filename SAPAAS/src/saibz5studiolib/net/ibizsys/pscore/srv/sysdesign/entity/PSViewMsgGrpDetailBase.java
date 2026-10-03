@@ -1760,7 +1760,7 @@ implements Serializable {
                 PSViewMsgGroup pSViewMsgGroup = new PSViewMsgGroup();
                 pSViewMsgGroup.setPSViewMsgGroupId(this.getPSViewMsgGroupId());
                 PSViewMsgGroupService pSViewMsgGroupService = (PSViewMsgGroupService)ServiceGlobal.getService(PSViewMsgGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSViewMsgGroupService.autoGet((IEntity)pSViewMsgGroup);
+                pSViewMsgGroupService.autoGet(pSViewMsgGroup);
                 this.psviewmsggroup = pSViewMsgGroup;
             }
             return this.psviewmsggroup;
@@ -1786,7 +1786,7 @@ implements Serializable {
                 PSViewMsg pSViewMsg = new PSViewMsg();
                 pSViewMsg.setPSViewMsgId(this.getPSViewMsgId());
                 PSViewMsgService pSViewMsgService = (PSViewMsgService)ServiceGlobal.getService(PSViewMsgService.class, (SessionFactory)this.getSessionFactory());
-                pSViewMsgService.autoGet((IEntity)pSViewMsg);
+                pSViewMsgService.autoGet(pSViewMsg);
                 this.psviewmsg = pSViewMsg;
             }
             return this.psviewmsg;

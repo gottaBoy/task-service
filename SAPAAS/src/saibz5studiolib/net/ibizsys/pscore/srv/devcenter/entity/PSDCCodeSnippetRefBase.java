@@ -986,7 +986,7 @@ implements Serializable {
                 PSDCCodeSnippet pSDCCodeSnippet = new PSDCCodeSnippet();
                 pSDCCodeSnippet.setPSDCCodeSnippetId(this.getPSDCCodeSnippetId());
                 PSDCCodeSnippetService pSDCCodeSnippetService = (PSDCCodeSnippetService)ServiceGlobal.getService(PSDCCodeSnippetService.class, (SessionFactory)this.getSessionFactory());
-                pSDCCodeSnippetService.autoGet((IEntity)pSDCCodeSnippet);
+                pSDCCodeSnippetService.autoGet(pSDCCodeSnippet);
                 this.psdccodesnippet = pSDCCodeSnippet;
             }
             return this.psdccodesnippet;
@@ -1012,7 +1012,7 @@ implements Serializable {
                 PSDCCodeSnippet pSDCCodeSnippet = new PSDCCodeSnippet();
                 pSDCCodeSnippet.setPSDCCodeSnippetId(this.getRefPSDCCodeSnippetId());
                 PSDCCodeSnippetService pSDCCodeSnippetService = (PSDCCodeSnippetService)ServiceGlobal.getService(PSDCCodeSnippetService.class, (SessionFactory)this.getSessionFactory());
-                pSDCCodeSnippetService.autoGet((IEntity)pSDCCodeSnippet);
+                pSDCCodeSnippetService.autoGet(pSDCCodeSnippet);
                 this.refpsdccodesnippet = pSDCCodeSnippet;
             }
             return this.refpsdccodesnippet;

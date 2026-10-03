@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSAppWFVerDEModelBase;
 
 public class PSAppWFVerDEModel
 extends PSAppWFVerDEModelBase {
+
+    public PSAppWFVerDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

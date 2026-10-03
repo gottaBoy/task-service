@@ -1334,7 +1334,7 @@ implements Serializable {
                 PSSysRunSession pSSysRunSession = new PSSysRunSession();
                 pSSysRunSession.setPSSysRunSessionId(this.getPSSysRunSessionId());
                 PSSysRunSessionService pSSysRunSessionService = (PSSysRunSessionService)ServiceGlobal.getService(PSSysRunSessionService.class, (SessionFactory)this.getSessionFactory());
-                pSSysRunSessionService.autoGet((IEntity)pSSysRunSession);
+                pSSysRunSessionService.autoGet(pSSysRunSession);
                 this.pssysrunsession = pSSysRunSession;
             }
             return this.pssysrunsession;
@@ -1360,7 +1360,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

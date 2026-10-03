@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSBackService> {
     }
 
     protected void onFillParentInfo(PSBackService pSBackService, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSBackService, string, string2, string3);
+        super.onFillParentInfo(pSBackService, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSBackService> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSBackService, bl);
+        super.onFillEntityFullInfo(pSBackService, bl);
     }
 
     protected void onWriteBackParent(PSBackService pSBackService, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSBackService, bl);
+        super.onWriteBackParent(pSBackService, bl);
     }
 
     @Override
@@ -144,7 +144,7 @@ extends PSCoreSysServiceBase<PSBackService> {
     }
 
     protected void onRemoveEntityUncopyValues(PSBackService pSBackService, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSBackService, bl);
+        super.onRemoveEntityUncopyValues(pSBackService, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSBackService pSBackService, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -165,7 +165,7 @@ extends PSCoreSysServiceBase<PSBackService> {
         if ((entityFieldError = this.onCheckField_ServiceParams(bl, pSBackService, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSBackService, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSBackService, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSBackService pSBackService, boolean bl2, boolean bl3) throws Exception {
@@ -178,7 +178,7 @@ extends PSCoreSysServiceBase<PSBackService> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSBackService, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSBackService, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -203,7 +203,7 @@ extends PSCoreSysServiceBase<PSBackService> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSBackServiceId_Default((IEntity)pSBackService, bl2, bl3);
+            string2 = this.onTestValueRule_PSBackServiceId_Default(pSBackService, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSBACKSERVICEID");
@@ -228,7 +228,7 @@ extends PSCoreSysServiceBase<PSBackService> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSBackServiceName_Default((IEntity)pSBackService, bl2, bl3);
+            string2 = this.onTestValueRule_PSBackServiceName_Default(pSBackService, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSBACKSERVICENAME");
@@ -250,7 +250,7 @@ extends PSCoreSysServiceBase<PSBackService> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ServiceObj_Default((IEntity)pSBackService, bl2, bl3);
+            string2 = this.onTestValueRule_ServiceObj_Default(pSBackService, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SERVICEOBJ");
@@ -272,7 +272,7 @@ extends PSCoreSysServiceBase<PSBackService> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ServiceParams_Default((IEntity)pSBackService, bl2, bl3);
+            string2 = this.onTestValueRule_ServiceParams_Default(pSBackService, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SERVICEPARAMS");
@@ -285,11 +285,11 @@ extends PSCoreSysServiceBase<PSBackService> {
     }
 
     protected void onSyncEntity(PSBackService pSBackService, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSBackService, bl);
+        super.onSyncEntity(pSBackService, bl);
     }
 
     protected void onSyncIndexEntities(PSBackService pSBackService, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSBackService, bl);
+        super.onSyncIndexEntities(pSBackService, bl);
     }
 
     public Object getDataContextValue(PSBackService pSBackService, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -297,14 +297,14 @@ extends PSCoreSysServiceBase<PSBackService> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSBackService, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSBackService, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSBackService pSBackService, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSBackService, arrayList, n);
+        super.onExportMajorModel(pSBackService, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -432,14 +432,14 @@ extends PSCoreSysServiceBase<PSBackService> {
 
     protected boolean onMergeChild(String string, String string2, PSBackService pSBackService) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSBackService)) {
+        if (super.onMergeChild(string, string2, pSBackService)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSBackService pSBackService) throws Exception {
-        super.onUpdateParent((IEntity)pSBackService);
+        super.onUpdateParent(pSBackService);
     }
 
     @Override

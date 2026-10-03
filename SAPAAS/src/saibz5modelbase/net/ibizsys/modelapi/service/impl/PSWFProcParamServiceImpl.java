@@ -72,7 +72,7 @@ implements IPSWFProcParamService {
     @Override
     protected List<PSWFProcParam> onListAll() throws Exception {
         ArrayList<PSWFProcParam> list = new ArrayList<PSWFProcParam>();
-        List pswfprocesses = PSModelServiceUtil.getInstance().getPSWFProcessService().listAll();
+        List<PSWFProcess> pswfprocesses = PSModelServiceUtil.getInstance().getPSWFProcessService().listAll();
         if (pswfprocesses != null) {
             for (PSWFProcess parent : pswfprocesses) {
                 List<PSWFProcParam> items = this.listByPSWFProcess(parent);

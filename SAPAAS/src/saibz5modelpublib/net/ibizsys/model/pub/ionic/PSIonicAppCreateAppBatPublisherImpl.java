@@ -1,20 +1,41 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.pub.ionic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.ionic.PSIonicAppCodePublisherImpl;
 
-public class PSIonicAppCreateAppBatPublisherImpl
-extends PSIonicAppCodePublisherImpl {
-    public PSIonicAppCreateAppBatPublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSIonicAppCreateAppBatPublisherImpl is inconsistent\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tiPSApplication cannot be resolved or is not a field\n\tIPSAppView cannot be resolved to a type\n\tIPSAppIndexView cannot be resolved to a type\n");
-    }
+import SA.SRFDA.PS.Core.App.View.IPSAppIndexView;
+import SA.SRFDA.PS.Core.App.View.IPSAppView;
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tIPSAppView cannot be resolved to a type\n\tiPSApplication cannot be resolved or is not a field\n\tIPSAppView cannot be resolved to a type\n\tIPSAppIndexView cannot be resolved to a type\n");
-    }
+/**
+ * 默认视图
+ * 
+ * @author lionlau
+ *
+ */
+public class PSIonicAppCreateAppBatPublisherImpl extends PSIonicAppCodePublisherImpl
+{
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		ArrayList<IPSAppView> indexViewList = new ArrayList<IPSAppView> ();
+		java.util.Iterator<IPSAppView> psAppViews = this.iPSApplication.getAllPSAppViews();
+		while(psAppViews.hasNext())
+		{
+			IPSAppView iPSAppView = psAppViews.next();
+			if(iPSAppView instanceof IPSAppIndexView)
+			{
+				indexViewList.add(iPSAppView);
+			}
+		}
+			
+		
+		params.put("indexviews", indexViewList);
+	
+	}	
 }
-

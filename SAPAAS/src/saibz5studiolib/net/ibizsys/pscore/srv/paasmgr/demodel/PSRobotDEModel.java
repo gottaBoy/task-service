@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSRobotDEModelBase;
 
 public class PSRobotDEModel
 extends PSRobotDEModelBase {
+
+    public PSRobotDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

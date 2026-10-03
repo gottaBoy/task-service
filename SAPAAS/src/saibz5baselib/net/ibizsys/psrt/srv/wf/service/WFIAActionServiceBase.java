@@ -1,879 +1,1504 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.annotation.PostConstruct
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.hibernate.SessionFactory
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.service;
 
 import java.util.ArrayList;
-import javax.annotation.PostConstruct;
+import java.util.List;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import net.ibizsys.paas.exception.ErrorException;
+import net.ibizsys.paas.api.IServiceAPIAction;
+import net.ibizsys.paas.core.PluginActionResult;
+import net.ibizsys.paas.core.IDataEntity;
 import net.ibizsys.paas.core.IDEDataSetFetchContext;
-import net.ibizsys.paas.dao.DAOGlobal;
-import net.ibizsys.paas.dao.IDAO;
+import net.ibizsys.paas.core.CallResult;
+import net.ibizsys.paas.db.DBCallResult;
 import net.ibizsys.paas.db.DBFetchResult;
-import net.ibizsys.paas.db.SelectCond;
-import net.ibizsys.paas.demodel.DEModelGlobal;
-import net.ibizsys.paas.demodel.IDataEntityModel;
-import net.ibizsys.paas.entity.EntityError;
-import net.ibizsys.paas.entity.EntityFieldError;
-import net.ibizsys.paas.entity.IEntity;
-import net.ibizsys.paas.service.CloneSession;
-import net.ibizsys.paas.service.IDataContextParam;
-import net.ibizsys.paas.service.IService;
-import net.ibizsys.paas.service.IServiceWork;
-import net.ibizsys.paas.service.ITransaction;
-import net.ibizsys.paas.service.ServiceGlobal;
-import net.ibizsys.paas.util.DataTypeHelper;
-import net.ibizsys.paas.util.DefaultValueHelper;
+import net.ibizsys.paas.db.IProcParam;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.psrt.srv.PSRuntimeSysServiceBase;
-import net.ibizsys.psrt.srv.wf.dao.WFIAActionDAO;
-import net.ibizsys.psrt.srv.wf.demodel.WFIAActionDEModel;
-import net.ibizsys.psrt.srv.wf.entity.WFIAAction;
-import net.ibizsys.psrt.srv.wf.entity.WFStep;
-import net.ibizsys.psrt.srv.wf.entity.WFStepBase;
-import net.ibizsys.psrt.srv.wf.service.WFIAActionService;
+import net.ibizsys.paas.util.StringBuilderEx;
+import net.ibizsys.paas.core.Errors;
+import net.ibizsys.paas.core.ActionContext;
+import net.ibizsys.paas.data.DataObject;
+import net.ibizsys.paas.service.ServiceGlobal;
+import net.ibizsys.paas.entity.IEntity;
+import net.ibizsys.paas.demodel.IDataEntityModel;
+import net.ibizsys.paas.demodel.DEModelGlobal;
+import net.ibizsys.paas.demodel.IDELogicModel;
+import net.ibizsys.paas.dao.DAOGlobal;
+import net.ibizsys.paas.web.WebContext;
+import net.ibizsys.paas.service.IService;
+import net.ibizsys.paas.util.DataTypeHelper;
+import net.ibizsys.paas.util.KeyValueHelper;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.SessionFactory;
 
-public abstract class WFIAActionServiceBase
-extends PSRuntimeSysServiceBase<WFIAAction> {
+import net.ibizsys.paas.db.SelectCond;
+import net.ibizsys.paas.service.IServiceWork;
+import net.ibizsys.paas.service.IServicePlugin;
+import net.ibizsys.paas.service.ITransaction;
+import net.ibizsys.paas.dao.IDAO;
+import net.ibizsys.paas.service.CloneSession;
+import net.ibizsys.paas.service.ServiceBase;
+import net.ibizsys.paas.entity.EntityFieldError;
+import net.ibizsys.paas.entity.EntityError;
+
+import java.sql.Timestamp;
+
+import net.ibizsys.paas.util.DefaultValueHelper;
+
+import javax.annotation.PostConstruct;
+
+import net.ibizsys.paas.service.IDataContextParam;
+import net.sf.json.JSONObject;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+
+
+import net.ibizsys.psrt.srv.wf.entity.WFIAAction;
+import net.ibizsys.psrt.srv.wf.dao.WFIAActionDAO;
+import net.ibizsys.psrt.srv.wf.demodel.WFIAActionDEModel;
+
+/**
+ * 实体[WFIAAction] 服务对象基类
+ */
+public abstract class WFIAActionServiceBase extends net.ibizsys.psrt.srv.PSRuntimeSysServiceBase<WFIAAction> {
     private static final Log log = LogFactory.getLog(WFIAActionServiceBase.class);
-    public static final String DATASET_DEFAULT = "DEFAULT";
-    private WFIAActionDEModel wFIAActionDEModel;
-    private WFIAActionDAO wFIAActionDAO;
+    /**
+     * 实体数据集合[DEFAULT]标识
+     */
+    public final static String DATASET_DEFAULT = "DEFAULT";
 
-    public static WFIAActionService getInstance() throws Exception {
-        return WFIAActionServiceBase.getInstance(null);
+
+    public WFIAActionServiceBase () {
+        super();
+
     }
 
+    /**
+     * 获取实体[WFIAAction]服务对象
+     * @param sessionFactory
+     * @return
+     * @throws Exception
+     */
+    public static WFIAActionService getInstance() throws Exception {
+        return getInstance(null);
+    }
+
+    /**
+     * 获取实体[WFIAAction]服务对象
+     * @param sessionFactory
+     * @return
+     * @throws Exception
+     */
     public static WFIAActionService getInstance(SessionFactory sessionFactory) throws Exception {
         return (WFIAActionService)ServiceGlobal.getService(WFIAActionService.class, sessionFactory);
     }
 
-    @Override
+    /**
+     * Spring注册后执行构造处理
+     * @throws Exception
+     */
     @PostConstruct
     public void postConstruct() throws Exception {
-        ServiceGlobal.registerService(this.getServiceId(), this);
+        ServiceGlobal.registerService(getServiceId(), this);
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#getServiceId()
+     */
     @Override
     protected String getServiceId() {
         return "net.ibizsys.psrt.srv.wf.service.WFIAActionService";
     }
 
-    public WFIAActionDEModel getWFIAActionDEModel() {
-        if (this.wFIAActionDEModel == null) {
+    private WFIAActionDEModel wFIAActionDEModel;
+    /**
+     * 获取实体[WFIAAction]模型对象
+     */
+    public  WFIAActionDEModel getWFIAActionDEModel() {
+        if(this.wFIAActionDEModel==null) {
             try {
                 this.wFIAActionDEModel = (WFIAActionDEModel)DEModelGlobal.getDEModel("net.ibizsys.psrt.srv.wf.demodel.WFIAActionDEModel");
-            }
-            catch (Exception exception) {
-                // empty catch block
+            } catch(Exception ex) {
             }
         }
         return this.wFIAActionDEModel;
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#getDEModel()
+     */
     @Override
-    public IDataEntityModel getDEModel() {
+    public  IDataEntityModel getDEModel() {
         return this.getWFIAActionDEModel();
     }
 
-    public WFIAActionDAO getWFIAActionDAO() {
-        if (this.wFIAActionDAO == null) {
+
+    private WFIAActionDAO wFIAActionDAO;
+
+    /**
+     * 获取实体[WFIAAction]数据操作对象
+     */
+    public  WFIAActionDAO getWFIAActionDAO() {
+        if(this.wFIAActionDAO==null) {
             try {
-                this.wFIAActionDAO = (WFIAActionDAO)DAOGlobal.getDAO("net.ibizsys.psrt.srv.wf.dao.WFIAActionDAO", this.getSessionFactory());
-            }
-            catch (Exception exception) {
-                // empty catch block
+                this.wFIAActionDAO= (WFIAActionDAO)DAOGlobal.getDAO("net.ibizsys.psrt.srv.wf.dao.WFIAActionDAO",this.getSessionFactory());
+            } catch(Exception ex) {
             }
         }
         return this.wFIAActionDAO;
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.IService#getDAO()
+     */
     @Override
-    public IDAO getDAO() {
+    public  IDAO getDAO() {
         return this.getWFIAActionDAO();
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onfetchDataSet(java.lang.String, net.ibizsys.paas.core.IDEDataSetFetchContext)
+     */
     @Override
-    protected DBFetchResult onfetchDataSet(String strDataSetName, IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        if (StringHelper.compare(strDataSetName, DATASET_DEFAULT, true) == 0) {
+    protected DBFetchResult onfetchDataSet(String strDataSetName,IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
+        if(StringHelper.compare(strDataSetName,DATASET_DEFAULT,true)==0) {
             return this.fetchDefault(iDEDataSetFetchContext);
         }
-        return super.onfetchDataSet(strDataSetName, iDEDataSetFetchContext);
+        return super.onfetchDataSet(strDataSetName,iDEDataSetFetchContext);
     }
 
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onExecuteAction(java.lang.String, net.ibizsys.paas.entity.IEntity)
+     */
     @Override
-    protected void onExecuteAction(String strAction, IEntity entity) throws Exception {
-        super.onExecuteAction(strAction, entity);
+    protected  void onExecuteAction(String strAction,IEntity entity) throws Exception {
+        super.onExecuteAction(strAction,entity);
     }
 
+    /**
+     * 获取数据集合[DEFAULT]
+     * @param iDEDataSetFetchContext
+     * @return
+     * @throws Exception
+     */
     public DBFetchResult fetchDefault(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        DBFetchResult dbFetchResult = this.doServiceFetchWork(iDEDataSetFetchContext, DATASET_DEFAULT, false);
+
+        DBFetchResult dbFetchResult =  doServiceFetchWork(iDEDataSetFetchContext,DATASET_DEFAULT,false);
+        // dbFetchResult.getDataSet().cacheDataRow();
+        // session.close();
         return dbFetchResult;
     }
 
+
+
+
+
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onFillParentInfo(net.ibizsys.paas.entity.IEntity, java.lang.String, java.lang.String, java.lang.String)
+     */
     @Override
-    protected void onFillParentInfo(WFIAAction et, String strParentType, String strTypeParam, String strParentKey) throws Exception {
-        if ((StringHelper.compare(strParentType, "DER1N", true) == 0 || StringHelper.compare(strParentType, "SYSDER1N", true) == 0 || StringHelper.compare(strParentType, "DER11", true) == 0 || StringHelper.compare(strParentType, "SYSDER11", true) == 0) && StringHelper.compare(strTypeParam, "DER1N_WFIAACTION_WFSTEP_WFSTEPID", true) == 0) {
-            IService iService = ServiceGlobal.getService("net.ibizsys.psrt.srv.wf.service.WFStepService", this.getSessionFactory());
-            WFStep parentEntity = (WFStep)iService.getDEModel().createEntity();
-            parentEntity.set("WFSTEPID", DataTypeHelper.parse(25, strParentKey));
-            if (strParentKey.indexOf("SRFTEMPKEY:") == 0) {
+    protected void onFillParentInfo(WFIAAction et,String strParentType,String strTypeParam,String strParentKey) throws Exception {
+        //关系类型 : DER1N ,主实体 :WFSTEP / 工作流步骤
+        if (((StringHelper.compare(strParentType, WebContext.PARAM_PARENTTYPE_DER1N, true) == 0)
+                ||(StringHelper.compare(strParentType, WebContext.PARAM_PARENTTYPE_SYSDER1N, true) == 0)
+                ||(StringHelper.compare(strParentType, WebContext.PARAM_PARENTTYPE_DER11, true) == 0)
+                ||(StringHelper.compare(strParentType, WebContext.PARAM_PARENTTYPE_SYSDER11, true) == 0))
+                && (StringHelper.compare(strTypeParam, "DER1N_WFIAACTION_WFSTEP_WFSTEPID", true)==0)) {
+            IService iService= ServiceGlobal.getService("net.ibizsys.psrt.srv.wf.service.WFStepService",this.getSessionFactory());
+            net.ibizsys.psrt.srv.wf.entity.WFStep parentEntity = ( net.ibizsys.psrt.srv.wf.entity.WFStep)iService.getDEModel().createEntity();
+            parentEntity.set(net.ibizsys.psrt.srv.wf.entity.WFStep.FIELD_WFSTEPID,DataTypeHelper.parse(25,strParentKey));
+            if(strParentKey.indexOf(ServiceBase.TEMPKEY) == 0)
                 iService.getTemp(parentEntity);
-            } else {
+            else
                 iService.get(parentEntity);
-            }
-            this.onFillParentInfo_Wfstep(et, parentEntity);
+            this.onFillParentInfo_Wfstep(et,parentEntity );
             return;
         }
-        super.onFillParentInfo(et, strParentType, strTypeParam, strParentKey);
+        super.onFillParentInfo(et,strParentType,strTypeParam,strParentKey);
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onSyncDER1NData(java.lang.String, java.lang.String, java.lang.String)
+     */
     @Override
     protected String onSyncDER1NData(String strDER1NId, String strParentKey, String strDatas) throws Exception {
-        return super.onSyncDER1NData(strDER1NId, strParentKey, strDatas);
+        return super.onSyncDER1NData( strDER1NId,  strParentKey,  strDatas);
     }
 
-    protected void onFillParentInfo_Wfstep(WFIAAction et, WFStep parentEntity) throws Exception {
+
+    /**
+    * 填充数据的父数据信息[工作流步骤]
+    * @param et 当前数据对象
+    * @param parentEntity 父数据对象
+    * @throws Exception
+    */
+    protected void onFillParentInfo_Wfstep(WFIAAction et,net.ibizsys.psrt.srv.wf.entity.WFStep parentEntity) throws Exception {
         et.setWFStepId(parentEntity.getWFStepId());
         et.setWFStepName(parentEntity.getWFPLogicName());
     }
 
+
+
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onFillEntityFullInfo(net.ibizsys.paas.entity.IEntity, boolean)
+     */
     @Override
     protected void onFillEntityFullInfo(WFIAAction et, boolean bCreate) throws Exception {
-        if (bCreate && et.getWFIAActionName() == null) {
-            et.setWFIAActionName((String)DefaultValueHelper.getValue(this.getWebContext(), "", "\u4ea4\u4e92\u64cd\u4f5c", 25));
+        //填充新建默认值
+        if(bCreate) {
+            if(et.getWFIAActionName()==null) {
+                et.setWFIAActionName((String)DefaultValueHelper.getValue(this.getWebContext(),"","交互操作",25));
+            }
         }
         super.onFillEntityFullInfo(et, bCreate);
-        this.onFillEntityFullInfo_Wfstep(et, bCreate);
+
+        //填充物理化外键相关属性
+        //关系类型 : DER1N ,主实体 :WFSTEP / 工作流步骤
+        onFillEntityFullInfo_Wfstep(et, bCreate);
     }
 
+    /**
+    * 填充实体的数据信息 工作流步骤
+    * @param et
+    * @param bCreate 是否建立
+    * @throws Exception
+    */
     protected void onFillEntityFullInfo_Wfstep(WFIAAction et, boolean bCreate) throws Exception {
-        if (et.isWFStepIdDirty()) {
-            if (et.getWFStepId() != null) {
-                if (et.getWFStepId() == null || et.getWFStepName() == null) {
-                    WFStep parentEntity = et.getWfstep();
+        if(et.isWFStepIdDirty()) {
+            if(et.getWFStepId()!=null) {
+                if((true&&et.getWFStepId()==null)||(true&&et.getWFStepName()==null)) {
+                    net.ibizsys.psrt.srv.wf.entity.WFStep parentEntity  = et.getWfstep();
                     et.setWFStepName(parentEntity.getWFPLogicName());
                 }
+
             } else {
                 et.setWFStepName(null);
             }
         }
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onWriteBackParent(net.ibizsys.paas.entity.IEntity, boolean)
+     */
     @Override
     protected void onWriteBackParent(WFIAAction et, boolean bCreate) throws Exception {
         super.onWriteBackParent(et, bCreate);
     }
 
-    public ArrayList<WFIAAction> selectByWfstep(WFStepBase parentEntity) throws Exception {
-        return this.selectByWfstep(parentEntity, "");
-    }
 
-    public ArrayList<WFIAAction> selectByWfstep(WFStepBase parentEntity, String strOrderInfo) throws Exception {
+
+
+    /**
+     * 通过关系[工作流步骤]父数据查询数据
+     * @param parentEntity 父数据
+     * @throws Exception
+     */
+    public java.util.ArrayList<WFIAAction> selectByWfstep(net.ibizsys.psrt.srv.wf.entity.WFStepBase parentEntity) throws Exception {
+        return selectByWfstep( parentEntity,"");
+    }
+    /**
+     * 通过关系[工作流步骤]父数据查询数据
+     * @param parentEntity 父数据
+     * @param strOrderInfo 排序信息
+     * @throws Exception
+     */
+    public java.util.ArrayList<WFIAAction> selectByWfstep(net.ibizsys.psrt.srv.wf.entity.WFStepBase parentEntity,String strOrderInfo) throws Exception {
         SelectCond selectCond = new SelectCond();
-        selectCond.setConditon("WFSTEPID", parentEntity.getWFStepId());
+        selectCond.setConditon(WFIAAction.FIELD_WFSTEPID, parentEntity.getWFStepId());
         selectCond.setOrderInfo(strOrderInfo);
-        this.onFillSelectByWfstepCond(selectCond);
+        onFillSelectByWfstepCond(selectCond);
         return this.select(selectCond);
     }
 
+    /**
+     * 填充关系[工作流步骤]父数据查询附加条件
+     * @param selectCond 查询条件对象
+     * @throws Exception
+     */
     protected void onFillSelectByWfstepCond(SelectCond selectCond) throws Exception {
+
     }
 
-    public void testRemoveByWfstep(WFStep parentEntity) throws Exception {
-        ArrayList<WFIAAction> list = this.selectByWfstep(parentEntity);
-        if (list.size() > 0) {
+
+
+
+    /**
+     * 判断是否能够通过关系[工作流步骤]删除数据
+     * @param parentEntity 父数据
+     * @throws Exception
+     */
+    public void testRemoveByWfstep(net.ibizsys.psrt.srv.wf.entity.WFStep parentEntity) throws Exception {
+        java.util.ArrayList<WFIAAction> list =  this.selectByWfstep(parentEntity);
+        if(list.size()>0) {
             IDataEntityModel parentDEModel = this.getDEModel().getSystemRuntime().getDataEntityModel("WFSTEP");
             parentDEModel.getService(this.getSessionFactory()).getCache(parentEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_WFIAACTION_WFSTEP_WFSTEPID", "", parentDEModel.getName(), "WFIAACTION", parentDEModel.getDataInfo(parentEntity)));
+            throw new Exception(getRemoveRejectMsg("DER1N_WFIAACTION_WFSTEP_WFSTEPID","" ,parentDEModel.getName(),"WFIAACTION",parentDEModel.getDataInfo(parentEntity)));
         }
     }
 
-    public void resetWfstep(WFStep parentEntity) throws Exception {
-        ArrayList<WFIAAction> list = this.selectByWfstep(parentEntity);
-        for (WFIAAction item : list) {
-            WFIAAction item2 = (WFIAAction)this.getDEModel().createEntity();
+
+    /**
+     * 通过关系[工作流步骤]重置数据
+     * @param parentEntity 父数据
+     * @throws Exception
+     */
+    public void resetWfstep(net.ibizsys.psrt.srv.wf.entity.WFStep parentEntity) throws Exception {
+        java.util.ArrayList<WFIAAction> list =  this.selectByWfstep(parentEntity);
+        for(WFIAAction item:list) {
+            WFIAAction item2 = (WFIAAction)getDEModel().createEntity();
             item2.setWFIAActionId(item.getWFIAActionId());
             item2.setWFStepId(null);
             this.update(item2);
         }
     }
 
-    public void removeByWfstep(WFStep parentEntity) throws Exception {
-        final WFStep parentEntity2 = parentEntity;
-        this.doServiceWork(new IServiceWork(){
 
+    /**
+     * 通过关系[工作流步骤]删除数据
+     * @param parentEntity 父数据
+     * @throws Exception
+     */
+    public void removeByWfstep(net.ibizsys.psrt.srv.wf.entity.WFStep parentEntity) throws Exception {
+        final net.ibizsys.psrt.srv.wf.entity.WFStep parentEntity2 = parentEntity;
+        this.doServiceWork(new IServiceWork() {
             @Override
             public void execute(ITransaction iTransaction) throws Exception {
-                WFIAActionServiceBase.this.onBeforeRemoveByWfstep(parentEntity2);
-                WFIAActionServiceBase.this.internalRemoveByWfstep(parentEntity2);
-                WFIAActionServiceBase.this.onAfterRemoveByWfstep(parentEntity2);
+                onBeforeRemoveByWfstep(parentEntity2);
+                internalRemoveByWfstep(parentEntity2);
+                onAfterRemoveByWfstep(parentEntity2);
             }
         });
     }
 
-    protected void onBeforeRemoveByWfstep(WFStep parentEntity) throws Exception {
+    /**
+     * 通过关系[工作流步骤]删除数据之前调用
+     * @param parentEntity 父数据
+     * @throws Exception
+     */
+    protected void onBeforeRemoveByWfstep(net.ibizsys.psrt.srv.wf.entity.WFStep parentEntity) throws Exception {
+
     }
 
-    protected void internalRemoveByWfstep(WFStep parentEntity) throws Exception {
-        ArrayList<WFIAAction> removeList = this.selectByWfstep(parentEntity);
-        this.onBeforeRemoveByWfstep(parentEntity, removeList);
-        for (WFIAAction item : removeList) {
-            this.remove(item);
+    /**
+    * 内部删除数据，通过关系[工作流步骤]
+    * @param parentEntity 父数据
+    * @throws Exception
+    */
+    protected void internalRemoveByWfstep(net.ibizsys.psrt.srv.wf.entity.WFStep parentEntity) throws Exception {
+        java.util.ArrayList<WFIAAction> removeList = selectByWfstep(parentEntity);
+        onBeforeRemoveByWfstep(parentEntity,removeList );
+
+        // 执行删除
+        for (WFIAAction item : removeList ) {
+            remove(item );
         }
-        this.onAfterRemoveByWfstep(parentEntity, removeList);
+        onAfterRemoveByWfstep(parentEntity,removeList );
     }
 
-    protected void onAfterRemoveByWfstep(WFStep parentEntity) throws Exception {
+    /**
+     * 通过关系[工作流步骤]删除数据之后调用
+     * @param parentEntity 父数据
+     * @throws Exception
+     */
+    protected void onAfterRemoveByWfstep(net.ibizsys.psrt.srv.wf.entity.WFStep parentEntity) throws Exception {
+
     }
 
-    protected void onBeforeRemoveByWfstep(WFStep parentEntity, ArrayList<WFIAAction> removeList) throws Exception {
+    /**
+     * 通过关系[工作流步骤]删除数据之前调用
+     * @param parentEntity 父数据
+     * @param removeList 要删除的数据清单
+     * @throws Exception
+     */
+    protected void onBeforeRemoveByWfstep(net.ibizsys.psrt.srv.wf.entity.WFStep parentEntity,java.util.ArrayList<WFIAAction> removeList) throws Exception {
+
     }
 
-    protected void onAfterRemoveByWfstep(WFStep parentEntity, ArrayList<WFIAAction> removeList) throws Exception {
+    /**
+     * 通过关系[工作流步骤]删除数据之后调用
+     * @param parentEntity 父数据
+     * @param removeList 要删除的数据清单
+     * @throws Exception
+     */
+    protected void onAfterRemoveByWfstep(net.ibizsys.psrt.srv.wf.entity.WFStep parentEntity,java.util.ArrayList<WFIAAction> removeList) throws Exception {
+
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onBeforeRemove(net.ibizsys.paas.entity.IEntity)
+     */
     @Override
     protected void onBeforeRemove(WFIAAction et) throws Exception {
         super.onBeforeRemove(et);
     }
 
+
+
+
+
+    /**
+     * 替换父数据信息
+     * @param et
+     * @throws Exception
+     */
     @Override
-    protected void replaceParentInfo(WFIAAction et, CloneSession cloneSession) throws Exception {
-        IEntity entity;
+    protected void replaceParentInfo(WFIAAction et,CloneSession cloneSession) throws Exception {
         super.replaceParentInfo(et, cloneSession);
-        if (et.getWFStepId() != null && (entity = cloneSession.getEntity("WFSTEP", et.getWFStepId())) != null) {
-            this.onFillParentInfo_Wfstep(et, (WFStep)entity);
+        //循环所有的从关系，判断有误替换
+        if(et.getWFStepId()!=null) {
+            IEntity entity = cloneSession.getEntity("WFSTEP",et.getWFStepId());
+            if(entity !=null) {
+                onFillParentInfo_Wfstep(et,(net.ibizsys.psrt.srv.wf.entity.WFStep) entity);
+            }
         }
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onRemoveEntityUncopyValues(net.ibizsys.paas.entity.IEntity, boolean)
+     */
     @Override
     protected void onRemoveEntityUncopyValues(WFIAAction et, boolean bTempMode) throws Exception {
-        super.onRemoveEntityUncopyValues(et, bTempMode);
+        super.onRemoveEntityUncopyValues(et,  bTempMode);
     }
 
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onCheckEntity(boolean, net.ibizsys.paas.entity.IEntity, boolean, boolean, net.ibizsys.paas.entity.EntityError)
+     */
     @Override
-    protected void onCheckEntity(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode, EntityError entityError) throws Exception {
+    protected void onCheckEntity(boolean bBaseMode,WFIAAction  et, boolean bCreate, boolean bTempMode,EntityError entityError) throws Exception {
         EntityFieldError entityFieldError = null;
-        entityFieldError = this.onCheckField_ActionCount(bBaseMode, et, bCreate, bTempMode);
-        if (entityFieldError != null) {
+        //检查属性 ACTIONCOUNT
+        entityFieldError = onCheckField_ActionCount( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_ActionLogicName(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 ACTIONLOGICNAME
+        entityFieldError = onCheckField_ActionLogicName( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_ActionName(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 ACTIONNAME
+        entityFieldError = onCheckField_ActionName( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_FAHelper(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 FAHELPER
+        entityFieldError = onCheckField_FAHelper( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_Memo(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 备注
+        entityFieldError = onCheckField_Memo( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_NextCondition(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 NEXTCONDITION
+        entityFieldError = onCheckField_NextCondition( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_NextTo(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 NEXTTO
+        entityFieldError = onCheckField_NextTo( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_OrderFlag(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 ORDERFLAG
+        entityFieldError = onCheckField_OrderFlag( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_PagePath(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 PAGEPATH
+        entityFieldError = onCheckField_PagePath( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_PanelId(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 PANELID
+        entityFieldError = onCheckField_PanelId( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_WFIAActionId(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 工作流交互操作标识
+        entityFieldError = onCheckField_WFIAActionId( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_WFIAActionName(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 工作流交互操作名称
+        entityFieldError = onCheckField_WFIAActionName( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_WFStepId(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 互动操作_相关步骤
+        entityFieldError = onCheckField_WFStepId( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        if ((entityFieldError = this.onCheckField_WFStepName(bBaseMode, et, bCreate, bTempMode)) != null) {
+        //检查属性 WFSTEPNAME
+        entityFieldError = onCheckField_WFStepName( bBaseMode,  et,  bCreate,  bTempMode);
+        if(entityFieldError!=null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bBaseMode, et, bCreate, bTempMode, entityError);
+        super.onCheckEntity(bBaseMode,et,  bCreate,bTempMode,entityError);
     }
 
-    protected EntityFieldError onCheckField_ActionCount(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isActionCountDirty()) {
+
+    /**
+     * 获取属性[ActionCount]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_ActionCount(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isActionCountDirty()) {
             return null;
         }
+
         Integer value = et.getActionCount();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_ActionCount_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_ActionCount_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("ACTIONCOUNT");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_ACTIONCOUNT);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_ActionLogicName(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isActionLogicNameDirty()) {
+
+    /**
+     * 获取属性[ActionLogicName]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_ActionLogicName(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isActionLogicNameDirty()) {
             return null;
         }
+
         String value = et.getActionLogicName();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_ActionLogicName_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_ActionLogicName_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("ACTIONLOGICNAME");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_ACTIONLOGICNAME);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_ActionName(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isActionNameDirty()) {
+
+    /**
+     * 获取属性[ActionName]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_ActionName(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isActionNameDirty()) {
             return null;
         }
+
         String value = et.getActionName();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_ActionName_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_ActionName_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("ACTIONNAME");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_ACTIONNAME);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_FAHelper(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isFAHelperDirty()) {
+
+    /**
+     * 获取属性[FAHelper]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_FAHelper(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isFAHelperDirty()) {
             return null;
         }
+
         String value = et.getFAHelper();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_FAHelper_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_FAHelper_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("FAHELPER");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_FAHELPER);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_Memo(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isMemoDirty()) {
+
+    /**
+     * 获取属性[Memo]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_Memo(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isMemoDirty()) {
             return null;
         }
+
         String value = et.getMemo();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_Memo_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_Memo_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("MEMO");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_MEMO);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_NextCondition(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isNextConditionDirty()) {
+
+    /**
+     * 获取属性[NextCondition]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_NextCondition(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isNextConditionDirty()) {
             return null;
         }
+
         String value = et.getNextCondition();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_NextCondition_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_NextCondition_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("NEXTCONDITION");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_NEXTCONDITION);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_NextTo(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isNextToDirty()) {
+
+    /**
+     * 获取属性[NextTo]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_NextTo(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isNextToDirty()) {
             return null;
         }
+
         String value = et.getNextTo();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_NextTo_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_NextTo_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("NEXTTO");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_NEXTTO);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_OrderFlag(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isOrderFlagDirty()) {
+
+    /**
+     * 获取属性[OrderFlag]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_OrderFlag(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isOrderFlagDirty()) {
             return null;
         }
+
         Integer value = et.getOrderFlag();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_OrderFlag_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_OrderFlag_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("ORDERFLAG");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_ORDERFLAG);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_PagePath(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isPagePathDirty()) {
+
+    /**
+     * 获取属性[PagePath]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_PagePath(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isPagePathDirty()) {
             return null;
         }
+
         String value = et.getPagePath();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_PagePath_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_PagePath_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("PAGEPATH");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_PAGEPATH);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_PanelId(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isPanelIdDirty()) {
+
+    /**
+     * 获取属性[PanelId]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_PanelId(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isPanelIdDirty()) {
             return null;
         }
+
         String value = et.getPanelId();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_PanelId_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_PanelId_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("PANELID");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_PANELID);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_WFIAActionId(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isWFIAActionIdDirty()) {
-            if (bBaseMode && bCreate) {
+
+    /**
+     * 获取属性[WFIAActionId]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_WFIAActionId(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isWFIAActionIdDirty()) {
+            if(bBaseMode && bCreate) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("WFIAACTIONID");
-                entityFieldError.setErrorType(1);
+                entityFieldError.setFieldName(WFIAAction.FIELD_WFIAACTIONID);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_EMPTY);
                 return entityFieldError;
             }
             return null;
         }
+
         String value = et.getWFIAActionId();
-        if (bBaseMode) {
-            if (bCreate && StringHelper.isNullOrEmpty(value)) {
-                EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("WFIAACTIONID");
-                entityFieldError.setErrorType(1);
-                return entityFieldError;
+        if(bBaseMode) {
+            if(bCreate) {
+                if(StringHelper.isNullOrEmpty(value)) {
+                    EntityFieldError entityFieldError = new EntityFieldError();
+                    entityFieldError.setFieldName(WFIAAction.FIELD_WFIAACTIONID);
+                    entityFieldError.setErrorType(EntityFieldError.ERROR_EMPTY);
+                    return entityFieldError;
+                }
             }
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_WFIAActionId_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_WFIAActionId_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("WFIAACTIONID");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_WFIAACTIONID);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_WFIAActionName(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isWFIAActionNameDirty()) {
-            if (bBaseMode && bCreate) {
+
+    /**
+     * 获取属性[WFIAActionName]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_WFIAActionName(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isWFIAActionNameDirty()) {
+            if(bBaseMode && bCreate) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("WFIAACTIONNAME");
-                entityFieldError.setErrorType(1);
+                entityFieldError.setFieldName(WFIAAction.FIELD_WFIAACTIONNAME);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_EMPTY);
                 return entityFieldError;
             }
             return null;
         }
+
         String value = et.getWFIAActionName();
-        if (bBaseMode) {
-            if (bCreate && StringHelper.isNullOrEmpty(value)) {
-                EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("WFIAACTIONNAME");
-                entityFieldError.setErrorType(1);
-                return entityFieldError;
+        if(bBaseMode) {
+            if(bCreate) {
+                if(StringHelper.isNullOrEmpty(value)) {
+                    EntityFieldError entityFieldError = new EntityFieldError();
+                    entityFieldError.setFieldName(WFIAAction.FIELD_WFIAACTIONNAME);
+                    entityFieldError.setErrorType(EntityFieldError.ERROR_EMPTY);
+                    return entityFieldError;
+                }
             }
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_WFIAActionName_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_WFIAActionName_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("WFIAACTIONNAME");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_WFIAACTIONNAME);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_WFStepId(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isWFStepIdDirty()) {
+
+    /**
+     * 获取属性[WFStepId]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_WFStepId(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isWFStepIdDirty()) {
             return null;
         }
+
         String value = et.getWFStepId();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_WFStepId_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_WFStepId_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("WFSTEPID");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_WFSTEPID);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
-    protected EntityFieldError onCheckField_WFStepName(boolean bBaseMode, WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (!et.isWFStepNameDirty()) {
+
+    /**
+     * 获取属性[WFStepName]值错误
+     * @param bBaseMode 是否为基本检查模式，基本检查模式执行值类型，长度及属性值规则检查，非基本模式进行重复值检查
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据
+     * @param bTempMode 是否为临时数据模式
+     * @throws Exception
+     */
+    protected EntityFieldError onCheckField_WFStepName(boolean bBaseMode,WFIAAction et, boolean bCreate, boolean bTempMode) throws Exception {
+        //判断是否有值
+        if(!et.isWFStepNameDirty()) {
             return null;
         }
+
         String value = et.getWFStepName();
-        if (bBaseMode) {
-            String strRuleInfo = null;
-            strRuleInfo = this.onTestValueRule_WFStepName_Default(et, bCreate, bTempMode);
-            if (!StringHelper.isNullOrEmpty(strRuleInfo)) {
+        if(bBaseMode) {
+            if(bCreate) {
+            }
+
+            String strRuleInfo  = null;
+            //检查值规则[默认规则]
+            strRuleInfo =onTestValueRule_WFStepName_Default( et,  bCreate,  bTempMode);
+            if(!StringHelper.isNullOrEmpty(strRuleInfo)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
-                entityFieldError.setFieldName("WFSTEPNAME");
-                entityFieldError.setErrorType(3);
+                entityFieldError.setFieldName(WFIAAction.FIELD_WFSTEPNAME);
+                entityFieldError.setErrorType(EntityFieldError.ERROR_VALUERULE);
                 entityFieldError.setErrorInfo(strRuleInfo);
                 return entityFieldError;
             }
+        } else {
         }
         return null;
     }
 
+
+
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onSyncEntity(net.ibizsys.paas.entity.IEntity, boolean)
+     */
     @Override
     protected void onSyncEntity(WFIAAction et, boolean bRemove) throws Exception {
-        super.onSyncEntity(et, bRemove);
+        super.onSyncEntity( et,  bRemove);
     }
 
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onSyncIndexEntities(net.ibizsys.paas.entity.IEntity, boolean)
+     */
     @Override
-    protected void onSyncIndexEntities(WFIAAction et, boolean bRemove) throws Exception {
-        super.onSyncIndexEntities(et, bRemove);
+    protected void onSyncIndexEntities(WFIAAction et,boolean bRemove) throws Exception {
+        super.onSyncIndexEntities(et,bRemove);
     }
 
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#getDataContextValue(net.ibizsys.paas.entity.IEntity, java.lang.String, net.ibizsys.paas.service.IDataContextParam)
+     */
     @Override
-    public Object getDataContextValue(WFIAAction et, String strField, IDataContextParam iDataContextParam) throws Exception {
+    public Object getDataContextValue(WFIAAction et,String strField,IDataContextParam iDataContextParam)throws Exception {
         Object objValue = null;
-        objValue = super.getDataContextValue(et, strField, iDataContextParam);
-        if (objValue != null) {
+        if(iDataContextParam!=null) {
+        }
+
+        objValue = super.getDataContextValue(et,strField,iDataContextParam);
+        if(objValue!=null)
             return objValue;
-        }
+
         return null;
     }
 
+
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onTestValueRule(java.lang.String, java.lang.String, net.ibizsys.paas.entity.IEntity, boolean, boolean)
+     */
     @Override
-    protected String onTestValueRule(String strDEFieldName, String strRule, IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
-        if (StringHelper.compare(strDEFieldName, "ACTIONCOUNT", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_ActionCount_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "ACTIONLOGICNAME", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_ActionLogicName_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "ACTIONNAME", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_ActionName_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "CREATEDATE", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_CreateDate_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "CREATEMAN", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_CreateMan_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "FAHELPER", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_FAHelper_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "MEMO", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_Memo_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "NEXTCONDITION", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_NextCondition_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "NEXTTO", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_NextTo_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "ORDERFLAG", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_OrderFlag_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "PAGEPATH", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_PagePath_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "PANELID", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_PanelId_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "UPDATEDATE", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_UpdateDate_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "UPDATEMAN", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_UpdateMan_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "WFIAACTIONID", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_WFIAActionId_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "WFIAACTIONNAME", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_WFIAActionName_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "WFSTEPID", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_WFStepId_Default(et, bCreate, bTempMode);
-        }
-        if (StringHelper.compare(strDEFieldName, "WFSTEPNAME", true) == 0 && StringHelper.compare(strRule, DATASET_DEFAULT, true) == 0) {
-            return this.onTestValueRule_WFStepName_Default(et, bCreate, bTempMode);
-        }
-        return super.onTestValueRule(strDEFieldName, strRule, et, bCreate, bTempMode);
+    protected String onTestValueRule(String strDEFieldName,String strRule,IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_ACTIONCOUNT,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_ActionCount_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_ACTIONLOGICNAME,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_ActionLogicName_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_ACTIONNAME,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_ActionName_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_CREATEDATE,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_CreateDate_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_CREATEMAN,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_CreateMan_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_FAHELPER,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_FAHelper_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_MEMO,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_Memo_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_NEXTCONDITION,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_NextCondition_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_NEXTTO,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_NextTo_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_ORDERFLAG,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_OrderFlag_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_PAGEPATH,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_PagePath_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_PANELID,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_PanelId_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_UPDATEDATE,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_UpdateDate_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_UPDATEMAN,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_UpdateMan_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_WFIAACTIONID,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_WFIAActionId_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_WFIAACTIONNAME,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_WFIAActionName_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_WFSTEPID,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_WFStepId_Default(et,bCreate,bTempMode);
+        if((StringHelper.compare(strDEFieldName,WFIAAction.FIELD_WFSTEPNAME,true)==0)
+                &&(StringHelper.compare(strRule,"DEFAULT",true)==0))
+            return onTestValueRule_WFStepName_Default(et,bCreate,bTempMode);
+
+        return super.onTestValueRule( strDEFieldName, strRule, et,bCreate, bTempMode);
     }
 
-    protected String onTestValueRule_ActionCount_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[ACTIONCOUNT][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_ActionCount_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         return null;
     }
 
-    protected String onTestValueRule_ActionLogicName_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[ACTIONLOGICNAME][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_ActionLogicName_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("ACTIONLOGICNAME", et, bTempMode, null, false, 200, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]", false)) {
+            if((checkFieldStringLengthRule("ACTIONLOGICNAME", et, bTempMode,null,false,200,true,"内容长度必须小于等于[200]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[200]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_ActionName_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[ACTIONNAME][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_ActionName_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("ACTIONNAME", et, bTempMode, null, false, 200, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]", false)) {
+            if((checkFieldStringLengthRule("ACTIONNAME", et, bTempMode,null,false,200,true,"内容长度必须小于等于[200]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[200]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_CreateDate_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[建立时间][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_CreateDate_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         return null;
     }
 
-    protected String onTestValueRule_CreateMan_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[建立人][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_CreateMan_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("CREATEMAN", et, bTempMode, null, false, 60, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[60]", false)) {
+            if((checkFieldStringLengthRule("CREATEMAN", et, bTempMode,null,false,60,true,"内容长度必须小于等于[60]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[60]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[60]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_FAHelper_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[FAHELPER][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_FAHelper_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("FAHELPER", et, bTempMode, null, false, 500, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[500]", false)) {
+            if((checkFieldStringLengthRule("FAHELPER", et, bTempMode,null,false,500,true,"内容长度必须小于等于[500]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[500]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[500]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_Memo_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[备注][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_Memo_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("MEMO", et, bTempMode, null, false, 0x100000, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[1048576]", false)) {
+            if((checkFieldStringLengthRule("MEMO", et, bTempMode,null,false,1048576,true,"内容长度必须小于等于[1048576]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[1048576]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[1048576]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_NextCondition_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[NEXTCONDITION][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_NextCondition_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("NEXTCONDITION", et, bTempMode, null, false, 100, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]", false)) {
+            if((checkFieldStringLengthRule("NEXTCONDITION", et, bTempMode,null,false,100,true,"内容长度必须小于等于[100]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[100]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_NextTo_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[NEXTTO][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_NextTo_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("NEXTTO", et, bTempMode, null, false, 100, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]", false)) {
+            if((checkFieldStringLengthRule("NEXTTO", et, bTempMode,null,false,100,true,"内容长度必须小于等于[100]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[100]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_OrderFlag_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[ORDERFLAG][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_OrderFlag_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         return null;
     }
 
-    protected String onTestValueRule_PagePath_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[PAGEPATH][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_PagePath_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("PAGEPATH", et, bTempMode, null, false, 500, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[500]", false)) {
+            if((checkFieldStringLengthRule("PAGEPATH", et, bTempMode,null,false,500,true,"内容长度必须小于等于[500]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[500]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[500]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_PanelId_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[PANELID][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_PanelId_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("PANELID", et, bTempMode, null, false, 500, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[500]", false)) {
+            if((checkFieldStringLengthRule("PANELID", et, bTempMode,null,false,500,true,"内容长度必须小于等于[500]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[500]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[500]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_UpdateDate_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[更新时间][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_UpdateDate_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         return null;
     }
 
-    protected String onTestValueRule_UpdateMan_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[更新人][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_UpdateMan_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("UPDATEMAN", et, bTempMode, null, false, 60, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[60]", false)) {
+            if((checkFieldStringLengthRule("UPDATEMAN", et, bTempMode,null,false,60,true,"内容长度必须小于等于[60]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[60]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[60]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_WFIAActionId_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[工作流交互操作标识][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_WFIAActionId_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("WFIAACTIONID", et, bTempMode, null, false, 100, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]", false)) {
+            if((checkFieldStringLengthRule("WFIAACTIONID", et, bTempMode,null,false,100,true,"内容长度必须小于等于[100]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[100]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_WFIAActionName_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[工作流交互操作名称][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_WFIAActionName_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("WFIAACTIONNAME", et, bTempMode, null, false, 200, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]", false)) {
+            if((checkFieldStringLengthRule("WFIAACTIONNAME", et, bTempMode,null,false,200,true,"内容长度必须小于等于[200]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[200]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_WFStepId_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[互动操作_相关步骤][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_WFStepId_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("WFSTEPID", et, bTempMode, null, false, 100, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]", false)) {
+            if((checkFieldStringLengthRule("WFSTEPID", et, bTempMode,null,false,100,true,"内容长度必须小于等于[100]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[100]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
-    protected String onTestValueRule_WFStepName_Default(IEntity et, boolean bCreate, boolean bTempMode) throws Exception {
+    /**
+     * 判断值规则[WFSTEPNAME][默认规则]
+     * @param et 当前数据对象
+     * @param bCreate 是否为新建数据模式
+     * @param bTempMode 是否为临时数据模式
+     * @return
+     * @throws Exception
+     */
+    protected String onTestValueRule_WFStepName_Default(IEntity et,boolean bCreate,boolean bTempMode) throws Exception {
         try {
-            if (this.checkFieldStringLengthRule("WFSTEPNAME", et, bTempMode, null, false, 200, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]", false)) {
+            if((checkFieldStringLengthRule("WFSTEPNAME", et, bTempMode,null,false,200,true,"内容长度必须小于等于[200]",false)))
                 return null;
-            }
-            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]";
-        }
-        catch (Exception ex) {
+            return "内容长度必须小于等于[200]";
+        } catch(Exception ex) {
             return ex.getMessage();
         }
     }
 
+
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.service.ServiceBase#onMergeChild(java.lang.String, java.lang.String, net.ibizsys.paas.entity.IEntity)
+     */
     @Override
     protected boolean onMergeChild(String strChildType, String strTypeParam, WFIAAction et) throws Exception {
         boolean bRet = false;
-        if (super.onMergeChild(strChildType, strTypeParam, et)) {
+        if(super.onMergeChild( strChildType, strTypeParam,  et))
             bRet = true;
-        }
         return bRet;
     }
 
+
+
+    /**
+     * 更新父数据
+     * @param et
+     * @throws Exception
+     */
     @Override
-    protected void onUpdateParent(WFIAAction et) throws Exception {
+    protected void onUpdateParent(WFIAAction et)throws Exception {
         super.onUpdateParent(et);
     }
-}
 
+
+}

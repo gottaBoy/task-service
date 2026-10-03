@@ -1493,7 +1493,7 @@ implements Serializable {
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(this.getPSDCId());
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDevCenterService.autoGet((IEntity)pSDevCenter);
+                pSDevCenterService.autoGet(pSDevCenter);
                 this.psdc = pSDevCenter;
             }
             return this.psdc;
@@ -1519,7 +1519,7 @@ implements Serializable {
                 PSSFPkgCat pSSFPkgCat = new PSSFPkgCat();
                 pSSFPkgCat.setPSSFPkgCatId(this.getPSSFPkgCatId());
                 PSSFPkgCatService pSSFPkgCatService = (PSSFPkgCatService)ServiceGlobal.getService(PSSFPkgCatService.class, (SessionFactory)this.getSessionFactory());
-                pSSFPkgCatService.autoGet((IEntity)pSSFPkgCat);
+                pSSFPkgCatService.autoGet(pSSFPkgCat);
                 this.pssfpkgcat = pSSFPkgCat;
             }
             return this.pssfpkgcat;
@@ -1545,7 +1545,7 @@ implements Serializable {
                 PSSF pSSF = new PSSF();
                 pSSF.setPSSFId(this.getPSSFId());
                 PSSFService pSSFService = (PSSFService)ServiceGlobal.getService(PSSFService.class, (SessionFactory)this.getSessionFactory());
-                pSSFService.autoGet((IEntity)pSSF);
+                pSSFService.autoGet(pSSF);
                 this.pssf = pSSF;
             }
             return this.pssf;
@@ -1571,7 +1571,7 @@ implements Serializable {
                 PSSubSys pSSubSys = new PSSubSys();
                 pSSubSys.setPSSubSysId(this.getPSSubSysId());
                 PSSubSysService pSSubSysService = (PSSubSysService)ServiceGlobal.getService(PSSubSysService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysService.autoGet((IEntity)pSSubSys);
+                pSSubSysService.autoGet(pSSubSys);
                 this.pssubsys = pSSubSys;
             }
             return this.pssubsys;

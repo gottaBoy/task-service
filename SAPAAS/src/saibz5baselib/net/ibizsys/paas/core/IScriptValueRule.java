@@ -1,12 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IValueRule;
+/**
+ * 脚本值规则对象接口
+ * @author Administrator
+ *
+ */
+public interface IScriptValueRule extends IValueRule {
 
-public interface IScriptValueRule
-extends IValueRule {
-    public String getCode();
+	/**
+	 * 获取脚本代码
+	 * @return
+	 */
+	String getCode();
 }
-

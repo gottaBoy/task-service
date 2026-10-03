@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.appmodel;
 
-import net.ibizsys.paas.appmodel.AppModeModelBase;
+/**
+ * 默认应用模式模型对象
+ * @author Administrator
+ *
+ */
+public class DefaultAppModeModel extends AppModeModelBase {
 
-public class DefaultAppModeModel
-extends AppModeModelBase {
 }
-

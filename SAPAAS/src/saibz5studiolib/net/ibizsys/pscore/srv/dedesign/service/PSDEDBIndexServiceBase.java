@@ -186,14 +186,14 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSDEDBIndex, pSDataEntity);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEDBIndex, string, string2, string3);
+        super.onFillParentInfo(pSDEDBIndex, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -214,7 +214,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 pSDEDBIndex.setPSDEDBIndexName((String)this.getDefaultValue(this.getWebContext(), "USER", "DBINDEX", 25));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSDEDBIndex, bl);
+        super.onFillEntityFullInfo(pSDEDBIndex, bl);
         this.onFillEntityFullInfo_PSDE(pSDEDBIndex, bl);
     }
 
@@ -232,7 +232,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
     }
 
     protected void onWriteBackParent(PSDEDBIndex pSDEDBIndex, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEDBIndex, bl);
+        super.onWriteBackParent(pSDEDBIndex, bl);
     }
 
     public ArrayList<PSDEDBIndex> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -291,7 +291,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
         ArrayList<PSDEDBIndex> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSDEDBIndex pSDEDBIndex : arrayList) {
-            this.remove((IEntity)pSDEDBIndex);
+            this.remove(pSDEDBIndex);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -316,12 +316,12 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
     protected void onBeforeRemoveTemp(PSDEDBIndex pSDEDBIndex) throws Exception {
         PSDEDBIdxFieldService pSDEDBIdxFieldService = (PSDEDBIdxFieldService)ServiceGlobal.getService(PSDEDBIdxFieldService.class, (SessionFactory)this.getSessionFactory());
         pSDEDBIdxFieldService.removeTempByPSDEDBIndex(pSDEDBIndex);
-        super.onBeforeRemoveTemp((IEntity)pSDEDBIndex);
+        super.onBeforeRemoveTemp(pSDEDBIndex);
     }
 
     protected void getRelatedDataTempMajor(PSDEDBIndex pSDEDBIndex) throws Exception {
         this.getRelatedDataTempMajor_PSDEDBIdxField(pSDEDBIndex);
-        super.getRelatedDataTempMajor((IEntity)pSDEDBIndex);
+        super.getRelatedDataTempMajor(pSDEDBIndex);
     }
 
     protected void getRelatedDataTempMajor_PSDEDBIdxField(PSDEDBIndex pSDEDBIndex) throws Exception {
@@ -337,7 +337,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
     protected void updateRelatedDataTempMajor(PSDEDBIndex pSDEDBIndex, PSDEDBIndex pSDEDBIndex2) throws Exception {
         ArrayList<PSDEDBIdxField> arrayList = this.updateRelatedDataTempMajor_removePSDEDBIdxField(pSDEDBIndex, pSDEDBIndex2);
         this.updateRelatedDataTempMajor_updatePSDEDBIdxField(pSDEDBIndex, pSDEDBIndex2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSDEDBIndex, (IEntity)pSDEDBIndex2);
+        super.updateRelatedDataTempMajor(pSDEDBIndex, pSDEDBIndex2);
     }
 
     protected ArrayList<PSDEDBIdxField> updateRelatedDataTempMajor_removePSDEDBIdxField(PSDEDBIndex pSDEDBIndex, PSDEDBIndex pSDEDBIndex2) throws Exception {
@@ -353,7 +353,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
             hashMap.remove(object);
         }
         for (PSDEDBIdxField pSDEDBIdxField : hashMap.values()) {
-            pSDEDBIdxFieldService.remove((IEntity)pSDEDBIdxField);
+            pSDEDBIdxFieldService.remove(pSDEDBIdxField);
         }
         return arrayList;
     }
@@ -370,14 +370,14 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
 
     protected void replaceParentInfo(PSDEDBIndex pSDEDBIndex, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEDBIndex, cloneSession);
+        super.replaceParentInfo(pSDEDBIndex, cloneSession);
         if (pSDEDBIndex.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSDEDBIndex.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSDEDBIndex, (PSDataEntity)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDEDBIndex pSDEDBIndex, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEDBIndex, bl);
+        super.onRemoveEntityUncopyValues(pSDEDBIndex, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEDBIndex pSDEDBIndex, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -419,7 +419,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
         if ((entityFieldError = this.onCheckField_UserParams(bl, pSDEDBIndex, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEDBIndex, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEDBIndex, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AllowReverse(boolean bl, PSDEDBIndex pSDEDBIndex, boolean bl2, boolean bl3) throws Exception {
@@ -432,7 +432,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_AllowReverse_Default((IEntity)pSDEDBIndex, bl2, bl3);
+            string = this.onTestValueRule_AllowReverse_Default(pSDEDBIndex, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ALLOWREVERSE");
@@ -454,7 +454,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSDEDBIndex, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSDEDBIndex, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -493,7 +493,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IncFields_Default((IEntity)pSDEDBIndex, bl2, bl3);
+            string2 = this.onTestValueRule_IncFields_Default(pSDEDBIndex, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INCFIELDS");
@@ -515,7 +515,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IndexFields_Default((IEntity)pSDEDBIndex, bl2, bl3);
+            string2 = this.onTestValueRule_IndexFields_Default(pSDEDBIndex, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INDEXFIELDS");
@@ -537,7 +537,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IndexType_Default((IEntity)pSDEDBIndex, bl2, bl3);
+            string2 = this.onTestValueRule_IndexType_Default(pSDEDBIndex, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INDEXTYPE");
@@ -559,7 +559,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEDBIndex, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEDBIndex, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -584,7 +584,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDBIndexId_Default((IEntity)pSDEDBIndex, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDBIndexId_Default(pSDEDBIndex, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDBINDEXID");
@@ -609,7 +609,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDBIndexName_Default((IEntity)pSDEDBIndex, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDBIndexName_Default(pSDEDBIndex, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDBINDEXNAME");
@@ -648,7 +648,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSDEDBIndex, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSDEDBIndex, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -673,7 +673,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSDEDBIndex, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSDEDBIndex, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -695,7 +695,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RemoveFlag_Default((IEntity)pSDEDBIndex, bl2, bl3);
+            string = this.onTestValueRule_RemoveFlag_Default(pSDEDBIndex, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REMOVEFLAG");
@@ -717,7 +717,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserParams_Default((IEntity)pSDEDBIndex, bl2, bl3);
+            string2 = this.onTestValueRule_UserParams_Default(pSDEDBIndex, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERPARAMS");
@@ -730,11 +730,11 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
     }
 
     protected void onSyncEntity(PSDEDBIndex pSDEDBIndex, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEDBIndex, bl);
+        super.onSyncEntity(pSDEDBIndex, bl);
     }
 
     protected void onSyncIndexEntities(PSDEDBIndex pSDEDBIndex, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEDBIndex, bl);
+        super.onSyncIndexEntities(pSDEDBIndex, bl);
     }
 
     public Object getDataContextValue(PSDEDBIndex pSDEDBIndex, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -742,7 +742,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEDBIndex, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEDBIndex, string, iDataContextParam)) != null) {
             return object;
         }
         PSDataEntity pSDataEntity = pSDEDBIndex.getPSDE();
@@ -754,7 +754,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
 
     protected void onExportRelatedModel(PSDEDBIndex pSDEDBIndex, ArrayList<JSONObject> arrayList, int n) throws Exception {
         this.onExportRelatedModel_PSDEDBIdxField_PSDEDBIndex(pSDEDBIndex, arrayList, n);
-        super.onExportRelatedModel((IEntity)pSDEDBIndex, arrayList, n);
+        super.onExportRelatedModel(pSDEDBIndex, arrayList, n);
     }
 
     /*
@@ -764,7 +764,6 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
         PSDEDBIdxFieldService pSDEDBIdxFieldService = (PSDEDBIdxFieldService)ServiceGlobal.getService(PSDEDBIdxFieldService.class, (SessionFactory)this.getSessionFactory());
         ArrayList<PSDEDBIdxField> arrayList2 = pSDEDBIdxFieldService.selectByPSDEDBIndex(pSDEDBIndex);
         if ((n & 2) != 0) {
-            void var7_8;
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("srfdeid", (Object)"e769f6f657b2f4a433f3661e9092421d");
             jSONObject.put("srfdename", (Object)"PSDEDBIDXFIELD");
@@ -773,13 +772,12 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
             jSONObject.put("srfarg", (Object)DataObject.getStringValue((IDataObject)pSDEDBIndex, (String)"PSDEDBINDEXID", (String)""));
             String object = "";
             for (PSDEDBIdxField pSDEDBIdxField : arrayList2) {
-                void var7_10;
-                if (!StringHelper.isNullOrEmpty((String)var7_8)) {
-                    String string = (String)var7_8 + ";";
+                if (!StringHelper.isNullOrEmpty((String)object)) {
+                    object = object + ";";
                 }
-                String string = (String)var7_10 + DataObject.getStringValue((IDataObject)pSDEDBIdxField, (String)"PSDEDBIDXFIELDID", (String)"");
+                object = object + DataObject.getStringValue((IDataObject)pSDEDBIdxField, (String)"PSDEDBIDXFIELDID", (String)"");
             }
-            jSONObject.put("srfarg2", (Object)var7_8);
+            jSONObject.put("srfarg2", (Object)object);
             arrayList.add(jSONObject);
         }
         for (PSDEDBIdxField pSDEDBIdxField : arrayList2) {
@@ -789,7 +787,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
     }
 
     protected void onExportMajorModel(PSDEDBIndex pSDEDBIndex, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEDBIndex, arrayList, n);
+        super.onExportMajorModel(pSDEDBIndex, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1011,7 +1009,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
 
     protected boolean onMergeChild(String string, String string2, PSDEDBIndex pSDEDBIndex) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEDBIndex)) {
+        if (super.onMergeChild(string, string2, pSDEDBIndex)) {
             bl = true;
         }
         return bl;
@@ -1023,7 +1021,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.dedesign.service.PSDataEntityService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSDEDBINDEX_PSDATAENTITY_PSDEID", object);
         }
-        super.onUpdateParent((IEntity)pSDEDBIndex);
+        super.onUpdateParent(pSDEDBIndex);
     }
 
     protected boolean isNeedUpdateParent() {
@@ -1034,7 +1032,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
         PSDEDBIndex pSDEDBIndex2 = new PSDEDBIndex();
         pSDEDBIndex2.set("PSDEDBINDEXID", object);
         String string = DataObject.getStringValue((Object)pSDEDBIndex.get("PSDEDBINDEXID"));
-        super.onCopyDetails((IEntity)pSDEDBIndex, object);
+        super.onCopyDetails(pSDEDBIndex, object);
     }
 
     @Override
@@ -1175,41 +1173,28 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
     protected void onExportCurModelV2(PSDEDBIndex pSDEDBIndex, ObjectNode objectNode, String string, boolean bl) throws Exception {
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSDEDBIDXFIELD_PSDEDBINDEX_PSDEDBINDEXID")) {
-            Object object;
-            PSDEDBIdxField pSDEDBIdxField2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSDEDBIdxFieldService pSDEDBIdxFieldService = (PSDEDBIdxFieldService)ServiceGlobal.getService(PSDEDBIdxFieldService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSDEDBIdxField> arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSDEDBINDEX#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEDBIDXFIELD", (Object)pSDEDBIndex.getPSDEDBIndexId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSDEDBIdxField2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSDEDBIdxField2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty((String)line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString((String)line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSDEDBIdxField>();
-                object4 = pSDEDBIdxFieldService.selectByPSDEDBIndex(pSDEDBIndex);
-                object3 = StringHelper.format((String)"PSDEDBINDEX#%1$s", (Object)pSDEDBIndex.getPSDEDBIndexId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSDEDBIdxField2 = object2.next();
-                    object = pSDEDBIdxFieldService.getModelV2ResScope((IEntity)pSDEDBIdxField2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSDEDBIdxField)PSModelV2Helper.toJSONObject((IEntity)pSDEDBIdxField2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSDEDBINDEX#%1$s", (Object)pSDEDBIndex.getPSDEDBIndexId());
+                for (PSDEDBIdxField field : pSDEDBIdxFieldService.selectByPSDEDBIndex(pSDEDBIndex)) {
+                    String fieldScope = pSDEDBIdxFieldService.getModelV2ResScope(field);
+                    if (StringHelper.compare((String)scope, (String)fieldScope, (boolean)false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(field, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSDEDBIdxFieldService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode output = objectNode.putArray(pSDEDBIdxFieldService.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -1237,10 +1222,10 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSDEDBIdxField pSDEDBIdxField2 : arrayList) {
-                    object = new PSDEDBIdxField();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSDEDBIdxField2, false);
-                    object3.add((JsonNode)pSDEDBIdxFieldService.exportModelV2(object, string));
+                for (ObjectNode fieldNode : arrayList) {
+                    PSDEDBIdxField field = new PSDEDBIdxField();
+                    PSModelV2Helper.fromJSONObject((IDataObject)field, fieldNode, false);
+                    output.add((JsonNode)pSDEDBIdxFieldService.exportModelV2(field, string));
                 }
             }
         }
@@ -1253,7 +1238,7 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
         ArrayList<PSDEDBIdxField> arrayList = pSDEDBIdxFieldService.selectByPSDEDBIndex(pSDEDBIndex);
         String string = StringHelper.format((String)"PSDEDBINDEX#%1$s", (Object)pSDEDBIndex.getPSDEDBIndexId());
         for (PSDEDBIdxField pSDEDBIdxField : arrayList) {
-            String string2 = pSDEDBIdxFieldService.getModelV2ResScope((IEntity)pSDEDBIdxField);
+            String string2 = pSDEDBIdxFieldService.getModelV2ResScope(pSDEDBIdxField);
             if (StringHelper.compare((String)string, (String)string2, (boolean)false) != 0) continue;
             pSDEDBIdxFieldService.emptyModelV2(pSDEDBIdxField);
         }
@@ -1375,8 +1360,9 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
             PSDEDBIdxFieldService pSDEDBIdxFieldService = (PSDEDBIdxFieldService)ServiceGlobal.getService(PSDEDBIdxFieldService.class, (SessionFactory)this.getSessionFactory());
             SelectContext selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSDEDBIdxFieldService, "DER1N_PSDEDBIDXFIELD_PSDEDBINDEX_PSDEDBINDEXID", "PSDEDBINDEXID", pSMOSFile.getPSModelId(), "", "");
             ArrayList arrayList2 = pSDEDBIdxFieldService.selectEx((ISelectContext)selectContext);
-            for (PSDEDBIdxField pSDEDBIdxField : arrayList2) {
-                PSMOSFile pSMOSFile2 = pSDEDBIdxFieldService.getFile(pSMOSFile, (IEntity)pSDEDBIdxField, bl);
+            for (Object item : arrayList2) {
+                PSDEDBIdxField pSDEDBIdxField = (PSDEDBIdxField)item;
+                PSMOSFile pSMOSFile2 = pSDEDBIdxFieldService.getFile(pSMOSFile, pSDEDBIdxField, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList.add(pSMOSFile2);
             }
@@ -1414,4 +1400,3 @@ extends PSCoreSysServiceBase<PSDEDBIndex> {
         defaultValueMap.put("PSDEDBINDEXNAME", "DBINDEX");
     }
 }
-

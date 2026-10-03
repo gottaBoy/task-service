@@ -178,9 +178,9 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSDEFInputTipSet, pSDataEntity);
             return;
@@ -190,9 +190,9 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
             PSDEDataSet pSDEDataSet = (PSDEDataSet)iService.getDEModel().createEntity();
             pSDEDataSet.set("PSDEDATASETID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEDataSet);
+                iService.getTemp(pSDEDataSet);
             } else {
-                iService.get((IEntity)pSDEDataSet);
+                iService.get(pSDEDataSet);
             }
             this.onFillParentInfo_PSDEDataSet(pSDEFInputTipSet, pSDEDataSet);
             return;
@@ -202,9 +202,9 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_ContentPSDEF(pSDEFInputTipSet, pSDEField);
             return;
@@ -214,9 +214,9 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_ECPSDEF(pSDEFInputTipSet, pSDEField);
             return;
@@ -226,9 +226,9 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_LinkPSDEF(pSDEFInputTipSet, pSDEField);
             return;
@@ -238,9 +238,9 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_UniqueTagPSDEF(pSDEFInputTipSet, pSDEField);
             return;
@@ -250,9 +250,9 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSDEFInputTipSet, pSModule);
             return;
@@ -262,9 +262,9 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_PSSysPFPlugin(pSDEFInputTipSet, pSSysPFPlugin);
             return;
@@ -274,9 +274,9 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
             PSSysSFPlugin pSSysSFPlugin = (PSSysSFPlugin)iService.getDEModel().createEntity();
             pSSysSFPlugin.set("PSSYSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPlugin);
+                iService.getTemp(pSSysSFPlugin);
             } else {
-                iService.get((IEntity)pSSysSFPlugin);
+                iService.get(pSSysSFPlugin);
             }
             this.onFillParentInfo_PSSysSFPlugin(pSDEFInputTipSet, pSSysSFPlugin);
             return;
@@ -286,14 +286,14 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSDEFInputTipSet, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEFInputTipSet, string, string2, string3);
+        super.onFillParentInfo(pSDEFInputTipSet, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -354,7 +354,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEFInputTipSet, bl);
+        super.onFillEntityFullInfo(pSDEFInputTipSet, bl);
         this.onFillEntityFullInfo_PSDE(pSDEFInputTipSet, bl);
         this.onFillEntityFullInfo_PSDEDataSet(pSDEFInputTipSet, bl);
         this.onFillEntityFullInfo_ContentPSDEF(pSDEFInputTipSet, bl);
@@ -458,7 +458,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
     }
 
     protected void onWriteBackParent(PSDEFInputTipSet pSDEFInputTipSet, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEFInputTipSet, bl);
+        super.onWriteBackParent(pSDEFInputTipSet, bl);
     }
 
     public ArrayList<PSDEFInputTipSet> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -705,8 +705,8 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -739,7 +739,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSDEFInputTipSet pSDEFInputTipSet : arrayList) {
-            this.remove((IEntity)pSDEFInputTipSet);
+            this.remove(pSDEFInputTipSet);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -757,8 +757,8 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByPSDEDataSet(pSDEDataSet, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEDATASET");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEDataSet);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSDEDATASET_PSDEDATASETID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo((IEntity)pSDEDataSet), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEDataSet);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSDEDATASET_PSDEDATASETID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo(pSDEDataSet), arrayList.get(0)));
         }
     }
 
@@ -791,7 +791,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByPSDEDataSet(pSDEDataSet);
         this.onBeforeRemoveByPSDEDataSet(pSDEDataSet, arrayList);
         for (PSDEFInputTipSet pSDEFInputTipSet : arrayList) {
-            this.remove((IEntity)pSDEFInputTipSet);
+            this.remove(pSDEFInputTipSet);
         }
         this.onAfterRemoveByPSDEDataSet(pSDEDataSet, arrayList);
     }
@@ -809,8 +809,8 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByContentPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSDEFIELD_CONTENTPSDEFID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSDEFIELD_CONTENTPSDEFID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -843,7 +843,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByContentPSDEF(pSDEField);
         this.onBeforeRemoveByContentPSDEF(pSDEField, arrayList);
         for (PSDEFInputTipSet pSDEFInputTipSet : arrayList) {
-            this.remove((IEntity)pSDEFInputTipSet);
+            this.remove(pSDEFInputTipSet);
         }
         this.onAfterRemoveByContentPSDEF(pSDEField, arrayList);
     }
@@ -861,8 +861,8 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByECPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSDEFIELD_ECPSDEFID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSDEFIELD_ECPSDEFID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -895,7 +895,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByECPSDEF(pSDEField);
         this.onBeforeRemoveByECPSDEF(pSDEField, arrayList);
         for (PSDEFInputTipSet pSDEFInputTipSet : arrayList) {
-            this.remove((IEntity)pSDEFInputTipSet);
+            this.remove(pSDEFInputTipSet);
         }
         this.onAfterRemoveByECPSDEF(pSDEField, arrayList);
     }
@@ -913,8 +913,8 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByLinkPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSDEFIELD_LINKPSDEFID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSDEFIELD_LINKPSDEFID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -947,7 +947,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByLinkPSDEF(pSDEField);
         this.onBeforeRemoveByLinkPSDEF(pSDEField, arrayList);
         for (PSDEFInputTipSet pSDEFInputTipSet : arrayList) {
-            this.remove((IEntity)pSDEFInputTipSet);
+            this.remove(pSDEFInputTipSet);
         }
         this.onAfterRemoveByLinkPSDEF(pSDEField, arrayList);
     }
@@ -965,8 +965,8 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByUniqueTagPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSDEFIELD_UNIQUETAGPSDEFID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSDEFIELD_UNIQUETAGPSDEFID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -999,7 +999,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByUniqueTagPSDEF(pSDEField);
         this.onBeforeRemoveByUniqueTagPSDEF(pSDEField, arrayList);
         for (PSDEFInputTipSet pSDEFInputTipSet : arrayList) {
-            this.remove((IEntity)pSDEFInputTipSet);
+            this.remove(pSDEFInputTipSet);
         }
         this.onAfterRemoveByUniqueTagPSDEF(pSDEField, arrayList);
     }
@@ -1017,8 +1017,8 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -1051,7 +1051,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSDEFInputTipSet pSDEFInputTipSet : arrayList) {
-            this.remove((IEntity)pSDEFInputTipSet);
+            this.remove(pSDEFInputTipSet);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -1069,8 +1069,8 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -1103,7 +1103,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSDEFInputTipSet pSDEFInputTipSet : arrayList) {
-            this.remove((IEntity)pSDEFInputTipSet);
+            this.remove(pSDEFInputTipSet);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -1121,8 +1121,8 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo((IEntity)pSSysSFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEFINPUTTIPSET_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSDEFINPUTTIPSET", iDataEntityModel.getDataInfo(pSSysSFPlugin), arrayList.get(0)));
         }
     }
 
@@ -1155,7 +1155,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin);
         this.onBeforeRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
         for (PSDEFInputTipSet pSDEFInputTipSet : arrayList) {
-            this.remove((IEntity)pSDEFInputTipSet);
+            this.remove(pSDEFInputTipSet);
         }
         this.onAfterRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
     }
@@ -1201,7 +1201,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         ArrayList<PSDEFInputTipSet> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSDEFInputTipSet pSDEFInputTipSet : arrayList) {
-            this.remove((IEntity)pSDEFInputTipSet);
+            this.remove(pSDEFInputTipSet);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -1231,7 +1231,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
 
     protected void replaceParentInfo(PSDEFInputTipSet pSDEFInputTipSet, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEFInputTipSet, cloneSession);
+        super.replaceParentInfo(pSDEFInputTipSet, cloneSession);
         if (pSDEFInputTipSet.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSDEFInputTipSet.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSDEFInputTipSet, (PSDataEntity)iEntity);
         }
@@ -1265,7 +1265,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEFInputTipSet pSDEFInputTipSet, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEFInputTipSet, bl);
+        super.onRemoveEntityUncopyValues(pSDEFInputTipSet, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEFInputTipSet pSDEFInputTipSet, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1349,7 +1349,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSDEFInputTipSet, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEFInputTipSet, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEFInputTipSet, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSDEFInputTipSet pSDEFInputTipSet, boolean bl2, boolean bl3) throws Exception {
@@ -1362,7 +1362,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1401,7 +1401,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ContentPSDEFId_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_ContentPSDEFId_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTENTPSDEFID");
@@ -1423,7 +1423,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ContentPSDEFName_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_ContentPSDEFName_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONTENTPSDEFNAME");
@@ -1445,7 +1445,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ECPSDEFId_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_ECPSDEFId_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ECPSDEFID");
@@ -1467,7 +1467,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ECPSDEFName_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_ECPSDEFName_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ECPSDEFNAME");
@@ -1489,7 +1489,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LinkPSDEFId_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_LinkPSDEFId_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LINKPSDEFID");
@@ -1511,7 +1511,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LinkPSDEFName_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_LinkPSDEFName_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LINKPSDEFNAME");
@@ -1533,7 +1533,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -1555,7 +1555,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1577,7 +1577,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataSetId_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataSetId_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATASETID");
@@ -1602,7 +1602,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFInputTipSetId_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFInputTipSetId_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFINPUTTIPSETID");
@@ -1627,7 +1627,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEFInputTipSetName_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEFInputTipSetName_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEFINPUTTIPSETNAME");
@@ -1649,7 +1649,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -1671,7 +1671,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -1693,7 +1693,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -1715,7 +1715,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPluginId_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPluginId_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPLUGINID");
@@ -1737,7 +1737,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPluginId_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPluginId_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPLUGINID");
@@ -1759,7 +1759,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -1781,7 +1781,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -1803,7 +1803,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UniqueTagPSDEFId_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_UniqueTagPSDEFId_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UNIQUETAGPSDEFID");
@@ -1825,7 +1825,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UniqueTagPSDEFName_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_UniqueTagPSDEFName_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UNIQUETAGPSDEFNAME");
@@ -1847,7 +1847,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1869,7 +1869,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1891,7 +1891,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1913,7 +1913,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1935,7 +1935,7 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDEFInputTipSet, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDEFInputTipSet, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1948,11 +1948,11 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
     }
 
     protected void onSyncEntity(PSDEFInputTipSet pSDEFInputTipSet, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEFInputTipSet, bl);
+        super.onSyncEntity(pSDEFInputTipSet, bl);
     }
 
     protected void onSyncIndexEntities(PSDEFInputTipSet pSDEFInputTipSet, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEFInputTipSet, bl);
+        super.onSyncIndexEntities(pSDEFInputTipSet, bl);
     }
 
     public Object getDataContextValue(PSDEFInputTipSet pSDEFInputTipSet, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1960,14 +1960,14 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEFInputTipSet, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEFInputTipSet, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDEFInputTipSet pSDEFInputTipSet, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEFInputTipSet, arrayList, n);
+        super.onExportMajorModel(pSDEFInputTipSet, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2467,14 +2467,14 @@ extends PSCoreSysServiceBase<PSDEFInputTipSet> {
 
     protected boolean onMergeChild(String string, String string2, PSDEFInputTipSet pSDEFInputTipSet) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEFInputTipSet)) {
+        if (super.onMergeChild(string, string2, pSDEFInputTipSet)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEFInputTipSet pSDEFInputTipSet) throws Exception {
-        super.onUpdateParent((IEntity)pSDEFInputTipSet);
+        super.onUpdateParent(pSDEFInputTipSet);
     }
 
     @Override

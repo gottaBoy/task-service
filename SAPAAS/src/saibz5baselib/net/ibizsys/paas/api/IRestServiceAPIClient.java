@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.api;
 
-import net.ibizsys.paas.api.IServiceAPIClient;
+/**
+ * Rest 服务接口客户端
+ * @author Administrator
+ *
+ */
+public interface IRestServiceAPIClient extends IServiceAPIClient {
 
-public interface IRestServiceAPIClient
-extends IServiceAPIClient {
 }
-

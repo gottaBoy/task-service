@@ -1,113 +1,178 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.pswf.core.IWFModel
- *  net.ibizsys.pswf.core.IWFVersionModel
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFEmbedWFProcessModelBase;
-import net.ibizsys.pswf.core.IWFModel;
-import net.ibizsys.pswf.core.IWFProcSubWFModel;
-import net.ibizsys.pswf.core.IWFVersionModel;
 
-public class WFProcSubWFModel
-implements IWFProcSubWFModel {
-    private String strId = "";
-    private String strName = "";
-    private String strDEName = "";
-    private String strWFId = "";
-    private String strDEDSName = "";
-    private IWFEmbedWFProcessModelBase iWFEmbedWFProcessModelBase = null;
-    private boolean bSuspendDefault = false;
-    private String strWFVerId = null;
 
-    @Override
-    public void init(IWFEmbedWFProcessModelBase iWFEmbedWFProcessModelBase) throws Exception {
-        this.iWFEmbedWFProcessModelBase = iWFEmbedWFProcessModelBase;
-        this.onInit();
-    }
+/**
+ * 工作流处理子流程模型
+ * @author lionlau
+ *
+ */
+public class WFProcSubWFModel implements IWFProcSubWFModel
+{	
+	private String strId = "";
+	private String strName = "";
+	private String strDEName = "";
+	private String strWFId = "";
+	private String strDEDSName = "";
+	private IWFEmbedWFProcessModelBase iWFEmbedWFProcessModelBase = null;
+	private boolean bSuspendDefault =false;
+	private String strWFVerId = null;
+	
+	
 
-    protected void onInit() throws Exception {
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFProcSubWFModel#init(net.ibizsys.pswf.core.IWFEmbedWFProcessModelBase)
+	 */
+	@Override
+	public void init(IWFEmbedWFProcessModelBase iWFEmbedWFProcessModelBase) throws Exception
+	{
+		this.iWFEmbedWFProcessModelBase = iWFEmbedWFProcessModelBase;
+		this.onInit();
+	}
+	
+	/**
+	 * 初始化
+	 * @throws Exception
+	 */
+	protected void onInit()throws Exception
+	{
+		
+	}
 
-    @Override
-    public String getId() {
-        return this.strId;
-    }
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFProcessModel#getId()
+	 */
+	@Override
+	public String getId()
+	{
+		return this.strId;
+	}
 
-    @Override
-    public String getName() {
-        return this.strName;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFProcessModel#getName()
+	 */
+	@Override
+	public String getName()
+	{
+		return this.strName;
+	}
 
-    public void setId(String strId) {
-        this.strId = strId;
-    }
+	/**
+	 * 设置流程处理标识
+	 *  @param strId the strId to set
+	 */
+	public void setId(String strId)
+	{
+		this.strId = strId;
+	}
 
-    public void setName(String strName) {
-        this.strName = strName;
-    }
+	/**
+	 * 设置流程处理名称
+	 * @param strName the strName to set
+	 */
+	public void setName(String strName)
+	{
+		this.strName = strName;
+	}
 
-    @Override
-    public IWFEmbedWFProcessModelBase getWFEmbedWFProcessModelBase() {
-        return this.iWFEmbedWFProcessModelBase;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFProcSubWFModel#getWFEmbedWFProcessModelBase()
+	 */
+	@Override
+	public IWFEmbedWFProcessModelBase getWFEmbedWFProcessModelBase()
+	{
+		return this.iWFEmbedWFProcessModelBase;
+	}
 
-    @Override
-    public IWFModel getWFModel() {
-        return null;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFProcSubWFModel#getWFModel()
+	 */
+	@Override
+	public IWFModel getWFModel() {
+		return null;
+	}
 
-    @Override
-    public String getWFId() {
-        return this.strWFId;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFProcSubWFModel#getWFId()
+	 */
+	@Override
+	public String getWFId() {
+		return this.strWFId;
+	}
 
-    @Override
-    public String getDEName() {
-        return this.strDEName;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFProcSubWFModel#getDEName()
+	 */
+	@Override
+	public String getDEName() {
+		return this.strDEName;
+	}
 
-    @Override
-    public String getDEDSName() {
-        return this.strDEDSName;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFProcSubWFModel#getDEDSName()
+	 */
+	@Override
+	public String getDEDSName() {
+		return this.strDEDSName;
+	}
 
-    public void setDEName(String strDEName) {
-        this.strDEName = strDEName;
-    }
+	/**
+	 * 设置实体模型名称
+	 * @param strDEName
+	 */
+	public void setDEName(String strDEName) {
+		this.strDEName = strDEName;
+	}
 
-    public void setWFId(String strWFId) {
-        this.strWFId = strWFId;
-    }
+	/**
+	 * 设置子流程标识
+	 * @param strWFId
+	 */
+	public void setWFId(String strWFId) {
+		this.strWFId = strWFId;
+	}
 
-    public void setDEDSName(String strDEDSName) {
-        this.strDEDSName = strDEDSName;
-    }
+	/**
+	 * 设置查询的实体数据集
+	 * @param strDEDSName
+	 */
+	public void setDEDSName(String strDEDSName) {
+		this.strDEDSName = strDEDSName;
+	}
 
-    @Override
-    public boolean isSuspendDefault() {
-        return this.bSuspendDefault;
-    }
+	@Override
+	public boolean isSuspendDefault() {
+		return this.bSuspendDefault;
+	}
 
-    public void setSuspendDefault(boolean bSuspendDefault) {
-        this.bSuspendDefault = bSuspendDefault;
-    }
+	/**
+	 * 设置是否默认挂起子流程
+	 * @param bSuspendDefault
+	 */
+	public void setSuspendDefault(boolean bSuspendDefault){
+		this.bSuspendDefault = bSuspendDefault;
+	}
 
-    @Override
-    public IWFVersionModel getWFVersionModel() {
-        return null;
-    }
+	@Override
+	public IWFVersionModel getWFVersionModel() {
+		return null;
+	}
 
-    @Override
-    public String getWFVerId() {
-        return this.strWFVerId;
-    }
-
-    public void setWFVerId(String strWFVerId) {
-        this.strWFVerId = strWFVerId;
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.pswf.core.IWFProcSubWFModel#getWFVerId()
+	 */
+	@Override
+	public String getWFVerId() {
+		return this.strWFVerId;
+	}
+	
+	/**
+	 * 设置子流程标识
+	 * @param strWFVerId
+	 */
+	public void setWFVerId(String strWFVerId) {
+		this.strWFVerId = strWFVerId;
+	}
+	
 }
-

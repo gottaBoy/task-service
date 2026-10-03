@@ -53,16 +53,16 @@ extends PSDEGridColServiceBase {
         ArrayList<PSDEGridCol> arrayList = null;
         arrayList = pSDEGrid.getPSDEGridId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSDEGrid(pSDEGrid) : this.selectByPSDEGrid(pSDEGrid);
         HashMap<String, PSDEGridCol> hashMap = new HashMap<String, PSDEGridCol>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSDEGridCol pSDEGridCol2 = object.next();
+        for (PSDEGridCol pSDEGridCol2 : arrayList) {
             hashMap.put(pSDEGridCol2.getPSDEGridColName().toLowerCase(), pSDEGridCol2);
         }
+        String columnName;
         while (true) {
-            if (!hashMap.containsKey(object = StringHelper.format((String)"%1$s%2$s", (Object)string2, (Object)(n == 0 ? "" : Integer.valueOf(n))))) break;
+            columnName = StringHelper.format((String)"%1$s%2$s", (Object)string2, (Object)(n == 0 ? "" : Integer.valueOf(n)));
+            if (!hashMap.containsKey(columnName)) break;
             ++n;
         }
-        pSDEGridCol.setPSDEGridColName((String)object);
+        pSDEGridCol.setPSDEGridColName(columnName);
     }
 
     @Override
@@ -88,4 +88,3 @@ extends PSDEGridColServiceBase {
         return pSDEGridCol.getLogicName();
     }
 }
-

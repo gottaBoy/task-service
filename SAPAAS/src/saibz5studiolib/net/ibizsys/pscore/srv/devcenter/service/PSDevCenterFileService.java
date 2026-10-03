@@ -30,7 +30,7 @@ extends PSDevCenterFileServiceBase {
     @Override
     protected void onCalcFolderSize(PSDevCenterFile pSDevCenterFile) throws Exception {
         if (!pSDevCenterFile.isFullEntity()) {
-            this.get((IEntity)pSDevCenterFile);
+            this.get(pSDevCenterFile);
         }
         if (pSDevCenterFile.getFileType() != null && pSDevCenterFile.getFileType().equals(DevCenterFileTypeCodeListModel.FOLDER) && !StringHelper.isNullOrEmpty((String)pSDevCenterFile.getFilePath())) {
             long l = PSFileUtil.getFolderSize(new File(pSDevCenterFile.getFilePath()));

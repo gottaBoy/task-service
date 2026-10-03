@@ -240,7 +240,7 @@ extends SRFExDataGridActionHelper {
         String strBICond2;
         IDEHelper majorDEHelper;
         String strTableAlias;
-        Vector der1ns;
+        Vector<DER1N> der1ns;
         String strScript = daQueryModelHelper.GetQueryModelScript();
         TreeMap<String, String> tableAliasMap = new TreeMap<String, String>();
         String strBICond = this.getWebContext().GetParamValue("SRFBICOND");
@@ -516,11 +516,11 @@ extends SRFExDataGridActionHelper {
                 curGroupLogicConfig.InitLogicsConfig();
                 curGroupLogicConfig.setCondition("AND");
                 groups.put(strGroupNo.toUpperCase(), curGroupLogicConfig);
-                realGroupLogicConfig.getLogicsConfig().add((Object)curGroupLogicConfig);
+                realGroupLogicConfig.getLogicsConfig().add(curGroupLogicConfig);
             } else {
                 curGroupLogicConfig = (DGModelGroupLogicConfig)groups.get(strGroupNo.toUpperCase());
             }
-            curGroupLogicConfig.getLogicsConfig().add((Object)dgModelBaseLogicConfig);
+            curGroupLogicConfig.getLogicsConfig().add(dgModelBaseLogicConfig);
         }
         CallResult callResult = daQueryModelHelper.GetGroupCondition(realGroupLogicConfig);
         if (callResult.IsError()) {
@@ -635,7 +635,7 @@ extends SRFExDataGridActionHelper {
                 log.error((Object)fetchResult.getErrorInfo());
                 return;
             }
-            Vector list = new Vector();
+            Vector<BaseDataEntity> list = new Vector<BaseDataEntity>();
             CallResult callResult = iTempDataCtrl.Select(cond, list);
             if (callResult == null) {
                 fetchResult.setRetCode(1);
@@ -998,4 +998,3 @@ extends SRFExDataGridActionHelper {
         return strColumns;
     }
 }
-

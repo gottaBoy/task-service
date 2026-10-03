@@ -57,6 +57,10 @@ import org.hibernate.SessionFactory;
 public class PSJITDEModel
 extends DataEntityModelBase<PSJITEntity>
 implements IPSJITDEModel<PSJITEntity> {
+
+    public PSJITDEModel() throws Exception {
+        super();
+    }
     private IPSDataEntity iPSDataEntity = null;
     private IPSJITSystemModel iSystemModel = null;
     private PSJITService psJITService;

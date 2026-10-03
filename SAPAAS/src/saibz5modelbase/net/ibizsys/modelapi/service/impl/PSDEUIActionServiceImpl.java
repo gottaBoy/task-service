@@ -256,12 +256,12 @@ implements IPSDEUIActionService {
 
     @Override
     protected List<PSDEUIAction> onListAll() throws Exception {
-        List pssystems;
-        List psmodules;
-        List psworkflows;
-        List pswfversions;
+        List<PSSystem> pssystems;
+        List<PSModule> psmodules;
+        List<PSWorkflow> psworkflows;
+        List<PSWFVersion> pswfversions;
         ArrayList<PSDEUIAction> list = new ArrayList<PSDEUIAction>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEUIAction> items = this.listByPSDataEntity(parent);

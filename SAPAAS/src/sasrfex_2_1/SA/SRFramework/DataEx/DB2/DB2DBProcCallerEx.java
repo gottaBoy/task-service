@@ -18,7 +18,7 @@ import SA.SRFramework.Utility.StringHelper;
 import SA.SRFramework.UtilityEx.StringBuilderEx;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.CallableStatement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
@@ -216,7 +216,7 @@ extends OraDBProcCaller {
         DBResult dbResult = new DBResult();
         dbResult.setRetCode(1);
         dbResult.setDatabase(1);
-        Statement cstmt = null;
+        CallableStatement cstmt = null;
         try {
             try {
                 String strProc = this.FormatProcCall("pkg_SRF2.sp_executeSQL", 1);

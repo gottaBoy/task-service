@@ -1,76 +1,155 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.persistence.Column
- *  net.sf.json.JSONObject
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.dynasys.entity;
 
+
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import javax.persistence.Column;
-import net.ibizsys.paas.data.DataObject;
+
+import java.sql.Timestamp;
 import net.ibizsys.paas.data.IDataObject;
-import net.ibizsys.paas.entity.EntityBase;
-import net.ibizsys.paas.entity.IEntityActionHelper;
-import net.ibizsys.paas.service.ServiceGlobal;
-import net.ibizsys.paas.util.DataTypeHelper;
-import net.ibizsys.paas.util.JSONObjectHelper;
+import net.ibizsys.paas.data.DataObject;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.paas.xml.XmlNode;
-import net.ibizsys.psrt.srv.dynasys.entity.DSDynaView;
-import net.ibizsys.psrt.srv.dynasys.service.DSDynaViewService;
 import net.sf.json.JSONObject;
+import net.ibizsys.paas.util.JSONObjectHelper;
+import net.ibizsys.paas.xml.XmlNode;
+import net.ibizsys.paas.service.ServiceGlobal;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public abstract class DSDynaViewInstBase
-extends EntityBase
-implements Serializable {
+
+/**
+ * 实体[DSDynaViewInst] 数据对象基类
+ */
+public abstract class DSDynaViewInstBase extends net.ibizsys.paas.entity.EntityBase implements Serializable {
+
     private static final long serialVersionUID = -1L;
     private static final Log log = LogFactory.getLog(DSDynaViewInstBase.class);
-    public static final String FIELD_CREATEDATE = "CREATEDATE";
-    public static final String FIELD_CREATEMAN = "CREATEMAN";
-    public static final String FIELD_DEID = "DEID";
-    public static final String FIELD_DEWFID = "DEWFID";
-    public static final String FIELD_DSDYNAVIEWID = "DSDYNAVIEWID";
-    public static final String FIELD_DSDYNAVIEWINSTID = "DSDYNAVIEWINSTID";
-    public static final String FIELD_DSDYNAVIEWINSTNAME = "DSDYNAVIEWINSTNAME";
-    public static final String FIELD_DSDYNAVIEWNAME = "DSDYNAVIEWNAME";
-    public static final String FIELD_DYNAMODEL = "DYNAMODEL";
-    public static final String FIELD_DYNASYSINSTID = "DYNASYSINSTID";
-    public static final String FIELD_INSTVER = "INSTVER";
-    public static final String FIELD_MEMO = "MEMO";
-    public static final String FIELD_PDVTPARAM = "PDVTPARAM";
-    public static final String FIELD_PREDEFINEDVIEWTYPE = "PREDEFINEDVIEWTYPE";
-    public static final String FIELD_UPDATEDATE = "UPDATEDATE";
-    public static final String FIELD_UPDATEMAN = "UPDATEMAN";
-    public static final String FIELD_VIEWINSTOBJ = "VIEWINSTOBJ";
-    public static final String FIELD_VIEWTYPE = "VIEWTYPE";
-    private static final int INDEX_CREATEDATE = 0;
-    private static final int INDEX_CREATEMAN = 1;
-    private static final int INDEX_DEID = 2;
-    private static final int INDEX_DEWFID = 3;
-    private static final int INDEX_DSDYNAVIEWID = 4;
-    private static final int INDEX_DSDYNAVIEWINSTID = 5;
-    private static final int INDEX_DSDYNAVIEWINSTNAME = 6;
-    private static final int INDEX_DSDYNAVIEWNAME = 7;
-    private static final int INDEX_DYNAMODEL = 8;
-    private static final int INDEX_DYNASYSINSTID = 9;
-    private static final int INDEX_INSTVER = 10;
-    private static final int INDEX_MEMO = 11;
-    private static final int INDEX_PDVTPARAM = 12;
-    private static final int INDEX_PREDEFINEDVIEWTYPE = 13;
-    private static final int INDEX_UPDATEDATE = 14;
-    private static final int INDEX_UPDATEMAN = 15;
-    private static final int INDEX_VIEWINSTOBJ = 16;
-    private static final int INDEX_VIEWTYPE = 17;
-    private static final HashMap<String, Integer> fieldIndexMap = new HashMap();
+    /**
+     * 属性[建立时间]
+     */
+    public final static String FIELD_CREATEDATE = "CREATEDATE";
+    /**
+     * 属性[建立人]
+     */
+    public final static String FIELD_CREATEMAN = "CREATEMAN";
+    /**
+     * 属性[实体标识]
+     */
+    public final static String FIELD_DEID = "DEID";
+    /**
+     * 属性[实体工作流标识]
+     */
+    public final static String FIELD_DEWFID = "DEWFID";
+    /**
+     * 属性[动态视图]
+     */
+    public final static String FIELD_DSDYNAVIEWID = "DSDYNAVIEWID";
+    /**
+     * 属性[动态视图实例标识]
+     */
+    public final static String FIELD_DSDYNAVIEWINSTID = "DSDYNAVIEWINSTID";
+    /**
+     * 属性[动态视图实例名称]
+     */
+    public final static String FIELD_DSDYNAVIEWINSTNAME = "DSDYNAVIEWINSTNAME";
+    /**
+     * 属性[动态视图]
+     */
+    public final static String FIELD_DSDYNAVIEWNAME = "DSDYNAVIEWNAME";
+    /**
+     * 属性[动态模型]
+     */
+    public final static String FIELD_DYNAMODEL = "DYNAMODEL";
+    /**
+     * 属性[动态实例标识]
+     */
+    public final static String FIELD_DYNASYSINSTID = "DYNASYSINSTID";
+    /**
+     * 属性[实例版本]
+     */
+    public final static String FIELD_INSTVER = "INSTVER";
+    /**
+     * 属性[备注]
+     */
+    public final static String FIELD_MEMO = "MEMO";
+    /**
+     * 属性[预置视图类型参数]
+     */
+    public final static String FIELD_PDVTPARAM = "PDVTPARAM";
+    /**
+     * 属性[预置视图类型]
+     */
+    public final static String FIELD_PREDEFINEDVIEWTYPE = "PREDEFINEDVIEWTYPE";
+    /**
+     * 属性[更新时间]
+     */
+    public final static String FIELD_UPDATEDATE = "UPDATEDATE";
+    /**
+     * 属性[更新人]
+     */
+    public final static String FIELD_UPDATEMAN = "UPDATEMAN";
+    /**
+     * 属性[视图实例对象]
+     */
+    public final static String FIELD_VIEWINSTOBJ = "VIEWINSTOBJ";
+    /**
+     * 属性[视图类型]
+     */
+    public final static String FIELD_VIEWTYPE = "VIEWTYPE";
+
+    private final static int INDEX_CREATEDATE = 0;
+    private final static int INDEX_CREATEMAN = 1;
+    private final static int INDEX_DEID = 2;
+    private final static int INDEX_DEWFID = 3;
+    private final static int INDEX_DSDYNAVIEWID = 4;
+    private final static int INDEX_DSDYNAVIEWINSTID = 5;
+    private final static int INDEX_DSDYNAVIEWINSTNAME = 6;
+    private final static int INDEX_DSDYNAVIEWNAME = 7;
+    private final static int INDEX_DYNAMODEL = 8;
+    private final static int INDEX_DYNASYSINSTID = 9;
+    private final static int INDEX_INSTVER = 10;
+    private final static int INDEX_MEMO = 11;
+    private final static int INDEX_PDVTPARAM = 12;
+    private final static int INDEX_PREDEFINEDVIEWTYPE = 13;
+    private final static int INDEX_UPDATEDATE = 14;
+    private final static int INDEX_UPDATEMAN = 15;
+    private final static int INDEX_VIEWINSTOBJ = 16;
+    private final static int INDEX_VIEWTYPE = 17;
+
+    private final static HashMap<String, Integer> fieldIndexMap = new HashMap<String, Integer>();
+    static {
+        fieldIndexMap.put( FIELD_CREATEDATE, INDEX_CREATEDATE);
+        fieldIndexMap.put( FIELD_CREATEMAN, INDEX_CREATEMAN);
+        fieldIndexMap.put( FIELD_DEID, INDEX_DEID);
+        fieldIndexMap.put( FIELD_DEWFID, INDEX_DEWFID);
+        fieldIndexMap.put( FIELD_DSDYNAVIEWID, INDEX_DSDYNAVIEWID);
+        fieldIndexMap.put( FIELD_DSDYNAVIEWINSTID, INDEX_DSDYNAVIEWINSTID);
+        fieldIndexMap.put( FIELD_DSDYNAVIEWINSTNAME, INDEX_DSDYNAVIEWINSTNAME);
+        fieldIndexMap.put( FIELD_DSDYNAVIEWNAME, INDEX_DSDYNAVIEWNAME);
+        fieldIndexMap.put( FIELD_DYNAMODEL, INDEX_DYNAMODEL);
+        fieldIndexMap.put( FIELD_DYNASYSINSTID, INDEX_DYNASYSINSTID);
+        fieldIndexMap.put( FIELD_INSTVER, INDEX_INSTVER);
+        fieldIndexMap.put( FIELD_MEMO, INDEX_MEMO);
+        fieldIndexMap.put( FIELD_PDVTPARAM, INDEX_PDVTPARAM);
+        fieldIndexMap.put( FIELD_PREDEFINEDVIEWTYPE, INDEX_PREDEFINEDVIEWTYPE);
+        fieldIndexMap.put( FIELD_UPDATEDATE, INDEX_UPDATEDATE);
+        fieldIndexMap.put( FIELD_UPDATEMAN, INDEX_UPDATEMAN);
+        fieldIndexMap.put( FIELD_VIEWINSTOBJ, INDEX_VIEWINSTOBJ);
+        fieldIndexMap.put( FIELD_VIEWTYPE, INDEX_VIEWTYPE);
+    }
+
     private DSDynaViewInstBase proxyDSDynaViewInstBase = null;
+    public DSDynaViewInstBase() {
+        super();
+    }
     private boolean createdateDirtyFlag = false;
     private boolean createmanDirtyFlag = false;
     private boolean deidDirtyFlag = false;
@@ -89,6 +168,7 @@ implements Serializable {
     private boolean updatemanDirtyFlag = false;
     private boolean viewinstobjDirtyFlag = false;
     private boolean viewtypeDirtyFlag = false;
+
     @Column(name="createdate")
     private Timestamp createdate;
     @Column(name="createman")
@@ -125,657 +205,958 @@ implements Serializable {
     private String viewinstobj;
     @Column(name="viewtype")
     private String viewtype;
-    private Integer objDSDynaViewLock = new Integer(1);
-    private DSDynaView dsdynaview = null;
 
-    static {
-        fieldIndexMap.put(FIELD_CREATEDATE, 0);
-        fieldIndexMap.put(FIELD_CREATEMAN, 1);
-        fieldIndexMap.put(FIELD_DEID, 2);
-        fieldIndexMap.put(FIELD_DEWFID, 3);
-        fieldIndexMap.put(FIELD_DSDYNAVIEWID, 4);
-        fieldIndexMap.put(FIELD_DSDYNAVIEWINSTID, 5);
-        fieldIndexMap.put(FIELD_DSDYNAVIEWINSTNAME, 6);
-        fieldIndexMap.put(FIELD_DSDYNAVIEWNAME, 7);
-        fieldIndexMap.put(FIELD_DYNAMODEL, 8);
-        fieldIndexMap.put(FIELD_DYNASYSINSTID, 9);
-        fieldIndexMap.put(FIELD_INSTVER, 10);
-        fieldIndexMap.put(FIELD_MEMO, 11);
-        fieldIndexMap.put(FIELD_PDVTPARAM, 12);
-        fieldIndexMap.put(FIELD_PREDEFINEDVIEWTYPE, 13);
-        fieldIndexMap.put(FIELD_UPDATEDATE, 14);
-        fieldIndexMap.put(FIELD_UPDATEMAN, 15);
-        fieldIndexMap.put(FIELD_VIEWINSTOBJ, 16);
-        fieldIndexMap.put(FIELD_VIEWTYPE, 17);
-    }
 
+    /**
+     *  设置属性值[建立时间]
+     *  @param createdate
+     */
     public void setCreateDate(Timestamp createdate) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setCreateDate(createdate);
             return;
         }
         this.createdate = createdate;
-        this.createdateDirtyFlag = true;
+        this.createdateDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[建立时间]
+     */
     public Timestamp getCreateDate() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getCreateDate();
         }
         return this.createdate;
     }
 
+    /**
+     *  获取属性值[建立时间]是否修改
+     */
     public boolean isCreateDateDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isCreateDateDirty();
         }
         return this.createdateDirtyFlag;
     }
 
+    /**
+     *  重置属性值[建立时间]
+     */
     public void resetCreateDate() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetCreateDate();
             return;
         }
+
         this.createdateDirtyFlag = false;
         this.createdate = null;
     }
-
+    /**
+     *  设置属性值[建立人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     *  @param createman
+     */
     public void setCreateMan(String createman) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setCreateMan(createman);
             return;
         }
-        if (createman != null && (createman = StringHelper.trimRight(createman)).length() == 0) {
-            createman = null;
+        if(createman!=null) {
+            createman = StringHelper.trimRight(createman);
+            if(createman.length()==0) {
+                createman = null;
+            }
         }
         this.createman = createman;
-        this.createmanDirtyFlag = true;
+        this.createmanDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[建立人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     */
     public String getCreateMan() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getCreateMan();
         }
         return this.createman;
     }
 
+    /**
+     *  获取属性值[建立人]是否修改
+     */
     public boolean isCreateManDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isCreateManDirty();
         }
         return this.createmanDirtyFlag;
     }
 
+    /**
+     *  重置属性值[建立人]
+     */
     public void resetCreateMan() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetCreateMan();
             return;
         }
+
         this.createmanDirtyFlag = false;
         this.createman = null;
     }
-
+    /**
+     *  设置属性值[实体标识]
+     *  @param deid
+     */
     public void setDEId(String deid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDEId(deid);
             return;
         }
-        if (deid != null && (deid = StringHelper.trimRight(deid)).length() == 0) {
-            deid = null;
+        if(deid!=null) {
+            deid = StringHelper.trimRight(deid);
+            if(deid.length()==0) {
+                deid = null;
+            }
         }
         this.deid = deid;
-        this.deidDirtyFlag = true;
+        this.deidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实体标识]
+     */
     public String getDEId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDEId();
         }
         return this.deid;
     }
 
+    /**
+     *  获取属性值[实体标识]是否修改
+     */
     public boolean isDEIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDEIdDirty();
         }
         return this.deidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实体标识]
+     */
     public void resetDEId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDEId();
             return;
         }
+
         this.deidDirtyFlag = false;
         this.deid = null;
     }
-
+    /**
+     *  设置属性值[实体工作流标识]
+     *  @param dewfid
+     */
     public void setDEWFId(String dewfid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDEWFId(dewfid);
             return;
         }
-        if (dewfid != null && (dewfid = StringHelper.trimRight(dewfid)).length() == 0) {
-            dewfid = null;
+        if(dewfid!=null) {
+            dewfid = StringHelper.trimRight(dewfid);
+            if(dewfid.length()==0) {
+                dewfid = null;
+            }
         }
         this.dewfid = dewfid;
-        this.dewfidDirtyFlag = true;
+        this.dewfidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实体工作流标识]
+     */
     public String getDEWFId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDEWFId();
         }
         return this.dewfid;
     }
 
+    /**
+     *  获取属性值[实体工作流标识]是否修改
+     */
     public boolean isDEWFIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDEWFIdDirty();
         }
         return this.dewfidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实体工作流标识]
+     */
     public void resetDEWFId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDEWFId();
             return;
         }
+
         this.dewfidDirtyFlag = false;
         this.dewfid = null;
     }
-
+    /**
+     *  设置属性值[动态视图]
+     *  @param dsdynaviewid
+     */
     public void setDSDynaViewId(String dsdynaviewid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDSDynaViewId(dsdynaviewid);
             return;
         }
-        if (dsdynaviewid != null && (dsdynaviewid = StringHelper.trimRight(dsdynaviewid)).length() == 0) {
-            dsdynaviewid = null;
+        if(dsdynaviewid!=null) {
+            dsdynaviewid = StringHelper.trimRight(dsdynaviewid);
+            if(dsdynaviewid.length()==0) {
+                dsdynaviewid = null;
+            }
         }
         this.dsdynaviewid = dsdynaviewid;
-        this.dsdynaviewidDirtyFlag = true;
+        this.dsdynaviewidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[动态视图]
+     */
     public String getDSDynaViewId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDSDynaViewId();
         }
         return this.dsdynaviewid;
     }
 
+    /**
+     *  获取属性值[动态视图]是否修改
+     */
     public boolean isDSDynaViewIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDSDynaViewIdDirty();
         }
         return this.dsdynaviewidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[动态视图]
+     */
     public void resetDSDynaViewId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDSDynaViewId();
             return;
         }
+
         this.dsdynaviewidDirtyFlag = false;
         this.dsdynaviewid = null;
     }
-
+    /**
+     *  设置属性值[动态视图实例标识]
+     *  @param dsdynaviewinstid
+     */
     public void setDSDynaViewInstId(String dsdynaviewinstid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDSDynaViewInstId(dsdynaviewinstid);
             return;
         }
-        if (dsdynaviewinstid != null && (dsdynaviewinstid = StringHelper.trimRight(dsdynaviewinstid)).length() == 0) {
-            dsdynaviewinstid = null;
+        if(dsdynaviewinstid!=null) {
+            dsdynaviewinstid = StringHelper.trimRight(dsdynaviewinstid);
+            if(dsdynaviewinstid.length()==0) {
+                dsdynaviewinstid = null;
+            }
         }
         this.dsdynaviewinstid = dsdynaviewinstid;
-        this.dsdynaviewinstidDirtyFlag = true;
+        this.dsdynaviewinstidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[动态视图实例标识]
+     */
     public String getDSDynaViewInstId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDSDynaViewInstId();
         }
         return this.dsdynaviewinstid;
     }
 
+    /**
+     *  获取属性值[动态视图实例标识]是否修改
+     */
     public boolean isDSDynaViewInstIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDSDynaViewInstIdDirty();
         }
         return this.dsdynaviewinstidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[动态视图实例标识]
+     */
     public void resetDSDynaViewInstId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDSDynaViewInstId();
             return;
         }
+
         this.dsdynaviewinstidDirtyFlag = false;
         this.dsdynaviewinstid = null;
     }
-
+    /**
+     *  设置属性值[动态视图实例名称]
+     *  @param dsdynaviewinstname
+     */
     public void setDSDynaViewInstName(String dsdynaviewinstname) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDSDynaViewInstName(dsdynaviewinstname);
             return;
         }
-        if (dsdynaviewinstname != null && (dsdynaviewinstname = StringHelper.trimRight(dsdynaviewinstname)).length() == 0) {
-            dsdynaviewinstname = null;
+        if(dsdynaviewinstname!=null) {
+            dsdynaviewinstname = StringHelper.trimRight(dsdynaviewinstname);
+            if(dsdynaviewinstname.length()==0) {
+                dsdynaviewinstname = null;
+            }
         }
         this.dsdynaviewinstname = dsdynaviewinstname;
-        this.dsdynaviewinstnameDirtyFlag = true;
+        this.dsdynaviewinstnameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[动态视图实例名称]
+     */
     public String getDSDynaViewInstName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDSDynaViewInstName();
         }
         return this.dsdynaviewinstname;
     }
 
+    /**
+     *  获取属性值[动态视图实例名称]是否修改
+     */
     public boolean isDSDynaViewInstNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDSDynaViewInstNameDirty();
         }
         return this.dsdynaviewinstnameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[动态视图实例名称]
+     */
     public void resetDSDynaViewInstName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDSDynaViewInstName();
             return;
         }
+
         this.dsdynaviewinstnameDirtyFlag = false;
         this.dsdynaviewinstname = null;
     }
-
+    /**
+     *  设置属性值[动态视图]
+     *  @param dsdynaviewname
+     */
     public void setDSDynaViewName(String dsdynaviewname) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDSDynaViewName(dsdynaviewname);
             return;
         }
-        if (dsdynaviewname != null && (dsdynaviewname = StringHelper.trimRight(dsdynaviewname)).length() == 0) {
-            dsdynaviewname = null;
+        if(dsdynaviewname!=null) {
+            dsdynaviewname = StringHelper.trimRight(dsdynaviewname);
+            if(dsdynaviewname.length()==0) {
+                dsdynaviewname = null;
+            }
         }
         this.dsdynaviewname = dsdynaviewname;
-        this.dsdynaviewnameDirtyFlag = true;
+        this.dsdynaviewnameDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[动态视图]
+     */
     public String getDSDynaViewName() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDSDynaViewName();
         }
         return this.dsdynaviewname;
     }
 
+    /**
+     *  获取属性值[动态视图]是否修改
+     */
     public boolean isDSDynaViewNameDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDSDynaViewNameDirty();
         }
         return this.dsdynaviewnameDirtyFlag;
     }
 
+    /**
+     *  重置属性值[动态视图]
+     */
     public void resetDSDynaViewName() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDSDynaViewName();
             return;
         }
+
         this.dsdynaviewnameDirtyFlag = false;
         this.dsdynaviewname = null;
     }
-
+    /**
+     *  设置属性值[动态模型]
+     *  @param dynamodel
+     */
     public void setDynaModel(String dynamodel) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDynaModel(dynamodel);
             return;
         }
-        if (dynamodel != null && (dynamodel = StringHelper.trimRight(dynamodel)).length() == 0) {
-            dynamodel = null;
+        if(dynamodel!=null) {
+            dynamodel = StringHelper.trimRight(dynamodel);
+            if(dynamodel.length()==0) {
+                dynamodel = null;
+            }
         }
         this.dynamodel = dynamodel;
-        this.dynamodelDirtyFlag = true;
+        this.dynamodelDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[动态模型]
+     */
     public String getDynaModel() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDynaModel();
         }
         return this.dynamodel;
     }
 
+    /**
+     *  获取属性值[动态模型]是否修改
+     */
     public boolean isDynaModelDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDynaModelDirty();
         }
         return this.dynamodelDirtyFlag;
     }
 
+    /**
+     *  重置属性值[动态模型]
+     */
     public void resetDynaModel() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDynaModel();
             return;
         }
+
         this.dynamodelDirtyFlag = false;
         this.dynamodel = null;
     }
-
+    /**
+     *  设置属性值[动态实例标识]
+     *  @param dynasysinstid
+     */
     public void setDynaSysInstId(String dynasysinstid) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setDynaSysInstId(dynasysinstid);
             return;
         }
-        if (dynasysinstid != null && (dynasysinstid = StringHelper.trimRight(dynasysinstid)).length() == 0) {
-            dynasysinstid = null;
+        if(dynasysinstid!=null) {
+            dynasysinstid = StringHelper.trimRight(dynasysinstid);
+            if(dynasysinstid.length()==0) {
+                dynasysinstid = null;
+            }
         }
         this.dynasysinstid = dynasysinstid;
-        this.dynasysinstidDirtyFlag = true;
+        this.dynasysinstidDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[动态实例标识]
+     */
     public String getDynaSysInstId() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDynaSysInstId();
         }
         return this.dynasysinstid;
     }
 
+    /**
+     *  获取属性值[动态实例标识]是否修改
+     */
     public boolean isDynaSysInstIdDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isDynaSysInstIdDirty();
         }
         return this.dynasysinstidDirtyFlag;
     }
 
+    /**
+     *  重置属性值[动态实例标识]
+     */
     public void resetDynaSysInstId() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetDynaSysInstId();
             return;
         }
+
         this.dynasysinstidDirtyFlag = false;
         this.dynasysinstid = null;
     }
-
+    /**
+     *  设置属性值[实例版本]
+     *  @param instver
+     */
     public void setInstVer(Integer instver) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setInstVer(instver);
             return;
         }
         this.instver = instver;
-        this.instverDirtyFlag = true;
+        this.instverDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[实例版本]
+     */
     public Integer getInstVer() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getInstVer();
         }
         return this.instver;
     }
 
+    /**
+     *  获取属性值[实例版本]是否修改
+     */
     public boolean isInstVerDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isInstVerDirty();
         }
         return this.instverDirtyFlag;
     }
 
+    /**
+     *  重置属性值[实例版本]
+     */
     public void resetInstVer() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetInstVer();
             return;
         }
+
         this.instverDirtyFlag = false;
         this.instver = null;
     }
-
+    /**
+     *  设置属性值[备注]
+     *  @param memo
+     */
     public void setMemo(String memo) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setMemo(memo);
             return;
         }
-        if (memo != null && (memo = StringHelper.trimRight(memo)).length() == 0) {
-            memo = null;
+        if(memo!=null) {
+            memo = StringHelper.trimRight(memo);
+            if(memo.length()==0) {
+                memo = null;
+            }
         }
         this.memo = memo;
-        this.memoDirtyFlag = true;
+        this.memoDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[备注]
+     */
     public String getMemo() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getMemo();
         }
         return this.memo;
     }
 
+    /**
+     *  获取属性值[备注]是否修改
+     */
     public boolean isMemoDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isMemoDirty();
         }
         return this.memoDirtyFlag;
     }
 
+    /**
+     *  重置属性值[备注]
+     */
     public void resetMemo() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetMemo();
             return;
         }
+
         this.memoDirtyFlag = false;
         this.memo = null;
     }
-
+    /**
+     *  设置属性值[预置视图类型参数]
+     *  @param pdvtparam
+     */
     public void setPDVTParam(String pdvtparam) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setPDVTParam(pdvtparam);
             return;
         }
-        if (pdvtparam != null && (pdvtparam = StringHelper.trimRight(pdvtparam)).length() == 0) {
-            pdvtparam = null;
+        if(pdvtparam!=null) {
+            pdvtparam = StringHelper.trimRight(pdvtparam);
+            if(pdvtparam.length()==0) {
+                pdvtparam = null;
+            }
         }
         this.pdvtparam = pdvtparam;
-        this.pdvtparamDirtyFlag = true;
+        this.pdvtparamDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[预置视图类型参数]
+     */
     public String getPDVTParam() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getPDVTParam();
         }
         return this.pdvtparam;
     }
 
+    /**
+     *  获取属性值[预置视图类型参数]是否修改
+     */
     public boolean isPDVTParamDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isPDVTParamDirty();
         }
         return this.pdvtparamDirtyFlag;
     }
 
+    /**
+     *  重置属性值[预置视图类型参数]
+     */
     public void resetPDVTParam() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetPDVTParam();
             return;
         }
+
         this.pdvtparamDirtyFlag = false;
         this.pdvtparam = null;
     }
-
+    /**
+     *  设置属性值[预置视图类型]
+     *  @param predefinedviewtype
+     */
     public void setPredefinedViewType(String predefinedviewtype) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setPredefinedViewType(predefinedviewtype);
             return;
         }
-        if (predefinedviewtype != null && (predefinedviewtype = StringHelper.trimRight(predefinedviewtype)).length() == 0) {
-            predefinedviewtype = null;
+        if(predefinedviewtype!=null) {
+            predefinedviewtype = StringHelper.trimRight(predefinedviewtype);
+            if(predefinedviewtype.length()==0) {
+                predefinedviewtype = null;
+            }
         }
         this.predefinedviewtype = predefinedviewtype;
-        this.predefinedviewtypeDirtyFlag = true;
+        this.predefinedviewtypeDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[预置视图类型]
+     */
     public String getPredefinedViewType() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getPredefinedViewType();
         }
         return this.predefinedviewtype;
     }
 
+    /**
+     *  获取属性值[预置视图类型]是否修改
+     */
     public boolean isPredefinedViewTypeDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isPredefinedViewTypeDirty();
         }
         return this.predefinedviewtypeDirtyFlag;
     }
 
+    /**
+     *  重置属性值[预置视图类型]
+     */
     public void resetPredefinedViewType() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetPredefinedViewType();
             return;
         }
+
         this.predefinedviewtypeDirtyFlag = false;
         this.predefinedviewtype = null;
     }
-
+    /**
+     *  设置属性值[更新时间]
+     *  @param updatedate
+     */
     public void setUpdateDate(Timestamp updatedate) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setUpdateDate(updatedate);
             return;
         }
         this.updatedate = updatedate;
-        this.updatedateDirtyFlag = true;
+        this.updatedateDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[更新时间]
+     */
     public Timestamp getUpdateDate() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getUpdateDate();
         }
         return this.updatedate;
     }
 
+    /**
+     *  获取属性值[更新时间]是否修改
+     */
     public boolean isUpdateDateDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isUpdateDateDirty();
         }
         return this.updatedateDirtyFlag;
     }
 
+    /**
+     *  重置属性值[更新时间]
+     */
     public void resetUpdateDate() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetUpdateDate();
             return;
         }
+
         this.updatedateDirtyFlag = false;
         this.updatedate = null;
     }
-
+    /**
+     *  设置属性值[更新人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     *  @param updateman
+     */
     public void setUpdateMan(String updateman) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setUpdateMan(updateman);
             return;
         }
-        if (updateman != null && (updateman = StringHelper.trimRight(updateman)).length() == 0) {
-            updateman = null;
+        if(updateman!=null) {
+            updateman = StringHelper.trimRight(updateman);
+            if(updateman.length()==0) {
+                updateman = null;
+            }
         }
         this.updateman = updateman;
-        this.updatemanDirtyFlag = true;
+        this.updatemanDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[更新人]代码表：net.ibizsys.psrt.srv.codelist.SysOperatorCodeListModel
+     */
     public String getUpdateMan() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getUpdateMan();
         }
         return this.updateman;
     }
 
+    /**
+     *  获取属性值[更新人]是否修改
+     */
     public boolean isUpdateManDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isUpdateManDirty();
         }
         return this.updatemanDirtyFlag;
     }
 
+    /**
+     *  重置属性值[更新人]
+     */
     public void resetUpdateMan() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetUpdateMan();
             return;
         }
+
         this.updatemanDirtyFlag = false;
         this.updateman = null;
     }
-
+    /**
+     *  设置属性值[视图实例对象]
+     *  @param viewinstobj
+     */
     public void setViewInstObj(String viewinstobj) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setViewInstObj(viewinstobj);
             return;
         }
-        if (viewinstobj != null && (viewinstobj = StringHelper.trimRight(viewinstobj)).length() == 0) {
-            viewinstobj = null;
+        if(viewinstobj!=null) {
+            viewinstobj = StringHelper.trimRight(viewinstobj);
+            if(viewinstobj.length()==0) {
+                viewinstobj = null;
+            }
         }
         this.viewinstobj = viewinstobj;
-        this.viewinstobjDirtyFlag = true;
+        this.viewinstobjDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[视图实例对象]
+     */
     public String getViewInstObj() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getViewInstObj();
         }
         return this.viewinstobj;
     }
 
+    /**
+     *  获取属性值[视图实例对象]是否修改
+     */
     public boolean isViewInstObjDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isViewInstObjDirty();
         }
         return this.viewinstobjDirtyFlag;
     }
 
+    /**
+     *  重置属性值[视图实例对象]
+     */
     public void resetViewInstObj() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetViewInstObj();
             return;
         }
+
         this.viewinstobjDirtyFlag = false;
         this.viewinstobj = null;
     }
-
+    /**
+     *  设置属性值[视图类型]代码表：net.ibizsys.psrt.srv.codelist.DynaViewTypeCodeListModel
+     *  @param viewtype
+     */
     public void setViewType(String viewtype) {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().setViewType(viewtype);
             return;
         }
-        if (viewtype != null && (viewtype = StringHelper.trimRight(viewtype)).length() == 0) {
-            viewtype = null;
+        if(viewtype!=null) {
+            viewtype = StringHelper.trimRight(viewtype);
+            if(viewtype.length()==0) {
+                viewtype = null;
+            }
         }
         this.viewtype = viewtype;
-        this.viewtypeDirtyFlag = true;
+        this.viewtypeDirtyFlag  = true;
     }
 
+    /**
+     *  获取属性值[视图类型]代码表：net.ibizsys.psrt.srv.codelist.DynaViewTypeCodeListModel
+     */
     public String getViewType() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getViewType();
         }
         return this.viewtype;
     }
 
+    /**
+     *  获取属性值[视图类型]是否修改
+     */
     public boolean isViewTypeDirty() {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isViewTypeDirty();
         }
         return this.viewtypeDirtyFlag;
     }
 
+    /**
+     *  重置属性值[视图类型]
+     */
     public void resetViewType() {
-        if (this.getProxyEntity() != null) {
+
+        if(this.getProxyEntity()!=null) {
             this.getProxyEntity().resetViewType();
             return;
         }
+
         this.viewtypeDirtyFlag = false;
         this.viewtype = null;
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.entity.EntityBase#onReset()
+     */
     @Override
     protected void onReset() {
         DSDynaViewInstBase.resetAll(this);
         super.onReset();
     }
 
+    /**
+     * 重置当前数据对象属性值
+     * @param entity
+     */
     private static void resetAll(DSDynaViewInstBase et) {
         et.resetCreateDate();
         et.resetCreateMan();
@@ -797,705 +1178,712 @@ implements Serializable {
         et.resetViewType();
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.entity.EntityBase#onFillMap(java.util.HashMap, boolean)
+     */
     @Override
     protected void onFillMap(HashMap<String, Object> params, boolean bDirtyOnly) {
-        if (!bDirtyOnly || this.isCreateDateDirty()) {
-            params.put(FIELD_CREATEDATE, this.getCreateDate());
+        if(!bDirtyOnly || isCreateDateDirty()) {
+            params.put(FIELD_CREATEDATE,getCreateDate());
         }
-        if (!bDirtyOnly || this.isCreateManDirty()) {
-            params.put(FIELD_CREATEMAN, this.getCreateMan());
+        if(!bDirtyOnly || isCreateManDirty()) {
+            params.put(FIELD_CREATEMAN,getCreateMan());
         }
-        if (!bDirtyOnly || this.isDEIdDirty()) {
-            params.put(FIELD_DEID, this.getDEId());
+        if(!bDirtyOnly || isDEIdDirty()) {
+            params.put(FIELD_DEID,getDEId());
         }
-        if (!bDirtyOnly || this.isDEWFIdDirty()) {
-            params.put(FIELD_DEWFID, this.getDEWFId());
+        if(!bDirtyOnly || isDEWFIdDirty()) {
+            params.put(FIELD_DEWFID,getDEWFId());
         }
-        if (!bDirtyOnly || this.isDSDynaViewIdDirty()) {
-            params.put(FIELD_DSDYNAVIEWID, this.getDSDynaViewId());
+        if(!bDirtyOnly || isDSDynaViewIdDirty()) {
+            params.put(FIELD_DSDYNAVIEWID,getDSDynaViewId());
         }
-        if (!bDirtyOnly || this.isDSDynaViewInstIdDirty()) {
-            params.put(FIELD_DSDYNAVIEWINSTID, this.getDSDynaViewInstId());
+        if(!bDirtyOnly || isDSDynaViewInstIdDirty()) {
+            params.put(FIELD_DSDYNAVIEWINSTID,getDSDynaViewInstId());
         }
-        if (!bDirtyOnly || this.isDSDynaViewInstNameDirty()) {
-            params.put(FIELD_DSDYNAVIEWINSTNAME, this.getDSDynaViewInstName());
+        if(!bDirtyOnly || isDSDynaViewInstNameDirty()) {
+            params.put(FIELD_DSDYNAVIEWINSTNAME,getDSDynaViewInstName());
         }
-        if (!bDirtyOnly || this.isDSDynaViewNameDirty()) {
-            params.put(FIELD_DSDYNAVIEWNAME, this.getDSDynaViewName());
+        if(!bDirtyOnly || isDSDynaViewNameDirty()) {
+            params.put(FIELD_DSDYNAVIEWNAME,getDSDynaViewName());
         }
-        if (!bDirtyOnly || this.isDynaModelDirty()) {
-            params.put(FIELD_DYNAMODEL, this.getDynaModel());
+        if(!bDirtyOnly || isDynaModelDirty()) {
+            params.put(FIELD_DYNAMODEL,getDynaModel());
         }
-        if (!bDirtyOnly || this.isDynaSysInstIdDirty()) {
-            params.put(FIELD_DYNASYSINSTID, this.getDynaSysInstId());
+        if(!bDirtyOnly || isDynaSysInstIdDirty()) {
+            params.put(FIELD_DYNASYSINSTID,getDynaSysInstId());
         }
-        if (!bDirtyOnly || this.isInstVerDirty()) {
-            params.put(FIELD_INSTVER, this.getInstVer());
+        if(!bDirtyOnly || isInstVerDirty()) {
+            params.put(FIELD_INSTVER,getInstVer());
         }
-        if (!bDirtyOnly || this.isMemoDirty()) {
-            params.put(FIELD_MEMO, this.getMemo());
+        if(!bDirtyOnly || isMemoDirty()) {
+            params.put(FIELD_MEMO,getMemo());
         }
-        if (!bDirtyOnly || this.isPDVTParamDirty()) {
-            params.put(FIELD_PDVTPARAM, this.getPDVTParam());
+        if(!bDirtyOnly || isPDVTParamDirty()) {
+            params.put(FIELD_PDVTPARAM,getPDVTParam());
         }
-        if (!bDirtyOnly || this.isPredefinedViewTypeDirty()) {
-            params.put(FIELD_PREDEFINEDVIEWTYPE, this.getPredefinedViewType());
+        if(!bDirtyOnly || isPredefinedViewTypeDirty()) {
+            params.put(FIELD_PREDEFINEDVIEWTYPE,getPredefinedViewType());
         }
-        if (!bDirtyOnly || this.isUpdateDateDirty()) {
-            params.put(FIELD_UPDATEDATE, this.getUpdateDate());
+        if(!bDirtyOnly || isUpdateDateDirty()) {
+            params.put(FIELD_UPDATEDATE,getUpdateDate());
         }
-        if (!bDirtyOnly || this.isUpdateManDirty()) {
-            params.put(FIELD_UPDATEMAN, this.getUpdateMan());
+        if(!bDirtyOnly || isUpdateManDirty()) {
+            params.put(FIELD_UPDATEMAN,getUpdateMan());
         }
-        if (!bDirtyOnly || this.isViewInstObjDirty()) {
-            params.put(FIELD_VIEWINSTOBJ, this.getViewInstObj());
+        if(!bDirtyOnly || isViewInstObjDirty()) {
+            params.put(FIELD_VIEWINSTOBJ,getViewInstObj());
         }
-        if (!bDirtyOnly || this.isViewTypeDirty()) {
-            params.put(FIELD_VIEWTYPE, this.getViewType());
+        if(!bDirtyOnly || isViewTypeDirty()) {
+            params.put(FIELD_VIEWTYPE,getViewType());
         }
         super.onFillMap(params, bDirtyOnly);
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#get(java.lang.String)
+     */
     @Override
     public Object get(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().get(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.get(strParamName);
-        }
-        return DSDynaViewInstBase.get(this, index);
+
+        return  DSDynaViewInstBase.get(this, index);
     }
 
-    private static Object get(DSDynaViewInstBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                return et.getCreateDate();
-            }
-            case 1: {
-                return et.getCreateMan();
-            }
-            case 2: {
-                return et.getDEId();
-            }
-            case 3: {
-                return et.getDEWFId();
-            }
-            case 4: {
-                return et.getDSDynaViewId();
-            }
-            case 5: {
-                return et.getDSDynaViewInstId();
-            }
-            case 6: {
-                return et.getDSDynaViewInstName();
-            }
-            case 7: {
-                return et.getDSDynaViewName();
-            }
-            case 8: {
-                return et.getDynaModel();
-            }
-            case 9: {
-                return et.getDynaSysInstId();
-            }
-            case 10: {
-                return et.getInstVer();
-            }
-            case 11: {
-                return et.getMemo();
-            }
-            case 12: {
-                return et.getPDVTParam();
-            }
-            case 13: {
-                return et.getPredefinedViewType();
-            }
-            case 14: {
-                return et.getUpdateDate();
-            }
-            case 15: {
-                return et.getUpdateMan();
-            }
-            case 16: {
-                return et.getViewInstObj();
-            }
-            case 17: {
-                return et.getViewType();
-            }
+    /**
+     * 通过属性标识获取属性值
+     * @param et 数据对象
+     * @param index 属性标识
+     * @return
+     * @throws Exception
+     */
+    private static Object get(DSDynaViewInstBase et,int index) throws Exception {
+
+        switch(index) {
+        case INDEX_CREATEDATE:
+            return et.getCreateDate();
+        case INDEX_CREATEMAN:
+            return et.getCreateMan();
+        case INDEX_DEID:
+            return et.getDEId();
+        case INDEX_DEWFID:
+            return et.getDEWFId();
+        case INDEX_DSDYNAVIEWID:
+            return et.getDSDynaViewId();
+        case INDEX_DSDYNAVIEWINSTID:
+            return et.getDSDynaViewInstId();
+        case INDEX_DSDYNAVIEWINSTNAME:
+            return et.getDSDynaViewInstName();
+        case INDEX_DSDYNAVIEWNAME:
+            return et.getDSDynaViewName();
+        case INDEX_DYNAMODEL:
+            return et.getDynaModel();
+        case INDEX_DYNASYSINSTID:
+            return et.getDynaSysInstId();
+        case INDEX_INSTVER:
+            return et.getInstVer();
+        case INDEX_MEMO:
+            return et.getMemo();
+        case INDEX_PDVTPARAM:
+            return et.getPDVTParam();
+        case INDEX_PREDEFINEDVIEWTYPE:
+            return et.getPredefinedViewType();
+        case INDEX_UPDATEDATE:
+            return et.getUpdateDate();
+        case INDEX_UPDATEMAN:
+            return et.getUpdateMan();
+        case INDEX_VIEWINSTOBJ:
+            return et.getViewInstObj();
+        case INDEX_VIEWTYPE:
+            return et.getViewType();
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#set(java.lang.String, java.lang.Object)
+     */
     @Override
-    public void set(String strParamName, Object objValue) throws Exception {
-        if (this.getProxyEntity() != null) {
-            this.getProxyEntity().set(strParamName, objValue);
+    public void set(String strParamName,Object objValue) throws Exception {
+        if(this.getProxyEntity()!=null) {
+            this.getProxyEntity().set(strParamName,objValue);
             return;
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
-            super.set(strParamName, objValue);
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null) {
+            super.set(strParamName,objValue);
             return;
         }
-        DSDynaViewInstBase.set(this, index, objValue);
+
+        DSDynaViewInstBase.set(this,index,objValue);
     }
 
-    private static void set(DSDynaViewInstBase et, int index, Object obj) throws Exception {
-        switch (index) {
-            case 0: {
-                et.setCreateDate(DataObject.getTimestampValue(obj));
-                return;
-            }
-            case 1: {
-                et.setCreateMan(DataObject.getStringValue(obj));
-                return;
-            }
-            case 2: {
-                et.setDEId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 3: {
-                et.setDEWFId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 4: {
-                et.setDSDynaViewId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 5: {
-                et.setDSDynaViewInstId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 6: {
-                et.setDSDynaViewInstName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 7: {
-                et.setDSDynaViewName(DataObject.getStringValue(obj));
-                return;
-            }
-            case 8: {
-                et.setDynaModel(DataObject.getStringValue(obj));
-                return;
-            }
-            case 9: {
-                et.setDynaSysInstId(DataObject.getStringValue(obj));
-                return;
-            }
-            case 10: {
-                et.setInstVer(DataObject.getIntegerValue(obj));
-                return;
-            }
-            case 11: {
-                et.setMemo(DataObject.getStringValue(obj));
-                return;
-            }
-            case 12: {
-                et.setPDVTParam(DataObject.getStringValue(obj));
-                return;
-            }
-            case 13: {
-                et.setPredefinedViewType(DataObject.getStringValue(obj));
-                return;
-            }
-            case 14: {
-                et.setUpdateDate(DataObject.getTimestampValue(obj));
-                return;
-            }
-            case 15: {
-                et.setUpdateMan(DataObject.getStringValue(obj));
-                return;
-            }
-            case 16: {
-                et.setViewInstObj(DataObject.getStringValue(obj));
-                return;
-            }
-            case 17: {
-                et.setViewType(DataObject.getStringValue(obj));
-                return;
-            }
+    /**
+     * 通过属性标识设定属性值
+     * @param et 数据对象
+     * @param index 属性标识
+     * @param obj 值
+     * @throws Exception
+     */
+    private static void set(DSDynaViewInstBase et,int index,Object obj) throws Exception {
+        switch(index) {
+        case INDEX_CREATEDATE:
+            et.setCreateDate(DataObject.getTimestampValue(obj));
+            return ;
+        case INDEX_CREATEMAN:
+            et.setCreateMan(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DEID:
+            et.setDEId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DEWFID:
+            et.setDEWFId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DSDYNAVIEWID:
+            et.setDSDynaViewId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DSDYNAVIEWINSTID:
+            et.setDSDynaViewInstId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DSDYNAVIEWINSTNAME:
+            et.setDSDynaViewInstName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DSDYNAVIEWNAME:
+            et.setDSDynaViewName(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DYNAMODEL:
+            et.setDynaModel(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_DYNASYSINSTID:
+            et.setDynaSysInstId(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_INSTVER:
+            et.setInstVer(DataObject.getIntegerValue(obj));
+            return ;
+        case INDEX_MEMO:
+            et.setMemo(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_PDVTPARAM:
+            et.setPDVTParam(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_PREDEFINEDVIEWTYPE:
+            et.setPredefinedViewType(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_UPDATEDATE:
+            et.setUpdateDate(DataObject.getTimestampValue(obj));
+            return ;
+        case INDEX_UPDATEMAN:
+            et.setUpdateMan(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_VIEWINSTOBJ:
+            et.setViewInstObj(DataObject.getStringValue(obj));
+            return ;
+        case INDEX_VIEWTYPE:
+            et.setViewType(DataObject.getStringValue(obj));
+            return ;
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#isNull(java.lang.String)
+     */
     @Override
     public boolean isNull(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().isNull(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.isNull(strParamName);
-        }
-        return DSDynaViewInstBase.isNull(this, index);
+
+        return  DSDynaViewInstBase.isNull(this, index);
     }
 
-    private static boolean isNull(DSDynaViewInstBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                return et.getCreateDate() == null;
-            }
-            case 1: {
-                return et.getCreateMan() == null;
-            }
-            case 2: {
-                return et.getDEId() == null;
-            }
-            case 3: {
-                return et.getDEWFId() == null;
-            }
-            case 4: {
-                return et.getDSDynaViewId() == null;
-            }
-            case 5: {
-                return et.getDSDynaViewInstId() == null;
-            }
-            case 6: {
-                return et.getDSDynaViewInstName() == null;
-            }
-            case 7: {
-                return et.getDSDynaViewName() == null;
-            }
-            case 8: {
-                return et.getDynaModel() == null;
-            }
-            case 9: {
-                return et.getDynaSysInstId() == null;
-            }
-            case 10: {
-                return et.getInstVer() == null;
-            }
-            case 11: {
-                return et.getMemo() == null;
-            }
-            case 12: {
-                return et.getPDVTParam() == null;
-            }
-            case 13: {
-                return et.getPredefinedViewType() == null;
-            }
-            case 14: {
-                return et.getUpdateDate() == null;
-            }
-            case 15: {
-                return et.getUpdateMan() == null;
-            }
-            case 16: {
-                return et.getViewInstObj() == null;
-            }
-            case 17: {
-                return et.getViewType() == null;
-            }
+    /**
+     * 判断指定属性值是否为空值
+     * @param et
+     * @param index
+     * @return
+     * @throws Exception
+     */
+    private static boolean isNull(DSDynaViewInstBase et,int index) throws Exception {
+
+        switch(index) {
+        case INDEX_CREATEDATE:
+            return et.getCreateDate()==null;
+        case INDEX_CREATEMAN:
+            return et.getCreateMan()==null;
+        case INDEX_DEID:
+            return et.getDEId()==null;
+        case INDEX_DEWFID:
+            return et.getDEWFId()==null;
+        case INDEX_DSDYNAVIEWID:
+            return et.getDSDynaViewId()==null;
+        case INDEX_DSDYNAVIEWINSTID:
+            return et.getDSDynaViewInstId()==null;
+        case INDEX_DSDYNAVIEWINSTNAME:
+            return et.getDSDynaViewInstName()==null;
+        case INDEX_DSDYNAVIEWNAME:
+            return et.getDSDynaViewName()==null;
+        case INDEX_DYNAMODEL:
+            return et.getDynaModel()==null;
+        case INDEX_DYNASYSINSTID:
+            return et.getDynaSysInstId()==null;
+        case INDEX_INSTVER:
+            return et.getInstVer()==null;
+        case INDEX_MEMO:
+            return et.getMemo()==null;
+        case INDEX_PDVTPARAM:
+            return et.getPDVTParam()==null;
+        case INDEX_PREDEFINEDVIEWTYPE:
+            return et.getPredefinedViewType()==null;
+        case INDEX_UPDATEDATE:
+            return et.getUpdateDate()==null;
+        case INDEX_UPDATEMAN:
+            return et.getUpdateMan()==null;
+        case INDEX_VIEWINSTOBJ:
+            return et.getViewInstObj()==null;
+        case INDEX_VIEWTYPE:
+            return et.getViewType()==null;
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#contains(java.lang.String)
+     */
     @Override
     public boolean contains(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().contains(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.contains(strParamName);
-        }
-        return DSDynaViewInstBase.contains(this, index);
+        return  DSDynaViewInstBase.contains(this, index);
     }
 
-    private static boolean contains(DSDynaViewInstBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                return et.isCreateDateDirty();
-            }
-            case 1: {
-                return et.isCreateManDirty();
-            }
-            case 2: {
-                return et.isDEIdDirty();
-            }
-            case 3: {
-                return et.isDEWFIdDirty();
-            }
-            case 4: {
-                return et.isDSDynaViewIdDirty();
-            }
-            case 5: {
-                return et.isDSDynaViewInstIdDirty();
-            }
-            case 6: {
-                return et.isDSDynaViewInstNameDirty();
-            }
-            case 7: {
-                return et.isDSDynaViewNameDirty();
-            }
-            case 8: {
-                return et.isDynaModelDirty();
-            }
-            case 9: {
-                return et.isDynaSysInstIdDirty();
-            }
-            case 10: {
-                return et.isInstVerDirty();
-            }
-            case 11: {
-                return et.isMemoDirty();
-            }
-            case 12: {
-                return et.isPDVTParamDirty();
-            }
-            case 13: {
-                return et.isPredefinedViewTypeDirty();
-            }
-            case 14: {
-                return et.isUpdateDateDirty();
-            }
-            case 15: {
-                return et.isUpdateManDirty();
-            }
-            case 16: {
-                return et.isViewInstObjDirty();
-            }
-            case 17: {
-                return et.isViewTypeDirty();
-            }
+    /**
+     * 获取判断对象是否存在指定属性值
+     * @param et
+     * @param index
+     * @return
+     * @throws Exception
+     */
+    private static boolean contains(DSDynaViewInstBase et,int index) throws Exception {
+
+        switch(index) {
+        case INDEX_CREATEDATE:
+            return et.isCreateDateDirty();
+        case INDEX_CREATEMAN:
+            return et.isCreateManDirty();
+        case INDEX_DEID:
+            return et.isDEIdDirty();
+        case INDEX_DEWFID:
+            return et.isDEWFIdDirty();
+        case INDEX_DSDYNAVIEWID:
+            return et.isDSDynaViewIdDirty();
+        case INDEX_DSDYNAVIEWINSTID:
+            return et.isDSDynaViewInstIdDirty();
+        case INDEX_DSDYNAVIEWINSTNAME:
+            return et.isDSDynaViewInstNameDirty();
+        case INDEX_DSDYNAVIEWNAME:
+            return et.isDSDynaViewNameDirty();
+        case INDEX_DYNAMODEL:
+            return et.isDynaModelDirty();
+        case INDEX_DYNASYSINSTID:
+            return et.isDynaSysInstIdDirty();
+        case INDEX_INSTVER:
+            return et.isInstVerDirty();
+        case INDEX_MEMO:
+            return et.isMemoDirty();
+        case INDEX_PDVTPARAM:
+            return et.isPDVTParamDirty();
+        case INDEX_PREDEFINEDVIEWTYPE:
+            return et.isPredefinedViewTypeDirty();
+        case INDEX_UPDATEDATE:
+            return et.isUpdateDateDirty();
+        case INDEX_UPDATEMAN:
+            return et.isUpdateManDirty();
+        case INDEX_VIEWINSTOBJ:
+            return et.isViewInstObjDirty();
+        case INDEX_VIEWTYPE:
+            return et.isViewTypeDirty();
+        default:
+            throw new Exception("不明属性标识");
         }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#onFillJSONObject(net.sf.json.JSONObject, boolean)
+     */
     @Override
     protected void onFillJSONObject(JSONObject objJSON, boolean bIncludeEmpty) throws Exception {
-        DSDynaViewInstBase.fillJSONObject(this, objJSON, bIncludeEmpty);
+        fillJSONObject(this,objJSON,bIncludeEmpty);
         super.onFillJSONObject(objJSON, bIncludeEmpty);
     }
 
-    private static void fillJSONObject(DSDynaViewInstBase et, JSONObject json, boolean bIncEmpty) throws Exception {
-        if (bIncEmpty || et.getCreateDate() != null) {
-            JSONObjectHelper.put(json, "createdate", DSDynaViewInstBase.getJSONValue(et.getCreateDate()), false);
+    /**
+     * 填充当前对象到JSON
+     * @param et 当前数据对象
+     * @param json JSON对象
+     * @param bIncEmpty 是否包括空值
+     * @throws Exception
+     */
+    private static  void fillJSONObject(DSDynaViewInstBase et,JSONObject json, boolean bIncEmpty) throws Exception {
+        if(bIncEmpty||et.getCreateDate()!=null) {
+            JSONObjectHelper.put(json,"createdate",getJSONValue(et.getCreateDate()),false);
         }
-        if (bIncEmpty || et.getCreateMan() != null) {
-            JSONObjectHelper.put(json, "createman", DSDynaViewInstBase.getJSONValue(et.getCreateMan()), false);
+        if(bIncEmpty||et.getCreateMan()!=null) {
+            JSONObjectHelper.put(json,"createman",getJSONValue(et.getCreateMan()),false);
         }
-        if (bIncEmpty || et.getDEId() != null) {
-            JSONObjectHelper.put(json, "deid", DSDynaViewInstBase.getJSONValue(et.getDEId()), false);
+        if(bIncEmpty||et.getDEId()!=null) {
+            JSONObjectHelper.put(json,"deid",getJSONValue(et.getDEId()),false);
         }
-        if (bIncEmpty || et.getDEWFId() != null) {
-            JSONObjectHelper.put(json, "dewfid", DSDynaViewInstBase.getJSONValue(et.getDEWFId()), false);
+        if(bIncEmpty||et.getDEWFId()!=null) {
+            JSONObjectHelper.put(json,"dewfid",getJSONValue(et.getDEWFId()),false);
         }
-        if (bIncEmpty || et.getDSDynaViewId() != null) {
-            JSONObjectHelper.put(json, "dsdynaviewid", DSDynaViewInstBase.getJSONValue(et.getDSDynaViewId()), false);
+        if(bIncEmpty||et.getDSDynaViewId()!=null) {
+            JSONObjectHelper.put(json,"dsdynaviewid",getJSONValue(et.getDSDynaViewId()),false);
         }
-        if (bIncEmpty || et.getDSDynaViewInstId() != null) {
-            JSONObjectHelper.put(json, "dsdynaviewinstid", DSDynaViewInstBase.getJSONValue(et.getDSDynaViewInstId()), false);
+        if(bIncEmpty||et.getDSDynaViewInstId()!=null) {
+            JSONObjectHelper.put(json,"dsdynaviewinstid",getJSONValue(et.getDSDynaViewInstId()),false);
         }
-        if (bIncEmpty || et.getDSDynaViewInstName() != null) {
-            JSONObjectHelper.put(json, "dsdynaviewinstname", DSDynaViewInstBase.getJSONValue(et.getDSDynaViewInstName()), false);
+        if(bIncEmpty||et.getDSDynaViewInstName()!=null) {
+            JSONObjectHelper.put(json,"dsdynaviewinstname",getJSONValue(et.getDSDynaViewInstName()),false);
         }
-        if (bIncEmpty || et.getDSDynaViewName() != null) {
-            JSONObjectHelper.put(json, "dsdynaviewname", DSDynaViewInstBase.getJSONValue(et.getDSDynaViewName()), false);
+        if(bIncEmpty||et.getDSDynaViewName()!=null) {
+            JSONObjectHelper.put(json,"dsdynaviewname",getJSONValue(et.getDSDynaViewName()),false);
         }
-        if (bIncEmpty || et.getDynaModel() != null) {
-            JSONObjectHelper.put(json, "dynamodel", DSDynaViewInstBase.getJSONValue(et.getDynaModel()), false);
+        if(bIncEmpty||et.getDynaModel()!=null) {
+            JSONObjectHelper.put(json,"dynamodel",getJSONValue(et.getDynaModel()),false);
         }
-        if (bIncEmpty || et.getDynaSysInstId() != null) {
-            JSONObjectHelper.put(json, "dynasysinstid", DSDynaViewInstBase.getJSONValue(et.getDynaSysInstId()), false);
+        if(bIncEmpty||et.getDynaSysInstId()!=null) {
+            JSONObjectHelper.put(json,"dynasysinstid",getJSONValue(et.getDynaSysInstId()),false);
         }
-        if (bIncEmpty || et.getInstVer() != null) {
-            JSONObjectHelper.put(json, "instver", DSDynaViewInstBase.getJSONValue(et.getInstVer()), false);
+        if(bIncEmpty||et.getInstVer()!=null) {
+            JSONObjectHelper.put(json,"instver",getJSONValue(et.getInstVer()),false);
         }
-        if (bIncEmpty || et.getMemo() != null) {
-            JSONObjectHelper.put(json, "memo", DSDynaViewInstBase.getJSONValue(et.getMemo()), false);
+        if(bIncEmpty||et.getMemo()!=null) {
+            JSONObjectHelper.put(json,"memo",getJSONValue(et.getMemo()),false);
         }
-        if (bIncEmpty || et.getPDVTParam() != null) {
-            JSONObjectHelper.put(json, "pdvtparam", DSDynaViewInstBase.getJSONValue(et.getPDVTParam()), false);
+        if(bIncEmpty||et.getPDVTParam()!=null) {
+            JSONObjectHelper.put(json,"pdvtparam",getJSONValue(et.getPDVTParam()),false);
         }
-        if (bIncEmpty || et.getPredefinedViewType() != null) {
-            JSONObjectHelper.put(json, "predefinedviewtype", DSDynaViewInstBase.getJSONValue(et.getPredefinedViewType()), false);
+        if(bIncEmpty||et.getPredefinedViewType()!=null) {
+            JSONObjectHelper.put(json,"predefinedviewtype",getJSONValue(et.getPredefinedViewType()),false);
         }
-        if (bIncEmpty || et.getUpdateDate() != null) {
-            JSONObjectHelper.put(json, "updatedate", DSDynaViewInstBase.getJSONValue(et.getUpdateDate()), false);
+        if(bIncEmpty||et.getUpdateDate()!=null) {
+            JSONObjectHelper.put(json,"updatedate",getJSONValue(et.getUpdateDate()),false);
         }
-        if (bIncEmpty || et.getUpdateMan() != null) {
-            JSONObjectHelper.put(json, "updateman", DSDynaViewInstBase.getJSONValue(et.getUpdateMan()), false);
+        if(bIncEmpty||et.getUpdateMan()!=null) {
+            JSONObjectHelper.put(json,"updateman",getJSONValue(et.getUpdateMan()),false);
         }
-        if (bIncEmpty || et.getViewInstObj() != null) {
-            JSONObjectHelper.put(json, "viewinstobj", DSDynaViewInstBase.getJSONValue(et.getViewInstObj()), false);
+        if(bIncEmpty||et.getViewInstObj()!=null) {
+            JSONObjectHelper.put(json,"viewinstobj",getJSONValue(et.getViewInstObj()),false);
         }
-        if (bIncEmpty || et.getViewType() != null) {
-            JSONObjectHelper.put(json, "viewtype", DSDynaViewInstBase.getJSONValue(et.getViewType()), false);
+        if(bIncEmpty||et.getViewType()!=null) {
+            JSONObjectHelper.put(json,"viewtype",getJSONValue(et.getViewType()),false);
         }
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#onFillXmlNode(net.ibizsys.paas.xml.XmlNode, boolean)
+     */
     @Override
-    protected void onFillXmlNode(XmlNode xmlNode, boolean bIncludeEmpty) throws Exception {
-        DSDynaViewInstBase.fillXmlNode(this, xmlNode, bIncludeEmpty);
+    protected void onFillXmlNode(XmlNode xmlNode,boolean bIncludeEmpty) throws Exception {
+        fillXmlNode(this,xmlNode,bIncludeEmpty);
         super.onFillXmlNode(xmlNode, bIncludeEmpty);
     }
 
-    private static void fillXmlNode(DSDynaViewInstBase et, XmlNode node, boolean bIncEmpty) throws Exception {
-        Object obj;
-        if (bIncEmpty || et.getCreateDate() != null) {
-            obj = et.getCreateDate();
-            node.setAttribute(FIELD_CREATEDATE, obj == null ? "" : StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", obj));
+    /**
+     * 填充当前对象到Xml节点中
+     * @param et 当前数据对象
+     * @param node Xml节点
+     * @param bIncEmpty 是否包括空值
+     * @throws Exception
+     */
+    private static void fillXmlNode(DSDynaViewInstBase et,XmlNode node,boolean bIncEmpty) throws Exception {
+        if(bIncEmpty||et.getCreateDate()!=null) {
+            Object obj = et.getCreateDate();
+            node.setAttribute("CREATEDATE",(obj==null)?"":StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS",obj));
         }
-        if (bIncEmpty || et.getCreateMan() != null) {
-            obj = et.getCreateMan();
-            node.setAttribute(FIELD_CREATEMAN, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getCreateMan()!=null) {
+            Object obj = et.getCreateMan();
+            node.setAttribute("CREATEMAN",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getDEId() != null) {
-            obj = et.getDEId();
-            node.setAttribute(FIELD_DEID, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getDEId()!=null) {
+            Object obj = et.getDEId();
+            node.setAttribute("DEID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getDEWFId() != null) {
-            obj = et.getDEWFId();
-            node.setAttribute(FIELD_DEWFID, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getDEWFId()!=null) {
+            Object obj = et.getDEWFId();
+            node.setAttribute("DEWFID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getDSDynaViewId() != null) {
-            obj = et.getDSDynaViewId();
-            node.setAttribute(FIELD_DSDYNAVIEWID, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getDSDynaViewId()!=null) {
+            Object obj = et.getDSDynaViewId();
+            node.setAttribute("DSDYNAVIEWID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getDSDynaViewInstId() != null) {
-            obj = et.getDSDynaViewInstId();
-            node.setAttribute(FIELD_DSDYNAVIEWINSTID, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getDSDynaViewInstId()!=null) {
+            Object obj = et.getDSDynaViewInstId();
+            node.setAttribute("DSDYNAVIEWINSTID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getDSDynaViewInstName() != null) {
-            obj = et.getDSDynaViewInstName();
-            node.setAttribute(FIELD_DSDYNAVIEWINSTNAME, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getDSDynaViewInstName()!=null) {
+            Object obj = et.getDSDynaViewInstName();
+            node.setAttribute("DSDYNAVIEWINSTNAME",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getDSDynaViewName() != null) {
-            obj = et.getDSDynaViewName();
-            node.setAttribute(FIELD_DSDYNAVIEWNAME, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getDSDynaViewName()!=null) {
+            Object obj = et.getDSDynaViewName();
+            node.setAttribute("DSDYNAVIEWNAME",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getDynaModel() != null) {
-            obj = et.getDynaModel();
-            node.setAttribute(FIELD_DYNAMODEL, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getDynaModel()!=null) {
+            Object obj = et.getDynaModel();
+            node.setAttribute("DYNAMODEL",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getDynaSysInstId() != null) {
-            obj = et.getDynaSysInstId();
-            node.setAttribute(FIELD_DYNASYSINSTID, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getDynaSysInstId()!=null) {
+            Object obj = et.getDynaSysInstId();
+            node.setAttribute("DYNASYSINSTID",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getInstVer() != null) {
-            obj = et.getInstVer();
-            node.setAttribute(FIELD_INSTVER, obj == null ? "" : StringHelper.format("%1$s", obj));
+        if(bIncEmpty||et.getInstVer()!=null) {
+            Object obj = et.getInstVer();
+            node.setAttribute("INSTVER",(obj==null)?"":StringHelper.format("%1$s",obj));
         }
-        if (bIncEmpty || et.getMemo() != null) {
-            obj = et.getMemo();
-            node.setAttribute(FIELD_MEMO, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getMemo()!=null) {
+            Object obj = et.getMemo();
+            node.setAttribute("MEMO",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getPDVTParam() != null) {
-            obj = et.getPDVTParam();
-            node.setAttribute(FIELD_PDVTPARAM, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getPDVTParam()!=null) {
+            Object obj = et.getPDVTParam();
+            node.setAttribute("PDVTPARAM",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getPredefinedViewType() != null) {
-            obj = et.getPredefinedViewType();
-            node.setAttribute(FIELD_PREDEFINEDVIEWTYPE, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getPredefinedViewType()!=null) {
+            Object obj = et.getPredefinedViewType();
+            node.setAttribute("PREDEFINEDVIEWTYPE",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getUpdateDate() != null) {
-            obj = et.getUpdateDate();
-            node.setAttribute(FIELD_UPDATEDATE, obj == null ? "" : StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", obj));
+        if(bIncEmpty||et.getUpdateDate()!=null) {
+            Object obj = et.getUpdateDate();
+            node.setAttribute("UPDATEDATE",(obj==null)?"":StringHelper.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS",obj));
         }
-        if (bIncEmpty || et.getUpdateMan() != null) {
-            obj = et.getUpdateMan();
-            node.setAttribute(FIELD_UPDATEMAN, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getUpdateMan()!=null) {
+            Object obj = et.getUpdateMan();
+            node.setAttribute("UPDATEMAN",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getViewInstObj() != null) {
-            obj = et.getViewInstObj();
-            node.setAttribute(FIELD_VIEWINSTOBJ, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getViewInstObj()!=null) {
+            Object obj = et.getViewInstObj();
+            node.setAttribute("VIEWINSTOBJ",(obj==null)?"":(String)obj);
         }
-        if (bIncEmpty || et.getViewType() != null) {
-            obj = et.getViewType();
-            node.setAttribute(FIELD_VIEWTYPE, obj == null ? "" : (String)obj);
+        if(bIncEmpty||et.getViewType()!=null) {
+            Object obj = et.getViewType();
+            node.setAttribute("VIEWTYPE",(obj==null)?"":(String)obj);
         }
+
+
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.entity.EntityBase#onCopyTo(net.ibizsys.paas.data.IDataObject, boolean)
+     */
     @Override
     protected void onCopyTo(IDataObject dataEntity, boolean bIncludeEmtpy) throws Exception {
-        DSDynaViewInstBase.copyTo(this, dataEntity, bIncludeEmtpy);
-        super.onCopyTo(dataEntity, bIncludeEmtpy);
+        DSDynaViewInstBase.copyTo(this,dataEntity,bIncludeEmtpy);
+        super.onCopyTo(dataEntity,bIncludeEmtpy);
     }
 
-    private static void copyTo(DSDynaViewInstBase et, IDataObject dst, boolean bIncEmpty) throws Exception {
-        if (et.isCreateDateDirty() && (bIncEmpty || et.getCreateDate() != null)) {
-            dst.set(FIELD_CREATEDATE, et.getCreateDate());
+    /**
+     * 复制当前对象数据到目标对象
+     * @param et 当前数据对象
+     * @param dst 目标数据对象
+     * @param bIncEmpty 是否包括空值
+     * @throws Exception
+     */
+    private static void copyTo(DSDynaViewInstBase et,IDataObject dst,boolean bIncEmpty) throws Exception {
+        if(et.isCreateDateDirty() && (bIncEmpty||et.getCreateDate()!=null)) {
+            dst.set(FIELD_CREATEDATE,et.getCreateDate());
         }
-        if (et.isCreateManDirty() && (bIncEmpty || et.getCreateMan() != null)) {
-            dst.set(FIELD_CREATEMAN, et.getCreateMan());
+        if(et.isCreateManDirty() && (bIncEmpty||et.getCreateMan()!=null)) {
+            dst.set(FIELD_CREATEMAN,et.getCreateMan());
         }
-        if (et.isDEIdDirty() && (bIncEmpty || et.getDEId() != null)) {
-            dst.set(FIELD_DEID, et.getDEId());
+        if(et.isDEIdDirty() && (bIncEmpty||et.getDEId()!=null)) {
+            dst.set(FIELD_DEID,et.getDEId());
         }
-        if (et.isDEWFIdDirty() && (bIncEmpty || et.getDEWFId() != null)) {
-            dst.set(FIELD_DEWFID, et.getDEWFId());
+        if(et.isDEWFIdDirty() && (bIncEmpty||et.getDEWFId()!=null)) {
+            dst.set(FIELD_DEWFID,et.getDEWFId());
         }
-        if (et.isDSDynaViewIdDirty() && (bIncEmpty || et.getDSDynaViewId() != null)) {
-            dst.set(FIELD_DSDYNAVIEWID, et.getDSDynaViewId());
+        if(et.isDSDynaViewIdDirty() && (bIncEmpty||et.getDSDynaViewId()!=null)) {
+            dst.set(FIELD_DSDYNAVIEWID,et.getDSDynaViewId());
         }
-        if (et.isDSDynaViewInstIdDirty() && (bIncEmpty || et.getDSDynaViewInstId() != null)) {
-            dst.set(FIELD_DSDYNAVIEWINSTID, et.getDSDynaViewInstId());
+        if(et.isDSDynaViewInstIdDirty() && (bIncEmpty||et.getDSDynaViewInstId()!=null)) {
+            dst.set(FIELD_DSDYNAVIEWINSTID,et.getDSDynaViewInstId());
         }
-        if (et.isDSDynaViewInstNameDirty() && (bIncEmpty || et.getDSDynaViewInstName() != null)) {
-            dst.set(FIELD_DSDYNAVIEWINSTNAME, et.getDSDynaViewInstName());
+        if(et.isDSDynaViewInstNameDirty() && (bIncEmpty||et.getDSDynaViewInstName()!=null)) {
+            dst.set(FIELD_DSDYNAVIEWINSTNAME,et.getDSDynaViewInstName());
         }
-        if (et.isDSDynaViewNameDirty() && (bIncEmpty || et.getDSDynaViewName() != null)) {
-            dst.set(FIELD_DSDYNAVIEWNAME, et.getDSDynaViewName());
+        if(et.isDSDynaViewNameDirty() && (bIncEmpty||et.getDSDynaViewName()!=null)) {
+            dst.set(FIELD_DSDYNAVIEWNAME,et.getDSDynaViewName());
         }
-        if (et.isDynaModelDirty() && (bIncEmpty || et.getDynaModel() != null)) {
-            dst.set(FIELD_DYNAMODEL, et.getDynaModel());
+        if(et.isDynaModelDirty() && (bIncEmpty||et.getDynaModel()!=null)) {
+            dst.set(FIELD_DYNAMODEL,et.getDynaModel());
         }
-        if (et.isDynaSysInstIdDirty() && (bIncEmpty || et.getDynaSysInstId() != null)) {
-            dst.set(FIELD_DYNASYSINSTID, et.getDynaSysInstId());
+        if(et.isDynaSysInstIdDirty() && (bIncEmpty||et.getDynaSysInstId()!=null)) {
+            dst.set(FIELD_DYNASYSINSTID,et.getDynaSysInstId());
         }
-        if (et.isInstVerDirty() && (bIncEmpty || et.getInstVer() != null)) {
-            dst.set(FIELD_INSTVER, et.getInstVer());
+        if(et.isInstVerDirty() && (bIncEmpty||et.getInstVer()!=null)) {
+            dst.set(FIELD_INSTVER,et.getInstVer());
         }
-        if (et.isMemoDirty() && (bIncEmpty || et.getMemo() != null)) {
-            dst.set(FIELD_MEMO, et.getMemo());
+        if(et.isMemoDirty() && (bIncEmpty||et.getMemo()!=null)) {
+            dst.set(FIELD_MEMO,et.getMemo());
         }
-        if (et.isPDVTParamDirty() && (bIncEmpty || et.getPDVTParam() != null)) {
-            dst.set(FIELD_PDVTPARAM, et.getPDVTParam());
+        if(et.isPDVTParamDirty() && (bIncEmpty||et.getPDVTParam()!=null)) {
+            dst.set(FIELD_PDVTPARAM,et.getPDVTParam());
         }
-        if (et.isPredefinedViewTypeDirty() && (bIncEmpty || et.getPredefinedViewType() != null)) {
-            dst.set(FIELD_PREDEFINEDVIEWTYPE, et.getPredefinedViewType());
+        if(et.isPredefinedViewTypeDirty() && (bIncEmpty||et.getPredefinedViewType()!=null)) {
+            dst.set(FIELD_PREDEFINEDVIEWTYPE,et.getPredefinedViewType());
         }
-        if (et.isUpdateDateDirty() && (bIncEmpty || et.getUpdateDate() != null)) {
-            dst.set(FIELD_UPDATEDATE, et.getUpdateDate());
+        if(et.isUpdateDateDirty() && (bIncEmpty||et.getUpdateDate()!=null)) {
+            dst.set(FIELD_UPDATEDATE,et.getUpdateDate());
         }
-        if (et.isUpdateManDirty() && (bIncEmpty || et.getUpdateMan() != null)) {
-            dst.set(FIELD_UPDATEMAN, et.getUpdateMan());
+        if(et.isUpdateManDirty() && (bIncEmpty||et.getUpdateMan()!=null)) {
+            dst.set(FIELD_UPDATEMAN,et.getUpdateMan());
         }
-        if (et.isViewInstObjDirty() && (bIncEmpty || et.getViewInstObj() != null)) {
-            dst.set(FIELD_VIEWINSTOBJ, et.getViewInstObj());
+        if(et.isViewInstObjDirty() && (bIncEmpty||et.getViewInstObj()!=null)) {
+            dst.set(FIELD_VIEWINSTOBJ,et.getViewInstObj());
         }
-        if (et.isViewTypeDirty() && (bIncEmpty || et.getViewType() != null)) {
-            dst.set(FIELD_VIEWTYPE, et.getViewType());
+        if(et.isViewTypeDirty() && (bIncEmpty||et.getViewType()!=null)) {
+            dst.set(FIELD_VIEWTYPE,et.getViewType());
         }
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#remove(java.lang.String)
+     */
     @Override
     public boolean remove(String strParamName) throws Exception {
-        if (this.getProxyEntity() != null) {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().remove(strParamName);
         }
-        if (StringHelper.isNullOrEmpty(strParamName)) {
-            throw new Exception("\u6ca1\u6709\u6307\u5b9a\u5c5e\u6027");
-        }
-        Integer index = fieldIndexMap.get(strParamName.toUpperCase());
-        if (index == null) {
+        if(StringHelper.isNullOrEmpty(strParamName))
+            throw new Exception("没有指定属性");
+        Integer index=fieldIndexMap.get(strParamName.toUpperCase());
+        if(index==null)
             return super.remove(strParamName);
-        }
-        return DSDynaViewInstBase.remove(this, index);
+        return  DSDynaViewInstBase.remove(this, index);
     }
 
-    private static boolean remove(DSDynaViewInstBase et, int index) throws Exception {
-        switch (index) {
-            case 0: {
-                et.resetCreateDate();
-                return true;
-            }
-            case 1: {
-                et.resetCreateMan();
-                return true;
-            }
-            case 2: {
-                et.resetDEId();
-                return true;
-            }
-            case 3: {
-                et.resetDEWFId();
-                return true;
-            }
-            case 4: {
-                et.resetDSDynaViewId();
-                return true;
-            }
-            case 5: {
-                et.resetDSDynaViewInstId();
-                return true;
-            }
-            case 6: {
-                et.resetDSDynaViewInstName();
-                return true;
-            }
-            case 7: {
-                et.resetDSDynaViewName();
-                return true;
-            }
-            case 8: {
-                et.resetDynaModel();
-                return true;
-            }
-            case 9: {
-                et.resetDynaSysInstId();
-                return true;
-            }
-            case 10: {
-                et.resetInstVer();
-                return true;
-            }
-            case 11: {
-                et.resetMemo();
-                return true;
-            }
-            case 12: {
-                et.resetPDVTParam();
-                return true;
-            }
-            case 13: {
-                et.resetPredefinedViewType();
-                return true;
-            }
-            case 14: {
-                et.resetUpdateDate();
-                return true;
-            }
-            case 15: {
-                et.resetUpdateMan();
-                return true;
-            }
-            case 16: {
-                et.resetViewInstObj();
-                return true;
-            }
-            case 17: {
-                et.resetViewType();
-                return true;
-            }
-        }
-        throw new Exception("\u4e0d\u660e\u5c5e\u6027\u6807\u8bc6");
-    }
-
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
+    /**
+     * 通过属性标识删除属性值
+     * @param entity
+     * @param index
+     * @return
+     * @throws Exception
      */
-    public DSDynaView getDSDynaView() throws Exception {
-        if (this.getProxyEntity() != null) {
+    private static boolean remove(DSDynaViewInstBase et,int index) throws Exception {
+        switch(index) {
+        case INDEX_CREATEDATE:
+            et.resetCreateDate();
+            return true;
+        case INDEX_CREATEMAN:
+            et.resetCreateMan();
+            return true;
+        case INDEX_DEID:
+            et.resetDEId();
+            return true;
+        case INDEX_DEWFID:
+            et.resetDEWFId();
+            return true;
+        case INDEX_DSDYNAVIEWID:
+            et.resetDSDynaViewId();
+            return true;
+        case INDEX_DSDYNAVIEWINSTID:
+            et.resetDSDynaViewInstId();
+            return true;
+        case INDEX_DSDYNAVIEWINSTNAME:
+            et.resetDSDynaViewInstName();
+            return true;
+        case INDEX_DSDYNAVIEWNAME:
+            et.resetDSDynaViewName();
+            return true;
+        case INDEX_DYNAMODEL:
+            et.resetDynaModel();
+            return true;
+        case INDEX_DYNASYSINSTID:
+            et.resetDynaSysInstId();
+            return true;
+        case INDEX_INSTVER:
+            et.resetInstVer();
+            return true;
+        case INDEX_MEMO:
+            et.resetMemo();
+            return true;
+        case INDEX_PDVTPARAM:
+            et.resetPDVTParam();
+            return true;
+        case INDEX_PREDEFINEDVIEWTYPE:
+            et.resetPredefinedViewType();
+            return true;
+        case INDEX_UPDATEDATE:
+            et.resetUpdateDate();
+            return true;
+        case INDEX_UPDATEMAN:
+            et.resetUpdateMan();
+            return true;
+        case INDEX_VIEWINSTOBJ:
+            et.resetViewInstObj();
+            return true;
+        case INDEX_VIEWTYPE:
+            et.resetViewType();
+            return true;
+        default:
+            throw new Exception("不明属性标识");
+        }
+    }
+
+
+    private Integer objDSDynaViewLock = new Integer(1);
+    private net.ibizsys.psrt.srv.dynasys.entity.DSDynaView dsdynaview = null;
+    /**
+    * 获取父数据 动态视图
+     * @throws Exception
+    */
+    public net.ibizsys.psrt.srv.dynasys.entity.DSDynaView getDSDynaView() throws Exception {
+        if(this.getProxyEntity()!=null) {
             return this.getProxyEntity().getDSDynaView();
         }
-        if (this.getDSDynaViewId() == null) {
+
+        if(this.getDSDynaViewId()==null)
             return null;
-        }
-        Integer n = this.objDSDynaViewLock;
-        synchronized (n) {
-            if (this.dsdynaview != null && DataTypeHelper.compare(25, (Object)this.getDSDynaViewId(), (Object)this.dsdynaview.getDSDynaViewId()) != 0L) {
-                this.dsdynaview = null;
+        synchronized(this.objDSDynaViewLock) {
+            if(this.dsdynaview!=null) {
+                if(net.ibizsys.paas.util.DataTypeHelper.compare(25,this.getDSDynaViewId(),dsdynaview.getDSDynaViewId())!=0) {
+                    this.dsdynaview = null;
+                }
             }
-            if (this.dsdynaview == null) {
-                DSDynaView dsdynaview = new DSDynaView();
+
+
+            if(this.dsdynaview==null) {
+                net.ibizsys.psrt.srv.dynasys.entity.DSDynaView dsdynaview = new net.ibizsys.psrt.srv.dynasys.entity.DSDynaView();
                 dsdynaview.setDSDynaViewId(this.getDSDynaViewId());
-                DSDynaViewService service = (DSDynaViewService)ServiceGlobal.getService(DSDynaViewService.class, this.getSessionFactory());
+                net.ibizsys.psrt.srv.dynasys.service.DSDynaViewService service = (net.ibizsys.psrt.srv.dynasys.service.DSDynaViewService)ServiceGlobal.getService(net.ibizsys.psrt.srv.dynasys.service.DSDynaViewService.class,this.getSessionFactory());
                 service.autoGet(dsdynaview);
                 this.dsdynaview = dsdynaview;
             }
@@ -1503,28 +1891,38 @@ implements Serializable {
         }
     }
 
+
+
+    /**
+     *  获取代理的数据对象
+     */
     private DSDynaViewInstBase getProxyEntity() {
         return this.proxyDSDynaViewInstBase;
     }
 
+    /* (non-Javadoc)
+     * @see net.ibizsys.paas.data.DataObject#onProxy(net.ibizsys.paas.data.IDataObject)
+     */
     @Override
     protected void onProxy(IDataObject proxyDataObject) {
         this.proxyDSDynaViewInstBase = null;
-        if (proxyDataObject != null && proxyDataObject instanceof DSDynaViewInstBase) {
+        if(proxyDataObject!=null && proxyDataObject instanceof DSDynaViewInstBase) {
             this.proxyDSDynaViewInstBase = (DSDynaViewInstBase)proxyDataObject;
         }
         super.onProxy(proxyDataObject);
     }
 
-    @Override
-    protected IEntityActionHelper getActionHelper(boolean bMust) throws Exception {
-        IEntityActionHelper iEntityActionHelper = super.getActionHelper(false);
-        if (!bMust || iEntityActionHelper != null) {
+
+    /**
+    * 重写获取行为操作辅助对象
+    */
+    protected net.ibizsys.paas.entity.IEntityActionHelper getActionHelper(boolean bMust) throws Exception {
+        net.ibizsys.paas.entity.IEntityActionHelper iEntityActionHelper = super.getActionHelper(false);
+        if(!bMust || iEntityActionHelper!=null)
             return iEntityActionHelper;
-        }
-        iEntityActionHelper = ServiceGlobal.getService("net.ibizsys.psrt.srv.dynasys.service.DSDynaViewInstService", this.getSessionFactory()).getServiceActionHelper();
+        iEntityActionHelper = net.ibizsys.paas.service.ServiceGlobal.getService("net.ibizsys.psrt.srv.dynasys.service.DSDynaViewInstService", this.getSessionFactory()).getServiceActionHelper();
         this.setActionHelper(iEntityActionHelper);
         return iEntityActionHelper;
     }
-}
 
+}

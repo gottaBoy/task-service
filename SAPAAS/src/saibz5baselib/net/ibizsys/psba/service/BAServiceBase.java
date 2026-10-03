@@ -1,33 +1,64 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.service;
 
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.psba.core.IBASchemeModel;
 import net.ibizsys.psba.core.IBATableModel;
 import net.ibizsys.psba.dao.IBADAO;
-import net.ibizsys.psba.service.IBAService;
 
-public abstract class BAServiceBase
-implements IBAService {
-    @Override
-    public abstract IBASchemeModel getBASchemeModel();
+/**
+ * BA服务基类
+ * @author Administrator
+ *
+ */
+public abstract class BAServiceBase implements IBAService {
 
-    @Override
-    public abstract IBATableModel getBATableModel();
+	@Override
+	public abstract IBASchemeModel getBASchemeModel();
 
-    protected abstract IBADAO getBADAO();
+	@Override
+	public abstract  IBATableModel getBATableModel();
 
-    @Override
-    public void importDEData(IEntity et) throws Exception {
-        throw new Exception("\u6ca1\u6709\u5b9e\u73b0");
-    }
+	
+	/**
+	 * 获取大数据架构
+	 * @return
+	 */
+	protected abstract IBADAO getBADAO();
 
-    protected void onImportDEDataSelfMode(IEntity et) throws Exception {
-    }
-
-    protected void onImportDEDataChildMode(IEntity et) throws Exception {
-    }
+	
+	/* (non-Javadoc)
+	 * @see net.ibizsys.psba.service.IBAService#importDEData(net.ibizsys.paas.entity.IEntity)
+	 */
+	@Override
+	public void importDEData(IEntity et) throws Exception {
+//		IEntity iEntity = this.getBADAO().getDEModel().createEntity();
+//		et.copyTo(iEntity, false);
+//		onImportDEDataSelfMode(iEntity);
+//		onImportDEDataChildMode(iEntity);
+		throw new Exception("没有实现");
+	}
+	
+	
+	/**
+	 * 导入实体数据（当前数据模式）
+	 * @param et
+	 * @throws Exception
+	 */
+	protected void onImportDEDataSelfMode(IEntity et) throws Exception {
+		
+		
+		
+	}
+	
+	
+	/**
+	 * 导入实体数据
+	 * @param et
+	 * @throws Exception
+	 */
+	protected void onImportDEDataChildMode(IEntity et) throws Exception {
+		
+		
+		
+	}
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.wfdesign.demodel.PSSysWFCatDEModelBase;
 
 public class PSSysWFCatDEModel
 extends PSSysWFCatDEModelBase {
+
+    public PSSysWFCatDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

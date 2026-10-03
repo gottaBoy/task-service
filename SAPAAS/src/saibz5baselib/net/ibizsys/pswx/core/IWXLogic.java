@@ -1,34 +1,93 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswx.core;
 
 import net.ibizsys.paas.core.IModelBase;
-import net.ibizsys.pswx.core.IWXAccount;
-import net.ibizsys.pswx.core.IWXEntApp;
 
-public interface IWXLogic
-extends IModelBase {
-    public static final String EVENTTYPE_APP_IN = "app_in";
-    public static final String EVENTTYPE_LOCATION_IN = "location_in";
-    public static final String EVENTTYPE_ASYNCTASK_FINISH = "asynctask_finish";
-    public static final String EVENTTYPE_MENU_CLICK = "menu_click";
-    public static final String EVENTTYPE_MESSAGE_IN = "message_in";
+/**
+ * 微信处理逻辑
+ * 
+ * @author Administrator
+ * 
+ */
+public interface IWXLogic extends IModelBase {
 
-    public IWXAccount getWXAccount();
+	/**
+	 * 进入应用
+	 */
+	final static String EVENTTYPE_APP_IN = "app_in";
 
-    public IWXEntApp getWXEntApp();
+	/**
+	 * 上报地理位置
+	 */
+	final static String EVENTTYPE_LOCATION_IN = "location_in";
 
-    public String getEventType();
+	/**
+	 * 异步任务完成事件推送
+	 */
+	final static String EVENTTYPE_ASYNCTASK_FINISH = "asynctask_finish";
 
-    public String getDEName();
+	/**
+	 * 菜单事件
+	 */
+	final static String EVENTTYPE_MENU_CLICK = "menu_click";
 
-    public String getDEActionName();
+	/**
+	 * 消息进入
+	 */
+	final static String EVENTTYPE_MESSAGE_IN = "message_in";
 
-    public String getWXFunc();
+	/**
+	 * 获取微信公众号对象
+	 * 
+	 * @return
+	 */
+	IWXAccount getWXAccount();
 
-    public String getClickTag();
+	/**
+	 * 获取微信企业应用对象
+	 * 
+	 * @return
+	 */
+	IWXEntApp getWXEntApp();
 
-    public String getUserTag();
+	/**
+	 * 获取逻辑事件类型
+	 * 
+	 * @return
+	 */
+	String getEventType();
+
+	/**
+	 * 获取实体名称
+	 * 
+	 * @return
+	 */
+	String getDEName();
+
+	/**
+	 * 获取实体行为名称
+	 * 
+	 * @return
+	 */
+	String getDEActionName();
+
+	/**
+	 * 获取菜单的功能类型
+	 * 
+	 * @return
+	 */
+	String getWXFunc();
+
+	/**
+	 * 获取菜单的功能类型
+	 * 
+	 * @return
+	 */
+	String getClickTag();
+
+	/**
+	 * 获取用户标记
+	 * 
+	 * @return
+	 */
+	String getUserTag();
 }
-

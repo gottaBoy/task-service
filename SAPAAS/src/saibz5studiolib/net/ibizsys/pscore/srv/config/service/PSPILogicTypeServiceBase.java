@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSPILogicType> {
     }
 
     protected void onFillParentInfo(PSPILogicType pSPILogicType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSPILogicType, string, string2, string3);
+        super.onFillParentInfo(pSPILogicType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSPILogicType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSPILogicType, bl);
+        super.onFillEntityFullInfo(pSPILogicType, bl);
     }
 
     protected void onWriteBackParent(PSPILogicType pSPILogicType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSPILogicType, bl);
+        super.onWriteBackParent(pSPILogicType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSPILogicType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSPILogicType pSPILogicType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSPILogicType, bl);
+        super.onRemoveEntityUncopyValues(pSPILogicType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSPILogicType pSPILogicType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSPILogicType> {
         if ((entityFieldError = this.onCheckField_PSPILogicTypeName(bl, pSPILogicType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSPILogicType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSPILogicType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ItemObj(boolean bl, PSPILogicType pSPILogicType, boolean bl2, boolean bl3) throws Exception {
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSPILogicType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj_Default((IEntity)pSPILogicType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj_Default(pSPILogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSPILogicType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSPILogicType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSPILogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSPILogicType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPILogicTypeId_Default((IEntity)pSPILogicType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPILogicTypeId_Default(pSPILogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPILOGICTYPEID");
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSPILogicType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSPILogicTypeName_Default((IEntity)pSPILogicType, bl2, bl3);
+            string2 = this.onTestValueRule_PSPILogicTypeName_Default(pSPILogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSPILOGICTYPENAME");
@@ -259,11 +259,11 @@ extends PSCoreSysServiceBase<PSPILogicType> {
     }
 
     protected void onSyncEntity(PSPILogicType pSPILogicType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSPILogicType, bl);
+        super.onSyncEntity(pSPILogicType, bl);
     }
 
     protected void onSyncIndexEntities(PSPILogicType pSPILogicType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSPILogicType, bl);
+        super.onSyncIndexEntities(pSPILogicType, bl);
     }
 
     public Object getDataContextValue(PSPILogicType pSPILogicType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -271,14 +271,14 @@ extends PSCoreSysServiceBase<PSPILogicType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSPILogicType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSPILogicType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSPILogicType pSPILogicType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSPILogicType, arrayList, n);
+        super.onExportMajorModel(pSPILogicType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -391,14 +391,14 @@ extends PSCoreSysServiceBase<PSPILogicType> {
 
     protected boolean onMergeChild(String string, String string2, PSPILogicType pSPILogicType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSPILogicType)) {
+        if (super.onMergeChild(string, string2, pSPILogicType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSPILogicType pSPILogicType) throws Exception {
-        super.onUpdateParent((IEntity)pSPILogicType);
+        super.onUpdateParent(pSPILogicType);
     }
 
     @Override

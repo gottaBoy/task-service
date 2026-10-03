@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDCSyncDataType> {
     }
 
     protected void onFillParentInfo(PSDCSyncDataType pSDCSyncDataType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDCSyncDataType, string, string2, string3);
+        super.onFillParentInfo(pSDCSyncDataType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDCSyncDataType> {
         if (bl && pSDCSyncDataType.getValidFlag() == null) {
             pSDCSyncDataType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDCSyncDataType, bl);
+        super.onFillEntityFullInfo(pSDCSyncDataType, bl);
     }
 
     protected void onWriteBackParent(PSDCSyncDataType pSDCSyncDataType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCSyncDataType, bl);
+        super.onWriteBackParent(pSDCSyncDataType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDCSyncDataType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCSyncDataType pSDCSyncDataType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCSyncDataType, bl);
+        super.onRemoveEntityUncopyValues(pSDCSyncDataType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCSyncDataType pSDCSyncDataType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -161,7 +161,7 @@ extends PSCoreSysServiceBase<PSDCSyncDataType> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDCSyncDataType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCSyncDataType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCSyncDataType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSDCSyncDataType pSDCSyncDataType, boolean bl2, boolean bl3) throws Exception {
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSDCSyncDataType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCSyncDataType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCSyncDataType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -199,7 +199,7 @@ extends PSCoreSysServiceBase<PSDCSyncDataType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCSyncDataTypeId_Default((IEntity)pSDCSyncDataType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCSyncDataTypeId_Default(pSDCSyncDataType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCSYNCDATATYPEID");
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSDCSyncDataType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCSyncDataTypeName_Default((IEntity)pSDCSyncDataType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCSyncDataTypeName_Default(pSDCSyncDataType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCSYNCDATATYPENAME");
@@ -249,7 +249,7 @@ extends PSCoreSysServiceBase<PSDCSyncDataType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TypeObj_Default((IEntity)pSDCSyncDataType, bl2, bl3);
+            string2 = this.onTestValueRule_TypeObj_Default(pSDCSyncDataType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TYPEOBJ");
@@ -274,7 +274,7 @@ extends PSCoreSysServiceBase<PSDCSyncDataType> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDCSyncDataType, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDCSyncDataType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -287,11 +287,11 @@ extends PSCoreSysServiceBase<PSDCSyncDataType> {
     }
 
     protected void onSyncEntity(PSDCSyncDataType pSDCSyncDataType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCSyncDataType, bl);
+        super.onSyncEntity(pSDCSyncDataType, bl);
     }
 
     protected void onSyncIndexEntities(PSDCSyncDataType pSDCSyncDataType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCSyncDataType, bl);
+        super.onSyncIndexEntities(pSDCSyncDataType, bl);
     }
 
     public Object getDataContextValue(PSDCSyncDataType pSDCSyncDataType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -299,14 +299,14 @@ extends PSCoreSysServiceBase<PSDCSyncDataType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCSyncDataType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCSyncDataType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDCSyncDataType pSDCSyncDataType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCSyncDataType, arrayList, n);
+        super.onExportMajorModel(pSDCSyncDataType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -426,14 +426,14 @@ extends PSCoreSysServiceBase<PSDCSyncDataType> {
 
     protected boolean onMergeChild(String string, String string2, PSDCSyncDataType pSDCSyncDataType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCSyncDataType)) {
+        if (super.onMergeChild(string, string2, pSDCSyncDataType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCSyncDataType pSDCSyncDataType) throws Exception {
-        super.onUpdateParent((IEntity)pSDCSyncDataType);
+        super.onUpdateParent(pSDCSyncDataType);
     }
 
     @Override

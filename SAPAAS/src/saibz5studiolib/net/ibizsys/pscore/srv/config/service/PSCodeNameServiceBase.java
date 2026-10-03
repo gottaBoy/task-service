@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSCodeName> {
     }
 
     protected void onFillParentInfo(PSCodeName pSCodeName, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSCodeName, string, string2, string3);
+        super.onFillParentInfo(pSCodeName, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSCodeName> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSCodeName, bl);
+        super.onFillEntityFullInfo(pSCodeName, bl);
     }
 
     protected void onWriteBackParent(PSCodeName pSCodeName, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSCodeName, bl);
+        super.onWriteBackParent(pSCodeName, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSCodeName> {
     }
 
     protected void onRemoveEntityUncopyValues(PSCodeName pSCodeName, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSCodeName, bl);
+        super.onRemoveEntityUncopyValues(pSCodeName, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSCodeName pSCodeName, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -152,7 +152,7 @@ extends PSCoreSysServiceBase<PSCodeName> {
         if ((entityFieldError = this.onCheckField_PSCodeNameName(bl, pSCodeName, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSCodeName, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSCodeName, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSCodeNameId(boolean bl, PSCodeName pSCodeName, boolean bl2, boolean bl3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSCodeName> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCodeNameId_Default((IEntity)pSCodeName, bl2, bl3);
+            string2 = this.onTestValueRule_PSCodeNameId_Default(pSCodeName, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCODENAMEID");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSCodeName> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCodeNameName_Default((IEntity)pSCodeName, bl2, bl3);
+            string2 = this.onTestValueRule_PSCodeNameName_Default(pSCodeName, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCODENAMENAME");
@@ -206,11 +206,11 @@ extends PSCoreSysServiceBase<PSCodeName> {
     }
 
     protected void onSyncEntity(PSCodeName pSCodeName, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSCodeName, bl);
+        super.onSyncEntity(pSCodeName, bl);
     }
 
     protected void onSyncIndexEntities(PSCodeName pSCodeName, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSCodeName, bl);
+        super.onSyncIndexEntities(pSCodeName, bl);
     }
 
     public Object getDataContextValue(PSCodeName pSCodeName, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -218,14 +218,14 @@ extends PSCoreSysServiceBase<PSCodeName> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSCodeName, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSCodeName, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSCodeName pSCodeName, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSCodeName, arrayList, n);
+        super.onExportMajorModel(pSCodeName, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -308,14 +308,14 @@ extends PSCoreSysServiceBase<PSCodeName> {
 
     protected boolean onMergeChild(String string, String string2, PSCodeName pSCodeName) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSCodeName)) {
+        if (super.onMergeChild(string, string2, pSCodeName)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSCodeName pSCodeName) throws Exception {
-        super.onUpdateParent((IEntity)pSCodeName);
+        super.onUpdateParent(pSCodeName);
     }
 
     @Override

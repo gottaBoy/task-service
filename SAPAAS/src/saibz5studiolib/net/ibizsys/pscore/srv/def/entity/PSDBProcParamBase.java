@@ -975,7 +975,7 @@ implements Serializable {
                 PSDESPCode pSDESPCode = new PSDESPCode();
                 pSDESPCode.setPSDESPCodeId(this.getPSDESPCodeId());
                 PSDESPCodeService pSDESPCodeService = (PSDESPCodeService)ServiceGlobal.getService(PSDESPCodeService.class, (SessionFactory)this.getSessionFactory());
-                pSDESPCodeService.autoGet((IEntity)pSDESPCode);
+                pSDESPCodeService.autoGet(pSDESPCode);
                 this.psdespcode = pSDESPCode;
             }
             return this.psdespcode;

@@ -135,14 +135,14 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
             PSDELogic pSDELogic = (PSDELogic)iService.getDEModel().createEntity();
             pSDELogic.set("PSDELOGICID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDELogic);
+                iService.getTemp(pSDELogic);
             } else {
-                iService.get((IEntity)pSDELogic);
+                iService.get(pSDELogic);
             }
             this.onFillParentInfo_PSDELogic(pSUWDELogicNode, pSDELogic);
             return;
         }
-        super.onFillParentInfo((IEntity)pSUWDELogicNode, string, string2, string3);
+        super.onFillParentInfo(pSUWDELogicNode, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -157,7 +157,7 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
         if (bl && pSUWDELogicNode.getDraftFlag() == null) {
             pSUWDELogicNode.setDraftFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSUWDELogicNode, bl);
+        super.onFillEntityFullInfo(pSUWDELogicNode, bl);
         this.onFillEntityFullInfo_PSDELogic(pSUWDELogicNode, bl);
     }
 
@@ -165,7 +165,7 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
     }
 
     protected void onWriteBackParent(PSUWDELogicNode pSUWDELogicNode, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUWDELogicNode, bl);
+        super.onWriteBackParent(pSUWDELogicNode, bl);
     }
 
     public ArrayList<PSUWDELogicNode> selectByPSDELogic(PSDELogicBase pSDELogicBase) throws Exception {
@@ -224,7 +224,7 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
         ArrayList<PSUWDELogicNode> arrayList = this.selectByPSDELogic(pSDELogic);
         this.onBeforeRemoveByPSDELogic(pSDELogic, arrayList);
         for (PSUWDELogicNode pSUWDELogicNode : arrayList) {
-            this.remove((IEntity)pSUWDELogicNode);
+            this.remove(pSUWDELogicNode);
         }
         this.onAfterRemoveByPSDELogic(pSDELogic, arrayList);
     }
@@ -245,14 +245,14 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
 
     protected void replaceParentInfo(PSUWDELogicNode pSUWDELogicNode, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSUWDELogicNode, cloneSession);
+        super.replaceParentInfo(pSUWDELogicNode, cloneSession);
         if (pSUWDELogicNode.getPSDELogicId() != null && (iEntity = cloneSession.getEntity("PSDELOGIC", (Object)pSUWDELogicNode.getPSDELogicId())) != null) {
             this.onFillParentInfo_PSDELogic(pSUWDELogicNode, (PSDELogic)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSUWDELogicNode pSUWDELogicNode, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUWDELogicNode, bl);
+        super.onRemoveEntityUncopyValues(pSUWDELogicNode, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUWDELogicNode pSUWDELogicNode, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -273,7 +273,7 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
         if ((entityFieldError = this.onCheckField_DraftFlag(bl, pSUWDELogicNode, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUWDELogicNode, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUWDELogicNode, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_LogicNodeType(boolean bl, PSUWDELogicNode pSUWDELogicNode, boolean bl2, boolean bl3) throws Exception {
@@ -289,7 +289,7 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicNodeType_Default((IEntity)pSUWDELogicNode, bl2, bl3);
+            string2 = this.onTestValueRule_LogicNodeType_Default(pSUWDELogicNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICNODETYPE");
@@ -311,7 +311,7 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDELogicId_Default((IEntity)pSUWDELogicNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSDELogicId_Default(pSUWDELogicNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDELOGICID");
@@ -336,7 +336,7 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDELogicNodeId_Default((IEntity)pSUWDELogicNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSDELogicNodeId_Default(pSUWDELogicNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDELOGICNODEID");
@@ -361,7 +361,7 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDELogicNodeName_Default((IEntity)pSUWDELogicNode, bl2, bl3);
+            string2 = this.onTestValueRule_PSDELogicNodeName_Default(pSUWDELogicNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDELOGICNODENAME");
@@ -383,7 +383,7 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DraftFlag_Default((IEntity)pSUWDELogicNode, bl2, bl3);
+            string = this.onTestValueRule_DraftFlag_Default(pSUWDELogicNode, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SRFDRAFTFLAG");
@@ -396,11 +396,11 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
     }
 
     protected void onSyncEntity(PSUWDELogicNode pSUWDELogicNode, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUWDELogicNode, bl);
+        super.onSyncEntity(pSUWDELogicNode, bl);
     }
 
     protected void onSyncIndexEntities(PSUWDELogicNode pSUWDELogicNode, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUWDELogicNode, bl);
+        super.onSyncIndexEntities(pSUWDELogicNode, bl);
     }
 
     public Object getDataContextValue(PSUWDELogicNode pSUWDELogicNode, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -408,14 +408,14 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUWDELogicNode, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUWDELogicNode, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUWDELogicNode pSUWDELogicNode, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUWDELogicNode, arrayList, n);
+        super.onExportMajorModel(pSUWDELogicNode, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -491,14 +491,14 @@ extends PSCoreSysServiceBase<PSUWDELogicNode> {
 
     protected boolean onMergeChild(String string, String string2, PSUWDELogicNode pSUWDELogicNode) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUWDELogicNode)) {
+        if (super.onMergeChild(string, string2, pSUWDELogicNode)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUWDELogicNode pSUWDELogicNode) throws Exception {
-        super.onUpdateParent((IEntity)pSUWDELogicNode);
+        super.onUpdateParent(pSUWDELogicNode);
     }
 
     @Override

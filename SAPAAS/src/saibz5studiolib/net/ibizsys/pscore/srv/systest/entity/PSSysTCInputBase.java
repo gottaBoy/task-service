@@ -2691,7 +2691,7 @@ implements Serializable {
                 PSDEAction pSDEAction = new PSDEAction();
                 pSDEAction.setPSDEActionId(this.getPSDEActionId());
                 PSDEActionService pSDEActionService = (PSDEActionService)ServiceGlobal.getService(PSDEActionService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionService.autoGet((IEntity)pSDEAction);
+                pSDEActionService.autoGet(pSDEAction);
                 this.psdeaction = pSDEAction;
             }
             return this.psdeaction;
@@ -2717,7 +2717,7 @@ implements Serializable {
                 PSSysSampleValue pSSysSampleValue = new PSSysSampleValue();
                 pSSysSampleValue.setPSSysSampleValueId(this.getDEFPSSysSampleValueId());
                 PSSysSampleValueService pSSysSampleValueService = (PSSysSampleValueService)ServiceGlobal.getService(PSSysSampleValueService.class, (SessionFactory)this.getSessionFactory());
-                pSSysSampleValueService.autoGet((IEntity)pSSysSampleValue);
+                pSSysSampleValueService.autoGet(pSSysSampleValue);
                 this.defpssyssamplevalue = pSSysSampleValue;
             }
             return this.defpssyssamplevalue;
@@ -2743,7 +2743,7 @@ implements Serializable {
                 PSSysTestCase pSSysTestCase = new PSSysTestCase();
                 pSSysTestCase.setPSSysTestCaseId(this.getPSSysTestCaseId());
                 PSSysTestCaseService pSSysTestCaseService = (PSSysTestCaseService)ServiceGlobal.getService(PSSysTestCaseService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTestCaseService.autoGet((IEntity)pSSysTestCase);
+                pSSysTestCaseService.autoGet(pSSysTestCase);
                 this.pssystestcase = pSSysTestCase;
             }
             return this.pssystestcase;
@@ -2769,7 +2769,7 @@ implements Serializable {
                 PSSysTestData pSSysTestData = new PSSysTestData();
                 pSSysTestData.setPSSysTestDataId(this.getPSSysTestDataId());
                 PSSysTestDataService pSSysTestDataService = (PSSysTestDataService)ServiceGlobal.getService(PSSysTestDataService.class, (SessionFactory)this.getSessionFactory());
-                pSSysTestDataService.autoGet((IEntity)pSSysTestData);
+                pSSysTestDataService.autoGet(pSSysTestData);
                 this.pssystestdata = pSSysTestData;
             }
             return this.pssystestdata;

@@ -59,15 +59,15 @@ extends PSMobAppPackTDServiceBase {
 
     @Override
     protected void onAfterRemove(PSMobAppPackTD pSMobAppPackTD) throws Exception {
-        PSMobAppPackTD pSMobAppPackTD2 = (PSMobAppPackTD)this.getLast((IEntity)pSMobAppPackTD);
+        PSMobAppPackTD pSMobAppPackTD2 = (PSMobAppPackTD)this.getLast(pSMobAppPackTD);
         PSDCMobAppTDRefService pSDCMobAppTDRefService = (PSDCMobAppTDRefService)ServiceGlobal.getService(PSDCMobAppTDRefService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDCMobAppTDRef pSDCMobAppTDRef = new PSDCMobAppTDRef();
         pSDCMobAppTDRef.setPSDCMobAppTestDeviceId(pSMobAppPackTD2.getPSDCMobAppTestDeviceId());
         pSDCMobAppTDRef.setRefPSObjType("PSMOBAPPPACK");
         pSDCMobAppTDRef.setRefPSObjId(pSMobAppPackTD2.getPSMobAppPackId());
         pSDCMobAppTDRef.setRefPSObjName(pSMobAppPackTD2.getPSMobAppPackName());
-        pSDCMobAppTDRefService.fillEntityKeyValue((IEntity)pSDCMobAppTDRef);
-        pSDCMobAppTDRefService.remove((IEntity)pSDCMobAppTDRef);
+        pSDCMobAppTDRefService.fillEntityKeyValue(pSDCMobAppTDRef);
+        pSDCMobAppTDRefService.remove(pSDCMobAppTDRef);
         super.onAfterRemove(pSMobAppPackTD);
     }
 

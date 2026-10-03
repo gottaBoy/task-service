@@ -76,7 +76,7 @@ implements IPSDEWizardStepService {
     @Override
     protected List<PSDEWizardStep> onListAll() throws Exception {
         ArrayList<PSDEWizardStep> list = new ArrayList<PSDEWizardStep>();
-        List psdewizards = PSModelServiceUtil.getInstance().getPSDEWizardService().listAll();
+        List<PSDEWizard> psdewizards = PSModelServiceUtil.getInstance().getPSDEWizardService().listAll();
         if (psdewizards != null) {
             for (PSDEWizard parent : psdewizards) {
                 List<PSDEWizardStep> items = this.listByPSDEWizard(parent);

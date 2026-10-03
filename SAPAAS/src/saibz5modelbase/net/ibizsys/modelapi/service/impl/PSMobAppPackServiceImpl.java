@@ -70,7 +70,7 @@ implements IPSMobAppPackService {
     @Override
     protected List<PSMobAppPack> onListAll() throws Exception {
         ArrayList<PSMobAppPack> list = new ArrayList<PSMobAppPack>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSMobAppPack> items = this.listByPSSysApp(parent);

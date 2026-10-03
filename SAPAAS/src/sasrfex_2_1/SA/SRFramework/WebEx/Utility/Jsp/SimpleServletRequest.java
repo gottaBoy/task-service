@@ -20,10 +20,20 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.AsyncContext;
+import javax.servlet.DispatcherType;
+import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpUpgradeHandler;
+import javax.servlet.http.Part;
+import java.util.Collection;
 
 public class SimpleServletRequest
 implements HttpServletRequest {
@@ -47,6 +57,10 @@ implements HttpServletRequest {
 
     public int getContentLength() {
         return 0;
+    }
+
+    public long getContentLengthLong() {
+        return 0L;
     }
 
     public String getContentType() {
@@ -257,5 +271,60 @@ implements HttpServletRequest {
     public boolean isUserInRole(String arg0) {
         return false;
     }
-}
 
+    public String changeSessionId() {
+        throw new UnsupportedOperationException("Session rotation is unavailable for simulated requests");
+    }
+
+    public boolean authenticate(HttpServletResponse response) throws IOException, ServletException {
+        throw new ServletException("Authentication is unavailable for simulated requests");
+    }
+
+    public void login(String username, String password) throws ServletException {
+        throw new ServletException("Login is unavailable for simulated requests");
+    }
+
+    public void logout() throws ServletException {
+        throw new ServletException("Logout is unavailable for simulated requests");
+    }
+
+    public Collection<Part> getParts() throws IOException, ServletException {
+        throw new ServletException("Multipart uploads are unavailable for simulated requests");
+    }
+
+    public Part getPart(String name) throws IOException, ServletException {
+        throw new ServletException("Multipart uploads are unavailable for simulated requests");
+    }
+
+    public <T extends HttpUpgradeHandler> T upgrade(Class<T> handlerClass) throws IOException, ServletException {
+        throw new ServletException("Protocol upgrades are unavailable for simulated requests");
+    }
+
+    public ServletContext getServletContext() {
+        return null;
+    }
+
+    public AsyncContext startAsync() {
+        throw new IllegalStateException("Async processing is unavailable for simulated requests");
+    }
+
+    public AsyncContext startAsync(ServletRequest request, ServletResponse response) {
+        throw new IllegalStateException("Async processing is unavailable for simulated requests");
+    }
+
+    public boolean isAsyncStarted() {
+        return false;
+    }
+
+    public boolean isAsyncSupported() {
+        return false;
+    }
+
+    public AsyncContext getAsyncContext() {
+        throw new IllegalStateException("Async processing is unavailable for simulated requests");
+    }
+
+    public DispatcherType getDispatcherType() {
+        return DispatcherType.REQUEST;
+    }
+}

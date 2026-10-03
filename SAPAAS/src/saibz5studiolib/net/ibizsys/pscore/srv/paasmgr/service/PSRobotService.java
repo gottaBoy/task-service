@@ -25,7 +25,7 @@ extends PSRobotServiceBase {
 
     @Override
     protected void onAfterUpdate(PSRobot pSRobot) throws Exception {
-        PSRobotKeeper.updatePSRobotEnergy((IEntity)pSRobot);
+        PSRobotKeeper.updatePSRobotEnergy(pSRobot);
         super.onAfterUpdate(pSRobot);
     }
 }

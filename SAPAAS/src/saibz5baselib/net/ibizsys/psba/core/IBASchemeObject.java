@@ -1,13 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
 import net.ibizsys.paas.core.IModelBase;
-import net.ibizsys.psba.core.IBAScheme;
 
-public interface IBASchemeObject
-extends IModelBase {
-    public IBAScheme getBAScheme();
+/**
+ * 大数据架构相关对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IBASchemeObject extends IModelBase {
+
+	/**
+	 * 获取大数据架构对象
+	 * 
+	 * @return
+	 */
+	IBAScheme getBAScheme();
 }
-

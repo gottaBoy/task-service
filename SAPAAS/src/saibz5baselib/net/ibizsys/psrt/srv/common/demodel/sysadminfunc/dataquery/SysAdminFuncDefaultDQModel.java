@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.sysadminfunc.dataquery;
 
-import net.ibizsys.psrt.srv.common.demodel.sysadminfunc.dataquery.SysAdminFuncDefaultDQModelBase;
+/**
+ *  实体数据查询 [DEFAULT]模型
+ */
+public class SysAdminFuncDefaultDQModel extends SysAdminFuncDefaultDQModelBase {
 
-public class SysAdminFuncDefaultDQModel
-extends SysAdminFuncDefaultDQModelBase {
+    public SysAdminFuncDefaultDQModel() {
+        super();
+    }
+
 }
-

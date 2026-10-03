@@ -1,50 +1,77 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.control.IPSControl
- *  net.ibizsys.model.control.dashboard.IPSDBPortletPart
- *  net.ibizsys.model.control.dashboard.IPSDashboard
- *  net.ibizsys.model.pf.IPSPFCtrlTempl
- *  net.ibizsys.model.pub.IPSGenerateCodeResult
- *  net.ibizsys.model.pub.IPSPFCtrlCodePublisher
- */
 package net.ibizsys.model.pub.angular;
 
 import java.util.HashMap;
+
 import net.ibizsys.model.control.IPSControl;
 import net.ibizsys.model.control.dashboard.IPSDBPortletPart;
 import net.ibizsys.model.control.dashboard.IPSDashboard;
 import net.ibizsys.model.pf.IPSPFCtrlTempl;
 import net.ibizsys.model.pub.IPSGenerateCodeResult;
 import net.ibizsys.model.pub.IPSPFCtrlCodePublisher;
-import net.ibizsys.model.pub.angular.PSAngularCtrlPartCodePublisherImpl;
 
-public class PSAngularDashboardPartVCPublisherImpl
-extends PSAngularCtrlPartCodePublisherImpl {
-    public static final String CTRLPART_PART = "PART";
-    protected IPSDashboard iPSDashboard = null;
-    protected IPSDBPortletPart iPSPortlet = null;
+/**
+ * 部件代码
+ * @author lionlau
+ *
+ */
+public class PSAngularDashboardPartVCPublisherImpl extends PSAngularCtrlPartCodePublisherImpl
+{
+	public final static String CTRLPART_PART = "PART";
 
-    public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception {
-        this.iPSDashboard = (IPSDashboard)iPSControl;
-        this.iPSPortlet = (IPSDBPortletPart)object;
-        return super.generateCode(iPSControl, object);
-    }
+	
+	protected IPSDashboard iPSDashboard = null;
+	protected IPSDBPortletPart iPSPortlet = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDashboard = (IPSDashboard)iPSControl;
+		iPSPortlet = (IPSDBPortletPart)object;
+		return super.generateCode(iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
+		//部件
+		IPSControl contentPSControl = iPSPortlet.getContentPSControl();
+		if(contentPSControl!=null)
+		{
+			IPSPFCtrlTempl iPSPFCtrlTempl = iPSPFStyle.getPSPFCtrlTempl(contentPSControl.getPSControlType(), this.getPSPFPubCode());
+			if(iPSPFCtrlTempl!=null)
+			{
+				IPSPFCtrlCodePublisher iPSPFCtrlCodePublisher = iPSPFCtrlTempl.getPSPFCtrlCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlCodePublisher.generateCode(contentPSControl);
+				if(iPSGenerateCodeResult!=null)
+				{
+					params.put("content", iPSGenerateCodeResult);
+				}
+			}
+		}
+		
+		if(true)
+		{
+			IPSPFCtrlTempl iPSPFCtrlTempl = iPSPFStyle.getPSPFCtrlTempl(iPSPortlet.getPSControlType(), this.getPSPFPubCode());
+			if(iPSPFCtrlTempl!=null)
+			{
+				IPSPFCtrlCodePublisher iPSPFCtrlCodePublisher = iPSPFCtrlTempl.getPSPFCtrlCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlCodePublisher.generateCode(iPSPortlet);
+				if(iPSGenerateCodeResult!=null)
+				{
+					params.put("portlet", iPSGenerateCodeResult);
+				}
+			}
+		}
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
-        IPSPFCtrlCodePublisher iPSPFCtrlCodePublisher;
-        IPSGenerateCodeResult iPSGenerateCodeResult;
-        IPSPFCtrlTempl iPSPFCtrlTempl;
-        super.onFillGenerateCodeParams(params);
-        IPSControl contentPSControl = this.iPSPortlet.getContentPSControl();
-        if (contentPSControl != null && (iPSPFCtrlTempl = this.iPSPFStyle.getPSPFCtrlTempl(contentPSControl.getPSControlType(), this.getPSPFPubCode())) != null && (iPSGenerateCodeResult = (iPSPFCtrlCodePublisher = iPSPFCtrlTempl.getPSPFCtrlCodePublisher()).generateCode(contentPSControl)) != null) {
-            params.put("content", iPSGenerateCodeResult);
-        }
-        if ((iPSPFCtrlTempl = this.iPSPFStyle.getPSPFCtrlTempl(this.iPSPortlet.getPSControlType(), this.getPSPFPubCode())) != null && (iPSGenerateCodeResult = (iPSPFCtrlCodePublisher = iPSPFCtrlTempl.getPSPFCtrlCodePublisher()).generateCode((IPSControl)this.iPSPortlet)) != null) {
-            params.put("portlet", iPSGenerateCodeResult);
-        }
-    }
+	
+	
 }
-

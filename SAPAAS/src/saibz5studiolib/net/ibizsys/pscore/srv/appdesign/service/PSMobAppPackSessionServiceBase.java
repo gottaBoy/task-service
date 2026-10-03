@@ -157,9 +157,9 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
             PSMobAppPack pSMobAppPack = (PSMobAppPack)iService.getDEModel().createEntity();
             pSMobAppPack.set("PSMOBAPPPACKID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSMobAppPack);
+                iService.getTemp(pSMobAppPack);
             } else {
-                iService.get((IEntity)pSMobAppPack);
+                iService.get(pSMobAppPack);
             }
             this.onFillParentInfo_PSMobAppPack(pSMobAppPackSession, pSMobAppPack);
             return;
@@ -169,9 +169,9 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSMobAppPackSession, pSSysApp);
             return;
@@ -181,14 +181,14 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSMobAppPackSession, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSMobAppPackSession, string, string2, string3);
+        super.onFillParentInfo(pSMobAppPackSession, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -214,7 +214,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSMobAppPackSession, bl);
+        super.onFillEntityFullInfo(pSMobAppPackSession, bl);
         this.onFillEntityFullInfo_PSMobAppPack(pSMobAppPackSession, bl);
         this.onFillEntityFullInfo_PSSysApp(pSMobAppPackSession, bl);
         this.onFillEntityFullInfo_PSSystem(pSMobAppPackSession, bl);
@@ -240,7 +240,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
     }
 
     protected void onWriteBackParent(PSMobAppPackSession pSMobAppPackSession, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSMobAppPackSession, bl);
+        super.onWriteBackParent(pSMobAppPackSession, bl);
     }
 
     public ArrayList<PSMobAppPackSession> selectByPSMobAppPack(PSMobAppPackBase pSMobAppPackBase) throws Exception {
@@ -347,7 +347,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
         ArrayList<PSMobAppPackSession> arrayList = this.selectByPSMobAppPack(pSMobAppPack);
         this.onBeforeRemoveByPSMobAppPack(pSMobAppPack, arrayList);
         for (PSMobAppPackSession pSMobAppPackSession : arrayList) {
-            this.remove((IEntity)pSMobAppPackSession);
+            this.remove(pSMobAppPackSession);
         }
         this.onAfterRemoveByPSMobAppPack(pSMobAppPack, arrayList);
     }
@@ -393,7 +393,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
         ArrayList<PSMobAppPackSession> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSMobAppPackSession pSMobAppPackSession : arrayList) {
-            this.remove((IEntity)pSMobAppPackSession);
+            this.remove(pSMobAppPackSession);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -439,7 +439,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
         ArrayList<PSMobAppPackSession> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSMobAppPackSession pSMobAppPackSession : arrayList) {
-            this.remove((IEntity)pSMobAppPackSession);
+            this.remove(pSMobAppPackSession);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -460,7 +460,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
 
     protected void replaceParentInfo(PSMobAppPackSession pSMobAppPackSession, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSMobAppPackSession, cloneSession);
+        super.replaceParentInfo(pSMobAppPackSession, cloneSession);
         if (pSMobAppPackSession.getPSMobAppPackId() != null && (iEntity = cloneSession.getEntity("PSMOBAPPPACK", (Object)pSMobAppPackSession.getPSMobAppPackId())) != null) {
             this.onFillParentInfo_PSMobAppPack(pSMobAppPackSession, (PSMobAppPack)iEntity);
         }
@@ -473,7 +473,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
     }
 
     protected void onRemoveEntityUncopyValues(PSMobAppPackSession pSMobAppPackSession, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSMobAppPackSession, bl);
+        super.onRemoveEntityUncopyValues(pSMobAppPackSession, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSMobAppPackSession pSMobAppPackSession, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -497,7 +497,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
         if ((entityFieldError = this.onCheckField_PSSystemName(bl, pSMobAppPackSession, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSMobAppPackSession, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSMobAppPackSession, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSMobAppPackId(boolean bl, PSMobAppPackSession pSMobAppPackSession, boolean bl2, boolean bl3) throws Exception {
@@ -510,7 +510,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMobAppPackId_Default((IEntity)pSMobAppPackSession, bl2, bl3);
+            string2 = this.onTestValueRule_PSMobAppPackId_Default(pSMobAppPackSession, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMOBAPPPACKID");
@@ -535,7 +535,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMobAppPackSessionId_Default((IEntity)pSMobAppPackSession, bl2, bl3);
+            string2 = this.onTestValueRule_PSMobAppPackSessionId_Default(pSMobAppPackSession, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMOBAPPPACKSESSIONID");
@@ -560,7 +560,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSMobAppPackSessionName_Default((IEntity)pSMobAppPackSession, bl2, bl3);
+            string2 = this.onTestValueRule_PSMobAppPackSessionName_Default(pSMobAppPackSession, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMOBAPPPACKSESSIONNAME");
@@ -582,7 +582,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSMobAppPackSession, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSMobAppPackSession, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -604,7 +604,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSMobAppPackSession, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSMobAppPackSession, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -626,7 +626,7 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSMobAppPackSession, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSMobAppPackSession, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -639,11 +639,11 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
     }
 
     protected void onSyncEntity(PSMobAppPackSession pSMobAppPackSession, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSMobAppPackSession, bl);
+        super.onSyncEntity(pSMobAppPackSession, bl);
     }
 
     protected void onSyncIndexEntities(PSMobAppPackSession pSMobAppPackSession, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSMobAppPackSession, bl);
+        super.onSyncIndexEntities(pSMobAppPackSession, bl);
     }
 
     public Object getDataContextValue(PSMobAppPackSession pSMobAppPackSession, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -651,14 +651,14 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSMobAppPackSession, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSMobAppPackSession, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSMobAppPackSession pSMobAppPackSession, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSMobAppPackSession, arrayList, n);
+        super.onExportMajorModel(pSMobAppPackSession, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -831,14 +831,14 @@ extends PSCoreSysServiceBase<PSMobAppPackSession> {
 
     protected boolean onMergeChild(String string, String string2, PSMobAppPackSession pSMobAppPackSession) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSMobAppPackSession)) {
+        if (super.onMergeChild(string, string2, pSMobAppPackSession)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSMobAppPackSession pSMobAppPackSession) throws Exception {
-        super.onUpdateParent((IEntity)pSMobAppPackSession);
+        super.onUpdateParent(pSMobAppPackSession);
     }
 
     @Override

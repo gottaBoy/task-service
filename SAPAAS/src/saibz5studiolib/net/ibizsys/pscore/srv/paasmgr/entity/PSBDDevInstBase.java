@@ -1683,7 +1683,7 @@ implements Serializable {
                 PSBDServer pSBDServer = new PSBDServer();
                 pSBDServer.setPSBDServerId(this.getPSBDServerId());
                 PSBDServerService pSBDServerService = (PSBDServerService)ServiceGlobal.getService(PSBDServerService.class, (SessionFactory)this.getSessionFactory());
-                pSBDServerService.autoGet((IEntity)pSBDServer);
+                pSBDServerService.autoGet(pSBDServer);
                 this.psbdserver = pSBDServer;
             }
             return this.psbdserver;
@@ -1709,7 +1709,7 @@ implements Serializable {
                 PSSvrDomain pSSvrDomain = new PSSvrDomain();
                 pSSvrDomain.setPSSvrDomainId(this.getPSSvrDomainId());
                 PSSvrDomainService pSSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrDomainService.autoGet((IEntity)pSSvrDomain);
+                pSSvrDomainService.autoGet(pSSvrDomain);
                 this.pssvrdomain = pSSvrDomain;
             }
             return this.pssvrdomain;

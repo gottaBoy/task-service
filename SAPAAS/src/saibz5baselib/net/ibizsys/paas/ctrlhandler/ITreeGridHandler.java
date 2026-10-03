@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.IGridHandler;
+/**
+ * 树表处理对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface ITreeGridHandler extends IGridHandler {
 
-public interface ITreeGridHandler
-extends IGridHandler {
 }
-

@@ -81,7 +81,7 @@ implements IPSWFVersionService {
     @Override
     protected List<PSWFVersion> onListAll() throws Exception {
         ArrayList<PSWFVersion> list = new ArrayList<PSWFVersion>();
-        List psworkflows = PSModelServiceUtil.getInstance().getPSWorkflowService().listAll();
+        List<PSWorkflow> psworkflows = PSModelServiceUtil.getInstance().getPSWorkflowService().listAll();
         if (psworkflows != null) {
             for (PSWorkflow parent : psworkflows) {
                 List<PSWFVersion> items = this.listByPSWorkflow(parent);
@@ -304,26 +304,28 @@ implements IPSWFVersionService {
         } else {
             dto.setWFStepPSCodeListName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSWFProcessService().listByPSWFVersion(t);
-        if (list != null && list.size() > 0) {
+        List<PSWFProcess> pSWFProcessList = PSModelServiceUtil.getInstance().getPSWFProcessService().listByPSWFVersion(t);
+        if (pSWFProcessList != null && pSWFProcessList.size() > 0) {
             ArrayList<PSWFProcessDTO> pswfprocesses = new ArrayList<PSWFProcessDTO>();
-            for (PSWFProcess pSWFProcess : list) {
+            for (PSWFProcess pSWFProcess : pSWFProcessList) {
                 dstItem = (PSWFProcessDTO)PSModelServiceUtil.getInstance().getPSWFProcessService().toDTO(pSWFProcess);
                 pswfprocesses.add((PSWFProcessDTO)dstItem);
             }
             dto.setPswfprocesses(pswfprocesses);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSWFLinkService().listByPSWFVersion(t)) != null && list.size() > 0) {
+        List<PSWFLink> pSWFLinkList = PSModelServiceUtil.getInstance().getPSWFLinkService().listByPSWFVersion(t);
+        if (pSWFLinkList != null && pSWFLinkList.size() > 0) {
             ArrayList<PSWFLinkDTO> pswflinks = new ArrayList<PSWFLinkDTO>();
-            for (PSWFLink pSWFLink : list) {
+            for (PSWFLink pSWFLink : pSWFLinkList) {
                 dstItem = (PSWFLinkDTO)PSModelServiceUtil.getInstance().getPSWFLinkService().toDTO(pSWFLink);
                 pswflinks.add((PSWFLinkDTO)dstItem);
             }
             dto.setPswflinks(pswflinks);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSWFLinkCondService().listByPSWFVersion(t)) != null && list.size() > 0) {
+        List<PSWFLinkCond> pSWFLinkCondList = PSModelServiceUtil.getInstance().getPSWFLinkCondService().listByPSWFVersion(t);
+        if (pSWFLinkCondList != null && pSWFLinkCondList.size() > 0) {
             ArrayList<PSWFLinkCondDTO> pswflinkconds = new ArrayList<PSWFLinkCondDTO>();
-            for (PSWFLinkCond pSWFLinkCond : list) {
+            for (PSWFLinkCond pSWFLinkCond : pSWFLinkCondList) {
                 dstItem = (PSWFLinkCondDTO)PSModelServiceUtil.getInstance().getPSWFLinkCondService().toDTO(pSWFLinkCond);
                 pswflinkconds.add((PSWFLinkCondDTO)dstItem);
             }

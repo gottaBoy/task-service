@@ -69,7 +69,7 @@ extends PSDevCenterASServiceBase {
     @Override
     protected void onAfterUpdate(PSDevCenterAS pSDevCenterAS) throws Exception {
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory()) && (pSDevCenterAS.isResStateDirty() || pSDevCenterAS.isExpriedTimeDirty() || pSDevCenterAS.isResReadyTimeDirty())) {
-            PSDevCenterAS pSDevCenterAS2 = (PSDevCenterAS)this.getLast((IEntity)pSDevCenterAS);
+            PSDevCenterAS pSDevCenterAS2 = (PSDevCenterAS)this.getLast(pSDevCenterAS);
             if (pSDevCenterAS.isResStateDirty() && DataTypeHelper.compare((int)9, (Object)pSDevCenterAS.getResState(), (Object)pSDevCenterAS2.getResState()) != 0L || pSDevCenterAS.isExpriedTimeDirty() && DataTypeHelper.compare((int)5, (Object)pSDevCenterAS.getExpriedTime(), (Object)pSDevCenterAS2.getExpriedTime()) != 0L || pSDevCenterAS.isResReadyTimeDirty() && DataTypeHelper.compare((int)5, (Object)pSDevCenterAS.getResReadyTime(), (Object)pSDevCenterAS2.getResReadyTime()) != 0L) {
                 boolean bl = DataObject.getBoolValue((Integer)pSDevCenterAS2.getRefFlag(), (boolean)false);
                 if (pSDevCenterAS.isRefFlagDirty()) {
@@ -128,18 +128,18 @@ extends PSDevCenterASServiceBase {
 
     protected void onCalcPSDCDBListInfo(PSDevCenterAS pSDevCenterAS) throws Exception {
         SelectContext selectContext = new SelectContext();
-        Object object = new SelectField();
-        object.setName("PSDEVCENTERDBINSTID");
-        selectContext.addSelectField((ISelectField)object);
-        object = new SelectField();
-        object.setName("PSDEVCENTERDBINSTNAME");
-        selectContext.addSelectField((ISelectField)object);
-        object = new SelectField();
-        object.setName("DBTYPE");
-        selectContext.addSelectField((ISelectField)object);
+        SelectField field = new SelectField();
+        field.setName("PSDEVCENTERDBINSTID");
+        selectContext.addSelectField((ISelectField)field);
+        field = new SelectField();
+        field.setName("PSDEVCENTERDBINSTNAME");
+        selectContext.addSelectField((ISelectField)field);
+        field = new SelectField();
+        field.setName("DBTYPE");
+        selectContext.addSelectField((ISelectField)field);
         selectContext.set("PSDEVCENTERASID", (Object)pSDevCenterAS.getPSDevCenterASId());
-        object = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList arrayList = object.select((ISelectCond)selectContext);
+        PSDevCenterDBInstService dbInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)this.getSessionFactory());
+        ArrayList<PSDevCenterDBInst> arrayList = dbInstService.select((ISelectCond)selectContext);
         if (arrayList.size() > 0) {
             ArrayList<JSONObject> arrayList2 = new ArrayList<JSONObject>();
             for (PSDevCenterDBInst pSDevCenterDBInst : arrayList) {
@@ -153,4 +153,3 @@ extends PSDevCenterASServiceBase {
         this.update(pSDevCenterAS, true);
     }
 }
-

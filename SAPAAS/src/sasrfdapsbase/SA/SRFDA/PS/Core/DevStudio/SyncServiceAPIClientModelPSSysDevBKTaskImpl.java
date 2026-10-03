@@ -50,7 +50,7 @@ extends PSSysDevBKTaskImplBase {
         PSDevSlnSysAPIService psDevSlnSysAPIService = (PSDevSlnSysAPIService)ServiceGlobal.getService(PSDevSlnSysAPIService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSysAPI psDevSlnSysAPI2 = new PSDevSlnSysAPI();
         psDevSlnSysAPI2.setPSDevSlnSysAPIId(strPSDevSlnSysAPIId);
-        psDevSlnSysAPIService.get((IEntity)psDevSlnSysAPI2);
+        psDevSlnSysAPIService.get(psDevSlnSysAPI2);
         try {
             SessionFactoryManager.addRef();
             String strResult = this.syncPSDevSlnSysAPI(psDevSlnSysAPI2);
@@ -124,4 +124,3 @@ extends PSSysDevBKTaskImplBase {
         return sBuilderEx.toString();
     }
 }
-

@@ -223,7 +223,7 @@ extends PSAppViewService<PSAppDEView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppDEViewId_Default((IEntity)pSAppDEView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppDEViewId_Default(pSAppDEView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPDEVIEWID");
@@ -248,7 +248,7 @@ extends PSAppViewService<PSAppDEView> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppDEViewName_Default((IEntity)pSAppDEView, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppDEViewName_Default(pSAppDEView, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPDEVIEWNAME");
@@ -1625,7 +1625,7 @@ extends PSAppViewService<PSAppDEView> {
         PSAppDEView pSAppDEView2 = new PSAppDEView();
         pSAppDEView2.setPSSysAppId(pSAppDEView.getPSSysAppId());
         pSAppDEView2.setPSDEViewBaseId(pSAppDEView.getPSDEViewBaseId());
-        if (this.selectOne((IEntity)pSAppDEView2, true)) {
+        if (this.selectOne(pSAppDEView2, true)) {
             return pSAppDEView2.getPSAppDEViewId();
         }
         return super.getEntityFolderKeyValue(pSAppDEView, pSSystem);

@@ -1562,7 +1562,7 @@ implements Serializable {
                 PSAppModule pSAppModule = new PSAppModule();
                 pSAppModule.setPSAppModuleId(this.getPSAppModuleId());
                 PSAppModuleService pSAppModuleService = (PSAppModuleService)ServiceGlobal.getService(PSAppModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSAppModuleService.autoGet((IEntity)pSAppModule);
+                pSAppModuleService.autoGet(pSAppModule);
                 this.psappmodule = pSAppModule;
             }
             return this.psappmodule;
@@ -1588,7 +1588,7 @@ implements Serializable {
                 PSSysApp pSSysApp = new PSSysApp();
                 pSSysApp.setPSSysAppId(this.getPSSysAppId());
                 PSSysAppService pSSysAppService = (PSSysAppService)ServiceGlobal.getService(PSSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAppService.autoGet((IEntity)pSSysApp);
+                pSSysAppService.autoGet(pSSysApp);
                 this.pssysapp = pSSysApp;
             }
             return this.pssysapp;
@@ -1614,7 +1614,7 @@ implements Serializable {
                 PSWorkflow pSWorkflow = new PSWorkflow();
                 pSWorkflow.setPSWorkflowId(this.getPSWorkflowId());
                 PSWorkflowService pSWorkflowService = (PSWorkflowService)ServiceGlobal.getService(PSWorkflowService.class, (SessionFactory)this.getSessionFactory());
-                pSWorkflowService.autoGet((IEntity)pSWorkflow);
+                pSWorkflowService.autoGet(pSWorkflow);
                 this.psworkflow = pSWorkflow;
             }
             return this.psworkflow;

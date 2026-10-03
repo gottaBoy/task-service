@@ -92,7 +92,7 @@ implements IPSDEListService {
     @Override
     protected List<PSDEList> onListAll() throws Exception {
         ArrayList<PSDEList> list = new ArrayList<PSDEList>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEList> items = this.listByPSDataEntity(parent);
@@ -621,18 +621,19 @@ implements IPSDEListService {
         } else {
             dto.setQuickPSDEToolbarName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEListItemService().listByPSDEList(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEListItem> pSDEListItemList = PSModelServiceUtil.getInstance().getPSDEListItemService().listByPSDEList(t);
+        if (pSDEListItemList != null && pSDEListItemList.size() > 0) {
             ArrayList<PSDEListItemDTO> psdelistitems = new ArrayList<PSDEListItemDTO>();
-            for (PSDEListItem pSDEListItem : list) {
+            for (PSDEListItem pSDEListItem : pSDEListItemList) {
                 dstItem = (PSDEListItemDTO)PSModelServiceUtil.getInstance().getPSDEListItemService().toDTO(pSDEListItem);
                 psdelistitems.add((PSDEListItemDTO)dstItem);
             }
             dto.setPsdelistitems(psdelistitems);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEListLogicService().listByPSDEList(t)) != null && list.size() > 0) {
+        List<PSDEListLogic> pSDEListLogicList = PSModelServiceUtil.getInstance().getPSDEListLogicService().listByPSDEList(t);
+        if (pSDEListLogicList != null && pSDEListLogicList.size() > 0) {
             ArrayList<PSDEListLogicDTO> psdelistlogics = new ArrayList<PSDEListLogicDTO>();
-            for (PSDEListLogic pSDEListLogic : list) {
+            for (PSDEListLogic pSDEListLogic : pSDEListLogicList) {
                 dstItem = (PSDEListLogicDTO)PSModelServiceUtil.getInstance().getPSDEListLogicService().toDTO(pSDEListLogic);
                 psdelistlogics.add((PSDEListLogicDTO)dstItem);
             }

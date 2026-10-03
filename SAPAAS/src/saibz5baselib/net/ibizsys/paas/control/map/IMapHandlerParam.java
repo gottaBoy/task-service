@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.map;
 
 import net.ibizsys.paas.control.IMDAjaxControlHandlerParam;
 
-public interface IMapHandlerParam
-extends IMDAjaxControlHandlerParam {
-}
+/**
+ * 地图部件处理对象参数
+ * 
+ * @author Administrator
+ *
+ */
+public interface IMapHandlerParam extends IMDAjaxControlHandlerParam {
 
+}

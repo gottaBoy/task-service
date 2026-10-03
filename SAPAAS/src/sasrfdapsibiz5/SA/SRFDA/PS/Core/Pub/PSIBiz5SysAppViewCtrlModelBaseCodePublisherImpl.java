@@ -88,7 +88,7 @@ extends PSIBiz5SysAppViewCodePublisherImpl {
         if (obj instanceof IPSDEForm) {
             IPSDEFormPage iPSDEFormPage;
             IPSDEForm iPSDEForm = (IPSDEForm)obj;
-            Vector<Object> psDEFDGroupLogicList = new Vector<IPSDEFDGroupLogic>();
+            Vector<IPSDEFDGroupLogic> psDEFDGroupLogicList = new Vector<IPSDEFDGroupLogic>();
             Iterator psDEFormPages = iPSDEForm.getPSDEFormPages();
             if (psDEFormPages != null) {
                 while (psDEFormPages.hasNext()) {

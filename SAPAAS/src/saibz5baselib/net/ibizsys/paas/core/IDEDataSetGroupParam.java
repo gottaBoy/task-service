@@ -1,25 +1,58 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDEDataSet;
-import net.ibizsys.paas.core.IModelBase;
+/**
+ * 实体数据集合分组参数接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDEDataSetGroupParam extends IModelBase {
+	/**
+	 * 获取数据集合
+	 * 
+	 * @return
+	 */
+	IDEDataSet getDEDataSet();
 
-public interface IDEDataSetGroupParam
-extends IModelBase {
-    public IDEDataSet getDEDataSet();
+	/**
+	 * 获取分组代码
+	 * 
+	 * @return
+	 */
+	String getGroupCode();
 
-    public String getGroupCode();
+	/**
+	 * 获取分组属性
+	 * 
+	 * @return
+	 */
+	String[] getGroupFields();
 
-    public String[] getGroupFields();
+	/**
+	 * 获取排序方向
+	 * 
+	 * @return
+	 */
+	String getSortDir();
 
-    public String getSortDir();
+	/**
+	 * 获取排序次序
+	 * 
+	 * @return
+	 */
+	int getSortOrder();
 
-    public int getSortOrder();
+	/**
+	 * 是否为重新计算
+	 * 
+	 * @return
+	 */
+	boolean isReCalc();
 
-    public boolean isReCalc();
-
-    public boolean isEnableGroup();
+	/**
+	 * 是否启用分组
+	 * 
+	 * @return
+	 */
+	boolean isEnableGroup();
 }
-

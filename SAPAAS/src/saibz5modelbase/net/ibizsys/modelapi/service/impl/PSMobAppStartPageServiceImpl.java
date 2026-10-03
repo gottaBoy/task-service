@@ -73,7 +73,7 @@ implements IPSMobAppStartPageService {
     @Override
     protected List<PSMobAppStartPage> onListAll() throws Exception {
         ArrayList<PSMobAppStartPage> list = new ArrayList<PSMobAppStartPage>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSMobAppStartPage> items = this.listByPSSysApp(parent);

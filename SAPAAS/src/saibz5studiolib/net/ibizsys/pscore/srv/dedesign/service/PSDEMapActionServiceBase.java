@@ -163,9 +163,9 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
             PSDEAction pSDEAction = (PSDEAction)iService.getDEModel().createEntity();
             pSDEAction.set("PSDEACTIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEAction);
+                iService.getTemp(pSDEAction);
             } else {
-                iService.get((IEntity)pSDEAction);
+                iService.get(pSDEAction);
             }
             this.onFillParentInfo_DstPSDEAction(pSDEMapAction, pSDEAction);
             return;
@@ -175,9 +175,9 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
             PSDEAction pSDEAction = (PSDEAction)iService.getDEModel().createEntity();
             pSDEAction.set("PSDEACTIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEAction);
+                iService.getTemp(pSDEAction);
             } else {
-                iService.get((IEntity)pSDEAction);
+                iService.get(pSDEAction);
             }
             this.onFillParentInfo_PSDEAction(pSDEMapAction, pSDEAction);
             return;
@@ -187,14 +187,14 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
             PSDEMap pSDEMap = (PSDEMap)iService.getDEModel().createEntity();
             pSDEMap.set("PSDEMAPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEMap);
+                iService.getTemp(pSDEMap);
             } else {
-                iService.get((IEntity)pSDEMap);
+                iService.get(pSDEMap);
             }
             this.onFillParentInfo_PSDEMap(pSDEMapAction, pSDEMap);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEMapAction, string, string2, string3);
+        super.onFillParentInfo(pSDEMapAction, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -222,7 +222,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
         if (bl && pSDEMapAction.getValidFlag() == null) {
             pSDEMapAction.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDEMapAction, bl);
+        super.onFillEntityFullInfo(pSDEMapAction, bl);
         this.onFillEntityFullInfo_DstPSDEAction(pSDEMapAction, bl);
         this.onFillEntityFullInfo_PSDEAction(pSDEMapAction, bl);
         this.onFillEntityFullInfo_PSDEMap(pSDEMapAction, bl);
@@ -238,7 +238,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
     }
 
     protected void onWriteBackParent(PSDEMapAction pSDEMapAction, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEMapAction, bl);
+        super.onWriteBackParent(pSDEMapAction, bl);
     }
 
     public ArrayList<PSDEMapAction> selectByDstPSDEAction(PSDEActionBase pSDEActionBase) throws Exception {
@@ -332,8 +332,8 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
         ArrayList<PSDEMapAction> arrayList = this.selectByDstPSDEAction(pSDEAction, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEACTION");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEAction);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAPACTION_PSDEACTION_DSTPSDEACTIONID", "", iDataEntityModel.getName(), "PSDEMAPACTION", iDataEntityModel.getDataInfo((IEntity)pSDEAction), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEAction);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAPACTION_PSDEACTION_DSTPSDEACTIONID", "", iDataEntityModel.getName(), "PSDEMAPACTION", iDataEntityModel.getDataInfo(pSDEAction), arrayList.get(0)));
         }
     }
 
@@ -366,7 +366,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
         ArrayList<PSDEMapAction> arrayList = this.selectByDstPSDEAction(pSDEAction);
         this.onBeforeRemoveByDstPSDEAction(pSDEAction, arrayList);
         for (PSDEMapAction pSDEMapAction : arrayList) {
-            this.remove((IEntity)pSDEMapAction);
+            this.remove(pSDEMapAction);
         }
         this.onAfterRemoveByDstPSDEAction(pSDEAction, arrayList);
     }
@@ -384,8 +384,8 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
         ArrayList<PSDEMapAction> arrayList = this.selectByPSDEAction(pSDEAction, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEACTION");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEAction);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAPACTION_PSDEACTION_PSDEACTIONID", "", iDataEntityModel.getName(), "PSDEMAPACTION", iDataEntityModel.getDataInfo((IEntity)pSDEAction), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEAction);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDEMAPACTION_PSDEACTION_PSDEACTIONID", "", iDataEntityModel.getName(), "PSDEMAPACTION", iDataEntityModel.getDataInfo(pSDEAction), arrayList.get(0)));
         }
     }
 
@@ -418,7 +418,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
         ArrayList<PSDEMapAction> arrayList = this.selectByPSDEAction(pSDEAction);
         this.onBeforeRemoveByPSDEAction(pSDEAction, arrayList);
         for (PSDEMapAction pSDEMapAction : arrayList) {
-            this.remove((IEntity)pSDEMapAction);
+            this.remove(pSDEMapAction);
         }
         this.onAfterRemoveByPSDEAction(pSDEAction, arrayList);
     }
@@ -451,7 +451,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
             PSDEMapAction pSDEMapAction2 = (PSDEMapAction)this.getDEModel().createEntity();
             pSDEMapAction2.setPSDEMapActionId(pSDEMapAction.getPSDEMapActionId());
             pSDEMapAction2.setPSDEMapId(null);
-            this.updateTemp((IEntity)pSDEMapAction2);
+            this.updateTemp(pSDEMapAction2);
         }
     }
 
@@ -474,7 +474,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
         ArrayList<PSDEMapAction> arrayList = this.selectByPSDEMap(pSDEMap);
         this.onBeforeRemoveByPSDEMap(pSDEMap, arrayList);
         for (PSDEMapAction pSDEMapAction : arrayList) {
-            this.remove((IEntity)pSDEMapAction);
+            this.remove(pSDEMapAction);
         }
         this.onAfterRemoveByPSDEMap(pSDEMap, arrayList);
     }
@@ -512,7 +512,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
         ArrayList<PSDEMapAction> arrayList = this.selectTempByPSDEMap(pSDEMap);
         this.onBeforeRemoveTempByPSDEMap(pSDEMap, arrayList);
         for (PSDEMapAction pSDEMapAction : arrayList) {
-            this.removeTemp((IEntity)pSDEMapAction);
+            this.removeTemp(pSDEMapAction);
         }
         this.onAfterRemoveTempByPSDEMap(pSDEMap, arrayList);
     }
@@ -528,7 +528,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
 
     protected void replaceParentInfo(PSDEMapAction pSDEMapAction, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEMapAction, cloneSession);
+        super.replaceParentInfo(pSDEMapAction, cloneSession);
         if (pSDEMapAction.getDstPSDEActionId() != null && (iEntity = cloneSession.getEntity("PSDEACTION", (Object)pSDEMapAction.getDstPSDEActionId())) != null) {
             this.onFillParentInfo_DstPSDEAction(pSDEMapAction, (PSDEAction)iEntity);
         }
@@ -541,7 +541,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDEMapAction pSDEMapAction, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEMapAction, bl);
+        super.onRemoveEntityUncopyValues(pSDEMapAction, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEMapAction pSDEMapAction, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -589,7 +589,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSDEMapAction, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEMapAction, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEMapAction, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DstPSDEActionId(boolean bl, PSDEMapAction pSDEMapAction, boolean bl2, boolean bl3) throws Exception {
@@ -602,7 +602,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DstPSDEActionId_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_DstPSDEActionId_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DSTPSDEACTIONID");
@@ -624,7 +624,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_MapMode_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_MapMode_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAPMODE");
@@ -646,7 +646,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -668,7 +668,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PropertyMap_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_PropertyMap_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PROPERTYMAP");
@@ -690,7 +690,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEActionId_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEActionId_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEACTIONID");
@@ -732,7 +732,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEMapActionId_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEMapActionId_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMAPACTIONID");
@@ -757,7 +757,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEMapActionName_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEMapActionName_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMAPACTIONNAME");
@@ -779,7 +779,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEMapId_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEMapId_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEMAPID");
@@ -801,7 +801,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -823,7 +823,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -845,7 +845,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -867,7 +867,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -889,7 +889,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -911,7 +911,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDEMapAction, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDEMapAction, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -924,11 +924,11 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
     }
 
     protected void onSyncEntity(PSDEMapAction pSDEMapAction, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEMapAction, bl);
+        super.onSyncEntity(pSDEMapAction, bl);
     }
 
     protected void onSyncIndexEntities(PSDEMapAction pSDEMapAction, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEMapAction, bl);
+        super.onSyncIndexEntities(pSDEMapAction, bl);
     }
 
     public Object getDataContextValue(PSDEMapAction pSDEMapAction, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -936,7 +936,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEMapAction, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEMapAction, string, iDataContextParam)) != null) {
             return object;
         }
         PSDEMap pSDEMap = pSDEMapAction.getPSDEMap();
@@ -947,7 +947,7 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
     }
 
     protected void onExportMajorModel(PSDEMapAction pSDEMapAction, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEMapAction, arrayList, n);
+        super.onExportMajorModel(pSDEMapAction, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1282,14 +1282,14 @@ extends PSCoreSysServiceBase<PSDEMapAction> {
 
     protected boolean onMergeChild(String string, String string2, PSDEMapAction pSDEMapAction) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEMapAction)) {
+        if (super.onMergeChild(string, string2, pSDEMapAction)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEMapAction pSDEMapAction) throws Exception {
-        super.onUpdateParent((IEntity)pSDEMapAction);
+        super.onUpdateParent(pSDEMapAction);
     }
 
     @Override

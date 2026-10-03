@@ -33,7 +33,7 @@ extends PSDCSysLicServiceBase {
         if (iDEField == null) {
             throw new PSDCSysLicException(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u6388\u6743\u9879[%1$s]", (Object)string));
         }
-        int n2 = DataObject.getIntegerValue((Object)pSDCSysLic.get(string), (Integer)-1);
+        int n2 = DataObject.getIntegerValue((Object)pSDCSysLic.get(string), Integer.valueOf(-1));
         if (n2 == -1) {
             return;
         }
@@ -47,7 +47,7 @@ extends PSDCSysLicServiceBase {
         if (iDEField == null) {
             throw new PSDCSysLicException(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u6388\u6743\u9879[%1$s]", (Object)string));
         }
-        int n2 = DataObject.getIntegerValue((Object)pSDCSysLic.get(string), (Integer)-1);
+        int n2 = DataObject.getIntegerValue((Object)pSDCSysLic.get(string), Integer.valueOf(-1));
         if (n2 == -1) {
             return;
         }
@@ -62,7 +62,7 @@ extends PSDCSysLicServiceBase {
         if (bl) {
             PSDCSysLic pSDCSysLic2 = new PSDCSysLic();
             pSDCSysLic2.setPSDCSysLicId(pSDCSysLic.getPSDCSysLicId());
-            this.get((IEntity)pSDCSysLic2);
+            this.get(pSDCSysLic2);
             this.testLic(pSDCSysLic2, "MAXSYSCNT", pSDCSysLic.getCurSysCnt());
             this.testLic(pSDCSysLic2, "MAXACTIVESYSCNT", pSDCSysLic.getCurActiveSysCnt());
             this.testLic(pSDCSysLic2, "MAXTOTALENTITYCNT", pSDCSysLic.getCurTotalEntityCnt());
@@ -70,4 +70,3 @@ extends PSDCSysLicServiceBase {
         return bl;
     }
 }
-

@@ -93,7 +93,7 @@ extends BaseControlConfig {
             DPPageGroupConfig pageGroupConfig = new DPPageGroupConfig();
             pageGroupConfig.setDPConfig(this);
             if (pageGroupConfig.LoadConfig(xmlNode)) {
-                this.pageGroupsConfig.add((Object)pageGroupConfig);
+                this.pageGroupsConfig.add(pageGroupConfig);
             }
             return;
         }
@@ -236,4 +236,3 @@ extends BaseControlConfig {
         this.bHideTabHeader = bHideTabHeader;
     }
 }
-

@@ -1,15 +1,37 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.service;
 
+/**
+ * 数据上下文参数对象接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IDataContextParam {
-    public String getDEName();
+	/**
+	 * 获取实体名称
+	 * 
+	 * @return
+	 */
+	String getDEName();
 
-    public String getDEFName();
+	/**
+	 * 获取实体属性名称
+	 * 
+	 * @return
+	 */
+	String getDEFName();
 
-    public String getReferItem();
+	/**
+	 * 获取引用项
+	 * 
+	 * @return
+	 */
+	String getReferItem();
 
-    public boolean isIgnoreEmpty();
+	/**
+	 * 是否忽略空值条件
+	 * 
+	 * @return
+	 */
+	boolean isIgnoreEmpty();
 }
-

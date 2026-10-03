@@ -88,7 +88,6 @@ extends BaseDAGlobalModel<String, WTServiceBase, IWTServiceHelper> {
             throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u6307\u5b9aWT\u670d\u52a1[%1$s]\u53d1\u751f\u9519\u8bef\uff0c%2$s", (Object)strWTServiceCode, (Object)callResult.getErrorInfo()));
         }
         this.serviceCodeMap.put(wtServiceBase.getSERVICECODE(), wtServiceBase.getWTSERVICEBASEID());
-        return (IWTServiceHelper)this.FindModelHelper(wtServiceBase.getWTSERVICEBASEID(), (Object)wtServiceBase);
+        return (IWTServiceHelper)this.FindModelHelper(wtServiceBase.getWTSERVICEBASEID(), wtServiceBase);
     }
 }
-

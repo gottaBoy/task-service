@@ -1243,7 +1243,7 @@ implements ISRFWFDataCtrl {
 
     public CallResult GetWFUserAssists(WFInstance instance, String strWFStepActorId, String strAssistUserId, String strWorkflowId, Vector<WFUserAssist> userAssists) {
         String strSqlFormat = "select t1.* from T_SRFWFUSERASSIST t1 INNER JOIN T_SRFWFSTEPACTOR t2\t\tON t1.WFMAJORUSERID = t2.ACTORID WHERE UPPER(t1.WFMINORUSERID) = '%1$s' AND UPPER(t2.WFSTEPACTORID)='%2$s' AND UPPER(WFWORKFLOWID)='%3$s'";
-        Vector userAssists2 = new Vector();
+        Vector<WFUserAssist> userAssists2 = new Vector<WFUserAssist>();
         String strSql = StringHelper.Format((String)strSqlFormat, (Object)strAssistUserId.toUpperCase(), (Object)strWFStepActorId.toUpperCase(), (Object)strWorkflowId.toUpperCase());
         CallResult callResult = this.SelectRaw(strSql, userAssists2, WFUserAssist.class.getName(), "");
         if (callResult.IsError()) {

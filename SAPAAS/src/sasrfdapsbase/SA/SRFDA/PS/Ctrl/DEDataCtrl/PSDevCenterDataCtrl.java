@@ -219,7 +219,7 @@ extends PSModelDEDataCtrl {
         PSDevCenterService psDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)PSDCInstGlobal.getSessionFactory((String)psDevCenter.getPSDCINSTID()));
         net.ibizsys.pscore.srv.devcenter.entity.PSDevCenter psDevCenter2 = new net.ibizsys.pscore.srv.devcenter.entity.PSDevCenter();
         PSDEDataCtrl.convertEntity2(psDevCenter, (IEntity)psDevCenter2);
-        psDevCenterService.save((IEntity)psDevCenter2);
+        psDevCenterService.save(psDevCenter2);
         psDCInst.Reset();
         psDCInst.setPSDCINSTID(psDevCenter.getPSDCINSTID());
         psDCInst.setINSTSTATE("30");
@@ -324,7 +324,7 @@ extends PSModelDEDataCtrl {
         PSSystem psSystem = new PSSystem();
         psSystem.setPSSystemId("2C40DFCD-0DF5-47BF-91A5-C45F810B0001");
         PSSystemService psSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)sessionFactory);
-        IEntity iEntity = psSystemService.getModelV2Entity((IEntity)psSystem, "PSDELOGIC", "OrderMgr/ORDER/Test36");
+        IEntity iEntity = psSystemService.getModelV2Entity(psSystem, "PSDELOGIC", "OrderMgr/ORDER/Test36");
         System.out.println(iEntity.get("PSDELOGICID"));
     }
 
@@ -335,13 +335,13 @@ extends PSModelDEDataCtrl {
             PSDCModelTemplService psDCModelTemplServiceService = (PSDCModelTemplService)ServiceGlobal.getService(PSDCModelTemplService.class);
             PSDCModelTempl psDCModelTempl = new PSDCModelTempl();
             psDCModelTempl.setPSDCModelTemplId("0D2DDEFD-68B5-4148-A518-A412002323BC");
-            psDCModelTemplServiceService.get((IEntity)psDCModelTempl);
-            ObjectNode objectNode = psDCModelTemplServiceService.exportModelV2((IEntity)psDCModelTempl);
+            psDCModelTemplServiceService.get(psDCModelTempl);
+            ObjectNode objectNode = psDCModelTemplServiceService.exportModelV2(psDCModelTempl);
             log.debug((Object)objectNode.toString());
             PSDCModelTempl psDCModelTempl2 = new PSDCModelTempl();
             psDCModelTempl2.setPSDCModelTemplId("0D2DDEFD-68B5-4148-A518-A412002323BC");
             objectNode.put("psdcmodeltemplname", "\u65b0\u6a21\u677f4");
-            psDCModelTemplServiceService.importModelV2((IEntity)psDCModelTempl2, objectNode);
+            psDCModelTemplServiceService.importModelV2(psDCModelTempl2, objectNode);
         }
         finally {
             PSCoreSysServiceBase.setCloudMode((boolean)bLastCloudMode);
@@ -362,7 +362,7 @@ extends PSModelDEDataCtrl {
             }
             PSSystem psSystem = new PSSystem();
             psSystem.setPSSystemId("86E2A266-4D1E-49F0-A12D-D636905457A3");
-            ArrayList psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
+            ArrayList<PSDataEntity> psDataEntityList = psDataEntityService.selectByPSSystem((PSSystemBase)psSystem);
             for (PSDataEntity psDataEntity : psDataEntityList) {
                 if (!psDataEntityMap.containsKey(psDataEntity.getPSDataEntityName())) continue;
                 psDataEntityMap.put(psDataEntity.getPSDataEntityName(), psDataEntity);
@@ -374,8 +374,8 @@ extends PSModelDEDataCtrl {
                 log.debug((Object)String.format("\u6b63\u5728\u5904\u7406\u5b9e\u4f53[%1$s]", psDataEntity.getPSDataEntityName()));
                 SelectCond selectCond = new SelectCond();
                 selectCond.set("psdeid", (Object)psDataEntity.getPSDataEntityId());
-                ArrayList psDEFieldList = psDEFieldService.select((ISelectCond)selectCond);
-                ArrayList psDEFSFItemList = psDEFSFItemService.select((ISelectCond)selectCond);
+                ArrayList<PSDEField> psDEFieldList = psDEFieldService.select((ISelectCond)selectCond);
+                ArrayList<PSDEFSFItem> psDEFSFItemList = psDEFSFItemService.select((ISelectCond)selectCond);
                 HashMap<String, PSDEField> psDEFieldMap = new HashMap<String, PSDEField>();
                 for (PSDEField psDEField : psDEFieldList) {
                     psDEFieldMap.put(psDEField.getPSDEFieldName(), psDEField);
@@ -402,7 +402,7 @@ extends PSModelDEDataCtrl {
                             psDEFSFItem.setPSDEFName(psDEField.getPSDEFieldName());
                             psDEFSFItem.setPSDBValueOPId("EQ");
                             psDEFSFItem.setPSDBValueOPName("\u7b49\u4e8e(=)");
-                            psDEFSFItemService.create((IEntity)psDEFSFItem);
+                            psDEFSFItemService.create(psDEFSFItem);
                             log.debug((Object)String.format("\u589e\u52a0\u641c\u7d22\u6a21\u5f0f[%1$s]", psDEFSFItem.getPSDEFSFItemName()));
                             psDEFSFItemMap.put(psDEFSFItem.getPSDEFSFItemName().toUpperCase(), psDEFSFItem);
                         }
@@ -449,27 +449,27 @@ extends PSModelDEDataCtrl {
         LoginAccountService loginAccountService = (LoginAccountService)ServiceGlobal.getService(LoginAccountService.class);
         net.ibizsys.pscore.srv.devcenter.entity.PSDevCenter psDevCenter2 = new net.ibizsys.pscore.srv.devcenter.entity.PSDevCenter();
         psDevCenter2.setPSDevCenterId(strPSDevCenterId);
-        psDevCenterService.get((IEntity)psDevCenter2);
+        psDevCenterService.get(psDevCenter2);
         psDevCenter2.setDomainName(StringHelper.format((String)"%1$s_%2$s", (Object)psDevCenter2.getDomainName(), (Object)random.nextInt(10000)));
         psDevCenter2.setFullDomainName(StringHelper.format((String)"%1$s_%2$s", (Object)psDevCenter2.getFullDomainName(), (Object)random.nextInt(10000)));
-        psDevCenterService.sysUpdate((IEntity)psDevCenter2, false);
+        psDevCenterService.sysUpdate(psDevCenter2, false);
         PSDevUserService psDevUserService = (PSDevUserService)ServiceGlobal.getService(PSDevUserService.class);
-        ArrayList psDevUserList = psDevUserService.selectByPSDevCenter((PSDevCenterBase)psDevCenter2);
+        ArrayList<PSDevUser> psDevUserList = psDevUserService.selectByPSDevCenter((PSDevCenterBase)psDevCenter2);
         for (PSDevUser psDevUser : psDevUserList) {
             LoginAccount loginAccount = new LoginAccount();
             if (!StringHelper.isNullOrEmpty((String)psDevUser.getFullLoginName())) {
                 loginAccount.setLoginAccountName(psDevUser.getFullLoginName());
-                if (loginAccountService.select((IEntity)loginAccount, true)) {
+                if (loginAccountService.select(loginAccount, true)) {
                     loginAccount.setLoginAccountName(StringHelper.format((String)"%1$s_%2$s", (Object)loginAccount.getLoginAccountName(), (Object)random.nextInt(10000)));
-                    loginAccountService.sysUpdate((IEntity)loginAccount, false);
+                    loginAccountService.sysUpdate(loginAccount, false);
                 }
             }
             loginAccount.reset();
             if (StringHelper.isNullOrEmpty((String)psDevUser.getFullLoginName2())) continue;
             loginAccount.setLoginAccountName(psDevUser.getFullLoginName2());
-            if (!loginAccountService.select((IEntity)loginAccount, true)) continue;
+            if (!loginAccountService.select(loginAccount, true)) continue;
             loginAccount.setLoginAccountName(StringHelper.format((String)"%1$s_%2$s", (Object)loginAccount.getLoginAccountName(), (Object)random.nextInt(10000)));
-            loginAccountService.sysUpdate((IEntity)loginAccount, false);
+            loginAccountService.sysUpdate(loginAccount, false);
         }
     }
 
@@ -659,7 +659,7 @@ extends PSModelDEDataCtrl {
         jo.put("mobile", (Object)("139" + strValue));
         psDevCenter.setWebFolder(jo.toString());
         PSDevCenterService psDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class);
-        psDevCenterService.create((IEntity)psDevCenter);
+        psDevCenterService.create(psDevCenter);
     }
 
     public CallResult changeLevel(BaseDataEntity dataEntity) {

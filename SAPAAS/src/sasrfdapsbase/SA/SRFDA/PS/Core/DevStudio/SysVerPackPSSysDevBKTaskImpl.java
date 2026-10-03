@@ -74,25 +74,25 @@ extends PSSysDevBKTaskImplBase {
         PSDevSlnSysVerService psDevSlnSysVerService = (PSDevSlnSysVerService)ServiceGlobal.getService(PSDevSlnSysVerService.class);
         PSDevSlnSysVer psDevSlnSysVer = new PSDevSlnSysVer();
         psDevSlnSysVer.setPSDevSlnSysVerId(this.psSysDevBKTask.getTASKPARAM2());
-        psDevSlnSysVerService.get((IEntity)psDevSlnSysVer);
+        psDevSlnSysVerService.get(psDevSlnSysVer);
         if (DataObject.getBoolValue((Integer)psDevSlnSysVer.getPackSysModelInst(), (boolean)false)) {
             PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class);
             PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
             psDevSlnSys.setPSDevSlnSysId(this.getPSDevSlnSysId());
-            psDevSlnSysService.get((IEntity)psDevSlnSys);
+            psDevSlnSysService.get(psDevSlnSys);
             PSSysModelInst psSysModelInst = this.getPSSysModelInst(psDevSlnSys, psDevSlnSysVer);
             if (StringHelper.isNullOrEmpty((String)psDevSlnSysVer.getPSSysModelInstId())) {
                 PSDevSlnSysVer psDevSlnSysVer2 = new PSDevSlnSysVer();
                 psDevSlnSysVer2.setPSDevSlnSysVerId(this.psSysDevBKTask.getTASKPARAM2());
                 psDevSlnSysVer2.setPSSysModelInstId(psSysModelInst.getPSSysModelInstId());
                 psDevSlnSysVer2.setPSSysModelInstName(psSysModelInst.getPSSysModelInstName());
-                psDevSlnSysVerService.update((IEntity)psDevSlnSysVer2);
+                psDevSlnSysVerService.update(psDevSlnSysVer2);
             }
         }
         PSSysSFPubService psSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)this.getPSSysModelInstId()));
         PSSysSFPub psSysSFPub = new PSSysSFPub();
         psSysSFPub.setPSSysSFPubId(this.psSysDevBKTask.getTASKPARAM());
-        psSysSFPubService.get((IEntity)psSysSFPub);
+        psSysSFPubService.get(psSysSFPub);
         return this.packSysVer(psSysSFPub);
     }
 
@@ -155,8 +155,7 @@ extends PSSysDevBKTaskImplBase {
         psSysModelInst.setRefInfo(strReferInfo);
         psSysModelInst.setModelVer(Integer.valueOf(nCurVersion));
         psSysModelInst.setInstState("30");
-        psSysModelInstService.update((IEntity)psSysModelInst);
+        psSysModelInstService.update(psSysModelInst);
         return psSysModelInst;
     }
 }
-

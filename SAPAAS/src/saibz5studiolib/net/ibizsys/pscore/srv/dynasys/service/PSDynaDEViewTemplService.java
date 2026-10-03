@@ -50,7 +50,7 @@ implements IPSModelService<PSDynaDEViewTempl> {
     protected void onAfterUpdate(PSDynaDEViewTempl pSDynaDEViewTempl) throws Exception {
         String string = pSDynaDEViewTempl.getPSDynaDETempl().getTemplPSDE().getCodeName() + pSDynaDEViewTempl.getCodeName();
         PSAppDynaDEViewService pSAppDynaDEViewService = (PSAppDynaDEViewService)ServiceGlobal.getService(PSAppDynaDEViewService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList arrayList = pSAppDynaDEViewService.selectByPSDynaDEViewTempl(pSDynaDEViewTempl);
+        ArrayList<PSAppDynaDEView> arrayList = pSAppDynaDEViewService.selectByPSDynaDEViewTempl(pSDynaDEViewTempl);
         for (PSAppDynaDEView pSAppDynaDEView : arrayList) {
             if (!DataObject.getBoolValue((Integer)pSAppDynaDEView.getSyncCodeName(), (boolean)true) || StringHelper.compare((String)pSAppDynaDEView.getPSAppDynaDEViewName(), (String)string, (boolean)false) == 0) continue;
             PSAppDynaDEView pSAppDynaDEView2 = new PSAppDynaDEView();

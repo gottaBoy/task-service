@@ -1,21 +1,37 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.view.IUIAction
- */
 package net.ibizsys.paas.view;
 
-import net.ibizsys.paas.view.IUIAction;
+/**
+ * 后台界面行为
+ * @author Administrator
+ *
+ */
+public interface IDynaBackendUIAction extends IUIAction {
+	
+	/**
+	 * 获取是否重新加载数据
+	 * 
+	 * @return
+	 */
+	boolean isReloadData();
 
-public interface IDynaBackendUIAction
-extends IUIAction {
-    public boolean isReloadData();
+	/**
+	 * 获取操作完成提示信息
+	 * 
+	 * @return
+	 */
+	String getSuccessMsg();
 
-    public String getSuccessMsg();
+	/**
+	 * 获取数据访问行为
+	 * 
+	 * @return
+	 */
+	String getDataAccessAction();
 
-    public String getDataAccessAction();
-
-    public boolean isCloseEditView();
+	/**
+	 * 关闭编辑视图
+	 * 
+	 * @return
+	 */
+	boolean isCloseEditView();
 }
-

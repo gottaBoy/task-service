@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.view;
 
-import net.ibizsys.paas.view.DynaUIActionModelBase;
+/**
+ * 默认界面行为模型对象
+ * @author Administrator
+ *
+ */
+public class DefaultDynaUIActionModel extends DynaUIActionModelBase {
 
-public class DefaultDynaUIActionModel
-extends DynaUIActionModelBase {
 }
-

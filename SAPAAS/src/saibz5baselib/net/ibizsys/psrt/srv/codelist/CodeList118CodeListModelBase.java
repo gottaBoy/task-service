@@ -1,27 +1,58 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
 import net.ibizsys.paas.sysmodel.CodeListGlobal;
-import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
 
-@CodeList(id="d423ad45d077876d562a796f3056c030", name="\u5e73\u53f0\u5185\u7f6e\u5904\u7406\u7ec4\u4ef6\u7c7b\u578b", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49")
-@CodeItems(value={@CodeItem(value="CODELISTFILLER", text="\u4ee3\u7801\u8868\u586b\u5145\u5668", realtext="\u4ee3\u7801\u8868\u586b\u5145\u5668"), @CodeItem(value="WFPROCESS", text="\u5de5\u4f5c\u6d41\u5d4c\u5165\u5904\u7406", realtext="\u5de5\u4f5c\u6d41\u5d4c\u5165\u5904\u7406"), @CodeItem(value="DGACTIONHELPER", text="\u8868\u683c\u540e\u53f0\u5904\u7406\u5bf9\u8c61", realtext="\u8868\u683c\u540e\u53f0\u5904\u7406\u5bf9\u8c61"), @CodeItem(value="FORMACTIONHELPER", text="\u8868\u5355\u540e\u53f0\u5904\u7406\u7c7b", realtext="\u8868\u5355\u540e\u53f0\u5904\u7406\u7c7b"), @CodeItem(value="PAGE", text="\u9875\u9762\u5bf9\u8c61", realtext="\u9875\u9762\u5bf9\u8c61")})
-public abstract class CodeList118CodeListModelBase
-extends StaticCodeListModelBase {
-    public static final String CODELISTFILLER = "CODELISTFILLER";
-    public static final String WFPROCESS = "WFPROCESS";
-    public static final String DGACTIONHELPER = "DGACTIONHELPER";
-    public static final String FORMACTIONHELPER = "FORMACTIONHELPER";
-    public static final String PAGE = "PAGE";
+
+@CodeList(id="d423ad45d077876d562a796f3056c030",name="平台内置处理组件类型",type="STATIC",userscope=false,emptytext="未定义")
+
+@CodeItems({
+    @CodeItem(value="CODELISTFILLER",text="代码表填充器",realtext="代码表填充器" )
+    ,@CodeItem(value="WFPROCESS",text="工作流嵌入处理",realtext="工作流嵌入处理" )
+    ,@CodeItem(value="DGACTIONHELPER",text="表格后台处理对象",realtext="表格后台处理对象" )
+    ,@CodeItem(value="FORMACTIONHELPER",text="表单后台处理类",realtext="表单后台处理类" )
+    ,@CodeItem(value="PAGE",text="页面对象",realtext="页面对象" )
+})
+
+
+/**
+ * 静态代码表[平台内置处理组件类型]模型基类
+ */
+public abstract class CodeList118CodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  代码表填充器
+     */
+    public final static String CODELISTFILLER = "CODELISTFILLER";
+    /**
+     *  工作流嵌入处理
+     */
+    public final static String WFPROCESS = "WFPROCESS";
+    /**
+     *  表格后台处理对象
+     */
+    public final static String DGACTIONHELPER = "DGACTIONHELPER";
+    /**
+     *  表单后台处理类
+     */
+    public final static String FORMACTIONHELPER = "FORMACTIONHELPER";
+    /**
+     *  页面对象
+     */
+    public final static String PAGE = "PAGE";
+
 
     public CodeList118CodeListModelBase() {
+        super();
         this.initAnnotation(CodeList118CodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.CodeList118CodeListModel", this);
     }
-}
 
+}

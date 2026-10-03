@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSSFCodeFolderDEModelBase;
 
 public class PSSFCodeFolderDEModel
 extends PSSFCodeFolderDEModelBase {
+
+    public PSSFCodeFolderDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

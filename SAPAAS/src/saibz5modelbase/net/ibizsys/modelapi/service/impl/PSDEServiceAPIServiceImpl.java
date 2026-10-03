@@ -75,7 +75,7 @@ implements IPSDEServiceAPIService {
     @Override
     protected List<PSDEServiceAPI> onListAll() throws Exception {
         ArrayList<PSDEServiceAPI> list = new ArrayList<PSDEServiceAPI>();
-        List pssysserviceapis = PSModelServiceUtil.getInstance().getPSSysServiceAPIService().listAll();
+        List<PSSysServiceAPI> pssysserviceapis = PSModelServiceUtil.getInstance().getPSSysServiceAPIService().listAll();
         if (pssysserviceapis != null) {
             for (PSSysServiceAPI parent : pssysserviceapis) {
                 List<PSDEServiceAPI> items = this.listByPSSysServiceAPI(parent);

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSPanelItemLogicDEModelBase;
 
 public class PSPanelItemLogicDEModel
 extends PSPanelItemLogicDEModelBase {
+
+    public PSPanelItemLogicDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

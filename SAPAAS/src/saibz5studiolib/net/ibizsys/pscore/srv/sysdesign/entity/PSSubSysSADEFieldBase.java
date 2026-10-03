@@ -3314,7 +3314,7 @@ implements Serializable {
                 PSCodeList pSCodeList = new PSCodeList();
                 pSCodeList.setPSCodeListId(this.getPSCodeListId());
                 PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.getSessionFactory());
-                pSCodeListService.autoGet((IEntity)pSCodeList);
+                pSCodeListService.autoGet(pSCodeList);
                 this.pscodelist = pSCodeList;
             }
             return this.pscodelist;
@@ -3340,7 +3340,7 @@ implements Serializable {
                 PSDEFDataType pSDEFDataType = new PSDEFDataType();
                 pSDEFDataType.setPSDEFDataTypeId(this.getPSDataTypeId());
                 PSDEFDataTypeService pSDEFDataTypeService = (PSDEFDataTypeService)ServiceGlobal.getService(PSDEFDataTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFDataTypeService.autoGet((IEntity)pSDEFDataType);
+                pSDEFDataTypeService.autoGet(pSDEFDataType);
                 this.psdatatype = pSDEFDataType;
             }
             return this.psdatatype;
@@ -3366,7 +3366,7 @@ implements Serializable {
                 PSSubSysSADE pSSubSysSADE = new PSSubSysSADE();
                 pSSubSysSADE.setPSSubSysSADEId(this.getPSSubSysSADEId());
                 PSSubSysSADEService pSSubSysSADEService = (PSSubSysSADEService)ServiceGlobal.getService(PSSubSysSADEService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysSADEService.autoGet((IEntity)pSSubSysSADE);
+                pSSubSysSADEService.autoGet(pSSubSysSADE);
                 this.pssubsyssade = pSSubSysSADE;
             }
             return this.pssubsyssade;
@@ -3392,7 +3392,7 @@ implements Serializable {
                 PSSubSysSADE pSSubSysSADE = new PSSubSysSADE();
                 pSSubSysSADE.setPSSubSysSADEId(this.getRefPSSubSysSADEId());
                 PSSubSysSADEService pSSubSysSADEService = (PSSubSysSADEService)ServiceGlobal.getService(PSSubSysSADEService.class, (SessionFactory)this.getSessionFactory());
-                pSSubSysSADEService.autoGet((IEntity)pSSubSysSADE);
+                pSSubSysSADEService.autoGet(pSSubSysSADE);
                 this.refpssubsyssade = pSSubSysSADE;
             }
             return this.refpssubsyssade;
@@ -3418,7 +3418,7 @@ implements Serializable {
                 PSSysValueRule pSSysValueRule = new PSSysValueRule();
                 pSSysValueRule.setPSSysValueRuleId(this.getPSSysValueRuleId());
                 PSSysValueRuleService pSSysValueRuleService = (PSSysValueRuleService)ServiceGlobal.getService(PSSysValueRuleService.class, (SessionFactory)this.getSessionFactory());
-                pSSysValueRuleService.autoGet((IEntity)pSSysValueRule);
+                pSSysValueRuleService.autoGet(pSSysValueRule);
                 this.pssysvaluerule = pSSysValueRule;
             }
             return this.pssysvaluerule;

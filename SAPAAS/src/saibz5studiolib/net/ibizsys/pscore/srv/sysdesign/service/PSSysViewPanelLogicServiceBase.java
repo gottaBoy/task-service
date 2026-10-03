@@ -251,21 +251,21 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
 
     public void createWithModel(PSSysViewPanelLogic pSSysViewPanelLogic) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, (IEntity)pSSysViewPanelLogic, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 0, pSSysViewPanelLogic, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysViewPanelLogic, ACTION_CREATEWITHMODEL);
+        this.testDEMainStateAction(pSSysViewPanelLogic, ACTION_CREATEWITHMODEL);
         final PSSysViewPanelLogic pSSysViewPanelLogic2 = pSSysViewPanelLogic;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysViewPanelLogicServiceBase.this.getService(), PSSysViewPanelLogicServiceBase.ACTION_CREATEWITHMODEL, 40, (IEntity)pSSysViewPanelLogic2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysViewPanelLogicServiceBase.this.getService(), PSSysViewPanelLogicServiceBase.ACTION_CREATEWITHMODEL, 40, pSSysViewPanelLogic2, null).getResult() != 1) {
                     PSSysViewPanelLogicServiceBase.this.onCreateWithModel(pSSysViewPanelLogic2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, (IEntity)pSSysViewPanelLogic, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_CREATEWITHMODEL, 99, pSSysViewPanelLogic, null);
         }
     }
 
@@ -275,21 +275,21 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
 
     public void getDraftFromWithModel(PSSysViewPanelLogic pSSysViewPanelLogic) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, (IEntity)pSSysViewPanelLogic, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 0, pSSysViewPanelLogic, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysViewPanelLogic, ACTION_GETDRAFTFROMWITHMODEL);
+        this.testDEMainStateAction(pSSysViewPanelLogic, ACTION_GETDRAFTFROMWITHMODEL);
         final PSSysViewPanelLogic pSSysViewPanelLogic2 = pSSysViewPanelLogic;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysViewPanelLogicServiceBase.this.getService(), PSSysViewPanelLogicServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, (IEntity)pSSysViewPanelLogic2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysViewPanelLogicServiceBase.this.getService(), PSSysViewPanelLogicServiceBase.ACTION_GETDRAFTFROMWITHMODEL, 40, pSSysViewPanelLogic2, null).getResult() != 1) {
                     PSSysViewPanelLogicServiceBase.this.onGetDraftFromWithModel(pSSysViewPanelLogic2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, (IEntity)pSSysViewPanelLogic, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTFROMWITHMODEL, 99, pSSysViewPanelLogic, null);
         }
     }
 
@@ -299,21 +299,21 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
 
     public void getDraftWithModel(PSSysViewPanelLogic pSSysViewPanelLogic) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, (IEntity)pSSysViewPanelLogic, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 0, pSSysViewPanelLogic, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysViewPanelLogic, ACTION_GETDRAFTWITHMODEL);
+        this.testDEMainStateAction(pSSysViewPanelLogic, ACTION_GETDRAFTWITHMODEL);
         final PSSysViewPanelLogic pSSysViewPanelLogic2 = pSSysViewPanelLogic;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysViewPanelLogicServiceBase.this.getService(), PSSysViewPanelLogicServiceBase.ACTION_GETDRAFTWITHMODEL, 40, (IEntity)pSSysViewPanelLogic2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysViewPanelLogicServiceBase.this.getService(), PSSysViewPanelLogicServiceBase.ACTION_GETDRAFTWITHMODEL, 40, pSSysViewPanelLogic2, null).getResult() != 1) {
                     PSSysViewPanelLogicServiceBase.this.onGetDraftWithModel(pSSysViewPanelLogic2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, (IEntity)pSSysViewPanelLogic, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETDRAFTWITHMODEL, 99, pSSysViewPanelLogic, null);
         }
     }
 
@@ -323,21 +323,21 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
 
     public void getWithModel(PSSysViewPanelLogic pSSysViewPanelLogic) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, (IEntity)pSSysViewPanelLogic, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 0, pSSysViewPanelLogic, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysViewPanelLogic, ACTION_GETWITHMODEL);
+        this.testDEMainStateAction(pSSysViewPanelLogic, ACTION_GETWITHMODEL);
         final PSSysViewPanelLogic pSSysViewPanelLogic2 = pSSysViewPanelLogic;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysViewPanelLogicServiceBase.this.getService(), PSSysViewPanelLogicServiceBase.ACTION_GETWITHMODEL, 40, (IEntity)pSSysViewPanelLogic2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysViewPanelLogicServiceBase.this.getService(), PSSysViewPanelLogicServiceBase.ACTION_GETWITHMODEL, 40, pSSysViewPanelLogic2, null).getResult() != 1) {
                     PSSysViewPanelLogicServiceBase.this.onGetWithModel(pSSysViewPanelLogic2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, (IEntity)pSSysViewPanelLogic, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_GETWITHMODEL, 99, pSSysViewPanelLogic, null);
         }
     }
 
@@ -347,21 +347,21 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
 
     public void updateWithModel(PSSysViewPanelLogic pSSysViewPanelLogic) throws Exception {
         final IServicePlugin iServicePlugin = this.getPlugin();
-        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, (IEntity)pSSysViewPanelLogic, null).getResult() == 1) {
+        if (iServicePlugin != null && iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 0, pSSysViewPanelLogic, null).getResult() == 1) {
             return;
         }
-        this.testDEMainStateAction((IEntity)pSSysViewPanelLogic, ACTION_UPDATEWITHMODEL);
+        this.testDEMainStateAction(pSSysViewPanelLogic, ACTION_UPDATEWITHMODEL);
         final PSSysViewPanelLogic pSSysViewPanelLogic2 = pSSysViewPanelLogic;
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysViewPanelLogicServiceBase.this.getService(), PSSysViewPanelLogicServiceBase.ACTION_UPDATEWITHMODEL, 40, (IEntity)pSSysViewPanelLogic2, null).getResult() != 1) {
+                if (iServicePlugin == null || iServicePlugin.doCustomAction(PSSysViewPanelLogicServiceBase.this.getService(), PSSysViewPanelLogicServiceBase.ACTION_UPDATEWITHMODEL, 40, pSSysViewPanelLogic2, null).getResult() != 1) {
                     PSSysViewPanelLogicServiceBase.this.onUpdateWithModel(pSSysViewPanelLogic2);
                 }
             }
         });
         if (iServicePlugin != null) {
-            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, (IEntity)pSSysViewPanelLogic, null);
+            iServicePlugin.doCustomAction((IService)this, ACTION_UPDATEWITHMODEL, 99, pSSysViewPanelLogic, null);
         }
     }
 
@@ -375,9 +375,9 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSAppFunc pSAppFunc = (PSAppFunc)iService.getDEModel().createEntity();
             pSAppFunc.set("PSAPPFUNCID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppFunc);
+                iService.getTemp(pSAppFunc);
             } else {
-                iService.get((IEntity)pSAppFunc);
+                iService.get(pSAppFunc);
             }
             this.onFillParentInfo_PSAppFunc(pSSysViewPanelLogic, pSAppFunc);
             return;
@@ -387,9 +387,9 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSSysViewPanelLogic, pSDataEntity);
             return;
@@ -399,9 +399,9 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSDELogic pSDELogic = (PSDELogic)iService.getDEModel().createEntity();
             pSDELogic.set("PSDELOGICID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDELogic);
+                iService.getTemp(pSDELogic);
             } else {
-                iService.get((IEntity)pSDELogic);
+                iService.get(pSDELogic);
             }
             this.onFillParentInfo_PSDELogic(pSSysViewPanelLogic, pSDELogic);
             return;
@@ -411,9 +411,9 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSDEUIAction pSDEUIAction = (PSDEUIAction)iService.getDEModel().createEntity();
             pSDEUIAction.set("PSDEUIACTIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUIAction);
+                iService.getTemp(pSDEUIAction);
             } else {
-                iService.get((IEntity)pSDEUIAction);
+                iService.get(pSDEUIAction);
             }
             this.onFillParentInfo_PSDEUIAction(pSSysViewPanelLogic, pSDEUIAction);
             return;
@@ -423,9 +423,9 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_PSSysPFPlugin(pSSysViewPanelLogic, pSSysPFPlugin);
             return;
@@ -435,9 +435,9 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSSysViewLogic pSSysViewLogic = (PSSysViewLogic)iService.getDEModel().createEntity();
             pSSysViewLogic.set("PSSYSVIEWLOGICID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysViewLogic);
+                iService.getTemp(pSSysViewLogic);
             } else {
-                iService.get((IEntity)pSSysViewLogic);
+                iService.get(pSSysViewLogic);
             }
             this.onFillParentInfo_PSSysViewLogic(pSSysViewPanelLogic, pSSysViewLogic);
             return;
@@ -447,9 +447,9 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSSysViewPanelItem pSSysViewPanelItem = (PSSysViewPanelItem)iService.getDEModel().createEntity();
             pSSysViewPanelItem.set("PSSYSVIEWPANELITEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysViewPanelItem);
+                iService.getTemp(pSSysViewPanelItem);
             } else {
-                iService.get((IEntity)pSSysViewPanelItem);
+                iService.get(pSSysViewPanelItem);
             }
             this.onFillParentInfo_ParamPSPanelItem(pSSysViewPanelLogic, pSSysViewPanelItem);
             return;
@@ -459,9 +459,9 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSSysViewPanelItem pSSysViewPanelItem = (PSSysViewPanelItem)iService.getDEModel().createEntity();
             pSSysViewPanelItem.set("PSSYSVIEWPANELITEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysViewPanelItem);
+                iService.getTemp(pSSysViewPanelItem);
             } else {
-                iService.get((IEntity)pSSysViewPanelItem);
+                iService.get(pSSysViewPanelItem);
             }
             this.onFillParentInfo_PSSysViewPanelItem(pSSysViewPanelLogic, pSSysViewPanelItem);
             return;
@@ -471,9 +471,9 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSSysViewPanelModel pSSysViewPanelModel = (PSSysViewPanelModel)iService.getDEModel().createEntity();
             pSSysViewPanelModel.set("PSSYSVIEWPANELMODELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysViewPanelModel);
+                iService.getTemp(pSSysViewPanelModel);
             } else {
-                iService.get((IEntity)pSSysViewPanelModel);
+                iService.get(pSSysViewPanelModel);
             }
             this.onFillParentInfo_PSSysViewPanelModel(pSSysViewPanelLogic, pSSysViewPanelModel);
             return;
@@ -483,9 +483,9 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSSysViewPanel pSSysViewPanel = (PSSysViewPanel)iService.getDEModel().createEntity();
             pSSysViewPanel.set("PSSYSVIEWPANELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysViewPanel);
+                iService.getTemp(pSSysViewPanel);
             } else {
-                iService.get((IEntity)pSSysViewPanel);
+                iService.get(pSSysViewPanel);
             }
             this.onFillParentInfo_LayoutPSSysViewPanel(pSSysViewPanelLogic, pSSysViewPanel);
             return;
@@ -495,14 +495,14 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSSysViewPanel pSSysViewPanel = (PSSysViewPanel)iService.getDEModel().createEntity();
             pSSysViewPanel.set("PSSYSVIEWPANELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysViewPanel);
+                iService.getTemp(pSSysViewPanel);
             } else {
-                iService.get((IEntity)pSSysViewPanel);
+                iService.get(pSSysViewPanel);
             }
             this.onFillParentInfo_PSSysViewPanel(pSSysViewPanelLogic, pSSysViewPanel);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysViewPanelLogic, string, string2, string3);
+        super.onFillParentInfo(pSSysViewPanelLogic, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -572,7 +572,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         if (bl && pSSysViewPanelLogic.getValidFlag() == null) {
             pSSysViewPanelLogic.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysViewPanelLogic, bl);
+        super.onFillEntityFullInfo(pSSysViewPanelLogic, bl);
         this.onFillEntityFullInfo_PSAppFunc(pSSysViewPanelLogic, bl);
         this.onFillEntityFullInfo_PSDE(pSSysViewPanelLogic, bl);
         this.onFillEntityFullInfo_PSDELogic(pSSysViewPanelLogic, bl);
@@ -630,7 +630,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
     }
 
     protected void onWriteBackParent(PSSysViewPanelLogic pSSysViewPanelLogic, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysViewPanelLogic, bl);
+        super.onWriteBackParent(pSSysViewPanelLogic, bl);
     }
 
     public ArrayList<PSSysViewPanelLogic> selectByPSAppFunc(PSAppFuncBase pSAppFuncBase) throws Exception {
@@ -961,8 +961,8 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSAppFunc(pSAppFunc, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSAPPFUNC");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSAppFunc);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSAPPFUNC_PSAPPFUNCID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo((IEntity)pSAppFunc), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSAppFunc);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSAPPFUNC_PSAPPFUNCID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo(pSAppFunc), arrayList.get(0)));
         }
     }
 
@@ -995,7 +995,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSAppFunc(pSAppFunc);
         this.onBeforeRemoveByPSAppFunc(pSAppFunc, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.remove((IEntity)pSSysViewPanelLogic);
+            this.remove(pSSysViewPanelLogic);
         }
         this.onAfterRemoveByPSAppFunc(pSAppFunc, arrayList);
     }
@@ -1013,8 +1013,8 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -1047,7 +1047,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.remove((IEntity)pSSysViewPanelLogic);
+            this.remove(pSSysViewPanelLogic);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -1065,8 +1065,8 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSDELogic(pSDELogic, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDELOGIC");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDELogic);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSDELOGIC_PSDELOGICID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo((IEntity)pSDELogic), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDELogic);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSDELOGIC_PSDELOGICID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo(pSDELogic), arrayList.get(0)));
         }
     }
 
@@ -1099,7 +1099,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSDELogic(pSDELogic);
         this.onBeforeRemoveByPSDELogic(pSDELogic, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.remove((IEntity)pSSysViewPanelLogic);
+            this.remove(pSSysViewPanelLogic);
         }
         this.onAfterRemoveByPSDELogic(pSDELogic, arrayList);
     }
@@ -1117,8 +1117,8 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSDEUIAction(pSDEUIAction, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEUIACTION");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEUIAction);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSDEUIACTION_PSDEUIACTIONID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo((IEntity)pSDEUIAction), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEUIAction);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSDEUIACTION_PSDEUIACTIONID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo(pSDEUIAction), arrayList.get(0)));
         }
     }
 
@@ -1151,7 +1151,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSDEUIAction(pSDEUIAction);
         this.onBeforeRemoveByPSDEUIAction(pSDEUIAction, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.remove((IEntity)pSSysViewPanelLogic);
+            this.remove(pSSysViewPanelLogic);
         }
         this.onAfterRemoveByPSDEUIAction(pSDEUIAction, arrayList);
     }
@@ -1169,8 +1169,8 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -1203,7 +1203,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.remove((IEntity)pSSysViewPanelLogic);
+            this.remove(pSSysViewPanelLogic);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -1221,8 +1221,8 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSSysViewLogic(pSSysViewLogic, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSVIEWLOGIC");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysViewLogic);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSSYSVIEWLOGIC_PSSYSVIEWLOGICID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo((IEntity)pSSysViewLogic), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysViewLogic);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSSYSVIEWLOGIC_PSSYSVIEWLOGICID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo(pSSysViewLogic), arrayList.get(0)));
         }
     }
 
@@ -1255,7 +1255,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSSysViewLogic(pSSysViewLogic);
         this.onBeforeRemoveByPSSysViewLogic(pSSysViewLogic, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.remove((IEntity)pSSysViewPanelLogic);
+            this.remove(pSSysViewPanelLogic);
         }
         this.onAfterRemoveByPSSysViewLogic(pSSysViewLogic, arrayList);
     }
@@ -1273,8 +1273,8 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByParamPSPanelItem(pSSysViewPanelItem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSVIEWPANELITEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysViewPanelItem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELITEM_PARAMPSPANELITEMID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo((IEntity)pSSysViewPanelItem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysViewPanelItem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELITEM_PARAMPSPANELITEMID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo(pSSysViewPanelItem), arrayList.get(0)));
         }
     }
 
@@ -1294,7 +1294,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSSysViewPanelLogic pSSysViewPanelLogic2 = (PSSysViewPanelLogic)this.getDEModel().createEntity();
             pSSysViewPanelLogic2.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
             pSSysViewPanelLogic2.setParamPSPanelItemId(null);
-            this.updateTemp((IEntity)pSSysViewPanelLogic2);
+            this.updateTemp(pSSysViewPanelLogic2);
         }
     }
 
@@ -1317,7 +1317,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByParamPSPanelItem(pSSysViewPanelItem);
         this.onBeforeRemoveByParamPSPanelItem(pSSysViewPanelItem, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.remove((IEntity)pSSysViewPanelLogic);
+            this.remove(pSSysViewPanelLogic);
         }
         this.onAfterRemoveByParamPSPanelItem(pSSysViewPanelItem, arrayList);
     }
@@ -1335,8 +1335,8 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSSysViewPanelItem(pSSysViewPanelItem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSVIEWPANELITEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysViewPanelItem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELITEM_PSSYSVIEWPANELITEMID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo((IEntity)pSSysViewPanelItem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysViewPanelItem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELITEM_PSSYSVIEWPANELITEMID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo(pSSysViewPanelItem), arrayList.get(0)));
         }
     }
 
@@ -1356,7 +1356,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSSysViewPanelLogic pSSysViewPanelLogic2 = (PSSysViewPanelLogic)this.getDEModel().createEntity();
             pSSysViewPanelLogic2.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
             pSSysViewPanelLogic2.setPSSysViewPanelItemId(null);
-            this.updateTemp((IEntity)pSSysViewPanelLogic2);
+            this.updateTemp(pSSysViewPanelLogic2);
         }
     }
 
@@ -1379,7 +1379,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSSysViewPanelItem(pSSysViewPanelItem);
         this.onBeforeRemoveByPSSysViewPanelItem(pSSysViewPanelItem, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.remove((IEntity)pSSysViewPanelLogic);
+            this.remove(pSSysViewPanelLogic);
         }
         this.onAfterRemoveByPSSysViewPanelItem(pSSysViewPanelItem, arrayList);
     }
@@ -1397,8 +1397,8 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSSysViewPanelModel(pSSysViewPanelModel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSVIEWPANELMODEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysViewPanelModel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELMODEL_PSSYSVIEWPANELMODELID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo((IEntity)pSSysViewPanelModel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysViewPanelModel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELMODEL_PSSYSVIEWPANELMODELID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo(pSSysViewPanelModel), arrayList.get(0)));
         }
     }
 
@@ -1418,7 +1418,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSSysViewPanelLogic pSSysViewPanelLogic2 = (PSSysViewPanelLogic)this.getDEModel().createEntity();
             pSSysViewPanelLogic2.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
             pSSysViewPanelLogic2.setPSSysViewPanelModelId(null);
-            this.updateTemp((IEntity)pSSysViewPanelLogic2);
+            this.updateTemp(pSSysViewPanelLogic2);
         }
     }
 
@@ -1441,7 +1441,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSSysViewPanelModel(pSSysViewPanelModel);
         this.onBeforeRemoveByPSSysViewPanelModel(pSSysViewPanelModel, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.remove((IEntity)pSSysViewPanelLogic);
+            this.remove(pSSysViewPanelLogic);
         }
         this.onAfterRemoveByPSSysViewPanelModel(pSSysViewPanelModel, arrayList);
     }
@@ -1459,8 +1459,8 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByLayoutPSSysViewPanel(pSSysViewPanel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSVIEWPANEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysViewPanel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANEL_LAYOUTPSSYSVIEWPANELID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo((IEntity)pSSysViewPanel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysViewPanel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANEL_LAYOUTPSSYSVIEWPANELID", "", iDataEntityModel.getName(), "PSSYSVIEWPANELLOGIC", iDataEntityModel.getDataInfo(pSSysViewPanel), arrayList.get(0)));
         }
     }
 
@@ -1493,7 +1493,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByLayoutPSSysViewPanel(pSSysViewPanel);
         this.onBeforeRemoveByLayoutPSSysViewPanel(pSSysViewPanel, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.remove((IEntity)pSSysViewPanelLogic);
+            this.remove(pSSysViewPanelLogic);
         }
         this.onAfterRemoveByLayoutPSSysViewPanel(pSSysViewPanel, arrayList);
     }
@@ -1526,7 +1526,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSSysViewPanelLogic pSSysViewPanelLogic2 = (PSSysViewPanelLogic)this.getDEModel().createEntity();
             pSSysViewPanelLogic2.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
             pSSysViewPanelLogic2.setPSSysViewPanelId(null);
-            this.updateTemp((IEntity)pSSysViewPanelLogic2);
+            this.updateTemp(pSSysViewPanelLogic2);
         }
     }
 
@@ -1549,7 +1549,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectByPSSysViewPanel(pSSysViewPanel);
         this.onBeforeRemoveByPSSysViewPanel(pSSysViewPanel, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.remove((IEntity)pSSysViewPanelLogic);
+            this.remove(pSSysViewPanelLogic);
         }
         this.onAfterRemoveByPSSysViewPanel(pSSysViewPanel, arrayList);
     }
@@ -1600,7 +1600,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ((PSPanelEngineServiceBase)pSCoreSysServiceBase).resetTempNo3PSPanelLogic(pSSysViewPanelLogic);
         pSCoreSysServiceBase = (PSPanelEngineService)ServiceGlobal.getService(PSPanelEngineService.class, (SessionFactory)this.getSessionFactory());
         ((PSPanelEngineServiceBase)pSCoreSysServiceBase).resetTempNo2PSPanelLogic(pSSysViewPanelLogic);
-        super.onBeforeRemoveTemp((IEntity)pSSysViewPanelLogic);
+        super.onBeforeRemoveTemp(pSSysViewPanelLogic);
     }
 
     public void removeTempByParamPSPanelItem(PSSysViewPanelItem pSSysViewPanelItem) throws Exception {
@@ -1622,7 +1622,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectTempByParamPSPanelItem(pSSysViewPanelItem);
         this.onBeforeRemoveTempByParamPSPanelItem(pSSysViewPanelItem, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.removeTemp((IEntity)pSSysViewPanelLogic);
+            this.removeTemp(pSSysViewPanelLogic);
         }
         this.onAfterRemoveTempByParamPSPanelItem(pSSysViewPanelItem, arrayList);
     }
@@ -1655,7 +1655,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectTempByPSSysViewPanelItem(pSSysViewPanelItem);
         this.onBeforeRemoveTempByPSSysViewPanelItem(pSSysViewPanelItem, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.removeTemp((IEntity)pSSysViewPanelLogic);
+            this.removeTemp(pSSysViewPanelLogic);
         }
         this.onAfterRemoveTempByPSSysViewPanelItem(pSSysViewPanelItem, arrayList);
     }
@@ -1688,7 +1688,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectTempByPSSysViewPanelModel(pSSysViewPanelModel);
         this.onBeforeRemoveTempByPSSysViewPanelModel(pSSysViewPanelModel, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.removeTemp((IEntity)pSSysViewPanelLogic);
+            this.removeTemp(pSSysViewPanelLogic);
         }
         this.onAfterRemoveTempByPSSysViewPanelModel(pSSysViewPanelModel, arrayList);
     }
@@ -1721,7 +1721,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         ArrayList<PSSysViewPanelLogic> arrayList = this.selectTempByPSSysViewPanel(pSSysViewPanel);
         this.onBeforeRemoveTempByPSSysViewPanel(pSSysViewPanel, arrayList);
         for (PSSysViewPanelLogic pSSysViewPanelLogic : arrayList) {
-            this.removeTemp((IEntity)pSSysViewPanelLogic);
+            this.removeTemp(pSSysViewPanelLogic);
         }
         this.onAfterRemoveTempByPSSysViewPanel(pSSysViewPanel, arrayList);
     }
@@ -1739,7 +1739,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         this.getRelatedDataTempMajor_PSPanelLogicParam(pSSysViewPanelLogic);
         this.getRelatedDataTempMajor_PSPanelLogicNode(pSSysViewPanelLogic);
         this.getRelatedDataTempMajor_PSPanelLogicLink(pSSysViewPanelLogic);
-        super.getRelatedDataTempMajor((IEntity)pSSysViewPanelLogic);
+        super.getRelatedDataTempMajor(pSSysViewPanelLogic);
     }
 
     protected void getRelatedDataTempMajor_PSPanelLogicParam(PSSysViewPanelLogic pSSysViewPanelLogic) throws Exception {
@@ -1779,7 +1779,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         this.updateRelatedDataTempMajor_updatePSPanelLogicParam(pSSysViewPanelLogic, pSSysViewPanelLogic2, arrayList3);
         this.updateRelatedDataTempMajor_updatePSPanelLogicNode(pSSysViewPanelLogic, pSSysViewPanelLogic2, arrayList2);
         this.updateRelatedDataTempMajor_updatePSPanelLogicLink(pSSysViewPanelLogic, pSSysViewPanelLogic2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSSysViewPanelLogic, (IEntity)pSSysViewPanelLogic2);
+        super.updateRelatedDataTempMajor(pSSysViewPanelLogic, pSSysViewPanelLogic2);
     }
 
     protected ArrayList<PSPanelLogicParam> updateRelatedDataTempMajor_removePSPanelLogicParam(PSSysViewPanelLogic pSSysViewPanelLogic, PSSysViewPanelLogic pSSysViewPanelLogic2) throws Exception {
@@ -1795,7 +1795,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             hashMap.remove(object);
         }
         for (PSPanelLogicParam pSPanelLogicParam : hashMap.values()) {
-            pSPanelLogicParamService.remove((IEntity)pSPanelLogicParam);
+            pSPanelLogicParamService.remove(pSPanelLogicParam);
         }
         return arrayList;
     }
@@ -1823,7 +1823,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             hashMap.remove(object);
         }
         for (PSPanelLogicNode pSPanelLogicNode : hashMap.values()) {
-            pSPanelLogicNodeService.remove((IEntity)pSPanelLogicNode);
+            pSPanelLogicNodeService.remove(pSPanelLogicNode);
         }
         return arrayList;
     }
@@ -1851,7 +1851,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             hashMap.remove(object);
         }
         for (PSPanelLogicLink pSPanelLogicLink : hashMap.values()) {
-            pSPanelLogicLinkService.remove((IEntity)pSPanelLogicLink);
+            pSPanelLogicLinkService.remove(pSPanelLogicLink);
         }
         return arrayList;
     }
@@ -1868,7 +1868,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
 
     protected void replaceParentInfo(PSSysViewPanelLogic pSSysViewPanelLogic, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysViewPanelLogic, cloneSession);
+        super.replaceParentInfo(pSSysViewPanelLogic, cloneSession);
         if (pSSysViewPanelLogic.getPSAppFuncId() != null && (iEntity = cloneSession.getEntity("PSAPPFUNC", (Object)pSSysViewPanelLogic.getPSAppFuncId())) != null) {
             this.onFillParentInfo_PSAppFunc(pSSysViewPanelLogic, (PSAppFunc)iEntity);
         }
@@ -1905,7 +1905,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysViewPanelLogic pSSysViewPanelLogic, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysViewPanelLogic, bl);
+        super.onRemoveEntityUncopyValues(pSSysViewPanelLogic, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysViewPanelLogic pSSysViewPanelLogic, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -2001,7 +2001,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysViewPanelLogic, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysViewPanelLogic, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysViewPanelLogic, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AttrName(boolean bl, PSSysViewPanelLogic pSSysViewPanelLogic, boolean bl2, boolean bl3) throws Exception {
@@ -2014,7 +2014,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AttrName_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_AttrName_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ATTRNAME");
@@ -2036,7 +2036,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -2058,7 +2058,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlEvent_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlEvent_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLEVENT");
@@ -2080,7 +2080,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlEventArg_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlEventArg_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLEVENTARG");
@@ -2102,7 +2102,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlEventArg2_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlEventArg2_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLEVENTARG2");
@@ -2124,7 +2124,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlEventName_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlEventName_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLEVENTNAME");
@@ -2146,7 +2146,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CustomCode_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_CustomCode_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMCODE");
@@ -2168,7 +2168,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DstLogicType_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_DstLogicType_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DSTLOGICTYPE");
@@ -2190,7 +2190,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LayoutPSSysViewPanelId_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_LayoutPSSysViewPanelId_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LAYOUTPSSYSVIEWPANELID");
@@ -2212,7 +2212,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicModel_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_LogicModel_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICMODEL");
@@ -2234,7 +2234,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicParam_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_LogicParam_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICPARAM");
@@ -2256,7 +2256,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicParam2_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_LogicParam2_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICPARAM2");
@@ -2281,7 +2281,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicType_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_LogicType_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICTYPE");
@@ -2303,7 +2303,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -2325,7 +2325,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -2347,7 +2347,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ParamPSPanelItemId_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_ParamPSPanelItemId_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAMPSPANELITEMID");
@@ -2369,7 +2369,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppFuncId_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppFuncId_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPFUNCID");
@@ -2391,7 +2391,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -2413,7 +2413,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDELogicId_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDELogicId_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDELOGICID");
@@ -2435,7 +2435,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -2457,7 +2457,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEUIActionId_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEUIActionId_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEUIACTIONID");
@@ -2479,7 +2479,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPluginId_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPluginId_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPLUGINID");
@@ -2501,7 +2501,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewLogicId_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewLogicId_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWLOGICID");
@@ -2526,7 +2526,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewPanelId_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewPanelId_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWPANELID");
@@ -2548,7 +2548,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewPanelItemId_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewPanelItemId_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWPANELITEMID");
@@ -2573,7 +2573,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewPanelLogicId_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewPanelLogicId_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWPANELLOGICID");
@@ -2598,7 +2598,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewPanelLogicName_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewPanelLogicName_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWPANELLOGICNAME");
@@ -2637,7 +2637,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewPanelModelId_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewPanelModelId_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWPANELMODELID");
@@ -2659,7 +2659,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Timer_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string = this.onTestValueRule_Timer_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TIMER");
@@ -2681,7 +2681,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysViewPanelLogic, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysViewPanelLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -2694,11 +2694,11 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
     }
 
     protected void onSyncEntity(PSSysViewPanelLogic pSSysViewPanelLogic, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysViewPanelLogic, bl);
+        super.onSyncEntity(pSSysViewPanelLogic, bl);
     }
 
     protected void onSyncIndexEntities(PSSysViewPanelLogic pSSysViewPanelLogic, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysViewPanelLogic, bl);
+        super.onSyncIndexEntities(pSSysViewPanelLogic, bl);
     }
 
     public Object getDataContextValue(PSSysViewPanelLogic pSSysViewPanelLogic, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -2706,7 +2706,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysViewPanelLogic, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysViewPanelLogic, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysViewPanel pSSysViewPanel = pSSysViewPanelLogic.getPSSysViewPanel();
@@ -2717,7 +2717,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
     }
 
     protected void onExportMajorModel(PSSysViewPanelLogic pSSysViewPanelLogic, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysViewPanelLogic, arrayList, n);
+        super.onExportMajorModel(pSSysViewPanelLogic, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -3366,14 +3366,14 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
 
     protected boolean onMergeChild(String string, String string2, PSSysViewPanelLogic pSSysViewPanelLogic) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysViewPanelLogic)) {
+        if (super.onMergeChild(string, string2, pSSysViewPanelLogic)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysViewPanelLogic pSSysViewPanelLogic) throws Exception {
-        super.onUpdateParent((IEntity)pSSysViewPanelLogic);
+        super.onUpdateParent(pSSysViewPanelLogic);
     }
 
     @Override
@@ -3477,7 +3477,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSPanelLogicParam pSPanelLogicParam = new PSPanelLogicParam();
-                pSPanelLogicParamService.fillParentInfo((IEntity)pSPanelLogicParam, "DER1N", "DER1N_PSPANELLOGICPARAM_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELLOGICID", pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                pSPanelLogicParamService.fillParentInfo(pSPanelLogicParam, "DER1N", "DER1N_PSPANELLOGICPARAM_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELLOGICID", pSSysViewPanelLogic.getPSSysViewPanelLogicId());
                 pSPanelLogicParamService.importXmlModel(pSPanelLogicParam, xmlNode2);
             }
         }
@@ -3499,7 +3499,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSPanelLogicNode pSPanelLogicNode = new PSPanelLogicNode();
-                pSPanelLogicNodeService.fillParentInfo((IEntity)pSPanelLogicNode, "DER1N", "DER1N_PSPANELLOGICNODE_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELLOGICID", pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                pSPanelLogicNodeService.fillParentInfo(pSPanelLogicNode, "DER1N", "DER1N_PSPANELLOGICNODE_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELLOGICID", pSSysViewPanelLogic.getPSSysViewPanelLogicId());
                 pSPanelLogicNodeService.importXmlModel(pSPanelLogicNode, xmlNode2);
             }
         }
@@ -3524,7 +3524,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                 PSPanelLogicLink pSPanelLogicLink = new PSPanelLogicLink();
                 pSPanelLogicLink.setOrderValue(n);
                 n += 100;
-                pSPanelLogicLinkService.fillParentInfo((IEntity)pSPanelLogicLink, "DER1N", "DER1N_PSPANELLOGICLINK_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELLOGICID", pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                pSPanelLogicLinkService.fillParentInfo(pSPanelLogicLink, "DER1N", "DER1N_PSPANELLOGICLINK_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELLOGICID", pSSysViewPanelLogic.getPSSysViewPanelLogicId());
                 pSPanelLogicLinkService.importXmlModel(pSPanelLogicLink, xmlNode2);
             }
         }
@@ -3643,46 +3643,30 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
 
     @Override
     protected void onExportCurModelV2(PSSysViewPanelLogic pSSysViewPanelLogic, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        Object object3;
-        Object object4;
-        ArrayList<PSPanelLogicParam> arrayList;
-        PSCoreSysServiceBase pSCoreSysServiceBase;
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSPANELLOGICPARAM_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELLOGICID")) {
-            pSCoreSysServiceBase = (PSPanelLogicParamService)ServiceGlobal.getService(PSPanelLogicParamService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSPanelLogicParamService panelLogicParamService = (PSPanelLogicParamService)ServiceGlobal.getService(PSPanelLogicParamService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> panelLogicParams = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSVIEWPANELLOGIC#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSPANELLOGICPARAM", (Object)pSSysViewPanelLogic.getPSSysViewPanelLogicId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add((PSPanelLogicParam)entityBase2);
+                    panelLogicParams = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        panelLogicParams.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSPanelLogicParam>();
-                object4 = ((PSPanelLogicParamServiceBase)pSCoreSysServiceBase).selectByPSSysViewPanelLogic(pSSysViewPanelLogic);
-                object3 = StringHelper.format((String)"PSSYSVIEWPANELLOGIC#%1$s", (Object)pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSPanelLogicParam)object2.next();
-                    object = ((PSPanelLogicParamServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSPanelLogicParam)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                panelLogicParams = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSVIEWPANELLOGIC#%1$s", (Object)pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                for (PSPanelLogicParam panelLogicParam : panelLogicParamService.selectByPSSysViewPanelLogic(pSSysViewPanelLogic)) {
+                    if (StringHelper.compare(scope, panelLogicParamService.getModelV2ResScope(panelLogicParam), (boolean)false) != 0) continue;
+                    panelLogicParams.add(PSModelV2Helper.toJSONObject(panelLogicParam, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (panelLogicParams != null && panelLogicParams.size() > 0) {
+                ArrayNode panelLogicParamNodes = objectNode.putArray(panelLogicParamService.getModelV2Name(false).toLowerCase());
+                Collections.sort(panelLogicParams, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3709,45 +3693,36 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSPanelLogicParam();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode panelLogicParamNode : panelLogicParams) {
+                    PSPanelLogicParam panelLogicParam = new PSPanelLogicParam();
+                    PSModelV2Helper.fromJSONObject((IDataObject)panelLogicParam, panelLogicParamNode, false);
+                    panelLogicParamNodes.add((JsonNode)panelLogicParamService.exportModelV2(panelLogicParam, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSPANELLOGICNODE_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELLOGICID")) {
-            pSCoreSysServiceBase = (PSPanelLogicNodeService)ServiceGlobal.getService(PSPanelLogicNodeService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSPanelLogicNodeService panelLogicNodeService = (PSPanelLogicNodeService)ServiceGlobal.getService(PSPanelLogicNodeService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> panelLogicNodes = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSVIEWPANELLOGIC#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSPANELLOGICNODE", (Object)pSSysViewPanelLogic.getPSSysViewPanelLogicId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSPanelLogicParam)entityBase2);
+                    panelLogicNodes = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        panelLogicNodes.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSPanelLogicNodeServiceBase)pSCoreSysServiceBase).selectByPSSysViewPanelLogic(pSSysViewPanelLogic);
-                object3 = StringHelper.format((String)"PSSYSVIEWPANELLOGIC#%1$s", (Object)pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSPanelLogicNode)object2.next();
-                    object = ((PSPanelLogicNodeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSPanelLogicParam)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                panelLogicNodes = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSVIEWPANELLOGIC#%1$s", (Object)pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                for (PSPanelLogicNode panelLogicNode : panelLogicNodeService.selectByPSSysViewPanelLogic(pSSysViewPanelLogic)) {
+                    if (StringHelper.compare(scope, panelLogicNodeService.getModelV2ResScope(panelLogicNode), (boolean)false) != 0) continue;
+                    panelLogicNodes.add(PSModelV2Helper.toJSONObject(panelLogicNode, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (panelLogicNodes != null && panelLogicNodes.size() > 0) {
+                ArrayNode panelLogicNodeNodes = objectNode.putArray(panelLogicNodeService.getModelV2Name(false).toLowerCase());
+                Collections.sort(panelLogicNodes, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3774,45 +3749,36 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSPanelLogicNode();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode panelLogicNodeNode : panelLogicNodes) {
+                    PSPanelLogicNode panelLogicNode = new PSPanelLogicNode();
+                    PSModelV2Helper.fromJSONObject((IDataObject)panelLogicNode, panelLogicNodeNode, false);
+                    panelLogicNodeNodes.add((JsonNode)panelLogicNodeService.exportModelV2(panelLogicNode, string));
                 }
             }
         }
         if (bl || !this.isExportRelatedModelV2("DER1N_PSPANELLOGICLINK_PSSYSVIEWPANELLOGIC_PSSYSVIEWPANELLOGICID")) {
-            pSCoreSysServiceBase = (PSPanelLogicLinkService)ServiceGlobal.getService(PSPanelLogicLinkService.class, (SessionFactory)this.getSessionFactory());
-            arrayList = null;
+            PSPanelLogicLinkService panelLogicLinkService = (PSPanelLogicLinkService)ServiceGlobal.getService(PSPanelLogicLinkService.class, (SessionFactory)this.getSessionFactory());
+            ArrayList<ObjectNode> panelLogicLinks = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSVIEWPANELLOGIC#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSPANELLOGICLINK", (Object)pSSysViewPanelLogic.getPSSysViewPanelLogicId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSPanelLogicParam)entityBase2);
+                    panelLogicLinks = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        panelLogicLinks.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSPanelLogicLinkServiceBase)pSCoreSysServiceBase).selectByPSSysViewPanelLogic(pSSysViewPanelLogic);
-                object3 = StringHelper.format((String)"PSSYSVIEWPANELLOGIC#%1$s", (Object)pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSPanelLogicLink)object2.next();
-                    object = ((PSPanelLogicLinkServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSPanelLogicParam)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                panelLogicLinks = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSVIEWPANELLOGIC#%1$s", (Object)pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                for (PSPanelLogicLink panelLogicLink : panelLogicLinkService.selectByPSSysViewPanelLogic(pSSysViewPanelLogic)) {
+                    if (StringHelper.compare(scope, panelLogicLinkService.getModelV2ResScope(panelLogicLink), (boolean)false) != 0) continue;
+                    panelLogicLinks.add(PSModelV2Helper.toJSONObject(panelLogicLink, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (panelLogicLinks != null && panelLogicLinks.size() > 0) {
+                ArrayNode panelLogicLinkNodes = objectNode.putArray(panelLogicLinkService.getModelV2Name(false).toLowerCase());
+                Collections.sort(panelLogicLinks, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -3839,10 +3805,10 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSPanelLogicLink();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode panelLogicLinkNode : panelLogicLinks) {
+                    PSPanelLogicLink panelLogicLink = new PSPanelLogicLink();
+                    PSModelV2Helper.fromJSONObject((IDataObject)panelLogicLink, panelLogicLinkNode, false);
+                    panelLogicLinkNodes.add((JsonNode)panelLogicLinkService.exportModelV2(panelLogicLink, string));
                 }
             }
         }
@@ -3852,42 +3818,42 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
     @Override
     protected void onEmptyModelV2(PSSysViewPanelLogic pSSysViewPanelLogic) throws Exception {
         String string;
-        PSCoreSysServiceBase pSCoreSysServiceBase = (PSPanelLogicParamService)ServiceGlobal.getService(PSPanelLogicParamService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<EntityBase> arrayList = ((PSPanelLogicParamServiceBase)pSCoreSysServiceBase).selectByPSSysViewPanelLogic(pSSysViewPanelLogic);
+        PSPanelLogicParamService panelLogicParamService = (PSPanelLogicParamService)ServiceGlobal.getService(PSPanelLogicParamService.class, (SessionFactory)this.getSessionFactory());
+        ArrayList<PSPanelLogicParam> panelLogicParams = panelLogicParamService.selectByPSSysViewPanelLogic(pSSysViewPanelLogic);
         String string2 = StringHelper.format((String)"PSSYSVIEWPANELLOGIC#%1$s", (Object)pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-        for (PSPanelLogicParam entityBase : arrayList) {
-            string = ((PSPanelLogicParamServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase);
+        for (PSPanelLogicParam panelLogicParam : panelLogicParams) {
+            string = panelLogicParamService.getModelV2ResScope(panelLogicParam);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
-            pSCoreSysServiceBase.emptyModelV2(entityBase);
+            panelLogicParamService.emptyModelV2(panelLogicParam);
         }
-        Object object = new SqlParamList();
-        object.addString(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-        ((PSPanelLogicParamServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSPanelLogicParamServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSPANELLOGICPARAM WHERE PSSYSVIEWPANELLOGICID = ?", (SqlParamList)object);
-        pSCoreSysServiceBase = (PSPanelLogicNodeService)ServiceGlobal.getService(PSPanelLogicNodeService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSPanelLogicNodeServiceBase)pSCoreSysServiceBase).selectByPSSysViewPanelLogic(pSSysViewPanelLogic);
+        SqlParamList sqlParamList = new SqlParamList();
+        sqlParamList.addString(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+        panelLogicParamService.getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
+        panelLogicParamService.getDAO().executeRawSql(null, "DELETE FROM T_SRFPSPANELLOGICPARAM WHERE PSSYSVIEWPANELLOGICID = ?", sqlParamList);
+        PSPanelLogicNodeService panelLogicNodeService = (PSPanelLogicNodeService)ServiceGlobal.getService(PSPanelLogicNodeService.class, (SessionFactory)this.getSessionFactory());
+        ArrayList<PSPanelLogicNode> panelLogicNodes = panelLogicNodeService.selectByPSSysViewPanelLogic(pSSysViewPanelLogic);
         string2 = StringHelper.format((String)"PSSYSVIEWPANELLOGIC#%1$s", (Object)pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-        for (PSPanelLogicNode pSPanelLogicNode : arrayList) {
-            string = ((PSPanelLogicNodeServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSPanelLogicNode);
+        for (PSPanelLogicNode panelLogicNode : panelLogicNodes) {
+            string = panelLogicNodeService.getModelV2ResScope(panelLogicNode);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
-            pSCoreSysServiceBase.emptyModelV2(pSPanelLogicNode);
+            panelLogicNodeService.emptyModelV2(panelLogicNode);
         }
-        object = new SqlParamList();
-        object.addString(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-        ((PSPanelLogicNodeServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSPanelLogicNodeServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSPANELLOGICNODE WHERE PSSYSVIEWPANELLOGICID = ?", (SqlParamList)object);
-        pSCoreSysServiceBase = (PSPanelLogicLinkService)ServiceGlobal.getService(PSPanelLogicLinkService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSPanelLogicLinkServiceBase)pSCoreSysServiceBase).selectByPSSysViewPanelLogic(pSSysViewPanelLogic);
+        sqlParamList = new SqlParamList();
+        sqlParamList.addString(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+        panelLogicNodeService.getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
+        panelLogicNodeService.getDAO().executeRawSql(null, "DELETE FROM T_SRFPSPANELLOGICNODE WHERE PSSYSVIEWPANELLOGICID = ?", sqlParamList);
+        PSPanelLogicLinkService panelLogicLinkService = (PSPanelLogicLinkService)ServiceGlobal.getService(PSPanelLogicLinkService.class, (SessionFactory)this.getSessionFactory());
+        ArrayList<PSPanelLogicLink> panelLogicLinks = panelLogicLinkService.selectByPSSysViewPanelLogic(pSSysViewPanelLogic);
         string2 = StringHelper.format((String)"PSSYSVIEWPANELLOGIC#%1$s", (Object)pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-        for (PSPanelLogicLink pSPanelLogicLink : arrayList) {
-            string = ((PSPanelLogicLinkServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSPanelLogicLink);
+        for (PSPanelLogicLink panelLogicLink : panelLogicLinks) {
+            string = panelLogicLinkService.getModelV2ResScope(panelLogicLink);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
-            pSCoreSysServiceBase.emptyModelV2(pSPanelLogicLink);
+            panelLogicLinkService.emptyModelV2(panelLogicLink);
         }
-        object = new SqlParamList();
-        object.addString(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-        ((PSPanelLogicLinkServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-        ((PSPanelLogicLinkServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSPANELLOGICLINK WHERE PSSYSVIEWPANELLOGICID = ?", (SqlParamList)object);
+        sqlParamList = new SqlParamList();
+        sqlParamList.addString(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+        panelLogicLinkService.getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
+        panelLogicLinkService.getDAO().executeRawSql(null, "DELETE FROM T_SRFPSPANELLOGICLINK WHERE PSSYSVIEWPANELLOGICID = ?", sqlParamList);
         super.onEmptyModelV2(pSSysViewPanelLogic);
     }
 
@@ -3937,89 +3903,93 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
 
     @Override
     protected void onCompileRelatedModelV2(PSSysViewPanelLogic pSSysViewPanelLogic, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
-        int n2;
-        PSCoreSysServiceBase pSCoreSysServiceBase = (PSPanelLogicParamService)ServiceGlobal.getService(PSPanelLogicParamService.class, (SessionFactory)this.getSessionFactory());
+        PSPanelLogicParamService panelLogicParamService = (PSPanelLogicParamService)ServiceGlobal.getService(PSPanelLogicParamService.class, (SessionFactory)this.getSessionFactory());
         ArrayNode arrayNode = null;
-        String string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-        if (objectNode != null) {
-            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
-        }
-        if (arrayNode != null) {
-            for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSPanelLogicParam();
-                ((PSPanelLogicParamBase)object).setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-                ((PSPanelLogicParamBase)object).setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
-            }
-        } else {
-            String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string4);
-            if (((File)object2).exists()) {
-                object = ((File)object2).listFiles();
-                for (Object object3 : object) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSPanelLogicParam();
-                    entityBase.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-                    entityBase.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
-                }
-            }
-        }
-        pSCoreSysServiceBase = (PSPanelLogicNodeService)ServiceGlobal.getService(PSPanelLogicNodeService.class, (SessionFactory)this.getSessionFactory());
-        arrayNode = null;
-        string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
-        if (objectNode != null) {
-            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
-        }
-        if (arrayNode != null) {
-            for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSPanelLogicNode();
-                ((PSPanelLogicNodeBase)object).setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-                ((PSPanelLogicNodeBase)object).setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
-            }
-        } else {
-            String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string5);
-            if (((File)object2).exists()) {
-                for (Object object3 : object = ((File)object2).listFiles()) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSPanelLogicNode();
-                    entityBase.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-                    entityBase.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
-                }
-            }
-        }
-        pSCoreSysServiceBase = (PSPanelLogicLinkService)ServiceGlobal.getService(PSPanelLogicLinkService.class, (SessionFactory)this.getSessionFactory());
-        arrayNode = null;
-        string3 = pSCoreSysServiceBase.getModelV2Name(null, false);
+        String string3 = panelLogicParamService.getModelV2Name(null, false);
         if (objectNode != null) {
             arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
         }
         if (arrayNode != null) {
             for (int i = 0; i < arrayNode.size(); ++i) {
-                object2 = (ObjectNode)arrayNode.get(i);
-                object = new PSPanelLogicLink();
-                ((PSPanelLogicLinkBase)object).setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-                ((PSPanelLogicLinkBase)object).setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                ObjectNode itemNode = (ObjectNode)arrayNode.get(i);
+                PSPanelLogicParam panelLogicParam = new PSPanelLogicParam();
+                panelLogicParam.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                panelLogicParam.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
+                panelLogicParamService.compileModelV2(panelLogicParam, itemNode, string, null, n);
             }
         } else {
-            String string6 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string6);
-            if (((File)object2).exists()) {
-                for (Object object3 : object = ((File)object2).listFiles()) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSPanelLogicLink();
-                    entityBase.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
-                    entityBase.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+            String path = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
+            File modelFolder = new File(path);
+            if (modelFolder.exists()) {
+                File[] files = modelFolder.listFiles();
+                if (files != null) {
+                    for (File file2 : files) {
+                        if (!file2.isDirectory()) continue;
+                        PSPanelLogicParam panelLogicParam = new PSPanelLogicParam();
+                        panelLogicParam.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                        panelLogicParam.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
+                        panelLogicParamService.compileModelV2(panelLogicParam, null, string, file2.getCanonicalPath(), n);
+                    }
+                }
+            }
+        }
+        PSPanelLogicNodeService panelLogicNodeService = (PSPanelLogicNodeService)ServiceGlobal.getService(PSPanelLogicNodeService.class, (SessionFactory)this.getSessionFactory());
+        arrayNode = null;
+        string3 = panelLogicNodeService.getModelV2Name(null, false);
+        if (objectNode != null) {
+            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
+        }
+        if (arrayNode != null) {
+            for (int i = 0; i < arrayNode.size(); ++i) {
+                ObjectNode itemNode = (ObjectNode)arrayNode.get(i);
+                PSPanelLogicNode panelLogicNode = new PSPanelLogicNode();
+                panelLogicNode.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                panelLogicNode.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
+                panelLogicNodeService.compileModelV2(panelLogicNode, itemNode, string, null, n);
+            }
+        } else {
+            String path = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
+            File modelFolder = new File(path);
+            if (modelFolder.exists()) {
+                File[] files = modelFolder.listFiles();
+                if (files != null) {
+                    for (File file2 : files) {
+                        if (!file2.isDirectory()) continue;
+                        PSPanelLogicNode panelLogicNode = new PSPanelLogicNode();
+                        panelLogicNode.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                        panelLogicNode.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
+                        panelLogicNodeService.compileModelV2(panelLogicNode, null, string, file2.getCanonicalPath(), n);
+                    }
+                }
+            }
+        }
+        PSPanelLogicLinkService panelLogicLinkService = (PSPanelLogicLinkService)ServiceGlobal.getService(PSPanelLogicLinkService.class, (SessionFactory)this.getSessionFactory());
+        arrayNode = null;
+        string3 = panelLogicLinkService.getModelV2Name(null, false);
+        if (objectNode != null) {
+            arrayNode = JsonNodeHelper.getArray((ObjectNode)objectNode, (String)string3.toLowerCase());
+        }
+        if (arrayNode != null) {
+            for (int i = 0; i < arrayNode.size(); ++i) {
+                ObjectNode itemNode = (ObjectNode)arrayNode.get(i);
+                PSPanelLogicLink panelLogicLink = new PSPanelLogicLink();
+                panelLogicLink.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                panelLogicLink.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
+                panelLogicLinkService.compileModelV2(panelLogicLink, itemNode, string, null, n);
+            }
+        } else {
+            String path = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
+            File modelFolder = new File(path);
+            if (modelFolder.exists()) {
+                File[] files = modelFolder.listFiles();
+                if (files != null) {
+                    for (File file2 : files) {
+                        if (!file2.isDirectory()) continue;
+                        PSPanelLogicLink panelLogicLink = new PSPanelLogicLink();
+                        panelLogicLink.setPSSysViewPanelLogicId(pSSysViewPanelLogic.getPSSysViewPanelLogicId());
+                        panelLogicLink.setPSSysViewPanelLogicName(pSSysViewPanelLogic.getPSSysViewPanelLogicName());
+                        panelLogicLinkService.compileModelV2(panelLogicLink, null, string, file2.getCanonicalPath(), n);
+                    }
                 }
             }
         }
@@ -4046,7 +4016,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSPanelLogicParamService pSPanelLogicParamService = (PSPanelLogicParamService)ServiceGlobal.getService(PSPanelLogicParamService.class, (SessionFactory)this.getSessionFactory());
             PSPanelLogicParam pSPanelLogicParam = new PSPanelLogicParam();
             pSPanelLogicParam.setPSPanelLogicParamId(pSMOSFile.getPSModelId());
-            if (!pSPanelLogicParamService.get((IEntity)pSPanelLogicParam, true)) {
+            if (!pSPanelLogicParamService.get(pSPanelLogicParam, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSPanelLogicParam.getPSSysViewPanelLogicId(), (String)pSSysViewPanelLogic.getPSSysViewPanelLogicId(), (boolean)false) == 0) {
@@ -4054,12 +4024,12 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             }
             ObjectNode objectNode = pSPanelLogicParamService.exportModelV2(pSPanelLogicParam);
             pSPanelLogicParam.reset();
-            if (!pSPanelLogicParamService.setModelV2ResScope((IEntity)pSPanelLogicParam, "PSSYSVIEWPANELLOGIC", pSSysViewPanelLogic.getPSSysViewPanelLogicId())) {
+            if (!pSPanelLogicParamService.setModelV2ResScope(pSPanelLogicParam, "PSSYSVIEWPANELLOGIC", pSSysViewPanelLogic.getPSSysViewPanelLogicId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSPanelLogicParamService.importModelV2(pSPanelLogicParam, objectNode);
             SessionFactoryManager.commit();
-            return pSPanelLogicParamService.getFile((IEntity)pSPanelLogicParam);
+            return pSPanelLogicParamService.getFile(pSPanelLogicParam);
         }
         return null;
     }
@@ -4069,7 +4039,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSPanelLogicNodeService pSPanelLogicNodeService = (PSPanelLogicNodeService)ServiceGlobal.getService(PSPanelLogicNodeService.class, (SessionFactory)this.getSessionFactory());
             PSPanelLogicNode pSPanelLogicNode = new PSPanelLogicNode();
             pSPanelLogicNode.setPSPanelLogicNodeId(pSMOSFile.getPSModelId());
-            if (!pSPanelLogicNodeService.get((IEntity)pSPanelLogicNode, true)) {
+            if (!pSPanelLogicNodeService.get(pSPanelLogicNode, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSPanelLogicNode.getPSSysViewPanelLogicId(), (String)pSSysViewPanelLogic.getPSSysViewPanelLogicId(), (boolean)false) == 0) {
@@ -4077,12 +4047,12 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             }
             ObjectNode objectNode = pSPanelLogicNodeService.exportModelV2(pSPanelLogicNode);
             pSPanelLogicNode.reset();
-            if (!pSPanelLogicNodeService.setModelV2ResScope((IEntity)pSPanelLogicNode, "PSSYSVIEWPANELLOGIC", pSSysViewPanelLogic.getPSSysViewPanelLogicId())) {
+            if (!pSPanelLogicNodeService.setModelV2ResScope(pSPanelLogicNode, "PSSYSVIEWPANELLOGIC", pSSysViewPanelLogic.getPSSysViewPanelLogicId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSPanelLogicNodeService.importModelV2(pSPanelLogicNode, objectNode);
             SessionFactoryManager.commit();
-            return pSPanelLogicNodeService.getFile((IEntity)pSPanelLogicNode);
+            return pSPanelLogicNodeService.getFile(pSPanelLogicNode);
         }
         return null;
     }
@@ -4092,7 +4062,7 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             PSPanelLogicLinkService pSPanelLogicLinkService = (PSPanelLogicLinkService)ServiceGlobal.getService(PSPanelLogicLinkService.class, (SessionFactory)this.getSessionFactory());
             PSPanelLogicLink pSPanelLogicLink = new PSPanelLogicLink();
             pSPanelLogicLink.setPSPanelLogicLinkId(pSMOSFile.getPSModelId());
-            if (!pSPanelLogicLinkService.get((IEntity)pSPanelLogicLink, true)) {
+            if (!pSPanelLogicLinkService.get(pSPanelLogicLink, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSPanelLogicLink.getPSSysViewPanelLogicId(), (String)pSSysViewPanelLogic.getPSSysViewPanelLogicId(), (boolean)false) == 0) {
@@ -4100,12 +4070,12 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
             }
             ObjectNode objectNode = pSPanelLogicLinkService.exportModelV2(pSPanelLogicLink);
             pSPanelLogicLink.reset();
-            if (!pSPanelLogicLinkService.setModelV2ResScope((IEntity)pSPanelLogicLink, "PSSYSVIEWPANELLOGIC", pSSysViewPanelLogic.getPSSysViewPanelLogicId())) {
+            if (!pSPanelLogicLinkService.setModelV2ResScope(pSPanelLogicLink, "PSSYSVIEWPANELLOGIC", pSSysViewPanelLogic.getPSSysViewPanelLogicId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSPanelLogicLinkService.importModelV2(pSPanelLogicLink, objectNode);
             SessionFactoryManager.commit();
-            return pSPanelLogicLinkService.getFile((IEntity)pSPanelLogicLink);
+            return pSPanelLogicLinkService.getFile(pSPanelLogicLink);
         }
         return null;
     }
@@ -4145,4 +4115,3 @@ extends PSCoreSysServiceBase<PSSysViewPanelLogic> {
         list.add(pSHelpSection);
     }
 }
-

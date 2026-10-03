@@ -1,16 +1,31 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IModelBase;
+/**
+ * 属性搜索项对象接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDEFSearchMode extends IModelBase {
+	
+	/**
+	 * 获取属性名称
+	 * 
+	 * @return
+	 */
+	String getDEFName();
 
-public interface IDEFSearchMode
-extends IModelBase {
-    public String getDEFName();
+	/**
+	 * 获取值函数标识
+	 * 
+	 * @return
+	 */
+	String getValueFunc();
 
-    public String getValueFunc();
-
-    public String getValueOp();
+	/**
+	 * 获取值操作符号标识
+	 * 
+	 * @return
+	 */
+	String getValueOp();
 }
-

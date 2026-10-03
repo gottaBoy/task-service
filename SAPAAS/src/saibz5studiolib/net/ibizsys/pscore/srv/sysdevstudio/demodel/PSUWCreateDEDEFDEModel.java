@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdevstudio.demodel.PSUWCreateDEDEFDEModelBase;
 
 public class PSUWCreateDEDEFDEModel
 extends PSUWCreateDEDEFDEModelBase {
+
+    public PSUWCreateDEDEFDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

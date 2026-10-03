@@ -71,7 +71,7 @@ implements IPSDEDataSetViewMsgModel {
             int n = -1;
             if (!StringHelper.isNullOrEmpty((String)PSCoreSysServiceBase.getDefaultPSSvrDomainId())) {
                 object = PSCoreEntityKeeperGlobal.getCurrent(PSCoreSysServiceBase.getCurMajorSessionFactory()).getPSSvrDomain(PSCoreSysServiceBase.getDefaultPSSvrDomainId());
-                n = DataObject.getIntegerValue((Object)((PSSvrDomainBase)object).getSyncData(), (Integer)-1);
+                n = DataObject.getIntegerValue((Object)((PSSvrDomainBase)object).getSyncData(), Integer.valueOf(-1));
             }
             string = this.getCacheTag(iEntity);
             object = this.psViewMsgCacheMap.get(string);
@@ -144,7 +144,7 @@ implements IPSDEDataSetViewMsgModel {
             IEntity iEntity = this.iDEModel.createEntity();
             DataObject.fromDataRow((IDataObject)iEntity, (IDataRow)iDataRow);
             MsgTemplate msgTemplate = MsgTemplateGlobal.getMsgTemplate((String)this.getMsgTemplateId());
-            MsgSendQueue msgSendQueue = MsgTemplateHelper.getMsgSendQueue((int)1, (MsgTemplate)msgTemplate, (IDataEntityModel)this.iDEModel, (IEntity)iEntity, null, null, null, null, null);
+            MsgSendQueue msgSendQueue = MsgTemplateHelper.getMsgSendQueue((int)1, (MsgTemplate)msgTemplate, (IDataEntityModel)this.iDEModel, iEntity, null, null, null, null, null);
             pSStaticViewMsgModel.setMessage(msgSendQueue.getContent());
             pSStaticViewMsgModel.setTitle(msgSendQueue.getSubject());
         }
@@ -197,4 +197,3 @@ implements IPSDEDataSetViewMsgModel {
         }
     }
 }
-

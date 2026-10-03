@@ -126,14 +126,14 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
             PSNDFile pSNDFile = (PSNDFile)iService.getDEModel().createEntity();
             pSNDFile.set("PSNDFILEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSNDFile);
+                iService.getTemp(pSNDFile);
             } else {
-                iService.get((IEntity)pSNDFile);
+                iService.get(pSNDFile);
             }
             this.onFillParentInfo_PSNDFile(pSNDFileLink, pSNDFile);
             return;
         }
-        super.onFillParentInfo((IEntity)pSNDFileLink, string, string2, string3);
+        super.onFillParentInfo(pSNDFileLink, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -149,7 +149,7 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSNDFileLink, bl);
+        super.onFillEntityFullInfo(pSNDFileLink, bl);
         this.onFillEntityFullInfo_PSNDFile(pSNDFileLink, bl);
     }
 
@@ -157,7 +157,7 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
     }
 
     protected void onWriteBackParent(PSNDFileLink pSNDFileLink, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSNDFileLink, bl);
+        super.onWriteBackParent(pSNDFileLink, bl);
     }
 
     public ArrayList<PSNDFileLink> selectByPSNDFile(PSNDFileBase pSNDFileBase) throws Exception {
@@ -216,7 +216,7 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
         ArrayList<PSNDFileLink> arrayList = this.selectByPSNDFile(pSNDFile);
         this.onBeforeRemoveByPSNDFile(pSNDFile, arrayList);
         for (PSNDFileLink pSNDFileLink : arrayList) {
-            this.remove((IEntity)pSNDFileLink);
+            this.remove(pSNDFileLink);
         }
         this.onAfterRemoveByPSNDFile(pSNDFile, arrayList);
     }
@@ -237,14 +237,14 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
 
     protected void replaceParentInfo(PSNDFileLink pSNDFileLink, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSNDFileLink, cloneSession);
+        super.replaceParentInfo(pSNDFileLink, cloneSession);
         if (pSNDFileLink.getPSNDFileId() != null && (iEntity = cloneSession.getEntity("PSNDFILE", (Object)pSNDFileLink.getPSNDFileId())) != null) {
             this.onFillParentInfo_PSNDFile(pSNDFileLink, (PSNDFile)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSNDFileLink pSNDFileLink, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSNDFileLink, bl);
+        super.onRemoveEntityUncopyValues(pSNDFileLink, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSNDFileLink pSNDFileLink, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -262,7 +262,7 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
         if ((entityFieldError = this.onCheckField_PSNDFileLinkName(bl, pSNDFileLink, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSNDFileLink, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSNDFileLink, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSNDFileLink pSNDFileLink, boolean bl2, boolean bl3) throws Exception {
@@ -275,7 +275,7 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSNDFileLink, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSNDFileLink, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -297,7 +297,7 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSNDFileId_Default((IEntity)pSNDFileLink, bl2, bl3);
+            string2 = this.onTestValueRule_PSNDFileId_Default(pSNDFileLink, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSNDFILEID");
@@ -322,7 +322,7 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSNDFileLinkId_Default((IEntity)pSNDFileLink, bl2, bl3);
+            string2 = this.onTestValueRule_PSNDFileLinkId_Default(pSNDFileLink, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSNDFILELINKID");
@@ -347,7 +347,7 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSNDFileLinkName_Default((IEntity)pSNDFileLink, bl2, bl3);
+            string2 = this.onTestValueRule_PSNDFileLinkName_Default(pSNDFileLink, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSNDFILELINKNAME");
@@ -360,11 +360,11 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
     }
 
     protected void onSyncEntity(PSNDFileLink pSNDFileLink, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSNDFileLink, bl);
+        super.onSyncEntity(pSNDFileLink, bl);
     }
 
     protected void onSyncIndexEntities(PSNDFileLink pSNDFileLink, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSNDFileLink, bl);
+        super.onSyncIndexEntities(pSNDFileLink, bl);
     }
 
     public Object getDataContextValue(PSNDFileLink pSNDFileLink, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -372,14 +372,14 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSNDFileLink, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSNDFileLink, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSNDFileLink pSNDFileLink, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSNDFileLink, arrayList, n);
+        super.onExportMajorModel(pSNDFileLink, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -507,14 +507,14 @@ extends PSCoreSysServiceBase<PSNDFileLink> {
 
     protected boolean onMergeChild(String string, String string2, PSNDFileLink pSNDFileLink) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSNDFileLink)) {
+        if (super.onMergeChild(string, string2, pSNDFileLink)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSNDFileLink pSNDFileLink) throws Exception {
-        super.onUpdateParent((IEntity)pSNDFileLink);
+        super.onUpdateParent(pSNDFileLink);
     }
 
     @Override

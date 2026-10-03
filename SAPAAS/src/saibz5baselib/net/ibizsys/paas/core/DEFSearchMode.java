@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import java.lang.annotation.Documented;
@@ -9,16 +6,41 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value={ElementType.TYPE})
-@Retention(value=RetentionPolicy.RUNTIME)
+/**
+ * 属性搜索模式注解
+ * 
+ * @author Administrator
+ *
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DEFSearchMode {
-    public String id() default "";
+	/**
+	 * 属性标识
+	 * 
+	 * @return
+	 */
+	String id() default "";
 
-    public String name() default "";
+	/**
+	 * 属性名称
+	 * 
+	 * @return
+	 */
+	String name() default "";
 
-    public String valuefunc() default "";
+	/**
+	 * 获取值函数标识
+	 * 
+	 * @return
+	 */
+	String valuefunc() default "";
 
-    public String valueop() default "";
+	/**
+	 * 获取值操作符号标识
+	 * 
+	 * @return
+	 */
+	String valueop() default "";
 }
-

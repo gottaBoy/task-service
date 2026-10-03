@@ -17,6 +17,7 @@ package net.ibizsys.pscore.srv.sysdesign.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.CloneSession;
 import net.ibizsys.paas.service.CloneSessionManager;
@@ -61,9 +62,10 @@ extends PSPanelLogicNodeServiceBase {
         ArrayList<PSPanelLogicNode> arrayList = null;
         arrayList = pSSysViewPanelLogic.getPSSysViewPanelLogicId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSSysViewPanelLogic(pSSysViewPanelLogic) : this.selectByPSSysViewPanelLogic(pSSysViewPanelLogic);
         HashMap<String, PSPanelLogicNode> hashMap = new HashMap<String, PSPanelLogicNode>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSPanelLogicNode pSPanelLogicNode2 = object.next();
+        String object;
+        Iterator<PSPanelLogicNode> objectIterator = arrayList.iterator();
+        while (objectIterator.hasNext()) {
+            PSPanelLogicNode pSPanelLogicNode2 = objectIterator.next();
             hashMap.put(pSPanelLogicNode2.getCodeName().toLowerCase(), pSPanelLogicNode2);
         }
         while (true) {
@@ -79,7 +81,7 @@ extends PSPanelLogicNodeServiceBase {
             pSPanelLogicNode.setPSPanelLogicNodeId(pSPanelLogicNode.getPSSysViewPanelLogicId());
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)pSPanelLogicNode, bl);
+        return super.onFillEntityKeyValue(pSPanelLogicNode, bl);
     }
 
     @Override

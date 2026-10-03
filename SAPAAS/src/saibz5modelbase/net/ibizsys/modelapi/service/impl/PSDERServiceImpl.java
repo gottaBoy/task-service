@@ -78,7 +78,7 @@ implements IPSDERService {
     @Override
     protected List<PSDER> onListAll() throws Exception {
         ArrayList<PSDER> list = new ArrayList<PSDER>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDER> items = this.listByPSDataEntity(parent);

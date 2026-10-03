@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.devcenter.demodel.PSDCSVNBKDEModelBase;
 
 public class PSDCSVNBKDEModel
 extends PSDCSVNBKDEModelBase {
+
+    public PSDCSVNBKDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

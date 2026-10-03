@@ -76,7 +76,7 @@ implements IPSDEGridLogicService {
     @Override
     protected List<PSDEGridLogic> onListAll() throws Exception {
         ArrayList<PSDEGridLogic> list = new ArrayList<PSDEGridLogic>();
-        List psdegrids = PSModelServiceUtil.getInstance().getPSDEGridService().listAll();
+        List<PSDEGrid> psdegrids = PSModelServiceUtil.getInstance().getPSDEGridService().listAll();
         if (psdegrids != null) {
             for (PSDEGrid parent : psdegrids) {
                 List<PSDEGridLogic> items = this.listByPSDEGrid(parent);

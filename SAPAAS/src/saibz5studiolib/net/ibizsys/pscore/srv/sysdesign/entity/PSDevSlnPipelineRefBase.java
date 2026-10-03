@@ -2259,7 +2259,7 @@ implements Serializable {
                 PSDevSlnPipeline pSDevSlnPipeline = new PSDevSlnPipeline();
                 pSDevSlnPipeline.setPSDevSlnPipelineId(this.getPSDevSlnPipelineId());
                 PSDevSlnPipelineService pSDevSlnPipelineService = (PSDevSlnPipelineService)ServiceGlobal.getService(PSDevSlnPipelineService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnPipelineService.autoGet((IEntity)pSDevSlnPipeline);
+                pSDevSlnPipelineService.autoGet(pSDevSlnPipeline);
                 this.psdevslnpipeline = pSDevSlnPipeline;
             }
             return this.psdevslnpipeline;
@@ -2285,7 +2285,7 @@ implements Serializable {
                 PSDevSlnPipeline pSDevSlnPipeline = new PSDevSlnPipeline();
                 pSDevSlnPipeline.setPSDevSlnPipelineId(this.getRefPSDevSlnPipelineId());
                 PSDevSlnPipelineService pSDevSlnPipelineService = (PSDevSlnPipelineService)ServiceGlobal.getService(PSDevSlnPipelineService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnPipelineService.autoGet((IEntity)pSDevSlnPipeline);
+                pSDevSlnPipelineService.autoGet(pSDevSlnPipeline);
                 this.refpsdevslnpipeline = pSDevSlnPipeline;
             }
             return this.refpsdevslnpipeline;
@@ -2311,7 +2311,7 @@ implements Serializable {
                 PSDevSln pSDevSln = new PSDevSln();
                 pSDevSln.setPSDevSlnId(this.getPSDevSlnId());
                 PSDevSlnService pSDevSlnService = (PSDevSlnService)ServiceGlobal.getService(PSDevSlnService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnService.autoGet((IEntity)pSDevSln);
+                pSDevSlnService.autoGet(pSDevSln);
                 this.psdevsln = pSDevSln;
             }
             return this.psdevsln;

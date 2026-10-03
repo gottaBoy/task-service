@@ -76,7 +76,7 @@ implements IPSAppMenuLogicService {
     @Override
     protected List<PSAppMenuLogic> onListAll() throws Exception {
         ArrayList<PSAppMenuLogic> list = new ArrayList<PSAppMenuLogic>();
-        List psappmenus = PSModelServiceUtil.getInstance().getPSAppMenuService().listAll();
+        List<PSAppMenu> psappmenus = PSModelServiceUtil.getInstance().getPSAppMenuService().listAll();
         if (psappmenus != null) {
             for (PSAppMenu parent : psappmenus) {
                 List<PSAppMenuLogic> items = this.listByPSAppMenu(parent);

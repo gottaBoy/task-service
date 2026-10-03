@@ -74,7 +74,7 @@ extends PSCoreSysDAOBase<PSAppPanelView> {
     }
 
     protected void fillInheritEntity(PSAppPanelView pSAppPanelView) throws Exception {
-        super.fillInheritEntity((IEntity)pSAppPanelView);
+        super.fillInheritEntity(pSAppPanelView);
         PSAppPanelView pSAppPanelView2 = pSAppPanelView;
         pSAppPanelView2.setPSAppViewId(pSAppPanelView.getPSAppPanelViewId());
         if (pSAppPanelView.isPSAppPanelViewNameDirty()) {

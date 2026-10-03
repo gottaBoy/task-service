@@ -1,16 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.springframework.stereotype.Repository
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.dao;
 
-import net.ibizsys.psrt.srv.common.dao.DEDataChg2DAOBase;
 import org.springframework.stereotype.Repository;
 
+/**
+ * 实体[DEDataChg2] DAO对象
+ */
 @Repository
-public class DEDataChg2DAO
-extends DEDataChg2DAOBase {
-}
+public class DEDataChg2DAO extends DEDataChg2DAOBase {
 
+    public DEDataChg2DAO() {
+        super();
+    }
+
+}

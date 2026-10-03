@@ -1,15 +1,29 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.dr;
 
-import net.ibizsys.model.dataentity.dr.IPSDEDRItem;
 import net.ibizsys.model.der.IPSDER11;
 
-public interface IPSDEDRDER11Item
-extends IPSDEDRItem {
-    public IPSDER11 getPSDER11();
 
-    public String getPSDER11Name();
+/**
+ * 实体关系项(DER11)接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEDRDER11Item extends IPSDEDRItem
+{
+	/**
+	 * 获取关系对象
+	 * @return
+	 */
+	IPSDER11 getPSDER11();
+	
+	
+	/**
+	 * 获取关系名称
+	 * @return
+	 */
+	String getPSDER11Name();
+	
+	
+	
+	
 }
-

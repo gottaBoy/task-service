@@ -51,7 +51,7 @@ extends PSDEDataCtrl {
                         this.modifyLayoutFromXML(xmlNode, psCodeList, validMap);
                         BaseDataEntity cond = new BaseDataEntity();
                         cond.setParamValue("PSCODELISTID", (Object)psCodeList.getPSCODELISTID());
-                        Vector psCodeItemList = new Vector();
+                        Vector<PSCodeItem> psCodeItemList = new Vector<>();
                         IDEDataCtrl psCodeItemDataCtrl = this.GetRelatedDataCtrl("DE2041");
                         callResult = psCodeItemDataCtrl.Select(cond, psCodeItemList, PSCodeItem.class.getName());
                         if (callResult.isError()) {
@@ -81,7 +81,7 @@ extends PSDEDataCtrl {
     }
 
     protected void modifyLayoutFromXML(XMLNode xmlNode, PSCodeList psCodeList, HashMap<String, PSCodeItem> validMap) throws Exception {
-        ArrayList xmlNodes = xmlNode.getChildNodes();
+        ArrayList<XMLNode> xmlNodes = xmlNode.getChildNodes();
         if (xmlNodes == null) {
             return;
         }
@@ -118,7 +118,7 @@ extends PSDEDataCtrl {
         }
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSCODELISTID", (Object)psCodeList.getPSCODELISTID());
-        Vector psCodeItemList = new Vector();
+        Vector<PSCodeItem> psCodeItemList = new Vector<>();
         IDEDataCtrl psCodeItemDataCtrl = this.GetRelatedDataCtrl("DE2041");
         CallResult callResult = psCodeItemDataCtrl.Select(cond, psCodeItemList, PSCodeItem.class.getName(), "ORDER BY ORDERVALUE");
         if (callResult.isError()) {
@@ -231,4 +231,3 @@ extends PSDEDataCtrl {
         return callResult;
     }
 }
-

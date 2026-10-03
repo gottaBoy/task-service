@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.grid;
 
-import net.ibizsys.model.control.grid.IPSDEGridFieldColumn;
+/**
+ * 实体树表属性列对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDETreeGridFieldColumn extends IPSDEGridFieldColumn
+{
 
-public interface IPSDETreeGridFieldColumn
-extends IPSDEGridFieldColumn {
 }
-

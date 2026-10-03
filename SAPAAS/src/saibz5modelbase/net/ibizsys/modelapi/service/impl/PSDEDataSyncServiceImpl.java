@@ -76,7 +76,7 @@ implements IPSDEDataSyncService {
     @Override
     protected List<PSDEDataSync> onListAll() throws Exception {
         ArrayList<PSDEDataSync> list = new ArrayList<PSDEDataSync>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEDataSync> items = this.listByPSDataEntity(parent);

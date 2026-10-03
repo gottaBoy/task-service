@@ -1,18 +1,39 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.service.uiaction;
 
-import net.ibizsys.psrt.srv.common.demodel.service.uiaction.ServiceStartServiceUIActionModelBase;
+
+import java.util.List;
+import java.util.HashMap;
+
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import net.ibizsys.paas.core.IDELogicActionContext;
+import net.ibizsys.paas.core.DELogic;
+import net.ibizsys.paas.entity.IEntity;
+import net.ibizsys.paas.entity.SimpleEntity;
+import net.ibizsys.paas.web.WebContext;
+import net.ibizsys.paas.service.ServiceGlobal;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class ServiceStartServiceUIActionModel
-extends ServiceStartServiceUIActionModelBase {
-    private static final Log log = LogFactory.getLog(ServiceStartServiceUIActionModel.class);
-}
+/**
+ * 实体界面行为 StartService
+ */
+public class ServiceStartServiceUIActionModel extends ServiceStartServiceUIActionModelBase {
 
+    private static final Log log = LogFactory.getLog(ServiceStartServiceUIActionModel.class);
+
+    public ServiceStartServiceUIActionModel() {
+        super();
+    }
+
+
+}

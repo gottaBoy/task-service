@@ -3085,7 +3085,7 @@ implements Serializable {
                 PSDCMSPlatform pSDCMSPlatform = new PSDCMSPlatform();
                 pSDCMSPlatform.setPSDCMSPlatformId(this.getPSDCMSPlatformId());
                 PSDCMSPlatformService pSDCMSPlatformService = (PSDCMSPlatformService)ServiceGlobal.getService(PSDCMSPlatformService.class, (SessionFactory)this.getSessionFactory());
-                pSDCMSPlatformService.autoGet((IEntity)pSDCMSPlatform);
+                pSDCMSPlatformService.autoGet(pSDCMSPlatform);
                 this.psdcmsplatform = pSDCMSPlatform;
             }
             return this.psdcmsplatform;
@@ -3111,7 +3111,7 @@ implements Serializable {
                 PSMSPlatformFunc pSMSPlatformFunc = new PSMSPlatformFunc();
                 pSMSPlatformFunc.setPSMSPlatformFuncId(this.getPSMSPlatformFuncId());
                 PSMSPlatformFuncService pSMSPlatformFuncService = (PSMSPlatformFuncService)ServiceGlobal.getService(PSMSPlatformFuncService.class, (SessionFactory)this.getSessionFactory());
-                pSMSPlatformFuncService.autoGet((IEntity)pSMSPlatformFunc);
+                pSMSPlatformFuncService.autoGet(pSMSPlatformFunc);
                 this.psmsplatformfunc = pSMSPlatformFunc;
             }
             return this.psmsplatformfunc;

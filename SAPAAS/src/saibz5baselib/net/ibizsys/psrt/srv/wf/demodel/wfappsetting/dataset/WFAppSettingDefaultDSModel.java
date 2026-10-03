@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfappsetting.dataset;
 
-import net.ibizsys.psrt.srv.wf.demodel.wfappsetting.dataset.WFAppSettingDefaultDSModelBase;
+/**
+ *  实体数据集合[DEFAULT]模型
+ */
+public class WFAppSettingDefaultDSModel extends WFAppSettingDefaultDSModelBase {
 
-public class WFAppSettingDefaultDSModel
-extends WFAppSettingDefaultDSModelBase {
+    public WFAppSettingDefaultDSModel() {
+        super();
+    }
+
 }
-

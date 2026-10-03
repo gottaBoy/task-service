@@ -1151,7 +1151,6 @@ public class PSDBServerBackupHelper {
                     log.error((Object)StringHelper.format((String)"\u5bfc\u51fa[%1$s]\u53d1\u751f\u5f02\u5e38\uff0c\u5f53\u524d\u5df2\u5b8c\u6210 %2$s/%3$s", (Object)strPSModelName, (Object)importModelList2.size(), (Object)nTotalModelCnt));
                     continue;
                 }
-                break;
             }
         }
         catch (Exception ex) {

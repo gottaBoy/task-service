@@ -20,11 +20,10 @@ extends XMLCollectionConfig<DPEventConfig> {
         if (StringHelper.Compare((String)strName, (String)"SRFEXDPEVENT", (boolean)true) == 0) {
             DPEventConfig dpEventConfig = new DPEventConfig();
             if (dpEventConfig.LoadConfig(xmlNode)) {
-                this.add((Object)dpEventConfig);
+                this.add(dpEventConfig);
             }
             return;
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

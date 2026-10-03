@@ -117,7 +117,7 @@ extends PSCoreSysServiceBase<PSCtrlModel> {
     }
 
     protected void onFillParentInfo(PSCtrlModel pSCtrlModel, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSCtrlModel, string, string2, string3);
+        super.onFillParentInfo(pSCtrlModel, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -128,11 +128,11 @@ extends PSCoreSysServiceBase<PSCtrlModel> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSCtrlModel, bl);
+        super.onFillEntityFullInfo(pSCtrlModel, bl);
     }
 
     protected void onWriteBackParent(PSCtrlModel pSCtrlModel, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSCtrlModel, bl);
+        super.onWriteBackParent(pSCtrlModel, bl);
     }
 
     @Override
@@ -143,7 +143,7 @@ extends PSCoreSysServiceBase<PSCtrlModel> {
     }
 
     protected void onRemoveEntityUncopyValues(PSCtrlModel pSCtrlModel, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSCtrlModel, bl);
+        super.onRemoveEntityUncopyValues(pSCtrlModel, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSCtrlModel pSCtrlModel, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -164,7 +164,7 @@ extends PSCoreSysServiceBase<PSCtrlModel> {
         if ((entityFieldError = this.onCheckField_PSCtrlModelName(bl, pSCtrlModel, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSCtrlModel, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSCtrlModel, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSCtrlModel pSCtrlModel, boolean bl2, boolean bl3) throws Exception {
@@ -180,7 +180,7 @@ extends PSCoreSysServiceBase<PSCtrlModel> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSCtrlModel, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSCtrlModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -205,7 +205,7 @@ extends PSCoreSysServiceBase<PSCtrlModel> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DataType_Default((IEntity)pSCtrlModel, bl2, bl3);
+            string2 = this.onTestValueRule_DataType_Default(pSCtrlModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DATATYPE");
@@ -227,7 +227,7 @@ extends PSCoreSysServiceBase<PSCtrlModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSCtrlModel, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSCtrlModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -252,7 +252,7 @@ extends PSCoreSysServiceBase<PSCtrlModel> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlModelId_Default((IEntity)pSCtrlModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlModelId_Default(pSCtrlModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLMODELID");
@@ -277,7 +277,7 @@ extends PSCoreSysServiceBase<PSCtrlModel> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlModelName_Default((IEntity)pSCtrlModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlModelName_Default(pSCtrlModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLMODELNAME");
@@ -290,11 +290,11 @@ extends PSCoreSysServiceBase<PSCtrlModel> {
     }
 
     protected void onSyncEntity(PSCtrlModel pSCtrlModel, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSCtrlModel, bl);
+        super.onSyncEntity(pSCtrlModel, bl);
     }
 
     protected void onSyncIndexEntities(PSCtrlModel pSCtrlModel, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSCtrlModel, bl);
+        super.onSyncIndexEntities(pSCtrlModel, bl);
     }
 
     public Object getDataContextValue(PSCtrlModel pSCtrlModel, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -302,14 +302,14 @@ extends PSCoreSysServiceBase<PSCtrlModel> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSCtrlModel, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSCtrlModel, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSCtrlModel pSCtrlModel, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSCtrlModel, arrayList, n);
+        super.onExportMajorModel(pSCtrlModel, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -437,14 +437,14 @@ extends PSCoreSysServiceBase<PSCtrlModel> {
 
     protected boolean onMergeChild(String string, String string2, PSCtrlModel pSCtrlModel) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSCtrlModel)) {
+        if (super.onMergeChild(string, string2, pSCtrlModel)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSCtrlModel pSCtrlModel) throws Exception {
-        super.onUpdateParent((IEntity)pSCtrlModel);
+        super.onUpdateParent(pSCtrlModel);
     }
 
     @Override

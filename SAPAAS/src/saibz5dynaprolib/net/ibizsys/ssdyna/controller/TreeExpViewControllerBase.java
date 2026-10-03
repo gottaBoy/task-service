@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.ExpViewControllerBase;
-
-public abstract class TreeExpViewControllerBase
-extends ExpViewControllerBase {
+/**
+ * 树导航视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class TreeExpViewControllerBase extends ExpViewControllerBase {
+	public TreeExpViewControllerBase() throws Exception {
+		super();
+	}
 }
-

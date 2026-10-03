@@ -75,7 +75,7 @@ implements IPSDELogicParamService {
     @Override
     protected List<PSDELogicParam> onListAll() throws Exception {
         ArrayList<PSDELogicParam> list = new ArrayList<PSDELogicParam>();
-        List psdelogics = PSModelServiceUtil.getInstance().getPSDELogicService().listAll();
+        List<PSDELogic> psdelogics = PSModelServiceUtil.getInstance().getPSDELogicService().listAll();
         if (psdelogics != null) {
             for (PSDELogic parent : psdelogics) {
                 List<PSDELogicParam> items = this.listByPSDELogic(parent);

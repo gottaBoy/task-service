@@ -67,7 +67,7 @@ extends SRFExToolbar {
                 if (iUserPrivilegeMgr == null || StringHelper.Length((String)strResourceId) <= 0 || iUserPrivilegeMgr.Test(this.getWebContext(), strResourceId)) {
                     if (!bFirstPage) {
                         ToolbarSeperatorConfig seperatorConfig = new ToolbarSeperatorConfig();
-                        this.getTabViewToolbarConfig().getToolbarItemsConfig().add((Object)seperatorConfig);
+                        this.getTabViewToolbarConfig().getToolbarItemsConfig().add(seperatorConfig);
                     }
                     ToolbarButtonConfig buttonConfig = new ToolbarButtonConfig();
                     buttonConfig.setText(tabViewPageConfig.getCaption());
@@ -80,7 +80,7 @@ extends SRFExToolbar {
                         buttonConfig.setPressed(true);
                         bFirstPage = false;
                     }
-                    this.getTabViewToolbarConfig().getToolbarItemsConfig().add((Object)buttonConfig);
+                    this.getTabViewToolbarConfig().getToolbarItemsConfig().add(buttonConfig);
                 }
                 ++i;
             }

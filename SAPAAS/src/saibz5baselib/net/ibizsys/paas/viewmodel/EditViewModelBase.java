@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.viewmodel;
 
-import net.ibizsys.paas.viewmodel.ViewModelBase;
+/**
+ * 编辑视图视图模型
+ * 
+ * @author Administrator
+ *
+ */
+public class EditViewModelBase extends ViewModelBase {
 
-public class EditViewModelBase
-extends ViewModelBase {
 }
-

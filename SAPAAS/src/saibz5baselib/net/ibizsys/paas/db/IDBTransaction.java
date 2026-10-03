@@ -1,13 +1,18 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.db;
 
-import java.sql.Connection;
 import net.ibizsys.paas.service.ITransaction;
 
-public interface IDBTransaction
-extends ITransaction {
-    public Connection getConnection();
+/**
+ * 数据库事物对象
+ * 
+ * @author Administrator
+ *
+ */
+public interface IDBTransaction extends ITransaction {
+	/**
+	 * 获取当前连接
+	 * 
+	 * @return
+	 */
+	java.sql.Connection getConnection();
 }
-

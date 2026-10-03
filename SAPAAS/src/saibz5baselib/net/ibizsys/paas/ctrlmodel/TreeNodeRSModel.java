@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
-import net.ibizsys.paas.ctrlmodel.TreeNodeRSModelBase;
+/**
+ * 树节点关系模型
+ * 
+ * @author Administrator
+ *
+ */
+public class TreeNodeRSModel extends TreeNodeRSModelBase {
 
-public class TreeNodeRSModel
-extends TreeNodeRSModelBase {
 }
-

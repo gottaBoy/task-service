@@ -76,7 +76,7 @@ implements IPSSysCalendarLogicService {
     @Override
     protected List<PSSysCalendarLogic> onListAll() throws Exception {
         ArrayList<PSSysCalendarLogic> list = new ArrayList<PSSysCalendarLogic>();
-        List pssyscalendars = PSModelServiceUtil.getInstance().getPSSysCalendarService().listAll();
+        List<PSSysCalendar> pssyscalendars = PSModelServiceUtil.getInstance().getPSSysCalendarService().listAll();
         if (pssyscalendars != null) {
             for (PSSysCalendar parent : pssyscalendars) {
                 List<PSSysCalendarLogic> items = this.listByPSSysCalendar(parent);

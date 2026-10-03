@@ -1,38 +1,40 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.ctrlmodel.IChartAxisModel
- *  net.ibizsys.paas.util.StringHelper
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.web.util.echarts;
 
 import java.util.ArrayList;
+
 import net.ibizsys.paas.ctrlmodel.IChartAxisModel;
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.paas.web.util.echarts.EChartsAxis;
 import net.sf.json.JSONObject;
 
-public class EChartsXYAxis
-extends EChartsAxis {
-    public EChartsXYAxis(IChartAxisModel iChartAxisModel) throws Exception {
-        super(iChartAxisModel);
-    }
+/**
+ * ECharts XY 左右轴对象
+ * 
+ * @author Administrator
+ *
+ */
+public class EChartsXYAxis extends EChartsAxis {
 
-    @Override
-    protected void onFillAxisJO(JSONObject jo, ArrayList<String> globalCatalogNameList) throws Exception {
-        if (!StringHelper.isNullOrEmpty((String)this.getChartAxisModel().getAxisPos())) {
-            jo.put("position", (Object)this.getChartAxisModel().getAxisPos());
-        }
-        if (StringHelper.compare((String)this.getChartAxisModel().getAxisType(), (String)"numeric", (boolean)true) == 0) {
-            jo.put("type", (Object)"value");
-        } else if (StringHelper.compare((String)this.getChartAxisModel().getAxisType(), (String)"category", (boolean)true) == 0) {
-            jo.put("type", (Object)"category");
-            jo.put("data", (Object)globalCatalogNameList.toArray());
-        } else {
-            jo.put("type", (Object)"value");
-        }
-    }
+	public EChartsXYAxis(IChartAxisModel iChartAxisModel) throws Exception {
+		super(iChartAxisModel);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.web.util.echarts.EChartsAxis#onFillAxisJO(net.sf.json.JSONObject, java.util.ArrayList)
+	 */
+	@Override
+	protected void onFillAxisJO(JSONObject jo, ArrayList<String> globalCatalogNameList) throws Exception {
+		if (!StringHelper.isNullOrEmpty(this.getChartAxisModel().getAxisPos())) {
+			jo.put("position", this.getChartAxisModel().getAxisPos());
+		}
+
+		if (StringHelper.compare(this.getChartAxisModel().getAxisType(), IChartAxisModel.AXISTYPE_NUMERIC, true) == 0) {
+			jo.put("type", "value");
+		} else if (StringHelper.compare(this.getChartAxisModel().getAxisType(), IChartAxisModel.AXISTYPE_CATEGORY, true) == 0) {
+			jo.put("type", "category");
+			jo.put("data", globalCatalogNameList.toArray());
+		} else
+			jo.put("type", "value");
+	}
 }
-

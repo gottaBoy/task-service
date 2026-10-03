@@ -1,25 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IDEDataSetFetchContext
- *  net.ibizsys.paas.data.DataObject
- *  net.ibizsys.paas.data.IDataObject
- *  net.ibizsys.paas.db.DBFetchResult
- *  net.ibizsys.paas.db.ISelectCond
- *  net.ibizsys.paas.db.SelectCond
- *  net.ibizsys.paas.entity.EntityBase
- *  net.ibizsys.paas.entity.EntityError
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.paas.service.ServiceGlobal
- *  net.ibizsys.paas.sysmodel.CodeListGlobal
- *  net.ibizsys.paas.util.StringBuilderEx
- *  net.ibizsys.paas.util.StringHelper
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.hibernate.SessionFactory
- *  org.springframework.stereotype.Component
- */
 package net.ibizsys.pscore.srv.config.service;
 
 import java.io.BufferedWriter;
@@ -27,21 +5,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Map.Entry;
 import net.ibizsys.paas.core.IDEDataSetFetchContext;
 import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.data.IDataObject;
 import net.ibizsys.paas.db.DBFetchResult;
-import net.ibizsys.paas.db.ISelectCond;
 import net.ibizsys.paas.db.SelectCond;
 import net.ibizsys.paas.entity.EntityBase;
 import net.ibizsys.paas.entity.EntityError;
@@ -51,1579 +23,1704 @@ import net.ibizsys.paas.sysmodel.CodeListGlobal;
 import net.ibizsys.paas.util.StringBuilderEx;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
-import net.ibizsys.pscore.srv.PSCoreSysServiceBaseBase;
 import net.ibizsys.pscore.srv.codelist.EditorContainersCodeListModel;
 import net.ibizsys.pscore.srv.config.entity.PSCtrlType;
-import net.ibizsys.pscore.srv.config.entity.PSCtrlTypeBase;
 import net.ibizsys.pscore.srv.config.entity.PSEditorType;
-import net.ibizsys.pscore.srv.config.entity.PSEditorTypeBase;
 import net.ibizsys.pscore.srv.config.entity.PSPF;
 import net.ibizsys.pscore.srv.config.entity.PSPFAppTempl;
-import net.ibizsys.pscore.srv.config.entity.PSPFAppTemplBase;
 import net.ibizsys.pscore.srv.config.entity.PSPFCTDetail;
 import net.ibizsys.pscore.srv.config.entity.PSPFCodeFolder;
-import net.ibizsys.pscore.srv.config.entity.PSPFCodeFolderBase;
 import net.ibizsys.pscore.srv.config.entity.PSPFCtrlTempl;
-import net.ibizsys.pscore.srv.config.entity.PSPFCtrlTemplBase;
 import net.ibizsys.pscore.srv.config.entity.PSPFEditorTempl;
 import net.ibizsys.pscore.srv.config.entity.PSPFPubCode;
-import net.ibizsys.pscore.srv.config.entity.PSPFPubCodeBase;
 import net.ibizsys.pscore.srv.config.entity.PSPFStyle;
-import net.ibizsys.pscore.srv.config.entity.PSPFStyleBase;
 import net.ibizsys.pscore.srv.config.entity.PSPFStyleCode;
-import net.ibizsys.pscore.srv.config.entity.PSPFStyleCodeBase;
 import net.ibizsys.pscore.srv.config.entity.PSPFViewTempl;
-import net.ibizsys.pscore.srv.config.entity.PSPFViewTemplBase;
 import net.ibizsys.pscore.srv.config.entity.PSViewType;
-import net.ibizsys.pscore.srv.config.entity.PSViewTypeBase;
-import net.ibizsys.pscore.srv.config.service.PSCtrlTypeService;
-import net.ibizsys.pscore.srv.config.service.PSEditorTypeService;
-import net.ibizsys.pscore.srv.config.service.PSPFAppTemplService;
-import net.ibizsys.pscore.srv.config.service.PSPFCTDetailService;
-import net.ibizsys.pscore.srv.config.service.PSPFCodeFolderService;
-import net.ibizsys.pscore.srv.config.service.PSPFCtrlTemplService;
-import net.ibizsys.pscore.srv.config.service.PSPFEditorTemplService;
-import net.ibizsys.pscore.srv.config.service.PSPFStyleCodeService;
-import net.ibizsys.pscore.srv.config.service.PSPFStyleServiceBase;
-import net.ibizsys.pscore.srv.config.service.PSPFViewTemplService;
-import net.ibizsys.pscore.srv.config.service.PSViewTypeService;
 import net.ibizsys.pscore.srv.devcenter.entity.PSDevCenterSVN;
 import net.ibizsys.pscore.srv.devcenter.service.PSDevCenterSVNService;
-import net.ibizsys.pscore.srv.devcenter.service.PSDevCenterSVNServiceBase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PSPFStyleService
-extends PSPFStyleServiceBase {
-    private static final Log log = LogFactory.getLog(PSPFStyleService.class);
-    public static final String PARAM_PRJFOLDER = "SRFPRJFOLDER";
+public class PSPFStyleService extends PSPFStyleServiceBase {
+   private static final Log log = LogFactory.getLog(PSPFStyleService.class);
+   public static final String PARAM_PRJFOLDER = "SRFPRJFOLDER";
 
-    @Override
-    protected void onBeforeCreate(PSPFStyle pSPFStyle) throws Exception {
-        Object object;
-        if (pSPFStyle.isPSDevCenterIdDirty() && !StringHelper.isNullOrEmpty((String)pSPFStyle.getPSDevCenterId())) {
-            pSPFStyle.setPubMode(2);
-            object = StringHelper.format((String)"%1$s@%2$s", (Object)pSPFStyle.getPSDevCenter().getDomainName(), (Object)pSPFStyle.getDCStyleCode());
-            pSPFStyle.setStyleCode(((String)object).toUpperCase());
-        }
-        if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory()) && !StringHelper.isNullOrEmpty((String)pSPFStyle.getPSDevCenterSVNId())) {
-            object = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)this.getSessionFactory());
-            PSDevCenterSVN pSDevCenterSVN = new PSDevCenterSVN();
-            pSDevCenterSVN.setPSDevCenterSVNId(pSPFStyle.getPSDevCenterSVNId());
-            pSDevCenterSVN.setRefObjType("PSPFSTYLE");
-            pSDevCenterSVN.setRefObjId(pSPFStyle.getPSPFStyleId());
-            pSDevCenterSVN.setRefObjName(pSPFStyle.getPSPFStyleName());
-            ((PSDevCenterSVNServiceBase)object).bind(pSDevCenterSVN);
-        }
-        super.onBeforeCreate(pSPFStyle);
-    }
+   protected void onBeforeCreate(PSPFStyle var1) throws Exception {
+      if (var1.isPSDevCenterIdDirty() && !StringHelper.isNullOrEmpty(var1.getPSDevCenterId())) {
+         var1.setPubMode(2);
+         String var2 = StringHelper.format("%1$s@%2$s", var1.getPSDevCenter().getDomainName(), var1.getDCStyleCode());
+         var1.setStyleCode(var2.toUpperCase());
+      }
 
-    @Override
-    protected void onBeforeUpdate(PSPFStyle pSPFStyle) throws Exception {
-        if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory()) && pSPFStyle.isPSDevCenterSVNIdDirty()) {
-            PSPFStyle pSPFStyle2 = (PSPFStyle)this.getLast((IEntity)pSPFStyle);
-            if (StringHelper.isNullOrEmpty((String)pSPFStyle.getPSDevCenterSVNId())) {
-                if (!StringHelper.isNullOrEmpty((String)pSPFStyle2.getPSDevCenterSVNId())) {
-                    PSDevCenterSVNService pSDevCenterSVNService = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)this.getSessionFactory());
-                    PSDevCenterSVN pSDevCenterSVN = new PSDevCenterSVN();
-                    pSDevCenterSVN.setPSDevCenterSVNId(pSPFStyle2.getPSDevCenterSVNId());
-                    pSDevCenterSVN.setRefObjType("PSPFSTYLE");
-                    pSDevCenterSVN.setRefObjId(pSPFStyle2.getPSPFStyleId());
-                    pSDevCenterSVN.setRefObjName(pSPFStyle2.getPSPFStyleName());
-                    pSDevCenterSVNService.unbind(pSDevCenterSVN);
-                }
-            } else if (StringHelper.compare((String)pSPFStyle.getPSDevCenterSVNId(), (String)pSPFStyle2.getPSDevCenterSVNId(), (boolean)false) != 0) {
-                PSDevCenterSVN pSDevCenterSVN;
-                PSDevCenterSVNService pSDevCenterSVNService;
-                if (!StringHelper.isNullOrEmpty((String)pSPFStyle2.getPSDevCenterSVNId())) {
-                    pSDevCenterSVNService = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)this.getSessionFactory());
-                    pSDevCenterSVN = new PSDevCenterSVN();
-                    pSDevCenterSVN.setPSDevCenterSVNId(pSPFStyle2.getPSDevCenterSVNId());
-                    pSDevCenterSVN.setRefObjType("PSPFSTYLE");
-                    pSDevCenterSVN.setRefObjId(pSPFStyle2.getPSPFStyleId());
-                    pSDevCenterSVN.setRefObjName(pSPFStyle2.getPSPFStyleName());
-                    pSDevCenterSVNService.unbind(pSDevCenterSVN);
-                }
-                if (!StringHelper.isNullOrEmpty((String)pSPFStyle.getPSDevCenterSVNId())) {
-                    pSDevCenterSVNService = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)this.getSessionFactory());
-                    pSDevCenterSVN = new PSDevCenterSVN();
-                    pSDevCenterSVN.setPSDevCenterSVNId(pSPFStyle.getPSDevCenterSVNId());
-                    pSDevCenterSVN.setRefObjType("PSPFSTYLE");
-                    pSDevCenterSVN.setRefObjId(pSPFStyle.getPSPFStyleId());
-                    if (StringHelper.isNullOrEmpty((String)pSPFStyle.getPSPFStyleName())) {
-                        pSDevCenterSVN.setRefObjName(pSPFStyle2.getPSPFStyleName());
-                    } else {
-                        pSDevCenterSVN.setRefObjName(pSPFStyle.getPSPFStyleName());
-                    }
-                    pSDevCenterSVNService.bind(pSDevCenterSVN);
-                }
-            }
-        }
-        super.onBeforeUpdate(pSPFStyle);
-    }
+      if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory()) && !StringHelper.isNullOrEmpty(var1.getPSDevCenterSVNId())) {
+         PSDevCenterSVNService var4 = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, this.getSessionFactory());
+         PSDevCenterSVN var3 = new PSDevCenterSVN();
+         var3.setPSDevCenterSVNId(var1.getPSDevCenterSVNId());
+         var3.setRefObjType("PSPFSTYLE");
+         var3.setRefObjId(var1.getPSPFStyleId());
+         var3.setRefObjName(var1.getPSPFStyleName());
+         var4.bind(var3);
+      }
 
-    @Override
-    protected void onBeforeRemove(PSPFStyle pSPFStyle) throws Exception {
-        if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
-            PSPFStyle pSPFStyle2 = (PSPFStyle)this.getLast((IEntity)pSPFStyle);
-            if (StringHelper.isNullOrEmpty((String)pSPFStyle.getPSDevCenterSVNId()) && !StringHelper.isNullOrEmpty((String)pSPFStyle2.getPSDevCenterSVNId())) {
-                PSDevCenterSVNService pSDevCenterSVNService = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)this.getSessionFactory());
-                PSDevCenterSVN pSDevCenterSVN = new PSDevCenterSVN();
-                pSDevCenterSVN.setPSDevCenterSVNId(pSPFStyle2.getPSDevCenterSVNId());
-                pSDevCenterSVN.setRefObjType("PSPFSTYLE");
-                pSDevCenterSVN.setRefObjId(pSPFStyle2.getPSPFStyleId());
-                pSDevCenterSVN.setRefObjName(pSPFStyle2.getPSPFStyleName());
-                pSDevCenterSVNService.unbind(pSDevCenterSVN);
-            }
-        }
-        super.onBeforeRemove(pSPFStyle);
-    }
+      super.onBeforeCreate(var1);
+   }
 
-    @Override
-    protected void onPublish(PSPFStyle pSPFStyle) throws Exception {
-        this.executeRemoteCall2All("PUBLISHSTYLE", (IEntity)pSPFStyle);
-    }
+   protected void onBeforeUpdate(PSPFStyle var1) throws Exception {
+      if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory()) && var1.isPSDevCenterSVNIdDirty()) {
+         PSPFStyle var2 = this.getLast(var1);
+         if (StringHelper.isNullOrEmpty(var1.getPSDevCenterSVNId())) {
+            if (!StringHelper.isNullOrEmpty(var2.getPSDevCenterSVNId())) {
+               PSDevCenterSVNService var3 = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, this.getSessionFactory());
+               PSDevCenterSVN var4 = new PSDevCenterSVN();
+               var4.setPSDevCenterSVNId(var2.getPSDevCenterSVNId());
+               var4.setRefObjType("PSPFSTYLE");
+               var4.setRefObjId(var2.getPSPFStyleId());
+               var4.setRefObjName(var2.getPSPFStyleName());
+               var3.unbind(var4);
+            }
+         } else if (StringHelper.compare(var1.getPSDevCenterSVNId(), var2.getPSDevCenterSVNId(), false) != 0) {
+            if (!StringHelper.isNullOrEmpty(var2.getPSDevCenterSVNId())) {
+               PSDevCenterSVNService var5 = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, this.getSessionFactory());
+               PSDevCenterSVN var7 = new PSDevCenterSVN();
+               var7.setPSDevCenterSVNId(var2.getPSDevCenterSVNId());
+               var7.setRefObjType("PSPFSTYLE");
+               var7.setRefObjId(var2.getPSPFStyleId());
+               var7.setRefObjName(var2.getPSPFStyleName());
+               var5.unbind(var7);
+            }
 
-    @Override
-    protected void onCheckEntity(boolean bl, PSPFStyle pSPFStyle, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
-        if (!bl) {
-            for (PSPFStyle pSPFStyle2 = pSPFStyle.getTemplPSPFStyle(); pSPFStyle2 != null; pSPFStyle2 = pSPFStyle2.getTemplPSPFStyle()) {
-                if (StringHelper.compare((String)pSPFStyle2.getPSPFStyleId(), (String)pSPFStyle.getPSPFStyleId(), (boolean)false) != 0) continue;
-                throw new Exception("\u6a21\u677f\u6837\u5f0f\u5b58\u5728\u9012\u5f52");
-            }
-        }
-        super.onCheckEntity(bl, pSPFStyle, bl2, bl3, entityError);
-    }
+            if (!StringHelper.isNullOrEmpty(var1.getPSDevCenterSVNId())) {
+               PSDevCenterSVNService var6 = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, this.getSessionFactory());
+               PSDevCenterSVN var8 = new PSDevCenterSVN();
+               var8.setPSDevCenterSVNId(var1.getPSDevCenterSVNId());
+               var8.setRefObjType("PSPFSTYLE");
+               var8.setRefObjId(var1.getPSPFStyleId());
+               if (StringHelper.isNullOrEmpty(var1.getPSPFStyleName())) {
+                  var8.setRefObjName(var2.getPSPFStyleName());
+               } else {
+                  var8.setRefObjName(var1.getPSPFStyleName());
+               }
 
-    /*
-     * WARNING - void declaration
-     */
-    @Override
-    protected void onImpStyle(PSPFStyle pSPFStyle) throws Exception {
-        String string = DataObject.getStringValue((Object)pSPFStyle.get(PARAM_PRJFOLDER));
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception("\u5f53\u524d\u6ca1\u6709\u6307\u5b9a\u9879\u76ee\u76ee\u5f55");
-        }
-        this.get((IEntity)pSPFStyle);
-        PSPF pSPF = pSPFStyle.getPSPF();
-        ArrayList<PSPFPubCode> arrayList = pSPF.getPSPFPubCodes();
-        HashMap<String, PSPFPubCode> hashMap = new HashMap<String, PSPFPubCode>();
-        HashMap<String, PSPFPubCode> hashMap2 = new HashMap<String, PSPFPubCode>();
-        for (PSPFPubCode object2 : arrayList) {
-            hashMap.put(object2.getPSPFPubCodeId(), object2);
-            if (StringHelper.compare((String)object2.getTargetType(), (String)"VIEW", (boolean)false) != 0) continue;
-            hashMap2.put(StringHelper.format((String)"%1$s%2$s", (Object)object2.getPSPFPubCodeName(), (Object)object2.getCodeEXT()).toUpperCase(), object2);
-        }
-        try {
-            void var17_46;
-            EntityBase entityBase;
-            Object object;
-            ArrayList<PSPFCTDetail> arrayList2;
-            Object object2;
-            Object object3;
-            void var17_42;
-            Serializable serializable;
-            Object object4;
-            Object object52;
-            Object object6;
-            void var16_33;
-            Object object7;
-            Object object82;
-            Object object12 = (PSPFStyleCodeService)ServiceGlobal.getService(PSPFStyleCodeService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSPFStyleCode> arrayList3 = pSPFStyle.getPSPFStyleCodes();
-            ArrayList<PSPFEditorTempl> arrayList4 = new HashMap<String, PSPFStyleCode>();
-            for (Object object82 : arrayList3) {
-                ((HashMap)((Object)arrayList4)).put(((PSPFStyleCodeBase)object82).getPSPFStyleCodeName().toUpperCase(), object82);
+               var6.bind(var8);
             }
-            Object object9 = StringHelper.format((String)"%1$s%2$smacro", (Object)string, (Object)File.separator);
-            object82 = new File((String)object9);
-            if (!((File)object82).exists()) {
-                ((File)object82).mkdirs();
+         }
+      }
+
+      super.onBeforeUpdate(var1);
+   }
+
+   @Override
+   protected void onBeforeRemove(PSPFStyle var1) throws Exception {
+      if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
+         PSPFStyle var2 = this.getLast(var1);
+         if (StringHelper.isNullOrEmpty(var1.getPSDevCenterSVNId()) && !StringHelper.isNullOrEmpty(var2.getPSDevCenterSVNId())) {
+            PSDevCenterSVNService var3 = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, this.getSessionFactory());
+            PSDevCenterSVN var4 = new PSDevCenterSVN();
+            var4.setPSDevCenterSVNId(var2.getPSDevCenterSVNId());
+            var4.setRefObjType("PSPFSTYLE");
+            var4.setRefObjId(var2.getPSPFStyleId());
+            var4.setRefObjName(var2.getPSPFStyleName());
+            var3.unbind(var4);
+         }
+      }
+
+      super.onBeforeRemove(var1);
+   }
+
+   @Override
+   protected void onPublish(PSPFStyle var1) throws Exception {
+      this.executeRemoteCall2All("PUBLISHSTYLE", var1);
+   }
+
+   @Override
+   protected void onCheckEntity(boolean var1, PSPFStyle var2, boolean var3, boolean var4, EntityError var5) throws Exception {
+      if (!var1) {
+         for (PSPFStyle var6 = var2.getTemplPSPFStyle(); var6 != null; var6 = var6.getTemplPSPFStyle()) {
+            if (StringHelper.compare(var6.getPSPFStyleId(), var2.getPSPFStyleId(), false) == 0) {
+               throw new Exception("模板样式存在递归");
             }
-            File file = new File((String)object9);
-            Object object10 = object7 = file.listFiles();
-            int n = ((File[])object10).length;
-            boolean bl = false;
-            while (var16_33 < n) {
-                File file2 = object10[var16_33];
-                if (file2.isFile() && ((String)(object6 = file2.getName().toUpperCase())).indexOf(".TXT") == ((String)object6).length() - 4) {
-                    object52 = PSPFStyleService.readFile(file2.getAbsolutePath());
-                    object4 = ((String)object6).substring(0, ((String)object6).length() - 4);
-                    serializable = (PSPFStyleCode)((HashMap)((Object)arrayList4)).get(object4);
-                    if (serializable != null) {
-                        ((HashMap)((Object)arrayList4)).remove(object4);
-                        if (StringHelper.compare((String)object52, (String)((PSPFStyleCodeBase)serializable).getStyleCode(), (boolean)false) != 0) {
-                            ((PSPFStyleCodeBase)serializable).setStyleCode((String)object52);
-                            EntityBase.setIgnoreCheck((IEntity)serializable, (boolean)false);
-                            ((PSCoreSysServiceBaseBase)((Object)object12)).update(serializable);
+         }
+      }
+
+      super.onCheckEntity(var1, var2, var3, var4, var5);
+   }
+
+   @Override
+   protected void onImpStyle(PSPFStyle var1) throws Exception {
+      String var2 = DataObject.getStringValue(var1.get("SRFPRJFOLDER"));
+      if (StringHelper.isNullOrEmpty(var2)) {
+         throw new Exception("当前没有指定项目目录");
+      }
+
+      this.get(var1);
+      PSPF var3 = var1.getPSPF();
+      ArrayList<PSPFPubCode> var4 = var3.getPSPFPubCodes();
+      HashMap<String, PSPFPubCode> var5 = new HashMap<>();
+      HashMap<String, PSPFPubCode> var6 = new HashMap<>();
+
+      for (PSPFPubCode var8 : var4) {
+         var5.put(var8.getPSPFPubCodeId(), var8);
+         if (StringHelper.compare(var8.getTargetType(), "VIEW", false) == 0) {
+            var6.put(StringHelper.format("%1$s%2$s", var8.getPSPFPubCodeName(), var8.getCodeEXT()).toUpperCase(), var8);
+         }
+      }
+
+      try {
+         PSPFStyleCodeService var39 = (PSPFStyleCodeService)ServiceGlobal.getService(PSPFStyleCodeService.class, this.getSessionFactory());
+         ArrayList<PSPFStyleCode> var45 = var1.getPSPFStyleCodes();
+         HashMap<String, PSPFStyleCode> var9 = new HashMap<>();
+
+         for (PSPFStyleCode var11 : var45) {
+            var9.put(var11.getPSPFStyleCodeName().toUpperCase(), var11);
+         }
+
+         String var52 = StringHelper.format("%1$s%2$smacro", var2, File.separator);
+         File var56 = new File(var52);
+         if (!var56.exists()) {
+            var56.mkdirs();
+         }
+
+         File var12 = new File(var52);
+         File[] var13 = var12.listFiles();
+
+         for (File var17 : var13) {
+            if (var17.isFile()) {
+               String var18 = var17.getName().toUpperCase();
+               if (var18.indexOf(".TXT") == var18.length() - 4) {
+                  String var19 = readFile(var17.getAbsolutePath());
+                  String var20 = var18.substring(0, var18.length() - 4);
+                  PSPFStyleCode var21 = (PSPFStyleCode)var9.get(var20);
+                  if (var21 != null) {
+                     var9.remove(var20);
+                     if (StringHelper.compare(var19, var21.getStyleCode(), false) != 0) {
+                        var21.setStyleCode(var19);
+                        EntityBase.setIgnoreCheck(var21, false);
+                        var39.update(var21);
+                     }
+                  } else {
+                     var21 = new PSPFStyleCode();
+                     var21.setStyleCode(var19);
+                     var21.setPSPFStyleId(var1.getPSPFStyleId());
+                     var21.setPSPFStyleName(var1.getPSPFStyleName());
+                     var21.setPSPFStyleCodeName(var20);
+                     EntityBase.setIgnoreCheck(var21, false);
+                     var39.create(var21);
+                  }
+               }
+            }
+         }
+
+         for (Entry<String, PSPFStyleCode> var76 : var9.entrySet()) {
+            log.debug(StringHelper.format("移除样式宏数据[%1$s]", var76.getValue().getPSPFStyleCodeName()));
+            var39.remove(var76.getValue());
+         }
+
+         PSViewTypeService var40 = (PSViewTypeService)ServiceGlobal.getService(PSViewTypeService.class, this.getSessionFactory());
+         PSPFViewTemplService var46 = (PSPFViewTemplService)ServiceGlobal.getService(PSPFViewTemplService.class, this.getSessionFactory());
+         ArrayList<PSPFViewTempl> var49 = var1.getPSPFViewTempls();
+         HashMap<String, PSPFViewTempl> var53 = new HashMap<>();
+
+         for (PSPFViewTempl var62 : var49) {
+            var53.put(var62.getPSPFViewTemplId(), var62);
+         }
+
+         String var58 = StringHelper.format("%1$s%2$sview", var2, File.separator);
+         var12 = new File(var58);
+         if (!var12.exists()) {
+            var12.mkdirs();
+         }
+
+         File var68 = new File(var58);
+         File[] var73 = var68.listFiles();
+
+         for (File var92 : var73) {
+            if (var92.isDirectory()) {
+               String var95 = var92.getName();
+               PSViewType var98 = new PSViewType();
+               var98.setPSViewTypeId(var95);
+               if (!var40.get(var98, true)) {
+                  throw new Exception(StringHelper.format("云平台不存在视图类型[%1$s]", var95));
+               }
+
+               HashMap<String, File> var102 = new HashMap<>();
+
+               for (File var25 : var92.listFiles()) {
+                  if (var25.isFile()) {
+                     var102.put(var25.getName().toUpperCase(), var25);
+                  }
+               }
+
+               for (Entry<String, PSPFPubCode> var108 : var6.entrySet()) {
+                  File var112 = (File)var102.get(var108.getKey());
+                  String var116 = "";
+                  if (var112 != null) {
+                     var116 = readFile(var112.getAbsolutePath());
+                  }
+
+                  PSPFViewTempl var26 = new PSPFViewTempl();
+                  var26.setPSPFId(var3.getPSPFId());
+                  var26.setPSPFName(var3.getPSPFName());
+                  var26.setPSPFPubCodeId(((PSPFPubCode)var108.getValue()).getPSPFPubCodeId());
+                  var26.setPSPFPubCodeName(((PSPFPubCode)var108.getValue()).getPSPFPubCodeName());
+                  var26.setPSPFStyleId(var1.getPSPFStyleId());
+                  var26.setPSPFStyleName(var1.getPSPFStyleName());
+                  var26.setPSViewTypeId(var98.getPSViewTypeId());
+                  var26.setPSViewTypeName(var98.getPSViewTypeName());
+                  var26.setTemplCode2(var116);
+                  var46.fillEntityKeyValue(var26, false);
+                  if (var46.checkKey(var26) != 0) {
+                     EntityBase.setIgnoreCheck(var26, false);
+                     var46.update(var26);
+                  } else {
+                     for (PSPFStyle var27 = var1.getTemplPSPFStyle(); var27 != null; var27 = var27.getTemplPSPFStyle()) {
+                        PSPFViewTempl var28 = new PSPFViewTempl();
+                        var28.setPSPFId(var3.getPSPFId());
+                        var28.setPSPFName(var3.getPSPFName());
+                        var28.setPSPFPubCodeId(((PSPFPubCode)var108.getValue()).getPSPFPubCodeId());
+                        var28.setPSPFPubCodeName(((PSPFPubCode)var108.getValue()).getPSPFPubCodeName());
+                        var28.setPSPFStyleId(var27.getPSPFStyleId());
+                        var28.setPSPFStyleName(var27.getPSPFStyleName());
+                        var28.setPSViewTypeId(var98.getPSViewTypeId());
+                        var28.setPSViewTypeName(var98.getPSViewTypeName());
+                        var46.fillEntityKeyValue(var28, false);
+                        if (var46.get(var28, true)) {
+                           var26.setPubObj(var28.getPubObj());
+                           var26.setLogicName(var28.getLogicName());
+                           break;
                         }
-                    } else {
-                        serializable = new PSPFStyleCode();
-                        ((PSPFStyleCodeBase)serializable).setStyleCode((String)object52);
-                        ((PSPFStyleCodeBase)serializable).setPSPFStyleId(pSPFStyle.getPSPFStyleId());
-                        ((PSPFStyleCodeBase)serializable).setPSPFStyleName(pSPFStyle.getPSPFStyleName());
-                        ((PSPFStyleCodeBase)serializable).setPSPFStyleCodeName((String)object4);
-                        EntityBase.setIgnoreCheck((IEntity)serializable, (boolean)false);
-                        ((PSCoreSysServiceBaseBase)((Object)object12)).create(serializable);
-                    }
-                }
-                ++var16_33;
+                     }
+
+                     EntityBase.setIgnoreCheck(var26, false);
+                     var46.create(var26);
+                  }
+
+                  var53.remove(var26.getPSPFViewTemplId());
+               }
             }
-            object10 = ((HashMap)((Object)arrayList4)).entrySet().iterator();
-            while (object10.hasNext()) {
-                Map.Entry entry = (Map.Entry)object10.next();
-                log.debug((Object)StringHelper.format((String)"\u79fb\u9664\u6837\u5f0f\u5b8f\u6570\u636e[%1$s]", (Object)((PSPFStyleCode)entry.getValue()).getPSPFStyleCodeName()));
-                object12.remove((IEntity)entry.getValue());
+         }
+
+         for (Entry<String, PSPFViewTempl> var83 : var53.entrySet()) {
+            log.debug(StringHelper.format("移除视图模板[%1$s]", var83.getValue().getPSPFViewTemplName()));
+            var46.remove(var83.getValue());
+         }
+
+         PSCtrlTypeService var41 = (PSCtrlTypeService)ServiceGlobal.getService(PSCtrlTypeService.class, this.getSessionFactory());
+         PSPFCtrlTemplService var47 = (PSPFCtrlTemplService)ServiceGlobal.getService(PSPFCtrlTemplService.class, this.getSessionFactory());
+         PSPFCTDetailService var50 = (PSPFCTDetailService)ServiceGlobal.getService(PSPFCTDetailService.class, this.getSessionFactory());
+         ArrayList<PSPFCtrlTempl> var54 = var1.getPSPFCtrlTempls();
+         HashMap<String, PSPFCtrlTempl> var59 = new HashMap<>();
+
+         for (PSPFCtrlTempl var69 : var54) {
+            var59.put(var69.getPSPFCtrlTemplId(), var69);
+         }
+
+         String var65 = StringHelper.format("%1$s%2$sctrl", var2, File.separator);
+         File var70 = new File(var65);
+         if (!var70.exists()) {
+            var70.mkdirs();
+         }
+
+         File var74 = new File(var65);
+         File[] var79 = var74.listFiles();
+
+         for (File var96 : var79) {
+            if (var96.isDirectory()) {
+               String var99 = var96.getName();
+               PSCtrlType var103 = new PSCtrlType();
+               var103.setPSCtrlTypeId(var99);
+               if (!var41.get(var103, true)) {
+                  throw new Exception(StringHelper.format("云平台不存在部件类型[%1$s]", var99));
+               }
+
+               HashMap<String, File> var106 = new HashMap<>();
+
+               for (File var121 : var96.listFiles()) {
+                  if (var121.isFile()) {
+                     var106.put(var121.getName().toUpperCase(), var121);
+                  }
+               }
+
+               for (Entry<String, PSPFPubCode> var114 : var6.entrySet()) {
+                  String var118 = "";
+                  String var122 = "";
+                  String var125 = "";
+                  String var129 = "";
+                  File var29 = (File)var106.remove(var114.getKey());
+                  if (var29 != null) {
+                     var118 = readFile(var29.getAbsolutePath());
+                  }
+
+                  var29 = (File)var106.remove(
+                     StringHelper.format("%1$s_CODE2%2$s", ((PSPFPubCode)var114.getValue()).getPSPFPubCodeName(), ((PSPFPubCode)var114.getValue()).getCodeEXT())
+                        .toUpperCase()
+                  );
+                  if (var29 != null) {
+                     var122 = readFile(var29.getAbsolutePath());
+                  }
+
+                  var29 = (File)var106.remove(
+                     StringHelper.format("%1$s_CODE3%2$s", ((PSPFPubCode)var114.getValue()).getPSPFPubCodeName(), ((PSPFPubCode)var114.getValue()).getCodeEXT())
+                        .toUpperCase()
+                  );
+                  if (var29 != null) {
+                     var125 = readFile(var29.getAbsolutePath());
+                  }
+
+                  var29 = (File)var106.remove(
+                     StringHelper.format("%1$s_CODE4%2$s", ((PSPFPubCode)var114.getValue()).getPSPFPubCodeName(), ((PSPFPubCode)var114.getValue()).getCodeEXT())
+                        .toUpperCase()
+                  );
+                  if (var29 != null) {
+                     var129 = readFile(var29.getAbsolutePath());
+                  }
+
+                  if (!StringHelper.isNullOrEmpty(var118)
+                     || !StringHelper.isNullOrEmpty(var122)
+                     || !StringHelper.isNullOrEmpty(var125)
+                     || !StringHelper.isNullOrEmpty(var129)) {
+                     PSPFCtrlTempl var30 = new PSPFCtrlTempl();
+                     var30.setPSPFId(var3.getPSPFId());
+                     var30.setPSPFName(var3.getPSPFName());
+                     var30.setPSPFPubCodeId(((PSPFPubCode)var114.getValue()).getPSPFPubCodeId());
+                     var30.setPSPFPubCodeName(((PSPFPubCode)var114.getValue()).getPSPFPubCodeName());
+                     var30.setPSPFStyleId(var1.getPSPFStyleId());
+                     var30.setPSPFStyleName(var1.getPSPFStyleName());
+                     var30.setPSCtrlTypeId(var103.getPSCtrlTypeId());
+                     var30.setPSCtrlTypeName(var103.getPSCtrlTypeName());
+                     var30.setTemplCode(var118);
+                     var30.setTemplCode2(var122);
+                     var30.setTemplCode3(var125);
+                     var30.setTemplCode4(var129);
+                     var47.fillEntityKeyValue(var30, false);
+                     boolean var31 = false;
+                     ArrayList<PSPFCTDetail> var32 = null;
+                     if (var47.checkKey(var30) != 0) {
+                        EntityBase.setIgnoreCheck(var30, false);
+                        var47.update(var30);
+                        var32 = var30.getPSPFCTDetails();
+                     } else {
+                        for (PSPFStyle var33 = var1.getTemplPSPFStyle(); var33 != null; var33 = var33.getTemplPSPFStyle()) {
+                           PSPFCtrlTempl var34 = new PSPFCtrlTempl();
+                           var34.setPSPFId(var3.getPSPFId());
+                           var34.setPSPFName(var3.getPSPFName());
+                           var34.setPSPFPubCodeId(((PSPFPubCode)var114.getValue()).getPSPFPubCodeId());
+                           var34.setPSPFPubCodeName(((PSPFPubCode)var114.getValue()).getPSPFPubCodeName());
+                           var34.setPSPFStyleId(var33.getPSPFStyleId());
+                           var34.setPSPFStyleName(var33.getPSPFStyleName());
+                           var34.setPSCtrlTypeId(var103.getPSCtrlTypeId());
+                           var34.setPSCtrlTypeName(var103.getPSCtrlTypeName());
+                           var47.fillEntityKeyValue(var34, false);
+                           if (var47.get(var34, true)) {
+                              var30.setPubObj(var34.getPubObj());
+                              var30.setLogicName(var34.getLogicName());
+                              var32 = var30.getPSPFCTDetails();
+                              break;
+                           }
+                        }
+
+                        EntityBase.setIgnoreCheck(var30, false);
+                        var47.create(var30);
+                        var31 = true;
+                     }
+
+                     var59.remove(var30.getPSPFCtrlTemplId());
+                     if (var32 != null) {
+                        for (PSPFCTDetail var151 : var32) {
+                           if (var31) {
+                              var151.setPSPFCtrlTemplId(var30.getPSPFCtrlTemplId());
+                              var151.setPSPFCtrlTemplName(var30.getPSPFCtrlTemplName());
+                              var151.resetPSPFCTDetailId();
+                           }
+
+                           var118 = "";
+                           var122 = "";
+                           var125 = "";
+                           var129 = "";
+                           var29 = (File)var106.remove(
+                              StringHelper.format(
+                                    "%1$s_%3$s%2$s",
+                                    ((PSPFPubCode)var114.getValue()).getPSPFPubCodeName(),
+                                    ((PSPFPubCode)var114.getValue()).getCodeEXT(),
+                                    var151.getPSPFCTDetailName()
+                                 )
+                                 .toUpperCase()
+                           );
+                           if (var29 != null) {
+                              var118 = readFile(var29.getAbsolutePath());
+                           }
+
+                           var29 = (File)var106.remove(
+                              StringHelper.format(
+                                    "%1$s_%3$s_CODE2%2$s",
+                                    ((PSPFPubCode)var114.getValue()).getPSPFPubCodeName(),
+                                    ((PSPFPubCode)var114.getValue()).getCodeEXT(),
+                                    var151.getPSPFCTDetailName()
+                                 )
+                                 .toUpperCase()
+                           );
+                           if (var29 != null) {
+                              var122 = readFile(var29.getAbsolutePath());
+                           }
+
+                           var29 = (File)var106.remove(
+                              StringHelper.format(
+                                    "%1$s_%3$s_CODE3%2$s",
+                                    ((PSPFPubCode)var114.getValue()).getPSPFPubCodeName(),
+                                    ((PSPFPubCode)var114.getValue()).getCodeEXT(),
+                                    var151.getPSPFCTDetailName()
+                                 )
+                                 .toUpperCase()
+                           );
+                           if (var29 != null) {
+                              var125 = readFile(var29.getAbsolutePath());
+                           }
+
+                           var29 = (File)var106.remove(
+                              StringHelper.format(
+                                    "%1$s_%3$s_CODE4%2$s",
+                                    ((PSPFPubCode)var114.getValue()).getPSPFPubCodeName(),
+                                    ((PSPFPubCode)var114.getValue()).getCodeEXT(),
+                                    var151.getPSPFCTDetailName()
+                                 )
+                                 .toUpperCase()
+                           );
+                           if (var29 != null) {
+                              var129 = readFile(var29.getAbsolutePath());
+                           }
+
+                           var151.setTemplCode(var118);
+                           var151.setTemplCode2(var122);
+                           var151.setTemplCode3(var125);
+                           var151.setTemplCode4(var129);
+                           if (var31) {
+                              EntityBase.setIgnoreCheck(var151, false);
+                              var50.create(var151);
+                           } else {
+                              EntityBase.setIgnoreCheck(var151, false);
+                              var50.update(var151);
+                           }
+                        }
+                     }
+                  }
+               }
             }
-            object12 = (PSViewTypeService)ServiceGlobal.getService(PSViewTypeService.class, (SessionFactory)this.getSessionFactory());
-            PSPFViewTemplService pSPFViewTemplService = (PSPFViewTemplService)ServiceGlobal.getService(PSPFViewTemplService.class, (SessionFactory)this.getSessionFactory());
-            arrayList4 = pSPFStyle.getPSPFViewTempls();
-            object9 = new HashMap<String, PSPFViewTempl>();
-            for (PSPFViewTempl pSPFViewTempl : arrayList4) {
-                ((HashMap)object9).put(pSPFViewTempl.getPSPFViewTemplId(), pSPFViewTempl);
-            }
-            object82 = StringHelper.format((String)"%1$s%2$sview", (Object)string, (Object)File.separator);
-            File file3 = new File((String)object82);
-            if (!file3.exists()) {
-                file3.mkdirs();
-            }
-            object7 = new File((String)object82);
-            Object object11 = object10 = ((File)object7).listFiles();
-            int n2 = ((Object)object11).length;
-            boolean bl2 = false;
-            while (var17_42 < n2) {
-                object6 = object11[var17_42];
-                if (((File)object6).isDirectory()) {
-                    void var24_62;
-                    object52 = ((File)object6).getName();
-                    object4 = new PSViewType();
-                    ((PSViewTypeBase)object4).setPSViewTypeId((String)object52);
-                    if (!object12.get((IEntity)object4, true)) {
-                        throw new Exception(StringHelper.format((String)"\u4e91\u5e73\u53f0\u4e0d\u5b58\u5728\u89c6\u56fe\u7c7b\u578b[%1$s]", (Object)object52));
-                    }
-                    serializable = new HashMap();
-                    object3 = ((File)object6).listFiles();
-                    int n3 = ((File[])object3).length;
-                    boolean bl3 = false;
-                    while (var24_62 < n3) {
-                        File file4 = object3[var24_62];
-                        if (file4.isFile()) {
-                            ((HashMap)serializable).put(file4.getName().toUpperCase(), file4);
+         }
+
+         for (Entry<String, PSPFCtrlTempl> var90 : var59.entrySet()) {
+            log.debug(StringHelper.format("移除部件模板[%1$s]", var90.getValue().getPSPFCtrlTemplName()));
+            var47.remove(var90.getValue());
+         }
+
+         PSEditorTypeService var42 = (PSEditorTypeService)ServiceGlobal.getService(PSEditorTypeService.class, this.getSessionFactory());
+         PSPFEditorTemplService var48 = (PSPFEditorTemplService)ServiceGlobal.getService(PSPFEditorTemplService.class, this.getSessionFactory());
+         ArrayList<PSPFEditorTempl> var51 = var1.getPSPFEditorTempls();
+         HashMap<String, PSPFEditorTempl> var55 = new HashMap<>();
+
+         for (PSPFEditorTempl var66 : var51) {
+            var55.put(var66.getPSPFEditorTemplId(), var66);
+         }
+
+         String var61 = StringHelper.format("%1$s%2$seditor", var2, File.separator);
+         var12 = new File(var61);
+         if (!var12.exists()) {
+            var12.mkdirs();
+         }
+
+         File var71 = new File(var61);
+         var73 = var71.listFiles();
+
+         for (File var94 : var73) {
+            if (var94.isDirectory()) {
+               String var97 = var94.getName();
+               PSEditorType var100 = new PSEditorType();
+               var100.setPSEditorTypeId(var97);
+               if (!var42.get(var100, true)) {
+                  throw new Exception(StringHelper.format("云平台不存在编辑器类型[%1$s]", var97));
+               }
+
+               for (File var115 : var94.listFiles()) {
+                  if (var115.isDirectory()) {
+                     String var120 = var115.getName();
+                     if (StringHelper.compare(var120, "FORMITEM", false) != 0 && StringHelper.compare(var120, "GRIDCOLUMN", false) != 0) {
+                        throw new Exception(StringHelper.format("云平台不存在编辑器应用场合类型[%1$s]", var115.getName()));
+                     }
+
+                     HashMap<String, File> var124 = new HashMap<>();
+
+                     for (File var142 : var115.listFiles()) {
+                        if (var142.isFile()) {
+                           var124.put(var142.getName().toUpperCase(), var142);
                         }
-                        ++var24_62;
-                    }
-                    for (Map.Entry entry : hashMap2.entrySet()) {
-                        void var25_71;
-                        File file5 = (File)((HashMap)serializable).get(entry.getKey());
-                        String string2 = "";
-                        if (file5 != null) {
-                            String string3 = PSPFStyleService.readFile(file5.getAbsolutePath());
+                     }
+
+                     for (Entry<String, PSPFPubCode> var132 : var6.entrySet()) {
+                        String var141 = "";
+                        String var143 = "";
+                        String var144 = "";
+                        String var145 = "";
+                        File var147 = (File)var124.remove(var132.getKey());
+                        if (var147 != null) {
+                           var141 = readFile(var147.getAbsolutePath());
                         }
-                        PSPFViewTempl pSPFViewTempl = new PSPFViewTempl();
-                        pSPFViewTempl.setPSPFId(pSPF.getPSPFId());
-                        pSPFViewTempl.setPSPFName(pSPF.getPSPFName());
-                        pSPFViewTempl.setPSPFPubCodeId(((PSPFPubCode)entry.getValue()).getPSPFPubCodeId());
-                        pSPFViewTempl.setPSPFPubCodeName(((PSPFPubCode)entry.getValue()).getPSPFPubCodeName());
-                        pSPFViewTempl.setPSPFStyleId(pSPFStyle.getPSPFStyleId());
-                        pSPFViewTempl.setPSPFStyleName(pSPFStyle.getPSPFStyleName());
-                        pSPFViewTempl.setPSViewTypeId(((PSViewTypeBase)object4).getPSViewTypeId());
-                        pSPFViewTempl.setPSViewTypeName(((PSViewTypeBase)object4).getPSViewTypeName());
-                        pSPFViewTempl.setTemplCode2((String)var25_71);
-                        pSPFViewTemplService.fillEntityKeyValue(pSPFViewTempl, false);
-                        if (pSPFViewTemplService.checkKey(pSPFViewTempl) == 0) {
-                            for (object2 = pSPFStyle.getTemplPSPFStyle(); object2 != null; object2 = ((PSPFStyleBase)object2).getTemplPSPFStyle()) {
-                                PSPFViewTempl pSPFViewTempl2 = new PSPFViewTempl();
-                                pSPFViewTempl2.setPSPFId(pSPF.getPSPFId());
-                                pSPFViewTempl2.setPSPFName(pSPF.getPSPFName());
-                                pSPFViewTempl2.setPSPFPubCodeId(((PSPFPubCode)entry.getValue()).getPSPFPubCodeId());
-                                pSPFViewTempl2.setPSPFPubCodeName(((PSPFPubCode)entry.getValue()).getPSPFPubCodeName());
-                                pSPFViewTempl2.setPSPFStyleId(((PSPFStyleBase)object2).getPSPFStyleId());
-                                pSPFViewTempl2.setPSPFStyleName(((PSPFStyleBase)object2).getPSPFStyleName());
-                                pSPFViewTempl2.setPSViewTypeId(((PSViewTypeBase)object4).getPSViewTypeId());
-                                pSPFViewTempl2.setPSViewTypeName(((PSViewTypeBase)object4).getPSViewTypeName());
-                                pSPFViewTemplService.fillEntityKeyValue(pSPFViewTempl2, false);
-                                if (!pSPFViewTemplService.get((IEntity)pSPFViewTempl2, true)) continue;
-                                pSPFViewTempl.setPubObj(pSPFViewTempl2.getPubObj());
-                                pSPFViewTempl.setLogicName(pSPFViewTempl2.getLogicName());
-                                break;
-                            }
-                            EntityBase.setIgnoreCheck((IEntity)pSPFViewTempl, (boolean)false);
-                            pSPFViewTemplService.create(pSPFViewTempl);
-                        } else {
-                            EntityBase.setIgnoreCheck((IEntity)pSPFViewTempl, (boolean)false);
-                            pSPFViewTemplService.update(pSPFViewTempl);
+
+                        var147 = (File)var124.remove(
+                           StringHelper.format(
+                                 "%1$s_CODE2%2$s", ((PSPFPubCode)var132.getValue()).getPSPFPubCodeName(), ((PSPFPubCode)var132.getValue()).getCodeEXT()
+                              )
+                              .toUpperCase()
+                        );
+                        if (var147 != null) {
+                           var143 = readFile(var147.getAbsolutePath());
                         }
-                        ((HashMap)object9).remove(pSPFViewTempl.getPSPFViewTemplId());
-                    }
-                }
-                ++var17_42;
-            }
-            for (Map.Entry entry : ((HashMap)object9).entrySet()) {
-                log.debug((Object)StringHelper.format((String)"\u79fb\u9664\u89c6\u56fe\u6a21\u677f[%1$s]", (Object)((PSPFViewTempl)entry.getValue()).getPSPFViewTemplName()));
-                pSPFViewTemplService.remove((IEntity)entry.getValue());
-            }
-            object12 = (PSCtrlTypeService)ServiceGlobal.getService(PSCtrlTypeService.class, (SessionFactory)this.getSessionFactory());
-            PSPFCtrlTemplService pSPFCtrlTemplService = (PSPFCtrlTemplService)ServiceGlobal.getService(PSPFCtrlTemplService.class, (SessionFactory)this.getSessionFactory());
-            arrayList4 = (PSPFCTDetailService)ServiceGlobal.getService(PSPFCTDetailService.class, (SessionFactory)this.getSessionFactory());
-            object9 = pSPFStyle.getPSPFCtrlTempls();
-            object82 = new HashMap<String, Object>();
-            Iterator iterator = ((ArrayList)object9).iterator();
-            while (iterator.hasNext()) {
-                object7 = (PSPFCtrlTempl)iterator.next();
-                ((HashMap)object82).put(((PSPFCtrlTemplBase)object7).getPSPFCtrlTemplId(), object7);
-            }
-            String string4 = StringHelper.format((String)"%1$s%2$sctrl", (Object)string, (Object)File.separator);
-            object7 = new File(string4);
-            if (!((File)object7).exists()) {
-                ((File)object7).mkdirs();
-            }
-            object10 = new File(string4);
-            object11 = ((File)object10).listFiles();
-            for (Object object52 : object11) {
-                void var25_73;
-                if (!((File)object52).isDirectory()) continue;
-                object4 = ((File)object52).getName();
-                serializable = new PSCtrlType();
-                ((PSCtrlTypeBase)serializable).setPSCtrlTypeId((String)object4);
-                if (!object12.get((IEntity)serializable, true)) {
-                    throw new Exception(StringHelper.format((String)"\u4e91\u5e73\u53f0\u4e0d\u5b58\u5728\u90e8\u4ef6\u7c7b\u578b[%1$s]", (Object)object4));
-                }
-                object3 = new HashMap();
-                File[] fileArray = ((File)object52).listFiles();
-                int n4 = fileArray.length;
-                boolean bl4 = false;
-                while (var25_73 < n4) {
-                    File file6 = fileArray[var25_73];
-                    if (file6.isFile()) {
-                        ((HashMap)object3).put(file6.getName().toUpperCase(), file6);
-                    }
-                    ++var25_73;
-                }
-                for (Map.Entry entry : hashMap2.entrySet()) {
-                    void var28_99;
-                    void var26_87;
-                    void var25_76;
-                    String string5 = "";
-                    String string6 = "";
-                    object2 = "";
-                    String string7 = "";
-                    File file7 = (File)((HashMap)object3).remove(entry.getKey());
-                    if (file7 != null) {
-                        String string8 = PSPFStyleService.readFile(file7.getAbsolutePath());
-                    }
-                    if ((file7 = (File)((HashMap)object3).remove(StringHelper.format((String)"%1$s_CODE2%2$s", (Object)((PSPFPubCode)entry.getValue()).getPSPFPubCodeName(), (Object)((PSPFPubCode)entry.getValue()).getCodeEXT()).toUpperCase())) != null) {
-                        String string9 = PSPFStyleService.readFile(file7.getAbsolutePath());
-                    }
-                    if ((file7 = (File)((HashMap)object3).remove(StringHelper.format((String)"%1$s_CODE3%2$s", (Object)((PSPFPubCode)entry.getValue()).getPSPFPubCodeName(), (Object)((PSPFPubCode)entry.getValue()).getCodeEXT()).toUpperCase())) != null) {
-                        object2 = PSPFStyleService.readFile(file7.getAbsolutePath());
-                    }
-                    if ((file7 = (File)((HashMap)object3).remove(StringHelper.format((String)"%1$s_CODE4%2$s", (Object)((PSPFPubCode)entry.getValue()).getPSPFPubCodeName(), (Object)((PSPFPubCode)entry.getValue()).getCodeEXT()).toUpperCase())) != null) {
-                        String string10 = PSPFStyleService.readFile(file7.getAbsolutePath());
-                    }
-                    if (StringHelper.isNullOrEmpty((String)var25_76) && StringHelper.isNullOrEmpty((String)var26_87) && StringHelper.isNullOrEmpty((String)object2) && StringHelper.isNullOrEmpty((String)var28_99)) continue;
-                    PSPFCtrlTempl pSPFCtrlTempl = new PSPFCtrlTempl();
-                    pSPFCtrlTempl.setPSPFId(pSPF.getPSPFId());
-                    pSPFCtrlTempl.setPSPFName(pSPF.getPSPFName());
-                    pSPFCtrlTempl.setPSPFPubCodeId(((PSPFPubCode)entry.getValue()).getPSPFPubCodeId());
-                    pSPFCtrlTempl.setPSPFPubCodeName(((PSPFPubCode)entry.getValue()).getPSPFPubCodeName());
-                    pSPFCtrlTempl.setPSPFStyleId(pSPFStyle.getPSPFStyleId());
-                    pSPFCtrlTempl.setPSPFStyleName(pSPFStyle.getPSPFStyleName());
-                    pSPFCtrlTempl.setPSCtrlTypeId(((PSCtrlTypeBase)serializable).getPSCtrlTypeId());
-                    pSPFCtrlTempl.setPSCtrlTypeName(((PSCtrlTypeBase)serializable).getPSCtrlTypeName());
-                    pSPFCtrlTempl.setTemplCode((String)var25_76);
-                    pSPFCtrlTempl.setTemplCode2((String)var26_87);
-                    pSPFCtrlTempl.setTemplCode3((String)object2);
-                    pSPFCtrlTempl.setTemplCode4((String)var28_99);
-                    pSPFCtrlTemplService.fillEntityKeyValue(pSPFCtrlTempl, false);
-                    boolean bl5 = false;
-                    arrayList2 = null;
-                    if (pSPFCtrlTemplService.checkKey(pSPFCtrlTempl) == 0) {
-                        for (object = pSPFStyle.getTemplPSPFStyle(); object != null; object = ((PSPFStyleBase)object).getTemplPSPFStyle()) {
-                            entityBase = new PSPFCtrlTempl();
-                            entityBase.setPSPFId(pSPF.getPSPFId());
-                            entityBase.setPSPFName(pSPF.getPSPFName());
-                            entityBase.setPSPFPubCodeId(((PSPFPubCode)entry.getValue()).getPSPFPubCodeId());
-                            entityBase.setPSPFPubCodeName(((PSPFPubCode)entry.getValue()).getPSPFPubCodeName());
-                            entityBase.setPSPFStyleId(((PSPFStyleBase)object).getPSPFStyleId());
-                            entityBase.setPSPFStyleName(((PSPFStyleBase)object).getPSPFStyleName());
-                            entityBase.setPSCtrlTypeId(((PSCtrlTypeBase)serializable).getPSCtrlTypeId());
-                            entityBase.setPSCtrlTypeName(((PSCtrlTypeBase)serializable).getPSCtrlTypeName());
-                            pSPFCtrlTemplService.fillEntityKeyValue(entityBase, false);
-                            if (!pSPFCtrlTemplService.get((IEntity)entityBase, true)) continue;
-                            pSPFCtrlTempl.setPubObj(entityBase.getPubObj());
-                            pSPFCtrlTempl.setLogicName(entityBase.getLogicName());
-                            arrayList2 = pSPFCtrlTempl.getPSPFCTDetails();
-                            break;
+
+                        var147 = (File)var124.remove(
+                           StringHelper.format(
+                                 "%1$s_CODE3%2$s", ((PSPFPubCode)var132.getValue()).getPSPFPubCodeName(), ((PSPFPubCode)var132.getValue()).getCodeEXT()
+                              )
+                              .toUpperCase()
+                        );
+                        if (var147 != null) {
+                           var144 = readFile(var147.getAbsolutePath());
                         }
-                        EntityBase.setIgnoreCheck((IEntity)pSPFCtrlTempl, (boolean)false);
-                        pSPFCtrlTemplService.create(pSPFCtrlTempl);
-                        bl5 = true;
-                    } else {
-                        EntityBase.setIgnoreCheck((IEntity)pSPFCtrlTempl, (boolean)false);
-                        pSPFCtrlTemplService.update(pSPFCtrlTempl);
-                        arrayList2 = pSPFCtrlTempl.getPSPFCTDetails();
-                    }
-                    ((HashMap)object82).remove(pSPFCtrlTempl.getPSPFCtrlTemplId());
-                    if (arrayList2 == null) continue;
-                    object = arrayList2.iterator();
-                    while (object.hasNext()) {
-                        void var28_103;
-                        void var26_91;
-                        void var25_80;
-                        entityBase = (PSPFCTDetail)object.next();
-                        if (bl5) {
-                            entityBase.setPSPFCtrlTemplId(pSPFCtrlTempl.getPSPFCtrlTemplId());
-                            entityBase.setPSPFCtrlTemplName(pSPFCtrlTempl.getPSPFCtrlTemplName());
-                            entityBase.resetPSPFCTDetailId();
+
+                        var147 = (File)var124.remove(
+                           StringHelper.format(
+                                 "%1$s_CODE4%2$s", ((PSPFPubCode)var132.getValue()).getPSPFPubCodeName(), ((PSPFPubCode)var132.getValue()).getCodeEXT()
+                              )
+                              .toUpperCase()
+                        );
+                        if (var147 != null) {
+                           var145 = readFile(var147.getAbsolutePath());
                         }
-                        String string11 = "";
-                        String string12 = "";
-                        object2 = "";
-                        String string13 = "";
-                        file7 = (File)((HashMap)object3).remove(StringHelper.format((String)"%1$s_%3$s%2$s", (Object)((PSPFPubCode)entry.getValue()).getPSPFPubCodeName(), (Object)((PSPFPubCode)entry.getValue()).getCodeEXT(), (Object)entityBase.getPSPFCTDetailName()).toUpperCase());
-                        if (file7 != null) {
-                            String string14 = PSPFStyleService.readFile(file7.getAbsolutePath());
-                        }
-                        if ((file7 = (File)((HashMap)object3).remove(StringHelper.format((String)"%1$s_%3$s_CODE2%2$s", (Object)((PSPFPubCode)entry.getValue()).getPSPFPubCodeName(), (Object)((PSPFPubCode)entry.getValue()).getCodeEXT(), (Object)entityBase.getPSPFCTDetailName()).toUpperCase())) != null) {
-                            String string15 = PSPFStyleService.readFile(file7.getAbsolutePath());
-                        }
-                        if ((file7 = (File)((HashMap)object3).remove(StringHelper.format((String)"%1$s_%3$s_CODE3%2$s", (Object)((PSPFPubCode)entry.getValue()).getPSPFPubCodeName(), (Object)((PSPFPubCode)entry.getValue()).getCodeEXT(), (Object)entityBase.getPSPFCTDetailName()).toUpperCase())) != null) {
-                            object2 = PSPFStyleService.readFile(file7.getAbsolutePath());
-                        }
-                        if ((file7 = (File)((HashMap)object3).remove(StringHelper.format((String)"%1$s_%3$s_CODE4%2$s", (Object)((PSPFPubCode)entry.getValue()).getPSPFPubCodeName(), (Object)((PSPFPubCode)entry.getValue()).getCodeEXT(), (Object)entityBase.getPSPFCTDetailName()).toUpperCase())) != null) {
-                            String string16 = PSPFStyleService.readFile(file7.getAbsolutePath());
-                        }
-                        entityBase.setTemplCode((String)var25_80);
-                        entityBase.setTemplCode2((String)var26_91);
-                        entityBase.setTemplCode3((String)object2);
-                        entityBase.setTemplCode4((String)var28_103);
-                        if (bl5) {
-                            EntityBase.setIgnoreCheck((IEntity)entityBase, (boolean)false);
-                            ((PSCoreSysServiceBaseBase)((Object)arrayList4)).create((EntityBase)entityBase);
-                            continue;
-                        }
-                        EntityBase.setIgnoreCheck((IEntity)entityBase, (boolean)false);
-                        ((PSCoreSysServiceBaseBase)((Object)arrayList4)).update((EntityBase)entityBase);
-                    }
-                }
-            }
-            for (Map.Entry entry : ((HashMap)object82).entrySet()) {
-                log.debug((Object)StringHelper.format((String)"\u79fb\u9664\u90e8\u4ef6\u6a21\u677f[%1$s]", (Object)((PSPFCtrlTempl)entry.getValue()).getPSPFCtrlTemplName()));
-                pSPFCtrlTemplService.remove((IEntity)entry.getValue());
-            }
-            object12 = (PSEditorTypeService)ServiceGlobal.getService(PSEditorTypeService.class, (SessionFactory)this.getSessionFactory());
-            PSPFEditorTemplService pSPFEditorTemplService = (PSPFEditorTemplService)ServiceGlobal.getService(PSPFEditorTemplService.class, (SessionFactory)this.getSessionFactory());
-            arrayList4 = pSPFStyle.getPSPFEditorTempls();
-            object9 = new HashMap();
-            for (PSPFEditorTempl pSPFEditorTempl : arrayList4) {
-                ((HashMap)object9).put(pSPFEditorTempl.getPSPFEditorTemplId(), pSPFEditorTempl);
-            }
-            object82 = StringHelper.format((String)"%1$s%2$seditor", (Object)string, (Object)File.separator);
-            File file8 = new File((String)object82);
-            if (!file8.exists()) {
-                file8.mkdirs();
-            }
-            object7 = new File((String)object82);
-            object11 = object10 = ((File)object7).listFiles();
-            int n5 = ((File[])object11).length;
-            boolean bl6 = false;
-            while (var17_46 < n5) {
-                File file9 = object11[var17_46];
-                if (file9.isDirectory()) {
-                    object52 = file9.getName();
-                    object4 = new PSEditorType();
-                    ((PSEditorTypeBase)object4).setPSEditorTypeId((String)object52);
-                    if (!object12.get((IEntity)object4, true)) {
-                        throw new Exception(StringHelper.format((String)"\u4e91\u5e73\u53f0\u4e0d\u5b58\u5728\u7f16\u8f91\u5668\u7c7b\u578b[%1$s]", (Object)object52));
-                    }
-                    for (Serializable serializable2 : file9.listFiles()) {
-                        if (!((File)serializable2).isDirectory()) continue;
-                        String string17 = ((File)serializable2).getName();
-                        if (StringHelper.compare((String)string17, (String)"FORMITEM", (boolean)false) != 0 && StringHelper.compare((String)string17, (String)"GRIDCOLUMN", (boolean)false) != 0) {
-                            throw new Exception(StringHelper.format((String)"\u4e91\u5e73\u53f0\u4e0d\u5b58\u5728\u7f16\u8f91\u5668\u5e94\u7528\u573a\u5408\u7c7b\u578b[%1$s]", (Object)((File)serializable2).getName()));
-                        }
-                        HashMap<String, File> hashMap3 = new HashMap<String, File>();
-                        for (File file10 : ((File)serializable2).listFiles()) {
-                            if (!file10.isFile()) continue;
-                            hashMap3.put(file10.getName().toUpperCase(), file10);
-                        }
-                        for (Map.Entry entry : hashMap2.entrySet()) {
-                            void var30_115;
-                            String string18 = "";
-                            String string19 = "";
-                            String string20 = "";
-                            arrayList2 = "";
-                            object = (File)hashMap3.remove(entry.getKey());
-                            if (object != null) {
-                                string18 = PSPFStyleService.readFile(((File)object).getAbsolutePath());
-                            }
-                            if ((object = (File)hashMap3.remove(StringHelper.format((String)"%1$s_CODE2%2$s", (Object)((PSPFPubCode)entry.getValue()).getPSPFPubCodeName(), (Object)((PSPFPubCode)entry.getValue()).getCodeEXT()).toUpperCase())) != null) {
-                                String string21 = PSPFStyleService.readFile(((File)object).getAbsolutePath());
-                            }
-                            if ((object = (File)hashMap3.remove(StringHelper.format((String)"%1$s_CODE3%2$s", (Object)((PSPFPubCode)entry.getValue()).getPSPFPubCodeName(), (Object)((PSPFPubCode)entry.getValue()).getCodeEXT()).toUpperCase())) != null) {
-                                string20 = PSPFStyleService.readFile(((File)object).getAbsolutePath());
-                            }
-                            if ((object = (File)hashMap3.remove(StringHelper.format((String)"%1$s_CODE4%2$s", (Object)((PSPFPubCode)entry.getValue()).getPSPFPubCodeName(), (Object)((PSPFPubCode)entry.getValue()).getCodeEXT()).toUpperCase())) != null) {
-                                arrayList2 = PSPFStyleService.readFile(((File)object).getAbsolutePath());
-                            }
-                            if (StringHelper.isNullOrEmpty((String)string18) && StringHelper.isNullOrEmpty((String)var30_115) && StringHelper.isNullOrEmpty((String)string20) && StringHelper.isNullOrEmpty((String)((Object)arrayList2))) continue;
-                            entityBase = new PSPFEditorTempl();
-                            entityBase.setPSPFId(pSPF.getPSPFId());
-                            entityBase.setPSPFName(pSPF.getPSPFName());
-                            entityBase.setPSPFPubCodeId(((PSPFPubCode)entry.getValue()).getPSPFPubCodeId());
-                            entityBase.setPSPFPubCodeName(((PSPFPubCode)entry.getValue()).getPSPFPubCodeName());
-                            entityBase.setPSPFStyleId(pSPFStyle.getPSPFStyleId());
-                            entityBase.setPSPFStyleName(pSPFStyle.getPSPFStyleName());
-                            entityBase.setContainerType(string17);
-                            entityBase.setPSEditorTypeId(((PSEditorTypeBase)object4).getPSEditorTypeId());
-                            entityBase.setPSEditorTypeName(((PSEditorTypeBase)object4).getPSEditorTypeName());
-                            entityBase.set("PSDEVCENTERID", pSPFStyle.getPSDevCenterId());
-                            entityBase.set("PSDEVCENTERNAME", pSPFStyle.getPSDevCenterName());
-                            entityBase.setTemplCode(string18);
-                            entityBase.setTemplCode2((String)var30_115);
-                            entityBase.setTemplCode3(string20);
-                            entityBase.setTemplCode4((String)((Object)arrayList2));
-                            pSPFEditorTemplService.fillEntityKeyValue(entityBase, false);
-                            boolean bl7 = false;
-                            if (pSPFEditorTemplService.checkKey(entityBase) == 0) {
-                                for (PSPFStyle pSPFStyle2 = pSPFStyle.getTemplPSPFStyle(); pSPFStyle2 != null; pSPFStyle2 = pSPFStyle2.getTemplPSPFStyle()) {
-                                    PSPFEditorTempl pSPFEditorTempl = new PSPFEditorTempl();
-                                    pSPFEditorTempl.setPSPFId(pSPF.getPSPFId());
-                                    pSPFEditorTempl.setPSPFName(pSPF.getPSPFName());
-                                    pSPFEditorTempl.setPSPFPubCodeId(((PSPFPubCode)entry.getValue()).getPSPFPubCodeId());
-                                    pSPFEditorTempl.setPSPFPubCodeName(((PSPFPubCode)entry.getValue()).getPSPFPubCodeName());
-                                    pSPFEditorTempl.setPSPFStyleId(pSPFStyle2.getPSPFStyleId());
-                                    pSPFEditorTempl.setPSPFStyleName(pSPFStyle2.getPSPFStyleName());
-                                    pSPFEditorTempl.setPSEditorTypeId(((PSEditorTypeBase)object4).getPSEditorTypeId());
-                                    pSPFEditorTempl.setPSEditorTypeName(((PSEditorTypeBase)object4).getPSEditorTypeName());
-                                    pSPFEditorTempl.setContainerType(string17);
-                                    pSPFEditorTemplService.fillEntityKeyValue(pSPFEditorTempl, false);
-                                    if (!pSPFEditorTemplService.get((IEntity)pSPFEditorTempl, true)) continue;
-                                    entityBase.setPubObj(pSPFEditorTempl.getPubObj());
-                                    entityBase.setLogicName(pSPFEditorTempl.getLogicName());
+
+                        if (!StringHelper.isNullOrEmpty(var141)
+                           || !StringHelper.isNullOrEmpty(var143)
+                           || !StringHelper.isNullOrEmpty(var144)
+                           || !StringHelper.isNullOrEmpty(var145)) {
+                           PSPFEditorTempl var152 = new PSPFEditorTempl();
+                           var152.setPSPFId(var3.getPSPFId());
+                           var152.setPSPFName(var3.getPSPFName());
+                           var152.setPSPFPubCodeId(((PSPFPubCode)var132.getValue()).getPSPFPubCodeId());
+                           var152.setPSPFPubCodeName(((PSPFPubCode)var132.getValue()).getPSPFPubCodeName());
+                           var152.setPSPFStyleId(var1.getPSPFStyleId());
+                           var152.setPSPFStyleName(var1.getPSPFStyleName());
+                           var152.setContainerType(var120);
+                           var152.setPSEditorTypeId(var100.getPSEditorTypeId());
+                           var152.setPSEditorTypeName(var100.getPSEditorTypeName());
+                           var152.set("PSDEVCENTERID", var1.getPSDevCenterId());
+                           var152.set("PSDEVCENTERNAME", var1.getPSDevCenterName());
+                           var152.setTemplCode(var141);
+                           var152.setTemplCode2(var143);
+                           var152.setTemplCode3(var144);
+                           var152.setTemplCode4(var145);
+                           var48.fillEntityKeyValue(var152, false);
+                           boolean var35 = false;
+                           if (var48.checkKey(var152) != 0) {
+                              EntityBase.setIgnoreCheck(var152, false);
+                              var48.update(var152);
+                           } else {
+                              for (PSPFStyle var36 = var1.getTemplPSPFStyle(); var36 != null; var36 = var36.getTemplPSPFStyle()) {
+                                 PSPFEditorTempl var37 = new PSPFEditorTempl();
+                                 var37.setPSPFId(var3.getPSPFId());
+                                 var37.setPSPFName(var3.getPSPFName());
+                                 var37.setPSPFPubCodeId(((PSPFPubCode)var132.getValue()).getPSPFPubCodeId());
+                                 var37.setPSPFPubCodeName(((PSPFPubCode)var132.getValue()).getPSPFPubCodeName());
+                                 var37.setPSPFStyleId(var36.getPSPFStyleId());
+                                 var37.setPSPFStyleName(var36.getPSPFStyleName());
+                                 var37.setPSEditorTypeId(var100.getPSEditorTypeId());
+                                 var37.setPSEditorTypeName(var100.getPSEditorTypeName());
+                                 var37.setContainerType(var120);
+                                 var48.fillEntityKeyValue(var37, false);
+                                 if (var48.get(var37, true)) {
+                                    var152.setPubObj(var37.getPubObj());
+                                    var152.setLogicName(var37.getLogicName());
                                     break;
-                                }
-                                EntityBase.setIgnoreCheck((IEntity)entityBase, (boolean)false);
-                                pSPFEditorTemplService.create(entityBase);
-                                bl7 = true;
-                            } else {
-                                EntityBase.setIgnoreCheck((IEntity)entityBase, (boolean)false);
-                                pSPFEditorTemplService.update(entityBase);
-                            }
-                            ((HashMap)object9).remove(entityBase.getPSPFEditorTemplId());
-                        }
-                    }
-                }
-                ++var17_46;
-            }
-            for (Map.Entry entry : ((HashMap)object9).entrySet()) {
-                log.debug((Object)StringHelper.format((String)"\u79fb\u9664\u7f16\u8f91\u5668\u6a21\u677f[%1$s]", (Object)((PSPFEditorTempl)entry.getValue()).getPSPFEditorTemplName()));
-                pSPFEditorTemplService.remove((IEntity)entry.getValue());
-            }
-            object12 = pSPFStyle.getPSPFStyleId();
-            pSPFStyle.reset();
-            pSPFStyle.setPSPFStyleId((String)object12);
-            pSPFStyle.setLastImpTime(new Timestamp(System.currentTimeMillis()));
-            pSPFStyle.setTemplState(30);
-            pSPFStyle.setTemplInfo(null);
-            this.mergeCode(pSPFStyle);
-            this.update(pSPFStyle);
-        }
-        catch (Exception exception) {
-            String string22 = pSPFStyle.getPSPFStyleId();
-            pSPFStyle.reset();
-            pSPFStyle.setPSPFStyleId(string22);
-            pSPFStyle.setTemplInfo(exception.getMessage());
-            pSPFStyle.setTemplState(40);
-            this.update(pSPFStyle);
-        }
-    }
+                                 }
+                              }
 
-    /*
-     * WARNING - void declaration
-     */
-    @Override
-    protected void onExpStyle(PSPFStyle pSPFStyle) throws Exception {
-        Object object2;
-        String string = DataObject.getStringValue((Object)pSPFStyle.get(PARAM_PRJFOLDER));
-        if (StringHelper.isNullOrEmpty((String)string)) {
-            throw new Exception("\u5f53\u524d\u6ca1\u6709\u6307\u5b9a\u9879\u76ee\u76ee\u5f55");
-        }
-        this.get((IEntity)pSPFStyle);
-        PSPF pSPF = pSPFStyle.getPSPF();
-        ArrayList<PSPFPubCode> arrayList = pSPF.getPSPFPubCodes();
-        HashMap<String, PSPFPubCode> hashMap = new HashMap<String, PSPFPubCode>();
-        for (PSPFPubCode object22 : arrayList) {
-            if (!DataObject.getBoolValue((Integer)object22.getValidFlag(), (boolean)true)) continue;
-            hashMap.put(object22.getPSPFPubCodeId(), object22);
-        }
-        SelectCond selectCond = new SelectCond();
-        selectCond.set("PSPFID", (Object)pSPF.getPSPFId());
-        PSPFCodeFolderService pSPFCodeFolderService = (PSPFCodeFolderService)ServiceGlobal.getService(PSPFCodeFolderService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList arrayList2 = pSPFCodeFolderService.select((ISelectCond)selectCond);
-        HashMap<String, PSPFCodeFolder> hashMap2 = new HashMap<String, PSPFCodeFolder>();
-        for (Object object2 : arrayList2) {
-            hashMap2.put(((PSPFCodeFolderBase)object2).getPSPFCodeFolderId(), (PSPFCodeFolder)object2);
-        }
-        PSEditorTypeService pSEditorTypeService = (PSEditorTypeService)ServiceGlobal.getService(PSEditorTypeService.class, (SessionFactory)this.getSessionFactory());
-        object2 = (PSCtrlTypeService)ServiceGlobal.getService(PSCtrlTypeService.class, (SessionFactory)this.getSessionFactory());
-        PSViewTypeService pSViewTypeService = (PSViewTypeService)ServiceGlobal.getService(PSViewTypeService.class, (SessionFactory)this.getSessionFactory());
-        selectCond.reset();
-        boolean bl = true;
-        if (bl) {
-            void var25_133;
-            Object object3;
-            void var23_86;
-            Object object4;
-            void var23_83;
-            String string2;
-            Object object5;
-            void var23_78;
-            HashMap<Object, String> arrayList3 = new HashMap<Object, String>();
-            Object string15 = pSPFStyle.getPSPFStyleCodes();
-            Object file = StringHelper.format((String)"%1$s%2$s@MACRO", (Object)string, (Object)File.separator);
-            Object file2 = new File((String)file);
-            if (!((File)file2).exists()) {
-                ((File)file2).mkdirs();
-            }
-            Object fileArray = new File((String)file);
-            Object hashMap4 = ((File)fileArray).listFiles();
-            Serializable serializable = new HashMap<String, File>();
-            File[] fileArray2 = hashMap4;
-            int n = fileArray2.length;
-            boolean bl2 = false;
-            while (var23_78 < n) {
-                object5 = fileArray2[var23_78];
-                if (((File)object5).isFile()) {
-                    ((HashMap)serializable).put(((File)object5).getName().toUpperCase(), object5);
-                }
-                ++var23_78;
-            }
-            HashMap<Object, String> pSPFStyleCode = new HashMap<Object, String>();
-            Iterator<PSPFStyleCode> string17 = ((ArrayList)string15).iterator();
-            while (string17.hasNext()) {
-                PSPFStyleCode pSPFStyleCode2 = string17.next();
-                object5 = StringHelper.format((String)"<#SRFINC(%1$s)>", (Object)pSPFStyleCode2.getPSPFStyleCodeName().toUpperCase());
-                String string3 = StringHelper.format((String)"<#ibizinclude>../../@MACRO/%1$s.ftl</#ibizinclude>", (Object)pSPFStyleCode2.getPSPFStyleCodeName().toUpperCase());
-                string2 = StringHelper.format((String)"<#ibizinclude>%1$s.ftl</#ibizinclude>", (Object)pSPFStyleCode2.getPSPFStyleCodeName().toUpperCase());
-                arrayList3.put(object5, string3);
-                pSPFStyleCode.put(object5, string2);
-            }
-            Iterator<PSPFStyleCode> iterator = ((ArrayList)string15).iterator();
-            while (iterator.hasNext()) {
-                PSPFStyleCode pSPFStyleCode3 = iterator.next();
-                object5 = StringHelper.format((String)"%1$s.ftl", (Object)pSPFStyleCode3.getPSPFStyleCodeName().toUpperCase());
-                String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)file, (Object)File.separator, (Object)object5);
-                string2 = pSPFStyleCode3.getStyleCode();
-                for (Map.Entry entry : pSPFStyleCode.entrySet()) {
-                    string2 = string2.replace((CharSequence)entry.getKey(), (CharSequence)entry.getValue());
-                }
-                PSPFStyleService.writeFile(string4, string2);
-                ((HashMap)serializable).remove(((String)object5).toUpperCase());
-            }
-            for (Map.Entry entry : ((HashMap)serializable).entrySet()) {
-                log.debug((Object)StringHelper.format((String)"\u79fb\u9664\u6587\u4ef6[%1$s]", (Object)((File)entry.getValue()).getAbsolutePath()));
-            }
-            string15 = pSPFStyle.getPSPFViewTempls();
-            file = StringHelper.format((String)"%1$s%2$s@VIEW", (Object)string, (Object)File.separator);
-            file2 = new File((String)file);
-            if (!((File)file2).exists()) {
-                ((File)file2).mkdirs();
-            }
-            fileArray = new File((String)file);
-            hashMap4 = ((File)fileArray).listFiles();
-            serializable = new HashMap();
-            File[] entry = hashMap4;
-            int n2 = entry.length;
-            boolean bl3 = false;
-            while (var23_83 < n2) {
-                object5 = entry[var23_83];
-                if (((File)object5).isDirectory()) {
-                    for (File file3 : ((File)object5).listFiles()) {
-                        ((HashMap)serializable).put(StringHelper.format((String)"%1$s%2$s%3$s", (Object)((File)object5).getName(), (Object)File.separator, (Object)file3.getName().toUpperCase()), file3);
-                    }
-                }
-                ++var23_83;
-            }
-            Iterator<EntityBase> iterator2 = ((ArrayList)string15).iterator();
-            while (iterator2.hasNext()) {
-                void var28_199;
-                void var28_196;
-                Object object6;
-                PSPFViewTempl string21 = (PSPFViewTempl)iterator2.next();
-                String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)file, (Object)File.separator, (Object)string21.getPSViewTypeName());
-                file2 = new File(string5);
-                if (!((File)file2).exists()) {
-                    ((File)file2).mkdirs();
-                }
-                object5 = new StringBuilderEx();
-                if (string21.getPSViewTypeId().indexOf("APP") == 0) {
-                    object5.append("VIEWTYPE=%1$s", (Object)string21.getPSViewTypeId());
-                } else {
-                    object5.append("VIEWTYPE=APP%1$s", (Object)string21.getPSViewTypeId());
-                }
-                String string6 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string5, (Object)File.separator, (Object)"template.properties");
-                PSPFStyleService.writeFile(string6, object5.toString());
-                object5 = (PSPFPubCode)hashMap.get(string21.getPSPFPubCodeId());
-                if (object5 == null) continue;
-                String string7 = ((PSPFPubCodeBase)object5).getCodeEXT();
-                if (!StringHelper.isNullOrEmpty((String)string7)) {
-                    object6 = string7.split("[.]");
-                    String string8 = "." + object6[((String[])object6).length - 1];
-                }
-                String string9 = "";
-                object6 = StringHelper.format((String)"%1$s%2$s.ftl", (Object)((PSPFPubCodeBase)object5).getPSPFPubCodeName(), (Object)string9);
-                String string10 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string5, (Object)File.separator, (Object)object6);
-                String string11 = string21.getTemplCode2();
-                if (StringHelper.isNullOrEmpty((String)string11)) {
-                    String string12 = "";
-                }
-                for (Map.Entry entry2 : arrayList3.entrySet()) {
-                    String string13 = var28_196.replace((CharSequence)entry2.getKey(), (CharSequence)entry2.getValue());
-                }
-                if (!StringHelper.isNullOrEmpty((String)string21.getPubObj())) {
-                    object4 = new StringBuilderEx();
-                    String string18 = string21.getPubObj();
-                    string18 = string18.replace("SA.SRFDA.PS.Core.Pub.", "");
-                    string18 = string18.replace("PublisherImpl", "");
-                    object4.append("<#ibiztemplate>\r\n");
-                    object4.append("PUBOBJ=%1$s\r\n", (Object)string18);
-                    object4.append("</#ibiztemplate>\r\n");
-                    object4.append((String)var28_196);
-                    String string19 = object4.toString();
-                }
-                PSPFStyleService.writeFile(string10, (String)var28_199);
-                ((HashMap)serializable).remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string5, (Object)File.separator, (Object)((String)object6).toUpperCase()));
-            }
-            for (Map.Entry entry3 : ((HashMap)serializable).entrySet()) {
-                log.debug((Object)StringHelper.format((String)"\u79fb\u9664\u6587\u4ef6[%1$s]", (Object)((File)entry3.getValue()).getAbsolutePath()));
-            }
-            string15 = pSPFStyle.getPSPFCtrlTempls();
-            file = StringHelper.format((String)"%1$s%2$s@CONTROL", (Object)string, (Object)File.separator);
-            file2 = new File((String)file);
-            if (!((File)file2).exists()) {
-                ((File)file2).mkdirs();
-            }
-            fileArray = new File((String)file);
-            hashMap4 = ((File)fileArray).listFiles();
-            serializable = new HashMap();
-            entry = hashMap4;
-            int n3 = entry.length;
-            boolean bl4 = false;
-            while (var23_86 < n3) {
-                object5 = entry[var23_86];
-                if (((File)object5).isDirectory()) {
-                    for (File file4 : ((File)object5).listFiles()) {
-                        ((HashMap)serializable).put(StringHelper.format((String)"%1$s%2$s%3$s", (Object)((File)object5).getName(), (Object)File.separator, (Object)file4.getName().toUpperCase()), file4);
-                    }
-                }
-                ++var23_86;
-            }
-            Iterator<EntityBase> iterator3 = ((ArrayList)string15).iterator();
-            while (iterator3.hasNext()) {
-                void var28_209;
-                void var28_206;
-                Object object7;
-                PSPFCtrlTempl pSPFCtrlTempl = (PSPFCtrlTempl)iterator3.next();
-                String string20 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)file, (Object)File.separator, (Object)pSPFCtrlTempl.getPSCtrlTypeName());
-                file2 = new File(string20);
-                if (!((File)file2).exists()) {
-                    ((File)file2).mkdirs();
-                }
-                object5 = new StringBuilderEx();
-                object5.append("CTRLTYPE=%1$s", (Object)pSPFCtrlTempl.getPSCtrlTypeId());
-                String string21 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)"template.properties");
-                PSPFStyleService.writeFile(string21, object5.toString());
-                object5 = (PSPFPubCode)hashMap.get(pSPFCtrlTempl.getPSPFPubCodeId());
-                if (object5 == null) continue;
-                String string22 = ((PSPFPubCodeBase)object5).getCodeEXT();
-                if (!StringHelper.isNullOrEmpty((String)string22)) {
-                    object7 = string22.split("[.]");
-                    String string23 = "." + object7[((String[])object7).length - 1];
-                }
-                String string24 = "";
-                object7 = StringHelper.format((String)"%1$s%2$s.ftl", (Object)((PSPFPubCodeBase)object5).getPSPFPubCodeName(), (Object)string24);
-                String string25 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)object7);
-                String string26 = pSPFCtrlTempl.getTemplCode();
-                if (StringHelper.isNullOrEmpty((String)string26)) {
-                    String string27 = "";
-                }
-                for (Map.Entry entry4 : arrayList3.entrySet()) {
-                    String string28 = var28_206.replace((CharSequence)entry4.getKey(), (CharSequence)entry4.getValue());
-                }
-                if (!StringHelper.isNullOrEmpty((String)pSPFCtrlTempl.getPubObj())) {
-                    object4 = new StringBuilderEx();
-                    String string31 = pSPFCtrlTempl.getPubObj();
-                    string31 = string31.replace("SA.SRFDA.PS.Core.Pub.", "");
-                    string31 = string31.replace("PublisherImpl", "");
-                    object4.append("<#ibiztemplate>\r\n");
-                    object4.append("PUBOBJ=%1$s\r\n", (Object)string31);
-                    object4.append("</#ibiztemplate>\r\n");
-                    object4.append((String)var28_206);
-                    String string32 = object4.toString();
-                }
-                PSPFStyleService.writeFile(string25, (String)var28_209);
-                ((HashMap)serializable).remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)((String)object7).toUpperCase()));
-                if (!StringHelper.isNullOrEmpty((String)pSPFCtrlTempl.getTemplCode2())) {
-                    void var28_211;
-                    object7 = StringHelper.format((String)"%1$s%2$s#CODE2.ftl", (Object)((PSPFPubCodeBase)object5).getPSPFPubCodeName(), (Object)string24);
-                    String string33 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)object7);
-                    String string34 = pSPFCtrlTempl.getTemplCode2();
-                    for (Map.Entry entry5 : arrayList3.entrySet()) {
-                        String string35 = var28_211.replace((CharSequence)entry5.getKey(), (CharSequence)entry5.getValue());
-                    }
-                    PSPFStyleService.writeFile(string33, (String)var28_211);
-                    ((HashMap)serializable).remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)((String)object7).toUpperCase()));
-                }
-                if (!StringHelper.isNullOrEmpty((String)pSPFCtrlTempl.getTemplCode3())) {
-                    void var28_215;
-                    object7 = StringHelper.format((String)"%1$s%2$s#CODE3.ftl", (Object)((PSPFPubCodeBase)object5).getPSPFPubCodeName(), (Object)string24);
-                    String string36 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)object7);
-                    String string37 = pSPFCtrlTempl.getTemplCode3();
-                    for (Map.Entry entry6 : arrayList3.entrySet()) {
-                        String string38 = var28_215.replace((CharSequence)entry6.getKey(), (CharSequence)entry6.getValue());
-                    }
-                    PSPFStyleService.writeFile(string36, (String)var28_215);
-                    ((HashMap)serializable).remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)((String)object7).toUpperCase()));
-                }
-                if (!StringHelper.isNullOrEmpty((String)pSPFCtrlTempl.getTemplCode4())) {
-                    void var28_219;
-                    object7 = StringHelper.format((String)"%1$s%2$s#CODE4.ftl", (Object)((PSPFPubCodeBase)object5).getPSPFPubCodeName(), (Object)string24);
-                    String string39 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)object7);
-                    String string40 = pSPFCtrlTempl.getTemplCode4();
-                    for (Map.Entry entry7 : arrayList3.entrySet()) {
-                        String string41 = var28_219.replace((CharSequence)entry7.getKey(), (CharSequence)entry7.getValue());
-                    }
-                    PSPFStyleService.writeFile(string39, (String)var28_219);
-                    ((HashMap)serializable).remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)((String)object7).toUpperCase()));
-                }
-                object7 = pSPFCtrlTempl.getPSPFCTDetails();
-                Iterator iterator4 = ((ArrayList)object7).iterator();
-                while (iterator4.hasNext()) {
-                    PSPFCTDetail pSPFCTDetail = (PSPFCTDetail)iterator4.next();
-                    if (!DataObject.getBoolValue((Integer)pSPFCTDetail.getValidFlag(), (boolean)true)) continue;
-                    object4 = StringHelper.format((String)"%1$s%2$s#%3$s.ftl", (Object)((PSPFPubCodeBase)object5).getPSPFPubCodeName(), (Object)string24, (Object)pSPFCTDetail.getPSPFCTDetailName());
-                    String string42 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)object4);
-                    object3 = pSPFCTDetail.getTemplCode();
-                    if (StringHelper.isNullOrEmpty((String)object3)) {
-                        object3 = "";
-                    }
-                    for (Map.Entry entry8 : arrayList3.entrySet()) {
-                        object3 = ((String)object3).replace((CharSequence)entry8.getKey(), (CharSequence)entry8.getValue());
-                    }
-                    if (!StringHelper.isNullOrEmpty((String)pSPFCTDetail.getPubObj())) {
-                        StringBuilderEx stringBuilderEx = new StringBuilderEx();
-                        String string45 = pSPFCTDetail.getPubObj();
-                        string45 = string45.replace("SA.SRFDA.PS.Core.Pub.", "");
-                        string45 = string45.replace("PublisherImpl", "");
-                        stringBuilderEx.append("<#ibiztemplate>\r\n");
-                        stringBuilderEx.append("PUBOBJ=%1$s\r\n", (Object)string45);
-                        stringBuilderEx.append("</#ibiztemplate>\r\n");
-                        stringBuilderEx.append((String)object3);
-                        object3 = stringBuilderEx.toString();
-                    }
-                    PSPFStyleService.writeFile(string42, (String)object3);
-                    ((HashMap)serializable).remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)((String)object4).toUpperCase()));
-                    if (!StringHelper.isNullOrEmpty((String)pSPFCTDetail.getTemplCode2())) {
-                        object4 = StringHelper.format((String)"%1$s%2$s#%3$s#CODE2.ftl", (Object)((PSPFPubCodeBase)object5).getPSPFPubCodeName(), (Object)string24, (Object)pSPFCTDetail.getPSPFCTDetailName());
-                        String string46 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)object4);
-                        object3 = pSPFCTDetail.getTemplCode2();
-                        if (StringHelper.isNullOrEmpty((String)object3)) {
-                            object3 = "";
-                        }
-                        for (Map.Entry entry9 : arrayList3.entrySet()) {
-                            object3 = ((String)object3).replace((CharSequence)entry9.getKey(), (CharSequence)entry9.getValue());
-                        }
-                        PSPFStyleService.writeFile(string46, (String)object3);
-                        ((HashMap)serializable).remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)((String)object4).toUpperCase()));
-                    }
-                    if (!StringHelper.isNullOrEmpty((String)pSPFCTDetail.getTemplCode3())) {
-                        object4 = StringHelper.format((String)"%1$s%2$s#%3$s#CODE3.ftl", (Object)((PSPFPubCodeBase)object5).getPSPFPubCodeName(), (Object)string24, (Object)pSPFCTDetail.getPSPFCTDetailName());
-                        String string47 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)object4);
-                        object3 = pSPFCTDetail.getTemplCode3();
-                        if (StringHelper.isNullOrEmpty((String)object3)) {
-                            object3 = "";
-                        }
-                        for (Map.Entry entry10 : arrayList3.entrySet()) {
-                            object3 = ((String)object3).replace((CharSequence)entry10.getKey(), (CharSequence)entry10.getValue());
-                        }
-                        PSPFStyleService.writeFile(string47, (String)object3);
-                        ((HashMap)serializable).remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)((String)object4).toUpperCase()));
-                    }
-                    if (StringHelper.isNullOrEmpty((String)pSPFCTDetail.getTemplCode4())) continue;
-                    object4 = StringHelper.format((String)"%1$s%2$s#%3$s#CODE4.ftl", (Object)((PSPFPubCodeBase)object5).getPSPFPubCodeName(), (Object)string24, (Object)pSPFCTDetail.getPSPFCTDetailName());
-                    String string48 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)object4);
-                    object3 = pSPFCTDetail.getTemplCode4();
-                    if (StringHelper.isNullOrEmpty((String)object3)) {
-                        object3 = "";
-                    }
-                    for (Map.Entry entry11 : arrayList3.entrySet()) {
-                        object3 = ((String)object3).replace((CharSequence)entry11.getKey(), (CharSequence)entry11.getValue());
-                    }
-                    PSPFStyleService.writeFile(string48, (String)object3);
-                    ((HashMap)serializable).remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string20, (Object)File.separator, (Object)((String)object4).toUpperCase()));
-                }
-            }
-            for (Map.Entry entry12 : ((HashMap)serializable).entrySet()) {
-                log.debug((Object)StringHelper.format((String)"\u79fb\u9664\u6587\u4ef6[%1$s]", (Object)((File)entry12.getValue()).getAbsolutePath()));
-            }
-            selectCond.reset();
-            selectCond.set("PSPFID", (Object)pSPFStyle.getPSPFId());
-            selectCond.setIsNull("PSPFSTYLEID");
-            string15 = (PSPFEditorTemplService)ServiceGlobal.getService(PSPFEditorTemplService.class, (SessionFactory)this.getSessionFactory());
-            file = string15.select((ISelectCond)selectCond);
-            file2 = pSPFStyle.getPSPFEditorTempls();
-            ((ArrayList)file).addAll(file2);
-            fileArray = StringHelper.format((String)"%1$s%2$s@EDITOR", (Object)string, (Object)File.separator);
-            hashMap4 = new File((String)fileArray);
-            if (!((File)hashMap4).exists()) {
-                ((File)hashMap4).mkdirs();
-            }
-            serializable = new File((String)fileArray);
-            entry = ((File)serializable).listFiles();
-            HashMap<String, File> hashMap3 = new HashMap<String, File>();
-            File[] fileArray3 = entry;
-            int n4 = fileArray3.length;
-            boolean bl5 = false;
-            while (var25_133 < n4) {
-                File file5 = fileArray3[var25_133];
-                if (file5.isDirectory()) {
-                    for (File file6 : file5.listFiles()) {
-                        if (!file6.isDirectory()) continue;
-                        for (File file7 : file6.listFiles()) {
-                            if (!file7.isFile()) continue;
-                            hashMap3.put(StringHelper.format((String)"%1$s%2$s%3$s%2$s%4$s", (Object)file5.getName(), (Object)File.separator, (Object)file6.getName(), (Object)file7.getName().toUpperCase()), file7);
-                        }
-                    }
-                }
-                ++var25_133;
-            }
-            EditorContainersCodeListModel editorContainersCodeListModel = (EditorContainersCodeListModel)CodeListGlobal.getCodeList((String)"net.ibizsys.pscore.srv.codelist.EditorContainersCodeListModel");
-            Object object8 = ((ArrayList)file).iterator();
-            while (object8.hasNext()) {
-                void var33_299;
-                void var35_318;
-                void var33_287;
-                PSPFEditorTempl pSPFEditorTempl = (PSPFEditorTempl)object8.next();
-                String string49 = pSPFEditorTempl.getContainerType();
-                String string50 = editorContainersCodeListModel.getCodeListText(string49, false);
-                String string51 = StringHelper.format((String)"%1$s%2$s%3$s\uff08%4$s\uff09", (Object)fileArray, (Object)File.separator, (Object)pSPFEditorTempl.getPSEditorTypeName(), (Object)string50);
-                hashMap4 = new File(string51);
-                if (!((File)hashMap4).exists()) {
-                    ((File)hashMap4).mkdirs();
-                }
-                Object object9 = new StringBuilderEx();
-                object9.append("EDITORTYPE=%1$s", (Object)pSPFEditorTempl.getPSEditorTypeId());
-                String string52 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string51, (Object)File.separator, (Object)"template.properties");
-                PSPFStyleService.writeFile(string52, object9.toString());
-                object9 = (PSPFPubCode)hashMap.get(pSPFEditorTempl.getPSPFPubCodeId());
-                if (object9 == null) continue;
-                String string53 = ((PSPFPubCodeBase)object9).getCodeEXT();
-                if (!StringHelper.isNullOrEmpty((String)string53)) {
-                    object3 = string53.split("[.]");
-                    String string54 = "." + (String)((Object)object3[((File[])object3).length - 1]);
-                }
-                String string55 = "";
-                object3 = StringHelper.format((String)"%1$s%2$s.ftl", (Object)((PSPFPubCodeBase)object9).getPSPFPubCodeName(), (Object)string55);
-                String string56 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string51, (Object)File.separator, (Object)object3);
-                String string57 = pSPFEditorTempl.getTemplCode();
-                if (StringHelper.isNullOrEmpty((String)string57)) {
-                    String string58 = "";
-                }
-                for (Map.Entry entry13 : arrayList3.entrySet()) {
-                    String string59 = var33_287.replace((CharSequence)entry13.getKey(), (CharSequence)entry13.getValue());
-                }
-                StringBuilderEx stringBuilderEx = new StringBuilderEx();
-                String string60 = pSPFEditorTempl.getPubObj();
-                if (!StringHelper.isNullOrEmpty((String)string60)) {
-                    String string62 = string60.replace("SA.SRFDA.PS.Core.Pub.", "");
-                    string62 = string62.replace("PublisherImpl", "");
-                }
-                stringBuilderEx.append("<#ibiztemplate>\r\n");
-                if (!StringHelper.isNullOrEmpty((String)var35_318)) {
-                    stringBuilderEx.append("PUBOBJ=%1$s\r\n", (Object)var35_318);
-                }
-                stringBuilderEx.append("CONTAINER=%1$s\r\n", (Object)string49);
-                stringBuilderEx.append("</#ibiztemplate>\r\n");
-                stringBuilderEx.append((String)var33_287);
-                String string63 = stringBuilderEx.toString();
-                PSPFStyleService.writeFile(string56, string63);
-                hashMap3.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string51, (Object)File.separator, (Object)((String)object3).toUpperCase()));
-                if (!StringHelper.isNullOrEmpty((String)pSPFEditorTempl.getTemplCode2())) {
-                    void var33_291;
-                    object3 = StringHelper.format((String)"%1$s%2$s#CODE2.ftl", (Object)((PSPFPubCodeBase)object9).getPSPFPubCodeName(), (Object)string55);
-                    string56 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string51, (Object)File.separator, (Object)object3);
-                    String string64 = pSPFEditorTempl.getTemplCode2();
-                    for (Map.Entry entry14 : arrayList3.entrySet()) {
-                        String string65 = var33_291.replace((CharSequence)entry14.getKey(), (CharSequence)entry14.getValue());
-                    }
-                    PSPFStyleService.writeFile(string56, (String)var33_291);
-                    hashMap3.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string51, (Object)File.separator, (Object)((String)object3).toUpperCase()));
-                }
-                if (!StringHelper.isNullOrEmpty((String)pSPFEditorTempl.getTemplCode3())) {
-                    void var33_295;
-                    object3 = StringHelper.format((String)"%1$s%2$s#CODE3.ftl", (Object)((PSPFPubCodeBase)object9).getPSPFPubCodeName(), (Object)string55);
-                    string56 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string51, (Object)File.separator, (Object)object3);
-                    String string66 = pSPFEditorTempl.getTemplCode3();
-                    for (Map.Entry entry15 : arrayList3.entrySet()) {
-                        String string67 = var33_295.replace((CharSequence)entry15.getKey(), (CharSequence)entry15.getValue());
-                    }
-                    PSPFStyleService.writeFile(string56, (String)var33_295);
-                    hashMap3.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string51, (Object)File.separator, (Object)((String)object3).toUpperCase()));
-                }
-                if (StringHelper.isNullOrEmpty((String)pSPFEditorTempl.getTemplCode4())) continue;
-                object3 = StringHelper.format((String)"%1$s%2$s#CODE4.ftl", (Object)((PSPFPubCodeBase)object9).getPSPFPubCodeName(), (Object)string55);
-                string56 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string51, (Object)File.separator, (Object)object3);
-                String string68 = pSPFEditorTempl.getTemplCode4();
-                for (Map.Entry entry16 : arrayList3.entrySet()) {
-                    String string69 = var33_299.replace((CharSequence)entry16.getKey(), (CharSequence)entry16.getValue());
-                }
-                PSPFStyleService.writeFile(string56, (String)var33_299);
-                hashMap3.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string51, (Object)File.separator, (Object)((String)object3).toUpperCase()));
-            }
-            object8 = hashMap3.entrySet().iterator();
-            while (object8.hasNext()) {
-                Map.Entry entry17 = (Map.Entry)object8.next();
-                log.debug((Object)StringHelper.format((String)"\u79fb\u9664\u6587\u4ef6[%1$s]", (Object)((File)entry17.getValue()).getAbsolutePath()));
-            }
-            string15 = (PSPFAppTemplService)ServiceGlobal.getService(PSPFAppTemplService.class, (SessionFactory)this.getSessionFactory());
-            selectCond.reset();
-            selectCond.set("PSPFSTYLEID", (Object)pSPFStyle.getPSPFStyleId());
-            file = string15.select((ISelectCond)selectCond);
-            file2 = ((ArrayList)file).iterator();
-            while (file2.hasNext()) {
-                void var27_177;
-                void var23_93;
-                String string70;
-                fileArray = (PSPFAppTempl)file2.next();
-                hashMap4 = (PSPFPubCode)hashMap.get(((PSPFAppTemplBase)fileArray).getPSPFPubCodeId());
-                if (hashMap4 == null) continue;
-                serializable = (PSPFCodeFolder)hashMap2.get(((PSPFPubCodeBase)hashMap4).getPSPFCodeFolderId());
-                String pSPFEditorTempl = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string, (Object)File.separator, (Object)((PSPFCodeFolderBase)serializable).getFolderName());
-                File file8 = new File(pSPFEditorTempl);
-                if (!file8.exists()) {
-                    file8.mkdirs();
-                }
-                if (StringHelper.isNullOrEmpty((String)(string70 = ((PSPFPubCodeBase)hashMap4).getPSPFPubCodeName()))) {
-                    String string71 = "";
-                }
-                if (StringHelper.isNullOrEmpty((String)(object8 = ((PSPFPubCodeBase)hashMap4).getCodeEXT()))) {
-                    object8 = "";
-                }
-                object8 = "";
-                String string72 = StringHelper.format((String)"%1$s%2$s.ftl", (Object)var23_93, (Object)object8);
-                String string73 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)pSPFEditorTempl, (Object)File.separator, (Object)string72);
-                String string74 = ((PSPFAppTemplBase)fileArray).getTemplCode();
-                if (StringHelper.isNullOrEmpty((String)string74)) {
-                    String string75 = "";
-                }
-                StringBuilderEx stringBuilderEx = new StringBuilderEx();
-                String string76 = ((PSPFAppTemplBase)fileArray).getPubObj();
-                if (!StringHelper.isNullOrEmpty((String)((PSPFAppTemplBase)fileArray).getPubObj())) {
-                    string76 = string76.replace("SA.SRFDA.PS.Core.Pub.", "");
-                    string76 = string76.replace("PublisherImpl", "");
-                }
-                stringBuilderEx.append("<#ibiztemplate>\r\n");
-                if (!StringHelper.isNullOrEmpty((String)string76)) {
-                    stringBuilderEx.append("PUBOBJ=%1$s\r\n", (Object)string76);
-                }
-                stringBuilderEx.append("TARGET=%1$s\r\n", (Object)"PSSYSAPP");
-                stringBuilderEx.append("</#ibiztemplate>\r\n");
-                stringBuilderEx.append((String)var27_177);
-                String string77 = stringBuilderEx.toString();
-                PSPFStyleService.writeFile(string73, string77);
-            }
-        } else {
-            void var22_75;
-            void var22_72;
-            Object object10;
-            void var22_69;
-            void var22_66;
-            ArrayList<EntityBase> arrayList3 = pSPFStyle.getPSPFStyleCodes();
-            String string78 = StringHelper.format((String)"%1$s%2$smacro", (Object)string, (Object)File.separator);
-            File file = new File(string78);
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-            File file9 = new File(string78);
-            File[] fileArray = file9.listFiles();
-            HashMap<String, Object> hashMap4 = new HashMap<String, Object>();
-            Object object11 = fileArray;
-            int entry = ((File[])object11).length;
-            boolean bl6 = false;
-            while (var22_66 < entry) {
-                File file10 = object11[var22_66];
-                if (file10.isFile()) {
-                    hashMap4.put(file10.getName().toUpperCase(), file10);
-                }
-                ++var22_66;
-            }
-            for (PSPFStyleCode pSPFStyleCode : arrayList3) {
-                String string79 = StringHelper.format((String)"%1$s.txt", (Object)pSPFStyleCode.getPSPFStyleCodeName().toUpperCase());
-                String string80 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string78, (Object)File.separator, (Object)string79);
-                PSPFStyleService.writeFile(string80, pSPFStyleCode.getStyleCode());
-                hashMap4.remove(string79.toUpperCase());
-            }
-            for (Map.Entry entry18 : hashMap4.entrySet()) {
-                log.debug((Object)StringHelper.format((String)"\u79fb\u9664\u6587\u4ef6[%1$s]", (Object)((File)entry18.getValue()).getAbsolutePath()));
-            }
-            arrayList3 = pSPFStyle.getPSPFViewTempls();
-            string78 = StringHelper.format((String)"%1$s%2$sview", (Object)string, (Object)File.separator);
-            file = new File(string78);
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-            file9 = new File(string78);
-            fileArray = file9.listFiles();
-            hashMap4 = new HashMap();
-            object11 = fileArray;
-            int n = ((Object)object11).length;
-            boolean bl7 = false;
-            while (var22_69 < n) {
-                Object object12 = object11[var22_69];
-                if (((File)object12).isDirectory()) {
-                    for (File file11 : ((File)object12).listFiles()) {
-                        hashMap4.put(StringHelper.format((String)"%1$s%2$s%3$s", (Object)((File)object12).getName(), (Object)File.separator, (Object)file11.getName().toUpperCase()), file11);
-                    }
-                }
-                ++var22_69;
-            }
-            for (PSPFViewTempl pSPFViewTempl : arrayList3) {
-                String string81 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string78, (Object)File.separator, (Object)pSPFViewTempl.getPSViewTypeId());
-                file = new File(string81);
-                if (!file.exists()) {
-                    file.mkdirs();
-                }
-                PSPFPubCode pSPFPubCode = (PSPFPubCode)hashMap.get(pSPFViewTempl.getPSPFPubCodeId());
-                object10 = StringHelper.format((String)"%1$s%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT());
-                String string82 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string81, (Object)File.separator, (Object)object10);
-                PSPFStyleService.writeFile(string82, pSPFViewTempl.getTemplCode2());
-                hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string81, (Object)File.separator, (Object)((String)object10).toUpperCase()));
-            }
-            for (Map.Entry entry19 : hashMap4.entrySet()) {
-                log.debug((Object)StringHelper.format((String)"\u79fb\u9664\u6587\u4ef6[%1$s]", (Object)((File)entry19.getValue()).getAbsolutePath()));
-            }
-            arrayList3 = pSPFStyle.getPSPFCtrlTempls();
-            string78 = StringHelper.format((String)"%1$s%2$sctrl", (Object)string, (Object)File.separator);
-            file = new File(string78);
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-            file9 = new File(string78);
-            fileArray = file9.listFiles();
-            hashMap4 = new HashMap();
-            object11 = fileArray;
-            int n5 = ((Object)object11).length;
-            boolean bl8 = false;
-            while (var22_72 < n5) {
-                Object object13 = object11[var22_72];
-                if (((File)object13).isDirectory()) {
-                    for (File file12 : ((File)object13).listFiles()) {
-                        hashMap4.put(StringHelper.format((String)"%1$s%2$s%3$s", (Object)((File)object13).getName(), (Object)File.separator, (Object)file12.getName().toUpperCase()), file12);
-                    }
-                }
-                ++var22_72;
-            }
-            for (PSPFCtrlTempl pSPFCtrlTempl : arrayList3) {
-                String string83 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string78, (Object)File.separator, (Object)pSPFCtrlTempl.getPSCtrlTypeId());
-                file = new File(string83);
-                if (!file.exists()) {
-                    file.mkdirs();
-                }
-                PSPFPubCode pSPFPubCode = (PSPFPubCode)hashMap.get(pSPFCtrlTempl.getPSPFPubCodeId());
-                if (!StringHelper.isNullOrEmpty((String)pSPFCtrlTempl.getTemplCode())) {
-                    object10 = StringHelper.format((String)"%1$s%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT());
-                    String string84 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)object10);
-                    PSPFStyleService.writeFile(string84, pSPFCtrlTempl.getTemplCode());
-                    hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)((String)object10).toUpperCase()));
-                }
-                if (!StringHelper.isNullOrEmpty((String)pSPFCtrlTempl.getTemplCode2())) {
-                    object10 = StringHelper.format((String)"%1$s_CODE2%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT());
-                    String string85 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)object10);
-                    PSPFStyleService.writeFile(string85, pSPFCtrlTempl.getTemplCode2());
-                    hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)((String)object10).toUpperCase()));
-                }
-                if (!StringHelper.isNullOrEmpty((String)pSPFCtrlTempl.getTemplCode3())) {
-                    object10 = StringHelper.format((String)"%1$s_CODE3%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT());
-                    String string86 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)object10);
-                    PSPFStyleService.writeFile(string86, pSPFCtrlTempl.getTemplCode3());
-                    hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)((String)object10).toUpperCase()));
-                }
-                if (!StringHelper.isNullOrEmpty((String)pSPFCtrlTempl.getTemplCode4())) {
-                    object10 = StringHelper.format((String)"%1$s_CODE4%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT());
-                    String string87 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)object10);
-                    PSPFStyleService.writeFile(string87, pSPFCtrlTempl.getTemplCode4());
-                    hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)((String)object10).toUpperCase()));
-                }
-                object10 = pSPFCtrlTempl.getPSPFCTDetails();
-                Iterator iterator = ((ArrayList)object10).iterator();
-                while (iterator.hasNext()) {
-                    PSPFCTDetail pSPFCTDetail = (PSPFCTDetail)iterator.next();
-                    if (!DataObject.getBoolValue((Integer)pSPFCTDetail.getValidFlag(), (boolean)true)) continue;
-                    if (!StringHelper.isNullOrEmpty((String)pSPFCTDetail.getTemplCode())) {
-                        String string88 = StringHelper.format((String)"%1$s_%3$s%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT(), (Object)pSPFCTDetail.getPSPFCTDetailName());
-                        String string89 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)string88);
-                        PSPFStyleService.writeFile(string89, pSPFCTDetail.getTemplCode());
-                        hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)string88.toUpperCase()));
-                    }
-                    if (!StringHelper.isNullOrEmpty((String)pSPFCTDetail.getTemplCode2())) {
-                        String string90 = StringHelper.format((String)"%1$s_%3$s_CODE2%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT(), (Object)pSPFCTDetail.getPSPFCTDetailName());
-                        String string91 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)string90);
-                        PSPFStyleService.writeFile(string91, pSPFCTDetail.getTemplCode2());
-                        hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)string90.toUpperCase()));
-                    }
-                    if (!StringHelper.isNullOrEmpty((String)pSPFCTDetail.getTemplCode3())) {
-                        String string92 = StringHelper.format((String)"%1$s_%3$s_CODE3%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT(), (Object)pSPFCTDetail.getPSPFCTDetailName());
-                        String string93 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)string92);
-                        PSPFStyleService.writeFile(string93, pSPFCTDetail.getTemplCode3());
-                        hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)string92.toUpperCase()));
-                    }
-                    if (StringHelper.isNullOrEmpty((String)pSPFCTDetail.getTemplCode4())) continue;
-                    String string94 = StringHelper.format((String)"%1$s_%3$s_CODE4%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT(), (Object)pSPFCTDetail.getPSPFCTDetailName());
-                    String string95 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)string94);
-                    PSPFStyleService.writeFile(string95, pSPFCTDetail.getTemplCode4());
-                    hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string83, (Object)File.separator, (Object)string94.toUpperCase()));
-                }
-            }
-            for (Map.Entry entry20 : hashMap4.entrySet()) {
-                log.debug((Object)StringHelper.format((String)"\u79fb\u9664\u6587\u4ef6[%1$s]", (Object)((File)entry20.getValue()).getAbsolutePath()));
-            }
-            arrayList3 = pSPFStyle.getPSPFEditorTempls();
-            string78 = StringHelper.format((String)"%1$s%2$seditor", (Object)string, (Object)File.separator);
-            file = new File(string78);
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-            file9 = new File(string78);
-            fileArray = file9.listFiles();
-            hashMap4 = new HashMap();
-            object11 = fileArray;
-            int n6 = ((Object)object11).length;
-            boolean bl9 = false;
-            while (var22_75 < n6) {
-                Object object14 = object11[var22_75];
-                if (((File)object14).isDirectory()) {
-                    for (File file13 : ((File)object14).listFiles()) {
-                        if (!file13.isDirectory()) continue;
-                        for (File file14 : file13.listFiles()) {
-                            if (!file14.isFile()) continue;
-                            hashMap4.put(StringHelper.format((String)"%1$s%2$s%3$s%2$s%4$s", (Object)((File)object14).getName(), (Object)File.separator, (Object)file13.getName(), (Object)file14.getName().toUpperCase()), file14);
-                        }
-                    }
-                }
-                ++var22_75;
-            }
-            for (PSPFEditorTempl pSPFEditorTempl : arrayList3) {
-                String string96 = StringHelper.format((String)"%1$s%2$s%3$s%2$s%4$s", (Object)string78, (Object)File.separator, (Object)pSPFEditorTempl.getPSEditorTypeId(), (Object)pSPFEditorTempl.getContainerType());
-                file = new File(string96);
-                if (!file.exists()) {
-                    file.mkdirs();
-                }
-                PSPFPubCode pSPFPubCode = (PSPFPubCode)hashMap.get(pSPFEditorTempl.getPSPFPubCodeId());
-                if (!StringHelper.isNullOrEmpty((String)pSPFEditorTempl.getTemplCode())) {
-                    object10 = StringHelper.format((String)"%1$s%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT());
-                    String string97 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string96, (Object)File.separator, (Object)object10);
-                    PSPFStyleService.writeFile(string97, pSPFEditorTempl.getTemplCode());
-                    hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string96, (Object)File.separator, (Object)((String)object10).toUpperCase()));
-                }
-                if (!StringHelper.isNullOrEmpty((String)pSPFEditorTempl.getTemplCode2())) {
-                    object10 = StringHelper.format((String)"%1$s_CODE2%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT());
-                    String string98 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string96, (Object)File.separator, (Object)object10);
-                    PSPFStyleService.writeFile(string98, pSPFEditorTempl.getTemplCode2());
-                    hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string96, (Object)File.separator, (Object)((String)object10).toUpperCase()));
-                }
-                if (!StringHelper.isNullOrEmpty((String)pSPFEditorTempl.getTemplCode3())) {
-                    object10 = StringHelper.format((String)"%1$s_CODE3%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT());
-                    String string99 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string96, (Object)File.separator, (Object)object10);
-                    PSPFStyleService.writeFile(string99, pSPFEditorTempl.getTemplCode3());
-                    hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string96, (Object)File.separator, (Object)((String)object10).toUpperCase()));
-                }
-                if (StringHelper.isNullOrEmpty((String)pSPFEditorTempl.getTemplCode4())) continue;
-                object10 = StringHelper.format((String)"%1$s_CODE4%2$s", (Object)pSPFPubCode.getPSPFPubCodeName(), (Object)pSPFPubCode.getCodeEXT());
-                String string100 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string96, (Object)File.separator, (Object)object10);
-                PSPFStyleService.writeFile(string100, pSPFEditorTempl.getTemplCode4());
-                hashMap4.remove(StringHelper.format((String)"%1$s%2$s%3$s", (Object)string96, (Object)File.separator, (Object)((String)object10).toUpperCase()));
-            }
-            for (Map.Entry entry21 : hashMap4.entrySet()) {
-                log.debug((Object)StringHelper.format((String)"\u79fb\u9664\u6587\u4ef6[%1$s]", (Object)((File)entry21.getValue()).getAbsolutePath()));
-            }
-        }
-    }
+                              EntityBase.setIgnoreCheck(var152, false);
+                              var48.create(var152);
+                              var35 = true;
+                           }
 
-    public static void writeFile(String string, String string2) throws Exception {
-        OutputStreamWriter outputStreamWriter = new OutputStreamWriter((OutputStream)new FileOutputStream(new File(string)), "UTF-8");
-        BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-        bufferedWriter.write(string2);
-        bufferedWriter.close();
-    }
+                           var55.remove(var152.getPSPFEditorTemplId());
+                        }
+                     }
+                  }
+               }
+            }
+         }
 
-    /*
-     * WARNING - Removed try catching itself - possible behaviour change.
-     */
-    public static String readFile(String string) throws Exception {
-        StringBuffer stringBuffer = new StringBuffer();
-        InputStreamReader inputStreamReader = null;
-        try {
-            int n;
-            FileInputStream fileInputStream = new FileInputStream(string);
-            inputStreamReader = new InputStreamReader((InputStream)fileInputStream, "UTF-8");
-            char[] cArray = new char[4096];
-            while ((n = inputStreamReader.read(cArray)) != -1) {
-                stringBuffer.append(new String(cArray, 0, n));
-            }
-        }
-        catch (Exception exception) {
-            exception.printStackTrace();
-        }
-        finally {
-            if (inputStreamReader != null) {
-                try {
-                    inputStreamReader.close();
-                }
-                catch (IOException iOException) {}
-            }
-        }
-        return stringBuffer.toString();
-    }
+         for (Entry<String, PSPFEditorTempl> var87 : var55.entrySet()) {
+            log.debug(StringHelper.format("移除编辑器模板[%1$s]", var87.getValue().getPSPFEditorTemplName()));
+            var48.remove(var87.getValue());
+         }
 
-    protected void mergeCode(PSPFStyle pSPFStyle) throws Exception {
-        String string;
-        boolean bl;
-        int n;
-        String string2;
-        PSPFStyleCodeService pSPFStyleCodeService = (PSPFStyleCodeService)ServiceGlobal.getService(PSPFStyleCodeService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<PSPFStyleCode> arrayList = pSPFStyleCodeService.selectByPSPFStyle(pSPFStyle);
-        PSPFViewTemplService pSPFViewTemplService = (PSPFViewTemplService)ServiceGlobal.getService(PSPFViewTemplService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<PSPFViewTempl> arrayList2 = pSPFViewTemplService.selectByPSPFStyle(pSPFStyle);
-        PSPFAppTemplService pSPFAppTemplService = (PSPFAppTemplService)ServiceGlobal.getService(PSPFAppTemplService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<PSPFAppTempl> arrayList3 = pSPFAppTemplService.selectByPSPFStyle(pSPFStyle);
-        for (PSPFViewTempl entityBase : arrayList2) {
-            string2 = entityBase.getTemplCode2();
-            for (n = 0; n < 10; ++n) {
-                bl = false;
-                for (PSPFStyleCode pSPFStyleCode : arrayList) {
-                    string = StringHelper.format((String)"<#SRFINC(%1$s)>", (Object)pSPFStyleCode.getPSPFStyleCodeName().toUpperCase());
-                    if (string2.indexOf(string) == -1) continue;
-                    string2 = string2.replace(string, pSPFStyleCode.getStyleCode());
-                    bl = true;
-                }
-                if (!bl) break;
-            }
-            if (StringHelper.compare((String)string2, (String)entityBase.getTemplCode(), (boolean)false) == 0) continue;
-            entityBase.setTemplCode(string2);
-            pSPFViewTemplService.update(entityBase);
-        }
-        for (PSPFAppTempl pSPFAppTempl : arrayList3) {
-            string2 = pSPFAppTempl.getTemplCode2();
-            for (n = 0; n < 10; ++n) {
-                bl = false;
-                for (PSPFStyleCode pSPFStyleCode : arrayList) {
-                    string = StringHelper.format((String)"<#SRFINC(%1$s)>", (Object)pSPFStyleCode.getPSPFStyleCodeName().toUpperCase());
-                    if (string2.indexOf(string) == -1) continue;
-                    string2 = string2.replace(string, pSPFStyleCode.getStyleCode());
-                    bl = true;
-                }
-                if (!bl) break;
-            }
-            if (StringHelper.compare((String)string2, (String)pSPFAppTempl.getTemplCode(), (boolean)false) == 0) continue;
-            pSPFAppTempl.setTemplCode(string2);
-            pSPFAppTemplService.update(pSPFAppTempl);
-        }
-    }
+         String var43 = var1.getPSPFStyleId();
+         var1.reset();
+         var1.setPSPFStyleId(var43);
+         var1.setLastImpTime(new Timestamp(System.currentTimeMillis()));
+         var1.setTemplState(30);
+         var1.setTemplInfo(null);
+         this.mergeCode(var1);
+         this.update(var1);
+      } catch (Exception var38) {
+         String var44 = var1.getPSPFStyleId();
+         var1.reset();
+         var1.setPSPFStyleId(var44);
+         var1.setTemplInfo(var38.getMessage());
+         var1.setTemplState(40);
+         this.update(var1);
+      }
+   }
 
-    @Override
-    protected void onFixStyle(PSPFStyle pSPFStyle) throws Exception {
-        Object object;
-        this.get((IEntity)pSPFStyle);
-        if (pSPFStyle.getTemplPSPFStyle() == null) {
-            return;
-        }
-        ArrayList<PSPFStyleCode> arrayList = pSPFStyle.getPSPFStyleCodes();
-        HashMap<String, PSPFStyleCode> hashMap = new HashMap<String, PSPFStyleCode>();
-        for (PSPFStyleCode object22 : arrayList) {
-            hashMap.put(object22.getPSPFStyleCodeName(), object22);
-        }
-        PSPFViewTemplService pSPFViewTemplService = (PSPFViewTemplService)ServiceGlobal.getService(PSPFViewTemplService.class, (SessionFactory)this.getSessionFactory());
-        PSPFCtrlTemplService pSPFCtrlTemplService = (PSPFCtrlTemplService)ServiceGlobal.getService(PSPFCtrlTemplService.class, (SessionFactory)this.getSessionFactory());
-        PSPFAppTemplService pSPFAppTemplService = (PSPFAppTemplService)ServiceGlobal.getService(PSPFAppTemplService.class, (SessionFactory)this.getSessionFactory());
-        PSPFEditorTemplService pSPFEditorTemplService = (PSPFEditorTemplService)ServiceGlobal.getService(PSPFEditorTemplService.class, (SessionFactory)this.getSessionFactory());
-        for (PSPFStyle pSPFStyle2 = pSPFStyle.getTemplPSPFStyle(); pSPFStyle2 != null; pSPFStyle2 = pSPFStyle2.getTemplPSPFStyle()) {
-            Object object2;
-            arrayList = pSPFStyle2.getPSPFStyleCodes();
-            for (PSPFStyleCode pSPFStyleCode : arrayList) {
-                if (hashMap.containsKey(pSPFStyleCode.getPSPFStyleCodeName())) continue;
-                pSPFStyleCode.resetPSPFStyleCodeId();
-                pSPFStyleCode.setPSPFStyleId(pSPFStyle.getPSPFStyleId());
-                pSPFStyleCode.setPSPFStyleName(pSPFStyle.getPSPFStyleName());
-                try {
-                    pSPFStyleCode.resetMemo();
-                    pSPFStyleCode.create();
-                    hashMap.put(pSPFStyleCode.getPSPFStyleCodeName(), pSPFStyleCode);
-                }
-                catch (Exception exception) {
-                    throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u6837\u5f0f\u5b8f\u4ee3\u7801\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-                }
+   @Override
+   protected void onExpStyle(PSPFStyle var1) throws Exception {
+      String var2 = DataObject.getStringValue(var1.get("SRFPRJFOLDER"));
+      if (StringHelper.isNullOrEmpty(var2)) {
+         throw new Exception("当前没有指定项目目录");
+      }
+
+      this.get(var1);
+      PSPF var3 = var1.getPSPF();
+      ArrayList<PSPFPubCode> var4 = var3.getPSPFPubCodes();
+      HashMap<String, PSPFPubCode> var5 = new HashMap<>();
+
+      for (PSPFPubCode var7 : var4) {
+         if (DataObject.getBoolValue(var7.getValidFlag(), true)) {
+            var5.put(var7.getPSPFPubCodeId(), var7);
+         }
+      }
+
+      SelectCond var36 = new SelectCond();
+      var36.set("PSPFID", var3.getPSPFId());
+      PSPFCodeFolderService var37 = (PSPFCodeFolderService)ServiceGlobal.getService(PSPFCodeFolderService.class, this.getSessionFactory());
+      ArrayList<PSPFCodeFolder> var8 = var37.select(var36);
+      HashMap<String, PSPFCodeFolder> var9 = new HashMap<>();
+
+      for (PSPFCodeFolder var11 : var8) {
+         var9.put(var11.getPSPFCodeFolderId(), var11);
+      }
+
+      PSEditorTypeService var38 = (PSEditorTypeService)ServiceGlobal.getService(PSEditorTypeService.class, this.getSessionFactory());
+      PSCtrlTypeService var39 = (PSCtrlTypeService)ServiceGlobal.getService(PSCtrlTypeService.class, this.getSessionFactory());
+      PSViewTypeService var12 = (PSViewTypeService)ServiceGlobal.getService(PSViewTypeService.class, this.getSessionFactory());
+      var36.reset();
+      boolean var13 = true;
+      if (var13) {
+         HashMap<String, String> var14 = new HashMap<>();
+         ArrayList<PSPFStyleCode> var15 = var1.getPSPFStyleCodes();
+         String var16 = StringHelper.format("%1$s%2$s@MACRO", var2, File.separator);
+         File var17 = new File(var16);
+         if (!var17.exists()) {
+            var17.mkdirs();
+         }
+
+         File var18 = new File(var16);
+         File[] var19 = var18.listFiles();
+         HashMap<String, File> var20 = new HashMap<>();
+
+         for (File var24 : var19) {
+            if (var24.isFile()) {
+               var20.put(var24.getName().toUpperCase(), var24);
             }
-            object = pSPFStyle2.getPSPFViewTempls();
-            Iterator iterator = ((ArrayList)object).iterator();
-            while (iterator.hasNext()) {
-                object2 = (PSPFViewTempl)iterator.next();
-                ((PSPFViewTemplBase)object2).resetPSPFViewTemplId();
-                ((PSPFViewTemplBase)object2).resetPSPFViewTemplName();
-                ((PSPFViewTemplBase)object2).setPSPFStyleId(pSPFStyle.getPSPFStyleId());
-                ((PSPFViewTemplBase)object2).setPSPFStyleName(pSPFStyle.getPSPFStyleName());
-                if (pSPFViewTemplService.checkKey(object2) != 0) continue;
-                try {
-                    ((PSPFViewTemplBase)object2).resetMemo();
-                    pSPFViewTemplService.create(object2);
-                }
-                catch (Exception exception) {
-                    throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u89c6\u56fe\u6a21\u677f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-                }
+         }
+
+         HashMap<String, String> var106 = new HashMap<>();
+
+         for (PSPFStyleCode var146 : var15) {
+            String var164 = StringHelper.format("<#SRFINC(%1$s)>", var146.getPSPFStyleCodeName().toUpperCase());
+            String var25 = StringHelper.format("<#ibizinclude>../../@MACRO/%1$s.ftl</#ibizinclude>", var146.getPSPFStyleCodeName().toUpperCase());
+            String var26 = StringHelper.format("<#ibizinclude>%1$s.ftl</#ibizinclude>", var146.getPSPFStyleCodeName().toUpperCase());
+            var14.put(var164, var25);
+            var106.put(var164, var26);
+         }
+
+         for (PSPFStyleCode var147 : var15) {
+            String var165 = StringHelper.format("%1$s.ftl", var147.getPSPFStyleCodeName().toUpperCase());
+            String var191 = StringHelper.format("%1$s%2$s%3$s", var16, File.separator, var165);
+            String var219 = var147.getStyleCode();
+
+            for (Entry<String, String> var28 : var106.entrySet()) {
+               var219 = var219.replace((CharSequence)var28.getKey(), (CharSequence)var28.getValue());
             }
-            ArrayList<PSPFAppTempl> arrayList2 = pSPFStyle2.getPSPFAppTempls();
-            for (PSPFAppTempl pSPFAppTempl : arrayList2) {
-                pSPFAppTempl.resetPSPFAppTemplId();
-                pSPFAppTempl.resetPSPFAppTemplName();
-                pSPFAppTempl.setPSPFStyleId(pSPFStyle.getPSPFStyleId());
-                pSPFAppTempl.setPSPFStyleName(pSPFStyle.getPSPFStyleName());
-                if (pSPFAppTemplService.checkKey(pSPFAppTempl) != 0) continue;
-                try {
-                    pSPFAppTempl.resetMemo();
-                    pSPFAppTemplService.create(pSPFAppTempl);
-                }
-                catch (Exception exception) {
-                    throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u5e94\u7528\u6a21\u677f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-                }
+
+            writeFile(var191, var219);
+            var20.remove(var165.toUpperCase());
+         }
+
+         for (Entry<String, File> var148 : var20.entrySet()) {
+            log.debug(StringHelper.format("移除文件[%1$s]", ((File)var148.getValue()).getAbsolutePath()));
+         }
+
+         ArrayList<PSPFViewTempl> var15View = var1.getPSPFViewTempls();
+         var16 = StringHelper.format("%1$s%2$s@VIEW", var2, File.separator);
+         var17 = new File(var16);
+         if (!var17.exists()) {
+            var17.mkdirs();
+         }
+
+         var18 = new File(var16);
+         var19 = var18.listFiles();
+         var20 = new HashMap<>();
+
+         for (File var166 : var19) {
+            if (var166.isDirectory()) {
+               for (File var256 : var166.listFiles()) {
+                  var20.put(StringHelper.format("%1$s%2$s%3$s", var166.getName(), File.separator, var256.getName().toUpperCase()), var256);
+               }
             }
-            object2 = pSPFStyle2.getPSPFCtrlTempls();
-            Iterator iterator2 = ((ArrayList)object2).iterator();
-            while (iterator2.hasNext()) {
-                PSPFCtrlTempl pSPFCtrlTempl = (PSPFCtrlTempl)iterator2.next();
-                PSPFCtrlTempl pSPFCtrlTempl2 = new PSPFCtrlTempl();
-                pSPFCtrlTempl.copyTo((IDataObject)pSPFCtrlTempl2, false);
-                pSPFCtrlTempl2.resetPSPFCtrlTemplId();
-                pSPFCtrlTempl2.resetPSPFCtrlTemplName();
-                pSPFCtrlTempl2.setPSPFStyleId(pSPFStyle.getPSPFStyleId());
-                pSPFCtrlTempl2.setPSPFStyleName(pSPFStyle.getPSPFStyleName());
-                if (pSPFCtrlTemplService.checkKey(pSPFCtrlTempl2) != 0) continue;
-                try {
-                    pSPFCtrlTempl2.resetMemo();
-                    pSPFCtrlTemplService.create(pSPFCtrlTempl2);
-                    ArrayList<PSPFCTDetail> arrayList3 = pSPFCtrlTempl.getPSPFCTDetails();
-                    for (PSPFCTDetail pSPFCTDetail : arrayList3) {
-                        pSPFCTDetail.resetPSPFCTDetailId();
-                        pSPFCTDetail.setPSPFCtrlTemplId(pSPFCtrlTempl2.getPSPFCtrlTemplId());
-                        pSPFCTDetail.setPSPFCtrlTemplName(pSPFCtrlTempl2.getPSPFCtrlTemplName());
-                        pSPFCTDetail.resetMemo();
-                        pSPFCTDetail.create();
-                    }
-                }
-                catch (Exception exception) {
-                    throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u90e8\u4ef6\u6a21\u677f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-                }
+         }
+
+         for (PSPFViewTempl var131 : var15View) {
+            String var150 = StringHelper.format("%1$s%2$s%3$s", var16, File.separator, var131.getPSViewTypeName());
+            var17 = new File(var150);
+            if (!var17.exists()) {
+               var17.mkdirs();
             }
-            ArrayList<PSPFEditorTempl> arrayList4 = pSPFStyle2.getPSPFEditorTempls();
-            for (PSPFEditorTempl pSPFEditorTempl : arrayList4) {
-                pSPFEditorTempl.resetPSPFEditorTemplId();
-                pSPFEditorTempl.resetPSPFEditorTemplName();
-                pSPFEditorTempl.setPSPFStyleId(pSPFStyle.getPSPFStyleId());
-                pSPFEditorTempl.setPSPFStyleName(pSPFStyle.getPSPFStyleName());
-                if (pSPFEditorTemplService.checkKey(pSPFEditorTempl) != 0) continue;
-                try {
-                    pSPFEditorTempl.resetMemo();
-                    pSPFEditorTemplService.create(pSPFEditorTempl);
-                }
-                catch (Exception exception) {
-                    throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u7f16\u8f91\u5668\u6a21\u677f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
-                }
+
+            StringBuilderEx var167 = new StringBuilderEx();
+            if (var131.getPSViewTypeId().indexOf("APP") == 0) {
+               var167.append("VIEWTYPE=%1$s", var131.getPSViewTypeId());
+            } else {
+               var167.append("VIEWTYPE=APP%1$s", var131.getPSViewTypeId());
             }
-        }
-        object = new SelectCond();
-        object.set("PSPFID", (Object)pSPFStyle.getPSPFId());
-        object.set("PSPFSTYLEID", SelectCond.ISNULL);
-        ArrayList arrayList5 = pSPFEditorTemplService.select((ISelectCond)object);
-        for (PSPFEditorTempl pSPFEditorTempl : arrayList5) {
-            pSPFEditorTempl.resetPSPFEditorTemplId();
-            pSPFEditorTempl.resetPSPFEditorTemplName();
-            pSPFEditorTempl.setPSPFStyleId(pSPFStyle.getPSPFStyleId());
-            pSPFEditorTempl.setPSPFStyleName(pSPFStyle.getPSPFStyleName());
-            if (pSPFEditorTemplService.checkKey(pSPFEditorTempl) != 0) continue;
+
+            String var193 = StringHelper.format("%1$s%2$s%3$s", var150, File.separator, "template.properties");
+            writeFile(var193, var167.toString());
+            PSPFPubCode var168 = (PSPFPubCode)var5.get(var131.getPSPFPubCodeId());
+            if (var168 != null) {
+               var193 = var168.getCodeEXT();
+               if (!StringHelper.isNullOrEmpty(var193)) {
+                  String[] var221 = var193.split("[.]");
+                  var193 = "." + var221[var221.length - 1];
+               }
+
+               var193 = "";
+               String var222 = StringHelper.format("%1$s%2$s.ftl", var168.getPSPFPubCodeName(), var193);
+               String var238 = StringHelper.format("%1$s%2$s%3$s", var150, File.separator, var222);
+               String var257 = var131.getTemplCode2();
+               if (StringHelper.isNullOrEmpty(var257)) {
+                  var257 = "";
+               }
+
+               for (Entry<String, String> var30 : var14.entrySet()) {
+                  var257 = var257.replace((CharSequence)var30.getKey(), (CharSequence)var30.getValue());
+               }
+
+               if (!StringHelper.isNullOrEmpty(var131.getPubObj())) {
+                  StringBuilderEx var272 = new StringBuilderEx();
+                  String var288 = var131.getPubObj();
+                  var288 = var288.replace("SA.SRFDA.PS.Core.Pub.", "");
+                  var288 = var288.replace("PublisherImpl", "");
+                  var272.append("<#ibiztemplate>\r\n");
+                  var272.append("PUBOBJ=%1$s\r\n", var288);
+                  var272.append("</#ibiztemplate>\r\n");
+                  var272.append(var257);
+                  var257 = var272.toString();
+               }
+
+               writeFile(var238, var257);
+               var20.remove(StringHelper.format("%1$s%2$s%3$s", var150, File.separator, var222.toUpperCase()));
+            }
+         }
+
+         for (Entry<String, File> var132 : var20.entrySet()) {
+            log.debug(StringHelper.format("移除文件[%1$s]", ((File)var132.getValue()).getAbsolutePath()));
+         }
+
+         ArrayList<PSPFCtrlTempl> var15Ctrl = var1.getPSPFCtrlTempls();
+         var16 = StringHelper.format("%1$s%2$s@CONTROL", var2, File.separator);
+         var17 = new File(var16);
+         if (!var17.exists()) {
+            var17.mkdirs();
+         }
+
+         var18 = new File(var16);
+         var19 = var18.listFiles();
+         var20 = new HashMap<>();
+
+         for (File var169 : var19) {
+            if (var169.isDirectory()) {
+               for (File var258 : var169.listFiles()) {
+                  var20.put(StringHelper.format("%1$s%2$s%3$s", var169.getName(), File.separator, var258.getName().toUpperCase()), var258);
+               }
+            }
+         }
+
+         for (PSPFCtrlTempl var134 : var15Ctrl) {
+            String var152 = StringHelper.format("%1$s%2$s%3$s", var16, File.separator, var134.getPSCtrlTypeName());
+            var17 = new File(var152);
+            if (!var17.exists()) {
+               var17.mkdirs();
+            }
+
+            StringBuilderEx var170 = new StringBuilderEx();
+            var170.append("CTRLTYPE=%1$s", var134.getPSCtrlTypeId());
+            String var198 = StringHelper.format("%1$s%2$s%3$s", var152, File.separator, "template.properties");
+            writeFile(var198, var170.toString());
+            PSPFPubCode var171 = (PSPFPubCode)var5.get(var134.getPSPFPubCodeId());
+            if (var171 != null) {
+               var198 = var171.getCodeEXT();
+               if (!StringHelper.isNullOrEmpty(var198)) {
+                  String[] var224 = var198.split("[.]");
+                  var198 = "." + var224[var224.length - 1];
+               }
+
+               var198 = "";
+               String var225 = StringHelper.format("%1$s%2$s.ftl", var171.getPSPFPubCodeName(), var198);
+               String var240 = StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var225);
+               String var259 = var134.getTemplCode();
+               if (StringHelper.isNullOrEmpty(var259)) {
+                  var259 = "";
+               }
+
+               for (Entry<String, String> var291 : var14.entrySet()) {
+                  var259 = var259.replace((CharSequence)var291.getKey(), (CharSequence)var291.getValue());
+               }
+
+               if (!StringHelper.isNullOrEmpty(var134.getPubObj())) {
+                  StringBuilderEx var274 = new StringBuilderEx();
+                  String var292 = var134.getPubObj();
+                  var292 = var292.replace("SA.SRFDA.PS.Core.Pub.", "");
+                  var292 = var292.replace("PublisherImpl", "");
+                  var274.append("<#ibiztemplate>\r\n");
+                  var274.append("PUBOBJ=%1$s\r\n", var292);
+                  var274.append("</#ibiztemplate>\r\n");
+                  var274.append(var259);
+                  var259 = var274.toString();
+               }
+
+               writeFile(var240, var259);
+               var20.remove(StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var225.toUpperCase()));
+               if (!StringHelper.isNullOrEmpty(var134.getTemplCode2())) {
+                  var225 = StringHelper.format("%1$s%2$s#CODE2.ftl", var171.getPSPFPubCodeName(), var198);
+                  var240 = StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var225);
+                  var259 = var134.getTemplCode2();
+
+                  for (Entry<String, String> var295 : var14.entrySet()) {
+                     var259 = var259.replace((CharSequence)var295.getKey(), (CharSequence)var295.getValue());
+                  }
+
+                  writeFile(var240, var259);
+                  var20.remove(StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var225.toUpperCase()));
+               }
+
+               if (!StringHelper.isNullOrEmpty(var134.getTemplCode3())) {
+                  var225 = StringHelper.format("%1$s%2$s#CODE3.ftl", var171.getPSPFPubCodeName(), var198);
+                  var240 = StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var225);
+                  var259 = var134.getTemplCode3();
+
+                  for (Entry<String, String> var296 : var14.entrySet()) {
+                     var259 = var259.replace((CharSequence)var296.getKey(), (CharSequence)var296.getValue());
+                  }
+
+                  writeFile(var240, var259);
+                  var20.remove(StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var225.toUpperCase()));
+               }
+
+               if (!StringHelper.isNullOrEmpty(var134.getTemplCode4())) {
+                  var225 = StringHelper.format("%1$s%2$s#CODE4.ftl", var171.getPSPFPubCodeName(), var198);
+                  var240 = StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var225);
+                  var259 = var134.getTemplCode4();
+
+                  for (Entry<String, String> var297 : var14.entrySet()) {
+                     var259 = var259.replace((CharSequence)var297.getKey(), (CharSequence)var297.getValue());
+                  }
+
+                  writeFile(var240, var259);
+                  var20.remove(StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var225.toUpperCase()));
+               }
+
+               for (PSPFCTDetail var263 : var134.getPSPFCTDetails()) {
+                  if (DataObject.getBoolValue(var263.getValidFlag(), true)) {
+                     String var278 = StringHelper.format("%1$s%2$s#%3$s.ftl", var171.getPSPFPubCodeName(), var198, var263.getPSPFCTDetailName());
+                     String var298 = StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var278);
+                     String var31 = var263.getTemplCode();
+                     if (StringHelper.isNullOrEmpty(var31)) {
+                        var31 = "";
+                     }
+
+                     for (Entry<String, String> var33 : var14.entrySet()) {
+                        var31 = var31.replace((CharSequence)var33.getKey(), (CharSequence)var33.getValue());
+                     }
+
+                     if (!StringHelper.isNullOrEmpty(var263.getPubObj())) {
+                        StringBuilderEx var318 = new StringBuilderEx();
+                        String var327 = var263.getPubObj();
+                        var327 = var327.replace("SA.SRFDA.PS.Core.Pub.", "");
+                        var327 = var327.replace("PublisherImpl", "");
+                        var318.append("<#ibiztemplate>\r\n");
+                        var318.append("PUBOBJ=%1$s\r\n", var327);
+                        var318.append("</#ibiztemplate>\r\n");
+                        var318.append(var31);
+                        var31 = var318.toString();
+                     }
+
+                     writeFile(var298, var31);
+                     var20.remove(StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var278.toUpperCase()));
+                     if (!StringHelper.isNullOrEmpty(var263.getTemplCode2())) {
+                        var278 = StringHelper.format("%1$s%2$s#%3$s#CODE2.ftl", var171.getPSPFPubCodeName(), var198, var263.getPSPFCTDetailName());
+                        var298 = StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var278);
+                        var31 = var263.getTemplCode2();
+                        if (StringHelper.isNullOrEmpty(var31)) {
+                           var31 = "";
+                        }
+
+                        for (Entry<String, String> var330 : var14.entrySet()) {
+                           var31 = var31.replace((CharSequence)var330.getKey(), (CharSequence)var330.getValue());
+                        }
+
+                        writeFile(var298, var31);
+                        var20.remove(StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var278.toUpperCase()));
+                     }
+
+                     if (!StringHelper.isNullOrEmpty(var263.getTemplCode3())) {
+                        var278 = StringHelper.format("%1$s%2$s#%3$s#CODE3.ftl", var171.getPSPFPubCodeName(), var198, var263.getPSPFCTDetailName());
+                        var298 = StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var278);
+                        var31 = var263.getTemplCode3();
+                        if (StringHelper.isNullOrEmpty(var31)) {
+                           var31 = "";
+                        }
+
+                        for (Entry<String, String> var331 : var14.entrySet()) {
+                           var31 = var31.replace((CharSequence)var331.getKey(), (CharSequence)var331.getValue());
+                        }
+
+                        writeFile(var298, var31);
+                        var20.remove(StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var278.toUpperCase()));
+                     }
+
+                     if (!StringHelper.isNullOrEmpty(var263.getTemplCode4())) {
+                        var278 = StringHelper.format("%1$s%2$s#%3$s#CODE4.ftl", var171.getPSPFPubCodeName(), var198, var263.getPSPFCTDetailName());
+                        var298 = StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var278);
+                        var31 = var263.getTemplCode4();
+                        if (StringHelper.isNullOrEmpty(var31)) {
+                           var31 = "";
+                        }
+
+                        for (Entry<String, String> var332 : var14.entrySet()) {
+                           var31 = var31.replace((CharSequence)var332.getKey(), (CharSequence)var332.getValue());
+                        }
+
+                        writeFile(var298, var31);
+                        var20.remove(StringHelper.format("%1$s%2$s%3$s", var152, File.separator, var278.toUpperCase()));
+                     }
+                  }
+               }
+            }
+         }
+
+         for (Entry<String, File> var135 : var20.entrySet()) {
+            log.debug(StringHelper.format("移除文件[%1$s]", ((File)var135.getValue()).getAbsolutePath()));
+         }
+
+         var36.reset();
+         var36.set("PSPFID", var1.getPSPFId());
+         var36.setIsNull("PSPFSTYLEID");
+         PSPFEditorTemplService var46 = (PSPFEditorTemplService)ServiceGlobal.getService(PSPFEditorTemplService.class, this.getSessionFactory());
+         ArrayList<PSPFEditorTempl> var54 = var46.select(var36);
+         ArrayList<PSPFEditorTempl> var67 = var1.getPSPFEditorTempls();
+         var54.addAll(var67);
+         String var75 = StringHelper.format("%1$s%2$s@EDITOR", var2, File.separator);
+         File var83 = new File(var75);
+         if (!var83.exists()) {
+            var83.mkdirs();
+         }
+
+         File var92 = new File(var75);
+         File[] var113 = var92.listFiles();
+         HashMap<String, File> var136 = new HashMap<>();
+
+         for (File var230 : var113) {
+            if (var230.isDirectory()) {
+               for (File var302 : var230.listFiles()) {
+                  if (var302.isDirectory()) {
+                     for (File var34 : var302.listFiles()) {
+                        if (var34.isFile()) {
+                           var136.put(
+                              StringHelper.format("%1$s%2$s%3$s%2$s%4$s", var230.getName(), File.separator, var302.getName(), var34.getName().toUpperCase()),
+                              var34
+                           );
+                        }
+                     }
+                  }
+               }
+            }
+         }
+
+         EditorContainersCodeListModel var154 = (EditorContainersCodeListModel)CodeListGlobal.getCodeList(
+            "net.ibizsys.pscore.srv.codelist.EditorContainersCodeListModel"
+         );
+
+         for (PSPFEditorTempl var203 : var54) {
+            String var231 = var203.getContainerType();
+            String var246 = var154.getCodeListText(var231, false);
+            String var265 = StringHelper.format("%1$s%2$s%3$s（%4$s）", var75, File.separator, var203.getPSEditorTypeName(), var246);
+            File var84 = new File(var265);
+            if (!var84.exists()) {
+               var84.mkdirs();
+            }
+
+            StringBuilderEx var283 = new StringBuilderEx();
+            var283.append("EDITORTYPE=%1$s", var203.getPSEditorTypeId());
+            String var303 = StringHelper.format("%1$s%2$s%3$s", var265, File.separator, "template.properties");
+            writeFile(var303, var283.toString());
+            PSPFPubCode var284 = (PSPFPubCode)var5.get(var203.getPSPFPubCodeId());
+            if (var284 != null) {
+               var303 = var284.getCodeEXT();
+               if (!StringHelper.isNullOrEmpty(var303)) {
+                  String[] var312 = var303.split("[.]");
+                  var303 = "." + var312[var312.length - 1];
+               }
+
+               var303 = "";
+               String var313 = StringHelper.format("%1$s%2$s.ftl", var284.getPSPFPubCodeName(), var303);
+               String var323 = StringHelper.format("%1$s%2$s%3$s", var265, File.separator, var313);
+               String var334 = var203.getTemplCode();
+               if (StringHelper.isNullOrEmpty(var334)) {
+                  var334 = "";
+               }
+
+               for (Entry<String, String> var35 : var14.entrySet()) {
+                  var334 = var334.replace((CharSequence)var35.getKey(), (CharSequence)var35.getValue());
+               }
+
+               StringBuilderEx var340 = new StringBuilderEx();
+               String var344 = var203.getPubObj();
+               if (!StringHelper.isNullOrEmpty(var344)) {
+                  var344 = var344.replace("SA.SRFDA.PS.Core.Pub.", "");
+                  var344 = var344.replace("PublisherImpl", "");
+               }
+
+               var340.append("<#ibiztemplate>\r\n");
+               if (!StringHelper.isNullOrEmpty(var344)) {
+                  var340.append("PUBOBJ=%1$s\r\n", var344);
+               }
+
+               var340.append("CONTAINER=%1$s\r\n", var231);
+               var340.append("</#ibiztemplate>\r\n");
+               var340.append(var334);
+               var334 = var340.toString();
+               writeFile(var323, var334);
+               var136.remove(StringHelper.format("%1$s%2$s%3$s", var265, File.separator, var313.toUpperCase()));
+               if (!StringHelper.isNullOrEmpty(var203.getTemplCode2())) {
+                  var313 = StringHelper.format("%1$s%2$s#CODE2.ftl", var284.getPSPFPubCodeName(), var303);
+                  var323 = StringHelper.format("%1$s%2$s%3$s", var265, File.separator, var313);
+                  var334 = var203.getTemplCode2();
+
+                  for (Entry<String, String> var346 : var14.entrySet()) {
+                     var334 = var334.replace((CharSequence)var346.getKey(), (CharSequence)var346.getValue());
+                  }
+
+                  writeFile(var323, var334);
+                  var136.remove(StringHelper.format("%1$s%2$s%3$s", var265, File.separator, var313.toUpperCase()));
+               }
+
+               if (!StringHelper.isNullOrEmpty(var203.getTemplCode3())) {
+                  var313 = StringHelper.format("%1$s%2$s#CODE3.ftl", var284.getPSPFPubCodeName(), var303);
+                  var323 = StringHelper.format("%1$s%2$s%3$s", var265, File.separator, var313);
+                  var334 = var203.getTemplCode3();
+
+                  for (Entry<String, String> var347 : var14.entrySet()) {
+                     var334 = var334.replace((CharSequence)var347.getKey(), (CharSequence)var347.getValue());
+                  }
+
+                  writeFile(var323, var334);
+                  var136.remove(StringHelper.format("%1$s%2$s%3$s", var265, File.separator, var313.toUpperCase()));
+               }
+
+               if (!StringHelper.isNullOrEmpty(var203.getTemplCode4())) {
+                  var313 = StringHelper.format("%1$s%2$s#CODE4.ftl", var284.getPSPFPubCodeName(), var303);
+                  var323 = StringHelper.format("%1$s%2$s%3$s", var265, File.separator, var313);
+                  var334 = var203.getTemplCode4();
+
+                  for (Entry<String, String> var348 : var14.entrySet()) {
+                     var334 = var334.replace((CharSequence)var348.getKey(), (CharSequence)var348.getValue());
+                  }
+
+                  writeFile(var323, var334);
+                  var136.remove(StringHelper.format("%1$s%2$s%3$s", var265, File.separator, var313.toUpperCase()));
+               }
+            }
+         }
+
+         for (Entry<String, File> var204 : var136.entrySet()) {
+            log.debug(StringHelper.format("移除文件[%1$s]", ((File)var204.getValue()).getAbsolutePath()));
+         }
+
+         PSPFAppTemplService var47 = (PSPFAppTemplService)ServiceGlobal.getService(PSPFAppTemplService.class, this.getSessionFactory());
+         var36.reset();
+         var36.set("PSPFSTYLEID", var1.getPSPFStyleId());
+
+         for (PSPFAppTempl var76 : var47.select(var36)) {
+            PSPFPubCode var85 = (PSPFPubCode)var5.get(var76.getPSPFPubCodeId());
+            if (var85 != null) {
+               PSPFCodeFolder var93 = (PSPFCodeFolder)var9.get(var85.getPSPFCodeFolderId());
+               String var114 = StringHelper.format("%1$s%2$s%3$s", var2, File.separator, var93.getFolderName());
+               File var137 = new File(var114);
+               if (!var137.exists()) {
+                  var137.mkdirs();
+               }
+
+               String var155 = var85.getPSPFPubCodeName();
+               if (StringHelper.isNullOrEmpty(var155)) {
+                  var155 = "";
+               }
+
+               String var175 = var85.getCodeEXT();
+               if (StringHelper.isNullOrEmpty(var175)) {
+                  var175 = "";
+               }
+
+               var175 = "";
+               String var205 = StringHelper.format("%1$s%2$s.ftl", var155, var175);
+               String var232 = StringHelper.format("%1$s%2$s%3$s", var114, File.separator, var205);
+               String var247 = var76.getTemplCode();
+               if (StringHelper.isNullOrEmpty(var247)) {
+                  var247 = "";
+               }
+
+               StringBuilderEx var266 = new StringBuilderEx();
+               String var285 = var76.getPubObj();
+               if (!StringHelper.isNullOrEmpty(var76.getPubObj())) {
+                  var285 = var285.replace("SA.SRFDA.PS.Core.Pub.", "");
+                  var285 = var285.replace("PublisherImpl", "");
+               }
+
+               var266.append("<#ibiztemplate>\r\n");
+               if (!StringHelper.isNullOrEmpty(var285)) {
+                  var266.append("PUBOBJ=%1$s\r\n", var285);
+               }
+
+               var266.append("TARGET=%1$s\r\n", "PSSYSAPP");
+               var266.append("</#ibiztemplate>\r\n");
+               var266.append(var247);
+               var247 = var266.toString();
+               writeFile(var232, var247);
+            }
+         }
+      } else {
+         ArrayList<PSPFStyleCode> var40 = var1.getPSPFStyleCodes();
+         String var48 = StringHelper.format("%1$s%2$smacro", var2, File.separator);
+         File var56 = new File(var48);
+         if (!var56.exists()) {
+            var56.mkdirs();
+         }
+
+         File var69 = new File(var48);
+         File[] var77 = var69.listFiles();
+         HashMap<String, File> var86 = new HashMap<>();
+
+         for (File var156 : var77) {
+            if (var156.isFile()) {
+               var86.put(var156.getName().toUpperCase(), var156);
+            }
+         }
+
+         for (PSPFStyleCode var116 : var40) {
+            String var139 = StringHelper.format("%1$s.txt", var116.getPSPFStyleCodeName().toUpperCase());
+            String var157 = StringHelper.format("%1$s%2$s%3$s", var48, File.separator, var139);
+            writeFile(var157, var116.getStyleCode());
+            var86.remove(var139.toUpperCase());
+         }
+
+         for (Entry<String, File> var117 : var86.entrySet()) {
+            log.debug(StringHelper.format("移除文件[%1$s]", ((File)var117.getValue()).getAbsolutePath()));
+         }
+
+         ArrayList<PSPFViewTempl> var40View = var1.getPSPFViewTempls();
+         var48 = StringHelper.format("%1$s%2$sview", var2, File.separator);
+         var56 = new File(var48);
+         if (!var56.exists()) {
+            var56.mkdirs();
+         }
+
+         var69 = new File(var48);
+         var77 = var69.listFiles();
+         var86 = new HashMap<>();
+
+         for (File var158 : var77) {
+            if (var158.isDirectory()) {
+               for (File var249 : var158.listFiles()) {
+                  var86.put(StringHelper.format("%1$s%2$s%3$s", var158.getName(), File.separator, var249.getName().toUpperCase()), var249);
+               }
+            }
+         }
+
+         for (PSPFViewTempl var119 : var40View) {
+            String var141 = StringHelper.format("%1$s%2$s%3$s", var48, File.separator, var119.getPSViewTypeId());
+            var56 = new File(var141);
+            if (!var56.exists()) {
+               var56.mkdirs();
+            }
+
+            PSPFPubCode var159 = (PSPFPubCode)var5.get(var119.getPSPFPubCodeId());
+            String var179 = StringHelper.format("%1$s%2$s", var159.getPSPFPubCodeName(), var159.getCodeEXT());
+            String var207 = StringHelper.format("%1$s%2$s%3$s", var141, File.separator, var179);
+            writeFile(var207, var119.getTemplCode2());
+            var86.remove(StringHelper.format("%1$s%2$s%3$s", var141, File.separator, var179.toUpperCase()));
+         }
+
+         for (Entry<String, File> var120 : var86.entrySet()) {
+            log.debug(StringHelper.format("移除文件[%1$s]", ((File)var120.getValue()).getAbsolutePath()));
+         }
+
+         ArrayList<PSPFCtrlTempl> var40Ctrl = var1.getPSPFCtrlTempls();
+         var48 = StringHelper.format("%1$s%2$sctrl", var2, File.separator);
+         var56 = new File(var48);
+         if (!var56.exists()) {
+            var56.mkdirs();
+         }
+
+         var69 = new File(var48);
+         var77 = var69.listFiles();
+         var86 = new HashMap<>();
+
+         for (File var160 : var77) {
+            if (var160.isDirectory()) {
+               for (File var250 : var160.listFiles()) {
+                  var86.put(StringHelper.format("%1$s%2$s%3$s", var160.getName(), File.separator, var250.getName().toUpperCase()), var250);
+               }
+            }
+         }
+
+         for (PSPFCtrlTempl var122 : var40Ctrl) {
+            String var143 = StringHelper.format("%1$s%2$s%3$s", var48, File.separator, var122.getPSCtrlTypeId());
+            var56 = new File(var143);
+            if (!var56.exists()) {
+               var56.mkdirs();
+            }
+
+            PSPFPubCode var161 = (PSPFPubCode)var5.get(var122.getPSPFPubCodeId());
+            if (!StringHelper.isNullOrEmpty(var122.getTemplCode())) {
+               String var181 = StringHelper.format("%1$s%2$s", var161.getPSPFPubCodeName(), var161.getCodeEXT());
+               String var209 = StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var181);
+               writeFile(var209, var122.getTemplCode());
+               var86.remove(StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var181.toUpperCase()));
+            }
+
+            if (!StringHelper.isNullOrEmpty(var122.getTemplCode2())) {
+               String var182 = StringHelper.format("%1$s_CODE2%2$s", var161.getPSPFPubCodeName(), var161.getCodeEXT());
+               String var210 = StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var182);
+               writeFile(var210, var122.getTemplCode2());
+               var86.remove(StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var182.toUpperCase()));
+            }
+
+            if (!StringHelper.isNullOrEmpty(var122.getTemplCode3())) {
+               String var183 = StringHelper.format("%1$s_CODE3%2$s", var161.getPSPFPubCodeName(), var161.getCodeEXT());
+               String var211 = StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var183);
+               writeFile(var211, var122.getTemplCode3());
+               var86.remove(StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var183.toUpperCase()));
+            }
+
+            if (!StringHelper.isNullOrEmpty(var122.getTemplCode4())) {
+               String var184 = StringHelper.format("%1$s_CODE4%2$s", var161.getPSPFPubCodeName(), var161.getCodeEXT());
+               String var212 = StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var184);
+               writeFile(var212, var122.getTemplCode4());
+               var86.remove(StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var184.toUpperCase()));
+            }
+
+            for (PSPFCTDetail var235 : var122.getPSPFCTDetails()) {
+               if (DataObject.getBoolValue(var235.getValidFlag(), true)) {
+                  if (!StringHelper.isNullOrEmpty(var235.getTemplCode())) {
+                     String var251 = StringHelper.format("%1$s_%3$s%2$s", var161.getPSPFPubCodeName(), var161.getCodeEXT(), var235.getPSPFCTDetailName());
+                     String var267 = StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var251);
+                     writeFile(var267, var235.getTemplCode());
+                     var86.remove(StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var251.toUpperCase()));
+                  }
+
+                  if (!StringHelper.isNullOrEmpty(var235.getTemplCode2())) {
+                     String var252 = StringHelper.format("%1$s_%3$s_CODE2%2$s", var161.getPSPFPubCodeName(), var161.getCodeEXT(), var235.getPSPFCTDetailName());
+                     String var268 = StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var252);
+                     writeFile(var268, var235.getTemplCode2());
+                     var86.remove(StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var252.toUpperCase()));
+                  }
+
+                  if (!StringHelper.isNullOrEmpty(var235.getTemplCode3())) {
+                     String var253 = StringHelper.format("%1$s_%3$s_CODE3%2$s", var161.getPSPFPubCodeName(), var161.getCodeEXT(), var235.getPSPFCTDetailName());
+                     String var269 = StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var253);
+                     writeFile(var269, var235.getTemplCode3());
+                     var86.remove(StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var253.toUpperCase()));
+                  }
+
+                  if (!StringHelper.isNullOrEmpty(var235.getTemplCode4())) {
+                     String var254 = StringHelper.format("%1$s_%3$s_CODE4%2$s", var161.getPSPFPubCodeName(), var161.getCodeEXT(), var235.getPSPFCTDetailName());
+                     String var270 = StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var254);
+                     writeFile(var270, var235.getTemplCode4());
+                     var86.remove(StringHelper.format("%1$s%2$s%3$s", var143, File.separator, var254.toUpperCase()));
+                  }
+               }
+            }
+         }
+
+         for (Entry<String, File> var123 : var86.entrySet()) {
+            log.debug(StringHelper.format("移除文件[%1$s]", ((File)var123.getValue()).getAbsolutePath()));
+         }
+
+         ArrayList<PSPFEditorTempl> var40Editor = var1.getPSPFEditorTempls();
+         var48 = StringHelper.format("%1$s%2$seditor", var2, File.separator);
+         var56 = new File(var48);
+         if (!var56.exists()) {
+            var56.mkdirs();
+         }
+
+         var69 = new File(var48);
+         var77 = var69.listFiles();
+         var86 = new HashMap<>();
+
+         for (File var162 : var77) {
+            if (var162.isDirectory()) {
+               for (File var255 : var162.listFiles()) {
+                  if (var255.isDirectory()) {
+                     for (File var317 : var255.listFiles()) {
+                        if (var317.isFile()) {
+                           var86.put(
+                              StringHelper.format("%1$s%2$s%3$s%2$s%4$s", var162.getName(), File.separator, var255.getName(), var317.getName().toUpperCase()),
+                              var317
+                           );
+                        }
+                     }
+                  }
+               }
+            }
+         }
+
+         for (PSPFEditorTempl var125 : var40Editor) {
+            String var145 = StringHelper.format("%1$s%2$s%3$s%2$s%4$s", var48, File.separator, var125.getPSEditorTypeId(), var125.getContainerType());
+            var56 = new File(var145);
+            if (!var56.exists()) {
+               var56.mkdirs();
+            }
+
+            PSPFPubCode var163 = (PSPFPubCode)var5.get(var125.getPSPFPubCodeId());
+            if (!StringHelper.isNullOrEmpty(var125.getTemplCode())) {
+               String var187 = StringHelper.format("%1$s%2$s", var163.getPSPFPubCodeName(), var163.getCodeEXT());
+               String var215 = StringHelper.format("%1$s%2$s%3$s", var145, File.separator, var187);
+               writeFile(var215, var125.getTemplCode());
+               var86.remove(StringHelper.format("%1$s%2$s%3$s", var145, File.separator, var187.toUpperCase()));
+            }
+
+            if (!StringHelper.isNullOrEmpty(var125.getTemplCode2())) {
+               String var188 = StringHelper.format("%1$s_CODE2%2$s", var163.getPSPFPubCodeName(), var163.getCodeEXT());
+               String var216 = StringHelper.format("%1$s%2$s%3$s", var145, File.separator, var188);
+               writeFile(var216, var125.getTemplCode2());
+               var86.remove(StringHelper.format("%1$s%2$s%3$s", var145, File.separator, var188.toUpperCase()));
+            }
+
+            if (!StringHelper.isNullOrEmpty(var125.getTemplCode3())) {
+               String var189 = StringHelper.format("%1$s_CODE3%2$s", var163.getPSPFPubCodeName(), var163.getCodeEXT());
+               String var217 = StringHelper.format("%1$s%2$s%3$s", var145, File.separator, var189);
+               writeFile(var217, var125.getTemplCode3());
+               var86.remove(StringHelper.format("%1$s%2$s%3$s", var145, File.separator, var189.toUpperCase()));
+            }
+
+            if (!StringHelper.isNullOrEmpty(var125.getTemplCode4())) {
+               String var190 = StringHelper.format("%1$s_CODE4%2$s", var163.getPSPFPubCodeName(), var163.getCodeEXT());
+               String var218 = StringHelper.format("%1$s%2$s%3$s", var145, File.separator, var190);
+               writeFile(var218, var125.getTemplCode4());
+               var86.remove(StringHelper.format("%1$s%2$s%3$s", var145, File.separator, var190.toUpperCase()));
+            }
+         }
+
+         for (Entry<String, File> var126 : var86.entrySet()) {
+            log.debug(StringHelper.format("移除文件[%1$s]", ((File)var126.getValue()).getAbsolutePath()));
+         }
+      }
+   }
+
+   public static void writeFile(String var0, String var1) throws Exception {
+      OutputStreamWriter var2 = new OutputStreamWriter(new FileOutputStream(new File(var0)), "UTF-8");
+      BufferedWriter var3 = new BufferedWriter(var2);
+      var3.write(var1);
+      var3.close();
+   }
+
+   public static String readFile(String var0) throws Exception {
+      StringBuffer var1 = new StringBuffer();
+      InputStreamReader var2 = null;
+
+      try {
+         FileInputStream var3 = new FileInputStream(var0);
+         var2 = new InputStreamReader(var3, "UTF-8");
+         char[] var4 = new char[4096];
+
+         while (true) {
+            int var5 = var2.read(var4);
+            if (var5 == -1) {
+               break;
+            }
+
+            var1.append(new String(var4, 0, var5));
+         }
+      } catch (Exception var14) {
+         var14.printStackTrace();
+      } finally {
+         if (var2 != null) {
             try {
-                pSPFEditorTempl.resetMemo();
-                pSPFEditorTemplService.create(pSPFEditorTempl);
+               var2.close();
+            } catch (IOException var13) {
             }
-            catch (Exception exception) {
-                throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u7f16\u8f91\u5668\u6a21\u677f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
+         }
+      }
+
+      return var1.toString();
+   }
+
+   protected void mergeCode(PSPFStyle var1) throws Exception {
+      PSPFStyleCodeService var2 = (PSPFStyleCodeService)ServiceGlobal.getService(PSPFStyleCodeService.class, this.getSessionFactory());
+      ArrayList<PSPFStyleCode> var3 = var2.selectByPSPFStyle(var1);
+      PSPFViewTemplService var4 = (PSPFViewTemplService)ServiceGlobal.getService(PSPFViewTemplService.class, this.getSessionFactory());
+      ArrayList<PSPFViewTempl> var5 = var4.selectByPSPFStyle(var1);
+      PSPFAppTemplService var6 = (PSPFAppTemplService)ServiceGlobal.getService(PSPFAppTemplService.class, this.getSessionFactory());
+      ArrayList<PSPFAppTempl> var7 = var6.selectByPSPFStyle(var1);
+
+      for (PSPFViewTempl var9 : var5) {
+         String var10 = var9.getTemplCode2();
+
+         for (int var11 = 0; var11 < 10; var11++) {
+            boolean var12 = false;
+
+            for (PSPFStyleCode var14 : var3) {
+               String var15 = StringHelper.format("<#SRFINC(%1$s)>", var14.getPSPFStyleCodeName().toUpperCase());
+               if (var10.indexOf(var15) != -1) {
+                  var10 = var10.replace(var15, var14.getStyleCode());
+                  var12 = true;
+               }
             }
-        }
-    }
 
-    @Override
-    protected boolean isPrepareLastForRemove() {
-        return true;
-    }
+            if (!var12) {
+               break;
+            }
+         }
 
-    @Override
-    protected boolean isPrepareLastForUpdate() {
-        return true;
-    }
+         if (StringHelper.compare(var10, var9.getTemplCode(), false) != 0) {
+            var9.setTemplCode(var10);
+            var4.update(var9);
+         }
+      }
 
-    @Override
-    public DBFetchResult fetchCurDCPF3(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            return pSPFStyleService.fetchCurDCPF3(iDEDataSetFetchContext);
-        }
-        return super.fetchCurDCPF3(iDEDataSetFetchContext);
-    }
+      for (PSPFAppTempl var17 : var7) {
+         String var18 = var17.getTemplCode2();
 
-    @Override
-    public DBFetchResult fetchCurDCPF2(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            return pSPFStyleService.fetchCurDCPF2(iDEDataSetFetchContext);
-        }
-        return super.fetchCurDCPF2(iDEDataSetFetchContext);
-    }
+         for (int var19 = 0; var19 < 10; var19++) {
+            boolean var20 = false;
 
-    @Override
-    public DBFetchResult fetchCurDCPF(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            return pSPFStyleService.fetchCurDCPF(iDEDataSetFetchContext);
-        }
-        return super.fetchCurDCPF(iDEDataSetFetchContext);
-    }
+            for (PSPFStyleCode var22 : var3) {
+               String var23 = StringHelper.format("<#SRFINC(%1$s)>", var22.getPSPFStyleCodeName().toUpperCase());
+               if (var18.indexOf(var23) != -1) {
+                  var18 = var18.replace(var23, var22.getStyleCode());
+                  var20 = true;
+               }
+            }
 
-    @Override
-    public DBFetchResult fetchCurDCPFAll(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            return pSPFStyleService.fetchCurDCPFAll(iDEDataSetFetchContext);
-        }
-        return super.fetchCurDCPFAll(iDEDataSetFetchContext);
-    }
+            if (!var20) {
+               break;
+            }
+         }
 
-    @Override
-    public DBFetchResult fetchCurDCPFAll2(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            return pSPFStyleService.fetchCurDCPFAll2(iDEDataSetFetchContext);
-        }
-        return super.fetchCurDCPFAll2(iDEDataSetFetchContext);
-    }
+         if (StringHelper.compare(var18, var17.getTemplCode(), false) != 0) {
+            var17.setTemplCode(var18);
+            var6.update(var17);
+         }
+      }
+   }
 
-    @Override
-    public DBFetchResult fetchCurPF(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
-        if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            return pSPFStyleService.fetchCurDCPFAll(iDEDataSetFetchContext);
-        }
-        return super.fetchCurPF(iDEDataSetFetchContext);
-    }
+   @Override
+   protected void onFixStyle(PSPFStyle var1) throws Exception {
+      this.get(var1);
+      if (var1.getTemplPSPFStyle() != null) {
+         ArrayList<PSPFStyleCode> var2 = var1.getPSPFStyleCodes();
+         HashMap<String, PSPFStyleCode> var3 = new HashMap<>();
+
+         for (PSPFStyleCode var5 : var2) {
+            var3.put(var5.getPSPFStyleCodeName(), var5);
+         }
+
+         PSPFViewTemplService var25 = (PSPFViewTemplService)ServiceGlobal.getService(PSPFViewTemplService.class, this.getSessionFactory());
+         PSPFCtrlTemplService var26 = (PSPFCtrlTemplService)ServiceGlobal.getService(PSPFCtrlTemplService.class, this.getSessionFactory());
+         PSPFAppTemplService var6 = (PSPFAppTemplService)ServiceGlobal.getService(PSPFAppTemplService.class, this.getSessionFactory());
+         PSPFEditorTemplService var7 = (PSPFEditorTemplService)ServiceGlobal.getService(PSPFEditorTemplService.class, this.getSessionFactory());
+
+         for (PSPFStyle var8 = var1.getTemplPSPFStyle(); var8 != null; var8 = var8.getTemplPSPFStyle()) {
+            for (PSPFStyleCode var10 : var8.getPSPFStyleCodes()) {
+               if (!var3.containsKey(var10.getPSPFStyleCodeName())) {
+                  var10.resetPSPFStyleCodeId();
+                  var10.setPSPFStyleId(var1.getPSPFStyleId());
+                  var10.setPSPFStyleName(var1.getPSPFStyleName());
+
+                  try {
+                     var10.resetMemo();
+                     var10.create();
+                     var3.put(var10.getPSPFStyleCodeName(), var10);
+                  } catch (Exception var19) {
+                     throw new Exception(StringHelper.format("建立样式宏代码发生异常，%1$s", var19.getMessage()), var19);
+                  }
+               }
+            }
+
+            for (PSPFViewTempl var11 : var8.getPSPFViewTempls()) {
+               var11.resetPSPFViewTemplId();
+               var11.resetPSPFViewTemplName();
+               var11.setPSPFStyleId(var1.getPSPFStyleId());
+               var11.setPSPFStyleName(var1.getPSPFStyleName());
+               if (var25.checkKey(var11) == 0) {
+                  try {
+                     var11.resetMemo();
+                     var25.create(var11);
+                  } catch (Exception var22) {
+                     throw new Exception(StringHelper.format("建立视图模板发生异常，%1$s", var22.getMessage()), var22);
+                  }
+               }
+            }
+
+            for (PSPFAppTempl var12 : var8.getPSPFAppTempls()) {
+               var12.resetPSPFAppTemplId();
+               var12.resetPSPFAppTemplName();
+               var12.setPSPFStyleId(var1.getPSPFStyleId());
+               var12.setPSPFStyleName(var1.getPSPFStyleName());
+               if (var6.checkKey(var12) == 0) {
+                  try {
+                     var12.resetMemo();
+                     var6.create(var12);
+                  } catch (Exception var21) {
+                     throw new Exception(StringHelper.format("建立应用模板发生异常，%1$s", var21.getMessage()), var21);
+                  }
+               }
+            }
+
+            for (PSPFCtrlTempl var13 : var8.getPSPFCtrlTempls()) {
+               PSPFCtrlTempl var14 = new PSPFCtrlTempl();
+               var13.copyTo(var14, false);
+               var14.resetPSPFCtrlTemplId();
+               var14.resetPSPFCtrlTemplName();
+               var14.setPSPFStyleId(var1.getPSPFStyleId());
+               var14.setPSPFStyleName(var1.getPSPFStyleName());
+               if (var26.checkKey(var14) == 0) {
+                  try {
+                     var14.resetMemo();
+                     var26.create(var14);
+
+                     for (PSPFCTDetail var17 : var13.getPSPFCTDetails()) {
+                        var17.resetPSPFCTDetailId();
+                        var17.setPSPFCtrlTemplId(var14.getPSPFCtrlTemplId());
+                        var17.setPSPFCtrlTemplName(var14.getPSPFCtrlTemplName());
+                        var17.resetMemo();
+                        var17.create();
+                     }
+                  } catch (Exception var23) {
+                     throw new Exception(StringHelper.format("建立部件模板发生异常，%1$s", var23.getMessage()), var23);
+                  }
+               }
+            }
+
+            for (PSPFEditorTempl var39 : var8.getPSPFEditorTempls()) {
+               var39.resetPSPFEditorTemplId();
+               var39.resetPSPFEditorTemplName();
+               var39.setPSPFStyleId(var1.getPSPFStyleId());
+               var39.setPSPFStyleName(var1.getPSPFStyleName());
+               if (var7.checkKey(var39) == 0) {
+                  try {
+                     var39.resetMemo();
+                     var7.create(var39);
+                  } catch (Exception var20) {
+                     throw new Exception(StringHelper.format("建立编辑器模板发生异常，%1$s", var20.getMessage()), var20);
+                  }
+               }
+            }
+         }
+
+         SelectCond var28 = new SelectCond();
+         var28.set("PSPFID", var1.getPSPFId());
+         var28.set("PSPFSTYLEID", SelectCond.ISNULL);
+
+         for (PSPFEditorTempl var37 : var7.select(var28)) {
+            var37.resetPSPFEditorTemplId();
+            var37.resetPSPFEditorTemplName();
+            var37.setPSPFStyleId(var1.getPSPFStyleId());
+            var37.setPSPFStyleName(var1.getPSPFStyleName());
+            if (var7.checkKey(var37) == 0) {
+               try {
+                  var37.resetMemo();
+                  var7.create(var37);
+               } catch (Exception var18) {
+                  throw new Exception(StringHelper.format("建立编辑器模板发生异常，%1$s", var18.getMessage()), var18);
+               }
+            }
+         }
+      }
+   }
+
+   @Override
+   protected boolean isPrepareLastForRemove() {
+      return true;
+   }
+
+   @Override
+   protected boolean isPrepareLastForUpdate() {
+      return true;
+   }
+
+   @Override
+   public DBFetchResult fetchCurDCPF3(IDEDataSetFetchContext var1) throws Exception {
+      if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
+         PSPFStyleService var2 = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+         return var2.fetchCurDCPF3(var1);
+      } else {
+         return super.fetchCurDCPF3(var1);
+      }
+   }
+
+   @Override
+   public DBFetchResult fetchCurDCPF2(IDEDataSetFetchContext var1) throws Exception {
+      if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
+         PSPFStyleService var2 = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+         return var2.fetchCurDCPF2(var1);
+      } else {
+         return super.fetchCurDCPF2(var1);
+      }
+   }
+
+   @Override
+   public DBFetchResult fetchCurDCPF(IDEDataSetFetchContext var1) throws Exception {
+      if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
+         PSPFStyleService var2 = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+         return var2.fetchCurDCPF(var1);
+      } else {
+         return super.fetchCurDCPF(var1);
+      }
+   }
+
+   @Override
+   public DBFetchResult fetchCurDCPFAll(IDEDataSetFetchContext var1) throws Exception {
+      if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
+         PSPFStyleService var2 = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+         return var2.fetchCurDCPFAll(var1);
+      } else {
+         return super.fetchCurDCPFAll(var1);
+      }
+   }
+
+   @Override
+   public DBFetchResult fetchCurDCPFAll2(IDEDataSetFetchContext var1) throws Exception {
+      if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
+         PSPFStyleService var2 = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+         return var2.fetchCurDCPFAll2(var1);
+      } else {
+         return super.fetchCurDCPFAll2(var1);
+      }
+   }
+
+   @Override
+   public DBFetchResult fetchCurPF(IDEDataSetFetchContext var1) throws Exception {
+      if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
+         PSPFStyleService var2 = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, PSCoreSysServiceBase.getCurMajorSessionFactory());
+         return var2.fetchCurDCPFAll(var1);
+      } else {
+         return super.fetchCurPF(var1);
+      }
+   }
 }
-

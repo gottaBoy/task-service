@@ -137,14 +137,14 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_PSSvrDomain(pSConsoleServer, pSSvrDomain);
             return;
         }
-        super.onFillParentInfo((IEntity)pSConsoleServer, string, string2, string3);
+        super.onFillParentInfo(pSConsoleServer, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -160,7 +160,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSConsoleServer, bl);
+        super.onFillEntityFullInfo(pSConsoleServer, bl);
         this.onFillEntityFullInfo_PSSvrDomain(pSConsoleServer, bl);
     }
 
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
     }
 
     protected void onWriteBackParent(PSConsoleServer pSConsoleServer, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSConsoleServer, bl);
+        super.onWriteBackParent(pSConsoleServer, bl);
     }
 
     public ArrayList<PSConsoleServer> selectByPSSvrDomain(PSSvrDomainBase pSSvrDomainBase) throws Exception {
@@ -199,8 +199,8 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
         ArrayList<PSConsoleServer> arrayList = this.selectByPSSvrDomain(pSSvrDomain, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRDOMAIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrDomain);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCONSOLESERVER_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSCONSOLESERVER", iDataEntityModel.getDataInfo((IEntity)pSSvrDomain), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrDomain);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCONSOLESERVER_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSCONSOLESERVER", iDataEntityModel.getDataInfo(pSSvrDomain), arrayList.get(0)));
         }
     }
 
@@ -233,7 +233,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
         ArrayList<PSConsoleServer> arrayList = this.selectByPSSvrDomain(pSSvrDomain);
         this.onBeforeRemoveByPSSvrDomain(pSSvrDomain, arrayList);
         for (PSConsoleServer pSConsoleServer : arrayList) {
-            this.remove((IEntity)pSConsoleServer);
+            this.remove(pSConsoleServer);
         }
         this.onAfterRemoveByPSSvrDomain(pSSvrDomain, arrayList);
     }
@@ -254,14 +254,14 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
 
     protected void replaceParentInfo(PSConsoleServer pSConsoleServer, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSConsoleServer, cloneSession);
+        super.replaceParentInfo(pSConsoleServer, cloneSession);
         if (pSConsoleServer.getPSSvrDomainId() != null && (iEntity = cloneSession.getEntity("PSSVRDOMAIN", (Object)pSConsoleServer.getPSSvrDomainId())) != null) {
             this.onFillParentInfo_PSSvrDomain(pSConsoleServer, (PSSvrDomain)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSConsoleServer pSConsoleServer, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSConsoleServer, bl);
+        super.onRemoveEntityUncopyValues(pSConsoleServer, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSConsoleServer pSConsoleServer, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -294,7 +294,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
         if ((entityFieldError = this.onCheckField_PSSvrDomainId(bl, pSConsoleServer, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSConsoleServer, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSConsoleServer, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CSState(boolean bl, PSConsoleServer pSConsoleServer, boolean bl2, boolean bl3) throws Exception {
@@ -310,7 +310,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_CSState_Default((IEntity)pSConsoleServer, bl2, bl3);
+            string = this.onTestValueRule_CSState_Default(pSConsoleServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CSSTATE");
@@ -332,7 +332,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_HttpAddress_Default((IEntity)pSConsoleServer, bl2, bl3);
+            string2 = this.onTestValueRule_HttpAddress_Default(pSConsoleServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HTTPADDRESS");
@@ -357,7 +357,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_HttpPort_Default((IEntity)pSConsoleServer, bl2, bl3);
+            string = this.onTestValueRule_HttpPort_Default(pSConsoleServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HTTPPORT");
@@ -382,7 +382,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr_Default((IEntity)pSConsoleServer, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr_Default(pSConsoleServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -407,7 +407,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_IPPort_Default((IEntity)pSConsoleServer, bl2, bl3);
+            string = this.onTestValueRule_IPPort_Default(pSConsoleServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPPORT");
@@ -429,7 +429,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSConsoleServer, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSConsoleServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -454,7 +454,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSConsoleServerId_Default((IEntity)pSConsoleServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSConsoleServerId_Default(pSConsoleServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCONSOLESERVERID");
@@ -479,7 +479,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSConsoleServerName_Default((IEntity)pSConsoleServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSConsoleServerName_Default(pSConsoleServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCONSOLESERVERNAME");
@@ -501,7 +501,7 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSConsoleServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSConsoleServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -514,11 +514,11 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
     }
 
     protected void onSyncEntity(PSConsoleServer pSConsoleServer, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSConsoleServer, bl);
+        super.onSyncEntity(pSConsoleServer, bl);
     }
 
     protected void onSyncIndexEntities(PSConsoleServer pSConsoleServer, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSConsoleServer, bl);
+        super.onSyncIndexEntities(pSConsoleServer, bl);
     }
 
     public Object getDataContextValue(PSConsoleServer pSConsoleServer, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -526,14 +526,14 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSConsoleServer, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSConsoleServer, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSConsoleServer pSConsoleServer, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSConsoleServer, arrayList, n);
+        super.onExportMajorModel(pSConsoleServer, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -712,14 +712,14 @@ extends PSCoreSysServiceBase<PSConsoleServer> {
 
     protected boolean onMergeChild(String string, String string2, PSConsoleServer pSConsoleServer) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSConsoleServer)) {
+        if (super.onMergeChild(string, string2, pSConsoleServer)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSConsoleServer pSConsoleServer) throws Exception {
-        super.onUpdateParent((IEntity)pSConsoleServer);
+        super.onUpdateParent(pSConsoleServer);
     }
 
     @Override

@@ -44,7 +44,7 @@ extends XMLCollectionExConfig<EAIBaseProcessConfig> {
 
     protected boolean OnChildNodeLoaded(EAIBaseProcessConfig childNode) {
         childNode.setParentProcessConfig(this.processConfig);
-        return super.OnChildNodeLoaded((Object)childNode);
+        return super.OnChildNodeLoaded(childNode);
     }
 
     public void GetProcessInbounds(String strProcessId, Vector<XMLConfig> list) {
@@ -90,11 +90,10 @@ extends XMLCollectionExConfig<EAIBaseProcessConfig> {
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = EAIProcessesConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
             if (this.OnChildNodeLoaded((EAIBaseProcessConfig)childNode)) {
-                this.add((Object)((EAIBaseProcessConfig)childNode));
+                this.add((EAIBaseProcessConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

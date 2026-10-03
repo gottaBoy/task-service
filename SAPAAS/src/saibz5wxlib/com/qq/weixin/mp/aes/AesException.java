@@ -1,58 +1,59 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package com.qq.weixin.mp.aes;
 
-public class AesException
-extends Exception {
-    public static final int OK = 0;
-    public static final int ValidateSignatureError = -40001;
-    public static final int ParseXmlError = -40002;
-    public static final int ComputeSignatureError = -40003;
-    public static final int IllegalAesKey = -40004;
-    public static final int ValidateCorpidError = -40005;
-    public static final int EncryptAESError = -40006;
-    public static final int DecryptAESError = -40007;
-    public static final int IllegalBuffer = -40008;
-    private int code;
+@SuppressWarnings("serial")
+public class AesException extends Exception {
 
-    private static String getMessage(int code) {
-        switch (code) {
-            case -40001: {
-                return "\u7b7e\u540d\u9a8c\u8bc1\u9519\u8bef";
-            }
-            case -40002: {
-                return "xml\u89e3\u6790\u5931\u8d25";
-            }
-            case -40003: {
-                return "sha\u52a0\u5bc6\u751f\u6210\u7b7e\u540d\u5931\u8d25";
-            }
-            case -40004: {
-                return "SymmetricKey\u975e\u6cd5";
-            }
-            case -40005: {
-                return "corpid\u6821\u9a8c\u5931\u8d25";
-            }
-            case -40006: {
-                return "aes\u52a0\u5bc6\u5931\u8d25";
-            }
-            case -40007: {
-                return "aes\u89e3\u5bc6\u5931\u8d25";
-            }
-            case -40008: {
-                return "\u89e3\u5bc6\u540e\u5f97\u5230\u7684buffer\u975e\u6cd5";
-            }
-        }
-        return null;
-    }
+	public final static int OK = 0;
+	public final static int ValidateSignatureError = -40001;
+	public final static int ParseXmlError = -40002;
+	public final static int ComputeSignatureError = -40003;
+	public final static int IllegalAesKey = -40004;
+	public final static int ValidateCorpidError = -40005;
+	public final static int EncryptAESError = -40006;
+	public final static int DecryptAESError = -40007;
+	public final static int IllegalBuffer = -40008;
+	//public final static int EncodeBase64Error = -40009;
+	//public final static int DecodeBase64Error = -40010;
+	//public final static int GenReturnXmlError = -40011;
 
-    public int getCode() {
-        return this.code;
-    }
+	private int code;
 
-    AesException(int code) {
-        super(AesException.getMessage(code));
-        this.code = code;
-    }
+	private static String getMessage(int code) {
+		switch (code) {
+		case ValidateSignatureError:
+			return "签名验证错误";
+		case ParseXmlError:
+			return "xml解析失败";
+		case ComputeSignatureError:
+			return "sha加密生成签名失败";
+		case IllegalAesKey:
+			return "SymmetricKey非法";
+		case ValidateCorpidError:
+			return "corpid校验失败";
+		case EncryptAESError:
+			return "aes加密失败";
+		case DecryptAESError:
+			return "aes解密失败";
+		case IllegalBuffer:
+			return "解密后得到的buffer非法";
+//		case EncodeBase64Error:
+//			return "base64加密错误";
+//		case DecodeBase64Error:
+//			return "base64解密错误";
+//		case GenReturnXmlError:
+//			return "xml生成失败";
+		default:
+			return null; // cannot be
+		}
+	}
+
+	public int getCode() {
+		return code;
+	}
+
+	AesException(int code) {
+		super(getMessage(code));
+		this.code = code;
+	}
+
 }
-

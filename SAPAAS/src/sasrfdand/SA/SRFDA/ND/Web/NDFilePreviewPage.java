@@ -90,7 +90,12 @@ extends BaseMainPage {
             if (this.ndFileHis != null) {
                 strUrl = String.valueOf(strUrl) + StringHelper.Format((String)"&NDFILEHISID=%1$s", (Object)this.ndFileHis.getNDFILEHISID());
             }
-            this.getResponse().sendRedirect(strUrl);
+            try {
+                this.getResponse().sendRedirect(strUrl);
+            }
+            catch (Exception exception) {
+                exception.printStackTrace();
+            }
             return false;
         }
         return true;

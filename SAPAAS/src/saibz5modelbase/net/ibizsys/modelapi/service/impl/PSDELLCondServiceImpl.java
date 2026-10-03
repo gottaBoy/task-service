@@ -113,7 +113,7 @@ implements IPSDELLCondService {
     @Override
     protected List<PSDELLCond> onListAll() throws Exception {
         ArrayList<PSDELLCond> list = new ArrayList<PSDELLCond>();
-        List psdelogiclinks = PSModelServiceUtil.getInstance().getPSDELogicLinkService().listAll();
+        List<PSDELogicLink> psdelogiclinks = PSModelServiceUtil.getInstance().getPSDELogicLinkService().listAll();
         if (psdelogiclinks != null) {
             for (PSDELogicLink parent : psdelogiclinks) {
                 List<PSDELLCond> items = this.listByPSDELogicLink(parent);

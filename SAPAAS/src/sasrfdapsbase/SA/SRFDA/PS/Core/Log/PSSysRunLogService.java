@@ -264,7 +264,7 @@ extends BaseService {
                     psSysRunLog.setLogInfo(strInfo);
                 }
             }
-            psSysRunLogService.create((IEntity)psSysRunLog, false);
+            psSysRunLogService.create(psSysRunLog, false);
         }
         catch (Exception ex) {
             log.error((Object)StringHelper.Format((String)"\u4fdd\u5b58\u6d88\u606f\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()));
@@ -287,4 +287,3 @@ extends BaseService {
         }
     }
 }
-

@@ -101,7 +101,7 @@ implements IPSJITService<PSJITEntity> {
             this.onFillParentInfo_DER1N((IPSDER1N)iPSDERBase, et, parentEntity);
             return;
         }
-        super.onFillParentInfo((IEntity)et, strParentType, strTypeParam, strParentKey);
+        super.onFillParentInfo(et, strParentType, strTypeParam, strParentKey);
     }
 
     protected void onFillParentInfo_DER1N(IPSDER1N iPSDER1N, PSJITEntity et, IEntity parentEntity) throws Exception {
@@ -151,7 +151,6 @@ implements IPSJITService<PSJITEntity> {
             }
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)et, bTempMode);
+        return super.onFillEntityKeyValue(et, bTempMode);
     }
 }
-

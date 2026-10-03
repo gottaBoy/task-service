@@ -1,21 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.springframework.stereotype.Component
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wx.service;
 
-import net.ibizsys.psrt.srv.wx.service.WXMessageServiceBase;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
-@Component
-public class WXMessageService
-extends WXMessageServiceBase {
-    private static final Log log = LogFactory.getLog(WXMessageService.class);
-}
 
+
+import net.ibizsys.paas.service.ServiceGlobal;
+
+/**
+ * 实体[WXMessage] 服务对象
+ */
+@Component
+public class WXMessageService extends WXMessageServiceBase {
+
+    private static final Log log = LogFactory.getLog(WXMessageService.class);
+    public WXMessageService () {
+        super();
+
+    }
+
+}

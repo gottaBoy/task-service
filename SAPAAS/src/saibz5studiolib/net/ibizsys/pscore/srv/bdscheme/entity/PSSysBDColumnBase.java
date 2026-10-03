@@ -2068,7 +2068,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.psde = pSDataEntity;
             }
             return this.psde;
@@ -2094,7 +2094,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.psdef = pSDEField;
             }
             return this.psdef;
@@ -2120,7 +2120,7 @@ implements Serializable {
                 PSSysBDColSet pSSysBDColSet = new PSSysBDColSet();
                 pSSysBDColSet.setPSSysBDColSetId(this.getPSSysBDColSetId());
                 PSSysBDColSetService pSSysBDColSetService = (PSSysBDColSetService)ServiceGlobal.getService(PSSysBDColSetService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDColSetService.autoGet((IEntity)pSSysBDColSet);
+                pSSysBDColSetService.autoGet(pSSysBDColSet);
                 this.pssysbdcolset = pSSysBDColSet;
             }
             return this.pssysbdcolset;
@@ -2146,7 +2146,7 @@ implements Serializable {
                 PSSysBDTableDE pSSysBDTableDE = new PSSysBDTableDE();
                 pSSysBDTableDE.setPSSysBDTableDEId(this.getPSSysBDTableDEId());
                 PSSysBDTableDEService pSSysBDTableDEService = (PSSysBDTableDEService)ServiceGlobal.getService(PSSysBDTableDEService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDTableDEService.autoGet((IEntity)pSSysBDTableDE);
+                pSSysBDTableDEService.autoGet(pSSysBDTableDE);
                 this.pssysbdtablede = pSSysBDTableDE;
             }
             return this.pssysbdtablede;
@@ -2172,7 +2172,7 @@ implements Serializable {
                 PSSysBDTable pSSysBDTable = new PSSysBDTable();
                 pSSysBDTable.setPSSysBDTableId(this.getPSSysBDTableId());
                 PSSysBDTableService pSSysBDTableService = (PSSysBDTableService)ServiceGlobal.getService(PSSysBDTableService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBDTableService.autoGet((IEntity)pSSysBDTable);
+                pSSysBDTableService.autoGet(pSSysBDTable);
                 this.pssysbdtable = pSSysBDTable;
             }
             return this.pssysbdtable;

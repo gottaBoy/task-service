@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.helpdesign.demodel.PSHelpModuleDEModelBase;
 
 public class PSHelpModuleDEModel
 extends PSHelpModuleDEModelBase {
+
+    public PSHelpModuleDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

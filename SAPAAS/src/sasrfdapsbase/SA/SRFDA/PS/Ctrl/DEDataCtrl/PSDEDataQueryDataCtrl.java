@@ -72,7 +72,7 @@ extends PSDEDataCtrl {
                     this.modifyLayoutFromXML(xmlNode, psDEDataQuery, validMap);
                     BaseDataEntity cond = new BaseDataEntity();
                     cond.setParamValue("PSDEDQID", (Object)psDEDataQuery.getPSDEDATAQUERYID());
-                    Vector psDEDataQueryJoinList = new Vector();
+                    Vector<PSDEDataQueryJoin> psDEDataQueryJoinList = new Vector<>();
                     IDEDataCtrl psDEDataQueryJoinDataCtrl = this.GetRelatedDataCtrl("DE2058");
                     callResult = psDEDataQueryJoinDataCtrl.Select(cond, psDEDataQueryJoinList, PSDEDataQueryJoin.class.getName());
                     if (callResult.isError()) {
@@ -101,7 +101,7 @@ extends PSDEDataCtrl {
     }
 
     protected void modifyLayoutFromXML(XMLNode xmlNode, SA.SRFDA.PS.Data.PSDEDataQuery psDEDataQuery, HashMap<String, PSDEDataQueryJoin> validMap) throws Exception {
-        ArrayList xmlNodes = xmlNode.getChildNodes();
+        ArrayList<XMLNode> xmlNodes = xmlNode.getChildNodes();
         if (xmlNodes == null) {
             return;
         }
@@ -158,7 +158,7 @@ extends PSDEDataCtrl {
         }
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSDEDQID", (Object)psDEDataQuery.getPSDEDATAQUERYID());
-        Vector psDEDataQueryJoinList = new Vector();
+        Vector<PSDEDataQueryJoin> psDEDataQueryJoinList = new Vector<>();
         IDEDataCtrl psDEDataQueryJoinDataCtrl = this.GetRelatedDataCtrl("DE2058");
         CallResult callResult = psDEDataQueryJoinDataCtrl.Select(cond, psDEDataQueryJoinList, PSDEDataQueryJoin.class.getName(), "ORDER BY ORDERVALUE");
         if (callResult.isError()) {
@@ -280,7 +280,7 @@ extends PSDEDataCtrl {
             PSDEDataQuery psDEDataQuery2 = new PSDEDataQuery();
             psDEDataQuery2.setPSDEDataQueryId(psDEDataQuery.getPSDEDATAQUERYID());
             PSDEDataQueryService psDEDataQueryService = (PSDEDataQueryService)ServiceGlobal.getService(PSDEDataQueryService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-            psDEDataQueryService.get((IEntity)psDEDataQuery2);
+            psDEDataQueryService.get(psDEDataQuery2);
             iPSDataEntity = iPSSystem.getPSDataEntity2(psDEDataQuery2.getPSDEId());
             iPSDEDataQuery = iPSDataEntity.getPSDEDataQuery(psDEDataQuery2.getPSDEDataQueryId());
         }
@@ -297,4 +297,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

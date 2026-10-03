@@ -984,7 +984,7 @@ implements Serializable {
                 PSSysProduct pSSysProduct = new PSSysProduct();
                 pSSysProduct.setPSSysProductId(this.getPSSysProductId());
                 PSSysProductService pSSysProductService = (PSSysProductService)ServiceGlobal.getService(PSSysProductService.class, (SessionFactory)this.getSessionFactory());
-                pSSysProductService.autoGet((IEntity)pSSysProduct);
+                pSSysProductService.autoGet(pSSysProduct);
                 this.pssysproduct = pSSysProduct;
             }
             return this.pssysproduct;

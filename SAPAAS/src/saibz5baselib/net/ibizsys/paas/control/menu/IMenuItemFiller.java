@@ -1,16 +1,21 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.control.menu;
 
 import java.util.ArrayList;
-import net.ibizsys.paas.control.menu.IMenuItem;
+
 import net.sf.json.JSONObject;
 
+/**
+ * 菜单项填充器
+ * @author Administrator
+ *
+ */
 public interface IMenuItemFiller {
-    public ArrayList<JSONObject> toJSONObjects(IMenuItem var1) throws Exception;
+	
+	/**
+	 * 输出到JSON对象集合
+	 * @param iMenuItem
+	 * @return
+	 * @throws Exception
+	 */
+	ArrayList<JSONObject> toJSONObjects(IMenuItem iMenuItem) throws Exception;
 }
-

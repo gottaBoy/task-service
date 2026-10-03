@@ -1,13 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.dataentity.action;
 
-import net.ibizsys.model.dataentity.action.IPSDEAction;
 import net.ibizsys.model.dataentity.logic.IPSDELogic;
 
-public interface IPSDELogicAction
-extends IPSDEAction {
-    public IPSDELogic getPSDELogic() throws Exception;
+/**
+ * 实体逻辑行为对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDELogicAction extends IPSDEAction
+{
+	/**
+	 * 获取对应的实体逻辑
+	 * @return
+	 */
+	IPSDELogic getPSDELogic()throws Exception;
 }
-

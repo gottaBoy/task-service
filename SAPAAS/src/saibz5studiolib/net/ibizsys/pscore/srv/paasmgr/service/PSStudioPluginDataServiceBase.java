@@ -138,9 +138,9 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSStudioPluginData, pSDevCenter);
             return;
@@ -150,14 +150,14 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
             PSStudioPlugin pSStudioPlugin = (PSStudioPlugin)iService.getDEModel().createEntity();
             pSStudioPlugin.set("PSSTUDIOPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSStudioPlugin);
+                iService.getTemp(pSStudioPlugin);
             } else {
-                iService.get((IEntity)pSStudioPlugin);
+                iService.get(pSStudioPlugin);
             }
             this.onFillParentInfo_PSStudioPlugin(pSStudioPluginData, pSStudioPlugin);
             return;
         }
-        super.onFillParentInfo((IEntity)pSStudioPluginData, string, string2, string3);
+        super.onFillParentInfo(pSStudioPluginData, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -178,7 +178,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
         if (bl && pSStudioPluginData.getActionState() == null) {
             pSStudioPluginData.setActionState((Integer)this.getDefaultValue(this.getWebContext(), "", "10", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSStudioPluginData, bl);
+        super.onFillEntityFullInfo(pSStudioPluginData, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSStudioPluginData, bl);
         this.onFillEntityFullInfo_PSStudioPlugin(pSStudioPluginData, bl);
     }
@@ -200,7 +200,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
     }
 
     protected void onWriteBackParent(PSStudioPluginData pSStudioPluginData, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSStudioPluginData, bl);
+        super.onWriteBackParent(pSStudioPluginData, bl);
     }
 
     public ArrayList<PSStudioPluginData> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -283,7 +283,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
         ArrayList<PSStudioPluginData> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSStudioPluginData pSStudioPluginData : arrayList) {
-            this.remove((IEntity)pSStudioPluginData);
+            this.remove(pSStudioPluginData);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -329,7 +329,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
         ArrayList<PSStudioPluginData> arrayList = this.selectByPSStudioPlugin(pSStudioPlugin);
         this.onBeforeRemoveByPSStudioPlugin(pSStudioPlugin, arrayList);
         for (PSStudioPluginData pSStudioPluginData : arrayList) {
-            this.remove((IEntity)pSStudioPluginData);
+            this.remove(pSStudioPluginData);
         }
         this.onAfterRemoveByPSStudioPlugin(pSStudioPlugin, arrayList);
     }
@@ -350,7 +350,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
 
     protected void replaceParentInfo(PSStudioPluginData pSStudioPluginData, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSStudioPluginData, cloneSession);
+        super.replaceParentInfo(pSStudioPluginData, cloneSession);
         if (pSStudioPluginData.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSStudioPluginData.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSStudioPluginData, (PSDevCenter)iEntity);
         }
@@ -360,7 +360,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
     }
 
     protected void onRemoveEntityUncopyValues(PSStudioPluginData pSStudioPluginData, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSStudioPluginData, bl);
+        super.onRemoveEntityUncopyValues(pSStudioPluginData, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSStudioPluginData pSStudioPluginData, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -483,7 +483,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
         if ((entityFieldError = this.onCheckField_PSStudioPluginName(bl, pSStudioPluginData, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSStudioPluginData, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSStudioPluginData, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ActionParam(boolean bl, PSStudioPluginData pSStudioPluginData, boolean bl2, boolean bl3) throws Exception {
@@ -496,7 +496,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM");
@@ -518,7 +518,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam10_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam10_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM10");
@@ -540,7 +540,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam11_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam11_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM11");
@@ -562,7 +562,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam12_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam12_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM12");
@@ -584,7 +584,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam13_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam13_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM13");
@@ -606,7 +606,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam14_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam14_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM14");
@@ -628,7 +628,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam15_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam15_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM15");
@@ -650,7 +650,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam16_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam16_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM16");
@@ -672,7 +672,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam2_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam2_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM2");
@@ -694,7 +694,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam3_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam3_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM3");
@@ -716,7 +716,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam4_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam4_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM4");
@@ -738,7 +738,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ActionParam5_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string = this.onTestValueRule_ActionParam5_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM5");
@@ -760,7 +760,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ActionParam6_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string = this.onTestValueRule_ActionParam6_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM6");
@@ -782,7 +782,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam7_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam7_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM7");
@@ -804,7 +804,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam8_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam8_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM8");
@@ -826,7 +826,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionParam9_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionParam9_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONPARAM9");
@@ -848,7 +848,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionResult_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionResult_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONRESULT");
@@ -873,7 +873,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ActionState_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string = this.onTestValueRule_ActionState_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONSTATE");
@@ -895,7 +895,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ActionType_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_ActionType_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ACTIONTYPE");
@@ -917,7 +917,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_BeginTime_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string = this.onTestValueRule_BeginTime_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BEGINTIME");
@@ -939,7 +939,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DownloadUrl_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_DownloadUrl_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DOWNLOADURL");
@@ -961,7 +961,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EndTime_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string = this.onTestValueRule_EndTime_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENDTIME");
@@ -983,7 +983,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_FullResultInfo_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_FullResultInfo_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FULLRESULTINFO");
@@ -1005,7 +1005,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1027,7 +1027,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PPSStudioPluginId_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PPSStudioPluginId_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PPSSTUDIOPLUGINID");
@@ -1049,7 +1049,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -1071,7 +1071,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnId_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnId_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNID");
@@ -1093,7 +1093,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnName_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnName_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNNAME");
@@ -1115,7 +1115,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysId_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysId_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSID");
@@ -1137,7 +1137,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnSysName_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnSysName_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNSYSNAME");
@@ -1159,7 +1159,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnTemplId_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnTemplId_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNTEMPLID");
@@ -1181,7 +1181,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevSlnTemplName_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevSlnTemplName_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVSLNTEMPLNAME");
@@ -1203,7 +1203,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjId_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjId_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJID");
@@ -1225,7 +1225,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjName_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjName_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJNAME");
@@ -1247,7 +1247,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSObjType_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSObjType_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSOBJTYPE");
@@ -1272,7 +1272,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSStudioPluginDataId_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSStudioPluginDataId_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSTUDIOPLUGINDATAID");
@@ -1297,7 +1297,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSStudioPluginDataName_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSStudioPluginDataName_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSTUDIOPLUGINDATANAME");
@@ -1319,7 +1319,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSStudioPluginId_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSStudioPluginId_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSTUDIOPLUGINID");
@@ -1341,7 +1341,7 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSStudioPluginName_Default((IEntity)pSStudioPluginData, bl2, bl3);
+            string2 = this.onTestValueRule_PSStudioPluginName_Default(pSStudioPluginData, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSTUDIOPLUGINNAME");
@@ -1354,11 +1354,11 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
     }
 
     protected void onSyncEntity(PSStudioPluginData pSStudioPluginData, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSStudioPluginData, bl);
+        super.onSyncEntity(pSStudioPluginData, bl);
     }
 
     protected void onSyncIndexEntities(PSStudioPluginData pSStudioPluginData, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSStudioPluginData, bl);
+        super.onSyncIndexEntities(pSStudioPluginData, bl);
     }
 
     public Object getDataContextValue(PSStudioPluginData pSStudioPluginData, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1366,14 +1366,14 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSStudioPluginData, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSStudioPluginData, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSStudioPluginData pSStudioPluginData, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSStudioPluginData, arrayList, n);
+        super.onExportMajorModel(pSStudioPluginData, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1986,14 +1986,14 @@ extends PSCoreSysServiceBase<PSStudioPluginData> {
 
     protected boolean onMergeChild(String string, String string2, PSStudioPluginData pSStudioPluginData) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSStudioPluginData)) {
+        if (super.onMergeChild(string, string2, pSStudioPluginData)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSStudioPluginData pSStudioPluginData) throws Exception {
-        super.onUpdateParent((IEntity)pSStudioPluginData);
+        super.onUpdateParent(pSStudioPluginData);
     }
 
     @Override

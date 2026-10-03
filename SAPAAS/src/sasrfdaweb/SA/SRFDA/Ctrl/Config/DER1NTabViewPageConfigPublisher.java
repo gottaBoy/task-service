@@ -77,7 +77,7 @@ extends BaseTabViewPageConfigPublisher {
         urlParams.put("SRFDERID", iDER1NHelper.getId());
         urlParams.put("SRFCAPTION", strCaption);
         if (StringHelper.Compare((String)iDEHelper.getId(), (String)iDER1NHelper.getMajorDEId(), (boolean)true) != 0) {
-            Vector derIndexs = iDEHelper.GetDERINDEXs(false);
+            Vector<DERINDEX> derIndexs = iDEHelper.GetDERINDEXs(false);
             for (DERINDEX derINDEX : derIndexs) {
                 if (StringHelper.Compare((String)derINDEX.getINDEXDEID(), (String)iDER1NHelper.getMajorDEId(), (boolean)true) != 0) continue;
                 urlParams.put("SRFDERINDEXID", derINDEX.getDERINDEXID());
@@ -114,4 +114,3 @@ extends BaseTabViewPageConfigPublisher {
         }
     }
 }
-

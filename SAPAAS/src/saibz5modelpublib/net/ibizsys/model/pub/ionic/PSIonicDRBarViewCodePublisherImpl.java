@@ -1,35 +1,63 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSDRBar
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.ionic;
 
 import java.util.HashMap;
-import net.ibizsys.model.pub.ionic.PSIonicCtrlCodePublisherImpl;
 
-public class PSIonicDRBarViewCodePublisherImpl
-extends PSIonicCtrlCodePublisherImpl {
-    protected IPSDRBar iPSDRBar;
-    public static final String CTRLPART_STORE = "STORE";
+import SA.SRFDA.PS.Core.Control.DRCtrl.IPSDRBar;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
 
-    public PSIonicDRBarViewCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSIonicDRBarViewCodePublisherImpl is inconsistent\n\tIPSDRBar cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSIonicDRBarViewCodePublisherImpl must override or implement a supertype method\n\tIPSDRBar cannot be resolved to a type\n\tIPSDRBar cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSIonicCtrlCodePublisherImpl\n\tIPSDRBar cannot be resolved to a type\n\tIPSDRBar cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDRBar cannot be resolved to a type\n\tThe method onClose() of type PSIonicDRBarViewCodePublisherImpl must override or implement a supertype method\n\tIPSDRBar cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSIonicCtrlCodePublisherImpl\n");
-    }
+/**
+ * 关系栏
+ * @author lionlau
+ *
+ */
+public class PSIonicDRBarViewCodePublisherImpl extends PSIonicCtrlCodePublisherImpl
+{
+	protected IPSDRBar iPSDRBar = null;
+	public final static String CTRLPART_STORE = "STORE";
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSDRBar = (IPSDRBar)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSIonicDRBarViewCodePublisherImpl must override or implement a supertype method\n\tIPSDRBar cannot be resolved to a type\n\tIPSDRBar cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSIonicCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSDRBar = (IPSDRBar)this.iPSControl;
+		
+		//输出结果集合代码
+		if(true)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_STORE).getPSPFCtrlPartCodePublisher();
+			IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext,iPSDRBar, null);
+			iPSPFCtrlPartCodePublisher.close();
+			params.put("store", iPSGenerateCodeResult);
+		}
+		
+		
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDRBar cannot be resolved to a type\n\tIPSDRBar cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDRBar cannot be resolved to a type\n");
-    }
-
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSIonicDRBarViewCodePublisherImpl must override or implement a supertype method\n\tIPSDRBar cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSIonicCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSDRBar = null;
+		super.onClose();
+	}
+	
 }
-

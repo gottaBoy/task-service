@@ -1,20 +1,113 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel.wfactor.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="456925D5-F501-4DEA-8CD1-F562029E1E4E", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFACTORPARAM, t1.WFACTORPARAM2, t1.WFACTORTYPE FROM T_SRFWFACTOR t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="PARAMS", expression="t1.PARAMS", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=2), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=3), @DEDataQueryCodeExp(name="WFACTORID", expression="t1.WFACTORID", showorder=4), @DEDataQueryCodeExp(name="WFACTORNAME", expression="t1.WFACTORNAME", showorder=5), @DEDataQueryCodeExp(name="WFACTORPARAM", expression="t1.WFACTORPARAM", showorder=6), @DEDataQueryCodeExp(name="WFACTORPARAM2", expression="t1.WFACTORPARAM2", showorder=7), @DEDataQueryCodeExp(name="WFACTORTYPE", expression="t1.WFACTORTYPE", showorder=8)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`updatedate`, t1.`updateman`, t1.`wfactorid`, t1.`wfactorname`, t1.`wfactorparam`, t1.`wfactorparam2`, t1.`wfactortype` FROM `t_srfwfactor` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="PARAMS", expression="t1.`params`", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=1), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=2), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=3), @DEDataQueryCodeExp(name="WFACTORID", expression="t1.`wfactorid`", showorder=4), @DEDataQueryCodeExp(name="WFACTORNAME", expression="t1.`wfactorname`", showorder=5), @DEDataQueryCodeExp(name="WFACTORPARAM", expression="t1.`wfactorparam`", showorder=6), @DEDataQueryCodeExp(name="WFACTORPARAM2", expression="t1.`wfactorparam2`", showorder=7), @DEDataQueryCodeExp(name="WFACTORTYPE", expression="t1.`wfactortype`", showorder=8)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFACTORPARAM, t1.WFACTORPARAM2, t1.WFACTORTYPE FROM T_SRFWFACTOR t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="PARAMS", expression="t1.PARAMS", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=2), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=3), @DEDataQueryCodeExp(name="WFACTORID", expression="t1.WFACTORID", showorder=4), @DEDataQueryCodeExp(name="WFACTORNAME", expression="t1.WFACTORNAME", showorder=5), @DEDataQueryCodeExp(name="WFACTORPARAM", expression="t1.WFACTORPARAM", showorder=6), @DEDataQueryCodeExp(name="WFACTORPARAM2", expression="t1.WFACTORPARAM2", showorder=7), @DEDataQueryCodeExp(name="WFACTORTYPE", expression="t1.WFACTORTYPE", showorder=8)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFACTORPARAM, t1.WFACTORPARAM2, t1.WFACTORTYPE FROM T_SRFWFACTOR t1  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="PARAMS", expression="t1.PARAMS", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=2), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=3), @DEDataQueryCodeExp(name="WFACTORID", expression="t1.WFACTORID", showorder=4), @DEDataQueryCodeExp(name="WFACTORNAME", expression="t1.WFACTORNAME", showorder=5), @DEDataQueryCodeExp(name="WFACTORPARAM", expression="t1.WFACTORPARAM", showorder=6), @DEDataQueryCodeExp(name="WFACTORPARAM2", expression="t1.WFACTORPARAM2", showorder=7), @DEDataQueryCodeExp(name="WFACTORTYPE", expression="t1.WFACTORTYPE", showorder=8)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFACTORPARAM, t1.WFACTORPARAM2, t1.WFACTORTYPE FROM T_SRFWFACTOR t1  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="PARAMS", expression="t1.PARAMS", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=2), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=3), @DEDataQueryCodeExp(name="WFACTORID", expression="t1.WFACTORID", showorder=4), @DEDataQueryCodeExp(name="WFACTORNAME", expression="t1.WFACTORNAME", showorder=5), @DEDataQueryCodeExp(name="WFACTORPARAM", expression="t1.WFACTORPARAM", showorder=6), @DEDataQueryCodeExp(name="WFACTORPARAM2", expression="t1.WFACTORPARAM2", showorder=7), @DEDataQueryCodeExp(name="WFACTORTYPE", expression="t1.WFACTORTYPE", showorder=8)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[WFACTORID], t1.[WFACTORNAME], t1.[WFACTORPARAM], t1.[WFACTORPARAM2], t1.[WFACTORTYPE] FROM [T_SRFWFACTOR] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="PARAMS", expression="t1.[PARAMS]", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=1), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=2), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=3), @DEDataQueryCodeExp(name="WFACTORID", expression="t1.[WFACTORID]", showorder=4), @DEDataQueryCodeExp(name="WFACTORNAME", expression="t1.[WFACTORNAME]", showorder=5), @DEDataQueryCodeExp(name="WFACTORPARAM", expression="t1.[WFACTORPARAM]", showorder=6), @DEDataQueryCodeExp(name="WFACTORPARAM2", expression="t1.[WFACTORPARAM2]", showorder=7), @DEDataQueryCodeExp(name="WFACTORTYPE", expression="t1.[WFACTORTYPE]", showorder=8)}, conds={})})
-public abstract class WFActorDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="456925D5-F501-4DEA-8CD1-F562029E1E4E",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFACTORPARAM, t1.WFACTORPARAM2, t1.WFACTORTYPE FROM T_SRFWFACTOR t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="PARAMS",expression="t1.PARAMS",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=2)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=3)
+        ,@DEDataQueryCodeExp(name="WFACTORID",expression="t1.WFACTORID",showorder=4)
+        ,@DEDataQueryCodeExp(name="WFACTORNAME",expression="t1.WFACTORNAME",showorder=5)
+        ,@DEDataQueryCodeExp(name="WFACTORPARAM",expression="t1.WFACTORPARAM",showorder=6)
+        ,@DEDataQueryCodeExp(name="WFACTORPARAM2",expression="t1.WFACTORPARAM2",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFACTORTYPE",expression="t1.WFACTORTYPE",showorder=8)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`updatedate`, t1.`updateman`, t1.`wfactorid`, t1.`wfactorname`, t1.`wfactorparam`, t1.`wfactorparam2`, t1.`wfactortype` FROM `t_srfwfactor` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="PARAMS",expression="t1.`params`",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=1)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=2)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=3)
+        ,@DEDataQueryCodeExp(name="WFACTORID",expression="t1.`wfactorid`",showorder=4)
+        ,@DEDataQueryCodeExp(name="WFACTORNAME",expression="t1.`wfactorname`",showorder=5)
+        ,@DEDataQueryCodeExp(name="WFACTORPARAM",expression="t1.`wfactorparam`",showorder=6)
+        ,@DEDataQueryCodeExp(name="WFACTORPARAM2",expression="t1.`wfactorparam2`",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFACTORTYPE",expression="t1.`wfactortype`",showorder=8)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFACTORPARAM, t1.WFACTORPARAM2, t1.WFACTORTYPE FROM T_SRFWFACTOR t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="PARAMS",expression="t1.PARAMS",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=2)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=3)
+        ,@DEDataQueryCodeExp(name="WFACTORID",expression="t1.WFACTORID",showorder=4)
+        ,@DEDataQueryCodeExp(name="WFACTORNAME",expression="t1.WFACTORNAME",showorder=5)
+        ,@DEDataQueryCodeExp(name="WFACTORPARAM",expression="t1.WFACTORPARAM",showorder=6)
+        ,@DEDataQueryCodeExp(name="WFACTORPARAM2",expression="t1.WFACTORPARAM2",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFACTORTYPE",expression="t1.WFACTORTYPE",showorder=8)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFACTORPARAM, t1.WFACTORPARAM2, t1.WFACTORTYPE FROM T_SRFWFACTOR t1  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="PARAMS",expression="t1.PARAMS",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=2)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=3)
+        ,@DEDataQueryCodeExp(name="WFACTORID",expression="t1.WFACTORID",showorder=4)
+        ,@DEDataQueryCodeExp(name="WFACTORNAME",expression="t1.WFACTORNAME",showorder=5)
+        ,@DEDataQueryCodeExp(name="WFACTORPARAM",expression="t1.WFACTORPARAM",showorder=6)
+        ,@DEDataQueryCodeExp(name="WFACTORPARAM2",expression="t1.WFACTORPARAM2",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFACTORTYPE",expression="t1.WFACTORTYPE",showorder=8)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.UPDATEDATE, t1.UPDATEMAN, t1.WFACTORID, t1.WFACTORNAME, t1.WFACTORPARAM, t1.WFACTORPARAM2, t1.WFACTORTYPE FROM T_SRFWFACTOR t1  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="PARAMS",expression="t1.PARAMS",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=2)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=3)
+        ,@DEDataQueryCodeExp(name="WFACTORID",expression="t1.WFACTORID",showorder=4)
+        ,@DEDataQueryCodeExp(name="WFACTORNAME",expression="t1.WFACTORNAME",showorder=5)
+        ,@DEDataQueryCodeExp(name="WFACTORPARAM",expression="t1.WFACTORPARAM",showorder=6)
+        ,@DEDataQueryCodeExp(name="WFACTORPARAM2",expression="t1.WFACTORPARAM2",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFACTORTYPE",expression="t1.WFACTORTYPE",showorder=8)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[UPDATEDATE], t1.[UPDATEMAN], t1.[WFACTORID], t1.[WFACTORNAME], t1.[WFACTORPARAM], t1.[WFACTORPARAM2], t1.[WFACTORTYPE] FROM [T_SRFWFACTOR] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="PARAMS",expression="t1.[PARAMS]",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=1)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=2)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=3)
+        ,@DEDataQueryCodeExp(name="WFACTORID",expression="t1.[WFACTORID]",showorder=4)
+        ,@DEDataQueryCodeExp(name="WFACTORNAME",expression="t1.[WFACTORNAME]",showorder=5)
+        ,@DEDataQueryCodeExp(name="WFACTORPARAM",expression="t1.[WFACTORPARAM]",showorder=6)
+        ,@DEDataQueryCodeExp(name="WFACTORPARAM2",expression="t1.[WFACTORPARAM2]",showorder=7)
+        ,@DEDataQueryCodeExp(name="WFACTORTYPE",expression="t1.[WFACTORTYPE]",showorder=8)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class WFActorDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public WFActorDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(WFActorDefaultDQModelBase.class);
     }
-}
 
+}

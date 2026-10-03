@@ -152,9 +152,9 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
             PSDCDeployCenter pSDCDeployCenter = (PSDCDeployCenter)iService.getDEModel().createEntity();
             pSDCDeployCenter.set("PSDCDEPLOYCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDCDeployCenter);
+                iService.getTemp(pSDCDeployCenter);
             } else {
-                iService.get((IEntity)pSDCDeployCenter);
+                iService.get(pSDCDeployCenter);
             }
             this.onFillParentInfo_PSDCDeployCenter(pSDCDeployServer, pSDCDeployCenter);
             return;
@@ -164,9 +164,9 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
             PSDeployServer pSDeployServer = (PSDeployServer)iService.getDEModel().createEntity();
             pSDeployServer.set("PSDEPLOYSERVERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDeployServer);
+                iService.getTemp(pSDeployServer);
             } else {
-                iService.get((IEntity)pSDeployServer);
+                iService.get(pSDeployServer);
             }
             this.onFillParentInfo_PSDeployServer(pSDCDeployServer, pSDeployServer);
             return;
@@ -176,14 +176,14 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSDCDeployServer, pSDevCenter);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDCDeployServer, string, string2, string3);
+        super.onFillParentInfo(pSDCDeployServer, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -209,7 +209,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
         if (bl && pSDCDeployServer.getValidFlag() == null) {
             pSDCDeployServer.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSDCDeployServer, bl);
+        super.onFillEntityFullInfo(pSDCDeployServer, bl);
         this.onFillEntityFullInfo_PSDCDeployCenter(pSDCDeployServer, bl);
         this.onFillEntityFullInfo_PSDeployServer(pSDCDeployServer, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSDCDeployServer, bl);
@@ -245,7 +245,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
     }
 
     protected void onWriteBackParent(PSDCDeployServer pSDCDeployServer, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDCDeployServer, bl);
+        super.onWriteBackParent(pSDCDeployServer, bl);
     }
 
     public ArrayList<PSDCDeployServer> selectByPSDCDeployCenter(PSDCDeployCenterBase pSDCDeployCenterBase) throws Exception {
@@ -324,8 +324,8 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
         ArrayList<PSDCDeployServer> arrayList = this.selectByPSDCDeployCenter(pSDCDeployCenter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDCDEPLOYCENTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDCDeployCenter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCDEPLOYSERVER_PSDCDEPLOYCENTER_PSDCDEPLOYCENTERID", "", iDataEntityModel.getName(), "PSDCDEPLOYSERVER", iDataEntityModel.getDataInfo((IEntity)pSDCDeployCenter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDCDeployCenter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCDEPLOYSERVER_PSDCDEPLOYCENTER_PSDCDEPLOYCENTERID", "", iDataEntityModel.getName(), "PSDCDEPLOYSERVER", iDataEntityModel.getDataInfo(pSDCDeployCenter), arrayList.get(0)));
         }
     }
 
@@ -358,7 +358,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
         ArrayList<PSDCDeployServer> arrayList = this.selectByPSDCDeployCenter(pSDCDeployCenter);
         this.onBeforeRemoveByPSDCDeployCenter(pSDCDeployCenter, arrayList);
         for (PSDCDeployServer pSDCDeployServer : arrayList) {
-            this.remove((IEntity)pSDCDeployServer);
+            this.remove(pSDCDeployServer);
         }
         this.onAfterRemoveByPSDCDeployCenter(pSDCDeployCenter, arrayList);
     }
@@ -376,8 +376,8 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
         ArrayList<PSDCDeployServer> arrayList = this.selectByPSDeployServer(pSDeployServer, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEPLOYSERVER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDeployServer);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCDEPLOYSERVER_PSDEPLOYSERVER_PSDEPLOYSERVERID", "", iDataEntityModel.getName(), "PSDCDEPLOYSERVER", iDataEntityModel.getDataInfo((IEntity)pSDeployServer), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDeployServer);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCDEPLOYSERVER_PSDEPLOYSERVER_PSDEPLOYSERVERID", "", iDataEntityModel.getName(), "PSDCDEPLOYSERVER", iDataEntityModel.getDataInfo(pSDeployServer), arrayList.get(0)));
         }
     }
 
@@ -410,7 +410,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
         ArrayList<PSDCDeployServer> arrayList = this.selectByPSDeployServer(pSDeployServer);
         this.onBeforeRemoveByPSDeployServer(pSDeployServer, arrayList);
         for (PSDCDeployServer pSDCDeployServer : arrayList) {
-            this.remove((IEntity)pSDCDeployServer);
+            this.remove(pSDCDeployServer);
         }
         this.onAfterRemoveByPSDeployServer(pSDeployServer, arrayList);
     }
@@ -428,8 +428,8 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
         ArrayList<PSDCDeployServer> arrayList = this.selectByPSDevCenter(pSDevCenter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVCENTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevCenter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCDEPLOYSERVER_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSDCDEPLOYSERVER", iDataEntityModel.getDataInfo((IEntity)pSDevCenter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevCenter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSDCDEPLOYSERVER_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSDCDEPLOYSERVER", iDataEntityModel.getDataInfo(pSDevCenter), arrayList.get(0)));
         }
     }
 
@@ -462,7 +462,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
         ArrayList<PSDCDeployServer> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSDCDeployServer pSDCDeployServer : arrayList) {
-            this.remove((IEntity)pSDCDeployServer);
+            this.remove(pSDCDeployServer);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -485,7 +485,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
 
     protected void replaceParentInfo(PSDCDeployServer pSDCDeployServer, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDCDeployServer, cloneSession);
+        super.replaceParentInfo(pSDCDeployServer, cloneSession);
         if (pSDCDeployServer.getPSDCDeployCenterId() != null && (iEntity = cloneSession.getEntity("PSDCDEPLOYCENTER", (Object)pSDCDeployServer.getPSDCDeployCenterId())) != null) {
             this.onFillParentInfo_PSDCDeployCenter(pSDCDeployServer, (PSDCDeployCenter)iEntity);
         }
@@ -498,7 +498,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDCDeployServer pSDCDeployServer, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDCDeployServer, bl);
+        super.onRemoveEntityUncopyValues(pSDCDeployServer, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDCDeployServer pSDCDeployServer, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -576,7 +576,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
         if ((entityFieldError = this.onCheckField_WorkshopPath(bl, pSDCDeployServer, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDCDeployServer, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDCDeployServer, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_DefaultFlag(boolean bl, PSDCDeployServer pSDCDeployServer, boolean bl2, boolean bl3) throws Exception {
@@ -592,7 +592,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -614,7 +614,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ExpriedTime_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string = this.onTestValueRule_ExpriedTime_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPRIEDTIME");
@@ -636,7 +636,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -658,7 +658,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -680,7 +680,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -702,7 +702,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Port_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string = this.onTestValueRule_Port_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PORT");
@@ -724,7 +724,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCDeployCenterId_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCDeployCenterId_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCDEPLOYCENTERID");
@@ -746,7 +746,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCDeployCenterName_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCDeployCenterName_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCDEPLOYCENTERNAME");
@@ -771,7 +771,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCDeployServerId_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCDeployServerId_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCDEPLOYSERVERID");
@@ -796,7 +796,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDCDeployServerName_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDCDeployServerName_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDCDEPLOYSERVERNAME");
@@ -818,7 +818,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDeployServerId_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDeployServerId_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEPLOYSERVERID");
@@ -843,7 +843,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -868,7 +868,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterName_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterName_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERNAME");
@@ -890,7 +890,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RefCount_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string = this.onTestValueRule_RefCount_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFCOUNT");
@@ -912,7 +912,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResPos_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string = this.onTestValueRule_ResPos_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESPOS");
@@ -934,7 +934,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResReadyTime_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string = this.onTestValueRule_ResReadyTime_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESREADYTIME");
@@ -956,7 +956,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ResState_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string = this.onTestValueRule_ResState_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("RESSTATE");
@@ -978,7 +978,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SSHIPAddr_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_SSHIPAddr_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHIPADDR");
@@ -1000,7 +1000,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SSHPort_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string = this.onTestValueRule_SSHPort_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SSHPORT");
@@ -1022,7 +1022,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadFileMode_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_UploadFileMode_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADFILEMODE");
@@ -1044,7 +1044,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UploadPath_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_UploadPath_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("UPLOADPATH");
@@ -1066,7 +1066,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -1091,7 +1091,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1113,7 +1113,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WorkshopPath_Default((IEntity)pSDCDeployServer, bl2, bl3);
+            string2 = this.onTestValueRule_WorkshopPath_Default(pSDCDeployServer, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WORKSHOPPATH");
@@ -1126,11 +1126,11 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
     }
 
     protected void onSyncEntity(PSDCDeployServer pSDCDeployServer, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDCDeployServer, bl);
+        super.onSyncEntity(pSDCDeployServer, bl);
     }
 
     protected void onSyncIndexEntities(PSDCDeployServer pSDCDeployServer, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDCDeployServer, bl);
+        super.onSyncIndexEntities(pSDCDeployServer, bl);
     }
 
     public Object getDataContextValue(PSDCDeployServer pSDCDeployServer, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1138,7 +1138,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDCDeployServer, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDCDeployServer, string, iDataContextParam)) != null) {
             return object;
         }
         PSDCDeployCenter pSDCDeployCenter = pSDCDeployServer.getPSDCDeployCenter();
@@ -1153,7 +1153,7 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
     }
 
     protected void onExportMajorModel(PSDCDeployServer pSDCDeployServer, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDCDeployServer, arrayList, n);
+        super.onExportMajorModel(pSDCDeployServer, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1509,14 +1509,14 @@ extends PSCoreSysServiceBase<PSDCDeployServer> {
 
     protected boolean onMergeChild(String string, String string2, PSDCDeployServer pSDCDeployServer) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDCDeployServer)) {
+        if (super.onMergeChild(string, string2, pSDCDeployServer)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDCDeployServer pSDCDeployServer) throws Exception {
-        super.onUpdateParent((IEntity)pSDCDeployServer);
+        super.onUpdateParent(pSDCDeployServer);
     }
 
     @Override

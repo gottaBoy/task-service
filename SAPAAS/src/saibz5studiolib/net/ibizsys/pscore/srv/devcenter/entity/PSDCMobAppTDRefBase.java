@@ -1055,7 +1055,7 @@ implements Serializable {
                 PSDCMobAppTestDevice pSDCMobAppTestDevice = new PSDCMobAppTestDevice();
                 pSDCMobAppTestDevice.setPSDCMobAppTestDeviceId(this.getPSDCMobAppTestDeviceId());
                 PSDCMobAppTestDeviceService pSDCMobAppTestDeviceService = (PSDCMobAppTestDeviceService)ServiceGlobal.getService(PSDCMobAppTestDeviceService.class, (SessionFactory)this.getSessionFactory());
-                pSDCMobAppTestDeviceService.autoGet((IEntity)pSDCMobAppTestDevice);
+                pSDCMobAppTestDeviceService.autoGet(pSDCMobAppTestDevice);
                 this.psdcmobapptestdevice = pSDCMobAppTestDevice;
             }
             return this.psdcmobapptestdevice;

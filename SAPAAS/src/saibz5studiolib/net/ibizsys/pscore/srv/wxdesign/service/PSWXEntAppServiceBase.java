@@ -199,9 +199,9 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             PSSysApp pSSysApp = (PSSysApp)iService.getDEModel().createEntity();
             pSSysApp.set("PSSYSAPPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysApp);
+                iService.getTemp(pSSysApp);
             } else {
-                iService.get((IEntity)pSSysApp);
+                iService.get(pSSysApp);
             }
             this.onFillParentInfo_PSSysApp(pSWXEntApp, pSSysApp);
             return;
@@ -211,9 +211,9 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             PSSysResource pSSysResource = (PSSysResource)iService.getDEModel().createEntity();
             pSSysResource.set("PSSYSRESOURCEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysResource);
+                iService.getTemp(pSSysResource);
             } else {
-                iService.get((IEntity)pSSysResource);
+                iService.get(pSSysResource);
             }
             this.onFillParentInfo_PSSysResource(pSWXEntApp, pSSysResource);
             return;
@@ -223,9 +223,9 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             PSSysSFPlugin pSSysSFPlugin = (PSSysSFPlugin)iService.getDEModel().createEntity();
             pSSysSFPlugin.set("PSSYSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPlugin);
+                iService.getTemp(pSSysSFPlugin);
             } else {
-                iService.get((IEntity)pSSysSFPlugin);
+                iService.get(pSSysSFPlugin);
             }
             this.onFillParentInfo_PSSysSFPlugin(pSWXEntApp, pSSysSFPlugin);
             return;
@@ -235,14 +235,14 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             PSWXAccount pSWXAccount = (PSWXAccount)iService.getDEModel().createEntity();
             pSWXAccount.set("PSWXACCOUNTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWXAccount);
+                iService.getTemp(pSWXAccount);
             } else {
-                iService.get((IEntity)pSWXAccount);
+                iService.get(pSWXAccount);
             }
             this.onFillParentInfo_PSWXAccount(pSWXEntApp, pSWXAccount);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWXEntApp, string, string2, string3);
+        super.onFillParentInfo(pSWXEntApp, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -284,7 +284,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 pSWXEntApp.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSWXEntApp, bl);
+        super.onFillEntityFullInfo(pSWXEntApp, bl);
         this.onFillEntityFullInfo_PSSysApp(pSWXEntApp, bl);
         this.onFillEntityFullInfo_PSSysResource(pSWXEntApp, bl);
         this.onFillEntityFullInfo_PSSysSFPlugin(pSWXEntApp, bl);
@@ -304,7 +304,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
     }
 
     protected void onWriteBackParent(PSWXEntApp pSWXEntApp, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWXEntApp, bl);
+        super.onWriteBackParent(pSWXEntApp, bl);
     }
 
     public ArrayList<PSWXEntApp> selectByPSSysApp(PSSysAppBase pSSysAppBase) throws Exception {
@@ -407,8 +407,8 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         ArrayList<PSWXEntApp> arrayList = this.selectByPSSysApp(pSSysApp, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSAPP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysApp);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXENTAPP_PSSYSAPP_PSSYSAPPID", "", iDataEntityModel.getName(), "PSWXENTAPP", iDataEntityModel.getDataInfo((IEntity)pSSysApp), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysApp);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXENTAPP_PSSYSAPP_PSSYSAPPID", "", iDataEntityModel.getName(), "PSWXENTAPP", iDataEntityModel.getDataInfo(pSSysApp), arrayList.get(0)));
         }
     }
 
@@ -441,7 +441,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         ArrayList<PSWXEntApp> arrayList = this.selectByPSSysApp(pSSysApp);
         this.onBeforeRemoveByPSSysApp(pSSysApp, arrayList);
         for (PSWXEntApp pSWXEntApp : arrayList) {
-            this.remove((IEntity)pSWXEntApp);
+            this.remove(pSWXEntApp);
         }
         this.onAfterRemoveByPSSysApp(pSSysApp, arrayList);
     }
@@ -459,8 +459,8 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         ArrayList<PSWXEntApp> arrayList = this.selectByPSSysResource(pSSysResource, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSRESOURCE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysResource);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXENTAPP_PSSYSRESOURCE_PSSYSRESOURCEID", "", iDataEntityModel.getName(), "PSWXENTAPP", iDataEntityModel.getDataInfo((IEntity)pSSysResource), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysResource);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXENTAPP_PSSYSRESOURCE_PSSYSRESOURCEID", "", iDataEntityModel.getName(), "PSWXENTAPP", iDataEntityModel.getDataInfo(pSSysResource), arrayList.get(0)));
         }
     }
 
@@ -493,7 +493,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         ArrayList<PSWXEntApp> arrayList = this.selectByPSSysResource(pSSysResource);
         this.onBeforeRemoveByPSSysResource(pSSysResource, arrayList);
         for (PSWXEntApp pSWXEntApp : arrayList) {
-            this.remove((IEntity)pSWXEntApp);
+            this.remove(pSWXEntApp);
         }
         this.onAfterRemoveByPSSysResource(pSSysResource, arrayList);
     }
@@ -511,8 +511,8 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         ArrayList<PSWXEntApp> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXENTAPP_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSWXENTAPP", iDataEntityModel.getDataInfo((IEntity)pSSysSFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWXENTAPP_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSWXENTAPP", iDataEntityModel.getDataInfo(pSSysSFPlugin), arrayList.get(0)));
         }
     }
 
@@ -545,7 +545,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         ArrayList<PSWXEntApp> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin);
         this.onBeforeRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
         for (PSWXEntApp pSWXEntApp : arrayList) {
-            this.remove((IEntity)pSWXEntApp);
+            this.remove(pSWXEntApp);
         }
         this.onAfterRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
     }
@@ -591,7 +591,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         ArrayList<PSWXEntApp> arrayList = this.selectByPSWXAccount(pSWXAccount);
         this.onBeforeRemoveByPSWXAccount(pSWXAccount, arrayList);
         for (PSWXEntApp pSWXEntApp : arrayList) {
-            this.remove((IEntity)pSWXEntApp);
+            this.remove(pSWXEntApp);
         }
         this.onAfterRemoveByPSWXAccount(pSWXAccount, arrayList);
     }
@@ -621,7 +621,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
 
     protected void replaceParentInfo(PSWXEntApp pSWXEntApp, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWXEntApp, cloneSession);
+        super.replaceParentInfo(pSWXEntApp, cloneSession);
         if (pSWXEntApp.getPSSysAppId() != null && (iEntity = cloneSession.getEntity("PSSYSAPP", (Object)pSWXEntApp.getPSSysAppId())) != null) {
             this.onFillParentInfo_PSSysApp(pSWXEntApp, (PSSysApp)iEntity);
         }
@@ -637,7 +637,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWXEntApp pSWXEntApp, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWXEntApp, bl);
+        super.onRemoveEntityUncopyValues(pSWXEntApp, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWXEntApp pSWXEntApp, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -712,7 +712,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         if ((entityFieldError = this.onCheckField_WXEntAppParams(bl, pSWXEntApp, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWXEntApp, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWXEntApp, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AppType(boolean bl, PSWXEntApp pSWXEntApp, boolean bl2, boolean bl3) throws Exception {
@@ -728,7 +728,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AppType_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_AppType_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APPTYPE");
@@ -750,7 +750,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AppUrl_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_AppUrl_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("APPURL");
@@ -775,7 +775,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -811,7 +811,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -833,7 +833,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -855,7 +855,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAppId_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAppId_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAPPID");
@@ -877,7 +877,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysResourceId_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysResourceId_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSRESOURCEID");
@@ -899,7 +899,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPluginId_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPluginId_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPLUGINID");
@@ -924,7 +924,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXAccountId_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXAccountId_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXACCOUNTID");
@@ -949,7 +949,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXEntAppId_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXEntAppId_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXENTAPPID");
@@ -974,7 +974,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWXEntAppName_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_PSWXEntAppName_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXENTAPPNAME");
@@ -996,7 +996,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PSWXLogicsCnt_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string = this.onTestValueRule_PSWXLogicsCnt_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXLOGICSCNT");
@@ -1018,7 +1018,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PSWXMenuFuncsCnt_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string = this.onTestValueRule_PSWXMenuFuncsCnt_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXMENUFUNCSCNT");
@@ -1040,7 +1040,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_PSWXMenusCnt_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string = this.onTestValueRule_PSWXMenusCnt_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWXMENUSCNT");
@@ -1062,7 +1062,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RepEnterFlag_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string = this.onTestValueRule_RepEnterFlag_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REPENTERFLAG");
@@ -1084,7 +1084,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_RepLocationFlag_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string = this.onTestValueRule_RepLocationFlag_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REPLOCATIONFLAG");
@@ -1106,7 +1106,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1128,7 +1128,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1150,7 +1150,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1172,7 +1172,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1194,7 +1194,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1219,7 +1219,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1241,7 +1241,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_WXEntAppParams_Default((IEntity)pSWXEntApp, bl2, bl3);
+            string2 = this.onTestValueRule_WXEntAppParams_Default(pSWXEntApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WXENTAPPPARAMS");
@@ -1254,11 +1254,11 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
     }
 
     protected void onSyncEntity(PSWXEntApp pSWXEntApp, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWXEntApp, bl);
+        super.onSyncEntity(pSWXEntApp, bl);
     }
 
     protected void onSyncIndexEntities(PSWXEntApp pSWXEntApp, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWXEntApp, bl);
+        super.onSyncIndexEntities(pSWXEntApp, bl);
     }
 
     public Object getDataContextValue(PSWXEntApp pSWXEntApp, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1266,7 +1266,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWXEntApp, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWXEntApp, string, iDataContextParam)) != null) {
             return object;
         }
         PSWXAccount pSWXAccount = pSWXEntApp.getPSWXAccount();
@@ -1277,7 +1277,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
     }
 
     protected void onExportMajorModel(PSWXEntApp pSWXEntApp, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWXEntApp, arrayList, n);
+        super.onExportMajorModel(pSWXEntApp, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1693,7 +1693,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         if ((StringHelper.isNullOrEmpty((String)string) || (StringHelper.compare((String)string, (String)"DER1N", (boolean)true) == 0 || StringHelper.compare((String)string, (String)"SYSDER1N", (boolean)true) == 0) && StringHelper.compare((String)string2, (String)"DER1N_PSWXMENU_PSWXENTAPP_PSWXENTAPPID", (boolean)true) == 0) && this.onMergeChild_PSWXMenus(pSWXEntApp)) {
             bl = true;
         }
-        if (super.onMergeChild(string, string2, (IEntity)pSWXEntApp)) {
+        if (super.onMergeChild(string, string2, pSWXEntApp)) {
             bl = true;
         }
         return bl;
@@ -1708,12 +1708,12 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         String string = DataObject.getStringValue((Object)pSWXEntApp.getPSWXEntAppId());
         IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.wxdesign.service.PSWXLogicService", (SessionFactory)this.getSessionFactory());
         selectContext.set("PSWXENTAPPID", (Object)pSWXEntApp.getPSWXEntAppId());
-        ArrayList arrayList = null;
+        ArrayList<IEntity> arrayList = null;
         arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        IEntity iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSWXEntApp, false);
         return true;
     }
@@ -1727,12 +1727,12 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         String string = DataObject.getStringValue((Object)pSWXEntApp.getPSWXEntAppId());
         IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.wxdesign.service.PSWXMenuFuncService", (SessionFactory)this.getSessionFactory());
         selectContext.set("PSWXENTAPPID", (Object)pSWXEntApp.getPSWXEntAppId());
-        ArrayList arrayList = null;
+        ArrayList<IEntity> arrayList = null;
         arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        IEntity iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSWXEntApp, false);
         return true;
     }
@@ -1746,12 +1746,12 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         String string = DataObject.getStringValue((Object)pSWXEntApp.getPSWXEntAppId());
         IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.wxdesign.service.PSWXMenuService", (SessionFactory)this.getSessionFactory());
         selectContext.set("PSWXENTAPPID", (Object)pSWXEntApp.getPSWXEntAppId());
-        ArrayList arrayList = null;
+        ArrayList<IEntity> arrayList = null;
         arrayList = string.indexOf("SRFTEMPKEY:") == 0 ? iService.selectTemp((ISelectCond)selectContext) : iService.select((ISelectCond)selectContext);
         if (arrayList.size() == 0) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u6570\u636e");
         }
-        IEntity iEntity = (IEntity)arrayList.get(0);
+        IEntity iEntity = arrayList.get(0);
         iEntity.copyTo((IDataObject)pSWXEntApp, false);
         return true;
     }
@@ -1762,7 +1762,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             IService iService = ServiceGlobal.getService((String)"net.ibizsys.pscore.srv.wxdesign.service.PSWXAccountService", (SessionFactory)this.getSessionFactory());
             iService.mergeChild("DER1N", "DER1N_PSWXENTAPP_PSWXACCOUNT_PSWXACCOUNTID", object);
         }
-        super.onUpdateParent((IEntity)pSWXEntApp);
+        super.onUpdateParent(pSWXEntApp);
     }
 
     protected boolean isNeedUpdateParent() {
@@ -1913,18 +1913,18 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSWXMenu();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSWXMenuServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSWXMenu)entityBase);
+                PSWXMenu menu = new PSWXMenu();
+                PSModelV2Helper.fromJSONObject(menu, objectNode, false);
+                string3 = ((PSWXMenuServiceBase)pSCoreSysServiceBase).getModelV2Tag(menu);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWXMENU", (Object)entityBase.getPSWXMenuId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWXMENU", (Object)menu.getPSWXMenuId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSCoreSysServiceBase.exportModelV2(menu, string4 + File.separator + string3, string2);
             }
         }
         if (this.isExportRelatedModelV2("DER1N_PSWXMENUFUNC_PSWXENTAPP_PSWXENTAPPID") && (file2 = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWXENTAPP#%4$s#ALL.txt", (Object)string2, (Object)File.separator, (Object)"PSWXMENUFUNC", (Object)pSWXEntApp.getPSWXEntAppId()))).exists()) {
@@ -1939,18 +1939,18 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             for (String string6 : arrayList) {
                 if (StringHelper.isNullOrEmpty((String)string6)) continue;
                 objectNode = (ObjectNode)JsonNodeHelper.fromString((String)string6);
-                entityBase = new PSWXMenuFunc();
-                PSModelV2Helper.fromJSONObject((IDataObject)entityBase, objectNode, false);
-                string3 = ((PSWXMenuFuncServiceBase)pSCoreSysServiceBase).getModelV2Tag((PSWXMenuFunc)entityBase);
+                PSWXMenuFunc menuFunc = new PSWXMenuFunc();
+                PSModelV2Helper.fromJSONObject(menuFunc, objectNode, false);
+                string3 = ((PSWXMenuFuncServiceBase)pSCoreSysServiceBase).getModelV2Tag(menuFunc);
                 if (StringHelper.isNullOrEmpty((String)string3)) {
-                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWXMENUFUNC", (Object)entityBase.getPSWXMenuFuncId()));
+                    throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8ba1\u7b97\u6a21\u578b[%1$s][%2$s]\u6807\u8bb0", (Object)"PSWXMENUFUNC", (Object)menuFunc.getPSWXMenuFuncId()));
                 }
                 string3 = PSModelV2Helper.getModelV2TagFolderName(string3);
                 file = new File(string4 + File.separator + string3);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                pSCoreSysServiceBase.exportModelV2(entityBase, string4 + File.separator + string3, string2);
+                pSCoreSysServiceBase.exportModelV2(menuFunc, string4 + File.separator + string3, string2);
             }
         }
         super.onExportRelatedModelV2(pSWXEntApp, string, string2);
@@ -1958,45 +1958,32 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
 
     @Override
     protected void onExportCurModelV2(PSWXEntApp pSWXEntApp, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
         ArrayNode arrayNode;
-        Object object3;
-        ArrayList<PSWXMenu> arrayList;
+        ArrayList<ObjectNode> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSWXMENU_PSWXENTAPP_PSWXENTAPPID")) {
             pSCoreSysServiceBase = (PSWXMenuService)ServiceGlobal.getService(PSWXMenuService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWXENTAPP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWXMENU", (Object)pSWXEntApp.getPSWXEntAppId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWXENTAPP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWXMENU", (Object)pSWXEntApp.getPSWXEntAppId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add((PSWXMenu)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSWXMenu>();
-                object3 = ((PSWXMenuServiceBase)pSCoreSysServiceBase).selectByPSWXEntApp(pSWXEntApp);
-                arrayNode = StringHelper.format((String)"PSWXENTAPP#%1$s", (Object)pSWXEntApp.getPSWXEntAppId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWXMenu)object2.next();
-                    object = ((PSWXMenuServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSWXMenu)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWXENTAPP#%1$s", (Object)pSWXEntApp.getPSWXEntAppId());
+                for (PSWXMenu menu : ((PSWXMenuServiceBase)pSCoreSysServiceBase).selectByPSWXEntApp(pSWXEntApp)) {
+                    String menuScope = ((PSWXMenuServiceBase)pSCoreSysServiceBase).getModelV2ResScope(menu);
+                    if (StringHelper.compare(scope, menuScope, false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(menu, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
+                arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2024,10 +2011,10 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWXMenu();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode menuNode : arrayList) {
+                    PSWXMenu menu = new PSWXMenu();
+                    PSModelV2Helper.fromJSONObject(menu, menuNode, false);
+                    arrayNode.add(pSCoreSysServiceBase.exportModelV2(menu, string));
                 }
             }
         }
@@ -2035,33 +2022,25 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             pSCoreSysServiceBase = (PSWXMenuFuncService)ServiceGlobal.getService(PSWXMenuFuncService.class, (SessionFactory)this.getSessionFactory());
             arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWXENTAPP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWXMENUFUNC", (Object)pSWXEntApp.getPSWXEntAppId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSWXENTAPP#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSWXMENUFUNC", (Object)pSWXEntApp.getPSWXEntAppId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object3 = PSModelV2Helper.readFile2(file);
-                    arrayNode = ((ArrayList)object3).iterator();
-                    while (arrayNode.hasNext()) {
-                        object2 = (String)arrayNode.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSWXMenu)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object3 = ((PSWXMenuFuncServiceBase)pSCoreSysServiceBase).selectByPSWXEntApp(pSWXEntApp);
-                arrayNode = StringHelper.format((String)"PSWXENTAPP#%1$s", (Object)pSWXEntApp.getPSWXEntAppId());
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSWXMenuFunc)object2.next();
-                    object = ((PSWXMenuFuncServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)arrayNode, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSWXMenu)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSWXENTAPP#%1$s", (Object)pSWXEntApp.getPSWXEntAppId());
+                for (PSWXMenuFunc menuFunc : ((PSWXMenuFuncServiceBase)pSCoreSysServiceBase).selectByPSWXEntApp(pSWXEntApp)) {
+                    String menuScope = ((PSWXMenuFuncServiceBase)pSCoreSysServiceBase).getModelV2ResScope(menuFunc);
+                    if (StringHelper.compare(scope, menuScope, false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(menuFunc, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object3 = pSCoreSysServiceBase.getModelV2Name(false);
-                arrayNode = objectNode.putArray(((String)object3).toLowerCase());
+                arrayNode = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2089,10 +2068,10 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSWXMenuFunc();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    arrayNode.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode menuNode : arrayList) {
+                    PSWXMenuFunc menuFunc = new PSWXMenuFunc();
+                    PSModelV2Helper.fromJSONObject(menuFunc, menuNode, false);
+                    arrayNode.add(pSCoreSysServiceBase.exportModelV2(menuFunc, string));
                 }
             }
         }
@@ -2139,9 +2118,6 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
 
     @Override
     protected void onCompileRelatedModelV2(PSWXEntApp pSWXEntApp, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
         int n2;
         String string3;
         ArrayNode arrayNode;
@@ -2155,23 +2131,23 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             }
             if (arrayNode != null) {
                 for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSWXMenu();
-                    ((PSWXMenuBase)object).setPSWXEntAppId(pSWXEntApp.getPSWXEntAppId());
-                    ((PSWXMenuBase)object).setPSWXEntAppName(pSWXEntApp.getPSWXEntAppName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode menuNode = (ObjectNode)arrayNode.get(n2);
+                    PSWXMenu menu = new PSWXMenu();
+                    menu.setPSWXEntAppId(pSWXEntApp.getPSWXEntAppId());
+                    menu.setPSWXEntAppName(pSWXEntApp.getPSWXEntAppName());
+                    pSCoreSysServiceBase.compileModelV2(menu, menuNode, string, null, n);
                 }
             } else {
                 String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string4);
-                if (((File)object2).exists()) {
-                    object = ((File)object2).listFiles();
-                    for (Object object3 : object) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSWXMenu();
-                        entityBase.setPSWXEntAppId(pSWXEntApp.getPSWXEntAppId());
-                        entityBase.setPSWXEntAppName(pSWXEntApp.getPSWXEntAppName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File folder = new File(string4);
+                if (folder.exists()) {
+                    File[] files = folder.listFiles();
+                    if (files != null) for (File child : files) {
+                        if (!child.isDirectory()) continue;
+                        PSWXMenu menu = new PSWXMenu();
+                        menu.setPSWXEntAppId(pSWXEntApp.getPSWXEntAppId());
+                        menu.setPSWXEntAppName(pSWXEntApp.getPSWXEntAppName());
+                        pSCoreSysServiceBase.compileModelV2(menu, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -2185,22 +2161,23 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             }
             if (arrayNode != null) {
                 for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSWXMenuFunc();
-                    ((PSWXMenuFuncBase)object).setPSWXEntAppId(pSWXEntApp.getPSWXEntAppId());
-                    ((PSWXMenuFuncBase)object).setPSWXEntAppName(pSWXEntApp.getPSWXEntAppName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode menuNode = (ObjectNode)arrayNode.get(n2);
+                    PSWXMenuFunc menuFunc = new PSWXMenuFunc();
+                    menuFunc.setPSWXEntAppId(pSWXEntApp.getPSWXEntAppId());
+                    menuFunc.setPSWXEntAppName(pSWXEntApp.getPSWXEntAppName());
+                    pSCoreSysServiceBase.compileModelV2(menuFunc, menuNode, string, null, n);
                 }
             } else {
                 String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string5);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSWXMenuFunc();
-                        entityBase.setPSWXEntAppId(pSWXEntApp.getPSWXEntAppId());
-                        entityBase.setPSWXEntAppName(pSWXEntApp.getPSWXEntAppName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                File folder = new File(string5);
+                if (folder.exists()) {
+                    File[] files = folder.listFiles();
+                    if (files != null) for (File child : files) {
+                        if (!child.isDirectory()) continue;
+                        PSWXMenuFunc menuFunc = new PSWXMenuFunc();
+                        menuFunc.setPSWXEntAppId(pSWXEntApp.getPSWXEntAppId());
+                        menuFunc.setPSWXEntAppName(pSWXEntApp.getPSWXEntAppName());
+                        pSCoreSysServiceBase.compileModelV2(menuFunc, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -2225,7 +2202,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             PSWXMenuService pSWXMenuService = (PSWXMenuService)ServiceGlobal.getService(PSWXMenuService.class, (SessionFactory)this.getSessionFactory());
             PSWXMenu pSWXMenu = new PSWXMenu();
             pSWXMenu.setPSWXMenuId(pSMOSFile.getPSModelId());
-            if (!pSWXMenuService.get((IEntity)pSWXMenu, true)) {
+            if (!pSWXMenuService.get(pSWXMenu, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWXMenu.getPSWXEntAppId(), (String)pSWXEntApp.getPSWXEntAppId(), (boolean)false) == 0) {
@@ -2233,12 +2210,12 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             }
             ObjectNode objectNode = pSWXMenuService.exportModelV2(pSWXMenu);
             pSWXMenu.reset();
-            if (!pSWXMenuService.setModelV2ResScope((IEntity)pSWXMenu, "PSWXENTAPP", pSWXEntApp.getPSWXEntAppId())) {
+            if (!pSWXMenuService.setModelV2ResScope(pSWXMenu, "PSWXENTAPP", pSWXEntApp.getPSWXEntAppId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWXMenuService.importModelV2(pSWXMenu, objectNode);
             SessionFactoryManager.commit();
-            return pSWXMenuService.getFile((IEntity)pSWXMenu);
+            return pSWXMenuService.getFile(pSWXMenu);
         }
         return null;
     }
@@ -2248,7 +2225,7 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             PSWXMenuFuncService pSWXMenuFuncService = (PSWXMenuFuncService)ServiceGlobal.getService(PSWXMenuFuncService.class, (SessionFactory)this.getSessionFactory());
             PSWXMenuFunc pSWXMenuFunc = new PSWXMenuFunc();
             pSWXMenuFunc.setPSWXMenuFuncId(pSMOSFile.getPSModelId());
-            if (!pSWXMenuFuncService.get((IEntity)pSWXMenuFunc, true)) {
+            if (!pSWXMenuFuncService.get(pSWXMenuFunc, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSWXMenuFunc.getPSWXEntAppId(), (String)pSWXEntApp.getPSWXEntAppId(), (boolean)false) == 0) {
@@ -2256,12 +2233,12 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
             }
             ObjectNode objectNode = pSWXMenuFuncService.exportModelV2(pSWXMenuFunc);
             pSWXMenuFunc.reset();
-            if (!pSWXMenuFuncService.setModelV2ResScope((IEntity)pSWXMenuFunc, "PSWXENTAPP", pSWXEntApp.getPSWXEntAppId())) {
+            if (!pSWXMenuFuncService.setModelV2ResScope(pSWXMenuFunc, "PSWXENTAPP", pSWXEntApp.getPSWXEntAppId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSWXMenuFuncService.importModelV2(pSWXMenuFunc, objectNode);
             SessionFactoryManager.commit();
-            return pSWXMenuFuncService.getFile((IEntity)pSWXMenuFunc);
+            return pSWXMenuFuncService.getFile(pSWXMenuFunc);
         }
         return null;
     }
@@ -2291,4 +2268,3 @@ extends PSCoreSysServiceBase<PSWXEntApp> {
         list.add(pSHelpSection);
     }
 }
-

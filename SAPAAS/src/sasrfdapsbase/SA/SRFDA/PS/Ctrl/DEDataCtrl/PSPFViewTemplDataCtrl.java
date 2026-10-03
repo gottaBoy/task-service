@@ -103,7 +103,7 @@ extends PSPFTemplDataCtrlBase {
             if (templPSPFStyleMap.containsKey(strTemplPSPFStyleId)) break;
             cond.Reset();
             cond.setParamValue("PSPFSTYLEID", (Object)strTemplPSPFStyleId);
-            Vector psPFStyleCodeList = new Vector();
+            Vector<PSPFStyleCode> psPFStyleCodeList = new Vector<PSPFStyleCode>();
             callResult = psPFStyleCodeDataCtrl.Select(cond, psPFStyleCodeList, PSPFStyleCode.class.getName());
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u83b7\u53d6\u5c55\u73b0\u6837\u5f0f\u5b8f\u4ee3\u7801\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -166,4 +166,3 @@ extends PSPFTemplDataCtrlBase {
         return map;
     }
 }
-

@@ -1,47 +1,142 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.expbar;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
+/**
+ * 导航栏项接口
+ * 
+ * @author lionlau
+ *
+ */
 public interface IExpBarItem {
-    public static final int COUNTERMODE_NONE = 0;
-    public static final int COUNTERMODE_HIDEZERO = 1;
+	/**
+	 * 无模式
+	 */
+	final static int COUNTERMODE_NONE = 0;
 
-    public String getId();
+	/**
+	 * 0 值时隐藏
+	 */
+	final static int COUNTERMODE_HIDEZERO = 1;
 
-    public String getPId();
+	/**
+	 * 获取标识
+	 * 
+	 * @return
+	 */
+	String getId();
 
-    public String getText();
+	/**
+	 * 获取父标识
+	 * 
+	 * @return
+	 */
+	String getPId();
 
-    public boolean isExpanded();
+	/**
+	 * 获取文本
+	 * 
+	 * @return
+	 */
+	String getText();
 
-    public ArrayList<IExpBarItem> getItems();
+	/**
+	 * 是否展开
+	 * 
+	 * @return
+	 */
+	boolean isExpanded();
 
-    public String getTextCls();
+	/**
+	 * 获取项集合
+	 * 
+	 * @return
+	 */
+	java.util.ArrayList<IExpBarItem> getItems();
 
-    public String getIconCls();
+	/**
+	 * 获取文本样式
+	 * 
+	 * @return
+	 */
+	String getTextCls();
 
-    public String getIconPath();
+	/**
+	 * 获取图标样式
+	 * 
+	 * @return
+	 */
+	String getIconCls();
 
-    public String getCounterId();
+	/**
+	 * 获取图标路径
+	 * 
+	 * @return
+	 */
+	String getIconPath();
 
-    public int getCounterMode();
+	/**
+	 * 获取计数器标识
+	 * 
+	 * @return
+	 */
+	String getCounterId();
 
-    public void setAttribute(String var1, Object var2);
+	/**
+	 * 获取计数器模式
+	 * 
+	 * @return
+	 */
+	int getCounterMode();
 
-    public Object getAttribute(String var1);
+	/**
+	 * 设置属性
+	 * 
+	 * @param strName
+	 * @param objValue
+	 */
+	void setAttribute(String strName, Object objValue);
 
-    public String getExpViewId();
+	/**
+	 * 获取属性
+	 * 
+	 * @param strName
+	 * @return
+	 */
+	Object getAttribute(String strName);
 
-    public void setViewParam(String var1, String var2);
+	/**
+	 * 获取导航视图标识
+	 * 
+	 * @return
+	 */
+	String getExpViewId();
 
-    public String getViewParam(String var1);
+	/**
+	 * 设置导航视图参数
+	 * 
+	 * @param strKey
+	 * @param objValue
+	 */
+	void setViewParam(String strKey, String objValue);
 
-    public Iterator<String> getViewParamNames();
+	/**
+	 * 设置导航视图参数
+	 * 
+	 * @param strKey
+	 * @return
+	 */
+	String getViewParam(String strKey);
 
-    public String getTextLanResTag();
+	/**
+	 * 获取导航视图参数的名称集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<String> getViewParamNames();
+
+	/**
+	 * 获取文本语言资源标识
+	 * 
+	 * @return
+	 */
+	String getTextLanResTag();
 }
-

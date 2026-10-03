@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.sysmodel;
 
-import net.ibizsys.ssdyna.sysmodel.DynaInstModelBase;
+/**
+ * 动态实例模型对象
+ * @author Administrator
+ *
+ */
+public class DynaInstModel extends DynaInstModelBase {
 
-public class DynaInstModel
-extends DynaInstModelBase {
 }
-

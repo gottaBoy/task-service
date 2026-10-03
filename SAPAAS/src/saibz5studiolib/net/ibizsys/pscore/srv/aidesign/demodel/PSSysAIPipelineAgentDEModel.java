@@ -8,5 +8,8 @@ import net.ibizsys.pscore.srv.aidesign.demodel.PSSysAIPipelineAgentDEModelBase;
 public class PSSysAIPipelineAgentDEModel
 extends PSSysAIPipelineAgentDEModelBase {
     private static final long serialVersionUID = -1L;
-}
 
+    public PSSysAIPipelineAgentDEModel() throws Exception {
+        super();
+    }
+}

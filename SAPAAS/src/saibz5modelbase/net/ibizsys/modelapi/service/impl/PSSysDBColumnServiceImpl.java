@@ -71,7 +71,7 @@ implements IPSSysDBColumnService {
     @Override
     protected List<PSSysDBColumn> onListAll() throws Exception {
         ArrayList<PSSysDBColumn> list = new ArrayList<PSSysDBColumn>();
-        List pssysdbtables = PSModelServiceUtil.getInstance().getPSSysDBTableService().listAll();
+        List<PSSysDBTable> pssysdbtables = PSModelServiceUtil.getInstance().getPSSysDBTableService().listAll();
         if (pssysdbtables != null) {
             for (PSSysDBTable parent : pssysdbtables) {
                 List<PSSysDBColumn> items = this.listByPSSysDBTable(parent);

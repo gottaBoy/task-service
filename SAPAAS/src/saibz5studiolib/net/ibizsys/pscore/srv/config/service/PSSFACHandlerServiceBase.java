@@ -149,9 +149,9 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
             PSSF pSSF = (PSSF)iService.getDEModel().createEntity();
             pSSF.set("PSSFID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSF);
+                iService.getTemp(pSSF);
             } else {
-                iService.get((IEntity)pSSF);
+                iService.get(pSSF);
             }
             this.onFillParentInfo_PSSF(pSSFACHandler, pSSF);
             return;
@@ -161,14 +161,14 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
             PSSysACHandler pSSysACHandler = (PSSysACHandler)iService.getDEModel().createEntity();
             pSSysACHandler.set("PSSYSACHANDLERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysACHandler);
+                iService.getTemp(pSSysACHandler);
             } else {
-                iService.get((IEntity)pSSysACHandler);
+                iService.get(pSSysACHandler);
             }
             this.onFillParentInfo_Pssysachandler(pSSFACHandler, pSSysACHandler);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSFACHandler, string, string2, string3);
+        super.onFillParentInfo(pSSFACHandler, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -191,7 +191,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSFACHandler, bl);
+        super.onFillEntityFullInfo(pSSFACHandler, bl);
         this.onFillEntityFullInfo_PSSF(pSSFACHandler, bl);
         this.onFillEntityFullInfo_Pssysachandler(pSSFACHandler, bl);
     }
@@ -213,7 +213,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
     }
 
     protected void onWriteBackParent(PSSFACHandler pSSFACHandler, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSFACHandler, bl);
+        super.onWriteBackParent(pSSFACHandler, bl);
     }
 
     public ArrayList<PSSFACHandler> selectByPSSF(PSSFBase pSSFBase) throws Exception {
@@ -268,8 +268,8 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
         ArrayList<PSSFACHandler> arrayList = this.selectByPSSF(pSSF, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSF");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSF);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSFACHANDLER_PSSF_PSSFID", "", iDataEntityModel.getName(), "PSSFACHANDLER", iDataEntityModel.getDataInfo((IEntity)pSSF), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSF);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSFACHANDLER_PSSF_PSSFID", "", iDataEntityModel.getName(), "PSSFACHANDLER", iDataEntityModel.getDataInfo(pSSF), arrayList.get(0)));
         }
     }
 
@@ -302,7 +302,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
         ArrayList<PSSFACHandler> arrayList = this.selectByPSSF(pSSF);
         this.onBeforeRemoveByPSSF(pSSF, arrayList);
         for (PSSFACHandler pSSFACHandler : arrayList) {
-            this.remove((IEntity)pSSFACHandler);
+            this.remove(pSSFACHandler);
         }
         this.onAfterRemoveByPSSF(pSSF, arrayList);
     }
@@ -320,8 +320,8 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
         ArrayList<PSSFACHandler> arrayList = this.selectByPssysachandler(pSSysACHandler, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSACHANDLER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysACHandler);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSFACHANDLER_PSSYSACHANDLER_PSSYSACHANDLERID", "", iDataEntityModel.getName(), "PSSFACHANDLER", iDataEntityModel.getDataInfo((IEntity)pSSysACHandler), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysACHandler);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSFACHANDLER_PSSYSACHANDLER_PSSYSACHANDLERID", "", iDataEntityModel.getName(), "PSSFACHANDLER", iDataEntityModel.getDataInfo(pSSysACHandler), arrayList.get(0)));
         }
     }
 
@@ -354,7 +354,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
         ArrayList<PSSFACHandler> arrayList = this.selectByPssysachandler(pSSysACHandler);
         this.onBeforeRemoveByPssysachandler(pSSysACHandler, arrayList);
         for (PSSFACHandler pSSFACHandler : arrayList) {
-            this.remove((IEntity)pSSFACHandler);
+            this.remove(pSSFACHandler);
         }
         this.onAfterRemoveByPssysachandler(pSSysACHandler, arrayList);
     }
@@ -377,7 +377,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
 
     protected void replaceParentInfo(PSSFACHandler pSSFACHandler, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSFACHandler, cloneSession);
+        super.replaceParentInfo(pSSFACHandler, cloneSession);
         if (pSSFACHandler.getPSSFId() != null && (iEntity = cloneSession.getEntity("PSSF", (Object)pSSFACHandler.getPSSFId())) != null) {
             this.onFillParentInfo_PSSF(pSSFACHandler, (PSSF)iEntity);
         }
@@ -387,7 +387,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSFACHandler pSSFACHandler, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSFACHandler, bl);
+        super.onRemoveEntityUncopyValues(pSSFACHandler, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSFACHandler pSSFACHandler, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -429,7 +429,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
         if ((entityFieldError = this.onCheckField_TempMode(bl, pSSFACHandler, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSFACHandler, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSFACHandler, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CtrlType(boolean bl, PSSFACHandler pSSFACHandler, boolean bl2, boolean bl3) throws Exception {
@@ -445,7 +445,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlType_Default((IEntity)pSSFACHandler, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlType_Default(pSSFACHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLTYPE");
@@ -470,7 +470,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_HandlerObj_Default((IEntity)pSSFACHandler, bl2, bl3);
+            string2 = this.onTestValueRule_HandlerObj_Default(pSSFACHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HANDLEROBJ");
@@ -492,7 +492,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_HandlerObj2_Default((IEntity)pSSFACHandler, bl2, bl3);
+            string2 = this.onTestValueRule_HandlerObj2_Default(pSSFACHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HANDLEROBJ2");
@@ -514,7 +514,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_HandlerObj3_Default((IEntity)pSSFACHandler, bl2, bl3);
+            string2 = this.onTestValueRule_HandlerObj3_Default(pSSFACHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HANDLEROBJ3");
@@ -536,7 +536,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_HandlerObj4_Default((IEntity)pSSFACHandler, bl2, bl3);
+            string2 = this.onTestValueRule_HandlerObj4_Default(pSSFACHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HANDLEROBJ4");
@@ -558,7 +558,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSFACHandler, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSFACHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -583,7 +583,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFACHandlerId_Default((IEntity)pSSFACHandler, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFACHandlerId_Default(pSSFACHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFACHANDLERID");
@@ -608,7 +608,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFACHandlerName_Default((IEntity)pSSFACHandler, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFACHandlerName_Default(pSSFACHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFACHANDLERNAME");
@@ -633,7 +633,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFId_Default((IEntity)pSSFACHandler, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFId_Default(pSSFACHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFID");
@@ -658,7 +658,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSFName_Default((IEntity)pSSFACHandler, bl2, bl3);
+            string2 = this.onTestValueRule_PSSFName_Default(pSSFACHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSFNAME");
@@ -683,7 +683,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysACHandlerId_Default((IEntity)pSSFACHandler, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysACHandlerId_Default(pSSFACHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSACHANDLERID");
@@ -705,7 +705,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_TempMode_Default((IEntity)pSSFACHandler, bl2, bl3);
+            string = this.onTestValueRule_TempMode_Default(pSSFACHandler, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TEMPMODE");
@@ -718,11 +718,11 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
     }
 
     protected void onSyncEntity(PSSFACHandler pSSFACHandler, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSFACHandler, bl);
+        super.onSyncEntity(pSSFACHandler, bl);
     }
 
     protected void onSyncIndexEntities(PSSFACHandler pSSFACHandler, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSFACHandler, bl);
+        super.onSyncIndexEntities(pSSFACHandler, bl);
     }
 
     public Object getDataContextValue(PSSFACHandler pSSFACHandler, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -730,7 +730,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSFACHandler, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSFACHandler, string, iDataContextParam)) != null) {
             return object;
         }
         PSSF pSSF = pSSFACHandler.getPSSF();
@@ -741,7 +741,7 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
     }
 
     protected void onExportMajorModel(PSSFACHandler pSSFACHandler, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSFACHandler, arrayList, n);
+        super.onExportMajorModel(pSSFACHandler, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1011,14 +1011,14 @@ extends PSCoreSysServiceBase<PSSFACHandler> {
 
     protected boolean onMergeChild(String string, String string2, PSSFACHandler pSSFACHandler) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSFACHandler)) {
+        if (super.onMergeChild(string, string2, pSSFACHandler)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSFACHandler pSSFACHandler) throws Exception {
-        super.onUpdateParent((IEntity)pSSFACHandler);
+        super.onUpdateParent(pSSFACHandler);
     }
 
     @Override

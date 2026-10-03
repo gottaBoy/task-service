@@ -978,7 +978,7 @@ implements Serializable {
                 PSCtrlType pSCtrlType = new PSCtrlType();
                 pSCtrlType.setPSCtrlTypeId(this.getPSCtrlTypeId());
                 PSCtrlTypeService pSCtrlTypeService = (PSCtrlTypeService)ServiceGlobal.getService(PSCtrlTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSCtrlTypeService.autoGet((IEntity)pSCtrlType);
+                pSCtrlTypeService.autoGet(pSCtrlType);
                 this.psctrltype = pSCtrlType;
             }
             return this.psctrltype;

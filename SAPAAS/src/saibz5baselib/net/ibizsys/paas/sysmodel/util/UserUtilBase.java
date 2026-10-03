@@ -1,13 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.sysmodel.util;
 
 import net.ibizsys.paas.sysmodel.SystemUtilBase;
-import net.ibizsys.paas.sysmodel.util.IUserUtil;
 
-public abstract class UserUtilBase
-extends SystemUtilBase
-implements IUserUtil {
+/**
+ * 用户自定义功能基类
+ * @author Administrator
+ *
+ */
+public abstract class UserUtilBase extends SystemUtilBase implements IUserUtil{
+
 }
-

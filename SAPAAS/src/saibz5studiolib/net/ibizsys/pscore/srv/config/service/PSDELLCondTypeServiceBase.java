@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
     }
 
     protected void onFillParentInfo(PSDELLCondType pSDELLCondType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSDELLCondType, string, string2, string3);
+        super.onFillParentInfo(pSDELLCondType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDELLCondType, bl);
+        super.onFillEntityFullInfo(pSDELLCondType, bl);
     }
 
     protected void onWriteBackParent(PSDELLCondType pSDELLCondType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDELLCondType, bl);
+        super.onWriteBackParent(pSDELLCondType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSDELLCondType pSDELLCondType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDELLCondType, bl);
+        super.onRemoveEntityUncopyValues(pSDELLCondType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDELLCondType pSDELLCondType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -173,7 +173,7 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
         if ((entityFieldError = this.onCheckField_PSDELLCondTypeName(bl, pSDELLCondType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDELLCondType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDELLCondType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ItemObj(boolean bl, PSDELLCondType pSDELLCondType, boolean bl2, boolean bl3) throws Exception {
@@ -189,7 +189,7 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj_Default((IEntity)pSDELLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj_Default(pSDELLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ");
@@ -211,7 +211,7 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj2_Default((IEntity)pSDELLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj2_Default(pSDELLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ2");
@@ -233,7 +233,7 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj3_Default((IEntity)pSDELLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj3_Default(pSDELLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ3");
@@ -255,7 +255,7 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj4_Default((IEntity)pSDELLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj4_Default(pSDELLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ4");
@@ -277,7 +277,7 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj5_Default((IEntity)pSDELLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj5_Default(pSDELLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ5");
@@ -299,7 +299,7 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ItemObj6_Default((IEntity)pSDELLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_ItemObj6_Default(pSDELLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMOBJ6");
@@ -321,7 +321,7 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDELLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDELLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -346,7 +346,7 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDELLCondTypeId_Default((IEntity)pSDELLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDELLCondTypeId_Default(pSDELLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDELLCONDTYPEID");
@@ -371,7 +371,7 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDELLCondTypeName_Default((IEntity)pSDELLCondType, bl2, bl3);
+            string2 = this.onTestValueRule_PSDELLCondTypeName_Default(pSDELLCondType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDELLCONDTYPENAME");
@@ -384,11 +384,11 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
     }
 
     protected void onSyncEntity(PSDELLCondType pSDELLCondType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDELLCondType, bl);
+        super.onSyncEntity(pSDELLCondType, bl);
     }
 
     protected void onSyncIndexEntities(PSDELLCondType pSDELLCondType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDELLCondType, bl);
+        super.onSyncIndexEntities(pSDELLCondType, bl);
     }
 
     public Object getDataContextValue(PSDELLCondType pSDELLCondType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -396,14 +396,14 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDELLCondType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDELLCondType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSDELLCondType pSDELLCondType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDELLCondType, arrayList, n);
+        super.onExportMajorModel(pSDELLCondType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -591,14 +591,14 @@ extends PSCoreSysServiceBase<PSDELLCondType> {
 
     protected boolean onMergeChild(String string, String string2, PSDELLCondType pSDELLCondType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDELLCondType)) {
+        if (super.onMergeChild(string, string2, pSDELLCondType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDELLCondType pSDELLCondType) throws Exception {
-        super.onUpdateParent((IEntity)pSDELLCondType);
+        super.onUpdateParent(pSDELLCondType);
     }
 
     @Override

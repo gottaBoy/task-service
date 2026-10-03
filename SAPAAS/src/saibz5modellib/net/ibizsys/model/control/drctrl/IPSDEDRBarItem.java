@@ -1,15 +1,22 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.drctrl;
 
-import net.ibizsys.model.control.drctrl.IPSDEDRBarGroup;
-import net.ibizsys.model.control.drctrl.IPSDEDRCtrlItem;
 import net.ibizsys.model.core.IPSModelObject;
 
-public interface IPSDEDRBarItem
-extends IPSDEDRCtrlItem,
-IPSModelObject {
-    public IPSDEDRBarGroup getPSDEDRBarGroup();
-}
 
+/**
+ * 实体关系栏项对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDEDRBarItem extends IPSDEDRCtrlItem,IPSModelObject
+{
+	
+	
+	/**
+	 * 获取分组对象
+	 * @return
+	 */
+	IPSDEDRBarGroup getPSDEDRBarGroup();
+	
+	
+}

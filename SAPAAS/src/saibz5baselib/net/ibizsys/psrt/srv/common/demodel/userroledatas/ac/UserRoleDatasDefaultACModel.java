@@ -1,11 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.userroledatas.ac;
 
-import net.ibizsys.psrt.srv.common.demodel.userroledatas.ac.UserRoleDatasDefaultACModelBase;
+/**
+ *  实体自动填充 [DEFAULT]对象模型
+ */
+public class UserRoleDatasDefaultACModel extends UserRoleDatasDefaultACModelBase {
 
-public class UserRoleDatasDefaultACModel
-extends UserRoleDatasDefaultACModelBase {
+    public UserRoleDatasDefaultACModel () {
+        super();
+    }
+
 }
-

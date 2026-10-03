@@ -76,7 +76,7 @@ implements IPSAppFuncService {
     @Override
     protected List<PSAppFunc> onListAll() throws Exception {
         ArrayList<PSAppFunc> list = new ArrayList<PSAppFunc>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSAppFunc> items = this.listByPSSysApp(parent);
@@ -366,4 +366,3 @@ implements IPSAppFuncService {
         return new PSAppFuncDTO();
     }
 }
-

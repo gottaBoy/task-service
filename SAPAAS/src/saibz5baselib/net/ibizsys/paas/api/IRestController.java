@@ -1,21 +1,43 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.api;
 
-import net.ibizsys.paas.sysmodel.ISystemModel;
 import org.hibernate.SessionFactory;
 
+import net.ibizsys.paas.sysmodel.ISystemModel;
+
+/**
+ * Rest 控制器接口对象
+ * @author Administrator
+ *
+ */
 public interface IRestController {
-    public String getId();
+	
+	/**
+	 * 获取Rest控制器标识
+	 * 
+	 * @return
+	 */
+	String getId();
+	
+	
+	/**
+	 * 获取系统模型
+	 * 
+	 * @return
+	 */
+	ISystemModel getSystemModel();
+	
+	
+	/**
+	 * 设置会话工厂
+	 * 
+	 * @param sessionFactory
+	 */
+	void setSessionFactory(SessionFactory sessionFactory);
 
-    public ISystemModel getSystemModel();
-
-    public void setSessionFactory(SessionFactory var1);
-
-    public SessionFactory getSessionFactory();
+	/**
+	 * 获取会话工厂
+	 * 
+	 * @return
+	 */
+	SessionFactory getSessionFactory();
 }
-

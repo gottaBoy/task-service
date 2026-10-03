@@ -1699,7 +1699,7 @@ implements Serializable {
                 PSDevSlnMSDepFunc pSDevSlnMSDepFunc = new PSDevSlnMSDepFunc();
                 pSDevSlnMSDepFunc.setPSDevSlnMSDepFuncId(this.getPSDevSlnMSDepFuncId());
                 PSDevSlnMSDepFuncService pSDevSlnMSDepFuncService = (PSDevSlnMSDepFuncService)ServiceGlobal.getService(PSDevSlnMSDepFuncService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnMSDepFuncService.autoGet((IEntity)pSDevSlnMSDepFunc);
+                pSDevSlnMSDepFuncService.autoGet(pSDevSlnMSDepFunc);
                 this.psdevslnmsdepfunc = pSDevSlnMSDepFunc;
             }
             return this.psdevslnmsdepfunc;
@@ -1725,7 +1725,7 @@ implements Serializable {
                 PSDevSlnSysAPI pSDevSlnSysAPI = new PSDevSlnSysAPI();
                 pSDevSlnSysAPI.setPSDevSlnSysAPIId(this.getPSDevSlnSysAPIId());
                 PSDevSlnSysAPIService pSDevSlnSysAPIService = (PSDevSlnSysAPIService)ServiceGlobal.getService(PSDevSlnSysAPIService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysAPIService.autoGet((IEntity)pSDevSlnSysAPI);
+                pSDevSlnSysAPIService.autoGet(pSDevSlnSysAPI);
                 this.psdevslnsysapi = pSDevSlnSysAPI;
             }
             return this.psdevslnsysapi;
@@ -1751,7 +1751,7 @@ implements Serializable {
                 PSDevSlnSysApp pSDevSlnSysApp = new PSDevSlnSysApp();
                 pSDevSlnSysApp.setPSDevSlnSysAppId(this.getPSDevSlnSysAppId());
                 PSDevSlnSysAppService pSDevSlnSysAppService = (PSDevSlnSysAppService)ServiceGlobal.getService(PSDevSlnSysAppService.class, (SessionFactory)this.getSessionFactory());
-                pSDevSlnSysAppService.autoGet((IEntity)pSDevSlnSysApp);
+                pSDevSlnSysAppService.autoGet(pSDevSlnSysApp);
                 this.psdevslnsysapp = pSDevSlnSysApp;
             }
             return this.psdevslnsysapp;

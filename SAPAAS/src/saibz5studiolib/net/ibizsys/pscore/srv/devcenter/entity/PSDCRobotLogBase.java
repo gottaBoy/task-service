@@ -1472,7 +1472,7 @@ implements Serializable {
                 PSDCRobot pSDCRobot = new PSDCRobot();
                 pSDCRobot.setPSDCRobotId(this.getPSDCRobotId());
                 PSDCRobotService pSDCRobotService = (PSDCRobotService)ServiceGlobal.getService(PSDCRobotService.class, (SessionFactory)this.getSessionFactory());
-                pSDCRobotService.autoGet((IEntity)pSDCRobot);
+                pSDCRobotService.autoGet(pSDCRobot);
                 this.psdcrobot = pSDCRobot;
             }
             return this.psdcrobot;

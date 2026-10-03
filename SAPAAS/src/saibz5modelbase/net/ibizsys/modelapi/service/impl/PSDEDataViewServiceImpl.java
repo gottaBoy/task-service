@@ -90,7 +90,7 @@ implements IPSDEDataViewService {
     @Override
     protected List<PSDEDataView> onListAll() throws Exception {
         ArrayList<PSDEDataView> list = new ArrayList<PSDEDataView>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEDataView> items = this.listByPSDataEntity(parent);
@@ -607,18 +607,19 @@ implements IPSDEDataViewService {
         } else {
             dto.setQuickPSDEToolbarName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEListItemService().listByPSDEDataView(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEListItem> pSDEListItemList = PSModelServiceUtil.getInstance().getPSDEListItemService().listByPSDEDataView(t);
+        if (pSDEListItemList != null && pSDEListItemList.size() > 0) {
             ArrayList<PSDEListItemDTO> psdelistitems = new ArrayList<PSDEListItemDTO>();
-            for (PSDEListItem pSDEListItem : list) {
+            for (PSDEListItem pSDEListItem : pSDEListItemList) {
                 dstItem = (PSDEListItemDTO)PSModelServiceUtil.getInstance().getPSDEListItemService().toDTO(pSDEListItem);
                 psdelistitems.add((PSDEListItemDTO)dstItem);
             }
             dto.setPsdelistitems(psdelistitems);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEDataViewLogicService().listByPSDEDataView(t)) != null && list.size() > 0) {
+        List<PSDEDataViewLogic> pSDEDataViewLogicList = PSModelServiceUtil.getInstance().getPSDEDataViewLogicService().listByPSDEDataView(t);
+        if (pSDEDataViewLogicList != null && pSDEDataViewLogicList.size() > 0) {
             ArrayList<PSDEDataViewLogicDTO> psdedataviewlogics = new ArrayList<PSDEDataViewLogicDTO>();
-            for (PSDEDataViewLogic pSDEDataViewLogic : list) {
+            for (PSDEDataViewLogic pSDEDataViewLogic : pSDEDataViewLogicList) {
                 dstItem = (PSDEDataViewLogicDTO)PSModelServiceUtil.getInstance().getPSDEDataViewLogicService().toDTO(pSDEDataViewLogic);
                 psdedataviewlogics.add((PSDEDataViewLogicDTO)dstItem);
             }

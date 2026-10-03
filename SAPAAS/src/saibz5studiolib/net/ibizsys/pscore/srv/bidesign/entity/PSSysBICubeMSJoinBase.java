@@ -2062,7 +2062,7 @@ implements Serializable {
                 PSDataEntity pSDataEntity = new PSDataEntity();
                 pSDataEntity.setPSDataEntityId(this.getJoinPSDEId());
                 PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
-                pSDataEntityService.autoGet((IEntity)pSDataEntity);
+                pSDataEntityService.autoGet(pSDataEntity);
                 this.joinpsde = pSDataEntity;
             }
             return this.joinpsde;
@@ -2088,7 +2088,7 @@ implements Serializable {
                 PSDEJoinType pSDEJoinType = new PSDEJoinType();
                 pSDEJoinType.setPSDEJoinTypeId(this.getPSDEJoinTypeId());
                 PSDEJoinTypeService pSDEJoinTypeService = (PSDEJoinTypeService)ServiceGlobal.getService(PSDEJoinTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSDEJoinTypeService.autoGet((IEntity)pSDEJoinType);
+                pSDEJoinTypeService.autoGet(pSDEJoinType);
                 this.psdejointype = pSDEJoinType;
             }
             return this.psdejointype;
@@ -2114,7 +2114,7 @@ implements Serializable {
                 PSDER pSDER = new PSDER();
                 pSDER.setPSDERId(this.getPSDERId());
                 PSDERService pSDERService = (PSDERService)ServiceGlobal.getService(PSDERService.class, (SessionFactory)this.getSessionFactory());
-                pSDERService.autoGet((IEntity)pSDER);
+                pSDERService.autoGet(pSDER);
                 this.psder = pSDER;
             }
             return this.psder;
@@ -2140,7 +2140,7 @@ implements Serializable {
                 PSSysBICubeMeasure pSSysBICubeMeasure = new PSSysBICubeMeasure();
                 pSSysBICubeMeasure.setPSSysBICubeMeasureId(this.getPSSysBICubeMeasureId());
                 PSSysBICubeMeasureService pSSysBICubeMeasureService = (PSSysBICubeMeasureService)ServiceGlobal.getService(PSSysBICubeMeasureService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBICubeMeasureService.autoGet((IEntity)pSSysBICubeMeasure);
+                pSSysBICubeMeasureService.autoGet(pSSysBICubeMeasure);
                 this.pssysbicubemeasure = pSSysBICubeMeasure;
             }
             return this.pssysbicubemeasure;
@@ -2166,7 +2166,7 @@ implements Serializable {
                 PSSysBICubeMSJoin pSSysBICubeMSJoin = new PSSysBICubeMSJoin();
                 pSSysBICubeMSJoin.setPSSysBICubeMSJoinId(this.getPPSSysBICubeMSJoinId());
                 PSSysBICubeMSJoinService pSSysBICubeMSJoinService = (PSSysBICubeMSJoinService)ServiceGlobal.getService(PSSysBICubeMSJoinService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBICubeMSJoinService.autoGet((IEntity)pSSysBICubeMSJoin);
+                pSSysBICubeMSJoinService.autoGet(pSSysBICubeMSJoin);
                 this.ppssysbicubemsjoin = pSSysBICubeMSJoin;
             }
             return this.ppssysbicubemsjoin;

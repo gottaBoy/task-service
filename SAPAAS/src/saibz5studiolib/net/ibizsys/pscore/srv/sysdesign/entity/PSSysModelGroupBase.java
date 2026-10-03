@@ -2853,7 +2853,7 @@ implements Serializable {
                 PSDCSysModelRepo pSDCSysModelRepo = new PSDCSysModelRepo();
                 pSDCSysModelRepo.setPSDCSysModelRepoId(this.getPSDCSysModelRepoId());
                 PSDCSysModelRepoService pSDCSysModelRepoService = (PSDCSysModelRepoService)ServiceGlobal.getService(PSDCSysModelRepoService.class, (SessionFactory)this.getSessionFactory());
-                pSDCSysModelRepoService.autoGet((IEntity)pSDCSysModelRepo);
+                pSDCSysModelRepoService.autoGet(pSDCSysModelRepo);
                 this.psdcsysmodelrepo = pSDCSysModelRepo;
             }
             return this.psdcsysmodelrepo;
@@ -2879,7 +2879,7 @@ implements Serializable {
                 PSSysModelRepo pSSysModelRepo = new PSSysModelRepo();
                 pSSysModelRepo.setPSSysModelRepoId(this.getPSSysModelRepoId());
                 PSSysModelRepoService pSSysModelRepoService = (PSSysModelRepoService)ServiceGlobal.getService(PSSysModelRepoService.class, (SessionFactory)this.getSessionFactory());
-                pSSysModelRepoService.autoGet((IEntity)pSSysModelRepo);
+                pSSysModelRepoService.autoGet(pSSysModelRepo);
                 this.pssysmodelrepo = pSSysModelRepo;
             }
             return this.pssysmodelrepo;
@@ -2905,7 +2905,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

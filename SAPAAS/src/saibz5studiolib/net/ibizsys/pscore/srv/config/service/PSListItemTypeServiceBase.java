@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSListItemType> {
     }
 
     protected void onFillParentInfo(PSListItemType pSListItemType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSListItemType, string, string2, string3);
+        super.onFillParentInfo(pSListItemType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSListItemType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSListItemType, bl);
+        super.onFillEntityFullInfo(pSListItemType, bl);
     }
 
     protected void onWriteBackParent(PSListItemType pSListItemType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSListItemType, bl);
+        super.onWriteBackParent(pSListItemType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSListItemType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSListItemType pSListItemType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSListItemType, bl);
+        super.onRemoveEntityUncopyValues(pSListItemType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSListItemType pSListItemType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSListItemType> {
         if ((entityFieldError = this.onCheckField_PSLISTITEMTypeName(bl, pSListItemType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSListItemType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSListItemType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ITEMTOBJ(boolean bl, PSListItemType pSListItemType, boolean bl2, boolean bl3) throws Exception {
@@ -174,7 +174,7 @@ extends PSCoreSysServiceBase<PSListItemType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ITEMTOBJ_Default((IEntity)pSListItemType, bl2, bl3);
+            string2 = this.onTestValueRule_ITEMTOBJ_Default(pSListItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ITEMTOBJ");
@@ -196,7 +196,7 @@ extends PSCoreSysServiceBase<PSListItemType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSListItemType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSListItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -221,7 +221,7 @@ extends PSCoreSysServiceBase<PSListItemType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSLISTITEMTypeID_Default((IEntity)pSListItemType, bl2, bl3);
+            string2 = this.onTestValueRule_PSLISTITEMTypeID_Default(pSListItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSLISTITEMTYPEID");
@@ -246,7 +246,7 @@ extends PSCoreSysServiceBase<PSListItemType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSLISTITEMTypeName_Default((IEntity)pSListItemType, bl2, bl3);
+            string2 = this.onTestValueRule_PSLISTITEMTypeName_Default(pSListItemType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSLISTITEMTYPENAME");
@@ -259,11 +259,11 @@ extends PSCoreSysServiceBase<PSListItemType> {
     }
 
     protected void onSyncEntity(PSListItemType pSListItemType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSListItemType, bl);
+        super.onSyncEntity(pSListItemType, bl);
     }
 
     protected void onSyncIndexEntities(PSListItemType pSListItemType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSListItemType, bl);
+        super.onSyncIndexEntities(pSListItemType, bl);
     }
 
     public Object getDataContextValue(PSListItemType pSListItemType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -271,14 +271,14 @@ extends PSCoreSysServiceBase<PSListItemType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSListItemType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSListItemType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSListItemType pSListItemType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSListItemType, arrayList, n);
+        super.onExportMajorModel(pSListItemType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -398,14 +398,14 @@ extends PSCoreSysServiceBase<PSListItemType> {
 
     protected boolean onMergeChild(String string, String string2, PSListItemType pSListItemType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSListItemType)) {
+        if (super.onMergeChild(string, string2, pSListItemType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSListItemType pSListItemType) throws Exception {
-        super.onUpdateParent((IEntity)pSListItemType);
+        super.onUpdateParent(pSListItemType);
     }
 
     @Override

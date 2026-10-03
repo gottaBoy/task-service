@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSCtrlLogicGrpDetailDEModelBase;
 
 public class PSCtrlLogicGrpDetailDEModel
 extends PSCtrlLogicGrpDetailDEModelBase {
+
+    public PSCtrlLogicGrpDetailDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

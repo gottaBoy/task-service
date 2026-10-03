@@ -26,7 +26,7 @@ extends PSSysTestCaseServiceBase {
     private static final Log log = LogFactory.getLog(PSSysTestCaseService.class);
 
     public void getDraftTempMajor(PSSysTestCase pSSysTestCase) throws Exception {
-        super.getDraftTempMajor((IEntity)pSSysTestCase);
+        super.getDraftTempMajor(pSSysTestCase);
         if (pSSysTestCase.getPSDEServiceAPI() != null) {
             pSSysTestCase.setPSSysServiceAPIId(pSSysTestCase.getPSDEServiceAPI().getPSSysServiceAPIId());
         } else if (pSSysTestCase.getPSAppView() != null) {

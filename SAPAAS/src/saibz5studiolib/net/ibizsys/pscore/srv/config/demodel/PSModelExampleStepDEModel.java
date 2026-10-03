@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSModelExampleStepDEModelBase;
 
 public class PSModelExampleStepDEModel
 extends PSModelExampleStepDEModelBase {
+
+    public PSModelExampleStepDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -36,7 +36,7 @@ extends PSWFProcessServiceBase {
             pSWFProcess.setPSWFProcessId(pSWFProcess.getPSWFVersionId());
             return true;
         }
-        return super.onFillEntityKeyValue((IEntity)pSWFProcess, bl);
+        return super.onFillEntityKeyValue(pSWFProcess, bl);
     }
 
     @Override

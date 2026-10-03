@@ -1,15 +1,36 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.dashboard;
 
-import net.ibizsys.model.control.dashboard.IPSDBPortletPart;
 import net.ibizsys.model.control.menu.IPSAppMenu;
 
-public interface IPSDBAppMenuPortletPart
-extends IPSDBPortletPart {
-    public IPSAppMenu getPSAppMenu();
-
-    public String getAMListStyle();
+/**
+ * 数据看板应用菜单门户部件对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDBAppMenuPortletPart extends IPSDBPortletPart
+{
+	
+	/**
+	 * 获取应用菜单对象
+	 * @return
+	 */
+	IPSAppMenu getPSAppMenu();
+	
+	
+	
+//	/**
+//	 * 获取菜单绘制器
+//	 * @return
+//	 */
+//	IPSSysPFPlugin getAMSysPFPlugin();
+	
+	
+	
+	
+	/**
+	 * 获取菜单列表样式
+	 * @return
+	 */
+	String getAMListStyle();
+	
 }
-

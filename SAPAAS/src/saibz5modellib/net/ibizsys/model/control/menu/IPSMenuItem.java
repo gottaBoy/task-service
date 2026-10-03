@@ -1,17 +1,38 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.control.menu.IMenuItem
- */
 package net.ibizsys.model.control.menu;
 
 import net.ibizsys.model.core.IPSModelObject;
 import net.ibizsys.paas.control.menu.IMenuItem;
 
-public interface IPSMenuItem
-extends IPSModelObject,
-IMenuItem {
-    public String getCaption();
-}
+/**
+ * 菜单项对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSMenuItem extends IPSModelObject,IMenuItem
+{
+	/**
+	 * 获取标题
+	 * @return
+	 */
+	String getCaption();
 
+	
+	
+//	/**
+//	 * 获取标题语言资源
+//	 * @return
+//	 */
+//	IPSLanguageRes getCapPSLanguageRes();
+
+	
+	
+//	/**
+//	 * 获取提示语言资源
+//	 * @return
+//	 */
+//	IPSLanguageRes getTooltipPSLanguageRes();
+	
+
+	
+
+}

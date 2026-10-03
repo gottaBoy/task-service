@@ -1,16 +1,27 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-import net.ibizsys.pswf.core.IWFService;
-import net.ibizsys.pswf.core.WFActionParam;
-import net.ibizsys.pswf.core.WFActionResult;
+/**
+ * 工作流引擎接口2，提供挂起及继续流程等功能
+ * @author Administrator
+ *
+ */
+public interface IWFService2 extends IWFService{
 
-public interface IWFService2
-extends IWFService {
-    public WFActionResult suspend(WFActionParam var1) throws Exception;
-
-    public WFActionResult resume(WFActionParam var1) throws Exception;
+	/**
+	 * 挂起指定流程
+	 * 
+	 * @param wpParam
+	 * @return
+	 */
+	WFActionResult suspend(WFActionParam wpParam)throws Exception;
+	
+	
+	/**
+	 * 继续执行指定流程
+	 * 
+	 * @param wpParam
+	 * @return
+	 */
+	WFActionResult resume(WFActionParam wpParam)throws Exception;
+	
 }
-

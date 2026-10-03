@@ -1,15 +1,16 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel.form;
 
-import net.ibizsys.paas.ctrlmodel.form.DynaFormDetailModelBase;
 
-public class DynaFormDRUIPartModel
-extends DynaFormDetailModelBase {
-    @Override
-    public String getDetailType() {
-        return "DRUIPART";
-    }
+/**
+ * 表单数据关系界面对象模型
+ * @author Administrator
+ *
+ */
+public class DynaFormDRUIPartModel extends DynaFormDetailModelBase {
+	
+	@Override
+	public String getDetailType() {
+		return IDynaFormDetailModel.DETAILTYPE_DRUIPART;
+	}
+	
 }
-

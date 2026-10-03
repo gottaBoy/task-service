@@ -134,7 +134,7 @@ implements IPSSysPFPluginTempl {
             }
         }
         ArrayList<String> xCodeList = new ArrayList<String>();
-        HashMap xCodeMap = new HashMap();
+        HashMap<String, Object> xCodeMap = new HashMap<String, Object>();
         this.psSysPFPluginTempl.FillMap(xCodeMap);
         for (Map.Entry entry : xCodeMap.entrySet()) {
             String strKey = ((String)entry.getKey()).toUpperCase();
@@ -291,4 +291,3 @@ implements IPSSysPFPluginTempl {
         }
     }
 }
-

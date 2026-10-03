@@ -24,7 +24,13 @@ extends BaseMainPage {
                 if (this.LoadPageDataEntity()) break block5;
                 return false;
             }
-            if (this.ProcessParentDataTag()) break block6;
+            try {
+                if (this.ProcessParentDataTag()) break block6;
+            }
+            catch (Exception ex) {
+                this.PageLog(this, 1, StringHelper.Format((String)"\u521d\u59cb\u5316\u9875\u9762\u73af\u5883\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), ex);
+                return false;
+            }
             return false;
         }
         try {

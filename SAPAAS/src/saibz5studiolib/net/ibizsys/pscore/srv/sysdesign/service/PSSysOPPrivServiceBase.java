@@ -216,9 +216,9 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSSysOPPriv, pSDataEntity);
             return;
@@ -228,9 +228,9 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             PSDEDataSet pSDEDataSet = (PSDEDataSet)iService.getDEModel().createEntity();
             pSDEDataSet.set("PSDEDATASETID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEDataSet);
+                iService.getTemp(pSDEDataSet);
             } else {
-                iService.get((IEntity)pSDEDataSet);
+                iService.get(pSDEDataSet);
             }
             this.onFillParentInfo_PSDEDataSet(pSSysOPPriv, pSDEDataSet);
             return;
@@ -240,9 +240,9 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_RoleTagPSDEF(pSSysOPPriv, pSDEField);
             return;
@@ -252,9 +252,9 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             PSDEField pSDEField = (PSDEField)iService.getDEModel().createEntity();
             pSDEField.set("PSDEFIELDID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEField);
+                iService.getTemp(pSDEField);
             } else {
-                iService.get((IEntity)pSDEField);
+                iService.get(pSDEField);
             }
             this.onFillParentInfo_UserIdPSDEF(pSSysOPPriv, pSDEField);
             return;
@@ -264,9 +264,9 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSSysOPPriv, pSModule);
             return;
@@ -276,9 +276,9 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             PSSysDynaModel pSSysDynaModel = (PSSysDynaModel)iService.getDEModel().createEntity();
             pSSysDynaModel.set("PSSYSDYNAMODELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysDynaModel);
+                iService.getTemp(pSSysDynaModel);
             } else {
-                iService.get((IEntity)pSSysDynaModel);
+                iService.get(pSSysDynaModel);
             }
             this.onFillParentInfo_PSSysDynaModel(pSSysOPPriv, pSSysDynaModel);
             return;
@@ -288,9 +288,9 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             PSSysSFPlugin pSSysSFPlugin = (PSSysSFPlugin)iService.getDEModel().createEntity();
             pSSysSFPlugin.set("PSSYSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPlugin);
+                iService.getTemp(pSSysSFPlugin);
             } else {
-                iService.get((IEntity)pSSysSFPlugin);
+                iService.get(pSSysSFPlugin);
             }
             this.onFillParentInfo_PSSysSFPlugin(pSSysOPPriv, pSSysSFPlugin);
             return;
@@ -300,14 +300,14 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysOPPriv, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysOPPriv, string, string2, string3);
+        super.onFillParentInfo(pSSysOPPriv, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -366,7 +366,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 pSSysOPPriv.setSystemFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "0", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysOPPriv, bl);
+        super.onFillEntityFullInfo(pSSysOPPriv, bl);
         this.onFillEntityFullInfo_PSDE(pSSysOPPriv, bl);
         this.onFillEntityFullInfo_PSDEDataSet(pSSysOPPriv, bl);
         this.onFillEntityFullInfo_RoleTagPSDEF(pSSysOPPriv, bl);
@@ -447,7 +447,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
     }
 
     protected void onWriteBackParent(PSSysOPPriv pSSysOPPriv, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysOPPriv, bl);
+        super.onWriteBackParent(pSSysOPPriv, bl);
     }
 
     public ArrayList<PSSysOPPriv> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -674,7 +674,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSSysOPPriv pSSysOPPriv : arrayList) {
-            this.remove((IEntity)pSSysOPPriv);
+            this.remove(pSSysOPPriv);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -692,8 +692,8 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByPSDEDataSet(pSDEDataSet, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEDATASET");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEDataSet);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSOPPRIV_PSDEDATASET_PSDEDATASETID", "", iDataEntityModel.getName(), "PSSYSOPPRIV", iDataEntityModel.getDataInfo((IEntity)pSDEDataSet), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEDataSet);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSOPPRIV_PSDEDATASET_PSDEDATASETID", "", iDataEntityModel.getName(), "PSSYSOPPRIV", iDataEntityModel.getDataInfo(pSDEDataSet), arrayList.get(0)));
         }
     }
 
@@ -726,7 +726,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByPSDEDataSet(pSDEDataSet);
         this.onBeforeRemoveByPSDEDataSet(pSDEDataSet, arrayList);
         for (PSSysOPPriv pSSysOPPriv : arrayList) {
-            this.remove((IEntity)pSSysOPPriv);
+            this.remove(pSSysOPPriv);
         }
         this.onAfterRemoveByPSDEDataSet(pSDEDataSet, arrayList);
     }
@@ -744,8 +744,8 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByRoleTagPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSOPPRIV_PSDEFIELD_ROLETAGPSDEFID", "", iDataEntityModel.getName(), "PSSYSOPPRIV", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSOPPRIV_PSDEFIELD_ROLETAGPSDEFID", "", iDataEntityModel.getName(), "PSSYSOPPRIV", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -778,7 +778,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByRoleTagPSDEF(pSDEField);
         this.onBeforeRemoveByRoleTagPSDEF(pSDEField, arrayList);
         for (PSSysOPPriv pSSysOPPriv : arrayList) {
-            this.remove((IEntity)pSSysOPPriv);
+            this.remove(pSSysOPPriv);
         }
         this.onAfterRemoveByRoleTagPSDEF(pSDEField, arrayList);
     }
@@ -796,8 +796,8 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByUserIdPSDEF(pSDEField, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEFIELD");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEField);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSOPPRIV_PSDEFIELD_USERIDPSDEFID", "", iDataEntityModel.getName(), "PSSYSOPPRIV", iDataEntityModel.getDataInfo((IEntity)pSDEField), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEField);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSOPPRIV_PSDEFIELD_USERIDPSDEFID", "", iDataEntityModel.getName(), "PSSYSOPPRIV", iDataEntityModel.getDataInfo(pSDEField), arrayList.get(0)));
         }
     }
 
@@ -830,7 +830,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByUserIdPSDEF(pSDEField);
         this.onBeforeRemoveByUserIdPSDEF(pSDEField, arrayList);
         for (PSSysOPPriv pSSysOPPriv : arrayList) {
-            this.remove((IEntity)pSSysOPPriv);
+            this.remove(pSSysOPPriv);
         }
         this.onAfterRemoveByUserIdPSDEF(pSDEField, arrayList);
     }
@@ -848,8 +848,8 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSOPPRIV_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSOPPRIV", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSOPPRIV_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSOPPRIV", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -882,7 +882,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSSysOPPriv pSSysOPPriv : arrayList) {
-            this.remove((IEntity)pSSysOPPriv);
+            this.remove(pSSysOPPriv);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -900,8 +900,8 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSDYNAMODEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysDynaModel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSOPPRIV_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSSYSOPPRIV", iDataEntityModel.getDataInfo((IEntity)pSSysDynaModel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysDynaModel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSOPPRIV_PSSYSDYNAMODEL_PSSYSDYNAMODELID", "", iDataEntityModel.getName(), "PSSYSOPPRIV", iDataEntityModel.getDataInfo(pSSysDynaModel), arrayList.get(0)));
         }
     }
 
@@ -934,7 +934,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByPSSysDynaModel(pSSysDynaModel);
         this.onBeforeRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
         for (PSSysOPPriv pSSysOPPriv : arrayList) {
-            this.remove((IEntity)pSSysOPPriv);
+            this.remove(pSSysOPPriv);
         }
         this.onAfterRemoveByPSSysDynaModel(pSSysDynaModel, arrayList);
     }
@@ -952,8 +952,8 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSOPPRIV_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSOPPRIV", iDataEntityModel.getDataInfo((IEntity)pSSysSFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSOPPRIV_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSOPPRIV", iDataEntityModel.getDataInfo(pSSysSFPlugin), arrayList.get(0)));
         }
     }
 
@@ -986,7 +986,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin);
         this.onBeforeRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
         for (PSSysOPPriv pSSysOPPriv : arrayList) {
-            this.remove((IEntity)pSSysOPPriv);
+            this.remove(pSSysOPPriv);
         }
         this.onAfterRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
     }
@@ -1032,7 +1032,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         ArrayList<PSSysOPPriv> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysOPPriv pSSysOPPriv : arrayList) {
-            this.remove((IEntity)pSSysOPPriv);
+            this.remove(pSSysOPPriv);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -1059,20 +1059,20 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
     }
 
     protected void onBeforeRemoveTemp(PSSysOPPriv pSSysOPPriv) throws Exception {
-        super.onBeforeRemoveTemp((IEntity)pSSysOPPriv);
+        super.onBeforeRemoveTemp(pSSysOPPriv);
     }
 
     protected void getRelatedDataTempMajor(PSSysOPPriv pSSysOPPriv) throws Exception {
-        super.getRelatedDataTempMajor((IEntity)pSSysOPPriv);
+        super.getRelatedDataTempMajor(pSSysOPPriv);
     }
 
     protected void updateRelatedDataTempMajor(PSSysOPPriv pSSysOPPriv, PSSysOPPriv pSSysOPPriv2) throws Exception {
-        super.updateRelatedDataTempMajor((IEntity)pSSysOPPriv, (IEntity)pSSysOPPriv2);
+        super.updateRelatedDataTempMajor(pSSysOPPriv, pSSysOPPriv2);
     }
 
     protected void replaceParentInfo(PSSysOPPriv pSSysOPPriv, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysOPPriv, cloneSession);
+        super.replaceParentInfo(pSSysOPPriv, cloneSession);
         if (pSSysOPPriv.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSSysOPPriv.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSSysOPPriv, (PSDataEntity)iEntity);
         }
@@ -1100,7 +1100,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysOPPriv pSSysOPPriv, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysOPPriv, bl);
+        super.onRemoveEntityUncopyValues(pSSysOPPriv, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysOPPriv pSSysOPPriv, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1193,7 +1193,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSSysOPPriv, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysOPPriv, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysOPPriv, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSSysOPPriv pSSysOPPriv, boolean bl2, boolean bl3) throws Exception {
@@ -1206,7 +1206,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1247,7 +1247,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DefaultMode_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_DefaultMode_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTMODE");
@@ -1269,7 +1269,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DEOpPriv_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_DEOpPriv_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEOPPRIV");
@@ -1291,7 +1291,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_GlobalFlag_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string = this.onTestValueRule_GlobalFlag_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GLOBALFLAG");
@@ -1313,7 +1313,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LockFlag_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string = this.onTestValueRule_LockFlag_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCKFLAG");
@@ -1335,7 +1335,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1360,7 +1360,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PrivId_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_PrivId_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PRIVID");
@@ -1401,7 +1401,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PrivType_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_PrivType_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PRIVTYPE");
@@ -1423,7 +1423,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDataSetId_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDataSetId_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDATASETID");
@@ -1445,7 +1445,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -1467,7 +1467,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -1489,7 +1489,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -1511,7 +1511,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDynaModelId_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDynaModelId_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDYNAMODELID");
@@ -1536,7 +1536,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysOPPrivId_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysOPPrivId_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSOPPRIVID");
@@ -1561,7 +1561,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysOPPrivName_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysOPPrivName_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSOPPRIVNAME");
@@ -1602,7 +1602,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPluginId_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPluginId_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPLUGINID");
@@ -1627,7 +1627,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -1652,7 +1652,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -1674,7 +1674,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RoleTagPSDEFId_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_RoleTagPSDEFId_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ROLETAGPSDEFID");
@@ -1696,7 +1696,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RoleTagPSDEFName_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_RoleTagPSDEFName_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ROLETAGPSDEFNAME");
@@ -1718,7 +1718,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_SystemFlag_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string = this.onTestValueRule_SystemFlag_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SYSTEMFLAG");
@@ -1740,7 +1740,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1762,7 +1762,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserIdPSDEFId_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_UserIdPSDEFId_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERIDPSDEFID");
@@ -1784,7 +1784,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserIdPSDEFName_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_UserIdPSDEFName_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERIDPSDEFNAME");
@@ -1806,7 +1806,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserRoleSN_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_UserRoleSN_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERROLESN");
@@ -1828,7 +1828,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1850,7 +1850,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1872,7 +1872,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1894,7 +1894,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysOPPriv, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysOPPriv, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1907,11 +1907,11 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
     }
 
     protected void onSyncEntity(PSSysOPPriv pSSysOPPriv, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysOPPriv, bl);
+        super.onSyncEntity(pSSysOPPriv, bl);
     }
 
     protected void onSyncIndexEntities(PSSysOPPriv pSSysOPPriv, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysOPPriv, bl);
+        super.onSyncIndexEntities(pSSysOPPriv, bl);
     }
 
     public Object getDataContextValue(PSSysOPPriv pSSysOPPriv, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1919,7 +1919,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysOPPriv, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysOPPriv, string, iDataContextParam)) != null) {
             return object;
         }
         PSSystem pSSystem = pSSysOPPriv.getPSSystem();
@@ -1930,7 +1930,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
     }
 
     protected void onExportMajorModel(PSSysOPPriv pSSysOPPriv, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysOPPriv, arrayList, n);
+        super.onExportMajorModel(pSSysOPPriv, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2459,14 +2459,14 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
 
     protected boolean onMergeChild(String string, String string2, PSSysOPPriv pSSysOPPriv) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysOPPriv)) {
+        if (super.onMergeChild(string, string2, pSSysOPPriv)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysOPPriv pSSysOPPriv) throws Exception {
-        super.onUpdateParent((IEntity)pSSysOPPriv);
+        super.onUpdateParent(pSSysOPPriv);
     }
 
     @Override
@@ -2539,7 +2539,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSSysUserRoleData pSSysUserRoleData = new PSSysUserRoleData();
-                pSSysUserRoleDataService.fillParentInfo((IEntity)pSSysUserRoleData, "DER1N", "DER1N_PSSYSUSERROLEDATA_PSSYSOPPRIV_PSSYSOPPRIVID", pSSysOPPriv.getPSSysOPPrivId());
+                pSSysUserRoleDataService.fillParentInfo(pSSysUserRoleData, "DER1N", "DER1N_PSSYSUSERROLEDATA_PSSYSOPPRIV_PSSYSOPPRIVID", pSSysOPPriv.getPSSysOPPrivId());
                 pSSysUserRoleDataService.importXmlModel(pSSysUserRoleData, xmlNode2);
             }
         }
@@ -2561,7 +2561,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             while (iterator.hasNext()) {
                 XmlNode xmlNode2 = (XmlNode)iterator.next();
                 PSSysUserRoleRes pSSysUserRoleRes = new PSSysUserRoleRes();
-                pSSysUserRoleResService.fillParentInfo((IEntity)pSSysUserRoleRes, "DER1N", "DER1N_PSSYSUSERROLERES_PSSYSOPPRIV_PSSYSOPPRIVID", pSSysOPPriv.getPSSysOPPrivId());
+                pSSysUserRoleResService.fillParentInfo(pSSysUserRoleRes, "DER1N", "DER1N_PSSYSUSERROLERES_PSSYSOPPRIV_PSSYSOPPRIVID", pSSysOPPriv.getPSSysOPPrivId());
                 pSSysUserRoleResService.importXmlModel(pSSysUserRoleRes, xmlNode2);
             }
         }
@@ -2731,12 +2731,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
 
     @Override
     protected void onExportCurModelV2(PSSysOPPriv pSSysOPPriv, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Object object2;
-        Object object3;
-        Object object4;
-        ArrayList<PSSysUserRoleRes> arrayList;
+        ArrayList<ObjectNode> arrayList;
         PSCoreSysServiceBase pSCoreSysServiceBase;
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSUSERROLERES_PSSYSOPPRIV_PSSYSOPPRIVID")) {
@@ -2745,31 +2740,23 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSOPPRIV#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUSERROLERES", (Object)pSSysOPPriv.getPSSysOPPrivId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add((PSSysUserRoleRes)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysUserRoleRes>();
-                object4 = ((PSSysUserRoleResServiceBase)pSCoreSysServiceBase).selectByPSSysOPPriv(pSSysOPPriv);
-                object3 = StringHelper.format((String)"PSSYSOPPRIV#%1$s", (Object)pSSysOPPriv.getPSSysOPPrivId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysUserRoleRes)object2.next();
-                    object = ((PSSysUserRoleResServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare(object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysUserRoleRes)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSOPPRIV#%1$s", (Object)pSSysOPPriv.getPSSysOPPrivId());
+                for (PSSysUserRoleRes roleRes : ((PSSysUserRoleResServiceBase)pSCoreSysServiceBase).selectByPSSysOPPriv(pSSysOPPriv)) {
+                    String resScope = ((PSSysUserRoleResServiceBase)pSCoreSysServiceBase).getModelV2ResScope(roleRes);
+                    if (StringHelper.compare(scope, resScope, false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(roleRes, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2797,10 +2784,10 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysUserRoleRes();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysUserRoleRes roleRes = new PSSysUserRoleRes();
+                    PSModelV2Helper.fromJSONObject(roleRes, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(roleRes, string));
                 }
             }
         }
@@ -2810,31 +2797,23 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSOPPRIV#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSDEOPPRIVROLE", (Object)pSSysOPPriv.getPSSysOPPrivId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysUserRoleRes)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSDEOPPrivRoleServiceBase)pSCoreSysServiceBase).selectByPSSysOPPriv(pSSysOPPriv);
-                object3 = StringHelper.format((String)"PSSYSOPPRIV#%1$s", (Object)pSSysOPPriv.getPSSysOPPrivId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSDEOPPrivRole)object2.next();
-                    object = ((PSDEOPPrivRoleServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysUserRoleRes)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSOPPRIV#%1$s", (Object)pSSysOPPriv.getPSSysOPPrivId());
+                for (PSDEOPPrivRole role : ((PSDEOPPrivRoleServiceBase)pSCoreSysServiceBase).selectByPSSysOPPriv(pSSysOPPriv)) {
+                    String resScope = ((PSDEOPPrivRoleServiceBase)pSCoreSysServiceBase).getModelV2ResScope(role);
+                    if (StringHelper.compare(scope, resScope, false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(role, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2862,10 +2841,10 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSDEOPPrivRole();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSDEOPPrivRole role = new PSDEOPPrivRole();
+                    PSModelV2Helper.fromJSONObject(role, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(role, string));
                 }
             }
         }
@@ -2875,31 +2854,23 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSOPPRIV#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSUSERROLEDATA", (Object)pSSysOPPriv.getPSSysOPPrivId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty(object2)) continue;
-                        entityBase2 = (ObjectNode)JsonNodeHelper.fromString(object2);
-                        arrayList.add((PSSysUserRoleRes)entityBase2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList();
-                object4 = ((PSSysUserRoleDataServiceBase)pSCoreSysServiceBase).selectByPSSysOPPriv(pSSysOPPriv);
-                object3 = StringHelper.format((String)"PSSYSOPPRIV#%1$s", (Object)pSSysOPPriv.getPSSysOPPrivId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    entityBase2 = (PSSysUserRoleData)object2.next();
-                    object = ((PSSysUserRoleDataServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysUserRoleRes)PSModelV2Helper.toJSONObject((IEntity)entityBase2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSOPPRIV#%1$s", (Object)pSSysOPPriv.getPSSysOPPrivId());
+                for (PSSysUserRoleData roleData : ((PSSysUserRoleDataServiceBase)pSCoreSysServiceBase).selectByPSSysOPPriv(pSSysOPPriv)) {
+                    String resScope = ((PSSysUserRoleDataServiceBase)pSCoreSysServiceBase).getModelV2ResScope(roleData);
+                    if (StringHelper.compare(scope, resScope, false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(roleData, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSCoreSysServiceBase.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode children = objectNode.putArray(pSCoreSysServiceBase.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2927,10 +2898,10 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (EntityBase entityBase2 : arrayList) {
-                    object = new PSSysUserRoleData();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)entityBase2, false);
-                    object3.add((JsonNode)pSCoreSysServiceBase.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysUserRoleData roleData = new PSSysUserRoleData();
+                    PSModelV2Helper.fromJSONObject(roleData, child, false);
+                    children.add((JsonNode)pSCoreSysServiceBase.exportModelV2(roleData, string));
                 }
             }
         }
@@ -2941,22 +2912,22 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
     protected void onEmptyModelV2(PSSysOPPriv pSSysOPPriv) throws Exception {
         String string;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSSysUserRoleResService)ServiceGlobal.getService(PSSysUserRoleResService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<EntityBase> arrayList = ((PSSysUserRoleResServiceBase)pSCoreSysServiceBase).selectByPSSysOPPriv(pSSysOPPriv);
+        ArrayList<PSSysUserRoleRes> arrayList = ((PSSysUserRoleResServiceBase)pSCoreSysServiceBase).selectByPSSysOPPriv(pSSysOPPriv);
         String string2 = StringHelper.format((String)"PSSYSOPPRIV#%1$s", (Object)pSSysOPPriv.getPSSysOPPrivId());
         for (PSSysUserRoleRes entityBase : arrayList) {
-            string = ((PSSysUserRoleResServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)entityBase);
+            string = ((PSSysUserRoleResServiceBase)pSCoreSysServiceBase).getModelV2ResScope(entityBase);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(entityBase);
         }
-        Object object = new SqlParamList();
+        SqlParamList object = new SqlParamList();
         object.addString(pSSysOPPriv.getPSSysOPPrivId());
         ((PSSysUserRoleResServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
         ((PSSysUserRoleResServiceBase)pSCoreSysServiceBase).getDAO().executeRawSql(null, "DELETE FROM T_SRFPSSYSUSERROLERES WHERE PSSYSOPPRIVID = ?", (SqlParamList)object);
         pSCoreSysServiceBase = (PSSysUserRoleDataService)ServiceGlobal.getService(PSSysUserRoleDataService.class, (SessionFactory)this.getSessionFactory());
-        arrayList = ((PSSysUserRoleDataServiceBase)pSCoreSysServiceBase).selectByPSSysOPPriv(pSSysOPPriv);
+        ArrayList<PSSysUserRoleData> roleDataList = ((PSSysUserRoleDataServiceBase)pSCoreSysServiceBase).selectByPSSysOPPriv(pSSysOPPriv);
         string2 = StringHelper.format((String)"PSSYSOPPRIV#%1$s", (Object)pSSysOPPriv.getPSSysOPPrivId());
-        for (PSSysUserRoleData pSSysUserRoleData : arrayList) {
-            string = ((PSSysUserRoleDataServiceBase)pSCoreSysServiceBase).getModelV2ResScope((IEntity)pSSysUserRoleData);
+        for (PSSysUserRoleData pSSysUserRoleData : roleDataList) {
+            string = ((PSSysUserRoleDataServiceBase)pSCoreSysServiceBase).getModelV2ResScope(pSSysUserRoleData);
             if (StringHelper.compare((String)string2, (String)string, (boolean)false) != 0) continue;
             pSCoreSysServiceBase.emptyModelV2(pSSysUserRoleData);
         }
@@ -3013,9 +2984,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
 
     @Override
     protected void onCompileRelatedModelV2(PSSysOPPriv pSSysOPPriv, ObjectNode objectNode, String string, String string2, int n) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
+        File[] files;
         int n2;
         PSCoreSysServiceBase pSCoreSysServiceBase = (PSSysUserRoleResService)ServiceGlobal.getService(PSSysUserRoleResService.class, (SessionFactory)this.getSessionFactory());
         ArrayNode arrayNode = null;
@@ -3025,23 +2994,23 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         }
         if (arrayNode != null) {
             for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                object2 = (ObjectNode)arrayNode.get(n2);
-                object = new PSSysUserRoleRes();
-                ((PSSysUserRoleResBase)object).setPSSysOPPrivId(pSSysOPPriv.getPSSysOPPrivId());
-                ((PSSysUserRoleResBase)object).setPSSysOPPrivName(pSSysOPPriv.getPSSysOPPrivName());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                ObjectNode child = (ObjectNode)arrayNode.get(n2);
+                PSSysUserRoleRes roleRes = new PSSysUserRoleRes();
+                roleRes.setPSSysOPPrivId(pSSysOPPriv.getPSSysOPPrivId());
+                roleRes.setPSSysOPPrivName(pSSysOPPriv.getPSSysOPPrivName());
+                pSCoreSysServiceBase.compileModelV2(roleRes, child, string, null, n);
             }
         } else {
             String string4 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string4);
-            if (((File)object2).exists()) {
-                object = ((File)object2).listFiles();
-                for (Object object3 : object) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSSysUserRoleRes();
+            File folder = new File(string4);
+            if (folder.exists()) {
+                files = folder.listFiles();
+                for (File child : files) {
+                    if (!child.isDirectory()) continue;
+                    PSSysUserRoleRes entityBase = new PSSysUserRoleRes();
                     entityBase.setPSSysOPPrivId(pSSysOPPriv.getPSSysOPPrivId());
                     entityBase.setPSSysOPPrivName(pSSysOPPriv.getPSSysOPPrivName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, child.getCanonicalPath(), n);
                 }
             }
         }
@@ -3054,22 +3023,23 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             }
             if (arrayNode != null) {
                 for (n2 = 0; n2 < arrayNode.size(); ++n2) {
-                    object2 = (ObjectNode)arrayNode.get(n2);
-                    object = new PSDEOPPrivRole();
-                    ((PSDEOPPrivRoleBase)object).setPSSysOPPrivId(pSSysOPPriv.getPSSysOPPrivId());
-                    ((PSDEOPPrivRoleBase)object).setPSSysOPPrivName(pSSysOPPriv.getPSSysOPPrivName());
-                    pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                    ObjectNode child = (ObjectNode)arrayNode.get(n2);
+                    PSDEOPPrivRole role = new PSDEOPPrivRole();
+                    role.setPSSysOPPrivId(pSSysOPPriv.getPSSysOPPrivId());
+                    role.setPSSysOPPrivName(pSSysOPPriv.getPSSysOPPrivName());
+                    pSCoreSysServiceBase.compileModelV2(role, child, string, null, n);
                 }
             } else {
                 String string5 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-                object2 = new File(string5);
-                if (((File)object2).exists()) {
-                    for (Object object3 : object = ((File)object2).listFiles()) {
-                        if (!((File)object3).isDirectory()) continue;
-                        entityBase = new PSDEOPPrivRole();
+                File folder = new File(string5);
+                if (folder.exists()) {
+                    files = folder.listFiles();
+                    for (File child : files) {
+                        if (!child.isDirectory()) continue;
+                        PSDEOPPrivRole entityBase = new PSDEOPPrivRole();
                         entityBase.setPSSysOPPrivId(pSSysOPPriv.getPSSysOPPrivId());
                         entityBase.setPSSysOPPrivName(pSSysOPPriv.getPSSysOPPrivName());
-                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                        pSCoreSysServiceBase.compileModelV2(entityBase, null, string, child.getCanonicalPath(), n);
                     }
                 }
             }
@@ -3082,22 +3052,23 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         }
         if (arrayNode != null) {
             for (int i = 0; i < arrayNode.size(); ++i) {
-                object2 = (ObjectNode)arrayNode.get(i);
-                object = new PSSysUserRoleData();
-                ((PSSysUserRoleDataBase)object).setPSSysOPPrivId(pSSysOPPriv.getPSSysOPPrivId());
-                ((PSSysUserRoleDataBase)object).setPSSysOPPrivName(pSSysOPPriv.getPSSysOPPrivName());
-                pSCoreSysServiceBase.compileModelV2(object, (ObjectNode)object2, string, null, n);
+                ObjectNode child = (ObjectNode)arrayNode.get(i);
+                PSSysUserRoleData roleData = new PSSysUserRoleData();
+                roleData.setPSSysOPPrivId(pSSysOPPriv.getPSSysOPPrivId());
+                roleData.setPSSysOPPrivName(pSSysOPPriv.getPSSysOPPrivName());
+                pSCoreSysServiceBase.compileModelV2(roleData, child, string, null, n);
             }
         } else {
             String string6 = StringHelper.format((String)"%1$s%2$s%3$s", (Object)string2, (Object)File.separator, (Object)string3);
-            object2 = new File(string6);
-            if (((File)object2).exists()) {
-                for (Object object3 : object = ((File)object2).listFiles()) {
-                    if (!((File)object3).isDirectory()) continue;
-                    entityBase = new PSSysUserRoleData();
+            File folder = new File(string6);
+            if (folder.exists()) {
+                files = folder.listFiles();
+                for (File child : files) {
+                    if (!child.isDirectory()) continue;
+                    PSSysUserRoleData entityBase = new PSSysUserRoleData();
                     entityBase.setPSSysOPPrivId(pSSysOPPriv.getPSSysOPPrivId());
                     entityBase.setPSSysOPPrivName(pSSysOPPriv.getPSSysOPPrivName());
-                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, ((File)object3).getCanonicalPath(), n);
+                    pSCoreSysServiceBase.compileModelV2(entityBase, null, string, child.getCanonicalPath(), n);
                 }
             }
         }
@@ -3121,7 +3092,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             PSSysUserRoleResService pSSysUserRoleResService = (PSSysUserRoleResService)ServiceGlobal.getService(PSSysUserRoleResService.class, (SessionFactory)this.getSessionFactory());
             PSSysUserRoleRes pSSysUserRoleRes = new PSSysUserRoleRes();
             pSSysUserRoleRes.setPSSysUserRoleResId(pSMOSFile.getPSModelId());
-            if (!pSSysUserRoleResService.get((IEntity)pSSysUserRoleRes, true)) {
+            if (!pSSysUserRoleResService.get(pSSysUserRoleRes, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUserRoleRes.getPSSysOPPrivId(), (String)pSSysOPPriv.getPSSysOPPrivId(), (boolean)false) == 0) {
@@ -3129,28 +3100,28 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             }
             ObjectNode objectNode = pSSysUserRoleResService.exportModelV2(pSSysUserRoleRes);
             pSSysUserRoleRes.reset();
-            if (!pSSysUserRoleResService.setModelV2ResScope((IEntity)pSSysUserRoleRes, "PSSYSOPPRIV", pSSysOPPriv.getPSSysOPPrivId())) {
+            if (!pSSysUserRoleResService.setModelV2ResScope(pSSysUserRoleRes, "PSSYSOPPRIV", pSSysOPPriv.getPSSysOPPrivId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUserRoleResService.importModelV2(pSSysUserRoleRes, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUserRoleResService.getFile((IEntity)pSSysUserRoleRes);
+            return pSSysUserRoleResService.getFile(pSSysUserRoleRes);
         }
         if (StringHelper.compare((String)pSMOSFile.getPSModelType(), (String)PSModelV2Helper.getModelV2Name("PSSYSUNIRES", true), (boolean)false) == 0) {
             PSSysUniResService pSSysUniResService = (PSSysUniResService)ServiceGlobal.getService(PSSysUniResService.class, (SessionFactory)this.getSessionFactory());
             PSSysUniRes pSSysUniRes = new PSSysUniRes();
             pSSysUniRes.setPSSysUniResId(pSMOSFile.getPSModelId());
-            if (!pSSysUniResService.get((IEntity)pSSysUniRes, true)) {
+            if (!pSSysUniResService.get(pSSysUniRes, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             PSSysUserRoleResService pSSysUserRoleResService = (PSSysUserRoleResService)ServiceGlobal.getService(PSSysUserRoleResService.class, (SessionFactory)this.getSessionFactory());
             PSSysUserRoleRes pSSysUserRoleRes = new PSSysUserRoleRes();
             pSSysUserRoleRes.setPSSysOPPrivId(pSSysOPPriv.getPSSysOPPrivId());
             pSSysUserRoleRes.setPSSysUniResId(pSSysUniRes.getPSSysUniResId());
-            this.fillPasteEntity((IEntity)pSSysUserRoleRes, "PASTETAG");
+            this.fillPasteEntity(pSSysUserRoleRes, "PASTETAG");
             pSSysUserRoleResService.create(pSSysUserRoleRes);
             SessionFactoryManager.commit();
-            return pSSysUserRoleResService.getFile((IEntity)pSSysUserRoleRes);
+            return pSSysUserRoleResService.getFile(pSSysUserRoleRes);
         }
         return null;
     }
@@ -3160,7 +3131,7 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             PSSysUserRoleDataService pSSysUserRoleDataService = (PSSysUserRoleDataService)ServiceGlobal.getService(PSSysUserRoleDataService.class, (SessionFactory)this.getSessionFactory());
             PSSysUserRoleData pSSysUserRoleData = new PSSysUserRoleData();
             pSSysUserRoleData.setPSSysUserRoleDataId(pSMOSFile.getPSModelId());
-            if (!pSSysUserRoleDataService.get((IEntity)pSSysUserRoleData, true)) {
+            if (!pSSysUserRoleDataService.get(pSSysUserRoleData, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysUserRoleData.getPSSysOPPrivId(), (String)pSSysOPPriv.getPSSysOPPrivId(), (boolean)false) == 0) {
@@ -3168,28 +3139,28 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             }
             ObjectNode objectNode = pSSysUserRoleDataService.exportModelV2(pSSysUserRoleData);
             pSSysUserRoleData.reset();
-            if (!pSSysUserRoleDataService.setModelV2ResScope((IEntity)pSSysUserRoleData, "PSSYSOPPRIV", pSSysOPPriv.getPSSysOPPrivId())) {
+            if (!pSSysUserRoleDataService.setModelV2ResScope(pSSysUserRoleData, "PSSYSOPPRIV", pSSysOPPriv.getPSSysOPPrivId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysUserRoleDataService.importModelV2(pSSysUserRoleData, objectNode);
             SessionFactoryManager.commit();
-            return pSSysUserRoleDataService.getFile((IEntity)pSSysUserRoleData);
+            return pSSysUserRoleDataService.getFile(pSSysUserRoleData);
         }
         if (StringHelper.compare((String)pSMOSFile.getPSModelType(), (String)PSModelV2Helper.getModelV2Name("PSDEUSERROLE", true), (boolean)false) == 0) {
             PSDEUserRoleService pSDEUserRoleService = (PSDEUserRoleService)ServiceGlobal.getService(PSDEUserRoleService.class, (SessionFactory)this.getSessionFactory());
             PSDEUserRole pSDEUserRole = new PSDEUserRole();
             pSDEUserRole.setPSDEUserRoleId(pSMOSFile.getPSModelId());
-            if (!pSDEUserRoleService.get((IEntity)pSDEUserRole, true)) {
+            if (!pSDEUserRoleService.get(pSDEUserRole, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             PSSysUserRoleDataService pSSysUserRoleDataService = (PSSysUserRoleDataService)ServiceGlobal.getService(PSSysUserRoleDataService.class, (SessionFactory)this.getSessionFactory());
             PSSysUserRoleData pSSysUserRoleData = new PSSysUserRoleData();
             pSSysUserRoleData.setPSSysOPPrivId(pSSysOPPriv.getPSSysOPPrivId());
             pSSysUserRoleData.setPSDEUserRoleId(pSDEUserRole.getPSDEUserRoleId());
-            this.fillPasteEntity((IEntity)pSSysUserRoleData, "PASTETAG");
+            this.fillPasteEntity(pSSysUserRoleData, "PASTETAG");
             pSSysUserRoleDataService.create(pSSysUserRoleData);
             SessionFactoryManager.commit();
-            return pSSysUserRoleDataService.getFile((IEntity)pSSysUserRoleData);
+            return pSSysUserRoleDataService.getFile(pSSysUserRoleData);
         }
         return null;
     }
@@ -3316,8 +3287,9 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             pSCoreSysServiceBase = (PSSysUserRoleResService)ServiceGlobal.getService(PSSysUserRoleResService.class, (SessionFactory)this.getSessionFactory());
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSUSERROLERES_PSSYSOPPRIV_PSSYSOPPRIVID", "PSSYSOPPRIVID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            for (Object value : arrayList) {
+                EntityBase entityBase = (EntityBase)value;
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -3326,8 +3298,9 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
             pSCoreSysServiceBase = (PSSysUserRoleDataService)ServiceGlobal.getService(PSSysUserRoleDataService.class, (SessionFactory)this.getSessionFactory());
             selectContext = this.getListDRDataFolderCond(pSMOSFile, iPSMOSFileFilter, pSCoreSysServiceBase, "DER1N_PSSYSUSERROLEDATA_PSSYSOPPRIV_PSSYSOPPRIVID", "PSSYSOPPRIVID", pSMOSFile.getPSModelId(), "", "");
             arrayList = pSCoreSysServiceBase.selectEx((ISelectContext)selectContext);
-            for (EntityBase entityBase : arrayList) {
-                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, (IEntity)entityBase, bl);
+            for (Object value : arrayList) {
+                EntityBase entityBase = (EntityBase)value;
+                pSMOSFile2 = pSCoreSysServiceBase.getFile(pSMOSFile, entityBase, bl);
                 if (pSMOSFile2 == null) continue;
                 arrayList2.add(pSMOSFile2);
             }
@@ -3373,4 +3346,3 @@ extends PSCoreSysServiceBase<PSSysOPPriv> {
         defaultValueMap.put("CODENAME", "SysRole");
     }
 }
-

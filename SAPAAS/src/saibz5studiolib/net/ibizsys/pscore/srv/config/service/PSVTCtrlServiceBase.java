@@ -153,9 +153,9 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
             PSSysACHandler pSSysACHandler = (PSSysACHandler)iService.getDEModel().createEntity();
             pSSysACHandler.set("PSSYSACHANDLERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysACHandler);
+                iService.getTemp(pSSysACHandler);
             } else {
-                iService.get((IEntity)pSSysACHandler);
+                iService.get(pSSysACHandler);
             }
             this.onFillParentInfo_PSSysACHandler(pSVTCtrl, pSSysACHandler);
             return;
@@ -165,9 +165,9 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
             PSSysToolbar pSSysToolbar = (PSSysToolbar)iService.getDEModel().createEntity();
             pSSysToolbar.set("PSSYSTOOLBARID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysToolbar);
+                iService.getTemp(pSSysToolbar);
             } else {
-                iService.get((IEntity)pSSysToolbar);
+                iService.get(pSSysToolbar);
             }
             this.onFillParentInfo_PSSysToolbar(pSVTCtrl, pSSysToolbar);
             return;
@@ -177,14 +177,14 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
             PSViewType pSViewType = (PSViewType)iService.getDEModel().createEntity();
             pSViewType.set("PSVIEWTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSViewType);
+                iService.getTemp(pSViewType);
             } else {
-                iService.get((IEntity)pSViewType);
+                iService.get(pSViewType);
             }
             this.onFillParentInfo_PSViewType(pSVTCtrl, pSViewType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSVTCtrl, string, string2, string3);
+        super.onFillParentInfo(pSVTCtrl, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -210,7 +210,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
         if (bl && pSVTCtrl.getValidFlag() == null) {
             pSVTCtrl.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSVTCtrl, bl);
+        super.onFillEntityFullInfo(pSVTCtrl, bl);
         this.onFillEntityFullInfo_PSSysACHandler(pSVTCtrl, bl);
         this.onFillEntityFullInfo_PSSysToolbar(pSVTCtrl, bl);
         this.onFillEntityFullInfo_PSViewType(pSVTCtrl, bl);
@@ -226,7 +226,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
     }
 
     protected void onWriteBackParent(PSVTCtrl pSVTCtrl, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSVTCtrl, bl);
+        super.onWriteBackParent(pSVTCtrl, bl);
     }
 
     public ArrayList<PSVTCtrl> selectByPSSysACHandler(PSSysACHandlerBase pSSysACHandlerBase) throws Exception {
@@ -305,8 +305,8 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
         ArrayList<PSVTCtrl> arrayList = this.selectByPSSysACHandler(pSSysACHandler, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSACHANDLER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysACHandler);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSVTCTRL_PSSYSACHANDLER_PSSYSACHANDLERID", "", iDataEntityModel.getName(), "PSVTCTRL", iDataEntityModel.getDataInfo((IEntity)pSSysACHandler), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysACHandler);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSVTCTRL_PSSYSACHANDLER_PSSYSACHANDLERID", "", iDataEntityModel.getName(), "PSVTCTRL", iDataEntityModel.getDataInfo(pSSysACHandler), arrayList.get(0)));
         }
     }
 
@@ -339,7 +339,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
         ArrayList<PSVTCtrl> arrayList = this.selectByPSSysACHandler(pSSysACHandler);
         this.onBeforeRemoveByPSSysACHandler(pSSysACHandler, arrayList);
         for (PSVTCtrl pSVTCtrl : arrayList) {
-            this.remove((IEntity)pSVTCtrl);
+            this.remove(pSVTCtrl);
         }
         this.onAfterRemoveByPSSysACHandler(pSSysACHandler, arrayList);
     }
@@ -357,8 +357,8 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
         ArrayList<PSVTCtrl> arrayList = this.selectByPSSysToolbar(pSSysToolbar, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSTOOLBAR");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysToolbar);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSVTCTRL_PSSYSTOOLBAR_PSSYSTOOLBARID", "", iDataEntityModel.getName(), "PSVTCTRL", iDataEntityModel.getDataInfo((IEntity)pSSysToolbar), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysToolbar);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSVTCTRL_PSSYSTOOLBAR_PSSYSTOOLBARID", "", iDataEntityModel.getName(), "PSVTCTRL", iDataEntityModel.getDataInfo(pSSysToolbar), arrayList.get(0)));
         }
     }
 
@@ -391,7 +391,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
         ArrayList<PSVTCtrl> arrayList = this.selectByPSSysToolbar(pSSysToolbar);
         this.onBeforeRemoveByPSSysToolbar(pSSysToolbar, arrayList);
         for (PSVTCtrl pSVTCtrl : arrayList) {
-            this.remove((IEntity)pSVTCtrl);
+            this.remove(pSVTCtrl);
         }
         this.onAfterRemoveByPSSysToolbar(pSSysToolbar, arrayList);
     }
@@ -437,7 +437,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
         ArrayList<PSVTCtrl> arrayList = this.selectByPSViewType(pSViewType);
         this.onBeforeRemoveByPSViewType(pSViewType, arrayList);
         for (PSVTCtrl pSVTCtrl : arrayList) {
-            this.remove((IEntity)pSVTCtrl);
+            this.remove(pSVTCtrl);
         }
         this.onAfterRemoveByPSViewType(pSViewType, arrayList);
     }
@@ -458,7 +458,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
 
     protected void replaceParentInfo(PSVTCtrl pSVTCtrl, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSVTCtrl, cloneSession);
+        super.replaceParentInfo(pSVTCtrl, cloneSession);
         if (pSVTCtrl.getPSSysACHandlerId() != null && (iEntity = cloneSession.getEntity("PSSYSACHANDLER", (Object)pSVTCtrl.getPSSysACHandlerId())) != null) {
             this.onFillParentInfo_PSSysACHandler(pSVTCtrl, (PSSysACHandler)iEntity);
         }
@@ -471,7 +471,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
     }
 
     protected void onRemoveEntityUncopyValues(PSVTCtrl pSVTCtrl, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSVTCtrl, bl);
+        super.onRemoveEntityUncopyValues(pSVTCtrl, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSVTCtrl pSVTCtrl, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -564,7 +564,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSVTCtrl, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSVTCtrl, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSVTCtrl, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CtrlParam(boolean bl, PSVTCtrl pSVTCtrl, boolean bl2, boolean bl3) throws Exception {
@@ -577,7 +577,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParam_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParam_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM");
@@ -599,7 +599,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam10_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam10_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM10");
@@ -621,7 +621,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam11_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam11_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM11");
@@ -643,7 +643,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam12_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam12_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM12");
@@ -665,7 +665,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParam2_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParam2_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM2");
@@ -687,7 +687,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParam3_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParam3_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM3");
@@ -709,7 +709,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParam4_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParam4_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM4");
@@ -731,7 +731,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam5_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam5_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM5");
@@ -753,7 +753,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam6_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam6_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM6");
@@ -775,7 +775,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam7_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam7_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM7");
@@ -797,7 +797,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam8_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam8_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM8");
@@ -819,7 +819,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam9_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam9_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM9");
@@ -844,7 +844,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlType_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlType_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLTYPE");
@@ -866,7 +866,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_DefaultFlag_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_DefaultFlag_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DEFAULTFLAG");
@@ -888,7 +888,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableDynaTool_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_EnableDynaTool_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLEDYNATOOL");
@@ -910,7 +910,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableViewActions_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_EnableViewActions_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLEVIEWACTIONS");
@@ -932,7 +932,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -954,7 +954,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -976,7 +976,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysACHandlerId_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysACHandlerId_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSACHANDLERID");
@@ -998,7 +998,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysToolbarId_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysToolbarId_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTOOLBARID");
@@ -1023,7 +1023,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewTypeId_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewTypeId_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWTYPEID");
@@ -1048,7 +1048,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSVTCtrlId_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_PSVTCtrlId_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVTCTRLID");
@@ -1073,7 +1073,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSVTCtrlName_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_PSVTCtrlName_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVTCTRLNAME");
@@ -1095,7 +1095,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1117,7 +1117,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1139,7 +1139,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1161,7 +1161,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1183,7 +1183,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1205,7 +1205,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSVTCtrl, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSVTCtrl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1218,11 +1218,11 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
     }
 
     protected void onSyncEntity(PSVTCtrl pSVTCtrl, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSVTCtrl, bl);
+        super.onSyncEntity(pSVTCtrl, bl);
     }
 
     protected void onSyncIndexEntities(PSVTCtrl pSVTCtrl, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSVTCtrl, bl);
+        super.onSyncIndexEntities(pSVTCtrl, bl);
     }
 
     public Object getDataContextValue(PSVTCtrl pSVTCtrl, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1230,7 +1230,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSVTCtrl, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSVTCtrl, string, iDataContextParam)) != null) {
             return object;
         }
         PSViewType pSViewType = pSVTCtrl.getPSViewType();
@@ -1241,7 +1241,7 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
     }
 
     protected void onExportMajorModel(PSVTCtrl pSVTCtrl, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSVTCtrl, arrayList, n);
+        super.onExportMajorModel(pSVTCtrl, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1670,14 +1670,14 @@ extends PSCoreSysServiceBase<PSVTCtrl> {
 
     protected boolean onMergeChild(String string, String string2, PSVTCtrl pSVTCtrl) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSVTCtrl)) {
+        if (super.onMergeChild(string, string2, pSVTCtrl)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSVTCtrl pSVTCtrl) throws Exception {
-        super.onUpdateParent((IEntity)pSVTCtrl);
+        super.onUpdateParent(pSVTCtrl);
     }
 
     @Override

@@ -1,28 +1,51 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  javax.servlet.http.HttpServletRequest
- *  javax.servlet.http.HttpServletResponse
- */
 package net.ibizsys.paas.appmodel;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.ibizsys.paas.appmodel.IApplicationModel;
+
 import net.ibizsys.paas.controller.IViewController;
 import net.ibizsys.paas.controller.IViewControllerPlugin;
 import net.ibizsys.paas.core.IPlugin;
 import net.ibizsys.paas.core.PluginActionResult;
 import net.ibizsys.paas.web.Page;
 
-public interface IApplicationPlugin
-extends IPlugin,
-IViewControllerPlugin {
-    public PluginActionResult doGetCtrlRender(IApplicationModel var1, String var2, String var3, Object var4);
+/**
+ * 应用程序插件
+ * @author Administrator
+ *
+ */
+public interface IApplicationPlugin extends IPlugin,IViewControllerPlugin {
 
-    public PluginActionResult doFilter(IApplicationModel var1, IViewController var2, HttpServletRequest var3, HttpServletResponse var4, Object var5) throws Exception;
+	/**
+	 * 获取部件绘制器接口
+	 * @param iApplicationModel
+	 * @param strCtrlType 部件类型
+	 * @param strRender 绘制器标识
+	 * @return
+	 */
+	PluginActionResult doGetCtrlRender(IApplicationModel iApplicationModel,String strCtrlType, String strRender,Object objParam);
 
-    public PluginActionResult doFilter(IApplicationModel var1, Page var2, HttpServletRequest var3, HttpServletResponse var4, Object var5) throws Exception;
+	
+	/**
+	 * 过滤请求
+	 * @param iApplicationModel
+	 * @param iViewController 视图控制器接口
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	PluginActionResult doFilter(IApplicationModel iApplicationModel,IViewController iViewController, HttpServletRequest request, HttpServletResponse response,Object objParam) throws Exception;
+
+	/**
+	 * 过滤请求
+	 * @param iApplicationModel
+	 * @param page 页面对象
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	PluginActionResult doFilter(IApplicationModel iApplicationModel,Page page, HttpServletRequest request, HttpServletResponse response,Object objParam) throws Exception;
+
 }
-

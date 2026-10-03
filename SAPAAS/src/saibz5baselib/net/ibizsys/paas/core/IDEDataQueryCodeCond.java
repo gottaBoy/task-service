@@ -1,44 +1,120 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import java.util.Iterator;
-import net.ibizsys.paas.core.IModelBase;
 import net.ibizsys.paas.db.ISelectFilter;
 
-public interface IDEDataQueryCodeCond
-extends IModelBase,
-ISelectFilter {
-    public static final String CONDTYPE_DEFIELD = "DEFIELD";
-    public static final String CONDTYPE_CUSTOM = "CUSTOM";
-    public static final String CONDTYPE_GROUP = "GROUP";
-    public static final String CONDTYPE_PREDEFINED = "PREDEFINED";
+/**
+ * 数据查询代码条件代码
+ * 
+ * @author lionlau
+ *
+ */
+public interface IDEDataQueryCodeCond extends IModelBase,ISelectFilter {
 
-    public String getDEFName();
+	/**
+	 * 属性条件，单项条件
+	 */
+	final static String CONDTYPE_DEFIELD = "DEFIELD";
 
-    @Override
-    public String getCondType();
+	/**
+	 * 自定义条件，直接代码
+	 */
+	final static String CONDTYPE_CUSTOM = "CUSTOM";
 
-    public String getCondOp();
+	/**
+	 * 组条件，包括一个或多个条件
+	 */
+	final static String CONDTYPE_GROUP = "GROUP";
 
-    public String getCondValue();
+	/**
+	 * 预置条件，引擎预置的条件
+	 */
+	final static String CONDTYPE_PREDEFINED = "PREDEFINED";
 
-    public String getCustomCond();
+	
+	/**
+	 * 获取属性名称
+	 * 
+	 * @return
+	 */
+	String getDEFName();
 
-    @Deprecated
-    public String getPredefindedCond();
+	/**
+	 * 获取条件类型，值参考 IDEDataQueryCodeCond.CONDTYPE_XXXX
+	 * 
+	 * @return
+	 */
+	String getCondType();
 
-    public String getPredefinedCode();
+	/**
+	 * 获取条件操作，值参考  net.ibizsys.paas.logic.ICondition 
+	 * 
+	 * @return
+	 */
+	String getCondOp();
 
-    public Iterator<IDEDataQueryCodeCond> getChildDEDataQueryConds();
+	/**
+	 * 获取条件值
+	 * 
+	 * @return
+	 */
+	String getCondValue();
 
-    public String getDEFieldExp();
+	/**
+	 * 获取自定义条件
+	 * 
+	 * @return
+	 */
+	String getCustomCond();
 
-    public boolean isNotMode();
+	/**
+	 * 获取预置条件，方法命名有误，请使用 getPredefinedCode
+	 * 
+	 * @return
+	 */
+	@Deprecated
+	String getPredefindedCond();
+	
+	/**
+	 * 获取预置条件
+	 * 
+	 * @return
+	 */
+	String getPredefinedCode();
 
-    public int getStdDataType();
+	/**
+	 * 获取子条件集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IDEDataQueryCodeCond> getChildDEDataQueryConds();
 
-    public String getValueFunc();
+	/**
+	 * 获取属性表达式
+	 * 
+	 * @return
+	 */
+	String getDEFieldExp();
+
+	/**
+	 * 是否为逻辑取反模式
+	 * 
+	 * @return
+	 */
+	boolean isNotMode();
+
+	/**
+	 * 获取值的标准数据类型
+	 * 
+	 * @return
+	 */
+	int getStdDataType();
+	
+	
+	
+	/**
+	 * 获取值处理函数
+	 * @return
+	 */
+	String getValueFunc();
+	
 }
-

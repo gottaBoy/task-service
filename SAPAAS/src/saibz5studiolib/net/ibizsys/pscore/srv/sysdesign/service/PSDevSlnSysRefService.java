@@ -85,7 +85,7 @@ extends PSDevSlnSysRefServiceBase {
     protected void syncPSSysModelInst(PSDevSlnSysRef pSDevSlnSysRef) throws Exception {
         PSDevSlnSysRef pSDevSlnSysRef2 = new PSDevSlnSysRef();
         pSDevSlnSysRef2.setPSDevSlnSysRefId(pSDevSlnSysRef.getPSDevSlnSysRefId());
-        this.get((IEntity)pSDevSlnSysRef2);
+        this.get(pSDevSlnSysRef2);
         PSDevSlnSysSrv pSDevSlnSysSrv = pSDevSlnSysRef2.getRefPSDevSlnSysSrv();
         PSDevSlnSys pSDevSlnSys = pSDevSlnSysRef2.getRefPSDevSlnSys();
         PSDevSlnSys pSDevSlnSys2 = this.getPSDevSlnSys(pSDevSlnSysRef);
@@ -146,10 +146,11 @@ extends PSDevSlnSysRefServiceBase {
     }
 
     protected PSDevSlnSys getPSDevSlnSys(PSDevSlnSysRef pSDevSlnSysRef) throws Exception {
-        EntityBase entityBase;
+        PSDevSlnSysRef pSDevSlnSysRef2;
+        PSDevSlnSys pSDevSlnSys;
         Object object;
         String string = pSDevSlnSysRef.getPSDevSlnSysId();
-        if (StringHelper.isNullOrEmpty((String)string) && (object = (PSDevSlnSysRef)this.getLast((IEntity)pSDevSlnSysRef)) != null) {
+        if (StringHelper.isNullOrEmpty((String)string) && (object = (PSDevSlnSysRef)this.getLast(pSDevSlnSysRef)) != null) {
             string = ((PSDevSlnSysRefBase)object).getPSDevSlnSysId();
         }
         if (StringHelper.isNullOrEmpty((String)string)) {
@@ -157,21 +158,21 @@ extends PSDevSlnSysRefServiceBase {
         }
         object = pSDevSlnSysRef.getRefPSDevSlnSysSrvId();
         String string2 = pSDevSlnSysRef.getUsage();
-        if (StringHelper.isNullOrEmpty((String)object) && (entityBase = (PSDevSlnSysRef)this.getLast((IEntity)pSDevSlnSysRef)) != null) {
-            object = entityBase.getRefPSDevSlnSysSrvId();
+        if (StringHelper.isNullOrEmpty((String)object) && (pSDevSlnSysRef2 = (PSDevSlnSysRef)this.getLast(pSDevSlnSysRef)) != null) {
+            object = pSDevSlnSysRef2.getRefPSDevSlnSysSrvId();
         }
-        if (StringHelper.isNullOrEmpty((String)string2) && (entityBase = (PSDevSlnSysRef)this.getLast((IEntity)pSDevSlnSysRef)) != null) {
-            string2 = entityBase.getUsage();
+        if (StringHelper.isNullOrEmpty((String)string2) && (pSDevSlnSysRef2 = (PSDevSlnSysRef)this.getLast(pSDevSlnSysRef)) != null) {
+            string2 = pSDevSlnSysRef2.getUsage();
         }
         if (StringHelper.compare((String)string2, (String)"CLOUD", (boolean)false) != 0 && StringHelper.compare((String)string2, (String)"ETLMODEL", (boolean)false) != 0 && StringHelper.compare((String)string2, (String)"ETLSOURCE", (boolean)false) != 0 && StringHelper.compare((String)string2, (String)"CLOUDHUBSUBAPP", (boolean)false) != 0 && StringHelper.compare((String)string2, (String)"ETLEXTRACT", (boolean)false) != 0 && StringHelper.compare((String)string2, (String)"ETLTRANSFORM", (boolean)false) != 0 && StringHelper.compare((String)string2, (String)"ETLLOAD", (boolean)false) != 0 && StringHelper.compare((String)string2, (String)"USER", (boolean)false) != 0 && StringHelper.compare((String)string2, (String)"USER2", (boolean)false) != 0 && StringHelper.compare((String)string2, (String)"USER3", (boolean)false) != 0 && StringHelper.compare((String)string2, (String)"USER4", (boolean)false) != 0 && StringHelper.isNullOrEmpty((String)object)) {
             throw new Exception("\u65e0\u6cd5\u83b7\u53d6\u5f15\u7528\u5f00\u53d1\u7cfb\u7edf\u670d\u52a1\u6807\u8bc6");
         }
-        entityBase = new PSDevSlnSys();
-        entityBase.setPSDevSlnSysId(string);
-        entityBase.setSessionFactory(this.getSessionFactory());
-        entityBase.get();
-        if (DataObject.getIntegerValue((Object)entityBase.getDevSysState(), (Integer)30) != 30) {
-            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u5f53\u524d\u72b6\u6001[%2$s]\uff0c\u65e0\u6cd5\u8c03\u6574\u7cfb\u7edf\u5f15\u7528", (Object)entityBase.getPSDevSlnSysName(), (Object)DevSysStateCodeListModel.getInstance().getCodeItem(entityBase.getDevSysState().toString()).getText()));
+        pSDevSlnSys = new PSDevSlnSys();
+        pSDevSlnSys.setPSDevSlnSysId(string);
+        pSDevSlnSys.setSessionFactory(this.getSessionFactory());
+        pSDevSlnSys.get();
+        if (DataObject.getIntegerValue((Object)pSDevSlnSys.getDevSysState(), (Integer)30) != 30) {
+            throw new Exception(StringHelper.format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u5f53\u524d\u72b6\u6001[%2$s]\uff0c\u65e0\u6cd5\u8c03\u6574\u7cfb\u7edf\u5f15\u7528", (Object)pSDevSlnSys.getPSDevSlnSysName(), (Object)DevSysStateCodeListModel.getInstance().getCodeItem(pSDevSlnSys.getDevSysState().toString()).getText()));
         }
         if (!StringHelper.isNullOrEmpty((String)object)) {
             PSDevSlnSysSrv pSDevSlnSysSrv = new PSDevSlnSysSrv();
@@ -184,7 +185,7 @@ extends PSDevSlnSysRefServiceBase {
             pSDevSlnSysRef.setSysCodeName(null);
             pSDevSlnSysRef.setSysPkgName(null);
         }
-        return entityBase;
+        return pSDevSlnSys;
     }
 
     protected void createWithToken(PSDevSlnSysRef pSDevSlnSysRef) throws Exception {

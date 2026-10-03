@@ -167,14 +167,14 @@ extends SRFExFormItem {
                     String[] arrACCaretFormParamS;
                     String[] stringArray = arrACCaretFormParamS = strACCaretFormParamS.split("[,]");
                     n = arrACCaretFormParamS.length;
-                    int control2 = 0;
-                    while (control2 < n) {
-                        String strACCaretFormParam = stringArray[control2];
+                    int caretParamIndex = 0;
+                    while (caretParamIndex < n) {
+                        String strACCaretFormParam = stringArray[caretParamIndex];
                         arrACCaretFormParam = strACCaretFormParam.split("[|]");
                         if (arrACCaretFormParam.length == 2) {
                             script.Append(",{name:'%1$s'}", arrACCaretFormParam[1].toLowerCase());
                         }
-                        ++control2;
+                        ++caretParamIndex;
                     }
                 }
                 if (!StringHelper.IsNullOrEmpty((String)(strACFillParamsEx = this.getTextBoxConfig().getACFillParamsEx()))) {
@@ -782,4 +782,3 @@ extends SRFExFormItem {
         return "";
     }
 }
-

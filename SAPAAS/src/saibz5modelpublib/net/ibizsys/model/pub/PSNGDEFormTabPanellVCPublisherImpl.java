@@ -1,47 +1,58 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.control.IPSControl
- *  net.ibizsys.model.control.form.IPSDEFormTabPage
- *  net.ibizsys.model.control.form.IPSDEFormTabPanel
- *  net.ibizsys.model.pub.IPSGenerateCodeResult
- *  net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher
- */
 package net.ibizsys.model.pub;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+
 import net.ibizsys.model.control.IPSControl;
 import net.ibizsys.model.control.form.IPSDEFormTabPage;
 import net.ibizsys.model.control.form.IPSDEFormTabPanel;
-import net.ibizsys.model.pub.IPSGenerateCodeResult;
-import net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher;
-import net.ibizsys.model.pub.PSNGDEFormDetailVCPublisherImpl;
+import net.ibizsys.model.entity.PSDEFormDetail;
 
-public class PSNGDEFormTabPanellVCPublisherImpl
-extends PSNGDEFormDetailVCPublisherImpl {
-    protected IPSDEFormTabPanel iPSDEFormTabPanel = null;
+/**
+ * angularJS表单分页部件视图代码发布器
+ * @author Administrator
+ *
+ */
+public class PSNGDEFormTabPanellVCPublisherImpl extends PSNGDEFormDetailVCPublisherImpl
+{
+	
+	protected IPSDEFormTabPanel iPSDEFormTabPanel = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDEFormTabPanel = (IPSDEFormTabPanel)object;
+		return super.generateCode( iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		
 
-    @Override
-    public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception {
-        this.iPSDEFormTabPanel = (IPSDEFormTabPanel)object;
-        return super.generateCode(iPSControl, object);
-    }
+		if(true)
+		{
+			ArrayList<IPSGenerateCodeResult> formPageList = new ArrayList<IPSGenerateCodeResult> ();
+			IPSPFCtrlPartCodePublisher	iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail(PSDEFormDetail.DETAILTYPE_FORMPAGE).getPSPFCtrlPartCodePublisher();
+			Iterator<IPSDEFormTabPage> psDEFormTabPages =  iPSDEFormTabPanel.getPSDEFormTabPages();
+			while(psDEFormTabPages.hasNext())
+			{
+				IPSDEFormTabPage iPSDEFormTabPage  = psDEFormTabPages.next();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(this.iPSControl,iPSDEFormTabPage);
+				formPageList.add(iPSGenerateCodeResult);
+				
+			}
+			params.put("tabpages", formPageList);
+		}
+		
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
-        super.onFillGenerateCodeParams(params);
-        ArrayList<IPSGenerateCodeResult> formPageList = new ArrayList<IPSGenerateCodeResult>();
-        IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.getPSPFCtrlTempl().getPSPFCtrlTemplDetail("FORMPAGE").getPSPFCtrlPartCodePublisher();
-        Iterator psDEFormTabPages = this.iPSDEFormTabPanel.getPSDEFormTabPages();
-        while (psDEFormTabPages.hasNext()) {
-            IPSDEFormTabPage iPSDEFormTabPage = (IPSDEFormTabPage)psDEFormTabPages.next();
-            IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(this.iPSControl, (Object)iPSDEFormTabPage);
-            formPageList.add(iPSGenerateCodeResult);
-        }
-        params.put("tabpages", formPageList);
-    }
 }
-

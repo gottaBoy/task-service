@@ -120,7 +120,7 @@ extends PSCoreSysServiceBase<PSWPApp> {
     }
 
     protected void onFillParentInfo(PSWPApp pSWPApp, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSWPApp, string, string2, string3);
+        super.onFillParentInfo(pSWPApp, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -131,11 +131,11 @@ extends PSCoreSysServiceBase<PSWPApp> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSWPApp, bl);
+        super.onFillEntityFullInfo(pSWPApp, bl);
     }
 
     protected void onWriteBackParent(PSWPApp pSWPApp, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWPApp, bl);
+        super.onWriteBackParent(pSWPApp, bl);
     }
 
     @Override
@@ -148,7 +148,7 @@ extends PSCoreSysServiceBase<PSWPApp> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWPApp pSWPApp, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWPApp, bl);
+        super.onRemoveEntityUncopyValues(pSWPApp, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWPApp pSWPApp, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -160,7 +160,7 @@ extends PSCoreSysServiceBase<PSWPApp> {
         if ((entityFieldError = this.onCheckField_PSWPAppName(bl, pSWPApp, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWPApp, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWPApp, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSWPAppId(boolean bl, PSWPApp pSWPApp, boolean bl2, boolean bl3) throws Exception {
@@ -176,7 +176,7 @@ extends PSCoreSysServiceBase<PSWPApp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWPAppId_Default((IEntity)pSWPApp, bl2, bl3);
+            string2 = this.onTestValueRule_PSWPAppId_Default(pSWPApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWPAPPID");
@@ -201,7 +201,7 @@ extends PSCoreSysServiceBase<PSWPApp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWPAppName_Default((IEntity)pSWPApp, bl2, bl3);
+            string2 = this.onTestValueRule_PSWPAppName_Default(pSWPApp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWPAPPNAME");
@@ -214,11 +214,11 @@ extends PSCoreSysServiceBase<PSWPApp> {
     }
 
     protected void onSyncEntity(PSWPApp pSWPApp, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWPApp, bl);
+        super.onSyncEntity(pSWPApp, bl);
     }
 
     protected void onSyncIndexEntities(PSWPApp pSWPApp, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWPApp, bl);
+        super.onSyncIndexEntities(pSWPApp, bl);
     }
 
     public Object getDataContextValue(PSWPApp pSWPApp, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -226,14 +226,14 @@ extends PSCoreSysServiceBase<PSWPApp> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWPApp, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWPApp, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWPApp pSWPApp, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWPApp, arrayList, n);
+        super.onExportMajorModel(pSWPApp, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -316,14 +316,14 @@ extends PSCoreSysServiceBase<PSWPApp> {
 
     protected boolean onMergeChild(String string, String string2, PSWPApp pSWPApp) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWPApp)) {
+        if (super.onMergeChild(string, string2, pSWPApp)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWPApp pSWPApp) throws Exception {
-        super.onUpdateParent((IEntity)pSWPApp);
+        super.onUpdateParent(pSWPApp);
     }
 
     @Override

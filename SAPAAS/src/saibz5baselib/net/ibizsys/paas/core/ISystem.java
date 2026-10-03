@@ -1,19 +1,40 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import net.ibizsys.paas.codelist.ICodeList;
-import net.ibizsys.paas.core.IDERBase;
-import net.ibizsys.paas.core.IDataEntity;
-import net.ibizsys.paas.core.IModelBase;
 
-public interface ISystem
-extends IModelBase {
-    public IDataEntity getDataEntity(String var1) throws Exception;
+/**
+ * 系统接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface ISystem extends IModelBase {
+	
+	/**
+	 * 获取数据实体
+	 * 
+	 * @param strDataEntityId
+	 * @return
+	 * @throws Exception
+	 */
+	IDataEntity getDataEntity(String strDataEntityId) throws Exception;
 
-    public IDERBase getDER(String var1) throws Exception;
+	/**
+	 * 获取指定关系
+	 * 
+	 * @param strDERId
+	 * @return
+	 * @throws Exception
+	 */
+	IDERBase getDER(String strDERId) throws Exception;
 
-    public ICodeList getCodeList(String var1) throws Exception;
+	/**
+	 * 获取代码表
+	 * 
+	 * @param strCodeListId
+	 * @return
+	 * @throws Exception
+	 */
+	ICodeList getCodeList(String strCodeListId) throws Exception;
+
 }
-

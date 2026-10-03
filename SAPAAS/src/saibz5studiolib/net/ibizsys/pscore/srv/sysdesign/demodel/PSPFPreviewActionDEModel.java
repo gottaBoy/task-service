@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSPFPreviewActionDEModelBase;
 
 public class PSPFPreviewActionDEModel
 extends PSPFPreviewActionDEModelBase {
+
+    public PSPFPreviewActionDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

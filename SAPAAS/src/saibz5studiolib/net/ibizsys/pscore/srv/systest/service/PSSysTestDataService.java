@@ -75,7 +75,7 @@ extends PSSysTestDataServiceBase {
     @Override
     protected void onInitModel(PSSysTestData pSSysTestData) throws Exception {
         if (!pSSysTestData.isFullEntity()) {
-            this.get((IEntity)pSSysTestData);
+            this.get(pSSysTestData);
         }
         super.onInitModel(pSSysTestData);
         if (StringHelper.isNullOrEmpty((String)pSSysTestData.getPSDEId())) {

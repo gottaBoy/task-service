@@ -1767,7 +1767,7 @@ implements Serializable {
                 PSDEFValueRule pSDEFValueRule = new PSDEFValueRule();
                 pSDEFValueRule.setPSDEFValueRuleId(this.getPSDEFVRId());
                 PSDEFValueRuleService pSDEFValueRuleService = (PSDEFValueRuleService)ServiceGlobal.getService(PSDEFValueRuleService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFValueRuleService.autoGet((IEntity)pSDEFValueRule);
+                pSDEFValueRuleService.autoGet(pSDEFValueRule);
                 this.psdefvr = pSDEFValueRule;
             }
             return this.psdefvr;
@@ -1793,7 +1793,7 @@ implements Serializable {
                 PSDEServiceAPI pSDEServiceAPI = new PSDEServiceAPI();
                 pSDEServiceAPI.setPSDEServiceAPIId(this.getPSDEServiceAPIId());
                 PSDEServiceAPIService pSDEServiceAPIService = (PSDEServiceAPIService)ServiceGlobal.getService(PSDEServiceAPIService.class, (SessionFactory)this.getSessionFactory());
-                pSDEServiceAPIService.autoGet((IEntity)pSDEServiceAPI);
+                pSDEServiceAPIService.autoGet(pSDEServiceAPI);
                 this.psdeserviceapi = pSDEServiceAPI;
             }
             return this.psdeserviceapi;
@@ -1819,7 +1819,7 @@ implements Serializable {
                 PSSysValueRule pSSysValueRule = new PSSysValueRule();
                 pSSysValueRule.setPSSysValueRuleId(this.getPSSysValueRuleId());
                 PSSysValueRuleService pSSysValueRuleService = (PSSysValueRuleService)ServiceGlobal.getService(PSSysValueRuleService.class, (SessionFactory)this.getSessionFactory());
-                pSSysValueRuleService.autoGet((IEntity)pSSysValueRule);
+                pSSysValueRuleService.autoGet(pSSysValueRule);
                 this.pssysvaluerule = pSSysValueRule;
             }
             return this.pssysvaluerule;

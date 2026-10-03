@@ -43,7 +43,7 @@ extends PSDCBDInstServiceBase {
 
             public void execute(ITransaction iTransaction) throws Exception {
                 if (!pSDCBDInst2.isFullEntity()) {
-                    PSDCBDInstService.this.get((IEntity)pSDCBDInst2);
+                    PSDCBDInstService.this.get(pSDCBDInst2);
                 }
                 PSDCBDInstService.this.onCalcRefInfo(pSDCBDInst2);
             }

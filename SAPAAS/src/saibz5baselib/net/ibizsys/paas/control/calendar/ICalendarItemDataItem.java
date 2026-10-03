@@ -1,14 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.calendar;
 
 import net.ibizsys.paas.data.IDataItem;
 
-public interface ICalendarItemDataItem
-extends IDataItem {
-    public boolean isDataAccessAction();
+/**
+ * 日历项数据项
+ * 
+ * @author lionlau
+ *
+ */
+public interface ICalendarItemDataItem extends IDataItem {
 
-    public String getPrivilegeId();
+	/**
+	 * 数据范围控制
+	 * 
+	 * @return
+	 */
+	boolean isDataAccessAction();
+
+	/**
+	 * 获取权限标识
+	 * 
+	 * @return
+	 */
+	String getPrivilegeId();
+
+
 }
-

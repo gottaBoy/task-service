@@ -1,12 +1,18 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.app;
 
-import net.ibizsys.model.app.IPSApplicationObject;
 
-public interface IPSAppLan
-extends IPSApplicationObject {
-    public String getLanguage();
+/**
+ * 应用多语言对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSAppLan extends IPSApplicationObject
+{
+
+	/**
+	 * 获取语言
+	 * @return
+	 */
+	String getLanguage();
+
 }
-

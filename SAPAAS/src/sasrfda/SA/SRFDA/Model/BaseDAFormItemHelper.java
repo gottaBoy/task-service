@@ -121,7 +121,7 @@ implements IDAFormItemHelper {
             String strFormItemParam = searchItemConfig.getFormItemParam();
             String strFormItemParams = searchItemConfig.getFormItemParams();
             String strCtrlParams = searchItemConfig.getCtrlParams();
-            ArrayList childNodes = new ArrayList();
+            ArrayList<XMLNode> childNodes = new ArrayList();
             formCtrlNode.GetChildNodeByNodeName("SRFEXLISTFILLER", childNodes);
             for (XMLNode child : childNodes) {
                 if (bAppendEmptyCodeListItem) {
@@ -234,7 +234,7 @@ implements IDAFormItemHelper {
             formCtrlConfig.SetValue("CAPTION", strCaption);
             formCtrlNode.setID(strFormItemId);
             String strFormItemParams = searchItemConfig.getFormItemParam();
-            ArrayList childNodes = new ArrayList();
+            ArrayList<XMLNode> childNodes = new ArrayList();
             formCtrlNode.GetChildNodeByNodeName("SRFEXLISTFILLER", childNodes);
             for (XMLNode child : childNodes) {
                 if (bAllowEmpty && bAppendEmptyCodeListItem) {

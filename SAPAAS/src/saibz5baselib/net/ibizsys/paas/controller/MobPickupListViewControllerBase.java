@@ -1,15 +1,25 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.MobListViewControllerBase;
 
-public abstract class MobPickupListViewControllerBase
-extends MobListViewControllerBase {
-    @Override
-    public boolean isPickupView() {
-        return true;
-    }
+/**
+ * 移动端用于数据选择的列表视图控制器基类
+ * @author Administrator
+ *
+ */
+public abstract class MobPickupListViewControllerBase extends MobListViewControllerBase {
+	
+	public MobPickupListViewControllerBase() throws Exception {
+		super();
+	}
+	
+	
+	/**
+	 * 是否为拾取视图
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean isPickupView() {
+		return true;
+	}
 }
-

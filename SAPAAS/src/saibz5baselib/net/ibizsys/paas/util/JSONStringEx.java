@@ -1,68 +1,63 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSON
- *  net.sf.json.JSONException
- */
 package net.ibizsys.paas.util;
 
 import java.io.IOException;
 import java.io.Writer;
+
 import net.sf.json.JSON;
 import net.sf.json.JSONException;
 
-public class JSONStringEx
-implements JSON {
-    private String strValue = null;
+/**
+ * 扩展字符串，解决 '、"、[、{ 问题
+ * @author Administrator
+ *
+ */
+public class JSONStringEx implements JSON {
 
-    public JSONStringEx(String strValue) {
-        this.strValue = strValue;
-    }
+	private String strValue = null;
 
-    public boolean equals(Object object) {
-        return this.strValue.equals(object);
-    }
+	public JSONStringEx(String strValue) {
+		this.strValue = strValue;
+	}
 
-    public int hashCode() {
-        return this.strValue.hashCode();
-    }
+	public boolean equals(Object object) {
+		return this.strValue.equals(object);
+	}
 
-    public boolean isArray() {
-        return false;
-    }
+	public int hashCode() {
+		return this.strValue.hashCode();
+	}
 
-    public int length() {
-        return this.strValue.length();
-    }
+	public boolean isArray() {
+		return false;
+	}
 
-    public String toString() {
-        return this.strValue;
-    }
+	public int length() {
+		return this.strValue.length();
+	}
 
-    public String toString(int indentFactor) {
-        return this.toString();
-    }
+	public String toString() {
+		return this.strValue;
+	}
 
-    public String toString(int indentFactor, int indent) {
-        StringBuffer sb = new StringBuffer();
-        int i = 0;
-        while (i < indent) {
-            sb.append(' ');
-            ++i;
-        }
-        sb.append(this.toString());
-        return sb.toString();
-    }
+	public String toString(int indentFactor) {
+		return toString();
+	}
 
-    public Writer write(Writer writer) {
-        try {
-            writer.write(this.toString());
-            return writer;
-        }
-        catch (IOException e) {
-            throw new JSONException((Throwable)e);
-        }
-    }
+	public String toString(int indentFactor, int indent) {
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < indent; ++i)
+			sb.append(' ');
+
+		sb.append(toString());
+		return sb.toString();
+	}
+
+	public Writer write(Writer writer) {
+		try {
+			writer.write(toString());
+			return writer;
+		} catch (IOException e) {
+			throw new JSONException(e);
+		}
+	}
 }
-

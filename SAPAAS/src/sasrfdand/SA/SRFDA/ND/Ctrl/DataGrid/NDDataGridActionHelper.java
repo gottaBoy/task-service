@@ -287,12 +287,12 @@ implements INDDataGridActionHelper {
                     ndFSObjectList.add(ndFSObject);
                 }
             } else {
-                ndShare = keys;
+                String[] ndShareKeys = keys;
                 int callResult = keys.length;
                 int ndFSObject = 0;
                 while (ndFSObject < callResult) {
                     String strKey;
-                    String strNDFSObjectId = strKey = ndShare[ndFSObject];
+                    String strNDFSObjectId = strKey = ndShareKeys[ndFSObject];
                     NDFSObject ndFSObject2 = new NDFSObject();
                     ndFSObject2.setNDFSOBJECTID(strNDFSObjectId);
                     CallResult callResult2 = ndFSObjectDataCtrl.Get((BaseDataEntity)ndFSObject2);
@@ -391,7 +391,7 @@ implements INDDataGridActionHelper {
             cond.setPNDFSOBJECTID(ndFSObject.getNDFSOBJECTID());
             cond.setROOTNDFSOBJECTID(ndFSObject.getROOTNDFSOBJECTID());
             IDEDataCtrl ndFSObjectDataCtrl = this.getPage().GetDEDataCtrl("ND0010");
-            Vector childList = new Vector();
+            Vector<NDFSObject> childList = new Vector();
             CallResult callResult2 = ndFSObjectDataCtrl.Select((BaseDataEntity)cond, childList, NDFSObject.class.getName());
             if (callResult2.IsError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2[%1$s]\u5b50\u7f51\u76d8\u6587\u4ef6\u5bf9\u8c61\u53d1\u751f\u9519\u8bef,%2$s", (Object)ndFSObject.getNDFSOBJECTID(), (Object)callResult2.getErrorInfo()));

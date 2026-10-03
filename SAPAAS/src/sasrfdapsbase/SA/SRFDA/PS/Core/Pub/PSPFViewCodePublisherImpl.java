@@ -314,9 +314,9 @@ implements IPSPFViewCodePublisher {
         this.psSubCodeMethod.resetSubCode();
         params.put("srfsubcode", this.psSubCodeMethod);
         ArrayList<IPSGenerateCodeResult> psGenerateCodeResultList = new ArrayList<IPSGenerateCodeResult>();
-        HashMap psGenerateCodeResultListMap = null;
+        HashMap<String, ArrayList<IPSGenerateCodeResult>> psGenerateCodeResultListMap = null;
         if (this.getPSPFPubCode().getChildPSPFPubCodes() != null) {
-            psGenerateCodeResultListMap = new HashMap();
+            psGenerateCodeResultListMap = new HashMap<String, ArrayList<IPSGenerateCodeResult>>();
         }
         Iterator<IPSControl> psControls = null;
         if (this.isOutputAllControls()) {
@@ -333,7 +333,7 @@ implements IPSPFViewCodePublisher {
         while (psControls.hasNext()) {
             Iterator<IPSPFPubCode> psPFPubCodes;
             IPSControl iPSControl = psControls.next();
-            Object iPSPFCtrlTempl2 = this.iPSPFStyle.getPSPFCtrlTempl(iPSControl.getPSControlType(), this.getPSPFPubCode());
+            IPSPFCtrlTempl iPSPFCtrlTempl2 = this.iPSPFStyle.getPSPFCtrlTempl(iPSControl.getPSControlType(), this.getPSPFPubCode());
             if (iPSPFCtrlTempl2 != null) {
                 IPSPFCtrlCodePublisher iPSPFCtrlCodePublisher = iPSPFCtrlTempl2.getPSPFCtrlCodePublisher();
                 iPSGenerateCodeResult = iPSPFCtrlCodePublisher.generateCode(this.iPSPublisherContext, iPSControl);
@@ -499,4 +499,3 @@ implements IPSPFViewCodePublisher {
         }
     }
 }
-

@@ -74,7 +74,7 @@ extends PSSysDevBKTaskImplBase {
         PSSFPreviewAction psSFPreviewAction = new PSSFPreviewAction();
         PSSFPreviewAction psSFPreviewAction2 = new PSSFPreviewAction();
         psSFPreviewAction.setPSSFPreviewActionId(this.getTaskParam());
-        psSFPreviewActionService.get((IEntity)psSFPreviewAction);
+        psSFPreviewActionService.get(psSFPreviewAction);
         String strPSDevSlnSysId = psSFPreviewAction.getPSDevSlnSysId();
         String strPSSysAppId = psSFPreviewAction.getActionParam();
         String strStudioType = psSFPreviewAction.getActionParam4();
@@ -90,7 +90,7 @@ extends PSSysDevBKTaskImplBase {
         psSFPreviewAction2.setActionState(Integer.valueOf(20));
         psSFPreviewAction2.setPreviewStep("\u6b63\u5728\u751f\u6210\u9884\u89c8\u6587\u4ef6");
         psSFPreviewAction2.setPSDSConsoleId(strPSDSConsoleId);
-        psSFPreviewActionService.update((IEntity)psSFPreviewAction2, false);
+        psSFPreviewActionService.update(psSFPreviewAction2, false);
         IPSSystem iPSSystem = null;
         if (!this.isCancel()) {
             try {
@@ -103,7 +103,7 @@ extends PSSysDevBKTaskImplBase {
                 psSFPreviewAction2.setActionState(Integer.valueOf(40));
                 psSFPreviewAction2.setActionResult(StringHelper.Format((String)"\u52a0\u8f7d\u7cfb\u7edf\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()));
                 psSFPreviewAction2.setPSDSConsoleId(strPSDSConsoleId);
-                psSFPreviewActionService.update((IEntity)psSFPreviewAction2, false);
+                psSFPreviewActionService.update(psSFPreviewAction2, false);
                 throw ex;
             }
         } else {
@@ -113,7 +113,7 @@ extends PSSysDevBKTaskImplBase {
             psSFPreviewAction2.setActionState(Integer.valueOf(40));
             psSFPreviewAction2.setActionResult("\u4f5c\u4e1a\u88ab\u53d6\u6d88");
             psSFPreviewAction2.setPSDSConsoleId(strPSDSConsoleId);
-            psSFPreviewActionService.update((IEntity)psSFPreviewAction2, false);
+            psSFPreviewActionService.update(psSFPreviewAction2, false);
             return null;
         }
         String strServerRoot = PSTaskServerEnvImpl.getCurrent().getTempFileServerUrl();
@@ -194,7 +194,7 @@ extends PSSysDevBKTaskImplBase {
                     psSFPreviewAction2.setActionState(Integer.valueOf(40));
                     psSFPreviewAction2.setActionResult(StringHelper.Format((String)"\u52a0\u8f7d\u9884\u89c8\u5bf9\u8c61\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()));
                     psSFPreviewAction2.setPSDSConsoleId(strPSDSConsoleId);
-                    psSFPreviewActionService.update((IEntity)psSFPreviewAction2, false);
+                    psSFPreviewActionService.update(psSFPreviewAction2, false);
                     throw ex;
                 }
             }
@@ -264,25 +264,27 @@ extends PSSysDevBKTaskImplBase {
                 psSFPreviewAction2.setActionState(Integer.valueOf(40));
                 psSFPreviewAction2.setActionResult(StringHelper.Format((String)"\u751f\u6210\u9884\u89c8\u6587\u4ef6\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()));
                 psSFPreviewAction2.setPSDSConsoleId(strPSDSConsoleId);
-                psSFPreviewActionService.update((IEntity)psSFPreviewAction2, false);
+                psSFPreviewActionService.update(psSFPreviewAction2, false);
                 throw ex;
             }
         }
-        psSFPreviewActionService = (PSSFPreviewActionService)ServiceGlobal.getService(PSSFPreviewActionService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        psSFPreviewAction2.reset();
-        psSFPreviewAction2.setPSSFPreviewActionId(this.getTaskParam());
-        psSFPreviewAction2.setActionState(Integer.valueOf(40));
-        psSFPreviewAction2.setActionResult("\u4f5c\u4e1a\u88ab\u53d6\u6d88");
-        psSFPreviewAction2.setPSDSConsoleId(strPSDSConsoleId);
-        psSFPreviewActionService.update((IEntity)psSFPreviewAction2, false);
-        return null;
+        if (this.isCancel()) {
+            psSFPreviewActionService = (PSSFPreviewActionService)ServiceGlobal.getService(PSSFPreviewActionService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+            psSFPreviewAction2.reset();
+            psSFPreviewAction2.setPSSFPreviewActionId(this.getTaskParam());
+            psSFPreviewAction2.setActionState(Integer.valueOf(40));
+            psSFPreviewAction2.setActionResult("\u4f5c\u4e1a\u88ab\u53d6\u6d88");
+            psSFPreviewAction2.setPSDSConsoleId(strPSDSConsoleId);
+            psSFPreviewActionService.update(psSFPreviewAction2, false);
+            return null;
+        }
         psSFPreviewActionService = (PSSFPreviewActionService)ServiceGlobal.getService(PSSFPreviewActionService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         psSFPreviewAction2.reset();
         psSFPreviewAction2.setPSSFPreviewActionId(this.getTaskParam());
         psSFPreviewAction2.setActionState(Integer.valueOf(20));
         psSFPreviewAction2.setPreviewStep("\u6b63\u5728\u90e8\u7f72\u4e0a\u4f20\u9884\u89c8\u6587\u4ef6");
         psSFPreviewAction2.setPSDSConsoleId(strPSDSConsoleId);
-        psSFPreviewActionService.update((IEntity)psSFPreviewAction2, false);
+        psSFPreviewActionService.update(psSFPreviewAction2, false);
         if (!this.isCancel()) {
             strPubFolder = strPubFolder.replace("\\\\", File.separator);
             strPubFolder = strPubFolder.replace("//", File.separator);
@@ -299,7 +301,7 @@ extends PSSysDevBKTaskImplBase {
             psSFPreviewAction2.setActionResult("");
             psSFPreviewAction2.setCodeUrl(StringHelper.Format((String)"%1$s%2$s", (Object)strServerRoot, (Object)strIndexFile));
             psSFPreviewAction2.setPSDSConsoleId(strPSDSConsoleId);
-            psSFPreviewActionService.update((IEntity)psSFPreviewAction2, false);
+            psSFPreviewActionService.update(psSFPreviewAction2, false);
             return null;
         }
         psSFPreviewActionService = (PSSFPreviewActionService)ServiceGlobal.getService(PSSFPreviewActionService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
@@ -308,7 +310,7 @@ extends PSSysDevBKTaskImplBase {
         psSFPreviewAction2.setActionState(Integer.valueOf(40));
         psSFPreviewAction2.setActionResult("\u4f5c\u4e1a\u88ab\u53d6\u6d88");
         psSFPreviewAction2.setPSDSConsoleId(strPSDSConsoleId);
-        psSFPreviewActionService.update((IEntity)psSFPreviewAction2, false);
+        psSFPreviewActionService.update(psSFPreviewAction2, false);
         return null;
     }
 
@@ -357,4 +359,3 @@ extends PSSysDevBKTaskImplBase {
         return PSSystemUtil.loadPSApplication(iPSSystem, strPSSysAppId, nLoadLevel);
     }
 }
-

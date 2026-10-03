@@ -70,7 +70,7 @@ implements IPSSysModelGroupService {
     @Override
     protected List<PSSysModelGroup> onListAll() throws Exception {
         ArrayList<PSSysModelGroup> list = new ArrayList<PSSysModelGroup>();
-        List pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
+        List<PSSystem> pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
         if (pssystems != null) {
             for (PSSystem parent : pssystems) {
                 List<PSSysModelGroup> items = this.listByPSSystem(parent);

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.systest.demodel.PSSysTCAssertDEModelBase;
 
 public class PSSysTCAssertDEModel
 extends PSSysTCAssertDEModelBase {
+
+    public PSSysTCAssertDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSViewTypeCatDEModelBase;
 
 public class PSViewTypeCatDEModel
 extends PSViewTypeCatDEModelBase {
+
+    public PSViewTypeCatDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

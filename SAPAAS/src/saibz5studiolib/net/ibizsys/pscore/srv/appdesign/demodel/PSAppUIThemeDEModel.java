@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.appdesign.demodel.PSAppUIThemeDEModelBase;
 
 public class PSAppUIThemeDEModel
 extends PSAppUIThemeDEModelBase {
+
+    public PSAppUIThemeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

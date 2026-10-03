@@ -1,49 +1,106 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-public class WFStates {
-    public static final String TAG_NOTSTART = "WFNOTSTART";
-    public static final String TAG_NOTFINISH = "WFNOTFINISH";
-    public static final String TAG_FINISH = "WFFINISH";
-    public static final String TAG_ERROR = "WFERROR";
-    public static final String TAG_CANCEL = "WFCANCEL";
-    public static final String TAG_CANCELMANUAL = "WFCANCELMANUAL";
-    public static final String TAG_CANCELTIMEOUT = "WFCANCELTIMEOUT";
-    public static final int NOTSTART = 0;
-    public static final int NOTFINISH = 1;
-    public static final int FINISH = 2;
-    public static final int CANCEL = 3;
-    public static final int CANCEL_MANUAL = 31;
-    public static final int CANCEL_TIMEOUT = 32;
-    public static final int ERROR = 4;
-
-    public static String toString(int nValue) {
-        switch (nValue) {
-            case 0: {
-                return TAG_NOTSTART;
-            }
-            case 1: {
-                return TAG_NOTFINISH;
-            }
-            case 2: {
-                return TAG_FINISH;
-            }
-            case 3: {
-                return TAG_CANCEL;
-            }
-            case 31: {
-                return TAG_CANCELMANUAL;
-            }
-            case 32: {
-                return TAG_CANCELTIMEOUT;
-            }
-            case 4: {
-                return TAG_ERROR;
-            }
-        }
-        return TAG_NOTSTART;
-    }
+/**
+ * 流程状态
+ * @author Administrator
+ *
+ */
+public class WFStates
+{
+	/**
+	 * 流程未启动
+	 */
+	public final static String TAG_NOTSTART = "WFNOTSTART";
+	
+	/**
+	 * 流程未完成
+	 */
+	public final static String TAG_NOTFINISH = "WFNOTFINISH";
+	
+	/**
+	 * 流程已完成
+	 */
+	public final static String TAG_FINISH = "WFFINISH";
+	
+	/**
+	 * 流程发生错误
+	 */
+	public final static String TAG_ERROR = "WFERROR";
+	
+	/**
+	 * 流程被取消
+	 */
+	public final static String TAG_CANCEL = "WFCANCEL";
+	
+	/**
+	 * 流程被人工取消
+	 */
+	public final static String TAG_CANCELMANUAL = "WFCANCELMANUAL";
+	
+	/**
+	 * 流程被超时取消
+	 */
+	public final static String TAG_CANCELTIMEOUT = "WFCANCELTIMEOUT";
+	
+	/**
+	 * 流程未启动
+	 */
+	public final static int NOTSTART = 0;
+	
+	/**
+	 * 流程未完成
+	 */
+	public final static int NOTFINISH = 1;
+	
+	/**
+	 * 流程已完成
+	 */
+	public final static int FINISH = 2;
+	
+	/**
+	 * 流程被取消
+	 */
+	public final static int CANCEL =3;
+	/**
+	 * 流程被人工取消
+	 */
+	public final static int CANCEL_MANUAL = 31;
+	
+	/**
+	 * 流程被超时取消
+	 */
+	public final static int CANCEL_TIMEOUT = 32;
+	
+	/**
+	 * 流程发生错误
+	 */
+	public final static int ERROR = 4;
+	
+	/**
+	 * 将状态码转换为文本信息
+	 * @param nValue
+	 * @return
+	 */
+	public static String toString(int nValue)
+	{
+		switch(nValue)
+		{
+		case NOTSTART:
+			return TAG_NOTSTART;
+		case NOTFINISH:
+			return TAG_NOTFINISH;	
+		case FINISH:
+			return TAG_FINISH;	
+		case CANCEL:
+			return TAG_CANCEL;
+		case CANCEL_MANUAL:
+			return TAG_CANCELMANUAL;	
+		case CANCEL_TIMEOUT:
+			return TAG_CANCELTIMEOUT;	
+		case ERROR:
+			return TAG_ERROR;
+		}
+		return TAG_NOTSTART;
+	}
+	
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSSAHandlerDEModelBase;
 
 public class PSSAHandlerDEModel
 extends PSSAHandlerDEModelBase {
+
+    public PSSAHandlerDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

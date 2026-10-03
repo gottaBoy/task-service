@@ -1,11 +1,23 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core.valuerule;
 
+/**
+ * 属性值规则实体结果集合接口
+ * 
+ * @author Administrator
+ *
+ */
 public interface IDEFVRDEDataSet {
-    public String getDEName();
+	/**
+	 * 获取实体名称
+	 * 
+	 * @return
+	 */
+	String getDEName();
 
-    public String getDEDataSetName();
+	/**
+	 * 获取实体结果集合名称
+	 * 
+	 * @return
+	 */
+	String getDEDataSetName();
 }
-

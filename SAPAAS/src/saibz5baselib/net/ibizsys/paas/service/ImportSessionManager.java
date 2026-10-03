@@ -1,28 +1,43 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.service;
 
-import net.ibizsys.paas.service.ImportSession;
-
+/**
+ * 导入会话管理类
+ * 
+ * @author lionlau
+ *
+ */
 public class ImportSessionManager {
-    static ThreadLocal<ImportSession> importSession = new ThreadLocal();
+	static ThreadLocal<ImportSession> importSession = new ThreadLocal<ImportSession>();
 
-    public static ImportSession openSession() {
-        ImportSession curentSession = importSession.get();
-        if (curentSession == null) {
-            curentSession = new ImportSession();
-            importSession.set(curentSession);
-        }
-        return curentSession;
-    }
+	/**
+	 * 打开新会话
+	 * 
+	 * @return
+	 */
+	static public ImportSession openSession() {
+		ImportSession curentSession = importSession.get();
+		if (curentSession == null) {
+			curentSession = new ImportSession();
+			importSession.set(curentSession);
+		}
+		return curentSession;
+	}
 
-    public static void closeSession() {
-        importSession.set(null);
-    }
+	/**
+	 * 关闭当前会话
+	 * 
+	 * @return
+	 */
+	static public void closeSession() {
+		importSession.set(null);
+	}
 
-    public static ImportSession getCurrentSession() {
-        return importSession.get();
-    }
+	/**
+	 * 获取当前会话
+	 * 
+	 * @return
+	 */
+	static public ImportSession getCurrentSession() {
+		return importSession.get();
+	}
 }
-

@@ -79,10 +79,10 @@ extends BaseDASearchFormActionHelper {
                 }
             }
             Vector<JSONObject> filters = new Vector<JSONObject>();
-            Vector<Object> rowfm2loads = new Vector<Object>();
+            Vector<JSONObject> rowfm2loads = new Vector<JSONObject>();
             Vector<JSONObject> colfm2loads = new Vector<JSONObject>();
             Vector<JSONObject> filterfm2loads = new Vector<JSONObject>();
-            Vector<Object> rowhc2exps = new Vector<Object>();
+            Vector<JSONObject> rowhc2exps = new Vector<JSONObject>();
             Vector<JSONObject> colhc2exps = new Vector<JSONObject>();
             Vector<JSONObject> filterhc2exps = new Vector<JSONObject>();
             Hashtable<String, String> hc2expMap = new Hashtable<String, String>();
@@ -242,8 +242,8 @@ extends BaseDASearchFormActionHelper {
                 String strDimensionName = StringHelper.Format((String)"[%1$s]", (Object)biHierarchy.getBIDIMENSIONNAME());
                 char chType = strDimensionType.charAt(0);
                 strDimensionType = strDimensionType.substring(1);
-                Vector<Object> hc2exps = null;
-                Vector<Object> fm2loads = null;
+                Vector<JSONObject> hc2exps = null;
+                Vector<JSONObject> fm2loads = null;
                 if (rowsMap.containsKey(strDimensionName)) {
                     jo = (JSONObject)rowsMap.get(strDimensionName);
                     strCurHierarchyName = jo.getString("Hierarchy");
@@ -386,7 +386,7 @@ extends BaseDASearchFormActionHelper {
                         sql.Append("%1$s", (Object)tempDEFHelper.GetDTColumn().GetColumnName());
                     }
                     String strSQL = sql.toString();
-                    Vector results = new Vector();
+                    Vector<BaseDataEntity> results = new Vector<BaseDataEntity>();
                     callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), (String)hrcDEHelper.GetDBStorage(), (String)strSQL.replaceAll("__CONDITION__", ""), null, results, (String)"");
                     if (callResult.IsError()) {
                         searchResult.setRetCode(1);

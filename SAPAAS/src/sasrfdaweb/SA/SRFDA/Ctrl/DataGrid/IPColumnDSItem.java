@@ -30,8 +30,13 @@ ISRFExDataGridDSItem3 {
             Object obj;
             block4: {
                 String strIPColumn = dsItemConfig.getID();
-                if (dr.IsDBNull(strIPColumn)) break block3;
-                obj = dr.Get(strIPColumn);
+                try {
+                    if (dr.IsDBNull(strIPColumn)) break block3;
+                    obj = dr.Get(strIPColumn);
+                }
+                catch (Exception exception) {
+                    return "";
+                }
                 if (obj != null) break block4;
                 return "";
             }

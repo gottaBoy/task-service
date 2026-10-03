@@ -1,35 +1,51 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psrt.srv.common.entity;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
-import net.ibizsys.psrt.srv.common.entity.UserRoleDataBase;
-import net.ibizsys.psrt.srv.common.entity.UserRoleDataDetail;
 
-public class UserRoleData
-extends UserRoleDataBase {
-    private TreeMap<String, Boolean> actionsMap = new TreeMap();
-    protected ArrayList<UserRoleDataDetail> dataDetails = new ArrayList();
+//@Entity
 
-    public void addAction(String strAction, Boolean bAllow) {
-        this.actionsMap.put(strAction.toUpperCase(), bAllow);
-    }
+/**
+ * 用户角色数据
+ * 
+ */
+public class UserRoleData extends UserRoleDataBase
+{
 
-    public boolean containsAction(String strAction) {
-        return this.actionsMap.containsKey(strAction.toUpperCase());
-    }
+	public UserRoleData()
+	{
+		super();
+	}
 
-    public boolean getAction(String strAction) {
-        if (this.containsAction(strAction)) {
-            return this.actionsMap.get(strAction.toUpperCase());
-        }
-        return false;
-    }
+	private TreeMap<String,Boolean > actionsMap = new TreeMap<String,Boolean >();
+	protected ArrayList<UserRoleDataDetail> dataDetails = new ArrayList<UserRoleDataDetail>();
+	
 
-    public ArrayList<UserRoleDataDetail> getDetailList() {
-        return this.dataDetails;
-    }
+	public void addAction(String strAction,Boolean bAllow)
+	{
+		actionsMap.put(strAction.toUpperCase(), bAllow);
+	}
+	
+	public boolean containsAction(String strAction)
+	{
+		return actionsMap.containsKey(strAction.toUpperCase());
+	}
+	
+	
+	public boolean getAction(String strAction)
+	{
+		if(containsAction(strAction))
+			return actionsMap.get(strAction.toUpperCase());
+		else
+			return false;
+	}
+	
+	
+	
+	/**
+	 * 获取数据明细
+	 * @return
+	 */
+	public  ArrayList<UserRoleDataDetail> getDetailList(){return this.dataDetails;} 
+
 }
-

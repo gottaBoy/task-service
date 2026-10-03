@@ -1124,7 +1124,7 @@ implements Serializable {
                 PSDEActionWizard pSDEActionWizard = new PSDEActionWizard();
                 pSDEActionWizard.setPSDEActionWizardId(this.getPSDEActionWizardId());
                 PSDEActionWizardService pSDEActionWizardService = (PSDEActionWizardService)ServiceGlobal.getService(PSDEActionWizardService.class, (SessionFactory)this.getSessionFactory());
-                pSDEActionWizardService.autoGet((IEntity)pSDEActionWizard);
+                pSDEActionWizardService.autoGet(pSDEActionWizard);
                 this.psdeactionwizard = pSDEActionWizard;
             }
             return this.psdeactionwizard;
@@ -1150,7 +1150,7 @@ implements Serializable {
                 PSDEAWGroup pSDEAWGroup = new PSDEAWGroup();
                 pSDEAWGroup.setPSDEAWGroupId(this.getPSDEAWGroupId());
                 PSDEAWGroupService pSDEAWGroupService = (PSDEAWGroupService)ServiceGlobal.getService(PSDEAWGroupService.class, (SessionFactory)this.getSessionFactory());
-                pSDEAWGroupService.autoGet((IEntity)pSDEAWGroup);
+                pSDEAWGroupService.autoGet(pSDEAWGroup);
                 this.psdeawgroup = pSDEAWGroup;
             }
             return this.psdeawgroup;

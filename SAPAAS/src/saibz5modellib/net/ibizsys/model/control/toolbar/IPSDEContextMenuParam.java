@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.toolbar;
 
-import net.ibizsys.model.control.toolbar.IPSDEToolbarParam;
+/**
+ * 实体上下文菜单参数对象对象
+ * @author Administrator
+ *
+ */
+public interface IPSDEContextMenuParam extends IPSDEToolbarParam {
 
-public interface IPSDEContextMenuParam
-extends IPSDEToolbarParam {
 }
-

@@ -275,7 +275,7 @@ extends XMLConfig {
             Iterator iterator = this.getParamsConfig().iterator();
             while (iterator.hasNext()) {
                 WFParamConfig wpParamConfig = (WFParamConfig)((Object)iterator.next());
-                wfBaseProcessConfig.getParamsConfig().add((Object)((WFParamConfig)((Object)wpParamConfig.clone())));
+                wfBaseProcessConfig.getParamsConfig().add((WFParamConfig)wpParamConfig.clone());
             }
         }
         wfBaseProcessConfig.setObject(this.strObject);

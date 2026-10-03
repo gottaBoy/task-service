@@ -124,7 +124,7 @@ implements IPSDEFieldService {
     @Override
     protected List<PSDEField> onListAll() throws Exception {
         ArrayList<PSDEField> list = new ArrayList<PSDEField>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEField> items = this.listByPSDataEntity(parent);

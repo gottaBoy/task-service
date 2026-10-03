@@ -1,20 +1,46 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import net.ibizsys.psba.core.IBADataSource;
-import net.ibizsys.psba.core.IBADialect;
-
+/**
+ * 大数据架构运行体系
+ * 
+ * @author Administrator
+ *
+ */
 public interface IBASchemeRuntime {
-    public IBADataSource getBADataSource();
 
-    public IBADialect getBADialect();
+	/**
+	 * 获取大数据源
+	 * 
+	 * @return
+	 */
+	IBADataSource getBADataSource();
 
-    public void install() throws Exception;
+	/**
+	 * 获取大数据适配器
+	 * 
+	 * @return
+	 */
+	IBADialect getBADialect();
 
-    public String getNamespace();
-
-    public int getMaxVersions();
+	/**
+	 * 安装模型
+	 * 
+	 * @throws Exception
+	 */
+	void install() throws Exception;
+	
+	
+	/**
+	 * 获取运行环境的命名空间
+	 * @return
+	 */
+	String getNamespace();
+	
+	
+	
+	/**
+	 * 获取存储的最大版本
+	 * @return
+	 */
+	int getMaxVersions();
 }
-

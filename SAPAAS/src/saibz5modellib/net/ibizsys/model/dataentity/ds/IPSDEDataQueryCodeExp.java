@@ -1,16 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IDEDataQueryCodeExp
- */
 package net.ibizsys.model.dataentity.ds;
 
 import net.ibizsys.model.core.IPSModelObject;
 import net.ibizsys.paas.core.IDEDataQueryCodeExp;
 
-public interface IPSDEDataQueryCodeExp
-extends IPSModelObject,
-IDEDataQueryCodeExp {
-}
 
+/**
+ * 实体数据查询代码表达式对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEDataQueryCodeExp extends IPSModelObject,IDEDataQueryCodeExp
+{
+
+}

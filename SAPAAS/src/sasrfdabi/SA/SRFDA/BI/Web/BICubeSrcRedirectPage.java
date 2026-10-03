@@ -90,7 +90,7 @@ extends SRFDAPageEx {
             this.PageLog((Object)this, 1, StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u6570\u636e\u8bbf\u95ee\u5bf9\u8c61", (Object)"BI0016"));
             return false;
         }
-        Vector biCubeSrcMap = new Vector();
+        Vector<BaseDataEntity> biCubeSrcMap = new Vector<BaseDataEntity>();
         BaseDataEntity cond = new BaseDataEntity();
         cond.SetParamValue("BICUBESRCID", (Object)strBICubeSrcId);
         callResult = biCubeSrcMapDataCtrl.Select(cond, biCubeSrcMap);

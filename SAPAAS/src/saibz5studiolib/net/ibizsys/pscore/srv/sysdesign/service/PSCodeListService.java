@@ -24,7 +24,6 @@ import net.ibizsys.pscore.srv.dynasys.service.PSDynaCodeListService;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSCodeItem;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSCodeList;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSLanguageRes;
-import net.ibizsys.pscore.srv.sysdesign.entity.PSLanguageResBase;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSystem;
 import net.ibizsys.pscore.srv.sysdesign.service.PSCodeItemService;
 import net.ibizsys.pscore.srv.sysdesign.service.PSCodeListServiceBase;
@@ -70,15 +69,15 @@ extends PSCodeListServiceBase {
         pSCodeList2.setPSCodeListId(pSCodeList.getPSCodeListId());
         boolean bl = false;
         if (!StringHelper.isNullOrEmpty((String)pSCodeList.getEmptyText()) && StringHelper.isNullOrEmpty((String)pSCodeList.getEmptyTextPSLanResId())) {
-            object = new PSLanguageRes();
-            ((PSLanguageResBase)object).setPSSystemId(pSCodeList.getPSSystemId());
-            ((PSLanguageResBase)object).setLanResType("CL.ITEM.LNAME");
-            ((PSLanguageResBase)object).setUserData(StringHelper.format((String)"%1$s.%2$s", (Object)pSCodeList.getCodeName(), (Object)"_EMTPY_").toUpperCase());
-            if (!pSLanguageResService.select(object, true)) {
-                ((PSLanguageResBase)object).setContent(pSCodeList.getEmptyText());
-                pSLanguageResService.create(object);
-                pSCodeList2.setEmptyTextPSLanResId(((PSLanguageResBase)object).getPSLanguageResId());
-                pSCodeList2.setEmptyTextPSLanResName(((PSLanguageResBase)object).getPSLanguageResName());
+            PSLanguageRes pSLanguageRes = new PSLanguageRes();
+            pSLanguageRes.setPSSystemId(pSCodeList.getPSSystemId());
+            pSLanguageRes.setLanResType("CL.ITEM.LNAME");
+            pSLanguageRes.setUserData(StringHelper.format((String)"%1$s.%2$s", (Object)pSCodeList.getCodeName(), (Object)"_EMTPY_").toUpperCase());
+            if (!pSLanguageResService.select(pSLanguageRes, true)) {
+                pSLanguageRes.setContent(pSCodeList.getEmptyText());
+                pSLanguageResService.create(pSLanguageRes);
+                pSCodeList2.setEmptyTextPSLanResId(pSLanguageRes.getPSLanguageResId());
+                pSCodeList2.setEmptyTextPSLanResName(pSLanguageRes.getPSLanguageResName());
                 bl = true;
             }
         }
@@ -139,15 +138,14 @@ extends PSCodeListServiceBase {
         }
         pSDynaCodeList.setPSDynaSysId(pSCodeList.getPSSystem().getPSSystemId());
         pSDynaCodeList.setPSDynaSysName(pSCodeList.getPSSystem().getPSSystemName());
-        pSDynaCodeListService.save((IEntity)pSDynaCodeList);
+        pSDynaCodeListService.save(pSDynaCodeList);
     }
 
     @Override
     protected String getEntityFolderKeyValue(PSCodeList pSCodeList, PSSystem pSSystem) throws Exception {
         if (StringHelper.isNullOrEmpty((String)pSCodeList.getPSDEId())) {
-            return PSModelFolderKeyHelper.getModelKey((IEntity)pSCodeList, pSSystem, "PSCODELIST_SYS", "", this.getSessionFactory());
+            return PSModelFolderKeyHelper.getModelKey(pSCodeList, pSSystem, "PSCODELIST_SYS", "", this.getSessionFactory());
         }
         return super.getEntityFolderKeyValue(pSCodeList, pSSystem);
     }
 }
-

@@ -70,7 +70,7 @@ implements IPSSysDMVerService {
     @Override
     protected List<PSSysDMVer> onListAll() throws Exception {
         ArrayList<PSSysDMVer> list = new ArrayList<PSSysDMVer>();
-        List pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
+        List<PSSystem> pssystems = PSModelServiceUtil.getInstance().getPSSystemService().listAll();
         if (pssystems != null) {
             for (PSSystem parent : pssystems) {
                 List<PSSysDMVer> items = this.listByPSSystem(parent);

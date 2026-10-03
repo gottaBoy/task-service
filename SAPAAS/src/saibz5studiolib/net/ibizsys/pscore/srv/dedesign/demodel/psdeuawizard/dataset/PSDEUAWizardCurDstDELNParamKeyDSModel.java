@@ -84,9 +84,9 @@ extends PSDEUAWizardCurDstDELNParamKeyDSModelBase {
         pSDELogicParam.setPSDELogicParamId(string);
         PSDELogicParamService pSDELogicParamService = (PSDELogicParamService)ServiceGlobal.getService(PSDELogicParamService.class, (SessionFactory)sessionFactory);
         if (KeyValueHelper.isTempKey((String)string)) {
-            pSDELogicParamService.getTemp((IEntity)pSDELogicParam);
+            pSDELogicParamService.getTemp(pSDELogicParam);
         } else {
-            pSDELogicParamService.get((IEntity)pSDELogicParam);
+            pSDELogicParamService.get(pSDELogicParam);
         }
         String string2 = pSDELogicParam.getParamPSDEId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
@@ -99,19 +99,19 @@ extends PSDEUAWizardCurDstDELNParamKeyDSModelBase {
             dEDataSetFetchContext.getConditionList().add(iDEDataSetCond);
         }
         if (!StringHelper.isNullOrEmpty((String)string2)) {
-            iDEDataSetCond = new DEDataSetCond();
-            iDEDataSetCond.setCondType("DEFIELD");
-            iDEDataSetCond.setCondOp("EQ");
-            iDEDataSetCond.setDEFName("PSDEID");
-            iDEDataSetCond.setCondValue(string2);
-            dEDataSetFetchContext.getConditionList().add(iDEDataSetCond);
+            DEDataSetCond dataEntityCondition = new DEDataSetCond();
+            dataEntityCondition.setCondType("DEFIELD");
+            dataEntityCondition.setCondOp("EQ");
+            dataEntityCondition.setDEFName("PSDEID");
+            dataEntityCondition.setCondValue(string2);
+            dEDataSetFetchContext.getConditionList().add(dataEntityCondition);
         }
         dEDataSetFetchContext.setSort("PSDEFIELDNAME");
-        iDEDataSetCond = pSDEFieldService.fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
-        if (iDEDataSetCond.isError()) {
-            return iDEDataSetCond;
+        DBFetchResult fieldResult = pSDEFieldService.fetchDefault((IDEDataSetFetchContext)dEDataSetFetchContext);
+        if (fieldResult.isError()) {
+            return fieldResult;
         }
-        IDataTable iDataTable = iDEDataSetCond.getDataSet().getDataTable(0);
+        IDataTable iDataTable = fieldResult.getDataSet().getDataTable(0);
         int n = iDataTable.getCachedRowCount();
         if (n > 0) {
             simpleDataTableImpl.reset();
@@ -128,4 +128,3 @@ extends PSDEUAWizardCurDstDELNParamKeyDSModelBase {
         return dBFetchResult;
     }
 }
-

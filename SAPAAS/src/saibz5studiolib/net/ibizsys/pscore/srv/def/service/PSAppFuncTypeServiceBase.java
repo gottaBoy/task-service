@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSAppFuncType> {
     }
 
     protected void onFillParentInfo(PSAppFuncType pSAppFuncType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSAppFuncType, string, string2, string3);
+        super.onFillParentInfo(pSAppFuncType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSAppFuncType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSAppFuncType, bl);
+        super.onFillEntityFullInfo(pSAppFuncType, bl);
     }
 
     protected void onWriteBackParent(PSAppFuncType pSAppFuncType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSAppFuncType, bl);
+        super.onWriteBackParent(pSAppFuncType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSAppFuncType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSAppFuncType pSAppFuncType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSAppFuncType, bl);
+        super.onRemoveEntityUncopyValues(pSAppFuncType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSAppFuncType pSAppFuncType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -155,7 +155,7 @@ extends PSCoreSysServiceBase<PSAppFuncType> {
         if ((entityFieldError = this.onCheckField_PSAppFuncTypeName(bl, pSAppFuncType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSAppFuncType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSAppFuncType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSAppFuncType pSAppFuncType, boolean bl2, boolean bl3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSAppFuncType> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSAppFuncType, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSAppFuncType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSAppFuncType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppFuncTypeId_Default((IEntity)pSAppFuncType, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppFuncTypeId_Default(pSAppFuncType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPFUNCTYPEID");
@@ -218,7 +218,7 @@ extends PSCoreSysServiceBase<PSAppFuncType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppFuncTypeName_Default((IEntity)pSAppFuncType, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppFuncTypeName_Default(pSAppFuncType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPFUNCTYPENAME");
@@ -231,11 +231,11 @@ extends PSCoreSysServiceBase<PSAppFuncType> {
     }
 
     protected void onSyncEntity(PSAppFuncType pSAppFuncType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSAppFuncType, bl);
+        super.onSyncEntity(pSAppFuncType, bl);
     }
 
     protected void onSyncIndexEntities(PSAppFuncType pSAppFuncType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSAppFuncType, bl);
+        super.onSyncIndexEntities(pSAppFuncType, bl);
     }
 
     public Object getDataContextValue(PSAppFuncType pSAppFuncType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -243,14 +243,14 @@ extends PSCoreSysServiceBase<PSAppFuncType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSAppFuncType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSAppFuncType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSAppFuncType pSAppFuncType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSAppFuncType, arrayList, n);
+        super.onExportMajorModel(pSAppFuncType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -348,14 +348,14 @@ extends PSCoreSysServiceBase<PSAppFuncType> {
 
     protected boolean onMergeChild(String string, String string2, PSAppFuncType pSAppFuncType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSAppFuncType)) {
+        if (super.onMergeChild(string, string2, pSAppFuncType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSAppFuncType pSAppFuncType) throws Exception {
-        super.onUpdateParent((IEntity)pSAppFuncType);
+        super.onUpdateParent(pSAppFuncType);
     }
 
     @Override

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDEDQJoinDEModelBase;
 
 public class PSDEDQJoinDEModel
 extends PSDEDQJoinDEModelBase {
+
+    public PSDEDQJoinDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

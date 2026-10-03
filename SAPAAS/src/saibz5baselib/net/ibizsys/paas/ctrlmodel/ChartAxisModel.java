@@ -1,57 +1,102 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel;
 
 import net.ibizsys.paas.control.chart.IChart;
 import net.ibizsys.paas.core.ModelBaseImpl;
-import net.ibizsys.paas.ctrlmodel.IChartAxisModel;
 
-public class ChartAxisModel
-extends ModelBaseImpl
-implements IChartAxisModel {
-    private String strCaption = null;
-    private String strAxisType = null;
-    private String strAxisPos = null;
-    private IChart iChart = null;
+/**
+ * 图表坐标轴模型
+ * 
+ * @author Administrator
+ *
+ */
+public class ChartAxisModel extends ModelBaseImpl implements IChartAxisModel {
+	private String strCaption = null;
+	private String strAxisType = null;
+	private String strAxisPos = null;
 
-    public void init(IChart iChart) {
-        this.iChart = iChart;
-    }
+	private IChart iChart = null;
 
-    public void setId(String strId) {
-        this.strId = strId;
-    }
+	/**
+	 * 初始化
+	 * 
+	 * @param iChart
+	 */
+	public void init(IChart iChart) {
+		this.iChart = iChart;
+	}
 
-    public void setName(String strName) {
-        this.strName = strName;
-    }
+	/**
+	 * 设置图表轴标识
+	 * 
+	 * @param strId
+	 */
+	public void setId(String strId) {
+		this.strId = strId;
+	}
 
-    @Override
-    public String getCaption() {
-        return this.strCaption;
-    }
+	/**
+	 * 设置图表轴名称
+	 * 
+	 * @param strName
+	 */
+	public void setName(String strName) {
+		this.strName = strName;
+	}
 
-    public void setCaption(String strCaption) {
-        this.strCaption = strCaption;
-    }
+	/**
+	 * 获取图表轴标题
+	 * 
+	 * @return the strCaption
+	 */
+	@Override
+	public String getCaption() {
+		return strCaption;
+	}
 
-    @Override
-    public String getAxisType() {
-        return this.strAxisType;
-    }
+	/**
+	 * 设置图表轴标题
+	 * 
+	 * @param strCaption the strCaption to set
+	 */
+	public void setCaption(String strCaption) {
+		this.strCaption = strCaption;
+	}
 
-    public void setAxisType(String strAxisType) {
-        this.strAxisType = strAxisType;
-    }
+	/**
+	 * 获取图表轴类型
+	 * 
+	 * @return the strAxisType
+	 */
+	@Override
+	public String getAxisType() {
+		return strAxisType;
+	}
 
-    @Override
-    public String getAxisPos() {
-        return this.strAxisPos;
-    }
+	/**
+	 * 设置图表轴类型
+	 * 
+	 * @param strAxisType the strAxisType to set
+	 */
+	public void setAxisType(String strAxisType) {
+		this.strAxisType = strAxisType;
+	}
 
-    public void setAxisPos(String strAxisPos) {
-        this.strAxisPos = strAxisPos;
-    }
+	/**
+	 * 获取图表轴位置
+	 * 
+	 * @return the strAxisPos
+	 */
+	@Override
+	public String getAxisPos() {
+		return strAxisPos;
+	}
+
+	/**
+	 * 设置图表轴位置
+	 * 
+	 * @param strAxisPos the strAxisPos to set
+	 */
+	public void setAxisPos(String strAxisPos) {
+		this.strAxisPos = strAxisPos;
+	}
 }
-

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSPFResourceDEModelBase;
 
 public class PSPFResourceDEModel
 extends PSPFResourceDEModelBase {
+
+    public PSPFResourceDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

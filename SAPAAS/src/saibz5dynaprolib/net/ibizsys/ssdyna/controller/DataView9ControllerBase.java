@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdyna.controller;
 
-import net.ibizsys.ssdyna.controller.DataViewControllerBase;
-
-public abstract class DataView9ControllerBase
-extends DataViewControllerBase {
+/**
+ * 嵌入数据视图控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class DataView9ControllerBase extends DataViewControllerBase {
+	public DataView9ControllerBase() throws Exception {
+		super();
+	}
 }
-

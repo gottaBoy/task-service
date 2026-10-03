@@ -218,9 +218,9 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
             PSSysBICube pSSysBICube = (PSSysBICube)iService.getDEModel().createEntity();
             pSSysBICube.set("PSSYSBICUBEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBICube);
+                iService.getTemp(pSSysBICube);
             } else {
-                iService.get((IEntity)pSSysBICube);
+                iService.get(pSSysBICube);
             }
             this.onFillParentInfo_PSSysBICube(pSSysBIReport, pSSysBICube);
             return;
@@ -230,9 +230,9 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
             PSSysBIScheme pSSysBIScheme = (PSSysBIScheme)iService.getDEModel().createEntity();
             pSSysBIScheme.set("PSSYSBISCHEMEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBIScheme);
+                iService.getTemp(pSSysBIScheme);
             } else {
-                iService.get((IEntity)pSSysBIScheme);
+                iService.get(pSSysBIScheme);
             }
             this.onFillParentInfo_PSSysBIScheme(pSSysBIReport, pSSysBIScheme);
             return;
@@ -242,9 +242,9 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_PSSysPFPlugin(pSSysBIReport, pSSysPFPlugin);
             return;
@@ -254,9 +254,9 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
             PSSysResource pSSysResource = (PSSysResource)iService.getDEModel().createEntity();
             pSSysResource.set("PSSYSRESOURCEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysResource);
+                iService.getTemp(pSSysResource);
             } else {
-                iService.get((IEntity)pSSysResource);
+                iService.get(pSSysResource);
             }
             this.onFillParentInfo_PSSysResource(pSSysBIReport, pSSysResource);
             return;
@@ -266,9 +266,9 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
             PSSysSFPlugin pSSysSFPlugin = (PSSysSFPlugin)iService.getDEModel().createEntity();
             pSSysSFPlugin.set("PSSYSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPlugin);
+                iService.getTemp(pSSysSFPlugin);
             } else {
-                iService.get((IEntity)pSSysSFPlugin);
+                iService.get(pSSysSFPlugin);
             }
             this.onFillParentInfo_PSSysSFPlugin(pSSysBIReport, pSSysSFPlugin);
             return;
@@ -278,9 +278,9 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
             PSSysUniRes pSSysUniRes = (PSSysUniRes)iService.getDEModel().createEntity();
             pSSysUniRes.set("PSSYSUNIRESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysUniRes);
+                iService.getTemp(pSSysUniRes);
             } else {
-                iService.get((IEntity)pSSysUniRes);
+                iService.get(pSSysUniRes);
             }
             this.onFillParentInfo_PSSysUniRes(pSSysBIReport, pSSysUniRes);
             return;
@@ -290,9 +290,9 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
             PSSysViewPanel pSSysViewPanel = (PSSysViewPanel)iService.getDEModel().createEntity();
             pSSysViewPanel.set("PSSYSVIEWPANELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysViewPanel);
+                iService.getTemp(pSSysViewPanel);
             } else {
-                iService.get((IEntity)pSSysViewPanel);
+                iService.get(pSSysViewPanel);
             }
             this.onFillParentInfo_PSSysViewPanel(pSSysBIReport, pSSysViewPanel);
             return;
@@ -302,14 +302,14 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
             PSViewMsgGroup pSViewMsgGroup = (PSViewMsgGroup)iService.getDEModel().createEntity();
             pSViewMsgGroup.set("PSVIEWMSGGROUPID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSViewMsgGroup);
+                iService.getTemp(pSViewMsgGroup);
             } else {
-                iService.get((IEntity)pSViewMsgGroup);
+                iService.get(pSViewMsgGroup);
             }
             this.onFillParentInfo_PSViewMsgGroup(pSSysBIReport, pSViewMsgGroup);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysBIReport, string, string2, string3);
+        super.onFillParentInfo(pSSysBIReport, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -365,7 +365,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 pSSysBIReport.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysBIReport, bl);
+        super.onFillEntityFullInfo(pSSysBIReport, bl);
         this.onFillEntityFullInfo_PSSysBICube(pSSysBIReport, bl);
         this.onFillEntityFullInfo_PSSysBIScheme(pSSysBIReport, bl);
         this.onFillEntityFullInfo_PSSysPFPlugin(pSSysBIReport, bl);
@@ -401,7 +401,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
     }
 
     protected void onWriteBackParent(PSSysBIReport pSSysBIReport, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysBIReport, bl);
+        super.onWriteBackParent(pSSysBIReport, bl);
     }
 
     public ArrayList<PSSysBIReport> selectByPSSysBICube(PSSysBICubeBase pSSysBICubeBase) throws Exception {
@@ -600,8 +600,8 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysBICube(pSSysBICube, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSBICUBE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysBICube);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSBICUBE_PSSYSBICUBEID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo((IEntity)pSSysBICube), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysBICube);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSBICUBE_PSSYSBICUBEID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo(pSSysBICube), arrayList.get(0)));
         }
     }
 
@@ -634,7 +634,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysBICube(pSSysBICube);
         this.onBeforeRemoveByPSSysBICube(pSSysBICube, arrayList);
         for (PSSysBIReport pSSysBIReport : arrayList) {
-            this.remove((IEntity)pSSysBIReport);
+            this.remove(pSSysBIReport);
         }
         this.onAfterRemoveByPSSysBICube(pSSysBICube, arrayList);
     }
@@ -652,8 +652,8 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysBIScheme(pSSysBIScheme, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSBISCHEME");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysBIScheme);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSBISCHEME_PSSYSBISCHEMEID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo((IEntity)pSSysBIScheme), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysBIScheme);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSBISCHEME_PSSYSBISCHEMEID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo(pSSysBIScheme), arrayList.get(0)));
         }
     }
 
@@ -686,7 +686,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysBIScheme(pSSysBIScheme);
         this.onBeforeRemoveByPSSysBIScheme(pSSysBIScheme, arrayList);
         for (PSSysBIReport pSSysBIReport : arrayList) {
-            this.remove((IEntity)pSSysBIReport);
+            this.remove(pSSysBIReport);
         }
         this.onAfterRemoveByPSSysBIScheme(pSSysBIScheme, arrayList);
     }
@@ -704,8 +704,8 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -738,7 +738,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSSysBIReport pSSysBIReport : arrayList) {
-            this.remove((IEntity)pSSysBIReport);
+            this.remove(pSSysBIReport);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -756,8 +756,8 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysResource(pSSysResource, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSRESOURCE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysResource);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSRESOURCE_PSSYSRESOURCEID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo((IEntity)pSSysResource), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysResource);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSRESOURCE_PSSYSRESOURCEID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo(pSSysResource), arrayList.get(0)));
         }
     }
 
@@ -790,7 +790,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysResource(pSSysResource);
         this.onBeforeRemoveByPSSysResource(pSSysResource, arrayList);
         for (PSSysBIReport pSSysBIReport : arrayList) {
-            this.remove((IEntity)pSSysBIReport);
+            this.remove(pSSysBIReport);
         }
         this.onAfterRemoveByPSSysResource(pSSysResource, arrayList);
     }
@@ -808,8 +808,8 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo((IEntity)pSSysSFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo(pSSysSFPlugin), arrayList.get(0)));
         }
     }
 
@@ -842,7 +842,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin);
         this.onBeforeRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
         for (PSSysBIReport pSSysBIReport : arrayList) {
-            this.remove((IEntity)pSSysBIReport);
+            this.remove(pSSysBIReport);
         }
         this.onAfterRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
     }
@@ -860,8 +860,8 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysUniRes(pSSysUniRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSUNIRES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysUniRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSUNIRES_PSSYSUNIRESID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo((IEntity)pSSysUniRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysUniRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSUNIRES_PSSYSUNIRESID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo(pSSysUniRes), arrayList.get(0)));
         }
     }
 
@@ -894,7 +894,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysUniRes(pSSysUniRes);
         this.onBeforeRemoveByPSSysUniRes(pSSysUniRes, arrayList);
         for (PSSysBIReport pSSysBIReport : arrayList) {
-            this.remove((IEntity)pSSysBIReport);
+            this.remove(pSSysBIReport);
         }
         this.onAfterRemoveByPSSysUniRes(pSSysUniRes, arrayList);
     }
@@ -912,8 +912,8 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysViewPanel(pSSysViewPanel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSVIEWPANEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysViewPanel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSVIEWPANEL_PSSYSVIEWPANELID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo((IEntity)pSSysViewPanel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysViewPanel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSSYSVIEWPANEL_PSSYSVIEWPANELID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo(pSSysViewPanel), arrayList.get(0)));
         }
     }
 
@@ -946,7 +946,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSSysViewPanel(pSSysViewPanel);
         this.onBeforeRemoveByPSSysViewPanel(pSSysViewPanel, arrayList);
         for (PSSysBIReport pSSysBIReport : arrayList) {
-            this.remove((IEntity)pSSysBIReport);
+            this.remove(pSSysBIReport);
         }
         this.onAfterRemoveByPSSysViewPanel(pSSysViewPanel, arrayList);
     }
@@ -964,8 +964,8 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSViewMsgGroup(pSViewMsgGroup, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSVIEWMSGGROUP");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSViewMsgGroup);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSVIEWMSGGROUP_PSVIEWMSGGROUPID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo((IEntity)pSViewMsgGroup), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSViewMsgGroup);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIREPORT_PSVIEWMSGGROUP_PSVIEWMSGGROUPID", "", iDataEntityModel.getName(), "PSSYSBIREPORT", iDataEntityModel.getDataInfo(pSViewMsgGroup), arrayList.get(0)));
         }
     }
 
@@ -998,7 +998,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReport> arrayList = this.selectByPSViewMsgGroup(pSViewMsgGroup);
         this.onBeforeRemoveByPSViewMsgGroup(pSViewMsgGroup, arrayList);
         for (PSSysBIReport pSSysBIReport : arrayList) {
-            this.remove((IEntity)pSSysBIReport);
+            this.remove(pSSysBIReport);
         }
         this.onAfterRemoveByPSViewMsgGroup(pSViewMsgGroup, arrayList);
     }
@@ -1027,12 +1027,12 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
     protected void onBeforeRemoveTemp(PSSysBIReport pSSysBIReport) throws Exception {
         PSSysBIReportItemService pSSysBIReportItemService = (PSSysBIReportItemService)ServiceGlobal.getService(PSSysBIReportItemService.class, (SessionFactory)this.getSessionFactory());
         pSSysBIReportItemService.removeTempByPSSysBIReport(pSSysBIReport);
-        super.onBeforeRemoveTemp((IEntity)pSSysBIReport);
+        super.onBeforeRemoveTemp(pSSysBIReport);
     }
 
     protected void getRelatedDataTempMajor(PSSysBIReport pSSysBIReport) throws Exception {
         this.getRelatedDataTempMajor_PSSysBIReportItem(pSSysBIReport);
-        super.getRelatedDataTempMajor((IEntity)pSSysBIReport);
+        super.getRelatedDataTempMajor(pSSysBIReport);
     }
 
     protected void getRelatedDataTempMajor_PSSysBIReportItem(PSSysBIReport pSSysBIReport) throws Exception {
@@ -1049,7 +1049,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
     protected void updateRelatedDataTempMajor(PSSysBIReport pSSysBIReport, PSSysBIReport pSSysBIReport2) throws Exception {
         ArrayList<PSSysBIReportItem> arrayList = this.updateRelatedDataTempMajor_removePSSysBIReportItem(pSSysBIReport, pSSysBIReport2);
         this.updateRelatedDataTempMajor_updatePSSysBIReportItem(pSSysBIReport, pSSysBIReport2, arrayList);
-        super.updateRelatedDataTempMajor((IEntity)pSSysBIReport, (IEntity)pSSysBIReport2);
+        super.updateRelatedDataTempMajor(pSSysBIReport, pSSysBIReport2);
     }
 
     protected ArrayList<PSSysBIReportItem> updateRelatedDataTempMajor_removePSSysBIReportItem(PSSysBIReport pSSysBIReport, PSSysBIReport pSSysBIReport2) throws Exception {
@@ -1066,7 +1066,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
             hashMap.remove(object);
         }
         for (PSSysBIReportItem pSSysBIReportItem : hashMap.values()) {
-            pSSysBIReportItemService.remove((IEntity)pSSysBIReportItem);
+            pSSysBIReportItemService.remove(pSSysBIReportItem);
         }
         return arrayList;
     }
@@ -1083,7 +1083,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
 
     protected void replaceParentInfo(PSSysBIReport pSSysBIReport, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysBIReport, cloneSession);
+        super.replaceParentInfo(pSSysBIReport, cloneSession);
         if (pSSysBIReport.getPSSysBICubeId() != null && (iEntity = cloneSession.getEntity("PSSYSBICUBE", (Object)pSSysBIReport.getPSSysBICubeId())) != null) {
             this.onFillParentInfo_PSSysBICube(pSSysBIReport, (PSSysBICube)iEntity);
         }
@@ -1111,7 +1111,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysBIReport pSSysBIReport, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysBIReport, bl);
+        super.onRemoveEntityUncopyValues(pSSysBIReport, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysBIReport pSSysBIReport, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1189,7 +1189,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysBIReport, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysBIReport, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysBIReport, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BIReportModel(boolean bl, PSSysBIReport pSSysBIReport, boolean bl2, boolean bl3) throws Exception {
@@ -1202,7 +1202,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIReportModel_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_BIReportModel_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIREPORTMODEL");
@@ -1224,7 +1224,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIReportParams_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_BIReportParams_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIREPORTPARAMS");
@@ -1246,7 +1246,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIReportTag_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_BIReportTag_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIREPORTTAG");
@@ -1268,7 +1268,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIReportTag2_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_BIReportTag2_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIREPORTTAG2");
@@ -1290,7 +1290,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIReportUIModel_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_BIReportUIModel_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIREPORTUIMODEL");
@@ -1315,7 +1315,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -1351,7 +1351,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_EnableCustomized_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string = this.onTestValueRule_EnableCustomized_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ENABLECUSTOMIZED");
@@ -1373,7 +1373,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1398,7 +1398,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBICubeId_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBICubeId_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBICUBEID");
@@ -1423,7 +1423,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBIReportId_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBIReportId_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBIREPORTID");
@@ -1448,7 +1448,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBIReportName_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBIReportName_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBIREPORTNAME");
@@ -1490,7 +1490,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBISchemeId_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBISchemeId_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBISCHEMEID");
@@ -1512,7 +1512,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPluginId_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPluginId_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPLUGINID");
@@ -1534,7 +1534,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysResourceId_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysResourceId_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSRESOURCEID");
@@ -1556,7 +1556,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPluginId_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPluginId_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPLUGINID");
@@ -1578,7 +1578,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysUniResId_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysUniResId_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSUNIRESID");
@@ -1600,7 +1600,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewPanelId_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewPanelId_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWPANELID");
@@ -1622,7 +1622,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSViewMsgGroupId_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_PSViewMsgGroupId_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSVIEWMSGGROUPID");
@@ -1644,7 +1644,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1666,7 +1666,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1688,7 +1688,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1710,7 +1710,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1732,7 +1732,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1757,7 +1757,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysBIReport, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysBIReport, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1770,11 +1770,11 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
     }
 
     protected void onSyncEntity(PSSysBIReport pSSysBIReport, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysBIReport, bl);
+        super.onSyncEntity(pSSysBIReport, bl);
     }
 
     protected void onSyncIndexEntities(PSSysBIReport pSSysBIReport, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysBIReport, bl);
+        super.onSyncIndexEntities(pSSysBIReport, bl);
     }
 
     public Object getDataContextValue(PSSysBIReport pSSysBIReport, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1782,14 +1782,14 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysBIReport, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysBIReport, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysBIReport pSSysBIReport, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysBIReport, arrayList, n);
+        super.onExportMajorModel(pSSysBIReport, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2311,21 +2311,21 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
 
     protected boolean onMergeChild(String string, String string2, PSSysBIReport pSSysBIReport) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysBIReport)) {
+        if (super.onMergeChild(string, string2, pSSysBIReport)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysBIReport pSSysBIReport) throws Exception {
-        super.onUpdateParent((IEntity)pSSysBIReport);
+        super.onUpdateParent(pSSysBIReport);
     }
 
     protected void onCopyDetails(PSSysBIReport pSSysBIReport, Object object) throws Exception {
         PSSysBIReport pSSysBIReport2 = new PSSysBIReport();
         pSSysBIReport2.set("PSSYSBIREPORTID", object);
         String string = DataObject.getStringValue((Object)pSSysBIReport.get("PSSYSBIREPORTID"));
-        super.onCopyDetails((IEntity)pSSysBIReport, object);
+        super.onCopyDetails(pSSysBIReport, object);
     }
 
     @Override
@@ -2390,7 +2390,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                 PSSysBIReportItem pSSysBIReportItem = new PSSysBIReportItem();
                 pSSysBIReportItem.setOrderValue(n);
                 n += 100;
-                pSSysBIReportItemService.fillParentInfo((IEntity)pSSysBIReportItem, "DER1N", "DER1N_PSSYSBIREPORTITEM_PSSYSBIREPORT_PSSYSBIREPORTID", pSSysBIReport.getPSSysBIReportId());
+                pSSysBIReportItemService.fillParentInfo(pSSysBIReportItem, "DER1N", "DER1N_PSSYSBIREPORTITEM_PSSYSBIREPORT_PSSYSBIREPORTID", pSSysBIReport.getPSSysBIReportId());
                 pSSysBIReportItemService.importXmlModel(pSSysBIReportItem, xmlNode2);
             }
         }
@@ -2507,43 +2507,28 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
 
     @Override
     protected void onExportCurModelV2(PSSysBIReport pSSysBIReport, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSBIREPORTITEM_PSSYSBIREPORT_PSSYSBIREPORTID")) {
-            Object object;
-            PSSysBIReportItem pSSysBIReportItem2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSSysBIReportItemService pSSysBIReportItemService = (PSSysBIReportItemService)ServiceGlobal.getService(PSSysBIReportItemService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSSysBIReportItem> arrayList = null;
+            ArrayList<ObjectNode> arrayList = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSBIREPORT#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBIREPORTITEM", (Object)pSSysBIReport.getPSSysBIReportId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSBIREPORT#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBIREPORTITEM", (Object)pSSysBIReport.getPSSysBIReportId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSSysBIReportItem2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSSysBIReportItem2);
+                    arrayList = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        arrayList.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysBIReportItem>();
-                object4 = pSSysBIReportItemService.selectByPSSysBIReport(pSSysBIReport);
-                object3 = StringHelper.format((String)"PSSYSBIREPORT#%1$s", (Object)pSSysBIReport.getPSSysBIReportId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSSysBIReportItem2 = object2.next();
-                    object = pSSysBIReportItemService.getModelV2ResScope((IEntity)pSSysBIReportItem2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysBIReportItem)PSModelV2Helper.toJSONObject((IEntity)pSSysBIReportItem2, false));
+                arrayList = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSBIREPORT#%1$s", (Object)pSSysBIReport.getPSSysBIReportId());
+                for (PSSysBIReportItem item : pSSysBIReportItemService.selectByPSSysBIReport(pSSysBIReport)) {
+                    if (StringHelper.compare(scope, pSSysBIReportItemService.getModelV2ResScope(item), false) != 0) continue;
+                    arrayList.add(PSModelV2Helper.toJSONObject(item, false));
                 }
             }
             if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSSysBIReportItemService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
+                ArrayNode items = objectNode.putArray(pSSysBIReportItemService.getModelV2Name(false).toLowerCase());
                 Collections.sort(arrayList, new Comparator<ObjectNode>(){
 
                     @Override
@@ -2571,10 +2556,10 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSSysBIReportItem pSSysBIReportItem2 : arrayList) {
-                    object = new PSSysBIReportItem();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSSysBIReportItem2, false);
-                    object3.add((JsonNode)pSSysBIReportItemService.exportModelV2(object, string));
+                for (ObjectNode child : arrayList) {
+                    PSSysBIReportItem item = new PSSysBIReportItem();
+                    PSModelV2Helper.fromJSONObject((IDataObject)item, child, false);
+                    items.add((JsonNode)pSSysBIReportItemService.exportModelV2(item, string));
                 }
             }
         }
@@ -2587,7 +2572,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         ArrayList<PSSysBIReportItem> arrayList = pSSysBIReportItemService.selectByPSSysBIReport(pSSysBIReport);
         String string = StringHelper.format((String)"PSSYSBIREPORT#%1$s", (Object)pSSysBIReport.getPSSysBIReportId());
         for (PSSysBIReportItem pSSysBIReportItem : arrayList) {
-            String string2 = pSSysBIReportItemService.getModelV2ResScope((IEntity)pSSysBIReportItem);
+            String string2 = pSSysBIReportItemService.getModelV2ResScope(pSSysBIReportItem);
             if (StringHelper.compare((String)string, (String)string2, (boolean)false) != 0) continue;
             pSSysBIReportItemService.emptyModelV2(pSSysBIReportItem);
         }
@@ -2669,7 +2654,7 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
             PSSysBIReportItemService pSSysBIReportItemService = (PSSysBIReportItemService)ServiceGlobal.getService(PSSysBIReportItemService.class, (SessionFactory)this.getSessionFactory());
             PSSysBIReportItem pSSysBIReportItem = new PSSysBIReportItem();
             pSSysBIReportItem.setPSSysBIReportItemId(pSMOSFile.getPSModelId());
-            if (!pSSysBIReportItemService.get((IEntity)pSSysBIReportItem, true)) {
+            if (!pSSysBIReportItemService.get(pSSysBIReportItem, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysBIReportItem.getPSSysBIReportId(), (String)pSSysBIReport.getPSSysBIReportId(), (boolean)false) == 0) {
@@ -2677,12 +2662,12 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
             }
             ObjectNode objectNode = pSSysBIReportItemService.exportModelV2(pSSysBIReportItem);
             pSSysBIReportItem.reset();
-            if (!pSSysBIReportItemService.setModelV2ResScope((IEntity)pSSysBIReportItem, "PSSYSBIREPORT", pSSysBIReport.getPSSysBIReportId())) {
+            if (!pSSysBIReportItemService.setModelV2ResScope(pSSysBIReportItem, "PSSYSBIREPORT", pSSysBIReport.getPSSysBIReportId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysBIReportItemService.importModelV2(pSSysBIReportItem, objectNode);
             SessionFactoryManager.commit();
-            return pSSysBIReportItemService.getFile((IEntity)pSSysBIReportItem);
+            return pSSysBIReportItemService.getFile(pSSysBIReportItem);
         }
         return null;
     }
@@ -2711,4 +2696,3 @@ extends PSCoreSysServiceBase<PSSysBIReport> {
         defaultValueMap.put("CODENAME", "BIReport");
     }
 }
-

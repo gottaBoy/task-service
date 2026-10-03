@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSSysModelFuncDEModelBase;
 
 public class PSSysModelFuncDEModel
 extends PSSysModelFuncDEModelBase {
+
+    public PSSysModelFuncDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

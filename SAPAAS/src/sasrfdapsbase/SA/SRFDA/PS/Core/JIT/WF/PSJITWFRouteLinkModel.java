@@ -48,7 +48,7 @@ extends WFRouteLinkModelBase {
     protected void onInit() throws Exception {
         super.onInit();
         if (this.iPSWFLink.isDefault()) {
-            ArrayList wfLinkCondModels = this.iPSWFLink.getRootWFLinkGroupCondModel().getAllWFLinkCondModels();
+            ArrayList<IWFLinkCondModel> wfLinkCondModels = this.iPSWFLink.getRootWFLinkGroupCondModel().getAllWFLinkCondModels();
             for (IWFLinkCondModel iWFLinkCondModel : wfLinkCondModels) {
                 if (StringHelper.compare((String)iWFLinkCondModel.getCondType(), (String)"GROUP", (boolean)true) == 0) {
                     IWFLinkGroupCondModel iWFLinkGroupCondModel = (IWFLinkGroupCondModel)iWFLinkCondModel;
@@ -71,4 +71,3 @@ extends WFRouteLinkModelBase {
         }
     }
 }
-

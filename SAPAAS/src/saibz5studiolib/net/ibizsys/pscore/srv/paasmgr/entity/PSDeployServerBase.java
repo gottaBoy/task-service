@@ -1893,7 +1893,7 @@ implements Serializable {
                 PSDeployCenter pSDeployCenter = new PSDeployCenter();
                 pSDeployCenter.setPSDeployCenterId(this.getPSDeployCenterId());
                 PSDeployCenterService pSDeployCenterService = (PSDeployCenterService)ServiceGlobal.getService(PSDeployCenterService.class, (SessionFactory)this.getSessionFactory());
-                pSDeployCenterService.autoGet((IEntity)pSDeployCenter);
+                pSDeployCenterService.autoGet(pSDeployCenter);
                 this.psdeploycenter = pSDeployCenter;
             }
             return this.psdeploycenter;
@@ -1919,7 +1919,7 @@ implements Serializable {
                 PSSvrDomain pSSvrDomain = new PSSvrDomain();
                 pSSvrDomain.setPSSvrDomainId(this.getPSSvrDomainId());
                 PSSvrDomainService pSSvrDomainService = (PSSvrDomainService)ServiceGlobal.getService(PSSvrDomainService.class, (SessionFactory)this.getSessionFactory());
-                pSSvrDomainService.autoGet((IEntity)pSSvrDomain);
+                pSSvrDomainService.autoGet(pSSvrDomain);
                 this.pssvrdomain = pSSvrDomain;
             }
             return this.pssvrdomain;

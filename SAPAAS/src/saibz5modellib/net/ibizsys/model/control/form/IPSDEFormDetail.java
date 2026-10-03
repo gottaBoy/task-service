@@ -1,107 +1,392 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.form;
 
-import net.ibizsys.model.control.form.IPSDEFDGroupLogic;
-import net.ibizsys.model.control.form.IPSDEForm;
 import net.ibizsys.model.core.IPSModelObject;
 import net.ibizsys.model.res.IPSLanguageRes;
 import net.ibizsys.model.res.IPSSysCss;
 import net.ibizsys.model.res.IPSSysImage;
 
-public interface IPSDEFormDetail
-extends IPSModelObject {
-    public static final String DETAILTYPE_FORMPAGE = "FORMPAGE";
-    public static final String DETAILTYPE_TABPANEL = "TABPANEL";
-    public static final String DETAILTYPE_TABPAGE = "TABPAGE";
-    public static final String DETAILTYPE_FORMITEM = "FORMITEM";
-    public static final String DETAILTYPE_USERCONTROL = "USERCONTROL";
-    public static final String DETAILTYPE_FORMPART = "FORMPART";
-    public static final String DETAILTYPE_GROUPPANEL = "GROUPPANEL";
-    public static final String DETAILTYPE_DRUIPART = "DRUIPART";
-    public static final String DETAILTYPE_BUTTON = "BUTTON";
-    public static final String DETAILTYPE_RAWITEM = "RAWITEM";
-    public static final String DETAILSTYLE_DEFAULT = "DEFAULT";
-    public static final String DETAILSTYLE_STYLE2 = "STYLE2";
-    public static final String DETAILSTYLE_STYLE3 = "STYLE3";
-    public static final String DETAILSTYLE_STYLE4 = "STYLE4";
-    public static final String BORERLAYOUTPOS_NORTH = "NORTH";
-    public static final String BORERLAYOUTPOS_WEST = "WEST";
-    public static final String BORERLAYOUTPOS_EAST = "EAST";
-    public static final String BORERLAYOUTPOS_SOUTH = "SOUTH";
-    public static final String BORERLAYOUTPOS_CENTER = "CENTER";
 
-    public String getCodeName();
+/**
+ * 表单项成员对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IPSDEFormDetail extends IPSModelObject {
+	/**
+	 * 表单成员类型：表单分页
+	 */
+	final String DETAILTYPE_FORMPAGE = "FORMPAGE";
 
-    public String getUniqueId();
+	/**
+	 * 表单成员类型：分页部件
+	 */
+	final String DETAILTYPE_TABPANEL = "TABPANEL";
 
-    public IPSDEFormDetail getParentPSDEFormDetail();
+	/**
+	 * 表单成员类型：分页面板
+	 */
+	final String DETAILTYPE_TABPAGE = "TABPAGE";
 
-    public String getCaption();
+	/**
+	 * 表单成员类型：表单项
+	 */
+	final String DETAILTYPE_FORMITEM = "FORMITEM";
 
-    public boolean isShowCaption();
+	/**
+	 * 表单成员类型：用户控件
+	 */
+	final String DETAILTYPE_USERCONTROL = "USERCONTROL";
 
-    public IPSDEForm getPSDEForm();
+	/**
+	 * 表单成员类型：表单部件
+	 */
+	final String DETAILTYPE_FORMPART = "FORMPART";
 
-    public String getDetailType();
+	/**
+	 * 表单成员类型：分组面板
+	 */
+	final String DETAILTYPE_GROUPPANEL = "GROUPPANEL";
 
-    public double getContentWidth();
+	/**
+	 * 表单成员类型：数据关系界面
+	 */
+	final String DETAILTYPE_DRUIPART = "DRUIPART";
 
-    public double getContentHeight();
+	/**
+	 * 表单成员类型：按钮
+	 */
+	final String DETAILTYPE_BUTTON = "BUTTON";
 
-    public double getWidth();
+	/**
+	 * 表单成员类型：直接内容
+	 */
+	final String DETAILTYPE_RAWITEM = "RAWITEM";
 
-    public double getHeight();
+	// 定义内置样式代码表
 
-    public String getParentLayoutMode();
+	/**
+	 * 默认样式
+	 */
+	final static String DETAILSTYLE_DEFAULT = "DEFAULT";
 
-    public IPSDEFDGroupLogic getPSDEFDGroupLogic(String var1) throws Exception;
+	/**
+	 * 样式2
+	 */
+	final static String DETAILSTYLE_STYLE2 = "STYLE2";
 
-    public String getCssStyle();
+	/**
+	 * 样式3
+	 */
+	final static String DETAILSTYLE_STYLE3 = "STYLE3";
 
-    public int getColSpan() throws Exception;
+	/**
+	 * 样式4
+	 */
+	final static String DETAILSTYLE_STYLE4 = "STYLE4";
 
-    public int getRowSpan() throws Exception;
+	// 定义位置边缘布局位置代码表
 
-    public int getColXS();
+	/**
+	 * 边缘布局位置：上方
+	 */
+	final static String BORERLAYOUTPOS_NORTH = "NORTH";
 
-    public int getColSM();
+	/**
+	 * 边缘布局位置：左侧
+	 */
+	final static String BORERLAYOUTPOS_WEST = "WEST";
 
-    public int getColMD();
+	/**
+	 * 边缘布局位置：右侧
+	 */
+	final static String BORERLAYOUTPOS_EAST = "EAST";
 
-    public int getColLG();
+	/**
+	 * 边缘布局位置：下方
+	 */
+	final static String BORERLAYOUTPOS_SOUTH = "SOUTH";
 
-    public int getColXSOffset();
+	/**
+	 * 边缘布局位置：中间
+	 */
+	final static String BORERLAYOUTPOS_CENTER = "CENTER";
 
-    public int getColSMOffset();
+	
 
-    public int getColMDOffset();
+	/**
+	 * 获取代码名称
+	 * 
+	 * @return
+	 */
+	String getCodeName();
 
-    public int getColLGOffset();
+	
 
-    public String getColCssClass();
+	/**
+	 * 获取部件唯一标识
+	 * 
+	 * @return
+	 */
+	String getUniqueId();
 
-    public IPSSysCss getPSSysCss();
+	/**
+	 * 获取父对象
+	 * 
+	 * @return
+	 */
+	IPSDEFormDetail getParentPSDEFormDetail();
 
-    public IPSSysImage getPSSysImage();
+	/**
+	 * 获取标题
+	 * 
+	 * @return
+	 */
+	String getCaption();
 
-    public IPSSysCss getLabelPSSysCss();
+	/**
+	 * 是否显示标题
+	 * 
+	 * @return
+	 */
+	boolean isShowCaption();
 
-    public IPSLanguageRes getCapPSLanguageRes();
+//	/**
+//	 * 获取内边距
+//	 * 
+//	 * @return
+//	 */
+//	IPSThickness getPadding();
+//
+//	/**
+//	 * 获取外边距
+//	 * 
+//	 * @return
+//	 */
+//	IPSThickness getMargin();
 
-    public String getCapLanResTag();
+	/**
+	 * 获取实体表单对象
+	 * 
+	 * @return
+	 */
+	IPSDEForm getPSDEForm();
 
-    public int getColWidth();
+	
 
-    public IPSDEFormDetail getRootPSDEFormDetail();
+	/**
+	 * 获取表单成员类型，值参考 SA.SRFDA.PS.Core.Control.Form.IPSDEFormDetail.DETAILTYPE_XXX
+	 * 定义
+	 * 
+	 * @return
+	 */
+	String getDetailType();
 
-    public String getUserTag();
+	/**
+	 * 获取内容宽度
+	 * 
+	 * @return
+	 */
+	double getContentWidth();
 
-    public String getUserTag2();
+	/**
+	 * 获取内容高度
+	 * 
+	 * @return
+	 */
+	double getContentHeight();
 
-    public String getDetailStyle();
+	/**
+	 * 获取宽度
+	 * 
+	 * @return
+	 */
+	double getWidth();
 
-    public String getBorderLayoutPos();
+	/**
+	 * 获取高度
+	 * 
+	 * @return
+	 */
+	double getHeight();
+
+	
+
+	/**
+	 * 父容器布局模式
+	 * 
+	 * @return
+	 */
+	String getParentLayoutMode();
+
+	/**
+	 * 获取表单成员逻辑
+	 * 
+	 * @param strCat
+	 * @return
+	 * @throws Exception
+	 */
+	IPSDEFDGroupLogic getPSDEFDGroupLogic(String strCat) throws Exception;
+
+	/**
+	 * 获取CSS样式
+	 * 
+	 * @return
+	 */
+	String getCssStyle();
+
+	/**
+	 * 获取当前单元格列扩展数量
+	 * 
+	 * @return
+	 */
+	int getColSpan() throws Exception;
+
+	/**
+	 * 获取当前单元格行扩展数量
+	 * 
+	 * @return
+	 */
+	int getRowSpan() throws Exception;
+
+	/**
+	 * 
+	 * @return
+	 */
+	int getColXS();
+
+	/**
+	 * @return
+	 */
+	int getColSM();
+
+	/**
+	 * @return
+	 */
+	int getColMD();
+
+	/**
+	 * @return
+	 */
+	int getColLG();
+
+	/**
+	 * @return
+	 */
+	int getColXSOffset();
+
+	/**
+	 * @return
+	 */
+	int getColSMOffset();
+
+	/**
+	 * @return
+	 */
+	int getColMDOffset();
+
+	/**
+	 * 获取列偏移（大型界面）
+	 * 
+	 * @return
+	 */
+	int getColLGOffset();
+
+	/**
+	 * 获取列布局的CSS
+	 * 
+	 * @return
+	 */
+	String getColCssClass();
+
+	/**
+	 * 获取表单成员的系统样式，一般用于容器样式
+	 * 
+	 * @return
+	 */
+	IPSSysCss getPSSysCss();
+
+	/**
+	 * 获取系统图片资源
+	 * 
+	 * @return
+	 */
+	IPSSysImage getPSSysImage();
+
+//	/**
+//	 * 获取系统计数器
+//	 * 
+//	 * @return
+//	 */
+//	IPSSysCounter getPSSysCounter();
+//
+
+
+	/**
+	 * 获取标题系统样式
+	 * 
+	 * @return
+	 */
+	IPSSysCss getLabelPSSysCss();
+
+	/**
+	 * 获取标题语言资源对象
+	 * 
+	 * @return
+	 */
+	IPSLanguageRes getCapPSLanguageRes();
+
+	/**
+	 * 获取标题语言资源标识
+	 * 
+	 * @return
+	 */
+	String getCapLanResTag();
+
+	/**
+	 * 获取固定列宽
+	 * 
+	 * @return
+	 */
+	int getColWidth();
+
+	/**
+	 * 获取根成员对象，一般为表单分页对象
+	 * 
+	 * @return
+	 */
+	IPSDEFormDetail getRootPSDEFormDetail();
+
+	/**
+	 * 获取用户标记
+	 * 
+	 * @return
+	 */
+	String getUserTag();
+
+	/**
+	 * 获取用户标记2
+	 * 
+	 * @return
+	 */
+	String getUserTag2();
+
+	/**
+	 * 获取成员样式，值参考 SA.SRFDA.PS.Core.Control.Form.IPSDEFormDetail.DETAILSTYLE_XXX
+	 * 定义
+	 * 
+	 * @return
+	 */
+	String getDetailStyle();
+
+	/**
+	 * 获取边框布局位置，值参考 SA.SRFDA.PS.Core.Control.Form.IPSDEFormDetail.BORERLAYOUTPOS_XXX 定义
+	 * 
+	 * @return
+	 */
+	String getBorderLayoutPos();
+
+	
+	
+
 }
-

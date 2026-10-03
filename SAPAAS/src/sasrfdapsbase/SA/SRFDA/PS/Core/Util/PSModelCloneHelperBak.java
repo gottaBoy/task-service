@@ -122,13 +122,13 @@ public class PSModelCloneHelperBak {
             bDefaultSysSFPub = DataObject.getBoolValue((Integer)psSysSFPub.getDefaultPub(), (boolean)true);
             psSysSFPubMap.put(psSysSFPub.getPSSysSFPubId(), psSysSFPub);
             PSSysSFPubService psSysSFPubService = (PSSysSFPubService)ServiceGlobal.getService(PSSysSFPubService.class, (SessionFactory)this.srcSessionFactory);
-            ArrayList partPSSysSFPubList = psSysSFPubService.selectByPPSSysSFPub((PSSysSFPubBase)psSysSFPub);
+            ArrayList<PSSysSFPub> partPSSysSFPubList = psSysSFPubService.selectByPPSSysSFPub((PSSysSFPubBase)psSysSFPub);
             for (PSSysSFPub partPSSysSFPub : partPSSysSFPubList) {
                 psSysSFPubMap.put(partPSSysSFPub.getPSSysSFPubId(), psSysSFPub);
             }
         }
-        ArrayList psModuleList = psModuleService.selectByPSSystem((PSSystemBase)this.psSystem);
-        ArrayList psModuleList2 = psModuleService2.selectByPSSystem((PSSystemBase)this.psSystem);
+        ArrayList<PSModule> psModuleList = psModuleService.selectByPSSystem((PSSystemBase)this.psSystem);
+        ArrayList<PSModule> psModuleList2 = psModuleService2.selectByPSSystem((PSSystemBase)this.psSystem);
         HashMap<String, PSModule> psModuleMap = new HashMap<String, PSModule>();
         HashMap<String, PSModule> psModuleMap2 = new HashMap<String, PSModule>();
         for (PSModule psModule2 : psModuleList2) {
@@ -149,9 +149,9 @@ public class PSModelCloneHelperBak {
             psModule.setPSSysRefName(psSysRef.getPSSysRefName());
             psModule.setLockFlag(Integer.valueOf(1));
             if (bExists) {
-                psModuleService2.update((IEntity)psModule, false);
+                psModuleService2.update(psModule, false);
             } else {
-                psModuleService2.create((IEntity)psModule, false);
+                psModuleService2.create(psModule, false);
             }
             psModuleList3.add(psModule);
         }
@@ -165,24 +165,21 @@ public class PSModelCloneHelperBak {
         IDataEntityModel iDataEntityModel = DEModelGlobal.getDEModel((String)"PSMODULE");
         PSSysServiceAPIService psSysServiceAPIService2 = (PSSysServiceAPIService)ServiceGlobal.getService(PSSysServiceAPIService.class, (SessionFactory)this.dstSessionFactory);
         for (PSModule psModule : psModuleList3) {
-            Iterator apiList = psModule.getPSSysServiceAPIs();
-            Iterator iterator = ((ArrayList)((Object)apiList)).iterator();
-            while (iterator.hasNext()) {
-                PSSysServiceAPI psSysServiceAPI = (PSSysServiceAPI)iterator.next();
+            for (PSSysServiceAPI psSysServiceAPI : psModule.getPSSysServiceAPIs()) {
                 String strTag3 = StringHelper.format((String)"%1$s||%2$s", (Object)"PSSYSSERVICEAPI", (Object)psSysServiceAPI.getPSSysServiceAPIId());
                 this.existsDEDataMap.put(strTag3, 1);
-                psSysServiceAPIService2.save((IEntity)psSysServiceAPI);
+                psSysServiceAPIService2.save(psSysServiceAPI);
             }
         }
         PSDataEntityService psDataEntityService2 = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.dstSessionFactory);
         for (PSModule psModule : psModuleList3) {
-            ArrayList deList = psModule.getPSDataEntities();
+            ArrayList<PSDataEntity> deList = psModule.getPSDataEntities();
             for (PSDataEntity psDataEntity : deList) {
                 String strTag4 = StringHelper.format((String)"%1$s||%2$s", (Object)"PSDATAENTITY", (Object)psDataEntity.getPSDataEntityId());
-                if (psDataEntityService2.checkKey((IEntity)psDataEntity) != 0) continue;
+                if (psDataEntityService2.checkKey(psDataEntity) != 0) continue;
                 psDataEntity.resetLNPSLanResId();
                 psDataEntity.setDEType(Integer.valueOf(1));
-                psDataEntityService2.create((IEntity)psDataEntity, false);
+                psDataEntityService2.create(psDataEntity, false);
                 this.existsDEDataMap.put(strTag4, 0);
             }
         }
@@ -266,8 +263,8 @@ public class PSModelCloneHelperBak {
         }
         IService srcMinorService = minorDEModel.getService(this.srcSessionFactory);
         IService dstMinorService = minorDEModel.getService(this.dstSessionFactory);
-        ArrayList srcList = srcMinorService.selectEx((ISelectContext)selectCond);
-        ArrayList dstList = dstMinorService.selectEx((ISelectContext)selectCond);
+        ArrayList<IEntity> srcList = srcMinorService.selectEx((ISelectContext)selectCond);
+        ArrayList<IEntity> dstList = dstMinorService.selectEx((ISelectContext)selectCond);
         String strMinorDEKeyName = minorDEModel.getKeyDEField().getName();
         HashMap<String, IEntity> dstEntityMap = new HashMap<String, IEntity>();
         for (IEntity dstEntity : dstList) {
@@ -377,7 +374,7 @@ public class PSModelCloneHelperBak {
             this.cloneDEDataMap.put(strTag, new Date().toString());
             int nModeLockFlag = -1;
             if (dstEntity != null) {
-                nModeLockFlag = DataObject.getIntegerValue((Object)dstEntity.get("LOCKFLAG"), (Integer)-1);
+                nModeLockFlag = DataObject.getIntegerValue((Object)dstEntity.get("LOCKFLAG"), Integer.valueOf(-1));
             }
             if (nModeLockFlag == -1 || (nModeLockFlag & 2) == 0) {
                 log.debug((Object)StringHelper.format((String)"\u5b9e\u4f53[%1$s]\u5f00\u59cb\u8fc1\u79fb[%2$s][%3$s]", (Object)iDEModel.getName(), (Object)objSrcKey, (Object)iDEModel.getDataInfo(srcEntity)));

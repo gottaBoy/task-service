@@ -1,35 +1,112 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  org.hibernate.SessionFactory
- */
 package net.ibizsys.paas.sysmodel;
 
-import java.util.Iterator;
-import net.ibizsys.paas.codelist.ICodeList;
-import net.ibizsys.paas.sysmodel.ICodeListModel;
 import org.hibernate.SessionFactory;
 
+import net.ibizsys.paas.codelist.ICodeList;
+
+/**
+ * 代码表全局对象存储插件
+ * @author Administrator
+ *
+ */
 public interface ICodeListGlobalPlugin {
-    public void registerCodeList(String var1, ICodeListModel var2);
+	
+	/**
+	 * 注册代码表
+	 * 
+	 * @param strCodeListClsType
+	 * @param iCodeList
+	 */
+	void registerCodeList(String strCodeListClsType, ICodeListModel iCodeList);
 
-    public ICodeList getCodeList(Class var1) throws Exception;
+	/**
+	 * 获取代码表对象
+	 * 
+	 * @param strCodeListClsType
+	 * @return
+	 * @throws Exception
+	 */
+	ICodeList getCodeList(Class cls) throws Exception;
+	
+	/**
+	 * 获取代码表对象
+	 * 
+	 * @param strCodeListClsType
+	 * @return
+	 * @throws Exception
+	 */
+	ICodeList getCodeList(String strCodeListClsType) throws Exception ;
 
-    public ICodeList getCodeList(String var1) throws Exception;
+	/**
+	 * 获取代码表对象
+	 * 
+	 * @param cls
+	 * @param sessionFactory
+	 * @return
+	 * @throws Exception
+	 */
+	ICodeList getCodeList(Class cls, SessionFactory sessionFactory) throws Exception;
 
-    public ICodeList getCodeList(Class var1, SessionFactory var2) throws Exception;
+	/**
+	 * 获取代码表对象
+	 * 
+	 * @param strCodeListClsType
+	 * @param sessionFactory
+	 * @return
+	 * @throws Exception
+	 */
+	ICodeList getCodeList(String strCodeListClsType, SessionFactory sessionFactory) throws Exception ;
 
-    public ICodeList getCodeList(String var1, SessionFactory var2) throws Exception;
+	
 
-    public Iterator<ICodeList> getAllCodelists();
+	/**
+	 * 获取系统全部码表对象
+	 * 
+	 * @return
+	 */
+	 java.util.Iterator<ICodeList> getAllCodelists() ;
+	 
+	 
+	 
+	 /**
+		 * 获取代码表对象
+		 * 
+		 * @param strCodeListClsType
+		 * @param bTryMode  尝试模式
+		 * @return
+		 * @throws Exception
+		 */
+		ICodeList getCodeList(Class cls,boolean bTryMode) throws Exception;
+		
+		/**
+		 * 获取代码表对象
+		 * 
+		 * @param strCodeListClsType
+		 * @param bTryMode  尝试模式
+		 * @return
+		 * @throws Exception
+		 */
+		ICodeList getCodeList(String strCodeListClsType,boolean bTryMode) throws Exception ;
 
-    public ICodeList getCodeList(Class var1, boolean var2) throws Exception;
+		/**
+		 * 获取代码表对象
+		 * 
+		 * @param cls
+		 * @param sessionFactory
+		 * @param bTryMode  尝试模式
+		 * @return
+		 * @throws Exception
+		 */
+		ICodeList getCodeList(Class cls, SessionFactory sessionFactory,boolean bTryMode) throws Exception;
 
-    public ICodeList getCodeList(String var1, boolean var2) throws Exception;
-
-    public ICodeList getCodeList(Class var1, SessionFactory var2, boolean var3) throws Exception;
-
-    public ICodeList getCodeList(String var1, SessionFactory var2, boolean var3) throws Exception;
+		/**
+		 * 获取代码表对象
+		 * 
+		 * @param strCodeListClsType
+		 * @param sessionFactory
+		 * @param bTryMode  尝试模式
+		 * @return
+		 * @throws Exception
+		 */
+		ICodeList getCodeList(String strCodeListClsType, SessionFactory sessionFactory,boolean bTryMode) throws Exception ;
 }
-

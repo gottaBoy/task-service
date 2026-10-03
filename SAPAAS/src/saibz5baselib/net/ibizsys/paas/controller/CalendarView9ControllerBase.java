@@ -1,11 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.controller;
 
-import net.ibizsys.paas.controller.CalendarViewControllerBase;
+/**
+ * 日历视图（部件视图）控制器对象
+ * 
+ * @author Administrator
+ *
+ */
+public abstract class CalendarView9ControllerBase extends CalendarViewControllerBase {
 
-public abstract class CalendarView9ControllerBase
-extends CalendarViewControllerBase {
+	public CalendarView9ControllerBase() throws Exception {
+		super();
+	}
+
 }
-

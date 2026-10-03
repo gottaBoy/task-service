@@ -37,7 +37,7 @@ extends CommonDialogPage {
 
     public String OutputJSCode(String strType) {
         block4: {
-            Vector list;
+            Vector<DEDCProcType> list;
             StringBuilderEx script;
             block5: {
                 script = new StringBuilderEx();

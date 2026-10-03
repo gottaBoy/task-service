@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.logic;
 
-import net.ibizsys.paas.logic.ICondition;
+/**
+ * 单项条件
+ * 
+ * @author Administrator
+ *
+ */
+public interface ISingleCondition extends ICondition {
 
-public interface ISingleCondition
-extends ICondition {
 }
-

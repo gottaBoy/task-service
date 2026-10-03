@@ -99,7 +99,7 @@ implements IPSDEViewBaseService {
     @Override
     protected List<PSDEViewBase> onListAll() throws Exception {
         ArrayList<PSDEViewBase> list = new ArrayList<PSDEViewBase>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEViewBase> items = this.listByPSDataEntity(parent);
@@ -675,34 +675,37 @@ implements IPSDEViewBaseService {
         } else {
             dto.setTitlePSLanResName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSDEViewCtrlService().listByPSDEViewBase(t);
-        if (list != null && list.size() > 0) {
+        List<PSDEViewCtrl> pSDEViewCtrlList = PSModelServiceUtil.getInstance().getPSDEViewCtrlService().listByPSDEViewBase(t);
+        if (pSDEViewCtrlList != null && pSDEViewCtrlList.size() > 0) {
             ArrayList<PSDEViewCtrlDTO> psdeviewctrls = new ArrayList<PSDEViewCtrlDTO>();
-            for (PSDEViewCtrl pSDEViewCtrl : list) {
+            for (PSDEViewCtrl pSDEViewCtrl : pSDEViewCtrlList) {
                 dstItem = (PSDEViewCtrlDTO)PSModelServiceUtil.getInstance().getPSDEViewCtrlService().toDTO(pSDEViewCtrl);
                 psdeviewctrls.add((PSDEViewCtrlDTO)dstItem);
             }
             dto.setPsdeviewctrls(psdeviewctrls);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEViewEngineService().listByPSDEViewBase(t)) != null && list.size() > 0) {
+        List<PSDEViewEngine> pSDEViewEngineList = PSModelServiceUtil.getInstance().getPSDEViewEngineService().listByPSDEViewBase(t);
+        if (pSDEViewEngineList != null && pSDEViewEngineList.size() > 0) {
             ArrayList<PSDEViewEngineDTO> psdeviewengines = new ArrayList<PSDEViewEngineDTO>();
-            for (PSDEViewEngine pSDEViewEngine : list) {
+            for (PSDEViewEngine pSDEViewEngine : pSDEViewEngineList) {
                 dstItem = (PSDEViewEngineDTO)PSModelServiceUtil.getInstance().getPSDEViewEngineService().toDTO(pSDEViewEngine);
                 psdeviewengines.add((PSDEViewEngineDTO)dstItem);
             }
             dto.setPsdeviewengines(psdeviewengines);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEViewLogicService().listByPSDEViewBase(t)) != null && list.size() > 0) {
+        List<PSDEViewLogic> pSDEViewLogicList = PSModelServiceUtil.getInstance().getPSDEViewLogicService().listByPSDEViewBase(t);
+        if (pSDEViewLogicList != null && pSDEViewLogicList.size() > 0) {
             ArrayList<PSDEViewLogicDTO> psdeviewlogics = new ArrayList<PSDEViewLogicDTO>();
-            for (PSDEViewLogic pSDEViewLogic : list) {
+            for (PSDEViewLogic pSDEViewLogic : pSDEViewLogicList) {
                 dstItem = (PSDEViewLogicDTO)PSModelServiceUtil.getInstance().getPSDEViewLogicService().toDTO(pSDEViewLogic);
                 psdeviewlogics.add((PSDEViewLogicDTO)dstItem);
             }
             dto.setPsdeviewlogics(psdeviewlogics);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSDEViewRVService().listByPSDEViewBase(t)) != null && list.size() > 0) {
+        List<PSDEViewRV> pSDEViewRVList = PSModelServiceUtil.getInstance().getPSDEViewRVService().listByPSDEViewBase(t);
+        if (pSDEViewRVList != null && pSDEViewRVList.size() > 0) {
             ArrayList<PSDEViewRVDTO> psdeviewrvs = new ArrayList<PSDEViewRVDTO>();
-            for (PSDEViewRV pSDEViewRV : list) {
+            for (PSDEViewRV pSDEViewRV : pSDEViewRVList) {
                 dstItem = (PSDEViewRVDTO)PSModelServiceUtil.getInstance().getPSDEViewRVService().toDTO(pSDEViewRV);
                 psdeviewrvs.add((PSDEViewRVDTO)dstItem);
             }

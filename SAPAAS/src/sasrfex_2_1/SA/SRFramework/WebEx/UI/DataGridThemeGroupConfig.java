@@ -22,7 +22,7 @@ extends XMLCollectionConfig<DataGridThemeConfig> {
         if (StringHelper.Compare((String)strName, (String)"DATAGRIDTHEME", (boolean)true) == 0) {
             DataGridThemeConfig dataGridThemeConfig = new DataGridThemeConfig();
             if (dataGridThemeConfig.LoadConfig(xmlNode)) {
-                this.add((Object)dataGridThemeConfig);
+                this.add(dataGridThemeConfig);
             }
             return;
         }

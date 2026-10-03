@@ -1195,7 +1195,7 @@ implements Serializable {
                 PSCtrlEvent pSCtrlEvent = new PSCtrlEvent();
                 pSCtrlEvent.setPSCtrlEventId(this.getPSCtrlEventId());
                 PSCtrlEventService pSCtrlEventService = (PSCtrlEventService)ServiceGlobal.getService(PSCtrlEventService.class, (SessionFactory)this.getSessionFactory());
-                pSCtrlEventService.autoGet((IEntity)pSCtrlEvent);
+                pSCtrlEventService.autoGet(pSCtrlEvent);
                 this.psctrlevent = pSCtrlEvent;
             }
             return this.psctrlevent;
@@ -1221,7 +1221,7 @@ implements Serializable {
                 PSCtrlType pSCtrlType = new PSCtrlType();
                 pSCtrlType.setPSCtrlTypeId(this.getPSCtrlTypeId());
                 PSCtrlTypeService pSCtrlTypeService = (PSCtrlTypeService)ServiceGlobal.getService(PSCtrlTypeService.class, (SessionFactory)this.getSessionFactory());
-                pSCtrlTypeService.autoGet((IEntity)pSCtrlType);
+                pSCtrlTypeService.autoGet(pSCtrlType);
                 this.psctrltype = pSCtrlType;
             }
             return this.psctrltype;

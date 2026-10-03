@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
 import java.lang.annotation.Documented;
@@ -9,12 +6,28 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value={ElementType.TYPE})
-@Retention(value=RetentionPolicy.RUNTIME)
+/**
+ * 数据集合查询注解
+ * 
+ * @author Administrator
+ *
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DEDataSetQuery {
-    public String queryid() default "";
+	/**
+	 * 实体数据集合标识
+	 * 
+	 * @return
+	 */
+	String queryid() default "";
 
-    public String queryname() default "";
+	/**
+	 * 实体数据集合名称
+	 * 
+	 * @return
+	 */
+	String queryname() default "";
+
 }
-

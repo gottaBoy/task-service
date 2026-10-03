@@ -1056,7 +1056,7 @@ implements Serializable {
                 PSCorePrdIssue pSCorePrdIssue = new PSCorePrdIssue();
                 pSCorePrdIssue.setPSCorePrdIssueId(this.getPSCorePrdIssueId());
                 PSCorePrdIssueService pSCorePrdIssueService = (PSCorePrdIssueService)ServiceGlobal.getService(PSCorePrdIssueService.class, (SessionFactory)this.getSessionFactory());
-                pSCorePrdIssueService.autoGet((IEntity)pSCorePrdIssue);
+                pSCorePrdIssueService.autoGet(pSCorePrdIssue);
                 this.pscoreprdissue = pSCorePrdIssue;
             }
             return this.pscoreprdissue;
@@ -1082,7 +1082,7 @@ implements Serializable {
                 PSCorePrdVer pSCorePrdVer = new PSCorePrdVer();
                 pSCorePrdVer.setPSCorePrdVerId(this.getPSCorePrdVerId());
                 PSCorePrdVerService pSCorePrdVerService = (PSCorePrdVerService)ServiceGlobal.getService(PSCorePrdVerService.class, (SessionFactory)this.getSessionFactory());
-                pSCorePrdVerService.autoGet((IEntity)pSCorePrdVer);
+                pSCorePrdVerService.autoGet(pSCorePrdVer);
                 this.pscoreprdver = pSCorePrdVer;
             }
             return this.pscoreprdver;

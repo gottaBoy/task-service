@@ -1,16 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.dashboard;
 
-import net.ibizsys.model.control.dashboard.IPSDBPortletPartParam;
+/**
+ * 数据看板菜单部件参数对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDBAppMenuPortletPartParam extends IPSDBPortletPartParam{
+	
+	/**
+	 * 获取应用菜单标识
+	 * @return
+	 */
+	String getPSAppMenuId();
 
-public interface IPSDBAppMenuPortletPartParam
-extends IPSDBPortletPartParam {
-    public String getPSAppMenuId();
-
-    public String getAMPSSysPFPluginId();
-
-    public String getAMListStyle();
+	/**
+	 * 获取绘制器标识
+	 * @return
+	 */
+	String getAMPSSysPFPluginId();
+	
+	
+	/**
+	 * 获取绘制样式
+	 * @return
+	 */
+	String getAMListStyle();
 }
-

@@ -1,25 +1,39 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.paas.core.IDEDataQueryCode
- */
 package net.ibizsys.model.dataentity.ds;
 
-import java.util.Iterator;
 import net.ibizsys.model.core.IPSModelObject;
-import net.ibizsys.model.dataentity.ds.IPSDEDataQuery;
-import net.ibizsys.model.dataentity.ds.IPSDEDataQueryCodeCond;
-import net.ibizsys.model.dataentity.ds.IPSDEDataQueryCodeExp;
 import net.ibizsys.paas.core.IDEDataQueryCode;
 
-public interface IPSDEDataQueryCode
-extends IPSModelObject,
-IDEDataQueryCode {
-    public IPSDEDataQuery getPSDEDataQuery();
 
-    public Iterator<IPSDEDataQueryCodeExp> getPSDEDataQueryCodeExps() throws Exception;
+/**
+ * 实体数据查询代码对象接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IPSDEDataQueryCode extends IPSModelObject, IDEDataQueryCode {
+	
+	/**
+	 * 获取数据查询
+	 * 
+	 * @return
+	 */
+	IPSDEDataQuery getPSDEDataQuery();
 
-    public Iterator<IPSDEDataQueryCodeCond> getPSDEDataQueryCodeConds() throws Exception;
+	/**
+	 * 获取表达式集合
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	java.util.Iterator<IPSDEDataQueryCodeExp> getPSDEDataQueryCodeExps() throws Exception;
+
+	/**
+	 * 获取条件集合
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	java.util.Iterator<IPSDEDataQueryCodeCond> getPSDEDataQueryCodeConds() throws Exception;
+
+	
 }
-

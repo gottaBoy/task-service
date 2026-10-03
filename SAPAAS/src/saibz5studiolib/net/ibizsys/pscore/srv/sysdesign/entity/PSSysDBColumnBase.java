@@ -2954,7 +2954,7 @@ implements Serializable {
                 PSSysDBColumn pSSysDBColumn = new PSSysDBColumn();
                 pSSysDBColumn.setPSSysDBColumnId(this.getRefPSSysDBColumnId());
                 PSSysDBColumnService pSSysDBColumnService = (PSSysDBColumnService)ServiceGlobal.getService(PSSysDBColumnService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDBColumnService.autoGet((IEntity)pSSysDBColumn);
+                pSSysDBColumnService.autoGet(pSSysDBColumn);
                 this.refpssysdbcolumn = pSSysDBColumn;
             }
             return this.refpssysdbcolumn;
@@ -2980,7 +2980,7 @@ implements Serializable {
                 PSSysDBTable pSSysDBTable = new PSSysDBTable();
                 pSSysDBTable.setPSSysDBTableId(this.getPSSysDBTableId());
                 PSSysDBTableService pSSysDBTableService = (PSSysDBTableService)ServiceGlobal.getService(PSSysDBTableService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDBTableService.autoGet((IEntity)pSSysDBTable);
+                pSSysDBTableService.autoGet(pSSysDBTable);
                 this.pssysdbtable = pSSysDBTable;
             }
             return this.pssysdbtable;
@@ -3006,7 +3006,7 @@ implements Serializable {
                 PSSysDBTable pSSysDBTable = new PSSysDBTable();
                 pSSysDBTable.setPSSysDBTableId(this.getRefPSSysDBTableId());
                 PSSysDBTableService pSSysDBTableService = (PSSysDBTableService)ServiceGlobal.getService(PSSysDBTableService.class, (SessionFactory)this.getSessionFactory());
-                pSSysDBTableService.autoGet((IEntity)pSSysDBTable);
+                pSSysDBTableService.autoGet(pSSysDBTable);
                 this.refpssysdbtable = pSSysDBTable;
             }
             return this.refpssysdbtable;

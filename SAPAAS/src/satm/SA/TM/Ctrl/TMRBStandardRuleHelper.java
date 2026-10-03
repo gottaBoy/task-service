@@ -46,7 +46,7 @@ extends TMRBRuleHelper {
         callParamList.AddDateTime((Object)tmResBooking.getBEGINTIME());
         callParamList.Add((Object)tmResBooking.getTMRESBOOKINGID());
         callParamList.Add((Object)tmResBooking.getTMRESBASEID());
-        Vector tmResBookingList = new Vector();
+        Vector<TMResBooking> tmResBookingList = new Vector<TMResBooking>();
         callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.iDAGlobalHelper, (Connection)iTMActionContext.getDBConnection(this.strTMResBookingDBStorage), (String)this.strTMResBookingDBStorage, (String)strSQL, (Vector)callParamList.GetList(), tmResBookingList, (String)TMResBooking.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8d44\u6e90\u9884\u7ea6\u65f6\u95f4\u6bb5\u5185\u5176\u5b83\u9884\u7ea6\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -93,4 +93,3 @@ extends TMRBRuleHelper {
         return callResult;
     }
 }
-

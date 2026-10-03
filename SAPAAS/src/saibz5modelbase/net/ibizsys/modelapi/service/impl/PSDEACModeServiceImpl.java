@@ -79,7 +79,7 @@ implements IPSDEACModeService {
     @Override
     protected List<PSDEACMode> onListAll() throws Exception {
         ArrayList<PSDEACMode> list = new ArrayList<PSDEACMode>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEACMode> items = this.listByPSDataEntity(parent);

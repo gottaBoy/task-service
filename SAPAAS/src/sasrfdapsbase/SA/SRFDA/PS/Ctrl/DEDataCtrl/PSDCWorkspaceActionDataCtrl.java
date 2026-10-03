@@ -118,14 +118,14 @@ extends PSDEDataCtrl {
         final PSWorkspaceService psWorkspaceService = (PSWorkspaceService)ServiceGlobal.getService(PSWorkspaceService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         final PSDCWorkspace psDCWorkspace = new PSDCWorkspace();
         PSDEDataCtrl.convertEntity2(dataEntity, (IEntity)psDCWorkspaceAction);
-        psDCWorkspaceActionService.get((IEntity)psDCWorkspaceAction);
+        psDCWorkspaceActionService.get(psDCWorkspaceAction);
         if (DataObject.getIntegerValue((Object)psDCWorkspaceAction.getActionState(), (Integer)10) != 10) {
             throw new Exception(StringHelper.Format((String)"\u4e2d\u5fc3\u751f\u4ea7\u7ebf\u4f5c\u4e1a[%1$s]\u5f53\u524d\u72b6\u6001[%2$s]\uff0c\u65e0\u6cd5\u5efa\u7acb\u4efb\u52a1", (Object)psDCWorkspaceAction.getPSDCWorkspaceActionName(), (Object)BackendActionStateCodeListModel.getInstance().getCodeItem(psDCWorkspaceAction.getActionState().toString()).getText()));
         }
         String strOwnerId = StringHelper.Format((String)"%1$s|%2$s", (Object)psDCWorkspaceActionService.getDEModel().getName(), (Object)psDCWorkspaceAction.getPSDCWorkspaceActionId());
         try {
             psDCWorkspace.setPSDCWorkspaceId(psDCWorkspaceAction.getPSDCWorkspaceId());
-            psDCWorkspaceService.get((IEntity)psDCWorkspace);
+            psDCWorkspaceService.get(psDCWorkspace);
             if (DataObject.getIntegerValue((Object)psDCWorkspace.getWorkspaceState(), (Integer)30) != 30) {
                 throw new Exception(StringHelper.Format((String)"\u4e2d\u5fc3\u751f\u4ea7\u7ebf[%1$s]\u5f53\u524d\u72b6\u6001[%2$s]\uff0c\u65e0\u6cd5\u5efa\u7acb\u4efb\u52a1", (Object)psDCWorkspace.getPSDCWorkspaceName(), (Object)SVNRepoState2CodeListModel.getInstance().getCodeItem(psDCWorkspace.getWorkspaceState().toString()).getText()));
             }
@@ -141,7 +141,7 @@ extends PSDEDataCtrl {
             psWorkspace2.setCurAction(psDCWorkspaceAction.getActionType());
             psWorkspace2.setActionOwner(strOwnerId);
             EntityBase.setLastUpdateDate((IEntity)psWorkspace2, (Timestamp)psDCWorkspace.getWorkspaceUpdateDate());
-            psWorkspaceService.sysUpdate((IEntity)psWorkspace2, true);
+            psWorkspaceService.sysUpdate(psWorkspace2, true);
             psDCBKTask.reset();
             psDCBKTask.setPSDevCenterId(psDCWorkspaceAction.getPSDevCenterId());
             psDCBKTask.setPSDevCenterName(psDCWorkspaceAction.getPSDevCenterName());
@@ -154,7 +154,7 @@ extends PSDEDataCtrl {
             psDCBKTask.setTaskType("WORKSPACEACTION");
             psDCBKTask.setTaskParam(psDCWorkspaceAction.getPSDCWorkspaceId());
             psDCBKTask.setTaskParam2(psDCWorkspaceAction.getPSDCWorkspaceActionId());
-            psDCBKTaskService.create((IEntity)psDCBKTask);
+            psDCBKTaskService.create(psDCBKTask);
         }
         catch (Exception ex) {
             String strResult = ex.getMessage();
@@ -166,7 +166,7 @@ extends PSDEDataCtrl {
                 psDCWorkspaceAction2.setPSDCWorkspaceActionId(psDCWorkspaceAction.getPSDCWorkspaceActionId());
                 psDCWorkspaceAction2.setActionState(Integer.valueOf(40));
                 psDCWorkspaceAction2.setActionResult(strResult);
-                psDCWorkspaceActionService.update((IEntity)psDCWorkspaceAction2);
+                psDCWorkspaceActionService.update(psDCWorkspaceAction2);
             }
             catch (Exception e) {
                 log.error((Object)e);
@@ -175,14 +175,14 @@ extends PSDEDataCtrl {
                 try {
                     PSWorkspace psWorkspace2 = new PSWorkspace();
                     psWorkspace2.setPSWorkspaceId(psDCWorkspace.getPSWorkspaceId());
-                    psWorkspaceService.get((IEntity)psWorkspace2);
+                    psWorkspaceService.get(psWorkspace2);
                     if (StringHelper.Compare((String)psWorkspace2.getActionOwner(), (String)strOwnerId, (boolean)false) == 0) {
                         psWorkspace2.reset();
                         psWorkspace2.setPSWorkspaceId(psDCWorkspace.getPSWorkspaceId());
                         psWorkspace2.setCurAction(null);
                         psWorkspace2.setActionOwner(null);
                         EntityBase.setLastUpdateDate((IEntity)psWorkspace2, (Timestamp)psDCWorkspace.getWorkspaceUpdateDate());
-                        psWorkspaceService.sysUpdate((IEntity)psWorkspace2, true);
+                        psWorkspaceService.sysUpdate(psWorkspace2, true);
                     }
                 }
                 catch (Exception e) {
@@ -204,7 +204,7 @@ extends PSDEDataCtrl {
                 psDCBKTask.setTaskParam2(psDCWorkspaceAction.getPSDCWorkspaceActionId());
                 psDCBKTask.setResultInfo(String.valueOf(ex.getMessage()) + "\uff0c\u65e0\u6cd5\u6267\u884c\u4efb\u52a1");
                 psDCBKTask.setTaskState(Integer.valueOf(40));
-                psDCBKTaskService.create((IEntity)psDCBKTask);
+                psDCBKTaskService.create(psDCBKTask);
             }
             catch (Exception e) {
                 log.error((Object)e);
@@ -228,7 +228,7 @@ extends PSDEDataCtrl {
                         psWorkspace2.setCurAction(null);
                         psWorkspace2.setActionOwner(null);
                         EntityBase.setLastUpdateDate((IEntity)psWorkspace2, (Timestamp)psDCWorkspace.getWorkspaceUpdateDate());
-                        psWorkspaceService.sysUpdate((IEntity)psWorkspace2, true);
+                        psWorkspaceService.sysUpdate(psWorkspace2, true);
                     }
                     catch (Exception e) {
                         log.error((Object)e);
@@ -241,4 +241,3 @@ extends PSDEDataCtrl {
         });
     }
 }
-

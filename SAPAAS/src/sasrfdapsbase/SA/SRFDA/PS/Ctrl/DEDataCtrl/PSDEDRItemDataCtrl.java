@@ -127,7 +127,7 @@ implements IPSModelInitDataCtrl {
             if ((callResult = this.Save(true, psDEDRItem)).isError()) {
                 throw new Exception(StringHelper.Format((String)"\u521d\u59cb\u5316\u5173\u7cfb\u754c\u9762\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
             }
-            Vector psDEDRDetailList = new Vector();
+            Vector<PSDEDRDetail> psDEDRDetailList = new Vector<PSDEDRDetail>();
             IDEDataCtrl psDEDRDetailDataCtrl = this.GetRelatedDataCtrl("DE2092");
             BaseDataEntity cond = new BaseDataEntity();
             cond.setParamValue("PSDEDRID", (Object)psDER.getMAJORPSDEID());
@@ -161,4 +161,3 @@ implements IPSModelInitDataCtrl {
         }
     }
 }
-

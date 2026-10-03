@@ -168,9 +168,9 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSSysAIWorkerAgent, pSDataEntity);
             return;
@@ -180,9 +180,9 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
             PSSysAIFactory pSSysAIFactory = (PSSysAIFactory)iService.getDEModel().createEntity();
             pSSysAIFactory.set("PSSYSAIFACTORYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysAIFactory);
+                iService.getTemp(pSSysAIFactory);
             } else {
-                iService.get((IEntity)pSSysAIFactory);
+                iService.get(pSSysAIFactory);
             }
             this.onFillParentInfo_PSSysAIFactory(pSSysAIWorkerAgent, pSSysAIFactory);
             return;
@@ -192,14 +192,14 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
             PSSysSFPlugin pSSysSFPlugin = (PSSysSFPlugin)iService.getDEModel().createEntity();
             pSSysSFPlugin.set("PSSYSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPlugin);
+                iService.getTemp(pSSysSFPlugin);
             } else {
-                iService.get((IEntity)pSSysSFPlugin);
+                iService.get(pSSysSFPlugin);
             }
             this.onFillParentInfo_PSSysSFPlugin(pSSysAIWorkerAgent, pSSysSFPlugin);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysAIWorkerAgent, string, string2, string3);
+        super.onFillParentInfo(pSSysAIWorkerAgent, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -225,7 +225,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
         if (bl && pSSysAIWorkerAgent.getValidFlag() == null) {
             pSSysAIWorkerAgent.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysAIWorkerAgent, bl);
+        super.onFillEntityFullInfo(pSSysAIWorkerAgent, bl);
         this.onFillEntityFullInfo_PSDE(pSSysAIWorkerAgent, bl);
         this.onFillEntityFullInfo_PSSysAIFactory(pSSysAIWorkerAgent, bl);
         this.onFillEntityFullInfo_PSSysSFPlugin(pSSysAIWorkerAgent, bl);
@@ -251,7 +251,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
     }
 
     protected void onWriteBackParent(PSSysAIWorkerAgent pSSysAIWorkerAgent, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysAIWorkerAgent, bl);
+        super.onWriteBackParent(pSSysAIWorkerAgent, bl);
     }
 
     public ArrayList<PSSysAIWorkerAgent> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -330,8 +330,8 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
         ArrayList<PSSysAIWorkerAgent> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIWORKERAGENT_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSAIWORKERAGENT", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIWORKERAGENT_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSSYSAIWORKERAGENT", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -364,7 +364,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
         ArrayList<PSSysAIWorkerAgent> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSSysAIWorkerAgent pSSysAIWorkerAgent : arrayList) {
-            this.remove((IEntity)pSSysAIWorkerAgent);
+            this.remove(pSSysAIWorkerAgent);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -382,8 +382,8 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
         ArrayList<PSSysAIWorkerAgent> arrayList = this.selectByPSSysAIFactory(pSSysAIFactory, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSAIFACTORY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysAIFactory);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIWORKERAGENT_PSSYSAIFACTORY_PSSYSAIFACTORYID", "", iDataEntityModel.getName(), "PSSYSAIWORKERAGENT", iDataEntityModel.getDataInfo((IEntity)pSSysAIFactory), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysAIFactory);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIWORKERAGENT_PSSYSAIFACTORY_PSSYSAIFACTORYID", "", iDataEntityModel.getName(), "PSSYSAIWORKERAGENT", iDataEntityModel.getDataInfo(pSSysAIFactory), arrayList.get(0)));
         }
     }
 
@@ -416,7 +416,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
         ArrayList<PSSysAIWorkerAgent> arrayList = this.selectByPSSysAIFactory(pSSysAIFactory);
         this.onBeforeRemoveByPSSysAIFactory(pSSysAIFactory, arrayList);
         for (PSSysAIWorkerAgent pSSysAIWorkerAgent : arrayList) {
-            this.remove((IEntity)pSSysAIWorkerAgent);
+            this.remove(pSSysAIWorkerAgent);
         }
         this.onAfterRemoveByPSSysAIFactory(pSSysAIFactory, arrayList);
     }
@@ -434,8 +434,8 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
         ArrayList<PSSysAIWorkerAgent> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIWORKERAGENT_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSAIWORKERAGENT", iDataEntityModel.getDataInfo((IEntity)pSSysSFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSAIWORKERAGENT_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSAIWORKERAGENT", iDataEntityModel.getDataInfo(pSSysSFPlugin), arrayList.get(0)));
         }
     }
 
@@ -468,7 +468,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
         ArrayList<PSSysAIWorkerAgent> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin);
         this.onBeforeRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
         for (PSSysAIWorkerAgent pSSysAIWorkerAgent : arrayList) {
-            this.remove((IEntity)pSSysAIWorkerAgent);
+            this.remove(pSSysAIWorkerAgent);
         }
         this.onAfterRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
     }
@@ -495,7 +495,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
 
     protected void replaceParentInfo(PSSysAIWorkerAgent pSSysAIWorkerAgent, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysAIWorkerAgent, cloneSession);
+        super.replaceParentInfo(pSSysAIWorkerAgent, cloneSession);
         if (pSSysAIWorkerAgent.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSSysAIWorkerAgent.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSSysAIWorkerAgent, (PSDataEntity)iEntity);
         }
@@ -508,7 +508,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysAIWorkerAgent pSSysAIWorkerAgent, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysAIWorkerAgent, bl);
+        super.onRemoveEntityUncopyValues(pSSysAIWorkerAgent, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysAIWorkerAgent pSSysAIWorkerAgent, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -580,7 +580,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysAIWorkerAgent, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysAIWorkerAgent, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysAIWorkerAgent, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AgentInfo(boolean bl, PSSysAIWorkerAgent pSSysAIWorkerAgent, boolean bl2, boolean bl3) throws Exception {
@@ -593,7 +593,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AgentInfo_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_AgentInfo_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AGENTINFO");
@@ -615,7 +615,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIPlatformType_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_AIPlatformType_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AIPLATFORMTYPE");
@@ -637,7 +637,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIWorkerAgentParams_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_AIWorkerAgentParams_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AIWORKERAGENTPARAMS");
@@ -659,7 +659,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIWorkerAgentTag_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_AIWorkerAgentTag_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AIWORKERAGENTTAG");
@@ -681,7 +681,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIWorkerAgentTag2_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_AIWorkerAgentTag2_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AIWORKERAGENTTAG2");
@@ -706,7 +706,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AIWorkerAgentType_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_AIWorkerAgentType_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AIWORKERAGENTTYPE");
@@ -728,7 +728,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -767,7 +767,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CustomCode_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_CustomCode_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMCODE");
@@ -789,7 +789,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CustomMode_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string = this.onTestValueRule_CustomMode_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMMODE");
@@ -811,7 +811,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -833,7 +833,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -855,7 +855,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -877,7 +877,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIFactoryId_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIFactoryId_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAIFACTORYID");
@@ -902,7 +902,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIWorkerAgentId_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIWorkerAgentId_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAIWORKERAGENTID");
@@ -927,7 +927,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysAIWorkerAgentName_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysAIWorkerAgentName_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSAIWORKERAGENTNAME");
@@ -966,7 +966,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPluginId_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPluginId_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPLUGINID");
@@ -988,7 +988,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1010,7 +1010,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1032,7 +1032,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1054,7 +1054,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1076,7 +1076,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1101,7 +1101,7 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysAIWorkerAgent, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysAIWorkerAgent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1114,11 +1114,11 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
     }
 
     protected void onSyncEntity(PSSysAIWorkerAgent pSSysAIWorkerAgent, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysAIWorkerAgent, bl);
+        super.onSyncEntity(pSSysAIWorkerAgent, bl);
     }
 
     protected void onSyncIndexEntities(PSSysAIWorkerAgent pSSysAIWorkerAgent, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysAIWorkerAgent, bl);
+        super.onSyncIndexEntities(pSSysAIWorkerAgent, bl);
     }
 
     public Object getDataContextValue(PSSysAIWorkerAgent pSSysAIWorkerAgent, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1126,14 +1126,14 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysAIWorkerAgent, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysAIWorkerAgent, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysAIWorkerAgent pSSysAIWorkerAgent, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysAIWorkerAgent, arrayList, n);
+        super.onExportMajorModel(pSSysAIWorkerAgent, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1535,14 +1535,14 @@ extends PSCoreSysServiceBase<PSSysAIWorkerAgent> {
 
     protected boolean onMergeChild(String string, String string2, PSSysAIWorkerAgent pSSysAIWorkerAgent) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysAIWorkerAgent)) {
+        if (super.onMergeChild(string, string2, pSSysAIWorkerAgent)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysAIWorkerAgent pSSysAIWorkerAgent) throws Exception {
-        super.onUpdateParent((IEntity)pSSysAIWorkerAgent);
+        super.onUpdateParent(pSSysAIWorkerAgent);
     }
 
     @Override

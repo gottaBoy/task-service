@@ -1191,7 +1191,7 @@ implements Serializable {
                 PSRobotWork pSRobotWork = new PSRobotWork();
                 pSRobotWork.setPSRobotWorkId(this.getPSRobotWorkId());
                 PSRobotWorkService pSRobotWorkService = (PSRobotWorkService)ServiceGlobal.getService(PSRobotWorkService.class, (SessionFactory)this.getSessionFactory());
-                pSRobotWorkService.autoGet((IEntity)pSRobotWork);
+                pSRobotWorkService.autoGet(pSRobotWork);
                 this.psrobotwork = pSRobotWork;
             }
             return this.psrobotwork;

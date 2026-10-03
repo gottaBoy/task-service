@@ -129,14 +129,14 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
             PSSvrDomain pSSvrDomain = (PSSvrDomain)iService.getDEModel().createEntity();
             pSSvrDomain.set("PSSVRDOMAINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSvrDomain);
+                iService.getTemp(pSSvrDomain);
             } else {
-                iService.get((IEntity)pSSvrDomain);
+                iService.get(pSSvrDomain);
             }
             this.onFillParentInfo_PSSvrDomain(pSSearchEngineInst, pSSvrDomain);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSearchEngineInst, string, string2, string3);
+        super.onFillParentInfo(pSSearchEngineInst, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -152,7 +152,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSearchEngineInst, bl);
+        super.onFillEntityFullInfo(pSSearchEngineInst, bl);
         this.onFillEntityFullInfo_PSSvrDomain(pSSearchEngineInst, bl);
     }
 
@@ -160,7 +160,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
     }
 
     protected void onWriteBackParent(PSSearchEngineInst pSSearchEngineInst, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSearchEngineInst, bl);
+        super.onWriteBackParent(pSSearchEngineInst, bl);
     }
 
     public ArrayList<PSSearchEngineInst> selectByPSSvrDomain(PSSvrDomainBase pSSvrDomainBase) throws Exception {
@@ -191,8 +191,8 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
         ArrayList<PSSearchEngineInst> arrayList = this.selectByPSSvrDomain(pSSvrDomain, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSVRDOMAIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSvrDomain);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSEARCHENGINEINST_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSSEARCHENGINEINST", iDataEntityModel.getDataInfo((IEntity)pSSvrDomain), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSvrDomain);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSEARCHENGINEINST_PSSVRDOMAIN_PSSVRDOMAINID", "", iDataEntityModel.getName(), "PSSEARCHENGINEINST", iDataEntityModel.getDataInfo(pSSvrDomain), arrayList.get(0)));
         }
     }
 
@@ -225,7 +225,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
         ArrayList<PSSearchEngineInst> arrayList = this.selectByPSSvrDomain(pSSvrDomain);
         this.onBeforeRemoveByPSSvrDomain(pSSvrDomain, arrayList);
         for (PSSearchEngineInst pSSearchEngineInst : arrayList) {
-            this.remove((IEntity)pSSearchEngineInst);
+            this.remove(pSSearchEngineInst);
         }
         this.onAfterRemoveByPSSvrDomain(pSSvrDomain, arrayList);
     }
@@ -248,14 +248,14 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
 
     protected void replaceParentInfo(PSSearchEngineInst pSSearchEngineInst, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSearchEngineInst, cloneSession);
+        super.replaceParentInfo(pSSearchEngineInst, cloneSession);
         if (pSSearchEngineInst.getPSSvrDomainId() != null && (iEntity = cloneSession.getEntity("PSSVRDOMAIN", (Object)pSSearchEngineInst.getPSSvrDomainId())) != null) {
             this.onFillParentInfo_PSSvrDomain(pSSearchEngineInst, (PSSvrDomain)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSearchEngineInst pSSearchEngineInst, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSearchEngineInst, bl);
+        super.onRemoveEntityUncopyValues(pSSearchEngineInst, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSearchEngineInst pSSearchEngineInst, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -327,7 +327,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
         if ((entityFieldError = this.onCheckField_UserName(bl, pSSearchEngineInst, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSearchEngineInst, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSearchEngineInst, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ConnStr(boolean bl, PSSearchEngineInst pSSearchEngineInst, boolean bl2, boolean bl3) throws Exception {
@@ -343,7 +343,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ConnStr_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_ConnStr_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CONNSTR");
@@ -368,7 +368,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_InstState_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string = this.onTestValueRule_InstState_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("INSTSTATE");
@@ -393,7 +393,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_IpAddr_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_IpAddr_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IPADDR");
@@ -415,7 +415,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_LocalRes_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string = this.onTestValueRule_LocalRes_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOCALRES");
@@ -437,7 +437,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -459,7 +459,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_Param_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM");
@@ -481,7 +481,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param2_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_Param2_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM2");
@@ -503,7 +503,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param3_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_Param3_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM3");
@@ -525,7 +525,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Param4_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_Param4_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM4");
@@ -547,7 +547,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Param5_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string = this.onTestValueRule_Param5_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM5");
@@ -569,7 +569,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Param6_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string = this.onTestValueRule_Param6_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM6");
@@ -591,7 +591,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Param7_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string = this.onTestValueRule_Param7_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM7");
@@ -613,7 +613,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Param8_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string = this.onTestValueRule_Param8_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PARAM8");
@@ -638,7 +638,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Passwd_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_Passwd_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PASSWD");
@@ -663,7 +663,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_Port_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string = this.onTestValueRule_Port_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PORT");
@@ -688,7 +688,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSearchEngineInstId_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_PSSearchEngineInstId_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSEARCHENGINEINSTID");
@@ -713,7 +713,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSearchEngineInstName_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_PSSearchEngineInstName_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSEARCHENGINEINSTNAME");
@@ -735,7 +735,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSvrDomainId_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_PSSvrDomainId_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSVRDOMAINID");
@@ -757,7 +757,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefInfo_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_RefInfo_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFINFO");
@@ -779,7 +779,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_SearchEngineType_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_SearchEngineType_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("SEARCHENGINETYPE");
@@ -804,7 +804,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UsageMode_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_UsageMode_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USAGEMODE");
@@ -829,7 +829,7 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserName_Default((IEntity)pSSearchEngineInst, bl2, bl3);
+            string2 = this.onTestValueRule_UserName_Default(pSSearchEngineInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERNAME");
@@ -842,11 +842,11 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
     }
 
     protected void onSyncEntity(PSSearchEngineInst pSSearchEngineInst, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSearchEngineInst, bl);
+        super.onSyncEntity(pSSearchEngineInst, bl);
     }
 
     protected void onSyncIndexEntities(PSSearchEngineInst pSSearchEngineInst, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSearchEngineInst, bl);
+        super.onSyncIndexEntities(pSSearchEngineInst, bl);
     }
 
     public Object getDataContextValue(PSSearchEngineInst pSSearchEngineInst, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -854,14 +854,14 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSearchEngineInst, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSearchEngineInst, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSearchEngineInst pSSearchEngineInst, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSearchEngineInst, arrayList, n);
+        super.onExportMajorModel(pSSearchEngineInst, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1203,14 +1203,14 @@ extends PSCoreSysServiceBase<PSSearchEngineInst> {
 
     protected boolean onMergeChild(String string, String string2, PSSearchEngineInst pSSearchEngineInst) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSearchEngineInst)) {
+        if (super.onMergeChild(string, string2, pSSearchEngineInst)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSearchEngineInst pSSearchEngineInst) throws Exception {
-        super.onUpdateParent((IEntity)pSSearchEngineInst);
+        super.onUpdateParent(pSSearchEngineInst);
     }
 
     @Override

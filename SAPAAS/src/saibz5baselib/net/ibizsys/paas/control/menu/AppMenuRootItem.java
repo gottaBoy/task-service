@@ -1,55 +1,77 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.menu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.paas.control.menu.AppMenuItem;
-import net.ibizsys.paas.control.menu.IAppMenuItem;
+
 import net.ibizsys.paas.util.StringHelper;
 
-public class AppMenuRootItem
-extends AppMenuItem {
-    protected HashMap<String, AppMenuItem> appMenuItemMap = new HashMap();
+/**
+ * 应用菜单项根项
+ * 
+ * @author lionlau
+ *
+ */
+public class AppMenuRootItem extends AppMenuItem {
+	protected HashMap<String, AppMenuItem> appMenuItemMap = new HashMap<String, AppMenuItem>();
 
-    public AppMenuItem addItem(String strId, String strPId) throws Exception {
-        AppMenuItem appMenuItem = new AppMenuItem();
-        appMenuItem.setId(strId);
-        appMenuItem.setPId(strPId);
-        this.appMenuItemMap.put(strId, appMenuItem);
-        if (StringHelper.isNullOrEmpty(strPId)) {
-            this.getItems().add(appMenuItem);
-        } else {
-            AppMenuItem parentExpBarItem = this.appMenuItemMap.get(strPId);
-            if (parentExpBarItem == null) {
-                throw new Exception(StringHelper.format("\u65e0\u6cd5\u83b7\u53d6\u6307\u5b9a\u8282\u70b9\uff0c\u6807\u8bc6\u4e3a[%1$s]", strPId));
-            }
-            parentExpBarItem.getItems().add(appMenuItem);
-        }
-        return appMenuItem;
-    }
+	/**
+	 * 增加菜单项
+	 * 
+	 * @param strId 当前菜单项标识
+	 * @param strPId 父菜单项标识
+	 * @return
+	 * @throws Exception
+	 */
+	public AppMenuItem addItem(String strId, String strPId) throws Exception {
+		AppMenuItem appMenuItem = new AppMenuItem();
+		appMenuItem.setId(strId);
+		appMenuItem.setPId(strPId);
+		appMenuItemMap.put(strId, appMenuItem);
+		if (StringHelper.isNullOrEmpty(strPId)) {
+			this.getItems().add(appMenuItem);
 
-    public ArrayList<IAppMenuItem> getAllItems() {
-        ArrayList<IAppMenuItem> allItems = new ArrayList<IAppMenuItem>();
-        for (IAppMenuItem iExpBarItem : this.getItems()) {
-            allItems.add(iExpBarItem);
-            this.fillItems(iExpBarItem, allItems);
-        }
-        return allItems;
-    }
+		} else {
+			// 有父对象
+			AppMenuItem parentExpBarItem = appMenuItemMap.get(strPId);
+			if (parentExpBarItem == null) {
+				throw new Exception(StringHelper.format("无法获取指定节点，标识为[%1$s]", strPId));
+			}
 
-    protected void fillItems(IAppMenuItem appMenuItem, ArrayList<IAppMenuItem> allItems) {
-        if (appMenuItem.getItems() == null) {
-            return;
-        }
-        for (IAppMenuItem childItem : appMenuItem.getItems()) {
-            if (childItem instanceof AppMenuItem) {
-                ((AppMenuItem)childItem).setPId(appMenuItem.getId());
-            }
-            allItems.add(childItem);
-            this.fillItems(childItem, allItems);
-        }
-    }
+			parentExpBarItem.getItems().add(appMenuItem);
+		}
+
+		return appMenuItem;
+	}
+
+	/**
+	 * 获取全部子项集合
+	 * 
+	 * @return
+	 */
+	public ArrayList<IAppMenuItem> getAllItems() {
+		ArrayList<IAppMenuItem> allItems = new ArrayList<IAppMenuItem>();
+		for (IAppMenuItem iExpBarItem : this.getItems()) {
+			allItems.add(iExpBarItem);
+			fillItems(iExpBarItem, allItems);
+		}
+		return allItems;
+	}
+
+	/**
+	 * 填充子菜单项到列表中
+	 * 
+	 * @param appMenuItem
+	 * @param allItems
+	 */
+	protected void fillItems(IAppMenuItem appMenuItem, ArrayList<IAppMenuItem> allItems) {
+		if (appMenuItem.getItems() == null) return;
+
+		for (IAppMenuItem childItem : appMenuItem.getItems()) {
+			if (childItem instanceof AppMenuItem) {
+				((AppMenuItem) childItem).setPId(appMenuItem.getId());
+			}
+			allItems.add(childItem);
+			fillItems(childItem, allItems);
+		}
+	}
 }
-

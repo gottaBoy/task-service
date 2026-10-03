@@ -1,50 +1,65 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+
 import net.ibizsys.paas.util.StringHelper;
-import net.ibizsys.psba.core.BATableObjectModelBase;
-import net.ibizsys.psba.core.IBAColSetModel;
-import net.ibizsys.psba.core.IBAColumn;
-import net.ibizsys.psba.core.IBATable;
 
-public class BAColSetModel
-extends BATableObjectModelBase
-implements IBAColSetModel {
-    private ArrayList<IBAColumn> baColumnList = new ArrayList();
-    private HashMap<String, IBAColumn> baColumnMap = new HashMap();
+/**
+ * 大数据表列族模型对象
+ * 
+ * @author Administrator
+ *
+ */
+public class BAColSetModel extends BATableObjectModelBase implements IBAColSetModel {
 
-    public void init(IBATable iBATable) throws Exception {
-        this.setBATable(iBATable);
-        this.onInit();
-    }
+	private ArrayList<IBAColumn> baColumnList = new ArrayList<IBAColumn>();
+	private HashMap<String, IBAColumn> baColumnMap = new HashMap<String, IBAColumn>();
+	
+	/**
+	 * 初始化
+	 * 
+	 * @param iBATable
+	 * @throws Exception
+	 */
+	public void init(IBATable iBATable) throws Exception {
+		this.setBATable(iBATable);
+		this.onInit();
+	}
+	
+	
 
-    @Override
-    public void registerBAColumn(IBAColumn iBAColumn) throws Exception {
-        this.baColumnList.add(iBAColumn);
-        this.baColumnMap.put(iBAColumn.getId(), iBAColumn);
-        this.baColumnMap.put(iBAColumn.getName(), iBAColumn);
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.psba.core.IBAColSetModel#registerBAColumn(net.ibizsys.psba.core.IBAColumn)
+	 */
+	@Override
+	public void registerBAColumn(IBAColumn iBAColumn)  throws Exception {
+		this.baColumnList.add(iBAColumn);
+		this.baColumnMap.put(iBAColumn.getId(), iBAColumn);
+		this.baColumnMap.put(iBAColumn.getName(), iBAColumn);
+	}
 
-    @Override
-    public IBAColumn getBAColumn(String strBAColumnName) throws Exception {
-        IBAColumn iBAColumn = this.baColumnMap.get(strBAColumnName);
-        if (iBAColumn == null) {
-            throw new Exception(StringHelper.format("\u65e0\u6cd5\u83b7\u53d6\u5927\u6570\u636e\u8868\u5217[%1$s]", strBAColumnName));
-        }
-        return iBAColumn;
-    }
 
-    @Override
-    public Iterator<IBAColumn> getBAColumns() {
-        if (this.baColumnList == null || this.baColumnList.size() == 0) {
-            return null;
-        }
-        return this.baColumnList.iterator();
-    }
+	/* (non-Javadoc)
+	 * @see net.ibizsys.psba.core.IBAColSet#getBAColumn(java.lang.String)
+	 */
+	@Override
+	public IBAColumn getBAColumn(String strBAColumnName) throws Exception {
+		IBAColumn iBAColumn = baColumnMap.get(strBAColumnName);
+		if (iBAColumn == null) {
+			throw new Exception(StringHelper.format("无法获取大数据表列[%1$s]", strBAColumnName));
+		}
+		return iBAColumn;
+	}
+	
+
+	/* (non-Javadoc)
+	 * @see net.ibizsys.psba.core.IBAColSet#getBAColumns()
+	 */
+	@Override
+	public Iterator<IBAColumn> getBAColumns() {
+		if (this.baColumnList == null || this.baColumnList.size() == 0) return null;
+		return this.baColumnList.iterator();
+	}
 }
-

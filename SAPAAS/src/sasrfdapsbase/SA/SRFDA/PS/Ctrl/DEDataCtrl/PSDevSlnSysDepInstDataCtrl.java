@@ -112,11 +112,11 @@ extends PSDEDataCtrl {
         final PSDevSlnSysDepInst psDevSlnSysDepInst = new PSDevSlnSysDepInst();
         PSDEDataCtrl.convertEntity2(dataEntity, (IEntity)psDevSlnSysDepInst);
         final PSDevSlnSysDepInstService psDevSlnSysDepInstService = (PSDevSlnSysDepInstService)ServiceGlobal.getService(PSDevSlnSysDepInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        psDevSlnSysDepInstService.get((IEntity)psDevSlnSysDepInst);
+        psDevSlnSysDepInstService.get(psDevSlnSysDepInst);
         final PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
         psDevSlnSys.setPSDevSlnSysId(psDevSlnSysDepInst.getPSDevSlnSysId());
         final PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        psDevSlnSysService.get((IEntity)psDevSlnSys);
+        psDevSlnSysService.get(psDevSlnSys);
         if (DataObject.getIntegerValue((Object)psDevSlnSys.getDevSysState(), (Integer)30) != 30) {
             throw new Exception(StringHelper.Format((String)"\u5f00\u53d1\u7cfb\u7edf[%1$s]\u5f53\u524d\u72b6\u6001[%2$s]\uff0c\u65e0\u6cd5\u5efa\u7acb\u521b\u5efa\u90e8\u7f72\u5b9e\u4f8b\u4efb\u52a1", (Object)psDevSlnSys.getPSDevSlnSysName(), (Object)DevSysStateCodeListModel.getInstance().getCodeItem(psDevSlnSys.getDevSysState().toString()).getText()));
         }
@@ -128,7 +128,7 @@ extends PSDEDataCtrl {
         psDevSlnSys2.setCurAction("CREATEDEPINST");
         psDevSlnSys2.setActionOwner(StringHelper.Format((String)"%1$s|%2$s", (Object)psDevSlnSysDepInstService.getDEModel().getName(), (Object)psDevSlnSysDepInst.getPSDevSlnSysDepInstId()));
         EntityBase.setLastUpdateDate((IEntity)psDevSlnSys2, (Timestamp)psDevSlnSys.getUpdateDate());
-        psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, true);
+        psDevSlnSysService.sysUpdate(psDevSlnSys2, true);
         PSDCBKTaskService psDCBKTaskService = (PSDCBKTaskService)ServiceGlobal.getService(PSDCBKTaskService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDCBKTask psDCBKTask = new PSDCBKTask();
         psDCBKTask.setPSDevCenterId(psDevSlnSysDepInst.getPSDevCenterId());
@@ -142,7 +142,7 @@ extends PSDEDataCtrl {
         psDCBKTask.setTaskType("CREATEDEVSLNSYSDEPINST");
         psDCBKTask.setTaskParam(psDevSlnSysDepInst.getPSDevSlnSysId());
         psDCBKTask.setTaskParam2(psDevSlnSysDepInst.getPSDevSlnSysDepInstId());
-        psDCBKTaskService.create((IEntity)psDCBKTask);
+        psDCBKTaskService.create(psDCBKTask);
         final SA.SRFDA.PS.Data.PSDCBKTask psDCBKTask2 = new SA.SRFDA.PS.Data.PSDCBKTask();
         PSDEDataCtrl.convertEntity((IEntity)psDCBKTask, psDCBKTask2);
         SessionFactoryManager.getCurrentSFS().registerSFSAction(psDCBKTaskService.getRealSessionFactory(), new ISFSAction(){
@@ -157,7 +157,7 @@ extends PSDEDataCtrl {
                         psDevSlnSys2.reset();
                         psDevSlnSys2.setPSDevSlnSysId(psDevSlnSys.getPSDevSlnSysId());
                         psDevSlnSys2.setCurAction("NONE");
-                        psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, false);
+                        psDevSlnSysService.sysUpdate(psDevSlnSys2, false);
                     }
                     catch (Exception ex2) {
                         log.error((Object)ex2);
@@ -167,7 +167,7 @@ extends PSDEDataCtrl {
                         psDevSlnSysDepInst.reset();
                         psDevSlnSysDepInst.setPSDevSlnSysDepInstId(strPSDevSlnSysDepInstId);
                         psDevSlnSysDepInst.setBackupState(DBInstBStateCodeListModel.FAILED);
-                        psDevSlnSysDepInstService.sysUpdate((IEntity)psDevSlnSysDepInst, true);
+                        psDevSlnSysDepInstService.sysUpdate(psDevSlnSysDepInst, true);
                     }
                     catch (Exception ex2) {
                         log.error((Object)ex2);
@@ -210,4 +210,3 @@ extends PSDEDataCtrl {
         psDevSlnSysDepInstService.checkOutModel(psDevSlnSysDepInst);
     }
 }
-

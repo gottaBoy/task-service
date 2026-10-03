@@ -1,63 +1,9 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  SA.SRFDA.Ctrl.BaseDAQueryModelHelper
- *  SA.SRFDA.Ctrl.DEFHelper.IDEFHelper
- *  SA.SRFDA.Ctrl.DEFHelper.ILinkDEFHelper
- *  SA.SRFDA.Ctrl.Data.DERINDEX
- *  SA.SRFDA.Ctrl.Data.DataGrid
- *  SA.SRFDA.Ctrl.Data.GSRGroupColumn
- *  SA.SRFDA.Ctrl.Data.GSRMeasure
- *  SA.SRFDA.Ctrl.Data.GroupStatisticsRep
- *  SA.SRFDA.Ctrl.DefaultDAQueryModelUserContext
- *  SA.SRFDA.Ctrl.IDAQueryModelUserContext
- *  SA.SRFDA.Ctrl.IDEDataCtrl
- *  SA.SRFDA.Ctrl.IDEHelper
- *  SA.SRFDA.Model.DGModelBaseLogicConfig
- *  SA.SRFDA.Model.DGModelGroupLogicConfig
- *  SA.SRFDA.Model.QueryGroupItemConfig
- *  SA.SRFDA.Model.QueryGroupModelConfig
- *  SA.SRFDA.Model.SearchItemConfig
- *  SA.SRFDA.Model.SearchModelConfig
- *  SA.SRFDA.Web.ISRFDAWebContext
- *  SA.SRFDA.Web.SRFDAPage
- *  SA.SRFDA.Web.SRFDAWebContext
- *  SA.SRFDA.Web.Utility.DEDataImportTemplateHelper
- *  SA.SRFDA.Web.Utility.ISRFDAGlobalHelper
- *  SA.SRFDA.Web.Utility.ISRFDAPOLogger
- *  SA.SRFramework.Base.XMLConfig
- *  SA.SRFramework.Data.CallParam
- *  SA.SRFramework.Data.DBResult
- *  SA.SRFramework.Data.DataSet
- *  SA.SRFramework.Data.DataTable
- *  SA.SRFramework.Data.SelectResult
- *  SA.SRFramework.DataEx.BaseDataEntity
- *  SA.SRFramework.DataEx.CallResult
- *  SA.SRFramework.DataEx.DataEntityTable
- *  SA.SRFramework.Log.LoggerEx
- *  SA.SRFramework.Utility.DateParser
- *  SA.SRFramework.Utility.Helper
- *  SA.SRFramework.Utility.StringHelper
- *  SA.SRFramework.UtilityEx.StringBuilderEx
- *  SA.SRFramework.WebEx.ISRFExWebContext
- *  SA.SRFramework.WebEx.SRFExAjaxActionResult
- *  SA.SRFramework.WebEx.SRFExDataGrid
- *  SA.SRFramework.WebEx.SRFExDataGridActionHelper
- *  SA.SRFramework.WebEx.SRFExGridFetchResult
- *  SA.SRFramework.WebEx.SRFExWebContext
- *  SA.SRFramework.WebEx.UI.DataGridConfig
- *  SA.SRFramework.WebEx.UI.DataGridDSItemConfig
- *  SA.SRFramework.WebEx.UI.ItemParamConfig
- *  SA.SRFramework.WebEx.Utility.DataGridExcelReportHelper
- *  SA.SRFramework.WebEx.Utility.DataGridExcelReportHelperEx
- *  SA.SRFramework.WebEx.Utility.GridFetchResultHelper
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- */
 package SA.SRFDA.Report.Ctrl.DataGrid;
 
 import SA.SRFDA.Ctrl.BaseDAQueryModelHelper;
+import SA.SRFDA.Ctrl.DefaultDAQueryModelUserContext;
+import SA.SRFDA.Ctrl.IDEDataCtrl;
+import SA.SRFDA.Ctrl.IDEHelper;
 import SA.SRFDA.Ctrl.DEFHelper.IDEFHelper;
 import SA.SRFDA.Ctrl.DEFHelper.ILinkDEFHelper;
 import SA.SRFDA.Ctrl.Data.DERINDEX;
@@ -65,25 +11,18 @@ import SA.SRFDA.Ctrl.Data.DataGrid;
 import SA.SRFDA.Ctrl.Data.GSRGroupColumn;
 import SA.SRFDA.Ctrl.Data.GSRMeasure;
 import SA.SRFDA.Ctrl.Data.GroupStatisticsRep;
-import SA.SRFDA.Ctrl.DefaultDAQueryModelUserContext;
-import SA.SRFDA.Ctrl.IDAQueryModelUserContext;
-import SA.SRFDA.Ctrl.IDEDataCtrl;
-import SA.SRFDA.Ctrl.IDEHelper;
 import SA.SRFDA.Model.DGModelBaseLogicConfig;
 import SA.SRFDA.Model.DGModelGroupLogicConfig;
 import SA.SRFDA.Model.QueryGroupItemConfig;
 import SA.SRFDA.Model.QueryGroupModelConfig;
 import SA.SRFDA.Model.SearchItemConfig;
 import SA.SRFDA.Model.SearchModelConfig;
-import SA.SRFDA.Web.ISRFDAWebContext;
 import SA.SRFDA.Web.SRFDAPage;
 import SA.SRFDA.Web.SRFDAWebContext;
 import SA.SRFDA.Web.Utility.DEDataImportTemplateHelper;
-import SA.SRFDA.Web.Utility.ISRFDAGlobalHelper;
 import SA.SRFDA.Web.Utility.ISRFDAPOLogger;
 import SA.SRFramework.Base.XMLConfig;
 import SA.SRFramework.Data.CallParam;
-import SA.SRFramework.Data.DBResult;
 import SA.SRFramework.Data.DataSet;
 import SA.SRFramework.Data.DataTable;
 import SA.SRFramework.Data.SelectResult;
@@ -95,12 +34,10 @@ import SA.SRFramework.Utility.DateParser;
 import SA.SRFramework.Utility.Helper;
 import SA.SRFramework.Utility.StringHelper;
 import SA.SRFramework.UtilityEx.StringBuilderEx;
-import SA.SRFramework.WebEx.ISRFExWebContext;
 import SA.SRFramework.WebEx.SRFExAjaxActionResult;
 import SA.SRFramework.WebEx.SRFExDataGrid;
 import SA.SRFramework.WebEx.SRFExDataGridActionHelper;
 import SA.SRFramework.WebEx.SRFExGridFetchResult;
-import SA.SRFramework.WebEx.SRFExWebContext;
 import SA.SRFramework.WebEx.UI.DataGridConfig;
 import SA.SRFramework.WebEx.UI.DataGridDSItemConfig;
 import SA.SRFramework.WebEx.UI.ItemParamConfig;
@@ -109,1174 +46,1368 @@ import SA.SRFramework.WebEx.Utility.DataGridExcelReportHelperEx;
 import SA.SRFramework.WebEx.Utility.GridFetchResultHelper;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.Writer;
 import java.util.Date;
 import java.util.TreeMap;
 import java.util.Vector;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class GSRDataGridActionHelper
-extends SRFExDataGridActionHelper {
-    private static final Log log = LogFactory.getLog(GSRDataGridActionHelper.class);
-    protected DefaultDAQueryModelUserContext qmUserContext = null;
-    protected String strQueryKey = "";
-    protected GroupStatisticsRep groupStatisticsRep = null;
+public class GSRDataGridActionHelper extends SRFExDataGridActionHelper {
+   private static final Log log = LogFactory.getLog(GSRDataGridActionHelper.class);
+   protected DefaultDAQueryModelUserContext qmUserContext = null;
+   protected String strQueryKey = "";
+   protected GroupStatisticsRep groupStatisticsRep = null;
 
-    protected boolean OnBeforeProcess() {
-        return super.OnBeforeProcess();
-    }
+   @Override
+   protected boolean OnBeforeProcess() {
+      return super.OnBeforeProcess();
+   }
 
-    /*
-     * WARNING - void declaration
-     */
-    protected boolean OnFetchAction() {
-        void var17_34;
-        QueryGroupItemConfig queryGroupItemConfig;
-        SRFExGridFetchResult fetchResult = new SRFExGridFetchResult();
-        this.groupStatisticsRep = this.getGroupStatisticsRep();
-        if (this.groupStatisticsRep == null) {
-            log.error((Object)"\u65e0\u6cd5\u83b7\u53d6\u5206\u7ec4\u7edf\u8ba1\u62a5\u8868\u5bf9\u8c61");
-            fetchResult.setRetCode(1);
-            fetchResult.setErrorInfo("\u65e0\u6cd5\u83b7\u53d6\u5206\u7ec4\u7edf\u8ba1\u62a5\u8868\u5bf9\u8c61");
+   @Override
+   protected boolean OnFetchAction() {
+      SRFExGridFetchResult fetchResult = new SRFExGridFetchResult();
+      this.groupStatisticsRep = this.getGroupStatisticsRep();
+      if (this.groupStatisticsRep == null) {
+         log.error("无法获取分组统计报表对象");
+         fetchResult.setRetCode(1);
+         fetchResult.setErrorInfo("无法获取分组统计报表对象");
+         this.getPage().Output(fetchResult.ToJSONString());
+         return true;
+      }
+
+      BaseDAQueryModelHelper daQueryModelHelper = null;
+      String strQueryModel = this.groupStatisticsRep.getQUERYMODELID();
+      boolean bUserDP = this.OnGetUserDP();
+      if (!StringHelper.IsNullOrEmpty(strQueryModel)) {
+         if (bUserDP) {
+            daQueryModelHelper = this.getWebContext().GetUserQueryModelStorage().FindDAQueryModelHelper(strQueryModel);
+         } else {
+            daQueryModelHelper = this.getPage().getDAModelStorage().FindDAQueryModelHelper(strQueryModel);
+         }
+      } else if (bUserDP) {
+         daQueryModelHelper = this.getWebContext().GetUserQueryModelStorage().FindDAQueryModelHelper(this.getDEHelper(), "", false);
+      } else {
+         daQueryModelHelper = this.getPage().getDAModelStorage().getDAQueryModelHelper(this.getDEHelper());
+      }
+
+      this.strQueryKey = StringHelper.Format("QUERYMODEL[%1$s] USERDP[%2$s]", strQueryModel, bUserDP ? "TRUE" : "FALSE");
+      log.info(StringHelper.Format("表格查询 [%1$s]", strQueryModel));
+      if (daQueryModelHelper == null) {
+         fetchResult.setRetCode(1);
+         fetchResult.setErrorInfo("查询模型辅助对象无效");
+         log.error(fetchResult.getErrorInfo());
+         this.getPage().Output(fetchResult.ToJSONString());
+         return true;
+      }
+
+      this.qmUserContext = new DefaultDAQueryModelUserContext();
+      StringBuilderEx script = new StringBuilderEx();
+      String strQueryScript = this.GetDAModelQueryScript(daQueryModelHelper);
+      Vector<String> userConditions = new Vector<>();
+      String strGroupField = this.getWebContext().GetPostValue("srfgroupfield");
+      if (this.groupStatisticsRep.getENABLETIMEGROUP()) {
+         CallResult callResult = this.AppendTimeGroupSQL(
+            daQueryModelHelper,
+            this.groupStatisticsRep.getTIMEDEFIELDID(),
+            this.groupStatisticsRep.getBEGINTIMEARG(),
+            this.groupStatisticsRep.getENDTIMEARG(),
+            false,
+            strQueryScript,
+            userConditions,
+            strGroupField
+         );
+         if (callResult.IsError()) {
+            fetchResult.From(callResult);
+            log.error(fetchResult.getErrorInfo());
             this.getPage().Output(fetchResult.ToJSONString());
             return true;
-        }
-        BaseDAQueryModelHelper daQueryModelHelper = null;
-        String strQueryModel = this.groupStatisticsRep.getQUERYMODELID();
-        boolean bUserDP = this.OnGetUserDP();
-        daQueryModelHelper = !StringHelper.IsNullOrEmpty((String)strQueryModel) ? (bUserDP ? this.getWebContext().GetUserQueryModelStorage().FindDAQueryModelHelper(strQueryModel) : this.getPage().getDAModelStorage().FindDAQueryModelHelper(strQueryModel)) : (bUserDP ? this.getWebContext().GetUserQueryModelStorage().FindDAQueryModelHelper(this.getDEHelper(), "", false) : this.getPage().getDAModelStorage().getDAQueryModelHelper(this.getDEHelper()));
-        this.strQueryKey = StringHelper.Format((String)"QUERYMODEL[%1$s] USERDP[%2$s]", (Object)strQueryModel, (Object)(bUserDP ? "TRUE" : "FALSE"));
-        log.info((Object)StringHelper.Format((String)"\u8868\u683c\u67e5\u8be2 [%1$s]", (Object)strQueryModel));
-        if (daQueryModelHelper == null) {
-            fetchResult.setRetCode(1);
-            fetchResult.setErrorInfo("\u67e5\u8be2\u6a21\u578b\u8f85\u52a9\u5bf9\u8c61\u65e0\u6548");
-            log.error((Object)fetchResult.getErrorInfo());
-            this.getPage().Output(fetchResult.ToJSONString());
-            return true;
-        }
-        this.qmUserContext = new DefaultDAQueryModelUserContext();
-        StringBuilderEx script = new StringBuilderEx();
-        String strQueryScript = this.GetDAModelQueryScript(daQueryModelHelper);
-        Vector<String> userConditions = new Vector<String>();
-        String strGroupField = this.getWebContext().GetPostValue("srfgroupfield");
-        if (this.groupStatisticsRep.getENABLETIMEGROUP()) {
-            CallResult callResult = this.AppendTimeGroupSQL(daQueryModelHelper, this.groupStatisticsRep.getTIMEDEFIELDID(), this.groupStatisticsRep.getBEGINTIMEARG(), this.groupStatisticsRep.getENDTIMEARG(), false, strQueryScript, userConditions, strGroupField);
-            if (callResult.IsError()) {
-                fetchResult.From(callResult);
-                log.error((Object)fetchResult.getErrorInfo());
-                this.getPage().Output(fetchResult.ToJSONString());
-                return true;
+         }
+
+         strQueryScript = (String)callResult.getUserObject();
+      } else {
+         for (GSRGroupColumn groupColumn : this.groupStatisticsRep.getGroupColumns()) {
+            if (StringHelper.Compare(groupColumn.getDEFIELDNAME(), strGroupField, true) == 0) {
+               if (groupColumn.getENABLETIMEGROUP()) {
+                  CallResult callResult = this.AppendTimeGroupSQL(
+                     daQueryModelHelper, groupColumn.getDEFIELDID(), "", "", true, strQueryScript, userConditions, groupColumn.getTIMEGROUPTYPE()
+                  );
+                  if (callResult.IsError()) {
+                     fetchResult.From(callResult);
+                     log.error(fetchResult.getErrorInfo());
+                     this.getPage().Output(fetchResult.ToJSONString());
+                     return true;
+                  }
+
+                  strQueryScript = (String)callResult.getUserObject();
+               }
+               break;
             }
-            strQueryScript = (String)callResult.getUserObject();
-        } else {
-            for (GSRGroupColumn groupColumn : this.groupStatisticsRep.getGroupColumns()) {
-                if (StringHelper.Compare((String)groupColumn.getDEFIELDNAME(), (String)strGroupField, (boolean)true) != 0) continue;
-                if (!groupColumn.getENABLETIMEGROUP()) break;
-                CallResult callResult = this.AppendTimeGroupSQL(daQueryModelHelper, groupColumn.getDEFIELDID(), "", "", true, strQueryScript, userConditions, groupColumn.getTIMEGROUPTYPE());
-                if (callResult.IsError()) {
-                    fetchResult.From(callResult);
-                    log.error((Object)fetchResult.getErrorInfo());
-                    this.getPage().Output(fetchResult.ToJSONString());
-                    return true;
-                }
-                strQueryScript = (String)callResult.getUserObject();
-                break;
-            }
-        }
-        script.Append(strQueryScript);
-        daQueryModelHelper.FillMajorConditions(userConditions);
-        this.FillDAQueryModelHelperCondition(userConditions, daQueryModelHelper);
-        if (userConditions.size() != 0) {
-            script.Append(" WHERE ");
-            boolean bFirst = true;
-            for (String strCondition : userConditions) {
-                if (bFirst) {
-                    bFirst = false;
-                } else {
-                    script.Append(" AND ");
-                }
-                script.Append("(%1$s)", (Object)strCondition);
-            }
-        }
-        Vector dynamicTables = null;
-        boolean bDynamicMode = false;
-        if (StringHelper.Compare((String)this.getDEHelper().getDataEntity().getSTORAGETYPE(), (String)"DYNAMIC", (boolean)true) == 0) {
-            String strTime2;
-            bDynamicMode = true;
-            String strTimeFrom = this.getDEHelper().GetProperty("DYNAMICFROM");
-            String strTimeTo = this.getDEHelper().GetProperty("DYNAMICTO");
-            String strTime1 = this.getPage().getRequest().getParameter(strTimeFrom.toLowerCase());
-            if (strTime1 == null) {
-                strTime1 = this.getWebContext().GetParamValue(strTimeFrom.toUpperCase());
-            }
-            if ((strTime2 = this.getPage().getRequest().getParameter(strTimeTo.toLowerCase())) == null) {
-                strTime2 = this.getWebContext().GetParamValue(strTimeTo.toUpperCase());
-            }
-            if (StringHelper.IsNullOrEmpty((String)strTime1) || StringHelper.IsNullOrEmpty((String)strTime2)) {
-                log.error((Object)"\u6ca1\u6709\u6307\u5b9a\u5f00\u59cb\u6216\u7ed3\u675f\u65f6\u95f4");
-                fetchResult.setRetCode(1);
-                fetchResult.setErrorInfo("\u6ca1\u6709\u6307\u5b9a\u5f00\u59cb\u6216\u7ed3\u675f\u65f6\u95f4");
-                this.getPage().Output(fetchResult.ToJSONString());
-                return true;
-            }
-            try {
-                Date startDate = DateParser.Parse((String)strTime1);
-                Date endDate = DateParser.Parse((String)strTime2);
-                dynamicTables = new Vector();
-                CallResult callResult = this.getDEHelper().GetDynamicTables(startDate, endDate, dynamicTables);
-                if (callResult.IsError()) {
-                    fetchResult.setRetCode(1);
-                    fetchResult.setErrorInfo(callResult.getErrorInfo());
-                    this.getPage().Output(fetchResult.ToJSONString());
-                    return true;
-                }
-            }
-            catch (Exception e) {
-                log.error((Object)e);
-                fetchResult.setRetCode(1);
-                fetchResult.setErrorInfo(e.getMessage());
-                this.getPage().Output(fetchResult.ToJSONString());
-                return true;
-            }
-        }
-        String strSortParam = "";
-        String strSortDirection = "";
-        strSortParam = this.getPage().getRequest().getParameter("sort");
-        String strRealSortParam = this.getPage().getRequest().getParameter("realsort");
-        if (StringHelper.Length((String)strRealSortParam) > 0) {
-            strSortParam = strRealSortParam;
-        }
-        strSortDirection = this.getPage().getRequest().getParameter("dir");
-        QueryGroupModelConfig queryGroupModelConfig = new QueryGroupModelConfig();
-        String strGroupCond = this.groupStatisticsRep.getGROUPCOND();
-        if (!this.groupStatisticsRep.getENABLETIMEGROUP()) {
-            String strTopN = this.getPage().getRequest().getParameter("srftopn");
-            if (StringHelper.IsNullOrEmpty((String)strTopN)) {
-                queryGroupModelConfig.setTopCount(100);
+         }
+      }
+
+      script.Append(strQueryScript);
+      daQueryModelHelper.FillMajorConditions(userConditions);
+      this.FillDAQueryModelHelperCondition(userConditions, daQueryModelHelper);
+      if (userConditions.size() != 0) {
+         script.Append(" WHERE ");
+         boolean bFirst = true;
+
+         for (String strCondition : userConditions) {
+            if (bFirst) {
+               bFirst = false;
             } else {
-                int n;
-                int n2 = Integer.parseInt(strTopN);
-                if (n2 <= 0) {
-                    n = 100;
-                }
-                queryGroupModelConfig.setTopCount(n);
+               script.Append(" AND ");
             }
-            if (!StringHelper.IsNullOrEmpty((String)strGroupField)) {
-                for (GSRGroupColumn gSRGroupColumn : this.groupStatisticsRep.getGroupColumns()) {
-                    if (StringHelper.Compare((String)gSRGroupColumn.getDEFIELDNAME(), (String)strGroupField, (boolean)true) == 0) {
-                        if (!gSRGroupColumn.getENABLETIMEGROUP()) {
-                            queryGroupItemConfig = new QueryGroupItemConfig();
-                            queryGroupItemConfig.setAlias(gSRGroupColumn.getDEFIELDNAME());
-                            queryGroupItemConfig.setDEFields(gSRGroupColumn.getDEFIELDNAME());
-                            queryGroupItemConfig.setIsGroup(true);
-                            if (StringHelper.Compare((String)strSortParam, (String)gSRGroupColumn.getDEFIELDNAME(), (boolean)true) == 0) {
-                                queryGroupItemConfig.setOrder(0);
-                                queryGroupItemConfig.setOrderDirection(strSortDirection);
-                            }
-                            queryGroupModelConfig.add((Object)queryGroupItemConfig);
-                            if (!StringHelper.IsNullOrEmpty((String)gSRGroupColumn.getCOND())) {
-                                if (!StringHelper.IsNullOrEmpty((String)strGroupCond)) {
-                                    strGroupCond = String.valueOf(strGroupCond) + " AND ";
-                                }
-                                strGroupCond = String.valueOf(strGroupCond) + gSRGroupColumn.getCOND();
-                            }
-                            if (StringHelper.IsNullOrEmpty((String)gSRGroupColumn.getNAMEDEFNAME())) continue;
-                            queryGroupItemConfig = new QueryGroupItemConfig();
-                            queryGroupItemConfig.setAlias(gSRGroupColumn.getNAMEDEFNAME());
-                            queryGroupItemConfig.setDEFields(gSRGroupColumn.getNAMEDEFNAME());
-                            queryGroupItemConfig.setIsGroup(true);
-                            if (StringHelper.Compare((String)strSortParam, (String)gSRGroupColumn.getNAMEDEFNAME(), (boolean)true) == 0) {
-                                queryGroupItemConfig.setOrder(0);
-                                queryGroupItemConfig.setOrderDirection(strSortDirection);
-                            }
-                            queryGroupModelConfig.add((Object)queryGroupItemConfig);
-                            continue;
-                        }
-                        String strTDSortParam = "";
-                        if (StringHelper.Compare((String)strSortParam, (String)gSRGroupColumn.getDEFIELDNAME(), (boolean)true) == 0) {
-                            strTDSortParam = "srftdid";
-                        }
-                        Vector<String> groupParams = new Vector<String>();
-                        groupParams.add("srftdid");
-                        groupParams.add("srftdname");
-                        groupParams.add("srftdfrom");
-                        groupParams.add("srftdto");
-                        for (String strGroupName : groupParams) {
-                            QueryGroupItemConfig queryGroupItemConfig2 = new QueryGroupItemConfig();
-                            if (StringHelper.Compare((String)strGroupName, (String)"srftdname", (boolean)true) == 0) {
-                                queryGroupItemConfig2.setAlias(gSRGroupColumn.getDEFIELDNAME());
-                            } else {
-                                queryGroupItemConfig2.setAlias(strGroupName);
-                            }
-                            queryGroupItemConfig2.setDEFields(strGroupName);
-                            queryGroupItemConfig2.setIsGroup(true);
-                            if (StringHelper.Compare((String)strTDSortParam, (String)strGroupName, (boolean)true) == 0) {
-                                queryGroupItemConfig2.setOrder(0);
-                                queryGroupItemConfig2.setOrderDirection(strSortDirection);
-                            }
-                            queryGroupModelConfig.add((Object)queryGroupItemConfig2);
-                        }
-                        continue;
-                    }
-                    if (!gSRGroupColumn.getDEFAULTGROUP() && gSRGroupColumn.getORDERFLAG() != -1) continue;
-                    queryGroupItemConfig = new QueryGroupItemConfig();
-                    queryGroupItemConfig.setAlias(gSRGroupColumn.getDEFIELDNAME());
-                    queryGroupItemConfig.setDEFields(gSRGroupColumn.getDEFIELDNAME());
-                    queryGroupItemConfig.setIsGroup(true);
-                    if (StringHelper.Compare((String)strSortParam, (String)gSRGroupColumn.getDEFIELDNAME(), (boolean)true) == 0) {
+
+            script.Append("(%1$s)", strCondition);
+         }
+      }
+
+      Vector<String> dynamicTables = null;
+      boolean bDynamicMode = false;
+      if (StringHelper.Compare(this.getDEHelper().getDataEntity().getSTORAGETYPE(), "DYNAMIC", true) == 0) {
+         bDynamicMode = true;
+         String strTimeFrom = this.getDEHelper().GetProperty("DYNAMICFROM");
+         String strTimeTo = this.getDEHelper().GetProperty("DYNAMICTO");
+         String strTime1 = this.getPage().getRequest().getParameter(strTimeFrom.toLowerCase());
+         if (strTime1 == null) {
+            strTime1 = this.getWebContext().GetParamValue(strTimeFrom.toUpperCase());
+         }
+
+         String strTime2 = this.getPage().getRequest().getParameter(strTimeTo.toLowerCase());
+         if (strTime2 == null) {
+            strTime2 = this.getWebContext().GetParamValue(strTimeTo.toUpperCase());
+         }
+
+         if (StringHelper.IsNullOrEmpty(strTime1) || StringHelper.IsNullOrEmpty(strTime2)) {
+            log.error("没有指定开始或结束时间");
+            fetchResult.setRetCode(1);
+            fetchResult.setErrorInfo("没有指定开始或结束时间");
+            this.getPage().Output(fetchResult.ToJSONString());
+            return true;
+         }
+
+         try {
+            Date startDate = DateParser.Parse(strTime1);
+            Date endDate = DateParser.Parse(strTime2);
+            dynamicTables = new Vector<>();
+            CallResult callResult = this.getDEHelper().GetDynamicTables(startDate, endDate, dynamicTables);
+            if (callResult.IsError()) {
+               fetchResult.setRetCode(1);
+               fetchResult.setErrorInfo(callResult.getErrorInfo());
+               this.getPage().Output(fetchResult.ToJSONString());
+               return true;
+            }
+         } catch (Exception e) {
+            log.error(e);
+            fetchResult.setRetCode(1);
+            fetchResult.setErrorInfo(e.getMessage());
+            this.getPage().Output(fetchResult.ToJSONString());
+            return true;
+         }
+      }
+
+      String strSortParam = "";
+      String strSortDirection = "";
+      strSortParam = this.getPage().getRequest().getParameter("sort");
+      String strRealSortParam = this.getPage().getRequest().getParameter("realsort");
+      if (StringHelper.Length(strRealSortParam) > 0) {
+         strSortParam = strRealSortParam;
+      }
+
+      strSortDirection = this.getPage().getRequest().getParameter("dir");
+      QueryGroupModelConfig queryGroupModelConfig = new QueryGroupModelConfig();
+      String strGroupCond = this.groupStatisticsRep.getGROUPCOND();
+      if (!this.groupStatisticsRep.getENABLETIMEGROUP()) {
+         String strTopN = this.getPage().getRequest().getParameter("srftopn");
+         if (StringHelper.IsNullOrEmpty(strTopN)) {
+            queryGroupModelConfig.setTopCount(100);
+         } else {
+            int nInt = Integer.parseInt(strTopN);
+            if (nInt <= 0) {
+               nInt = 100;
+            }
+
+            queryGroupModelConfig.setTopCount(nInt);
+         }
+
+         if (!StringHelper.IsNullOrEmpty(strGroupField)) {
+            for (GSRGroupColumn groupColumn : this.groupStatisticsRep.getGroupColumns()) {
+               if (StringHelper.Compare(groupColumn.getDEFIELDNAME(), strGroupField, true) == 0) {
+                  if (!groupColumn.getENABLETIMEGROUP()) {
+                     QueryGroupItemConfig queryGroupItemConfig = new QueryGroupItemConfig();
+                     queryGroupItemConfig.setAlias(groupColumn.getDEFIELDNAME());
+                     queryGroupItemConfig.setDEFields(groupColumn.getDEFIELDNAME());
+                     queryGroupItemConfig.setIsGroup(true);
+                     if (StringHelper.Compare(strSortParam, groupColumn.getDEFIELDNAME(), true) == 0) {
                         queryGroupItemConfig.setOrder(0);
                         queryGroupItemConfig.setOrderDirection(strSortDirection);
-                    }
-                    queryGroupModelConfig.add((Object)queryGroupItemConfig);
-                }
-            }
-        } else {
-            Vector<String> groupParams = new Vector<String>();
-            groupParams.add("srftdid");
-            groupParams.add("srftdname");
-            groupParams.add("srftdfrom");
-            groupParams.add("srftdto");
-            for (String string : groupParams) {
-                queryGroupItemConfig = new QueryGroupItemConfig();
-                queryGroupItemConfig.setAlias(string);
-                queryGroupItemConfig.setDEFields(string);
-                queryGroupItemConfig.setIsGroup(true);
-                if (StringHelper.Compare((String)strSortParam, (String)string, (boolean)true) == 0) {
-                    queryGroupItemConfig.setOrder(0);
-                    queryGroupItemConfig.setOrderDirection(strSortDirection);
-                }
-                queryGroupModelConfig.add((Object)queryGroupItemConfig);
-            }
-        }
-        queryGroupModelConfig.setGroupCond(strGroupCond);
-        for (GSRMeasure gsrMeasure : this.groupStatisticsRep.getMeasures()) {
-            QueryGroupItemConfig queryGroupItemConfig3 = new QueryGroupItemConfig();
-            queryGroupItemConfig3.setAlias(gsrMeasure.getEXPALIAS());
-            queryGroupItemConfig3.setFormular(gsrMeasure.getEXPRESSION());
-            queryGroupItemConfig3.setIsGroup(false);
-            queryGroupItemConfig3.setReCalc(gsrMeasure.getRECALCFLAG());
-            if (StringHelper.Compare((String)strSortParam, (String)gsrMeasure.getEXPALIAS(), (boolean)true) == 0) {
-                queryGroupItemConfig3.setOrder(0);
-                queryGroupItemConfig3.setOrderDirection(strSortDirection);
-            }
-            queryGroupModelConfig.add((Object)queryGroupItemConfig3);
-        }
-        Vector<CallParam> params = new Vector<CallParam>();
-        daQueryModelHelper.FillQMDeclareParams(params, (ISRFDAWebContext)this.getWebContext(), (ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), "");
-        String string = daQueryModelHelper.GetGroupSQL(script.toString(), queryGroupModelConfig, params, (ISRFDAWebContext)this.getWebContext(), (ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), "", null);
-        daQueryModelHelper.FillCallParams(params, (ISRFDAWebContext)this.getWebContext(), (ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), "");
-        String string3 = String.valueOf(daQueryModelHelper.GetQMDeclareScript()) + string;
-        string3 = daQueryModelHelper.ReplaceURLParamMacro(string3, (ISRFExWebContext)this.getWebContext());
-        if (bDynamicMode) {
-            String string4 = daQueryModelHelper.ReplaceDynamicTableMacro(string3, dynamicTables);
-        }
-        this.SelectAndFillFetchResult((String)var17_34, params, fetchResult);
-        this.getPage().Output(fetchResult.ToJSONString());
-        return true;
-    }
+                     }
 
-    protected String OnGetAdditionalQueryModel() {
-        return this.getPage().getPageParam("PAGE.DATAGRID.QUERYMODEL", "");
-    }
-
-    protected boolean OnGetNoDefQuery() {
-        return this.getPage().getPageParam("PAGE.DATAGRID.NODEFQUERY", false);
-    }
-
-    protected String GetDAModelQueryScript(BaseDAQueryModelHelper daQueryModelHelper) {
-        return daQueryModelHelper.GetQueryModelScript();
-    }
-
-    protected boolean OnGetUserDP() {
-        if (StringHelper.Compare((String)this.getWebContext().getCurUserId(), (String)"SYSTEM", (boolean)true) == 0) {
-            return false;
-        }
-        return this.getPage().getPageParam("PAGE.DATAGRID.USERDP", true);
-    }
-
-    protected CallResult OnSaveActionBeforeInsert(BaseDataEntity dataEntity) {
-        CallResult callResult = this.OnTestDataAction(dataEntity, "CREATE");
-        if (callResult.getRetCode() != 0) {
-            return callResult;
-        }
-        return this.getDEDataCtrl().TestDataLock(dataEntity, this.GetDataLockKey(dataEntity));
-    }
-
-    protected String OnGetDGUpdateMode() {
-        return this.getPage().getPageParam("PAGE.DATAGRID.UPDATEMODE", "DEFAULT");
-    }
-
-    protected String OnGetDGInsertMode() {
-        return this.getPage().getPageParam("PAGE.DATAGRID.INSERTMODE", "DEFAULT");
-    }
-
-    protected CallResult OnSaveActionBeforeUpdate(BaseDataEntity dataEntity) {
-        CallResult callResult;
-        String strAction = this.OnGetDGUpdateMode();
-        if (StringHelper.IsNullOrEmpty((String)strAction)) {
-            strAction = "DEFAULT";
-        }
-        if (StringHelper.IsNullOrEmpty((String)strAction) || StringHelper.Compare((String)strAction, (String)"DEFAULT", (boolean)true) == 0) {
-            strAction = "UPDATE";
-        }
-        if ((callResult = this.OnTestDataAction(dataEntity, strAction)).getRetCode() != 0) {
-            return callResult;
-        }
-        return this.getDEDataCtrl().TestDataLock(dataEntity, this.GetDataLockKey(dataEntity));
-    }
-
-    protected CallResult OnTestDataAction(BaseDataEntity dataEntity, String strAction) {
-        return this.OnTestDataAction(this.getDEHelper(), dataEntity, strAction);
-    }
-
-    protected CallResult OnTestDataAction(IDEHelper iDEHelper, BaseDataEntity dataEntity, String strAction) {
-        return iDEHelper.GetDataAccHelper().Test((ISRFDAWebContext)this.getWebContext(), dataEntity, strAction);
-    }
-
-    protected void FillAdditionalDPCode(TreeMap<String, String> codeSets) {
-    }
-
-    protected void FillDAQueryModelHelperCondition(Vector<String> userConditions, BaseDAQueryModelHelper daQueryModelHelper) {
-        this.FillSearchFormCondition(userConditions, daQueryModelHelper);
-        this.FillURLCondition(userConditions, daQueryModelHelper);
-    }
-
-    protected void FillPickupModeCondition(Vector<String> userConditions, BaseDAQueryModelHelper daQueryModelHelper) {
-    }
-
-    protected boolean FillURLCondition(BaseDataEntity userConditions) {
-        String strDERID = this.getWebContext().getSRFDERID();
-        if (!StringHelper.IsNullOrEmpty((String)strDERID)) {
-            ILinkDEFHelper pickupDEFHelper = null;
-            for (IDEFHelper iDEFHelper : this.getDEHelper().GetDEFHelpers()) {
-                ILinkDEFHelper linkDEFHelper;
-                if (!iDEFHelper.IsLinkDEField() || StringHelper.Compare((String)(linkDEFHelper = (ILinkDEFHelper)iDEFHelper).GetDERId(), (String)strDERID, (boolean)true) != 0 || StringHelper.Compare((String)linkDEFHelper.GetDataType(), (String)"PICKUP", (boolean)true) != 0) continue;
-                pickupDEFHelper = linkDEFHelper;
-                break;
-            }
-            if (pickupDEFHelper == null) {
-                return false;
-            }
-            String strValue = "";
-            String strParamName = "";
-            String strDERIndexId = this.getWebContext().getSRFDERINDEXID();
-            if (!StringHelper.IsNullOrEmpty((String)strDERIndexId)) {
-                DERINDEX derIndex = new DERINDEX();
-                CallResult callResult = this.getPage().getDAModelHelper().GetDERINDEX(strDERIndexId, derIndex);
-                if (callResult.getRetCode() != 0) {
-                    log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53\u7d22\u5f15\u5173\u7cfb[%1$s]\u5931\u8d25\uff0c%2$s", (Object)strDERIndexId, (Object)callResult.getErrorInfo()));
-                } else {
-                    IDEHelper iDEHelper = this.getPage().getDAModelStorage().FindDEHelper(derIndex.getDEID());
-                    if (iDEHelper == null) {
-                        log.error((Object)StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u8f85\u52a9\u5bf9\u8c61", (Object)derIndex.getDEID()));
-                    } else {
-                        strParamName = iDEHelper.GetKeyDEFHelper().getName();
-                    }
-                }
-            } else {
-                strParamName = pickupDEFHelper.GetRelatedDEFHelper().getName();
-            }
-            strValue = this.getWebContext().GetPostValue(strParamName);
-            if (StringHelper.IsNullOrEmpty((String)strValue)) {
-                strValue = this.getWebContext().GetParamValue(strParamName);
-            }
-            if (strValue != null) {
-                strValue = strValue.trim();
-            }
-            if (StringHelper.IsNullOrEmpty((String)strValue)) {
-                strValue = "NA";
-            }
-            userConditions.SetParamValue("PTEMPKEYVALUE", (Object)strValue);
-            userConditions.SetParamValue("PDEID", (Object)pickupDEFHelper.GetRealDEFHelper().getDEHelper().getId());
-            return true;
-        }
-        return false;
-    }
-
-    protected void FillURLCondition(Vector<String> userConditions, BaseDAQueryModelHelper daQueryModelHelper) {
-        String strDERID = this.getWebContext().getSRFDERID();
-        if (!StringHelper.IsNullOrEmpty((String)strDERID)) {
-            String strCondition;
-            ILinkDEFHelper pickupDEFHelper = null;
-            for (IDEFHelper iDEFHelper : this.getDEHelper().GetDEFHelpers()) {
-                ILinkDEFHelper linkDEFHelper;
-                if (!iDEFHelper.IsLinkDEField() || StringHelper.Compare((String)(linkDEFHelper = (ILinkDEFHelper)iDEFHelper).GetDERId(), (String)strDERID, (boolean)true) != 0 || StringHelper.Compare((String)linkDEFHelper.GetDataType(), (String)"PICKUP", (boolean)true) != 0) continue;
-                pickupDEFHelper = linkDEFHelper;
-                break;
-            }
-            if (pickupDEFHelper == null) {
-                return;
-            }
-            String strValue = "";
-            String strParamName = "";
-            String strDERIndexId = this.getWebContext().getSRFDERINDEXID();
-            if (!StringHelper.IsNullOrEmpty((String)strDERIndexId)) {
-                DERINDEX derIndex = new DERINDEX();
-                CallResult callResult = this.getPage().getDAModelHelper().GetDERINDEX(strDERIndexId, derIndex);
-                if (callResult.getRetCode() != 0) {
-                    log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u5b9e\u4f53\u7d22\u5f15\u5173\u7cfb[%1$s]\u5931\u8d25\uff0c%2$s", (Object)strDERIndexId, (Object)callResult.getErrorInfo()));
-                } else {
-                    IDEHelper iDEHelper = this.getPage().getDAModelStorage().FindDEHelper(derIndex.getDEID());
-                    if (iDEHelper == null) {
-                        log.error((Object)StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u8f85\u52a9\u5bf9\u8c61", (Object)derIndex.getDEID()));
-                    } else {
-                        strParamName = iDEHelper.GetKeyDEFHelper().getName();
-                    }
-                }
-            } else {
-                strParamName = pickupDEFHelper.GetRelatedDEFHelper().getName();
-            }
-            strValue = this.getWebContext().GetPostValue(strParamName);
-            if (StringHelper.IsNullOrEmpty((String)strValue)) {
-                strValue = this.getWebContext().GetParamValue(strParamName);
-            }
-            if (strValue != null) {
-                strValue = strValue.trim();
-            }
-            if (StringHelper.IsNullOrEmpty((String)strValue)) {
-                strValue = "NA";
-            }
-            if (!StringHelper.IsNullOrEmpty((String)(strCondition = daQueryModelHelper.GetConditionSQL((IDAQueryModelUserContext)this.qmUserContext, (IDEFHelper)pickupDEFHelper, "", "=", strValue)))) {
-                userConditions.add(strCondition);
-            }
-        }
-    }
-
-    protected void FillSearchFormCondition(Vector<String> userConditions, BaseDAQueryModelHelper daQueryModelHelper) {
-        this.FillSearchFormCSMCondition(userConditions, daQueryModelHelper);
-        String strFilter = this.getWebContext().getSRFFILTER();
-        TreeMap<String, String> filterMap = null;
-        if (!StringHelper.IsNullOrEmpty((String)strFilter)) {
-            filterMap = new TreeMap<String, String>();
-            String[] parts = strFilter.split("[;]");
-            int i = 0;
-            while (i < parts.length) {
-                String[] params;
-                String strPart = parts[i];
-                if (!StringHelper.IsNullOrEmpty((String)strPart) && (params = strPart.split("[|]")).length >= 2) {
-                    filterMap.put(params[0].toUpperCase(), params[1].toUpperCase());
-                }
-                ++i;
-            }
-        }
-        for (IDEFHelper iDEFHelper : this.getDEHelper().GetDEFHelpers()) {
-            SearchModelConfig searchModelConfig = iDEFHelper.GetSearchModel();
-            if (searchModelConfig == null) continue;
-            for (SearchItemConfig searchItemConfig : searchModelConfig) {
-                String strCondition;
-                if (!iDEFHelper.IsSupportSearchAction(searchItemConfig)) continue;
-                String strFormItemId = this.getWebContext().getGlobalHelper().getDAFormItemHelper().GetSearchFormItemId(iDEFHelper, searchItemConfig);
-                String strValue = this.getPage().getRequest().getParameter(strFormItemId.toLowerCase());
-                if (strValue == null && StringHelper.IsNullOrEmpty((String)(strValue = this.getWebContext().GetParamValue(strFormItemId.toUpperCase()))) && (filterMap == null || !filterMap.containsKey(strFormItemId.toUpperCase()) || StringHelper.IsNullOrEmpty((String)(strValue = this.getWebContext().GetParamValue((String)filterMap.get(strFormItemId.toUpperCase()))))) || StringHelper.IsNullOrEmpty((String)(strValue = strValue.trim())) || StringHelper.IsNullOrEmpty((String)(strCondition = daQueryModelHelper.GetConditionSQL((IDAQueryModelUserContext)this.qmUserContext, iDEFHelper, searchItemConfig, strValue = strValue.replace("\\'", "'"))))) continue;
-                userConditions.add(strCondition);
-            }
-        }
-    }
-
-    protected void FillSearchFormCSMCondition(Vector<String> userConditions, BaseDAQueryModelHelper daQueryModelHelper) {
-        String strValue = this.getPage().getRequest().getParameter("srfcsm");
-        if (StringHelper.IsNullOrEmpty((String)strValue)) {
-            return;
-        }
-        DGModelGroupLogicConfig dgModelGroupLogicConfig = new DGModelGroupLogicConfig();
-        if (!XMLConfig.LoadFromXML((String)strValue, (XMLConfig)dgModelGroupLogicConfig)) {
-            log.error((Object)StringHelper.Format((String)"\u641c\u7d22\u8868\u5355\u52a8\u6001\u67e5\u8be2\u6a21\u578b\u65e0\u6548"));
-            return;
-        }
-        if (dgModelGroupLogicConfig.getLogicsConfig() == null) {
-            return;
-        }
-        DGModelGroupLogicConfig realGroupLogicConfig = new DGModelGroupLogicConfig();
-        realGroupLogicConfig.InitLogicsConfig();
-        realGroupLogicConfig.setCondition("OR");
-        TreeMap<String, DGModelGroupLogicConfig> groups = new TreeMap<String, DGModelGroupLogicConfig>();
-        for (DGModelBaseLogicConfig dgModelBaseLogicConfig : dgModelGroupLogicConfig.getLogicsConfig()) {
-            String strGroupNo = dgModelBaseLogicConfig.GetExtValue("GROUPNO", "");
-            DGModelGroupLogicConfig curGroupLogicConfig = null;
-            if (!groups.containsKey(strGroupNo.toUpperCase())) {
-                curGroupLogicConfig = new DGModelGroupLogicConfig();
-                curGroupLogicConfig.InitLogicsConfig();
-                curGroupLogicConfig.setCondition("AND");
-                groups.put(strGroupNo.toUpperCase(), curGroupLogicConfig);
-                realGroupLogicConfig.getLogicsConfig().add((Object)curGroupLogicConfig);
-            } else {
-                curGroupLogicConfig = (DGModelGroupLogicConfig)groups.get(strGroupNo.toUpperCase());
-            }
-            curGroupLogicConfig.getLogicsConfig().add((Object)dgModelBaseLogicConfig);
-        }
-        CallResult callResult = daQueryModelHelper.GetGroupCondition(realGroupLogicConfig);
-        if (callResult.IsError()) {
-            log.error((Object)StringHelper.Format((String)"\u83b7\u53d6\u81ea\u5b9a\u4e49\u641c\u7d22\u903b\u8f91\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
-            return;
-        }
-        userConditions.add(callResult.getUserObject().toString());
-    }
-
-    protected void SelectAndFillFetchResult(String strPagingSQL, Vector<CallParam> list, SRFExGridFetchResult fetchResult) {
-        try {
-            StringBuilderEx paramInfo = new StringBuilderEx();
-            StringBuilderEx info = new StringBuilderEx();
-            info.Append("PAGING SQL\r\n%1$s\r\n", (Object)strPagingSQL);
-            if (list != null) {
-                int i = 0;
-                while (i < list.size()) {
-                    CallParam callParam = list.get(i);
-                    info.Append("\u53c2\u6570[%1$s][%2$s][%3$s]\r\n", (Object)(i + 1), (Object)callParam.getParamName(), callParam.getValue());
-                    paramInfo.Append("\u53c2\u6570[%1$s][%2$s][%3$s]\r\n", (Object)(i + 1), (Object)callParam.getParamName(), callParam.getValue());
-                    ++i;
-                }
-            }
-            long nSelectTime = new Date().getTime();
-            SelectResult selectResult = this.getWebContext().getDBCaller(this.getDEHelper().GetDBStorage()).CallRaw3(strPagingSQL, list);
-            if (selectResult == null) {
-                info.Append("\u5206\u9875\u6570\u636e\u67e5\u8be2\u5931\u8d25\r\n");
-                LoggerEx.error((Log)log, (Object)info.toString(), null, (Object)this.getWebContext(), (Object)this.getDEHelper().getId());
-                fetchResult.setRetCode(1);
-                fetchResult.setErrorInfo("\u4e0d\u660e\u9519\u8bef");
-                return;
-            }
-            nSelectTime = new Date().getTime() - nSelectTime;
-            if (selectResult.getRetCode() != 0) {
-                info.Append("\u5206\u9875\u6570\u636e\u67e5\u8be2\u5931\u8d25\uff0c%1$s\r\n", (Object)selectResult.getErrorInfo());
-                LoggerEx.error((Log)log, (Object)info.toString(), null, (Object)this.getWebContext(), (Object)this.getDEHelper().getId());
-                fetchResult.From((DBResult)selectResult);
-                return;
-            }
-            if (selectResult.getSelectData().getTableCount() != 1) {
-                info.Append("\u5206\u9875\u6570\u636e\u67e5\u8be2\u5931\u8d25\uff0c\u6ca1\u6709\u8fd4\u56de\u7ed3\u679c\r\n");
-                LoggerEx.error((Log)log, (Object)info.toString(), null, (Object)this.getWebContext(), (Object)this.getDEHelper().getId());
-                fetchResult.setRetCode(1);
-                fetchResult.setErrorInfo("\u8fd4\u56de\u7ed3\u679c\u96c6\u6709\u8bef");
-                return;
-            }
-            DataSet ds = selectResult.getSelectData();
-            GridFetchResultHelper.Fill((SRFExWebContext)this.getWebContext(), (Vector)fetchResult.getItems(), (DataTable)ds.getTable(0), (DataGridConfig)this.getDataGrid().getDataGridConfig(), (String)this.getDataGrid().getUniqueID(), (boolean)false, (boolean)this.getDataGrid().isEnableItemPrivilege());
-            this.FillSummaryInfo(fetchResult, ds.getTable(0));
-            fetchResult.setRetCode(0);
-            info.Append("\u5206\u9875\u6570\u636e\u67e5\u8be2\u8017\u65f6[%1$sms]\r\n", (Object)nSelectTime);
-            LoggerEx.info((Log)log, (Object)info.toString(), null, (Object)this.getWebContext(), (Object)this.getDEHelper().getId());
-            this.LogQueryPerformance(String.valueOf(strPagingSQL) + "\r\n" + paramInfo.toString(), (int)nSelectTime);
-        }
-        catch (Exception ex) {
-            fetchResult.setRetCode(1);
-            fetchResult.setErrorInfo(ex.getMessage());
-        }
-    }
-
-    protected boolean isLogQueryPerformance() {
-        return this.getDEHelper().GetProperty("LOGPODBQUERY", true);
-    }
-
-    public void LogQueryPerformance(String strSQL, int nProcessTime) {
-        if (!this.isLogQueryPerformance()) {
-            return;
-        }
-        ISRFDAPOLogger poLogger = this.getWebContext().getGlobalHelper().getPOLoggerEx();
-        if (poLogger == null) {
-            return;
-        }
-        poLogger.LogDBQuery(this.getDEHelper().getId(), this.strQueryKey, strSQL, this.getWebContext().getCurUserId(), nProcessTime);
-    }
-
-    protected void SelectAndFillFetchResult(BaseDataEntity cond, SRFExGridFetchResult fetchResult) {
-        try {
-            IDEDataCtrl iTempDataCtrl = this.getWebContext().getGlobalHelper().getDAModelStorage().FindDEDataCtrl("DE0112", (ISRFDAWebContext)this.getWebContext());
-            if (iTempDataCtrl == null) {
-                fetchResult.setRetCode(1);
-                fetchResult.setErrorInfo(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u6570\u636e\u8bbf\u95ee\u5bf9\u8c61", (Object)"DE0112"));
-                log.error((Object)fetchResult.getErrorInfo());
-                return;
-            }
-            Vector list = new Vector();
-            CallResult callResult = iTempDataCtrl.Select(cond, list);
-            if (callResult == null) {
-                fetchResult.setRetCode(1);
-                fetchResult.setErrorInfo("\u4e0d\u660e\u9519\u8bef");
-                return;
-            }
-            if (callResult.getRetCode() != 0) {
-                fetchResult.From(callResult);
-                return;
-            }
-            fetchResult.setTotalRow(list.size());
-            Vector<BaseDataEntity> realList = new Vector<BaseDataEntity>();
-            for (BaseDataEntity dataEntity : list) {
-                BaseDataEntity realDE = BaseDataEntity.FromString((String)dataEntity.GetParamStringValue("DEDATA", ""));
-                realDE.SetParamValue("SRFDATEMPKEYID", dataEntity.GetParamValue("TEMPDATAID"));
-                realList.add(realDE);
-            }
-            DataEntityTable dataEntityTable = new DataEntityTable(realList);
-            GridFetchResultHelper.Fill((SRFExWebContext)this.getWebContext(), (Vector)fetchResult.getItems(), (DataTable)dataEntityTable, (DataGridConfig)this.getDataGrid().getDataGridConfig(), (String)this.getDataGrid().getUniqueID(), (boolean)true);
-            fetchResult.setRetCode(0);
-        }
-        catch (Exception ex) {
-            fetchResult.setRetCode(1);
-            fetchResult.setErrorInfo(ex.getMessage());
-        }
-    }
-
-    protected void FillSummaryInfo(SRFExGridFetchResult fetchResult, DataTable dataTable) {
-    }
-
-    protected CallResult SelectAndExport(String strPagingSQL, Vector<CallParam> list, String strExportType) {
-        CallResult callResult = new CallResult();
-        try {
-            StringBuilderEx info = new StringBuilderEx();
-            info.Append("PAGING SQL\r\n%1$s\r\n", (Object)strPagingSQL);
-            if (list != null) {
-                int i = 0;
-                while (i < list.size()) {
-                    CallParam callParam = list.get(i);
-                    info.Append("\u53c2\u6570[%1$s][%2$s][%3$s]\r\n", (Object)(i + 1), (Object)callParam.getParamName(), callParam.getValue());
-                    ++i;
-                }
-            }
-            log.info((Object)info.toString());
-            SelectResult selectResult = this.getWebContext().getDBCaller(this.getDEHelper().GetDBStorage()).CallRaw3(strPagingSQL, list);
-            if (selectResult == null) {
-                callResult.setRetCode(1);
-                callResult.setErrorInfo("\u4e0d\u660e\u9519\u8bef");
-                return callResult;
-            }
-            if (selectResult.getRetCode() != 0) {
-                callResult.From((DBResult)selectResult);
-                return callResult;
-            }
-            if (selectResult.getSelectData().getTableCount() != 1) {
-                callResult.setRetCode(1);
-                callResult.setErrorInfo("\u8fd4\u56de\u7ed3\u679c\u96c6\u6709\u8bef");
-                return callResult;
-            }
-            String strFileSuffix = "";
-            strFileSuffix = StringHelper.Compare((String)strExportType, (String)"HTML", (boolean)true) == 0 ? "htm" : "xls";
-            String strTempFileName = Helper.GenGuid();
-            String strDir = StringHelper.Format((String)"%1$s%2$s", (Object)this.getWebContext().getGlobalHelper().GetTempPath(), (Object)this.getWebContext().getSessionId());
-            File dir = new File(strDir);
-            dir.mkdirs();
-            String strFullFileName = StringHelper.Format((String)"%1$s%2$s%3$s%4$s.%5$s", (Object)this.getWebContext().getGlobalHelper().GetTempPath(), (Object)this.getWebContext().getSessionId(), (Object)File.separator, (Object)strTempFileName, (Object)strFileSuffix);
-            this.GenExcelFile(selectResult, strFullFileName, strExportType);
-            callResult.setUserObject((Object)strTempFileName);
-            callResult.setRetCode(0);
-        }
-        catch (Exception ex) {
-            callResult.setRetCode(1);
-            callResult.setErrorInfo(ex.getMessage());
-        }
-        return callResult;
-    }
-
-    protected void GenExcelFile(SelectResult selectResult, String strTempFileName, String strExportType) {
-        GSRDataGridActionHelper.GenExcelFile(this.getPage(), this.getDataGrid(), selectResult, strTempFileName, strExportType);
-    }
-
-    protected static void GenExcelFile(SRFDAPage page, SRFExDataGrid dataGrid, SelectResult selectResult, String strTempFileName, String strExportType) {
-        try {
-            DataGrid excelDataGrid = new DataGrid();
-            CallResult callResult = page.getDAModelHelper().GetExcelExportDEDataGrid(page.getPageDataEntityId(), excelDataGrid);
-            callResult = CallResult.ToCallResult((CallResult)callResult);
-            DataGridConfig dataGridConfig = null;
-            if (callResult.getRetCode() == 0) {
-                String strDGConfigId = page.getDAConfigHelper().GetGridViewDGConfigId(page.getDEHelper(), null, excelDataGrid, "");
-                if (StringHelper.IsNullOrEmpty((String)strDGConfigId)) {
-                    page.PageLog((Object)page, 1, StringHelper.Format((String)"\u83b7\u53d6\u4e0b\u8f7d\u8868\u683c\u914d\u914d\u7f6e\u8def\u5f84\u5931\u8d25"));
-                    return;
-                }
-                dataGridConfig = page.getWebContext().getDataGridMgr().GetDataGridConfig(strDGConfigId);
-                if (dataGridConfig == null) {
-                    page.PageLog((Object)page, 1, StringHelper.Format((String)"\u83b7\u53d6\u4e0b\u8f7d\u8868\u683c\u914d\u914d\u7f6e\u5931\u8d25"));
-                    return;
-                }
-            } else {
-                dataGridConfig = dataGrid.getDataGridConfig();
-            }
-            if (StringHelper.Compare((String)strExportType, (String)"HTML", (boolean)true) == 0) {
-                DataGridExcelReportHelper excelReportHelper = new DataGridExcelReportHelper();
-                excelReportHelper.setPrint(true);
-                excelReportHelper.setCloseAfterPrint(true);
-                excelReportHelper.setDataSource(selectResult.getMainTable());
-                excelReportHelper.setWebContext((SRFExWebContext)page.getWebContext());
-                excelReportHelper.setConfig(dataGridConfig);
-                excelReportHelper.setEnableItemPrivilege(dataGrid.isEnableItemPrivilege());
-                FileWriter fw = new FileWriter(new File(strTempFileName));
-                fw.flush();
-                excelReportHelper.Output((Writer)fw);
-                fw.close();
-            } else {
-                DataGridExcelReportHelperEx excelReportHelperEx = new DataGridExcelReportHelperEx();
-                excelReportHelperEx.setConfig(dataGridConfig);
-                excelReportHelperEx.setWebContext((SRFExWebContext)page.getWebContext());
-                excelReportHelperEx.setDataSource(selectResult.getMainTable());
-                excelReportHelperEx.setEnableItemPrivilege(dataGrid.isEnableItemPrivilege());
-                excelReportHelperEx.Output(strTempFileName);
-            }
-        }
-        catch (Exception ex) {
-            log.error((Object)ex);
-        }
-    }
-
-    protected String GetExportType() {
-        String strExportType = this.getWebContext().GetPostValue("exporttype");
-        if (StringHelper.IsNullOrEmpty((String)strExportType)) {
-            return "";
-        }
-        return strExportType;
-    }
-
-    protected CallResult OnRemoveActionBeforeRemove(BaseDataEntity dataEntity) {
-        return this.OnRemoveActionBeforeRemove(this.getDEDataCtrl(), dataEntity);
-    }
-
-    protected CallResult OnRemoveActionBeforeRemove(IDEDataCtrl iDEDataCtrl, BaseDataEntity dataEntity) {
-        CallResult callResult = this.OnTestDataAction(iDEDataCtrl.GetDEHelper(), dataEntity, "DELETE");
-        if (callResult.getRetCode() != 0) {
-            return callResult;
-        }
-        return iDEDataCtrl.TestDataLock(dataEntity, this.GetDataLockKey(dataEntity));
-    }
-
-    protected boolean OnCustomAction(String strAction) {
-        if (StringHelper.Compare((String)strAction, (String)"SRFDAEXPORT", (boolean)true) == 0) {
-            this.OnExport();
-            return true;
-        }
-        return false;
-    }
-
-    /*
-     * Could not resolve type clashes
-     * Unable to fully structure code
-     */
-    protected boolean OnExport() {
-        block43: {
-            exportResult = new SRFExAjaxActionResult();
-            this.groupStatisticsRep = this.getGroupStatisticsRep();
-            if (this.groupStatisticsRep == null) {
-                GSRDataGridActionHelper.log.error((Object)"\u65e0\u6cd5\u83b7\u53d6\u5206\u7ec4\u7edf\u8ba1\u62a5\u8868\u5bf9\u8c61");
-                exportResult.setRetCode(1);
-                exportResult.setErrorInfo("\u65e0\u6cd5\u83b7\u53d6\u5206\u7ec4\u7edf\u8ba1\u62a5\u8868\u5bf9\u8c61");
-                this.getPage().Output(exportResult.ToJSONString());
-                return true;
-            }
-            daQueryModelHelper = null;
-            strQueryModel = this.groupStatisticsRep.getQUERYMODELID();
-            bUserDP = this.OnGetUserDP();
-            daQueryModelHelper = !StringHelper.IsNullOrEmpty((String)strQueryModel) ? (bUserDP ? this.getWebContext().GetUserQueryModelStorage().FindDAQueryModelHelper(strQueryModel) : this.getPage().getDAModelStorage().FindDAQueryModelHelper(strQueryModel)) : (bUserDP != false ? this.getWebContext().GetUserQueryModelStorage().FindDAQueryModelHelper(this.getDEHelper(), "", false) : this.getPage().getDAModelStorage().getDAQueryModelHelper(this.getDEHelper()));
-            this.strQueryKey = StringHelper.Format((String)"QUERYMODEL[%1$s] USERDP[%2$s]", (Object)strQueryModel, (Object)(bUserDP != false ? "TRUE" : "FALSE"));
-            GSRDataGridActionHelper.log.info((Object)StringHelper.Format((String)"\u8868\u683c\u67e5\u8be2 [%1$s]", (Object)strQueryModel));
-            if (daQueryModelHelper == null) {
-                exportResult.setRetCode(1);
-                exportResult.setErrorInfo("\u67e5\u8be2\u6a21\u578b\u8f85\u52a9\u5bf9\u8c61\u65e0\u6548");
-                GSRDataGridActionHelper.log.error((Object)exportResult.getErrorInfo());
-                this.getPage().Output(exportResult.ToJSONString());
-                return true;
-            }
-            this.qmUserContext = new DefaultDAQueryModelUserContext();
-            script = new StringBuilderEx();
-            strQueryScript = this.GetDAModelQueryScript(daQueryModelHelper);
-            userConditions = new Vector<String>();
-            strGroupField = this.getWebContext().GetPostValue("srfgroupfield");
-            if (!this.groupStatisticsRep.getENABLETIMEGROUP()) break block43;
-            timeGroupDEF = daQueryModelHelper.GetMajorDEHelper().GetDEFHelper(this.groupStatisticsRep.getTIMEDEFIELDID());
-            if (timeGroupDEF == null) ** GOTO lbl83
-            strFromTimeParam = this.groupStatisticsRep.getBEGINTIMEARG();
-            if (StringHelper.IsNullOrEmpty((String)strFromTimeParam)) {
-                strFromTimeParam = StringHelper.Format((String)"n_%1$s_gtandeq", (Object)timeGroupDEF.GetDTColumn().GetColumnName());
-            }
-            if (StringHelper.IsNullOrEmpty((String)(strToTimeParam = this.groupStatisticsRep.getENDTIMEARG()))) {
-                strToTimeParam = StringHelper.Format((String)"n_%1$s_lt", (Object)timeGroupDEF.GetDTColumn().GetColumnName());
-            }
-            if (StringHelper.IsNullOrEmpty((String)(strFromTime = this.getWebContext().GetPostValue(strFromTimeParam)))) {
-                strFromTime = this.getWebContext().GetParamValue(strFromTimeParam);
-            }
-            if (StringHelper.IsNullOrEmpty((String)strFromTime)) {
-                exportResult.setRetCode(1);
-                exportResult.setErrorInfo(StringHelper.Format((String)"\u6ca1\u6709\u6307\u5b9a[%1$s]\u7684\u8d77\u59cb\u65f6\u95f4", (Object)timeGroupDEF.getLogicName()));
-                GSRDataGridActionHelper.log.error((Object)exportResult.getErrorInfo());
-                this.getPage().Output(exportResult.ToJSONString());
-                return true;
-            }
-            strToTime = this.getWebContext().GetPostValue((String)strToTimeParam);
-            if (StringHelper.IsNullOrEmpty((String)strToTimeParam)) {
-                strToTime = this.getWebContext().GetParamValue((String)strToTimeParam);
-            }
-            if (StringHelper.IsNullOrEmpty((String)strFromTime)) {
-                exportResult.setRetCode(1);
-                exportResult.setErrorInfo(StringHelper.Format((String)"\u6ca1\u6709\u6307\u5b9a[%1$s]\u7684\u7ec8\u6b62\u65f6\u95f4", (Object)timeGroupDEF.getLogicName()));
-                GSRDataGridActionHelper.log.error((Object)exportResult.getErrorInfo());
-                this.getPage().Output(exportResult.ToJSONString());
-                return true;
-            }
-            nPos = strQueryScript.indexOf("SELECT");
-            if (nPos != -1) {
-                strQueryScript = "SELECT s1.TIMEDIMENSIONID AS srftdid,s1.TIMEDIMENSIONNAME AS srftdname,s1.BEGINTIME AS srftdfrom,s1.ENDTIME AS srftdto, " + strQueryScript.substring(nPos + 6);
-                strQueryScript = String.valueOf(strQueryScript) + StringHelper.Format((String)"\nLEFT OUTER JOIN t_SRFTIMEDIMENSION s1 ON %1$s >=s1.BEGINTIME AND %1$s<s1.ENDTIME \n", (Object)daQueryModelHelper.GetDEFieldExp(timeGroupDEF).getUserObject());
-                userConditions.add(StringHelper.Format((String)"s1.TIMEDIMENSIONID IS NOT NULL "));
-                strCond = daQueryModelHelper.GetDateTimeConditionSQL("s1.BEGINTIME", 5, ">=", strFromTime);
-                if (StringHelper.IsNullOrEmpty((String)strCond)) {
-                    exportResult.setRetCode(1);
-                    exportResult.setErrorInfo(StringHelper.Format((String)"\u65e0\u6cd5\u8bbe\u7f6e[%1$s]\u7684\u8d77\u59cb\u65f6\u95f4[%2$s]", (Object)timeGroupDEF.getLogicName(), (Object)strFromTime));
-                    GSRDataGridActionHelper.log.error((Object)exportResult.getErrorInfo());
-                    this.getPage().Output(exportResult.ToJSONString());
-                    return true;
-                }
-                userConditions.add(strCond);
-                strCond = daQueryModelHelper.GetDateTimeConditionSQL("s1.ENDTIME", 5, "<", strToTime);
-                if (StringHelper.IsNullOrEmpty((String)strCond)) {
-                    exportResult.setRetCode(1);
-                    exportResult.setErrorInfo(StringHelper.Format((String)"\u65e0\u6cd5\u8bbe\u7f6e[%1$s]\u7684\u7ec8\u6b62\u65f6\u95f4[%2$s]", (Object)timeGroupDEF.getLogicName(), (Object)strToTime));
-                    GSRDataGridActionHelper.log.error((Object)exportResult.getErrorInfo());
-                    this.getPage().Output(exportResult.ToJSONString());
-                    return true;
-                }
-                userConditions.add(strCond);
-                userConditions.add(StringHelper.Format((String)"s1.TDTYPE='%1$s'", (Object)strGroupField));
-            } else {
-                exportResult.setRetCode(1);
-                exportResult.setErrorInfo(StringHelper.Format((String)"\u65e0\u6cd5\u4ece\u67e5\u8be2\u8bed\u53e5\u4e2d\u5b9a\u4f4d\u7b2c\u4e00\u4e2a[SELECT]"));
-                GSRDataGridActionHelper.log.error((Object)exportResult.getErrorInfo());
-                this.getPage().Output(exportResult.ToJSONString());
-                return true;
-lbl83:
-                // 1 sources
-
-                exportResult.setRetCode(1);
-                exportResult.setErrorInfo(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u65f6\u95f4\u5206\u7ec4\u5c5e\u6027[%1$s]", (Object)this.groupStatisticsRep.getTIMEDEFIELDID()));
-                GSRDataGridActionHelper.log.error((Object)exportResult.getErrorInfo());
-                this.getPage().Output(exportResult.ToJSONString());
-                return true;
-            }
-        }
-        script.Append(strQueryScript);
-        daQueryModelHelper.FillMajorConditions(userConditions);
-        this.FillDAQueryModelHelperCondition(userConditions, daQueryModelHelper);
-        if (userConditions.size() != 0) {
-            script.Append(" WHERE ");
-            bFirst = true;
-            for (String strCondition : userConditions) {
-                if (bFirst) {
-                    bFirst = false;
-                } else {
-                    script.Append(" AND ");
-                }
-                script.Append("(%1$s)", (Object)strCondition);
-            }
-        }
-        dynamicTables = null;
-        bDynamicMode = false;
-        if (StringHelper.Compare((String)this.getDEHelper().getDataEntity().getSTORAGETYPE(), (String)"DYNAMIC", (boolean)true) == 0) {
-            bDynamicMode = true;
-            strTimeFrom = this.getDEHelper().GetProperty("DYNAMICFROM");
-            strTimeTo = this.getDEHelper().GetProperty("DYNAMICTO");
-            strTime1 = this.getPage().getRequest().getParameter(strTimeFrom.toLowerCase());
-            if (strTime1 == null) {
-                strTime1 = this.getWebContext().GetParamValue(strTimeFrom.toUpperCase());
-            }
-            if ((strTime2 = this.getPage().getRequest().getParameter(strTimeTo.toLowerCase())) == null) {
-                strTime2 = this.getWebContext().GetParamValue(strTimeTo.toUpperCase());
-            }
-            if (StringHelper.IsNullOrEmpty((String)strTime1) || StringHelper.IsNullOrEmpty((String)strTime2)) {
-                GSRDataGridActionHelper.log.error((Object)"\u6ca1\u6709\u6307\u5b9a\u5f00\u59cb\u6216\u7ed3\u675f\u65f6\u95f4");
-                exportResult.setRetCode(1);
-                exportResult.setErrorInfo("\u6ca1\u6709\u6307\u5b9a\u5f00\u59cb\u6216\u7ed3\u675f\u65f6\u95f4");
-                this.getPage().Output(exportResult.ToJSONString());
-                return true;
-            }
-            try {
-                startDate = DateParser.Parse((String)strTime1);
-                endDate = DateParser.Parse((String)strTime2);
-                dynamicTables = new Vector<E>();
-                callResult = this.getDEHelper().GetDynamicTables(startDate, endDate, dynamicTables);
-                if (callResult.IsError()) {
-                    exportResult.setRetCode(1);
-                    exportResult.setErrorInfo(callResult.getErrorInfo());
-                    this.getPage().Output(exportResult.ToJSONString());
-                    return true;
-                }
-            }
-            catch (Exception e) {
-                GSRDataGridActionHelper.log.error((Object)e);
-                exportResult.setRetCode(1);
-                exportResult.setErrorInfo(e.getMessage());
-                this.getPage().Output(exportResult.ToJSONString());
-                return true;
-            }
-        }
-        strSortParam = "";
-        strSortDirection = "";
-        strSortParam = this.getPage().getRequest().getParameter("sort");
-        strRealSortParam = this.getPage().getRequest().getParameter("realsort");
-        if (StringHelper.Length((String)strRealSortParam) > 0) {
-            strSortParam = strRealSortParam;
-        }
-        strSortDirection = this.getPage().getRequest().getParameter("dir");
-        queryGroupModelConfig = new QueryGroupModelConfig();
-        strTopN = this.getPage().getRequest().getParameter("srftopn");
-        if (StringHelper.IsNullOrEmpty((String)strTopN)) {
-            queryGroupModelConfig.setTopCount(100);
-        } else {
-            nInt = Integer.parseInt(strTopN);
-            if (nInt <= 0) {
-                nInt = 100;
-            }
-            queryGroupModelConfig.setTopCount(nInt);
-        }
-        strGroupCond = this.groupStatisticsRep.getGROUPCOND();
-        if (!this.groupStatisticsRep.getENABLETIMEGROUP()) {
-            if (!StringHelper.IsNullOrEmpty((String)strGroupField)) {
-                for (GSRGroupColumn groupColumn : this.groupStatisticsRep.getGroupColumns()) {
-                    if (StringHelper.Compare((String)groupColumn.getDEFIELDNAME(), (String)strGroupField, (boolean)true) == 0) {
-                        queryGroupItemConfig = new QueryGroupItemConfig();
-                        queryGroupItemConfig.setAlias(groupColumn.getDEFIELDNAME());
-                        queryGroupItemConfig.setDEFields(groupColumn.getDEFIELDNAME());
-                        queryGroupItemConfig.setIsGroup(true);
-                        if (StringHelper.Compare((String)strSortParam, (String)groupColumn.getDEFIELDNAME(), (boolean)true) == 0) {
-                            queryGroupItemConfig.setOrder(0);
-                            queryGroupItemConfig.setOrderDirection(strSortDirection);
+                     queryGroupModelConfig.add(queryGroupItemConfig);
+                     if (!StringHelper.IsNullOrEmpty(groupColumn.getCOND())) {
+                        if (!StringHelper.IsNullOrEmpty(strGroupCond)) {
+                           strGroupCond = strGroupCond + " AND ";
                         }
-                        queryGroupModelConfig.add(queryGroupItemConfig);
-                        if (!StringHelper.IsNullOrEmpty((String)groupColumn.getCOND())) {
-                            if (!StringHelper.IsNullOrEmpty((String)strGroupCond)) {
-                                strGroupCond = String.valueOf(strGroupCond) + " AND ";
-                            }
-                            strGroupCond = String.valueOf(strGroupCond) + groupColumn.getCOND();
-                        }
-                        if (StringHelper.IsNullOrEmpty((String)groupColumn.getNAMEDEFNAME())) continue;
+
+                        strGroupCond = strGroupCond + groupColumn.getCOND();
+                     }
+
+                     if (!StringHelper.IsNullOrEmpty(groupColumn.getNAMEDEFNAME())) {
                         queryGroupItemConfig = new QueryGroupItemConfig();
                         queryGroupItemConfig.setAlias(groupColumn.getNAMEDEFNAME());
                         queryGroupItemConfig.setDEFields(groupColumn.getNAMEDEFNAME());
                         queryGroupItemConfig.setIsGroup(true);
-                        if (StringHelper.Compare((String)strSortParam, (String)groupColumn.getNAMEDEFNAME(), (boolean)true) == 0) {
-                            queryGroupItemConfig.setOrder(0);
-                            queryGroupItemConfig.setOrderDirection(strSortDirection);
+                        if (StringHelper.Compare(strSortParam, groupColumn.getNAMEDEFNAME(), true) == 0) {
+                           queryGroupItemConfig.setOrder(0);
+                           queryGroupItemConfig.setOrderDirection(strSortDirection);
                         }
+
                         queryGroupModelConfig.add(queryGroupItemConfig);
-                        continue;
-                    }
-                    if (!groupColumn.getDEFAULTGROUP() && groupColumn.getORDERFLAG() != -1) continue;
-                    queryGroupItemConfig = new QueryGroupItemConfig();
-                    queryGroupItemConfig.setAlias(groupColumn.getDEFIELDNAME());
-                    queryGroupItemConfig.setDEFields(groupColumn.getDEFIELDNAME());
-                    queryGroupItemConfig.setIsGroup(true);
-                    if (StringHelper.Compare((String)strSortParam, (String)groupColumn.getDEFIELDNAME(), (boolean)true) == 0) {
+                     }
+                  } else {
+                     String strTDSortParam = "";
+                     if (StringHelper.Compare(strSortParam, groupColumn.getDEFIELDNAME(), true) == 0) {
+                        strTDSortParam = "srftdid";
+                     }
+
+                     Vector<String> groupParams = new Vector<>();
+                     groupParams.add("srftdid");
+                     groupParams.add("srftdname");
+                     groupParams.add("srftdfrom");
+                     groupParams.add("srftdto");
+
+                     for (String strGroupName : groupParams) {
+                        QueryGroupItemConfig queryGroupItemConfig = new QueryGroupItemConfig();
+                        if (StringHelper.Compare(strGroupName, "srftdname", true) == 0) {
+                           queryGroupItemConfig.setAlias(groupColumn.getDEFIELDNAME());
+                        } else {
+                           queryGroupItemConfig.setAlias(strGroupName);
+                        }
+
+                        queryGroupItemConfig.setDEFields(strGroupName);
+                        queryGroupItemConfig.setIsGroup(true);
+                        if (StringHelper.Compare(strTDSortParam, strGroupName, true) == 0) {
+                           queryGroupItemConfig.setOrder(0);
+                           queryGroupItemConfig.setOrderDirection(strSortDirection);
+                        }
+
+                        queryGroupModelConfig.add(queryGroupItemConfig);
+                     }
+                  }
+               } else if (groupColumn.getDEFAULTGROUP() || groupColumn.getORDERFLAG() == -1) {
+                  QueryGroupItemConfig queryGroupItemConfig = new QueryGroupItemConfig();
+                  queryGroupItemConfig.setAlias(groupColumn.getDEFIELDNAME());
+                  queryGroupItemConfig.setDEFields(groupColumn.getDEFIELDNAME());
+                  queryGroupItemConfig.setIsGroup(true);
+                  if (StringHelper.Compare(strSortParam, groupColumn.getDEFIELDNAME(), true) == 0) {
+                     queryGroupItemConfig.setOrder(0);
+                     queryGroupItemConfig.setOrderDirection(strSortDirection);
+                  }
+
+                  queryGroupModelConfig.add(queryGroupItemConfig);
+               }
+            }
+         }
+      } else {
+         Vector<String> groupParams = new Vector<>();
+         groupParams.add("srftdid");
+         groupParams.add("srftdname");
+         groupParams.add("srftdfrom");
+         groupParams.add("srftdto");
+
+         for (String strGroupName : groupParams) {
+            QueryGroupItemConfig queryGroupItemConfig = new QueryGroupItemConfig();
+            queryGroupItemConfig.setAlias(strGroupName);
+            queryGroupItemConfig.setDEFields(strGroupName);
+            queryGroupItemConfig.setIsGroup(true);
+            if (StringHelper.Compare(strSortParam, strGroupName, true) == 0) {
+               queryGroupItemConfig.setOrder(0);
+               queryGroupItemConfig.setOrderDirection(strSortDirection);
+            }
+
+            queryGroupModelConfig.add(queryGroupItemConfig);
+         }
+      }
+
+      queryGroupModelConfig.setGroupCond(strGroupCond);
+
+      for (GSRMeasure gsrMeasure : this.groupStatisticsRep.getMeasures()) {
+         QueryGroupItemConfig queryGroupItemConfig = new QueryGroupItemConfig();
+         queryGroupItemConfig.setAlias(gsrMeasure.getEXPALIAS());
+         queryGroupItemConfig.setFormular(gsrMeasure.getEXPRESSION());
+         queryGroupItemConfig.setIsGroup(false);
+         queryGroupItemConfig.setReCalc(gsrMeasure.getRECALCFLAG());
+         if (StringHelper.Compare(strSortParam, gsrMeasure.getEXPALIAS(), true) == 0) {
+            queryGroupItemConfig.setOrder(0);
+            queryGroupItemConfig.setOrderDirection(strSortDirection);
+         }
+
+         queryGroupModelConfig.add(queryGroupItemConfig);
+      }
+
+      Vector<CallParam> params = new Vector<>();
+      daQueryModelHelper.FillQMDeclareParams(params, this.getWebContext(), this.getWebContext().getGlobalHelper(), "");
+      String strSQL = daQueryModelHelper.GetGroupSQL(
+         script.toString(), queryGroupModelConfig, params, this.getWebContext(), this.getWebContext().getGlobalHelper(), "", null
+      );
+      daQueryModelHelper.FillCallParams(params, this.getWebContext(), this.getWebContext().getGlobalHelper(), "");
+      strSQL = daQueryModelHelper.GetQMDeclareScript() + strSQL;
+      strSQL = daQueryModelHelper.ReplaceURLParamMacro(strSQL, this.getWebContext());
+      if (bDynamicMode) {
+         strSQL = daQueryModelHelper.ReplaceDynamicTableMacro(strSQL, dynamicTables);
+      }
+
+      this.SelectAndFillFetchResult(strSQL, params, fetchResult);
+      this.getPage().Output(fetchResult.ToJSONString());
+      return true;
+   }
+
+   protected String OnGetAdditionalQueryModel() {
+      return this.getPage().getPageParam("PAGE.DATAGRID.QUERYMODEL", "");
+   }
+
+   protected boolean OnGetNoDefQuery() {
+      return this.getPage().getPageParam("PAGE.DATAGRID.NODEFQUERY", false);
+   }
+
+   protected String GetDAModelQueryScript(BaseDAQueryModelHelper daQueryModelHelper) {
+      return daQueryModelHelper.GetQueryModelScript();
+   }
+
+   protected boolean OnGetUserDP() {
+      return StringHelper.Compare(this.getWebContext().getCurUserId(), "SYSTEM", true) == 0 ? false : this.getPage().getPageParam("PAGE.DATAGRID.USERDP", true);
+   }
+
+   protected CallResult OnSaveActionBeforeInsert(BaseDataEntity dataEntity) {
+      CallResult callResult = this.OnTestDataAction(dataEntity, "CREATE");
+      return callResult.getRetCode() != 0 ? callResult : this.getDEDataCtrl().TestDataLock(dataEntity, this.GetDataLockKey(dataEntity));
+   }
+
+   protected String OnGetDGUpdateMode() {
+      return this.getPage().getPageParam("PAGE.DATAGRID.UPDATEMODE", "DEFAULT");
+   }
+
+   protected String OnGetDGInsertMode() {
+      return this.getPage().getPageParam("PAGE.DATAGRID.INSERTMODE", "DEFAULT");
+   }
+
+   protected CallResult OnSaveActionBeforeUpdate(BaseDataEntity dataEntity) {
+      String strAction = this.OnGetDGUpdateMode();
+      if (StringHelper.IsNullOrEmpty(strAction)) {
+         strAction = "DEFAULT";
+      }
+
+      if (StringHelper.IsNullOrEmpty(strAction) || StringHelper.Compare(strAction, "DEFAULT", true) == 0) {
+         strAction = "UPDATE";
+      }
+
+      CallResult callResult = this.OnTestDataAction(dataEntity, strAction);
+      return callResult.getRetCode() != 0 ? callResult : this.getDEDataCtrl().TestDataLock(dataEntity, this.GetDataLockKey(dataEntity));
+   }
+
+   protected CallResult OnTestDataAction(BaseDataEntity dataEntity, String strAction) {
+      return this.OnTestDataAction(this.getDEHelper(), dataEntity, strAction);
+   }
+
+   protected CallResult OnTestDataAction(IDEHelper iDEHelper, BaseDataEntity dataEntity, String strAction) {
+      return iDEHelper.GetDataAccHelper().Test(this.getWebContext(), dataEntity, strAction);
+   }
+
+   protected void FillAdditionalDPCode(TreeMap<String, String> codeSets) {
+   }
+
+   protected void FillDAQueryModelHelperCondition(Vector<String> userConditions, BaseDAQueryModelHelper daQueryModelHelper) {
+      this.FillSearchFormCondition(userConditions, daQueryModelHelper);
+      this.FillURLCondition(userConditions, daQueryModelHelper);
+   }
+
+   protected void FillPickupModeCondition(Vector<String> userConditions, BaseDAQueryModelHelper daQueryModelHelper) {
+   }
+
+   protected boolean FillURLCondition(BaseDataEntity userConditions) {
+      String strDERID = this.getWebContext().getSRFDERID();
+      if (StringHelper.IsNullOrEmpty(strDERID)) {
+         return false;
+      }
+
+      ILinkDEFHelper pickupDEFHelper = null;
+
+      for (IDEFHelper iDEFHelper : this.getDEHelper().GetDEFHelpers()) {
+         if (iDEFHelper.IsLinkDEField()) {
+            ILinkDEFHelper linkDEFHelper = (ILinkDEFHelper)iDEFHelper;
+            if (StringHelper.Compare(linkDEFHelper.GetDERId(), strDERID, true) == 0 && StringHelper.Compare(linkDEFHelper.GetDataType(), "PICKUP", true) == 0) {
+               pickupDEFHelper = linkDEFHelper;
+               break;
+            }
+         }
+      }
+
+      if (pickupDEFHelper == null) {
+         return false;
+      }
+
+      String strValue = "";
+      String strParamName = "";
+      String strDERIndexId = this.getWebContext().getSRFDERINDEXID();
+      if (!StringHelper.IsNullOrEmpty(strDERIndexId)) {
+         DERINDEX derIndex = new DERINDEX();
+         CallResult callResult = this.getPage().getDAModelHelper().GetDERINDEX(strDERIndexId, derIndex);
+         if (callResult.getRetCode() != 0) {
+            log.error(StringHelper.Format("获取实体索引关系[%1$s]失败，%2$s", strDERIndexId, callResult.getErrorInfo()));
+         } else {
+            IDEHelper iDEHelper = this.getPage().getDAModelStorage().FindDEHelper(derIndex.getDEID());
+            if (iDEHelper == null) {
+               log.error(StringHelper.Format("无法获取实体[%1$s]辅助对象", derIndex.getDEID()));
+            } else {
+               strParamName = iDEHelper.GetKeyDEFHelper().getName();
+            }
+         }
+      } else {
+         strParamName = pickupDEFHelper.GetRelatedDEFHelper().getName();
+      }
+
+      strValue = this.getWebContext().GetPostValue(strParamName);
+      if (StringHelper.IsNullOrEmpty(strValue)) {
+         strValue = this.getWebContext().GetParamValue(strParamName);
+      }
+
+      if (strValue != null) {
+         strValue = strValue.trim();
+      }
+
+      if (StringHelper.IsNullOrEmpty(strValue)) {
+         strValue = "NA";
+      }
+
+      userConditions.SetParamValue("PTEMPKEYVALUE", strValue);
+      userConditions.SetParamValue("PDEID", pickupDEFHelper.GetRealDEFHelper().getDEHelper().getId());
+      return true;
+   }
+
+   protected void FillURLCondition(Vector<String> userConditions, BaseDAQueryModelHelper daQueryModelHelper) {
+      String strDERID = this.getWebContext().getSRFDERID();
+      if (!StringHelper.IsNullOrEmpty(strDERID)) {
+         ILinkDEFHelper pickupDEFHelper = null;
+
+         for (IDEFHelper iDEFHelper : this.getDEHelper().GetDEFHelpers()) {
+            if (iDEFHelper.IsLinkDEField()) {
+               ILinkDEFHelper linkDEFHelper = (ILinkDEFHelper)iDEFHelper;
+               if (StringHelper.Compare(linkDEFHelper.GetDERId(), strDERID, true) == 0
+                  && StringHelper.Compare(linkDEFHelper.GetDataType(), "PICKUP", true) == 0) {
+                  pickupDEFHelper = linkDEFHelper;
+                  break;
+               }
+            }
+         }
+
+         if (pickupDEFHelper == null) {
+            return;
+         }
+
+         String strValue = "";
+         String strParamName = "";
+         String strDERIndexId = this.getWebContext().getSRFDERINDEXID();
+         if (!StringHelper.IsNullOrEmpty(strDERIndexId)) {
+            DERINDEX derIndex = new DERINDEX();
+            CallResult callResult = this.getPage().getDAModelHelper().GetDERINDEX(strDERIndexId, derIndex);
+            if (callResult.getRetCode() != 0) {
+               log.error(StringHelper.Format("获取实体索引关系[%1$s]失败，%2$s", strDERIndexId, callResult.getErrorInfo()));
+            } else {
+               IDEHelper iDEHelper = this.getPage().getDAModelStorage().FindDEHelper(derIndex.getDEID());
+               if (iDEHelper == null) {
+                  log.error(StringHelper.Format("无法获取实体[%1$s]辅助对象", derIndex.getDEID()));
+               } else {
+                  strParamName = iDEHelper.GetKeyDEFHelper().getName();
+               }
+            }
+         } else {
+            strParamName = pickupDEFHelper.GetRelatedDEFHelper().getName();
+         }
+
+         strValue = this.getWebContext().GetPostValue(strParamName);
+         if (StringHelper.IsNullOrEmpty(strValue)) {
+            strValue = this.getWebContext().GetParamValue(strParamName);
+         }
+
+         if (strValue != null) {
+            strValue = strValue.trim();
+         }
+
+         if (StringHelper.IsNullOrEmpty(strValue)) {
+            strValue = "NA";
+         }
+
+         String strCondition = daQueryModelHelper.GetConditionSQL(this.qmUserContext, pickupDEFHelper, "", "=", strValue);
+         if (!StringHelper.IsNullOrEmpty(strCondition)) {
+            userConditions.add(strCondition);
+         }
+      }
+   }
+
+   protected void FillSearchFormCondition(Vector<String> userConditions, BaseDAQueryModelHelper daQueryModelHelper) {
+      this.FillSearchFormCSMCondition(userConditions, daQueryModelHelper);
+      String strFilter = this.getWebContext().getSRFFILTER();
+      TreeMap<String, String> filterMap = null;
+      if (!StringHelper.IsNullOrEmpty(strFilter)) {
+         filterMap = new TreeMap<>();
+         String[] parts = strFilter.split("[;]");
+
+         for (int i = 0; i < parts.length; i++) {
+            String strPart = parts[i];
+            if (!StringHelper.IsNullOrEmpty(strPart)) {
+               String[] params = strPart.split("[|]");
+               if (params.length >= 2) {
+                  filterMap.put(params[0].toUpperCase(), params[1].toUpperCase());
+               }
+            }
+         }
+      }
+
+      for (IDEFHelper iDEFHelper : this.getDEHelper().GetDEFHelpers()) {
+         SearchModelConfig searchModelConfig = iDEFHelper.GetSearchModel();
+         if (searchModelConfig != null) {
+            for (SearchItemConfig searchItemConfig : searchModelConfig) {
+               if (iDEFHelper.IsSupportSearchAction(searchItemConfig)) {
+                  String strFormItemId = this.getWebContext().getGlobalHelper().getDAFormItemHelper().GetSearchFormItemId(iDEFHelper, searchItemConfig);
+                  String strValue = this.getPage().getRequest().getParameter(strFormItemId.toLowerCase());
+                  if (strValue == null) {
+                     strValue = this.getWebContext().GetParamValue(strFormItemId.toUpperCase());
+                     if (StringHelper.IsNullOrEmpty(strValue)) {
+                        if (filterMap == null || !filterMap.containsKey(strFormItemId.toUpperCase())) {
+                           continue;
+                        }
+
+                        strValue = this.getWebContext().GetParamValue(filterMap.get(strFormItemId.toUpperCase()));
+                        if (StringHelper.IsNullOrEmpty(strValue)) {
+                           continue;
+                        }
+                     }
+                  }
+
+                  strValue = strValue.trim();
+                  if (!StringHelper.IsNullOrEmpty(strValue)) {
+                     strValue = strValue.replace("\\'", "'");
+                     String strCondition = daQueryModelHelper.GetConditionSQL(this.qmUserContext, iDEFHelper, searchItemConfig, strValue);
+                     if (!StringHelper.IsNullOrEmpty(strCondition)) {
+                        userConditions.add(strCondition);
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   protected void FillSearchFormCSMCondition(Vector<String> userConditions, BaseDAQueryModelHelper daQueryModelHelper) {
+      String strValue = this.getPage().getRequest().getParameter("srfcsm");
+      if (!StringHelper.IsNullOrEmpty(strValue)) {
+         DGModelGroupLogicConfig dgModelGroupLogicConfig = new DGModelGroupLogicConfig();
+         if (!XMLConfig.LoadFromXML(strValue, dgModelGroupLogicConfig)) {
+            log.error(StringHelper.Format("搜索表单动态查询模型无效"));
+         } else if (dgModelGroupLogicConfig.getLogicsConfig() != null) {
+            DGModelGroupLogicConfig realGroupLogicConfig = new DGModelGroupLogicConfig();
+            realGroupLogicConfig.InitLogicsConfig();
+            realGroupLogicConfig.setCondition("OR");
+            TreeMap<String, DGModelGroupLogicConfig> groups = new TreeMap<>();
+
+            for (DGModelBaseLogicConfig dgModelBaseLogicConfig : dgModelGroupLogicConfig.getLogicsConfig()) {
+               String strGroupNo = dgModelBaseLogicConfig.GetExtValue("GROUPNO", "");
+               DGModelGroupLogicConfig curGroupLogicConfig = null;
+               if (!groups.containsKey(strGroupNo.toUpperCase())) {
+                  curGroupLogicConfig = new DGModelGroupLogicConfig();
+                  curGroupLogicConfig.InitLogicsConfig();
+                  curGroupLogicConfig.setCondition("AND");
+                  groups.put(strGroupNo.toUpperCase(), curGroupLogicConfig);
+                  realGroupLogicConfig.getLogicsConfig().add(curGroupLogicConfig);
+               } else {
+                  curGroupLogicConfig = groups.get(strGroupNo.toUpperCase());
+               }
+
+               curGroupLogicConfig.getLogicsConfig().add(dgModelBaseLogicConfig);
+            }
+
+            CallResult callResult = daQueryModelHelper.GetGroupCondition(realGroupLogicConfig);
+            if (callResult.IsError()) {
+               log.error(StringHelper.Format("获取自定义搜索逻辑发生错误，%1$s", callResult.getErrorInfo()));
+            } else {
+               userConditions.add(callResult.getUserObject().toString());
+            }
+         }
+      }
+   }
+
+   protected void SelectAndFillFetchResult(String strPagingSQL, Vector<CallParam> list, SRFExGridFetchResult fetchResult) {
+      try {
+         StringBuilderEx paramInfo = new StringBuilderEx();
+         StringBuilderEx info = new StringBuilderEx();
+         info.Append("PAGING SQL\r\n%1$s\r\n", strPagingSQL);
+         if (list != null) {
+            for (int i = 0; i < list.size(); i++) {
+               CallParam callParam = list.get(i);
+               info.Append("参数[%1$s][%2$s][%3$s]\r\n", i + 1, callParam.getParamName(), callParam.getValue());
+               paramInfo.Append("参数[%1$s][%2$s][%3$s]\r\n", i + 1, callParam.getParamName(), callParam.getValue());
+            }
+         }
+
+         long nSelectTime = new Date().getTime();
+         SelectResult selectResult = this.getWebContext().getDBCaller(this.getDEHelper().GetDBStorage()).CallRaw3(strPagingSQL, list);
+         if (selectResult == null) {
+            info.Append("分页数据查询失败\r\n");
+            LoggerEx.error(log, info.toString(), null, this.getWebContext(), this.getDEHelper().getId());
+            fetchResult.setRetCode(1);
+            fetchResult.setErrorInfo("不明错误");
+            return;
+         }
+
+         nSelectTime = new Date().getTime() - nSelectTime;
+         if (selectResult.getRetCode() != 0) {
+            info.Append("分页数据查询失败，%1$s\r\n", selectResult.getErrorInfo());
+            LoggerEx.error(log, info.toString(), null, this.getWebContext(), this.getDEHelper().getId());
+            fetchResult.From(selectResult);
+            return;
+         }
+
+         if (selectResult.getSelectData().getTableCount() != 1) {
+            info.Append("分页数据查询失败，没有返回结果\r\n");
+            LoggerEx.error(log, info.toString(), null, this.getWebContext(), this.getDEHelper().getId());
+            fetchResult.setRetCode(1);
+            fetchResult.setErrorInfo("返回结果集有误");
+            return;
+         }
+
+         DataSet ds = selectResult.getSelectData();
+         GridFetchResultHelper.Fill(
+            this.getWebContext(),
+            fetchResult.getItems(),
+            ds.getTable(0),
+            this.getDataGrid().getDataGridConfig(),
+            this.getDataGrid().getUniqueID(),
+            false,
+            this.getDataGrid().isEnableItemPrivilege()
+         );
+         this.FillSummaryInfo(fetchResult, ds.getTable(0));
+         fetchResult.setRetCode(0);
+         info.Append("分页数据查询耗时[%1$sms]\r\n", nSelectTime);
+         LoggerEx.info(log, info.toString(), null, this.getWebContext(), this.getDEHelper().getId());
+         this.LogQueryPerformance(strPagingSQL + "\r\n" + paramInfo.toString(), (int)nSelectTime);
+      } catch (Exception ex) {
+         fetchResult.setRetCode(1);
+         fetchResult.setErrorInfo(ex.getMessage());
+      }
+   }
+
+   protected boolean isLogQueryPerformance() {
+      return this.getDEHelper().GetProperty("LOGPODBQUERY", true);
+   }
+
+   public void LogQueryPerformance(String strSQL, int nProcessTime) {
+      if (this.isLogQueryPerformance()) {
+         ISRFDAPOLogger poLogger = this.getWebContext().getGlobalHelper().getPOLoggerEx();
+         if (poLogger != null) {
+            poLogger.LogDBQuery(this.getDEHelper().getId(), this.strQueryKey, strSQL, this.getWebContext().getCurUserId(), nProcessTime);
+         }
+      }
+   }
+
+   protected void SelectAndFillFetchResult(BaseDataEntity cond, SRFExGridFetchResult fetchResult) {
+      try {
+         IDEDataCtrl iTempDataCtrl = this.getWebContext().getGlobalHelper().getDAModelStorage().FindDEDataCtrl("DE0112", this.getWebContext());
+         if (iTempDataCtrl == null) {
+            fetchResult.setRetCode(1);
+            fetchResult.setErrorInfo(StringHelper.Format("无法获取实体[%1$s]数据访问对象", "DE0112"));
+            log.error(fetchResult.getErrorInfo());
+            return;
+         }
+
+         Vector<BaseDataEntity> list = new Vector<>();
+         CallResult callResult = iTempDataCtrl.Select(cond, list);
+         if (callResult == null) {
+            fetchResult.setRetCode(1);
+            fetchResult.setErrorInfo("不明错误");
+            return;
+         }
+
+         if (callResult.getRetCode() != 0) {
+            fetchResult.From(callResult);
+            return;
+         }
+
+         fetchResult.setTotalRow(list.size());
+         Vector<BaseDataEntity> realList = new Vector<>();
+
+         for (BaseDataEntity dataEntity : list) {
+            BaseDataEntity realDE = BaseDataEntity.FromString(dataEntity.GetParamStringValue("DEDATA", ""));
+            realDE.SetParamValue("SRFDATEMPKEYID", dataEntity.GetParamValue("TEMPDATAID"));
+            realList.add(realDE);
+         }
+
+         DataEntityTable dataEntityTable = new DataEntityTable(realList);
+         GridFetchResultHelper.Fill(
+            this.getWebContext(), fetchResult.getItems(), dataEntityTable, this.getDataGrid().getDataGridConfig(), this.getDataGrid().getUniqueID(), true
+         );
+         fetchResult.setRetCode(0);
+      } catch (Exception ex) {
+         fetchResult.setRetCode(1);
+         fetchResult.setErrorInfo(ex.getMessage());
+      }
+   }
+
+   protected void FillSummaryInfo(SRFExGridFetchResult fetchResult, DataTable dataTable) {
+   }
+
+   protected CallResult SelectAndExport(String strPagingSQL, Vector<CallParam> list, String strExportType) {
+      CallResult callResult = new CallResult();
+
+      try {
+         StringBuilderEx info = new StringBuilderEx();
+         info.Append("PAGING SQL\r\n%1$s\r\n", strPagingSQL);
+         if (list != null) {
+            for (int i = 0; i < list.size(); i++) {
+               CallParam callParam = list.get(i);
+               info.Append("参数[%1$s][%2$s][%3$s]\r\n", i + 1, callParam.getParamName(), callParam.getValue());
+            }
+         }
+
+         log.info(info.toString());
+         SelectResult selectResult = this.getWebContext().getDBCaller(this.getDEHelper().GetDBStorage()).CallRaw3(strPagingSQL, list);
+         if (selectResult == null) {
+            callResult.setRetCode(1);
+            callResult.setErrorInfo("不明错误");
+            return callResult;
+         }
+
+         if (selectResult.getRetCode() != 0) {
+            callResult.From(selectResult);
+            return callResult;
+         }
+
+         if (selectResult.getSelectData().getTableCount() != 1) {
+            callResult.setRetCode(1);
+            callResult.setErrorInfo("返回结果集有误");
+            return callResult;
+         }
+
+         String strFileSuffix = "";
+         if (StringHelper.Compare(strExportType, "HTML", true) == 0) {
+            strFileSuffix = "htm";
+         } else {
+            strFileSuffix = "xls";
+         }
+
+         String strTempFileName = Helper.GenGuid();
+         String strDir = StringHelper.Format("%1$s%2$s", this.getWebContext().getGlobalHelper().GetTempPath(), this.getWebContext().getSessionId());
+         File dir = new File(strDir);
+         dir.mkdirs();
+         String strFullFileName = StringHelper.Format(
+            "%1$s%2$s%3$s%4$s.%5$s",
+            this.getWebContext().getGlobalHelper().GetTempPath(),
+            this.getWebContext().getSessionId(),
+            File.separator,
+            strTempFileName,
+            strFileSuffix
+         );
+         this.GenExcelFile(selectResult, strFullFileName, strExportType);
+         callResult.setUserObject(strTempFileName);
+         callResult.setRetCode(0);
+      } catch (Exception ex) {
+         callResult.setRetCode(1);
+         callResult.setErrorInfo(ex.getMessage());
+      }
+
+      return callResult;
+   }
+
+   protected void GenExcelFile(SelectResult selectResult, String strTempFileName, String strExportType) {
+      GenExcelFile(this.getPage(), this.getDataGrid(), selectResult, strTempFileName, strExportType);
+   }
+
+   protected static void GenExcelFile(SRFDAPage page, SRFExDataGrid dataGrid, SelectResult selectResult, String strTempFileName, String strExportType) {
+      try {
+         DataGrid excelDataGrid = new DataGrid();
+         CallResult callResult = page.getDAModelHelper().GetExcelExportDEDataGrid(page.getPageDataEntityId(), excelDataGrid);
+         callResult = CallResult.ToCallResult(callResult);
+         DataGridConfig dataGridConfig = null;
+         if (callResult.getRetCode() == 0) {
+            String strDGConfigId = page.getDAConfigHelper().GetGridViewDGConfigId(page.getDEHelper(), null, excelDataGrid, "");
+            if (StringHelper.IsNullOrEmpty(strDGConfigId)) {
+               page.PageLog(page, 1, StringHelper.Format("获取下载表格配配置路径失败"));
+               return;
+            }
+
+            dataGridConfig = page.getWebContext().getDataGridMgr().GetDataGridConfig(strDGConfigId);
+            if (dataGridConfig == null) {
+               page.PageLog(page, 1, StringHelper.Format("获取下载表格配配置失败"));
+               return;
+            }
+         } else {
+            dataGridConfig = dataGrid.getDataGridConfig();
+         }
+
+         if (StringHelper.Compare(strExportType, "HTML", true) == 0) {
+            DataGridExcelReportHelper excelReportHelper = new DataGridExcelReportHelper();
+            excelReportHelper.setPrint(true);
+            excelReportHelper.setCloseAfterPrint(true);
+            excelReportHelper.setDataSource(selectResult.getMainTable());
+            excelReportHelper.setWebContext(page.getWebContext());
+            excelReportHelper.setConfig(dataGridConfig);
+            excelReportHelper.setEnableItemPrivilege(dataGrid.isEnableItemPrivilege());
+            FileWriter fw = new FileWriter(new File(strTempFileName));
+            fw.flush();
+            excelReportHelper.Output(fw);
+            fw.close();
+         } else {
+            DataGridExcelReportHelperEx excelReportHelperEx = new DataGridExcelReportHelperEx();
+            excelReportHelperEx.setConfig(dataGridConfig);
+            excelReportHelperEx.setWebContext(page.getWebContext());
+            excelReportHelperEx.setDataSource(selectResult.getMainTable());
+            excelReportHelperEx.setEnableItemPrivilege(dataGrid.isEnableItemPrivilege());
+            excelReportHelperEx.Output(strTempFileName);
+         }
+      } catch (Exception ex) {
+         log.error(ex);
+      }
+   }
+
+   protected String GetExportType() {
+      String strExportType = this.getWebContext().GetPostValue("exporttype");
+      return StringHelper.IsNullOrEmpty(strExportType) ? "" : strExportType;
+   }
+
+   protected CallResult OnRemoveActionBeforeRemove(BaseDataEntity dataEntity) {
+      return this.OnRemoveActionBeforeRemove(this.getDEDataCtrl(), dataEntity);
+   }
+
+   protected CallResult OnRemoveActionBeforeRemove(IDEDataCtrl iDEDataCtrl, BaseDataEntity dataEntity) {
+      CallResult callResult = this.OnTestDataAction(iDEDataCtrl.GetDEHelper(), dataEntity, "DELETE");
+      return callResult.getRetCode() != 0 ? callResult : iDEDataCtrl.TestDataLock(dataEntity, this.GetDataLockKey(dataEntity));
+   }
+
+   @Override
+   protected boolean OnCustomAction(String strAction) {
+      if (StringHelper.Compare(strAction, "SRFDAEXPORT", true) == 0) {
+         this.OnExport();
+         return true;
+      } else {
+         return false;
+      }
+   }
+
+   protected boolean OnExport() {
+      SRFExAjaxActionResult exportResult = new SRFExAjaxActionResult();
+      this.groupStatisticsRep = this.getGroupStatisticsRep();
+      if (this.groupStatisticsRep == null) {
+         log.error("无法获取分组统计报表对象");
+         exportResult.setRetCode(1);
+         exportResult.setErrorInfo("无法获取分组统计报表对象");
+         this.getPage().Output(exportResult.ToJSONString());
+         return true;
+      }
+
+      BaseDAQueryModelHelper daQueryModelHelper = null;
+      String strQueryModel = this.groupStatisticsRep.getQUERYMODELID();
+      boolean bUserDP = this.OnGetUserDP();
+      if (!StringHelper.IsNullOrEmpty(strQueryModel)) {
+         if (bUserDP) {
+            daQueryModelHelper = this.getWebContext().GetUserQueryModelStorage().FindDAQueryModelHelper(strQueryModel);
+         } else {
+            daQueryModelHelper = this.getPage().getDAModelStorage().FindDAQueryModelHelper(strQueryModel);
+         }
+      } else if (bUserDP) {
+         daQueryModelHelper = this.getWebContext().GetUserQueryModelStorage().FindDAQueryModelHelper(this.getDEHelper(), "", false);
+      } else {
+         daQueryModelHelper = this.getPage().getDAModelStorage().getDAQueryModelHelper(this.getDEHelper());
+      }
+
+      this.strQueryKey = StringHelper.Format("QUERYMODEL[%1$s] USERDP[%2$s]", strQueryModel, bUserDP ? "TRUE" : "FALSE");
+      log.info(StringHelper.Format("表格查询 [%1$s]", strQueryModel));
+      if (daQueryModelHelper == null) {
+         exportResult.setRetCode(1);
+         exportResult.setErrorInfo("查询模型辅助对象无效");
+         log.error(exportResult.getErrorInfo());
+         this.getPage().Output(exportResult.ToJSONString());
+         return true;
+      }
+
+      this.qmUserContext = new DefaultDAQueryModelUserContext();
+      StringBuilderEx script = new StringBuilderEx();
+      String strQueryScript = this.GetDAModelQueryScript(daQueryModelHelper);
+      Vector<String> userConditions = new Vector<>();
+      String strGroupField = this.getWebContext().GetPostValue("srfgroupfield");
+      if (this.groupStatisticsRep.getENABLETIMEGROUP()) {
+         IDEFHelper timeGroupDEF = daQueryModelHelper.GetMajorDEHelper().GetDEFHelper(this.groupStatisticsRep.getTIMEDEFIELDID());
+         if (timeGroupDEF == null) {
+            exportResult.setRetCode(1);
+            exportResult.setErrorInfo(StringHelper.Format("无法获取时间分组属性[%1$s]", this.groupStatisticsRep.getTIMEDEFIELDID()));
+            log.error(exportResult.getErrorInfo());
+            this.getPage().Output(exportResult.ToJSONString());
+            return true;
+         }
+
+         String strFromTimeParam = this.groupStatisticsRep.getBEGINTIMEARG();
+         if (StringHelper.IsNullOrEmpty(strFromTimeParam)) {
+            strFromTimeParam = StringHelper.Format("n_%1$s_gtandeq", timeGroupDEF.GetDTColumn().GetColumnName());
+         }
+
+         String strToTimeParam = this.groupStatisticsRep.getENDTIMEARG();
+         if (StringHelper.IsNullOrEmpty(strToTimeParam)) {
+            strToTimeParam = StringHelper.Format("n_%1$s_lt", timeGroupDEF.GetDTColumn().GetColumnName());
+         }
+
+         String strFromTime = this.getWebContext().GetPostValue(strFromTimeParam);
+         if (StringHelper.IsNullOrEmpty(strFromTime)) {
+            strFromTime = this.getWebContext().GetParamValue(strFromTimeParam);
+         }
+
+         if (StringHelper.IsNullOrEmpty(strFromTime)) {
+            exportResult.setRetCode(1);
+            exportResult.setErrorInfo(StringHelper.Format("没有指定[%1$s]的起始时间", timeGroupDEF.getLogicName()));
+            log.error(exportResult.getErrorInfo());
+            this.getPage().Output(exportResult.ToJSONString());
+            return true;
+         }
+
+         String strToTime = this.getWebContext().GetPostValue(strToTimeParam);
+         if (StringHelper.IsNullOrEmpty(strToTimeParam)) {
+            strToTime = this.getWebContext().GetParamValue(strToTimeParam);
+         }
+
+         if (StringHelper.IsNullOrEmpty(strFromTime)) {
+            exportResult.setRetCode(1);
+            exportResult.setErrorInfo(StringHelper.Format("没有指定[%1$s]的终止时间", timeGroupDEF.getLogicName()));
+            log.error(exportResult.getErrorInfo());
+            this.getPage().Output(exportResult.ToJSONString());
+            return true;
+         }
+
+         int nPos = strQueryScript.indexOf("SELECT");
+         if (nPos == -1) {
+            exportResult.setRetCode(1);
+            exportResult.setErrorInfo(StringHelper.Format("无法从查询语句中定位第一个[SELECT]"));
+            log.error(exportResult.getErrorInfo());
+            this.getPage().Output(exportResult.ToJSONString());
+            return true;
+         }
+
+         strQueryScript = "SELECT s1.TIMEDIMENSIONID AS srftdid,s1.TIMEDIMENSIONNAME AS srftdname,s1.BEGINTIME AS srftdfrom,s1.ENDTIME AS srftdto, "
+            + strQueryScript.substring(nPos + 6);
+         strQueryScript = strQueryScript
+            + StringHelper.Format(
+               "\nLEFT OUTER JOIN t_SRFTIMEDIMENSION s1 ON %1$s >=s1.BEGINTIME AND %1$s<s1.ENDTIME \n",
+               daQueryModelHelper.GetDEFieldExp(timeGroupDEF).getUserObject()
+            );
+         userConditions.add(StringHelper.Format("s1.TIMEDIMENSIONID IS NOT NULL "));
+         String strCond = daQueryModelHelper.GetDateTimeConditionSQL("s1.BEGINTIME", 5, ">=", strFromTime);
+         if (StringHelper.IsNullOrEmpty(strCond)) {
+            exportResult.setRetCode(1);
+            exportResult.setErrorInfo(StringHelper.Format("无法设置[%1$s]的起始时间[%2$s]", timeGroupDEF.getLogicName(), strFromTime));
+            log.error(exportResult.getErrorInfo());
+            this.getPage().Output(exportResult.ToJSONString());
+            return true;
+         }
+
+         userConditions.add(strCond);
+         strCond = daQueryModelHelper.GetDateTimeConditionSQL("s1.ENDTIME", 5, "<", strToTime);
+         if (StringHelper.IsNullOrEmpty(strCond)) {
+            exportResult.setRetCode(1);
+            exportResult.setErrorInfo(StringHelper.Format("无法设置[%1$s]的终止时间[%2$s]", timeGroupDEF.getLogicName(), strToTime));
+            log.error(exportResult.getErrorInfo());
+            this.getPage().Output(exportResult.ToJSONString());
+            return true;
+         }
+
+         userConditions.add(strCond);
+         userConditions.add(StringHelper.Format("s1.TDTYPE='%1$s'", strGroupField));
+      }
+
+      script.Append(strQueryScript);
+      daQueryModelHelper.FillMajorConditions(userConditions);
+      this.FillDAQueryModelHelperCondition(userConditions, daQueryModelHelper);
+      if (userConditions.size() != 0) {
+         script.Append(" WHERE ");
+         boolean bFirst = true;
+
+         for (String strCondition : userConditions) {
+            if (bFirst) {
+               bFirst = false;
+            } else {
+               script.Append(" AND ");
+            }
+
+            script.Append("(%1$s)", strCondition);
+         }
+      }
+
+      Vector<String> dynamicTables = null;
+      boolean bDynamicMode = false;
+      if (StringHelper.Compare(this.getDEHelper().getDataEntity().getSTORAGETYPE(), "DYNAMIC", true) == 0) {
+         bDynamicMode = true;
+         String strTimeFrom = this.getDEHelper().GetProperty("DYNAMICFROM");
+         String strTimeTo = this.getDEHelper().GetProperty("DYNAMICTO");
+         String strTime1 = this.getPage().getRequest().getParameter(strTimeFrom.toLowerCase());
+         if (strTime1 == null) {
+            strTime1 = this.getWebContext().GetParamValue(strTimeFrom.toUpperCase());
+         }
+
+         String strTime2 = this.getPage().getRequest().getParameter(strTimeTo.toLowerCase());
+         if (strTime2 == null) {
+            strTime2 = this.getWebContext().GetParamValue(strTimeTo.toUpperCase());
+         }
+
+         if (StringHelper.IsNullOrEmpty(strTime1) || StringHelper.IsNullOrEmpty(strTime2)) {
+            log.error("没有指定开始或结束时间");
+            exportResult.setRetCode(1);
+            exportResult.setErrorInfo("没有指定开始或结束时间");
+            this.getPage().Output(exportResult.ToJSONString());
+            return true;
+         }
+
+         try {
+            Date startDate = DateParser.Parse(strTime1);
+            Date endDate = DateParser.Parse(strTime2);
+            dynamicTables = new Vector<>();
+            CallResult callResult = this.getDEHelper().GetDynamicTables(startDate, endDate, dynamicTables);
+            if (callResult.IsError()) {
+               exportResult.setRetCode(1);
+               exportResult.setErrorInfo(callResult.getErrorInfo());
+               this.getPage().Output(exportResult.ToJSONString());
+               return true;
+            }
+         } catch (Exception e) {
+            log.error(e);
+            exportResult.setRetCode(1);
+            exportResult.setErrorInfo(e.getMessage());
+            this.getPage().Output(exportResult.ToJSONString());
+            return true;
+         }
+      }
+
+      String strSortParam = "";
+      String strSortDirection = "";
+      strSortParam = this.getPage().getRequest().getParameter("sort");
+      String strRealSortParam = this.getPage().getRequest().getParameter("realsort");
+      if (StringHelper.Length(strRealSortParam) > 0) {
+         strSortParam = strRealSortParam;
+      }
+
+      strSortDirection = this.getPage().getRequest().getParameter("dir");
+      QueryGroupModelConfig queryGroupModelConfig = new QueryGroupModelConfig();
+      String strTopN = this.getPage().getRequest().getParameter("srftopn");
+      if (StringHelper.IsNullOrEmpty(strTopN)) {
+         queryGroupModelConfig.setTopCount(100);
+      } else {
+         int nInt = Integer.parseInt(strTopN);
+         if (nInt <= 0) {
+            nInt = 100;
+         }
+
+         queryGroupModelConfig.setTopCount(nInt);
+      }
+
+      String strGroupCond = this.groupStatisticsRep.getGROUPCOND();
+      if (!this.groupStatisticsRep.getENABLETIMEGROUP()) {
+         if (!StringHelper.IsNullOrEmpty(strGroupField)) {
+            for (GSRGroupColumn groupColumn : this.groupStatisticsRep.getGroupColumns()) {
+               if (StringHelper.Compare(groupColumn.getDEFIELDNAME(), strGroupField, true) == 0) {
+                  QueryGroupItemConfig queryGroupItemConfig = new QueryGroupItemConfig();
+                  queryGroupItemConfig.setAlias(groupColumn.getDEFIELDNAME());
+                  queryGroupItemConfig.setDEFields(groupColumn.getDEFIELDNAME());
+                  queryGroupItemConfig.setIsGroup(true);
+                  if (StringHelper.Compare(strSortParam, groupColumn.getDEFIELDNAME(), true) == 0) {
+                     queryGroupItemConfig.setOrder(0);
+                     queryGroupItemConfig.setOrderDirection(strSortDirection);
+                  }
+
+                  queryGroupModelConfig.add(queryGroupItemConfig);
+                  if (!StringHelper.IsNullOrEmpty(groupColumn.getCOND())) {
+                     if (!StringHelper.IsNullOrEmpty(strGroupCond)) {
+                        strGroupCond = strGroupCond + " AND ";
+                     }
+
+                     strGroupCond = strGroupCond + groupColumn.getCOND();
+                  }
+
+                  if (!StringHelper.IsNullOrEmpty(groupColumn.getNAMEDEFNAME())) {
+                     queryGroupItemConfig = new QueryGroupItemConfig();
+                     queryGroupItemConfig.setAlias(groupColumn.getNAMEDEFNAME());
+                     queryGroupItemConfig.setDEFields(groupColumn.getNAMEDEFNAME());
+                     queryGroupItemConfig.setIsGroup(true);
+                     if (StringHelper.Compare(strSortParam, groupColumn.getNAMEDEFNAME(), true) == 0) {
                         queryGroupItemConfig.setOrder(0);
                         queryGroupItemConfig.setOrderDirection(strSortDirection);
-                    }
-                    queryGroupModelConfig.add(queryGroupItemConfig);
-                }
+                     }
+
+                     queryGroupModelConfig.add(queryGroupItemConfig);
+                  }
+               } else if (groupColumn.getDEFAULTGROUP() || groupColumn.getORDERFLAG() == -1) {
+                  QueryGroupItemConfig queryGroupItemConfig = new QueryGroupItemConfig();
+                  queryGroupItemConfig.setAlias(groupColumn.getDEFIELDNAME());
+                  queryGroupItemConfig.setDEFields(groupColumn.getDEFIELDNAME());
+                  queryGroupItemConfig.setIsGroup(true);
+                  if (StringHelper.Compare(strSortParam, groupColumn.getDEFIELDNAME(), true) == 0) {
+                     queryGroupItemConfig.setOrder(0);
+                     queryGroupItemConfig.setOrderDirection(strSortDirection);
+                  }
+
+                  queryGroupModelConfig.add(queryGroupItemConfig);
+               }
             }
-        } else {
-            groupParams = new Vector<String>();
-            groupParams.add("srftdid");
-            groupParams.add("srftdname");
-            groupParams.add("srftdfrom");
-            groupParams.add("srftdto");
-            for (Object strGroupName : groupParams) {
-                queryGroupItemConfig = new QueryGroupItemConfig();
-                queryGroupItemConfig.setAlias((String)strGroupName);
-                queryGroupItemConfig.setDEFields((String)strGroupName);
-                queryGroupItemConfig.setIsGroup(true);
-                if (StringHelper.Compare((String)strSortParam, (String)strGroupName, (boolean)true) == 0) {
-                    queryGroupItemConfig.setOrder(0);
-                    queryGroupItemConfig.setOrderDirection(strSortDirection);
-                }
-                queryGroupModelConfig.add((Object)queryGroupItemConfig);
+         }
+      } else {
+         Vector<String> groupParams = new Vector<>();
+         groupParams.add("srftdid");
+         groupParams.add("srftdname");
+         groupParams.add("srftdfrom");
+         groupParams.add("srftdto");
+
+         for (String strGroupName : groupParams) {
+            QueryGroupItemConfig queryGroupItemConfig = new QueryGroupItemConfig();
+            queryGroupItemConfig.setAlias(strGroupName);
+            queryGroupItemConfig.setDEFields(strGroupName);
+            queryGroupItemConfig.setIsGroup(true);
+            if (StringHelper.Compare(strSortParam, strGroupName, true) == 0) {
+               queryGroupItemConfig.setOrder(0);
+               queryGroupItemConfig.setOrderDirection(strSortDirection);
             }
-        }
-        queryGroupModelConfig.setGroupCond(strGroupCond);
-        for (GSRMeasure gsrMeasure : this.groupStatisticsRep.getMeasures()) {
-            queryGroupItemConfig = new QueryGroupItemConfig();
-            queryGroupItemConfig.setAlias(gsrMeasure.getEXPALIAS());
-            queryGroupItemConfig.setFormular(gsrMeasure.getEXPRESSION());
-            queryGroupItemConfig.setIsGroup(false);
-            queryGroupItemConfig.setReCalc(gsrMeasure.getRECALCFLAG());
-            if (StringHelper.Compare((String)strSortParam, (String)gsrMeasure.getEXPALIAS(), (boolean)true) == 0) {
-                queryGroupItemConfig.setOrder(0);
-                queryGroupItemConfig.setOrderDirection(strSortDirection);
-            }
+
             queryGroupModelConfig.add(queryGroupItemConfig);
-        }
-        params = new Vector<CallParam>();
-        daQueryModelHelper.FillQMDeclareParams(params, (ISRFDAWebContext)this.getWebContext(), (ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), "");
-        strSQL = daQueryModelHelper.GetGroupSQL(script.toString(), queryGroupModelConfig, params, (ISRFDAWebContext)this.getWebContext(), (ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), "", null);
-        daQueryModelHelper.FillCallParams(params, (ISRFDAWebContext)this.getWebContext(), (ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), "");
-        strSQL = String.valueOf(daQueryModelHelper.GetQMDeclareScript()) + strSQL;
-        strSQL = daQueryModelHelper.ReplaceURLParamMacro(strSQL, (ISRFExWebContext)this.getWebContext());
-        if (bDynamicMode) {
-            strSQL = daQueryModelHelper.ReplaceDynamicTableMacro(strSQL, dynamicTables);
-        }
-        if ((callResult = this.SelectAndExport(strSQL, params, strExportType = this.GetExportType())).getRetCode() != 0) {
-            callResult.From((CallResult)exportResult);
-            this.getPage().Output(exportResult.ToJSONString());
-            return true;
-        }
-        strDownloadURL = "";
-        strDownloadURL = StringHelper.Format((String)"'../srfpage/exportexcel.jsp?FILEID=%1$s&EXPORTTYPE=%2$s'", (Object)callResult.getUserObject(), (Object)strExportType);
-        strScript = StringHelper.Format((String)"SRFUtility.root().location=%1$s;", (Object)strDownloadURL);
-        exportResult.setJSCode(strScript);
-        this.getPage().Output(exportResult.ToJSONString());
-        return true;
-    }
+         }
+      }
 
-    protected boolean OnExportImportTemplate() {
-        CallResult callResult;
-        SRFExAjaxActionResult exportResult = new SRFExAjaxActionResult();
-        String strTempFileName = Helper.GenGuid();
-        String strDir = StringHelper.Format((String)"%1$s%2$s", (Object)this.getWebContext().getGlobalHelper().GetTempPath(), (Object)this.getWebContext().getSessionId());
-        File dir = new File(strDir);
-        dir.mkdirs();
-        String strFullFileName = StringHelper.Format((String)"%1$s%2$s%3$s%4$s.%5$s", (Object)this.getWebContext().getGlobalHelper().GetTempPath(), (Object)this.getWebContext().getSessionId(), (Object)File.separator, (Object)strTempFileName, (Object)"xls");
-        try {
-            callResult = DEDataImportTemplateHelper.Output((ISRFDAGlobalHelper)this.getWebContext().getGlobalHelper(), (IDEHelper)this.getDEHelper(), (String)strFullFileName);
-        }
-        catch (Exception e) {
-            callResult = new CallResult();
-            callResult.setRetCode(1);
-            callResult.setErrorInfo(StringHelper.Format((String)"\u5efa\u7acb\u5bfc\u5165\u6a21\u677f\u6587\u4ef6\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)e.getMessage()));
-            log.error((Object)callResult.getErrorInfo(), (Throwable)e);
-        }
-        if (callResult.getRetCode() != 0) {
-            callResult.From((CallResult)exportResult);
-            this.getPage().Output(exportResult.ToJSONString());
-            return true;
-        }
-        String strDownloadURL = "";
-        strDownloadURL = StringHelper.Format((String)"'../srfpage/exportexcel.jsp?FILEID=%1$s&EXPORTTYPE=%2$s'", (Object)strTempFileName, (Object)"");
-        String strScript = StringHelper.Format((String)"SRFUtility.root().location=%1$s;", (Object)strDownloadURL);
-        exportResult.setJSCode(strScript);
-        this.getPage().Output(exportResult.ToJSONString());
-        return true;
-    }
+      queryGroupModelConfig.setGroupCond(strGroupCond);
 
-    protected String OnGetDGMode() {
-        return this.getPage().getPageParam("PAGE.DGMODE", "");
-    }
+      for (GSRMeasure gsrMeasure : this.groupStatisticsRep.getMeasures()) {
+         QueryGroupItemConfig queryGroupItemConfig = new QueryGroupItemConfig();
+         queryGroupItemConfig.setAlias(gsrMeasure.getEXPALIAS());
+         queryGroupItemConfig.setFormular(gsrMeasure.getEXPRESSION());
+         queryGroupItemConfig.setIsGroup(false);
+         queryGroupItemConfig.setReCalc(gsrMeasure.getRECALCFLAG());
+         if (StringHelper.Compare(strSortParam, gsrMeasure.getEXPALIAS(), true) == 0) {
+            queryGroupItemConfig.setOrder(0);
+            queryGroupItemConfig.setOrderDirection(strSortDirection);
+         }
 
-    protected SRFDAPage getPage() {
-        return (SRFDAPage)this.page;
-    }
+         queryGroupModelConfig.add(queryGroupItemConfig);
+      }
 
-    protected SRFDAWebContext getWebContext() {
-        return (SRFDAWebContext)super.getWebContext();
-    }
+      Vector<CallParam> params = new Vector<>();
+      daQueryModelHelper.FillQMDeclareParams(params, this.getWebContext(), this.getWebContext().getGlobalHelper(), "");
+      String strSQL = daQueryModelHelper.GetGroupSQL(
+         script.toString(), queryGroupModelConfig, params, this.getWebContext(), this.getWebContext().getGlobalHelper(), "", null
+      );
+      daQueryModelHelper.FillCallParams(params, this.getWebContext(), this.getWebContext().getGlobalHelper(), "");
+      strSQL = daQueryModelHelper.GetQMDeclareScript() + strSQL;
+      strSQL = daQueryModelHelper.ReplaceURLParamMacro(strSQL, this.getWebContext());
+      if (bDynamicMode) {
+         strSQL = daQueryModelHelper.ReplaceDynamicTableMacro(strSQL, dynamicTables);
+      }
 
-    protected IDEDataCtrl getDEDataCtrl() {
-        return this.getPage().GetDEDataCtrl();
-    }
+      String strExportType = this.GetExportType();
+      CallResult callResult = this.SelectAndExport(strSQL, params, strExportType);
+      if (callResult.getRetCode() != 0) {
+         callResult.From(exportResult);
+         this.getPage().Output(exportResult.ToJSONString());
+         return true;
+      } else {
+         String strDownloadURL = "";
+         strDownloadURL = StringHelper.Format("'../srfpage/exportexcel.jsp?FILEID=%1$s&EXPORTTYPE=%2$s'", callResult.getUserObject(), strExportType);
+         String strScript = StringHelper.Format("SRFUtility.root().location=%1$s;", strDownloadURL);
+         exportResult.setJSCode(strScript);
+         this.getPage().Output(exportResult.ToJSONString());
+         return true;
+      }
+   }
 
-    protected String GetDataLockKey(BaseDataEntity dataEntity) {
-        return "";
-    }
+   protected boolean OnExportImportTemplate() {
+      SRFExAjaxActionResult exportResult = new SRFExAjaxActionResult();
+      String strTempFileName = Helper.GenGuid();
+      String strDir = StringHelper.Format("%1$s%2$s", this.getWebContext().getGlobalHelper().GetTempPath(), this.getWebContext().getSessionId());
+      File dir = new File(strDir);
+      dir.mkdirs();
+      String strFullFileName = StringHelper.Format(
+         "%1$s%2$s%3$s%4$s.%5$s",
+         this.getWebContext().getGlobalHelper().GetTempPath(),
+         this.getWebContext().getSessionId(),
+         File.separator,
+         strTempFileName,
+         "xls"
+      );
 
-    protected IDEHelper getDEHelper() {
-        return this.getPage().getDEHelper();
-    }
+      CallResult callResult;
+      try {
+         callResult = DEDataImportTemplateHelper.Output(this.getWebContext().getGlobalHelper(), this.getDEHelper(), strFullFileName);
+      } catch (Exception e) {
+         callResult = new CallResult();
+         callResult.setRetCode(1);
+         callResult.setErrorInfo(StringHelper.Format("建立导入模板文件发生异常，%1$s", e.getMessage()));
+         log.error(callResult.getErrorInfo(), e);
+      }
 
-    public static String GetSelectedColumns(DataGridConfig dataGridConfig) {
-        String strColumns = "";
-        int nSize = dataGridConfig.getDataGridDSConfig().getList().size();
-        int i = 0;
-        while (i < nSize) {
-            DataGridDSItemConfig dsItemConfig = (DataGridDSItemConfig)dataGridConfig.getDataGridDSConfig().getList().get(i);
-            if (dsItemConfig.getItemParamsConfig() == null) {
-                strColumns = String.valueOf(strColumns) + dsItemConfig.getID();
-                strColumns = String.valueOf(strColumns) + ";";
-            } else {
-                int nSize2 = dsItemConfig.getItemParamsConfig().getList().size();
-                int j = 0;
-                while (j < nSize2) {
-                    ItemParamConfig itemParamConfig = (ItemParamConfig)dsItemConfig.getItemParamsConfig().getList().get(j);
-                    strColumns = String.valueOf(strColumns) + itemParamConfig.getID();
-                    strColumns = String.valueOf(strColumns) + ";";
-                    ++j;
-                }
+      if (callResult.getRetCode() != 0) {
+         callResult.From(exportResult);
+         this.getPage().Output(exportResult.ToJSONString());
+         return true;
+      } else {
+         String strDownloadURL = "";
+         strDownloadURL = StringHelper.Format("'../srfpage/exportexcel.jsp?FILEID=%1$s&EXPORTTYPE=%2$s'", strTempFileName, "");
+         String strScript = StringHelper.Format("SRFUtility.root().location=%1$s;", strDownloadURL);
+         exportResult.setJSCode(strScript);
+         this.getPage().Output(exportResult.ToJSONString());
+         return true;
+      }
+   }
+
+   protected String OnGetDGMode() {
+      return this.getPage().getPageParam("PAGE.DGMODE", "");
+   }
+
+   protected SRFDAPage getPage() {
+      return (SRFDAPage)super.page;
+   }
+
+   protected SRFDAWebContext getWebContext() {
+      return (SRFDAWebContext)super.getWebContext();
+   }
+
+   protected IDEDataCtrl getDEDataCtrl() {
+      return this.getPage().GetDEDataCtrl();
+   }
+
+   protected String GetDataLockKey(BaseDataEntity dataEntity) {
+      return "";
+   }
+
+   protected IDEHelper getDEHelper() {
+      return this.getPage().getDEHelper();
+   }
+
+   public static String GetSelectedColumns(DataGridConfig dataGridConfig) {
+      String strColumns = "";
+      int nSize = dataGridConfig.getDataGridDSConfig().getList().size();
+
+      for (int i = 0; i < nSize; i++) {
+         DataGridDSItemConfig dsItemConfig = (DataGridDSItemConfig)dataGridConfig.getDataGridDSConfig().getList().get(i);
+         if (dsItemConfig.getItemParamsConfig() == null) {
+            strColumns = strColumns + dsItemConfig.getID();
+            strColumns = strColumns + ";";
+         } else {
+            int nSize2 = dsItemConfig.getItemParamsConfig().getList().size();
+
+            for (int j = 0; j < nSize2; j++) {
+               ItemParamConfig itemParamConfig = (ItemParamConfig)dsItemConfig.getItemParamsConfig().getList().get(j);
+               strColumns = strColumns + itemParamConfig.getID();
+               strColumns = strColumns + ";";
             }
-            ++i;
-        }
-        return strColumns;
-    }
+         }
+      }
 
-    protected GroupStatisticsRep getGroupStatisticsRep() {
-        if (this.groupStatisticsRep != null) {
-            return this.groupStatisticsRep;
-        }
-        Object obj = this.getPage().getPageParam("GROUPSTATISTICSREP");
-        if (obj == null) {
-            return null;
-        }
-        if (obj instanceof GroupStatisticsRep) {
-            this.groupStatisticsRep = (GroupStatisticsRep)obj;
-        }
-        return this.groupStatisticsRep;
-    }
+      return strColumns;
+   }
 
-    /*
-     * Enabled aggressive block sorting
-     */
-    public CallResult AppendTimeGroupSQL(BaseDAQueryModelHelper daQueryModelHelper, String strTimeGroupFieldId, String strFromTimeParam, String strToTimeParam, boolean bAllowTimeParamEmpty, String strQueryScript, Vector<String> userConditions, String strTDType) {
-        String strCond;
-        String strFromTime;
-        CallResult callResult = new CallResult();
-        IDEFHelper timeGroupDEF = daQueryModelHelper.GetMajorDEHelper().GetDEFHelper(strTimeGroupFieldId);
-        if (timeGroupDEF == null) {
-            callResult.setRetCode(1);
-            callResult.setErrorInfo(StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u65f6\u95f4\u5206\u7ec4\u5c5e\u6027[%1$s]", (Object)strTimeGroupFieldId));
-            return callResult;
-        }
-        if (StringHelper.IsNullOrEmpty((String)strFromTimeParam)) {
-            strFromTimeParam = StringHelper.Format((String)"n_%1$s_gtandeq", (Object)timeGroupDEF.GetDTColumn().GetColumnName().toLowerCase());
-        }
-        if (StringHelper.IsNullOrEmpty((String)strToTimeParam)) {
-            strToTimeParam = StringHelper.Format((String)"n_%1$s_lt", (Object)timeGroupDEF.GetDTColumn().GetColumnName().toLowerCase());
-        }
-        if (StringHelper.IsNullOrEmpty((String)(strFromTime = this.getWebContext().GetPostValue(strFromTimeParam)))) {
+   protected GroupStatisticsRep getGroupStatisticsRep() {
+      if (this.groupStatisticsRep != null) {
+         return this.groupStatisticsRep;
+      }
+
+      Object obj = this.getPage().getPageParam("GROUPSTATISTICSREP");
+      if (obj == null) {
+         return null;
+      }
+
+      if (obj instanceof GroupStatisticsRep) {
+         this.groupStatisticsRep = (GroupStatisticsRep)obj;
+      }
+
+      return this.groupStatisticsRep;
+   }
+
+   public CallResult AppendTimeGroupSQL(
+      BaseDAQueryModelHelper daQueryModelHelper,
+      String strTimeGroupFieldId,
+      String strFromTimeParam,
+      String strToTimeParam,
+      boolean bAllowTimeParamEmpty,
+      String strQueryScript,
+      Vector<String> userConditions,
+      String strTDType
+   ) {
+      CallResult callResult = new CallResult();
+      IDEFHelper timeGroupDEF = daQueryModelHelper.GetMajorDEHelper().GetDEFHelper(strTimeGroupFieldId);
+      if (timeGroupDEF != null) {
+         if (StringHelper.IsNullOrEmpty(strFromTimeParam)) {
+            strFromTimeParam = StringHelper.Format("n_%1$s_gtandeq", timeGroupDEF.GetDTColumn().GetColumnName().toLowerCase());
+         }
+
+         if (StringHelper.IsNullOrEmpty(strToTimeParam)) {
+            strToTimeParam = StringHelper.Format("n_%1$s_lt", timeGroupDEF.GetDTColumn().GetColumnName().toLowerCase());
+         }
+
+         String strFromTime = this.getWebContext().GetPostValue(strFromTimeParam);
+         if (StringHelper.IsNullOrEmpty(strFromTime)) {
             strFromTime = this.getWebContext().GetParamValue(strFromTimeParam);
-        }
-        if (!bAllowTimeParamEmpty && StringHelper.IsNullOrEmpty((String)strFromTime)) {
-            callResult.setRetCode(5);
-            callResult.setErrorInfo(StringHelper.Format((String)"\u6ca1\u6709\u6307\u5b9a[%1$s]\u7684\u8d77\u59cb\u65f6\u95f4", (Object)timeGroupDEF.getLogicName()));
-            return callResult;
-        }
-        String strToTime = this.getWebContext().GetPostValue(strToTimeParam);
-        if (StringHelper.IsNullOrEmpty((String)strToTime)) {
-            strToTime = this.getWebContext().GetParamValue(strToTimeParam);
-        }
-        if (!bAllowTimeParamEmpty && StringHelper.IsNullOrEmpty((String)strToTime)) {
-            callResult.setRetCode(5);
-            callResult.setErrorInfo(StringHelper.Format((String)"\u6ca1\u6709\u6307\u5b9a[%1$s]\u7684\u7ec8\u6b62\u65f6\u95f4", (Object)timeGroupDEF.getLogicName()));
-            return callResult;
-        }
-        int nPos = strQueryScript.indexOf("SELECT");
-        if (nPos == -1) {
-            callResult.setRetCode(1);
-            callResult.setErrorInfo(StringHelper.Format((String)"\u65e0\u6cd5\u4ece\u67e5\u8be2\u8bed\u53e5\u4e2d\u5b9a\u4f4d\u7b2c\u4e00\u4e2a[SELECT]"));
-            return callResult;
-        }
-        strQueryScript = "SELECT s1.TIMEDIMENSIONID AS srftdid,s1.TIMEDIMENSIONNAME AS srftdname,s1.BEGINTIME AS srftdfrom,s1.ENDTIME AS srftdto, " + strQueryScript.substring(nPos + 6);
-        strQueryScript = String.valueOf(strQueryScript) + StringHelper.Format((String)"\nLEFT OUTER JOIN t_SRFTIMEDIMENSION s1 ON %1$s >=s1.BEGINTIME AND %1$s<s1.ENDTIME \n", (Object)daQueryModelHelper.GetDEFieldExp(timeGroupDEF).getUserObject());
-        userConditions.add(StringHelper.Format((String)"s1.TIMEDIMENSIONID IS NOT NULL "));
-        if (!StringHelper.IsNullOrEmpty((String)strFromTime)) {
-            strCond = daQueryModelHelper.GetDateTimeConditionSQL("s1.BEGINTIME", 5, ">=", strFromTime);
-            if (StringHelper.IsNullOrEmpty((String)strCond)) {
-                callResult.setRetCode(5);
-                callResult.setErrorInfo(StringHelper.Format((String)"\u65e0\u6cd5\u8bbe\u7f6e[%1$s]\u7684\u8d77\u59cb\u65f6\u95f4[%2$s]", (Object)timeGroupDEF.getLogicName(), (Object)strFromTime));
-                return callResult;
-            }
-            userConditions.add(strCond);
-        }
-        if (!StringHelper.IsNullOrEmpty((String)strToTime)) {
-            strCond = daQueryModelHelper.GetDateTimeConditionSQL("s1.ENDTIME", 5, "<=", strToTime);
-            if (StringHelper.IsNullOrEmpty((String)strCond)) {
-                callResult.setRetCode(5);
-                callResult.setErrorInfo(StringHelper.Format((String)"\u65e0\u6cd5\u8bbe\u7f6e[%1$s]\u7684\u7ec8\u6b62\u65f6\u95f4[%2$s]", (Object)timeGroupDEF.getLogicName(), (Object)strToTime));
-                return callResult;
-            }
-            userConditions.add(strCond);
-        }
-        userConditions.add(StringHelper.Format((String)"s1.TDTYPE='%1$s'", (Object)strTDType));
-        callResult.setUserObject((Object)strQueryScript);
-        return callResult;
-    }
-}
+         }
 
+         if (!bAllowTimeParamEmpty && StringHelper.IsNullOrEmpty(strFromTime)) {
+            callResult.setRetCode(5);
+            callResult.setErrorInfo(StringHelper.Format("没有指定[%1$s]的起始时间", timeGroupDEF.getLogicName()));
+            return callResult;
+         }
+
+         String strToTime = this.getWebContext().GetPostValue(strToTimeParam);
+         if (StringHelper.IsNullOrEmpty(strToTime)) {
+            strToTime = this.getWebContext().GetParamValue(strToTimeParam);
+         }
+
+         if (!bAllowTimeParamEmpty && StringHelper.IsNullOrEmpty(strToTime)) {
+            callResult.setRetCode(5);
+            callResult.setErrorInfo(StringHelper.Format("没有指定[%1$s]的终止时间", timeGroupDEF.getLogicName()));
+            return callResult;
+         }
+
+         int nPos = strQueryScript.indexOf("SELECT");
+         if (nPos != -1) {
+            strQueryScript = "SELECT s1.TIMEDIMENSIONID AS srftdid,s1.TIMEDIMENSIONNAME AS srftdname,s1.BEGINTIME AS srftdfrom,s1.ENDTIME AS srftdto, "
+               + strQueryScript.substring(nPos + 6);
+            strQueryScript = strQueryScript
+               + StringHelper.Format(
+                  "\nLEFT OUTER JOIN t_SRFTIMEDIMENSION s1 ON %1$s >=s1.BEGINTIME AND %1$s<s1.ENDTIME \n",
+                  daQueryModelHelper.GetDEFieldExp(timeGroupDEF).getUserObject()
+               );
+            userConditions.add(StringHelper.Format("s1.TIMEDIMENSIONID IS NOT NULL "));
+            if (!StringHelper.IsNullOrEmpty(strFromTime)) {
+               String strCond = daQueryModelHelper.GetDateTimeConditionSQL("s1.BEGINTIME", 5, ">=", strFromTime);
+               if (StringHelper.IsNullOrEmpty(strCond)) {
+                  callResult.setRetCode(5);
+                  callResult.setErrorInfo(StringHelper.Format("无法设置[%1$s]的起始时间[%2$s]", timeGroupDEF.getLogicName(), strFromTime));
+                  return callResult;
+               }
+
+               userConditions.add(strCond);
+            }
+
+            if (!StringHelper.IsNullOrEmpty(strToTime)) {
+               String strCond = daQueryModelHelper.GetDateTimeConditionSQL("s1.ENDTIME", 5, "<=", strToTime);
+               if (StringHelper.IsNullOrEmpty(strCond)) {
+                  callResult.setRetCode(5);
+                  callResult.setErrorInfo(StringHelper.Format("无法设置[%1$s]的终止时间[%2$s]", timeGroupDEF.getLogicName(), strToTime));
+                  return callResult;
+               }
+
+               userConditions.add(strCond);
+            }
+
+            userConditions.add(StringHelper.Format("s1.TDTYPE='%1$s'", strTDType));
+            callResult.setUserObject(strQueryScript);
+            return callResult;
+         } else {
+            callResult.setRetCode(1);
+            callResult.setErrorInfo(StringHelper.Format("无法从查询语句中定位第一个[SELECT]"));
+            return callResult;
+         }
+      } else {
+         callResult.setRetCode(1);
+         callResult.setErrorInfo(StringHelper.Format("无法获取时间分组属性[%1$s]", strTimeGroupFieldId));
+         return callResult;
+      }
+   }
+}

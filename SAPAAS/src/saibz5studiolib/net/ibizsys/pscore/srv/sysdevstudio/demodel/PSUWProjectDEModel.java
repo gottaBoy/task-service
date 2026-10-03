@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdevstudio.demodel.PSUWProjectDEModelBase;
 
 public class PSUWProjectDEModel
 extends PSUWProjectDEModelBase {
+
+    public PSUWProjectDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

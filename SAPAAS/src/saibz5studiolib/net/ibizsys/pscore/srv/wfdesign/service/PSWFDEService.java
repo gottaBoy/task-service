@@ -98,7 +98,7 @@ extends PSWFDEServiceBase {
 
     @Override
     public void initDEWFViews(PSWFDE pSWFDE) throws Exception {
-        this.get((IEntity)pSWFDE);
+        this.get(pSWFDE);
         final PSWFDE pSWFDE2 = pSWFDE;
         this.doServiceWork(new IServiceWork(){
 
@@ -122,11 +122,10 @@ extends PSWFDEServiceBase {
     }
 
     public void rebuildPSDEUIActions(PSWFDE pSWFDE) throws Exception {
-        Object object;
-        Object object22;
+        PSDEUIAction action;
+        String caption;
         boolean bl;
-        Object object3;
-        Object object42;
+        String actionId;
         if (!pSWFDE.isWFProxyModeDirty() || !pSWFDE.isDefaultModeDirty()) {
             return;
         }
@@ -145,103 +144,101 @@ extends PSWFDEServiceBase {
         SelectCond selectCond = new SelectCond();
         selectCond.set("PSDEID", (Object)pSWFDE.getPSDEId());
         selectCond.setIsNotNull("UATAG");
-        ArrayList arrayList = pSDEUIActionService.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Object object42 : arrayList) {
-            if (!StringHelper.isNullOrEmpty((String)((PSDEUIActionBase)object42).getPSWFId()) || !StringHelper.isNullOrEmpty((String)((PSDEUIActionBase)object42).getPSWFVersionId()) || StringHelper.isNullOrEmpty((String)((PSDEUIActionBase)object42).getUATag()) || StringHelper.compare((String)"WFSTARTWIZARD", (String)((PSDEUIActionBase)object42).getUATag(), (boolean)false) != 0 && StringHelper.compare((String)"MOBWFSTARTWIZARD", (String)((PSDEUIActionBase)object42).getUATag(), (boolean)false) != 0) continue;
-            hashMap.put(((PSDEUIActionBase)object42).getUATag(), object42);
+        ArrayList<PSDEUIAction> arrayList = pSDEUIActionService.select((ISelectCond)selectCond);
+        HashMap<String, PSDEUIAction> hashMap = new HashMap<String, PSDEUIAction>();
+        for (PSDEUIAction existingAction : arrayList) {
+            if (!StringHelper.isNullOrEmpty((String)existingAction.getPSWFId()) || !StringHelper.isNullOrEmpty((String)existingAction.getPSWFVersionId()) || StringHelper.isNullOrEmpty((String)existingAction.getUATag()) || StringHelper.compare((String)"WFSTARTWIZARD", (String)existingAction.getUATag(), (boolean)false) != 0 && StringHelper.compare((String)"MOBWFSTARTWIZARD", (String)existingAction.getUATag(), (boolean)false) != 0) continue;
+            hashMap.put(existingAction.getUATag(), existingAction);
         }
         arrayList.clear();
         arrayList.addAll(hashMap.values());
-        Object object5 = new PSDEUIAction();
-        object42 = KeyValueHelper.genUniqueId((String)pSWFDE.getPSSystemId(), (String)"EDITVIEW_SAVEANDSTARTWFACTION");
-        ((PSDEUIActionBase)object5).setPSDEUIActionId((String)object42);
-        if (!pSDEUIActionService.get((IEntity)object5, true)) {
-            object5 = null;
+        PSDEUIAction saveAction = new PSDEUIAction();
+        saveAction.setPSDEUIActionId(KeyValueHelper.genUniqueId((String)pSWFDE.getPSSystemId(), (String)"EDITVIEW_SAVEANDSTARTWFACTION"));
+        if (!pSDEUIActionService.get(saveAction, true)) {
+            saveAction = null;
         }
         if (!StringHelper.isNullOrEmpty((String)pSWFDE.getStartPSDEViewId())) {
-            object3 = KeyValueHelper.genUniqueId((String)pSWFDE.getPSDEId(), (String)"WFSTARTWIZARD");
+            actionId = KeyValueHelper.genUniqueId((String)pSWFDE.getPSDEId(), (String)"WFSTARTWIZARD");
             bl = false;
-            for (Object object22 : arrayList) {
-                if (StringHelper.compare((String)((PSDEUIActionBase)object22).getUATag(), (String)"WFSTARTWIZARD", (boolean)false) != 0) continue;
-                object3 = ((PSDEUIActionBase)object22).getPSDEUIActionId();
+            for (PSDEUIAction existingAction : arrayList) {
+                if (StringHelper.compare((String)existingAction.getUATag(), (String)"WFSTARTWIZARD", (boolean)false) != 0) continue;
+                actionId = existingAction.getPSDEUIActionId();
                 bl = true;
                 break;
             }
-            object = new PSDEUIAction();
-            ((PSDEUIActionBase)object).setPSDEUIActionId((String)object3);
-            ((PSDEUIActionBase)object).setPSDEId(pSWFDE.getPSDEId());
-            ((PSDEUIActionBase)object).setUATag("WFSTARTWIZARD");
-            object22 = "\u5f00\u59cb\u6d41\u7a0b";
-            ((PSDEUIActionBase)object).setCaption((String)object22);
-            ((PSDEUIActionBase)object).setPSDEUIActionName((String)object22);
-            ((PSDEUIActionBase)object).setCodeName("WFStartWizard");
-            ((PSDEUIActionBase)object).setActionTarget("SINGLEKEY");
-            ((PSDEUIActionBase)object).setUIActionType("WFFRONT");
-            ((PSDEUIActionBase)object).setPSDEViewBaseId(pSWFDE.getStartPSDEViewId());
-            ((PSDEUIActionBase)object).setPSDEViewBaseName(pSWFDE.getStartPSDEViewName());
-            ((PSDEUIActionBase)object).setFrontProType("WIZARD");
-            if (object5 != null) {
-                ((PSDEUIActionBase)object).setPSDEOPPrivId(((PSDEUIActionBase)object5).getPSDEOPPrivId());
-                ((PSDEUIActionBase)object).setPSDEOPPrivName(((PSDEUIActionBase)object5).getPSDEOPPrivName());
+            action = new PSDEUIAction();
+            action.setPSDEUIActionId(actionId);
+            action.setPSDEId(pSWFDE.getPSDEId());
+            action.setUATag("WFSTARTWIZARD");
+            caption = "\u5f00\u59cb\u6d41\u7a0b";
+            action.setCaption(caption);
+            action.setPSDEUIActionName(caption);
+            action.setCodeName("WFStartWizard");
+            action.setActionTarget("SINGLEKEY");
+            action.setUIActionType("WFFRONT");
+            action.setPSDEViewBaseId(pSWFDE.getStartPSDEViewId());
+            action.setPSDEViewBaseName(pSWFDE.getStartPSDEViewName());
+            action.setFrontProType("WIZARD");
+            if (saveAction != null) {
+                action.setPSDEOPPrivId(saveAction.getPSDEOPPrivId());
+                action.setPSDEOPPrivName(saveAction.getPSDEOPPrivName());
             }
             if (bl) {
-                pSDEUIActionService.update(object);
+                pSDEUIActionService.update(action);
             } else {
-                if (StringHelper.compare((String)object22, (String)"\u5f00\u59cb", (boolean)true) == 0) {
-                    object22 = "\u5f00\u59cb\u6d41\u7a0b";
+                if (StringHelper.compare(caption, "\u5f00\u59cb", true) == 0) {
+                    caption = "\u5f00\u59cb\u6d41\u7a0b";
                 }
-                ((PSDEUIActionBase)object).setCaption((String)object22);
-                ((PSDEUIActionBase)object).setPSDEUIActionName((String)object22);
-                ((PSDEUIActionBase)object).setTemplMode(0);
-                ((PSDEUIActionBase)object).setPSSystemId(pSWFDE.getPSSystemId());
-                pSDEUIActionService.create(object);
+                action.setCaption(caption);
+                action.setPSDEUIActionName(caption);
+                action.setTemplMode(0);
+                action.setPSSystemId(pSWFDE.getPSSystemId());
+                pSDEUIActionService.create(action);
             }
             hashMap.remove("WFSTARTWIZARD");
         }
         if (bl2 && !StringHelper.isNullOrEmpty((String)pSWFDE.getStartMobPSDEViewId())) {
-            object3 = KeyValueHelper.genUniqueId((String)pSWFDE.getPSDEId(), (String)"MOBWFSTARTWIZARD");
+            actionId = KeyValueHelper.genUniqueId((String)pSWFDE.getPSDEId(), (String)"MOBWFSTARTWIZARD");
             bl = false;
-            for (Object object22 : arrayList) {
-                if (StringHelper.compare((String)((PSDEUIActionBase)object22).getUATag(), (String)"MOBWFSTARTWIZARD", (boolean)false) != 0) continue;
-                object3 = ((PSDEUIActionBase)object22).getPSDEUIActionId();
+            for (PSDEUIAction existingAction : arrayList) {
+                if (StringHelper.compare((String)existingAction.getUATag(), (String)"MOBWFSTARTWIZARD", (boolean)false) != 0) continue;
+                actionId = existingAction.getPSDEUIActionId();
                 bl = true;
                 break;
             }
-            object = new PSDEUIAction();
-            ((PSDEUIActionBase)object).setPSDEUIActionId((String)object3);
-            ((PSDEUIActionBase)object).setPSDEId(pSWFDE.getPSDEId());
-            ((PSDEUIActionBase)object).setUATag("MOBWFSTARTWIZARD");
-            object22 = "\u5f00\u59cb\u6d41\u7a0b";
-            ((PSDEUIActionBase)object).setCaption((String)object22);
-            ((PSDEUIActionBase)object).setPSDEUIActionName((String)object22 + "[\u79fb\u52a8\u7aef]");
-            ((PSDEUIActionBase)object).setCodeName("MobWFStartWizard");
-            ((PSDEUIActionBase)object).setActionTarget("SINGLEKEY");
-            ((PSDEUIActionBase)object).setUIActionType("WFFRONT");
-            ((PSDEUIActionBase)object).setPSDEViewBaseId(pSWFDE.getStartMobPSDEViewId());
-            ((PSDEUIActionBase)object).setPSDEViewBaseName(pSWFDE.getStartMobPSDEViewName());
-            ((PSDEUIActionBase)object).setFrontProType("WIZARD");
-            if (object5 != null) {
-                ((PSDEUIActionBase)object).setPSDEOPPrivId(((PSDEUIActionBase)object5).getPSDEOPPrivId());
-                ((PSDEUIActionBase)object).setPSDEOPPrivName(((PSDEUIActionBase)object5).getPSDEOPPrivName());
+            action = new PSDEUIAction();
+            action.setPSDEUIActionId(actionId);
+            action.setPSDEId(pSWFDE.getPSDEId());
+            action.setUATag("MOBWFSTARTWIZARD");
+            caption = "\u5f00\u59cb\u6d41\u7a0b";
+            action.setCaption(caption);
+            action.setPSDEUIActionName(caption + "[\u79fb\u52a8\u7aef]");
+            action.setCodeName("MobWFStartWizard");
+            action.setActionTarget("SINGLEKEY");
+            action.setUIActionType("WFFRONT");
+            action.setPSDEViewBaseId(pSWFDE.getStartMobPSDEViewId());
+            action.setPSDEViewBaseName(pSWFDE.getStartMobPSDEViewName());
+            action.setFrontProType("WIZARD");
+            if (saveAction != null) {
+                action.setPSDEOPPrivId(saveAction.getPSDEOPPrivId());
+                action.setPSDEOPPrivName(saveAction.getPSDEOPPrivName());
             }
             if (bl) {
-                pSDEUIActionService.update(object);
+                pSDEUIActionService.update(action);
             } else {
-                if (StringHelper.compare((String)object22, (String)"\u5f00\u59cb", (boolean)true) == 0) {
-                    object22 = "\u5f00\u59cb\u6d41\u7a0b";
+                if (StringHelper.compare(caption, "\u5f00\u59cb", true) == 0) {
+                    caption = "\u5f00\u59cb\u6d41\u7a0b";
                 }
-                ((PSDEUIActionBase)object).setCaption((String)object22);
-                ((PSDEUIActionBase)object).setPSDEUIActionName((String)object22);
-                ((PSDEUIActionBase)object).setTemplMode(0);
-                ((PSDEUIActionBase)object).setPSSystemId(pSWFDE.getPSSystemId());
-                pSDEUIActionService.create(object);
+                action.setCaption(caption);
+                action.setPSDEUIActionName(caption);
+                action.setTemplMode(0);
+                action.setPSSystemId(pSWFDE.getPSSystemId());
+                pSDEUIActionService.create(action);
             }
             hashMap.remove("MOBWFSTARTWIZARD");
         }
         for (PSDEUIAction pSDEUIAction : hashMap.values()) {
-            pSDEUIActionService.remove((IEntity)pSDEUIAction);
+            pSDEUIActionService.remove(pSDEUIAction);
         }
     }
 }
-

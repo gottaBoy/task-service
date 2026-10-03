@@ -43,8 +43,8 @@ extends XMLCollectionExConfig<WFInteractiveActionConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = WFInteractiveActionsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((WFInteractiveActionConfig)childNode))) {
-                this.add((Object)((WFInteractiveActionConfig)childNode));
+            if (this.OnChildNodeLoaded((WFInteractiveActionConfig)childNode)) {
+                this.add((WFInteractiveActionConfig)childNode);
                 return;
             }
         }

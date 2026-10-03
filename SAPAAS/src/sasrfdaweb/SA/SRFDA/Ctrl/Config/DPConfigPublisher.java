@@ -96,7 +96,7 @@ implements IDPConfigPublisherContext {
     }
 
     protected XMLNode GetDPConfig(IDPConfigPublishContext iPublishContext, XMLNode rootNode) throws Exception {
-        Object iDEFHelper;
+        IDEFHelper iDEFHelper;
         CallResult callResult = new CallResult();
         if (rootNode == null) {
             throw new Exception(StringHelper.Format((String)"\u8f7d\u5165\u8868\u5355\u6a21\u578b\u5931\u8d25"));
@@ -119,7 +119,7 @@ implements IDPConfigPublisherContext {
         if (this.getDAGlobalHelper().getDAModelVersion() >= 10120900 && (rawFIStyleDataCtrl = this.getDAGlobalHelper().getDAModelStorage().FindDEDataCtrl("DE0069", "SYSTEM", null)) == null) {
             log.warn((Object)StringHelper.Format((String)"\u65e0\u6cd5\u83b7\u53d6\u5b9e\u4f53[%1$s]\u6570\u636e\u8bbf\u95ee\u5bf9\u8c61", (Object)"DE0069"));
         }
-        ArrayList rawItemNodes = new ArrayList();
+        ArrayList<XMLNode> rawItemNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPRAWITEM", rawItemNodes);
         for (XMLNode rawItemNode : rawItemNodes) {
             boolean bDPModel = rawItemNode.GetExtValue("DPMODEL", false);
@@ -148,7 +148,7 @@ implements IDPConfigPublisherContext {
             XMLConfig.LoadFromXML((String)strXML, (XMLConfig)rawItemNode);
         }
         rawItemNodes.clear();
-        ArrayList tabPageNodes = new ArrayList();
+        ArrayList<XMLNode> tabPageNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPPAGEGROUP", tabPageNodes);
         for (XMLNode tabPageNode : tabPageNodes) {
             String strCapLanResId = tabPageNode.GetExtValue("CAPLANRESID", "");
@@ -159,7 +159,7 @@ implements IDPConfigPublisherContext {
             }
             this.FillDPPageGroupNodeDERMode(iDEHelper, tabPageNode, iPublishContext.getForm());
         }
-        ArrayList groupNodes = new ArrayList();
+        ArrayList<XMLNode> groupNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPGROUP", groupNodes);
         for (XMLNode groupNode : groupNodes) {
             String strCapLanResId = groupNode.GetExtValue("CAPLANRESID", "");
@@ -168,7 +168,7 @@ implements IDPConfigPublisherContext {
             strCaption = this.GetLocalization(iDEHelper, strCapLanResId, strCaption);
             groupNode.SetExtValue("CAPTION", strCaption);
         }
-        ArrayList dpGroupNodes = new ArrayList();
+        ArrayList<XMLNode> dpGroupNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPGROUP", dpGroupNodes);
         rootNode.GetAllNodeByNodeName("SRFEXDPPAGEGROUP", dpGroupNodes);
         for (XMLNode dpGroupNode : dpGroupNodes) {
@@ -182,12 +182,12 @@ implements IDPConfigPublisherContext {
             if (formItemRuleConfig == null || !StringHelper.IsNullOrEmpty((String)(strCode = dpGroupNode.GetExtValue("ENABLECOND", ""))) || !(callResult = defaultFormItemLogicHelper.GetEnableCode(formItemRuleConfig)).IsOk() || StringHelper.IsNullOrEmpty((String)(strCode = (String)callResult.getUserObject()))) continue;
             dpGroupNode.SetValue("ENABLECOND", strCode);
         }
-        ArrayList dpDataGridNodes = new ArrayList();
+        ArrayList<XMLNode> dpDataGridNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPDATAGRIDITEM", dpDataGridNodes);
         if (dpDataGridNodes.size() > 0) {
             for (XMLNode dpDataGridNode : dpDataGridNodes) {
                 String strDERId = dpDataGridNode.GetExtValue("DER1NID", "");
-                Iterator strDGId = dpDataGridNode.GetExtValue("DGID", "");
+                String strDGId = dpDataGridNode.GetExtValue("DGID", "");
                 String strURLParams = dpDataGridNode.GetExtValue("URLPARAMS", "");
                 String strRelatedFields = dpDataGridNode.GetExtValue("RELATEDFIELDS", "");
                 String strPageId = dpDataGridNode.GetExtValue("PAGEID", "");
@@ -200,7 +200,7 @@ implements IDPConfigPublisherContext {
                     log.error((Object)StringHelper.Format((String)"\u6ca1\u6709\u6307\u5b9a\u5185\u5d4c\u8868\u683cDER1N\u5173\u7cfb\u7f16\u53f7"));
                     return null;
                 }
-                TreeMap<String, Object> urlParams = new TreeMap<String, Object>();
+                TreeMap<String, String> urlParams = new TreeMap<String, String>();
                 urlParams.put("SRFGRIDVIEW", strDGId);
                 urlParams.put("SRFDERID", strDERId);
                 urlParams.put("SRFSUMMARYKEY", iDEHelper.GetKeyDEFHelper().getName().toUpperCase());
@@ -245,7 +245,7 @@ implements IDPConfigPublisherContext {
                 dpDataGridNode.AddNode(dgItem);
             }
         }
-        ArrayList formItemNodes = new ArrayList();
+        ArrayList<XMLNode> formItemNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDPFORMITEM", formItemNodes);
         ArrayList<XMLNode> hiddenNodes = new ArrayList<XMLNode>();
         for (XMLNode formItemNode : formItemNodes) {
@@ -451,14 +451,14 @@ implements IDPConfigPublisherContext {
                 }
                 ArrayList<String> childXMLList = new ArrayList<String>();
                 ArrayList<String> childXMLList2 = new ArrayList<String>();
-                ArrayList pageGroupNodes = new ArrayList();
+                ArrayList<XMLNode> pageGroupNodes = new ArrayList<XMLNode>();
                 loopFormRootNode.GetAllNodeByNodeName("SRFEXDPPAGEGROUP", pageGroupNodes);
                 if (pageGroupNodes.size() > 0 && (pageGroupNode2 = (XMLNode)pageGroupNodes.get(0)).getChildNodes() != null) {
                     for (XMLNode childNode : pageGroupNode2.getChildNodes()) {
                         childXMLList.add(XMLNode.Export((XMLNode)childNode));
                     }
                 }
-                ArrayList hiddenNodeList = new ArrayList();
+                ArrayList<XMLNode> hiddenNodeList = new ArrayList<XMLNode>();
                 loopFormRootNode.GetAllNodeByNodeName("SRFEXHIDDEN", hiddenNodeList);
                 if (hiddenNodeList.size() > 0) {
                     for (XMLNode hiddenXMLNode : hiddenNodeList) {
@@ -513,14 +513,14 @@ implements IDPConfigPublisherContext {
             }
             ArrayList<String> childXMLList = new ArrayList<String>();
             ArrayList<String> childXMLList2 = new ArrayList<String>();
-            ArrayList pageGroupNodes = new ArrayList();
+            ArrayList<XMLNode> pageGroupNodes = new ArrayList<XMLNode>();
             loopFormRootNode.GetAllNodeByNodeName("SRFEXDPPAGEGROUP", pageGroupNodes);
             if (pageGroupNodes.size() > 0 && (pageGroupNode = (XMLNode)pageGroupNodes.get(0)).getChildNodes() != null) {
                 for (XMLNode childNode : pageGroupNode.getChildNodes()) {
                     childXMLList.add(XMLNode.Export((XMLNode)childNode));
                 }
             }
-            ArrayList hiddenNodeList = new ArrayList();
+            ArrayList<XMLNode> hiddenNodeList = new ArrayList<XMLNode>();
             loopFormRootNode.GetAllNodeByNodeName("SRFEXHIDDEN", hiddenNodeList);
             if (hiddenNodeList.size() > 0) {
                 for (XMLNode hiddenXMLNode : hiddenNodeList) {
@@ -600,7 +600,7 @@ implements IDPConfigPublisherContext {
         for (XMLNode xmlNode : hiddenNodes) {
             hiddenGroupNode.AddNode(xmlNode);
         }
-        ArrayList defaultItemNodes = new ArrayList();
+        ArrayList<XMLNode> defaultItemNodes = new ArrayList<XMLNode>();
         rootNode.GetAllNodeByNodeName("SRFEXDEFAULTITEM", defaultItemNodes);
         for (XMLNode formItemNode : defaultItemNodes) {
             String strDEField = formItemNode.GetExtValue("DEFIELD", "");

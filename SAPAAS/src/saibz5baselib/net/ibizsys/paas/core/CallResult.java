@@ -1,138 +1,273 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.Errors;
 import net.ibizsys.paas.util.StringHelper;
 
+/**
+ * V5 调用结果对象
+ * @author lionlau
+ *
+ */
 public class CallResult {
-    protected int nRetCode = 0;
-    protected String strErrorInfo = "";
-    protected String strErrorInfoRes = "";
-    protected String strErrorInfoResArg = "";
-    protected Object userObject = null;
+	/**
+	 * 返回代码
+	 */
+	protected int nRetCode = Errors.OK;
 
-    public int getRetCode() {
-        return this.nRetCode;
-    }
+	/**
+	 * 错误信息
+	 */
+	protected String strErrorInfo = "";
 
-    public void setRetCode(int value) {
-        this.nRetCode = value;
-        if (this.nRetCode == -1) {
-            this.nRetCode = 1;
-        }
-    }
+	/**
+	 * 错误信息语言资源编号
+	 */
+	protected String strErrorInfoRes = "";
 
-    public String getErrorInfo() {
-        if (this.nRetCode == 0) {
-            return "";
-        }
-        if (StringHelper.length(this.strErrorInfo) == 0) {
-            return Errors.getErrorInfo(this.nRetCode, null);
-        }
-        return this.strErrorInfo;
-    }
+	/**
+	 * 错误信息语言资源参数
+	 */
+	protected String strErrorInfoResArg = "";
 
-    public void setRetInfo(String strRetInfo) {
-        this.strErrorInfo = strRetInfo;
-    }
+	/**
+	 * 用户对象
+	 */
+	protected Object userObject = null;
 
-    public void setErrorInfo(String value) {
-        this.strErrorInfo = value;
-    }
+	public CallResult() {
+	}
 
-    public boolean isUserError() {
-        return Errors.isUserError(this.nRetCode);
-    }
+	/**
+	 * 获取返回值
+	 * 
+	 * @return
+	 */
+	public int getRetCode() {
+		return nRetCode;
+	}
 
-    public boolean isError() {
-        return this.nRetCode != 0;
-    }
+	/**
+	 * 设置返回值
+	 * 
+	 * @param value
+	 */
+	public void setRetCode(int value) {
+		nRetCode = value;
+		if (nRetCode == -1) {
+			nRetCode = Errors.INTERNALERROR;
+		}
+	}
 
-    public boolean isOk() {
-        return this.nRetCode == 0;
-    }
+	/**
+	 * 获取错误信息
+	 * 
+	 * @return
+	 */
+	public String getErrorInfo() {
+		if (nRetCode == 0) return "";
+		if (StringHelper.length(strErrorInfo) == 0){
+			return Errors.getErrorInfo(nRetCode,null);
+		}
+		return strErrorInfo;
+	}
 
-    public void fill(CallResult result) {
-        result.setRetCode(this.nRetCode);
-        result.setErrorInfo(this.strErrorInfo);
-        result.setUserObject(this.userObject);
-    }
+	/**
+	 * 设置返回信息
+	 * 
+	 * @param strRetInfo
+	 */
+	public void setRetInfo(String strRetInfo) {
+		this.strErrorInfo = strRetInfo;
+	}
 
-    public void from(CallResult result) {
-        this.setRetCode(result.getRetCode());
-        this.setErrorInfo(result.getErrorInfo());
-        this.setUserObject(result.getUserObject());
-        this.setErrorInfoRes(result.getErrorInfoRes());
-        this.setErrorInfoResArg(result.getErrorInfoResArg());
-    }
+	/**
+	 * 设置错误信息
+	 * 
+	 * @param value
+	 */
+	public void setErrorInfo(String value) {
+		strErrorInfo = value;
+	}
 
-    public Object getUserObject() {
-        return this.userObject;
-    }
+	/**
+	 * 判断结果是否为用户错误
+	 * 
+	 * @return
+	 */
+	public boolean isUserError() {
+		return Errors.isUserError(nRetCode);
+	}
 
-    public void setUserObject(Object userObject) {
-        this.userObject = userObject;
-    }
+	/**
+	 * 判断结果是否为错误
+	 * 
+	 * @return
+	 */
+	public boolean isError() {
+		return nRetCode != Errors.OK;
+	}
 
-    public String getErrorInfoRes() {
-        return this.strErrorInfoRes;
-    }
+	/**
+	 * 判断结果是否为正确
+	 * 
+	 * @return
+	 */
+	public boolean isOk() {
+		return nRetCode == Errors.OK;
+	}
 
-    public String getErrorInfoResArg() {
-        return this.strErrorInfoResArg;
-    }
+	/**
+	 * 填充结果
+	 * 
+	 * @param result
+	 */
+	public void fill(CallResult result) {
+		result.setRetCode(nRetCode);
+		result.setErrorInfo(strErrorInfo);
+		result.setUserObject(userObject);
+	}
 
-    public void setErrorInfoRes(String strErrorInfoRes) {
-        this.strErrorInfoRes = strErrorInfoRes;
-    }
+	/**
+	 * 从其它结果对象填充
+	 * 
+	 * @param result
+	 */
+	public void from(CallResult result) {
+		this.setRetCode(result.getRetCode());
+		this.setErrorInfo(result.getErrorInfo());
+		this.setUserObject(result.getUserObject());
+		this.setErrorInfoRes(result.getErrorInfoRes());
+		this.setErrorInfoResArg(result.getErrorInfoResArg());
+	}
 
-    public void setErrorInfoResArg(String strErrorInfoResArg) {
-        this.strErrorInfoResArg = strErrorInfoResArg;
-    }
+	/**
+	 * 获取用户自定义对象
+	 * 
+	 * @return
+	 */
+	public Object getUserObject() {
+		return this.userObject;
+	}
 
-    public void reformatErrorInfo(String strFormat) {
-        this.strErrorInfo = StringHelper.format(strFormat, this.strErrorInfo);
-    }
+	/**
+	 * 设置用户自定义对象
+	 * 
+	 * @param userObject
+	 */
+	public void setUserObject(Object userObject) {
+		this.userObject = userObject;
+	}
 
-    public void reset() {
-        this.nRetCode = 0;
-        this.strErrorInfo = "";
-        this.strErrorInfoRes = "";
-        this.strErrorInfoResArg = "";
-        this.userObject = null;
-    }
+	/**
+	 * 获取错误信息语言资源
+	 * 
+	 * @return the strErrorInfoRes
+	 */
+	public String getErrorInfoRes() {
+		return strErrorInfoRes;
+	}
 
-    public static CallResult create(int nCode) {
-        CallResult callResult = new CallResult();
-        callResult.setRetCode(nCode);
-        return callResult;
-    }
+	/**
+	 * 获取错误信息语言资源参数
+	 * 
+	 * @return the strErrorInfoResArg
+	 */
+	public String getErrorInfoResArg() {
+		return strErrorInfoResArg;
+	}
 
-    public static CallResult create(int nCode, String strErrorInfo) {
-        CallResult callResult = new CallResult();
-        callResult.setRetCode(nCode);
-        callResult.setErrorInfo(strErrorInfo);
-        return callResult;
-    }
+	/**
+	 * 设置错误信息语言资源
+	 * 
+	 * @param strErrorInfoRes the strErrorInfoRes to set
+	 */
+	public void setErrorInfoRes(String strErrorInfoRes) {
+		this.strErrorInfoRes = strErrorInfoRes;
+	}
 
-    public static CallResult create(int nCode, String strErrorInfo, Object objUserObject) {
-        CallResult callResult = new CallResult();
-        callResult.setRetCode(nCode);
-        callResult.setErrorInfo(strErrorInfo);
-        callResult.setUserObject(objUserObject);
-        return callResult;
-    }
+	/**
+	 * 设置错误信息语言资源参数
+	 * 
+	 * @param strErrorInfoResArg the strErrorInfoResArg to set
+	 */
+	public void setErrorInfoResArg(String strErrorInfoResArg) {
+		this.strErrorInfoResArg = strErrorInfoResArg;
+	}
 
-    public static CallResult toCallResult(CallResult callResult) {
-        if (callResult != null) {
-            return callResult;
-        }
-        CallResult cr = new CallResult();
-        cr.setRetCode(1);
-        cr.setErrorInfo("\u5904\u7406\u5f02\u5e38\uff0c\u8fd4\u56de\u7a7a\u7ed3\u679c");
-        return cr;
-    }
+	/**
+	 * 重新格式化错误信息
+	 * 
+	 * @param strFormat
+	 */
+	public void reformatErrorInfo(String strFormat) {
+		strErrorInfo = StringHelper.format(strFormat, strErrorInfo);
+	}
+
+	/**
+	 * 重置返回结果，错误代码设置为 Errors.OK
+	 */
+	public void reset() {
+		nRetCode = Errors.OK;
+		strErrorInfo = "";
+		strErrorInfoRes = "";
+		strErrorInfoResArg = "";
+		userObject = null;
+	}
+
+	/**
+	 * 建立调用结果对象
+	 * 
+	 * @param nCode 错误代码
+	 * @return
+	 */
+	public static CallResult create(int nCode) {
+		CallResult callResult = new CallResult();
+		callResult.setRetCode(nCode);
+		return callResult;
+	}
+
+	/**
+	 * 建立调用结果对象
+	 * 
+	 * @param nCode 错误代码
+	 * @param strErrorInfo 错误信息
+	 * @return
+	 */
+	public static CallResult create(int nCode, String strErrorInfo) {
+		CallResult callResult = new CallResult();
+		callResult.setRetCode(nCode);
+		callResult.setErrorInfo(strErrorInfo);
+		return callResult;
+	}
+
+	/**
+	 * 建立调用结果对象
+	 * 
+	 * @param nCode 错误代码
+	 * @param strErrorInfo 错误信息
+	 * @param objUserObject 自定义对象
+	 * @return
+	 */
+	public static CallResult create(int nCode, String strErrorInfo, Object objUserObject) {
+		CallResult callResult = new CallResult();
+		callResult.setRetCode(nCode);
+		callResult.setErrorInfo(strErrorInfo);
+		callResult.setUserObject(objUserObject);
+		return callResult;
+	}
+
+	/**
+	 * 转换结果对象
+	 * 
+	 * @param callResult
+	 * @return
+	 */
+	public static CallResult toCallResult(CallResult callResult) {
+		if (callResult != null) return callResult;
+
+		CallResult cr = new CallResult();
+		cr.setRetCode(Errors.INTERNALERROR);
+		cr.setErrorInfo("处理异常，返回空结果");
+		return cr;
+	}
+
 }
-

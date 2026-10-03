@@ -1,17 +1,44 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
+/**
+ * 树节点获取上下文对象
+ * 
+ * @author Administrator
+ *
+ */
 public interface ITreeNodeFetchContext {
-    public String getCatalog();
+	/**
+	 * 获取树视图分类
+	 * 
+	 * @return
+	 */
+	String getCatalog();
 
-    public String getNodeFilter();
+	/**
+	 * 获取节点过滤
+	 * 
+	 * @return
+	 */
+	String getNodeFilter();
 
-    public boolean isAutoExpand();
+	/**
+	 * 是否自动展开节点
+	 * 
+	 * @return
+	 */
+	boolean isAutoExpand();
 
-    public String getRealNodeId();
+	/**
+	 * 获取实际节点标识
+	 * 
+	 * @return
+	 */
+	String getRealNodeId();
 
-    public boolean isSimpleMode();
+	/**
+	 * 输出简单模式
+	 * 
+	 * @return
+	 */
+	boolean isSimpleMode();
 }
-

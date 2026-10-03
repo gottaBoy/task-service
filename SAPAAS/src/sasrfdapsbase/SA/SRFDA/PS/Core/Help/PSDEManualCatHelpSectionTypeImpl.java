@@ -43,7 +43,7 @@ extends PSHelpSectionTypeImpl {
         SessionFactory sessionFactory = PSSysModelInstGlobal.getSessionFactory((String)iPSSystem.getPSSysModelInstId());
         int nMaxOrderValue = 100;
         PSHelpSectionService psHelpSectionService = (PSHelpSectionService)ServiceGlobal.getService(PSHelpSectionService.class, (SessionFactory)sessionFactory);
-        ArrayList psHelpSectionList = psHelpSectionService.select((ISelectCond)selectCond);
+        ArrayList<PSHelpSection> psHelpSectionList = psHelpSectionService.select((ISelectCond)selectCond);
         HashMap<String, PSHelpSection> psHelpSectionMap = new HashMap<String, PSHelpSection>();
         for (PSHelpSection psHelpSection2 : psHelpSectionList) {
             psHelpSectionMap.put(psHelpSection2.getPSHelpSectionId(), psHelpSection2);
@@ -53,4 +53,3 @@ extends PSHelpSectionTypeImpl {
         super.onInitModel(iPSSystem, psHelpSection);
     }
 }
-

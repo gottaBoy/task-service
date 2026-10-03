@@ -112,7 +112,7 @@ extends PSDEDataCtrl {
             IDEDataCtrl psDataEntityDataCtrl = this.GetRelatedDataCtrl("DE2050");
             BaseDataEntity cond = new BaseDataEntity();
             cond.setParamValue("PSSYSTEMID", (Object)psSubSys.getPSSYSTEMID());
-            Vector dataEntityList = new Vector();
+            Vector<PSDataEntity> dataEntityList = new Vector<PSDataEntity>();
             CallResult callResult = psDataEntityDataCtrl.Select(cond, dataEntityList, PSDataEntity.class.getName());
             if (callResult.isError()) {
                 throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u7cfb\u7edf\u5b9e\u4f53\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -135,7 +135,7 @@ extends PSDEDataCtrl {
                     throw new Exception(StringHelper.Format((String)"\u4fdd\u5b58\u5b50\u7cfb\u7edf\u5b9e\u4f53\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                 }
                 psSubDEMap.put(psDataEntity.getPSDATAENTITYID(), psSubDE);
-                Vector psDEActionList = new Vector();
+                Vector<PSDEAction> psDEActionList = new Vector<PSDEAction>();
                 cond.Reset();
                 cond.setParamValue("PSDEID", (Object)psDataEntity.getPSDATAENTITYID());
                 callResult = psDEActionDataCtrl.Select(cond, psDEActionList, PSDEAction.class.getName());
@@ -160,7 +160,7 @@ extends PSDEDataCtrl {
             }
             IDEDataCtrl psSubDEViewDataCtrl = this.GetRelatedDataCtrl("DE1955");
             IDEDataCtrl psDEViewBaseDataCtrl = this.GetRelatedDataCtrl("DE2300");
-            Vector psDEViewList = new Vector();
+            Vector<PSDEViewBase> psDEViewList = new Vector<PSDEViewBase>();
             cond.Reset();
             cond.setParamValue("PSSYSTEMID", (Object)psSubSys.getPSSYSTEMID());
             callResult = psDEViewBaseDataCtrl.Select(cond, psDEViewList, PSDEViewBase.class.getName());
@@ -193,7 +193,7 @@ extends PSDEDataCtrl {
             }
             IDEDataCtrl psSubSysSFDataCtrl = this.GetRelatedDataCtrl("DE1953");
             IDEDataCtrl psSysSFPubDataCtrl = this.GetRelatedDataCtrl("DE2800");
-            Vector psSysSFPubList = new Vector();
+            Vector<PSSysSFPub> psSysSFPubList = new Vector<PSSysSFPub>();
             cond.Reset();
             cond.setParamValue("PSSYSTEMID", (Object)psSubSys.getPSSYSTEMID());
             callResult = psSysSFPubDataCtrl.Select(cond, psSysSFPubList, PSSysSFPub.class.getName());
@@ -217,7 +217,7 @@ extends PSDEDataCtrl {
             IDEDataCtrl psSubAppViewDataCtrl = this.GetRelatedDataCtrl("DE1963");
             IDEDataCtrl psAppViewDataCtrl = this.GetRelatedDataCtrl("DE2506");
             IDEDataCtrl psAppModuleDataCtrl = this.GetRelatedDataCtrl("DE2501");
-            Vector psSysAppList = new Vector();
+            Vector<PSSysApp> psSysAppList = new Vector<PSSysApp>();
             cond.Reset();
             cond.setParamValue("PSSYSTEMID", (Object)psSubSys.getPSSYSTEMID());
             callResult = psSysAppDataCtrl.Select(cond, psSysAppList, PSSysApp.class.getName());
@@ -234,7 +234,7 @@ extends PSDEDataCtrl {
                 if (callResult.isError()) {
                     throw new Exception(StringHelper.Format((String)"\u4fdd\u5b58\u5b50\u7cfb\u7edf\u5e94\u7528\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                 }
-                Vector psAppModuleList = new Vector();
+                Vector<PSAppModule> psAppModuleList = new Vector<PSAppModule>();
                 cond.Reset();
                 cond.setParamValue("PSSYSAPPID", (Object)psSysApp.getPSSYSAPPID());
                 callResult = psAppModuleDataCtrl.Select(cond, psAppModuleList, PSAppModule.class.getName());
@@ -245,7 +245,7 @@ extends PSDEDataCtrl {
                 for (PSAppModule psAppModule : psAppModuleList) {
                     psAppModuleMap.put(psAppModule.getPSAPPMODULEID(), psAppModule);
                 }
-                Vector psAppViewList = new Vector();
+                Vector<PSAppView> psAppViewList = new Vector<PSAppView>();
                 cond.Reset();
                 cond.setParamValue("PSSYSAPPID", (Object)psSysApp.getPSSYSAPPID());
                 callResult = psAppViewDataCtrl.Select(cond, psAppViewList, PSAppView.class.getName());
@@ -307,7 +307,7 @@ extends PSDEDataCtrl {
         PSSubSysService psSubSysService = (PSSubSysService)ServiceGlobal.getService(PSSubSysService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
         net.ibizsys.pscore.srv.config.entity.PSSubSys psSubSys2 = new net.ibizsys.pscore.srv.config.entity.PSSubSys();
         psSubSys2.setPSSubSysId(psSubSys.getPSSUBSYSID());
-        psSubSysService.get((IEntity)psSubSys2);
+        psSubSysService.get(psSubSys2);
         iPSSystem = iPSDevSlnSys.getPSSystem(false);
         PSSysDevBKTask psSysDevBKTask = new PSSysDevBKTask();
         psSysDevBKTask.setPSSysDevBKTaskName(StringHelper.Format((String)"\u540c\u6b65\u5b50\u7cfb\u7edf[%1$s]\u6a21\u578b", (Object)psSubSys2.getPSSubSysName()));
@@ -319,10 +319,9 @@ extends PSDEDataCtrl {
         psSysDevBKTask.setPSSystemName(iPSSystem.getName());
         psSysDevBKTask.setTaskParam(psSubSys.getPSSUBSYSID());
         PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)iPSDevSlnSys.getPSSysModelInstId()));
-        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        psSysDevBKTaskService.create(psSysDevBKTask);
         SA.SRFDA.PS.Data.PSSysDevBKTask psSysDevBKTask2 = new SA.SRFDA.PS.Data.PSSysDevBKTask();
         PSSubSysDataCtrl.convertEntity((IEntity)psSysDevBKTask, psSysDevBKTask2);
         this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
     }
 }
-

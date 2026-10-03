@@ -1,18 +1,37 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.chart;
 
-import net.ibizsys.model.control.chart.IPSChartSeries;
-import net.ibizsys.model.control.chart.IPSDEChart;
-import net.ibizsys.model.control.chart.IPSDEChartAxes;
+/**
+ * 实体图表坐标轴对象
+ * @author lionlau
+ *
+ */
+public interface IPSDEChartSeries extends IPSChartSeries
+{
+	
+	
+	
+	
+	/**
+	 * 获取实体图表对象
+	 * @return
+	 */
+	IPSDEChart getPSDEChart();
+	
 
-public interface IPSDEChartSeries
-extends IPSChartSeries {
-    public IPSDEChart getPSDEChart();
-
-    public IPSDEChartAxes getXPSDEChartAxes();
-
-    public IPSDEChartAxes getYPSDEChartAxes();
+	
+	
+	/**
+	 * 获取数据序列的X轴
+	 * @return
+	 */
+	IPSDEChartAxes getXPSDEChartAxes();
+	
+	
+	
+	
+	/**
+	 * 获取数据序列的Y轴
+	 * @return
+	 */
+	IPSDEChartAxes getYPSDEChartAxes();
 }
-

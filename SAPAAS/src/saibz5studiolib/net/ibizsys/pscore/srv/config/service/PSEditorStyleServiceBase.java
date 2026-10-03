@@ -136,14 +136,14 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
             PSEditorType pSEditorType = (PSEditorType)iService.getDEModel().createEntity();
             pSEditorType.set("PSEDITORTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSEditorType);
+                iService.getTemp(pSEditorType);
             } else {
-                iService.get((IEntity)pSEditorType);
+                iService.get(pSEditorType);
             }
             this.onFillParentInfo_PSEditorType(pSEditorStyle, pSEditorType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSEditorStyle, string, string2, string3);
+        super.onFillParentInfo(pSEditorStyle, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -159,7 +159,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
         if (bl && pSEditorStyle.getValidFlag() == null) {
             pSEditorStyle.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSEditorStyle, bl);
+        super.onFillEntityFullInfo(pSEditorStyle, bl);
         this.onFillEntityFullInfo_PSEditorType(pSEditorStyle, bl);
     }
 
@@ -167,7 +167,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
     }
 
     protected void onWriteBackParent(PSEditorStyle pSEditorStyle, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSEditorStyle, bl);
+        super.onWriteBackParent(pSEditorStyle, bl);
     }
 
     public ArrayList<PSEditorStyle> selectByPSEditorType(PSEditorTypeBase pSEditorTypeBase) throws Exception {
@@ -226,7 +226,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
         ArrayList<PSEditorStyle> arrayList = this.selectByPSEditorType(pSEditorType);
         this.onBeforeRemoveByPSEditorType(pSEditorType, arrayList);
         for (PSEditorStyle pSEditorStyle : arrayList) {
-            this.remove((IEntity)pSEditorStyle);
+            this.remove(pSEditorStyle);
         }
         this.onAfterRemoveByPSEditorType(pSEditorType, arrayList);
     }
@@ -249,14 +249,14 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
 
     protected void replaceParentInfo(PSEditorStyle pSEditorStyle, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSEditorStyle, cloneSession);
+        super.replaceParentInfo(pSEditorStyle, cloneSession);
         if (pSEditorStyle.getPSEditorTypeId() != null && (iEntity = cloneSession.getEntity("PSEDITORTYPE", (Object)pSEditorStyle.getPSEditorTypeId())) != null) {
             this.onFillParentInfo_PSEditorType(pSEditorStyle, (PSEditorType)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSEditorStyle pSEditorStyle, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSEditorStyle, bl);
+        super.onRemoveEntityUncopyValues(pSEditorStyle, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSEditorStyle pSEditorStyle, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -325,7 +325,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSEditorStyle, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSEditorStyle, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSEditorStyle, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AjaxHandler(boolean bl, PSEditorStyle pSEditorStyle, boolean bl2, boolean bl3) throws Exception {
@@ -338,7 +338,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AjaxHandler_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_AjaxHandler_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("AJAXHANDLER");
@@ -360,7 +360,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -382,7 +382,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParam_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParam_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM");
@@ -404,7 +404,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam10_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam10_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM10");
@@ -426,7 +426,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam11_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam11_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM11");
@@ -448,7 +448,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam12_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam12_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM12");
@@ -470,7 +470,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParam2_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParam2_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM2");
@@ -492,7 +492,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParam3_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParam3_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM3");
@@ -514,7 +514,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CtrlParam4_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_CtrlParam4_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM4");
@@ -536,7 +536,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam5_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam5_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM5");
@@ -558,7 +558,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam6_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam6_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM6");
@@ -580,7 +580,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam7_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam7_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM7");
@@ -602,7 +602,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam8_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam8_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM8");
@@ -624,7 +624,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CtrlParam9_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_CtrlParam9_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CTRLPARAM9");
@@ -646,7 +646,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LinkViewShowMode_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_LinkViewShowMode_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LINKVIEWSHOWMODE");
@@ -668,7 +668,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -693,7 +693,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSEditorStyleId_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSEditorStyleId_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSEDITORSTYLEID");
@@ -718,7 +718,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSEditorStyleName_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSEditorStyleName_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSEDITORSTYLENAME");
@@ -740,7 +740,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSEditorTypeId_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_PSEditorTypeId_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSEDITORTYPEID");
@@ -762,7 +762,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_RefViewShowMode_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string2 = this.onTestValueRule_RefViewShowMode_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("REFVIEWSHOWMODE");
@@ -787,7 +787,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSEditorStyle, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSEditorStyle, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -800,11 +800,11 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
     }
 
     protected void onSyncEntity(PSEditorStyle pSEditorStyle, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSEditorStyle, bl);
+        super.onSyncEntity(pSEditorStyle, bl);
     }
 
     protected void onSyncIndexEntities(PSEditorStyle pSEditorStyle, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSEditorStyle, bl);
+        super.onSyncIndexEntities(pSEditorStyle, bl);
     }
 
     public Object getDataContextValue(PSEditorStyle pSEditorStyle, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -812,7 +812,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSEditorStyle, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSEditorStyle, string, iDataContextParam)) != null) {
             return object;
         }
         PSEditorType pSEditorType = pSEditorStyle.getPSEditorType();
@@ -823,7 +823,7 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
     }
 
     protected void onExportMajorModel(PSEditorStyle pSEditorStyle, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSEditorStyle, arrayList, n);
+        super.onExportMajorModel(pSEditorStyle, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1134,14 +1134,14 @@ extends PSCoreSysServiceBase<PSEditorStyle> {
 
     protected boolean onMergeChild(String string, String string2, PSEditorStyle pSEditorStyle) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSEditorStyle)) {
+        if (super.onMergeChild(string, string2, pSEditorStyle)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSEditorStyle pSEditorStyle) throws Exception {
-        super.onUpdateParent((IEntity)pSEditorStyle);
+        super.onUpdateParent(pSEditorStyle);
     }
 
     @Override

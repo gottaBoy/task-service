@@ -73,7 +73,7 @@ implements IPSAppModuleService {
     @Override
     protected List<PSAppModule> onListAll() throws Exception {
         ArrayList<PSAppModule> list = new ArrayList<PSAppModule>();
-        List pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
+        List<PSSysApp> pssysapps = PSModelServiceUtil.getInstance().getPSSysAppService().listAll();
         if (pssysapps != null) {
             for (PSSysApp parent : pssysapps) {
                 List<PSAppModule> items = this.listByPSSysApp(parent);

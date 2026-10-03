@@ -155,7 +155,13 @@ implements IPSMDAjaxControl {
             }
         }
         if (this.getPSAjaxControlHandler() != null) {
-            return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("create", true);
+            try {
+               return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("create", true);
+            }
+            catch (Exception exAjaxAction) {
+               log.error((Object)exAjaxAction);
+               return null;
+            }
         }
         return null;
     }
@@ -174,7 +180,13 @@ implements IPSMDAjaxControl {
             }
         }
         if (this.getPSAjaxControlHandler() != null) {
-            return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("update", true);
+            try {
+               return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("update", true);
+            }
+            catch (Exception exAjaxAction) {
+               log.error((Object)exAjaxAction);
+               return null;
+            }
         }
         return null;
     }
@@ -193,7 +205,13 @@ implements IPSMDAjaxControl {
             }
         }
         if (this.getPSAjaxControlHandler() != null) {
-            return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("remove", true);
+            try {
+               return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("remove", true);
+            }
+            catch (Exception exAjaxAction) {
+               log.error((Object)exAjaxAction);
+               return null;
+            }
         }
         return null;
     }
@@ -227,7 +245,13 @@ implements IPSMDAjaxControl {
             }
         }
         if (this.getPSAjaxControlHandler() != null) {
-            return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("loaddraft", true);
+            try {
+               return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("loaddraft", true);
+            }
+            catch (Exception exAjaxAction) {
+               log.error((Object)exAjaxAction);
+               return null;
+            }
         }
         return null;
     }
@@ -246,7 +270,13 @@ implements IPSMDAjaxControl {
             }
         }
         if (this.getPSAjaxControlHandler() != null) {
-            return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("loaddraftfrom", true);
+            try {
+               return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("loaddraftfrom", true);
+            }
+            catch (Exception exAjaxAction) {
+               log.error((Object)exAjaxAction);
+               return null;
+            }
         }
         return null;
     }
@@ -265,7 +295,13 @@ implements IPSMDAjaxControl {
             }
         }
         if (this.getPSMDAjaxControlHandler() != null) {
-            return this.getPSMDAjaxControlHandler().getPSAjaxHandlerAction("move", true);
+            try {
+               return this.getPSMDAjaxControlHandler().getPSAjaxHandlerAction("move", true);
+            }
+            catch (Exception exAjaxAction) {
+               log.error((Object)exAjaxAction);
+               return null;
+            }
         }
         return null;
     }

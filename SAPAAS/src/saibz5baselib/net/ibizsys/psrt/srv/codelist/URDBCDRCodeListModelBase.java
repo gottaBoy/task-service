@@ -1,29 +1,50 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.codelist;
+
 
 import net.ibizsys.paas.codelist.CodeItem;
 import net.ibizsys.paas.codelist.CodeItems;
 import net.ibizsys.paas.codelist.CodeList;
-import net.ibizsys.paas.codelist.ICodeList;
-import net.ibizsys.paas.sysmodel.CodeListGlobal;
 import net.ibizsys.paas.sysmodel.StaticCodeListModelBase;
+import net.ibizsys.paas.sysmodel.CodeListGlobal;
 
-@CodeList(id="9B2D286D-54EB-4586-BA34-57C963DA276A", name="\u6570\u636e\u5bf9\u8c61\u80fd\u529b\u6761\u7ebf\u6570\u636e\u8303\u56f4", type="STATIC", userscope=false, emptytext="\u672a\u5b9a\u4e49", ormode="NUM", textseparator="\u3001")
-@CodeItems(value={@CodeItem(value="1", text="\u5f53\u524d\u6761\u7ebf", realtext="\u5f53\u524d\u6761\u7ebf")})
-public abstract class URDBCDRCodeListModelBase
-extends StaticCodeListModelBase {
-    public static final Integer CURBC = 1;
-    public static final int INT_CURBC = 1;
+
+@CodeList(id="9B2D286D-54EB-4586-BA34-57C963DA276A",name="数据对象能力条线数据范围",type="STATIC",userscope=false,emptytext="未定义",ormode="NUM",textseparator="、")
+
+@CodeItems({
+    @CodeItem(value="1",text="当前条线",realtext="当前条线")
+})
+
+
+/**
+ * 静态代码表[数据对象能力条线数据范围]模型基类
+ */
+public abstract class URDBCDRCodeListModelBase extends net.ibizsys.paas.sysmodel.StaticCodeListModelBase  {
+
+    /**
+     *  当前条线，注意：值为对象值，不能直接用于 == 比较，可使用 INT_ 替换
+     */
+    public final static Integer CURBC = 1;
+
+    /**
+     *  当前条线，整形类型，可用于 switch 或 == 比较
+     */
+    public final static int INT_CURBC = 1;
 
     public URDBCDRCodeListModelBase() {
+        super();
         this.initAnnotation(URDBCDRCodeListModelBase.class);
         CodeListGlobal.registerCodeList("net.ibizsys.psrt.srv.codelist.URDBCDRCodeListModel", this);
     }
 
-    public static ICodeList getInstance() throws Exception {
+    /**
+     * 获取当前代码表对象实例
+     */
+    public static net.ibizsys.paas.codelist.ICodeList getInstance() throws Exception {
         return CodeListGlobal.getCodeList("net.ibizsys.psrt.srv.codelist.URDBCDRCodeListModel");
     }
-}
 
+}

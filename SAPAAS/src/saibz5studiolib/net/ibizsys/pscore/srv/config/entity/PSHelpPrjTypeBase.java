@@ -1123,7 +1123,7 @@ implements Serializable {
                 PSHelpPrjTempl pSHelpPrjTempl = new PSHelpPrjTempl();
                 pSHelpPrjTempl.setPSHelpPrjTemplId(this.getPSHelpPrjTemplId());
                 PSHelpPrjTemplService pSHelpPrjTemplService = (PSHelpPrjTemplService)ServiceGlobal.getService(PSHelpPrjTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSHelpPrjTemplService.autoGet((IEntity)pSHelpPrjTempl);
+                pSHelpPrjTemplService.autoGet(pSHelpPrjTempl);
                 this.pshelpprjtempl = pSHelpPrjTempl;
             }
             return this.pshelpprjtempl;

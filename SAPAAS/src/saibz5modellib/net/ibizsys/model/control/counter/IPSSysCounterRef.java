@@ -1,21 +1,37 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- */
 package net.ibizsys.model.control.counter;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import net.ibizsys.model.control.counter.IPSSysCounter;
+
 import net.ibizsys.model.core.IPSModelObject;
 
-public interface IPSSysCounterRef
-extends IPSModelObject {
-    public IPSSysCounter getPSSysCounter();
 
-    public ObjectNode getRefMode();
+/**
+ * 系统计数器引用
+ * 
+ * @author Administrator
+ *
+ */
+public interface IPSSysCounterRef extends IPSModelObject {
+	
 
-    public String getTag();
+	/**
+	 * 获取系统计数器
+	 * 
+	 * @return
+	 */
+	IPSSysCounter getPSSysCounter();
+
+	/**
+	 * 获取引用模式
+	 * 
+	 * @return
+	 */
+	ObjectNode getRefMode();
+
+	/**
+	 * 获取标记值
+	 * 
+	 * @return
+	 */
+	String getTag();
 }
-

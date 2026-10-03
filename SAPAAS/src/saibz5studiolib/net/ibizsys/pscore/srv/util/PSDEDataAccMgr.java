@@ -100,7 +100,7 @@ extends DEDataAccMgr {
                 object = this.getDEModel().getService(ViewController.getCurrent().getSessionFactory());
                 iEntity2 = this.getDEModel().createEntity();
                 iEntity2.set(this.getDEModel().getKeyDEField().getName(), iEntity.get(this.getDEModel().getKeyDEField().getName()));
-                if (!object.get(iEntity2, true)) {
+                if (!((net.ibizsys.paas.service.IService)object).get(iEntity2, true)) {
                     iEntity2 = null;
                 }
             }
@@ -118,4 +118,3 @@ extends DEDataAccMgr {
         return true;
     }
 }
-

@@ -1557,7 +1557,7 @@ implements Serializable {
                 PSSysAIFactory pSSysAIFactory = new PSSysAIFactory();
                 pSSysAIFactory.setPSSysAIFactoryId(this.getPSSysAIFactoryId());
                 PSSysAIFactoryService pSSysAIFactoryService = (PSSysAIFactoryService)ServiceGlobal.getService(PSSysAIFactoryService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAIFactoryService.autoGet((IEntity)pSSysAIFactory);
+                pSSysAIFactoryService.autoGet(pSSysAIFactory);
                 this.pssysaifactory = pSSysAIFactory;
             }
             return this.pssysaifactory;
@@ -1583,7 +1583,7 @@ implements Serializable {
                 PSSysAIPipelineAgent pSSysAIPipelineAgent = new PSSysAIPipelineAgent();
                 pSSysAIPipelineAgent.setPSSysAIPipelineAgentId(this.getPSSysAIPipelineAgentId());
                 PSSysAIPipelineAgentService pSSysAIPipelineAgentService = (PSSysAIPipelineAgentService)ServiceGlobal.getService(PSSysAIPipelineAgentService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAIPipelineAgentService.autoGet((IEntity)pSSysAIPipelineAgent);
+                pSSysAIPipelineAgentService.autoGet(pSSysAIPipelineAgent);
                 this.pssysaipipelineagent = pSSysAIPipelineAgent;
             }
             return this.pssysaipipelineagent;
@@ -1609,7 +1609,7 @@ implements Serializable {
                 PSSysAIWorkerAgent pSSysAIWorkerAgent = new PSSysAIWorkerAgent();
                 pSSysAIWorkerAgent.setPSSysAIWorkerAgentId(this.getPSSysAIWorkerAgentId());
                 PSSysAIWorkerAgentService pSSysAIWorkerAgentService = (PSSysAIWorkerAgentService)ServiceGlobal.getService(PSSysAIWorkerAgentService.class, (SessionFactory)this.getSessionFactory());
-                pSSysAIWorkerAgentService.autoGet((IEntity)pSSysAIWorkerAgent);
+                pSSysAIWorkerAgentService.autoGet(pSSysAIWorkerAgent);
                 this.pssysaiworkeragent = pSSysAIWorkerAgent;
             }
             return this.pssysaiworkeragent;

@@ -85,7 +85,7 @@ extends PSDevSlnTemplRefServiceBase {
     }
 
     protected void syncPSDevSlnTemplRef(PSDevSlnTemplRef pSDevSlnTemplRef) throws Exception {
-        this.get((IEntity)pSDevSlnTemplRef);
+        this.get(pSDevSlnTemplRef);
     }
 }
 

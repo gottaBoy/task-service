@@ -1534,7 +1534,7 @@ implements Serializable {
                 PSDCModelTempl pSDCModelTempl = new PSDCModelTempl();
                 pSDCModelTempl.setPSDCModelTemplId(this.getPSDCModelTemplId());
                 PSDCModelTemplService pSDCModelTemplService = (PSDCModelTemplService)ServiceGlobal.getService(PSDCModelTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSDCModelTemplService.autoGet((IEntity)pSDCModelTempl);
+                pSDCModelTemplService.autoGet(pSDCModelTempl);
                 this.psdcmodeltempl = pSDCModelTempl;
             }
             return this.psdcmodeltempl;

@@ -1,196 +1,467 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.pswf.core;
 
-public class WFActionParam {
-    protected String strWorkflowId;
-    protected String strOpPersonId;
-    protected String strOpPersonName;
-    protected String strUserData;
-    protected String strUserData2;
-    protected String strUserData3;
-    protected String strUserData4;
-    protected String strConnection;
-    protected String strInstanceId;
-    protected String strPInstanceId;
-    protected String strStepId;
-    protected String strDescription;
-    protected String strCodeListItemValue = "";
-    protected String strUserTag = "";
-    protected String strUserTag2 = "";
-    protected boolean bTestMode = false;
-    protected boolean bSubmitEmbedWF = false;
-    private String strWFMode = "";
-    private boolean bSuspendMode = false;
-    private String strWFVersionId = "";
 
-    public String getWorkflowId() {
-        return this.strWorkflowId;
-    }
+/**
+ * 流程操作参数对象
+ * @author lionlau
+ *
+ */
+public class WFActionParam
+{
+	/**
+	 * 工作流标识
+	 */
+	protected String strWorkflowId;
+	
+	/**
+	 * 操作人标识
+	 */
+	protected String strOpPersonId;
+	
+	/**
+	 * 操作人名称
+	 */
+	protected String strOpPersonName;
+	
+	
+	protected String strUserData ;
+	
+	protected String strUserData2 ;
+	
+	protected String strUserData3 ;
+	
+	protected String strUserData4 ;
+	
+	
+	
 
-    public void setWorkflowId(String strWorkflowId) {
-        this.strWorkflowId = strWorkflowId;
-    }
+	protected String strConnection;
 
-    public String getOpPersonId() {
-        return this.strOpPersonId;
-    }
+	protected String strInstanceId ;
+	
+	protected String strPInstanceId ;
+	
+	protected String strStepId;
 
-    public void setOpPersonId(String strOpPersonId) {
-        this.strOpPersonId = strOpPersonId;
-    }
+	protected String strDescription ;
+	
+	
+	protected String strCodeListItemValue = "";
+	
+	
+	/**
+	 * 用户自定义标记
+	 */
+	protected String strUserTag = "";
+	
+	
+	/**
+	 * 用户自定义标记2
+	 */
+	protected String strUserTag2 = "";
+	
+	/**
+	 * 是否为测试模式，只进行仿真操作
+	 */
+	protected boolean bTestMode = false;
+	
+	/**
+	 * 提交嵌入流程
+	 */
+	protected boolean bSubmitEmbedWF = false;
+	
+	
+	/**
+	 * 获取流程模式
+	 */
+	private String strWFMode = "";
+	
+	
+	private boolean bSuspendMode = false;
+	
+	private String strWFVersionId = "";
+	
+	/**
+	 * 获取流程模型标识
+	 * @return the strWorkflowId
+	 */
+	public String getWorkflowId()
+	{
+		return strWorkflowId;
+	}
 
-    public String getOpPersonName() {
-        return this.strOpPersonName;
-    }
+	/**
+	 * 设置流程模型标识
+	 * @param strWorkflowId the strWorkflowId to set
+	 */
+	public void setWorkflowId(String strWorkflowId)
+	{
+		this.strWorkflowId = strWorkflowId;
+	}
 
-    public void setOpPersonName(String strOpPersonName) {
-        this.strOpPersonName = strOpPersonName;
-    }
+	/**
+	 * 获取当前操作者标识
+	 * @return the strOpPersonId
+	 */
+	public String getOpPersonId()
+	{
+		return strOpPersonId;
+	}
 
-    public String getUserData() {
-        return this.strUserData;
-    }
+	/**
+	 * 设置当前操作者标识
+	 * @param strOpPersonId the strOpPersonId to set
+	 */
+	public void setOpPersonId(String strOpPersonId)
+	{
+		this.strOpPersonId = strOpPersonId;
+	}
+	
+	/**
+	 * 获取当前操作者名称
+	 * @return the strOpPersonName
+	 */
+	public String getOpPersonName()
+	{
+		return strOpPersonName;
+	}
 
-    public void setUserData(String strUserData) {
-        this.strUserData = strUserData;
-    }
+	/**
+	 * 设置当前操作者名称
+	 * @param strOpPersonName the strOpPersonName to set
+	 */
+	public void setOpPersonName(String strOpPersonName)
+	{
+		this.strOpPersonName = strOpPersonName;
+	}
+	
 
-    public String getUserData2() {
-        return this.strUserData2;
-    }
+	/**
+	 * 获取当前用户数据
+	 * @return the strUserData
+	 */
+	public String getUserData()
+	{
+		return strUserData;
+	}
 
-    public void setUserData2(String strUserData2) {
-        this.strUserData2 = strUserData2;
-    }
+	/**
+	 * 设置当前用户数据
+	 * @param strUserData the strUserData to set
+	 */
+	public void setUserData(String strUserData)
+	{
+		this.strUserData = strUserData;
+	}
 
-    public String getUserData3() {
-        return this.strUserData3;
-    }
+	/**
+	 * 获取当前用户数据2
+	 * @return the strUserData2
+	 */
+	public String getUserData2()
+	{
+		return strUserData2;
+	}
 
-    public void setUserData3(String strUserData3) {
-        this.strUserData3 = strUserData3;
-    }
+	/**
+	 * 设置当前用户数据2
+	 * @param strUserData2 the strUserData2 to set
+	 */
+	public void setUserData2(String strUserData2)
+	{
+		this.strUserData2 = strUserData2;
+	}
 
-    public String getUserData4() {
-        return this.strUserData4;
-    }
+	/**
+	 * 获取当前用户数据3
+	 * @return the strUserData3
+	 */
+	public String getUserData3()
+	{
+		return strUserData3;
+	}
 
-    public void setUserData4(String strUserData4) {
-        this.strUserData4 = strUserData4;
-    }
+	/**
+	 * 设置当前用户数据3
+	 * @param strUserData3 the strUserData3 to set
+	 */
+	public void setUserData3(String strUserData3)
+	{
+		this.strUserData3 = strUserData3;
+	}
 
-    public String getConnection() {
-        return this.strConnection;
-    }
+	/**
+	 * 获取当前用户数据4
+	 * @return the strUserData4
+	 */
+	public String getUserData4()
+	{
+		return strUserData4;
+	}
 
-    public void setConnection(String strConnection) {
-        this.strConnection = strConnection;
-    }
+	/**
+	 * 设置当前用户数据4
+	 * @param strUserData4 the strUserData4 to set
+	 */
+	public void setUserData4(String strUserData4)
+	{
+		this.strUserData4 = strUserData4;
+	}
 
-    public String getInstanceId() {
-        return this.strInstanceId;
-    }
+	/**
+	 * 获取交互路径标识
+	 * @return the strConnection
+	 */
+	public String getConnection()
+	{
+		return strConnection;
+	}
 
-    public void setInstanceId(String strInstanceId) {
-        this.strInstanceId = strInstanceId;
-    }
+	/**
+	 * 设置交互路径标识
+	 * @param strConnection the strConnection to set
+	 */
+	public void setConnection(String strConnection)
+	{
+		this.strConnection = strConnection;
+	}
 
-    public String getPInstanceId() {
-        return this.strPInstanceId;
-    }
+	/**
+	 * 获取流程实例标识
+	 * @return the strInstanceId
+	 */
+	public String getInstanceId()
+	{
+		return strInstanceId;
+	}
 
-    public void setPInstanceId(String strPInstanceId) {
-        this.strPInstanceId = strPInstanceId;
-    }
+	/**
+	 * 设置流程实例标识
+	 * @param strInstanceId the strInstanceId to set
+	 */
+	public void setInstanceId(String strInstanceId)
+	{
+		this.strInstanceId = strInstanceId;
+	}
 
-    public String getStepId() {
-        return this.strStepId;
-    }
+	
+	/**
+	 * 获取父流程实例标识
+	 * @return the strPInstanceId
+	 */
+	public String getPInstanceId()
+	{
+		return strPInstanceId;
+	}
 
-    public void setStepId(String strStepId) {
-        this.strStepId = strStepId;
-    }
+	/**
+	 *  设置父流程实例标识
+	 * @param strPInstanceId the strPInstanceId to set
+	 */
+	public void setPInstanceId(String strPInstanceId)
+	{
+		this.strPInstanceId = strPInstanceId;
+	}
+	
+	/**
+	 * 获取流程步骤标识
+	 * @return the strStepId
+	 */
+	public String getStepId()
+	{
+		return strStepId;
+	}
 
-    public String getDescription() {
-        return this.strDescription;
-    }
+	/**
+	 * 设置流程步骤标识
+	 * @param strStepId the strStepId to set
+	 */
+	public void setStepId(String strStepId)
+	{
+		this.strStepId = strStepId;
+	}
 
-    public void setDescription(String strDescription) {
-        this.strDescription = strDescription;
-    }
+	/**
+	 * 获取流程交互操作描述信息
+	 * @return the strDescription
+	 */
+	public String getDescription()
+	{
+		return strDescription;
+	}
 
-    public String getCodeListItemValue() {
-        return this.strCodeListItemValue;
-    }
+	/**
+	 * 设置流程交互操作描述信息
+	 * @param strDescription the strDescription to set
+	 */
+	public void setDescription(String strDescription)
+	{
+		this.strDescription = strDescription;
+	}
 
-    public void setCodeListItemValue(String strCodeListItemValue) {
-        this.strCodeListItemValue = strCodeListItemValue;
-    }
+	/**
+	 * 获取代码项值
+	 * @return the strCodeListItemValue
+	 */
+	public String getCodeListItemValue()
+	{
+		return strCodeListItemValue;
+	}
 
-    public String getActionResult() {
-        return this.strCodeListItemValue;
-    }
+	/**
+	 * 设置代码项值
+	 * @param strCodeListItemValue the strCodeListItemValue to set
+	 */
+	public void setCodeListItemValue(String strCodeListItemValue)
+	{
+		this.strCodeListItemValue = strCodeListItemValue;
+	}
 
-    public void setActionResult(String strCodeListItemValue) {
-        this.strCodeListItemValue = strCodeListItemValue;
-    }
+	
+	
+	/**
+	 * 设置操作结果
+	 * @return the strCodeListItemValue
+	 */
+	public String getActionResult()
+	{
+		return strCodeListItemValue;
+	}
 
-    public String getUserTag() {
-        return this.strUserTag;
-    }
+	/**
+	 * 获取操作结果
+	 * @param strCodeListItemValue the strCodeListItemValue to set
+	 */
+	public void setActionResult(String strCodeListItemValue)
+	{
+		this.strCodeListItemValue = strCodeListItemValue;
+	}
+	
+	
+	/**
+	 * 获取用户操作标记
+	 * @return the strUserTag
+	 */
+	public String getUserTag()
+	{
+		return strUserTag;
+	}
 
-    public void setUserTag(String strUserTag) {
-        this.strUserTag = strUserTag;
-    }
+	
 
-    public String getUserTag2() {
-        return this.strUserTag2;
-    }
+	/**
+	 * 设置用户操作标记
+	 * @param strUserTag the strUserTag to set
+	 */
+	public void setUserTag(String strUserTag)
+	{
+		this.strUserTag = strUserTag;
+	}
 
-    public void setUserTag2(String strUserTag2) {
-        this.strUserTag2 = strUserTag2;
-    }
+	/**
+	 * 获取用户操作标记2
+	 * @return the strUserTag2
+	 */
+	public String getUserTag2()
+	{
+		return strUserTag2;
+	}
+	
+	/**
+	 * 设置用户操作标记2
+	 * @param strUserTag2 the strUserTag2 to set
+	 */
+	public void setUserTag2(String strUserTag2)
+	{
+		this.strUserTag2 = strUserTag2;
+	}
 
-    public boolean isTestMode() {
-        return this.bTestMode;
-    }
+	/**
+	 * 获取是否为测试模式
+	 * @return the bTestMode
+	 */
+	public boolean isTestMode()
+	{
+		return bTestMode;
+	}
 
-    public void setTestMode(boolean bTestMode) {
-        this.bTestMode = bTestMode;
-    }
+	/**
+	 * 设置是否为测试模式
+	 * @param bTestMode the bTestMode to set
+	 */
+	public void setTestMode(boolean bTestMode)
+	{
+		this.bTestMode = bTestMode;
+	}
 
-    public boolean isSubmitEmbedWF() {
-        return this.bSubmitEmbedWF;
-    }
+	/**
+	 * 获取是否为提交嵌入流程
+	 * @return the bSubmitEmbedWF
+	 */
+	public boolean isSubmitEmbedWF()
+	{
+		return bSubmitEmbedWF;
+	}
 
-    public void setSubmitEmbedWF(boolean bSubmitEmbedWF) {
-        this.bSubmitEmbedWF = bSubmitEmbedWF;
-    }
+	/**
+	 * 设置是否为提交嵌入流程
+	 * @param bSubmitEmbedWF the bSubmitEmbedWF to set
+	 */
+	public void setSubmitEmbedWF(boolean bSubmitEmbedWF)
+	{
+		this.bSubmitEmbedWF = bSubmitEmbedWF;
+	}
+	
+	
+	/**
+	 * 获取流程模式
+	 * @return the bWFMode
+	 */
+	public String getWFMode()
+	{
+		return strWFMode;
+	}
 
-    public String getWFMode() {
-        return this.strWFMode;
-    }
+	/**
+	 * 设置流程模式
+	 * @param strWFMode the strWFMode to set
+	 */
+	public void setWFMode(String strWFMode)
+	{
+		this.strWFMode = strWFMode;
+	}
 
-    public void setWFMode(String strWFMode) {
-        this.strWFMode = strWFMode;
-    }
+	/**
+	 * 是否为挂起模式
+	 * @return
+	 */
+	public boolean isSuspendMode() {
+		return bSuspendMode;
+	}
 
-    public boolean isSuspendMode() {
-        return this.bSuspendMode;
-    }
-
-    public void setSuspendMode(boolean bSuspendMode) {
-        this.bSuspendMode = bSuspendMode;
-    }
-
-    public void setWFVersionId(String strWFVersionId) {
-        this.strWFVersionId = strWFVersionId;
-    }
-
-    public String getWFVersionId() {
-        return this.strWFVersionId;
-    }
+	/**
+	 * 设置是否为挂起模式
+	 * @param bSuspendMode
+	 */
+	public void setSuspendMode(boolean bSuspendMode) {
+		this.bSuspendMode = bSuspendMode;
+	}
+	
+	/**
+	 * 设置流程版本标识
+	 * @param strWFVersionId
+	 */
+	public void setWFVersionId(String strWFVersionId){
+		this.strWFVersionId = strWFVersionId;
+	}
+	
+	
+	/**
+	 * 获取流程版本标识
+	 * @return
+	 */
+	public String getWFVersionId(){
+		return this.strWFVersionId;
+	}
+	
 }
-

@@ -220,7 +220,7 @@ extends SRFDAPage {
         this.ddlFunc.getDropDownListConfig().getListItems().Add(new ListItem("-", ""));
         if (this.selectedDEField != null) {
             strDataType = this.selectedDEField.GetStdDataType();
-            Vector valueFuncs = this.getWebContext().getGlobalHelper().getDAConfigMgr().getValueFuncMgr().FindFuncsByDataType(strDataType);
+            Vector<ValueFuncConfig> valueFuncs = this.getWebContext().getGlobalHelper().getDAConfigMgr().getValueFuncMgr().FindFuncsByDataType(strDataType);
             if (valueFuncs != null) {
                 for (ValueFuncConfig valueFuncConfig : valueFuncs) {
                     this.ddlFunc.getDropDownListConfig().getListItems().Add(new ListItem(valueFuncConfig.getLogicName(), valueFuncConfig.getID()));
@@ -245,7 +245,7 @@ extends SRFDAPage {
         this.ddlSingleLogic.getDropDownListConfig().getListItems().Add(new ListItem("-", ""));
         if (!StringHelper.IsNullOrEmpty((String)strDataType)) {
             boolean bLogicExists = false;
-            Vector conditions = ConditionHelper.GetDataTypeSupportConditions((String)strDataType);
+            Vector<String> conditions = ConditionHelper.GetDataTypeSupportConditions((String)strDataType);
             for (String strCondition : conditions) {
                 if (StringHelper.Compare((String)strCondition, (String)this.strLogic, (boolean)true) == 0) {
                     bLogicExists = true;
@@ -690,4 +690,3 @@ extends SRFDAPage {
         return cic;
     }
 }
-

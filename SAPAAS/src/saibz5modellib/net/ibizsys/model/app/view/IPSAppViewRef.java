@@ -1,59 +1,201 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- */
 package net.ibizsys.model.app.view;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import net.ibizsys.model.IPSModelJsonExporter;
-import net.ibizsys.model.app.view.IPSAppView;
 import net.ibizsys.model.core.IPSModelObject;
 
-public interface IPSAppViewRef
-extends IPSModelObject,
-IPSModelJsonExporter {
-    public IPSAppView getPSAppView();
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-    public String getRefPSAppViewId();
 
-    public IPSAppView getRefPSAppView() throws Exception;
+/**
+ * 应用视图引用对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSAppViewRef extends IPSModelObject,IPSModelJsonExporter
+{
 
-    public String getOpenMode();
+	
+	/**
+	 * 获取当前视图
+	 * @return
+	 */
+	IPSAppView getPSAppView();
+	
+	
+	
+	/**
+	 * 获取引用视图标识
+	 * @return
+	 */
+	String getRefPSAppViewId();
+	
+	
+	
+	/**
+	 * 获取引用视图对象
+	 * @return
+	 */
+	IPSAppView getRefPSAppView() throws Exception;
+	
+	
+	/**
+	 * 获取视图打开方式
+	 * @return
+	 */
+	String getOpenMode();
+	
+	
+	
+	/**
+	 * 获取嵌入标识
+	 * @return
+	 */
+	String getEmbedId();
+	
+	
+	
+	/**
+	 * 获取界面高度
+	 * @return
+	 */
+	int getHeight();
 
-    public String getEmbedId();
+	
+	
+	/**
+	 * 获取界面宽度
+	 * @return
+	 */
+	int getWidth();
+	
+	
+	
+	/**
+	 * 获取附加的视图参数
+	 * @param bCreate 不存在时是否创建
+	 * @return
+	 */
+	ObjectNode getViewParam(boolean bCreate);
+	
+	
+	/**
+	 * 获取附加的视图参数
+	 * @return
+	 */
+	ObjectNode getViewParam();
+	
+	
+	/**
+	 * 获取附加的视图参数，与getViewParam相同
+	 * @param bCreate 不存在时是否创建
+	 * @return
+	 */
+	ObjectNode getViewParamJO(boolean bCreate);
+	
+	
+	/**
+	 * 获取附加的视图参数，与getViewParam相同
+	 * @return
+	 */
+	ObjectNode getViewParamJO();
+	
+	
+	/**
+	 * 获取引用视图父模式Json对象
+	 * @param bCreate 不存在时是否创建
+	 * @return
+	 */
+	ObjectNode getParentModeJO(boolean bCreate);
+	
+	
+	/**
+	 * 获取引用视图父模式Json对象
+	 * @return
+	 */
+	ObjectNode getParentModeJO();
+	
+	/**
+	 * 获取引用视图父数据Json对象
+	 * @param bCreate 不存在时是否创建
+	 * @return
+	 */
+	ObjectNode getParentDataJO(boolean bCreate);
+	
+	/**
+	 * 获取引用视图父数据Json对象
+	 * @return
+	 */
+	ObjectNode getParentDataJO();
+	
+	
+	/**
+	 * 获取实际的视图标题
+	 * @return
+	 */
+	String getRealTitle()throws Exception;
+	
+	
+	
+	/**
+	 * 获取实际的视图宽度
+	 * @param nDefault
+	 * @return
+	 * @throws Exception
+	 */
+	int getRealWidth(int nDefault)throws Exception;
+	
+	
+	
+	/**
+	 * 获取实际的视图高度
+	 * @param nDefault
+	 * @return
+	 * @throws Exception
+	 */
+	int getRealHeight(int nDefault)throws Exception;
+	
+	
+	
+	
+	/**
+	 * 获取实际的视图打开模式
+	 * @return
+	 * @throws Exception
+	 */
+	String getRealOpenMode()throws Exception;
+	
+	
+//	/**
+//	 * 获取抬头语言资源
+//	 * @return
+//	 */
+//	IPSLanguageRes getTitlePSLanguageRes();
+//	
+//	
+//	
+//	/**
+//	 * 获取抬头语言资源
+//	 * @return
+//	 */
+//	IPSLanguageRes getRealTitlePSLanguageRes() throws Exception;
+	
+	
+	
+	/**
+	 * 获取抬头语言资源标识
+	 * @return
+	 */
+	String getRealTitleLanResTag()throws Exception;
+	
+	
+	
+	
+	/**
+	 * 获取引用模式说明
+	 * @return
+	 */
+	String getRefModeDesc();
+	
+	
 
-    public int getHeight();
-
-    public int getWidth();
-
-    public ObjectNode getViewParam(boolean var1);
-
-    public ObjectNode getViewParam();
-
-    public ObjectNode getViewParamJO(boolean var1);
-
-    public ObjectNode getViewParamJO();
-
-    public ObjectNode getParentModeJO(boolean var1);
-
-    public ObjectNode getParentModeJO();
-
-    public ObjectNode getParentDataJO(boolean var1);
-
-    public ObjectNode getParentDataJO();
-
-    public String getRealTitle() throws Exception;
-
-    public int getRealWidth(int var1) throws Exception;
-
-    public int getRealHeight(int var1) throws Exception;
-
-    public String getRealOpenMode() throws Exception;
-
-    public String getRealTitleLanResTag() throws Exception;
-
-    public String getRefModeDesc();
 }
-

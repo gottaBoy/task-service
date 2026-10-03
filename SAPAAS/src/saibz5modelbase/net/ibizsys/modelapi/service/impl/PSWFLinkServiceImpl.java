@@ -83,7 +83,7 @@ implements IPSWFLinkService {
     @Override
     protected List<PSWFLink> onListAll() throws Exception {
         ArrayList<PSWFLink> list = new ArrayList<PSWFLink>();
-        List pswfversions = PSModelServiceUtil.getInstance().getPSWFVersionService().listAll();
+        List<PSWFVersion> pswfversions = PSModelServiceUtil.getInstance().getPSWFVersionService().listAll();
         if (pswfversions != null) {
             for (PSWFVersion parent : pswfversions) {
                 List<PSWFLink> items = this.listByPSWFVersion(parent);
@@ -460,18 +460,19 @@ implements IPSWFLinkService {
         } else {
             dto.setToPSWFProcName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSWFLinkRoleService().listByPSWFLink(t);
-        if (list != null && list.size() > 0) {
+        List<PSWFLinkRole> pSWFLinkRoleList = PSModelServiceUtil.getInstance().getPSWFLinkRoleService().listByPSWFLink(t);
+        if (pSWFLinkRoleList != null && pSWFLinkRoleList.size() > 0) {
             ArrayList<PSWFLinkRoleDTO> pswflinkroles = new ArrayList<PSWFLinkRoleDTO>();
-            for (PSWFLinkRole pSWFLinkRole : list) {
+            for (PSWFLinkRole pSWFLinkRole : pSWFLinkRoleList) {
                 dstItem = (PSWFLinkRoleDTO)PSModelServiceUtil.getInstance().getPSWFLinkRoleService().toDTO(pSWFLinkRole);
                 pswflinkroles.add((PSWFLinkRoleDTO)dstItem);
             }
             dto.setPswflinkroles(pswflinkroles);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSWFLinkCondService().listByPSWFLink(t)) != null && list.size() > 0) {
+        List<PSWFLinkCond> pSWFLinkCondList = PSModelServiceUtil.getInstance().getPSWFLinkCondService().listByPSWFLink(t);
+        if (pSWFLinkCondList != null && pSWFLinkCondList.size() > 0) {
             ArrayList<PSWFLinkCondDTO> pswflinkconds = new ArrayList<PSWFLinkCondDTO>();
-            for (PSWFLinkCond pSWFLinkCond : list) {
+            for (PSWFLinkCond pSWFLinkCond : pSWFLinkCondList) {
                 dstItem = (PSWFLinkCondDTO)PSModelServiceUtil.getInstance().getPSWFLinkCondService().toDTO(pSWFLinkCond);
                 pswflinkconds.add((PSWFLinkCondDTO)dstItem);
             }

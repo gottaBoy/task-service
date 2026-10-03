@@ -8,5 +8,8 @@ import net.ibizsys.pscore.srv.aidesign.demodel.PSSysAIChatAgentDEModelBase;
 public class PSSysAIChatAgentDEModel
 extends PSSysAIChatAgentDEModelBase {
     private static final long serialVersionUID = -1L;
-}
 
+    public PSSysAIChatAgentDEModel() throws Exception {
+        super();
+    }
+}

@@ -168,9 +168,9 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
             PSLanguageRes pSLanguageRes = (PSLanguageRes)iService.getDEModel().createEntity();
             pSLanguageRes.set("PSLANGUAGERESID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSLanguageRes);
+                iService.getTemp(pSLanguageRes);
             } else {
-                iService.get((IEntity)pSLanguageRes);
+                iService.get(pSLanguageRes);
             }
             this.onFillParentInfo_NamePSLanRes(pSSysPortletCat, pSLanguageRes);
             return;
@@ -180,9 +180,9 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
             PSModule pSModule = (PSModule)iService.getDEModel().createEntity();
             pSModule.set("PSMODULEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSModule);
+                iService.getTemp(pSModule);
             } else {
-                iService.get((IEntity)pSModule);
+                iService.get(pSModule);
             }
             this.onFillParentInfo_PSModule(pSSysPortletCat, pSModule);
             return;
@@ -192,9 +192,9 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
             PSSysCss pSSysCss = (PSSysCss)iService.getDEModel().createEntity();
             pSSysCss.set("PSSYSCSSID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysCss);
+                iService.getTemp(pSSysCss);
             } else {
-                iService.get((IEntity)pSSysCss);
+                iService.get(pSSysCss);
             }
             this.onFillParentInfo_PSSysCss(pSSysPortletCat, pSSysCss);
             return;
@@ -204,9 +204,9 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
             PSSysImage pSSysImage = (PSSysImage)iService.getDEModel().createEntity();
             pSSysImage.set("PSSYSIMAGEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysImage);
+                iService.getTemp(pSSysImage);
             } else {
-                iService.get((IEntity)pSSysImage);
+                iService.get(pSSysImage);
             }
             this.onFillParentInfo_PSSysImage(pSSysPortletCat, pSSysImage);
             return;
@@ -216,14 +216,14 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSSysPortletCat, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysPortletCat, string, string2, string3);
+        super.onFillParentInfo(pSSysPortletCat, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -264,7 +264,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 pSSysPortletCat.setPSSysPortletCatName((String)this.getDefaultValue(this.getWebContext(), "USER", "\u95e8\u6237\u90e8\u4ef6\u5206\u7c7b", 25));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysPortletCat, bl);
+        super.onFillEntityFullInfo(pSSysPortletCat, bl);
         this.onFillEntityFullInfo_NamePSLanRes(pSSysPortletCat, bl);
         this.onFillEntityFullInfo_PSModule(pSSysPortletCat, bl);
         this.onFillEntityFullInfo_PSSysCss(pSSysPortletCat, bl);
@@ -308,7 +308,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
     }
 
     protected void onWriteBackParent(PSSysPortletCat pSSysPortletCat, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysPortletCat, bl);
+        super.onWriteBackParent(pSSysPortletCat, bl);
     }
 
     public ArrayList<PSSysPortletCat> selectByNamePSLanRes(PSLanguageResBase pSLanguageResBase) throws Exception {
@@ -435,8 +435,8 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
         ArrayList<PSSysPortletCat> arrayList = this.selectByNamePSLanRes(pSLanguageRes, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSLANGUAGERES");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSLanguageRes);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPORTLETCAT_PSLANGUAGERES_NAMEPSLANRESID", "", iDataEntityModel.getName(), "PSSYSPORTLETCAT", iDataEntityModel.getDataInfo((IEntity)pSLanguageRes), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSLanguageRes);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPORTLETCAT_PSLANGUAGERES_NAMEPSLANRESID", "", iDataEntityModel.getName(), "PSSYSPORTLETCAT", iDataEntityModel.getDataInfo(pSLanguageRes), arrayList.get(0)));
         }
     }
 
@@ -469,7 +469,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
         ArrayList<PSSysPortletCat> arrayList = this.selectByNamePSLanRes(pSLanguageRes);
         this.onBeforeRemoveByNamePSLanRes(pSLanguageRes, arrayList);
         for (PSSysPortletCat pSSysPortletCat : arrayList) {
-            this.remove((IEntity)pSSysPortletCat);
+            this.remove(pSSysPortletCat);
         }
         this.onAfterRemoveByNamePSLanRes(pSLanguageRes, arrayList);
     }
@@ -487,8 +487,8 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
         ArrayList<PSSysPortletCat> arrayList = this.selectByPSModule(pSModule, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSMODULE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSModule);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPORTLETCAT_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSPORTLETCAT", iDataEntityModel.getDataInfo((IEntity)pSModule), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSModule);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPORTLETCAT_PSMODULE_PSMODULEID", "", iDataEntityModel.getName(), "PSSYSPORTLETCAT", iDataEntityModel.getDataInfo(pSModule), arrayList.get(0)));
         }
     }
 
@@ -521,7 +521,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
         ArrayList<PSSysPortletCat> arrayList = this.selectByPSModule(pSModule);
         this.onBeforeRemoveByPSModule(pSModule, arrayList);
         for (PSSysPortletCat pSSysPortletCat : arrayList) {
-            this.remove((IEntity)pSSysPortletCat);
+            this.remove(pSSysPortletCat);
         }
         this.onAfterRemoveByPSModule(pSModule, arrayList);
     }
@@ -539,8 +539,8 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
         ArrayList<PSSysPortletCat> arrayList = this.selectByPSSysCss(pSSysCss, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSCSS");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysCss);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPORTLETCAT_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSPORTLETCAT", iDataEntityModel.getDataInfo((IEntity)pSSysCss), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysCss);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPORTLETCAT_PSSYSCSS_PSSYSCSSID", "", iDataEntityModel.getName(), "PSSYSPORTLETCAT", iDataEntityModel.getDataInfo(pSSysCss), arrayList.get(0)));
         }
     }
 
@@ -573,7 +573,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
         ArrayList<PSSysPortletCat> arrayList = this.selectByPSSysCss(pSSysCss);
         this.onBeforeRemoveByPSSysCss(pSSysCss, arrayList);
         for (PSSysPortletCat pSSysPortletCat : arrayList) {
-            this.remove((IEntity)pSSysPortletCat);
+            this.remove(pSSysPortletCat);
         }
         this.onAfterRemoveByPSSysCss(pSSysCss, arrayList);
     }
@@ -591,8 +591,8 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
         ArrayList<PSSysPortletCat> arrayList = this.selectByPSSysImage(pSSysImage, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSIMAGE");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysImage);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPORTLETCAT_PSSYSIMAGE_PSSYSIMAGEID", "", iDataEntityModel.getName(), "PSSYSPORTLETCAT", iDataEntityModel.getDataInfo((IEntity)pSSysImage), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysImage);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSPORTLETCAT_PSSYSIMAGE_PSSYSIMAGEID", "", iDataEntityModel.getName(), "PSSYSPORTLETCAT", iDataEntityModel.getDataInfo(pSSysImage), arrayList.get(0)));
         }
     }
 
@@ -625,7 +625,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
         ArrayList<PSSysPortletCat> arrayList = this.selectByPSSysImage(pSSysImage);
         this.onBeforeRemoveByPSSysImage(pSSysImage, arrayList);
         for (PSSysPortletCat pSSysPortletCat : arrayList) {
-            this.remove((IEntity)pSSysPortletCat);
+            this.remove(pSSysPortletCat);
         }
         this.onAfterRemoveByPSSysImage(pSSysImage, arrayList);
     }
@@ -671,7 +671,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
         ArrayList<PSSysPortletCat> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSSysPortletCat pSSysPortletCat : arrayList) {
-            this.remove((IEntity)pSSysPortletCat);
+            this.remove(pSSysPortletCat);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -694,7 +694,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
 
     protected void replaceParentInfo(PSSysPortletCat pSSysPortletCat, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysPortletCat, cloneSession);
+        super.replaceParentInfo(pSSysPortletCat, cloneSession);
         if (pSSysPortletCat.getNamePSLanResId() != null && (iEntity = cloneSession.getEntity("PSLANGUAGERES", (Object)pSSysPortletCat.getNamePSLanResId())) != null) {
             this.onFillParentInfo_NamePSLanRes(pSSysPortletCat, (PSLanguageRes)iEntity);
         }
@@ -713,7 +713,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysPortletCat pSSysPortletCat, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysPortletCat, bl);
+        super.onRemoveEntityUncopyValues(pSSysPortletCat, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysPortletCat pSSysPortletCat, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -767,7 +767,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
         if ((entityFieldError = this.onCheckField_UserTag4(bl, pSSysPortletCat, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysPortletCat, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysPortletCat, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CodeName(boolean bl, PSSysPortletCat pSSysPortletCat, boolean bl2, boolean bl3) throws Exception {
@@ -783,7 +783,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -824,7 +824,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -846,7 +846,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NamePSLanResId_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_NamePSLanResId_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAMEPSLANRESID");
@@ -868,7 +868,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_NamePSLanResName_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_NamePSLanResName_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("NAMEPSLANRESNAME");
@@ -890,7 +890,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSModuleId_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSModuleId_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSMODULEID");
@@ -912,7 +912,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysCssId_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysCssId_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSCSSID");
@@ -934,7 +934,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysImageId_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysImageId_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSIMAGEID");
@@ -959,7 +959,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPortletCatId_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPortletCatId_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPORTLETCATID");
@@ -984,7 +984,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPortletCatName_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPortletCatName_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPORTLETCATNAME");
@@ -1028,7 +1028,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -1050,7 +1050,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -1072,7 +1072,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1094,7 +1094,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1116,7 +1116,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1138,7 +1138,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1160,7 +1160,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysPortletCat, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysPortletCat, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1173,11 +1173,11 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
     }
 
     protected void onSyncEntity(PSSysPortletCat pSSysPortletCat, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysPortletCat, bl);
+        super.onSyncEntity(pSSysPortletCat, bl);
     }
 
     protected void onSyncIndexEntities(PSSysPortletCat pSSysPortletCat, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysPortletCat, bl);
+        super.onSyncIndexEntities(pSSysPortletCat, bl);
     }
 
     public Object getDataContextValue(PSSysPortletCat pSSysPortletCat, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1185,7 +1185,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysPortletCat, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysPortletCat, string, iDataContextParam)) != null) {
             return object;
         }
         PSModule pSModule = pSSysPortletCat.getPSModule();
@@ -1196,7 +1196,7 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
     }
 
     protected void onExportMajorModel(PSSysPortletCat pSSysPortletCat, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysPortletCat, arrayList, n);
+        super.onExportMajorModel(pSSysPortletCat, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1539,14 +1539,14 @@ extends PSCoreSysServiceBase<PSSysPortletCat> {
 
     protected boolean onMergeChild(String string, String string2, PSSysPortletCat pSSysPortletCat) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysPortletCat)) {
+        if (super.onMergeChild(string, string2, pSSysPortletCat)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysPortletCat pSSysPortletCat) throws Exception {
-        super.onUpdateParent((IEntity)pSSysPortletCat);
+        super.onUpdateParent(pSSysPortletCat);
     }
 
     @Override

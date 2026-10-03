@@ -1,20 +1,39 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.core;
 
-import net.ibizsys.paas.core.IDEDataSet;
-import net.ibizsys.paas.core.IDEDataSetFetchContext;
 import net.ibizsys.paas.db.DBFetchResult;
 import net.ibizsys.paas.util.IGlobalContext;
 
+/**
+ * 实体数据集合获取对象
+ * 
+ * @author Administrator
+ *
+ */
 public interface IDEDataSetFetcher {
-    public void init(IGlobalContext var1, IDEDataSet var2) throws Exception;
+	/**
+	 * @param iGlobalContext
+	 * @param iDEDataSet
+	 * @throws Exception
+	 */
+	void init(IGlobalContext iGlobalContext, IDEDataSet iDEDataSet) throws Exception;
 
-    public DBFetchResult fetch(IDEDataSetFetchContext var1) throws Exception;
+	/**
+	 * 执行操作
+	 * 
+	 * @param iDEActionContext
+	 * @throws Exception
+	 */
+	DBFetchResult fetch(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception;
 
-    public void close();
+	/**
+	 * 关闭
+	 */
+	void close();
 
-    public IDEDataSetFetchContext getDEDataSetFetchContext();
+	/**
+	 * 获取数据获取调用上下文对象
+	 * 
+	 * @return
+	 */
+	IDEDataSetFetchContext getDEDataSetFetchContext();
 }
-

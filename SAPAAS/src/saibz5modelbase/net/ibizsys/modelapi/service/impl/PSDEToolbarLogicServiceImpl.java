@@ -76,7 +76,7 @@ implements IPSDEToolbarLogicService {
     @Override
     protected List<PSDEToolbarLogic> onListAll() throws Exception {
         ArrayList<PSDEToolbarLogic> list = new ArrayList<PSDEToolbarLogic>();
-        List psdetoolbars = PSModelServiceUtil.getInstance().getPSDEToolbarService().listAll();
+        List<PSDEToolbar> psdetoolbars = PSModelServiceUtil.getInstance().getPSDEToolbarService().listAll();
         if (psdetoolbars != null) {
             for (PSDEToolbar parent : psdetoolbars) {
                 List<PSDEToolbarLogic> items = this.listByPSDEToolbar(parent);

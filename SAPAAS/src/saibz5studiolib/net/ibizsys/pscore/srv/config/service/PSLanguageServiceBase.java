@@ -169,14 +169,14 @@ extends PSCoreSysServiceBase<PSLanguage> {
             PSSystem pSSystem = (PSSystem)iService.getDEModel().createEntity();
             pSSystem.set("PSSYSTEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystem);
+                iService.getTemp(pSSystem);
             } else {
-                iService.get((IEntity)pSSystem);
+                iService.get(pSSystem);
             }
             this.onFillParentInfo_PSSystem(pSLanguage, pSSystem);
             return;
         }
-        super.onFillParentInfo((IEntity)pSLanguage, string, string2, string3);
+        super.onFillParentInfo(pSLanguage, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -192,7 +192,7 @@ extends PSCoreSysServiceBase<PSLanguage> {
         if (bl && pSLanguage.getValidFlag() == null) {
             pSLanguage.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSLanguage, bl);
+        super.onFillEntityFullInfo(pSLanguage, bl);
         this.onFillEntityFullInfo_PSSystem(pSLanguage, bl);
     }
 
@@ -210,7 +210,7 @@ extends PSCoreSysServiceBase<PSLanguage> {
     }
 
     protected void onWriteBackParent(PSLanguage pSLanguage, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSLanguage, bl);
+        super.onWriteBackParent(pSLanguage, bl);
     }
 
     public ArrayList<PSLanguage> selectByPSSystem(PSSystemBase pSSystemBase) throws Exception {
@@ -269,7 +269,7 @@ extends PSCoreSysServiceBase<PSLanguage> {
         ArrayList<PSLanguage> arrayList = this.selectByPSSystem(pSSystem);
         this.onBeforeRemoveByPSSystem(pSSystem, arrayList);
         for (PSLanguage pSLanguage : arrayList) {
-            this.remove((IEntity)pSLanguage);
+            this.remove(pSLanguage);
         }
         this.onAfterRemoveByPSSystem(pSSystem, arrayList);
     }
@@ -298,14 +298,14 @@ extends PSCoreSysServiceBase<PSLanguage> {
 
     protected void replaceParentInfo(PSLanguage pSLanguage, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSLanguage, cloneSession);
+        super.replaceParentInfo(pSLanguage, cloneSession);
         if (pSLanguage.getPSSystemId() != null && (iEntity = cloneSession.getEntity("PSSYSTEM", (Object)pSLanguage.getPSSystemId())) != null) {
             this.onFillParentInfo_PSSystem(pSLanguage, (PSSystem)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSLanguage pSLanguage, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSLanguage, bl);
+        super.onRemoveEntityUncopyValues(pSLanguage, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSLanguage pSLanguage, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -329,7 +329,7 @@ extends PSCoreSysServiceBase<PSLanguage> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSLanguage, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSLanguage, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSLanguage, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSLanguage pSLanguage, boolean bl2, boolean bl3) throws Exception {
@@ -342,7 +342,7 @@ extends PSCoreSysServiceBase<PSLanguage> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSLanguage, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSLanguage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -367,7 +367,7 @@ extends PSCoreSysServiceBase<PSLanguage> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSLanguageId_Default((IEntity)pSLanguage, bl2, bl3);
+            string2 = this.onTestValueRule_PSLanguageId_Default(pSLanguage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSLANGUAGEID");
@@ -392,7 +392,7 @@ extends PSCoreSysServiceBase<PSLanguage> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSLanguageName_Default((IEntity)pSLanguage, bl2, bl3);
+            string2 = this.onTestValueRule_PSLanguageName_Default(pSLanguage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSLANGUAGENAME");
@@ -414,7 +414,7 @@ extends PSCoreSysServiceBase<PSLanguage> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemId_Default((IEntity)pSLanguage, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemId_Default(pSLanguage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMID");
@@ -436,7 +436,7 @@ extends PSCoreSysServiceBase<PSLanguage> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemName_Default((IEntity)pSLanguage, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemName_Default(pSLanguage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMNAME");
@@ -461,7 +461,7 @@ extends PSCoreSysServiceBase<PSLanguage> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSLanguage, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSLanguage, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -474,11 +474,11 @@ extends PSCoreSysServiceBase<PSLanguage> {
     }
 
     protected void onSyncEntity(PSLanguage pSLanguage, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSLanguage, bl);
+        super.onSyncEntity(pSLanguage, bl);
     }
 
     protected void onSyncIndexEntities(PSLanguage pSLanguage, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSLanguage, bl);
+        super.onSyncIndexEntities(pSLanguage, bl);
     }
 
     public Object getDataContextValue(PSLanguage pSLanguage, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -486,14 +486,14 @@ extends PSCoreSysServiceBase<PSLanguage> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSLanguage, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSLanguage, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSLanguage pSLanguage, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSLanguage, arrayList, n);
+        super.onExportMajorModel(pSLanguage, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -628,14 +628,14 @@ extends PSCoreSysServiceBase<PSLanguage> {
 
     protected boolean onMergeChild(String string, String string2, PSLanguage pSLanguage) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSLanguage)) {
+        if (super.onMergeChild(string, string2, pSLanguage)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSLanguage pSLanguage) throws Exception {
-        super.onUpdateParent((IEntity)pSLanguage);
+        super.onUpdateParent(pSLanguage);
     }
 
     @Override
@@ -778,42 +778,28 @@ extends PSCoreSysServiceBase<PSLanguage> {
     protected void onExportCurModelV2(PSLanguage pSLanguage, ObjectNode objectNode, String string, boolean bl) throws Exception {
         File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSLANGUAGEITEM_PSLANGUAGE_PSLANGUAGEID")) {
-            Object object;
-            PSLanguageItem pSLanguageItem2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSLanguageItemService pSLanguageItemService = (PSLanguageItemService)ServiceGlobal.getService(PSLanguageItemService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSLanguageItem> arrayList = null;
+            ArrayList<ObjectNode> items = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSLANGUAGE#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSLANGUAGEITEM", (Object)pSLanguage.getPSLanguageId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSLanguageItem2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSLanguageItem2);
+                    items = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        items.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSLanguageItem>();
-                object4 = pSLanguageItemService.selectByPSLanguage(pSLanguage);
-                object3 = StringHelper.format((String)"PSLANGUAGE#%1$s", (Object)pSLanguage.getPSLanguageId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSLanguageItem2 = object2.next();
-                    object = pSLanguageItemService.getModelV2ResScope((IEntity)pSLanguageItem2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSLanguageItem)PSModelV2Helper.toJSONObject((IEntity)pSLanguageItem2, false));
+                items = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSLANGUAGE#%1$s", (Object)pSLanguage.getPSLanguageId());
+                for (PSLanguageItem item : pSLanguageItemService.selectByPSLanguage(pSLanguage)) {
+                    if (StringHelper.compare(scope, pSLanguageItemService.getModelV2ResScope(item), false) != 0) continue;
+                    items.add(PSModelV2Helper.toJSONObject(item, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSLanguageItemService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (items != null && !items.isEmpty()) {
+                ArrayNode children = objectNode.putArray(pSLanguageItemService.getModelV2Name(false).toLowerCase());
+                Collections.sort(items, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -840,10 +826,10 @@ extends PSCoreSysServiceBase<PSLanguage> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSLanguageItem pSLanguageItem2 : arrayList) {
-                    object = new PSLanguageItem();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSLanguageItem2, false);
-                    object3.add((JsonNode)pSLanguageItemService.exportModelV2(object, string));
+                for (ObjectNode itemNode : items) {
+                    PSLanguageItem item = new PSLanguageItem();
+                    PSModelV2Helper.fromJSONObject(item, itemNode, false);
+                    children.add(pSLanguageItemService.exportModelV2(item, string));
                 }
             }
         }
@@ -923,4 +909,3 @@ extends PSCoreSysServiceBase<PSLanguage> {
         super.onFillPasteHelps(pSLanguage, list);
     }
 }
-

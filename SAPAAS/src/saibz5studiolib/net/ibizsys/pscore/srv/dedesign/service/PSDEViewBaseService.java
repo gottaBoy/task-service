@@ -1,40 +1,12 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.fasterxml.jackson.databind.node.ObjectNode
- *  net.ibizsys.paas.data.DataObject
- *  net.ibizsys.paas.data.IDataObject
- *  net.ibizsys.paas.db.ISelectCond
- *  net.ibizsys.paas.db.SelectCond
- *  net.ibizsys.paas.entity.EntityBase
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.paas.service.ActionSession
- *  net.ibizsys.paas.service.ActionSessionManager
- *  net.ibizsys.paas.service.IServiceWork
- *  net.ibizsys.paas.service.ITransaction
- *  net.ibizsys.paas.service.ServiceGlobal
- *  net.ibizsys.paas.util.JsonNodeHelper
- *  net.ibizsys.paas.util.KeyValueHelper
- *  net.ibizsys.paas.util.StringHelper
- *  net.ibizsys.paas.xml.XmlNode
- *  org.apache.commons.logging.Log
- *  org.apache.commons.logging.LogFactory
- *  org.hibernate.SessionFactory
- *  org.springframework.stereotype.Component
- */
 package net.ibizsys.pscore.srv.dedesign.service;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import net.ibizsys.paas.data.DataObject;
-import net.ibizsys.paas.data.IDataObject;
-import net.ibizsys.paas.db.ISelectCond;
 import net.ibizsys.paas.db.SelectCond;
 import net.ibizsys.paas.entity.EntityBase;
 import net.ibizsys.paas.entity.IEntity;
@@ -47,65 +19,36 @@ import net.ibizsys.paas.util.JsonNodeHelper;
 import net.ibizsys.paas.util.KeyValueHelper;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.paas.xml.XmlNode;
-import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
-import net.ibizsys.pscore.srv.PSCoreSysServiceBaseBase;
 import net.ibizsys.pscore.srv.appdesign.entity.PSAppDEView;
 import net.ibizsys.pscore.srv.appdesign.service.PSAppDEViewService;
 import net.ibizsys.pscore.srv.config.entity.PSVTCtrl;
-import net.ibizsys.pscore.srv.config.entity.PSVTCtrlBase;
 import net.ibizsys.pscore.srv.config.entity.PSVTRV;
 import net.ibizsys.pscore.srv.config.entity.PSViewType;
-import net.ibizsys.pscore.srv.config.entity.PSViewTypeBase;
 import net.ibizsys.pscore.srv.config.entity.PSViewTypeStruct;
 import net.ibizsys.pscore.srv.config.service.PSViewTypeService;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEDRDetail;
-import net.ibizsys.pscore.srv.dedesign.entity.PSDEDRDetailBase;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEDRGroup;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEDataRelation;
-import net.ibizsys.pscore.srv.dedesign.entity.PSDEDataRelationBase;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEDataSet;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEDataView;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEField;
-import net.ibizsys.pscore.srv.dedesign.entity.PSDEFieldBase;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEForm;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEGrid;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEList;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEMainState;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEToolbar;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEViewBase;
-import net.ibizsys.pscore.srv.dedesign.entity.PSDEViewBaseBase;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEViewCtrl;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEViewEngine;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEViewLogic;
-import net.ibizsys.pscore.srv.dedesign.entity.PSDEViewLogicBase;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDEViewRV;
-import net.ibizsys.pscore.srv.dedesign.entity.PSDEViewRVBase;
 import net.ibizsys.pscore.srv.dedesign.entity.PSDataEntity;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEDRDetailService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEDRGroupService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEDataRelationService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEDataSetService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEDataViewService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEFieldService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEFormService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEGridService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEListService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEToolbarService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEViewBaseServiceBase;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEViewCtrlService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEViewEngineService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEViewEngineServiceBase;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEViewLogicService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEViewLogicServiceBase;
-import net.ibizsys.pscore.srv.dedesign.service.PSDEViewRVService;
-import net.ibizsys.pscore.srv.dedesign.service.PSDataEntityService;
 import net.ibizsys.pscore.srv.service.IPSModelService;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSACHandler;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSCodeItem;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSCodeList;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSysApp;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSysPDTView;
-import net.ibizsys.pscore.srv.sysdesign.entity.PSSysPDTViewBase;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSSystem;
 import net.ibizsys.pscore.srv.sysdesign.service.PSACHandlerService;
 import net.ibizsys.pscore.srv.sysdesign.service.PSCodeListService;
@@ -115,2519 +58,3025 @@ import net.ibizsys.pscore.srv.util.PSModelGlobal;
 import net.ibizsys.pscore.srv.wfdesign.entity.PSWFDE;
 import net.ibizsys.pscore.srv.wfdesign.entity.PSWFProcess;
 import net.ibizsys.pscore.srv.wfdesign.entity.PSWFVersion;
-import net.ibizsys.pscore.srv.wfdesign.entity.PSWFVersionBase;
 import net.ibizsys.pscore.srv.wfdesign.entity.PSWorkflow;
 import net.ibizsys.pscore.srv.wfdesign.service.PSWFProcessService;
-import net.ibizsys.pscore.srv.wfdesign.service.PSWFProcessServiceBase;
 import net.ibizsys.pscore.srv.wfdesign.service.PSWFVersionService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PSDEViewBaseService
-extends PSDEViewBaseServiceBase
-implements IPSModelService<PSDEViewBase> {
-    private static final Log log = LogFactory.getLog(PSDEViewBaseService.class);
-    private static final String[] initViewTypes = new String[]{"DEEDITVIEW", "DEEDITVIEW2", "DEGRIDVIEW", "DEINDEXPICKUPDATAVIEW", "DEFORMPICKUPDATAVIEW", "DEPICKUPGRIDVIEW", "DEPICKUPVIEW", "DEMPICKUPVIEW", "DEREDIRECTVIEW"};
-    private static final String[] initMobViewTypes = new String[]{"DEMOBEDITVIEW", "DEMOBMDVIEW", "DEMOBINDEXPICKUPMDVIEW", "DEMOBFORMPICKUPMDVIEW", "DEMOBPICKUPMDVIEW", "DEMOBPICKUPVIEW", "DEMOBMPICKUPVIEW", "DEMOBREDIRECTVIEW"};
-    private static final String[] initWFViewTypes = new String[]{"DEWFEXPVIEW", "DEWFGRIDVIEW", "DEWFEDITVIEW3"};
-    private static final String[] initMobWFViewTypes = new String[]{"DEMOBWFMDVIEW", "DEMOBWFEDITVIEW"};
-    private static final String[] initMSViewTypes = new String[]{"DEEDITVIEW3"};
-    protected static final String LOGNAME_INITWFVIEW = "\u521d\u59cb\u5316\u6d41\u7a0b\u89c6\u56fe";
-    public static final String XMLNODE_DEVIEWCONFIG = "DEVIEWCONFIG";
-    public static final String XMLNODE_DEVIEWCTRL = "DEVIEWCTRL";
-    public static final String XMLNODE_DEVIEWRV = "DEVIEWRV";
-    public static final String XMLNODE_DEVIEWLOGIC = "DEVIEWLOGIC";
-    public static final String XMLNODE_DEVIEWENGINE = "DEVIEWENGINE";
+public class PSDEViewBaseService extends PSDEViewBaseServiceBase implements IPSModelService<PSDEViewBase> {
+   private static final Log log = LogFactory.getLog(PSDEViewBaseService.class);
+   private static final String[] initViewTypes = new String[]{
+      "DEEDITVIEW",
+      "DEEDITVIEW2",
+      "DEGRIDVIEW",
+      "DEINDEXPICKUPDATAVIEW",
+      "DEFORMPICKUPDATAVIEW",
+      "DEPICKUPGRIDVIEW",
+      "DEPICKUPVIEW",
+      "DEMPICKUPVIEW",
+      "DEREDIRECTVIEW"
+   };
+   private static final String[] initMobViewTypes = new String[]{
+      "DEMOBEDITVIEW",
+      "DEMOBMDVIEW",
+      "DEMOBINDEXPICKUPMDVIEW",
+      "DEMOBFORMPICKUPMDVIEW",
+      "DEMOBPICKUPMDVIEW",
+      "DEMOBPICKUPVIEW",
+      "DEMOBMPICKUPVIEW",
+      "DEMOBREDIRECTVIEW"
+   };
+   private static final String[] initWFViewTypes = new String[]{"DEWFEXPVIEW", "DEWFGRIDVIEW", "DEWFEDITVIEW3"};
+   private static final String[] initMobWFViewTypes = new String[]{"DEMOBWFMDVIEW", "DEMOBWFEDITVIEW"};
+   private static final String[] initMSViewTypes = new String[]{"DEEDITVIEW3"};
+   protected static final String LOGNAME_INITWFVIEW = "初始化流程视图";
+   public static final String XMLNODE_DEVIEWCONFIG = "DEVIEWCONFIG";
+   public static final String XMLNODE_DEVIEWCTRL = "DEVIEWCTRL";
+   public static final String XMLNODE_DEVIEWRV = "DEVIEWRV";
+   public static final String XMLNODE_DEVIEWLOGIC = "DEVIEWLOGIC";
+   public static final String XMLNODE_DEVIEWENGINE = "DEVIEWENGINE";
 
-    @Override
-    protected void onFillParentInfo_PSDE(PSDEViewBase pSDEViewBase, PSDataEntity pSDataEntity) throws Exception {
-        super.onFillParentInfo_PSDE(pSDEViewBase, pSDataEntity);
-        pSDEViewBase.setPSSystemId(pSDataEntity.getPSSystemId());
-        pSDEViewBase.setPSSystemName(pSDataEntity.getPSSystemName());
-    }
+   @Override
+   protected void onFillParentInfo_PSDE(PSDEViewBase var1, PSDataEntity var2) throws Exception {
+      super.onFillParentInfo_PSDE(var1, var2);
+      var1.setPSSystemId(var2.getPSSystemId());
+      var1.setPSSystemName(var2.getPSSystemName());
+   }
 
-    @Override
-    protected void onAfterGetDraftTemp(PSDEViewBase pSDEViewBase) throws Exception {
-        EntityBase entityBase;
-        String string = pSDEViewBase.getPSDEViewBaseType();
-        PSViewType pSViewType = new PSViewType();
-        pSViewType.setPSViewTypeId(string);
-        PSViewTypeService pSViewTypeService = (PSViewTypeService)ServiceGlobal.getService(PSViewTypeService.class);
-        pSViewTypeService.getCache((IEntity)pSViewType);
-        if (pSDEViewBase.getPSDE() != null) {
-            if (StringHelper.isNullOrEmpty((String)pSDEViewBase.getPSDEViewBaseName())) {
-                pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s", (Object)pSDEViewBase.getPSDE().getLogicName(), (Object)pSViewType.getPSViewTypeName()));
+   protected void onAfterGetDraftTemp(PSDEViewBase var1) throws Exception {
+      String var2 = var1.getPSDEViewBaseType();
+      PSViewType var3 = new PSViewType();
+      var3.setPSViewTypeId(var2);
+      PSViewTypeService var4 = (PSViewTypeService)ServiceGlobal.getService(PSViewTypeService.class);
+      var4.getCache(var3);
+      if (var1.getPSDE() != null) {
+         if (StringHelper.isNullOrEmpty(var1.getPSDEViewBaseName())) {
+            var1.setPSDEViewBaseName(StringHelper.format("%1$s%2$s", var1.getPSDE().getLogicName(), var3.getPSViewTypeName()));
+         }
+
+         if (StringHelper.isNullOrEmpty(var1.getTitle()) && !StringHelper.isNullOrEmpty(var3.getTitle())) {
+            var1.setTitle(StringHelper.format("%1$s%2$s", var1.getPSDE().getLogicName(), var3.getTitle()));
+         }
+      }
+
+      if (StringHelper.isNullOrEmpty(var1.getCodeName())) {
+         var1.setCodeName(var3.getCodeName());
+      }
+
+      PSDEViewRVService var5 = (PSDEViewRVService)ServiceGlobal.getService(PSDEViewRVService.class, this.getSessionFactory());
+      PSDEViewCtrlService var6 = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, this.getSessionFactory());
+      PSDataEntity var7 = var1.getPSDE();
+      PSViewTypeStruct var8 = PSModelGlobal.getPSViewType(var2);
+
+      for (PSVTRV var11 : var3.getPSVTRVs()) {
+         if (DataObject.getBoolValue(var11.getValidFlag(), true) && DataObject.getBoolValue(var11.getDefaultFlag(), true)) {
+            PSDEViewRV var12 = new PSDEViewRV();
+            var12.setMajorPSDEViewId(var1.getPSDEViewBaseId());
+            var12.setMajorPSDEViewName(var1.getPSDEViewBaseName());
+            var12.setPSDEViewRVName(var11.getPSVTRVName());
+            if (var5.checkKeyTemp(var12) == 0) {
+               var12.setDefViewType(var11.getDEFViewType());
+               var12.setMemo(var11.getMemo());
+               var12.setRefModeText(var11.getLogicName());
+               if (var7 != null) {
+                  this.fillDEViewRV(var12, var7.getPSSystem(), var7, var8, var1, var11, null, null);
+               }
+
+               var5.createTemp(var12);
             }
-            if (StringHelper.isNullOrEmpty((String)pSDEViewBase.getTitle()) && !StringHelper.isNullOrEmpty((String)pSViewType.getTitle())) {
-                pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s", (Object)pSDEViewBase.getPSDE().getLogicName(), (Object)pSViewType.getTitle()));
-            }
-        }
-        if (StringHelper.isNullOrEmpty((String)pSDEViewBase.getCodeName())) {
-            pSDEViewBase.setCodeName(pSViewType.getCodeName());
-        }
-        PSDEViewRVService pSDEViewRVService = (PSDEViewRVService)ServiceGlobal.getService(PSDEViewRVService.class, (SessionFactory)this.getSessionFactory());
-        PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-        PSDataEntity pSDataEntity = pSDEViewBase.getPSDE();
-        PSViewTypeStruct pSViewTypeStruct = PSModelGlobal.getPSViewType(string);
-        ArrayList<PSVTRV> arrayList = pSViewType.getPSVTRVs();
-        for (PSVTRV object2 : arrayList) {
-            if (!DataObject.getBoolValue((Integer)object2.getValidFlag(), (boolean)true) || !DataObject.getBoolValue((Integer)object2.getDefaultFlag(), (boolean)true)) continue;
-            entityBase = new PSDEViewRV();
-            entityBase.setMajorPSDEViewId(pSDEViewBase.getPSDEViewBaseId());
-            entityBase.setMajorPSDEViewName(pSDEViewBase.getPSDEViewBaseName());
-            entityBase.setPSDEViewRVName(object2.getPSVTRVName());
-            if (pSDEViewRVService.checkKeyTemp((IEntity)entityBase) != 0) continue;
-            entityBase.setDefViewType(object2.getDEFViewType());
-            entityBase.setMemo(object2.getMemo());
-            entityBase.setRefModeText(object2.getLogicName());
-            if (pSDataEntity != null) {
-                this.fillDEViewRV((PSDEViewRV)entityBase, pSDataEntity.getPSSystem(), pSDataEntity, pSViewTypeStruct, pSDEViewBase, object2, null, null);
-            }
-            pSDEViewRVService.createTemp(entityBase);
-        }
-        ArrayList<PSVTCtrl> arrayList2 = pSViewType.getPSVTCtrls();
-        Iterator iterator = arrayList2.iterator();
-        while (iterator.hasNext()) {
-            entityBase = (PSVTCtrl)iterator.next();
-            if (!DataObject.getBoolValue((Integer)entityBase.getValidFlag(), (boolean)true)) continue;
-            PSDEViewCtrl pSDEViewCtrl = new PSDEViewCtrl();
-            pSDEViewCtrl.setPSDEViewBaseId(pSDEViewBase.getPSDEViewBaseId());
-            pSDEViewCtrl.setPSDEViewBaseName(pSDEViewBase.getPSDEViewBaseName());
-            pSDEViewCtrl.setPSDEViewCtrlName(entityBase.getPSVTCtrlName());
-            pSDEViewCtrl.setPSDEViewCtrlType(entityBase.getCtrlType());
-            if (entityBase.getDefaultFlag() != null) {
-                pSDEViewCtrl.setDefaultFlag(entityBase.getDefaultFlag());
+         }
+      }
+
+      for (PSVTCtrl var16 : var3.getPSVTCtrls()) {
+         if (DataObject.getBoolValue(var16.getValidFlag(), true)) {
+            PSDEViewCtrl var13 = new PSDEViewCtrl();
+            var13.setPSDEViewBaseId(var1.getPSDEViewBaseId());
+            var13.setPSDEViewBaseName(var1.getPSDEViewBaseName());
+            var13.setPSDEViewCtrlName(var16.getPSVTCtrlName());
+            var13.setPSDEViewCtrlType(var16.getCtrlType());
+            if (var16.getDefaultFlag() != null) {
+               var13.setDefaultFlag(var16.getDefaultFlag());
             } else {
-                pSDEViewCtrl.setDefaultFlag(1);
+               var13.setDefaultFlag(1);
             }
-            this.fillDEViewCtrlParams(pSDEViewCtrl, (PSVTCtrl)entityBase);
-            if (entityBase.getOrderValue() != null) {
-                pSDEViewCtrl.setOrderValue(entityBase.getOrderValue());
-            }
-            if (entityBase.getEnableViewActions() != null) {
-                pSDEViewCtrl.setEnableViewActions(entityBase.getEnableViewActions());
-            }
-            if (pSDataEntity != null) {
-                this.fillDEViewCtrl(pSDEViewCtrl, pSDataEntity.getPSSystem(), pSDataEntity, pSViewTypeStruct, pSDEViewBase, (PSVTCtrl)entityBase, null, null);
-            }
-            if (pSDEViewCtrlService.checkKeyTemp((IEntity)pSDEViewCtrl) != 0) continue;
-            pSDEViewCtrlService.createTemp(pSDEViewCtrl);
-        }
-        super.onAfterGetDraftTemp(pSDEViewBase);
-    }
 
-    @Override
-    public void initModel(String string, IEntity iEntity, String string2) throws Exception {
-        if (StringHelper.compare((String)string, (String)"PSDATAENTITY", (boolean)true) == 0) {
-            PSViewTypeStruct pSViewTypeStruct;
-            PSDataEntity pSDataEntity = new PSDataEntity();
-            pSDataEntity.proxy((IDataObject)iEntity);
-            PSDEInitCfg pSDEInitCfg = PSModelGlobal.getPSDEInitCfg(pSDataEntity.getPSDataEntityId(), this.getSessionFactory());
-            if (pSDEInitCfg != null && DataObject.getBoolValue((Integer)pSDEInitCfg.getIgnoreUIModel(), (boolean)false)) {
-                return;
+            this.fillDEViewCtrlParams(var13, var16);
+            if (var16.getOrderValue() != null) {
+               var13.setOrderValue(var16.getOrderValue());
             }
-            for (String string3 : initViewTypes) {
-                pSViewTypeStruct = PSModelGlobal.getPSViewType(string3);
-                this.initDEView(pSDataEntity, pSViewTypeStruct);
-            }
-            if (DataObject.getBoolValue((Integer)pSDataEntity.getEnableMob(), (boolean)false)) {
-                for (String string3 : initMobViewTypes) {
-                    pSViewTypeStruct = PSModelGlobal.getPSViewType(string3);
-                    this.initDEView(pSDataEntity, pSViewTypeStruct);
-                }
-            }
-            this.initDEWFViews(pSDataEntity);
-            return;
-        }
-    }
 
-    protected void initDEView(PSDataEntity pSDataEntity, PSViewTypeStruct pSViewTypeStruct) throws Exception {
-        PSDEViewBase pSDEViewBase;
-        String string;
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEINDEXPICKUPDATAVIEW", (boolean)true) == 0) {
-            String string2 = pSDataEntity.getIndexDEType();
-            if (!StringHelper.isNullOrEmpty((String)string2)) {
-                this.initDEView(pSDataEntity, pSViewTypeStruct, "INDEXDETYPE", string2, null, null, null);
+            if (var16.getEnableViewActions() != null) {
+               var13.setEnableViewActions(var16.getEnableViewActions());
             }
-            return;
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEFORMPICKUPDATAVIEW", (boolean)true) == 0) {
-            if (DataObject.getIntegerValue((Object)pSDataEntity.getEnaMultiForm(), (Integer)0) > 0) {
-                this.initDEView(pSDataEntity, pSViewTypeStruct, "FORMTYPE", "", null, null, null);
-            }
-            return;
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBINDEXPICKUPMDVIEW", (boolean)true) == 0) {
-            String string3 = pSDataEntity.getIndexDEType();
-            if (!StringHelper.isNullOrEmpty((String)string3)) {
-                this.initDEView(pSDataEntity, pSViewTypeStruct, "INDEXDETYPE", string3, null, null, null);
-            }
-            return;
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBFORMPICKUPMDVIEW", (boolean)true) == 0) {
-            if (DataObject.getIntegerValue((Object)pSDataEntity.getEnaMultiForm(), (Integer)0) > 0) {
-                this.initDEView(pSDataEntity, pSViewTypeStruct, "FORMTYPE", "", null, null, null);
-            }
-            return;
-        }
-        String string4 = "";
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEREDIRECTVIEW", (boolean)true) == 0) {
-            string4 = "REDIRECTVIEW";
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEEDITVIEW", (boolean)true) == 0) {
-            string4 = "EDITVIEW";
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEGRIDVIEW", (boolean)true) == 0) {
-            string4 = "MDATAVIEW";
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEPICKUPVIEW", (boolean)true) == 0) {
-            string4 = "PICKUPVIEW";
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMPICKUPVIEW", (boolean)true) == 0) {
-            string4 = "MPICKUPVIEW";
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBREDIRECTVIEW", (boolean)true) == 0) {
-            string4 = "MOBREDIRECTVIEW";
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBEDITVIEW", (boolean)true) == 0) {
-            string4 = "MOBEDITVIEW";
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBMDVIEW", (boolean)true) == 0) {
-            string4 = "MOBMDATAVIEW";
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBPICKUPVIEW", (boolean)true) == 0) {
-            string4 = "MOBPICKUPVIEW";
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBMPICKUPVIEW", (boolean)true) == 0) {
-            string4 = "MOBMPICKUPVIEW";
-        }
-        this.initDEView(pSDataEntity, pSViewTypeStruct, "", "", null, string4, null);
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEPICKUPVIEW", (boolean)true) == 0) {
-            string = pSDataEntity.getIndexDEType();
-            if (!StringHelper.isNullOrEmpty((String)string)) {
-                pSDEViewBase = new PSDEViewBase();
-                pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s(\u7d22\u5f15\u5b9e\u4f53)%2$s", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName()));
-                if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                    pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle()));
-                }
-                pSDEViewBase.setCodeName("Index" + pSViewTypeStruct.getCodeName());
-                this.initDEView(pSDataEntity, pSViewTypeStruct, "INDEXDETYPE", string, pSDEViewBase, "INDEXDEPICKUPVIEW", null);
-            }
-            if (DataObject.getIntegerValue((Object)pSDataEntity.getEnaMultiForm(), (Integer)0) > 0) {
-                pSDEViewBase = new PSDEViewBase();
-                pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s(\u8868\u5355\u7c7b\u578b)%2$s", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName()));
-                if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                    pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle()));
-                }
-                pSDEViewBase.setCodeName("Form" + pSViewTypeStruct.getCodeName());
-                this.initDEView(pSDataEntity, pSViewTypeStruct, "FORMTYPE", "", pSDEViewBase, "FORMPICKUPVIEW", null);
-            }
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBPICKUPVIEW", (boolean)true) == 0) {
-            string = pSDataEntity.getIndexDEType();
-            if (!StringHelper.isNullOrEmpty((String)string)) {
-                pSDEViewBase = new PSDEViewBase();
-                pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s(\u7d22\u5f15\u5b9e\u4f53)%2$s", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName()));
-                if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                    pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle()));
-                }
-                pSDEViewBase.setCodeName("MobIndex" + pSViewTypeStruct.getCodeName());
-                this.initDEView(pSDataEntity, pSViewTypeStruct, "INDEXDETYPE", string, pSDEViewBase, "MOBINDEXDEPICKUPVIEW", null);
-            }
-            if (DataObject.getIntegerValue((Object)pSDataEntity.getEnaMultiForm(), (Integer)0) > 0) {
-                pSDEViewBase = new PSDEViewBase();
-                pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s(\u8868\u5355\u7c7b\u578b)%2$s", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName()));
-                if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                    pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle()));
-                }
-                pSDEViewBase.setCodeName("MobForm" + pSViewTypeStruct.getCodeName());
-                this.initDEView(pSDataEntity, pSViewTypeStruct, "FORMTYPE", "", pSDEViewBase, "MOBFORMPICKUPVIEW", null);
-            }
-        }
-    }
 
-    protected PSDEViewBase initDEView(PSDataEntity pSDataEntity, PSViewTypeStruct pSViewTypeStruct, String string, String string2, PSDEViewBase pSDEViewBase, String string3, String string4) throws Exception {
-        Object object;
-        Serializable serializable;
-        String string5;
-        boolean bl = this.isEnableFolderKey((IEntity)pSDataEntity);
-        PSDEViewBase pSDEViewBase2 = new PSDEViewBase();
-        boolean bl2 = false;
-        if (bl) {
-            string5 = "";
-            string5 = StringHelper.isNullOrEmpty((String)string) ? KeyValueHelper.genUniqueId((String)pSViewTypeStruct.getPSViewTypeId()) : KeyValueHelper.genUniqueId((String)pSViewTypeStruct.getPSViewTypeId(), (String)string, (String)string2);
-            pSDEViewBase2.setDEViewTag(string5);
-            pSDEViewBase2.setPSDEId(pSDataEntity.getPSDataEntityId());
-            bl2 = !this.selectOne((IEntity)pSDEViewBase2, true);
-        } else {
-            string5 = "";
-            string5 = StringHelper.isNullOrEmpty((String)string) ? KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)pSViewTypeStruct.getPSViewTypeId()) : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)pSViewTypeStruct.getPSViewTypeId(), (String)string, (String)string2);
-            pSDEViewBase2.setPSDEViewBaseId(string5);
-            if (this.get((IEntity)pSDEViewBase2, true)) {
-                if (!StringHelper.isNullOrEmpty((String)string)) {
-                    if (StringHelper.isNullOrEmpty((String)pSDEViewBase2.getDEViewTag3())) {
-                        pSDEViewBase2.setDEViewTag3(string);
-                        pSDEViewBase2.setDEViewTag4(string2);
-                        this.update(pSDEViewBase2);
-                    }
-                } else if (!StringHelper.isNullOrEmpty((String)pSDEViewBase2.getDEViewTag3())) {
-                    pSDEViewBase2.setDEViewTag3(string);
-                    pSDEViewBase2.setDEViewTag4(string2);
-                    this.update(pSDEViewBase2);
-                }
+            if (var7 != null) {
+               this.fillDEViewCtrl(var13, var7.getPSSystem(), var7, var8, var1, var16, null, null);
+            }
+
+            if (var6.checkKeyTemp(var13) == 0) {
+               var6.createTemp(var13);
+            }
+         }
+      }
+
+      super.onAfterGetDraftTemp(var1);
+   }
+
+   @Override
+   public void initModel(String var1, IEntity var2, String var3) throws Exception {
+      if (StringHelper.compare(var1, "PSDATAENTITY", true) == 0) {
+         PSDataEntity var4 = new PSDataEntity();
+         var4.proxy(var2);
+         PSDEInitCfg var5 = PSModelGlobal.getPSDEInitCfg(var4.getPSDataEntityId(), this.getSessionFactory());
+         if (var5 == null || !DataObject.getBoolValue(var5.getIgnoreUIModel(), false)) {
+            for (String var9 : initViewTypes) {
+               PSViewTypeStruct var10 = PSModelGlobal.getPSViewType(var9);
+               this.initDEView(var4, var10);
+            }
+
+            if (DataObject.getBoolValue(var4.getEnableMob(), false)) {
+               for (String var14 : initMobViewTypes) {
+                  PSViewTypeStruct var15 = PSModelGlobal.getPSViewType(var14);
+                  this.initDEView(var4, var15);
+               }
+            }
+
+            this.initDEWFViews(var4);
+         }
+      }
+   }
+
+   protected void initDEView(PSDataEntity var1, PSViewTypeStruct var2) throws Exception {
+      if (StringHelper.compare(var2.getPSViewTypeId(), "DEINDEXPICKUPDATAVIEW", true) == 0) {
+         String var7 = var1.getIndexDEType();
+         if (!StringHelper.isNullOrEmpty(var7)) {
+            this.initDEView(var1, var2, "INDEXDETYPE", var7, null, null, null);
+         }
+      } else if (StringHelper.compare(var2.getPSViewTypeId(), "DEFORMPICKUPDATAVIEW", true) == 0) {
+         if (DataObject.getIntegerValue(var1.getEnaMultiForm(), 0) > 0) {
+            this.initDEView(var1, var2, "FORMTYPE", "", null, null, null);
+         }
+      } else if (StringHelper.compare(var2.getPSViewTypeId(), "DEMOBINDEXPICKUPMDVIEW", true) == 0) {
+         String var6 = var1.getIndexDEType();
+         if (!StringHelper.isNullOrEmpty(var6)) {
+            this.initDEView(var1, var2, "INDEXDETYPE", var6, null, null, null);
+         }
+      } else if (StringHelper.compare(var2.getPSViewTypeId(), "DEMOBFORMPICKUPMDVIEW", true) == 0) {
+         if (DataObject.getIntegerValue(var1.getEnaMultiForm(), 0) > 0) {
+            this.initDEView(var1, var2, "FORMTYPE", "", null, null, null);
+         }
+      } else {
+         String var3 = "";
+         if (StringHelper.compare(var2.getPSViewTypeId(), "DEREDIRECTVIEW", true) == 0) {
+            var3 = "REDIRECTVIEW";
+         }
+
+         if (StringHelper.compare(var2.getPSViewTypeId(), "DEEDITVIEW", true) == 0) {
+            var3 = "EDITVIEW";
+         }
+
+         if (StringHelper.compare(var2.getPSViewTypeId(), "DEGRIDVIEW", true) == 0) {
+            var3 = "MDATAVIEW";
+         }
+
+         if (StringHelper.compare(var2.getPSViewTypeId(), "DEPICKUPVIEW", true) == 0) {
+            var3 = "PICKUPVIEW";
+         }
+
+         if (StringHelper.compare(var2.getPSViewTypeId(), "DEMPICKUPVIEW", true) == 0) {
+            var3 = "MPICKUPVIEW";
+         }
+
+         if (StringHelper.compare(var2.getPSViewTypeId(), "DEMOBREDIRECTVIEW", true) == 0) {
+            var3 = "MOBREDIRECTVIEW";
+         }
+
+         if (StringHelper.compare(var2.getPSViewTypeId(), "DEMOBEDITVIEW", true) == 0) {
+            var3 = "MOBEDITVIEW";
+         }
+
+         if (StringHelper.compare(var2.getPSViewTypeId(), "DEMOBMDVIEW", true) == 0) {
+            var3 = "MOBMDATAVIEW";
+         }
+
+         if (StringHelper.compare(var2.getPSViewTypeId(), "DEMOBPICKUPVIEW", true) == 0) {
+            var3 = "MOBPICKUPVIEW";
+         }
+
+         if (StringHelper.compare(var2.getPSViewTypeId(), "DEMOBMPICKUPVIEW", true) == 0) {
+            var3 = "MOBMPICKUPVIEW";
+         }
+
+         this.initDEView(var1, var2, "", "", null, var3, null);
+         if (StringHelper.compare(var2.getPSViewTypeId(), "DEPICKUPVIEW", true) == 0) {
+            String var4 = var1.getIndexDEType();
+            if (!StringHelper.isNullOrEmpty(var4)) {
+               PSDEViewBase var5 = new PSDEViewBase();
+               var5.setPSDEViewBaseName(StringHelper.format("%1$s(索引实体)%2$s", var1.getLogicName(), var2.getPSViewTypeName()));
+               if (!StringHelper.isNullOrEmpty(var2.getTitle())) {
+                  var5.setTitle(StringHelper.format("%1$s%2$s", var1.getLogicName(), var2.getTitle()));
+               }
+
+               var5.setCodeName("Index" + var2.getCodeName());
+               this.initDEView(var1, var2, "INDEXDETYPE", var4, var5, "INDEXDEPICKUPVIEW", null);
+            }
+
+            if (DataObject.getIntegerValue(var1.getEnaMultiForm(), 0) > 0) {
+               PSDEViewBase var9 = new PSDEViewBase();
+               var9.setPSDEViewBaseName(StringHelper.format("%1$s(表单类型)%2$s", var1.getLogicName(), var2.getPSViewTypeName()));
+               if (!StringHelper.isNullOrEmpty(var2.getTitle())) {
+                  var9.setTitle(StringHelper.format("%1$s%2$s", var1.getLogicName(), var2.getTitle()));
+               }
+
+               var9.setCodeName("Form" + var2.getCodeName());
+               this.initDEView(var1, var2, "FORMTYPE", "", var9, "FORMPICKUPVIEW", null);
+            }
+         }
+
+         if (StringHelper.compare(var2.getPSViewTypeId(), "DEMOBPICKUPVIEW", true) == 0) {
+            String var8 = var1.getIndexDEType();
+            if (!StringHelper.isNullOrEmpty(var8)) {
+               PSDEViewBase var10 = new PSDEViewBase();
+               var10.setPSDEViewBaseName(StringHelper.format("%1$s(索引实体)%2$s", var1.getLogicName(), var2.getPSViewTypeName()));
+               if (!StringHelper.isNullOrEmpty(var2.getTitle())) {
+                  var10.setTitle(StringHelper.format("%1$s%2$s", var1.getLogicName(), var2.getTitle()));
+               }
+
+               var10.setCodeName("MobIndex" + var2.getCodeName());
+               this.initDEView(var1, var2, "INDEXDETYPE", var8, var10, "MOBINDEXDEPICKUPVIEW", null);
+            }
+
+            if (DataObject.getIntegerValue(var1.getEnaMultiForm(), 0) > 0) {
+               PSDEViewBase var11 = new PSDEViewBase();
+               var11.setPSDEViewBaseName(StringHelper.format("%1$s(表单类型)%2$s", var1.getLogicName(), var2.getPSViewTypeName()));
+               if (!StringHelper.isNullOrEmpty(var2.getTitle())) {
+                  var11.setTitle(StringHelper.format("%1$s%2$s", var1.getLogicName(), var2.getTitle()));
+               }
+
+               var11.setCodeName("MobForm" + var2.getCodeName());
+               this.initDEView(var1, var2, "FORMTYPE", "", var11, "MOBFORMPICKUPVIEW", null);
+            }
+         }
+      }
+   }
+
+   protected PSDEViewBase initDEView(PSDataEntity var1, PSViewTypeStruct var2, String var3, String var4, PSDEViewBase var5, String var6, String var7) throws Exception {
+      boolean var8 = this.isEnableFolderKey(var1);
+      PSDEViewBase var9 = new PSDEViewBase();
+      boolean var10 = false;
+      if (var8) {
+         String var11 = "";
+         if (StringHelper.isNullOrEmpty(var3)) {
+            var11 = KeyValueHelper.genUniqueId(var2.getPSViewTypeId());
+         } else {
+            var11 = KeyValueHelper.genUniqueId(var2.getPSViewTypeId(), var3, var4);
+         }
+
+         var9.setDEViewTag(var11);
+         var9.setPSDEId(var1.getPSDataEntityId());
+         var10 = !this.selectOne(var9, true);
+      } else {
+         String var23 = "";
+         if (StringHelper.isNullOrEmpty(var3)) {
+            var23 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), var2.getPSViewTypeId());
+         } else {
+            var23 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), var2.getPSViewTypeId(), var3, var4);
+         }
+
+         var9.setPSDEViewBaseId(var23);
+         if (this.get(var9, true)) {
+            if (!StringHelper.isNullOrEmpty(var3)) {
+               if (StringHelper.isNullOrEmpty(var9.getDEViewTag3())) {
+                  var9.setDEViewTag3(var3);
+                  var9.setDEViewTag4(var4);
+                  this.update(var9);
+               }
+            } else if (!StringHelper.isNullOrEmpty(var9.getDEViewTag3())) {
+               var9.setDEViewTag3(var3);
+               var9.setDEViewTag4(var4);
+               this.update(var9);
+            }
+         } else {
+            var9.reset();
+            SelectCond var12 = new SelectCond();
+            var12.setFetchFirst(true);
+            var12.set("PSDEID", var1.getPSDataEntityId());
+            var12.set("PSDEVIEWBASETYPE", var2.getPSViewTypeId());
+            if (StringHelper.isNullOrEmpty(var3)) {
+               var12.setIsNull("DEVIEWTAG3");
+               var12.setIsNull("DEVIEWTAG4");
             } else {
-                pSDEViewBase2.reset();
-                SelectCond selectCond = new SelectCond();
-                selectCond.setFetchFirst(true);
-                selectCond.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-                selectCond.set("PSDEVIEWBASETYPE", (Object)pSViewTypeStruct.getPSViewTypeId());
-                if (StringHelper.isNullOrEmpty((String)string)) {
-                    selectCond.setIsNull("DEVIEWTAG3");
-                    selectCond.setIsNull("DEVIEWTAG4");
-                } else {
-                    selectCond.set("DEVIEWTAG3", (Object)string);
-                    if (!StringHelper.isNullOrEmpty((String)string2)) {
-                        selectCond.set("DEVIEWTAG4", (Object)string2);
-                    } else {
-                        selectCond.setIsNull("DEVIEWTAG4");
-                    }
-                }
-                serializable = this.select((ISelectCond)selectCond);
-                if (((ArrayList)serializable).size() == 0) {
-                    object = pSViewTypeStruct.getCodeName();
-                    if (pSDEViewBase != null && !StringHelper.isNullOrEmpty((String)pSDEViewBase.getCodeName())) {
-                        object = pSDEViewBase.getCodeName();
-                    }
-                    if (!StringHelper.isNullOrEmpty((String)object)) {
-                        pSDEViewBase2.reset();
-                        pSDEViewBase2.setPSDEId(pSDataEntity.getPSDataEntityId());
-                        pSDEViewBase2.setPSDEViewBaseType(pSViewTypeStruct.getPSViewTypeId());
-                        pSDEViewBase2.setCodeName((String)object);
-                        if (this.selectOne((IEntity)pSDEViewBase2, true)) {
-                            return pSDEViewBase2;
-                        }
-                    }
-                    pSDEViewBase2.reset();
-                    pSDEViewBase2.setPSDEViewBaseId(string5);
-                    bl2 = true;
-                } else {
-                    return (PSDEViewBase)((ArrayList)serializable).get(0);
-                }
+               var12.set("DEVIEWTAG3", var3);
+               if (!StringHelper.isNullOrEmpty(var4)) {
+                  var12.set("DEVIEWTAG4", var4);
+               } else {
+                  var12.setIsNull("DEVIEWTAG4");
+               }
             }
-        }
-        if (bl2) {
-            Object object2;
-            Object object3;
-            pSDEViewBase2.setPSSystemId(pSDataEntity.getPSSystemId());
-            pSDEViewBase2.setPSDEId(pSDataEntity.getPSDataEntityId());
-            pSDEViewBase2.setPSDEName(pSDataEntity.getPSDataEntityName());
-            pSDEViewBase2.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName()));
-            if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                pSDEViewBase2.setTitle(StringHelper.format((String)"%1$s%2$s", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle()));
-            }
-            pSDEViewBase2.setPSDEViewBaseType(pSViewTypeStruct.getPSViewTypeId());
-            pSDEViewBase2.setCodeName(pSViewTypeStruct.getCodeName());
-            if (pSDEViewBase != null) {
-                pSDEViewBase.copyTo((IDataObject)pSDEViewBase2, false);
-            }
-            string5 = pSDEViewBase2.getCodeName();
-            int n = 1;
-            do {
-                if (n > 1) {
-                    string5 = StringHelper.format((String)"Usr%1$s%2$s", (Object)(n == 1 ? "" : Integer.valueOf(n)), (Object)pSDEViewBase2.getCodeName());
-                }
-                ++n;
-                serializable = new PSDEViewBase();
-                ((PSDEViewBaseBase)serializable).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEViewBaseBase)serializable).setCodeName(string5);
-            } while (this.select(serializable, true));
-            pSDEViewBase2.setCodeName(string5);
-            if (!StringHelper.isNullOrEmpty((String)string3)) {
-                serializable = new PSDEViewBase();
-                ((PSDEViewBaseBase)serializable).setPSDEId(pSDataEntity.getPSDataEntityId());
-                ((PSDEViewBaseBase)serializable).setPredefinedViewType(string3);
-                if (!StringHelper.isNullOrEmpty((String)string4)) {
-                    ((PSDEViewBaseBase)serializable).setPDVTParam(string4);
-                }
-                if (!this.select(serializable, true)) {
-                    pSDEViewBase2.setPredefinedViewType(string3);
-                    pSDEViewBase2.setPDVTParam(string4);
-                }
-            }
-            pSDEViewBase2.setDEViewTag3(string);
-            pSDEViewBase2.setDEViewTag4(string2);
-            try {
-                this.create(pSDEViewBase2);
-            }
-            catch (Exception exception) {
-                throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u5b9e\u4f53\u89c6\u56fe[%1$s]\u53d1\u751f\u5f02\u5e38\uff0c%2$s", (Object)pSDEViewBase2.getPSDEViewBaseName(), (Object)exception.getMessage()), exception);
-            }
-            serializable = pSDataEntity.getPSSystem();
-            object = pSViewTypeStruct.getPSVTCtrls();
-            if (object != null) {
-                object3 = ((ArrayList)object).iterator();
-                while (object3.hasNext()) {
-                    object2 = (PSVTCtrl)object3.next();
-                    if (!DataObject.getBoolValue((Integer)((PSVTCtrlBase)object2).getValidFlag(), (boolean)true)) continue;
-                    try {
-                        this.initDEViewCtrl((PSSystem)serializable, pSDataEntity, pSViewTypeStruct, pSDEViewBase2, (PSVTCtrl)object2, string, string2);
-                    }
-                    catch (Exception exception) {
-                        throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u5b9e\u4f53\u89c6\u56fe[%1$s]\u90e8\u4ef6[%2$s]\u53d1\u751f\u5f02\u5e38\uff0c%3$s", (Object)pSDEViewBase2.getPSDEViewBaseName(), (Object)((PSVTCtrlBase)object2).getPSVTCtrlName(), (Object)exception.getMessage()), exception);
-                    }
-                }
-            }
-            if ((object3 = pSViewTypeStruct.getPSVTRVs()) != null) {
-                object2 = ((ArrayList)object3).iterator();
-                while (object2.hasNext()) {
-                    PSVTRV pSVTRV = (PSVTRV)object2.next();
-                    if (!DataObject.getBoolValue((Integer)pSVTRV.getValidFlag(), (boolean)true) || !DataObject.getBoolValue((Integer)pSVTRV.getDefaultFlag(), (boolean)true)) continue;
-                    try {
-                        this.initDEViewRV((PSSystem)serializable, pSDataEntity, pSViewTypeStruct, pSDEViewBase2, pSVTRV, string, string2);
-                    }
-                    catch (Exception exception) {
-                        throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u5b9e\u4f53\u89c6\u56fe[%1$s]\u89c6\u56fe\u5f15\u7528[%2$s]\u53d1\u751f\u5f02\u5e38\uff0c%3$s", (Object)pSDEViewBase2.getPSDEViewBaseName(), (Object)pSVTRV.getPSVTRVName(), (Object)exception.getMessage()), exception);
-                    }
-                }
-            }
-        }
-        return pSDEViewBase2;
-    }
 
-    protected void initDEViewCtrl(PSSystem pSSystem, PSDataEntity pSDataEntity, PSViewTypeStruct pSViewTypeStruct, PSDEViewBase pSDEViewBase, PSVTCtrl pSVTCtrl, String string, String string2) throws Exception {
-        if (!DataObject.getBoolValue((Integer)pSVTCtrl.getValidFlag(), (boolean)true)) {
-            return;
-        }
-        PSDEViewCtrl pSDEViewCtrl = new PSDEViewCtrl();
-        pSDEViewCtrl.setPSDEViewBaseId(pSDEViewBase.getPSDEViewBaseId());
-        pSDEViewCtrl.setPSDEViewBaseName(pSDEViewBase.getPSDEViewBaseName());
-        pSDEViewCtrl.setPSDEViewCtrlName(pSVTCtrl.getPSVTCtrlName());
-        pSDEViewCtrl.setPSDEViewCtrlType(pSVTCtrl.getCtrlType());
-        pSDEViewCtrl.setPSDEId(pSDEViewBase.getPSDEId());
-        pSDEViewCtrl.setPSDEName(pSDEViewBase.getPSDEName());
-        if (pSVTCtrl.getDefaultFlag() != null) {
-            pSDEViewCtrl.setDefaultFlag(pSVTCtrl.getDefaultFlag());
-        } else {
-            pSDEViewCtrl.setDefaultFlag(1);
-        }
-        this.fillDEViewCtrlParams(pSDEViewCtrl, pSVTCtrl);
-        if (pSVTCtrl.getOrderValue() != null) {
-            pSDEViewCtrl.setOrderValue(pSVTCtrl.getOrderValue());
-        }
-        if (pSVTCtrl.getEnableViewActions() != null) {
-            pSDEViewCtrl.setEnableViewActions(pSVTCtrl.getEnableViewActions());
-        }
-        this.fillDEViewCtrl(pSDEViewCtrl, pSSystem, pSDataEntity, pSViewTypeStruct, pSDEViewBase, pSVTCtrl, string, string2);
-        PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-        pSDEViewCtrlService.create(pSDEViewCtrl);
-        pSDEViewCtrlService.update(pSDEViewCtrl);
-    }
+            ArrayList var13 = this.select(var12);
+            if (var13.size() != 0) {
+               return (PSDEViewBase)var13.get(0);
+            }
 
-    protected void fillDEViewCtrl(PSDEViewCtrl pSDEViewCtrl, PSSystem pSSystem, PSDataEntity pSDataEntity, PSViewTypeStruct pSViewTypeStruct, PSDEViewBase pSDEViewBase, PSVTCtrl pSVTCtrl, String string, String string2) throws Exception {
-        if (StringHelper.compare((String)pSVTCtrl.getCtrlType(), (String)"FORM", (boolean)true) == 0) {
-            String string3;
-            boolean bl = false;
-            if (pSViewTypeStruct != null && pSViewTypeStruct.getPSViewTypeId().indexOf("DEMOB") != -1) {
-                bl = true;
+            String var14 = var2.getCodeName();
+            if (var5 != null && !StringHelper.isNullOrEmpty(var5.getCodeName())) {
+               var14 = var5.getCodeName();
             }
-            if (!StringHelper.isNullOrEmpty((String)(string3 = this.getPSDEEditFormId(pSDataEntity, bl)))) {
-                pSDEViewCtrl.setPSDEFormId(string3);
-            }
-            if (!StringHelper.isNullOrEmpty((String)pSVTCtrl.getPSSysACHandlerId())) {
-                pSDEViewCtrl.setPSACHandlerId(this.getPSACHandlerId(pSVTCtrl.getPSSysACHandlerId(), pSSystem));
-            }
-            return;
-        }
-        if (StringHelper.compare((String)pSVTCtrl.getCtrlType(), (String)"SEARCHFORM", (boolean)true) == 0) {
-            String string4;
-            boolean bl = false;
-            if (pSViewTypeStruct != null && pSViewTypeStruct.getPSViewTypeId().indexOf("DEMOB") != -1) {
-                bl = true;
-            }
-            if (!StringHelper.isNullOrEmpty((String)(string4 = this.getPSDESearchFormId(pSDataEntity, bl)))) {
-                pSDEViewCtrl.setPSDEFormId(string4);
-            }
-            if (!StringHelper.isNullOrEmpty((String)pSVTCtrl.getPSSysACHandlerId())) {
-                pSDEViewCtrl.setPSACHandlerId(this.getPSACHandlerId(pSVTCtrl.getPSSysACHandlerId(), pSSystem));
-            }
-            return;
-        }
-        if (StringHelper.compare((String)pSVTCtrl.getCtrlType(), (String)"GRID", (boolean)true) == 0) {
-            String string5;
-            boolean bl = false;
-            if (pSViewTypeStruct != null && pSViewTypeStruct.getPSViewTypeId().indexOf("DEMOB") != -1) {
-                bl = true;
-            }
-            if (!StringHelper.isNullOrEmpty((String)(string5 = this.getPSDEGridId(pSDataEntity, bl)))) {
-                pSDEViewCtrl.setPSDEGridId(string5);
-            }
-            pSDEViewCtrl.setPSDEDataSetId(this.getPSDEDataSetId(pSDataEntity));
-            if (!StringHelper.isNullOrEmpty((String)pSVTCtrl.getPSSysACHandlerId())) {
-                pSDEViewCtrl.setPSACHandlerId(this.getPSACHandlerId(pSVTCtrl.getPSSysACHandlerId(), pSSystem));
-            }
-            return;
-        }
-        if (StringHelper.compare((String)pSVTCtrl.getCtrlType(), (String)"TOOLBAR", (boolean)true) == 0) {
-            if (!StringHelper.isNullOrEmpty((String)pSVTCtrl.getPSSysToolbarId())) {
-                pSDEViewCtrl.setPSDEToolbarId(this.getPSDEToolbarId(pSVTCtrl.getPSSysToolbarId(), pSSystem));
-            }
-            return;
-        }
-        if (StringHelper.compare((String)pSVTCtrl.getCtrlType(), (String)"PICKUPVIEWPANEL", (boolean)true) == 0) {
-            String string6 = this.getPSDEViewBaseId(pSDataEntity, pSViewTypeStruct, string, string2);
-            if (!StringHelper.isNullOrEmpty((String)string6)) {
-                pSDEViewCtrl.setPSDEViewId(string6);
-            }
-            return;
-        }
-        if (StringHelper.compare((String)pSVTCtrl.getCtrlType(), (String)"DRBAR", (boolean)true) == 0 || StringHelper.compare((String)pSVTCtrl.getCtrlType(), (String)"DRTAB", (boolean)true) == 0) {
-            boolean bl = false;
-            if (pSViewTypeStruct != null && pSViewTypeStruct.getPSViewTypeId().indexOf("DEMOB") != -1) {
-                bl = true;
-            }
-            pSDEViewCtrl.setPSDEDRId(this.getPSDEDataRelationId(pSDataEntity, pSDEViewBase, bl));
-            return;
-        }
-        if (StringHelper.compare((String)pSVTCtrl.getCtrlType(), (String)"DATAVIEW", (boolean)true) == 0) {
-            pSDEViewCtrl.setPSDEDataViewId(this.getPSDEDataViewId(pSDataEntity, string, string2));
-            pSDEViewCtrl.setPSDEDataSetId(this.getPSDEDataSetId(pSDataEntity, string, string2));
-            if (StringHelper.isNullOrEmpty((String)string)) {
-                if (!StringHelper.isNullOrEmpty((String)pSVTCtrl.getPSSysACHandlerId())) {
-                    pSDEViewCtrl.setPSACHandlerId(this.getPSACHandlerId(pSVTCtrl.getPSSysACHandlerId(), pSSystem));
-                }
-            } else {
-                String string7 = "";
-                if (StringHelper.compare((String)string, (String)"INDEXDETYPE", (boolean)true) == 0) {
-                    string7 = "INDEXPICKUPDATAVIEWHANDLER";
-                } else if (StringHelper.compare((String)string, (String)"FORMTYPE", (boolean)true) == 0) {
-                    string7 = "FORMPICKUPDATAVIEWHANDLER";
-                }
-                pSDEViewCtrl.setPSACHandlerId(this.getPSACHandlerId(string7, pSSystem));
-            }
-            return;
-        }
-        if (StringHelper.compare((String)pSVTCtrl.getCtrlType(), (String)"MOBMDCTRL", (boolean)true) == 0) {
-            pSDEViewCtrl.setPSDEListId(this.getPSDEListId(pSDataEntity, string, string2, true));
-            pSDEViewCtrl.setPSDEDataSetId(this.getPSDEDataSetId(pSDataEntity, string, string2));
-            if (StringHelper.isNullOrEmpty((String)string)) {
-                if (!StringHelper.isNullOrEmpty((String)pSVTCtrl.getPSSysACHandlerId())) {
-                    pSDEViewCtrl.setPSACHandlerId(this.getPSACHandlerId(pSVTCtrl.getPSSysACHandlerId(), pSSystem));
-                }
-            } else {
-                String string8 = pSVTCtrl.getPSSysACHandlerId();
-                pSDEViewCtrl.setPSACHandlerId(this.getPSACHandlerId(string8, pSSystem));
-            }
-            pSDEViewCtrl.setCtrlParam("LISTVIEW");
-            return;
-        }
-    }
 
-    protected String getPSACHandlerId(String string, PSSystem pSSystem) throws Exception {
-        Object object;
-        ActionSession actionSession = ActionSessionManager.getCurrentSession();
-        String string2 = StringHelper.format((String)"%1$s#%2$s", (Object)"PSACHANDLER", (Object)string);
-        if (actionSession != null && (object = actionSession.getActionParam(string2)) != null) {
-            if (object instanceof String) {
-                return (String)object;
+            if (!StringHelper.isNullOrEmpty(var14)) {
+               var9.reset();
+               var9.setPSDEId(var1.getPSDataEntityId());
+               var9.setPSDEViewBaseType(var2.getPSViewTypeId());
+               var9.setCodeName(var14);
+               if (this.selectOne(var9, true)) {
+                  return var9;
+               }
             }
+
+            var9.reset();
+            var9.setPSDEViewBaseId(var23);
+            var10 = true;
+         }
+      }
+
+      if (var10) {
+         var9.setPSSystemId(var1.getPSSystemId());
+         var9.setPSDEId(var1.getPSDataEntityId());
+         var9.setPSDEName(var1.getPSDataEntityName());
+         var9.setPSDEViewBaseName(StringHelper.format("%1$s%2$s", var1.getLogicName(), var2.getPSViewTypeName()));
+         if (!StringHelper.isNullOrEmpty(var2.getTitle())) {
+            var9.setTitle(StringHelper.format("%1$s%2$s", var1.getLogicName(), var2.getTitle()));
+         }
+
+         var9.setPSDEViewBaseType(var2.getPSViewTypeId());
+         var9.setCodeName(var2.getCodeName());
+         if (var5 != null) {
+            var5.copyTo(var9, false);
+         }
+
+         String var25 = var9.getCodeName();
+         int var26 = 1;
+
+         PSDEViewBase var27;
+         do {
+            if (var26 > 1) {
+               var25 = StringHelper.format("Usr%1$s%2$s", var26 == 1 ? "" : var26, var9.getCodeName());
+            }
+
+            var26++;
+            var27 = new PSDEViewBase();
+            var27.setPSDEId(var1.getPSDataEntityId());
+            var27.setCodeName(var25);
+         } while (this.select(var27, true));
+
+         var9.setCodeName(var25);
+         if (!StringHelper.isNullOrEmpty(var6)) {
+            var27 = new PSDEViewBase();
+            var27.setPSDEId(var1.getPSDataEntityId());
+            var27.setPredefinedViewType(var6);
+            if (!StringHelper.isNullOrEmpty(var7)) {
+               var27.setPDVTParam(var7);
+            }
+
+            if (!this.select(var27, true)) {
+               var9.setPredefinedViewType(var6);
+               var9.setPDVTParam(var7);
+            }
+         }
+
+         var9.setDEViewTag3(var3);
+         var9.setDEViewTag4(var4);
+
+         try {
+            this.create(var9);
+         } catch (Exception var21) {
+            throw new Exception(StringHelper.format("建立实体视图[%1$s]发生异常，%2$s", var9.getPSDEViewBaseName(), var21.getMessage()), var21);
+         }
+
+         PSSystem var29 = var1.getPSSystem();
+         ArrayList<PSVTCtrl> var30 = var2.getPSVTCtrls();
+         if (var30 != null) {
+            for (PSVTCtrl var16 : var30) {
+               if (DataObject.getBoolValue(var16.getValidFlag(), true)) {
+                  try {
+                     this.initDEViewCtrl(var29, var1, var2, var9, var16, var3, var4);
+                  } catch (Exception var20) {
+                     throw new Exception(
+                        StringHelper.format("建立实体视图[%1$s]部件[%2$s]发生异常，%3$s", var9.getPSDEViewBaseName(), var16.getPSVTCtrlName(), var20.getMessage()), var20
+                     );
+                  }
+               }
+            }
+         }
+
+         ArrayList<PSVTRV> var31 = var2.getPSVTRVs();
+         if (var31 != null) {
+            for (PSVTRV var17 : var31) {
+               if (DataObject.getBoolValue(var17.getValidFlag(), true) && DataObject.getBoolValue(var17.getDefaultFlag(), true)) {
+                  try {
+                     this.initDEViewRV(var29, var1, var2, var9, var17, var3, var4);
+                  } catch (Exception var19) {
+                     throw new Exception(
+                        StringHelper.format("建立实体视图[%1$s]视图引用[%2$s]发生异常，%3$s", var9.getPSDEViewBaseName(), var17.getPSVTRVName(), var19.getMessage()), var19
+                     );
+                  }
+               }
+            }
+         }
+      }
+
+      return var9;
+   }
+
+   protected void initDEViewCtrl(PSSystem var1, PSDataEntity var2, PSViewTypeStruct var3, PSDEViewBase var4, PSVTCtrl var5, String var6, String var7) throws Exception {
+      if (DataObject.getBoolValue(var5.getValidFlag(), true)) {
+         PSDEViewCtrl var8 = new PSDEViewCtrl();
+         var8.setPSDEViewBaseId(var4.getPSDEViewBaseId());
+         var8.setPSDEViewBaseName(var4.getPSDEViewBaseName());
+         var8.setPSDEViewCtrlName(var5.getPSVTCtrlName());
+         var8.setPSDEViewCtrlType(var5.getCtrlType());
+         var8.setPSDEId(var4.getPSDEId());
+         var8.setPSDEName(var4.getPSDEName());
+         if (var5.getDefaultFlag() != null) {
+            var8.setDefaultFlag(var5.getDefaultFlag());
+         } else {
+            var8.setDefaultFlag(1);
+         }
+
+         this.fillDEViewCtrlParams(var8, var5);
+         if (var5.getOrderValue() != null) {
+            var8.setOrderValue(var5.getOrderValue());
+         }
+
+         if (var5.getEnableViewActions() != null) {
+            var8.setEnableViewActions(var5.getEnableViewActions());
+         }
+
+         this.fillDEViewCtrl(var8, var1, var2, var3, var4, var5, var6, var7);
+         PSDEViewCtrlService var9 = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, this.getSessionFactory());
+         var9.create(var8);
+         var9.update(var8);
+      }
+   }
+
+   protected void fillDEViewCtrl(
+      PSDEViewCtrl var1, PSSystem var2, PSDataEntity var3, PSViewTypeStruct var4, PSDEViewBase var5, PSVTCtrl var6, String var7, String var8
+   ) throws Exception {
+      if (StringHelper.compare(var6.getCtrlType(), "FORM", true) == 0) {
+         boolean var16 = false;
+         if (var4 != null && var4.getPSViewTypeId().indexOf("DEMOB") != -1) {
+            var16 = true;
+         }
+
+         String var18 = this.getPSDEEditFormId(var3, var16);
+         if (!StringHelper.isNullOrEmpty(var18)) {
+            var1.setPSDEFormId(var18);
+         }
+
+         if (!StringHelper.isNullOrEmpty(var6.getPSSysACHandlerId())) {
+            var1.setPSACHandlerId(this.getPSACHandlerId(var6.getPSSysACHandlerId(), var2));
+         }
+      } else if (StringHelper.compare(var6.getCtrlType(), "SEARCHFORM", true) == 0) {
+         boolean var15 = false;
+         if (var4 != null && var4.getPSViewTypeId().indexOf("DEMOB") != -1) {
+            var15 = true;
+         }
+
+         String var17 = this.getPSDESearchFormId(var3, var15);
+         if (!StringHelper.isNullOrEmpty(var17)) {
+            var1.setPSDEFormId(var17);
+         }
+
+         if (!StringHelper.isNullOrEmpty(var6.getPSSysACHandlerId())) {
+            var1.setPSACHandlerId(this.getPSACHandlerId(var6.getPSSysACHandlerId(), var2));
+         }
+      } else if (StringHelper.compare(var6.getCtrlType(), "GRID", true) == 0) {
+         boolean var14 = false;
+         if (var4 != null && var4.getPSViewTypeId().indexOf("DEMOB") != -1) {
+            var14 = true;
+         }
+
+         String var10 = this.getPSDEGridId(var3, var14);
+         if (!StringHelper.isNullOrEmpty(var10)) {
+            var1.setPSDEGridId(var10);
+         }
+
+         var1.setPSDEDataSetId(this.getPSDEDataSetId(var3));
+         if (!StringHelper.isNullOrEmpty(var6.getPSSysACHandlerId())) {
+            var1.setPSACHandlerId(this.getPSACHandlerId(var6.getPSSysACHandlerId(), var2));
+         }
+      } else if (StringHelper.compare(var6.getCtrlType(), "TOOLBAR", true) == 0) {
+         if (!StringHelper.isNullOrEmpty(var6.getPSSysToolbarId())) {
+            var1.setPSDEToolbarId(this.getPSDEToolbarId(var6.getPSSysToolbarId(), var2));
+         }
+      } else if (StringHelper.compare(var6.getCtrlType(), "PICKUPVIEWPANEL", true) == 0) {
+         String var13 = this.getPSDEViewBaseId(var3, var4, var7, var8);
+         if (!StringHelper.isNullOrEmpty(var13)) {
+            var1.setPSDEViewId(var13);
+         }
+      } else if (StringHelper.compare(var6.getCtrlType(), "DRBAR", true) == 0 || StringHelper.compare(var6.getCtrlType(), "DRTAB", true) == 0) {
+         boolean var12 = false;
+         if (var4 != null && var4.getPSViewTypeId().indexOf("DEMOB") != -1) {
+            var12 = true;
+         }
+
+         var1.setPSDEDRId(this.getPSDEDataRelationId(var3, var5, var12));
+      } else if (StringHelper.compare(var6.getCtrlType(), "DATAVIEW", true) == 0) {
+         var1.setPSDEDataViewId(this.getPSDEDataViewId(var3, var7, var8));
+         var1.setPSDEDataSetId(this.getPSDEDataSetId(var3, var7, var8));
+         if (StringHelper.isNullOrEmpty(var7)) {
+            if (!StringHelper.isNullOrEmpty(var6.getPSSysACHandlerId())) {
+               var1.setPSACHandlerId(this.getPSACHandlerId(var6.getPSSysACHandlerId(), var2));
+            }
+         } else {
+            String var11 = "";
+            if (StringHelper.compare(var7, "INDEXDETYPE", true) == 0) {
+               var11 = "INDEXPICKUPDATAVIEWHANDLER";
+            } else if (StringHelper.compare(var7, "FORMTYPE", true) == 0) {
+               var11 = "FORMPICKUPDATAVIEWHANDLER";
+            }
+
+            var1.setPSACHandlerId(this.getPSACHandlerId(var11, var2));
+         }
+      } else if (StringHelper.compare(var6.getCtrlType(), "MOBMDCTRL", true) == 0) {
+         var1.setPSDEListId(this.getPSDEListId(var3, var7, var8, true));
+         var1.setPSDEDataSetId(this.getPSDEDataSetId(var3, var7, var8));
+         if (StringHelper.isNullOrEmpty(var7)) {
+            if (!StringHelper.isNullOrEmpty(var6.getPSSysACHandlerId())) {
+               var1.setPSACHandlerId(this.getPSACHandlerId(var6.getPSSysACHandlerId(), var2));
+            }
+         } else {
+            String var9 = var6.getPSSysACHandlerId();
+            var1.setPSACHandlerId(this.getPSACHandlerId(var9, var2));
+         }
+
+         var1.setCtrlParam("LISTVIEW");
+      }
+   }
+
+   protected String getPSACHandlerId(String var1, PSSystem var2) throws Exception {
+      ActionSession var3 = ActionSessionManager.getCurrentSession();
+      String var4 = StringHelper.format("%1$s#%2$s", "PSACHANDLER", var1);
+      if (var3 != null) {
+         Object var5 = var3.getActionParam(var4);
+         if (var5 != null) {
+            if (var5 instanceof String) {
+               return (String)var5;
+            }
+
             return null;
-        }
-        object = this.getPSACHandlerIdReal(string, pSSystem);
-        if (actionSession != null) {
-            if (object == null) {
-                actionSession.setActionParam(string2, EntityBase.EMPTY);
-            } else {
-                actionSession.setActionParam(string2, object);
-            }
-        }
-        return object;
-    }
+         }
+      }
 
-    protected String getPSACHandlerIdReal(String string, PSSystem pSSystem) throws Exception {
-        String string2 = KeyValueHelper.genUniqueId((String)string, (String)pSSystem.getPSSFId());
-        String string3 = KeyValueHelper.genUniqueId((String)pSSystem.getPSSystemId(), (String)string2);
-        PSACHandlerService pSACHandlerService = (PSACHandlerService)ServiceGlobal.getService(PSACHandlerService.class, (SessionFactory)this.getSessionFactory());
-        PSACHandler pSACHandler = new PSACHandler();
-        pSACHandler.setPSACHandlerId(string3);
-        if (pSACHandlerService.checkKey(pSACHandler) == 1) {
-            return string3;
-        }
-        SelectCond selectCond = new SelectCond();
-        selectCond.setFetchFirst(true);
-        selectCond.setIsNull("PSDEID");
-        selectCond.set("PSSYSTEMID", (Object)pSSystem.getPSSystemId());
-        selectCond.set("PSSFACHANDLERID", (Object)string2);
-        ArrayList arrayList = pSACHandlerService.select((ISelectCond)selectCond);
-        if (arrayList.size() > 0) {
-            return ((PSACHandler)arrayList.get(0)).getPSACHandlerId();
-        }
-        return null;
-    }
+      String var6 = this.getPSACHandlerIdReal(var1, var2);
+      if (var3 != null) {
+         if (var6 == null) {
+            var3.setActionParam(var4, EntityBase.EMPTY);
+         } else {
+            var3.setActionParam(var4, var6);
+         }
+      }
 
-    protected String getPSDEToolbarId(String string, PSSystem pSSystem) throws Exception {
-        Object object;
-        ActionSession actionSession = ActionSessionManager.getCurrentSession();
-        String string2 = StringHelper.format((String)"%1$s#%2$s", (Object)"PSDETOOLBAR", (Object)string);
-        if (actionSession != null && (object = actionSession.getActionParam(string2)) != null) {
-            if (object instanceof String) {
-                return (String)object;
+      return var6;
+   }
+
+   protected String getPSACHandlerIdReal(String var1, PSSystem var2) throws Exception {
+      String var3 = KeyValueHelper.genUniqueId(var1, var2.getPSSFId());
+      String var4 = KeyValueHelper.genUniqueId(var2.getPSSystemId(), var3);
+      PSACHandlerService var5 = (PSACHandlerService)ServiceGlobal.getService(PSACHandlerService.class, this.getSessionFactory());
+      PSACHandler var6 = new PSACHandler();
+      var6.setPSACHandlerId(var4);
+      if (var5.checkKey(var6) == 1) {
+         return var4;
+      }
+
+      SelectCond var7 = new SelectCond();
+      var7.setFetchFirst(true);
+      var7.setIsNull("PSDEID");
+      var7.set("PSSYSTEMID", var2.getPSSystemId());
+      var7.set("PSSFACHANDLERID", var3);
+      ArrayList var8 = var5.select(var7);
+      return var8.size() > 0 ? ((PSACHandler)var8.get(0)).getPSACHandlerId() : null;
+   }
+
+   protected String getPSDEToolbarId(String var1, PSSystem var2) throws Exception {
+      ActionSession var3 = ActionSessionManager.getCurrentSession();
+      String var4 = StringHelper.format("%1$s#%2$s", "PSDETOOLBAR", var1);
+      if (var3 != null) {
+         Object var5 = var3.getActionParam(var4);
+         if (var5 != null) {
+            if (var5 instanceof String) {
+               return (String)var5;
             }
+
             return null;
-        }
-        object = this.getPSDEToolbarIdReal(string, pSSystem);
-        if (actionSession != null) {
-            if (object == null) {
-                actionSession.setActionParam(string2, EntityBase.EMPTY);
-            } else {
-                actionSession.setActionParam(string2, object);
-            }
-        }
-        return object;
-    }
+         }
+      }
 
-    protected String getPSDEToolbarIdReal(String string, PSSystem pSSystem) throws Exception {
-        String string2 = KeyValueHelper.genUniqueId((String)pSSystem.getPSSystemId(), (String)string);
-        PSDEToolbarService pSDEToolbarService = (PSDEToolbarService)ServiceGlobal.getService(PSDEToolbarService.class, (SessionFactory)this.getSessionFactory());
-        PSDEToolbar pSDEToolbar = new PSDEToolbar();
-        pSDEToolbar.setPSDEToolbarId(string2);
-        if (pSDEToolbarService.checkKey(pSDEToolbar) == 1) {
-            return string2;
-        }
-        SelectCond selectCond = new SelectCond();
-        selectCond.setFetchFirst(true);
-        selectCond.setIsNull("PSDEID");
-        selectCond.set("PSSYSTEMID", (Object)pSSystem.getPSSystemId());
-        selectCond.set("PSSYSTOOLBARID", (Object)string);
-        ArrayList arrayList = pSDEToolbarService.select((ISelectCond)selectCond);
-        if (arrayList.size() > 0) {
-            return ((PSDEToolbar)arrayList.get(0)).getPSDEToolbarId();
-        }
-        return null;
-    }
+      String var6 = this.getPSDEToolbarIdReal(var1, var2);
+      if (var3 != null) {
+         if (var6 == null) {
+            var3.setActionParam(var4, EntityBase.EMPTY);
+         } else {
+            var3.setActionParam(var4, var6);
+         }
+      }
 
-    protected String getPSDEEditFormId(PSDataEntity pSDataEntity, boolean bl) throws Exception {
-        Object object;
-        ActionSession actionSession = ActionSessionManager.getCurrentSession();
-        String string = StringHelper.format((String)"%1$s#%2$s#%3$s", (Object)"PSEDITFORM", (Object)pSDataEntity.getPSDataEntityId(), (Object)bl);
-        if (actionSession != null && (object = actionSession.getActionParam(string)) != null) {
-            if (object instanceof String) {
-                return (String)object;
+      return var6;
+   }
+
+   protected String getPSDEToolbarIdReal(String var1, PSSystem var2) throws Exception {
+      String var3 = KeyValueHelper.genUniqueId(var2.getPSSystemId(), var1);
+      PSDEToolbarService var4 = (PSDEToolbarService)ServiceGlobal.getService(PSDEToolbarService.class, this.getSessionFactory());
+      PSDEToolbar var5 = new PSDEToolbar();
+      var5.setPSDEToolbarId(var3);
+      if (var4.checkKey(var5) == 1) {
+         return var3;
+      }
+
+      SelectCond var6 = new SelectCond();
+      var6.setFetchFirst(true);
+      var6.setIsNull("PSDEID");
+      var6.set("PSSYSTEMID", var2.getPSSystemId());
+      var6.set("PSSYSTOOLBARID", var1);
+      ArrayList var7 = var4.select(var6);
+      return var7.size() > 0 ? ((PSDEToolbar)var7.get(0)).getPSDEToolbarId() : null;
+   }
+
+   protected String getPSDEEditFormId(PSDataEntity var1, boolean var2) throws Exception {
+      ActionSession var3 = ActionSessionManager.getCurrentSession();
+      String var4 = StringHelper.format("%1$s#%2$s#%3$s", "PSEDITFORM", var1.getPSDataEntityId(), var2);
+      if (var3 != null) {
+         Object var5 = var3.getActionParam(var4);
+         if (var5 != null) {
+            if (var5 instanceof String) {
+               return (String)var5;
             }
+
             return null;
-        }
-        object = this.getPSDEEditFormIdReal(pSDataEntity, bl);
-        if (actionSession != null) {
-            if (object == null) {
-                actionSession.setActionParam(string, EntityBase.EMPTY);
-            } else {
-                actionSession.setActionParam(string, object);
-            }
-        }
-        return object;
-    }
+         }
+      }
 
-    protected String getPSDEEditFormIdReal(PSDataEntity pSDataEntity, boolean bl) throws Exception {
-        boolean bl2 = this.isEnableFolderKey((IEntity)pSDataEntity);
-        String string = null;
-        if (bl2) {
-            string = StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)"R1");
-            if (bl) {
-                string = StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)"R3");
-            }
-        } else {
-            string = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"EDITFORM");
-            if (bl) {
-                string = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"EDITFORM", (String)"MOB");
-            }
-        }
-        PSDEFormService pSDEFormService = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, (SessionFactory)this.getSessionFactory());
-        PSDEForm pSDEForm = new PSDEForm();
-        pSDEForm.setPSDEFormId(string);
-        if (pSDEFormService.checkKey(pSDEForm) == 1) {
-            return string;
-        }
-        SelectCond selectCond = new SelectCond();
-        selectCond.set("FORMTYPE", (Object)"EDITFORM");
-        selectCond.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-        ArrayList arrayList = pSDEFormService.select((ISelectCond)selectCond);
-        for (PSDEForm pSDEForm2 : arrayList) {
-            if (bl) {
-                if (DataObject.getBoolValue((Integer)pSDEForm2.getMobFlag(), (boolean)false)) {
-                    return pSDEForm2.getPSDEFormId();
-                }
-                if (pSDEForm2.getCodeName().indexOf("Mob") == -1) continue;
-                return pSDEForm2.getPSDEFormId();
-            }
-            if (DataObject.getBoolValue((Integer)pSDEForm2.getMobFlag(), (boolean)false) || pSDEForm2.getCodeName().indexOf("Mob") != -1) continue;
-            return pSDEForm2.getPSDEFormId();
-        }
-        return null;
-    }
+      String var6 = this.getPSDEEditFormIdReal(var1, var2);
+      if (var3 != null) {
+         if (var6 == null) {
+            var3.setActionParam(var4, EntityBase.EMPTY);
+         } else {
+            var3.setActionParam(var4, var6);
+         }
+      }
 
-    protected String getPSDESearchFormId(PSDataEntity pSDataEntity, boolean bl) throws Exception {
-        Object object;
-        ActionSession actionSession = ActionSessionManager.getCurrentSession();
-        String string = StringHelper.format((String)"%1$s#%2$s#%3$s", (Object)"PSSEARCHFORM", (Object)pSDataEntity.getPSDataEntityId(), (Object)bl);
-        if (actionSession != null && (object = actionSession.getActionParam(string)) != null) {
-            if (object instanceof String) {
-                return (String)object;
+      return var6;
+   }
+
+   protected String getPSDEEditFormIdReal(PSDataEntity var1, boolean var2) throws Exception {
+      boolean var3 = this.isEnableFolderKey(var1);
+      String var4 = null;
+      if (var3) {
+         var4 = StringHelper.format("%1$s-%2$s", var1.getPSDataEntityId(), "R1");
+         if (var2) {
+            var4 = StringHelper.format("%1$s-%2$s", var1.getPSDataEntityId(), "R3");
+         }
+      } else {
+         var4 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "EDITFORM");
+         if (var2) {
+            var4 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "EDITFORM", "MOB");
+         }
+      }
+
+      PSDEFormService var5 = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, this.getSessionFactory());
+      PSDEForm var6 = new PSDEForm();
+      var6.setPSDEFormId(var4);
+      if (var5.checkKey(var6) == 1) {
+         return var4;
+      }
+
+      SelectCond var7 = new SelectCond();
+      var7.set("FORMTYPE", "EDITFORM");
+      var7.set("PSDEID", var1.getPSDataEntityId());
+
+      for (PSDEForm var10 : var5.select(var7)) {
+         if (var2) {
+            if (DataObject.getBoolValue(var10.getMobFlag(), false)) {
+               return var10.getPSDEFormId();
             }
+
+            if (var10.getCodeName().indexOf("Mob") != -1) {
+               return var10.getPSDEFormId();
+            }
+         } else if (!DataObject.getBoolValue(var10.getMobFlag(), false) && var10.getCodeName().indexOf("Mob") == -1) {
+            return var10.getPSDEFormId();
+         }
+      }
+
+      return null;
+   }
+
+   protected String getPSDESearchFormId(PSDataEntity var1, boolean var2) throws Exception {
+      ActionSession var3 = ActionSessionManager.getCurrentSession();
+      String var4 = StringHelper.format("%1$s#%2$s#%3$s", "PSSEARCHFORM", var1.getPSDataEntityId(), var2);
+      if (var3 != null) {
+         Object var5 = var3.getActionParam(var4);
+         if (var5 != null) {
+            if (var5 instanceof String) {
+               return (String)var5;
+            }
+
             return null;
-        }
-        object = this.getPSDESearchFormIdReal(pSDataEntity, bl);
-        if (actionSession != null) {
-            if (object == null) {
-                actionSession.setActionParam(string, EntityBase.EMPTY);
-            } else {
-                actionSession.setActionParam(string, object);
-            }
-        }
-        return object;
-    }
+         }
+      }
 
-    protected String getPSDESearchFormIdReal(PSDataEntity pSDataEntity, boolean bl) throws Exception {
-        boolean bl2 = this.isEnableFolderKey((IEntity)pSDataEntity);
-        String string = null;
-        if (bl2) {
-            string = StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)"R2");
-            if (bl) {
-                string = StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)"R4");
-            }
-        } else {
-            string = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"SEARCHFORM");
-            if (bl) {
-                string = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"SEARCHFORM", (String)"MOB");
-            }
-        }
-        PSDEFormService pSDEFormService = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, (SessionFactory)this.getSessionFactory());
-        PSDEForm pSDEForm = new PSDEForm();
-        pSDEForm.setPSDEFormId(string);
-        if (pSDEFormService.checkKey(pSDEForm) == 1) {
-            return string;
-        }
-        SelectCond selectCond = new SelectCond();
-        selectCond.set("FORMTYPE", (Object)"SEARCHFORM");
-        selectCond.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-        ArrayList arrayList = pSDEFormService.select((ISelectCond)selectCond);
-        for (PSDEForm pSDEForm2 : arrayList) {
-            if (bl) {
-                if (DataObject.getBoolValue((Integer)pSDEForm2.getMobFlag(), (boolean)false)) {
-                    return pSDEForm2.getPSDEFormId();
-                }
-                if (pSDEForm2.getCodeName().indexOf("Mob") == -1) continue;
-                return pSDEForm2.getPSDEFormId();
-            }
-            if (DataObject.getBoolValue((Integer)pSDEForm2.getMobFlag(), (boolean)false) || pSDEForm2.getCodeName().indexOf("Mob") != -1) continue;
-            return pSDEForm2.getPSDEFormId();
-        }
-        return null;
-    }
+      String var6 = this.getPSDESearchFormIdReal(var1, var2);
+      if (var3 != null) {
+         if (var6 == null) {
+            var3.setActionParam(var4, EntityBase.EMPTY);
+         } else {
+            var3.setActionParam(var4, var6);
+         }
+      }
 
-    protected String getPSDEGridId(PSDataEntity pSDataEntity, boolean bl) throws Exception {
-        Object object;
-        ActionSession actionSession = ActionSessionManager.getCurrentSession();
-        String string = StringHelper.format((String)"%1$s#%2$s#%3$s", (Object)"PSDEGRID", (Object)pSDataEntity.getPSDataEntityId(), (Object)bl);
-        if (actionSession != null && (object = actionSession.getActionParam(string)) != null) {
-            if (object instanceof String) {
-                return (String)object;
+      return var6;
+   }
+
+   protected String getPSDESearchFormIdReal(PSDataEntity var1, boolean var2) throws Exception {
+      boolean var3 = this.isEnableFolderKey(var1);
+      String var4 = null;
+      if (var3) {
+         var4 = StringHelper.format("%1$s-%2$s", var1.getPSDataEntityId(), "R2");
+         if (var2) {
+            var4 = StringHelper.format("%1$s-%2$s", var1.getPSDataEntityId(), "R4");
+         }
+      } else {
+         var4 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "SEARCHFORM");
+         if (var2) {
+            var4 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "SEARCHFORM", "MOB");
+         }
+      }
+
+      PSDEFormService var5 = (PSDEFormService)ServiceGlobal.getService(PSDEFormService.class, this.getSessionFactory());
+      PSDEForm var6 = new PSDEForm();
+      var6.setPSDEFormId(var4);
+      if (var5.checkKey(var6) == 1) {
+         return var4;
+      }
+
+      SelectCond var7 = new SelectCond();
+      var7.set("FORMTYPE", "SEARCHFORM");
+      var7.set("PSDEID", var1.getPSDataEntityId());
+
+      for (PSDEForm var10 : var5.select(var7)) {
+         if (var2) {
+            if (DataObject.getBoolValue(var10.getMobFlag(), false)) {
+               return var10.getPSDEFormId();
             }
+
+            if (var10.getCodeName().indexOf("Mob") != -1) {
+               return var10.getPSDEFormId();
+            }
+         } else if (!DataObject.getBoolValue(var10.getMobFlag(), false) && var10.getCodeName().indexOf("Mob") == -1) {
+            return var10.getPSDEFormId();
+         }
+      }
+
+      return null;
+   }
+
+   protected String getPSDEGridId(PSDataEntity var1, boolean var2) throws Exception {
+      ActionSession var3 = ActionSessionManager.getCurrentSession();
+      String var4 = StringHelper.format("%1$s#%2$s#%3$s", "PSDEGRID", var1.getPSDataEntityId(), var2);
+      if (var3 != null) {
+         Object var5 = var3.getActionParam(var4);
+         if (var5 != null) {
+            if (var5 instanceof String) {
+               return (String)var5;
+            }
+
             return null;
-        }
-        object = this.getPSDEGridIdReal(pSDataEntity, bl);
-        if (actionSession != null) {
-            if (object == null) {
-                actionSession.setActionParam(string, EntityBase.EMPTY);
-            } else {
-                actionSession.setActionParam(string, object);
+         }
+      }
+
+      String var6 = this.getPSDEGridIdReal(var1, var2);
+      if (var3 != null) {
+         if (var6 == null) {
+            var3.setActionParam(var4, EntityBase.EMPTY);
+         } else {
+            var3.setActionParam(var4, var6);
+         }
+      }
+
+      return var6;
+   }
+
+   protected String getPSDEGridIdReal(PSDataEntity var1, boolean var2) throws Exception {
+      boolean var3 = this.isEnableFolderKey(var1);
+      String var4 = null;
+      if (var3) {
+         var4 = StringHelper.format("%1$s-%2$s", var1.getPSDataEntityId(), "R1");
+      } else {
+         var4 = var1.getPSDataEntityId();
+      }
+
+      PSDEGridService var5 = (PSDEGridService)ServiceGlobal.getService(PSDEGridService.class, this.getSessionFactory());
+      PSDEGrid var6 = new PSDEGrid();
+      var6.setPSDEGridId(var4);
+      if (var5.checkKey(var6) == 1) {
+         return var4;
+      }
+
+      SelectCond var7 = new SelectCond();
+      var7.set("PSDEID", var1.getPSDataEntityId());
+
+      for (PSDEGrid var10 : var5.select(var7)) {
+         if (var2) {
+            if (var10.getCodeName().indexOf("Mob") != -1) {
+               return var10.getPSDEGridId();
             }
-        }
-        return object;
-    }
+         } else if (var10.getCodeName().indexOf("Mob") == -1) {
+            return var10.getPSDEGridId();
+         }
+      }
 
-    protected String getPSDEGridIdReal(PSDataEntity pSDataEntity, boolean bl) throws Exception {
-        boolean bl2 = this.isEnableFolderKey((IEntity)pSDataEntity);
-        String string = null;
-        string = bl2 ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)"R1") : pSDataEntity.getPSDataEntityId();
-        PSDEGridService pSDEGridService = (PSDEGridService)ServiceGlobal.getService(PSDEGridService.class, (SessionFactory)this.getSessionFactory());
-        PSDEGrid pSDEGrid = new PSDEGrid();
-        pSDEGrid.setPSDEGridId(string);
-        if (pSDEGridService.checkKey(pSDEGrid) == 1) {
-            return string;
-        }
-        SelectCond selectCond = new SelectCond();
-        selectCond.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-        ArrayList arrayList = pSDEGridService.select((ISelectCond)selectCond);
-        for (PSDEGrid pSDEGrid2 : arrayList) {
-            if (!(bl ? pSDEGrid2.getCodeName().indexOf("Mob") != -1 : pSDEGrid2.getCodeName().indexOf("Mob") == -1)) continue;
-            return pSDEGrid2.getPSDEGridId();
-        }
-        return null;
-    }
+      return null;
+   }
 
-    protected String getPSDEDataSetId(PSDataEntity pSDataEntity) throws Exception {
-        return this.getPSDEDataSetId(pSDataEntity, null, null);
-    }
+   protected String getPSDEDataSetId(PSDataEntity var1) throws Exception {
+      return this.getPSDEDataSetId(var1, null, null);
+   }
 
-    protected String getPSDEDataSetId(PSDataEntity pSDataEntity, String string, String string2) throws Exception {
-        Object object;
-        ActionSession actionSession = ActionSessionManager.getCurrentSession();
-        String string3 = StringHelper.format((String)"%1$s#%2$s#%3$s#%4$s", (Object)"PSDEDATASET", (Object)pSDataEntity.getPSDataEntityId(), (Object)string, (Object)string2);
-        if (actionSession != null && (object = actionSession.getActionParam(string3)) != null) {
-            if (object instanceof String) {
-                return (String)object;
+   protected String getPSDEDataSetId(PSDataEntity var1, String var2, String var3) throws Exception {
+      ActionSession var4 = ActionSessionManager.getCurrentSession();
+      String var5 = StringHelper.format("%1$s#%2$s#%3$s#%4$s", "PSDEDATASET", var1.getPSDataEntityId(), var2, var3);
+      if (var4 != null) {
+         Object var6 = var4.getActionParam(var5);
+         if (var6 != null) {
+            if (var6 instanceof String) {
+               return (String)var6;
             }
+
             return null;
-        }
-        object = this.getPSDEDataSetIdReal(pSDataEntity, string, string2);
-        if (actionSession != null) {
-            if (object == null) {
-                actionSession.setActionParam(string3, EntityBase.EMPTY);
-            } else {
-                actionSession.setActionParam(string3, object);
-            }
-        }
-        return object;
-    }
+         }
+      }
 
-    protected String getPSDEDataSetIdReal(PSDataEntity pSDataEntity, String string, String string2) throws Exception {
-        boolean bl = this.isEnableFolderKey((IEntity)pSDataEntity);
-        String string3 = null;
-        if (bl) {
-            string3 = StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)"R1");
-        } else {
-            string3 = pSDataEntity.getPSDataEntityId();
-            if (!StringHelper.isNullOrEmpty((String)string)) {
-                if (StringHelper.compare((String)string, (String)"INDEXDETYPE", (boolean)true) == 0) {
-                    string3 = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"INDEXDETYPE", (String)string2);
-                } else if (StringHelper.compare((String)string, (String)"FORMTYPE", (boolean)true) == 0) {
-                    string3 = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"FORMTYPE", (String)"");
-                }
-            }
-        }
-        PSDEDataSetService pSDEDataSetService = (PSDEDataSetService)ServiceGlobal.getService(PSDEDataSetService.class, (SessionFactory)this.getSessionFactory());
-        PSDEDataSet pSDEDataSet = new PSDEDataSet();
-        pSDEDataSet.setPSDEDataSetId(string3);
-        if (pSDEDataSetService.checkKey(pSDEDataSet) == 1) {
-            return string3;
-        }
-        SelectCond selectCond = new SelectCond();
-        selectCond.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-        ArrayList arrayList = pSDEDataSetService.select((ISelectCond)selectCond);
-        if (!StringHelper.isNullOrEmpty((String)string)) {
-            for (PSDEDataSet pSDEDataSet2 : arrayList) {
-                if (!(StringHelper.compare((String)string, (String)"INDEXDETYPE", (boolean)true) == 0 ? "INDEXDE".equals(pSDEDataSet2.getPredefineType()) : StringHelper.compare((String)string, (String)"FORMTYPE", (boolean)true) == 0 && "MULTIFORM".equals(pSDEDataSet2.getPredefineType()))) continue;
-                return pSDEDataSet2.getPSDEDataSetId();
-            }
-        } else {
-            for (PSDEDataSet pSDEDataSet3 : arrayList) {
-                if (!DataObject.getBoolValue((Integer)pSDEDataSet3.getDefaultMode(), (boolean)false)) continue;
-                return pSDEDataSet3.getPSDEDataSetId();
-            }
-            Iterator iterator = arrayList.iterator();
-            if (iterator.hasNext()) {
-                PSDEDataSet pSDEDataSet3;
-                pSDEDataSet3 = (PSDEDataSet)iterator.next();
-                return pSDEDataSet3.getPSDEDataSetId();
-            }
-        }
-        return null;
-    }
+      String var7 = this.getPSDEDataSetIdReal(var1, var2, var3);
+      if (var4 != null) {
+         if (var7 == null) {
+            var4.setActionParam(var5, EntityBase.EMPTY);
+         } else {
+            var4.setActionParam(var5, var7);
+         }
+      }
 
-    protected String getPSDEDataViewId(PSDataEntity pSDataEntity, String string, String string2) throws Exception {
-        Object object;
-        ActionSession actionSession = ActionSessionManager.getCurrentSession();
-        String string3 = StringHelper.format((String)"%1$s#%2$s#%3$s#%4$s", (Object)"PSDEDATAVIEW", (Object)pSDataEntity.getPSDataEntityId(), (Object)string, (Object)string2);
-        if (actionSession != null && (object = actionSession.getActionParam(string3)) != null) {
-            if (object instanceof String) {
-                return (String)object;
+      return var7;
+   }
+
+   protected String getPSDEDataSetIdReal(PSDataEntity var1, String var2, String var3) throws Exception {
+      boolean var4 = this.isEnableFolderKey(var1);
+      String var5 = null;
+      if (var4) {
+         var5 = StringHelper.format("%1$s-%2$s", var1.getPSDataEntityId(), "R1");
+      } else {
+         var5 = var1.getPSDataEntityId();
+         if (!StringHelper.isNullOrEmpty(var2)) {
+            if (StringHelper.compare(var2, "INDEXDETYPE", true) == 0) {
+               var5 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "INDEXDETYPE", var3);
+            } else if (StringHelper.compare(var2, "FORMTYPE", true) == 0) {
+               var5 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "FORMTYPE", "");
             }
+         }
+      }
+
+      PSDEDataSetService var6 = (PSDEDataSetService)ServiceGlobal.getService(PSDEDataSetService.class, this.getSessionFactory());
+      PSDEDataSet var7 = new PSDEDataSet();
+      var7.setPSDEDataSetId(var5);
+      if (var6.checkKey(var7) == 1) {
+         return var5;
+      }
+
+      SelectCond var8 = new SelectCond();
+      var8.set("PSDEID", var1.getPSDataEntityId());
+      ArrayList<PSDEDataSet> var9 = var6.select(var8);
+      if (!StringHelper.isNullOrEmpty(var2)) {
+         for (PSDEDataSet var11 : var9) {
+            if (StringHelper.compare(var2, "INDEXDETYPE", true) == 0) {
+               if ("INDEXDE".equals(var11.getPredefineType())) {
+                  return var11.getPSDEDataSetId();
+               }
+            } else if (StringHelper.compare(var2, "FORMTYPE", true) == 0 && "MULTIFORM".equals(var11.getPredefineType())) {
+               return var11.getPSDEDataSetId();
+            }
+         }
+      } else {
+         for (PSDEDataSet var15 : var9) {
+            if (DataObject.getBoolValue(var15.getDefaultMode(), false)) {
+               return var15.getPSDEDataSetId();
+            }
+         }
+
+         Iterator var14 = var9.iterator();
+         if (var14.hasNext()) {
+            PSDEDataSet var16 = (PSDEDataSet)var14.next();
+            return var16.getPSDEDataSetId();
+         }
+      }
+
+      return null;
+   }
+
+   protected String getPSDEDataViewId(PSDataEntity var1, String var2, String var3) throws Exception {
+      ActionSession var4 = ActionSessionManager.getCurrentSession();
+      String var5 = StringHelper.format("%1$s#%2$s#%3$s#%4$s", "PSDEDATAVIEW", var1.getPSDataEntityId(), var2, var3);
+      if (var4 != null) {
+         Object var6 = var4.getActionParam(var5);
+         if (var6 != null) {
+            if (var6 instanceof String) {
+               return (String)var6;
+            }
+
             return null;
-        }
-        object = this.getPSDEDataViewIdReal(pSDataEntity, string, string2);
-        if (actionSession != null) {
-            if (object == null) {
-                actionSession.setActionParam(string3, EntityBase.EMPTY);
-            } else {
-                actionSession.setActionParam(string3, object);
-            }
-        }
-        return object;
-    }
+         }
+      }
 
-    protected String getPSDEDataViewIdReal(PSDataEntity pSDataEntity, String string, String string2) throws Exception {
-        String string3 = "";
-        boolean bl = this.isEnableFolderKey((IEntity)pSDataEntity);
-        if (bl) {
-            if (!StringHelper.isNullOrEmpty((String)string)) {
-                if (StringHelper.compare((String)string, (String)"INDEXDETYPE", (boolean)true) == 0) {
-                    string3 = StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)"R2");
-                } else if (StringHelper.compare((String)string, (String)"FORMTYPE", (boolean)true) == 0) {
-                    string3 = StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)"R3");
-                }
-            }
-        } else {
-            string3 = StringHelper.isNullOrEmpty((String)string) ? pSDataEntity.getPSDataEntityId() : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)string, (String)string2);
-        }
-        PSDEDataViewService pSDEDataViewService = (PSDEDataViewService)ServiceGlobal.getService(PSDEDataViewService.class, (SessionFactory)this.getSessionFactory());
-        PSDEDataView pSDEDataView = new PSDEDataView();
-        pSDEDataView.setPSDEDataViewId(string3);
-        if (pSDEDataViewService.checkKey(pSDEDataView) == 1) {
-            return string3;
-        }
-        SelectCond selectCond = new SelectCond();
-        selectCond.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-        ArrayList arrayList = pSDEDataViewService.select((ISelectCond)selectCond);
-        if (!StringHelper.isNullOrEmpty((String)string)) {
-            for (PSDEDataView pSDEDataView2 : arrayList) {
-                if (!(StringHelper.compare((String)string, (String)"INDEXDETYPE", (boolean)true) == 0 ? "IndexType".equals(pSDEDataView2.getCodeName()) : StringHelper.compare((String)string, (String)"FORMTYPE", (boolean)true) == 0 && "FormType".equals(pSDEDataView2.getCodeName()))) continue;
-                return pSDEDataView2.getPSDEDataViewId();
-            }
-        } else {
-            Iterator iterator = arrayList.iterator();
-            if (iterator.hasNext()) {
-                PSDEDataView pSDEDataView3 = (PSDEDataView)iterator.next();
-                return pSDEDataView3.getPSDEDataViewId();
-            }
-        }
-        return null;
-    }
+      String var7 = this.getPSDEDataViewIdReal(var1, var2, var3);
+      if (var4 != null) {
+         if (var7 == null) {
+            var4.setActionParam(var5, EntityBase.EMPTY);
+         } else {
+            var4.setActionParam(var5, var7);
+         }
+      }
 
-    protected String getPSDEListId(PSDataEntity pSDataEntity, String string, String string2, boolean bl) throws Exception {
-        Object object;
-        ActionSession actionSession = ActionSessionManager.getCurrentSession();
-        String string3 = StringHelper.format((String)"%1$s#%2$s#%3$s#%4$s#%5$s", (Object)"PSDELIST", (Object)pSDataEntity.getPSDataEntityId(), (Object)string, (Object)string2, (Object)bl);
-        if (actionSession != null && (object = actionSession.getActionParam(string3)) != null) {
-            if (object instanceof String) {
-                return (String)object;
+      return var7;
+   }
+
+   protected String getPSDEDataViewIdReal(PSDataEntity var1, String var2, String var3) throws Exception {
+      String var4 = "";
+      boolean var5 = this.isEnableFolderKey(var1);
+      if (var5) {
+         if (!StringHelper.isNullOrEmpty(var2)) {
+            if (StringHelper.compare(var2, "INDEXDETYPE", true) == 0) {
+               var4 = StringHelper.format("%1$s-%2$s", var1.getPSDataEntityId(), "R2");
+            } else if (StringHelper.compare(var2, "FORMTYPE", true) == 0) {
+               var4 = StringHelper.format("%1$s-%2$s", var1.getPSDataEntityId(), "R3");
             }
+         }
+      } else if (StringHelper.isNullOrEmpty(var2)) {
+         var4 = var1.getPSDataEntityId();
+      } else {
+         var4 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), var2, var3);
+      }
+
+      PSDEDataViewService var6 = (PSDEDataViewService)ServiceGlobal.getService(PSDEDataViewService.class, this.getSessionFactory());
+      PSDEDataView var7 = new PSDEDataView();
+      var7.setPSDEDataViewId(var4);
+      if (var6.checkKey(var7) == 1) {
+         return var4;
+      }
+
+      SelectCond var8 = new SelectCond();
+      var8.set("PSDEID", var1.getPSDataEntityId());
+      ArrayList<PSDEDataView> var9 = var6.select(var8);
+      if (!StringHelper.isNullOrEmpty(var2)) {
+         for (PSDEDataView var11 : var9) {
+            if (StringHelper.compare(var2, "INDEXDETYPE", true) == 0) {
+               if ("IndexType".equals(var11.getCodeName())) {
+                  return var11.getPSDEDataViewId();
+               }
+            } else if (StringHelper.compare(var2, "FORMTYPE", true) == 0 && "FormType".equals(var11.getCodeName())) {
+               return var11.getPSDEDataViewId();
+            }
+         }
+      } else {
+         Iterator var12 = var9.iterator();
+         if (var12.hasNext()) {
+            PSDEDataView var13 = (PSDEDataView)var12.next();
+            return var13.getPSDEDataViewId();
+         }
+      }
+
+      return null;
+   }
+
+   protected String getPSDEListId(PSDataEntity var1, String var2, String var3, boolean var4) throws Exception {
+      ActionSession var5 = ActionSessionManager.getCurrentSession();
+      String var6 = StringHelper.format("%1$s#%2$s#%3$s#%4$s#%5$s", "PSDELIST", var1.getPSDataEntityId(), var2, var3, var4);
+      if (var5 != null) {
+         Object var7 = var5.getActionParam(var6);
+         if (var7 != null) {
+            if (var7 instanceof String) {
+               return (String)var7;
+            }
+
             return null;
-        }
-        object = this.getPSDEListIdReal(pSDataEntity, string, string2, bl);
-        if (actionSession != null) {
-            if (object == null) {
-                actionSession.setActionParam(string3, EntityBase.EMPTY);
-            } else {
-                actionSession.setActionParam(string3, object);
-            }
-        }
-        return object;
-    }
+         }
+      }
 
-    protected String getPSDEListIdReal(PSDataEntity pSDataEntity, String string, String string2, boolean bl) throws Exception {
-        boolean bl2 = this.isEnableFolderKey((IEntity)pSDataEntity);
-        String string3 = "";
-        if (bl2) {
-            if (StringHelper.isNullOrEmpty((String)string)) {
-                string3 = StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)"R1");
-            } else if (StringHelper.compare((String)string, (String)"INDEXDETYPE", (boolean)true) == 0) {
-                string3 = StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)"R2");
-            } else if (StringHelper.compare((String)string, (String)"FORMTYPE", (boolean)true) == 0) {
-                string3 = StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)"R3");
-            }
-        } else {
-            string3 = bl ? (StringHelper.isNullOrEmpty((String)string) ? KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"MOB") : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)string, (String)string2, (String)"MOB")) : (StringHelper.isNullOrEmpty((String)string) ? pSDataEntity.getPSDataEntityId() : KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)string, (String)string2));
-        }
-        PSDEListService pSDEListService = (PSDEListService)ServiceGlobal.getService(PSDEListService.class, (SessionFactory)this.getSessionFactory());
-        PSDEList pSDEList = new PSDEList();
-        pSDEList.setPSDEListId(string3);
-        if (pSDEListService.checkKey(pSDEList) == 1) {
-            return string3;
-        }
-        SelectCond selectCond = new SelectCond();
-        selectCond.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-        ArrayList arrayList = pSDEListService.select((ISelectCond)selectCond);
-        if (!StringHelper.isNullOrEmpty((String)string)) {
-            for (PSDEList pSDEList2 : arrayList) {
-                if (!(StringHelper.compare((String)string, (String)"INDEXDETYPE", (boolean)true) == 0 ? (bl ? "MobIndexType".equals(pSDEList2.getCodeName()) : "IndexType".equals(pSDEList2.getCodeName())) : StringHelper.compare((String)string, (String)"FORMTYPE", (boolean)true) == 0 && (bl ? "MobFormType".equals(pSDEList2.getCodeName()) : "FormType".equals(pSDEList2.getCodeName())))) continue;
-                return pSDEList2.getPSDEListId();
-            }
-        } else {
-            for (PSDEList pSDEList3 : arrayList) {
-                if (!bl || !"Mob".equals(pSDEList3.getCodeName())) continue;
-                return pSDEList3.getPSDEListId();
-            }
-            Iterator iterator = arrayList.iterator();
-            if (iterator.hasNext()) {
-                PSDEList pSDEList3;
-                pSDEList3 = (PSDEList)iterator.next();
-                return pSDEList3.getPSDEListId();
-            }
-        }
-        return null;
-    }
+      String var8 = this.getPSDEListIdReal(var1, var2, var3, var4);
+      if (var5 != null) {
+         if (var8 == null) {
+            var5.setActionParam(var6, EntityBase.EMPTY);
+         } else {
+            var5.setActionParam(var6, var8);
+         }
+      }
 
-    protected String getPSDEViewBaseId(PSDataEntity pSDataEntity, PSViewTypeStruct pSViewTypeStruct, String string, String string2) throws Exception {
-        Object object;
-        ActionSession actionSession = ActionSessionManager.getCurrentSession();
-        String string3 = StringHelper.format((String)"%1$s#%2$s#%3$s#%4$s#%5$s", (Object)"PSDEDATASET", (Object)pSDataEntity.getPSDataEntityId(), (Object)(pSViewTypeStruct == null ? "" : pSViewTypeStruct.getPSViewTypeId()), (Object)string, (Object)string2);
-        if (actionSession != null && (object = actionSession.getActionParam(string3)) != null) {
-            if (object instanceof String) {
-                return (String)object;
+      return var8;
+   }
+
+   protected String getPSDEListIdReal(PSDataEntity var1, String var2, String var3, boolean var4) throws Exception {
+      boolean var5 = this.isEnableFolderKey(var1);
+      String var6 = "";
+      if (var5) {
+         if (StringHelper.isNullOrEmpty(var2)) {
+            var6 = StringHelper.format("%1$s-%2$s", var1.getPSDataEntityId(), "R1");
+         } else if (StringHelper.compare(var2, "INDEXDETYPE", true) == 0) {
+            var6 = StringHelper.format("%1$s-%2$s", var1.getPSDataEntityId(), "R2");
+         } else if (StringHelper.compare(var2, "FORMTYPE", true) == 0) {
+            var6 = StringHelper.format("%1$s-%2$s", var1.getPSDataEntityId(), "R3");
+         }
+      } else if (var4) {
+         if (StringHelper.isNullOrEmpty(var2)) {
+            var6 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "MOB");
+         } else {
+            var6 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), var2, var3, "MOB");
+         }
+      } else if (StringHelper.isNullOrEmpty(var2)) {
+         var6 = var1.getPSDataEntityId();
+      } else {
+         var6 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), var2, var3);
+      }
+
+      PSDEListService var7 = (PSDEListService)ServiceGlobal.getService(PSDEListService.class, this.getSessionFactory());
+      PSDEList var8 = new PSDEList();
+      var8.setPSDEListId(var6);
+      if (var7.checkKey(var8) == 1) {
+         return var6;
+      }
+
+      SelectCond var9 = new SelectCond();
+      var9.set("PSDEID", var1.getPSDataEntityId());
+      ArrayList<PSDEList> var10 = var7.select(var9);
+      if (!StringHelper.isNullOrEmpty(var2)) {
+         for (PSDEList var12 : var10) {
+            if (StringHelper.compare(var2, "INDEXDETYPE", true) == 0) {
+               if (var4) {
+                  if ("MobIndexType".equals(var12.getCodeName())) {
+                     return var12.getPSDEListId();
+                  }
+               } else if ("IndexType".equals(var12.getCodeName())) {
+                  return var12.getPSDEListId();
+               }
+            } else if (StringHelper.compare(var2, "FORMTYPE", true) == 0) {
+               if (var4) {
+                  if ("MobFormType".equals(var12.getCodeName())) {
+                     return var12.getPSDEListId();
+                  }
+               } else if ("FormType".equals(var12.getCodeName())) {
+                  return var12.getPSDEListId();
+               }
             }
+         }
+      } else {
+         for (PSDEList var15 : var10) {
+            if (var4 && "Mob".equals(var15.getCodeName())) {
+               return var15.getPSDEListId();
+            }
+         }
+
+         Iterator var14 = var10.iterator();
+         if (var14.hasNext()) {
+            PSDEList var16 = (PSDEList)var14.next();
+            return var16.getPSDEListId();
+         }
+      }
+
+      return null;
+   }
+
+   protected String getPSDEViewBaseId(PSDataEntity var1, PSViewTypeStruct var2, String var3, String var4) throws Exception {
+      ActionSession var5 = ActionSessionManager.getCurrentSession();
+      String var6 = StringHelper.format(
+         "%1$s#%2$s#%3$s#%4$s#%5$s", "PSDEDATASET", var1.getPSDataEntityId(), var2 == null ? "" : var2.getPSViewTypeId(), var3, var4
+      );
+      if (var5 != null) {
+         Object var7 = var5.getActionParam(var6);
+         if (var7 != null) {
+            if (var7 instanceof String) {
+               return (String)var7;
+            }
+
             return null;
-        }
-        object = this.getPSDEViewBaseIdReal(pSDataEntity, pSViewTypeStruct, string, string2);
-        if (actionSession != null) {
-            if (object == null) {
-                actionSession.setActionParam(string3, EntityBase.EMPTY);
-            } else {
-                actionSession.setActionParam(string3, object);
-            }
-        }
-        return object;
-    }
+         }
+      }
 
-    protected String getPSDEViewBaseIdReal(PSDataEntity pSDataEntity, PSViewTypeStruct pSViewTypeStruct, String string, String string2) throws Exception {
-        boolean bl = this.isEnableFolderKey((IEntity)pSDataEntity);
-        if (bl) {
-            String string3 = "";
-            string3 = pSViewTypeStruct != null && pSViewTypeStruct.getPSViewTypeId().indexOf("DEMOB") != -1 ? (StringHelper.compare((String)string, (String)"INDEXDETYPE", (boolean)true) == 0 ? KeyValueHelper.genUniqueId((String)"DEMOBINDEXPICKUPMDVIEW", (String)string, (String)string2) : (StringHelper.compare((String)string, (String)"FORMTYPE", (boolean)true) == 0 ? KeyValueHelper.genUniqueId((String)"DEMOBFORMPICKUPMDVIEW", (String)string, (String)string2) : KeyValueHelper.genUniqueId((String)"DEMOBPICKUPMDVIEW"))) : (StringHelper.compare((String)string, (String)"INDEXDETYPE", (boolean)true) == 0 ? KeyValueHelper.genUniqueId((String)"DEINDEXPICKUPDATAVIEW", (String)string, (String)string2) : (StringHelper.compare((String)string, (String)"FORMTYPE", (boolean)true) == 0 ? KeyValueHelper.genUniqueId((String)"DEFORMPICKUPDATAVIEW", (String)string, (String)string2) : KeyValueHelper.genUniqueId((String)"DEPICKUPGRIDVIEW")));
-            PSDEViewBaseService pSDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)this.getSessionFactory());
-            PSDEViewBase pSDEViewBase = new PSDEViewBase();
-            pSDEViewBase.setDEViewTag(string3);
-            pSDEViewBase.setPSDEId(pSDataEntity.getPSDataEntityId());
-            if (pSDEViewBaseService.selectOne((IEntity)pSDEViewBase, true)) {
-                return pSDEViewBase.getPSDEViewBaseId();
-            }
-        } else {
-            String string4 = "";
-            String string5 = "";
-            if (pSViewTypeStruct != null && pSViewTypeStruct.getPSViewTypeId().indexOf("DEMOB") != -1) {
-                if (StringHelper.compare((String)string, (String)"INDEXDETYPE", (boolean)true) == 0) {
-                    string4 = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"DEMOBINDEXPICKUPMDVIEW", (String)string, (String)string2);
-                    string5 = "DEMOBINDEXPICKUPMDVIEW";
-                } else if (StringHelper.compare((String)string, (String)"FORMTYPE", (boolean)true) == 0) {
-                    string4 = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"DEMOBFORMPICKUPMDVIEW", (String)string, (String)string2);
-                    string5 = "DEMOBFORMPICKUPMDVIEW";
-                } else {
-                    string4 = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"DEMOBPICKUPMDVIEW");
-                    string5 = "DEMOBPICKUPMDVIEW";
-                }
-            } else if (StringHelper.compare((String)string, (String)"INDEXDETYPE", (boolean)true) == 0) {
-                string4 = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"DEINDEXPICKUPDATAVIEW", (String)string, (String)string2);
-                string5 = "DEINDEXPICKUPDATAVIEW";
-            } else if (StringHelper.compare((String)string, (String)"FORMTYPE", (boolean)true) == 0) {
-                string4 = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"DEFORMPICKUPDATAVIEW", (String)string, (String)string2);
-                string5 = "DEFORMPICKUPDATAVIEW";
-            } else {
-                string4 = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"DEPICKUPGRIDVIEW");
-                string5 = "DEPICKUPGRIDVIEW";
-            }
-            PSDEViewBaseService pSDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)this.getSessionFactory());
-            PSDEViewBase pSDEViewBase = new PSDEViewBase();
-            pSDEViewBase.setPSDEViewBaseId(string4);
-            if (pSDEViewBaseService.checkKey(pSDEViewBase) == 1) {
-                return pSDEViewBase.getPSDEViewBaseId();
-            }
-            SelectCond selectCond = new SelectCond();
-            selectCond.setFetchFirst(true);
-            selectCond.set("PSDEID", (Object)pSDataEntity.getPSDataEntityId());
-            selectCond.set("PSDEVIEWBASETYPE", (Object)string5);
-            if (StringHelper.isNullOrEmpty((String)string)) {
-                selectCond.setIsNull("DEVIEWTAG3");
-                selectCond.setIsNull("DEVIEWTAG4");
-            } else {
-                selectCond.set("DEVIEWTAG3", (Object)string);
-                if (!StringHelper.isNullOrEmpty((String)string2)) {
-                    selectCond.set("DEVIEWTAG4", (Object)string2);
-                } else {
-                    selectCond.setIsNull("DEVIEWTAG4");
-                }
-            }
-            ArrayList arrayList = this.select((ISelectCond)selectCond);
-            if (arrayList.size() == 0) {
-                return null;
-            }
-            return ((PSDEViewBase)arrayList.get(0)).getPSDEViewBaseId();
-        }
-        return null;
-    }
+      String var8 = this.getPSDEViewBaseIdReal(var1, var2, var3, var4);
+      if (var5 != null) {
+         if (var8 == null) {
+            var5.setActionParam(var6, EntityBase.EMPTY);
+         } else {
+            var5.setActionParam(var6, var8);
+         }
+      }
 
-    protected String getPSDEDataRelationId(PSDataEntity pSDataEntity, PSDEViewBase pSDEViewBase, boolean bl) throws Exception {
-        Object object;
-        ActionSession actionSession = ActionSessionManager.getCurrentSession();
-        String string = StringHelper.format((String)"%1$s#%2$s#%3$s#%4$s", (Object)"PSDEDATARELATION", (Object)pSDataEntity.getPSDataEntityId(), (Object)pSDEViewBase.getPSWFDEId(), (Object)bl);
-        if (actionSession != null && (object = actionSession.getActionParam(string)) != null) {
-            if (object instanceof String) {
-                return (String)object;
+      return var8;
+   }
+
+   protected String getPSDEViewBaseIdReal(PSDataEntity var1, PSViewTypeStruct var2, String var3, String var4) throws Exception {
+      boolean var5 = this.isEnableFolderKey(var1);
+      if (var5) {
+         String var13 = "";
+         if (var2 != null && var2.getPSViewTypeId().indexOf("DEMOB") != -1) {
+            if (StringHelper.compare(var3, "INDEXDETYPE", true) == 0) {
+               var13 = KeyValueHelper.genUniqueId("DEMOBINDEXPICKUPMDVIEW", var3, var4);
+            } else if (StringHelper.compare(var3, "FORMTYPE", true) == 0) {
+               var13 = KeyValueHelper.genUniqueId("DEMOBFORMPICKUPMDVIEW", var3, var4);
+            } else {
+               var13 = KeyValueHelper.genUniqueId("DEMOBPICKUPMDVIEW");
             }
+         } else if (StringHelper.compare(var3, "INDEXDETYPE", true) == 0) {
+            var13 = KeyValueHelper.genUniqueId("DEINDEXPICKUPDATAVIEW", var3, var4);
+         } else if (StringHelper.compare(var3, "FORMTYPE", true) == 0) {
+            var13 = KeyValueHelper.genUniqueId("DEFORMPICKUPDATAVIEW", var3, var4);
+         } else {
+            var13 = KeyValueHelper.genUniqueId("DEPICKUPGRIDVIEW");
+         }
+
+         PSDEViewBaseService var16 = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, this.getSessionFactory());
+         PSDEViewBase var17 = new PSDEViewBase();
+         var17.setDEViewTag(var13);
+         var17.setPSDEId(var1.getPSDataEntityId());
+         return var16.selectOne(var17, true) ? var17.getPSDEViewBaseId() : null;
+      } else {
+         String var6 = "";
+         String var7 = "";
+         if (var2 != null && var2.getPSViewTypeId().indexOf("DEMOB") != -1) {
+            if (StringHelper.compare(var3, "INDEXDETYPE", true) == 0) {
+               var6 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "DEMOBINDEXPICKUPMDVIEW", var3, var4);
+               var7 = "DEMOBINDEXPICKUPMDVIEW";
+            } else if (StringHelper.compare(var3, "FORMTYPE", true) == 0) {
+               var6 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "DEMOBFORMPICKUPMDVIEW", var3, var4);
+               var7 = "DEMOBFORMPICKUPMDVIEW";
+            } else {
+               var6 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "DEMOBPICKUPMDVIEW");
+               var7 = "DEMOBPICKUPMDVIEW";
+            }
+         } else if (StringHelper.compare(var3, "INDEXDETYPE", true) == 0) {
+            var6 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "DEINDEXPICKUPDATAVIEW", var3, var4);
+            var7 = "DEINDEXPICKUPDATAVIEW";
+         } else if (StringHelper.compare(var3, "FORMTYPE", true) == 0) {
+            var6 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "DEFORMPICKUPDATAVIEW", var3, var4);
+            var7 = "DEFORMPICKUPDATAVIEW";
+         } else {
+            var6 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), "DEPICKUPGRIDVIEW");
+            var7 = "DEPICKUPGRIDVIEW";
+         }
+
+         PSDEViewBaseService var8 = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, this.getSessionFactory());
+         PSDEViewBase var9 = new PSDEViewBase();
+         var9.setPSDEViewBaseId(var6);
+         if (var8.checkKey(var9) == 1) {
+            return var9.getPSDEViewBaseId();
+         }
+
+         SelectCond var10 = new SelectCond();
+         var10.setFetchFirst(true);
+         var10.set("PSDEID", var1.getPSDataEntityId());
+         var10.set("PSDEVIEWBASETYPE", var7);
+         if (StringHelper.isNullOrEmpty(var3)) {
+            var10.setIsNull("DEVIEWTAG3");
+            var10.setIsNull("DEVIEWTAG4");
+         } else {
+            var10.set("DEVIEWTAG3", var3);
+            if (!StringHelper.isNullOrEmpty(var4)) {
+               var10.set("DEVIEWTAG4", var4);
+            } else {
+               var10.setIsNull("DEVIEWTAG4");
+            }
+         }
+
+         ArrayList var11 = this.select(var10);
+         return var11.size() == 0 ? null : ((PSDEViewBase)var11.get(0)).getPSDEViewBaseId();
+      }
+   }
+
+   protected String getPSDEDataRelationId(PSDataEntity var1, PSDEViewBase var2, boolean var3) throws Exception {
+      ActionSession var4 = ActionSessionManager.getCurrentSession();
+      String var5 = StringHelper.format("%1$s#%2$s#%3$s#%4$s", "PSDEDATARELATION", var1.getPSDataEntityId(), var2.getPSWFDEId(), var3);
+      if (var4 != null) {
+         Object var6 = var4.getActionParam(var5);
+         if (var6 != null) {
+            if (var6 instanceof String) {
+               return (String)var6;
+            }
+
             return null;
-        }
-        object = this.getPSDEDataRelationIdReal(pSDataEntity, pSDEViewBase, bl);
-        if (actionSession != null) {
-            if (object == null) {
-                actionSession.setActionParam(string, EntityBase.EMPTY);
-            } else {
-                actionSession.setActionParam(string, object);
-            }
-        }
-        return object;
-    }
+         }
+      }
 
-    protected String getPSDEDataRelationIdReal(PSDataEntity pSDataEntity, PSDEViewBase pSDEViewBase, boolean bl) throws Exception {
-        boolean bl2 = this.isEnableFolderKey((IEntity)pSDataEntity);
-        String string = null;
-        string = bl2 ? StringHelper.format((String)"%1$s-%2$s", (Object)pSDataEntity.getPSDataEntityId(), (Object)"R1") : pSDataEntity.getPSDataEntityId();
-        if (!StringHelper.isNullOrEmpty((String)pSDEViewBase.getPSWFId())) {
-            string = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)pSDEViewBase.getPSWFId());
-            if (bl) {
-                string = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)pSDEViewBase.getPSWFId(), (String)"MOB");
-            }
-        }
-        PSDEDataRelation pSDEDataRelation = new PSDEDataRelation();
-        pSDEDataRelation.setPSDEDataRelationId(string);
-        PSDEDataRelationService pSDEDataRelationService = (PSDEDataRelationService)ServiceGlobal.getService(PSDEDataRelationService.class, (SessionFactory)this.getSessionFactory());
-        if (pSDEDataRelationService.checkKey(pSDEDataRelation) == 1) {
-            return string;
-        }
-        SelectCond selectCond = new SelectCond();
-        selectCond.setFetchFirst(true);
-        selectCond.set("PSDEID", (Object)pSDEViewBase.getPSDEId());
-        if (StringHelper.isNullOrEmpty((String)pSDEViewBase.getPSWFDEId())) {
-            selectCond.setIsNull("PSWFDEID");
-        } else {
-            selectCond.set("PSWFDEID", (Object)pSDEViewBase.getPSWFDEId());
-        }
-        if (bl) {
-            selectCond.set("DRTAG", (Object)"MOB");
-        } else {
-            selectCond.setIsNull("DRTAG");
-        }
-        ArrayList arrayList = pSDEDataRelationService.select((ISelectCond)selectCond);
-        if (arrayList.size() > 0) {
-            return ((PSDEDataRelation)arrayList.get(0)).getPSDEDataRelationId();
-        }
-        return null;
-    }
+      String var7 = this.getPSDEDataRelationIdReal(var1, var2, var3);
+      if (var4 != null) {
+         if (var7 == null) {
+            var4.setActionParam(var5, EntityBase.EMPTY);
+         } else {
+            var4.setActionParam(var5, var7);
+         }
+      }
 
-    protected void initDEViewRV(PSSystem pSSystem, PSDataEntity pSDataEntity, PSViewTypeStruct pSViewTypeStruct, PSDEViewBase pSDEViewBase, PSVTRV pSVTRV, String string, String string2) throws Exception {
-        PSDEViewRV pSDEViewRV = new PSDEViewRV();
-        pSDEViewRV.setMajorPSDEViewId(pSDEViewBase.getPSDEViewBaseId());
-        pSDEViewRV.setMajorPSDEViewName(pSDEViewBase.getPSDEViewBaseName());
-        pSDEViewRV.setPSDEViewRVName(pSVTRV.getPSVTRVName());
-        pSDEViewRV.setRefModeText(pSVTRV.getLogicName());
-        pSDEViewRV.setMemo(pSVTRV.getMemo());
-        pSDEViewRV.setDefViewType(pSVTRV.getDEFViewType());
-        this.fillDEViewRV(pSDEViewRV, pSSystem, pSDataEntity, pSViewTypeStruct, pSDEViewBase, pSVTRV, string, string2);
-        PSDEViewRVService pSDEViewRVService = (PSDEViewRVService)ServiceGlobal.getService(PSDEViewRVService.class, (SessionFactory)this.getSessionFactory());
-        try {
-            pSDEViewRVService.create(pSDEViewRV);
-        }
-        catch (Exception exception) {
-            throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u5b9e\u4f53\u89c6\u56fe[%1$s]\u5f15\u7528[%2$s]\u53d1\u751f\u5f02\u5e38\uff0c%3$s", (Object)pSDEViewBase.getPSDEViewBaseName(), (Object)pSDEViewRV.getPSDEViewRVName(), (Object)exception.getMessage()), exception);
-        }
-    }
+      return var7;
+   }
 
-    protected void fillDEViewRV(PSDEViewRV pSDEViewRV, PSSystem pSSystem, PSDataEntity pSDataEntity, PSViewTypeStruct pSViewTypeStruct, PSDEViewBase pSDEViewBase, PSVTRV pSVTRV, String string, String string2) throws Exception {
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEGRIDVIEW", (boolean)true) == 0 || StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMDCUSTOMVIEW", (boolean)true) == 0) {
-            boolean bl = this.isEnableFolderKey((IEntity)pSDataEntity);
-            PSDEViewBaseService pSDEViewBaseService = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, (SessionFactory)this.getSessionFactory());
-            PSDEViewBase pSDEViewBase2 = new PSDEViewBase();
-            if (bl) {
-                if (StringHelper.compare((String)pSVTRV.getPSVTRVName(), (String)"NEWDATA", (boolean)true) == 0) {
-                    String string3 = KeyValueHelper.genUniqueId((String)"DEEDITVIEW");
-                    pSDEViewBase2.setDEViewTag(string3);
-                    pSDEViewBase2.setPSDEId(pSDataEntity.getPSDataEntityId());
-                    if (pSDEViewBaseService.selectOne((IEntity)pSDEViewBase2, true)) {
-                        pSDEViewRV.setMinorPSDEViewId(pSDEViewBase2.getPSDEViewBaseId());
-                    }
-                    return;
-                }
-                if (StringHelper.compare((String)pSVTRV.getPSVTRVName(), (String)"EDITDATA", (boolean)true) == 0) {
-                    String string4 = KeyValueHelper.genUniqueId((String)"DEEDITVIEW");
-                    pSDEViewBase2.setDEViewTag(string4);
-                    pSDEViewBase2.setPSDEId(pSDataEntity.getPSDataEntityId());
-                    if (pSDEViewBaseService.selectOne((IEntity)pSDEViewBase2, true)) {
-                        pSDEViewRV.setMinorPSDEViewId(pSDEViewBase2.getPSDEViewBaseId());
-                    }
-                    return;
-                }
-            } else {
-                if (StringHelper.compare((String)pSVTRV.getPSVTRVName(), (String)"NEWDATA", (boolean)true) == 0) {
-                    String string5 = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"DEEDITVIEW");
-                    pSDEViewBase2.setPSDEViewBaseId(string5);
-                    if (pSDEViewBaseService.checkKey(pSDEViewBase2) == 1) {
-                        pSDEViewRV.setMinorPSDEViewId(string5);
-                    }
-                    return;
-                }
-                if (StringHelper.compare((String)pSVTRV.getPSVTRVName(), (String)"EDITDATA", (boolean)true) == 0) {
-                    String string6 = KeyValueHelper.genUniqueId((String)pSDataEntity.getPSDataEntityId(), (String)"DEEDITVIEW");
-                    pSDEViewBase2.setPSDEViewBaseId(string6);
-                    if (pSDEViewBaseService.checkKey(pSDEViewBase2) == 1) {
-                        pSDEViewRV.setMinorPSDEViewId(string6);
-                    }
-                    return;
-                }
-            }
-        }
-    }
+   protected String getPSDEDataRelationIdReal(PSDataEntity var1, PSDEViewBase var2, boolean var3) throws Exception {
+      boolean var4 = this.isEnableFolderKey(var1);
+      String var5 = null;
+      if (var4) {
+         var5 = StringHelper.format("%1$s-%2$s", var1.getPSDataEntityId(), "R1");
+      } else {
+         var5 = var1.getPSDataEntityId();
+      }
 
-    protected void initDEWFViews(PSDataEntity pSDataEntity) throws Exception {
-        ArrayList<PSWFDE> arrayList = pSDataEntity.getPSWFDEs();
-        if (arrayList.size() == 0) {
-            return;
-        }
-        for (PSWFDE pSWFDE : arrayList) {
-            this.initWFDEViews(pSWFDE, pSDataEntity);
-        }
-    }
+      if (!StringHelper.isNullOrEmpty(var2.getPSWFId())) {
+         var5 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), var2.getPSWFId());
+         if (var3) {
+            var5 = KeyValueHelper.genUniqueId(var1.getPSDataEntityId(), var2.getPSWFId(), "MOB");
+         }
+      }
 
-    public void initWFDEViews(PSWFDE pSWFDE, PSDataEntity pSDataEntity) throws Exception {
-        final PSWFDE pSWFDE2 = pSWFDE;
-        final PSDataEntity pSDataEntity2 = pSDataEntity != null ? pSDataEntity : pSWFDE.getPSDE();
-        this.doServiceWork(new IServiceWork(){
+      PSDEDataRelation var6 = new PSDEDataRelation();
+      var6.setPSDEDataRelationId(var5);
+      PSDEDataRelationService var7 = (PSDEDataRelationService)ServiceGlobal.getService(PSDEDataRelationService.class, this.getSessionFactory());
+      if (var7.checkKey(var6) == 1) {
+         return var5;
+      }
 
-            public void execute(ITransaction iTransaction) throws Exception {
-                block54: {
-                    Object object;
-                    PSCodeList pSCodeList;
-                    PSCodeList pSCodeList2;
-                    boolean bl;
-                    ArrayList<PSWFVersion> arrayList;
-                    block53: {
-                        Serializable serializable;
-                        Object object2;
-                        EntityBase entityBase;
-                        PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                        PSCodeListService pSCodeListService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                        PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                        PSWFVersionService pSWFVersionService = (PSWFVersionService)ServiceGlobal.getService(PSWFVersionService.class, (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                        if (!pSDataEntity2.isFullEntity()) {
-                            pSDataEntityService.get((IEntity)pSDataEntity2);
-                        }
-                        arrayList = null;
-                        int n = DataObject.getIntegerValue((Object)pSWFDE2.getWFProxyMode(), (Integer)0);
-                        boolean bl2 = (n & 1) == 1;
-                        boolean bl3 = n != 1;
-                        boolean bl4 = DataObject.getBoolValue((Integer)pSWFDE2.getPSWF().getEnableDynaSys(), (boolean)false);
-                        bl = false;
-                        if (DataObject.getBoolValue((Integer)pSWFDE2.getPSWF().getEnableMob(), (boolean)false)) {
-                            bl = true;
-                        }
-                        if (bl2) {
-                            bl4 = false;
-                        }
-                        if (bl4) {
-                            entityBase = new PSWFVersion();
-                            entityBase.setPSWFId(pSWFDE2.getPSWFId());
-                            entityBase.setEnableDynaSys(1);
-                            if (pSWFVersionService.select(entityBase, true)) {
-                                arrayList = new ArrayList();
-                                arrayList.add((PSWFVersion)entityBase);
-                            }
-                        } else if (bl3) {
-                            arrayList = pSWFVersionService.selectByPSWF(pSWFDE2.getPSWF(), "ORDER BY WFVERSION DESC");
-                        }
-                        entityBase = null;
-                        PSCodeList pSCodeList3 = null;
-                        pSCodeList2 = null;
-                        pSCodeList = null;
-                        if (!bl4 && bl3) {
-                            if (DataObject.getIntegerValue((Object)pSDataEntity2.getEnaMultiForm(), (Integer)0) > 0) {
-                                entityBase = new PSDEField();
-                                entityBase.setPSDEId(pSDataEntity2.getPSDataEntityId());
-                                entityBase.setMultiFormField(1);
-                                if (!pSDEFieldService.select(entityBase, false)) {
-                                    throw new Exception(StringHelper.format((String)"\u5b9e\u4f53[%1$s]\u6ca1\u6709\u5b9a\u4e49\u591a\u8868\u5355\u8bc6\u522b\u5c5e\u6027", (Object)pSDataEntity2.getPSDataEntityName()));
-                                }
-                                if (StringHelper.isNullOrEmpty((String)entityBase.getPSCodeListId())) {
-                                    throw new Exception(StringHelper.format((String)"\u5c5e\u6027[%1$s]\u6ca1\u6709\u5b9a\u4e49\u4ee3\u7801\u8868", (Object)entityBase.getPSDEFieldName()));
-                                }
-                                pSCodeList3 = new PSCodeList();
-                                pSCodeList3.setPSCodeListId(entityBase.getPSCodeListId());
-                                pSCodeListService.getCache((IEntity)pSCodeList3);
-                            }
-                            if (!StringHelper.isNullOrEmpty((String)pSWFDE2.getWFStepPSDEFId())) {
-                                object2 = new PSDEField();
-                                ((PSDEFieldBase)object2).setPSDEFieldId(pSWFDE2.getWFStepPSDEFId());
-                                pSDEFieldService.getCache((IEntity)object2);
-                                if (!StringHelper.isNullOrEmpty((String)((PSDEFieldBase)object2).getPSCodeListId())) {
-                                    pSCodeList = new PSCodeList();
-                                    pSCodeList.setPSCodeListId(((PSDEFieldBase)object2).getPSCodeListId());
-                                    pSCodeListService.getCache((IEntity)pSCodeList);
-                                } else {
-                                    PSDEViewBaseService.this.getConsole().warn(PSDEViewBaseService.LOGNAME_INITWFVIEW, StringHelper.format((String)"\u5b9e\u4f53\u5c5e\u6027[%1$s|%2$s]\u6ca1\u6709\u6307\u5b9a\u6d41\u7a0b\u6b65\u9aa4\u4ee3\u7801\u8868\uff0c\u53ef\u80fd\u65e0\u6cd5\u6b63\u786e\u521d\u59cb\u5316\u76f8\u5173\u6d41\u7a0b\u89c6\u56fe", (Object)((PSDEFieldBase)object2).getPSDEName(), (Object)((PSDEFieldBase)object2).getPSDEFieldName()));
-                                }
-                            } else {
-                                PSDEViewBaseService.this.getConsole().warn(PSDEViewBaseService.LOGNAME_INITWFVIEW, StringHelper.format((String)"\u5b9e\u4f53\u5de5\u4f5c\u6d41[%1$s|%2$s]\u6ca1\u6709\u6307\u5b9a\u6d41\u7a0b\u6b65\u9aa4\u5c5e\u6027\uff0c\u53ef\u80fd\u65e0\u6cd5\u6b63\u786e\u521d\u59cb\u5316\u76f8\u5173\u6d41\u7a0b\u89c6\u56fe", (Object)pSWFDE2.getPSDEName(), (Object)pSWFDE2.getPSWFName()));
-                            }
-                        }
-                        object2 = new PSDEField();
-                        ((PSDEFieldBase)object2).setPSDEFieldId(pSWFDE2.getStatePSDEFId());
-                        pSDEFieldService.getCache((IEntity)object2);
-                        if (!StringHelper.isNullOrEmpty((String)((PSDEFieldBase)object2).getPSCodeListId())) {
-                            pSCodeList2 = new PSCodeList();
-                            pSCodeList2.setPSCodeListId(((PSDEFieldBase)object2).getPSCodeListId());
-                            pSCodeListService.getCache((IEntity)pSCodeList2);
-                        } else {
-                            PSDEViewBaseService.this.getConsole().warn(PSDEViewBaseService.LOGNAME_INITWFVIEW, StringHelper.format((String)"\u5b9e\u4f53\u5c5e\u6027[%1$s|%2$s]\u6ca1\u6709\u6307\u5b9a\u6d41\u7a0b\u7528\u6237\u6570\u636e\u72b6\u6001\u4ee3\u7801\u8868\uff0c\u53ef\u80fd\u65e0\u6cd5\u6b63\u786e\u521d\u59cb\u5316\u76f8\u5173\u6d41\u7a0b\u89c6\u56fe", (Object)((PSDEFieldBase)object2).getPSDEName(), (Object)((PSDEFieldBase)object2).getPSDEFieldName()));
-                        }
-                        object2 = (PSDEDRGroupService)ServiceGlobal.getService(PSDEDRGroupService.class, (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                        PSDEDRGroup pSDEDRGroup = new PSDEDRGroup();
-                        pSDEDRGroup.setPSDEDRGroupId(pSDataEntity2.getPSDataEntityId());
-                        if (!object2.get((IEntity)pSDEDRGroup, true)) {
-                            pSDEDRGroup.reset();
-                            pSDEDRGroup.setPSDEId(pSDataEntity2.getPSDataEntityId());
-                            if (!object2.selectOne((IEntity)pSDEDRGroup, true)) {
-                                pSDEDRGroup.setPSDEDRGroupId(pSDataEntity2.getPSDataEntityId());
-                                pSDEDRGroup.setOrderValue(10000);
-                                pSDEDRGroup.setPSDEId(pSDataEntity2.getPSDataEntityId());
-                                pSDEDRGroup.setPSDEDRGroupName("\u8be6\u7ec6\u4fe1\u606f");
-                                ((PSCoreSysServiceBaseBase)((Object)object2)).create(pSDEDRGroup);
-                            }
-                        }
-                        PSSysPDTViewService pSSysPDTViewService = (PSSysPDTViewService)ServiceGlobal.getService(PSSysPDTViewService.class, (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                        PSSysPDTView pSSysPDTView = new PSSysPDTView();
-                        Object object3 = KeyValueHelper.genUniqueId((String)pSDataEntity2.getPSSystemId(), (String)"WF_STEPDATALIST");
-                        pSSysPDTView.setPSSysPDTViewId((String)object3);
-                        if (!pSSysPDTViewService.get((IEntity)pSSysPDTView, true)) {
-                            pSSysPDTView.reset();
-                            pSSysPDTView.setPSPDTViewId("WF_STEPDATALIST");
-                            if (!pSSysPDTViewService.selectOne((IEntity)pSSysPDTView, true)) {
-                                pSSysPDTView = null;
-                            }
-                        }
-                        object3 = new PSSysPDTView();
-                        Object object4 = KeyValueHelper.genUniqueId((String)pSDataEntity2.getPSSystemId(), (String)"WF_STEPACTORLIST");
-                        ((PSSysPDTViewBase)object3).setPSSysPDTViewId((String)object4);
-                        if (!pSSysPDTViewService.get((IEntity)object3, true)) {
-                            object3.reset();
-                            ((PSSysPDTViewBase)object3).setPSPDTViewId("WF_STEPACTORLIST");
-                            if (!pSSysPDTViewService.selectOne((IEntity)object3, true)) {
-                                object3 = null;
-                            }
-                        }
-                        object4 = new PSSysPDTView();
-                        Object object5 = KeyValueHelper.genUniqueId((String)pSDataEntity2.getPSSystemId(), (String)"WF_STEPTRACECHART");
-                        ((PSSysPDTViewBase)object4).setPSSysPDTViewId((String)object5);
-                        if (!pSSysPDTViewService.get((IEntity)object4, true)) {
-                            object4.reset();
-                            ((PSSysPDTViewBase)object4).setPSPDTViewId("WF_STEPTRACECHART");
-                            if (!pSSysPDTViewService.selectOne((IEntity)object4, true)) {
-                                object4 = null;
-                            }
-                        }
-                        object5 = new PSDEDataRelation();
-                        Object object6 = KeyValueHelper.genUniqueId((String)pSDataEntity2.getPSDataEntityId(), (String)pSWFDE2.getPSWFId());
-                        ((PSDEDataRelationBase)object5).setPSDEDataRelationId((String)object6);
-                        Object object7 = (PSDEDataRelationService)ServiceGlobal.getService(PSDEDataRelationService.class, (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                        boolean bl5 = true;
-                        if (object7.get((IEntity)object5, true)) {
-                            bl5 = false;
-                            if (StringHelper.isNullOrEmpty((String)((PSDEDataRelationBase)object5).getPSWFDEId())) {
-                                ((PSDEDataRelationBase)object5).setPSWFDEId(pSWFDE2.getPSWFDEId());
-                                ((PSDEDataRelationBase)object5).setDRTag(null);
-                                ((PSCoreSysServiceBaseBase)((Object)object7)).update(object5);
-                            }
-                        } else {
-                            object5.reset();
-                            object = new SelectCond();
-                            object.setFetchFirst(true);
-                            object.set("PSDEID", (Object)pSDataEntity2.getPSDataEntityId());
-                            object.set("PSWFDEID", (Object)pSWFDE2.getPSWFDEId());
-                            object.setIsNull("DRTAG");
-                            serializable = object7.select((ISelectCond)object);
-                            if (((ArrayList)serializable).size() > 0) {
-                                bl5 = false;
-                                ((PSDEDataRelation)((ArrayList)serializable).get(0)).copyTo((IDataObject)object5, true);
-                            } else {
-                                object5.reset();
-                                ((PSDEDataRelationBase)object5).setCodeName(pSWFDE2.getCodeName() + "DR");
-                                ((PSDEDataRelationBase)object5).setPSDEId(pSDataEntity2.getPSDataEntityId());
-                                if (((PSCoreSysServiceBaseBase)((Object)object7)).select(object5, true)) {
-                                    bl5 = false;
-                                    if (StringHelper.isNullOrEmpty((String)((PSDEDataRelationBase)object5).getPSWFDEId())) {
-                                        ((PSDEDataRelationBase)object5).setPSWFDEId(pSWFDE2.getPSWFDEId());
-                                        ((PSDEDataRelationBase)object5).setDRTag(null);
-                                        ((PSCoreSysServiceBaseBase)((Object)object7)).update(object5);
-                                    }
-                                }
-                            }
-                        }
-                        if (bl5) {
-                            ((PSDEDataRelationBase)object5).setPSDEDataRelationId((String)object6);
-                            ((PSDEDataRelationBase)object5).setPSDEId(pSDataEntity2.getPSDataEntityId());
-                            ((PSDEDataRelationBase)object5).setPSDEDataRelationName(StringHelper.format((String)"%1$s/%2$s\u5173\u7cfb\u754c\u9762\u7ec4", (Object)pSDataEntity2.getLogicName(), (Object)pSWFDE2.getPSWFName()));
-                            ((PSDEDataRelationBase)object5).setCodeName(pSWFDE2.getCodeName() + "DR");
-                            ((PSDEDataRelationBase)object5).setPSWFDEId(pSWFDE2.getPSWFDEId());
-                            ((PSCoreSysServiceBaseBase)((Object)object7)).create(object5);
-                            object = (PSDEDRDetailService)ServiceGlobal.getService(PSDEDRDetailService.class, (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                            if (pSSysPDTView != null) {
-                                serializable = new PSDEDRDetail();
-                                ((PSDEDRDetailBase)serializable).setPSDEDRId((String)object6);
-                                ((PSDEDRDetailBase)serializable).setPSDEDRDetailName("dritem1");
-                                ((PSDEDRDetailBase)serializable).setCaption("\u6d41\u7a0b\u5904\u7406");
-                                ((PSDEDRDetailBase)serializable).setDetailType("PDTVIEW");
-                                ((PSDEDRDetailBase)serializable).setOrderValue(1000);
-                                ((PSDEDRDetailBase)serializable).setPSSysPDTViewId(pSSysPDTView.getPSSysPDTViewId());
-                                ((PSDEDRDetailBase)serializable).setPSDEDRGroupId(pSDEDRGroup.getPSDEDRGroupId());
-                                ((PSCoreSysServiceBaseBase)((Object)object)).create(serializable);
-                            }
-                            if (object3 != null) {
-                                serializable = new PSDEDRDetail();
-                                ((PSDEDRDetailBase)serializable).setPSDEDRId((String)object6);
-                                ((PSDEDRDetailBase)serializable).setPSDEDRDetailName("dritem2");
-                                ((PSDEDRDetailBase)serializable).setCaption("\u6d41\u7a0b\u50ac\u529e");
-                                ((PSDEDRDetailBase)serializable).setDetailType("PDTVIEW");
-                                ((PSDEDRDetailBase)serializable).setOrderValue(1100);
-                                ((PSDEDRDetailBase)serializable).setPSSysPDTViewId(((PSSysPDTViewBase)object3).getPSSysPDTViewId());
-                                ((PSDEDRDetailBase)serializable).setPSDEDRGroupId(pSDEDRGroup.getPSDEDRGroupId());
-                                ((PSCoreSysServiceBaseBase)((Object)object)).create(serializable);
-                            }
-                            if (object4 != null) {
-                                serializable = new PSDEDRDetail();
-                                ((PSDEDRDetailBase)serializable).setPSDEDRId((String)object6);
-                                ((PSDEDRDetailBase)serializable).setPSDEDRDetailName("dritem3");
-                                ((PSDEDRDetailBase)serializable).setCaption("\u6d41\u7a0b\u8ddf\u8e2a");
-                                ((PSDEDRDetailBase)serializable).setDetailType("PDTVIEW");
-                                ((PSDEDRDetailBase)serializable).setOrderValue(1200);
-                                ((PSDEDRDetailBase)serializable).setPSSysPDTViewId(((PSSysPDTViewBase)object4).getPSSysPDTViewId());
-                                ((PSDEDRDetailBase)serializable).setPSDEDRGroupId(pSDEDRGroup.getPSDEDRGroupId());
-                                ((PSCoreSysServiceBaseBase)((Object)object)).create(serializable);
-                            }
-                        }
-                        if (bl) {
-                            object5 = new PSDEDataRelation();
-                            object6 = KeyValueHelper.genUniqueId((String)pSDataEntity2.getPSDataEntityId(), (String)pSWFDE2.getPSWFId(), (String)"MOB");
-                            ((PSDEDataRelationBase)object5).setPSDEDataRelationId((String)object6);
-                            object7 = (PSDEDataRelationService)ServiceGlobal.getService(PSDEDataRelationService.class, (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                            bl5 = true;
-                            if (object7.get((IEntity)object5, true)) {
-                                bl5 = false;
-                                if (StringHelper.isNullOrEmpty((String)((PSDEDataRelationBase)object5).getPSWFDEId())) {
-                                    ((PSDEDataRelationBase)object5).setPSWFDEId(pSWFDE2.getPSWFDEId());
-                                    ((PSDEDataRelationBase)object5).setDRTag("MOB");
-                                    ((PSCoreSysServiceBaseBase)((Object)object7)).update(object5);
-                                }
-                            } else {
-                                object5.reset();
-                                ((PSDEDataRelationBase)object5).setPSDEId(pSDataEntity2.getPSDataEntityId());
-                                ((PSDEDataRelationBase)object5).setPSWFDEId(pSWFDE2.getPSWFDEId());
-                                ((PSDEDataRelationBase)object5).setDRTag("MOB");
-                                if (object7.selectOne((IEntity)object5, true)) {
-                                    bl5 = false;
-                                } else {
-                                    object5.reset();
-                                    ((PSDEDataRelationBase)object5).setCodeName(pSWFDE2.getCodeName() + "MobDR");
-                                    ((PSDEDataRelationBase)object5).setPSDEId(pSDataEntity2.getPSDataEntityId());
-                                    if (((PSCoreSysServiceBaseBase)((Object)object7)).select(object5, true)) {
-                                        bl5 = false;
-                                        if (StringHelper.isNullOrEmpty((String)((PSDEDataRelationBase)object5).getPSWFDEId())) {
-                                            ((PSDEDataRelationBase)object5).setPSWFDEId(pSWFDE2.getPSWFDEId());
-                                            ((PSDEDataRelationBase)object5).setDRTag("MOB");
-                                            ((PSCoreSysServiceBaseBase)((Object)object7)).update(object5);
-                                        }
-                                    }
-                                }
-                            }
-                            if (bl5) {
-                                ((PSDEDataRelationBase)object5).setPSDEDataRelationId((String)object6);
-                                ((PSDEDataRelationBase)object5).setPSDEId(pSDataEntity2.getPSDataEntityId());
-                                ((PSDEDataRelationBase)object5).setPSDEDataRelationName(StringHelper.format((String)"%1$s/%2$s\u5173\u7cfb\u754c\u9762\u7ec4\uff08\u79fb\u52a8\u7aef\uff09", (Object)pSDataEntity2.getLogicName(), (Object)pSWFDE2.getPSWFName()));
-                                ((PSDEDataRelationBase)object5).setCodeName(pSWFDE2.getCodeName() + "MobDR");
-                                ((PSDEDataRelationBase)object5).setPSWFDEId(pSWFDE2.getPSWFDEId());
-                                ((PSDEDataRelationBase)object5).setDRTag("MOB");
-                                ((PSCoreSysServiceBaseBase)((Object)object7)).create(object5);
-                                object = (PSDEDRDetailService)ServiceGlobal.getService(PSDEDRDetailService.class, (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                                if (pSSysPDTView != null) {
-                                    serializable = new PSDEDRDetail();
-                                    ((PSDEDRDetailBase)serializable).setPSDEDRId((String)object6);
-                                    ((PSDEDRDetailBase)serializable).setPSDEDRDetailName("dritem1");
-                                    ((PSDEDRDetailBase)serializable).setCaption("\u6d41\u7a0b\u5904\u7406");
-                                    ((PSDEDRDetailBase)serializable).setDetailType("PDTVIEW");
-                                    ((PSDEDRDetailBase)serializable).setOrderValue(1000);
-                                    ((PSDEDRDetailBase)serializable).setPSSysPDTViewId(pSSysPDTView.getPSSysPDTViewId());
-                                    ((PSDEDRDetailBase)serializable).setPSDEDRGroupId(pSDEDRGroup.getPSDEDRGroupId());
-                                    ((PSCoreSysServiceBaseBase)((Object)object)).create(serializable);
-                                }
-                                if (object3 != null) {
-                                    serializable = new PSDEDRDetail();
-                                    ((PSDEDRDetailBase)serializable).setPSDEDRId((String)object6);
-                                    ((PSDEDRDetailBase)serializable).setPSDEDRDetailName("dritem2");
-                                    ((PSDEDRDetailBase)serializable).setCaption("\u6d41\u7a0b\u50ac\u529e");
-                                    ((PSDEDRDetailBase)serializable).setDetailType("PDTVIEW");
-                                    ((PSDEDRDetailBase)serializable).setOrderValue(1100);
-                                    ((PSDEDRDetailBase)serializable).setPSSysPDTViewId(((PSSysPDTViewBase)object3).getPSSysPDTViewId());
-                                    ((PSDEDRDetailBase)serializable).setPSDEDRGroupId(pSDEDRGroup.getPSDEDRGroupId());
-                                    ((PSCoreSysServiceBaseBase)((Object)object)).create(serializable);
-                                }
-                                if (object4 != null) {
-                                    serializable = new PSDEDRDetail();
-                                    ((PSDEDRDetailBase)serializable).setPSDEDRId((String)object6);
-                                    ((PSDEDRDetailBase)serializable).setPSDEDRDetailName("dritem3");
-                                    ((PSDEDRDetailBase)serializable).setCaption("\u6d41\u7a0b\u8ddf\u8e2a");
-                                    ((PSDEDRDetailBase)serializable).setDetailType("PDTVIEW");
-                                    ((PSDEDRDetailBase)serializable).setOrderValue(1200);
-                                    ((PSDEDRDetailBase)serializable).setPSSysPDTViewId(((PSSysPDTViewBase)object4).getPSSysPDTViewId());
-                                    ((PSDEDRDetailBase)serializable).setPSDEDRGroupId(pSDEDRGroup.getPSDEDRGroupId());
-                                    ((PSCoreSysServiceBaseBase)((Object)object)).create(serializable);
-                                }
-                            }
-                        }
-                        if (pSCodeList3 == null) break block53;
-                        object5 = pSCodeList3.getPSCodeItems();
-                        object6 = ((ArrayList)object5).iterator();
-                        while (object6.hasNext()) {
-                            PSViewTypeStruct pSViewTypeStruct;
-                            object7 = (PSCodeItem)object6.next();
-                            for (String string : initWFViewTypes) {
-                                pSViewTypeStruct = PSModelGlobal.getPSViewType(string);
-                                PSDEViewBaseService.this.initDEWFView(pSDataEntity2, (PSCodeItem)object7, pSViewTypeStruct, pSWFDE2, pSCodeList, pSCodeList2, arrayList);
-                            }
-                            if (!bl) continue;
-                            for (String string : initMobWFViewTypes) {
-                                pSViewTypeStruct = PSModelGlobal.getPSViewType(string);
-                                PSDEViewBaseService.this.initDEWFView(pSDataEntity2, (PSCodeItem)object7, pSViewTypeStruct, pSWFDE2, pSCodeList, pSCodeList2, arrayList);
-                            }
-                        }
-                        break block54;
-                    }
-                    for (String string : initWFViewTypes) {
-                        object = PSModelGlobal.getPSViewType(string);
-                        PSDEViewBaseService.this.initDEWFView(pSDataEntity2, null, (PSViewTypeStruct)object, pSWFDE2, pSCodeList, pSCodeList2, arrayList);
-                    }
-                    if (!bl) break block54;
-                    for (String string : initMobWFViewTypes) {
-                        object = PSModelGlobal.getPSViewType(string);
-                        PSDEViewBaseService.this.initDEWFView(pSDataEntity2, null, (PSViewTypeStruct)object, pSWFDE2, pSCodeList, pSCodeList2, arrayList);
-                    }
-                }
-            }
-        });
-    }
+      SelectCond var8 = new SelectCond();
+      var8.setFetchFirst(true);
+      var8.set("PSDEID", var2.getPSDEId());
+      if (StringHelper.isNullOrEmpty(var2.getPSWFDEId())) {
+         var8.setIsNull("PSWFDEID");
+      } else {
+         var8.set("PSWFDEID", var2.getPSWFDEId());
+      }
 
-    /*
-     * WARNING - void declaration
-     */
-    protected void initDEWFView(PSDataEntity pSDataEntity, PSCodeItem pSCodeItem, PSViewTypeStruct pSViewTypeStruct, PSWFDE pSWFDE, PSCodeList pSCodeList, PSCodeList pSCodeList2, ArrayList<PSWFVersion> arrayList) throws Exception {
-        boolean bl;
-        boolean bl2 = DataObject.getBoolValue((Integer)pSWFDE.getPSWF().getEnableDynaSys(), (boolean)false);
-        int n = DataObject.getIntegerValue((Object)pSWFDE.getWFProxyMode(), (Integer)0);
-        boolean bl3 = (n & 1) == 1;
-        boolean bl4 = bl = n != 1;
-        if (bl3) {
-            bl2 = false;
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEWFEXPVIEW", (boolean)true) == 0) {
-            PSWorkflow pSWorkflow = pSWFDE.getPSWF();
-            PSDEViewBase pSDEViewBase = new PSDEViewBase();
-            pSDEViewBase.setPSWFDEId(pSWFDE.getPSWFDEId());
-            pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName()));
-            if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle(), (Object)pSWorkflow.getPSWorkflowName()));
-            }
-            pSDEViewBase.setCodeName(StringHelper.format((String)"%1$s_%2$s", (Object)pSWFDE.getCodeName(), (Object)pSViewTypeStruct.getCodeName()));
-            pSDEViewBase.setDyncMode(bl2 ? 1 : 0);
-            this.initDEView(pSDataEntity, pSViewTypeStruct, pSWorkflow.getPSWorkflowId(), "", pSDEViewBase, "", "");
-            return;
-        }
-        String string = "";
-        if (pSCodeItem != null && StringHelper.isNullOrEmpty((String)(string = pSCodeItem.getCodeName()))) {
-            string = pSCodeItem.getCodeItemValue();
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEWFGRIDVIEW", (boolean)true) == 0) {
-            String string2;
-            PSWorkflow pSWorkflow = pSWFDE.getPSWF();
-            ArrayList<PSCodeItem> arrayList2 = StringHelper.format((String)"%1$s:D", (Object)pSWFDE.getCodeName());
-            arrayList2 = ((String)((Object)arrayList2)).toUpperCase();
-            Iterator<PSCodeItem> iterator = new PSDEViewBase();
-            ((PSDEViewBaseBase)((Object)iterator)).setWFViewParam(0);
-            ((PSDEViewBaseBase)((Object)iterator)).setPSWFDEId(pSWFDE.getPSWFDEId());
-            ((PSDEViewBaseBase)((Object)iterator)).setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName()));
-            if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                ((PSDEViewBaseBase)((Object)iterator)).setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle(), (Object)pSWorkflow.getPSWorkflowName()));
-            }
-            ((PSDEViewBaseBase)((Object)iterator)).setCodeName(StringHelper.format((String)"%1$s_D_%2$s", (Object)pSWFDE.getCodeName(), (Object)pSViewTypeStruct.getCodeName()));
-            ((PSDEViewBaseBase)((Object)iterator)).setDyncMode(bl2 ? 1 : 0);
-            this.initDEView(pSDataEntity, pSViewTypeStruct, pSWorkflow.getPSWorkflowId(), "D", (PSDEViewBase)((Object)iterator), "WFMDATAVIEW", (String)((Object)arrayList2));
-            if (pSCodeList2 != null && pSCodeList2.getPSCodeItems() != null) {
-                arrayList2 = pSCodeList2.getPSCodeItems();
-                for (PSCodeItem pSCodeItem2 : arrayList2) {
-                    string2 = StringHelper.format((String)"%1$s:D:%2$s", (Object)pSWFDE.getCodeName(), (Object)pSCodeItem2.getCodeItemValue());
-                    string2 = string2.toUpperCase();
-                    PSDEViewBase pSDEViewBase = new PSDEViewBase();
-                    pSDEViewBase.setWFViewParam(0);
-                    pSDEViewBase.setPSWFDEId(pSWFDE.getPSWFDEId());
-                    pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s:%4$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName(), (Object)pSCodeItem2.getPSCodeItemName()));
-                    if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                        pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s(%3$s:%4$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle(), (Object)pSWorkflow.getPSWorkflowName(), (Object)pSCodeItem2.getPSCodeItemName()));
-                    }
-                    pSDEViewBase.setCodeName(StringHelper.format((String)"%1$s_D%2$s_%3$s", (Object)pSWFDE.getCodeName(), (Object)pSCodeItem2.getCodeItemValue(), (Object)pSViewTypeStruct.getCodeName()));
-                    pSDEViewBase.setDyncMode(bl2 ? 1 : 0);
-                    this.initDEView(pSDataEntity, pSViewTypeStruct, pSWorkflow.getPSWorkflowId(), "D:" + pSCodeItem2.getCodeItemValue(), pSDEViewBase, "WFMDATAVIEW", string2);
-                }
-            }
-            arrayList2 = StringHelper.format((String)"%1$s:W", (Object)pSWFDE.getCodeName());
-            arrayList2 = ((String)((Object)arrayList2)).toUpperCase();
-            iterator = new PSDEViewBase();
-            ((PSDEViewBaseBase)((Object)iterator)).setWFViewParam(1);
-            ((PSDEViewBaseBase)((Object)iterator)).setPSWFDEId(pSWFDE.getPSWFDEId());
-            ((PSDEViewBaseBase)((Object)iterator)).setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName()));
-            if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                ((PSDEViewBaseBase)((Object)iterator)).setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle(), (Object)pSWorkflow.getPSWorkflowName()));
-            }
-            ((PSDEViewBaseBase)((Object)iterator)).setCodeName(StringHelper.format((String)"%1$s_W_%2$s", (Object)pSWFDE.getCodeName(), (Object)pSViewTypeStruct.getCodeName()));
-            ((PSDEViewBaseBase)((Object)iterator)).setDyncMode(bl2 ? 1 : 0);
-            this.initDEView(pSDataEntity, pSViewTypeStruct, pSWorkflow.getPSWorkflowId(), "W", (PSDEViewBase)((Object)iterator), "WFMDATAVIEW", (String)((Object)arrayList2));
-            if (pSCodeList != null && pSCodeList.getPSCodeItems() != null) {
-                arrayList2 = pSCodeList.getPSCodeItems();
-                for (PSCodeItem pSCodeItem2 : arrayList2) {
-                    string2 = StringHelper.format((String)"%1$s:W:%2$s", (Object)pSWFDE.getCodeName(), (Object)pSCodeItem2.getCodeItemValue());
-                    string2 = string2.toUpperCase();
-                    PSDEViewBase pSWFVersion = new PSDEViewBase();
-                    pSWFVersion.setWFViewParam(1);
-                    pSWFVersion.setWFViewParam3(pSCodeItem2.getCodeItemValue());
-                    pSWFVersion.setPSWFDEId(pSWFDE.getPSWFDEId());
-                    pSWFVersion.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s:%4$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName(), (Object)pSCodeItem2.getPSCodeItemName()));
-                    if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                        pSWFVersion.setTitle(StringHelper.format((String)"%1$s%2$s(%3$s:%4$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle(), (Object)pSWorkflow.getPSWorkflowName(), (Object)pSCodeItem2.getPSCodeItemName()));
-                    }
-                    pSWFVersion.setCodeName(StringHelper.format((String)"%1$s_W%2$s_%3$s", (Object)pSWFDE.getCodeName(), (Object)pSCodeItem2.getCodeItemValue(), (Object)pSViewTypeStruct.getCodeName()));
-                    this.initDEView(pSDataEntity, pSViewTypeStruct, pSWorkflow.getPSWorkflowId(), "W:" + pSCodeItem2.getCodeItemValue(), pSWFVersion, "WFMDATAVIEW", string2);
-                }
-            }
-            return;
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEWFEDITVIEW", (boolean)true) == 0 || StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEWFEDITVIEW2", (boolean)true) == 0 || StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEWFEDITVIEW3", (boolean)true) == 0 || StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEWFEDITVIEW4", (boolean)true) == 0) {
-            PSWorkflow pSWorkflow = pSWFDE.getPSWF();
-            PSViewTypeStruct pSViewTypeStruct2 = pSViewTypeStruct;
-            if (!StringHelper.isNullOrEmpty((String)pSWorkflow.getWFEditViewType())) {
-                pSViewTypeStruct2 = PSModelGlobal.getPSViewType(pSWorkflow.getWFEditViewType());
-            }
-            Object object2 = StringHelper.format((String)"%1$s:D", (Object)pSWFDE.getCodeName());
-            if (pSCodeItem != null) {
-                object2 = StringHelper.format((String)"%1$s:%2$s", (Object)pSCodeItem.getCodeItemValue(), (Object)object2);
-            }
-            object2 = ((String)object2).toUpperCase();
-            Object object3 = new PSDEViewBase();
-            ((PSDEViewBaseBase)object3).setWFViewParam(0);
-            ((PSDEViewBaseBase)object3).setPSWFDEId(pSWFDE.getPSWFDEId());
-            if (pSCodeItem != null) {
-                ((PSDEViewBaseBase)object3).setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)(%4$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct2.getPSViewTypeName(), (Object)pSCodeItem.getPSCodeItemName(), (Object)pSWorkflow.getPSWorkflowName()));
-                if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                    ((PSDEViewBaseBase)object3).setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)(%4$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct2.getTitle(), (Object)pSCodeItem.getPSCodeItemName(), (Object)pSWorkflow.getPSWorkflowName()));
-                }
-            } else {
-                ((PSDEViewBaseBase)object3).setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct2.getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName()));
-                if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                    ((PSDEViewBaseBase)object3).setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct2.getTitle(), (Object)pSWorkflow.getPSWorkflowName()));
-                }
-            }
-            if (pSCodeItem != null) {
-                ((PSDEViewBaseBase)object3).setCodeName(StringHelper.format((String)"%3$s_%1$s_D_%2$s", (Object)pSWFDE.getCodeName(), (Object)pSViewTypeStruct2.getCodeName(), (Object)string));
-            } else {
-                ((PSDEViewBaseBase)object3).setCodeName(StringHelper.format((String)"%1$s_D_%2$s", (Object)pSWFDE.getCodeName(), (Object)pSViewTypeStruct2.getCodeName()));
-            }
-            Object object4 = "";
-            object4 = pSCodeItem != null ? StringHelper.format((String)"%1$s:D", (Object)pSCodeItem.getCodeItemValue()) : StringHelper.format((String)"D");
-            ((PSDEViewBaseBase)object3).setDyncMode(bl2 ? 1 : 0);
-            this.initDEView(pSDataEntity, pSViewTypeStruct2, pSWorkflow.getPSWorkflowId(), (String)object4, (PSDEViewBase)object3, "WFEDITVIEW", (String)object2);
-            if (bl3) {
-                void var18_39;
-                object2 = PSModelGlobal.getPSViewType("DEWFEDITVIEW9");
-                object3 = StringHelper.format((String)"%1$s:ED", (Object)pSWFDE.getCodeName());
-                if (pSCodeItem != null) {
-                    object3 = StringHelper.format((String)"%1$s:%2$s", (Object)pSCodeItem.getCodeItemValue(), (Object)object3);
-                }
-                object3 = ((String)object3).toUpperCase();
-                object4 = new PSDEViewBase();
-                ((PSDEViewBaseBase)object4).setWFViewParam(0);
-                ((PSDEViewBaseBase)object4).setPSWFDEId(pSWFDE.getPSWFDEId());
-                if (pSCodeItem != null) {
-                    ((PSDEViewBaseBase)object4).setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)(%4$s)", (Object)pSDataEntity.getLogicName(), (Object)((PSViewTypeBase)object2).getPSViewTypeName(), (Object)pSCodeItem.getPSCodeItemName(), (Object)pSWorkflow.getPSWorkflowName()));
-                    if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                        ((PSDEViewBaseBase)object4).setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)(%4$s)", (Object)pSDataEntity.getLogicName(), (Object)((PSViewTypeBase)object2).getTitle(), (Object)pSCodeItem.getPSCodeItemName(), (Object)pSWorkflow.getPSWorkflowName()));
-                    }
-                } else {
-                    ((PSDEViewBaseBase)object4).setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)((PSViewTypeBase)object2).getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName()));
-                    if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                        ((PSDEViewBaseBase)object4).setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)((PSViewTypeBase)object2).getTitle(), (Object)pSWorkflow.getPSWorkflowName()));
-                    }
-                }
-                if (pSCodeItem != null) {
-                    ((PSDEViewBaseBase)object4).setCodeName(StringHelper.format((String)"%3$s_%1$s_ED_%2$s", (Object)pSWFDE.getCodeName(), (Object)((PSViewTypeBase)object2).getCodeName(), (Object)string));
-                } else {
-                    ((PSDEViewBaseBase)object4).setCodeName(StringHelper.format((String)"%1$s_ED_%2$s", (Object)pSWFDE.getCodeName(), (Object)((PSViewTypeBase)object2).getCodeName()));
-                }
-                String pSDEViewBase = "";
-                if (pSCodeItem != null) {
-                    String string2 = StringHelper.format((String)"%1$s:ED", (Object)pSCodeItem.getCodeItemValue());
-                } else {
-                    String string3 = StringHelper.format((String)"ED");
-                }
-                ((PSDEViewBaseBase)object4).setDyncMode(bl2 ? 1 : 0);
-                this.initDEView(pSDataEntity, (PSViewTypeStruct)object2, pSWorkflow.getPSWorkflowId(), (String)var18_39, (PSDEViewBase)object4, "WFEDITVIEW", (String)object3);
-            }
-            if (bl && pSCodeList != null && pSCodeList.getPSCodeItems() != null) {
-                object2 = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
-                object3 = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-                for (PSWFVersion pSWFVersion : arrayList) {
-                    int n2 = pSWFVersion.getWFVersion();
-                    HashMap<String, PSWFProcess> hashMap = new HashMap<String, PSWFProcess>();
-                    ArrayList<PSWFProcess> arrayList2 = ((PSWFProcessServiceBase)object2).selectByPSWFVersion(pSWFVersion);
-                    for (PSWFProcess pSWFProcess : arrayList2) {
-                        if (StringHelper.isNullOrEmpty((String)pSWFProcess.getWFStepValue())) continue;
-                        hashMap.put(pSWFProcess.getWFStepValue(), pSWFProcess);
-                    }
-                    ArrayList<PSCodeItem> arrayList3 = pSCodeList.getPSCodeItems();
-                    Iterator iterator = arrayList3.iterator();
-                    while (iterator.hasNext()) {
-                        PSCodeItem pSCodeItem2 = (PSCodeItem)iterator.next();
-                        PSWFProcess pSWFProcess = (PSWFProcess)hashMap.get(pSCodeItem2.getCodeItemValue());
-                        if (pSWFProcess == null) continue;
-                        PSViewTypeStruct pSViewTypeStruct3 = pSViewTypeStruct2;
-                        if (!StringHelper.isNullOrEmpty((String)pSWFProcess.getWFEditViewType())) {
-                            pSViewTypeStruct3 = PSModelGlobal.getPSViewType(pSWFProcess.getWFEditViewType());
-                        }
-                        String string4 = StringHelper.format((String)"%1$s:%3$sW:%2$s", (Object)pSWFDE.getCodeName(), (Object)pSCodeItem2.getCodeItemValue(), (Object)(n2 == 1 ? "" : Integer.valueOf(n2)));
-                        if (pSCodeItem != null) {
-                            string4 = StringHelper.format((String)"%1$s:%2$s", (Object)pSCodeItem.getCodeItemValue(), (Object)string4);
-                        }
-                        string4 = string4.toUpperCase();
-                        PSDEViewBase pSDEViewBase = new PSDEViewBase();
-                        pSDEViewBase.setWFViewParam(1);
-                        pSDEViewBase.setWFViewParam3(pSCodeItem2.getCodeItemValue());
-                        pSDEViewBase.setPSWFDEId(pSWFDE.getPSWFDEId());
-                        pSDEViewBase.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                        pSDEViewBase.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                        if (pSCodeItem != null) {
-                            pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)(%4$sv%6$s:%5$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct3.getPSViewTypeName(), (Object)pSCodeItem.getPSCodeItemName(), (Object)pSWorkflow.getPSWorkflowName(), (Object)pSCodeItem2.getPSCodeItemName(), (Object)n2));
-                            if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                                pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)(%4$sv%6$s:%5$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct3.getTitle(), (Object)pSCodeItem.getPSCodeItemName(), (Object)pSWorkflow.getPSWorkflowName(), (Object)pSCodeItem2.getPSCodeItemName(), (Object)n2));
-                            }
-                        } else {
-                            pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$sv%5$s:%4$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct3.getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName(), (Object)pSCodeItem2.getPSCodeItemName(), (Object)n2));
-                            if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                                pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s(%3$sv%5$s:%4$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct3.getTitle(), (Object)pSWorkflow.getPSWorkflowName(), (Object)pSCodeItem2.getPSCodeItemName(), (Object)n2));
-                            }
-                        }
-                        if (pSCodeItem != null) {
-                            pSDEViewBase.setCodeName(StringHelper.format((String)"%4$s_%1$s_%5$sW%2$s_%3$s", (Object)pSWFDE.getCodeName(), (Object)pSCodeItem2.getCodeItemValue(), (Object)pSViewTypeStruct3.getCodeName(), (Object)string, (Object)(n2 == 1 ? "" : Integer.valueOf(n2))));
-                        } else {
-                            pSDEViewBase.setCodeName(StringHelper.format((String)"%1$s_%4$sW%2$s_%3$s", (Object)pSWFDE.getCodeName(), (Object)pSCodeItem2.getCodeItemValue(), (Object)pSViewTypeStruct3.getCodeName(), (Object)(n2 == 1 ? "" : Integer.valueOf(n2))));
-                        }
-                        String string5 = "";
-                        string5 = pSCodeItem != null ? StringHelper.format((String)"%1$s:%3$sD:%2$s", (Object)pSCodeItem.getCodeItemValue(), (Object)pSCodeItem2.getCodeItemValue(), (Object)(n2 == 1 ? "" : Integer.valueOf(n2))) : StringHelper.format((String)"%2$sW:%1$s", (Object)pSCodeItem2.getCodeItemValue(), (Object)(n2 == 1 ? "" : Integer.valueOf(n2)));
-                        PSDEViewBase pSDEViewBase2 = this.initDEView(pSDataEntity, pSViewTypeStruct3, pSWorkflow.getPSWorkflowId(), string5, pSDEViewBase, "WFEDITVIEW", string4);
-                        if (pSDEViewBase2 == null || pSWFProcess == null || StringHelper.isNullOrEmpty((String)pSWFProcess.getPSDEFormId())) continue;
-                        PSDEViewCtrl pSDEViewCtrl = new PSDEViewCtrl();
-                        pSDEViewCtrl.setPSDEViewBaseId(pSDEViewBase2.getPSDEViewBaseId());
-                        pSDEViewCtrl.setPSDEViewCtrlType("FORM");
-                        if (!((PSCoreSysServiceBaseBase)((Object)object3)).select(pSDEViewCtrl, true) || StringHelper.compare((String)pSWFProcess.getPSDEFormId(), (String)pSDEViewCtrl.getPSDEFormId(), (boolean)false) == 0) continue;
-                        pSDEViewCtrl.setPSDEFormId(pSWFProcess.getPSDEFormId());
-                        pSDEViewCtrl.setPSDEFormName(pSWFProcess.getPSDEFormName());
-                        ((PSCoreSysServiceBase)object3).update(pSDEViewCtrl, false);
-                    }
-                }
-            } else if (bl3) {
-                object2 = pSViewTypeStruct2;
-                object3 = StringHelper.format((String)"%1$s:W", (Object)pSWFDE.getCodeName());
-                object3 = ((String)object3).toUpperCase();
-                object4 = new PSDEViewBase();
-                ((PSDEViewBaseBase)object4).setWFViewParam(1);
-                ((PSDEViewBaseBase)object4).setPSWFDEId(pSWFDE.getPSWFDEId());
-                ((PSDEViewBaseBase)object4).setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)((PSViewTypeBase)object2).getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName()));
-                if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                    ((PSDEViewBaseBase)object4).setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)((PSViewTypeBase)object2).getTitle(), (Object)pSWorkflow.getPSWorkflowName()));
-                }
-                ((PSDEViewBaseBase)object4).setCodeName(StringHelper.format((String)"%1$s_W_%2$s", (Object)pSWFDE.getCodeName(), (Object)((PSViewTypeBase)object2).getCodeName()));
-                String string6 = "W";
-                ((PSDEViewBaseBase)object4).setDyncMode(bl2 ? 1 : 0);
-                PSDEViewBase pSDEViewBase = this.initDEView(pSDataEntity, (PSViewTypeStruct)object2, pSWorkflow.getPSWorkflowId(), string6, (PSDEViewBase)object4, "WFEDITVIEW", (String)object3);
-            } else if (bl2 && arrayList.size() > 0) {
-                object2 = arrayList.get(0);
-                object3 = pSViewTypeStruct2;
-                object4 = StringHelper.format((String)"%1$s:W", (Object)pSWFDE.getCodeName());
-                object4 = ((String)object4).toUpperCase();
-                PSDEViewBase pSDEViewBase = new PSDEViewBase();
-                pSDEViewBase.setWFViewParam(1);
-                pSDEViewBase.setPSWFDEId(pSWFDE.getPSWFDEId());
-                pSDEViewBase.setPSWFVersionId(((PSWFVersionBase)object2).getPSWFVersionId());
-                pSDEViewBase.setPSWFVersionName(((PSWFVersionBase)object2).getPSWFVersionName());
-                pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)((PSViewTypeBase)object3).getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName()));
-                if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                    pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)((PSViewTypeBase)object3).getTitle(), (Object)pSWorkflow.getPSWorkflowName()));
-                }
-                pSDEViewBase.setCodeName(StringHelper.format((String)"%1$s_W_%2$s", (Object)pSWFDE.getCodeName(), (Object)((PSViewTypeBase)object3).getCodeName()));
-                String string7 = "W";
-                pSDEViewBase.setDyncMode(bl2 ? 1 : 0);
-                PSDEViewBase pSDEViewBase3 = this.initDEView(pSDataEntity, (PSViewTypeStruct)object3, pSWorkflow.getPSWorkflowId(), string7, pSDEViewBase, "WFEDITVIEW", (String)object4);
-            }
-            return;
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBWFMDVIEW", (boolean)true) == 0) {
-            PSWorkflow pSWorkflow = pSWFDE.getPSWF();
-            String string6 = StringHelper.format((String)"%1$s:D", (Object)pSWFDE.getCodeName());
-            string6 = string6.toUpperCase();
-            PSDEViewBase pSDEViewBase = new PSDEViewBase();
-            pSDEViewBase.setWFViewParam(0);
-            pSDEViewBase.setPSWFDEId(pSWFDE.getPSWFDEId());
-            pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName()));
-            if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle(), (Object)pSWorkflow.getPSWorkflowName()));
-            }
-            pSDEViewBase.setCodeName(StringHelper.format((String)"%1$s_D_%2$s", (Object)pSWFDE.getCodeName(), (Object)pSViewTypeStruct.getCodeName()));
-            pSDEViewBase.setDyncMode(bl2 ? 1 : 0);
-            this.initDEView(pSDataEntity, pSViewTypeStruct, pSWorkflow.getPSWorkflowId(), "D", pSDEViewBase, "MOBWFMDATAVIEW", string6);
-            string6 = StringHelper.format((String)"%1$s:W", (Object)pSWFDE.getCodeName());
-            string6 = string6.toUpperCase();
-            pSDEViewBase = new PSDEViewBase();
-            pSDEViewBase.setWFViewParam(1);
-            pSDEViewBase.setPSWFDEId(pSWFDE.getPSWFDEId());
-            pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName()));
-            if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle(), (Object)pSWorkflow.getPSWorkflowName()));
-            }
-            pSDEViewBase.setCodeName(StringHelper.format((String)"%1$s_W_%2$s", (Object)pSWFDE.getCodeName(), (Object)pSViewTypeStruct.getCodeName()));
-            pSDEViewBase.setDyncMode(bl2 ? 1 : 0);
-            this.initDEView(pSDataEntity, pSViewTypeStruct, pSWorkflow.getPSWorkflowId(), "W", pSDEViewBase, "MOBWFMDATAVIEW", string6);
-            return;
-        }
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBWFEDITVIEW", (boolean)true) == 0 || StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBWFEDITVIEW2", (boolean)true) == 0 || StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBWFEDITVIEW3", (boolean)true) == 0 || StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEMOBWFEDITVIEW4", (boolean)true) == 0) {
-            PSWorkflow pSWorkflow = pSWFDE.getPSWF();
-            PSViewTypeStruct pSViewTypeStruct4 = pSViewTypeStruct;
-            if (!StringHelper.isNullOrEmpty((String)pSWorkflow.getMobWFEditViewType())) {
-                pSViewTypeStruct4 = PSModelGlobal.getPSViewType(pSWorkflow.getMobWFEditViewType());
-            }
-            Object object = StringHelper.format((String)"%1$s:D", (Object)pSWFDE.getCodeName());
-            if (pSCodeItem != null) {
-                object = StringHelper.format((String)"%1$s:%2$s", (Object)pSCodeItem.getCodeItemValue(), (Object)object);
-            }
-            object = ((String)object).toUpperCase();
-            Object object7 = new PSDEViewBase();
-            ((PSDEViewBaseBase)object7).setWFViewParam(0);
-            ((PSDEViewBaseBase)object7).setPSWFDEId(pSWFDE.getPSWFDEId());
-            if (pSCodeItem != null) {
-                ((PSDEViewBaseBase)object7).setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)(%4$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct4.getPSViewTypeName(), (Object)pSCodeItem.getPSCodeItemName(), (Object)pSWorkflow.getPSWorkflowName()));
-                if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct4.getTitle())) {
-                    ((PSDEViewBaseBase)object7).setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)(%4$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct4.getTitle(), (Object)pSCodeItem.getPSCodeItemName(), (Object)pSWorkflow.getPSWorkflowName()));
-                }
-            } else {
-                ((PSDEViewBaseBase)object7).setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct4.getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName()));
-                if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct4.getTitle())) {
-                    ((PSDEViewBaseBase)object7).setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct4.getTitle(), (Object)pSWorkflow.getPSWorkflowName()));
-                }
-            }
-            if (pSCodeItem != null) {
-                ((PSDEViewBaseBase)object7).setCodeName(StringHelper.format((String)"%3$s_%1$s_D_%2$s", (Object)pSWFDE.getCodeName(), (Object)pSViewTypeStruct4.getCodeName(), (Object)string));
-            } else {
-                ((PSDEViewBaseBase)object7).setCodeName(StringHelper.format((String)"%1$s_D_%2$s", (Object)pSWFDE.getCodeName(), (Object)pSViewTypeStruct4.getCodeName()));
-            }
-            Object object8 = "";
-            object8 = pSCodeItem != null ? StringHelper.format((String)"%1$s:D", (Object)pSCodeItem.getCodeItemValue()) : StringHelper.format((String)"D");
-            this.initDEView(pSDataEntity, pSViewTypeStruct4, pSWorkflow.getPSWorkflowId(), (String)object8, (PSDEViewBase)object7, "MOBWFEDITVIEW", (String)object);
-            if (pSCodeList != null && pSCodeList.getPSCodeItems() != null) {
-                object = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, (SessionFactory)this.getSessionFactory());
-                object7 = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-                for (PSWFVersion pSWFVersion : arrayList) {
-                    int n3 = pSWFVersion.getWFVersion();
-                    HashMap<String, PSWFProcess> hashMap = new HashMap<String, PSWFProcess>();
-                    ArrayList<PSWFProcess> arrayList4 = ((PSWFProcessServiceBase)object).selectByPSWFVersion(pSWFVersion);
-                    for (PSWFProcess pSWFProcess : arrayList4) {
-                        if (StringHelper.isNullOrEmpty((String)pSWFProcess.getWFStepValue())) continue;
-                        hashMap.put(pSWFProcess.getWFStepValue(), pSWFProcess);
-                    }
-                    ArrayList<PSCodeItem> arrayList5 = pSCodeList.getPSCodeItems();
-                    Iterator iterator = arrayList5.iterator();
-                    while (iterator.hasNext()) {
-                        PSCodeItem pSCodeItem3 = (PSCodeItem)iterator.next();
-                        PSWFProcess pSWFProcess = (PSWFProcess)hashMap.get(pSCodeItem3.getCodeItemValue());
-                        if (pSWFProcess == null) continue;
-                        String string8 = StringHelper.format((String)"%1$s:%3$sW:%2$s", (Object)pSWFDE.getCodeName(), (Object)pSCodeItem3.getCodeItemValue(), (Object)(n3 == 1 ? "" : Integer.valueOf(n3)));
-                        if (pSCodeItem != null) {
-                            string8 = StringHelper.format((String)"%1$s:%2$s", (Object)pSCodeItem.getCodeItemValue(), (Object)string8);
-                        }
-                        string8 = string8.toUpperCase();
-                        PSDEViewBase pSDEViewBase = new PSDEViewBase();
-                        pSDEViewBase.setWFViewParam(1);
-                        pSDEViewBase.setWFViewParam3(pSCodeItem3.getCodeItemValue());
-                        pSDEViewBase.setPSWFDEId(pSWFDE.getPSWFDEId());
-                        pSDEViewBase.setPSWFVersionId(pSWFVersion.getPSWFVersionId());
-                        pSDEViewBase.setPSWFVersionName(pSWFVersion.getPSWFVersionName());
-                        if (pSCodeItem != null) {
-                            pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)(%4$sv%6$s:%5$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct4.getPSViewTypeName(), (Object)pSCodeItem.getPSCodeItemName(), (Object)pSWorkflow.getPSWorkflowName(), (Object)pSCodeItem3.getPSCodeItemName(), (Object)n3));
-                            if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct4.getTitle())) {
-                                pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)(%4$sv%6$s:%5$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct4.getTitle(), (Object)pSCodeItem.getPSCodeItemName(), (Object)pSWorkflow.getPSWorkflowName(), (Object)pSCodeItem3.getPSCodeItemName(), (Object)n3));
-                            }
-                        } else {
-                            pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$sv%5$s:%4$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct4.getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName(), (Object)pSCodeItem3.getPSCodeItemName(), (Object)n3));
-                            if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct4.getTitle())) {
-                                pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s(%3$sv%5$s:%4$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct4.getTitle(), (Object)pSWorkflow.getPSWorkflowName(), (Object)pSCodeItem3.getPSCodeItemName(), (Object)n3));
-                            }
-                        }
-                        if (pSCodeItem != null) {
-                            pSDEViewBase.setCodeName(StringHelper.format((String)"%4$s_%1$s_%5$sW%2$s_%3$s", (Object)pSWFDE.getCodeName(), (Object)pSCodeItem3.getCodeItemValue(), (Object)pSViewTypeStruct4.getCodeName(), (Object)string, (Object)(n3 == 1 ? "" : Integer.valueOf(n3))));
-                        } else {
-                            pSDEViewBase.setCodeName(StringHelper.format((String)"%1$s_%4$sW%2$s_%3$s", (Object)pSWFDE.getCodeName(), (Object)pSCodeItem3.getCodeItemValue(), (Object)pSViewTypeStruct4.getCodeName(), (Object)(n3 == 1 ? "" : Integer.valueOf(n3))));
-                        }
-                        String string9 = "";
-                        string9 = pSCodeItem != null ? StringHelper.format((String)"%1$s:%3$sD:%2$s", (Object)pSCodeItem.getCodeItemValue(), (Object)pSCodeItem3.getCodeItemValue(), (Object)(n3 == 1 ? "" : Integer.valueOf(n3))) : StringHelper.format((String)"%2$sW:%1$s", (Object)pSCodeItem3.getCodeItemValue(), (Object)(n3 == 1 ? "" : Integer.valueOf(n3)));
-                        PSDEViewBase pSDEViewBase4 = this.initDEView(pSDataEntity, pSViewTypeStruct4, pSWorkflow.getPSWorkflowId(), string9, pSDEViewBase, "MOBWFEDITVIEW", string8);
-                        if (pSDEViewBase4 == null || pSWFProcess == null || StringHelper.isNullOrEmpty((String)pSWFProcess.getMobPSDEFormId())) continue;
-                        PSDEViewCtrl pSDEViewCtrl = new PSDEViewCtrl();
-                        pSDEViewCtrl.setPSDEViewBaseId(pSDEViewBase4.getPSDEViewBaseId());
-                        pSDEViewCtrl.setPSDEViewCtrlType("FORM");
-                        if (!((PSCoreSysServiceBaseBase)((Object)object7)).select(pSDEViewCtrl, true) || StringHelper.compare((String)pSWFProcess.getMobPSDEFormId(), (String)pSDEViewCtrl.getPSDEFormId(), (boolean)false) == 0) continue;
-                        pSDEViewCtrl.setPSDEFormId(pSWFProcess.getMobPSDEFormId());
-                        pSDEViewCtrl.setPSDEFormName(pSWFProcess.getMobPSDEFormName());
-                        ((PSCoreSysServiceBase)object7).update(pSDEViewCtrl, false);
-                    }
-                }
-            } else if (bl2 && arrayList.size() > 0) {
-                object = arrayList.get(0);
-                object7 = pSViewTypeStruct4;
-                object8 = StringHelper.format((String)"%1$s:W", (Object)pSWFDE.getCodeName());
-                object8 = ((String)object8).toUpperCase();
-                PSDEViewBase pSDEViewBase = new PSDEViewBase();
-                pSDEViewBase.setWFViewParam(1);
-                pSDEViewBase.setPSWFDEId(pSWFDE.getPSWFDEId());
-                pSDEViewBase.setPSWFVersionId(((PSWFVersionBase)object).getPSWFVersionId());
-                pSDEViewBase.setPSWFVersionName(((PSWFVersionBase)object).getPSWFVersionName());
-                pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)((PSViewTypeBase)object7).getPSViewTypeName(), (Object)pSWorkflow.getPSWorkflowName()));
-                if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                    pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)((PSViewTypeBase)object7).getTitle(), (Object)pSWorkflow.getPSWorkflowName()));
-                }
-                pSDEViewBase.setCodeName(StringHelper.format((String)"%1$s_W_%2$s", (Object)pSWFDE.getCodeName(), (Object)((PSViewTypeBase)object7).getCodeName()));
-                String string10 = "W";
-                pSDEViewBase.setDyncMode(bl2 ? 1 : 0);
-                PSDEViewBase pSDEViewBase5 = this.initDEView(pSDataEntity, (PSViewTypeStruct)object7, pSWorkflow.getPSWorkflowId(), string10, pSDEViewBase, "MOBWFEDITVIEW", (String)object8);
-            }
-            return;
-        }
-    }
+      if (var3) {
+         var8.set("DRTAG", "MOB");
+      } else {
+         var8.setIsNull("DRTAG");
+      }
 
-    public void initDEMSViews(PSDEMainState pSDEMainState, PSDataEntity pSDataEntity) throws Exception {
-        final PSDEMainState pSDEMainState2 = pSDEMainState;
-        final PSDataEntity pSDataEntity2 = pSDataEntity != null ? pSDataEntity : pSDEMainState.getPSDE();
-        this.doServiceWork(new IServiceWork(){
+      ArrayList var9 = var7.select(var8);
+      return var9.size() > 0 ? ((PSDEDataRelation)var9.get(0)).getPSDEDataRelationId() : null;
+   }
 
-            public void execute(ITransaction iTransaction) throws Exception {
-                if (StringHelper.isNullOrEmpty((String)pSDEMainState2.getEditViewType())) {
-                    for (String string : initMSViewTypes) {
-                        PSViewTypeStruct pSViewTypeStruct = PSModelGlobal.getPSViewType(string);
-                        PSDEViewBaseService.this.initDMSView(pSDataEntity2, pSViewTypeStruct, pSDEMainState2);
-                    }
-                } else {
-                    PSViewTypeStruct pSViewTypeStruct = PSModelGlobal.getPSViewType(pSDEMainState2.getEditViewType());
-                    PSDEViewBaseService.this.initDMSView(pSDataEntity2, pSViewTypeStruct, pSDEMainState2);
-                }
+   protected void initDEViewRV(PSSystem var1, PSDataEntity var2, PSViewTypeStruct var3, PSDEViewBase var4, PSVTRV var5, String var6, String var7) throws Exception {
+      PSDEViewRV var8 = new PSDEViewRV();
+      var8.setMajorPSDEViewId(var4.getPSDEViewBaseId());
+      var8.setMajorPSDEViewName(var4.getPSDEViewBaseName());
+      var8.setPSDEViewRVName(var5.getPSVTRVName());
+      var8.setRefModeText(var5.getLogicName());
+      var8.setMemo(var5.getMemo());
+      var8.setDefViewType(var5.getDEFViewType());
+      this.fillDEViewRV(var8, var1, var2, var3, var4, var5, var6, var7);
+      PSDEViewRVService var9 = (PSDEViewRVService)ServiceGlobal.getService(PSDEViewRVService.class, this.getSessionFactory());
+
+      try {
+         var9.create(var8);
+      } catch (Exception var11) {
+         throw new Exception(
+            StringHelper.format("建立实体视图[%1$s]引用[%2$s]发生异常，%3$s", var4.getPSDEViewBaseName(), var8.getPSDEViewRVName(), var11.getMessage()), var11
+         );
+      }
+   }
+
+   protected void fillDEViewRV(
+      PSDEViewRV var1, PSSystem var2, PSDataEntity var3, PSViewTypeStruct var4, PSDEViewBase var5, PSVTRV var6, String var7, String var8
+   ) throws Exception {
+      if (StringHelper.compare(var4.getPSViewTypeId(), "DEGRIDVIEW", true) == 0 || StringHelper.compare(var4.getPSViewTypeId(), "DEMDCUSTOMVIEW", true) == 0) {
+         boolean var9 = this.isEnableFolderKey(var3);
+         PSDEViewBaseService var10 = (PSDEViewBaseService)ServiceGlobal.getService(PSDEViewBaseService.class, this.getSessionFactory());
+         PSDEViewBase var11 = new PSDEViewBase();
+         if (var9) {
+            if (StringHelper.compare(var6.getPSVTRVName(), "NEWDATA", true) == 0) {
+               String var13 = KeyValueHelper.genUniqueId("DEEDITVIEW");
+               var11.setDEViewTag(var13);
+               var11.setPSDEId(var3.getPSDataEntityId());
+               if (var10.selectOne(var11, true)) {
+                  var1.setMinorPSDEViewId(var11.getPSDEViewBaseId());
+               }
+
+               return;
             }
-        });
-    }
 
-    protected void initDMSView(PSDataEntity pSDataEntity, PSViewTypeStruct pSViewTypeStruct, PSDEMainState pSDEMainState) throws Exception {
-        if (StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEEDITVIEW", (boolean)true) == 0 || StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEEDITVIEW2", (boolean)true) == 0 || StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEEDITVIEW3", (boolean)true) == 0 || StringHelper.compare((String)pSViewTypeStruct.getPSViewTypeId(), (String)"DEEDITVIEW4", (boolean)true) == 0) {
-            String string = StringHelper.format((String)"MSTAG:%1$s", (Object)pSDEMainState.getMSTag());
-            string = string.toUpperCase();
-            PSDEViewBase pSDEViewBase = new PSDEViewBase();
-            pSDEViewBase.setPSDEMainStateId(pSDEMainState.getPSDEMainStateId());
-            pSDEViewBase.setPSDEViewBaseName(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getPSViewTypeName(), (Object)pSDEMainState.getPSDEMainStateName()));
-            if (!StringHelper.isNullOrEmpty((String)pSViewTypeStruct.getTitle())) {
-                pSDEViewBase.setTitle(StringHelper.format((String)"%1$s%2$s(%3$s)", (Object)pSDataEntity.getLogicName(), (Object)pSViewTypeStruct.getTitle(), (Object)pSDEMainState.getPSDEMainStateName()));
+            if (StringHelper.compare(var6.getPSVTRVName(), "EDITDATA", true) == 0) {
+               String var12 = KeyValueHelper.genUniqueId("DEEDITVIEW");
+               var11.setDEViewTag(var12);
+               var11.setPSDEId(var3.getPSDataEntityId());
+               if (var10.selectOne(var11, true)) {
+                  var1.setMinorPSDEViewId(var11.getPSDEViewBaseId());
+               }
+
+               return;
             }
-            pSDEViewBase.setCodeName(StringHelper.format((String)"%1$s%2$s", (Object)pSDEMainState.getCodeName(), (Object)pSViewTypeStruct.getCodeName()));
-            PSDEViewBase pSDEViewBase2 = this.initDEView(pSDataEntity, pSViewTypeStruct, pSDEMainState.getPSDEMainStateId(), "", pSDEViewBase, "EDITVIEW", string);
-            if (pSDEViewBase2 != null && pSDEMainState != null && !StringHelper.isNullOrEmpty((String)pSDEMainState.getPSDEFormId())) {
-                PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-                PSDEViewCtrl pSDEViewCtrl = new PSDEViewCtrl();
-                pSDEViewCtrl.setPSDEViewBaseId(pSDEViewBase2.getPSDEViewBaseId());
-                pSDEViewCtrl.setPSDEViewCtrlType("FORM");
-                if (pSDEViewCtrlService.select(pSDEViewCtrl, true) && StringHelper.compare((String)pSDEMainState.getPSDEFormId(), (String)pSDEViewCtrl.getPSDEFormId(), (boolean)false) != 0) {
-                    pSDEViewCtrl.setPSDEFormId(pSDEMainState.getPSDEFormId());
-                    pSDEViewCtrl.setPSDEFormName(pSDEMainState.getPSDEFormName());
-                    pSDEViewCtrlService.update(pSDEViewCtrl, false);
-                }
+         } else {
+            if (StringHelper.compare(var6.getPSVTRVName(), "NEWDATA", true) == 0) {
+               String var15 = KeyValueHelper.genUniqueId(var3.getPSDataEntityId(), "DEEDITVIEW");
+               var11.setPSDEViewBaseId(var15);
+               if (var10.checkKey(var11) == 1) {
+                  var1.setMinorPSDEViewId(var15);
+               }
+
+               return;
             }
-            return;
-        }
-    }
 
-    @Override
-    protected void onBeforeRemove(PSDEViewBase pSDEViewBase) throws Exception {
-        PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<PSDEViewCtrl> arrayList = pSDEViewCtrlService.selectByPSDEViewBase(pSDEViewBase);
-        for (PSDEViewCtrl pSDEViewCtrl : arrayList) {
-            if (!DataObject.getBoolValue((Integer)pSDEViewCtrl.getDefaultFlag(), (boolean)false)) continue;
-            pSDEViewCtrl.setDefaultFlag(0);
-            pSDEViewCtrlService.update(pSDEViewCtrl, false);
-        }
-        super.onBeforeRemove(pSDEViewBase);
-    }
+            if (StringHelper.compare(var6.getPSVTRVName(), "EDITDATA", true) == 0) {
+               String var14 = KeyValueHelper.genUniqueId(var3.getPSDataEntityId(), "DEEDITVIEW");
+               var11.setPSDEViewBaseId(var14);
+               if (var10.checkKey(var11) == 1) {
+                  var1.setMinorPSDEViewId(var14);
+               }
 
-    @Override
-    protected void onBeforeRemoveTemp(PSDEViewBase pSDEViewBase) throws Exception {
-        PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList<PSDEViewCtrl> arrayList = pSDEViewCtrlService.selectTempByPSDEViewBase(pSDEViewBase);
-        for (PSDEViewCtrl pSDEViewCtrl : arrayList) {
-            if (!DataObject.getBoolValue((Integer)pSDEViewCtrl.getDefaultFlag(), (boolean)false)) continue;
-            pSDEViewCtrl.setDefaultFlag(0);
-            pSDEViewCtrlService.updateTemp((IEntity)pSDEViewCtrl, false);
-        }
-        super.onBeforeRemoveTemp(pSDEViewBase);
-    }
-
-    @Override
-    protected void onAfterCreate(PSDEViewBase pSDEViewBase) throws Exception {
-        super.onAfterCreate(pSDEViewBase);
-    }
-
-    @Override
-    protected void onAfterUpdate(PSDEViewBase pSDEViewBase) throws Exception {
-        String string = pSDEViewBase.getPSDE().getCodeName() + pSDEViewBase.getCodeName();
-        PSAppDEViewService pSAppDEViewService = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList arrayList = pSAppDEViewService.selectByPSDEViewBase(pSDEViewBase);
-        for (PSAppDEView pSAppDEView : arrayList) {
-            if (!DataObject.getBoolValue((Integer)pSAppDEView.getSyncCodeName(), (boolean)true) || StringHelper.compare((String)pSAppDEView.getPSAppDEViewName(), (String)string, (boolean)false) == 0) continue;
-            PSAppDEView pSAppDEView2 = new PSAppDEView();
-            pSAppDEView2.setPSAppDEViewId(pSAppDEView.getPSAppDEViewId());
-            pSAppDEView2.setPSAppDEViewName(string);
-            pSAppDEViewService.update(pSAppDEView2, false);
-        }
-        super.onAfterUpdate(pSDEViewBase);
-    }
-
-    protected void onAfterUpdateTempMajor(PSDEViewBase pSDEViewBase) throws Exception {
-        if (!DataObject.getBoolValue((Integer)pSDEViewBase.getDyncMode(), (boolean)false)) {
-            return;
-        }
-        PSAppDEViewService pSAppDEViewService = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList arrayList = pSAppDEViewService.selectByPSDEViewBase(pSDEViewBase);
-        for (PSAppDEView pSAppDEView : arrayList) {
-            pSAppDEViewService.initDynaView(pSAppDEView);
-        }
-        super.onAfterUpdateTempMajor((IEntity)pSDEViewBase);
-    }
-
-    @Override
-    protected void onJITPreview(PSDEViewBase pSDEViewBase) throws Exception {
-        if (this.getWebContext() == null || this.getWebContext().getCurAjaxActionResult() == null) {
-            throw new Exception("\u5f53\u524d\u8bf7\u6c42\u73af\u5883\u4e0d\u6b63\u786e");
-        }
-        String string = pSDEViewBase.getPSDEViewBaseId();
-        if (KeyValueHelper.isTempKey((String)pSDEViewBase.getPSDEViewBaseId())) {
-            this.getTemp((IEntity)pSDEViewBase);
-            string = (String)EntityBase.getOriginKey((IEntity)pSDEViewBase);
-            if (StringHelper.isNullOrEmpty((String)string)) {
-                throw new Exception(StringHelper.format((String)"\u5b9e\u4f53\u89c6\u56fe\u8fd8\u672a\u4fdd\u5b58"));
+               return;
             }
-        }
-        PSDEViewBase pSDEViewBase2 = new PSDEViewBase();
-        pSDEViewBase2.setPSDEViewBaseId(string);
-        this.get((IEntity)pSDEViewBase2);
-        PSAppDEViewService pSAppDEViewService = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, (SessionFactory)this.getSessionFactory());
-        ArrayList arrayList = pSAppDEViewService.selectByPSDEViewBase(pSDEViewBase2);
-        if (arrayList.size() == 0) {
-            throw new Exception("\u5b9e\u4f53\u89c6\u56fe\u8fd8\u672a\u52a0\u5165\u5230\u5e94\u7528");
-        }
-        PSSysApp pSSysApp = null;
-        PSAppDEView pSAppDEView = null;
-        for (PSAppDEView pSAppDEView2 : arrayList) {
-            if (pSSysApp == null) {
-                pSSysApp = pSAppDEView2.getPSSysApp();
-                pSAppDEView = pSAppDEView2;
-                if (!DataObject.getBoolValue((Integer)pSSysApp.getDefaultPub(), (boolean)false)) continue;
-                break;
-            }
-            PSSysApp pSSysApp2 = pSAppDEView2.getPSSysApp();
-            if (!DataObject.getBoolValue((Integer)pSSysApp2.getDefaultPub(), (boolean)false)) continue;
-            pSSysApp = pSSysApp2;
-            pSAppDEView = pSAppDEView2;
-            break;
-        }
-        pSAppDEViewService.jITPreview(pSAppDEView);
-    }
+         }
+      }
+   }
 
-    protected void fillDEViewCtrlParams(PSDEViewCtrl pSDEViewCtrl, PSVTCtrl pSVTCtrl) throws Exception {
-        if (pSVTCtrl.getCtrlParam() != null) {
-            pSDEViewCtrl.setCtrlParam(pSVTCtrl.getCtrlParam());
-        }
-        if (pSVTCtrl.getCtrlParam2() != null) {
-            pSDEViewCtrl.setCtrlParam2(pSVTCtrl.getCtrlParam2());
-        }
-        if (pSVTCtrl.getCtrlParam3() != null) {
-            pSDEViewCtrl.setCtrlParam3(pSVTCtrl.getCtrlParam3());
-        }
-        if (pSVTCtrl.getCtrlParam4() != null) {
-            pSDEViewCtrl.setCtrlParam4(pSVTCtrl.getCtrlParam4());
-        }
-        if (pSVTCtrl.getCtrlParam5() != null) {
-            pSDEViewCtrl.setCtrlParam5(pSVTCtrl.getCtrlParam5());
-        }
-        if (pSVTCtrl.getCtrlParam6() != null) {
-            pSDEViewCtrl.setCtrlParam6(pSVTCtrl.getCtrlParam6());
-        }
-        if (pSVTCtrl.getCtrlParam7() != null) {
-            pSDEViewCtrl.setCtrlParam7(pSVTCtrl.getCtrlParam7());
-        }
-        if (pSVTCtrl.getCtrlParam8() != null) {
-            pSDEViewCtrl.setCtrlParam8(pSVTCtrl.getCtrlParam8());
-        }
-        if (pSVTCtrl.getCtrlParam9() != null) {
-            pSDEViewCtrl.setCtrlParam9(pSVTCtrl.getCtrlParam9());
-        }
-        if (pSVTCtrl.getCtrlParam10() != null) {
-            pSDEViewCtrl.setCtrlParam10(pSVTCtrl.getCtrlParam10());
-        }
-    }
+   protected void initDEWFViews(PSDataEntity var1) throws Exception {
+      ArrayList<PSWFDE> var2 = var1.getPSWFDEs();
+      if (var2.size() != 0) {
+         for (PSWFDE var4 : var2) {
+            this.initWFDEViews(var4, var1);
+         }
+      }
+   }
 
-    @Override
-    public void getDraftWithModel(PSDEViewBase pSDEViewBase) throws Exception {
-        this.getDraftTempMajor((IEntity)pSDEViewBase);
-        pSDEViewBase.setViewModel(this.getViewModel(pSDEViewBase));
-    }
-
-    @Override
-    public void getWithModel(PSDEViewBase pSDEViewBase) throws Exception {
-        if (!KeyValueHelper.isTempKey((String)pSDEViewBase.getPSDEViewBaseId())) {
-            this.getTempMajor(pSDEViewBase);
-        } else {
-            this.getTemp((IEntity)pSDEViewBase);
-        }
-        pSDEViewBase.setViewModel(this.getViewModel(pSDEViewBase));
-    }
-
-    protected String getViewModel(PSDEViewBase pSDEViewBase) throws Exception {
-        Object object;
-        Serializable serializable;
-        Object object2;
-        Serializable serializable22;
-        Object object3;
-        XmlNode xmlNode = new XmlNode();
-        xmlNode.setNodeName(XMLNODE_DEVIEWCONFIG);
-        xmlNode.setAttribute("PSDEID", pSDEViewBase.getPSDEId());
-        xmlNode.setAttribute("PSSYSTEMID", pSDEViewBase.getPSSystemId());
-        xmlNode.setAttribute("PSDEVIEWBASEID", pSDEViewBase.getPSDEViewBaseId());
-        PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService((String)PSDEViewCtrlService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
-        ArrayList<PSDEViewCtrl> arrayList = pSDEViewCtrlService.selectTempByPSDEViewBase(pSDEViewBase);
-        Collections.sort(arrayList, new Comparator<PSDEViewCtrl>(){
-
+   public void initWFDEViews(PSWFDE var1, PSDataEntity var2) throws Exception {
+      final PSWFDE var3 = var1;
+      final PSDataEntity var4 = var2 != null ? var2 : var1.getPSDE();
+      this.doServiceWork(
+         new IServiceWork() {
             @Override
-            public int compare(PSDEViewCtrl pSDEViewCtrl, PSDEViewCtrl pSDEViewCtrl2) {
-                return StringHelper.compare((String)pSDEViewCtrl.getPSDEViewCtrlName(), (String)pSDEViewCtrl2.getPSDEViewCtrlName(), (boolean)false);
-            }
-        });
-        for (PSDEViewCtrl serializable32 : arrayList) {
-            object3 = new XmlNode();
-            object3.setNodeName(XMLNODE_DEVIEWCTRL);
-            serializable32.fillXmlNode((XmlNode)object3, true);
-            xmlNode.addNode((XmlNode)object3);
-        }
-        PSDEViewRVService pSDEViewRVService = (PSDEViewRVService)ServiceGlobal.getService((String)PSDEViewRVService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
-        ArrayList<PSDEViewRV> arrayList2 = pSDEViewRVService.selectTempByMajorPSDEView(pSDEViewBase);
-        Collections.sort(arrayList2, new Comparator<PSDEViewRV>(){
+            public void execute(ITransaction var1) throws Exception {
+               PSDEFieldService var2x = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, PSDEViewBaseService.this.getSessionFactory());
+               PSCodeListService var3x = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, PSDEViewBaseService.this.getSessionFactory());
+               PSDataEntityService var4x = (PSDataEntityService)ServiceGlobal.getService(
+                  PSDataEntityService.class, PSDEViewBaseService.this.getSessionFactory()
+               );
+               PSWFVersionService var5 = (PSWFVersionService)ServiceGlobal.getService(PSWFVersionService.class, PSDEViewBaseService.this.getSessionFactory());
+               if (!var4.isFullEntity()) {
+                  var4x.get(var4);
+               }
 
+               ArrayList var6 = null;
+               int var7 = DataObject.getIntegerValue(var3.getWFProxyMode(), 0);
+               boolean var8 = (var7 & 1) == 1;
+               boolean var9 = var7 != 1;
+               boolean var10 = DataObject.getBoolValue(var3.getPSWF().getEnableDynaSys(), false);
+               boolean var11 = false;
+               if (DataObject.getBoolValue(var3.getPSWF().getEnableMob(), false)) {
+                  var11 = true;
+               }
+
+               if (var8) {
+                  var10 = false;
+               }
+
+               if (var10) {
+                  PSWFVersion var12 = new PSWFVersion();
+                  var12.setPSWFId(var3.getPSWFId());
+                  var12.setEnableDynaSys(1);
+                  if (var5.select(var12, true)) {
+                     var6 = new ArrayList();
+                     var6.add(var12);
+                  }
+               } else if (var9) {
+                  var6 = var5.selectByPSWF(var3.getPSWF(), "ORDER BY WFVERSION DESC");
+               }
+
+               PSDEField var30 = null;
+               PSCodeList var13 = null;
+               PSCodeList var14 = null;
+               PSCodeList var15 = null;
+               if (!var10 && var9) {
+                  if (DataObject.getIntegerValue(var4.getEnaMultiForm(), 0) > 0) {
+                     var30 = new PSDEField();
+                     var30.setPSDEId(var4.getPSDataEntityId());
+                     var30.setMultiFormField(1);
+                     if (!var2x.select(var30, false)) {
+                        throw new Exception(StringHelper.format("实体[%1$s]没有定义多表单识别属性", var4.getPSDataEntityName()));
+                     }
+
+                     if (StringHelper.isNullOrEmpty(var30.getPSCodeListId())) {
+                        throw new Exception(StringHelper.format("属性[%1$s]没有定义代码表", var30.getPSDEFieldName()));
+                     }
+
+                     var13 = new PSCodeList();
+                     var13.setPSCodeListId(var30.getPSCodeListId());
+                     var3x.getCache(var13);
+                  }
+
+                  if (!StringHelper.isNullOrEmpty(var3.getWFStepPSDEFId())) {
+                     PSDEField var16 = new PSDEField();
+                     var16.setPSDEFieldId(var3.getWFStepPSDEFId());
+                     var2x.getCache(var16);
+                     if (!StringHelper.isNullOrEmpty(var16.getPSCodeListId())) {
+                        var15 = new PSCodeList();
+                        var15.setPSCodeListId(var16.getPSCodeListId());
+                        var3x.getCache(var15);
+                     } else {
+                        PSDEViewBaseService.this.getConsole()
+                           .warn("初始化流程视图", StringHelper.format("实体属性[%1$s|%2$s]没有指定流程步骤代码表，可能无法正确初始化相关流程视图", var16.getPSDEName(), var16.getPSDEFieldName()));
+                     }
+                  } else {
+                     PSDEViewBaseService.this.getConsole()
+                        .warn("初始化流程视图", StringHelper.format("实体工作流[%1$s|%2$s]没有指定流程步骤属性，可能无法正确初始化相关流程视图", var3.getPSDEName(), var3.getPSWFName()));
+                  }
+               }
+
+               PSDEField var32 = new PSDEField();
+               var32.setPSDEFieldId(var3.getStatePSDEFId());
+               var2x.getCache(var32);
+               if (!StringHelper.isNullOrEmpty(var32.getPSCodeListId())) {
+                  var14 = new PSCodeList();
+                  var14.setPSCodeListId(var32.getPSCodeListId());
+                  var3x.getCache(var14);
+               } else {
+                  PSDEViewBaseService.this.getConsole()
+                     .warn("初始化流程视图", StringHelper.format("实体属性[%1$s|%2$s]没有指定流程用户数据状态代码表，可能无法正确初始化相关流程视图", var32.getPSDEName(), var32.getPSDEFieldName()));
+               }
+
+               PSDEDRGroupService var33 = (PSDEDRGroupService)ServiceGlobal.getService(PSDEDRGroupService.class, PSDEViewBaseService.this.getSessionFactory());
+               PSDEDRGroup var17 = new PSDEDRGroup();
+               var17.setPSDEDRGroupId(var4.getPSDataEntityId());
+               if (!var33.get(var17, true)) {
+                  var17.reset();
+                  var17.setPSDEId(var4.getPSDataEntityId());
+                  if (!var33.selectOne(var17, true)) {
+                     var17.setPSDEDRGroupId(var4.getPSDataEntityId());
+                     var17.setOrderValue(10000);
+                     var17.setPSDEId(var4.getPSDataEntityId());
+                     var17.setPSDEDRGroupName("详细信息");
+                     var33.create(var17);
+                  }
+               }
+
+               PSSysPDTViewService var18 = (PSSysPDTViewService)ServiceGlobal.getService(
+                  PSSysPDTViewService.class, PSDEViewBaseService.this.getSessionFactory()
+               );
+               PSSysPDTView var19 = new PSSysPDTView();
+               String var20 = KeyValueHelper.genUniqueId(var4.getPSSystemId(), "WF_STEPDATALIST");
+               var19.setPSSysPDTViewId(var20);
+               if (!var18.get(var19, true)) {
+                  var19.reset();
+                  var19.setPSPDTViewId("WF_STEPDATALIST");
+                  if (!var18.selectOne(var19, true)) {
+                     var19 = null;
+                  }
+               }
+
+               PSSysPDTView var34 = new PSSysPDTView();
+               String var21 = KeyValueHelper.genUniqueId(var4.getPSSystemId(), "WF_STEPACTORLIST");
+               var34.setPSSysPDTViewId(var21);
+               if (!var18.get(var34, true)) {
+                  var34.reset();
+                  var34.setPSPDTViewId("WF_STEPACTORLIST");
+                  if (!var18.selectOne(var34, true)) {
+                     var34 = null;
+                  }
+               }
+
+               PSSysPDTView var35 = new PSSysPDTView();
+               String var22 = KeyValueHelper.genUniqueId(var4.getPSSystemId(), "WF_STEPTRACECHART");
+               var35.setPSSysPDTViewId(var22);
+               if (!var18.get(var35, true)) {
+                  var35.reset();
+                  var35.setPSPDTViewId("WF_STEPTRACECHART");
+                  if (!var18.selectOne(var35, true)) {
+                     var35 = null;
+                  }
+               }
+
+               PSDEDataRelation var36 = new PSDEDataRelation();
+               String var23 = KeyValueHelper.genUniqueId(var4.getPSDataEntityId(), var3.getPSWFId());
+               var36.setPSDEDataRelationId(var23);
+               PSDEDataRelationService var24 = (PSDEDataRelationService)ServiceGlobal.getService(
+                  PSDEDataRelationService.class, PSDEViewBaseService.this.getSessionFactory()
+               );
+               boolean var25 = true;
+               if (var24.get(var36, true)) {
+                  var25 = false;
+                  if (StringHelper.isNullOrEmpty(var36.getPSWFDEId())) {
+                     var36.setPSWFDEId(var3.getPSWFDEId());
+                     var36.setDRTag(null);
+                     var24.update(var36);
+                  }
+               } else {
+                  var36.reset();
+                  SelectCond var26 = new SelectCond();
+                  var26.setFetchFirst(true);
+                  var26.set("PSDEID", var4.getPSDataEntityId());
+                  var26.set("PSWFDEID", var3.getPSWFDEId());
+                  var26.setIsNull("DRTAG");
+                  ArrayList var27 = var24.select(var26);
+                  if (var27.size() > 0) {
+                     var25 = false;
+                     ((PSDEDataRelation)var27.get(0)).copyTo(var36, true);
+                  } else {
+                     var36.reset();
+                     var36.setCodeName(var3.getCodeName() + "DR");
+                     var36.setPSDEId(var4.getPSDataEntityId());
+                     if (var24.select(var36, true)) {
+                        var25 = false;
+                        if (StringHelper.isNullOrEmpty(var36.getPSWFDEId())) {
+                           var36.setPSWFDEId(var3.getPSWFDEId());
+                           var36.setDRTag(null);
+                           var24.update(var36);
+                        }
+                     }
+                  }
+               }
+
+               if (var25) {
+                  var36.setPSDEDataRelationId(var23);
+                  var36.setPSDEId(var4.getPSDataEntityId());
+                  var36.setPSDEDataRelationName(StringHelper.format("%1$s/%2$s关系界面组", var4.getLogicName(), var3.getPSWFName()));
+                  var36.setCodeName(var3.getCodeName() + "DR");
+                  var36.setPSWFDEId(var3.getPSWFDEId());
+                  var24.create(var36);
+                  PSDEDRDetailService var54 = (PSDEDRDetailService)ServiceGlobal.getService(
+                     PSDEDRDetailService.class, PSDEViewBaseService.this.getSessionFactory()
+                  );
+                  if (var19 != null) {
+                     PSDEDRDetail var60 = new PSDEDRDetail();
+                     var60.setPSDEDRId(var23);
+                     var60.setPSDEDRDetailName("dritem1");
+                     var60.setCaption("流程处理");
+                     var60.setDetailType("PDTVIEW");
+                     var60.setOrderValue(1000);
+                     var60.setPSSysPDTViewId(var19.getPSSysPDTViewId());
+                     var60.setPSDEDRGroupId(var17.getPSDEDRGroupId());
+                     var54.create(var60);
+                  }
+
+                  if (var34 != null) {
+                     PSDEDRDetail var61 = new PSDEDRDetail();
+                     var61.setPSDEDRId(var23);
+                     var61.setPSDEDRDetailName("dritem2");
+                     var61.setCaption("流程催办");
+                     var61.setDetailType("PDTVIEW");
+                     var61.setOrderValue(1100);
+                     var61.setPSSysPDTViewId(var34.getPSSysPDTViewId());
+                     var61.setPSDEDRGroupId(var17.getPSDEDRGroupId());
+                     var54.create(var61);
+                  }
+
+                  if (var35 != null) {
+                     PSDEDRDetail var62 = new PSDEDRDetail();
+                     var62.setPSDEDRId(var23);
+                     var62.setPSDEDRDetailName("dritem3");
+                     var62.setCaption("流程跟踪");
+                     var62.setDetailType("PDTVIEW");
+                     var62.setOrderValue(1200);
+                     var62.setPSSysPDTViewId(var35.getPSSysPDTViewId());
+                     var62.setPSDEDRGroupId(var17.getPSDEDRGroupId());
+                     var54.create(var62);
+                  }
+               }
+
+               if (var11) {
+                  PSDEDataRelation var37 = new PSDEDataRelation();
+                  var23 = KeyValueHelper.genUniqueId(var4.getPSDataEntityId(), var3.getPSWFId(), "MOB");
+                  var37.setPSDEDataRelationId(var23);
+                  var24 = (PSDEDataRelationService)ServiceGlobal.getService(PSDEDataRelationService.class, PSDEViewBaseService.this.getSessionFactory());
+                  var25 = true;
+                  if (var24.get(var37, true)) {
+                     var25 = false;
+                     if (StringHelper.isNullOrEmpty(var37.getPSWFDEId())) {
+                        var37.setPSWFDEId(var3.getPSWFDEId());
+                        var37.setDRTag("MOB");
+                        var24.update(var37);
+                     }
+                  } else {
+                     var37.reset();
+                     var37.setPSDEId(var4.getPSDataEntityId());
+                     var37.setPSWFDEId(var3.getPSWFDEId());
+                     var37.setDRTag("MOB");
+                     if (var24.selectOne(var37, true)) {
+                        var25 = false;
+                     } else {
+                        var37.reset();
+                        var37.setCodeName(var3.getCodeName() + "MobDR");
+                        var37.setPSDEId(var4.getPSDataEntityId());
+                        if (var24.select(var37, true)) {
+                           var25 = false;
+                           if (StringHelper.isNullOrEmpty(var37.getPSWFDEId())) {
+                              var37.setPSWFDEId(var3.getPSWFDEId());
+                              var37.setDRTag("MOB");
+                              var24.update(var37);
+                           }
+                        }
+                     }
+                  }
+
+                  if (var25) {
+                     var37.setPSDEDataRelationId(var23);
+                     var37.setPSDEId(var4.getPSDataEntityId());
+                     var37.setPSDEDataRelationName(StringHelper.format("%1$s/%2$s关系界面组（移动端）", var4.getLogicName(), var3.getPSWFName()));
+                     var37.setCodeName(var3.getCodeName() + "MobDR");
+                     var37.setPSWFDEId(var3.getPSWFDEId());
+                     var37.setDRTag("MOB");
+                     var24.create(var37);
+                     PSDEDRDetailService var55 = (PSDEDRDetailService)ServiceGlobal.getService(
+                        PSDEDRDetailService.class, PSDEViewBaseService.this.getSessionFactory()
+                     );
+                     if (var19 != null) {
+                        PSDEDRDetail var63 = new PSDEDRDetail();
+                        var63.setPSDEDRId(var23);
+                        var63.setPSDEDRDetailName("dritem1");
+                        var63.setCaption("流程处理");
+                        var63.setDetailType("PDTVIEW");
+                        var63.setOrderValue(1000);
+                        var63.setPSSysPDTViewId(var19.getPSSysPDTViewId());
+                        var63.setPSDEDRGroupId(var17.getPSDEDRGroupId());
+                        var55.create(var63);
+                     }
+
+                     if (var34 != null) {
+                        PSDEDRDetail var64 = new PSDEDRDetail();
+                        var64.setPSDEDRId(var23);
+                        var64.setPSDEDRDetailName("dritem2");
+                        var64.setCaption("流程催办");
+                        var64.setDetailType("PDTVIEW");
+                        var64.setOrderValue(1100);
+                        var64.setPSSysPDTViewId(var34.getPSSysPDTViewId());
+                        var64.setPSDEDRGroupId(var17.getPSDEDRGroupId());
+                        var55.create(var64);
+                     }
+
+                     if (var35 != null) {
+                        PSDEDRDetail var65 = new PSDEDRDetail();
+                        var65.setPSDEDRId(var23);
+                        var65.setPSDEDRDetailName("dritem3");
+                        var65.setCaption("流程跟踪");
+                        var65.setDetailType("PDTVIEW");
+                        var65.setOrderValue(1200);
+                        var65.setPSSysPDTViewId(var35.getPSSysPDTViewId());
+                        var65.setPSDEDRGroupId(var17.getPSDEDRGroupId());
+                        var55.create(var65);
+                     }
+                  }
+               }
+
+               if (var13 != null) {
+                  for (PSCodeItem var46 : var13.getPSCodeItems()) {
+                     for (String var28 : PSDEViewBaseService.initWFViewTypes) {
+                        PSViewTypeStruct var29 = PSModelGlobal.getPSViewType(var28);
+                        PSDEViewBaseService.this.initDEWFView(var4, var46, var29, var3, var15, var14, var6);
+                     }
+
+                     if (var11) {
+                        for (String var68 : PSDEViewBaseService.initMobWFViewTypes) {
+                           PSViewTypeStruct var69 = PSModelGlobal.getPSViewType(var68);
+                           PSDEViewBaseService.this.initDEWFView(var4, var46, var69, var3, var15, var14, var6);
+                        }
+                     }
+                  }
+               } else {
+                  for (String var52 : PSDEViewBaseService.initWFViewTypes) {
+                     PSViewTypeStruct var58 = PSModelGlobal.getPSViewType(var52);
+                     PSDEViewBaseService.this.initDEWFView(var4, null, var58, var3, var15, var14, var6);
+                  }
+
+                  if (var11) {
+                     for (String var53 : PSDEViewBaseService.initMobWFViewTypes) {
+                        PSViewTypeStruct var59 = PSModelGlobal.getPSViewType(var53);
+                        PSDEViewBaseService.this.initDEWFView(var4, null, var59, var3, var15, var14, var6);
+                     }
+                  }
+               }
+            }
+         }
+      );
+   }
+
+   protected void initDEWFView(
+      PSDataEntity var1, PSCodeItem var2, PSViewTypeStruct var3, PSWFDE var4, PSCodeList var5, PSCodeList var6, ArrayList<PSWFVersion> var7
+   ) throws Exception {
+      boolean var8 = DataObject.getBoolValue(var4.getPSWF().getEnableDynaSys(), false);
+      int var9 = DataObject.getIntegerValue(var4.getWFProxyMode(), 0);
+      boolean var10 = (var9 & 1) == 1;
+      boolean var11 = var9 != 1;
+      if (var10) {
+         var8 = false;
+      }
+
+      if (StringHelper.compare(var3.getPSViewTypeId(), "DEWFEXPVIEW", true) == 0) {
+         PSWorkflow var32 = var4.getPSWF();
+         PSDEViewBase var36 = new PSDEViewBase();
+         var36.setPSWFDEId(var4.getPSWFDEId());
+         var36.setPSDEViewBaseName(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var3.getPSViewTypeName(), var32.getPSWorkflowName()));
+         if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+            var36.setTitle(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var3.getTitle(), var32.getPSWorkflowName()));
+         }
+
+         var36.setCodeName(StringHelper.format("%1$s_%2$s", var4.getCodeName(), var3.getCodeName()));
+         var36.setDyncMode(var8 ? 1 : 0);
+         this.initDEView(var1, var3, var32.getPSWorkflowId(), "", var36, "", "");
+      } else {
+         String var12 = "";
+         if (var2 != null) {
+            var12 = var2.getCodeName();
+            if (StringHelper.isNullOrEmpty(var12)) {
+               var12 = var2.getCodeItemValue();
+            }
+         }
+
+         if (StringHelper.compare(var3.getPSViewTypeId(), "DEWFGRIDVIEW", true) == 0) {
+            PSWorkflow var35 = var4.getPSWF();
+            String var42 = StringHelper.format("%1$s:D", var4.getCodeName());
+            var42 = var42.toUpperCase();
+            PSDEViewBase var59 = new PSDEViewBase();
+            var59.setWFViewParam(0);
+            var59.setPSWFDEId(var4.getPSWFDEId());
+            var59.setPSDEViewBaseName(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var3.getPSViewTypeName(), var35.getPSWorkflowName()));
+            if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+               var59.setTitle(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var3.getTitle(), var35.getPSWorkflowName()));
+            }
+
+            var59.setCodeName(StringHelper.format("%1$s_D_%2$s", var4.getCodeName(), var3.getCodeName()));
+            var59.setDyncMode(var8 ? 1 : 0);
+            this.initDEView(var1, var3, var35.getPSWorkflowId(), "D", var59, "WFMDATAVIEW", var42);
+            if (var6 != null && var6.getPSCodeItems() != null) {
+               for (PSCodeItem var72 : var6.getPSCodeItems()) {
+                  String var85 = StringHelper.format("%1$s:D:%2$s", var4.getCodeName(), var72.getCodeItemValue());
+                  var85 = var85.toUpperCase();
+                  PSDEViewBase var95 = new PSDEViewBase();
+                  var95.setWFViewParam(0);
+                  var95.setPSWFDEId(var4.getPSWFDEId());
+                  var95.setPSDEViewBaseName(
+                     StringHelper.format(
+                        "%1$s%2$s(%3$s:%4$s)", var1.getLogicName(), var3.getPSViewTypeName(), var35.getPSWorkflowName(), var72.getPSCodeItemName()
+                     )
+                  );
+                  if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+                     var95.setTitle(
+                        StringHelper.format("%1$s%2$s(%3$s:%4$s)", var1.getLogicName(), var3.getTitle(), var35.getPSWorkflowName(), var72.getPSCodeItemName())
+                     );
+                  }
+
+                  var95.setCodeName(StringHelper.format("%1$s_D%2$s_%3$s", var4.getCodeName(), var72.getCodeItemValue(), var3.getCodeName()));
+                  var95.setDyncMode(var8 ? 1 : 0);
+                  this.initDEView(var1, var3, var35.getPSWorkflowId(), "D:" + var72.getCodeItemValue(), var95, "WFMDATAVIEW", var85);
+               }
+            }
+
+            var42 = StringHelper.format("%1$s:W", var4.getCodeName());
+            var42 = var42.toUpperCase();
+            var59 = new PSDEViewBase();
+            var59.setWFViewParam(1);
+            var59.setPSWFDEId(var4.getPSWFDEId());
+            var59.setPSDEViewBaseName(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var3.getPSViewTypeName(), var35.getPSWorkflowName()));
+            if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+               var59.setTitle(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var3.getTitle(), var35.getPSWorkflowName()));
+            }
+
+            var59.setCodeName(StringHelper.format("%1$s_W_%2$s", var4.getCodeName(), var3.getCodeName()));
+            var59.setDyncMode(var8 ? 1 : 0);
+            this.initDEView(var1, var3, var35.getPSWorkflowId(), "W", var59, "WFMDATAVIEW", var42);
+            if (var5 != null && var5.getPSCodeItems() != null) {
+               for (PSCodeItem var73 : var5.getPSCodeItems()) {
+                  String var87 = StringHelper.format("%1$s:W:%2$s", var4.getCodeName(), var73.getCodeItemValue());
+                  var87 = var87.toUpperCase();
+                  PSDEViewBase var96 = new PSDEViewBase();
+                  var96.setWFViewParam(1);
+                  var96.setWFViewParam3(var73.getCodeItemValue());
+                  var96.setPSWFDEId(var4.getPSWFDEId());
+                  var96.setPSDEViewBaseName(
+                     StringHelper.format(
+                        "%1$s%2$s(%3$s:%4$s)", var1.getLogicName(), var3.getPSViewTypeName(), var35.getPSWorkflowName(), var73.getPSCodeItemName()
+                     )
+                  );
+                  if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+                     var96.setTitle(
+                        StringHelper.format("%1$s%2$s(%3$s:%4$s)", var1.getLogicName(), var3.getTitle(), var35.getPSWorkflowName(), var73.getPSCodeItemName())
+                     );
+                  }
+
+                  var96.setCodeName(StringHelper.format("%1$s_W%2$s_%3$s", var4.getCodeName(), var73.getCodeItemValue(), var3.getCodeName()));
+                  this.initDEView(var1, var3, var35.getPSWorkflowId(), "W:" + var73.getCodeItemValue(), var96, "WFMDATAVIEW", var87);
+               }
+            }
+         } else if (StringHelper.compare(var3.getPSViewTypeId(), "DEWFEDITVIEW", true) == 0
+            || StringHelper.compare(var3.getPSViewTypeId(), "DEWFEDITVIEW2", true) == 0
+            || StringHelper.compare(var3.getPSViewTypeId(), "DEWFEDITVIEW3", true) == 0
+            || StringHelper.compare(var3.getPSViewTypeId(), "DEWFEDITVIEW4", true) == 0) {
+            PSWorkflow var34 = var4.getPSWF();
+            PSViewTypeStruct var41 = var3;
+            if (!StringHelper.isNullOrEmpty(var34.getWFEditViewType())) {
+               var41 = PSModelGlobal.getPSViewType(var34.getWFEditViewType());
+            }
+
+            String var53 = StringHelper.format("%1$s:D", var4.getCodeName());
+            if (var2 != null) {
+               var53 = StringHelper.format("%1$s:%2$s", var2.getCodeItemValue(), var53);
+            }
+
+            var53 = var53.toUpperCase();
+            PSDEViewBase var65 = new PSDEViewBase();
+            var65.setWFViewParam(0);
+            var65.setPSWFDEId(var4.getPSWFDEId());
+            if (var2 != null) {
+               var65.setPSDEViewBaseName(
+                  StringHelper.format(
+                     "%1$s%2$s(%3$s)(%4$s)", var1.getLogicName(), var41.getPSViewTypeName(), var2.getPSCodeItemName(), var34.getPSWorkflowName()
+                  )
+               );
+               if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+                  var65.setTitle(
+                     StringHelper.format("%1$s%2$s(%3$s)(%4$s)", var1.getLogicName(), var41.getTitle(), var2.getPSCodeItemName(), var34.getPSWorkflowName())
+                  );
+               }
+            } else {
+               var65.setPSDEViewBaseName(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var41.getPSViewTypeName(), var34.getPSWorkflowName()));
+               if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+                  var65.setTitle(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var41.getTitle(), var34.getPSWorkflowName()));
+               }
+            }
+
+            if (var2 != null) {
+               var65.setCodeName(StringHelper.format("%3$s_%1$s_D_%2$s", var4.getCodeName(), var41.getCodeName(), var12));
+            } else {
+               var65.setCodeName(StringHelper.format("%1$s_D_%2$s", var4.getCodeName(), var41.getCodeName()));
+            }
+
+            String var78 = "";
+            if (var2 != null) {
+               var78 = StringHelper.format("%1$s:D", var2.getCodeItemValue());
+            } else {
+               var78 = StringHelper.format("D");
+            }
+
+            var65.setDyncMode(var8 ? 1 : 0);
+            this.initDEView(var1, var41, var34.getPSWorkflowId(), var78, var65, "WFEDITVIEW", var53);
+            if (var10) {
+               PSViewTypeStruct var55 = PSModelGlobal.getPSViewType("DEWFEDITVIEW9");
+               String var66 = StringHelper.format("%1$s:ED", var4.getCodeName());
+               if (var2 != null) {
+                  var66 = StringHelper.format("%1$s:%2$s", var2.getCodeItemValue(), var66);
+               }
+
+               String var67 = var66.toUpperCase();
+               PSDEViewBase var80 = new PSDEViewBase();
+               var80.setWFViewParam(0);
+               var80.setPSWFDEId(var4.getPSWFDEId());
+               if (var2 != null) {
+                  var80.setPSDEViewBaseName(
+                     StringHelper.format(
+                        "%1$s%2$s(%3$s)(%4$s)", var1.getLogicName(), var55.getPSViewTypeName(), var2.getPSCodeItemName(), var34.getPSWorkflowName()
+                     )
+                  );
+                  if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+                     var80.setTitle(
+                        StringHelper.format("%1$s%2$s(%3$s)(%4$s)", var1.getLogicName(), var55.getTitle(), var2.getPSCodeItemName(), var34.getPSWorkflowName())
+                     );
+                  }
+               } else {
+                  var80.setPSDEViewBaseName(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var55.getPSViewTypeName(), var34.getPSWorkflowName()));
+                  if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+                     var80.setTitle(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var55.getTitle(), var34.getPSWorkflowName()));
+                  }
+               }
+
+               if (var2 != null) {
+                  var80.setCodeName(StringHelper.format("%3$s_%1$s_ED_%2$s", var4.getCodeName(), var55.getCodeName(), var12));
+               } else {
+                  var80.setCodeName(StringHelper.format("%1$s_ED_%2$s", var4.getCodeName(), var55.getCodeName()));
+               }
+
+               String var90 = "";
+               if (var2 != null) {
+                  var90 = StringHelper.format("%1$s:ED", var2.getCodeItemValue());
+               } else {
+                  var90 = StringHelper.format("ED");
+               }
+
+               var80.setDyncMode(var8 ? 1 : 0);
+               this.initDEView(var1, var55, var34.getPSWorkflowId(), var90, var80, "WFEDITVIEW", var67);
+            }
+
+            if (var11 && var5 != null && var5.getPSCodeItems() != null) {
+               PSWFProcessService var58 = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, this.getSessionFactory());
+               PSDEViewCtrlService var71 = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, this.getSessionFactory());
+
+               for (PSWFVersion var94 : var7) {
+                  int var100 = var94.getWFVersion();
+                  HashMap var103 = new HashMap();
+
+                  for (PSWFProcess var109 : var58.selectByPSWFVersion(var94)) {
+                     if (!StringHelper.isNullOrEmpty(var109.getWFStepValue())) {
+                        var103.put(var109.getWFStepValue(), var109);
+                     }
+                  }
+
+                  for (PSCodeItem var111 : var5.getPSCodeItems()) {
+                     PSWFProcess var112 = (PSWFProcess)var103.get(var111.getCodeItemValue());
+                     if (var112 != null) {
+                        PSViewTypeStruct var114 = var41;
+                        if (!StringHelper.isNullOrEmpty(var112.getWFEditViewType())) {
+                           var114 = PSModelGlobal.getPSViewType(var112.getWFEditViewType());
+                        }
+
+                        String var115 = StringHelper.format("%1$s:%3$sW:%2$s", var4.getCodeName(), var111.getCodeItemValue(), var100 == 1 ? "" : var100);
+                        if (var2 != null) {
+                           var115 = StringHelper.format("%1$s:%2$s", var2.getCodeItemValue(), var115);
+                        }
+
+                        var115 = var115.toUpperCase();
+                        PSDEViewBase var118 = new PSDEViewBase();
+                        var118.setWFViewParam(1);
+                        var118.setWFViewParam3(var111.getCodeItemValue());
+                        var118.setPSWFDEId(var4.getPSWFDEId());
+                        var118.setPSWFVersionId(var94.getPSWFVersionId());
+                        var118.setPSWFVersionName(var94.getPSWFVersionName());
+                        if (var2 != null) {
+                           var118.setPSDEViewBaseName(
+                              StringHelper.format(
+                                 "%1$s%2$s(%3$s)(%4$sv%6$s:%5$s)",
+                                 var1.getLogicName(),
+                                 var114.getPSViewTypeName(),
+                                 var2.getPSCodeItemName(),
+                                 var34.getPSWorkflowName(),
+                                 var111.getPSCodeItemName(),
+                                 var100
+                              )
+                           );
+                           if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+                              var118.setTitle(
+                                 StringHelper.format(
+                                    "%1$s%2$s(%3$s)(%4$sv%6$s:%5$s)",
+                                    var1.getLogicName(),
+                                    var114.getTitle(),
+                                    var2.getPSCodeItemName(),
+                                    var34.getPSWorkflowName(),
+                                    var111.getPSCodeItemName(),
+                                    var100
+                                 )
+                              );
+                           }
+                        } else {
+                           var118.setPSDEViewBaseName(
+                              StringHelper.format(
+                                 "%1$s%2$s(%3$sv%5$s:%4$s)",
+                                 var1.getLogicName(),
+                                 var114.getPSViewTypeName(),
+                                 var34.getPSWorkflowName(),
+                                 var111.getPSCodeItemName(),
+                                 var100
+                              )
+                           );
+                           if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+                              var118.setTitle(
+                                 StringHelper.format(
+                                    "%1$s%2$s(%3$sv%5$s:%4$s)",
+                                    var1.getLogicName(),
+                                    var114.getTitle(),
+                                    var34.getPSWorkflowName(),
+                                    var111.getPSCodeItemName(),
+                                    var100
+                                 )
+                              );
+                           }
+                        }
+
+                        if (var2 != null) {
+                           var118.setCodeName(
+                              StringHelper.format(
+                                 "%4$s_%1$s_%5$sW%2$s_%3$s",
+                                 var4.getCodeName(),
+                                 var111.getCodeItemValue(),
+                                 var114.getCodeName(),
+                                 var12,
+                                 var100 == 1 ? "" : var100
+                              )
+                           );
+                        } else {
+                           var118.setCodeName(
+                              StringHelper.format(
+                                 "%1$s_%4$sW%2$s_%3$s", var4.getCodeName(), var111.getCodeItemValue(), var114.getCodeName(), var100 == 1 ? "" : var100
+                              )
+                           );
+                        }
+
+                        String var119 = "";
+                        if (var2 != null) {
+                           var119 = StringHelper.format("%1$s:%3$sD:%2$s", var2.getCodeItemValue(), var111.getCodeItemValue(), var100 == 1 ? "" : var100);
+                        } else {
+                           var119 = StringHelper.format("%2$sW:%1$s", var111.getCodeItemValue(), var100 == 1 ? "" : var100);
+                        }
+
+                        PSDEViewBase var121 = this.initDEView(var1, var114, var34.getPSWorkflowId(), var119, var118, "WFEDITVIEW", var115);
+                        if (var121 != null && var112 != null && !StringHelper.isNullOrEmpty(var112.getPSDEFormId())) {
+                           PSDEViewCtrl var31 = new PSDEViewCtrl();
+                           var31.setPSDEViewBaseId(var121.getPSDEViewBaseId());
+                           var31.setPSDEViewCtrlType("FORM");
+                           if (var71.select(var31, true) && StringHelper.compare(var112.getPSDEFormId(), var31.getPSDEFormId(), false) != 0) {
+                              var31.setPSDEFormId(var112.getPSDEFormId());
+                              var31.setPSDEFormName(var112.getPSDEFormName());
+                              var71.update(var31, false);
+                           }
+                        }
+                     }
+                  }
+               }
+            } else if (var10) {
+               PSViewTypeStruct var56 = var41;
+               String var68 = StringHelper.format("%1$s:W", var4.getCodeName());
+               String var69 = var68.toUpperCase();
+               PSDEViewBase var81 = new PSDEViewBase();
+               var81.setWFViewParam(1);
+               var81.setPSWFDEId(var4.getPSWFDEId());
+               var81.setPSDEViewBaseName(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var56.getPSViewTypeName(), var34.getPSWorkflowName()));
+               if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+                  var81.setTitle(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var56.getTitle(), var34.getPSWorkflowName()));
+               }
+
+               var81.setCodeName(StringHelper.format("%1$s_W_%2$s", var4.getCodeName(), var56.getCodeName()));
+               String var92 = "W";
+               var81.setDyncMode(var8 ? 1 : 0);
+               PSDEViewBase var98 = this.initDEView(var1, var56, var34.getPSWorkflowId(), var92, var81, "WFEDITVIEW", var69);
+            } else if (var8 && var7.size() > 0) {
+               PSWFVersion var57 = (PSWFVersion)var7.get(0);
+               PSViewTypeStruct var70 = var41;
+               var78 = StringHelper.format("%1$s:W", var4.getCodeName());
+               var78 = var78.toUpperCase();
+               PSDEViewBase var93 = new PSDEViewBase();
+               var93.setWFViewParam(1);
+               var93.setPSWFDEId(var4.getPSWFDEId());
+               var93.setPSWFVersionId(var57.getPSWFVersionId());
+               var93.setPSWFVersionName(var57.getPSWFVersionName());
+               var93.setPSDEViewBaseName(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var70.getPSViewTypeName(), var34.getPSWorkflowName()));
+               if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+                  var93.setTitle(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var70.getTitle(), var34.getPSWorkflowName()));
+               }
+
+               var93.setCodeName(StringHelper.format("%1$s_W_%2$s", var4.getCodeName(), var70.getCodeName()));
+               String var99 = "W";
+               var93.setDyncMode(var8 ? 1 : 0);
+               PSDEViewBase var102 = this.initDEView(var1, var70, var34.getPSWorkflowId(), var99, var93, "WFEDITVIEW", var78);
+            }
+         } else if (StringHelper.compare(var3.getPSViewTypeId(), "DEMOBWFMDVIEW", true) == 0) {
+            PSWorkflow var33 = var4.getPSWF();
+            String var37 = StringHelper.format("%1$s:D", var4.getCodeName());
+            var37 = var37.toUpperCase();
+            PSDEViewBase var51 = new PSDEViewBase();
+            var51.setWFViewParam(0);
+            var51.setPSWFDEId(var4.getPSWFDEId());
+            var51.setPSDEViewBaseName(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var3.getPSViewTypeName(), var33.getPSWorkflowName()));
+            if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+               var51.setTitle(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var3.getTitle(), var33.getPSWorkflowName()));
+            }
+
+            var51.setCodeName(StringHelper.format("%1$s_D_%2$s", var4.getCodeName(), var3.getCodeName()));
+            var51.setDyncMode(var8 ? 1 : 0);
+            this.initDEView(var1, var3, var33.getPSWorkflowId(), "D", var51, "MOBWFMDATAVIEW", var37);
+            var37 = StringHelper.format("%1$s:W", var4.getCodeName());
+            var37 = var37.toUpperCase();
+            var51 = new PSDEViewBase();
+            var51.setWFViewParam(1);
+            var51.setPSWFDEId(var4.getPSWFDEId());
+            var51.setPSDEViewBaseName(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var3.getPSViewTypeName(), var33.getPSWorkflowName()));
+            if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+               var51.setTitle(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var3.getTitle(), var33.getPSWorkflowName()));
+            }
+
+            var51.setCodeName(StringHelper.format("%1$s_W_%2$s", var4.getCodeName(), var3.getCodeName()));
+            var51.setDyncMode(var8 ? 1 : 0);
+            this.initDEView(var1, var3, var33.getPSWorkflowId(), "W", var51, "MOBWFMDATAVIEW", var37);
+         } else if (StringHelper.compare(var3.getPSViewTypeId(), "DEMOBWFEDITVIEW", true) == 0
+            || StringHelper.compare(var3.getPSViewTypeId(), "DEMOBWFEDITVIEW2", true) == 0
+            || StringHelper.compare(var3.getPSViewTypeId(), "DEMOBWFEDITVIEW3", true) == 0
+            || StringHelper.compare(var3.getPSViewTypeId(), "DEMOBWFEDITVIEW4", true) == 0) {
+            PSWorkflow var13 = var4.getPSWF();
+            PSViewTypeStruct var14 = var3;
+            if (!StringHelper.isNullOrEmpty(var13.getMobWFEditViewType())) {
+               var14 = PSModelGlobal.getPSViewType(var13.getMobWFEditViewType());
+            }
+
+            String var15 = StringHelper.format("%1$s:D", var4.getCodeName());
+            if (var2 != null) {
+               var15 = StringHelper.format("%1$s:%2$s", var2.getCodeItemValue(), var15);
+            }
+
+            var15 = var15.toUpperCase();
+            PSDEViewBase var16 = new PSDEViewBase();
+            var16.setWFViewParam(0);
+            var16.setPSWFDEId(var4.getPSWFDEId());
+            if (var2 != null) {
+               var16.setPSDEViewBaseName(
+                  StringHelper.format(
+                     "%1$s%2$s(%3$s)(%4$s)", var1.getLogicName(), var14.getPSViewTypeName(), var2.getPSCodeItemName(), var13.getPSWorkflowName()
+                  )
+               );
+               if (!StringHelper.isNullOrEmpty(var14.getTitle())) {
+                  var16.setTitle(
+                     StringHelper.format("%1$s%2$s(%3$s)(%4$s)", var1.getLogicName(), var14.getTitle(), var2.getPSCodeItemName(), var13.getPSWorkflowName())
+                  );
+               }
+            } else {
+               var16.setPSDEViewBaseName(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var14.getPSViewTypeName(), var13.getPSWorkflowName()));
+               if (!StringHelper.isNullOrEmpty(var14.getTitle())) {
+                  var16.setTitle(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var14.getTitle(), var13.getPSWorkflowName()));
+               }
+            }
+
+            if (var2 != null) {
+               var16.setCodeName(StringHelper.format("%3$s_%1$s_D_%2$s", var4.getCodeName(), var14.getCodeName(), var12));
+            } else {
+               var16.setCodeName(StringHelper.format("%1$s_D_%2$s", var4.getCodeName(), var14.getCodeName()));
+            }
+
+            String var17 = "";
+            if (var2 != null) {
+               var17 = StringHelper.format("%1$s:D", var2.getCodeItemValue());
+            } else {
+               var17 = StringHelper.format("D");
+            }
+
+            this.initDEView(var1, var14, var13.getPSWorkflowId(), var17, var16, "MOBWFEDITVIEW", var15);
+            if (var5 != null && var5.getPSCodeItems() != null) {
+               PSWFProcessService var50 = (PSWFProcessService)ServiceGlobal.getService(PSWFProcessService.class, this.getSessionFactory());
+               PSDEViewCtrlService var64 = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, this.getSessionFactory());
+
+               for (PSWFVersion var89 : var7) {
+                  int var97 = var89.getWFVersion();
+                  HashMap var101 = new HashMap();
+
+                  for (PSWFProcess var23 : var50.selectByPSWFVersion(var89)) {
+                     if (!StringHelper.isNullOrEmpty(var23.getWFStepValue())) {
+                        var101.put(var23.getWFStepValue(), var23);
+                     }
+                  }
+
+                  for (PSCodeItem var24 : var5.getPSCodeItems()) {
+                     PSWFProcess var25 = (PSWFProcess)var101.get(var24.getCodeItemValue());
+                     if (var25 != null) {
+                        String var26 = StringHelper.format("%1$s:%3$sW:%2$s", var4.getCodeName(), var24.getCodeItemValue(), var97 == 1 ? "" : var97);
+                        if (var2 != null) {
+                           var26 = StringHelper.format("%1$s:%2$s", var2.getCodeItemValue(), var26);
+                        }
+
+                        var26 = var26.toUpperCase();
+                        PSDEViewBase var27 = new PSDEViewBase();
+                        var27.setWFViewParam(1);
+                        var27.setWFViewParam3(var24.getCodeItemValue());
+                        var27.setPSWFDEId(var4.getPSWFDEId());
+                        var27.setPSWFVersionId(var89.getPSWFVersionId());
+                        var27.setPSWFVersionName(var89.getPSWFVersionName());
+                        if (var2 != null) {
+                           var27.setPSDEViewBaseName(
+                              StringHelper.format(
+                                 "%1$s%2$s(%3$s)(%4$sv%6$s:%5$s)",
+                                 var1.getLogicName(),
+                                 var14.getPSViewTypeName(),
+                                 var2.getPSCodeItemName(),
+                                 var13.getPSWorkflowName(),
+                                 var24.getPSCodeItemName(),
+                                 var97
+                              )
+                           );
+                           if (!StringHelper.isNullOrEmpty(var14.getTitle())) {
+                              var27.setTitle(
+                                 StringHelper.format(
+                                    "%1$s%2$s(%3$s)(%4$sv%6$s:%5$s)",
+                                    var1.getLogicName(),
+                                    var14.getTitle(),
+                                    var2.getPSCodeItemName(),
+                                    var13.getPSWorkflowName(),
+                                    var24.getPSCodeItemName(),
+                                    var97
+                                 )
+                              );
+                           }
+                        } else {
+                           var27.setPSDEViewBaseName(
+                              StringHelper.format(
+                                 "%1$s%2$s(%3$sv%5$s:%4$s)",
+                                 var1.getLogicName(),
+                                 var14.getPSViewTypeName(),
+                                 var13.getPSWorkflowName(),
+                                 var24.getPSCodeItemName(),
+                                 var97
+                              )
+                           );
+                           if (!StringHelper.isNullOrEmpty(var14.getTitle())) {
+                              var27.setTitle(
+                                 StringHelper.format(
+                                    "%1$s%2$s(%3$sv%5$s:%4$s)",
+                                    var1.getLogicName(),
+                                    var14.getTitle(),
+                                    var13.getPSWorkflowName(),
+                                    var24.getPSCodeItemName(),
+                                    var97
+                                 )
+                              );
+                           }
+                        }
+
+                        if (var2 != null) {
+                           var27.setCodeName(
+                              StringHelper.format(
+                                 "%4$s_%1$s_%5$sW%2$s_%3$s", var4.getCodeName(), var24.getCodeItemValue(), var14.getCodeName(), var12, var97 == 1 ? "" : var97
+                              )
+                           );
+                        } else {
+                           var27.setCodeName(
+                              StringHelper.format(
+                                 "%1$s_%4$sW%2$s_%3$s", var4.getCodeName(), var24.getCodeItemValue(), var14.getCodeName(), var97 == 1 ? "" : var97
+                              )
+                           );
+                        }
+
+                        String var28 = "";
+                        if (var2 != null) {
+                           var28 = StringHelper.format("%1$s:%3$sD:%2$s", var2.getCodeItemValue(), var24.getCodeItemValue(), var97 == 1 ? "" : var97);
+                        } else {
+                           var28 = StringHelper.format("%2$sW:%1$s", var24.getCodeItemValue(), var97 == 1 ? "" : var97);
+                        }
+
+                        PSDEViewBase var29 = this.initDEView(var1, var14, var13.getPSWorkflowId(), var28, var27, "MOBWFEDITVIEW", var26);
+                        if (var29 != null && var25 != null && !StringHelper.isNullOrEmpty(var25.getMobPSDEFormId())) {
+                           PSDEViewCtrl var30 = new PSDEViewCtrl();
+                           var30.setPSDEViewBaseId(var29.getPSDEViewBaseId());
+                           var30.setPSDEViewCtrlType("FORM");
+                           if (var64.select(var30, true) && StringHelper.compare(var25.getMobPSDEFormId(), var30.getPSDEFormId(), false) != 0) {
+                              var30.setPSDEFormId(var25.getMobPSDEFormId());
+                              var30.setPSDEFormName(var25.getMobPSDEFormName());
+                              var64.update(var30, false);
+                           }
+                        }
+                     }
+                  }
+               }
+            } else if (var8 && var7.size() > 0) {
+               PSWFVersion var49 = (PSWFVersion)var7.get(0);
+               PSViewTypeStruct var63 = var14;
+               var17 = StringHelper.format("%1$s:W", var4.getCodeName());
+               var17 = var17.toUpperCase();
+               PSDEViewBase var18 = new PSDEViewBase();
+               var18.setWFViewParam(1);
+               var18.setPSWFDEId(var4.getPSWFDEId());
+               var18.setPSWFVersionId(var49.getPSWFVersionId());
+               var18.setPSWFVersionName(var49.getPSWFVersionName());
+               var18.setPSDEViewBaseName(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var63.getPSViewTypeName(), var13.getPSWorkflowName()));
+               if (!StringHelper.isNullOrEmpty(var3.getTitle())) {
+                  var18.setTitle(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var63.getTitle(), var13.getPSWorkflowName()));
+               }
+
+               var18.setCodeName(StringHelper.format("%1$s_W_%2$s", var4.getCodeName(), var63.getCodeName()));
+               String var19 = "W";
+               var18.setDyncMode(var8 ? 1 : 0);
+               PSDEViewBase var20 = this.initDEView(var1, var63, var13.getPSWorkflowId(), var19, var18, "MOBWFEDITVIEW", var17);
+            }
+         }
+      }
+   }
+
+   public void initDEMSViews(PSDEMainState var1, PSDataEntity var2) throws Exception {
+      final PSDEMainState var3 = var1;
+      final PSDataEntity var4 = var2 != null ? var2 : var1.getPSDE();
+      this.doServiceWork(new IServiceWork() {
+         @Override
+         public void execute(ITransaction var1) throws Exception {
+            if (StringHelper.isNullOrEmpty(var3.getEditViewType())) {
+               for (String var5 : PSDEViewBaseService.initMSViewTypes) {
+                  PSViewTypeStruct var6 = PSModelGlobal.getPSViewType(var5);
+                  PSDEViewBaseService.this.initDMSView(var4, var6, var3);
+               }
+            } else {
+               PSViewTypeStruct var7 = PSModelGlobal.getPSViewType(var3.getEditViewType());
+               PSDEViewBaseService.this.initDMSView(var4, var7, var3);
+            }
+         }
+      });
+   }
+
+   protected void initDMSView(PSDataEntity var1, PSViewTypeStruct var2, PSDEMainState var3) throws Exception {
+      if (StringHelper.compare(var2.getPSViewTypeId(), "DEEDITVIEW", true) == 0
+         || StringHelper.compare(var2.getPSViewTypeId(), "DEEDITVIEW2", true) == 0
+         || StringHelper.compare(var2.getPSViewTypeId(), "DEEDITVIEW3", true) == 0
+         || StringHelper.compare(var2.getPSViewTypeId(), "DEEDITVIEW4", true) == 0) {
+         String var4 = StringHelper.format("MSTAG:%1$s", var3.getMSTag());
+         var4 = var4.toUpperCase();
+         PSDEViewBase var5 = new PSDEViewBase();
+         var5.setPSDEMainStateId(var3.getPSDEMainStateId());
+         var5.setPSDEViewBaseName(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var2.getPSViewTypeName(), var3.getPSDEMainStateName()));
+         if (!StringHelper.isNullOrEmpty(var2.getTitle())) {
+            var5.setTitle(StringHelper.format("%1$s%2$s(%3$s)", var1.getLogicName(), var2.getTitle(), var3.getPSDEMainStateName()));
+         }
+
+         var5.setCodeName(StringHelper.format("%1$s%2$s", var3.getCodeName(), var2.getCodeName()));
+         PSDEViewBase var6 = this.initDEView(var1, var2, var3.getPSDEMainStateId(), "", var5, "EDITVIEW", var4);
+         if (var6 != null && var3 != null && !StringHelper.isNullOrEmpty(var3.getPSDEFormId())) {
+            PSDEViewCtrlService var7 = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, this.getSessionFactory());
+            PSDEViewCtrl var8 = new PSDEViewCtrl();
+            var8.setPSDEViewBaseId(var6.getPSDEViewBaseId());
+            var8.setPSDEViewCtrlType("FORM");
+            if (var7.select(var8, true) && StringHelper.compare(var3.getPSDEFormId(), var8.getPSDEFormId(), false) != 0) {
+               var8.setPSDEFormId(var3.getPSDEFormId());
+               var8.setPSDEFormName(var3.getPSDEFormName());
+               var7.update(var8, false);
+            }
+         }
+      }
+   }
+
+   @Override
+   protected void onBeforeRemove(PSDEViewBase var1) throws Exception {
+      PSDEViewCtrlService var2 = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, this.getSessionFactory());
+
+      for (PSDEViewCtrl var5 : var2.selectByPSDEViewBase(var1)) {
+         if (DataObject.getBoolValue(var5.getDefaultFlag(), false)) {
+            var5.setDefaultFlag(0);
+            var2.update(var5, false);
+         }
+      }
+
+      super.onBeforeRemove(var1);
+   }
+
+   @Override
+   protected void onBeforeRemoveTemp(PSDEViewBase var1) throws Exception {
+      PSDEViewCtrlService var2 = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, this.getSessionFactory());
+
+      for (PSDEViewCtrl var5 : var2.selectTempByPSDEViewBase(var1)) {
+         if (DataObject.getBoolValue(var5.getDefaultFlag(), false)) {
+            var5.setDefaultFlag(0);
+            var2.updateTemp(var5, false);
+         }
+      }
+
+      super.onBeforeRemoveTemp(var1);
+   }
+
+   protected void onAfterCreate(PSDEViewBase var1) throws Exception {
+      super.onAfterCreate(var1);
+   }
+
+   protected void onAfterUpdate(PSDEViewBase var1) throws Exception {
+      String var2 = var1.getPSDE().getCodeName() + var1.getCodeName();
+      PSAppDEViewService var3 = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, this.getSessionFactory());
+
+      for (PSAppDEView var6 : var3.selectByPSDEViewBase(var1)) {
+         if (DataObject.getBoolValue(var6.getSyncCodeName(), true) && StringHelper.compare(var6.getPSAppDEViewName(), var2, false) != 0) {
+            PSAppDEView var7 = new PSAppDEView();
+            var7.setPSAppDEViewId(var6.getPSAppDEViewId());
+            var7.setPSAppDEViewName(var2);
+            var3.update(var7, false);
+         }
+      }
+
+      super.onAfterUpdate(var1);
+   }
+
+   protected void onAfterUpdateTempMajor(PSDEViewBase var1) throws Exception {
+      if (DataObject.getBoolValue(var1.getDyncMode(), false)) {
+         PSAppDEViewService var2 = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, this.getSessionFactory());
+
+         for (PSAppDEView var5 : var2.selectByPSDEViewBase(var1)) {
+            var2.initDynaView(var5);
+         }
+
+         super.onAfterUpdateTempMajor(var1);
+      }
+   }
+
+   @Override
+   protected void onJITPreview(PSDEViewBase var1) throws Exception {
+      if (this.getWebContext() != null && this.getWebContext().getCurAjaxActionResult() != null) {
+         String var2 = var1.getPSDEViewBaseId();
+         if (KeyValueHelper.isTempKey(var1.getPSDEViewBaseId())) {
+            this.getTemp(var1);
+            var2 = (String)EntityBase.getOriginKey(var1);
+            if (StringHelper.isNullOrEmpty(var2)) {
+               throw new Exception(StringHelper.format("实体视图还未保存"));
+            }
+         }
+
+         PSDEViewBase var3 = new PSDEViewBase();
+         var3.setPSDEViewBaseId(var2);
+         this.get(var3);
+         PSAppDEViewService var4 = (PSAppDEViewService)ServiceGlobal.getService(PSAppDEViewService.class, this.getSessionFactory());
+         ArrayList<PSAppDEView> var5 = var4.selectByPSDEViewBase(var3);
+         if (var5.size() == 0) {
+            throw new Exception("实体视图还未加入到应用");
+         }
+
+         PSSysApp var6 = null;
+         PSAppDEView var7 = null;
+
+         for (PSAppDEView var9 : var5) {
+            if (var6 == null) {
+               var6 = var9.getPSSysApp();
+               var7 = var9;
+               if (DataObject.getBoolValue(var6.getDefaultPub(), false)) {
+                  break;
+               }
+            } else {
+               PSSysApp var10 = var9.getPSSysApp();
+               if (DataObject.getBoolValue(var10.getDefaultPub(), false)) {
+                  var7 = var9;
+                  break;
+               }
+            }
+         }
+
+         var4.jITPreview(var7);
+      } else {
+         throw new Exception("当前请求环境不正确");
+      }
+   }
+
+   protected void fillDEViewCtrlParams(PSDEViewCtrl var1, PSVTCtrl var2) throws Exception {
+      if (var2.getCtrlParam() != null) {
+         var1.setCtrlParam(var2.getCtrlParam());
+      }
+
+      if (var2.getCtrlParam2() != null) {
+         var1.setCtrlParam2(var2.getCtrlParam2());
+      }
+
+      if (var2.getCtrlParam3() != null) {
+         var1.setCtrlParam3(var2.getCtrlParam3());
+      }
+
+      if (var2.getCtrlParam4() != null) {
+         var1.setCtrlParam4(var2.getCtrlParam4());
+      }
+
+      if (var2.getCtrlParam5() != null) {
+         var1.setCtrlParam5(var2.getCtrlParam5());
+      }
+
+      if (var2.getCtrlParam6() != null) {
+         var1.setCtrlParam6(var2.getCtrlParam6());
+      }
+
+      if (var2.getCtrlParam7() != null) {
+         var1.setCtrlParam7(var2.getCtrlParam7());
+      }
+
+      if (var2.getCtrlParam8() != null) {
+         var1.setCtrlParam8(var2.getCtrlParam8());
+      }
+
+      if (var2.getCtrlParam9() != null) {
+         var1.setCtrlParam9(var2.getCtrlParam9());
+      }
+
+      if (var2.getCtrlParam10() != null) {
+         var1.setCtrlParam10(var2.getCtrlParam10());
+      }
+   }
+
+   @Override
+   public void getDraftWithModel(PSDEViewBase var1) throws Exception {
+      this.getDraftTempMajor(var1);
+      var1.setViewModel(this.getViewModel(var1));
+   }
+
+   @Override
+   public void getWithModel(PSDEViewBase var1) throws Exception {
+      if (!KeyValueHelper.isTempKey(var1.getPSDEViewBaseId())) {
+         this.getTempMajor(var1);
+      } else {
+         this.getTemp(var1);
+      }
+
+      var1.setViewModel(this.getViewModel(var1));
+   }
+
+   protected String getViewModel(PSDEViewBase var1) throws Exception {
+      XmlNode var2 = new XmlNode();
+      var2.setNodeName("DEVIEWCONFIG");
+      var2.setAttribute("PSDEID", var1.getPSDEId());
+      var2.setAttribute("PSSYSTEMID", var1.getPSSystemId());
+      var2.setAttribute("PSDEVIEWBASEID", var1.getPSDEViewBaseId());
+      PSDEViewCtrlService var3 = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class.getCanonicalName(), this.getSessionFactory());
+      ArrayList<PSDEViewCtrl> var4 = var3.selectTempByPSDEViewBase(var1);
+      Collections.sort(var4, new Comparator<PSDEViewCtrl>() {
+         public int compare(PSDEViewCtrl var1, PSDEViewCtrl var2x) {
+            return StringHelper.compare(var1.getPSDEViewCtrlName(), var2x.getPSDEViewCtrlName(), false);
+         }
+      });
+
+      for (PSDEViewCtrl var6 : var4) {
+         XmlNode var7 = new XmlNode();
+         var7.setNodeName("DEVIEWCTRL");
+         var6.fillXmlNode(var7, true);
+         var2.addNode(var7);
+      }
+
+      PSDEViewRVService var14 = (PSDEViewRVService)ServiceGlobal.getService(PSDEViewRVService.class.getCanonicalName(), this.getSessionFactory());
+      ArrayList<PSDEViewRV> var15 = var14.selectTempByMajorPSDEView(var1);
+      Collections.sort(var15, new Comparator<PSDEViewRV>() {
+         public int compare(PSDEViewRV var1, PSDEViewRV var2x) {
+            return StringHelper.compare(var1.getPSDEViewRVName(), var2x.getPSDEViewRVName(), false);
+         }
+      });
+
+      for (PSDEViewRV var8 : var15) {
+         XmlNode var9 = new XmlNode();
+         var9.setNodeName("DEVIEWRV");
+         var8.fillXmlNode(var9, true);
+         var2.addNode(var9);
+      }
+
+      PSDEViewLogicService var17 = (PSDEViewLogicService)ServiceGlobal.getService(PSDEViewLogicService.class.getCanonicalName(), this.getSessionFactory());
+
+      for (PSDEViewLogic var10 : var17.selectTempByPSDEViewBase(var1)) {
+         XmlNode var11 = new XmlNode();
+         var11.setNodeName("DEVIEWLOGIC");
+         var10.fillXmlNode(var11, true);
+         var2.addNode(var11);
+      }
+
+      PSDEViewEngineService var20 = (PSDEViewEngineService)ServiceGlobal.getService(PSDEViewEngineService.class.getCanonicalName(), this.getSessionFactory());
+
+      for (PSDEViewEngine var12 : var20.selectTempByPSDEViewBase(var1)) {
+         XmlNode var13 = new XmlNode();
+         var13.setNodeName("DEVIEWENGINE");
+         var12.fillXmlNode(var13, true);
+         var2.addNode(var13);
+      }
+
+      return XmlNode.export(var2);
+   }
+
+   @Override
+   public void createWithModel(PSDEViewBase var1) throws Exception {
+      final PSDEViewBase var2 = var1;
+      var2.setSessionFactory(this.getSessionFactory());
+      log.debug("开始[createWithModel]作业");
+      this.doServiceWork(
+         new IServiceWork() {
             @Override
-            public int compare(PSDEViewRV pSDEViewRV, PSDEViewRV pSDEViewRV2) {
-                return StringHelper.compare((String)pSDEViewRV.getPSDEViewRVName(), (String)pSDEViewRV2.getPSDEViewRVName(), (boolean)false);
-            }
-        });
-        for (Serializable serializable22 : arrayList2) {
-            object2 = new XmlNode();
-            object2.setNodeName(XMLNODE_DEVIEWRV);
-            serializable22.fillXmlNode((XmlNode)object2, true);
-            xmlNode.addNode((XmlNode)object2);
-        }
-        object3 = (PSDEViewLogicService)ServiceGlobal.getService((String)PSDEViewLogicService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
-        serializable22 = ((PSDEViewLogicServiceBase)object3).selectTempByPSDEViewBase(pSDEViewBase);
-        object2 = ((ArrayList)serializable22).iterator();
-        while (object2.hasNext()) {
-            serializable = (PSDEViewLogic)object2.next();
-            object = new XmlNode();
-            object.setNodeName(XMLNODE_DEVIEWLOGIC);
-            serializable.fillXmlNode((XmlNode)object, true);
-            xmlNode.addNode((XmlNode)object);
-        }
-        object2 = (PSDEViewEngineService)ServiceGlobal.getService((String)PSDEViewEngineService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
-        serializable = ((PSDEViewEngineServiceBase)object2).selectTempByPSDEViewBase(pSDEViewBase);
-        object = ((ArrayList)serializable).iterator();
-        while (object.hasNext()) {
-            PSDEViewEngine pSDEViewEngine = (PSDEViewEngine)object.next();
-            XmlNode xmlNode2 = new XmlNode();
-            xmlNode2.setNodeName(XMLNODE_DEVIEWENGINE);
-            pSDEViewEngine.fillXmlNode(xmlNode2, true);
-            xmlNode.addNode(xmlNode2);
-        }
-        return XmlNode.export((XmlNode)xmlNode);
-    }
+            public void execute(ITransaction var1) throws Exception {
+               PSDEViewCtrlService var2x = (PSDEViewCtrlService)ServiceGlobal.getService(
+                  PSDEViewCtrlService.class.getCanonicalName(), PSDEViewBaseService.this.getSessionFactory()
+               );
+               ArrayList<PSDEViewCtrl> var3 = var2x.selectTempByPSDEViewBase(var2);
+               HashMap<String, PSDEViewCtrl> var4 = new HashMap<String, PSDEViewCtrl>();
 
-    @Override
-    public void createWithModel(PSDEViewBase pSDEViewBase) throws Exception {
-        final PSDEViewBase pSDEViewBase2 = pSDEViewBase;
-        pSDEViewBase2.setSessionFactory(this.getSessionFactory());
-        log.debug((Object)"\u5f00\u59cb[createWithModel]\u4f5c\u4e1a");
-        this.doServiceWork(new IServiceWork(){
+               for (PSDEViewCtrl var6 : var3) {
+                  var4.put(var6.getPSDEViewCtrlId(), var6);
+               }
 
-            public void execute(ITransaction iTransaction) throws Exception {
-                PSDEViewEngine pSDEViewEngine;
-                Serializable serializable;
-                Serializable serializable22;
-                PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService((String)PSDEViewCtrlService.class.getCanonicalName(), (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                ArrayList<PSDEViewCtrl> arrayList = pSDEViewCtrlService.selectTempByPSDEViewBase(pSDEViewBase2);
-                HashMap<String, PSDEViewCtrl> hashMap = new HashMap<String, PSDEViewCtrl>();
-                for (PSDEViewCtrl serializable32 : arrayList) {
-                    hashMap.put(serializable32.getPSDEViewCtrlId(), serializable32);
-                }
-                PSDEViewRVService pSDEViewRVService = (PSDEViewRVService)ServiceGlobal.getService((String)PSDEViewRVService.class.getCanonicalName(), (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                ArrayList<PSDEViewRV> arrayList2 = pSDEViewRVService.selectTempByMajorPSDEView(pSDEViewBase2);
-                HashMap<String, PSDEViewRV> hashMap2 = new HashMap<String, PSDEViewRV>();
-                for (Serializable serializable22 : arrayList2) {
-                    hashMap2.put(((PSDEViewRVBase)serializable22).getPSDEViewRVId(), (PSDEViewRV)serializable22);
-                }
-                PSDEViewLogicService pSDEViewLogicService = (PSDEViewLogicService)ServiceGlobal.getService((String)PSDEViewLogicService.class.getCanonicalName(), (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                serializable22 = pSDEViewLogicService.selectTempByPSDEViewBase(pSDEViewBase2);
-                HashMap<String, PSDEViewLogic> hashMap3 = new HashMap<String, PSDEViewLogic>();
-                Object object = ((ArrayList)serializable22).iterator();
-                while (object.hasNext()) {
-                    serializable = (PSDEViewLogic)object.next();
-                    hashMap3.put(((PSDEViewLogicBase)serializable).getPSDEViewLogicId(), (PSDEViewLogic)serializable);
-                }
-                object = (PSDEViewEngineService)ServiceGlobal.getService((String)PSDEViewEngineService.class.getCanonicalName(), (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                serializable = ((PSDEViewEngineServiceBase)object).selectTempByPSDEViewBase(pSDEViewBase2);
-                HashMap<String, PSDEViewEngine> hashMap4 = new HashMap<String, PSDEViewEngine>();
-                Object object2 = ((ArrayList)serializable).iterator();
-                while (object2.hasNext()) {
-                    pSDEViewEngine = (PSDEViewEngine)object2.next();
-                    hashMap4.put(pSDEViewEngine.getPSDEViewEngineId(), pSDEViewEngine);
-                }
-                object2 = pSDEViewBase2.getViewModel();
-                pSDEViewEngine = XmlNode.loadFromXML((String)object2);
-                if (pSDEViewEngine != null) {
-                    pSDEViewEngine.setAttribute("PSDEID", pSDEViewBase2.getPSDEId());
-                    pSDEViewEngine.setAttribute("PSSYSTEMID", pSDEViewBase2.getPSSystemId());
-                    pSDEViewEngine.setAttribute("PSDEVIEWBASEID", pSDEViewBase2.getPSDEViewBaseId());
-                    PSDEViewBaseService.this.updatePSDEViewModel(pSDEViewBase2, (XmlNode)pSDEViewEngine, hashMap, hashMap2, hashMap3, hashMap4);
-                    pSDEViewBase2.setViewModel(XmlNode.export((XmlNode)pSDEViewEngine));
-                } else {
-                    pSDEViewBase2.setViewModel(null);
-                }
-                if (hashMap3.size() > 0) {
-                    for (EntityBase entityBase : hashMap3.values()) {
-                        pSDEViewLogicService.removeTemp((IEntity)entityBase);
-                    }
-                }
-                if (hashMap2.size() > 0) {
-                    for (EntityBase entityBase : hashMap2.values()) {
-                        pSDEViewRVService.removeTemp((IEntity)entityBase);
-                    }
-                }
-                if (hashMap.size() > 0) {
-                    for (EntityBase entityBase : hashMap.values()) {
-                        pSDEViewCtrlService.removeTemp((IEntity)entityBase);
-                    }
-                }
-                PSDEViewBaseService.this.createTempMajor((IEntity)pSDEViewBase2);
-            }
-        });
-    }
+               PSDEViewRVService var18 = (PSDEViewRVService)ServiceGlobal.getService(
+                  PSDEViewRVService.class.getCanonicalName(), PSDEViewBaseService.this.getSessionFactory()
+               );
+               ArrayList<PSDEViewRV> var19 = var18.selectTempByMajorPSDEView(var2);
+               HashMap<String, PSDEViewRV> var7 = new HashMap<String, PSDEViewRV>();
 
-    @Override
-    public void updateWithModel(PSDEViewBase pSDEViewBase) throws Exception {
-        final PSDEViewBase pSDEViewBase2 = pSDEViewBase;
-        pSDEViewBase2.setSessionFactory(this.getSessionFactory());
-        log.debug((Object)"\u5f00\u59cb[updateWithModel]\u4f5c\u4e1a");
-        this.doServiceWork(new IServiceWork(){
+               for (PSDEViewRV var9 : var19) {
+                  var7.put(var9.getPSDEViewRVId(), var9);
+               }
 
-            public void execute(ITransaction iTransaction) throws Exception {
-                PSDEViewEngine pSDEViewEngine;
-                Serializable serializable;
-                Serializable serializable22;
-                Object object = null;
-                PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService((String)PSDEViewCtrlService.class.getCanonicalName(), (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                ArrayList<PSDEViewCtrl> arrayList = pSDEViewCtrlService.selectTempByPSDEViewBase(pSDEViewBase2);
-                HashMap<String, PSDEViewCtrl> hashMap = new HashMap<String, PSDEViewCtrl>();
-                for (PSDEViewCtrl serializable32 : arrayList) {
-                    hashMap.put(serializable32.getPSDEViewCtrlId(), serializable32);
-                }
-                PSDEViewRVService pSDEViewRVService = (PSDEViewRVService)ServiceGlobal.getService((String)PSDEViewRVService.class.getCanonicalName(), (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                ArrayList<PSDEViewRV> arrayList2 = pSDEViewRVService.selectTempByMajorPSDEView(pSDEViewBase2);
-                HashMap<String, PSDEViewRV> hashMap2 = new HashMap<String, PSDEViewRV>();
-                for (Serializable serializable22 : arrayList2) {
-                    hashMap2.put(((PSDEViewRVBase)serializable22).getPSDEViewRVId(), (PSDEViewRV)serializable22);
-                }
-                PSDEViewLogicService pSDEViewLogicService = (PSDEViewLogicService)ServiceGlobal.getService((String)PSDEViewLogicService.class.getCanonicalName(), (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                serializable22 = pSDEViewLogicService.selectTempByPSDEViewBase(pSDEViewBase2);
-                HashMap<String, PSDEViewLogic> hashMap3 = new HashMap<String, PSDEViewLogic>();
-                Object object2 = ((ArrayList)serializable22).iterator();
-                while (object2.hasNext()) {
-                    serializable = (PSDEViewLogic)object2.next();
-                    hashMap3.put(((PSDEViewLogicBase)serializable).getPSDEViewLogicId(), (PSDEViewLogic)serializable);
-                }
-                object2 = (PSDEViewEngineService)ServiceGlobal.getService((String)PSDEViewEngineService.class.getCanonicalName(), (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                serializable = ((PSDEViewEngineServiceBase)object2).selectTempByPSDEViewBase(pSDEViewBase2);
-                HashMap<String, PSDEViewEngine> hashMap4 = new HashMap<String, PSDEViewEngine>();
-                Object object3 = ((ArrayList)serializable).iterator();
-                while (object3.hasNext()) {
-                    pSDEViewEngine = (PSDEViewEngine)object3.next();
-                    hashMap4.put(pSDEViewEngine.getPSDEViewEngineId(), pSDEViewEngine);
-                }
-                object = object3 = pSDEViewBase2.getViewModel();
-                pSDEViewEngine = XmlNode.loadFromXML((String)object3);
-                if (pSDEViewEngine != null) {
-                    pSDEViewEngine.setAttribute("PSDEID", pSDEViewBase2.getPSDEId());
-                    pSDEViewEngine.setAttribute("PSDEVIEWBASEID", pSDEViewBase2.getPSDEViewBaseId());
-                    pSDEViewEngine.setAttribute("PSSYSTEMID", pSDEViewBase2.getPSSystemId());
-                    PSDEViewBaseService.this.updatePSDEViewModel(pSDEViewBase2, (XmlNode)pSDEViewEngine, hashMap, hashMap2, hashMap3, hashMap4);
-                    pSDEViewBase2.setViewModel(XmlNode.export((XmlNode)pSDEViewEngine));
-                } else {
-                    pSDEViewBase2.setViewModel(null);
-                }
-                boolean bl = false;
-                if (hashMap3.size() > 0) {
-                    for (EntityBase entityBase : hashMap3.values()) {
-                        pSDEViewLogicService.removeTemp((IEntity)entityBase);
-                        bl = true;
-                    }
-                }
-                if (hashMap2.size() > 0) {
-                    for (EntityBase entityBase : hashMap2.values()) {
-                        pSDEViewRVService.removeTemp((IEntity)entityBase);
-                        bl = true;
-                    }
-                }
-                if (hashMap.size() > 0) {
-                    for (EntityBase entityBase : hashMap.values()) {
-                        pSDEViewCtrlService.removeTemp((IEntity)entityBase);
-                        bl = true;
-                    }
-                }
-                PSDEViewBaseService.this.updateTempMajor(pSDEViewBase2);
-            }
-        });
-    }
+               PSDEViewLogicService var20 = (PSDEViewLogicService)ServiceGlobal.getService(
+                  PSDEViewLogicService.class.getCanonicalName(), PSDEViewBaseService.this.getSessionFactory()
+               );
+               ArrayList<PSDEViewLogic> var21 = var20.selectTempByPSDEViewBase(var2);
+               HashMap<String, PSDEViewLogic> var10 = new HashMap<String, PSDEViewLogic>();
 
-    @Override
-    public void previewSave(PSDEViewBase pSDEViewBase) throws Exception {
-        final PSDEViewBase pSDEViewBase2 = pSDEViewBase;
-        pSDEViewBase2.setSessionFactory(this.getSessionFactory());
-        log.debug((Object)"\u5f00\u59cb[updateWithModel]\u4f5c\u4e1a");
-        this.doServiceWork(new IServiceWork(){
+               for (PSDEViewLogic var12 : var21) {
+                  var10.put(var12.getPSDEViewLogicId(), var12);
+               }
 
-            public void execute(ITransaction iTransaction) throws Exception {
-                PSDEViewEngine pSDEViewEngine;
-                Serializable serializable;
-                Serializable serializable22;
-                Object object = null;
-                PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService((String)PSDEViewCtrlService.class.getCanonicalName(), (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                ArrayList<PSDEViewCtrl> arrayList = pSDEViewCtrlService.selectTempByPSDEViewBase(pSDEViewBase2);
-                HashMap<String, PSDEViewCtrl> hashMap = new HashMap<String, PSDEViewCtrl>();
-                for (PSDEViewCtrl serializable32 : arrayList) {
-                    hashMap.put(serializable32.getPSDEViewCtrlId(), serializable32);
-                }
-                PSDEViewRVService pSDEViewRVService = (PSDEViewRVService)ServiceGlobal.getService((String)PSDEViewRVService.class.getCanonicalName(), (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                ArrayList<PSDEViewRV> arrayList2 = pSDEViewRVService.selectTempByMajorPSDEView(pSDEViewBase2);
-                HashMap<String, PSDEViewRV> hashMap2 = new HashMap<String, PSDEViewRV>();
-                for (Serializable serializable22 : arrayList2) {
-                    hashMap2.put(((PSDEViewRVBase)serializable22).getPSDEViewRVId(), (PSDEViewRV)serializable22);
-                }
-                PSDEViewLogicService pSDEViewLogicService = (PSDEViewLogicService)ServiceGlobal.getService((String)PSDEViewLogicService.class.getCanonicalName(), (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                serializable22 = pSDEViewLogicService.selectTempByPSDEViewBase(pSDEViewBase2);
-                HashMap<String, PSDEViewLogic> hashMap3 = new HashMap<String, PSDEViewLogic>();
-                Object object2 = ((ArrayList)serializable22).iterator();
-                while (object2.hasNext()) {
-                    serializable = (PSDEViewLogic)object2.next();
-                    hashMap3.put(((PSDEViewLogicBase)serializable).getPSDEViewLogicId(), (PSDEViewLogic)serializable);
-                }
-                object2 = (PSDEViewEngineService)ServiceGlobal.getService((String)PSDEViewEngineService.class.getCanonicalName(), (SessionFactory)PSDEViewBaseService.this.getSessionFactory());
-                serializable = ((PSDEViewEngineServiceBase)object2).selectTempByPSDEViewBase(pSDEViewBase2);
-                HashMap<String, PSDEViewEngine> hashMap4 = new HashMap<String, PSDEViewEngine>();
-                Object object3 = ((ArrayList)serializable).iterator();
-                while (object3.hasNext()) {
-                    pSDEViewEngine = (PSDEViewEngine)object3.next();
-                    hashMap4.put(pSDEViewEngine.getPSDEViewEngineId(), pSDEViewEngine);
-                }
-                object = object3 = pSDEViewBase2.getViewModel();
-                pSDEViewEngine = XmlNode.loadFromXML((String)object3);
-                if (pSDEViewEngine != null) {
-                    pSDEViewEngine.setAttribute("PSDEID", pSDEViewBase2.getPSDEId());
-                    pSDEViewEngine.setAttribute("PSDEVIEWBASEID", pSDEViewBase2.getPSDEViewBaseId());
-                    pSDEViewEngine.setAttribute("PSSYSTEMID", pSDEViewBase2.getPSSystemId());
-                    PSDEViewBaseService.this.updatePSDEViewModel(pSDEViewBase2, (XmlNode)pSDEViewEngine, hashMap, hashMap2, hashMap3, hashMap4);
-                    pSDEViewBase2.setViewModel(XmlNode.export((XmlNode)pSDEViewEngine));
-                } else {
-                    pSDEViewBase2.setViewModel(null);
-                }
-                boolean bl = false;
-                if (hashMap3.size() > 0) {
-                    for (EntityBase entityBase : hashMap3.values()) {
-                        pSDEViewLogicService.removeTemp((IEntity)entityBase);
-                        bl = true;
-                    }
-                }
-                if (hashMap2.size() > 0) {
-                    for (EntityBase entityBase : hashMap2.values()) {
-                        pSDEViewRVService.removeTemp((IEntity)entityBase);
-                        bl = true;
-                    }
-                }
-                if (hashMap.size() > 0) {
-                    for (EntityBase entityBase : hashMap.values()) {
-                        pSDEViewCtrlService.removeTemp((IEntity)entityBase);
-                        bl = true;
-                    }
-                }
-            }
-        });
-    }
+               PSDEViewEngineService var22 = (PSDEViewEngineService)ServiceGlobal.getService(
+                  PSDEViewEngineService.class.getCanonicalName(), PSDEViewBaseService.this.getSessionFactory()
+               );
+               ArrayList<PSDEViewEngine> var23 = var22.selectTempByPSDEViewBase(var2);
+               HashMap<String, PSDEViewEngine> var13 = new HashMap<String, PSDEViewEngine>();
 
-    protected void updatePSDEViewModel(PSDEViewBase pSDEViewBase, XmlNode xmlNode, HashMap<String, PSDEViewCtrl> hashMap, HashMap<String, PSDEViewRV> hashMap2, HashMap<String, PSDEViewLogic> hashMap3, HashMap<String, PSDEViewEngine> hashMap4) throws Exception {
-        Iterator iterator = xmlNode.getChildNodes();
-        if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
-            ArrayList<Object> arrayList2 = new ArrayList<Object>();
-            ArrayList<Object> arrayList3 = new ArrayList<Object>();
-            ArrayList<Object> arrayList4 = new ArrayList<Object>();
-            PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService((String)PSDEViewCtrlService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
-            PSDEViewRVService pSDEViewRVService = (PSDEViewRVService)ServiceGlobal.getService((String)PSDEViewRVService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
-            PSDEViewLogicService pSDEViewLogicService = (PSDEViewLogicService)ServiceGlobal.getService((String)PSDEViewLogicService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
-            PSDEViewEngineService pSDEViewEngineService = (PSDEViewEngineService)ServiceGlobal.getService((String)PSDEViewEngineService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
-            while (iterator.hasNext()) {
-                String string;
-                boolean bl;
-                EntityBase entityBase;
-                XmlNode xmlNode2 = (XmlNode)iterator.next();
-                if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_DEVIEWCTRL, (boolean)true) == 0) {
-                    String string2 = xmlNode2.getAttribute("PSDEVIEWCTRLID", "");
-                    if (StringHelper.isNullOrEmpty((String)string2) || (entityBase = hashMap.remove(string2)) == null) continue;
-                    bl = false;
-                    if (StringHelper.compare((String)entityBase.getPSDEViewBaseId(), (String)pSDEViewBase.getPSDEViewBaseId(), (boolean)false) != 0) {
-                        entityBase.setPSDEViewBaseId(pSDEViewBase.getPSDEViewBaseId());
-                        bl = true;
-                    }
-                    if (StringHelper.compare((String)entityBase.getPSDEViewBaseName(), (String)pSDEViewBase.getPSDEViewBaseName(), (boolean)false) != 0) {
-                        entityBase.setPSDEViewBaseName(pSDEViewBase.getPSDEViewBaseName());
-                        bl = true;
-                    }
-                    if (bl) {
-                        pSDEViewCtrlService.updateTemp((IEntity)entityBase);
-                    }
-                    xmlNode2.resetAttributes();
-                    entityBase.fillXmlNode(xmlNode2, false);
-                    arrayList.add(xmlNode2);
-                    continue;
-                }
-                if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_DEVIEWRV, (boolean)true) == 0) {
-                    String string3 = xmlNode2.getAttribute("PSDEVIEWRVID", "");
-                    if (StringHelper.isNullOrEmpty((String)string3) || (entityBase = hashMap2.remove(string3)) == null) continue;
-                    bl = false;
-                    if (StringHelper.compare((String)entityBase.getMajorPSDEViewId(), (String)pSDEViewBase.getPSDEViewBaseId(), (boolean)false) != 0) {
-                        entityBase.setMajorPSDEViewId(pSDEViewBase.getPSDEViewBaseId());
-                        bl = true;
-                    }
-                    if (StringHelper.compare((String)entityBase.getMajorPSDEViewName(), (String)pSDEViewBase.getPSDEViewBaseName(), (boolean)false) != 0) {
-                        entityBase.setMajorPSDEViewName(pSDEViewBase.getPSDEViewBaseName());
-                        bl = true;
-                    }
-                    if (bl) {
-                        pSDEViewRVService.updateTemp((IEntity)entityBase);
-                    }
-                    xmlNode2.resetAttributes();
-                    entityBase.fillXmlNode(xmlNode2, false);
-                    arrayList2.add(xmlNode2);
-                    continue;
-                }
-                if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_DEVIEWLOGIC, (boolean)true) == 0) {
-                    String string4 = xmlNode2.getAttribute("PSDEVIEWLOGICID", "");
-                    if (StringHelper.isNullOrEmpty((String)string4) || (entityBase = hashMap3.remove(string4)) == null) continue;
-                    bl = false;
-                    if (StringHelper.compare((String)entityBase.getPSDEViewBaseId(), (String)pSDEViewBase.getPSDEViewBaseId(), (boolean)false) != 0) {
-                        entityBase.setPSDEViewBaseId(pSDEViewBase.getPSDEViewBaseId());
-                        bl = true;
-                    }
-                    if (StringHelper.compare((String)entityBase.getPSDEViewBaseName(), (String)pSDEViewBase.getPSDEViewBaseName(), (boolean)false) != 0) {
-                        entityBase.setPSDEViewBaseName(pSDEViewBase.getPSDEViewBaseName());
-                        bl = true;
-                    }
-                    if (bl) {
-                        pSDEViewLogicService.updateTemp((IEntity)entityBase);
-                    }
-                    xmlNode2.resetAttributes();
-                    entityBase.fillXmlNode(xmlNode2, false);
-                    arrayList3.add(xmlNode2);
-                    continue;
-                }
-                if (StringHelper.compare((String)xmlNode2.getNodeName(), (String)XMLNODE_DEVIEWENGINE, (boolean)true) != 0 || StringHelper.isNullOrEmpty((String)(string = xmlNode2.getAttribute("PSDEVIEWENGINEID", ""))) || (entityBase = hashMap4.remove(string)) == null) continue;
-                bl = false;
-                if (StringHelper.compare((String)entityBase.getPSDEViewBaseId(), (String)pSDEViewBase.getPSDEViewBaseId(), (boolean)false) != 0) {
-                    entityBase.setPSDEViewBaseId(pSDEViewBase.getPSDEViewBaseId());
-                    bl = true;
-                }
-                if (StringHelper.compare((String)entityBase.getPSDEViewBaseName(), (String)pSDEViewBase.getPSDEViewBaseName(), (boolean)false) != 0) {
-                    entityBase.setPSDEViewBaseName(pSDEViewBase.getPSDEViewBaseName());
-                    bl = true;
-                }
-                if (bl) {
-                    pSDEViewEngineService.updateTemp((IEntity)entityBase);
-                }
-                xmlNode2.resetAttributes();
-                entityBase.fillXmlNode(xmlNode2, false);
-                arrayList4.add(xmlNode2);
-            }
-            xmlNode.resetChildNodes();
-            for (XmlNode xmlNode2 : arrayList) {
-                xmlNode.addNode(xmlNode2);
-            }
-            for (XmlNode xmlNode3 : arrayList2) {
-                xmlNode.addNode(xmlNode3);
-            }
-            for (XmlNode xmlNode4 : arrayList3) {
-                xmlNode.addNode(xmlNode4);
-            }
-            for (XmlNode xmlNode5 : arrayList4) {
-                xmlNode.addNode(xmlNode5);
-            }
-        }
-    }
+               for (PSDEViewEngine var15 : var23) {
+                  var13.put(var15.getPSDEViewEngineId(), var15);
+               }
 
-    @Override
-    public void getDraftFromWithModel(PSDEViewBase pSDEViewBase) throws Exception {
-        super.getDraftTempMajorFrom(pSDEViewBase);
-        pSDEViewBase.setViewModel(this.getViewModel(pSDEViewBase));
-    }
+               String var24 = var2.getViewModel();
+               XmlNode var25 = XmlNode.loadFromXML(var24);
+               if (var25 != null) {
+                  var25.setAttribute("PSDEID", var2.getPSDEId());
+                  var25.setAttribute("PSSYSTEMID", var2.getPSSystemId());
+                  var25.setAttribute("PSDEVIEWBASEID", var2.getPSDEViewBaseId());
+                  PSDEViewBaseService.this.updatePSDEViewModel(var2, var25, var4, var7, var10, var13);
+                  var2.setViewModel(XmlNode.export(var25));
+               } else {
+                  var2.setViewModel(null);
+               }
 
-    @Override
-    public ObjectNode fillModelV2(ObjectNode objectNode, PSDEViewBase pSDEViewBase, String string) throws Exception {
-        if (!((objectNode = super.fillModelV2(objectNode, pSDEViewBase, string)) == null || StringHelper.compare((String)pSDEViewBase.getPSDEViewBaseType(), (String)"DEREDIRECTVIEW", (boolean)false) != 0 && StringHelper.compare((String)pSDEViewBase.getPSDEViewBaseType(), (String)"DEMOBREDIRECTVIEW", (boolean)false) != 0 || StringHelper.isNullOrEmpty((String)pSDEViewBase.getViewParam7()))) {
-            try {
-                String string2 = this.getModelV2UniqueTag("PSDEACTION", pSDEViewBase.getViewParam7(), string);
-                objectNode.remove("viewparam7");
-                objectNode.put("viewparam7", string2);
-            }
-            catch (Exception exception) {
-                log.error((Object)exception);
-            }
-        }
-        return objectNode;
-    }
+               if (var10.size() > 0) {
+                  for (PSDEViewLogic var17 : var10.values()) {
+                     var20.removeTemp(var17);
+                  }
+               }
 
-    @Override
-    public boolean fillModelV2Key(PSDEViewBase pSDEViewBase, ObjectNode objectNode, String string, String string2, boolean bl) throws Exception {
-        boolean bl2 = super.fillModelV2Key(pSDEViewBase, objectNode, string, string2, bl);
-        if (bl && objectNode != null && (StringHelper.compare((String)pSDEViewBase.getPSDEViewBaseType(), (String)"DEREDIRECTVIEW", (boolean)false) == 0 || StringHelper.compare((String)pSDEViewBase.getPSDEViewBaseType(), (String)"DEMOBREDIRECTVIEW", (boolean)false) == 0)) {
-            try {
-                String string3 = JsonNodeHelper.getString((ObjectNode)objectNode, (String)"viewparam7", null);
-                if (!StringHelper.isNullOrEmpty((String)string3)) {
-                    string3 = this.getModelV2Key("PSDEACTION", string3, string, "VIEWPARAM7");
-                    pSDEViewBase.setViewParam7(string3);
-                }
-            }
-            catch (Exception exception) {
-                log.error((Object)exception);
-                pSDEViewBase.setViewParam7(null);
-            }
-        }
-        return bl2;
-    }
+               if (var7.size() > 0) {
+                  for (PSDEViewRV var28 : var7.values()) {
+                     var18.removeTemp(var28);
+                  }
+               }
 
-    @Override
-    protected void onBeforeRemoveByPSDE(PSDataEntity pSDataEntity, ArrayList<PSDEViewBase> arrayList) throws Exception {
-        PSDEViewRVService pSDEViewRVService = (PSDEViewRVService)ServiceGlobal.getService(PSDEViewRVService.class, (SessionFactory)this.getSessionFactory());
-        for (PSDEViewBase pSDEViewBase : arrayList) {
-            pSDEViewRVService.removeByMajorPSDEView(pSDEViewBase);
-        }
-    }
+               if (var4.size() > 0) {
+                  for (PSDEViewCtrl var29 : var4.values()) {
+                     var2x.removeTemp(var29);
+                  }
+               }
+
+               PSDEViewBaseService.this.createTempMajor(var2);
+            }
+         }
+      );
+   }
+
+   @Override
+   public void updateWithModel(PSDEViewBase var1) throws Exception {
+      final PSDEViewBase var2 = var1;
+      var2.setSessionFactory(this.getSessionFactory());
+      log.debug("开始[updateWithModel]作业");
+      this.doServiceWork(
+         new IServiceWork() {
+            @Override
+            public void execute(ITransaction var1) throws Exception {
+               Object var2x = null;
+               PSDEViewCtrlService var3 = (PSDEViewCtrlService)ServiceGlobal.getService(
+                  PSDEViewCtrlService.class.getCanonicalName(), PSDEViewBaseService.this.getSessionFactory()
+               );
+               ArrayList<PSDEViewCtrl> var4 = var3.selectTempByPSDEViewBase(var2);
+               HashMap<String, PSDEViewCtrl> var5 = new HashMap<String, PSDEViewCtrl>();
+
+               for (PSDEViewCtrl var7 : var4) {
+                  var5.put(var7.getPSDEViewCtrlId(), var7);
+               }
+
+               PSDEViewRVService var20 = (PSDEViewRVService)ServiceGlobal.getService(
+                  PSDEViewRVService.class.getCanonicalName(), PSDEViewBaseService.this.getSessionFactory()
+               );
+               ArrayList<PSDEViewRV> var21 = var20.selectTempByMajorPSDEView(var2);
+               HashMap<String, PSDEViewRV> var8 = new HashMap<String, PSDEViewRV>();
+
+               for (PSDEViewRV var10 : var21) {
+                  var8.put(var10.getPSDEViewRVId(), var10);
+               }
+
+               PSDEViewLogicService var22 = (PSDEViewLogicService)ServiceGlobal.getService(
+                  PSDEViewLogicService.class.getCanonicalName(), PSDEViewBaseService.this.getSessionFactory()
+               );
+               ArrayList<PSDEViewLogic> var23 = var22.selectTempByPSDEViewBase(var2);
+               HashMap<String, PSDEViewLogic> var11 = new HashMap<String, PSDEViewLogic>();
+
+               for (PSDEViewLogic var13 : var23) {
+                  var11.put(var13.getPSDEViewLogicId(), var13);
+               }
+
+               PSDEViewEngineService var24 = (PSDEViewEngineService)ServiceGlobal.getService(
+                  PSDEViewEngineService.class.getCanonicalName(), PSDEViewBaseService.this.getSessionFactory()
+               );
+               ArrayList<PSDEViewEngine> var25 = var24.selectTempByPSDEViewBase(var2);
+               HashMap<String, PSDEViewEngine> var14 = new HashMap<String, PSDEViewEngine>();
+
+               for (PSDEViewEngine var16 : var25) {
+                  var14.put(var16.getPSDEViewEngineId(), var16);
+               }
+
+               String var26 = var2.getViewModel();
+               XmlNode var27 = XmlNode.loadFromXML(var26);
+               if (var27 != null) {
+                  var27.setAttribute("PSDEID", var2.getPSDEId());
+                  var27.setAttribute("PSDEVIEWBASEID", var2.getPSDEViewBaseId());
+                  var27.setAttribute("PSSYSTEMID", var2.getPSSystemId());
+                  PSDEViewBaseService.this.updatePSDEViewModel(var2, var27, var5, var8, var11, var14);
+                  var2.setViewModel(XmlNode.export(var27));
+               } else {
+                  var2.setViewModel(null);
+               }
+
+               boolean var17 = false;
+               if (var11.size() > 0) {
+                  for (PSDEViewLogic var19 : var11.values()) {
+                     var22.removeTemp(var19);
+                     var17 = true;
+                  }
+               }
+
+               if (var8.size() > 0) {
+                  for (PSDEViewRV var33 : var8.values()) {
+                     var20.removeTemp(var33);
+                     var17 = true;
+                  }
+               }
+
+               if (var5.size() > 0) {
+                  for (PSDEViewCtrl var34 : var5.values()) {
+                     var3.removeTemp(var34);
+                     var17 = true;
+                  }
+               }
+
+               PSDEViewBaseService.this.updateTempMajor(var2);
+            }
+         }
+      );
+   }
+
+   @Override
+   public void previewSave(PSDEViewBase var1) throws Exception {
+      final PSDEViewBase var2 = var1;
+      var2.setSessionFactory(this.getSessionFactory());
+      log.debug("开始[updateWithModel]作业");
+      this.doServiceWork(
+         new IServiceWork() {
+            @Override
+            public void execute(ITransaction var1) throws Exception {
+               Object var2x = null;
+               PSDEViewCtrlService var3 = (PSDEViewCtrlService)ServiceGlobal.getService(
+                  PSDEViewCtrlService.class.getCanonicalName(), PSDEViewBaseService.this.getSessionFactory()
+               );
+               ArrayList<PSDEViewCtrl> var4 = var3.selectTempByPSDEViewBase(var2);
+               HashMap<String, PSDEViewCtrl> var5 = new HashMap<String, PSDEViewCtrl>();
+
+               for (PSDEViewCtrl var7 : var4) {
+                  var5.put(var7.getPSDEViewCtrlId(), var7);
+               }
+
+               PSDEViewRVService var20 = (PSDEViewRVService)ServiceGlobal.getService(
+                  PSDEViewRVService.class.getCanonicalName(), PSDEViewBaseService.this.getSessionFactory()
+               );
+               ArrayList<PSDEViewRV> var21 = var20.selectTempByMajorPSDEView(var2);
+               HashMap<String, PSDEViewRV> var8 = new HashMap<String, PSDEViewRV>();
+
+               for (PSDEViewRV var10 : var21) {
+                  var8.put(var10.getPSDEViewRVId(), var10);
+               }
+
+               PSDEViewLogicService var22 = (PSDEViewLogicService)ServiceGlobal.getService(
+                  PSDEViewLogicService.class.getCanonicalName(), PSDEViewBaseService.this.getSessionFactory()
+               );
+               ArrayList<PSDEViewLogic> var23 = var22.selectTempByPSDEViewBase(var2);
+               HashMap<String, PSDEViewLogic> var11 = new HashMap<String, PSDEViewLogic>();
+
+               for (PSDEViewLogic var13 : var23) {
+                  var11.put(var13.getPSDEViewLogicId(), var13);
+               }
+
+               PSDEViewEngineService var24 = (PSDEViewEngineService)ServiceGlobal.getService(
+                  PSDEViewEngineService.class.getCanonicalName(), PSDEViewBaseService.this.getSessionFactory()
+               );
+               ArrayList<PSDEViewEngine> var25 = var24.selectTempByPSDEViewBase(var2);
+               HashMap<String, PSDEViewEngine> var14 = new HashMap<String, PSDEViewEngine>();
+
+               for (PSDEViewEngine var16 : var25) {
+                  var14.put(var16.getPSDEViewEngineId(), var16);
+               }
+
+               String var26 = var2.getViewModel();
+               XmlNode var27 = XmlNode.loadFromXML(var26);
+               if (var27 != null) {
+                  var27.setAttribute("PSDEID", var2.getPSDEId());
+                  var27.setAttribute("PSDEVIEWBASEID", var2.getPSDEViewBaseId());
+                  var27.setAttribute("PSSYSTEMID", var2.getPSSystemId());
+                  PSDEViewBaseService.this.updatePSDEViewModel(var2, var27, var5, var8, var11, var14);
+                  var2.setViewModel(XmlNode.export(var27));
+               } else {
+                  var2.setViewModel(null);
+               }
+
+               boolean var17 = false;
+               if (var11.size() > 0) {
+                  for (PSDEViewLogic var19 : var11.values()) {
+                     var22.removeTemp(var19);
+                     var17 = true;
+                  }
+               }
+
+               if (var8.size() > 0) {
+                  for (PSDEViewRV var33 : var8.values()) {
+                     var20.removeTemp(var33);
+                     var17 = true;
+                  }
+               }
+
+               if (var5.size() > 0) {
+                  for (PSDEViewCtrl var34 : var5.values()) {
+                     var3.removeTemp(var34);
+                     var17 = true;
+                  }
+               }
+            }
+         }
+      );
+   }
+
+   protected void updatePSDEViewModel(
+      PSDEViewBase var1,
+      XmlNode var2,
+      HashMap<String, PSDEViewCtrl> var3,
+      HashMap<String, PSDEViewRV> var4,
+      HashMap<String, PSDEViewLogic> var5,
+      HashMap<String, PSDEViewEngine> var6
+   ) throws Exception {
+      Iterator var7 = var2.getChildNodes();
+      if (var7 != null) {
+         ArrayList<XmlNode> var8 = new ArrayList<XmlNode>();
+         ArrayList<XmlNode> var9 = new ArrayList<XmlNode>();
+         ArrayList<XmlNode> var10 = new ArrayList<XmlNode>();
+         ArrayList<XmlNode> var11 = new ArrayList<XmlNode>();
+         PSDEViewCtrlService var12 = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class.getCanonicalName(), this.getSessionFactory());
+         PSDEViewRVService var13 = (PSDEViewRVService)ServiceGlobal.getService(PSDEViewRVService.class.getCanonicalName(), this.getSessionFactory());
+         PSDEViewLogicService var14 = (PSDEViewLogicService)ServiceGlobal.getService(PSDEViewLogicService.class.getCanonicalName(), this.getSessionFactory());
+         PSDEViewEngineService var15 = (PSDEViewEngineService)ServiceGlobal.getService(PSDEViewEngineService.class.getCanonicalName(), this.getSessionFactory());
+
+         while (var7.hasNext()) {
+            XmlNode var16 = (XmlNode)var7.next();
+            if (StringHelper.compare(var16.getNodeName(), "DEVIEWCTRL", true) == 0) {
+               String var17 = var16.getAttribute("PSDEVIEWCTRLID", "");
+               if (!StringHelper.isNullOrEmpty(var17)) {
+                  PSDEViewCtrl var18 = (PSDEViewCtrl)var3.remove(var17);
+                  if (var18 != null) {
+                     boolean var19 = false;
+                     if (StringHelper.compare(var18.getPSDEViewBaseId(), var1.getPSDEViewBaseId(), false) != 0) {
+                        var18.setPSDEViewBaseId(var1.getPSDEViewBaseId());
+                        var19 = true;
+                     }
+
+                     if (StringHelper.compare(var18.getPSDEViewBaseName(), var1.getPSDEViewBaseName(), false) != 0) {
+                        var18.setPSDEViewBaseName(var1.getPSDEViewBaseName());
+                        var19 = true;
+                     }
+
+                     if (var19) {
+                        var12.updateTemp(var18);
+                     }
+
+                     var16.resetAttributes();
+                     var18.fillXmlNode(var16, false);
+                     var8.add(var16);
+                  }
+               }
+            } else if (StringHelper.compare(var16.getNodeName(), "DEVIEWRV", true) == 0) {
+               String var24 = var16.getAttribute("PSDEVIEWRVID", "");
+               if (!StringHelper.isNullOrEmpty(var24)) {
+                  PSDEViewRV var31 = (PSDEViewRV)var4.remove(var24);
+                  if (var31 != null) {
+                     boolean var34 = false;
+                     if (StringHelper.compare(var31.getMajorPSDEViewId(), var1.getPSDEViewBaseId(), false) != 0) {
+                        var31.setMajorPSDEViewId(var1.getPSDEViewBaseId());
+                        var34 = true;
+                     }
+
+                     if (StringHelper.compare(var31.getMajorPSDEViewName(), var1.getPSDEViewBaseName(), false) != 0) {
+                        var31.setMajorPSDEViewName(var1.getPSDEViewBaseName());
+                        var34 = true;
+                     }
+
+                     if (var34) {
+                        var13.updateTemp(var31);
+                     }
+
+                     var16.resetAttributes();
+                     var31.fillXmlNode(var16, false);
+                     var9.add(var16);
+                  }
+               }
+            } else if (StringHelper.compare(var16.getNodeName(), "DEVIEWLOGIC", true) == 0) {
+               String var25 = var16.getAttribute("PSDEVIEWLOGICID", "");
+               if (!StringHelper.isNullOrEmpty(var25)) {
+                  PSDEViewLogic var32 = (PSDEViewLogic)var5.remove(var25);
+                  if (var32 != null) {
+                     boolean var35 = false;
+                     if (StringHelper.compare(var32.getPSDEViewBaseId(), var1.getPSDEViewBaseId(), false) != 0) {
+                        var32.setPSDEViewBaseId(var1.getPSDEViewBaseId());
+                        var35 = true;
+                     }
+
+                     if (StringHelper.compare(var32.getPSDEViewBaseName(), var1.getPSDEViewBaseName(), false) != 0) {
+                        var32.setPSDEViewBaseName(var1.getPSDEViewBaseName());
+                        var35 = true;
+                     }
+
+                     if (var35) {
+                        var14.updateTemp(var32);
+                     }
+
+                     var16.resetAttributes();
+                     var32.fillXmlNode(var16, false);
+                     var10.add(var16);
+                  }
+               }
+            } else if (StringHelper.compare(var16.getNodeName(), "DEVIEWENGINE", true) == 0) {
+               String var26 = var16.getAttribute("PSDEVIEWENGINEID", "");
+               if (!StringHelper.isNullOrEmpty(var26)) {
+                  PSDEViewEngine var33 = (PSDEViewEngine)var6.remove(var26);
+                  if (var33 != null) {
+                     boolean var36 = false;
+                     if (StringHelper.compare(var33.getPSDEViewBaseId(), var1.getPSDEViewBaseId(), false) != 0) {
+                        var33.setPSDEViewBaseId(var1.getPSDEViewBaseId());
+                        var36 = true;
+                     }
+
+                     if (StringHelper.compare(var33.getPSDEViewBaseName(), var1.getPSDEViewBaseName(), false) != 0) {
+                        var33.setPSDEViewBaseName(var1.getPSDEViewBaseName());
+                        var36 = true;
+                     }
+
+                     if (var36) {
+                        var15.updateTemp(var33);
+                     }
+
+                     var16.resetAttributes();
+                     var33.fillXmlNode(var16, false);
+                     var11.add(var16);
+                  }
+               }
+            }
+         }
+
+         var2.resetChildNodes();
+
+         for (XmlNode var27 : var8) {
+            var2.addNode(var27);
+         }
+
+         for (XmlNode var28 : var9) {
+            var2.addNode(var28);
+         }
+
+         for (XmlNode var29 : var10) {
+            var2.addNode(var29);
+         }
+
+         for (XmlNode var30 : var11) {
+            var2.addNode(var30);
+         }
+      }
+   }
+
+   @Override
+   public void getDraftFromWithModel(PSDEViewBase var1) throws Exception {
+      super.getDraftTempMajorFrom(var1);
+      var1.setViewModel(this.getViewModel(var1));
+   }
+
+   @Override
+   public ObjectNode fillModelV2(ObjectNode var1, PSDEViewBase var2, String var3) throws Exception {
+      var1 = super.fillModelV2(var1, var2, var3);
+      if (var1 != null
+         && (
+            StringHelper.compare(var2.getPSDEViewBaseType(), "DEREDIRECTVIEW", false) == 0
+               || StringHelper.compare(var2.getPSDEViewBaseType(), "DEMOBREDIRECTVIEW", false) == 0
+         )
+         && !StringHelper.isNullOrEmpty(var2.getViewParam7())) {
+         try {
+            String var4 = this.getModelV2UniqueTag("PSDEACTION", var2.getViewParam7(), var3);
+            var1.remove("viewparam7");
+            var1.put("viewparam7", var4);
+         } catch (Exception var5) {
+            log.error(var5);
+         }
+      }
+
+      return var1;
+   }
+
+   public boolean fillModelV2Key(PSDEViewBase var1, ObjectNode var2, String var3, String var4, boolean var5) throws Exception {
+      boolean var6 = super.fillModelV2Key(var1, var2, var3, var4, var5);
+      if (var5
+         && var2 != null
+         && (
+            StringHelper.compare(var1.getPSDEViewBaseType(), "DEREDIRECTVIEW", false) == 0
+               || StringHelper.compare(var1.getPSDEViewBaseType(), "DEMOBREDIRECTVIEW", false) == 0
+         )) {
+         try {
+            String var7 = JsonNodeHelper.getString(var2, "viewparam7", null);
+            if (!StringHelper.isNullOrEmpty(var7)) {
+               var7 = this.getModelV2Key("PSDEACTION", var7, var3, "VIEWPARAM7");
+               var1.setViewParam7(var7);
+            }
+         } catch (Exception var8) {
+            log.error(var8);
+            var1.setViewParam7(null);
+         }
+      }
+
+      return var6;
+   }
+
+   @Override
+   protected void onBeforeRemoveByPSDE(PSDataEntity var1, ArrayList<PSDEViewBase> var2) throws Exception {
+      PSDEViewRVService var3 = (PSDEViewRVService)ServiceGlobal.getService(PSDEViewRVService.class, this.getSessionFactory());
+
+      for (PSDEViewBase var5 : var2) {
+         var3.removeByMajorPSDEView(var5);
+      }
+   }
 }
-

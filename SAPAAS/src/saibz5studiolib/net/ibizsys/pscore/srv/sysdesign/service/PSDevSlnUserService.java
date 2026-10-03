@@ -107,7 +107,7 @@ extends PSDevSlnUserServiceBase {
     @Override
     protected void onBeforeUpdate(PSDevSlnUser pSDevSlnUser) throws Exception {
         PSDevSlnUser pSDevSlnUser2;
-        if (PSDevSlnUserService.isMajorSessionFactory(this.getSessionFactory()) && DataObject.getBoolValue((Integer)(pSDevSlnUser2 = (PSDevSlnUser)this.getLast((IEntity)pSDevSlnUser)).getDefaultFlag(), (boolean)false)) {
+        if (PSDevSlnUserService.isMajorSessionFactory(this.getSessionFactory()) && DataObject.getBoolValue((Integer)(pSDevSlnUser2 = (PSDevSlnUser)this.getLast(pSDevSlnUser)).getDefaultFlag(), (boolean)false)) {
             throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u66f4\u65b0\u5f00\u53d1\u65b9\u6848\u9ed8\u8ba4\u6210\u5458"));
         }
         super.onBeforeUpdate(pSDevSlnUser);
@@ -117,7 +117,7 @@ extends PSDevSlnUserServiceBase {
         PSDevSlnService pSDevSlnService = (PSDevSlnService)ServiceGlobal.getService(PSDevSlnService.class, (SessionFactory)this.getSessionFactory());
         PSDevSln pSDevSln = new PSDevSln();
         pSDevSln.setPSDevSlnId(pSDevSlnSys.getPSDevSlnId());
-        pSDevSlnService.get((IEntity)pSDevSln);
+        pSDevSlnService.get(pSDevSln);
         if (StringHelper.compare((String)pSDevSln.getAdminPSDevUserId(), (String)string, (boolean)false) == 0) {
             PSDevSlnUser pSDevSlnUser = new PSDevSlnUser();
             pSDevSlnUser.setPSDevSlnUserId(KeyValueHelper.genUniqueId((String)pSDevSlnSys.getPSDevSlnSysId(), (String)string));
@@ -141,7 +141,7 @@ extends PSDevSlnUserServiceBase {
         PSDevSlnService pSDevSlnService = (PSDevSlnService)ServiceGlobal.getService(PSDevSlnService.class, (SessionFactory)this.getSessionFactory());
         PSDevSln pSDevSln = new PSDevSln();
         pSDevSln.setPSDevSlnId(pSDevSlnTempl.getPSDevSlnId());
-        pSDevSlnService.get((IEntity)pSDevSln);
+        pSDevSlnService.get(pSDevSln);
         if (StringHelper.compare((String)pSDevSln.getAdminPSDevUserId(), (String)string, (boolean)false) == 0) {
             PSDevSlnUser pSDevSlnUser = new PSDevSlnUser();
             pSDevSlnUser.setPSDevSlnUserId(KeyValueHelper.genUniqueId((String)pSDevSlnTempl.getPSDevSlnTemplId(), (String)string));
@@ -165,7 +165,7 @@ extends PSDevSlnUserServiceBase {
         PSDevSlnService pSDevSlnService = (PSDevSlnService)ServiceGlobal.getService(PSDevSlnService.class, (SessionFactory)this.getSessionFactory());
         PSDevSln pSDevSln = new PSDevSln();
         pSDevSln.setPSDevSlnId(pSDevSlnSysDynaInst.getPSDevSlnId());
-        pSDevSlnService.get((IEntity)pSDevSln);
+        pSDevSlnService.get(pSDevSln);
         if (StringHelper.compare((String)pSDevSln.getAdminPSDevUserId(), (String)string, (boolean)false) == 0) {
             PSDevSlnUser pSDevSlnUser = new PSDevSlnUser();
             pSDevSlnUser.setPSDevSlnUserId(KeyValueHelper.genUniqueId((String)pSDevSlnSysDynaInst.getPSDevSlnSysDynaInstId(), (String)string));
@@ -253,7 +253,7 @@ extends PSDevSlnUserServiceBase {
     protected void onBeforeRemove(PSDevSlnUser pSDevSlnUser) throws Exception {
         PSDevCenter pSDevCenter;
         if (PSDevSlnUserService.isMajorSessionFactory(this.getSessionFactory())) {
-            this.get((IEntity)pSDevSlnUser);
+            this.get(pSDevSlnUser);
             if (DataObject.getBoolValue((Integer)pSDevSlnUser.getDefaultFlag(), (boolean)false)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u5220\u9664\u5f00\u53d1\u65b9\u6848\u9ed8\u8ba4\u6210\u5458"));
             }

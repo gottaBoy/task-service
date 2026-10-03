@@ -445,7 +445,7 @@ extends BaseDAAjaxActionHelper {
             String strKeyParam = this.getDEHelper().GetKeyDEFHelper().getName();
             String strErrorInfo = "";
             boolean bIndexDEMode = false;
-            Vector derIndexList = null;
+            Vector<DERINDEX> derIndexList = null;
             TreeMap<String, DERINDEX> derIndexMap = null;
             TreeMap<String, IDEDataCtrl> deDataCtrlMap = null;
             if (this.getDEHelper().IsIndexDE()) {
@@ -584,4 +584,3 @@ extends BaseDAAjaxActionHelper {
         return this.getPage().getPageParam("PAGE.TMF.APPENDPARAMS", "");
     }
 }
-

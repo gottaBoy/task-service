@@ -1,19 +1,42 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.psba.core;
 
-import java.util.Iterator;
 import net.ibizsys.paas.core.IModelBase;
 import net.ibizsys.paas.core.ISystem;
-import net.ibizsys.psba.core.IBATable;
 
-public interface IBAScheme
-extends IModelBase {
-    public Iterator<IBATable> getBATables();
+/**
+ * 大数据库架构接口对象
+ * 
+ * @author Administrator
+ *
+ */
+public interface IBAScheme extends IModelBase {
 
-    public IBATable getBATable(String var1, boolean var2) throws Exception;
+	/**
+	 * 获取大数据表模型集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IBATable> getBATables();
 
-    public ISystem getSystem();
+	/**
+	 * 获取表模型
+	 * 
+	 * @param strName
+	 * @param bTryMode
+	 * @return
+	 * @throws Exception
+	 */
+	IBATable getBATable(String strName, boolean bTryMode) throws Exception;
+
+	/**
+	 * 获取系统模型对象
+	 * 
+	 * @return
+	 */
+	ISystem getSystem();
+	
+	
+
+	
+	
 }
-

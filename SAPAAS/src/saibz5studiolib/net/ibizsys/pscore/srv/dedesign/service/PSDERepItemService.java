@@ -41,16 +41,14 @@ extends PSDERepItemServiceBase {
         ArrayList<PSDERepItem> arrayList = null;
         arrayList = pSDEReport.getPSDEReportId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByMajorPSDEReport(pSDEReport) : this.selectByMajorPSDEReport(pSDEReport);
         HashMap<String, PSDERepItem> hashMap = new HashMap<String, PSDERepItem>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSDERepItem pSDERepItem2 = object.next();
+        for (PSDERepItem pSDERepItem2 : arrayList) {
             hashMap.put(pSDERepItem2.getPSDERepItemName().toLowerCase(), pSDERepItem2);
         }
-        while (true) {
-            if (!hashMap.containsKey(object = StringHelper.format((String)"%1$s%2$s", (Object)string, (Object)(n == 0 ? "" : Integer.valueOf(n))))) break;
+        String candidate;
+        while (hashMap.containsKey(candidate = StringHelper.format((String)"%1$s%2$s", (Object)string, (Object)(n == 0 ? "" : Integer.valueOf(n))))) {
             ++n;
         }
-        pSDERepItem.setPSDERepItemName((String)object);
+        pSDERepItem.setPSDERepItemName(candidate);
     }
 
     @Override
@@ -71,4 +69,3 @@ extends PSDERepItemServiceBase {
         super.onBeforeUpdateTemp(pSDERepItem);
     }
 }
-

@@ -1340,7 +1340,7 @@ implements Serializable {
                 PSModelBookmark pSModelBookmark = new PSModelBookmark();
                 pSModelBookmark.setPSModelBookmarkId(this.getPPSModelBookmarkId());
                 PSModelBookmarkService pSModelBookmarkService = (PSModelBookmarkService)ServiceGlobal.getService(PSModelBookmarkService.class, (SessionFactory)this.getSessionFactory());
-                pSModelBookmarkService.autoGet((IEntity)pSModelBookmark);
+                pSModelBookmarkService.autoGet(pSModelBookmark);
                 this.ppsmodelbookmark = pSModelBookmark;
             }
             return this.ppsmodelbookmark;
@@ -1366,7 +1366,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

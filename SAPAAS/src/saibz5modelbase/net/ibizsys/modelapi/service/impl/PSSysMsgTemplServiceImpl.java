@@ -115,9 +115,9 @@ implements IPSSysMsgTemplService {
 
     @Override
     protected List<PSSysMsgTempl> onListAll() throws Exception {
-        List pssystems;
+        List<PSSystem> pssystems;
         ArrayList<PSSysMsgTempl> list = new ArrayList<PSSysMsgTempl>();
-        List psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
+        List<PSModule> psmodules = PSModelServiceUtil.getInstance().getPSModuleService().listAll();
         if (psmodules != null) {
             for (PSModule parent : psmodules) {
                 List<PSSysMsgTempl> items = this.listByPSModule(parent);

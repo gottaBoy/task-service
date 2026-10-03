@@ -1273,7 +1273,7 @@ implements Serializable {
                 PSDEDataSet pSDEDataSet = new PSDEDataSet();
                 pSDEDataSet.setPSDEDataSetId(this.getPSDEDataSetId());
                 PSDEDataSetService pSDEDataSetService = (PSDEDataSetService)ServiceGlobal.getService(PSDEDataSetService.class, (SessionFactory)this.getSessionFactory());
-                pSDEDataSetService.autoGet((IEntity)pSDEDataSet);
+                pSDEDataSetService.autoGet(pSDEDataSet);
                 this.psdedataset = pSDEDataSet;
             }
             return this.psdedataset;
@@ -1299,7 +1299,7 @@ implements Serializable {
                 PSDEField pSDEField = new PSDEField();
                 pSDEField.setPSDEFieldId(this.getMinorSortPSDEFId());
                 PSDEFieldService pSDEFieldService = (PSDEFieldService)ServiceGlobal.getService(PSDEFieldService.class, (SessionFactory)this.getSessionFactory());
-                pSDEFieldService.autoGet((IEntity)pSDEField);
+                pSDEFieldService.autoGet(pSDEField);
                 this.minorsortpsdef = pSDEField;
             }
             return this.minorsortpsdef;
@@ -1325,7 +1325,7 @@ implements Serializable {
                 PSDEViewCtrl pSDEViewCtrl = new PSDEViewCtrl();
                 pSDEViewCtrl.setPSDEViewCtrlId(this.getPSDEViewCtrlId());
                 PSDEViewCtrlService pSDEViewCtrlService = (PSDEViewCtrlService)ServiceGlobal.getService(PSDEViewCtrlService.class, (SessionFactory)this.getSessionFactory());
-                pSDEViewCtrlService.autoGet((IEntity)pSDEViewCtrl);
+                pSDEViewCtrlService.autoGet(pSDEViewCtrl);
                 this.psdeviewctrl = pSDEViewCtrl;
             }
             return this.psdeviewctrl;

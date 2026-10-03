@@ -233,7 +233,7 @@ extends PSDEDataCtrl {
         String strPSDEGridName = psV3MigrateDEGrid.getPSV3MGGRIDNAME();
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSDEGRIDID", (Object)strDefaultEditGridId);
-        Vector psDEViewCtrlList = new Vector();
+        Vector<PSDEViewCtrl> psDEViewCtrlList = new Vector<PSDEViewCtrl>();
         IDEDataCtrl psDEViewCtrlDataCtrl = this.GetRelatedDataCtrl("DE2302");
         callResult = psDEViewCtrlDataCtrl.Select(cond, psDEViewCtrlList, PSDEViewCtrl.class.getName());
         if (callResult.isError()) {
@@ -248,4 +248,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

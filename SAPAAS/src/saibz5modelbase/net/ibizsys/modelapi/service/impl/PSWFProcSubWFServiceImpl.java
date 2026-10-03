@@ -75,7 +75,7 @@ implements IPSWFProcSubWFService {
     @Override
     protected List<PSWFProcSubWF> onListAll() throws Exception {
         ArrayList<PSWFProcSubWF> list = new ArrayList<PSWFProcSubWF>();
-        List pswfprocesses = PSModelServiceUtil.getInstance().getPSWFProcessService().listAll();
+        List<PSWFProcess> pswfprocesses = PSModelServiceUtil.getInstance().getPSWFProcessService().listAll();
         if (pswfprocesses != null) {
             for (PSWFProcess parent : pswfprocesses) {
                 List<PSWFProcSubWF> items = this.listByPSWFProcess(parent);

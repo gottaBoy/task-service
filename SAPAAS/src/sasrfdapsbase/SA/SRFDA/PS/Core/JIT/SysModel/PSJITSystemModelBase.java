@@ -201,15 +201,15 @@ ISystemRuntime {
         this.derBaseMap.put(iDERBase.getName(), iDERBase);
         String strMajorDEId = iDERBase.getMajorDEId();
         String strMinorDEId = iDERBase.getMinorDEId();
-        ArrayList<Object> majorDERList = this.deMajorDERsMap.get(strMajorDEId);
+        ArrayList<IDERBase> majorDERList = this.deMajorDERsMap.get(strMajorDEId);
         if (majorDERList == null) {
-            majorDERList = new ArrayList();
+            majorDERList = new ArrayList<IDERBase>();
             this.deMajorDERsMap.put(strMajorDEId, majorDERList);
         }
         majorDERList.add(iDERBase);
-        ArrayList<Object> minorDERList = this.deMinorDERsMap.get(strMinorDEId);
+        ArrayList<IDERBase> minorDERList = this.deMinorDERsMap.get(strMinorDEId);
         if (minorDERList == null) {
-            minorDERList = new ArrayList();
+            minorDERList = new ArrayList<IDERBase>();
             this.deMinorDERsMap.put(strMinorDEId, minorDERList);
         }
         minorDERList.add(iDERBase);
@@ -642,7 +642,7 @@ ISystemRuntime {
                     wfUserGroup.setWFUserGroupName(iWFRoleModel.getName());
                     wfUserGroup.set("SRF_PERSONID", (Object)"SYSTEM");
                     wfUserGroup.set("SRF_LOGINNAME", (Object)"SYSTEM");
-                    wfUserGroupService.save((IEntity)wfUserGroup);
+                    wfUserGroupService.save(wfUserGroup);
                     ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5b89\u88c5[%2$s][%3$s]\r\n", (Object)this.getName(), (Object)wfUserGroupService.getDEModel().getLogicName(), (Object)wfUserGroupService.getDEModel().getDataInfo((IEntity)wfUserGroup)));
                     continue;
                 }
@@ -653,7 +653,7 @@ ISystemRuntime {
                 wfDynamicUser.setUserObject("#");
                 wfDynamicUser.set("SRF_PERSONID", (Object)"SYSTEM");
                 wfDynamicUser.set("SRF_LOGINNAME", (Object)"SYSTEM");
-                wfDynamicUserService.save((IEntity)wfDynamicUser);
+                wfDynamicUserService.save(wfDynamicUser);
                 ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5b89\u88c5[%2$s][%3$s]\r\n", (Object)this.getName(), (Object)wfDynamicUserService.getDEModel().getLogicName(), (Object)wfDynamicUserService.getDEModel().getDataInfo((IEntity)wfDynamicUser)));
             }
         }
@@ -661,7 +661,7 @@ ISystemRuntime {
             WFWorkflowService wfWorkflowService = (WFWorkflowService)ServiceGlobal.getService(WFWorkflowService.class, (SessionFactory)this.getSessionFactory());
             WFWorkflow wfWorkflow = new WFWorkflow();
             wfWorkflow.setWFWorkflowId(iWFModel.getId());
-            if (wfWorkflowService.checkKey((IEntity)wfWorkflow) != 0) continue;
+            if (wfWorkflowService.checkKey(wfWorkflow) != 0) continue;
             wfWorkflow.setWFWorkflowName(iWFModel.getName());
             wfWorkflow.setWFState(Integer.valueOf(1));
             if (!StringHelper.isNullOrEmpty((String)iWFModel.getRemindMsgTemplId())) {
@@ -672,7 +672,7 @@ ISystemRuntime {
             wfWorkflow.setWFModel("<?xml version=\"1.0\" encoding=\"utf-8\" ?><SRFEXWFWORKFLOW></SRFEXWFWORKFLOW>");
             wfWorkflow.set("SRF_PERSONID", (Object)"SYSTEM");
             wfWorkflow.set("SRF_LOGINNAME", (Object)"SYSTEM");
-            wfWorkflowService.create((IEntity)wfWorkflow);
+            wfWorkflowService.create(wfWorkflow);
             ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5b89\u88c5[%2$s][%3$s]\r\n", (Object)this.getName(), (Object)wfWorkflowService.getDEModel().getLogicName(), (Object)wfWorkflowService.getDEModel().getDataInfo((IEntity)wfWorkflow)));
         }
     }
@@ -1034,4 +1034,3 @@ ISystemRuntime {
         return null;
     }
 }
-

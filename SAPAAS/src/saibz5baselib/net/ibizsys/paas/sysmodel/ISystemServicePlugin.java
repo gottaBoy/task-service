@@ -1,12 +1,20 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.sysmodel;
 
 import net.ibizsys.paas.service.IServicePlugin;
 
-public interface ISystemServicePlugin
-extends IServicePlugin {
-    public void registerServicePlugin(String var1, IServicePlugin var2) throws Exception;
+/**
+ * 系统服务插件对象接口
+ * @author Administrator
+ *
+ */
+public interface ISystemServicePlugin extends IServicePlugin {
+	
+	
+	/**
+	 * 注册系统服务插件
+	 * @param strDEName
+	 * @param iServicePlugin
+	 * @throws Exception
+	 */
+	void registerServicePlugin(String strDEName,IServicePlugin iServicePlugin)throws Exception;
 }
-

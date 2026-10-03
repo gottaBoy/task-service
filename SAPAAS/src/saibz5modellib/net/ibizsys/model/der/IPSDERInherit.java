@@ -1,12 +1,20 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.der;
 
-import net.ibizsys.model.der.IPSDERIndex;
 
-public interface IPSDERInherit
-extends IPSDERIndex {
-    public boolean isSingleInherit();
+
+/**
+ * 实体关系（继承）对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDERInherit extends IPSDERIndex
+{
+	/**
+	 * 是否为单继承模式
+	 * @return
+	 */
+	boolean isSingleInherit();
+		
+	
+	
 }
-

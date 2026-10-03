@@ -771,7 +771,7 @@ implements Serializable {
                 PSSaaSSysVer pSSaaSSysVer = new PSSaaSSysVer();
                 pSSaaSSysVer.setPSSaaSSysVerId(this.getPSSaaSSysVerId());
                 PSSaaSSysVerService pSSaaSSysVerService = (PSSaaSSysVerService)ServiceGlobal.getService(PSSaaSSysVerService.class, (SessionFactory)this.getSessionFactory());
-                pSSaaSSysVerService.autoGet((IEntity)pSSaaSSysVer);
+                pSSaaSSysVerService.autoGet(pSSaaSSysVer);
                 this.pssaassysver = pSSaaSSysVer;
             }
             return this.pssaassysver;

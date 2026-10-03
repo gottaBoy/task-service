@@ -151,9 +151,9 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSSysDBDetail, pSDataEntity);
             return;
@@ -163,14 +163,14 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
             PSSystemDBCfg pSSystemDBCfg = (PSSystemDBCfg)iService.getDEModel().createEntity();
             pSSystemDBCfg.set("PSSYSTEMDBCFGID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSystemDBCfg);
+                iService.getTemp(pSSystemDBCfg);
             } else {
-                iService.get((IEntity)pSSystemDBCfg);
+                iService.get(pSSystemDBCfg);
             }
             this.onFillParentInfo_PSSystemDBCfg(pSSysDBDetail, pSSystemDBCfg);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysDBDetail, string, string2, string3);
+        super.onFillParentInfo(pSSysDBDetail, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -210,7 +210,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
         if (bl && pSSysDBDetail.getPSSysDBDetailName() == null) {
             pSSysDBDetail.setPSSysDBDetailName((String)this.getDefaultValue(this.getWebContext(), "", "\u540d\u79f0", 25));
         }
-        super.onFillEntityFullInfo((IEntity)pSSysDBDetail, bl);
+        super.onFillEntityFullInfo(pSSysDBDetail, bl);
         this.onFillEntityFullInfo_PSDE(pSSysDBDetail, bl);
         this.onFillEntityFullInfo_PSSystemDBCfg(pSSysDBDetail, bl);
     }
@@ -234,7 +234,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
     }
 
     protected void onWriteBackParent(PSSysDBDetail pSSysDBDetail, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysDBDetail, bl);
+        super.onWriteBackParent(pSSysDBDetail, bl);
     }
 
     public ArrayList<PSSysDBDetail> selectByPSDE(PSDataEntityBase pSDataEntityBase) throws Exception {
@@ -317,7 +317,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
         ArrayList<PSSysDBDetail> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSSysDBDetail pSSysDBDetail : arrayList) {
-            this.remove((IEntity)pSSysDBDetail);
+            this.remove(pSSysDBDetail);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -363,7 +363,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
         ArrayList<PSSysDBDetail> arrayList = this.selectByPSSystemDBCfg(pSSystemDBCfg);
         this.onBeforeRemoveByPSSystemDBCfg(pSSystemDBCfg, arrayList);
         for (PSSysDBDetail pSSysDBDetail : arrayList) {
-            this.remove((IEntity)pSSysDBDetail);
+            this.remove(pSSysDBDetail);
         }
         this.onAfterRemoveByPSSystemDBCfg(pSSystemDBCfg, arrayList);
     }
@@ -384,7 +384,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
 
     protected void replaceParentInfo(PSSysDBDetail pSSysDBDetail, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysDBDetail, cloneSession);
+        super.replaceParentInfo(pSSysDBDetail, cloneSession);
         if (pSSysDBDetail.getPSDEId() != null && (iEntity = cloneSession.getEntity("PSDATAENTITY", (Object)pSSysDBDetail.getPSDEId())) != null) {
             this.onFillParentInfo_PSDE(pSSysDBDetail, (PSDataEntity)iEntity);
         }
@@ -394,7 +394,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysDBDetail pSSysDBDetail, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysDBDetail, bl);
+        super.onRemoveEntityUncopyValues(pSSysDBDetail, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysDBDetail pSSysDBDetail, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -421,7 +421,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
         if ((entityFieldError = this.onCheckField_PubDBVer(bl, pSSysDBDetail, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysDBDetail, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysDBDetail, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSSysDBDetail pSSysDBDetail, boolean bl2, boolean bl3) throws Exception {
@@ -434,7 +434,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysDBDetail, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysDBDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -459,7 +459,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSSysDBDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSSysDBDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -484,7 +484,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSSysDBDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSSysDBDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -509,7 +509,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDBDetailId_Default((IEntity)pSSysDBDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDBDetailId_Default(pSSysDBDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDBDETAILID");
@@ -534,7 +534,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysDBDetailName_Default((IEntity)pSSysDBDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysDBDetailName_Default(pSSysDBDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSDBDETAILNAME");
@@ -556,7 +556,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSystemDBCfgId_Default((IEntity)pSSysDBDetail, bl2, bl3);
+            string2 = this.onTestValueRule_PSSystemDBCfgId_Default(pSSysDBDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSTEMDBCFGID");
@@ -581,7 +581,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_PubDBVer_Default((IEntity)pSSysDBDetail, bl2, bl3);
+            string = this.onTestValueRule_PubDBVer_Default(pSSysDBDetail, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PUBDBVER");
@@ -594,11 +594,11 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
     }
 
     protected void onSyncEntity(PSSysDBDetail pSSysDBDetail, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysDBDetail, bl);
+        super.onSyncEntity(pSSysDBDetail, bl);
     }
 
     protected void onSyncIndexEntities(PSSysDBDetail pSSysDBDetail, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysDBDetail, bl);
+        super.onSyncIndexEntities(pSSysDBDetail, bl);
     }
 
     public Object getDataContextValue(PSSysDBDetail pSSysDBDetail, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -606,7 +606,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysDBDetail, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysDBDetail, string, iDataContextParam)) != null) {
             return object;
         }
         PSDataEntity pSDataEntity = pSSysDBDetail.getPSDE();
@@ -621,7 +621,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
     }
 
     protected void onExportMajorModel(PSSysDBDetail pSSysDBDetail, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysDBDetail, arrayList, n);
+        super.onExportMajorModel(pSSysDBDetail, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -800,14 +800,14 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
 
     protected boolean onMergeChild(String string, String string2, PSSysDBDetail pSSysDBDetail) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysDBDetail)) {
+        if (super.onMergeChild(string, string2, pSSysDBDetail)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysDBDetail pSSysDBDetail) throws Exception {
-        super.onUpdateParent((IEntity)pSSysDBDetail);
+        super.onUpdateParent(pSSysDBDetail);
     }
 
     @Override
@@ -824,7 +824,7 @@ extends PSCoreSysServiceBase<PSSysDBDetail> {
         PSSysDBDetail pSSysDBDetail2 = new PSSysDBDetail();
         pSSysDBDetail2.setPSSystemDBCfgId(pSSysDBDetail.getPSSystemDBCfgId());
         pSSysDBDetail2.setPSDEId(pSSysDBDetail.getPSDEId());
-        if (this.selectOne((IEntity)pSSysDBDetail2, true)) {
+        if (this.selectOne(pSSysDBDetail2, true)) {
             return pSSysDBDetail2.getPSSysDBDetailId();
         }
         return super.getEntityFolderKeyValue(pSSysDBDetail, pSSystem);

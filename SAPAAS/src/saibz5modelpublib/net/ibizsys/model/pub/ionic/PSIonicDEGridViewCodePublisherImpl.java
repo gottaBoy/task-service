@@ -1,37 +1,83 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSDEGrid
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.ionic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.ionic.PSIonicCtrlCodePublisherImpl;
 
-public class PSIonicDEGridViewCodePublisherImpl
-extends PSIonicCtrlCodePublisherImpl {
-    protected IPSDEGrid iPSDEGrid;
-    public static final String CTRLPART_RECORD = "RECORD";
-    public static final String CTRLPART_COLUMN = "COLUMN";
-    public static final String CTRLPART_STORE = "STORE";
+import SA.SRFDA.PS.Core.Control.Grid.IPSDEGrid;
+import SA.SRFDA.PS.Core.Control.Grid.IPSDEGridColumn;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
 
-    public PSIonicDEGridViewCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSIonicDEGridViewCodePublisherImpl is inconsistent\n\tIPSDEGrid cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSIonicDEGridViewCodePublisherImpl must override or implement a supertype method\n\tIPSDEGrid cannot be resolved to a type\n\tIPSDEGrid cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSIonicCtrlCodePublisherImpl\n\tIPSDEGrid cannot be resolved to a type\n\tIPSDEGrid cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEGrid cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSDEGrid cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEGrid cannot be resolved to a type\n\tThe method onClose() of type PSIonicDEGridViewCodePublisherImpl must override or implement a supertype method\n\tIPSDEGrid cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSIonicCtrlCodePublisherImpl\n");
-    }
+public class PSIonicDEGridViewCodePublisherImpl extends PSIonicCtrlCodePublisherImpl
+{
+	protected IPSDEGrid iPSDEGrid = null;
+	
+	public final static String CTRLPART_RECORD = "RECORD";
+	
+	public final static String CTRLPART_COLUMN = "COLUMN";
+	
+	public final static String CTRLPART_STORE = "STORE";
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSDEGrid = (IPSDEGrid)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSIonicDEGridViewCodePublisherImpl must override or implement a supertype method\n\tIPSDEGrid cannot be resolved to a type\n\tIPSDEGrid cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSIonicCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSDEGrid = (IPSDEGrid)this.iPSControl;
+		
+		//输出结果集合代码
+		if(true)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_STORE).getPSPFCtrlPartCodePublisher();
+			IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext,iPSDEGrid, null);
+			iPSPFCtrlPartCodePublisher.close();
+			params.put("store", iPSGenerateCodeResult);
+		}
+		
+		
+		if(true)
+		{
+			IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(CTRLPART_COLUMN).getPSPFCtrlPartCodePublisher();
+			ArrayList<IPSGenerateCodeResult> gridColumnList = new ArrayList<IPSGenerateCodeResult> ();
+			java.util.Iterator<IPSDEGridColumn> psDEGridColumns = 	iPSDEGrid.getPSDEGridColumns();
+			while(psDEGridColumns.hasNext())
+			{
+				IPSDEGridColumn iPSDEGridColumn = psDEGridColumns.next();
+				
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, iPSDEGrid,iPSDEGridColumn);
+				gridColumnList.add(iPSGenerateCodeResult);
+			}
+			
+			iPSPFCtrlPartCodePublisher.close();
+			
+			params.put("columns", gridColumnList);
+		}
+		
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDEGrid cannot be resolved to a type\n\tIPSDEGrid cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEGrid cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSDEGrid cannot be resolved to a type\n\tIPSDEGridColumn cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEGrid cannot be resolved to a type\n");
-    }
-
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSIonicDEGridViewCodePublisherImpl must override or implement a supertype method\n\tIPSDEGrid cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSIonicCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSDEGrid = null;
+		super.onClose();
+	}
+	
 }
-

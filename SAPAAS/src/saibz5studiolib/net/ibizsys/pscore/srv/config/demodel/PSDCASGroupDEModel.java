@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSDCASGroupDEModelBase;
 
 public class PSDCASGroupDEModel
 extends PSDCASGroupDEModelBase {
+
+    public PSDCASGroupDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

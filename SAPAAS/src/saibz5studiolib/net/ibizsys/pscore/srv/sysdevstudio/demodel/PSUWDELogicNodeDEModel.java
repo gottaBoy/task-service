@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdevstudio.demodel.PSUWDELogicNodeDEModelBase;
 
 public class PSUWDELogicNodeDEModel
 extends PSUWDELogicNodeDEModelBase {
+
+    public PSUWDELogicNodeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

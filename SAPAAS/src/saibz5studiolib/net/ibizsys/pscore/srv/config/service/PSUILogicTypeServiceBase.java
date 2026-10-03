@@ -116,7 +116,7 @@ extends PSCoreSysServiceBase<PSUILogicType> {
     }
 
     protected void onFillParentInfo(PSUILogicType pSUILogicType, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSUILogicType, string, string2, string3);
+        super.onFillParentInfo(pSUILogicType, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -127,11 +127,11 @@ extends PSCoreSysServiceBase<PSUILogicType> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSUILogicType, bl);
+        super.onFillEntityFullInfo(pSUILogicType, bl);
     }
 
     protected void onWriteBackParent(PSUILogicType pSUILogicType, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSUILogicType, bl);
+        super.onWriteBackParent(pSUILogicType, bl);
     }
 
     @Override
@@ -140,7 +140,7 @@ extends PSCoreSysServiceBase<PSUILogicType> {
     }
 
     protected void onRemoveEntityUncopyValues(PSUILogicType pSUILogicType, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSUILogicType, bl);
+        super.onRemoveEntityUncopyValues(pSUILogicType, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSUILogicType pSUILogicType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -152,7 +152,7 @@ extends PSCoreSysServiceBase<PSUILogicType> {
         if ((entityFieldError = this.onCheckField_PSUILogicTypeName(bl, pSUILogicType, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSUILogicType, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSUILogicType, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSUILogicTypeId(boolean bl, PSUILogicType pSUILogicType, boolean bl2, boolean bl3) throws Exception {
@@ -168,7 +168,7 @@ extends PSCoreSysServiceBase<PSUILogicType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUILogicTypeId_Default((IEntity)pSUILogicType, bl2, bl3);
+            string2 = this.onTestValueRule_PSUILogicTypeId_Default(pSUILogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUILOGICTYPEID");
@@ -193,7 +193,7 @@ extends PSCoreSysServiceBase<PSUILogicType> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSUILogicTypeName_Default((IEntity)pSUILogicType, bl2, bl3);
+            string2 = this.onTestValueRule_PSUILogicTypeName_Default(pSUILogicType, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSUILOGICTYPENAME");
@@ -206,11 +206,11 @@ extends PSCoreSysServiceBase<PSUILogicType> {
     }
 
     protected void onSyncEntity(PSUILogicType pSUILogicType, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSUILogicType, bl);
+        super.onSyncEntity(pSUILogicType, bl);
     }
 
     protected void onSyncIndexEntities(PSUILogicType pSUILogicType, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSUILogicType, bl);
+        super.onSyncIndexEntities(pSUILogicType, bl);
     }
 
     public Object getDataContextValue(PSUILogicType pSUILogicType, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -218,14 +218,14 @@ extends PSCoreSysServiceBase<PSUILogicType> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSUILogicType, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSUILogicType, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSUILogicType pSUILogicType, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSUILogicType, arrayList, n);
+        super.onExportMajorModel(pSUILogicType, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -308,14 +308,14 @@ extends PSCoreSysServiceBase<PSUILogicType> {
 
     protected boolean onMergeChild(String string, String string2, PSUILogicType pSUILogicType) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSUILogicType)) {
+        if (super.onMergeChild(string, string2, pSUILogicType)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSUILogicType pSUILogicType) throws Exception {
-        super.onUpdateParent((IEntity)pSUILogicType);
+        super.onUpdateParent(pSUILogicType);
     }
 
     @Override

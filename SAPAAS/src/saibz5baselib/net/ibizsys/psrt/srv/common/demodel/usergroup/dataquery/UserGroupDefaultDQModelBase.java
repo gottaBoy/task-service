@@ -1,21 +1,155 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.usergroup.dataquery;
 
-import net.ibizsys.paas.core.DEDataQuery;
-import net.ibizsys.paas.core.DEDataQueryCode;
-import net.ibizsys.paas.core.DEDataQueryCodeCond;
-import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
 
-@DEDataQuery(id="66C21513-F456-4E58-BC4F-12AED848D7D4", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.ENABLE AS ENABLE, t11.MEMO AS MEMO, t11.OWNERID AS OWNERID, t11.OWNERTYPE AS OWNERTYPE, t11.SUBTYPE AS SUBTYPE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN, t11.USERDATA AS USERDATA, t11.USERDATA2 AS USERDATA2, t1.USERGROUPID AS USERGROUPID, t1.USERGROUPNAME AS USERGROUPNAME, t11.USEROBJECTLEVEL AS USEROBJECTLEVEL, t11.USEROBJECTTYPE AS USEROBJECTTYPE FROM T_SRFUSERGROUP t1  LEFT JOIN T_SRFUSEROBJECT t11 ON t1.USERGROUPID = t11.USEROBJECTID  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="ENABLE", expression="t1.ENABLE", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t11.MEMO", showorder=3), @DEDataQueryCodeExp(name="OWNERID", expression="t11.OWNERID", showorder=4), @DEDataQueryCodeExp(name="OWNERTYPE", expression="t11.OWNERTYPE", showorder=5), @DEDataQueryCodeExp(name="SUBTYPE", expression="t11.SUBTYPE", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=8), @DEDataQueryCodeExp(name="USERDATA", expression="t11.USERDATA", showorder=9), @DEDataQueryCodeExp(name="USERDATA2", expression="t11.USERDATA2", showorder=10), @DEDataQueryCodeExp(name="USERGROUPID", expression="t1.USERGROUPID", showorder=11), @DEDataQueryCodeExp(name="USERGROUPNAME", expression="t1.USERGROUPNAME", showorder=12), @DEDataQueryCodeExp(name="USEROBJECTLEVEL", expression="t11.USEROBJECTLEVEL", showorder=13), @DEDataQueryCodeExp(name="USEROBJECTTYPE", expression="t11.USEROBJECTTYPE", showorder=14)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")}), @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`enable`, t11.`memo`, t11.`ownerid`, t11.`ownertype`, t11.`subtype`, t1.`updatedate`, t1.`updateman`, t11.`userdata`, t11.`userdata2`, t1.`usergroupid`, t1.`usergroupname`, t11.`userobjectlevel`, t11.`userobjecttype` FROM `t_srfusergroup` t1  LEFT JOIN t_srfuserobject t11 ON t1.usergroupid = t11.userobjectid  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=1), @DEDataQueryCodeExp(name="ENABLE", expression="t1.`enable`", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t11.`memo`", showorder=3), @DEDataQueryCodeExp(name="OWNERID", expression="t11.`ownerid`", showorder=4), @DEDataQueryCodeExp(name="OWNERTYPE", expression="t11.`ownertype`", showorder=5), @DEDataQueryCodeExp(name="SUBTYPE", expression="t11.`subtype`", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=8), @DEDataQueryCodeExp(name="USERDATA", expression="t11.`userdata`", showorder=9), @DEDataQueryCodeExp(name="USERDATA2", expression="t11.`userdata2`", showorder=10), @DEDataQueryCodeExp(name="USERGROUPID", expression="t1.`usergroupid`", showorder=11), @DEDataQueryCodeExp(name="USERGROUPNAME", expression="t1.`usergroupname`", showorder=12), @DEDataQueryCodeExp(name="USEROBJECTLEVEL", expression="t11.`userobjectlevel`", showorder=13), @DEDataQueryCodeExp(name="USEROBJECTTYPE", expression="t11.`userobjecttype`", showorder=14)}, conds={@DEDataQueryCodeCond(condition="t1.enable = 1")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.ENABLE AS ENABLE, t11.MEMO AS MEMO, t11.OWNERID AS OWNERID, t11.OWNERTYPE AS OWNERTYPE, t11.SUBTYPE AS SUBTYPE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN, t11.USERDATA AS USERDATA, t11.USERDATA2 AS USERDATA2, t1.USERGROUPID AS USERGROUPID, t1.USERGROUPNAME AS USERGROUPNAME, t11.USEROBJECTLEVEL AS USEROBJECTLEVEL, t11.USEROBJECTTYPE AS USEROBJECTTYPE FROM T_SRFUSERGROUP t1  LEFT JOIN T_SRFUSEROBJECT t11 ON t1.USERGROUPID = t11.USEROBJECTID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="ENABLE", expression="t1.ENABLE", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t11.MEMO", showorder=3), @DEDataQueryCodeExp(name="OWNERID", expression="t11.OWNERID", showorder=4), @DEDataQueryCodeExp(name="OWNERTYPE", expression="t11.OWNERTYPE", showorder=5), @DEDataQueryCodeExp(name="SUBTYPE", expression="t11.SUBTYPE", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=8), @DEDataQueryCodeExp(name="USERDATA", expression="t11.USERDATA", showorder=9), @DEDataQueryCodeExp(name="USERDATA2", expression="t11.USERDATA2", showorder=10), @DEDataQueryCodeExp(name="USERGROUPID", expression="t1.USERGROUPID", showorder=11), @DEDataQueryCodeExp(name="USERGROUPNAME", expression="t1.USERGROUPNAME", showorder=12), @DEDataQueryCodeExp(name="USEROBJECTLEVEL", expression="t11.USEROBJECTLEVEL", showorder=13), @DEDataQueryCodeExp(name="USEROBJECTTYPE", expression="t11.USEROBJECTTYPE", showorder=14)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.ENABLE AS ENABLE, t11.MEMO AS MEMO, t11.OWNERID AS OWNERID, t11.OWNERTYPE AS OWNERTYPE, t11.SUBTYPE AS SUBTYPE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN, t11.USERDATA AS USERDATA, t11.USERDATA2 AS USERDATA2, t1.USERGROUPID AS USERGROUPID, t1.USERGROUPNAME AS USERGROUPNAME, t11.USEROBJECTLEVEL AS USEROBJECTLEVEL, t11.USEROBJECTTYPE AS USEROBJECTTYPE FROM T_SRFUSERGROUP t1  LEFT JOIN T_SRFUSEROBJECT t11 ON t1.USERGROUPID = t11.USEROBJECTID  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="ENABLE", expression="t1.ENABLE", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t11.MEMO", showorder=3), @DEDataQueryCodeExp(name="OWNERID", expression="t11.OWNERID", showorder=4), @DEDataQueryCodeExp(name="OWNERTYPE", expression="t11.OWNERTYPE", showorder=5), @DEDataQueryCodeExp(name="SUBTYPE", expression="t11.SUBTYPE", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=8), @DEDataQueryCodeExp(name="USERDATA", expression="t11.USERDATA", showorder=9), @DEDataQueryCodeExp(name="USERDATA2", expression="t11.USERDATA2", showorder=10), @DEDataQueryCodeExp(name="USERGROUPID", expression="t1.USERGROUPID", showorder=11), @DEDataQueryCodeExp(name="USERGROUPNAME", expression="t1.USERGROUPNAME", showorder=12), @DEDataQueryCodeExp(name="USEROBJECTLEVEL", expression="t11.USEROBJECTLEVEL", showorder=13), @DEDataQueryCodeExp(name="USEROBJECTTYPE", expression="t11.USEROBJECTTYPE", showorder=14)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.ENABLE AS ENABLE, t11.MEMO AS MEMO, t11.OWNERID AS OWNERID, t11.OWNERTYPE AS OWNERTYPE, t11.SUBTYPE AS SUBTYPE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN, t11.USERDATA AS USERDATA, t11.USERDATA2 AS USERDATA2, t1.USERGROUPID AS USERGROUPID, t1.USERGROUPNAME AS USERGROUPNAME, t11.USEROBJECTLEVEL AS USEROBJECTLEVEL, t11.USEROBJECTTYPE AS USEROBJECTTYPE FROM T_SRFUSERGROUP t1  LEFT JOIN T_SRFUSEROBJECT t11 ON t1.USERGROUPID = t11.USEROBJECTID  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="ENABLE", expression="t1.ENABLE", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t11.MEMO", showorder=3), @DEDataQueryCodeExp(name="OWNERID", expression="t11.OWNERID", showorder=4), @DEDataQueryCodeExp(name="OWNERTYPE", expression="t11.OWNERTYPE", showorder=5), @DEDataQueryCodeExp(name="SUBTYPE", expression="t11.SUBTYPE", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=8), @DEDataQueryCodeExp(name="USERDATA", expression="t11.USERDATA", showorder=9), @DEDataQueryCodeExp(name="USERDATA2", expression="t11.USERDATA2", showorder=10), @DEDataQueryCodeExp(name="USERGROUPID", expression="t1.USERGROUPID", showorder=11), @DEDataQueryCodeExp(name="USERGROUPNAME", expression="t1.USERGROUPNAME", showorder=12), @DEDataQueryCodeExp(name="USEROBJECTLEVEL", expression="t11.USEROBJECTLEVEL", showorder=13), @DEDataQueryCodeExp(name="USEROBJECTTYPE", expression="t11.USEROBJECTTYPE", showorder=14)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")}), @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE] AS [CREATEDATE], t1.[CREATEMAN] AS [CREATEMAN], t1.[ENABLE] AS [ENABLE], t11.[MEMO] AS [MEMO], t11.[OWNERID] AS [OWNERID], t11.[OWNERTYPE] AS [OWNERTYPE], t11.[SUBTYPE] AS [SUBTYPE], t1.[UPDATEDATE] AS [UPDATEDATE], t1.[UPDATEMAN] AS [UPDATEMAN], t11.[USERDATA] AS [USERDATA], t11.[USERDATA2] AS [USERDATA2], t1.[USERGROUPID] AS [USERGROUPID], t1.[USERGROUPNAME] AS [USERGROUPNAME], t11.[USEROBJECTLEVEL] AS [USEROBJECTLEVEL], t11.[USEROBJECTTYPE] AS [USEROBJECTTYPE] FROM [T_SRFUSERGROUP] t1  LEFT JOIN T_SRFUSEROBJECT t11 ON t1.USERGROUPID = t11.USEROBJECTID  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=1), @DEDataQueryCodeExp(name="ENABLE", expression="t1.[ENABLE]", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t11.[MEMO]", showorder=3), @DEDataQueryCodeExp(name="OWNERID", expression="t11.[OWNERID]", showorder=4), @DEDataQueryCodeExp(name="OWNERTYPE", expression="t11.[OWNERTYPE]", showorder=5), @DEDataQueryCodeExp(name="SUBTYPE", expression="t11.[SUBTYPE]", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=8), @DEDataQueryCodeExp(name="USERDATA", expression="t11.[USERDATA]", showorder=9), @DEDataQueryCodeExp(name="USERDATA2", expression="t11.[USERDATA2]", showorder=10), @DEDataQueryCodeExp(name="USERGROUPID", expression="t1.[USERGROUPID]", showorder=11), @DEDataQueryCodeExp(name="USERGROUPNAME", expression="t1.[USERGROUPNAME]", showorder=12), @DEDataQueryCodeExp(name="USEROBJECTLEVEL", expression="t11.[USEROBJECTLEVEL]", showorder=13), @DEDataQueryCodeExp(name="USEROBJECTTYPE", expression="t11.[USEROBJECTTYPE]", showorder=14)}, conds={@DEDataQueryCodeCond(condition="t1.ENABLE = 1")})})
-public abstract class UserGroupDefaultDQModelBase
-extends DEDataQueryModelBase {
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
+
+@DEDataQuery(id="66C21513-F456-4E58-BC4F-12AED848D7D4",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.ENABLE AS ENABLE, t11.MEMO AS MEMO, t11.OWNERID AS OWNERID, t11.OWNERTYPE AS OWNERTYPE, t11.SUBTYPE AS SUBTYPE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN, t11.USERDATA AS USERDATA, t11.USERDATA2 AS USERDATA2, t1.USERGROUPID AS USERGROUPID, t1.USERGROUPNAME AS USERGROUPNAME, t11.USEROBJECTLEVEL AS USEROBJECTLEVEL, t11.USEROBJECTTYPE AS USEROBJECTTYPE FROM T_SRFUSERGROUP t1  LEFT JOIN T_SRFUSEROBJECT t11 ON t1.USERGROUPID = t11.USEROBJECTID  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.ENABLE",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t11.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="OWNERID",expression="t11.OWNERID",showorder=4)
+        ,@DEDataQueryCodeExp(name="OWNERTYPE",expression="t11.OWNERTYPE",showorder=5)
+        ,@DEDataQueryCodeExp(name="SUBTYPE",expression="t11.SUBTYPE",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=8)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t11.USERDATA",showorder=9)
+        ,@DEDataQueryCodeExp(name="USERDATA2",expression="t11.USERDATA2",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERGROUPID",expression="t1.USERGROUPID",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERGROUPNAME",expression="t1.USERGROUPNAME",showorder=12)
+        ,@DEDataQueryCodeExp(name="USEROBJECTLEVEL",expression="t11.USEROBJECTLEVEL",showorder=13)
+        ,@DEDataQueryCodeExp(name="USEROBJECTTYPE",expression="t11.USEROBJECTTYPE",showorder=14)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`enable`, t11.`memo`, t11.`ownerid`, t11.`ownertype`, t11.`subtype`, t1.`updatedate`, t1.`updateman`, t11.`userdata`, t11.`userdata2`, t1.`usergroupid`, t1.`usergroupname`, t11.`userobjectlevel`, t11.`userobjecttype` FROM `t_srfusergroup` t1  LEFT JOIN t_srfuserobject t11 ON t1.usergroupid = t11.userobjectid  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=1)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.`enable`",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t11.`memo`",showorder=3)
+        ,@DEDataQueryCodeExp(name="OWNERID",expression="t11.`ownerid`",showorder=4)
+        ,@DEDataQueryCodeExp(name="OWNERTYPE",expression="t11.`ownertype`",showorder=5)
+        ,@DEDataQueryCodeExp(name="SUBTYPE",expression="t11.`subtype`",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=8)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t11.`userdata`",showorder=9)
+        ,@DEDataQueryCodeExp(name="USERDATA2",expression="t11.`userdata2`",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERGROUPID",expression="t1.`usergroupid`",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERGROUPNAME",expression="t1.`usergroupname`",showorder=12)
+        ,@DEDataQueryCodeExp(name="USEROBJECTLEVEL",expression="t11.`userobjectlevel`",showorder=13)
+        ,@DEDataQueryCodeExp(name="USEROBJECTTYPE",expression="t11.`userobjecttype`",showorder=14)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.enable = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.ENABLE AS ENABLE, t11.MEMO AS MEMO, t11.OWNERID AS OWNERID, t11.OWNERTYPE AS OWNERTYPE, t11.SUBTYPE AS SUBTYPE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN, t11.USERDATA AS USERDATA, t11.USERDATA2 AS USERDATA2, t1.USERGROUPID AS USERGROUPID, t1.USERGROUPNAME AS USERGROUPNAME, t11.USEROBJECTLEVEL AS USEROBJECTLEVEL, t11.USEROBJECTTYPE AS USEROBJECTTYPE FROM T_SRFUSERGROUP t1  LEFT JOIN T_SRFUSEROBJECT t11 ON t1.USERGROUPID = t11.USEROBJECTID  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.ENABLE",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t11.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="OWNERID",expression="t11.OWNERID",showorder=4)
+        ,@DEDataQueryCodeExp(name="OWNERTYPE",expression="t11.OWNERTYPE",showorder=5)
+        ,@DEDataQueryCodeExp(name="SUBTYPE",expression="t11.SUBTYPE",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=8)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t11.USERDATA",showorder=9)
+        ,@DEDataQueryCodeExp(name="USERDATA2",expression="t11.USERDATA2",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERGROUPID",expression="t1.USERGROUPID",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERGROUPNAME",expression="t1.USERGROUPNAME",showorder=12)
+        ,@DEDataQueryCodeExp(name="USEROBJECTLEVEL",expression="t11.USEROBJECTLEVEL",showorder=13)
+        ,@DEDataQueryCodeExp(name="USEROBJECTTYPE",expression="t11.USEROBJECTTYPE",showorder=14)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.ENABLE AS ENABLE, t11.MEMO AS MEMO, t11.OWNERID AS OWNERID, t11.OWNERTYPE AS OWNERTYPE, t11.SUBTYPE AS SUBTYPE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN, t11.USERDATA AS USERDATA, t11.USERDATA2 AS USERDATA2, t1.USERGROUPID AS USERGROUPID, t1.USERGROUPNAME AS USERGROUPNAME, t11.USEROBJECTLEVEL AS USEROBJECTLEVEL, t11.USEROBJECTTYPE AS USEROBJECTTYPE FROM T_SRFUSERGROUP t1  LEFT JOIN T_SRFUSEROBJECT t11 ON t1.USERGROUPID = t11.USEROBJECTID  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.ENABLE",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t11.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="OWNERID",expression="t11.OWNERID",showorder=4)
+        ,@DEDataQueryCodeExp(name="OWNERTYPE",expression="t11.OWNERTYPE",showorder=5)
+        ,@DEDataQueryCodeExp(name="SUBTYPE",expression="t11.SUBTYPE",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=8)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t11.USERDATA",showorder=9)
+        ,@DEDataQueryCodeExp(name="USERDATA2",expression="t11.USERDATA2",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERGROUPID",expression="t1.USERGROUPID",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERGROUPNAME",expression="t1.USERGROUPNAME",showorder=12)
+        ,@DEDataQueryCodeExp(name="USEROBJECTLEVEL",expression="t11.USEROBJECTLEVEL",showorder=13)
+        ,@DEDataQueryCodeExp(name="USEROBJECTTYPE",expression="t11.USEROBJECTTYPE",showorder=14)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE AS CREATEDATE, t1.CREATEMAN AS CREATEMAN, t1.ENABLE AS ENABLE, t11.MEMO AS MEMO, t11.OWNERID AS OWNERID, t11.OWNERTYPE AS OWNERTYPE, t11.SUBTYPE AS SUBTYPE, t1.UPDATEDATE AS UPDATEDATE, t1.UPDATEMAN AS UPDATEMAN, t11.USERDATA AS USERDATA, t11.USERDATA2 AS USERDATA2, t1.USERGROUPID AS USERGROUPID, t1.USERGROUPNAME AS USERGROUPNAME, t11.USEROBJECTLEVEL AS USEROBJECTLEVEL, t11.USEROBJECTTYPE AS USEROBJECTTYPE FROM T_SRFUSERGROUP t1  LEFT JOIN T_SRFUSEROBJECT t11 ON t1.USERGROUPID = t11.USEROBJECTID  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.ENABLE",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t11.MEMO",showorder=3)
+        ,@DEDataQueryCodeExp(name="OWNERID",expression="t11.OWNERID",showorder=4)
+        ,@DEDataQueryCodeExp(name="OWNERTYPE",expression="t11.OWNERTYPE",showorder=5)
+        ,@DEDataQueryCodeExp(name="SUBTYPE",expression="t11.SUBTYPE",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=8)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t11.USERDATA",showorder=9)
+        ,@DEDataQueryCodeExp(name="USERDATA2",expression="t11.USERDATA2",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERGROUPID",expression="t1.USERGROUPID",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERGROUPNAME",expression="t1.USERGROUPNAME",showorder=12)
+        ,@DEDataQueryCodeExp(name="USEROBJECTLEVEL",expression="t11.USEROBJECTLEVEL",showorder=13)
+        ,@DEDataQueryCodeExp(name="USEROBJECTTYPE",expression="t11.USEROBJECTTYPE",showorder=14)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    }),
+    @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE] AS [CREATEDATE], t1.[CREATEMAN] AS [CREATEMAN], t1.[ENABLE] AS [ENABLE], t11.[MEMO] AS [MEMO], t11.[OWNERID] AS [OWNERID], t11.[OWNERTYPE] AS [OWNERTYPE], t11.[SUBTYPE] AS [SUBTYPE], t1.[UPDATEDATE] AS [UPDATEDATE], t1.[UPDATEMAN] AS [UPDATEMAN], t11.[USERDATA] AS [USERDATA], t11.[USERDATA2] AS [USERDATA2], t1.[USERGROUPID] AS [USERGROUPID], t1.[USERGROUPNAME] AS [USERGROUPNAME], t11.[USEROBJECTLEVEL] AS [USEROBJECTLEVEL], t11.[USEROBJECTTYPE] AS [USEROBJECTTYPE] FROM [T_SRFUSERGROUP] t1  LEFT JOIN T_SRFUSEROBJECT t11 ON t1.USERGROUPID = t11.USEROBJECTID  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=1)
+        ,@DEDataQueryCodeExp(name="ENABLE",expression="t1.[ENABLE]",showorder=2)
+        ,@DEDataQueryCodeExp(name="MEMO",expression="t11.[MEMO]",showorder=3)
+        ,@DEDataQueryCodeExp(name="OWNERID",expression="t11.[OWNERID]",showorder=4)
+        ,@DEDataQueryCodeExp(name="OWNERTYPE",expression="t11.[OWNERTYPE]",showorder=5)
+        ,@DEDataQueryCodeExp(name="SUBTYPE",expression="t11.[SUBTYPE]",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=8)
+        ,@DEDataQueryCodeExp(name="USERDATA",expression="t11.[USERDATA]",showorder=9)
+        ,@DEDataQueryCodeExp(name="USERDATA2",expression="t11.[USERDATA2]",showorder=10)
+        ,@DEDataQueryCodeExp(name="USERGROUPID",expression="t1.[USERGROUPID]",showorder=11)
+        ,@DEDataQueryCodeExp(name="USERGROUPNAME",expression="t1.[USERGROUPNAME]",showorder=12)
+        ,@DEDataQueryCodeExp(name="USEROBJECTLEVEL",expression="t11.[USEROBJECTLEVEL]",showorder=13)
+        ,@DEDataQueryCodeExp(name="USEROBJECTTYPE",expression="t11.[USEROBJECTTYPE]",showorder=14)
+    },
+    conds={
+        @DEDataQueryCodeCond(condition="t1.ENABLE = 1")
+    })
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class UserGroupDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public UserGroupDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(UserGroupDefaultDQModelBase.class);
     }
-}
 
+}

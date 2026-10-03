@@ -74,7 +74,7 @@ implements IPSDEUtilDEService {
     @Override
     protected List<PSDEUtilDE> onListAll() throws Exception {
         ArrayList<PSDEUtilDE> list = new ArrayList<PSDEUtilDE>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSDEUtilDE> items = this.listByPSDataEntity(parent);

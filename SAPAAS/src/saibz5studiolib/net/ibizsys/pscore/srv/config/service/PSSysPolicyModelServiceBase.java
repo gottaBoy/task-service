@@ -135,14 +135,14 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
             PSSysPolicy pSSysPolicy = (PSSysPolicy)iService.getDEModel().createEntity();
             pSSysPolicy.set("PSSYSPOLICYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPolicy);
+                iService.getTemp(pSSysPolicy);
             } else {
-                iService.get((IEntity)pSSysPolicy);
+                iService.get(pSSysPolicy);
             }
             this.onFillParentInfo_PSSysPolicy(pSSysPolicyModel, pSSysPolicy);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysPolicyModel, string, string2, string3);
+        super.onFillParentInfo(pSSysPolicyModel, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -158,7 +158,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSSysPolicyModel, bl);
+        super.onFillEntityFullInfo(pSSysPolicyModel, bl);
         this.onFillEntityFullInfo_PSSysPolicy(pSSysPolicyModel, bl);
     }
 
@@ -166,7 +166,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
     }
 
     protected void onWriteBackParent(PSSysPolicyModel pSSysPolicyModel, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysPolicyModel, bl);
+        super.onWriteBackParent(pSSysPolicyModel, bl);
     }
 
     public ArrayList<PSSysPolicyModel> selectByPSSysPolicy(PSSysPolicyBase pSSysPolicyBase) throws Exception {
@@ -225,7 +225,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
         ArrayList<PSSysPolicyModel> arrayList = this.selectByPSSysPolicy(pSSysPolicy);
         this.onBeforeRemoveByPSSysPolicy(pSSysPolicy, arrayList);
         for (PSSysPolicyModel pSSysPolicyModel : arrayList) {
-            this.remove((IEntity)pSSysPolicyModel);
+            this.remove(pSSysPolicyModel);
         }
         this.onAfterRemoveByPSSysPolicy(pSSysPolicy, arrayList);
     }
@@ -246,14 +246,14 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
 
     protected void replaceParentInfo(PSSysPolicyModel pSSysPolicyModel, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysPolicyModel, cloneSession);
+        super.replaceParentInfo(pSSysPolicyModel, cloneSession);
         if (pSSysPolicyModel.getPSSysPolicyId() != null && (iEntity = cloneSession.getEntity("PSSYSPOLICY", (Object)pSSysPolicyModel.getPSSysPolicyId())) != null) {
             this.onFillParentInfo_PSSysPolicy(pSSysPolicyModel, (PSSysPolicy)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSSysPolicyModel pSSysPolicyModel, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysPolicyModel, bl);
+        super.onRemoveEntityUncopyValues(pSSysPolicyModel, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysPolicyModel pSSysPolicyModel, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -286,7 +286,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
         if ((entityFieldError = this.onCheckField_PSSysPolicyModelName(bl, pSSysPolicyModel, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysPolicyModel, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysPolicyModel, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CurCnt(boolean bl, PSSysPolicyModel pSSysPolicyModel, boolean bl2, boolean bl3) throws Exception {
@@ -299,7 +299,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_CurCnt_Default((IEntity)pSSysPolicyModel, bl2, bl3);
+            string = this.onTestValueRule_CurCnt_Default(pSSysPolicyModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CURCNT");
@@ -321,7 +321,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Fields_Default((IEntity)pSSysPolicyModel, bl2, bl3);
+            string2 = this.onTestValueRule_Fields_Default(pSSysPolicyModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("FIELDS");
@@ -343,7 +343,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_MaxCnt_Default((IEntity)pSSysPolicyModel, bl2, bl3);
+            string = this.onTestValueRule_MaxCnt_Default(pSSysPolicyModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MAXCNT");
@@ -365,7 +365,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysPolicyModel, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysPolicyModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -390,7 +390,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ModelTag_Default((IEntity)pSSysPolicyModel, bl2, bl3);
+            string2 = this.onTestValueRule_ModelTag_Default(pSSysPolicyModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MODELTAG");
@@ -412,7 +412,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PolicyInfo_Default((IEntity)pSSysPolicyModel, bl2, bl3);
+            string2 = this.onTestValueRule_PolicyInfo_Default(pSSysPolicyModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("POLICYINFO");
@@ -434,7 +434,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPolicyId_Default((IEntity)pSSysPolicyModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPolicyId_Default(pSSysPolicyModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPOLICYID");
@@ -459,7 +459,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPolicyModelId_Default((IEntity)pSSysPolicyModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPolicyModelId_Default(pSSysPolicyModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPOLICYMODELID");
@@ -484,7 +484,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPolicyModelName_Default((IEntity)pSSysPolicyModel, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPolicyModelName_Default(pSSysPolicyModel, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPOLICYMODELNAME");
@@ -497,11 +497,11 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
     }
 
     protected void onSyncEntity(PSSysPolicyModel pSSysPolicyModel, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysPolicyModel, bl);
+        super.onSyncEntity(pSSysPolicyModel, bl);
     }
 
     protected void onSyncIndexEntities(PSSysPolicyModel pSSysPolicyModel, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysPolicyModel, bl);
+        super.onSyncIndexEntities(pSSysPolicyModel, bl);
     }
 
     public Object getDataContextValue(PSSysPolicyModel pSSysPolicyModel, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -509,7 +509,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysPolicyModel, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysPolicyModel, string, iDataContextParam)) != null) {
             return object;
         }
         PSSysPolicy pSSysPolicy = pSSysPolicyModel.getPSSysPolicy();
@@ -520,7 +520,7 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
     }
 
     protected void onExportMajorModel(PSSysPolicyModel pSSysPolicyModel, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysPolicyModel, arrayList, n);
+        super.onExportMajorModel(pSSysPolicyModel, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -707,14 +707,14 @@ extends PSCoreSysServiceBase<PSSysPolicyModel> {
 
     protected boolean onMergeChild(String string, String string2, PSSysPolicyModel pSSysPolicyModel) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysPolicyModel)) {
+        if (super.onMergeChild(string, string2, pSSysPolicyModel)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysPolicyModel pSSysPolicyModel) throws Exception {
-        super.onUpdateParent((IEntity)pSSysPolicyModel);
+        super.onUpdateParent(pSSysPolicyModel);
     }
 
     @Override

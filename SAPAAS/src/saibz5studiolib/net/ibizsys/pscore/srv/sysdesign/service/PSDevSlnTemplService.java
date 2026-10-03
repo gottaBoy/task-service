@@ -42,7 +42,6 @@ import net.ibizsys.pscore.srv.devcenter.service.PSDevCenterSVNService;
 import net.ibizsys.pscore.srv.devcenter.service.PSDevCenterService;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSln;
 import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSlnTempl;
-import net.ibizsys.pscore.srv.sysdesign.entity.PSDevSlnTemplBase;
 import net.ibizsys.pscore.srv.sysdesign.service.PSDevSlnService;
 import net.ibizsys.pscore.srv.sysdesign.service.PSDevSlnTemplServiceBase;
 import net.ibizsys.pscore.srv.util.PSDevCenterHelper;
@@ -84,7 +83,7 @@ extends PSDevSlnTemplServiceBase {
     protected void onBeforeUpdate(PSDevSlnTempl pSDevSlnTempl) throws Exception {
         if (pSDevSlnTempl.isEnableRefDirty()) {
             if (DataObject.getBoolValue((Integer)pSDevSlnTempl.getEnableRef(), (boolean)false)) {
-                PSDevSlnTempl pSDevSlnTempl2 = (PSDevSlnTempl)this.getLast((IEntity)pSDevSlnTempl);
+                PSDevSlnTempl pSDevSlnTempl2 = (PSDevSlnTempl)this.getLast(pSDevSlnTempl);
                 if (pSDevSlnTempl2 == null || StringHelper.isNullOrEmpty((String)pSDevSlnTempl2.getRefCode())) {
                     pSDevSlnTempl.setRefCode(KeyValueHelper.genUniqueId((String)DateHelper.toDateTimeString((Date)new Date()), (String)KeyValueHelper.genGuidEx()));
                 }
@@ -142,14 +141,14 @@ extends PSDevSlnTemplServiceBase {
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(pSDevSlnTempl.getPSDevCenterId());
-                pSDevCenterService.get((IEntity)pSDevCenter);
+                pSDevCenterService.get(pSDevCenter);
                 pSPFStyle.setV2Folder(StringHelper.format((String)"I:\\TEMPL\\PSPF\\%1$s\\%2$s\\%3$s", (Object)pSDevCenter.getDomainName(), (Object)pSDevSlnTempl.getPSDevSlnId(), (Object)pSDevSlnTempl.getPSDevSlnTemplName()));
                 pSPFStyle.setV2Folder2(StringHelper.format((String)"/app/TEMPL/PSPF/%1$s/%2$s/%3$s", (Object)pSDevCenter.getDomainName(), (Object)pSDevSlnTempl.getPSDevSlnId(), (Object)pSDevSlnTempl.getPSDevSlnTemplName()));
                 if (!StringHelper.isNullOrEmpty((String)pSDevSlnTempl.getPSDevCenterSVNId())) {
                     object = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)this.getSessionFactory());
                     PSDevCenterSVN pSDevCenterSVN = new PSDevCenterSVN();
                     pSDevCenterSVN.setPSDevCenterSVNId(pSDevSlnTempl.getPSDevCenterSVNId());
-                    object.get((IEntity)pSDevCenterSVN);
+                    ((PSDevCenterSVNService)object).get(pSDevCenterSVN);
                     String string = pSDevCenterSVN.getGitBranch();
                     if (StringHelper.isNullOrEmpty((String)string)) {
                         string = "master";
@@ -158,12 +157,12 @@ extends PSDevSlnTemplServiceBase {
                 }
                 pSPFStyle.setStyleResUrl(pSDevSlnTempl.getV2GitPath());
                 pSPFStyleService.create(pSPFStyle);
-                object = new PSDevSlnTempl();
-                ((PSDevSlnTemplBase)object).setPSDevSlnTemplId(pSDevSlnTempl.getPSDevSlnTemplId());
-                ((PSDevSlnTemplBase)object).setPSPFStyleId(pSPFStyle.getPSPFStyleId());
-                ((PSDevSlnTemplBase)object).setPSPFStyleName(pSPFStyle.getPSPFStyleName());
-                ((PSDevSlnTemplBase)object).setDevTemplState(30);
-                this.sysUpdate(object, false);
+                PSDevSlnTempl pSDevSlnTemplUpdate = new PSDevSlnTempl();
+                pSDevSlnTemplUpdate.setPSDevSlnTemplId(pSDevSlnTempl.getPSDevSlnTemplId());
+                pSDevSlnTemplUpdate.setPSPFStyleId(pSPFStyle.getPSPFStyleId());
+                pSDevSlnTemplUpdate.setPSPFStyleName(pSPFStyle.getPSPFStyleName());
+                pSDevSlnTemplUpdate.setDevTemplState(30);
+                this.sysUpdate(pSDevSlnTemplUpdate, false);
                 pSDevSlnTempl.setPSPFStyleId(pSPFStyle.getPSPFStyleId());
                 pSDevSlnTempl.setPSPFStyleName(pSPFStyle.getPSPFStyleName());
             } else {
@@ -202,14 +201,14 @@ extends PSDevSlnTemplServiceBase {
                 PSDevCenterService pSDevCenterService = (PSDevCenterService)ServiceGlobal.getService(PSDevCenterService.class, (SessionFactory)this.getSessionFactory());
                 PSDevCenter pSDevCenter = new PSDevCenter();
                 pSDevCenter.setPSDevCenterId(pSDevSlnTempl.getPSDevCenterId());
-                pSDevCenterService.get((IEntity)pSDevCenter);
+                pSDevCenterService.get(pSDevCenter);
                 pSSFStyle.setV2Folder(StringHelper.format((String)"I:\\TEMPL\\PSSF\\%1$s\\%2$s\\%3$s", (Object)pSDevCenter.getDomainName(), (Object)pSDevSlnTempl.getPSDevSlnId(), (Object)pSDevSlnTempl.getPSDevSlnTemplName()));
                 pSSFStyle.setV2Folder2(StringHelper.format((String)"/app/TEMPL/PSSF/%1$s/%2$s/%3$s", (Object)pSDevCenter.getDomainName(), (Object)pSDevSlnTempl.getPSDevSlnId(), (Object)pSDevSlnTempl.getPSDevSlnTemplName()));
                 if (!StringHelper.isNullOrEmpty((String)pSDevSlnTempl.getPSDevCenterSVNId())) {
                     object = (PSDevCenterSVNService)ServiceGlobal.getService(PSDevCenterSVNService.class, (SessionFactory)this.getSessionFactory());
                     PSDevCenterSVN pSDevCenterSVN = new PSDevCenterSVN();
                     pSDevCenterSVN.setPSDevCenterSVNId(pSDevSlnTempl.getPSDevCenterSVNId());
-                    object.get((IEntity)pSDevCenterSVN);
+                    ((PSDevCenterSVNService)object).get(pSDevCenterSVN);
                     String string = pSDevCenterSVN.getGitBranch();
                     if (StringHelper.isNullOrEmpty((String)string)) {
                         string = "master";
@@ -218,12 +217,12 @@ extends PSDevSlnTemplServiceBase {
                 }
                 pSSFStyle.setStyleResUrl(pSDevSlnTempl.getV2GitPath());
                 pSSFStyleService.create(pSSFStyle);
-                object = new PSDevSlnTempl();
-                ((PSDevSlnTemplBase)object).setPSDevSlnTemplId(pSDevSlnTempl.getPSDevSlnTemplId());
-                ((PSDevSlnTemplBase)object).setPSSFStyleId(pSSFStyle.getPSSFStyleId());
-                ((PSDevSlnTemplBase)object).setPSSFStyleName(pSSFStyle.getPSSFStyleName());
-                ((PSDevSlnTemplBase)object).setDevTemplState(30);
-                this.sysUpdate(object, false);
+                PSDevSlnTempl pSDevSlnTemplUpdate = new PSDevSlnTempl();
+                pSDevSlnTemplUpdate.setPSDevSlnTemplId(pSDevSlnTempl.getPSDevSlnTemplId());
+                pSDevSlnTemplUpdate.setPSSFStyleId(pSSFStyle.getPSSFStyleId());
+                pSDevSlnTemplUpdate.setPSSFStyleName(pSSFStyle.getPSSFStyleName());
+                pSDevSlnTemplUpdate.setDevTemplState(30);
+                this.sysUpdate(pSDevSlnTemplUpdate, false);
                 pSDevSlnTempl.setPSSFStyleId(pSSFStyle.getPSSFStyleId());
                 pSDevSlnTempl.setPSSFStyleName(pSSFStyle.getPSSFStyleName());
             } else {
@@ -245,13 +244,13 @@ extends PSDevSlnTemplServiceBase {
     protected void onPubTempl(PSDevSlnTempl pSDevSlnTempl) throws Exception {
         if (this.getSessionFactory() == PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             Object object;
-            this.get((IEntity)pSDevSlnTempl);
+            this.get(pSDevSlnTempl);
             if ("PSPF".equals(pSDevSlnTempl.getTemplType())) {
                 if (!StringHelper.isNullOrEmpty((String)pSDevSlnTempl.getPSPFStyleId())) {
                     object = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)this.getSessionFactory());
                     PSPFStyle pSPFStyle = new PSPFStyle();
                     pSPFStyle.setPSPFStyleId(pSDevSlnTempl.getPSPFStyleId());
-                    object.get((IEntity)pSPFStyle);
+                    ((PSPFStyleService)object).get(pSPFStyle);
                     int n = DataObject.getIntegerValue((Object)pSPFStyle.getVersion(), (Integer)1);
                     pSPFStyle.reset();
                     pSPFStyle.setPSPFStyleId(pSDevSlnTempl.getPSPFStyleId());
@@ -262,7 +261,7 @@ extends PSDevSlnTemplServiceBase {
                 object = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.getSessionFactory());
                 PSSFStyle pSSFStyle = new PSSFStyle();
                 pSSFStyle.setPSSFStyleId(pSDevSlnTempl.getPSSFStyleId());
-                object.get((IEntity)pSSFStyle);
+                ((PSSFStyleService)object).get(pSSFStyle);
                 int n = DataObject.getIntegerValue((Object)pSSFStyle.getVersion(), (Integer)1);
                 pSSFStyle.reset();
                 pSSFStyle.setPSSFStyleId(pSDevSlnTempl.getPSSFStyleId());
@@ -318,7 +317,7 @@ extends PSDevSlnTemplServiceBase {
     @Override
     protected void onAfterRemove(PSDevSlnTempl pSDevSlnTempl) throws Exception {
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
-            PSDevSlnTempl pSDevSlnTempl2 = (PSDevSlnTempl)this.getLast((IEntity)pSDevSlnTempl);
+            PSDevSlnTempl pSDevSlnTempl2 = (PSDevSlnTempl)this.getLast(pSDevSlnTempl);
             PSDevCenterHelper.updatetPSDCResRep(pSDevSlnTempl2.getPSDevSln().getPSDevCenter(), "DEVTEMPLCNT");
         }
         super.onAfterRemove(pSDevSlnTempl);
@@ -336,7 +335,7 @@ extends PSDevSlnTemplServiceBase {
 
     protected void doRealRemove(PSDevSlnTempl pSDevSlnTempl) throws Exception {
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
-            this.get((IEntity)pSDevSlnTempl);
+            this.get(pSDevSlnTempl);
             if (StringHelper.isNullOrEmpty((String)PSDevSlnTemplService.getRecyclePSDCId()) && ("PSPF".equals(pSDevSlnTempl.getTemplType()) ? !StringHelper.isNullOrEmpty((String)pSDevSlnTempl.getPSPFStyleId()) : "PSSF".equals(pSDevSlnTempl.getTemplType()) && !StringHelper.isNullOrEmpty((String)pSDevSlnTempl.getPSSFStyleId()))) {
                 throw new Exception("\u5f00\u53d1\u6a21\u677f\u7981\u6b62\u5220\u9664");
             }
@@ -354,13 +353,13 @@ extends PSDevSlnTemplServiceBase {
                         PSPFStyleService pSPFStyleService = (PSPFStyleService)ServiceGlobal.getService(PSPFStyleService.class, (SessionFactory)this.getSessionFactory());
                         PSPFStyle pSPFStyle = new PSPFStyle();
                         pSPFStyle.setPSPFStyleId(pSDevSlnTempl.getPSPFStyleId());
-                        pSPFStyleService.remove((IEntity)pSPFStyle);
+                        pSPFStyleService.remove(pSPFStyle);
                     }
                 } else if ("PSSF".equals(pSDevSlnTempl.getTemplType()) && !StringHelper.isNullOrEmpty((String)pSDevSlnTempl.getPSSFStyleId())) {
                     PSSFStyleService pSSFStyleService = (PSSFStyleService)ServiceGlobal.getService(PSSFStyleService.class, (SessionFactory)this.getSessionFactory());
                     PSSFStyle pSSFStyle = new PSSFStyle();
                     pSSFStyle.setPSSFStyleId(pSDevSlnTempl.getPSSFStyleId());
-                    pSSFStyleService.remove((IEntity)pSSFStyle);
+                    pSSFStyleService.remove(pSSFStyle);
                 }
             }
             catch (Exception exception) {
@@ -368,7 +367,7 @@ extends PSDevSlnTemplServiceBase {
                 throw exception;
             }
         }
-        super.remove((IEntity)pSDevSlnTempl);
+        super.remove(pSDevSlnTempl);
     }
 
     @Override
@@ -384,7 +383,7 @@ extends PSDevSlnTemplServiceBase {
         if (StringHelper.isNullOrEmpty((String)PSDevSlnTemplService.getRecyclePSDCId())) {
             return false;
         }
-        PSDevSlnTempl pSDevSlnTempl2 = (PSDevSlnTempl)this.getLast((IEntity)pSDevSlnTempl);
+        PSDevSlnTempl pSDevSlnTempl2 = (PSDevSlnTempl)this.getLast(pSDevSlnTempl);
         PSDevSln pSDevSln = pSDevSlnTempl2.getPSDevSln();
         PSDevSln pSDevSln2 = new PSDevSln();
         pSDevSln2.setPSDevSlnName(StringHelper.format((String)"S%1$s", (Object)KeyValueHelper.genUniqueId((String)pSDevSlnTempl.getPSDevSlnTemplId(), (String)Integer.toString(random.nextInt(99999999)))));
@@ -409,13 +408,13 @@ extends PSDevSlnTemplServiceBase {
             throw new Exception(StringHelper.format((String)"\u5efa\u7acb\u56de\u6536\u5f00\u53d1\u65b9\u6848\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), exception);
         }
         try {
-            object = new PSDevSlnTempl();
-            ((PSDevSlnTemplBase)object).setPSDevSlnTemplId(pSDevSlnTempl.getPSDevSlnTemplId());
-            ((PSDevSlnTemplBase)object).setPSDevSlnId(pSDevSln2.getPSDevSlnId());
-            ((PSDevSlnTemplBase)object).setPSDevSlnName(pSDevSln2.getPSDevSlnName());
-            ((PSDevSlnTemplBase)object).setPSDevCenterId(pSDevSln2.getPSDevCenterId());
-            ((PSDevSlnTemplBase)object).setPSDevCenterName(pSDevSln2.getPSDevCenterName());
-            this.sysUpdate(object, false);
+            PSDevSlnTempl pSDevSlnTemplUpdate = new PSDevSlnTempl();
+            pSDevSlnTemplUpdate.setPSDevSlnTemplId(pSDevSlnTempl.getPSDevSlnTemplId());
+            pSDevSlnTemplUpdate.setPSDevSlnId(pSDevSln2.getPSDevSlnId());
+            pSDevSlnTemplUpdate.setPSDevSlnName(pSDevSln2.getPSDevSlnName());
+            pSDevSlnTemplUpdate.setPSDevCenterId(pSDevSln2.getPSDevCenterId());
+            pSDevSlnTemplUpdate.setPSDevCenterName(pSDevSln2.getPSDevCenterName());
+            this.sysUpdate(pSDevSlnTemplUpdate, false);
         }
         catch (Exception exception) {
             log.error((Object)StringHelper.format((String)"\u66f4\u65b0\u5f00\u53d1\u6a21\u677f\u5f52\u5c5e\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)exception.getMessage()), (Throwable)exception);
@@ -445,7 +444,7 @@ extends PSDevSlnTemplServiceBase {
 
     @Override
     protected void onGetWithRepo(PSDevSlnTempl pSDevSlnTempl) throws Exception {
-        this.get((IEntity)pSDevSlnTempl);
+        this.get(pSDevSlnTempl);
         PSDevCenterSVN pSDevCenterSVN = pSDevSlnTempl.getPSDevCenterSVN();
         if (pSDevCenterSVN != null) {
             String string = pSDevCenterSVN.getGitPath();
@@ -453,4 +452,3 @@ extends PSDevSlnTemplServiceBase {
         }
     }
 }
-

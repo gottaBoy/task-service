@@ -22,7 +22,6 @@ import SA.SRFDA.Ctrl.BaseDEDataCtrl;
 import SA.SRFDA.Ctrl.IDEDataCtrl;
 import SA.SRFDA.PS.Ctrl.DEDataCtrl.IPSModelInitDataCtrl;
 import SA.SRFDA.PS.Ctrl.DEDataCtrl.PSDEDataCtrl;
-import SA.SRFDA.PS.Data.PSDEFSearchMode;
 import SA.SRFDA.PS.Data.PSDEFSearchModeV3;
 import SA.SRFDA.PS.Data.PSDEField;
 import SA.SRFDA.PS.Data.PSDEForm;
@@ -69,9 +68,9 @@ implements IPSModelInitDataCtrl {
                         this.modifyLayoutFromXML(xmlNode, psDEForm, validMap);
                         BaseDataEntity cond = new BaseDataEntity();
                         cond.setParamValue("PSDEFORMID", (Object)psDEForm.getPSDEFORMID());
-                        Vector psDEFormDetailList = new Vector();
+                        Vector<PSDEFormDetailV3> psDEFormDetailList = new Vector<>();
                         IDEDataCtrl psDEFormDetailDataCtrl = this.GetRelatedDataCtrl("DE2202");
-                        callResult = psDEFormDetailDataCtrl.Select(cond, psDEFormDetailList, PSDEFormDetail.class.getName());
+                        callResult = psDEFormDetailDataCtrl.Select(cond, psDEFormDetailList, PSDEFormDetailV3.class.getName());
                         if (callResult.isError()) {
                             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8868\u5355\u6210\u5458\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
                         }
@@ -99,7 +98,7 @@ implements IPSModelInitDataCtrl {
     }
 
     protected void modifyLayoutFromXML(XMLNode xmlNode, PSDEForm psDEForm, HashMap<String, PSDEFormDetailV3> validMap) throws Exception {
-        ArrayList xmlNodes = xmlNode.getChildNodes();
+        ArrayList<XMLNode> xmlNodes = xmlNode.getChildNodes();
         if (xmlNodes == null) {
             return;
         }
@@ -155,9 +154,9 @@ implements IPSModelInitDataCtrl {
         }
         BaseDataEntity cond = new BaseDataEntity();
         cond.setParamValue("PSDEFORMID", (Object)psDEForm.getPSDEFORMID());
-        Vector psDEFormDetailList = new Vector();
+        Vector<PSDEFormDetailV3> psDEFormDetailList = new Vector<>();
         IDEDataCtrl psDEFormDetailDataCtrl = this.GetRelatedDataCtrl("DE2202");
-        CallResult callResult = psDEFormDetailDataCtrl.Select(cond, psDEFormDetailList, PSDEFormDetail.class.getName(), "ORDER BY ORDERVALUE");
+        CallResult callResult = psDEFormDetailDataCtrl.Select(cond, psDEFormDetailList, PSDEFormDetailV3.class.getName(), "ORDER BY ORDERVALUE");
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8868\u5355\u6210\u5458\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
         }
@@ -284,9 +283,9 @@ implements IPSModelInitDataCtrl {
         if (psDEFormDetailList.size() > 0) {
             return;
         }
-        Vector psDEFSearchModeList = new Vector();
+        Vector<PSDEFSearchModeV3> psDEFSearchModeList = new Vector<>();
         String strSQL = StringHelper.Format((String)"select * from v_srfPSDEFSFITEM t1 inner join t_srfpsdefield t2 on t1.PSDEFID=t2.PSDEFIELDID where t2.PSDEID='%1$s'", (Object)psDEForm.getPSDEID());
-        callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.globalHelperEx, (Connection)this.getConnection(), (String)"", (String)strSQL, null, psDEFSearchModeList, (String)PSDEFSearchMode.class.getName());
+        callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.globalHelperEx, (Connection)this.getConnection(), (String)"", (String)strSQL, null, psDEFSearchModeList, (String)PSDEFSearchModeV3.class.getName());
         if (callResult.isError()) {
             throw new Exception(StringHelper.Format((String)"\u5efa\u7acb\u5b9e\u4f53\u641c\u7d22\u9879\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
         }
@@ -322,4 +321,3 @@ implements IPSModelInitDataCtrl {
         }
     }
 }
-

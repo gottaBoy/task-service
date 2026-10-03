@@ -1,11 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlmodel.form;
 
-import net.ibizsys.paas.ctrlmodel.form.DynaFormItemModel;
+/**
+ * 动态编辑表单项对象模型
+ * @author Administrator
+ *
+ */
+public class DynaEditFormItemModel extends DynaFormItemModel{
 
-public class DynaEditFormItemModel
-extends DynaFormItemModel {
 }
-

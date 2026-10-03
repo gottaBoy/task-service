@@ -181,9 +181,9 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
             PSSysBIScheme pSSysBIScheme = (PSSysBIScheme)iService.getDEModel().createEntity();
             pSSysBIScheme.set("PSSYSBISCHEMEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysBIScheme);
+                iService.getTemp(pSSysBIScheme);
             } else {
-                iService.get((IEntity)pSSysBIScheme);
+                iService.get(pSSysBIScheme);
             }
             this.onFillParentInfo_PSSysBIScheme(pSSysBIDimension, pSSysBIScheme);
             return;
@@ -193,14 +193,14 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
             PSSysSFPlugin pSSysSFPlugin = (PSSysSFPlugin)iService.getDEModel().createEntity();
             pSSysSFPlugin.set("PSSYSSFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysSFPlugin);
+                iService.getTemp(pSSysSFPlugin);
             } else {
-                iService.get((IEntity)pSSysSFPlugin);
+                iService.get(pSSysSFPlugin);
             }
             this.onFillParentInfo_PSSysSFPlugin(pSSysBIDimension, pSSysSFPlugin);
             return;
         }
-        super.onFillParentInfo((IEntity)pSSysBIDimension, string, string2, string3);
+        super.onFillParentInfo(pSSysBIDimension, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -226,7 +226,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 pSSysBIDimension.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
             }
         }
-        super.onFillEntityFullInfo((IEntity)pSSysBIDimension, bl);
+        super.onFillEntityFullInfo(pSSysBIDimension, bl);
         this.onFillEntityFullInfo_PSSysBIScheme(pSSysBIDimension, bl);
         this.onFillEntityFullInfo_PSSysSFPlugin(pSSysBIDimension, bl);
     }
@@ -238,7 +238,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
     }
 
     protected void onWriteBackParent(PSSysBIDimension pSSysBIDimension, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSSysBIDimension, bl);
+        super.onWriteBackParent(pSSysBIDimension, bl);
     }
 
     public ArrayList<PSSysBIDimension> selectByPSSysBIScheme(PSSysBISchemeBase pSSysBISchemeBase) throws Exception {
@@ -293,8 +293,8 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
         ArrayList<PSSysBIDimension> arrayList = this.selectByPSSysBIScheme(pSSysBIScheme, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSBISCHEME");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysBIScheme);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIDIMENSION_PSSYSBISCHEME_PSSYSBISCHEMEID", "", iDataEntityModel.getName(), "PSSYSBIDIMENSION", iDataEntityModel.getDataInfo((IEntity)pSSysBIScheme), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysBIScheme);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIDIMENSION_PSSYSBISCHEME_PSSYSBISCHEMEID", "", iDataEntityModel.getName(), "PSSYSBIDIMENSION", iDataEntityModel.getDataInfo(pSSysBIScheme), arrayList.get(0)));
         }
     }
 
@@ -327,7 +327,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
         ArrayList<PSSysBIDimension> arrayList = this.selectByPSSysBIScheme(pSSysBIScheme);
         this.onBeforeRemoveByPSSysBIScheme(pSSysBIScheme, arrayList);
         for (PSSysBIDimension pSSysBIDimension : arrayList) {
-            this.remove((IEntity)pSSysBIDimension);
+            this.remove(pSSysBIDimension);
         }
         this.onAfterRemoveByPSSysBIScheme(pSSysBIScheme, arrayList);
     }
@@ -345,8 +345,8 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
         ArrayList<PSSysBIDimension> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSSFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysSFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIDIMENSION_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSBIDIMENSION", iDataEntityModel.getDataInfo((IEntity)pSSysSFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysSFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSSYSBIDIMENSION_PSSYSSFPLUGIN_PSSYSSFPLUGINID", "", iDataEntityModel.getName(), "PSSYSBIDIMENSION", iDataEntityModel.getDataInfo(pSSysSFPlugin), arrayList.get(0)));
         }
     }
 
@@ -379,7 +379,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
         ArrayList<PSSysBIDimension> arrayList = this.selectByPSSysSFPlugin(pSSysSFPlugin);
         this.onBeforeRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
         for (PSSysBIDimension pSSysBIDimension : arrayList) {
-            this.remove((IEntity)pSSysBIDimension);
+            this.remove(pSSysBIDimension);
         }
         this.onAfterRemoveByPSSysSFPlugin(pSSysSFPlugin, arrayList);
     }
@@ -405,7 +405,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
 
     protected void replaceParentInfo(PSSysBIDimension pSSysBIDimension, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSSysBIDimension, cloneSession);
+        super.replaceParentInfo(pSSysBIDimension, cloneSession);
         if (pSSysBIDimension.getPSSysBISchemeId() != null && (iEntity = cloneSession.getEntity("PSSYSBISCHEME", (Object)pSSysBIDimension.getPSSysBISchemeId())) != null) {
             this.onFillParentInfo_PSSysBIScheme(pSSysBIDimension, (PSSysBIScheme)iEntity);
         }
@@ -415,7 +415,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
     }
 
     protected void onRemoveEntityUncopyValues(PSSysBIDimension pSSysBIDimension, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSSysBIDimension, bl);
+        super.onRemoveEntityUncopyValues(pSSysBIDimension, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSSysBIDimension pSSysBIDimension, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -463,7 +463,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSSysBIDimension, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSSysBIDimension, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSSysBIDimension, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_BIDimensionTag(boolean bl, PSSysBIDimension pSSysBIDimension, boolean bl2, boolean bl3) throws Exception {
@@ -476,7 +476,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIDimensionTag_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_BIDimensionTag_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIDIMENSIONTAG");
@@ -498,7 +498,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_BIDimensionTag2_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_BIDimensionTag2_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("BIDIMENSIONTAG2");
@@ -523,7 +523,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CodeName_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_CodeName_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CODENAME");
@@ -562,7 +562,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -587,7 +587,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBIDimensionId_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBIDimensionId_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBIDIMENSIONID");
@@ -612,7 +612,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBIDimensionName_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBIDimensionName_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBIDIMENSIONNAME");
@@ -637,7 +637,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysBISchemeId_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysBISchemeId_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSBISCHEMEID");
@@ -659,7 +659,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysSFPluginId_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysSFPluginId_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSSFPLUGINID");
@@ -681,7 +681,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -703,7 +703,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -725,7 +725,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -747,7 +747,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -769,7 +769,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -794,7 +794,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSSysBIDimension, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSSysBIDimension, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -807,11 +807,11 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
     }
 
     protected void onSyncEntity(PSSysBIDimension pSSysBIDimension, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSSysBIDimension, bl);
+        super.onSyncEntity(pSSysBIDimension, bl);
     }
 
     protected void onSyncIndexEntities(PSSysBIDimension pSSysBIDimension, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSSysBIDimension, bl);
+        super.onSyncIndexEntities(pSSysBIDimension, bl);
     }
 
     public Object getDataContextValue(PSSysBIDimension pSSysBIDimension, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -819,14 +819,14 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSSysBIDimension, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSSysBIDimension, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSSysBIDimension pSSysBIDimension, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSSysBIDimension, arrayList, n);
+        super.onExportMajorModel(pSSysBIDimension, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -1116,14 +1116,14 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
 
     protected boolean onMergeChild(String string, String string2, PSSysBIDimension pSSysBIDimension) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSSysBIDimension)) {
+        if (super.onMergeChild(string, string2, pSSysBIDimension)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSSysBIDimension pSSysBIDimension) throws Exception {
-        super.onUpdateParent((IEntity)pSSysBIDimension);
+        super.onUpdateParent(pSSysBIDimension);
     }
 
     protected void onCopyDetails(PSSysBIDimension pSSysBIDimension, Object object) throws Exception {
@@ -1134,12 +1134,12 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
         ArrayList<PSSysBIHierarchy> arrayList = pSSysBIHierarchyService.selectByPSSysBIDimension(pSSysBIDimension2);
         for (PSSysBIHierarchy pSSysBIHierarchy : arrayList) {
             Object object2 = pSSysBIHierarchy.get("PSSYSBIHIERARCHYID");
-            pSSysBIHierarchyService.getDraftFrom((IEntity)pSSysBIHierarchy);
-            pSSysBIHierarchyService.fillParentInfo((IEntity)pSSysBIHierarchy, "DER1N", "DER1N_PSSYSBIHIERARCHY_PSSYSBIDIMENSION_PSSYSBIDIMENSIONID", string);
+            pSSysBIHierarchyService.getDraftFrom(pSSysBIHierarchy);
+            pSSysBIHierarchyService.fillParentInfo(pSSysBIHierarchy, "DER1N", "DER1N_PSSYSBIHIERARCHY_PSSYSBIDIMENSION_PSSYSBIDIMENSIONID", string);
             pSSysBIHierarchyService.create(pSSysBIHierarchy);
             pSSysBIHierarchyService.copyDetails(pSSysBIHierarchy, object2);
         }
-        super.onCopyDetails((IEntity)pSSysBIDimension, object);
+        super.onCopyDetails(pSSysBIDimension, object);
     }
 
     @Override
@@ -1295,44 +1295,29 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
 
     @Override
     protected void onExportCurModelV2(PSSysBIDimension pSSysBIDimension, ObjectNode objectNode, String string, boolean bl) throws Exception {
-        File file = null;
         if (bl || !this.isExportRelatedModelV2("DER1N_PSSYSBIHIERARCHY_PSSYSBIDIMENSION_PSSYSBIDIMENSIONID")) {
-            Object object;
-            PSSysBIHierarchy pSSysBIHierarchy2;
-            Object object2;
-            Object object3;
-            Object object4;
             PSSysBIHierarchyService pSSysBIHierarchyService = (PSSysBIHierarchyService)ServiceGlobal.getService(PSSysBIHierarchyService.class, (SessionFactory)this.getSessionFactory());
-            ArrayList<PSSysBIHierarchy> arrayList = null;
+            ArrayList<ObjectNode> items = null;
             if (!StringHelper.isNullOrEmpty((String)string)) {
-                file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSBIDIMENSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBIHIERARCHY", (Object)pSSysBIDimension.getPSSysBIDimensionId()));
+                File file = new File(StringHelper.format((String)"%1$s%2$s%3$s%2$sPSSYSBIDIMENSION#%4$s#ALL.txt", (Object)string, (Object)File.separator, (Object)"PSSYSBIHIERARCHY", (Object)pSSysBIDimension.getPSSysBIDimensionId()));
                 if (file.exists()) {
-                    arrayList = new ArrayList();
-                    object4 = PSModelV2Helper.readFile2(file);
-                    object3 = ((ArrayList)object4).iterator();
-                    while (object3.hasNext()) {
-                        object2 = (String)object3.next();
-                        if (StringHelper.isNullOrEmpty((String)object2)) continue;
-                        pSSysBIHierarchy2 = (ObjectNode)JsonNodeHelper.fromString((String)object2);
-                        arrayList.add(pSSysBIHierarchy2);
+                    items = new ArrayList<ObjectNode>();
+                    for (String line : PSModelV2Helper.readFile2(file)) {
+                        if (StringHelper.isNullOrEmpty(line)) continue;
+                        items.add((ObjectNode)JsonNodeHelper.fromString(line));
                     }
                 }
             } else {
-                arrayList = new ArrayList<PSSysBIHierarchy>();
-                object4 = pSSysBIHierarchyService.selectByPSSysBIDimension(pSSysBIDimension);
-                object3 = StringHelper.format((String)"PSSYSBIDIMENSION#%1$s", (Object)pSSysBIDimension.getPSSysBIDimensionId());
-                object2 = ((ArrayList)object4).iterator();
-                while (object2.hasNext()) {
-                    pSSysBIHierarchy2 = object2.next();
-                    object = pSSysBIHierarchyService.getModelV2ResScope((IEntity)pSSysBIHierarchy2);
-                    if (StringHelper.compare((String)object3, (String)object, (boolean)false) != 0) continue;
-                    arrayList.add((PSSysBIHierarchy)PSModelV2Helper.toJSONObject((IEntity)pSSysBIHierarchy2, false));
+                items = new ArrayList<ObjectNode>();
+                String scope = StringHelper.format((String)"PSSYSBIDIMENSION#%1$s", (Object)pSSysBIDimension.getPSSysBIDimensionId());
+                for (PSSysBIHierarchy hierarchy : pSSysBIHierarchyService.selectByPSSysBIDimension(pSSysBIDimension)) {
+                    if (StringHelper.compare(scope, pSSysBIHierarchyService.getModelV2ResScope(hierarchy), false) != 0) continue;
+                    items.add(PSModelV2Helper.toJSONObject(hierarchy, false));
                 }
             }
-            if (arrayList != null && arrayList.size() > 0) {
-                object4 = pSSysBIHierarchyService.getModelV2Name(false);
-                object3 = objectNode.putArray(((String)object4).toLowerCase());
-                Collections.sort(arrayList, new Comparator<ObjectNode>(){
+            if (items != null && !items.isEmpty()) {
+                ArrayNode arrayNode = objectNode.putArray(pSSysBIHierarchyService.getModelV2Name(false).toLowerCase());
+                Collections.sort(items, new Comparator<ObjectNode>(){
 
                     @Override
                     public int compare(ObjectNode objectNode, ObjectNode objectNode2) {
@@ -1359,10 +1344,10 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
                         return StringHelper.compare((String)string, string2, (boolean)false);
                     }
                 });
-                for (PSSysBIHierarchy pSSysBIHierarchy2 : arrayList) {
-                    object = new PSSysBIHierarchy();
-                    PSModelV2Helper.fromJSONObject((IDataObject)object, (ObjectNode)pSSysBIHierarchy2, false);
-                    object3.add((JsonNode)pSSysBIHierarchyService.exportModelV2(object, string));
+                for (ObjectNode item : items) {
+                    PSSysBIHierarchy hierarchy = new PSSysBIHierarchy();
+                    PSModelV2Helper.fromJSONObject(hierarchy, item, false);
+                    arrayNode.add((JsonNode)pSSysBIHierarchyService.exportModelV2(hierarchy, string));
                 }
             }
         }
@@ -1445,7 +1430,7 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
             PSSysBIHierarchyService pSSysBIHierarchyService = (PSSysBIHierarchyService)ServiceGlobal.getService(PSSysBIHierarchyService.class, (SessionFactory)this.getSessionFactory());
             PSSysBIHierarchy pSSysBIHierarchy = new PSSysBIHierarchy();
             pSSysBIHierarchy.setPSSysBIHierarchyId(pSMOSFile.getPSModelId());
-            if (!pSSysBIHierarchyService.get((IEntity)pSSysBIHierarchy, true)) {
+            if (!pSSysBIHierarchyService.get(pSSysBIHierarchy, true)) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u83b7\u53d6\u6a21\u578b[%1$s|%2$s]", (Object)pSMOSFile.getPSMOSFileId(), (Object)pSMOSFile.getPSModelId()));
             }
             if (StringHelper.compare((String)pSSysBIHierarchy.getPSSysBIDimensionId(), (String)pSSysBIDimension.getPSSysBIDimensionId(), (boolean)false) == 0) {
@@ -1453,12 +1438,12 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
             }
             ObjectNode objectNode = pSSysBIHierarchyService.exportModelV2(pSSysBIHierarchy);
             pSSysBIHierarchy.reset();
-            if (!pSSysBIHierarchyService.setModelV2ResScope((IEntity)pSSysBIHierarchy, "PSSYSBIDIMENSION", pSSysBIDimension.getPSSysBIDimensionId())) {
+            if (!pSSysBIHierarchyService.setModelV2ResScope(pSSysBIHierarchy, "PSSYSBIDIMENSION", pSSysBIDimension.getPSSysBIDimensionId())) {
                 throw new Exception("\u65e0\u6cd5\u8bbe\u7f6e\u6a21\u578b\u57df");
             }
             pSSysBIHierarchyService.importModelV2(pSSysBIHierarchy, objectNode);
             SessionFactoryManager.commit();
-            return pSSysBIHierarchyService.getFile((IEntity)pSSysBIHierarchy);
+            return pSSysBIHierarchyService.getFile(pSSysBIHierarchy);
         }
         return null;
     }
@@ -1487,4 +1472,3 @@ extends PSCoreSysServiceBase<PSSysBIDimension> {
         defaultValueMap.put("CODENAME", "Dimension");
     }
 }
-

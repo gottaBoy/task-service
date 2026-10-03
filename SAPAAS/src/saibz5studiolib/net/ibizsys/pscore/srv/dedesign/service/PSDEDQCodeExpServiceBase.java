@@ -152,14 +152,14 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
             PSDEDQCode pSDEDQCode = (PSDEDQCode)iService.getDEModel().createEntity();
             pSDEDQCode.set("PSDEDQCODEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEDQCode);
+                iService.getTemp(pSDEDQCode);
             } else {
-                iService.get((IEntity)pSDEDQCode);
+                iService.get(pSDEDQCode);
             }
             this.onFillParentInfo_PSDEDQCode(pSDEDQCodeExp, pSDEDQCode);
             return;
         }
-        super.onFillParentInfo((IEntity)pSDEDQCodeExp, string, string2, string3);
+        super.onFillParentInfo(pSDEDQCodeExp, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -192,7 +192,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
             ArrayList<PSDEDQCodeExp> arrayList = this.selectByPSDEDQCode(pSDEDQCode);
             for (PSDEDQCodeExp pSDEDQCodeExp : arrayList) {
                 if (hashMap.containsKey(DataObject.getStringValue((IDataObject)pSDEDQCodeExp, (String)"PSDEDQCODEEXPID", (String)""))) continue;
-                this.remove((IEntity)pSDEDQCodeExp);
+                this.remove(pSDEDQCodeExp);
             }
         }
         return null;
@@ -220,7 +220,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSDEDQCodeExp, bl);
+        super.onFillEntityFullInfo(pSDEDQCodeExp, bl);
         this.onFillEntityFullInfo_PSDEDQCode(pSDEDQCodeExp, bl);
     }
 
@@ -228,7 +228,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
     }
 
     protected void onWriteBackParent(PSDEDQCodeExp pSDEDQCodeExp, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSDEDQCodeExp, bl);
+        super.onWriteBackParent(pSDEDQCodeExp, bl);
     }
 
     public ArrayList<PSDEDQCodeExp> selectByPSDEDQCode(PSDEDQCodeBase pSDEDQCodeBase) throws Exception {
@@ -287,7 +287,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
         ArrayList<PSDEDQCodeExp> arrayList = this.selectByPSDEDQCode(pSDEDQCode);
         this.onBeforeRemoveByPSDEDQCode(pSDEDQCode, arrayList);
         for (PSDEDQCodeExp pSDEDQCodeExp : arrayList) {
-            this.remove((IEntity)pSDEDQCodeExp);
+            this.remove(pSDEDQCodeExp);
         }
         this.onAfterRemoveByPSDEDQCode(pSDEDQCode, arrayList);
     }
@@ -308,14 +308,14 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
 
     protected void replaceParentInfo(PSDEDQCodeExp pSDEDQCodeExp, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSDEDQCodeExp, cloneSession);
+        super.replaceParentInfo(pSDEDQCodeExp, cloneSession);
         if (pSDEDQCodeExp.getPSDEDQCodeId() != null && (iEntity = cloneSession.getEntity("PSDEDQCODE", (Object)pSDEDQCodeExp.getPSDEDQCodeId())) != null) {
             this.onFillParentInfo_PSDEDQCode(pSDEDQCodeExp, (PSDEDQCode)iEntity);
         }
     }
 
     protected void onRemoveEntityUncopyValues(PSDEDQCodeExp pSDEDQCodeExp, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSDEDQCodeExp, bl);
+        super.onRemoveEntityUncopyValues(pSDEDQCodeExp, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSDEDQCodeExp pSDEDQCodeExp, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -339,7 +339,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
         if ((entityFieldError = this.onCheckField_PSDEDQCodeId(bl, pSDEDQCodeExp, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSDEDQCodeExp, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSDEDQCodeExp, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_ExpCode(boolean bl, PSDEDQCodeExp pSDEDQCodeExp, boolean bl2, boolean bl3) throws Exception {
@@ -355,7 +355,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ExpCode_Default((IEntity)pSDEDQCodeExp, bl2, bl3);
+            string2 = this.onTestValueRule_ExpCode_Default(pSDEDQCodeExp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EXPCODE");
@@ -377,7 +377,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSDEDQCodeExp, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSDEDQCodeExp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -402,7 +402,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSDEDQCodeExp, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSDEDQCodeExp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -427,7 +427,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDQCodeExpId_Default((IEntity)pSDEDQCodeExp, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDQCodeExpId_Default(pSDEDQCodeExp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDQCODEEXPID");
@@ -452,7 +452,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDQCodeExpName_Default((IEntity)pSDEDQCodeExp, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDQCodeExpName_Default(pSDEDQCodeExp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDQCODEEXPNAME");
@@ -491,7 +491,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEDQCodeId_Default((IEntity)pSDEDQCodeExp, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEDQCodeId_Default(pSDEDQCodeExp, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEDQCODEID");
@@ -504,11 +504,11 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
     }
 
     protected void onSyncEntity(PSDEDQCodeExp pSDEDQCodeExp, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSDEDQCodeExp, bl);
+        super.onSyncEntity(pSDEDQCodeExp, bl);
     }
 
     protected void onSyncIndexEntities(PSDEDQCodeExp pSDEDQCodeExp, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSDEDQCodeExp, bl);
+        super.onSyncIndexEntities(pSDEDQCodeExp, bl);
     }
 
     public Object getDataContextValue(PSDEDQCodeExp pSDEDQCodeExp, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -516,7 +516,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSDEDQCodeExp, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSDEDQCodeExp, string, iDataContextParam)) != null) {
             return object;
         }
         PSDEDQCode pSDEDQCode = pSDEDQCodeExp.getPSDEDQCode();
@@ -527,7 +527,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
     }
 
     protected void onExportMajorModel(PSDEDQCodeExp pSDEDQCodeExp, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSDEDQCodeExp, arrayList, n);
+        super.onExportMajorModel(pSDEDQCodeExp, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -682,14 +682,14 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
 
     protected boolean onMergeChild(String string, String string2, PSDEDQCodeExp pSDEDQCodeExp) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSDEDQCodeExp)) {
+        if (super.onMergeChild(string, string2, pSDEDQCodeExp)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSDEDQCodeExp pSDEDQCodeExp) throws Exception {
-        super.onUpdateParent((IEntity)pSDEDQCodeExp);
+        super.onUpdateParent(pSDEDQCodeExp);
     }
 
     @Override
@@ -710,7 +710,7 @@ extends PSCoreSysServiceBase<PSDEDQCodeExp> {
         PSDEDQCodeExp pSDEDQCodeExp2 = new PSDEDQCodeExp();
         pSDEDQCodeExp2.setPSDEDQCodeId(pSDEDQCodeExp.getPSDEDQCodeId());
         pSDEDQCodeExp2.setPSDEDQCodeExpName(pSDEDQCodeExp.getPSDEDQCodeExpName());
-        if (this.selectOne((IEntity)pSDEDQCodeExp2, true)) {
+        if (this.selectOne(pSDEDQCodeExp2, true)) {
             return pSDEDQCodeExp2.getPSDEDQCodeExpId();
         }
         return super.getEntityFolderKeyValue(pSDEDQCodeExp, pSSystem);

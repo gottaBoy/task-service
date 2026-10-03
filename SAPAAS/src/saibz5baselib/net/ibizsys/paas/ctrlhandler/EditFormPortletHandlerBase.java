@@ -1,27 +1,40 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
-import net.ibizsys.paas.ctrlhandler.IPortletHandler;
-import net.ibizsys.paas.ctrlhandler.PortletHandlerBase;
 import net.ibizsys.paas.ctrlmodel.ICtrlModel;
 import net.ibizsys.paas.ctrlmodel.IEditFormPortletModel;
 import net.ibizsys.paas.ctrlmodel.IPortletModel;
 
-public abstract class EditFormPortletHandlerBase
-extends PortletHandlerBase
-implements IPortletHandler {
-    @Override
-    protected abstract IPortletModel getPortletModel();
+/**
+ * 表单门户部件模型后台处理对象
+ * 
+ * @author lionlau
+ *
+ */
+public abstract class EditFormPortletHandlerBase extends PortletHandlerBase implements IPortletHandler {
+	/**
+	 * 获取部件模型
+	 * 
+	 * @return
+	 */
+	protected abstract IPortletModel getPortletModel();
 
-    @Override
-    public ICtrlModel getCtrlModel() {
-        return this.getPortletModel();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.ibizsys.paas.ctrlhandler.ICtrlHandler#getCtrlModel()
+	 */
+	@Override
+	public ICtrlModel getCtrlModel() {
+		return getPortletModel();
+	}
 
-    protected IEditFormPortletModel getEditFormPortletModel() {
-        return (IEditFormPortletModel)this.getPortletModel();
-    }
+	/**
+	 * 表单门户部件模型
+	 * 
+	 * @return
+	 */
+	protected IEditFormPortletModel getEditFormPortletModel() {
+		return (IEditFormPortletModel) getPortletModel();
+	}
+
 }
-

@@ -1134,7 +1134,7 @@ implements Serializable {
                 PSDETEIUpdate pSDETEIUpdate = new PSDETEIUpdate();
                 pSDETEIUpdate.setPSDETEIUpdateId(this.getPSDETEIUpdateId());
                 PSDETEIUpdateService pSDETEIUpdateService = (PSDETEIUpdateService)ServiceGlobal.getService(PSDETEIUpdateService.class, (SessionFactory)this.getSessionFactory());
-                pSDETEIUpdateService.autoGet((IEntity)pSDETEIUpdate);
+                pSDETEIUpdateService.autoGet(pSDETEIUpdate);
                 this.psdeteiupdate = pSDETEIUpdate;
             }
             return this.psdeteiupdate;
@@ -1160,7 +1160,7 @@ implements Serializable {
                 PSDETreeNodeCol pSDETreeNodeCol = new PSDETreeNodeCol();
                 pSDETreeNodeCol.setPSDETreeNodeColId(this.getPSDETreeNodeColId());
                 PSDETreeNodeColService pSDETreeNodeColService = (PSDETreeNodeColService)ServiceGlobal.getService(PSDETreeNodeColService.class, (SessionFactory)this.getSessionFactory());
-                pSDETreeNodeColService.autoGet((IEntity)pSDETreeNodeCol);
+                pSDETreeNodeColService.autoGet(pSDETreeNodeCol);
                 this.psdetreenodecol = pSDETreeNodeCol;
             }
             return this.psdetreenodecol;
@@ -1186,7 +1186,7 @@ implements Serializable {
                 PSDETreeView pSDETreeView = new PSDETreeView();
                 pSDETreeView.setPSDETreeViewId(this.getPSDETreeViewId());
                 PSDETreeViewService pSDETreeViewService = (PSDETreeViewService)ServiceGlobal.getService(PSDETreeViewService.class, (SessionFactory)this.getSessionFactory());
-                pSDETreeViewService.autoGet((IEntity)pSDETreeView);
+                pSDETreeViewService.autoGet(pSDETreeView);
                 this.psdetreeview = pSDETreeView;
             }
             return this.psdetreeview;

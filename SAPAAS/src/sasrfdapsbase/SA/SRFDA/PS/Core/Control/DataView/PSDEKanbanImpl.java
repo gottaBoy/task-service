@@ -50,7 +50,13 @@ implements IPSDEKanban {
             }
         }
         if (this.getPSAjaxControlHandler() != null) {
-            return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("updategroup", true);
+            try {
+               return this.getPSAjaxControlHandler().getPSAjaxHandlerAction("updategroup", true);
+            }
+            catch (Exception exAjaxAction) {
+               log.error((Object)exAjaxAction);
+               return null;
+            }
         }
         return null;
     }

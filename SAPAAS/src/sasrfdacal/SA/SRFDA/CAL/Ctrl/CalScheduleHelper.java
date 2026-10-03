@@ -257,7 +257,7 @@ public class CalScheduleHelper {
         CallParam callParam = new CallParam();
         callParam.setValue((Object)new Timestamp(removeCal.getTime().getTime()));
         callParams.add(callParam);
-        Vector list = new Vector();
+        Vector<Calendar> list = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iGlobalHelper, (String)strSqlFormat, callParams, list, (String)Calendar.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -296,7 +296,7 @@ public class CalScheduleHelper {
         CallParam callParam2 = new CallParam();
         callParam2.setValue((Object)new Timestamp(removeCal.getTime().getTime()));
         callParams.add(callParam2);
-        Vector list = new Vector();
+        Vector<Calendar> list = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)this.iGlobalHelper, (String)strSqlFormat, callParams, list, (String)Calendar.class.getName());
         if (callResult.IsError()) {
             return callResult;
@@ -364,7 +364,7 @@ public class CalScheduleHelper {
     }
 
     public CallResult UpdateCalSchedule(CalSchedule calSchedule) {
-        Vector list;
+        Vector<Calendar> list;
         CallResult callResult;
         String strSqlFormat = "";
         strSqlFormat = calSchedule.GetParamValue("CYCLEENDTIME") == null ? "select * from t_SRFCalendar where  (CALSCHEDULEID IS NOT NULL AND CALSCHEDULEID = ?) AND ( CALSEQID IS NOT NULL AND CALSEQID<>CALENDARID) and ENABLE=1 AND USERUPDATE IS NULL AND (ENDTIME < ?  )" : "select * from t_SRFCalendar where  (CALSCHEDULEID IS NOT NULL AND CALSCHEDULEID = ?) AND ( CALSEQID IS NOT NULL AND CALSEQID<>CALENDARID) and ENABLE=1 AND USERUPDATE IS NULL AND (ENDTIME < ? OR BEGINTIME > ? )";

@@ -1,12 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.expbar;
 
-import net.ibizsys.model.control.expbar.IPSExpBarParam;
-
-public interface IPSTreeExpBarParam
-extends IPSExpBarParam {
-    public String getPSDETreeId();
+/**
+ * 树导航栏参数对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSTreeExpBarParam extends IPSExpBarParam
+{
+	/**
+	 * 获取树视图标示
+	 * @return
+	 */
+	String getPSDETreeId();
 }
-

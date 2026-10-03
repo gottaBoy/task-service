@@ -1,14 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.control.menu;
 
-import java.util.Iterator;
 import net.ibizsys.paas.control.IControl;
-import net.ibizsys.paas.control.menu.IAppMenuItem;
 
-public interface IAppMenu
-extends IControl {
-    public Iterator<IAppMenuItem> getAppMenuItems();
+/**
+ * 主菜单控件接口
+ * 
+ * @author lionlau
+ *
+ */
+public interface IAppMenu extends IControl {
+	/**
+	 * 获取主菜单项集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<IAppMenuItem> getAppMenuItems();
+
 }
-

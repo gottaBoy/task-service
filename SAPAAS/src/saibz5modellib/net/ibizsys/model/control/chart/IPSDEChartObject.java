@@ -1,13 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.chart;
 
-import net.ibizsys.model.control.chart.IPSChartObject;
-import net.ibizsys.model.control.chart.IPSDEChart;
-
-public interface IPSDEChartObject
-extends IPSChartObject {
-    public IPSDEChart getPSDEChart();
+/**
+ * 实体图表相关对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEChartObject extends IPSChartObject
+{
+	/**
+	 * 获取实体图表对象
+	 * @return
+	 */
+	IPSDEChart  getPSDEChart();
 }
-

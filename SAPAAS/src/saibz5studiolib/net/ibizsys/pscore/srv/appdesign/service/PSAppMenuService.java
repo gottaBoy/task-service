@@ -50,7 +50,7 @@ extends PSAppMenuServiceBase {
         if (!KeyValueHelper.isTempKey((String)pSAppMenu.getPSAppMenuId())) {
             this.getTempMajor(pSAppMenu);
         } else {
-            this.getTemp((IEntity)pSAppMenu);
+            this.getTemp(pSAppMenu);
         }
         pSAppMenu.setMenuModel(this.getMenuModel(pSAppMenu));
     }
@@ -100,7 +100,6 @@ extends PSAppMenuServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSAppMenuItem pSAppMenuItem2;
                 PSAppMenuItemService pSAppMenuItemService = (PSAppMenuItemService)ServiceGlobal.getService((String)PSAppMenuItemService.class.getCanonicalName(), (SessionFactory)PSAppMenuService.this.getSessionFactory());
                 ArrayList<PSAppMenuItem> arrayList = pSAppMenuItemService.selectTempByPSAppMenu(pSAppMenu2);
                 HashMap<String, PSAppMenuItem> hashMap = new HashMap<String, PSAppMenuItem>();
@@ -108,16 +107,16 @@ extends PSAppMenuServiceBase {
                     hashMap.put(pSAppMenuItem2.getPSAppMenuItemId(), pSAppMenuItem2);
                 }
                 String string = pSAppMenu2.getMenuModel();
-                pSAppMenuItem2 = XmlNode.loadFromXML((String)string);
-                if (pSAppMenuItem2 != null) {
-                    PSAppMenuService.this.updatePSAppMenuItems(pSAppMenu2, null, (XmlNode)pSAppMenuItem2, hashMap);
-                    pSAppMenu2.setMenuModel(XmlNode.export((XmlNode)pSAppMenuItem2));
+                XmlNode modelNode = XmlNode.loadFromXML(string);
+                if (modelNode != null) {
+                    PSAppMenuService.this.updatePSAppMenuItems(pSAppMenu2, null, modelNode, hashMap);
+                    pSAppMenu2.setMenuModel(XmlNode.export(modelNode));
                 } else {
                     pSAppMenu2.setMenuModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSAppMenuItem pSAppMenuItem3 : hashMap.values()) {
-                        pSAppMenuItemService.removeTemp((IEntity)pSAppMenuItem3);
+                        pSAppMenuItemService.removeTemp(pSAppMenuItem3);
                     }
                 }
                 PSAppMenuService.this.updateTempMajor(pSAppMenu2);
@@ -128,7 +127,7 @@ extends PSAppMenuServiceBase {
     protected void updatePSAppMenuItems(PSAppMenu pSAppMenu, PSAppMenuItem pSAppMenuItem, XmlNode xmlNode, HashMap<String, PSAppMenuItem> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSAppMenuItemService pSAppMenuItemService = (PSAppMenuItemService)ServiceGlobal.getService(PSAppMenuItemService.class, (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -161,7 +160,7 @@ extends PSAppMenuServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSAppMenuItemService.updateTemp((IEntity)pSAppMenuItem2);
+                    pSAppMenuItemService.updateTemp(pSAppMenuItem2);
                 }
                 xmlNode2.resetAttributes();
                 pSAppMenuItem2.fillXmlNode(xmlNode2, false);
@@ -181,7 +180,6 @@ extends PSAppMenuServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSAppMenuItem pSAppMenuItem2;
                 PSAppMenuItemService pSAppMenuItemService = (PSAppMenuItemService)ServiceGlobal.getService((String)PSAppMenuItemService.class.getCanonicalName(), (SessionFactory)PSAppMenuService.this.getSessionFactory());
                 ArrayList<PSAppMenuItem> arrayList = pSAppMenuItemService.selectTempByPSAppMenu(pSAppMenu2);
                 HashMap<String, PSAppMenuItem> hashMap = new HashMap<String, PSAppMenuItem>();
@@ -189,19 +187,19 @@ extends PSAppMenuServiceBase {
                     hashMap.put(pSAppMenuItem2.getPSAppMenuItemId(), pSAppMenuItem2);
                 }
                 String string = pSAppMenu2.getMenuModel();
-                pSAppMenuItem2 = XmlNode.loadFromXML((String)string);
-                if (pSAppMenuItem2 != null) {
-                    PSAppMenuService.this.updatePSAppMenuItems(pSAppMenu2, null, (XmlNode)pSAppMenuItem2, hashMap);
-                    pSAppMenu2.setMenuModel(XmlNode.export((XmlNode)pSAppMenuItem2));
+                XmlNode modelNode = XmlNode.loadFromXML(string);
+                if (modelNode != null) {
+                    PSAppMenuService.this.updatePSAppMenuItems(pSAppMenu2, null, modelNode, hashMap);
+                    pSAppMenu2.setMenuModel(XmlNode.export(modelNode));
                 } else {
                     pSAppMenu2.setMenuModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSAppMenuItem pSAppMenuItem3 : hashMap.values()) {
-                        pSAppMenuItemService.removeTemp((IEntity)pSAppMenuItem3);
+                        pSAppMenuItemService.removeTemp(pSAppMenuItem3);
                     }
                 }
-                PSAppMenuService.this.createTempMajor((IEntity)pSAppMenu2);
+                PSAppMenuService.this.createTempMajor(pSAppMenu2);
             }
         });
     }
@@ -212,7 +210,6 @@ extends PSAppMenuServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSAppMenuItem pSAppMenuItem2;
                 PSAppMenuItemService pSAppMenuItemService = (PSAppMenuItemService)ServiceGlobal.getService((String)PSAppMenuItemService.class.getCanonicalName(), (SessionFactory)PSAppMenuService.this.getSessionFactory());
                 ArrayList<PSAppMenuItem> arrayList = pSAppMenuItemService.selectTempByPSAppMenu(pSAppMenu2);
                 HashMap<String, PSAppMenuItem> hashMap = new HashMap<String, PSAppMenuItem>();
@@ -223,15 +220,16 @@ extends PSAppMenuServiceBase {
                 if (StringHelper.isNullOrEmpty((String)object)) {
                     object = WebContext.getCurrent().getPostValue("tbmodel");
                 }
-                if ((pSAppMenuItem2 = XmlNode.loadFromXML((String)object)) != null) {
-                    PSAppMenuService.this.updatePSAppMenuItems(pSAppMenu2, null, (XmlNode)pSAppMenuItem2, hashMap);
-                    pSAppMenu2.setMenuModel(XmlNode.export((XmlNode)pSAppMenuItem2));
+                XmlNode modelNode = XmlNode.loadFromXML((String)object);
+                if (modelNode != null) {
+                    PSAppMenuService.this.updatePSAppMenuItems(pSAppMenu2, null, modelNode, hashMap);
+                    pSAppMenu2.setMenuModel(XmlNode.export(modelNode));
                 } else {
                     pSAppMenu2.setMenuModel(null);
                 }
                 if (hashMap.size() > 0) {
                     for (PSAppMenuItem pSAppMenuItem3 : hashMap.values()) {
-                        pSAppMenuItemService.removeTemp((IEntity)pSAppMenuItem3);
+                        pSAppMenuItemService.removeTemp(pSAppMenuItem3);
                     }
                 }
             }
@@ -240,7 +238,7 @@ extends PSAppMenuServiceBase {
 
     @Override
     public void getDraftWithModel(PSAppMenu pSAppMenu) throws Exception {
-        this.getDraftTempMajor((IEntity)pSAppMenu);
+        this.getDraftTempMajor(pSAppMenu);
         pSAppMenu.setMenuModel(this.getMenuModel(pSAppMenu));
     }
 
@@ -264,7 +262,7 @@ extends PSAppMenuServiceBase {
 
     @Override
     public void getDraftTempMajorFrom(PSAppMenu pSAppMenu) throws Exception {
-        Object object = EntityBase.getOriginKey((IEntity)pSAppMenu);
+        Object object = EntityBase.getOriginKey(pSAppMenu);
         if (StringHelper.isNullOrEmpty((Object)object)) {
             object = pSAppMenu.getPSAppMenuId();
         }
@@ -321,4 +319,3 @@ extends PSAppMenuServiceBase {
         }
     }
 }
-

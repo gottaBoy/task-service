@@ -75,7 +75,7 @@ extends PSCoreSysDAOBase<PSAppIndexView> {
     }
 
     protected void fillInheritEntity(PSAppIndexView pSAppIndexView) throws Exception {
-        super.fillInheritEntity((IEntity)pSAppIndexView);
+        super.fillInheritEntity(pSAppIndexView);
         PSAppIndexView pSAppIndexView2 = pSAppIndexView;
         pSAppIndexView2.setPSAppViewId(pSAppIndexView.getPSAppIndexViewId());
         if (pSAppIndexView.isPSAppIndexViewNameDirty()) {

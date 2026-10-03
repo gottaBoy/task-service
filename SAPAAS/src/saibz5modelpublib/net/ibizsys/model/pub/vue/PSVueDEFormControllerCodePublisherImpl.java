@@ -1,41 +1,151 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  IPSDEForm
- *  IPSDEFormDetail
- *  IPSGenerateCodeResult
- *  PSGenerateCodeResultImpl
- */
 package net.ibizsys.model.pub.vue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import net.ibizsys.model.pub.vue.PSVueCtrlCodePublisherImpl;
+import java.util.Iterator;
 
-public class PSVueDEFormControllerCodePublisherImpl
-extends PSVueCtrlCodePublisherImpl {
-    protected IPSDEForm iPSDEForm;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEForm;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEFormDetail;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEFormGroupPanel;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEFormItem;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEFormPage;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEFormTabPage;
+import SA.SRFDA.PS.Core.Control.Form.IPSDEFormTabPanel;
+import SA.SRFDA.PS.Core.Pub.IPSGenerateCodeResult;
+import SA.SRFDA.PS.Core.Pub.IPSPFCtrlPartCodePublisher;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
+import SA.SRFDA.PS.Data.PSDEFormDetail;
 
-    public PSVueDEFormControllerCodePublisherImpl() {
-        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSVueDEFormControllerCodePublisherImpl is inconsistent\n\tIPSDEForm cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSVueDEFormControllerCodePublisherImpl must override or implement a supertype method\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEForm cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSVueCtrlCodePublisherImpl\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEForm cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEForm cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tPSDEFormDetail cannot be resolved to a variable\n\tIPSDEFormPage cannot be resolved to a type\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEFormPage cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEFormPage cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormTabPanel cannot be resolved to a type\n\tIPSDEFormTabPanel cannot be resolved to a type\n\tIPSDEFormTabPanel cannot be resolved to a type\n\tIPSDEFormTabPage cannot be resolved to a type\n\tIPSDEFormTabPage cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEFormTabPage cannot be resolved to a type\n\tThe method onClose() of type PSVueDEFormControllerCodePublisherImpl must override or implement a supertype method\n\tIPSDEForm cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSVueCtrlCodePublisherImpl\n");
-    }
+public class PSVueDEFormControllerCodePublisherImpl extends PSVueCtrlCodePublisherImpl
+{
+	protected IPSDEForm iPSDEForm = null;
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onGenerateCode()
+	 */
+	@Override
+	protected PSGenerateCodeResultImpl onGenerateCode() throws Exception
+	{
+		this.iPSDEForm = (IPSDEForm)this.iPSControl;
+		return  super.onGenerateCode();
+	}
 
-    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tThe method onGenerateCode() of type PSVueDEFormControllerCodePublisherImpl must override or implement a supertype method\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEForm cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method onGenerateCode() is undefined for the type PSVueCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
+		this.iPSDEForm = (IPSDEForm)this.iPSControl;
+		
+		if(true)
+		{
+			ArrayList<IPSGenerateCodeResult> formDetailList = new ArrayList<IPSGenerateCodeResult> ();
+			if(true)
+			{
+				IPSPFCtrlPartCodePublisher	iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail("HIDDENFORMITEM").getPSPFCtrlPartCodePublisher();
+				//输出所有的隐藏项
+				Iterator<IPSDEFormItem> psDEFormItems =  iPSDEForm.getPSDEFormItems();
+				while(psDEFormItems.hasNext())
+				{
+					IPSDEFormItem iPSDEFormItem  = psDEFormItems.next();
+					if(!iPSDEFormItem.isHidden())
+					{
+						continue;
+					}
+					
+					IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, iPSDEForm,iPSDEFormItem);
+					formDetailList.add(iPSGenerateCodeResult);
+					
+				}
+				iPSPFCtrlPartCodePublisher.close();
+			}
+			if(true)
+			{
+				IPSPFCtrlPartCodePublisher	iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(PSDEFormDetail.DETAILTYPE_FORMPAGE).getPSPFCtrlPartCodePublisher();
+				Iterator<IPSDEFormPage> psDEFormPages =  iPSDEForm.getPSDEFormPages();
+				while(psDEFormPages.hasNext())
+				{
+					IPSDEFormPage iPSDEFormPage  = psDEFormPages.next();
+					IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, iPSDEForm,iPSDEFormPage);
+					formDetailList.add(iPSGenerateCodeResult);
+					
+				}
+				iPSPFCtrlPartCodePublisher.close();
+				
+				psDEFormPages =  iPSDEForm.getPSDEFormPages();
+				while(psDEFormPages.hasNext())
+				{
+					IPSDEFormPage iPSDEFormPage  = psDEFormPages.next();
+					fillPSDEFormDetails(iPSDEFormPage,formDetailList);				
+				}
+			}
+			params.put("formdetails", formDetailList);
+		}
+	}
+	
+	protected void fillPSDEFormDetails(IPSDEFormDetail iPSDEFormDetail,ArrayList<IPSGenerateCodeResult> formDetailList)throws Exception
+	{
+		if(iPSDEFormDetail instanceof IPSDEFormGroupPanel)
+		{
+			IPSDEFormGroupPanel iPSDEFormGroupPanel = (IPSDEFormGroupPanel)iPSDEFormDetail;
+			java.util.Iterator<IPSDEFormDetail> psDEFormDetails = iPSDEFormGroupPanel.getPSDEFormDetails();
+			while(psDEFormDetails.hasNext())
+			{
+				IPSDEFormDetail childPSDEFormDetail = psDEFormDetails.next();
+				if(childPSDEFormDetail instanceof  IPSDEFormItem){
+					if(((IPSDEFormItem)childPSDEFormDetail).isHidden())
+						continue;
+				}
+				IPSPFCtrlPartCodePublisher	iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(childPSDEFormDetail.getDetailType()).getPSPFCtrlPartCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, iPSDEForm,childPSDEFormDetail);
+				formDetailList.add(iPSGenerateCodeResult);
+				iPSPFCtrlPartCodePublisher.close();
+			}
+			
+			psDEFormDetails = iPSDEFormGroupPanel.getPSDEFormDetails();
+			while(psDEFormDetails.hasNext())
+			{
+				IPSDEFormDetail childPSDEFormDetail = psDEFormDetails.next();
+				fillPSDEFormDetails(childPSDEFormDetail,formDetailList);
+			}
+			return;
+		}
+		
+		if(iPSDEFormDetail instanceof IPSDEFormTabPanel)
+		{
+			IPSDEFormTabPanel iPSDEFormTabPanel = (IPSDEFormTabPanel)iPSDEFormDetail;
+			java.util.Iterator<IPSDEFormTabPage> psDEFormTabPages = iPSDEFormTabPanel.getPSDEFormTabPages();
+			while(psDEFormTabPages.hasNext())
+			{
+				IPSDEFormTabPage iPSDEFormTabPage = psDEFormTabPages.next();
+				IPSPFCtrlPartCodePublisher	iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(iPSDEFormTabPage.getDetailType()).getPSPFCtrlPartCodePublisher();
+				IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode(iPSPublisherContext, iPSDEForm,iPSDEFormTabPage);
+				formDetailList.add(iPSGenerateCodeResult);
+				iPSPFCtrlPartCodePublisher.close();
+			}
+			
+			psDEFormTabPages = iPSDEFormTabPanel.getPSDEFormTabPages();
+			while(psDEFormTabPages.hasNext())
+			{
+				IPSDEFormTabPage iPSDEFormTabPage = psDEFormTabPages.next();
+				fillPSDEFormDetails(iPSDEFormTabPage,formDetailList);
+			}
+			return;
+		}
+	}
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDEForm cannot be resolved to a type\n\tIPSDEForm cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEForm cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tPSDEFormDetail cannot be resolved to a variable\n\tIPSDEFormPage cannot be resolved to a type\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEFormPage cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEFormPage cannot be resolved to a type\n");
-    }
-
-    protected void fillPSDEFormDetails(IPSDEFormDetail iPSDEFormDetail, ArrayList<IPSGenerateCodeResult> arrayList) throws Exception {
-        throw new Error("Unresolved compilation problems: \n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormGroupPanel cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSDEFormItem cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEFormDetail cannot be resolved to a type\n\tIPSDEFormTabPanel cannot be resolved to a type\n\tIPSDEFormTabPanel cannot be resolved to a type\n\tIPSDEFormTabPanel cannot be resolved to a type\n\tIPSDEFormTabPage cannot be resolved to a type\n\tIPSDEFormTabPage cannot be resolved to a type\n\tIPSPFCtrlPartCodePublisher cannot be resolved to a type\n\tiPSPFCtrlTempl cannot be resolved or is not a field\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tIPSDEForm cannot be resolved to a type\n\tIPSDEFormTabPage cannot be resolved to a type\n");
-    }
-
-    protected void onClose() {
-        throw new Error("Unresolved compilation problems: \n\tThe method onClose() of type PSVueDEFormControllerCodePublisherImpl must override or implement a supertype method\n\tIPSDEForm cannot be resolved to a type\n\tThe method onClose() is undefined for the type PSVueCtrlCodePublisherImpl\n");
-    }
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlCodePublisherImpl#onClose()
+	 */
+	@Override
+	protected void onClose()
+	{
+		this.iPSDEForm = null;
+		super.onClose();
+	}
+	
 }
-

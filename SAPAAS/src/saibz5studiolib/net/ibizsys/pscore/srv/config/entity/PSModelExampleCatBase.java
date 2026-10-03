@@ -1479,7 +1479,7 @@ implements Serializable {
                 PSModelExampleCat pSModelExampleCat = new PSModelExampleCat();
                 pSModelExampleCat.setPSModelExampleCatId(this.getPPSModelExampleCatId());
                 PSModelExampleCatService pSModelExampleCatService = (PSModelExampleCatService)ServiceGlobal.getService(PSModelExampleCatService.class, (SessionFactory)this.getSessionFactory());
-                pSModelExampleCatService.autoGet((IEntity)pSModelExampleCat);
+                pSModelExampleCatService.autoGet(pSModelExampleCat);
                 this.ppsmodelexamplecat = pSModelExampleCat;
             }
             return this.ppsmodelexamplecat;

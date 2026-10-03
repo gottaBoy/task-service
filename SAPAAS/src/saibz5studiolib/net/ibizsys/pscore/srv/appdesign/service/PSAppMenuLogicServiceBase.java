@@ -175,9 +175,9 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
             PSAppMenuItem pSAppMenuItem = (PSAppMenuItem)iService.getDEModel().createEntity();
             pSAppMenuItem.set("PSAPPMENUITEMID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppMenuItem);
+                iService.getTemp(pSAppMenuItem);
             } else {
-                iService.get((IEntity)pSAppMenuItem);
+                iService.get(pSAppMenuItem);
             }
             this.onFillParentInfo_PSAppMenuItem(pSAppMenuLogic, pSAppMenuItem);
             return;
@@ -187,9 +187,9 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
             PSAppMenu pSAppMenu = (PSAppMenu)iService.getDEModel().createEntity();
             pSAppMenu.set("PSAPPMENUID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSAppMenu);
+                iService.getTemp(pSAppMenu);
             } else {
-                iService.get((IEntity)pSAppMenu);
+                iService.get(pSAppMenu);
             }
             this.onFillParentInfo_PSAppMenu(pSAppMenuLogic, pSAppMenu);
             return;
@@ -199,9 +199,9 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
             PSDataEntity pSDataEntity = (PSDataEntity)iService.getDEModel().createEntity();
             pSDataEntity.set("PSDATAENTITYID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDataEntity);
+                iService.getTemp(pSDataEntity);
             } else {
-                iService.get((IEntity)pSDataEntity);
+                iService.get(pSDataEntity);
             }
             this.onFillParentInfo_PSDE(pSAppMenuLogic, pSDataEntity);
             return;
@@ -211,9 +211,9 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
             PSDELogic pSDELogic = (PSDELogic)iService.getDEModel().createEntity();
             pSDELogic.set("PSDELOGICID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDELogic);
+                iService.getTemp(pSDELogic);
             } else {
-                iService.get((IEntity)pSDELogic);
+                iService.get(pSDELogic);
             }
             this.onFillParentInfo_PSDELogic(pSAppMenuLogic, pSDELogic);
             return;
@@ -223,9 +223,9 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
             PSDEUIAction pSDEUIAction = (PSDEUIAction)iService.getDEModel().createEntity();
             pSDEUIAction.set("PSDEUIACTIONID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDEUIAction);
+                iService.getTemp(pSDEUIAction);
             } else {
-                iService.get((IEntity)pSDEUIAction);
+                iService.get(pSDEUIAction);
             }
             this.onFillParentInfo_PSDEUIAction(pSAppMenuLogic, pSDEUIAction);
             return;
@@ -235,9 +235,9 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
             PSSysPFPlugin pSSysPFPlugin = (PSSysPFPlugin)iService.getDEModel().createEntity();
             pSSysPFPlugin.set("PSSYSPFPLUGINID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysPFPlugin);
+                iService.getTemp(pSSysPFPlugin);
             } else {
-                iService.get((IEntity)pSSysPFPlugin);
+                iService.get(pSSysPFPlugin);
             }
             this.onFillParentInfo_PSSysPFPlugin(pSAppMenuLogic, pSSysPFPlugin);
             return;
@@ -247,9 +247,9 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
             PSSysViewLogic pSSysViewLogic = (PSSysViewLogic)iService.getDEModel().createEntity();
             pSSysViewLogic.set("PSSYSVIEWLOGICID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysViewLogic);
+                iService.getTemp(pSSysViewLogic);
             } else {
-                iService.get((IEntity)pSSysViewLogic);
+                iService.get(pSSysViewLogic);
             }
             this.onFillParentInfo_PSSysViewLogic(pSAppMenuLogic, pSSysViewLogic);
             return;
@@ -259,14 +259,14 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
             PSSysViewPanel pSSysViewPanel = (PSSysViewPanel)iService.getDEModel().createEntity();
             pSSysViewPanel.set("PSSYSVIEWPANELID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSSysViewPanel);
+                iService.getTemp(pSSysViewPanel);
             } else {
-                iService.get((IEntity)pSSysViewPanel);
+                iService.get(pSSysViewPanel);
             }
             this.onFillParentInfo_PSSysViewPanel(pSAppMenuLogic, pSSysViewPanel);
             return;
         }
-        super.onFillParentInfo((IEntity)pSAppMenuLogic, string, string2, string3);
+        super.onFillParentInfo(pSAppMenuLogic, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -304,7 +304,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
             ArrayList<PSAppMenuLogic> arrayList = this.selectByPSAppMenu(pSAppMenu);
             for (PSAppMenuLogic pSAppMenuLogic : arrayList) {
                 if (hashMap.containsKey(DataObject.getStringValue((IDataObject)pSAppMenuLogic, (String)"PSAPPMENULOGICID", (String)""))) continue;
-                this.remove((IEntity)pSAppMenuLogic);
+                this.remove(pSAppMenuLogic);
             }
         }
         return null;
@@ -344,7 +344,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         if (bl && pSAppMenuLogic.getValidFlag() == null) {
             pSAppMenuLogic.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSAppMenuLogic, bl);
+        super.onFillEntityFullInfo(pSAppMenuLogic, bl);
         this.onFillEntityFullInfo_PSAppMenuItem(pSAppMenuLogic, bl);
         this.onFillEntityFullInfo_PSAppMenu(pSAppMenuLogic, bl);
         this.onFillEntityFullInfo_PSDE(pSAppMenuLogic, bl);
@@ -390,7 +390,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
     }
 
     protected void onWriteBackParent(PSAppMenuLogic pSAppMenuLogic, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSAppMenuLogic, bl);
+        super.onWriteBackParent(pSAppMenuLogic, bl);
     }
 
     public ArrayList<PSAppMenuLogic> selectByPSAppMenuItem(PSAppMenuItemBase pSAppMenuItemBase) throws Exception {
@@ -619,8 +619,8 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSAppMenuItem(pSAppMenuItem, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSAPPMENUITEM");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSAppMenuItem);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSAPPMENUITEM_PSAPPMENUITEMID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo((IEntity)pSAppMenuItem), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSAppMenuItem);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSAPPMENUITEM_PSAPPMENUITEMID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo(pSAppMenuItem), arrayList.get(0)));
         }
     }
 
@@ -640,7 +640,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
             PSAppMenuLogic pSAppMenuLogic2 = (PSAppMenuLogic)this.getDEModel().createEntity();
             pSAppMenuLogic2.setPSAppMenuLogicId(pSAppMenuLogic.getPSAppMenuLogicId());
             pSAppMenuLogic2.setPSAppMenuItemId(null);
-            this.updateTemp((IEntity)pSAppMenuLogic2);
+            this.updateTemp(pSAppMenuLogic2);
         }
     }
 
@@ -663,7 +663,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSAppMenuItem(pSAppMenuItem);
         this.onBeforeRemoveByPSAppMenuItem(pSAppMenuItem, arrayList);
         for (PSAppMenuLogic pSAppMenuLogic : arrayList) {
-            this.remove((IEntity)pSAppMenuLogic);
+            this.remove(pSAppMenuLogic);
         }
         this.onAfterRemoveByPSAppMenuItem(pSAppMenuItem, arrayList);
     }
@@ -696,7 +696,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
             PSAppMenuLogic pSAppMenuLogic2 = (PSAppMenuLogic)this.getDEModel().createEntity();
             pSAppMenuLogic2.setPSAppMenuLogicId(pSAppMenuLogic.getPSAppMenuLogicId());
             pSAppMenuLogic2.setPSAppMenuId(null);
-            this.updateTemp((IEntity)pSAppMenuLogic2);
+            this.updateTemp(pSAppMenuLogic2);
         }
     }
 
@@ -719,7 +719,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSAppMenu(pSAppMenu);
         this.onBeforeRemoveByPSAppMenu(pSAppMenu, arrayList);
         for (PSAppMenuLogic pSAppMenuLogic : arrayList) {
-            this.remove((IEntity)pSAppMenuLogic);
+            this.remove(pSAppMenuLogic);
         }
         this.onAfterRemoveByPSAppMenu(pSAppMenu, arrayList);
     }
@@ -737,8 +737,8 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSDE(pSDataEntity, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDATAENTITY");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDataEntity);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo((IEntity)pSDataEntity), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDataEntity);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSDATAENTITY_PSDEID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo(pSDataEntity), arrayList.get(0)));
         }
     }
 
@@ -771,7 +771,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSDE(pSDataEntity);
         this.onBeforeRemoveByPSDE(pSDataEntity, arrayList);
         for (PSAppMenuLogic pSAppMenuLogic : arrayList) {
-            this.remove((IEntity)pSAppMenuLogic);
+            this.remove(pSAppMenuLogic);
         }
         this.onAfterRemoveByPSDE(pSDataEntity, arrayList);
     }
@@ -789,8 +789,8 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSDELogic(pSDELogic, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDELOGIC");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDELogic);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSDELOGIC_PSDELOGICID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo((IEntity)pSDELogic), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDELogic);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSDELOGIC_PSDELOGICID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo(pSDELogic), arrayList.get(0)));
         }
     }
 
@@ -823,7 +823,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSDELogic(pSDELogic);
         this.onBeforeRemoveByPSDELogic(pSDELogic, arrayList);
         for (PSAppMenuLogic pSAppMenuLogic : arrayList) {
-            this.remove((IEntity)pSAppMenuLogic);
+            this.remove(pSAppMenuLogic);
         }
         this.onAfterRemoveByPSDELogic(pSDELogic, arrayList);
     }
@@ -841,8 +841,8 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSDEUIAction(pSDEUIAction, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEUIACTION");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDEUIAction);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSDEUIACTION_PSDEUIACTIONID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo((IEntity)pSDEUIAction), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDEUIAction);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSDEUIACTION_PSDEUIACTIONID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo(pSDEUIAction), arrayList.get(0)));
         }
     }
 
@@ -875,7 +875,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSDEUIAction(pSDEUIAction);
         this.onBeforeRemoveByPSDEUIAction(pSDEUIAction, arrayList);
         for (PSAppMenuLogic pSAppMenuLogic : arrayList) {
-            this.remove((IEntity)pSAppMenuLogic);
+            this.remove(pSAppMenuLogic);
         }
         this.onAfterRemoveByPSDEUIAction(pSDEUIAction, arrayList);
     }
@@ -893,8 +893,8 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSPFPLUGIN");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysPFPlugin);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo((IEntity)pSSysPFPlugin), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysPFPlugin);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSSYSPFPLUGIN_PSSYSPFPLUGINID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo(pSSysPFPlugin), arrayList.get(0)));
         }
     }
 
@@ -927,7 +927,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSSysPFPlugin(pSSysPFPlugin);
         this.onBeforeRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
         for (PSAppMenuLogic pSAppMenuLogic : arrayList) {
-            this.remove((IEntity)pSAppMenuLogic);
+            this.remove(pSAppMenuLogic);
         }
         this.onAfterRemoveByPSSysPFPlugin(pSSysPFPlugin, arrayList);
     }
@@ -945,8 +945,8 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSSysViewLogic(pSSysViewLogic, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSVIEWLOGIC");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysViewLogic);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSSYSVIEWLOGIC_PSSYSVIEWLOGICID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo((IEntity)pSSysViewLogic), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysViewLogic);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSSYSVIEWLOGIC_PSSYSVIEWLOGICID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo(pSSysViewLogic), arrayList.get(0)));
         }
     }
 
@@ -979,7 +979,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSSysViewLogic(pSSysViewLogic);
         this.onBeforeRemoveByPSSysViewLogic(pSSysViewLogic, arrayList);
         for (PSAppMenuLogic pSAppMenuLogic : arrayList) {
-            this.remove((IEntity)pSAppMenuLogic);
+            this.remove(pSAppMenuLogic);
         }
         this.onAfterRemoveByPSSysViewLogic(pSSysViewLogic, arrayList);
     }
@@ -997,8 +997,8 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSSysViewPanel(pSSysViewPanel, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSSYSVIEWPANEL");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSSysViewPanel);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSSYSVIEWPANEL_PSSYSVIEWPANELID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo((IEntity)pSSysViewPanel), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSSysViewPanel);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSAPPMENULOGIC_PSSYSVIEWPANEL_PSSYSVIEWPANELID", "", iDataEntityModel.getName(), "PSAPPMENULOGIC", iDataEntityModel.getDataInfo(pSSysViewPanel), arrayList.get(0)));
         }
     }
 
@@ -1031,7 +1031,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectByPSSysViewPanel(pSSysViewPanel);
         this.onBeforeRemoveByPSSysViewPanel(pSSysViewPanel, arrayList);
         for (PSAppMenuLogic pSAppMenuLogic : arrayList) {
-            this.remove((IEntity)pSAppMenuLogic);
+            this.remove(pSAppMenuLogic);
         }
         this.onAfterRemoveByPSSysViewPanel(pSSysViewPanel, arrayList);
     }
@@ -1069,7 +1069,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectTempByPSAppMenuItem(pSAppMenuItem);
         this.onBeforeRemoveTempByPSAppMenuItem(pSAppMenuItem, arrayList);
         for (PSAppMenuLogic pSAppMenuLogic : arrayList) {
-            this.removeTemp((IEntity)pSAppMenuLogic);
+            this.removeTemp(pSAppMenuLogic);
         }
         this.onAfterRemoveTempByPSAppMenuItem(pSAppMenuItem, arrayList);
     }
@@ -1102,7 +1102,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         ArrayList<PSAppMenuLogic> arrayList = this.selectTempByPSAppMenu(pSAppMenu);
         this.onBeforeRemoveTempByPSAppMenu(pSAppMenu, arrayList);
         for (PSAppMenuLogic pSAppMenuLogic : arrayList) {
-            this.removeTemp((IEntity)pSAppMenuLogic);
+            this.removeTemp(pSAppMenuLogic);
         }
         this.onAfterRemoveTempByPSAppMenu(pSAppMenu, arrayList);
     }
@@ -1118,7 +1118,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
 
     protected void replaceParentInfo(PSAppMenuLogic pSAppMenuLogic, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSAppMenuLogic, cloneSession);
+        super.replaceParentInfo(pSAppMenuLogic, cloneSession);
         if (pSAppMenuLogic.getPSAppMenuItemId() != null && (iEntity = cloneSession.getEntity("PSAPPMENUITEM", (Object)pSAppMenuLogic.getPSAppMenuItemId())) != null) {
             this.onFillParentInfo_PSAppMenuItem(pSAppMenuLogic, (PSAppMenuItem)iEntity);
         }
@@ -1146,7 +1146,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
     }
 
     protected void onRemoveEntityUncopyValues(PSAppMenuLogic pSAppMenuLogic, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSAppMenuLogic, bl);
+        super.onRemoveEntityUncopyValues(pSAppMenuLogic, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSAppMenuLogic pSAppMenuLogic, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -1239,7 +1239,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSAppMenuLogic, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSAppMenuLogic, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSAppMenuLogic, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_AttrName(boolean bl, PSAppMenuLogic pSAppMenuLogic, boolean bl2, boolean bl3) throws Exception {
@@ -1252,7 +1252,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_AttrName_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_AttrName_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ATTRNAME");
@@ -1274,7 +1274,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CustomCode_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_CustomCode_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CUSTOMCODE");
@@ -1299,7 +1299,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_DstLogicType_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_DstLogicType_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("DSTLOGICTYPE");
@@ -1321,7 +1321,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EventArg_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_EventArg_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EVENTARG");
@@ -1343,7 +1343,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EventArg2_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_EventArg2_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EVENTARG2");
@@ -1365,7 +1365,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_EventNames_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_EventNames_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("EVENTNAMES");
@@ -1387,7 +1387,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicParam_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_LogicParam_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICPARAM");
@@ -1409,7 +1409,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_LogicParam2_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_LogicParam2_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("LOGICPARAM2");
@@ -1431,7 +1431,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -1453,7 +1453,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -1478,7 +1478,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppMenuId_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppMenuId_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMENUID");
@@ -1500,7 +1500,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppMenuItemId_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppMenuItemId_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMENUITEMID");
@@ -1525,7 +1525,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppMenuLogicId_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppMenuLogicId_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMENULOGICID");
@@ -1550,7 +1550,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSAppMenuLogicName_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSAppMenuLogicName_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSAPPMENULOGICNAME");
@@ -1589,7 +1589,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEId_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEId_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEID");
@@ -1611,7 +1611,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDELogicId_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDELogicId_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDELOGICID");
@@ -1633,7 +1633,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEName_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEName_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDENAME");
@@ -1655,7 +1655,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDEUIActionId_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSDEUIActionId_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEUIACTIONID");
@@ -1677,7 +1677,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysPFPluginId_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysPFPluginId_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSPFPLUGINID");
@@ -1699,7 +1699,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewLogicId_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewLogicId_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWLOGICID");
@@ -1721,7 +1721,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSSysViewPanelId_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_PSSysViewPanelId_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSSYSVIEWPANELID");
@@ -1743,7 +1743,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Timer_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string = this.onTestValueRule_Timer_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TIMER");
@@ -1768,7 +1768,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_TriggerType_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_TriggerType_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("TRIGGERTYPE");
@@ -1790,7 +1790,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserCat_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_UserCat_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERCAT");
@@ -1812,7 +1812,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG");
@@ -1834,7 +1834,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag2_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag2_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG2");
@@ -1856,7 +1856,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag3_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag3_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG3");
@@ -1878,7 +1878,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_UserTag4_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string2 = this.onTestValueRule_UserTag4_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("USERTAG4");
@@ -1903,7 +1903,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSAppMenuLogic, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSAppMenuLogic, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -1916,11 +1916,11 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
     }
 
     protected void onSyncEntity(PSAppMenuLogic pSAppMenuLogic, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSAppMenuLogic, bl);
+        super.onSyncEntity(pSAppMenuLogic, bl);
     }
 
     protected void onSyncIndexEntities(PSAppMenuLogic pSAppMenuLogic, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSAppMenuLogic, bl);
+        super.onSyncIndexEntities(pSAppMenuLogic, bl);
     }
 
     public Object getDataContextValue(PSAppMenuLogic pSAppMenuLogic, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -1928,7 +1928,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSAppMenuLogic, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSAppMenuLogic, string, iDataContextParam)) != null) {
             return object;
         }
         PSAppMenu pSAppMenu = pSAppMenuLogic.getPSAppMenu();
@@ -1939,7 +1939,7 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
     }
 
     protected void onExportMajorModel(PSAppMenuLogic pSAppMenuLogic, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSAppMenuLogic, arrayList, n);
+        super.onExportMajorModel(pSAppMenuLogic, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -2513,14 +2513,14 @@ extends PSCoreSysServiceBase<PSAppMenuLogic> {
 
     protected boolean onMergeChild(String string, String string2, PSAppMenuLogic pSAppMenuLogic) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSAppMenuLogic)) {
+        if (super.onMergeChild(string, string2, pSAppMenuLogic)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSAppMenuLogic pSAppMenuLogic) throws Exception {
-        super.onUpdateParent((IEntity)pSAppMenuLogic);
+        super.onUpdateParent(pSAppMenuLogic);
     }
 
     @Override

@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.paasmgr.demodel.PSMavenRepoDEModelBase;
 
 public class PSMavenRepoDEModel
 extends PSMavenRepoDEModelBase {
+
+    public PSMavenRepoDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

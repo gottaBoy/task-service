@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.wxdesign.demodel.PSWXAccountDEModelBase;
 
 public class PSWXAccountDEModel
 extends PSWXAccountDEModelBase {
+
+    public PSWXAccountDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

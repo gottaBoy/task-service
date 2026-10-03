@@ -1,20 +1,85 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.dynasys.demodel.dsdynacodelist.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="65A432A3-7CA4-4FC1-B098-37F87DC4DAA5", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CODELISTID, t1.CREATEDATE, t1.CREATEMAN, t1.DSDYNACODELISTID, t1.DSDYNACODELISTNAME, t1.DYNASYSINSTID, t1.INSTVER, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFDSDYNACODELIST t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="DYNAMODEL", expression="t1.DYNAMODEL", showorder=-1), @DEDataQueryCodeExp(name="CODELISTID", expression="t1.CODELISTID", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="DSDYNACODELISTID", expression="t1.DSDYNACODELISTID", showorder=3), @DEDataQueryCodeExp(name="DSDYNACODELISTNAME", expression="t1.DSDYNACODELISTNAME", showorder=4), @DEDataQueryCodeExp(name="DYNASYSINSTID", expression="t1.DYNASYSINSTID", showorder=5), @DEDataQueryCodeExp(name="INSTVER", expression="t1.INSTVER", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=8)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`codelistid`, t1.`createdate`, t1.`createman`, t1.`dsdynacodelistid`, t1.`dsdynacodelistname`, t1.`dynasysinstid`, t1.`instver`, t1.`updatedate`, t1.`updateman` FROM `t_srfdsdynacodelist` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="DYNAMODEL", expression="t1.`dynamodel`", showorder=-1), @DEDataQueryCodeExp(name="CODELISTID", expression="t1.`codelistid`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=2), @DEDataQueryCodeExp(name="DSDYNACODELISTID", expression="t1.`dsdynacodelistid`", showorder=3), @DEDataQueryCodeExp(name="DSDYNACODELISTNAME", expression="t1.`dsdynacodelistname`", showorder=4), @DEDataQueryCodeExp(name="DYNASYSINSTID", expression="t1.`dynasysinstid`", showorder=5), @DEDataQueryCodeExp(name="INSTVER", expression="t1.`instver`", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=8)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CODELISTID, t1.CREATEDATE, t1.CREATEMAN, t1.DSDYNACODELISTID, t1.DSDYNACODELISTNAME, t1.DYNASYSINSTID, t1.INSTVER, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFDSDYNACODELIST t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="DYNAMODEL", expression="t1.DYNAMODEL", showorder=-1), @DEDataQueryCodeExp(name="CODELISTID", expression="t1.CODELISTID", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="DSDYNACODELISTID", expression="t1.DSDYNACODELISTID", showorder=3), @DEDataQueryCodeExp(name="DSDYNACODELISTNAME", expression="t1.DSDYNACODELISTNAME", showorder=4), @DEDataQueryCodeExp(name="DYNASYSINSTID", expression="t1.DYNASYSINSTID", showorder=5), @DEDataQueryCodeExp(name="INSTVER", expression="t1.INSTVER", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=8)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[CODELISTID], t1.[CREATEDATE], t1.[CREATEMAN], t1.[DSDYNACODELISTID], t1.[DSDYNACODELISTNAME], t1.[DYNASYSINSTID], t1.[INSTVER], t1.[UPDATEDATE], t1.[UPDATEMAN] FROM [T_SRFDSDYNACODELIST] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="DYNAMODEL", expression="t1.[DYNAMODEL]", showorder=-1), @DEDataQueryCodeExp(name="CODELISTID", expression="t1.[CODELISTID]", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=2), @DEDataQueryCodeExp(name="DSDYNACODELISTID", expression="t1.[DSDYNACODELISTID]", showorder=3), @DEDataQueryCodeExp(name="DSDYNACODELISTNAME", expression="t1.[DSDYNACODELISTNAME]", showorder=4), @DEDataQueryCodeExp(name="DYNASYSINSTID", expression="t1.[DYNASYSINSTID]", showorder=5), @DEDataQueryCodeExp(name="INSTVER", expression="t1.[INSTVER]", showorder=6), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=7), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=8)}, conds={})})
-public abstract class DSDynaCodeListDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="65A432A3-7CA4-4FC1-B098-37F87DC4DAA5",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CODELISTID, t1.CREATEDATE, t1.CREATEMAN, t1.DSDYNACODELISTID, t1.DSDYNACODELISTNAME, t1.DYNASYSINSTID, t1.INSTVER, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFDSDYNACODELIST t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="DYNAMODEL",expression="t1.DYNAMODEL",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CODELISTID",expression="t1.CODELISTID",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="DSDYNACODELISTID",expression="t1.DSDYNACODELISTID",showorder=3)
+        ,@DEDataQueryCodeExp(name="DSDYNACODELISTNAME",expression="t1.DSDYNACODELISTNAME",showorder=4)
+        ,@DEDataQueryCodeExp(name="DYNASYSINSTID",expression="t1.DYNASYSINSTID",showorder=5)
+        ,@DEDataQueryCodeExp(name="INSTVER",expression="t1.INSTVER",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=8)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`codelistid`, t1.`createdate`, t1.`createman`, t1.`dsdynacodelistid`, t1.`dsdynacodelistname`, t1.`dynasysinstid`, t1.`instver`, t1.`updatedate`, t1.`updateman` FROM `t_srfdsdynacodelist` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="DYNAMODEL",expression="t1.`dynamodel`",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CODELISTID",expression="t1.`codelistid`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=2)
+        ,@DEDataQueryCodeExp(name="DSDYNACODELISTID",expression="t1.`dsdynacodelistid`",showorder=3)
+        ,@DEDataQueryCodeExp(name="DSDYNACODELISTNAME",expression="t1.`dsdynacodelistname`",showorder=4)
+        ,@DEDataQueryCodeExp(name="DYNASYSINSTID",expression="t1.`dynasysinstid`",showorder=5)
+        ,@DEDataQueryCodeExp(name="INSTVER",expression="t1.`instver`",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=8)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CODELISTID, t1.CREATEDATE, t1.CREATEMAN, t1.DSDYNACODELISTID, t1.DSDYNACODELISTNAME, t1.DYNASYSINSTID, t1.INSTVER, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFDSDYNACODELIST t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="DYNAMODEL",expression="t1.DYNAMODEL",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CODELISTID",expression="t1.CODELISTID",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=2)
+        ,@DEDataQueryCodeExp(name="DSDYNACODELISTID",expression="t1.DSDYNACODELISTID",showorder=3)
+        ,@DEDataQueryCodeExp(name="DSDYNACODELISTNAME",expression="t1.DSDYNACODELISTNAME",showorder=4)
+        ,@DEDataQueryCodeExp(name="DYNASYSINSTID",expression="t1.DYNASYSINSTID",showorder=5)
+        ,@DEDataQueryCodeExp(name="INSTVER",expression="t1.INSTVER",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=8)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[CODELISTID], t1.[CREATEDATE], t1.[CREATEMAN], t1.[DSDYNACODELISTID], t1.[DSDYNACODELISTNAME], t1.[DYNASYSINSTID], t1.[INSTVER], t1.[UPDATEDATE], t1.[UPDATEMAN] FROM [T_SRFDSDYNACODELIST] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="DYNAMODEL",expression="t1.[DYNAMODEL]",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CODELISTID",expression="t1.[CODELISTID]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=1)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=2)
+        ,@DEDataQueryCodeExp(name="DSDYNACODELISTID",expression="t1.[DSDYNACODELISTID]",showorder=3)
+        ,@DEDataQueryCodeExp(name="DSDYNACODELISTNAME",expression="t1.[DSDYNACODELISTNAME]",showorder=4)
+        ,@DEDataQueryCodeExp(name="DYNASYSINSTID",expression="t1.[DYNASYSINSTID]",showorder=5)
+        ,@DEDataQueryCodeExp(name="INSTVER",expression="t1.[INSTVER]",showorder=6)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=7)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=8)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class DSDynaCodeListDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public DSDynaCodeListDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(DSDynaCodeListDefaultDQModelBase.class);
     }
-}
 
+}

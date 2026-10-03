@@ -1,31 +1,35 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.control.IPSControl
- *  net.ibizsys.model.control.dashboard.IPSDashboard
- *  net.ibizsys.model.pub.IPSGenerateCodeResult
- */
 package net.ibizsys.model.pub.vue2;
 
 import java.util.HashMap;
+
 import net.ibizsys.model.control.IPSControl;
 import net.ibizsys.model.control.dashboard.IPSDashboard;
 import net.ibizsys.model.pub.IPSGenerateCodeResult;
-import net.ibizsys.model.pub.vue2.PSVue2CtrlPartCodePublisherImpl;
 
-public class PSVue2DashboardDefContentVCPublisherImpl
-extends PSVue2CtrlPartCodePublisherImpl {
-    protected IPSDashboard iPSDashboard = null;
+public class PSVue2DashboardDefContentVCPublisherImpl extends PSVue2CtrlPartCodePublisherImpl
+{
+	
+	protected IPSDashboard iPSDashboard = null;
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFCtrlPartCodePublisherImpl#generateCode(SA.SRFDA.PS.Core.Pub.IPSPublisherContext, SA.SRFDA.PS.Core.Control.IPSControl, java.lang.Object)
+	 */
+	@Override
+	public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception
+	{
+		iPSDashboard = (IPSDashboard)iPSControl;
+		return super.generateCode(iPSControl, object);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see SA.SRFDA.PS.Core.Pub.PSPFViewCodePublisherImpl#onFillGenerateCodeParams(java.util.HashMap)
+	 */
+	@Override
+	protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception
+	{
+		super.onFillGenerateCodeParams(params);
 
-    public IPSGenerateCodeResult generateCode(IPSControl iPSControl, Object object) throws Exception {
-        this.iPSDashboard = (IPSDashboard)iPSControl;
-        return super.generateCode(iPSControl, object);
-    }
+	}
+	
 
-    @Override
-    protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
-        super.onFillGenerateCodeParams(params);
-    }
 }
-

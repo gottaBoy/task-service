@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.config.demodel.PSSysDSActoinTypeDEModelBase;
 
 public class PSSysDSActoinTypeDEModel
 extends PSSysDSActoinTypeDEModelBase {
+
+    public PSSysDSActoinTypeDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

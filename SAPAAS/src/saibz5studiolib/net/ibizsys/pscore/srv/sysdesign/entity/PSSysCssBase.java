@@ -3327,7 +3327,7 @@ implements Serializable {
                 PSCssTempl pSCssTempl = new PSCssTempl();
                 pSCssTempl.setPSCssTemplId(this.getPSCssTemplId());
                 PSCssTemplService pSCssTemplService = (PSCssTemplService)ServiceGlobal.getService(PSCssTemplService.class, (SessionFactory)this.getSessionFactory());
-                pSCssTemplService.autoGet((IEntity)pSCssTempl);
+                pSCssTemplService.autoGet(pSCssTempl);
                 this.pscsstempl = pSCssTempl;
             }
             return this.pscsstempl;
@@ -3353,7 +3353,7 @@ implements Serializable {
                 PSModule pSModule = new PSModule();
                 pSModule.setPSModuleId(this.getPSModuleId());
                 PSModuleService pSModuleService = (PSModuleService)ServiceGlobal.getService(PSModuleService.class, (SessionFactory)this.getSessionFactory());
-                pSModuleService.autoGet((IEntity)pSModule);
+                pSModuleService.autoGet(pSModule);
                 this.psmodule = pSModule;
             }
             return this.psmodule;
@@ -3379,7 +3379,7 @@ implements Serializable {
                 PSSysCssCat pSSysCssCat = new PSSysCssCat();
                 pSSysCssCat.setPSSysCssCatId(this.getPSSysCssCatId());
                 PSSysCssCatService pSSysCssCatService = (PSSysCssCatService)ServiceGlobal.getService(PSSysCssCatService.class, (SessionFactory)this.getSessionFactory());
-                pSSysCssCatService.autoGet((IEntity)pSSysCssCat);
+                pSSysCssCatService.autoGet(pSSysCssCat);
                 this.pssyscsscat = pSSysCssCat;
             }
             return this.pssyscsscat;
@@ -3405,7 +3405,7 @@ implements Serializable {
                 PSSystem pSSystem = new PSSystem();
                 pSSystem.setPSSystemId(this.getPSSystemId());
                 PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
-                pSSystemService.autoGet((IEntity)pSSystem);
+                pSSystemService.autoGet(pSSystem);
                 this.pssystem = pSSystem;
             }
             return this.pssystem;

@@ -1,17 +1,22 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.ssdynawf.controller;
 
 import net.ibizsys.ssdyna.controller.DynaViewControllerBase;
 import net.ibizsys.ssdyna.view.IDynaViewInstModel;
-import net.ibizsys.ssdynawf.controller.DynaWFDataRedirectViewControllerInst;
 
-public abstract class DynaWFDataRedirectViewControllerBase
-extends DynaViewControllerBase {
-    @Override
-    protected IDynaViewInstModel createDynaViewInstModel() throws Exception {
-        return new DynaWFDataRedirectViewControllerInst();
-    }
+/**
+ * 动态实体流程数据重定向视图控制器基类
+ * @author Administrator
+ *
+ */
+public abstract class DynaWFDataRedirectViewControllerBase extends DynaViewControllerBase {
+
+	public DynaWFDataRedirectViewControllerBase() throws Exception {
+		super();
+	}
+
+	
+	@Override
+	protected IDynaViewInstModel createDynaViewInstModel() throws Exception {
+		return new DynaWFDataRedirectViewControllerInst();
+	}
 }
-

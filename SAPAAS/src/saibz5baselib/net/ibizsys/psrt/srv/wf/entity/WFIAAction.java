@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.entity;
 
-import net.ibizsys.psrt.srv.wf.entity.WFIAActionBase;
+/**
+ * 实体[WFIAAction] 数据对象
+ */
+//@Entity
+public class WFIAAction extends WFIAActionBase {
 
-public class WFIAAction
-extends WFIAActionBase {
+    public WFIAAction() {
+        super();
+    }
+
 }
-

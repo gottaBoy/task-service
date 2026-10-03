@@ -24,7 +24,6 @@ import SA.SRFDA.PS.Core.DevCenter.DevSlnSysPSDCBKTaskImplBase;
 import SA.SRFDA.PS.Core.PSTaskServerEnvImpl;
 import SA.SRFramework.Utility.StringHelper;
 import java.io.File;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
 import net.ibizsys.pscore.srv.paasmgr.entity.PSDBServer;
@@ -47,11 +46,11 @@ extends DevSlnSysPSDCBKTaskImplBase {
         PSDevSlnSysService psDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSys psDevSlnSys = new PSDevSlnSys();
         psDevSlnSys.setPSDevSlnSysId(this.getTaskParam());
-        psDevSlnSysService.get((IEntity)psDevSlnSys);
+        psDevSlnSysService.get(psDevSlnSys);
         PSDevSlnSysBakService psDevSlnSysBakService = (PSDevSlnSysBakService)ServiceGlobal.getService(PSDevSlnSysBakService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSysBak psDevSlnSysBak = new PSDevSlnSysBak();
         psDevSlnSysBak.setPSDevSlnSysBakId(this.getTaskParam2());
-        psDevSlnSysBakService.get((IEntity)psDevSlnSysBak);
+        psDevSlnSysBakService.get(psDevSlnSysBak);
         PSSysModelInst psSysModelInst = psDevSlnSys.getPSSysModelInst();
         PSDBServer psDBServer = psSysModelInst.getPSDBServer();
         String strOwnerId = StringHelper.Format((String)"%1$s|%2$s", (Object)psDevSlnSysBakService.getDEModel().getName(), (Object)psDevSlnSysBak.getPSDevSlnSysBakId());
@@ -92,19 +91,19 @@ extends DevSlnSysPSDCBKTaskImplBase {
             PSDevSlnSys psDevSlnSys2 = new PSDevSlnSys();
             psDevSlnSys2.setPSDevSlnSysId(this.getTaskParam());
             psDevSlnSys2.setDevSysState(Integer.valueOf(30));
-            psDevSlnSysService.update((IEntity)psDevSlnSys2);
+            psDevSlnSysService.update(psDevSlnSys2);
             PSSysModelInst psSysModelInst2 = new PSSysModelInst();
-            psSysModelInst2.setPSSysModelInstId(psDevSlnSys2.getPSSysModelInstId());
+            psSysModelInst2.setPSSysModelInstId(psSysModelInst.getPSSysModelInstId());
             psSysModelInst2.setInstState("30");
-            psSysModelInstService.update((IEntity)psSysModelInst2);
+            psSysModelInstService.update(psSysModelInst2);
             psDevSlnSys.setPSDevSlnSysId(this.getTaskParam());
-            psDevSlnSysService.get((IEntity)psDevSlnSys);
+            psDevSlnSysService.get(psDevSlnSys);
             if (StringHelper.Compare((String)psDevSlnSys.getActionOwner(), (String)strOwnerId, (boolean)false) == 0) {
                 psDevSlnSys2 = new PSDevSlnSys();
                 psDevSlnSys2.setPSDevSlnSysId(this.getTaskParam());
                 psDevSlnSys2.setActionOwner(null);
                 psDevSlnSys2.setCurAction("NONE");
-                psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, false);
+                psDevSlnSysService.sysUpdate(psDevSlnSys2, false);
             }
             psDevSlnSysService.rebindSystem(psDevSlnSys);
             return "\u8fde\u7ebf\u6210\u529f";
@@ -113,13 +112,13 @@ extends DevSlnSysPSDCBKTaskImplBase {
             log.error((Object)StringHelper.Format((String)"\u8fde\u7ebf\u5f00\u53d1\u7cfb\u7edf[%1$s]\u53d1\u751f\u5f02\u5e38\uff0c%2$s", (Object)this.getTaskParam(), (Object)ex.getMessage()), (Throwable)ex);
             try {
                 psDevSlnSys.setPSDevSlnSysId(this.getTaskParam());
-                psDevSlnSysService.get((IEntity)psDevSlnSys);
+                psDevSlnSysService.get(psDevSlnSys);
                 if (StringHelper.Compare((String)psDevSlnSys.getActionOwner(), (String)strOwnerId, (boolean)false) == 0) {
                     PSDevSlnSys psDevSlnSys2 = new PSDevSlnSys();
                     psDevSlnSys2.setPSDevSlnSysId(this.getTaskParam());
                     psDevSlnSys2.setActionOwner(null);
                     psDevSlnSys2.setCurAction("NONE");
-                    psDevSlnSysService.sysUpdate((IEntity)psDevSlnSys2, false);
+                    psDevSlnSysService.sysUpdate(psDevSlnSys2, false);
                 }
             }
             catch (Exception e) {
@@ -129,4 +128,3 @@ extends DevSlnSysPSDCBKTaskImplBase {
         }
     }
 }
-

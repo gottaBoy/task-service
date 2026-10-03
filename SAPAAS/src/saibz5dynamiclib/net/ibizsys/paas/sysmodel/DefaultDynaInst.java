@@ -1,13 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.sysmodel;
 
-import net.ibizsys.paas.sysmodel.DynaInstBase;
-import net.ibizsys.paas.sysmodel.IDynaInst;
+/**
+ * 默认动态实例对象
+ * @author Administrator
+ *
+ */
+public class DefaultDynaInst extends DynaInstBase implements IDynaInst {
 
-public class DefaultDynaInst
-extends DynaInstBase
-implements IDynaInst {
 }
-

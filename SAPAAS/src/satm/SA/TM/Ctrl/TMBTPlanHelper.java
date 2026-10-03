@@ -297,7 +297,7 @@ implements ITMBTPlanHelper {
         CallParamList callParamList = new CallParamList();
         callParamList.Add((Object)this.getId());
         callParamList.Add((Object)strTMBTMainTaskInstId);
-        Vector tmBTPlanTasks = new Vector();
+        Vector<TMBTPlanTask> tmBTPlanTasks = new Vector<TMBTPlanTask>();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getDAGlobalHelper(), (Connection)iTMActionContext.getDBConnection(this.getDBStorage()), (String)this.getDBStorage(), (String)strSQL, (Vector)callParamList.GetList(), tmBTPlanTasks, (String)TMBTPlanTask.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8bd5\u7b97\u8ba1\u5212\u4efb\u52a1\u5b9e\u4f8b\u6570\u636e\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -333,7 +333,7 @@ implements ITMBTPlanHelper {
         CallParamList callParamList = new CallParamList();
         callParamList.Add((Object)this.getId());
         String strSQL = "select t1.* FROM SRFV_TMBTPLAN t1 where t1.PTMBTPLANID =? ";
-        Vector tmBTPlans = new Vector();
+        Vector<TMBTPlan> tmBTPlans = new Vector<TMBTPlan>();
         CallResult callResult = BaseDEDataCtrl.SelectMultiEx((ISRFDAGlobalHelper)this.getDAGlobalHelper(), null, (String)this.getDBStorage(), (String)strSQL, (Vector)callParamList.GetList(), tmBTPlans, (String)TMBTPlan.class.getName());
         if (callResult.IsError()) {
             throw new Exception(StringHelper.Format((String)"\u67e5\u8be2\u8bd5\u7b97\u8ba1\u5212\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -403,4 +403,3 @@ implements ITMBTPlanHelper {
         iTMActionContext.getTransactionManager().CommitAndBegin();
     }
 }
-

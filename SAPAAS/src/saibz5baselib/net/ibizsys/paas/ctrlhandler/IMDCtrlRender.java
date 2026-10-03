@@ -1,15 +1,26 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.ctrlhandler;
 
 import net.ibizsys.paas.core.DEDataSetFetchContext;
-import net.ibizsys.paas.ctrlhandler.ICtrlRender;
 
-public interface IMDCtrlRender
-extends ICtrlRender {
-    public void fillDEDataSetFetchContext(DEDataSetFetchContext var1) throws Exception;
+/**
+ * 多项数据绘制器接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface IMDCtrlRender extends ICtrlRender {
+	/**
+	 * 填充数据集合查询上下文
+	 * 
+	 * @param deDataSetFetchContextImpl
+	 * @throws Exception
+	 */
+	void fillDEDataSetFetchContext(DEDataSetFetchContext deDataSetFetchContextImpl) throws Exception;
 
-    public String getFetchQuickSearch();
+	/**
+	 * 获取快速搜索条件
+	 * 
+	 * @return
+	 */
+	String getFetchQuickSearch();
 }
-

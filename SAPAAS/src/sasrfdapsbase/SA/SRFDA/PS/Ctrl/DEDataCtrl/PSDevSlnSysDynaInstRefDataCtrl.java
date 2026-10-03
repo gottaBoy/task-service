@@ -51,9 +51,9 @@ extends PSDEDataCtrl {
                 public void execute(ITransaction iTransaction) throws Exception {
                     PSDevSlnSysDynaInstRefService psDevSlnSysDynaInstRefService = (PSDevSlnSysDynaInstRefService)ServiceGlobal.getService(PSDevSlnSysDynaInstRefService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
                     if (bInsert2) {
-                        psDevSlnSysDynaInstRefService.create((IEntity)psDevSlnSysDynaInstRef);
+                        psDevSlnSysDynaInstRefService.create(psDevSlnSysDynaInstRef);
                     } else {
-                        psDevSlnSysDynaInstRefService.update((IEntity)psDevSlnSysDynaInstRef);
+                        psDevSlnSysDynaInstRefService.update(psDevSlnSysDynaInstRef);
                     }
                 }
             });
@@ -79,7 +79,7 @@ extends PSDEDataCtrl {
 
                 public void execute(ITransaction iTransaction) throws Exception {
                     PSDevSlnSysDynaInstRefService psDevSlnSysDynaInstRefService = (PSDevSlnSysDynaInstRefService)ServiceGlobal.getService(PSDevSlnSysDynaInstRefService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                    psDevSlnSysDynaInstRefService.get((IEntity)psDevSlnSysDynaInstRef);
+                    psDevSlnSysDynaInstRefService.get(psDevSlnSysDynaInstRef);
                 }
             });
             PSDEDataCtrl.convertEntity((IEntity)psDevSlnSysDynaInstRef, dataEntity);
@@ -104,7 +104,7 @@ extends PSDEDataCtrl {
 
                 public void execute(ITransaction iTransaction) throws Exception {
                     PSDevSlnSysDynaInstRefService psDevSlnSysDynaInstRefService = (PSDevSlnSysDynaInstRefService)ServiceGlobal.getService(PSDevSlnSysDynaInstRefService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-                    psDevSlnSysDynaInstRefService.remove((IEntity)psDevSlnSysDynaInstRef);
+                    psDevSlnSysDynaInstRefService.remove(psDevSlnSysDynaInstRef);
                 }
             });
             return callResult;
@@ -116,4 +116,3 @@ extends PSDEDataCtrl {
         }
     }
 }
-

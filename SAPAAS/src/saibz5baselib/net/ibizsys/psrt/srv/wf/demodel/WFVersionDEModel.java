@@ -1,12 +1,19 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.wf.demodel;
 
-import net.ibizsys.psrt.srv.wf.demodel.WFVersionDEModelBase;
 
-public class WFVersionDEModel
-extends WFVersionDEModelBase {
+/**
+ * 实体[WFWFVERSION]模型对象
+ */
+public class WFVersionDEModel extends WFVersionDEModelBase {
+
     private static final long serialVersionUID = -1L;
-}
 
+    public WFVersionDEModel() throws Exception {
+        super();
+    }
+
+}

@@ -1,71 +1,210 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.sf.json.JSONObject
- */
 package net.ibizsys.paas.control.tree;
 
-import java.util.Iterator;
 import net.ibizsys.paas.core.IModelBase;
 import net.sf.json.JSONObject;
 
-public interface ITreeNode
-extends IModelBase {
-    public String getTreeNodeType();
+/**
+ * 树节点接口
+ * 
+ * @author Administrator
+ *
+ */
+public interface ITreeNode extends IModelBase {
+	/**
+	 * 获取树节点类型
+	 * 
+	 * @return
+	 */
+	String getTreeNodeType();
 
-    public ITreeNode findTreeNode(String var1);
+	/**
+	 * 查找指定树节点
+	 * 
+	 * @param strTreeNodeId
+	 * @return
+	 */
+	ITreeNode findTreeNode(String strTreeNodeId);
 
-    public boolean isAsyncMode();
+	/**
+	 * 获取异步加载模式
+	 * 
+	 * @return
+	 */
+	boolean isAsyncMode();
 
-    public boolean isAlwaysAsyncMode();
+	/**
+	 * 获取是否一直为异步加载模式
+	 * 
+	 * @return
+	 */
+	boolean isAlwaysAsyncMode();
 
-    public boolean isExpanded();
+	/**
+	 * 获取是否展开显示
+	 * 
+	 * @return
+	 */
+	boolean isExpanded();
 
-    public boolean isDisabled();
+	/**
+	 * 获取是否禁用
+	 * 
+	 * @return
+	 */
+	boolean isDisabled();
 
-    public boolean isLeaf();
+	/**
+	 * 获取是否为叶子节点
+	 * 
+	 * @return
+	 */
+	boolean isLeaf();
 
-    public String getCssClass();
+	/**
+	 * 获取样式
+	 * 
+	 * @return
+	 */
+	String getCssClass();
 
-    public String getIconCssClass();
+	/**
+	 * 获取图标样式
+	 * 
+	 * @return
+	 */
+	String getIconCssClass();
 
-    public String getIcon();
+	/**
+	 * 获取图标
+	 * 
+	 * @return
+	 */
+	String getIcon();
 
-    public String getHref();
+	/**
+	 * 获取链接
+	 * 
+	 * @return
+	 */
+	String getHref();
 
-    public String getHrefTarget();
+	/**
+	 * 获取链接目标
+	 * 
+	 * @return
+	 */
+	String getHrefTarget();
 
-    public String getTips();
+	/**
+	 * 获取节点提示信息
+	 * 
+	 * @return
+	 */
+	String getTips();
 
-    public String getText();
+	/**
+	 * 获取节点文本
+	 * 
+	 * @return
+	 */
+	String getText();
 
-    public boolean isDraggable();
+	/**
+	 * 获取节点是否可以拖拽
+	 * 
+	 * @return the bDraggable
+	 */
+	boolean isDraggable();
 
-    public boolean isChecked();
+	/**
+	 * 获取节点是否被选中
+	 * 
+	 * @return the bChecked
+	 */
+	boolean isChecked();
 
-    public boolean isEnableCheck();
+	/**
+	 * 获取节点是否支持选中
+	 * 
+	 * @return the bEnableCheck
+	 */
+	boolean isEnableCheck();
 
-    public boolean containsTreeNode(String var1);
+	/**
+	 * 判断是否存在节点
+	 * 
+	 * @param strTreeNodeId
+	 * @return
+	 */
+	boolean containsTreeNode(String strTreeNodeId);
 
-    public void addChildNode(ITreeNode var1);
+	/**
+	 * 增加树节点的子节点
+	 * 
+	 * @param childNodeConfig
+	 */
+	void addChildNode(ITreeNode childNodeConfig);
 
-    public void resetChildNodes();
+	/**
+	 * 重置子节点
+	 */
+	void resetChildNodes();
 
-    public Object getTagValue(String var1);
+	/**
+	 * 获取节点的标记值
+	 * 
+	 * @param strKey
+	 * @return
+	 */
+	Object getTagValue(String strKey);
 
-    public JSONObject getTag();
+	/**
+	 * 获取标记对象
+	 * 
+	 * @return
+	 */
+	JSONObject getTag();
 
-    public Iterator<ITreeNode> getChildNodes();
+	/**
+	 * 获取子节点集合
+	 * 
+	 * @return
+	 */
+	java.util.Iterator<ITreeNode> getChildNodes();
 
-    public void setLeaf(boolean var1);
+	/**
+	 * 设置是否为叶子节点
+	 * 
+	 * @param bLeaf
+	 */
+	void setLeaf(boolean bLeaf);
 
-    public String getCounterId();
+	/**
+	 * 获取计数器标识
+	 * 
+	 * @return
+	 */
+	String getCounterId();
 
-    public int getCounterMode();
+	/**
+	 * 获取计数器模式
+	 * 
+	 * @return
+	 */
+	int getCounterMode();
 
-    public Object getDataSource();
-
-    public String getNodeDataType();
+	/**
+	 * 获取树节点的数据源
+	 * 
+	 * @return
+	 */
+	Object getDataSource();
+	
+	
+	
+	/**
+	 * 获取节点数据的类型
+	 * @return
+	 */
+	String getNodeDataType();
 }
-

@@ -51,7 +51,13 @@ extends BaseTMPage {
             this.PageLog((Object)this, 1, StringHelper.Format((String)"\u6ca1\u6709\u6307\u5b9a\u8d44\u6e90\u6807\u8bc6"));
             return false;
         }
-        this.iTMResBaseHelper = this.getTMModelStorage().FindTMResource(strTMResBaseId);
+        try {
+            this.iTMResBaseHelper = this.getTMModelStorage().FindTMResource(strTMResBaseId);
+        }
+        catch (Exception ex) {
+            this.PageLog((Object)this, 1, StringHelper.Format((String)"\u521d\u59cb\u5316\u9875\u9762\u73af\u5883\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), ex);
+            return false;
+        }
         return true;
     }
 

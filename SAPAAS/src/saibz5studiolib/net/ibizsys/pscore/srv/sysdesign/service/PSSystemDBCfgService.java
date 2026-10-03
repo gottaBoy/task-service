@@ -42,7 +42,7 @@ extends PSSystemDBCfgServiceBase {
         if (this.getWebContext() == null || this.getWebContext().getCurAjaxActionResult() == null) {
             throw new Exception("\u5f53\u524d\u8bf7\u6c42\u73af\u5883\u4e0d\u6b63\u786e");
         }
-        this.get((IEntity)pSSystemDBCfg);
+        this.get(pSSystemDBCfg);
         if (StringHelper.isNullOrEmpty((String)pSSystemDBCfg.getPSDBDevInstId())) {
             throw new Exception("\u6570\u636e\u5e93\u5b9e\u4f8b\u4e0d\u652f\u6301Web\u7ba1\u7406");
         }
@@ -65,7 +65,7 @@ extends PSSystemDBCfgServiceBase {
         PSSystemService pSSystemService = (PSSystemService)ServiceGlobal.getService(PSSystemService.class, (SessionFactory)this.getSessionFactory());
         PSSystem pSSystem = new PSSystem();
         pSSystem.setPSSystemId(string);
-        pSSystemService.get((IEntity)pSSystem);
+        pSSystemService.get(pSSystem);
         String string2 = pSSystem.getPSDevSlnSysId();
         if (StringHelper.isNullOrEmpty((String)string2)) {
             throw new Exception("\u5f53\u524d\u6ca1\u6709\u6307\u5b9aJIT\u6570\u636e\u6e90");
@@ -73,7 +73,7 @@ extends PSSystemDBCfgServiceBase {
         PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
         pSDevSlnSys.setPSDevSlnSysId(string2);
-        pSDevSlnSysService.get((IEntity)pSDevSlnSys);
+        pSDevSlnSysService.get(pSDevSlnSys);
         if (StringHelper.isNullOrEmpty((String)pSDevSlnSys.getJITPSDBDevInstId())) {
             throw new Exception("\u5f53\u524d\u6ca1\u6709\u6307\u5b9aJIT\u6570\u636e\u6e90");
         }

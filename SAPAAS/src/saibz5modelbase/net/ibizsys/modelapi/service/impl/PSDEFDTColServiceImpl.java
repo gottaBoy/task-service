@@ -70,7 +70,7 @@ implements IPSDEFDTColService {
     @Override
     protected List<PSDEFDTCol> onListAll() throws Exception {
         ArrayList<PSDEFDTCol> list = new ArrayList<PSDEFDTCol>();
-        List psdefields = PSModelServiceUtil.getInstance().getPSDEFieldService().listAll();
+        List<PSDEField> psdefields = PSModelServiceUtil.getInstance().getPSDEFieldService().listAll();
         if (psdefields != null) {
             for (PSDEField parent : psdefields) {
                 List<PSDEFDTCol> items = this.listByPSDEField(parent);

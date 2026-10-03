@@ -1,22 +1,58 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.paas.datasync;
 
 import net.ibizsys.psrt.srv.common.entity.DataSyncAgent;
 
+/**
+ * 数据同步引擎
+ * 
+ * @author Administrator
+ *
+ */
 public interface IDataSyncEngine {
-    public static final String SYNCDIR_IN = "IN";
-    public static final String SYNCDIR_OUT = "OUT";
+	/**
+	 * 数据输入
+	 */
+	final static String SYNCDIR_IN = "IN";
 
-    public void init(DataSyncAgent var1) throws Exception;
+	/**
+	 * 数据输出
+	 */
+	final static String SYNCDIR_OUT = "OUT";
 
-    public void quit() throws Exception;
+	/**
+	 * 初始化
+	 * 
+	 * @param dataSyncAgent
+	 * @throws Exception
+	 */
+	void init(DataSyncAgent dataSyncAgent) throws Exception;
 
-    public String getId();
+	/**
+	 * 退出释放引擎
+	 * 
+	 * @throws Exception
+	 */
+	void quit() throws Exception;
 
-    public String getName();
+	/**
+	 * 获取引擎标识
+	 * 
+	 * @return
+	 */
+	String getId();
 
-    public String getSyncDir();
+	/**
+	 * 获取引擎名称
+	 * 
+	 * @return
+	 */
+	String getName();
+
+	/**
+	 * 获取同步方向
+	 * 
+	 * @return
+	 */
+	String getSyncDir();
+
 }
-

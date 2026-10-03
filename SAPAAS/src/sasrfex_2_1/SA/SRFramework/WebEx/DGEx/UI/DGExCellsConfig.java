@@ -40,12 +40,11 @@ extends XMLCollectionExConfig<DGExBaseCellConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = DGExCellsConfig.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((DGExBaseCellConfig)childNode))) {
-                this.add((Object)((DGExBaseCellConfig)childNode));
+            if (this.OnChildNodeLoaded((DGExBaseCellConfig)childNode)) {
+                this.add((DGExBaseCellConfig)childNode);
                 return;
             }
         }
         super.OnLoadNode(strName, xmlNode);
     }
 }
-

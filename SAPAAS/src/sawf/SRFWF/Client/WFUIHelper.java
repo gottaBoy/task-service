@@ -83,25 +83,25 @@ public class WFUIHelper {
         }
         for (WFUserActionConfig wfAction : result.getUserActionList()) {
             if (wfAction.getActionType() == 1) {
-                button = new SRFExAjaxButton();
-                button.InitConfig();
-                button.setID(Helper.GenGuidEx());
-                button.getAjaxButtonConfig().setText(wfAction.getActionLogicName());
+                SRFExAjaxButton ajaxButton = new SRFExAjaxButton();
+                ajaxButton.InitConfig();
+                ajaxButton.setID(Helper.GenGuidEx());
+                ajaxButton.getAjaxButtonConfig().setText(wfAction.getActionLogicName());
                 if (StringHelper.IsNullOrEmpty((String)wfAction.getDescription())) {
-                    button.getAjaxButtonConfig().setTips(wfAction.getActionLogicName());
+                    ajaxButton.getAjaxButtonConfig().setTips(wfAction.getActionLogicName());
                 } else {
-                    button.getAjaxButtonConfig().setTips(wfAction.getDescription());
+                    ajaxButton.getAjaxButtonConfig().setTips(wfAction.getDescription());
                 }
-                button.getAjaxButtonConfig().setBackEndCtrl(wfAction.getButtonActionHelper());
-                button.getAjaxButtonConfig().setConfirm(StringHelper.Format((String)"\u786e\u5b9e\u8981\u6267\u884c[%1$s]\u5417\uff1f", (Object)wfAction.getActionLogicName()));
+                ajaxButton.getAjaxButtonConfig().setBackEndCtrl(wfAction.getButtonActionHelper());
+                ajaxButton.getAjaxButtonConfig().setConfirm(StringHelper.Format((String)"\u786e\u5b9e\u8981\u6267\u884c[%1$s]\u5417\uff1f", (Object)wfAction.getActionLogicName()));
                 script = new StringBuilderEx();
                 script.Append("var _SELECTEDROWS = %1$s;", (Object)DataGridJSHelper.getDataGridCheckedRows((String)dataGrid.getUniqueID()));
                 script.Append("if( _SELECTEDROWS == '' ) { alert('\u6ca1\u6709\u9009\u4e2d\u4efb\u4f55\u6570\u636e\uff0c\u8bf7\u786e\u8ba4\uff01');return;}");
                 script.Append("_PARAMS['ajaxparam1'] = _SELECTEDROWS;");
                 script.Append(" _POSTDATA =  Ext.urlEncode(_PARAMS);");
-                button.getClickAction().setBeforeCode(script.toString());
+                ajaxButton.getClickAction().setBeforeCode(script.toString());
                 script.Reset();
-                buttons.add((SRFExBaseButton)button);
+                buttons.add(ajaxButton);
                 continue;
             }
             if (wfAction.getActionType() != 2) continue;

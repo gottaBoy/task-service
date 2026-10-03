@@ -17,27 +17,21 @@
  */
 package net.ibizsys.pscore.srv.util;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import net.ibizsys.paas.dao.DAOGlobal;
 import net.ibizsys.paas.db.IDBDialect;
-import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.paas.exception.ErrorException;
-import net.ibizsys.paas.service.IService;
 import net.ibizsys.paas.service.ServiceGlobal;
 import net.ibizsys.paas.util.ObjectHelper;
 import net.ibizsys.paas.util.StringHelper;
 import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
 import net.ibizsys.pscore.srv.config.entity.PSDBType;
-import net.ibizsys.pscore.srv.config.entity.PSDBTypeBase;
 import net.ibizsys.pscore.srv.config.service.PSDBTypeService;
 import net.ibizsys.pscore.srv.paasmgr.entity.PSDBServer;
-import net.ibizsys.pscore.srv.paasmgr.entity.PSDBServerBase;
 import net.ibizsys.pscore.srv.paasmgr.entity.PSSysModelInst;
-import net.ibizsys.pscore.srv.paasmgr.entity.PSSysModelInstBase;
 import net.ibizsys.pscore.srv.paasmgr.service.PSDBServerService;
 import net.ibizsys.pscore.srv.paasmgr.service.PSSysModelInstService;
 import net.ibizsys.pscore.srv.util.modelinst.PSDBServerSessionFactoryImpl;
@@ -82,8 +76,7 @@ public class PSSysModelInstGlobal {
             return null;
         }
         SessionFactory sessionFactory = null;
-        Serializable serializable = sessionFactoryMap;
-        synchronized (serializable) {
+        synchronized (sessionFactoryMap) {
             sessionFactory = sessionFactoryMap.get(string);
             if (sessionFactory != null) {
                 if (sessionFactoryLastActiveMap.get(string) != ALWAYSACTIVE) {
@@ -92,18 +85,18 @@ public class PSSysModelInstGlobal {
                 return sessionFactory;
             }
         }
-        serializable = sessionFactoryPSSysModelInstMap.get(string);
-        if (serializable == null) {
-            serializable = new PSSysModelInst();
-            ((PSSysModelInstBase)serializable).setPSSysModelInstId(string);
+        PSSysModelInst modelInst = sessionFactoryPSSysModelInstMap.get(string);
+        if (modelInst == null) {
+            modelInst = new PSSysModelInst();
+            modelInst.setPSSysModelInstId(string);
             PSSysModelInstService pSSysModelInstService = (PSSysModelInstService)ServiceGlobal.getService(PSSysModelInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            pSSysModelInstService.get((IEntity)serializable);
-            if (!StringHelper.isNullOrEmpty((String)PSSysModelInstGlobal.getCurrentPSSvrDomainId()) && !StringHelper.isNullOrEmpty((String)((PSSysModelInstBase)serializable).getPSSvrDomainId()) && StringHelper.compare((String)((PSSysModelInstBase)serializable).getPSSvrDomainId(), (String)PSSysModelInstGlobal.getCurrentPSSvrDomainId(), (boolean)false) != 0) {
+            pSSysModelInstService.get(modelInst);
+            if (!StringHelper.isNullOrEmpty((String)PSSysModelInstGlobal.getCurrentPSSvrDomainId()) && !StringHelper.isNullOrEmpty((String)modelInst.getPSSvrDomainId()) && StringHelper.compare((String)modelInst.getPSSvrDomainId(), (String)PSSysModelInstGlobal.getCurrentPSSvrDomainId(), (boolean)false) != 0) {
                 throw new ErrorException(2, StringHelper.format((String)"\u65e0\u6cd5\u8bbf\u95ee\u8de8\u670d\u52a1\u57df\u6a21\u578b\u4ed3\u5e93"));
             }
-            sessionFactoryPSSysModelInstMap.put(string, (PSSysModelInst)serializable);
+            sessionFactoryPSSysModelInstMap.put(string, modelInst);
         }
-        return PSSysModelInstGlobal.getSessionFactory(serializable);
+        return PSSysModelInstGlobal.getSessionFactory(modelInst);
     }
 
     /*
@@ -117,8 +110,7 @@ public class PSSysModelInstGlobal {
             return null;
         }
         SessionFactory sessionFactory = null;
-        Serializable serializable = sessionFactoryMap;
-        synchronized (serializable) {
+        synchronized (sessionFactoryMap) {
             sessionFactory = sessionFactoryMap.get(string);
             if (sessionFactory != null) {
                 if (sessionFactoryLastActiveMap.get(string) != ALWAYSACTIVE) {
@@ -127,79 +119,72 @@ public class PSSysModelInstGlobal {
                 return sessionFactory;
             }
         }
-        serializable = new PSSysModelInst();
-        ((PSSysModelInstBase)serializable).setPSSysModelInstId(string);
+        PSSysModelInst modelInst = new PSSysModelInst();
+        modelInst.setPSSysModelInstId(string);
         PSSysModelInstService pSSysModelInstService = (PSSysModelInstService)ServiceGlobal.getService(PSSysModelInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        pSSysModelInstService.get((IEntity)serializable);
-        if (!StringHelper.isNullOrEmpty((String)PSSysModelInstGlobal.getCurrentPSSvrDomainId()) && !StringHelper.isNullOrEmpty((String)((PSSysModelInstBase)serializable).getPSSvrDomainId()) && StringHelper.compare((String)((PSSysModelInstBase)serializable).getPSSvrDomainId(), (String)PSSysModelInstGlobal.getCurrentPSSvrDomainId(), (boolean)false) != 0) {
+        pSSysModelInstService.get(modelInst);
+        if (!StringHelper.isNullOrEmpty((String)PSSysModelInstGlobal.getCurrentPSSvrDomainId()) && !StringHelper.isNullOrEmpty((String)modelInst.getPSSvrDomainId()) && StringHelper.compare((String)modelInst.getPSSvrDomainId(), (String)PSSysModelInstGlobal.getCurrentPSSvrDomainId(), (boolean)false) != 0) {
             throw new ErrorException(2, StringHelper.format((String)"\u65e0\u6cd5\u8bbf\u95ee\u8de8\u670d\u52a1\u57df\u6a21\u578b\u4ed3\u5e93"));
         }
-        if (StringHelper.compare((String)((PSSysModelInstBase)serializable).getInstState(), (String)"30", (boolean)true) != 0) {
+        if (StringHelper.compare((String)modelInst.getInstState(), (String)"30", (boolean)true) != 0) {
             throw new Exception("\u6a21\u578b\u5e93\u72b6\u6001\u4e0d\u6b63\u786e");
         }
-        sessionFactoryPSSysModelInstMap.put(string, (PSSysModelInst)serializable);
-        return PSSysModelInstGlobal.getSessionFactory((PSSysModelInst)serializable);
+        sessionFactoryPSSysModelInstMap.put(string, modelInst);
+        return PSSysModelInstGlobal.getSessionFactory(modelInst);
     }
 
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     public static SessionFactory getSessionFactory(PSSysModelInst pSSysModelInst) throws Exception {
-        String string;
-        Map<Object, Object> map;
-        SessionFactory sessionFactory;
-        Object object = null;
-        Serializable serializable = sessionFactoryMap;
-        synchronized (serializable) {
-            object = sessionFactoryMap.get(pSSysModelInst.getPSSysModelInstId());
-            if (object != null) {
+        SessionFactory factory;
+        synchronized (sessionFactoryMap) {
+            factory = sessionFactoryMap.get(pSSysModelInst.getPSSysModelInstId());
+            if (factory != null) {
                 if (sessionFactoryLastActiveMap.get(pSSysModelInst.getPSSysModelInstId()) != ALWAYSACTIVE) {
                     sessionFactoryLastActiveMap.put(pSSysModelInst.getPSSysModelInstId(), System.currentTimeMillis());
                 }
-                return object;
+                return factory;
             }
         }
         if (!StringHelper.isNullOrEmpty((String)PSSysModelInstGlobal.getCurrentPSSvrDomainId()) && !StringHelper.isNullOrEmpty((String)pSSysModelInst.getPSSvrDomainId()) && StringHelper.compare((String)pSSysModelInst.getPSSvrDomainId(), (String)PSSysModelInstGlobal.getCurrentPSSvrDomainId(), (boolean)false) != 0) {
             throw new ErrorException(2, StringHelper.format((String)"\u65e0\u6cd5\u8bbf\u95ee\u8de8\u670d\u52a1\u57df\u6a21\u578b\u4ed3\u5e93"));
         }
-        if (PSSysModelInstGlobal.isEnableProxyMode() && StringHelper.compare((String)pSSysModelInst.getDBType(), (String)"MYSQL5", (boolean)true) == 0 && !StringHelper.isNullOrEmpty((String)pSSysModelInst.getPSDBServerId()) && (object = PSSysModelInstGlobal.getRawDBServerSessionFactory(pSSysModelInst.getPSDBServerId())) != null && object instanceof PSDBServerSessionFactoryImpl) {
-            ((PSDBServerSessionFactoryImpl)object).setPSSysModelInst(pSSysModelInst);
-            return object;
+        if (PSSysModelInstGlobal.isEnableProxyMode() && StringHelper.compare((String)pSSysModelInst.getDBType(), (String)"MYSQL5", (boolean)true) == 0 && !StringHelper.isNullOrEmpty((String)pSSysModelInst.getPSDBServerId()) && (factory = PSSysModelInstGlobal.getRawDBServerSessionFactory(pSSysModelInst.getPSDBServerId())) instanceof PSDBServerSessionFactoryImpl) {
+            ((PSDBServerSessionFactoryImpl)factory).setPSSysModelInst(pSSysModelInst);
+            return factory;
         }
-        serializable = null;
-        IService iService = psDBTypeMap;
-        synchronized (iService) {
-            serializable = psDBTypeMap.get(pSSysModelInst.getDBType());
+        PSDBType dbType;
+        synchronized (psDBTypeMap) {
+            dbType = psDBTypeMap.get(pSSysModelInst.getDBType());
         }
-        if (serializable == null) {
-            serializable = new PSDBType();
-            ((PSDBTypeBase)serializable).setPSDBTypeId(pSSysModelInst.getDBType());
-            iService = ServiceGlobal.getService(PSDBTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            iService.get((IEntity)serializable);
-            HashMap<String, PSDBType> hashMap = psDBTypeMap;
-            synchronized (hashMap) {
-                sessionFactory = psDBTypeMap.get(pSSysModelInst.getDBType());
-                if (sessionFactory != null) {
-                    serializable = sessionFactory;
+        if (dbType == null) {
+            dbType = new PSDBType();
+            dbType.setPSDBTypeId(pSSysModelInst.getDBType());
+            PSDBTypeService service = (PSDBTypeService)ServiceGlobal.getService(PSDBTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+            service.get(dbType);
+            synchronized (psDBTypeMap) {
+                PSDBType cached = psDBTypeMap.get(pSSysModelInst.getDBType());
+                if (cached != null) {
+                    dbType = cached;
                 } else {
-                    psDBTypeMap.put(pSSysModelInst.getDBType(), (PSDBType)serializable);
+                    psDBTypeMap.put(pSSysModelInst.getDBType(), dbType);
                 }
             }
         }
-        iService = null;
-        boolean bl = false;
-        sessionFactory = sessionFactoryConfigurationMap;
-        synchronized (sessionFactory) {
-            iService = sessionFactoryConfigurationMap.get(pSSysModelInst.getPSSysModelInstId());
-            if (iService == null) {
-                map = new Properties();
-                ((Properties)map).put("hibernate.show_sql", "true");
-                ((Properties)map).put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-                ((Properties)map).put("jdbc.driverClassName", ((PSDBTypeBase)serializable).getJdbcDriverName());
-                ((Properties)map).put("jdbc.url", pSSysModelInst.getConnStr());
-                ((Properties)map).put("jdbc.user", pSSysModelInst.getUserName());
-                ((Properties)map).put("jdbc.pass", pSSysModelInst.getPassWD());
-                string = "1";
+        Configuration configuration;
+        boolean createdConfiguration = false;
+        synchronized (sessionFactoryConfigurationMap) {
+            configuration = sessionFactoryConfigurationMap.get(pSSysModelInst.getPSSysModelInstId());
+            if (configuration == null) {
+                Properties properties = new Properties();
+                properties.put("hibernate.show_sql", "true");
+                properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+                properties.put("jdbc.driverClassName", dbType.getJdbcDriverName());
+                properties.put("jdbc.url", pSSysModelInst.getConnStr());
+                properties.put("jdbc.user", pSSysModelInst.getUserName());
+                properties.put("jdbc.pass", pSSysModelInst.getPassWD());
+                String string = "1";
                 String string2 = "20";
                 String string3 = "1";
                 if (pSSysModelInst.getInitPoolSize() != null) {
@@ -211,83 +196,79 @@ public class PSSysModelInstGlobal {
                 if (pSSysModelInst.getMinPoolSize() != null) {
                     string3 = Integer.toString(pSSysModelInst.getMinPoolSize());
                 }
-                ((Properties)map).put("jdbc.initialPoolSize", string);
-                ((Properties)map).put("jdbc.maxPoolSize", string2);
-                ((Properties)map).put("jdbc.minPoolSize", string3);
-                ((Properties)map).put("jdbc.maxIdleTime", "60");
-                ((Properties)map).put("jdbc.maxStatements", "50");
-                ((Properties)map).put("jdbc.maxStatements", "0");
-                ((Properties)map).put("hibernate.connection.driver_class", ((PSDBTypeBase)serializable).getJdbcDriverName());
-                ((Properties)map).put("hibernate.connection.url", pSSysModelInst.getConnStr());
-                ((Properties)map).put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-                ((Properties)map).put("hibernate.connection.username", pSSysModelInst.getUserName());
-                ((Properties)map).put("hibernate.connection.password", pSSysModelInst.getPassWD());
-                ((Properties)map).put("hibernate.c3p0.min_size", string3);
-                ((Properties)map).put("hibernate.c3p0.max_size", string2);
-                ((Properties)map).put("hibernate.c3p0.timeout", "120");
-                ((Properties)map).put("hibernate.c3p0.max_statements", "0");
-                ((Properties)map).put("hibernate.c3p0.preferredTestQuery", "select 1");
-                ((Properties)map).put("hibernate.c3p0.idle_test_period", "90");
-                ((Properties)map).put("hibernate.show_sql", "true");
-                ((Properties)map).put("hibernate.hbm2ddl.auto", "create-drop");
-                iService = new Configuration();
-                iService.setProperties(map);
-                sessionFactoryConfigurationMap.put(pSSysModelInst.getPSSysModelInstId(), (Configuration)iService);
-                bl = true;
+                properties.put("jdbc.initialPoolSize", string);
+                properties.put("jdbc.maxPoolSize", string2);
+                properties.put("jdbc.minPoolSize", string3);
+                properties.put("jdbc.maxIdleTime", "60");
+                properties.put("jdbc.maxStatements", "50");
+                properties.put("jdbc.maxStatements", "0");
+                properties.put("hibernate.connection.driver_class", dbType.getJdbcDriverName());
+                properties.put("hibernate.connection.url", pSSysModelInst.getConnStr());
+                properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+                properties.put("hibernate.connection.username", pSSysModelInst.getUserName());
+                properties.put("hibernate.connection.password", pSSysModelInst.getPassWD());
+                properties.put("hibernate.c3p0.min_size", string3);
+                properties.put("hibernate.c3p0.max_size", string2);
+                properties.put("hibernate.c3p0.timeout", "120");
+                properties.put("hibernate.c3p0.max_statements", "0");
+                properties.put("hibernate.c3p0.preferredTestQuery", "select 1");
+                properties.put("hibernate.c3p0.idle_test_period", "90");
+                properties.put("hibernate.show_sql", "true");
+                properties.put("hibernate.hbm2ddl.auto", "create-drop");
+                configuration = new Configuration();
+                configuration.setProperties(properties);
+                sessionFactoryConfigurationMap.put(pSSysModelInst.getPSSysModelInstId(), configuration);
+                createdConfiguration = true;
             }
         }
-        sessionFactory = sessionFactoryMap;
-        synchronized (sessionFactory) {
-            object = sessionFactoryMap.get(pSSysModelInst.getPSSysModelInstId());
-            if (object != null) {
+        synchronized (sessionFactoryMap) {
+            factory = sessionFactoryMap.get(pSSysModelInst.getPSSysModelInstId());
+            if (factory != null) {
                 if (sessionFactoryLastActiveMap.get(pSSysModelInst.getPSSysModelInstId()) != ALWAYSACTIVE) {
                     sessionFactoryLastActiveMap.put(pSSysModelInst.getPSSysModelInstId(), System.currentTimeMillis());
                 }
-                return object;
+                return factory;
             }
         }
-        if (!bl) {
+        if (!createdConfiguration) {
             for (int i = 0; i < 20; ++i) {
                 Thread.sleep(100L);
-                map = sessionFactoryMap;
-                synchronized (map) {
-                    object = sessionFactoryMap.get(pSSysModelInst.getPSSysModelInstId());
-                    if (object != null) {
+                synchronized (sessionFactoryMap) {
+                    factory = sessionFactoryMap.get(pSSysModelInst.getPSSysModelInstId());
+                    if (factory != null) {
                         if (sessionFactoryLastActiveMap.get(pSSysModelInst.getPSSysModelInstId()) != ALWAYSACTIVE) {
                             sessionFactoryLastActiveMap.put(pSSysModelInst.getPSSysModelInstId(), System.currentTimeMillis());
                         }
-                        return object;
+                        return factory;
                     }
-                    continue;
                 }
             }
             throw new Exception("\u65e0\u6cd5\u6253\u5f00\u7cfb\u7edf\u6a21\u578b\u4ed3\u5e93\uff0c\u53ef\u80fd\u6b63\u5728\u52a0\u8f7d\u4e2d\uff0c\u8bf7\u7a0d\u540e\u91cd\u8bd5");
         }
-        object = iService.buildSessionFactory();
-        sessionFactory = null;
-        map = sessionFactoryMap;
-        synchronized (map) {
+        factory = configuration.buildSessionFactory();
+        SessionFactory redundantFactory = null;
+        synchronized (sessionFactoryMap) {
             if (sessionFactoryLastActiveMap.get(pSSysModelInst.getPSSysModelInstId()) != ALWAYSACTIVE) {
                 sessionFactoryLastActiveMap.put(pSSysModelInst.getPSSysModelInstId(), System.currentTimeMillis());
             }
-            if ((string = sessionFactoryMap.get(pSSysModelInst.getPSSysModelInstId())) != null) {
-                sessionFactory = object;
-                object = string;
+            SessionFactory cached = sessionFactoryMap.get(pSSysModelInst.getPSSysModelInstId());
+            if (cached != null) {
+                redundantFactory = factory;
+                factory = cached;
             } else {
-                sessionFactoryMap.put(pSSysModelInst.getPSSysModelInstId(), (SessionFactory)object);
+                sessionFactoryMap.put(pSSysModelInst.getPSSysModelInstId(), factory);
                 sessionFactoryPSSysModelInstMap.put(pSSysModelInst.getPSSysModelInstId(), pSSysModelInst);
-                DAOGlobal.registerDBDialect((SessionFactory)object, (IDBDialect)((IDBDialect)ObjectHelper.create((String)((PSDBTypeBase)serializable).getJdbcDialect())));
+                DAOGlobal.registerDBDialect(factory, (IDBDialect)ObjectHelper.create(dbType.getJdbcDialect()));
                 log.debug((Object)StringHelper.format((String)"\u6302\u63a5\u7cfb\u7edf\u6a21\u578b\u5e93[%1$s]\u4f1a\u8bdd\u5de5\u5382\uff0c\u5f53\u524d\u6570\u91cf[%2$s]", (Object)pSSysModelInst.getPSSysModelInstId(), (Object)sessionFactoryMap.size()));
             }
         }
-        map = sessionFactoryConfigurationMap;
-        synchronized (map) {
+        synchronized (sessionFactoryConfigurationMap) {
             sessionFactoryConfigurationMap.remove(pSSysModelInst.getPSSysModelInstId());
         }
-        if (sessionFactory != null) {
-            sessionFactory.close();
+        if (redundantFactory != null) {
+            redundantFactory.close();
         }
-        return object;
+        return factory;
     }
 
     /*
@@ -302,8 +283,7 @@ public class PSSysModelInstGlobal {
             sessionFactoryPSSysModelInstMap.remove(string);
         }
         if (sessionFactory != null) {
-            hashMap = sessionFactoryConfigurationMap;
-            synchronized (hashMap) {
+            synchronized (sessionFactoryConfigurationMap) {
                 sessionFactoryConfigurationMap.remove(string);
             }
             DAOGlobal.unregisterDBDialect((SessionFactory)sessionFactory);
@@ -415,151 +395,138 @@ public class PSSysModelInstGlobal {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     private static SessionFactory getRawDBServerSessionFactory(String string) throws Exception {
-        String string2;
-        Map<Object, Object> map;
-        Object object;
         String string3 = StringHelper.format((String)"DBSERVER_%1$s", (Object)string);
-        Object object2 = null;
-        Serializable serializable = sessionFactoryMap;
-        synchronized (serializable) {
-            object2 = sessionFactoryMap.get(string3);
-            if (object2 != null) {
+        SessionFactory factory;
+        synchronized (sessionFactoryMap) {
+            factory = sessionFactoryMap.get(string3);
+            if (factory != null) {
                 if (sessionFactoryLastActiveMap.get(string3) != ALWAYSACTIVE) {
                     sessionFactoryLastActiveMap.put(string3, System.currentTimeMillis());
                 }
-                return object2;
+                return factory;
             }
         }
-        serializable = new PSDBServer();
-        ((PSDBServerBase)serializable).setPSDBServerId(string);
-        IService iService = ServiceGlobal.getService(PSDBServerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        if (!iService.get((IEntity)serializable, true)) {
+        PSDBServer dbServer = new PSDBServer();
+        dbServer.setPSDBServerId(string);
+        PSDBServerService service = (PSDBServerService)ServiceGlobal.getService(PSDBServerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+        if (!service.get(dbServer, true)) {
             return null;
         }
-        if (StringHelper.isNullOrEmpty((String)((PSDBServerBase)serializable).getDBUrl()) || StringHelper.isNullOrEmpty((String)((PSDBServerBase)serializable).getDBUserName()) || StringHelper.isNullOrEmpty((String)((PSDBServerBase)serializable).getDBPasswd())) {
+        if (StringHelper.isNullOrEmpty((String)dbServer.getDBUrl()) || StringHelper.isNullOrEmpty((String)dbServer.getDBUserName()) || StringHelper.isNullOrEmpty((String)dbServer.getDBPasswd())) {
             return null;
         }
-        if (!StringHelper.isNullOrEmpty((String)PSSysModelInstGlobal.getCurrentPSSvrDomainId()) && !StringHelper.isNullOrEmpty((String)((PSDBServerBase)serializable).getPSSvrDomainId()) && StringHelper.compare((String)((PSDBServerBase)serializable).getPSSvrDomainId(), (String)PSSysModelInstGlobal.getCurrentPSSvrDomainId(), (boolean)false) != 0) {
+        if (!StringHelper.isNullOrEmpty((String)PSSysModelInstGlobal.getCurrentPSSvrDomainId()) && !StringHelper.isNullOrEmpty((String)dbServer.getPSSvrDomainId()) && StringHelper.compare((String)dbServer.getPSSvrDomainId(), (String)PSSysModelInstGlobal.getCurrentPSSvrDomainId(), (boolean)false) != 0) {
             throw new ErrorException(2, StringHelper.format((String)"\u65e0\u6cd5\u8bbf\u95ee\u8de8\u670d\u52a1\u57df\u6a21\u578b\u4ed3\u5e93"));
         }
-        Serializable serializable2 = null;
-        IService iService2 = psDBTypeMap;
-        synchronized (iService2) {
-            serializable2 = psDBTypeMap.get(((PSDBServerBase)serializable).getDBType());
+        PSDBType dbType;
+        synchronized (psDBTypeMap) {
+            dbType = psDBTypeMap.get(dbServer.getDBType());
         }
-        if (serializable2 == null) {
-            serializable2 = new PSDBType();
-            ((PSDBTypeBase)serializable2).setPSDBTypeId(((PSDBServerBase)serializable).getDBType());
-            iService2 = ServiceGlobal.getService(PSDBTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            iService2.get((IEntity)serializable2);
-            HashMap<String, PSDBType> hashMap = psDBTypeMap;
-            synchronized (hashMap) {
-                object = psDBTypeMap.get(((PSDBServerBase)serializable).getDBType());
-                if (object != null) {
-                    serializable2 = object;
+        if (dbType == null) {
+            dbType = new PSDBType();
+            dbType.setPSDBTypeId(dbServer.getDBType());
+            PSDBTypeService typeService = (PSDBTypeService)ServiceGlobal.getService(PSDBTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+            typeService.get(dbType);
+            synchronized (psDBTypeMap) {
+                PSDBType cached = psDBTypeMap.get(dbServer.getDBType());
+                if (cached != null) {
+                    dbType = cached;
                 } else {
-                    psDBTypeMap.put(((PSDBServerBase)serializable).getDBType(), (PSDBType)serializable2);
+                    psDBTypeMap.put(dbServer.getDBType(), dbType);
                 }
             }
         }
-        iService2 = null;
-        boolean bl = false;
-        object = sessionFactoryConfigurationMap;
-        synchronized (object) {
-            iService2 = sessionFactoryConfigurationMap.get(string3);
-            if (iService2 == null) {
-                map = new Properties();
-                ((Properties)map).put("hibernate.show_sql", "true");
-                ((Properties)map).put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-                ((Properties)map).put("jdbc.driverClassName", ((PSDBTypeBase)serializable2).getJdbcDriverName());
-                ((Properties)map).put("jdbc.url", StringHelper.format((String)((PSDBServerBase)serializable).getDBUrl(), (Object)""));
-                ((Properties)map).put("jdbc.user", ((PSDBServerBase)serializable).getDBUserName());
-                ((Properties)map).put("jdbc.pass", ((PSDBServerBase)serializable).getDBPasswd());
-                string2 = "1";
+        Configuration configuration;
+        boolean createdConfiguration = false;
+        synchronized (sessionFactoryConfigurationMap) {
+            configuration = sessionFactoryConfigurationMap.get(string3);
+            if (configuration == null) {
+                Properties properties = new Properties();
+                properties.put("hibernate.show_sql", "true");
+                properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+                properties.put("jdbc.driverClassName", dbType.getJdbcDriverName());
+                properties.put("jdbc.url", StringHelper.format((String)dbServer.getDBUrl(), (Object)""));
+                properties.put("jdbc.user", dbServer.getDBUserName());
+                properties.put("jdbc.pass", dbServer.getDBPasswd());
+                String string2 = "1";
                 String string4 = "150";
                 String string5 = "10";
-                ((Properties)map).put("jdbc.initialPoolSize", string2);
-                ((Properties)map).put("jdbc.maxPoolSize", string4);
-                ((Properties)map).put("jdbc.minPoolSize", string5);
-                ((Properties)map).put("jdbc.maxIdleTime", "60");
-                ((Properties)map).put("jdbc.maxStatements", "50");
-                ((Properties)map).put("jdbc.maxStatements", "0");
-                ((Properties)map).put("hibernate.connection.driver_class", ((PSDBTypeBase)serializable2).getJdbcDriverName());
-                ((Properties)map).put("hibernate.connection.url", StringHelper.format((String)((PSDBServerBase)serializable).getDBUrl(), (Object)""));
-                ((Properties)map).put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-                ((Properties)map).put("hibernate.connection.username", ((PSDBServerBase)serializable).getDBUserName());
-                ((Properties)map).put("hibernate.connection.password", ((PSDBServerBase)serializable).getDBPasswd());
-                ((Properties)map).put("hibernate.c3p0.min_size", string5);
-                ((Properties)map).put("hibernate.c3p0.max_size", string4);
-                ((Properties)map).put("hibernate.c3p0.timeout", "120");
-                ((Properties)map).put("hibernate.c3p0.max_statements", "0");
-                ((Properties)map).put("hibernate.c3p0.preferredTestQuery", "select 1");
-                ((Properties)map).put("hibernate.c3p0.idle_test_period", "30");
-                ((Properties)map).put("hibernate.c3p0.testConnectionOnCheckout", "false");
-                ((Properties)map).put("hibernate.c3p0.testConnectionOnCheckin", "true");
-                ((Properties)map).put("hibernate.c3p0.idleConnectionTestPeriod", "30");
-                ((Properties)map).put("hibernate.show_sql", "true");
-                ((Properties)map).put("hibernate.hbm2ddl.auto", "create-drop");
-                iService2 = new Configuration();
-                iService2.setProperties(map);
-                sessionFactoryConfigurationMap.put(string3, (Configuration)iService2);
-                bl = true;
+                properties.put("jdbc.initialPoolSize", string2);
+                properties.put("jdbc.maxPoolSize", string4);
+                properties.put("jdbc.minPoolSize", string5);
+                properties.put("jdbc.maxIdleTime", "60");
+                properties.put("jdbc.maxStatements", "50");
+                properties.put("jdbc.maxStatements", "0");
+                properties.put("hibernate.connection.driver_class", dbType.getJdbcDriverName());
+                properties.put("hibernate.connection.url", StringHelper.format((String)dbServer.getDBUrl(), (Object)""));
+                properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+                properties.put("hibernate.connection.username", dbServer.getDBUserName());
+                properties.put("hibernate.connection.password", dbServer.getDBPasswd());
+                properties.put("hibernate.c3p0.min_size", string5);
+                properties.put("hibernate.c3p0.max_size", string4);
+                properties.put("hibernate.c3p0.timeout", "120");
+                properties.put("hibernate.c3p0.max_statements", "0");
+                properties.put("hibernate.c3p0.preferredTestQuery", "select 1");
+                properties.put("hibernate.c3p0.idle_test_period", "30");
+                properties.put("hibernate.c3p0.testConnectionOnCheckout", "false");
+                properties.put("hibernate.c3p0.testConnectionOnCheckin", "true");
+                properties.put("hibernate.c3p0.idleConnectionTestPeriod", "30");
+                properties.put("hibernate.show_sql", "true");
+                properties.put("hibernate.hbm2ddl.auto", "create-drop");
+                configuration = new Configuration();
+                configuration.setProperties(properties);
+                sessionFactoryConfigurationMap.put(string3, configuration);
+                createdConfiguration = true;
             }
         }
-        object = sessionFactoryMap;
-        synchronized (object) {
-            object2 = sessionFactoryMap.get(string3);
-            if (object2 != null) {
+        synchronized (sessionFactoryMap) {
+            factory = sessionFactoryMap.get(string3);
+            if (factory != null) {
                 if (sessionFactoryLastActiveMap.get(string3) != ALWAYSACTIVE) {
                     sessionFactoryLastActiveMap.put(string3, System.currentTimeMillis());
                 }
-                return object2;
+                return factory;
             }
         }
-        if (!bl) {
+        if (!createdConfiguration) {
             for (int i = 0; i < 100; ++i) {
                 Thread.sleep(100L);
-                map = sessionFactoryMap;
-                synchronized (map) {
-                    object2 = sessionFactoryMap.get(string3);
-                    if (object2 != null) {
+                synchronized (sessionFactoryMap) {
+                    factory = sessionFactoryMap.get(string3);
+                    if (factory != null) {
                         if (sessionFactoryLastActiveMap.get(string3) != ALWAYSACTIVE) {
                             sessionFactoryLastActiveMap.put(string3, System.currentTimeMillis());
                         }
-                        return object2;
+                        return factory;
                     }
-                    continue;
                 }
             }
             throw new Exception("\u65e0\u6cd5\u6253\u5f00\u7cfb\u7edf\u6a21\u578b\u4ed3\u5e93\uff0c\u53ef\u80fd\u6b63\u5728\u52a0\u8f7d\u4e2d\uff0c\u8bf7\u7a0d\u540e\u91cd\u8bd5");
         }
-        object2 = iService2.buildSessionFactory();
-        object = new PSDBServerSessionFactoryImpl((PSDBServer)serializable, (SessionFactory)object2);
-        object2 = object;
-        object = null;
-        map = sessionFactoryMap;
-        synchronized (map) {
+        factory = new PSDBServerSessionFactoryImpl(dbServer, configuration.buildSessionFactory());
+        SessionFactory redundantFactory = null;
+        synchronized (sessionFactoryMap) {
             if (sessionFactoryLastActiveMap.get(string3) != ALWAYSACTIVE) {
                 sessionFactoryLastActiveMap.put(string3, System.currentTimeMillis());
             }
-            if ((string2 = sessionFactoryMap.get(string3)) != null) {
-                object = object2;
-                object2 = string2;
+            SessionFactory cached = sessionFactoryMap.get(string3);
+            if (cached != null) {
+                redundantFactory = factory;
+                factory = cached;
             } else {
-                sessionFactoryMap.put(string3, (SessionFactory)object2);
+                sessionFactoryMap.put(string3, factory);
                 sessionFactoryLastActiveMap.put(string3, ALWAYSACTIVE);
-                DAOGlobal.registerDBDialect((SessionFactory)object2, (IDBDialect)((IDBDialect)ObjectHelper.create((String)((PSDBTypeBase)serializable2).getJdbcDialect())));
+                DAOGlobal.registerDBDialect(factory, (IDBDialect)ObjectHelper.create(dbType.getJdbcDialect()));
                 log.debug((Object)StringHelper.format((String)"\u6302\u63a5\u7cfb\u7edf\u6a21\u578b\u5e93[%1$s]\u4f1a\u8bdd\u5de5\u5382\uff0c\u5f53\u524d\u6570\u91cf[%2$s]", (Object)string3, (Object)sessionFactoryMap.size()));
             }
         }
-        map = sessionFactoryConfigurationMap;
-        synchronized (map) {
+        synchronized (sessionFactoryConfigurationMap) {
             sessionFactoryConfigurationMap.remove(string3);
         }
-        if (object != null) {
-            object.close();
+        if (redundantFactory != null) {
+            redundantFactory.close();
         }
-        return object2;
+        return factory;
     }
 
     public static void setCurrentPSSvrDomainId(String string) {
@@ -570,4 +537,3 @@ public class PSSysModelInstGlobal {
         return strPSSvrDomainId;
     }
 }
-

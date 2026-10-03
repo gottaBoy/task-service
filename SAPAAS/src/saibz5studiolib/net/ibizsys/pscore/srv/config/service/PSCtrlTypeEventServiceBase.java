@@ -139,9 +139,9 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
             PSCtrlEvent pSCtrlEvent = (PSCtrlEvent)iService.getDEModel().createEntity();
             pSCtrlEvent.set("PSCTRLEVENTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCtrlEvent);
+                iService.getTemp(pSCtrlEvent);
             } else {
-                iService.get((IEntity)pSCtrlEvent);
+                iService.get(pSCtrlEvent);
             }
             this.onFillParentInfo_PSCtrlEvent(pSCtrlTypeEvent, pSCtrlEvent);
             return;
@@ -151,14 +151,14 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
             PSCtrlType pSCtrlType = (PSCtrlType)iService.getDEModel().createEntity();
             pSCtrlType.set("PSCTRLTYPEID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSCtrlType);
+                iService.getTemp(pSCtrlType);
             } else {
-                iService.get((IEntity)pSCtrlType);
+                iService.get(pSCtrlType);
             }
             this.onFillParentInfo_PSCtrlType(pSCtrlTypeEvent, pSCtrlType);
             return;
         }
-        super.onFillParentInfo((IEntity)pSCtrlTypeEvent, string, string2, string3);
+        super.onFillParentInfo(pSCtrlTypeEvent, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -179,7 +179,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
         if (bl && pSCtrlTypeEvent.getValidFlag() == null) {
             pSCtrlTypeEvent.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
         }
-        super.onFillEntityFullInfo((IEntity)pSCtrlTypeEvent, bl);
+        super.onFillEntityFullInfo(pSCtrlTypeEvent, bl);
         this.onFillEntityFullInfo_PSCtrlEvent(pSCtrlTypeEvent, bl);
         this.onFillEntityFullInfo_PSCtrlType(pSCtrlTypeEvent, bl);
     }
@@ -191,7 +191,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
     }
 
     protected void onWriteBackParent(PSCtrlTypeEvent pSCtrlTypeEvent, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSCtrlTypeEvent, bl);
+        super.onWriteBackParent(pSCtrlTypeEvent, bl);
     }
 
     public ArrayList<PSCtrlTypeEvent> selectByPSCtrlEvent(PSCtrlEventBase pSCtrlEventBase) throws Exception {
@@ -246,8 +246,8 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
         ArrayList<PSCtrlTypeEvent> arrayList = this.selectByPSCtrlEvent(pSCtrlEvent, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSCTRLEVENT");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSCtrlEvent);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCTRLTYPEEVENT_PSCTRLEVENT_PSCTRLEVENTID", "", iDataEntityModel.getName(), "PSCTRLTYPEEVENT", iDataEntityModel.getDataInfo((IEntity)pSCtrlEvent), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSCtrlEvent);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSCTRLTYPEEVENT_PSCTRLEVENT_PSCTRLEVENTID", "", iDataEntityModel.getName(), "PSCTRLTYPEEVENT", iDataEntityModel.getDataInfo(pSCtrlEvent), arrayList.get(0)));
         }
     }
 
@@ -280,7 +280,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
         ArrayList<PSCtrlTypeEvent> arrayList = this.selectByPSCtrlEvent(pSCtrlEvent);
         this.onBeforeRemoveByPSCtrlEvent(pSCtrlEvent, arrayList);
         for (PSCtrlTypeEvent pSCtrlTypeEvent : arrayList) {
-            this.remove((IEntity)pSCtrlTypeEvent);
+            this.remove(pSCtrlTypeEvent);
         }
         this.onAfterRemoveByPSCtrlEvent(pSCtrlEvent, arrayList);
     }
@@ -326,7 +326,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
         ArrayList<PSCtrlTypeEvent> arrayList = this.selectByPSCtrlType(pSCtrlType);
         this.onBeforeRemoveByPSCtrlType(pSCtrlType, arrayList);
         for (PSCtrlTypeEvent pSCtrlTypeEvent : arrayList) {
-            this.remove((IEntity)pSCtrlTypeEvent);
+            this.remove(pSCtrlTypeEvent);
         }
         this.onAfterRemoveByPSCtrlType(pSCtrlType, arrayList);
     }
@@ -347,7 +347,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
 
     protected void replaceParentInfo(PSCtrlTypeEvent pSCtrlTypeEvent, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSCtrlTypeEvent, cloneSession);
+        super.replaceParentInfo(pSCtrlTypeEvent, cloneSession);
         if (pSCtrlTypeEvent.getPSCtrlEventId() != null && (iEntity = cloneSession.getEntity("PSCTRLEVENT", (Object)pSCtrlTypeEvent.getPSCtrlEventId())) != null) {
             this.onFillParentInfo_PSCtrlEvent(pSCtrlTypeEvent, (PSCtrlEvent)iEntity);
         }
@@ -357,7 +357,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
     }
 
     protected void onRemoveEntityUncopyValues(PSCtrlTypeEvent pSCtrlTypeEvent, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSCtrlTypeEvent, bl);
+        super.onRemoveEntityUncopyValues(pSCtrlTypeEvent, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSCtrlTypeEvent pSCtrlTypeEvent, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -387,7 +387,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
         if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSCtrlTypeEvent, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSCtrlTypeEvent, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSCtrlTypeEvent, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_Memo(boolean bl, PSCtrlTypeEvent pSCtrlTypeEvent, boolean bl2, boolean bl3) throws Exception {
@@ -400,7 +400,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSCtrlTypeEvent, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSCtrlTypeEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -422,7 +422,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_OrderValue_Default((IEntity)pSCtrlTypeEvent, bl2, bl3);
+            string = this.onTestValueRule_OrderValue_Default(pSCtrlTypeEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("ORDERVALUE");
@@ -444,7 +444,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlEventId_Default((IEntity)pSCtrlTypeEvent, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlEventId_Default(pSCtrlTypeEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLEVENTID");
@@ -469,7 +469,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeEventId_Default((IEntity)pSCtrlTypeEvent, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeEventId_Default(pSCtrlTypeEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPEEVENTID");
@@ -494,7 +494,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeEventName_Default((IEntity)pSCtrlTypeEvent, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeEventName_Default(pSCtrlTypeEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPEEVENTNAME");
@@ -516,7 +516,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSCtrlTypeId_Default((IEntity)pSCtrlTypeEvent, bl2, bl3);
+            string2 = this.onTestValueRule_PSCtrlTypeId_Default(pSCtrlTypeEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSCTRLTYPEID");
@@ -538,7 +538,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_R7DExample_Default((IEntity)pSCtrlTypeEvent, bl2, bl3);
+            string2 = this.onTestValueRule_R7DExample_Default(pSCtrlTypeEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("R7DEXAMPLE");
@@ -563,7 +563,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
                 return entityFieldError;
             }
             String string = null;
-            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSCtrlTypeEvent, bl2, bl3);
+            string = this.onTestValueRule_ValidFlag_Default(pSCtrlTypeEvent, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("VALIDFLAG");
@@ -576,11 +576,11 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
     }
 
     protected void onSyncEntity(PSCtrlTypeEvent pSCtrlTypeEvent, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSCtrlTypeEvent, bl);
+        super.onSyncEntity(pSCtrlTypeEvent, bl);
     }
 
     protected void onSyncIndexEntities(PSCtrlTypeEvent pSCtrlTypeEvent, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSCtrlTypeEvent, bl);
+        super.onSyncIndexEntities(pSCtrlTypeEvent, bl);
     }
 
     public Object getDataContextValue(PSCtrlTypeEvent pSCtrlTypeEvent, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -588,7 +588,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSCtrlTypeEvent, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSCtrlTypeEvent, string, iDataContextParam)) != null) {
             return object;
         }
         PSCtrlEvent pSCtrlEvent = pSCtrlTypeEvent.getPSCtrlEvent();
@@ -603,7 +603,7 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
     }
 
     protected void onExportMajorModel(PSCtrlTypeEvent pSCtrlTypeEvent, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSCtrlTypeEvent, arrayList, n);
+        super.onExportMajorModel(pSCtrlTypeEvent, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -790,14 +790,14 @@ extends PSCoreSysServiceBase<PSCtrlTypeEvent> {
 
     protected boolean onMergeChild(String string, String string2, PSCtrlTypeEvent pSCtrlTypeEvent) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSCtrlTypeEvent)) {
+        if (super.onMergeChild(string, string2, pSCtrlTypeEvent)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSCtrlTypeEvent pSCtrlTypeEvent) throws Exception {
-        super.onUpdateParent((IEntity)pSCtrlTypeEvent);
+        super.onUpdateParent(pSCtrlTypeEvent);
     }
 
     @Override

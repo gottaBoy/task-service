@@ -60,38 +60,36 @@ extends PSSysViewPanelItemServiceBase {
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
-                PSPanelItemLogic pSPanelItemLogic2;
                 PSPanelItemLogicService pSPanelItemLogicService = (PSPanelItemLogicService)ServiceGlobal.getService((String)PSPanelItemLogicService.class.getCanonicalName(), (SessionFactory)PSSysViewPanelItemService.this.getSessionFactory());
                 ArrayList<PSPanelItemLogic> arrayList = pSPanelItemLogicService.selectTempByPSSysViewPanelItem(pSSysViewPanelItem2);
                 HashMap<String, PSPanelItemLogic> hashMap = new HashMap<String, PSPanelItemLogic>();
-                for (PSPanelItemLogic pSPanelItemLogic2 : arrayList) {
-                    hashMap.put(pSPanelItemLogic2.getPSPanelItemLogicId(), pSPanelItemLogic2);
+                for (PSPanelItemLogic panelItemLogic : arrayList) {
+                    hashMap.put(panelItemLogic.getPSPanelItemLogicId(), panelItemLogic);
                 }
                 XmlNode xmlNode = null;
-                pSPanelItemLogic2 = null;
                 boolean bl = false;
                 String string = "";
-                Object object = new XmlNode();
-                object.setNodeName("PANELITEMLOGIC");
-                object.setAttribute("PSSYSVIEWPANELITEMID", pSSysViewPanelItem2.getPSSysViewPanelItemId());
-                object.setAttribute("PSSYSVIEWPANELID", pSSysViewPanelItem2.getPSSysViewPanelId());
-                string = XmlNode.export((XmlNode)object);
+                XmlNode defaultLogic = new XmlNode();
+                defaultLogic.setNodeName("PANELITEMLOGIC");
+                defaultLogic.setAttribute("PSSYSVIEWPANELITEMID", pSSysViewPanelItem2.getPSSysViewPanelItemId());
+                defaultLogic.setAttribute("PSSYSVIEWPANELID", pSSysViewPanelItem2.getPSSysViewPanelId());
+                string = XmlNode.export(defaultLogic);
                 if (StringHelper.compare((String)pSSysViewPanelItem2.getItemType(), (String)"FIELD", (boolean)true) == 0) {
-                    object = pSSysViewPanelItem2.getBlankLogic();
-                    pSPanelItemLogic2 = XmlNode.loadFromXML((String)object);
-                    if (pSPanelItemLogic2 != null) {
-                        PSSysViewPanelItemService.this.updatePSPanelItemLogics(pSSysViewPanelItem2, "ITEMBLANK", null, (XmlNode)pSPanelItemLogic2, hashMap);
-                        pSPanelItemLogic2.setAttribute("PSSYSVIEWPANELITEMID", pSSysViewPanelItem2.getPSSysViewPanelItemId());
-                        pSPanelItemLogic2.setAttribute("PSSYSVIEWPANELID", pSSysViewPanelItem2.getPSSysViewPanelId());
-                        pSSysViewPanelItem2.setBlankLogic(XmlNode.export((XmlNode)pSPanelItemLogic2));
+                    String blankLogic = pSSysViewPanelItem2.getBlankLogic();
+                    XmlNode blankNode = XmlNode.loadFromXML(blankLogic);
+                    if (blankNode != null) {
+                        PSSysViewPanelItemService.this.updatePSPanelItemLogics(pSSysViewPanelItem2, "ITEMBLANK", null, blankNode, hashMap);
+                        blankNode.setAttribute("PSSYSVIEWPANELITEMID", pSSysViewPanelItem2.getPSSysViewPanelItemId());
+                        blankNode.setAttribute("PSSYSVIEWPANELID", pSSysViewPanelItem2.getPSSysViewPanelId());
+                        pSSysViewPanelItem2.setBlankLogic(XmlNode.export(blankNode));
                     } else {
                         pSSysViewPanelItem2.setBlankLogic(string);
                     }
                 } else {
                     pSSysViewPanelItem2.setBlankLogic(string);
                 }
-                object = pSSysViewPanelItem2.getVisibleLogic();
-                XmlNode xmlNode2 = XmlNode.loadFromXML((String)object);
+                String visibleLogic = pSSysViewPanelItem2.getVisibleLogic();
+                XmlNode xmlNode2 = XmlNode.loadFromXML(visibleLogic);
                 if (xmlNode2 != null) {
                     PSSysViewPanelItemService.this.updatePSPanelItemLogics(pSSysViewPanelItem2, "PANELVISIBLE", null, xmlNode2, hashMap);
                     xmlNode2.setAttribute("PSSYSVIEWPANELITEMID", pSSysViewPanelItem2.getPSSysViewPanelItemId());
@@ -112,10 +110,10 @@ extends PSSysViewPanelItemServiceBase {
                 }
                 if (hashMap.size() > 0) {
                     for (PSPanelItemLogic pSPanelItemLogic3 : hashMap.values()) {
-                        pSPanelItemLogicService.removeTemp((IEntity)pSPanelItemLogic3);
+                        pSPanelItemLogicService.removeTemp(pSPanelItemLogic3);
                     }
                 }
-                PSSysViewPanelItemService.this.updateTemp((IEntity)pSSysViewPanelItem2);
+                PSSysViewPanelItemService.this.updateTemp(pSSysViewPanelItem2);
             }
         });
     }
@@ -123,7 +121,7 @@ extends PSSysViewPanelItemServiceBase {
     protected void updatePSPanelItemLogics(PSSysViewPanelItem pSSysViewPanelItem, String string, PSPanelItemLogic pSPanelItemLogic, XmlNode xmlNode, HashMap<String, PSPanelItemLogic> hashMap) throws Exception {
         Iterator iterator = xmlNode.getChildNodes();
         if (iterator != null) {
-            ArrayList<Object> arrayList = new ArrayList<Object>();
+            ArrayList<XmlNode> arrayList = new ArrayList<XmlNode>();
             PSPanelItemLogicService pSPanelItemLogicService = (PSPanelItemLogicService)ServiceGlobal.getService((String)PSPanelItemLogicService.class.getCanonicalName(), (SessionFactory)this.getSessionFactory());
             int n = 0;
             while (iterator.hasNext()) {
@@ -160,7 +158,7 @@ extends PSSysViewPanelItemServiceBase {
                     bl = true;
                 }
                 if (bl) {
-                    pSPanelItemLogicService.updateTemp((IEntity)pSPanelItemLogic2);
+                    pSPanelItemLogicService.updateTemp(pSPanelItemLogic2);
                 }
                 xmlNode2.resetAttributes();
                 pSPanelItemLogic2.fillXmlNode(xmlNode2, false);
@@ -211,7 +209,7 @@ extends PSSysViewPanelItemServiceBase {
         this.getTemp(pSSysViewPanelItem);
         if (StringHelper.isNullOrEmpty((String)pSSysViewPanelItem.getBlankLogic()) || StringHelper.isNullOrEmpty((String)pSSysViewPanelItem.getVisibleLogic()) || StringHelper.isNullOrEmpty((String)pSSysViewPanelItem.getEnableLogic())) {
             this.fillPanelItemModel(pSSysViewPanelItem);
-            this.updateTemp((IEntity)pSSysViewPanelItem);
+            this.updateTemp(pSSysViewPanelItem);
         }
     }
 
@@ -223,7 +221,7 @@ extends PSSysViewPanelItemServiceBase {
         ArrayList<PSPanelItemLogic> arrayList = pSPanelItemLogicService.selectTempByPSSysViewPanelItem(pSSysViewPanelItem, "ORDER BY ORDERVALUE");
         HashMap<String, XmlNode> hashMap = new HashMap<String, XmlNode>();
         for (PSPanelItemLogic object22 : arrayList) {
-            Object object = new XmlNode();
+            XmlNode object = new XmlNode();
             object.setNodeName(object22.getLogicType());
             object22.fillXmlNode((XmlNode)object, true);
             hashMap.put(object22.getPSPanelItemLogicId(), (XmlNode)object);
@@ -305,17 +303,17 @@ extends PSSysViewPanelItemServiceBase {
         ArrayList<PSSysViewPanelItem> arrayList = null;
         arrayList = pSSysViewPanel.getPSSysViewPanelId().indexOf("SRFTEMPKEY:") == 0 ? this.selectTempByPSSysViewPanel(pSSysViewPanel) : this.selectByPSSysViewPanel(pSSysViewPanel);
         HashMap<String, PSSysViewPanelItem> hashMap = new HashMap<String, PSSysViewPanelItem>();
-        Object object = arrayList.iterator();
-        while (object.hasNext()) {
-            PSSysViewPanelItem pSSysViewPanelItem2 = object.next();
+        for (PSSysViewPanelItem pSSysViewPanelItem2 : arrayList) {
             if (StringHelper.isNullOrEmpty((String)pSSysViewPanelItem2.getPSSysViewPanelItemName())) continue;
             hashMap.put(pSSysViewPanelItem2.getPSSysViewPanelItemName().toLowerCase(), pSSysViewPanelItem2);
         }
+        String candidateName;
         while (true) {
-            if (!hashMap.containsKey(object = StringHelper.format((String)"%1$s%2$s", (Object)string2, (Object)(n == 0 ? "" : Integer.valueOf(n))))) break;
+            candidateName = StringHelper.format((String)"%1$s%2$s", (Object)string2, (Object)(n == 0 ? "" : Integer.valueOf(n)));
+            if (!hashMap.containsKey(candidateName)) break;
             ++n;
         }
-        pSSysViewPanelItem.setPSSysViewPanelItemName((String)object);
+        pSSysViewPanelItem.setPSSysViewPanelItemName(candidateName);
     }
 
     @Override
@@ -365,7 +363,7 @@ extends PSSysViewPanelItemServiceBase {
         pSSysViewPanelItem2.setBlankLogic(null);
         pSSysViewPanelItem2.setEnableLogic(null);
         if (pSSysViewPanelItem2.getPSSysViewPanelItemId().indexOf("SRFTEMPKEY:") == 0) {
-            this.sysUpdateTemp((IEntity)pSSysViewPanelItem2, false);
+            this.sysUpdateTemp(pSSysViewPanelItem2, false);
         } else {
             this.sysUpdate(pSSysViewPanelItem2, false);
         }
@@ -400,7 +398,7 @@ extends PSSysViewPanelItemServiceBase {
     }
 
     public void getTemp(PSSysViewPanelItem pSSysViewPanelItem) throws Exception {
-        super.getTemp((IEntity)pSSysViewPanelItem);
+        super.getTemp(pSSysViewPanelItem);
     }
 
     @Override
@@ -411,7 +409,7 @@ extends PSSysViewPanelItemServiceBase {
 
     public void updateTemp(PSSysViewPanelItem pSSysViewPanelItem, boolean bl) throws Exception {
         pSSysViewPanelItem.resetPreviewHtml();
-        super.updateTemp((IEntity)pSSysViewPanelItem, bl);
+        super.updateTemp(pSSysViewPanelItem, bl);
     }
 
     public void fillPreviewHtml(final PSSysViewPanelItem pSSysViewPanelItem) throws Exception {
@@ -437,7 +435,7 @@ extends PSSysViewPanelItemServiceBase {
                     return;
                 }
                 String string = KeyValueHelper.genUniqueId((String)pSSysViewPanel.getPSSysApp().getPSPFId(), (String)("PSSYSVIEWPANELITEM|" + pSSysViewPanelItem.getItemType()));
-                String string2 = PSPFQuickPreviewHelper.getQuickTempl(string, (IEntity)pSSysViewPanelItem);
+                String string2 = PSPFQuickPreviewHelper.getQuickTempl(string, pSSysViewPanelItem);
                 pSSysViewPanelItem.setPreviewHtml(string2);
             }
         }, false);
@@ -445,14 +443,14 @@ extends PSSysViewPanelItemServiceBase {
 
     @Override
     public void getTempWithPreview(PSSysViewPanelItem pSSysViewPanelItem) throws Exception {
-        super.getTemp((IEntity)pSSysViewPanelItem);
+        super.getTemp(pSSysViewPanelItem);
         this.fillPreviewHtml(pSSysViewPanelItem);
     }
 
     @Override
     public void updateTempWithPreview(PSSysViewPanelItem pSSysViewPanelItem) throws Exception {
         pSSysViewPanelItem.resetPreviewHtml();
-        super.updateTemp((IEntity)pSSysViewPanelItem, true);
+        super.updateTemp(pSSysViewPanelItem, true);
         this.fillPreviewHtml(pSSysViewPanelItem);
     }
 

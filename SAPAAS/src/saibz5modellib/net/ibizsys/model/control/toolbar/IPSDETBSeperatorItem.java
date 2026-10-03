@@ -1,12 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.toolbar;
 
-import net.ibizsys.model.control.toolbar.IPSDEToolbarItem;
-
-public interface IPSDETBSeperatorItem
-extends IPSDEToolbarItem {
-    public boolean isSpanMode();
+/**
+ * 实体工具栏分隔项对象接口
+ * @author lionlau
+ *
+ */
+public interface IPSDETBSeperatorItem  extends IPSDEToolbarItem
+{ 
+	/**
+	 * 是否为横跨模式
+	 * @return
+	 */
+	boolean isSpanMode();
 }
-

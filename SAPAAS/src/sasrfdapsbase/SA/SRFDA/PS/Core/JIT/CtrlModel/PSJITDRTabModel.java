@@ -58,7 +58,7 @@ implements IPSJITCtrlModel {
     }
 
     protected void onPrepareRootItem(DRCtrlRootItem drCtrlRootItem) throws Exception {
-        ArrayList items = this.getPSDEDRTab().getRootItem().getAllItems();
+        ArrayList<IDRCtrlItem> items = this.getPSDEDRTab().getRootItem().getAllItems();
         for (IDRCtrlItem dritem : items) {
             DRCtrlItem drCtrlItem = drCtrlRootItem.addItem(dritem.getId(), dritem.getPId());
             drCtrlItem.setText(dritem.getText());
@@ -92,4 +92,3 @@ implements IPSJITCtrlModel {
         }
     }
 }
-

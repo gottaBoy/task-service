@@ -80,7 +80,7 @@ implements IPSDEDRDetailService {
     @Override
     protected List<PSDEDRDetail> onListAll() throws Exception {
         ArrayList<PSDEDRDetail> list = new ArrayList<PSDEDRDetail>();
-        List psdedatarelations = PSModelServiceUtil.getInstance().getPSDEDataRelationService().listAll();
+        List<PSDEDataRelation> psdedatarelations = PSModelServiceUtil.getInstance().getPSDEDataRelationService().listAll();
         if (psdedatarelations != null) {
             for (PSDEDataRelation parent : psdedatarelations) {
                 List<PSDEDRDetail> items = this.listByPSDEDataRelation(parent);

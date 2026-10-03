@@ -1,11 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.form;
 
-import net.ibizsys.model.control.form.IPSDEFormGroupPanel;
+/**
+ * 实体表单分页部件分页对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEFormTabPage extends IPSDEFormGroupPanel
+{
 
-public interface IPSDEFormTabPage
-extends IPSDEFormGroupPanel {
 }
-

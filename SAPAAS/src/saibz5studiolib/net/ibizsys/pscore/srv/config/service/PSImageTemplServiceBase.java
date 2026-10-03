@@ -122,7 +122,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
     }
 
     protected void onFillParentInfo(PSImageTempl pSImageTempl, String string, String string2, String string3) throws Exception {
-        super.onFillParentInfo((IEntity)pSImageTempl, string, string2, string3);
+        super.onFillParentInfo(pSImageTempl, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -133,11 +133,11 @@ extends PSCoreSysServiceBase<PSImageTempl> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSImageTempl, bl);
+        super.onFillEntityFullInfo(pSImageTempl, bl);
     }
 
     protected void onWriteBackParent(PSImageTempl pSImageTempl, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSImageTempl, bl);
+        super.onWriteBackParent(pSImageTempl, bl);
     }
 
     @Override
@@ -152,7 +152,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
     }
 
     protected void onRemoveEntityUncopyValues(PSImageTempl pSImageTempl, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSImageTempl, bl);
+        super.onRemoveEntityUncopyValues(pSImageTempl, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSImageTempl pSImageTempl, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -188,7 +188,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
         if ((entityFieldError = this.onCheckField_Width(bl, pSImageTempl, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSImageTempl, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSImageTempl, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_CssClass(boolean bl, PSImageTempl pSImageTempl, boolean bl2, boolean bl3) throws Exception {
@@ -201,7 +201,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_CssClass_Default((IEntity)pSImageTempl, bl2, bl3);
+            string2 = this.onTestValueRule_CssClass_Default(pSImageTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("CSSCLASS");
@@ -223,7 +223,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Glyph_Default((IEntity)pSImageTempl, bl2, bl3);
+            string2 = this.onTestValueRule_Glyph_Default(pSImageTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("GLYPH");
@@ -245,7 +245,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Height_Default((IEntity)pSImageTempl, bl2, bl3);
+            string = this.onTestValueRule_Height_Default(pSImageTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("HEIGHT");
@@ -270,7 +270,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ImagePath_Default((IEntity)pSImageTempl, bl2, bl3);
+            string2 = this.onTestValueRule_ImagePath_Default(pSImageTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IMAGEPATH");
@@ -292,7 +292,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ImageSrc_Default((IEntity)pSImageTempl, bl2, bl3);
+            string2 = this.onTestValueRule_ImageSrc_Default(pSImageTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IMAGESRC");
@@ -314,7 +314,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_ImageType_Default((IEntity)pSImageTempl, bl2, bl3);
+            string2 = this.onTestValueRule_ImageType_Default(pSImageTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("IMAGETYPE");
@@ -336,7 +336,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_Memo_Default((IEntity)pSImageTempl, bl2, bl3);
+            string2 = this.onTestValueRule_Memo_Default(pSImageTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("MEMO");
@@ -361,7 +361,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSImageTemplId_Default((IEntity)pSImageTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSImageTemplId_Default(pSImageTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSIMAGETEMPLID");
@@ -386,7 +386,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSImageTemplName_Default((IEntity)pSImageTempl, bl2, bl3);
+            string2 = this.onTestValueRule_PSImageTemplName_Default(pSImageTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSIMAGETEMPLNAME");
@@ -408,7 +408,7 @@ extends PSCoreSysServiceBase<PSImageTempl> {
                 // empty if block
             }
             String string = null;
-            string = this.onTestValueRule_Width_Default((IEntity)pSImageTempl, bl2, bl3);
+            string = this.onTestValueRule_Width_Default(pSImageTempl, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("WIDTH");
@@ -421,11 +421,11 @@ extends PSCoreSysServiceBase<PSImageTempl> {
     }
 
     protected void onSyncEntity(PSImageTempl pSImageTempl, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSImageTempl, bl);
+        super.onSyncEntity(pSImageTempl, bl);
     }
 
     protected void onSyncIndexEntities(PSImageTempl pSImageTempl, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSImageTempl, bl);
+        super.onSyncIndexEntities(pSImageTempl, bl);
     }
 
     public Object getDataContextValue(PSImageTempl pSImageTempl, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -433,14 +433,14 @@ extends PSCoreSysServiceBase<PSImageTempl> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSImageTempl, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSImageTempl, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSImageTempl pSImageTempl, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSImageTempl, arrayList, n);
+        super.onExportMajorModel(pSImageTempl, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -627,14 +627,14 @@ extends PSCoreSysServiceBase<PSImageTempl> {
 
     protected boolean onMergeChild(String string, String string2, PSImageTempl pSImageTempl) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSImageTempl)) {
+        if (super.onMergeChild(string, string2, pSImageTempl)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSImageTempl pSImageTempl) throws Exception {
-        super.onUpdateParent((IEntity)pSImageTempl);
+        super.onUpdateParent(pSImageTempl);
     }
 
     @Override

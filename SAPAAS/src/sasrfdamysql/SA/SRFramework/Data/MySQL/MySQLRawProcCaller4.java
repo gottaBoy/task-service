@@ -19,10 +19,10 @@ import SA.SRFramework.Data.MySQL.MySQLDBProcCallerEx;
 import SA.SRFramework.Data.MySQL.MySQLDataSet;
 import SA.SRFramework.Data.SelectResult;
 import SA.SRFramework.Utility.StringHelper;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Vector;
@@ -45,7 +45,7 @@ implements IDBRawProcCaller4 {
             return dbResult;
         }
         Hashtable<Integer, String> outputParamList = new Hashtable<Integer, String>();
-        Statement cstmt = null;
+        CallableStatement cstmt = null;
         try {
             try {
                 int nParamCount = 0;
@@ -149,4 +149,3 @@ implements IDBRawProcCaller4 {
         return strCall;
     }
 }
-

@@ -375,15 +375,15 @@ implements IPSSysTestCaseService {
 
     @Override
     protected List<PSSysTestCase> onListAll() throws Exception {
-        List pssystems;
-        List psdeserviceapis;
-        List psdefields;
-        List psappviews;
-        List pssystestprjs;
-        List psdelogics;
-        List psdeactions;
+        List<PSSystem> pssystems;
+        List<PSDEServiceAPI> psdeserviceapis;
+        List<PSDEField> psdefields;
+        List<PSAppView> psappviews;
+        List<PSSysTestPrj> pssystestprjs;
+        List<PSDELogic> psdelogics;
+        List<PSDEAction> psdeactions;
         ArrayList<PSSysTestCase> list = new ArrayList<PSSysTestCase>();
-        List psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
+        List<PSDataEntity> psdataentities = PSModelServiceUtil.getInstance().getPSDataEntityService().listAll();
         if (psdataentities != null) {
             for (PSDataEntity parent : psdataentities) {
                 List<PSSysTestCase> items = this.listByPSDataEntity(parent);
@@ -875,18 +875,19 @@ implements IPSSysTestCaseService {
             dto.setPSSysServiceAPIId(null);
             dto.setPSSysTestPrjName(null);
         }
-        List<PSModelBase> list = PSModelServiceUtil.getInstance().getPSSysTCInputService().listByPSSysTestCase(t);
-        if (list != null && list.size() > 0) {
+        List<PSSysTCInput> pSSysTCInputList = PSModelServiceUtil.getInstance().getPSSysTCInputService().listByPSSysTestCase(t);
+        if (pSSysTCInputList != null && pSSysTCInputList.size() > 0) {
             ArrayList<PSSysTCInputDTO> pssystcinputs = new ArrayList<PSSysTCInputDTO>();
-            for (PSSysTCInput pSSysTCInput : list) {
+            for (PSSysTCInput pSSysTCInput : pSSysTCInputList) {
                 dstItem = (PSSysTCInputDTO)PSModelServiceUtil.getInstance().getPSSysTCInputService().toDTO(pSSysTCInput);
                 pssystcinputs.add((PSSysTCInputDTO)dstItem);
             }
             dto.setPssystcinputs(pssystcinputs);
         }
-        if ((list = PSModelServiceUtil.getInstance().getPSSysTCAssertService().listByPSSysTestCase(t)) != null && list.size() > 0) {
+        List<PSSysTCAssert> pSSysTCAssertList = PSModelServiceUtil.getInstance().getPSSysTCAssertService().listByPSSysTestCase(t);
+        if (pSSysTCAssertList != null && pSSysTCAssertList.size() > 0) {
             ArrayList<PSSysTCAssertDTO> pssystcasserts = new ArrayList<PSSysTCAssertDTO>();
-            for (PSSysTCAssert pSSysTCAssert : list) {
+            for (PSSysTCAssert pSSysTCAssert : pSSysTCAssertList) {
                 dstItem = (PSSysTCAssertDTO)PSModelServiceUtil.getInstance().getPSSysTCAssertService().toDTO(pSSysTCAssert);
                 pssystcasserts.add((PSSysTCAssertDTO)dstItem);
             }

@@ -1,21 +1,31 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  TransformerException
- */
 package SA.SRFDA.EAI.Ctrl.Transformer;
 
-import SA.SRFDA.EAI.Ctrl.Transformer.BaseTransformer;
+import SA.SRFramework.DataEx.BaseDataEntity;
+import java.nio.ByteBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.CodingErrorAction;
 
-public class JSON2DataEntity
-extends BaseTransformer {
+public class JSON2DataEntity extends BaseTransformer {
     public JSON2DataEntity() {
-        throw new Error("Unresolved compilation problems: \n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe hierarchy of the type JSON2DataEntity is inconsistent\n\tThe method doTransform(Object, String) of type JSON2DataEntity must override or implement a supertype method\n\tTransformerException cannot be resolved to a type\n\tThe method GetString(BaseTransformer, Object, String) from the type TransformerHelper refers to the missing type TransformerException\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n");
     }
 
-    protected Object doTransform(Object object, String string) throws TransformerException {
-        throw new Error("Unresolved compilation problems: \n\tThe method doTransform(Object, String) of type JSON2DataEntity must override or implement a supertype method\n\tTransformerException cannot be resolved to a type\n\tThe method GetString(BaseTransformer, Object, String) from the type TransformerHelper refers to the missing type TransformerException\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n");
+    protected Object doTransform(Object object, String encoding) {
+        if (object instanceof byte[]) {
+            String charset = GetConfig(TAG_ENCODING, encoding == null ? "UTF-8" : encoding);
+            try {
+                object = Charset.forName(charset).newDecoder()
+                        .onMalformedInput(CodingErrorAction.REPORT)
+                        .onUnmappableCharacter(CodingErrorAction.REPORT)
+                        .decode(ByteBuffer.wrap((byte[])object)).toString();
+            } catch (CharacterCodingException ex) {
+                throw new IllegalArgumentException("Invalid JSON bytes for encoding " + charset, ex);
+            }
+        }
+        if (!(object instanceof String)) {
+            throw new IllegalArgumentException("Expected JSON String or byte[], got "
+                    + (object == null ? "null" : object.getClass().getName()));
+        }
+        return BaseDataEntity.FromJSONString((String)object);
     }
 }
-

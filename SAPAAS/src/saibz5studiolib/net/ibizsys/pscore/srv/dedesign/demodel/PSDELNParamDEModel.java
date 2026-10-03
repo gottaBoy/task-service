@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.dedesign.demodel.PSDELNParamDEModelBase;
 
 public class PSDELNParamDEModel
 extends PSDELNParamDEModelBase {
+
+    public PSDELNParamDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

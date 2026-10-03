@@ -46,14 +46,14 @@ extends PSDCBKTaskServiceBase {
 
     @Override
     protected void onStartTask(PSDCBKTask pSDCBKTask) throws Exception {
-        this.get((IEntity)pSDCBKTask);
-        this.executeAction("X2_STARTTASK", (IEntity)pSDCBKTask);
+        this.get(pSDCBKTask);
+        this.executeAction("X2_STARTTASK", pSDCBKTask);
     }
 
     @Override
     protected void onCancelTask(PSDCBKTask pSDCBKTask) throws Exception {
-        this.get((IEntity)pSDCBKTask);
-        this.executeAction("X2_CANCELTASK", (IEntity)pSDCBKTask);
+        this.get(pSDCBKTask);
+        this.executeAction("X2_CANCELTASK", pSDCBKTask);
     }
 
     @Override
@@ -74,18 +74,18 @@ extends PSDCBKTaskServiceBase {
 
     @Override
     protected RemoteCallResult executeRemoteCall(String string, IEntity iEntity, boolean bl) throws Exception {
-        Object object;
+        String taskServerId;
         if (!iEntity.isFullEntity()) {
-            object = new PSDCBKTask();
-            ((PSDCBKTaskBase)object).setPSDCBKTaskId(DataObject.getStringValue((Object)iEntity.get("PSDCBKTASKID"), (String)""));
-            this.get((IEntity)object);
-            object.copyTo((IDataObject)iEntity, true);
+            PSDCBKTask task = new PSDCBKTask();
+            task.setPSDCBKTaskId(DataObject.getStringValue((Object)iEntity.get("PSDCBKTASKID"), (String)""));
+            this.get(task);
+            task.copyTo((IDataObject)iEntity, true);
         }
-        if (!StringHelper.isNullOrEmpty((String)(object = DataObject.getStringValue((Object)iEntity.get("PSTASKSERVERID"), (String)"")))) {
+        if (!StringHelper.isNullOrEmpty((String)(taskServerId = DataObject.getStringValue((Object)iEntity.get("PSTASKSERVERID"), (String)"")))) {
             PSTaskServerService pSTaskServerService = (PSTaskServerService)ServiceGlobal.getService(PSTaskServerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSTaskServer pSTaskServer = new PSTaskServer();
-            pSTaskServer.setPSTaskServerId((String)object);
-            if (pSTaskServerService.get((IEntity)pSTaskServer, true)) {
+            pSTaskServer.setPSTaskServerId(taskServerId);
+            if (pSTaskServerService.get(pSTaskServer, true)) {
                 return super.executeRemoteCall(pSTaskServer, string, iEntity, bl);
             }
         }
@@ -119,7 +119,7 @@ extends PSDCBKTaskServiceBase {
     protected void onBeforeUpdate(PSDCBKTask pSDCBKTask) throws Exception {
         if (this.getSessionFactory() == PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             Object object;
-            PSDCBKTask pSDCBKTask2 = (PSDCBKTask)this.getLast((IEntity)pSDCBKTask);
+            PSDCBKTask pSDCBKTask2 = (PSDCBKTask)this.getLast(pSDCBKTask);
             if ("USER".equalsIgnoreCase(pSDCBKTask2.getTaskType()) || "IBIZCENTRAL".equalsIgnoreCase(pSDCBKTask.getTaskType())) {
                 int n = DataTypeHelper.getIntegerValue((Object)pSDCBKTask2.getTaskState(), (Integer)10);
                 if (n == 30 || n == 40) {
@@ -172,4 +172,3 @@ extends PSDCBKTaskServiceBase {
         super.onAfterUpdate(pSDCBKTask);
     }
 }
-

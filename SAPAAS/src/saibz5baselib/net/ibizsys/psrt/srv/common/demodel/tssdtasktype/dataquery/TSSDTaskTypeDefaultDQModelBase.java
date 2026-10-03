@@ -1,20 +1,125 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 机器人生产代码（不要直接修改当前代码）
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.demodel.tssdtasktype.dataquery;
 
+
+
 import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCodes;
 import net.ibizsys.paas.core.DEDataQueryCode;
 import net.ibizsys.paas.core.DEDataQueryCodeExp;
-import net.ibizsys.paas.core.DEDataQueryCodes;
-import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
 
-@DEDataQuery(id="71E909AB-2C02-4C2A-8CD2-BC4F9278FB7F", name="DEFAULT")
-@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.TASKOBJECT, t1.TSSDTASKTYPEID, t1.TSSDTASKTYPENAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFTSSDTASKTYPE t1  ", querycodetemp="", declarecode="", dbtype="DB2", fieldexps={@DEDataQueryCodeExp(name="TASKTYPEPARAM", expression="t1.TASKTYPEPARAM", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=2), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.RESERVER2", showorder=3), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.RESERVER3", showorder=4), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.RESERVER4", showorder=5), @DEDataQueryCodeExp(name="TASKOBJECT", expression="t1.TASKOBJECT", showorder=6), @DEDataQueryCodeExp(name="TSSDTASKTYPEID", expression="t1.TSSDTASKTYPEID", showorder=7), @DEDataQueryCodeExp(name="TSSDTASKTYPENAME", expression="t1.TSSDTASKTYPENAME", showorder=8), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=9), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=10)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`reserver`, t1.`reserver2`, t1.`reserver3`, t1.`reserver4`, t1.`taskobject`, t1.`tssdtasktypeid`, t1.`tssdtasktypename`, t1.`updatedate`, t1.`updateman` FROM `t_srftssdtasktype` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="TASKTYPEPARAM", expression="t1.`tasktypeparam`", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`createdate`", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`createman`", showorder=1), @DEDataQueryCodeExp(name="RESERVER", expression="t1.`reserver`", showorder=2), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.`reserver2`", showorder=3), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.`reserver3`", showorder=4), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.`reserver4`", showorder=5), @DEDataQueryCodeExp(name="TASKOBJECT", expression="t1.`taskobject`", showorder=6), @DEDataQueryCodeExp(name="TSSDTASKTYPEID", expression="t1.`tssdtasktypeid`", showorder=7), @DEDataQueryCodeExp(name="TSSDTASKTYPENAME", expression="t1.`tssdtasktypename`", showorder=8), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`updatedate`", showorder=9), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`updateman`", showorder=10)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.TASKOBJECT, t1.TSSDTASKTYPEID, t1.TSSDTASKTYPENAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFTSSDTASKTYPE t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="TASKTYPEPARAM", expression="t1.TASKTYPEPARAM", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=2), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.RESERVER2", showorder=3), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.RESERVER3", showorder=4), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.RESERVER4", showorder=5), @DEDataQueryCodeExp(name="TASKOBJECT", expression="t1.TASKOBJECT", showorder=6), @DEDataQueryCodeExp(name="TSSDTASKTYPEID", expression="t1.TSSDTASKTYPEID", showorder=7), @DEDataQueryCodeExp(name="TSSDTASKTYPENAME", expression="t1.TSSDTASKTYPENAME", showorder=8), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=9), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=10)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.TASKOBJECT, t1.TSSDTASKTYPEID, t1.TSSDTASKTYPENAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFTSSDTASKTYPE t1  ", querycodetemp="", declarecode="", dbtype="POSTGRESQL", fieldexps={@DEDataQueryCodeExp(name="TASKTYPEPARAM", expression="t1.TASKTYPEPARAM", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=2), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.RESERVER2", showorder=3), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.RESERVER3", showorder=4), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.RESERVER4", showorder=5), @DEDataQueryCodeExp(name="TASKOBJECT", expression="t1.TASKOBJECT", showorder=6), @DEDataQueryCodeExp(name="TSSDTASKTYPEID", expression="t1.TSSDTASKTYPEID", showorder=7), @DEDataQueryCodeExp(name="TSSDTASKTYPENAME", expression="t1.TSSDTASKTYPENAME", showorder=8), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=9), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=10)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.TASKOBJECT, t1.TSSDTASKTYPEID, t1.TSSDTASKTYPENAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFTSSDTASKTYPE t1  ", querycodetemp="", declarecode="", dbtype="PPAS", fieldexps={@DEDataQueryCodeExp(name="TASKTYPEPARAM", expression="t1.TASKTYPEPARAM", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="RESERVER", expression="t1.RESERVER", showorder=2), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.RESERVER2", showorder=3), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.RESERVER3", showorder=4), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.RESERVER4", showorder=5), @DEDataQueryCodeExp(name="TASKOBJECT", expression="t1.TASKOBJECT", showorder=6), @DEDataQueryCodeExp(name="TSSDTASKTYPEID", expression="t1.TSSDTASKTYPEID", showorder=7), @DEDataQueryCodeExp(name="TSSDTASKTYPENAME", expression="t1.TSSDTASKTYPENAME", showorder=8), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=9), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=10)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[RESERVER], t1.[RESERVER2], t1.[RESERVER3], t1.[RESERVER4], t1.[TASKOBJECT], t1.[TSSDTASKTYPEID], t1.[TSSDTASKTYPENAME], t1.[UPDATEDATE], t1.[UPDATEMAN] FROM [T_SRFTSSDTASKTYPE] t1  ", querycodetemp="", declarecode="", dbtype="SQLSERVER", fieldexps={@DEDataQueryCodeExp(name="TASKTYPEPARAM", expression="t1.[TASKTYPEPARAM]", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.[CREATEDATE]", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.[CREATEMAN]", showorder=1), @DEDataQueryCodeExp(name="RESERVER", expression="t1.[RESERVER]", showorder=2), @DEDataQueryCodeExp(name="RESERVER2", expression="t1.[RESERVER2]", showorder=3), @DEDataQueryCodeExp(name="RESERVER3", expression="t1.[RESERVER3]", showorder=4), @DEDataQueryCodeExp(name="RESERVER4", expression="t1.[RESERVER4]", showorder=5), @DEDataQueryCodeExp(name="TASKOBJECT", expression="t1.[TASKOBJECT]", showorder=6), @DEDataQueryCodeExp(name="TSSDTASKTYPEID", expression="t1.[TSSDTASKTYPEID]", showorder=7), @DEDataQueryCodeExp(name="TSSDTASKTYPENAME", expression="t1.[TSSDTASKTYPENAME]", showorder=8), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.[UPDATEDATE]", showorder=9), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.[UPDATEMAN]", showorder=10)}, conds={})})
-public abstract class TSSDTaskTypeDefaultDQModelBase
-extends DEDataQueryModelBase {
+@DEDataQuery(id="71E909AB-2C02-4C2A-8CD2-BC4F9278FB7F",name="DEFAULT" )
+@DEDataQueryCodes({
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.TASKOBJECT, t1.TSSDTASKTYPEID, t1.TSSDTASKTYPENAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFTSSDTASKTYPE t1  ",querycodetemp="",declarecode="",dbtype="DB2",
+    fieldexps={
+        @DEDataQueryCodeExp(name="TASKTYPEPARAM",expression="t1.TASKTYPEPARAM",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=2)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.RESERVER2",showorder=3)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.RESERVER3",showorder=4)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.RESERVER4",showorder=5)
+        ,@DEDataQueryCodeExp(name="TASKOBJECT",expression="t1.TASKOBJECT",showorder=6)
+        ,@DEDataQueryCodeExp(name="TSSDTASKTYPEID",expression="t1.TSSDTASKTYPEID",showorder=7)
+        ,@DEDataQueryCodeExp(name="TSSDTASKTYPENAME",expression="t1.TSSDTASKTYPENAME",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=9)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=10)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.`createdate`, t1.`createman`, t1.`reserver`, t1.`reserver2`, t1.`reserver3`, t1.`reserver4`, t1.`taskobject`, t1.`tssdtasktypeid`, t1.`tssdtasktypename`, t1.`updatedate`, t1.`updateman` FROM `t_srftssdtasktype` t1  ",querycodetemp="",declarecode="",dbtype="MYSQL5",
+    fieldexps={
+        @DEDataQueryCodeExp(name="TASKTYPEPARAM",expression="t1.`tasktypeparam`",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.`createdate`",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.`createman`",showorder=1)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.`reserver`",showorder=2)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.`reserver2`",showorder=3)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.`reserver3`",showorder=4)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.`reserver4`",showorder=5)
+        ,@DEDataQueryCodeExp(name="TASKOBJECT",expression="t1.`taskobject`",showorder=6)
+        ,@DEDataQueryCodeExp(name="TSSDTASKTYPEID",expression="t1.`tssdtasktypeid`",showorder=7)
+        ,@DEDataQueryCodeExp(name="TSSDTASKTYPENAME",expression="t1.`tssdtasktypename`",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.`updatedate`",showorder=9)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.`updateman`",showorder=10)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.TASKOBJECT, t1.TSSDTASKTYPEID, t1.TSSDTASKTYPENAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFTSSDTASKTYPE t1  ",querycodetemp="",declarecode="",dbtype="ORACLE",
+    fieldexps={
+        @DEDataQueryCodeExp(name="TASKTYPEPARAM",expression="t1.TASKTYPEPARAM",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=2)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.RESERVER2",showorder=3)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.RESERVER3",showorder=4)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.RESERVER4",showorder=5)
+        ,@DEDataQueryCodeExp(name="TASKOBJECT",expression="t1.TASKOBJECT",showorder=6)
+        ,@DEDataQueryCodeExp(name="TSSDTASKTYPEID",expression="t1.TSSDTASKTYPEID",showorder=7)
+        ,@DEDataQueryCodeExp(name="TSSDTASKTYPENAME",expression="t1.TSSDTASKTYPENAME",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=9)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=10)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.TASKOBJECT, t1.TSSDTASKTYPEID, t1.TSSDTASKTYPENAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFTSSDTASKTYPE t1  ",querycodetemp="",declarecode="",dbtype="POSTGRESQL",
+    fieldexps={
+        @DEDataQueryCodeExp(name="TASKTYPEPARAM",expression="t1.TASKTYPEPARAM",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=2)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.RESERVER2",showorder=3)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.RESERVER3",showorder=4)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.RESERVER4",showorder=5)
+        ,@DEDataQueryCodeExp(name="TASKOBJECT",expression="t1.TASKOBJECT",showorder=6)
+        ,@DEDataQueryCodeExp(name="TSSDTASKTYPEID",expression="t1.TSSDTASKTYPEID",showorder=7)
+        ,@DEDataQueryCodeExp(name="TSSDTASKTYPENAME",expression="t1.TSSDTASKTYPENAME",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=9)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=10)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.RESERVER, t1.RESERVER2, t1.RESERVER3, t1.RESERVER4, t1.TASKOBJECT, t1.TSSDTASKTYPEID, t1.TSSDTASKTYPENAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFTSSDTASKTYPE t1  ",querycodetemp="",declarecode="",dbtype="PPAS",
+    fieldexps={
+        @DEDataQueryCodeExp(name="TASKTYPEPARAM",expression="t1.TASKTYPEPARAM",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.CREATEDATE",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.CREATEMAN",showorder=1)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.RESERVER",showorder=2)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.RESERVER2",showorder=3)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.RESERVER3",showorder=4)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.RESERVER4",showorder=5)
+        ,@DEDataQueryCodeExp(name="TASKOBJECT",expression="t1.TASKOBJECT",showorder=6)
+        ,@DEDataQueryCodeExp(name="TSSDTASKTYPEID",expression="t1.TSSDTASKTYPEID",showorder=7)
+        ,@DEDataQueryCodeExp(name="TSSDTASKTYPENAME",expression="t1.TSSDTASKTYPENAME",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.UPDATEDATE",showorder=9)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.UPDATEMAN",showorder=10)
+    },
+    conds={}),
+    @DEDataQueryCode(querycode="SELECT t1.[CREATEDATE], t1.[CREATEMAN], t1.[RESERVER], t1.[RESERVER2], t1.[RESERVER3], t1.[RESERVER4], t1.[TASKOBJECT], t1.[TSSDTASKTYPEID], t1.[TSSDTASKTYPENAME], t1.[UPDATEDATE], t1.[UPDATEMAN] FROM [T_SRFTSSDTASKTYPE] t1  ",querycodetemp="",declarecode="",dbtype="SQLSERVER",
+    fieldexps={
+        @DEDataQueryCodeExp(name="TASKTYPEPARAM",expression="t1.[TASKTYPEPARAM]",showorder=-1)
+        ,@DEDataQueryCodeExp(name="CREATEDATE",expression="t1.[CREATEDATE]",showorder=0)
+        ,@DEDataQueryCodeExp(name="CREATEMAN",expression="t1.[CREATEMAN]",showorder=1)
+        ,@DEDataQueryCodeExp(name="RESERVER",expression="t1.[RESERVER]",showorder=2)
+        ,@DEDataQueryCodeExp(name="RESERVER2",expression="t1.[RESERVER2]",showorder=3)
+        ,@DEDataQueryCodeExp(name="RESERVER3",expression="t1.[RESERVER3]",showorder=4)
+        ,@DEDataQueryCodeExp(name="RESERVER4",expression="t1.[RESERVER4]",showorder=5)
+        ,@DEDataQueryCodeExp(name="TASKOBJECT",expression="t1.[TASKOBJECT]",showorder=6)
+        ,@DEDataQueryCodeExp(name="TSSDTASKTYPEID",expression="t1.[TSSDTASKTYPEID]",showorder=7)
+        ,@DEDataQueryCodeExp(name="TSSDTASKTYPENAME",expression="t1.[TSSDTASKTYPENAME]",showorder=8)
+        ,@DEDataQueryCodeExp(name="UPDATEDATE",expression="t1.[UPDATEDATE]",showorder=9)
+        ,@DEDataQueryCodeExp(name="UPDATEMAN",expression="t1.[UPDATEMAN]",showorder=10)
+    },
+    conds={})
+})
+/**
+ *  实体数据查询 [DEFAULT]模型基类
+ */
+public abstract class TSSDTaskTypeDefaultDQModelBase extends net.ibizsys.paas.demodel.DEDataQueryModelBase {
+
     public TSSDTaskTypeDefaultDQModelBase() {
+        super();
+
         this.initAnnotation(TSSDTaskTypeDefaultDQModelBase.class);
     }
-}
 
+}

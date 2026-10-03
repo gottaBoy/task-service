@@ -1,11 +1,13 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package net.ibizsys.model.control.form;
 
-import net.ibizsys.model.control.form.IPSDEFFormItem;
 
-public interface IPSDEFSearchFormItem
-extends IPSDEFFormItem {
+/**
+ * 实体属性搜索表单项对象接口
+ * @author Administrator
+ *
+ */
+public interface IPSDEFSearchFormItem extends IPSDEFFormItem
+{
+	
+	 
 }
-

@@ -3340,7 +3340,7 @@ implements Serializable {
                 PSSysBICubeDimension pSSysBICubeDimension = new PSSysBICubeDimension();
                 pSSysBICubeDimension.setPSSysBICubeDimensionId(this.getPSSysBICubeDimensionId());
                 PSSysBICubeDimensionService pSSysBICubeDimensionService = (PSSysBICubeDimensionService)ServiceGlobal.getService(PSSysBICubeDimensionService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBICubeDimensionService.autoGet((IEntity)pSSysBICubeDimension);
+                pSSysBICubeDimensionService.autoGet(pSSysBICubeDimension);
                 this.pssysbicubedimension = pSSysBICubeDimension;
             }
             return this.pssysbicubedimension;
@@ -3366,7 +3366,7 @@ implements Serializable {
                 PSSysBICubeLevel pSSysBICubeLevel = new PSSysBICubeLevel();
                 pSSysBICubeLevel.setPSSysBICubeLevelId(this.getPSSysBICubeLevelId());
                 PSSysBICubeLevelService pSSysBICubeLevelService = (PSSysBICubeLevelService)ServiceGlobal.getService(PSSysBICubeLevelService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBICubeLevelService.autoGet((IEntity)pSSysBICubeLevel);
+                pSSysBICubeLevelService.autoGet(pSSysBICubeLevel);
                 this.pssysbicubelevel = pSSysBICubeLevel;
             }
             return this.pssysbicubelevel;
@@ -3392,7 +3392,7 @@ implements Serializable {
                 PSSysBICubeMeasure pSSysBICubeMeasure = new PSSysBICubeMeasure();
                 pSSysBICubeMeasure.setPSSysBICubeMeasureId(this.getPSSysBICubeMeasureId());
                 PSSysBICubeMeasureService pSSysBICubeMeasureService = (PSSysBICubeMeasureService)ServiceGlobal.getService(PSSysBICubeMeasureService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBICubeMeasureService.autoGet((IEntity)pSSysBICubeMeasure);
+                pSSysBICubeMeasureService.autoGet(pSSysBICubeMeasure);
                 this.pssysbicubemeasure = pSSysBICubeMeasure;
             }
             return this.pssysbicubemeasure;
@@ -3418,7 +3418,7 @@ implements Serializable {
                 PSSysBICubeMeasure pSSysBICubeMeasure = new PSSysBICubeMeasure();
                 pSSysBICubeMeasure.setPSSysBICubeMeasureId(this.getRefPSSysBICubeMeasureId());
                 PSSysBICubeMeasureService pSSysBICubeMeasureService = (PSSysBICubeMeasureService)ServiceGlobal.getService(PSSysBICubeMeasureService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBICubeMeasureService.autoGet((IEntity)pSSysBICubeMeasure);
+                pSSysBICubeMeasureService.autoGet(pSSysBICubeMeasure);
                 this.refpssysbicubemeasure = pSSysBICubeMeasure;
             }
             return this.refpssysbicubemeasure;
@@ -3444,7 +3444,7 @@ implements Serializable {
                 PSSysBICube pSSysBICube = new PSSysBICube();
                 pSSysBICube.setPSSysBICubeId(this.getPSSysBICubeId());
                 PSSysBICubeService pSSysBICubeService = (PSSysBICubeService)ServiceGlobal.getService(PSSysBICubeService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBICubeService.autoGet((IEntity)pSSysBICube);
+                pSSysBICubeService.autoGet(pSSysBICube);
                 this.pssysbicube = pSSysBICube;
             }
             return this.pssysbicube;
@@ -3470,7 +3470,7 @@ implements Serializable {
                 PSSysBIReportItem pSSysBIReportItem = new PSSysBIReportItem();
                 pSSysBIReportItem.setPSSysBIReportItemId(this.getPPSSysBIReportItemId());
                 PSSysBIReportItemService pSSysBIReportItemService = (PSSysBIReportItemService)ServiceGlobal.getService(PSSysBIReportItemService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBIReportItemService.autoGet((IEntity)pSSysBIReportItem);
+                pSSysBIReportItemService.autoGet(pSSysBIReportItem);
                 this.ppssysbireportitem = pSSysBIReportItem;
             }
             return this.ppssysbireportitem;
@@ -3496,7 +3496,7 @@ implements Serializable {
                 PSSysBIReport pSSysBIReport = new PSSysBIReport();
                 pSSysBIReport.setPSSysBIReportId(this.getPSSysBIReportId());
                 PSSysBIReportService pSSysBIReportService = (PSSysBIReportService)ServiceGlobal.getService(PSSysBIReportService.class, (SessionFactory)this.getSessionFactory());
-                pSSysBIReportService.autoGet((IEntity)pSSysBIReport);
+                pSSysBIReportService.autoGet(pSSysBIReport);
                 this.pssysbireport = pSSysBIReport;
             }
             return this.pssysbireport;

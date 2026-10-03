@@ -45,7 +45,12 @@ ISRFExDataGridDSItem3 {
         String strValue;
         block8: {
             block7: {
-                if (!dr.IsDBNull(dsItemConfig.getID())) break block7;
+                try {
+                    if (!dr.IsDBNull(dsItemConfig.getID())) break block7;
+                }
+                catch (Exception exception) {
+                    return "";
+                }
                 return "";
             }
             try {

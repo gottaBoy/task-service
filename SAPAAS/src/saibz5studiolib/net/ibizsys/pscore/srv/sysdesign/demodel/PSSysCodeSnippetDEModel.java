@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysCodeSnippetDEModelBase;
 
 public class PSSysCodeSnippetDEModel
 extends PSSysCodeSnippetDEModelBase {
+
+    public PSSysCodeSnippetDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

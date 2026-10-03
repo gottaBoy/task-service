@@ -1,39 +1,47 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.ibizsys.model.wf.IPSWorkflow
- *  net.ibizsys.paas.entity.IEntity
- *  net.ibizsys.sswf.core.WFModelBase
- */
 package net.ibizsys.ssdynawf.core;
 
 import net.ibizsys.model.wf.IPSWorkflow;
 import net.ibizsys.paas.entity.IEntity;
 import net.ibizsys.ssdyna.sysmodel.IDynaSysModel;
-import net.ibizsys.ssdynawf.core.IDynaWFModel;
 
-public abstract class WFModelBase
-extends net.ibizsys.sswf.core.WFModelBase
-implements IDynaWFModel {
-    private IPSWorkflow iPSWorkflow = null;
+/**
+ * 动态系统工作流模型基类
+ * @author Administrator
+ *
+ */
+public abstract class WFModelBase extends net.ibizsys.sswf.core.WFModelBase implements IDynaWFModel{
 
-    @Override
-    public IDynaSysModel getDynaSysModel() {
-        return (IDynaSysModel)this.getSystemModel();
-    }
+	private IPSWorkflow iPSWorkflow = null;
+	private int wfProxyMode;
 
-    @Override
-    public IPSWorkflow getPSWorkflow() {
-        return this.iPSWorkflow;
-    }
+	public int getWFProxyMode() {
+		return wfProxyMode;
+	}
 
-    protected void setPSWorkflow(IPSWorkflow iPSWorkflow) {
-        this.iPSWorkflow = iPSWorkflow;
-    }
+	protected void setWFProxyMode(int wfProxyMode) {
+		this.wfProxyMode = wfProxyMode;
+	}
+	@Override
+	public IDynaSysModel getDynaSysModel() {
+		return (IDynaSysModel) this.getSystemModel();
+	}
 
-    public IEntity createEntity(String strDEName) throws Exception {
-        return this.getDynaSysModel().getDataEntityModel(strDEName).createEntity();
-    }
+	@Override
+	public IPSWorkflow getPSWorkflow() {
+		return this.iPSWorkflow;
+	}
+	
+	/**
+	 * 设置工作流对象
+	 * @param iPSWorkflow
+	 */
+	protected void setPSWorkflow(IPSWorkflow iPSWorkflow) {
+		this.iPSWorkflow = iPSWorkflow;
+	}
+
+	
+	@Override
+	public IEntity createEntity(String strDEName) throws Exception {
+		return this.getDynaSysModel().getDataEntityModel(strDEName).createEntity();
+	}
 }
-

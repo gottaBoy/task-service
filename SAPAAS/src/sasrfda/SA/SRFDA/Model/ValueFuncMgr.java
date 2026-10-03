@@ -113,8 +113,8 @@ extends XMLCollectionExConfig<ValueFuncConfig> {
         String strObject;
         if (childNodeMap.containsKey(strName) && !StringHelper.IsNullOrEmpty((String)(strObject = childNodeMap.get(strName))) && (childNode = ValueFuncMgr.CreateChildNode((String)strObject)) != null) {
             childNode.LoadConfig(xmlNode);
-            if (this.OnChildNodeLoaded((Object)((ValueFuncConfig)childNode))) {
-                this.add((Object)((ValueFuncConfig)childNode));
+            if (this.OnChildNodeLoaded((ValueFuncConfig)childNode)) {
+                this.add((ValueFuncConfig)childNode);
                 return;
             }
         }

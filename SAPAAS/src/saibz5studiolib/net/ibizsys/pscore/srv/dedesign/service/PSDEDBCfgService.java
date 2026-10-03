@@ -50,7 +50,7 @@ implements IPSModelService<PSDEDBCfg> {
                 PSDEDBCfg pSDEDBCfg = new PSDEDBCfg();
                 pSDEDBCfg.setPSDEDBCfgName(string3);
                 pSDEDBCfg.setPSDEId(pSDataEntity.getPSDataEntityId());
-                this.fillEntityKeyValue((IEntity)pSDEDBCfg);
+                this.fillEntityKeyValue(pSDEDBCfg);
                 if (this.checkKey(pSDEDBCfg) != 0) continue;
                 this.create(pSDEDBCfg);
             }

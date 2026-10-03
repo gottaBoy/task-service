@@ -1,11 +1,17 @@
-/*
- * Decompiled with CFR 0.152.
+/**
+ *  iBizSys 5.0 用户自定义代码
+ *  http://www.ibizsys.net
  */
 package net.ibizsys.psrt.srv.common.entity;
 
-import net.ibizsys.psrt.srv.common.entity.MsgAccountDetailBase;
+/**
+ * 实体[MsgAccountDetail] 数据对象
+ */
+//@Entity
+public class MsgAccountDetail extends MsgAccountDetailBase {
 
-public class MsgAccountDetail
-extends MsgAccountDetailBase {
+    public MsgAccountDetail() {
+        super();
+    }
+
 }
-

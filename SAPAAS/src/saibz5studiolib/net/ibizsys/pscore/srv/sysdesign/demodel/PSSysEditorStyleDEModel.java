@@ -7,6 +7,10 @@ import net.ibizsys.pscore.srv.sysdesign.demodel.PSSysEditorStyleDEModelBase;
 
 public class PSSysEditorStyleDEModel
 extends PSSysEditorStyleDEModelBase {
+
+    public PSSysEditorStyleDEModel() throws Exception {
+        super();
+    }
     private static final long serialVersionUID = -1L;
 }
 

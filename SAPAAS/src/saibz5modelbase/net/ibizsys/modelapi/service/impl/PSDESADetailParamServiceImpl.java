@@ -70,7 +70,7 @@ implements IPSDESADetailParamService {
     @Override
     protected List<PSDESADetailParam> onListAll() throws Exception {
         ArrayList<PSDESADetailParam> list = new ArrayList<PSDESADetailParam>();
-        List psdesadetails = PSModelServiceUtil.getInstance().getPSDESADetailService().listAll();
+        List<PSDESADetail> psdesadetails = PSModelServiceUtil.getInstance().getPSDESADetailService().listAll();
         if (psdesadetails != null) {
             for (PSDESADetail parent : psdesadetails) {
                 List<PSDESADetailParam> items = this.listByPSDESADetail(parent);

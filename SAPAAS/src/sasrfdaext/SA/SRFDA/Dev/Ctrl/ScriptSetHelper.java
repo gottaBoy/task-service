@@ -34,7 +34,7 @@ public class ScriptSetHelper {
     public static CallResult ExportJS(ISRFDAGlobalHelper iGlobalHelper, boolean bReleaseMode) {
         OutputStream out;
         String strSQL = "select * from T_SRFDEVScriptSet where VALIDFLAG=1 order by CODEORDER";
-        Vector list = new Vector();
+        Vector<DevScriptSet> list = new Vector();
         CallResult callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)iGlobalHelper, (String)strSQL, null, list, (String)DevScriptSet.class.getName());
         if (callResult.IsError()) {
             log.error((Object)StringHelper.Format((String)"\u67e5\u8be2\u5f00\u53d1\u811a\u672c\u96c6\u5408\u53d1\u751f\u9519\u8bef\uff0c%1$s", (Object)callResult.getErrorInfo()));
@@ -45,7 +45,7 @@ public class ScriptSetHelper {
         jsFuncMap.put(141, null);
         jsFuncMap.put(125, null);
         if (iGlobalHelper.getDAModelVersion() >= 10022300) {
-            Vector pages;
+            Vector<Page> pages;
             strSQL = StringHelper.Format((String)"select t1.PAGEFUNC,t2.PAGEFUNC AS PTPAGEFUNC from t_SRFPage  t1 LEFT JOIN T_SRFPageTempl t2 ON t1.PAGETEMPLID=t2.PAGETEMPLID  ");
             callResult = BaseDEDataCtrl.SelectMulti((ISRFDAGlobalHelper)iGlobalHelper, (String)strSQL, null, pages = new Vector(), (String)Page.class.getName());
             if (callResult.IsError()) {
@@ -60,7 +60,7 @@ public class ScriptSetHelper {
         strRTFolder = String.valueOf(strRTFolder) + File.separator;
         strRTFolder = String.valueOf(strRTFolder) + "rt";
         strRTFolder = String.valueOf(strRTFolder) + File.separator;
-        Iterator<Object> iterator = jsFuncMap.keySet().iterator();
+        Iterator<Integer> iterator = jsFuncMap.keySet().iterator();
         while (iterator.hasNext()) {
             int nFunc = (Integer)iterator.next();
             try {

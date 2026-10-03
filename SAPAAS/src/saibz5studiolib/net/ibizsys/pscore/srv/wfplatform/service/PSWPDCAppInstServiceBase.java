@@ -131,9 +131,9 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
             PSDevCenter pSDevCenter = (PSDevCenter)iService.getDEModel().createEntity();
             pSDevCenter.set("PSDEVCENTERID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSDevCenter);
+                iService.getTemp(pSDevCenter);
             } else {
-                iService.get((IEntity)pSDevCenter);
+                iService.get(pSDevCenter);
             }
             this.onFillParentInfo_PSDevCenter(pSWPDCAppInst, pSDevCenter);
             return;
@@ -143,14 +143,14 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
             PSWPAppInst pSWPAppInst = (PSWPAppInst)iService.getDEModel().createEntity();
             pSWPAppInst.set("PSWPAPPINSTID", DataTypeHelper.parse((int)25, (String)string3));
             if (string3.indexOf("SRFTEMPKEY:") == 0) {
-                iService.getTemp((IEntity)pSWPAppInst);
+                iService.getTemp(pSWPAppInst);
             } else {
-                iService.get((IEntity)pSWPAppInst);
+                iService.get(pSWPAppInst);
             }
             this.onFillParentInfo_Pswpappinst(pSWPDCAppInst, pSWPAppInst);
             return;
         }
-        super.onFillParentInfo((IEntity)pSWPDCAppInst, string, string2, string3);
+        super.onFillParentInfo(pSWPDCAppInst, string, string2, string3);
     }
 
     protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
@@ -171,7 +171,7 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
         if (bl) {
             // empty if block
         }
-        super.onFillEntityFullInfo((IEntity)pSWPDCAppInst, bl);
+        super.onFillEntityFullInfo(pSWPDCAppInst, bl);
         this.onFillEntityFullInfo_PSDevCenter(pSWPDCAppInst, bl);
         this.onFillEntityFullInfo_Pswpappinst(pSWPDCAppInst, bl);
     }
@@ -183,7 +183,7 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
     }
 
     protected void onWriteBackParent(PSWPDCAppInst pSWPDCAppInst, boolean bl) throws Exception {
-        super.onWriteBackParent((IEntity)pSWPDCAppInst, bl);
+        super.onWriteBackParent(pSWPDCAppInst, bl);
     }
 
     public ArrayList<PSWPDCAppInst> selectByPSDevCenter(PSDevCenterBase pSDevCenterBase) throws Exception {
@@ -238,8 +238,8 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
         ArrayList<PSWPDCAppInst> arrayList = this.selectByPSDevCenter(pSDevCenter, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSDEVCENTER");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSDevCenter);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWPDCAPPINST_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSWPDCAPPINST", iDataEntityModel.getDataInfo((IEntity)pSDevCenter), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSDevCenter);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWPDCAPPINST_PSDEVCENTER_PSDEVCENTERID", "", iDataEntityModel.getName(), "PSWPDCAPPINST", iDataEntityModel.getDataInfo(pSDevCenter), arrayList.get(0)));
         }
     }
 
@@ -272,7 +272,7 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
         ArrayList<PSWPDCAppInst> arrayList = this.selectByPSDevCenter(pSDevCenter);
         this.onBeforeRemoveByPSDevCenter(pSDevCenter, arrayList);
         for (PSWPDCAppInst pSWPDCAppInst : arrayList) {
-            this.remove((IEntity)pSWPDCAppInst);
+            this.remove(pSWPDCAppInst);
         }
         this.onAfterRemoveByPSDevCenter(pSDevCenter, arrayList);
     }
@@ -290,8 +290,8 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
         ArrayList<PSWPDCAppInst> arrayList = this.selectByPswpappinst(pSWPAppInst, null, -1);
         if (arrayList.size() > 0) {
             IDataEntityModel iDataEntityModel = this.getDEModel().getSystemRuntime().getDataEntityModel("PSWPAPPINST");
-            iDataEntityModel.getService(this.getSessionFactory()).getCache((IEntity)pSWPAppInst);
-            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWPDCAPPINST_PSWPAPPINST_PSWPAPPINSTID", "", iDataEntityModel.getName(), "PSWPDCAPPINST", iDataEntityModel.getDataInfo((IEntity)pSWPAppInst), arrayList.get(0)));
+            iDataEntityModel.getService(this.getSessionFactory()).getCache(pSWPAppInst);
+            throw new Exception(this.getRemoveRejectMsg("DER1N_PSWPDCAPPINST_PSWPAPPINST_PSWPAPPINSTID", "", iDataEntityModel.getName(), "PSWPDCAPPINST", iDataEntityModel.getDataInfo(pSWPAppInst), arrayList.get(0)));
         }
     }
 
@@ -324,7 +324,7 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
         ArrayList<PSWPDCAppInst> arrayList = this.selectByPswpappinst(pSWPAppInst);
         this.onBeforeRemoveByPswpappinst(pSWPAppInst, arrayList);
         for (PSWPDCAppInst pSWPDCAppInst : arrayList) {
-            this.remove((IEntity)pSWPDCAppInst);
+            this.remove(pSWPDCAppInst);
         }
         this.onAfterRemoveByPswpappinst(pSWPAppInst, arrayList);
     }
@@ -347,7 +347,7 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
 
     protected void replaceParentInfo(PSWPDCAppInst pSWPDCAppInst, CloneSession cloneSession) throws Exception {
         IEntity iEntity;
-        super.replaceParentInfo((IEntity)pSWPDCAppInst, cloneSession);
+        super.replaceParentInfo(pSWPDCAppInst, cloneSession);
         if (pSWPDCAppInst.getPSDevCenterId() != null && (iEntity = cloneSession.getEntity("PSDEVCENTER", (Object)pSWPDCAppInst.getPSDevCenterId())) != null) {
             this.onFillParentInfo_PSDevCenter(pSWPDCAppInst, (PSDevCenter)iEntity);
         }
@@ -357,7 +357,7 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
     }
 
     protected void onRemoveEntityUncopyValues(PSWPDCAppInst pSWPDCAppInst, boolean bl) throws Exception {
-        super.onRemoveEntityUncopyValues((IEntity)pSWPDCAppInst, bl);
+        super.onRemoveEntityUncopyValues(pSWPDCAppInst, bl);
     }
 
     protected void onCheckEntity(boolean bl, PSWPDCAppInst pSWPDCAppInst, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
@@ -375,7 +375,7 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
         if ((entityFieldError = this.onCheckField_PSWPDCAppInstName(bl, pSWPDCAppInst, bl2, bl3)) != null) {
             entityError.register(entityFieldError);
         }
-        super.onCheckEntity(bl, (IEntity)pSWPDCAppInst, bl2, bl3, entityError);
+        super.onCheckEntity(bl, pSWPDCAppInst, bl2, bl3, entityError);
     }
 
     protected EntityFieldError onCheckField_PSDevCenterId(boolean bl, PSWPDCAppInst pSWPDCAppInst, boolean bl2, boolean bl3) throws Exception {
@@ -388,7 +388,7 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
                 // empty if block
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSDevCenterId_Default((IEntity)pSWPDCAppInst, bl2, bl3);
+            string2 = this.onTestValueRule_PSDevCenterId_Default(pSWPDCAppInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSDEVCENTERID");
@@ -413,7 +413,7 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWPAppInstId_Default((IEntity)pSWPDCAppInst, bl2, bl3);
+            string2 = this.onTestValueRule_PSWPAppInstId_Default(pSWPDCAppInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWPAPPINSTID");
@@ -438,7 +438,7 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWPDCAppInstId_Default((IEntity)pSWPDCAppInst, bl2, bl3);
+            string2 = this.onTestValueRule_PSWPDCAppInstId_Default(pSWPDCAppInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWPDCAPPINSTID");
@@ -463,7 +463,7 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
                 return entityFieldError;
             }
             String string2 = null;
-            string2 = this.onTestValueRule_PSWPDCAppInstName_Default((IEntity)pSWPDCAppInst, bl2, bl3);
+            string2 = this.onTestValueRule_PSWPDCAppInstName_Default(pSWPDCAppInst, bl2, bl3);
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 EntityFieldError entityFieldError = new EntityFieldError();
                 entityFieldError.setFieldName("PSWPDCAPPINSTNAME");
@@ -476,11 +476,11 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
     }
 
     protected void onSyncEntity(PSWPDCAppInst pSWPDCAppInst, boolean bl) throws Exception {
-        super.onSyncEntity((IEntity)pSWPDCAppInst, bl);
+        super.onSyncEntity(pSWPDCAppInst, bl);
     }
 
     protected void onSyncIndexEntities(PSWPDCAppInst pSWPDCAppInst, boolean bl) throws Exception {
-        super.onSyncIndexEntities((IEntity)pSWPDCAppInst, bl);
+        super.onSyncIndexEntities(pSWPDCAppInst, bl);
     }
 
     public Object getDataContextValue(PSWPDCAppInst pSWPDCAppInst, String string, IDataContextParam iDataContextParam) throws Exception {
@@ -488,14 +488,14 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
         if (iDataContextParam != null) {
             // empty if block
         }
-        if ((object = super.getDataContextValue((IEntity)pSWPDCAppInst, string, iDataContextParam)) != null) {
+        if ((object = super.getDataContextValue(pSWPDCAppInst, string, iDataContextParam)) != null) {
             return object;
         }
         return null;
     }
 
     protected void onExportMajorModel(PSWPDCAppInst pSWPDCAppInst, ArrayList<JSONObject> arrayList, int n) throws Exception {
-        super.onExportMajorModel((IEntity)pSWPDCAppInst, arrayList, n);
+        super.onExportMajorModel(pSWPDCAppInst, arrayList, n);
     }
 
     protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
@@ -638,14 +638,14 @@ extends PSCoreSysServiceBase<PSWPDCAppInst> {
 
     protected boolean onMergeChild(String string, String string2, PSWPDCAppInst pSWPDCAppInst) throws Exception {
         boolean bl = false;
-        if (super.onMergeChild(string, string2, (IEntity)pSWPDCAppInst)) {
+        if (super.onMergeChild(string, string2, pSWPDCAppInst)) {
             bl = true;
         }
         return bl;
     }
 
     protected void onUpdateParent(PSWPDCAppInst pSWPDCAppInst) throws Exception {
-        super.onUpdateParent((IEntity)pSWPDCAppInst);
+        super.onUpdateParent(pSWPDCAppInst);
     }
 
     @Override
